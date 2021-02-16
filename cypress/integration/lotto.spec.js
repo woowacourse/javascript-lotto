@@ -1,8 +1,32 @@
-import { LOTTO_PRICE, ERROR_MESSAGE } from '../../src/js/constants.js';
+import {
+  LOTTO_PRICE,
+  MONETARY_UNIT,
+  ERROR_MESSAGE,
+} from '../../src/js/constants.js';
 
 describe('lotto app test', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
+  });
+
+  it('입력된 로또 구입 금액에 화폐단위 미만의 자릿수가 포함된 경우 alert을 띄우고 input창을 초기화한다.', () => {
+    const invalidMoney = MONETARY_UNIT / 10;
+    const { PURCHASE_AMOUNT_IS_INVALID_MONEY } = ERROR_MESSAGE;
+    const alertStub = cy.stub();
+
+    cy.on('window:alert', alertStub);
+    cy.get('.purchase-amount-input').type(invalidMoney);
+    cy.get('.purchase-amount-button')
+      .click()
+      .then(() => {
+        expect(
+          alertStub
+            .getCall(0)
+            .to.be.calledWith(PURCHASE_AMOUNT_IS_INVALID_MONEY)
+        );
+        cy.get('.purchase-amount-input').should('have.text', '');
+        cy.get('.purchase-amount-input').should('have.focus');
+      });
   });
 
   it('입력된 로또 구입 금액이 로또 한 장의 금액보다 적을 경우 alert을 띄우고 input창을 초기화한다.', () => {
