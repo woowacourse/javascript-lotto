@@ -31,4 +31,14 @@ describe('racing-game', () => {
       ERR_MESSAGE.LOTTO.INVALID_PRICE,
     );
   });
+
+  it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
+    cy.get('#purchase-result-section__switch').click();
+    cy.get('#purchase-result-section__row-align').should('not.be.visible');
+    cy.get('#purchase-result-section__col-align').should('be.visible');
+
+    cy.get('#purchase-result-section__switch').click();
+    cy.get('#purchase-result-section__row-align').should('be.visible');
+    cy.get('#purchase-result-section__col-align').should('not.be.visible');
+  });
 });
