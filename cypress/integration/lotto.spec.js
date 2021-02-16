@@ -17,13 +17,13 @@ describe('racing-game', () => {
       'have.text',
       '총 3개를 구매하였습니다.',
     );
-    cy.get('.purchase-result-section__lotto-icon')
-      .its(length)
-      .then((lottoIconAmount) => expect(lottoIconAmount).to.equal(3));
+    cy.get('.purchase-result-section__lotto-icon').then((lottoIcons) => {
+      expect(lottoIcons.length).to.equal(3);
+    });
   });
 
-  it('구입 금액에 3333원을 입력 시, 경고 메시지가 출력되야 한다.', () => {
-    typePurchasePriceAndClickSubmitButton(3333);
+  it.only('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton(-1);
 
     cy.window().then((win) => cy.stub(win, 'alert').as('windowAlert'));
     cy.get('@windowAlert').should(
