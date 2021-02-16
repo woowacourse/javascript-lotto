@@ -26,13 +26,11 @@
 - [ ] 소비자는 **자동 구매**를 할 수 있어야 한다.
 - [ ] 복권 번호는 번호보기 토글 버튼을 클릭하면, 볼 수 있어야 한다.
 
-
 ### 🎯🎯 step2 당첨 결과 기능
 
 - [ ] 결과 확인하기 버튼을 누르면 당첨 통계, 수익률을 모달로 확인할 수 있다.
 - [ ] 로또 당첨 금액은 고정되어 있는 것으로 가정한다.
 - [ ] 다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.
-
 
 ### 🎯🎯🎯 step3 수동 구매
 
@@ -76,3 +74,22 @@ live-server 폴더명
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-lotto/blob/main/LICENSE) licensed.
+
+## 1. 환경설정
+
+1. yarn을 이용하여 package 초기화: `yarn init`
+2. cypress 설치: `yarn add cypress --dev`
+3. eslint 설치: `yarn add eslint --dev`
+4. prettier 설치: `yarn add prettier --dev --exact`
+   - .prettier.json 설정: `echo {}> .prettierrc.json` // 별도로 옵션을 설정하지 않고 기본 설정 그대로 사용한다
+   - .prettierignore 설정: cypress/integration 외 cypress내 디렉토리는 모두 무시하도록 설정
+5. eslint-config-prettier 설치: `yarn add eslint-config-prettier --dev`
+6. eslint-config-cypress 설치: `yarn add eslint-config-cypress --dev`
+7. eslint 설정: `yarn eslint --init`
+   - prettier, cypress plugins 및 extends 추가
+   - eslint:recommended 컨벤션 적용
+8. .vscode/settings.json 설정
+   - 모든 파일에 대하여 저장시 eslint 및 prettier 적용
+   - editor 탭사이즈는 2, 탭 대신 스페이스 사용
+   - 패키지매니져로 yarn을 사용함을 명시
+   - 항상 마지막 줄에 빈 라인을 추가

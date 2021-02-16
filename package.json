@@ -1,9 +1,19 @@
 {
-  "name": "racingcar",
-  "version": "1.0.0",
+  "name": "lotto",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "repository": "https://github.com/bigsaigon333/javascript-lotto.git",
+  "author": "bigsaigon333 <likepeppermint@gmail.com>",
+  "scripts": {
+    "test": "cypress open",
+    "deploy": "git push origin gh-pages"
+  },
   "devDependencies": {
-    "cypress": "^6.3.0"
+    "cypress": "^6.5.0",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "prettier": "2.2.1",
+    "eslint-config-cypress": "^0.28.0"
   }
 }

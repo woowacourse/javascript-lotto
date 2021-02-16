@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "liveServer.settings.CustomBrowser": "chrome:PrivateMode",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "prettier.packageManager": "yarn",
+  "files.insertFinalNewline": true
+}
