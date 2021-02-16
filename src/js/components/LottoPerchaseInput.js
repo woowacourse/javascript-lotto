@@ -1,7 +1,6 @@
 import { LOTTO_PRICE } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 import { mod, divide } from '../utils/lotto.js';
-import { isNumber } from '../utils/validation.js';
 
 // TODO: 최대금액 설정
 
