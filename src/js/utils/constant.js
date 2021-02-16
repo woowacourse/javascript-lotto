@@ -1,5 +1,5 @@
 export const ERR_MESSAGE = {
   LOTTO: {
-    INVALID_PRICE: '금액은 1,000원 단위로만 입력이 가능합니다.',
+    INVALID_PRICE: '1,000원 이상의 금액만 입력이 가능합니다.',
   },
 };

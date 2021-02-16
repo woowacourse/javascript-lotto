@@ -31,11 +31,12 @@
               </button>
             </div>
           </form>
-          <section id="purchase-result-section" class="mt-9">
+          <section id="purchase-result-section" class="mt-9" hidden>
             <div class="d-flex">
-              <label id="purchase-result-section__label" class="flex-auto my-0"
-                >총 555개를 구매하였습니다.</label
-              >
+              <label
+                id="purchase-result-section__label"
+                class="flex-auto my-0"
+              ></label>
               <div class="flex-auto d-flex justify-end pr-1">
                 <label id="purchase-result-section__switch" class="switch">
                   <input type="checkbox" class="lotto-numbers-toggle-button" />
@@ -46,29 +47,13 @@
             <div
               id="purchase-result-section__row-align"
               class="d-flex flex-wrap"
-            >
-              <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
-                >🎟️
-              </span>
-              <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
-                >🎟️
-              </span>
-              <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
-                >🎟️
-              </span>
-              <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
-                >🎟️
-              </span>
-              <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
-                >🎟️
-              </span>
-            </div>
+            ></div>
             <div
               id="purchase-result-section__col-align"
               class="d-flex flex-wrap flex-col"
               style="display: none"
             >
-              <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
+              <!-- <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
                 >🎟️
               </span>
               <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
@@ -82,10 +67,10 @@
               </span>
               <span class="purchase-result-section__lotto-icon mx-1 text-4xl"
                 >🎟️
-              </span>
+              </span> -->
             </div>
           </section>
-          <form class="mt-9">
+          <form id="winning-number-input-form" class="mt-9" hidden>
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >

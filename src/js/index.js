@@ -1,17 +1,17 @@
-const $showResultButton = document.querySelector('.open-result-modal-button')
-const $modalClose = document.querySelector('.modal-close')
-const $modal = document.querySelector('.modal')
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-)
+import { handlePurchasePriceInput } from './handlePurchasePriceInput.js';
 
-const onModalShow = () => {
-  $modal.classList.add('open')
-}
+const init = () => {
+  const $purchasePriceInputFormButton = document.querySelector(
+    '#purchase-price-input-form__button',
+  );
+  $purchasePriceInputFormButton.addEventListener(
+    'click',
+    handlePurchasePriceInput,
+  );
+};
 
-const onModalClose = () => {
-  $modal.classList.remove('open')
-}
+const Lotto = () => {
+  init();
+};
 
-$showResultButton.addEventListener('click', onModalShow)
-$modalClose.addEventListener('click', onModalClose)
+window.addEventListener('DOMContentLoaded', Lotto);
