@@ -1,4 +1,4 @@
-import { $costInput, $modal } from './elements.js';
+import { $costInput, $modal, $lottoNumbersToggleButton } from './elements.js';
 import { MESSAGE } from './constants.js';
 import validator from './lotto/validator.js';
 import lottoGameController from './lotto/controller.js';
@@ -13,7 +13,14 @@ const onCostSumbit = () => {
     alert(MESSAGE.getShouldNotHaveChangeMessage(cost));
     return;
   }
+  if ($lottoNumbersToggleButton.checked) {
+    $lottoNumbersToggleButton.checked = false;
+  }
   lottoGameController.purchaseLottoItems(cost);
+};
+
+const onShowLottoNumbersToggle = (e) => {
+  lottoGameController.toggleLottoItemNumbers(e.target.checked);
 };
 
 const onModalShow = () => {
@@ -24,4 +31,4 @@ const onModalClose = () => {
   $modal.classList.remove('open');
 };
 
-export { onCostSumbit, onModalShow, onModalClose };
+export { onCostSumbit, onShowLottoNumbersToggle, onModalShow, onModalClose };

@@ -5,6 +5,7 @@ html,
 body {
   margin: 0;
   height: 100%;
+  font-family: 'NanumGothic';
   font-size: 16px;
 }
 
@@ -25,4 +26,28 @@ body {
 
 #purchase-result {
   display: none;
+}
+
+#purchase-control {
+  display: none;
+}
+
+.lotto-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+}
+
+.lotto-numbers {
+  display: none;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
 }

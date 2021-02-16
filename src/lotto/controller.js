@@ -22,10 +22,17 @@ const getRandomNumberList = () => {
 export default {
   purchaseLottoItems(cost) {
     const lottoItemCount = cost / LOTTO_PRICE;
-    Array.from(lottoItemCount).forEach(() => {
+    lottoGame.initLottoItemList();
+    for (let i = 0; i < lottoItemCount; i += 1) {
       const numberList = getRandomNumberList();
       lottoGame.addLottoItem(numberList);
-    });
-    lottoGameUI.renderResult(lottoItemCount);
+    }
+    lottoGameUI.renderResult(lottoGame.lottoItemList);
+  },
+  toggleLottoItemNumbers(checked) {
+    if (checked) {
+      return lottoGameUI.displayLottoNumbers();
+    }
+    return lottoGameUI.hideLottoNumbers();
   },
 };

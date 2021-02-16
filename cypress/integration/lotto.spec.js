@@ -34,8 +34,9 @@ describe('step 1', () => {
   it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
     cy.get('#cost-input').type('5000');
     cy.get('#cost-submit-button').click();
-    cy.get('#lotto-numbers-toggle-button').click();
-    cy.get('.lotto-item').each((item) => {
+    cy.get('#lotto-numbers-toggle-button').click({ force: true });
+    cy.get('.lotto-item').each((items) => {
+      const [item] = items;
       const $lottoNumbers = item.querySelector('.lotto-numbers');
       const lottoNumberList = $lottoNumbers.innerText.split(', ');
       expect(lottoNumberList.length).to.equal(new Set(lottoNumberList).size);

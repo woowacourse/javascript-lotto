@@ -1,5 +1,5 @@
 import {
-  $purchaseControl,
+  $purchaseItemCount,
   $purchaseItemList,
   $purchaseResult,
 } from '../elements.js';
@@ -7,11 +7,22 @@ import {
   getResultControlTemplate,
   getResultItemListTemplate,
 } from '../templates.js';
+import { $$ } from '../utils/querySelector.js';
 
 export default {
-  renderResult(lottoItemCount) {
+  renderResult(lottoList) {
     $purchaseResult.style.display = 'block';
-    $purchaseControl.innerHTML = getResultControlTemplate(lottoItemCount);
-    $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemCount);
+    $purchaseItemCount.innerHTML = getResultControlTemplate(lottoList.length);
+    $purchaseItemList.innerHTML = getResultItemListTemplate(lottoList);
+  },
+  displayLottoNumbers() {
+    $$('.lotto-numbers').forEach(($lottoNumbers) => {
+      $lottoNumbers.style.display = 'inline-block';
+    });
+  },
+  hideLottoNumbers() {
+    $$('.lotto-numbers').forEach(($lottoNumbers) => {
+      $lottoNumbers.style.display = 'none';
+    });
   },
 };
