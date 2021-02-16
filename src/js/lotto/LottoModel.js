@@ -1,3 +1,5 @@
+import { shuffle } from "../utils.js";
+
 export default function LottoModel() {
   this.lottoList = []; // [ { winningNumber: [0, ], bonusNumber: 0 }, ]
 
@@ -8,8 +10,8 @@ export default function LottoModel() {
       shuffle(baseNumbers);
 
       return {
-        winningNumber: baseNumber.slice(0, 6),
-        bonusNumber: baseNumber[6],
+        winningNumber: baseNumbers.slice(0, 6),
+        bonusNumber: baseNumbers[6],
       };
     });
   };
