@@ -41,4 +41,16 @@ describe("ui-play", () => {
       expect(new Set($numbers.text().split(" ")).size).to.eq(6);
     });
   });
+
+  it("번호보기 토클 버튼을 클릭했을 때 나오는 각 로또 번호들은 1이상 45이하 사이여야 한다.", () => {
+    cy.get("#buy-input").type("5000");
+    cy.get("#buy-button").click();
+    cy.get("#pocket-toggle-number").click({ force: true });
+    cy.get(".pocket-lotto-numbers").should("exist");
+    cy.get(".pocket-lotto-numbers").each($numbers => {
+      cy.get($numbers.text().split(" ")).each($number => {
+        cy.wrap(parseInt($number, 10)).should("be.lte", 45).and("be.gte", 1);
+      });
+    });
+  });
 });
