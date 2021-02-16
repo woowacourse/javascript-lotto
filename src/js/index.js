@@ -1,3 +1,11 @@
+import LottoController from './lottoController.js';
+import LottoUI from './lottoUI.js';
+
+const lottoUI = new LottoUI();
+const lottoController = new LottoController(lottoUI);
+lottoController.init();
+
+/*
 const $showResultButton = document.querySelector('.open-result-modal-button')
 const $modalClose = document.querySelector('.modal-close')
 const $modal = document.querySelector('.modal')
@@ -15,3 +23,5 @@ const onModalClose = () => {
 
 $showResultButton.addEventListener('click', onModalShow)
 $modalClose.addEventListener('click', onModalClose)
+
+ */
