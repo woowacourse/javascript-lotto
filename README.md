@@ -22,6 +22,7 @@
 ### major feature
 
 - [ ] test
+- [ ] test 2
 
 ### 🎯 step1 구입 기능
 
