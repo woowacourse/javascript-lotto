@@ -1,5 +1,7 @@
 export const LOTTO_PRICE = 1000;
 export const MONETARY_UNIT = 1; // 한국의 최소 화폐단위: 1원
+export const PURCHASED_QUANTITY_MESSAGE = (numOfLotto) =>
+  `총 ${numOfLotto}개를 구매하였습니다.`;
 
 export const ERROR_MESSAGE = {
   PURCHASE_AMOUNT_IS_INVALID_MONEY: `화폐단위 미만의 자릿수가 포함된 금액입니다. ${LOTTO_PRICE}원 단위로 입력해주세요`,

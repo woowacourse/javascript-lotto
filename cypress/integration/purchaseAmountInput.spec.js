@@ -4,7 +4,7 @@ import {
   ERROR_MESSAGE,
 } from '../../src/js/constants.js';
 
-describe('lotto app test', () => {
+describe('구매금액 입력 검사', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
