@@ -32,4 +32,18 @@ describe('LOTTO - 구매할 금액 입력 테스트', () => {
         );
       });
   });
+
+  it('금액이 소수로 입력된 경우, alert에 오류 메시지를 출력한다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('#lotto-perchase-input').type('100.2');
+    cy.get('#lotto-perchase-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(
+          `소수를 입력하셨습니다. 입력 금액은 정수여야 합니다.`,
+        );
+      });
+  });
 });
