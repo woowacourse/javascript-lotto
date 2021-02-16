@@ -1,5 +1,3 @@
-const resetInputValue = input => cy.get(input).then($input => $input.val(''));
-
 export const checkAlert = alertMessage => {
   const alertStub = cy.stub();
 
@@ -7,6 +5,8 @@ export const checkAlert = alertMessage => {
     expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
   });
 };
+
+const resetInputValue = input => cy.get(input).then($input => $input.val(''));
 
 export const setInputValue = (input, button, value) => {
   resetInputValue(input);
