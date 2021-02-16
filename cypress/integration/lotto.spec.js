@@ -8,20 +8,10 @@ describe('step 1', () => {
       .as('alertStub');
   });
   it('소비자는 낸 금액에 맞는 개수만큼의 복권을 받는다.', () => {
-    cy.get('#cost-input').type('5000');
+    cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
-    cy.get('#lotto-count').should('have.text', '5');
-    cy.get('.lotto-item').should('have.length', '5');
-  });
-  it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
-    cy.get('#cost-input').type('5000');
-    cy.get('#cost-submit-button').click();
-    cy.get('.lotto-numbers-toggle-button').click();
-    cy.get('.lotto-item').each((item) => {
-      const $lottoNumbers = item.querySelector('.lotto-numbers');
-      const lottoNumberList = $lottoNumbers.innerText.split(', ');
-      expect(lottoNumberList.length).to.equal(new Set(lottoNumberList).size);
-    });
+    cy.get('#lotto-count').should('have.text', '3');
+    cy.get('.lotto-item').should('have.length', '3');
   });
   it('금액은 1000원 이상을 입력해야 한다. 그 이하로 입력시 안내메세지를 출력한다.', () => {
     cy.get('#cost-input').type('500');
@@ -37,8 +27,18 @@ describe('step 1', () => {
     cy.get('#cost-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.getShouldNotHaveChangeMessage(500)
+      MESSAGE.getShouldNotHaveChangeMessage(3500)
     );
     cy.get('#purchase-result').should('not.be.visible');
+  });
+  it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
+    cy.get('#cost-input').type('5000');
+    cy.get('#cost-submit-button').click();
+    cy.get('#lotto-numbers-toggle-button').click();
+    cy.get('.lotto-item').each((item) => {
+      const $lottoNumbers = item.querySelector('.lotto-numbers');
+      const lottoNumberList = $lottoNumbers.innerText.split(', ');
+      expect(lottoNumberList.length).to.equal(new Set(lottoNumberList).size);
+    });
   });
 });
