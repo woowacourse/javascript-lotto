@@ -25,9 +25,24 @@ describe('구매한 로또 UI 검사', () => {
     cy.get('.lotto-ticket-container').should('have.length', numOfLotto);
   });
 
-  it('번호보기 토글이 비활성화 되어 있을 때, 토글을 누르면 로또 아이콘이 세로로 배치되고 로또 번호가 표시된다.', () => {
+  it('번호보기 토글이 비활성화 되어 있는 상태에서 토글을 누르면, 로또 아이콘이 세로로 배치되고 로또 번호가 표시된다.', () => {
     cy.get('.switch').click();
     cy.get('.purchased-lotto-section').should('have.class', 'flex-col');
     cy.get('.lotto-numbers').should('be.visible');
+  });
+
+  it('표시된 로또 번호의 개수, 중복여부, 범위를 검사한다.', () => {
+    cy.get('.lotto-numbers').each(($el) => {
+      const lottoNumbers = $el.text().split(LOTTO_NUMBER_SEPARATOR);
+
+      expect(lottoNumbers.length).to.be.equal(LOTTO_NUMBERS_LENGTH);
+      expect(lottoNumbers.length).to.be.equal(new Set(lottoNumbers).size);
+      lottoNumbers.forEach((lottoNumber) => {
+        expect(Number(lottoNumber)).to.be.within(
+          LOTTO_MIN_NUMBER,
+          LOTTO_MAX_NUMBER
+        );
+      });
+    });
   });
 });
