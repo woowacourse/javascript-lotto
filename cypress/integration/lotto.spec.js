@@ -8,4 +8,11 @@ describe("ui-play", () => {
     cy.get("#pocket").children().should("not.exist");
     cy.get("#winning").children().should("not.exist");
   });
+
+  it("금액을 입력하고 버튼을 클릭하면 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
+    cy.get("#buy-input").type("5000");
+    cy.get("#buy-button").click();
+    cy.get("#pocket").children().should("exist");
+    cy.get("#winning").children().should("exist");
+  });
 });
