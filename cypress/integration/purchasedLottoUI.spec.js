@@ -45,4 +45,10 @@ describe('구매한 로또 UI 검사', () => {
       });
     });
   });
+
+  it('번호보기 토글이 활성화된 상태에서 토글을 누르면, 로또 아이콘이 가로로 배치되고 로또 번호가 사라진다.', () => {
+    cy.get('.switch').click();
+    cy.get('.purchased-lotto-section').should('not.have.class', 'flex-col');
+    cy.get('.lotto-numbers').should('not.be.visible');
+  });
 });
