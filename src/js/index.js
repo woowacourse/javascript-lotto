@@ -1,17 +1,33 @@
-const $showResultButton = document.querySelector('.open-result-modal-button');
-const $modalClose = document.querySelector('.modal-close');
-const $modal = document.querySelector('.modal');
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-);
+import { LottoController } from './controller/index.js';
 
-const onModalShow = () => {
-  $modal.classList.add('open');
-};
+class App {
+  constructor() {
+    this.init();
+  }
 
-const onModalClose = () => {
-  $modal.classList.remove('open');
-};
+  init() {
+    const controller = new LottoController();
+    controller.init();
+    controller.setEvent();
+  }
+}
 
-$showResultButton.addEventListener('click', onModalShow);
-$modalClose.addEventListener('click', onModalClose);
+new App();
+
+// const $showResultButton = document.querySelector('.open-result-modal-button');
+// const $modalClose = document.querySelector('.modal-close');
+// const $modal = document.querySelector('.modal');
+// const $lottoNumbersToggleButton = document.querySelector(
+//   '.lotto-numbers-toggle-button'
+// );
+
+// const onModalShow = () => {
+//   $modal.classList.add('open');
+// };
+
+// const onModalClose = () => {
+//   $modal.classList.remove('open');
+// };
+
+// $showResultButton.addEventListener('click', onModalShow);
+// $modalClose.addEventListener('click', onModalClose);
