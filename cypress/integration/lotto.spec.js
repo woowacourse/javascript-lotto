@@ -23,9 +23,10 @@ describe('racing-game', () => {
   });
 
   it.only('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
+    cy.window().then((win) => cy.stub(win, 'alert').as('windowAlert'));
+
     typePurchasePriceAndClickSubmitButton(-1);
 
-    cy.window().then((win) => cy.stub(win, 'alert').as('windowAlert'));
     cy.get('@windowAlert').should(
       'be.calledWith',
       ERR_MESSAGE.LOTTO.INVALID_PRICE,
