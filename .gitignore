@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,vscode,intellij,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,vscode,intellij,webstorm
 
+node_modules/
+cypress/integration/examples
+
 ### macOS ###
 # General
 .DS_Store
