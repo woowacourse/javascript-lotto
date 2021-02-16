@@ -15,4 +15,10 @@ describe("ui-play", () => {
     cy.get("#pocket").children().should("exist");
     cy.get("#winning").children().should("exist");
   });
+
+  it("금액을 입력하고 버튼을 클릭하면 입력 금액/1000 개의 로또 이모지가 보여진다.", () => {
+    cy.get("#buy-input").type("5000");
+    cy.get("#buy-button").click();
+    cy.get("#pocket-lottos").children().its("length").should("eq", 5);
+  });
 });
