@@ -5,5 +5,15 @@
   "license": "MIT",
   "devDependencies": {
     "cypress": "^6.3.0"
+  },
+  "contributors": [
+    "yujo42",
+    "0imbean0"
+  ],
+  "dependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
   }
 }
