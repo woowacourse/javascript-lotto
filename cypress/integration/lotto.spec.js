@@ -21,4 +21,14 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-lottos").children().its("length").should("eq", 5);
   });
+
+  it("번호보기 토글 버튼을 클릭하면 각 로또 이모지와 로또 번호 6자리가 보여진다.", () => {
+    cy.get("#buy-input").type("5000");
+    cy.get("#buy-button").click();
+    cy.get("#pocket-toggle-number").click({ force: true });
+    cy.get(".pocket-lotto-numbers").should("exist");
+    cy.get(".pocket-lotto-numbers").each($numbers => {
+      expect($numbers.text().split(" ").length).to.eq(6);
+    });
+  });
 });
