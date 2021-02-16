@@ -1,17 +1,28 @@
-const $showResultButton = document.querySelector('.open-result-modal-button')
-const $modalClose = document.querySelector('.modal-close')
-const $modal = document.querySelector('.modal')
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-)
+import { hideElement } from "./utils.js";
+import {
+  $showResultButton,
+  $modalClose,
+  $modal,
+  $lottoNumbersToggleButton,
+  $confirmation,
+  $priceInput,
+  $priceSubmitButton,
+} from "./elements.js";
+import LottoController from "./lotto/LottoController.js";
 
 const onModalShow = () => {
-  $modal.classList.add('open')
-}
+  $modal.classList.add("open");
+};
 
 const onModalClose = () => {
-  $modal.classList.remove('open')
-}
+  $modal.classList.remove("open");
+};
+const lottoController = new LottoController();
 
-$showResultButton.addEventListener('click', onModalShow)
-$modalClose.addEventListener('click', onModalClose)
+hideElement($confirmation);
+
+$showResultButton.addEventListener("click", onModalShow);
+$modalClose.addEventListener("click", onModalClose);
+$priceSubmitButton.addEventListener("click", () => {
+  lottoController.onClickPriceSubmitButton($priceInput.value);
+});
