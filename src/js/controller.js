@@ -25,13 +25,14 @@ class LottoController {
     while (lotto.size !== 6) {
       lotto.add(getRandomNumber(1, 45));
     }
-    return [...lotto];
+
+    return [...lotto].sort();
   }
 
   createPocket() {
-    // 모델에서 detail 가져옴
-    // pocket view 생성,
-    // pocket handler 추가
+    const lottos = this.model.lottos;
+    const pocketDetail = this.model.detail;
+    this.view.renderPocketSection(lottos, pocketDetail);
   }
 
   manageLotto() {
@@ -45,10 +46,8 @@ class LottoController {
   }
 
   manageDetail() {
-    // 모델에서 detail 가져옴
-    // pocket view 재생성,
-    // pocket handler 추가
-    // detail = !detail
+    this.createPocket();
+    this.model.toggleDetail();
   }
 
   handleMoney() {
