@@ -31,6 +31,9 @@ describe("구입 금액 입력 테스트", () => {
     cy.get(toDAS(JS_SELECTOR.CASH.CONTAINER)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).should("be.visible");
+    cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER)).should("not.be.visible");
+    cy.get(toDAS(JS_SELECTOR.WINNING_LOTTO.CONTAINER)).should("not.be.visible");
+    cy.get(".modal").should("not.be.visible");
   });
 
   it("유저가 숫자로 변환될 수 없는 문자를 입력한 경우, 에러메시지를 alert로 출력한다", () => {
@@ -57,7 +60,7 @@ describe("구입 금액 입력 테스트", () => {
   });
 
   it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보를 보여준다", () => {
-    const userInput = 5500;
+    const userInput = 4500;
     const lottoCount = Math.floor(userInput / 1000);
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
