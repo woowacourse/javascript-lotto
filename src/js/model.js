@@ -12,7 +12,7 @@ class LottoModel {
     this._lottos = newLottos;
   }
 
-  set addLotto(newLotto) {
+  addLotto(newLotto) {
     this._lottos.push(newLotto);
   }
 
@@ -24,5 +24,4 @@ class LottoModel {
     this._detail = !this._detail;
   }
 }
-
 export default LottoModel;

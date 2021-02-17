@@ -30,7 +30,7 @@ class Template {
         <div id="pocket-lottos" class="flex-wrap">
         ${lottos
           .map(
-            (lotto) => `
+            lotto => `
             
             <div class="pocket-lotto-detail">
             <span class="mx-1 text-4xl">🎟️ </span>
