@@ -12,7 +12,7 @@ context('Actions', () => {
   it('토글 버튼을 누르면 티켓의 번호를 보여준다.', () => {
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
-    cy.get('#detail-mode-toggle').click();
+    cy.get('.switch').click();
     cy.get('.lotto-numbers').should('have.length', 5);
   });
 });
