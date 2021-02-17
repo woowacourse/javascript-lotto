@@ -56,6 +56,12 @@ class LottoApp {
 
       $('.lotto-list').append(...$lottoListChildren);
       $('.lotto-count').append(lottoCount);
+
+      $('.lotto-list-container').classList.remove('hidden');
+      $('.winning-number-form-container').classList.remove('hidden');
+
+      $('#money-input').setAttribute('disabled', 'disabled');
+      $('#money-submit-button').setAttribute('disabled', 'disabled');
     });
 
     $('.lotto-numbers-toggle-button').addEventListener('change', () => {

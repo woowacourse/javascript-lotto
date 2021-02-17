@@ -23,6 +23,14 @@ body {
   height: 36px;
 }
 
+button:disabled {
+  pointer-events: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
 .lotto-numbers {
   font-size: 1rem;
 }
