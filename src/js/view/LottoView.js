@@ -1,9 +1,24 @@
-export default class LottoView {
-  show(...elements) {
-    elements.forEach(element => element.classList.remove('d-none'));
-  }
+/* eslint-disable max-lines-per-function */
 
-  hide(...elements) {
-    elements.forEach(element => element.classList.add('d-none'));
+import { $, show } from '../util/index.js';
+
+export default class LottoView {
+  renderLottoSection(lottos) {
+    $('#lotto-count').innerText = `${lottos.length}`;
+    $('#lotto-container').innerHTML = lottoTemplate(lottos);
+    show($('#lotto-section'), $('#lotto-result-form'));
+
+    function lottoTemplate(lottos) {
+      return lottos.reduce((html, lotto) => {
+        return (html += ` 
+          <div class="lotto-wrapper d-flex items-start">
+            <span class="lotto mx-1 text-4xl">🎟️ </span>
+            <span class="lotto-numbers mx-1 text-2xl d-none"
+              >${lotto.numbers}</span
+            >
+          </div>
+        `);
+      }, '');
+    }
   }
 }

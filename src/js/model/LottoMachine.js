@@ -12,7 +12,7 @@ export default class LottoMachine {
     this.lottos = [];
   }
 
-  getLottoByAuto(money) {
+  publishLottoByAuto(money) {
     const count = money / UNIT_AMOUNT;
 
     for (let i = 0; i < count; i++) {

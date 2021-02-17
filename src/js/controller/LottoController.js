@@ -1,15 +1,15 @@
-import { $, validator } from '../util/index.js';
+import { $, $$, hide, show, validator } from '../util/index.js';
 import { LottoView } from '../view/index.js';
 import { LottoMachine } from '../model/index.js';
 
 export default class LottoController {
   constructor() {
-    this.lottoMachine = new LottoMachine();
+    this.machine = new LottoMachine();
     this.view = new LottoView();
   }
 
   init() {
-    this.view.hide($('#lotto-section'), $('#lotto-result-form'));
+    hide($('#lotto-section'), $('#lotto-result-form'));
   }
 
   setEvent() {
@@ -29,8 +29,10 @@ export default class LottoController {
 
       return;
     }
-    this.lottoMachine.getLottoByAuto(money);
-    // this.view.renderLottoSection(this.machine.lotttos);
+    this.machine.publishLottoByAuto(money);
+    this.view.renderLottoSection(this.machine.lottos);
+    $input.disabled = true;
+    $('#purchase-amount-submit').disabled = true;
   }
 
   handleInputException($input, alertMessage) {
