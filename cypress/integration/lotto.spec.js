@@ -27,8 +27,8 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-toggle-number").click({ force: true });
     cy.get(".pocket-lotto-numbers").should("exist");
-    cy.get(".pocket-lotto-numbers").each(($numbers) => {
-      expect($numbers.text().split(" ").length).to.eq(6);
+    cy.get(".pocket-lotto-numbers").each($numbers => {
+      expect($numbers.text().split(", ").length).to.eq(6);
     });
   });
 
@@ -37,8 +37,8 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-toggle-number").click({ force: true });
     cy.get(".pocket-lotto-numbers").should("exist");
-    cy.get(".pocket-lotto-numbers").each(($numbers) => {
-      expect(new Set($numbers.text().split(" ")).size).to.eq(6);
+    cy.get(".pocket-lotto-numbers").each($numbers => {
+      expect(new Set($numbers.text().split(",")).size).to.eq(6);
     });
   });
 
@@ -47,8 +47,8 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-toggle-number").click({ force: true });
     cy.get(".pocket-lotto-numbers").should("exist");
-    cy.get(".pocket-lotto-numbers").each(($numbers) => {
-      cy.get($numbers.text().split(" ")).each(($number) => {
+    cy.get(".pocket-lotto-numbers").each($numbers => {
+      cy.get($numbers.text().split(" ")).each($number => {
         cy.wrap(parseInt($number, 10)).should("be.lte", 45).and("be.gte", 1);
       });
     });
@@ -59,7 +59,7 @@ describe("ui-play", () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5500/");
     cy.window()
-      .then((win) => cy.stub(win, "alert"))
+      .then(win => cy.stub(win, "alert"))
       .as("alertStub");
   });
 
