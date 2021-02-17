@@ -27,11 +27,13 @@ describe('로또 게임 테스트', () => {
     cy.get('#input-lotto-nums').should('be.visible');
   });
 
-  it('번호 보기 토글을 누르면 각 로또 아이콘이 세로로 정렬된다.', () => {
+  it('번호 보기 스위치 off 상태에서는 로또 아이콘들이 가로로, on에서는 세로로 정렬된다.', () => {
     cy.get('#input-price').type(price);
     cy.get('#input-price-btn').click();
 
-    cy.get('#lotto-switch').click();
+    cy.get('.switch').click();
     cy.get('#lotto-icons').should('have.class', 'flex-col');
+    cy.get('.switch').click();
+    cy.get('#lotto-icons').should('not.have.class', 'flex-col');
   });
 });
