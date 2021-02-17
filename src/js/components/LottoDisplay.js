@@ -35,6 +35,10 @@ export default class LottoDisplay {
     this.setState({ isToggled: checked });
   }
 
+  createTotalLottoCountHTML() {
+    return `총 ${this.lottos.length}개를 구매하였습니다.`;
+  }
+
   createLottoHtml() {
     return this.lottos
       .map(({ numbers }) => {
@@ -51,7 +55,7 @@ export default class LottoDisplay {
 
   render() {
     this.$target.classList.remove('hidden');
-    this.$lottoCount.innerHTML = `총 ${this.lottos.length}개를 구매하였습니다.`;
+    this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
     this.$lottoDisplayArea.innerHTML = this.createLottoHtml();
   }
 }
