@@ -58,6 +58,7 @@ class LottoController {
       return alert(alertMessage);
     }
 
+    this.model.init();
     const count = this.getCount(price);
     for (let i = 0; i < count; i++) {
       this.model.addLotto(this.generateLotto());
