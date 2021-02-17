@@ -26,12 +26,26 @@ class PaymentInput extends Component {
 
       if (event.target.id === 'payment-input-wrapper') {
         const { value } = $('#payment-input');
+        if (!this.isValid(value)) {
+          this.alertByCase(value);
+          return;
+        }
         const numberOfTickets = Math.floor(Number(value) / 1000);
         this.props.tickets.set(
           [...Array(numberOfTickets)].map(() => createTicket())
         );
       }
     });
+  }
+
+  isValid(value) {
+    return value.length;
+  }
+
+  alertByCase(value) {
+    if (!value.length) {
+      alert('공백은 입력할 수 없습니다. 숫자를 입력해 주세요.');
+    }
   }
 }
 
