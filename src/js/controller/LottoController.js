@@ -1,8 +1,10 @@
 import { $, validator } from '../util/index.js';
 import { LottoView } from '../view/index.js';
+import { LottoMachine } from '../model/index.js';
 
 export default class LottoController {
   constructor() {
+    this.lottoMachine = new LottoMachine();
     this.view = new LottoView();
   }
 
@@ -19,15 +21,16 @@ export default class LottoController {
 
   handlePurchaseAmountInput() {
     const $input = $('#purchase-amount-input');
-    const alertMessage = validator.purchaseAmountInput(Number($input.value));
+    const money = Number($input.value);
+    const alertMessage = validator.purchaseAmountInput(money);
 
     if (alertMessage) {
       this.handleInputException($input, alertMessage);
 
       return;
     }
-    // lotto machine에 개수를 넘겨주고 로또 배열을 받는다.
-    // 로또 배열을 뷰에 넘겨준다.
+    this.lottoMachine.getLottoByAuto(money);
+    // this.view.renderLottoSection(this.machine.lotttos);
   }
 
   handleInputException($input, alertMessage) {
