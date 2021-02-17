@@ -1,4 +1,6 @@
+import LottoTicket from './model/LottoTicket.js';
 import { ERR_MESSAGE, VALUE } from './utils/constant.js';
+import { getLottoNumber } from './utils/getLottoNumber.js';
 import { showElement } from './utils/setAttribute.js';
 
 const lottoTicketIconTemplate = () => {
@@ -40,6 +42,12 @@ export const handlePurchasePriceInput = () => {
   const numberOfLottoTicket = Math.floor(
     purchasePrice / VALUE.LOTTO.TICKET_PRICE,
   );
+
+  const lottos = [...Array(numberOfLottoTicket)].map(
+    () => new LottoTicket(getLottoNumber()),
+  );
+
+  console.log(lottos);
 
   renderPurchaseResultSection(numberOfLottoTicket);
 };
