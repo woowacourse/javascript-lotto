@@ -21,4 +21,18 @@ export default class LottoView {
     this.show(this.purchasedLottos);
     this.show(this.inputLottoNums);
   }
+
+  renderTotalLottoCount(count) {
+    this.purchasedLottos.querySelector('#total-purchased').innerText = count;
+  }
+
+  renderLottoIcons(count) {
+    this.purchasedLottos.querySelector(
+      '#lotto-icons'
+    ).innerHTML = this.createLottoIconTemplate(count);
+  }
+
+  createLottoIconTemplate(count) {
+    return `<span class="mx-1 text-4xl lotto-icon">🎟️ </span>`.repeat(count);
+  }
 }
