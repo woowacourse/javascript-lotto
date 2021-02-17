@@ -1,5 +1,5 @@
 import { $, createElement, getRandomNumber } from './utils.js';
-import { ALERT_MESSAGE } from './constants.js';
+import { ALERT_MESSAGE, LOTTO } from './constants.js';
 import Store from './Store.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -13,12 +13,10 @@ class LottoApp {
   }
 
   generateLottoNumber() {
-    // TODO: 1, 45를 상수 처리
-    // TODO: 중복 숫자 처리
     const lottoNumber = [];
 
-    while (lottoNumber.length < 6) {
-      const num = getRandomNumber(1, 45);
+    while (lottoNumber.length < LOTTO.NUMBER_COUNT) {
+      const num = getRandomNumber(LOTTO.MINIMUM_NUMBER, LOTTO.MAXIMUM_NUMBER);
       if (lottoNumber.includes(num)) {
         continue;
       }
@@ -34,13 +32,12 @@ class LottoApp {
 
       const money = Number($('#money-input').value);
 
-      // TODO: 1000를 상수 처리
-      if (money < 1000) {
+      if (money < LOTTO.PRICE) {
         alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
         return;
       }
 
-      const lottoCount = Math.floor(money / 1000);
+      const lottoCount = Math.floor(money / LOTTO.PRICE);
 
       const lottos = Array.from(
         { length: lottoCount },
