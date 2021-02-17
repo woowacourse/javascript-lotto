@@ -2,60 +2,46 @@ import { showElement } from "../utils.js";
 import {
   $confirmation,
   $lottoList,
+  $lottoListLabel,
+  $lottoTickets,
   $lottoNumbersToggleButton,
 } from "../elements.js";
 
 export default function LottoView() {
-  this.getTicketTemplate = (num) => {
-    return `
-      <div class="d-flex">
-        <label class="flex-auto my-0">총 ${num}개를 구매하였습니다.</label>
-        <div class="flex-auto d-flex justify-end pr-1">
-          <label class="switch">
-            <input
-              type="checkbox"
-              class="lotto-numbers-toggle-button"
-            />
-            <span class="text-base font-normal">번호보기</span>
-          </label>
-        </div>
-      </div>
-      <div id="lotto-tickets" class="d-flex flex-wrap">
-        ${[...Array(num)]
-          .map(() => `<span class="mx-1 text-4xl">🎟️ </span>`)
-          .join("")}
-      </div>
-    `;
+  this.getTicketLabelText = (num) => {
+    return `총 ${num}개를 구매하였습니다.`;
   };
-  this.getTicketDetailTemplate = (num) => {
-    return `
-      <div class="d-flex">
-        <label class="flex-auto my-0">총 ${num}개를 구매하였습니다.</label>
-        <div class="flex-auto d-flex justify-end pr-1">
-          <label class="switch">
-            <input
-              type="checkbox"
-              class="lotto-numbers-toggle-button"
-            />
-            <span class="text-base font-normal">번호보기</span>
-          </label>
-        </div>
-      </div>
-      <div id="lotto-tickets" class="d-flex flex-wrap">
 
-      </div>
-    `;
+  this.getTicketTemplate = (num) => {
+    return [...Array(num)]
+      .map(() => `<span class="mx-1 text-4xl">🎟️ </span>`)
+      .join("");
   };
-  this.paintLottoList = (num) => {
-    console.log($lottoNumbersToggleButton.checked);
+
+  this.getTicketDetailTemplate = (lottoList) => {
+    return `<div class="">
+      ${lottoList
+        .map(
+          (lotto) => `<div class="d-flex flex-row items-center">
+                    <div class="d-felx items-center mx-1 text-4xl mt-1">🎟️ </div>
+                    <div class="ml-2">${lotto.winningNumber.join(", ")}</div> 
+                </div>`
+        )
+        .join("")}
+      </div>`;
+  };
+
+  this.paintLottoList = (lottoList) => {
+    $lottoListLabel.innerText = this.getTicketLabelText(lottoList.length);
     if ($lottoNumbersToggleButton.checked) {
-      $lottoList.innerHTML = this.getTicketDetailTemplate(num);
+      $lottoTickets.innerHTML = this.getTicketDetailTemplate(lottoList);
     } else {
-      $lottoList.innerHTML = this.getTicketTemplate(num);
+      $lottoTickets.innerHTML = this.getTicketTemplate(lottoList.length);
     }
   };
-  this.showConfirmation = (num) => {
+
+  this.showConfirmation = (lottoList) => {
     showElement($confirmation);
-    this.paintLottoList(num);
+    this.paintLottoList(lottoList);
   };
 }
