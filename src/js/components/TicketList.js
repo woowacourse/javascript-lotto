@@ -41,8 +41,15 @@ class TicketList extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id !== 'detail-mode-toggle') return;
 
-      $$('.lotto-numbers').forEach(element => element.classList.toggle('hide'));
-      $('#ticket-list').classList.toggle('flex-col');
+      if (!target.checked) {
+        $('#ticket-list').classList.remove('flex-col');
+        $$('.lotto-numbers').forEach(element => element.classList.add('hide'));
+      } else {
+        $('#ticket-list').classList.add('flex-col');
+        $$('.lotto-numbers').forEach(element =>
+          element.classList.remove('hide')
+        );
+      }
     });
   }
 }
