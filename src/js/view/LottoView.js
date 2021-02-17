@@ -2,7 +2,7 @@
 
 import { $, show } from '../util/index.js';
 
-export default class LottoView {
+export class LottoView {
   renderLottoSection(lottos) {
     $('#lotto-count').innerText = `${lottos.length}`;
     $('#lotto-container').innerHTML = lottoTemplate(lottos);
@@ -13,9 +13,9 @@ export default class LottoView {
         return (html += ` 
           <div class="lotto-wrapper d-flex items-start">
             <span class="lotto mx-1 text-4xl">🎟️ </span>
-            <span class="lotto-numbers mx-1 text-2xl d-none"
-              >${lotto.numbers}</span
-            >
+            <span class="lotto-numbers mx-1 text-2xl d-none">
+              ${lotto.numbers}
+            </span>
           </div>
         `);
       }, '');

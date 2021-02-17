@@ -5,20 +5,24 @@ import {
   MAX_LOTTO_NUMBER,
   LOTTO_NUMBER_COUNT,
 } from '../constants/index.js';
-import Lotto from './Lotto.js';
+import { Lotto } from './Lotto.js';
 
-export default class LottoMachine {
+export class LottoMachine {
   constructor() {
-    this.lottos = [];
+    this._lottos = [];
   }
 
-  publishLottoByAuto(money) {
+  get lottos() {
+    return [...this._lottos];
+  }
+
+  publishLottosByAuto(money) {
     const count = money / UNIT_AMOUNT;
 
     for (let i = 0; i < count; i++) {
       const numbers = this.getRandomLottoNumbers();
 
-      this.lottos.push(new Lotto(numbers));
+      this._lottos.push(new Lotto(numbers));
     }
   }
 

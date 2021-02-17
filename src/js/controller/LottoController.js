@@ -2,17 +2,13 @@ import { $, $$, hide, show, validator } from '../util/index.js';
 import { LottoView } from '../view/index.js';
 import { LottoMachine } from '../model/index.js';
 
-export default class LottoController {
+export class LottoController {
   constructor() {
     this.machine = new LottoMachine();
     this.view = new LottoView();
   }
 
-  init() {
-    hide($('#lotto-section'), $('#lotto-result-form'));
-  }
-
-  setEvent() {
+  initEvent() {
     $('#purchase-amount-submit').addEventListener(
       'click',
       this.handlePurchaseAmountInput.bind(this)
@@ -30,7 +26,8 @@ export default class LottoController {
 
       return;
     }
-    this.machine.publishLottoByAuto(money);
+
+    this.machine.publishLottosByAuto(money);
     this.view.renderLottoSection(this.machine.lottos);
     $input.disabled = true;
     $('#purchase-amount-submit').disabled = true;
@@ -42,13 +39,11 @@ export default class LottoController {
   }
 
   handleLottoToggle() {
-    if (!$('.lotto-numbers-toggle-button').checked) {
-      $('#lotto-container').classList.remove('flex-col');
-      hide(...$$('.lotto-numbers'));
+    const $lottoNumbers = $$('.lotto-numbers');
 
-      return;
-    }
-    $('#lotto-container').classList.add('flex-col');
-    show(...$$('.lotto-numbers'));
+    $('#lotto-container').classList.toggle('flex-col'); // toggle()을 이용해 flex direction 변경.
+    $('.lotto-numbers-toggle-button').checked
+      ? show(...$lottoNumbers)
+      : hide(...$lottoNumbers);
   }
 }

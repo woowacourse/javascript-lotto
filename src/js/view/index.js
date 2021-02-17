@@ -1,1 +1,1 @@
-export { default as LottoView } from './LottoView.js';
+export { LottoView } from './LottoView.js';

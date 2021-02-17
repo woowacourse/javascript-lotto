@@ -1,1 +1,1 @@
-export { default as LottoMachine } from './LottoMachine.js';
+export { LottoMachine } from './LottoMachine.js';
