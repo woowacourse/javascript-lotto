@@ -6,10 +6,17 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.vscode
+**/temporary.js
 
 # Icon must end with two \r
 Icon
 
+# cypress 
+cypress/fixtures
+cypress/integration/examples
+cypress/plugins
+cypress/support
 
 # Thumbnails
 ._*
