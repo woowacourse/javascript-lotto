@@ -1,4 +1,6 @@
 import Component from '../lib/core/Component.js';
+import { $ } from '../lib/utils/dom.js';
+import { createTicketNumbers } from '../lib/utils/lotto.js';
 
 class PaymentInput extends Component {
   mountTemplate() {
@@ -19,9 +21,15 @@ class PaymentInput extends Component {
   }
 
   initEvent() {
-    this.$target.addEventListener('click', ({ target }) => {
-      if (target.id === 'payment-submit') {
+    this.$target.addEventListener('submit', event => {
+      event.preventDefault();
+      if (event.target.id === 'payment-input-wrapper') {
         // 검증과 할당을 하자
+        const { value } = $('#payment-input');
+        const numberOfTickets = Math.floor(Number(value) / 1000);
+        this.props.tickets.set(
+          [...Array(numberOfTickets)].map(() => createTicketNumbers())
+        );
       }
     });
   }

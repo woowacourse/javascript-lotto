@@ -1,9 +1,14 @@
 import Component from '../lib/core/Component.js';
+import State from '../lib/core/State.js';
 import { $ } from '../lib/utils/dom.js';
 import PaymentInput from './PaymentInput.js';
 import TicketList from './TicketList.js';
 
 class App extends Component {
+  initStates() {
+    this.tickets = new State([]);
+  }
+
   mountTemplate() {
     this.$target.innerHTML = ` 
       <div class="d-flex justify-center mt-5">
@@ -17,8 +22,8 @@ class App extends Component {
   }
 
   mountChildComponents() {
-    new PaymentInput($('#payment-input-wrapper'));
-    new TicketList($('#ticket-view-wrapper'));
+    new PaymentInput($('#payment-input-wrapper'), { tickets: this.tickets });
+    new TicketList($('#ticket-view-wrapper'), { tickets: this.tickets });
   }
 }
 
