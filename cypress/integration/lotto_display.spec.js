@@ -12,4 +12,15 @@ describe('LOTTO - 구매한 로또 화면 출력 테스트', () => {
       .its('length')
       .should('eq', 1);
   });
+
+  it('번호 보기 토글 버튼을 클릭한 경우, 각 로또의 숫자들을 로또 이모지 우측에 토글한다.', () => {
+    cy.get('#lotto-perchase-input').type('1500');
+    cy.get('#lotto-perchase-btn').click();
+
+    cy.get('.lotto-numbers-toggle-button').click();
+    cy.get('[data-test=lotto-numbers]').its('length').should('eq', 1);
+
+    cy.get('.lotto-numbers-toggle-button').click();
+    cy.get('[data-test=lotto-numbers]').its('length').should('eq', 0);
+  });
 });
