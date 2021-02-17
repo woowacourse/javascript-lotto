@@ -1,10 +1,8 @@
-import LottoTicket from '../model/LottoTicket.js';
 import { $ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
-import { getLottoNumber } from '../utils/getLottoNumber.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 
-export const handlePurchasePriceInput = (event, lottoTickets) => {
+export const handlePurchasePriceInput = (event, lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
 
   if (purchasePrice < VALUE.LOTTO.TICKET_PRICE) {
@@ -15,9 +13,11 @@ export const handlePurchasePriceInput = (event, lottoTickets) => {
     purchasePrice / VALUE.LOTTO.TICKET_PRICE,
   );
 
-  const lottos = [...Array(numberOfLottoTicket)].map(
-    () => new LottoTicket(getLottoNumber()),
-  );
+  for (let i = 0; i < numberOfLottoTicket; i++) {
+    lotto.getTicket();
+  }
 
-  renderPurchaseResultSection(numberOfLottoTicket, lottos);
+  console.log(lotto);
+
+  renderPurchaseResultSection(numberOfLottoTicket, lotto);
 };
