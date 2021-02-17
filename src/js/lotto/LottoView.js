@@ -31,9 +31,9 @@ export default function LottoView() {
       </div>`;
   };
 
-  this.paintLottoList = (lottoList) => {
+  this.paintLottoList = (lottoList, toggleChecked) => {
     $lottoListLabel.innerText = this.getTicketLabelText(lottoList.length);
-    if ($lottoNumbersToggleButton.checked) {
+    if (toggleChecked) {
       $lottoTickets.innerHTML = this.getTicketDetailTemplate(lottoList);
     } else {
       $lottoTickets.innerHTML = this.getTicketTemplate(lottoList.length);
@@ -42,6 +42,6 @@ export default function LottoView() {
 
   this.showConfirmation = (lottoList) => {
     showElement($confirmation);
-    this.paintLottoList(lottoList);
+    this.paintLottoList(lottoList, false);
   };
 }
