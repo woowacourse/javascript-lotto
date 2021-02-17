@@ -122,17 +122,22 @@ context("e2e test", () => {
 
     cy.get("#purchase-mount-input").type(money);
     cy.get("#purchase-mount-submit").click();
-    cy.get("#purchase-mount-label").should("contain", `총 ${money / 1000}개를 구매하였습니다.`);
+    cy.get("#purchase-mount-label").should(
+      "contain",
+      `총 ${money / 1000}개를 구매하였습니다.`
+    );
   });
 
+  it("구입 금액으로 살 수 있는 로또의 개수만큼 로또 용지 그림이 출력되는 것을 확인한다.", () => {
+    const money = 4000;
 
-
-
-
-
-
-
-
+    cy.get("#purchase-mount-input").type(money);
+    cy.get("#purchase-mount-submit").click();
+    cy.get("#lotto-image-container")
+      .find("text-4xl")
+      .its("length")
+      .should("eq", money / 1000);
+  });
 
   // it(`결과창(#total)이 "0"일 때 숫자(.digit)을 클릭하면 그 숫자가 결과값이 되어야 한다.`, () => {
   //  cy.get(".digit").contains("1").click();
