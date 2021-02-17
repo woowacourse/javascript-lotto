@@ -18,28 +18,37 @@ describe('LOTTO 테스트', () => {
   });
 
   it('사용자가 토글 버튼을 누르면 로또의 번호를 볼 수 있다.', () => {
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
     cy.get('#lotto-numbers-toggle').click();
 
     cy.get('.lotto-numbers').each(($elem) => {
-      const numbers = $elem.text().split(',').map((number) => number.trim());
+      const numbers = $elem
+        .text()
+        .split(',')
+        .map((number) => number.trim());
       expect(numbers.length).to.be.eq(6);
 
       numbers.forEach((_number) => {
         const number = Number(_number);
         expect(number).to.be.at.least(1);
         expect(number).to.be.at.most(45);
-      })
+      });
     });
-  })
-
+  });
 
   it('각 로또 안의 번호가 중복되지 않았는지 확인한다.', () => {
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
     cy.get('#lotto-numbers-toggle').click();
 
     cy.get('.lotto-numbers').each(($elem) => {
-      const numbers = $elem.text().split(',').map((number) => number.trim());
+      const numbers = $elem
+        .text()
+        .split(',')
+        .map((number) => number.trim());
       const numbersSet = new Set(numbers);
       expect(numbers.length).to.be.eq(numbersSet.size);
     });
-  })
-})
+  });
+});
