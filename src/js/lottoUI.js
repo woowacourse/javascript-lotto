@@ -1,5 +1,5 @@
 import { $, $$ } from './util/dom.js';
-const DEFAULT_VISIBILITY = false;
+import { UI_SETTINGS } from './constants.js';
 export default class LottoUI {
   constructor() {
   }
@@ -28,7 +28,7 @@ export default class LottoUI {
           <label class="flex-auto my-0">총 ${lottoTickets.length}개를 구매하였습니다.</label>
           <div class="flex-auto d-flex justify-end pr-1">
             <label class="switch">
-              <input type="checkbox" class="lotto-numbers-toggle-button" ${DEFAULT_VISIBILITY ? 'checked' : ''}/>
+              <input type="checkbox" class="lotto-numbers-toggle-button" ${UI_SETTINGS.DEFAULT_VISIBILITY ? 'checked' : ''}/>
               <span class="text-base font-normal check-lotto-switch">번호보기</span>
             </label>
           </div>
@@ -44,7 +44,7 @@ export default class LottoUI {
     return `
     <span class="mx-1 text-4xl lotto-ticket">
       🎟️ 
-      <span class="lotto-ticket-number ${DEFAULT_VISIBILITY ? '' : 'hidden'}">
+      <span class="lotto-ticket-number ${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : 'hidden'}">
         ${numbers.join(', ')}
       </span>
     </span>

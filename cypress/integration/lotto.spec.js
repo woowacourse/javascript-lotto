@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
-
 import Lotto from "../../src/js/object/Lotto.js";
+import { LOTTO_SETTINGS } from '../../src/js/constants.js';
 
 context('로또 UI 테스트', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ context('로또 UI 테스트', () => {
     const money = 3000;
     cy.get('.money-input').type(money);
     cy.get('.money-input-button').click();
-    cy.get('.lotto-ticket').should('have.length', Math.floor(money / 1000));
+    cy.get('.lotto-ticket').should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
   });
 
   it('입력받는 구입 금액은 최소 1000원 이상이어야 한다.', () => {
@@ -30,7 +30,7 @@ context('로또 UI 테스트', () => {
     cy.get('.money-input-button').click();
 
     cy.get('.check-lotto-switch').click();
-    cy.get('.lotto-ticket-number').should('have.length', Math.floor(money / 1000));
+    cy.get('.lotto-ticket-number').should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
     cy.get('.check-lotto-switch').click();
     cy.get('.lotto-ticket-number').should('not.be.visible');
   });
@@ -46,11 +46,11 @@ context('로또 기능 테스트', () => {
     const lotto = new Lotto();
     lotto.createNumbers();
     const amountTestSet = new Set(lotto.getNumbers());
-    expect(amountTestSet.size === 6).to.equal(true);
+    expect(amountTestSet.size === LOTTO_SETTINGS.LOTTO_NUMBER_SIZE).to.equal(true);
 
-    for (let i = 1; i <= 45; i++) {
-      const randomNumber = lotto.getRandomNumber(1, i);
-      expect(randomNumber >= 1 && randomNumber <= i).to.equal(true);
+    for (let i = LOTTO_SETTINGS.MIN_LOTTO_NUMBER; i <= LOTTO_SETTINGS.MAX_LOTTO_NUMBER; i++) {
+      const randomNumber = lotto.getRandomNumber(LOTTO_SETTINGS.MIN_LOTTO_NUMBER, i);
+      expect(randomNumber >= LOTTO_SETTINGS.MIN_LOTTO_NUMBER && randomNumber <= i).to.equal(true);
     }
   });
 });

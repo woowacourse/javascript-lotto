@@ -1,5 +1,6 @@
 import { $ } from './util/dom.js';
 import Lotto from './object/Lotto.js';
+import { ALERT_MESSAGES, LOTTO_SETTINGS } from './constants.js';
 
 export default class LottoController {
   constructor(lottoUI) {
@@ -24,22 +25,19 @@ export default class LottoController {
   }
 
   handleMoneyInputButton() {
-    this.makeLottos();
-
-    const lottoTickets = this.lottos.map(lotto => lotto.numbers);
-
-    this.lottoUI.renderCheckLottoUI(lottoTickets);
-  }
-
-  makeLottos() {
     const moneyInput = Number($('.money-input').value);
-
-    if (moneyInput < 1000) {
-      alert('최소 1000원 이상의 금액을 입력해야 합니다.');
+    if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
+      alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
 
-    const lottoAmount = Math.floor(moneyInput / 1000);
+    this.makeLottos(moneyInput);
+    const lottoTickets = this.lottos.map(lotto => lotto.numbers);
+    this.lottoUI.renderCheckLottoUI(lottoTickets);
+  }
+
+  makeLottos(moneyInput) {
+    const lottoAmount = Math.floor(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
 
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto();
