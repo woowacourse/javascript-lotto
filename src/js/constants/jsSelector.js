@@ -1,8 +1,8 @@
 const JS_SELECTOR = {
-  CASH_INPUT: {
-    CONTAINER: "cash-input-container",
-    INPUT: "cash-input-container__input",
-    BUTTON: "cash-input-container__button",
+  CASH: {
+    CONTAINER: "cash-container",
+    INPUT: "cash-container__input",
+    BUTTON: "cash-container__button",
   },
   LOTTO_DETAIL: {
     CONTAINER: "lotto-detail-container",

@@ -12,10 +12,10 @@ describe("구입 금액 입력 테스트", () => {
 
   const testAlertMessage = (wrongUserInput, alertMessage, callCount = 1) => {
     if (wrongUserInput !== "") {
-      cy.get(toDAS(JS_SELECTOR.CASH_INPUT.INPUT)).type(wrongUserInput);
+      cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(wrongUserInput);
     }
 
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.BUTTON)).click();
+    cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
 
     cy.get("@windowAlert")
       .should("have.callCount", callCount++)
@@ -24,13 +24,13 @@ describe("구입 금액 입력 테스트", () => {
   };
 
   const testResetInput = () => {
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.INPUT)).should("have.value", "");
+    cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
   };
 
   it("초기화면에 구입 입력 Form이 보여진다.", () => {
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.CONTAINER)).should("be.visible");
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.INPUT)).should("be.visible");
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.BUTTON)).should("be.visible");
+    cy.get(toDAS(JS_SELECTOR.CASH.CONTAINER)).should("be.visible");
+    cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("be.visible");
+    cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).should("be.visible");
   });
 
   it("유저가 빈 문자열을 입력한 경우, 에러메시지를 alert로 출력한다", () => {
@@ -65,8 +65,8 @@ describe("구입 금액 입력 테스트", () => {
   it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보를 보여준다", () => {
     const userInput = 5500;
     const lottoCount = Math.floor(userInput / 1000);
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.INPUT)).type(userInput);
-    cy.get(toDAS(JS_SELECTOR.CASH_INPUT.BUTTON)).click();
+    cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
+    cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
 
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL)).should(
