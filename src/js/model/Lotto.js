@@ -1,6 +1,6 @@
 import Ticket from './Ticket.js';
 
-export default function Lotto(lottoNums) {
+export default function Lotto() {
   const init = () => {
     this.tickets = [];
   };
