@@ -25,14 +25,4 @@ body {
 
 .lotto-ticket-container {
   list-style: none;
-  padding-left: 0;
-}
-
-.lotto-ticket-container > li {
-  display: flex;
-  align-items: center;
-}
-
-.lotto-ticket-container span {
-  margin-left: 20px;
 }
