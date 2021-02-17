@@ -31,13 +31,15 @@
               </button>
             </div>
           </form>
-          <section class="mt-9" data-js-selector="lotto-detail-container">
+          <section
+            class="mt-9 --hidden"
+            data-js-selector="lotto-detail-container"
+          >
             <div class="d-flex">
               <label
                 class="flex-auto my-0"
                 data-js-selector="lotto-detail-container__label"
-                >총 5개를 구매하였습니다.</label
-              >
+              ></label>
               <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                   <input type="checkbox" class="lotto-numbers-toggle-button" />
@@ -45,35 +47,15 @@
                 </label>
               </div>
             </div>
-            <div class="d-flex flex-wrap">
-              <span
-                class="mx-1 text-4xl"
-                data-js-selector="lotto-detail-container__icon"
-                >🎟️
-              </span>
-              <span
-                class="mx-1 text-4xl"
-                data-js-selector="lotto-detail-container__icon"
-                >🎟️
-              </span>
-              <span
-                class="mx-1 text-4xl"
-                data-js-selector="lotto-detail-container__icon"
-                >🎟️
-              </span>
-              <span
-                class="mx-1 text-4xl"
-                data-js-selector="lotto-detail-container__icon"
-                >🎟️
-              </span>
-              <span
-                class="mx-1 text-4xl"
-                data-js-selector="lotto-detail-container__icon"
-                >🎟️
-              </span>
-            </div>
+            <div
+              class="d-flex flex-wrap"
+              data-js-selector="lotto-detail-container__icon-wrapper"
+            ></div>
           </section>
-          <form class="mt-9">
+          <form
+            class="mt-9 --hidden"
+            data-js-selector="winning-lotto-container"
+          >
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >

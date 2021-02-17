@@ -7,7 +7,11 @@ const JS_SELECTOR = {
   LOTTO_DETAIL: {
     CONTAINER: "lotto-detail-container",
     LABEL: "lotto-detail-container__label",
+    ICON_WRAPPER: "lotto-detail-container__icon-wrapper",
     ICON: "lotto-detail-container__icon",
+  },
+  WINNING_LOTTO: {
+    CONTAINER: "winning-lotto-container",
   },
 };
 
