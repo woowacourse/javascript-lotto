@@ -1,6 +1,6 @@
 import Component from '../lib/core/Component.js';
 
-class TicketView extends Component {
+class TicketList extends Component {
   mountTemplate() {
     this.$target.innerHTML = `
       <div class="d-flex">
@@ -23,4 +23,4 @@ class TicketView extends Component {
   }
 }
 
-export default TicketView;
+export default TicketList;

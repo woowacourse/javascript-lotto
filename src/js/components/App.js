@@ -1,7 +1,7 @@
 import Component from '../lib/core/Component.js';
 import { $ } from '../lib/utils/dom.js';
 import PaymentInput from './PaymentInput.js';
-import TicketView from './TicketView.js';
+import TicketList from './TicketList.js';
 
 class App extends Component {
   mountTemplate() {
@@ -18,7 +18,7 @@ class App extends Component {
 
   mountChildComponents() {
     new PaymentInput($('#payment-input-wrapper'));
-    new TicketView($('#ticket-view-wrapper'));
+    new TicketList($('#ticket-view-wrapper'));
   }
 }
 
