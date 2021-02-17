@@ -12,6 +12,12 @@ export default class LottoController {
     this.lottoView.inputPriceView
       .querySelector('#input-price-btn')
       .addEventListener('click', () => this.inputPriceHandler());
+
+    this.lottoView.purchasedLottos
+      .querySelector('#lotto-switch')
+      .addEventListener('click', () => {
+        this.toggleSwitchHandler();
+      });
   }
 
   inputPriceHandler() {
@@ -23,5 +29,17 @@ export default class LottoController {
     this.lottoView.showLottoView();
     this.lottoView.renderTotalLottoCount(lottoCount);
     this.lottoView.renderLottoIcons(lottoCount);
+  }
+
+  toggleSwitchHandler() {
+    const $lottoIconsDiv = this.lottoView.purchasedLottos.querySelector(
+      '#lotto-icons'
+    );
+    const isSwitchOn = $lottoIconsDiv.checked; // 초기값은 false
+    $lottoIconsDiv.checked = !$lottoIconsDiv.checked;
+
+    isSwitchOn
+      ? $lottoIconsDiv.classList.remove('flex-col')
+      : $lottoIconsDiv.classList.add('flex-col');
   }
 }
