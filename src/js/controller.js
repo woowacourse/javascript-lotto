@@ -1,5 +1,5 @@
 import LottoModel from "./model.js";
-import { $, getQuotient, getRandomNumber } from "./util.js";
+import { $, getQuotient, getRandomNumber, sortByNumber } from "./util.js";
 import LottoView from "./view.js";
 
 class LottoController {
@@ -27,7 +27,7 @@ class LottoController {
       lotto.add(getRandomNumber(1, 45));
     }
 
-    return [...lotto].sort();
+    return sortByNumber([...lotto]);
   }
 
   renderPocketLotto() {
