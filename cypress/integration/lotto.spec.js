@@ -23,6 +23,17 @@ context('로또 UI 테스트', () => {
       expect(alertStub.getCall(0)).to.be.calledWith('최소 1000원 이상의 금액을 입력해야 합니다.');
     });
   });
+
+  it('번호 보기 토글 버튼을 클릭하면, 복권 번호가 화면에 표시된다.', () => {
+    const money = 3000;
+    cy.get('.money-input').type(money);
+    cy.get('.money-input-button').click();
+
+    cy.get('.check-lotto-switch').click();
+    cy.get('.lotto-ticket-number').should('have.length', Math.floor(money / 1000));
+    cy.get('.check-lotto-switch').click();
+    cy.get('.lotto-ticket-number').should('not.be.visible');
+  });
 });
 
 context('로또 기능 테스트', () => {
