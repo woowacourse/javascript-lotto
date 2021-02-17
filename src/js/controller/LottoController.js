@@ -17,6 +17,7 @@ export default class LottoController {
       'click',
       this.handlePurchaseAmountInput.bind(this)
     );
+    $('.switch').addEventListener('click', this.handleLottoToggle.bind(this));
   }
 
   handlePurchaseAmountInput() {
@@ -38,5 +39,16 @@ export default class LottoController {
   handleInputException($input, alertMessage) {
     alert(alertMessage);
     $input.value = '';
+  }
+
+  handleLottoToggle() {
+    if (!$('.lotto-numbers-toggle-button').checked) {
+      $('#lotto-container').classList.remove('flex-col');
+      hide(...$$('.lotto-numbers'));
+
+      return;
+    }
+    $('#lotto-container').classList.add('flex-col');
+    show(...$$('.lotto-numbers'));
   }
 }
