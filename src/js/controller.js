@@ -13,8 +13,11 @@ class LottoController {
     this.handlePrice();
   }
 
-  getBuyInputValue() {
-    return $("#buy-input").value;
+  getAndClearBuyValue() {
+    const value = $("#buy-input").value;
+    $("#buy-input").value = "";
+
+    return value;
   }
 
   getCount(price) {
@@ -45,7 +48,7 @@ class LottoController {
   }
 
   manageLotto() {
-    const price = parseInt(this.getBuyInputValue(), 10);
+    const price = parseInt(this.getAndClearBuyValue(), 10);
     const count = this.getCount(price);
     for (let i = 0; i < count; i++) {
       this.model.addLotto(this.generateLotto());
