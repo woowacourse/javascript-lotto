@@ -1,4 +1,5 @@
 import { $, createElement, getRandomNumber } from './utils.js';
+import { ALERT_MESSAGE } from './constants.js';
 import Store from './Store.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -35,7 +36,7 @@ class LottoApp {
 
       // TODO: 1000를 상수 처리
       if (money < 1000) {
-        alert('최소 1,000원 이상의 금액을 입력하세요.');
+        alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
         return;
       }
 

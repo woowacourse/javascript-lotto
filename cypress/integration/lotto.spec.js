@@ -1,3 +1,5 @@
+import { ALERT_MESSAGE } from '../../src/js/constants.js';
+
 describe('LOTTO 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
@@ -50,5 +52,24 @@ describe('LOTTO 테스트', () => {
       const numbersSet = new Set(numbers);
       expect(numbers.length).to.be.eq(numbersSet.size);
     });
+  });
+
+  it('사용자가 0원을 입력하면 경고창을 띄운다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('#money-input').type('0');
+    cy.get('#money-submit-button')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_MONEY_INPUT);
+      });
+  });
+
+  it('사용자가 5500 원을 입력하면 화면에 로또가 5개 보여진다.', () => {
+    cy.get('#money-input').type('5500');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-list').children().should('have.length', 5);
   });
 });
