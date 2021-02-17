@@ -39,12 +39,15 @@ class PaymentInput extends Component {
   }
 
   isValid(value) {
-    return value.length;
+    return value.length && Number(value) > 0;
   }
 
   alertByCase(value) {
     if (!value.length) {
       alert('공백은 입력할 수 없습니다. 숫자를 입력해 주세요.');
+    }
+    if (Number(value) < 1) {
+      alert('0과 음수는 입력할 수 없습니다. 1 이상의 숫자를 입력해 주세요.');
     }
   }
 }
