@@ -1,4 +1,4 @@
-import { MONETARY_UNIT, ALERT_MESSAGE } from '../constants.js';
+import { MONETARY_UNIT, ALERT_MESSAGE, LOTTO_PRICE } from '../constants.js';
 import { $, clearInput } from '../utils/DOM.js';
 
 export default class PurchaseAmountInput {
@@ -17,7 +17,6 @@ export default class PurchaseAmountInput {
   }
 
   onSubmitPurchaseAmount() {
-    console.log(this.$purchaseAmountInput.value);
     const purchaseAmount = this.$purchaseAmountInput.value;
     const errorMessage = this.validateInput(purchaseAmount);
 
@@ -33,6 +32,10 @@ export default class PurchaseAmountInput {
   validateInput(purchaseAmount) {
     if (purchaseAmount % MONETARY_UNIT) {
       return ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY;
+    }
+
+    if (purchaseAmount < LOTTO_PRICE) {
+      return ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW;
     }
 
     return '';

@@ -36,12 +36,11 @@ describe('구매금액 입력 검사', () => {
     cy.get('.purchase-amount-button')
       .click()
       .then(() => {
-        expect(
-          alertStub.getCall(0).to.be.calledWith(PURCHASE_AMOUNT_IS_TOO_LOW)
-        );
-        cy.get('.purchase-amount-input').should('have.text', '');
-        cy.get('.purchase-amount-input').should('have.focus');
+        const actualMessage = alertStub.getCall(0).lastArg;
+        expect(actualMessage).to.equal(PURCHASE_AMOUNT_IS_TOO_LOW);
       });
+    cy.get('.purchase-amount-input').should('have.text', '');
+    cy.get('.purchase-amount-input').should('have.focus');
   });
 
   it('입력된 로또 구입 금액이 로또 한 장의 금액으로 나누어 떨어지지 않을 경우 alert으로 거스름돈 금액을 알려주고 구매한 로또를 표시한다.', () => {
