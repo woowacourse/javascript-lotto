@@ -15,6 +15,7 @@ export default {
     $purchaseResult.style.display = 'block';
     $purchaseItemCount.innerHTML = getResultItemCountTemplate(lottoItemList.length);
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
+    $purchaseItemList.style.flexDirection = '';
   },
   displayLottoNumbers() {
     $$('.lotto-numbers').forEach(($lottoNumbers) => {

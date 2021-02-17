@@ -1,4 +1,4 @@
-import LottoGame from './lotto/models/LottoGame.js';
+import LottoGame from './lotto/LottoGame.js';
 
 const lottoGame = new LottoGame();
 
