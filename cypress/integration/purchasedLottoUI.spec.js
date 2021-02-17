@@ -24,7 +24,7 @@ describe('구매한 로또 UI 검사', () => {
 
   it('번호보기 토글이 비활성화 되어 있는 상태에서 토글을 누르면, 로또 아이콘이 세로로 배치되고 로또 번호가 표시된다.', () => {
     cy.get('.switch').click();
-    cy.get('.purchased-lotto-section').should('have.class', 'flex-col');
+    cy.get('.lotto-ticket-container').should('have.class', 'flex-col');
     cy.get('.lotto-numbers').should('be.visible');
   });
 

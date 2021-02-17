@@ -1,5 +1,5 @@
 import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants.js';
-import { $ } from '../utils/DOM.js';
+import { $, $$ } from '../utils/DOM.js';
 
 export default class PurchasedLotto {
   constructor({ lottoTickets }) {
@@ -7,7 +7,29 @@ export default class PurchasedLotto {
     this.$lottoTicketContainer = $('.lotto-ticket-container');
     this.$purchasedLottoLabel = $('.purchased-lotto-label');
     this.lottoTickets = lottoTickets;
+
+    this.attachEvents();
     this.render();
+  }
+
+  attachEvents() {
+    $('.switch').addEventListener('click', this.onToggleShowingNumbers.bind(this));
+  }
+
+  onToggleShowingNumbers({ target }) {
+    if (target.type === 'checkbox') {
+      target.checked ? this.showNumbers() : this.hideNumbers();
+    }
+  }
+
+  showNumbers() {
+    this.$lottoTicketContainer.classList.add('flex-col');
+    $$('.lotto-numbers').forEach(($lottoNumbers) => $lottoNumbers.classList.remove('d-none'));
+  }
+
+  hideNumbers() {
+    this.$lottoTicketContainer.classList.remove('flex-col');
+    $$('.lotto-numbers').forEach(($lottoNumbers) => $lottoNumbers.classList.add('d-none'));
   }
 
   createLottoTicketHTML(lottoTicket) {
