@@ -41,7 +41,7 @@ describe("ui-play", () => {
     cy.get(SELECTOR.POCKET_TOGGLE).click({ force: true });
     cy.get(SELECTOR.POCKET_LOTTO).should("exist");
     cy.get(SELECTOR.POCKET_LOTTO).each(($numbers) => {
-      expect($numbers.text().split(" ").length).to.eq(6);
+      expect($numbers.text().split(", ").length).to.eq(6);
     });
   });
 
@@ -50,7 +50,7 @@ describe("ui-play", () => {
     cy.get(SELECTOR.POCKET_TOGGLE).click({ force: true });
     cy.get(SELECTOR.POCKET_LOTTO).should("exist");
     cy.get(SELECTOR.POCKET_LOTTO).each(($numbers) => {
-      expect(new Set($numbers.text().split(" ")).size).to.eq(6);
+      expect(new Set($numbers.text().split(", ")).size).to.eq(6);
     });
   });
 
@@ -59,7 +59,7 @@ describe("ui-play", () => {
     cy.get(SELECTOR.POCKET_TOGGLE).click({ force: true });
     cy.get(SELECTOR.POCKET_LOTTO).should("exist");
     cy.get(SELECTOR.POCKET_LOTTO).each(($numbers) => {
-      cy.get($numbers.text().split(" ")).each(($number) => {
+      cy.get($numbers.text().split(", ")).each(($number) => {
         cy.wrap(parseInt($number, 10)).should("be.lte", 45).and("be.gte", 1);
       });
     });
