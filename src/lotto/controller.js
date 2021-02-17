@@ -19,20 +19,28 @@ const getRandomNumberList = () => {
   return numberList;
 };
 
+const addLottoItems = (lottoItemCount) => {
+  for (let i = 0; i < lottoItemCount; i += 1) {
+    const numberList = getRandomNumberList();
+    lottoGame.addLottoItem(numberList);
+  }
+};
+
 export default {
   purchaseLottoItems(cost) {
     const lottoItemCount = cost / LOTTO_PRICE;
     lottoGame.initLottoItemList();
-    for (let i = 0; i < lottoItemCount; i += 1) {
-      const numberList = getRandomNumberList();
-      lottoGame.addLottoItem(numberList);
-    }
+    addLottoItems(lottoItemCount);
     lottoGameUI.renderResult(lottoGame.lottoItemList);
   },
   toggleLottoItemNumbers(checked) {
     if (checked) {
-      return lottoGameUI.displayLottoNumbers();
+      lottoGameUI.displayLottoNumbers();
+      return;
     }
-    return lottoGameUI.hideLottoNumbers();
+    lottoGameUI.hideLottoNumbers();
+  },
+  initToggleButton() {
+    lottoGameUI.resetToggleButton();
   },
 };

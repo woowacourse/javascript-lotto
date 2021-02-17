@@ -2,18 +2,19 @@ import {
   $purchaseItemCount,
   $purchaseItemList,
   $purchaseResult,
+  $lottoNumbersToggleButton,
 } from '../elements.js';
 import {
-  getResultControlTemplate,
+  getResultItemCountTemplate,
   getResultItemListTemplate,
 } from '../templates.js';
 import { $$ } from '../utils/querySelector.js';
 
 export default {
-  renderResult(lottoList) {
+  renderResult(lottoItemList) {
     $purchaseResult.style.display = 'block';
-    $purchaseItemCount.innerHTML = getResultControlTemplate(lottoList.length);
-    $purchaseItemList.innerHTML = getResultItemListTemplate(lottoList);
+    $purchaseItemCount.innerHTML = getResultItemCountTemplate(lottoItemList.length);
+    $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
   },
   displayLottoNumbers() {
     $$('.lotto-numbers').forEach(($lottoNumbers) => {
@@ -24,5 +25,8 @@ export default {
     $$('.lotto-numbers').forEach(($lottoNumbers) => {
       $lottoNumbers.style.display = 'none';
     });
+  },
+  resetToggleButton() {
+    $lottoNumbersToggleButton.checked = false;
   },
 };

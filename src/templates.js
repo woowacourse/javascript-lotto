@@ -1,4 +1,4 @@
-const getResultControlTemplate = (lottoItemCount) => {
+const getResultItemCountTemplate = (lottoItemCount) => {
   return `
     총 <span id="lotto-count">${lottoItemCount}</span>개를 구매하였습니다.
   `;
@@ -9,18 +9,17 @@ const getNumberListTemplate = (numberList) => {
 };
 
 const getResultItemListTemplate = (lottoList) => {
-  let resultItemListTemplate = '';
-  lottoList.forEach((lotto) => {
-    resultItemListTemplate += `
+  return lottoList.reduce(
+    (acc, lottoItem) =>
+      acc + ` 
       <div class="mx-1 text-4xl lotto-item">
       <span class="lotto-icon">🎟️</span> <span class="lotto-numbers">${getNumberListTemplate(
-        lotto.numberList
+        lottoItem.numberList
       )}</span>
       </div>
-    `;
-  });
-
-  return resultItemListTemplate;
+    `,
+    ''
+  );
 };
 
-export { getResultControlTemplate, getResultItemListTemplate };
+export { getResultItemCountTemplate, getResultItemListTemplate };
