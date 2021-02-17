@@ -17,12 +17,15 @@ describe('racing-game', () => {
       'have.text',
       '총 3개를 구매하였습니다.',
     );
-    cy.get('.purchase-result-section__lotto-icon').then((lottoIcons) => {
-      expect(lottoIcons.length).to.equal(3);
-    });
+    cy.get('#purchase-result-section__row-align')
+      .children('span')
+      .its('length')
+      .then((len) => {
+        expect(len).to.equal(3);
+      });
   });
 
-  it.only('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
+  it('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
     cy.window().then((win) => cy.stub(win, 'alert').as('windowAlert'));
 
     typePurchasePriceAndClickSubmitButton(-1);
@@ -34,11 +37,13 @@ describe('racing-game', () => {
   });
 
   it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
-    cy.get('#purchase-result-section__switch').click();
+    typePurchasePriceAndClickSubmitButton(3000);
+
+    cy.get('#purchase-result-section__toggle').click({ force: true });
     cy.get('#purchase-result-section__row-align').should('not.be.visible');
     cy.get('#purchase-result-section__col-align').should('be.visible');
 
-    cy.get('#purchase-result-section__switch').click();
+    cy.get('#purchase-result-section__toggle').click({ force: true });
     cy.get('#purchase-result-section__row-align').should('be.visible');
     cy.get('#purchase-result-section__col-align').should('not.be.visible');
   });
