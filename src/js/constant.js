@@ -18,6 +18,7 @@ export const SELECTOR = {
   POCKET_TOGGLE: "#pocket-toggle-number",
   POCKET_LOTTOS: "#pocket-lottos",
   WINNING: "#winning",
+  POCKET_LOTTO: ".pocket-lotto-numbers",
 };
 
 export const ERROR_MESSAGE = {
