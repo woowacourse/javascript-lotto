@@ -102,7 +102,7 @@ This project is [MIT](https://github.com/woowacourse/javascript-lotto/blob/main/
   - 랜덤 번호 생성
     - 1 ~ 45 까지 중복되지 않은 6개의 번호를 각 로또 장수에 부여
   
-- [ ] 구입 금액 입력받기
+- [X] 구입 금액 입력받기
     1. Given: 초기화면에 구입 입력 Form만 보여진다
     2. When: 금액을 입력한 후 확인 버튼을 클릭한다 (로또 1장의 가격은 1,000원이다.)
     3. Then: 
