@@ -92,4 +92,10 @@ describe("exceptions", () => {
     typeAndClickPrice("500");
     alertShouldBeCalledWith(ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND);
   });
+
+  it("금액을 입력하고 확인 누른 뒤, 다시 금액을 입력하고 확인을 누르면 alert가 발생한다.", () => {
+    typeAndClickPrice("5000");
+    typeAndClickPrice("1000");
+    alertShouldBeCalledWith(ERROR_MESSAGE.PRICE_CANNOT_BE_OVERWRITTEN);
+  });
 });
