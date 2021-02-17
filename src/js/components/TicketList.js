@@ -10,9 +10,9 @@ class TicketList extends Component {
   mountTemplate() {
     this.$target.innerHTML = `
       <div class="d-flex">
-        <label class="flex-auto my-0">총 ${
-          this.props.tickets.get().length
-        }개를 구매하였습니다.</label>
+        <label class="flex-auto my-0">
+          총 ${this.props.tickets.get().length}개를 구매하였습니다.
+        </label>
         <div class="flex-auto d-flex justify-end pr-1">
           <label class="switch">
             <input id="detail-mode-toggle" type="checkbox" class="lotto-numbers-toggle-button" />

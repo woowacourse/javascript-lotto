@@ -6,7 +6,7 @@ class PaymentInput extends Component {
   mountTemplate() {
     this.$target.innerHTML = `
         <label class="mb-2 d-inline-block">
-        구입할 금액을 입력해주세요.
+          구입할 금액을 입력해주세요.
         </label>
         <div class="d-flex">
           <input
