@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom.js';
+import { $, clearInput } from '../utils/dom.js';
 import { LOTTO_PRICE } from '../utils/constants.js';
 import { mod, divide } from '../utils/lotto.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
@@ -31,6 +31,7 @@ export default class LottoPerchaseInput {
     const errorMessage = validatePerchaseInputValue(payment);
     if (errorMessage) {
       alert(errorMessage);
+      clearInput(this.$perchaseInput);
       return;
     }
 
