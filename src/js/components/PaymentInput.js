@@ -50,6 +50,7 @@ class PaymentInput extends Component {
   alertByCase(value) {
     if (!value.length) {
       alert(HAS_A_WHITESPACE_MESSAGE);
+      return;
     }
 
     if (Number(value) < 1) {
