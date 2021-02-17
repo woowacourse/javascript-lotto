@@ -1,4 +1,4 @@
-import { $, $$ } from '../util/index.js';
+import { $ } from '../util/index.js';
 import { LottoView } from '../view/index.js';
 
 export default class LottoController {
@@ -7,8 +7,7 @@ export default class LottoController {
   }
 
   init() {
-    this.view.hide('#lotto-section');
-    this.view.hide('#lotto-result-form');
+    this.view.hide($('#lotto-section'), $('#lotto-result-form'));
   }
 
   setEvent() {}

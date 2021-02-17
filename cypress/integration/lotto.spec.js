@@ -1,8 +1,5 @@
-import { testInputValue, checkAlert } from '../utils/test_input_value.js';
-import {
-  UNIT_AMOUNT,
-  INVALID_PURCHASE_AMOUNT,
-} from '../../src/js/constants/index.js';
+import { testInputValue } from '../utils/index.js';
+import { INVALID_PURCHASE_AMOUNT } from '../../src/js/constants/index.js';
 
 describe('Lotto test', () => {
   before(() => {
@@ -30,17 +27,17 @@ describe('Lotto test', () => {
   });
 
   it('토글 버튼을 클릭했을 때, 모든 복권 번호를 렌더링한다.', () => {
-    function testLottoToggle(count, option) {
+    testLottoToggle(5, 'on');
+    testLottoToggle(5, 'off');
+
+    function testLottoToggle(count, toggleOption) {
       cy.get('.switch').click();
       for (let idx = 0; idx < count; idx++) {
         cy.get('.lotto-wrapper') //
           .eq(idx)
           .children('.lotto-numbers')
-          .should(option === 'on' ? 'be.visible' : 'not.be.visible');
+          .should(toggleOption === 'on' ? 'be.visible' : 'not.be.visible');
       }
     }
-
-    testLottoToggle(5, 'on');
-    testLottoToggle(5, 'off');
   });
 });

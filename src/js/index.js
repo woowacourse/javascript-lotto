@@ -7,6 +7,7 @@ class App {
 
   init() {
     const controller = new LottoController();
+
     controller.init();
     controller.setEvent();
   }
