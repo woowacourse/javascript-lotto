@@ -25,7 +25,9 @@ export default function LottoView() {
         .map(
           (lotto) => `<div class="d-flex flex-row items-center">
                     <div class="d-felx items-center mx-1 text-4xl mt-1">🎟️ </div>
-                    <div class="ml-2">${lotto.winningNumber.join(", ")}</div> 
+                    <div class="ml-2 winning-numbers">
+                      ${lotto.winningNumber.join(", ")}
+                    </div> 
                 </div>`
         )
         .join("")}
