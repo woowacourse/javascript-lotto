@@ -18,6 +18,6 @@ export default function LottoController() {
     }
     const numOfLottoes = price / 1000;
     this.model.createLottoes(numOfLottoes);
-    this.view.showConfirmation(numOfLottoes);
+    this.view.showConfirmation(this.model.lottoList);
   };
 }
