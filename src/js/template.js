@@ -27,7 +27,7 @@ class Template {
         lotto => `
             <div class="pocket-lotto-detail">
             <span class="mx-1 text-4xl">🎟️ </span>
-            <span class="pocket-lotto-numbers">${lotto.join(" ")}</span>
+            <span class="pocket-lotto-numbers">${lotto.join(", ")}</span>
             </div>
             `
       )
