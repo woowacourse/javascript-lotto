@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import Lotto from "../../src/js/object/Lotto.js";
-import { ALERT_MESSAGES, LOTTO_SETTINGS } from '../../src/js/constants.js';
+import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_SELECTORS } from '../../src/js/constants.js';
 
 context('로또 UI 테스트', () => {
   beforeEach(() => {
@@ -9,17 +9,17 @@ context('로또 UI 테스트', () => {
 
   it('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급한다.', () => {
     const money = 3000;
-    cy.get('.money-input').type(money);
-    cy.get('.money-input-button').click();
-    cy.get('.lotto-ticket').should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
+    cy.get(DOM_SELECTORS.MONEY_INPUT).type(money);
+    cy.get(DOM_SELECTORS.MONEY_INPUT_BUTTON).click();
+    cy.get(DOM_SELECTORS.LOTTO_TICKET).should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
   });
 
   it('입력받는 구입 금액은 최소 1000원 이상이어야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
-    cy.get('.money-input').type(500);
-    cy.get('.money-input-button').click().then(() => {
+    cy.get(DOM_SELECTORS.MONEY_INPUT).type(500);
+    cy.get(DOM_SELECTORS.MONEY_INPUT_BUTTON).click().then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.UNDER_MIN_PRICE);
     });
   });
@@ -28,21 +28,21 @@ context('로또 UI 테스트', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
-    cy.get('.money-input').type(5000.5);
-    cy.get('.money-input-button').click().then(() => {
+    cy.get(DOM_SELECTORS.MONEY_INPUT).type(5000.5);
+    cy.get(DOM_SELECTORS.MONEY_INPUT_BUTTON).click().then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.NOT_INTEGER_PRICE);
     });
   });
 
   it('번호 보기 토글 버튼을 클릭하면, 복권 번호가 화면에 표시된다.', () => {
     const money = 3000;
-    cy.get('.money-input').type(money);
-    cy.get('.money-input-button').click();
+    cy.get(DOM_SELECTORS.MONEY_INPUT).type(money);
+    cy.get(DOM_SELECTORS.MONEY_INPUT_BUTTON).click();
 
-    cy.get('.check-lotto-switch').click();
-    cy.get('.lotto-ticket-number').should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
-    cy.get('.check-lotto-switch').click();
-    cy.get('.lotto-ticket-number').should('not.be.visible');
+    cy.get(DOM_SELECTORS.CHECK_LOTTO_SWITCH).click();
+    cy.get(DOM_SELECTORS.LOTTO_TICKET_NUMBER).should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
+    cy.get(DOM_SELECTORS.CHECK_LOTTO_SWITCH).click();
+    cy.get(DOM_SELECTORS.LOTTO_TICKET_NUMBER).should('not.be.visible');
   });
 
 });

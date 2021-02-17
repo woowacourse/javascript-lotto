@@ -1,5 +1,5 @@
 import { $, $$ } from './util/dom.js';
-import { UI_SETTINGS } from './constants.js';
+import { UI_SETTINGS, DOM_SELECTORS } from './constants.js';
 export default class LottoUI {
   constructor() {
   }
@@ -9,7 +9,7 @@ export default class LottoUI {
   }
 
   renderMoneyInputUI() {
-    $('#money-input-container').innerHTML = `
+    $(DOM_SELECTORS.MONEY_INPUT_CONTAINER).innerHTML = `
       <form class="mt-5">
         <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
         </label>
@@ -22,7 +22,7 @@ export default class LottoUI {
   }
 
   renderCheckLottoUI(lottoTickets) {
-    $('#check-lotto-container').innerHTML = `
+    $(DOM_SELECTORS.CHECK_LOTTO_CONTAINER).innerHTML = `
       <section class="mt-9">
         <div class="d-flex">
           <label class="flex-auto my-0">총 ${lottoTickets.length}개를 구매하였습니다.</label>
@@ -52,13 +52,13 @@ export default class LottoUI {
   }
 
   toggleLottoNumbers() {
-    $$('.lotto-ticket-number').forEach(lottoTicket => {
+    $$(DOM_SELECTORS.LOTTO_TICKET_NUMBER).forEach(lottoTicket => {
       lottoTicket.classList.toggle('hidden');
     });
   }
 
   renderResultInputUI() {
-    $('#result-input-container').innerHTML = `
+    $(DOM_SELECTORS.RESULT_INPUT_CONTAINER).innerHTML = `
         <form class="mt-9">
           <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
           <div class="d-flex">

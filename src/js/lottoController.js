@@ -1,6 +1,6 @@
 import { $ } from './util/dom.js';
 import Lotto from './object/Lotto.js';
-import { ALERT_MESSAGES, LOTTO_SETTINGS } from './constants.js';
+import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_SELECTORS } from './constants.js';
 
 export default class LottoController {
   constructor(lottoUI) {
@@ -14,18 +14,18 @@ export default class LottoController {
   }
 
   initEventListener() {
-    $('#app').addEventListener('click', event => {
-      if (event.target.closest('.money-input-button')) {
+    $(DOM_SELECTORS.APP).addEventListener('click', event => {
+      if (event.target.closest(DOM_SELECTORS.MONEY_INPUT_BUTTON)) {
         this.handleMoneyInputButton();
       }
-      if (event.target.closest('.check-lotto-switch')) {
+      if (event.target.closest(DOM_SELECTORS.CHECK_LOTTO_SWITCH)) {
         this.handleCheckLottoSwitch();
       }
     });
   }
 
   handleMoneyInputButton() {
-    const moneyInput = Number($('.money-input').value);
+    const moneyInput = Number($(DOM_SELECTORS.MONEY_INPUT).value);
     if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
