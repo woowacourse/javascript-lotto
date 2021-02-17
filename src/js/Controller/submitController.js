@@ -1,10 +1,11 @@
 import { app } from "../index.js";
 import Lotto from "../Model/Lotto.js";
-import { $ } from "../Util/querySelector.js";
+import { $, $$ } from "../Util/querySelector.js";
 import { isValidMoney } from "../Util/validator.js";
 import {
   printPurchaseMountLabel,
-  printLottoImages,
+  printLottoHorizontal,
+  printLottoVertical,
 } from "../View/receiptView.js";
 import { onPurchaseResultShow } from "./viewController.js";
 
@@ -27,8 +28,16 @@ export const handlePurchaseMountSubmit = () => {
     printPurchaseMountLabel(app.lottoCount);
     console.log(app.lottos);
 
-    printLottoImages(app.lottoCount);
+    printLottoHorizontal(app.lottoCount);
     onPurchaseResultShow();
+  }
+};
+
+export const handleToggleButton = (event) => {
+  if (event.target.checked) {
+    printLottoVertical(app.lottos);
+  } else {
+    printLottoHorizontal(app.lottoCount);
   }
 };
 

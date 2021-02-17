@@ -4,12 +4,26 @@ export const printPurchaseMountLabel = (lottoCount) => {
   $("#purchase-mount-label").innerText = `총 ${lottoCount}개를 구매하였습니다.`;
 };
 
-export const printLottoImages = (lottoCount) => {
+export const printLottoHorizontal = (lottoCount) => {
   let lottoImageTemplate = "";
 
   for (let i = 0; i < lottoCount; i++) {
-    lottoImageTemplate += '<span class="mx-1 text-4xl">🎟️ </span>';
+    lottoImageTemplate +=
+      '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>';
   }
 
-  $("#lotto-image-container").innerHTML = lottoImageTemplate;
+  $("#lotto-image-number-container").innerHTML = lottoImageTemplate;
+};
+
+export const printLottoVertical = (lottos) => {
+  const lottoImageNumberContainer = $("#lotto-image-number-container");
+  let lottoImageNumberTemplate = "";
+
+  lottos.map((lotto) => {
+    lottoImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${lotto.numbers.join(
+      ", "
+    )}</span></div>`;
+  });
+
+  lottoImageNumberContainer.innerHTML = lottoImageNumberTemplate;
 };
