@@ -134,7 +134,7 @@ context("e2e test", () => {
     cy.get("#purchase-mount-input").type(money);
     cy.get("#purchase-mount-submit").click();
     cy.get("#lotto-image-container")
-      .find("text-4xl")
+      .find(".text-4xl")
       .its("length")
       .should("eq", money / 1000);
   });
