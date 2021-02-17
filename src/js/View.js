@@ -1,4 +1,5 @@
 import { $ } from "./util.js";
+import Template from "./template.js";
 
 class LottoView {
   constructor() {

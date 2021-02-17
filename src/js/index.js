@@ -1,3 +1,6 @@
+import { $ } from "./util.js";
+import LottoView from "./View.js";
+
 const $showResultButton = document.querySelector(".open-result-modal-button");
 const $modalClose = document.querySelector(".modal-close");
 const $modal = document.querySelector(".modal");
@@ -16,6 +19,14 @@ const onModalClose = () => {
 $showResultButton.addEventListener("click", onModalShow);
 $modalClose.addEventListener("click", onModalClose);
 
+$("#pocket-lottos").innerHTML = new LottoView().renderPocketSection(
+  [
+    [1, 2, 3, 4, 5, 6],
+    [1, 2, 3, 4, 5, 6],
+    [1, 2, 3, 4, 5, 6],
+  ],
+  true
+);
 /*
 
 state.js
