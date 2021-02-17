@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import Lotto from "../../src/js/object/Lotto.js";
-import { LOTTO_SETTINGS } from '../../src/js/constants.js';
+import { ALERT_MESSAGES, LOTTO_SETTINGS } from '../../src/js/constants.js';
 
 context('로또 UI 테스트', () => {
   beforeEach(() => {
@@ -20,7 +20,17 @@ context('로또 UI 테스트', () => {
 
     cy.get('.money-input').type(500);
     cy.get('.money-input-button').click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith('최소 1000원 이상의 금액을 입력해야 합니다.');
+      expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.UNDER_MIN_PRICE);
+    });
+  });
+
+  it('입력받는 구입 금액은 정수여야한다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('.money-input').type(5000.5);
+    cy.get('.money-input-button').click().then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.NOT_INTEGER_PRICE);
     });
   });
 
@@ -34,6 +44,7 @@ context('로또 UI 테스트', () => {
     cy.get('.check-lotto-switch').click();
     cy.get('.lotto-ticket-number').should('not.be.visible');
   });
+
 });
 
 context('로또 기능 테스트', () => {
