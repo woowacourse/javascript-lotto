@@ -7,6 +7,8 @@ import {
 const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
+const sortNumbers = numbers => numbers.sort((a, b) => a - b);
+
 export const divide = (a, b) => Math.floor(a / b);
 
 export const mod = (a, b) => a % b;
@@ -17,7 +19,7 @@ export const generateLottoNumbers = () => {
     lottoNumbers.add(generateRandomNumber(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
   }
 
-  return [...lottoNumbers];
+  return sortNumbers([...lottoNumbers]);
 };
 
 export const isValidLottoNumbers = numbers =>
