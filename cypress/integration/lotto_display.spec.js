@@ -17,10 +17,9 @@ describe('LOTTO - 구매한 로또 화면 출력 테스트', () => {
     cy.get('#lotto-perchase-input').type('1500');
     cy.get('#lotto-perchase-btn').click();
 
-    cy.get('.lotto-numbers-toggle-button').click();
-    cy.get('[data-test=lotto-numbers]').its('length').should('eq', 1);
+    cy.get('[data-test=lotto-numbers]').should('not.exist');
 
-    cy.get('.lotto-numbers-toggle-button').click();
-    cy.get('[data-test=lotto-numbers]').its('length').should('eq', 0);
+    cy.get('.lotto-numbers-toggle-button').check({ force: true });
+    cy.get('[data-test=lotto-numbers]').its('length').should('eq', 1);
   });
 });
