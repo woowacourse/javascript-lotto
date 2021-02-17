@@ -26,13 +26,13 @@ export default class LottoDisplay {
 
   bindEvent() {
     this.$toggleButton.addEventListener(
-      'click',
+      'change',
       this.toggleButtonClickHandler.bind(this),
     );
   }
 
-  toggleButtonClickHandler() {
-    this.setState({ isToggled: !this.isToggled });
+  toggleButtonClickHandler({ target: { checked } }) {
+    this.setState({ isToggled: checked });
   }
 
   createLottoHtml() {
