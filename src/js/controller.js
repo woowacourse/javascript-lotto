@@ -30,11 +30,17 @@ class LottoController {
     return [...lotto].sort();
   }
 
-  createPocket() {
+  renderPocketLotto() {
     const lottos = this.model.lottos;
     const pocketDetail = this.model.detail;
-    this.view.renderPocketSection(lottos, pocketDetail);
-    //this.handlePocket();
+    this.view.renderPocketLottos(lottos, pocketDetail);
+  }
+
+  renderPocket() {
+    const amount = this.model.amount;
+    this.view.renderPocketSection(amount);
+    this.handlePocket();
+    this.renderPocketLotto();
     this.view.renderWinningSection();
   }
 
@@ -44,13 +50,12 @@ class LottoController {
     for (let i = 0; i < count; i++) {
       this.model.addLotto(this.generateLotto());
     }
-    this.createPocket();
+    this.renderPocket();
   }
 
   manageDetail() {
-    console.log(this);
     this.model.toggleDetail();
-    this.createPocket();
+    this.renderPocketLotto();
   }
 
   handlePrice() {
@@ -62,8 +67,7 @@ class LottoController {
 
   handlePocket() {
     const $pocketButton = $("#pocket-toggle-number");
-    const manageDetail = this.manageDetail();
-    $pocketButton.addEventListener("change", () => {
+    $pocketButton.addEventListener("click", () => {
       this.manageDetail();
     });
   }

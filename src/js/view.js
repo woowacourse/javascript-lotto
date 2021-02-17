@@ -11,9 +11,14 @@ class LottoView {
     $buySection.innerHTML = this.template.buySectionTemplate();
   }
 
-  renderPocketSection(lottos, detail) {
+  renderPocketSection(amount) {
     const $pocketSection = $("#pocket");
-    $pocketSection.innerHTML = this.template.pocketSectionTemplate(
+    $pocketSection.innerHTML = this.template.pocketSectionTemplate(amount);
+  }
+
+  renderPocketLottos(lottos, detail) {
+    const $pocketLottos = $("#pocket-lottos");
+    $pocketLottos.innerHTML = this.template.pocketLottosTemplate(
       lottos,
       detail
     );

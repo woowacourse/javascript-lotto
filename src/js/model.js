@@ -23,5 +23,9 @@ class LottoModel {
   toggleDetail() {
     this._detail = !this._detail;
   }
+
+  get amount() {
+    return this._lottos.length;
+  }
 }
 export default LottoModel;
