@@ -1,5 +1,6 @@
-import { $ } from "./util.js";
 import Template from "./template.js";
+import { $ } from "./util.js";
+import { SELECTOR } from "./constant.js";
 
 class LottoView {
   constructor() {
@@ -7,17 +8,17 @@ class LottoView {
   }
 
   renderBuySection() {
-    const $buySection = $("#buy");
+    const $buySection = $(SELECTOR.BUY);
     $buySection.innerHTML = this.template.buySectionTemplate();
   }
 
   renderPocketSection(amount) {
-    const $pocketSection = $("#pocket");
+    const $pocketSection = $(SELECTOR.POCKET);
     $pocketSection.innerHTML = this.template.pocketSectionTemplate(amount);
   }
 
   renderPocketLottos(lottos, detail) {
-    const $pocketLottos = $("#pocket-lottos");
+    const $pocketLottos = $(SELECTOR.POCKET_LOTTOS);
     $pocketLottos.innerHTML = this.template.pocketLottosTemplate(
       lottos,
       detail
@@ -25,17 +26,17 @@ class LottoView {
   }
 
   renderWinningSection() {
-    const $winningSection = $("#winning");
+    const $winningSection = $(SELECTOR.WINNING);
     $winningSection.innerHTML = this.template.winningSectionTemplate();
   }
 
   resetPocketSection() {
-    const $pocketSection = $("#pocket");
+    const $pocketSection = $(SELECTOR.POCKET);
     $pocketSection.innerHTML = "";
   }
 
   resetWinningSection() {
-    const $winningSection = $("#winning");
+    const $winningSection = $(SELECTOR.WINNING);
     $winningSection.innerHTML = "";
   }
 

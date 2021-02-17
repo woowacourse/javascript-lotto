@@ -1,7 +1,9 @@
+import { INIT } from "./constant.js";
+
 class LottoModel {
   constructor() {
-    this._lottos = [];
-    this._detail = false;
+    this._lottos = INIT.LOTTOS;
+    this._detail = INIT.DETAIL;
   }
 
   get lottos() {
@@ -29,8 +31,8 @@ class LottoModel {
   }
 
   init() {
-    this._lottos = [];
-    this._detail = false;
+    this._lottos = INIT.LOTTOS;
+    this._detail = INIT.DETAIL;
   }
 }
 export default LottoModel;

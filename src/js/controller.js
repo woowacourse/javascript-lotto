@@ -1,7 +1,8 @@
 import LottoModel from "./model.js";
-import { $, getQuotient, getRandomNumber, sortByNumber } from "./util.js";
-import Validator from "./validator/validator.js";
 import LottoView from "./view.js";
+import Validator from "./validator/validator.js";
+import { $, getQuotient, getRandomNumber, sortByNumber } from "./util.js";
+import { LOTTO, SELECTOR } from "./constant.js";
 
 class LottoController {
   constructor() {
@@ -17,20 +18,20 @@ class LottoController {
   }
 
   getAndClearBuyValue() {
-    const value = $("#buy-input").value;
-    $("#buy-input").value = "";
+    const value = $(SELECTOR.BUY_INPUT).value;
+    $(SELECTOR.BUY_INPUT).value = "";
 
     return value;
   }
 
   getCount(price) {
-    return getQuotient(price, 1000);
+    return getQuotient(price, LOTTO.PRICE);
   }
 
   generateLotto() {
     const lotto = new Set();
-    while (lotto.size !== 6) {
-      lotto.add(getRandomNumber(1, 45));
+    while (lotto.size !== LOTTO.SIZE) {
+      lotto.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
     }
 
     return sortByNumber([...lotto]);
@@ -71,14 +72,14 @@ class LottoController {
   }
 
   handlePrice() {
-    const $buyButton = $("#buy-button");
+    const $buyButton = $(SELECTOR.BUY_BUTTON);
     $buyButton.addEventListener("click", () => {
       this.manageLotto();
     });
   }
 
   handlePocket() {
-    const $pocketButton = $("#pocket-toggle-number");
+    const $pocketButton = $(SELECTOR.POCKET_TOGGLE);
     $pocketButton.addEventListener("click", () => {
       this.manageDetail();
     });

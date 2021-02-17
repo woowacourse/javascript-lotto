@@ -1,15 +1,16 @@
+import { ERROR_MESSAGE, LOTTO } from "../constant.js";
 class Validator {
   isPriceValid(price) {
     if (this.isFloatPrice(price)) {
-      return "금액은 소수가 될 수 없습니다.";
+      return ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT;
     }
 
     if (this.isNegativeNumber(price)) {
-      return "금액은 자연수여야 합니다.";
+      return ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE;
     }
 
     if (this.isLessThanThousand(price)) {
-      return "최소 입력금액은 1000원입니다.";
+      return ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND;
     }
 
     return null;
@@ -24,7 +25,7 @@ class Validator {
   }
 
   isLessThanThousand(price) {
-    return 0 <= price && price < 1000;
+    return 0 <= price && price < LOTTO.PRICE;
   }
 }
 
