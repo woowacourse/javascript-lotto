@@ -26,8 +26,14 @@ export default class LottoController {
   }
 
   makeLottos() {
-    const moneyInput = $('.money-input').value;
-    const lottoAmount = Math.floor(Number(moneyInput) / 1000);
+    const moneyInput = Number($('.money-input').value);
+
+    if (moneyInput < 1000) {
+      alert('최소 1000원 이상의 금액을 입력해야 합니다.');
+      return;
+    }
+
+    const lottoAmount = Math.floor(moneyInput / 1000);
 
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto();
