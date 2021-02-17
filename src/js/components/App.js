@@ -1,5 +1,6 @@
 import Lotto from '../model/Lotto.js';
 import { $ } from '../utils/dom.js';
+import { generateLottoNumbers } from '../utils/lotto.js';
 import LottoDisplay from './LottoDisplay.js';
 import LottoPerchaseInput from './LottoPerchaseInput.js';
 
@@ -16,6 +17,7 @@ export default class App {
 
   setState({ lottos }) {
     this.lottos = lottos;
+
     this.lottoDisplay.setState({ lottoCount: this.lottos.length });
   }
 
@@ -27,9 +29,10 @@ export default class App {
   }
 
   createLottos(lottoCount) {
-    const lottos = Array.from({ length: lottoCount }, () => {
-      new Lotto();
-    });
+    const lottos = Array.from(
+      { length: lottoCount },
+      () => new Lotto(generateLottoNumbers()),
+    );
 
     this.setState({ lottos });
   }
