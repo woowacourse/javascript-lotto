@@ -1,33 +1,27 @@
 class LottoModel {
   constructor() {
-    this._lotto = [];
-    //this._money = 0;
-    //this._count = 0;
-    this.detail = false;
+    this._lottos = [];
+    this._detail = false;
   }
 
-  get lootto() {
-    return this._lotto;
+  get lottos() {
+    return this._lottos;
   }
 
-  get money() {
-    return this._money;
+  set lottos(newLottos) {
+    this._lottos = newLottos;
   }
 
-  get count() {
-    return this._count;
+  set addLotto(newLotto) {
+    this._lottos.push(newLotto);
   }
 
-  set lotto(newLotto) {
-    this._lotto = newLotto;
+  get detail() {
+    return this._detail;
   }
 
-  set money(newMoney) {
-    this._money = newMoney;
-  }
-
-  set count(newCount) {
-    this._count = newCount;
+  toggleDetail() {
+    this._detail = !this._detail;
   }
 }
 
