@@ -22,3 +22,19 @@ body {
   width: 30px;
   height: 36px;
 }
+
+.lotto-numbers {
+  font-size: 1rem;
+}
+
+.lotto-list .lotto .lotto-numbers {
+  display: none;
+}
+
+.lotto-list.show-number {
+  flex-direction: column;
+}
+
+.lotto-list.show-number .lotto .lotto-numbers {
+  display: inline;
+}

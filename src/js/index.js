@@ -1,4 +1,4 @@
-import { $, getRandomNumber } from './utils.js';
+import { $, $all, getRandomNumber } from './utils.js';
 import Store from './Store.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -47,6 +47,17 @@ class LottoApp {
       );
 
       this.store.save('lottos', lottos);
+    });
+
+    $('.lotto-numbers-toggle-button').addEventListener('change', () => {
+      const toggleStatus = $('.lotto-numbers-toggle-button').checked;
+
+      if (toggleStatus) {
+        $('.lotto-list').classList.add('show-number');
+        return;
+      }
+
+      $('.lotto-list').classList.remove('show-number');
     });
   }
 }
