@@ -27,5 +27,10 @@ class LottoModel {
   get amount() {
     return this._lottos.length;
   }
+
+  init() {
+    this._lottos = [];
+    this._detail = false;
+  }
 }
 export default LottoModel;

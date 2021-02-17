@@ -11,6 +11,7 @@ class LottoController {
   init() {
     this.view.reset();
     this.handlePrice();
+    this.model.init();
   }
 
   getAndClearBuyValue() {
@@ -33,32 +34,33 @@ class LottoController {
     return sortByNumber([...lotto]);
   }
 
-  renderPocketLotto() {
+  renderPocketLottos() {
     const lottos = this.model.lottos;
     const pocketDetail = this.model.detail;
     this.view.renderPocketLottos(lottos, pocketDetail);
   }
 
-  renderPocket() {
+  managePocket() {
     const amount = this.model.amount;
     this.view.renderPocketSection(amount);
     this.handlePocket();
-    this.renderPocketLotto();
+    this.renderPocketLottos();
     this.view.renderWinningSection();
   }
 
   manageLotto() {
-    const price = parseInt(this.getAndClearBuyValue(), 10);
+    const buyValue = this.getAndClearBuyValue();
+    const price = parseInt(buyValue, 10);
     const count = this.getCount(price);
     for (let i = 0; i < count; i++) {
       this.model.addLotto(this.generateLotto());
     }
-    this.renderPocket();
+    this.managePocket();
   }
 
   manageDetail() {
     this.model.toggleDetail();
-    this.renderPocketLotto();
+    this.renderPocketLottos();
   }
 
   handlePrice() {
