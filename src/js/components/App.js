@@ -1,8 +1,8 @@
 import Lotto from '../model/Lotto.js';
-import { $ } from '../utils/dom.js';
-import { generateLottoNumbers } from '../utils/lotto.js';
 import LottoDisplay from './LottoDisplay.js';
 import LottoPerchaseInput from './LottoPerchaseInput.js';
+import { $ } from '../utils/dom.js';
+import { generateLottoNumbers } from '../utils/lotto.js';
 
 export default class App {
   constructor() {

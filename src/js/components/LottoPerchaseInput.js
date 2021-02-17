@@ -1,6 +1,7 @@
 import { LOTTO_PRICE } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 import { mod, divide } from '../utils/lotto.js';
+import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
 export default class LottoPerchaseInput {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class LottoPerchaseInput {
 
     const lottoCount = divide(payment, LOTTO_PRICE);
     const remainingMoney = mod(payment, LOTTO_PRICE);
-    alert(`로또 ${lottoCount}개 구매 완료. 거스름돈 : ${remainingMoney}원`);
+    alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
 
     createLottos(lottoCount);
   }
@@ -43,10 +44,10 @@ export default class LottoPerchaseInput {
 
 const validatePerchaseInputValue = payment => {
   if (!Number.isInteger(payment)) {
-    return `소수를 입력하셨습니다. 입력 금액은 정수여야 합니다.`;
+    return ERROR_MESSAGE.NOT_INTEGER_NUMBER_ERROR;
   }
 
   if (payment < LOTTO_PRICE) {
-    return `${LOTTO_PRICE}원 이상의 금액만 입력할 수 있습니다.`;
+    return ERROR_MESSAGE.PAYMENT_AMOUNT_ERROR;
   }
 };

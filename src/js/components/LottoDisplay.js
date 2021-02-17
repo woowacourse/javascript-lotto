@@ -35,13 +35,6 @@ export default class LottoDisplay {
     this.setState({ isToggled: !this.isToggled });
   }
 
-  createLottoCountHTML() {
-    return `
-      <label data-test="total-lotto-count" class="flex-auto my-0">
-        총 <b>${this.lottos.length}</b>개를 구매하였습니다.
-      </label>`;
-  }
-
   createLottoHtml() {
     return this.lottos
       .map(({ numbers }) => {
