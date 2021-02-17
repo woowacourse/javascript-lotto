@@ -17,7 +17,5 @@ export const handlePurchasePriceInput = (event, lotto) => {
     lotto.getTicket();
   }
 
-  console.log(lotto);
-
-  renderPurchaseResultSection(numberOfLottoTicket, lotto);
+  renderPurchaseResultSection(numberOfLottoTicket, lotto.putLottoNumbers());
 };

@@ -7,26 +7,30 @@ const lottoTicketIconTemplate = () => {
           </span>`;
 };
 
-const lottoTicketDetailTemplate = (lottoNums) => {
+const lottoTicketDetailTemplate = (lottoNumber) => {
   return `<div class="d-flex">
             ${lottoTicketIconTemplate()}
-            <span class="mx-1 mt-1 text-xl">${lottoNums}</span>
+            <span class="mx-1 mt-1 text-xl">${lottoNumber}</span>
           </div>`;
 };
 
 const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
 const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
 
-export const renderPurchaseResultSection = (numberOfLottoTicket, lottos) => {
+export const renderPurchaseResultSection = (
+  amountOfLottoTicket,
+  lottoNumbers,
+) => {
   const $purchaseResultSection = $('#purchase-result-section');
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
 
-  $purchaseResultSectionLabel.innerText = `총 ${numberOfLottoTicket}개를 구매하였습니다.`;
+  $purchaseResultSectionLabel.innerText = `총 ${amountOfLottoTicket}개를 구매하였습니다.`;
   $purchaseResultSectionRowAlign.innerHTML = lottoTicketIconTemplate().repeat(
-    numberOfLottoTicket,
+    amountOfLottoTicket,
   );
-  $purchaseResultSectionColAlign.innerHTML = lottos
-    .map((lotto) => lottoTicketDetailTemplate(lotto.getLottoNums()))
+
+  $purchaseResultSectionColAlign.innerHTML = lottoNumbers
+    .map((lottoNumber) => lottoTicketDetailTemplate(lottoNumber))
     .join('');
 
   showElement($purchaseResultSection);
