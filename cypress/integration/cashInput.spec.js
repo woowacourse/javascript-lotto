@@ -33,14 +33,8 @@ describe("구입 금액 입력 테스트", () => {
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).should("be.visible");
   });
 
-  it("유저가 빈 문자열을 입력한 경우, 에러메시지를 alert로 출력한다", () => {
-    const wrongUserInput = "";
-    testAlertMessage(wrongUserInput, ALERT_MESSAGE.ERROR.CASH_INPUT.EMPTY);
-    testResetInput();
-  });
-
   it("유저가 숫자로 변환될 수 없는 문자를 입력한 경우, 에러메시지를 alert로 출력한다", () => {
-    ["김동희", "+", "abcd", "🎟️"].forEach((wrongUserInput, index) => {
+    ["", "김동희", "+", "abcd", "🎟️"].forEach((wrongUserInput, index) => {
       testAlertMessage(
         wrongUserInput,
         ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER,
@@ -57,7 +51,7 @@ describe("구입 금액 입력 테스트", () => {
   });
 
   it("유저가 소수를 입력한 경우, 에러메시지를 alert로 출력한다", () => {
-    const wrongUserInput = -100.3;
+    const wrongUserInput = 100.3;
     testAlertMessage(wrongUserInput, ALERT_MESSAGE.ERROR.CASH_INPUT.DECIMAL);
     testResetInput();
   });
