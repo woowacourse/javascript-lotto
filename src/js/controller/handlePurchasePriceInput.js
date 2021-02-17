@@ -2,7 +2,7 @@ import { $ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 
-export const handlePurchasePriceInput = (event, lotto) => {
+export const handlePurchasePriceInput = (lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
 
   if (purchasePrice < VALUE.LOTTO.TICKET_PRICE) {

@@ -9,8 +9,8 @@ const init = () => {
 
   const lotto = new Lotto();
 
-  $purchasePriceInputFormButton.addEventListener('click', (event) =>
-    handlePurchasePriceInput(event, lotto),
+  $purchasePriceInputFormButton.addEventListener('click', () =>
+    handlePurchasePriceInput(lotto),
   );
   $purchaseResultSectionToggle.addEventListener(
     'click',
