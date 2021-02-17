@@ -7,27 +7,24 @@ class LottoView {
     this.template = new Template();
   }
 
-  renderBuySection() {
+  resetBuySection() {
     const $buySection = $(SELECTOR.BUY);
-    $buySection.innerHTML = this.template.buySectionTemplate();
+    $buySection.innerHTML = this.template.buySection();
   }
 
   renderPocketSection(amount) {
     const $pocketSection = $(SELECTOR.POCKET);
-    $pocketSection.innerHTML = this.template.pocketSectionTemplate(amount);
+    $pocketSection.innerHTML = this.template.pocketSection(amount);
   }
 
   renderPocketLottos(lottos, detail) {
     const $pocketLottos = $(SELECTOR.POCKET_LOTTOS);
-    $pocketLottos.innerHTML = this.template.pocketLottosTemplate(
-      lottos,
-      detail
-    );
+    $pocketLottos.innerHTML = this.template.pocketLottos(lottos, detail);
   }
 
   renderWinningSection() {
     const $winningSection = $(SELECTOR.WINNING);
-    $winningSection.innerHTML = this.template.winningSectionTemplate();
+    $winningSection.innerHTML = this.template.winningSection();
   }
 
   resetPocketSection() {
@@ -41,7 +38,7 @@ class LottoView {
   }
 
   reset() {
-    this.renderBuySection();
+    this.resetBuySection();
     this.resetPocketSection();
     this.resetWinningSection();
   }

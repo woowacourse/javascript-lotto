@@ -1,5 +1,5 @@
 class Template {
-  buySectionTemplate() {
+  buySection() {
     return `
         <h1 class="text-center">🎱 행운의 로또</h1>
         <form class="mt-5">
@@ -17,14 +17,14 @@ class Template {
     `;
   }
 
-  pocketLottosSimpleTemplate(lottos) {
+  pocketLottosSimple(lottos) {
     return `<span class="mx-1 text-4xl">🎟️ </span>`.repeat(lottos.length);
   }
 
-  pocketLottosDetailTemplate(lottos) {
+  pocketLottosDetail(lottos) {
     return lottos
       .map(
-        lotto => `
+        (lotto) => `
             <div class="pocket-lotto-detail">
             <span class="mx-1 text-4xl">🎟️ </span>
             <span class="pocket-lotto-numbers">${lotto.join(" ")}</span>
@@ -34,13 +34,13 @@ class Template {
       .join("");
   }
 
-  pocketLottosTemplate(lottos, detail) {
+  pocketLottos(lottos, detail) {
     return detail
-      ? this.pocketLottosDetailTemplate(lottos)
-      : this.pocketLottosSimpleTemplate(lottos);
+      ? this.pocketLottosDetail(lottos)
+      : this.pocketLottosSimple(lottos);
   }
 
-  pocketSectionTemplate(amount) {
+  pocketSection(amount) {
     return `
         <div class="d-flex">
             <label class="flex-auto my-0">총 ${amount}개를 구매하였습니다.</label>
@@ -59,7 +59,7 @@ class Template {
     `;
   }
 
-  winningSectionTemplate() {
+  winningSection() {
     return `
         <form class="mt-9">
         <label class="flex-auto d-inline-block mb-3">
