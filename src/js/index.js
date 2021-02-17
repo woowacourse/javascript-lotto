@@ -1,8 +1,9 @@
-import { ALERT_MESSAGE, JS_SELECTOR } from "./constants/index.js";
+import { ALERT_MESSAGE, CLASSNAME, JS_SELECTOR } from "./constants/index.js";
 import {
   $,
   generateLottoNumbers,
   toDataAttributeSelector as toDAS,
+  toClassSelector as toCS,
 } from "./utils/index.js";
 import Lotto from "./Lotto.js";
 import { show } from "./utils/index.js";
@@ -12,6 +13,7 @@ const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 const $lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
 const $lottoDetailLabel = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL));
 const $lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
+const $toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
 
 const getAlertMessage = (userInputCash) => {
   if (userInputCash === "") {
@@ -45,18 +47,38 @@ $cashButton.addEventListener("click", () => {
 
   const lottos = [];
   for (let i = 0; i < lottoCount; i++) {
-    lottos.push(new Lotto(generateLottoNumbers()));
+    lottos.push(new Lotto(generateLottoNumbers().sort((a, b) => a - b)));
   }
 
   $lottoDetailLabel.innerText = `총 ${lottoCount}개를 구매하였습니다.`;
 
-  const LOTTO_ICON_TEMPLATE = `
-      <span
-        class="mx-1 text-4xl"
-        data-js-selector="lotto-detail-container__icon"
-        >🎟️
-      </span>
+  const lottoTemplate = (lotto) => {
+    return `
+      <div class="d-flex items-center">
+        <span
+          class="mx-1 text-4xl"
+          data-js-selector=${JS_SELECTOR.LOTTO_DETAIL.ICON}
+          >🎟️
+        </span>
+        <span 
+          class="lotto-numbers"
+          data-js-selector=${JS_SELECTOR.LOTTO_DETAIL.NUMBERS}
+        >${lotto.numbers
+          .map((number) => String(number).padStart(2, 0))
+          .join(", ")}
+        </span>
+      </div>
     `;
-  $lottoIconWrapper.innerHTML = LOTTO_ICON_TEMPLATE.repeat(lottos.length);
+  };
+
+  $lottoIconWrapper.innerHTML = lottos
+    .map((lotto) => lottoTemplate(lotto))
+    .join("");
+
   show($lottoDetailContainer);
+});
+
+$toggleButton.addEventListener("click", () => {
+  $lottoIconWrapper.classList.toggle("flex-col");
+  $lottoDetailContainer.classList.toggle("detail");
 });

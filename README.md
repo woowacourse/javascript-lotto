@@ -109,7 +109,7 @@ This project is [MIT](https://github.com/woowacourse/javascript-lotto/blob/main/
        - 실패케이스: 음수, 소수점 => alert로 표시한다.
        - 성공케이스: 입력된 금액으로 살 수 있는 로또 장수 만큼이 section부분이 표시된다.
 
-- [ ] 번호보기 토글
+- [X] 번호보기 토글
     1. Given: 유저가 구입할 금액을 입력하여 해당하는 로또 장수 만큼이 section에 포함되어 있다. 번호보기 토글은 비활성화되어 있다.
     2. When: 비활성화된 번호보기 토글을 클릭한다.
     3. Then:

@@ -1,6 +1,9 @@
 const CLASSNAME = {
   LOTTO_DETAIL: {
-    TOGGLE_BUTTON: "switch",
+    TOGGLE_BUTTON: "lotto-numbers-toggle-button",
+  },
+  COMMON: {
+    HIDDEN: "--hidden",
   },
 };
 

@@ -26,3 +26,11 @@ body {
 .--hidden {
   display: none;
 }
+
+.lotto-numbers {
+  display: none;
+}
+
+.detail .lotto-numbers {
+  display: initial;
+}

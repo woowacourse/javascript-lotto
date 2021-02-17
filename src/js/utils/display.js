@@ -1,9 +1,9 @@
-const HIDDEN = "--hidden";
+import { CLASSNAME } from "../constants/index.js";
 
 export const show = ($element) => {
-  $element.classList.remove(HIDDEN);
+  $element.classList.remove(CLASSNAME.COMMON.HIDDEN);
 };
 
 export const hide = ($element) => {
-  $element.classList.add(HIDDEN);
+  $element.classList.add(CLASSNAME.COMMON.HIDDEN);
 };
