@@ -30,6 +30,10 @@ export default class LottoController {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
+    if (Math.floor(moneyInput) !== moneyInput) {
+      alert(ALERT_MESSAGES.NOT_INTEGER_PRICE);
+      return;
+    }
 
     this.makeLottos(moneyInput);
     const lottoTickets = this.lottos.map(lotto => lotto.numbers);
