@@ -17,4 +17,13 @@ describe('로또 게임 테스트', () => {
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#input-lotto-nums').should('be.visible');
   });
+
+  it('사용자가 구매한 로또의 개수와 개수 만큼의 로또 이모지를 보여준다.', () => {
+    cy.get('#input-price').type(price);
+    cy.get('#input-price-btn').click();
+    cy.get('#purchased-lottos').should('be.visible');
+    cy.get('#total-purchased').should('have.text', 1);
+    cy.get('#lotto-icons').children('.lotto-icon').should('have.length', 1);
+    cy.get('#input-lotto-nums').should('be.visible');
+  });
 });
