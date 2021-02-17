@@ -1,7 +1,7 @@
 import LottoTicket from '../model/LottoTicket.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { getLottoNumber } from '../utils/getLottoNumber.js';
-import { showElement } from '../utils/setAttribute.js';
+import { showElement } from '../utils/setViewProperty.js';
 
 const lottoTicketIconTemplate = () => {
   return `<span class="purchase-result-section__lotto-icon mx-1 text-4xl">

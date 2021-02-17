@@ -5,15 +5,15 @@ const init = () => {
   const $purchasePriceInputFormButton = document.querySelector(
     '#purchase-price-input-form__button',
   );
-  const $purchaseResultSectionSwitch = document.querySelector(
-    '#purchase-result-section__switch',
+  const $purchaseResultSectionToggle = document.querySelector(
+    '#purchase-result-section__toggle',
   );
 
   $purchasePriceInputFormButton.addEventListener(
     'click',
     handlePurchasePriceInput,
   );
-  $purchaseResultSectionSwitch.addEventListener(
+  $purchaseResultSectionToggle.addEventListener(
     'click',
     handlePurchaseResultToggle,
   );

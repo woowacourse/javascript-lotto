@@ -38,22 +38,26 @@
                 class="flex-auto my-0"
               ></label>
               <div class="flex-auto d-flex justify-end pr-1">
-                <label id="purchase-result-section__switch" class="switch">
-                  <input type="checkbox" class="lotto-numbers-toggle-button" />
+                <label class="switch">
+                  <input
+                    id="purchase-result-section__toggle"
+                    type="checkbox"
+                    class="lotto-numbers-toggle-button"
+                  />
                   <span class="text-base font-normal">번호보기</span>
                 </label>
               </div>
             </div>
             <div
               id="purchase-result-section__row-align"
-              class="d-flex flex-wrap"
+              class="d-flex flex-wrap flex-row"
             ></div>
             <div
               id="purchase-result-section__col-align"
-              class="d-flex flex-wrap flex-col"
+              class="d-flex flex-wrap flex-col d-none"
             ></div>
           </section>
-          <form id="winning-number-input-form" class="mt-9" hidden>
+          <form id="winning-number-input-form" class="mt-9 d-none">
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
