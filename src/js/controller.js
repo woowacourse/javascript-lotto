@@ -12,9 +12,9 @@ class LottoController {
   }
 
   init() {
+    this.model.init();
     this.view.reset();
     this.handlePrice();
-    this.model.init();
   }
 
   getAndClearBuyValue() {
@@ -46,15 +46,14 @@ class LottoController {
   managePocket() {
     const amount = this.model.amount;
     this.view.renderPocketSection(amount);
-    this.handlePocket();
-    this.renderPocketLottos();
     this.view.renderWinningSection();
+    this.renderPocketLottos();
+    this.handlePocket();
   }
 
   manageLotto() {
     const price = Number(this.getAndClearBuyValue());
     const alertMessage = this.validator.isPriceValid(price);
-
     if (alertMessage !== null) {
       return alert(alertMessage);
     }

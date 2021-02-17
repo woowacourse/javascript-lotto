@@ -10,24 +10,20 @@ class LottoModel {
     return this._lottos;
   }
 
-  set lottos(newLottos) {
-    this._lottos = newLottos;
+  get detail() {
+    return this._detail;
+  }
+
+  get amount() {
+    return this._lottos.length;
   }
 
   addLotto(newLotto) {
     this._lottos.push(newLotto);
   }
 
-  get detail() {
-    return this._detail;
-  }
-
   toggleDetail() {
     this._detail = !this._detail;
-  }
-
-  get amount() {
-    return this._lottos.length;
   }
 
   init() {
