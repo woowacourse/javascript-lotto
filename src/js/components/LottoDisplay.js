@@ -4,7 +4,8 @@ export default class LottoDisplay {
   constructor(props) {
     this.props = props;
     this.lottos = this.props.lottos;
-    this.isToggle = false;
+    this.isToggled = false;
+
     this.selectDOM();
     this.bindEvent();
   }
@@ -12,39 +13,52 @@ export default class LottoDisplay {
   selectDOM() {
     this.$target = $('#lotto-display-container');
     this.$toggleButton = $('.lotto-numbers-toggle-button');
+    this.$lottoCount = $('#total-lotto-count');
+    this.$lottoDisplayArea = $('#lotto-display-area');
   }
 
-  setState({ lottos, isToggle }) {
+  setState({ lottos, isToggled }) {
     this.lottos = lottos ?? this.lottos;
-    this.isToggle = isToggle ?? this.isToggle;
+    this.isToggled = isToggled ?? this.isToggled;
+
     this.render();
   }
 
   bindEvent() {
     this.$toggleButton.addEventListener(
-      'change',
+      'click',
       this.toggleButtonClickHandler.bind(this),
     );
   }
 
   toggleButtonClickHandler() {
-    this.setState({ isToggle: !this.isToggle });
+    this.setState({ isToggled: !this.isToggled });
+  }
+
+  createLottoCountHTML() {
+    return `
+      <label data-test="total-lotto-count" class="flex-auto my-0">
+        총 <b>${this.lottos.length}</b>개를 구매하였습니다.
+      </label>`;
   }
 
   createLottoHtml() {
-    let template = this.lottos
+    return this.lottos
       .map(({ numbers }) => {
-        return `<span data-test="lotto" class="mx-1 text-4xl">🎟️ ${
-          this.isToggle
-            ? `<span data-test="lotto-numbers">${numbers.join(', ')}</span>`
+        return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${
+          this.isToggled
+            ? `<span data-test="lotto-numbers" class="text-2xl ml-4">${numbers.join(
+                ', ',
+              )}</span>`
             : ''
         }</span>`;
       })
       .join('');
-    return template;
   }
 
   render() {
-    this.$target.innerHTML = this.createLottoHtml();
+    this.$target.classList.remove('hidden');
+    this.$lottoCount.innerHTML = `총 ${this.lottos.length}개를 구매하였습니다.`;
+    this.$lottoDisplayArea.innerHTML = this.createLottoHtml();
   }
 }

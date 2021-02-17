@@ -24,6 +24,7 @@ export default class App {
     this.lottoPerchaseInput = new LottoPerchaseInput({
       createLottos: this.createLottos.bind(this),
     });
+
     this.lottoDisplay = new LottoDisplay({ lottos: this.lottos });
   }
 

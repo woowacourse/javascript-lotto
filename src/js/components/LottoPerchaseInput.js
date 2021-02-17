@@ -2,8 +2,6 @@ import { LOTTO_PRICE } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 import { mod, divide } from '../utils/lotto.js';
 
-// TODO: 최대금액 설정
-
 export default class LottoPerchaseInput {
   constructor(props) {
     this.props = props;
@@ -39,7 +37,6 @@ export default class LottoPerchaseInput {
     const remainingMoney = mod(payment, LOTTO_PRICE);
     alert(`로또 ${lottoCount}개 구매 완료. 거스름돈 : ${remainingMoney}원`);
 
-    // 로또 출력 기능
     createLottos(lottoCount);
   }
 }
