@@ -54,3 +54,32 @@ describe("ui-play", () => {
     });
   });
 });
+
+describe("ui-play", () => {
+  beforeEach(() => {
+    cy.visit("http://127.0.0.1:5500/");
+    cy.window()
+      .then(win => cy.stub(win, "alert"))
+      .as("alertStub");
+  });
+
+  it("금액에 소수점을 입력했을때 alert가 발생한다", () => {
+    cy.get("#buy-input").type("432.13");
+    cy.get("#buy-button").click();
+    cy.get("@alertStub").should.be.calledWith(
+      "금액은 소수점이 될 수 없습니다."
+    );
+  });
+
+  it("금액에 음수를 입력했을때 alert가 발생한다", () => {
+    cy.get("#buy-input").type("-1000");
+    cy.get("#buy-button").click();
+    cy.get("@alertStub").should.be.calledWith("금액은 자연수여야 합니다.");
+  });
+
+  it("금액에 1000원 미만을 입력했을때 alert가 발생한다", () => {
+    cy.get("#buy-input").type("500");
+    cy.get("#buy-button").click();
+    cy.get("@alertStub").should.be.calledWith("최소 입력금액은 1000원입니다.");
+  });
+});
