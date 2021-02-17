@@ -1,9 +1,20 @@
 import { $ } from "./Util/querySelector.js";
 import {
-  onLottoReceiptHidden,
   handlePurchaseMountSubmit,
-} from "./Controller/controller.js";
-const $purchaseMountSubmit = $("#purchase-mount-submit");
+} from "./Controller/submitController.js";
+import { onPurchaseResultHidden } from "./Controller/viewController.js";
 
-onLottoReceiptHidden();
-$purchaseMountSubmit.addEventListener("click", handlePurchaseMountSubmit);
+class App {
+  constructor() {
+    this.intializeLottos();
+    onPurchaseResultHidden();
+    $("#purchase-mount-submit").addEventListener("click", handlePurchaseMountSubmit);
+  }
+
+  intializeLottos() {
+    this.lottos = [];
+    this.lottoCount = 0;
+  }
+}
+
+export const app = new App();

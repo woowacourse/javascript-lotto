@@ -1,4 +1,3 @@
-// <reference types="cypress" />
 context("e2e test", () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5501/index.html");
@@ -109,6 +108,31 @@ context("e2e test", () => {
         );
       });
   });
+
+  // (하나의) 로또에서 생성된 번호가 1-45 안에 있는지 확인
+  // it("생성된 번호가 1부터 45 범위 안에 있는지 확인한다.", () => {
+  //   cy.get("#purchase-mount-input").type("1000");
+  //   cy.get("#purchase-mount-submit").click();
+  // const lst = new Lotto;
+  // console.log(Lotto.numbers);
+  // });
+
+  it("구입 금액으로 살 수 있는 로또의 개수가 purchase-mount-label의 텍스트에 나타난 숫자와 동일한지 확인한다.", () => {
+    const money = 3000;
+
+    cy.get("#purchase-mount-input").type(money);
+    cy.get("#purchase-mount-submit").click();
+    cy.get("#purchase-mount-label").should("contain", `총 ${money / 1000}개를 구매하였습니다.`);
+  });
+
+
+
+
+
+
+
+
+
 
   // it(`결과창(#total)이 "0"일 때 숫자(.digit)을 클릭하면 그 숫자가 결과값이 되어야 한다.`, () => {
   //  cy.get(".digit").contains("1").click();
