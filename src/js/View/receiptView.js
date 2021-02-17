@@ -13,6 +13,7 @@ export const printLottoHorizontal = (lottoCount) => {
   }
 
   $("#lotto-image-number-container").innerHTML = lottoImageTemplate;
+  $("#lotto-image-number-container").classList.remove("flex-col");
 };
 
 export const printLottoVertical = (lottos) => {
@@ -26,4 +27,5 @@ export const printLottoVertical = (lottos) => {
   });
 
   lottoImageNumberContainer.innerHTML = lottoImageNumberTemplate;
+  $("#lotto-image-number-container").classList.add("flex-col");
 };
