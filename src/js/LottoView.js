@@ -16,4 +16,9 @@ export default class LottoView {
   hide(element) {
     element.style.display = 'none';
   }
+
+  showLottoView() {
+    this.show(this.purchasedLottos);
+    this.show(this.inputLottoNums);
+  }
 }
