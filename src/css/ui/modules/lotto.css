@@ -1,0 +1,11 @@
+.pocket-lotto-detail {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.pocket-lotto-detail .pocket-lotto-numbers {
+  margin-right: 10px;
+  height: 40px;
+  line-height: 36px;
+}
