@@ -133,7 +133,7 @@ context("e2e test", () => {
 
     cy.get("#purchase-mount-input").type(money);
     cy.get("#purchase-mount-submit").click();
-    cy.get("#lotto-image-container")
+    cy.get("#lotto-image-number-container")
       .find(".text-4xl")
       .its("length")
       .should("eq", money / 1000);
@@ -142,14 +142,13 @@ context("e2e test", () => {
   it("토글 버튼을 클릭하면 각 로또의 번호가 출력된다.", () => {
     cy.get("#purchase-mount-input").type(3000);
     cy.get("#purchase-mount-submit").click();
-    // cy.get("#lotto-image-number")
-    //   .find("span")
-    //   .length("")
-    //   .its("length")
-    //   .should("eq", money / 1000);
-    expect(cy.get("#lotto-image-number").find("span")).to.have.length(1);
+    cy.get("#lotto-image-number").children().should(($children) => {
+      expect($children.length).to.eq(1)
+    });
 
-    cy.get(".lotto-numbers-toggle-button").click();
-    expect(cy.get("#lotto-image-number").find("span")).to.have.length(2);
+    cy.get(".lotto-numbers-toggle-button").click({ force: true });
+    cy.get("#lotto-image-number").children().should(($children) => {
+      expect($children.length).to.eq(2)
+    });
   });
 });
