@@ -9,7 +9,7 @@ class LottoController {
   }
 
   init() {
-    // handleMoney
+    this.handlePrice();
   }
 
   getBuyInputValue() {
@@ -36,13 +36,12 @@ class LottoController {
   }
 
   manageLotto() {
-    // 구입금액 가져옴.
-    // 횟수 도출,
-    // 로또번호 생성,
-    // model에 로또번호저장,
-    // 모델에서 detail 가져옴
-    // pocket view 생성,
-    // pocket handler 추가
+    const price = parseInt(this.getBuyInputValue(), 10);
+    const count = this.getCount(price);
+    for (let i = 0; i < count; i++) {
+      this.model.addLotto(this.generateLotto());
+    }
+    this.createPocket();
   }
 
   manageDetail() {
@@ -50,7 +49,7 @@ class LottoController {
     this.model.toggleDetail();
   }
 
-  handleMoney() {
+  handlePrice() {
     const $buyButton = $("#buy-button");
     $buyButton.addEventListener("click", () => {
       this.manageLotto();
