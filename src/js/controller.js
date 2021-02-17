@@ -1,4 +1,5 @@
 import LottoModel from "./model.js";
+import { $ } from "./util.js";
 import LottoView from "./view.js";
 
 class LottoController {
@@ -11,8 +12,8 @@ class LottoController {
     // handleMoney
   }
 
-  getBuyInput() {
-    // 구입금액 가져옴.
+  getBuyInputValue() {
+    return $("#buy-input").value;
   }
 
   getCount(price) {
