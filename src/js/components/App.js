@@ -17,15 +17,14 @@ export default class App {
 
   setState({ lottos }) {
     this.lottos = lottos;
-
-    this.lottoDisplay.setState({ lottoCount: this.lottos.length });
+    this.lottoDisplay.setState({ lottos: this.lottos });
   }
 
   mountComponent() {
     this.lottoPerchaseInput = new LottoPerchaseInput({
       createLottos: this.createLottos.bind(this),
     });
-    this.lottoDisplay = new LottoDisplay({ lottoCount: this.lottos.length });
+    this.lottoDisplay = new LottoDisplay({ lottos: this.lottos });
   }
 
   createLottos(lottoCount) {
