@@ -30,7 +30,7 @@ export const renderPurchaseResultSection = (
   );
 
   $purchaseResultSectionColAlign.innerHTML = lottoNumbers
-    .map((lottoNumber) => lottoTicketDetailTemplate(lottoNumber))
+    .map((lottoNumber) => lottoTicketDetailTemplate(lottoNumber.join(', ')))
     .join('');
 
   showElement($purchaseResultSection);
