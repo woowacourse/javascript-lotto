@@ -1,6 +1,6 @@
 import Component from '../lib/core/Component.js';
 import { $ } from '../lib/utils/dom.js';
-import { createTicketNumbers } from '../lib/utils/lotto.js';
+import { createTicket } from '../lib/utils/ticket.js';
 
 class PaymentInput extends Component {
   mountTemplate() {
@@ -28,7 +28,7 @@ class PaymentInput extends Component {
         const { value } = $('#payment-input');
         const numberOfTickets = Math.floor(Number(value) / 1000);
         this.props.tickets.set(
-          [...Array(numberOfTickets)].map(() => createTicketNumbers())
+          [...Array(numberOfTickets)].map(() => createTicket())
         );
       }
     });
