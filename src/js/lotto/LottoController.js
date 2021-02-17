@@ -20,4 +20,8 @@ export default function LottoController() {
     this.model.createLottoes(numOfLottoes);
     this.view.showConfirmation(this.model.lottoList);
   };
+
+  this.onChangeLottoNumbersToggleButton = (e) => {
+    this.view.paintLottoList(this.model.lottoList, e.target.checked);
+  };
 }

@@ -26,3 +26,7 @@ $modalClose.addEventListener("click", onModalClose);
 $priceSubmitButton.addEventListener("click", () => {
   lottoController.onClickPriceSubmitButton($priceInput.value);
 });
+$lottoNumbersToggleButton.addEventListener(
+  "change",
+  lottoController.onChangeLottoNumbersToggleButton
+);
