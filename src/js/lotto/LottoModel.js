@@ -10,7 +10,9 @@ export default function LottoModel() {
       shuffle(baseNumbers);
 
       return {
-        winningNumber: baseNumbers.slice(0, 6),
+        winningNumber: baseNumbers.slice(0, 6).sort((a, b) => {
+          return a - b;
+        }),
       };
     });
   };
