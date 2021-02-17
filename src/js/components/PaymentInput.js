@@ -1,6 +1,10 @@
 import Component from '../lib/core/Component.js';
 import { $ } from '../lib/utils/dom.js';
-import { createTicket } from '../lib/utils/ticket.js';
+import { createTicket, getNumberOfTickets } from '../lib/utils/ticket.js';
+import {
+  HAS_A_WHITESPACE_MESSAGE,
+  NOT_A_POSITIVE_NUMBER_MESSAGE,
+} from '../lib/constants/alertMessage.js';
 
 class PaymentInput extends Component {
   mountTemplate() {
@@ -31,7 +35,7 @@ class PaymentInput extends Component {
           return;
         }
 
-        const numberOfTickets = Math.floor(Number(value) / 1000);
+        const numberOfTickets = getNumberOfTickets(value);
         this.props.tickets.set(
           [...Array(numberOfTickets)].map(() => createTicket())
         );
@@ -45,11 +49,11 @@ class PaymentInput extends Component {
 
   alertByCase(value) {
     if (!value.length) {
-      alert('공백은 입력할 수 없습니다. 숫자를 입력해 주세요.');
+      alert(HAS_A_WHITESPACE_MESSAGE);
     }
 
     if (Number(value) < 1) {
-      alert('0과 음수는 입력할 수 없습니다. 1 이상의 숫자를 입력해 주세요.');
+      alert(NOT_A_POSITIVE_NUMBER_MESSAGE);
     }
   }
 }
