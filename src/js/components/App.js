@@ -1,6 +1,7 @@
-import Lotto from '../model/Lotto.js';
-import LottoDisplay from './LottoDisplay.js';
 import LottoPerchaseInput from './LottoPerchaseInput.js';
+import LottoDisplay from './LottoDisplay.js';
+import Lotto from '../model/Lotto.js';
+
 import { $ } from '../utils/dom.js';
 import { generateLottoNumbers } from '../utils/lotto.js';
 
@@ -13,11 +14,6 @@ export default class App {
 
   initState() {
     this.lottos = [];
-  }
-
-  setState({ lottos }) {
-    this.lottos = lottos;
-    this.lottoDisplay.setState({ lottos: this.lottos });
   }
 
   mountComponent() {
@@ -35,5 +31,10 @@ export default class App {
     );
 
     this.setState({ lottos });
+  }
+
+  setState({ lottos }) {
+    this.lottos = lottos;
+    this.lottoDisplay.setState({ lottos: this.lottos });
   }
 }

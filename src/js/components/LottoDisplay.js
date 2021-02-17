@@ -3,11 +3,15 @@ import { $ } from '../utils/dom.js';
 export default class LottoDisplay {
   constructor(props) {
     this.props = props;
-    this.lottos = this.props.lottos;
-    this.isToggled = false;
 
+    this.initState();
     this.selectDOM();
     this.bindEvent();
+  }
+
+  initState() {
+    this.lottos = this.props.lottos;
+    this.isToggled = false;
   }
 
   selectDOM() {
@@ -15,13 +19,6 @@ export default class LottoDisplay {
     this.$toggleButton = $('.lotto-numbers-toggle-button');
     this.$lottoCount = $('#total-lotto-count');
     this.$lottoDisplayArea = $('#lotto-display-area');
-  }
-
-  setState({ lottos, isToggled }) {
-    this.lottos = lottos ?? this.lottos;
-    this.isToggled = isToggled ?? this.isToggled;
-
-    this.render();
   }
 
   bindEvent() {
@@ -51,6 +48,13 @@ export default class LottoDisplay {
         }</span>`;
       })
       .join('');
+  }
+
+  setState({ lottos, isToggled }) {
+    this.lottos = lottos ?? this.lottos;
+    this.isToggled = isToggled ?? this.isToggled;
+
+    this.render();
   }
 
   render() {

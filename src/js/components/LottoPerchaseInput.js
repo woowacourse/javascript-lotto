@@ -1,5 +1,5 @@
-import { LOTTO_PRICE } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
+import { LOTTO_PRICE } from '../utils/constants.js';
 import { mod, divide } from '../utils/lotto.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
