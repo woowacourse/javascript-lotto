@@ -27,6 +27,12 @@ export default class PurchaseAmountInput {
 
       return;
     }
+
+    const change = purchaseAmount % LOTTO_PRICE;
+
+    if (change) {
+      alert(ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
+    }
   }
 
   validateInput(purchaseAmount) {

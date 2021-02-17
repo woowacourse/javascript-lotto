@@ -54,13 +54,9 @@ describe('구매금액 입력 검사', () => {
       .click()
       .then(() => {
         const change = amountWithChange % LOTTO_PRICE;
-
-        expect(
-          alertStub
-            .getCall(0)
-            .to.be.calledWith(PURCHASE_AMOUNT_HAS_CHANGE(change))
-        );
-        cy.get('.purchased-lotto-section').should('be.visible');
+        const actualMessage = alertStub.getCall(0).lastArg;
+        expect(actualMessage).to.equal(PURCHASE_AMOUNT_HAS_CHANGE(change));
       });
+    cy.get('.purchased-lotto-section').should('be.visible');
   });
 });
