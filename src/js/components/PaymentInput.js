@@ -30,6 +30,7 @@ class PaymentInput extends Component {
           this.alertByCase(value);
           return;
         }
+
         const numberOfTickets = Math.floor(Number(value) / 1000);
         this.props.tickets.set(
           [...Array(numberOfTickets)].map(() => createTicket())
@@ -46,6 +47,7 @@ class PaymentInput extends Component {
     if (!value.length) {
       alert('공백은 입력할 수 없습니다. 숫자를 입력해 주세요.');
     }
+
     if (Number(value) < 1) {
       alert('0과 음수는 입력할 수 없습니다. 1 이상의 숫자를 입력해 주세요.');
     }
