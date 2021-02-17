@@ -2,9 +2,11 @@ import { app } from "../index.js";
 import Lotto from "../Model/Lotto.js";
 import { $ } from "../Util/querySelector.js";
 import { isValidMoney } from "../Util/validator.js";
-import { printPurchaseMountLabel } from "../View/receiptView.js";
+import {
+  printPurchaseMountLabel,
+  printLottoImages,
+} from "../View/receiptView.js";
 import { onPurchaseResultShow } from "./viewController.js";
-
 
 // const $showResultButton = $('.open-result-modal-button');
 // const $modalClose = $('.modal-close');
@@ -15,7 +17,6 @@ export const handlePurchaseMountSubmit = () => {
   const money = $("#purchase-mount-input").value;
 
   if (isValidMoney(money)) {
-    onPurchaseResultShow();
     app.lottoCount = money / 1000;
 
     for (let i = 0; i < app.lottoCount; i++) {
@@ -25,10 +26,11 @@ export const handlePurchaseMountSubmit = () => {
     // printPurchaseMountLabel(app.lottoCount);
     printPurchaseMountLabel(app.lottoCount);
     console.log(app.lottos);
+
+    printLottoImages(app.lottoCount);
+    onPurchaseResultShow();
   }
 };
-
-
 
 // const onModalShow = () => {
 //  $modal.classList.add('open')
