@@ -1,11 +1,13 @@
 import LottoModel from "./model.js";
 import { $, getQuotient, getRandomNumber, sortByNumber } from "./util.js";
+import Validator from "./validator/validator.js";
 import LottoView from "./view.js";
 
 class LottoController {
   constructor() {
     this.model = new LottoModel();
     this.view = new LottoView();
+    this.validator = new Validator();
   }
 
   init() {
@@ -49,8 +51,13 @@ class LottoController {
   }
 
   manageLotto() {
-    const buyValue = this.getAndClearBuyValue();
-    const price = parseInt(buyValue, 10);
+    const price = Number(this.getAndClearBuyValue());
+    const alertMessage = this.validator.isPriceValid(price);
+
+    if (alertMessage !== null) {
+      return alert(alertMessage);
+    }
+
     const count = this.getCount(price);
     for (let i = 0; i < count; i++) {
       this.model.addLotto(this.generateLotto());
