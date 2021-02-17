@@ -37,7 +37,7 @@ export default class LottoController {
 
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto();
-      lotto.setNumbers();
+      lotto.createNumbers();
       this.lottos.push(lotto);
     }
   }
