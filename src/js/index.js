@@ -1,4 +1,4 @@
-import { $, $all, getRandomNumber } from './utils.js';
+import { $, createElement, getRandomNumber } from './utils.js';
 import Store from './Store.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -39,7 +39,7 @@ class LottoApp {
         return;
       }
 
-      const lottoCount = money / 1000;
+      const lottoCount = Math.floor(money / 1000);
 
       const lottos = Array.from(
         { length: lottoCount },
@@ -47,6 +47,15 @@ class LottoApp {
       );
 
       this.store.save('lottos', lottos);
+
+      const $lottoListChildren = lottos.map((lotto) => {
+        const $lottoSpan = createElement('span', 'lotto mx-1 text-4xl', '🎟️ ');
+        $lottoSpan.appendChild(createElement('span', 'lotto-numbers', lotto.numbers.join(', ')));
+        return $lottoSpan;
+      });
+
+      $('.lotto-list').append(...$lottoListChildren);
+      $('.lotto-count').append(lottoCount);
     });
 
     $('.lotto-numbers-toggle-button').addEventListener('change', () => {
