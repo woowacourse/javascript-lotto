@@ -27,7 +27,7 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-toggle-number").click({ force: true });
     cy.get(".pocket-lotto-numbers").should("exist");
-    cy.get(".pocket-lotto-numbers").each($numbers => {
+    cy.get(".pocket-lotto-numbers").each(($numbers) => {
       expect($numbers.text().split(" ").length).to.eq(6);
     });
   });
@@ -37,7 +37,7 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-toggle-number").click({ force: true });
     cy.get(".pocket-lotto-numbers").should("exist");
-    cy.get(".pocket-lotto-numbers").each($numbers => {
+    cy.get(".pocket-lotto-numbers").each(($numbers) => {
       expect(new Set($numbers.text().split(" ")).size).to.eq(6);
     });
   });
@@ -47,8 +47,8 @@ describe("ui-play", () => {
     cy.get("#buy-button").click();
     cy.get("#pocket-toggle-number").click({ force: true });
     cy.get(".pocket-lotto-numbers").should("exist");
-    cy.get(".pocket-lotto-numbers").each($numbers => {
-      cy.get($numbers.text().split(" ")).each($number => {
+    cy.get(".pocket-lotto-numbers").each(($numbers) => {
+      cy.get($numbers.text().split(" ")).each(($number) => {
         cy.wrap(parseInt($number, 10)).should("be.lte", 45).and("be.gte", 1);
       });
     });
@@ -59,27 +59,31 @@ describe("ui-play", () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5500/");
     cy.window()
-      .then(win => cy.stub(win, "alert"))
+      .then((win) => cy.stub(win, "alert"))
       .as("alertStub");
   });
 
   it("금액에 소수점을 입력했을때 alert가 발생한다", () => {
     cy.get("#buy-input").type("432.13");
     cy.get("#buy-button").click();
-    cy.get("@alertStub").should.be.calledWith(
-      "금액은 소수점이 될 수 없습니다."
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "금액은 소수가 될 수 없습니다."
     );
   });
 
   it("금액에 음수를 입력했을때 alert가 발생한다", () => {
     cy.get("#buy-input").type("-1000");
     cy.get("#buy-button").click();
-    cy.get("@alertStub").should.be.calledWith("금액은 자연수여야 합니다.");
+    cy.get("@alertStub").should("be.calledWith", "금액은 자연수여야 합니다.");
   });
 
   it("금액에 1000원 미만을 입력했을때 alert가 발생한다", () => {
     cy.get("#buy-input").type("500");
     cy.get("#buy-button").click();
-    cy.get("@alertStub").should.be.calledWith("최소 입력금액은 1000원입니다.");
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "최소 입력금액은 1000원입니다."
+    );
   });
 });
