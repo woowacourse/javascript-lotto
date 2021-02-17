@@ -7,7 +7,7 @@ export const LOTTO_NUMBER_SEPARATOR = ', ';
 export const PURCHASED_QUANTITY_MESSAGE = (numOfLotto) =>
   `총 ${numOfLotto}개를 구매하였습니다.`;
 
-export const ERROR_MESSAGE = {
+export const ALERT_MESSAGE = {
   PURCHASE_AMOUNT_IS_INVALID_MONEY: `화폐단위 미만의 자릿수가 포함된 금액입니다. ${LOTTO_PRICE}원 단위로 입력해주세요`,
   PURCHASE_AMOUNT_IS_TOO_LOW: `입력된 금액이 로또 한 장의 가격보다 작습니다. ${LOTTO_PRICE}원 이상의 금액을 입력해주세요`,
   PURCHASE_AMOUNT_HAS_CHANGE: (change) =>
