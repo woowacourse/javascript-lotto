@@ -20,11 +20,13 @@ export default {
     $$('.lotto-numbers').forEach(($lottoNumbers) => {
       $lottoNumbers.style.display = 'inline-block';
     });
+    $purchaseItemList.style.flexDirection = 'column';
   },
   hideLottoNumbers() {
     $$('.lotto-numbers').forEach(($lottoNumbers) => {
       $lottoNumbers.style.display = 'none';
     });
+    $purchaseItemList.style.flexDirection = '';
   },
   resetToggleButton() {
     $lottoNumbersToggleButton.checked = false;
