@@ -13,6 +13,7 @@ export default function LottoController() {
   this.onClickPriceSubmitButton = (price) => {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
+      this.view.resetLottoView();
 
       return;
     }

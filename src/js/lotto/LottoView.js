@@ -1,10 +1,11 @@
-import { showElement } from "../utils.js";
+import { showElement, hideElement } from "../utils.js";
 import {
   $confirmation,
   $lottoList,
   $lottoListLabel,
   $lottoTickets,
   $lottoNumbersToggleButton,
+  $priceInput,
 } from "../elements.js";
 
 export default function LottoView() {
@@ -42,6 +43,12 @@ export default function LottoView() {
 
   this.showConfirmation = (lottoList) => {
     showElement($confirmation);
+    $lottoNumbersToggleButton.checked = false;
     this.paintLottoList(lottoList, false);
+  };
+
+  this.resetLottoView = () => {
+    $priceInput.value = "";
+    hideElement($confirmation);
   };
 }
