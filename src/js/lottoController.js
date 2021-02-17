@@ -17,12 +17,18 @@ export default class LottoController {
       if (event.target.closest('.money-input-button')) {
         this.handleMoneyInputButton();
       }
+      if (event.target.closest('.check-lotto-switch')) {
+        this.handleCheckLottoSwitch();
+      }
     });
   }
 
   handleMoneyInputButton() {
     this.makeLottos();
-    this.lottoUI.renderCheckLottoUI(this.lottos.length);
+
+    const lottoTickets = this.lottos.map(lotto => lotto.numbers);
+
+    this.lottoUI.renderCheckLottoUI(lottoTickets);
   }
 
   makeLottos() {
@@ -40,5 +46,9 @@ export default class LottoController {
       lotto.createNumbers();
       this.lottos.push(lotto);
     }
+  }
+
+  handleCheckLottoSwitch() {
+    this.lottoUI.toggleLottoNumbers();
   }
 }

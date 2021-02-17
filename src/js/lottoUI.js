@@ -1,5 +1,5 @@
-import { $ } from './util/dom.js';
-
+import { $, $$ } from './util/dom.js';
+const DEFAULT_VISIBILITY = false;
 export default class LottoUI {
   constructor() {
   }
@@ -21,52 +21,69 @@ export default class LottoUI {
     `;
   }
 
-  renderCheckLottoUI(lottoAmount) {
+  renderCheckLottoUI(lottoTickets) {
     $('#check-lotto-container').innerHTML = `
       <section class="mt-9">
         <div class="d-flex">
-          <label class="flex-auto my-0">총 ${lottoAmount}개를 구매하였습니다.</label>
+          <label class="flex-auto my-0">총 ${lottoTickets.length}개를 구매하였습니다.</label>
           <div class="flex-auto d-flex justify-end pr-1">
             <label class="switch">
-              <input type="checkbox" class="lotto-numbers-toggle-button" />
+              <input type="checkbox" class="lotto-numbers-toggle-button" ${DEFAULT_VISIBILITY ? 'checked' : ''}/>
               <span class="text-base font-normal check-lotto-switch">번호보기</span>
             </label>
           </div>
         </div>
         <div class="d-flex flex-wrap lotto-ticket-container">
-        ${'<span class="mx-1 text-4xl lotto-ticket">🎟️ </span>'.repeat(lottoAmount)}
+          ${lottoTickets.reduce((acc, numbers) => acc + this.makeTicketElement(numbers), '')}
         </div>
       </section>
     `;
   }
 
+  makeTicketElement(numbers) {
+    return `
+    <span class="mx-1 text-4xl lotto-ticket">
+      🎟️ 
+      <span class="lotto-ticket-number ${DEFAULT_VISIBILITY ? '' : 'hidden'}">
+        ${numbers.join(', ')}
+      </span>
+    </span>
+    `;
+  }
+
+  toggleLottoNumbers() {
+    $$('.lotto-ticket-number').forEach(lottoTicket => {
+      lottoTicket.classList.toggle('hidden');
+    });
+  }
+
   renderResultInputUI() {
     $('#result-input-container').innerHTML = `
-      <form class="mt-9">
-        <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
-        <div class="d-flex">
-          <div>
-            <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
+        <form class="mt-9">
+          <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
+          <div class="d-flex">
             <div>
-              <input type="number" class="winning-number mx-1 text-center" />
-              <input type="number" class="winning-number mx-1 text-center" />
-              <input type="number" class="winning-number mx-1 text-center" />
-              <input type="number" class="winning-number mx-1 text-center" />
-              <input type="number" class="winning-number mx-1 text-center" />
-              <input type="number" class="winning-number mx-1 text-center" />
+              <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
+              <div>
+                <input type="number" class="winning-number mx-1 text-center" />
+                <input type="number" class="winning-number mx-1 text-center" />
+                <input type="number" class="winning-number mx-1 text-center" />
+                <input type="number" class="winning-number mx-1 text-center" />
+                <input type="number" class="winning-number mx-1 text-center" />
+                <input type="number" class="winning-number mx-1 text-center" />
+              </div>
+            </div>
+            <div class="bonus-number-container flex-grow">
+              <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
+              <div class="d-flex justify-center">
+                <input type="number" class="bonus-number text-center" />
+              </div>
             </div>
           </div>
-          <div class="bonus-number-container flex-grow">
-            <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
-            <div class="d-flex justify-center">
-              <input type="number" class="bonus-number text-center" />
-            </div>
-          </div>
-        </div>
-        <button type="button" class="open-result-modal-button mt-5 btn btn-cyan w-100">
-          결과 확인하기
-        </button>
-      </form>
-    `;
+          <button type="button" class="open-result-modal-button mt-5 btn btn-cyan w-100">
+            결과 확인하기
+          </button>
+        </form>
+      `;
   }
 }
