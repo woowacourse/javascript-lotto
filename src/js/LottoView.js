@@ -1,6 +1,6 @@
 export default class LottoView {
   init() {
-    this.inputPriceView = document.querySelector('#input-price');
+    this.inputPriceView = document.querySelector('#input-price-form');
     this.purchasedLottos = document.querySelector('#purchased-lottos');
     this.inputLottoNums = document.querySelector('#input-lotto-nums');
 
