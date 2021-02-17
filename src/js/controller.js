@@ -1,5 +1,5 @@
 import LottoModel from "./model.js";
-import { $ } from "./util.js";
+import { $, getQuotient, getRandomNumber } from "./util.js";
 import LottoView from "./view.js";
 
 class LottoController {
@@ -17,11 +17,15 @@ class LottoController {
   }
 
   getCount(price) {
-    // 횟수 도출,
+    return getQuotient(price, 1000);
   }
 
-  generateLottoNumbers() {
-    // 로또 번호 생성 1회 수행후 배열형태로 리턴
+  generateLotto() {
+    const lotto = new Set();
+    while (lotto.size !== 6) {
+      lotto.add(getRandomNumber(1, 45));
+    }
+    return [...lotto];
   }
 
   createPocket() {
