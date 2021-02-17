@@ -25,6 +25,7 @@ export default class LottoPerchaseInput {
   }
 
   perchaseButtonClickHandler() {
+    const { createLottos } = this.props;
     const perchaseInputValue = this.$perchaseInput.value.trim();
     const payment = Number(perchaseInputValue);
 
@@ -37,6 +38,9 @@ export default class LottoPerchaseInput {
     const lottoCount = divide(payment, LOTTO_PRICE);
     const remainingMoney = mod(payment, LOTTO_PRICE);
     alert(`로또 ${lottoCount}개 구매 완료. 거스름돈 : ${remainingMoney}원`);
+
+    // 로또 출력 기능
+    createLottos(lottoCount);
   }
 }
 
