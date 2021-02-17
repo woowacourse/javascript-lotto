@@ -23,8 +23,8 @@ class PaymentInput extends Component {
   initEvent() {
     this.$target.addEventListener('submit', event => {
       event.preventDefault();
+
       if (event.target.id === 'payment-input-wrapper') {
-        // 검증과 할당을 하자
         const { value } = $('#payment-input');
         const numberOfTickets = Math.floor(Number(value) / 1000);
         this.props.tickets.set(

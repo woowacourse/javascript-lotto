@@ -40,6 +40,7 @@ class TicketList extends Component {
   initEvent() {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id !== 'detail-mode-toggle') return;
+
       $$('.lotto-numbers').forEach(element => element.classList.toggle('hide'));
       $('#ticket-list').classList.toggle('flex-col');
     });
