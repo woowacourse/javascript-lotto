@@ -1,4 +1,5 @@
 import Component from '../lib/core/Component.js';
+import { $, $$ } from '../lib/utils/dom.js';
 
 class TicketList extends Component {
   constructor($target, props) {
@@ -14,19 +15,34 @@ class TicketList extends Component {
         }개를 구매하였습니다.</label>
         <div class="flex-auto d-flex justify-end pr-1">
           <label class="switch">
-            <input type="checkbox" class="lotto-numbers-toggle-button" />
+            <input id="detail-mode-toggle" type="checkbox" class="lotto-numbers-toggle-button" />
             <span class="text-base font-normal">번호보기</span>
           </label>
         </div>
       </div>
-      <div class="d-flex flex-wrap">
-      ${this.createTicketTemplate().repeat(this.props.tickets.get().length)}
+      <div id="ticket-list" class="d-flex flex-wrap">
+        ${this.props.tickets
+          .get()
+          .reduce((acc, ticket) => acc + this.createTicketTemplate(ticket), '')}
       </div>
     `;
   }
 
-  createTicketTemplate() {
-    return `<span class="ticket mx-1 text-4xl">🎟️</span>`;
+  createTicketTemplate(ticket) {
+    return `
+      <div class="align-center">
+        <span class="ticket mx-1 text-4xl">🎟️</span>
+        <span class="lotto-numbers hide">${ticket.join(', ')}</span>
+      </div>
+    `;
+  }
+
+  initEvent() {
+    this.$target.addEventListener('click', ({ target }) => {
+      if (target.id !== 'detail-mode-toggle') return;
+      $$('.lotto-numbers').forEach(element => element.classList.toggle('hide'));
+      $('#ticket-list').classList.toggle('flex-col');
+    });
   }
 }
 
