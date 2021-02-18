@@ -17,3 +17,12 @@ export const WINNING_NUMBER_CHECK_MESSAGE = {
   OUT_OF_RANGE: `${LOTTO_MIN_NUMBER} ~ ${LOTTO_MAX_NUMBER} 범위를 벗어난 값이 있습니다. 확인 후 다시 입력해주세요.`,
   DUPLICATED: '중복된 값이 있습니다. 확인 후 다시 입력해주세요.',
 };
+
+export const BOUNS_COUNT = 0.5;
+export const WINNING_PRIZE = {
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  5.5: 30000000,
+  6: 2000000000,
+};
