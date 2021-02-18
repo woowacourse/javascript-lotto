@@ -19,6 +19,26 @@
   <img width="400" src="./src/images/lotto_ui.png">
 </p>
 
+### ☝️ 미션 수행할 때 우리가 정한 목표
+
+- 동작하는 쓰레기 코드부터 작성해보자
+
+  - 기능 구현을 우선하고, 리팩토링을 진행한다
+  - 처음부터 불필요하게 구조나 디자인 패턴을 적용하지 말자
+  - 앱의 규모에 따라서 적절한 구조를 적용해보자
+
+- `innerHTML`과 `innerText` 사용하지 않기!
+
+  - DOM 생성은 무조건 `createElement`에서 시작하기
+
+- UX를 조금 더 생각해보기
+
+  - 구입 금액 입력후 Enter키를 눌러도 입력되도록 하기
+  - 번호보기 토글 클릭 시 스위치 뿐만 아니라 라벨을 눌러도 동작하도록
+  - 기타 등등...
+
+- 테스트 코드를 먼저 작성하고 기능 구현하기
+
 ### 🎯 step1 구입 기능
 
 - [x] 로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.
@@ -60,36 +80,6 @@
   - 수동 구매를 위한 input UI는 스스로 구현한다.
 - [ ] 수동 구매 후 남는 금액이 있다면 자동으로 구매할 수 있어야 한다.
 - [ ] 위 기능들이 정상적으로 동작하는지 Cypress를 이용해 테스트한다.
-
-<br>
-
-## ⚙️ Before Started
-
-#### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat-square&color=673ab8"> 로컬에서 서버 띄워서 손쉽게 static resources 변경 및 확인하는 방법
-
-로컬에서 웹서버를 띄워 html, css, js 등을 실시간으로 손쉽게 테스트해 볼 수 있습니다. 이를 위해서는 우선 npm이 설치되어 있어야 합니다. 구글에 `npm install` 이란 키워드로 각자의 운영체제에 맞게끔 npm을 설치해주세요. 이후 아래의 명령어를 통해 실시간으로 웹페이지를 테스트해볼 수 있습니다.
-
-```
-npm install -g live-server
-```
-
-실행은 아래의 커맨드로 할 수 있습니다.
-
-```
-live-server 폴더명
-```
-
-<br>
-
-## 👏 Contributing
-
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요.
-
-<br>
-
-## 🐞 Bug Report
-
-버그를 발견한다면, [Issues](https://github.com/woowacourse/javascript-lotto/issues)에 등록해주세요.
 
 <br>
 
