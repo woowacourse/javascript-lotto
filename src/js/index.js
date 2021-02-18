@@ -8,7 +8,7 @@ import {
 import Lotto from "./Lotto.js";
 import { show } from "./utils/index.js";
 
-const $cashButton = $(toDAS(JS_SELECTOR.CASH.BUTTON));
+const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
 const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 const $lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
 const $lottoDetailLabel = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL));
@@ -33,7 +33,9 @@ const getAlertMessage = (userInputCash) => {
   return "";
 };
 
-$cashButton.addEventListener("click", () => {
+$cashContainer.addEventListener("submit", (event) => {
+  event.preventDefault();
+
   const alertMessage = getAlertMessage($cashInput.value);
 
   if (alertMessage !== "") {
