@@ -11,10 +11,13 @@ export default class PurchaseAmountInput {
   }
 
   attachEvents() {
-    this.$purchaseAmountButton.addEventListener(
-      'click',
-      this.onSubmitPurchaseAmount.bind(this)
-    );
+    this.$purchaseAmountButton.addEventListener('click', this.onSubmitPurchaseAmount.bind(this));
+    this.$purchaseAmountInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.onSubmitPurchaseAmount();
+      }
+    });
   }
 
   onSubmitPurchaseAmount() {
