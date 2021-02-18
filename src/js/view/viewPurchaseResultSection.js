@@ -1,5 +1,8 @@
 import { $ } from '../utils/querySelector.js';
-import { showElement, hideElement } from '../view/setViewProperty.js';
+import { showElement, hideElement } from '../utils/setProperty.js';
+
+const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
+const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
 
 const lottoTicketIconTemplate = () => {
   return `<span class="purchase-result-section__lotto-icon mx-1 text-4xl">
@@ -13,9 +16,6 @@ const lottoTicketDetailTemplate = (lottoNumber) => {
             <span class="mx-1 mt-1 text-xl">${lottoNumber}</span>
           </div>`;
 };
-
-const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
-const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
 
 export const renderPurchaseResultSection = (
   amountOfLottoTicket,
