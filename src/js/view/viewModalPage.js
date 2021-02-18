@@ -2,10 +2,10 @@ import { $ } from '../utils/querySelector.js';
 
 const $modal = $('.modal');
 
-const onModalShow = () => {
+export const openModal = () => {
   $modal.classList.add('open');
 };
 
-const onModalClose = () => {
+export const closeModal = () => {
   $modal.classList.remove('open');
 };
