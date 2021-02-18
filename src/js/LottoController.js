@@ -12,9 +12,9 @@ export default class LottoController {
   }
 
   bindEvents() {
-    this.lottoView.inputPriceView
-      .querySelector('#input-price-btn')
-      .addEventListener('click', () => this.inputPriceHandler());
+    this.lottoView.inputPriceView.addEventListener('submit', e =>
+      this.inputPriceHandler(e)
+    );
 
     this.lottoView.purchasedLottos
       .querySelector('#lotto-switch')
@@ -31,7 +31,8 @@ export default class LottoController {
     });
   }
 
-  inputPriceHandler() {
+  inputPriceHandler(e) {
+    e.preventDefault();
     const inputPrice = this.lottoView.inputPriceView.querySelector(
       '#input-price'
     ).value;
