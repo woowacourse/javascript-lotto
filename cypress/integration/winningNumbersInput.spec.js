@@ -5,7 +5,7 @@ describe('당첨번호 입력 검사', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('6개의 당첨번호와 1개의 보너스 번호가 모두 정상입력되기 전까지 결과확인하기 버튼이 비활성화 되어 있다.', () => {
+  it('6개의 당첨번호와 1개의 보너스번호가 모두 정상입력되기 전까지 결과확인하기 버튼이 비활성화 되어 있다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
 
@@ -42,5 +42,18 @@ describe('당첨번호 입력 검사', () => {
     });
     cy.get('.bonus-number').type(invalidBonusNumber);
     cy.get('.winning-number-check-message').should('be.visible').should('have.text', OUT_OF_RANGE);
+  });
+
+  it('번호를 모두 입력했을 때 입력된 번호에 중복된 값이 있으면, 입력칸 하단에 재입력 요청 메세지를 표시한다.', () => {
+    const winningNumbers = [1, 2, 3, 7, 5, 6];
+    const bonusNumber = 7;
+    const { DUPLICATED } = WINNING_NUMBER_CHECK_MESSAGE;
+
+    cy.get('.winning-number-check-message').should('not.be.visible');
+    cy.get('.winning-number').each(($el, index) => {
+      cy.wrap($el).type(winningNumbers[index]);
+    });
+    cy.get('.bonus-number').type(bonusNumber);
+    cy.get('.winning-number-check-message').should('be.visible').should('have.text', DUPLICATED);
   });
 });
