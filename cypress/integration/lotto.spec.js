@@ -47,4 +47,24 @@ describe('racing-game', () => {
     cy.get('#purchase-result-section__row-align').should('be.visible');
     cy.get('#purchase-result-section__col-align').should('not.be.visible');
   });
+
+  it('"결과 확인버튼" 클릭시 모달 창을 통해 로또의 결과를 볼 수 있어야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton(5000);
+
+    let inputNumber = 5;
+
+    cy.get('.winning-number').then((winningNumbers) => {
+      [...winningNumbers].forEach((winningNumber) => {
+        cy.wrap(winningNumber).type(inputNumber);
+        inputNumber += 5;
+      });
+    });
+    cy.get('.bonus-number').type(inputNumber);
+
+    cy.get('.open-result-modal-button').click();
+    cy.get('.modal').should('be.visible');
+
+    cy.get('.modal-close').click();
+    cy.get('.modal').should('not.be.visible');
+  });
 });
