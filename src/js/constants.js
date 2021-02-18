@@ -1,5 +1,0 @@
-export const NUMBERS = {
-  LOTTO_UNIT: 1000,
-  LOTT0_LENGTH: 6,
-  LOTTO_MAX_NUM: 45,
-};

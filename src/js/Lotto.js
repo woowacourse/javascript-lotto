@@ -1,4 +1,4 @@
-import { NUMBERS } from './constants.js';
+import { NUMBERS } from './utils/constants.js';
 
 export default class Lotto {
   constructor() {

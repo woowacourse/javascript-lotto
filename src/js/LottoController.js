@@ -1,6 +1,7 @@
 import LottoView from './LottoView.js';
-import { NUMBERS } from './constants.js';
 import Lotto from './Lotto.js';
+import { NUMBERS } from '../js/utils/constants.js';
+import priceValidator from '../js/utils/priceValidator.js';
 
 export default class LottoController {
   init() {
@@ -35,9 +36,12 @@ export default class LottoController {
       '#input-price'
     ).value;
 
-    //TODO : lottoCount validation
-    const lottoCount = Math.floor(inputPrice / NUMBERS.LOTTO_UNIT);
+    const errorMessage = priceValidator(inputPrice);
+    if (errorMessage) {
+      return alert(errorMessage);
+    }
 
+    const lottoCount = Math.floor(inputPrice / NUMBERS.LOTTO_UNIT);
     this.createLottos(lottoCount);
     this.lottoView.showLottoView();
     this.lottoView.renderTotalLottoCount(lottoCount);
