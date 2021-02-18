@@ -46,13 +46,13 @@
 ### 앱 구조도
 
 <p align="middle">
-  <img width="400" src="./src/images/Lotto_component_structure.png">
+  <img width="600" src="./src/images/Lotto_component_structure.png">
 </p>
 
 ### 컴포넌트 구조
 
 <p align="middle">
-  <img width="400" src="./src/images/Lotto_UML.png">
+  <img width="600" src="./src/images/Lotto_UML.png">
 </p>
 
 ### 디렉토리 구조
