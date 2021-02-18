@@ -3,11 +3,9 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
     cy.visit('http://127.0.0.1:5500/');
   });
 
-  it('로또 구입 금액은 1,000원 단위여야 한다.', () => {
+  function exceptionAlert(wrongPrice, alertMessage) {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
-    const wrongPrice = 1200;
-    const alertMessage = '로또 구입 금액을 1,000원 단위로 입력해 주세요.';
 
     cy.get('#input-price').type(wrongPrice);
     cy.get('#input-price-btn')
@@ -15,7 +13,19 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
       });
+  }
 
+  it('로또 구입 금액은 최소 1,000원, 최대 100,000원으로 제한한다.', () => {
+    exceptionAlert(
+      120000,
+      '로또 구입 금액은 최소 1,000원에서 100,000원까지 입력 가능합니다.'
+    );
+    cy.get('#purchased-lottos').should('not.be.visible');
+    cy.get('#input-lotto-nums').should('not.be.visible');
+  });
+
+  it('로또 구입 금액은 1,000원 단위여야 한다.', () => {
+    exceptionAlert(1200, '로또 구입 금액을 1,000원 단위로 입력해 주세요.');
     cy.get('#purchased-lottos').should('not.be.visible');
     cy.get('#input-lotto-nums').should('not.be.visible');
   });
