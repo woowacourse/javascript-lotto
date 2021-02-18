@@ -2,6 +2,7 @@ import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
 import { NUMBERS } from '../js/utils/constants.js';
 import priceValidator from '../js/utils/priceValidator.js';
+import { $ } from './utils/dom.js';
 
 export default class LottoController {
   constructor() {
@@ -19,11 +20,9 @@ export default class LottoController {
       this.inputPriceHandler(e)
     );
 
-    this.lottoView.purchasedLottos
-      .querySelector('#lotto-switch')
-      .addEventListener('click', () => {
-        this.toggleSwitchHandler();
-      });
+    $('#lotto-switch').addEventListener('click', () => {
+      this.toggleSwitchHandler();
+    });
   }
 
   createLottos(lottoCount) {
@@ -36,38 +35,32 @@ export default class LottoController {
 
   inputPriceHandler(e) {
     e.preventDefault();
-    const inputPrice = this.lottoView.inputPriceView.querySelector(
-      '#input-price'
-    ).value;
 
+    const inputPrice = $('#input-price').value;
     if (!this.isValidPrice(inputPrice)) {
       this.lottoView.resetInputPrice();
       return;
     }
 
-    const lottoCount = inputPrice / NUMBERS.LOTTO_UNIT;
-    this.createLottos(lottoCount);
+    this.createLottos(inputPrice / NUMBERS.LOTTO_UNIT);
     this.lottoView.showLottoView();
-    this.lottoView.renderTotalLottoCount(lottoCount);
+    this.lottoView.renderTotalLottoCount(this.lottos.length);
     this.lottoView.renderLottoIcons(this.lottos);
   }
 
   isValidPrice(price) {
     const errorMessage = priceValidator(price);
-    if (errorMessage) {
-      alert(errorMessage);
-      return false;
-    }
-    return true;
+    if (!errorMessage) return true;
+
+    alert(errorMessage);
+    return false;
   }
 
   toggleSwitchHandler() {
-    const $lottoIconsDiv = this.lottoView.purchasedLottos.querySelector(
-      '#lotto-icons'
-    );
+    const $lottoIconsDiv = $('#lotto-icons');
 
     $lottoIconsDiv.checked = !$lottoIconsDiv.checked;
-    const isSwitchOn = $lottoIconsDiv.checked; // 초기값은 false
+    const isSwitchOn = $lottoIconsDiv.checked;
 
     if (isSwitchOn) {
       $lottoIconsDiv.classList.add('flex-col');

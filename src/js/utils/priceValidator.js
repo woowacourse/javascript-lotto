@@ -14,8 +14,10 @@ export default function priceValidator(price) {
   if (!isInRange(price)) {
     return ALERT_MESSAGES.OUT_OF_RANGE;
   }
+
   if (!isCorrectUnit(price)) {
     return ALERT_MESSAGES.INCORRECT_UNIT;
   }
+
   return;
 }

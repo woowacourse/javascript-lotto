@@ -1,8 +1,10 @@
+import { $, $$ } from './utils/dom.js';
+
 export default class LottoView {
   constructor() {
-    this.inputPriceView = document.querySelector('#input-price-form');
-    this.purchasedLottos = document.querySelector('#purchased-lottos');
-    this.inputLottoNums = document.querySelector('#input-lotto-nums');
+    this.inputPriceView = $('#input-price-form');
+    this.purchasedLottos = $('#purchased-lottos');
+    this.inputLottoNums = $('#input-lotto-nums');
   }
 
   init() {
@@ -21,8 +23,8 @@ export default class LottoView {
   }
 
   resetInputPrice() {
-    this.inputPriceView.querySelector('#input-price').value = '';
-    this.inputPriceView.querySelector('#input-price').focus();
+    $('#input-price').value = '';
+    $('#input-price').focus();
   }
 
   showLottoView() {
@@ -31,29 +33,23 @@ export default class LottoView {
   }
 
   showLottoDetailView() {
-    Array.from(this.purchasedLottos.querySelectorAll('.lotto-detail')).forEach(
-      lottoDetail => {
-        lottoDetail.style.display = 'inline';
-      }
-    );
+    Array.from($$('.lotto-detail')).forEach(lottoDetail => {
+      lottoDetail.style.display = 'inline';
+    });
   }
 
   hideLottoDetailView() {
-    Array.from(this.purchasedLottos.querySelectorAll('.lotto-detail')).forEach(
-      lottoDetail => {
-        lottoDetail.style.display = 'none';
-      }
-    );
+    Array.from($$('.lotto-detail')).forEach(lottoDetail => {
+      lottoDetail.style.display = 'none';
+    });
   }
 
   renderTotalLottoCount(count) {
-    this.purchasedLottos.querySelector('#total-purchased').innerText = count;
+    $('#total-purchased').innerText = count;
   }
 
   renderLottoIcons(lottos) {
-    this.purchasedLottos.querySelector(
-      '#lotto-icons'
-    ).innerHTML = this.createLottoIconTemplate(lottos);
+    $('#lotto-icons').innerHTML = this.createLottoIconTemplate(lottos);
     this.hideLottoDetailView();
   }
 
