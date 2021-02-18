@@ -17,10 +17,18 @@ export default class LottoPerchaseInput {
   }
 
   bindEvent() {
-    this.$perchaseButton.addEventListener(
-      'click',
-      this.perchaseButtonClickHandler.bind(this),
-    );
+    this.$perchaseButton.addEventListener('click', () => {
+      this.perchaseButtonClickHandler();
+    });
+
+    this.$perchaseInput.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') {
+        return;
+      }
+
+      e.preventDefault();
+      this.perchaseButtonClickHandler();
+    });
   }
 
   perchaseButtonClickHandler() {
