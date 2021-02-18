@@ -22,17 +22,47 @@ export default class LottoView {
     this.show(this.inputLottoNums);
   }
 
+  showLottoDetailView() {
+    Array.from(this.purchasedLottos.querySelectorAll('.lotto-detail')).forEach(
+      lottoDetail => {
+        lottoDetail.style.display = 'inline';
+      }
+    );
+  }
+
+  hideLottoDetailView() {
+    Array.from(this.purchasedLottos.querySelectorAll('.lotto-detail')).forEach(
+      lottoDetail => {
+        lottoDetail.style.display = 'none';
+      }
+    );
+  }
+
   renderTotalLottoCount(count) {
     this.purchasedLottos.querySelector('#total-purchased').innerText = count;
   }
 
-  renderLottoIcons(count) {
+  renderLottoIcons(lottos) {
     this.purchasedLottos.querySelector(
       '#lotto-icons'
-    ).innerHTML = this.createLottoIconTemplate(count);
+    ).innerHTML = this.createLottoIconTemplate(lottos);
+    this.hideLottoDetailView();
   }
 
-  createLottoIconTemplate(count) {
-    return `<span class="mx-1 text-4xl lotto-icon">🎟️ </span>`.repeat(count);
+  createLottoIconTemplate(lottos) {
+    return lottos
+      .map(
+        lotto => `
+          <div class="mx-1 text-4xl lotto-wrapper">
+            <span class="lotto-icon">🎟️ </span>
+            <span class="lotto-detail">${this.getLottoDetail(lotto)}</span>
+          </div>
+        `
+      )
+      .join('');
+  }
+
+  getLottoDetail(lotto) {
+    return Array.from(lotto.numbers.values());
   }
 }
