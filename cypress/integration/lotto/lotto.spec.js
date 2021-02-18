@@ -2,7 +2,10 @@ import {
   HAS_A_WHITESPACE_MESSAGE,
   NOT_A_POSITIVE_NUMBER_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
-import { MIN, MAX } from '../../../src/js/lib/utils/ticket';
+import {
+  TICKET_MIN_NUMBER,
+  TICKET_MAX_NUMBER,
+} from '../../../src/js/lib/constants/ticket';
 
 context('Actions', () => {
   beforeEach(() => {
@@ -42,8 +45,8 @@ context('Actions', () => {
     cy.get('.lotto-numbers').then(elements => {
       elements[0].innerText.split(', ').forEach(number => {
         number = Number(number);
-        expect(number).to.at.least(MIN);
-        expect(number).to.at.most(MAX);
+        expect(number).to.at.least(TICKET_MIN_NUMBER);
+        expect(number).to.at.most(TICKET_MAX_NUMBER);
       });
     });
   });
