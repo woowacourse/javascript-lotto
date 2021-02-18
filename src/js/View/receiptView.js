@@ -1,31 +1,33 @@
+import { Element } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
-export const printPurchaseMountLabel = (lottoCount) => {
-  $("#purchase-mount-label").innerText = `총 ${lottoCount}개를 구매하였습니다.`;
+export const printPurchaseAmountLabel = (ticketCount) => {
+  $(Element.PURCHASE_AMOUNT_LABEL).innerText = `총 ${ticketCount}개를 구매하였습니다.`;
 };
 
-export const printLottoHorizontal = (lottoCount) => {
-  let lottoImageTemplate = "";
+export const printTicketHorizontal = (ticketCount) => {
+  const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
+  let ticketImageTemplate = "";
 
-  for (let i = 0; i < lottoCount; i++) {
-    lottoImageTemplate +=
+  for (let i = 0; i < ticketCount; i++) {
+    ticketImageTemplate +=
       '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>';
   }
 
-  $("#lotto-image-number-container").innerHTML = lottoImageTemplate;
-  $("#lotto-image-number-container").classList.remove("flex-col");
+  ticketImageNumberContainer.innerHTML = ticketImageTemplate;
+  ticketImageNumberContainer.classList.remove(Element.FLEX_COL);
 };
 
-export const printLottoVertical = (lottos) => {
-  const lottoImageNumberContainer = $("#lotto-image-number-container");
-  let lottoImageNumberTemplate = "";
+export const printTicketVertical = (tickets) => {
+  const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
+  let ticketImageNumberTemplate = "";
 
-  lottos.map((lotto) => {
-    lottoImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${lotto.numbers.join(
+  tickets.map((lotto) => {
+    ticketImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${lotto.numbers.join(
       ", "
     )}</span></div>`;
   });
 
-  lottoImageNumberContainer.innerHTML = lottoImageNumberTemplate;
-  $("#lotto-image-number-container").classList.add("flex-col");
+  ticketImageNumberContainer.innerHTML = ticketImageNumberTemplate;
+  ticketImageNumberContainer.classList.add(Element.FLEX_COL);
 };

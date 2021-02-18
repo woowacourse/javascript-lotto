@@ -1,11 +1,12 @@
-import { $, $$ } from "../Util/querySelector.js";
+import { Element } from "../Util/constants.js";
+import { $ } from "../Util/querySelector.js";
 
 export const onPurchaseResultShow = () => {
-  $("#receipt-container").classList.remove("hidden");
-  $("#win-number-container").classList.remove("hidden");
+  $(Element.RECEIPT_CONTAINER).classList.remove(Element.HIDDEN);
+  $(Element.WIN_NUMBER_CONTAINER).classList.remove(Element.HIDDEN);
 };
 
 export const onPurchaseResultHidden = () => {
-  $("#receipt-container").classList.add("hidden");
-  $("#win-number-container").classList.add("hidden");
+  $(Element.RECEIPT_CONTAINER).classList.add(Element.HIDDEN);
+  $(Element.WIN_NUMBER_CONTAINER).classList.add(Element.HIDDEN);
 };

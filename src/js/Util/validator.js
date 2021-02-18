@@ -1,25 +1,27 @@
+import { AlertMessage, Number } from "./constants.js";
+
 export const isValidMoney = (money) => {
   if (isInValidNumber(money)) {
-    alert("문자 및 공백은 입력 불가능합니다.");
+    alert(AlertMessage.INVALID_NUMBER);
     return false;
   }
   if (isInvalidRange(money)) {
-    alert("1000원 이상, 5000원 이하만 입력 가능합니다.");
+    alert(AlertMessage.INVALID_RANGE);
     return false;
   }
   if (isNotThousandMultiples(money)) {
-    alert("1000원 단위로만 입력 가능합니다.");
+    alert(AlertMessage.NOT_THOUSAND_MULTIPLES);
     return false;
   }
   return true;
 };
 
 const isInvalidRange = (money) => {
-  return money < 1000 || 5000 < money;
+  return money < Number.MIN_PURCHASE_PRICE || Number.MAX_PURCHASE_PRICE < money;
 };
 
 const isNotThousandMultiples = (money) => {
-  return money % 1000 !== 0;
+  return money % Number.ONE_TICKET_PRICE !== 0;
 };
 
 const isInValidNumber = (money) => {

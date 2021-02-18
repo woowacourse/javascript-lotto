@@ -1,27 +1,29 @@
 import { $ } from "./Util/querySelector.js";
 import {
-  handlePurchaseMountSubmit,
+  handlePurchaseAmountSubmit,
   handleToggleButton,
 } from "./Controller/submitController.js";
 import { onPurchaseResultHidden } from "./Controller/viewController.js";
+import { Element } from "./Util/constants.js";
 
 class App {
   constructor() {
-    this.intializeLottos();
+    this.intializeTickets();
     onPurchaseResultHidden();
-    $("#purchase-mount-submit").addEventListener(
+
+    $(Element.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
       "click",
-      handlePurchaseMountSubmit
+      handlePurchaseAmountSubmit
     );
-    $(".lotto-numbers-toggle-button").addEventListener(
+    $(Element.TOGGLE_BUTTON).addEventListener(
       "click",
       handleToggleButton
     );
   }
 
-  intializeLottos() {
-    this.lottos = [];
-    this.lottoCount = 0;
+  intializeTickets() {
+    this.tickets = [];
+    this.ticketCount = 0;
   }
 }
 

@@ -1,45 +1,46 @@
 import { app } from "../index.js";
-import Lotto from "../Model/Lotto.js";
-import { $, $$ } from "../Util/querySelector.js";
+import Ticket from "../Model/Ticket.js";
+import { Element, Number } from "../Util/constants.js";
+import { $ } from "../Util/querySelector.js";
 import { isValidMoney } from "../Util/validator.js";
 import {
-  printPurchaseMountLabel,
-  printLottoHorizontal,
-  printLottoVertical,
+  printPurchaseAmountLabel,
+  printTicketHorizontal,
+  printTicketVertical,
 } from "../View/receiptView.js";
 import { onPurchaseResultShow } from "./viewController.js";
 
-// const $showResultButton = $('.open-result-modal-button');
-// const $modalClose = $('.modal-close');
-// const $modal = $('.modal');
-// const $lottoNumbersToggleButton = $(".lotto-numbers-toggle-button");
-
-export const handlePurchaseMountSubmit = () => {
-  const money = $("#purchase-mount-input").value;
+export const handlePurchaseAmountSubmit = () => {
+  const money = $(Element.PURCHASE_AMOUNT_INPUT).value;
 
   if (isValidMoney(money)) {
-    app.lottoCount = money / 1000;
+    app.ticketCount = money / Number.ONE_TICKET_PRICE;
 
-    for (let i = 0; i < app.lottoCount; i++) {
-      app.lottos.push(new Lotto());
+    for (let i = 0; i < app.ticketCount; i++) {
+      app.tickets.push(new Ticket());
     }
 
-    // printPurchaseMountLabel(app.lottoCount);
-    printPurchaseMountLabel(app.lottoCount);
-    console.log(app.lottos);
-
-    printLottoHorizontal(app.lottoCount);
+    printPurchaseAmountLabel(app.ticketCount);
+    printTicketHorizontal(app.ticketCount);
     onPurchaseResultShow();
   }
 };
 
 export const handleToggleButton = (event) => {
   if (event.target.checked) {
-    printLottoVertical(app.lottos);
+    printTicketVertical(app.tickets);
   } else {
-    printLottoHorizontal(app.lottoCount);
+    printTicketHorizontal(app.ticketCount);
   }
 };
+
+
+// <다음 단계에 필요한 코드 주석 처리>
+
+// const $showResultButton = $('.open-result-modal-button');
+// const $modalClose = $('.modal-close');
+// const $modal = $('.modal');
+// const $lottoNumbersToggleButton = $(".toggle-button");
 
 // const onModalShow = () => {
 //  $modal.classList.add('open')
