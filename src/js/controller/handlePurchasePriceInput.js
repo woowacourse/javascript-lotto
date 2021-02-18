@@ -1,6 +1,7 @@
 import { $ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
+import { renderWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
 export const handlePurchasePriceInput = (lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
@@ -18,4 +19,5 @@ export const handlePurchasePriceInput = (lotto) => {
   }
 
   renderPurchaseResultSection(numberOfLottoTicket, lotto.putLottoNumbers());
+  renderWinningNumberInputForm();
 };
