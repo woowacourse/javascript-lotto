@@ -13,7 +13,7 @@ class TicketList extends Component {
         <label class="flex-auto my-0">
           총 ${this.props.tickets.get().length}개를 구매하였습니다.
         </label>
-        <div class="flex-auto d-flex justify-end pr-1">   
+        <div class="flex-auto d-flex justify-end pr-1">
           ${
             this.props.tickets.get().length
               ? this.createDetailModeToggleTemplate()
@@ -51,16 +51,22 @@ class TicketList extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id !== 'detail-mode-toggle') return;
 
-      if (!target.checked) {
-        $('#ticket-list').classList.remove('flex-col');
-        $$('.lotto-numbers').forEach(element => element.classList.add('hide'));
+      if (target.checked) {
+        this.turnDetailModeOn();
       } else {
-        $('#ticket-list').classList.add('flex-col');
-        $$('.lotto-numbers').forEach(element =>
-          element.classList.remove('hide')
-        );
+        this.turnDetailModeOff();
       }
     });
+  }
+
+  turnDetailModeOn() {
+    $('#ticket-list').classList.add('flex-col');
+    $$('.lotto-numbers').forEach(element => element.classList.remove('hide'));
+  }
+
+  turnDetailModeOff() {
+    $('#ticket-list').classList.remove('flex-col');
+    $$('.lotto-numbers').forEach(element => element.classList.add('hide'));
   }
 }
 
