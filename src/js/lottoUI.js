@@ -1,4 +1,4 @@
-import { $, $$ } from './utils/dom.js';
+import { $, $$, disableElement } from './utils/dom.js';
 import { UI_SETTINGS, DOM_SELECTORS } from './utils/constants.js';
 export default class LottoUI {
   constructor() {
@@ -22,6 +22,7 @@ export default class LottoUI {
   }
 
   renderCheckLottoUI(lottoTickets) {
+    disableElement(DOM_SELECTORS.MONEY_INPUT_BUTTON);
     $(DOM_SELECTORS.CHECK_LOTTO_CONTAINER).innerHTML = `
       <section class="mt-9">
         <div class="d-flex">
