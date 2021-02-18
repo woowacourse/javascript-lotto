@@ -11,8 +11,6 @@ export const handleWinningNumberInput = (lotto) => {
   );
   const bonusNumber = Number($('.bonus-number').value);
 
-  console.log(winningNumbers, bonusNumber);
-
   if (!isValidRange([...winningNumbers, bonusNumber])) {
     return alert(ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
   }
@@ -20,4 +18,7 @@ export const handleWinningNumberInput = (lotto) => {
   if (isDuplicate([...winningNumbers, bonusNumber])) {
     return alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
   }
+
+  lotto.getWinningNumbers(winningNumbers);
+  lotto.getBonusNumber(bonusNumber);
 };
