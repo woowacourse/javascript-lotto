@@ -50,15 +50,8 @@ class LottoApp {
     this.view.disableElement($('#money-submit-button'));
   }
 
-  lottoNumbersToggleHandler(event) {
-    const toggleStatus = event.target.checked;
-
-    if (toggleStatus) {
-      $('.lotto-list').classList.add('show-number');
-      return;
-    }
-
-    $('.lotto-list').classList.remove('show-number');
+  lottoNumbersToggleHandler() {
+    $('.lotto-list').classList.toggle('show-number');
   }
 
   bindEvents() {
