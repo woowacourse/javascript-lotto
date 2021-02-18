@@ -34,6 +34,12 @@ context('로또 UI 테스트', () => {
     });
   });
 
+  it('로또 구입 금액을 입력받으면, 구입 버튼이 비활성화된다.', () => {
+    cy.get(DOM_SELECTORS.MONEY_INPUT).type(5000);
+    cy.get(DOM_SELECTORS.MONEY_INPUT_BUTTON).click();
+    cy.get(DOM_SELECTORS.MONEY_INPUT_BUTTON).should('be.disabled');
+  });
+
   it('번호 보기 토글 버튼을 클릭하면, 복권 번호가 화면에 표시된다.', () => {
     const money = 3000;
     cy.get(DOM_SELECTORS.MONEY_INPUT).type(money);
