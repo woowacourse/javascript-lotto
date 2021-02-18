@@ -16,8 +16,10 @@
 ## 🔥 Projects!
 
 <p align="middle">
-  <img width="400" src="./src/images/lotto_ui.png">
+  <img width="400" src="./src/images/lotto_ui_guide.png">
 </p>
+
+[데모 페이지](https://jum0.github.io/javascript-lotto/)
 
 ### 구현할 기능
 
@@ -30,6 +32,8 @@
 - [x] 총 구입한 로또의 개수만큼 로또가 생성되고, 텍스트(총 n개)에 반영된다.
 - [x] 로또의 개수만큼 로또 용지 그림이 출력된다.
 - [x] 토글 버튼을 클릭하면 각 로또의 번호가 출력된다.
+
+
 
 ### 🎯 step1 구입 기능
 
