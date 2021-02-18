@@ -49,11 +49,10 @@ describe('로또 게임 테스트', () => {
     cy.get('#lotto-icons')
       .children('.lotto-wrapper')
       .should('have.length', lottoTotalCount);
-    cy.get('.lotto-wrapper').children('.lotto-numbers').should('exist');
+    cy.get('.lotto-wrapper').children('.lotto-detail').should('be.visible');
 
     cy.get('.switch').click();
     cy.get('#lotto-icons').should('not.have.class', 'flex-col');
-    cy.get('#lotto-icons').children('.lotto-wrapper').should('not.exist');
-    cy.get('.lotto-wrapper').children('.lotto-numbers').should('not.exist');
+    cy.get('.lotto-wrapper').children('.lotto-detail').should('not.be.visible');
   });
 });
