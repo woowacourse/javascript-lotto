@@ -63,6 +63,6 @@ export default class LottoView {
   }
 
   getLottoDetail(lotto) {
-    return Array.from(lotto.numbers.values());
+    return [...lotto.numbers.values()].join(', ');
   }
 }
