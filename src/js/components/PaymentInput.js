@@ -3,8 +3,9 @@ import { $ } from '../lib/utils/dom.js';
 import { createTicket, getNumberOfTickets } from '../lib/utils/ticket.js';
 import {
   HAS_A_WHITESPACE_MESSAGE,
-  NOT_A_POSITIVE_NUMBER_MESSAGE,
+  LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../lib/constants/alertMessage.js';
+import { TICKET_PRICE } from '../lib/constants/ticket.js';
 
 class PaymentInput extends Component {
   mountTemplate() {
@@ -43,7 +44,7 @@ class PaymentInput extends Component {
   }
 
   isValid(value) {
-    return value.length && Number(value) > 0;
+    return value.length && Number(value) >= TICKET_PRICE;
   }
 
   alertByCase(value) {
@@ -52,8 +53,8 @@ class PaymentInput extends Component {
       return;
     }
 
-    if (Number(value) < 1) {
-      alert(NOT_A_POSITIVE_NUMBER_MESSAGE);
+    if (Number(value) < TICKET_PRICE) {
+      alert(LESS_THAN_TICKET_PRICE_MESSAGE);
     }
   }
 }

@@ -1,6 +1,6 @@
 import {
   HAS_A_WHITESPACE_MESSAGE,
-  NOT_A_POSITIVE_NUMBER_MESSAGE,
+  LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
 import {
   TICKET_MIN_NUMBER,
@@ -28,7 +28,7 @@ context('Actions', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('#payment-input').type('0');
     cy.get('#payment-submit').click();
-    cy.get('@alert').should('be.calledWith', NOT_A_POSITIVE_NUMBER_MESSAGE);
+    cy.get('@alert').should('be.calledWith', LESS_THAN_TICKET_PRICE_MESSAGE);
   });
 
   it('토글 버튼을 누르면 티켓의 번호를 보여준다.', () => {
