@@ -27,19 +27,18 @@ class PaymentInput extends Component {
   initEvent() {
     this.$target.addEventListener('submit', event => {
       event.preventDefault();
+      if (event.target.id !== 'payment-input-wrapper') return;
 
-      if (event.target.id === 'payment-input-wrapper') {
-        const { value } = $('#payment-input');
-        if (!this.isValid(value)) {
-          this.alertByCase(value);
-          return;
-        }
-
-        const numberOfTickets = getNumberOfTickets(value);
-        this.props.tickets.set(
-          [...Array(numberOfTickets)].map(() => createTicket())
-        );
+      const { value } = $('#payment-input');
+      if (!this.isValid(value)) {
+        this.alertByCase(value);
+        return;
       }
+
+      const numberOfTickets = getNumberOfTickets(value);
+      this.props.tickets.set(
+        [...Array(numberOfTickets)].map(() => createTicket())
+      );
     });
   }
 
