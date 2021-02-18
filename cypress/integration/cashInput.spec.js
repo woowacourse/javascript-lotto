@@ -53,12 +53,6 @@ describe("구입 금액 입력 테스트", () => {
     testResetInput();
   });
 
-  it("유저가 소수를 입력한 경우, 에러메시지를 alert로 출력한다", () => {
-    const wrongUserInput = 100.3;
-    testAlertMessage(wrongUserInput, ALERT_MESSAGE.ERROR.CASH_INPUT.DECIMAL);
-    testResetInput();
-  });
-
   it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보를 보여준다", () => {
     const userInput = 4500;
     const lottoCount = Math.floor(userInput / 1000);

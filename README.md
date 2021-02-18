@@ -106,7 +106,7 @@ This project is [MIT](https://github.com/woowacourse/javascript-lotto/blob/main/
     1. Given: 초기화면에 구입 입력 Form만 보여진다
     2. When: 금액을 입력한 후 확인 버튼을 클릭한다 (로또 1장의 가격은 1,000원이다.)
     3. Then: 
-       - 실패케이스: 음수, 소수점 => alert로 표시한다.
+       - 실패케이스: 음수 => alert로 표시한다. 소수의 경우, form 태그에서 자동적으로 걸러지므로 별도로 테스트하지 않는다.
        - 성공케이스: 입력된 금액으로 살 수 있는 로또 장수 만큼이 section부분이 표시된다.
 
 - [X] 번호보기 토글
