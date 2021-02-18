@@ -4,11 +4,14 @@ import { NUMBERS } from '../js/utils/constants.js';
 import priceValidator from '../js/utils/priceValidator.js';
 
 export default class LottoController {
-  init() {
+  constructor() {
     this.lottoView = new LottoView();
+    this.lottos = [];
+  }
+
+  init() {
     this.lottoView.init();
     this.bindEvents();
-    this.lottos = [];
   }
 
   bindEvents() {
@@ -37,17 +40,25 @@ export default class LottoController {
       '#input-price'
     ).value;
 
-    const errorMessage = priceValidator(inputPrice);
-    if (errorMessage) {
-      alert(errorMessage);
-      return this.lottoView.resetInputPrice();
+    if (!this.isValidPrice(inputPrice)) {
+      this.lottoView.resetInputPrice();
+      return;
     }
 
-    const lottoCount = Math.floor(inputPrice / NUMBERS.LOTTO_UNIT);
+    const lottoCount = inputPrice / NUMBERS.LOTTO_UNIT;
     this.createLottos(lottoCount);
     this.lottoView.showLottoView();
     this.lottoView.renderTotalLottoCount(lottoCount);
     this.lottoView.renderLottoIcons(this.lottos);
+  }
+
+  isValidPrice(price) {
+    const errorMessage = priceValidator(price);
+    if (errorMessage) {
+      alert(errorMessage);
+      return false;
+    }
+    return true;
   }
 
   toggleSwitchHandler() {
