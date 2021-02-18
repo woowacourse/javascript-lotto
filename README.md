@@ -43,6 +43,18 @@
 
 - 테스트 코드를 먼저 작성하고 기능 구현하기
 
+### 앱 구조도
+
+<p align="middle">
+  <img width="400" src="./src/images/Lotto_component_structure.png">
+</p>
+
+### 컴포넌트 구조
+
+<p align="middle">
+  <img width="400" src="./src/images/Lotto_UML.png">
+</p>
+
 ### 디렉토리 구조
 
 ```
