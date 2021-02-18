@@ -6,7 +6,8 @@ export const handlePurchasePriceInput = (lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
 
   if (purchasePrice < VALUE.LOTTO.TICKET_PRICE) {
-    return alert(ERR_MESSAGE.LOTTO.INVALID_PRICE);
+    alert(ERR_MESSAGE.LOTTO.INVALID_PRICE);
+    return;
   }
 
   const numberOfLottoTicket = Math.floor(
