@@ -23,7 +23,7 @@ const lottoTicketDetailTemplate = (lottoNumber) => {
 
 export const renderPurchaseResultSection = (
   amountOfLottoTicket,
-  lottoNumbers,
+  lottoTickets,
 ) => {
   const $purchaseResultSection = $('#purchase-result-section');
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
@@ -34,8 +34,8 @@ export const renderPurchaseResultSection = (
     amountOfLottoTicket,
   );
 
-  $purchaseResultSectionColAlign.innerHTML = lottoNumbers
-    .map((lottoNumber) => lottoTicketDetailTemplate(lottoNumber.join(', ')))
+  $purchaseResultSectionColAlign.innerHTML = lottoTickets
+    .map((lottoNumbers) => lottoTicketDetailTemplate(lottoNumbers.join(', ')))
     .join('');
 
   disabledElement($purchasePriceInputFormButton);

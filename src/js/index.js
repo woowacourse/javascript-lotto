@@ -3,25 +3,25 @@ import { $ } from './utils/querySelector.js';
 import { handlePurchaseResultToggle } from './controller/handlePurchaseResultToggle.js';
 import { handlePurchasePriceInput } from './controller/handlePurchasePriceInput.js';
 import { handleWinningNumberInput } from './controller/handleWinningNumberInput.js';
+import { handleModalPage } from './controller/handleModalPage.js';
 
 const init = () => {
-  const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
-  const $purchaseResultSectionToggle = $('#purchase-result-section__toggle');
-  const $winningNumberInputFormButton = $('#winning-number-input-form__button');
-
   const lotto = new Lotto();
 
-  $purchasePriceInputFormButton.addEventListener('click', () =>
+  $('#purchase-price-input-form__button').addEventListener('click', () =>
     handlePurchasePriceInput(lotto),
   );
-  $purchaseResultSectionToggle.addEventListener(
+
+  $('#purchase-result-section__toggle').addEventListener(
     'click',
     handlePurchaseResultToggle,
   );
-  $winningNumberInputFormButton.addEventListener(
-    'click',
-    handleWinningNumberInput,
+
+  $('#winning-number-input-form__button').addEventListener('click', () =>
+    handleWinningNumberInput(lotto),
   );
+
+  $('.modal').addEventListener('click', handleModalPage);
 };
 
 const App = () => {

@@ -6,3 +6,11 @@ export const renderWinningNumberInputForm = () => {
 
   showElement($winningNumberInputForm);
 };
+
+const onModalShow = () => {
+  $modal.classList.add('open');
+};
+
+const onModalClose = () => {
+  $modal.classList.remove('open');
+};
