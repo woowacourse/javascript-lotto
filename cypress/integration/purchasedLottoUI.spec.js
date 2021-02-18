@@ -14,9 +14,10 @@ describe('구매한 로또 UI 검사', () => {
 
   const numOfLotto = 3;
 
-  it('입력된 로또 구입 금액으로 발급한 로또를 화면에 표시한다.', () => {
-    cy.get('.purchase-amount-input').type(LOTTO_PRICE * numOfLotto);
-    cy.get('.purchase-amount-button').click();
+  it('Enter키 이벤트로 로또를 구입한 후 입력된 로또 구입 금액으로 발급한 로또를 화면에 표시한다.', () => {
+    cy.get('.purchase-amount-input')
+      .type(LOTTO_PRICE * numOfLotto)
+      .type('{enter}');
     cy.get('.purchased-lotto-section').should('be.visible');
     cy.get('.purchased-lotto-label').should('have.text', PURCHASED_QUANTITY_MESSAGE(numOfLotto));
     cy.get('.lotto-ticket-container > li').should('have.length', numOfLotto);
