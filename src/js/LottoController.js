@@ -38,7 +38,8 @@ export default class LottoController {
 
     const errorMessage = priceValidator(inputPrice);
     if (errorMessage) {
-      return alert(errorMessage);
+      alert(errorMessage);
+      return this.lottoView.resetInputPrice();
     }
 
     const lottoCount = Math.floor(inputPrice / NUMBERS.LOTTO_UNIT);

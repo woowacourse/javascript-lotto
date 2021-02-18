@@ -1,10 +1,13 @@
 export default class LottoView {
-  init() {
+  constructor() {
     this.inputPriceView = document.querySelector('#input-price-form');
     this.purchasedLottos = document.querySelector('#purchased-lottos');
     this.inputLottoNums = document.querySelector('#input-lotto-nums');
+  }
 
+  init() {
     this.show(this.inputPriceView);
+    this.resetInputPrice();
     this.hide(this.purchasedLottos);
     this.hide(this.inputLottoNums);
   }
@@ -15,6 +18,11 @@ export default class LottoView {
 
   hide(element) {
     element.style.display = 'none';
+  }
+
+  resetInputPrice() {
+    this.inputPriceView.querySelector('#input-price').value = '';
+    this.inputPriceView.querySelector('#input-price').focus();
   }
 
   showLottoView() {
