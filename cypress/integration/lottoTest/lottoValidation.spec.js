@@ -1,0 +1,22 @@
+describe('로또 금액 입력 예외 처리 테스트', () => {
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:5500/');
+  });
+
+  it('로또 구입 금액은 1,000원 단위여야 한다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    const wrongPrice = 1200;
+    const alertMessage = '로또 구입 금액을 1,000원 단위로 입력해 주세요.';
+
+    cy.get('#input-price').type(wrongPrice);
+    cy.get('#input-price-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
+      });
+
+    cy.get('#purchased-lottos').should('not.be.visible');
+    cy.get('#input-lotto-nums').should('not.be.visible');
+  });
+});
