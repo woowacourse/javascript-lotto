@@ -1,5 +1,12 @@
 import { $ } from '../utils/querySelector.js';
-import { showElement, hideElement } from '../view/setViewProperty.js';
+import {
+  showElement,
+  hideElement,
+  disabledElement,
+} from '../utils/setProperty.js';
+
+const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
+const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
 
 const lottoTicketIconTemplate = () => {
   return `<span class="purchase-result-section__lotto-icon mx-1 text-4xl">
@@ -14,13 +21,11 @@ const lottoTicketDetailTemplate = (lottoNumber) => {
           </div>`;
 };
 
-const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
-const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
-
 export const renderPurchaseResultSection = (
   amountOfLottoTicket,
   lottoNumbers,
 ) => {
+  const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
   const $purchaseResultSection = $('#purchase-result-section');
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
 
@@ -33,6 +38,7 @@ export const renderPurchaseResultSection = (
     .map((lottoNumber) => lottoTicketDetailTemplate(lottoNumber.join(', ')))
     .join('');
 
+  disabledElement($purchasePriceInputFormButton);
   showElement($purchaseResultSection);
 };
 

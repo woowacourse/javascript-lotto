@@ -1,6 +1,6 @@
 import { $ } from './utils/querySelector.js';
-import { handlePurchaseResultToggle } from './controller/handlePurchaseResultToggle.js';
-import { handlePurchasePriceInput } from './controller/handlePurchasePriceInput.js';
+import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
+import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
 import Lotto from './model/Lotto.js';
 
 const init = () => {
