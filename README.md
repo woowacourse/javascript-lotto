@@ -16,7 +16,7 @@
 ## 🔥 Projects!
 
 <p align="middle">
-  <img width="400" src="./src/images/lotto_ui.png">
+  <img width="400" src="./src/assets/images/lotto_ui.png">
 </p>
 
 ### 🎯 step1 구입 기능
