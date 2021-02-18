@@ -27,6 +27,10 @@ body {
   display: none;
 }
 
+.--unselectable {
+  user-select: none;
+}
+
 .lotto-numbers {
   display: none;
 }

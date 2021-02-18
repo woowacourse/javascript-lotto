@@ -80,7 +80,7 @@ $cashContainer.addEventListener("submit", (event) => {
   show($lottoDetailContainer);
 });
 
-$toggleButton.addEventListener("click", () => {
+$toggleButton.addEventListener("change", () => {
   $lottoIconWrapper.classList.toggle("flex-col");
   $lottoDetailContainer.classList.toggle("detail");
 });
