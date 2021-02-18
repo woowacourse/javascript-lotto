@@ -1,5 +1,5 @@
-import { $, $$ } from './util/dom.js';
-import { UI_SETTINGS, DOM_SELECTORS } from './constants.js';
+import { $, $$ } from './utils/dom.js';
+import { UI_SETTINGS, DOM_SELECTORS } from './utils/constants.js';
 export default class LottoUI {
   constructor() {
   }

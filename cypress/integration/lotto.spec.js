@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
-import Lotto from "../../src/js/object/Lotto.js";
-import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_SELECTORS } from '../../src/js/constants.js';
+import Lotto from "../../src/js/objects/Lotto.js";
+import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_SELECTORS } from '../../src/js/utils/constants.js';
 
 context('로또 UI 테스트', () => {
   beforeEach(() => {
