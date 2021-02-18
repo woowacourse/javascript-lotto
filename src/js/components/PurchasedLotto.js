@@ -6,6 +6,7 @@ export default class PurchasedLotto {
     this.$purchasedLottoSection = $('.purchased-lotto-section');
     this.$lottoTicketContainer = $('.lotto-ticket-container');
     this.$purchasedLottoLabel = $('.purchased-lotto-label');
+    this.$lottoNumbersToggleButton = $('.lotto-numbers-toggle-button');
     this.lottoTickets = lottoTickets;
 
     this.attachEvents();
@@ -52,6 +53,10 @@ export default class PurchasedLotto {
     this.$purchasedLottoSection.classList.remove('d-none');
     this.$purchasedLottoLabel.innerHTML = PURCHASED_QUANTITY_MESSAGE(numOfLotto);
     this.$lottoTicketContainer.innerHTML = this.lottoTickets.map(this.createLottoTicketHTML).join('');
+
+    if (this.$lottoNumbersToggleButton.checked) {
+      this.showNumbers();
+    }
   }
 
   setState({ lottoTickets }) {
