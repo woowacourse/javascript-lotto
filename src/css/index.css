@@ -43,6 +43,7 @@ button:disabled {
 
 .lotto-list .lotto .lotto-numbers {
   display: none;
+  padding-left: 5px;
 }
 
 .lotto-list.show-number {
