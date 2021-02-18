@@ -58,7 +58,11 @@ export default class LottoDisplay {
   }
 
   render() {
-    this.$target.classList.remove('hidden');
+    if (this.lottos.length) {
+      this.$target.classList.remove('hidden');
+    } else {
+      this.$target.classList.add('hidden');
+    }
     this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
     this.$lottoDisplayArea.innerHTML = this.createLottoHtml();
   }
