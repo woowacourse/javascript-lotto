@@ -1,4 +1,9 @@
-import { ACTION_TYPE, ALERT_MESSAGE, JS_SELECTOR } from "../constants/index.js";
+import {
+  ACTION_TYPE,
+  ALERT_MESSAGE,
+  JS_SELECTOR,
+  MONEY,
+} from "../constants/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../utils/index.js";
 import store from "../store.js";
 import Lotto from "../models/Lotto.js";
@@ -14,12 +19,8 @@ const getAlertMessage = (userInputCash) => {
 
   const cash = Number(userInputCash);
 
-  if (cash < 0) {
-    return ALERT_MESSAGE.ERROR.CASH_INPUT.NEGATIVE;
-  }
-
-  if (!Number.isInteger(cash)) {
-    return ALERT_MESSAGE.ERROR.CASH_INPUT.DECIMAL;
+  if (cash < MONEY.LOTTO_PRICE) {
+    return ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE;
   }
 
   return "";
@@ -27,17 +28,17 @@ const getAlertMessage = (userInputCash) => {
 
 $cashContainer.addEventListener("submit", (event) => {
   event.preventDefault();
-
   const alertMessage = getAlertMessage($cashInput.value);
 
   if (alertMessage !== "") {
     alert(alertMessage);
-    $cashInput.value = "";
+    $cashInput.clear();
     return;
   }
 
   const cash = Number($cashInput.value);
-  const lottoCount = Math.floor(cash / 1000);
+  const lottoCount = Math.floor(cash / MONEY.LOTTO_PRICE);
+  $cashInput.clear();
 
   const lottos = [...Array(lottoCount)].map(
     () => new Lotto(generateLottoNumbers())
