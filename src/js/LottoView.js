@@ -54,19 +54,16 @@ export default class LottoView {
   }
 
   createLottoIconTemplate(lottos) {
+    console.log(lottos);
     return lottos
       .map(
         lotto => `
           <div class="mx-1 text-4xl lotto-wrapper">
             <span class="lotto-icon">🎟️ </span>
-            <span class="lotto-detail">${this.getLottoDetail(lotto)}</span>
+            <span class="lotto-detail">${lotto.numberDetail}</span>
           </div>
         `
       )
       .join('');
-  }
-
-  getLottoDetail(lotto) {
-    return [...lotto.numbers.values()].join(', ');
   }
 }

@@ -1,7 +1,7 @@
 import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
 import { NUMBERS } from '../js/utils/constants.js';
-import priceValidator from '../js/utils/priceValidator.js';
+import validatePrice from './utils/validatePrice.js';
 import { $ } from './utils/dom.js';
 
 export default class LottoController {
@@ -36,9 +36,10 @@ export default class LottoController {
   inputPriceHandler(e) {
     e.preventDefault();
 
-    const inputPrice = $('#input-price').value;
+    const inputPrice = e.target.elements.inputPrice.value;
     if (!this.isValidPrice(inputPrice)) {
       this.lottoView.resetInputPrice();
+      alert(validatePrice(inputPrice));
       return;
     }
 
@@ -49,10 +50,7 @@ export default class LottoController {
   }
 
   isValidPrice(price) {
-    const errorMessage = priceValidator(price);
-    if (!errorMessage) return true;
-
-    alert(errorMessage);
+    if (!validatePrice(price)) return true;
     return false;
   }
 
