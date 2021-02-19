@@ -1,4 +1,8 @@
-import { ALERT_MESSAGE, JS_SELECTOR } from "../../src/js/constants/index.js";
+import {
+  ALERT_MESSAGE,
+  JS_SELECTOR,
+  MONEY,
+} from "../../src/js/constants/index.js";
 import { toDataAttributeSelector as toDAS } from "../../src/js/utils/querySelector.js";
 
 describe("구입 금액 입력 테스트", () => {
@@ -47,15 +51,20 @@ describe("구입 금액 입력 테스트", () => {
     });
   });
 
-  it("유저가 음수를 입력한 경우, 에러메시지를 alert로 출력한다", () => {
-    const wrongUserInput = -300;
-    testAlertMessage(wrongUserInput, ALERT_MESSAGE.ERROR.CASH_INPUT.NEGATIVE);
-    testResetInput();
+  it("유저가 1000원 미만의 금액을 입력한 경우, 에러메시지를 alert로 출력한다", () => {
+    [-300, 500].forEach((wrongUserInput, index) => {
+      testAlertMessage(
+        wrongUserInput,
+        ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE,
+        index + 1
+      );
+      testResetInput();
+    });
   });
 
   it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보를 보여준다", () => {
     const userInput = 4500;
-    const lottoCount = Math.floor(userInput / 1000);
+    const lottoCount = Math.floor(userInput / MONEY.LOTTO_PRICE);
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
 
@@ -68,5 +77,6 @@ describe("구입 금액 입력 테스트", () => {
       "have.length",
       lottoCount
     );
+    testResetInput();
   });
 });
