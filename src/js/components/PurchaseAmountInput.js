@@ -32,7 +32,7 @@ export default class PurchaseAmountInput {
 
     const change = purchaseAmount % LOTTO_PRICE;
 
-    if (change) {
+    if (change > 0) {
       alert(ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
 
