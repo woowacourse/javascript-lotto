@@ -75,7 +75,9 @@ class LottoController {
 
   handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON);
-    $buyButton.addEventListener("click", () => {
+    $buyButton.addEventListener("click", (event) => {
+      event.preventDefault();
+
       this.manageLotto();
     });
   }
