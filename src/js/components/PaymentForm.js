@@ -6,7 +6,7 @@ import {
 } from '../lib/constants/alertMessage.js';
 import { TICKET_PRICE } from '../lib/constants/ticket.js';
 
-class PaymentInput extends Component {
+class PaymentForm extends Component {
   mountTemplate() {
     this.$target.innerHTML = `
         <label class="mb-2 d-inline-block">
@@ -28,9 +28,9 @@ class PaymentInput extends Component {
   initEvent() {
     this.$target.addEventListener('submit', event => {
       event.preventDefault();
-      if (event.target.id !== 'payment-input-wrapper') return;
+      if (event.target.id !== 'payment-form-wrapper') return;
 
-      if (event.target.id === 'payment-input-wrapper') {
+      if (event.target.id === 'payment-form-wrapper') {
         const { value } = event.target.elements['money-amount'];
         if (!this.isValid(value)) {
           this.alertByCase(value);
@@ -61,4 +61,4 @@ class PaymentInput extends Component {
   }
 }
 
-export default PaymentInput;
+export default PaymentForm;
