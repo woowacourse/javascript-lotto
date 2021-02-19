@@ -3,6 +3,7 @@ import { $ } from './utils/querySelector.js';
 import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
 import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
 import { handleWinningNumberInput } from './handler/handleWinningNumberInput.js';
+import { handleModalPage } from './handler/handleModalPage.js';
 
 const init = () => {
   const lotto = new Lotto();

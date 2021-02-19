@@ -4,6 +4,15 @@ export const VALUE = {
     MIN_NUM: 1,
     MAX_NUM: 45,
   },
+
+  WINNING_RANK: {
+    FIRST: 1,
+    SECOND: 2,
+    THIRD: 3,
+    FOURTH: 4,
+    FIFTH: 5,
+    NONE: 0,
+  },
 };
 
 export const ERR_MESSAGE = {

@@ -1,6 +1,6 @@
 export default class Ticket {
   constructor() {
     this.numbers = [];
-    this.profit = 0;
+    this.winningRank = 0;
   }
 }
