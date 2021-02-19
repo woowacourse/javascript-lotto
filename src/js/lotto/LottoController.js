@@ -10,7 +10,7 @@ export default function LottoController() {
     return price > 0 && price % 1000 === 0; // price는 1000원 단위의 양수여야 한다.
   };
 
-  this.onClickPriceSubmitButton = (price) => {
+  this.onSubmitPrice = (price) => {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
       this.lottoView.resetLottoView();
@@ -21,7 +21,9 @@ export default function LottoController() {
     this.lottoView.showConfirmation(this.lottoModel.lottoList);
   };
 
-  this.onChangeLottoNumbersToggleButton = (e) => {
-    this.lottoView.paintLottoList(this.lottoModel.lottoList, e.target.checked);
+  this.onToggleLottoNumbers = (e) => {
+    e.target.checked
+      ? this.lottoView.showTicketDetails(this.lottoModel.lottoList)
+      : this.lottoView.showTickets(this.lottoModel.lottoList.length);
   };
 }
