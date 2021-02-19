@@ -2,7 +2,7 @@ import Lotto from './model/Lotto.js';
 import { $ } from './utils/querySelector.js';
 import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
 import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
-import Lotto from './model/Lotto.js';
+import { handleWinningNumberInput } from './handler/handleWinningNumberInput.js';
 
 const init = () => {
   const lotto = new Lotto();
@@ -20,7 +20,9 @@ const init = () => {
     handleWinningNumberInput(lotto),
   );
 
-  $('.modal').addEventListener('click', handleModalPage);
+  $('.modal').addEventListener('click', (event) =>
+    handleModalPage(event, lotto),
+  );
 };
 
 const App = () => {

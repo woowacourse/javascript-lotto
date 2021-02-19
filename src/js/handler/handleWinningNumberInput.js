@@ -1,7 +1,15 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { isDuplicate, isValidRange } from '../utils/validator.js';
-import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
+import { ERR_MESSAGE } from '../utils/constant.js';
 import { openModal } from '../view/viewModalPage.js';
+
+const getWinningNumbers = (lotto, winningNumbers) => {
+  lotto.winningNumbers = winningNumbers;
+};
+
+const getBonusNumber = (lotto, bonusNumber) => {
+  lotto.bonusNumber = bonusNumber;
+};
 
 export const handleWinningNumberInput = (lotto) => {
   const winningNumbers = [...$$('.winning-number')].map((winningNumber) =>
@@ -17,8 +25,8 @@ export const handleWinningNumberInput = (lotto) => {
     return alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
   }
 
-  lotto.getWinningNumbers(winningNumbers);
-  lotto.getBonusNumber(bonusNumber);
+  getWinningNumbers(lotto, winningNumbers);
+  getBonusNumber(lotto, bonusNumber);
 
   openModal();
 };

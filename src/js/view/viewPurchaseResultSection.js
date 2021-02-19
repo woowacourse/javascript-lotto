@@ -28,7 +28,6 @@ export const renderPurchaseResultSection = (
   const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
   const $purchaseResultSection = $('#purchase-result-section');
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
-  const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
 
   $purchaseResultSectionLabel.innerText = `총 ${amountOfLottoTicket}개를 구매하였습니다.`;
   $purchaseResultSectionRowAlign.innerHTML = lottoTicketIconTemplate().repeat(
