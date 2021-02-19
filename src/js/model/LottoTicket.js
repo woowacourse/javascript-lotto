@@ -13,7 +13,7 @@ export default class LottoTicket {
       return array;
     }
 
-    if (array.indexOf(number) === -1) {
+    if (!array.includes(number)) {
       array.push(number);
     }
 
