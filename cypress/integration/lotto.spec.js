@@ -52,7 +52,7 @@ describe("lotto 미션 테스트", () => {
       });
   });
 
-  it("금액에 맞는 수의 로또를 보여준다.", () => {
+  it("확인버튼 클릭시 금액에 맞는 수의 로또를 보여준다.", () => {
     cy.get("#price-input").type("3000");
     cy.get("#price-submit-button").click();
     cy.get("#confirmation").should("be.visible");
@@ -76,5 +76,12 @@ describe("lotto 미션 테스트", () => {
     cy.get("#price-submit-button").click();
     cy.get("#price-input").should("have.value", "");
     cy.get("#confirmation").should("not.be.visible");
+  });
+
+  it("금액 입력 후 엔터키를 누르면 금액에 맞는 수의 로또를 보여준다.", () => {
+    cy.get("#price-input").type("5000{enter}");
+    cy.get("#confirmation").should("be.visible");
+    cy.get("#lotto-list-label").should("have.text", "총 5개를 구매하였습니다.");
+    cy.get("#lotto-tickets").children().should("have.length", 5);
   });
 });
