@@ -9,7 +9,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:8080/');
+    cy.visit('http://127.0.0.1:5000/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -49,5 +49,11 @@ context('Actions', () => {
         expect(number).to.at.most(TICKET_MAX_NUMBER);
       });
     });
+  });
+
+  it('결과 확인 버튼을 누르면 당첨 통계, 수익률을 모달로 확인한다.', () => {
+    cy.get('#payment-input').type('5000');
+    cy.get('#payment-submit').click();
+    // cy.get('#');
   });
 });
