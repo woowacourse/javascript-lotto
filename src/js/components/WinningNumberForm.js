@@ -1,6 +1,6 @@
 import Component from '../lib/core/Component.js';
 
-export default class WinningNumberInput extends Component {
+export default class WinningNumberForm extends Component {
   mountTemplate() {
     this.$target.innerHTML = `
       <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
