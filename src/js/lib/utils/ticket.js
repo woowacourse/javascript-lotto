@@ -9,7 +9,7 @@ import {
 export const createTicket = () => {
   const ticket = new Set();
 
-  while (ticket.length < TICKET_NUMBERS_LENGTH) {
+  while (ticket.size < TICKET_NUMBERS_LENGTH) {
     ticket.add(createRandomNumber(TICKET_MIN_NUMBER, TICKET_MAX_NUMBER));
   }
 
