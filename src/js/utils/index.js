@@ -4,13 +4,6 @@ import {
   toClassSelector,
 } from "./querySelector.js";
 import { generateLottoNumbers } from "./generateLottoNumbers.js";
-import { show, hide } from "./display.js";
+import "./mixin.js";
 
-export {
-  $,
-  toDataAttributeSelector,
-  toClassSelector,
-  generateLottoNumbers,
-  show,
-  hide,
-};
+export { $, toDataAttributeSelector, toClassSelector, generateLottoNumbers };

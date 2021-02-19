@@ -3,7 +3,6 @@ import {
   $,
   toDataAttributeSelector as toDAS,
   toClassSelector as toCS,
-  show,
 } from "../utils/index.js";
 import store from "../store.js";
 
@@ -40,12 +39,12 @@ const render = () => {
     .map((lotto) => lottoTemplate(lotto))
     .join("");
 
-  show($lottoDetailContainer);
+  $lottoDetailContainer.show();
 };
 
 $toggleButton.addEventListener("change", () => {
-  $lottoIconWrapper.classList.toggle("flex-col");
-  $lottoDetailContainer.classList.toggle("detail");
+  $lottoIconWrapper.toggle("flex-col");
+  $lottoDetailContainer.toggle("detail");
 });
 
 store.subscribe(ACTION_TYPE.LOTTOS, render);
