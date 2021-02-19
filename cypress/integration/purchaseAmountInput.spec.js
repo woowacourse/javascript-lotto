@@ -1,8 +1,4 @@
-import {
-  LOTTO_PRICE,
-  MONETARY_UNIT,
-  ALERT_MESSAGE,
-} from '../../src/js/constants.js';
+import { LOTTO_PRICE, MONETARY_UNIT, ALERT_MESSAGE } from '../../src/js/constants.js';
 
 describe('구매금액 입력 검사', () => {
   beforeEach(() => {

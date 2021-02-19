@@ -3,6 +3,7 @@ import { $, clearInputValue } from '../utils/DOM.js';
 
 export default class PurchaseAmountInput {
   constructor({ createLottoTickets }) {
+    this.$purchaseAmountForm = $('.purchase-amount-form');
     this.$purchaseAmountInput = $('.purchase-amount-input');
     this.$purchaseAmountButton = $('.purchase-amount-button');
     this.createLottoTickets = createLottoTickets;
@@ -11,12 +12,9 @@ export default class PurchaseAmountInput {
   }
 
   attachEvents() {
-    this.$purchaseAmountButton.addEventListener('click', this.onSubmitPurchaseAmount.bind(this));
-    this.$purchaseAmountInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        this.onSubmitPurchaseAmount();
-      }
+    this.$purchaseAmountForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.onSubmitPurchaseAmount();
     });
   }
 
