@@ -1,9 +1,9 @@
 export const hideElement = ($target) => {
-  $target.style.display = "none";
+  $target.classList.add("d-none");
 };
 
 export const showElement = ($target) => {
-  $target.style.display = "";
+  $target.classList.remove("d-none");
 };
 
 export const shuffle = (arr) => {
