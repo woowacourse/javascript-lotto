@@ -1,5 +1,5 @@
 import Template from "./template.js";
-import { $ } from "./util.js";
+import { $ } from "../util.js";
 import { SELECTOR } from "./constant.js";
 
 class LottoView {

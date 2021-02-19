@@ -1,35 +1,36 @@
-import { ERROR_MESSAGE, LOTTO } from "../constant.js";
+import { ERROR_MESSAGE, LOTTO } from "./constant.js";
+
 class PriceValidator {
-  isFloatPrice(price) {
+  static isFloatPrice(price) {
     return parseInt(price, 10) !== price;
   }
 
-  isNegativeNumber(price) {
+  static isNegativeNumber(price) {
     return price < 0;
   }
 
-  isLessThanAThousand(price) {
+  static isLessThanAThousand(price) {
     return price < LOTTO.PRICE;
   }
 
-  isOverwritten(lottos) {
+  static isOverwritten(lottos) {
     return lottos.length !== 0;
   }
 
   isValid(price, lottos) {
-    if (this.isFloatPrice(price)) {
+    if (PriceValidator.isFloatPrice(price)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT;
     }
 
-    if (this.isNegativeNumber(price)) {
+    if (PriceValidator.isNegativeNumber(price)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE;
     }
 
-    if (this.isLessThanAThousand(price)) {
+    if (PriceValidator.isLessThanAThousand(price)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND;
     }
 
-    if (this.isOverwritten(lottos)) {
+    if (PriceValidator.isOverwritten(lottos)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_OVERWRITTEN;
     }
 
