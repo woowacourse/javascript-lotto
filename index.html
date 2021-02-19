@@ -31,7 +31,7 @@
               </button>
             </div>
           </form>
-          <div id="confirmation">
+          <div id="confirmation" class="d-none">
             <section class="mt-9" id="lotto-list">
               <div class="d-flex">
                 <label id="lotto-list-label" class="flex-auto my-0"></label>
@@ -39,6 +39,7 @@
                   <label class="switch">
                     <input
                       type="checkbox"
+                      id="lotto-numbers-toggle-button"
                       class="lotto-numbers-toggle-button"
                     />
                     <span class="text-base font-normal">번호보기</span>
@@ -90,6 +91,7 @@
               </div>
               <button
                 type="button"
+                id="open-result-modal-button"
                 class="open-result-modal-button mt-5 btn btn-cyan w-100"
               >
                 결과 확인하기
@@ -99,9 +101,9 @@
         </div>
       </div>
 
-      <div class="modal">
+      <div id="modal" class="modal">
         <div class="modal-inner p-10">
-          <div class="modal-close">
+          <div id="modal-close" class="modal-close">
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
