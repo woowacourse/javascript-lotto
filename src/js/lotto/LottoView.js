@@ -9,9 +9,7 @@ import {
 
 export default function LottoView() {
   this.getTicketTemplate = (num) => {
-    return [...Array(num)]
-      .map(() => `<span class="mx-1 text-4xl">🎟️ </span>`)
-      .join("");
+    return '<span class="mx-1 text-4xl">🎟️ </span>'.repeat(num);
   };
 
   this.getTicketDetailTemplate = (lottoList) => {
