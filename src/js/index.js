@@ -1,4 +1,4 @@
-import { $, getRandomNumber } from './utils.js';
+import { $, getRandomNumber, showElement, disableElement } from './utils.js';
 import { ALERT_MESSAGE, LOTTO } from './constants.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -30,10 +30,11 @@ class LottoApp {
     return Array.from({ length: lottoCount }, () => new Lotto(this.generateLottoNumbers()));
   }
 
-  moneySubmitHandler(event) {
+  handleSubmitMoney(event) {
     event.preventDefault();
 
-    const money = Number($('#money-input').value);
+    const money = event.target.elements['money-input'].valueAsNumber;
+    console.log(event);
 
     if (money < LOTTO.PRICE) {
       alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
@@ -44,22 +45,22 @@ class LottoApp {
     this.data.lottos = this.generateLottos(lottoCount);
 
     this.view.renderLottoList(this.data.lottos);
-    this.view.show($('.lotto-list-container'));
-    this.view.show($('.winning-number-form-container'));
-    this.view.disableElement($('#money-input'));
-    this.view.disableElement($('#money-submit-button'));
+    showElement($('.lotto-list-container'));
+    showElement($('.winning-number-form-container'));
+    disableElement($('#money-input'));
+    disableElement($('#money-submit-button'));
   }
 
-  lottoNumbersToggleHandler() {
+  handleToggleLottoNumbers() {
     $('.lotto-list').classList.toggle('show-number');
   }
 
   bindEvents() {
-    $('#money-input-form').addEventListener('submit', this.moneySubmitHandler.bind(this));
+    $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
 
     $('.lotto-numbers-toggle-button').addEventListener(
       'change',
-      this.lottoNumbersToggleHandler.bind(this)
+      this.handleToggleLottoNumbers.bind(this)
     );
   }
 }

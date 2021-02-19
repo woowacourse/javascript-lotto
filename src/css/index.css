@@ -28,7 +28,7 @@ button:disabled {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .lotto-numbers {
@@ -37,7 +37,6 @@ button:disabled {
 
 .lotto-list .lotto {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
