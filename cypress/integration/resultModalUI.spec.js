@@ -66,4 +66,16 @@ describe('당첨 결과 모달 UI 검사', () => {
 
     expect(rateOfReturn).to.equal(39999900);
   });
+
+  it('다시 시작하기 버튼을 클릭하면, 모달이 사라지고 화면이 초기화된다.', () => {
+    cy.get('.restart-button').click();
+    cy.get('.modal').should('not.be.visible');
+    cy.get('.purchased-lotto-section').should('not.be.visible');
+    cy.get('.winning-number-form').should('not.be.visible');
+    cy.get('.purchase-amount-input').should('have.text', '');
+    cy.get('.lotto-numbers-toggle-button').should('not.be.checked');
+    cy.get('.winning-number').each(($el) => {
+      cy.wrap($el).should('have.text', '');
+    });
+  });
 });
