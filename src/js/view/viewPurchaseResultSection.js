@@ -25,6 +25,7 @@ export const renderPurchaseResultSection = (
   amountOfLottoTicket,
   lottoTickets,
 ) => {
+  const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
   const $purchaseResultSection = $('#purchase-result-section');
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
   const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');

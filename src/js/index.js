@@ -1,9 +1,8 @@
 import Lotto from './model/Lotto.js';
 import { $ } from './utils/querySelector.js';
-import { handlePurchaseResultToggle } from './controller/handlePurchaseResultToggle.js';
-import { handlePurchasePriceInput } from './controller/handlePurchasePriceInput.js';
-import { handleWinningNumberInput } from './controller/handleWinningNumberInput.js';
-import { handleModalPage } from './controller/handleModalPage.js';
+import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
+import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
+import Lotto from './model/Lotto.js';
 
 const init = () => {
   const lotto = new Lotto();

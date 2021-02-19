@@ -4,7 +4,7 @@ import {
 } from '../view/viewPurchaseResultSection.js';
 
 export const handlePurchaseResultToggle = ({ target }) => {
-  return target.checked
+  target.checked
     ? renderPurchaseResultSectionColAlign()
     : renderPurchaseResultSectionRowAlign();
 };
