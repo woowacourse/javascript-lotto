@@ -9,3 +9,11 @@ export const openModal = () => {
 export const closeModal = () => {
   $modal.classList.remove('open');
 };
+
+const renderModalYield = () => {
+  //
+};
+
+export const renderModal = (lotto) => {
+  //
+};

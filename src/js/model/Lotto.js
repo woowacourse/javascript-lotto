@@ -1,7 +1,7 @@
 export default class Lotto {
   constructor() {
     this.tickets = [];
-    this.purchaseMoney;
-    this.totalProfit;
+    this.purchasePrice = 0;
+    this.totalProfit = 0;
   }
 }

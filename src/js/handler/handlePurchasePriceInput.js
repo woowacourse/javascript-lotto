@@ -4,6 +4,10 @@ import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import Ticket from '../model/Ticket.js';
 
+const setLottoPurchasePrice = (lotto, amoutOfLottoTicket) => {
+  lotto.purchasePrice = amoutOfLottoTicket * VALUE.LOTTO.TICKET_PRICE;
+};
+
 const setLottoNumbers = (ticket) => {
   const lottoNumbers = new Set();
 
@@ -33,13 +37,14 @@ export const handlePurchasePriceInput = (lotto) => {
     return;
   }
 
-  const numberOfLottoTicket = Math.floor(
+  const amoutOfLottoTicket = Math.floor(
     purchasePrice / VALUE.LOTTO.TICKET_PRICE,
   );
 
-  for (let i = 0; i < numberOfLottoTicket; i++) {
+  for (let i = 0; i < amoutOfLottoTicket; i++) {
     setLottoTicket(lotto);
   }
 
-  renderPurchaseResultSection(numberOfLottoTicket, getLottoTickets(lotto));
+  setLottoPurchasePrice(lotto, amoutOfLottoTicket);
+  renderPurchaseResultSection(amoutOfLottoTicket, getLottoTickets(lotto));
 };
