@@ -1,5 +1,5 @@
 import { MONETARY_UNIT, ALERT_MESSAGE, LOTTO_PRICE } from '../constants.js';
-import { $, clearInput } from '../utils/DOM.js';
+import { $, clearInputValue } from '../utils/DOM.js';
 
 export default class PurchaseAmountInput {
   constructor({ createLottoTickets }) {
@@ -26,7 +26,7 @@ export default class PurchaseAmountInput {
 
     if (errorMessage) {
       alert(errorMessage);
-      clearInput(this.$purchaseAmountInput);
+      clearInputValue(this.$purchaseAmountInput);
       this.$purchaseAmountInput.focus();
 
       return;
