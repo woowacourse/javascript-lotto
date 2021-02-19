@@ -1,10 +1,8 @@
-import { hideElement } from "./utils.js";
 import {
   $showResultButton,
   $modalClose,
   $modal,
   $lottoNumbersToggleButton,
-  $confirmation,
   $priceInput,
   $priceSubmitButton,
 } from "./elements.js";
@@ -22,10 +20,17 @@ const lottoController = new LottoController();
 
 $showResultButton.addEventListener("click", onModalShow);
 $modalClose.addEventListener("click", onModalClose);
-$priceSubmitButton.addEventListener("click", () => {
-  lottoController.onClickPriceSubmitButton($priceInput.value);
+$priceSubmitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  lottoController.onSubmitPrice($priceInput.value);
+});
+$priceInput.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  if (e.key === "enter") {
+    lottoController.onSubmitPrice(e.target.value);
+  }
 });
 $lottoNumbersToggleButton.addEventListener(
   "change",
-  lottoController.onChangeLottoNumbersToggleButton
+  lottoController.onToggleLottoNumbers
 );
