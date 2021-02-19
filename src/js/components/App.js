@@ -1,10 +1,10 @@
 import Component from '../lib/core/Component.js';
 import State from '../lib/core/State.js';
 import { $ } from '../lib/utils/dom.js';
-import PaymentInput from './PaymentInput.js';
+import PaymentForm from './PaymentForm.js';
 import ResultModal from './ResultModal.js';
 import TicketList from './TicketList.js';
-import WinningNumberInput from './WinningNumberInput.js';
+import WinningNumberForm from './WinningNumberForm.js';
 
 class App extends Component {
   initStates() {
@@ -16,7 +16,7 @@ class App extends Component {
       <div class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-          <form id="payment-input-wrapper" class="mt-5"></form>
+          <form id="payment-form-wrapper" class="mt-5"></form>
           <section id="ticket-view-wrapper" class="mt-9"></section>
           <form id="winning-number-form-wrapper" class="mt-9"></form>
         </div>
@@ -26,9 +26,9 @@ class App extends Component {
   }
 
   mountChildComponents() {
-    new PaymentInput($('#payment-input-wrapper'), { tickets: this.tickets });
+    new PaymentForm($('#payment-form-wrapper'), { tickets: this.tickets });
     new TicketList($('#ticket-view-wrapper'), { tickets: this.tickets });
-    new WinningNumberInput($('#winning-number-form-wrapper'));
+    new WinningNumberForm($('#winning-number-form-wrapper'));
     new ResultModal($('.modal'));
   }
 }
