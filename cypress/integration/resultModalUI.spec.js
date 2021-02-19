@@ -1,4 +1,4 @@
-import { BOUNS, LOTTO_PRICE } from '../../src/js/constants.js';
+import { BOUNS_COUNT, LOTTO_PRICE } from '../../src/js/constants.js';
 import LottoTicket from '../../src/js/model/LottoTicket.js';
 
 describe('당첨 결과 모달 UI 검사', () => {
@@ -22,7 +22,7 @@ describe('당첨 결과 모달 UI 검사', () => {
     cy.get('.modal').should('be.visible');
   });
 
-  it('구매한 로또의 당첨번호 일치 개수를 판별한다.', () => {
+  it('구매한 로또의 당첨번호 일치 개수를 반환한다.', () => {
     const lottoTicket1 = new LottoTicket([1, 2, 3, 4, 5, 6]);
     const lottoTicket2 = new LottoTicket([1, 2, 3, 4, 5, 7]);
     const lottoTicket3 = new LottoTicket([1, 2, 3, 4, 5, 8]);
@@ -33,12 +33,37 @@ describe('당첨 결과 모달 UI 검사', () => {
     const lottoTicket8 = new LottoTicket([12, 11, 10, 9, 8, 7]);
 
     expect(lottoTicket1.getMatchCount(winningNumber)).to.equal(6);
-    expect(lottoTicket2.getMatchCount(winningNumber)).to.equal(5.5);
+    expect(lottoTicket2.getMatchCount(winningNumber)).to.equal(5 + BOUNS_COUNT);
     expect(lottoTicket3.getMatchCount(winningNumber)).to.equal(5);
     expect(lottoTicket4.getMatchCount(winningNumber)).to.equal(4);
     expect(lottoTicket5.getMatchCount(winningNumber)).to.equal(3);
     expect(lottoTicket6.getMatchCount(winningNumber)).to.equal(2);
     expect(lottoTicket7.getMatchCount(winningNumber)).to.equal(1);
     expect(lottoTicket8.getMatchCount(winningNumber)).to.equal(0);
+  });
+
+  it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
+    const lottoTickets = [...Array(5)].map(() => new LottoTicket([7, 8, 9, 10, 11, 12]));
+    const rateOfReturn = new ResultModal().getRateOfReturn(lottoTickets);
+
+    expect(rateOfReturn).to.equal(-100);
+  });
+
+  it('구매금액이 5,000원이고 당첨금액이 5,000원이면, 0의 수익률(%)을 반환한다.', () => {
+    const lottoTickets = [...Array(4)]
+      .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
+      .concat(new LottoTicket([1, 2, 3, 7, 8, 9]));
+    const rateOfReturn = new ResultModal().getRateOfReturn(lottoTickets);
+
+    expect(rateOfReturn).to.equal(0);
+  });
+
+  it('구매금액이 5,000원이고 당첨금액이 2,000,000,000원이면, 39999900의 수익률(%)을 반환한다.', () => {
+    const lottoTickets = [...Array(4)]
+      .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
+      .concat(new LottoTicket([1, 2, 3, 4, 5, 6]));
+    const rateOfReturn = new ResultModal().getRateOfReturn(lottoTickets);
+
+    expect(rateOfReturn).to.equal(39999900);
   });
 });
