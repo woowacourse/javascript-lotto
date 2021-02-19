@@ -1,5 +1,4 @@
 import Component from '../lib/core/Component.js';
-import { $ } from '../lib/utils/dom.js';
 import { createTicket, getNumberOfTickets } from '../lib/utils/ticket.js';
 import {
   HAS_A_WHITESPACE_MESSAGE,
