@@ -20,9 +20,12 @@ export const WINNING_NUMBER_CHECK_MESSAGE = {
 
 export const BOUNS_COUNT = 0.5;
 export const WINNING_PRIZE = {
-  3: 5000,
-  4: 50000,
-  5: 1500000,
-  5.5: 30000000,
   6: 2000000000,
+  5.5: 30000000,
+  5: 1500000,
+  4: 50000,
+  3: 5000,
+  2: 0,
+  1: 0,
+  0: 0,
 };
