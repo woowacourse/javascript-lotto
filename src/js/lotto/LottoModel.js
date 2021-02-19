@@ -13,7 +13,8 @@ export default function LottoModel() {
     };
   };
 
-  this.createLottoes = (numOfLottoes) => {
+  this.buy = (price) => {
+    const numOfLottoes = price / 1000;
     this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
   };
 }
