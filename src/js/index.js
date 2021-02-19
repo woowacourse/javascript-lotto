@@ -10,10 +10,6 @@ import {
 } from "./elements.js";
 import LottoController from "./lotto/LottoController.js";
 
-const init = () => {
-  hideElement($confirmation);
-};
-
 const onModalShow = () => {
   $modal.classList.add("open");
 };
@@ -33,5 +29,3 @@ $lottoNumbersToggleButton.addEventListener(
   "change",
   lottoController.onChangeLottoNumbersToggleButton
 );
-
-init();
