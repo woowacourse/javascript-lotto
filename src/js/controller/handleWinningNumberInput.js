@@ -4,8 +4,6 @@ import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { openModal } from '../view/viewModalPage.js';
 
 export const handleWinningNumberInput = (lotto) => {
-  // 3. 모달(결과창) 보여주기
-
   const winningNumbers = [...$$('.winning-number')].map((winningNumber) =>
     Number(winningNumber.value),
   );
