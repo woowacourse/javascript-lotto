@@ -51,6 +51,7 @@ const createLottosAfterValidation = (event) => {
     console.error(error);
   } finally {
     $cashInput.clear();
+    $cashInput.focus();
   }
 };
 
