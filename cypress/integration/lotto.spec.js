@@ -1,5 +1,5 @@
 import { testInputValue } from '../utils/index.js';
-import { INVALID_PURCHASE_AMOUNT } from '../../src/js/constants/index.js';
+import { MSG_INVALID_PURCHASE_AMOUNT } from '../../src/js/constants/index.js';
 
 describe('Lotto test', () => {
   before(() => {
@@ -14,7 +14,7 @@ describe('Lotto test', () => {
         '#purchase-amount-input',
         '#purchase-amount-submit',
         invalidValue,
-        INVALID_PURCHASE_AMOUNT
+        MSG_INVALID_PURCHASE_AMOUNT
       );
     });
     testInputValue('#purchase-amount-input', '#purchase-amount-submit', '5000');

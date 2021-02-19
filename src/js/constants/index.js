@@ -4,4 +4,4 @@ export {
   MAX_LOTTO_NUMBER,
   LOTTO_NUMBER_COUNT,
 } from './standard.js';
-export { INVALID_PURCHASE_AMOUNT } from './alert_message.js';
+export { MSG_INVALID_PURCHASE_AMOUNT } from './alert_message.js';
