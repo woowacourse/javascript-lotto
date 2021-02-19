@@ -1,6 +1,6 @@
 import LottoModel from "./model.js";
 import LottoView from "./view.js";
-import PriceValidator from "./validator.js";
+import { getPriceInputErrorMessage } from "./validator.js";
 import { $, getQuotient, getRandomNumber, sortByNumber } from "../util.js";
 import { LOTTO, SELECTOR } from "./constant.js";
 
@@ -8,7 +8,6 @@ class LottoController {
   constructor() {
     this.model = new LottoModel();
     this.view = new LottoView();
-    this.priceValidator = new PriceValidator();
   }
 
   init() {
@@ -54,10 +53,10 @@ class LottoController {
   manageLotto() {
     const lottos = this.model.lottos;
     const price = Number(this.getAndClearBuyValue());
-    const alertMessage = this.priceValidator.isValid(price, lottos);
+    const errorMessage = getPriceInputErrorMessage(price, lottos);
 
-    if (alertMessage !== null) {
-      alert(alertMessage);
+    if (errorMessage !== null) {
+      alert(errorMessage);
       return;
     }
 
