@@ -11,7 +11,7 @@ const $lottoDetailLabel = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL));
 const $lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
 const $toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
 
-const lottoTemplate = (lotto) => {
+const TEMPLATE = (lotto) => {
   return `
     <div class="d-flex items-center">
       <span
@@ -35,16 +35,16 @@ const render = () => {
 
   $lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
 
-  $lottoIconWrapper.innerHTML = lottos
-    .map((lotto) => lottoTemplate(lotto))
-    .join("");
+  $lottoIconWrapper.innerHTML = lottos.map((lotto) => TEMPLATE(lotto)).join("");
 
   $lottoDetailContainer.show();
 };
 
-$toggleButton.addEventListener("change", () => {
+const toggleDetailMode = () => {
   $lottoIconWrapper.toggle("flex-col");
   $lottoDetailContainer.toggle("detail");
-});
+};
+
+$toggleButton.addEventListener("change", toggleDetailMode);
 
 store.subscribe(ACTION_TYPE.LOTTOS, render);
