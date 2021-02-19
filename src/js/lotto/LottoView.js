@@ -8,10 +8,6 @@ import {
 } from "../elements.js";
 
 export default function LottoView() {
-  this.getTicketLabelText = (num) => {
-    return `총 ${num}개를 구매하였습니다.`;
-  };
-
   this.getTicketTemplate = (num) => {
     return [...Array(num)]
       .map(() => `<span class="mx-1 text-4xl">🎟️ </span>`)
@@ -36,7 +32,7 @@ export default function LottoView() {
   };
 
   this.paintLottoList = (lottoList, toggleChecked) => {
-    $lottoListLabel.innerText = this.getTicketLabelText(lottoList.length);
+    $lottoListLabel.innerText = `총 ${lottoList.length}개를 구매하였습니다.`;
     $lottoTickets.innerHTML = toggleChecked
       ? this.getTicketDetailTemplate(lottoList)
       : this.getTicketTemplate(lottoList.length);
