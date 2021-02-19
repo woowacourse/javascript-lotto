@@ -32,5 +32,5 @@ $priceInput.addEventListener("keyup", (e) => {
 });
 $lottoNumbersToggleButton.addEventListener(
   "change",
-  lottoController.onToggleLottoNumbers
+  lottoController.onToggleLottoNumbers.bind(lottoController)
 );
