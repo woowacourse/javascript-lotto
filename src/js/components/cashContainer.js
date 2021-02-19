@@ -38,10 +38,10 @@ $cashContainer.addEventListener("submit", (event) => {
 
   const cash = Number($cashInput.value);
   const lottoCount = Math.floor(cash / 1000);
-  const lottos = [];
-  for (let i = 0; i < lottoCount; i++) {
-    lottos.push(new Lotto(generateLottoNumbers()));
-  }
+
+  const lottos = [...Array(lottoCount)].map(
+    () => new Lotto(generateLottoNumbers())
+  );
 
   store.dispatch({
     type: ACTION_TYPE.LOTTOS,
