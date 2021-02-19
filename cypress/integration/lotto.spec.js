@@ -65,9 +65,7 @@ describe("lotto 미션 테스트", () => {
     cy.get(".winning-numbers").each(($winningNumber) => {
       const isNumbers = $winningNumber[0].innerText
         .split(",")
-        .reduce((isNumber, value) => {
-          return isNumber && !isNaN(value.trim());
-        }, true);
+        .every((value) => !isNaN(value.trim()));
 
       expect(isNumbers).to.be.true;
     });
