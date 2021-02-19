@@ -1,9 +1,11 @@
 import { shuffle } from "../utils.js";
 
-export default function LottoModel() {
-  this.lottoList = []; // [ { winningNumber: [0, ] } ]
+export default class LottoModel {
+  constructor() {
+    this.lottoList = []; // [ { winningNumber: [0, ] } ]
+  }
 
-  this.createLotto = () => {
+  createLotto() {
     const baseNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
 
     shuffle(baseNumbers);
@@ -11,10 +13,10 @@ export default function LottoModel() {
     return {
       winningNumber: baseNumbers.slice(0, 6).sort((a, b) => a - b),
     };
-  };
+  }
 
-  this.buy = (price) => {
+  buy(price) {
     const numOfLottoes = price / 1000;
     this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
-  };
+  }
 }

@@ -7,14 +7,16 @@ import {
   $priceInput,
 } from "../elements.js";
 
-export default function LottoView() {
-  this.showTickets = (num) => {
+export default class LottoView {
+  constructor() {}
+
+  showTickets(num) {
     $lottoTickets.innerHTML = '<span class="mx-1 text-4xl">🎟️ </span>'.repeat(
       num
     );
-  };
+  }
 
-  this.showTicketDetails = (lottoList) => {
+  showTicketDetails(lottoList) {
     $lottoTickets.innerHTML = `
       <div class="d-flex flex-col">
       ${lottoList
@@ -29,17 +31,17 @@ export default function LottoView() {
         )
         .join("")}
       </div>`;
-  };
+  }
 
-  this.showConfirmation = (lottoList) => {
+  showConfirmation(lottoList) {
     showElement($confirmation);
     $lottoNumbersToggleButton.checked = false;
     $lottoListLabel.innerText = `총 ${lottoList.length}개를 구매하였습니다.`;
     this.showTickets(lottoList.length);
-  };
+  }
 
-  this.resetLottoView = () => {
+  resetLottoView() {
     $priceInput.value = "";
     hideElement($confirmation);
-  };
+  }
 }
