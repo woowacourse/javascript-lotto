@@ -11,39 +11,46 @@ export default class WinningNumberForm extends Component {
             <input
               type="number"
               class="winning-number mx-1 text-center"
+              name="first"
             />
             <input
               type="number"
               class="winning-number mx-1 text-center"
+              name="second"
             />
             <input
               type="number"
               class="winning-number mx-1 text-center"
+              name="third"
             />
             <input
               type="number"
               class="winning-number mx-1 text-center"
+              name="fourth"
             />
             <input
               type="number"
               class="winning-number mx-1 text-center"
+              name="fifth"
             />
             <input
               type="number"
               class="winning-number mx-1 text-center"
+              name="sixth"
             />
           </div>
         </div>
         <div class="bonus-number-container flex-grow">
           <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
           <div class="d-flex justify-center">
-            <input type="number" class="bonus-number text-center" />
+            <input type="number" class="bonus-number text-center" name="bonus"/>
           </div>
         </div>
       </div>
       <button
-        type="button"
+        type="submit"
         class="open-result-modal-button mt-5 btn btn-cyan w-100"
+        id="result-button"
       >
         결과 확인하기
       </button>

@@ -9,7 +9,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5000/');
+    cy.visit('http://localhost:5000/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -54,6 +54,12 @@ context('Actions', () => {
   it('결과 확인 버튼을 누르면 당첨 통계, 수익률을 모달로 확인한다.', () => {
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
-    // cy.get('#');
+    cy.log('.winning-number');
+    cy.get('.winning-number').each(element => {
+      cy.wrap(element).type(1);
+    });
+    cy.get('.bonus-number').type(2);
+    cy.get('#result-button').click();
+    cy.get('.modal').should('be.visible');
   });
 });
