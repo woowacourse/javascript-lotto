@@ -5,16 +5,17 @@ import PaymentForm from './PaymentForm.js';
 import ResultModal from './ResultModal.js';
 import TicketList from './TicketList.js';
 import WinningNumberForm from './WinningNumberForm.js';
-import { getTotalPrize, getWinners } from '../lib/utils/ticket.js';
-import { TICKET_PRICE } from '../lib/constants/ticket.js';
+import { getProfitPercentage, getWinners } from '../lib/utils/ticket.js';
 
 class App extends Component {
   initStates() {
     this.tickets = new State([]);
     this.open = new State(false);
     this.winningNumber = new State({});
-    this.winners = new State({});
-    this.profitPercentage = new State(0);
+    this.result = new State({
+      winners: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
+      profitPercentage: 0,
+    });
   }
 
   mountTemplate() {
@@ -41,37 +42,34 @@ class App extends Component {
     });
     new ResultModal($('.modal'), {
       open: this.open,
-      winners: this.winners,
-      profitPercentage: this.profitPercentage,
+      result: this.result,
       reset: this.reset.bind(this),
     });
   }
 
   subscribeStates() {
-    this.open.subscribe(this.update.bind(this));
-
-    this.winningNumber.subscribe(() => {
-      this.winners.set(
-        getWinners(this.tickets.get(), this.winningNumber.get())
-      );
-      this.profitPercentage.set(this.getProfitPercentage());
-    });
+    this.open.subscribe(this.toggleModal.bind(this));
+    this.winningNumber.subscribe(this.calculateResult.bind(this));
   }
 
-  getProfitPercentage() {
-    const payment = this.tickets.get().length * TICKET_PRICE;
-
-    return Math.floor(
-      ((getTotalPrize(this.winners.get()) - payment) / payment) * 100
-    );
-  }
-
-  update() {
+  toggleModal() {
     if (this.open.get()) {
       $('.modal').classList.add('open');
     } else {
       $('.modal').classList.remove('open');
     }
+  }
+
+  calculateResult() {
+    const winners = getWinners(this.tickets.get(), this.winningNumber.get());
+    const profitPercentage = getProfitPercentage(
+      this.tickets.get().length,
+      winners
+    );
+    this.result.set({
+      winners,
+      profitPercentage,
+    });
   }
 
   initEvent() {

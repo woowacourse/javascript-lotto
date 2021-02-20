@@ -50,12 +50,16 @@ class TicketList extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id !== 'detail-mode-toggle') return;
 
-      if (target.checked) {
-        this.turnDetailModeOn();
-      } else {
-        this.turnDetailModeOff();
-      }
+      this.toggleDetailMode(target.checked);
     });
+  }
+
+  toggleDetailMode(isChecked) {
+    if (isChecked) {
+      this.turnDetailModeOn();
+    } else {
+      this.turnDetailModeOff();
+    }
   }
 
   turnDetailModeOn() {
