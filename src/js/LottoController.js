@@ -1,7 +1,7 @@
 import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
-import { NUMBERS } from '../js/utils/constants.js';
-import validatePrice from './utils/validatePrice.js';
+import { NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
+import { isCorrectPurchaseUnit } from './utils/validatePrice.js';
 import { $ } from './utils/dom.js';
 
 export default class LottoController {
@@ -37,9 +37,9 @@ export default class LottoController {
     e.preventDefault();
 
     const inputPrice = e.target.elements.inputPrice.value;
-    if (!this.isValidPrice(inputPrice)) {
+    if (!isCorrectPurchaseUnit(inputPrice)) {
       this.lottoView.resetInputPrice();
-      alert(validatePrice(inputPrice));
+      alert(ALERT_MESSAGES.INCORRECT_UNIT);
       return;
     }
 
@@ -47,11 +47,6 @@ export default class LottoController {
     this.lottoView.showLottoView();
     this.lottoView.renderTotalLottoCount(this.lottos.length);
     this.lottoView.renderLottoIcons(this.lottos);
-  }
-
-  isValidPrice(price) {
-    if (!validatePrice(price)) return true;
-    return false;
   }
 
   toggleSwitchHandler() {
