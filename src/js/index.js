@@ -1,17 +1,36 @@
-const $showResultButton = document.querySelector('.open-result-modal-button')
-const $modalClose = document.querySelector('.modal-close')
-const $modal = document.querySelector('.modal')
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-)
+import {
+  $showResultButton,
+  $modalClose,
+  $modal,
+  $lottoNumbersToggleButton,
+  $priceInput,
+  $priceSubmitButton,
+} from "./elements.js";
+import LottoController from "./lotto/LottoController.js";
 
 const onModalShow = () => {
-  $modal.classList.add('open')
-}
+  $modal.classList.add("open");
+};
 
 const onModalClose = () => {
-  $modal.classList.remove('open')
-}
+  $modal.classList.remove("open");
+};
 
-$showResultButton.addEventListener('click', onModalShow)
-$modalClose.addEventListener('click', onModalClose)
+const lottoController = new LottoController();
+
+$showResultButton.addEventListener("click", onModalShow);
+$modalClose.addEventListener("click", onModalClose);
+$priceSubmitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  lottoController.onSubmitPrice($priceInput.value);
+});
+$priceInput.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  if (e.key === "enter") {
+    lottoController.onSubmitPrice(e.target.value);
+  }
+});
+$lottoNumbersToggleButton.addEventListener(
+  "change",
+  lottoController.onToggleLottoNumbers.bind(lottoController)
+);
