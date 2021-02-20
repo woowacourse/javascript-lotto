@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { isDuplicate, isValidRange } from '../utils/validator.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
-import { openModal } from '../view/viewModalPage.js';
+import { openModal, renderModal } from '../view/viewModalPage.js';
 
 const setLottoTotalProfit = (lotto) => {
   lotto.totalProfit = lotto.tickets.reduce((acc, ticket) => {
@@ -36,6 +36,27 @@ const getRank = (winningCount) => {
   return rank[winningCount];
 };
 
+const getRankCountMap = (lotto) => {
+  const rankCountMap = new Map([
+    [VALUE.WINNING_RANK.FIRST, 0],
+    [VALUE.WINNING_RANK.SECOND, 0],
+    [VALUE.WINNING_RANK.THIRD, 0],
+    [VALUE.WINNING_RANK.FOURTH, 0],
+    [VALUE.WINNING_RANK.FIFTH, 0],
+    [VALUE.WINNING_RANK.NONE, 0],
+  ]);
+
+  lotto.tickets.forEach(({ winningRank }) => {
+    rankCountMap.set(winningRank, rankCountMap.get(winningRank) + 1);
+  });
+
+  return rankCountMap;
+};
+
+const getTotalYield = (lotto) => {
+  return Number(((lotto.totalProfit / lotto.purchasePrice) * 100).toFixed(2));
+};
+
 const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
   const bonusCount = ticket.numbers.includes(bonusNumber);
   const winnigCount =
@@ -68,6 +89,10 @@ export const handleWinningNumberInput = (lotto) => {
   });
 
   setLottoTotalProfit(lotto);
-  console.log(lotto);
+
+  const ranckCountMap = getRankCountMap(lotto);
+  const totalYield = getTotalYield(lotto);
+
+  renderModal(ranckCountMap, totalYield);
   openModal();
 };
