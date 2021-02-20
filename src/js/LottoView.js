@@ -57,10 +57,10 @@ export default class LottoView {
     return lottos
       .map(
         lotto => `
-          <div class="mx-1 text-4xl lotto-wrapper">
+          <li class="mx-1 text-4xl lotto-wrapper">
             <span class="lotto-icon">🎟️ </span>
             <span class="lotto-detail">${lotto.numberDetail}</span>
-          </div>
+          </li>
         `
       )
       .join('');
