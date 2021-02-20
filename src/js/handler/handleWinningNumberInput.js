@@ -11,12 +11,12 @@ const setLottoTotalProfit = (lotto) => {
 
 const getProfit = (winningRank) => {
   const profits = {
-    1: VALUE.WINNING_PRICE.FIRST,
-    2: VALUE.WINNING_PRICE.SECOND,
-    3: VALUE.WINNING_PRICE.THIRD,
-    4: VALUE.WINNING_PRICE.FOURTH,
-    5: VALUE.WINNING_PRICE.FIFTH,
-    0: VALUE.WINNING_PRICE.NONE,
+    [VALUE.WINNING_RANK.FIRST]: VALUE.WINNING_PRICE.FIRST,
+    [VALUE.WINNING_RANK.SECOND]: VALUE.WINNING_PRICE.SECOND,
+    [VALUE.WINNING_RANK.THIRD]: VALUE.WINNING_PRICE.THIRD,
+    [VALUE.WINNING_RANK.FOURTH]: VALUE.WINNING_PRICE.FOURTH,
+    [VALUE.WINNING_RANK.FIFTH]: VALUE.WINNING_PRICE.FIFTH,
+    [VALUE.WINNING_RANK.NONE]: VALUE.WINNING_PRICE.NONE,
   };
 
   return profits[winningRank];
@@ -24,13 +24,13 @@ const getProfit = (winningRank) => {
 
 const getRank = (winningCount) => {
   const rank = {
-    6: VALUE.WINNING_RANK.FIRST,
-    5: VALUE.WINNING_RANK.THIRD,
-    4: VALUE.WINNING_RANK.FOURTH,
-    3: VALUE.WINNING_RANK.FIFTH,
-    2: VALUE.WINNING_RANK.NONE,
-    1: VALUE.WINNING_RANK.NONE,
-    0: VALUE.WINNING_RANK.NONE,
+    [VALUE.HIT_COUNT.SIX]: VALUE.WINNING_RANK.FIRST,
+    [VALUE.HIT_COUNT.FIVE]: VALUE.WINNING_RANK.THIRD,
+    [VALUE.HIT_COUNT.FOUR]: VALUE.WINNING_RANK.FOURTH,
+    [VALUE.HIT_COUNT.THREE]: VALUE.WINNING_RANK.FIFTH,
+    [VALUE.HIT_COUNT.TWO]: VALUE.WINNING_RANK.NONE,
+    [VALUE.HIT_COUNT.ONE]: VALUE.WINNING_RANK.NONE,
+    [VALUE.HIT_COUNT.NONE]: VALUE.WINNING_RANK.NONE,
   };
 
   return rank[winningCount];
@@ -39,11 +39,11 @@ const getRank = (winningCount) => {
 const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
   const bonusCount = ticket.numbers.includes(bonusNumber);
   const winnigCount =
-    [...ticket.numbers, ...winningNumbers].length -
+    VALUE.LOTTO.TICKET_LENGH * 2 -
     new Set([...ticket.numbers, ...winningNumbers]).size;
 
   ticket.winningRank =
-    bonusCount && winnigCount === 5
+    bonusCount && winnigCount === VALUE.HIT_COUNT.FIVE
       ? VALUE.WINNING_RANK.SECOND
       : getRank(winnigCount);
   ticket.profit = getProfit(ticket.winningRank);

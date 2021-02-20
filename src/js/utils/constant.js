@@ -1,17 +1,28 @@
 export const VALUE = {
   LOTTO: {
+    TICKET_LENGH: 6,
     TICKET_PRICE: 1000,
     MIN_NUM: 1,
     MAX_NUM: 45,
   },
 
+  HIT_COUNT: {
+    NONE: 0,
+    ONE: 1,
+    TWO: 2,
+    THREE: 3,
+    FOUR: 4,
+    FIVE: 5,
+    SIX: 6,
+  },
+
   WINNING_RANK: {
+    NONE: 0,
     FIRST: 1,
     SECOND: 2,
     THIRD: 3,
     FOURTH: 4,
     FIFTH: 5,
-    NONE: 0,
   },
 
   WINNING_PRICE: {
