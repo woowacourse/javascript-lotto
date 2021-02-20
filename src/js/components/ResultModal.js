@@ -52,7 +52,7 @@ export default class ResultModal extends Component {
         </div>
         <p class="text-center font-bold">당신의 총 수익률은 ${this.props.profitPercentage.get()}%입니다.</p>
         <div class="d-flex justify-center mt-5">
-          <button type="button" class="btn btn-cyan">다시 시작하기</button>
+          <button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>
         </div>
       </div>
     </div>
@@ -67,6 +67,10 @@ export default class ResultModal extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.closest('.modal-close')) {
         this.props.open.set(false);
+      }
+
+      if (target.id === 'reset-button') {
+        this.props.reset();
       }
     });
   }

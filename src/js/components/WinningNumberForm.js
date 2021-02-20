@@ -80,6 +80,12 @@ export default class WinningNumberForm extends Component {
 
       this.props.open.set(true);
       this.props.winningNumber.set(winningNumber);
+
+      [$first, $second, $third, $fourth, $fifth, $sixth, $bonus].forEach(
+        element => {
+          element.value = '';
+        }
+      );
     });
   }
 }
