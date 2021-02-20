@@ -20,7 +20,7 @@ class PaymentForm extends Component {
             name="money-amount"
             class="w-100 mr-2 pl-2"
             placeholder="구입 금액"
-            autofocus 
+            autofocus
           />
           <button name="payment-submit" id="payment-submit" type="submit" class="btn btn-cyan">확인</button>
         </div>
@@ -28,25 +28,22 @@ class PaymentForm extends Component {
   }
 
   initEvent() {
-    this.$target.addEventListener('submit', event => {
-      event.preventDefault();
-      if (event.target.id !== 'payment-form-wrapper') return;
+    this.$target.addEventListener('submit', this.handleSubmit.bind(this));
+  }
 
-      const $moneyAmountInput = event.target.elements['money-amount'];
-      if (!this.isValid($moneyAmountInput.value)) {
-        this.alertByCase($moneyAmountInput.value);
-        return;
-      }
+  handleSubmit(event) {
+    event.preventDefault();
+    if (event.target.id !== 'payment-form-wrapper') return;
 
-      const numberOfTickets = getNumberOfTickets($moneyAmountInput.value);
-      this.props.tickets.set(
-        [...Array(numberOfTickets)].map(() => createTicket())
-      );
+    const $moneyAmountInput = event.target.elements['money-amount'];
+    if (!this.isValid($moneyAmountInput.value)) {
+      this.alertByCase($moneyAmountInput.value);
+      return;
+    }
 
-      $('.winning-number[name=first]').focus();
-      $moneyAmountInput.disabled = true;
-      event.target.elements['payment-submit'].disabled = true;
-    });
+    this.setTickets($moneyAmountInput.value);
+    $moneyAmountInput.value = '';
+    $('.winning-number[name=first]').focus();
   }
 
   isValid(value) {
@@ -62,6 +59,13 @@ class PaymentForm extends Component {
     if (Number(value) < TICKET_PRICE) {
       alert(LESS_THAN_TICKET_PRICE_MESSAGE);
     }
+  }
+
+  setTickets(moneyAmount) {
+    const numberOfTickets = getNumberOfTickets(moneyAmount);
+    this.props.tickets.set(
+      [...Array(numberOfTickets)].map(() => createTicket())
+    );
   }
 }
 

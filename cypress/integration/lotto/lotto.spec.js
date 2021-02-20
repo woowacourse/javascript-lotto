@@ -69,6 +69,7 @@ context('Actions', () => {
     });
     cy.get('.bonus-number').type(34);
     cy.get('#result-button').click();
+
     cy.get('.modal').should('be.visible');
   });
 
