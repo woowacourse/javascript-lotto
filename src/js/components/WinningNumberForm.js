@@ -69,76 +69,102 @@ export default class WinningNumberForm extends Component {
   }
 
   initEvent() {
-    this.$target.addEventListener('keyup', ({ target }) => {
-      const MAX_DIGIT = 2;
+    this.$target.addEventListener(
+      'keyup',
+      this.handleWinningNumberInput.bind(this)
+    );
 
-      if (!target.classList.contains('winning-number')) return;
+    this.$target.addEventListener('submit', this.handleSumbit.bind(this));
+  }
 
-      if (target.value && !this.isValidRange(Number(target.value))) {
-        alert(EXCEED_RANGE_NUMBER);
-        target.value = '';
-      }
+  handleWinningNumberInput({ target }) {
+    if (!target.classList.contains('winning-number')) return;
 
-      if (target.value.length === MAX_DIGIT && target.name !== 'sixth') {
-        target.nextElementSibling.focus();
-      }
+    if (target.value && !this.isValidRange(Number(target.value))) {
+      alert(EXCEED_RANGE_NUMBER);
+      target.value = '';
+    }
 
-      if (target.value.length === MAX_DIGIT && target.name === 'sixth') {
-        $('.bonus-number[name=bonus]').focus();
-      }
-    });
-
-    this.$target.addEventListener('submit', event => {
-      event.preventDefault();
-
-      const {
-        first: $first,
-        second: $second,
-        third: $third,
-        fourth: $fourth,
-        fifth: $fifth,
-        sixth: $sixth,
-        bonus: $bonus,
-      } = event.target.elements;
-
-      const winningNumber = {
-        main: [$first, $second, $third, $fourth, $fifth, $sixth].map(element =>
-          Number(element.value)
-        ),
-        bonus: Number($bonus.value),
-      };
-
-      if (
-        !this.props.tickets.get().length ||
-        winningNumber.main.some(number => Number.isNaN(number)) ||
-        Number.isNaN(winningNumber.bonus)
-      ) {
-        alert(INPUT_NOT_COMPLETED);
-        return;
-      }
-
-      const uniqueNumberSize = new Set([
-        ...winningNumber.main,
-        winningNumber.bonus,
-      ]).size;
-
-      if (uniqueNumberSize < TICKET_NUMBERS_LENGTH) {
-        alert(DUPLICATE_WINNING_NUMBER);
-        return;
-      }
-
-      this.props.open.set(true);
-      this.props.winningNumber.set(winningNumber);
-
-      [$first, $second, $third, $fourth, $fifth, $sixth, $bonus].forEach(
-        element => {
-          element.value = '';
-        }
-      );
-    });
+    this.focus(target);
   }
 
   isValidRange(value) {
     return value >= TICKET_MIN_NUMBER && value <= TICKET_MAX_NUMBER;
+  }
+
+  focus(target) {
+    const MAX_DIGIT = 2;
+
+    if (target.value.length === MAX_DIGIT && target.name !== 'sixth') {
+      target.nextElementSibling.focus();
+    }
+
+    if (target.value.length === MAX_DIGIT && target.name === 'sixth') {
+      $('.bonus-number[name=bonus]').focus();
+    }
+  }
+
+  handleSumbit(event) {
+    const winningNumber = this.getWinningNumbers(event.target.elements);
+
+    event.preventDefault();
+
+    if (!this.isValid(winningNumber)) {
+      this.alertByCase(winningNumber);
+      return;
+    }
+
+    this.props.winningNumber.set(winningNumber);
+    this.props.open.set(true);
+    this.clearInputs(event.target.elements);
+  }
+
+  isValid(winningNumber) {
+    const uniqueNumberSize = new Set([
+      ...winningNumber.main,
+      winningNumber.bonus,
+    ]).size;
+
+    return (
+      this.props.tickets.get().length &&
+      winningNumber.main.every(number => Number.isInteger(number)) &&
+      Number.isInteger(winningNumber.bonus) &&
+      uniqueNumberSize === TICKET_NUMBERS_LENGTH + 1
+    );
+  }
+
+  alertByCase(winningNumber) {
+    const uniqueNumberSize = new Set([
+      ...winningNumber.main,
+      winningNumber.bonus,
+    ]).size;
+
+    if (
+      !this.props.tickets.get().length ||
+      winningNumber.main.some(number => Number.isNaN(number)) ||
+      Number.isNaN(winningNumber.bonus)
+    ) {
+      alert(INPUT_NOT_COMPLETED);
+      return;
+    }
+
+    if (uniqueNumberSize < TICKET_NUMBERS_LENGTH) {
+      alert(DUPLICATE_WINNING_NUMBER);
+    }
+  }
+
+  clearInputs({ first, second, third, fourth, fifth, sixth, bonus }) {
+    [first, second, third, fourth, fifth, sixth, bonus].forEach(element => {
+      element.value = '';
+    });
+  }
+
+  getWinningNumbers({ first, second, third, fourth, fifth, sixth, bonus }) {
+    return {
+      main: [first, second, third, fourth, fifth, sixth].map(({ value }) =>
+        Number(value)
+      ),
+      bonus: Number(bonus.value),
+    };
   }
 }

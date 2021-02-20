@@ -2,7 +2,13 @@ import Component from '../lib/core/Component.js';
 
 export default class ResultModal extends Component {
   mountTemplate() {
-    const { first, second, third, fourth, fifth } = this.props.winners.get();
+    const {
+      first,
+      second,
+      third,
+      fourth,
+      fifth,
+    } = this.props.result.get().winners;
 
     this.$target.innerHTML = `
       <div class="modal-inner p-10">
@@ -50,7 +56,9 @@ export default class ResultModal extends Component {
             </tbody>
           </table>
         </div>
-        <p class="text-center font-bold">당신의 총 수익률은 ${this.props.profitPercentage.get()}%입니다.</p>
+        <p class="text-center font-bold">
+          당신의 총 수익률은 ${this.props.result.get().profitPercentage}%입니다.
+        </p>
         <div class="d-flex justify-center mt-5">
           <button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>
         </div>
@@ -60,7 +68,7 @@ export default class ResultModal extends Component {
   }
 
   subscribeStates() {
-    this.props.profitPercentage.subscribe(this.render.bind(this));
+    this.props.result.subscribe(this.render.bind(this));
   }
 
   initEvent() {
