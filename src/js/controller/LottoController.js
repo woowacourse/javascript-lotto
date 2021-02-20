@@ -9,27 +9,33 @@ export class LottoController {
   }
 
   initEvent() {
-    $('#purchase-amount-submit').addEventListener(
+    this.$purchaseAmountSubmit = $('#purchase-amount-submit');
+    this.$lottoToggle = $('.lotto-numbers-toggle-button');
+
+    this.$purchaseAmountSubmit.addEventListener(
       'click',
       this.handlePurchaseAmountInput.bind(this)
     );
-    $('.switch').addEventListener('click', this.handleLottoToggle.bind(this));
+    this.$lottoToggle.addEventListener(
+      'click',
+      this.handleLottoToggle.bind(this)
+    );
   }
 
   handlePurchaseAmountInput() {
-    const $input = $('#purchase-amount-input');
-    const money = Number($input.value);
+    this.$purchaseAmountInput = $('#purchase-amount-input');
+    const money = Number(this.$purchaseAmountInput.value);
     const alertMessage = validator.purchaseAmountInput(money);
 
     if (alertMessage) {
-      this.handleInputException($input, alertMessage);
+      this.handleInputException(this.$purchaseAmountInput, alertMessage);
 
       return;
     }
 
     this.machine.publishLottosByAuto(money);
     this.view.renderLottoSection(this.machine.lottos);
-    $input.disabled = true;
+    this.$purchaseAmountInput.disabled = true;
     $('#purchase-amount-submit').disabled = true;
   }
 
@@ -39,11 +45,12 @@ export class LottoController {
   }
 
   handleLottoToggle() {
-    const $lottoNumbers = $$('.lotto-numbers');
+    this.$lottoContainer = $('#lotto-container');
+    this.$lottoNumbers = $$('.lotto-numbers');
 
-    $('#lotto-container').classList.toggle('flex-col'); // toggle()을 이용해 flex direction 변경.
-    $('.lotto-numbers-toggle-button').checked
-      ? show(...$lottoNumbers)
-      : hide(...$lottoNumbers);
+    this.$lottoContainer.classList.toggle('flex-col'); // toggle()을 이용해 flex direction 변경.
+    this.$lottoToggle.checked
+      ? show(...this.$lottoNumbers)
+      : hide(...this.$lottoNumbers);
   }
 }
