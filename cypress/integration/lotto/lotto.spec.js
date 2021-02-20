@@ -1,4 +1,5 @@
 import {
+  DUPLICATE_WINNING_NUMBER,
   HAS_A_WHITESPACE_MESSAGE,
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
@@ -9,7 +10,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5500/');
+    cy.visit('http://localhost:5000/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -52,28 +53,30 @@ context('Actions', () => {
   });
 
   it('결과 확인 버튼을 누르면 당첨 통계, 수익률을 모달로 확인한다.', () => {
+    let i = 1;
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
     cy.log('.winning-number');
     cy.get('.winning-number').each(element => {
-      cy.wrap(element).type(1);
+      cy.wrap(element).type(i++);
     });
-    cy.get('.bonus-number').type(2);
+    cy.get('.bonus-number').type(34);
     cy.get('#result-button').click();
     cy.get('.modal').should('be.visible');
   });
 
   it('다시 시작하기 버튼을 누르면 초기화되어서 다시 구매를 시작할 수 있다.', () => {
+    let i = 1;
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
     cy.log('.winning-number');
     cy.get('.winning-number').each(element => {
-      cy.wrap(element).type(1);
+      cy.wrap(element).type(i++);
     });
-    cy.get('.bonus-number').type(2);
+    cy.get('.bonus-number').type(34);
     cy.get('#result-button').click();
     cy.get('#reset-button').click();
-    cy.get('.modal').should('not.be.visible');
+    cy.get('.modal').should('not.to.be.visible');
   });
 
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
@@ -83,5 +86,18 @@ context('Actions', () => {
       'be.calledWith',
       '잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.'
     );
+  });
+
+  it('당첨번호는 중복될 수 없다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('#payment-input').type('5000');
+    cy.get('#payment-submit').click();
+    cy.log('.winning-number');
+    cy.get('.winning-number').each(element => {
+      cy.wrap(element).type(1);
+    });
+    cy.get('.bonus-number').type(34);
+    cy.get('#result-button').click();
+    cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
   });
 });
