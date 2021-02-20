@@ -22,7 +22,7 @@ class PaymentForm extends Component {
             placeholder="구입 금액"
             autofocus 
           />
-          <button id="payment-submit" type="submit" class="btn btn-cyan">확인</button>
+          <button name="payment-submit" id="payment-submit" type="submit" class="btn btn-cyan">확인</button>
         </div>
     `;
   }
@@ -43,8 +43,9 @@ class PaymentForm extends Component {
         [...Array(numberOfTickets)].map(() => createTicket())
       );
 
-      $moneyAmountInput.value = '';
       $('.winning-number[name=first]').focus();
+      $moneyAmountInput.disabled = true;
+      event.target.elements['payment-submit'].disabled = true;
     });
   }
 
