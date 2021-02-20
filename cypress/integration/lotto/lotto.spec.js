@@ -10,7 +10,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5000/');
+    cy.visit('http://localhost:5500/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
