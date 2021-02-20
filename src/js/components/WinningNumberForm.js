@@ -3,6 +3,7 @@ import {
   TICKET_MAX_NUMBER,
 } from '../lib/constants/ticket.js';
 import Component from '../lib/core/Component.js';
+import { $ } from '../lib/utils/dom.js';
 
 export default class WinningNumberForm extends Component {
   mountTemplate() {
@@ -65,9 +66,17 @@ export default class WinningNumberForm extends Component {
     this.$target.addEventListener('keyup', ({ target }) => {
       if (!target.classList.contains('winning-number')) return;
 
-      if (!this.isValidRange(Number(target.value))) {
+      if (target.value && !this.isValidRange(Number(target.value))) {
         alert('잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.');
         target.value = '';
+      }
+
+      if (target.value.length === 2 && target.name !== 'sixth') {
+        target.nextElementSibling.focus();
+      }
+
+      if (target.value.length === 2 && target.name === 'sixth') {
+        $('.bonus-number[name=bonus]').focus();
       }
     });
 
