@@ -56,4 +56,30 @@ export default class WinningNumberForm extends Component {
       </button>
     `;
   }
+
+  initEvent() {
+    this.$target.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const {
+        first: $first,
+        second: $second,
+        third: $third,
+        fourth: $fourth,
+        fifth: $fifth,
+        sixth: $sixth,
+        bonus: $bonus,
+      } = event.target.elements;
+
+      const winningNumber = {
+        main: [$first, $second, $third, $fourth, $fifth, $sixth].map(element =>
+          Number(element.value)
+        ),
+        bonus: Number($bonus.value),
+      };
+
+      this.props.open.set(true);
+      this.props.winningNumber.set(winningNumber);
+    });
+  }
 }
