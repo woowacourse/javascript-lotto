@@ -10,7 +10,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5500/');
+    cy.visit('http://localhost:5000/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -30,6 +30,12 @@ context('Actions', () => {
     cy.get('#payment-input').type('0');
     cy.get('#payment-submit').click();
     cy.get('@alert').should('be.calledWith', LESS_THAN_TICKET_PRICE_MESSAGE);
+  });
+
+  it('한 번 로또를 구입하면 다시 구매할 수 없다.', () => {
+    cy.get('#payment-input').type('1000');
+    cy.get('#payment-submit').click();
+    cy.get('#payment-submit').should('be.disabled');
   });
 
   it('토글 버튼을 누르면 티켓의 번호를 보여준다.', () => {
