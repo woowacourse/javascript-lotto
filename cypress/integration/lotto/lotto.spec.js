@@ -2,6 +2,8 @@ import {
   DUPLICATE_WINNING_NUMBER,
   HAS_A_WHITESPACE_MESSAGE,
   LESS_THAN_TICKET_PRICE_MESSAGE,
+  INPUT_NOT_COMPLETED,
+  EXCEED_RANGE_NUMBER,
 } from '../../../src/js/lib/constants/alertMessage';
 import {
   TICKET_MIN_NUMBER,
@@ -86,10 +88,7 @@ context('Actions', () => {
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('.winning-number[name=first]').type(99);
-    cy.get('@alert').should(
-      'be.calledWith',
-      '잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.'
-    );
+    cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
   });
 
   it('당첨번호는 중복될 수 없다.', () => {
@@ -107,9 +106,6 @@ context('Actions', () => {
   it('결과확인 전에 구입 금액과 당첨번호를 모두 입력해야 한다.', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('#result-button').click();
-    cy.get('@alert').should(
-      'be.calledWith',
-      '입력되지 않은 값이 있습니다. 모든 입력을 완료해주세요'
-    );
+    cy.get('@alert').should('be.calledWith', INPUT_NOT_COMPLETED);
   });
 });
