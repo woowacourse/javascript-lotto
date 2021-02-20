@@ -6,6 +6,7 @@ import ResultModal from './ResultModal.js';
 import TicketList from './TicketList.js';
 import WinningNumberForm from './WinningNumberForm.js';
 import { getTotalPrize, getWinners } from '../lib/utils/ticket.js';
+import { TICKET_PRICE } from '../lib/constants/ticket.js';
 
 class App extends Component {
   initStates() {
@@ -58,7 +59,7 @@ class App extends Component {
   }
 
   getProfitPercentage() {
-    const payment = this.tickets.get().length * 1000;
+    const payment = this.tickets.get().length * TICKET_PRICE;
 
     return Math.floor(
       ((getTotalPrize(this.winners.get()) - payment) / payment) * 100

@@ -3,7 +3,11 @@ import {
   TICKET_MAX_NUMBER,
   TICKET_NUMBERS_LENGTH,
 } from '../lib/constants/ticket.js';
-import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
+import {
+  DUPLICATE_WINNING_NUMBER,
+  INPUT_NOT_COMPLETED,
+  EXCEED_RANGE_NUMBER,
+} from '../lib/constants/alertMessage.js';
 import Component from '../lib/core/Component.js';
 import { $ } from '../lib/utils/dom.js';
 
@@ -66,18 +70,20 @@ export default class WinningNumberForm extends Component {
 
   initEvent() {
     this.$target.addEventListener('keyup', ({ target }) => {
+      const MAX_DIGIT = 2;
+
       if (!target.classList.contains('winning-number')) return;
 
       if (target.value && !this.isValidRange(Number(target.value))) {
-        alert('잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.');
+        alert(EXCEED_RANGE_NUMBER);
         target.value = '';
       }
 
-      if (target.value.length === 2 && target.name !== 'sixth') {
+      if (target.value.length === MAX_DIGIT && target.name !== 'sixth') {
         target.nextElementSibling.focus();
       }
 
-      if (target.value.length === 2 && target.name === 'sixth') {
+      if (target.value.length === MAX_DIGIT && target.name === 'sixth') {
         $('.bonus-number[name=bonus]').focus();
       }
     });
@@ -107,7 +113,7 @@ export default class WinningNumberForm extends Component {
         winningNumber.main.some(number => Number.isNaN(number)) ||
         Number.isNaN(winningNumber.bonus)
       ) {
-        alert('입력되지 않은 값이 있습니다. 모든 입력을 완료해주세요');
+        alert(INPUT_NOT_COMPLETED);
         return;
       }
 
