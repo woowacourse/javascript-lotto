@@ -6,6 +6,7 @@ export default class Component {
     this.$target = $target;
     this.props = props;
     this.initStates();
+    this.subscribeStates();
     this.render();
     this.initEvent();
   }
@@ -22,4 +23,6 @@ export default class Component {
   mountTemplate() {}
 
   mountChildComponents() {}
+
+  subscribeStates() {}
 }
