@@ -1,7 +1,9 @@
 import {
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
+  TICKET_NUMBERS_LENGTH,
 } from '../lib/constants/ticket.js';
+import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
 import Component from '../lib/core/Component.js';
 import { $ } from '../lib/utils/dom.js';
 
@@ -99,6 +101,13 @@ export default class WinningNumberForm extends Component {
         ),
         bonus: Number($bonus.value),
       };
+
+      const uniqueNumberSize = new Set(winningNumber.main).size;
+
+      if (uniqueNumberSize < TICKET_NUMBERS_LENGTH) {
+        alert(DUPLICATE_WINNING_NUMBER);
+        return;
+      }
 
       this.props.open.set(true);
       this.props.winningNumber.set(winningNumber);
