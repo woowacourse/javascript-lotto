@@ -41,6 +41,7 @@ class App extends Component {
       open: this.open,
       winners: this.winners,
       profitPercentage: this.profitPercentage,
+      reset: this.reset.bind(this),
     });
   }
 
@@ -77,6 +78,12 @@ class App extends Component {
         this.open.set(false);
       }
     });
+  }
+
+  reset() {
+    this.tickets.set([]);
+    this.open.set(false);
+    this.winningNumber.set({});
   }
 }
 
