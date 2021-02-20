@@ -3,10 +3,13 @@ import {
   showElement,
   hideElement,
   disabledElement,
+  enabledElement,
 } from '../utils/setProperty.js';
 
+const $purchaseResultSection = $('#purchase-result-section');
 const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
 const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
+const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
 
 const lottoTicketIconTemplate = () => {
   return `<span class="purchase-result-section__lotto-icon mx-1 text-4xl">
@@ -25,8 +28,6 @@ export const renderPurchaseResultSection = (
   amountOfLottoTicket,
   lottoTickets,
 ) => {
-  const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
-  const $purchaseResultSection = $('#purchase-result-section');
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
 
   $purchaseResultSectionLabel.innerText = `총 ${amountOfLottoTicket}개를 구매하였습니다.`;
@@ -50,4 +51,9 @@ export const renderPurchaseResultSectionColAlign = () => {
 export const renderPurchaseResultSectionRowAlign = () => {
   showElement($purchaseResultSectionRowAlign);
   hideElement($purchaseResultSectionColAlign);
+};
+
+export const initializePurchaseResultSection = () => {
+  enabledElement($purchasePriceInputFormButton);
+  hideElement($purchaseResultSection);
 };

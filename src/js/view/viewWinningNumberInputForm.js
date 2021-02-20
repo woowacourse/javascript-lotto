@@ -1,16 +1,12 @@
 import { $ } from '../utils/querySelector.js';
-import { showElement } from '../utils/setProperty.js';
+import { showElement, hideElement } from '../utils/setProperty.js';
 
-export const renderWinningNumberInputForm = () => {
-  const $winningNumberInputForm = $('#winning-number-input-form');
+const $winningNumberInputForm = $('#winning-number-input-form');
 
+export const showWinningNumberInputForm = () => {
   showElement($winningNumberInputForm);
 };
 
-const onModalShow = () => {
-  $modal.classList.add('open');
-};
-
-const onModalClose = () => {
-  $modal.classList.remove('open');
+export const hideWinningNumberInputForm = () => {
+  hideElement($winningNumberInputForm);
 };

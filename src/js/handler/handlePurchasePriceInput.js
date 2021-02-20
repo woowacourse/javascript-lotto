@@ -2,6 +2,7 @@ import { $ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
+import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 import Ticket from '../model/Ticket.js';
 
 const setLottoPurchasePrice = (lotto, amoutOfLottoTicket) => {
@@ -11,8 +12,8 @@ const setLottoPurchasePrice = (lotto, amoutOfLottoTicket) => {
 const setLottoNumbers = (ticket) => {
   const lottoNumbers = new Set();
 
-  while (lottoNumbers.size < 6) {
-    lottoNumbers.add(getRandomNumber(1, 45));
+  while (lottoNumbers.size < VALUE.LOTTO.TICKET_LENGH) {
+    lottoNumbers.add(getRandomNumber(VALUE.LOTTO.MIN_NUM, VALUE.LOTTO.MAX_NUM));
   }
 
   ticket.numbers = [...lottoNumbers].sort((a, b) => a - b);
@@ -47,4 +48,5 @@ export const handlePurchasePriceInput = (lotto) => {
 
   setLottoPurchasePrice(lotto, amoutOfLottoTicket);
   renderPurchaseResultSection(amoutOfLottoTicket, getLottoTickets(lotto));
+  showWinningNumberInputForm();
 };
