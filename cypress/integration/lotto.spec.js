@@ -93,7 +93,7 @@ describe('racing-game', () => {
     playLottoGame();
     cy.get('.modal').should('be.visible');
 
-    cy.get('#resart-button').click();
+    cy.get('.restart-button').click();
     cy.get('.modal').should('not.be.visible');
     cy.get('#purchase-result-section').should('not.be.visible');
     cy.get('#winning-number-input-form').should('not.be.visible');
