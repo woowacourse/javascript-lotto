@@ -1,3 +1,7 @@
+import {
+  TICKET_MIN_NUMBER,
+  TICKET_MAX_NUMBER,
+} from '../lib/constants/ticket.js';
 import Component from '../lib/core/Component.js';
 
 export default class WinningNumberForm extends Component {
@@ -58,6 +62,15 @@ export default class WinningNumberForm extends Component {
   }
 
   initEvent() {
+    this.$target.addEventListener('keyup', ({ target }) => {
+      if (!target.classList.contains('winning-number')) return;
+
+      if (!this.isValidRange(Number(target.value))) {
+        alert('잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.');
+        target.value = '';
+      }
+    });
+
     this.$target.addEventListener('submit', event => {
       event.preventDefault();
 
@@ -87,5 +100,9 @@ export default class WinningNumberForm extends Component {
         }
       );
     });
+  }
+
+  isValidRange(value) {
+    return value >= TICKET_MIN_NUMBER && value <= TICKET_MAX_NUMBER;
   }
 }
