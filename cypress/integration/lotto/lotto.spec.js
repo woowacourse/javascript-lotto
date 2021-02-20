@@ -56,7 +56,6 @@ context('Actions', () => {
     let i = 1;
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
-    cy.log('.winning-number');
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
@@ -69,7 +68,6 @@ context('Actions', () => {
     let i = 1;
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
-    cy.log('.winning-number');
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
@@ -92,12 +90,20 @@ context('Actions', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('#payment-input').type('5000');
     cy.get('#payment-submit').click();
-    cy.log('.winning-number');
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(1);
     });
     cy.get('.bonus-number').type(34);
     cy.get('#result-button').click();
     cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
+  });
+
+  it('결과확인 전에 구입 금액과 당첨번호를 모두 입력해야 한다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('#result-button').click();
+    cy.get('@alert').should(
+      'be.calledWith',
+      '입력되지 않은 값이 있습니다. 모든 입력을 완료해주세요'
+    );
   });
 });
