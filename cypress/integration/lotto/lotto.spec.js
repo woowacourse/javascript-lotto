@@ -9,7 +9,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5000/');
+    cy.visit('http://localhost:5500/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -74,5 +74,14 @@ context('Actions', () => {
     cy.get('#result-button').click();
     cy.get('#reset-button').click();
     cy.get('.modal').should('not.be.visible');
+  });
+
+  it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('.winning-number[name=first]').type(99);
+    cy.get('@alert').should(
+      'be.calledWith',
+      '잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.'
+    );
   });
 });
