@@ -9,11 +9,11 @@
   <body>
     <div id="app" class="p-3">
       <div class="d-flex justify-center mt-5">
-        <div class="w-100">
+        <section class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
           <form id="input-price-form" class="mt-5">
-            <label class="mb-2 d-inline-block"
-              >구입할 금액을 입력해주세요.
+            <label for="input-price" class="mb-2 d-inline-block">
+              구입할 금액을 입력해주세요.
             </label>
             <div class="d-flex">
               <input
@@ -22,6 +22,9 @@
                 class="w-100 mr-2 pl-2"
                 name="inputPrice"
                 placeholder="구입 금액"
+                required
+                min="1000"
+                max="100000"
               />
               <button type="submit" id="input-price-btn" class="btn btn-cyan">확인</button>
             </div>
@@ -94,10 +97,10 @@
               결과 확인하기
             </button>
           </form>
-        </div>
+        </section>
       </div>
 
-      <div class="modal">
+      <!-- <div class="modal">
         <div class="modal-inner p-10">
           <div class="modal-close">
             <svg viewbox="0 0 40 40">
@@ -149,7 +152,7 @@
             <button type="button" class="btn btn-cyan">다시 시작하기</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>

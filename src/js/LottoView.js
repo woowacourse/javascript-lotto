@@ -54,7 +54,6 @@ export default class LottoView {
   }
 
   createLottoIconTemplate(lottos) {
-    console.log(lottos);
     return lottos
       .map(
         lotto => `
