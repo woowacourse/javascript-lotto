@@ -5,6 +5,7 @@ import {
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../lib/constants/alertMessage.js';
 import { TICKET_PRICE } from '../lib/constants/ticket.js';
+import { $ } from '../lib/utils/dom.js';
 
 class PaymentForm extends Component {
   mountTemplate() {
@@ -19,6 +20,7 @@ class PaymentForm extends Component {
             name="money-amount"
             class="w-100 mr-2 pl-2"
             placeholder="구입 금액"
+            autofocus 
           />
           <button id="payment-submit" type="submit" class="btn btn-cyan">확인</button>
         </div>
@@ -42,6 +44,7 @@ class PaymentForm extends Component {
       );
 
       $moneyAmountInput.value = '';
+      $('.winning-number[name=first]').focus();
     });
   }
 
