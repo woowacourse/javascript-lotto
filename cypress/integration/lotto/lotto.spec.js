@@ -9,7 +9,7 @@ import {
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5500/');
+    cy.visit('http://localhost:5000/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -61,5 +61,18 @@ context('Actions', () => {
     cy.get('.bonus-number').type(2);
     cy.get('#result-button').click();
     cy.get('.modal').should('be.visible');
+  });
+
+  it('다시 시작하기 버튼을 누르면 초기화되어서 다시 구매를 시작할 수 있다.', () => {
+    cy.get('#payment-input').type('5000');
+    cy.get('#payment-submit').click();
+    cy.log('.winning-number');
+    cy.get('.winning-number').each(element => {
+      cy.wrap(element).type(1);
+    });
+    cy.get('.bonus-number').type(2);
+    cy.get('#result-button').click();
+    cy.get('#reset-button').click();
+    cy.get('.modal').should('not.be.visible');
   });
 });
