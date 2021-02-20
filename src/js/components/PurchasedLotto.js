@@ -25,19 +25,19 @@ export default class PurchasedLotto {
 
   showNumbers() {
     this.$lottoTicketContainer.classList.add('flex-col');
-    $$('.lotto-numbers').forEach(($lottoNumbers) => $lottoNumbers.classList.remove('d-none'));
+    this.$lottoTicketContainer.classList.remove('d-none-numbers');
   }
 
   hideNumbers() {
     this.$lottoTicketContainer.classList.remove('flex-col');
-    $$('.lotto-numbers').forEach(($lottoNumbers) => $lottoNumbers.classList.add('d-none'));
+    this.$lottoTicketContainer.classList.add('d-none-numbers');
   }
 
   createLottoTicketHTML(lottoTicket) {
     return `
     <li class="mx-1 text-4xl d-flex items-center">
       🎟️
-      <span class="text-xl ml-5 d-none lotto-numbers">
+      <span class="text-xl ml-5 lotto-numbers">
         ${lottoTicket.numbers.join(LOTTO_NUMBER_SEPARATOR)}
       </span>
     </li>`;
