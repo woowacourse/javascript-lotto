@@ -30,18 +30,16 @@ class PaymentForm extends Component {
       event.preventDefault();
       if (event.target.id !== 'payment-form-wrapper') return;
 
-      if (event.target.id === 'payment-form-wrapper') {
-        const { value } = event.target.elements['money-amount'];
-        if (!this.isValid(value)) {
-          this.alertByCase(value);
-          return;
-        }
-
-        const numberOfTickets = getNumberOfTickets(value);
-        this.props.tickets.set(
-          [...Array(numberOfTickets)].map(() => createTicket())
-        );
+      const { value } = event.target.elements['money-amount'];
+      if (!this.isValid(value)) {
+        this.alertByCase(value);
+        return;
       }
+
+      const numberOfTickets = getNumberOfTickets(value);
+      this.props.tickets.set(
+        [...Array(numberOfTickets)].map(() => createTicket())
+      );
     });
   }
 

@@ -2,11 +2,6 @@ import Component from '../lib/core/Component.js';
 import { $, $$ } from '../lib/utils/dom.js';
 
 class TicketList extends Component {
-  constructor($target, props) {
-    super($target, props);
-    this.props.tickets.subscribe(this.mountTemplate.bind(this));
-  }
-
   mountTemplate() {
     this.$target.innerHTML = `
       <div class="d-flex">
@@ -45,6 +40,10 @@ class TicketList extends Component {
         <span class="lotto-numbers hide">${ticket.join(', ')}</span>
       </div>
     `;
+  }
+
+  subscribeStates() {
+    this.props.tickets.subscribe(this.mountTemplate.bind(this));
   }
 
   initEvent() {
