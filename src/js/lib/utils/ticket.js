@@ -18,3 +18,63 @@ export const createTicket = () => {
 
 export const getNumberOfTickets = value =>
   Math.floor(Number(value) / TICKET_PRICE);
+
+export const getRank = (ticket, winningNumber) => {
+  let score = 0;
+
+  ticket.forEach(number => {
+    if (winningNumber.main.includes(number)) {
+      score += 1;
+    }
+  });
+
+  if (score === 5 && ticket.includes(winningNumber.bonus)) {
+    return 'second';
+  }
+
+  if (score < 3) {
+    return 'loser';
+  }
+
+  return ['fifth', 'fourth', 'third', 'first'][score - 3];
+};
+
+export const getWinners = (tickets, winningNumber) => {
+  const winners = {
+    first: 0,
+    second: 0,
+    third: 0,
+    fourth: 0,
+    fifth: 0,
+  };
+
+  tickets.forEach(ticket => {
+    const rank = getRank(ticket, winningNumber);
+
+    if (rank !== 'loser') {
+      winners[rank] += 1;
+    }
+  });
+
+  return winners;
+};
+
+const prizeAmount = {
+  first: 2000000000,
+  second: 30000000,
+  third: 1500000,
+  fourth: 50000,
+  fifth: 5000,
+};
+
+export const getTotalPrize = winners => {
+  let totalProfit = 0;
+
+  for (const winner in winners) {
+    if (Object.hasOwnProperty.call(winners, winner)) {
+      totalProfit += winners[winner] * prizeAmount[winner];
+    }
+  }
+
+  return totalProfit;
+};
