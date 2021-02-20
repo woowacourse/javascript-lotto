@@ -123,3 +123,8 @@
 .order-none {
   order: 0;
 }
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
