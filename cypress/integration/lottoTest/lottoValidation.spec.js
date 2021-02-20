@@ -15,11 +15,26 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
       });
   }
 
-  it('로또 구입 금액은 최소 1,000원, 최대 100,000원으로 제한한다.', () => {
-    exceptionAlert(
-      120000,
-      '로또 구입 금액은 최소 1,000원에서 100,000원까지 입력 가능합니다.'
-    );
+  function checkInvalid(wrongPrice, errorMessage) {
+    cy.get('#input-price').type(wrongPrice);
+    cy.get('#input-price-btn').click();
+
+    cy.get('input:invalid').should('have.length', 1);
+    cy.get('#input-price').then($input => {
+      expect($input[0].validationMessage).to.eq(errorMessage);
+    });
+  }
+
+  it('로또 구입 금액은 최소 1,000원으로 제한한다.', () => {
+    checkInvalid(200, '값은 1000 이상이어야 합니다.');
+
+    cy.get('#purchased-lottos').should('not.be.visible');
+    cy.get('#input-lotto-nums').should('not.be.visible');
+  });
+
+  it('로또 구입 금액은 최대 100,000원으로 제한한다.', () => {
+    checkInvalid(120000, '값은 100000 이하여야 합니다.');
+
     cy.get('#purchased-lottos').should('not.be.visible');
     cy.get('#input-lotto-nums').should('not.be.visible');
   });
