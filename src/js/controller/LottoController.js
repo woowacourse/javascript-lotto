@@ -1,4 +1,4 @@
-import { $, $$, hide, show, validator } from '../util/index.js';
+import { $, validator } from '../util/index.js';
 import { LottoView } from '../view/index.js';
 import { LottoMachine } from '../model/index.js';
 
@@ -12,19 +12,16 @@ export class LottoController {
     this.$purchaseAmountSubmit = $('#purchase-amount-submit');
     this.$lottoToggle = $('.lotto-numbers-toggle-button');
 
-    this.$purchaseAmountSubmit.addEventListener(
+    this.$purchaseAmountSubmit.setEvent(
       'click',
       this.handlePurchaseAmountInput.bind(this)
     );
-    this.$lottoToggle.addEventListener(
-      'click',
-      this.handleLottoToggle.bind(this)
-    );
+    this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
   }
 
   handlePurchaseAmountInput() {
     this.$purchaseAmountInput = $('#purchase-amount-input');
-    const money = Number(this.$purchaseAmountInput.value);
+    const money = Number(this.$purchaseAmountInput.getValue());
     const alertMessage = validator.purchaseAmountInput(money);
 
     if (alertMessage) {
@@ -35,22 +32,22 @@ export class LottoController {
 
     this.machine.publishLottosByAuto(money);
     this.view.renderLottoSection(this.machine.lottos);
-    this.$purchaseAmountInput.disabled = true;
-    $('#purchase-amount-submit').disabled = true;
+    this.$purchaseAmountInput.disable();
+    this.$purchaseAmountSubmit.disable();
   }
 
   handleInputException($input, alertMessage) {
     alert(alertMessage);
-    $input.value = '';
+    $input.setValue('');
   }
 
   handleLottoToggle() {
     this.$lottoContainer = $('#lotto-container');
-    this.$lottoNumbers = $$('.lotto-numbers');
+    this.$lottoNumbers = $('.lotto-numbers');
 
-    this.$lottoContainer.classList.toggle('flex-col'); // toggle()을 이용해 flex direction 변경.
-    this.$lottoToggle.checked
-      ? show(...this.$lottoNumbers)
-      : hide(...this.$lottoNumbers);
+    this.$lottoContainer.toggleClass('flex-col'); // toggle()을 이용해 flex direction 변경.
+    $('.lotto-numbers-toggle-button').isCheckedInput()
+      ? this.$lottoNumbers.show()
+      : this.$lottoNumbers.hide();
   }
 }
