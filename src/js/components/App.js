@@ -36,6 +36,7 @@ class App extends Component {
     new WinningNumberForm($('#winning-number-form-wrapper'), {
       open: this.open,
       winningNumber: this.winningNumber,
+      tickets: this.tickets,
     });
     new ResultModal($('.modal'), {
       open: this.open,

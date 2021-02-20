@@ -102,7 +102,19 @@ export default class WinningNumberForm extends Component {
         bonus: Number($bonus.value),
       };
 
-      const uniqueNumberSize = new Set(winningNumber.main).size;
+      if (
+        !this.props.tickets.get().length ||
+        winningNumber.main.some(number => Number.isNaN(number)) ||
+        Number.isNaN(winningNumber.bonus)
+      ) {
+        alert('입력되지 않은 값이 있습니다. 모든 입력을 완료해주세요');
+        return;
+      }
+
+      const uniqueNumberSize = new Set([
+        ...winningNumber.main,
+        winningNumber.bonus,
+      ]).size;
 
       if (uniqueNumberSize < TICKET_NUMBERS_LENGTH) {
         alert(DUPLICATE_WINNING_NUMBER);
