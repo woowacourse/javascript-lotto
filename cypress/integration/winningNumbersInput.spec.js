@@ -28,12 +28,12 @@ describe('당첨번호 입력 검사', () => {
     const bonusNumber = 7;
     const { OUT_OF_RANGE } = WINNING_NUMBER_CHECK_MESSAGE;
 
-    cy.get('.winning-number-check-message').should('not.be.visible');
+    cy.get('.winning-number-check-message').should('have.text', '');
     cy.get('.winning-number').each(($el, index) => {
       cy.wrap($el).type(invalidWinningNumbers[index]);
     });
     cy.get('.bonus-number').type(bonusNumber);
-    cy.get('.winning-number-check-message').should('be.visible').should('have.text', OUT_OF_RANGE);
+    cy.get('.winning-number-check-message').should('have.text', OUT_OF_RANGE);
   });
 
   it('번호를 모두 입력했을 때 보너스번호가 1 ~ 45 범위가 아니면, 입력칸 하단에 재입력 요청 메세지를 표시한다.', () => {
@@ -41,12 +41,12 @@ describe('당첨번호 입력 검사', () => {
     const invalidBonusNumber = 77;
     const { OUT_OF_RANGE } = WINNING_NUMBER_CHECK_MESSAGE;
 
-    cy.get('.winning-number-check-message').should('not.be.visible');
+    cy.get('.winning-number-check-message').should('have.text', '');
     cy.get('.winning-number').each(($el, index) => {
       cy.wrap($el).type(winningNumbers[index]);
     });
     cy.get('.bonus-number').type(invalidBonusNumber);
-    cy.get('.winning-number-check-message').should('be.visible').should('have.text', OUT_OF_RANGE);
+    cy.get('.winning-number-check-message').should('have.text', OUT_OF_RANGE);
   });
 
   it('번호를 모두 입력했을 때 입력된 번호에 중복된 값이 있으면, 입력칸 하단에 재입력 요청 메세지를 표시한다.', () => {
@@ -54,11 +54,11 @@ describe('당첨번호 입력 검사', () => {
     const bonusNumber = 7;
     const { DUPLICATED } = WINNING_NUMBER_CHECK_MESSAGE;
 
-    cy.get('.winning-number-check-message').should('not.be.visible');
+    cy.get('.winning-number-check-message').should('have.text', '');
     cy.get('.winning-number').each(($el, index) => {
       cy.wrap($el).type(winningNumbers[index]);
     });
     cy.get('.bonus-number').type(bonusNumber);
-    cy.get('.winning-number-check-message').should('be.visible').should('have.text', DUPLICATED);
+    cy.get('.winning-number-check-message').should('have.text', DUPLICATED);
   });
 });
