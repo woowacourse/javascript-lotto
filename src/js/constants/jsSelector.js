@@ -15,6 +15,9 @@ const JS_SELECTOR = {
   WINNING_NUMBER: {
     CONTAINER: "winning-number-container",
   },
+  MODAL: {
+    PROFIT_RATE_PARAGRAPH: "modal__profit-rate",
+  },
 };
 
 export default JS_SELECTOR;
