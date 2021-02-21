@@ -1,6 +1,6 @@
 import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
-import { NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
+import { LOTTO_NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
 import { isCorrectPurchaseUnit } from './utils/validatePrice.js';
 import { $ } from './utils/dom.js';
 
@@ -28,7 +28,6 @@ export default class LottoController {
   createLottos(lottoCount) {
     this.lottos = Array.from({ length: lottoCount }, () => {
       const lotto = new Lotto();
-      lotto.initNumbers();
       return lotto;
     });
   }
@@ -43,7 +42,7 @@ export default class LottoController {
       return;
     }
 
-    this.createLottos(inputPrice / NUMBERS.LOTTO_UNIT);
+    this.createLottos(inputPrice / LOTTO_NUMBERS.LOTTO_UNIT);
     this.lottoView.showLottoView();
     this.lottoView.renderTotalLottoCount(this.lottos.length);
     this.lottoView.renderLottoIcons(this.lottos);
