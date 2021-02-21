@@ -1,7 +1,7 @@
 import { $ } from './utils/dom.js';
 import Lotto from './objects/Lotto.js';
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_SELECTORS } from './utils/constants.js';
-import { isMoneyUnderLottoPrice, isMoneyNotInteger } from './utils/validation.js';
+import { isMoneyNotInteger } from './utils/validation.js';
 
 export default class LottoController {
   constructor(lottoUI) {
@@ -27,7 +27,7 @@ export default class LottoController {
 
   handleMoneyInputButton() {
     const moneyInput = Number($(DOM_SELECTORS.MONEY_INPUT).value);
-    if (isMoneyUnderLottoPrice(moneyInput)) {
+    if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
