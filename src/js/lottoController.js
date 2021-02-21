@@ -15,10 +15,12 @@ export default class LottoController {
   }
 
   initEventListener() {
+    $(DOM_SELECTORS.MONEY_FORM).addEventListener('submit', (event) => {
+      event.preventDefault();
+      this.handleMoneyInputButton();
+    });
+
     $(DOM_SELECTORS.APP).addEventListener('click', event => {
-      if (event.target.closest(DOM_SELECTORS.MONEY_INPUT_BUTTON)) {
-        this.handleMoneyInputButton();
-      }
       if (event.target.closest(DOM_SELECTORS.CHECK_LOTTO_SWITCH)) {
         this.handleCheckLottoSwitch();
       }
@@ -26,7 +28,7 @@ export default class LottoController {
   }
 
   handleMoneyInputButton() {
-    const moneyInput = Number($(DOM_SELECTORS.MONEY_INPUT).value);
+    const moneyInput = Number($(DOM_SELECTORS.MONEY_FORM_INPUT).value);
     if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;

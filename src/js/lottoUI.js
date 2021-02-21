@@ -10,19 +10,19 @@ export default class LottoUI {
 
   renderMoneyInputUI() {
     $(DOM_SELECTORS.MONEY_INPUT_CONTAINER).innerHTML = `
-      <form class="mt-5">
+      <form class="money-form mt-5">
         <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
         </label>
         <div class="d-flex">
-          <input type="number" class="w-100 mr-2 pl-2 money-input" placeholder="구입 금액" />
-          <button type="button" class="btn btn-cyan money-input-button">확인</button>
+          <input type="number" step='0.1' class="w-100 mr-2 pl-2 money-form-input" placeholder="구입 금액" />
+          <button type="submit" class="btn btn-cyan money-form-submit">확인</button>
         </div>
       </form>
     `;
   }
 
   renderCheckLottoUI(lottoTickets) {
-    disableElement(DOM_SELECTORS.MONEY_INPUT_BUTTON);
+    disableElement(DOM_SELECTORS.MONEY_FORM_SUBMIT);
     $(DOM_SELECTORS.CHECK_LOTTO_CONTAINER).innerHTML = `
       <section class="mt-9">
         <div class="d-flex">

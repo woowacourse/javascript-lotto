@@ -16,8 +16,9 @@ export const ALERT_MESSAGES = {
 
 export const DOM_SELECTORS = {
   APP: '#app',
-  MONEY_INPUT: '.money-input',
-  MONEY_INPUT_BUTTON: '.money-input-button',
+  MONEY_FORM: '.money-form',
+  MONEY_FORM_INPUT: '.money-form-input',
+  MONEY_FORM_SUBMIT: '.money-form-submit',
   MONEY_INPUT_CONTAINER: '#money-input-container',
   CHECK_LOTTO_SWITCH: '.check-lotto-switch',
   CHECK_LOTTO_CONTAINER: '#check-lotto-container',
