@@ -1,10 +1,10 @@
 import Component from '../lib/core/Component.js';
-import { createTicket, getNumberOfTickets } from '../lib/utils/ticket.js';
+import { createTicket, getNumberOfTickets } from '../lib/utils/lotto.js';
 import {
   HAS_A_WHITESPACE_MESSAGE,
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../lib/constants/alertMessage.js';
-import { TICKET_PRICE } from '../lib/constants/ticket.js';
+import { TICKET_PRICE } from '../lib/constants/lotto.js';
 import { $ } from '../lib/utils/dom.js';
 
 class PaymentForm extends Component {
@@ -20,9 +20,17 @@ class PaymentForm extends Component {
             name="money-amount"
             class="w-100 mr-2 pl-2"
             placeholder="구입 금액"
+            ${this.props.tickets.get().length ? 'disabled' : ''}
             autofocus
-          />
-          <button name="payment-submit" id="payment-submit" type="submit" class="btn btn-cyan">확인</button>
+            />
+          <button
+            name="payment-submit"
+            id="payment-submit"
+            type="submit"
+            ${this.props.tickets.get().length ? 'disabled' : ''}
+            class="btn btn-cyan">
+            확인
+          </button>
         </div>
     `;
   }
@@ -42,8 +50,10 @@ class PaymentForm extends Component {
     }
 
     this.setTickets($moneyAmountInput.value);
-    $moneyAmountInput.value = '';
+
     $('.winning-number[name=first]').focus();
+    $moneyAmountInput.disabled = true;
+    $('#payment-submit').disabled = true;
   }
 
   isValid(value) {
@@ -66,6 +76,10 @@ class PaymentForm extends Component {
     this.props.tickets.set(
       [...Array(numberOfTickets)].map(() => createTicket())
     );
+  }
+
+  subscribeStates() {
+    this.props.tickets.subscribe(this.render.bind(this));
   }
 }
 

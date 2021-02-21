@@ -5,7 +5,7 @@ import PaymentForm from './PaymentForm.js';
 import ResultModal from './ResultModal.js';
 import TicketList from './TicketList.js';
 import WinningNumberForm from './WinningNumberForm.js';
-import { getProfitPercentage, getWinners } from '../lib/utils/ticket.js';
+import { getProfitPercentage, getWinners } from '../lib/utils/lotto.js';
 
 class App extends Component {
   initStates() {

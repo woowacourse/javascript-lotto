@@ -2,7 +2,8 @@ import {
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
   TICKET_NUMBERS_LENGTH,
-} from '../lib/constants/ticket.js';
+} from '../lib/constants/lotto.js';
+import { getWinningNumbers } from '../lib/utils/lotto.js';
 import {
   DUPLICATE_WINNING_NUMBER,
   INPUT_NOT_COMPLETED,
@@ -19,36 +20,10 @@ export default class WinningNumberForm extends Component {
         <div>
           <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
           <div>
-            <input
-              type="number"
-              class="winning-number mx-1 text-center"
-              name="first"
-            />
-            <input
-              type="number"
-              class="winning-number mx-1 text-center"
-              name="second"
-            />
-            <input
-              type="number"
-              class="winning-number mx-1 text-center"
-              name="third"
-            />
-            <input
-              type="number"
-              class="winning-number mx-1 text-center"
-              name="fourth"
-            />
-            <input
-              type="number"
-              class="winning-number mx-1 text-center"
-              name="fifth"
-            />
-            <input
-              type="number"
-              class="winning-number mx-1 text-center"
-              name="sixth"
-            />
+            ${['first', 'second', 'third', 'fourth', 'fifth', 'sixth'].reduce(
+              (acc, name) => acc + this.createInput(name),
+              ''
+            )}
           </div>
         </div>
         <div class="bonus-number-container flex-grow">
@@ -65,6 +40,16 @@ export default class WinningNumberForm extends Component {
       >
         결과 확인하기
       </button>
+    `;
+  }
+
+  createInput(name) {
+    return `
+      <input
+        type="number"
+        class="winning-number mx-1 text-center"
+        name="${name}"
+      />
     `;
   }
 
@@ -105,7 +90,7 @@ export default class WinningNumberForm extends Component {
   }
 
   handleSumbit(event) {
-    const winningNumber = this.getWinningNumbers(event.target.elements);
+    const winningNumber = getWinningNumbers(event.target.elements);
 
     event.preventDefault();
 
@@ -157,14 +142,5 @@ export default class WinningNumberForm extends Component {
     [first, second, third, fourth, fifth, sixth, bonus].forEach(element => {
       element.value = '';
     });
-  }
-
-  getWinningNumbers({ first, second, third, fourth, fifth, sixth, bonus }) {
-    return {
-      main: [first, second, third, fourth, fifth, sixth].map(({ value }) =>
-        Number(value)
-      ),
-      bonus: Number(bonus.value),
-    };
   }
 }

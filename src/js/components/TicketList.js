@@ -3,23 +3,22 @@ import { $, $$ } from '../lib/utils/dom.js';
 
 class TicketList extends Component {
   mountTemplate() {
+    const tickets = this.props.tickets.get();
+
     this.$target.innerHTML = `
       <div class="d-flex">
         <label class="flex-auto my-0">
-          총 ${this.props.tickets.get().length}개를 구매하였습니다.
+          총 ${tickets.length}개를 구매하였습니다.
         </label>
         <div class="flex-auto d-flex justify-end pr-1">
-          ${
-            this.props.tickets.get().length
-              ? this.createDetailModeToggleTemplate()
-              : ''
-          }
+          ${tickets.length ? this.createDetailModeToggleTemplate() : ''}
         </div>
       </div>
       <div id="ticket-list" class="d-flex flex-wrap">
-        ${this.props.tickets
-          .get()
-          .reduce((acc, ticket) => acc + this.createTicketTemplate(ticket), '')}
+        ${tickets.reduce(
+          (acc, ticket) => acc + this.createTicketTemplate(ticket),
+          ''
+        )}
       </div>
     `;
   }
