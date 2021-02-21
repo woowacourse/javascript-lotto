@@ -8,6 +8,9 @@ import { generateLottoNumbers } from '../utils/lotto.js';
 export default class App {
   constructor() {
     this.$target = $('#app');
+  }
+
+  execute() {
     this.initState();
     this.mountComponent();
   }

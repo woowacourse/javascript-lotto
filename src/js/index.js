@@ -1,3 +1,4 @@
 import App from './components/App.js';
 
-new App();
+const app = new App();
+app.execute();
