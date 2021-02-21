@@ -23,7 +23,7 @@ const setLotto = (lotto, amountOfLottoTicket) => {
 
   lotto.setPurchasePrice(purchasePrice);
 
-  for (let i = 0; i < amountOfLottoTicket; i++) {
+  while (amountOfLottoTicket--) {
     const ticket = new Ticket();
 
     ticket.setNumbers(generateLottoNumber());

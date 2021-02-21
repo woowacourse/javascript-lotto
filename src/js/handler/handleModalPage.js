@@ -13,7 +13,6 @@ const restartLottoGame = (lotto) => {
   lotto.clear();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
-  closeModal();
 };
 
 export const handleModalPage = ({ target }, lotto) => {
@@ -24,5 +23,6 @@ export const handleModalPage = ({ target }, lotto) => {
 
   if (target.classList.contains('restart-button')) {
     restartLottoGame(lotto);
+    closeModal();
   }
 };
