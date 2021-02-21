@@ -32,7 +32,7 @@ body {
   vertical-align: middle;
 }
 
-.lotto-ticket-number {
+.lotto-ticket__description {
   font-size: 20px;
   margin-left: 5px;
 }

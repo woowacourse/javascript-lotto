@@ -45,7 +45,7 @@ export default class LottoUI {
     return `
     <span class="mx-1 text-4xl lotto-ticket">
       🎟️ 
-      <span class="lotto-ticket-number ${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : 'hidden'}">
+      <span class="lotto-ticket-number lotto-ticket__description ${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : 'hidden'}">
         ${numbers.join(', ')}
       </span>
     </span>
