@@ -152,4 +152,12 @@ describe('LOTTO 테스트', () => {
     });
     cy.get('.bonus-number').should('have.value', '').and('be.focused').type(45);
   });
+
+  it('(Assertion) 로또 번호와 당첨 번호를 비교하여 일치하는 갯수가 정확하게 나오는지 확인한다.', () => {
+    const lottoNumbers = [9, 11, 3, 25, 21, 45];
+    const winningNumbers = [9, 11, 3, 25, 21, 20];
+    const bonusNumber = 45;
+    // TODO : 결과 확인하는 메서드 추가. (import)
+    expect(getResult(lottoNumbers, winningNumbers, bonusNumber)).to.be.equal(2);
+  });
 });
