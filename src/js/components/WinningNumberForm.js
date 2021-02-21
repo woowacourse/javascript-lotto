@@ -21,7 +21,7 @@ export default class WinningNumberForm extends Component {
           <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
           <div>
             ${['first', 'second', 'third', 'fourth', 'fifth', 'sixth'].reduce(
-              (acc, name) => acc + this.createInput(name),
+              (acc, name) => acc + this.createInputTemplate(name),
               ''
             )}
           </div>
@@ -43,7 +43,7 @@ export default class WinningNumberForm extends Component {
     `;
   }
 
-  createInput(name) {
+  createInputTemplate(name) {
     return `
       <input
         type="number"
@@ -70,14 +70,14 @@ export default class WinningNumberForm extends Component {
       target.value = '';
     }
 
-    this.focus(target);
+    this.focusNextInput(target);
   }
 
   isValidRange(value) {
     return value >= TICKET_MIN_NUMBER && value <= TICKET_MAX_NUMBER;
   }
 
-  focus(target) {
+  focusNextInput(target) {
     const MAX_DIGIT = 2;
 
     if (target.value.length === MAX_DIGIT && target.name !== 'sixth') {
