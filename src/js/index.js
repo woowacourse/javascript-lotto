@@ -1,4 +1,11 @@
-import { $, getRandomNumber, isUniqueArray, showElement, disableElement } from './utils.js';
+import {
+  $,
+  getRandomNumber,
+  isUniqueArray,
+  showElement,
+  hideElement,
+  disableElement,
+} from './utils.js';
 import { ALERT_MESSAGE, LOTTO } from './constants.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -91,6 +98,10 @@ class LottoApp {
     return { winningNumbers, bonusNumber };
   }
 
+  handleCloseModal() {
+    hideElement($('.modal'));
+  }
+
   bindEvents() {
     $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
 
@@ -104,6 +115,8 @@ class LottoApp {
       'submit',
       this.handleSubmitWinningNumbers.bind(this)
     );
+
+    $('.modal-close').addEventListener('click', this.handleCloseModal.bind(this));
   }
 }
 
