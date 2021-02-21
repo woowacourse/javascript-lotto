@@ -62,7 +62,7 @@ describe("구입 금액 입력 테스트", () => {
     });
   });
 
-  it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보를 보여준다", () => {
+  it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보와 당첨번호 입력란을 보여준다", () => {
     const userInput = 4500;
     const lottoCount = Math.floor(userInput / MONEY.LOTTO_PRICE);
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
@@ -77,6 +77,8 @@ describe("구입 금액 입력 테스트", () => {
       "have.length",
       lottoCount
     );
+
+    cy.get(toDAS(JS_SELECTOR.WINNING_LOTTO.CONTAINER)).should("be.visible");
     testResetInput();
   });
 });
