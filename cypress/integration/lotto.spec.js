@@ -160,4 +160,23 @@ describe('LOTTO 테스트', () => {
     // TODO : 결과 확인하는 메서드 추가. (import)
     expect(getResult(lottoNumbers, winningNumbers, bonusNumber)).to.be.equal(2);
   });
+
+  it('입력된 당첨 번호가 1 ~ 45 사이의 숫자가 아니거나, 중복되면 경고창을 띄운다.', () => {
+    const winningNumbers = [9, 11, 9, -1, 21, 46];
+    const alertStub = cy.stub();
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.winning-number').each((winningNumberInput, index) => {
+      cy.wrap(winningNumberInput).type(winningNumbers[index]);
+    });
+
+    cy.on('window:alert', alertStub);
+    cy.get('.open-result-modal-button')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      });
+  });
 });
