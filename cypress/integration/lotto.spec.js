@@ -121,4 +121,21 @@ describe('LOTTO 테스트', () => {
     cy.get('.winning-number-form-container').should('not.be.visible');
     cy.get('.modal').should('not.be.visible');
   });
+
+  it('닫기 버튼을 눌렀을 때, 모달이 잘 닫히는지 확인한다.', () => {
+    const winningNumbers = [9, 11, 3, 25, 21, 2];
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.winning-number').each((winningNumberInput, index) => {
+      cy.wrap(winningNumberInput).type(winningNumbers[index]);
+    });
+    cy.get('.bonus-number').type(45);
+    cy.get('.open-result-modal-button').click();
+
+    cy.get('.modal').should('be.visible');
+    cy.get('.modal-close').click();
+
+    cy.get('.modal').should('not.be.visible');
+  });
 });
