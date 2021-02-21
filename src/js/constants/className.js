@@ -9,6 +9,7 @@ const CLASSNAME = {
   },
   MODAL: {
     toString: () => "modal",
+    CLOSE: "modal-close",
   },
   COMMON: {
     HIDDEN: "--hidden",
