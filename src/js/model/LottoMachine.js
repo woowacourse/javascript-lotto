@@ -8,12 +8,10 @@ import {
 import { Lotto } from './Lotto.js';
 
 export class LottoMachine {
-  constructor() {
-    this._lottos = [];
-  }
+  #lottos = [];
 
   get lottos() {
-    return [...this._lottos];
+    return [...this.#lottos];
   }
 
   publishLottosByAuto(money) {
@@ -22,7 +20,7 @@ export class LottoMachine {
     for (let i = 0; i < count; i++) {
       const numbers = this.getRandomLottoNumbers();
 
-      this._lottos.push(new Lotto(numbers));
+      this.#lottos.push(new Lotto(numbers));
     }
   }
 

@@ -1,26 +1,25 @@
 import { $, validator } from '../util/index.js';
-import { LottoView } from '../view/index.js';
-import { LottoMachine } from '../model/index.js';
-
 export class LottoController {
-  constructor() {
-    this.machine = new LottoMachine();
-    this.view = new LottoView();
+  constructor(model, view) {
+    this.machine = model;
+    this.view = view;
   }
 
   initEvent() {
-    this.$purchaseAmountSubmit = $('#purchase-amount-submit');
-    this.$lottoToggle = $('.lotto-numbers-toggle-button');
+    this.$purchaseAmountForm = $('#purchase-amount-form');
+    this.$lottoToggle = $('#lotto-numbers-toggle-button');
 
-    this.$purchaseAmountSubmit.setEvent(
-      'click',
+    this.$purchaseAmountForm.setEvent(
+      'submit',
       this.handlePurchaseAmountInput.bind(this)
     );
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
   }
 
-  handlePurchaseAmountInput() {
+  handlePurchaseAmountInput(event) {
+    event.preventDefault();
     this.$purchaseAmountInput = $('#purchase-amount-input');
+    this.$purchaseAmountSubmit = $('#purchase-amount-submit');
     const money = Number(this.$purchaseAmountInput.getValue());
     const alertMessage = validator.purchaseAmountInput(money);
 
@@ -43,10 +42,10 @@ export class LottoController {
 
   handleLottoToggle() {
     this.$lottoContainer = $('#lotto-container');
-    this.$lottoNumbers = $('.lotto-numbers');
+    this.$lottoNumbers = $('span[data-lotto-numbers]');
 
     this.$lottoContainer.toggleClass('flex-col'); // toggle()을 이용해 flex direction 변경.
-    $('.lotto-numbers-toggle-button').isCheckedInput()
+    this.$lottoToggle.isCheckedInput()
       ? this.$lottoNumbers.show()
       : this.$lottoNumbers.hide();
   }

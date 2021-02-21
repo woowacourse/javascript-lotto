@@ -1,9 +1,11 @@
 export class Lotto {
+  #numbers;
+
   constructor(numbers) {
-    this._numbers = numbers;
+    this.#numbers = numbers;
   }
 
   get numbers() {
-    return [...this._numbers];
+    return [...this.#numbers];
   }
 }

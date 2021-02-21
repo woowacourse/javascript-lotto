@@ -12,7 +12,7 @@
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
           <!-- purchase amount input form -->
-          <form class="mt-5">
+          <form class="mt-5" id="purchase-amount-form" novalidate>
             <label class="mb-2 d-inline-block"
               >구입할 금액을 입력해주세요.
             </label>
@@ -24,7 +24,7 @@
                 id="purchase-amount-input"
               />
               <button
-                type="button"
+                type="submit"
                 class="btn btn-cyan"
                 id="purchase-amount-submit"
               >
@@ -40,7 +40,7 @@
               >
               <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
-                  <input type="checkbox" class="lotto-numbers-toggle-button" />
+                  <input type="checkbox" id="lotto-numbers-toggle-button" />
                   <span class="text-base font-normal">번호보기</span>
                 </label>
               </div>
@@ -48,7 +48,7 @@
             <div id="lotto-container" class="d-flex flex-wrap"></div>
           </section>
           <!-- lotto-result-form -->
-          <form class="mt-9 d-none" id="lotto-result-form">
+          <form class="mt-9 d-none" id="lotto-result-form" novalidate>
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
@@ -90,7 +90,7 @@
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               class="open-result-modal-button mt-5 btn btn-cyan w-100"
             >
               결과 확인하기

@@ -35,7 +35,7 @@ describe('Lotto test', () => {
       for (let idx = 0; idx < count; idx++) {
         cy.get('.lotto-wrapper') //
           .eq(idx)
-          .children('.lotto-numbers')
+          .children('span[data-lotto-numbers]')
           .should(toggleOption === 'on' ? 'be.visible' : 'not.be.visible');
       }
     }
