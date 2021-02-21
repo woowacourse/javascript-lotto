@@ -6,20 +6,13 @@ export const checkAlert = alertMessage => {
   });
 };
 
-const resetInputValue = input => cy.get(input).then($input => $input.val(''));
-
-export const setInputValue = (input, button, value) => {
-  resetInputValue(input);
-
-  if (value !== '') {
-    cy.get(input).type(value);
-  }
-
-  cy.get(button).click();
+export const typeInputValue = (input, value) => {
+  cy.get(input).then($input => $input.val(''));
+  value !== '' && cy.get(input).type(value);
 };
 
-export const testInputValue = (input, button, value, alertMessage = '') => {
-  setInputValue(input, button, value);
+export const testInputValue = (button, alertMessage = '') => {
+  cy.get(button).click();
   alertMessage && checkAlert(alertMessage);
-  cy.get(input).should('have.value', alertMessage ? '' : value);
+  // cy.get(input).should('have.value', alertMessage ? '' : value);
 };
