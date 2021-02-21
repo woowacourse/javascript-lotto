@@ -3,4 +3,12 @@ export default class Ticket {
     this.numbers = [];
     this.profit = 0;
   }
+
+  setNumbers(numbers) {
+    this.numbers = numbers;
+  }
+
+  getNumbers() {
+    return this.numbers;
+  }
 }
