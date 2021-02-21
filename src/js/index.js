@@ -1,4 +1,4 @@
-import Lotto from './model/Lotto.js';
+import Lotto from './lib/Lotto.js';
 import { $ } from './utils/querySelector.js';
 import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
 import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
@@ -8,9 +8,10 @@ import { handleModalPage } from './handler/handleModalPage.js';
 const init = () => {
   const lotto = new Lotto();
 
-  $('#purchase-price-input-form__button').addEventListener('click', () =>
-    handlePurchasePriceInput(lotto),
-  );
+  $('#purchase-price-input-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handlePurchasePriceInput(lotto);
+  });
 
   $('#purchase-result-section__toggle').addEventListener(
     'click',

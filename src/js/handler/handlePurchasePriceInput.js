@@ -1,52 +1,54 @@
+import Ticket from '../lib/Ticket.js';
 import { $ } from '../utils/querySelector.js';
-import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
+import { isValidPrice } from '../utils/validator.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
+import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
-import Ticket from '../model/Ticket.js';
 
-const setLottoPurchasePrice = (lotto, amoutOfLottoTicket) => {
-  lotto.purchasePrice = amoutOfLottoTicket * VALUE.LOTTO.TICKET_PRICE;
-};
+const generateLottoNumber = () => {
+  const ticketNumbers = new Set();
 
-const setLottoNumbers = (ticket) => {
-  const lottoNumbers = new Set();
-
-  while (lottoNumbers.size < VALUE.LOTTO.TICKET_LENGH) {
-    lottoNumbers.add(getRandomNumber(VALUE.LOTTO.MIN_NUM, VALUE.LOTTO.MAX_NUM));
+  while (ticketNumbers.size < VALUE.LOTTO.TICKET_LENGH) {
+    ticketNumbers.add(
+      getRandomNumber(VALUE.LOTTO.MIN_NUM, VALUE.LOTTO.MAX_NUM),
+    );
   }
 
-  ticket.numbers = [...lottoNumbers].sort((a, b) => a - b);
+  return [...ticketNumbers].sort((a, b) => a - b);
 };
 
-const setLottoTicket = (lotto) => {
-  const ticket = new Ticket();
+const setLotto = (lotto, amountOfLottoTicket) => {
+  const purchasePrice = amountOfLottoTicket * VALUE.LOTTO.TICKET_PRICE;
 
-  setLottoNumbers(ticket);
-  lotto.tickets.push(ticket);
-};
+  lotto.setPurchasePrice(purchasePrice);
 
-const getLottoTickets = (lotto) => {
-  return lotto.tickets.map((ticket) => ticket.numbers);
+  for (let i = 0; i < amountOfLottoTicket; i++) {
+    const ticket = new Ticket();
+
+    ticket.setNumbers(generateLottoNumber());
+    lotto.setTickets(ticket);
+  }
 };
 
 export const handlePurchasePriceInput = (lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
 
-  if (purchasePrice < VALUE.LOTTO.TICKET_PRICE) {
+  if (!isValidPrice(purchasePrice)) {
     alert(ERR_MESSAGE.LOTTO.INVALID_PRICE);
     return;
   }
 
-  const amoutOfLottoTicket = Math.floor(
+  const amountOfLottoTicket = Math.floor(
     purchasePrice / VALUE.LOTTO.TICKET_PRICE,
   );
 
-  for (let i = 0; i < amoutOfLottoTicket; i++) {
-    setLottoTicket(lotto);
-  }
+  setLotto(lotto, amountOfLottoTicket);
 
-  setLottoPurchasePrice(lotto, amoutOfLottoTicket);
-  renderPurchaseResultSection(amoutOfLottoTicket, getLottoTickets(lotto));
+  const lottoTicketNumbers = lotto
+    .getTickets()
+    .map((ticket) => ticket.getNumbers());
+
+  renderPurchaseResultSection(amountOfLottoTicket, lottoTicketNumbers);
   showWinningNumberInputForm();
 };

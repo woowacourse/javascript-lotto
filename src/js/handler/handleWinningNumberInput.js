@@ -3,12 +3,6 @@ import { isDuplicate, isValidRange } from '../utils/validator.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { openModal, renderModal } from '../view/viewModalPage.js';
 
-const setLottoTotalProfit = (lotto) => {
-  lotto.totalProfit = lotto.tickets.reduce((acc, ticket) => {
-    return (acc += ticket.profit);
-  }, 0);
-};
-
 const getProfit = (winningRank) => {
   const profits = {
     [VALUE.WINNING_RANK.FIRST]: VALUE.WINNING_PRICE.FIRST,
@@ -54,7 +48,11 @@ const getRankCountMap = (lotto) => {
 };
 
 const getTotalYield = (lotto) => {
-  return Number(((lotto.totalProfit / lotto.purchasePrice) * 100).toFixed(2));
+  const totalProfit = lotto.tickets.reduce((acc, ticket) => {
+    return (acc += ticket.profit);
+  }, 0);
+
+  return Number(((totalProfit / lotto.purchasePrice) * 100).toFixed(2));
 };
 
 const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
@@ -63,11 +61,14 @@ const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
     VALUE.LOTTO.TICKET_LENGH * 2 -
     new Set([...ticket.numbers, ...winningNumbers]).size;
 
-  ticket.winningRank =
+  const winningRank =
     bonusCount && winnigCount === VALUE.HIT_COUNT.FIVE
       ? VALUE.WINNING_RANK.SECOND
       : getRank(winnigCount);
-  ticket.profit = getProfit(ticket.winningRank);
+  const profit = getProfit(ticket.winningRank);
+
+  ticket.setWinningRank(winningRank);
+  ticket.setProfit(profit);
 };
 
 export const handleWinningNumberInput = (lotto) => {
@@ -87,8 +88,6 @@ export const handleWinningNumberInput = (lotto) => {
   lotto.tickets.forEach((ticket) => {
     getTicketResult(ticket, winningNumbers, bonusNumber);
   });
-
-  setLottoTotalProfit(lotto);
 
   const ranckCountMap = getRankCountMap(lotto);
   const totalYield = getTotalYield(lotto);
