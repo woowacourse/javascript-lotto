@@ -17,6 +17,7 @@ const JS_SELECTOR = {
   },
   MODAL: {
     PROFIT_RATE_PARAGRAPH: "modal__profit-rate",
+    RESTART_BUTTON: "modal__restart-button",
   },
 };
 
