@@ -24,11 +24,11 @@ export default class LottoDisplay {
   bindEvent() {
     this.$toggleButton.addEventListener(
       'change',
-      this.toggleButtonClickHandler.bind(this),
+      this.onToggleSwitch.bind(this),
     );
   }
 
-  toggleButtonClickHandler({ target: { checked } }) {
+  onToggleSwitch({ target: { checked } }) {
     this.setState({ isToggled: checked });
   }
 

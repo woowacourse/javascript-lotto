@@ -18,7 +18,7 @@ export default class LottoPurchaseInput {
 
   bindEvent() {
     this.$purchaseButton.addEventListener('click', () => {
-      this.purchaseButtonClickHandler();
+      this.onPurchaseLotto();
     });
 
     this.$purchaseInput.addEventListener('keydown', e => {
@@ -27,11 +27,11 @@ export default class LottoPurchaseInput {
       }
 
       e.preventDefault();
-      this.purchaseButtonClickHandler();
+      this.onPurchaseLotto();
     });
   }
 
-  purchaseButtonClickHandler() {
+  onPurchaseLotto() {
     const { createLottos } = this.props;
     const purchaseInputValue = this.$purchaseInput.value.trim();
     const payment = Number(purchaseInputValue);
