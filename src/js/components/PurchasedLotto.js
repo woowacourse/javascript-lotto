@@ -1,5 +1,5 @@
 import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants.js';
-import { $, $$ } from '../utils/DOM.js';
+import { $ } from '../utils/DOM.js';
 
 export default class PurchasedLotto {
   constructor({ lottoTickets }) {
@@ -24,20 +24,18 @@ export default class PurchasedLotto {
   }
 
   showNumbers() {
-    this.$lottoTicketContainer.classList.add('flex-col');
-    this.$lottoTicketContainer.classList.remove('d-none-numbers');
+    this.$lottoTicketContainer.classList.add('flex-col-with-num');
   }
 
   hideNumbers() {
-    this.$lottoTicketContainer.classList.remove('flex-col');
-    this.$lottoTicketContainer.classList.add('d-none-numbers');
+    this.$lottoTicketContainer.classList.remove('flex-col-with-num');
   }
 
   createLottoTicketHTML(lottoTicket) {
     return `
     <li class="mx-1 text-4xl d-flex items-center">
       🎟️
-      <span class="text-xl ml-5 lotto-numbers">
+      <span class="text-xl ml-5 d-none lotto-numbers">
         ${lottoTicket.numbers.join(LOTTO_NUMBER_SEPARATOR)}
       </span>
     </li>`;
