@@ -3,6 +3,7 @@ export const MONETARY_UNIT = 1; // 한국의 최소 화폐단위: 1원
 export const LOTTO_MIN_NUMBER = 1;
 export const LOTTO_MAX_NUMBER = 45;
 export const LOTTO_NUMBERS_LENGTH = 6;
+export const BONUS_NUMBER_LENGTH = 1;
 export const LOTTO_NUMBER_SEPARATOR = ', ';
 export const PURCHASED_QUANTITY_MESSAGE = (numOfLotto) => `총 ${numOfLotto}개를 구매하였습니다.`;
 
