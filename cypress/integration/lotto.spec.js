@@ -7,9 +7,6 @@ describe('racing-game', () => {
   });
 
   const typePurchasePriceAndClickSubmitButton = (purchasePrice = 5000) => {
-  });
-
-  const typePurchasePriceAndClickSubmitButton = (purchasePrice) => {
     cy.get('#purchase-price-input-form__input').type(purchasePrice);
     cy.get('#purchase-price-input-form__button').click();
   };

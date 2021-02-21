@@ -17,10 +17,6 @@ const lottoTicketIconTemplate = () => {
           </span>`;
 };
 
-const lottoTicketDetailTemplate = (joinedLottoNumber) => {
-  return `<div class="d-flex">
-            ${lottoTicketIconTemplate()}
-            <span class="mx-1 mt-1 text-xl">${joinedLottoNumber}</span>
 const lottoTicketDetailTemplate = (lottoNumber) => {
   return `<div class="d-flex">
             ${lottoTicketIconTemplate()}
