@@ -87,7 +87,7 @@ describe('LOTTO 테스트', () => {
     cy.get('.bonus-number').type(45);
     cy.get('.open-result-modal-button').click();
 
-    // cy.get('.modal').should('be.visible');
+    cy.get('.modal').should('be.visible');
 
     cy.get('.winning-count').each((count) => {
       cy.wrap(count)
@@ -99,5 +99,26 @@ describe('LOTTO 테스트', () => {
       .first()
       .invoke('text')
       .should('match', /^[0-9]+\.[0-9]+$/);
+  });
+
+  it('다시 시작하기 버튼을 눌렀을 때, 구입할 금액 입력 폼만 보이는지 확인한다.', () => {
+    const winningNumbers = [9, 11, 3, 25, 21, 2];
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.winning-number').each((winningNumberInput, index) => {
+      cy.wrap(winningNumberInput).type(winningNumbers[index]);
+    });
+    cy.get('.bonus-number').type(45);
+    cy.get('.open-result-modal-button').click();
+
+    cy.get('.modal').should('be.visible');
+
+    cy.get('.restart-button').click();
+
+    cy.get('#money-input').should('have.value', '').and('be.focused');
+    cy.get('.lotto-list-container').should('not.be.visible');
+    cy.get('.winning-number-form-container').should('not.be.visible');
+    cy.get('.modal').should('not.be.visible');
   });
 });
