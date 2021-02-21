@@ -3,7 +3,7 @@ import { LOTTO_PRICE } from '../utils/constants.js';
 import { mod, divide } from '../utils/lotto.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
-export default class LottoPerchaseInput {
+export default class LottoPurchaseInput {
   constructor(props) {
     this.props = props;
 
@@ -12,34 +12,34 @@ export default class LottoPerchaseInput {
   }
 
   selectDOM() {
-    this.$perchaseInput = $('#lotto-perchase-input');
-    this.$perchaseButton = $('#lotto-perchase-btn');
+    this.$purchaseInput = $('#lotto-purchase-input');
+    this.$purchaseButton = $('#lotto-purchase-btn');
   }
 
   bindEvent() {
-    this.$perchaseButton.addEventListener('click', () => {
-      this.perchaseButtonClickHandler();
+    this.$purchaseButton.addEventListener('click', () => {
+      this.purchaseButtonClickHandler();
     });
 
-    this.$perchaseInput.addEventListener('keydown', e => {
+    this.$purchaseInput.addEventListener('keydown', e => {
       if (e.key !== 'Enter') {
         return;
       }
 
       e.preventDefault();
-      this.perchaseButtonClickHandler();
+      this.purchaseButtonClickHandler();
     });
   }
 
-  perchaseButtonClickHandler() {
+  purchaseButtonClickHandler() {
     const { createLottos } = this.props;
-    const perchaseInputValue = this.$perchaseInput.value.trim();
-    const payment = Number(perchaseInputValue);
+    const purchaseInputValue = this.$purchaseInput.value.trim();
+    const payment = Number(purchaseInputValue);
 
-    const errorMessage = validatePerchaseInputValue(payment);
+    const errorMessage = validatePurchaseInputValue(payment);
     if (errorMessage) {
       alert(errorMessage);
-      clearInput(this.$perchaseInput);
+      clearInput(this.$purchaseInput);
       return;
     }
 
@@ -51,7 +51,7 @@ export default class LottoPerchaseInput {
   }
 }
 
-const validatePerchaseInputValue = payment => {
+const validatePurchaseInputValue = payment => {
   if (!Number.isInteger(payment)) {
     return ERROR_MESSAGE.NOT_INTEGER_NUMBER_ERROR;
   }

@@ -1,4 +1,4 @@
-import LottoPerchaseInput from './LottoPerchaseInput.js';
+import LottoPurchaseInput from './LottoPurchaseInput.js';
 import LottoDisplay from './LottoDisplay.js';
 import Lotto from '../model/Lotto.js';
 
@@ -17,7 +17,7 @@ export default class App {
   }
 
   mountComponent() {
-    this.lottoPerchaseInput = new LottoPerchaseInput({
+    this.lottoPurchaseInput = new LottoPurchaseInput({
       createLottos: this.createLottos.bind(this),
     });
 
