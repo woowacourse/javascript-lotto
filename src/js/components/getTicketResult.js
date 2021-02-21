@@ -41,7 +41,7 @@ export const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
   const winnigCount = getWinningCount([...ticket.numbers, ...winningNumbers]);
   const bonusCount = ticket.numbers.includes(bonusNumber);
   const winningRank = getWinningRank(winnigCount, bonusCount);
-  const profit = getProfit(ticket.winningRank);
+  const profit = getProfit(winningRank);
 
   ticket.setWinningRank(winningRank);
   ticket.setProfit(profit);

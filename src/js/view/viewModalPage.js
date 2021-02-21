@@ -2,10 +2,6 @@ import { $, $$ } from '../utils/querySelector.js';
 
 const $modal = $('.modal');
 
-const winningCountTemplate = (winningCount) => {
-  return `<td class="p-3">${winningCount}개</td>`;
-};
-
 export const openModal = () => {
   $modal.classList.add('open');
 };
@@ -23,11 +19,10 @@ export const renderRankCount = (rankCountMap) => {
 
 export const renderTotalYield = (totalYield) => {
   const $resultTotalYield = $('#result-total-yield');
-
   $resultTotalYield.innerText = `당신의 총 수익률은 ${totalYield}%입니다.`;
 };
 
 export const renderModal = (rankCountMap, totalYield) => {
-  renderRankCount(rankCountMap);
   renderTotalYield(totalYield);
+  renderRankCount(rankCountMap);
 };
