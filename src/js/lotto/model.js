@@ -1,4 +1,4 @@
-import { INIT } from "./constant.js";
+import { INIT } from "../constant.js";
 
 class LottoModel {
   constructor() {
