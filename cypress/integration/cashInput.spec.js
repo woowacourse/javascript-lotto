@@ -27,10 +27,6 @@ describe("구입 금액 입력 테스트", () => {
       .should("be.calledWith", alertMessage);
   };
 
-  const testResetInput = () => {
-    cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
-  };
-
   it("초기화면에 구입 입력 Form이 보여진다.", () => {
     cy.get(toDAS(JS_SELECTOR.CASH.CONTAINER)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("be.visible");
@@ -49,7 +45,7 @@ describe("구입 금액 입력 테스트", () => {
         ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER,
         index + 1
       );
-      testResetInput();
+      cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
     });
   });
 
@@ -60,7 +56,7 @@ describe("구입 금액 입력 테스트", () => {
         ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE,
         index + 1
       );
-      testResetInput();
+      cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
     });
   });
 
@@ -81,6 +77,6 @@ describe("구입 금액 입력 테스트", () => {
     );
 
     cy.get(toDAS(JS_SELECTOR.WINNING_NUMBER.CONTAINER)).should("be.visible");
-    testResetInput();
+    cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
   });
 });
