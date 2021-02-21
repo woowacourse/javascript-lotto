@@ -4,6 +4,23 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^6.3.0"
-  }
+    "cypress": "^6.5.0",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  },
+  "description": "행운의 로또 프로젝트",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0307kwon/javascript-lotto.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/0307kwon/javascript-lotto/issues"
+  },
+  "homepage": "https://github.com/0307kwon/javascript-lotto#readme"
 }

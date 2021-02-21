@@ -22,3 +22,17 @@ body {
   width: 30px;
   height: 36px;
 }
+
+.hidden {
+  display: none;
+}
+
+.lotto-ticket {
+  display: flex;
+  vertical-align: middle;
+}
+
+.lotto-ticket__description {
+  font-size: 20px;
+  margin-left: 5px;
+}
