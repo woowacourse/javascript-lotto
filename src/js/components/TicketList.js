@@ -1,5 +1,5 @@
 import Component from '../lib/core/Component.js';
-import { $, $$ } from '../lib/utils/dom.js';
+import { $ } from '../lib/utils/dom.js';
 
 class TicketList extends Component {
   mountTemplate() {
@@ -62,13 +62,11 @@ class TicketList extends Component {
   }
 
   turnDetailModeOn() {
-    $('#ticket-list').classList.add('flex-col');
-    $$('.lotto-numbers').forEach(element => element.classList.remove('hide'));
+    $('#ticket-list').classList.add('flex-col', 'detail-mode');
   }
 
   turnDetailModeOff() {
-    $('#ticket-list').classList.remove('flex-col');
-    $$('.lotto-numbers').forEach(element => element.classList.add('hide'));
+    $('#ticket-list').classList.remove('flex-col', 'detail-mode');
   }
 }
 
