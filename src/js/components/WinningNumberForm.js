@@ -29,7 +29,7 @@ export default class WinningNumberForm extends Component {
         <div class="bonus-number-container flex-grow">
           <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
           <div class="d-flex justify-center">
-            <input type="number" class="bonus-number text-center" name="bonus"/>
+            <input type="number" class="bonus-number text-center" name="bonus" required />
           </div>
         </div>
       </div>
@@ -49,6 +49,7 @@ export default class WinningNumberForm extends Component {
         type="number"
         class="winning-number mx-1 text-center"
         name="${name}"
+        required
       />
     `;
   }
@@ -132,11 +133,9 @@ export default class WinningNumberForm extends Component {
       alert(INPUT_NOT_COMPLETED);
       return;
     }
-    console.log('ho', uniqueNumberSize);
 
     if (uniqueNumberSize < TICKET_NUMBERS_LENGTH + 1) {
       alert(DUPLICATE_WINNING_NUMBER);
-      console.log('hi');
     }
   }
 

@@ -22,6 +22,7 @@ class PaymentForm extends Component {
             placeholder="구입 금액"
             ${this.props.tickets.get().length ? 'disabled' : ''}
             autofocus
+            required
             />
           <button
             name="payment-submit"
