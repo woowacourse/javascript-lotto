@@ -1,6 +1,6 @@
 import { $, clearInput } from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
-import { mod, divide } from '../utils/lotto.js';
+import { mod, divide } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
 export default class LottoPurchaseInput {
@@ -32,7 +32,7 @@ export default class LottoPurchaseInput {
   }
 
   onPurchaseLotto() {
-    const { createLottos } = this.props;
+    const { lottoManager } = this.props;
     const purchaseInputValue = this.$purchaseInput.value.trim();
     const payment = Number(purchaseInputValue);
 
@@ -47,7 +47,7 @@ export default class LottoPurchaseInput {
     const remainingMoney = mod(payment, LOTTO.PRICE);
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
 
-    createLottos(lottoCount);
+    lottoManager.createLottos(lottoCount);
   }
 }
 

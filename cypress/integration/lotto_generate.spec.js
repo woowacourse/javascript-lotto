@@ -1,10 +1,6 @@
 /// <reference types="cypress" />
 
-import { LOTTO } from '../../src/js/utils/constants.js';
-import {
-  generateLottoNumbers,
-  isValidLottoNumbers,
-} from '../../src/js/utils/lotto.js';
+import LottoManager from '../../src/js/model/LottoManager.js';
 
 describe('LOTTO - 로또 생성에 대한 테스트', () => {
   beforeEach(() => {
@@ -12,10 +8,11 @@ describe('LOTTO - 로또 생성에 대한 테스트', () => {
   });
 
   it('로또를 생성할 경우, 각 숫자는 1 ~ 45 사이의 중복되지 않은 6자리로 구성된다.', () => {
+    const lottoManager = new LottoManager([]);
     for (let i = 0; i < 1000; i++) {
-      const lottoNumbers = generateLottoNumbers(LOTTO.MIN_NUM, LOTTO.MAX_NUM);
+      const lottoNumbers = lottoManager.generateLottoNumbers();
 
-      expect(isValidLottoNumbers(lottoNumbers)).to.equal(true);
+      expect(LottoManager.isValidLottoNumbers(lottoNumbers)).to.equal(true);
     }
   });
 });

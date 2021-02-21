@@ -4,13 +4,18 @@ export default class LottoDisplay {
   constructor(props) {
     this.props = props;
 
+    this.setup();
     this.initState();
     this.selectDOM();
     this.bindEvent();
   }
 
+  setup() {
+    ({ lottoManager: this.lottoManager } = this.props);
+    this.lottoManager.subscribe(this.render.bind(this));
+  }
+
   initState() {
-    this.lottos = this.props.lottos;
     this.isToggled = false;
   }
 
@@ -33,7 +38,7 @@ export default class LottoDisplay {
   }
 
   createTotalLottoCountHTML() {
-    return `총 ${this.lottos.length}개를 구매하였습니다.`;
+    return `총 ${this.lottoManager.lottos.length}개를 구매하였습니다.`;
   }
 
   createLottoHTML() {
@@ -44,7 +49,7 @@ export default class LottoDisplay {
           )}</span>`
         : '';
 
-    return this.lottos
+    return this.lottoManager.lottos
       .map(
         ({ numbers }) =>
           `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${lottoNumbersHTML(
@@ -54,15 +59,14 @@ export default class LottoDisplay {
       .join('');
   }
 
-  setState({ lottos, isToggled }) {
-    this.lottos = lottos ?? this.lottos;
+  setState({ isToggled }) {
     this.isToggled = isToggled ?? this.isToggled;
 
     this.render();
   }
 
   render() {
-    this.lottos.length
+    this.lottoManager.lottos
       ? this.$target.classList.remove('d-none')
       : this.$target.classList.add('d-none');
 
