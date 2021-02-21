@@ -2,13 +2,7 @@ import Component from '../lib/core/Component.js';
 
 export default class ResultModal extends Component {
   mountTemplate() {
-    const {
-      first,
-      second,
-      third,
-      fourth,
-      fifth,
-    } = this.props.result.get().winners;
+    const { winners, profitPercentage } = this.props.result.get();
 
     this.$target.innerHTML = `
       <div class="modal-inner p-10">
@@ -31,33 +25,33 @@ export default class ResultModal extends Component {
               <tr class="text-center">
                 <td class="p-3">3개</td>
                 <td class="p-3">5,000</td>
-                <td class="p-3">${fifth}개</td>
+                <td class="p-3">${winners.fifth}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">4개</td>
                 <td class="p-3">50,000</td>
-                <td class="p-3">${fourth}개</td>
+                <td class="p-3">${winners.fourth}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">5개</td>
                 <td class="p-3">1,500,000</td>
-                <td class="p-3">${third}개</td>
+                <td class="p-3">${winners.third}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">5개 + 보너스볼</td>
                 <td class="p-3">30,000,000</td>
-                <td class="p-3">${second}개</td>
+                <td class="p-3">${winners.second}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">6개</td>
                 <td class="p-3">2,000,000,000</td>
-                <td class="p-3">${first}개</td>
+                <td class="p-3">${winners.first}개</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="text-center font-bold">
-          당신의 총 수익률은 ${this.props.result.get().profitPercentage}%입니다.
+          당신의 총 수익률은 ${profitPercentage}%입니다.
         </p>
         <div class="d-flex justify-center mt-5">
           <button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>
