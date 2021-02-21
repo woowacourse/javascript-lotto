@@ -36,7 +36,7 @@ export default class LottoDisplay {
     return `총 ${this.lottos.length}개를 구매하였습니다.`;
   }
 
-  createLottoHtml() {
+  createLottoHTML() {
     return this.lottos
       .map(({ numbers }) => {
         return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${
@@ -64,6 +64,6 @@ export default class LottoDisplay {
       this.$target.classList.add('hidden');
     }
     this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
-    this.$lottoDisplayArea.innerHTML = this.createLottoHtml();
+    this.$lottoDisplayArea.innerHTML = this.createLottoHTML();
   }
 }
