@@ -6,11 +6,13 @@ describe('LOTTO 테스트', () => {
   });
 
   it('사용자가 로또 구입 금액을 입력하고 확인 버튼을 누르면 금액에 맞는 로또가 화면에 보여진다.', () => {
-    cy.get('#money-input').should('be.focused');
     cy.get('.lotto-list-container').should('not.be.visible');
     cy.get('.winning-number-form-container').should('not.be.visible');
 
-    cy.get('#money-input').type('10000');
+    // Note: Cypress 체크 시 autofocus가 잡히지 않는 문제가 있어 수동으로 focus를 잡아둠
+    cy.get('#money-input').should('have.attr', 'autofocus', 'autofocus').focus();
+
+    cy.focused().should('have.attr', 'id', 'money-input').type('10000');
     cy.get('#money-submit-button').click();
 
     cy.get('.lotto-list-container').should('be.visible');
