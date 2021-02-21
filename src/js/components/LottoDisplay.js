@@ -34,7 +34,7 @@ export default class LottoDisplay {
   }
 
   onToggleSwitch({ target: { checked } }) {
-    this.setState({ isToggled: checked });
+    this.setIsToggled({ isToggled: checked });
   }
 
   createTotalLottoCountHTML() {
@@ -59,7 +59,7 @@ export default class LottoDisplay {
       .join('');
   }
 
-  setState({ isToggled }) {
+  setIsToggled({ isToggled }) {
     this.isToggled = isToggled ?? this.isToggled;
 
     this.render();
