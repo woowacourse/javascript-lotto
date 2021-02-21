@@ -26,5 +26,6 @@ module.exports = {
       require('os').EOL === '\r\n' ? 'windows' : 'unix',
     ],
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    parser: 'babel-eslint',
   },
 };
