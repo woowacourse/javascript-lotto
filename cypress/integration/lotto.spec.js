@@ -1,5 +1,9 @@
-import { testInputValue } from '../utils/index.js';
-import { MSG_INVALID_PURCHASE_AMOUNT } from '../../src/js/constants/index.js';
+import { testInputValue, checkAlert } from '../utils/index.js';
+import {
+  MSG_INVALID_PURCHASE_AMOUNT,
+  MSG_OVERLAPPED_LOTTO_NUMBERS,
+  MSG_OUT_RANGED_LOTTO_NUMBERS,
+} from '../../src/js/constants/index.js';
 
 describe('Lotto test', () => {
   before(() => {
@@ -7,7 +11,7 @@ describe('Lotto test', () => {
   });
 
   it('구입 금액은 단위 금액의 양의 배수 값을 갖는다.', () => {
-    const invalidValues = ['-1000', '0', '1500', '1000.1'];
+    const invalidValues = ['-1000', '0', '1500', '1000.1', ''];
 
     invalidValues.forEach(invalidValue => {
       testInputValue(
@@ -40,4 +44,33 @@ describe('Lotto test', () => {
       }
     }
   });
+
+  it('적절한 당첨 번호를 입력 받는다.', () => {
+    testWinnigNumbers(
+      ['1', '2', '3', '4', '5', '5', '45'],
+      MSG_OVERLAPPED_LOTTO_NUMBERS
+    );
+    testWinnigNumbers(
+      ['0', '2', '3', '4', '5', '6', '46'],
+      MSG_OUT_RANGED_LOTTO_NUMBERS
+    );
+    testWinnigNumbers(
+      ['1', '2', '3', ' ', '5', '6', '45'],
+      MSG_OUT_RANGED_LOTTO_NUMBERS
+    );
+    testWinnigNumbers(['1', '2', '3', '4', '5', '6', '45']);
+
+    function testWinnigNumbers(numbers, alertMessage = '') {
+      numbers.forEach((number, idx) => {
+        cy.get(`input[data-winning-number=${idx}]`).type(number);
+      });
+      cy.get('#result-submit').click();
+      alertMessage && checkAlert(alertMessage);
+    }
+  });
 });
+
+//
+// ['중복된 숫자', '범위 밖의 숫자'].join(', ')
+// MSG_OVERLAPPED_LOTTO_NUMBERS + ALERT_SUFFIX
+// 중복된 숫자, 범위 밖의 숫자는 입력할 수 없습니다.

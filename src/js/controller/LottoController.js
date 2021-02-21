@@ -1,3 +1,4 @@
+import { MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../constants/index.js';
 import { $, validator } from '../util/index.js';
 export class LottoController {
   constructor(model, view) {
@@ -8,12 +9,14 @@ export class LottoController {
   initEvent() {
     this.$purchaseAmountForm = $('#purchase-amount-form');
     this.$lottoToggle = $('#lotto-numbers-toggle-button');
+    this.$winningNumbers = $('input[data-winning-number]');
 
     this.$purchaseAmountForm.setEvent(
       'submit',
       this.handlePurchaseAmountInput.bind(this)
     );
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
+    this.$winningNumbers.setEvent('input', this.handleLengthLimit.bind(this));
   }
 
   handlePurchaseAmountInput(event) {
@@ -48,5 +51,19 @@ export class LottoController {
     this.$lottoToggle.isCheckedInput()
       ? this.$lottoNumbers.show()
       : this.$lottoNumbers.hide();
+  }
+
+  handleLengthLimit({ target, target: { value } }) {
+    const maxLength = String(MAX_LOTTO_NUMBER).length;
+
+    if (isNaN(value)) {
+      target.value = '';
+
+      return;
+    }
+
+    if (value.length > maxLength) {
+      target.value = value.slice(0, maxLength);
+    }
   }
 }
