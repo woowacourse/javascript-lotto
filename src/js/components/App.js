@@ -1,6 +1,7 @@
 import PurchaseAmountInput from './PurchaseAmountInput.js';
 import PurchasedLotto from './PurchasedLotto.js';
 import LottoTicket from '../model/LottoTicket.js';
+import WinningNumberInput from './WinningNumberInput.js';
 
 export default class App {
   constructor() {
@@ -12,6 +13,7 @@ export default class App {
     this.purchasedLotto = new PurchasedLotto({
       lottoTickets: this.lottoTickets,
     });
+    this.winningNumberInput = new WinningNumberInput({ isVisible: false });
   }
 
   createLottoTickets(numOfLotto) {
@@ -23,5 +25,6 @@ export default class App {
   setState({ lottoTickets }) {
     this.lottoTickets = lottoTickets;
     this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
+    this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 ? true : false });
   }
 }
