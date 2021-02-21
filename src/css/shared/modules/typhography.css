@@ -109,3 +109,7 @@
 .font-black {
   font-weight: 900;
 }
+
+.spacing-sm {
+  letter-spacing: -0.07rem;
+}
