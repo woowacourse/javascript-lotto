@@ -25,11 +25,11 @@ class TicketList extends Component {
 
   createDetailModeToggleTemplate() {
     return `
-        <label class="switch">
-          <input id="detail-mode-toggle" type="checkbox" class="lotto-numbers-toggle-button" />
-          <span class="text-base font-normal">번호보기</span>
-        </label>
-      `;
+      <label class="switch">
+        <input id="detail-mode-toggle" type="checkbox" class="lotto-numbers-toggle-button" />
+        <span class="text-base font-normal">번호보기</span>
+      </label>
+    `;
   }
 
   createTicketTemplate(ticket) {

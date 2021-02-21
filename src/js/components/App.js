@@ -11,7 +11,7 @@ class App extends Component {
   initStates() {
     this.tickets = new State([]);
     this.open = new State(false);
-    this.winningNumber = new State({});
+    this.winningNumber = new State({ main: [], bonus: 0 });
     this.result = new State({
       winners: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
       profitPercentage: 0,
@@ -66,24 +66,21 @@ class App extends Component {
       this.tickets.get().length,
       winners
     );
-    this.result.set({
-      winners,
-      profitPercentage,
-    });
+    this.result.set({ winners, profitPercentage });
   }
 
   initEvent() {
     this.$target.addEventListener('click', ({ target }) => {
-      if (target.classList.contains('modal')) {
-        this.open.set(false);
-      }
+      if (!target.classList.contains('modal')) return;
+
+      this.open.set(false);
     });
   }
 
   reset() {
+    this.winningNumber.set({});
     this.tickets.set([]);
     this.open.set(false);
-    this.winningNumber.set({});
   }
 }
 
