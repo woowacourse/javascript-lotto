@@ -79,7 +79,7 @@ class PaymentForm extends Component {
   }
 
   subscribeStates() {
-    this.props.tickets.subscribe(this.render.bind(this));
+    this.props.tickets.subscribe(this.mountTemplate.bind(this));
   }
 }
 

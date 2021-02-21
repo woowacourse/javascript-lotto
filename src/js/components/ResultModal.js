@@ -68,7 +68,7 @@ export default class ResultModal extends Component {
   }
 
   subscribeStates() {
-    this.props.result.subscribe(this.render.bind(this));
+    this.props.result.subscribe(this.mountTemplate.bind(this));
   }
 
   initEvent() {

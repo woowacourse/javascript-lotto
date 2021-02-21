@@ -7,13 +7,9 @@ export default class Component {
     this.props = props;
     this.initStates();
     this.subscribeStates();
-    this.render();
-    this.initEvent();
-  }
-
-  render() {
     this.mountTemplate();
     this.mountChildComponents();
+    this.initEvent();
   }
 
   initStates() {}
