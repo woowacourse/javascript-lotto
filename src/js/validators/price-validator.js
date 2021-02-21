@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, LOTTO } from "./constant.js";
+import { ERROR_MESSAGE, LOTTO } from "../constants/index.js";
 
 const isFloatPrice = (price) => parseInt(price, 10) !== price;
 

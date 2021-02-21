@@ -1,8 +1,8 @@
-import LottoModel from "./model.js";
-import LottoView from "./view.js";
-import { getPriceInputErrorMessage } from "./validator.js";
+import LottoModel from "../models/lotto-model.js";
+import LottoView from "../views/lotto-view.js";
+import { getPriceInputErrorMessage } from "../validators/price-validator.js";
 import { $, getQuotient, getRandomNumber, sortByNumber } from "../util.js";
-import { LOTTO, SELECTOR } from "./constant.js";
+import { LOTTO, SELECTOR } from "../constants/index.js";
 
 class LottoController {
   constructor() {

@@ -1,4 +1,4 @@
-import { SELECTOR, ERROR_MESSAGE } from "../../src/js/lottos/constant.js";
+import { SELECTOR, ERROR_MESSAGE } from "../../src/js/constants/";
 
 const typeAndClickPrice = (price) => {
   cy.get(SELECTOR.BUY_INPUT).type(price);
