@@ -10,7 +10,7 @@ const restartLottoGame = (lotto) => {
   });
   $('.bonus-number').value = '';
 
-  lotto.initialize();
+  lotto.clear();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
   closeModal();

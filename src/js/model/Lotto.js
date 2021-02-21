@@ -16,7 +16,7 @@ export default class Lotto {
     this.purchasePrice = purchasePrice;
   }
 
-  initialize() {
+  clear() {
     this.tickets = [];
     this.purchasePrice = 0;
   }
