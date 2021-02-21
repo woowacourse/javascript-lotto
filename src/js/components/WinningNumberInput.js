@@ -22,17 +22,22 @@ export default class WinningNumberInput {
       return;
     }
 
-    const inputValue = Number(e.target.value);
-    const errorMessage = this.validateInput(inputValue);
+    //const targetValue = Number(e.target.value);
+    const inputValues = [...e.currentTarget.querySelectorAll('input[type="number"]')]
+      .filter(($input) => $input.value !== '')
+      .map(($input) => Number($input.value));
+    const checkMessage = this.validateInput(inputValues);
 
-    if (errorMessage !== '') {
-      this.$winningNumberCheckMessage.innerText = errorMessage;
-    }
+    this.$winningNumberCheckMessage.innerText = checkMessage;
   }
 
-  validateInput(number) {
-    if (this.isOutOfRange(number)) {
+  validateInput(inputValues) {
+    if (inputValues.some(this.isOutOfRange)) {
       return WINNING_NUMBER_CHECK_MESSAGE.OUT_OF_RANGE;
+    }
+
+    if (this.isDuplicated(inputValues)) {
+      return WINNING_NUMBER_CHECK_MESSAGE.DUPLICATED;
     }
 
     return '';
@@ -40,6 +45,10 @@ export default class WinningNumberInput {
 
   isOutOfRange(number) {
     return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
+  }
+
+  isDuplicated(numbers) {
+    return new Set(numbers).size !== numbers.length;
   }
 
   setState({ isVisible }) {
