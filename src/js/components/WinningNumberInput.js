@@ -1,5 +1,11 @@
-import { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, WINNING_NUMBER_CHECK_MESSAGE } from '../constants.js';
-import { $, $$, show, hide } from '../utils/DOM.js';
+import {
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+  WINNING_NUMBER_CHECK_MESSAGE,
+  LOTTO_NUMBERS_LENGTH,
+  BONUS_NUMBER_LENGTH,
+} from '../constants.js';
+import { $, $$, show, hide, enable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
   constructor({ isVisible }) {
@@ -7,6 +13,7 @@ export default class WinningNumberInput {
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
     this.$winningNumberCheckMessage = $('.winning-number-check-message');
+    this.$openResultModalButton = $('.open-result-modal-button');
 
     this.isVisible = isVisible;
 
@@ -22,13 +29,15 @@ export default class WinningNumberInput {
       return;
     }
 
-    //const targetValue = Number(e.target.value);
     const inputValues = [...e.currentTarget.querySelectorAll('input[type="number"]')]
       .filter(($input) => $input.value !== '')
       .map(($input) => Number($input.value));
     const checkMessage = this.validateInput(inputValues);
 
     this.$winningNumberCheckMessage.innerText = checkMessage;
+    if (checkMessage === '' && this.isCompletedInput(inputValues)) {
+      enable(this.$openResultModalButton);
+    }
   }
 
   validateInput(inputValues) {
@@ -51,13 +60,21 @@ export default class WinningNumberInput {
     return new Set(numbers).size !== numbers.length;
   }
 
+  isCompletedInput(numbers) {
+    return numbers.length === LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
+  }
+
   setState({ isVisible }) {
     this.isVisible = isVisible;
     this.render();
   }
 
   render() {
-    this.isVisible ? show(this.$winningNumberForm) : hide(this.$winningNumberForm);
-    this.$winningNumberInputs[0].focus();
+    if (this.isVisible) {
+      show(this.$winningNumberForm);
+      this.$winningNumberInputs[0].focus();
+    } else {
+      hide(this.$winningNumberForm);
+    }
   }
 }
