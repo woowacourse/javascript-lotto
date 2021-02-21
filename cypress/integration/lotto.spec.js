@@ -6,6 +6,7 @@ describe('LOTTO 테스트', () => {
   });
 
   it('사용자가 로또 구입 금액을 입력하고 확인 버튼을 누르면 금액에 맞는 로또가 화면에 보여진다.', () => {
+    cy.get('#money-input').should('be.focused');
     cy.get('.lotto-list-container').should('not.be.visible');
     cy.get('.winning-number-form-container').should('not.be.visible');
 
@@ -17,6 +18,8 @@ describe('LOTTO 테스트', () => {
 
     cy.get('.lotto-count').should('have.text', '10');
     cy.get('.lotto').should('have.length', '10');
+
+    cy.get('.winning-number').first().should('be.focused');
   });
 
   it('사용자가 토글 버튼을 누르면 로또의 번호를 볼 수 있다.', () => {
