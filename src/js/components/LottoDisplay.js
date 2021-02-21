@@ -37,16 +37,20 @@ export default class LottoDisplay {
   }
 
   createLottoHTML() {
+    const lottoNumbersHTML = numbers =>
+      this.isToggled
+        ? `<span data-test="lotto-numbers" class="text-2xl ml-4">${numbers.join(
+            ', ',
+          )}</span>`
+        : '';
+
     return this.lottos
-      .map(({ numbers }) => {
-        return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${
-          this.isToggled
-            ? `<span data-test="lotto-numbers" class="text-2xl ml-4">${numbers.join(
-                ', ',
-              )}</span>`
-            : ''
-        }</span>`;
-      })
+      .map(
+        ({ numbers }) =>
+          `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${lottoNumbersHTML(
+            numbers,
+          )}</span>`,
+      )
       .join('');
   }
 
@@ -63,6 +67,7 @@ export default class LottoDisplay {
     } else {
       this.$target.classList.add('hidden');
     }
+
     this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
     this.$lottoDisplayArea.innerHTML = this.createLottoHTML();
   }
