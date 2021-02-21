@@ -31,17 +31,15 @@ button:disabled {
   display: none;
 }
 
-.lotto-numbers {
-  font-size: 1rem;
-}
-
 .lotto-list .lotto {
   display: flex;
   align-items: center;
 }
 
 .lotto-list .lotto .lotto-numbers {
+  font-size: 1rem;
   display: none;
+  padding-left: 5px;
 }
 
 .lotto-list.show-number {
