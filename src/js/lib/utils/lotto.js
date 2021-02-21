@@ -4,7 +4,8 @@ import {
   TICKET_PRICE,
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
-} from '../constants/ticket.js';
+  PRIZE_AMOUNT,
+} from '../constants/lotto.js';
 
 export const createTicket = () => {
   const ticket = new Set();
@@ -59,20 +60,12 @@ export const getWinners = (tickets, winningNumber) => {
   return winners;
 };
 
-const prizeAmount = {
-  first: 2000000000,
-  second: 30000000,
-  third: 1500000,
-  fourth: 50000,
-  fifth: 5000,
-};
-
 const getTotalProfit = winners => {
   let totalProfit = 0;
 
   for (const winner in winners) {
     if (Object.hasOwnProperty.call(winners, winner)) {
-      totalProfit += winners[winner] * prizeAmount[winner];
+      totalProfit += winners[winner] * PRIZE_AMOUNT[winner];
     }
   }
 
@@ -82,4 +75,21 @@ const getTotalProfit = winners => {
 export const getProfitPercentage = (ticketAmount, winners) => {
   const payment = ticketAmount * TICKET_PRICE;
   return Math.floor(((getTotalProfit(winners) - payment) / payment) * 100);
+};
+
+export const getWinningNumbers = ({
+  first,
+  second,
+  third,
+  fourth,
+  fifth,
+  sixth,
+  bonus,
+}) => {
+  return {
+    main: [first, second, third, fourth, fifth, sixth].map(({ value }) =>
+      Number(value)
+    ),
+    bonus: Number(bonus.value),
+  };
 };

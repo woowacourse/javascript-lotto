@@ -8,11 +8,11 @@ import {
 import {
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
-} from '../../../src/js/lib/constants/ticket';
+} from '../../../src/js/lib/constants/lotto';
 
 context('Actions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5000/');
+    cy.visit('http://localhost:5500/');
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
