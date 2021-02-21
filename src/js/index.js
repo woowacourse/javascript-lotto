@@ -1,4 +1,4 @@
-import { $, getRandomNumber, showElement, disableElement } from './utils.js';
+import { $, getRandomNumber, isUniqueArray, showElement, disableElement } from './utils.js';
 import { ALERT_MESSAGE, LOTTO } from './constants.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
@@ -34,7 +34,6 @@ class LottoApp {
     event.preventDefault();
 
     const money = event.target.elements['money-input'].valueAsNumber;
-    console.log(event);
 
     if (money < LOTTO.PRICE) {
       alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
@@ -57,12 +56,53 @@ class LottoApp {
     $('.lotto-list').classList.toggle('show-number');
   }
 
+  handleInputWinningNumbers(event) {
+    if (!event.target.classList.contains('winning-number')) return;
+
+    if (event.target.value.length >= 2) {
+      if (event.target.nextElementSibling) {
+        event.target.nextElementSibling.focus();
+        return;
+      }
+      $('.bonus-number').focus();
+    }
+  }
+
+  handleSubmitWinningNumbers(event) {
+    event.preventDefault();
+
+    // TODO: 이벤트를 parameter로 넘기지 않는 방법 찾기
+    const numbers = this.getWinningNumbers(event);
+    if (!numbers) return;
+
+    showElement($('.modal'));
+  }
+
+  getWinningNumbers(event) {
+    const bonusNumber = event.target.elements['bonus-number'].valueAsNumber;
+    const $winningNumbers = [...event.target.elements['winning-number']];
+    const winningNumbers = $winningNumbers.map(($number) => $number.valueAsNumber);
+
+    if (!isUniqueArray([...winningNumbers, bonusNumber])) {
+      alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      return;
+    }
+
+    return { winningNumbers, bonusNumber };
+  }
+
   bindEvents() {
     $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
 
     $('.lotto-numbers-toggle-button').addEventListener(
       'change',
       this.handleToggleLottoNumbers.bind(this)
+    );
+
+    $('#winning-number-form').addEventListener('input', this.handleInputWinningNumbers.bind(this));
+    $('#winning-number-form').addEventListener(
+      'submit',
+      this.handleSubmitWinningNumbers.bind(this)
     );
   }
 }
