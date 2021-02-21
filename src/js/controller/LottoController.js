@@ -9,14 +9,13 @@ export class LottoController {
   initEvent() {
     this.$purchaseAmountForm = $('#purchase-amount-form');
     this.$lottoToggle = $('#lotto-numbers-toggle-button');
-    this.$winningNumbers = $('input[data-winning-number]');
+    this.$winningNumberInputs = $('[data-winning-number]');
+    this.$resultForm = $('#lotto-result-form');
 
-    this.$purchaseAmountForm.setEvent(
-      'submit',
-      this.handlePurchaseAmountInput.bind(this)
-    );
+    this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
-    this.$winningNumbers.setEvent('input', this.handleLengthLimit.bind(this));
+    this.$winningNumberInputs.setEvent('input', this.handleLengthLimit.bind(this));
+    this.$resultForm.setEvent('submit', this.handleResult.bind(this));
   }
 
   handlePurchaseAmountInput(event) {
@@ -24,7 +23,7 @@ export class LottoController {
     this.$purchaseAmountInput = $('#purchase-amount-input');
     this.$purchaseAmountSubmit = $('#purchase-amount-submit');
     const money = Number(this.$purchaseAmountInput.getValue());
-    const alertMessage = validator.purchaseAmountInput(money);
+    const alertMessage = validator.purchaseAmount(money);
 
     if (alertMessage) {
       this.handleInputException(this.$purchaseAmountInput, alertMessage);
@@ -45,10 +44,10 @@ export class LottoController {
 
   handleLottoToggle() {
     this.$lottoContainer = $('#lotto-container');
-    this.$lottoNumbers = $('span[data-lotto-numbers]');
+    this.$lottoNumbers = $('[data-lotto-numbers]');
 
     this.$lottoContainer.toggleClass('flex-col'); // toggle()을 이용해 flex direction 변경.
-    this.$lottoToggle.isCheckedInput()
+    this.$lottoToggle.isCheckedInput() //
       ? this.$lottoNumbers.show()
       : this.$lottoNumbers.hide();
   }
@@ -65,5 +64,20 @@ export class LottoController {
     if (value.length > maxLength) {
       target.value = value.slice(0, maxLength);
     }
+  }
+
+  handleResult(event) {
+    event.preventDefault();
+    const numbers = this.$winningNumberInputs
+      .filter($input => $input.value !== '')
+      .map($input => Number($input.value));
+    const alertMessage = validator.lottoNumbers(numbers);
+
+    if (alertMessage) {
+      this.handleInputException(this.$winningNumberInputs, alertMessage);
+
+      return;
+    }
+    // 통계 계산 결과 -> render modal
   }
 }

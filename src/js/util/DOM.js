@@ -19,6 +19,22 @@ export const $ = (() => {
     return this;
   };
 
+  constructor.prototype.map = function (callBack) {
+    if (!callBack || typeof callBack !== 'function') {
+      return;
+    }
+
+    return [...this.targets].map((target, idx) => callBack(target, idx));
+  };
+
+  constructor.prototype.filter = function (callBack) {
+    if (!callBack || typeof callBack !== 'function') {
+      return;
+    }
+
+    return [...this.targets].filter((target, idx) => callBack(target, idx));
+  };
+
   constructor.prototype.addClass = function (className) {
     this.each(target => target.classList.add(className));
 
