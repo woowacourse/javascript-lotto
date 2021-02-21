@@ -12,8 +12,8 @@ const JS_SELECTOR = {
     ICON: "lotto-detail-container__icon",
     NUMBERS: "lotto-detail-container__numbers",
   },
-  WINNING_LOTTO: {
-    CONTAINER: "winning-lotto-container",
+  WINNING_NUMBER: {
+    CONTAINER: "winning-number-container",
   },
 };
 

@@ -36,7 +36,9 @@ describe("구입 금액 입력 테스트", () => {
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER)).should("not.be.visible");
-    cy.get(toDAS(JS_SELECTOR.WINNING_LOTTO.CONTAINER)).should("not.be.visible");
+    cy.get(toDAS(JS_SELECTOR.WINNING_NUMBER.CONTAINER)).should(
+      "not.be.visible"
+    );
     cy.get(".modal").should("not.be.visible");
   });
 
@@ -78,7 +80,7 @@ describe("구입 금액 입력 테스트", () => {
       lottoCount
     );
 
-    cy.get(toDAS(JS_SELECTOR.WINNING_LOTTO.CONTAINER)).should("be.visible");
+    cy.get(toDAS(JS_SELECTOR.WINNING_NUMBER.CONTAINER)).should("be.visible");
     testResetInput();
   });
 });
