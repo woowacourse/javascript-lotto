@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, LOTTO } from "../constant.js";
+import { ERROR_MESSAGE, LOTTO } from "../constants/constant.js";
 class Validator {
   isFloatPrice(price) {
     return parseInt(price, 10) !== price;

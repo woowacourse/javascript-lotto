@@ -1,8 +1,9 @@
 import LottoModel from "./model.js";
-import LottoView from "../view.js";
+import LottoView from "./view.js";
 import Validator from "./validator.js";
-import { $, getQuotient, getRandomNumber, sortByNumber } from "../util.js";
-import { LOTTO, SELECTOR } from "../constant.js";
+import { getLottoCount, generateLotto } from "./game.js";
+import { $ } from "../utils/util.js";
+import { SELECTOR } from "../constants/constant.js";
 
 class LottoController {
   constructor() {
@@ -17,24 +18,11 @@ class LottoController {
     this.handlePrice();
   }
 
-  getandClearBuyInputValue() {
+  getBuyInput() {
     const value = $(SELECTOR.BUY_INPUT).value;
     $(SELECTOR.BUY_INPUT).value = "";
 
     return value;
-  }
-
-  getCount(price) {
-    return getQuotient(price, LOTTO.PRICE);
-  }
-
-  generateLotto() {
-    const lotto = new Set();
-    while (lotto.size !== LOTTO.SIZE) {
-      lotto.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
-    }
-
-    return sortByNumber([...lotto]);
   }
 
   renderPocketLottos() {
@@ -52,16 +40,16 @@ class LottoController {
   }
 
   manageLotto() {
-    const price = Number(this.getAndClearBuyValue());
+    const price = Number(this.getBuyInput());
     const alertMessage = this.validator.isPriceValid(price);
     if (alertMessage !== null) {
       return alert(alertMessage);
     }
 
-    const count = this.getCount(price);
+    const count = getLottoCount(price);
     this.model.init();
     for (let i = 0; i < count; i++) {
-      this.model.addLotto(this.generateLotto());
+      this.model.addLotto(generateLotto());
     }
     this.managePocket();
   }
