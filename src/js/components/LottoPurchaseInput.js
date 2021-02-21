@@ -1,5 +1,5 @@
 import { $, clearInput } from '../utils/dom.js';
-import { LOTTO_PRICE } from '../utils/constants.js';
+import { LOTTO } from '../utils/constants.js';
 import { mod, divide } from '../utils/lotto.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
@@ -43,8 +43,8 @@ export default class LottoPurchaseInput {
       return;
     }
 
-    const lottoCount = divide(payment, LOTTO_PRICE);
-    const remainingMoney = mod(payment, LOTTO_PRICE);
+    const lottoCount = divide(payment, LOTTO.PRICE);
+    const remainingMoney = mod(payment, LOTTO.PRICE);
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
 
     createLottos(lottoCount);
@@ -56,7 +56,7 @@ const validatePurchaseInputValue = payment => {
     return ERROR_MESSAGE.NOT_INTEGER_NUMBER_ERROR;
   }
 
-  if (payment < LOTTO_PRICE) {
+  if (payment < LOTTO.PRICE) {
     return ERROR_MESSAGE.PAYMENT_AMOUNT_ERROR;
   }
 };

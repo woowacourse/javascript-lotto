@@ -1,8 +1,4 @@
-import {
-  LOTTO_LENGTH,
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
-} from './constants.js';
+import { LOTTO } from './constants.js';
 
 const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
@@ -15,12 +11,12 @@ export const mod = (a, b) => a % b;
 
 export const generateLottoNumbers = () => {
   const lottoNumbers = new Set();
-  while (lottoNumbers.size < LOTTO_LENGTH) {
-    lottoNumbers.add(generateRandomNumber(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
+  while (lottoNumbers.size < LOTTO.LENGTH) {
+    lottoNumbers.add(generateRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
   }
 
   return sortNumbers([...lottoNumbers]);
 };
 
 export const isValidLottoNumbers = numbers =>
-  numbers.length === LOTTO_LENGTH && new Set(numbers).size === numbers.length;
+  numbers.length === LOTTO.LENGTH && new Set(numbers).size === numbers.length;
