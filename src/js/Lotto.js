@@ -1,18 +1,20 @@
-import { NUMBERS } from './utils/constants.js';
 import getRandomNumber from './utils/utils.js';
 
 export default class Lotto {
+  static LOTT0_LENGTH = 6;
+
   constructor() {
-    this._numbers = new Set();
+    this.numbers = new Set();
+    this.initNumbers();
   }
 
   initNumbers() {
-    while (this._numbers.size < NUMBERS.LOTT0_LENGTH) {
-      this._numbers.add(getRandomNumber());
+    while (this.numbers.size < Lotto.LOTT0_LENGTH) {
+      this.numbers.add(getRandomNumber());
     }
   }
 
   get numberDetail() {
-    return [...this._numbers.values()].join(', ');
+    return [...this.numbers.values()].join(', ');
   }
 }
