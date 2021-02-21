@@ -78,7 +78,6 @@ class App extends Component {
   }
 
   reset() {
-    this.winningNumber.set({});
     this.tickets.set([]);
     this.open.set(false);
   }
