@@ -132,9 +132,11 @@ export default class WinningNumberForm extends Component {
       alert(INPUT_NOT_COMPLETED);
       return;
     }
+    console.log('ho', uniqueNumberSize);
 
-    if (uniqueNumberSize < TICKET_NUMBERS_LENGTH) {
+    if (uniqueNumberSize < TICKET_NUMBERS_LENGTH + 1) {
       alert(DUPLICATE_WINNING_NUMBER);
+      console.log('hi');
     }
   }
 
