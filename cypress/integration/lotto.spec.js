@@ -75,4 +75,29 @@ describe('LOTTO 테스트', () => {
 
     cy.get('.lotto-list').children().should('have.length', 5);
   });
+
+  it('로또 구입 후, 당첨 번호를 입력하고 결과 확인하기 버튼을 누르면, 모달에서 당첨 개수와 총 수익률을 확인할 수 있다.', () => {
+    const winningNumbers = [9, 11, 3, 25, 21, 2];
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.winning-number').each((winningNumberInput, index) => {
+      cy.wrap(winningNumberInput).type(winningNumbers[index]);
+    });
+    cy.get('.bonus-number').type(45);
+    cy.get('.open-result-modal-button').click();
+
+    // cy.get('.modal').should('be.visible');
+
+    cy.get('.winning-count').each((count) => {
+      cy.wrap(count)
+        .invoke('text')
+        .should('match', /^[0-9]+$/);
+    });
+
+    cy.get('.winning-rate')
+      .first()
+      .invoke('text')
+      .should('match', /^[0-9]+\.[0-9]+$/);
+  });
 });
