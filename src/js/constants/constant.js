@@ -1,8 +1,3 @@
-export const INIT = {
-  LOTTOS: [],
-  DETAIL: false,
-};
-
 export const LOTTO = {
   PRICE: 1000,
   SIZE: 6,
