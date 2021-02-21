@@ -18,9 +18,10 @@ const init = () => {
     handlePurchaseResultToggle,
   );
 
-  $('#winning-number-input-form__button').addEventListener('click', () =>
-    handleWinningNumberInput(lotto),
-  );
+  $('#winning-number-input-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handleWinningNumberInput(lotto);
+  });
 
   $('.modal').addEventListener('click', (event) =>
     handleModalPage(event, lotto),
