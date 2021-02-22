@@ -1,0 +1,7 @@
+.flex-col-with-num {
+  flex-direction: column;
+}
+
+.flex-col-with-num .lotto-numbers {
+  display: inline;
+}
