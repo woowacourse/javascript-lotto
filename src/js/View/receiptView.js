@@ -30,7 +30,7 @@ export const printTicketVertical = (tickets) => {
   const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
   let ticketImageNumberTemplate = "";
 
-  tickets.map((lotto) => {
+  tickets.forEach((lotto) => {
     ticketImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${lotto.numbers.join(
       ", "
     )}</span></div>`;
