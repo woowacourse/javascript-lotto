@@ -58,6 +58,14 @@ context('로또 UI 테스트', () => {
     cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
     cy.get(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).should('be.visible');
   });
+
+  it('결과 확인하기 버튼을 누르면 당첨 통계 모달창을 띄운다.', () => {
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.MODAL}`).should("be.visible");
+  })
 });
 
 context('로또 기능 테스트', () => {
