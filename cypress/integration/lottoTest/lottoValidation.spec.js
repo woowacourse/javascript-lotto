@@ -19,7 +19,7 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
     cy.get('#input-price').type(wrongPrice);
     cy.get('#input-price-btn').click();
 
-    cy.get('input:invalid').should('have.length', 1);
+    cy.get('#input-price:invalid').should('have.length', 1);
     cy.get('#input-price').then($input => {
       expect($input[0].validationMessage).to.eq(errorMessage);
     });
