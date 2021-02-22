@@ -8,28 +8,25 @@ import {
   getResultItemCountTemplate,
   getResultItemListTemplate,
 } from '../templates.js';
-import { $$ } from '../utils/querySelector.js';
 
 export default {
   renderResult(lottoItemList) {
-    $purchaseResult.style.display = 'block';
+    $purchaseResult.classList.remove('hide');
+    $purchaseItemList.classList.remove('hide');
     $purchaseItemCount.innerHTML = getResultItemCountTemplate(lottoItemList.length);
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
-    $purchaseItemList.style.flexDirection = '';
   },
   displayLottoNumbers() {
-    $$('.lotto-numbers').forEach(($lottoNumbers) => {
-      $lottoNumbers.style.display = 'inline-block';
-    });
-    $purchaseItemList.style.flexDirection = 'column';
+    $purchaseItemList.classList.add('flex-col');
+    $purchaseItemList.classList.remove('hide-lotto-numbers');
   },
   hideLottoNumbers() {
-    $$('.lotto-numbers').forEach(($lottoNumbers) => {
-      $lottoNumbers.style.display = 'none';
-    });
-    $purchaseItemList.style.flexDirection = '';
+    $purchaseItemList.classList.remove('flex-col');
+    $purchaseItemList.classList.add('hide-lotto-numbers');
   },
   resetToggleButton() {
     $lottoNumbersToggleButton.checked = false;
+    $purchaseItemList.classList.add('hide-lotto-numbers');
+    $purchaseItemList.classList.remove('flex-col');
   },
 };

@@ -5,7 +5,7 @@ import {
   MIN_NUMBER,
   MAX_NUMBER,
 } from '../constants.js';
-import lottoGameUI from './ui.js';
+import lottoGameView from './view.js';
 
 const getRandomNumberList = () => {
   const numberList = [];
@@ -31,16 +31,16 @@ export default {
     const lottoItemCount = cost / LOTTO_PRICE;
     lottoGame.initLottoItemList();
     addLottoItems(lottoItemCount);
-    lottoGameUI.renderResult(lottoGame.lottoItemList);
+    lottoGameView.renderResult(lottoGame.lottoItemList);
   },
   toggleLottoItemNumbers(checked) {
     if (checked) {
-      lottoGameUI.displayLottoNumbers();
+      lottoGameView.displayLottoNumbers();
       return;
     }
-    lottoGameUI.hideLottoNumbers();
+    lottoGameView.hideLottoNumbers();
   },
   initToggleButton() {
-    lottoGameUI.resetToggleButton();
+    lottoGameView.resetToggleButton();
   },
 };

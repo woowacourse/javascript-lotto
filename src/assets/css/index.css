@@ -24,19 +24,15 @@ body {
   height: 36px;
 }
 
-#purchase-result {
-  display: none;
-}
-
-#purchase-control {
-  display: none;
-}
-
 .lotto-icon {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 4px;
+}
+
+#purchase-item-list.hide-lotto-numbers .lotto-numbers {
+  display: none;
 }
 
 .lotto-item {
@@ -45,7 +41,6 @@ body {
 }
 
 .lotto-numbers {
-  display: none;
   margin-left: 10px;
   font-size: 16px;
   font-weight: 600;
