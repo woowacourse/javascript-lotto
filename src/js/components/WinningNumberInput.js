@@ -25,19 +25,16 @@ export default class WinningNumberInput {
   }
 
   onChangeWinningNumberInput(e) {
-    if (e.target.type !== 'number' || e.target.value === '') {
+    if (e.target.type !== 'number') {
       return;
     }
 
     const inputValues = [...e.currentTarget.querySelectorAll('input[type="number"]')]
       .filter(($input) => $input.value !== '')
       .map(($input) => Number($input.value));
-    const checkMessage = this.validateInput(inputValues);
 
-    this.$winningNumberCheckMessage.innerText = checkMessage;
-    if (checkMessage === '' && this.isCompletedInput(inputValues)) {
-      enable(this.$openResultModalButton);
-    }
+    const checkMessage = this.validateInput(inputValues);
+    this.renderCheckMessage(checkMessage);
   }
 
   validateInput(inputValues) {
@@ -49,7 +46,11 @@ export default class WinningNumberInput {
       return WINNING_NUMBER_CHECK_MESSAGE.DUPLICATED;
     }
 
-    return '';
+    if (this.hasBlank(inputValues)) {
+      return WINNING_NUMBER_CHECK_MESSAGE.HAS_BLANK;
+    }
+
+    return WINNING_NUMBER_CHECK_MESSAGE.COMPLETED;
   }
 
   isOutOfRange(number) {
@@ -60,16 +61,26 @@ export default class WinningNumberInput {
     return new Set(numbers).size !== numbers.length;
   }
 
-  isCompletedInput(numbers) {
-    return numbers.length === LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
+  hasBlank(numbers) {
+    return numbers.length !== LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
   }
 
   setState({ isVisible }) {
     this.isVisible = isVisible;
-    this.render();
+    this.renderForm();
   }
 
-  render() {
+  renderCheckMessage(checkMessage) {
+    this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
+    this.$winningNumberCheckMessage.innerText = checkMessage;
+
+    if (checkMessage === WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+      this.$winningNumberCheckMessage.classList.replace('text-red', 'text-green');
+      enable(this.$openResultModalButton);
+    }
+  }
+
+  renderForm() {
     if (this.isVisible) {
       show(this.$winningNumberForm);
       this.$winningNumberInputs[0].focus();
