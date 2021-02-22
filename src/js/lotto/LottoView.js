@@ -5,6 +5,10 @@ import {
   $lottoTickets,
   $lottoNumbersToggleButton,
   $priceInput,
+  $prizeTable,
+  $earningRate,
+  $winningNumberInputs,
+  $bonusNumberInput,
 } from "../elements.js";
 
 export default class LottoView {
@@ -40,8 +44,30 @@ export default class LottoView {
     this.showTickets(lottoList.length);
   }
 
-  resetLottoView() {
+  showPrizeTable(prizeTable) {
+    $prizeTable.innerHTML = [5, 4, 3, 2, 1]
+      .map((rankNum) => {
+        const ranking = prizeTable[`ranking${rankNum}`];
+
+        return `
+          <tr class="text-center">
+            <td class="p-3">${ranking.condition}</td>
+            <td class="p-3">${ranking.prize}</td>
+            <td class="p-3">${ranking.num}개</td>
+          </tr>
+        `;
+      })
+      .join("");
+  }
+
+  showEarningRate(earningRate) {
+    $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
+  }
+
+  static resetLottoView() {
     $priceInput.value = "";
+    $bonusNumberInput.value = "";
+    $winningNumberInputs.forEach(($input) => ($input.value = ""));
     hideElement($confirmation);
   }
 }

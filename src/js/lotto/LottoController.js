@@ -55,6 +55,17 @@ export default class LottoController {
     }
   }
 
+  calculateEarningRate(prizeTable) {
+    const totalPrize = Object.values(prizeTable).reduce(
+      (totalPrize, ranking) => {
+        return (totalPrize += ranking.num * ranking.prize);
+      },
+      0
+    );
+
+    return Math.round((totalPrize / this.lottoModel.price) * 100);
+  }
+
   onSubmitPrice(price) {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
@@ -88,36 +99,45 @@ export default class LottoController {
       ranking1: {
         num: 0,
         prize: 2000000000,
+        condition: "6개",
       },
       ranking2: {
         num: 0,
         prize: 30000000,
+        condition: "5개 + 보너스볼",
       },
       ranking3: {
         num: 0,
         prize: 1500000,
+        condition: "5개",
       },
       ranking4: {
         num: 0,
         prize: 50000,
+        condition: "4개",
       },
       ranking5: {
         num: 0,
         prize: 5000,
+        condition: "3개",
       },
       noPrize: {
         num: 0,
         prize: 0,
+        condition: "2개 이하",
       },
     };
 
     this.lottoModel.lottoList.forEach((lotto) => {
-      const ranking = this.checkRrankingnking(
+      const ranking = this.checkRanking(
         lotto.number,
         winningNumber,
         bonusNumber
       );
       prizeTable[ranking].num++;
     });
+
+    this.lottoView.showPrizeTable(prizeTable);
+    this.lottoView.showEarningRate(this.calculateEarningRate(prizeTable));
   }
 }
