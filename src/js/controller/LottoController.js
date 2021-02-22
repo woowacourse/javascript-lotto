@@ -83,7 +83,7 @@ export class LottoController {
       return;
     }
 
-    this.machine.getWinningStatistics(numbers);
+    this.view.renderWinningResult(this.machine.getWinningStatistics(numbers));
     this.$modal.addClass('open');
   }
 }

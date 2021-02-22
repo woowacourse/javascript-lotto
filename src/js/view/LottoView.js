@@ -22,4 +22,11 @@ export class LottoView {
       }, '');
     }
   }
+
+  renderWinningResult({ rankCounts, earningRate }) {
+    rankCounts.forEach((count, rank) => {
+      rank !== 0 && $(`[data-rank='${rank}']`).innerText(`${count}개`);
+    });
+    $('#earning-rate').innerText(`${earningRate}`);
+  }
 }
