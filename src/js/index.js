@@ -27,7 +27,6 @@ const paymentForm = $('#payment-submit');
 
 paymentForm.addEventListener('submit', event => {
   event.preventDefault();
-  console.log('hi');
   const paymentInput = event.target.elements['payment-input'].value;
 
   ///////// 티켓 생성
@@ -46,7 +45,7 @@ paymentForm.addEventListener('submit', event => {
 function createTicktHTML(ticketNumber) {
   return `<div>
             <span class="mx-1 text-4xl">🎟️ </span>
-            <span>${ticketNumber.join(', ')}</span> 
+            <span class="ticket-number hide">${ticketNumber.join(', ')}</span> 
           </div>`;
 }
 
@@ -63,3 +62,15 @@ function getTicketNumber() {
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+// 디테일모드 토글
+
+$('#toggle-detail-mode').addEventListener('change', event => {
+  if (event.target.checked) {
+    $('#ticket-list').classList.add('detail-mode');
+    $('#ticket-list').classList.remove('d-flex');
+  } else {
+    $('#ticket-list').classList.remove('detail-mode');
+    $('#ticket-list').classList.add('d-flex');
+  }
+});
