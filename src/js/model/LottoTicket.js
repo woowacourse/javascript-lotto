@@ -26,8 +26,7 @@ export default class LottoTicket {
     return this.createLottoNumbers(array);
   }
 
-  getTotalMatchCount(winningNumber) {
-    const { winningNumbers, bonusNumber } = winningNumber;
+  getTotalMatchCount({ winningNumbers, bonusNumber }) {
     const matchCount = this.getWinningNumbersMatchCount(winningNumbers);
 
     return matchCount === BONUS_CHECK_REQUIRED_COUNT
