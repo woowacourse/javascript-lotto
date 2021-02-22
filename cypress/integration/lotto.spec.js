@@ -1,4 +1,4 @@
-import { INVALID_PRICE_ERROR } from "../../src/js/lotto/constants.js";
+import { INVALID_PRICE_ERROR } from "../../src/js/lotto/constants/error_messages.js";
 
 describe("lotto 미션 테스트", () => {
   before(() => {
@@ -79,23 +79,21 @@ describe("lotto 미션 테스트", () => {
   });
 
   it("지난 주 당첨번호를 입력하고 1등인지 확인한다.", () => {
-    const baseNumber = new Array(46).fill(0);
+    const baseNumber = new Array(45).fill(0);
 
-    cy.get("#price-input").type("5000{enter}");
-    cy.get("#confirmation").should("be.visible");
-    cy.get("#lotto-list-label").should("have.text", "총 5개를 구매하였습니다.");
-    cy.get("#lotto-tickets").children().should("have.length", 5);
+    cy.get("#price-input").type("1000{enter}");
+    cy.get("#lotto-list-label").should("have.text", "총 1개를 구매하였습니다.");
     cy.get(".switch").click();
     cy.get(".lotto-numbers")
       .eq(0)
       .then((value) => {
         value[0].innerText.split(",").forEach((v, i) => {
-          baseNumber[v] = 1;
+          baseNumber[v - 1] = 1;
           cy.get(`input[name='winning-number']:nth-child(${i + 1})`).type(v);
         });
       });
     cy.get("input[name='bonus-number']:nth-child(1)").type(
-      baseNumber.slice(1).indexOf(0) + 1
+      baseNumber.indexOf(0) + 1
     );
     cy.get("#open-result-modal-button")
       .click()
@@ -106,7 +104,7 @@ describe("lotto 미션 테스트", () => {
         );
         cy.get("#earning-rate").should(
           "have.text",
-          "당신의 총 수익률은 40000000%입니다."
+          "당신의 총 수익률은 200000000%입니다."
         );
       });
   });
