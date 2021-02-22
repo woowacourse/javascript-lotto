@@ -1,11 +1,17 @@
-export const $ = (selector) => {
-  const $elements = document.querySelectorAll(selector);
+import { wrap } from "./proxy.js";
 
-  if ($elements.length === 0) return null;
-  if ($elements.length === 1) return $elements[0];
-  return $elements;
+export const $ = (selector, { $parent } = { $parent: document }) => {
+  return wrap($parent.querySelector(selector));
 };
 
-export const toDataAttributeSelector = (js_selector) =>
-  `[data-js-selector="${js_selector}"]`;
+export const $$ = (selector, { $parent } = { $parent: document }) => {
+  return [...$parent.querySelectorAll(selector)].map(($element) => {
+    return wrap($element);
+  });
+};
+
+export const toDataAttributeSelector = (js_selector) => {
+  return `[data-js-selector="${js_selector}"]`;
+};
+
 export const toClassSelector = (className) => `.${className}`;
