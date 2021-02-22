@@ -1,4 +1,4 @@
-import reducer from "./reducer.js";
+import reducer from "../reducer/index.js";
 
 const createStore = (reducer) => {
   let state = { lottos: [] };

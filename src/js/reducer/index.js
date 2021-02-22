@@ -1,4 +1,4 @@
-import { ACTION_TYPE, STATE_TYPE } from "./constants/index.js";
+import { ACTION_TYPE, STATE_TYPE } from "../constants/index.js";
 
 const reducer = (state, action) => {
   switch (action.type) {
