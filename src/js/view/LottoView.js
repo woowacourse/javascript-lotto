@@ -29,4 +29,9 @@ export class LottoView {
     });
     $('#earning-rate').innerText(`${earningRate}`);
   }
+
+  reset() {
+    $('#lotto-section').hide();
+    $('#lotto-result-form').hide();
+  }
 }

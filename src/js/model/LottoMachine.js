@@ -104,4 +104,9 @@ export class LottoMachine {
       return (earning += PRIZE_MONEY[rank] * count);
     }, 0);
   }
+
+  reset() {
+    this.#lottos = [];
+    this.#insertedMoney = 0;
+  }
 }
