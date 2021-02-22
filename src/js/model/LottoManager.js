@@ -1,6 +1,11 @@
 import Lotto from './Lotto.js';
 import { LOTTO } from '../utils/constants.js';
-import { generateRandomNumber, sortNumbers } from '../utils/common.js';
+import {
+  generateRandomNumber,
+  sortNumbers,
+  isEmptyValue,
+  isInRange,
+} from '../utils/common.js';
 
 export default class LottoManager {
   constructor(lottos = []) {
@@ -74,22 +79,19 @@ export default class LottoManager {
     );
   }
 
-  static isValidLottoNumbers2(winningNumbers, bonusNumber) {
-    const allNumbers = [...winningNumbers, bonusNumber];
-    const isInRange = (value, min = 1, max = 45) =>
-      min <= value && value <= max;
+  static validateWinningNumbersInputValue(winningNumbers, bonusNumber) {
+    const numbers = [...winningNumbers, bonusNumber].map(Number);
 
-    if (allNumbers.some(number => isNaN(number))) {
-      return '숫자가 아닙니다.';
+    if (winningNumbers.some(isEmptyValue) || isEmptyValue(bonusNumber)) {
+      return '빈 입력값이 존재 합니다. 7개의 숫자를 모두 입력해주세요.';
     }
-    if (!allNumbers.every(number => isInRange(number))) {
-      return '1~45 숫자 쓰세여';
+
+    if (!numbers.every(number => isInRange(number))) {
+      return '1~45 사이의 숫자만 가능합니다. 당첨 번호를 다시 입력해주세요.';
     }
-    if (allNumbers === LOTTO.LENGTH + 1) {
-      return '로또 길이가 다르다.';
-    }
-    if (new Set(allNumbers).size !== allNumbers.length) {
-      return '중복값이 있다.';
+
+    if (new Set(numbers).size !== numbers.length) {
+      return '중복된 숫자가 존재합니다. 당첨 번호를 다시 입력해주세요.';
     }
 
     return '';

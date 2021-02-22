@@ -14,7 +14,7 @@ export default class WinningNumbersInput {
 
   selectDOM() {
     this.openResultModalButton = $('.open-result-modal-button');
-    this.winningNumbersInput = $$('.winning-number');
+    this.winningNumberInputs = $$('.winning-number');
     this.bonusNumberInput = $('.bonus-number');
   }
 
@@ -24,15 +24,11 @@ export default class WinningNumbersInput {
   }
 
   onClickButton() {
-    const winningNumberTemp = [];
-    const bonusNumber = Number(this.bonusNumberInput.value);
-    this.winningNumbersInput.forEach(input => {
-      const number = Number(input.value);
-      winningNumberTemp.push(number);
-    });
+    const winningNumbers = this.winningNumberInputs.map(({ value }) => value);
+    const bonusNumber = this.bonusNumberInput.value;
 
-    const errorMessage = LottoManager.isValidLottoNumbers2(
-      winningNumberTemp,
+    const errorMessage = LottoManager.validateWinningNumbersInputValue(
+      winningNumbers,
       bonusNumber,
     );
     if (errorMessage) {
@@ -41,7 +37,7 @@ export default class WinningNumbersInput {
     }
 
     this.setState({
-      winningNumbers: winningNumberTemp,
+      winningNumbers,
       bonusNumber,
     });
     this.lottoManager.decideWinners(this.winningNumbers, this.bonusNumber);
