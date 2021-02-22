@@ -1,5 +1,9 @@
 /// <reference types="cypress" />
 
+import LottoManager from '../../src/js/model/LottoManager.js';
+import Lotto from '../../src/js/model/Lotto.js';
+import { LOTTO } from '../../src/js/utils/constants.js';
+
 describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
@@ -82,7 +86,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
   });
 
   it('로또 구매를 완료할 경우, 당첨 번호 입력 UI를 화면에 출력한다.', () => {
-    cy.get('#lotto-purchase-input').type('1500');
+    cy.get('#lotto-purchase-input').type('4500');
     cy.get('#lotto-purchase-btn').click();
 
     cy.get('#lotto-winning-number-input-container').should('be.visible');
@@ -90,7 +94,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
 
   it('결과 확인하기 버튼을 누르면, 모달이 화면에 출력한다.', () => {
     let count = 1;
-    cy.get('#lotto-purchase-input').type('1500');
+    cy.get('#lotto-purchase-input').type('4500');
     cy.get('#lotto-purchase-btn').click();
 
     cy.get('.winning-number')
@@ -105,11 +109,31 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
     cy.get('.modal').should('be.visible');
   });
 
-  //   it('결과 확인하기 버튼을 누르면, 당첨 통계/수익률을 모달로 확인할 수 있다.', () => {
-  //     cy.get('#lotto-purchase-input').type('1500');
-  //     cy.get('#lotto-purchase-btn').click();
+  it('로또와 당첨 번호가 주어질 때, 당첨 통계/수익률을 계산한다.', () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 45;
+    const lottoManager = new LottoManager([
+      new Lotto([45, 2, 3, 4, 5, 6]),
+      new Lotto([45, 2, 3, 4, 5, 6]),
+      new Lotto([45, 2, 3, 4, 5, 6]),
+      new Lotto([45, 2, 3, 4, 5, 6]),
+      new Lotto([45, 2, 3, 4, 5, 6]),
+    ]);
 
-  //     cy.get('.open-result-modal-button').click();
+    const result = {
+      FIRST: 0,
+      SECOND: 5,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
+    };
 
-  //   });
+    lottoManager.decideWinners(winningNumbers, bonusNumber);
+    for (const [key, value] of Object.entries(lottoManager.winningCount)) {
+      expect(result[key]).to.equal(value);
+    }
+
+    const profitMargin = lottoManager.calculateProfitMargin();
+    expect(profitMargin).to.equal(100 * ((300000000 * 5 - 5000) / 5000));
+  });
 });
