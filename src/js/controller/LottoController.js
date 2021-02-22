@@ -13,12 +13,14 @@ export class LottoController {
     this.$resultForm = $('#lotto-result-form');
     this.$modal = $('#modal');
     this.$modalClose = $('#modal-close');
+    this.$resetButton = $('#reset-button');
 
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
     this.$winningNumberInputs.setEvent('input', this.handleLengthLimit.bind(this));
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
     this.$modalClose.setEvent('click', () => this.$modal.removeClass('open'));
+    this.$resetButton.setEvent('click', this.reset.bind(this));
   }
 
   handlePurchaseAmountInput(event) {
@@ -85,5 +87,15 @@ export class LottoController {
 
     this.view.renderWinningResult(this.machine.getWinningStatistics(numbers));
     this.$modal.addClass('open');
+  }
+
+  reset() {
+    this.machine.reset();
+    this.$modal.removeClass('open');
+    this.$purchaseAmountInput.enable();
+    this.$purchaseAmountSubmit.enable();
+    this.$purchaseAmountInput.setValue('');
+    this.$winningNumberInputs.setValue('');
+    this.view.reset();
   }
 }
