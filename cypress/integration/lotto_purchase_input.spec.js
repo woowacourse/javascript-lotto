@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../../src/js/utils/message.js';
+
 describe('LOTTO - 구매할 금액 입력 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
@@ -14,7 +16,7 @@ describe('LOTTO - 구매할 금액 입력 테스트', () => {
       .click()
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(
-          `로또 1개 구매 완료. 거스름돈 : 500원`,
+          GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(1, 500),
         );
       });
   });
@@ -28,7 +30,7 @@ describe('LOTTO - 구매할 금액 입력 테스트', () => {
       .click()
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(
-          `1000원 이상의 금액만 입력할 수 있습니다.`,
+          ERROR_MESSAGE.PAYMENT_AMOUNT,
         );
       });
   });
@@ -42,7 +44,7 @@ describe('LOTTO - 구매할 금액 입력 테스트', () => {
       .click()
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(
-          `소수를 입력하셨습니다. 입력 금액은 정수여야 합니다.`,
+          ERROR_MESSAGE.NOT_INTEGER_NUMBER,
         );
       });
   });

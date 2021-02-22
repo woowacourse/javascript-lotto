@@ -2,7 +2,7 @@
 
 import LottoManager from '../../src/js/model/LottoManager.js';
 import Lotto from '../../src/js/model/Lotto.js';
-import { LOTTO } from '../../src/js/utils/constants.js';
+import { ERROR_MESSAGE } from '../../src/js/utils/message.js';
 
 describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
   beforeEach(() => {
@@ -32,7 +32,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       .click()
       .then(() => {
         expect(alertStub.getCall(1)).to.be.calledWith(
-          `1~45 사이의 숫자만 가능합니다. 당첨 번호를 다시 입력해주세요.`,
+          ERROR_MESSAGE.OUT_OF_RANGE,
         );
       });
   });
@@ -59,7 +59,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       .click()
       .then(() => {
         expect(alertStub.getCall(1)).to.be.calledWith(
-          `중복된 숫자가 존재합니다. 당첨 번호를 다시 입력해주세요.`,
+          ERROR_MESSAGE.DUPLICATED_NUMBER,
         );
       });
   });
@@ -80,7 +80,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       .click()
       .then(() => {
         expect(alertStub.getCall(1)).to.be.calledWith(
-          `빈 입력값이 존재 합니다. 7개의 숫자를 모두 입력해주세요.`,
+          ERROR_MESSAGE.EMPTY_INPUT_NUMBER,
         );
       });
   });
