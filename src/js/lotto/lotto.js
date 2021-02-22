@@ -6,7 +6,7 @@ class Lotto {
     this.numbers = new Set()
   }
 
-  gernerateLotto() {
+  gernerateRandomNumbers() {
     while (this.numbers.size !== LOTTO.SIZE) {
       this.numbers.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM))
     }
@@ -17,7 +17,7 @@ class Lotto {
     this.numbers = sortByNumber([...this.numbers])
   }
 
-  get numbers() {
+  getNumbers() {
     return this.numbers
   }
 }
