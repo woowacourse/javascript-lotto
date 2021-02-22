@@ -22,6 +22,9 @@ const customInputElementMethodMixin = {
     this.value = "";
     return this;
   },
+  isEmpty() {
+    return this.value === "";
+  },
 };
 
 Object.assign(HTMLElement.prototype, customElementMethodMixin);
