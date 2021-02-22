@@ -1,5 +1,6 @@
 import { BOUNS_COUNT, LOTTO_PRICE } from '../../src/js/constants.js';
 import LottoTicket from '../../src/js/model/LottoTicket.js';
+import ResultModal from '../../src/js/components/ResultModal.js';
 
 describe('당첨 결과 모달 UI 검사', () => {
   before(() => {
@@ -45,7 +46,7 @@ describe('당첨 결과 모달 UI 검사', () => {
 
   it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(5)].map(() => new LottoTicket([7, 8, 9, 10, 11, 12]));
-    const rateOfReturn = new ResultModal().getRateOfReturn(lottoTickets);
+    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getRateOfReturn();
 
     expect(rateOfReturn).to.equal(-100);
   });
@@ -54,7 +55,7 @@ describe('당첨 결과 모달 UI 검사', () => {
     const lottoTickets = [...Array(4)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 7, 8, 9]));
-    const rateOfReturn = new ResultModal().getRateOfReturn(lottoTickets);
+    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getRateOfReturn();
 
     expect(rateOfReturn).to.equal(0);
   });
@@ -63,9 +64,18 @@ describe('당첨 결과 모달 UI 검사', () => {
     const lottoTickets = [...Array(4)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 4, 5, 6]));
-    const rateOfReturn = new ResultModal().getRateOfReturn(lottoTickets);
+    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getRateOfReturn();
 
     expect(rateOfReturn).to.equal(39999900);
+  });
+
+  it('구매금액이 13,000원이고 당첨금액이 5,000원이면, -61.54의 수익률(%)을 반환한다.', () => {
+    const lottoTickets = [...Array(12)]
+      .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
+      .concat(new LottoTicket([1, 2, 3, 11, 12, 13]));
+    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getRateOfReturn();
+
+    expect(rateOfReturn).to.equal(-61.54);
   });
 
   it('다시 시작하기 버튼을 클릭하면, 모달이 사라지고 화면이 초기화된다.', () => {
