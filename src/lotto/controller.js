@@ -5,7 +5,9 @@ import {
   $lottoNumbersToggleButton,
   $costInput,
   $modalClose,
+  $winningAndBonusNumberWrapper,
 } from '../elements.js';
+import { $ } from '../utils/querySelector.js';
 import { MESSAGE } from '../constants.js';
 import validator from './validator.js';
 import service from './service.js';
@@ -34,12 +36,35 @@ const onCostSubmitByEnterKey = (e) => {
 };
 
 const onResultModalOpen = () => {
-
+  service.openResultModal();
 };
 
 const onResultModalClose = () => {
-  
+  service.closeResultModal();
 };
+
+const onWinningAndBonusNumberInput = (e) => {
+  if (!e.target.classList.contains('winning-number') && !e.target.classList.contains('bonus-number')) {
+    return;
+  }
+  const winningNumbers = $('.winning-number', $winningAndBonusNumberWrapper)
+    .filter(({ value }) => value !== '')
+    .map(({ value }) => Number(value));
+  const bonusNumberInput = $('.bonus-number', $winningAndBonusNumberWrapper).value;
+  const allNumbers = bonusNumberInput === '' ? [...winningNumbers] : [...winningNumbers, Number(bonusNumberInput)];
+  if (validator.isDuplicatedNumberExist(allNumbers)) {
+    alert(MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE);
+    e.target.value = '';
+    e.target.focus();
+    return;
+  }
+  if (validator.isNumberOutOfRangeExist(allNumbers)) {
+    alert(MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE);
+    e.target.value = '';
+    e.target.focus();
+    return;
+  }
+}
 
 export default {
   addAllEventListener() {
@@ -48,5 +73,6 @@ export default {
     $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
+    $winningAndBonusNumberWrapper.addEventListener('focusout', onWinningAndBonusNumberInput);
   },
 };

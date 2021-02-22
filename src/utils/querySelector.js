@@ -1,5 +1,6 @@
-const $ = (selector) => document.querySelector(selector);
+const $ = (selector, target = document) => {
+  const all = target.querySelectorAll(selector);
+  return all.length > 1 ? [...all] : all[0];
+};
 
-const $$ = (selector) => Array.from(document.querySelectorAll(selector));
-
-export { $, $$ };
+export { $ };
