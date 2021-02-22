@@ -5,8 +5,14 @@ import { generateRandomNumber, sortNumbers } from '../utils/common.js';
 export default class LottoManager {
   constructor(lottos = []) {
     this.lottos = lottos;
-
     this.listeners = [];
+    this.rewards = Object.freeze({
+      '1등': 2000000000,
+      '2등': 300000000,
+      '3등': 1500000,
+      '4등': 50000,
+      '5등': 5000,
+    });
   }
 
   createLottos(lottoCount) {
