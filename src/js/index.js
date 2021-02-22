@@ -1,14 +1,14 @@
 import {
-  $showResultButton,
   $modalClose,
   $modal,
   $lottoNumbersToggleButton,
   $priceSubmitForm,
-  $priceInput,
   $winningNumberForm,
+  $restartButton,
 } from "./elements.js";
 import { onModalClose } from "./utils.js";
 import LottoController from "./lotto/LottoController.js";
+import LottoView from "./lotto/LottoView.js";
 
 const lottoController = new LottoController();
 
@@ -32,3 +32,8 @@ $winningNumberForm.addEventListener("submit", (e) => {
 });
 
 $modalClose.addEventListener("click", () => onModalClose($modal));
+
+$restartButton.addEventListener("click", () => {
+  LottoView.resetLottoView();
+  onModalClose($modal);
+});
