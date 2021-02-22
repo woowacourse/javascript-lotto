@@ -21,16 +21,39 @@ export const WINNING_NUMBER_CHECK_MESSAGE = {
   COMPLETED: '당첨번호 입력이 완료되었습니다. 인생역전의 기회, 지금 결과를 확인하세요!',
 };
 
-export const BONUS_CHECK_REQUIRED_COUNT = 5;
 export const BOUNS_COUNT = 0.5;
 export const RATE_OF_RETURN_DECIMAL_PLACE = 2;
+export const RATE_OF_RETURN_MESSAGE = (rateOfReturn) => `당신의 총 수익률은 ${rateOfReturn}%입니다.`;
+export const BONUS_CHECK_REQUIRED_COUNT = 5;
+export const RENDER_ORDER_KEY = [3, 4, 5, 5.5, 6];
 export const WINNING_PRIZE = {
-  6: 2000000000,
-  5.5: 30000000,
-  5: 1500000,
-  4: 50000,
-  3: 5000,
-  2: 0,
-  1: 0,
-  0: 0,
+  6: {
+    PRIZE: 2000000000,
+    DESCRIPTION: '6개',
+  },
+  5.5: {
+    PRIZE: 30000000,
+    DESCRIPTION: '5개 + 보너스볼',
+  },
+  5: {
+    PRIZE: 1500000,
+    DESCRIPTION: '5개',
+  },
+  4: {
+    PRIZE: 50000,
+    DESCRIPTION: '4개',
+  },
+  3: {
+    PRIZE: 5000,
+    DESCRIPTION: '3개',
+  },
+  2: {
+    PRIZE: 0,
+  },
+  1: {
+    PRIZE: 0,
+  },
+  0: {
+    PRIZE: 0,
+  },
 };

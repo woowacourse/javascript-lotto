@@ -22,6 +22,8 @@ export default class App {
     });
     this.resultModal = new ResultModal({
       isVisible: false,
+      lottoTickets: this.lottoTickets,
+      winningNumber: this.winningNumber,
     });
   }
 

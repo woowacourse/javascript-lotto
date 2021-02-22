@@ -10,6 +10,7 @@ import {
 export default class LottoTicket {
   constructor(numbers) {
     this.numbers = (numbers ?? this.createLottoNumbers()).sort((a, b) => a - b);
+    this.totalMatchCount = 0;
   }
 
   createLottoNumbers(array = []) {
@@ -26,12 +27,13 @@ export default class LottoTicket {
     return this.createLottoNumbers(array);
   }
 
-  getTotalMatchCount({ winningNumbers, bonusNumber }) {
-    const matchCount = this.getWinningNumbersMatchCount(winningNumbers);
+  setTotalMatchCount({ winningNumbers, bonusNumber }) {
+    const totalMatchCount = this.getWinningNumbersMatchCount(winningNumbers);
 
-    return matchCount === BONUS_CHECK_REQUIRED_COUNT
-      ? matchCount + this.getBonusNumberMatchCount(bonusNumber)
-      : matchCount;
+    this.totalMatchCount =
+      totalMatchCount === BONUS_CHECK_REQUIRED_COUNT
+        ? totalMatchCount + this.getBonusNumberMatchCount(bonusNumber)
+        : totalMatchCount;
   }
 
   getWinningNumbersMatchCount(winningNumbers) {
