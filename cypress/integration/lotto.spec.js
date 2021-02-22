@@ -90,6 +90,7 @@ describe("ui-play", () => {
     cy.get(".winning-number").each(($winningNumber, i) => {
       cy.wrap($winningNumber).type(i + 1)
     })
+    cy.get(".bonus-number").type(7)
     cy.get("#winning-result-button").click()
     cy.get("#earnings-rate").then(($rateText) => {
       const txt = $rateText.text().trim()
@@ -104,6 +105,7 @@ describe("ui-play", () => {
     cy.get(".winning-number").each(($winningNumber, i) => {
       cy.wrap($winningNumber).type(i + 1)
     })
+    cy.get(".bonus-number").type(7)
     cy.get("#winning-result-button").click()
     cy.get("#reset").click()
     cy.get("#buy").children().should("exist")
@@ -141,6 +143,20 @@ describe("ui-exception", () => {
     cy.get("@alertStub").should(
       "be.calledWith",
       "최소 입력금액은 1000원입니다."
+    )
+  })
+
+  it("당첨 번호를 전부 입력하지 않은 상태로 결과 확인하기 버튼을 누르면 alert가 발생한다.", () => {
+    cy.get("#buy-input").type("5000")
+    cy.get("#buy-button").click()
+    cy.get(".winning-number").each(($winningNumber, i) => {
+      i % 2 !== 0 && cy.wrap($winningNumber).type(i + 1)
+    })
+
+    cy.get("#winning-result-button").click()
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "당첨 번호를 모두 입력해주세요."
     )
   })
 })
