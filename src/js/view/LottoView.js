@@ -3,10 +3,10 @@
 import { $ } from '../util/index.js';
 
 export class LottoView {
-  renderLottoSection(lottos) {
-    this.$lottoSection = $('#lotto-section');
-    this.$lottoResultForm = $('#lotto-result-form');
+  $lottoSection = $('#lotto-section');
+  $lottoResultForm = $('#lotto-result-form');
 
+  renderLottoSection(lottos) {
     $('#lotto-count').innerText(`${lottos.length}`);
     $('#lotto-container').innerHTML(lottoTemplate(lottos));
     this.$lottoSection.show();

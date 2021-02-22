@@ -75,5 +75,6 @@ describe('Lotto test', () => {
     typeInputValue('#purchase-amount-input', '5000');
     testInputValue('#purchase-amount-submit');
     testWinnigNumbers(['1', '2', '3', '4', '5', '6', '45']);
+    cy.get('#modal').should('be.visible');
   });
 });

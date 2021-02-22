@@ -37,16 +37,14 @@ export class LottoMachine {
     while (numbers.length < LOTTO_NUMBER_COUNT) {
       const randomNumber = getRandomNumber(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
 
-      if (!numbers.find(number => number === randomNumber)) {
-        numbers.push(randomNumber);
-      }
+      !numbers.includes(randomNumber) && numbers.push(randomNumber);
     }
 
     return numbers;
   }
 
   getWinningStatistics(winningNumbers) {
-    const rankCounts = this.getRanks([...winningNumbers]);
+    const rankCounts = this.getRankCounts([...winningNumbers]);
     const earningRate = this.calculateEarningRate(rankCounts);
 
     return {
@@ -55,7 +53,7 @@ export class LottoMachine {
     };
   }
 
-  getRanks(winningNumbers) {
+  getRankCounts(winningNumbers) {
     const rankCounts = [0, 0, 0, 0, 0, 0]; // 등수와 인덱스 번호 일치 ex) 1등의 인덱스는 1
     const bonusNumber = winningNumbers.pop();
     const mainNumbers = winningNumbers;
@@ -63,9 +61,7 @@ export class LottoMachine {
     this.#lottos.forEach(lotto => {
       const rank = this.getRank(lotto, mainNumbers, bonusNumber);
 
-      if (PRIZE_MONEY[rank]) {
-        rankCounts[rank]++;
-      }
+      PRIZE_MONEY[rank] && rankCounts[rank]++;
     });
 
     return rankCounts;
@@ -76,12 +72,13 @@ export class LottoMachine {
     let matchBonus = false;
 
     lotto.numbers.forEach(number => {
-      if (mainNumbers.find(mainNumber => mainNumber === number)) {
-        matchCount++;
-      }
       if (bonusNumber === number) {
         matchBonus = true;
+
+        return;
       }
+
+      mainNumbers.includes(number) && matchCount++;
     });
 
     return matchCount === 6 || (matchCount === 5 && matchBonus === true)
@@ -96,15 +93,13 @@ export class LottoMachine {
   }
 
   calculateEarning(rankCounts) {
-    return (
-      rankCounts.reduce((earning, count, rank) => {
-        if (rank === 0) {
-          return earning;
-        }
+    return rankCounts.reduce((earning, count, rank) => {
+      if (rank === 0) {
+        return earning;
+      }
 
-        return (earning += PRIZE_MONEY[rank] * count);
-      }, 0) - this.#insertedMoney
-    ); // 수익 = (당첨금 - 투입금)
+      return (earning += PRIZE_MONEY[rank] * count);
+    }, -this.#insertedMoney); // 수익 = 당첨금 - 투입금
   }
 
   reset() {
