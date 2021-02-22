@@ -1,7 +1,7 @@
 import LottoModel from "./model.js"
 import LottoView from "./view.js"
 import Lotto from "./lotto.js"
-import Validator from "./validator.js"
+import { checkPriceValid } from "./validator.js"
 import { $ } from "../utils/util.js"
 import { LOTTO, SELECTOR } from "../constants/constant.js"
 
@@ -9,7 +9,6 @@ class LottoController {
   constructor() {
     this.model = new LottoModel()
     this.view = new LottoView()
-    this.validator = new Validator()
   }
 
   init() {
@@ -40,7 +39,7 @@ class LottoController {
 
   manageLotto() {
     const price = Number(this.getBuyInput())
-    const alertMessage = this.validator.isPriceValid(price)
+    const alertMessage = checkPriceValid(price)
     if (alertMessage !== null) {
       return alert(alertMessage)
     }
