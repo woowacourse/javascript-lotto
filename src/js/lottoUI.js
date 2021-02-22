@@ -9,21 +9,21 @@ export default class LottoUI {
   }
 
   renderMoneyInputUI() {
-    $(`.${DOM_CLASSES.MONEY_INPUT_CONTAINER}`).innerHTML = `
-      <form class= "${DOM_CLASSES.MONEY_FORM} mt-5">
-        <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
-        </label>
-        <div class="d-flex">
-          <input type="number" step='0.1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
-          <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MONEY_FORM_SUBMIT}">확인</button>
-        </div>
-      </form>
-      `;
+    $(`.${DOM_CLASSES.MONEY_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
+    <form class= "${DOM_CLASSES.MONEY_FORM} mt-5">
+      <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
+      </label>
+      <div class="d-flex">
+        <input type="number" step='0.1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
+        <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MONEY_FORM_SUBMIT}">확인</button>
+      </div>
+    </form>
+    `);
   }
 
   renderCheckLottoUI(lottoTickets) {
     disableElement(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-    $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).innerHTML = `
+    $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).insertAdjacentHTML('beforeend', `
       <section class= "mt-9">
         <div class="d-flex">
           <label class="flex-auto my-0">총 ${lottoTickets.length}개를 구매하였습니다.</label>
@@ -38,7 +38,7 @@ export default class LottoUI {
         ${lottoTickets.reduce((acc, numbers) => acc + this.makeTicketElement(numbers), '')}
         </div>
       </section>
-      `;
+      `);
   }
 
   makeTicketElement(numbers) {
@@ -59,7 +59,7 @@ export default class LottoUI {
   }
 
   renderResultInputUI() {
-    $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).innerHTML = `
+    $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
       <form class= "mt-9">
           <label class="flex-auto d-inline-block mb-3 result-info">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
           <div class="d-flex">
@@ -85,6 +85,6 @@ export default class LottoUI {
         결과 확인하기
           </button>
         </form>
-      `;
+      `);
   }
 }
