@@ -1,31 +1,24 @@
 import LottoModel from "./LottoModel.js";
 import LottoView from "./LottoView.js";
-import { onModalShow } from "../utils.js";
+import getPrizeTable from "./constants/prizeTable.js";
+import { onModalShow, onModalClose } from "../utils.js";
 import { $modal } from "../elements.js";
+import {
+  isValidPrice,
+  isNumbersInRange,
+  isDistinctNumbers,
+} from "./lotto_validators.js";
 import {
   INVALID_PRICE_ERROR,
   INVALID_WINNGNUMBER_ERROR,
   DUPLICATED_WINNINGNUMBER_ERROR,
-} from "./constants.js";
+} from "./constants/error_messages.js";
 
 export default class LottoController {
   constructor() {
     this.lottoModel = new LottoModel();
     this.lottoView = new LottoView();
-  }
-
-  isValidPrice(price) {
-    return price > 0 && price % 1000 === 0; // price는 1000원 단위의 양수여야 한다.
-  }
-
-  isNumbersInRange(numbers, min, max) {
-    return numbers.every((num) => min <= num && max >= num);
-  }
-
-  isDistinctNumbers(numbers) {
-    const numbersSet = new Set(numbers);
-
-    return numbersSet.size === numbers.length;
+    this.prizeTable = getPrizeTable();
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
@@ -36,7 +29,7 @@ export default class LottoController {
     return matchedNumbers.length;
   }
 
-  checkRanking(lottoNumber, winningNumber, bonusNumber) {
+  getRanking(lottoNumber, winningNumber, bonusNumber) {
     const numOfMatched = this.countMatchedNumbers(lottoNumber, winningNumber);
     switch (numOfMatched) {
       case 3:
@@ -44,7 +37,7 @@ export default class LottoController {
       case 4:
         return "ranking4";
       case 5:
-        if (this.countMatchedNumbers(lottoNumber, [bonusNumber]) === 1) {
+        if (this.countMatchedNumbers(lottoNumber, [bonusNumber])) {
           return "ranking2";
         }
         return "ranking3";
@@ -55,8 +48,8 @@ export default class LottoController {
     }
   }
 
-  calculateEarningRate(prizeTable) {
-    const totalPrize = Object.values(prizeTable).reduce(
+  calculateEarningRate() {
+    const totalPrize = Object.values(this.prizeTable).reduce(
       (totalPrize, ranking) => {
         return (totalPrize += ranking.num * ranking.prize);
       },
@@ -67,9 +60,9 @@ export default class LottoController {
   }
 
   onSubmitPrice(price) {
-    if (!this.isValidPrice(price)) {
+    if (!isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
-      LottoView.resetLottoView();
+      this.lottoView.resetLottoView();
 
       return;
     }
@@ -85,59 +78,28 @@ export default class LottoController {
 
   onSubmitResultNumber(winningNumber, bonusNumber) {
     const numbers = [...winningNumber, bonusNumber];
-    if (!this.isNumbersInRange(numbers, 1, 45)) {
+    if (!isNumbersInRange(numbers, 1, 45)) {
       alert(INVALID_WINNGNUMBER_ERROR);
       return;
     }
-    if (!this.isDistinctNumbers(numbers)) {
+    if (!isDistinctNumbers(numbers)) {
       alert(DUPLICATED_WINNINGNUMBER_ERROR);
       return;
     }
 
-    onModalShow($modal);
-    const prizeTable = {
-      ranking1: {
-        num: 0,
-        prize: 2000000000,
-        condition: "6개",
-      },
-      ranking2: {
-        num: 0,
-        prize: 30000000,
-        condition: "5개 + 보너스볼",
-      },
-      ranking3: {
-        num: 0,
-        prize: 1500000,
-        condition: "5개",
-      },
-      ranking4: {
-        num: 0,
-        prize: 50000,
-        condition: "4개",
-      },
-      ranking5: {
-        num: 0,
-        prize: 5000,
-        condition: "3개",
-      },
-      noPrize: {
-        num: 0,
-        prize: 0,
-        condition: "2개 이하",
-      },
-    };
-
     this.lottoModel.lottoList.forEach((lotto) => {
-      const ranking = this.checkRanking(
-        lotto.number,
-        winningNumber,
-        bonusNumber
-      );
-      prizeTable[ranking].num++;
+      const ranking = this.getRanking(lotto.number, winningNumber, bonusNumber);
+      this.prizeTable[ranking].num++;
     });
 
-    this.lottoView.showPrizeTable(prizeTable);
-    this.lottoView.showEarningRate(this.calculateEarningRate(prizeTable));
+    this.lottoView.showPrizeTable(this.prizeTable);
+    this.lottoView.showEarningRate(this.calculateEarningRate(this.prizeTable));
+    onModalShow($modal);
+  }
+
+  onRestart() {
+    this.lottoView.resetLottoView();
+    this.prizeTable = getPrizeTable();
+    onModalClose($modal);
   }
 }
