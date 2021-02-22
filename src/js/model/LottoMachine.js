@@ -76,7 +76,7 @@ export class LottoMachine {
     let matchBonus = false;
 
     lotto.numbers.forEach(number => {
-      if (mainNumbers.includes(number)) {
+      if (mainNumbers.find(mainNumber => mainNumber === number)) {
         matchCount++;
       }
       if (bonusNumber === number) {
@@ -96,13 +96,15 @@ export class LottoMachine {
   }
 
   calculateEarning(rankCounts) {
-    return rankCounts.reduce((earning, count, rank) => {
-      if (rank === 0) {
-        return earning;
-      }
+    return (
+      rankCounts.reduce((earning, count, rank) => {
+        if (rank === 0) {
+          return earning;
+        }
 
-      return (earning += PRIZE_MONEY[rank] * count);
-    }, 0);
+        return (earning += PRIZE_MONEY[rank] * count);
+      }, 0) - this.#insertedMoney
+    ); // 수익 = (당첨금 - 투입금)
   }
 
   reset() {

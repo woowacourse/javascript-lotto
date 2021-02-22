@@ -4,10 +4,13 @@ import { $ } from '../util/index.js';
 
 export class LottoView {
   renderLottoSection(lottos) {
+    this.$lottoSection = $('#lotto-section');
+    this.$lottoResultForm = $('#lotto-result-form');
+
     $('#lotto-count').innerText(`${lottos.length}`);
     $('#lotto-container').innerHTML(lottoTemplate(lottos));
-    $('#lotto-section').show();
-    $('#lotto-result-form').show();
+    this.$lottoSection.show();
+    this.$lottoResultForm.show();
 
     function lottoTemplate(lottos) {
       return lottos.reduce((html, lotto, idx) => {
@@ -31,7 +34,7 @@ export class LottoView {
   }
 
   reset() {
-    $('#lotto-section').hide();
-    $('#lotto-result-form').hide();
+    this.$lottoSection.hide();
+    this.$lottoResultForm.hide();
   }
 }
