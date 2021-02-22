@@ -1,4 +1,4 @@
-import { AlertMessage, Number } from "./constants.js";
+import { AlertMessage, StandardNumber } from "./constants.js";
 
 export const isValidMoney = (money) => {
   if (isInValidNumber(money)) {
@@ -17,11 +17,14 @@ export const isValidMoney = (money) => {
 };
 
 const isInvalidRange = (money) => {
-  return money < Number.MIN_PURCHASE_PRICE || Number.MAX_PURCHASE_PRICE < money;
+  return (
+    money < StandardNumber.MIN_PURCHASE_PRICE ||
+    StandardNumber.MAX_PURCHASE_PRICE < money
+  );
 };
 
 const isNotThousandMultiples = (money) => {
-  return money % Number.ONE_TICKET_PRICE !== 0;
+  return money % StandardNumber.ONE_TICKET_PRICE !== 0;
 };
 
 const isInValidNumber = (money) => {

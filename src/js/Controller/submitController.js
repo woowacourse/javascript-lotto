@@ -1,6 +1,6 @@
 import { app } from "../index.js";
 import Ticket from "../Model/Ticket.js";
-import { Element, Number } from "../Util/constants.js";
+import { Element, StandardNumber } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 import { isValidMoney } from "../Util/validator.js";
 import {
@@ -8,14 +8,14 @@ import {
   printTicketHorizontal,
   printTicketVertical,
 } from "../View/receiptView.js";
-import { onPurchaseResultShow } from "./viewController.js";
+import { showPurchaseResult } from "../Handler/elementHandler.js";
 
 export const handlePurchaseAmountSubmit = () => {
   const money = $(Element.PURCHASE_AMOUNT_INPUT).value;
 
   if (!isValidMoney(money)) return;
 
-  app.ticketCount = money / Number.ONE_TICKET_PRICE;
+  app.ticketCount = money / StandardNumber.ONE_TICKET_PRICE;
 
   for (let i = 0; i < app.ticketCount; i++) {
     app.tickets.push(new Ticket());
@@ -23,7 +23,7 @@ export const handlePurchaseAmountSubmit = () => {
 
   printPurchaseAmountLabel(app.ticketCount);
   printTicketHorizontal(app.ticketCount);
-  onPurchaseResultShow();
+  showPurchaseResult();
 };
 
 export const handleToggleButton = (event) => {
