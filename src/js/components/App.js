@@ -3,7 +3,7 @@ import LottoDisplay from './LottoDisplay.js';
 import LottoManager from '../model/LottoManager.js';
 import { $ } from '../utils/dom.js';
 import WinningNumbersInput from './WinningNumbersInput.js';
-import rewardModalDisplay from './RewardModalDisplay.js';
+import RewardModalDisplay from './RewardModalDisplay.js';
 
 export default class App {
   constructor() {
@@ -28,7 +28,7 @@ export default class App {
     this.winningNumbersInput = new WinningNumbersInput({
       lottoManager: this.lottoManager,
     });
-    this.modalDisplay = new rewardModalDisplay({
+    this.modalDisplay = new RewardModalDisplay({
       lottoManager: this.lottoManager,
     });
   }
