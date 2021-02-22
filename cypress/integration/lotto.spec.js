@@ -186,4 +186,18 @@ describe("ui-exception", () => {
       "당첨 번호는 1이상 45이하의 숫자여야 합니다."
     )
   })
+
+  it("당첨 번호에 소수가 있으면 alert가 발생해야 한다.", () => {
+    cy.get("#buy-input").type("5000")
+    cy.get("#buy-button").click()
+    cy.get(".winning-number").each(($winningNumber, i) => {
+      cy.wrap($winningNumber).type(i * 0.5 + 1)
+    })
+    cy.get(".bonus-number").type(3.14)
+    cy.get("#winning-result-button").click()
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "당첨 번호는 소수가 될 수 없습니다."
+    )
+  })
 })
