@@ -10,6 +10,15 @@ const reducer = (state, action) => {
           lottos: [...state.lottos, ...action.payload],
         },
       };
+    case ACTION_TYPE.WINNING_NUMBERS.SET:
+      return {
+        // TODO: target 추가
+        state: {
+          ...state,
+          winningNumber: { ...action.payload },
+        },
+      };
+
     default:
       return {
         state,
