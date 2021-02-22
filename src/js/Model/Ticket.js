@@ -10,6 +10,7 @@ export default class Ticket {
       { length: Number.LOTTO_MAX_NUMBER },
       (_, i) => i + 1
     );
+    // 테스트용 주석
 
     numbers.sort(() => Math.random() - Math.random());
 
