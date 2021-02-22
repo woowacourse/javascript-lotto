@@ -1,10 +1,13 @@
 import { $ } from '../utils/DOM.js';
 
 export default class ResultModal {
-  constructor({ isVisible }) {
+  constructor({ isVisible, lottoTickets, winningNumber }) {
     this.$modal = $('.modal');
     this.$modalClose = $('.modal-close');
+
     this.isVisible = isVisible;
+    this.lottoTickets = lottoTickets;
+    this.winningNumber = winningNumber;
   }
 
   attachEvents() {

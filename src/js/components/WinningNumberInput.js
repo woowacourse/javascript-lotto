@@ -8,7 +8,7 @@ import {
 import { $, $$, show, hide, enable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
-  constructor({ isVisible, onShowModal }) {
+  constructor({ isVisible, updateWinningNumber, onShowModal }) {
     this.$winningNumberForm = $('.winning-number-form');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
@@ -17,6 +17,8 @@ export default class WinningNumberInput {
 
     this.isVisible = isVisible;
     this.checkMessage = '';
+    this.winningNumber = {};
+    this.updateWinningNumber = updateWinningNumber;
     this.onShowModal = onShowModal;
 
     this.attachEvents();
@@ -32,11 +34,25 @@ export default class WinningNumberInput {
       return;
     }
 
-    const inputValues = [...e.currentTarget.querySelectorAll('input[type="number"]')]
-      .filter(($input) => $input.value !== '')
-      .map(($input) => Number($input.value));
+    const { winningNumbers, bonusNumber } = {
+      winningNumbers: [...e.currentTarget.querySelectorAll('.winning-number')].map(($input) => $input.value),
+      bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
+    };
 
-    this.setState({ checkMessage: this.validateInput(inputValues) });
+    const checkMessage = this.validateInput(
+      [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
+    );
+    this.setState({ checkMessage });
+
+    if (this.checkMessage === WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+      this.setState({
+        winningNumber: {
+          winningNumbers: winningNumbers.map((v) => Number(v)),
+          bonusNumber: Number(bonusNumber),
+        },
+      });
+      this.updateWinningNumber(this.winningNumber);
+    }
   }
 
   validateInput(inputValues) {
@@ -67,7 +83,7 @@ export default class WinningNumberInput {
     return numbers.length !== LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
   }
 
-  setState({ isVisible, checkMessage }) {
+  setState({ isVisible, checkMessage, winningNumber }) {
     if (typeof isVisible === 'boolean') {
       this.isVisible = isVisible;
       this.renderForm();
@@ -76,6 +92,10 @@ export default class WinningNumberInput {
     if (typeof checkMessage === 'string' && this.checkMessage !== checkMessage) {
       this.checkMessage = checkMessage;
       this.renderCheckMessage();
+    }
+
+    if (typeof winningNumber === 'object') {
+      this.winningNumber = winningNumber;
     }
   }
 
