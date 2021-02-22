@@ -5,8 +5,6 @@ export default class WinningNumbersInput {
   constructor(props) {
     this.props = props;
     this.$target = $('#lotto-winning-number-input-container');
-    this.winningNumbers = [];
-    this.bonusNumber = [];
     this.setup();
     this.selectDOM();
     this.bindEvent();
@@ -36,11 +34,10 @@ export default class WinningNumbersInput {
       return;
     }
 
-    this.setState({
-      winningNumbers,
-      bonusNumber,
-    });
-    this.lottoManager.decideWinners(this.winningNumbers, this.bonusNumber);
+    this.lottoManager.decideWinners(
+      winningNumbers.map(Number),
+      Number(bonusNumber),
+    );
   }
 
   bindEvent() {
@@ -48,11 +45,6 @@ export default class WinningNumbersInput {
       'click',
       this.onClickButton.bind(this),
     );
-  }
-
-  setState({ winningNumbers, bonusNumber }) {
-    this.winningNumbers = winningNumbers ?? this.winningNumbers;
-    this.bonusNumber = bonusNumber ?? this.bonusNumber;
   }
 
   render() {

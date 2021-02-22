@@ -12,13 +12,13 @@ export default class LottoManager {
     this.lottos = lottos;
     this.listeners = [];
     this.winningCount = null;
-    // this.message = '';
+
     this.rewards = Object.freeze({
-      '1등': 2000000000,
-      '2등': 300000000,
-      '3등': 1500000,
-      '4등': 50000,
-      '5등': 5000,
+      FIRST: 2000000000,
+      SECOND: 300000000,
+      THIRD: 1500000,
+      FOURTH: 50000,
+      FIFTH: 5000,
     });
   }
 
@@ -32,12 +32,12 @@ export default class LottoManager {
   }
 
   decideWinners(winningNumbers, bonusNumber) {
-    const winningNumbersTemp = {
-      '1등': 0,
-      '2등': 0,
-      '3등': 0,
-      '4등': 0,
-      '5등': 0,
+    const winningCount = {
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
     };
 
     this.lottos.forEach(lotto => {
@@ -46,21 +46,31 @@ export default class LottoManager {
       numbers.forEach(number => {
         if (winningNumbers.includes(number)) count++;
       });
+
       if (count === 6) {
-        winningNumbersTemp[`1등`]++;
+        winningCount[`FIRST`]++;
       } else if (count === 5 && numbers.includes(bonusNumber)) {
-        winningNumbersTemp[`2등`]++;
+        winningCount[`SECOND`]++;
       } else if (count === 5) {
-        winningNumbersTemp[`3등`]++;
+        winningCount[`THIRD`]++;
       } else if (count === 4) {
-        winningNumbersTemp[`4등`]++;
+        winningCount[`FOURTH`]++;
       } else if (count === 3) {
-        winningNumbersTemp[`5등`]++;
+        winningCount[`FIFTH`]++;
       }
     });
-    this.setState({
-      winningCount: winningNumbersTemp,
-    });
+
+    this.setState({ winningCount });
+  }
+
+  calculateProfitMargin() {
+    const investment = this.lottos.length * LOTTO.PRICE;
+    const profit = Object.keys(this.winningCount).reduce(
+      (profit, key) => profit + this.rewards[key] * this.winningCount[key],
+      0,
+    );
+
+    return ((profit - investment) / investment) * 100;
   }
 
   generateLottoNumbers() {
