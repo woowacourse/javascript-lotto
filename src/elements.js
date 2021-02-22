@@ -8,6 +8,6 @@ export const $purchaseItemCount = $('#purchase-item-count');
 export const $lottoNumbersToggleButton = $('#lotto-numbers-toggle-button');
 export const $purchaseItemList = $('#purchase-item-list');
 
-export const $showResultButton = $('.open-result-modal-button');
-export const $modalClose = $('.modal-close');
-export const $modal = $('.modal');
+export const $resultModalOpenButton = $('#result-modal-open-button');
+export const $modalClose = $('#modal-close');
+export const $modal = $('#modal');
