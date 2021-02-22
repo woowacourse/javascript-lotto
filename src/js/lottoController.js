@@ -1,6 +1,6 @@
 import { $ } from './utils/dom.js';
 import Lotto from './objects/Lotto.js';
-import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_SELECTORS } from './utils/constants.js';
+import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES } from './utils/constants.js';
 import { isMoneyNotInteger } from './utils/validation.js';
 
 export default class LottoController {
@@ -15,20 +15,20 @@ export default class LottoController {
   }
 
   initEventListener() {
-    $(DOM_SELECTORS.MONEY_FORM).addEventListener('submit', (event) => {
+    $(`.${DOM_CLASSES.MONEY_FORM}`).addEventListener('submit', (event) => {
       event.preventDefault();
       this.handleMoneyInputButton();
     });
 
-    $(DOM_SELECTORS.APP).addEventListener('click', event => {
-      if (event.target.closest(DOM_SELECTORS.LOTTO_SWITCH)) {
+    $(`#${DOM_IDS.APP}`).addEventListener('click', event => {
+      if (event.target.closest(`.${DOM_CLASSES.LOTTO_SWITCH}`)) {
         this.handleCheckLottoSwitch();
       }
     });
   }
 
   handleMoneyInputButton() {
-    const moneyInput = Number($(DOM_SELECTORS.MONEY_FORM_INPUT).value);
+    const moneyInput = Number($(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).value);
     if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;

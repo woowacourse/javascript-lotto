@@ -14,18 +14,20 @@ export const ALERT_MESSAGES = {
   NOT_INTEGER_PRICE: `구입 금액은 정수로 입력해야합니다.`,
 }
 
-export const DOM_SELECTORS = {
-  APP: '#app',
+export const DOM_CLASSES = {
+  MONEY_INPUT_CONTAINER: 'money-input-div',
+  MONEY_FORM: 'money-input-form',
+  MONEY_FORM_INPUT: 'money-input-form__input',
+  MONEY_FORM_SUBMIT: 'money-input-form__submit',
 
-  MONEY_INPUT_CONTAINER: '#money-input-div',
-  MONEY_FORM: '.money-input-form',
-  MONEY_FORM_INPUT: '.money-input-form__input',
-  MONEY_FORM_SUBMIT: '.money-input-form__submit',
+  LOTTO_CONTAINER: 'lotto-div',
+  LOTTO_SWITCH: 'lotto-div__switch',
+  LOTTO_TICKET: 'lotto-div__ticket',
+  LOTTO_TICKET_NUMBER: 'lotto-div__number',
 
-  LOTTO_CONTAINER: '#lotto-div',
-  LOTTO_SWITCH: '.lotto-div__switch',
-  LOTTO_TICKET: '.lotto-div__ticket',
-  LOTTO_TICKET_NUMBER: '.lotto-div__number',
+  RESULT_INPUT_CONTAINER: 'result-input-div',
+}
 
-  RESULT_INPUT_CONTAINER: '#result-input-div',
+export const DOM_IDS = {
+  APP: 'app',
 }
