@@ -10,7 +10,7 @@ const onCostSumbit = () => {
     return;
   }
   if (validator.isChangeMoneyExist(cost)) {
-    alert(MESSAGE.getShouldNotHaveChangeMessage(cost));
+    alert(MESSAGE.GET_SHOULD_NOT_HAVE_CHANGE_MESSAGE(cost));
     return;
   }
   lottoGameController.initToggleButton();

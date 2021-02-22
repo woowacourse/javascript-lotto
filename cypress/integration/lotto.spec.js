@@ -27,7 +27,7 @@ describe('step 1', () => {
     cy.get('#cost-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.getShouldNotHaveChangeMessage(3500)
+      MESSAGE.SHOULD_EXCEED_MIN_COST(3500)
     );
     cy.get('#purchase-result').should('not.be.visible');
   });
