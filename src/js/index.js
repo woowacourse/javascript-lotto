@@ -1,4 +1,9 @@
-import { CashContainer, LottoDetailContainer } from "./components/index.js";
+import {
+  CashContainer,
+  LottoDetailContainer,
+  WinningNumberContainer,
+} from "./components/index.js";
 
 CashContainer.init();
 LottoDetailContainer.init();
+WinningNumberContainer.init();
