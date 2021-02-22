@@ -18,7 +18,7 @@ export default class LottoModel {
 
   buy(price) {
     const numOfLottoes = price / 1000;
-    this.price = price;
     this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
+    this.price = price;
   }
 }
