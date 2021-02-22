@@ -92,23 +92,6 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
     cy.get('#lotto-winning-number-input-container').should('be.visible');
   });
 
-  it('결과 확인하기 버튼을 누르면, 모달이 화면에 출력한다.', () => {
-    let count = 1;
-    cy.get('#lotto-purchase-input').type('4500');
-    cy.get('#lotto-purchase-btn').click();
-
-    cy.get('.winning-number')
-      .each(elem => {
-        cy.wrap(elem).type(count++);
-      })
-      .then(() => {
-        cy.get('.bonus-number').type(count);
-      });
-    cy.get('.open-result-modal-button').click();
-
-    cy.get('.modal').should('be.visible');
-  });
-
   it('로또와 당첨 번호가 주어질 때, 당첨 통계/수익률을 계산한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 45;
@@ -135,24 +118,5 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
 
     const profitMargin = lottoManager.calculateProfitMargin();
     expect(profitMargin).to.equal(100 * ((300000000 * 5 - 5000) / 5000));
-  });
-
-  it('모달이 출력된 상태에서 닫기(X)버튼을 클릭하면, 모달이 닫힌다.', () => {
-    const winningNumbers = [1, 2, 3, 4, 5, 100];
-    const bonusNumber = 40;
-
-    cy.get('#lotto-purchase-input').type('4500');
-    cy.get('#lotto-purchase-btn').click();
-    cy.get('.winning-number')
-      .each((elem, index) => {
-        cy.wrap(elem).type(winningNumbers[index]);
-      })
-      .then(() => {
-        cy.get('.bonus-number').type(bonusNumber);
-      });
-
-    cy.get('.open-result-modal-button').click();
-    cy.get('.modal-close').click({ force: true });
-    cy.get('.modal').should('not.be.visible');
   });
 });
