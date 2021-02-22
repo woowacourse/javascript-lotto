@@ -41,7 +41,7 @@ export default class LottoController {
     this.makeLottos(moneyInput);
     const lottoTickets = this.lottos.map(lotto => lotto.numbers);
     this.lottoUI.renderCheckLottoUI(lottoTickets);
-    this.lottoUI.renderResultInputUI();
+    this.lottoUI.renderResultInputUI()
   }
 
   makeLottos(moneyInput) {
