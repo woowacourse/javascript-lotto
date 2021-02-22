@@ -40,13 +40,15 @@ export default class LottoManager {
       FIFTH: 0,
     };
 
-    this.lottos.forEach(lotto => {
-      const numbers = lotto.numbers;
+    const getMatchedCount = numbers => {
       let count = 0;
       numbers.forEach(number => {
         if (winningNumbers.includes(number)) count++;
       });
+      return count;
+    };
 
+    const updateWinningCount = (numbers, count) => {
       if (count === 6) {
         winningCount[`FIRST`]++;
       } else if (count === 5 && numbers.includes(bonusNumber)) {
@@ -58,6 +60,10 @@ export default class LottoManager {
       } else if (count === 3) {
         winningCount[`FIFTH`]++;
       }
+    };
+
+    this.lottos.forEach(({ numbers }) => {
+      updateWinningCount(numbers, getMatchedCount(numbers));
     });
 
     this.setState({ winningCount });

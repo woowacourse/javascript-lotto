@@ -1,9 +1,9 @@
 import LottoPurchaseInput from './LottoPurchaseInput.js';
 import LottoDisplay from './LottoDisplay.js';
 import LottoManager from '../model/LottoManager.js';
-import { $ } from '../utils/dom.js';
 import WinningNumbersInput from './WinningNumbersInput.js';
 import RewardModalDisplay from './RewardModalDisplay.js';
+import { $ } from '../utils/dom.js';
 
 export default class App {
   constructor() {
