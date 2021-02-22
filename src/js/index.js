@@ -5,6 +5,7 @@ import {
   showElement,
   hideElement,
   disableElement,
+  getMatchedValueCount,
 } from './utils.js';
 import { ALERT_MESSAGE, LOTTO } from './constants.js';
 import Lotto from './objects/Lotto.js';
@@ -15,6 +16,7 @@ class LottoApp {
     this.view = new LottoView();
     this.data = {
       lottos: [],
+      cost: 0,
     };
 
     this.bindEvents();
@@ -48,6 +50,7 @@ class LottoApp {
     }
 
     const lottoCount = Math.floor(money / LOTTO.PRICE);
+    this.data.cost = LOTTO.PRICE * lottoCount;
     this.data.lottos = this.generateLottos(lottoCount);
 
     this.view.renderLottoList(this.data.lottos);
@@ -69,9 +72,11 @@ class LottoApp {
     if (event.target.value.length >= 2) {
       if (event.target.nextElementSibling) {
         event.target.nextElementSibling.focus();
+        event.target.nextElementSibling.select();
         return;
       }
       $('.bonus-number').focus();
+      $('.bonus-number').select();
     }
   }
 
@@ -83,6 +88,9 @@ class LottoApp {
     if (!numbers) return;
 
     showElement($('.modal'));
+
+    const result = this.getResult(numbers);
+    this.view.renderWinningResult(result);
   }
 
   getWinningNumbers(event) {
@@ -96,6 +104,57 @@ class LottoApp {
     }
 
     return { winningNumbers, bonusNumber };
+  }
+
+  getResult(numbers) {
+    const { winningNumbers, bonusNumber } = numbers;
+    const winningRankCounts = {
+      first: 0, // 6개 일치
+      second: 0, // 5개 + 보너스 숫자 일치
+      third: 0, // 5개 일치
+      fourth: 0, // 4개 일치
+      fifth: 0, // 3개 일치
+    };
+
+    this.data.lottos.forEach((lotto) => {
+      const matchedNumberCount = getMatchedValueCount(winningNumbers, lotto.numbers);
+
+      if (matchedNumberCount === 6) {
+        winningRankCounts.first += 1;
+      } else if (matchedNumberCount === 5) {
+        if (lotto.numbers.includes(bonusNumber)) {
+          winningRankCounts.second += 1;
+        }
+        winningRankCounts.third += 1;
+      } else if (matchedNumberCount === 4) {
+        winningRankCounts.fourth += 1;
+      } else if (matchedNumberCount === 3) {
+        winningRankCounts.fifth += 1;
+      }
+    });
+
+    let winningTotalPrice = 0;
+
+    Object.entries(winningRankCounts).forEach(([rank, count]) => {
+      if (rank === 'first') {
+        winningTotalPrice += count * 2000000000;
+      } else if (rank === 'second') {
+        winningTotalPrice += count * 30000000;
+      } else if (rank === 'third') {
+        winningTotalPrice += count * 1500000;
+      } else if (rank === 'fourth') {
+        winningTotalPrice += count * 50000;
+      } else if (rank === 'fifth') {
+        winningTotalPrice += count * 5000;
+      }
+    });
+
+    const winningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
+
+    return {
+      winningRankCounts,
+      winningRate,
+    };
   }
 
   handleCloseModal() {

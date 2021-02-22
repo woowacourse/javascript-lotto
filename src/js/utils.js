@@ -31,3 +31,8 @@ export const enableElement = ($element) => {
 export const disableElement = ($element) => {
   $element.disabled = true;
 };
+
+export const getMatchedValueCount = (array1, array2) => {
+  const set = new Set([...array1, ...array2]);
+  return array1.length + array2.length - set.size;
+};
