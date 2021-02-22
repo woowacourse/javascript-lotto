@@ -25,17 +25,12 @@ class LottoController {
     return value;
   }
 
-  renderPocketLottos() {
-    const lottos = this.model.lottos;
-    const pocketDetail = this.model.detail;
-    this.view.renderPocketLottos(lottos, pocketDetail);
-  }
-
   managePocket() {
+    const lottos = this.model.lottos;
     const amount = this.model.amount;
     this.view.renderPocketSection(amount);
+    this.view.renderPocketLottos(lottos);
     this.view.renderWinningSection();
-    this.renderPocketLottos();
     this.handlePocket();
   }
 
@@ -54,9 +49,10 @@ class LottoController {
     this.managePocket();
   }
 
-  manageDetail() {
-    this.model.toggleDetail();
-    this.renderPocketLottos();
+  togglePocketDetail() {
+    const lottos = this.model.lottos;
+    this.view.togglePocketLottos();
+    this.view.renderPocketLottos(lottos);
   }
 
   handlePrice() {
@@ -69,7 +65,7 @@ class LottoController {
   handlePocket() {
     const $pocketButton = $(SELECTOR.POCKET_TOGGLE);
     $pocketButton.addEventListener("click", () => {
-      this.manageDetail();
+      this.togglePocketDetail();
     });
   }
 }

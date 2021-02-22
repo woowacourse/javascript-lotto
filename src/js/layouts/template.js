@@ -55,7 +55,7 @@ class Template {
                 </label>
             </div>
         </div>
-        <div id="pocket-lottos" class="flex-wrap"></div>
+        <div id="pocket-lottos" data-detail="hide" class="flex-wrap"></div>
     `;
   }
 

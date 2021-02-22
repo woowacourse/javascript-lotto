@@ -17,12 +17,22 @@ class LottoView {
     $pocketSection.innerHTML = this.template.pocketSectionTemplate(amount);
   }
 
-  renderPocketLottos(lottos, detail) {
+  renderPocketLottos(lottos) {
     const $pocketLottos = $(SELECTOR.POCKET_LOTTOS);
+    const detail = $pocketLottos.dataset.detail === "show";
     $pocketLottos.innerHTML = this.template.pocketLottosTemplate(
       lottos,
       detail
     );
+  }
+
+  togglePocketLottos() {
+    const $pocketLottos = $(SELECTOR.POCKET_LOTTOS);
+    if ($pocketLottos.dataset.detail === "hide") {
+      $pocketLottos.dataset.detail = "show";
+    } else {
+      $pocketLottos.dataset.detail = "hide";
+    }
   }
 
   renderWinningSection() {
