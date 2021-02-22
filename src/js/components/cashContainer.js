@@ -39,7 +39,7 @@ const createLottosAfterValidation = (event) => {
     validate($cashInput.value);
 
     store.dispatch({
-      type: ACTION_TYPE.LOTTOS,
+      type: ACTION_TYPE.LOTTOS.ADDED,
       payload: createLottos(Number($cashInput.value)),
     });
   } catch (error) {

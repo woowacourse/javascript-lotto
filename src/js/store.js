@@ -9,12 +9,14 @@ const createStore = (reducer) => {
   };
 
   const dispatch = (action) => {
-    state = reducer(state, action);
-    listeners[action.type].forEach((listener) => listener());
+    const { target, state: newState } = reducer(state, action);
+    state = newState;
+
+    listeners[target]?.forEach((listener) => listener());
   };
 
-  const subscribe = (actionType, listener) => {
-    listeners[actionType].push(listener);
+  const subscribe = (target, listener) => {
+    listeners[target].push(listener);
   };
 
   return { getState, dispatch, subscribe };

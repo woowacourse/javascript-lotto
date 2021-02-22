@@ -1,4 +1,4 @@
-import { CLASSNAME, JS_SELECTOR, ACTION_TYPE } from "../constants/index.js";
+import { CLASSNAME, JS_SELECTOR, STATE_TYPE } from "../constants/index.js";
 import {
   $,
   toDataAttributeSelector as toDAS,
@@ -47,4 +47,4 @@ const toggleDetailMode = () => {
 
 $toggleButton.addEventListener("change", toggleDetailMode);
 
-store.subscribe(ACTION_TYPE.LOTTOS, render);
+store.subscribe(STATE_TYPE.LOTTOS, render);
