@@ -11,6 +11,7 @@ import LottoController from "./lotto/LottoController.js";
 import LottoView from "./lotto/LottoView.js";
 
 const lottoController = new LottoController();
+const lottoView = new LottoView();
 
 $priceSubmitForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -34,6 +35,6 @@ $winningNumberForm.addEventListener("submit", (e) => {
 $modalClose.addEventListener("click", () => onModalClose($modal));
 
 $restartButton.addEventListener("click", () => {
-  LottoView.resetLottoView();
+  lottoView.resetLottoView();
   onModalClose($modal);
 });
