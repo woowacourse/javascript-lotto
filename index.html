@@ -13,9 +13,7 @@
           <h1 class="text-center">🎱 행운의 로또</h1>
           <!-- purchase amount input form -->
           <form class="mt-5" id="purchase-amount-form" novalidate>
-            <label class="mb-2 d-inline-block"
-              >구입할 금액을 입력해주세요.
-            </label>
+            <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요. </label>
             <div class="d-flex">
               <input
                 type="number"
@@ -23,13 +21,7 @@
                 placeholder="구입 금액 (1000원 단위)"
                 id="purchase-amount-input"
               />
-              <button
-                type="submit"
-                class="btn btn-cyan"
-                id="purchase-amount-submit"
-              >
-                확인
-              </button>
+              <button type="submit" class="btn btn-cyan" id="purchase-amount-submit">확인</button>
             </div>
           </form>
           <!-- lotto section -->
@@ -50,8 +42,8 @@
           <!-- lotto-result-form -->
           <form class="mt-9 d-none" id="lotto-result-form" novalidate>
             <label class="flex-auto d-inline-block mb-3"
-              >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요. (1부터
-              45까지의 숫자를 입력해주세요.)</label
+              >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요. (1부터 45까지의 숫자를
+              입력해주세요.)</label
             >
             <div class="d-flex">
               <div>
@@ -112,9 +104,9 @@
         </div>
       </div>
       <!-- result modal -->
-      <div class="modal">
+      <div class="modal" id="modal">
         <div class="modal-inner p-10">
-          <div class="modal-close">
+          <div class="modal-close" id="modal-close">
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>

@@ -11,11 +11,14 @@ export class LottoController {
     this.$lottoToggle = $('#lotto-numbers-toggle-button');
     this.$winningNumberInputs = $('[data-winning-number]');
     this.$resultForm = $('#lotto-result-form');
+    this.$modal = $('#modal');
+    this.$modalClose = $('#modal-close');
 
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
     this.$winningNumberInputs.setEvent('input', this.handleLengthLimit.bind(this));
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
+    this.$modalClose.setEvent('click', () => this.$modal.removeClass('open'));
   }
 
   handlePurchaseAmountInput(event) {
@@ -31,7 +34,8 @@ export class LottoController {
       return;
     }
 
-    this.machine.publishLottosByAuto(money);
+    this.machine.insert(money);
+    this.machine.publishLottosByAuto();
     this.view.renderLottoSection(this.machine.lottos);
     this.$purchaseAmountInput.disable();
     this.$purchaseAmountSubmit.disable();
@@ -78,6 +82,8 @@ export class LottoController {
 
       return;
     }
-    // 통계 계산 결과 -> render modal
+
+    this.machine.getWinningStatistics(numbers);
+    this.$modal.addClass('open');
   }
 }
