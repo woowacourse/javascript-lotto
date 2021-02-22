@@ -6,12 +6,44 @@ import {
   INVALID_PRICE_ERROR,
   INVALID_WINNGNUMBER_ERROR,
   DUPLICATED_WINNINGNUMBER_ERROR,
-} from "./constants.js";
+} from "../constants.js";
 
 export default class LottoController {
   constructor() {
     this.lottoModel = new LottoModel();
     this.lottoView = new LottoView();
+    this.prizeTable = {
+      ranking1: {
+        num: 0,
+        prize: 2000000000,
+        condition: "6개",
+      },
+      ranking2: {
+        num: 0,
+        prize: 30000000,
+        condition: "5개 + 보너스볼",
+      },
+      ranking3: {
+        num: 0,
+        prize: 1500000,
+        condition: "5개",
+      },
+      ranking4: {
+        num: 0,
+        prize: 50000,
+        condition: "4개",
+      },
+      ranking5: {
+        num: 0,
+        prize: 5000,
+        condition: "3개",
+      },
+      noPrize: {
+        num: 0,
+        prize: 0,
+        condition: "2개 이하",
+      },
+    };
   }
 
   isValidPrice(price) {
@@ -55,8 +87,19 @@ export default class LottoController {
     }
   }
 
-  calculateEarningRate(prizeTable) {
-    const totalPrize = Object.values(prizeTable).reduce(
+  setPrizeTable(winningNumber, bonusNumber) {
+    this.lottoModel.lottoList.forEach((lotto) => {
+      const ranking = this.checkRanking(
+        lotto.number,
+        winningNumber,
+        bonusNumber
+      );
+      this.prizeTable[ranking].num++;
+    });
+  }
+
+  calculateEarningRate() {
+    const totalPrize = Object.values(this.prizeTable).reduce(
       (totalPrize, ranking) => {
         return (totalPrize += ranking.num * ranking.prize);
       },
@@ -69,7 +112,7 @@ export default class LottoController {
   onSubmitPrice(price) {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
-      LottoView.resetLottoView();
+      this.lottoView.resetLottoView();
 
       return;
     }
@@ -87,57 +130,21 @@ export default class LottoController {
     const numbers = [...winningNumber, bonusNumber];
     if (!this.isNumbersInRange(numbers, 1, 45)) {
       alert(INVALID_WINNGNUMBER_ERROR);
+
       return;
     }
     if (!this.isDistinctNumbers(numbers)) {
       alert(DUPLICATED_WINNINGNUMBER_ERROR);
+
       return;
     }
 
+    this.setPrizeTable(winningNumber, bonusNumber);
+
+    const earningRate = this.calculateEarningRate();
+    this.lottoView.showPrizeTable(this.prizeTable);
+    this.lottoView.showEarningRate(earningRate);
+
     onModalShow($modal);
-    const prizeTable = {
-      ranking1: {
-        num: 0,
-        prize: 2000000000,
-        condition: "6개",
-      },
-      ranking2: {
-        num: 0,
-        prize: 30000000,
-        condition: "5개 + 보너스볼",
-      },
-      ranking3: {
-        num: 0,
-        prize: 1500000,
-        condition: "5개",
-      },
-      ranking4: {
-        num: 0,
-        prize: 50000,
-        condition: "4개",
-      },
-      ranking5: {
-        num: 0,
-        prize: 5000,
-        condition: "3개",
-      },
-      noPrize: {
-        num: 0,
-        prize: 0,
-        condition: "2개 이하",
-      },
-    };
-
-    this.lottoModel.lottoList.forEach((lotto) => {
-      const ranking = this.checkRanking(
-        lotto.number,
-        winningNumber,
-        bonusNumber
-      );
-      prizeTable[ranking].num++;
-    });
-
-    this.lottoView.showPrizeTable(prizeTable);
-    this.lottoView.showEarningRate(this.calculateEarningRate(prizeTable));
   }
 }
