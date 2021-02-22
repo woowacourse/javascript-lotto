@@ -11,18 +11,25 @@ import {
 } from "../utils/index.js";
 import { Lotto } from "../models/index.js";
 import store from "../store/index.js";
+import { EmptyInputError, ValidationError } from "../errors/index.js";
 
 const createCashContainer = () => {
   const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
   const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 
-  const validate = (userInputCash) => {
-    if (userInputCash === "") {
-      throw Error(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
+  const toNumber = (cashInputValue) => {
+    if (cashInputValue === "") {
+      throw new EmptyInputError(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
     }
 
-    if (Number(userInputCash) < MONEY.LOTTO_PRICE) {
-      throw Error(ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE);
+    return Number(cashInputValue);
+  };
+
+  const validate = (cash) => {
+    if (cash < MONEY.LOTTO_PRICE) {
+      throw new ValidationError(
+        ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE
+      );
     }
   };
 
@@ -32,29 +39,27 @@ const createCashContainer = () => {
     return [...Array(lottoCount)].map(() => new Lotto(generateLottoNumbers()));
   };
 
-  const isCashInputError = (error) => {
-    return Object.values(ALERT_MESSAGE.ERROR.CASH_INPUT).includes(
-      error.message
-    );
-  };
-
   const createLottosAfterValidation = (event) => {
     event.preventDefault();
 
     try {
-      validate($cashInput.value);
+      const cash = toNumber($cashInput.value);
+      validate(cash);
 
       store.dispatch({
         type: ACTION_TYPE.LOTTOS.ADDED,
-        payload: createLottos(Number($cashInput.value)),
+        payload: createLottos(cash),
       });
     } catch (error) {
-      if (isCashInputError(error)) {
+      if (
+        error instanceof EmptyInputError ||
+        error instanceof ValidationError
+      ) {
         alert(error.message);
         return;
       }
 
-      console.error(error);
+      throw error;
     } finally {
       $cashInput.clear();
       $cashInput.focus();
