@@ -162,16 +162,28 @@ describe("ui-exception", () => {
   it("당첨 번호에 중복되는 숫자가 있으면 alert가 발생해야 한다.", () => {
     cy.get("#buy-input").type("5000")
     cy.get("#buy-button").click()
-
     cy.get(".winning-number").each(($winningNumber, i) => {
       cy.wrap($winningNumber).type((i % 3) + 1)
     })
-
     cy.get(".bonus-number").type(2)
     cy.get("#winning-result-button").click()
     cy.get("@alertStub").should(
       "be.calledWith",
       "당첨 번호는 중복되면 안됩니다."
+    )
+  })
+
+  it("당첨 번호가 1이상 45이하가 아닌 숫자가 있을때 alert가 발생해야 한다.", () => {
+    cy.get("#buy-input").type("5000")
+    cy.get("#buy-button").click()
+    cy.get(".winning-number").each(($winningNumber, i) => {
+      cy.wrap($winningNumber).type(i + 42)
+    })
+    cy.get(".bonus-number").type(-1)
+    cy.get("#winning-result-button").click()
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "당첨 번호는 1이상 45이하의 숫자여야 합니다."
     )
   })
 })
