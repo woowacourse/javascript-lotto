@@ -38,10 +38,11 @@ export default class LottoView {
   }
 
   showConfirmation(lottoList) {
-    showElement($confirmation);
     $lottoNumbersToggleButton.checked = false;
     $lottoListLabel.innerText = `총 ${lottoList.length}개를 구매하였습니다.`;
     this.showTickets(lottoList.length);
+
+    showElement($confirmation);
   }
 
   showPrizeTable(prizeTable) {
@@ -64,10 +65,17 @@ export default class LottoView {
     $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
   }
 
-  static resetLottoView() {
-    $priceInput.value = "";
-    $bonusNumberInput.value = "";
-    $winningNumberInputs.forEach(($input) => ($input.value = ""));
+  resetInput($input) {
+    $input.value = "";
+  }
+
+  resetLottoView() {
+    this.resetInput($priceInput);
+    this.resetInput($bonusNumberInput);
+    $winningNumberInputs.forEach(($winningNumberInput) =>
+      this.resetInput($winningNumberInput)
+    );
+
     hideElement($confirmation);
   }
 }
