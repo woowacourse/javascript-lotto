@@ -1,4 +1,4 @@
-import { MONETARY_UNIT, ALERT_MESSAGE, LOTTO_PRICE } from '../constants.js';
+import { MONETARY_UNIT, PURCHASE_AMOUNT_ALERT_MESSAGE, LOTTO_PRICE } from '../constants.js';
 import { $, clearInputValue } from '../utils/DOM.js';
 
 export default class PurchaseAmountInput {
@@ -33,7 +33,7 @@ export default class PurchaseAmountInput {
     const change = purchaseAmount % LOTTO_PRICE;
 
     if (change > 0) {
-      alert(ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
+      alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
 
     this.createLottoTickets((purchaseAmount - change) / LOTTO_PRICE);
@@ -41,11 +41,11 @@ export default class PurchaseAmountInput {
 
   validateInput(purchaseAmount) {
     if (purchaseAmount % MONETARY_UNIT) {
-      return ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY;
+      return PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY;
     }
 
     if (purchaseAmount < LOTTO_PRICE) {
-      return ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW;
+      return PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW;
     }
 
     return '';
