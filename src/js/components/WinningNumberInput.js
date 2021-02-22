@@ -24,7 +24,7 @@ export default class WinningNumberInput {
 
   attachEvents() {
     this.$winningNumberForm.addEventListener('keyup', this.onChangeWinningNumberInput.bind(this));
-    this.$openResultModalButton.addEventListener('click', this.onShowModal);
+    this.$openResultModalButton.addEventListener('click', this.onShowModal.bind(this));
   }
 
   onChangeWinningNumberInput(e) {
@@ -68,7 +68,7 @@ export default class WinningNumberInput {
   }
 
   setState({ isVisible, checkMessage }) {
-    if (isVisible) {
+    if (typeof isVisible === 'boolean') {
       this.isVisible = isVisible;
       this.renderForm();
     }

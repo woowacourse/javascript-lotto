@@ -19,6 +19,7 @@ describe('당첨 결과 모달 UI 검사', () => {
       cy.wrap($el).type(winningNumbers[index]);
     });
     cy.get('.bonus-number').type(bonusNumber);
+    cy.get('.open-result-modal-button').click();
     cy.get('.modal').should('be.visible');
   });
 
