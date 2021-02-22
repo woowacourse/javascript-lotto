@@ -1,5 +1,5 @@
 import LottoManager from '../model/LottoManager.js';
-import { $, $$ } from '../utils/dom.js';
+import { $, $$, clearInputValue } from '../utils/dom.js';
 
 export default class WinningNumbersInput {
   constructor(props) {
@@ -48,7 +48,12 @@ export default class WinningNumbersInput {
   }
 
   render() {
-    // d-none 풀기
-    this.$target.classList.remove('d-none');
+    if (this.lottoManager.lottos.length) {
+      this.$target.classList.remove('d-none');
+    } else {
+      this.$target.classList.add('d-none');
+      this.winningNumberInputs.forEach(clearInputValue);
+      clearInputValue(this.bonusNumberInput);
+    }
   }
 }

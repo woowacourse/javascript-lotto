@@ -27,6 +27,11 @@ export default class RewardModalDisplay {
       'mousedown',
       this.onClickOutsideModal.bind(this),
     );
+    this.$restartButton.addEventListener('click', this.onRestart.bind(this));
+  }
+
+  onRestart() {
+    this.lottoManager.resetState();
   }
 
   onClickOutsideModal(e) {
@@ -45,7 +50,7 @@ export default class RewardModalDisplay {
   }
 
   render() {
-    if (this.lottoManager.winningCount) {
+    if (Object.keys(this.lottoManager.winningCount).length !== 0) {
       this.$winningCountTexts.forEach($winningCountText => {
         const key = $winningCountText.getAttribute('data-td');
         $winningCountText.textContent = `${this.lottoManager.winningCount[key]}개`;
@@ -53,6 +58,8 @@ export default class RewardModalDisplay {
       this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager.calculateProfitMargin()}% 입니다.`;
 
       this.onModalShow();
+    } else {
+      this.onModalClose();
     }
   }
 }

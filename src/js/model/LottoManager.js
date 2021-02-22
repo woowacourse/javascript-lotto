@@ -11,7 +11,7 @@ export default class LottoManager {
   constructor(lottos = []) {
     this.lottos = lottos;
     this.listeners = [];
-    this.winningCount = null;
+    this.winningCount = {};
 
     this.rewards = Object.freeze({
       FIRST: 2000000000,
@@ -105,6 +105,10 @@ export default class LottoManager {
     }
 
     return '';
+  }
+
+  resetState() {
+    this.setState({ lottos: [], winningCount: {} });
   }
 
   setState({ lottos, winningCount }) {
