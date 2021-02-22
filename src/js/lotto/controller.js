@@ -1,5 +1,5 @@
 import Lotto from "./lotto.js"
-import { checkPriceValid } from "./validator.js"
+import { checkPriceValid } from "../validator/validator.js"
 import { $ } from "../utils/util.js"
 import { LOTTO, SELECTOR } from "../constants/constant.js"
 
