@@ -4,55 +4,70 @@ import {
   JS_SELECTOR,
   MONEY,
 } from "../constants/index.js";
-import { $, toDataAttributeSelector as toDAS } from "../utils/index.js";
-import store from "../store.js";
-import Lotto from "../models/Lotto.js";
-import { generateLottoNumbers } from "../utils/index.js";
+import {
+  $,
+  toDataAttributeSelector as toDAS,
+  generateLottoNumbers,
+} from "../utils/index.js";
+import { Lotto } from "../models/index.js";
+import store from "../store/index.js";
 
-const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
-const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
+const createCashContainer = () => {
+  const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
+  const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 
-const validate = (userInputCash) => {
-  if (userInputCash === "") {
-    throw Error(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
-  }
-
-  if (Number(userInputCash) < MONEY.LOTTO_PRICE) {
-    throw Error(ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE);
-  }
-};
-
-const createLottos = (cash) => {
-  const lottoCount = Math.floor(cash / MONEY.LOTTO_PRICE);
-
-  return [...Array(lottoCount)].map(() => new Lotto(generateLottoNumbers()));
-};
-
-const isCashInputError = (error) => {
-  return Object.values(ALERT_MESSAGE.ERROR.CASH_INPUT).includes(error.message);
-};
-
-const createLottosAfterValidation = (event) => {
-  event.preventDefault();
-
-  try {
-    validate($cashInput.value);
-
-    store.dispatch({
-      type: ACTION_TYPE.LOTTOS.ADDED,
-      payload: createLottos(Number($cashInput.value)),
-    });
-  } catch (error) {
-    if (isCashInputError(error)) {
-      alert(error.message);
-      return;
+  const validate = (userInputCash) => {
+    if (userInputCash === "") {
+      throw Error(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
     }
 
-    console.error(error);
-  } finally {
-    $cashInput.clear();
-    $cashInput.focus();
-  }
+    if (Number(userInputCash) < MONEY.LOTTO_PRICE) {
+      throw Error(ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE);
+    }
+  };
+
+  const createLottos = (cash) => {
+    const lottoCount = Math.floor(cash / MONEY.LOTTO_PRICE);
+
+    return [...Array(lottoCount)].map(() => new Lotto(generateLottoNumbers()));
+  };
+
+  const isCashInputError = (error) => {
+    return Object.values(ALERT_MESSAGE.ERROR.CASH_INPUT).includes(
+      error.message
+    );
+  };
+
+  const createLottosAfterValidation = (event) => {
+    event.preventDefault();
+
+    try {
+      validate($cashInput.value);
+
+      store.dispatch({
+        type: ACTION_TYPE.LOTTOS.ADDED,
+        payload: createLottos(Number($cashInput.value)),
+      });
+    } catch (error) {
+      if (isCashInputError(error)) {
+        alert(error.message);
+        return;
+      }
+
+      console.error(error);
+    } finally {
+      $cashInput.clear();
+      $cashInput.focus();
+    }
+  };
+
+  const init = () => {
+    $cashContainer.addEventListener("submit", createLottosAfterValidation);
+  };
+
+  return { init };
 };
 
-$cashContainer.addEventListener("submit", createLottosAfterValidation);
+const cashContainer = createCashContainer();
+
+export default cashContainer;
