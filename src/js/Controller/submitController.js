@@ -13,17 +13,17 @@ import { onPurchaseResultShow } from "./viewController.js";
 export const handlePurchaseAmountSubmit = () => {
   const money = $(Element.PURCHASE_AMOUNT_INPUT).value;
 
-  if (isValidMoney(money)) {
-    app.ticketCount = money / Number.ONE_TICKET_PRICE;
+  if (!isValidMoney(money)) return;
 
-    for (let i = 0; i < app.ticketCount; i++) {
-      app.tickets.push(new Ticket());
-    }
+  app.ticketCount = money / Number.ONE_TICKET_PRICE;
 
-    printPurchaseAmountLabel(app.ticketCount);
-    printTicketHorizontal(app.ticketCount);
-    onPurchaseResultShow();
+  for (let i = 0; i < app.ticketCount; i++) {
+    app.tickets.push(new Ticket());
   }
+
+  printPurchaseAmountLabel(app.ticketCount);
+  printTicketHorizontal(app.ticketCount);
+  onPurchaseResultShow();
 };
 
 export const handleToggleButton = (event) => {
@@ -33,7 +33,6 @@ export const handleToggleButton = (event) => {
     printTicketHorizontal(app.ticketCount);
   }
 };
-
 
 // <다음 단계에 필요한 코드 주석 처리>
 
