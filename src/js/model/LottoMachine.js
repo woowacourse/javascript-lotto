@@ -46,17 +46,17 @@ export class LottoMachine {
   }
 
   getWinningStatistics(winningNumbers) {
-    const ranks = this.getRanks([...winningNumbers]);
-    const earningRate = this.calculateEarningRate(ranks);
+    const rankCounts = this.getRanks([...winningNumbers]);
+    const earningRate = this.calculateEarningRate(rankCounts);
 
     return {
-      ranks,
+      rankCounts,
       earningRate,
     };
   }
 
   getRanks(winningNumbers) {
-    const ranks = [0, 0, 0, 0, 0, 0]; // 등수와 인덱스 번호 일치 ex) 1등의 인덱스는 1
+    const rankCounts = [0, 0, 0, 0, 0, 0]; // 등수와 인덱스 번호 일치 ex) 1등의 인덱스는 1
     const bonusNumber = winningNumbers.pop();
     const mainNumbers = winningNumbers;
 
@@ -64,11 +64,11 @@ export class LottoMachine {
       const rank = this.getRank(lotto, mainNumbers, bonusNumber);
 
       if (PRIZE_MONEY[rank]) {
-        ranks[rank]++;
+        rankCounts[rank]++;
       }
     });
 
-    return ranks;
+    return rankCounts;
   }
 
   getRank(lotto, mainNumbers, bonusNumber) {
@@ -89,12 +89,14 @@ export class LottoMachine {
       : WINNING_NUMBER_COUNT - matchCount + 1;
   }
 
-  calculateEarningRate(ranks) {
-    return ((this.calculateEarning(ranks) / this.#insertedMoney) * 100).toFixed(2);
+  calculateEarningRate(rankCounts) {
+    const earningRate = (this.calculateEarning(rankCounts) / this.#insertedMoney) * 100;
+
+    return Number.isInteger(earningRate) ? earningRate : earningRate.toFixed(2);
   }
 
-  calculateEarning(ranks) {
-    return ranks.reduce((earning, count, rank) => {
+  calculateEarning(rankCounts) {
+    return rankCounts.reduce((earning, count, rank) => {
       if (rank === 0) {
         return earning;
       }
