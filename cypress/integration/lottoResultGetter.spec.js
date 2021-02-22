@@ -1,8 +1,8 @@
-import { BOUNS_COUNT, LOTTO_PRICE } from '../../src/js/constants.js';
 import LottoTicket from '../../src/js/model/LottoTicket.js';
 import ResultModal from '../../src/js/components/ResultModal.js';
+import { BOUNS_COUNT } from '../../src/js/constants.js';
 
-describe('당첨 결과 모달 UI 검사', () => {
+describe('당첨통계 계산 메서드 검사', () => {
   before(() => {
     cy.visit('http://localhost:5500/');
   });
@@ -11,18 +11,6 @@ describe('당첨 결과 모달 UI 검사', () => {
     winningNumbers: [1, 2, 3, 4, 5, 6],
     bonusNumber: 7,
   };
-
-  it('로또 구매 및 당첨번호 입력을 마치고 결과확인 버튼을 클릭하면 당첨 결과 모달이 표시된다.', () => {
-    const { winningNumbers, bonusNumber } = winningNumber;
-
-    cy.get('.purchase-amount-input').type(LOTTO_PRICE).type('{enter}');
-    cy.get('.winning-number').each(($el, index) => {
-      cy.wrap($el).type(winningNumbers[index]);
-    });
-    cy.get('.bonus-number').type(bonusNumber);
-    cy.get('.open-result-modal-button').click();
-    cy.get('.modal').should('be.visible');
-  });
 
   it('구매한 로또의 당첨번호 일치 개수를 반환한다.', () => {
     const lottoTicket1 = new LottoTicket([1, 2, 3, 4, 5, 6]);
@@ -76,17 +64,5 @@ describe('당첨 결과 모달 UI 검사', () => {
     const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getRateOfReturn();
 
     expect(rateOfReturn).to.equal(-61.54);
-  });
-
-  it('다시 시작하기 버튼을 클릭하면, 모달이 사라지고 화면이 초기화된다.', () => {
-    cy.get('.restart-button').click();
-    cy.get('.modal').should('not.be.visible');
-    cy.get('.purchased-lotto-section').should('not.be.visible');
-    cy.get('.winning-number-form').should('not.be.visible');
-    cy.get('.purchase-amount-input').should('have.text', '');
-    cy.get('.lotto-numbers-toggle-button').should('not.be.checked');
-    cy.get('.winning-number').each(($el) => {
-      cy.wrap($el).should('have.text', '');
-    });
   });
 });
