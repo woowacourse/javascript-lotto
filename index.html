@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./src/css/index.css" />
   </head>
   <body>
-    <div id="app" class="p-3">
+    <main id="app" class="p-3">
       <div class="d-flex justify-center mt-5">
         <section class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
@@ -54,33 +54,64 @@
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    aria-label="winning-number-1"
+                    required
+                    min="1"
+                    max="45"
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    aria-label="winning-number-2"
+                    required
+                    min="1"
+                    max="45"
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    aria-label="winning-number-3"
+                    required
+                    min="1"
+                    max="45"
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    aria-label="winning-number-4"
+                    required
+                    min="1"
+                    max="45"
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    aria-label="winning-number-5"
+                    required
+                    min="1"
+                    max="45"
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    aria-label="winning-number-6"
+                    required
+                    min="1"
+                    max="45"
                   />
                 </div>
               </div>
               <div class="bonus-number-container flex-grow">
                 <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
                 <div class="d-flex justify-center">
-                  <input type="number" class="bonus-number text-center" />
+                  <input 
+                    type="number" 
+                    class="bonus-number text-center" 
+                    aria-label="winning-number-bounus"
+                    required
+                    min="1"
+                    max="45"
+                  />
                 </div>
               </div>
             </div>
@@ -94,7 +125,7 @@
         </section>
       </div>
 
-      <!-- <div class="modal">
+      <div class="modal">
         <div class="modal-inner p-10">
           <div class="modal-close">
             <svg viewbox="0 0 40 40">
@@ -146,8 +177,8 @@
             <button type="button" class="btn btn-cyan">다시 시작하기</button>
           </div>
         </div>
-      </div> -->
-    </div>
+      </div>
+    </main>
     <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
