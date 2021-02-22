@@ -43,7 +43,7 @@
             </div>
             <div id="purchase-item-list" class="d-flex flex-wrap hide hide-lotto-numbers"></div>
           </section>
-          <form class="mt-9" style="display: none">
+          <form class="mt-9">
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
@@ -86,7 +86,8 @@
             </div>
             <button
               type="button"
-              class="open-result-modal-button mt-5 btn btn-cyan w-100"
+              id="open-result-modal-button"
+              class="mt-5 btn btn-cyan w-100"
             >
               결과 확인하기
             </button>
@@ -94,9 +95,9 @@
         </div>
       </div>
 
-      <div class="modal">
+      <div id="modal" class="modal">
         <div class="modal-inner p-10">
-          <div class="modal-close">
+          <div id="modal-close" class="modal-close">
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
