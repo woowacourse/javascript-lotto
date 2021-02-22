@@ -10,6 +10,7 @@ describe('기능 테스트', () => {
     cy.get('#lotto-count').should('have.text', '3');
     cy.get('.lotto-item').should('have.length', '3');
   });
+
   it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
     cy.get('#cost-input').type('5000');
     cy.get('#cost-submit-button').click();
@@ -20,6 +21,40 @@ describe('기능 테스트', () => {
       const lottoNumberList = $lottoNumbers.innerText.split(', ');
       expect(lottoNumberList.length).to.equal(new Set(lottoNumberList).size);
     });
+  });
+
+  it('결과 확인 버튼을 누르면, 당첨 통계, 수익률을 보여준다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('.winning-number').eq(0).type(1);
+    cy.get('.winning-number').eq(1).type(2);
+    cy.get('.winning-number').eq(2).type(3);
+    cy.get('.winning-number').eq(3).type(4);
+    cy.get('.winning-number').eq(4).type(5);
+    cy.get('.winning-number').eq(5).type(6);
+    cy.get('.bonus-number').type(7);
+    cy.get('#result-modal-open-button').click();
+    cy.get('#modal').should('exist');
+    cy.get('#modal').contains('당첨 통계');
+    cy.get('#modal').contains('수익률');
+  });
+
+  it('다시 시작하기 버튼을 누르면, 로또게임이 초기화된다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('.winning-number').eq(0).type(1);
+    cy.get('.winning-number').eq(1).type(2);
+    cy.get('.winning-number').eq(2).type(3);
+    cy.get('.winning-number').eq(3).type(4);
+    cy.get('.winning-number').eq(4).type(5);
+    cy.get('.winning-number').eq(5).type(6);
+    cy.get('.bonus-number').type(7);
+    cy.get('#result-modal-open-button').click();
+    cy.get('#restart-button').click();
+    cy.get('#cost-input').should('have.value', '');
+    cy.get('#purchase-result').should('not.exist');
+    cy.get('#winning-number-input-form').should('not.exist');
+    cy.get('#modal').should('not.exist');
   });
 });
 
@@ -63,8 +98,8 @@ describe('유저 입력 값 테스트', () => {
       MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE
     );
     cy.get('.winning-number').eq(5).should('have.text', '');
-  })
-  
+  });
+
   it('입력된 번호들 중 1 ~ 45 사이의 숫자가 아닌 숫자가 있다면 안내메시지를 출력한다.', () => {
     cy.get('.winning-number').eq(0).type(1);
     cy.get('.winning-number').eq(1).type(2);
@@ -76,7 +111,7 @@ describe('유저 입력 값 테스트', () => {
       MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE
     );
     cy.get('.winning-number').eq(4).should('have.text', '');
-  })
+  });
 
   it('당첨번호가 모두 입력되지 않으면 결과를 확인할 수 없다.', () => {
     cy.get('.winning-number').eq(0).type(1);
@@ -84,13 +119,12 @@ describe('유저 입력 값 테스트', () => {
     cy.get('.winning-number').eq(2).type(3);
     cy.get('.winning-number').eq(3).type(4);
     cy.get('.winning-number').eq(4).type(5);
-    cy.get('.bonus-number').type(6)
+    cy.get('.bonus-number').type(6);
     cy.get('#open-result-modal-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
       MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE
     );
     cy.get('#modal').should('not.exist');
-  })
+  });
 });
-
