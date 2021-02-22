@@ -14,11 +14,11 @@ class Template {
             <button id="buy-button" type="button" class="btn btn-cyan">확인</button>
         </div>
         </form>
-    `;
+    `
   }
 
   pocketLottosSimpleTemplate(lottos) {
-    return `<span class="mx-1 text-4xl">🎟️ </span>`.repeat(lottos.length);
+    return `<span class="mx-1 text-4xl">🎟️ </span>`.repeat(lottos.length)
   }
 
   pocketLottosDetailTemplate(lottos) {
@@ -31,13 +31,13 @@ class Template {
             </div>
             `
       )
-      .join("");
+      .join("")
   }
 
   pocketLottosTemplate(lottos, detail) {
     return detail
       ? this.pocketLottosDetailTemplate(lottos)
-      : this.pocketLottosSimpleTemplate(lottos);
+      : this.pocketLottosSimpleTemplate(lottos)
   }
 
   pocketSectionTemplate(amount) {
@@ -56,7 +56,7 @@ class Template {
             </div>
         </div>
         <div id="pocket-lottos" data-detail="hide" class="flex-wrap"></div>
-    `;
+    `
   }
 
   winningSectionTemplate() {
@@ -92,8 +92,8 @@ class Template {
             결과 확인하기
         </button>
         </form>
-    `;
+    `
   }
 }
 
-export default Template;
+export default Template
