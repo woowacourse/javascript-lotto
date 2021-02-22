@@ -83,6 +83,22 @@ describe("ui-play", () => {
         cy.wrap(winner).should("be.lte", 5)
       })
   })
+
+  it("수익률은 0보다 작을 수 없다.", () => {
+    cy.get("#buy-input").type("5000")
+    cy.get("#buy-button").click()
+    cy.get(".winning-number").each(($winningNumber, i) => {
+      cy.wrap($winningNumber).type(i + 1)
+    })
+
+    cy.get("#winning-result-button").click()
+    cy.get("#earnings-rate").then(($rateText) => {
+      const txt = $rateText.text().trim()
+      const rate = Number(txt.slice(11, txt.indexOf("%")))
+      console.log(rate)
+      cy.wrap(rate).should("be.gte", 0)
+    })
+  })
 })
 
 describe("ui-exception", () => {
