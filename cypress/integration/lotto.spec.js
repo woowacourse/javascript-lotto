@@ -52,6 +52,12 @@ context('로또 UI 테스트', () => {
     cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('not.be.visible');
   });
 
+  it('로또 구입 금액을 입력 받으면 결과 확인 UI를 띄운다.', () => {
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).should('be.visible');
+  });
 });
 
 context('로또 기능 테스트', () => {
