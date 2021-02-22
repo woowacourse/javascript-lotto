@@ -16,13 +16,16 @@ export const ALERT_MESSAGES = {
 
 export const DOM_SELECTORS = {
   APP: '#app',
-  MONEY_FORM: '.money-form',
-  MONEY_FORM_INPUT: '.money-form-input',
-  MONEY_FORM_SUBMIT: '.money-form-submit',
-  MONEY_INPUT_CONTAINER: '#money-input-container',
-  CHECK_LOTTO_SWITCH: '.check-lotto-switch',
-  CHECK_LOTTO_CONTAINER: '#check-lotto-container',
-  LOTTO_TICKET: '.lotto-ticket',
-  LOTTO_TICKET_NUMBER: '.lotto-ticket-number',
-  RESULT_INPUT_CONTAINER: '#result-input-container',
+
+  MONEY_INPUT_CONTAINER: '#money-input-div',
+  MONEY_FORM: '.money-input-form',
+  MONEY_FORM_INPUT: '.money-input-form__input',
+  MONEY_FORM_SUBMIT: '.money-input-form__submit',
+
+  LOTTO_CONTAINER: '#lotto-div',
+  LOTTO_SWITCH: '.lotto-div__switch',
+  LOTTO_TICKET: '.lotto-div__ticket',
+  LOTTO_TICKET_NUMBER: '.lotto-div__number',
+
+  RESULT_INPUT_CONTAINER: '#result-input-div',
 }

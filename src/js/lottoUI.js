@@ -10,12 +10,12 @@ export default class LottoUI {
 
   renderMoneyInputUI() {
     $(DOM_SELECTORS.MONEY_INPUT_CONTAINER).innerHTML = `
-      <form class="money-form mt-5">
+      <form class="money-input-form mt-5">
         <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
         </label>
         <div class="d-flex">
-          <input type="number" step='0.1' class="w-100 mr-2 pl-2 money-form-input" placeholder="구입 금액" />
-          <button type="submit" class="btn btn-cyan money-form-submit">확인</button>
+          <input type="number" step='0.1' class="w-100 mr-2 pl-2 money-input-form__input" placeholder="구입 금액" />
+          <button type="submit" class="btn btn-cyan money-input-form__submit">확인</button>
         </div>
       </form>
     `;
@@ -23,14 +23,14 @@ export default class LottoUI {
 
   renderCheckLottoUI(lottoTickets) {
     disableElement(DOM_SELECTORS.MONEY_FORM_SUBMIT);
-    $(DOM_SELECTORS.CHECK_LOTTO_CONTAINER).innerHTML = `
+    $(DOM_SELECTORS.LOTTO_CONTAINER).innerHTML = `
       <section class="mt-9">
         <div class="d-flex">
           <label class="flex-auto my-0">총 ${lottoTickets.length}개를 구매하였습니다.</label>
           <div class="flex-auto d-flex justify-end pr-1">
-            <label class="switch">
-              <input type="checkbox" class="lotto-numbers-toggle-button" ${UI_SETTINGS.DEFAULT_VISIBILITY ? 'checked' : ''}/>
-              <span class="text-base font-normal check-lotto-switch">번호보기</span>
+            <label class="switch lotto-div__switch">
+              <input type="checkbox" ${UI_SETTINGS.DEFAULT_VISIBILITY ? 'checked' : ''}/>
+              <span class="text-base font-normal">번호보기</span>
             </label>
           </div>
         </div>
@@ -43,9 +43,9 @@ export default class LottoUI {
 
   makeTicketElement(numbers) {
     return `
-    <span class="mx-1 text-4xl lotto-ticket">
+    <span class="mx-1 text-4xl lotto-div__ticket">
       🎟️ 
-      <span class="lotto-ticket-number lotto-ticket__description ${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : 'hidden'}">
+      <span class="lotto-div__number ${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : 'hidden'}">
         ${numbers.join(', ')}
       </span>
     </span>
