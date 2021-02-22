@@ -5,26 +5,30 @@ import {
   $lottoNumbersToggleButton,
   $priceSubmitForm,
   $priceInput,
+  $winningNumberForm,
 } from "./elements.js";
+import { onModalClose } from "./utils.js";
 import LottoController from "./lotto/LottoController.js";
-
-const onModalShow = () => {
-  $modal.classList.add("open");
-};
-
-const onModalClose = () => {
-  $modal.classList.remove("open");
-};
 
 const lottoController = new LottoController();
 
-$showResultButton.addEventListener("click", onModalShow);
-$modalClose.addEventListener("click", onModalClose);
 $priceSubmitForm.addEventListener("submit", (e) => {
   e.preventDefault();
   lottoController.onSubmitPrice(e.target.elements["price-input"].value);
 });
+
 $lottoNumbersToggleButton.addEventListener(
   "change",
   lottoController.onToggleLottoNumbers.bind(lottoController)
 );
+
+$winningNumberForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  lottoController.onSubmitResultNumber(
+    Array.from(e.target.elements["winning-number"]).map((v) => Number(v.value)),
+    Number(e.target.elements["bonus-number"].value)
+  );
+});
+
+$modalClose.addEventListener("click", () => onModalClose($modal));
