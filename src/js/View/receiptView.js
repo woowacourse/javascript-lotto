@@ -2,17 +2,25 @@ import { Element } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
 export const printPurchaseAmountLabel = (ticketCount) => {
-  $(Element.PURCHASE_AMOUNT_LABEL).innerText = `총 ${ticketCount}개를 구매하였습니다.`;
+  $(
+    Element.PURCHASE_AMOUNT_LABEL
+  ).innerText = `총 ${ticketCount}개를 구매하였습니다.`;
 };
 
 export const printTicketHorizontal = (ticketCount) => {
   const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
-  let ticketImageTemplate = "";
+  // let ticketImageTemplate = "";
 
-  for (let i = 0; i < ticketCount; i++) {
-    ticketImageTemplate +=
-      '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>';
-  }
+  // for (let i = 0; i < ticketCount; i++) {
+  //   ticketImageTemplate +=
+  //     '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>';
+  // }
+
+  const ticketImageTemplate = Array(ticketCount)
+    .fill(
+      '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>'
+    )
+    .join("");
 
   ticketImageNumberContainer.innerHTML = ticketImageTemplate;
   ticketImageNumberContainer.classList.remove(Element.FLEX_COL);

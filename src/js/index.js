@@ -9,7 +9,6 @@ import { Element } from "./Util/constants.js";
 class App {
   constructor() {
     this.intializeTickets();
-    hidePurchaseResult();
 
     $(Element.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
       "click",
