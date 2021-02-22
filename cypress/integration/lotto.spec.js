@@ -45,9 +45,9 @@ context('로또 UI 테스트', () => {
     cy.get(DOM_SELECTORS.MONEY_FORM_INPUT).type(money);
     cy.get(DOM_SELECTORS.MONEY_FORM_SUBMIT).click();
 
-    cy.get(DOM_SELECTORS.CHECK_LOTTO_SWITCH).click();
-    cy.get(DOM_SELECTORS.LOTTO_TICKET_NUMBER).should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
-    cy.get(DOM_SELECTORS.CHECK_LOTTO_SWITCH).click();
+    cy.get(DOM_SELECTORS.LOTTO_SWITCH).click();
+    cy.get(DOM_SELECTORS.LOTTO_TICKET).should('have.length', Math.floor(money / LOTTO_SETTINGS.LOTTO_PRICE));
+    cy.get(DOM_SELECTORS.LOTTO_SWITCH).click();
     cy.get(DOM_SELECTORS.LOTTO_TICKET_NUMBER).should('not.be.visible');
   });
 

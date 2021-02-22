@@ -21,7 +21,7 @@ export default class LottoController {
     });
 
     $(DOM_SELECTORS.APP).addEventListener('click', event => {
-      if (event.target.closest(DOM_SELECTORS.CHECK_LOTTO_SWITCH)) {
+      if (event.target.closest(DOM_SELECTORS.LOTTO_SWITCH)) {
         this.handleCheckLottoSwitch();
       }
     });
