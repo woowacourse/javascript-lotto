@@ -26,6 +26,10 @@ export const DOM_CLASSES = {
   LOTTO_TICKET_NUMBER: 'lotto-div__number',
 
   RESULT_INPUT_CONTAINER: 'result-input-div',
+  RESULT_INPUT_FORM: 'result-input-form',
+  RESULT_INPUT_SUBMIT: 'result-input-form__submit',
+
+  MODAL: 'modal',
 }
 
 export const DOM_IDS = {
