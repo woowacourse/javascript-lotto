@@ -11,9 +11,9 @@ export default class WinningNumbersInput {
   }
 
   selectDOM() {
-    this.openResultModalButton = $('.open-result-modal-button');
-    this.winningNumberInputs = $$('.winning-number');
-    this.bonusNumberInput = $('.bonus-number');
+    this.$openResultModalButton = $('.open-result-modal-button');
+    this.$winningNumberInputs = $$('.winning-number');
+    this.$bonusNumberInput = $('.bonus-number');
   }
 
   setup() {
@@ -22,8 +22,8 @@ export default class WinningNumbersInput {
   }
 
   onClickButton() {
-    const winningNumbers = this.winningNumberInputs.map(({ value }) => value);
-    const bonusNumber = this.bonusNumberInput.value;
+    const winningNumbers = this.$winningNumberInputs.map(({ value }) => value);
+    const bonusNumber = this.$bonusNumberInput.value;
 
     const errorMessage = LottoManager.validateWinningNumbersInputValue(
       winningNumbers,
@@ -41,7 +41,7 @@ export default class WinningNumbersInput {
   }
 
   bindEvent() {
-    this.openResultModalButton.addEventListener(
+    this.$openResultModalButton.addEventListener(
       'click',
       this.onClickButton.bind(this),
     );
@@ -52,8 +52,8 @@ export default class WinningNumbersInput {
       this.$target.classList.remove('d-none');
     } else {
       this.$target.classList.add('d-none');
-      this.winningNumberInputs.forEach(clearInputValue);
-      clearInputValue(this.bonusNumberInput);
+      this.$winningNumberInputs.forEach(clearInputValue);
+      clearInputValue(this.$bonusNumberInput);
     }
   }
 }
