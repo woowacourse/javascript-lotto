@@ -22,8 +22,7 @@ $showResultButton.addEventListener("click", onModalShow);
 $modalClose.addEventListener("click", onModalClose);
 $priceSubmitForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  lottoController.onSubmitPrice($priceInput.value);
-  // lottoController.onSubmitPrice(e.target.elements["price-input"]);
+  lottoController.onSubmitPrice(e.target.elements["price-input"].value);
 });
 $lottoNumbersToggleButton.addEventListener(
   "change",
