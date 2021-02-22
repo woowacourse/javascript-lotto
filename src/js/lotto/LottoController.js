@@ -69,7 +69,7 @@ export default class LottoController {
   onSubmitPrice(price) {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
-      this.lottoView.resetLottoView();
+      LottoView.resetLottoView();
 
       return;
     }

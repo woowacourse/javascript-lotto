@@ -28,7 +28,7 @@ export default class LottoView {
           (lotto) => `
           <div class="d-flex flex-row items-center">
               <div class="d-felx items-center mx-1 text-4xl">🎟️ </div>
-              <div class="ml-2 winning-numbers">
+              <div class="ml-2 lotto-numbers">
                 ${lotto.number.join(", ")}
               </div> 
           </div>`
