@@ -1,5 +1,7 @@
 const ACTION_TYPE = {
-  LOTTOS: "lottos",
+  LOTTOS: {
+    ADDED: "lottos/added",
+  },
 };
 
 export default ACTION_TYPE;
