@@ -1,4 +1,4 @@
-import { $, clearInput } from '../utils/dom.js';
+import { $, clearInputValue } from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
 import { mod, divide } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
@@ -7,8 +7,20 @@ export default class LottoPurchaseInput {
   constructor(props) {
     this.props = props;
 
+    this.setup();
     this.selectDOM();
     this.bindEvent();
+  }
+
+  setup() {
+    ({ lottoManager: this.lottoManager } = this.props);
+    this.lottoManager.subscribe(this.clear.bind(this));
+  }
+
+  clear() {
+    if (this.lottoManager.lottos.length === 0) {
+      clearInputValue(this.$purchaseInput);
+    }
   }
 
   selectDOM() {
@@ -39,7 +51,7 @@ export default class LottoPurchaseInput {
     const errorMessage = validatePurchaseInputValue(payment);
     if (errorMessage) {
       alert(errorMessage);
-      clearInput(this.$purchaseInput);
+      clearInputValue(this.$purchaseInput);
       return;
     }
 

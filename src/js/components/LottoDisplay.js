@@ -66,7 +66,7 @@ export default class LottoDisplay {
   }
 
   render() {
-    this.lottoManager.lottos
+    this.lottoManager.lottos.length
       ? this.$target.classList.remove('d-none')
       : this.$target.classList.add('d-none');
 
