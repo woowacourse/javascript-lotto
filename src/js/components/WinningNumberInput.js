@@ -8,7 +8,7 @@ import {
 import { $, $$, show, hide, enable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
-  constructor({ isVisible }) {
+  constructor({ isVisible, onShowModal }) {
     this.$winningNumberForm = $('.winning-number-form');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
@@ -16,12 +16,15 @@ export default class WinningNumberInput {
     this.$openResultModalButton = $('.open-result-modal-button');
 
     this.isVisible = isVisible;
+    this.checkMessage = '';
+    this.onShowModal = onShowModal;
 
     this.attachEvents();
   }
 
   attachEvents() {
     this.$winningNumberForm.addEventListener('keyup', this.onChangeWinningNumberInput.bind(this));
+    this.$openResultModalButton.addEventListener('click', this.onShowModal);
   }
 
   onChangeWinningNumberInput(e) {
@@ -33,8 +36,7 @@ export default class WinningNumberInput {
       .filter(($input) => $input.value !== '')
       .map(($input) => Number($input.value));
 
-    const checkMessage = this.validateInput(inputValues);
-    this.renderCheckMessage(checkMessage);
+    this.setState({ checkMessage: this.validateInput(inputValues) });
   }
 
   validateInput(inputValues) {
@@ -65,19 +67,28 @@ export default class WinningNumberInput {
     return numbers.length !== LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
   }
 
-  setState({ isVisible }) {
-    this.isVisible = isVisible;
-    this.renderForm();
+  setState({ isVisible, checkMessage }) {
+    if (isVisible) {
+      this.isVisible = isVisible;
+      this.renderForm();
+    }
+
+    if (typeof checkMessage === 'string' && this.checkMessage !== checkMessage) {
+      this.checkMessage = checkMessage;
+      this.renderCheckMessage();
+    }
   }
 
-  renderCheckMessage(checkMessage) {
-    this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
-    this.$winningNumberCheckMessage.innerText = checkMessage;
+  renderCheckMessage() {
+    this.$winningNumberCheckMessage.innerText = this.checkMessage;
 
-    if (checkMessage === WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
-      this.$winningNumberCheckMessage.classList.replace('text-red', 'text-green');
-      enable(this.$openResultModalButton);
+    if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+      this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
+      return;
     }
+
+    this.$winningNumberCheckMessage.classList.replace('text-red', 'text-green');
+    enable(this.$openResultModalButton);
   }
 
   renderForm() {
