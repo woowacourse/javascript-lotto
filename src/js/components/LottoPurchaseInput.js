@@ -65,10 +65,10 @@ export default class LottoPurchaseInput {
 
 const validatePurchaseInputValue = payment => {
   if (!Number.isInteger(payment)) {
-    return ERROR_MESSAGE.NOT_INTEGER_NUMBER_ERROR;
+    return ERROR_MESSAGE.NOT_INTEGER_NUMBER;
   }
 
   if (payment < LOTTO.PRICE) {
-    return ERROR_MESSAGE.PAYMENT_AMOUNT_ERROR;
+    return ERROR_MESSAGE.PAYMENT_AMOUNT;
   }
 };

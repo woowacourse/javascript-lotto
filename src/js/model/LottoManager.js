@@ -1,5 +1,6 @@
 import Lotto from './Lotto.js';
 import { LOTTO } from '../utils/constants.js';
+import { ERROR_MESSAGE } from '../utils/message.js';
 import {
   generateRandomNumber,
   sortNumbers,
@@ -99,15 +100,15 @@ export default class LottoManager {
     const numbers = [...winningNumbers, bonusNumber].map(Number);
 
     if (winningNumbers.some(isEmptyValue) || isEmptyValue(bonusNumber)) {
-      return '빈 입력값이 존재 합니다. 7개의 숫자를 모두 입력해주세요.';
+      return ERROR_MESSAGE.EMPTY_INPUT_NUMBER;
     }
 
     if (!numbers.every(number => isInRange(number))) {
-      return '1~45 사이의 숫자만 가능합니다. 당첨 번호를 다시 입력해주세요.';
+      return ERROR_MESSAGE.OUT_OF_RANGE;
     }
 
     if (new Set(numbers).size !== numbers.length) {
-      return '중복된 숫자가 존재합니다. 당첨 번호를 다시 입력해주세요.';
+      return ERROR_MESSAGE.DUPLICATED_NUMBER;
     }
 
     return '';
