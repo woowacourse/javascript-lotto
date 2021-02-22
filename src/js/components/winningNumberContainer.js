@@ -5,6 +5,8 @@ import {
   JS_SELECTOR,
   STATE_TYPE,
 } from "../constants/index.js";
+import { EmptyInputError, ValidationError } from "../errors/index.js";
+import { Lotto } from "../models/index.js";
 import store from "../store/index.js";
 import {
   $,
@@ -26,7 +28,9 @@ const createWinningNumberContainer = () => {
     const inputs = [...$$inputs];
 
     if (inputs.some(($input) => $input.isEmpty()) || $bonusInput.isEmpty()) {
-      throw SyntaxError();
+      throw new EmptyInputError(
+        ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.EMPTY
+      );
     }
 
     const numbers = inputs
@@ -41,7 +45,23 @@ const createWinningNumberContainer = () => {
     const numbersSet = new Set([...numbers, bonusNumber]);
 
     if (numbersSet.size < numbers.length + 1) {
-      throw Error();
+      throw new ValidationError(
+        ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.DUPLICATED
+      );
+    }
+
+    if (
+      [...numbersSet].some((number) => {
+        return (
+          Number.isInteger(number) &&
+          number < Lotto.MIN_NUMBER &&
+          Lotto.MAX_NUMBER < number
+        );
+      })
+    ) {
+      throw new ValidationError(
+        ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.OUT_OF_RANGE
+      );
     }
   };
 
@@ -61,13 +81,11 @@ const createWinningNumberContainer = () => {
         },
       });
     } catch (error) {
-      if (error instanceof SyntaxError) {
-        alert(ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.EMPTY);
-        return;
-      }
-
-      if (error instanceof Error) {
-        alert(ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.DUPLICATED);
+      if (
+        error instanceof EmptyInputError ||
+        error instanceof ValidationError
+      ) {
+        alert(error.message);
         return;
       }
 
