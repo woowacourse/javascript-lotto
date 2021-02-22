@@ -17,23 +17,20 @@ $priceSubmitForm.addEventListener("submit", (e) => {
   lottoController.onSubmitPrice(e.target.elements["price-input"].value);
 });
 
-$lottoNumbersToggleButton.addEventListener(
-  "change",
-  lottoController.onToggleLottoNumbers.bind(lottoController)
+$lottoNumbersToggleButton.addEventListener("change", (e) =>
+  lottoController.onToggleLottoNumbers(e)
 );
 
 $winningNumberForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  const inputs = e.target.elements;
 
   lottoController.onSubmitResultNumber(
-    Array.from(e.target.elements["winning-number"]).map((v) => Number(v.value)),
-    Number(e.target.elements["bonus-number"].value)
+    Array.from(inputs["winning-number"]).map((v) => Number(v.value)),
+    Number(inputs["bonus-number"].value)
   );
 });
 
-$modalClose.addEventListener("click", () => onModalClose($modal));
+$restartButton.addEventListener("click", () => lottoController.onRestart());
 
-$restartButton.addEventListener("click", () => {
-  LottoView.resetLottoView();
-  onModalClose($modal);
-});
+$modalClose.addEventListener("click", () => onModalClose($modal));
