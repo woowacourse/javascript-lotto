@@ -54,13 +54,16 @@ describe("ui-play", () => {
     })
   })
 
-  it("", () => {
-    cy.get("#winning-result-button").click("")
+  it("결과 확인하기 버튼을 누르면 모달 창이 보여진다.", () => {
+    cy.get("#buy-input").type("5000")
     cy.get("#buy-button").click()
-    cy.get("@alertStub").should(
-      "be.calledWith",
-      "최소 입력금액은 1000원입니다."
-    )
+    cy.get(".winning-number").each(($winningNumber, i) => {
+      cy.wrap($winningNumber).type(i + 1)
+    })
+    cy.get(".bonus-number").type(7)
+    cy.get("#winning-result-button").click()
+
+    cy.get(".modal").should("have.class", "open")
   })
 })
 
