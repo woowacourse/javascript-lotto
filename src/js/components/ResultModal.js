@@ -1,3 +1,4 @@
+import { LOTTO_PRICE, RATE_OF_RETURN_DECIMAL_PLACE, WINNING_PRIZE } from '../constants.js';
 import { $ } from '../utils/DOM.js';
 
 export default class ResultModal {
@@ -16,6 +17,17 @@ export default class ResultModal {
 
   onCloseModal() {
     this.setState({ isVisible: false });
+  }
+
+  getRateOfReturn() {
+    const profit = this.lottoTickets.reduce(
+      (acc, lottoTicket) => acc + WINNING_PRIZE[lottoTicket.getTotalMatchCount(this.winningNumber)],
+      0
+    );
+    const loss = this.lottoTickets.length * LOTTO_PRICE;
+    const rateOfReturn = ((profit - loss) / loss) * 100;
+
+    return rateOfReturn % 1 !== 0 ? Number(rateOfReturn.toFixed(RATE_OF_RETURN_DECIMAL_PLACE)) : rateOfReturn;
   }
 
   setState({ isVisible }) {

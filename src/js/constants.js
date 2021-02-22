@@ -23,6 +23,7 @@ export const WINNING_NUMBER_CHECK_MESSAGE = {
 
 export const BONUS_CHECK_REQUIRED_COUNT = 5;
 export const BOUNS_COUNT = 0.5;
+export const RATE_OF_RETURN_DECIMAL_PLACE = 2;
 export const WINNING_PRIZE = {
   6: 2000000000,
   5.5: 30000000,
