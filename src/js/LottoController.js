@@ -3,24 +3,27 @@ import Lotto from './Lotto.js';
 import { LOTTO_NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
 import { isCorrectPurchaseUnit } from './utils/validatePrice.js';
 import { $ } from './utils/dom.js';
-import WinningNumberInput from './views/WinningNumberInput.js';
 
+import WinningNumberInput from './views/WinningNumberInput.js';
+import InputPriceView from './views/InputPriceView.js';
 export default class LottoController {
   constructor() {
     this.lottoView = new LottoView();
+    this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.winningNumberInput = new WinningNumberInput($('#input-lotto-nums'));
     this.lottos = [];
   }
 
   init() {
+    this.inputPriceView.show().resetInputPrice();
     this.lottoView.init();
     this.winningNumberInput.hide();
     this.bindEvents();
   }
 
   bindEvents() {
-    this.lottoView.inputPriceView.addEventListener('submit', e =>
-      this.inputPriceHandler(e)
+    this.inputPriceView.on('submitPrice', e =>
+      this.inputPriceHandler(e.detail)
     );
 
     $('#lotto-switch').addEventListener('click', () => {
@@ -35,19 +38,16 @@ export default class LottoController {
     });
   }
 
-  inputPriceHandler(e) {
-    e.preventDefault();
-
-    const inputPrice = e.target.elements.inputPrice.value;
+  inputPriceHandler(inputPrice) {
     if (!isCorrectPurchaseUnit(inputPrice)) {
-      this.lottoView.resetInputPrice();
+      this.inputPriceView.resetInputPrice();
       alert(ALERT_MESSAGES.INCORRECT_UNIT);
       return;
     }
 
     this.createLottos(inputPrice / LOTTO_NUMBERS.LOTTO_UNIT);
-    this.lottoView.showLottoView();
     this.winningNumberInput.show();
+    this.lottoView.showLottoView();
     this.lottoView.renderTotalLottoCount(this.lottos.length);
     this.lottoView.renderLottoIcons(this.lottos);
   }
