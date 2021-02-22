@@ -17,14 +17,25 @@ export const handlePurchaseAmountSubmit = () => {
 
   app.ticketCount = money / StandardNumber.ONE_TICKET_PRICE;
 
-  for (let i = 0; i < app.ticketCount; i++) {
+  publishTickets(app.ticketCount);
+};
+
+const publishTickets = (ticketCount) => {
+  createTickets(ticketCount);
+  renderTickets(ticketCount);
+}; // 나중에 모델-로또로 가야함(?) 렌더 기능도 있는데(?)
+
+const createTickets = (ticketCount) => {
+  for (let i = 0; i < ticketCount; i++) {
     app.tickets.push(new Ticket());
   }
+}; // 나중에 모델-로또로 가야함
 
-  printPurchaseAmountLabel(app.ticketCount);
-  printTicketHorizontal(app.ticketCount);
+const renderTickets = (ticketCount) => {
+  printPurchaseAmountLabel(ticketCount);
+  printTicketHorizontal(ticketCount);
   showPurchaseResult();
-};
+}; // 나중에 receiptView로 가야함
 
 export const handleToggleButton = (event) => {
   if (event.target.checked) {
