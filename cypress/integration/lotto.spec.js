@@ -1,4 +1,4 @@
-import { testInputValue, checkAlert } from '../utils/index.js';
+import { testInputValue } from '../utils/index.js';
 import {
   MSG_INVALID_PURCHASE_AMOUNT,
   MSG_OVERLAPPED_LOTTO_NUMBERS,
@@ -58,8 +58,9 @@ describe('Lotto test', () => {
     testWinnigNumbers(['1', '2', '3', '', '5', '6', '45'], MSG_BLANK_INPUT);
   });
 
-  it('적절한 당첨 번호를 입력 받는다.', () => {
+  it('적절한 당첨 번호를 입력 받아 결과를 모달창으로 띄운다.', () => {
     testWinnigNumbers(['1', '2', '3', '4', '5', '6', '45']);
+    cy.get('#modal').should('be.visible');
   });
 
   function testWinnigNumbers(numbers, alertMessage = '') {
@@ -68,4 +69,11 @@ describe('Lotto test', () => {
     });
     testInputValue('#result-submit', alertMessage);
   }
+
+  it('다시 시작하기 버튼을 누르면 초기화 된다.', () => {
+    cy.get('#reset-button').click();
+    typeInputValue('#purchase-amount-input', '5000');
+    testInputValue('#purchase-amount-submit');
+    testWinnigNumbers(['1', '2', '3', '4', '5', '6', '45']);
+  });
 });
