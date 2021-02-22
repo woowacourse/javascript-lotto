@@ -27,4 +27,13 @@ export default {
   initToggleButton() {
     lottoGameView.resetToggleButton();
   },
+
+  openResultModal() {
+    lottoGameView.openResultModal();
+  },
+
+  closeResultModal() {
+    lottoGameView.closeResultModal();
+  }
+
 };

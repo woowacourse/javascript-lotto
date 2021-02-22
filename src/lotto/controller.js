@@ -1,8 +1,10 @@
 import {
+  $resultModalOpenButton,
   $costSubmitButton,
   $costSubmitForm,
   $lottoNumbersToggleButton,
   $costInput,
+  $modalClose,
 } from '../elements.js';
 import { MESSAGE } from '../constants.js';
 import validator from './validator.js';
@@ -31,13 +33,20 @@ const onCostSubmitByEnterKey = (e) => {
   onCostSumbit();
 };
 
+const onResultModalOpen = () => {
+
+};
+
+const onResultModalClose = () => {
+  
+};
+
 export default {
   addAllEventListener() {
     $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
     $costSubmitButton.addEventListener('click', onCostSumbit);
-    $lottoNumbersToggleButton.addEventListener(
-      'click',
-      onShowLottoNumbersToggle
-    );
+    $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
+    $modalClose.addEventListener('click', onResultModalClose);
+    $resultModalOpenButton.addEventListener('click', onResultModalOpen);
   },
 };

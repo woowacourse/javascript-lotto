@@ -1,4 +1,5 @@
 import {
+  $modal,
   $purchaseItemCount,
   $purchaseItemList,
   $purchaseResult,
@@ -31,4 +32,10 @@ export default {
     $purchaseItemList.classList.add('hide-lotto-numbers');
     $purchaseItemList.classList.remove('flex-col');
   },
+  openResultModal() {
+    $modal.classList.add('open');
+  },
+  closeResultModal() {
+    $modal.classList.remove('open');
+  }
 };
