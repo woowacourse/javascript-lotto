@@ -1,3 +1,3 @@
-import { addLottoGameListeners } from './listeners.js';
+import controller from './lotto/controller.js';
 
-addLottoGameListeners();
+controller.addAllEventListener();

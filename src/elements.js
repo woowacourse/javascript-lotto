@@ -1,5 +1,6 @@
 import { $ } from './utils/querySelector.js';
 
+const $costSubmitForm = $('#cost-submit-form');
 const $costInput = $('#cost-input');
 const $costSubmitButton = $('#cost-submit-button');
 const $purchaseResult = $('#purchase-result');
@@ -12,6 +13,7 @@ const $modalClose = $('.modal-close');
 const $modal = $('.modal');
 
 export {
+  $costSubmitForm,
   $costInput,
   $costSubmitButton,
   $purchaseResult,
