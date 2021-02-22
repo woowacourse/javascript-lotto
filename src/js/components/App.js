@@ -7,6 +7,7 @@ import ResultModal from './ResultModal.js';
 export default class App {
   constructor() {
     this.lottoTickets = [];
+    this.winningNumber = {};
 
     this.purchaseAmountInput = new PurchaseAmountInput({
       createLottoTickets: this.createLottoTickets.bind(this),
@@ -16,6 +17,7 @@ export default class App {
     });
     this.winningNumberInput = new WinningNumberInput({
       isVisible: false,
+      updateWinningNumber: this.updateWinningNumber.bind(this),
       onShowModal: this.onShowModal.bind(this),
     });
     this.resultModal = new ResultModal({
@@ -29,13 +31,23 @@ export default class App {
     });
   }
 
-  onShowModal() {
-    this.resultModal.setState({ isVisible: true });
+  updateWinningNumber(winningNumber) {
+    this.setState({ winningNumber });
   }
 
-  setState({ lottoTickets }) {
-    this.lottoTickets = lottoTickets;
-    this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
-    this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 ? true : false });
+  onShowModal() {
+    this.resultModal.setState({ isVisible: true, lottoTickets: this.lottoTickets, winningNumber: this.winningNumber });
+  }
+
+  setState({ lottoTickets, winningNumber }) {
+    if (lottoTickets) {
+      this.lottoTickets = lottoTickets;
+      this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
+      this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 ? true : false });
+    }
+
+    if (winningNumber) {
+      this.winningNumber = winningNumber;
+    }
   }
 }
