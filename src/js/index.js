@@ -3,22 +3,19 @@ import {
   handlePurchaseAmountSubmit,
   handleToggleButton,
 } from "./Controller/submitController.js";
-import { onPurchaseResultHidden } from "./Controller/viewController.js";
+import { hidePurchaseResult } from "./Handler/elementHandler.js";
 import { Element } from "./Util/constants.js";
 
 class App {
   constructor() {
     this.intializeTickets();
-    onPurchaseResultHidden();
+    hidePurchaseResult();
 
     $(Element.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
       "click",
       handlePurchaseAmountSubmit
     );
-    $(Element.TOGGLE_BUTTON).addEventListener(
-      "click",
-      handleToggleButton
-    );
+    $(Element.TOGGLE_BUTTON).addEventListener("click", handleToggleButton);
   }
 
   intializeTickets() {
