@@ -5,6 +5,12 @@ export default class RewardModalDisplay {
     this.props = props;
     this.setup();
     this.selectDOM();
+    this.bindEvent();
+  }
+
+  setup() {
+    ({ lottoManager: this.lottoManager } = this.props);
+    this.lottoManager.subscribe(this.render.bind(this));
   }
 
   selectDOM() {
@@ -12,12 +18,24 @@ export default class RewardModalDisplay {
     this.$restartButton = $('#restart-btn');
     this.$winningCountTexts = $$('[data-td]');
     this.$profitText = $('[data-p=profit]');
+    this.$closeButton = $('.modal-close');
   }
 
-  setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
+  bindEvent() {
+    this.$closeButton.addEventListener('click', this.onModalClose.bind(this));
+    this.$target.addEventListener(
+      'mousedown',
+      this.onClickOutsideModal.bind(this),
+    );
   }
+
+  onClickOutsideModal(e) {
+    if (e.target.closest('.modal-inner')) {
+      return;
+    }
+    this.onModalClose();
+  }
+
   onModalShow() {
     this.$target.classList.add('open');
   }
