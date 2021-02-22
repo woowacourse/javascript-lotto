@@ -1,24 +1,31 @@
-import { $, $$ } from './utils/dom.js';
+import View from './View.js';
+import { $, $$ } from '../utils/dom.js';
 
-export default class LottoView {
-  constructor() {
-    this.purchasedLottos = $('#purchased-lottos');
+export default class PurchasedLottosView extends View {
+  constructor($element) {
+    super($element);
+    this.bindToggleSwitchEvent();
   }
 
-  init() {
-    this.hide(this.purchasedLottos);
+  bindToggleSwitchEvent() {
+    $('#lotto-switch').addEventListener('click', () => {
+      this.toggleSwitchHandler();
+    });
   }
 
-  show(element) {
-    element.style.display = 'block';
-  }
+  toggleSwitchHandler() {
+    const $lottoIconsDiv = $('#lotto-icons');
 
-  hide(element) {
-    element.style.display = 'none';
-  }
+    $lottoIconsDiv.checked = !$lottoIconsDiv.checked;
+    const isSwitchOn = $lottoIconsDiv.checked;
 
-  showLottoView() {
-    this.show(this.purchasedLottos);
+    if (isSwitchOn) {
+      $lottoIconsDiv.classList.add('flex-col');
+      this.showLottoDetailView();
+    } else {
+      $lottoIconsDiv.classList.remove('flex-col');
+      this.hideLottoDetailView();
+    }
   }
 
   showLottoDetailView() {
