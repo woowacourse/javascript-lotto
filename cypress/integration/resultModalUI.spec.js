@@ -33,14 +33,14 @@ describe('당첨 결과 모달 UI 검사', () => {
     const lottoTicket7 = new LottoTicket([1, 11, 10, 9, 8, 7]);
     const lottoTicket8 = new LottoTicket([12, 11, 10, 9, 8, 7]);
 
-    expect(lottoTicket1.getMatchCount(winningNumber)).to.equal(6);
-    expect(lottoTicket2.getMatchCount(winningNumber)).to.equal(5 + BOUNS_COUNT);
-    expect(lottoTicket3.getMatchCount(winningNumber)).to.equal(5);
-    expect(lottoTicket4.getMatchCount(winningNumber)).to.equal(4);
-    expect(lottoTicket5.getMatchCount(winningNumber)).to.equal(3);
-    expect(lottoTicket6.getMatchCount(winningNumber)).to.equal(2);
-    expect(lottoTicket7.getMatchCount(winningNumber)).to.equal(1);
-    expect(lottoTicket8.getMatchCount(winningNumber)).to.equal(0);
+    expect(lottoTicket1.getTotalMatchCount(winningNumber)).to.equal(6);
+    expect(lottoTicket2.getTotalMatchCount(winningNumber)).to.equal(5 + BOUNS_COUNT);
+    expect(lottoTicket3.getTotalMatchCount(winningNumber)).to.equal(5);
+    expect(lottoTicket4.getTotalMatchCount(winningNumber)).to.equal(4);
+    expect(lottoTicket5.getTotalMatchCount(winningNumber)).to.equal(3);
+    expect(lottoTicket6.getTotalMatchCount(winningNumber)).to.equal(2);
+    expect(lottoTicket7.getTotalMatchCount(winningNumber)).to.equal(1);
+    expect(lottoTicket8.getTotalMatchCount(winningNumber)).to.equal(0);
   });
 
   it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
