@@ -25,11 +25,7 @@ class LottoView {
 
   togglePocketLottos() {
     const $pocketLottos = $(SELECTOR.POCKET_LOTTOS)
-    if ($pocketLottos.dataset.detail === "hide") {
-      $pocketLottos.dataset.detail = "show"
-    } else {
-      $pocketLottos.dataset.detail = "hide"
-    }
+    $pocketLottos.classList.toggle("show")
   }
 
   renderWinningSection() {

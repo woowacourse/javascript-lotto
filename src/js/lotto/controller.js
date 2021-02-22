@@ -28,9 +28,7 @@ class LottoController {
 
   managePocket() {
     const lottos = this.model.lottos
-    const amount = this.model.amount
-    this.view.renderPocketSection(amount)
-    this.view.renderPocketLottos(lottos)
+    this.view.renderPocketSection(lottos)
     this.view.renderWinningSection()
     this.handlePocket()
   }
@@ -52,12 +50,6 @@ class LottoController {
     this.managePocket()
   }
 
-  togglePocketDetail() {
-    const lottos = this.model.lottos
-    this.view.togglePocketLottos()
-    this.view.renderPocketLottos(lottos)
-  }
-
   handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON)
     $buyButton.addEventListener("click", () => {
@@ -68,7 +60,7 @@ class LottoController {
   handlePocket() {
     const $pocketButton = $(SELECTOR.POCKET_TOGGLE)
     $pocketButton.addEventListener("click", () => {
-      this.togglePocketDetail()
+      this.view.togglePocketLottos()
     })
   }
 }
