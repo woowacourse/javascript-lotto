@@ -5,6 +5,7 @@ import {
   showElement,
   hideElement,
   disableElement,
+  enableElement,
   getMatchedValueCount,
 } from './utils.js';
 import { ALERT_MESSAGE, LOTTO } from './constants.js';
@@ -54,8 +55,8 @@ class LottoApp {
     this.data.lottos = this.generateLottos(lottoCount);
 
     this.view.renderLottoList(this.data.lottos);
-    showElement($('.lotto-list-container'));
-    showElement($('.winning-number-form-container'));
+    showElement($('.lotto-list-section'));
+    showElement($('.winning-number-form-section'));
     disableElement($('#money-input'));
     disableElement($('#money-submit-button'));
 
@@ -157,6 +158,24 @@ class LottoApp {
     };
   }
 
+  handleRestart() {
+    this.data = {
+      lottos: [],
+      cost: 0,
+    };
+
+    hideElement($('.lotto-list-section'));
+    hideElement($('.winning-number-form-section'));
+    hideElement($('.modal'));
+    enableElement($('#money-input'));
+    enableElement($('#money-submit-button'));
+
+    $('#money-input-form').reset();
+    $('#winning-number-form').reset();
+    $('#money-input').focus();
+    $('.lotto-list').remove();
+  }
+
   handleCloseModal() {
     hideElement($('.modal'));
   }
@@ -176,6 +195,8 @@ class LottoApp {
     );
 
     $('.modal-close').addEventListener('click', this.handleCloseModal.bind(this));
+
+    $('.restart-button').addEventListener('click', this.handleRestart.bind(this));
   }
 }
 

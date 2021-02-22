@@ -1,7 +1,7 @@
 export const $ = (selector) => document.querySelector(selector);
 export const $all = (selector) => [...document.querySelectorAll(selector)];
 
-export const createElement = (tagName, className, text) => {
+export const createElement = (tagName, className, text = '') => {
   const $element = document.createElement(tagName);
   $element.className = className;
   $element.append(text);
