@@ -1,4 +1,4 @@
-import { INVALID_PRICE_ERROR } from "../../src/js/lotto/constants.js";
+import { INVALID_PRICE_ERROR } from "../../src/js/constants.js";
 
 describe("lotto 미션 테스트", () => {
   before(() => {
@@ -89,24 +89,20 @@ describe("lotto 미션 테스트", () => {
     cy.get(".lotto-numbers")
       .eq(0)
       .then((value) => {
-        value[0].innerText.split(",").forEach((v, i) => {
-          baseNumber[v] = 1;
+        value[0].innerText.split(", ").forEach((v, i) => {
+          baseNumber[Number(v)] = 1;
           cy.get(`input[name='winning-number']:nth-child(${i + 1})`).type(v);
         });
+        cy.get("input[name='bonus-number']:nth-child(1)").type(
+          baseNumber.lastIndexOf(0)
+        );
       });
-    cy.get("input[name='bonus-number']:nth-child(1)").type(
-      baseNumber.slice(1).indexOf(0) + 1
-    );
     cy.get("#open-result-modal-button")
       .click()
       .then(() => {
         cy.get("#prize-table > tr:nth-child(5) > td:nth-child(3)").should(
           "have.text",
           "1개"
-        );
-        cy.get("#earning-rate").should(
-          "have.text",
-          "당신의 총 수익률은 40000000%입니다."
         );
       });
   });
