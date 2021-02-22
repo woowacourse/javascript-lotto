@@ -1,11 +1,12 @@
-export const $ = (selector) => {
-  const $elements = document.querySelectorAll(selector);
+export const $ = (selector, { $parent } = { $parent: document }) => {
+  return $parent.querySelector(selector);
+};
 
-  if ($elements.length === 0) return null;
-  if ($elements.length === 1) return $elements[0];
-  return $elements;
+export const $$ = (selector, { $parent } = { $parent: document }) => {
+  return $parent.querySelectorAll(selector);
 };
 
 export const toDataAttributeSelector = (js_selector) =>
   `[data-js-selector="${js_selector}"]`;
+
 export const toClassSelector = (className) => `.${className}`;
