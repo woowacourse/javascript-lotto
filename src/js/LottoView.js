@@ -4,14 +4,12 @@ export default class LottoView {
   constructor() {
     this.inputPriceView = $('#input-price-form');
     this.purchasedLottos = $('#purchased-lottos');
-    this.inputLottoNums = $('#input-lotto-nums');
   }
 
   init() {
     this.show(this.inputPriceView);
     this.resetInputPrice();
     this.hide(this.purchasedLottos);
-    this.hide(this.inputLottoNums);
   }
 
   show(element) {
@@ -29,7 +27,6 @@ export default class LottoView {
 
   showLottoView() {
     this.show(this.purchasedLottos);
-    this.show(this.inputLottoNums);
   }
 
   showLottoDetailView() {

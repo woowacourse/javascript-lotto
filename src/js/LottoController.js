@@ -3,15 +3,18 @@ import Lotto from './Lotto.js';
 import { LOTTO_NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
 import { isCorrectPurchaseUnit } from './utils/validatePrice.js';
 import { $ } from './utils/dom.js';
+import WinningNumberInput from './views/WinningNumberInput.js';
 
 export default class LottoController {
   constructor() {
     this.lottoView = new LottoView();
+    this.winningNumberInput = new WinningNumberInput($('#input-lotto-nums'));
     this.lottos = [];
   }
 
   init() {
     this.lottoView.init();
+    this.winningNumberInput.hide();
     this.bindEvents();
   }
 
@@ -44,6 +47,7 @@ export default class LottoController {
 
     this.createLottos(inputPrice / LOTTO_NUMBERS.LOTTO_UNIT);
     this.lottoView.showLottoView();
+    this.winningNumberInput.show();
     this.lottoView.renderTotalLottoCount(this.lottos.length);
     this.lottoView.renderLottoIcons(this.lottos);
   }
