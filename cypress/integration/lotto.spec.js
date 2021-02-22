@@ -1,3 +1,4 @@
+
 import { INVALID_PRICE_ERROR } from "../../src/js/constants.js";
 
 describe("lotto 미션 테스트", () => {
