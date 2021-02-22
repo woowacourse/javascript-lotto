@@ -62,8 +62,26 @@ describe("ui-play", () => {
     })
     cy.get(".bonus-number").type(7)
     cy.get("#winning-result-button").click()
-
     cy.get(".modal").should("have.class", "open")
+  })
+
+  it("당첨된 로또의 총 개수는 구매한 로또의 총 개수보다 작거나 같아야 한다.", () => {
+    cy.get("#buy-input").type("5000")
+    cy.get("#buy-button").click()
+    cy.get(".winning-number").each(($winningNumber, i) => {
+      cy.wrap($winningNumber).type(i + 1)
+    })
+    cy.get(".bonus-number").type(7)
+    cy.get("#winning-result-button").click()
+
+    let winner = 0
+    cy.get(".result-table > tbody > tr")
+      .each(($result) => {
+        winner += parseInt($result.children().last().text().slice(0, -1), 10)
+      })
+      .then(() => {
+        cy.wrap(winner).should("be.lte", 5)
+      })
   })
 })
 
