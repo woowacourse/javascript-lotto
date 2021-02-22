@@ -1,39 +1,12 @@
-import { lottoGame } from '../store.js';
-import {$costSubmitButton, $costSubmitForm, $lottoNumbersToggleButton, $costInput} from "../elements.js";
 import {
-  LOTTO_PRICE,
-  NUMBER_LIST_LENGTH,
-  MIN_NUMBER,
-  MAX_NUMBER,
-} from '../constants.js';
-import lottoGameView from './view.js';
+  $costSubmitButton,
+  $costSubmitForm,
+  $lottoNumbersToggleButton,
+  $costInput,
+} from '../elements.js';
+import { MESSAGE } from '../constants.js';
 import validator from './validator.js';
-import { MESSAGE } from "../constants.js";
-
-const addLottoItems = (lottoItemCount) => {
-  for (let i = 0; i < lottoItemCount; i += 1) {
-    lottoGame.addLottoItem();
-  }
-};
-
-const purchaseLottoItems = (cost) => {
-  const lottoItemCount = cost / LOTTO_PRICE;
-  lottoGame.initLottoItemList();
-  addLottoItems(lottoItemCount);
-  lottoGameView.renderResult(lottoGame.lottoItemList);
-}
-
-const toggleLottoItemNumbers = (checked) => {
-  if (checked) {
-    lottoGameView.displayLottoNumbers();
-    return;
-  }
-  lottoGameView.hideLottoNumbers();
-}
-
-const initToggleButton = () => {
-  lottoGameView.resetToggleButton();
-}
+import service from './service.js';
 
 const onCostSumbit = () => {
   const cost = Number($costInput.value);
@@ -45,21 +18,26 @@ const onCostSumbit = () => {
     alert(MESSAGE.GET_SHOULD_NOT_HAVE_CHANGE_MESSAGE(cost));
     return;
   }
-  initToggleButton();
-  purchaseLottoItems(cost);
+  service.initToggleButton();
+  service.purchaseLottoItems(cost);
 };
 
 const onShowLottoNumbersToggle = (e) => {
-  toggleLottoItemNumbers(e.target.checked);
+  service.toggleLottoItemNumbers(e.target.checked);
+};
+
+const onCostSubmitByEnterKey = (e) => {
+  e.preventDefault();
+  onCostSumbit();
 };
 
 export default {
-  addAllEventListener(){
-    $costSubmitForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      onCostSumbit();
-    })
+  addAllEventListener() {
+    $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
     $costSubmitButton.addEventListener('click', onCostSumbit);
-    $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
-  }
+    $lottoNumbersToggleButton.addEventListener(
+      'click',
+      onShowLottoNumbersToggle
+    );
+  },
 };

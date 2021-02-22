@@ -13,7 +13,9 @@ export default {
   renderResult(lottoItemList) {
     $purchaseResult.classList.remove('hide');
     $purchaseItemList.classList.remove('hide');
-    $purchaseItemCount.innerHTML = getResultItemCountTemplate(lottoItemList.length);
+    $purchaseItemCount.innerHTML = getResultItemCountTemplate(
+      lottoItemList.length
+    );
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
   },
   displayLottoNumbers() {

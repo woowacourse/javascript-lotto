@@ -11,7 +11,8 @@ const getNumberListTemplate = (numberList) => {
 const getResultItemListTemplate = (lottoList) => {
   return lottoList.reduce(
     (acc, lottoItem) =>
-      acc + ` 
+      acc +
+      ` 
       <div class="mx-1 text-4xl lotto-item">
         <span class="lotto-icon">🎟️</span> <span class="lotto-numbers">${getNumberListTemplate(
           lottoItem
