@@ -16,6 +16,10 @@ const updateTicketListView = tickets => {
   $('#toggle-detail-mode').classList.remove('hide');
 };
 
+const focusNextInput = () => {
+  $('.winning-number[name=first]').focus();
+};
+
 const lottoPurchaseHandler = event => {
   event.preventDefault();
   const paymentInput = event.target.elements['payment-input'].value;
@@ -28,6 +32,7 @@ const lottoPurchaseHandler = event => {
 
   lotto.setTickets([...Array(ticketAmount)].map(() => getTicketNumber()));
   updateTicketListView(lotto.tickets);
+  focusNextInput();
 };
 
 export default lottoPurchaseHandler;
