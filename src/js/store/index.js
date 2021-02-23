@@ -1,8 +1,8 @@
 import reducer from "../reducer/index.js";
 
 const createStore = (reducer) => {
-  let state = { lottos: [] };
-  let listeners = { lottos: [] };
+  let state = { lottos: [], winningNumber: { numbers: [], bonusNumber: 0 } };
+  let listeners = { lottos: [], winningNumber: [] };
 
   const getState = () => {
     return { ...state };
