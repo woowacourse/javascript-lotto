@@ -1,19 +1,19 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable spaced-comment */
 import { lottoData } from '../model/lottoData.js';
 import $ from '../lib/utils/dom.js';
-
-///////// 구입 금액
-const TICKET_PRICE = 1000;
+import { LESS_THAN_TICKET_PRICE_MESSAGE } from '../lib/constants/alertMessage.js';
+import {
+  TICKET_PRICE,
+  TICKET_NUMBER_AMOUNT,
+  TICKET_MIN_NUMBER,
+  TICKET_MAX_NUMBER,
+} from '../lib/constants/lotto.js';
 
 const lottoPurchaseHandler = event => {
   event.preventDefault();
   const paymentInput = event.target.elements['payment-input'].value;
 
-  if (Number(paymentInput) < 1000) {
-    alert(
-      '1000원 미만의 금액은 입력할 수 없습니다. 1000원 이상의 금액을 입력해 주세요.'
-    );
+  if (Number(paymentInput) < TICKET_PRICE) {
+    alert(LESS_THAN_TICKET_PRICE_MESSAGE);
     return;
   }
 
@@ -43,8 +43,8 @@ function createTicktHTML(ticketNumber) {
 function getTicketNumber() {
   const ticketNumber = new Set();
 
-  while (ticketNumber.size < 6) {
-    ticketNumber.add(getRandomNumber(1, 45));
+  while (ticketNumber.size < TICKET_NUMBER_AMOUNT) {
+    ticketNumber.add(getRandomNumber(TICKET_MIN_NUMBER, TICKET_MAX_NUMBER));
   }
 
   return [...ticketNumber];
