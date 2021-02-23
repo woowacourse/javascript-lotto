@@ -12,7 +12,7 @@ const reducer = (state, action) => {
       };
     case ACTION_TYPE.WINNING_NUMBERS.SET:
       return {
-        // TODO: target 추가
+        target: STATE_TYPE.WINNING_NUMBER,
         state: {
           ...state,
           winningNumber: { ...action.payload },
