@@ -13,6 +13,7 @@ export const SELECTOR = {
   POCKET_TOGGLE: "#pocket-toggle-number",
   POCKET_LOTTOS: "#pocket-lottos",
   WINNING: "#winning",
+  SHOW: "show",
 }
 
 export const ERROR_MESSAGE = {
