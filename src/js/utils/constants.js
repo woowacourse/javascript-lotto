@@ -17,6 +17,7 @@ export const ALERT_MESSAGES = {
 
   EMPTY_RESULT_INPUT: '당첨 번호와 보너스 번호를 입력해주세요.',
   DUPLICATED_NUMBERS_EXIST: '로또 번호에 중복이 있습니다.',
+  NUMBERS_OUT_OF_RANGE: '로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
 }
 
 export const DOM_CLASSES = {

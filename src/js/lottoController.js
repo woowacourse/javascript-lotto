@@ -1,7 +1,7 @@
 import { $, $$ } from './utils/dom.js';
 import Lotto from './objects/Lotto.js';
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES } from './utils/constants.js';
-import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty } from './utils/validation.js';
+import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty, isNumbersOutOfRange } from './utils/validation.js';
 
 export default class LottoController {
   constructor(lottoUI) {
@@ -65,6 +65,11 @@ export default class LottoController {
 
     if (isNumbersDuplicated(numberInputs)) {
       alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
+      return;
+    }
+
+    if (isNumbersOutOfRange(numberInputs)) {
+      alert(ALERT_MESSAGES.NUMBERS_OUT_OF_RANGE);
       return;
     }
 
