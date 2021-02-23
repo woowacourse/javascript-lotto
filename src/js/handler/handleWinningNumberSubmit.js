@@ -29,19 +29,6 @@ const getTotalYield = (lotto) => {
   return Number(((totalProfit / lotto.purchasePrice) * 100).toFixed(2));
 };
 
-const isValidNumberInput = (inputNumbers) => {
-  if (!inputNumbers.every((num) => isValidRange(num))) {
-    alert(ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
-    return false;
-  }
-
-  if (isDuplicate(inputNumbers)) {
-    alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
-    return false;
-  }
-  return true;
-};
-
 export const handleWinningNumberSubmit = (lotto) => {
   const winningNumbers = [...$$('.winning-number')].map((winningNumber) =>
     Number(winningNumber.value),
@@ -49,7 +36,13 @@ export const handleWinningNumberSubmit = (lotto) => {
   const bonusNumber = Number($('.bonus-number').value);
   const inputNumbers = [...winningNumbers, bonusNumber];
 
-  if (!isValidNumberInput(inputNumbers)) {
+  if (!inputNumbers.every((num) => isValidRange(num))) {
+    alert(ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
+    return;
+  }
+
+  if (isDuplicate(inputNumbers)) {
+    alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
     return;
   }
 
