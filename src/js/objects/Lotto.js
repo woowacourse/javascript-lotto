@@ -1,5 +1,6 @@
 import { getRandomNumberArray, getMatchCount } from '../utils.js';
 import { LOTTO } from '../constants.js';
+
 export default class Lotto {
   constructor(numbers) {
     this.numbers = [];
