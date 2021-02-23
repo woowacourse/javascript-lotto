@@ -28,6 +28,8 @@ export const DOM_CLASSES = {
   RESULT_INPUT_CONTAINER: 'result-input-div',
   RESULT_INPUT_FORM: 'result-input-form',
   RESULT_INPUT_SUBMIT: 'result-input-form__submit',
+  RESULT_WINNING_NUMBER: 'result-input-form__winning-number',
+  RESULT_BONUS_NUMBER: 'result-input-form__bonus-number',
 
   MODAL: 'modal',
 }

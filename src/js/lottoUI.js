@@ -67,18 +67,18 @@ export default class LottoUI {
             <div>
               <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
               <div>
-                <input type="number" class="winning-number mx-1 text-center" />
-                <input type="number" class="winning-number mx-1 text-center" />
-                <input type="number" class="winning-number mx-1 text-center" />
-                <input type="number" class="winning-number mx-1 text-center" />
-                <input type="number" class="winning-number mx-1 text-center" />
-                <input type="number" class="winning-number mx-1 text-center" />
+                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
+                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
+                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
+                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
+                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
+                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
               </div>
             </div>
             <div class="bonus-number-container flex-grow">
               <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
               <div class="d-flex justify-center">
-                <input type="number" class="bonus-number text-center" />
+                <input type="number" class="bonus-number text-center ${DOM_CLASSES.RESULT_BONUS_NUMBER}" />
               </div>
             </div>
           </div>
