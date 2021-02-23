@@ -1,8 +1,9 @@
 import LottoModel from "../models/lotto_model.js"
 import LottoView from "../views/lotto_view.js"
 import Validator from "../validators/lotto_validator.js"
-import { $, getQuotient, getRandomNumber, sortByNumber } from "../util.js"
-import { LOTTO, SELECTOR } from "../constants/constant.js"
+import { $, getQuotient } from "../util.js"
+import { TICKET, SELECTOR } from "../constants/constant.js"
+import Ticket from "../ticket.js"
 
 class LottoController {
   constructor() {
@@ -25,16 +26,7 @@ class LottoController {
   }
 
   getCount(price) {
-    return getQuotient(price, LOTTO.PRICE)
-  }
-
-  generateLotto() {
-    const lotto = new Set()
-    while (lotto.size !== LOTTO.SIZE) {
-      lotto.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM))
-    }
-
-    return sortByNumber([...lotto])
+    return getQuotient(price, TICKET.PRICE)
   }
 
   renderPocketLottos() {
@@ -62,7 +54,9 @@ class LottoController {
 
     const count = this.getCount(price)
     for (let i = 0; i < count; i++) {
-      this.model.addLotto(this.generateLotto())
+      const ticket = new Ticket()
+      ticket.generateRandomNumbers()
+      this.model.addLotto(ticket)
     }
     this.managePocket()
   }

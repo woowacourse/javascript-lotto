@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, LOTTO } from "../constants/constant.js"
+import { ERROR_MESSAGE, TICKET } from "../constants/constant.js"
 
 class Validator {
   isPriceValid(price) {
@@ -26,7 +26,7 @@ class Validator {
   }
 
   isLessThanThousand(price) {
-    return 0 <= price && price < LOTTO.PRICE
+    return 0 <= price && price < TICKET.PRICE
   }
 }
 
