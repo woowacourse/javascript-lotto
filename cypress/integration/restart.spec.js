@@ -41,7 +41,7 @@ describe("다시 시작하기 테스트: 당첨 결과에 대한 모달이 표�
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER)).should("not.be.visible");
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
     cy.get(toCS(CLASSNAME.WINNING_NUMBER.INPUT)).each(($winningNumber) =>
-      $winningNumber.should("have.value", "")
+      cy.wrap($winningNumber).should("have.value", "")
     );
     cy.get(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT)).should("have.value", "");
 
