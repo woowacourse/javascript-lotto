@@ -1,12 +1,14 @@
-import { $ } from './utils/dom.js';
+import { $, $$ } from './utils/dom.js';
 import Lotto from './objects/Lotto.js';
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES } from './utils/constants.js';
-import { isMoneyNotInteger } from './utils/validation.js';
+import { isMoneyNotInteger, isResultInputsEmpty } from './utils/validation.js';
 
 export default class LottoController {
   constructor(lottoUI) {
     this.lottoUI = lottoUI;
     this.lottos = [];
+    this.winningNumbers = [];
+    this.bonusNumber = 0;
   }
 
   init() {
@@ -50,8 +52,20 @@ export default class LottoController {
   }
 
   handleResultInput() {
-    // 당첨 번호를 저장한다.
-    // 모달창을 띄운다.
+    this.winningNumbers = [];
+    const winningNumberInput = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)].map(input => {
+      return Number(input.value);
+    });
+    const bonusNumberInput = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
+
+    if (isResultInputsEmpty([...winningNumberInput, bonusNumberInput])) {
+      alert('당첨 번호와 보너스 번호를 입력해주세요.');
+      return;
+    }
+
+    this.winningNumbers = winningNumberInput;
+    this.bonusNumber = bonusNumberInput;
+
     $(`.${DOM_CLASSES.MODAL}`).classList.add('open');
   }
 

@@ -65,7 +65,7 @@ context('로또 UI 테스트', () => {
     cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
     cy.get(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).then(numbers => {
       [...numbers].forEach((number, idx) => {
-        cy.get(number).type(idx);
+        cy.get(number).type(idx + 1);
       })
     });
     cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(7);
