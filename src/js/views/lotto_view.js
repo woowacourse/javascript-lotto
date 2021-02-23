@@ -17,14 +17,14 @@ class LottoView {
     $pocketSection.innerHTML = this.template.pocketSectionTemplate(amount)
   }
 
-  renderPocketLottos(lottos, detail) {
-    const $pocketLottos = $(SELECTOR.POCKET_LOTTOS)
-    $pocketLottos.innerHTML = this.template.pocketLottosTemplate(lottos, detail)
-  }
-
   renderWinningSection() {
     const $winningSection = $(SELECTOR.WINNING)
     $winningSection.innerHTML = this.template.winningSectionTemplate()
+  }
+
+  togglePocketDetail() {
+    const $pocketLottos = $(SELECTOR.POCKET_LOTTOS)
+    $pocketLottos.classList.toggle("show")
   }
 
   resetPocketSection() {

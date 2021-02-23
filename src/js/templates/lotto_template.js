@@ -17,33 +17,12 @@ class Template {
     `
   }
 
-  pocketLottosSimpleTemplate(lottos) {
-    return `<span class="mx-1 text-4xl">🎟️ </span>`.repeat(lottos.length)
-  }
-
-  pocketLottosDetailTemplate(lottos) {
-    return lottos
-      .map(
-        (lotto) => `
-            <div class="pocket-lotto-detail">
-            <span class="mx-1 text-4xl">🎟️ </span>
-            <span class="pocket-lotto-numbers">${lotto.numbers.join(" ")}</span>
-            </div>
-            `
-      )
-      .join("")
-  }
-
-  pocketLottosTemplate(lottos, detail) {
-    return detail
-      ? this.pocketLottosDetailTemplate(lottos)
-      : this.pocketLottosSimpleTemplate(lottos)
-  }
-
-  pocketSectionTemplate(amount) {
+  pocketSectionTemplate(lottos) {
     return `
         <div class="d-flex">
-            <label class="flex-auto my-0">총 ${amount}개를 구매하였습니다.</label>
+            <label class="flex-auto my-0">총 ${
+              lottos.length
+            }개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                     <input
@@ -55,7 +34,20 @@ class Template {
                 </label>
             </div>
         </div>
-        <div id="pocket-lottos" class="flex-wrap"></div>
+        <div id="pocket-lottos" class="flex-wrap">
+        ${lottos
+          .map(
+            (lotto) => `
+                  <div class="pocket-lotto-detail">
+                  <span class="mx-1 text-4xl">🎟️ </span>
+                  <span class="pocket-lotto-numbers">${lotto.numbers.join(
+                    " "
+                  )}</span>
+                  </div>
+                  `
+          )
+          .join("")}
+          </div>
     `
   }
 
