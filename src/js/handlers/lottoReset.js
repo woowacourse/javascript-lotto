@@ -1,15 +1,22 @@
-import { lottoData } from '../model/lottoData.js';
+import { lotto } from '../model/lotto.js';
 import $ from '../lib/utils/dom.js';
-import { modalCloseHandler } from './modalControl.js';
+import { closeModal } from '../lib/utils/modal.js';
+
+const clearLottoApp = () => {
+  $('#ticket-list').innerHTML = '';
+  $('#ticket-count').innerHTML = '';
+  $('input[name=payment-input]').value = '';
+  $('.winning-number').forEach($input => {
+    $input.value = '';
+  });
+  $('.bonus-number').value = '';
+  $('#toggle-detail-mode').classList.add('hide');
+};
 
 const lottoResetHandler = () => {
-  modalCloseHandler();
-  $('#ticket-list').innerHTML = '';
-  lottoData.ticketAmount = 0;
-  lottoData.tickets = [];
-  $('#ticket-count').innerHTML = ``;
-  $('#toggle-detail-mode').classList.add('hide');
-  $('input[name=payment-input]').value = '';
+  lotto.tickets = [];
+  clearLottoApp();
+  closeModal();
 };
 
 export default lottoResetHandler;
