@@ -5,8 +5,6 @@ export default class WinningNumberInput extends View {
   constructor($element) {
     super($element);
 
-    this.$showResultButton = $('.open-result-modal-button');
-    this.$modalClose = $('.modal-close');
     this.$modal = $('.modal');
     this.winningNumbers = {};
 
@@ -24,7 +22,7 @@ export default class WinningNumberInput extends View {
     });
 
     $('.bonus-number').addEventListener('input', () => {
-      this.$showResultButton.removeAttribute('disabled');
+      $('.open-result-modal-button').removeAttribute('disabled');
     });
   }
 
@@ -32,7 +30,11 @@ export default class WinningNumberInput extends View {
     this.$element.addEventListener('submit', e => {
       this.handleShowResult(e);
     });
-    this.$modalClose.addEventListener('click', this.closeModal.bind(this));
+    $('.modal-close').addEventListener('click', () => this.closeModal());
+    $('#reset-btn').addEventListener('click', () => {
+      this.closeModal();
+      this.emit('clickResetBtn');
+    });
   }
 
   handleShowResult(e) {
@@ -61,6 +63,9 @@ export default class WinningNumberInput extends View {
   }
 
   resetWinningNumbers() {
+    $$('.winning-number').forEach(winningNumber => {
+      winningNumber.value = '';
+    });
     this.winningNumbers = [];
   }
 }

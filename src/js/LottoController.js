@@ -16,15 +16,20 @@ export default class LottoController {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
     this.winningNumberInput = new WinningNumberInput($('#input-lotto-nums'));
-    this.lottos = [];
-    this.purchasedPrice = 0;
   }
 
   init() {
+    this.reset();
+    this.bindEvents();
+  }
+
+  reset() {
+    this.lottos = [];
+    this.purchasedPrice = 0;
+
     this.inputPriceView.show().resetInputPrice();
     this.purchasedLottosView.hide();
-    this.winningNumberInput.hide();
-    this.bindEvents();
+    this.winningNumberInput.hide().resetWinningNumbers();
   }
 
   bindEvents() {
@@ -32,9 +37,9 @@ export default class LottoController {
       this.inputPriceHandler(e.detail)
     );
 
-    this.winningNumberInput.on('submitNumbers', e =>
-      this.inputNumbersHandler(e.detail)
-    );
+    this.winningNumberInput
+      .on('submitNumbers', e => this.inputNumbersHandler(e.detail))
+      .on('clickResetBtn', () => this.reset());
   }
 
   createLottos(lottoCount) {
