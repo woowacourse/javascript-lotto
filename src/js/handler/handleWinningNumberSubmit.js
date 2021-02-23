@@ -42,7 +42,7 @@ const isValidNumberInput = (inputNumbers) => {
   return true;
 };
 
-export const handleWinningNumberInput = (lotto) => {
+export const handleWinningNumberSubmit = (lotto) => {
   const winningNumbers = [...$$('.winning-number')].map((winningNumber) =>
     Number(winningNumber.value),
   );

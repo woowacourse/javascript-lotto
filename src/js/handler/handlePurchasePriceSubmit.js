@@ -31,7 +31,7 @@ const setLotto = (lotto, amountOfLottoTicket) => {
   }
 };
 
-export const handlePurchasePriceInput = (lotto) => {
+export const handlePurchasePriceSubmit = (lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
 
   if (!isValidPrice(purchasePrice)) {

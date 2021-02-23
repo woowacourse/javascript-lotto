@@ -1,16 +1,16 @@
 import Lotto from './model/Lotto.js';
 import { $ } from './utils/querySelector.js';
-import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
-import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
-import { handleWinningNumberInput } from './handler/handleWinningNumberInput.js';
 import { handleModalPage } from './handler/handleModalPage.js';
+import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
+import { handlePurchasePriceSubmit } from './handler/handlePurchasePriceSubmit.js';
+import { handleWinningNumberSubmit } from './handler/handleWinningNumberSubmit.js';
 
 const init = () => {
   const lotto = new Lotto();
 
   $('#purchase-price-input-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    handlePurchasePriceInput(lotto);
+    handlePurchasePriceSubmit(lotto);
   });
 
   $('#purchase-result-section__toggle').addEventListener(
@@ -20,7 +20,7 @@ const init = () => {
 
   $('#winning-number-input-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    handleWinningNumberInput(lotto);
+    handleWinningNumberSubmit(lotto);
   });
 
   $('.modal').addEventListener('click', (event) =>
