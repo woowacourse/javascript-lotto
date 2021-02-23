@@ -1,4 +1,5 @@
-import { ERROR_MESSAGE, LOTTO } from "../constant.js"
+import { ERROR_MESSAGE, LOTTO } from "../constants/constant.js"
+
 class Validator {
   isPriceValid(price) {
     if (this.isFloatPrice(price)) {

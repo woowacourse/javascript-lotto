@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/js/model.js
 <<<<<<< HEAD
 class LottoModel {
   constructor() {
@@ -35,6 +36,9 @@ class LottoModel {
 export default LottoModel;
 =======
 import { INIT } from "./constant.js"
+=======
+import { INIT } from "../constants/constant.js"
+>>>>>>> 06832f7... refactor: 디렉터리 구조 변경 및 ticket.js 추가:src/js/models/lotto_model.js
 
 class LottoModel {
   constructor() {

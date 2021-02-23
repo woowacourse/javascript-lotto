@@ -1,6 +1,6 @@
-import Template from "./template.js"
-import { $ } from "./util.js"
-import { SELECTOR } from "./constant.js"
+import Template from "../templates/lotto_template.js"
+import { $ } from "../util.js"
+import { SELECTOR } from "../constants/constant.js"
 
 class LottoView {
   constructor() {

@@ -1,8 +1,8 @@
-import LottoModel from "./model.js"
-import LottoView from "./view.js"
-import Validator from "./validator/validator.js"
-import { $, getQuotient, getRandomNumber, sortByNumber } from "./util.js"
-import { LOTTO, SELECTOR } from "./constant.js"
+import LottoModel from "../models/lotto_model.js"
+import LottoView from "../views/lotto_view.js"
+import Validator from "../validators/lotto_validator.js"
+import { $, getQuotient, getRandomNumber, sortByNumber } from "../util.js"
+import { LOTTO, SELECTOR } from "../constants/constant.js"
 
 class LottoController {
   constructor() {
