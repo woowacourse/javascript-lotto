@@ -1,6 +1,5 @@
-class Template {
-  buySectionTemplate() {
-    return `
+export const buySectionTemplate = () => {
+  return `
         <h1 class="text-center">🎱 행운의 로또</h1>
         <form class="mt-5">
         <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요. </label>
@@ -15,10 +14,10 @@ class Template {
         </div>
         </form>
     `
-  }
+}
 
-  pocketSectionTemplate(lottos) {
-    return `
+export const pocketSectionTemplate = (lottos) => {
+  return `
         <div class="d-flex">
             <label class="flex-auto my-0">총 ${
               lottos.length
@@ -48,10 +47,10 @@ class Template {
           .join("")}
           </div>
     `
-  }
+}
 
-  winningSectionTemplate() {
-    return `
+export const winningSectionTemplate = () => {
+  return `
         <form class="mt-9">
         <label class="flex-auto d-inline-block mb-3">
             지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
@@ -84,7 +83,4 @@ class Template {
         </button>
         </form>
     `
-  }
 }
-
-export default Template

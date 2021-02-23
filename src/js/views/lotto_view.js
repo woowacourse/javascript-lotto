@@ -1,25 +1,25 @@
-import Template from "../templates/lotto_template.js"
+import {
+  buySectionTemplate,
+  pocketSectionTemplate,
+  winningSectionTemplate,
+} from "../templates/lotto_template.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
 
 class LottoView {
-  constructor() {
-    this.template = new Template()
-  }
-
   renderBuySection() {
     const $buySection = $(SELECTOR.BUY)
-    $buySection.innerHTML = this.template.buySectionTemplate()
+    $buySection.innerHTML = buySectionTemplate()
   }
 
   renderPocketSection(amount) {
     const $pocketSection = $(SELECTOR.POCKET)
-    $pocketSection.innerHTML = this.template.pocketSectionTemplate(amount)
+    $pocketSection.innerHTML = pocketSectionTemplate(amount)
   }
 
   renderWinningSection() {
     const $winningSection = $(SELECTOR.WINNING)
-    $winningSection.innerHTML = this.template.winningSectionTemplate()
+    $winningSection.innerHTML = winningSectionTemplate()
   }
 
   togglePocketDetail() {
