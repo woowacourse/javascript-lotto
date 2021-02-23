@@ -36,12 +36,12 @@ export default class WinningResultDisplay {
     this.$modal.classList.remove('open');
   }
 
-  tableBodyHTML() {
+  getTableBodyHTML() {
     return RESULT_TABLE_DISPLAY_KEY.map((key) => {
       const { DESCRIPTION, PRIZE } = WINNING_PRIZE[key];
       const lottoTickets = this.lottoManager.lottoTickets;
 
-      return this.tableRowHTML({
+      return this.getTableRowHTML({
         DESCRIPTION,
         PRIZE,
         numOfWinningTicket: lottoTickets.filter((ticket) => ticket.totalMatchCount === key).length,
@@ -49,7 +49,7 @@ export default class WinningResultDisplay {
     }).join('');
   }
 
-  tableRowHTML({ DESCRIPTION, PRIZE, numOfWinningTicket }) {
+  getTableRowHTML({ DESCRIPTION, PRIZE, numOfWinningTicket }) {
     return `
       <tr class="text-center">
         <td class="p-3">${DESCRIPTION}</td>
@@ -59,7 +59,7 @@ export default class WinningResultDisplay {
   }
 
   renderResult() {
-    this.$resultTableBody.innerHTML = this.tableBodyHTML();
+    this.$resultTableBody.innerHTML = this.getTableBodyHTML();
     this.$rateOfReturn.innerText = RATE_OF_RETURN_MESSAGE(this.lottoManager.rateOfReturn);
     this.$modal.classList.add('open');
   }
