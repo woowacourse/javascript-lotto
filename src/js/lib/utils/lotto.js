@@ -2,6 +2,7 @@ import {
   TICKET_NUMBER_AMOUNT,
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
+  TICKET_PRIZE,
 } from '../constants/lotto.js';
 
 function getTicketNumber() {
@@ -19,33 +20,22 @@ function getRandomNumber(min, max) {
 }
 
 function getProfitPercent(winners, ticketAmount) {
-  // 상수화 ㄱㄱ
-  const ticketPrize = {
-    first: 2000000000,
-    second: 30000000,
-    third: 1500000,
-    fourth: 50000,
-    fifth: 5000,
-  };
   let totalProfit = 0;
   const paymentAmount = ticketAmount * 1000;
 
   for (const winner in winners) {
     if (Object.hasOwnProperty.call(winners, winner)) {
-      totalProfit += winners[winner] * ticketPrize[winner];
+      totalProfit += winners[winner] * TICKET_PRIZE[winner];
     }
   }
 
   return ((totalProfit - paymentAmount) / paymentAmount) * 100;
 }
 
-function getRank(ticket, winningNumber) {
-  // map 안써도됨
-  const score = ticket
-    .map(number => winningNumber.main.includes(number))
-    .filter(isTrue => isTrue).length;
+function getRank(ticket, { main, bonus }) {
+  const score = ticket.filter(number => main.includes(number)).length;
 
-  if (score === 5 && ticket.includes(winningNumber.bonus)) {
+  if (score === 5 && ticket.includes(bonus)) {
     return 'second';
   }
 
