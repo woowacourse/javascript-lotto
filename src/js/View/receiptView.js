@@ -9,13 +9,6 @@ export const printPurchaseAmountLabel = (ticketCount) => {
 
 export const printTicketHorizontal = (ticketCount) => {
   const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
-  // let ticketImageTemplate = "";
-
-  // for (let i = 0; i < ticketCount; i++) {
-  //   ticketImageTemplate +=
-  //     '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>';
-  // }
-
   const ticketImageTemplate = Array(ticketCount)
     .fill(
       '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>'
@@ -26,12 +19,12 @@ export const printTicketHorizontal = (ticketCount) => {
   ticketImageNumberContainer.classList.remove(Element.FLEX_COL);
 };
 
-export const printTicketVertical = (tickets) => {
+export const printTicketVertical = (ticketBundle) => {
   const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
   let ticketImageNumberTemplate = "";
 
-  tickets.forEach((lotto) => {
-    ticketImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${lotto.numbers.join(
+  ticketBundle.forEach((ticket) => {
+    ticketImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${ticket.join(
       ", "
     )}</span></div>`;
   });
