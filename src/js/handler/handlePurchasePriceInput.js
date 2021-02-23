@@ -1,4 +1,4 @@
-import Ticket from '../lib/Ticket.js';
+import Ticket from '../Model/Ticket.js';
 import { $ } from '../utils/querySelector.js';
 import { isValidPrice } from '../utils/validator.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
