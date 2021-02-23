@@ -27,8 +27,8 @@ const getRank = (winningCount) => {
   return rank[winningCount];
 };
 
-const getWinningRank = (winnigCount, bonusCount) => {
-  return bonusCount && winnigCount === VALUE.HIT_COUNT.FIVE
+const getWinningRank = (winnigCount, hasBonusCount) => {
+  return hasBonusCount && winnigCount === VALUE.HIT_COUNT.FIVE
     ? VALUE.WINNING_RANK.SECOND
     : getRank(winnigCount);
 };
@@ -39,8 +39,8 @@ const getWinningCount = (nums) => {
 
 export const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
   const winnigCount = getWinningCount([...ticket.numbers, ...winningNumbers]);
-  const bonusCount = ticket.numbers.includes(bonusNumber);
-  const winningRank = getWinningRank(winnigCount, bonusCount);
+  const hasBonusCount = ticket.numbers.includes(bonusNumber);
+  const winningRank = getWinningRank(winnigCount, hasBonusCount);
   const profit = getProfit(winningRank);
 
   ticket.setWinningRank(winningRank);
