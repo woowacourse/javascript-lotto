@@ -12,5 +12,34 @@ export const MESSAGE = Object.freeze({
   },
   DUPLICATED_NUMBER_EXIST_MESSAGE: '당첨번호들 중 중복된 숫자가 존재합니다.',
   NUMBER_RANGE_EXCEEDED_MESSAGE: `${MIN_NUMBER} ~ ${MAX_NUMBER} 사이의 숫자들만 당첨번호로 입력해주세요`,
-  SHOULD_INPUT_ALL_NUMBERS_MESSAGE: '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.'
+  SHOULD_INPUT_ALL_NUMBERS_MESSAGE:
+    '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
 });
+
+export const REWARDS = Object.freeze([
+  {
+    matchCount: 3,
+    shouldCheckBonus: false,
+    money: 5000,
+  },
+  {
+    matchCount: 4,
+    shouldCheckBonus: false,
+    money: 50000,
+  },
+  {
+    matchCount: 5,
+    shouldCheckBonus: false,
+    money: 1500000,
+  },
+  {
+    matchCount: 5,
+    shouldCheckBonus: true,
+    money: 30000000,
+  },
+  {
+    matchCount: 6,
+    shouldCheckBonus: false,
+    money: 2000000000,
+  },
+]);

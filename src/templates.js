@@ -1,17 +1,20 @@
+import { getKRString } from './utils/format.js';
+
 export const getResultItemCountTemplate = (lottoItemCount) => {
   return `
     총 <span id="lotto-count">${lottoItemCount}</span>개를 구매하였습니다.
   `;
 };
 
-export const getNumberListTemplate = (numberList) => {
-  return numberList.join(', ');
+const getNumberListTemplate = ({lottoNumberList}) => {
+  return lottoNumberList.join(', ');
 };
 
 export const getResultItemListTemplate = (lottoItemList) => {
   return lottoItemList
-    .map((lottoItem) =>
-      ` 
+    .map(
+      (lottoItem) =>
+        ` 
         <div class="mx-1 text-4xl lotto-item">
           <span class="lotto-icon">🎟️</span>
           <span class="lotto-numbers">${getNumberListTemplate(lottoItem)}</span>
@@ -20,3 +23,14 @@ export const getResultItemListTemplate = (lottoItemList) => {
     )
     .join('');
 };
+
+export const getModalTbodyTemplate = (rankItemList) =>
+  rankItemList.map(
+    (rankItem) => `
+    <tr class="text-center">
+      <td class="p-3">${rankItem.matchCount}개 ${rankItem.shouldCheckBonus ? ' + 보너스볼' : ''}</td>
+      <td class="p-3">${getKRString(rankItem.money)}</td>
+      <td class="p-3">${rankItem.winCount}개</td>
+    </tr>
+    `
+  ).join('');

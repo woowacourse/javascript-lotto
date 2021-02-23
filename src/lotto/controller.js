@@ -12,6 +12,16 @@ import { MESSAGE } from '../constants.js';
 import validator from './validator.js';
 import service from './service.js';
 
+const getAllnumbers = () => {
+  const winningNumbers = $('.winning-number', $winningAndBonusNumberWrapper)
+    .filter(({ value }) => value !== '')
+    .map(({ value }) => Number(value));
+  const bonusNumberInput = $('.bonus-number', $winningAndBonusNumberWrapper).value;
+  const allNumbers = bonusNumberInput === '' ? [...winningNumbers] : [...winningNumbers, Number(bonusNumberInput)];
+
+  return allNumbers;
+}
+
 const onCostSumbit = () => {
   const cost = Number($costInput.value);
   if (validator.isMoneyLessThanMinCost(cost)) {
@@ -36,7 +46,7 @@ const onCostSubmitByEnterKey = (e) => {
 };
 
 const onResultModalOpen = () => {
-  service.openResultModal();
+  service.openResultModal(getAllnumbers());
 };
 
 const onResultModalClose = () => {
@@ -47,11 +57,7 @@ const onWinningAndBonusNumberInput = (e) => {
   if (!e.target.classList.contains('winning-number') && !e.target.classList.contains('bonus-number')) {
     return;
   }
-  const winningNumbers = $('.winning-number', $winningAndBonusNumberWrapper)
-    .filter(({ value }) => value !== '')
-    .map(({ value }) => Number(value));
-  const bonusNumberInput = $('.bonus-number', $winningAndBonusNumberWrapper).value;
-  const allNumbers = bonusNumberInput === '' ? [...winningNumbers] : [...winningNumbers, Number(bonusNumberInput)];
+  const allNumbers = getAllnumbers();
   if (validator.isDuplicatedNumberExist(allNumbers)) {
     alert(MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE);
     e.target.value = '';

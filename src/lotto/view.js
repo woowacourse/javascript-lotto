@@ -4,10 +4,13 @@ import {
   $purchaseItemList,
   $purchaseResult,
   $lottoNumbersToggleButton,
+  $resultTbody,
+  $profitRate
 } from '../elements.js';
 import {
   getResultItemCountTemplate,
   getResultItemListTemplate,
+  getModalTbodyTemplate
 } from '../templates.js';
 
 export default {
@@ -32,8 +35,10 @@ export default {
     $purchaseItemList.classList.add('hide-lotto-numbers');
     $purchaseItemList.classList.remove('flex-col');
   },
-  openResultModal() {
+  openResultModal(rankItemList, profitRate) {
     $modal.classList.add('open');
+    $resultTbody.innerHTML = getModalTbodyTemplate(rankItemList);
+    $profitRate.innerText = profitRate;
   },
   closeResultModal() {
     $modal.classList.remove('open');
