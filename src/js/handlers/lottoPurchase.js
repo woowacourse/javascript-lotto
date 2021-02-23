@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable spaced-comment */
 import { lottoData } from '../model/lottoData.js';
-import $ from '../utils/dom.js';
+import $ from '../lib/utils/dom.js';
 
 ///////// 구입 금액
 const TICKET_PRICE = 1000;
@@ -9,6 +9,13 @@ const TICKET_PRICE = 1000;
 const lottoPurchaseHandler = event => {
   event.preventDefault();
   const paymentInput = event.target.elements['payment-input'].value;
+
+  if (Number(paymentInput) < 1000) {
+    alert(
+      '1000원 미만의 금액은 입력할 수 없습니다. 1000원 이상의 금액을 입력해 주세요.'
+    );
+    return;
+  }
 
   lottoData.ticketAmount = Math.floor(Number(paymentInput) / TICKET_PRICE);
   lottoData.tickets = [...Array(lottoData.ticketAmount)].map(() =>
