@@ -17,8 +17,9 @@ export default class WinningNumberInput extends View {
   bindNumberInputEvent() {
     $$('.winning-number').forEach(winningNumber => {
       winningNumber.addEventListener('change', () => {
-        this.winningNumbers[winningNumber.dataset.indexNum] =
-          winningNumber.value;
+        this.winningNumbers[winningNumber.dataset.indexNum] = Number(
+          winningNumber.value
+        );
       });
     });
 
