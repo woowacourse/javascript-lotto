@@ -1,5 +1,6 @@
 import { lottoData } from '../model/lottoData.js';
 import $ from '../lib/utils/dom.js';
+import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
 
 const winningNumberSubmitHandler = event => {
   event.preventDefault();
@@ -21,7 +22,7 @@ const winningNumberSubmitHandler = event => {
   };
 
   if (hasDuplicate([...winningNumber.main, winningNumber.bonus])) {
-    alert('중복된 숫자를 입력하셨습니다. 다시 입력해주세요');
+    alert(DUPLICATE_WINNING_NUMBER);
     return;
   }
 

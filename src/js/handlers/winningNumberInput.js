@@ -1,3 +1,5 @@
+import { EXCEED_RANGE_NUMBER } from '../lib/constants/alertMessage.js';
+
 const winningNumberInputHandler = ({ target }) => {
   if (
     !target.classList.contains('winning-number') &&
@@ -6,10 +8,9 @@ const winningNumberInputHandler = ({ target }) => {
     return;
 
   if (Number(target.value) > 45 || Number(target.value) < 1) {
-    alert('잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.');
+    alert(EXCEED_RANGE_NUMBER);
     target.value = '';
   }
-  // target.value;
 };
 
 export default winningNumberInputHandler;
