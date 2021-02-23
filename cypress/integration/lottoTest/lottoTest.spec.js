@@ -1,4 +1,8 @@
-import { getRandomNumber } from '../../../src/js/utils/utils.js';
+import {
+  getRandomNumber,
+  compareNumbers,
+} from '../../../src/js/utils/utils.js';
+import Lotto from '../../../src/js/Lotto.js';
 
 describe('로또 게임 테스트', () => {
   beforeEach(() => {
@@ -89,10 +93,26 @@ describe('로또 게임 테스트', () => {
     cy.get('.modal').should('not.be.visible');
   });
 
-  // it('modal에서 x 버튼을 누르면 modal 창이 닫힌다.', () => {
-  //   clickAfterTypePrice();
-  //   typeWinningNumber();
+  const lottoNumsArr = [
+    [21, 6, 43, 29, 35, 16], // 1등 (6개 일치)
+    [21, 6, 43, 29, 35, 17], // 2등 (5개 + 보너스 17)
+    [17, 44, 28, 43, 7, 33], // 탈락
+    [41, 33, 4, 25, 11, 30], // 탈락
+    [21, 6, 43, 37, 26, 15], // 5등 (3개)
+    [27, 13, 39, 29, 35, 16], // 5등 (3개)
+  ];
 
-  //   cy.get('#show-result-btn').click();
-  // });
+  const winningNumbers = { 1: 21, 2: 6, 3: 43, 4: 29, 5: 35, 6: 16, 7: 17 };
+
+  it('로또 당첨 결과를 올바르게 계산한다.', () => {
+    const lottos = [];
+
+    lottoNumsArr.forEach(lottoNums => {
+      const lotto = new Lotto();
+      lotto.numbers = lottoNums;
+      lottos.push(lotto);
+    });
+
+    compareNumbers(lottos, winningNumbers);
+  });
 });
