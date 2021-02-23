@@ -22,3 +22,34 @@ body {
   width: 30px;
   height: 36px;
 }
+
+button:disabled {
+  pointer-events: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.lotto-numbers {
+  font-size: 1rem;
+}
+
+.lotto-list .lotto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lotto-list .lotto .lotto-numbers {
+  display: none;
+  padding-left: 5px;
+}
+
+.lotto-list.show-number {
+  flex-direction: column;
+}
+
+.lotto-list.show-number .lotto .lotto-numbers {
+  display: inline;
+}
