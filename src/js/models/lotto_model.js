@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:src/js/model.js
 <<<<<<< HEAD
 class LottoModel {
@@ -40,10 +41,12 @@ import { INIT } from "./constant.js"
 import { INIT } from "../constants/constant.js"
 >>>>>>> 06832f7... refactor: 디렉터리 구조 변경 및 ticket.js 추가:src/js/models/lotto_model.js
 
+=======
+>>>>>>> 30862ad... refactor: INIT 상수 제거
 class LottoModel {
   constructor() {
-    this._lottos = INIT.LOTTOS
-    this._detail = INIT.DETAIL
+    this._lottos = []
+    this._detail = false
   }
 
   get lottos() {
@@ -71,8 +74,8 @@ class LottoModel {
   }
 
   init() {
-    this._lottos = INIT.LOTTOS
-    this._detail = INIT.DETAIL
+    this._lottos = []
+    this._detail = false
   }
 }
 export default LottoModel
