@@ -53,9 +53,9 @@ const createWinningNumberContainer = () => {
     if (
       [...numbersSet].some((number) => {
         return (
-          Number.isInteger(number) &&
-          number < Lotto.MIN_NUMBER &&
-          Lotto.MAX_NUMBER < number
+          !Number.isInteger(number) ||
+          number < Lotto.MIN_NUMBER ||
+          number > Lotto.MAX_NUMBER
         );
       })
     ) {
