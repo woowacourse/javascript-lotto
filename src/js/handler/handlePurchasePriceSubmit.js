@@ -1,6 +1,5 @@
 import Ticket from '../model/Ticket.js';
 import { $ } from '../utils/querySelector.js';
-import { isValidPrice } from '../utils/validator.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
@@ -29,6 +28,10 @@ const setLotto = (lotto, amountOfLottoTicket) => {
     ticket.setNumbers(generateLottoNumber());
     lotto.addTicket(ticket);
   }
+};
+
+const isValidPrice = (price) => {
+  return price >= VALUE.LOTTO.TICKET_PRICE;
 };
 
 export const handlePurchasePriceSubmit = (lotto) => {

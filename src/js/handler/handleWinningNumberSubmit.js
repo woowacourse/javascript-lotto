@@ -1,6 +1,5 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
-import { isDuplicate, isValidRange } from '../utils/validator.js';
 import { openModal, renderModal } from '../view/viewModalPage.js';
 import { setTicketResult } from '../components/setTicketResult.js';
 
@@ -27,6 +26,14 @@ const getTotalYield = (lotto) => {
   }, 0);
 
   return Number(((totalProfit / lotto.purchasePrice) * 100).toFixed(2));
+};
+
+const isDuplicate = (nums) => {
+  return new Set(nums).size !== nums.length;
+};
+
+const isValidRange = (num) => {
+  return VALUE.LOTTO.MIN_NUM <= num && num <= VALUE.LOTTO.MAX_NUM;
 };
 
 export const handleWinningNumberSubmit = (lotto) => {
