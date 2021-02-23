@@ -18,6 +18,8 @@ const JS_SELECTOR = {
   MODAL: {
     PROFIT_RATE_PARAGRAPH: "modal__profit-rate",
     RESTART_BUTTON: "modal__restart-button",
+    WINNING_MONEY_UNIT: "modal__winning-money-unit",
+    WINNING_COUNT: "modal__winning-count",
   },
 };
 

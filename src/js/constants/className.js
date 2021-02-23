@@ -10,6 +10,7 @@ const CLASSNAME = {
   MODAL: {
     toString: () => "modal",
     CLOSE: "modal-close",
+    OPEN: "open",
   },
   COMMON: {
     HIDDEN: "--hidden",
