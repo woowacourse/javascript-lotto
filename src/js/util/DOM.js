@@ -1,116 +1,118 @@
 /* eslint-disable max-lines-per-function */
 
 export const $ = (() => {
-  const constructor = function (selector, parentNode) {
-    if (!selector) {
-      return;
-    }
-    this.targets = parentNode.querySelectorAll(selector);
-    this.target = this.targets.length === 1 && this.targets[0];
-  };
-
-  constructor.prototype.each = function (callBack) {
-    if (!callBack || typeof callBack !== 'function') {
-      return;
+  class DOM {
+    constructor(selector, parentNode) {
+      if (!selector) {
+        return;
+      }
+      this.targets = parentNode.querySelectorAll(selector);
+      this.target = this.targets.length === 1 && this.targets[0];
     }
 
-    this.targets.forEach((target, idx) => callBack(target, idx));
+    each(callBack) {
+      if (!callBack || typeof callBack !== 'function') {
+        return;
+      }
 
-    return this;
-  };
+      this.targets.forEach((target, idx) => callBack(target, idx));
 
-  constructor.prototype.map = function (callBack) {
-    if (!callBack || typeof callBack !== 'function') {
-      return;
+      return this;
     }
 
-    return [...this.targets].map((target, idx) => callBack(target, idx));
-  };
+    map(callBack) {
+      if (!callBack || typeof callBack !== 'function') {
+        return;
+      }
 
-  constructor.prototype.filter = function (callBack) {
-    if (!callBack || typeof callBack !== 'function') {
-      return;
+      return [...this.targets].map((target, idx) => callBack(target, idx));
     }
 
-    return [...this.targets].filter((target, idx) => callBack(target, idx));
-  };
+    filter(callBack) {
+      if (!callBack || typeof callBack !== 'function') {
+        return;
+      }
 
-  constructor.prototype.addClass = function (className) {
-    this.each(target => target.classList.add(className));
+      return [...this.targets].filter((target, idx) => callBack(target, idx));
+    }
 
-    return this;
-  };
+    setEvent(type, eventHandler) {
+      this.each(target => target.addEventListener(type, eventHandler));
 
-  constructor.prototype.removeClass = function (className) {
-    this.each(target => target.classList.remove(className));
+      return this;
+    }
 
-    return this;
-  };
+    addClass(className) {
+      this.each(target => target.classList.add(className));
 
-  constructor.prototype.toggleClass = function (className) {
-    this.each(target => target.classList.toggle(className));
+      return this;
+    }
 
-    return this;
-  };
+    removeClass(className) {
+      this.each(target => target.classList.remove(className));
 
-  constructor.prototype.setEvent = function (type, eventHandler) {
-    this.each(target => target.addEventListener(type, eventHandler));
+      return this;
+    }
 
-    return this;
-  };
+    toggleClass(className) {
+      this.each(target => target.classList.toggle(className));
 
-  constructor.prototype.getValue = function () {
-    return this.target.value;
-  };
+      return this;
+    }
 
-  constructor.prototype.setValue = function (value) {
-    this.each(target => {
-      target.value = value;
-    });
-  };
+    getValue() {
+      return this.target.value;
+    }
 
-  constructor.prototype.enable = function () {
-    this.each(target => {
-      target.disabled = false;
-    });
-  };
+    setValue(value) {
+      this.each(target => {
+        target.value = value;
+      });
+    }
 
-  constructor.prototype.disable = function () {
-    this.each(target => {
-      target.disabled = true;
-    });
-  };
+    enable() {
+      this.each(target => {
+        target.disabled = false;
+      });
+    }
 
-  constructor.prototype.show = function () {
-    this.each(target => {
-      target.style.display = 'block';
-    });
-  };
+    disable() {
+      this.each(target => {
+        target.disabled = true;
+      });
+    }
 
-  constructor.prototype.hide = function () {
-    this.each(target => {
-      target.style.display = 'none';
-    });
-  };
+    show() {
+      this.each(target => {
+        target.style.display = 'block';
+      });
+    }
 
-  constructor.prototype.innerText = function (text) {
-    this.each(target => {
-      target.innerText = text;
-    });
-  };
+    hide() {
+      this.each(target => {
+        target.style.display = 'none';
+      });
+    }
 
-  constructor.prototype.innerHTML = function (html) {
-    this.each(target => {
-      target.innerHTML = html;
-    });
-  };
+    innerText(text) {
+      this.each(target => {
+        target.innerText = text;
+      });
+    }
 
-  constructor.prototype.isCheckedInput = function () {
-    return this.target.checked;
-  };
+    innerHTML(html) {
+      this.each(target => {
+        target.innerHTML = html;
+      });
+    }
+
+    isCheckedInput() {
+      return this.target.checked;
+    }
+  }
 
   const instantiate = (selector, parentNode = document) => {
-    return new constructor(selector, parentNode);
+    return new DOM(selector, parentNode);
   };
 
   return instantiate;

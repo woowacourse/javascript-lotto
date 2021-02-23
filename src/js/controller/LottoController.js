@@ -5,8 +5,8 @@ export class LottoController {
   $purchaseAmountInput = $('#purchase-amount-input');
   $purchaseAmountSubmit = $('#purchase-amount-submit');
   $lottoToggle = $('#lotto-numbers-toggle-button');
-  $winningNumberInputs = $('[data-winning-number]');
   $resultForm = $('#lotto-result-form');
+  $winningNumberInputs = $('[data-winning-number]');
   $modal = $('#modal');
   $modalClose = $('#modal-close');
   $resetButton = $('#reset-button');
@@ -19,8 +19,8 @@ export class LottoController {
   initEvent() {
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
-    this.$winningNumberInputs.setEvent('input', this.limitInputLength.bind(this));
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
+    this.$winningNumberInputs.setEvent('input', this.limitInputLength.bind(this));
     this.$modalClose.setEvent('click', () => this.$('#modal').removeClass('open'));
     this.$resetButton.setEvent('click', this.reset.bind(this));
   }
@@ -31,7 +31,7 @@ export class LottoController {
     const alertMessage = validator.purchaseAmount(money);
 
     if (alertMessage) {
-      this.handleInputException(this.$purchaseAmountInput, alertMessage);
+      this.handleInvalidInput(this.$purchaseAmountInput, alertMessage);
 
       return;
     }
@@ -43,7 +43,7 @@ export class LottoController {
     this.$purchaseAmountSubmit.disable();
   }
 
-  handleInputException($input, alertMessage) {
+  handleInvalidInput($input, alertMessage) {
     alert(alertMessage);
     $input.setValue('');
   }
@@ -74,7 +74,7 @@ export class LottoController {
     const alertMessage = validator.lottoNumbers(numbers);
 
     if (alertMessage) {
-      this.handleInputException(this.$winningNumberInputs, alertMessage);
+      this.handleInvalidInput(this.$winningNumberInputs, alertMessage);
 
       return;
     }
