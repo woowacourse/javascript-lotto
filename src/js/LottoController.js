@@ -64,8 +64,21 @@ export default class LottoController {
       return;
     }
     this.winningNumbers = winningNumbers;
-    this.winningNumberInput.showModal();
-    console.log(this.lottos);
     compareNumbers(this.lottos, this.winningNumbers);
+    this.lottos.forEach(lotto => lotto.updateRank());
+    this.winningNumberInput.showModal(this.countByRank());
+    console.log(this.lottos);
+  }
+
+  countByRank() {
+    const rankCounts = Array(5).fill(0);
+
+    this.lottos.forEach(lotto => {
+      if (lotto.rank !== Infinity) {
+        rankCounts[lotto.rank - 1] += 1;
+      }
+    });
+
+    return rankCounts;
   }
 }
