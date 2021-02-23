@@ -95,6 +95,15 @@ const createWinningNumberContainer = () => {
 
   const render = () => {
     const { lottos } = store.getState();
+
+    if (lottos.length === 0) {
+      $$inputs.forEach(($input) => $input.clear());
+      $bonusInput.clear();
+
+      $container.hide();
+      return;
+    }
+
     if (lottos && $container.classList.contains(CLASSNAME.COMMON.HIDDEN)) {
       $container.show();
     }

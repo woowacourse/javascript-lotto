@@ -34,6 +34,11 @@ const createLottoDetailContainer = () => {
   const render = () => {
     const { lottos } = store.getState();
 
+    if (lottos.length === 0) {
+      $lottoDetailContainer.hide();
+      return;
+    }
+
     $lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
 
     $lottoIconWrapper.innerHTML = lottos
