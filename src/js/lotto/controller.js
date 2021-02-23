@@ -44,8 +44,8 @@ class LottoController {
     this.model.init()
     for (let i = 0; i < count; i++) {
       const newLotto = new Lotto()
-      newLotto.gernerateRandomNumbers()
-      this.model.addLotto(newLotto.getNumbers())
+      newLotto.generateRandomNumbers()
+      this.model.addLotto(newLotto.numbers)
     }
     this.managePocket()
   }

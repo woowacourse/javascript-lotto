@@ -2,23 +2,25 @@ import { getRandomNumber, sortByNumber } from "../utils/util.js"
 import { LOTTO } from "../constants/constant.js"
 
 class Lotto {
+  #numbers
+
   constructor() {
-    this.numbers = new Set()
+    this.#numbers = new Set()
   }
 
-  gernerateRandomNumbers() {
-    while (this.numbers.size !== LOTTO.SIZE) {
-      this.numbers.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM))
+  generateRandomNumbers() {
+    while (this.#numbers.size !== LOTTO.SIZE) {
+      this.#numbers.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM))
     }
-    this.sortByNumber()
+    this.#sortByNumber()
   }
 
-  sortByNumber() {
-    this.numbers = sortByNumber([...this.numbers])
+  #sortByNumber() {
+    this.#numbers = new Set(sortByNumber([...this.#numbers]))
   }
 
-  getNumbers() {
-    return this.numbers
+  get numbers() {
+    return [...this.#numbers]
   }
 }
 
