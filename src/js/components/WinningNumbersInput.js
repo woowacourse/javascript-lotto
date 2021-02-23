@@ -35,9 +35,12 @@ export default class WinningNumbersInput {
   onKeyUpNumberInput(e) {
     this.onCursorMoveNextInput(e);
     const winningNumbers = Array.from(this.$winningNumberInputs).map(input =>
-      Number(input.value),
+      input.value === '' ? '' : Number(input.value),
     );
-    const bonusNumber = Number(this.$bonusNumberInput.value);
+    const bonusNumber =
+      this.$bonusNumberInput.value === ''
+        ? ''
+        : Number(this.$bonusNumberInput.value);
     const [text, result] = LottoManager.validateWinningNumbersInputValue(
       winningNumbers,
       bonusNumber,

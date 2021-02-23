@@ -21,31 +21,21 @@ describe('LOTTO - 구매할 금액 입력 테스트', () => {
       });
   });
 
-  it('금액이 1000원 미만으로 입력된 경우, alert에 오류 메시지를 출력한다.', () => {
-    const alertStub = cy.stub();
-    cy.on('window:alert', alertStub);
-
+  it('금액이 1000원 미만으로 입력된 경우, 확인 버튼이 disabled 상태 및 에러메시지가 화면에 출력된다.', () => {
     cy.get('#lotto-purchase-input').type('100');
-    cy.get('#lotto-purchase-btn')
-      .click()
-      .then(() => {
-        expect(alertStub.getCall(0)).to.be.calledWith(
-          ERROR_MESSAGE.PAYMENT_AMOUNT,
-        );
-      });
+    cy.get('#lotto-purchase-btn').should('be.disabled');
+    cy.get('[data-section=purchaseInputMessage').should(
+      'have.text',
+      ERROR_MESSAGE.PAYMENT_AMOUNT,
+    );
   });
 
-  it('금액이 소수로 입력된 경우, alert에 오류 메시지를 출력한다.', () => {
-    const alertStub = cy.stub();
-    cy.on('window:alert', alertStub);
-
+  it('금액이 소수로 입력된 경우, 확인 버튼이 disabled 상태 및 에러메시지가 화면에 출력된다.', () => {
     cy.get('#lotto-purchase-input').type('100.2');
-    cy.get('#lotto-purchase-btn')
-      .click()
-      .then(() => {
-        expect(alertStub.getCall(0)).to.be.calledWith(
-          ERROR_MESSAGE.NOT_INTEGER_NUMBER,
-        );
-      });
+    cy.get('#lotto-purchase-btn').should('be.disabled');
+    cy.get('[data-section=purchaseInputMessage').should(
+      'have.text',
+      ERROR_MESSAGE.NOT_INTEGER_NUMBER,
+    );
   });
 });
