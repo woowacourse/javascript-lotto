@@ -4,17 +4,19 @@ import { getKRString } from '../utils/format.js';
 import lottoGameView from './view.js';
 import { LOTTO_PRICE } from '../constants.js';
 
-
 const getTotalProfit = (rankItemList) => {
-  return rankItemList.reduce((acc, rankItem) => acc + rankItem.money * rankItem.winCount, 0);
-}
+  return rankItemList.reduce(
+    (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
+    0
+  );
+};
 
 export default {
   purchaseLottoItems(cost) {
     const lottoItemCount = cost / LOTTO_PRICE;
     lottoGame.initLottoItemList();
     lottoGame.addLottoItems(lottoItemCount);
-    lottoGameView.renderResult(lottoGame.lottoItemList);
+    lottoGameView.displayResult(lottoGame.lottoItemList);
   },
 
   toggleLottoItemNumbers(checked) {
@@ -34,11 +36,16 @@ export default {
     lottoGame.assignMatchCount();
     const rankItemList = lottoGame.getRankItemList();
     const totalProfit = getTotalProfit(rankItemList);
-    const profitRate = getProfitRate(lottoGame.totalCost, totalProfit)
+    const profitRate = getProfitRate(lottoGame.totalCost, totalProfit);
     lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
   },
 
   closeResultModal() {
     lottoGameView.closeResultModal();
+  },
+
+  restart() {
+    lottoGame.init();
+    lottoGameView.init();
   },
 };

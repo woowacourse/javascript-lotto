@@ -6,6 +6,7 @@ import {
   $costInput,
   $modalClose,
   $winningAndBonusNumberWrapper,
+  $restartButton
 } from '../elements.js';
 import { $ } from '../utils/querySelector.js';
 import { MESSAGE } from '../constants.js';
@@ -72,6 +73,10 @@ const onWinningAndBonusNumberInput = (e) => {
   }
 }
 
+const onRestart = () => {
+  service.restart();
+}
+
 export default {
   addAllEventListener() {
     $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
@@ -80,5 +85,6 @@ export default {
     $modalClose.addEventListener('click', onResultModalClose);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
     $winningAndBonusNumberWrapper.addEventListener('focusout', onWinningAndBonusNumberInput);
+    $restartButton.addEventListener('click', onRestart)
   },
 };

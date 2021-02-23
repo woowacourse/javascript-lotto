@@ -10,7 +10,7 @@ import {
 export default class LottoGame {
   #lottoItemList = [];
   #winningNumberList = [];
-  #bonusNumber;
+  #bonusNumber = null;
 
   get lottoItemList() {
     return this.#lottoItemList;
@@ -20,8 +20,14 @@ export default class LottoGame {
     return this.#winningNumberList;
   }
 
-  get totalCost(){
-    return this.#lottoItemList.length * LOTTO_PRICE
+  get totalCost() {
+    return this.#lottoItemList.length * LOTTO_PRICE;
+  }
+
+  init() {
+    this.#lottoItemList = [];
+    this.#winningNumberList = [];
+    this.#bonusNumber = null;
   }
 
   #getLottoNumberList() {
@@ -50,8 +56,7 @@ export default class LottoGame {
   #getWinCountWithBonus(matchCount) {
     return this.#lottoItemList.filter(
       (lottoItem) =>
-        lottoItem.bonusNumberMatched &&
-        lottoItem.matchCount === matchCount
+        lottoItem.bonusNumberMatched && lottoItem.matchCount === matchCount
     ).length;
   }
 
