@@ -8,7 +8,7 @@ export default class WinningNumberInput extends View {
     this.$showResultButton = $('.open-result-modal-button');
     this.$modalClose = $('.modal-close');
     this.$modal = $('.modal');
-    this.winningNumbers = [];
+    this.winningNumbers = {};
 
     this.bindNumberInputEvent();
     this.bindModalEvent();
@@ -17,12 +17,9 @@ export default class WinningNumberInput extends View {
   bindNumberInputEvent() {
     $$('.winning-number').forEach(winningNumber => {
       winningNumber.addEventListener('change', () => {
-        this.winningNumbers.push(winningNumber.value);
+        this.winningNumbers[winningNumber.dataset.indexNum] =
+          winningNumber.value;
       });
-    });
-
-    $('.bonus-number').addEventListener('change', () => {
-      this.winningNumbers.push($('.bonus-number').value);
     });
 
     $('.bonus-number').addEventListener('input', () => {
@@ -34,19 +31,19 @@ export default class WinningNumberInput extends View {
     this.$element.addEventListener('submit', e => {
       this.handleShowResult(e);
     });
-    this.$modalClose.addEventListener('click', this.onModalClose.bind(this));
+    this.$modalClose.addEventListener('click', this.closeModal.bind(this));
   }
 
   handleShowResult(e) {
     e.preventDefault();
-    console.log(this.winningNumbers);
+    this.emit('submitNumbers', this.winningNumbers);
   }
 
-  onModalShow() {
+  showModal() {
     this.$modal.classList.add('open');
   }
 
-  onModalClose() {
+  closeModal() {
     this.$modal.classList.remove('open');
   }
 

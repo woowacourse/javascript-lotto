@@ -1,7 +1,10 @@
 // import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
 import { LOTTO_NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
-import { isCorrectPurchaseUnit } from './utils/lottoValidation.js';
+import {
+  isCorrectPurchaseUnit,
+  isUniqueWinningNumber,
+} from './utils/lottoValidation.js';
 import { $ } from './utils/dom.js';
 
 import WinningNumberInput from './views/WinningNumberInput.js';
@@ -13,6 +16,7 @@ export default class LottoController {
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
     this.winningNumberInput = new WinningNumberInput($('#input-lotto-nums'));
     this.lottos = [];
+    this.winningNumbers = {};
   }
 
   init() {
@@ -25,6 +29,10 @@ export default class LottoController {
   bindEvents() {
     this.inputPriceView.on('submitPrice', e =>
       this.inputPriceHandler(e.detail)
+    );
+
+    this.winningNumberInput.on('submitNumbers', e =>
+      this.inputNumbersHandler(e.detail)
     );
   }
 
@@ -47,5 +55,14 @@ export default class LottoController {
     this.purchasedLottosView.renderTotalLottoCount(this.lottos.length);
     this.purchasedLottosView.renderLottoIcons(this.lottos);
     this.winningNumberInput.show();
+  }
+
+  inputNumbersHandler(winningNumbers) {
+    if (!isUniqueWinningNumber(winningNumbers)) {
+      alert(ALERT_MESSAGES.DUPLICATE_NUMS);
+      return;
+    }
+    this.winningNumbers = winningNumbers;
+    this.winningNumberInput.showModal();
   }
 }
