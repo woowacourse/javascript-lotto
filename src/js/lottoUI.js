@@ -113,32 +113,32 @@ export default class LottoUI {
                 <tr class="text-center">
                   <td class="p-3">3개</td>
                   <td class="p-3">5,000</td>
-                  <td class="p-3">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="5">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">4개</td>
                   <td class="p-3">50,000</td>
-                  <td class="p-3">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="4">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개</td>
                   <td class="p-3">1,500,000</td>
-                  <td class="p-3">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="3">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개 + 보너스볼</td>
                   <td class="p-3">30,000,000</td>
-                  <td class="p-3">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="2">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">6개</td>
                   <td class="p-3">2,000,000,000</td>
-                  <td class="p-3">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="1">n개</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="text-center font-bold">당신의 총 수익률은 %입니다.</p>
+          <p class="${DOM_CLASSES.MODAL_EARNING_RATE} text-center font-bold">당신의 총 수익률은 n%입니다.</p>
           <div class="d-flex justify-center mt-5">
             <button type="button" class="btn btn-cyan">다시 시작하기</button>
           </div>
