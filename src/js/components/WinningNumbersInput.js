@@ -21,6 +21,28 @@ export default class WinningNumbersInput {
     this.lottoManager.subscribe(this.render.bind(this));
   }
 
+  onKeyUpNumberInput(e) {
+    if (e.target.value.length > 1) {
+      e.target.value = e.target.value.slice(0, 2);
+      if (e.target.nextElementSibling) e.target.nextElementSibling.focus();
+      else {
+        this.$bonusNumberInput.focus();
+      }
+    }
+
+    const winningNumbers = Array.from(this.$winningNumberInputs).map(input =>
+      Number(input.value),
+    );
+    const bonusNumber = Number(this.$bonusNumberInput.value);
+    if (
+      LottoManager.validateWinningNumbersInputValue(winningNumbers, bonusNumber)
+    ) {
+      this.$openResultModalButton.disabled = false;
+    } else {
+      this.$openResultModalButton.disabled = true;
+    }
+  }
+
   onClickButton() {
     const winningNumbers = this.$winningNumberInputs.map(({ value }) => value);
     const bonusNumber = this.$bonusNumberInput.value;
@@ -44,6 +66,13 @@ export default class WinningNumbersInput {
     this.$openResultModalButton.addEventListener(
       'click',
       this.onClickButton.bind(this),
+    );
+    this.$winningNumberInputs.forEach($elem =>
+      $elem.addEventListener('keyup', this.onKeyUpNumberInput.bind(this)),
+    );
+    this.$bonusNumberInput.addEventListener(
+      'keyup',
+      this.onKeyUpNumberInput.bind(this),
     );
   }
 
