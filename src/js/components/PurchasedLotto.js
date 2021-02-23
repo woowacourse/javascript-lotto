@@ -23,12 +23,23 @@ export default class PurchasedLotto {
     }
   }
 
+  setState({ lottoTickets }) {
+    this.lottoTickets = lottoTickets;
+    this.render();
+  }
+
   showNumbers() {
     this.$lottoTicketContainer.classList.add('flex-col-with-num');
   }
 
   hideNumbers() {
     this.$lottoTicketContainer.classList.remove('flex-col-with-num');
+  }
+
+  reset() {
+    this.$purchasedLottoSection.classList.add('d-none');
+    this.$lottoNumbersToggleButton.checked = false;
+    this.hideNumbers();
   }
 
   createLottoTicketHTML(lottoTicket) {
@@ -45,6 +56,7 @@ export default class PurchasedLotto {
     const numOfLotto = this.lottoTickets.length;
 
     if (!numOfLotto) {
+      this.reset();
       return;
     }
 
@@ -55,10 +67,5 @@ export default class PurchasedLotto {
     if (this.$lottoNumbersToggleButton.checked) {
       this.showNumbers();
     }
-  }
-
-  setState({ lottoTickets }) {
-    this.lottoTickets = lottoTickets;
-    this.render();
   }
 }
