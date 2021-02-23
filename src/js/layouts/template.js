@@ -26,7 +26,6 @@ class Template {
             <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                     <input
-                        id="pocket-toggle-number"
                         type="checkbox"
                         class="lotto-numbers-toggle-button"
                     />
