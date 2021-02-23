@@ -37,7 +37,7 @@ const getWinningCount = (nums) => {
   return nums.length - new Set(nums).size;
 };
 
-export const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
+export const setTicketResult = (ticket, winningNumbers, bonusNumber) => {
   const winnigCount = getWinningCount([...ticket.numbers, ...winningNumbers]);
   const hasBonusCount = ticket.numbers.includes(bonusNumber);
   const winningRank = getWinningRank(winnigCount, hasBonusCount);

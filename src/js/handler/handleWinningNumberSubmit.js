@@ -2,7 +2,7 @@ import { $, $$ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { isDuplicate, isValidRange } from '../utils/validator.js';
 import { openModal, renderModal } from '../view/viewModalPage.js';
-import { getTicketResult } from '../components/getTicketResult.js';
+import { setTicketResult } from '../components/setTicketResult.js';
 
 const getRankCountMap = (lotto) => {
   const rankCountMap = new Map([
@@ -54,7 +54,7 @@ export const handleWinningNumberSubmit = (lotto) => {
   }
 
   lotto.tickets.forEach((ticket) => {
-    getTicketResult(ticket, winningNumbers, bonusNumber);
+    setTicketResult(ticket, winningNumbers, bonusNumber);
   });
 
   renderModal(getRankCountMap(lotto), getTotalYield(lotto));
