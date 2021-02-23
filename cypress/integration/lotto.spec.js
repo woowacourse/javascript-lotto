@@ -1,4 +1,5 @@
 import { ALERT_MESSAGE } from '../../src/js/constants.js';
+import Lotto from '../../src/js/objects/Lotto.js';
 
 describe('LOTTO 테스트', () => {
   beforeEach(() => {
@@ -6,8 +7,8 @@ describe('LOTTO 테스트', () => {
   });
 
   it('사용자가 로또 구입 금액을 입력하고 확인 버튼을 누르면 금액에 맞는 로또가 화면에 보여진다.', () => {
-    cy.get('.lotto-list-container').should('not.be.visible');
-    cy.get('.winning-number-form-container').should('not.be.visible');
+    cy.get('.lotto-list-section').should('not.be.visible');
+    cy.get('.winning-number-form-section').should('not.be.visible');
 
     // Note: Cypress 체크 시 autofocus가 잡히지 않는 문제가 있어 수동으로 focus를 잡아둠
     cy.get('#money-input').should('have.attr', 'autofocus', 'autofocus').focus();
@@ -15,8 +16,8 @@ describe('LOTTO 테스트', () => {
     cy.focused().should('have.attr', 'id', 'money-input').type('10000');
     cy.get('#money-submit-button').click();
 
-    cy.get('.lotto-list-container').should('be.visible');
-    cy.get('.winning-number-form-container').should('be.visible');
+    cy.get('.lotto-list-section').should('be.visible');
+    cy.get('.winning-number-form-section').should('be.visible');
 
     cy.get('.lotto-count').should('have.text', '10');
     cy.get('.lotto').should('have.length', '10');
@@ -119,8 +120,8 @@ describe('LOTTO 테스트', () => {
     cy.get('.restart-button').click();
 
     cy.get('#money-input').should('have.value', '').and('be.focused');
-    cy.get('.lotto-list-container').should('not.be.visible');
-    cy.get('.winning-number-form-container').should('not.be.visible');
+    cy.get('.lotto-list-section').should('not.be.visible');
+    cy.get('.winning-number-form-section').should('not.be.visible');
     cy.get('.modal').should('not.be.visible');
   });
 
@@ -156,15 +157,40 @@ describe('LOTTO 테스트', () => {
   });
 
   it('(Assertion) 로또 번호와 당첨 번호를 비교하여 일치하는 갯수가 정확하게 나오는지 확인한다.', () => {
-    const lottoNumbers = [9, 11, 3, 25, 21, 45];
-    const winningNumbers = [9, 11, 3, 25, 21, 20];
+    const winningNumbers = [3, 9, 11, 20, 21, 25];
     const bonusNumber = 45;
-    // TODO : 결과 확인하는 메서드 추가. (import)
-    expect(getResult(lottoNumbers, winningNumbers, bonusNumber)).to.be.equal(2);
+
+    const lottos = [
+      {
+        sample: new Lotto([3, 9, 11, 20, 21, 25]),
+        rank: 'first',
+      },
+      {
+        sample: new Lotto([3, 9, 11, 20, 21, 45]),
+        rank: 'second',
+      },
+      {
+        sample: new Lotto([3, 9, 11, 20, 21, 44]),
+        rank: 'third',
+      },
+      {
+        sample: new Lotto([3, 9, 11, 20, 22, 44]),
+        rank: 'fourth',
+      },
+      {
+        sample: new Lotto([3, 9, 11, 19, 22, 44]),
+        rank: 'fifth',
+      },
+    ];
+
+    lottos.forEach(({ sample, rank }) => {
+      expect(sample.getWinningRank(winningNumbers, bonusNumber)).to.be.equal(rank);
+    });
   });
 
-  it('입력된 당첨 번호가 1 ~ 45 사이의 숫자가 아니거나, 중복되면 경고창을 띄운다.', () => {
-    const winningNumbers = [9, 11, 9, -1, 21, 46];
+  it('입력된 당첨 번호가 중복되면 경고창을 띄운다.', () => {
+    const winningNumbers = [9, 11, 9, 1, 21, 45];
+    const bonusNumber = 10;
     const alertStub = cy.stub();
 
     cy.get('#money-input').type('10000');
@@ -173,6 +199,8 @@ describe('LOTTO 테스트', () => {
     cy.get('.winning-number').each((winningNumberInput, index) => {
       cy.wrap(winningNumberInput).type(winningNumbers[index]);
     });
+
+    cy.get('.bonus-number').type(bonusNumber);
 
     cy.on('window:alert', alertStub);
     cy.get('.open-result-modal-button')
