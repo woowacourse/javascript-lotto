@@ -1,4 +1,5 @@
 import { $ } from '../utils/dom.js';
+import { lottoManager } from './App.js';
 
 export default class LottoDisplay {
   constructor(props) {
@@ -11,8 +12,7 @@ export default class LottoDisplay {
   }
 
   setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
+    lottoManager.subscribe(this.render.bind(this));
   }
 
   initState() {
@@ -38,7 +38,7 @@ export default class LottoDisplay {
   }
 
   createTotalLottoCountHTML() {
-    return `총 ${this.lottoManager.lottos.length}개를 구매하였습니다.`;
+    return `총 ${lottoManager.lottos.length}개를 구매하였습니다.`;
   }
 
   createLottoHTML() {
@@ -49,7 +49,7 @@ export default class LottoDisplay {
           )}</span>`
         : '';
 
-    return this.lottoManager.lottos
+    return lottoManager.lottos
       .map(
         ({ numbers }) =>
           `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${lottoNumbersHTML(
@@ -66,7 +66,7 @@ export default class LottoDisplay {
   }
 
   render() {
-    this.lottoManager.lottos.length
+    lottoManager.lottos.length
       ? this.$target.classList.remove('d-none')
       : this.$target.classList.add('d-none');
 

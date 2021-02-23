@@ -1,5 +1,6 @@
 import LottoManager from '../model/LottoManager.js';
 import { $, $$, clearInputValue } from '../utils/dom.js';
+import { lottoManager } from './App.js';
 
 export default class WinningNumbersInput {
   constructor(props) {
@@ -18,8 +19,7 @@ export default class WinningNumbersInput {
   }
 
   setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
+    lottoManager.subscribe(this.render.bind(this));
   }
 
   onCursorMoveNextInput({ target }) {
@@ -57,10 +57,7 @@ export default class WinningNumbersInput {
     const winningNumbers = this.$winningNumberInputs.map(({ value }) => value);
     const bonusNumber = this.$bonusNumberInput.value;
 
-    this.lottoManager.decideWinners(
-      winningNumbers.map(Number),
-      Number(bonusNumber),
-    );
+    lottoManager.decideWinners(winningNumbers.map(Number), Number(bonusNumber));
     this.$winningInputMessage.textContent = '';
   }
 
@@ -79,7 +76,7 @@ export default class WinningNumbersInput {
   }
 
   render() {
-    if (this.lottoManager.lottos.length) {
+    if (lottoManager.lottos.length) {
       this.$target.classList.remove('d-none');
     } else {
       this.$target.classList.add('d-none');

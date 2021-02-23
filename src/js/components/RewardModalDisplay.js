@@ -1,4 +1,5 @@
 import { $, $$ } from '../utils/dom.js';
+import { lottoManager } from './App.js';
 
 export default class RewardModalDisplay {
   constructor(props) {
@@ -9,8 +10,7 @@ export default class RewardModalDisplay {
   }
 
   setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
+    lottoManager.subscribe(this.render.bind(this));
   }
 
   selectDOM() {
@@ -31,7 +31,7 @@ export default class RewardModalDisplay {
   }
 
   onRestart() {
-    this.lottoManager.resetState();
+    lottoManager.resetState();
   }
 
   onClickOutsideModal(e) {
@@ -50,12 +50,12 @@ export default class RewardModalDisplay {
   }
 
   render() {
-    if (Object.keys(this.lottoManager.winningCount).length !== 0) {
+    if (Object.keys(lottoManager.winningCount).length !== 0) {
       this.$winningCountTexts.forEach($winningCountText => {
         const key = $winningCountText.getAttribute('data-td');
-        $winningCountText.textContent = `${this.lottoManager.winningCount[key]}개`;
+        $winningCountText.textContent = `${lottoManager.winningCount[key]}개`;
       });
-      this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager.calculateProfitMargin()}% 입니다.`;
+      this.$profitText.textContent = `당신의 총 수익률은 ${lottoManager.calculateProfitMargin()}% 입니다.`;
 
       this.onModalShow();
     } else {

@@ -1,8 +1,9 @@
 import { $, clearInputValue } from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
 import { mod, divide } from '../utils/common.js';
-import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
+import { GUIDE_MESSAGE } from '../utils/message.js';
 import LottoManager from '../model/LottoManager.js';
+import { lottoManager } from './App.js';
 
 export default class LottoPurchaseInput {
   constructor(props) {
@@ -14,12 +15,11 @@ export default class LottoPurchaseInput {
   }
 
   setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.clear.bind(this));
+    lottoManager.subscribe(this.clear.bind(this));
   }
 
   clear() {
-    if (this.lottoManager.lottos.length === 0) {
+    if (lottoManager.lottos.length === 0) {
       clearInputValue(this.$purchaseInput);
       this.$purchaseInput.disabled = false;
       this.$purchaseButton.disabled = false;
@@ -79,6 +79,6 @@ export default class LottoPurchaseInput {
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
     this.$purchaseInput.disabled = true;
     this.$purchaseButton.disabled = true;
-    this.lottoManager.createLottos(lottoCount);
+    lottoManager.createLottos(lottoCount);
   }
 }
