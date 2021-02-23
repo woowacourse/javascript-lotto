@@ -56,11 +56,14 @@ class LottoApp {
     if (!event.target.classList.contains('winning-number')) return;
 
     if (event.target.value.length >= 2) {
-      if (event.target.nextElementSibling) {
-        event.target.nextElementSibling.focus();
-        event.target.nextElementSibling.select();
+      const $nextInput = event.target.nextElementSibling;
+
+      if ($nextInput) {
+        $nextInput.focus();
+        $nextInput.select();
         return;
       }
+
       $('.bonus-number').focus();
       $('.bonus-number').select();
     }
@@ -69,17 +72,6 @@ class LottoApp {
   handleSubmitWinningNumbers(event) {
     event.preventDefault();
 
-    // TODO: 이벤트를 parameter로 넘기지 않는 방법 찾기
-    const numbers = this.getWinningNumbers(event);
-    if (!numbers) return;
-
-    showElement($('.modal'));
-
-    const result = this.getResult(numbers);
-    this.view.renderWinningResult(result);
-  }
-
-  getWinningNumbers(event) {
     const bonusNumber = event.target.elements['bonus-number'].valueAsNumber;
     const $winningNumbers = [...event.target.elements['winning-number']];
     const winningNumbers = $winningNumbers.map(($number) => $number.valueAsNumber);
@@ -89,12 +81,13 @@ class LottoApp {
       return;
     }
 
-    return { winningNumbers, bonusNumber };
+    showElement($('.modal'));
+
+    const result = this.getResult(winningNumbers, bonusNumber);
+    this.view.renderWinningResult(result);
   }
 
-  getResult(numbers) {
-    const { winningNumbers, bonusNumber } = numbers;
-
+  getResult(winningNumbers, bonusNumber) {
     const winningRankCounts = {
       first: 0, // 6개 일치
       second: 0, // 5개 + 보너스 숫자 일치

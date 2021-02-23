@@ -9,11 +9,8 @@ export default class Lotto {
 
   setLottoNumbers(numbers) {
     if (!numbers) {
-      this.numbers = getRandomNumberArray(
-        LOTTO.MINIMUM_NUMBER,
-        LOTTO.MAXIMUM_NUMBER,
-        LOTTO.NUMBER_COUNT
-      );
+      const { MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_COUNT } = LOTTO;
+      this.numbers = getRandomNumberArray(MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_COUNT);
     } else {
       this.numbers = numbers;
     }

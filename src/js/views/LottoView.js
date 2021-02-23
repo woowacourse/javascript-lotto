@@ -13,6 +13,7 @@ export default class LottoView {
 
   renderLottoList(lottos) {
     const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
+
     const lottoFragments = lottos.map((lotto) => {
       const fragment = document.createDocumentFragment();
       const childrenFragment = document.createDocumentFragment();
