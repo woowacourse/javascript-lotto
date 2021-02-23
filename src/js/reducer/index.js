@@ -4,7 +4,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPE.LOTTOS.ADDED:
       return {
-        target: STATE_TYPE.LOTTOS,
+        target: [STATE_TYPE.LOTTOS],
         state: {
           ...state,
           lottos: [...state.lottos, ...action.payload],
@@ -12,13 +12,17 @@ const reducer = (state, action) => {
       };
     case ACTION_TYPE.WINNING_NUMBERS.SET:
       return {
-        target: STATE_TYPE.WINNING_NUMBER,
+        target: [STATE_TYPE.WINNING_NUMBER],
         state: {
           ...state,
           winningNumber: { ...action.payload },
         },
       };
-
+    case ACTION_TYPE.CLEAR:
+      return {
+        target: [STATE_TYPE.LOTTOS, STATE_TYPE.WINNING_NUMBER],
+        state: { lottos: [], winningNumber: { numbers: [], bonusNumber: 0 } },
+      };
     default:
       return {
         state,

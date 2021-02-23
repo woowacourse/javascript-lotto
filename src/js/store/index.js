@@ -12,7 +12,9 @@ const createStore = (reducer) => {
     const { target, state: newState } = reducer(state, action);
     state = newState;
 
-    listeners[target]?.forEach((listener) => listener());
+    target.forEach((t) => {
+      listeners[t]?.forEach((listener) => listener());
+    });
   };
 
   const subscribe = (target, listener) => {
