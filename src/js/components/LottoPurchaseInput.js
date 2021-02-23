@@ -50,8 +50,8 @@ export default class LottoPurchaseInput {
   }
 
   onSubmit(e) {
-    if (this.$purchaseButton.disabled) return;
     e.preventDefault();
+    if (this.$purchaseButton.disabled) return;
     this.onPurchaseLotto();
     this.$purchaseInputMessage.textContent = '';
   }
