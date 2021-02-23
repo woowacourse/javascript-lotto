@@ -3,7 +3,6 @@ import {
   compareNumbers,
   calculateEarningRate,
 } from '../../../src/js/utils/utils.js';
-import { LOTTO_WINNING_PRICE } from '../../../src/js/utils/constants.js';
 import Lotto from '../../../src/js/Lotto.js';
 
 describe('로또 게임 테스트', () => {
@@ -140,5 +139,25 @@ describe('로또 게임 테스트', () => {
     const earningRate = (sum / purchasedPrice - 1) * 100;
 
     expect(calculateEarningRate(rankingCount, 6000)).to.be.equal(earningRate);
+  });
+
+  it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
+    clickAfterTypePrice();
+    typeWinningNumber();
+
+    cy.get('#show-result-btn').click();
+    cy.get('.modal').should('be.visible');
+
+    cy.get('#reset-btn').click();
+    cy.get('.modal').should('not.be.visible');
+
+    cy.get('#input-price-form').should('be.visible');
+    cy.get('#input-price').should('have.value', '');
+
+    cy.get('#purchased-lottos').should('not.be.visible');
+    cy.get('#input-lotto-nums').should('not.be.visible');
+    cy.get('.winning-number').each(winningNumber => {
+      cy.wrap(winningNumber).should('have.value', '');
+    });
   });
 });
