@@ -1,4 +1,4 @@
-import { LOTTO_NUMBERS } from './constants.js';
+import { LOTTO_NUMBERS, LOTTO_WINNING_PRICE } from './constants.js';
 
 export function getRandomNumber() {
   return Math.floor(Math.random() * LOTTO_NUMBERS.LOTTO_MAX_NUM) + 1;
@@ -29,4 +29,12 @@ function checkBonus(lottos, winningNumbers) {
       lotto.setMatchBonus();
     }
   });
+}
+
+export function calculateEarningRate(rankCounts, purchasedPrice) {
+  const totalProfit = rankCounts.reduce((sum, rankCount, idx) => {
+    return sum + rankCount * LOTTO_WINNING_PRICE[idx + 1];
+  }, 0);
+
+  return (totalProfit / purchasedPrice - 1) * 100;
 }

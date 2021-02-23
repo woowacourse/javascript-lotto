@@ -6,7 +6,7 @@ import {
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
 import { $ } from './utils/dom.js';
-import { compareNumbers } from './utils/utils.js';
+import { compareNumbers, calculateEarningRate } from './utils/utils.js';
 
 import WinningNumberInput from './views/WinningNumberInput.js';
 import InputPriceView from './views/InputPriceView.js';
@@ -17,7 +17,7 @@ export default class LottoController {
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
     this.winningNumberInput = new WinningNumberInput($('#input-lotto-nums'));
     this.lottos = [];
-    this.winningNumbers = {};
+    this.purchasedPrice = 0;
   }
 
   init() {
@@ -45,13 +45,14 @@ export default class LottoController {
   }
 
   inputPriceHandler(inputPrice) {
-    if (!isCorrectPurchaseUnit(inputPrice)) {
+    this.purchasedPrice = inputPrice;
+    if (!isCorrectPurchaseUnit(this.purchasedPrice)) {
       this.inputPriceView.resetInputPrice();
       alert(ALERT_MESSAGES.INCORRECT_UNIT);
       return;
     }
 
-    this.createLottos(inputPrice / LOTTO_NUMBERS.LOTTO_UNIT);
+    this.createLottos(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
     this.purchasedLottosView.show();
     this.purchasedLottosView.renderTotalLottoCount(this.lottos.length);
     this.purchasedLottosView.renderLottoIcons(this.lottos);
@@ -63,11 +64,14 @@ export default class LottoController {
       alert(ALERT_MESSAGES.DUPLICATE_NUMS);
       return;
     }
-    this.winningNumbers = winningNumbers;
-    compareNumbers(this.lottos, this.winningNumbers);
+
+    compareNumbers(this.lottos, winningNumbers);
     this.lottos.forEach(lotto => lotto.updateRank());
-    this.winningNumberInput.showModal(this.countByRank());
-    console.log(this.lottos);
+    const rankCounts = this.countByRank();
+    this.winningNumberInput.showModal(
+      rankCounts,
+      calculateEarningRate(rankCounts, this.purchasedPrice)
+    );
   }
 
   countByRank() {
