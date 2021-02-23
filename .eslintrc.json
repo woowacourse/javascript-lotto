@@ -1,0 +1,18 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "prettier", "plugin:cypress/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {},
+  "plugins": ["cypress"],
+  "ignorePatterns": [
+    "cypress/fixtures/*",
+    "cypress/plugins/*",
+    "cypress/support/*"
+  ]
+}

@@ -22,3 +22,19 @@ body {
   width: 30px;
   height: 36px;
 }
+
+.--hidden {
+  display: none;
+}
+
+.--unselectable {
+  user-select: none;
+}
+
+.lotto-numbers {
+  display: none;
+}
+
+.detail .lotto-numbers {
+  display: initial;
+}
