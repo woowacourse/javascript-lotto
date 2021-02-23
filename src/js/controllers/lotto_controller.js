@@ -1,14 +1,12 @@
-import LottoModel from "../models/lotto_model.js"
-import LottoView from "../views/lotto_view.js"
 import Validator from "../validators/lotto_validator.js"
 import { $, getQuotient } from "../util.js"
 import { TICKET, SELECTOR } from "../constants/constant.js"
 import Ticket from "../ticket.js"
 
 class LottoController {
-  constructor() {
-    this.model = new LottoModel()
-    this.view = new LottoView()
+  constructor(model, view) {
+    this.model = model
+    this.view = view
     this.validator = new Validator()
   }
 
