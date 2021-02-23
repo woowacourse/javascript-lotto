@@ -37,10 +37,10 @@ class LottoController {
 
   manageLotto() {
     const price = Number(this.getBuyInput())
-    const alertMessage = this.validator.isPriceValid(price)
 
-    if (alertMessage !== null) {
-      return alert(alertMessage)
+    const errorMessage = this.validator.checkPriceValid(price)
+    if (errorMessage) {
+      return alert(errorMessage)
     }
 
     const count = this.getCount(price)

@@ -1,33 +1,33 @@
 import { ERROR_MESSAGE, TICKET } from "../constants/constant.js"
 
-class Validator {
-  isPriceValid(price) {
-    if (this.isFloatPrice(price)) {
+class PriceValidator {
+  checkPriceValid(price) {
+    if (this.isFloat(price)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT
     }
 
-    if (this.isNegativeNumber(price)) {
+    if (this.isNegative(price)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE
     }
 
-    if (this.isLessThanThousand(price)) {
+    if (this.isLessThanTicketPrice(price)) {
       return ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND
     }
 
-    return null
+    return ""
   }
 
-  isFloatPrice(price) {
-    return parseInt(price, 10) !== price
+  isFloat(value) {
+    return parseInt(value, 10) !== value
   }
 
-  isNegativeNumber(price) {
-    return price < 0
+  isNegative(value) {
+    return value < 0
   }
 
-  isLessThanThousand(price) {
-    return 0 <= price && price < TICKET.PRICE
+  isLessThanTicketPrice(value) {
+    return value < TICKET.PRICE
   }
 }
 
-export default Validator
+export default PriceValidator
