@@ -8,7 +8,7 @@ export default class LottoPurchaseInput {
     this.lottoManager = lottoManager;
 
     this.selectDOM();
-    this.subscribe();
+    this.subscribeAppStages();
     this.attachEvent();
   }
 
@@ -18,7 +18,7 @@ export default class LottoPurchaseInput {
     this.$purchaseAmountButton = $('.purchase-amount-button');
   }
 
-  subscribe() {
+  subscribeAppStages() {
     this.lottoManager?.subscribe(APP_RESET, this.resetPurchaseAmountInput.bind(this));
   }
 
@@ -33,7 +33,6 @@ export default class LottoPurchaseInput {
     if (purchaseAmount % MONETARY_UNIT) {
       return PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY;
     }
-
     if (purchaseAmount < LOTTO_PRICE) {
       return PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW;
     }
@@ -55,7 +54,6 @@ export default class LottoPurchaseInput {
     if (change > 0) {
       alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
-
     this.lottoManager.setStates({
       stage: PURCHASE_AMOUNT_COMPLETED,
       numOfLotto: (purchaseAmount - change) / LOTTO_PRICE,

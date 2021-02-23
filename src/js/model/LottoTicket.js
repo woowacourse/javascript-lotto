@@ -19,7 +19,6 @@ export default class LottoTicket {
     if (array.length >= LOTTO_NUMBERS_LENGTH) {
       return array;
     }
-
     if (!array.includes(number)) {
       array.push(number);
     }

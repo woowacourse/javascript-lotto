@@ -1,7 +1,7 @@
 import { $, $$, show, hide, enable, clearInputValue } from '../utils/DOM.js';
 import {
   APP_RESET,
-  MODAL_OPENED,
+  RESULT_REQUESTED,
   PURCHASE_AMOUNT_COMPLETED,
   WINNING_NUMBER_COMPLETED,
 } from '../constants/appStages.js';
@@ -15,13 +15,11 @@ import { WINNING_NUMBER_CHECK_MESSAGE } from '../constants/display.js';
 
 export default class WinningNumberInput {
   constructor({ lottoManager }) {
-    this.isVisible = false;
+    this.lottoManager = lottoManager;
     this.checkMessage = '';
 
-    this.lottoManager = lottoManager;
-
     this.selectDOM();
-    this.subscribe();
+    this.subscribeAppStages();
     this.attachEvents();
   }
 
@@ -33,14 +31,16 @@ export default class WinningNumberInput {
     this.$openResultModalButton = $('.open-result-modal-button');
   }
 
-  subscribe() {
+  subscribeAppStages() {
     this.lottoManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
     this.lottoManager?.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
   }
 
   attachEvents() {
     this.$winningNumberForm.addEventListener('keyup', this.onChangeWinningNumberInput.bind(this));
-    this.$openResultModalButton.addEventListener('click', () => this.lottoManager.setStates({ stage: MODAL_OPENED }));
+    this.$openResultModalButton.addEventListener('click', () =>
+      this.lottoManager.setStates({ stage: RESULT_REQUESTED })
+    );
   }
 
   onChangeWinningNumberInput(e) {
@@ -52,16 +52,15 @@ export default class WinningNumberInput {
       winningNumbers: [...e.currentTarget.querySelectorAll('.winning-number')].map(($input) => $input.value),
       bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
     };
-
     const checkMessage = this.validateInput(
       [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
     );
+
     this.setState({ checkMessage });
 
     if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
       return;
     }
-
     this.lottoManager.setStates({
       stage: WINNING_NUMBER_COMPLETED,
       winningNumber: {
@@ -75,11 +74,9 @@ export default class WinningNumberInput {
     if (inputValues.some(this.isOutOfRange)) {
       return WINNING_NUMBER_CHECK_MESSAGE.OUT_OF_RANGE;
     }
-
     if (this.isDuplicated(inputValues)) {
       return WINNING_NUMBER_CHECK_MESSAGE.DUPLICATED;
     }
-
     if (this.hasBlank(inputValues)) {
       return WINNING_NUMBER_CHECK_MESSAGE.HAS_BLANK;
     }
@@ -114,12 +111,10 @@ export default class WinningNumberInput {
 
   renderCheckMessage() {
     this.$winningNumberCheckMessage.innerText = this.checkMessage;
-
     if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
       this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
       return;
     }
-
     this.$winningNumberCheckMessage.classList.replace('text-red', 'text-green');
     enable(this.$openResultModalButton);
   }

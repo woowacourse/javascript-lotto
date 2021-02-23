@@ -5,12 +5,10 @@ import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants
 export default class LottoTicketDisplay {
   constructor({ lottoManager }) {
     this.lottoManager = lottoManager;
-    this.isShowingNumber = false;
 
     this.selectDOM();
-    this.subscribe();
+    this.subscribeAppStages();
     this.attachEvents();
-    this.renderTicketDisplay();
   }
 
   selectDOM() {
@@ -20,7 +18,7 @@ export default class LottoTicketDisplay {
     this.$lottoNumbersToggleButton = $('.lotto-numbers-toggle-button');
   }
 
-  subscribe() {
+  subscribeAppStages() {
     this.lottoManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderTicketDisplay.bind(this));
     this.lottoManager?.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
   }
@@ -30,9 +28,10 @@ export default class LottoTicketDisplay {
   }
 
   onToggleShowingNumbers({ target }) {
-    if (target.type === 'checkbox') {
-      target.checked ? this.showNumbers() : this.hideNumbers();
+    if (target.type !== 'checkbox') {
+      return;
     }
+    target.checked ? this.showNumbers() : this.hideNumbers();
   }
 
   showNumbers() {
@@ -43,7 +42,7 @@ export default class LottoTicketDisplay {
     this.$lottoTicketContainer.classList.remove('flex-col-with-num');
   }
 
-  lottoTicketHTML(lottoTicket) {
+  getLottoTicketHTML(lottoTicket) {
     return `
     <li class="mx-1 text-4xl d-flex items-center">
       🎟️
@@ -57,18 +56,9 @@ export default class LottoTicketDisplay {
     const numOfLotto = this.lottoManager.numOfLotto;
     const lottoTickets = this.lottoManager.lottoTickets;
 
-    if (!numOfLotto) {
-      this.resetTicketDisplay();
-      return;
-    }
-
     this.$purchasedLottoSection.classList.remove('d-none');
     this.$purchasedLottoLabel.innerHTML = PURCHASED_QUANTITY_MESSAGE(numOfLotto);
-    this.$lottoTicketContainer.innerHTML = lottoTickets.map(this.lottoTicketHTML).join('');
-
-    if (this.$lottoNumbersToggleButton.checked) {
-      this.showNumbers();
-    }
+    this.$lottoTicketContainer.innerHTML = lottoTickets.map(this.getLottoTicketHTML).join('');
   }
 
   resetTicketDisplay() {

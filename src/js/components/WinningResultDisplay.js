@@ -1,5 +1,5 @@
 import { $ } from '../utils/DOM.js';
-import { MODAL_OPENED, APP_RESET } from '../constants/appStages.js';
+import { RESULT_REQUESTED, APP_RESET } from '../constants/appStages.js';
 import { WINNING_PRIZE } from '../constants/lottoRules.js';
 import { RESULT_TABLE_DISPLAY_KEY, RATE_OF_RETURN_MESSAGE } from '../constants/display.js';
 
@@ -8,7 +8,7 @@ export default class WinningResultDisplay {
     this.lottoManager = lottoManager;
 
     this.selectDOM();
-    this.subscribe();
+    this.subscribeAppStages();
     this.attachEvents();
   }
 
@@ -20,8 +20,8 @@ export default class WinningResultDisplay {
     this.$restartButton = $('.restart-button');
   }
 
-  subscribe() {
-    this.lottoManager?.subscribe(MODAL_OPENED, this.renderResult.bind(this));
+  subscribeAppStages() {
+    this.lottoManager?.subscribe(RESULT_REQUESTED, this.renderResult.bind(this));
   }
 
   attachEvents() {
