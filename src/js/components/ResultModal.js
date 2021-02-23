@@ -1,33 +1,45 @@
 import {
   LOTTO_PRICE,
   RATE_OF_RETURN_DECIMAL_PLACE,
-  RENDER_ORDER_KEY,
+  RESULT_TABLE_DISPLAY_KEY,
   RATE_OF_RETURN_MESSAGE,
   WINNING_PRIZE,
+  LOTTO_NUMBERS_LENGTH,
 } from '../constants.js';
 import { $ } from '../utils/DOM.js';
 import { getRateOfReturn } from '../utils/general.js';
 
 export default class ResultModal {
-  constructor({ isVisible, lottoTickets, winningNumber }) {
+  constructor({ isVisible, lottoTickets, winningNumber, onRestart }) {
     this.$modal = $('.modal');
     this.$modalClose = $('.modal-close');
     this.$resultTableBody = $('.result-table-body');
     this.$rateOfReturn = $('.rate-of-return');
+    this.$restartButton = $('.restart-button');
 
     this.isVisible = isVisible;
     this.lottoTickets = lottoTickets;
     this.winningNumber = winningNumber;
+
+    this.onRestart = onRestart;
 
     this.setTotalMatchCounts();
     this.attachEvents();
   }
 
   attachEvents() {
-    this.$modalClose?.addEventListener('click', this.onCloseModal.bind(this));
+    this.$modalClose?.addEventListener('click', this.closeModal.bind(this));
+    this.$restartButton?.addEventListener('click', () => {
+      this.onRestart();
+      this.closeModal();
+    });
   }
 
-  onCloseModal() {
+  showModal() {
+    this.setState({ isVisible: true });
+  }
+
+  closeModal() {
     this.setState({ isVisible: false });
   }
 
@@ -42,8 +54,23 @@ export default class ResultModal {
     return rateOfReturn % 1 !== 0 ? Number(rateOfReturn.toFixed(RATE_OF_RETURN_DECIMAL_PLACE)) : rateOfReturn;
   }
 
+  setTotalMatchCounts() {
+    if (this.lottoTickets.length > 0 && Object.keys(this.winningNumber).length > 0) {
+      this.lottoTickets.forEach((lottoTicket) => lottoTicket.setTotalMatchCount(this.winningNumber));
+    }
+  }
+
+  setState({ isVisible, lottoTickets, winningNumber }) {
+    this.isVisible = isVisible ?? this.isVisible;
+    this.lottoTickets = lottoTickets ?? this.lottoTickets;
+    this.winningNumber = winningNumber ?? this.winningNumber;
+
+    this.setTotalMatchCounts();
+    this.render();
+  }
+
   createTableBodyHTML() {
-    return RENDER_ORDER_KEY.map((key) => {
+    return RESULT_TABLE_DISPLAY_KEY.map((key) => {
       const { DESCRIPTION, PRIZE } = WINNING_PRIZE[key];
 
       return this.createTableRowHTML({
@@ -61,22 +88,6 @@ export default class ResultModal {
         <td class="p-3">${PRIZE.toLocaleString()}</td>
         <td class="p-3">${numOfWinningTicket}</td>
       </tr>`;
-  }
-
-  setTotalMatchCounts() {
-    this.lottoTickets.forEach((lottoTicket) => lottoTicket.setTotalMatchCount(this.winningNumber));
-  }
-
-  setState({ isVisible, lottoTickets, winningNumber }) {
-    this.isVisible = isVisible;
-
-    if (lottoTickets && winningNumber) {
-      this.lottoTickets = lottoTickets;
-      this.winningNumber = winningNumber;
-      this.setTotalMatchCounts();
-    }
-
-    this.render();
   }
 
   render() {
