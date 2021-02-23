@@ -14,6 +14,7 @@ export default class WinningNumbersInput {
     this.$openResultModalButton = $('.open-result-modal-button');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
+    this.$winningInputMessage = $('[data-section=winningInputMessage]');
   }
 
   setup() {
@@ -21,24 +22,33 @@ export default class WinningNumbersInput {
     this.lottoManager.subscribe(this.render.bind(this));
   }
 
-  onKeyUpNumberInput(e) {
-    if (e.target.value.length > 1) {
-      e.target.value = e.target.value.slice(0, 2);
-      if (e.target.nextElementSibling) e.target.nextElementSibling.focus();
+  onCursorMoveNextInput({ target }) {
+    if (target.value.length > 1) {
+      target.value = target.value.slice(0, 2);
+      if (target.nextElementSibling) target.nextElementSibling.focus();
       else {
         this.$bonusNumberInput.focus();
       }
     }
+  }
 
+  onKeyUpNumberInput(e) {
+    this.onCursorMoveNextInput(e);
     const winningNumbers = Array.from(this.$winningNumberInputs).map(input =>
       Number(input.value),
     );
     const bonusNumber = Number(this.$bonusNumberInput.value);
-    if (
-      LottoManager.validateWinningNumbersInputValue(winningNumbers, bonusNumber)
-    ) {
+    const [text, result] = LottoManager.validateWinningNumbersInputValue(
+      winningNumbers,
+      bonusNumber,
+    );
+
+    this.$winningInputMessage.textContent = text;
+    if (result === 'success') {
+      this.$winningInputMessage.style.color = 'green';
       this.$openResultModalButton.disabled = false;
-    } else {
+    } else if (result === 'error') {
+      this.$winningInputMessage.style.color = 'red';
       this.$openResultModalButton.disabled = true;
     }
   }
@@ -47,19 +57,11 @@ export default class WinningNumbersInput {
     const winningNumbers = this.$winningNumberInputs.map(({ value }) => value);
     const bonusNumber = this.$bonusNumberInput.value;
 
-    const errorMessage = LottoManager.validateWinningNumbersInputValue(
-      winningNumbers,
-      bonusNumber,
-    );
-    if (errorMessage) {
-      alert(errorMessage);
-      return;
-    }
-
     this.lottoManager.decideWinners(
       winningNumbers.map(Number),
       Number(bonusNumber),
     );
+    this.$winningInputMessage.textContent = '';
   }
 
   bindEvent() {

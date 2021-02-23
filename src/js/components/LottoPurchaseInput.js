@@ -2,6 +2,7 @@ import { $, clearInputValue } from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
 import { mod, divide } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
+import LottoManager from '../model/LottoManager.js';
 
 export default class LottoPurchaseInput {
   constructor(props) {
@@ -20,12 +21,16 @@ export default class LottoPurchaseInput {
   clear() {
     if (this.lottoManager.lottos.length === 0) {
       clearInputValue(this.$purchaseInput);
+      this.$purchaseInput.disabled = false;
+      this.$purchaseButton.disabled = false;
     }
   }
 
   selectDOM() {
+    this.$lottoPurchaseInputContainer = $('#lotto-purchase-input-container');
     this.$purchaseInput = $('#lotto-purchase-input');
     this.$purchaseButton = $('#lotto-purchase-btn');
+    this.$purchaseInputMessage = $('[data-section=purchaseInputMessage]');
   }
 
   bindEvent() {
@@ -33,42 +38,47 @@ export default class LottoPurchaseInput {
       this.onPurchaseLotto();
     });
 
-    this.$purchaseInput.addEventListener('keydown', e => {
-      if (e.key !== 'Enter') {
-        return;
-      }
+    this.$purchaseInput.addEventListener(
+      'keyup',
+      this.onChangeInput.bind(this),
+    );
 
-      e.preventDefault();
-      this.onPurchaseLotto();
-    });
+    this.$lottoPurchaseInputContainer.addEventListener(
+      'submit',
+      this.onSubmit.bind(this),
+    );
+  }
+
+  onSubmit(e) {
+    if (this.$purchaseButton.disabled) return;
+    e.preventDefault();
+    this.onPurchaseLotto();
+    this.$purchaseInputMessage.textContent = '';
+  }
+
+  onChangeInput(e) {
+    const [text, result] = LottoManager.validatePurchaseInputValue(
+      e.target.value,
+    );
+    this.$purchaseInputMessage.textContent = text;
+    if (result === 'success') {
+      this.$purchaseInputMessage.style.color = 'green';
+      this.$purchaseButton.disabled = false;
+    } else if (result === 'error') {
+      this.$purchaseInputMessage.style.color = 'red';
+      this.$purchaseButton.disabled = true;
+    }
   }
 
   onPurchaseLotto() {
-    const { lottoManager } = this.props;
-    const purchaseInputValue = this.$purchaseInput.value.trim();
+    const purchaseInputValue = this.$purchaseInput.value;
     const payment = Number(purchaseInputValue);
-
-    const errorMessage = validatePurchaseInputValue(payment);
-    if (errorMessage) {
-      alert(errorMessage);
-      clearInputValue(this.$purchaseInput);
-      return;
-    }
 
     const lottoCount = divide(payment, LOTTO.PRICE);
     const remainingMoney = mod(payment, LOTTO.PRICE);
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
-
-    lottoManager.createLottos(lottoCount);
+    this.$purchaseInput.disabled = true;
+    this.$purchaseButton.disabled = true;
+    this.lottoManager.createLottos(lottoCount);
   }
 }
-
-const validatePurchaseInputValue = payment => {
-  if (!Number.isInteger(payment)) {
-    return ERROR_MESSAGE.NOT_INTEGER_NUMBER;
-  }
-
-  if (payment < LOTTO.PRICE) {
-    return ERROR_MESSAGE.PAYMENT_AMOUNT;
-  }
-};

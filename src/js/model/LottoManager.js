@@ -96,22 +96,35 @@ export default class LottoManager {
     );
   }
 
+  static validatePurchaseInputValue = number => {
+    const payment = Number(number);
+    if (!Number.isInteger(payment)) {
+      return [ERROR_MESSAGE.NOT_INTEGER_NUMBER, 'error'];
+    }
+
+    if (payment < LOTTO.PRICE) {
+      return [ERROR_MESSAGE.PAYMENT_AMOUNT, 'error'];
+    }
+
+    return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
+  };
+
   static validateWinningNumbersInputValue(winningNumbers, bonusNumber) {
     const numbers = [...winningNumbers, bonusNumber].map(Number);
 
     if (winningNumbers.some(isEmptyValue) || isEmptyValue(bonusNumber)) {
-      return ERROR_MESSAGE.EMPTY_INPUT_NUMBER;
+      return [ERROR_MESSAGE.EMPTY_INPUT_NUMBER, 'error'];
     }
 
     if (!numbers.every(number => isInRange(number))) {
-      return ERROR_MESSAGE.OUT_OF_RANGE;
+      return [ERROR_MESSAGE.OUT_OF_RANGE, 'error'];
     }
 
     if (new Set(numbers).size !== numbers.length) {
-      return ERROR_MESSAGE.DUPLICATED_NUMBER;
+      return [ERROR_MESSAGE.DUPLICATED_NUMBER, 'error'];
     }
 
-    return '';
+    return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
   }
 
   resetState() {
