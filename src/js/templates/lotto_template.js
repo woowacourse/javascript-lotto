@@ -26,7 +26,6 @@ class Template {
             <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                     <input
-                        id="pocket-toggle-number"
                         type="checkbox"
                         class="lotto-numbers-toggle-button"
                     />
@@ -39,7 +38,7 @@ class Template {
           .map(
             (lotto) => `
                   <div class="pocket-lotto-detail">
-                  <span class="mx-1 text-4xl">🎟️ </span>
+                  <span class="mx-1 text-4xl">🎟️</span>
                   <span class="pocket-lotto-numbers">${lotto.numbers.join(
                     " "
                   )}</span>

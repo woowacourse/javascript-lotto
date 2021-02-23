@@ -10,7 +10,7 @@ export const SELECTOR = {
   BUY_INPUT: "#buy-input",
   BUY_BUTTON: "#buy-button",
   POCKET: "#pocket",
-  POCKET_TOGGLE: "#pocket-toggle-number",
+  POCKET_TOGGLE: ".lotto-numbers-toggle-button",
   POCKET_LOTTOS: "#pocket-lottos",
   WINNING: "#winning",
 }
