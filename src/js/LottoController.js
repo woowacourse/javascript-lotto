@@ -1,7 +1,7 @@
 // import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
 import { LOTTO_NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
-import { isCorrectPurchaseUnit } from './utils/validatePrice.js';
+import { isCorrectPurchaseUnit } from './utils/lottoValidation.js';
 import { $ } from './utils/dom.js';
 
 import WinningNumberInput from './views/WinningNumberInput.js';

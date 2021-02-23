@@ -1,4 +1,4 @@
-import getRandomNumber from './utils/utils.js';
+import { getRandomNumber } from './utils/utils.js';
 
 export default class Lotto {
   static LOTT0_LENGTH = 6;
