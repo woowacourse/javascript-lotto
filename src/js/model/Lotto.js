@@ -3,16 +3,16 @@ export default class Lotto {
     this.clear();
   }
 
-  setTickets(ticket) {
-    this.tickets.push(ticket);
-  }
-
   getTickets() {
     return this.tickets;
   }
 
   setPurchasePrice(purchasePrice) {
     this.purchasePrice = purchasePrice;
+  }
+
+  addTicket(ticket) {
+    this.tickets.push(ticket);
   }
 
   clear() {

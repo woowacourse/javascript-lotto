@@ -27,7 +27,7 @@ const setLotto = (lotto, amountOfLottoTicket) => {
     const ticket = new Ticket();
 
     ticket.setNumbers(generateLottoNumber());
-    lotto.setTickets(ticket);
+    lotto.addTicket(ticket);
   }
 };
 
