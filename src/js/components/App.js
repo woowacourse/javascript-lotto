@@ -24,6 +24,7 @@ export default class App {
       isVisible: false,
       lottoTickets: this.lottoTickets,
       winningNumber: this.winningNumber,
+      onRestart: this.onRestart.bind(this),
     });
   }
 
@@ -38,7 +39,12 @@ export default class App {
   }
 
   onShowModal() {
-    this.resultModal.setState({ isVisible: true, lottoTickets: this.lottoTickets, winningNumber: this.winningNumber });
+    this.resultModal.showModal();
+  }
+
+  onRestart() {
+    this.setState({ lottoTickets: [], winningNumber: {} });
+    this.purchaseAmountInput.reset();
   }
 
   setState({ lottoTickets, winningNumber }) {
@@ -46,10 +52,12 @@ export default class App {
       this.lottoTickets = lottoTickets;
       this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
       this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 ? true : false });
+      this.resultModal.setState({ lottoTickets: this.lottoTickets });
     }
 
     if (winningNumber) {
       this.winningNumber = winningNumber;
+      this.resultModal.setState({ winningNumber: this.winningNumber });
     }
   }
 }

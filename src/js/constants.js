@@ -25,7 +25,7 @@ export const BOUNS_COUNT = 0.5;
 export const RATE_OF_RETURN_DECIMAL_PLACE = 2;
 export const RATE_OF_RETURN_MESSAGE = (rateOfReturn) => `당신의 총 수익률은 ${rateOfReturn}%입니다.`;
 export const BONUS_CHECK_REQUIRED_COUNT = 5;
-export const RENDER_ORDER_KEY = [3, 4, 5, 5.5, 6];
+export const RESULT_TABLE_DISPLAY_KEY = [3, 4, 5, 5.5, 6];
 export const WINNING_PRIZE = {
   6: {
     PRIZE: 2000000000,
