@@ -79,4 +79,11 @@ describe('로또 게임 테스트', () => {
 
     cy.get('#show-result-btn').should('not.be.disabled');
   });
+
+  it('결과 확인 버튼을 누르면 modal 창이 보인다.', () => {
+    clickAfterTypePrice();
+    typeWinningNumber();
+    cy.get('#show-result-btn').click();
+    cy.get('.modal').should('be.visible');
+  });
 });
