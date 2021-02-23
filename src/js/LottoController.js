@@ -1,11 +1,12 @@
-// import LottoView from './LottoView.js';
 import Lotto from './Lotto.js';
-import { LOTTO_NUMBERS, ALERT_MESSAGES } from '../js/utils/constants.js';
+
+import { LOTTO_NUMBERS, ALERT_MESSAGES } from './utils/constants.js';
 import {
   isCorrectPurchaseUnit,
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
 import { $ } from './utils/dom.js';
+import { compareNumbers } from './utils/utils.js';
 
 import WinningNumberInput from './views/WinningNumberInput.js';
 import InputPriceView from './views/InputPriceView.js';
@@ -64,5 +65,7 @@ export default class LottoController {
     }
     this.winningNumbers = winningNumbers;
     this.winningNumberInput.showModal();
+    console.log(this.lottos);
+    compareNumbers(this.lottos, this.winningNumbers);
   }
 }
