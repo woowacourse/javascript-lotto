@@ -16,7 +16,7 @@ class LottoController {
     this.model.init()
   }
 
-  getAndClearBuyValue() {
+  getBuyInput() {
     const value = $(SELECTOR.BUY_INPUT).value
     $(SELECTOR.BUY_INPUT).value = ""
 
@@ -36,7 +36,7 @@ class LottoController {
   }
 
   manageLotto() {
-    const price = Number(this.getAndClearBuyValue())
+    const price = Number(this.getBuyInput())
     const alertMessage = this.validator.isPriceValid(price)
 
     if (alertMessage !== null) {
