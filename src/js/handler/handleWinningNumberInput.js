@@ -65,7 +65,7 @@ const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
     bonusCount && winnigCount === VALUE.HIT_COUNT.FIVE
       ? VALUE.WINNING_RANK.SECOND
       : getRank(winnigCount);
-  const profit = getProfit(ticket.winningRank);
+  const profit = getProfit(winningRank);
 
   ticket.setWinningRank(winningRank);
   ticket.setProfit(profit);
