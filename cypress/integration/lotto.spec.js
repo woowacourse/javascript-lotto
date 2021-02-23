@@ -63,12 +63,9 @@ context('로또 UI 테스트', () => {
     const money = 3000;
     cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
     cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
-    cy.get(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).then(numbers => {
-      [...numbers].forEach((number, idx) => {
-        cy.get(number).type(idx + 1);
-      })
-    });
-    cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(7);
+
+    typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+
     cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
     cy.get(`.${DOM_CLASSES.MODAL}`).should("be.visible");
   })
@@ -84,23 +81,53 @@ context('로또 UI 테스트', () => {
       expect(alertStub.getCall(0)).to.be.calledWith(`당첨 번호와 보너스 번호를 입력해주세요.`);
     });
   });
-});
 
-context('로또 기능 테스트', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:5500');
+  it('당첨 번호와 보너스 번호는 중복이 있어서는 안된다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+
+    typeLottoNumbers([5, 5, 5, 5, 5, 5, 5]);
+
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(`로또 번호에 중복이 있습니다.`);
+    });
   });
 
-  it('로또 자동 구매 시, 1 ~ 45 중 중복 없이 무작위 6개 숫자를 뽑아 저장한다.', () => {
-    const money = 5000;
-    const lotto = new Lotto();
-    lotto.createNumbers();
-    const amountTestSet = new Set(lotto.getNumbers());
-    expect(amountTestSet.size === LOTTO_SETTINGS.LOTTO_NUMBER_SIZE).to.equal(true);
+  context('로또 기능 테스트', () => {
+    beforeEach(() => {
+      cy.visit('http://localhost:5500');
+    });
 
-    for (let i = LOTTO_SETTINGS.MIN_LOTTO_NUMBER; i <= LOTTO_SETTINGS.MAX_LOTTO_NUMBER; i++) {
-      const randomNumber = lotto.getRandomNumber(LOTTO_SETTINGS.MIN_LOTTO_NUMBER, i);
-      expect(randomNumber >= LOTTO_SETTINGS.MIN_LOTTO_NUMBER && randomNumber <= i).to.equal(true);
-    }
+    it('로또 자동 구매 시, 1 ~ 45 중 중복 없이 무작위 6개 숫자를 뽑아 저장한다.', () => {
+      const money = 5000;
+      const lotto = new Lotto();
+      lotto.createNumbers();
+      const amountTestSet = new Set(lotto.getNumbers());
+      expect(amountTestSet.size === LOTTO_SETTINGS.LOTTO_NUMBER_SIZE).to.equal(true);
+
+      for (let i = LOTTO_SETTINGS.MIN_LOTTO_NUMBER; i <= LOTTO_SETTINGS.MAX_LOTTO_NUMBER; i++) {
+        const randomNumber = lotto.getRandomNumber(LOTTO_SETTINGS.MIN_LOTTO_NUMBER, i);
+        expect(randomNumber >= LOTTO_SETTINGS.MIN_LOTTO_NUMBER && randomNumber <= i).to.equal(true);
+      }
+    });
   });
 });
+
+function typeLottoNumbers(inputs) {
+  const LENGTH_LIMIT = LOTTO_SETTINGS.LOTTO_NUMBER_SIZE + LOTTO_SETTINGS.BONUS_NUMBER_SIZE;
+  if (inputs.length !== LENGTH_LIMIT) {
+    cy.log(`로또 숫자 갯수가 ${LENGTH_LIMIT}개가 아닙니다.`);
+    return;
+  }
+
+  cy.get(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).then($$numbers => {
+    [...$$numbers].forEach(($number, idx) => {
+      cy.get($number).type(inputs[idx]);
+    })
+  });
+  cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(inputs[inputs.length - 1]);
+} 
