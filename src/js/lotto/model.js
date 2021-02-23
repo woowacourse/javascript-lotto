@@ -1,22 +1,24 @@
 class LottoModel {
+  #lottos
+
   constructor() {
-    this._lottos = []
+    this.#lottos = []
   }
 
   get lottos() {
-    return this._lottos
+    return this.#lottos
   }
 
   get amount() {
-    return this._lottos.length
+    return this.#lottos.length
   }
 
   addLotto(newLotto) {
-    this._lottos.push(newLotto)
+    this.#lottos.push(newLotto)
   }
 
   init() {
-    this._lottos = []
+    this.#lottos = []
   }
 }
 export default LottoModel
