@@ -1,7 +1,7 @@
 import { $, $$ } from './utils/dom.js';
 import Lotto from './objects/Lotto.js';
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES } from './utils/constants.js';
-import { isMoneyNotInteger, isResultInputsEmpty } from './utils/validation.js';
+import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty } from './utils/validation.js';
 
 export default class LottoController {
   constructor(lottoUI) {
@@ -52,18 +52,23 @@ export default class LottoController {
   }
 
   handleResultInput() {
-    this.winningNumbers = [];
-    const winningNumberInput = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)].map(input => {
+    const winningNumberInputs = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)].map(input => {
       return Number(input.value);
     });
     const bonusNumberInput = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
+    const numberInputs = [...winningNumberInputs, bonusNumberInput]
 
-    if (isResultInputsEmpty([...winningNumberInput, bonusNumberInput])) {
-      alert('당첨 번호와 보너스 번호를 입력해주세요.');
+    if (isResultInputsEmpty(numberInputs)) {
+      alert(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
       return;
     }
 
-    this.winningNumbers = winningNumberInput;
+    if (isNumbersDuplicated(numberInputs)) {
+      alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
+      return;
+    }
+
+    this.winningNumbers = winningNumberInputs;
     this.bonusNumber = bonusNumberInput;
 
     $(`.${DOM_CLASSES.MODAL}`).classList.add('open');

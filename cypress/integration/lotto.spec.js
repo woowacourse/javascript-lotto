@@ -78,7 +78,7 @@ context('로또 UI 테스트', () => {
     cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
     cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
     cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(`당첨 번호와 보너스 번호를 입력해주세요.`);
+      expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
     });
   });
 
@@ -93,7 +93,7 @@ context('로또 UI 테스트', () => {
     typeLottoNumbers([5, 5, 5, 5, 5, 5, 5]);
 
     cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(`로또 번호에 중복이 있습니다.`);
+      expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
     });
   });
 
