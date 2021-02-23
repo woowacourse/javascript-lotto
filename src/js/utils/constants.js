@@ -38,6 +38,8 @@ export const DOM_CLASSES = {
   RESULT_BONUS_NUMBER: 'result-input-form__bonus-number',
 
   MODAL: 'modal',
+  MODAL_WINNING_COUNT: 'modal__winning-count',
+  MODAL_EARNING_RATE: 'modal__earnings-rate',
 }
 
 export const DOM_IDS = {

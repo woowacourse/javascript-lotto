@@ -111,6 +111,25 @@ context('로또 UI 테스트', () => {
       expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.NUMBERS_OUT_OF_RANGE);
     });
   });
+
+  it('당첨 통계에서는 당첨 갯수와 수익률을 확인할 수 있다.', () => {
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+
+    typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.MODAL_WINNING_COUNT}`).then(($$winningCounts) => {
+      [...$$winningCounts].forEach(($winningCount) => {
+        const text = $winningCount.innerText;
+        expect(/[0-9]개/g.test(text)).to.be.true;
+      });
+    });
+    cy.get(`.${DOM_CLASSES.MODAL_EARNING_RATE}`).then(($earningRate) => {
+      const text = $earningRate.innerText;
+      expect(/[0-9]\%/g.test(text)).to.be.true;
+    })
+  });
 });
 
 context('로또 기능 테스트', () => {
