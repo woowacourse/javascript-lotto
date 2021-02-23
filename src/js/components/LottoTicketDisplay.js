@@ -3,8 +3,8 @@ import { APP_RESET, PURCHASE_AMOUNT_COMPLETED } from '../constants/appStages.js'
 import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants/display.js';
 
 export default class LottoTicketDisplay {
-  constructor({ lottoManager }) {
-    this.lottoManager = lottoManager;
+  constructor({ stageManager }) {
+    this.stageManager = stageManager;
 
     this.selectDOM();
     this.subscribeAppStages();
@@ -19,8 +19,8 @@ export default class LottoTicketDisplay {
   }
 
   subscribeAppStages() {
-    this.lottoManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderTicketDisplay.bind(this));
-    this.lottoManager?.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
+    this.stageManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderTicketDisplay.bind(this));
+    this.stageManager?.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
   }
 
   attachEvents() {
@@ -53,8 +53,8 @@ export default class LottoTicketDisplay {
   }
 
   renderTicketDisplay() {
-    const numOfLotto = this.lottoManager.numOfLotto;
-    const lottoTickets = this.lottoManager.lottoTickets;
+    const numOfLotto = this.stageManager.numOfLotto;
+    const lottoTickets = this.stageManager.lottoTickets;
 
     this.$purchasedLottoSection.classList.remove('d-none');
     this.$purchasedLottoLabel.innerHTML = PURCHASED_QUANTITY_MESSAGE(numOfLotto);

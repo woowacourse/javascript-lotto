@@ -4,8 +4,8 @@ import { MONETARY_UNIT, LOTTO_PRICE } from '../constants/lottoRules.js';
 import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
 
 export default class LottoPurchaseInput {
-  constructor({ lottoManager }) {
-    this.lottoManager = lottoManager;
+  constructor({ stageManager }) {
+    this.stageManager = stageManager;
 
     this.selectDOM();
     this.subscribeAppStages();
@@ -19,7 +19,7 @@ export default class LottoPurchaseInput {
   }
 
   subscribeAppStages() {
-    this.lottoManager?.subscribe(APP_RESET, this.resetPurchaseAmountInput.bind(this));
+    this.stageManager?.subscribe(APP_RESET, this.resetPurchaseAmountInput.bind(this));
   }
 
   attachEvent() {
@@ -54,7 +54,7 @@ export default class LottoPurchaseInput {
     if (change > 0) {
       alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
-    this.lottoManager.setStates({
+    this.stageManager.setStates({
       stage: PURCHASE_AMOUNT_COMPLETED,
       numOfLotto: (purchaseAmount - change) / LOTTO_PRICE,
     });

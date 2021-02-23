@@ -2,23 +2,25 @@ import LottoPurchaseInput from './LottoPurchaseInput.js';
 import LottoTicketDisplay from './LottoTicketDisplay.js';
 import WinningNumberInput from './WinningNumbersInput.js';
 import WinningResultDisplay from './WinningResultDisplay.js';
-import LottoManager from '../model/LottoManager.js';
+import AppStageManager from '../model/appStageManager.js';
 
 export default class App {
   constructor() {
-    this.lottoManager = new LottoManager();
+    this.stageManager = new AppStageManager();
+  }
 
+  init() {
     this.lottoPurchaseInput = new LottoPurchaseInput({
-      lottoManager: this.lottoManager,
+      stageManager: this.stageManager,
     });
     this.lottoTicketDisplay = new LottoTicketDisplay({
-      lottoManager: this.lottoManager,
+      stageManager: this.stageManager,
     });
     this.winningNumberInput = new WinningNumberInput({
-      lottoManager: this.lottoManager,
+      stageManager: this.stageManager,
     });
     this.winningResultDisplay = new WinningResultDisplay({
-      lottoManager: this.lottoManager,
+      stageManager: this.stageManager,
     });
   }
 }

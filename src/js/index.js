@@ -1,3 +1,4 @@
 import App from './components/App.js';
 
-new App();
+const lottoApp = new App();
+lottoApp.init();

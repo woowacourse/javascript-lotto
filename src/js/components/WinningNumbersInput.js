@@ -14,8 +14,8 @@ import {
 import { WINNING_NUMBER_CHECK_MESSAGE } from '../constants/display.js';
 
 export default class WinningNumberInput {
-  constructor({ lottoManager }) {
-    this.lottoManager = lottoManager;
+  constructor({ stageManager }) {
+    this.stageManager = stageManager;
     this.checkMessage = '';
 
     this.selectDOM();
@@ -32,14 +32,14 @@ export default class WinningNumberInput {
   }
 
   subscribeAppStages() {
-    this.lottoManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
-    this.lottoManager?.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
+    this.stageManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
+    this.stageManager?.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
   }
 
   attachEvents() {
     this.$winningNumberForm.addEventListener('keyup', this.onChangeWinningNumberInput.bind(this));
     this.$openResultModalButton.addEventListener('click', () =>
-      this.lottoManager.setStates({ stage: RESULT_REQUESTED })
+      this.stageManager.setStates({ stage: RESULT_REQUESTED })
     );
   }
 
@@ -61,7 +61,7 @@ export default class WinningNumberInput {
     if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
       return;
     }
-    this.lottoManager.setStates({
+    this.stageManager.setStates({
       stage: WINNING_NUMBER_COMPLETED,
       winningNumber: {
         winningNumbers: winningNumbers.map((v) => Number(v)),
