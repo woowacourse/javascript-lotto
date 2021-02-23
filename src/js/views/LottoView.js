@@ -4,11 +4,10 @@ export default class LottoView {
   renderWinningResult(result) {
     const { winningRankCounts, winningRate } = result;
 
-    $all('.winning-count')
-      .reverse()
-      .forEach(($winningCount, index) => {
-        $winningCount.textContent = Object.values(winningRankCounts)[index];
-      });
+    $all('.winning-count').forEach(($winningCount) => {
+      $winningCount.textContent = winningRankCounts[$winningCount.dataset.rank];
+    });
+
     $('.winning-rate').textContent = winningRate;
   }
 
@@ -27,6 +26,7 @@ export default class LottoView {
 
       return fragment;
     });
+
     $lottoList.append(...lottoFragments);
     $('.lotto-list-container').append($lottoList);
     $('.lotto-count').textContent = lottos.length;

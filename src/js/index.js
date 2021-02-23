@@ -1,14 +1,12 @@
 import {
   $,
-  getRandomNumber,
   isUniqueArray,
   showElement,
   hideElement,
   disableElement,
   enableElement,
-  getMatchedValueCount,
 } from './utils.js';
-import { ALERT_MESSAGE, LOTTO } from './constants.js';
+import { ALERT_MESSAGE, LOTTO, WINNING_PRICE } from './constants.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
 
@@ -23,27 +21,14 @@ class LottoApp {
     this.bindEvents();
   }
 
-  generateLottoNumbers() {
-    const lottoNumbers = [];
-
-    while (lottoNumbers.length < LOTTO.NUMBER_COUNT) {
-      const num = getRandomNumber(LOTTO.MINIMUM_NUMBER, LOTTO.MAXIMUM_NUMBER);
-
-      if (lottoNumbers.includes(num)) continue;
-      lottoNumbers.push(num);
-    }
-
-    return lottoNumbers.sort((a, b) => a - b);
-  }
-
   generateLottos(lottoCount) {
-    return Array.from({ length: lottoCount }, () => new Lotto(this.generateLottoNumbers()));
+    return Array.from({ length: lottoCount }, () => new Lotto());
   }
 
   handleSubmitMoney(event) {
     event.preventDefault();
 
-    const money = event.target.elements['money-input'].valueAsNumber;
+    const money = Number(event.target.elements['money-input'].value);
 
     if (money < LOTTO.PRICE) {
       alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
@@ -109,53 +94,28 @@ class LottoApp {
 
   getResult(numbers) {
     const { winningNumbers, bonusNumber } = numbers;
+
     const winningRankCounts = {
       first: 0, // 6개 일치
       second: 0, // 5개 + 보너스 숫자 일치
       third: 0, // 5개 일치
       fourth: 0, // 4개 일치
       fifth: 0, // 3개 일치
+      lose: 0, // 꽝
     };
-
-    this.data.lottos.forEach((lotto) => {
-      const matchedNumberCount = getMatchedValueCount(winningNumbers, lotto.numbers);
-
-      if (matchedNumberCount === 6) {
-        winningRankCounts.first += 1;
-      } else if (matchedNumberCount === 5) {
-        if (lotto.numbers.includes(bonusNumber)) {
-          winningRankCounts.second += 1;
-        }
-        winningRankCounts.third += 1;
-      } else if (matchedNumberCount === 4) {
-        winningRankCounts.fourth += 1;
-      } else if (matchedNumberCount === 3) {
-        winningRankCounts.fifth += 1;
-      }
-    });
 
     let winningTotalPrice = 0;
 
-    Object.entries(winningRankCounts).forEach(([rank, count]) => {
-      if (rank === 'first') {
-        winningTotalPrice += count * 2000000000;
-      } else if (rank === 'second') {
-        winningTotalPrice += count * 30000000;
-      } else if (rank === 'third') {
-        winningTotalPrice += count * 1500000;
-      } else if (rank === 'fourth') {
-        winningTotalPrice += count * 50000;
-      } else if (rank === 'fifth') {
-        winningTotalPrice += count * 5000;
-      }
+    this.data.lottos.forEach((lotto) => {
+      const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
+
+      winningRankCounts[rank] += 1;
+      winningTotalPrice += WINNING_PRICE[rank];
     });
 
     const winningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
 
-    return {
-      winningRankCounts,
-      winningRate,
-    };
+    return { winningRankCounts, winningRate };
   }
 
   handleRestart() {
@@ -201,22 +161,3 @@ class LottoApp {
 }
 
 new LottoApp();
-
-// TODO: 추후 Step 2 구현에 필요한 초기 코드
-// const $showResultButton = document.querySelector('.open-result-modal-button')
-// const $modalClose = document.querySelector('.modal-close')
-// const $modal = document.querySelector('.modal')
-// const $lottoNumbersToggleButton = document.querySelector(
-//   '.lotto-numbers-toggle-button'
-// )
-
-// const onModalShow = () => {
-//   $modal.classList.add('open')
-// }
-
-// const onModalClose = () => {
-//   $modal.classList.remove('open')
-// }
-
-// $showResultButton.addEventListener('click', onModalShow)
-// $modalClose.addEventListener('click', onModalClose)

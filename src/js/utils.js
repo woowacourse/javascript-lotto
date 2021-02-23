@@ -8,8 +8,17 @@ export const createElement = (tagName, className, text = '') => {
   return $element;
 };
 
-export const getRandomNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+export const getRandomNumberArray = (min, max, length) => {
+  const numberArray = [];
+
+  while (numberArray.length < length) {
+    const number = Math.floor(Math.random() * (max - min + 1) + min);
+
+    if (numberArray.includes(number)) continue;
+    numberArray.push(number);
+  }
+
+  return numberArray;
 };
 
 export const isUniqueArray = (array) => {
@@ -32,7 +41,7 @@ export const disableElement = ($element) => {
   $element.disabled = true;
 };
 
-export const getMatchedValueCount = (array1, array2) => {
+export const getMatchCount = (array1, array2) => {
   const set = new Set([...array1, ...array2]);
   return array1.length + array2.length - set.size;
 };
