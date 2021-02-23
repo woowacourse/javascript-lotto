@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { lottoData } from '../model/lottoData.js';
 import $ from '../lib/utils/dom.js';
 
@@ -20,6 +19,12 @@ const winningNumberSubmitHandler = event => {
     ),
     bonus: Number(bonus.value),
   };
+
+  if (hasDuplicate([...winningNumber.main, winningNumber.bonus])) {
+    alert('중복된 숫자를 입력하셨습니다. 다시 입력해주세요');
+    return;
+  }
+
   const winners = getWinners(lottoData.tickets, winningNumber);
   const profitPercent = getProfitPercent(winners, lottoData.ticketAmount);
   setResultModal(winners, profitPercent);
@@ -42,6 +47,13 @@ function getWinners(tickets, winningNumber) {
   });
 
   return winners;
+}
+
+function hasDuplicate(numbers) {
+  const numbersLength = numbers.length;
+  const setLength = new Set(numbers).size;
+
+  return setLength < numbersLength;
 }
 
 function getRank(ticket, winningNumber) {
