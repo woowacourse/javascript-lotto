@@ -46,6 +46,20 @@ export const wrap = ($element) => {
     set(target, propKey, value) {
       return Reflect.set(target, propKey, value);
     },
+    has(target, propKey) {
+      if (
+        target instanceof HTMLInputElement &&
+        propKey in HTMLInputElementCustomMethods
+      ) {
+        return true;
+      }
+
+      if (propKey in HTMLElementCustomMethods) {
+        return true;
+      }
+
+      return propKey in target;
+    },
   };
 
   return new Proxy($element, handler);
