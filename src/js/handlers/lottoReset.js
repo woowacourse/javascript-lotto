@@ -1,5 +1,5 @@
 import { lottoData } from '../model/lottoData.js';
-import $ from '../utils/dom.js';
+import $ from '../lib/utils/dom.js';
 import { modalCloseHandler } from './modalControl.js';
 
 const lottoResetHandler = () => {

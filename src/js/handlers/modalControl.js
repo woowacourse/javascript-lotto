@@ -1,4 +1,4 @@
-import $ from '../utils/dom.js';
+import $ from '../lib/utils/dom.js';
 
 const $modal = $('.modal');
 
