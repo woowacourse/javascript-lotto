@@ -7,7 +7,7 @@ export default class Lotto {
     this._numbers = new Set();
     this.matchingNumbers = 0;
     this.isMatchBonus = false;
-    // this.rank = Infinity;
+    this._rank = Infinity;
     this.initNumbers();
   }
 
@@ -30,6 +30,10 @@ export default class Lotto {
     return [...this._numbers.values()].join(', ');
   }
 
+  get rank() {
+    return this._rank;
+  }
+
   addMatchNumbers() {
     this.matchingNumbers++;
   }
@@ -38,15 +42,29 @@ export default class Lotto {
     this.isMatchBonus = true;
   }
 
-  // updateRank(rank) {
-  //   switch (this.matchingNumbers) {
-  //     case '6':
-  //       this.rank = 1;
-  //     case '5': //
-  //       this.rank = 2; // 2등
-  //     case '4':
-
-  //   }
-  //   this.rank = rank;
-  // }
+  updateRank() {
+    switch (this.matchingNumbers) {
+      case 6:
+        this._rank = 1;
+        break;
+      case 5:
+        switch (this.isMatchBonus) {
+          case true:
+            this._rank = 2;
+            break;
+          case false:
+            this._rank = 3;
+            break;
+        }
+        break;
+      case 4:
+        this._rank = 4;
+        break;
+      case 3:
+        this._rank = 5;
+        break;
+      default:
+        this._rank = Infinity;
+    }
+  }
 }

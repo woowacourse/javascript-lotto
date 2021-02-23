@@ -5,8 +5,11 @@ export function getRandomNumber() {
 }
 
 export function compareNumbers(lottos, winningNumbers) {
-  const bonusNumber = winningNumbers[7];
+  checkMatchingNums(lottos, winningNumbers);
+  checkBonus(lottos, winningNumbers);
+}
 
+function checkMatchingNums(lottos, winningNumbers) {
   let i = 0;
   while (i++ < 6) {
     const currNum = winningNumbers[i];
@@ -16,6 +19,10 @@ export function compareNumbers(lottos, winningNumbers) {
       }
     });
   }
+}
+
+function checkBonus(lottos, winningNumbers) {
+  const bonusNumber = winningNumbers[7];
 
   lottos.forEach(lotto => {
     if (lotto.numbers.has(bonusNumber)) {
