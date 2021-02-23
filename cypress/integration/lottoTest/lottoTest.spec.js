@@ -23,7 +23,6 @@ describe('로또 게임 테스트', () => {
     cy.get('.winning-number').each((winningNumber, idx) => {
       cy.wrap(winningNumber).type([...numbers][idx]);
     });
-    cy.get('.bonus-number').type([...numbers][LOTT0_LENGTH - 1]);
   }
 
   it('프로그램을 시작하면 구입금액 입력폼만 보인다.', () => {
@@ -83,6 +82,7 @@ describe('로또 게임 테스트', () => {
   it('결과 확인 버튼을 누르면 modal 창이 보인다.', () => {
     clickAfterTypePrice();
     typeWinningNumber();
+
     cy.get('#show-result-btn').click();
     cy.get('.modal').should('be.visible');
   });
