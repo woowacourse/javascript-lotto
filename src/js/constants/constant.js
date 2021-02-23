@@ -3,7 +3,7 @@ export const INIT = {
   DETAIL: false,
 }
 
-export const LOTTO = {
+export const TICKET = {
   PRICE: 1000,
   SIZE: 6,
   MIN_NUM: 1,
