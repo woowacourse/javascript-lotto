@@ -30,7 +30,7 @@ const getTotalYield = (lotto) => {
 };
 
 const isValidNumberInput = (inputNumbers) => {
-  if (!isValidRange(inputNumbers)) {
+  if (!inputNumbers.every((num) => isValidRange(num))) {
     alert(ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
     return false;
   }
