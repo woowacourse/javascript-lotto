@@ -1,8 +1,5 @@
-import {
-  ALERT_MESSAGE,
-  JS_SELECTOR,
-  MONEY,
-} from "../../src/js/constants/index.js";
+import { ALERT_MESSAGE, JS_SELECTOR } from "../../src/js/constants/index.js";
+import { Lotto } from "../../src/js/models/index.js";
 import { toDataAttributeSelector as toDAS } from "../../src/js/utils/querySelector.js";
 
 describe("구입 금액 입력 테스트", () => {
@@ -62,7 +59,7 @@ describe("구입 금액 입력 테스트", () => {
 
   it("유저가 유효한 금액을 입력한 경우, 구매한 로또 갯수만큼 아이콘 정보와 당첨번호 입력란을 보여준다", () => {
     const userInput = 4500;
-    const lottoCount = Math.floor(userInput / MONEY.LOTTO_PRICE);
+    const lottoCount = Math.floor(userInput / Lotto.UNIT_PRICE);
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
 

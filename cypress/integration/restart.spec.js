@@ -1,4 +1,5 @@
-import { CLASSNAME, JS_SELECTOR, MONEY } from "../../src/js/constants/index.js";
+import { CLASSNAME, JS_SELECTOR } from "../../src/js/constants/index.js";
+import { Lotto } from "../../src/js/models/index.js";
 import {
   toClassSelector as toCS,
   toDataAttributeSelector as toDAS,
@@ -45,7 +46,7 @@ describe("다시 시작하기 테스트: 당첨 결과에 대한 모달이 표�
     cy.get(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT)).should("have.value", "");
 
     const userInput = 5500;
-    const lottoCount = Math.floor(userInput / MONEY.LOTTO_PRICE);
+    const lottoCount = Math.floor(userInput / Lotto.UNIT_PRICE);
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
 
