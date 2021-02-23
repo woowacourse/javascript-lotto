@@ -1,3 +1,5 @@
+import { getRandomNumber } from '../../../src/js/utils/utils.js';
+
 describe('로또 게임 테스트', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5500/');
@@ -5,10 +7,23 @@ describe('로또 게임 테스트', () => {
 
   const price = 10000;
   const lottoTotalCount = price / 1000;
+  const LOTT0_LENGTH = 7;
 
   function clickAfterTypePrice() {
     cy.get('#input-price').type(price);
     cy.get('#input-price-btn').click();
+  }
+
+  function typeWinningNumber() {
+    const numbers = new Set();
+    while (numbers.size < LOTT0_LENGTH) {
+      numbers.add(getRandomNumber());
+    }
+
+    cy.get('.winning-number').each((winningNumber, idx) => {
+      cy.wrap(winningNumber).type([...numbers][idx]);
+    });
+    cy.get('.bonus-number').type([...numbers][LOTT0_LENGTH - 1]);
   }
 
   it('프로그램을 시작하면 구입금액 입력폼만 보인다.', () => {
@@ -56,5 +71,12 @@ describe('로또 게임 테스트', () => {
     cy.get('.lotto-wrapper').children('.lotto-detail').should('be.visible');
     cy.get('.switch').click();
     cy.get('.lotto-wrapper').children('.lotto-detail').should('not.be.visible');
+  });
+
+  it('모든 숫자의 입력을 완료하면, 결과 확인 버튼이 활성화된다.', () => {
+    clickAfterTypePrice();
+    typeWinningNumber();
+
+    cy.get('#show-result-btn').should('not.be.disabled');
   });
 });
