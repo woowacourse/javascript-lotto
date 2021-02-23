@@ -1,32 +1,46 @@
+import { $, $$, show, hide, enable, clearInputValue } from '../utils/DOM.js';
+import {
+  APP_RESET,
+  MODAL_OPENED,
+  PURCHASE_AMOUNT_COMPLETED,
+  WINNING_NUMBER_COMPLETED,
+} from '../constants/appStages.js';
 import {
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
-  WINNING_NUMBER_CHECK_MESSAGE,
   LOTTO_NUMBERS_LENGTH,
   BONUS_NUMBER_LENGTH,
-} from '../constants.js';
-import { $, $$, show, hide, enable, clearInputValue } from '../utils/DOM.js';
+} from '../constants/lottoRules.js';
+import { WINNING_NUMBER_CHECK_MESSAGE } from '../constants/display.js';
 
 export default class WinningNumberInput {
-  constructor({ isVisible, updateWinningNumber, onShowModal }) {
+  constructor({ lottoManager }) {
+    this.isVisible = false;
+    this.checkMessage = '';
+
+    this.lottoManager = lottoManager;
+
+    this.selectDOM();
+    this.subscribe();
+    this.attachEvents();
+  }
+
+  selectDOM() {
     this.$winningNumberForm = $('.winning-number-form');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
     this.$winningNumberCheckMessage = $('.winning-number-check-message');
     this.$openResultModalButton = $('.open-result-modal-button');
+  }
 
-    this.isVisible = isVisible;
-    this.checkMessage = '';
-    this.winningNumber = {};
-    this.updateWinningNumber = updateWinningNumber;
-    this.onShowModal = onShowModal;
-
-    this.attachEvents();
+  subscribe() {
+    this.lottoManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
+    this.lottoManager?.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
   }
 
   attachEvents() {
     this.$winningNumberForm.addEventListener('keyup', this.onChangeWinningNumberInput.bind(this));
-    this.$openResultModalButton.addEventListener('click', this.onShowModal.bind(this));
+    this.$openResultModalButton.addEventListener('click', () => this.lottoManager.setStates({ stage: MODAL_OPENED }));
   }
 
   onChangeWinningNumberInput(e) {
@@ -44,15 +58,17 @@ export default class WinningNumberInput {
     );
     this.setState({ checkMessage });
 
-    if (this.checkMessage === WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
-      this.setState({
-        winningNumber: {
-          winningNumbers: winningNumbers.map((v) => Number(v)),
-          bonusNumber: Number(bonusNumber),
-        },
-      });
-      this.updateWinningNumber(this.winningNumber);
+    if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+      return;
     }
+
+    this.lottoManager.setStates({
+      stage: WINNING_NUMBER_COMPLETED,
+      winningNumber: {
+        winningNumbers: winningNumbers.map((v) => Number(v)),
+        bonusNumber: Number(bonusNumber),
+      },
+    });
   }
 
   validateInput(inputValues) {
@@ -83,25 +99,17 @@ export default class WinningNumberInput {
     return numbers.length !== LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
   }
 
-  setState({ isVisible, checkMessage, winningNumber }) {
-    if (typeof isVisible === 'boolean') {
-      this.isVisible = isVisible;
-      this.renderForm();
-    }
-
+  setState({ checkMessage }) {
     if (typeof checkMessage === 'string' && this.checkMessage !== checkMessage) {
       this.checkMessage = checkMessage;
       this.renderCheckMessage();
     }
-
-    if (typeof winningNumber === 'object') {
-      this.winningNumber = winningNumber;
-    }
   }
 
-  reset() {
-    this.$winningNumberInputs.forEach(($input) => clearInputValue($input));
+  resetWinningNumber() {
+    hide(this.$winningNumberForm);
     clearInputValue(this.$bonusNumberInput);
+    this.$winningNumberInputs.forEach(($input) => clearInputValue($input));
   }
 
   renderCheckMessage() {
@@ -117,12 +125,7 @@ export default class WinningNumberInput {
   }
 
   renderForm() {
-    if (this.isVisible) {
-      show(this.$winningNumberForm);
-      this.$winningNumberInputs[0].focus();
-    } else {
-      hide(this.$winningNumberForm);
-      this.reset();
-    }
+    show(this.$winningNumberForm);
+    this.$winningNumberInputs[0].focus();
   }
 }

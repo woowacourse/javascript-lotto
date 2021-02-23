@@ -1,14 +1,16 @@
 import {
   LOTTO_PRICE,
-  PURCHASED_QUANTITY_MESSAGE,
-  LOTTO_NUMBER_SEPARATOR,
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
   LOTTO_NUMBERS_LENGTH,
   MONETARY_UNIT,
+} from '../../src/js/constants/lottoRules.js';
+import {
+  PURCHASED_QUANTITY_MESSAGE,
+  LOTTO_NUMBER_SEPARATOR,
   PURCHASE_AMOUNT_ALERT_MESSAGE,
   WINNING_NUMBER_CHECK_MESSAGE,
-} from '../../src/js/constants.js';
+} from '../../src/js/constants/display.js';
 
 describe('구매금액 입력 검사', () => {
   beforeEach(() => {

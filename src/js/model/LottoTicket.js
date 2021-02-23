@@ -5,7 +5,7 @@ import {
   LOTTO_NUMBERS_LENGTH,
   BOUNS_COUNT,
   BONUS_CHECK_REQUIRED_COUNT,
-} from '../constants.js';
+} from '../constants/lottoRules.js';
 
 export default class LottoTicket {
   constructor(numbers) {

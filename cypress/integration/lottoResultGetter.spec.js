@@ -1,6 +1,8 @@
+import LottoManager from '../../src/js/model/LottoManager.js';
 import LottoTicket from '../../src/js/model/LottoTicket.js';
-import ResultModal from '../../src/js/components/ResultModal.js';
-import { BOUNS_COUNT } from '../../src/js/constants.js';
+import WinningResultDisplay from '../../src/js/components/WinningResultDisplay.js';
+import { BOUNS_COUNT } from '../../src/js/constants/lottoRules.js';
+import { WINNING_NUMBER_COMPLETED } from '../../src/js/constants/appStages.js';
 
 describe('당첨통계 계산 메서드 검사', () => {
   before(() => {
@@ -40,38 +42,39 @@ describe('당첨통계 계산 메서드 검사', () => {
     expect(lottoTicket8.totalMatchCount).to.equal(0);
   });
 
+  const lottoManager = new LottoManager();
+
   it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(5)].map(() => new LottoTicket([7, 8, 9, 10, 11, 12]));
-    ('');
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
 
-    expect(rateOfReturn).to.equal(-100);
+    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    expect(lottoManager.rateOfReturn).to.equal(-100);
   });
 
   it('구매금액이 5,000원이고 당첨금액이 5,000원이면, 0의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(4)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 7, 8, 9]));
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
 
-    expect(rateOfReturn).to.equal(0);
+    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    expect(lottoManager.rateOfReturn).to.equal(0);
   });
 
   it('구매금액이 5,000원이고 당첨금액이 2,000,000,000원이면, 39999900의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(4)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 4, 5, 6]));
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
 
-    expect(rateOfReturn).to.equal(39999900);
+    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    expect(lottoManager.rateOfReturn).to.equal(39999900);
   });
 
   it('구매금액이 13,000원이고 당첨금액이 5,000원이면, -61.54의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(12)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 11, 12, 13]));
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
 
-    expect(rateOfReturn).to.equal(-61.54);
+    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    expect(lottoManager.rateOfReturn).to.equal(-61.54);
   });
 });
