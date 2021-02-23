@@ -59,24 +59,25 @@ export default class LottoController {
     return Math.round((totalPrize / this.lottoModel.price) * 100);
   }
 
-  onSubmitPrice(price) {
+  purchase(price) {
     if (!isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
       this.lottoView.resetLottoView();
 
       return;
     }
+
     this.lottoModel.buy(price);
     this.lottoView.showConfirmation(this.lottoModel.lottoList);
   }
 
-  onToggleLottoNumbers(e) {
-    e.target.checked
+  toggleLottoNumbers(checked) {
+    checked
       ? this.lottoView.showTicketDetails(this.lottoModel.lottoList)
       : this.lottoView.showTickets(this.lottoModel.lottoList.length);
   }
 
-  onSubmitResultNumber(winningNumber, bonusNumber) {
+  openPrizeTableModal(winningNumber, bonusNumber) {
     const numbers = [...winningNumber, bonusNumber];
     if (!isNumbersInRange(numbers, 1, 45)) {
       alert(INVALID_WINNGNUMBER_ERROR);
@@ -97,7 +98,7 @@ export default class LottoController {
     onModalShow($modal);
   }
 
-  onRestart() {
+  reset() {
     this.lottoView.resetLottoView();
     this.prizeTable = getPrizeTable();
     onModalClose($modal);
