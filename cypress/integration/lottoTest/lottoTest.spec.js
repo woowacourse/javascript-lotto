@@ -95,24 +95,29 @@ describe('로또 게임 테스트', () => {
 
   const lottoNumsArr = [
     [21, 6, 43, 29, 35, 16], // 1등 (6개 일치)
-    [21, 6, 43, 29, 35, 17], // 2등 (5개 + 보너스 17)
+    [21, 6, 43, 29, 35, 17], // 2등 (5개 + 보너스)
     [17, 44, 28, 43, 7, 33], // 탈락
     [41, 33, 4, 25, 11, 30], // 탈락
-    [21, 6, 43, 37, 26, 15], // 5등 (3개)
-    [27, 13, 39, 29, 35, 16], // 5등 (3개)
+    [21, 6, 43, 37, 26, 15], // 5등 (3개 일치)
+    [27, 13, 39, 29, 35, 16], // 5등 (3개 일치)
   ];
 
   const winningNumbers = { 1: 21, 2: 6, 3: 43, 4: 29, 5: 35, 6: 16, 7: 17 };
+  const rankings = [1, 2, Infinity, Infinity, 5, 5];
 
   it('로또 당첨 결과를 올바르게 계산한다.', () => {
     const lottos = [];
 
     lottoNumsArr.forEach(lottoNums => {
       const lotto = new Lotto();
-      lotto.numbers = lottoNums;
+      lotto.numbers = new Set(lottoNums);
       lottos.push(lotto);
     });
 
     compareNumbers(lottos, winningNumbers);
+    lottos.forEach(lotto => lotto.updateRank());
+    lottos.forEach((lotto, idx) => {
+      expect(lotto.rank).to.be.equal(rankings[idx]);
+    });
   });
 });
