@@ -1,9 +1,4 @@
-import {
-  ACTION_TYPE,
-  ALERT_MESSAGE,
-  JS_SELECTOR,
-  MONEY,
-} from "../constants/index.js";
+import { ACTION_TYPE, ALERT_MESSAGE, JS_SELECTOR } from "../constants/index.js";
 import {
   $,
   toDataAttributeSelector as toDAS,
@@ -26,7 +21,7 @@ const createCashContainer = () => {
   };
 
   const validate = (cash) => {
-    if (cash < MONEY.LOTTO_PRICE) {
+    if (cash < Lotto.UNIT_PRICE) {
       throw new ValidationError(
         ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE
       );
@@ -34,7 +29,7 @@ const createCashContainer = () => {
   };
 
   const createLottos = (cash) => {
-    const lottoCount = Math.floor(cash / MONEY.LOTTO_PRICE);
+    const lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
 
     return [...Array(lottoCount)].map(() => new Lotto(generateLottoNumbers()));
   };

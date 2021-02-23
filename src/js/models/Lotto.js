@@ -8,6 +8,9 @@ export default class Lotto {
   static get NUMBERS_LENGTH() {
     return 6;
   }
+  static get UNIT_PRICE() {
+    return 1000;
+  }
 
   constructor(numbers) {
     this.numbers = [...numbers].sort((a, b) => a - b);
