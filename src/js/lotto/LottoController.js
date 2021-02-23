@@ -103,4 +103,5 @@ export default class LottoController {
     this.prizeTable = getPrizeTable();
     onModalClose($modal);
   }
+
 }
