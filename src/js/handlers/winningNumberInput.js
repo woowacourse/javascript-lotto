@@ -16,7 +16,7 @@ const winningNumberInputHandler = ({ target }) => {
     return;
   }
 
-  if (!isValidRange(Number(target.value))) {
+  if (target.value.length && !isValidRange(Number(target.value))) {
     alert(EXCEED_RANGE_NUMBER);
     target.value = '';
   }

@@ -1,6 +1,6 @@
 export const lotto = {
   tickets: [],
-  setTickets: newTickets => {
+  setTickets(newTickets) {
     this.tickets = newTickets;
   },
 };
