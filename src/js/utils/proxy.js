@@ -21,32 +21,30 @@ const HTMLInputElementCustomMethods = {
   },
 };
 
-const bind = (obj, prop, context = obj) => {
-  if (typeof obj[prop] === "function") return obj[prop].bind(context);
-  return obj[prop];
-};
-
 export const wrap = ($element) => {
   if ($element === null) return null;
 
   const handler = {
-    get(target, prop) {
-      if (prop in HTMLElementCustomMethods) {
-        return bind(HTMLElementCustomMethods, prop, $element);
-      }
-
+    get(target, propKey) {
       if (
         $element instanceof HTMLInputElement &&
-        prop in HTMLInputElementCustomMethods
+        propKey in HTMLInputElementCustomMethods
       ) {
-        return bind(HTMLInputElementCustomMethods, prop, $element);
+        return Reflect.get(HTMLInputElementCustomMethods, propKey, $element);
       }
 
-      return bind(target, prop);
+      if (propKey in HTMLElementCustomMethods) {
+        return Reflect.get(HTMLElementCustomMethods, propKey, $element);
+      }
+
+      if (typeof target[propKey] === "function") {
+        return target[propKey].bind(target);
+      }
+
+      return target[propKey];
     },
-    set(target, prop, value) {
-      target[prop] = value;
-      return true;
+    set(target, propKey, value) {
+      return Reflect.set(target, propKey, value);
     },
   };
 
