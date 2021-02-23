@@ -1,12 +1,12 @@
-import { Element } from "../Util/constants.js";
+import { ELEMENT } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
 export const showPurchaseResult = () => {
-  $(Element.RECEIPT_CONTAINER).classList.remove(Element.HIDDEN);
-  $(Element.WIN_NUMBER_CONTAINER).classList.remove(Element.HIDDEN);
+  $(ELEMENT.RECEIPT_CONTAINER).classList.remove(ELEMENT.HIDDEN);
+  $(ELEMENT.WIN_NUMBER_CONTAINER).classList.remove(ELEMENT.HIDDEN);
 };
 
 export const hidePurchaseResult = () => {
-  $(Element.RECEIPT_CONTAINER).classList.add(Element.HIDDEN);
-  $(Element.WIN_NUMBER_CONTAINER).classList.add(Element.HIDDEN);
+  $(ELEMENT.RECEIPT_CONTAINER).classList.add(ELEMENT.HIDDEN);
+  $(ELEMENT.WIN_NUMBER_CONTAINER).classList.add(ELEMENT.HIDDEN);
 };

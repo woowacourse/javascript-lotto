@@ -1,14 +1,14 @@
-import { Element } from "../Util/constants.js";
+import { ELEMENT } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
 export const printPurchaseAmountLabel = (ticketCount) => {
   $(
-    Element.PURCHASE_AMOUNT_LABEL
+    ELEMENT.PURCHASE_AMOUNT_LABEL
   ).innerText = `총 ${ticketCount}개를 구매하였습니다.`;
 };
 
 export const printTicketHorizontal = (ticketCount) => {
-  const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
+  const ticketImageNumberContainer = $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER);
   const ticketImageTemplate = Array(ticketCount)
     .fill(
       '<div id="lotto-image-number" class="d-flex flex-wrap"> <span class="mx-1 text-4xl">🎟️</span></div>'
@@ -16,11 +16,11 @@ export const printTicketHorizontal = (ticketCount) => {
     .join("");
 
   ticketImageNumberContainer.innerHTML = ticketImageTemplate;
-  ticketImageNumberContainer.classList.remove(Element.FLEX_COL);
+  ticketImageNumberContainer.classList.remove(ELEMENT.FLEX_COL);
 };
 
 export const printTicketVertical = (ticketBundle) => {
-  const ticketImageNumberContainer = $(Element.TICKET_IMAGE_NUMBER_CONTAINER);
+  const ticketImageNumberContainer = $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER);
   let ticketImageNumberTemplate = "";
 
   ticketBundle.forEach((ticket) => {
@@ -30,5 +30,5 @@ export const printTicketVertical = (ticketBundle) => {
   });
 
   ticketImageNumberContainer.innerHTML = ticketImageNumberTemplate;
-  ticketImageNumberContainer.classList.add(Element.FLEX_COL);
+  ticketImageNumberContainer.classList.add(ELEMENT.FLEX_COL);
 };

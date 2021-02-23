@@ -1,14 +1,8 @@
 import { STANDARD_NUMBER } from "../Util/constants.js";
 
-class Ticket {
+export default class Ticket {
   constructor() {
-    this.ticketBundle = [];
-  }
-
-  makeTicketBundle(ticketLength) {
-    this.ticketBundle = Array.from({ length: ticketLength }, () =>
-      this.generateRandomNumbers()
-    );
+    this.numbers = this.generateRandomNumbers();
   }
 
   generateRandomNumbers() {
@@ -24,5 +18,3 @@ class Ticket {
       .sort((a, b) => a - b);
   }
 }
-
-export default new Ticket();

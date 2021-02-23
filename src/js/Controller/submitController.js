@@ -1,4 +1,4 @@
-import { Element, StandardNumber } from "../Util/constants.js";
+import { ELEMENT, STANDARD_NUMBER } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 import { isValidMoney } from "../Util/validator.js";
 import {
@@ -10,19 +10,19 @@ import { showPurchaseResult } from "../Handler/elementHandler.js";
 import Ticket from "../Model/TicketBundle.js";
 
 export const initializeEvents = () => {
-  $(Element.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
+  $(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
     "click",
     handlePurchaseAmountSubmit
   );
-  $(Element.TOGGLE_BUTTON).addEventListener("click", handleToggleButton);
+  $(ELEMENT.TOGGLE_BUTTON).addEventListener("click", handleToggleButton);
 };
 
 const handlePurchaseAmountSubmit = () => {
-  const money = $(Element.PURCHASE_AMOUNT_INPUT).value;
+  const money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
 
   if (!isValidMoney(money)) return;
 
-  Ticket.makeTicketBundle(money / StandardNumber.ONE_TICKET_PRICE);
+  Ticket.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
   renderTickets(Ticket.ticketBundle.length);
 };
 

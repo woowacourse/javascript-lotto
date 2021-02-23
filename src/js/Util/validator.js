@@ -1,16 +1,16 @@
-import { AlertMessage, StandardNumber } from "./constants.js";
+import { ALERT_MESSAGE, STANDARD_NUMBER } from "./constants.js";
 
 export const isValidMoney = (money) => {
   if (isInValidNumber(money)) {
-    alert(AlertMessage.INVALID_NUMBER);
+    alert(ALERT_MESSAGE.INVALID_NUMBER);
     return false;
   }
   if (isInvalidRange(money)) {
-    alert(AlertMessage.INVALID_RANGE);
+    alert(ALERT_MESSAGE.INVALID_RANGE);
     return false;
   }
   if (isNotThousandMultiples(money)) {
-    alert(AlertMessage.NOT_THOUSAND_MULTIPLES);
+    alert(ALERT_MESSAGE.NOT_THOUSAND_MULTIPLES);
     return false;
   }
   return true;
@@ -18,13 +18,13 @@ export const isValidMoney = (money) => {
 
 const isInvalidRange = (money) => {
   return (
-    money < StandardNumber.MIN_PURCHASE_PRICE ||
-    StandardNumber.MAX_PURCHASE_PRICE < money
+    money < STANDARD_NUMBER.MIN_PURCHASE_PRICE ||
+    STANDARD_NUMBER.MAX_PURCHASE_PRICE < money
   );
 };
 
 const isNotThousandMultiples = (money) => {
-  return money % StandardNumber.ONE_TICKET_PRICE !== 0;
+  return money % STANDARD_NUMBER.ONE_TICKET_PRICE !== 0;
 };
 
 const isInValidNumber = (money) => {
