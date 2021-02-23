@@ -63,9 +63,27 @@ context('로또 UI 테스트', () => {
     const money = 3000;
     cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
     cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).then(numbers => {
+      [...numbers].forEach((number, idx) => {
+        cy.get(number).type(idx);
+      })
+    });
+    cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(7);
     cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
     cy.get(`.${DOM_CLASSES.MODAL}`).should("be.visible");
   })
+
+  it('당첨 번호와 보너스 번호를 입력하여야만 결과를 확인할 수 있다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(`당첨 번호와 보너스 번호를 입력해주세요.`);
+    });
+  });
 });
 
 context('로또 기능 테스트', () => {
