@@ -1,0 +1,17 @@
+.pocket-lotto-detail {
+  display: inline;
+  margin: 0;
+}
+
+.pocket-lotto-numbers {
+  display: none;
+}
+
+#pocket-lottos.show .pocket-lotto-detail {
+  display: flex;
+  align-items: center;
+}
+
+#pocket-lottos.show .pocket-lotto-numbers {
+  display: inline-block;
+}
