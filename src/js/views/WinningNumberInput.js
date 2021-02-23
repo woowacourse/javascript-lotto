@@ -40,8 +40,15 @@ export default class WinningNumberInput extends View {
     this.emit('submitNumbers', this.winningNumbers);
   }
 
-  showModal() {
+  showModal(rankCounts) {
     this.$modal.classList.add('open');
+    this.showRanks(rankCounts);
+  }
+
+  showRanks(rankCounts) {
+    $$('.match-count').forEach((el, idx) => {
+      el.innerText = rankCounts[rankCounts.length - idx - 1];
+    });
   }
 
   closeModal() {
