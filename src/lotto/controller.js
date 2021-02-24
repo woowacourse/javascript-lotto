@@ -22,7 +22,7 @@ const lottoGame = new LottoGame();
 const getTotalProfit = (rankItemList) => {
   return rankItemList.reduce(
     (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
-    0
+    0,
   );
 };
 
@@ -33,9 +33,12 @@ const purchaseLottoItems = (cost) => {
   lottoGameView.displayResult(lottoGame.lottoItemList);
 };
 
-const showWinningResult = (correctNumbers) => {
+const assignResult = (correctNumbers) => {
   lottoGame.assignCorrectNumbers(correctNumbers);
   lottoGame.assignMatchCount();
+}
+
+const showWinningResult = () => {
   const rankItemList = lottoGame.getRankItemList();
   const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
   lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
@@ -66,7 +69,8 @@ const onResultModalOpen = () => {
     lottoGameView.showMessage(userGuideMessage);
     return;
   }
-  showWinningResult(correctNumbers);
+  assignResult(correctNumbers);
+  showWinningResult()
 };
 
 const onResultModalClose = () => {
