@@ -19,12 +19,12 @@ export default class LottoUI {
     `);
   }
 
-  renderCheckLottoUI(lottoTickets) {
+  renderCheckLottoUI(numbersBundle) {
     disableElement(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).insertAdjacentHTML('beforeend', `
       <section class= "mt-9">
         <div class="d-flex">
-          <label class="flex-auto my-0">총 ${lottoTickets.length}개를 구매하였습니다.</label>
+          <label class="flex-auto my-0">총 ${numbersBundle.length}개를 구매하였습니다.</label>
           <div class="flex-auto d-flex justify-end pr-1">
             <label class="switch">
               <input type="checkbox" ${UI_SETTINGS.DEFAULT_VISIBILITY ? 'checked' : ''}/>
@@ -33,7 +33,7 @@ export default class LottoUI {
           </div>
         </div>
         <div class="d-flex flex-wrap lotto-ticket-container">
-        ${lottoTickets.reduce((acc, numbers) => acc + this.makeTicketElement(numbers), '')}
+        ${numbersBundle.map(numbers => this.makeTicketElement(numbers)).join('')}
         </div>
       </section>
       `);
