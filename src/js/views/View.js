@@ -1,6 +1,5 @@
 export default class View {
   constructor($element) {
-    // TODO : throw 하게 되면 console이 어떻게 될까
     if (!$element) throw $element;
     this.$element = $element;
   }
