@@ -20,11 +20,9 @@ const service = {
   },
 
   toggleLottoItemNumbers(checked) {
-    if (checked) {
-      lottoGameView.displayLottoNumbers();
-      return;
-    }
-    lottoGameView.hideLottoNumbers();
+    checked 
+      ? lottoGameView.displayLottoNumbers() 
+      : lottoGameView.hideLottoNumbers();
   },
 
   initToggleButton() {
