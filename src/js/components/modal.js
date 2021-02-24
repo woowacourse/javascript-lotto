@@ -1,9 +1,4 @@
-import {
-  ACTION_TYPE,
-  CLASSNAME,
-  JS_SELECTOR,
-  STATE_TYPE,
-} from "../constants/index.js";
+import { ACTION_TYPE, CLASSNAME, JS_SELECTOR } from "../constants/index.js";
 import { Lotto } from "../models/index.js";
 import store from "../store/index.js";
 import {
@@ -75,16 +70,38 @@ const createModal = () => {
     return winningCount;
   };
 
-  const render = () => {
-    const { lottos, winningNumber } = store.getState();
+  const select = (state) => ({
+    lottos: state.lottos,
+    winningNumber: state.winningNumber,
+  });
 
-    if (winningNumber.numbers.length === 0) {
+  let currentValue = select(store.getState());
+  const render = () => {
+    let previousValue = currentValue;
+    currentValue = select(store.getState());
+    const { winningNumber: previousWinningNumber } = previousValue;
+    const {
+      lottos: currentLottos,
+      winningNumber: currentWinningNumber,
+    } = currentValue;
+
+    const hasChanged = previousWinningNumber !== currentWinningNumber;
+
+    if (!hasChanged) return;
+
+    const isCleared =
+      currentLottos.length === 0 && currentWinningNumber.numbers.length === 0;
+
+    if (isCleared) {
       $container.classList.remove(CLASSNAME.MODAL.OPEN);
       return;
     }
 
-    const winningCount = produceWinningCount(lottos, winningNumber);
-    const profitRate = calculateProfitRate(lottos, winningCount);
+    const winningCount = produceWinningCount(
+      currentLottos,
+      currentWinningNumber
+    );
+    const profitRate = calculateProfitRate(currentLottos, winningCount);
     const profitRateParagraph = `당신의 총 수익률은 ${profitRate.toLocaleString(
       "en-US",
       {
@@ -112,7 +129,7 @@ const createModal = () => {
   const init = () => {
     $close.addEventListener("click", closeModal);
     $restartButton.addEventListener("click", restart);
-    store.subscribe(STATE_TYPE.WINNING_NUMBER, render);
+    store.subscribe(render);
   };
 
   return { init };

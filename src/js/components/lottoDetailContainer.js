@@ -1,4 +1,4 @@
-import { CLASSNAME, JS_SELECTOR, STATE_TYPE } from "../constants/index.js";
+import { CLASSNAME, JS_SELECTOR } from "../constants/index.js";
 import {
   $,
   toDataAttributeSelector as toDAS,
@@ -31,32 +31,51 @@ const createLottoDetailContainer = () => {
     `;
   };
 
-  const render = () => {
-    const { lottos } = store.getState();
+  const toggleDetailMode = (force) => {
+    $lottoIconWrapper.toggle("flex-col", force);
+    $lottoDetailContainer.toggle("detail", force);
+  };
 
-    if (lottos.length === 0) {
-      $lottoDetailContainer.hide();
+  const select = (state) => state.lottos;
+
+  let currentLottos = select(store.getState());
+  const render = () => {
+    let previousLottos = currentLottos;
+    currentLottos = select(store.getState());
+
+    const hasChanged = previousLottos !== currentLottos;
+
+    if (!hasChanged) return;
+
+    const isLottoInitialAdded = previousLottos.length === 0;
+
+    if (isLottoInitialAdded) {
+      $lottoDetailLabel.innerText = `총 ${currentLottos.length}개를 구매하였습니다.`;
+
+      $lottoIconWrapper.innerHTML = currentLottos
+        .map((lotto) => TEMPLATE(lotto))
+        .join("");
+
+      $lottoDetailContainer.show();
       return;
     }
 
-    $lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
+    const isLottoCleared = currentLottos.length === 0;
 
-    $lottoIconWrapper.innerHTML = lottos
-      .map((lotto) => TEMPLATE(lotto))
-      .join("");
-
-    $lottoDetailContainer.show();
-  };
-
-  const toggleDetailMode = () => {
-    $lottoIconWrapper.toggle("flex-col");
-    $lottoDetailContainer.toggle("detail");
+    if (isLottoCleared) {
+      toggleDetailMode(false);
+      $toggleButton.checked = false;
+      $lottoDetailContainer.hide();
+      return;
+    }
   };
 
   const init = () => {
-    $toggleButton.addEventListener("change", toggleDetailMode);
+    $toggleButton.addEventListener("change", (event) => {
+      toggleDetailMode(!event.target.checked);
+    });
 
-    store.subscribe(STATE_TYPE.LOTTOS, render);
+    store.subscribe(render);
   };
 
   return { init };

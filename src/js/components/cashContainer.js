@@ -1,9 +1,4 @@
-import {
-  ACTION_TYPE,
-  STATE_TYPE,
-  ALERT_MESSAGE,
-  JS_SELECTOR,
-} from "../constants/index.js";
+import { ACTION_TYPE, ALERT_MESSAGE, JS_SELECTOR } from "../constants/index.js";
 import {
   $,
   toDataAttributeSelector as toDAS,
@@ -65,13 +60,24 @@ const createCashContainer = () => {
     }
   };
 
+  const select = (state) => state.lottos;
+
+  let currentLottos = select(store.getState());
+
   const render = () => {
+    let previousLottos = currentLottos;
+    currentLottos = select(store.getState());
+
+    const hasChanged = previousLottos !== currentLottos;
+
+    if (!hasChanged) return;
+
     $cashInput.clear();
     $cashInput.focus();
   };
 
   const init = () => {
-    store.subscribe(STATE_TYPE.LOTTOS, render);
+    store.subscribe(render);
     $cashContainer.addEventListener("submit", createLottosAfterValidation);
   };
 
