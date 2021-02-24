@@ -1,11 +1,15 @@
 /// <reference types="cypress" />
 import Lotto from "../../src/js/objects/Lotto.js";
-import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_CLASSES } from '../../src/js/utils/constants.js';
+import { ALERT_MESSAGES } from '../../src/js/utils/constants/alert.js';
+import { LOTTO_SETTINGS } from '../../src/js/utils/constants/settings.js';
+import { DOM_CLASSES } from '../../src/js/utils/constants/dom.js';
+
 // TODO : UI 컴포넌트 별로 context 나누기
 context('로또 UI 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
   });
+
 
   it('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급한다.', () => {
     const money = 3000;

@@ -1,4 +1,4 @@
-import { LOTTO_SETTINGS } from './constants.js';
+import { LOTTO_SETTINGS } from './constants/settings.js';
 
 export function isMoneyNotInteger(money) {
   return Math.floor(money) !== money;

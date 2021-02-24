@@ -1,5 +1,7 @@
 import { $, $$, disableElement } from './utils/util.js';
-import { UI_SETTINGS, DOM_CLASSES, DOM_IDS } from './utils/constants.js';
+import { UI_SETTINGS } from './utils/constants/settings.js';
+import { DOM_CLASSES, DOM_IDS } from './utils/constants/dom.js';
+
 export default class LottoUI {
   initUI() {
     this.renderMoneyInputUI();
