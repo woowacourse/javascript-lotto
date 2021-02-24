@@ -46,3 +46,25 @@ export const REWARDS = Object.freeze([
     money: 2000000000,
   },
 ]);
+
+export const BONUS_ITEM_MATCH_COUNT = REWARDS
+  .find(reward => reward.shouldCheckBonus)
+  .matchCount
+
+export const SELECTOR = Object.freeze({
+  COST_SUBMIT_FORM: '#cost-submit-form',
+  COST_INPUT: '#cost-input',
+  COST_SUBMIT_BUTTON: '#cost-submit-button',
+  PURCHASE_RESULT: '#purchase-result',
+  PURCHASE_ITEM_COUNT: '#purchase-item-count',
+  LOTTO_NUMBERS_TOGGLE_BUTTON: '#lotto-numbers-toggle-button',
+  PURCHASE_ITEM_LIST: '#purchase-item-list',
+  CORRECT_NUMBER_WRAPPER: '#correct-number-wrapper',
+  RESULT_MODAL_OPEN_BUTTON: '#result-modal-open-button',
+  MODAL_CLOSE: '#modal-close',
+  MODAL: '#modal',
+  RESULT_TBODY: '#result-tbody',
+  PROFIT_RATE: '#profit-rate',
+  RESTART_BUTTON: '#restart-button',
+  WINNING_NUMBER_INPUT_FORM: '#winning-number-input-form'
+})
