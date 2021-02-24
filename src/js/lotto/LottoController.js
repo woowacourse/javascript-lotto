@@ -1,6 +1,6 @@
 import LottoModel from "./LottoModel.js";
 import LottoView from "./LottoView.js";
-import { onModalShow } from "../utils.js";
+import { hideElement, onModalShow } from "../utils.js";
 import { $modal } from "../elements.js";
 import {
   INVALID_PRICE_ERROR,
@@ -109,6 +109,17 @@ export default class LottoController {
     return Math.round((totalPrize / this.lottoModel.price) * 100);
   }
 
+  onClickAutoPurchaseButton() {
+    document
+      .getElementById("auto-purchase-button")
+      .addEventListener("click", () => {
+        this.lottoModel.autoPurchase(
+          this.lottoModel.price / 1000 - this.lottoModel.lottoList.length
+        );
+        this.lottoView.showConfirmation(this.lottoModel.lottoList);
+      });
+  }
+
   onSubmitPrice(price) {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
@@ -116,8 +127,28 @@ export default class LottoController {
 
       return;
     }
-    this.lottoModel.buy(price);
-    this.lottoView.showConfirmation(this.lottoModel.lottoList);
+    this.lottoModel.setPrice(price);
+    this.lottoView.showPurchase(
+      this.lottoModel.lottoList,
+      this.lottoModel.price
+    );
+    document
+      .getElementById("manual-purchase-button")
+      .addEventListener("click", () => {
+        this.lottoView.showManualPurchaseDetail();
+        document
+          .getElementById("manual-purchase-form")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            this.onSubmitManaulPurchaseNumber(
+              Array.from(e.target.elements["manual-purchase-number"]).map((v) =>
+                Number(v.value)
+              )
+            );
+          });
+      });
+
+    this.onClickAutoPurchaseButton();
   }
 
   onToggleLottoNumbers(e) {
@@ -146,5 +177,14 @@ export default class LottoController {
     this.lottoView.showEarningRate(earningRate);
 
     onModalShow($modal);
+  }
+
+  onSubmitManaulPurchaseNumber(manaulPurcahseNumber) {
+    this.lottoModel.manaulPurchase(manaulPurcahseNumber);
+    hideElement(document.getElementById("manual-purchase-form"));
+    this.lottoView.showPurchaseProgress(
+      this.lottoModel.price / 1000,
+      this.lottoModel.lottoList.length
+    );
   }
 }

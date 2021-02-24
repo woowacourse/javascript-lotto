@@ -6,6 +6,10 @@ export default class LottoModel {
     this.price = 0;
   }
 
+  setPrice(price) {
+    this.price = price;
+  }
+
   createLotto() {
     const baseNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
 
@@ -16,9 +20,13 @@ export default class LottoModel {
     };
   }
 
-  buy(price) {
-    const numOfLottoes = price / 1000;
-    this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
-    this.price = price;
+  manaulPurchase(manualNumbers) {
+    this.lottoList.push({ number: [...manualNumbers] });
+  }
+
+  autoPurchase(leftLottoCount) {
+    this.lottoList = [...this.lottoList].concat(
+      [...Array(leftLottoCount)].map(() => this.createLotto())
+    );
   }
 }

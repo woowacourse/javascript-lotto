@@ -9,10 +9,48 @@ import {
   $earningRate,
   $winningNumberInputs,
   $bonusNumberInput,
+  $manualPurchaseDetail,
+  $purchaseProgress,
+  $purchaseButtons,
 } from "../elements.js";
 
 export default class LottoView {
   constructor() {}
+
+  showPurchaseProgress(totalLottoCount, currentLottoCount) {
+    $purchaseProgress.innerHTML = `총 ${totalLottoCount}개의 로또 중 ${currentLottoCount}개를 수동 구매하였습니다.`;
+  }
+
+  showPurchaseButtons() {
+    $purchaseButtons.innerHTML = `
+    <button id="manual-purchase-button" class="btn btn-cyan" type="button">
+      수동 구매하기
+    </button>
+    <button id="auto-purchase-button" class="btn btn-cyan">
+      남은 로또 모두 자동 구매하기
+    </button>`;
+  }
+
+  showPurchase(lottoList, price) {
+    const totalLottoCount = price / 1000;
+
+    this.showPurchaseProgress(totalLottoCount, lottoList.length);
+    this.showPurchaseButtons();
+  }
+
+  showManualPurchaseDetail() {
+    const manualPurchaseInputs = `
+    <input
+      type="number"
+      name="manual-purchase-number"
+      class="winning-number mx-1 text-center"/>`.repeat(6);
+
+    $manualPurchaseDetail.innerHTML = `
+    <form id="manual-purchase-form">
+      ${manualPurchaseInputs}
+      <button class="btn btn-cyan">구매하기</button>
+    </form>`;
+  }
 
   showTickets(num) {
     $lottoTickets.innerHTML = '<span class="mx-1 text-4xl">🎟️ </span>'.repeat(
