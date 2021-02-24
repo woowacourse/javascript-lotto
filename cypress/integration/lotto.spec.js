@@ -66,6 +66,10 @@ describe('racing-game', () => {
 
   it('"결과 확인" 버튼 클릭시 모달 창을 통해 로또의 결과를 볼 수 있어야 한다.', () => {
     playLottoGame();
+  });
+
+  it('"X" 버튼 클릭시 모달 창이 닫혀야 한다.', () => {
+    playLottoGame();
 
     cy.get('.modal-close').click();
     cy.get('.modal').should('not.be.visible');
