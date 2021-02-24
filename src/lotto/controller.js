@@ -15,7 +15,7 @@ import { getCorrectNumbers } from './domReader.js';
 const onCostSubmit = () => {
   const cost = Number($costInput.value);
   const userGuideMessage = message.getCostValidation(cost);
-  if (userGuideMessage !== '') {
+  if (userGuideMessage) {
     service.guideUserInput(userGuideMessage, () => {
       $costInput.value = '';
     });
@@ -37,7 +37,7 @@ const onCostSubmitByEnterKey = (e) => {
 const onResultModalOpen = () => {
   const correctNumbers = getCorrectNumbers();
   const userGuideMessage = message.getModalOpenValidation(correctNumbers);
-  if (userGuideMessage !== '') {
+  if (userGuideMessage) {
     service.guideUserInput(userGuideMessage);
     return;
   }
@@ -50,7 +50,7 @@ const onResultModalClose = () => {
 
 const onCorrectNumberInput = (e) => {
   const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
-  if (userGuideMessage !== '') {
+  if (userGuideMessage) {
     service.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
       e.target.focus();
