@@ -36,11 +36,13 @@ export default class LottoController {
   }
 
   initEventListener() {
+    $(`.${DOM_CLASSES.MONEY_FORM}`).addEventListener('submit', event => {
+      event.preventDefault();
+      this.handleMoneyInput();
+    });
+
     $(`#${DOM_IDS.APP}`).addEventListener('submit', event => {
       event.preventDefault();
-      if (event.target.closest(`.${DOM_CLASSES.MONEY_FORM}`)) {
-        this.handleMoneyInput();
-      }
       if (event.target.closest(`.${DOM_CLASSES.RESULT_INPUT_FORM}`)) {
         this.handleResultInput();
       }
@@ -49,9 +51,11 @@ export default class LottoController {
     $(`#${DOM_IDS.APP}`).addEventListener('click', event => {
       if (event.target.closest(`.${DOM_CLASSES.LOTTO_SWITCH}`)) {
         this.handleCheckLottoSwitch();
+        return;
       }
       if (event.target.closest(`.${DOM_CLASSES.MODAL_CLOSE}`)) {
         this.lottoUI.hideModal();
+        retyr
       }
       if (event.target.closest(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`)) {
         this.restartGame();
