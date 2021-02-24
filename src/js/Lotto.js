@@ -22,7 +22,7 @@ export default class Lotto {
     return this._numbers;
   }
 
-  get numberDetail() {
+  get numberDetailString() {
     return [...this._numbers.values()].join(', ');
   }
 

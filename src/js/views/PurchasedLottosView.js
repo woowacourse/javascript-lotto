@@ -55,7 +55,7 @@ export default class PurchasedLottosView extends View {
         lotto => `
           <li class="mx-1 text-4xl lotto-wrapper">
             <span class="lotto-icon">🎟️ </span>
-            <span class="lotto-detail">${lotto.numberDetail}</span>
+            <span class="lotto-detail">${lotto.numberDetailString}</span>
           </li>
         `
       )
