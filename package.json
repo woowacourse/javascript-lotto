@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "test": "cypress open"
+  },
   "devDependencies": {
-    "cypress": "^6.3.0"
-  }
+    "cypress": "^6.5.0"
+  },
+  "repository": "https://github.com/swon3210/javascript-lotto",
+  "author": "swon3210 <swon3210@gmail.com>"
 }

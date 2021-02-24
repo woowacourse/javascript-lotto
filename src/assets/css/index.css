@@ -1,0 +1,48 @@
+@import './shared/index.css';
+@import './ui/index.css';
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'NanumGothic';
+  font-size: 16px;
+}
+
+#app {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.winning-number {
+  width: 30px;
+  height: 36px;
+}
+
+.bonus-number {
+  width: 30px;
+  height: 36px;
+}
+
+.lotto-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+#purchase-item-list.hide-lotto-numbers .lotto-numbers {
+  display: none;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+}
+
+.lotto-numbers {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
