@@ -84,7 +84,7 @@ describe("ui-play", () => {
       })
   })
 
-  it("수익률은 0보다 작을 수 없다.", () => {
+  it("수익률은 -100% 미만일 수 없다.", () => {
     cy.get("#buy-input").type("5000")
     cy.get("#buy-button").click()
     cy.get(".winning-number").each(($winningNumber, i) => {
@@ -95,7 +95,7 @@ describe("ui-play", () => {
     cy.get("#earnings-rate").then(($rateText) => {
       const txt = $rateText.text().trim()
       const rate = Number(txt.slice(11, txt.indexOf("%")))
-      cy.wrap(rate).should("be.gte", 0)
+      cy.wrap(rate).should("be.gte", -100)
     })
   })
 
