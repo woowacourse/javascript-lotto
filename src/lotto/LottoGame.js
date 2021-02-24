@@ -77,10 +77,6 @@ export default class LottoGame {
     return rankItemList;
   }
 
-  initLottoItemList() {
-    this.#lottoItemList = [];
-  }
-
   addLottoItem() {
     const lottoNumberList = this.#getLottoNumberList();
     this.#lottoItemList.push({

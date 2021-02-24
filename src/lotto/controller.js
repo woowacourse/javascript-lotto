@@ -26,7 +26,7 @@ const getTotalProfit = (rankItemList) => {
 
 const purchaseLottoItems = (cost) => {
   const lottoItemCount = cost / LOTTO.PRICE;
-  lottoGame.initLottoItemList();
+  lottoGame.init();
   lottoGame.addLottoItems(lottoItemCount);
   lottoGameView.displayResult(lottoGame.lottoItemList);
 };
