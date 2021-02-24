@@ -32,7 +32,7 @@ class LottoController {
     this.view.renderPocketSection(lottos)
     this.handlePocket()
     this.view.renderWinningSection()
-    this.handleModalOpen()
+    this.handleModal()
   }
 
   manageLotto() {
@@ -68,6 +68,7 @@ class LottoController {
       $modal.classList.remove("open")
     }
     $modalClose.addEventListener("click", onModalClose)
+    this.handleReset()
   }
 
   handlePrice() {
@@ -84,12 +85,19 @@ class LottoController {
     })
   }
 
-  handleModalOpen() {
+  handleModal() {
     const $showResultButton = document.querySelector(
       ".open-result-modal-button"
     )
     $showResultButton.addEventListener("click", () => {
       this.manageModal()
+    })
+  }
+
+  handleReset() {
+    const $resetButton = document.getElementById("reset")
+    $resetButton.addEventListener("click", () => {
+      this.init()
     })
   }
 }

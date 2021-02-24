@@ -44,10 +44,17 @@ class LottoView {
     $winningSection.innerHTML = ""
   }
 
+  resetModalSection() {
+    const $modalSection = $(".modal")
+    $modalSection.innerHTML = ""
+    $modalSection.classList.remove("open")
+  }
+
   reset() {
     this.renderBuySection()
     this.resetPocketSection()
     this.resetWinningSection()
+    this.resetModalSection()
   }
 }
 
