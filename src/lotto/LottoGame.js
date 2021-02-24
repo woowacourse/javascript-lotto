@@ -1,9 +1,6 @@
 import { getRandomNumber } from '../utils/random.js';
 import {
-  MAX_NUMBER,
-  MIN_NUMBER,
-  NUMBER_LIST_LENGTH,
-  LOTTO_PRICE,
+  LOTTO,
   REWARDS,
 } from '../constants.js';
 
@@ -21,7 +18,7 @@ export default class LottoGame {
   }
 
   get totalCost() {
-    return this.#lottoItemList.length * LOTTO_PRICE;
+    return this.#lottoItemList.length * LOTTO.PRICE;
   }
 
   init() {
@@ -32,8 +29,8 @@ export default class LottoGame {
 
   #getLottoNumberList() {
     const numberList = new Set();
-    while (numberList.size < NUMBER_LIST_LENGTH) {
-      numberList.add(getRandomNumber(MIN_NUMBER, MAX_NUMBER));
+    while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
+      numberList.add(getRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
     }
 
     return [...numberList];

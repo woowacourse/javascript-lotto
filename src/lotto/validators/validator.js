@@ -1,16 +1,16 @@
-import { LOTTO_PRICE, MAX_NUMBER, MIN_NUMBER } from '../../constants.js';
+import { LOTTO } from '../../constants.js';
 
 const isNumberOutOfRange = (number) => {
-  return !(MIN_NUMBER <= number && number <= MAX_NUMBER);
+  return !(LOTTO.MIN_NUMBER <= number && number <= LOTTO.MAX_NUMBER);
 };
 
 const validator = {
   isChangeMoneyExist(cost) {
-    return cost % LOTTO_PRICE !== 0;
+    return cost % LOTTO.PRICE !== 0;
   },
 
   isMoneyLessThanMinCost(cost) {
-    return cost < LOTTO_PRICE;
+    return cost < LOTTO.PRICE;
   },
 
   isDuplicatedNumberExist(numbers) {
@@ -21,6 +21,9 @@ const validator = {
     return numbers.some((number) => isNumberOutOfRange(number));
   },
 
+  isEmptyCorrectNumberExist(numbers) {
+    return numbers.length < LOTTO.CORRECT_NUMBER_LENGTH;
+  },
 };
 
 export default validator;

@@ -2,7 +2,7 @@ import { lottoGame } from '../store.js';
 import { getProfitRate } from '../utils/calculate.js';
 import { getKRString } from '../utils/format.js';
 import lottoGameView from './view.js';
-import { LOTTO_PRICE } from '../constants.js';
+import { LOTTO } from '../constants.js';
 
 const getTotalProfit = (rankItemList) => {
   return rankItemList.reduce(
@@ -13,7 +13,7 @@ const getTotalProfit = (rankItemList) => {
 
 const service = {
   purchaseLottoItems(cost) {
-    const lottoItemCount = cost / LOTTO_PRICE;
+    const lottoItemCount = cost / LOTTO.PRICE;
     lottoGame.initLottoItemList();
     lottoGame.addLottoItems(lottoItemCount);
     lottoGameView.displayResult(lottoGame.lottoItemList);
@@ -51,8 +51,8 @@ const service = {
 
   guideUserInput(message, callback) {
     lottoGameView.showMessage(message);
-    callback();
-  }
+    callback && callback();
+  },
 };
 
 export default service;

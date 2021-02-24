@@ -9,8 +9,8 @@ import {
   $restartButton,
 } from '../elements.js';
 import service from './service.js';
-import message from "./validators/message.js"
-import { getCorrectNumbers } from './domReader.js'
+import message from './validators/message.js';
+import { getCorrectNumbers } from './domReader.js';
 
 const onCostSumbit = () => {
   const cost = Number($costInput.value);
@@ -35,7 +35,13 @@ const onCostSubmitByEnterKey = (e) => {
 };
 
 const onResultModalOpen = () => {
-  service.openResultModal(getCorrectNumbers());
+  const correctNumbers = getCorrectNumbers();
+  const userGuideMessage = message.getModalOpenValidation(correctNumbers);
+  if (userGuideMessage !== '') {
+    service.guideUserInput(userGuideMessage);
+    return;
+  }
+  service.openResultModal(correctNumbers);
 };
 
 const onResultModalClose = () => {
@@ -43,7 +49,7 @@ const onResultModalClose = () => {
 };
 
 const onCorrectNumberInput = (e) => {
-  const userGuideMessage = message.getCorrectValidation(getCorrectNumbers());
+  const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
   if (userGuideMessage !== '') {
     service.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
@@ -60,7 +66,10 @@ export default {
   addAllEventListener() {
     $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
     $costSubmitButton.addEventListener('click', onCostSumbit);
-    $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
+    $lottoNumbersToggleButton.addEventListener(
+      'click',
+      onShowLottoNumbersToggle
+    );
     $modalClose.addEventListener('click', onResultModalClose);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
     $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);

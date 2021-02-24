@@ -13,12 +13,20 @@ const message = {
     return '';
   },
 
-  getCorrectValidation(correctNumbers) {
+  getCorrectNumberValidation(correctNumbers) {
     if (validator.isDuplicatedNumberExist(correctNumbers)) {
       return MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE;
     }
     if (validator.isNumberOutOfRangeExist(correctNumbers)) {
       return MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE;
+    }
+
+    return '';
+  },
+
+  getModalOpenValidation(correctNumbers) {
+    if (validator.isEmptyCorrectNumberExist(correctNumbers)) {
+      return MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE;
     }
 
     return '';
