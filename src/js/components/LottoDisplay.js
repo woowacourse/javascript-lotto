@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { lottoManager } from './App.js';
 
 export default class LottoDisplay {
@@ -33,44 +33,35 @@ export default class LottoDisplay {
     );
   }
 
-  onToggleSwitch({ target: { checked } }) {
-    this.setState({ isToggled: checked });
+  onToggleSwitch() {
+    console.log(1);
+    $$('.lotto-numbers').forEach($lottoNumbers => {
+      $lottoNumbers.classList.toggle('d-none');
+    });
   }
 
   createTotalLottoCountHTML() {
     return `총 ${lottoManager.lottos.length}개를 구매하였습니다.`;
   }
 
-  createLottoHTML() {
-    const lottoNumbersHTML = numbers =>
-      this.isToggled
-        ? `<span data-test="lotto-numbers" class="text-2xl ml-4">${numbers.join(
-            ', ',
-          )}</span>`
-        : '';
-
-    return lottoManager.lottos
-      .map(
-        ({ numbers }) =>
-          `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${lottoNumbersHTML(
-            numbers,
-          )}</span>`,
-      )
-      .join('');
-  }
-
-  setState({ isToggled }) {
-    this.isToggled = isToggled ?? this.isToggled;
-
-    this.render();
+  createLottoHTML(numbers) {
+    return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">
+              🎟️ <span class="lotto-numbers d-none text-2xl ml-4">${numbers.join(
+                ', ',
+              )}</span>
+            </span>`;
   }
 
   render() {
-    lottoManager.lottos.length
-      ? this.$target.classList.remove('d-none')
-      : this.$target.classList.add('d-none');
-
-    this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
-    this.$lottoDisplayArea.innerHTML = this.createLottoHTML();
+    if (lottoManager.lottos.length > 0) {
+      this.$target.classList.remove('d-none');
+      this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
+      this.$lottoDisplayArea.innerHTML = lottoManager.lottos
+        .map(({ numbers }) => this.createLottoHTML(numbers))
+        .join('');
+    } else {
+      this.$target.classList.add('d-none');
+      this.$toggleButton.checked = false;
+    }
   }
 }
