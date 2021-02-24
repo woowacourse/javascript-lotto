@@ -38,6 +38,9 @@ export default class LottoController {
       if (event.target.closest(`.${DOM_CLASSES.LOTTO_SWITCH}`)) {
         this.handleCheckLottoSwitch();
       }
+      if (event.target.closest(`.${DOM_CLASSES.MODAL_CLOSE}`)) {
+        this.lottoUI.hideModal();
+      }
     });
   }
 
@@ -84,8 +87,7 @@ export default class LottoController {
     this.bonusNumber = bonusNumberInput;
 
     this.calculateWinnings();
-    $(`.${DOM_CLASSES.MODAL}`).classList.add('open');
-
+    this.lottoUI.showModal();
     this.lottoUI.renderWinningResult(this.winnings, this.getEarningRate());
   }
 
