@@ -8,6 +8,7 @@ export default class Lotto {
     this.matchingNumbers = 0;
     this.isMatchBonus = false;
     this._rank = Infinity;
+
     this.initNumbers();
   }
 
@@ -21,17 +22,17 @@ export default class Lotto {
     return this._numbers;
   }
 
-  // Test를 위한 setter 생성
-  set numbers(numsArray) {
-    this._numbers = numsArray;
-  }
-
   get numberDetail() {
     return [...this._numbers.values()].join(', ');
   }
 
   get rank() {
     return this._rank;
+  }
+
+  // Test를 위한 setter 생성
+  set numbers(numsArray) {
+    this._numbers = numsArray;
   }
 
   addMatchNumbers() {
@@ -48,14 +49,7 @@ export default class Lotto {
         this._rank = 1;
         break;
       case 5:
-        switch (this.isMatchBonus) {
-          case true:
-            this._rank = 2;
-            break;
-          case false:
-            this._rank = 3;
-            break;
-        }
+        this._rank = this.isMatchBonus ? 2 : 3;
         break;
       case 4:
         this._rank = 4;

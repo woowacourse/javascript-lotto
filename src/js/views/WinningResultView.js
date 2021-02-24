@@ -1,10 +1,10 @@
 import View from './View.js';
 import { $, $$ } from '../utils/dom.js';
+import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class WinningResultView extends View {
   constructor($element) {
     super($element);
-
     this.$modal = $('.modal');
     this.winningNumbers = {};
 
@@ -17,7 +17,6 @@ export default class WinningResultView extends View {
       winningNumber.addEventListener('change', () =>
         this.insertWinningNumber(winningNumber)
       );
-
       winningNumber.addEventListener('input', () =>
         this.moveFocus(winningNumber, idx)
       );
@@ -46,7 +45,7 @@ export default class WinningResultView extends View {
 
   moveFocus($element, idx) {
     if ($element.value.length === 2) {
-      if (idx === 6) return;
+      if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
       $$('.winning-number')[idx + 1].focus();
     }
   }
