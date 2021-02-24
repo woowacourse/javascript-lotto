@@ -6,14 +6,13 @@ import { LOTTO } from '../utils/constants.js';
 export default class WinningNumbersInput {
   constructor(props) {
     this.props = props;
-    this.$target = $('#lotto-winning-number-input-container');
     this.setup();
     this.selectDOM();
     this.bindEvent();
   }
 
   selectDOM() {
-    this.$openResultModalButton = $('.open-result-modal-button');
+    this.$target = $('#lotto-winning-number-input-container');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
   }
@@ -23,7 +22,15 @@ export default class WinningNumbersInput {
     this.lottoManager.subscribe(this.render.bind(this));
   }
 
-  onClickButton() {
+  bindEvent() {
+    this.$target.addEventListener('submit', e => {
+      e.preventDefault();
+
+      this.onShowWinningResult();
+    });
+  }
+
+  onShowWinningResult() {
     const winningNumbers = this.$winningNumberInputs.map(({ value }) => value);
     const bonusNumber = this.$bonusNumberInput.value;
 
@@ -39,13 +46,6 @@ export default class WinningNumbersInput {
     this.lottoManager.decideWinners(
       winningNumbers.map(Number),
       Number(bonusNumber),
-    );
-  }
-
-  bindEvent() {
-    this.$openResultModalButton.addEventListener(
-      'click',
-      this.onClickButton.bind(this),
     );
   }
 

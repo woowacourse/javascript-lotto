@@ -24,21 +24,15 @@ export default class LottoPurchaseInput {
   }
 
   selectDOM() {
+    this.$target = $('#lotto-purchase-input-container');
     this.$purchaseInput = $('#lotto-purchase-input');
     this.$purchaseButton = $('#lotto-purchase-btn');
   }
 
   bindEvent() {
-    this.$purchaseButton.addEventListener('click', () => {
-      this.onPurchaseLotto();
-    });
-
-    this.$purchaseInput.addEventListener('keydown', e => {
-      if (e.key !== 'Enter') {
-        return;
-      }
-
+    this.$target.addEventListener('submit', e => {
       e.preventDefault();
+
       this.onPurchaseLotto();
     });
   }
@@ -64,10 +58,6 @@ export default class LottoPurchaseInput {
 }
 
 const validatePurchaseInputValue = payment => {
-  if (!Number.isInteger(payment)) {
-    return ERROR_MESSAGE.NOT_INTEGER_NUMBER;
-  }
-
   if (payment < LOTTO.PRICE) {
     return ERROR_MESSAGE.PAYMENT_AMOUNT;
   }
