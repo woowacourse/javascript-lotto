@@ -6,7 +6,7 @@ import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
-const generateLottoNumber = () => {
+const generateTicketNumbers = () => {
   const ticketNumbers = new Set();
 
   while (ticketNumbers.size < VALUE.LOTTO.TICKET_LENGH) {
@@ -26,8 +26,8 @@ const setLotto = (lotto, amountOfLottoTicket) => {
   for (let i = 0; i < amountOfLottoTicket; i++) {
     const ticket = new Ticket();
 
-    ticket.setNumbers(generateLottoNumber());
-    lotto.setTickets(ticket);
+    ticket.setNumbers(generateTicketNumbers());
+    lotto.addTicket(ticket);
   }
 };
 

@@ -48,21 +48,22 @@ const getRankCountMap = (lotto) => {
 };
 
 const getTotalYield = (lotto) => {
-  const totalProfit = lotto.tickets.reduce((acc, ticket) => {
-    return (acc += ticket.profit);
-  }, 0);
+  const totalProfit = lotto.tickets.reduce(
+    (acc, ticket) => (acc += ticket.profit),
+    0,
+  );
 
   return Number(((totalProfit / lotto.purchasePrice) * 100).toFixed(2));
 };
 
-const getTicketResult = (ticket, winningNumbers, bonusNumber) => {
-  const bonusCount = ticket.numbers.includes(bonusNumber);
+const setTicketResult = (ticket, winningNumbers, bonusNumber) => {
+  const isBonusNumber = ticket.numbers.includes(bonusNumber);
   const winnigCount =
     VALUE.LOTTO.TICKET_LENGH * 2 -
     new Set([...ticket.numbers, ...winningNumbers]).size;
 
   const winningRank =
-    bonusCount && winnigCount === VALUE.HIT_COUNT.FIVE
+    isBonusNumber && winnigCount === VALUE.HIT_COUNT.FIVE
       ? VALUE.WINNING_RANK.SECOND
       : getRank(winnigCount);
   const profit = getProfit(winningRank);
@@ -86,7 +87,7 @@ export const handleWinningNumberInput = (lotto) => {
   }
 
   lotto.tickets.forEach((ticket) => {
-    getTicketResult(ticket, winningNumbers, bonusNumber);
+    setTicketResult(ticket, winningNumbers, bonusNumber);
   });
 
   const ranckCountMap = getRankCountMap(lotto);
