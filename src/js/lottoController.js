@@ -1,4 +1,4 @@
-import { $, $$ } from './utils/util.js';
+import { $, $$, enableElement, clearInput, focusElement } from './utils/util.js';
 import Lotto from './objects/Lotto.js';
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES, PRIZE } from './utils/constants.js';
 import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty, isNumbersOutOfRange } from './utils/validation.js';
@@ -24,6 +24,7 @@ export default class LottoController {
   init() {
     this.lottoUI.initUI();
     this.initEventListener();
+    focusElement(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
   }
 
   initEventListener() {
@@ -65,6 +66,7 @@ export default class LottoController {
     const lottoTickets = this.lottos.map(lotto => lotto.getNumbers());
     this.lottoUI.renderCheckLottoUI(lottoTickets);
     this.lottoUI.renderResultInputUI();
+    focusElement(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`);
   }
 
   handleResultInput() {
@@ -177,6 +179,9 @@ export default class LottoController {
   restartGame() {
     this.resetState();
     this.lottoUI.hideModal();
+    enableElement(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+    clearInput(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
+    focusElement(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
 
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildNodes();
     $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildNodes();
