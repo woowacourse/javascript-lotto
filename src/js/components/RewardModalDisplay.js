@@ -1,17 +1,16 @@
+import { lottoManager } from './App.js';
 import { isEmptyObject } from '../utils/common.js';
 import { $, $$ } from '../utils/dom.js';
 
 export default class RewardModalDisplay {
-  constructor(props) {
-    this.props = props;
-    this.setup();
+  constructor() {
+    this.subscribeAction();
     this.selectDOM();
     this.bindEvent();
   }
 
-  setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
+  subscribeAction() {
+    lottoManager.subscribe(this.render.bind(this));
   }
 
   selectDOM() {
@@ -36,7 +35,7 @@ export default class RewardModalDisplay {
   }
 
   onRestart() {
-    this.lottoManager.resetState();
+    lottoManager.resetState();
   }
 
   onModalClose() {
@@ -48,7 +47,7 @@ export default class RewardModalDisplay {
   }
 
   render() {
-    if (isEmptyObject(this.lottoManager.winningResult)) {
+    if (isEmptyObject(lottoManager.winningResult)) {
       this.onModalClose();
       return;
     }
@@ -56,9 +55,9 @@ export default class RewardModalDisplay {
     this.onModalShow();
     this.$winningCountTexts.forEach($winningCountText => {
       const key = $winningCountText.getAttribute('data-prize');
-      $winningCountText.textContent = `${this.lottoManager.winningResult[key]}개`;
+      $winningCountText.textContent = `${lottoManager.winningResult[key]}개`;
     });
-    this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager
+    this.$profitText.textContent = `당신의 총 수익률은 ${lottoManager
       .calculateProfitMargin()
       .toFixed(2)}% 입니다.`;
   }

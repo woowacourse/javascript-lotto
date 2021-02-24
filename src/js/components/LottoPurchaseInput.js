@@ -1,3 +1,4 @@
+import { lottoManager } from './App.js';
 import {
   $,
   clearInputValue,
@@ -9,17 +10,14 @@ import { mod, divide, isEmptyArray } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
 export default class LottoPurchaseInput {
-  constructor(props) {
-    this.props = props;
-
-    this.setup();
+  constructor() {
+    this.subscribeAction();
     this.selectDOM();
     this.bindEvent();
   }
 
-  setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.reset.bind(this));
+  subscribeAction() {
+    lottoManager.subscribe(this.reset.bind(this));
   }
 
   selectDOM() {
@@ -37,7 +35,6 @@ export default class LottoPurchaseInput {
   }
 
   onPurchaseLotto() {
-    const { lottoManager } = this.props;
     const purchaseInputValue = this.$purchaseInput.value.trim();
     const payment = Number(purchaseInputValue);
 
@@ -57,7 +54,7 @@ export default class LottoPurchaseInput {
   }
 
   reset() {
-    if (isEmptyArray(this.lottoManager.lottos)) {
+    if (isEmptyArray(lottoManager.lottos)) {
       clearInputValue(this.$purchaseInput);
       enableElements(this.$purchaseInput, this.$purchaseButton);
     }
