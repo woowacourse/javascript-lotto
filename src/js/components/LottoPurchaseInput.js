@@ -1,6 +1,6 @@
 import { $, clearInputValue } from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
-import { mod, divide } from '../utils/common.js';
+import { mod, divide, isEmptyArray } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
 export default class LottoPurchaseInput {
@@ -14,13 +14,7 @@ export default class LottoPurchaseInput {
 
   setup() {
     ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.clear.bind(this));
-  }
-
-  clear() {
-    if (this.lottoManager.lottos.length === 0) {
-      clearInputValue(this.$purchaseInput);
-    }
+    this.lottoManager.subscribe(this.reset.bind(this));
   }
 
   selectDOM() {
@@ -54,6 +48,12 @@ export default class LottoPurchaseInput {
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
 
     lottoManager.createLottos(lottoCount);
+  }
+
+  reset() {
+    if (isEmptyArray(this.lottoManager.lottos)) {
+      clearInputValue(this.$purchaseInput);
+    }
   }
 }
 

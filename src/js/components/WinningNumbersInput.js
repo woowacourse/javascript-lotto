@@ -1,5 +1,5 @@
 import { $, $$, clearInputValue } from '../utils/dom.js';
-import { isEmptyValue, isInRange } from '../utils/common.js';
+import { isEmptyArray, isEmptyValue, isInRange } from '../utils/common.js';
 import { ERROR_MESSAGE } from '../utils/message.js';
 import { LOTTO } from '../utils/constants.js';
 
@@ -50,13 +50,15 @@ export default class WinningNumbersInput {
   }
 
   render() {
-    if (this.lottoManager.lottos.length) {
-      this.$target.classList.remove('d-none');
-    } else {
+    if (isEmptyArray(this.lottoManager.lottos)) {
       this.$target.classList.add('d-none');
-      this.$winningNumberInputs.forEach(clearInputValue);
-      clearInputValue(this.$bonusNumberInput);
+      return;
     }
+
+    this.$target.classList.remove('d-none');
+    [...this.$winningNumberInputs, this.$bonusNumberInput].forEach(
+      clearInputValue,
+    );
   }
 }
 

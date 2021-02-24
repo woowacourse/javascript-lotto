@@ -50,16 +50,16 @@ export default class RewardModalDisplay {
   render() {
     if (isEmptyObject(this.lottoManager.winningResult)) {
       this.onModalClose();
-    } else {
-      this.onModalShow();
-
-      this.$winningCountTexts.forEach($winningCountText => {
-        const key = $winningCountText.getAttribute('data-prize');
-        $winningCountText.textContent = `${this.lottoManager.winningResult[key]}개`;
-      });
-      this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager
-        .calculateProfitMargin()
-        .toFixed(2)}% 입니다.`;
+      return;
     }
+
+    this.onModalShow();
+    this.$winningCountTexts.forEach($winningCountText => {
+      const key = $winningCountText.getAttribute('data-prize');
+      $winningCountText.textContent = `${this.lottoManager.winningResult[key]}개`;
+    });
+    this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager
+      .calculateProfitMargin()
+      .toFixed(2)}% 입니다.`;
   }
 }

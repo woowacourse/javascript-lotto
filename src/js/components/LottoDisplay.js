@@ -1,3 +1,4 @@
+import { isEmptyArray } from '../utils/common.js';
 import { $ } from '../utils/dom.js';
 
 export default class LottoDisplay {
@@ -66,10 +67,12 @@ export default class LottoDisplay {
   }
 
   render() {
-    this.lottoManager.lottos.length
-      ? this.$target.classList.remove('d-none')
-      : this.$target.classList.add('d-none');
+    if (isEmptyArray(this.lottoManager.lottos)) {
+      this.$target.classList.add('d-none');
+      return;
+    }
 
+    this.$target.classList.remove('d-none');
     this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
     this.$lottoDisplayArea.innerHTML = this.createLottoHTML();
   }
