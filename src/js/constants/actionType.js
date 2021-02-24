@@ -1,4 +1,4 @@
-const ACTION_TYPE = {
+const ACTION_TYPE = Object.freeze({
   LOTTOS: {
     ADDED: "lottos/added",
   },
@@ -6,6 +6,6 @@ const ACTION_TYPE = {
     SET: "winningNumbers/set",
   },
   CLEAR: "CLEAR",
-};
+});
 
 export default ACTION_TYPE;

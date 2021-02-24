@@ -1,4 +1,4 @@
-const JS_SELECTOR = {
+const JS_SELECTOR = Object.freeze({
   CASH: {
     CONTAINER: "cash-container",
     INPUT: "cash-container__input",
@@ -20,6 +20,6 @@ const JS_SELECTOR = {
     WINNING_MONEY_UNIT: "modal__winning-money-unit",
     WINNING_COUNT: "modal__winning-count",
   },
-};
+});
 
 export default JS_SELECTOR;
