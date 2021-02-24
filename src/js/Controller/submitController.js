@@ -7,7 +7,7 @@ import {
   printTicketVertical,
 } from "../View/receiptView.js";
 import { showPurchaseResult } from "../Handler/elementHandler.js";
-import Ticket from "../Model/TicketBundle.js";
+import TicketBundle from "../Model/TicketBundle.js";
 
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
@@ -22,8 +22,8 @@ const handlePurchaseAmountSubmit = () => {
 
   if (!isValidMoney(money)) return;
 
-  Ticket.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
-  renderTickets(Ticket.ticketBundle.length);
+  TicketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
+  renderTickets(TicketBundle.ticketBundle.length);
 };
 
 const renderTickets = (ticketCount) => {
@@ -34,6 +34,6 @@ const renderTickets = (ticketCount) => {
 
 const handleToggleButton = (event) => {
   event.target.checked
-    ? printTicketVertical(Ticket.ticketBundle)
-    : printTicketHorizontal(Ticket.ticketBundle.length);
+    ? printTicketVertical(TicketBundle.ticketBundle)
+    : printTicketHorizontal(TicketBundle.ticketBundle.length);
 };

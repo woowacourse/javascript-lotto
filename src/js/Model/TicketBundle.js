@@ -1,6 +1,6 @@
 import { STANDARD_NUMBER } from "../Util/constants.js";
 
-class Ticket {
+class TicketBundle {
   constructor() {
     this.ticketBundle = [];
   }
@@ -25,4 +25,4 @@ class Ticket {
   }
 }
 
-export default new Ticket();
+export default new TicketBundle();
