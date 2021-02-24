@@ -29,10 +29,11 @@ export default class WinningNumberInput extends View {
   }
 
   bindModalEvent() {
-    this.$element.addEventListener('submit', e => {
-      this.handleShowResult(e);
-    });
+    this.$element.addEventListener('submit', e => this.handleShowResult(e));
+
     $('.modal-close').addEventListener('click', () => this.closeModal());
+    $('main').addEventListener('click', () => this.closeModal());
+    $('.modal-inner').addEventListener('click', e => e.stopPropagation());
     $('#reset-btn').addEventListener('click', () => {
       this.closeModal();
       this.emit('clickResetBtn');
