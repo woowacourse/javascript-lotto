@@ -13,6 +13,10 @@ export default class Lotto {
   }
 
   constructor(numbers) {
-    this.numbers = [...numbers].sort((a, b) => a - b);
+    this._numbers = [...numbers].sort((a, b) => a - b);
+  }
+
+  get numbers() {
+    return this._numbers;
   }
 }
