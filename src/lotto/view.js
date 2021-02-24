@@ -69,8 +69,7 @@ const view = {
 
   resetToggleButton() {
     $lottoNumbersToggleButton.checked = false;
-    $purchaseItemList.classList.add('hide-lotto-numbers');
-    $purchaseItemList.classList.remove('flex-col');
+    view.hideLottoNumbers();
   },
 
   openResultModal(rankItemList, profitRate) {

@@ -89,7 +89,7 @@ const controller = {
   bindLottoGameEvents() {
     $costSubmitForm.addEventListener('submit', onCostSubmit);
     $costSubmitButton.addEventListener('click', onCostSubmit);
-    $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
+    $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $winningNumberInputForm.addEventListener('submit', onResultModalOpen);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
