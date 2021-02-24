@@ -13,12 +13,14 @@ export default class WinningNumberInput extends View {
   }
 
   bindNumberInputEvent() {
-    $$('.winning-number').forEach(winningNumber => {
-      winningNumber.addEventListener('change', () => {
-        this.winningNumbers[winningNumber.dataset.indexNum] = Number(
-          winningNumber.value
-        );
-      });
+    $$('.winning-number').forEach((winningNumber, idx) => {
+      winningNumber.addEventListener('change', () =>
+        this.insertWinningNumber(winningNumber)
+      );
+
+      winningNumber.addEventListener('input', () =>
+        this.moveFocus(winningNumber, idx)
+      );
     });
 
     $('.bonus-number').addEventListener('input', () => {
@@ -35,6 +37,17 @@ export default class WinningNumberInput extends View {
       this.closeModal();
       this.emit('clickResetBtn');
     });
+  }
+
+  insertWinningNumber($element) {
+    this.winningNumbers[$element.dataset.indexNum] = Number($element.value);
+  }
+
+  moveFocus($element, idx) {
+    if ($element.value.length === 2) {
+      if (idx === 6) return;
+      $$('.winning-number')[idx + 1].focus();
+    }
   }
 
   handleShowResult(e) {
