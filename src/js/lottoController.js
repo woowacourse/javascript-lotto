@@ -1,5 +1,5 @@
 import { $, $$, enableElement, clearInput, focusElement } from './utils/util.js';
-import Lotto from './objects/Lotto.js';
+import Lotto from './models/Lotto.js';
 import { ALERT_MESSAGES } from './utils/constants/alert.js';
 import { LOTTO_SETTINGS, PRIZE } from './utils/constants/settings.js';
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
@@ -13,13 +13,11 @@ import LottoUI from './lottoUI.js';
 export default class LottoController {
   constructor() {
     this.lottoUI = new LottoUI();
-    this.resetState();
+    this.initState();
   }
 
-  resetState() {
+  initState() {
     this.lottos = [];
-    this.winningNumbers = [];
-    this.bonusNumber = 0;
     this.winnings = {
       first: 0,
       second: 0,
@@ -29,7 +27,7 @@ export default class LottoController {
     };
   }
 
-  init() {
+  initLottoGame() {
     this.lottoUI.initUI();
     this.initEventListener();
     focusElement(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
@@ -55,10 +53,11 @@ export default class LottoController {
       }
       if (event.target.closest(`.${DOM_CLASSES.MODAL_CLOSE}`)) {
         this.lottoUI.hideModal();
-        retyr
+        return;
       }
       if (event.target.closest(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`)) {
         this.restartGame();
+        return;
       }
     });
   }
@@ -82,31 +81,28 @@ export default class LottoController {
   }
 
   handleResultInput() {
-    const winningNumberInputs = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)].map(input => {
+    const winningNumbers = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)].map(input => {
       return Number(input.value);
     });
-    const bonusNumberInput = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
-    const numberInputs = [...winningNumberInputs, bonusNumberInput]
+    const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
+    const numbers = [...winningNumbers, bonusNumber]
 
-    if (isResultInputsEmpty(numberInputs)) {
+    if (isResultInputsEmpty(numbers)) {
       alert(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
       return;
     }
 
-    if (isNumbersDuplicated(numberInputs)) {
+    if (isNumbersDuplicated(numbers)) {
       alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
       return;
     }
 
-    if (isNumbersOutOfRange(numberInputs)) {
+    if (isNumbersOutOfRange(numbers)) {
       alert(ALERT_MESSAGES.NUMBERS_OUT_OF_RANGE);
       return;
     }
 
-    this.winningNumbers = winningNumberInputs;
-    this.bonusNumber = bonusNumberInput;
-
-    this.calculateWinnings();
+    this.calculateWinnings(winningNumbers, bonusNumber);
     this.lottoUI.showModal();
     this.lottoUI.renderWinningResult(this.winnings, this.getEarningRate());
   }
@@ -125,13 +121,13 @@ export default class LottoController {
     this.lottoUI.toggleLottoNumbers();
   }
 
-  calculateWinnings() {
+  calculateWinnings(winningNumbers, bonusNumber) {
     this.lottos.forEach(lotto => {
       const myNumbers = lotto.getNumbers();
       const {
         winningCount,
         bonusCount
-      } = this.countEqualNumbers(this.winningNumbers, this.bonusNumber, myNumbers);
+      } = this.countEqualNumbers(winningNumbers, bonusNumber, myNumbers);
 
       const rank = this.getRank(winningCount, bonusCount);
       if (rank) {
@@ -189,7 +185,7 @@ export default class LottoController {
   }
 
   restartGame() {
-    this.resetState();
+    this.initState();
     this.lottoUI.hideModal();
     enableElement(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
     clearInput(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);

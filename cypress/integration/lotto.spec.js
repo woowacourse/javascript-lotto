@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import Lotto from "../../src/js/objects/Lotto.js";
+import Lotto from "../../src/js/models/Lotto.js";
 import { ALERT_MESSAGES } from '../../src/js/utils/constants/alert.js';
 import { LOTTO_SETTINGS } from '../../src/js/utils/constants/settings.js';
 import { DOM_CLASSES } from '../../src/js/utils/constants/dom.js';
