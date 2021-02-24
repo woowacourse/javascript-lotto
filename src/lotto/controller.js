@@ -31,8 +31,8 @@ const purchaseLottoItems = (cost) => {
   lottoGameView.displayResult(lottoGame.lottoItemList);
 };
 
-const showWinningResult = (inputNumbers) => {
-  lottoGame.assignInputNumbers(inputNumbers);
+const showWinningResult = (correctNumbers) => {
+  lottoGame.assignCorrectNumbers(correctNumbers);
   lottoGame.assignMatchCount();
   const rankItemList = lottoGame.getRankItemList();
   const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));

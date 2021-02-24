@@ -39,14 +39,9 @@ export default class LottoGame {
 
   assignMatchCount() {
     this.#lottoItemList.forEach((lottoItem) => {
-      const allNumberList = [
-        ...lottoItem.lottoNumberList,
-        ...this.#winningNumberList,
-      ];
+      const allNumberList = [...lottoItem.lottoNumberList, ...this.#winningNumberList];
       const matchedCount = allNumberList.length - new Set(allNumberList).size;
-      lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(
-        this.#bonusNumber
-      );
+      lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(this.#bonusNumber);
       lottoItem.matchCount = matchedCount;
     });
   }
@@ -99,8 +94,9 @@ export default class LottoGame {
     [...Array(lottoItemCount)].forEach(() => this.addLottoItem());
   };
 
-  assignInputNumbers(numbers) {
-    this.#bonusNumber = numbers.pop();
-    this.#winningNumberList = numbers;
+  assignCorrectNumbers(correctNumbers) {
+    const copiedCorrectNumbers = [...correctNumbers];
+    this.#bonusNumber = copiedCorrectNumbers.pop();
+    this.#winningNumberList = copiedCorrectNumbers;
   }
 }
