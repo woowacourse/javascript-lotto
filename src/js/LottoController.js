@@ -6,7 +6,11 @@ import {
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
 import { $ } from './utils/dom.js';
-import { compareNumbers, calculateEarningRate } from './utils/utils.js';
+import {
+  compareNumbers,
+  calculateEarningRate,
+  countByRank,
+} from './utils/utils.js';
 
 import WinningResultView from './views/WinningResultView.js';
 import InputPriceView from './views/InputPriceView.js';
@@ -27,9 +31,11 @@ export default class LottoController {
   reset() {
     this.lottos = [];
     this.purchasedPrice = 0;
+    this.rankCounts = Array(5).fill(0);
+    this.isResultCalculated = false;
 
     this.inputPriceView.show().resetInputPrice();
-    this.purchasedLottosView.hide();
+    this.purchasedLottosView.hide().resetToggleSwitch();
     this.winningResultView.hide().resetWinningNumbers();
   }
 
@@ -70,25 +76,16 @@ export default class LottoController {
       return;
     }
 
-    compareNumbers(this.lottos, winningNumbers);
-    this.lottos.forEach(lotto => lotto.updateRank());
-    const rankCounts = this.countByRank();
+    if (!this.isResultCalculated) {
+      compareNumbers(this.lottos, winningNumbers);
+      this.lottos.forEach(lotto => lotto.updateRank());
+      countByRank(this.lottos, this.rankCounts);
+    }
+    this.isResultCalculated = true;
 
     this.winningResultView.showModal(
-      rankCounts,
-      calculateEarningRate(rankCounts, this.purchasedPrice)
+      this.rankCounts,
+      calculateEarningRate(this.rankCounts, this.purchasedPrice)
     );
-  }
-
-  countByRank() {
-    const rankCounts = Array(5).fill(0);
-
-    this.lottos.forEach(lotto => {
-      if (lotto.rank !== Infinity) {
-        rankCounts[lotto.rank - 1] += 1;
-      }
-    });
-
-    return rankCounts;
   }
 }

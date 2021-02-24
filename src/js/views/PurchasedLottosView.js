@@ -4,6 +4,8 @@ import { $, $$ } from '../utils/dom.js';
 export default class PurchasedLottosView extends View {
   constructor($element) {
     super($element);
+    this.toggleSwitch = $('#lotto-switch');
+    this.$lottoIconsDiv = $('#lotto-icons');
     this.bindToggleSwitchEvent();
   }
 
@@ -14,18 +16,19 @@ export default class PurchasedLottosView extends View {
   }
 
   toggleSwitchHandler() {
-    const $lottoIconsDiv = $('#lotto-icons');
-
-    $lottoIconsDiv.checked = !$lottoIconsDiv.checked;
-    const isSwitchOn = $lottoIconsDiv.checked;
-
-    if (isSwitchOn) {
-      $lottoIconsDiv.classList.add('flex-col');
+    if (this.toggleSwitch.checked) {
+      this.$lottoIconsDiv.classList.add('flex-col');
       this.showLottoDetailView();
     } else {
-      $lottoIconsDiv.classList.remove('flex-col');
+      this.$lottoIconsDiv.classList.remove('flex-col');
       this.hideLottoDetailView();
     }
+  }
+
+  resetToggleSwitch() {
+    this.toggleSwitch.checked = false;
+    this.$lottoIconsDiv.classList.remove('flex-col');
+    this.hideLottoDetailView();
   }
 
   showLottoDetailView() {
