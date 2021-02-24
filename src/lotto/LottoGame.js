@@ -28,15 +28,6 @@ export default class LottoGame {
     this.#bonusNumber = null;
   }
 
-  #getLottoNumberList() {
-    const numberList = new Set();
-    while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
-      numberList.add(getRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
-    }
-
-    return [...numberList];
-  }
-
   assignMatchCount() {
     this.#lottoItemList.forEach((lottoItem) => {
       const allNumberList = [...lottoItem.lottoNumberList, ...this.#winningNumberList];
@@ -76,8 +67,17 @@ export default class LottoGame {
 
     return rankItemList;
   }
+  
+  #getLottoNumberList() {
+    const numberList = new Set();
+    while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
+      numberList.add(getRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
+    }
 
-  addLottoItem() {
+    return [...numberList];
+  }
+
+  #addLottoItem() {
     const lottoNumberList = this.#getLottoNumberList();
     this.#lottoItemList.push({
       lottoNumberList,
@@ -87,7 +87,7 @@ export default class LottoGame {
   }
 
   addLottoItems = (lottoItemCount) => {
-    [...Array(lottoItemCount)].forEach(() => this.addLottoItem());
+    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
   };
 
   assignCorrectNumbers(correctNumbers) {
