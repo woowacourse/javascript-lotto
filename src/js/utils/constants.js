@@ -12,3 +12,11 @@ export const LOTTO_REWARD = Object.freeze({
   FOURTH: 50000,
   FIFTH: 5000,
 });
+
+export const MATCH_COUNT = Object.freeze({
+  FIRST: 6,
+  SECOND: 5.5,
+  THIRD: 5,
+  FOURTH: 4,
+  FIFTH: 3,
+});

@@ -1,5 +1,5 @@
 import Lotto from './Lotto.js';
-import { LOTTO, LOTTO_REWARD } from '../utils/constants.js';
+import { LOTTO, LOTTO_REWARD, MATCH_COUNT } from '../utils/constants.js';
 import { generateRandomNumber, sortNumbers } from '../utils/common.js';
 
 export default class LottoManager {
@@ -47,15 +47,15 @@ export default class LottoManager {
     };
 
     const calculate = count => {
-      if (count === 6) {
+      if (count === MATCH_COUNT.FIRST) {
         winningResult[`FIRST`]++;
-      } else if (count === 5.5) {
+      } else if (count === MATCH_COUNT.SECOND) {
         winningResult[`SECOND`]++;
-      } else if (count === 5) {
+      } else if (count === MATCH_COUNT.THIRD) {
         winningResult[`THIRD`]++;
-      } else if (count === 4) {
+      } else if (count === MATCH_COUNT.FOURTH) {
         winningResult[`FOURTH`]++;
-      } else if (count === 3) {
+      } else if (count === MATCH_COUNT.FIFTH) {
         winningResult[`FIFTH`]++;
       }
     };
