@@ -1,7 +1,7 @@
 import View from './View.js';
 import { $, $$ } from '../utils/dom.js';
 
-export default class WinningNumberInput extends View {
+export default class WinningResultView extends View {
   constructor($element) {
     super($element);
 
