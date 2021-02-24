@@ -1,7 +1,14 @@
 import { $, $$, enableElement, clearInput, focusElement } from './utils/util.js';
 import Lotto from './objects/Lotto.js';
-import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES, PRIZE } from './utils/constants.js';
-import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty, isNumbersOutOfRange } from './utils/validation.js';
+import { ALERT_MESSAGES } from './utils/constants/alert.js';
+import { LOTTO_SETTINGS, PRIZE } from './utils/constants/settings.js';
+import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
+import {
+  isMoneyNotInteger,
+  isNumbersDuplicated,
+  isResultInputsEmpty,
+  isNumbersOutOfRange
+} from './utils/validation.js';
 export default class LottoController {
   constructor(lottoUI) {
     this.lottoUI = lottoUI;

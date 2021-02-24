@@ -1,4 +1,4 @@
-import { LOTTO_SETTINGS } from '../utils/constants.js';
+import { LOTTO_SETTINGS } from '../utils/constants/settings.js';
 
 export default class Lotto {
   constructor() {
