@@ -74,8 +74,7 @@ class LottoController {
       return alert(errorMessage)
     }
 
-    // TODO : 입력한 당첨번호 유효성 확인
-    // TODO : 입력한 당첨번호 model에 저장하기
+    this.model.addAnswerLotto(numbers, answer)
     // TODO : 우승정보, 수익률 계산하기
     // TODO : 우승정보 가져오기
     // TODO : 수익률 정보 가져오기
