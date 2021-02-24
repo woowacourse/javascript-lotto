@@ -1,15 +1,19 @@
-import { ACTION_TYPE, ALERT_MESSAGE, JS_SELECTOR } from "../constants/index.js";
+import {
+  ACTION_TYPE,
+  ALERT_MESSAGE,
+  JS_SELECTOR,
+} from "../../constants/index.js";
 import {
   $,
   toDataAttributeSelector as toDAS,
   generateLottoNumbers,
-} from "../utils/index.js";
-import { Lotto } from "../models/index.js";
-import store from "../store/index.js";
-import { EmptyInputError, ValidationError } from "../errors/index.js";
+} from "../../utils/index.js";
+import { Lotto } from "../../models/index.js";
+import store from "../../store/index.js";
+import { EmptyInputError, ValidationError } from "../../errors/index.js";
+import Presentational from "./Presentational.js";
 
-const createCashContainer = () => {
-  const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
+const createContainer = () => {
   const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 
   const toNumber = (cashInputValue) => {
@@ -72,18 +76,17 @@ const createCashContainer = () => {
 
     if (!hasChanged) return;
 
-    $cashInput.clear();
-    $cashInput.focus();
+    Presentational.render();
   };
 
   const init = () => {
+    Presentational.init({ createLottosAfterValidation });
     store.subscribe(render);
-    $cashContainer.addEventListener("submit", createLottosAfterValidation);
   };
 
   return { init };
 };
 
-const cashContainer = createCashContainer();
+const CashContainer = createContainer();
 
-export default cashContainer;
+export default CashContainer;

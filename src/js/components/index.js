@@ -1,6 +1,6 @@
-import CashContainer from "./cashContainer.js";
-import LottoDetailContainer from "./lottoDetailContainer.js";
-import WinningNumberContainer from "./winningNumberContainer.js";
-import Modal from "./modal.js";
+import CashContainer from "./CashContainer/index.js";
+import LottoDetailContainer from "./LottoDetailContainer/index.js";
+import WinningNumberContainer from "./WinningNumberContainer/index.js";
+import Modal from "./Modal/index.js";
 
 export { CashContainer, LottoDetailContainer, WinningNumberContainer, Modal };
