@@ -131,7 +131,7 @@ context('로또 UI 테스트', () => {
     })
   });
 
-  it(' X 표시를 누르면 모달 창을 닫을 수 있다.', () => {
+  it('X 표시를 누르면 모달 창을 닫을 수 있다.', () => {
     const money = 3000;
     cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
     cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
@@ -142,6 +142,23 @@ context('로또 UI 테스트', () => {
     cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
   });
 
+  it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+
+    typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
+    cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
+
+    cy.get(`.${DOM_CLASSES.LOTTO_CONTAINER}`).then(container => {
+      expect(container[0].hasChildNodes()).to.be.false;
+    })
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).then(container => {
+      expect(container[0].hasChildNodes()).to.be.false;
+    });
+  });
 });
 
 context('로또 기능 테스트', () => {
