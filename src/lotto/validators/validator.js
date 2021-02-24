@@ -1,10 +1,10 @@
-import { LOTTO_PRICE, MAX_NUMBER, MIN_NUMBER } from '../constants.js';
+import { LOTTO_PRICE, MAX_NUMBER, MIN_NUMBER } from '../../constants.js';
 
 const isNumberOutOfRange = (number) => {
   return !(MIN_NUMBER <= number && number <= MAX_NUMBER);
 };
 
-export default {
+const validator = {
   isChangeMoneyExist(cost) {
     return cost % LOTTO_PRICE !== 0;
   },
@@ -20,4 +20,7 @@ export default {
   isNumberOutOfRangeExist(numbers) {
     return numbers.some((number) => isNumberOutOfRange(number));
   },
+
 };
+
+export default validator;

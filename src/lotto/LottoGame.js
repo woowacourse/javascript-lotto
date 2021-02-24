@@ -41,11 +41,11 @@ export default class LottoGame {
 
   assignMatchCount() {
     this.#lottoItemList.forEach((lottoItem) => {
-      const allNumberList = [
+      const correctNumberList = [
         ...lottoItem.lottoNumberList,
         ...this.winningNumberList,
       ];
-      const matchedCount = allNumberList.length - new Set(allNumberList).size;
+      const matchedCount = correctNumberList.length - new Set(correctNumberList).size;
       lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(
         this.#bonusNumber
       );

@@ -7,7 +7,7 @@ import {
   $lottoNumbersToggleButton,
   $resultTbody,
   $profitRate,
-  $winningAndBonusNumberWrapper,
+  $correctNumberWrapper,
   $winningNumberInputForm,
 } from '../elements.js';
 import {
@@ -28,7 +28,7 @@ export default {
   },
 
   initWinningNumberInputs() {
-    $('input[data-custom-input]', $winningAndBonusNumberWrapper).forEach(
+    $('input[data-custom-input]', $correctNumberWrapper).forEach(
       ($numberInput) => {
         $numberInput.value = '';
       }
@@ -78,4 +78,8 @@ export default {
   closeResultModal() {
     $modal.classList.remove('open');
   },
+
+  showMessage(message) {
+    alert(message);
+  }
 };

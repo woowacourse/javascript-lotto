@@ -11,7 +11,7 @@ const getTotalProfit = (rankItemList) => {
   );
 };
 
-export default {
+const service = {
   purchaseLottoItems(cost) {
     const lottoItemCount = cost / LOTTO_PRICE;
     lottoGame.initLottoItemList();
@@ -48,4 +48,11 @@ export default {
     lottoGame.init();
     lottoGameView.init();
   },
+
+  guideUserInput(message, callback) {
+    lottoGameView.showMessage(message);
+    callback();
+  }
 };
+
+export default service;
