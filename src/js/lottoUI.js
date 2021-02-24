@@ -1,4 +1,4 @@
-import { $, $$, disableElement } from './utils/util.js';
+import { $, $$ } from './utils/util.js';
 import { UI_SETTINGS } from './utils/constants/settings.js';
 import { DOM_CLASSES, DOM_IDS } from './utils/constants/dom.js';
 
@@ -22,7 +22,7 @@ export default class LottoUI {
   }
 
   renderCheckLottoUI(numbersBundle) {
-    disableElement(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+    $(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).insertAdjacentHTML('beforeend', `
       <section class= "mt-9">
         <div class="d-flex">

@@ -3,13 +3,13 @@ import Lotto from "../../src/js/models/Lotto.js";
 import { ALERT_MESSAGES } from '../../src/js/utils/constants/alert.js';
 import { LOTTO_SETTINGS } from '../../src/js/utils/constants/settings.js';
 import { DOM_CLASSES } from '../../src/js/utils/constants/dom.js';
+import { getRandomNumber } from '../../src/js/utils/util.js';
 
 // TODO : UI 컴포넌트 별로 context 나누기
 context('로또 UI 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
   });
-
 
   it('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급한다.', () => {
     const money = 3000;
@@ -178,7 +178,7 @@ context('로또 기능 테스트', () => {
     expect(amountTestSet.size === LOTTO_SETTINGS.LOTTO_NUMBER_SIZE).to.equal(true);
 
     for (let i = LOTTO_SETTINGS.MIN_LOTTO_NUMBER; i <= LOTTO_SETTINGS.MAX_LOTTO_NUMBER; i++) {
-      const randomNumber = lotto.getRandomNumber(LOTTO_SETTINGS.MIN_LOTTO_NUMBER, i);
+      const randomNumber = getRandomNumber(LOTTO_SETTINGS.MIN_LOTTO_NUMBER, i);
       expect(randomNumber >= LOTTO_SETTINGS.MIN_LOTTO_NUMBER && randomNumber <= i).to.equal(true);
     }
   });
