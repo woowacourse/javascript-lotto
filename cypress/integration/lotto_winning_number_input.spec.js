@@ -9,8 +9,6 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  // 번호 범위 + 중복 + 개수(길이) + isNaN
-
   it('당첨 번호 각각이 1~45 범위를 벗어나게 입력한 경우, alert에 오류 메시지를 출력한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 100];
     const bonusNumber = 40;
