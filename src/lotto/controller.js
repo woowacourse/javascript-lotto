@@ -12,7 +12,7 @@ import service from './service.js';
 import message from './validators/message.js';
 import { getCorrectNumbers } from './domReader.js';
 
-const onCostSumbit = () => {
+const onCostSubmit = () => {
   const cost = Number($costInput.value);
   const userGuideMessage = message.getCostValidation(cost);
   if (userGuideMessage !== '') {
@@ -31,7 +31,7 @@ const onShowLottoNumbersToggle = (e) => {
 
 const onCostSubmitByEnterKey = (e) => {
   e.preventDefault();
-  onCostSumbit();
+  onCostSubmit();
 };
 
 const onResultModalOpen = () => {
@@ -65,7 +65,7 @@ const onRestart = () => {
 const controller = {
   bindLottoGameEvents() {
     $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
-    $costSubmitButton.addEventListener('click', onCostSumbit);
+    $costSubmitButton.addEventListener('click', onCostSubmit);
     $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
