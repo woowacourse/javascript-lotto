@@ -1,17 +1,9 @@
-const $showResultButton = document.querySelector('.open-result-modal-button')
-const $modalClose = document.querySelector('.modal-close')
-const $modal = document.querySelector('.modal')
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-)
+import { initializeEvents } from "./Controller/submitController.js";
 
-const onModalShow = () => {
-  $modal.classList.add('open')
+class App {
+  constructor() {
+    initializeEvents();
+  }
 }
 
-const onModalClose = () => {
-  $modal.classList.remove('open')
-}
-
-$showResultButton.addEventListener('click', onModalShow)
-$modalClose.addEventListener('click', onModalClose)
+export const app = new App();
