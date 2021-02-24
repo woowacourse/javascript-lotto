@@ -5,8 +5,9 @@ import { generateRandomNumber, sortNumbers } from '../utils/common.js';
 export default class LottoManager {
   constructor(lottos = []) {
     this.lottos = lottos;
+    this.winningResult = {};
+
     this.listeners = [];
-    this.winningCount = {};
   }
 
   createLottos(lottoCount) {
@@ -18,54 +19,6 @@ export default class LottoManager {
     this.setState({ lottos });
   }
 
-  decideWinners(winningNumbers, bonusNumber) {
-    const winningCount = {
-      FIRST: 0,
-      SECOND: 0,
-      THIRD: 0,
-      FOURTH: 0,
-      FIFTH: 0,
-    };
-
-    const getMatchedCount = numbers => {
-      let count = 0;
-      numbers.forEach(number => {
-        if (winningNumbers.includes(number)) count++;
-      });
-      return count;
-    };
-
-    const updateWinningCount = (numbers, count) => {
-      if (count === 6) {
-        winningCount[`FIRST`]++;
-      } else if (count === 5 && numbers.includes(bonusNumber)) {
-        winningCount[`SECOND`]++;
-      } else if (count === 5) {
-        winningCount[`THIRD`]++;
-      } else if (count === 4) {
-        winningCount[`FOURTH`]++;
-      } else if (count === 3) {
-        winningCount[`FIFTH`]++;
-      }
-    };
-
-    this.lottos.forEach(({ numbers }) => {
-      updateWinningCount(numbers, getMatchedCount(numbers));
-    });
-
-    this.setState({ winningCount });
-  }
-
-  calculateProfitMargin() {
-    const investment = this.lottos.length * LOTTO.PRICE;
-    const profit = Object.keys(this.winningCount).reduce(
-      (profit, key) => profit + LOTTO_REWARD[key] * this.winningCount[key],
-      0,
-    );
-
-    return ((profit - investment) / investment) * 100;
-  }
-
   generateLottoNumbers() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < LOTTO.LENGTH) {
@@ -73,6 +26,52 @@ export default class LottoManager {
     }
 
     return sortNumbers([...lottoNumbers]);
+  }
+
+  decideWinners(winningNumbers, bonusNumber) {
+    const counts = this.lottos.map(lotto =>
+      lotto.getMatchedCount(winningNumbers, bonusNumber),
+    );
+    const winningResult = this.calculateWinningResult(counts);
+
+    this.setState({ winningResult });
+  }
+
+  calculateWinningResult(counts) {
+    const winningResult = {
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
+    };
+
+    const calculate = count => {
+      if (count === 6) {
+        winningResult[`FIRST`]++;
+      } else if (count === 5.5) {
+        winningResult[`SECOND`]++;
+      } else if (count === 5) {
+        winningResult[`THIRD`]++;
+      } else if (count === 4) {
+        winningResult[`FOURTH`]++;
+      } else if (count === 3) {
+        winningResult[`FIFTH`]++;
+      }
+    };
+
+    counts.forEach(calculate);
+    return winningResult;
+  }
+
+  calculateProfitMargin() {
+    const investment = this.lottos.length * LOTTO.PRICE;
+    const profit = Object.keys(this.winningResult).reduce(
+      (profit, key) => profit + LOTTO_REWARD[key] * this.winningResult[key],
+      0,
+    );
+
+    return ((profit - investment) / investment) * 100;
   }
 
   static isValidLottoNumbers(numbers) {
@@ -83,12 +82,12 @@ export default class LottoManager {
   }
 
   resetState() {
-    this.setState({ lottos: [], winningCount: {} });
+    this.setState({ lottos: [], winningResult: {} });
   }
 
-  setState({ lottos, winningCount }) {
+  setState({ lottos, winningResult }) {
     this.lottos = lottos ?? this.lottos;
-    this.winningCount = winningCount ?? this.winningCount;
+    this.winningResult = winningResult ?? this.winningResult;
 
     this.notify();
   }

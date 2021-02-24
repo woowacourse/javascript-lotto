@@ -50,10 +50,10 @@ export default class RewardModalDisplay {
   }
 
   render() {
-    if (Object.keys(this.lottoManager.winningCount).length !== 0) {
+    if (Object.keys(this.lottoManager.winningResult).length !== 0) {
       this.$winningCountTexts.forEach($winningCountText => {
         const key = $winningCountText.getAttribute('data-td');
-        $winningCountText.textContent = `${this.lottoManager.winningCount[key]}개`;
+        $winningCountText.textContent = `${this.lottoManager.winningResult[key]}개`;
       });
       this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager.calculateProfitMargin()}% 입니다.`;
 

@@ -112,7 +112,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
     };
 
     lottoManager.decideWinners(winningNumbers, bonusNumber);
-    for (const [key, value] of Object.entries(lottoManager.winningCount)) {
+    for (const [key, value] of Object.entries(lottoManager.winningResult)) {
       expect(result[key]).to.equal(value);
     }
 
