@@ -1,7 +1,7 @@
-import { lottoGame } from '../store.js';
+import LottoGame from './LottoGame.js';
+import lottoGameView from './view.js';
 import { getProfitRate } from '../utils/calculate.js';
 import { getKRString } from '../utils/format.js';
-import lottoGameView from './view.js';
 import { LOTTO } from '../constants.js';
 import {
   $resultModalOpenButton,
@@ -16,6 +16,8 @@ import {
 } from '../elements.js';
 import message from './validators/message.js';
 import { getCorrectNumbers } from './domReader.js';
+
+const lottoGame = new LottoGame();
 
 const getTotalProfit = (rankItemList) => {
   return rankItemList.reduce(
