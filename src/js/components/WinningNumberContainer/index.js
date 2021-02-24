@@ -2,26 +2,16 @@ import {
   ACTION_TYPE,
   ALERT_MESSAGE,
   CLASSNAME,
-  JS_SELECTOR,
-} from "../constants/index.js";
-import { EmptyInputError, ValidationError } from "../errors/index.js";
-import { Lotto } from "../models/index.js";
-import store from "../store/index.js";
-import {
-  $,
-  $$,
-  toClassSelector as toCS,
-  toDataAttributeSelector as toDAS,
-} from "../utils/index.js";
+} from "../../constants/index.js";
+import { EmptyInputError, ValidationError } from "../../errors/index.js";
+import { Lotto } from "../../models/index.js";
+import store from "../../store/index.js";
+import { $, $$, toClassSelector as toCS } from "../../utils/index.js";
+import Presentational from "./Presentational.js";
 
-const createWinningNumberContainer = () => {
-  const $container = $(toDAS(JS_SELECTOR.WINNING_NUMBER.CONTAINER));
-  const $$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT), {
-    $parent: $container,
-  });
-  const $bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT), {
-    $parent: $container,
-  });
+const createContainer = () => {
+  const $$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT));
+  const $bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
 
   const toNumbers = ($$inputs, $bonusInput) => {
     const inputs = [...$$inputs];
@@ -95,38 +85,29 @@ const createWinningNumberContainer = () => {
   const select = (state) => state.lottos;
 
   let currentLottos = select(store.getState());
+
   const render = () => {
     let previousLottos = currentLottos;
     currentLottos = select(store.getState());
 
     const hasChanged = previousLottos !== currentLottos;
-
     if (!hasChanged) return;
 
-    const isLottoInitialAdded = previousLottos.length === 0;
-
-    if (isLottoInitialAdded) {
-      $container.show();
-      return;
-    }
-
-    const isLottoCleared = currentLottos.length === 0;
-
-    if (isLottoCleared) {
-      $$inputs.forEach(($input) => $input.clear());
-      $bonusInput.clear();
-      $container.hide();
-    }
+    Presentational.render({
+      isLottoInitialAdded: previousLottos.length === 0,
+      isLottoCleared: currentLottos.length === 0,
+    });
   };
 
   const init = () => {
-    $container.addEventListener("submit", getWinningNumberWithValidation);
+    Presentational.init(getWinningNumberWithValidation);
+
     store.subscribe(render);
   };
 
   return { init };
 };
 
-const WinningNumberContainer = createWinningNumberContainer();
+const WinningNumberContainer = createContainer();
 
 export default WinningNumberContainer;

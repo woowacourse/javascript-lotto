@@ -1,23 +1,13 @@
-import { ACTION_TYPE, CLASSNAME, JS_SELECTOR } from "../constants/index.js";
-import { Lotto } from "../models/index.js";
-import store from "../store/index.js";
-import {
-  $,
-  $$,
-  toClassSelector as toCS,
-  toDataAttributeSelector as toDAS,
-} from "../utils/index.js";
+import { ACTION_TYPE, CLASSNAME } from "../../constants/index.js";
+import { Lotto } from "../../models/index.js";
+import store from "../../store/index.js";
+import { $, toClassSelector as toCS } from "../../utils/index.js";
+import Presentaional from "./Presentational.js";
 
 const createModal = () => {
   const WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
 
   const $container = $(toCS(CLASSNAME.MODAL));
-  const $close = $(toCS(CLASSNAME.MODAL.CLOSE));
-  const $restartButton = $(toDAS(JS_SELECTOR.MODAL.RESTART_BUTTON));
-  const $profitRateParagraph = $(
-    toDAS(JS_SELECTOR.MODAL.PROFIT_RATE_PARAGRAPH)
-  );
-  const $$winningCounts = $$(toDAS(JS_SELECTOR.MODAL.WINNING_COUNT));
 
   const isRanked = {
     First: ({ matchCount }) => matchCount === 6,
@@ -41,19 +31,19 @@ const createModal = () => {
   };
 
   const getMatch = (lotto, { numbers, bonusNumber }) => {
-    const matchCount =
-      lotto.numbers.length +
-      numbers.length +
-      -new Set([...lotto.numbers, ...numbers]).size;
-    const isBonusMatched = lotto.numbers.includes(bonusNumber);
-
-    return { matchCount, isBonusMatched };
+    return {
+      matchCount:
+        lotto.numbers.length +
+        numbers.length -
+        new Set([...lotto.numbers, ...numbers]).size,
+      isBonusMatched: lotto.numbers.includes(bonusNumber),
+    };
   };
 
-  const calculateProfitRate = (lottos, winningCount) => {
+  const calculateProfitRate = (lottos, winningCounts) => {
     const totalWinningMoney = [...Array(WINNING_MONEY_UNITS.length)].reduce(
       (total, _, index) =>
-        total + WINNING_MONEY_UNITS[index] * winningCount[index],
+        total + WINNING_MONEY_UNITS[index] * winningCounts[index],
       0
     );
 
@@ -76,6 +66,7 @@ const createModal = () => {
   });
 
   let currentValue = select(store.getState());
+
   const render = () => {
     let previousValue = currentValue;
     currentValue = select(store.getState());
@@ -93,29 +84,17 @@ const createModal = () => {
       currentLottos.length === 0 && currentWinningNumber.numbers.length === 0;
 
     if (isCleared) {
-      $container.classList.remove(CLASSNAME.MODAL.OPEN);
+      Presentaional.render({ isCleared: true });
       return;
     }
 
-    const winningCount = produceWinningCount(
+    const winningCounts = produceWinningCount(
       currentLottos,
       currentWinningNumber
     );
-    const profitRate = calculateProfitRate(currentLottos, winningCount);
-    const profitRateParagraph = `당신의 총 수익률은 ${profitRate.toLocaleString(
-      "en-US",
-      {
-        style: "percent",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    )}입니다.`;
+    const profitRate = calculateProfitRate(currentLottos, winningCounts);
 
-    [...$$winningCounts]
-      .reverse()
-      .forEach(($td, index) => ($td.innerText = `${winningCount[index]}개`));
-    $profitRateParagraph.innerText = profitRateParagraph;
-    $container.classList.add(CLASSNAME.MODAL.OPEN);
+    Presentaional.render({ isCleared: false, winningCounts, profitRate });
   };
 
   const restart = () => {
@@ -127,8 +106,8 @@ const createModal = () => {
   };
 
   const init = () => {
-    $close.addEventListener("click", closeModal);
-    $restartButton.addEventListener("click", restart);
+    Presentaional.init({ closeModal, restart });
+
     store.subscribe(render);
   };
 
