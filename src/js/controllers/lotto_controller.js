@@ -67,7 +67,7 @@ class LottoController {
     this.managePocket()
   }
 
-  manageModal() {
+  manageModalOpen() {
     const [numbers, answer] = this.getAnswerInput()
     const errorMessage = checkAnswerValid(numbers, answer)
     if (errorMessage) {
@@ -76,13 +76,18 @@ class LottoController {
 
     this.model.addAnswerLotto(numbers, answer)
     // TODO : 우승정보, 수익률 계산하기
-    this.model.lottoResult()
+    this.model.calculateLottosResult()
     // TODO : 우승정보 가져오기
     // TODO : 수익률 정보 가져오기
 
     this.view.renderModalSection()
     this.handleModalClose()
     this.handleReset()
+  }
+
+  manageModalClose() {
+    this.view.toggleModalSection()
+    this.model.resetLottoResult()
   }
 
   handlePrice() {
@@ -102,15 +107,14 @@ class LottoController {
   handleModalOpen() {
     const $showResultButton = $(".open-result-modal-button")
     $showResultButton.addEventListener("click", () => {
-      this.manageModal()
-      console.log(this.getAnswerInput())
+      this.manageModalOpen()
     })
   }
 
   handleModalClose() {
     const $modalClose = $(".modal-close")
     $modalClose.addEventListener("click", () => {
-      this.view.toggleModalSection()
+      this.manageModalClose()
     })
   }
 

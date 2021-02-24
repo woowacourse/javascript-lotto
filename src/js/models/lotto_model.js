@@ -6,7 +6,7 @@ class LottoModel {
       bonus: null,
     }
 
-    this._winnerLotto = {
+    this._lottoResult = {
       "1st": { price: 2000000000, count: 0 },
       "2nd": { price: 30000000, count: 0 },
       "3rd": { price: 1500000, count: 0 },
@@ -28,52 +28,43 @@ class LottoModel {
   }
 
   addAnswerLotto(numbers, bonus) {
-    this._answerLotto = {
-      numbers,
-      bonus,
-    }
+    this._answerLotto = { numbers, bonus }
   }
 
-  lottoResult() {
-    this._lottos.forEach((lotto) => {
+  calculateLottosResult() {
+    const calculateLottoResult = (lotto) => {
       const match = lotto.numbers.filter((x) =>
         this._answerLotto.numbers.includes(x)
       ).length
       const bonusMatch = lotto.numbers.includes(this._answerLotto.bonus)
 
+      let key = ""
       if (match === 6) {
-        this._winnerLotto["1st"] = {
-          price: 2000000000,
-          count: this._winnerLotto["1st"].countcount + 1,
-        }
+        key = "1st"
       } else if (match === 5 && bonusMatch) {
-        this._winnerLotto["2nd"] = {
-          price: 30000000,
-          count: this._winnerLotto["2nd"].count + 1,
-        }
+        key = "2st"
       } else if (match === 5 || (match === 4 && bonusMatch)) {
-        this._winnerLotto["3rd"] = {
-          price: 1500000,
-          count: this._winnerLotto["3rd"].count + 1,
-        }
+        key = "3rd"
       } else if (match === 4 || (match === 3 && bonusMatch)) {
-        this._winnerLotto["4th"] = {
-          price: 50000,
-          count: this._winnerLotto["4th"].count + 1,
-        }
+        key = "4th"
       } else if (match === 3 || (match === 2 && bonusMatch)) {
-        this._winnerLotto["5th"] = {
-          price: 5000,
-          count: this._winnerLotto["5th"].count + 1,
-        }
+        key = "5th"
       }
-    })
+      key && this._lottoResult[key].count++
+    }
 
-    console.log(this._winnerLotto)
+    this._lottos.forEach(calculateLottoResult)
+  }
+
+  resetLottoResult() {
+    for (let i in this._lottoResult) {
+      this._lottoResult[i].count = 0
+    }
   }
 
   init() {
     this._lottos = []
+    this.resetLottoResult()
   }
 }
 export default LottoModel

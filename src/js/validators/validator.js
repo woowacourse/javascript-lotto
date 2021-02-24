@@ -20,7 +20,7 @@ export const checkPriceValid = (price) => {
 
 export const checkAnswerValid = (numbers, bonus) => {
   const answers = [...numbers, bonus]
-  console.log(answers)
+
   if (AnswerValidator.isLessFilled(answers)) {
     return "당첨 번호를 모두 입력해주세요."
   }
