@@ -1,3 +1,4 @@
+import { isEmptyObject } from '../utils/common.js';
 import { $, $$ } from '../utils/dom.js';
 
 export default class RewardModalDisplay {
@@ -16,50 +17,49 @@ export default class RewardModalDisplay {
   selectDOM() {
     this.$target = $('.modal');
     this.$restartButton = $('#restart-btn');
-    this.$winningCountTexts = $$('[data-td]');
-    this.$profitText = $('[data-p=profit]');
+    this.$winningCountTexts = $$('[data-prize]');
+    this.$profitText = $('#total-profit');
     this.$closeButton = $('.modal-close');
   }
 
   bindEvent() {
-    this.$closeButton.addEventListener('click', this.onModalClose.bind(this));
-    this.$target.addEventListener(
-      'mousedown',
-      this.onClickOutsideModal.bind(this),
-    );
     this.$restartButton.addEventListener('click', this.onRestart.bind(this));
+
+    this.$closeButton.addEventListener('click', this.onModalClose.bind(this));
+    this.$target.addEventListener('mousedown', ({ target }) => {
+      if (target.closest('.modal-inner')) {
+        return;
+      }
+
+      this.onModalClose();
+    });
   }
 
   onRestart() {
     this.lottoManager.resetState();
   }
 
-  onClickOutsideModal(e) {
-    if (e.target.closest('.modal-inner')) {
-      return;
-    }
-    this.onModalClose();
+  onModalClose() {
+    this.$target.classList.remove('open');
   }
 
   onModalShow() {
     this.$target.classList.add('open');
   }
 
-  onModalClose() {
-    this.$target.classList.remove('open');
-  }
-
   render() {
-    if (Object.keys(this.lottoManager.winningResult).length !== 0) {
+    if (isEmptyObject(this.lottoManager.winningResult)) {
+      this.onModalClose();
+    } else {
+      this.onModalShow();
+
       this.$winningCountTexts.forEach($winningCountText => {
-        const key = $winningCountText.getAttribute('data-td');
+        const key = $winningCountText.getAttribute('data-prize');
         $winningCountText.textContent = `${this.lottoManager.winningResult[key]}개`;
       });
-      this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager.calculateProfitMargin()}% 입니다.`;
-
-      this.onModalShow();
-    } else {
-      this.onModalClose();
+      this.$profitText.textContent = `당신의 총 수익률은 ${this.lottoManager
+        .calculateProfitMargin()
+        .toFixed(2)}% 입니다.`;
     }
   }
 }

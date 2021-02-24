@@ -20,3 +20,5 @@ export const isEmptyValue = value => value === '';
 export const isInRange = (value, min = 1, max = 45) => {
   return min <= value && value <= max;
 };
+
+export const isEmptyObject = object => Object.keys(object).length === 0;
