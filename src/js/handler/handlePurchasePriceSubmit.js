@@ -38,4 +38,5 @@ export const handlePurchasePriceSubmit = (lotto) => {
 
   renderPurchaseResultSection(amountOfLottoTicket, lottoTicketNumbers);
   showWinningNumberInputForm();
+  $('.winning-number').focus();
 };

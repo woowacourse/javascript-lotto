@@ -1,6 +1,7 @@
 import Lotto from './model/Lotto.js';
 import { $ } from './utils/querySelector.js';
 import { handleModalPage } from './handler/handleModalPage.js';
+import { handleAccessbiliy } from './handler/handleAccessbiliy.js';
 import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
 import { handlePurchasePriceSubmit } from './handler/handlePurchasePriceSubmit.js';
 import { handleWinningNumberSubmit } from './handler/handleWinningNumberSubmit.js';
@@ -26,10 +27,16 @@ const init = () => {
   $('.modal').addEventListener('click', (event) =>
     handleModalPage(event, lotto),
   );
+
+  window.addEventListener('keyup', (event) => {
+    handleAccessbiliy(event, lotto);
+  });
 };
 
 const App = () => {
   init();
 };
 
-window.addEventListener('DOMContentLoaded', App);
+window.addEventListener('DOMContentLoaded', () => {
+  App();
+});

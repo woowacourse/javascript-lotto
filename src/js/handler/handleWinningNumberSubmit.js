@@ -1,4 +1,5 @@
 import { $, $$ } from '../utils/querySelector.js';
+import { disabledElement } from '../utils/setProperty.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { openModal, renderModal } from '../view/viewModalPage.js';
 import { setTicketResult } from '../components/setTicketResult.js';

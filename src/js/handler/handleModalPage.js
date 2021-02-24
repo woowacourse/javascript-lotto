@@ -3,14 +3,13 @@ import { closeModal } from '../view/viewModalPage.js';
 import { initializePurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import { hideWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
-const restartLottoGame = (lotto) => {
+export const restartLottoGame = () => {
   $('#purchase-price-input-form__input').value = '';
   $$('.winning-number').forEach((winningNumberInput) => {
     winningNumberInput.value = '';
   });
   $('.bonus-number').value = '';
 
-  lotto.clear();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
 };
@@ -23,6 +22,7 @@ export const handleModalPage = ({ target }, lotto) => {
 
   if (target.classList.contains('restart-button')) {
     restartLottoGame(lotto);
+    lotto.clear();
     closeModal();
   }
 };
