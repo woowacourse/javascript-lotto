@@ -1,3 +1,8 @@
+import { lottoGame } from '../store.js';
+import { getProfitRate } from '../utils/calculate.js';
+import { getKRString } from '../utils/format.js';
+import lottoGameView from './view.js';
+import { LOTTO } from '../constants.js';
 import {
   $resultModalOpenButton,
   $costSubmitButton,
@@ -9,53 +14,75 @@ import {
   $restartButton,
   $winningNumberInputForm
 } from '../elements.js';
-import service from './service.js';
 import message from './validators/message.js';
 import { getCorrectNumbers } from './domReader.js';
+
+const getTotalProfit = (rankItemList) => {
+  return rankItemList.reduce(
+    (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
+    0
+  );
+};
+
+const purchaseLottoItems = (cost) => {
+  const lottoItemCount = cost / LOTTO.PRICE;
+  lottoGame.initLottoItemList();
+  lottoGame.addLottoItems(lottoItemCount);
+  lottoGameView.displayResult(lottoGame.lottoItemList);
+};
+
+const showWinningResult = (inputNumbers) => {
+  lottoGame.assignInputNumbers(inputNumbers);
+  lottoGame.assignMatchCount();
+  const rankItemList = lottoGame.getRankItemList();
+  const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
+  lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
+};
 
 const onCostSubmit = () => {
   const cost = Number($costInput.value);
   const userGuideMessage = message.getCostValidation(cost);
   if (userGuideMessage) {
-    service.guideUserInput(userGuideMessage, () => {
-      $costInput.value = '';
-    });
+    lottoGameView.showMessage(userGuideMessage);
+    $costInput.value = '';
     return;
   }
-  service.initToggleButton();
-  service.purchaseLottoItems(cost);
+  lottoGameView.resetToggleButton();
+  purchaseLottoItems(cost);
 };
 
 const onShowLottoNumbersToggle = (e) => {
-  service.toggleLottoItemNumbers(e.target.checked);
+  e.target.checked
+    ? lottoGameView.displayLottoNumbers() 
+    : lottoGameView.hideLottoNumbers();
 };
 
 const onResultModalOpen = () => {
   const correctNumbers = getCorrectNumbers();
   const userGuideMessage = message.getModalOpenValidation(correctNumbers);
   if (userGuideMessage) {
-    service.guideUserInput(userGuideMessage);
+    lottoGameView.showMessage(userGuideMessage);
     return;
   }
-  service.showWinningResult(correctNumbers);
+  showWinningResult(correctNumbers);
 };
 
 const onResultModalClose = () => {
-  service.hideWinningResult();
+  lottoGameView.closeResultModal();
 };
 
 const onCorrectNumberInput = (e) => {
   const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
   if (userGuideMessage) {
-    service.guideUserInput(userGuideMessage, () => {
-      e.target.value = '';
-      e.target.focus();
-    });
+    lottoGameView.showMessage(userGuideMessage);
+    e.target.value = '';
+    e.target.focus();
   }
 };
 
 const onRestart = () => {
-  service.restart();
+  lottoGame.init();
+  lottoGameView.init();
 };
 
 const controller = {
