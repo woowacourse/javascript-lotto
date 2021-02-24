@@ -29,23 +29,21 @@ export default class PurchasedLottosView extends View {
   }
 
   showLottoDetailView() {
-    Array.from($$('.lotto-detail')).forEach(lottoDetail => {
+    $$('.lotto-detail').forEach(lottoDetail => {
       lottoDetail.style.display = 'inline';
     });
   }
 
   hideLottoDetailView() {
-    Array.from($$('.lotto-detail')).forEach(lottoDetail => {
+    $$('.lotto-detail').forEach(lottoDetail => {
       lottoDetail.style.display = 'none';
     });
   }
 
-  renderTotalLottoCount(count) {
-    $('#total-purchased').innerText = count;
-  }
-
-  renderLottoIcons(lottos) {
+  renderLottos(lottos) {
+    $('#total-purchased').innerText = lottos.length;
     $('#lotto-icons').innerHTML = this.createLottoIconTemplate(lottos);
+
     this.hideLottoDetailView();
   }
 

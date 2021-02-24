@@ -94,6 +94,18 @@ describe('로또 게임 테스트', () => {
     cy.get('.modal').should('not.be.visible');
   });
 
+  it('modal 영역 밖을 click 하면 modal 창이 닫힌다', () => {
+    clickAfterTypePrice();
+    typeWinningNumber();
+
+    cy.get('#show-result-btn').click();
+    cy.get('.modal').should('be.visible');
+    cy.get('.modal-inner').click();
+    cy.get('.modal').should('be.visible');
+    cy.get('h1').click(-50, -50, { force: true }); // modal 영역 밖을 클릭한 경우
+    cy.get('.modal').should('not.be.visible');
+  });
+
   const lottoNumsArr = [
     [21, 6, 43, 29, 35, 16], // 1등 (6개 일치)
     [21, 6, 43, 29, 35, 17], // 2등 (5개 + 보너스)
@@ -175,19 +187,5 @@ describe('로또 게임 테스트', () => {
         .eq(i + 1)
         .should('be.focused');
     }
-  });
-
-  it('modal 영역 밖을 click 하면 modal 창이 닫힌다', () => {
-    clickAfterTypePrice();
-    typeWinningNumber();
-
-    cy.get('#show-result-btn').click();
-    cy.get('.modal').should('be.visible');
-
-    cy.get('.modal-inner').click();
-    cy.get('.modal').should('be.visible');
-
-    cy.get('h1').click(-50, -50, { force: true });
-    cy.get('.modal').should('not.be.visible');
   });
 });
