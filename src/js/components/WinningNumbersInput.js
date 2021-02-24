@@ -1,5 +1,7 @@
-import LottoManager from '../model/LottoManager.js';
 import { $, $$, clearInputValue } from '../utils/dom.js';
+import { isEmptyValue, isInRange } from '../utils/common.js';
+import { ERROR_MESSAGE } from '../utils/message.js';
+import { LOTTO } from '../utils/constants.js';
 
 export default class WinningNumbersInput {
   constructor(props) {
@@ -25,7 +27,7 @@ export default class WinningNumbersInput {
     const winningNumbers = this.$winningNumberInputs.map(({ value }) => value);
     const bonusNumber = this.$bonusNumberInput.value;
 
-    const errorMessage = LottoManager.validateWinningNumbersInputValue(
+    const errorMessage = validateWinningNumbersInputValue(
       winningNumbers,
       bonusNumber,
     );
@@ -57,3 +59,23 @@ export default class WinningNumbersInput {
     }
   }
 }
+
+const validateWinningNumbersInputValue = (winningNumbers, bonusNumber) => {
+  const numbers = [...winningNumbers, bonusNumber].map(Number);
+
+  if (winningNumbers.some(isEmptyValue) || isEmptyValue(bonusNumber)) {
+    return ERROR_MESSAGE.EMPTY_INPUT_NUMBER;
+  }
+
+  if (
+    numbers.some(number => !isInRange(number, LOTTO.MIN_NUM, LOTTO.MAX_NUM))
+  ) {
+    return ERROR_MESSAGE.OUT_OF_RANGE;
+  }
+
+  if (new Set(numbers).size !== numbers.length) {
+    return ERROR_MESSAGE.DUPLICATED_NUMBER;
+  }
+
+  return '';
+};

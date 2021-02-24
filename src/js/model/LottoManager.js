@@ -1,26 +1,12 @@
 import Lotto from './Lotto.js';
-import { LOTTO } from '../utils/constants.js';
-import { ERROR_MESSAGE } from '../utils/message.js';
-import {
-  generateRandomNumber,
-  sortNumbers,
-  isEmptyValue,
-  isInRange,
-} from '../utils/common.js';
+import { LOTTO, LOTTO_REWARD } from '../utils/constants.js';
+import { generateRandomNumber, sortNumbers } from '../utils/common.js';
 
 export default class LottoManager {
   constructor(lottos = []) {
     this.lottos = lottos;
     this.listeners = [];
     this.winningCount = {};
-
-    this.rewards = Object.freeze({
-      FIRST: 2000000000,
-      SECOND: 300000000,
-      THIRD: 1500000,
-      FOURTH: 50000,
-      FIFTH: 5000,
-    });
   }
 
   createLottos(lottoCount) {
@@ -73,7 +59,7 @@ export default class LottoManager {
   calculateProfitMargin() {
     const investment = this.lottos.length * LOTTO.PRICE;
     const profit = Object.keys(this.winningCount).reduce(
-      (profit, key) => profit + this.rewards[key] * this.winningCount[key],
+      (profit, key) => profit + LOTTO_REWARD[key] * this.winningCount[key],
       0,
     );
 
@@ -94,24 +80,6 @@ export default class LottoManager {
       numbers.length === LOTTO.LENGTH &&
       new Set(numbers).size === numbers.length
     );
-  }
-
-  static validateWinningNumbersInputValue(winningNumbers, bonusNumber) {
-    const numbers = [...winningNumbers, bonusNumber].map(Number);
-
-    if (winningNumbers.some(isEmptyValue) || isEmptyValue(bonusNumber)) {
-      return ERROR_MESSAGE.EMPTY_INPUT_NUMBER;
-    }
-
-    if (!numbers.every(number => isInRange(number))) {
-      return ERROR_MESSAGE.OUT_OF_RANGE;
-    }
-
-    if (new Set(numbers).size !== numbers.length) {
-      return ERROR_MESSAGE.DUPLICATED_NUMBER;
-    }
-
-    return '';
   }
 
   resetState() {
