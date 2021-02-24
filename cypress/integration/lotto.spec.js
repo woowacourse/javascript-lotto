@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import Lotto from "../../src/js/objects/Lotto.js";
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_CLASSES } from '../../src/js/utils/constants.js';
-
+// TODO : UI 컴포넌트 별로 context 나누기
 context('로또 UI 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
@@ -130,6 +130,18 @@ context('로또 UI 테스트', () => {
       expect(/[0-9]\%/g.test(text)).to.be.true;
     })
   });
+
+  it(' X 표시를 누르면 모달 창을 닫을 수 있다.', () => {
+    const money = 3000;
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(money);
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+
+    typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
+    cy.get(`.${DOM_CLASSES.MODAL_CLOSE}`).click();
+    cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
+  });
+
 });
 
 context('로또 기능 테스트', () => {
