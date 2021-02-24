@@ -39,9 +39,17 @@ export const DOM_CLASSES = {
 
   MODAL: 'modal',
   MODAL_WINNING_COUNT: 'modal__winning-count',
-  MODAL_EARNING_RATE: 'modal__earnings-rate',
+  MODAL_EARNING_RATE: 'modal__earning-rate',
 }
 
 export const DOM_IDS = {
   APP: 'app',
+}
+
+export const PRIZE = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
 }

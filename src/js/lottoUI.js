@@ -1,4 +1,4 @@
-import { $, $$, disableElement } from './utils/dom.js';
+import { $, $$, disableElement } from './utils/util.js';
 import { UI_SETTINGS, DOM_CLASSES, DOM_IDS } from './utils/constants.js';
 export default class LottoUI {
   constructor() {
@@ -113,27 +113,27 @@ export default class LottoUI {
                 <tr class="text-center">
                   <td class="p-3">3개</td>
                   <td class="p-3">5,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="5">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="fifth">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">4개</td>
                   <td class="p-3">50,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="4">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="fourth">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개</td>
                   <td class="p-3">1,500,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="3">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="third">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개 + 보너스볼</td>
                   <td class="p-3">30,000,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="2">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="second">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">6개</td>
                   <td class="p-3">2,000,000,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="1">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="first">n개</td>
                 </tr>
               </tbody>
             </table>
@@ -145,5 +145,14 @@ export default class LottoUI {
         </div>
       </div>
     `);
+  }
+
+  renderWinningResult(winnings, earningRate) {
+    [...$$(`.${DOM_CLASSES.MODAL_WINNING_COUNT}`)].forEach(($winningCount) => {
+      const rank = $winningCount.dataset.rank;
+      $winningCount.textContent = `${winnings[rank]}개`;
+    });
+
+    $(`.${DOM_CLASSES.MODAL_EARNING_RATE}`).textContent = `당신의 총 수익률은 ${earningRate}%입니다.`;
   }
 }
