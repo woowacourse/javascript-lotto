@@ -1,4 +1,4 @@
-const ALERT_MESSAGE = {
+const ALERT_MESSAGE = Object.freeze({
   ERROR: {
     CASH_INPUT: {
       NOT_A_NUMBER:
@@ -13,6 +13,6 @@ const ALERT_MESSAGE = {
       OUT_OF_RANGE: "1에서 45 이하의 정수인 당첨번호를 입력해주세요.",
     },
   },
-};
+});
 
 export default ALERT_MESSAGE;

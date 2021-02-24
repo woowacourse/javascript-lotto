@@ -1,4 +1,4 @@
-const CLASSNAME = {
+const CLASSNAME = Object.freeze({
   LOTTO_DETAIL: {
     TOGGLE_BUTTON: "lotto-numbers-toggle-button",
   },
@@ -15,6 +15,6 @@ const CLASSNAME = {
   COMMON: {
     HIDDEN: "--hidden",
   },
-};
+});
 
 export default CLASSNAME;
