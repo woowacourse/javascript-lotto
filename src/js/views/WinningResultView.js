@@ -6,79 +6,80 @@ export default class WinningResultView extends View {
   constructor($element) {
     super($element);
     this.$modal = $('.modal');
+    this.winningNumberInputs = $$('.winning-number');
     this.winningNumbers = {};
 
     this.bindNumberInputEvent();
-    this.bindModalEvent();
+    this.bindModalCloseEvent();
+  }
+
+  resetWinningNumbers() {
+    this.winningNumberInputs.forEach(winningNumber => {
+      winningNumber.value = '';
+    });
+    this.winningNumbers = [];
   }
 
   bindNumberInputEvent() {
-    $$('.winning-number').forEach((winningNumber, idx) => {
+    this.winningNumberInputs.forEach((winningNumber, idx) => {
       winningNumber.addEventListener('change', () =>
-        this.insertWinningNumber(winningNumber)
+        this.inputWinningNumberHandler(winningNumber)
       );
       winningNumber.addEventListener('input', () =>
-        this.moveFocus(winningNumber, idx)
+        this.moveFocusHandler(winningNumber, idx)
       );
     });
 
-    $('.bonus-number').addEventListener('input', () => {
-      $('.open-result-modal-button').removeAttribute('disabled');
-    });
+    this.$element.addEventListener('submit', e => this.showResultHandler(e));
   }
 
-  bindModalEvent() {
-    this.$element.addEventListener('submit', e => this.handleShowResult(e));
-
+  bindModalCloseEvent() {
     $('.modal-close').addEventListener('click', () => this.closeModal());
     $('main').addEventListener('click', () => this.closeModal());
     $('.modal-inner').addEventListener('click', e => e.stopPropagation());
-    $('#reset-btn').addEventListener('click', () => {
-      this.closeModal();
-      this.emit('clickResetBtn');
-    });
+    $('#reset-btn').addEventListener('click', () =>
+      this.clickResetBtnHandler()
+    );
   }
 
-  insertWinningNumber($element) {
+  inputWinningNumberHandler($element) {
     this.winningNumbers[$element.dataset.indexNum] = Number($element.value);
   }
 
-  moveFocus($element, idx) {
+  moveFocusHandler($element, idx) {
     if ($element.value.length === 2) {
       if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
-      $$('.winning-number')[idx + 1].focus();
+      this.winningNumberInputs[idx + 1].focus();
     }
   }
 
-  handleShowResult(e) {
+  showResultHandler(e) {
     e.preventDefault();
     this.emit('submitNumbers', this.winningNumbers);
   }
 
+  clickResetBtnHandler() {
+    this.closeModal();
+    this.emit('clickResetBtn');
+  }
+
   showModal(rankCounts, earningRate) {
     this.$modal.classList.add('open');
-    this.showRanks(rankCounts);
-    this.showEarningRate(earningRate);
-  }
-
-  showRanks(rankCounts) {
-    $$('.match-count').forEach((el, idx) => {
-      el.innerText = rankCounts[rankCounts.length - idx - 1];
-    });
-  }
-
-  showEarningRate(earningRate) {
-    $('#profit').innerText = earningRate;
+    this.renderRanks(rankCounts);
+    this.renderEarningRate(earningRate);
   }
 
   closeModal() {
     this.$modal.classList.remove('open');
   }
 
-  resetWinningNumbers() {
-    $$('.winning-number').forEach(winningNumber => {
-      winningNumber.value = '';
+  renderRanks(rankCounts) {
+    $$('.match-count').forEach((el, idx) => {
+      el.innerText = rankCounts[rankCounts.length - idx - 1];
     });
-    this.winningNumbers = [];
+  }
+
+  renderEarningRate(earningRate) {
+    $('#profit').innerText = earningRate;
   }
 }
