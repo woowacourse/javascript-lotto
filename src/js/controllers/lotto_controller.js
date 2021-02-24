@@ -11,9 +11,15 @@ class LottoController {
   }
 
   init() {
+    this.model.init()
+    this.view.init()
+    this.handlePrice()
+  }
+
+  reset() {
+    this.model.init()
     this.view.reset()
     this.handlePrice()
-    this.model.init()
   }
 
   getBuyInput() {
@@ -32,7 +38,7 @@ class LottoController {
     this.view.renderPocketSection(lottos)
     this.handlePocket()
     this.view.renderWinningSection()
-    this.handleModal()
+    this.handleModalOpen()
   }
 
   manageLotto() {
@@ -58,16 +64,9 @@ class LottoController {
     // TODO : 우승정보, 수익률 계산하기
     // TODO : 우승정보 가져오기
     // TODO : 수익률 정보 가져오기
-    // TODO : modal template render 하기
+
     this.view.renderModalSection()
-    // TODO : modal classList.add("open")
-    // TODO : 모달창 닫기 기능 분리
-    const $modalClose = document.querySelector(".modal-close")
-    const $modal = document.querySelector(".modal")
-    const onModalClose = () => {
-      $modal.classList.remove("open")
-    }
-    $modalClose.addEventListener("click", onModalClose)
+    this.handleModalClose()
     this.handleReset()
   }
 
@@ -85,7 +84,7 @@ class LottoController {
     })
   }
 
-  handleModal() {
+  handleModalOpen() {
     const $showResultButton = document.querySelector(
       ".open-result-modal-button"
     )
@@ -94,10 +93,17 @@ class LottoController {
     })
   }
 
+  handleModalClose() {
+    const $modalClose = document.querySelector(".modal-close")
+    $modalClose.addEventListener("click", () => {
+      this.view.toggleModalSection()
+    })
+  }
+
   handleReset() {
     const $resetButton = document.getElementById("reset")
     $resetButton.addEventListener("click", () => {
-      this.init()
+      this.reset()
     })
   }
 }
