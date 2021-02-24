@@ -1,29 +1,33 @@
 import reducer from "../reducer/index.js";
 
-const createStore = (reducer) => {
-  let state = { lottos: [], winningNumber: { numbers: [], bonusNumber: 0 } };
-  let listeners = { lottos: [], winningNumber: [] };
+const initialState = {
+  lottos: [],
+  winningNumber: { numbers: [], bonusNumber: 0 },
+};
+
+const createStore = (reducer, initialState) => {
+  let state = initialState;
+  let listeners = [];
 
   const getState = () => {
     return { ...state };
   };
 
   const dispatch = (action) => {
-    const { target, state: newState } = reducer(state, action);
-    state = newState;
+    state = reducer(state, action);
 
-    target.forEach((t) => {
-      listeners[t]?.forEach((listener) => listener());
+    listeners.forEach((listener) => {
+      listener();
     });
   };
 
-  const subscribe = (target, listener) => {
-    listeners[target].push(listener);
+  const subscribe = (listener) => {
+    listeners.push(listener);
   };
 
   return { getState, dispatch, subscribe };
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, initialState);
 
 export default store;

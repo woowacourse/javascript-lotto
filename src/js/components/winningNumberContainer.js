@@ -3,7 +3,6 @@ import {
   ALERT_MESSAGE,
   CLASSNAME,
   JS_SELECTOR,
-  STATE_TYPE,
 } from "../constants/index.js";
 import { EmptyInputError, ValidationError } from "../errors/index.js";
 import { Lotto } from "../models/index.js";
@@ -93,25 +92,36 @@ const createWinningNumberContainer = () => {
     }
   };
 
+  const select = (state) => state.lottos;
+
+  let currentLottos = select(store.getState());
   const render = () => {
-    const { lottos } = store.getState();
+    let previousLottos = currentLottos;
+    currentLottos = select(store.getState());
 
-    if (lottos.length === 0) {
-      $$inputs.forEach(($input) => $input.clear());
-      $bonusInput.clear();
+    const hasChanged = previousLottos !== currentLottos;
 
-      $container.hide();
+    if (!hasChanged) return;
+
+    const isLottoInitialAdded = previousLottos.length === 0;
+
+    if (isLottoInitialAdded) {
+      $container.show();
       return;
     }
 
-    if (lottos && $container.classList.contains(CLASSNAME.COMMON.HIDDEN)) {
-      $container.show();
+    const isLottoCleared = currentLottos.length === 0;
+
+    if (isLottoCleared) {
+      $$inputs.forEach(($input) => $input.clear());
+      $bonusInput.clear();
+      $container.hide();
     }
   };
 
   const init = () => {
     $container.addEventListener("submit", getWinningNumberWithValidation);
-    store.subscribe(STATE_TYPE.LOTTOS, render);
+    store.subscribe(render);
   };
 
   return { init };
