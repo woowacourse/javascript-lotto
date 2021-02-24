@@ -176,4 +176,18 @@ describe('로또 게임 테스트', () => {
         .should('be.focused');
     }
   });
+
+  it('modal 영역 밖을 click 하면 modal 창이 닫힌다', () => {
+    clickAfterTypePrice();
+    typeWinningNumber();
+
+    cy.get('#show-result-btn').click();
+    cy.get('.modal').should('be.visible');
+
+    cy.get('.modal-inner').click();
+    cy.get('.modal').should('be.visible');
+
+    cy.get('h1').click(-50, -50, { force: true });
+    cy.get('.modal').should('not.be.visible');
+  });
 });
