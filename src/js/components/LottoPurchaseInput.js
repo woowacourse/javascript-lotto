@@ -22,7 +22,7 @@ export default class LottoPurchaseInput {
     if (lottoManager.lottos.length === 0) {
       clearInputValue(this.$purchaseInput);
       this.$purchaseInput.disabled = false;
-      this.$purchaseButton.disabled = false;
+      this.$purchaseButton.disabled = true;
     }
   }
 
@@ -34,9 +34,7 @@ export default class LottoPurchaseInput {
   }
 
   bindEvent() {
-    this.$purchaseButton.addEventListener('click', () => {
-      this.onPurchaseLotto();
-    });
+    this.$purchaseButton.addEventListener('click', this.onPurchaseLotto);
 
     this.$purchaseInput.addEventListener(
       'keyup',
