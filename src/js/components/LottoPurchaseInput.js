@@ -1,4 +1,9 @@
-import { $, clearInputValue } from '../utils/dom.js';
+import {
+  $,
+  clearInputValue,
+  disableElements,
+  enableElements,
+} from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
 import { mod, divide, isEmptyArray } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
@@ -47,12 +52,14 @@ export default class LottoPurchaseInput {
     const remainingMoney = mod(payment, LOTTO.PRICE);
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
 
+    disableElements(this.$purchaseInput, this.$purchaseInput);
     lottoManager.createLottos(lottoCount);
   }
 
   reset() {
     if (isEmptyArray(this.lottoManager.lottos)) {
       clearInputValue(this.$purchaseInput);
+      enableElements(this.$purchaseInput, this.$purchaseButton);
     }
   }
 }

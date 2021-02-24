@@ -25,9 +25,11 @@ export default class App {
     });
 
     this.lottoDisplay = new LottoDisplay({ lottoManager: this.lottoManager });
+
     this.winningNumbersInput = new WinningNumbersInput({
       lottoManager: this.lottoManager,
     });
+
     this.modalDisplay = new RewardModalDisplay({
       lottoManager: this.lottoManager,
     });
