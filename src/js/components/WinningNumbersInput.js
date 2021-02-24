@@ -48,13 +48,13 @@ export default class WinningNumbersInput {
   render() {
     if (isEmptyArray(lottoManager.lottos)) {
       this.$target.classList.add('d-none');
+      [...this.$winningNumberInputs, this.$bonusNumberInput].forEach(
+        clearInputValue,
+      );
       return;
     }
 
     this.$target.classList.remove('d-none');
-    [...this.$winningNumberInputs, this.$bonusNumberInput].forEach(
-      clearInputValue,
-    );
   }
 }
 
