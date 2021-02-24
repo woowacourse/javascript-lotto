@@ -28,7 +28,7 @@ const view = {
   },
 
   initWinningNumberInputs() {
-    $('input[data-custom-input]', $correctNumberWrapper).forEach(
+    $('.correct-number', $correctNumberWrapper).forEach(
       ($numberInput) => {
         $numberInput.value = '';
       }

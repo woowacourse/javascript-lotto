@@ -46,3 +46,10 @@ body {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.85);
 }
+
+.multi-submit-input {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}

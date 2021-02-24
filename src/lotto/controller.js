@@ -7,6 +7,7 @@ import {
   $modalClose,
   $correctNumberWrapper,
   $restartButton,
+  $winningNumberInputForm
 } from '../elements.js';
 import service from './service.js';
 import message from './validators/message.js';
@@ -27,11 +28,6 @@ const onCostSubmit = () => {
 
 const onShowLottoNumbersToggle = (e) => {
   service.toggleLottoItemNumbers(e.target.checked);
-};
-
-const onCostSubmitByEnterKey = (e) => {
-  e.preventDefault();
-  onCostSubmit();
 };
 
 const onResultModalOpen = () => {
@@ -64,10 +60,11 @@ const onRestart = () => {
 
 const controller = {
   bindLottoGameEvents() {
-    $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
+    $costSubmitForm.addEventListener('submit', onCostSubmit);
     $costSubmitButton.addEventListener('click', onCostSubmit);
     $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
+    $winningNumberInputForm.addEventListener('submit', onResultModalOpen);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
     $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
     $restartButton.addEventListener('click', onRestart);
