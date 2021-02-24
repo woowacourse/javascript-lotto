@@ -26,12 +26,18 @@ class LottoView {
   renderModalSection() {
     const $modalSection = $(".modal")
     $modalSection.innerHTML = modalSectionTemplate()
-    $modalSection.classList.add("open")
+    this.toggleModalSection()
   }
 
   togglePocketDetail() {
     const $pocketLottos = $(SELECTOR.POCKET_LOTTOS)
     $pocketLottos.classList.toggle("show")
+  }
+
+  toggleModalSection() {
+    const $modalSection = $(".modal")
+
+    $modalSection.classList.toggle("open")
   }
 
   resetPocketSection() {
@@ -47,7 +53,7 @@ class LottoView {
   resetModalSection() {
     const $modalSection = $(".modal")
     $modalSection.innerHTML = ""
-    $modalSection.classList.remove("open")
+    this.toggleModalSection()
   }
 
   reset() {
@@ -55,6 +61,10 @@ class LottoView {
     this.resetPocketSection()
     this.resetWinningSection()
     this.resetModalSection()
+  }
+
+  init() {
+    this.renderBuySection()
   }
 }
 
