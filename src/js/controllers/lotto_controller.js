@@ -1,13 +1,12 @@
-import Validator from "../validators/lotto_validator.js"
-import { $, getQuotient } from "../util.js"
+import { $, $$, getQuotient } from "../util.js"
 import { TICKET, SELECTOR } from "../constants/constant.js"
 import Ticket from "../ticket.js"
+import { checkAnswerValid, checkPriceValid } from "../validators/validator.js"
 
 class LottoController {
   constructor(model, view) {
     this.model = model
     this.view = view
-    this.validator = new Validator()
   }
 
   init() {
@@ -29,6 +28,16 @@ class LottoController {
     return value
   }
 
+  getAnswerInput() {
+    const numbers = [...$$(".winning-number")].map(({ value }) =>
+      value === "" ? NaN : Number(value)
+    )
+    const bonus =
+      $(".bonus-number").value === "" ? NaN : Number($(".bonus-number").value)
+
+    return [numbers, bonus]
+  }
+
   getCount(price) {
     return getQuotient(price, TICKET.PRICE)
   }
@@ -44,7 +53,7 @@ class LottoController {
   manageLotto() {
     const price = Number(this.getBuyInput())
 
-    const errorMessage = this.validator.checkPriceValid(price)
+    const errorMessage = checkPriceValid(price)
     if (errorMessage) {
       return alert(errorMessage)
     }
@@ -59,6 +68,12 @@ class LottoController {
   }
 
   manageModal() {
+    const [numbers, answer] = this.getAnswerInput()
+    const errorMessage = checkAnswerValid(numbers, answer)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
+
     // TODO : 입력한 당첨번호 유효성 확인
     // TODO : 입력한 당첨번호 model에 저장하기
     // TODO : 우승정보, 수익률 계산하기
@@ -85,23 +100,22 @@ class LottoController {
   }
 
   handleModalOpen() {
-    const $showResultButton = document.querySelector(
-      ".open-result-modal-button"
-    )
+    const $showResultButton = $(".open-result-modal-button")
     $showResultButton.addEventListener("click", () => {
       this.manageModal()
+      console.log(this.getAnswerInput())
     })
   }
 
   handleModalClose() {
-    const $modalClose = document.querySelector(".modal-close")
+    const $modalClose = $(".modal-close")
     $modalClose.addEventListener("click", () => {
       this.view.toggleModalSection()
     })
   }
 
   handleReset() {
-    const $resetButton = document.getElementById("reset")
+    const $resetButton = $("#reset")
     $resetButton.addEventListener("click", () => {
       this.reset()
     })
