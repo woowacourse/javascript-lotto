@@ -93,7 +93,7 @@ export default class LottoUI {
     $(`#${DOM_IDS.APP}`).insertAdjacentHTML('beforeend', `
       <div class="modal">
         <div class="modal-inner p-10">
-          <div class="modal-close">
+          <div class="${DOM_CLASSES.MODAL_CLOSE} modal-close">
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
@@ -154,5 +154,13 @@ export default class LottoUI {
     });
 
     $(`.${DOM_CLASSES.MODAL_EARNING_RATE}`).textContent = `당신의 총 수익률은 ${earningRate}%입니다.`;
+  }
+
+  showModal() {
+    $(`.${DOM_CLASSES.MODAL}`).classList.add('open');
+  }
+
+  hideModal() {
+    $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
   }
 }
