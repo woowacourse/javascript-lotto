@@ -1,5 +1,5 @@
 <p align="middle" >
-  <img width="200px;" src="./src/images/lotto_ball.png"/>
+  <img width="200px;" src="./docs/images/lotto_ball.png"/>
 </p>
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
@@ -16,7 +16,7 @@
 ## 🔥 Projects!
 
 <p align="middle">
-  <img width="400" src="./src/images/lotto_ui.png">
+  <img width="400" src="./docs/images/lotto_ui.png">
 </p>
 
 ### 🎯 step1 구입 기능
@@ -51,6 +51,8 @@
     - 로또 당첨 금액은 고정되어 있는 것으로 가정한다.
     - 수익률이 정수가 아닌 경우 소수점 둘째 자리까지 표기한다.
 - 다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.
+
+#### [🎀 step2 코드 구조 시각화](./docs/step2.md)
 
 ### 🎯🎯🎯 step3 수동 구매
 
