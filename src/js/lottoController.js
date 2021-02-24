@@ -9,9 +9,10 @@ import {
   isResultInputsEmpty,
   isNumbersOutOfRange
 } from './utils/validation.js';
+import LottoUI from './lottoUI.js';
 export default class LottoController {
-  constructor(lottoUI) {
-    this.lottoUI = lottoUI;
+  constructor() {
+    this.lottoUI = new LottoUI();
     this.resetState();
   }
 
