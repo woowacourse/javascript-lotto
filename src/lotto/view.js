@@ -22,7 +22,7 @@ const view = {
     view.closeResultModal();
     view.hideLottoNumbers();
     view.hideWinningNumberInputForm();
-    view.hideResult()
+    view.hidePurchaseResult()
     view.initWinningNumberInputs();
     $costInput.value = '';
   },
@@ -35,7 +35,7 @@ const view = {
     );
   },
 
-  displayResult(lottoItemList) {
+  displayPurchaseResult(lottoItemList) {
     $purchaseResult.classList.remove('hide');
     $purchaseItemList.classList.remove('hide');
     $purchaseItemCount.innerHTML = getResultItemCountTemplate(
@@ -45,7 +45,7 @@ const view = {
     view.displayWinningNumberInputForm();
   },
 
-  hideResult(){
+  hidePurchaseResult(){
     $purchaseResult.classList.add('hide');
   },
 

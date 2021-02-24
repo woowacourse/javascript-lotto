@@ -30,7 +30,7 @@ const purchaseLottoItems = (cost) => {
   const lottoItemCount = cost / LOTTO.PRICE;
   lottoGame.init();
   lottoGame.addLottoItems(lottoItemCount);
-  lottoGameView.displayResult(lottoGame.lottoItemList);
+  lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
 };
 
 const assignResult = (correctNumbers) => {
