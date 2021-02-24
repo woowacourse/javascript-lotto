@@ -38,3 +38,15 @@ export function calculateEarningRate(rankCounts, purchasedPrice) {
 
   return (totalProfit / purchasedPrice - 1) * 100;
 }
+
+export function countByRank(lottos) {
+  const rankCounts = Array(5).fill(0);
+
+  lottos.forEach(lotto => {
+    if (lotto.rank !== Infinity) {
+      rankCounts[lotto.rank - 1] += 1;
+    }
+  });
+
+  return rankCounts;
+}
