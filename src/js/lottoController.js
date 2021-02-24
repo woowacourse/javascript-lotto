@@ -1,4 +1,4 @@
-import { $, $$, enableElement, clearInput, focusElement } from './utils/util.js';
+import { $, $$, clearInput } from './utils/util.js';
 import Lotto from './models/Lotto.js';
 import { ALERT_MESSAGES } from './utils/constants/alert.js';
 import { LOTTO_SETTINGS, PRIZE } from './utils/constants/settings.js';
@@ -30,7 +30,7 @@ export default class LottoController {
   initLottoGame() {
     this.lottoUI.initUI();
     this.initEventListener();
-    focusElement(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
+    $(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).focus();
   }
 
   initEventListener() {
@@ -77,7 +77,7 @@ export default class LottoController {
     const numbersBundle = this.lottos.map(lotto => lotto.getNumbers());
     this.lottoUI.renderCheckLottoUI(numbersBundle);
     this.lottoUI.renderResultInputUI();
-    focusElement(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`);
+    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
   handleResultInput() {
@@ -86,7 +86,7 @@ export default class LottoController {
     });
     const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
     const numbers = [...winningNumbers, bonusNumber]
-
+    //TODO (alert.js 파일에)alert msg를 리턴하는 verifyInput() 만들기
     if (isResultInputsEmpty(numbers)) {
       alert(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
       return;
@@ -187,11 +187,11 @@ export default class LottoController {
   restartGame() {
     this.initState();
     this.lottoUI.hideModal();
-    enableElement(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+    $(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).enable();
     clearInput(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
-    focusElement(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
+    $(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).focus();
 
-    $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildNodes();
-    $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildNodes();
+    $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildren();
+    $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildren();
   }
 }
