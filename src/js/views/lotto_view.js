@@ -2,6 +2,7 @@ import {
   buySectionTemplate,
   pocketSectionTemplate,
   winningSectionTemplate,
+  modalSectionTemplate,
 } from "../templates/lotto_template.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
@@ -20,6 +21,12 @@ class LottoView {
   renderWinningSection() {
     const $winningSection = $(SELECTOR.WINNING)
     $winningSection.innerHTML = winningSectionTemplate()
+  }
+
+  renderModalSection() {
+    const $modalSection = $(".modal")
+    $modalSection.innerHTML = modalSectionTemplate()
+    $modalSection.classList.add("open")
   }
 
   togglePocketDetail() {

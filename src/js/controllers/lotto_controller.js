@@ -32,7 +32,7 @@ class LottoController {
     this.view.renderPocketSection(lottos)
     this.handlePocket()
     this.view.renderWinningSection()
-    this.manageModal()
+    this.handleModalOpen()
   }
 
   manageLotto() {
@@ -53,24 +53,20 @@ class LottoController {
   }
 
   manageModal() {
-    const $showResultButton = document.querySelector(
-      ".open-result-modal-button"
-    )
+    // TODO : 입력한 당첨번호 유효성 확인
+    // TODO : 입력한 당첨번호 model에 저장하기
+    // TODO : 우승정보, 수익률 계산하기
+    // TODO : 우승정보 가져오기
+    // TODO : 수익률 정보 가져오기
+    // TODO : modal template render 하기
+    this.view.renderModalSection()
+    // TODO : modal classList.add("open")
+    // TODO : 모달창 닫기 기능 분리
     const $modalClose = document.querySelector(".modal-close")
     const $modal = document.querySelector(".modal")
-    const $lottoNumbersToggleButton = document.querySelector(
-      ".lotto-numbers-toggle-button"
-    )
-
-    const onModalShow = () => {
-      $modal.classList.add("open")
-    }
-
     const onModalClose = () => {
       $modal.classList.remove("open")
     }
-
-    $showResultButton.addEventListener("click", onModalShow)
     $modalClose.addEventListener("click", onModalClose)
   }
 
@@ -85,6 +81,15 @@ class LottoController {
     const $pocketButton = $(SELECTOR.POCKET_TOGGLE)
     $pocketButton.addEventListener("click", () => {
       this.view.togglePocketDetail()
+    })
+  }
+
+  handleModalOpen() {
+    const $showResultButton = document.querySelector(
+      ".open-result-modal-button"
+    )
+    $showResultButton.addEventListener("click", () => {
+      this.manageModal()
     })
   }
 }
