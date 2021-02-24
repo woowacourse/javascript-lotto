@@ -20,3 +20,7 @@ export const $earningRate = $("#earning-rate");
 export const $restartButton = $("#restart-button");
 export const $winningNumberInputs = $(".winning-number");
 export const $bonusNumberInput = $("#bonus-number");
+export const $manualPurchaseButton = $("#manual-purchase-button");
+export const $manualPurchaseDetail = $("#manual-purchase-detail");
+export const $purchaseProgress = $("#purchase-progress");
+export const $purchaseButtons = $("#purchase-buttons");
