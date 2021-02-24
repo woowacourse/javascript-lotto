@@ -35,21 +35,17 @@ export default class LottoUI {
           </div>
         </div>
         <div class="d-flex flex-wrap lotto-ticket-container">
-        ${numbersBundle.map(numbers => this.makeTicketElement(numbers)).join('')}
+        ${numbersBundle.map(numbers => `
+          <span class= "mx-1 text-4xl ${DOM_CLASSES.LOTTO_TICKET}">
+          🎟️
+            <span class="${DOM_CLASSES.LOTTO_TICKET_NUMBER}${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : ' hidden'}">
+              ${numbers.join(', ')}
+            </span>
+          </span>
+        `).join('')}
         </div>
       </section>
       `);
-  }
-
-  makeTicketElement(numbers) {
-    return `
-    <span class= "mx-1 text-4xl ${DOM_CLASSES.LOTTO_TICKET}">
-      🎟️
-      <span class="${DOM_CLASSES.LOTTO_TICKET_NUMBER}${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : ' hidden'}">
-        ${numbers.join(', ')}
-      </span>
-    </span>
-      `;
   }
 
   toggleLottoNumbers() {
@@ -66,12 +62,8 @@ export default class LottoUI {
             <div>
               <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
               <div>
-                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
-                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
-                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
-                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
-                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
-                <input type="number" class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />
+                ${`<input type="number" class="winning-number mx-1 text-center 
+                  ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />`.repeat(6)}
               </div>
             </div>
             <div class="bonus-number-container flex-grow">
