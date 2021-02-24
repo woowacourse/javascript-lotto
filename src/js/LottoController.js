@@ -8,14 +8,14 @@ import {
 import { $ } from './utils/dom.js';
 import { compareNumbers, calculateEarningRate } from './utils/utils.js';
 
-import WinningNumberInput from './views/WinningNumberInput.js';
+import WinningResultView from './views/WinningResultView.js';
 import InputPriceView from './views/InputPriceView.js';
 import PurchasedLottosView from './views/PurchasedLottosView.js';
 export default class LottoController {
   constructor() {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
-    this.winningNumberInput = new WinningNumberInput($('#input-lotto-nums'));
+    this.winningResultView = new WinningResultView($('#input-lotto-nums'));
   }
 
   init() {
@@ -29,7 +29,7 @@ export default class LottoController {
 
     this.inputPriceView.show().resetInputPrice();
     this.purchasedLottosView.hide();
-    this.winningNumberInput.hide().resetWinningNumbers();
+    this.winningResultView.hide().resetWinningNumbers();
   }
 
   bindEvents() {
@@ -37,7 +37,7 @@ export default class LottoController {
       this.inputPriceHandler(e.detail)
     );
 
-    this.winningNumberInput
+    this.winningResultView
       .on('submitNumbers', e => this.inputNumbersHandler(e.detail))
       .on('clickResetBtn', () => this.reset());
   }
@@ -61,7 +61,7 @@ export default class LottoController {
     this.purchasedLottosView.show();
     this.purchasedLottosView.renderTotalLottoCount(this.lottos.length);
     this.purchasedLottosView.renderLottoIcons(this.lottos);
-    this.winningNumberInput.show();
+    this.winningResultView.show();
   }
 
   inputNumbersHandler(winningNumbers) {
@@ -73,7 +73,7 @@ export default class LottoController {
     compareNumbers(this.lottos, winningNumbers);
     this.lottos.forEach(lotto => lotto.updateRank());
     const rankCounts = this.countByRank();
-    this.winningNumberInput.showModal(
+    this.winningResultView.showModal(
       rankCounts,
       calculateEarningRate(rankCounts, this.purchasedPrice)
     );
