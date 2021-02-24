@@ -31,6 +31,14 @@ function checkBonus(lottos, winningNumbers) {
   });
 }
 
+export function countByRank(lottos, rankCounts) {
+  lottos.forEach(lotto => {
+    if (lotto.rank !== Infinity) {
+      rankCounts[lotto.rank - 1] += 1;
+    }
+  });
+}
+
 export function calculateEarningRate(rankCounts, purchasedPrice) {
   const totalProfit = rankCounts.reduce((sum, rankCount, idx) => {
     return sum + rankCount * LOTTO_WINNING_PRICE[idx + 1];
