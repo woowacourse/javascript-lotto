@@ -77,7 +77,9 @@ class LottoController {
     this.model.addAnswerLotto(numbers, answer)
     // TODO : 우승정보, 수익률 계산하기
     this.model.calculateLottosResult()
+
     // TODO : 우승정보 가져오기
+    console.log(this.model.profit)
     // TODO : 수익률 정보 가져오기
 
     this.view.renderModalSection()

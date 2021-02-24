@@ -50,10 +50,19 @@ class LottoModel {
       } else if (match === 3 || (match === 2 && bonusMatch)) {
         key = "5th"
       }
+
       key && this._lottoResult[key].count++
     }
 
     this._lottos.forEach(calculateLottoResult)
+  }
+
+  get profit() {
+    const income = Object.values(this._lottoResult).reduce((acc, cur) => {
+      return acc + cur.price * cur.count
+    }, 0)
+
+    return (income / (this._lottos.length * 1000) - 1) * 100
   }
 
   resetLottoResult() {
