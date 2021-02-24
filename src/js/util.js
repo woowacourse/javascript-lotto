@@ -17,3 +17,7 @@ export const $ = (selector) => {
 export const $$ = (selector) => {
   return document.querySelectorAll(selector)
 }
+
+export const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}

@@ -23,9 +23,10 @@ class LottoView {
     $winningSection.innerHTML = winningSectionTemplate()
   }
 
-  renderModalSection() {
+  renderModalSection(lottoResult, profit) {
     const $modalSection = $(".modal")
-    $modalSection.innerHTML = modalSectionTemplate()
+
+    $modalSection.innerHTML = modalSectionTemplate(lottoResult, profit)
     this.toggleModalSection()
   }
 
