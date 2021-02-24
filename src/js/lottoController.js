@@ -2,10 +2,13 @@ import { $, $$ } from './utils/util.js';
 import Lotto from './objects/Lotto.js';
 import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES, PRIZE } from './utils/constants.js';
 import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty, isNumbersOutOfRange } from './utils/validation.js';
-
 export default class LottoController {
   constructor(lottoUI) {
     this.lottoUI = lottoUI;
+    this.resetState();
+  }
+
+  resetState() {
     this.lottos = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
@@ -41,6 +44,9 @@ export default class LottoController {
       if (event.target.closest(`.${DOM_CLASSES.MODAL_CLOSE}`)) {
         this.lottoUI.hideModal();
       }
+      if (event.target.closest(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`)) {
+        this.restartGame();
+      }
     });
   }
 
@@ -58,7 +64,7 @@ export default class LottoController {
     this.makeLottos(moneyInput);
     const lottoTickets = this.lottos.map(lotto => lotto.getNumbers());
     this.lottoUI.renderCheckLottoUI(lottoTickets);
-    this.lottoUI.renderResultInputUI()
+    this.lottoUI.renderResultInputUI();
   }
 
   handleResultInput() {
@@ -166,5 +172,13 @@ export default class LottoController {
       winningCount,
       bonusCount
     };
+  }
+
+  restartGame() {
+    this.resetState();
+    this.lottoUI.hideModal();
+
+    $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildNodes();
+    $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildNodes();
   }
 }
