@@ -2,11 +2,11 @@ import { LOTTO_SETTINGS } from '../utils/constants.js';
 
 export default class Lotto {
   constructor() {
-    this.numbers = [];
+    this._numbers = [];
   }
 
   getNumbers() {
-    return [...this.numbers];
+    return [...this._numbers];
   }
 
   createNumbers() {
@@ -14,7 +14,7 @@ export default class Lotto {
     while (numberSet.size < LOTTO_SETTINGS.LOTTO_NUMBER_SIZE) {
       numberSet.add(this.getRandomNumber(LOTTO_SETTINGS.MIN_LOTTO_NUMBER, LOTTO_SETTINGS.MAX_LOTTO_NUMBER));
     }
-    this.numbers = [...numberSet];
+    this._numbers = [...numberSet];
   }
 
   getRandomNumber(start, end) {

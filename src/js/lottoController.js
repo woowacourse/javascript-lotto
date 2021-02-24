@@ -1,6 +1,6 @@
-import { $, $$ } from './utils/dom.js';
+import { $, $$ } from './utils/util.js';
 import Lotto from './objects/Lotto.js';
-import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES } from './utils/constants.js';
+import { ALERT_MESSAGES, LOTTO_SETTINGS, DOM_IDS, DOM_CLASSES, PRIZE } from './utils/constants.js';
 import { isMoneyNotInteger, isNumbersDuplicated, isResultInputsEmpty, isNumbersOutOfRange } from './utils/validation.js';
 
 export default class LottoController {
@@ -9,6 +9,13 @@ export default class LottoController {
     this.lottos = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
+    this.winnings = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
   }
 
   init() {
@@ -46,7 +53,7 @@ export default class LottoController {
     }
 
     this.makeLottos(moneyInput);
-    const lottoTickets = this.lottos.map(lotto => lotto.numbers);
+    const lottoTickets = this.lottos.map(lotto => lotto.getNumbers());
     this.lottoUI.renderCheckLottoUI(lottoTickets);
     this.lottoUI.renderResultInputUI()
   }
@@ -76,7 +83,10 @@ export default class LottoController {
     this.winningNumbers = winningNumberInputs;
     this.bonusNumber = bonusNumberInput;
 
+    this.calculateWinnings();
     $(`.${DOM_CLASSES.MODAL}`).classList.add('open');
+
+    this.lottoUI.renderWinningResult(this.winnings, this.getEarningRate());
   }
 
   makeLottos(moneyInput) {
@@ -91,5 +101,68 @@ export default class LottoController {
 
   handleCheckLottoSwitch() {
     this.lottoUI.toggleLottoNumbers();
+  }
+
+  calculateWinnings() {
+    this.lottos.forEach(lotto => {
+      const myNumbers = lotto.getNumbers();
+      const {
+        winningCount,
+        bonusCount
+      } = this.countEqualNumbers(this.winningNumbers, this.bonusNumber, myNumbers);
+
+      const rank = this.getRank(winningCount, bonusCount);
+      if (rank) {
+        this.winnings[rank]++;
+      }
+    });
+  }
+
+  getEarningRate() {
+    const moneySpent = this.lottos.length * LOTTO_SETTINGS.LOTTO_PRICE;
+    let earning = 0;
+
+    for (let key of Object.keys(this.winnings)) {
+      earning += this.winnings[key] * PRIZE[key.toUpperCase()];
+    }
+    return Math.round(((earning - moneySpent) / moneySpent) * 100);
+  }
+
+  getRank(winningCount, bonusCount) {
+    if (winningCount === 3) {
+      return 'fifth';
+    } else if (winningCount === 4) {
+      return 'fourth';
+    } else if (winningCount === 5) {
+      if (!bonusCount) {
+        return 'third';
+      }
+      return 'second';
+    } else if (winningCount === 6) {
+      return 'first';
+    }
+    return '';
+  }
+
+  countEqualNumbers(winningNumbers, bonusNumber, myNumbers) {
+    const winningNumberSet = new Set(winningNumbers);
+    const myNumberSet = new Set(myNumbers);
+    let winningCount = 0;
+    let bonusCount = 0;
+
+    for (let number of winningNumberSet) {
+      if (myNumberSet.has(number)) {
+        winningCount++;
+      }
+    }
+
+    if (myNumberSet.has(bonusNumber)) {
+      bonusCount++;
+    }
+
+    return {
+      winningCount,
+      bonusCount
+    };
   }
 }

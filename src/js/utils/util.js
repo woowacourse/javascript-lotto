@@ -8,4 +8,4 @@ export function $$(selector) {
 
 export function disableElement(selector) {
   $(selector).disabled = true;
-} 
+}

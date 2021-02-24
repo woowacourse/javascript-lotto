@@ -126,7 +126,7 @@ context('로또 UI 테스트', () => {
       });
     });
     cy.get(`.${DOM_CLASSES.MODAL_EARNING_RATE}`).then(($earningRate) => {
-      const text = $earningRate.innerText;
+      const text = $earningRate[0].innerText;
       expect(/[0-9]\%/g.test(text)).to.be.true;
     })
   });
