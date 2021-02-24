@@ -40,7 +40,8 @@ export const DOM_CLASSES = {
   MODAL: 'modal',
   MODAL_WINNING_COUNT: 'modal__winning-count',
   MODAL_EARNING_RATE: 'modal__earning-rate',
-  MODAL_CLOSE: 'modal__close'
+  MODAL_CLOSE: 'modal__close',
+  MODAL_RESTART_BUTTON: 'modal__restart-button',
 }
 
 export const DOM_IDS = {

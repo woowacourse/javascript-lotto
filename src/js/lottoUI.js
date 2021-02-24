@@ -1,9 +1,6 @@
 import { $, $$, disableElement } from './utils/util.js';
 import { UI_SETTINGS, DOM_CLASSES, DOM_IDS } from './utils/constants.js';
 export default class LottoUI {
-  constructor() {
-  }
-
   initUI() {
     this.renderMoneyInputUI();
     this.initModal();
@@ -140,7 +137,7 @@ export default class LottoUI {
           </div>
           <p class="${DOM_CLASSES.MODAL_EARNING_RATE} text-center font-bold">당신의 총 수익률은 n%입니다.</p>
           <div class="d-flex justify-center mt-5">
-            <button type="button" class="btn btn-cyan">다시 시작하기</button>
+            <button type="button" class="${DOM_CLASSES.MODAL_RESTART_BUTTON} btn btn-cyan">다시 시작하기</button>
           </div>
         </div>
       </div>
