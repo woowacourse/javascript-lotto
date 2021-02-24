@@ -17,14 +17,14 @@ import {
 } from '../templates.js';
 import { $ } from '../utils/querySelector.js';
 
-export default {
+const view = {
   init() {
-    this.closeResultModal();
-    this.hideLottoNumbers();
-    this.initWinningNumberInputs();
-    this.hideWinningNumberInputForm();
+    view.closeResultModal();
+    view.hideLottoNumbers();
+    view.hideWinningNumberInputForm();
+    view.hideResult()
+    view.initWinningNumberInputs();
     $costInput.value = '';
-    $purchaseResult.classList.add('hide');
   },
 
   initWinningNumberInputs() {
@@ -42,7 +42,11 @@ export default {
       lottoItemList.length
     );
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
-    this.displayWinningNumberInputForm();
+    view.displayWinningNumberInputForm();
+  },
+
+  hideResult(){
+    $purchaseResult.classList.add('hide');
   },
 
   displayWinningNumberInputForm() {
@@ -83,3 +87,5 @@ export default {
     alert(message);
   }
 };
+
+export default view;
