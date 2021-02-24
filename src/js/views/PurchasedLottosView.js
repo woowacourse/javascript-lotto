@@ -4,7 +4,14 @@ import { $, $$ } from '../utils/dom.js';
 export default class PurchasedLottosView extends View {
   constructor($element) {
     super($element);
+    this.$lottoIconsDiv = $('#lotto-icons');
+    this.toggleSwitch = $('#lotto-switch');
     this.bindToggleSwitchEvent();
+  }
+
+  resetToggleSwitch() {
+    this.toggleSwitch.checked = false;
+    this.hideLottoDetailView();
   }
 
   bindToggleSwitchEvent() {
@@ -14,27 +21,22 @@ export default class PurchasedLottosView extends View {
   }
 
   toggleSwitchHandler() {
-    const $lottoIconsDiv = $('#lotto-icons');
-
-    $lottoIconsDiv.checked = !$lottoIconsDiv.checked;
-    const isSwitchOn = $lottoIconsDiv.checked;
-
-    if (isSwitchOn) {
-      $lottoIconsDiv.classList.add('flex-col');
+    if (this.toggleSwitch.checked) {
       this.showLottoDetailView();
     } else {
-      $lottoIconsDiv.classList.remove('flex-col');
       this.hideLottoDetailView();
     }
   }
 
   showLottoDetailView() {
+    this.$lottoIconsDiv.classList.add('flex-col');
     $$('.lotto-detail').forEach(lottoDetail => {
       lottoDetail.style.display = 'inline';
     });
   }
 
   hideLottoDetailView() {
+    this.$lottoIconsDiv.classList.remove('flex-col');
     $$('.lotto-detail').forEach(lottoDetail => {
       lottoDetail.style.display = 'none';
     });

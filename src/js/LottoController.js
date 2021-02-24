@@ -29,7 +29,7 @@ export default class LottoController {
     this.purchasedPrice = 0;
 
     this.inputPriceView.show().resetInputPrice();
-    this.purchasedLottosView.hide();
+    this.purchasedLottosView.hide().resetToggleSwitch();
     this.winningResultView.hide().resetWinningNumbers();
   }
 
