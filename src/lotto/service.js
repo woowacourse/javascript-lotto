@@ -35,8 +35,7 @@ const service = {
     lottoGame.assignInputNumbers(inputNumbers);
     lottoGame.assignMatchCount();
     const rankItemList = lottoGame.getRankItemList();
-    const totalProfit = getTotalProfit(rankItemList);
-    const profitRate = getProfitRate(lottoGame.totalCost, totalProfit);
+    const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
     lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
   },
 

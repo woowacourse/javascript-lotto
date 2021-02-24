@@ -1,3 +1,3 @@
 import controller from './lotto/controller.js';
 
-controller.addAllEventListener();
+controller.bindLottoGameEvents();

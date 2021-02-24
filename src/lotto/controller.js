@@ -62,17 +62,16 @@ const onRestart = () => {
   service.restart();
 };
 
-export default {
-  addAllEventListener() {
+const controller = {
+  bindLottoGameEvents() {
     $costSubmitForm.addEventListener('submit', onCostSubmitByEnterKey);
     $costSubmitButton.addEventListener('click', onCostSumbit);
-    $lottoNumbersToggleButton.addEventListener(
-      'click',
-      onShowLottoNumbersToggle
-    );
+    $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
     $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
     $restartButton.addEventListener('click', onRestart);
   },
 };
+
+export default controller;

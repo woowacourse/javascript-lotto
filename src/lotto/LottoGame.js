@@ -2,6 +2,7 @@ import { getRandomNumber } from '../utils/random.js';
 import {
   LOTTO,
   REWARDS,
+  BONUS_ITEM_MATCH_COUNT
 } from '../constants.js';
 
 export default class LottoGame {
@@ -38,11 +39,11 @@ export default class LottoGame {
 
   assignMatchCount() {
     this.#lottoItemList.forEach((lottoItem) => {
-      const correctNumberList = [
+      const allNumberList = [
         ...lottoItem.lottoNumberList,
-        ...this.winningNumberList,
+        ...this.#winningNumberList,
       ];
-      const matchedCount = correctNumberList.length - new Set(correctNumberList).size;
+      const matchedCount = allNumberList.length - new Set(allNumberList).size;
       lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(
         this.#bonusNumber
       );
@@ -61,7 +62,7 @@ export default class LottoGame {
     const winCount = this.#lottoItemList.filter(
       (lottoItem) => lottoItem.matchCount === matchCount
     ).length;
-    if (matchCount === 5 && winCountWithBonus) {
+    if (matchCount === BONUS_ITEM_MATCH_COUNT && winCountWithBonus) {
       return winCount - winCountWithBonus;
     }
 
