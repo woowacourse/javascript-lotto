@@ -11,6 +11,7 @@ import { compareNumbers, calculateEarningRate } from './utils/utils.js';
 import WinningResultView from './views/WinningResultView.js';
 import InputPriceView from './views/InputPriceView.js';
 import PurchasedLottosView from './views/PurchasedLottosView.js';
+
 export default class LottoController {
   constructor() {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
@@ -59,8 +60,7 @@ export default class LottoController {
 
     this.createLottos(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
     this.purchasedLottosView.show();
-    this.purchasedLottosView.renderTotalLottoCount(this.lottos.length);
-    this.purchasedLottosView.renderLottoIcons(this.lottos);
+    this.purchasedLottosView.renderLottos(this.lottos);
     this.winningResultView.show();
   }
 
@@ -73,6 +73,7 @@ export default class LottoController {
     compareNumbers(this.lottos, winningNumbers);
     this.lottos.forEach(lotto => lotto.updateRank());
     const rankCounts = this.countByRank();
+
     this.winningResultView.showModal(
       rankCounts,
       calculateEarningRate(rankCounts, this.purchasedPrice)
