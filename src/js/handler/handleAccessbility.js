@@ -2,7 +2,7 @@ import { $ } from '../utils/querySelector.js';
 import { closeModal } from '../view/viewModalPage.js';
 import { restartLottoGame } from './handleModalPage.js';
 
-export const handleAccessbiliy = ({ key }, lotto) => {
+export const handleAccessbility = ({ key }, lotto) => {
   if (!$('.modal').classList.contains('open')) {
     return;
   }
