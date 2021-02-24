@@ -1,11 +1,11 @@
 /* eslint-disable max-lines-per-function */
 
 export const $ = (() => {
-  const constructor = function (selector, parentNode) {
+  const constructor = function (selector) {
     if (!selector) {
       return;
     }
-    this.targets = parentNode.querySelectorAll(selector);
+    this.targets = document.querySelectorAll(selector);
     this.target = this.targets.length === 1 && this.targets[0];
   };
 
@@ -109,8 +109,8 @@ export const $ = (() => {
     return this.target.checked;
   };
 
-  const instantiate = (selector, parentNode = document) => {
-    return new constructor(selector, parentNode);
+  const instantiate = selector => {
+    return new constructor(selector);
   };
 
   return instantiate;
