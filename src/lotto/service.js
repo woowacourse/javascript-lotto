@@ -31,7 +31,7 @@ const service = {
     lottoGameView.resetToggleButton();
   },
 
-  openResultModal(inputNumbers) {
+  showWinningResult(inputNumbers) {
     lottoGame.assignInputNumbers(inputNumbers);
     lottoGame.assignMatchCount();
     const rankItemList = lottoGame.getRankItemList();
@@ -40,7 +40,7 @@ const service = {
     lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
   },
 
-  closeResultModal() {
+  hideWinningResult() {
     lottoGameView.closeResultModal();
   },
 

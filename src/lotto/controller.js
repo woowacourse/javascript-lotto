@@ -41,11 +41,11 @@ const onResultModalOpen = () => {
     service.guideUserInput(userGuideMessage);
     return;
   }
-  service.openResultModal(correctNumbers);
+  service.showWinningResult(correctNumbers);
 };
 
 const onResultModalClose = () => {
-  service.closeResultModal();
+  service.hideWinningResult();
 };
 
 const onCorrectNumberInput = (e) => {
