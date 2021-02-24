@@ -5,13 +5,12 @@ class LottoModel {
       numbers: null,
       bonus: null,
     }
-
     this._lottoResult = {
-      "1st": { price: 2000000000, count: 0 },
-      "2nd": { price: 30000000, count: 0 },
-      "3rd": { price: 1500000, count: 0 },
-      "4th": { price: 50000, count: 0 },
-      "5th": { price: 5000, count: 0 },
+      "6개": { price: 2000000000, count: 0 },
+      "5개 + 보너스볼": { price: 30000000, count: 0 },
+      "5개": { price: 1500000, count: 0 },
+      "4개": { price: 50000, count: 0 },
+      "3개": { price: 5000, count: 0 },
     }
   }
 
@@ -21,6 +20,10 @@ class LottoModel {
 
   get answerLotto() {
     return this._answerLotto
+  }
+
+  get lottoResult() {
+    return this._lottoResult
   }
 
   addLotto(newLotto) {
@@ -40,15 +43,15 @@ class LottoModel {
 
       let key = ""
       if (match === 6) {
-        key = "1st"
+        key = "6개"
       } else if (match === 5 && bonusMatch) {
-        key = "2st"
+        key = "5개 + 보너스볼"
       } else if (match === 5 || (match === 4 && bonusMatch)) {
-        key = "3rd"
+        key = "5개"
       } else if (match === 4 || (match === 3 && bonusMatch)) {
-        key = "4th"
+        key = "4개"
       } else if (match === 3 || (match === 2 && bonusMatch)) {
-        key = "5th"
+        key = "3개"
       }
 
       key && this._lottoResult[key].count++

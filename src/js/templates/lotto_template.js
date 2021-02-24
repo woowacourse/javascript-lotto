@@ -1,3 +1,5 @@
+import { numberWithCommas } from "../util.js"
+
 export const buySectionTemplate = () => {
   return `
         <h1 class="text-center">🎱 행운의 로또</h1>
@@ -85,8 +87,8 @@ export const winningSectionTemplate = () => {
     `
 }
 
-export const modalSectionTemplate = () => {
-    return `
+export const modalSectionTemplate = (lottoResult, profit) => {
+  return `
     <div class="modal-inner p-10">
           <div class="modal-close">
             <svg viewbox="0 0 40 40">
@@ -105,36 +107,22 @@ export const modalSectionTemplate = () => {
                 </tr>
               </thead>
               <tbody>
+                ${Object.entries(lottoResult)
+                  .map(
+                    ([key, value]) => `
                 <tr class="text-center">
-                  <td class="p-3">3개</td>
-                  <td class="p-3">5,000</td>
-                  <td class="p-3">2개</td>
+                  <td class="p-3">${key}</td>
+                  <td class="p-3">${numberWithCommas(value.price)}</td>
+                  <td class="p-3">${value.count}개</td>
                 </tr>
-                <tr class="text-center">
-                  <td class="p-3">4개</td>
-                  <td class="p-3">50,000</td>
-                  <td class="p-3">1개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">5개</td>
-                  <td class="p-3">1,500,000</td>
-                  <td class="p-3">0개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">5개 + 보너스볼</td>
-                  <td class="p-3">30,000,000</td>
-                  <td class="p-3">0개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">6개</td>
-                  <td class="p-3">2,000,000,000</td>
-                  <td class="p-3">1개</td>
-                </tr>
+                `
+                  )
+                  .join("")}
               </tbody>
             </table>
           </div>
           <p id="earnings-rate" class="text-center font-bold">
-            당신의 총 수익률은 0.009%입니다.
+            당신의 총 수익률은 ${profit}%입니다.
           </p>
           <div class="d-flex justify-center mt-5">
             <button id="reset" type="button" class="btn btn-cyan">
