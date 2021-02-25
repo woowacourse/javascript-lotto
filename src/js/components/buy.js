@@ -5,5 +5,5 @@ export const getBuyInput = () => {
   const value = $(SELECTOR.BUY_INPUT).value
   $(SELECTOR.BUY_INPUT).value = ""
 
-  return value
+  return Number(value)
 }

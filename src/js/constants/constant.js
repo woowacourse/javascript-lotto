@@ -43,7 +43,4 @@ export const ERROR_MESSAGE = {
   ANSWER_CANNOT_BE_FLOAT: "당첨 번호는 소수가 될 수 없습니다.",
 }
 
-Object.freeze(TICKET)
-Object.freeze(RANK)
-Object.freeze(SELECTOR)
-Object.freeze(ERROR_MESSAGE)
+Object.freeze(TICKET, RANK, SELECTOR, ERROR_MESSAGE)

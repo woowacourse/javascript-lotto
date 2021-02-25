@@ -10,5 +10,5 @@ export const getAnswerInput = () => {
       ? NaN
       : Number($(SELECTOR.BONUS_NUMBER).value)
 
-  return [numbers, bonus]
+  return { numbers, bonus }
 }

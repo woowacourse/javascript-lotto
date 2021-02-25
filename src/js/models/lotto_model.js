@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/js/model.js
 <<<<<<< HEAD
 class LottoModel {
@@ -45,6 +46,9 @@ import { INIT } from "../constants/constant.js"
 =======
 >>>>>>> 30862ad... refactor: INIT 상수 제거
 =======
+=======
+import Ticket from "../ticket.js"
+>>>>>>> fdae302... refactor: 컨벤션 및 일부 메서드 리팩토링
 import { RANK } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
@@ -69,23 +73,11 @@ class LottoModel {
     }
   }
 
-  get tickets() {
-    return this.#tickets
-  }
-
-  get answerLotto() {
-    return this.#answerLotto
-  }
-
-  get lottoResult() {
-    return this.#lottoResult
-  }
-
-  addTicket(ticket) {
+  #addTicket(ticket) {
     this.#tickets.push(ticket)
   }
 
-  addAnswerLotto(numbers, bonus) {
+  #addAnswerLotto(numbers, bonus) {
     this.#answerLotto = { numbers, bonus }
   }
 
@@ -98,7 +90,31 @@ class LottoModel {
     return { match, bonusMatch }
   }
 
-  calculateLottosResult() {
+  #resetLottoResult() {
+    for (let i in this.#lottoResult) {
+      this.#lottoResult[i].count = 0
+    }
+  }
+
+  get tickets() {
+    return this.#tickets
+  }
+
+  get answerLotto() {
+    return this.#answerLotto
+  }
+
+  get lottoResult() {
+    return this.#lottoResult
+  }
+
+  generateRandomTicket() {
+    const ticket = new Ticket()
+    ticket.generateRandomNumbers()
+    this.#addTicket(ticket)
+  }
+
+  calculateLottosResult(numbers, bonus) {
     const calculateLottoResult = (ticket) => {
       const { match, bonusMatch } = this.#calculateMatch(ticket)
 
@@ -125,6 +141,7 @@ class LottoModel {
       key && this.#lottoResult[key].count++
     }
 
+    this.#addAnswerLotto(numbers, bonus)
     this.#tickets.forEach(calculateLottoResult)
   }
 
@@ -134,12 +151,6 @@ class LottoModel {
     }, 0)
 
     return getProfitRate(income, this.#tickets.length * 1000)
-  }
-
-  #resetLottoResult() {
-    for (let i in this.#lottoResult) {
-      this.#lottoResult[i].count = 0
-    }
   }
 
   init() {

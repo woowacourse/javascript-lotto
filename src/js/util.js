@@ -10,18 +10,18 @@ export const sortByNumber = (array) => {
   return array.slice().sort((a, b) => a - b)
 }
 
-export const $ = (selector) => {
-  return document.querySelector(selector)
-}
-
-export const $$ = (selector) => {
-  return document.querySelectorAll(selector)
-}
-
 export const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
 export const getProfitRate = (currentPrice, previousPrice) => {
   return (currentPrice / previousPrice - 1) * 100
+}
+
+export const $ = (selector) => {
+  return document.querySelector(selector)
+}
+
+export const $$ = (selector) => {
+  return document.querySelectorAll(selector)
 }
