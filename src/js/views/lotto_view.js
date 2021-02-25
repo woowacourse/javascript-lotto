@@ -9,22 +9,22 @@ import { SELECTOR } from "../constants/constant.js"
 
 class LottoView {
   renderBuySection() {
-    const $buySection = $(SELECTOR.BUY)
+    const $buySection = $(SELECTOR.BUY_SECTION)
     $buySection.innerHTML = buySectionTemplate()
   }
 
   renderPocketSection(amount) {
-    const $pocketSection = $(SELECTOR.POCKET)
+    const $pocketSection = $(SELECTOR.POCKET_SECTION)
     $pocketSection.innerHTML = pocketSectionTemplate(amount)
   }
 
   renderWinningSection() {
-    const $winningSection = $(SELECTOR.WINNING)
+    const $winningSection = $(SELECTOR.WINNING_SECTION)
     $winningSection.innerHTML = winningSectionTemplate()
   }
 
   renderModalSection(lottoResult, profit) {
-    const $modalSection = $(".modal")
+    const $modalSection = $(SELECTOR.MODAL_SECTION)
 
     $modalSection.innerHTML = modalSectionTemplate(lottoResult, profit)
     this.toggleModalSection()
@@ -36,23 +36,23 @@ class LottoView {
   }
 
   toggleModalSection() {
-    const $modalSection = $(".modal")
+    const $modalSection = $(SELECTOR.MODAL_SECTION)
 
     $modalSection.classList.toggle("open")
   }
 
   resetPocketSection() {
-    const $pocketSection = $(SELECTOR.POCKET)
+    const $pocketSection = $(SELECTOR.POCKET_SECTION)
     $pocketSection.innerHTML = ""
   }
 
   resetWinningSection() {
-    const $winningSection = $(SELECTOR.WINNING)
+    const $winningSection = $(SELECTOR.WINNING_SECTION)
     $winningSection.innerHTML = ""
   }
 
   resetModalSection() {
-    const $modalSection = $(".modal")
+    const $modalSection = $(SELECTOR.MODAL_SECTION)
     $modalSection.innerHTML = ""
     this.toggleModalSection()
   }
