@@ -16,7 +16,7 @@ const updateTicketListView = tickets => {
   $('#toggle-detail-mode').classList.remove('hide');
 };
 
-const focusNextInput = () => {
+const focusFirstWinningNumberInput = () => {
   $('.winning-number[name=first]').focus();
 };
 
@@ -32,7 +32,7 @@ const lottoPurchaseHandler = event => {
 
   lotto.setTickets([...Array(ticketAmount)].map(() => getTicketNumber()));
   updateTicketListView(lotto.tickets);
-  focusNextInput();
+  focusFirstWinningNumberInput();
 };
 
 export default lottoPurchaseHandler;

@@ -1,20 +1,22 @@
 import $ from '../lib/utils/dom.js';
 
-const detailModeOn = () => {
-  $('#ticket-list').classList.add('detail-mode');
-  $('#ticket-list').classList.remove('d-flex');
+const onDetailMode = ticketList => {
+  ticketList.classList.add('detail-mode');
+  ticketList.classList.remove('d-flex');
 };
 
-const detailModeOff = () => {
-  $('#ticket-list').classList.remove('detail-mode');
-  $('#ticket-list').classList.add('d-flex');
+const offDetailMode = ticketList => {
+  ticketList.classList.remove('detail-mode');
+  ticketList.classList.add('d-flex');
 };
 
 const detailModeToggleHandler = event => {
+  const ticketList = $('#ticket-list');
+
   if (event.target.checked) {
-    detailModeOn();
+    onDetailMode(ticketList);
   } else {
-    detailModeOff();
+    offDetailMode(ticketList);
   }
 };
 
