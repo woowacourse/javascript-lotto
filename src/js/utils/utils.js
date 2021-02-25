@@ -1,52 +1,57 @@
-import { LOTTO_NUMBERS, LOTTO_WINNING_PRICE } from './constants.js';
+import { LOTTO_NUMBERS } from './constants.js';
+import { lottoPrices } from './lottoPrices.js';
 
 export function getRandomNumber() {
   return Math.floor(Math.random() * LOTTO_NUMBERS.LOTTO_MAX_NUM) + 1;
 }
 
-export function compareNumbers(lottos, winningNumbers) {
-  checkMatchingNums(lottos, winningNumbers);
-  checkBonus(lottos, winningNumbers);
-}
-
-function checkMatchingNums(lottos, winningNumbers) {
-  let i = 0;
-  while (i++ < 6) {
-    const currNum = winningNumbers[i];
-    lottos.forEach(lotto => {
-      if (lotto.numbers.has(currNum)) {
-        lotto.addMatchNumbers();
-      }
-    });
-  }
-}
-
-function checkBonus(lottos, winningNumbers) {
-  const bonusNumber = winningNumbers[7];
-
-  lottos.forEach(lotto => {
-    if (lotto.numbers.has(bonusNumber)) {
-      lotto.setMatchBonus();
+export function checkMatchingCount(lotto, winningNumbers) {
+  return winningNumbers.reduce((matchingCount, winningNumber) => {
+    if (lotto.numbers.has(winningNumber)) {
+      matchingCount++;
     }
-  });
-}
-
-export function calculateEarningRate(rankCounts, purchasedPrice) {
-  const totalProfit = rankCounts.reduce((sum, rankCount, idx) => {
-    return sum + rankCount * LOTTO_WINNING_PRICE[idx + 1];
+    return matchingCount;
   }, 0);
-
-  return (totalProfit / purchasedPrice - 1) * 100;
 }
 
-export function countByRank(lottos) {
+export function checkBonusNums(lotto, bonusNumber) {
+  return lotto.numbers.has(bonusNumber);
+}
+
+export function setRanks(matchingCounts, isMatchBonusArr) {
+  const ranks = [];
+  for (let i = 0; i < matchingCounts.length; i++) {
+    const price = findLottoRank(matchingCounts[i], isMatchBonusArr[i]);
+    ranks.push(price ? price.rank : 0);
+  }
+  return ranks;
+}
+
+function findLottoRank(matchingCount, isMatchBonus) {
+  return lottoPrices.find(
+    lottoPrice =>
+      lottoPrice.matchNumberCount === matchingCount &&
+      lottoPrice.matchBonus === isMatchBonus
+  );
+}
+
+export function countByRank(ranks) {
   const rankCounts = Array(5).fill(0);
 
-  lottos.forEach(lotto => {
-    if (lotto.rank !== Infinity) {
-      rankCounts[lotto.rank - 1] += 1;
-    }
+  ranks.forEach(rank => {
+    if (rank === 0) return;
+    rankCounts[rank - 1]++;
   });
 
   return rankCounts;
+}
+
+export function calculateEarningRate(purchasedPrice, rankCounts) {
+  return (sumTotalProfit(rankCounts) / purchasedPrice - 1) * 100;
+}
+
+function sumTotalProfit(rankCounts) {
+  return rankCounts.reduce((sum, rankCount, idx) => {
+    return sum + rankCount * lottoPrices[idx].price;
+  }, 0);
 }
