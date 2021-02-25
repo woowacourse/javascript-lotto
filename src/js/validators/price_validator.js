@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, TICKET } from "../constants/constant.js"
+import { TICKET } from "../constants/constant.js"
 
 class PriceValidator {
   static isFloat(value) {

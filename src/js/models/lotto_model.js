@@ -1,3 +1,5 @@
+import { RANK } from "../constants/constant.js"
+
 class LottoModel {
   constructor() {
     this._lottos = []
@@ -6,11 +8,11 @@ class LottoModel {
       bonus: null,
     }
     this._lottoResult = {
-      "6개": { price: 2000000000, count: 0 },
-      "5개 + 보너스볼": { price: 30000000, count: 0 },
-      "5개": { price: 1500000, count: 0 },
-      "4개": { price: 50000, count: 0 },
-      "3개": { price: 5000, count: 0 },
+      [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
+      [RANK.SECOND.TEXT]: { price: RANK.SECOND.PRICE, count: 0 },
+      [RANK.THIRD.TEXT]: { price: RANK.THIRD.PRICE, count: 0 },
+      [RANK.FOURTH.TEXT]: { price: RANK.FOURTH.PRICE, count: 0 },
+      [RANK.FIFTH.TEXT]: { price: RANK.FIFTH.PRICE, count: 0 },
     }
   }
 
@@ -43,15 +45,15 @@ class LottoModel {
 
       let key = ""
       if (match === 6) {
-        key = "6개"
+        key = RANK.FIRST.TEXT
       } else if (match === 5 && bonusMatch) {
-        key = "5개 + 보너스볼"
+        key = RANK.SECOND.TEXT
       } else if (match === 5 || (match === 4 && bonusMatch)) {
-        key = "5개"
+        key = RANK.THIRD.TEXT
       } else if (match === 4 || (match === 3 && bonusMatch)) {
-        key = "4개"
+        key = RANK.FOURTH.TEXT
       } else if (match === 3 || (match === 2 && bonusMatch)) {
-        key = "3개"
+        key = RANK.FIFTH.TEXT
       }
 
       key && this._lottoResult[key].count++

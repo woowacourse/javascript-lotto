@@ -1,8 +1,17 @@
 export const TICKET = {
   PRICE: 1000,
   SIZE: 6,
+  BONUS_SIZE: 1,
   MIN_NUM: 1,
   MAX_NUM: 45,
+}
+
+export const RANK = {
+  FIRST: { TEXT: "6개", PRICE: 2000000000 },
+  SECOND: { TEXT: "5개 + 보너스볼", PRICE: 30000000 },
+  THIRD: { TEXT: "5개", PRICE: 1500000 },
+  FOURTH: { TEXT: "4개", PRICE: 50000 },
+  FIFTH: { TEXT: "3개", PRICE: 5000 },
 }
 
 export const SELECTOR = {
@@ -30,3 +39,8 @@ export const ERROR_MESSAGE = {
   ANSWER_CANNOT_BE_OUT_RANGE: "당첨 번호는 1이상 45이하의 숫자여야 합니다.",
   ANSWER_CANNOT_BE_FLOAT: "당첨 번호는 소수가 될 수 없습니다.",
 }
+
+Object.freeze(TICKET)
+Object.freeze(RANK)
+Object.freeze(SELECTOR)
+Object.freeze(ERROR_MESSAGE)

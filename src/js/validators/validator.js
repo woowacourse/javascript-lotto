@@ -1,6 +1,6 @@
-import { ERROR_MESSAGE, SELECTOR } from "../constants/constant.js"
+import { ERROR_MESSAGE } from "../constants/constant.js"
 import AnswerValidator from "./answer_validator.js"
-import PriceValidator from "./lotto_validator.js"
+import PriceValidator from "./price_validator.js"
 
 export const checkPriceValid = (price) => {
   if (PriceValidator.isFloat(price)) {
@@ -22,7 +22,6 @@ export const checkAnswerValid = (numbers, bonus) => {
   const answers = [...numbers, bonus]
 
   if (AnswerValidator.isLessFilled(answers)) {
-    console.log("sad")
     return ERROR_MESSAGE.ANSWER_CANNOT_BE_EMPTY
   }
 
