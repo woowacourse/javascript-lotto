@@ -5,7 +5,7 @@ import {
   LOTTO_NUMBERS_LENGTH,
   BONUS_NUMBER_LENGTH,
 } from '../constants.js';
-import { $, $$, show, hide, enable, clearInputValue } from '../utils/DOM.js';
+import { $, $$, show, hide, enable, disable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
   constructor({ isVisible, updateWinningNumber, onShowModal }) {
@@ -99,16 +99,12 @@ export default class WinningNumberInput {
     }
   }
 
-  reset() {
-    this.$winningNumberInputs.forEach(($input) => clearInputValue($input));
-    clearInputValue(this.$bonusNumberInput);
-  }
-
   renderCheckMessage() {
     this.$winningNumberCheckMessage.innerText = this.checkMessage;
 
     if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
       this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
+      disable(this.$openResultModalButton);
       return;
     }
 
@@ -122,7 +118,6 @@ export default class WinningNumberInput {
       this.$winningNumberInputs[0].focus();
     } else {
       hide(this.$winningNumberForm);
-      this.reset();
     }
   }
 }

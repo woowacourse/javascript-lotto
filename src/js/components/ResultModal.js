@@ -8,7 +8,7 @@ export default class ResultModal {
     this.$modalClose = $('.modal-close');
     this.$resultTableBody = $('.result-table-body');
     this.$rateOfReturn = $('.rate-of-return');
-    this.$restartButton = $('.restart-button');
+    this.$resetButton = $('.reset-button');
 
     this.isVisible = isVisible;
     this.lottoTickets = lottoTickets;
@@ -22,7 +22,7 @@ export default class ResultModal {
 
   attachEvents() {
     this.$modalClose?.addEventListener('click', this.closeModal.bind(this));
-    this.$restartButton?.addEventListener('click', () => {
+    this.$resetButton?.addEventListener('click', () => {
       this.onRestart();
       this.closeModal();
     });

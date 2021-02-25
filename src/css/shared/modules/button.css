@@ -16,3 +16,10 @@
 .btn.btn-cyan:hover {
   background-color: #018c9e !important;
 }
+
+.btn.btn-cyan:disabled,
+.btn.btn-cyan:disabled:hover {
+  color: rgba(16, 16, 16, 0.3);
+  background-color: #00bcd4 !important;
+  cursor: not-allowed;
+}

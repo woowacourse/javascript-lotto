@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="app" class="p-3">
-      <section class="d-flex justify-center mt-5">
+      <section role="main" class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
           <form class="purchase-amount-form mt-5 d-flex">
@@ -28,7 +28,7 @@
           </form>
           <section class="purchased-lotto-section mt-9 d-none">
             <div class="d-flex">
-              <h4 class="purchased-lotto-label flex-auto my-0 font-normal"></h4>
+              <h2 class="purchased-lotto-label flex-auto my-0 text-lg font-normal"></h2>
               <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                   <input type="checkbox" class="lotto-numbers-toggle-button" />
@@ -38,26 +38,75 @@
             </div>
             <ul class="lotto-ticket-container d-flex flex-wrap pl-0"></ul>
           </section>
-          <form class="winning-number-form d-none mt-9">
+          <form id="winning-number-form" class="winning-number-form d-none mt-9">
             <label class="flex-auto d-inline-block mb-3">
               지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
             </label>
             <div class="d-flex">
               <section>
-                <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
+                <h2 class="mt-0 mb-3 text-lg text-center">당첨 번호</h2>
                 <div>
-                  <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
-                  <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
-                  <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
-                  <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
-                  <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
-                  <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber1"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber2"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber3"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber4"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber5"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber6"
+                    required
+                  />
                 </div>
               </section>
               <section class="bonus-number-container flex-grow">
-                <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
+                <h2 class="mt-0 mb-3 text-lg text-center">보너스 번호</h2>
                 <div class="d-flex justify-center">
-                  <input type="number" min="1" max="45" class="bonus-number text-center" required />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="bonus-number text-center"
+                    aria-label="bonusNumber"
+                    required
+                  />
                 </div>
               </section>
             </div>
@@ -72,8 +121,8 @@
       <section class="modal">
         <div class="modal-inner p-10">
           <div class="modal-close">
-            <svg viewbox="0 0 40 40">
-              <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
+            <svg viewBox="0 0 40 40">
+              <path class="close-x" d="M 10 10 L 30 30 Z M 30 10 L 10 30 Z" />
             </svg>
           </div>
           <h2 class="text-center">🏆 당첨 통계 🏆</h2>
@@ -91,7 +140,7 @@
           </div>
           <p class="rate-of-return text-center font-bold"></p>
           <div class="d-flex justify-center mt-5">
-            <button type="button" class="restart-button btn btn-cyan">다시 시작하기</button>
+            <button type="reset" class="reset-button btn btn-cyan" form="winning-number-form">다시 시작하기</button>
           </div>
         </div>
       </section>

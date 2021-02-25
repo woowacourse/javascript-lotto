@@ -38,7 +38,7 @@ export default class PurchasedLotto {
 
   reset() {
     this.$purchasedLottoSection.classList.add('d-none');
-    this.$lottoNumbersToggleButton.checked = false;
+    // this.$lottoNumbersToggleButton.checked = false;
     this.hideNumbers();
   }
 
