@@ -39,12 +39,6 @@ class LottoModel {
     return { match, bonusMatch }
   }
 
-  #resetLottoResult() {
-    for (let i in this.#lottoResult) {
-      this.#lottoResult[i].count = 0
-    }
-  }
-
   get tickets() {
     return this.#tickets
   }
@@ -101,9 +95,15 @@ class LottoModel {
     return getProfitRate(income, this.#tickets.length * 1000)
   }
 
+  resetLottoResult() {
+    for (let i in this.#lottoResult) {
+      this.#lottoResult[i].count = 0
+    }
+  }
+
   init() {
     this.#tickets = []
-    this.#resetLottoResult()
+    this.resetLottoResult()
   }
 }
 export default LottoModel
