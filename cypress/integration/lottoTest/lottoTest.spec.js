@@ -38,6 +38,13 @@ describe('로또 게임 테스트', () => {
 >>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
+  it('구매 방식(자동/수동) 선택지를 클릭하면 버튼의 배경색이 서로 바뀐다.', () => {
+    cy.get('#auto-btn').click();
+    cy.get('#auto-btn').should('have.class', 'btn-cyan');
+    cy.get('#manual-btn').click();
+    cy.get('#manual-btn').should('have.class', 'btn-cyan');
+  });
+
   it('사용자는 로또 구입 금액을 입력하면, 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
     cy.get('#purchased-lottos').should('be.visible');
