@@ -23,9 +23,13 @@ export default class LottoGame {
   }
 
   initGame() {
-    this.#lottoItemList = [];
+    this.initLottoItemList();
     this.#winningNumberList = [];
     this.#bonusNumber = null;
+  }
+
+  initLottoItemList() {
+    this.#lottoItemList = [];
   }
 
   #getLottoNumberList() {
@@ -35,20 +39,6 @@ export default class LottoGame {
     }
 
     return [...numberList];
-  }
-
-  assignMatchCount() {
-    this.#lottoItemList.forEach((lottoItem) => {
-      const allNumberList = [
-        ...lottoItem.lottoNumberList,
-        ...this.#winningNumberList,
-      ];
-      const matchedCount = allNumberList.length - new Set(allNumberList).size;
-      lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(
-        this.#bonusNumber
-      );
-      lottoItem.matchCount = matchedCount;
-    });
   }
 
   #getWinCountWithBonus(matchCount) {
@@ -82,11 +72,26 @@ export default class LottoGame {
     return rankItemList;
   }
 
-  initLottoItemList() {
-    this.#lottoItemList = [];
+  assignMatchCount() {
+    this.#lottoItemList.forEach((lottoItem) => {
+      const allNumberList = [
+        ...lottoItem.lottoNumberList,
+        ...this.#winningNumberList,
+      ];
+      const matchedCount = allNumberList.length - new Set(allNumberList).size;
+      lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(
+        this.#bonusNumber
+      );
+      lottoItem.matchCount = matchedCount;
+    });
   }
 
-  addLottoItem() {
+  assignInputNumbers(numbers) {
+    this.#bonusNumber = numbers.pop();
+    this.#winningNumberList = numbers;
+  }
+
+  #addLottoItem() {
     const lottoNumberList = this.#getLottoNumberList();
     this.#lottoItemList.push({
       lottoNumberList,
@@ -96,11 +101,6 @@ export default class LottoGame {
   }
 
   addLottoItems = (lottoItemCount) => {
-    [...Array(lottoItemCount)].forEach(() => this.addLottoItem());
+    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
   };
-
-  assignInputNumbers(numbers) {
-    this.#bonusNumber = numbers.pop();
-    this.#winningNumberList = numbers;
-  }
 }

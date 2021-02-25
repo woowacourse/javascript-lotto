@@ -16,19 +16,19 @@ const service = {
     const lottoItemCount = cost / LOTTO.PRICE;
     lottoGame.initLottoItemList();
     lottoGame.addLottoItems(lottoItemCount);
-    lottoGameView.displayResult(lottoGame.lottoItemList);
+    lottoGameView.showPurchaseResult(lottoGame.lottoItemList);
   },
 
   toggleLottoItemNumbers(checked) {
     if (checked) {
-      lottoGameView.displayLottoNumbers();
+      lottoGameView.showLottoNumbers();
       return;
     }
     lottoGameView.hideLottoNumbers();
   },
 
   initToggleButton() {
-    lottoGameView.resetToggleButton();
+    lottoGameView.initToggleButton();
   },
 
   showWinningResult(inputNumbers) {
@@ -36,16 +36,16 @@ const service = {
     lottoGame.assignMatchCount();
     const rankItemList = lottoGame.getRankItemList();
     const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
-    lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
+    lottoGameView.showResultModal(rankItemList, getKRString(profitRate));
   },
 
   hideWinningResult() {
-    lottoGameView.closeResultModal();
+    lottoGameView.hideResultModal();
   },
 
   restart() {
-    lottoGame.init();
-    lottoGameView.init();
+    lottoGame.initGame();
+    lottoGameView.initLottoGame();
   },
 
   guideUserInput(message, callback) {

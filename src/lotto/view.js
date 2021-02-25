@@ -19,10 +19,10 @@ import { $ } from '../utils/querySelector.js';
 
 const view = {
   initLottoGame() {
-    view.closeResultModal();
+    view.hideResultModal();
     view.hideLottoNumbers();
     view.hideWinningNumberInputForm();
-    view.hideResult()
+    view.hidePurchaseResult()
     view.initWinningNumberInputs();
     $costInput.value = '';
   },
