@@ -182,7 +182,7 @@ describe('당첨번호 입력 검사', () => {
   it('모든 번호가 올바르게 입력되면, 입력칸 하단에 결과 확인 가능 메세지를 표시한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const { COMPLETED } = WINNING_NUMBER_CHECK_MESSAGE;
+    const { FULFILLED: COMPLETED } = WINNING_NUMBER_CHECK_MESSAGE;
 
     cy.get('.winning-number').each(($el, index) => {
       cy.wrap($el).type(winningNumbers[index]);

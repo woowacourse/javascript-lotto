@@ -1,5 +1,5 @@
-import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants.js';
 import { $ } from '../utils/DOM.js';
+import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants.js';
 
 export default class PurchasedLotto {
   constructor({ lottoTickets }) {
@@ -18,9 +18,10 @@ export default class PurchasedLotto {
   }
 
   onToggleShowingNumbers({ target }) {
-    if (target.type === 'checkbox') {
-      target.checked ? this.showNumbers() : this.hideNumbers();
+    if (target.type !== 'checkbox') {
+      return;
     }
+    target.checked ? this.showNumbers() : this.hideNumbers();
   }
 
   setState({ lottoTickets }) {
@@ -38,7 +39,7 @@ export default class PurchasedLotto {
 
   reset() {
     this.$purchasedLottoSection.classList.add('d-none');
-    // this.$lottoNumbersToggleButton.checked = false;
+    this.$lottoNumbersToggleButton.checked = false;
     this.hideNumbers();
   }
 

@@ -1,10 +1,4 @@
-import {
-  LOTTO_MIN_NUMBER,
-  LOTTO_MAX_NUMBER,
-  WINNING_NUMBER_CHECK_MESSAGE,
-  LOTTO_NUMBERS_LENGTH,
-  BONUS_NUMBER_LENGTH,
-} from '../constants.js';
+import { validateInput } from '../model/winningNumberValidator.js';
 import { $, $$, show, hide, enable, disable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
@@ -16,6 +10,7 @@ export default class WinningNumberInput {
     this.$openResultModalButton = $('.open-result-modal-button');
 
     this.isVisible = isVisible;
+    this.isFulfilled = false;
     this.checkMessage = '';
     this.winningNumber = {};
     this.updateWinningNumber = updateWinningNumber;
@@ -39,54 +34,32 @@ export default class WinningNumberInput {
       bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
     };
 
-    const checkMessage = this.validateInput(
+    const { isFulfilled, checkMessage } = validateInput(
       [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
     );
-    this.setState({ checkMessage });
+    this.setState({ isFulfilled, checkMessage });
 
-    if (this.checkMessage === WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
-      this.setState({
-        winningNumber: {
-          winningNumbers: winningNumbers.map((v) => Number(v)),
-          bonusNumber: Number(bonusNumber),
-        },
-      });
-      this.updateWinningNumber(this.winningNumber);
-    }
-  }
-
-  validateInput(inputValues) {
-    if (inputValues.some(this.isOutOfRange)) {
-      return WINNING_NUMBER_CHECK_MESSAGE.OUT_OF_RANGE;
+    if (!this.isFulfilled) {
+      return;
     }
 
-    if (this.isDuplicated(inputValues)) {
-      return WINNING_NUMBER_CHECK_MESSAGE.DUPLICATED;
-    }
-
-    if (this.hasBlank(inputValues)) {
-      return WINNING_NUMBER_CHECK_MESSAGE.HAS_BLANK;
-    }
-
-    return WINNING_NUMBER_CHECK_MESSAGE.COMPLETED;
+    this.setState({
+      winningNumber: {
+        winningNumbers: winningNumbers.map((v) => Number(v)),
+        bonusNumber: Number(bonusNumber),
+      },
+    });
+    this.updateWinningNumber(this.winningNumber);
   }
 
-  isOutOfRange(number) {
-    return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
-  }
-
-  isDuplicated(numbers) {
-    return new Set(numbers).size !== numbers.length;
-  }
-
-  hasBlank(numbers) {
-    return numbers.length !== LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
-  }
-
-  setState({ isVisible, checkMessage, winningNumber }) {
+  setState({ isVisible, isFulfilled, checkMessage, winningNumber }) {
     if (typeof isVisible === 'boolean') {
       this.isVisible = isVisible;
       this.renderForm();
+    }
+
+    if (typeof isFulfilled === 'boolean') {
+      this.isFulfilled = isFulfilled;
     }
 
     if (typeof checkMessage === 'string' && this.checkMessage !== checkMessage) {
@@ -102,7 +75,7 @@ export default class WinningNumberInput {
   renderCheckMessage() {
     this.$winningNumberCheckMessage.innerText = this.checkMessage;
 
-    if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+    if (!this.isFulfilled) {
       this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
       disable(this.$openResultModalButton);
       return;
@@ -113,11 +86,12 @@ export default class WinningNumberInput {
   }
 
   renderForm() {
-    if (this.isVisible) {
-      show(this.$winningNumberForm);
-      this.$winningNumberInputs[0].focus();
-    } else {
+    if (!this.isVisible) {
       hide(this.$winningNumberForm);
+      return;
     }
+
+    show(this.$winningNumberForm);
+    this.$winningNumberInputs[0].focus();
   }
 }

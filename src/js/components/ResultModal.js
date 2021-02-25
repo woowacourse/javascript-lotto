@@ -1,6 +1,6 @@
 import { LOTTO_PRICE, RATE_OF_RETURN_DECIMAL_PLACE, RATE_OF_RETURN_MESSAGE, WINNING_PRIZE } from '../constants.js';
-import { $ } from '../utils/DOM.js';
 import { getRateOfReturn } from '../utils/general.js';
+import { $ } from '../utils/DOM.js';
 
 export default class ResultModal {
   constructor({ isVisible, lottoTickets, winningNumber, onRestart }) {

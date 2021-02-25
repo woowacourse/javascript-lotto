@@ -1,5 +1,6 @@
-import { MONETARY_UNIT, PURCHASE_AMOUNT_ALERT_MESSAGE, LOTTO_PRICE } from '../constants.js';
+import { validatePurchaseAmount } from '../model/purchaseAmountValidator.js';
 import { $, clearInputValue } from '../utils/DOM.js';
+import { LOTTO_PRICE } from '../constants.js';
 
 export default class PurchaseAmountInput {
   constructor({ createLottoTickets }) {
@@ -20,35 +21,19 @@ export default class PurchaseAmountInput {
 
   onSubmitPurchaseAmount() {
     const purchaseAmount = this.$purchaseAmountInput.value;
-    const errorMessage = this.validateInput(purchaseAmount);
+    const { isError, message, change } = validatePurchaseAmount(purchaseAmount);
 
-    if (errorMessage) {
-      alert(errorMessage);
+    if (isError) {
+      alert(message);
       clearInputValue(this.$purchaseAmountInput);
       this.$purchaseAmountInput.focus();
-
       return;
     }
 
-    const change = purchaseAmount % LOTTO_PRICE;
-
     if (change > 0) {
-      alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
+      alert(message);
     }
-
     this.createLottoTickets((purchaseAmount - change) / LOTTO_PRICE);
-  }
-
-  validateInput(purchaseAmount) {
-    if (purchaseAmount % MONETARY_UNIT) {
-      return PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY;
-    }
-
-    if (purchaseAmount < LOTTO_PRICE) {
-      return PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW;
-    }
-
-    return '';
   }
 
   reset() {

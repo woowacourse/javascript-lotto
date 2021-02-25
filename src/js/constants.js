@@ -4,6 +4,7 @@ export const LOTTO_MIN_NUMBER = 1;
 export const LOTTO_MAX_NUMBER = 45;
 export const LOTTO_NUMBERS_LENGTH = 6;
 export const BONUS_NUMBER_LENGTH = 1;
+export const TOTAL_NUMBERS_LENGTH = LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
 export const LOTTO_NUMBER_SEPARATOR = ', ';
 export const PURCHASED_QUANTITY_MESSAGE = (numOfLotto) => `총 ${numOfLotto}개를 구매하였습니다.`;
 
@@ -18,7 +19,7 @@ export const WINNING_NUMBER_CHECK_MESSAGE = {
   OUT_OF_RANGE: `${LOTTO_MIN_NUMBER} ~ ${LOTTO_MAX_NUMBER} 범위를 벗어난 값이 있습니다. 확인 후 다시 입력해주세요.`,
   DUPLICATED: '중복된 값이 있습니다. 확인 후 다시 입력해주세요.',
   HAS_BLANK: '아직 입력하지 않은 번호가 있습니다.',
-  COMPLETED: '당첨번호 입력이 완료되었습니다. 인생역전의 기회, 지금 결과를 확인하세요!',
+  FULFILLED: '당첨번호 입력이 완료되었습니다. 인생역전의 기회, 지금 결과를 확인하세요!',
 };
 
 export const RATE_OF_RETURN_MESSAGE = (rateOfReturn) => `당신의 총 수익률은 ${rateOfReturn}%입니다.`;
