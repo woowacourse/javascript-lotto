@@ -46,6 +46,7 @@ import { INIT } from "../constants/constant.js"
 >>>>>>> 30862ad... refactor: INIT 상수 제거
 =======
 import { RANK } from "../constants/constant.js"
+import { getProfitRate } from "../util.js"
 
 >>>>>>> f8fb373... refactor: RANK 상수 구현 및 적용
 class LottoModel {
@@ -110,12 +111,12 @@ class LottoModel {
     this._lottos.forEach(calculateLottoResult)
   }
 
-  get profit() {
+  get profitRate() {
     const income = Object.values(this._lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
 
-    return (income / (this._lottos.length * 1000) - 1) * 100
+    return getProfitRate(income, this._lottos.length * 1000)
   }
 
   resetLottoResult() {
