@@ -1,62 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD:src/js/model.js
-<<<<<<< HEAD
-class LottoModel {
-  constructor() {
-    this._lotto = [];
-    //this._money = 0;
-    //this._count = 0;
-    this.detail = false;
-  }
-
-  get lootto() {
-    return this._lotto;
-  }
-
-  get money() {
-    return this._money;
-  }
-
-  get count() {
-    return this._count;
-  }
-
-  set lotto(newLotto) {
-    this._lotto = newLotto;
-  }
-
-  set money(newMoney) {
-    this._money = newMoney;
-  }
-
-  set count(newCount) {
-    this._count = newCount;
-  }
-}
-
-export default LottoModel;
-=======
-import { INIT } from "./constant.js"
-=======
-import { INIT } from "../constants/constant.js"
->>>>>>> 06832f7... refactor: 디렉터리 구조 변경 및 ticket.js 추가:src/js/models/lotto_model.js
-
-=======
->>>>>>> 30862ad... refactor: INIT 상수 제거
-=======
-=======
-import Ticket from "../ticket.js"
->>>>>>> fdae302... refactor: 컨벤션 및 일부 메서드 리팩토링
-=======
 import Ticket from "../components/ticket.js"
->>>>>>> 28e89a3... fix: ticket 클래스 파일 경로 수정
 import { RANK } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
->>>>>>> f8fb373... refactor: RANK 상수 구현 및 적용
 class LottoModel {
   #tickets
   #answerLotto
@@ -162,4 +107,3 @@ class LottoModel {
   }
 }
 export default LottoModel
->>>>>>> 7f51c15... style: 세미콜론 제거
