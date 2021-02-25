@@ -61,7 +61,7 @@ export default class LottoView {
   }
 
   showEarningRate(earningRate) {
-    $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
+    $earningRate.innerText = `당신의 총 수익률은 ${earningRate}%입니다.`;
   }
 
   resetLottoView() {
