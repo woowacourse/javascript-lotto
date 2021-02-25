@@ -7,8 +7,8 @@ const HTMLElementCustomMethods = {
   hide() {
     this.classList.add(CLASSNAME.COMMON.HIDDEN);
   },
-  toggle(className) {
-    this.classList.toggle(className);
+  toggle(className, force) {
+    this.classList.toggle(className, force);
   },
 };
 
