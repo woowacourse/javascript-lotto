@@ -21,12 +21,10 @@ const createContainer = () => {
     currentLottos = select(store.getState());
 
     const hasChanged = previousLottos !== currentLottos;
-
     if (!hasChanged) return;
 
     Presentational.render({
       lottos: currentLottos,
-      isLottoInitialAdded: previousLottos.length === 0,
       isLottoCleared: currentLottos.length === 0,
       toggleDetailMode,
     });

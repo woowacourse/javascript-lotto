@@ -30,29 +30,21 @@ export const createPresentational = () => {
   `;
   };
 
-  const render = ({
-    lottos,
-    isLottoInitialAdded,
-    isLottoCleared,
-    toggleDetailMode,
-  }) => {
-    if (isLottoInitialAdded) {
-      $lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
-
-      $lottoIconWrapper.innerHTML = lottos
-        .map((lotto) => TEMPLATE(lotto))
-        .join("");
-
-      $lottoDetailContainer.show();
-      return;
-    }
-
+  const render = ({ lottos, isLottoCleared, toggleDetailMode }) => {
     if (isLottoCleared) {
       toggleDetailMode(false);
       $toggleButton.checked = false;
       $lottoDetailContainer.hide();
       return;
     }
+
+    $lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
+
+    $lottoIconWrapper.innerHTML = lottos
+      .map((lotto) => TEMPLATE(lotto))
+      .join("");
+
+    $lottoDetailContainer.show();
   };
 
   const init = ({ toggleDetailMode }) => {
