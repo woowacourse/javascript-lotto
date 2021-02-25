@@ -153,4 +153,5 @@ class LottoApp {
   }
 }
 
-new LottoApp();
+const lottoApp = new LottoApp();
+lottoApp();
