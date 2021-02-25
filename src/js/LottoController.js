@@ -1,6 +1,7 @@
-import WinningResultView from './views/WinningResultView.js';
 import InputPriceView from './views/InputPriceView.js';
 import PurchasedLottosView from './views/PurchasedLottosView.js';
+import InputWinningNumberView from './views/InputWinningNumberView.js';
+import ResultModalView from './views/ResultModalView.js';
 
 import LottoTicket from './model/LottoTicket.js';
 
@@ -22,7 +23,10 @@ export default class LottoController {
   constructor() {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
-    this.winningResultView = new WinningResultView($('#input-lotto-nums'));
+    this.inputWinningNumberView = new InputWinningNumberView(
+      $('#input-lotto-nums')
+    );
+    this.resultModalView = new ResultModalView($('.modal'));
     this.lottoTicket = new LottoTicket();
   }
 
@@ -36,17 +40,17 @@ export default class LottoController {
 
     this.inputPriceView.show().resetInputPrice();
     this.purchasedLottosView.hide().resetToggleSwitch();
-    this.winningResultView.hide().resetWinningNumbers();
+    this.inputWinningNumberView.hide().resetWinningNumbers();
   }
 
   renderPurchaseResult() {
     this.purchasedLottosView.show();
     this.purchasedLottosView.renderLottos(this.lottoTicket.lottos);
-    this.winningResultView.show();
+    this.inputWinningNumberView.show();
   }
 
   renderResultModal() {
-    this.winningResultView.showModal(
+    this.resultModalView.showModal(
       this.lottoTicket.rankCounts,
       this.lottoTicket.earningRate
     );
@@ -57,9 +61,11 @@ export default class LottoController {
       this.inputPriceHandler(e.detail)
     );
 
-    this.winningResultView
-      .on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail))
-      .on('clickResetBtn', () => this.reset());
+    this.inputWinningNumberView.on('submitNumbers', e =>
+      this.inputWinningNumbersHandler(e.detail)
+    );
+
+    this.resultModalView.on('clickResetBtn', () => this.reset());
   }
 
   inputPriceHandler(inputPrice) {
@@ -89,6 +95,7 @@ export default class LottoController {
       this.purchasedPrice,
       this.lottoTicket.rankCounts
     );
+
     this.renderResultModal();
   }
 
