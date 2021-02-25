@@ -22,11 +22,9 @@ export default class LottoController {
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
-    const matchedNumbers = lottoNumber.filter((num) => {
-      return resultNumber.includes(num);
-    });
-
-    return matchedNumbers.length;
+    return matchedNumbers.reduce((count, num) => {
+      return resultNumber.includes(num) ? count + 1 : count;
+    }, 0);
   }
 
   getRanking(lottoNumber, winningNumber, bonusNumber) {
@@ -103,5 +101,4 @@ export default class LottoController {
     this.prizeTable = getPrizeTable();
     onModalClose($modal);
   }
-
 }
