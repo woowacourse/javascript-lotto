@@ -11,8 +11,8 @@ const customElementMethodMixin = {
     return this;
   },
 
-  toggle(className) {
-    this.classList.toggle(className);
+  toggle(className, force) {
+    this.classList.toggle(className, force);
     return this;
   },
 };

@@ -56,7 +56,9 @@ export const createPresentational = () => {
   };
 
   const init = ({ toggleDetailMode }) => {
-    $toggleButton.addEventListener("change", toggleDetailMode);
+    $toggleButton.addEventListener("change", (event) => {
+      toggleDetailMode(event.target.checked);
+    });
   };
 
   return { init, render };
