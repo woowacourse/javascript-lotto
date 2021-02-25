@@ -1,6 +1,9 @@
-import { $, $$, getQuotient } from "../util.js"
-import { TICKET, SELECTOR } from "../constants/constant.js"
-import Ticket from "../ticket.js"
+import { getBuyInput } from "../components/buy.js"
+import { getCount } from "../components/pocket.js"
+import { getAnswerInput } from "../components/winning.js"
+import { $ } from "../util.js"
+import { SELECTOR } from "../constants/constant.js"
+import Ticket from "../components/ticket.js"
 import { checkAnswerValid, checkPriceValid } from "../validators/validator.js"
 
 class LottoController {
@@ -21,29 +24,6 @@ class LottoController {
     this.handlePrice()
   }
 
-  getBuyInput() {
-    const value = $(SELECTOR.BUY_INPUT).value
-    $(SELECTOR.BUY_INPUT).value = ""
-
-    return value
-  }
-
-  getAnswerInput() {
-    const numbers = [...$$(SELECTOR.WINNING_NUMBER)].map(({ value }) =>
-      value === "" ? NaN : Number(value)
-    )
-    const bonus =
-      $(SELECTOR.BOUNS_NUMBER).value === ""
-        ? NaN
-        : Number($(SELECTOR.BOUNS_NUMBER).value)
-
-    return [numbers, bonus]
-  }
-
-  getCount(price) {
-    return getQuotient(price, TICKET.PRICE)
-  }
-
   managePocket() {
     const lottos = this.model.lottos
     this.view.renderPocketSection(lottos)
@@ -53,14 +33,14 @@ class LottoController {
   }
 
   manageLotto() {
-    const price = Number(this.getBuyInput())
+    const price = Number(getBuyInput())
 
     const errorMessage = checkPriceValid(price)
     if (errorMessage) {
       return alert(errorMessage)
     }
 
-    const count = this.getCount(price)
+    const count = getCount(price)
     for (let i = 0; i < count; i++) {
       const ticket = new Ticket()
       ticket.generateRandomNumbers()
@@ -70,7 +50,7 @@ class LottoController {
   }
 
   manageModalOpen() {
-    const [numbers, answer] = this.getAnswerInput()
+    const [numbers, answer] = getAnswerInput()
     const errorMessage = checkAnswerValid(numbers, answer)
     if (errorMessage) {
       return alert(errorMessage)
