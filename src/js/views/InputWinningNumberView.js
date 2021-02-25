@@ -1,11 +1,10 @@
 import View from './View.js';
-import { $, $$ } from '../utils/dom.js';
+import { $$ } from '../utils/dom.js';
 import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class InputWinningNumberView extends View {
   constructor($element) {
     super($element);
-    this.$modal = $('.modal');
     this.$winningNumberInputs = $$('.winning-number');
     this.winningNumbers = {};
 

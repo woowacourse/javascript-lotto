@@ -46,12 +46,12 @@ export function countByRank(ranks) {
   return rankCounts;
 }
 
-export function calculateEarningRate(purchasedPrice, rankCounts) {
-  return (sumTotalProfit(rankCounts) / purchasedPrice - 1) * 100;
-}
-
 function sumTotalProfit(rankCounts) {
   return rankCounts.reduce((sum, rankCount, idx) => {
     return sum + rankCount * lottoPrices[idx].price;
   }, 0);
+}
+
+export function calculateEarningRate(purchasedPrice, rankCounts) {
+  return (sumTotalProfit(rankCounts) / purchasedPrice - 1) * 100;
 }
