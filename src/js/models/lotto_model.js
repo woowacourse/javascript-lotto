@@ -67,7 +67,7 @@ class LottoModel {
           key = RANK.FIRST.TEXT
           break
         case match === 5 && bonusMatch:
-          key = RANK.THIRD.TEXT
+          key = RANK.SECOND.TEXT
           break
         case match === 5 || (match === 4 && bonusMatch):
           key = RANK.THIRD.TEXT
