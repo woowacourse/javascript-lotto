@@ -1,9 +1,7 @@
-import LottoModel from "./lotto/model.js"
-import LottoView from "./lotto/view.js"
-import LottoController from "./lotto/controller.js"
+import LottoController from "./controller.js";
 
-const lotto = new LottoController(new LottoModel(), new LottoView())
-lotto.init()
+const lotto = new LottoController();
+lotto.init();
 
 /* const $showResultButton = document.querySelector(".open-result-modal-button");
 const $modalClose = document.querySelector(".modal-close");

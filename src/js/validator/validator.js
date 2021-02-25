@@ -1,22 +1,32 @@
-import { ERROR_MESSAGE } from "../constants/constant.js"
-import {
-  isFloatNumber,
-  isNegativeNumber,
-  isPositiveLessThanThousand,
-} from "./priceValiator.js"
+import { ERROR_MESSAGE, LOTTO } from "../constant.js";
+class Validator {
+  isPriceValid(price) {
+    if (this.isFloatPrice(price)) {
+      return ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT;
+    }
 
-export const checkPriceValid = price => {
-  if (isFloatNumber(price)) {
-    return ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT
+    if (this.isNegativeNumber(price)) {
+      return ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE;
+    }
+
+    if (this.isLessThanThousand(price)) {
+      return ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND;
+    }
+
+    return null;
   }
 
-  if (isNegativeNumber(price)) {
-    return ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE
+  isFloatPrice(price) {
+    return parseInt(price, 10) !== price;
   }
 
-  if (isPositiveLessThanThousand(price)) {
-    return ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND
+  isNegativeNumber(price) {
+    return price < 0;
   }
 
-  return null
+  isLessThanThousand(price) {
+    return 0 <= price && price < LOTTO.PRICE;
+  }
 }
+
+export default Validator;
