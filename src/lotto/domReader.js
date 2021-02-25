@@ -1,8 +1,7 @@
-import { $correctNumberWrapper } from '../elements.js';
-import { $ } from '../utils/querySelector.js';
+import { $$correctNumberInputs } from '../elements.js';
 
 export const getCorrectNumbers = () => {
-  return $('.correct-number', $correctNumberWrapper)
+  return $$correctNumberInputs
     .filter(({ value }) => value !== '')
     .map(({ value }) => Number(value));
 };
