@@ -1,3 +1,5 @@
+import { generateRandomNumber } from "../../src/js/util"
+
 describe("ui-play", () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5500/")
@@ -111,6 +113,33 @@ describe("ui-play", () => {
     cy.get("#buy").children().should("exist")
     cy.get("#pocket").children().should("not.exist")
     cy.get("#winning").children().should("not.exist")
+  })
+
+  it("구매한 번호와 당첨 번호가 6개 일치할 때 당첨 개수와 수익률이 기대한 대로 출력된다.", () => {
+    cy.get("#buy-input").type("1000")
+    cy.get("#buy-button").click()
+    cy.get(".pocket-lotto-numbers").then(($numbers) => {
+      const numbers = $numbers.text().split(" ")
+      cy.get(".winning-number").each(($winningNumber, i) => {
+        cy.wrap($winningNumber).type(numbers[i])
+      })
+
+      let bonusNum = 1
+      while (numbers.includes(bonusNum)) {
+        bonusNum++
+      }
+
+      cy.get(".bonus-number").type(bonusNum)
+    })
+
+    cy.get("#winning-result-button").click()
+    cy.get("tbody>tr>td").eq(2).should("have.text", "1개")
+
+    cy.get("#earnings-rate").then(($rateText) => {
+      const txt = $rateText.text().trim()
+      const rate = Number(txt.slice(11, txt.indexOf("%")))
+      cy.wrap(rate).should("be.equal", 199999900)
+    })
   })
 })
 
