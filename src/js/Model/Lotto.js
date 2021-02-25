@@ -8,7 +8,7 @@ export default class Lotto {
     this.tickets.push(ticket);
   }
 
-  addTicket() {
+  getTickets() {
     return this.tickets;
   }
 

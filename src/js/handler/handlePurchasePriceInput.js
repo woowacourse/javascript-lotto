@@ -1,17 +1,34 @@
+import Ticket from '../Model/Ticket.js';
 import { $ } from '../utils/querySelector.js';
-import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
+import { isValidPrice } from '../utils/validator.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
+import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
-import Ticket from '../model/Ticket.js';
+import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
-const generateLottoNumbers = () => {
-  const lottoNumbers = new Set();
+const generateTicketNumbers = () => {
+  const ticketNumbers = new Set();
 
-  while (lottoNumbers.size < 6) {
-    lottoNumbers.add(getRandomNumber(1, 45));
+  while (ticketNumbers.size < VALUE.LOTTO.TICKET_LENGH) {
+    ticketNumbers.add(
+      getRandomNumber(VALUE.LOTTO.MIN_NUM, VALUE.LOTTO.MAX_NUM),
+    );
   }
 
-  return [...lottoNumbers].sort((a, b) => a - b);
+  return [...ticketNumbers].sort((a, b) => a - b);
+};
+
+const setLotto = (lotto, amountOfLottoTicket) => {
+  const purchasePrice = amountOfLottoTicket * VALUE.LOTTO.TICKET_PRICE;
+
+  lotto.setPurchasePrice(purchasePrice);
+
+  for (let i = 0; i < amountOfLottoTicket; i++) {
+    const ticket = new Ticket();
+
+    ticket.setNumbers(generateTicketNumbers());
+    lotto.addTicket(ticket);
+  }
 };
 
 export const handlePurchasePriceInput = (lotto) => {
@@ -26,16 +43,12 @@ export const handlePurchasePriceInput = (lotto) => {
     purchasePrice / VALUE.LOTTO.TICKET_PRICE,
   );
 
-  for (let i = 0; i < amountOfLottoTicket; i++) {
-    const ticket = new Ticket();
+  setLotto(lotto, amountOfLottoTicket);
 
-    ticket.setNumbers(generateLottoNumbers());
-    lotto.setTicket(ticket);
-  }
-
-  const lottoTicketsNumbers = lotto
+  const lottoTicketNumbers = lotto
     .getTickets()
     .map((ticket) => ticket.getNumbers());
 
-  renderPurchaseResultSection(amountOfLottoTicket, lottoTicketsNumbers);
+  renderPurchaseResultSection(amountOfLottoTicket, lottoTicketNumbers);
+  showWinningNumberInputForm();
 };

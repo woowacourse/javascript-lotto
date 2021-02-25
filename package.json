@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-    "cypress": "^6.3.0"
-  },
   "contributors": [
     "yujo42",
     "0imbean0"
   ],
-  "dependencies": {
+  "devDependencies": {
+    "cypress": "^6.3.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
