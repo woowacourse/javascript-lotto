@@ -21,8 +21,12 @@ const HTMLInputElementCustomMethods = {
   },
 };
 
+const cache = new WeakMap();
+
 export const wrap = ($element) => {
   if ($element === null) return null;
+
+  if (cache.has($element)) return cache.get($element);
 
   const handler = {
     get(target, propKey) {
@@ -62,5 +66,9 @@ export const wrap = ($element) => {
     },
   };
 
-  return new Proxy($element, handler);
+  const $wrapper = new Proxy($element, handler);
+
+  cache.set($element, $wrapper);
+
+  return $wrapper;
 };
