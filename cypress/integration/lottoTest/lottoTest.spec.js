@@ -1,9 +1,9 @@
 import {
   getRandomNumber,
-  compareNumbers,
+  setRanks,
   calculateEarningRate,
 } from '../../../src/js/utils/utils.js';
-import Lotto from '../../../src/js/Lotto.js';
+import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
 
 describe('로또 게임 테스트', () => {
   beforeEach(() => {
@@ -99,6 +99,8 @@ describe('로또 게임 테스트', () => {
     cy.get('.modal').should('not.be.visible');
   });
 
+  // 당첨 번호가 다음과 같다고 가정한다.   21, 6, 43, 29, 35, 16, 보너스 숫자 : 17
+
   const lottoNumsArr = [
     [21, 6, 43, 29, 35, 16], // 1등 (6개 일치)
     [21, 6, 43, 29, 35, 17], // 2등 (5개 + 보너스)
@@ -108,42 +110,25 @@ describe('로또 게임 테스트', () => {
     [27, 13, 39, 29, 35, 16], // 5등 (3개 일치)
   ];
 
-  const winningNumbers = { 1: 21, 2: 6, 3: 43, 4: 29, 5: 35, 6: 16, 7: 17 };
-
   it('로또 당첨 결과를 올바르게 계산한다.', () => {
-    const lottos = [];
-    const rankings = [1, 2, Infinity, Infinity, 5, 5];
+    const matchingNumCounts = [6, 5, 0, 0, 3, 3]; // 일치하는 number의 개수
+    const isMatchBonusArr = [false, true, false, false, false, false]; // 보너스 숫자와 일치하는지 여부
+    const resultRank = [1, 2, 0, 0, 5, 5].join('');
 
-    lottoNumsArr.forEach(lottoNums => {
-      const lotto = new Lotto();
-      lotto.numbers = new Set(lottoNums);
-      lottos.push(lotto);
-    });
-
-    compareNumbers(lottos, winningNumbers);
-    lottos.forEach(lotto => lotto.updateRank());
-    lottos.forEach((lotto, idx) => {
-      expect(lotto.rank).to.be.equal(rankings[idx]);
-    });
+    expect(setRanks(matchingNumCounts, isMatchBonusArr).join('')).to.be.equal(
+      resultRank
+    );
   });
 
   it('수익률을 올바르게 계산한다.', () => {
-    const lottos = [];
-    const rankingCount = [1, 1, 0, 0, 2];
-
-    lottoNumsArr.forEach(lottoNums => {
-      const lotto = new Lotto();
-      lotto.numbers = new Set(lottoNums);
-      lottos.push(lotto);
-    });
-
-    compareNumbers(lottos, winningNumbers);
-    lottos.forEach(lotto => lotto.updateRank());
+    const rankCounts = [1, 1, 0, 0, 2];
     const sum = 2030010000;
-    const purchasedPrice = 6000;
+    const purchasedPrice = lottoNumsArr.length * LOTTO_NUMBERS.LOTTO_UNIT;
     const earningRate = (sum / purchasedPrice - 1) * 100;
 
-    expect(calculateEarningRate(rankingCount, 6000)).to.be.equal(earningRate);
+    expect(calculateEarningRate(purchasedPrice, rankCounts)).to.be.equal(
+      earningRate
+    );
   });
 
   it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
