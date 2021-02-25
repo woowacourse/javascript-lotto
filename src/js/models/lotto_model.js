@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/js/model.js
 <<<<<<< HEAD
 class LottoModel {
@@ -49,6 +50,9 @@ import { INIT } from "../constants/constant.js"
 =======
 import Ticket from "../ticket.js"
 >>>>>>> fdae302... refactor: 컨벤션 및 일부 메서드 리팩토링
+=======
+import Ticket from "../components/ticket.js"
+>>>>>>> 28e89a3... fix: ticket 클래스 파일 경로 수정
 import { RANK } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
