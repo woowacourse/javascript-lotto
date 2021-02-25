@@ -29,11 +29,13 @@ class LottoController {
   }
 
   getAnswerInput() {
-    const numbers = [...$$(".winning-number")].map(({ value }) =>
+    const numbers = [...$$(SELECTOR.WINNING_NUMBER)].map(({ value }) =>
       value === "" ? NaN : Number(value)
     )
     const bonus =
-      $(".bonus-number").value === "" ? NaN : Number($(".bonus-number").value)
+      $(SELECTOR.BOUNS_NUMBER).value === ""
+        ? NaN
+        : Number($(SELECTOR.BOUNS_NUMBER).value)
 
     return [numbers, bonus]
   }
@@ -103,21 +105,21 @@ class LottoController {
   }
 
   handleModalOpen() {
-    const $showResultButton = $(".open-result-modal-button")
+    const $showResultButton = $(SELECTOR.OPEN_RESULT_MODAL_BUTTON)
     $showResultButton.addEventListener("click", () => {
       this.manageModalOpen()
     })
   }
 
   handleModalClose() {
-    const $modalClose = $(".modal-close")
+    const $modalClose = $(SELECTOR.MODAL_CLOSE)
     $modalClose.addEventListener("click", () => {
       this.manageModalClose()
     })
   }
 
   handleReset() {
-    const $resetButton = $("#reset")
+    const $resetButton = $(SELECTOR.RESET_BUTTON)
     $resetButton.addEventListener("click", () => {
       this.reset()
     })
