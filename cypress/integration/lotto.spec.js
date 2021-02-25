@@ -153,7 +153,11 @@ describe("ui-play", () => {
       submitAnswer(numbers, bonusNum)
     })
 
-    cy.get(`${SELECTOR.RESULT_TABLE} td`).eq(2).should("have.text", "1개")
+    cy.get(`${SELECTOR.RESULT_TABLE} tr`)
+      .last()
+      .children()
+      .last()
+      .should("have.text", "1개")
     testProfit("be.equal", 199999900)
   })
 })
