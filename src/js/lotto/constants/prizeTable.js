@@ -1,34 +1,35 @@
-export default function getPrizeTable() {
-  return {
-    ranking1: {
-      num: 0,
-      prize: 2000000000,
-      condition: "6개",
-    },
-    ranking2: {
-      num: 0,
-      prize: 30000000,
-      condition: "5개 + 보너스볼",
-    },
-    ranking3: {
-      num: 0,
-      prize: 1500000,
-      condition: "5개",
-    },
-    ranking4: {
-      num: 0,
-      prize: 50000,
-      condition: "4개",
-    },
-    ranking5: {
-      num: 0,
-      prize: 5000,
-      condition: "3개",
-    },
-    noPrize: {
-      num: 0,
-      prize: 0,
-      condition: "2개 이하",
-    },
-  };
-}
+export const RANKINGS = {
+  RANKING1: "RANKING1",
+  RANKING2: "RANKING2",
+  RANKING3: "RANKING3",
+  RANKING4: "RANKING4",
+  RANKING5: "RANKING5",
+  NO_PRIZE: "NO_PRIZE",
+};
+
+export const PRIZE_TABLE = {
+  [RANKINGS.RANKING1]: {
+    prize: 2000000000,
+    condition: "6개",
+  },
+  [RANKINGS.RANKING2]: {
+    prize: 30000000,
+    condition: "5개 + 보너스볼",
+  },
+  [RANKINGS.RANKING3]: {
+    prize: 1500000,
+    condition: "5개",
+  },
+  [RANKINGS.RANKING4]: {
+    prize: 50000,
+    condition: "4개",
+  },
+  [RANKINGS.RANKING5]: {
+    prize: 5000,
+    condition: "3개",
+  },
+  [RANKINGS.NO_PRIZE]: {
+    prize: 0,
+    condition: "2개 이하",
+  },
+};

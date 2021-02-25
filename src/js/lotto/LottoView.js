@@ -1,4 +1,5 @@
 import { showElement, hideElement } from "../utils.js";
+import { RANKINGS, PRIZE_TABLE } from "./constants/prizeTable.js";
 import {
   $confirmation,
   $lottoListLabel,
@@ -44,16 +45,16 @@ export default class LottoView {
     this.showTickets(lottoList.length);
   }
 
-  showPrizeTable(prizeTable) {
+  showPrizeTable(rankedCount) {
     $prizeTable.innerHTML = [5, 4, 3, 2, 1]
       .map((rankNum) => {
-        const ranking = prizeTable[`ranking${rankNum}`];
+        const ranking = RANKINGS[`RANKING${rankNum}`];
 
         return `
           <tr class="text-center">
-            <td class="p-3">${ranking.condition}</td>
-            <td class="p-3">${ranking.prize}</td>
-            <td class="p-3">${ranking.num}개</td>
+            <td class="p-3">${PRIZE_TABLE[ranking].condition}</td>
+            <td class="p-3">${PRIZE_TABLE[ranking].prize}</td>
+            <td class="p-3">${rankedCount[ranking]}개</td>
           </tr>
         `;
       })

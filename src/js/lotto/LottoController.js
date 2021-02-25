@@ -1,6 +1,6 @@
 import LottoModel from "./LottoModel.js";
 import LottoView from "./LottoView.js";
-import getPrizeTable from "./constants/prizeTable.js";
+import { RANKINGS, PRIZE_TABLE } from "./constants/prizeTable.js";
 import { onModalShow, onModalClose } from "../utils.js";
 import { $modal } from "../elements.js";
 import {
@@ -18,7 +18,16 @@ export default class LottoController {
   constructor() {
     this.lottoModel = new LottoModel();
     this.lottoView = new LottoView();
-    this.prizeTable = getPrizeTable();
+    this.rankedCount = null;
+
+    this.initRankedCount();
+  }
+
+  initRankedCount() {
+    this.rankedCount = {};
+    Object.values(RANKINGS).forEach((ranking) => {
+      this.rankedCount[ranking] = 0;
+    });
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
@@ -31,28 +40,26 @@ export default class LottoController {
     const numOfMatched = this.countMatchedNumbers(lottoNumber, winningNumber);
     switch (numOfMatched) {
       case 3:
-        return "ranking5";
+        return RANKINGS.RANKING5;
       case 4:
-        return "ranking4";
+        return RANKINGS.RANKING4;
       case 5:
         if (this.countMatchedNumbers(lottoNumber, [bonusNumber])) {
-          return "ranking2";
+          return RANKINGS.RANKING2;
         }
-        return "ranking3";
+        return RANKINGS.RANKING3;
       case 6:
-        return "ranking1";
+        return RANKINGS.RANKING1;
       default:
-        return "noPrize";
+        return RANKINGS.NO_PRIZE;
     }
   }
 
   calculateEarningRate() {
-    const totalPrize = Object.values(this.prizeTable).reduce(
-      (totalPrize, ranking) => {
-        return (totalPrize += ranking.num * ranking.prize);
-      },
-      0
-    );
+    const totalPrize = Object.values(RANKINGS).reduce((totalPrize, ranking) => {
+      return (totalPrize +=
+        this.rankedCount[ranking] * PRIZE_TABLE[ranking].prize);
+    }, 0);
 
     return Math.round((totalPrize / this.lottoModel.price) * 100);
   }
@@ -88,11 +95,11 @@ export default class LottoController {
 
     this.lottoModel.lottoList.forEach((lotto) => {
       const ranking = this.getRanking(lotto.number, winningNumber, bonusNumber);
-      this.prizeTable[ranking].num++;
+      this.rankedCount[ranking]++;
     });
 
-    this.lottoView.showPrizeTable(this.prizeTable);
-    this.lottoView.showEarningRate(this.calculateEarningRate(this.prizeTable));
+    this.lottoView.showPrizeTable(this.rankedCount);
+    this.lottoView.showEarningRate(this.calculateEarningRate(this.rankedCount));
     onModalShow($modal);
   }
 
