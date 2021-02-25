@@ -1,36 +1,40 @@
 import {
-  $showResultButton,
   $modalClose,
   $modal,
   $lottoNumbersToggleButton,
-  $priceInput,
-  $priceSubmitButton,
+  $priceSubmitForm,
+  $winningNumberForm,
+  $restartButton,
 } from "./elements.js";
+import { onModalClose } from "./utils.js";
 import LottoController from "./lotto/LottoController.js";
-
-const onModalShow = () => {
-  $modal.classList.add("open");
-};
-
-const onModalClose = () => {
-  $modal.classList.remove("open");
-};
+import LottoView from "./lotto/LottoView.js";
 
 const lottoController = new LottoController();
+const lottoView = new LottoView();
 
-$showResultButton.addEventListener("click", onModalShow);
-$modalClose.addEventListener("click", onModalClose);
-$priceSubmitButton.addEventListener("click", (e) => {
+$priceSubmitForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  lottoController.onSubmitPrice($priceInput.value);
+  lottoController.onSubmitPrice(e.target.elements["price-input"].value);
 });
-$priceInput.addEventListener("keyup", (e) => {
-  e.preventDefault();
-  if (e.key === "enter") {
-    lottoController.onSubmitPrice(e.target.value);
-  }
-});
+
 $lottoNumbersToggleButton.addEventListener(
   "change",
   lottoController.onToggleLottoNumbers.bind(lottoController)
 );
+
+$winningNumberForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  lottoController.onSubmitResultNumber(
+    Array.from(e.target.elements["winning-number"]).map((v) => Number(v.value)),
+    Number(e.target.elements["bonus-number"].value)
+  );
+});
+
+$modalClose.addEventListener("click", () => onModalClose($modal));
+
+$restartButton.addEventListener("click", () => {
+  lottoView.resetLottoView();
+  onModalClose($modal);
+});
