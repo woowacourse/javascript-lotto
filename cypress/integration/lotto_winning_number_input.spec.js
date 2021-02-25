@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-import LottoManager from '../../src/js/model/LottoManager.js';
-import Lotto from '../../src/js/model/Lotto.js';
+import { calculateProfit, decideWinner } from '../../src/js/redux/action.js';
+import { profit, winningCount } from '../../src/js/redux/reducer.js';
 import { ERROR_MESSAGE } from '../../src/js/utils/message.js';
 
 describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
@@ -78,28 +78,40 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
   it('로또와 당첨 번호가 주어질 때, 당첨 통계/수익률을 계산한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 45;
-    const lottoManager = new LottoManager([
-      new Lotto([45, 2, 3, 4, 5, 6]),
-      new Lotto([45, 2, 3, 4, 5, 6]),
-      new Lotto([45, 2, 3, 4, 5, 6]),
-      new Lotto([45, 2, 3, 4, 5, 6]),
-      new Lotto([45, 2, 3, 4, 5, 6]),
-    ]);
+    const lottos = [
+      [45, 2, 3, 4, 5, 6],
+      [45, 2, 3, 4, 5, 6],
+      [45, 2, 3, 4, 5, 6],
+      [45, 2, 3, 4, 5, 6],
+      [45, 2, 3, 4, 5, 6],
+    ];
 
     const result = {
-      FIRST: 0,
-      SECOND: 5,
-      THIRD: 0,
-      FOURTH: 0,
-      FIFTH: 0,
+      rank1: 0,
+      rank2: 5,
+      rank3: 0,
+      rank4: 0,
+      rank5: 0,
     };
 
-    lottoManager.decideWinners(winningNumbers, bonusNumber);
-    for (const [key, value] of Object.entries(lottoManager.winningCount)) {
+    let winningCountTemp = winningCount(
+      {},
+      lottos,
+      decideWinner(winningNumbers, bonusNumber),
+    );
+
+    for (const [key, value] of Object.entries(winningCountTemp)) {
       expect(result[key]).to.equal(value);
     }
 
-    const profitMargin = lottoManager.calculateProfitMargin();
-    expect(profitMargin).to.equal(100 * ((300000000 * 5 - 5000) / 5000));
+    const profitMargin = profit(
+      0,
+      lottos.length,
+      winningCountTemp,
+      calculateProfit(),
+    );
+    expect(profitMargin).to.equal(
+      (100 * ((300000000 * 5 - 5000) / 5000)).toFixed(2),
+    );
   });
 });
