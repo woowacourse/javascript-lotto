@@ -1,7 +1,7 @@
-.invisible {
+.block-added {
   display: none;
 }
 
-.visible {
+.removed {
   display: none;
 }

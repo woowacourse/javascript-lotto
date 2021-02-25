@@ -31,8 +31,12 @@ body {
   padding-bottom: 4px;
 }
 
-#purchase-item-list.hide-lotto-numbers .lotto-numbers {
+#purchase-item-list.lotto-numbers-removed .lotto-numbers {
   display: none;
+}
+
+#purchase-item-list.lotto-numbers-added .lotto-numbers {
+  display: '';
 }
 
 .lotto-item {

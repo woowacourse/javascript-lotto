@@ -59,6 +59,7 @@ export const SELECTOR = Object.freeze({
   COST_SUBMIT_BUTTON: '#cost-submit-button',
   PURCHASE_RESULT: '#purchase-result',
   PURCHASE_ITEM_COUNT: '#purchase-item-count',
+  LOTTO_NUMBERS: ".lotto-numbers",
   LOTTO_NUMBERS_TOGGLE_BUTTON: '#lotto-numbers-toggle-button',
   PURCHASE_ITEM_LIST: '#purchase-item-list',
   CORRECT_NUMBER_WRAPPER: '#correct-number-wrapper',
@@ -69,4 +70,15 @@ export const SELECTOR = Object.freeze({
   PROFIT_RATE: '#profit-rate',
   RESTART_BUTTON: '#restart-button',
   WINNING_NUMBER_INPUT_FORM: '#winning-number-input-form'
+})
+
+export const CSS_CLASS = Object.freeze({
+  VISIBLE: 'visible',
+  INVISIBLE: 'invisible',
+  BLOCK_ADDED: 'block-added',
+  REMOVED: 'removed',
+  FLEX_DIRECTION_COLUMN: 'flex-col',
+  OPEN: 'open',
+  LOTTO_NUMBERS_ADDED: 'lotto-numbers-added',
+  LOTTO_NUMBERS_REMOVED: 'lotto-numbers-removed'
 })

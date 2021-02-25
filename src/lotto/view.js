@@ -1,3 +1,4 @@
+import { CSS_CLASS } from '../constants.js';
 import {
   $modal,
   $costInput,
@@ -37,13 +38,13 @@ const view = {
 
   initToggleButton() {
     $lottoNumbersToggleButton.checked = false;
-    $purchaseItemList.classList.add('hide-lotto-numbers');
-    $purchaseItemList.classList.remove('flex-col');
+    $purchaseItemList.classList.add(CSS_CLASS.LOTTO_NUMBERS_REMOVED);
+    $purchaseItemList.classList.remove(CSS_CLASS.FLEX_DIRECTION_COLUMN);
   },
 
   showPurchaseResult(lottoItemList) {
-    $purchaseResult.classList.remove('hide');
-    $purchaseItemList.classList.remove('hide');
+    $purchaseResult.classList.remove(CSS_CLASS.REMOVED);
+    $purchaseItemList.classList.remove(CSS_CLASS.REMOVED);
     $purchaseItemCount.innerHTML = getResultItemCountTemplate(
       lottoItemList.length
     );
@@ -52,16 +53,16 @@ const view = {
   },
 
   showWinningNumberForm() {
-    $winningNumberInputForm.classList.remove('hide');
+    $winningNumberInputForm.classList.remove(CSS_CLASS.REMOVED);
   },
   
   showLottoNumbers() {
-    $purchaseItemList.classList.add('flex-col');
-    $purchaseItemList.classList.remove('hide-lotto-numbers');
+    $purchaseItemList.classList.add(CSS_CLASS.FLEX_DIRECTION_COLUMN);
+    $purchaseItemList.classList.remove(CSS_CLASS.LOTTO_NUMBERS_REMOVED);
   },
 
   showResultModal(rankItemList, profitRate) {
-    $modal.classList.add('open');
+    $modal.classList.add(CSS_CLASS.OPEN);
     $resultTbody.innerHTML = getModalTbodyTemplate(rankItemList);
     $profitRate.innerText = profitRate;
   },
@@ -71,20 +72,20 @@ const view = {
   },
 
   hideLottoNumbers() {
-    $purchaseItemList.classList.remove('flex-col');
-    $purchaseItemList.classList.add('hide-lotto-numbers');
+    $purchaseItemList.classList.remove(CSS_CLASS.FLEX_DIRECTION_COLUMN);
+    $purchaseItemList.classList.add(CSS_CLASS.LOTTO_NUMBERS_REMOVED);
   },
 
   hideResultModal() {
-    $modal.classList.remove('open');
+    $modal.classList.remove(CSS_CLASS.OPEN);
   },
 
   hideWinningNumberInputForm() {
-    $winningNumberInputForm.classList.add('hide');
+    $winningNumberInputForm.classList.add(CSS_CLASS.REMOVED);
   },
 
   hidePurchaseResult(){
-    $purchaseResult.classList.add('hide');
+    $purchaseResult.classList.add(CSS_CLASS.REMOVED);
   }
 };
 
