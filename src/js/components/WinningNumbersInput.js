@@ -32,8 +32,8 @@ export default class WinningNumberInput {
   }
 
   subscribeAppStages() {
-    this.stageManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
-    this.stageManager?.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
+    this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
   }
 
   attachEvents() {

@@ -19,8 +19,8 @@ export default class LottoTicketDisplay {
   }
 
   subscribeAppStages() {
-    this.stageManager?.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderTicketDisplay.bind(this));
-    this.stageManager?.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
+    this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderTicketDisplay.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
   }
 
   attachEvents() {
@@ -53,8 +53,8 @@ export default class LottoTicketDisplay {
   }
 
   renderTicketDisplay() {
-    const numOfLotto = this.stageManager.numOfLotto;
-    const lottoTickets = this.stageManager.lottoTickets;
+    const { numOfLotto } = this.stageManager;
+    const { lottoTickets } = this.stageManager;
 
     this.$purchasedLottoSection.classList.remove('d-none');
     this.$purchasedLottoLabel.innerHTML = PURCHASED_QUANTITY_MESSAGE(numOfLotto);

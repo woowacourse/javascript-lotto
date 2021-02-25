@@ -19,7 +19,7 @@ export default class LottoPurchaseInput {
   }
 
   subscribeAppStages() {
-    this.stageManager?.subscribe(APP_RESET, this.resetPurchaseAmountInput.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetPurchaseAmountInput.bind(this));
   }
 
   attachEvent() {
