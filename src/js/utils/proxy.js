@@ -21,46 +21,54 @@ const HTMLInputElementCustomMethods = {
   },
 };
 
+const handler = {
+  get(target, propKey) {
+    if (
+      target instanceof HTMLInputElement &&
+      propKey in HTMLInputElementCustomMethods
+    ) {
+      return Reflect.get(HTMLInputElementCustomMethods, propKey, target);
+    }
+
+    if (propKey in HTMLElementCustomMethods) {
+      return Reflect.get(HTMLElementCustomMethods, propKey, target);
+    }
+
+    if (typeof target[propKey] === "function") {
+      return target[propKey].bind(target);
+    }
+
+    return target[propKey];
+  },
+  set(target, propKey, value) {
+    return Reflect.set(target, propKey, value);
+  },
+  has(target, propKey) {
+    if (
+      target instanceof HTMLInputElement &&
+      propKey in HTMLInputElementCustomMethods
+    ) {
+      return true;
+    }
+
+    if (propKey in HTMLElementCustomMethods) {
+      return true;
+    }
+
+    return propKey in target;
+  },
+};
+
+const cache = new WeakMap();
+
 export const wrap = ($element) => {
   if ($element === null) return null;
 
-  const handler = {
-    get(target, propKey) {
-      if (
-        $element instanceof HTMLInputElement &&
-        propKey in HTMLInputElementCustomMethods
-      ) {
-        return Reflect.get(HTMLInputElementCustomMethods, propKey, $element);
-      }
+  if (cache.has($element)) return cache.get($element);
 
-      if (propKey in HTMLElementCustomMethods) {
-        return Reflect.get(HTMLElementCustomMethods, propKey, $element);
-      }
+  const $wrapper = new Proxy($element, handler);
 
-      if (typeof target[propKey] === "function") {
-        return target[propKey].bind(target);
-      }
+  cache.set($element, $wrapper);
 
-      return target[propKey];
-    },
-    set(target, propKey, value) {
-      return Reflect.set(target, propKey, value);
-    },
-    has(target, propKey) {
-      if (
-        target instanceof HTMLInputElement &&
-        propKey in HTMLInputElementCustomMethods
-      ) {
-        return true;
-      }
-
-      if (propKey in HTMLElementCustomMethods) {
-        return true;
-      }
-
-      return propKey in target;
-    },
-  };
-
-  return new Proxy($element, handler);
+  return $wrapper;
 };
