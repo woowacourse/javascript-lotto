@@ -2,28 +2,27 @@ import { TICKET } from "../constants/constant.js"
 import { generateRandomNumber, sortByNumber } from "../util.js"
 
 class Ticket {
+  #numbers
+
   constructor() {
-    this._numbers = new Set()
+    this.#numbers = new Set()
   }
 
   generateRandomNumbers() {
-    while (this._numbers.size !== TICKET.SIZE) {
-      this._numbers.add(generateRandomNumber(TICKET.MIN_NUM, TICKET.MAX_NUM))
+    while (this.#numbers.size !== TICKET.SIZE) {
+      this.#numbers.add(generateRandomNumber(TICKET.MIN_NUM, TICKET.MAX_NUM))
     }
 
-    this.sortByNumber()
+    this.#sortByNumber()
   }
 
-  sortByNumber() {
-    this._numbers = new Set(sortByNumber([...this._numbers]))
+  #sortByNumber() {
+    this.#numbers = new Set(sortByNumber([...this.#numbers]))
   }
 
   get numbers() {
-    return [...this._numbers]
+    return [...this.#numbers]
   }
 }
 
 export default Ticket
-
-// const ticket = new Ticket()
-// this.model.addTicket(ticket)

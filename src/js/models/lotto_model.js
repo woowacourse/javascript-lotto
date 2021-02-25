@@ -50,13 +50,17 @@ import { getProfitRate } from "../util.js"
 
 >>>>>>> f8fb373... refactor: RANK 상수 구현 및 적용
 class LottoModel {
+  #tickets
+  #answerLotto
+  #lottoResult
+
   constructor() {
-    this._tickets = []
-    this._answerLotto = {
+    this.#tickets = []
+    this.#answerLotto = {
       numbers: null,
       bonus: null,
     }
-    this._lottoResult = {
+    this.#lottoResult = {
       [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
       [RANK.SECOND.TEXT]: { price: RANK.SECOND.PRICE, count: 0 },
       [RANK.THIRD.TEXT]: { price: RANK.THIRD.PRICE, count: 0 },
@@ -66,37 +70,37 @@ class LottoModel {
   }
 
   get tickets() {
-    return this._tickets
+    return this.#tickets
   }
 
   get answerLotto() {
-    return this._answerLotto
+    return this.#answerLotto
   }
 
   get lottoResult() {
-    return this._lottoResult
+    return this.#lottoResult
   }
 
   addTicket(ticket) {
-    this._tickets.push(ticket)
+    this.#tickets.push(ticket)
   }
 
   addAnswerLotto(numbers, bonus) {
-    this._answerLotto = { numbers, bonus }
+    this.#answerLotto = { numbers, bonus }
   }
 
-  calculateMatch(ticket) {
+  #calculateMatch(ticket) {
     const match = ticket.numbers.filter((x) =>
-      this._answerLotto.numbers.includes(x)
+      this.#answerLotto.numbers.includes(x)
     ).length
-    const bonusMatch = ticket.numbers.includes(this._answerLotto.bonus)
+    const bonusMatch = ticket.numbers.includes(this.#answerLotto.bonus)
 
     return { match, bonusMatch }
   }
 
   calculateLottosResult() {
     const calculateLottoResult = (ticket) => {
-      const { match, bonusMatch } = this.calculateMatch(ticket)
+      const { match, bonusMatch } = this.#calculateMatch(ticket)
 
       let key = ""
       switch (true) {
@@ -118,29 +122,29 @@ class LottoModel {
         default:
       }
 
-      key && this._lottoResult[key].count++
+      key && this.#lottoResult[key].count++
     }
 
-    this._tickets.forEach(calculateLottoResult)
+    this.#tickets.forEach(calculateLottoResult)
   }
 
   get profitRate() {
-    const income = Object.values(this._lottoResult).reduce((acc, cur) => {
+    const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
 
-    return getProfitRate(income, this._tickets.length * 1000)
+    return getProfitRate(income, this.#tickets.length * 1000)
   }
 
-  resetLottoResult() {
-    for (let i in this._lottoResult) {
-      this._lottoResult[i].count = 0
+  #resetLottoResult() {
+    for (let i in this.#lottoResult) {
+      this.#lottoResult[i].count = 0
     }
   }
 
   init() {
-    this._tickets = []
-    this.resetLottoResult()
+    this.#tickets = []
+    this.#resetLottoResult()
   }
 }
 export default LottoModel

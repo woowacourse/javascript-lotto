@@ -15,24 +15,24 @@ class LottoController {
   init() {
     this.model.init()
     this.view.init()
-    this.handlePrice()
+    this.#handlePrice()
   }
 
-  reset() {
+  #reset() {
     this.model.init()
     this.view.reset()
-    this.handlePrice()
+    this.#handlePrice()
   }
 
-  managePocket() {
+  #managePocket() {
     const tickets = this.model.tickets
     this.view.renderPocketSection(tickets)
-    this.handlePocket()
+    this.#handlePocket()
     this.view.renderWinningSection()
-    this.handleModalOpen()
+    this.#handleModalOpen()
   }
 
-  manageLotto() {
+  #manageLotto() {
     const price = Number(getBuyInput())
 
     const errorMessage = checkPriceValid(price)
@@ -46,10 +46,10 @@ class LottoController {
       ticket.generateRandomNumbers()
       this.model.addTicket(ticket)
     }
-    this.managePocket()
+    this.#managePocket()
   }
 
-  manageModalOpen() {
+  #manageModalOpen() {
     const [numbers, answer] = getAnswerInput()
     const errorMessage = checkAnswerValid(numbers, answer)
     if (errorMessage) {
@@ -61,47 +61,47 @@ class LottoController {
     const lottoResult = this.model.lottoResult
     const profitRate = this.model.profitRate
     this.view.renderModalSection(lottoResult, profitRate)
-    this.handleModalClose()
-    this.handleReset()
+    this.#handleModalClose()
+    this.#handleReset()
   }
 
-  manageModalClose() {
+  #manageModalClose() {
     this.view.toggleModalSection()
     this.model.resetLottoResult()
   }
 
-  handlePrice() {
+  #handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON)
     $buyButton.addEventListener("click", () => {
-      this.manageLotto()
+      this.#manageLotto()
     })
   }
 
-  handlePocket() {
+  #handlePocket() {
     const $pocketButton = $(SELECTOR.POCKET_TOGGLE)
     $pocketButton.addEventListener("click", () => {
       this.view.togglePocketDetail()
     })
   }
 
-  handleModalOpen() {
+  #handleModalOpen() {
     const $showResultButton = $(SELECTOR.OPEN_RESULT_MODAL_BUTTON)
     $showResultButton.addEventListener("click", () => {
-      this.manageModalOpen()
+      this.#manageModalOpen()
     })
   }
 
-  handleModalClose() {
+  #handleModalClose() {
     const $modalClose = $(SELECTOR.MODAL_CLOSE)
     $modalClose.addEventListener("click", () => {
-      this.manageModalClose()
+      this.#manageModalClose()
     })
   }
 
-  handleReset() {
+  #handleReset() {
     const $resetButton = $(SELECTOR.RESET_BUTTON)
     $resetButton.addEventListener("click", () => {
-      this.reset()
+      this.#reset()
     })
   }
 }
