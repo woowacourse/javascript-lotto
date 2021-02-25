@@ -23,7 +23,7 @@ export default class LottoController {
 
   countMatchedNumbers(lottoNumber, resultNumber) {
     const matchedNumbers = lottoNumber.filter((num) => {
-      return resultNumber.indexOf(num) !== -1;
+      return resultNumber.includes(num);
     });
 
     return matchedNumbers.length;
