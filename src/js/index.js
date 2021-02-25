@@ -1,17 +1,42 @@
-const $showResultButton = document.querySelector('.open-result-modal-button')
-const $modalClose = document.querySelector('.modal-close')
-const $modal = document.querySelector('.modal')
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-)
+import Lotto from './model/Lotto.js';
+import { $ } from './utils/querySelector.js';
+import { handleModalPage } from './handler/handleModalPage.js';
+import { handleAccessbility } from './handler/handleAccessbility.js';
+import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
+import { handlePurchasePriceSubmit } from './handler/handlePurchasePriceSubmit.js';
+import { handleWinningNumberSubmit } from './handler/handleWinningNumberSubmit.js';
 
-const onModalShow = () => {
-  $modal.classList.add('open')
-}
+const init = () => {
+  const lotto = new Lotto();
 
-const onModalClose = () => {
-  $modal.classList.remove('open')
-}
+  $('#purchase-price-input-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handlePurchasePriceSubmit(lotto);
+  });
 
-$showResultButton.addEventListener('click', onModalShow)
-$modalClose.addEventListener('click', onModalClose)
+  $('#purchase-result-section__toggle').addEventListener(
+    'click',
+    handlePurchaseResultToggle,
+  );
+
+  $('#winning-number-input-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handleWinningNumberSubmit(lotto);
+  });
+
+  $('.modal').addEventListener('click', (event) =>
+    handleModalPage(event, lotto),
+  );
+
+  window.addEventListener('keyup', (event) => {
+    handleAccessbility(event, lotto);
+  });
+};
+
+const App = () => {
+  init();
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  App();
+});
