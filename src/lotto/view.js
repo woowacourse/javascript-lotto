@@ -9,6 +9,7 @@ import {
   $profitRate,
   $correctNumberWrapper,
   $correctNumberInputForm,
+  $$correctNumberInputs,
 } from '../elements.js';
 import {
   getResultItemCountTemplate,
@@ -22,14 +23,9 @@ const view = {
     view.closeResultModal();
     view.hidePurchaseResult()
     view.hideCorrectNumberInputForm();
-    view.initCorrectNumberInputs();
     $costInput.value = '';
-  },
-
-  initCorrectNumberInputs() {
-    $('.correct-number', $correctNumberWrapper).forEach(($numberInput) => {
-      $numberInput.value = '';
-    });
+    $$correctNumberInputs.forEach(
+      ($correctNumberInput) => $correctNumberInput.value = '');
   },
 
   displayPurchaseResult(lottoItemList) {
