@@ -1,11 +1,4 @@
-import {
-  LOTTO_PRICE,
-  RATE_OF_RETURN_DECIMAL_PLACE,
-  RESULT_TABLE_DISPLAY_KEY,
-  RATE_OF_RETURN_MESSAGE,
-  WINNING_PRIZE,
-  LOTTO_NUMBERS_LENGTH,
-} from '../constants.js';
+import { LOTTO_PRICE, RATE_OF_RETURN_DECIMAL_PLACE, RATE_OF_RETURN_MESSAGE, WINNING_PRIZE } from '../constants.js';
 import { $ } from '../utils/DOM.js';
 import { getRateOfReturn } from '../utils/general.js';
 
@@ -70,15 +63,19 @@ export default class ResultModal {
   }
 
   createTableBodyHTML() {
-    return RESULT_TABLE_DISPLAY_KEY.map((key) => {
-      const { DESCRIPTION, PRIZE } = WINNING_PRIZE[key];
+    return Object.keys(WINNING_PRIZE)
+      .sort((a, b) => a - b)
+      .filter((key) => WINNING_PRIZE[key].DESCRIPTION !== undefined)
+      .map((key) => {
+        const { DESCRIPTION, PRIZE } = WINNING_PRIZE[key];
 
-      return this.createTableRowHTML({
-        DESCRIPTION,
-        PRIZE,
-        numOfWinningTicket: this.lottoTickets.filter((lottoTicket) => lottoTicket.totalMatchCount === key).length,
-      });
-    }).join('');
+        return this.createTableRowHTML({
+          DESCRIPTION,
+          PRIZE,
+          numOfWinningTicket: this.lottoTickets.filter((lottoTicket) => lottoTicket.totalMatchCount === key).length,
+        });
+      })
+      .join('');
   }
 
   createTableRowHTML({ DESCRIPTION, PRIZE, numOfWinningTicket }) {
