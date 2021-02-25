@@ -153,7 +153,6 @@ class LottoModel {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
-    console.log(income, this.#tickets.length * 1000)
     return getProfitRate(income, this.#tickets.length * 1000)
   }
 
