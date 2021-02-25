@@ -6,7 +6,7 @@ export default class WinningResultView extends View {
   constructor($element) {
     super($element);
     this.$modal = $('.modal');
-    this.winningNumberInputs = $$('.winning-number');
+    this.$winningNumberInputs = $$('.winning-number');
     this.winningNumbers = {};
 
     this.bindNumberInputEvent();
@@ -14,14 +14,14 @@ export default class WinningResultView extends View {
   }
 
   resetWinningNumbers() {
-    this.winningNumberInputs.forEach(winningNumber => {
+    this.$winningNumberInputs.forEach(winningNumber => {
       winningNumber.value = '';
     });
     this.winningNumbers = [];
   }
 
   bindNumberInputEvent() {
-    this.winningNumberInputs.forEach((winningNumber, idx) => {
+    this.$winningNumberInputs.forEach((winningNumber, idx) => {
       winningNumber.addEventListener('change', () =>
         this.inputWinningNumberHandler(winningNumber)
       );
@@ -30,7 +30,25 @@ export default class WinningResultView extends View {
       );
     });
 
-    this.$element.addEventListener('submit', e => this.showResultHandler(e));
+    this.$element.addEventListener('submit', e =>
+      this.submitWinningNumberHandler(e)
+    );
+  }
+
+  inputWinningNumberHandler($element) {
+    this.winningNumbers[$element.dataset.indexNum] = Number($element.value);
+  }
+
+  moveFocusHandler($element, idx) {
+    if ($element.value.length === 2) {
+      if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
+      this.$winningNumberInputs[idx + 1].focus();
+    }
+  }
+
+  submitWinningNumberHandler(e) {
+    e.preventDefault();
+    this.emit('submitNumbers', this.winningNumbers);
   }
 
   bindModalCloseEvent() {
@@ -42,35 +60,19 @@ export default class WinningResultView extends View {
     );
   }
 
-  inputWinningNumberHandler($element) {
-    this.winningNumbers[$element.dataset.indexNum] = Number($element.value);
-  }
-
-  moveFocusHandler($element, idx) {
-    if ($element.value.length === 2) {
-      if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
-      this.winningNumberInputs[idx + 1].focus();
-    }
-  }
-
-  showResultHandler(e) {
-    e.preventDefault();
-    this.emit('submitNumbers', this.winningNumbers);
-  }
-
   clickResetBtnHandler() {
     this.closeModal();
     this.emit('clickResetBtn');
+  }
+
+  closeModal() {
+    this.$modal.classList.remove('open');
   }
 
   showModal(rankCounts, earningRate) {
     this.$modal.classList.add('open');
     this.renderRanks(rankCounts);
     this.renderEarningRate(earningRate);
-  }
-
-  closeModal() {
-    this.$modal.classList.remove('open');
   }
 
   renderRanks(rankCounts) {
