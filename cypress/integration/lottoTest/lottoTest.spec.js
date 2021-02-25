@@ -31,19 +31,31 @@ describe('로또 게임 테스트', () => {
     cy.get('#purchase-type').should('be.visible');
     cy.get('#input-price-form').should('be.visible');
     cy.get('#purchased-lottos').should('not.be.visible');
+<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('not.be.visible');
+=======
+    cy.get('#input-winning-nums').should('not.be.visible');
+>>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('사용자는 로또 구입 금액을 입력하면, 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
     cy.get('#purchased-lottos').should('be.visible');
+<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('be.visible');
+=======
+    cy.get('#input-winning-nums').should('be.visible');
+>>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('사용자는 로또 구입 금액을 입력하면, Enter를 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     cy.get('#input-price').type(`${price}{enter}`);
     cy.get('#purchased-lottos').should('be.visible');
+<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('be.visible');
+=======
+    cy.get('#input-winning-nums').should('be.visible');
+>>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('사용자가 구매한 로또의 개수와 개수 만큼의 로또 이모지를 보여준다.', () => {
@@ -54,7 +66,11 @@ describe('로또 게임 테스트', () => {
     cy.get('#lotto-icons')
       .children('.lotto-wrapper')
       .should('have.length', lottoTotalCount);
+<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('be.visible');
+=======
+    cy.get('#input-winning-nums').should('be.visible');
+>>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('번호 보기 스위치 off 상태에서는 로또 아이콘들이 가로로, on에서는 세로로 정렬된다.', () => {
@@ -180,7 +196,11 @@ describe('로또 게임 테스트', () => {
     cy.get('#input-price').should('have.value', '');
 
     cy.get('#purchased-lottos').should('not.be.visible');
+<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('not.be.visible');
+=======
+    cy.get('#input-winning-nums').should('not.be.visible');
+>>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
     cy.get('.winning-number').each(winningNumber => {
       cy.wrap(winningNumber).should('have.value', '');
     });

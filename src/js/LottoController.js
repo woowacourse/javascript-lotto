@@ -16,7 +16,11 @@ export default class LottoController {
   constructor() {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
+<<<<<<< HEAD
     this.winningResultView = new WinningResultView($('#winning-numbers-form'));
+=======
+    this.winningResultView = new WinningResultView($('#input-winning-nums'));
+>>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   }
 
   init() {
