@@ -43,11 +43,23 @@ describe('racing-game', () => {
       });
   });
 
-  it('구입 금액 입력 시, 수동 구매와 자동 구매를 선택할 수 있어야 한다.', () => {
+  it('구입 금액 입력 후 토글을 통해 수동 구매와 자동 구매를 선택할 수 있어야 한다.', () => {
     typePurchasePriceAndClickSubmitButton();
 
     cy.get('#auto-purchase-section').should('be.visible');
+
+    cy.get('#purchase-section__toggle').click();
+    cy.get('#auto-purchase-section').should('not.be.visible');
     cy.get('#manual-purchase-section').should('be.visible');
+  });
+
+  it('자동으로 로또를 구매한 후 남은 금액을 사용자에게 보여줘야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton();
+
+    cy.get('#auto-purchase-section__submit').type(3);
+    cy.get('#auto-purchase-section__button').click();
+
+    cy.get('#purchase-section__budget').should('have.text', '2000원');
   });
 
   it('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
