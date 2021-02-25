@@ -1,0 +1,17 @@
+{
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "google", "plugin:prettier/recommended"],
+  "rules": {
+    "prettier/prettier": "error",
+    "files.insertFinalNewline": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2020": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  }
+}
