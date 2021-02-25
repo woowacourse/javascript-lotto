@@ -1,30 +1,35 @@
-import { $, createElement } from '../utils.js';
+import { $, $all, createElement } from '../utils.js';
 
 export default class LottoView {
-  show($element) {
-    $element.classList.remove('hidden');
-  }
+  renderWinningResult(result) {
+    const { winningRankCounts, winningRate } = result;
 
-  hide($element) {
-    $element.classList.add('hidden');
-  }
+    $all('.winning-count').forEach(($winningCount) => {
+      $winningCount.textContent = winningRankCounts[$winningCount.dataset.rank];
+    });
 
-  enableElement($element) {
-    $element.disabled = false;
-  }
-
-  disableElement($element) {
-    $element.disabled = true;
+    $('.winning-rate').textContent = winningRate;
   }
 
   renderLottoList(lottos) {
-    const $lottoListChildren = lottos.map((lotto) => {
-      const $lottoSpan = createElement('span', 'lotto mx-1 text-4xl', '🎟️ ');
-      $lottoSpan.appendChild(createElement('span', 'lotto-numbers', lotto.numbers.join(', ')));
-      return $lottoSpan;
+    const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
+
+    const lottoFragments = lottos.map((lotto) => {
+      const fragment = document.createDocumentFragment();
+      const childrenFragment = document.createDocumentFragment();
+
+      const $lotto = fragment.appendChild(createElement('span', 'lotto mx-1 text-4xl', '🎟️ '));
+
+      childrenFragment.appendChild(
+        createElement('span', 'lotto-numbers', lotto.numbers.join(', '))
+      );
+      $lotto.appendChild(childrenFragment);
+
+      return fragment;
     });
 
-    $('.lotto-list').append(...$lottoListChildren);
-    $('.lotto-count').append(lottos.length);
+    $lottoList.append(...lottoFragments);
+    $('.lotto-list-container').append($lottoList);
+    $('.lotto-count').textContent = lottos.length;
   }
 }

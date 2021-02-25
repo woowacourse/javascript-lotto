@@ -29,19 +29,16 @@ button:disabled {
 
 .hidden {
   visibility: hidden;
-}
-
-.lotto-numbers {
-  font-size: 1rem;
+  opacity: 0;
 }
 
 .lotto-list .lotto {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
 .lotto-list .lotto .lotto-numbers {
+  font-size: 1rem;
   display: none;
   padding-left: 5px;
 }
