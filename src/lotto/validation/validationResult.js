@@ -1,8 +1,8 @@
 import validator from './validator.js';
 import { MESSAGE } from '../../constants.js';
 
-const message = {
-  getCostValidation(cost) {
+const guide = {
+  getCostCheckResult(cost) {
     if (validator.isMoneyLessThanMinCost(cost)) {
       return MESSAGE.SHOULD_EXCEED_MIN_COST;
     }
@@ -13,7 +13,7 @@ const message = {
     return '';
   },
 
-  getCorrectNumberValidation(correctNumbers) {
+  getCorrectNumberCheckResult(correctNumbers) {
     if (validator.isDuplicatedNumberExist(correctNumbers)) {
       return MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE;
     }
@@ -24,7 +24,7 @@ const message = {
     return '';
   },
 
-  getModalOpenValidation(correctNumbers) {
+  getModalOpenCheckResult(correctNumbers) {
     if (validator.isEmptyCorrectNumberExist(correctNumbers)) {
       return MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE;
     }
@@ -33,4 +33,4 @@ const message = {
   },
 };
 
-export default message;
+export default guide;

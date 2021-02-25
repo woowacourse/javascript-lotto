@@ -9,12 +9,12 @@ import {
   $restartButton,
 } from '../elements.js';
 import service from './service.js';
-import message from './validators/message.js';
+import validationResult from './validation/validationResult.js';
 import { getCorrectNumbers } from './domReader.js';
 
 const onCostSubmit = () => {
   const cost = Number($costInput.value);
-  const userGuideMessage = message.getCostValidation(cost);
+  const userGuideMessage = validationResult.getCostCheckResult(cost);
   if (userGuideMessage !== '') {
     service.guideUserInput(userGuideMessage, () => {
       $costInput.value = '';
@@ -36,7 +36,7 @@ const onCostSubmitByEnterKey = (e) => {
 
 const onResultModalOpen = () => {
   const correctNumbers = getCorrectNumbers();
-  const userGuideMessage = message.getModalOpenValidation(correctNumbers);
+  const userGuideMessage = validationResult.getModalOpenCheckResult(correctNumbers);
   if (userGuideMessage !== '') {
     service.guideUserInput(userGuideMessage);
     return;
@@ -49,7 +49,7 @@ const onResultModalClose = () => {
 };
 
 const onCorrectNumberInput = (e) => {
-  const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
+  const userGuideMessage = validationResult.getCorrectNumberCheckResult(getCorrectNumbers());
   if (userGuideMessage !== '') {
     service.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
