@@ -1,18 +1,10 @@
 export const LOTTO_NUMBERS = {
   LOTTO_UNIT: 1000,
   LOTTO_MAX_NUM: 45,
+  LOTTO_COUNT: 6,
   WINNING_NUMBER_COUNT: 7,
   MIN_PURCHASE_LIMIT: 1000,
   MAX_PURCHASE_LIMIT: 100000,
-};
-
-// key: 등수, value: 당첨금
-export const LOTTO_WINNING_PRICE = {
-  1: 2000000000,
-  2: 30000000,
-  3: 1500000,
-  4: 50000,
-  5: 5000,
 };
 
 export const ALERT_MESSAGES = {
