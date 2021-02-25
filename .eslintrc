@@ -1,24 +1,27 @@
 {
-    "plugins": ["prettier"],
-    "extends": [
-        "eslint:recommended",
-        "plugin:prettier/recommended",
-        "plugin:cypress/recommended"
+  "plugins": ["prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
     ],
-    "rules": {
-        "prettier/prettier": ["error", {
-            "endOfLine": "auto"
-        }],
-        "max-depth": ["error", 2]
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "sourceType": "module",
-        "ecmaVersion": 12
-    },
-    "env": {
-        "browser": true,
-        "node": true,
-        "es6": true
-    }
+    "max-depth": ["error", 2]
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 12
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  }
 }
