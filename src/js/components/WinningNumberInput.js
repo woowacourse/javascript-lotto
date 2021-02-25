@@ -5,7 +5,7 @@ import {
   LOTTO_NUMBERS_LENGTH,
   BONUS_NUMBER_LENGTH,
 } from '../constants.js';
-import { $, $$, show, hide, enable, clearInputValue } from '../utils/DOM.js';
+import { $, $$, show, hide, enable, clearInputValue, disable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
   constructor({ isVisible, updateWinningNumber, onShowModal }) {
@@ -109,6 +109,7 @@ export default class WinningNumberInput {
 
     if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
       this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
+      disable(this.$openResultModalButton);
       return;
     }
 
