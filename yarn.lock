@@ -48,6 +48,7 @@
   dependencies:
     "@babel/types" "^7.12.13"
 
+
 "@babel/helper-validator-identifier@^7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.12.11.tgz#c9a1f021917dcb5ccf0d4e453e399022981fc9ed"
@@ -99,6 +100,7 @@
     "@babel/helper-validator-identifier" "^7.12.11"
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
+
 
 "@cypress/listr-verbose-renderer@^0.4.1":
   version "0.4.1"
