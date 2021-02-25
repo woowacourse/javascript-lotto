@@ -11,7 +11,7 @@ function initEventListeners() {
   $('#payment-submit').addEventListener('submit', lottoPurchaseHandler);
   $('#reset').addEventListener('click', lottoResetHandler);
   $('.modal-close').addEventListener('click', closeModal);
-  $('#lotto-number-form').addEventListener('keyup', winningNumberInputHandler);
+  $('#lotto-number-form').addEventListener('change', winningNumberInputHandler);
   $('#lotto-number-form').addEventListener(
     'submit',
     winningNumberSubmitHandler
