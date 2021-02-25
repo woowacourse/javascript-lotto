@@ -1,5 +1,5 @@
-import { TICKET } from "./constants/constant.js"
-import { generateRandomNumber, sortByNumber } from "./util.js"
+import { TICKET } from "../constants/constant.js"
+import { generateRandomNumber, sortByNumber } from "../util.js"
 
 class Ticket {
   #numbers
