@@ -66,5 +66,5 @@ export const SELECTOR = Object.freeze({
   RESULT_TBODY: '#result-tbody',
   PROFIT_RATE: '#profit-rate',
   RESTART_BUTTON: '#restart-button',
-  WINNING_NUMBER_INPUT_FORM: '#winning-number-input-form'
+  CORRECT_NUMBER_INPUT_FORM: '#correct-number-input-form'
 })

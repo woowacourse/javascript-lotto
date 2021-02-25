@@ -15,4 +15,4 @@ export const $modal = $(SELECTOR.MODAL);
 export const $resultTbody = $(SELECTOR.RESULT_TBODY);
 export const $profitRate = $(SELECTOR.PROFIT_RATE);
 export const $restartButton = $(SELECTOR.RESTART_BUTTON);
-export const $winningNumberInputForm = $(SELECTOR.WINNING_NUMBER_INPUT_FORM);
+export const $correctNumberInputForm = $(SELECTOR.CORRECT_NUMBER_INPUT_FORM);

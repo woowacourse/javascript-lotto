@@ -12,7 +12,7 @@ import {
   $modalClose,
   $correctNumberWrapper,
   $restartButton,
-  $winningNumberInputForm
+  $correctNumberInputForm
 } from '../elements.js';
 import message from './validators/message.js';
 import { getCorrectNumbers } from './domReader.js';
@@ -97,7 +97,7 @@ const controller = {
     $costSubmitButton.addEventListener('click', onCostSubmit);
     $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
-    $winningNumberInputForm.addEventListener('submit', onResultModalOpen);
+    $correctNumberInputForm.addEventListener('submit', onResultModalOpen);
     $resultModalOpenButton.addEventListener('click', onResultModalOpen);
     $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
     $restartButton.addEventListener('click', onRestart);

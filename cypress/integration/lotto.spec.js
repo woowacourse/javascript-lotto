@@ -53,7 +53,7 @@ describe('기능 테스트', () => {
     cy.get('#restart-button').click();
     cy.get('#cost-input').should('have.value', '');
     cy.get('#purchase-result').should('not.be.visible');
-    cy.get('#winning-number-input-form').should('not.be.visible');
+    cy.get('#correct-number-input-form').should('not.be.visible');
     cy.get('#modal').should('not.be.visible');
   });
 });

@@ -8,7 +8,7 @@ import {
   $resultTbody,
   $profitRate,
   $correctNumberWrapper,
-  $winningNumberInputForm,
+  $correctNumberInputForm,
 } from '../elements.js';
 import {
   getResultItemCountTemplate,
@@ -20,41 +20,35 @@ import { $ } from '../utils/querySelector.js';
 const view = {
   init() {
     view.closeResultModal();
-    view.hideLottoNumbers();
-    view.hideWinningNumberInputForm();
     view.hidePurchaseResult()
-    view.initWinningNumberInputs();
+    view.hideCorrectNumberInputForm();
+    view.initCorrectNumberInputs();
     $costInput.value = '';
   },
 
-  initWinningNumberInputs() {
-    $('.correct-number', $correctNumberWrapper).forEach(
-      ($numberInput) => {
-        $numberInput.value = '';
-      }
-    );
+  initCorrectNumberInputs() {
+    $('.correct-number', $correctNumberWrapper).forEach(($numberInput) => {
+      $numberInput.value = '';
+    });
   },
 
   displayPurchaseResult(lottoItemList) {
     $purchaseResult.classList.remove('hide');
-    $purchaseItemList.classList.remove('hide');
-    $purchaseItemCount.innerHTML = getResultItemCountTemplate(
-      lottoItemList.length
-    );
+    $purchaseItemCount.innerHTML = getResultItemCountTemplate(lottoItemList.length);
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
-    view.displayWinningNumberInputForm();
+    view.displayCorrectNumberInputForm();
   },
 
   hidePurchaseResult(){
     $purchaseResult.classList.add('hide');
   },
 
-  displayWinningNumberInputForm() {
-    $winningNumberInputForm.classList.remove('hide');
+  displayCorrectNumberInputForm() {
+    $correctNumberInputForm.classList.remove('hide');
   },
 
-  hideWinningNumberInputForm() {
-    $winningNumberInputForm.classList.add('hide');
+  hideCorrectNumberInputForm() {
+    $correctNumberInputForm.classList.add('hide');
   },
 
   displayLottoNumbers() {
