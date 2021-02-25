@@ -7,7 +7,6 @@ import {
   $lottoNumbersToggleButton,
   $resultTbody,
   $profitRate,
-  $correctNumberWrapper,
   $correctNumberInputForm,
   $$correctNumberInputs,
 } from '../elements.js';
@@ -16,7 +15,6 @@ import {
   getResultItemListTemplate,
   getModalTbodyTemplate,
 } from '../templates.js';
-import { $ } from '../utils/querySelector.js';
 
 const view = {
   init() {
