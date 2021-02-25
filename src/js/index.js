@@ -7,7 +7,7 @@ import {
   enableElement,
 } from './utils.js';
 import { ALERT_MESSAGE, LOTTO, WINNING_PRICE } from './constants.js';
-import Lotto from './objects/Lotto.js';
+import Lotto from './models/Lotto.js';
 import LottoView from './views/LottoView.js';
 
 class LottoApp {
