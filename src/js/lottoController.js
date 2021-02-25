@@ -4,10 +4,8 @@ import { ALERT_MESSAGES } from './utils/constants/alert.js';
 import { LOTTO_SETTINGS, PRIZE } from './utils/constants/settings.js';
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import {
-  isMoneyNotInteger,
   isNumbersDuplicated,
-  isResultInputsEmpty,
-  isNumbersOutOfRange
+  isInputsEmpty,
 } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
 export default class LottoController {
@@ -68,10 +66,6 @@ export default class LottoController {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
-    if (isMoneyNotInteger(moneyInput)) {
-      alert(ALERT_MESSAGES.NOT_INTEGER_PRICE);
-      return;
-    }
 
     this.makeLottos(moneyInput);
     const numbersBundle = this.lottos.map(lotto => lotto.getNumbers());
@@ -86,19 +80,13 @@ export default class LottoController {
     });
     const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
     const numbers = [...winningNumbers, bonusNumber]
-    //TODO (alert.js 파일에)alert msg를 리턴하는 verifyInput() 만들기
-    if (isResultInputsEmpty(numbers)) {
+    if (isInputsEmpty(numbers)) {
       alert(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
       return;
     }
 
     if (isNumbersDuplicated(numbers)) {
       alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
-      return;
-    }
-
-    if (isNumbersOutOfRange(numbers)) {
-      alert(ALERT_MESSAGES.NUMBERS_OUT_OF_RANGE);
       return;
     }
 

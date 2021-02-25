@@ -1,5 +1,5 @@
 import { $, $$ } from './utils/util.js';
-import { UI_SETTINGS } from './utils/constants/settings.js';
+import { UI_SETTINGS, LOTTO_SETTINGS } from './utils/constants/settings.js';
 import { DOM_CLASSES, DOM_IDS } from './utils/constants/dom.js';
 
 export default class LottoUI {
@@ -14,7 +14,7 @@ export default class LottoUI {
       <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
       </label>
       <div class="d-flex">
-        <input type="number" step='0.1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
+        <input type="number" step='1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
         <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MONEY_FORM_SUBMIT}">확인</button>
       </div>
     </form>
@@ -62,8 +62,12 @@ export default class LottoUI {
             <div>
               <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
               <div>
-                ${`<input type="number" class="winning-number mx-1 text-center 
-                  ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />`.repeat(6)}
+                ${`<input 
+                  type="number" 
+                  min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
+                  max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
+                  class="winning-number mx-1 text-center 
+                    ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />`.repeat(6)}
               </div>
             </div>
             <div class="bonus-number-container flex-grow">
