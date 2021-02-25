@@ -1,0 +1,5 @@
+cypress/fixtures/*
+cypress/plugins/*
+cypress/support/*
+!cypress/integration/*.js
+src/css/*
