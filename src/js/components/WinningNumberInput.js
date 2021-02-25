@@ -1,5 +1,12 @@
-import { validateInput } from '../model/winningNumberValidator.js';
 import { $, $$, show, hide, enable, disable } from '../utils/DOM.js';
+
+import { hasElementOutOfRange, isShortLength, hasDuplicatedElement } from '../utils/general.js';
+import {
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+  WINNING_NUMBER_CHECK_MESSAGE,
+  TOTAL_NUMBERS_LENGTH,
+} from '../constants.js';
 
 export default class WinningNumberInput {
   constructor({ isVisible, updateWinningNumber, onShowModal }) {
@@ -34,7 +41,7 @@ export default class WinningNumberInput {
       bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
     };
 
-    const { isFulfilled, checkMessage } = validateInput(
+    const { isFulfilled, checkMessage } = this.validateWinningNumbers(
       [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
     );
     this.setState({ isFulfilled, checkMessage });
@@ -50,6 +57,34 @@ export default class WinningNumberInput {
       },
     });
     this.updateWinningNumber(this.winningNumber);
+  }
+
+  validateWinningNumbers(numbersWithoutBlank) {
+    if (hasElementOutOfRange(numbersWithoutBlank, { min: LOTTO_MIN_NUMBER, max: LOTTO_MAX_NUMBER })) {
+      return {
+        isFulfilled: false,
+        checkMessage: WINNING_NUMBER_CHECK_MESSAGE.OUT_OF_RANGE,
+      };
+    }
+
+    if (hasDuplicatedElement(numbersWithoutBlank)) {
+      return {
+        isFulfilled: false,
+        checkMessage: WINNING_NUMBER_CHECK_MESSAGE.DUPLICATED,
+      };
+    }
+
+    if (isShortLength(numbersWithoutBlank, TOTAL_NUMBERS_LENGTH)) {
+      return {
+        isFulfilled: false,
+        checkMessage: WINNING_NUMBER_CHECK_MESSAGE.HAS_BLANK,
+      };
+    }
+
+    return {
+      isFulfilled: true,
+      checkMessage: WINNING_NUMBER_CHECK_MESSAGE.FULFILLED,
+    };
   }
 
   setState({ isVisible, isFulfilled, checkMessage, winningNumber }) {
