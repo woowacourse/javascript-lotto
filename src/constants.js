@@ -51,6 +51,8 @@ export const BONUS_ITEM_MATCH_COUNT = REWARDS
   .find(reward => reward.shouldCheckBonus)
   .matchCount
 
+export const VALID_CHECK_RESULT = '';
+
 export const SELECTOR = Object.freeze({
   COST_SUBMIT_FORM: '#cost-submit-form',
   COST_INPUT: '#cost-input',

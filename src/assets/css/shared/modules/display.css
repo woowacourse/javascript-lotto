@@ -1,3 +1,7 @@
-.hide {
+.invisible {
+  display: none;
+}
+
+.visible {
   display: none;
 }

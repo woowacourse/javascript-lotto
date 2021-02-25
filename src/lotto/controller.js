@@ -11,11 +11,12 @@ import {
 import service from './service.js';
 import validationResult from './validation/validationResult.js';
 import { getCorrectNumbers } from './domReader.js';
+import { VALID_CHECK_RESULT } from '../constants.js';
 
 const onCostSubmit = () => {
   const cost = Number($costInput.value);
   const userGuideMessage = validationResult.getCostCheckResult(cost);
-  if (userGuideMessage !== '') {
+  if (userGuideMessage !== VALID_CHECK_RESULT) {
     service.guideUserInput(userGuideMessage, () => {
       $costInput.value = '';
     });
@@ -37,7 +38,7 @@ const onCostSubmitByEnterKey = (e) => {
 const onResultModalOpen = () => {
   const correctNumbers = getCorrectNumbers();
   const userGuideMessage = validationResult.getModalOpenCheckResult(correctNumbers);
-  if (userGuideMessage !== '') {
+  if (userGuideMessage !== VALID_CHECK_RESULT) {
     service.guideUserInput(userGuideMessage);
     return;
   }
@@ -50,7 +51,7 @@ const onResultModalClose = () => {
 
 const onCorrectNumberInput = (e) => {
   const userGuideMessage = validationResult.getCorrectNumberCheckResult(getCorrectNumbers());
-  if (userGuideMessage !== '') {
+  if (userGuideMessage !== VALID_CHECK_RESULT) {
     service.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
       e.target.focus();
