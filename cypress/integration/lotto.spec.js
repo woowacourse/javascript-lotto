@@ -1,4 +1,3 @@
-
 import { INVALID_PRICE_ERROR } from "../../src/js/lotto/constants/error_messages.js";
 
 describe("lotto 미션 테스트", () => {
@@ -64,7 +63,6 @@ describe("lotto 미션 테스트", () => {
   it("번호보기가 true이면 로또 번호를 보여준다.", () => {
     cy.get(".switch").click();
     cy.get(".lotto-numbers").each(($winningNumber) => {
-
       const isNumbers = $winningNumber[0].innerText
         .split(",")
         .every((value) => !isNaN(value.trim()));
@@ -115,6 +113,7 @@ describe("lotto 미션 테스트", () => {
     cy.get("#restart-button").click();
     cy.get("#price-input").should("have.value", "");
     cy.get("#confirmation").should("not.be.visible");
+  });
 
   it("금액 입력 후 엔터키를 누르면 금액에 맞는 수의 로또를 보여준다.", () => {
     cy.get("#price-input").type("5000{enter}");

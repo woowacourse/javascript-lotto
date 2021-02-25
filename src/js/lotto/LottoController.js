@@ -31,7 +31,7 @@ export default class LottoController {
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
-    return matchedNumbers.reduce((count, num) => {
+    return lottoNumber.reduce((count, num) => {
       return resultNumber.includes(num) ? count + 1 : count;
     }, 0);
   }
@@ -105,7 +105,7 @@ export default class LottoController {
 
   reset() {
     this.lottoView.resetLottoView();
-    this.prizeTable = getPrizeTable();
+    this.initRankedCount();
     onModalClose($modal);
   }
 }
