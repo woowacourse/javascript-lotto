@@ -22,7 +22,7 @@ export default class LottoGame {
     return this.#lottoItemList.length * LOTTO.PRICE;
   }
 
-  init() {
+  initGame() {
     this.#lottoItemList = [];
     this.#winningNumberList = [];
     this.#bonusNumber = null;
