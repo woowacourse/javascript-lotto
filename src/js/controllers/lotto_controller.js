@@ -25,8 +25,8 @@ class LottoController {
   }
 
   managePocket() {
-    const lottos = this.model.lottos
-    this.view.renderPocketSection(lottos)
+    const tickets = this.model.tickets
+    this.view.renderPocketSection(tickets)
     this.handlePocket()
     this.view.renderWinningSection()
     this.handleModalOpen()
@@ -44,7 +44,7 @@ class LottoController {
     for (let i = 0; i < count; i++) {
       const ticket = new Ticket()
       ticket.generateRandomNumbers()
-      this.model.addLotto(ticket)
+      this.model.addTicket(ticket)
     }
     this.managePocket()
   }

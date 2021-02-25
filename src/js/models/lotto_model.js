@@ -3,7 +3,7 @@ import { getProfitRate } from "../util.js"
 
 class LottoModel {
   constructor() {
-    this._lottos = []
+    this._tickets = []
     this._answerLotto = {
       numbers: null,
       bonus: null,
@@ -17,8 +17,8 @@ class LottoModel {
     }
   }
 
-  get lottos() {
-    return this._lottos
+  get tickets() {
+    return this._tickets
   }
 
   get answerLotto() {
@@ -29,38 +29,51 @@ class LottoModel {
     return this._lottoResult
   }
 
-  addLotto(newLotto) {
-    this._lottos.push(newLotto)
+  addTicket(ticket) {
+    this._tickets.push(ticket)
   }
 
   addAnswerLotto(numbers, bonus) {
     this._answerLotto = { numbers, bonus }
   }
 
+  calculateMatch(ticket) {
+    const match = ticket.numbers.filter((x) =>
+      this._answerLotto.numbers.includes(x)
+    ).length
+    const bonusMatch = ticket.numbers.includes(this._answerLotto.bonus)
+
+    return { match, bonusMatch }
+  }
+
   calculateLottosResult() {
-    const calculateLottoResult = (lotto) => {
-      const match = lotto.numbers.filter((x) =>
-        this._answerLotto.numbers.includes(x)
-      ).length
-      const bonusMatch = lotto.numbers.includes(this._answerLotto.bonus)
+    const calculateLottoResult = (ticket) => {
+      const { match, bonusMatch } = this.calculateMatch(ticket)
 
       let key = ""
-      if (match === 6) {
-        key = RANK.FIRST.TEXT
-      } else if (match === 5 && bonusMatch) {
-        key = RANK.SECOND.TEXT
-      } else if (match === 5 || (match === 4 && bonusMatch)) {
-        key = RANK.THIRD.TEXT
-      } else if (match === 4 || (match === 3 && bonusMatch)) {
-        key = RANK.FOURTH.TEXT
-      } else if (match === 3 || (match === 2 && bonusMatch)) {
-        key = RANK.FIFTH.TEXT
+      switch (true) {
+        case match === 6:
+          key = RANK.FIRST.TEXT
+          break
+        case match === 5 && bonusMatch:
+          key = RANK.THIRD.TEXT
+          break
+        case match === 5 || (match === 4 && bonusMatch):
+          key = RANK.THIRD.TEXT
+          break
+        case match === 4 || (match === 3 && bonusMatch):
+          key = RANK.FOURTH.TEXT
+          break
+        case match === 3 || (match === 2 && bonusMatch):
+          key = RANK.FIFTH.TEXT
+          break
+        default:
       }
 
       key && this._lottoResult[key].count++
     }
 
-    this._lottos.forEach(calculateLottoResult)
+    this._tickets.forEach(calculateLottoResult)
   }
 
   get profitRate() {
@@ -68,7 +81,7 @@ class LottoModel {
       return acc + cur.price * cur.count
     }, 0)
 
-    return getProfitRate(income, this._lottos.length * 1000)
+    return getProfitRate(income, this._tickets.length * 1000)
   }
 
   resetLottoResult() {
@@ -78,7 +91,7 @@ class LottoModel {
   }
 
   init() {
-    this._lottos = []
+    this._tickets = []
     this.resetLottoResult()
   }
 }
