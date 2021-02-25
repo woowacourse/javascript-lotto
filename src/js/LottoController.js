@@ -8,12 +8,16 @@ import {
 import { $ } from './utils/dom.js';
 import LottoProcessor from './utils/lottoProcessor.js';
 
-import WinningResultView from './views/WinningResultView.js';
+import PurchaseTypeSelectView from './views/PurchaseTypeSelectView.js';
 import InputPriceView from './views/InputPriceView.js';
 import PurchasedLottosView from './views/PurchasedLottosView.js';
+import WinningResultView from './views/WinningResultView.js';
 
 export default class LottoController {
   constructor() {
+    this.purchaseTypeSelectView = new PurchaseTypeSelectView(
+      $('#purchase-type')
+    );
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
 <<<<<<< HEAD
@@ -29,19 +33,22 @@ export default class LottoController {
   }
 
   reset() {
+    this.isAutoPurchase = true;
     this.lottos = [];
     this.purchasedPrice = 0;
 
-    this.inputPriceView.show().resetInputPrice();
+    this.inputPriceView.resetInputPrice();
     this.purchasedLottosView.hide().resetToggleSwitch();
     this.winningResultView.hide().resetWinningNumbers();
   }
 
   bindEvents() {
+    this.purchaseTypeSelectView.on('selectType', e => {
+      this.isAutoPurchase = e.detail;
+    });
     this.inputPriceView.on('submitPrice', e =>
       this.inputPriceHandler(e.detail)
     );
-
     this.winningResultView
       .on('submitNumbers', e => this.inputNumbersHandler(e.detail))
       .on('clickResetBtn', () => this.reset());
