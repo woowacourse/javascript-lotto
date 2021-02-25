@@ -33,9 +33,8 @@ context('로또 UI 테스트', () => {
     cy.on('window:alert', alertStub);
 
     cy.get(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).type(5000.5);
-    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.NOT_INTEGER_PRICE);
-    });
+    cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).click();
+    testChildNodeExist(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
   });
 
   it('로또 구입 금액을 입력받으면, 구입 버튼이 비활성화된다.', () => {
@@ -111,9 +110,7 @@ context('로또 UI 테스트', () => {
 
     typeLottoNumbers([55, 65, 75, 85, 95, 105, 115]);
 
-    cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.NUMBERS_OUT_OF_RANGE);
-    });
+    cy.get(`.${DOM_CLASSES.MODAL}`).should('not.be.visible');
   });
 
   it('당첨 통계에서는 당첨 갯수와 수익률을 확인할 수 있다.', () => {
@@ -156,12 +153,8 @@ context('로또 UI 테스트', () => {
     cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
     cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
 
-    cy.get(`.${DOM_CLASSES.LOTTO_CONTAINER}`).then(container => {
-      expect(container[0].hasChildNodes()).to.be.false;
-    })
-    cy.get(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).then(container => {
-      expect(container[0].hasChildNodes()).to.be.false;
-    });
+    testChildNodeExist(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
+    testChildNodeExist(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`);
   });
 });
 
@@ -197,4 +190,10 @@ function typeLottoNumbers(inputs) {
     })
   });
   cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(inputs[inputs.length - 1]);
-} 
+}
+
+function testChildNodeExist(selector) {
+  cy.get(selector).then(element => {
+    expect(element[0].hasChildNodes()).to.be.false;
+  });
+}
