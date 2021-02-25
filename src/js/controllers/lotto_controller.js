@@ -79,8 +79,8 @@ class LottoController {
     this.model.addAnswerLotto(numbers, answer)
     this.model.calculateLottosResult()
     const lottoResult = this.model.lottoResult
-    const profit = this.model.profit
-    this.view.renderModalSection(lottoResult, profit)
+    const profitRate = this.model.profitRate
+    this.view.renderModalSection(lottoResult, profitRate)
     this.handleModalClose()
     this.handleReset()
   }

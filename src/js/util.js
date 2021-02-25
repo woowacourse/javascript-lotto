@@ -21,3 +21,7 @@ export const $$ = (selector) => {
 export const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
+
+export const getProfitRate = (currentPrice, previousPrice) => {
+  return (currentPrice / previousPrice - 1) * 100
+}

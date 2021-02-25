@@ -1,4 +1,5 @@
 import { RANK } from "../constants/constant.js"
+import { getProfitRate } from "../util.js"
 
 class LottoModel {
   constructor() {
@@ -62,12 +63,12 @@ class LottoModel {
     this._lottos.forEach(calculateLottoResult)
   }
 
-  get profit() {
+  get profitRate() {
     const income = Object.values(this._lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
 
-    return (income / (this._lottos.length * 1000) - 1) * 100
+    return getProfitRate(income, this._lottos.length * 1000)
   }
 
   resetLottoResult() {
