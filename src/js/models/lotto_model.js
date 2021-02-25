@@ -69,11 +69,11 @@ class LottoModel {
       bonus: null,
     }
     this.#lottoResult = {
-      [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
-      [RANK.SECOND.TEXT]: { price: RANK.SECOND.PRICE, count: 0 },
-      [RANK.THIRD.TEXT]: { price: RANK.THIRD.PRICE, count: 0 },
-      [RANK.FOURTH.TEXT]: { price: RANK.FOURTH.PRICE, count: 0 },
       [RANK.FIFTH.TEXT]: { price: RANK.FIFTH.PRICE, count: 0 },
+      [RANK.FOURTH.TEXT]: { price: RANK.FOURTH.PRICE, count: 0 },
+      [RANK.THIRD.TEXT]: { price: RANK.THIRD.PRICE, count: 0 },
+      [RANK.SECOND.TEXT]: { price: RANK.SECOND.PRICE, count: 0 },
+      [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
     }
   }
 
@@ -153,7 +153,7 @@ class LottoModel {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
-
+    console.log(income, this.#tickets.length * 1000)
     return getProfitRate(income, this.#tickets.length * 1000)
   }
 
