@@ -14,7 +14,7 @@ import {
   getResultItemCountTemplate,
   getResultItemListTemplate,
   getModalTbodyTemplate,
-} from '../templates.js';
+} from './templates.js';
 
 const view = {
   init() {

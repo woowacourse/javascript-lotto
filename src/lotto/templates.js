@@ -1,4 +1,4 @@
-import { getKRString } from './utils/format.js';
+import { getKRString } from '../utils/format.js';
 
 export const getResultItemCountTemplate = (lottoItemCount) => {
   return `
