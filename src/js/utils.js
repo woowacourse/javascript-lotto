@@ -8,7 +8,7 @@ export const createElement = (tagName, className, text = '') => {
   return $element;
 };
 
-export const getRandomNumberArray = (min, max, length) => {
+export const getRandomNumberArray = (length, { min, max }) => {
   const numberArray = [];
 
   while (numberArray.length < length) {

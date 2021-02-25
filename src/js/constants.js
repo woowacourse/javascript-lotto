@@ -18,3 +18,12 @@ export const WINNING_PRICE = {
   fifth: 5000,
   lose: 0,
 };
+
+export const WINNING_RANK = {
+  FIRST: 'first',
+  SECOND: 'second',
+  THIRD: 'third',
+  FOURTH: 'fourth',
+  FIFTH: 'fifth',
+  LOSE: 'lose',
+};

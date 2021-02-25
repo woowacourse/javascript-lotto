@@ -1,5 +1,8 @@
 import { getRandomNumberArray, getMatchCount } from '../utils.js';
-import { LOTTO } from '../constants.js';
+import { LOTTO, WINNING_RANK } from '../constants.js';
+
+const { NUMBER_COUNT, MINIMUM_NUMBER, MAXIMUM_NUMBER } = LOTTO;
+const { FIRST, SECOND, THIRD, FOURTH, FIFTH, LOSE } = WINNING_RANK;
 
 export default class Lotto {
   constructor(numbers) {
@@ -8,32 +11,27 @@ export default class Lotto {
     this.setLottoNumbers(numbers);
   }
 
-  setLottoNumbers(numbers) {
-    if (!numbers) {
-      const { MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_COUNT } = LOTTO;
-      this.numbers = getRandomNumberArray(MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_COUNT);
-    } else {
-      this.numbers = numbers;
-    }
-
-    this.numbers.sort((a, b) => a - b);
+  setLottoNumbers(
+    numbers = getRandomNumberArray(NUMBER_COUNT, { min: MINIMUM_NUMBER, max: MAXIMUM_NUMBER })
+  ) {
+    this.numbers = numbers.sort((a, b) => a - b);
   }
 
   getWinningRank(winningNumber, bonusNumber) {
     const matchCount = getMatchCount(winningNumber, this.numbers);
 
     if (matchCount === 6) {
-      return 'first';
+      return FIRST;
     } else if (matchCount === 5 && this.numbers.includes(bonusNumber)) {
-      return 'second';
+      return SECOND;
     } else if (matchCount === 5 && !this.numbers.includes(bonusNumber)) {
-      return 'third';
+      return THIRD;
     } else if (matchCount === 4) {
-      return 'fourth';
+      return FOURTH;
     } else if (matchCount == 3) {
-      return 'fifth';
+      return FIFTH;
     }
 
-    return 'lose';
+    return LOSE;
   }
 }

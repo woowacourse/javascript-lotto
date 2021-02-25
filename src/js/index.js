@@ -6,9 +6,11 @@ import {
   disableElement,
   enableElement,
 } from './utils.js';
-import { ALERT_MESSAGE, LOTTO, WINNING_PRICE } from './constants.js';
+import { ALERT_MESSAGE, LOTTO, WINNING_PRICE, WINNING_RANK } from './constants.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
+
+const { FIRST, SECOND, THIRD, FOURTH, FIFTH, LOSE } = WINNING_RANK;
 
 class LottoApp {
   constructor() {
@@ -89,12 +91,12 @@ class LottoApp {
 
   getResult(winningNumbers, bonusNumber) {
     const winningRankCounts = {
-      first: 0, // 6개 일치
-      second: 0, // 5개 + 보너스 숫자 일치
-      third: 0, // 5개 일치
-      fourth: 0, // 4개 일치
-      fifth: 0, // 3개 일치
-      lose: 0, // 꽝
+      [FIRST]: 0, // 6개 일치
+      [SECOND]: 0, // 5개 + 보너스 숫자 일치
+      [THIRD]: 0, // 5개 일치
+      [FOURTH]: 0, // 4개 일치
+      [FIFTH]: 0, // 3개 일치
+      [LOSE]: 0, // 꽝
     };
 
     let winningTotalPrice = 0;
