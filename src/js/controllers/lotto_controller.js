@@ -26,7 +26,9 @@ class LottoController {
   #manageLotto() {
     const price = getBuyInput()
     const errorMessage = checkPriceValid(price)
-    errorMessage && alert(errorMessage)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
 
     for (let i = 0; i < getTicketsCount(price); i++) {
       this.model.generateRandomTicket()
@@ -45,7 +47,9 @@ class LottoController {
   #manageModalOpen() {
     const { numbers, bonus } = getAnswerInput()
     const errorMessage = checkAnswerValid(numbers, bonus)
-    errorMessage && alert(errorMessage)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
 
     this.model.calculateLottosResult(numbers, bonus)
     this.view.renderModalSection(this.model.lottoResult, this.model.profitRate)
