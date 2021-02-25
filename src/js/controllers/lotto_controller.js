@@ -1,9 +1,8 @@
 import { getBuyInput } from "../components/buy.js"
-import { getCount } from "../components/pocket.js"
+import { getTicketsCount } from "../components/pocket.js"
 import { getAnswerInput } from "../components/winning.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
-import Ticket from "../components/ticket.js"
 import { checkAnswerValid, checkPriceValid } from "../validators/validator.js"
 
 class LottoController {
@@ -24,43 +23,32 @@ class LottoController {
     this.#handlePrice()
   }
 
-  #managePocket() {
-    const tickets = this.model.tickets
-    this.view.renderPocketSection(tickets)
-    this.#handlePocket()
-    this.view.renderWinningSection()
-    this.#handleModalOpen()
-  }
-
   #manageLotto() {
-    const price = Number(getBuyInput())
-
+    const price = getBuyInput()
     const errorMessage = checkPriceValid(price)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
+    errorMessage && alert(errorMessage)
 
-    const count = getCount(price)
-    for (let i = 0; i < count; i++) {
-      const ticket = new Ticket()
-      ticket.generateRandomNumbers()
-      this.model.addTicket(ticket)
+    for (let i = 0; i < getTicketsCount(price); i++) {
+      this.model.generateRandomTicket()
     }
     this.#managePocket()
   }
 
-  #manageModalOpen() {
-    const [numbers, answer] = getAnswerInput()
-    const errorMessage = checkAnswerValid(numbers, answer)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
+  #managePocket() {
+    const tickets = this.model.tickets
+    this.view.renderPocketSection(tickets)
+    this.view.renderWinningSection()
+    this.#handlePocket()
+    this.#handleModalOpen()
+  }
 
-    this.model.addAnswerLotto(numbers, answer)
-    this.model.calculateLottosResult()
-    const lottoResult = this.model.lottoResult
-    const profitRate = this.model.profitRate
-    this.view.renderModalSection(lottoResult, profitRate)
+  #manageModalOpen() {
+    const { numbers, bonus } = getAnswerInput()
+    const errorMessage = checkAnswerValid(numbers, bonus)
+    errorMessage && alert(errorMessage)
+
+    this.model.calculateLottosResult(numbers, bonus)
+    this.view.renderModalSection(this.model.lottoResult, this.model.profitRate)
     this.#handleModalClose()
     this.#handleReset()
   }
