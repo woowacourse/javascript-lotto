@@ -51,7 +51,7 @@ export default class App {
     if (lottoTickets) {
       this.lottoTickets = lottoTickets;
       this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
-      this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 ? true : false });
+      this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 });
       this.resultModal.setState({ lottoTickets: this.lottoTickets });
     }
 
