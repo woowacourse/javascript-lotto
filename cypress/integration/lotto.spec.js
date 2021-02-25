@@ -28,19 +28,13 @@ describe('racing-game', () => {
     typeWinningNumbersAndClickShowResultButton(inputNumbers);
   };
 
-  it('구입 금액에 3000원을 입력 시, 로또 3개가 자동으로 구입되야 한다.', () => {
-    typePurchasePriceAndClickSubmitButton(3000);
+  it('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton(-1);
 
-    cy.get('#purchase-result-section__label').should(
-      'have.text',
-      '총 3개를 구매하였습니다.',
+    cy.get('@windowAlert').should(
+      'be.calledWith',
+      ERR_MESSAGE.LOTTO.INVALID_PRICE,
     );
-    cy.get('#purchase-result-section__row-align')
-      .children('span')
-      .its('length')
-      .then((len) => {
-        expect(len).to.equal(3);
-      });
   });
 
   it('구입 금액 입력 후 토글을 통해 수동 구매와 자동 구매를 선택할 수 있어야 한다.', () => {
@@ -70,15 +64,6 @@ describe('racing-game', () => {
     cy.get('#manual-purchase-section__button').click();
 
     cy.get('#purchase-section__budget').should('have.text', '2000원');
-  });
-
-  it('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
-    typePurchasePriceAndClickSubmitButton(-1);
-
-    cy.get('@windowAlert').should(
-      'be.calledWith',
-      ERR_MESSAGE.LOTTO.INVALID_PRICE,
-    );
   });
 
   it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
