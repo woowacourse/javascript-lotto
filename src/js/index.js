@@ -15,3 +15,5 @@ class App {
 }
 
 new App();
+
+// fix merge error
