@@ -1,9 +1,5 @@
 import { getRandomNumber } from '../utils/random.js';
-import {
-  LOTTO,
-  REWARDS,
-  BONUS_ITEM_MATCH_COUNT
-} from '../constants.js';
+import { LOTTO, REWARDS, CHECK_SECOND_CONDITION_NUMBER } from '../constants.js';
 
 export default class LottoGame {
   #lottoItemList = [];
@@ -28,46 +24,42 @@ export default class LottoGame {
     this.#bonusNumber = null;
   }
 
+  // 2등을 구하기 위해서 당첨 숫자의 일치개수가 5개인 경우에만 보너스숫자가 일치하는지 확인
+  #assignBonusNumberMatched(lottoItem) {
+    if(lottoItem.matchCount === CHECK_SECOND_CONDITION_NUMBER){
+      lottoItem.isBonusMatched = lottoItem.lottoNumberList.includes(this.#bonusNumber);
+    }
+  }
+
   assignMatchCount() {
     this.#lottoItemList.forEach((lottoItem) => {
       const allNumberList = [...lottoItem.lottoNumberList, ...this.#winningNumberList];
-      const matchedCount = allNumberList.length - new Set(allNumberList).size;
-      lottoItem.bonusNumberMatched = lottoItem.lottoNumberList.includes(this.#bonusNumber);
-      lottoItem.matchCount = matchedCount;
+      const matchCount = allNumberList.length - new Set(allNumberList).size;
+      lottoItem.matchCount = matchCount;
+      this.#assignBonusNumberMatched(lottoItem);
     });
   }
 
-  #getWinCountWithBonus(matchCount) {
+  #getWinCount(matchCount, isBonusMatched) {
     return this.#lottoItemList.filter(
       (lottoItem) =>
-        lottoItem.bonusNumberMatched && lottoItem.matchCount === matchCount
+        lottoItem.matchCount === matchCount &&
+        lottoItem.isBonusMatched === isBonusMatched,
     ).length;
-  }
-
-  #getWinCount(matchCount, winCountWithBonus) {
-    const winCount = this.#lottoItemList.filter(
-      (lottoItem) => lottoItem.matchCount === matchCount
-    ).length;
-    if (matchCount === BONUS_ITEM_MATCH_COUNT && winCountWithBonus) {
-      return winCount - winCountWithBonus;
-    }
-
-    return winCount;
   }
 
   getRankItemList() {
     const rankItemList = REWARDS.map((reward) => {
-      const winCountWithBonus = this.#getWinCountWithBonus(reward.matchCount);
-      const winCount = this.#getWinCount(reward.matchCount, winCountWithBonus);
+      const winCount = this.#getWinCount(reward.matchCount, reward.isBonusMatched);
       return {
         ...reward,
-        winCount: reward.shouldCheckBonus ? winCountWithBonus : winCount,
+        winCount,
       };
     });
 
     return rankItemList;
   }
-  
+
   #getLottoNumberList() {
     const numberList = new Set();
     while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
@@ -82,7 +74,7 @@ export default class LottoGame {
     this.#lottoItemList.push({
       lottoNumberList,
       matchCount: 0,
-      bonusNumberMatched: false,
+      isBonusMatched: false,
     });
   }
 

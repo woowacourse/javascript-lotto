@@ -22,33 +22,33 @@ export const MESSAGE = Object.freeze({
 export const REWARDS = Object.freeze([
   {
     matchCount: 3,
-    shouldCheckBonus: false,
+    isBonusMatched: false,
     money: 5000,
   },
   {
     matchCount: 4,
-    shouldCheckBonus: false,
+    isBonusMatched: false,
     money: 50000,
   },
   {
     matchCount: 5,
-    shouldCheckBonus: false,
+    isBonusMatched: false,
     money: 1500000,
   },
   {
     matchCount: 5,
-    shouldCheckBonus: true,
+    isBonusMatched: true,
     money: 30000000,
   },
   {
     matchCount: 6,
-    shouldCheckBonus: false,
+    isBonusMatched: false,
     money: 2000000000,
   },
 ]);
 
-export const BONUS_ITEM_MATCH_COUNT = REWARDS
-  .find(reward => reward.shouldCheckBonus)
+export const CHECK_SECOND_CONDITION_NUMBER = REWARDS
+  .find(reward => reward.isBonusMatched)
   .matchCount
 
 export const SELECTOR = Object.freeze({

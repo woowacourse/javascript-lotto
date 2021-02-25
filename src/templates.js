@@ -28,7 +28,7 @@ export const getModalTbodyTemplate = (rankItemList) =>
   rankItemList.map(
     (rankItem) => `
     <tr class="text-center">
-      <td class="p-3">${rankItem.matchCount}개 ${rankItem.shouldCheckBonus ? ' + 보너스볼' : ''}</td>
+      <td class="p-3">${rankItem.matchCount}개 ${rankItem.isBonusMatched ? ' + 보너스볼' : ''}</td>
       <td class="p-3">${getKRString(rankItem.money)}</td>
       <td class="p-3">${rankItem.winCount}개</td>
     </tr>
