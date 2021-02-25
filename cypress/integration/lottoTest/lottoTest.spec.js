@@ -27,7 +27,8 @@ describe('로또 게임 테스트', () => {
     });
   }
 
-  it('프로그램을 시작하면 구입금액 입력폼만 보인다.', () => {
+  it('프로그램을 시작하면 구매 방식(자동/수동) 선택지와 구입금액 입력폼이 보인다.', () => {
+    cy.get('#purchase-type').should('be.visible');
     cy.get('#input-price-form').should('be.visible');
     cy.get('#purchased-lottos').should('not.be.visible');
     cy.get('#winning-numbers-form').should('not.be.visible');
@@ -149,6 +150,22 @@ describe('로또 게임 테스트', () => {
     expect(lottoProcessor.earningRate).to.be.equal(earningRate);
   });
 
+  it('두개의 숫자를 입력하면, 자동으로 다음 숫자 칸으로 focus가 이동한다.', () => {
+    clickAfterTypePrice();
+
+    for (let i = 0; i < LOTT0_LENGTH; i++) {
+      cy.get('.winning-number')
+        .eq(i)
+        .type(String(10 + i));
+
+      if (i === LOTT0_LENGTH - 1) break;
+
+      cy.get('.winning-number')
+        .eq(i + 1)
+        .should('be.focused');
+    }
+  });
+
   it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
     clickAfterTypePrice();
     typeWinningNumber();
@@ -167,21 +184,5 @@ describe('로또 게임 테스트', () => {
     cy.get('.winning-number').each(winningNumber => {
       cy.wrap(winningNumber).should('have.value', '');
     });
-  });
-
-  it('두개의 숫자를 입력하면, 자동으로 다음 숫자 칸으로 focus가 이동한다.', () => {
-    clickAfterTypePrice();
-
-    for (let i = 0; i < LOTT0_LENGTH; i++) {
-      cy.get('.winning-number')
-        .eq(i)
-        .type(String(10 + i));
-
-      if (i === LOTT0_LENGTH - 1) break;
-
-      cy.get('.winning-number')
-        .eq(i + 1)
-        .should('be.focused');
-    }
   });
 });
