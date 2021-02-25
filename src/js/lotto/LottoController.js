@@ -61,9 +61,9 @@ export default class LottoController {
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
-    const matchedNumbers = lottoNumber.filter((num) => {
-      return resultNumber.indexOf(num) !== -1;
-    });
+    const matchedNumbers = lottoNumber.filter((num) => 
+      resultNumber.indexOf(num) !== -1
+    );
 
     return matchedNumbers.length;
   }
