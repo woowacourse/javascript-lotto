@@ -11,33 +11,38 @@
       <div class="d-flex justify-center mt-5">
         <section class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-          <form id="input-price-form" class="mt-5">
-            <label for="input-price" class="mb-2 d-inline-block">
-              구입할 금액을 입력해주세요.
-            </label>
-            <div class="d-flex">
-              <input
-                type="number"
-                id="input-price"
-                class="w-100 mr-2 pl-2"
-                name="price"
-                placeholder="구입 금액"
-                required
-                min="1000"
-                max="100000"
-              />
-              <button type="submit" id="input-price-btn" class="btn btn-cyan">
-                확인
-              </button>
+          <section>
+            <div id="purchase-type" class="d-flex justify-center">
+              <button id="auto-btn" class="btn btn-cyan m-0 btn-left">자동구매</button>
+              <button id="manual-btn" class="btn btn-default m-0 btn-right">수동구매</button>
             </div>
-          </form>
+            <form id="input-price-form" class="mt-5">
+              <label for="input-price" class="mb-2 d-inline-block">
+                구입할 금액을 입력해주세요.
+              </label>
+              <div class="d-flex">
+                <input
+                  type="number"
+                  id="input-price"
+                  class="w-100 mr-2 pl-2"
+                  name="price"
+                  placeholder="구입 금액"
+                  required
+                  min="1000"
+                  max="100000"
+                />
+                <button type="submit" id="input-price-btn" class="btn btn-cyan">
+                  확인
+                </button>
+              </div>
+            </form>
+          </section>
 
           <section id="purchased-lottos" class="mt-9">
             <div class="d-flex">
-              <label class="flex-auto my-0"
-                >총 <span id="total-purchased">5</span>개를
-                구매하였습니다.</label
-              >
+              <label class="flex-auto my-0">
+                총 <span id="total-purchased">5</span>개를 구매하였습니다.
+              </label>
               <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                   <input
