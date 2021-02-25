@@ -43,6 +43,13 @@ describe('racing-game', () => {
       });
   });
 
+  it('구입 금액 입력 시, 수동 구매와 자동 구매를 선택할 수 있어야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton();
+
+    cy.get('#auto-purchase-section').should('be.visible');
+    cy.get('#manual-purchase-section').should('be.visible');
+  });
+
   it('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
     typePurchasePriceAndClickSubmitButton(-1);
 
