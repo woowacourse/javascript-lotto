@@ -6,9 +6,9 @@ export const getAnswerInput = () => {
     value === "" ? NaN : Number(value)
   )
   const bonus =
-    $(SELECTOR.BOUNS_NUMBER).value === ""
+    $(SELECTOR.BONUS_NUMBER).value === ""
       ? NaN
-      : Number($(SELECTOR.BOUNS_NUMBER).value)
+      : Number($(SELECTOR.BONUS_NUMBER).value)
 
   return [numbers, bonus]
 }

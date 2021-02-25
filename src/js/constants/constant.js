@@ -21,13 +21,16 @@ export const SELECTOR = {
   POCKET_SECTION: "#pocket",
   POCKET_TOGGLE: ".lotto-numbers-toggle-button",
   POCKET_LOTTOS: "#pocket-lottos",
+  POCKET_LOTTO_NUMBERS: ".pocket-lotto-numbers",
   WINNING_SECTION: "#winning",
   WINNING_NUMBER: ".winning-number",
-  BOUNS_NUMBER: ".bonus-number",
+  BONUS_NUMBER: ".bonus-number",
   OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",
   MODAL_SECTION: ".modal",
   MODAL_CLOSE: ".modal-close",
   RESET_BUTTON: "#reset",
+  EARNINGS_RATE: "#earnings-rate",
+  RESULT_TABLE: ".result-table",
 }
 
 export const ERROR_MESSAGE = {
