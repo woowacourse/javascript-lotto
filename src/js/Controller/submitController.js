@@ -9,6 +9,7 @@ import {
 } from "../View/receiptView.js";
 import {
   showPurchaseResult,
+  hidePurchaseResult,
   onModalShow,
   onModalClose,
 } from "../Handler/elementHandler.js";
@@ -26,9 +27,12 @@ export const initializeEvents = () => {
     handleResultSubmit
   );
   $(ELEMENT.MODAL_CLOSE).addEventListener("click", onModalClose);
+  $(ELEMENT.RESTART_BUTTON).addEventListener("click", handleRestartButton);
 };
 
-const handlePurchaseAmountSubmit = () => {
+const handlePurchaseAmountSubmit = (event) => {
+  event.preventDefault();
+
   const money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
 
   if (!isValidMoney(money)) return;
@@ -80,4 +84,25 @@ const getWinningResult = (ticketBundle) => {
 const renderWinningResult = () => {
   printWinningResult(); // <receiptView - printWinningResult> html에 넣어줌 - 필요한 것: Result.rankCounts, data-total-prize, data-money
   onModalShow();
+};
+
+const handleRestartButton = () => {
+  // 입력창들 비우기
+  clearPurcaseAmountInput();
+  clearWinningBonusNumber();
+  // 토글 버튼 off
+  $(ELEMENT.TOGGLE_BUTTON).checked = false;
+  // 화면 숨기기
+  hidePurchaseResult();
+  onModalClose();
+};
+
+const clearPurcaseAmountInput = () => {
+  $(ELEMENT.PURCHASE_AMOUNT_INPUT).value = "";
+  $(ELEMENT.PURCHASE_AMOUNT_INPUT).focus();
+};
+
+const clearWinningBonusNumber = () => {
+  Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
+  $(ELEMENT.BONUS_NUMBER).value = "";
 };

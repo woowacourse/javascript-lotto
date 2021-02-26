@@ -1,9 +1,10 @@
 export const ELEMENT = {
-  PURCHASE_AMOUNT_SUBMIT_BUTTON: "#purchase-amount-submit-button",
   PURCHASE_AMOUNT_INPUT: "#purchase-amount-input",
   PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
 
+  PURCHASE_AMOUNT_SUBMIT_BUTTON: "#purchase-amount-submit-button",
   TOGGLE_BUTTON: ".toggle-button",
+  RESTART_BUTTON: "#restart-button",
 
   RECEIPT_CONTAINER: "#receipt-container",
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
