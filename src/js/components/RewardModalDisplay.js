@@ -102,11 +102,6 @@ export default class RewardModalDisplay extends Component {
   }
 
   render(prevStates, states) {
-    if (states === undefined) {
-      this.$target.innerHTML = this.mainTemplate();
-      return;
-    }
-
     if (prevStates.winningCount !== states.winningCount) {
       const getWinningCountText = key =>
         Object.keys(states.winningCount).length === 0

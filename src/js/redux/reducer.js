@@ -44,7 +44,7 @@ const lottosReducer = (state = [], payment, { type }) => {
   }
 };
 
-const winningCountReducer = (state, lottos, { type, payload = {} }) => {
+export const winningCountReducer = (state, lottos, { type, payload = {} }) => {
   const getMatchedCount = (winningNumbers, numbers) => {
     let count = 0;
     numbers.forEach(number => {
@@ -98,7 +98,7 @@ const winningCountReducer = (state, lottos, { type, payload = {} }) => {
   }
 };
 
-const profitReducer = (state, lottoCount, winningCount, { type }) => {
+export const profitReducer = (state, lottoCount, winningCount, { type }) => {
   switch (type) {
     case CALCULATE_PROFIT:
       const investment = lottoCount * LOTTO.PRICE;
@@ -131,7 +131,7 @@ const combineReducers = (states, action) => {
     ),
     profit: profitReducer(
       states.profit,
-      states.lottos.length,
+      states.lottos ? states.lottos.length : 0,
       states.winningCount,
       action,
     ),

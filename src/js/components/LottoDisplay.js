@@ -60,11 +60,6 @@ export default class LottoDisplay extends Component {
   }
 
   render(prevStates, states) {
-    if (states === undefined) {
-      this.$target.innerHTML = this.mainTemplate();
-      return;
-    }
-
     if (states.lottos.length === 0) {
       this.$target.classList.add('d-none');
       this.$lottoDisplayArea.innerHTML = '';

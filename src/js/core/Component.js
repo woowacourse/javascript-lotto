@@ -3,15 +3,16 @@ export default class Component {
     this.$target = target;
     this.$props = props;
     this.setup();
-    this.render();
+    this.initRender();
     this.selectDOM();
     this.bindEvent();
   }
   setup() {}
   mainTemplate() {}
-  render() {
+  initRender() {
     this.$target.innerHTML = this.mainTemplate();
   }
+  render() {}
   selectDOM() {}
   bindEvent() {}
 }

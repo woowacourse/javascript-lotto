@@ -101,11 +101,6 @@ export default class LottoPurchaseInput extends Component {
   };
 
   render(prevStates, states) {
-    if (states === undefined) {
-      this.$target.innerHTML = this.mainTemplate();
-      return;
-    }
-
     if (states.payment === 0) {
       clearInputValue(this.$purchaseInput);
       this.$purchaseInput.disabled = false;

@@ -1,7 +1,10 @@
 /// <reference types="cypress" />
 
 import { calculateProfit, decideWinner } from '../../src/js/redux/action.js';
-import { profit, winningCount } from '../../src/js/redux/reducer.js';
+import {
+  profitReducer,
+  winningCountReducer,
+} from '../../src/js/redux/reducer.js';
 import { ERROR_MESSAGE } from '../../src/js/utils/message.js';
 
 describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
@@ -94,7 +97,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       rank5: 0,
     };
 
-    let winningCountTemp = winningCount(
+    let winningCountTemp = winningCountReducer(
       {},
       lottos,
       decideWinner(winningNumbers, bonusNumber),
@@ -104,7 +107,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       expect(result[key]).to.equal(value);
     }
 
-    const profitMargin = profit(
+    const profitMargin = profitReducer(
       0,
       lottos.length,
       winningCountTemp,
