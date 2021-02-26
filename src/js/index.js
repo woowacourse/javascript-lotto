@@ -1,3 +1,6 @@
 import App from './components/App.js';
 
-new App();
+document.addEventListener('DOMContentLoaded', () => {
+  const lottoApp = new App();
+  lottoApp.init();
+});

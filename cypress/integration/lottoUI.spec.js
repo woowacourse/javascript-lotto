@@ -1,14 +1,16 @@
 import {
   LOTTO_PRICE,
-  PURCHASED_QUANTITY_MESSAGE,
-  LOTTO_NUMBER_SEPARATOR,
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
   LOTTO_NUMBERS_LENGTH,
   MONETARY_UNIT,
+} from '../../src/js/constants/lottoRules.js';
+import {
+  PURCHASED_QUANTITY_MESSAGE,
+  LOTTO_NUMBER_SEPARATOR,
   PURCHASE_AMOUNT_ALERT_MESSAGE,
   WINNING_NUMBER_CHECK_MESSAGE,
-} from '../../src/js/constants.js';
+} from '../../src/js/constants/display.js';
 
 describe('구매금액 입력 검사', () => {
   beforeEach(() => {
@@ -182,13 +184,13 @@ describe('당첨번호 입력 검사', () => {
   it('모든 번호가 올바르게 입력되면, 입력칸 하단에 결과 확인 가능 메세지를 표시한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const { FULFILLED: COMPLETED } = WINNING_NUMBER_CHECK_MESSAGE;
+    const { FULFILLED } = WINNING_NUMBER_CHECK_MESSAGE;
 
     cy.get('.winning-number').each(($el, index) => {
       cy.wrap($el).type(winningNumbers[index]);
     });
     cy.get('.bonus-number').type(bonusNumber);
-    cy.get('.winning-number-check-message').should('have.text', COMPLETED);
+    cy.get('.winning-number-check-message').should('have.text', FULFILLED);
     cy.get('.winning-number-check-message').should('have.class', 'text-green');
   });
 

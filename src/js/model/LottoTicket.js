@@ -5,12 +5,12 @@ import {
   LOTTO_NUMBERS_LENGTH,
   BONUS_COUNT,
   BONUS_CHECK_REQUIRED_COUNT,
-} from '../constants.js';
+} from '../constants/lottoRules.js';
 
 export default class LottoTicket {
   constructor(numbers) {
     this.numbers = (numbers ?? this.createLottoNumbers()).sort((a, b) => a - b);
-    this.totalMatchCount = 0;
+    this.numOfMatch = 0;
   }
 
   createLottoNumbers(array = []) {
@@ -19,7 +19,6 @@ export default class LottoTicket {
     if (array.length >= LOTTO_NUMBERS_LENGTH) {
       return array;
     }
-
     if (!array.includes(number)) {
       array.push(number);
     }
@@ -30,7 +29,7 @@ export default class LottoTicket {
   setTotalMatchCount({ winningNumbers, bonusNumber }) {
     const totalMatchCount = this.getWinningNumbersMatchCount(winningNumbers);
 
-    this.totalMatchCount =
+    this.numOfMatch =
       totalMatchCount === BONUS_CHECK_REQUIRED_COUNT
         ? totalMatchCount + this.getBonusNumberMatchCount(bonusNumber)
         : totalMatchCount;

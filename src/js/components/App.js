@@ -1,63 +1,26 @@
 import PurchaseAmountInput from './PurchaseAmountInput.js';
-import PurchasedLotto from './PurchasedLotto.js';
-import LottoTicket from '../model/LottoTicket.js';
-import WinningNumberInput from './WinningNumberInput.js';
-import ResultModal from './ResultModal.js';
+import LottoTicketDisplay from './LottoTicketDisplay.js';
+import WinningNumberInput from './WinningNumbersInput.js';
+import WinningResultDisplay from './WinningResultDisplay.js';
+import AppStageManager from '../model/appStageManager.js';
 
 export default class App {
   constructor() {
-    this.lottoTickets = [];
-    this.winningNumber = {};
+    this.stageManager = new AppStageManager();
+  }
 
+  init() {
     this.purchaseAmountInput = new PurchaseAmountInput({
-      createLottoTickets: this.createLottoTickets.bind(this),
+      stageManager: this.stageManager,
     });
-    this.purchasedLotto = new PurchasedLotto({
-      lottoTickets: this.lottoTickets,
+    this.lottoTicketDisplay = new LottoTicketDisplay({
+      stageManager: this.stageManager,
     });
     this.winningNumberInput = new WinningNumberInput({
-      isVisible: false,
-      updateWinningNumber: this.updateWinningNumber.bind(this),
-      onShowModal: this.onShowModal.bind(this),
+      stageManager: this.stageManager,
     });
-    this.resultModal = new ResultModal({
-      isVisible: false,
-      lottoTickets: this.lottoTickets,
-      winningNumber: this.winningNumber,
-      onRestart: this.onRestart.bind(this),
+    this.winningResultDisplay = new WinningResultDisplay({
+      stageManager: this.stageManager,
     });
-  }
-
-  createLottoTickets(numOfLotto) {
-    this.setState({
-      lottoTickets: new Array(numOfLotto).fill().map((v) => new LottoTicket()),
-    });
-  }
-
-  updateWinningNumber(winningNumber) {
-    this.setState({ winningNumber });
-  }
-
-  onShowModal() {
-    this.resultModal.showModal();
-  }
-
-  onRestart() {
-    this.setState({ lottoTickets: [], winningNumber: {} });
-    this.purchaseAmountInput.reset();
-  }
-
-  setState({ lottoTickets, winningNumber }) {
-    if (lottoTickets) {
-      this.lottoTickets = lottoTickets;
-      this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
-      this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 });
-      this.resultModal.setState({ lottoTickets: this.lottoTickets });
-    }
-
-    if (winningNumber) {
-      this.winningNumber = winningNumber;
-      this.resultModal.setState({ winningNumber: this.winningNumber });
-    }
   }
 }
