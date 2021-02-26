@@ -1,7 +1,7 @@
 import Lotto from './model/Lotto.js';
 import { $ } from './utils/querySelector.js';
 import { handleModalPage } from './handler/handleModalPage.js';
-import { handleAccessbility } from './handler/handleAccessbility.js';
+import { handleAccessibility } from './handler/handleAccessibility.js';
 import { onPurchaseTypeToggle } from './handler/onPurchaseTypeToggle.js';
 import { onPurchaseResultToggle } from './handler/onPurchaseResultToggle.js';
 import { handlePurchasePriceSubmit } from './handler/handlePurchasePriceSubmit.js';
@@ -35,7 +35,7 @@ const init = () => {
   );
 
   window.addEventListener('keyup', (event) => {
-    handleAccessbility(event, lotto);
+    handleAccessibility(event, lotto);
   });
 };
 
