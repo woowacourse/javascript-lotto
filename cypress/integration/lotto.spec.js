@@ -52,30 +52,16 @@ describe("lotto 미션 테스트", () => {
       });
   });
 
-  it("확인버튼 클릭시 금액에 맞는 수의 로또를 보여준다.", () => {
-    cy.get("#price-input").type("3000");
+  it("확인버튼 클릭시 로또 구매 창을 보여준다.", () => {
+    cy.get("#price-input").type("5000");
     cy.get("#price-submit-button").click();
-    cy.get("#confirmation").should("be.visible");
-    cy.get("#lotto-list-label").should("have.text", "총 3개를 구매하였습니다.");
-    cy.get("#lotto-tickets").children().should("have.length", 3);
-  });
-
-  it("번호보기가 true이면 로또 번호를 보여준다.", () => {
-    cy.get(".switch").click();
-    cy.get(".lotto-numbers").each(($winningNumber) => {
-      const isNumbers = $winningNumber[0].innerText
-        .split(",")
-        .every((value) => !isNaN(value.trim()));
-
-      expect(isNumbers).to.be.true;
-    });
-  });
-
-  it("알맞지 않은 금액을 입력하면 모든 view가 초기화 된다.", () => {
-    cy.get("#price-input").type("3");
-    cy.get("#price-submit-button").click();
-    cy.get("#price-input").should("have.value", "");
-    cy.get("#confirmation").should("not.be.visible");
+    cy.get("#purchase").should("be.visible");
+    cy.get("#purchase-progress").should(
+      "have.text",
+      "총 5개의 로또 중 0개를 수동 구매하였습니다."
+    );
+    cy.get("#manual-purchase-button").should("be.visible");
+    cy.get("#auto-purchase-button").should("be.visible");
   });
 
   const rankingList = [0, 0, 0, 0, 0, 0]; // [noPrize, 3, 4, 5, 5+1, 6]

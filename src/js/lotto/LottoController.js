@@ -140,7 +140,7 @@ export default class LottoController {
           .getElementById("manual-purchase-form")
           .addEventListener("submit", (e) => {
             e.preventDefault();
-            this.onSubmitManaulPurchaseNumber(
+            this.onSubmitManualPurchaseNumber(
               Array.from(e.target.elements["manual-purchase-number"]).map((v) =>
                 Number(v.value)
               )
@@ -179,7 +179,7 @@ export default class LottoController {
     onModalShow($modal);
   }
 
-  onSubmitManaulPurchaseNumber(manaulPurcahseNumber) {
+  onSubmitManualPurchaseNumber(manaulPurcahseNumber) {
     this.lottoModel.manaulPurchase(manaulPurcahseNumber);
     hideElement(document.getElementById("manual-purchase-form"));
     this.lottoView.showPurchaseProgress(
