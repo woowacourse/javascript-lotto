@@ -59,26 +59,33 @@
                   <div>
                     <input
                       type="number"
+
+                      name="winning-number"
                       class="winning-number mx-1 text-center"
                     />
                     <input
                       type="number"
+                      name="winning-number"
                       class="winning-number mx-1 text-center"
                     />
                     <input
                       type="number"
+                      name="winning-number"
                       class="winning-number mx-1 text-center"
                     />
                     <input
                       type="number"
+                      name="winning-number"
                       class="winning-number mx-1 text-center"
                     />
                     <input
                       type="number"
+                      name="winning-number"
                       class="winning-number mx-1 text-center"
                     />
                     <input
                       type="number"
+                      name="winning-number"
                       class="winning-number mx-1 text-center"
                     />
                   </div>
@@ -86,12 +93,17 @@
                 <div class="bonus-number-container flex-grow">
                   <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
                   <div class="d-flex justify-center">
-                    <input type="number" class="bonus-number text-center" />
+                    <input
+                      type="number"
+                      id="bonus-number"
+                      class="bonus-number text-center"
+                      name="bonus-number"
+                    />
                   </div>
                 </div>
               </div>
               <button
-                type="button"
+                type="submit"
                 id="open-result-modal-button"
                 class="open-result-modal-button mt-5 btn btn-cyan w-100"
               >
@@ -120,38 +132,14 @@
                   <th class="p-3">당첨 갯수</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="text-center">
-                  <td class="p-3">3개</td>
-                  <td class="p-3">5,000</td>
-                  <td class="p-3">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">4개</td>
-                  <td class="p-3">50,000</td>
-                  <td class="p-3">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">5개</td>
-                  <td class="p-3">1,500,000</td>
-                  <td class="p-3">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">5개 + 보너스볼</td>
-                  <td class="p-3">30,000,000</td>
-                  <td class="p-3">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">6개</td>
-                  <td class="p-3">2,000,000,000</td>
-                  <td class="p-3">n개</td>
-                </tr>
-              </tbody>
+              <tbody id="prize-table"></tbody>
             </table>
           </div>
-          <p class="text-center font-bold">당신의 총 수익률은 %입니다.</p>
+          <p id="earning-rate" class="text-center font-bold"></p>
           <div class="d-flex justify-center mt-5">
-            <button type="button" class="btn btn-cyan">다시 시작하기</button>
+            <button id="restart-button" type="button" class="btn btn-cyan">
+              다시 시작하기
+            </button>
           </div>
         </div>
       </div>
