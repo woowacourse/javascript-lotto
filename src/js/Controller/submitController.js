@@ -8,6 +8,7 @@ import {
 } from "../View/receiptView.js";
 import { showPurchaseResult } from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
+import Result from "../Model/Result.js";
 
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
@@ -53,4 +54,17 @@ const handleResultSubmit = (event) => {
   if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
     return;
   }
+
+  getNumbers(inputWinningNumbers, inputBonusNumber);
+  getWinningResult(TicketBundle.ticketBundle);
+};
+
+const getNumbers = (winningNumbers, bonusNumber) => {
+  Result.getWinningNumbers(winningNumbers);
+  Result.getBonusNumber(bonusNumber);
+};
+
+const getWinningResult = (ticketBundle) => {
+  Result.getRanks(ticketBundle); // 당첨 순위 계산
+  Result.calculateTotalPrize(); // 총합 계산하고 data-total-prize 넣어줌
 };
