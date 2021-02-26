@@ -1,14 +1,14 @@
-import { AlertMessage } from "../../../src/js/Util/constants.js";
+import { ALERT_MESSAGE } from "../../../src/js/Util/constants.js";
 
 import {
   isBlankIncluded,
-  isDuplicated,
+  isDuplicatedNumber,
   isInvalidLottoNumberRange,
 } from "../../../src/js/Util/validator.js";
 
 context("e2e test", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5501/index.html");
+    cy.visit("http://127.0.0.1:5500/index.html");
   });
 
   it("초기 상태에서 입력 창 아래 부분이 숨김 처리 되어 있는 것을 확인한다.", () => {
@@ -33,7 +33,7 @@ context("e2e test", () => {
       .click()
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.NOT_THOUSAND_MULTIPLES
+          ALERT_MESSAGE.NOT_THOUSAND_MULTIPLES
         );
       });
     cy.reload();
@@ -43,7 +43,7 @@ context("e2e test", () => {
       .click()
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.NOT_THOUSAND_MULTIPLES
+          ALERT_MESSAGE.NOT_THOUSAND_MULTIPLES
         );
       });
   });
@@ -57,7 +57,9 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_RANGE);
+        expect(stub.getCall(0)).to.be.calledWith(
+          ALERT_MESSAGE.INVALID_MONEY_RANGE
+        );
       });
     cy.reload();
 
@@ -65,7 +67,9 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_RANGE);
+        expect(stub.getCall(0)).to.be.calledWith(
+          ALERT_MESSAGE.INVALID_MONEY_RANGE
+        );
       });
   });
 
@@ -78,7 +82,7 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
       });
     cy.reload();
 
@@ -86,14 +90,14 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
       });
     cy.reload();
 
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
       });
     cy.reload();
 
@@ -101,7 +105,7 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
       });
   });
 
@@ -161,7 +165,7 @@ context("e2e test", () => {
     expect(isInvalidLottoNumberRange([1, 10, 25, 33, 44, 45, 46])).to.be.true;
     expect(isInvalidLottoNumberRange(validNumbers)).to.be.false;
 
-    expect(isDuplicated([1, 10, 25, 33, 44, 45, 45])).to.be.true;
-    expect(isDuplicated(validNumbers)).to.be.false;
+    expect(isDuplicatedNumber([1, 10, 25, 33, 44, 45, 45])).to.be.true;
+    expect(isDuplicatedNumber(validNumbers)).to.be.false;
   });
 });
