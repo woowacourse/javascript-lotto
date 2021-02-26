@@ -5,6 +5,7 @@ export const ELEMENT = {
   PURCHASE_AMOUNT_SUBMIT_BUTTON: "#purchase-amount-submit-button",
   TOGGLE_BUTTON: ".toggle-button",
   RESTART_BUTTON: "#restart-button",
+  OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",
 
   RECEIPT_CONTAINER: "#receipt-container",
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
@@ -12,7 +13,7 @@ export const ELEMENT = {
 
   BONUS_NUMBER: ".bonus-number",
   WINNING_NUMBER: ".winning-number",
-
+  LOTTO_IMAGE_NUMBER: "#lotto-image-number",
   WINNING_COUNT: ".winning-count",
 
   TOTAL_EARNING_RATE: "#total-earning-rate",
