@@ -1,10 +1,10 @@
 import Component from '../core/Component.js';
+import { store } from '../index.js';
 import { calculateProfit, decideWinner } from '../redux/action.js';
 import { isEmptyValue, isInRange } from '../utils/common.js';
 import { LOTTO } from '../utils/constants.js';
 import { $, $$, clearInputValue } from '../utils/dom.js';
 import { ERROR_MESSAGE } from '../utils/message.js';
-import { store } from './App.js';
 import Button from './Button/Button.js';
 import Input from './Input/Input.js';
 

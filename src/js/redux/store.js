@@ -1,19 +1,18 @@
-import * as reducers from './reducer.js';
 export default class Store {
   static singletonStore = null;
 
   constructor() {
     if (Store.singletonStore) return Store.singletonStore;
     this.subscribers = [];
-    this.states = {
-      payment: 0,
-      lottos: [],
-      winningCount: {},
-      profit: 0,
-    };
+    this.states = {};
+    Store.singletonStore = this;
+  }
+
+  setup(states = {}, reduce) {
+    this.states = states;
+    this.reduce = reduce ?? function () {};
     this.states = this.reduce(this.states, {});
     this.prevStates = this.states;
-    Store.singletonStore = this;
   }
 
   getStates() {
@@ -22,24 +21,6 @@ export default class Store {
 
   getPrevStates() {
     return this.prevStates;
-  }
-
-  reduce(states, action) {
-    return {
-      payment: reducers.payment(states.payment, action),
-      lottos: reducers.lottos(states.lottos, states.payment, action),
-      winningCount: reducers.winningCount(
-        states.winningCount,
-        states.lottos,
-        action,
-      ),
-      profit: reducers.profit(
-        states.profit,
-        states.lottos.length,
-        states.winningCount,
-        action,
-      ),
-    };
   }
 
   subscribe(func) {

@@ -1,13 +1,20 @@
 import LottoPurchaseInput from './LottoPurchaseInput.js';
 import LottoDisplay from './LottoDisplay.js';
 import Component from '../core/Component.js';
-import Store from '../redux/store.js';
 import WinningNumbersInput from './WinningNumbersInput.js';
 import RewardModalDisplay from './RewardModalDisplay.js';
 import { $ } from '../utils/dom.js';
 
-export const store = new Store();
 export default class App extends Component {
+  setup() {
+    this.states = {
+      payment: 0,
+      lottos: [],
+      winningCount: {},
+      profit: 0,
+    };
+  }
+
   execute() {
     this.mountComponent();
   }

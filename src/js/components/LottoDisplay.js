@@ -1,5 +1,5 @@
 import { $, $$ } from '../utils/dom.js';
-import { store } from './App.js';
+import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Input from './Input/Input.js';
 

@@ -1,9 +1,9 @@
-import { store } from './App.js';
 import { LOTTO } from '../utils/constants.js';
 import { divide, mod } from '../utils/common.js';
 import { $, clearInputValue } from '../utils/dom.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 import { createLottos, updatePayment } from '../redux/action.js';
+import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 import Input from './Input/Input.js';

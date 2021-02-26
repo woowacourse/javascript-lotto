@@ -8,7 +8,7 @@ import {
   UPDATE_PAYMENT,
 } from '../redux/actionType.js';
 
-export const payment = (state = 0, { type, payload = {} }) => {
+const paymentReducer = (state = 0, { type, payload = {} }) => {
   switch (type) {
     case UPDATE_PAYMENT:
       if (payload.payment) {
@@ -22,7 +22,7 @@ export const payment = (state = 0, { type, payload = {} }) => {
   }
 };
 
-export const lottos = (state = [], payment, { type }) => {
+const lottosReducer = (state = [], payment, { type }) => {
   switch (type) {
     case CREATE_LOTTOS:
       const lottoCount = Math.floor(payment / LOTTO.PRICE);
@@ -44,7 +44,7 @@ export const lottos = (state = [], payment, { type }) => {
   }
 };
 
-export const winningCount = (state, lottos, { type, payload = {} }) => {
+const winningCountReducer = (state, lottos, { type, payload = {} }) => {
   const getMatchedCount = (winningNumbers, numbers) => {
     let count = 0;
     numbers.forEach(number => {
@@ -66,6 +66,7 @@ export const winningCount = (state, lottos, { type, payload = {} }) => {
     } else if (count === 3) {
       return 5;
     }
+    return -1;
   };
 
   switch (type) {
@@ -86,7 +87,7 @@ export const winningCount = (state, lottos, { type, payload = {} }) => {
 
       lottos.forEach(lottoNumbers => {
         const rank = countWinner(winningNumbers, bonusNumber, lottoNumbers);
-        rank && winningCountTemp[`rank${rank}`]++;
+        rank !== -1 && winningCountTemp[`rank${rank}`]++;
       });
 
       return winningCountTemp;
@@ -97,7 +98,7 @@ export const winningCount = (state, lottos, { type, payload = {} }) => {
   }
 };
 
-export const profit = (state, lottoCount, winningCount, { type }) => {
+const profitReducer = (state, lottoCount, winningCount, { type }) => {
   switch (type) {
     case CALCULATE_PROFIT:
       const investment = lottoCount * LOTTO.PRICE;
@@ -118,3 +119,23 @@ export const profit = (state, lottoCount, winningCount, { type }) => {
       return state;
   }
 };
+
+const combineReducers = (states, action) => {
+  return {
+    payment: paymentReducer(states.payment, action),
+    lottos: lottosReducer(states.lottos, states.payment, action),
+    winningCount: winningCountReducer(
+      states.winningCount,
+      states.lottos,
+      action,
+    ),
+    profit: profitReducer(
+      states.profit,
+      states.lottos.length,
+      states.winningCount,
+      action,
+    ),
+  };
+};
+
+export default combineReducers;

@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/dom.js';
-import { store } from './App.js';
 import { REWARDS } from '../utils/constants.js';
 import { restart } from '../redux/action.js';
+import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 import Svg from './Svg/Svg.js';
