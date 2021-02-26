@@ -59,11 +59,15 @@ export default class LottoDisplay extends Component {
             </span>`;
   }
 
+  clear() {
+    this.$target.classList.add('d-none');
+    this.$lottoDisplayArea.innerHTML = '';
+    this.$toggleButton.checked = false;
+  }
+
   render(prevStates, states) {
     if (states.lottos.length === 0) {
-      this.$target.classList.add('d-none');
-      this.$lottoDisplayArea.innerHTML = '';
-      this.$toggleButton.checked = false;
+      this.clear();
       return;
     }
 

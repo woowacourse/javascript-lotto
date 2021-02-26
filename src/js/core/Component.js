@@ -15,4 +15,5 @@ export default class Component {
   render() {}
   selectDOM() {}
   bindEvent() {}
+  clear() {}
 }

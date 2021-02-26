@@ -136,11 +136,15 @@ export default class WinningNumbersInput extends Component {
     return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
   };
 
+  clear() {
+    this.$target.classList.add('d-none');
+    this.$winningNumberInputs.forEach(clearInputValue);
+    clearInputValue(this.$bonusNumberInput);
+  }
+
   render(prevStates, states) {
     if (states.lottos.length === 0) {
-      this.$target.classList.add('d-none');
-      this.$winningNumberInputs.forEach(clearInputValue);
-      clearInputValue(this.$bonusNumberInput);
+      this.clear();
       return;
     }
 

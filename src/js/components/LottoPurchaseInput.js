@@ -100,12 +100,16 @@ export default class LottoPurchaseInput extends Component {
     return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
   };
 
+  clear() {
+    clearInputValue(this.$purchaseInput);
+    this.$purchaseInput.disabled = false;
+    this.$purchaseButton.disabled = true;
+    this.$purchaseInputMessage.textContent = '';
+    return;
+  }
   render(prevStates, states) {
     if (states.payment === 0) {
-      clearInputValue(this.$purchaseInput);
-      this.$purchaseInput.disabled = false;
-      this.$purchaseButton.disabled = true;
-      this.$purchaseInputMessage.textContent = '';
+      this.clear();
       return;
     }
 

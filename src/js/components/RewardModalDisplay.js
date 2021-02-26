@@ -102,6 +102,11 @@ export default class RewardModalDisplay extends Component {
   }
 
   render(prevStates, states) {
+    if (states.profit) {
+      this.onModalClose();
+      return;
+    }
+
     if (prevStates.winningCount !== states.winningCount) {
       const getWinningCountText = key =>
         Object.keys(states.winningCount).length === 0
@@ -118,6 +123,6 @@ export default class RewardModalDisplay extends Component {
       this.$profitText.textContent = `당신의 총 수익률은 ${states.profit}% 입니다.`;
     }
 
-    states.profit === 0 ? this.onModalClose() : this.onModalShow();
+    this.onModalShow();
   }
 }
