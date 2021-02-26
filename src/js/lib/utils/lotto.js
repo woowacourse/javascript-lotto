@@ -21,13 +21,8 @@ export const getNumberOfTickets = value =>
   Math.floor(Number(value) / TICKET_PRICE);
 
 export const getRank = (ticket, winningNumber) => {
-  let score = 0;
-
-  ticket.forEach(number => {
-    if (winningNumber.main.includes(number)) {
-      score += 1;
-    }
-  });
+  const score = ticket.filter(number => winningNumber.main.includes(number))
+    .length;
 
   if (score === 5 && ticket.includes(winningNumber.bonus)) {
     return 'second';
@@ -41,13 +36,7 @@ export const getRank = (ticket, winningNumber) => {
 };
 
 export const getWinners = (tickets, winningNumber) => {
-  const winners = {
-    first: 0,
-    second: 0,
-    third: 0,
-    fourth: 0,
-    fifth: 0,
-  };
+  const winners = [0, 0, 0, 0, 0];
 
   tickets.forEach(ticket => {
     const rank = getRank(ticket, winningNumber);
