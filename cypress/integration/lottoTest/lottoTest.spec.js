@@ -45,7 +45,13 @@ describe('로또 게임 테스트', () => {
     cy.get('#manual-btn').should('have.class', 'btn-cyan');
   });
 
-  it('사용자는 로또 구입 금액을 입력하면, 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+  it('수동 구매를 선택하고 금액을 입력하면, 금액만큼의 번호 입력 폼을 보여준다.', () => {
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+    cy.get('.manual-wrapper').should('have.length', lottoTotalCount);
+  });
+
+  it('(자동 구매 선택 시) 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
     cy.get('#purchased-lottos').should('be.visible');
 <<<<<<< HEAD
