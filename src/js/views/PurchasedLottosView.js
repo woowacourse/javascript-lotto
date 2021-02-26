@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $, $$ } from '../utils/dom.js';
+import { $, $$ } from '../utils/selector.js';
 
 export default class PurchasedLottosView extends View {
   constructor($element) {

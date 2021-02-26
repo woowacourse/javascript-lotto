@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $, $$ } from '../utils/dom.js';
+import { $, $$ } from '../utils/selector.js';
 import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class WinningResultView extends View {
@@ -49,6 +49,13 @@ export default class WinningResultView extends View {
     });
   }
 
+<<<<<<< HEAD
+=======
+  insertWinningNumber($element) {
+    this.winningNumbers[$element.dataset.winningIndex] = Number($element.value);
+  }
+
+>>>>>>> bbd0775... refactor: rename dom to selector
   moveFocus($element, idx) {
     if ($element.value.length === 2) {
       if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
