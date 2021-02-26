@@ -6,6 +6,7 @@ import {
   disableElement,
   enableElement,
   getPriceByRank,
+  $all,
 } from './utils.js';
 import { ALERT_MESSAGE, LOTTO, VALUE } from './constants.js';
 import Lotto from './models/Lotto.js';
@@ -60,7 +61,8 @@ class LottoApp {
   }
 
   handleToggleLottoNumbers() {
-    $('.lotto-list').classList.toggle('show-number');
+    $('.lotto-list').classList.toggle('flex-col');
+    $all('.lotto-numbers').forEach($numbers => $numbers.classList.toggle('d-none'));
   }
 
   handleInputWinningNumbers(event) {

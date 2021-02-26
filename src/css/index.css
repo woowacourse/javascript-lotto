@@ -32,23 +32,7 @@ button:disabled {
   opacity: 0;
 }
 
-/* TODO : display 값 추출하기 */
-
-.lotto-list .lotto {
-  display: flex;
-  align-items: center;
-}
-
 .lotto-list .lotto .lotto-numbers {
   font-size: 1rem;
-  display: none;
   padding-left: 5px;
-}
-
-.lotto-list.show-number {
-  flex-direction: column;
-}
-
-.lotto-list.show-number .lotto .lotto-numbers {
-  display: inline;
 }
