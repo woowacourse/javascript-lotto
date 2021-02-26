@@ -32,46 +32,55 @@
               </button>
             </div>
           </form>
-          <div id="purchase" class="d-none">
-            <div id="purchase-progress"></div>
-            <div id="purchase-buttons">
+          <div id="purchase" class="d-none mt-9">
+            <label
+              id="purchase-progress"
+              class="flex-auto d-inline-block mb-3"
+            ></label>
+            <div
+              id="purchase-buttons"
+              class="flex-auto d-flex justify-between mt-0 mb-3"
+            >
               <button
                 id="manual-purchase-button"
-                class="btn btn-cyan"
+                class="btn btn-cyan w-100"
                 type="button"
               >
                 수동 구매하기
               </button>
-              <button id="auto-purchase-button" class="btn btn-cyan">
-                남은 로또 모두 자동 구매하기</button
-              >`
+              <button
+                id="auto-purchase-button"
+                class="btn btn-border-cyan w-100"
+              >
+                남은 로또 자동 구매하기
+              </button>
             </div>
             <div id="manual-purchase-detail" class="d-none">
-              <form id="manual-purchase-form">
+              <form id="manual-purchase-form" class="d-flex justify-between">
                 <input
                   type="number"
                   name="manual-purchase-number"
-                  class="winning-number mx-1 text-center"
+                  class="manual-purchase-number mx-1 text-center"
                 /><input
                   type="number"
                   name="manual-purchase-number"
-                  class="winning-number mx-1 text-center"
+                  class="manual-purchase-number mx-1 text-center"
                 /><input
                   type="number"
                   name="manual-purchase-number"
-                  class="winning-number mx-1 text-center"
+                  class="manual-purchase-number mx-1 text-center"
                 /><input
                   type="number"
                   name="manual-purchase-number"
-                  class="winning-number mx-1 text-center"
+                  class="manual-purchase-number mx-1 text-center"
                 /><input
                   type="number"
                   name="manual-purchase-number"
-                  class="winning-number mx-1 text-center"
+                  class="manual-purchase-number mx-1 text-center"
                 /><input
                   type="number"
                   name="manual-purchase-number"
-                  class="winning-number mx-1 text-center"
+                  class="manual-purchase-number mx-1 text-center"
                 />
                 <button class="btn btn-cyan">구매하기</button>
               </form>
