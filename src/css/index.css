@@ -22,3 +22,19 @@ body {
   width: 30px;
   height: 36px;
 }
+
+svg{
+  padding: 5px;
+}
+
+svg:hover{
+  cursor: pointer;
+}
+
+.plus-icon {
+  stroke: gray;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-width: 2;
+  cursor: pointer;
+}

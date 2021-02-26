@@ -54,6 +54,7 @@ export default class LottoPurchaseInput extends Component {
     this.$purchaseInput = $('#lotto-purchase-input');
     this.$purchaseButton = $('#lotto-purchase-btn');
     this.$purchaseInputMessage = $('[data-section=purchaseInputMessage]');
+    this.$manualInputToggleButton = $('.manual-input-toggle-button');
   }
 
   bindEvent() {
@@ -73,6 +74,10 @@ export default class LottoPurchaseInput extends Component {
     if (this.$purchaseButton.disabled) return;
     const payment = Number(this.$purchaseInput.value);
     store.dispatch(updatePayment(payment));
+    if (this.$manualInputToggleButton.checked) {
+      console.log(this.$manualInputToggleButton.checked);
+      return;
+    }
     store.dispatch(createLottos(payment));
   }
 
