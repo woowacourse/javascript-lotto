@@ -30,8 +30,8 @@ export default class App extends Component {
     this.modalDisplay = new RewardModalDisplay($('.modal'));
   }
 
-  mainTemplate() {
-    return `
+  initRender() {
+    this.$target.innerHTML = `
     <div class="d-flex justify-center mt-5">
       <div class="w-100">
         <h1 class="text-center">🎱 행운의 로또</h1>

@@ -13,7 +13,7 @@ export default class Button {
     this.disabled = disabled;
   }
 
-  mainTemplate() {
+  getTemplate() {
     return `<button ${this.id ? `id=${this.id}` : ''} type="${
       this.type
     }" class="${this.classes.join(' ')}" ${this.disabled ? 'disabled' : ''}>${

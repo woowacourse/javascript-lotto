@@ -17,17 +17,17 @@ export default class RewardModalDisplay extends Component {
     `;
   }
 
-  mainTemplate() {
+  initRender() {
     const matchedCountText = ['3개', '4개', '5개', '5개 + 보너스볼', '6개'];
     const rewards = Array.from(
       { length: 5 },
       (_, i) => REWARDS[`rank${5 - i}`],
     );
 
-    return `
+    this.$target.innerHTML = `
       <div class="modal-inner p-10">
         <div class="modal-close">
-          ${new Svg('+').mainTemplate()}
+          ${new Svg('x').getTemplate()}
         </div>
 
         <h2 class="text-center">🏆 당첨 통계 🏆</h2>
@@ -58,7 +58,7 @@ export default class RewardModalDisplay extends Component {
           type: 'reset',
           classes: ['btn', 'btn-cyan'],
           text: '다시 시작하기',
-        }).mainTemplate()}
+        }).getTemplate()}
         </div>
       </div>
     `;

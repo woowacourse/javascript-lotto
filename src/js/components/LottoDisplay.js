@@ -4,8 +4,8 @@ import Component from '../core/Component.js';
 import Input from './Input/Input.js';
 
 export default class LottoDisplay extends Component {
-  mainTemplate() {
-    return `
+  initRender() {
+    this.$target.innerHTML = `
     <div class="d-flex">
       <label id="total-lotto-count" class="flex-auto my-0"></label>
       <div class="flex-auto d-flex justify-end pr-1">
@@ -13,7 +13,7 @@ export default class LottoDisplay extends Component {
           ${new Input({
             type: 'checkbox',
             classes: ['lotto-numbers-toggle-button'],
-          }).mainTemplate()}
+          }).getTemplate()}
           <span class="text-base font-normal">번호보기</span>
         </label>
       </div>

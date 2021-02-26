@@ -3,7 +3,7 @@ export default class Svg {
     this.shape = shape;
   }
 
-  mainTemplate() {
+  getTemplate() {
     switch (this.shape) {
       case 'x':
         return `<svg viewbox="0 0 40 40">

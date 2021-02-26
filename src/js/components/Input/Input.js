@@ -13,7 +13,7 @@ export default class Input {
     this.disabled = disabled;
   }
 
-  mainTemplate() {
+  getTemplate() {
     return `<input ${this.id ? `id=${this.id}` : ''} type=${
       this.type
     } class="${this.classes.join(' ')}" placeholder="${this.placeholder}" />`;

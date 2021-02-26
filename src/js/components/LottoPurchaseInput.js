@@ -9,8 +9,8 @@ import Button from './Button/Button.js';
 import Input from './Input/Input.js';
 
 export default class LottoPurchaseInput extends Component {
-  mainTemplate() {
-    return `
+  initRender() {
+    this.$target.innerHTML = `
     <div class="d-flex flex-col">
       <div class="d-flex justify-between items-center">
         <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
@@ -20,7 +20,7 @@ export default class LottoPurchaseInput extends Component {
             ${new Input({
               type: 'checkbox',
               classes: ['manual-input-toggle-button'],
-            }).mainTemplate()}
+            }).getTemplate()}
             <span class="text-base font-normal">수동구매</span>
           </label>
         </div>
@@ -31,14 +31,14 @@ export default class LottoPurchaseInput extends Component {
           classes: ['w-100', 'mr-2', 'pl-2'],
           type: 'number',
           placeholder: '구입 금액',
-        }).mainTemplate()}
+        }).getTemplate()}
         ${new Button({
           id: 'lotto-purchase-btn',
           type: 'button',
           classes: ['btn', 'btn-cyan'],
           disabled: true,
           text: '확인',
-        }).mainTemplate()}
+        }).getTemplate()}
       </div>
     </div>
     <p data-section="purchaseInputMessage" class="text-xs text-center"></p>

@@ -9,8 +9,8 @@ import Button from './Button/Button.js';
 import Input from './Input/Input.js';
 
 export default class WinningNumbersInput extends Component {
-  mainTemplate() {
-    return `
+  initRender() {
+    this.$target.innerHTML = `
           <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
           <div class="d-flex flex-col">
             <div class="d-flex number-input-container">
@@ -21,7 +21,7 @@ export default class WinningNumbersInput extends Component {
                     type: 'number',
                     classes: ['winning-number', 'mx-1', 'text-center'],
                   })
-                    .mainTemplate()
+                    .getTemplate()
                     .repeat(6)}
                   </div>
               </div>
@@ -31,7 +31,7 @@ export default class WinningNumbersInput extends Component {
                 ${new Input({
                   type: 'number',
                   classes: ['bonus-number', 'text-center'],
-                }).mainTemplate()}
+                }).getTemplate()}
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@ export default class WinningNumbersInput extends Component {
             ],
             disabled: true,
             text: '결과 확인하기',
-          }).mainTemplate()}
+          }).getTemplate()}
     `;
   }
 

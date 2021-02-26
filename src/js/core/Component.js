@@ -9,9 +9,7 @@ export default class Component {
   }
   setup() {}
   mainTemplate() {}
-  initRender() {
-    this.$target.innerHTML = this.mainTemplate();
-  }
+  initRender() {}
   render() {}
   selectDOM() {}
   bindEvent() {}
