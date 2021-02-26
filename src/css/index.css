@@ -13,16 +13,16 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.winning-number, .bonus-number {
   width: 30px;
   height: 36px;
 }
 
-.bonus-number {
-  width: 30px;
-  height: 36px;
+.manual-number {
+  width: 26px;
 }
 
 ul {
   padding: 0;
+  list-style-type: none;
 }

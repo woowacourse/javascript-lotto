@@ -35,3 +35,8 @@
   border-radius: 0 4px 4px 0 !important;
   border-left: none !important;
 }
+
+.btn.btn-small {
+  min-width: 0;
+  height: 32px;
+}

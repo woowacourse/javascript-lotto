@@ -5,11 +5,21 @@ import {
   isCorrectPurchaseUnit,
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
+<<<<<<< HEAD
 import { $ } from './utils/dom.js';
 import LottoProcessor from './utils/lottoProcessor.js';
+=======
+import { $ } from './utils/selector.js';
+import {
+  compareNumbers,
+  calculateEarningRate,
+  countByRank,
+} from './utils/utils.js';
+>>>>>>> 739d581... feat: show manual input form when choose manual purchase
 
 import PurchaseTypeSelectView from './views/PurchaseTypeSelectView.js';
 import InputPriceView from './views/InputPriceView.js';
+import ManualInputView from './views/ManualInputView.js';
 import PurchasedLottosView from './views/PurchasedLottosView.js';
 import WinningResultView from './views/WinningResultView.js';
 
@@ -69,10 +79,25 @@ export default class LottoController {
       return;
     }
 
+    if (this.isAutoPurchase) {
+      this.purchaseAutomatically();
+    } else {
+      this.purchaseManually();
+    }
+  }
+
+  purchaseAutomatically() {
     this.createLottos(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
     this.purchasedLottosView.show();
     this.purchasedLottosView.renderLottos(this.lottos);
     this.winningResultView.show();
+  }
+
+  purchaseManually() {
+    this.manualInputView = new ManualInputView('manual-input-wrapper');
+    this.manualInputView.createManualLottos(
+      this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT
+    );
   }
 
   inputNumbersHandler(winningNumbers) {
