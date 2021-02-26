@@ -10,15 +10,15 @@ export default class LottoGame {
   #winningNumberList = [];
   #bonusNumber = null;
 
-  get lottoItemList() {
+  get LottoItemList() {
     return this.#lottoItemList;
   }
 
-  get winningNumberList() {
+  get WinningNumberList() {
     return this.#winningNumberList;
   }
 
-  get totalCost() {
+  get TotalCost() {
     return this.#lottoItemList.length * LOTTO.PRICE;
   }
 

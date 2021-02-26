@@ -96,3 +96,10 @@ live-server 폴더명
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-lotto/blob/main/LICENSE) licensed.
+
+## 📓 Convention
+
+- 클래스에서 속성명 앞에 _ 가 붙여진 것은 해당 속성이 protected 속성임을 뜻하며 인스턴스 외부에서 해당 속성을 수정해서는 안됩니다.
+- 클래스에서 속성명 앞에 # 가 붙여진 것은 해당 속성이 private 속성임을 뜻하며 상속이 수행된 클래스 내부에서도 해당 속성을 사용하려 해서는 안됩니다.
+- 어떤 인스턴스에 pascal case 표기된 속성이 있다면 해당 속성이 사실 getter 임을 뜻합니다. 이를 조작하려는 시도를 하지 않도록 유의해주십시오. 
+
