@@ -34,10 +34,14 @@
               </button>
             </div>
           </form>
-
-          <!--  -->
           <section id="purchase-section" class="mt-9 d-none">
             <div class="d-flex">
+              <label class="flex-auto my-0"></label>
+              <div class="flex-auto d-flex justify-end pr-1">
+                <label id="purchase-section__budget"
+                  >남은 금액 : <strong></strong>
+                </label>
+              </div>
               <label
                 id="purchase-section__label"
                 class="flex-auto my-0"
@@ -78,8 +82,7 @@
                 </button>
               </div>
             </form>
-
-            <form id="manual-purchase-input-form" class="mt-9">
+            <form id="manual-purchase-input-form" class="mt-9 d-none">
               <label class="mb-2 d-inline-block"
                 ><strong>수동 구매</strong><br />
                 구매하실 로또 번호 6개를 입력해주세요.</label
@@ -136,14 +139,12 @@
               <button
                 type="submit"
                 id="manual-purchase-input-form__button"
-                class="open-result-modal-button mt-5 btn btn-cyan w-100"
+                class="manual-purchase-button mt-5 btn btn-cyan w-100"
               >
                 구매하기
               </button>
             </form>
           </section>
-          <!--  -->
-
           <section id="purchase-result-section" class="mt-9 d-none">
             <div class="d-flex">
               <label
@@ -245,7 +246,6 @@
           </form>
         </div>
       </div>
-
       <div class="modal">
         <div class="modal-inner p-10">
           <div class="modal-close">
@@ -256,7 +256,6 @@
               />
             </svg>
           </div>
-
           <h2 class="text-center">🏆 당첨 통계 🏆</h2>
           <div class="d-flex justify-center">
             <table class="result-table border-collapse border border-black">

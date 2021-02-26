@@ -8,7 +8,7 @@ const $manualPurchaseInputForm = $('#manual-purchase-input-form');
 export const renderPurchaseBudget = (lotto) => {
   $(
     '#purchase-section__budget',
-  ).innerHTML = `남은 금액 : <strong>${lotto.purchaseBudget}</strong>`;
+  ).innerHTML = `남은 금액 : <strong>${lotto.purchaseBudget}</strong>원`;
 };
 
 export const renderPurchaseSection = (lotto) => {
