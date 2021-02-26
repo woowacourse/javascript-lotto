@@ -3,6 +3,7 @@ import Lotto from './Lotto.js';
 import { LOTTO_NUMBERS, ALERT_MESSAGES } from './utils/constants.js';
 import {
   isCorrectPurchaseUnit,
+  isUniqueManualNumber,
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
 <<<<<<< HEAD
@@ -60,7 +61,7 @@ export default class LottoController {
       this.inputPriceHandler(e.detail)
     );
     this.winningResultView
-      .on('submitNumbers', e => this.inputNumbersHandler(e.detail))
+      .on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail))
       .on('clickResetBtn', () => this.reset());
   }
 
@@ -94,13 +95,26 @@ export default class LottoController {
   }
 
   purchaseManually() {
-    this.manualInputView = new ManualInputView('manual-input-wrapper');
-    this.manualInputView.createManualLottos(
+    this.manualInputView = new ManualInputView(
+      'manual-input-wrapper',
       this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT
+    );
+    this.manualInputView.on('submitNumbers', e =>
+      this.inputManualNumbersHandler(e.detail)
     );
   }
 
-  inputNumbersHandler(winningNumbers) {
+  inputManualNumbersHandler(manualNumbers) {
+    const ticketNumbers = manualNumbers.map(manualNumber =>
+      Number(manualNumber.value)
+    );
+    if (!isUniqueManualNumber(ticketNumbers)) {
+      alert(ALERT_MESSAGES.DUPLICATE_NUMS);
+      return;
+    }
+  }
+
+  inputWinningNumbersHandler(winningNumbers) {
     if (!isUniqueWinningNumber(winningNumbers)) {
       alert(ALERT_MESSAGES.DUPLICATE_NUMS);
       return;

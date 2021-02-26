@@ -1,13 +1,15 @@
 import View from './View.js';
-import { $ } from '../utils/selector.js';
+import { $, $$ } from '../utils/selector.js';
 import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class ManualInputView extends View {
-  constructor(id) {
+  constructor(id, count) {
     const manualInputWrapper = document.createElement('ul');
     manualInputWrapper.setAttribute('id', id);
-
     super(manualInputWrapper);
+
+    this.createManualLottos(count);
+    this.bindManualInputEvent();
   }
 
   createManualLottos(count) {
@@ -15,10 +17,10 @@ export default class ManualInputView extends View {
       .map(
         () => `
           <li id="" class="mx-1 my-2 text-4xl manual-wrapper">
-            <form class="d-flex items-center justify-between">
+            <form class="d-flex items-center justify-between manual-input-form">
               <span class="lotto-icon">🎟️ </span>
               ${this.createManualInput()}
-              <button type="submit" id="manual-input-btn" class="btn btn-cyan btn-small">확정</button>
+              <button type="submit" class="btn btn-cyan btn-small manual-input-btn">확정</button>
             </form>
           </li>
         `
@@ -45,5 +47,16 @@ export default class ManualInputView extends View {
         `
       )
       .join('');
+  }
+
+  bindManualInputEvent() {
+    $$('.manual-input-form').forEach(manualTicket => {
+      manualTicket.addEventListener('submit', e => {
+        e.preventDefault();
+        this.emit('submitNumbers', [
+          ...manualTicket.getElementsByTagName('input'),
+        ]);
+      });
+    });
   }
 }
