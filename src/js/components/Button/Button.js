@@ -14,7 +14,7 @@ export default class Button {
   }
 
   mainTemplate() {
-    return `<button id="${this.id}" type="${
+    return `<button ${this.id ? `id=${this.id}` : ''} type="${
       this.type
     }" class="${this.classes.join(' ')}" ${this.disabled ? 'disabled' : ''}>${
       this.text

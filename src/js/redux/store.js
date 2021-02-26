@@ -1,6 +1,5 @@
 import * as reducers from './reducer.js';
 export default class Store {
-  // 리덕스에서는 한 어플리케이션당 하나의 store만 존재하기 떄문에 싱글톤 구현
   static singletonStore = null;
 
   constructor() {

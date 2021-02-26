@@ -155,7 +155,6 @@ export default class WinningNumbersInput extends Component {
   };
 
   render(prevStates, states) {
-    // fail case
     if (states === undefined) {
       this.$target.innerHTML = this.mainTemplate();
       return;
@@ -168,7 +167,6 @@ export default class WinningNumbersInput extends Component {
       return;
     }
 
-    // success case
     if (prevStates.lottos !== states.lottos) {
       this.$target.classList.remove('d-none');
     }

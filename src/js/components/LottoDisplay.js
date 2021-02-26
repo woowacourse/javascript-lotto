@@ -56,7 +56,6 @@ export default class LottoDisplay extends Component {
   }
 
   render(prevStates, states) {
-    //fail case
     if (states === undefined) {
       this.$target.innerHTML = this.mainTemplate();
       return;
@@ -69,7 +68,6 @@ export default class LottoDisplay extends Component {
       return;
     }
 
-    // success case
     if (prevStates.lottos !== states.lottos) {
       this.$target.classList.remove('d-none');
       this.$lottoCount.innerHTML = this.createTotalLottoCountHTML(

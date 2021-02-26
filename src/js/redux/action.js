@@ -7,7 +7,7 @@ import {
 } from './actionType.js';
 
 export const updatePayment = value => {
-  'use strict'; // 중복 속성명 막기 위함
+  'use strict';
   return {
     type: UPDATE_PAYMENT,
     payload: { payment: value },

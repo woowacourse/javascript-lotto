@@ -1,8 +1,8 @@
 import { $, $$ } from '../utils/dom.js';
-import Component from '../core/Component.js';
 import { store } from './App.js';
 import { REWARDS } from '../utils/constants.js';
 import { restart } from '../redux/action.js';
+import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 
 export default class RewardModalDisplay extends Component {
@@ -106,13 +106,11 @@ export default class RewardModalDisplay extends Component {
   }
 
   render(prevStates, states) {
-    //fail case
     if (states === undefined) {
       this.$target.innerHTML = this.mainTemplate();
       return;
     }
 
-    // success case
     if (prevStates.winningCount !== states.winningCount) {
       const getWinningCountText = key =>
         Object.keys(states.winningCount).length === 0

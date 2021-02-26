@@ -1,8 +1,8 @@
-import { $, clearInputValue } from '../utils/dom.js';
 import { store } from './App.js';
-import { divide, mod } from '../utils/common.js';
-import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 import { LOTTO } from '../utils/constants.js';
+import { divide, mod } from '../utils/common.js';
+import { $, clearInputValue } from '../utils/dom.js';
+import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 import { createLottos, updatePayment } from '../redux/action.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
@@ -90,7 +90,6 @@ export default class LottoPurchaseInput extends Component {
   };
 
   render(prevStates, states) {
-    //fail case
     if (states === undefined) {
       this.$target.innerHTML = this.mainTemplate();
       return;
@@ -104,7 +103,6 @@ export default class LottoPurchaseInput extends Component {
       return;
     }
 
-    // success case
     if (prevStates.payment !== states.payment) {
       const lottoCount = divide(states.payment, LOTTO.PRICE);
       const remainingMoney = mod(states.payment, LOTTO.PRICE);
