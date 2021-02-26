@@ -1,7 +1,7 @@
 import LottoModel from "./LottoModel.js";
 import LottoView from "./LottoView.js";
-import { hideElement, onModalShow } from "../utils.js";
-import { $modal } from "../elements.js";
+import { hideElement, onModalShow, onModalClose } from "../utils.js";
+import { $modal, $manualPurchaseDetail } from "../elements.js";
 import {
   INVALID_PRICE_ERROR,
   INVALID_WINNGNUMBER_ERROR,
@@ -61,8 +61,8 @@ export default class LottoController {
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
-    const matchedNumbers = lottoNumber.filter((num) => 
-      resultNumber.indexOf(num) !== -1
+    const matchedNumbers = lottoNumber.filter(
+      (num) => resultNumber.indexOf(num) !== -1
     );
 
     return matchedNumbers.length;
@@ -109,17 +109,6 @@ export default class LottoController {
     return Math.round((totalPrize / this.lottoModel.price) * 100);
   }
 
-  onClickAutoPurchaseButton() {
-    document
-      .getElementById("auto-purchase-button")
-      .addEventListener("click", () => {
-        this.lottoModel.autoPurchase(
-          this.lottoModel.price / 1000 - this.lottoModel.lottoList.length
-        );
-        this.lottoView.showConfirmation(this.lottoModel.lottoList);
-      });
-  }
-
   onSubmitPrice(price) {
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
@@ -132,23 +121,6 @@ export default class LottoController {
       this.lottoModel.lottoList,
       this.lottoModel.price
     );
-    document
-      .getElementById("manual-purchase-button")
-      .addEventListener("click", () => {
-        this.lottoView.showManualPurchaseDetail();
-        document
-          .getElementById("manual-purchase-form")
-          .addEventListener("submit", (e) => {
-            e.preventDefault();
-            this.onSubmitManualPurchaseNumber(
-              Array.from(e.target.elements["manual-purchase-number"]).map((v) =>
-                Number(v.value)
-              )
-            );
-          });
-      });
-
-    this.onClickAutoPurchaseButton();
   }
 
   onToggleLottoNumbers(e) {
@@ -181,10 +153,24 @@ export default class LottoController {
 
   onSubmitManualPurchaseNumber(manaulPurcahseNumber) {
     this.lottoModel.manaulPurchase(manaulPurcahseNumber);
-    hideElement(document.getElementById("manual-purchase-form"));
+    hideElement($manualPurchaseDetail);
     this.lottoView.showPurchaseProgress(
       this.lottoModel.price / 1000,
       this.lottoModel.lottoList.length
     );
+  }
+
+  onClickAutoPurchaseButton() {
+    this.lottoModel.autoPurchase(
+      this.lottoModel.price / 1000 - this.lottoModel.lottoList.length
+    );
+    this.lottoView.showConfirmation(this.lottoModel.lottoList);
+    hideElement(purchase);
+  }
+
+  onClickRestartButton() {
+    this.lottoView.resetLottoView();
+    this.lottoModel.lottoList = [];
+    onModalClose($modal);
   }
 }

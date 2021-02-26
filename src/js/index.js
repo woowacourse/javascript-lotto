@@ -5,17 +5,38 @@ import {
   $priceSubmitForm,
   $winningNumberForm,
   $restartButton,
+  $manualPurchaseButton,
+  $manualPurchaseForm,
+  $autoPurchaseButton,
+  $manualPurchaseDetail,
 } from "./elements.js";
-import { onModalClose } from "./utils.js";
+import { onModalClose, showElement } from "./utils.js";
 import LottoController from "./lotto/LottoController.js";
-import LottoView from "./lotto/LottoView.js";
 
 const lottoController = new LottoController();
-const lottoView = new LottoView();
 
 $priceSubmitForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
   lottoController.onSubmitPrice(e.target.elements["price-input"].value);
+});
+
+$manualPurchaseButton.addEventListener("click", () => {
+  showElement($manualPurchaseDetail);
+});
+
+$manualPurchaseForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  lottoController.onSubmitManualPurchaseNumber(
+    Array.from(e.target.elements["manual-purchase-number"]).map((v) =>
+      Number(v.value)
+    )
+  );
+});
+
+$autoPurchaseButton.addEventListener("click", () => {
+  lottoController.onClickAutoPurchaseButton();
 });
 
 $lottoNumbersToggleButton.addEventListener(
@@ -35,6 +56,5 @@ $winningNumberForm.addEventListener("submit", (e) => {
 $modalClose.addEventListener("click", () => onModalClose($modal));
 
 $restartButton.addEventListener("click", () => {
-  lottoView.resetLottoView();
-  onModalClose($modal);
+  lottoController.onClickRestartButton();
 });
