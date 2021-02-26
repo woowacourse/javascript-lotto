@@ -6,8 +6,23 @@ import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 
 export default class RewardModalDisplay extends Component {
+  winningCountTemplate(matchedCount, reward, rank) {
+    return `
+    <tr class="text-center">
+      <td class="p-3">${matchedCount}</td>
+      <td class="p-3">${reward}</td>
+      <td data-td="${rank}" class="p-3">0개</td>
+    </tr>
+    `;
+  }
+
   mainTemplate() {
-    let i = 6;
+    const matchedCountText = ['3개', '4개', '5개', '5개 + 보너스볼', '6개'];
+    const rewards = Array.from(
+      { length: 5 },
+      (_, i) => REWARDS[`rank${5 - i}`],
+    );
+
     return `
       <div class="modal-inner p-10">
         <div class="modal-close">
@@ -27,31 +42,13 @@ export default class RewardModalDisplay extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr class="text-center">
-                <td class="p-3">3개</td>
-                <td class="p-3">${REWARDS[`rank${--i}`]}</td>
-                <td data-td="rank${i}" class="p-3">0개</td>
-              </tr>
-              <tr class="text-center">
-                <td class="p-3">4개</td>
-                <td class="p-3">${REWARDS[`rank${--i}`]}</td>
-                <td data-td="rank${i}" class="p-3">0개</td>
-              </tr>
-              <tr class="text-center">
-                <td class="p-3">5개</td>
-                <td class="p-3">${REWARDS[`rank${--i}`]}</td>
-                <td data-td="rank${i}" class="p-3">0개</td>
-              </tr>
-              <tr class="text-center">
-                <td class="p-3">5개 + 보너스볼</td>
-                <td class="p-3">${REWARDS[`rank${--i}`]}</td>
-                <td data-td="rank${i}" class="p-3">0개</td>
-              </tr>
-              <tr class="text-center">
-                <td class="p-3">6개</td>
-                <td class="p-3">${REWARDS[`rank${--i}`]}</td>
-                <td data-td="rank${i}" class="p-3">0개</td>
-              </tr>
+            ${Array.from({ length: 5 }, (_, i) => {
+              return this.winningCountTemplate(
+                matchedCountText[i],
+                rewards[i],
+                `rank${5 - i}`,
+              );
+            }).join('')}
             </tbody>
           </table>
         </div>

@@ -20,27 +20,9 @@ export default class WinningNumbersInput extends Component {
                   ${new Input({
                     type: 'number',
                     classes: ['winning-number', 'mx-1', 'text-center'],
-                  }).mainTemplate()}
-                  ${new Input({
-                    type: 'number',
-                    classes: ['winning-number', 'mx-1', 'text-center'],
-                  }).mainTemplate()}
-                  ${new Input({
-                    type: 'number',
-                    classes: ['winning-number', 'mx-1', 'text-center'],
-                  }).mainTemplate()}
-                  ${new Input({
-                    type: 'number',
-                    classes: ['winning-number', 'mx-1', 'text-center'],
-                  }).mainTemplate()}
-                  ${new Input({
-                    type: 'number',
-                    classes: ['winning-number', 'mx-1', 'text-center'],
-                  }).mainTemplate()}
-                  ${new Input({
-                    type: 'number',
-                    classes: ['winning-number', 'mx-1', 'text-center'],
-                  }).mainTemplate()}
+                  })
+                    .mainTemplate()
+                    .repeat(6)}
                   </div>
               </div>
               <div class="bonus-number-container d-flex flex-col flex-grow">
