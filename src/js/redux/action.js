@@ -1,3 +1,5 @@
+import { generateRandomNumber } from '../utils/common.js';
+import { LOTTO } from '../utils/constants.js';
 import {
   CALCULATE_PROFIT,
   CREATE_LOTTOS,
@@ -14,10 +16,25 @@ export const updatePayment = value => {
   };
 };
 
-export const createLottos = () => {
+export const createLottos = payment => {
   'use strict';
+
+  const generateLottoNumbers = () => {
+    const lottoNumbers = new Set();
+    while (lottoNumbers.size < LOTTO.LENGTH) {
+      lottoNumbers.add(generateRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+    }
+    return [...lottoNumbers];
+  };
+
+  const lottoCount = Math.floor(payment / LOTTO.PRICE);
+  const lottos = Array.from({ length: lottoCount }, () =>
+    generateLottoNumbers(),
+  );
+
   return {
     type: CREATE_LOTTOS,
+    payload: { lottos },
   };
 };
 

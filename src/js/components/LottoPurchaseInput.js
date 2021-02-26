@@ -71,8 +71,9 @@ export default class LottoPurchaseInput extends Component {
   onSubmit(e) {
     e.preventDefault();
     if (this.$purchaseButton.disabled) return;
-    store.dispatch(updatePayment(Number(this.$purchaseInput.value)));
-    store.dispatch(createLottos());
+    const payment = Number(this.$purchaseInput.value);
+    store.dispatch(updatePayment(payment));
+    store.dispatch(createLottos(payment));
   }
 
   onChangeInput(e) {

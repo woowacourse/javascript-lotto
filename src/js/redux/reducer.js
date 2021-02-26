@@ -1,5 +1,4 @@
 import { LOTTO, REWARDS } from '../utils/constants.js';
-import { generateRandomNumber } from '../utils/common.js';
 import {
   CALCULATE_PROFIT,
   CREATE_LOTTOS,
@@ -22,20 +21,10 @@ const paymentReducer = (state = 0, { type, payload = {} }) => {
   }
 };
 
-const lottosReducer = (state = [], payment, { type }) => {
+const lottosReducer = (state = [], { type, payload }) => {
   switch (type) {
     case CREATE_LOTTOS:
-      const lottoCount = Math.floor(payment / LOTTO.PRICE);
-      const generateLottoNumbers = () => {
-        const lottoNumbers = new Set();
-        while (lottoNumbers.size < LOTTO.LENGTH) {
-          lottoNumbers.add(generateRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
-        }
-        return [...lottoNumbers];
-      };
-      const lottos = Array.from({ length: lottoCount }, () =>
-        generateLottoNumbers(),
-      );
+      const { lottos } = payload;
       return lottos;
     case RESTART:
       return [];
@@ -123,7 +112,7 @@ export const profitReducer = (state, lottoCount, winningCount, { type }) => {
 const combineReducers = (states, action) => {
   return {
     payment: paymentReducer(states.payment, action),
-    lottos: lottosReducer(states.lottos, states.payment, action),
+    lottos: lottosReducer(states.lottos, action),
     winningCount: winningCountReducer(
       states.winningCount,
       states.lottos,
