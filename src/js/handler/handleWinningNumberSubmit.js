@@ -5,17 +5,17 @@ import { openModal, renderModal } from '../view/viewModalPage.js';
 import { setTicketResult } from '../components/setTicketResult.js';
 
 const getRankCountMap = (lotto) => {
-  const rankCountMap = new Map([
-    [VALUE.WINNING_RANK.FIRST, 0],
-    [VALUE.WINNING_RANK.SECOND, 0],
-    [VALUE.WINNING_RANK.THIRD, 0],
-    [VALUE.WINNING_RANK.FOURTH, 0],
-    [VALUE.WINNING_RANK.FIFTH, 0],
-    [VALUE.WINNING_RANK.NONE, 0],
-  ]);
+  const rankCountMap = {
+    [VALUE.WINNING_RANK.FIRST]: 0,
+    [VALUE.WINNING_RANK.SECOND]: 0,
+    [VALUE.WINNING_RANK.THIRD]: 0,
+    [VALUE.WINNING_RANK.FOURTH]: 0,
+    [VALUE.WINNING_RANK.FIFTH]: 0,
+    [VALUE.WINNING_RANK.NONE]: 0,
+  };
 
   lotto.tickets.forEach(({ winningRank }) => {
-    rankCountMap.set(winningRank, rankCountMap.get(winningRank) + 1);
+    rankCountMap[winningRank] += 1;
   });
 
   return rankCountMap;
