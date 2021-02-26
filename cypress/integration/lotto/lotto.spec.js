@@ -2,8 +2,8 @@ import {
   DUPLICATE_WINNING_NUMBER,
   HAS_A_WHITESPACE_MESSAGE,
   LESS_THAN_TICKET_PRICE_MESSAGE,
-  INPUT_NOT_COMPLETED,
-  EXCEED_RANGE_NUMBER,
+  SHOULD_PURCHASE_LOTTO_MESSAGE,
+  EXCEED_RANGE_NUMBER_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
 import {
   TICKET_MIN_NUMBER,
@@ -21,13 +21,7 @@ context('Actions', () => {
     cy.get('.ticket').should('have.length', 5);
   });
 
-  it('공백은 입력할 수 없다.', () => {
-    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
-    cy.get('#payment-submit').click();
-    cy.get('@alert').should('be.calledWith', HAS_A_WHITESPACE_MESSAGE);
-  });
-
-  it('0과 음수는 입력할 수 없다.', () => {
+  it('1000원 이하 금액은 입력할 수 없다.', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('#payment-input').type('0');
     cy.get('#payment-submit').click();
@@ -89,7 +83,7 @@ context('Actions', () => {
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('.winning-number[name=first]').type(99);
-    cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
+    cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER_MESSAGE);
   });
 
   it('당첨번호는 중복될 수 없다.', () => {
@@ -102,11 +96,5 @@ context('Actions', () => {
     cy.get('.bonus-number').type(34);
     cy.get('#result-button').click();
     cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
-  });
-
-  it('결과확인 전에 구입 금액과 당첨번호를 모두 입력해야 한다.', () => {
-    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
-    cy.get('#result-button').click();
-    cy.get('@alert').should('be.calledWith', INPUT_NOT_COMPLETED);
   });
 });

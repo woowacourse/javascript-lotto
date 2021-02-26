@@ -68,6 +68,9 @@ class TicketList extends Component {
   turnDetailModeOff() {
     $('#ticket-list').classList.remove('flex-col', 'detail-mode');
   }
+
+  initStates() {}
+  mountChildComponents() {}
 }
 
 export default TicketList;

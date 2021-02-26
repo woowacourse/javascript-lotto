@@ -82,6 +82,9 @@ class PaymentForm extends Component {
   subscribeStates() {
     this.props.tickets.subscribe(this.mountTemplate.bind(this));
   }
+
+  initStates() {}
+  mountChildComponents() {}
 }
 
 export default PaymentForm;

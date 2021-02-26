@@ -76,4 +76,7 @@ export default class ResultModal extends Component {
       }
     });
   }
+
+  initStates() {}
+  mountChildComponents() {}
 }

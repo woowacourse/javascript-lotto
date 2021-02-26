@@ -19,13 +19,40 @@
   <img width="400" src="./src/images/lotto_ui.png">
 </p>
 
-## 🦉 컴포넌트 구조
+## 주안점
 
-1. 구매 금액 입력
-2. 구입 결과
-3. 당첨번호 입력
-4. 결과확인 버튼
-5. 모달
+1. 컴포넌트에서 반복적으로 사용되는 코드패턴을 발견하면 부모추상클래스의 메서드로 선언하고 있습니다. 자식클래스가 오버라이드를 해주면 메서드가 부모클래스에서 호출되도록 하고 있습니다.
+2. UX를 고려해서 기능을 추가 해봤습니다.
+   1. 모달창의 외부영역을 클릭하면 모달 닫힘
+   2. 초기화면, 구매입력창에 autofocus
+   3. 로또 구매 시, 당첨번호 입력창으로 focus
+   4. 당첨번호 두 자리를 입력하면 다음 당첨번호 입력창으로 focus
+   5. 허용범위를 벗어나는 당첨번호는 입력 시점에서 alert 및 입력창 clear
+   6. user-select none 처리
+   7. form 입력창 required 처리
+3. 컴포넌트를 잘 나눴는지 의문입니다. 당첨번호 폼 컴포넌트가 하는 일이 많다고 생각을 하게됐는데 App컴포넌트에서 결과출력 버튼을 갖는게 나았을지 고민이었습니다.
+
+## 데모
+
+https://jho2301.github.io/javascript-lotto/
+
+## Web VSCode 환경
+
+https://github.surf/jho2301/javascript-lotto/tree/step2
+
+## 클래스 구조도
+
+![wooteco_lotto_step2 (2)](https://user-images.githubusercontent.com/44419181/108629310-95b31e80-74a2-11eb-97c7-a841d5323130.png)
+
+## 컴포넌트 구조
+
+![component_organization](https://user-images.githubusercontent.com/44419181/108621175-700f2080-7474-11eb-8a41-a7554fb00c84.png)
+
+![component_organization_2](https://user-images.githubusercontent.com/44419181/108621236-de53e300-7474-11eb-8c88-55e7b16e8287.png)
+
+## 디렉토리 구조
+
+![image](https://user-images.githubusercontent.com/44419181/108621186-7f8e6980-7474-11eb-85a3-5ef16b409557.png)
 
 ## ✏️ 기능 구현 목록
 

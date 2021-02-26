@@ -7,8 +7,8 @@ export const LESS_THAN_TICKET_PRICE_MESSAGE =
 export const DUPLICATE_WINNING_NUMBER =
   '중복된 숫자를 입력하셨습니다. 다시 입력해주세요.';
 
-export const INPUT_NOT_COMPLETED =
-  '입력되지 않은 값이 있습니다. 모든 입력을 완료해주세요';
+export const SHOULD_PURCHASE_LOTTO_MESSAGE =
+  '로또를 구매하지 않았습니다. 구매 후 진행해주세요';
 
-export const EXCEED_RANGE_NUMBER =
+export const EXCEED_RANGE_NUMBER_MESSAGE =
   '잘못된 숫자를 입력하셨습니다. 1~45 사이의 숫자를 입력해주세요.';

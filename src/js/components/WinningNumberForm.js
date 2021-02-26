@@ -6,8 +6,8 @@ import {
 import { getWinningNumbers } from '../lib/utils/lotto.js';
 import {
   DUPLICATE_WINNING_NUMBER,
-  INPUT_NOT_COMPLETED,
-  EXCEED_RANGE_NUMBER,
+  SHOULD_PURCHASE_LOTTO_MESSAGE,
+  EXCEED_RANGE_NUMBER_MESSAGE,
 } from '../lib/constants/alertMessage.js';
 import Component from '../lib/core/Component.js';
 import { $ } from '../lib/utils/dom.js';
@@ -67,7 +67,7 @@ export default class WinningNumberForm extends Component {
     if (!target.classList.contains('winning-number')) return;
 
     if (target.value && !this.isValidRange(Number(target.value))) {
-      alert(EXCEED_RANGE_NUMBER);
+      alert(EXCEED_RANGE_NUMBER_MESSAGE);
       target.value = '';
       return;
     }
@@ -114,8 +114,6 @@ export default class WinningNumberForm extends Component {
 
     return (
       this.props.tickets.get().length &&
-      winningNumber.main.every(number => Number.isInteger(number)) &&
-      Number.isInteger(winningNumber.bonus) &&
       uniqueNumberSize === TICKET_NUMBERS_LENGTH + 1
     );
   }
@@ -126,12 +124,8 @@ export default class WinningNumberForm extends Component {
       winningNumber.bonus,
     ]).size;
 
-    if (
-      !this.props.tickets.get().length ||
-      winningNumber.main.some(number => Number.isNaN(number)) ||
-      Number.isNaN(winningNumber.bonus)
-    ) {
-      alert(INPUT_NOT_COMPLETED);
+    if (!this.props.tickets.get().length) {
+      alert(SHOULD_PURCHASE_LOTTO_MESSAGE);
       return;
     }
 
@@ -145,4 +139,8 @@ export default class WinningNumberForm extends Component {
       element.value = '';
     });
   }
+
+  initStates() {}
+  subscribeStates() {}
+  mountChildComponents() {}
 }
