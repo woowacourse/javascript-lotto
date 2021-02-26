@@ -32,10 +32,50 @@
               </button>
             </div>
           </form>
-          <div id="purchase">
+          <div id="purchase" class="d-none">
             <div id="purchase-progress"></div>
-            <div id="purchase-buttons"></div>
-            <div id="manual-purchase-detail"></div>
+            <div id="purchase-buttons">
+              <button
+                id="manual-purchase-button"
+                class="btn btn-cyan"
+                type="button"
+              >
+                수동 구매하기
+              </button>
+              <button id="auto-purchase-button" class="btn btn-cyan">
+                남은 로또 모두 자동 구매하기</button
+              >`
+            </div>
+            <div id="manual-purchase-detail" class="d-none">
+              <form id="manual-purchase-form">
+                <input
+                  type="number"
+                  name="manual-purchase-number"
+                  class="winning-number mx-1 text-center"
+                /><input
+                  type="number"
+                  name="manual-purchase-number"
+                  class="winning-number mx-1 text-center"
+                /><input
+                  type="number"
+                  name="manual-purchase-number"
+                  class="winning-number mx-1 text-center"
+                /><input
+                  type="number"
+                  name="manual-purchase-number"
+                  class="winning-number mx-1 text-center"
+                /><input
+                  type="number"
+                  name="manual-purchase-number"
+                  class="winning-number mx-1 text-center"
+                /><input
+                  type="number"
+                  name="manual-purchase-number"
+                  class="winning-number mx-1 text-center"
+                />
+                <button class="btn btn-cyan">구매하기</button>
+              </form>
+            </div>
           </div>
           <div id="confirmation" class="d-none">
             <section class="mt-9" id="lotto-list">
