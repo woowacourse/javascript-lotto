@@ -1,5 +1,5 @@
+import TicketBundle from "../../../src/js/Model/TicketBundle.js";
 import { ALERT_MESSAGE } from "../../../src/js/Util/constants.js";
-
 import {
   isBlankIncluded,
   isDuplicatedNumber,
@@ -109,13 +109,13 @@ context("e2e test", () => {
       });
   });
 
-  // (하나의) 로또에서 생성된 번호가 1-45 안에 있는지 확인
-  // it("생성된 번호가 1부터 45 범위 안에 있는지 확인한다.", () => {
-  //   cy.get("#purchase-amount-input").type("1000");
-  //   cy.get("#purchase-amount-submit-button").click();
-  // const lst = new Lotto;
-  // console.log(Lotto.numbers);
-  // });
+  it("생성된 번호가 1부터 45 범위 안에 있는지 확인한다.", () => {
+    const checkingArray = TicketBundle.generateRandomNumbers();
+
+    checkingArray.forEach((number) => {
+      expect(0 < number && number < 46).to.be.true;
+    });
+  });
 
   it("구입 금액으로 살 수 있는 로또의 개수가 purchase-amount-label의 텍스트에 나타난 숫자와 동일한지 확인한다.", () => {
     const money = 3000;
@@ -181,5 +181,24 @@ context("e2e test", () => {
 
     cy.get(".open-result-modal-button").click();
     cy.get(".modal").should("to.be.visible");
+  });
+
+  it("다시 시작하기 버튼을 누르면 초기화 돼서 다시 구매를 시작할 수 있다.", () => {
+    let i = 1;
+
+    cy.get("#purchase-amount-input").type("3000");
+    cy.get("#purchase-amount-submit-button").click();
+    cy.get(".winning-number").each((number) => {
+      cy.wrap(number).type(i++);
+    });
+    cy.get(".bonus-number").type(7);
+
+    cy.get(".open-result-modal-button").click();
+    cy.get(".modal").should("to.be.visible");
+    cy.get("#restart-button").click();
+
+    cy.get(".modal").should("not.to.be.visible");
+    cy.get("section").eq(0).should("have.class", "hidden");
+    cy.get("form").eq(1).should("have.class", "hidden");
   });
 });
