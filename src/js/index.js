@@ -5,9 +5,9 @@ import {
   hideElement,
   disableElement,
   enableElement,
-  getPriceByRank,
   $all,
-} from './utils.js';
+} from './utils/utils.js';
+import { getPriceByRank } from './utils/lottoUtils.js';
 import { ALERT_MESSAGE, LOTTO, VALUE } from './constants.js';
 import Lotto from './models/Lotto.js';
 import LottoView from './views/LottoView.js';

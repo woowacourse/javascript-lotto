@@ -1,4 +1,4 @@
-import { $, $all, createElement } from '../utils.js';
+import { $, $all, createElement } from '../utils/utils.js';
 
 export default class LottoView {
   renderLottoList(lottos) {

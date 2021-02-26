@@ -1,5 +1,6 @@
-import { getRandomNumberArray, getMatchCount, getRankByMatchCount } from '../utils.js';
+import { getRandomNumberArray, getMatchCount } from '../utils/utils.js';
 import { LOTTO, VALUE } from '../constants.js';
+import { getRankByMatchCount } from '../utils/lottoUtils.js';
 export default class Lotto {
   constructor(numbers) {
     this.numbers = [];
