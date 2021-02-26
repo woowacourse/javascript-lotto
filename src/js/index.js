@@ -8,7 +8,7 @@ import {
   $all,
 } from './utils/utils.js';
 import { getPriceByRank } from './utils/lottoUtils.js';
-import { ALERT_MESSAGE, LOTTO, VALUE } from './constants.js';
+import { ALERT_MESSAGE, LOTTO, VALUE, SELECTORS } from './constants.js';
 import Lotto from './models/Lotto.js';
 import LottoView from './views/LottoView.js';
 
@@ -44,17 +44,17 @@ class LottoApp {
     this.data.lottos = this.generateLottos(lottoCount);
 
     this.view.renderLottoList(this.data.lottos);
-    showElement($('.lotto-list-section'));
-    showElement($('.winning-number-form-section'));
-    disableElement($('#money-input'));
-    disableElement($('#money-submit-button'));
+    showElement($(SELECTORS.LOTTO_LIST.SECTION));
+    showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
+    disableElement($(SELECTORS.MONEY_INPUT.INPUT));
+    disableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
-    $('.winning-number:first-child').focus();
+    $(`${SELECTORS.WINNING_NUMBER_INPUT.INPUT}:first-child`).focus();
   }
 
   handleToggleLottoNumbers() {
-    $('.lotto-list').classList.toggle('flex-col');
-    $all('.lotto-numbers').forEach($numbers => $numbers.classList.toggle('d-none'));
+    $(SELECTORS.LOTTO_LIST.ELEMENT).classList.toggle('flex-col');
+    $all(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TEXT).forEach($numbers => $numbers.classList.toggle('d-none'));
   }
 
   handleInputWinningNumbers(event) {
@@ -69,8 +69,8 @@ class LottoApp {
         return;
       }
 
-      $('.bonus-number').focus();
-      $('.bonus-number').select();
+      $(SELECTORS.BONUS_NUMBER_INPUT.INPUT).focus();
+      $(SELECTORS.BONUS_NUMBER_INPUT.INPUT).select();
     }
   }
 
@@ -86,7 +86,7 @@ class LottoApp {
       return;
     }
 
-    showElement($('.modal'));
+    showElement($(SELECTORS.MODAL.CONTAINER));
 
     const result = this.getResult(winningNumbers, bonusNumber);
     const { winningRankCounts, resultRate } = result;
@@ -119,39 +119,39 @@ class LottoApp {
   handleRestart() {
     this.init();
 
-    hideElement($('.lotto-list-section'));
-    hideElement($('.winning-number-form-section'));
-    hideElement($('.modal'));
-    enableElement($('#money-input'));
-    enableElement($('#money-submit-button'));
+    hideElement($(SELECTORS.LOTTO_LIST.SECTION));
+    hideElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
+    hideElement($(SELECTORS.MODAL.CONTAINER));
+    enableElement($(SELECTORS.MONEY_INPUT.INPUT));
+    enableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
-    $('#money-input-form').reset();
-    $('#winning-number-form').reset();
-    $('#money-input').focus();
-    $('.lotto-list').remove();
+    $(SELECTORS.MONEY_INPUT.FORM).reset();
+    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).reset();
+    $(SELECTORS.MONEY_INPUT.INPUT).focus();
+    $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
   }
 
   handleCloseModal() {
-    hideElement($('.modal'));
+    hideElement($(SELECTORS.MODAL.CONTAINER));
   }
 
   bindEvents() {
-    $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
+    $(SELECTORS.MONEY_INPUT.FORM).addEventListener('submit', this.handleSubmitMoney.bind(this));
 
-    $('.lotto-numbers-toggle-button').addEventListener(
+    $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener(
       'change',
       this.handleToggleLottoNumbers.bind(this)
     );
 
-    $('#winning-number-form').addEventListener('input', this.handleInputWinningNumbers.bind(this));
-    $('#winning-number-form').addEventListener(
+    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener('input', this.handleInputWinningNumbers.bind(this));
+    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener(
       'submit',
       this.handleSubmitWinningNumbers.bind(this)
     );
 
-    $('.modal-close').addEventListener('click', this.handleCloseModal.bind(this));
+    $(SELECTORS.MODAL.CANCEL).addEventListener('click', this.handleCloseModal.bind(this));
 
-    $('.restart-button').addEventListener('click', this.handleRestart.bind(this));
+    $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
   }
 }
 

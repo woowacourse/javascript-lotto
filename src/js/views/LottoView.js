@@ -1,4 +1,5 @@
 import { $, $all, createElement } from '../utils/utils.js';
+import { SELECTORS } from '../constants.js';
 
 export default class LottoView {
   renderLottoList(lottos) {
@@ -19,15 +20,15 @@ export default class LottoView {
     });
 
     $lottoList.append(...lottoFragments);
-    $('.lotto-list-container').append($lottoList);
-    $('.lotto-count').textContent = lottos.length;
+    $(SELECTORS.LOTTO_LIST.CONTAINER).append($lottoList);
+    $(SELECTORS.LOTTO_LIST.LOTTO_COUNT_TEXT).textContent = lottos.length;
   }
 
   renderWinningResult(winningRankCounts, winningRate) {
-    $all('.winning-count').forEach(($winningCount) => {
+    $all(SELECTORS.MODAL.WINNING_COUNT_TEXT).forEach(($winningCount) => {
       $winningCount.textContent = winningRankCounts[$winningCount.dataset.rank];
     });
 
-    $('.winning-rate').textContent = winningRate;
+    $(SELECTORS.MODAL.WINNING_RATE_TEXT).textContent = winningRate;
   }
 }

@@ -38,4 +38,37 @@ export const VALUE = {
   }
 };
 
-// TODO : DOM Element 관련 상수추가 (class Name)
+export const SELECTORS = {
+  MONEY_INPUT: {
+    FORM: '#money-input-form',
+    INPUT: '#money-input',
+    SUBMIT_BUTTON: '#money-submit-button',
+  },
+
+  LOTTO_LIST: {
+    SECTION: '.lotto-list-section',
+    CONTAINER: '.lotto-list-container',
+    ELEMENT: '.lotto-list',
+    LOTTO_COUNT_TEXT: '.lotto-count',
+    LOTTO_NUMBERS_TEXT: '.lotto-numbers',
+    LOTTO_NUMBERS_TOGGLE_BUTTON: '.lotto-numbers-toggle-button',
+  },
+
+  WINNING_NUMBER_INPUT: {
+    SECTION: '.winning-number-form-section',
+    FORM: '#winning-number-form',
+    INPUT: '.winning-number',
+  },
+
+  BONUS_NUMBER_INPUT: {
+    INPUT: '.bonus-number',
+  },
+
+  MODAL: {
+    CONTAINER: '.modal',
+    CANCEL: '.modal-close',
+    RESTART_BUTTON: '.restart-button',
+    WINNING_COUNT_TEXT: '.winning-count',
+    WINNING_RATE_TEXT: '.winning-rate',
+  }
+}
