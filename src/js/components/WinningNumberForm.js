@@ -69,6 +69,7 @@ export default class WinningNumberForm extends Component {
     if (target.value && !this.isValidRange(Number(target.value))) {
       alert(EXCEED_RANGE_NUMBER);
       target.value = '';
+      return;
     }
 
     this.focusNextInput(target);
