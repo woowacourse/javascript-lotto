@@ -15,7 +15,8 @@
     "no-return-assign": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
-    "max-depth": ["error", 2]
-    //"max-lines-per-function": ["error", 15]
+    "max-depth": ["error", 2],
+    "class-methods-use-this": ["error", { "exceptMethods": ["validatePurchaseAmount", "validateWinningNumbers"] }]
+    // "max-lines-per-function": ["error", 15]
   }
 }

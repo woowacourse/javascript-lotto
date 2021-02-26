@@ -1,5 +1,5 @@
+import { $ } from '../utils/DOM.js';
 import { LOTTO_NUMBER_SEPARATOR, PURCHASED_QUANTITY_MESSAGE } from '../constants.js';
-import { $, $$ } from '../utils/DOM.js';
 
 export default class PurchasedLotto {
   constructor({ lottoTickets }) {
@@ -18,19 +18,29 @@ export default class PurchasedLotto {
   }
 
   onToggleShowingNumbers({ target }) {
-    if (target.type === 'checkbox') {
-      target.checked ? this.showNumbers() : this.hideNumbers();
+    if (target.type !== 'checkbox') {
+      return;
     }
+    target.checked ? this.showNumbers() : this.hideNumbers();
+  }
+
+  setState({ lottoTickets }) {
+    this.lottoTickets = lottoTickets;
+    this.render();
   }
 
   showNumbers() {
-    this.$lottoTicketContainer.classList.add('flex-col');
-    $$('.lotto-numbers').forEach(($lottoNumbers) => $lottoNumbers.classList.remove('d-none'));
+    this.$lottoTicketContainer.classList.add('flex-col-with-num');
   }
 
   hideNumbers() {
-    this.$lottoTicketContainer.classList.remove('flex-col');
-    $$('.lotto-numbers').forEach(($lottoNumbers) => $lottoNumbers.classList.add('d-none'));
+    this.$lottoTicketContainer.classList.remove('flex-col-with-num');
+  }
+
+  reset() {
+    this.$purchasedLottoSection.classList.add('d-none');
+    this.$lottoNumbersToggleButton.checked = false;
+    this.hideNumbers();
   }
 
   createLottoTicketHTML(lottoTicket) {
@@ -47,6 +57,7 @@ export default class PurchasedLotto {
     const numOfLotto = this.lottoTickets.length;
 
     if (!numOfLotto) {
+      this.reset();
       return;
     }
 
@@ -57,10 +68,5 @@ export default class PurchasedLotto {
     if (this.$lottoNumbersToggleButton.checked) {
       this.showNumbers();
     }
-  }
-
-  setState({ lottoTickets }) {
-    this.lottoTickets = lottoTickets;
-    this.render();
   }
 }
