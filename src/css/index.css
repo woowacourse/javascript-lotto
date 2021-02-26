@@ -32,6 +32,8 @@ button:disabled {
   opacity: 0;
 }
 
+/* TODO : display 값 추출하기 */
+
 .lotto-list .lotto {
   display: flex;
   align-items: center;

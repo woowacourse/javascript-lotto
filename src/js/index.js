@@ -88,6 +88,7 @@ class LottoApp {
   }
 
   getResult(winningNumbers, bonusNumber) {
+    // TODO : 함수 내부에 상수 선언 조심하기
     const winningRankCounts = {
       first: 0, // 6개 일치
       second: 0, // 5개 + 보너스 숫자 일치

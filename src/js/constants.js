@@ -18,3 +18,9 @@ export const WINNING_PRICE = {
   fifth: 5000,
   lose: 0,
 };
+
+// TODO : DOM Element 관련 상수추가 (class Name)
+
+// TODO : 조건 체크를 Object Literal, 방어코드 작성하기 ( value || (default) )
+
+// TODO : MATCHED COUNT 추가하기

@@ -21,6 +21,7 @@ export default class Lotto {
   getWinningRank(winningNumber, bonusNumber) {
     const matchCount = getMatchCount(winningNumber, this.numbers);
 
+    // TODO : 조건문 줄이기
     if (matchCount === 6) {
       return 'first';
     } else if (matchCount === 5 && this.numbers.includes(bonusNumber)) {
