@@ -8,7 +8,7 @@ import { closeModal } from './lib/utils/modal.js';
 
 function initEventListeners() {
   $('#toggle-detail-mode').addEventListener('change', detailModeToggleHandler);
-  $('#payment-submit').addEventListener('submit', lottoPurchaseHandler);
+  $('#payment-form').addEventListener('submit', lottoPurchaseHandler);
   $('#reset').addEventListener('click', lottoResetHandler);
   $('.modal-close').addEventListener('click', closeModal);
   $('#lotto-number-form').addEventListener('change', winningNumberInputHandler);

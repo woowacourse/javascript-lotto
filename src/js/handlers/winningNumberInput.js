@@ -9,9 +9,6 @@ const isValidRange = number => {
 };
 
 const winningNumberInputHandler = ({ target }) => {
-  console.log(target);
-  console.log(target.value);
-
   if (target.value.length && !isValidRange(Number(target.value))) {
     alert(EXCEED_RANGE_NUMBER);
     target.value = '';
