@@ -11,6 +11,10 @@ export default class Lotto {
     this.purchasePrice = purchasePrice;
   }
 
+  setPurchaseBudget(purchaseBudget) {
+    this.purchaseBudget = purchaseBudget;
+  }
+
   addTicket(ticket) {
     this.tickets.push(ticket);
   }
@@ -18,5 +22,6 @@ export default class Lotto {
   clear() {
     this.tickets = [];
     this.purchasePrice = 0;
+    this.purchaseBudget = 0;
   }
 }

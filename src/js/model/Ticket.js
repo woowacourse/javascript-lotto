@@ -4,7 +4,7 @@ import { getRandomNumber } from '../utils/getRandomNumber.js';
 const generateTicketNumber = () => {
   const ticketNumbers = new Set();
 
-  while (ticketNumbers.size < VALUE.LOTTO.TICKET_LENGH) {
+  while (ticketNumbers.size < VALUE.LOTTO.TICKET_LENGTH) {
     ticketNumbers.add(
       getRandomNumber(VALUE.LOTTO.MIN_NUM, VALUE.LOTTO.MAX_NUM),
     );
