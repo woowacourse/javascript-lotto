@@ -1,7 +1,6 @@
 import { LOTTO } from '../utils/constants.js';
-import { divide, mod } from '../utils/common.js';
 import { $, clearInputValue } from '../utils/dom.js';
-import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
+import { ERROR_MESSAGE } from '../utils/message.js';
 import { createLottos, updatePayment } from '../redux/action.js';
 import { store } from '../index.js';
 import Component from '../core/Component.js';
@@ -120,12 +119,6 @@ export default class LottoPurchaseInput extends Component {
     this.$purchaseInputMessage.textContent = '';
   }
 
-  displayResultAlert(payment) {
-    const lottoCount = divide(payment, LOTTO.PRICE);
-    const remainingMoney = mod(payment, LOTTO.PRICE);
-    alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
-  }
-
   render(prevStates, states) {
     if (states.payment === 0) {
       this.clearView();
@@ -133,7 +126,6 @@ export default class LottoPurchaseInput extends Component {
     }
 
     if (prevStates.payment !== states.payment) {
-      this.displayResultAlert(states.payment);
       this.disableInputArea();
     }
   }
