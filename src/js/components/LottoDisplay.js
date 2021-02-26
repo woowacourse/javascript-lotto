@@ -1,26 +1,30 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
+import { store } from './App.js';
+import Component from '../core/Component.js';
 
-export default class LottoDisplay {
-  constructor(props) {
-    this.props = props;
-
-    this.setup();
-    this.initState();
-    this.selectDOM();
-    this.bindEvent();
+export default class LottoDisplay extends Component {
+  mainTemplate() {
+    return `
+    <div class="d-flex">
+      <label id="total-lotto-count" class="flex-auto my-0"></label>
+      <div class="flex-auto d-flex justify-end pr-1">
+        <label class="switch">
+          <input type="checkbox" class="lotto-numbers-toggle-button" />
+          <span class="text-base font-normal">번호보기</span>
+        </label>
+      </div>
+    </div>
+    <div id="lotto-display-area" class="d-flex flex-wrap">
+    </div>
+    `;
   }
 
   setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
-  }
-
-  initState() {
     this.isToggled = false;
+    store.subscribe(this.render.bind(this));
   }
 
   selectDOM() {
-    this.$target = $('#lotto-display-container');
     this.$toggleButton = $('.lotto-numbers-toggle-button');
     this.$lottoCount = $('#total-lotto-count');
     this.$lottoDisplayArea = $('#lotto-display-area');
@@ -33,44 +37,45 @@ export default class LottoDisplay {
     );
   }
 
-  onToggleSwitch({ target: { checked } }) {
-    this.setState({ isToggled: checked });
+  onToggleSwitch() {
+    $$('.lotto-numbers').forEach($lottoNumbers => {
+      $lottoNumbers.classList.toggle('d-none');
+    });
   }
 
-  createTotalLottoCountHTML() {
-    return `총 ${this.lottoManager.lottos.length}개를 구매하였습니다.`;
+  createTotalLottoCountHTML(lottoCount) {
+    return `총 ${lottoCount}개를 구매하였습니다.`;
   }
 
-  createLottoHTML() {
-    const lottoNumbersHTML = numbers =>
-      this.isToggled
-        ? `<span data-test="lotto-numbers" class="text-2xl ml-4">${numbers.join(
-            ', ',
-          )}</span>`
-        : '';
-
-    return this.lottoManager.lottos
-      .map(
-        ({ numbers }) =>
-          `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${lottoNumbersHTML(
-            numbers,
-          )}</span>`,
-      )
-      .join('');
+  createLottoHTML(numbers) {
+    return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">
+              🎟️ <span class="lotto-numbers d-none text-2xl ml-4">${numbers.join(
+                ', ',
+              )}</span>
+            </span>`;
   }
 
-  setState({ isToggled }) {
-    this.isToggled = isToggled ?? this.isToggled;
+  render(prevStates, states) {
+    if (states === undefined) {
+      this.$target.innerHTML = this.mainTemplate();
+      return;
+    }
 
-    this.render();
-  }
+    if (states.lottos.length === 0) {
+      this.$target.classList.add('d-none');
+      this.$lottoDisplayArea.innerHTML = '';
+      this.$toggleButton.checked = false;
+      return;
+    }
 
-  render() {
-    this.lottoManager.lottos
-      ? this.$target.classList.remove('d-none')
-      : this.$target.classList.add('d-none');
-
-    this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
-    this.$lottoDisplayArea.innerHTML = this.createLottoHTML();
+    if (prevStates.lottos !== states.lottos) {
+      this.$target.classList.remove('d-none');
+      this.$lottoCount.innerHTML = this.createTotalLottoCountHTML(
+        states.lottos.length,
+      );
+      this.$lottoDisplayArea.innerHTML = states.lottos
+        .map(lottoNumbers => this.createLottoHTML(lottoNumbers))
+        .join('');
+    }
   }
 }

@@ -14,3 +14,9 @@ export const sortNumbers = numbers => {
   const result = [...numbers];
   return result.sort((a, b) => a - b);
 };
+
+export const isEmptyValue = value => value === '';
+
+export const isInRange = (value, min = 1, max = 45) => {
+  return min <= value && value <= max;
+};

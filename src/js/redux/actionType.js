@@ -1,0 +1,5 @@
+export const UPDATE_PAYMENT = 'UPDATE_PAYMENT';
+export const CREATE_LOTTOS = 'CREATE_LOTTOS';
+export const DECIDE_WINNER = 'DECIDE_WINNER';
+export const CALCULATE_PROFIT = 'CALCULATE_PROFIT';
+export const RESTART = 'RESTART';

@@ -25,9 +25,7 @@ describe('LOTTO - 구매한 로또 화면 출력 테스트', () => {
     cy.get('#lotto-purchase-input').type('1500');
     cy.get('#lotto-purchase-btn').click();
 
-    cy.get('[data-test=lotto-numbers]').should('not.exist');
-
     cy.get('.lotto-numbers-toggle-button').check({ force: true });
-    cy.get('[data-test=lotto-numbers]').its('length').should('eq', 1);
+    cy.get('.lotto-numbers').should('to.be.visible');
   });
 });
