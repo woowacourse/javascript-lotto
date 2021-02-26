@@ -14,6 +14,10 @@ import LottoView from './views/LottoView.js';
 class LottoApp {
   constructor() {
     this.view = new LottoView();
+    this.bindEvents();
+  }
+
+  init() {
     this.data = {
       lottos: [],
       cost: 0,
@@ -26,8 +30,6 @@ class LottoApp {
         [VALUE.RANK.LOSE]: 0,
       },
     };
-
-    this.bindEvents();
   }
 
   generateLottos(lottoCount) {
@@ -113,18 +115,7 @@ class LottoApp {
   }
 
   handleRestart() {
-    this.data = {
-      lottos: [],
-      cost: 0,
-      winningRankCounts: {
-        [VALUE.RANK.FIRST]: 0,
-        [VALUE.RANK.SECOND]: 0,
-        [VALUE.RANK.THIRD]: 0,
-        [VALUE.RANK.FOURTH]: 0,
-        [VALUE.RANK.FIFTH]: 0,
-        [VALUE.RANK.LOSE]: 0,
-      },
-    };
+    this.init();
 
     hideElement($('.lotto-list-section'));
     hideElement($('.winning-number-form-section'));
@@ -164,4 +155,4 @@ class LottoApp {
 
 const lottoApp = new LottoApp();
 
-lottoApp;
+lottoApp.init();
