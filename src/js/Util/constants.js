@@ -24,10 +24,16 @@ export let STANDARD_NUMBER = {
   ONE_TICKET_PRICE: ONE_TICKET_PRICE,
   MIN_PURCHASE_PRICE: ONE_TICKET_PRICE,
   MAX_PURCHASE_PRICE: 5000,
+  MIN_LOTTO_NUMBER: 1,
+  MAX_LOTTO_NUMBER: 45,
 };
 
 export const ALERT_MESSAGE = {
   INVALID_NUMBER: "문자 및 공백은 입력 불가능합니다.",
-  INVALID_RANGE: "1000원 이상, 5000원 이하만 입력 가능합니다.",
+  INVALID_MONEY_RANGE: "1000원 이상, 5000원 이하만 입력 가능합니다.",
   NOT_THOUSAND_MULTIPLES: "1000원 단위로만 입력 가능합니다.",
+
+  BLANK_INCLUDED: "공백은 입력 불가능합니다.",
+  INVALID_WINNING_NUMBER_RANGE: "1에서 45까지의 숫자만 입력 가능합니다.",
+  DUPLICATED_WINNING_NUMBER: "중복된 값은 입력 불가능합니다.",
 };

@@ -1,6 +1,6 @@
 import { ELEMENT, STANDARD_NUMBER } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
-import { isValidMoney } from "../Util/validator.js";
+import { isValidMoney, isValidNumbers } from "../Util/validator.js";
 import {
   printPurchaseAmountLabel,
   printTicketHorizontal,
@@ -49,4 +49,8 @@ const handleResultSubmit = (event) => {
     (number) => number.value
   );
   const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
+
+  if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
+    return;
+  }
 };
