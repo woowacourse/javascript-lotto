@@ -47,9 +47,9 @@ export const REWARDS = Object.freeze([
   },
 ]);
 
-export const CHECK_SECOND_CONDITION_NUMBER = REWARDS
-  .find(reward => reward.isBonusMatched)
-  .matchCount
+export const CHECK_SECOND_CONDITION_NUMBER = REWARDS.find(
+  (reward) => reward.isBonusMatched,
+).matchCount;
 
 export const SELECTOR = Object.freeze({
   COST_SUBMIT_FORM: '#cost-submit-form',
@@ -68,4 +68,4 @@ export const SELECTOR = Object.freeze({
   RESTART_BUTTON: '#restart-button',
   CORRECT_NUMBER_INPUT_FORM: '#correct-number-input-form',
   CORRECT_NUMBER: '.correct-number',
-})
+});
