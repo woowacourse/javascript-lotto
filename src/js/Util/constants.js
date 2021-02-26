@@ -16,8 +16,11 @@ export const ELEMENT = {
 
   TOTAL_EARNING_RATE: "#total-earning-rate",
 
+  MODAL: ".modal",
+
   HIDDEN: "hidden",
   FLEX_COL: "flex-col",
+  OPEN: "open",
 };
 
 const ONE_TICKET_PRICE = 1000;

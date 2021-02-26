@@ -12,9 +12,9 @@ export const hidePurchaseResult = () => {
 };
 
 export const onModalShow = () => {
-  $(".modal").classList.add("open");
+  $(ELEMENT.MODAL).classList.add(ELEMENT.OPEN);
 };
 
 // export const onModalClose = () => {
-//   $(".modal").classList.remove("open");
+//   $(ELEMENT.MODAL).classList.remove(ELEMENT.OPEN);
 // };
