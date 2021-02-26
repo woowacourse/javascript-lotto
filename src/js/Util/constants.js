@@ -17,6 +17,7 @@ export const ELEMENT = {
   TOTAL_EARNING_RATE: "#total-earning-rate",
 
   MODAL: ".modal",
+  MODAL_CLOSE: ".modal-close",
 
   HIDDEN: "hidden",
   FLEX_COL: "flex-col",

@@ -15,6 +15,6 @@ export const onModalShow = () => {
   $(ELEMENT.MODAL).classList.add(ELEMENT.OPEN);
 };
 
-// export const onModalClose = () => {
-//   $(ELEMENT.MODAL).classList.remove(ELEMENT.OPEN);
-// };
+export const onModalClose = () => {
+  $(ELEMENT.MODAL).classList.remove(ELEMENT.OPEN);
+};

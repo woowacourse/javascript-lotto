@@ -7,7 +7,11 @@ import {
   printTicketVertical,
   printWinningResult,
 } from "../View/receiptView.js";
-import { showPurchaseResult, onModalShow } from "../Handler/elementHandler.js";
+import {
+  showPurchaseResult,
+  onModalShow,
+  onModalClose,
+} from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
 import Result from "../Model/Result.js";
 
@@ -21,6 +25,7 @@ export const initializeEvents = () => {
     "submit",
     handleResultSubmit
   );
+  $(ELEMENT.MODAL_CLOSE).addEventListener("click", onModalClose);
 };
 
 const handlePurchaseAmountSubmit = () => {
