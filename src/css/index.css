@@ -50,3 +50,8 @@ button:disabled {
 .lotto-list.show-number .lotto .lotto-numbers {
   display: inline;
 }
+
+fieldset {
+  border: none;
+  padding: 0;
+}

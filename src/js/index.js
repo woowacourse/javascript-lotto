@@ -47,7 +47,7 @@ class LottoApp {
     disableElement($('#money-input'));
     disableElement($('#money-submit-button'));
 
-    $('.winning-number:first-child').focus();
+    $('.winning-number').focus();
   }
 
   handleToggleLottoNumbers() {
