@@ -3,14 +3,9 @@ import LottoView from "./LottoView.js";
 import { RANKINGS, PRIZE_TABLE } from "./constants/prizeTable.js";
 import { onModalShow, onModalClose } from "../utils.js";
 import { $modal } from "../elements.js";
-import {
-  isValidPrice,
-  isNumbersInRange,
-  isDistinctNumbers,
-} from "./lotto_validators.js";
+import { isValidPrice, isDistinctNumbers } from "./lotto_validators.js";
 import {
   INVALID_PRICE_ERROR,
-  INVALID_WINNGNUMBER_ERROR,
   DUPLICATED_WINNINGNUMBER_ERROR,
 } from "./constants/error_messages.js";
 
@@ -84,10 +79,6 @@ export default class LottoController {
 
   openPrizeTableModal(winningNumber, bonusNumber) {
     const numbers = [...winningNumber, bonusNumber];
-    if (!isNumbersInRange(numbers, 1, 45)) {
-      alert(INVALID_WINNGNUMBER_ERROR);
-      return;
-    }
     if (!isDistinctNumbers(numbers)) {
       alert(DUPLICATED_WINNINGNUMBER_ERROR);
       return;
