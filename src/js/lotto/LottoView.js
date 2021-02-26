@@ -4,14 +4,12 @@ import {
   $lottoListLabel,
   $lottoTickets,
   $lottoNumbersToggleButton,
-  $priceInput,
   $prizeTable,
-  $earningRate,
+  $manualPurchaseNumberInputs,
   $winningNumberInputs,
   $bonusNumberInput,
   $manualPurchaseDetail,
   $purchaseProgress,
-  $purchaseButtons,
   $purchase,
 } from "../elements.js";
 
@@ -20,10 +18,6 @@ export default class LottoView {
 
   showPurchaseProgress(totalLottoCount, currentLottoCount) {
     $purchaseProgress.innerHTML = `총 ${totalLottoCount}개의 로또 중 ${currentLottoCount}개를 수동 구매하였습니다.`;
-  }
-
-  showPurchaseButtons() {
-    showElement($purchaseButtons);
   }
 
   showPurchase(lottoList, price) {
@@ -84,8 +78,12 @@ export default class LottoView {
       .join("");
   }
 
-  showEarningRate(earningRate) {
-    $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
+  resetManualPurchaseDetailView() {
+    $manualPurchaseNumberInputs.forEach(($manualPurchaseNumberInput) =>
+      resetInput($manualPurchaseNumberInput)
+    );
+
+    hideElement($manualPurchaseDetail);
   }
 
   resetLottoView() {

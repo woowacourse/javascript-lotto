@@ -1,5 +1,5 @@
 import { onModalClose, resetInput } from "../utils.js";
-import { $modal, $priceInput } from "../elements.js";
+import { $modal, $priceInput, $earningRate } from "../elements.js";
 
 export default class LottoConfirmationController {
   constructor(lottoModel, lottoView) {
@@ -92,8 +92,9 @@ export default class LottoConfirmationController {
     this.setPrizeTable(winningNumber, bonusNumber);
 
     const earningRate = this.calculateEarningRate();
+    $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
+
     this.lottoView.showPrizeTable(this.prizeTable);
-    this.lottoView.showEarningRate(earningRate);
   }
 
   onClickRestartButton() {
