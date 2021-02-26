@@ -2,14 +2,12 @@ import { $ } from '../utils/querySelector.js';
 import {
   showElement,
   hideElement,
-  disabledElement,
   enabledElement,
 } from '../utils/setProperty.js';
 
 const $purchaseResultSection = $('#purchase-result-section');
 const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
 const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
-const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
 
 const lottoTicketIconTemplate = () => {
   return `<span class="purchase-result-section__lotto-icon mx-1 text-4xl">
@@ -24,22 +22,19 @@ const lottoTicketDetailTemplate = (lottoNumber) => {
           </div>`;
 };
 
-export const renderPurchaseResultSection = (
-  amountOfLottoTicket,
-  lottoTickets,
-) => {
+export const renderPurchaseResultSection = (lotto) => {
+  const lottoTickets = lotto.getTickets();
+  const amountOfLottoTicket = lottoTickets.length;
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
 
   $purchaseResultSectionLabel.innerText = `총 ${amountOfLottoTicket}개를 구매하였습니다.`;
   $purchaseResultSectionRowAlign.innerHTML = lottoTicketIconTemplate().repeat(
     amountOfLottoTicket,
   );
-
   $purchaseResultSectionColAlign.innerHTML = lottoTickets
-    .map((lottoNumbers) => lottoTicketDetailTemplate(lottoNumbers.join(', ')))
+    .map((ticket) => lottoTicketDetailTemplate(ticket.numbers.join(', ')))
     .join('');
 
-  disabledElement($purchasePriceInputFormButton);
   showElement($purchaseResultSection);
 };
 
@@ -54,6 +49,6 @@ export const renderPurchaseResultSectionRowAlign = () => {
 };
 
 export const initializePurchaseResultSection = () => {
-  enabledElement($purchasePriceInputFormButton);
+  enabledElement($('#purchase-price-input-form__button'));
   hideElement($purchaseResultSection);
 };
