@@ -5,6 +5,8 @@ import {
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
   PRIZE_AMOUNT,
+  SCORE,
+  LOSERS_INDEX,
 } from '../constants/lotto.js';
 
 export const createTicket = () => {
@@ -20,30 +22,28 @@ export const createTicket = () => {
 export const getNumberOfTickets = value =>
   Math.floor(Number(value) / TICKET_PRICE);
 
-export const getRank = (ticket, winningNumber) => {
+export const getWinnerIndex = (ticket, winningNumber) => {
+  const winnerIndex = {
+    [SCORE.FIRST]: 0,
+    [SCORE.SECOND]: ticket.includes(winningNumber.bonus) ? 1 : 2,
+    [SCORE.THIRD]: 2,
+    [SCORE.FOURTH]: 3,
+  };
   const score = ticket.filter(number => winningNumber.main.includes(number))
     .length;
 
-  if (score === 5 && ticket.includes(winningNumber.bonus)) {
-    return 'second';
-  }
-
-  if (score < 3) {
-    return 'loser';
-  }
-
-  return ['fifth', 'fourth', 'third', 'first'][score - 3];
+  return winnerIndex[score] ?? LOSERS_INDEX;
 };
 
 export const getWinners = (tickets, winningNumber) => {
   const winners = [0, 0, 0, 0, 0];
 
   tickets.forEach(ticket => {
-    const rank = getRank(ticket, winningNumber);
+    const rankIndex = getWinnerIndex(ticket, winningNumber);
 
-    if (rank !== 'loser') {
-      winners[rank] += 1;
-    }
+    if (rankIndex === LOSERS_INDEX) return;
+
+    winners[rankIndex] += 1;
   });
 
   return winners;
@@ -52,10 +52,8 @@ export const getWinners = (tickets, winningNumber) => {
 const getTotalProfit = winners => {
   let totalProfit = 0;
 
-  for (const winner in winners) {
-    if (Object.hasOwnProperty.call(winners, winner)) {
-      totalProfit += winners[winner] * PRIZE_AMOUNT[winner];
-    }
+  for (const [idx, winnerAmount] of winners.entries()) {
+    totalProfit += winnerAmount * PRIZE_AMOUNT[idx];
   }
 
   return totalProfit;

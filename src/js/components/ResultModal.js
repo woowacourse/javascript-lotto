@@ -25,27 +25,27 @@ export default class ResultModal extends Component {
               <tr class="text-center">
                 <td class="p-3">3개</td>
                 <td class="p-3">5,000</td>
-                <td class="p-3">${winners.fifth}개</td>
+                <td class="p-3">${winners[4]}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">4개</td>
                 <td class="p-3">50,000</td>
-                <td class="p-3">${winners.fourth}개</td>
+                <td class="p-3">${winners[3]}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">5개</td>
                 <td class="p-3">1,500,000</td>
-                <td class="p-3">${winners.third}개</td>
+                <td class="p-3">${winners[2]}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">5개 + 보너스볼</td>
                 <td class="p-3">30,000,000</td>
-                <td class="p-3">${winners.second}개</td>
+                <td class="p-3">${winners[1]}개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">6개</td>
                 <td class="p-3">2,000,000,000</td>
-                <td class="p-3">${winners.first}개</td>
+                <td class="p-3">${winners[0]}개</td>
               </tr>
             </tbody>
           </table>

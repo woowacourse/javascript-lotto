@@ -13,7 +13,7 @@ class App extends Component {
     this.open = new State(false);
     this.winningNumber = new State({ main: [], bonus: 0 });
     this.result = new State({
-      winners: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
+      winners: [0, 0, 0, 0, 0],
       profitPercentage: 0,
     });
   }
