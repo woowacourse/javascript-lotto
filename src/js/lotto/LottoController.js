@@ -1,7 +1,12 @@
 import LottoModel from "./LottoModel.js";
 import LottoView from "./LottoView.js";
-import { hideElement, onModalShow, onModalClose } from "../utils.js";
-import { $modal, $manualPurchaseDetail } from "../elements.js";
+import {
+  hideElement,
+  onModalShow,
+  onModalClose,
+  resetInput,
+} from "../utils.js";
+import { $modal, $manualPurchaseDetail, $priceInput } from "../elements.js";
 import {
   INVALID_PRICE_ERROR,
   INVALID_WINNGNUMBER_ERROR,
@@ -110,6 +115,9 @@ export default class LottoController {
   }
 
   onSubmitPrice(price) {
+    this.lottoView.resetLottoView(); // 구입 금액 재입력 했을 경우
+    this.lottoModel.resetLottoList();
+
     if (!this.isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
       this.lottoView.resetLottoView();
@@ -152,6 +160,16 @@ export default class LottoController {
   }
 
   onSubmitManualPurchaseNumber(manaulPurcahseNumber) {
+    if (!this.isNumbersInRange(manaulPurcahseNumber, 1, 45)) {
+      alert(INVALID_WINNGNUMBER_ERROR);
+
+      return;
+    }
+    if (!this.isDistinctNumbers(manaulPurcahseNumber)) {
+      alert(DUPLICATED_WINNINGNUMBER_ERROR);
+
+      return;
+    }
     this.lottoModel.manaulPurchase(manaulPurcahseNumber);
     hideElement($manualPurchaseDetail);
     this.lottoView.showPurchaseProgress(
@@ -169,8 +187,11 @@ export default class LottoController {
   }
 
   onClickRestartButton() {
+    resetInput($priceInput);
+
     this.lottoView.resetLottoView();
-    this.lottoModel.lottoList = [];
+    this.lottoModel.resetLottoList();
+
     onModalClose($modal);
   }
 }

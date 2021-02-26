@@ -6,6 +6,10 @@ export default class LottoModel {
     this.price = 0;
   }
 
+  resetLottoList() {
+    this.lottoList = [];
+  }
+
   setPrice(price) {
     this.price = price;
   }
@@ -21,7 +25,7 @@ export default class LottoModel {
   }
 
   manaulPurchase(manualNumbers) {
-    this.lottoList.push({ number: [...manualNumbers] });
+    this.lottoList.push({ number: [...manualNumbers].sort((a, b) => a - b) });
   }
 
   autoPurchase(leftLottoCount) {

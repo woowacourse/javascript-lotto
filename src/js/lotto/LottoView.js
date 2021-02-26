@@ -1,4 +1,4 @@
-import { showElement, hideElement } from "../utils.js";
+import { showElement, hideElement, resetInput } from "../utils.js";
 import {
   $confirmation,
   $lottoListLabel,
@@ -88,15 +88,10 @@ export default class LottoView {
     $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
   }
 
-  resetInput($input) {
-    $input.value = "";
-  }
-
   resetLottoView() {
-    this.resetInput($priceInput);
-    this.resetInput($bonusNumberInput);
+    resetInput($bonusNumberInput);
     $winningNumberInputs.forEach(($winningNumberInput) =>
-      this.resetInput($winningNumberInput)
+      resetInput($winningNumberInput)
     );
 
     hideElement($confirmation);

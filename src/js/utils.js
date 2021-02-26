@@ -20,3 +20,7 @@ export const shuffle = (arr) => {
     [arr[i - 1], arr[j]] = [arr[j], arr[i - 1]];
   }
 };
+
+export const resetInput = ($input) => {
+  $input.value = "";
+};
