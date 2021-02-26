@@ -1,5 +1,5 @@
 import { ELEMENT, STANDARD_NUMBER } from "../Util/constants.js";
-import { $ } from "../Util/querySelector.js";
+import { $, $$ } from "../Util/querySelector.js";
 import { isValidMoney } from "../Util/validator.js";
 import {
   printPurchaseAmountLabel,
@@ -15,6 +15,10 @@ export const initializeEvents = () => {
     handlePurchaseAmountSubmit
   );
   $(ELEMENT.TOGGLE_BUTTON).addEventListener("click", handleToggleButton);
+  $(ELEMENT.WIN_NUMBER_CONTAINER).addEventListener(
+    "submit",
+    handleResultSubmit
+  );
 };
 
 const handlePurchaseAmountSubmit = () => {
@@ -36,4 +40,13 @@ const handleToggleButton = (event) => {
   event.target.checked
     ? printTicketVertical(TicketBundle.ticketBundle)
     : printTicketHorizontal(TicketBundle.ticketBundle.length);
+};
+
+const handleResultSubmit = (event) => {
+  event.preventDefault();
+
+  const inputWinningNumbers = Array.from($$(ELEMENT.WINNING_NUMBER)).map(
+    (number) => number.value
+  );
+  const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
 };

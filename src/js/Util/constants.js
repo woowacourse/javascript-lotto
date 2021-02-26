@@ -9,6 +9,9 @@ export const ELEMENT = {
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
   WIN_NUMBER_CONTAINER: "#win-number-container",
 
+  WINNING_NUMBER: ".winning-number",
+  BONUS_NUMBER: ".bonus-number",
+
   HIDDEN: "hidden",
   FLEX_COL: "flex-col",
 };
