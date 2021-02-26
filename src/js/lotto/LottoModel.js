@@ -24,13 +24,21 @@ export default class LottoModel {
     };
   }
 
-  manaulPurchase(manualNumbers) {
-    this.lottoList.push({ number: [...manualNumbers].sort((a, b) => a - b) });
+  manualPurchase(manualPurcahseNumbers) {
+    this.lottoList.push({
+      number: [...manualPurcahseNumbers].sort((a, b) => a - b),
+    });
   }
 
-  autoPurchase(leftLottoCount) {
+  autoPurchase() {
+    const leftLottoCount = this.price / 1000 - this.lottoList.length;
+
     this.lottoList = [...this.lottoList].concat(
       [...Array(leftLottoCount)].map(() => this.createLotto())
     );
+  }
+
+  purchaseEveryLotto() {
+    return this.lottoList.length === this.price / 1000;
   }
 }

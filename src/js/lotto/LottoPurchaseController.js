@@ -1,5 +1,5 @@
 import { hideElement } from "../utils.js";
-import { $manualPurchaseDetail } from "../elements.js";
+import { $purchase } from "../elements.js";
 import {
   INVALID_WINNGNUMBER_ERROR,
   DUPLICATED_WINNINGNUMBER_ERROR,
@@ -10,6 +10,13 @@ export default class LottoPurchaseController {
   constructor(lottoModel, lottoView) {
     this.lottoModel = lottoModel;
     this.lottoView = lottoView;
+  }
+
+  onClickAutoPurchaseButton() {
+    this.lottoModel.autoPurchase();
+    this.lottoView.showConfirmation(this.lottoModel.lottoList);
+
+    hideElement($purchase);
   }
 
   onSubmitManualPurchaseNumber(manaulPurcahseNumber) {
@@ -24,20 +31,17 @@ export default class LottoPurchaseController {
       return;
     }
 
-    this.lottoModel.manaulPurchase(manaulPurcahseNumber);
+    this.lottoModel.manualPurchase(manaulPurcahseNumber);
+
+    if (this.lottoModel.purchaseEveryLotto()) {
+      this.onClickAutoPurchaseButton();
+    }
+
     this.lottoView.showPurchaseProgress(
       this.lottoModel.price / 1000,
       this.lottoModel.lottoList.length
     );
 
-    hideElement($manualPurchaseDetail);
-  }
-
-  onClickAutoPurchaseButton() {
-    this.lottoModel.autoPurchase(
-      this.lottoModel.price / 1000 - this.lottoModel.lottoList.length
-    );
-    this.lottoView.showConfirmation(this.lottoModel.lottoList);
-    hideElement(purchase);
+    this.lottoView.resetManualPurchaseDetailView();
   }
 }
