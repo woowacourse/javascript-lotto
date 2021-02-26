@@ -3,6 +3,7 @@ import { $ } from '../utils/querySelector.js';
 import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
+import { renderPurchaseSection } from '../view/viewPurchaseSection.js';
 
 const setLotto = (lotto, amountOfLottoTicket) => {
   const purchasePrice = amountOfLottoTicket * VALUE.LOTTO.TICKET_PRICE;
@@ -39,4 +40,6 @@ export const handlePurchasePriceSubmit = (lotto) => {
   renderPurchaseResultSection(amountOfLottoTicket, lottoTicketNumbers);
   showWinningNumberInputForm();
   $('.winning-number').focus();
+  console.log(lotto);
+  renderPurchaseSection(lotto);
 };
