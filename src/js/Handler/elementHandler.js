@@ -10,3 +10,11 @@ export const hidePurchaseResult = () => {
   $(ELEMENT.RECEIPT_CONTAINER).classList.add(ELEMENT.HIDDEN);
   $(ELEMENT.WIN_NUMBER_CONTAINER).classList.add(ELEMENT.HIDDEN);
 };
+
+export const showModal = () => {
+  $(ELEMENT.MODAL).classList.add(ELEMENT.OPEN);
+};
+
+export const closeModal = () => {
+  $(ELEMENT.MODAL).classList.remove(ELEMENT.OPEN);
+};

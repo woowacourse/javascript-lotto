@@ -14,7 +14,7 @@
 
 .modal.open {
   opacity: 1;
-  visibility: hidden;
+  visibility: visible;
 }
 
 .modal-inner {
