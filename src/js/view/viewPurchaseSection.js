@@ -1,7 +1,9 @@
 import { $ } from '../utils/querySelector.js';
-import { showElement } from '../utils/setProperty.js';
+import { hideElement, showElement } from '../utils/setProperty.js';
 
 const $purchaseSection = $('#purchase-section');
+const $autoPurchaseInputForm = $('#auto-purchase-input-form');
+const $manualPurchaseInputForm = $('#manual-purchase-input-form');
 
 export const renderPurchaseBudget = (lotto) => {
   $(
@@ -12,4 +14,14 @@ export const renderPurchaseBudget = (lotto) => {
 export const renderPurchaseSection = (lotto) => {
   showElement($purchaseSection);
   renderPurchaseBudget(lotto);
+};
+
+export const renderAutoPurchaseForm = () => {
+  showElement($autoPurchaseInputForm);
+  hideElement($manualPurchaseInputForm);
+};
+
+export const renderManualPurchaseForm = () => {
+  showElement($manualPurchaseInputForm);
+  hideElement($autoPurchaseInputForm);
 };
