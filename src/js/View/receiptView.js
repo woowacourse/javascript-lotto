@@ -1,5 +1,6 @@
 import { ELEMENT } from "../Util/constants.js";
-import { $ } from "../Util/querySelector.js";
+import { $, $$ } from "../Util/querySelector.js";
+import Result from "../Model/Result.js";
 
 export const printPurchaseAmountLabel = (ticketCount) => {
   $(
@@ -31,4 +32,21 @@ export const printTicketVertical = (ticketBundle) => {
 
   ticketImageNumberContainer.innerHTML = ticketImageNumberTemplate;
   ticketImageNumberContainer.classList.add(ELEMENT.FLEX_COL);
+};
+
+export const printWinningResult = () => {
+  const winningCounts = $$(ELEMENT.WINNING_COUNT);
+  const totalPrize = Number($(ELEMENT.WIN_NUMBER_CONTAINER).dataset.totalPrize);
+  const money = Number($(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money);
+  const earningRate = ((totalPrize - money) / money) * 100;
+
+  console.log(winningCounts, totalPrize, money, earningRate);
+  Result.matchingCounts.reverse();
+  winningCounts.forEach((count, i) => {
+    count.innerText = `${Result.matchingCounts[i]}개`;
+  });
+
+  $(
+    ELEMENT.TOTAL_EARNING_RATE
+  ).innerText = `당신의 총 수익률은 ${earningRate.toLocaleString()}% 입니다.`;
 };

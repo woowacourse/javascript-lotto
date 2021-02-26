@@ -5,8 +5,9 @@ import {
   printPurchaseAmountLabel,
   printTicketHorizontal,
   printTicketVertical,
+  printWinningResult,
 } from "../View/receiptView.js";
-import { showPurchaseResult } from "../Handler/elementHandler.js";
+import { showPurchaseResult, onModalShow } from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
 import Result from "../Model/Result.js";
 
@@ -27,6 +28,7 @@ const handlePurchaseAmountSubmit = () => {
 
   if (!isValidMoney(money)) return;
 
+  $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
   TicketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
   renderTickets(TicketBundle.ticketBundle.length);
 };
@@ -57,6 +59,7 @@ const handleResultSubmit = (event) => {
 
   getNumbers(inputWinningNumbers, inputBonusNumber);
   getWinningResult(TicketBundle.ticketBundle);
+  renderWinningResult();
 };
 
 const getNumbers = (winningNumbers, bonusNumber) => {
@@ -67,4 +70,9 @@ const getNumbers = (winningNumbers, bonusNumber) => {
 const getWinningResult = (ticketBundle) => {
   Result.getRanks(ticketBundle); // 당첨 순위 계산
   Result.calculateTotalPrize(); // 총합 계산하고 data-total-prize 넣어줌
+};
+
+const renderWinningResult = () => {
+  printWinningResult(); // <receiptView - printWinningResult> html에 넣어줌 - 필요한 것: Result.rankCounts, data-total-prize, data-money
+  onModalShow();
 };
