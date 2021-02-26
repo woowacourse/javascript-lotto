@@ -121,11 +121,8 @@ export default class RewardModalDisplay extends Component {
       return;
     }
 
-    if (prevStates.winningCount !== states.winningCount) {
-      this.updateWinningCountView(states.winningCount);
-    }
-
     if (prevStates.profit !== states.profit) {
+      this.updateWinningCountView(states.winningCount);
       this.updateProfitView(states.profit);
     }
 

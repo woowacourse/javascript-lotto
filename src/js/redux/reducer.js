@@ -21,7 +21,7 @@ const paymentReducer = (state = 0, { type, payload = {} }) => {
   }
 };
 
-const lottosReducer = (state = [], { type, payload }) => {
+const lottosReducer = (state = [], { type, payload = {} }) => {
   switch (type) {
     case CREATE_LOTTOS:
       const { lottos } = payload;
