@@ -5,8 +5,9 @@ import {
   hideElement,
   disableElement,
   enableElement,
+  getPriceByRank,
 } from './utils.js';
-import { ALERT_MESSAGE, LOTTO, WINNING_PRICE } from './constants.js';
+import { ALERT_MESSAGE, LOTTO, VALUE } from './constants.js';
 import Lotto from './models/Lotto.js';
 import LottoView from './views/LottoView.js';
 
@@ -16,6 +17,14 @@ class LottoApp {
     this.data = {
       lottos: [],
       cost: 0,
+      winningRankCounts: {
+        [VALUE.RANK.FIRST]: 0,
+        [VALUE.RANK.SECOND]: 0,
+        [VALUE.RANK.THIRD]: 0,
+        [VALUE.RANK.FOURTH]: 0,
+        [VALUE.RANK.FIFTH]: 0,
+        [VALUE.RANK.LOSE]: 0,
+      },
     };
 
     this.bindEvents();
@@ -83,39 +92,38 @@ class LottoApp {
 
     showElement($('.modal'));
 
-    const result = this.getResult(winningNumbers, bonusNumber);
-    this.view.renderWinningResult(result);
+    const rate = this.getResult(winningNumbers, bonusNumber);
+    this.view.renderWinningResult(this.data.winningRankCounts, rate);
   }
 
   getResult(winningNumbers, bonusNumber) {
-    // TODO : 함수 내부에 상수 선언 조심하기
-    const winningRankCounts = {
-      first: 0, // 6개 일치
-      second: 0, // 5개 + 보너스 숫자 일치
-      third: 0, // 5개 일치
-      fourth: 0, // 4개 일치
-      fifth: 0, // 3개 일치
-      lose: 0, // 꽝
-    };
-
     let winningTotalPrice = 0;
 
     this.data.lottos.forEach((lotto) => {
       const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
 
-      winningRankCounts[rank] += 1;
-      winningTotalPrice += WINNING_PRICE[rank];
+      console.log(rank);
+      this.data.winningRankCounts[rank] += 1;
+      winningTotalPrice += getPriceByRank(rank);
     });
 
     const winningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
 
-    return { winningRankCounts, winningRate };
+    return winningRate;
   }
 
   handleRestart() {
     this.data = {
       lottos: [],
       cost: 0,
+      winningRankCounts: {
+        [VALUE.RANK.FIRST]: 0,
+        [VALUE.RANK.SECOND]: 0,
+        [VALUE.RANK.THIRD]: 0,
+        [VALUE.RANK.FOURTH]: 0,
+        [VALUE.RANK.FIFTH]: 0,
+        [VALUE.RANK.LOSE]: 0,
+      },
     };
 
     hideElement($('.lotto-list-section'));
@@ -155,4 +163,5 @@ class LottoApp {
 }
 
 const lottoApp = new LottoApp();
-lottoApp();
+
+lottoApp;

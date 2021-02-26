@@ -1,10 +1,18 @@
-import { getRandomNumberArray, getMatchCount } from '../utils.js';
-import { LOTTO } from '../constants.js';
+import { getRandomNumberArray, getMatchCount, getRankByMatchCount } from '../utils.js';
+import { LOTTO, VALUE } from '../constants.js';
 export default class Lotto {
   constructor(numbers) {
     this.numbers = [];
 
     this.setLottoNumbers(numbers);
+  }
+
+  get Numbers() {
+    return this.numbers;
+  }
+
+  get NumbersString() {
+    return this.numbers.join(', ');
   }
 
   setLottoNumbers(numbers) {
@@ -18,22 +26,15 @@ export default class Lotto {
     this.numbers.sort((a, b) => a - b);
   }
 
+  isIncludeBonus(bonusNumber) {
+    return this.numbers.includes(bonusNumber);
+  }
+
   getWinningRank(winningNumber, bonusNumber) {
     const matchCount = getMatchCount(winningNumber, this.numbers);
 
-    // TODO : 조건문 줄이기
-    if (matchCount === 6) {
-      return 'first';
-    } else if (matchCount === 5 && this.numbers.includes(bonusNumber)) {
-      return 'second';
-    } else if (matchCount === 5 && !this.numbers.includes(bonusNumber)) {
-      return 'third';
-    } else if (matchCount === 4) {
-      return 'fourth';
-    } else if (matchCount == 3) {
-      return 'fifth';
-    }
-
-    return 'lose';
+    return matchCount === 5 && this.isIncludeBonus(bonusNumber)
+      ? VALUE.RANK.SECOND
+      : getRankByMatchCount(matchCount);
   }
 }

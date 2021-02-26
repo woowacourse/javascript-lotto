@@ -1,5 +1,5 @@
-import { ALERT_MESSAGE } from '../../src/js/constants.js';
-import Lotto from '../../src/js/objects/Lotto.js';
+import { ALERT_MESSAGE, VALUE } from '../../src/js/constants.js';
+import Lotto from '../../src/js/models/Lotto.js';
 
 describe('LOTTO 테스트', () => {
   beforeEach(() => {
@@ -163,23 +163,23 @@ describe('LOTTO 테스트', () => {
     const lottos = [
       {
         sample: new Lotto([3, 9, 11, 20, 21, 25]),
-        rank: 'first',
+        rank: VALUE.RANK.FIRST,
       },
       {
         sample: new Lotto([3, 9, 11, 20, 21, 45]),
-        rank: 'second',
+        rank: VALUE.RANK.SECOND,
       },
       {
         sample: new Lotto([3, 9, 11, 20, 21, 44]),
-        rank: 'third',
+        rank: VALUE.RANK.THIRD,
       },
       {
         sample: new Lotto([3, 9, 11, 20, 22, 44]),
-        rank: 'fourth',
+        rank: VALUE.RANK.FOURTH,
       },
       {
         sample: new Lotto([3, 9, 11, 19, 22, 44]),
-        rank: 'fifth',
+        rank: VALUE.RANK.FIFTH,
       },
     ];
 

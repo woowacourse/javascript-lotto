@@ -10,17 +10,32 @@ export const LOTTO = {
   PRICE: 1000,
 };
 
-export const WINNING_PRICE = {
-  first: 2000000000,
-  second: 30000000,
-  third: 1500000,
-  fourth: 50000,
-  fifth: 5000,
-  lose: 0,
+export const VALUE = {
+  WINNING_PRICE: {
+    FIRST: 2000000000,
+    SECOND: 30000000,
+    THIRD: 1500000,
+    FOURTH: 50000,
+    FIFTH: 5000,
+    LOSE: 0,
+  },
+  MATCHED_COUNT: {
+    ZERO: 0,
+    ONE: 1,
+    TWO: 2,
+    THREE: 3,
+    FOUR: 4,
+    FIVE: 5,
+    SIX: 6
+  },
+  RANK: {
+    FIRST: 1,
+    SECOND: 2,
+    THIRD: 3,
+    FOURTH: 4,
+    FIFTH: 5,
+    LOSE: 6
+  }
 };
 
 // TODO : DOM Element 관련 상수추가 (class Name)
-
-// TODO : 조건 체크를 Object Literal, 방어코드 작성하기 ( value || (default) )
-
-// TODO : MATCHED COUNT 추가하기
