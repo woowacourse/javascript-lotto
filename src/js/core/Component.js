@@ -9,12 +9,9 @@ export default class Component {
   }
   setup() {}
   mainTemplate() {}
-  mountComponent() {}
   render() {
     this.$target.innerHTML = this.mainTemplate();
   }
-  setState() {}
   selectDOM() {}
   bindEvent() {}
-  clear() {}
 }
