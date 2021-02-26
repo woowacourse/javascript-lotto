@@ -1,6 +1,6 @@
 import { ELEMENT, STANDARD_NUMBER } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
-import { isValidMoney, isValidNumbers } from "../Util/validator.js";
+import { isValidMoney, isValidWinningNumbers } from "../Util/validator.js";
 import {
   printPurchaseAmountLabel,
   printTicketHorizontal,
@@ -10,15 +10,15 @@ import {
 import {
   showPurchaseResult,
   hidePurchaseResult,
-  onModalShow,
-  onModalClose,
+  showModal,
+  closeModal,
 } from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
 import Result from "../Model/Result.js";
 
 export const initializeEvents = () => {
-  $(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).addEventListener(
-    "click",
+  $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
+    "submit",
     handlePurchaseAmountSubmit
   );
   $(ELEMENT.TOGGLE_BUTTON).addEventListener("click", handleToggleButton);
@@ -26,7 +26,7 @@ export const initializeEvents = () => {
     "submit",
     handleResultSubmit
   );
-  $(ELEMENT.MODAL_CLOSE).addEventListener("click", onModalClose);
+  $(ELEMENT.MODAL_CLOSE).addEventListener("click", closeModal);
   $(ELEMENT.RESTART_BUTTON).addEventListener("click", handleRestartButton);
 };
 
@@ -35,11 +35,15 @@ const handlePurchaseAmountSubmit = (event) => {
 
   const money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
 
-  if (!isValidMoney(money)) return;
+  if (!isValidMoney(money)) {
+    clearPurchaseAmountInput();
+    return;
+  }
 
   $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
   TicketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
   renderTickets(TicketBundle.ticketBundle.length);
+  $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
 
 const renderTickets = (ticketCount) => {
@@ -62,42 +66,40 @@ const handleResultSubmit = (event) => {
   );
   const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
 
-  if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
+  if (!isValidWinningNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
+    clearWinningBonusNumber();
     return;
   }
 
-  getNumbers(inputWinningNumbers, inputBonusNumber);
-  getWinningResult(TicketBundle.ticketBundle);
+  setNumbers(inputWinningNumbers, inputBonusNumber);
+  setWinningResult(TicketBundle.ticketBundle);
   renderWinningResult();
 };
 
-const getNumbers = (winningNumbers, bonusNumber) => {
-  Result.getWinningNumbers(winningNumbers);
-  Result.getBonusNumber(bonusNumber);
+const setNumbers = (winningNumbers, bonusNumber) => {
+  Result.setWinningNumbers(winningNumbers);
+  Result.setBonusNumber(bonusNumber);
 };
 
-const getWinningResult = (ticketBundle) => {
-  Result.getRanks(ticketBundle); // 당첨 순위 계산
-  Result.calculateTotalPrize(); // 총합 계산하고 data-total-prize 넣어줌
+const setWinningResult = (ticketBundle) => {
+  Result.setRanks(ticketBundle);
+  Result.setMatchingCounts();
 };
 
 const renderWinningResult = () => {
-  printWinningResult(); // <receiptView - printWinningResult> html에 넣어줌 - 필요한 것: Result.rankCounts, data-total-prize, data-money
-  onModalShow();
+  printWinningResult();
+  showModal();
 };
 
 const handleRestartButton = () => {
-  // 입력창들 비우기
-  clearPurcaseAmountInput();
+  closeModal();
   clearWinningBonusNumber();
-  // 토글 버튼 off
-  $(ELEMENT.TOGGLE_BUTTON).checked = false;
-  // 화면 숨기기
+  clearPurchaseAmountInput();
   hidePurchaseResult();
-  onModalClose();
+  $(ELEMENT.TOGGLE_BUTTON).checked = false;
 };
 
-const clearPurcaseAmountInput = () => {
+const clearPurchaseAmountInput = () => {
   $(ELEMENT.PURCHASE_AMOUNT_INPUT).value = "";
   $(ELEMENT.PURCHASE_AMOUNT_INPUT).focus();
 };
@@ -105,4 +107,5 @@ const clearPurcaseAmountInput = () => {
 const clearWinningBonusNumber = () => {
   Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
   $(ELEMENT.BONUS_NUMBER).value = "";
+  $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };

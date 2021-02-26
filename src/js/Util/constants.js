@@ -7,6 +7,7 @@ export const ELEMENT = {
   RESTART_BUTTON: "#restart-button",
   OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",
 
+  PURCHASE_CONTAINER: "#purchase-container",
   RECEIPT_CONTAINER: "#receipt-container",
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
   WIN_NUMBER_CONTAINER: "#win-number-container",
@@ -36,6 +37,30 @@ export let STANDARD_NUMBER = {
   MAX_PURCHASE_PRICE: 5000,
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
+};
+
+export const MATCHING_NUMBER = {
+  SIX: 6,
+  FIVE: 5,
+  FOUR: 4,
+  THREE: 3,
+};
+
+export const RANK = {
+  FIRST: "first",
+  SECOND: "second",
+  THIRD: "third",
+  FOURTH: "fourth",
+  FIFTH: "fifth",
+  LOSER: "loser",
+};
+
+export const WINNING_PRIZE = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
 };
 
 export const ALERT_MESSAGE = {

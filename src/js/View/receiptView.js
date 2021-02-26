@@ -40,7 +40,6 @@ export const printWinningResult = () => {
   const money = Number($(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money);
   const earningRate = ((totalPrize - money) / money) * 100;
 
-  console.log(winningCounts, totalPrize, money, earningRate);
   Result.matchingCounts.reverse();
   winningCounts.forEach((count, i) => {
     count.innerText = `${Result.matchingCounts[i]}개`;
