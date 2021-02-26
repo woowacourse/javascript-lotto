@@ -101,26 +101,32 @@ export default class RewardModalDisplay extends Component {
     this.$target.classList.remove('open');
   }
 
+  updateWinningCountView(winningCount) {
+    const getWinningCountText = key =>
+      Object.keys(winningCount).length === 0 ? '0개' : `${winningCount[key]}개`;
+
+    this.$winningCountTexts.forEach($winningCountText => {
+      const key = $winningCountText.getAttribute('data-td');
+      $winningCountText.textContent = getWinningCountText(key);
+    });
+  }
+
+  updateProfitView(profit) {
+    this.$profitText.textContent = `당신의 총 수익률은 ${profit}% 입니다.`;
+  }
+
   render(prevStates, states) {
-    if (states.profit) {
+    if (states.profit === 0) {
       this.onModalClose();
       return;
     }
 
     if (prevStates.winningCount !== states.winningCount) {
-      const getWinningCountText = key =>
-        Object.keys(states.winningCount).length === 0
-          ? '0개'
-          : `${states.winningCount[key]}개`;
-
-      this.$winningCountTexts.forEach($winningCountText => {
-        const key = $winningCountText.getAttribute('data-td');
-        $winningCountText.textContent = getWinningCountText(key);
-      });
+      this.updateWinningCountView(states.winningCount);
     }
 
     if (prevStates.profit !== states.profit) {
-      this.$profitText.textContent = `당신의 총 수익률은 ${states.profit}% 입니다.`;
+      this.updateProfitView(states.profit);
     }
 
     this.onModalShow();

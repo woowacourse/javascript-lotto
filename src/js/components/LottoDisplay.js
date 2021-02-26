@@ -59,24 +59,28 @@ export default class LottoDisplay extends Component {
             </span>`;
   }
 
-  clear() {
+  clearView() {
     this.$target.classList.add('d-none');
     this.$lottoDisplayArea.innerHTML = '';
     this.$toggleButton.checked = false;
   }
 
+  updateLottoView(lottos) {
+    this.$target.classList.remove('d-none');
+    this.$lottoCount.innerHTML = this.lottoCountText(lottos.length);
+    this.$lottoDisplayArea.innerHTML = lottos
+      .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
+      .join('');
+  }
+
   render(prevStates, states) {
     if (states.lottos.length === 0) {
-      this.clear();
+      this.clearView();
       return;
     }
 
     if (prevStates.lottos !== states.lottos) {
-      this.$target.classList.remove('d-none');
-      this.$lottoCount.innerHTML = this.lottoCountText(states.lottos.length);
-      this.$lottoDisplayArea.innerHTML = states.lottos
-        .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
-        .join('');
+      this.updateLottoView(states.lottos);
     }
   }
 }

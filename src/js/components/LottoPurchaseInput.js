@@ -100,26 +100,35 @@ export default class LottoPurchaseInput extends Component {
     return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
   };
 
-  clear() {
+  clearView() {
     clearInputValue(this.$purchaseInput);
     this.$purchaseInput.disabled = false;
     this.$purchaseButton.disabled = true;
     this.$purchaseInputMessage.textContent = '';
     return;
   }
+
+  disableInputArea() {
+    this.$purchaseInput.disabled = true;
+    this.$purchaseButton.disabled = true;
+    this.$purchaseInputMessage.textContent = '';
+  }
+
+  displayResultAlert(payment) {
+    const lottoCount = divide(payment, LOTTO.PRICE);
+    const remainingMoney = mod(payment, LOTTO.PRICE);
+    alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
+  }
+
   render(prevStates, states) {
     if (states.payment === 0) {
-      this.clear();
+      this.clearView();
       return;
     }
 
     if (prevStates.payment !== states.payment) {
-      const lottoCount = divide(states.payment, LOTTO.PRICE);
-      const remainingMoney = mod(states.payment, LOTTO.PRICE);
-      alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
-      this.$purchaseInput.disabled = true;
-      this.$purchaseButton.disabled = true;
-      this.$purchaseInputMessage.textContent = '';
+      this.displayResultAlert(states.payment);
+      this.disableInputArea();
     }
   }
 }

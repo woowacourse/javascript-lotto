@@ -136,24 +136,37 @@ export default class WinningNumbersInput extends Component {
     return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
   };
 
-  clear() {
-    this.$target.classList.add('d-none');
+  clearView() {
+    this.hideWinningNumbersInputView();
     this.$winningNumberInputs.forEach(clearInputValue);
+    this.clearWinningInputMessage();
     clearInputValue(this.$bonusNumberInput);
+  }
+
+  displayWinningNumbersInputView() {
+    this.$target.classList.remove('d-none');
+  }
+
+  hideWinningNumbersInputView() {
+    this.$target.classList.add('d-none');
+  }
+
+  clearWinningInputMessage() {
+    this.$winningInputMessage.textContent = '';
   }
 
   render(prevStates, states) {
     if (states.lottos.length === 0) {
-      this.clear();
+      this.clearView();
       return;
     }
 
     if (prevStates.lottos !== states.lottos) {
-      this.$target.classList.remove('d-none');
+      this.displayWinningNumbersInputView();
     }
 
     if (prevStates.winningCount !== states.winningCount) {
-      this.$winningInputMessage.textContent = '';
+      this.clearWinningInputMessage();
     }
   }
 }
