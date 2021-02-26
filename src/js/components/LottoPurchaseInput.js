@@ -12,8 +12,19 @@ export default class LottoPurchaseInput extends Component {
   mainTemplate() {
     return `
     <div class="d-flex flex-col">
-      <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
-      </label>
+      <div class="d-flex justify-between items-center">
+        <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
+        </label>
+        <div class="flex-auto d-flex justify-end pr-1 mb-2">
+          <label class="switch">
+            ${new Input({
+              type: 'checkbox',
+              classes: ['manual-input-toggle-button'],
+            }).mainTemplate()}
+            <span class="text-base font-normal">수동구매</span>
+          </label>
+        </div>
+      </div>
       <div class="d-flex">
         ${new Input({
           id: 'lotto-purchase-input',

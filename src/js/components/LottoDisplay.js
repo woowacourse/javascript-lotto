@@ -1,6 +1,7 @@
 import { $, $$ } from '../utils/dom.js';
 import { store } from './App.js';
 import Component from '../core/Component.js';
+import Input from './Input/Input.js';
 
 export default class LottoDisplay extends Component {
   mainTemplate() {
@@ -9,7 +10,10 @@ export default class LottoDisplay extends Component {
       <label id="total-lotto-count" class="flex-auto my-0"></label>
       <div class="flex-auto d-flex justify-end pr-1">
         <label class="switch">
-          <input type="checkbox" class="lotto-numbers-toggle-button" />
+          ${new Input({
+            type: 'checkbox',
+            classes: ['lotto-numbers-toggle-button'],
+          }).mainTemplate()}
           <span class="text-base font-normal">번호보기</span>
         </label>
       </div>
@@ -43,11 +47,11 @@ export default class LottoDisplay extends Component {
     });
   }
 
-  createTotalLottoCountHTML(lottoCount) {
+  lottoCountText(lottoCount) {
     return `총 ${lottoCount}개를 구매하였습니다.`;
   }
 
-  createLottoHTML(numbers) {
+  lottoTemplate(numbers) {
     return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">
               🎟️ <span class="lotto-numbers d-none text-2xl ml-4">${numbers.join(
                 ', ',
@@ -70,11 +74,9 @@ export default class LottoDisplay extends Component {
 
     if (prevStates.lottos !== states.lottos) {
       this.$target.classList.remove('d-none');
-      this.$lottoCount.innerHTML = this.createTotalLottoCountHTML(
-        states.lottos.length,
-      );
+      this.$lottoCount.innerHTML = this.lottoCountText(states.lottos.length);
       this.$lottoDisplayArea.innerHTML = states.lottos
-        .map(lottoNumbers => this.createLottoHTML(lottoNumbers))
+        .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
         .join('');
     }
   }
