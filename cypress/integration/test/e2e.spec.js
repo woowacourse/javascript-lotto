@@ -168,4 +168,18 @@ context("e2e test", () => {
     expect(isDuplicatedNumber([1, 10, 25, 33, 44, 45, 45])).to.be.true;
     expect(isDuplicatedNumber(validNumbers)).to.be.false;
   });
+
+  it("결과 확인 버튼을 누르면 모달창이 나타난다.", () => {
+    let i = 1;
+
+    cy.get("#purchase-amount-input").type("3000");
+    cy.get("#purchase-amount-submit-button").click();
+    cy.get(".winning-number").each((number) => {
+      cy.wrap(number).type(i++);
+    });
+    cy.get(".bonus-number").type(7);
+
+    cy.get(".open-result-modal-button").click();
+    cy.get(".modal").should("to.be.visible");
+  });
 });
