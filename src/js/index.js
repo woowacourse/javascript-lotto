@@ -22,14 +22,6 @@ class LottoApp {
     this.data = {
       lottos: [],
       cost: 0,
-      winningRankCounts: {
-        [VALUE.RANK.FIRST]: 0,
-        [VALUE.RANK.SECOND]: 0,
-        [VALUE.RANK.THIRD]: 0,
-        [VALUE.RANK.FOURTH]: 0,
-        [VALUE.RANK.FIFTH]: 0,
-        [VALUE.RANK.LOSE]: 0,
-      },
     };
   }
 
@@ -96,24 +88,32 @@ class LottoApp {
 
     showElement($('.modal'));
 
-    const rate = this.getResult(winningNumbers, bonusNumber);
-    this.view.renderWinningResult(this.data.winningRankCounts, rate);
+    const result = this.getResult(winningNumbers, bonusNumber);
+    const { winningRankCounts, resultRate } = result;
+    this.view.renderWinningResult(winningRankCounts, resultRate);
   }
 
   getResult(winningNumbers, bonusNumber) {
+    const winningRankCounts = {
+      [VALUE.RANK.FIRST]: 0,
+      [VALUE.RANK.SECOND]: 0,
+      [VALUE.RANK.THIRD]: 0,
+      [VALUE.RANK.FOURTH]: 0,
+      [VALUE.RANK.FIFTH]: 0,
+      [VALUE.RANK.LOSE]: 0,
+    };
+
     let winningTotalPrice = 0;
 
     this.data.lottos.forEach((lotto) => {
       const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
-
-      console.log(rank);
-      this.data.winningRankCounts[rank] += 1;
+      winningRankCounts[rank] += 1;
       winningTotalPrice += getPriceByRank(rank);
     });
 
-    const winningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
+    const resultRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
 
-    return winningRate;
+    return { winningRankCounts, resultRate };
   }
 
   handleRestart() {
