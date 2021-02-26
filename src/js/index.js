@@ -1,40 +1,36 @@
-import { $, getRandomNumber, showElement, disableElement } from './utils.js';
-import { ALERT_MESSAGE, LOTTO } from './constants.js';
+import {
+  $,
+  isUniqueArray,
+  showElement,
+  hideElement,
+  disableElement,
+  enableElement,
+} from './utils.js';
+import { ALERT_MESSAGE, LOTTO, WINNING_PRICE, WINNING_RANK } from './constants.js';
 import Lotto from './objects/Lotto.js';
 import LottoView from './views/LottoView.js';
+
+const { FIRST, SECOND, THIRD, FOURTH, FIFTH, LOSE } = WINNING_RANK;
 
 class LottoApp {
   constructor() {
     this.view = new LottoView();
     this.data = {
       lottos: [],
+      cost: 0,
     };
 
     this.bindEvents();
   }
 
-  generateLottoNumbers() {
-    const lottoNumbers = [];
-
-    while (lottoNumbers.length < LOTTO.NUMBER_COUNT) {
-      const num = getRandomNumber(LOTTO.MINIMUM_NUMBER, LOTTO.MAXIMUM_NUMBER);
-
-      if (lottoNumbers.includes(num)) continue;
-      lottoNumbers.push(num);
-    }
-
-    return lottoNumbers.sort((a, b) => a - b);
-  }
-
   generateLottos(lottoCount) {
-    return Array.from({ length: lottoCount }, () => new Lotto(this.generateLottoNumbers()));
+    return Array.from({ length: lottoCount }, () => new Lotto());
   }
 
   handleSubmitMoney(event) {
     event.preventDefault();
 
-    const money = event.target.elements['money-input'].valueAsNumber;
-    console.log(event);
+    const money = Number(event.target.elements['money-input'].value);
 
     if (money < LOTTO.PRICE) {
       alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
@@ -42,17 +38,101 @@ class LottoApp {
     }
 
     const lottoCount = Math.floor(money / LOTTO.PRICE);
+    this.data.cost = LOTTO.PRICE * lottoCount;
     this.data.lottos = this.generateLottos(lottoCount);
 
     this.view.renderLottoList(this.data.lottos);
-    showElement($('.lotto-list-container'));
-    showElement($('.winning-number-form-container'));
+    showElement($('.lotto-list-section'));
+    showElement($('.winning-number-form-section'));
     disableElement($('#money-input'));
     disableElement($('#money-submit-button'));
+
+    $('.winning-number').focus();
   }
 
   handleToggleLottoNumbers() {
     $('.lotto-list').classList.toggle('show-number');
+  }
+
+  handleInputWinningNumbers(event) {
+    if (!event.target.classList.contains('winning-number')) return;
+
+    if (event.target.value.length >= 2) {
+      const $nextInput = event.target.nextElementSibling;
+
+      if ($nextInput) {
+        $nextInput.focus();
+        $nextInput.select();
+        return;
+      }
+
+      $('.bonus-number').focus();
+      $('.bonus-number').select();
+    }
+  }
+
+  handleSubmitWinningNumbers(event) {
+    event.preventDefault();
+
+    const bonusNumber = event.target.elements['bonus-number'].valueAsNumber;
+    const $winningNumbers = [...event.target.elements['winning-number']];
+    const winningNumbers = $winningNumbers.map(($number) => $number.valueAsNumber);
+
+    if (!isUniqueArray([...winningNumbers, bonusNumber])) {
+      alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      return;
+    }
+
+    showElement($('.modal'));
+
+    const result = this.getResult(winningNumbers, bonusNumber);
+    this.view.renderWinningResult(result);
+  }
+
+  getResult(winningNumbers, bonusNumber) {
+    const winningRankCounts = {
+      [FIRST]: 0, // 6개 일치
+      [SECOND]: 0, // 5개 + 보너스 숫자 일치
+      [THIRD]: 0, // 5개 일치
+      [FOURTH]: 0, // 4개 일치
+      [FIFTH]: 0, // 3개 일치
+      [LOSE]: 0, // 꽝
+    };
+
+    let winningTotalPrice = 0;
+
+    this.data.lottos.forEach((lotto) => {
+      const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
+
+      winningRankCounts[rank] += 1;
+      winningTotalPrice += WINNING_PRICE[rank];
+    });
+
+    const winningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
+
+    return { winningRankCounts, winningRate };
+  }
+
+  handleRestart() {
+    this.data = {
+      lottos: [],
+      cost: 0,
+    };
+
+    hideElement($('.lotto-list-section'));
+    hideElement($('.winning-number-form-section'));
+    hideElement($('.modal'));
+    enableElement($('#money-input'));
+    enableElement($('#money-submit-button'));
+
+    $('#money-input-form').reset();
+    $('#winning-number-form').reset();
+    $('#money-input').focus();
+    $('.lotto-list').remove();
+  }
+
+  handleCloseModal() {
+    hideElement($('.modal'));
   }
 
   bindEvents() {
@@ -62,26 +142,17 @@ class LottoApp {
       'change',
       this.handleToggleLottoNumbers.bind(this)
     );
+
+    $('#winning-number-form').addEventListener('input', this.handleInputWinningNumbers.bind(this));
+    $('#winning-number-form').addEventListener(
+      'submit',
+      this.handleSubmitWinningNumbers.bind(this)
+    );
+
+    $('.modal-close').addEventListener('click', this.handleCloseModal.bind(this));
+
+    $('.restart-button').addEventListener('click', this.handleRestart.bind(this));
   }
 }
 
 new LottoApp();
-
-// TODO: 추후 Step 2 구현에 필요한 초기 코드
-// const $showResultButton = document.querySelector('.open-result-modal-button')
-// const $modalClose = document.querySelector('.modal-close')
-// const $modal = document.querySelector('.modal')
-// const $lottoNumbersToggleButton = document.querySelector(
-//   '.lotto-numbers-toggle-button'
-// )
-
-// const onModalShow = () => {
-//   $modal.classList.add('open')
-// }
-
-// const onModalClose = () => {
-//   $modal.classList.remove('open')
-// }
-
-// $showResultButton.addEventListener('click', onModalShow)
-// $modalClose.addEventListener('click', onModalClose)

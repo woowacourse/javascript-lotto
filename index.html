@@ -10,17 +10,18 @@
 
 <body>
   <div id="app" class="p-3">
-    <div class="d-flex justify-center mt-5">
+    <main class="d-flex justify-center mt-5">
       <div class="w-100">
         <h1 class="text-center">🎱 행운의 로또</h1>
         <form class="mt-5" id="money-input-form">
-          <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.</label>
+          <label for="money-input" class="mb-2 d-inline-block">구입할 금액을 입력해주세요.</label>
           <div class="d-flex">
-            <input id="money-input" type="number" min="0" class="w-100 mr-2 pl-2" placeholder="구입 금액" />
+            <input id="money-input" aria-label="money-input" type="number" min="0" class="w-100 mr-2 pl-2" placeholder="구입 금액" autofocus/>
             <button id="money-submit-button" type="submit" class="btn btn-cyan">확인</button>
           </div>
         </form>
-        <section class="lotto-list-container mt-9 hidden">
+        <section class="lotto-list-section mt-9 hidden">
+          <h2>구입한 로또 목록</h2>
           <div class="d-flex">
             <label class="flex-auto my-0">총 <span class="lotto-count"><!--로또 개수--></span>개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
@@ -30,43 +31,41 @@
               </label>
             </div>
           </div>
-          <div class="lotto-list d-flex flex-wrap">
-            <!-- 로또 목록 -->
+          <div class="lotto-list-container d-flex flex-wrap">
           </div>
         </section>
-        <section class="winning-number-form-container hidden">
-          <form class="mt-9">
-            <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
+        <section class="winning-number-form-section mt-9 hidden">
+          <h2>당첨번호 입력</h2>
+          <form id="winning-number-form">
+            <span class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</span>
             <div class="d-flex">
-              <div>
-                <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
-                <div>
-                  <input type="number" class="winning-number mx-1 text-center" min="1" max="45" />
-                  <input type="number" class="winning-number mx-1 text-center" min="1" max="45" />
-                  <input type="number" class="winning-number mx-1 text-center" min="1" max="45" />
-                  <input type="number" class="winning-number mx-1 text-center" min="1" max="45" />
-                  <input type="number" class="winning-number mx-1 text-center" min="1" max="45" />
-                  <input type="number" class="winning-number mx-1 text-center" min="1" max="45" />
-                </div>
-              </div>
+              <fieldset>
+                <legend class="mt-0 mb-3 text-center font-bold">당첨 번호</legend>
+                <input type="number" name="winning-number" aria-label="첫번째 당첨 번호" class="winning-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="winning-number" aria-label="두번째 당첨 번호" class="winning-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="winning-number" aria-label="세번째 당첨 번호" class="winning-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="winning-number" aria-label="네번째 당첨 번호" class="winning-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="winning-number" aria-label="다섯번째 당첨 번호" class="winning-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="winning-number" aria-label="여섯번째 당첨 번호" class="winning-number mx-1 text-center" min="1" max="45" required />
+              </fieldset>
               <div class="bonus-number-container flex-grow">
-                <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
+                <label for="bonus-number" class="mt-0 mb-3 text-center font-bold d-inline-block">보너스 번호</label>
                 <div class="d-flex justify-center">
-                  <input type="number" class="bonus-number text-center" min="1" max="45" />
+                  <input type="number" name="bonus-number" id="bonus-number" class="bonus-number text-center" min="1" max="45" required />
                 </div>
               </div>
             </div>
-            <button type="button" class="open-result-modal-button mt-5 btn btn-cyan w-100">
+            <button type="submit" class="open-result-modal-button mt-5 btn btn-cyan w-100">
               결과 확인하기
             </button>
           </form>
         </section>
       </div>
-    </div>
+    </main>
 
-    <div class="modal">
+    <div class="modal hidden" role="dialog" aria-modal="true">
       <div class="modal-inner p-10">
-        <div class="modal-close">
+        <div class="modal-close" aria-label="닫기">
           <svg viewbox="0 0 40 40">
             <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
           </svg>
@@ -86,34 +85,34 @@
               <tr class="text-center">
                 <td class="p-3">3개</td>
                 <td class="p-3">5,000</td>
-                <td class="p-3">n개</td>
+                <td class="p-3"><span class="winning-count" data-rank="fifth"></span>개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">4개</td>
                 <td class="p-3">50,000</td>
-                <td class="p-3">n개</td>
+                <td class="p-3"><span class="winning-count" data-rank="fourth"></span>개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">5개</td>
                 <td class="p-3">1,500,000</td>
-                <td class="p-3">n개</td>
+                <td class="p-3"><span class="winning-count" data-rank="third"></span>개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">5개 + 보너스볼</td>
                 <td class="p-3">30,000,000</td>
-                <td class="p-3">n개</td>
+                <td class="p-3"><span class="winning-count" data-rank="second"></span>개</td>
               </tr>
               <tr class="text-center">
                 <td class="p-3">6개</td>
                 <td class="p-3">2,000,000,000</td>
-                <td class="p-3">n개</td>
+                <td class="p-3"><span class="winning-count" data-rank="first"></span>개</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="text-center font-bold">당신의 총 수익률은 %입니다.</p>
+        <p class="text-center font-bold">당신의 총 수익률은 <span class="winning-rate"></span>%입니다.</p>
         <div class="d-flex justify-center mt-5">
-          <button type="button" class="btn btn-cyan">다시 시작하기</button>
+          <button type="button" class="btn btn-cyan restart-button">다시 시작하기</button>
         </div>
       </div>
     </div>

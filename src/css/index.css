@@ -28,11 +28,8 @@ button:disabled {
 }
 
 .hidden {
-  display: none;
-}
-
-.lotto-numbers {
-  font-size: 1rem;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .lotto-list .lotto {
@@ -41,7 +38,9 @@ button:disabled {
 }
 
 .lotto-list .lotto .lotto-numbers {
+  font-size: 1rem;
   display: none;
+  padding-left: 5px;
 }
 
 .lotto-list.show-number {
@@ -50,4 +49,9 @@ button:disabled {
 
 .lotto-list.show-number .lotto .lotto-numbers {
   display: inline;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
 }
