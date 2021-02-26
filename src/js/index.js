@@ -6,6 +6,7 @@ import { onPurchaseTypeToggle } from './handler/onPurchaseTypeToggle.js';
 import { onPurchaseResultToggle } from './handler/onPurchaseResultToggle.js';
 import { handlePurchasePriceSubmit } from './handler/handlePurchasePriceSubmit.js';
 import { handleWinningNumberSubmit } from './handler/handleWinningNumberSubmit.js';
+import { handleAutoPurchaseSubmit } from './handler/handleAutoPurchaseSubmit.js';
 
 const init = () => {
   const lotto = new Lotto();
@@ -13,6 +14,11 @@ const init = () => {
   $('#purchase-price-input-form').addEventListener('submit', (event) => {
     event.preventDefault();
     handlePurchasePriceSubmit(lotto);
+  });
+
+  $('#auto-purchase-input-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handleAutoPurchaseSubmit(lotto);
   });
 
   $('#winning-number-input-form').addEventListener('submit', (event) => {

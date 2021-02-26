@@ -38,6 +38,8 @@ export const VALUE = {
 export const ERR_MESSAGE = {
   LOTTO: {
     INVALID_PRICE: `${VALUE.LOTTO.TICKET_PRICE}원 이상의 금액만 입력이 가능합니다.`,
+    INVALID_TICKET_COUNT:
+      '현재 남은 금액을 초과하는 로또 티켓은 구매하실 수 없습니다.',
   },
 
   WINNING_NUMBER: {
