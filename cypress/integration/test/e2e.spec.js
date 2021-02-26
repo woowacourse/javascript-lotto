@@ -1,5 +1,11 @@
 import { AlertMessage } from "../../../src/js/Util/constants.js";
 
+import {
+  isBlankIncluded,
+  isDuplicated,
+  isInvalidLottoNumberRange,
+} from "../../../src/js/Util/validator.js";
+
 context("e2e test", () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5501/index.html");
@@ -51,9 +57,7 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.INVALID_RANGE
-        );
+        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_RANGE);
       });
     cy.reload();
 
@@ -61,9 +65,7 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.INVALID_RANGE
-        );
+        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_RANGE);
       });
   });
 
@@ -76,9 +78,7 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.INVALID_NUMBER
-        );
+        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
       });
     cy.reload();
 
@@ -86,18 +86,14 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.INVALID_NUMBER
-        );
+        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
       });
     cy.reload();
 
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.INVALID_NUMBER
-        );
+        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
       });
     cy.reload();
 
@@ -105,9 +101,7 @@ context("e2e test", () => {
     cy.get("#purchase-amount-submit-button")
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(
-          AlertMessage.INVALID_NUMBER
-        );
+        expect(stub.getCall(0)).to.be.calledWith(AlertMessage.INVALID_NUMBER);
       });
   });
 
@@ -144,13 +138,30 @@ context("e2e test", () => {
   it("토글 버튼을 클릭하면 각 로또의 번호가 출력된다.", () => {
     cy.get("#purchase-amount-input").type(3000);
     cy.get("#purchase-amount-submit-button").click();
-    cy.get("#lotto-image-number").children().should(($children) => {
-      expect($children.length).to.eq(1)
-    });
+    cy.get("#lotto-image-number")
+      .children()
+      .should(($children) => {
+        expect($children.length).to.eq(1);
+      });
 
     cy.get(".toggle-button").click({ force: true });
-    cy.get("#lotto-image-number").children().should(($children) => {
-      expect($children.length).to.eq(2)
-    });
+    cy.get("#lotto-image-number")
+      .children()
+      .should(($children) => {
+        expect($children.length).to.eq(2);
+      });
+  });
+
+  it("당첨 번호, 보너스 번호 입력 검증을 할 수 있다.", () => {
+    const validNumbers = [1, 10, 25, 33, 44, 45, 42];
+
+    expect(isBlankIncluded([1, 10, 25, 33, 44, 45, ""])).to.be.true;
+    expect(isBlankIncluded(validNumbers)).to.be.false;
+
+    expect(isInvalidLottoNumberRange([1, 10, 25, 33, 44, 45, 46])).to.be.true;
+    expect(isInvalidLottoNumberRange(validNumbers)).to.be.false;
+
+    expect(isDuplicated([1, 10, 25, 33, 44, 45, 45])).to.be.true;
+    expect(isDuplicated(validNumbers)).to.be.false;
   });
 });
