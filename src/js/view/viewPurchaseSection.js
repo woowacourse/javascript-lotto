@@ -16,6 +16,10 @@ export const renderPurchaseSection = (lotto) => {
   renderPurchaseBudget(lotto);
 };
 
+export const hidePurchaseSection = () => {
+  hideElement($purchaseSection);
+};
+
 export const renderAutoPurchaseForm = () => {
   showElement($autoPurchaseInputForm);
   hideElement($manualPurchaseInputForm);
