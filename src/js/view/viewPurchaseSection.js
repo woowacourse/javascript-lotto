@@ -4,11 +4,10 @@ import { hideElement, showElement } from '../utils/setProperty.js';
 const $purchaseSection = $('#purchase-section');
 const $autoPurchaseInputForm = $('#auto-purchase-input-form');
 const $manualPurchaseInputForm = $('#manual-purchase-input-form');
+const $purchaseSectionBudget = $('#purchase-section__budget');
 
 export const renderPurchaseBudget = (lotto) => {
-  $(
-    '#purchase-section__budget',
-  ).innerHTML = `남은 금액 : <strong>${lotto.purchaseBudget}</strong>원`;
+  $purchaseSectionBudget.innerHTML = `남은 금액 : <strong>${lotto.purchaseBudget}</strong>원`;
 };
 
 export const renderPurchaseSection = (lotto) => {
