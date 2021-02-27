@@ -1,0 +1,113 @@
+.number-selectors {
+  position: relative;
+  margin-right: 12px;
+  padding: 16px 24px;
+  border-radius: 2px;
+  border: 1px solid #e3bfbf;
+  box-sizing: border-box;
+}
+
+/* 로또용지 */
+
+.select-paper {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  list-style: none;
+}
+
+.select-paper label {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select-paper input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  cursor: pointer;
+}
+
+.select-paper span {
+  display: inline-block;
+  text-align: center;
+  padding: 6px 1.5px;
+  min-width: 24px;
+  font-size: 0.95rem;
+  color: #cb4342;
+  letter-spacing: -0.1rem;
+  box-sizing: border-box;
+}
+
+.select-paper span::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-top: 1px solid #cb4342;
+  border-left: 1px solid #cb4342;
+  border-right: 1px solid #cb4342;
+  box-sizing: border-box;
+}
+
+.select-paper span::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  border-bottom: 1px solid #cb4342;
+  border-left: 1px solid #cb4342;
+  border-right: 1px solid #cb4342;
+  box-sizing: border-box;
+}
+
+.select-paper input:hover ~ span {
+  color: white;
+  background-color: #cb4342;
+  font-weight: 400;
+}
+
+.select-paper input:checked ~ span {
+  color: white;
+  background-color: #cb4342;
+}
+
+.select-paper input:checked ~ span::before,
+.select-paper input:checked ~ span::after {
+  opacity: 0;
+}
+
+.select-paper input:focus ~ span {
+  border-color: black;
+  outline-color: black;
+}
+
+/* 로또용지 삭제버튼 */
+
+.paper-remove-button {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+}
+
+/* 로또용지 선택 체크메시지 */
+
+.select-check-message {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+}

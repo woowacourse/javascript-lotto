@@ -2,3 +2,7 @@
   height: 36px;
   box-sizing: border-box;
 }
+
+.input:focus {
+  outline-color: black;
+}

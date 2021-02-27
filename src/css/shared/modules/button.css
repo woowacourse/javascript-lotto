@@ -3,9 +3,9 @@
   min-width: 64px;
   padding: 0 16px;
   border-radius: 4px;
-  outline: 0;
   border-style: none;
   cursor: pointer;
+  box-shadow: 1px 1px 4px 1px rgba(16, 16, 16, 0.2);
 }
 
 .btn-cyan {
@@ -22,4 +22,52 @@
   color: rgba(16, 16, 16, 0.3);
   background-color: #00bcd4 !important;
   cursor: not-allowed;
+}
+
+.btn-rose {
+  background-color: #ff7070 !important;
+  border-color: #ff7070 !important;
+}
+
+.btn-rose:hover {
+  background-color: #d85050 !important;
+}
+
+.btn-rose:disabled,
+.btn-rose:disabled:hover {
+  color: rgba(16, 16, 16, 0.3);
+  background-color: #ff7070 !important;
+  cursor: not-allowed;
+}
+
+.btn-rose:focus {
+  outline-color: black;
+}
+
+/* Round Button */
+
+.r-btn {
+  width: 28px;
+  height: 28px;
+  color: black;
+  font-size: large;
+  border-radius: 20px;
+  border-width: 0;
+  background-color: #ff7070;
+  box-shadow: 1px 1px 4px 1px rgba(16, 16, 16, 0.2);
+}
+
+.r-btn:hover {
+  background-color: #d85050 !important;
+  cursor: pointer;
+}
+.r-btn:disabled,
+.r-btn:disabled:hover {
+  color: rgba(16, 16, 16, 0.3);
+  background-color: #ff7070 !important;
+  cursor: not-allowed;
+}
+
+.r-btn:focus {
+  outline: black;
 }
