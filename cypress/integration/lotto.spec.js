@@ -209,4 +209,63 @@ describe('LOTTO 테스트', () => {
         expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
       });
   });
+
+  it('구매할 금액을 입력한후 확인 버튼을 누르면 수동구매 폼이 나타난다.', () => {
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-numbers-input-section').should('be.visible');
+    cy.get('#lotto-numbers-input-first').should('be.focused');
+    cy.get('.lotto-count').should('have.text', '10');
+
+    cy.get('.lotto-list-section').should('be.visible');
+    cy.get('.lotto').should('have.length', '0');
+
+    cy.get('.winning-number-form-section').should('not.be.visible');
+  })
+
+  it('입력 란에 숫자를 입력하고 확인 버튼을 누르면, 로또 목록에 로또가 1개 추가 된다.', () => {
+    const lottoNumbers = [10, 11, 30, 25, 21, 20];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput)
+        .should('have.value', '')
+        .and('be.focused')
+        .type(lottoNumbers[index]);
+    });
+
+    cy.get('#lotto-numbers-input-button').click();
+    cy.get('purchased-lotto-count').should('have.text', '1');
+    cy.get('.lotto').should('have.length', '1');
+
+    cy.get('#lotto-numbers-toggle-button').click();
+    cy.get('.lotto-numbers').should('have.text', lottoNumbers.join(', '));
+  })
+
+  it('자동구매 버튼을 누르면 남은 개수만큼의 로또가 자동으로 생성된다.', () => {
+    const lottoNumbers = [10, 11, 30, 25, 21, 20];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput)
+        .should('have.value', '')
+        .and('be.focused')
+        .type(lottoNumbers[index]);
+    });
+
+    cy.get('#lotto-numbers-input-button').click();
+    cy.get('purchased-lotto-count').should('have.text', '1');
+    cy.get('.lotto').should('have.length', '1');
+
+    cy.get('#lotto-numbers-auto-button').click();
+    cy.get('purchased-lotto-count').should('have.text', '10');
+    cy.get('.lotto').should('have.length', '10');
+
+    cy.get('.lotto-numbers-input-section').should('not.be.visible');
+  })
 });
