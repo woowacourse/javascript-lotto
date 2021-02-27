@@ -11,6 +11,17 @@ describe('racing-game', () => {
     cy.get('#purchase-price-input-form__button').click();
   };
 
+  const typeSelfNumbersAndClickSubmitButton = (
+    inputNumbers = [2, 8, 14, 20, 26, 32],
+  ) => {
+    cy.get('.self-number').then((selfNumbers) => {
+      [...selfNumbers].forEach((selfNumber) => {
+        cy.wrap(selfNumber).type(inputNumbers.shift());
+      });
+    });
+    cy.get('#purchase-modal__self-input-form__button').click();
+  };
+
   const typeWinningNumbersAndClickShowResultButton = (
     inputNumbers = [5, 10, 15, 20, 25, 30, 35],
   ) => {
@@ -25,11 +36,41 @@ describe('racing-game', () => {
 
   const playLottoGame = (inputNumbers) => {
     typePurchasePriceAndClickSubmitButton();
+    cy.get('#purchase-modal__auto-section__button').click();
     typeWinningNumbersAndClickShowResultButton(inputNumbers);
   };
 
-  it('구입 금액에 3000원을 입력 시, 로또 3개가 자동으로 구입되야 한다.', () => {
-    typePurchasePriceAndClickSubmitButton(3000);
+  it('구입 금액을 입력 시, 로또 구매 모달이 나타나야한다.', () => {
+    typePurchasePriceAndClickSubmitButton();
+    cy.get('#purchase-modal').should('be.visible');
+  });
+
+  it('수동으로 번호를 입력하면 입력한 번호를 확인할 수 있어야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton();
+    typeSelfNumbersAndClickSubmitButton();
+
+    cy.get('#purchase-modal__self-result-section__table')
+      .children('tbody')
+      .its('length')
+      .then((len) => {
+        expect(len).to.equal(1);
+      });
+  });
+
+  it('총 구매 가능한 갯수보다 더 많은 수동 입력시, 경고 메시지가 출력되야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton(1000);
+    typeSelfNumbersAndClickSubmitButton();
+    typeSelfNumbersAndClickSubmitButton();
+
+    cy.get('@windowAlert').should(
+      'be.calledWith',
+      ERR_MESSAGE.LOTTO.OVER_PURCHASE,
+    );
+  });
+
+  it('구로또 구매 모달에서 자동 구매를 누르면 로또가 자동으로 구입되야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton();
+    cy.get('#purchase-modal__auto-section__button').click();
 
     cy.get('#purchase-result-section__label').should(
       'have.text',
@@ -54,6 +95,7 @@ describe('racing-game', () => {
 
   it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
     typePurchasePriceAndClickSubmitButton();
+    cy.get('#purchase-modal__auto-section__button').click();
 
     cy.get('#purchase-result-section__toggle').click({ force: true });
     cy.get('#purchase-result-section__row-align').should('not.be.visible');
@@ -72,7 +114,7 @@ describe('racing-game', () => {
     playLottoGame();
 
     cy.get('.modal-close').click();
-    cy.get('.modal').should('not.be.visible');
+    cy.get('#result-modal').should('not.be.visible');
   });
 
   it('당첨 번호에 중복된 번호을 입력시, 경고 메시지가 출력되야 한다.', () => {
