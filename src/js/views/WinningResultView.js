@@ -6,22 +6,32 @@ export default class WinningResultView extends View {
   constructor($element) {
     super($element);
     this.$modal = $('.modal');
-    this.winningNumbers = {};
+    this.winningNumbers = [];
 
     this.bindNumberInputEvent();
+    this.bindFocusEvent();
+    this.bindButtonEnableEvent();
     this.bindModalEvent();
   }
 
   bindNumberInputEvent() {
+    $('#winning-numbers-form').addEventListener('submit', e => {
+      e.preventDefault();
+      this.winningNumbers = [
+        ...$('#winning-numbers-form').getElementsByTagName('input'),
+      ].map(input => Number(input.value));
+    });
+  }
+
+  bindFocusEvent() {
     $$('.winning-number').forEach((winningNumber, idx) => {
-      winningNumber.addEventListener('change', () =>
-        this.insertWinningNumber(winningNumber)
-      );
       winningNumber.addEventListener('input', () =>
         this.moveFocus(winningNumber, idx)
       );
     });
+  }
 
+  bindButtonEnableEvent() {
     $('.bonus-number').addEventListener('input', () => {
       $('.open-result-modal-button').removeAttribute('disabled');
     });
@@ -37,10 +47,6 @@ export default class WinningResultView extends View {
       this.closeModal();
       this.emit('clickResetBtn');
     });
-  }
-
-  insertWinningNumber($element) {
-    this.winningNumbers[$element.dataset.indexNum] = Number($element.value);
   }
 
   moveFocus($element, idx) {

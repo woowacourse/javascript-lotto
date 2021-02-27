@@ -6,11 +6,7 @@ import {
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
 import { $ } from './utils/dom.js';
-import {
-  compareNumbers,
-  calculateEarningRate,
-  countByRank,
-} from './utils/utils.js';
+import LottoProcessor from './utils/lottoProcessor.js';
 
 import WinningResultView from './views/WinningResultView.js';
 import InputPriceView from './views/InputPriceView.js';
@@ -20,7 +16,7 @@ export default class LottoController {
   constructor() {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
-    this.winningResultView = new WinningResultView($('#input-lotto-nums'));
+    this.winningResultView = new WinningResultView($('#winning-numbers-form'));
   }
 
   init() {
@@ -31,7 +27,6 @@ export default class LottoController {
   reset() {
     this.lottos = [];
     this.purchasedPrice = 0;
-    this.rankCounts = Array(5).fill(0);
     this.isResultCalculated = false;
 
     this.inputPriceView.show().resetInputPrice();
@@ -71,21 +66,22 @@ export default class LottoController {
   }
 
   inputNumbersHandler(winningNumbers) {
+    console.log(winningNumbers);
     if (!isUniqueWinningNumber(winningNumbers)) {
       alert(ALERT_MESSAGES.DUPLICATE_NUMS);
       return;
     }
 
+    const lottoProcessor = new LottoProcessor(this.lottos, winningNumbers);
     if (!this.isResultCalculated) {
-      compareNumbers(this.lottos, winningNumbers);
-      this.lottos.forEach(lotto => lotto.updateRank());
-      countByRank(this.lottos, this.rankCounts);
+      lottoProcessor.checkMatchingNums();
+      lottoProcessor.calculateEarningRate(this.purchasedPrice);
+      this.isResultCalculated = true;
     }
-    this.isResultCalculated = true;
 
     this.winningResultView.showModal(
-      this.rankCounts,
-      calculateEarningRate(this.rankCounts, this.purchasedPrice)
+      lottoProcessor.rankCounts,
+      lottoProcessor.earningRate
     );
   }
 }
