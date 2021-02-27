@@ -75,6 +75,7 @@ class LottoApp {
     if (this.data.lottoCount === 0) {
       $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.add('d-none');
       showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
+      $(`${SELECTORS.WINNING_NUMBER_INPUT.INPUT}:first-child`).focus();
       return;
     }
 
@@ -108,6 +109,7 @@ class LottoApp {
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.add('d-none');
     showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
+    $(`${SELECTORS.WINNING_NUMBER_INPUT.INPUT}:first-child`).focus();
   }
 
   handleToggleLottoNumbers() {
