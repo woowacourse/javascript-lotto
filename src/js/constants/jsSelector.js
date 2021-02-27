@@ -14,11 +14,17 @@ const JS_SELECTOR = Object.freeze({
   WINNING_NUMBER: {
     CONTAINER: "winning-number-container",
   },
-  MODAL: {
-    PROFIT_RATE_PARAGRAPH: "modal__profit-rate",
-    RESTART_BUTTON: "modal__restart-button",
-    WINNING_MONEY_UNIT: "modal__winning-money-unit",
-    WINNING_COUNT: "modal__winning-count",
+  RESULT_MODAL: {
+    PROFIT_RATE_PARAGRAPH: "result-modal__profit-rate",
+    RESTART_BUTTON: "result-modal__restart-button",
+    WINNING_MONEY_UNIT: "result-modal__winning-money-unit",
+    WINNING_COUNT: "result-modal__winning-count",
+  },
+  PURCHASE_MODAL: {
+    CONTAINER: "purchase-modal-container",
+    BUTTON: "purchase-modal-container__button",
+    TOGGLE: "purchase-modal-container__toggle",
+    INPUT: "purchase-modal-container__input",
   },
 });
 

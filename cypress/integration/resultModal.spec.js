@@ -13,6 +13,7 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
 
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
+    cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.BUTTON)).click();
 
     const WINNING_NUMBERS = [1, 5, 8, 34, 44, 45];
     const BONUS_NUMBER = 7;
@@ -38,11 +39,11 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
     cy.get(".modal .result-table > tbody tr")
       .each(($tr) => {
         cy.wrap($tr)
-          .children(toDAS(JS_SELECTOR.MODAL.WINNING_MONEY_UNIT))
+          .children(toDAS(JS_SELECTOR.RESULT_MODAL.WINNING_MONEY_UNIT))
           .invoke("text")
           .then((winningMoneyUnitText) => {
             cy.wrap($tr)
-              .children(toDAS(JS_SELECTOR.MODAL.WINNING_COUNT))
+              .children(toDAS(JS_SELECTOR.RESULT_MODAL.WINNING_COUNT))
               .invoke("text")
               .then((winningCountText) => {
                 const winningCount = Number(winningCountText.slice(0, -1));
@@ -65,10 +66,13 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
           }
         )}입니다.`;
 
-        cy.get(toDAS(JS_SELECTOR.MODAL.PROFIT_RATE_PARAGRAPH)).should(
+        cy.get(toDAS(JS_SELECTOR.RESULT_MODAL.PROFIT_RATE_PARAGRAPH)).should(
           "have.text",
           profitRateParagraph
         );
       });
   });
+
+  cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER)).should("be.visible");
+  cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.BUTTON)).should("be.visible");
 });

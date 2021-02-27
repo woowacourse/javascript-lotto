@@ -4,7 +4,7 @@ import store from "../../store/index.js";
 import { $, toClassSelector as toCS } from "../../utils/index.js";
 import Presentaional from "./Presentational.js";
 
-const createModal = () => {
+const createResultModal = () => {
   const WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
 
   const $container = $(toCS(CLASSNAME.MODAL));
@@ -114,6 +114,6 @@ const createModal = () => {
   return { init };
 };
 
-const Modal = createModal();
+const ResultModal = createResultModal();
 
-export default Modal;
+export default ResultModal;

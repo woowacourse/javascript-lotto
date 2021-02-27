@@ -5,6 +5,7 @@
     "lottoNumbersToggle.spec.js",
     "winningNumberInput.spec.js",
     "resultModal.spec.js",
-    "restart.spec.js"
+    "restart.spec.js",
+    "purchaseModal.spec.js"
   ]
 }

@@ -2,10 +2,10 @@ import {
   CashContainer,
   LottoDetailContainer,
   WinningNumberContainer,
-  Modal,
+  ResultModal,
 } from "./components/index.js";
 
 CashContainer.init();
 LottoDetailContainer.init();
 WinningNumberContainer.init();
-Modal.init();
+ResultModal.init();

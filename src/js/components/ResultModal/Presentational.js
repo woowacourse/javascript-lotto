@@ -9,11 +9,13 @@ import {
 const createPresentational = () => {
   const $container = $(toCS(CLASSNAME.MODAL));
   const $close = $(toCS(CLASSNAME.MODAL.CLOSE));
-  const $restartButton = $(toDAS(JS_SELECTOR.MODAL.RESTART_BUTTON));
+  const $restartButton = $(toDAS(JS_SELECTOR.RESULT_MODAL.RESTART_BUTTON));
   const $profitRateParagraph = $(
-    toDAS(JS_SELECTOR.MODAL.PROFIT_RATE_PARAGRAPH)
+    toDAS(JS_SELECTOR.RESULT_MODAL.PROFIT_RATE_PARAGRAPH)
   );
-  const $$winningCounts = [...$$(toDAS(JS_SELECTOR.MODAL.WINNING_COUNT))];
+  const $$winningCounts = [
+    ...$$(toDAS(JS_SELECTOR.RESULT_MODAL.WINNING_COUNT)),
+  ];
 
   const TEMPLATE = (profitRate) =>
     `당신의 총 수익률은 ${profitRate.toLocaleString("en-US", {
