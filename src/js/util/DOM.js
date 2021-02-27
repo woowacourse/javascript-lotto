@@ -11,7 +11,7 @@ export const $ = (() => {
 
   constructor.prototype.each = function (callBack) {
     if (!callBack || typeof callBack !== 'function') {
-      return;
+      throw new Error('Custom DOM Library Error: this method needs callback function!');
     }
 
     this.targets.forEach((target, idx) => callBack(target, idx));
@@ -21,7 +21,7 @@ export const $ = (() => {
 
   constructor.prototype.map = function (callBack) {
     if (!callBack || typeof callBack !== 'function') {
-      return;
+      throw new Error('Custom DOM Library Error: this method needs callback function!');
     }
 
     return [...this.targets].map((target, idx) => callBack(target, idx));
@@ -29,31 +29,47 @@ export const $ = (() => {
 
   constructor.prototype.filter = function (callBack) {
     if (!callBack || typeof callBack !== 'function') {
-      return;
+      throw new Error('Custom DOM Library Error: this method needs callback function!');
     }
 
     return [...this.targets].filter((target, idx) => callBack(target, idx));
   };
 
   constructor.prototype.addClass = function (className) {
+    if (className === undefined) {
+      throw new Error('Custom DOM Library Error: this method needs classname!');
+    }
+
     this.each(target => target.classList.add(className));
 
     return this;
   };
 
   constructor.prototype.removeClass = function (className) {
+    if (className === undefined) {
+      throw new Error('Custom DOM Library Error: this method needs classname!');
+    }
+
     this.each(target => target.classList.remove(className));
 
     return this;
   };
 
   constructor.prototype.toggleClass = function (className) {
+    if (className === undefined) {
+      throw new Error('Custom DOM Library Error: this method needs classname!');
+    }
+
     this.each(target => target.classList.toggle(className));
 
     return this;
   };
 
   constructor.prototype.setEvent = function (type, eventHandler) {
+    if (type === undefined || eventHandler === undefined) {
+      throw new Error('Custom DOM Library Error: this method needs event type and event handler!');
+    }
+
     this.each(target => target.addEventListener(type, eventHandler));
 
     return this;
@@ -64,6 +80,10 @@ export const $ = (() => {
   };
 
   constructor.prototype.setValue = function (value) {
+    if (value === undefined) {
+      throw new Error('Custom DOM Library Error: this method needs value');
+    }
+
     this.each(target => {
       target.value = value;
     });
