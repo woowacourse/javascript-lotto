@@ -48,3 +48,9 @@ img{
 .lotto-number-input-wrapper{
   width: 300px;
 }
+
+.ticket{
+  object-fit: scale-down;
+  width: 32px;
+  height: 32px;
+}

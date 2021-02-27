@@ -40,7 +40,7 @@ export default class ManualLottoInput extends Component {
         type: 'button',
         classes: ['btn', 'btn-cyan', 'w-100'],
         disabled: false,
-        text: '구매 확정',
+        text: '잔액으로 자동구매 하기',
       }).getTemplate()}
     </div>
         `;

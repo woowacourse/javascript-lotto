@@ -27,11 +27,11 @@ export const changePurchaseType = isManual => {
   };
 };
 
-export const addLotto = numbers => {
+export const addLotto = (numbers, purchaseType) => {
   'use strict';
   return {
     type: ADD_LOTTO,
-    payload: { lottos: [numbers] },
+    payload: { lottos: [numbers], purchaseType },
   };
 };
 

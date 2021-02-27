@@ -17,3 +17,10 @@ export const PURCHASE_TYPE = {
   MANUAL: 'manual',
   AUTO: 'auto',
 };
+
+export const RANK_FOR_MATCHED_COUNT = {
+  6: 1,
+  5: 3,
+  4: 4,
+  3: 5,
+};

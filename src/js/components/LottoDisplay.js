@@ -42,6 +42,8 @@ export default class LottoDisplay extends Component {
   }
 
   onToggleSwitch() {
+    this.$lottoDisplayArea.classList.toggle('flex-col');
+    this.$lottoDisplayArea.classList.toggle('items-start');
     $$('.lotto-numbers').forEach($lottoNumbers => {
       $lottoNumbers.classList.toggle('d-none');
     });
@@ -53,7 +55,8 @@ export default class LottoDisplay extends Component {
 
   lottoTemplate(numbers) {
     return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">
-              🎟️ <span class="lotto-numbers d-none text-2xl ml-4">${numbers.join(
+              <img class="ticket" src="https://img.icons8.com/ios-filled/50/000000/ticket-confirmed.png"/>
+              <span class="lotto-numbers d-none text-2xl ml-4">${numbers.join(
                 ', ',
               )}</span>
             </span>`;

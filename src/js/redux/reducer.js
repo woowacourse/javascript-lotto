@@ -1,4 +1,9 @@
-import { LOTTO, PURCHASE_TYPE, REWARDS } from '../utils/constants.js';
+import {
+  LOTTO,
+  PURCHASE_TYPE,
+  REWARDS,
+  RANK_FOR_MATCHED_COUNT,
+} from '../utils/constants.js';
 import {
   CALCULATE_PROFIT,
   CREATE_LOTTOS,
@@ -9,6 +14,7 @@ import {
   UPDATE_PAYMENT,
   ADD_LOTTO,
 } from '../redux/actionType.js';
+import { getMatchedCount } from '../utils/common.js';
 
 const paymentReducer = (state = 0, { type, payload = {} }) => {
   switch (type) {
@@ -47,30 +53,6 @@ const lottosReducer = (state = [], { type, payload = {} }) => {
 };
 
 export const winningCountReducer = (state, lottos, { type, payload = {} }) => {
-  const getMatchedCount = (winningNumbers, numbers) => {
-    let count = 0;
-    numbers.forEach(number => {
-      if (winningNumbers.includes(number)) count++;
-    });
-    return count;
-  };
-
-  const countWinner = (winningNumbers, bonusNumber, lottoNumbers) => {
-    const count = getMatchedCount(winningNumbers, lottoNumbers);
-    if (count === 6) {
-      return 1;
-    } else if (count === 5 && lottoNumbers.includes(bonusNumber)) {
-      return 2;
-    } else if (count === 5) {
-      return 3;
-    } else if (count === 4) {
-      return 4;
-    } else if (count === 3) {
-      return 5;
-    }
-    return -1;
-  };
-
   switch (type) {
     case DECIDE_WINNER:
       const { winningNumbers, bonusNumber } = payload;
@@ -88,8 +70,10 @@ export const winningCountReducer = (state, lottos, { type, payload = {} }) => {
       );
 
       lottos.forEach(lottoNumbers => {
-        const rank = countWinner(winningNumbers, bonusNumber, lottoNumbers);
-        rank !== -1 && winningCountTemp[`rank${rank}`]++;
+        let rank =
+          RANK_FOR_MATCHED_COUNT[getMatchedCount(winningNumbers, lottoNumbers)];
+        rank = rank === 3 && lottoNumbers.includes(bonusNumber) ? 2 : rank;
+        rank && winningCountTemp[`rank${rank}`]++;
       });
 
       return winningCountTemp;
