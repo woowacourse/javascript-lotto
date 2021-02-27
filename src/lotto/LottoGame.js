@@ -2,9 +2,13 @@ import { getRandomNumber } from '../utils/random.js';
 import { LOTTO, REWARDS, CHECK_SECOND_CONDITION_NUMBER } from '../constants.js';
 
 export default class LottoGame {
-  #lottoItemList = [];
-  #winningNumberList = [];
-  #bonusNumber = null;
+  #lottoItemList;
+  #winningNumberList;
+  #bonusNumber;
+
+  constructor(){
+    this.init()
+  }
 
   get lottoItemList() {
     return this.#lottoItemList;
