@@ -6,6 +6,7 @@ body {
   margin: 0;
   height: 100%;
   font-size: 16px;
+  user-select: none;
 }
 
 #app {
@@ -25,4 +26,8 @@ body {
 
 .hide {
   display: none;
+}
+
+.detail-mode .lotto-numbers {
+  display: inline;
 }

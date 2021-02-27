@@ -1,41 +1,35 @@
 import Component from '../lib/core/Component.js';
-import { $, $$ } from '../lib/utils/dom.js';
+import { $ } from '../lib/utils/dom.js';
 
 class TicketList extends Component {
-  constructor($target, props) {
-    super($target, props);
-    this.props.tickets.subscribe(this.mountTemplate.bind(this));
-  }
-
   mountTemplate() {
+    const tickets = this.props.tickets.get();
+
     this.$target.innerHTML = `
       <div class="d-flex">
         <label class="flex-auto my-0">
-          총 ${this.props.tickets.get().length}개를 구매하였습니다.
+          총 ${tickets.length}개를 구매하였습니다.
         </label>
-        <div class="flex-auto d-flex justify-end pr-1">   
-          ${
-            this.props.tickets.get().length
-              ? this.createDetailModeToggleTemplate()
-              : ''
-          }
+        <div class="flex-auto d-flex justify-end pr-1">
+          ${tickets.length ? this.createDetailModeToggleTemplate() : ''}
         </div>
       </div>
       <div id="ticket-list" class="d-flex flex-wrap">
-        ${this.props.tickets
-          .get()
-          .reduce((acc, ticket) => acc + this.createTicketTemplate(ticket), '')}
+        ${tickets.reduce(
+          (acc, ticket) => acc + this.createTicketTemplate(ticket),
+          ''
+        )}
       </div>
     `;
   }
 
   createDetailModeToggleTemplate() {
     return `
-        <label class="switch">
-          <input id="detail-mode-toggle" type="checkbox" class="lotto-numbers-toggle-button" />
-          <span class="text-base font-normal">번호보기</span>
-        </label>
-      `;
+      <label class="switch">
+        <input id="detail-mode-toggle" type="checkbox" class="lotto-numbers-toggle-button" />
+        <span class="text-base font-normal">번호보기</span>
+      </label>
+    `;
   }
 
   createTicketTemplate(ticket) {
@@ -47,21 +41,36 @@ class TicketList extends Component {
     `;
   }
 
+  subscribeStates() {
+    this.props.tickets.subscribe(this.mountTemplate.bind(this));
+  }
+
   initEvent() {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id !== 'detail-mode-toggle') return;
 
-      if (!target.checked) {
-        $('#ticket-list').classList.remove('flex-col');
-        $$('.lotto-numbers').forEach(element => element.classList.add('hide'));
-      } else {
-        $('#ticket-list').classList.add('flex-col');
-        $$('.lotto-numbers').forEach(element =>
-          element.classList.remove('hide')
-        );
-      }
+      this.toggleDetailMode(target.checked);
     });
   }
+
+  toggleDetailMode(isChecked) {
+    if (isChecked) {
+      this.turnDetailModeOn();
+    } else {
+      this.turnDetailModeOff();
+    }
+  }
+
+  turnDetailModeOn() {
+    $('#ticket-list').classList.add('flex-col', 'detail-mode');
+  }
+
+  turnDetailModeOff() {
+    $('#ticket-list').classList.remove('flex-col', 'detail-mode');
+  }
+
+  initStates() {}
+  mountChildComponents() {}
 }
 
 export default TicketList;
