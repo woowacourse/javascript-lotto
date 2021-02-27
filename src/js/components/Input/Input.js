@@ -1,3 +1,5 @@
+import { LOTTO } from '../../utils/constants.js';
+
 export default class Input {
   constructor({
     id,
@@ -16,6 +18,8 @@ export default class Input {
   getTemplate() {
     return `<input ${this.id ? `id=${this.id}` : ''} type=${
       this.type
-    } class="${this.classes.join(' ')}" placeholder="${this.placeholder}" />`;
+    } class="${this.classes.join(' ')}" placeholder="${
+      this.placeholder
+    }" min="${LOTTO.MIN_NUM}" max="${LOTTO.MAX_NUM}"/>`;
   }
 }
