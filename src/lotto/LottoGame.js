@@ -6,8 +6,8 @@ export default class LottoGame {
   #winningNumberList;
   #bonusNumber;
 
-  constructor(){
-    this.init()
+  constructor() {
+    this.init();
   }
 
   get lottoItemList() {
@@ -70,7 +70,7 @@ export default class LottoGame {
       numberList.add(getRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
     }
 
-    return [...numberList];
+    return [...numberList].sort((a, b) => a - b);
   }
 
   #addLottoItem() {
