@@ -8,7 +8,9 @@
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "stylelint": "^13.11.0",
+    "stylelint-config-standard": "^20.0.0"
   },
   "description": "행운의 로또 프로젝트",
   "scripts": {
