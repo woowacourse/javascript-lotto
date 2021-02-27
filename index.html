@@ -11,13 +11,14 @@
       <div class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-<<<<<<< HEAD
+
           <form class="mt-5" id="payment-submit">
-=======
-          <form class="mt-5" id="payment-form">
->>>>>>> 91701d8... [2단계 - 행운의 로또 미션] 그루밍(강민경) 미션 제출합니다. (#39)
             <label class="mb-2 d-inline-block"
               >구입할 금액을 입력해주세요.
+
+          <form class="mt-5" id="payment-form">
+            <label class="mb-2 d-inline-block">
+              구입할 금액을 입력해주세요.
             </label>
             <div class="d-flex">
               <input
@@ -44,10 +45,10 @@
             </div>
             <div id="ticket-list" class="d-flex flex-wrap"></div>
           </section>
-          <form id="lotto-number-form" class="mt-9">
-            <label class="flex-auto d-inline-block mb-3"
-              >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
-            >
+          <form id="winning-number-form" class="mt-9">
+            <label class="flex-auto d-inline-block mb-3">
+              지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
+            </label>
             <div class="d-flex">
               <div>
                 <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
@@ -56,36 +57,48 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     name="first"
+                    min="1"
+                    max="45"
                     required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
                     name="second"
+                    min="1"
+                    max="45"
                     required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
                     name="third"
+                    min="1"
+                    max="45"
                     required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
                     name="fourth"
+                    min="1"
+                    max="45"
                     required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
                     name="fifth"
+                    min="1"
+                    max="45"
                     required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
                     name="sixth"
+                    min="1"
+                    max="45"
                     required
                   />
                 </div>
@@ -97,6 +110,8 @@
                     type="number"
                     class="bonus-number text-center"
                     name="bonus"
+                    min="1"
+                    max="45"
                     required
                   />
                 </div>
