@@ -180,24 +180,19 @@ export default class LottoController {
   }
 
   _countEqualNumbers(winningNumbers, bonusNumber, myNumbers) {
-    const winningNumberSet = new Set(winningNumbers);
     const myNumberSet = new Set(myNumbers);
-    let winningCount = 0;
-    let bonusCount = 0;
-
-    for (let number of winningNumberSet) {
-      if (myNumberSet.has(number)) {
-        winningCount++;
-      }
-    }
-
-    if (myNumberSet.has(bonusNumber)) {
-      bonusCount++;
-    }
+    const bonusCount = Number(myNumberSet.has(bonusNumber));
+    const winningCount =
+      winningNumbers.reduce((acc, number) => {
+        if (!myNumberSet.has(number)) {
+          return acc;
+        }
+        return acc + 1;
+      }, 0);
 
     return {
       winningCount,
-      bonusCount
+      bonusCount,
     };
   }
 }
