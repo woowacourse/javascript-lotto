@@ -34,6 +34,8 @@ export default class LottoConfirmationController {
   }
 
   setPrizeTable(winningNumber, bonusNumber) {
+    Object.values(this.prizeTable).forEach((ranking) => (ranking.num = 0)); // reset prizeTable
+
     this.lottoModel.lottoList.forEach((lotto) => {
       const ranking = this.checkRanking(
         lotto.number,
