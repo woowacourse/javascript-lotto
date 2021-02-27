@@ -1,2 +1,7 @@
-export const $ = selector => document.querySelector(selector);
-export const $$ = selector => document.querySelectorAll(selector);
+const $ = selector => {
+  const elements = document.querySelectorAll(selector);
+
+  return elements.length === 1 ? elements[0] : elements;
+};
+
+export default $;
