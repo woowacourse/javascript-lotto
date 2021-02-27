@@ -18,4 +18,5 @@ export const LOTTO_WINNING_PRICE = {
 export const ALERT_MESSAGES = {
   INCORRECT_UNIT: '로또 구입 금액을 1,000원 단위로 입력해 주세요.',
   DUPLICATE_NUMS: '로또 번호에는 중복된 숫자를 입력할 수 없습니다.',
+  TURN_TO_AUTO_PURCHASE: '남은 금액은 자동구매로 진행됩니다. 계속하시겠습니까?',
 };

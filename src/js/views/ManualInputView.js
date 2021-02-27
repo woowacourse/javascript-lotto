@@ -10,6 +10,8 @@ export default class ManualInputView extends View {
 
     this.createManualLottos(count);
     this.bindManualInputEvent();
+    this.showAllConfirmButton();
+    this.bindConfirmEvent();
   }
 
   createManualLottos(count) {
@@ -66,5 +68,25 @@ export default class ManualInputView extends View {
       <span class="lotto-icon">🎟️ </span>
       <span class="lotto-detail">${lotto.numberDetail}</span>
     `;
+  }
+
+  showAllConfirmButton() {
+    const allConfirmBtn = document.createElement('template');
+    allConfirmBtn.innerHTML = `
+      <button
+        type="submit"
+        id="manual-confirm-btn"
+        class="open-result-modal-button mt-5 btn btn-cyan w-100"
+      >
+        구매 확정하기
+      </button>
+    `;
+    this.$element.appendChild(allConfirmBtn.content);
+  }
+
+  bindConfirmEvent() {
+    $('#manual-confirm-btn').addEventListener('click', () => {
+      this.emit('confirm', [...$$('.lotto-detail')].length);
+    });
   }
 }

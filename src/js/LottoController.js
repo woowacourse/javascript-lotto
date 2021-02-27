@@ -109,6 +109,9 @@ export default class LottoController {
     this.manualInputView.on('submitNumbers', e =>
       this.inputManualNumbersHandler(e.detail)
     );
+    this.manualInputView.on('confirm', e =>
+      this.confirmManualPurchaseHandler(e.detail)
+    );
   }
 
   inputManualNumbersHandler(eventDetail) {
@@ -120,6 +123,15 @@ export default class LottoController {
       return;
     }
     this.createManualLottos(ticketNumbers, eventDetail.ticketNumber);
+  }
+
+  confirmManualPurchaseHandler(manualCount) {
+    if (manualCount < this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT) {
+      const agreeAutoPurchase = confirm(ALERT_MESSAGES.TURN_TO_AUTO_PURCHASE);
+      if (agreeAutoPurchase) {
+        console.log('자동 구매로 전환');
+      }
+    }
   }
 
   inputWinningNumbersHandler(winningNumbers) {
