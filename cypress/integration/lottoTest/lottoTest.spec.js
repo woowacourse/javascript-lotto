@@ -18,7 +18,7 @@ describe('로또 게임 테스트', () => {
   }
 
   function typeManualNumberAndConfirm() {
-    cy.get('.manual-wrapper').each((manualTicket, outerIdx) => {
+    cy.get('.manual-wrapper').each(manualTicket => {
       cy.wrap(manualTicket)
         .find('.manual-number')
         .each((manualNumber, innerIdx) => {
