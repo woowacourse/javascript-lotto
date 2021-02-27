@@ -99,7 +99,7 @@ describe('수동구매/자동구매 UI 검사', () => {
 
   let numOfManualSelect = 0;
 
-  it('용지추가 버튼을 누를 때마다 로또번호 선택용지가 한 장씩 화면에 추가된다.', () => {
+  it('로또용지 추가버튼을 누를 때마다 로또번호 선택용지가 한 장씩 화면에 추가된다.', () => {
     numOfManualSelect = 1;
     cy.get('.paper-add-button').click();
     cy.get('number-selectors').should('have.length', numOfManualSelect);
@@ -115,6 +115,10 @@ describe('수동구매/자동구매 UI 검사', () => {
       .first()
       .select(`${1 + numOfLotto - numOfManualSelect}장`);
     cy.get('.purchase-number-summary').should('have.text', summary(0, numOfLotto));
+  });
+
+  it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화 된다.', () => {
+    cy.get('.paper-add-button').should('be.disabled');
   });
 });
 
