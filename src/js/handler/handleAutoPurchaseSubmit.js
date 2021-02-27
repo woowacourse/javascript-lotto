@@ -10,7 +10,7 @@ const isValidTicketCount = (currentBudget, purchaseTicketCount) => {
 
 export const handleAutoPurchaseSubmit = (lotto) => {
   const $autoPurchaseInput = $('#auto-purchase-input-form__input');
-  let purchaseTicketCount = $autoPurchaseInput.value;
+  const purchaseTicketCount = $autoPurchaseInput.value;
   const currentBudget = lotto.getPurchaseBudget();
 
   if (!isValidTicketCount(currentBudget, purchaseTicketCount)) {
@@ -23,7 +23,7 @@ export const handleAutoPurchaseSubmit = (lotto) => {
     currentBudget - purchaseTicketCount * VALUE.LOTTO.TICKET_PRICE,
   );
 
-  while (purchaseTicketCount--) {
+  for (let i = 0; i < purchaseTicketCount; i++) {
     lotto.addTicket(new Ticket());
   }
 
