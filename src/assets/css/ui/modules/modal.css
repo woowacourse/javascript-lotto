@@ -1,4 +1,4 @@
-.modal {
+#modal {
   opacity: 0;
   visibility: hidden;
   display: flex;
@@ -12,7 +12,7 @@
   z-index: 2;
 }
 
-.modal.open {
+#modal.open {
   opacity: 1;
   visibility: visible;
 }
@@ -27,7 +27,7 @@
   position: relative;
 }
 
-.modal-close {
+#modal-close {
   margin: 20px;
   width: 20px;
   position: absolute;

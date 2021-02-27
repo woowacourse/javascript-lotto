@@ -1,46 +1,109 @@
-import { lottoGame } from '../store.js';
+import LottoGame from './LottoGame.js';
+import lottoGameView from './view.js';
+import { getProfitRate } from '../utils/calculate.js';
+import { getKRString } from '../utils/format.js';
+import { LOTTO } from '../constants.js';
 import {
-  LOTTO_PRICE,
-  NUMBER_LIST_LENGTH,
-  MIN_NUMBER,
-  MAX_NUMBER,
-} from '../constants.js';
-import lottoGameUI from './ui.js';
+  $resultModalOpenButton,
+  $costSubmitButton,
+  $costSubmitForm,
+  $lottoNumbersToggleButton,
+  $costInput,
+  $modalClose,
+  $correctNumberWrapper,
+  $restartButton,
+  $correctNumberInputForm
+} from '../elements.js';
+import message from './validators/message.js';
+import { getCorrectNumbers } from './domReader.js';
 
-const getRandomNumberList = () => {
-  const numberList = [];
-  while (numberList.length < NUMBER_LIST_LENGTH) {
-    const randomNumber = Math.floor(MIN_NUMBER + Math.random() * MAX_NUMBER);
-    if (!numberList.includes(randomNumber)) {
-      numberList.push(randomNumber);
-    }
+const lottoGame = new LottoGame();
+
+const getTotalProfit = (rankItemList) => {
+  return rankItemList.reduce(
+    (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
+    0,
+  );
+};
+
+const purchaseLottoItems = (cost) => {
+  const lottoItemCount = cost / LOTTO.PRICE;
+  lottoGame.init();
+  lottoGame.addLottoItems(lottoItemCount);
+  lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
+};
+
+const assignResult = (correctNumbers) => {
+  lottoGame.assignCorrectNumbers(correctNumbers);
+  lottoGame.assignMatchCount();
+}
+
+const showWinningResult = () => {
+  const rankItemList = lottoGame.getRankItemList();
+  const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
+  lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
+};
+
+const onCostSubmit = (e) => {
+  e.preventDefault();
+  const cost = Number($costInput.value);
+  const userGuideMessage = message.getCostValidation(cost);
+  if (userGuideMessage) {
+    lottoGameView.showMessage(userGuideMessage);
+    $costInput.value = '';
+    return;
   }
-
-  return numberList;
+  lottoGameView.resetToggleButton();
+  purchaseLottoItems(cost);
 };
 
-const addLottoItems = (lottoItemCount) => {
-  for (let i = 0; i < lottoItemCount; i += 1) {
-    const numberList = getRandomNumberList();
-    lottoGame.addLottoItem(numberList);
+const onShowLottoNumbersToggle = (e) => {
+  e.target.checked
+    ? lottoGameView.displayLottoNumbers() 
+    : lottoGameView.hideLottoNumbers();
+};
+
+const onResultModalOpen = (e) => {
+  e.preventDefault();
+  const correctNumbers = getCorrectNumbers();
+  const userGuideMessage = message.getModalOpenValidation(correctNumbers);
+  if (userGuideMessage) {
+    lottoGameView.showMessage(userGuideMessage);
+    return;
+  }
+  assignResult(correctNumbers);
+  showWinningResult()
+};
+
+const onResultModalClose = () => {
+  lottoGameView.closeResultModal();
+};
+
+const onCorrectNumberInput = (e) => {
+  const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
+  if (userGuideMessage) {
+    lottoGameView.showMessage(userGuideMessage);
+    e.target.value = '';
+    e.target.focus();
   }
 };
 
-export default {
-  purchaseLottoItems(cost) {
-    const lottoItemCount = cost / LOTTO_PRICE;
-    lottoGame.initLottoItemList();
-    addLottoItems(lottoItemCount);
-    lottoGameUI.renderResult(lottoGame.lottoItemList);
-  },
-  toggleLottoItemNumbers(checked) {
-    if (checked) {
-      lottoGameUI.displayLottoNumbers();
-      return;
-    }
-    lottoGameUI.hideLottoNumbers();
-  },
-  initToggleButton() {
-    lottoGameUI.resetToggleButton();
+const onRestart = () => {
+  lottoGame.init();
+  lottoGameView.init();
+};
+
+const controller = {
+  bindLottoGameEvents() {
+    $costSubmitForm.addEventListener('submit', onCostSubmit);
+    $costSubmitButton.addEventListener('click', onCostSubmit);
+    $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
+    $modalClose.addEventListener('click', onResultModalClose);
+    $correctNumberInputForm.addEventListener('submit', onResultModalOpen);
+    $resultModalOpenButton.addEventListener('click', onResultModalOpen);
+    $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
+    $restartButton.addEventListener('click', onRestart);
   },
 };
+
+export default controller;
