@@ -6,7 +6,7 @@ import { renderPurchaseBudget } from '../view/viewPurchaseSection.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 
 const hasPurchaseBudget = (currentBudget) => {
-  return currentBudget >= VALUE.LOTTO.TICKET_PRICE ? true : false;
+  return currentBudget >= VALUE.LOTTO.TICKET_PRICE;
 };
 
 export const handleManualPurchaseSubmit = (lotto) => {
