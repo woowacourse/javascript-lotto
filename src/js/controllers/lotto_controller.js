@@ -30,28 +30,25 @@ class LottoController {
       return alert(errorMessage)
     }
 
-    for (let i = 0; i < getTicketsCount(price); i++) {
-      this.model.generateRandomTicket()
-    }
+    this.model.generateLottos(getTicketsCount(price))
     this.#managePocket()
   }
 
   #managePocket() {
-    const tickets = this.model.tickets
-    this.view.renderPocketSection(tickets)
+    this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
     this.#handlePocket()
     this.#handleModalOpen()
   }
 
   #manageModalOpen() {
-    const { numbers, bonus } = getAnswerInput()
-    const errorMessage = checkAnswerValid(numbers, bonus)
+    const answer = getAnswerInput()
+    const errorMessage = checkAnswerValid(answer)
     if (errorMessage) {
       return alert(errorMessage)
     }
 
-    this.model.calculateLottosResult(numbers, bonus)
+    this.model.calculateLottosResult(answer)
     this.view.renderModalSection(this.model.lottoResult, this.model.profitRate)
     this.#handleModalClose()
     this.#handleReset()

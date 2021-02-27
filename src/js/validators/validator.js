@@ -18,8 +18,8 @@ export const checkPriceValid = (price) => {
   return ""
 }
 
-export const checkAnswerValid = (numbers, bonus) => {
-  const answers = [...numbers, bonus]
+export const checkAnswerValid = (answer) => {
+  const answers = [...answer.numbers, answer.bonus]
 
   if (AnswerValidator.isLessFilled(answers)) {
     return ERROR_MESSAGE.ANSWER_CANNOT_BE_EMPTY
