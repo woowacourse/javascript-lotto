@@ -3,11 +3,14 @@
 import { $ } from '../util/index.js';
 
 export class LottoView {
+  $lottoSection = $('#lotto-section');
+  $lottoResultForm = $('#lotto-result-form');
+
   renderLottoSection(lottos) {
     $('#lotto-count').innerText(`${lottos.length}`);
     $('#lotto-container').innerHTML(lottoTemplate(lottos));
-    $('#lotto-section').show();
-    $('#lotto-result-form').show();
+    this.$lottoSection.show();
+    this.$lottoResultForm.show();
 
     function lottoTemplate(lottos) {
       return lottos.reduce((html, lotto, idx) => {
@@ -21,5 +24,17 @@ export class LottoView {
         `);
       }, '');
     }
+  }
+
+  renderWinningResult({ rankCounts, earningRate }) {
+    rankCounts.forEach((count, rank) => {
+      rank !== 0 && $(`[data-rank='${rank}']`).innerText(`${count}개`);
+    });
+    $('#earning-rate').innerText(`${earningRate}`);
+  }
+
+  reset() {
+    this.$lottoSection.hide();
+    this.$lottoResultForm.hide();
   }
 }
