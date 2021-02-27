@@ -12,7 +12,21 @@ context('Actions', () => {
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
-    cy.get('#ticket-list > div').should('have.length', 5);
+  });
+
+  it('소비자는 수동 구매를 할 수 있다.', () => {
+    let i = 10;
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', '2');
   });
 
   it('1000원 미만의 금액은 입력할 수 없다.', () => {
@@ -28,15 +42,35 @@ context('Actions', () => {
   });
 
   it('토글 버튼을 누르면 티켓의 번호를 보여준다.', () => {
+    let i = 10;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', 2);
     cy.get('.switch').click();
-    cy.get('.ticket-number').should('have.length', 5);
+    cy.get('.ticket-number').should('have.length', 2);
   });
 
   it('각 티켓은 1-45 사이의 6개 랜덤 숫자를 가진다.', () => {
-    cy.get('input[name=payment-input]').type('1000');
+    let i = 10;
+    cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', 2);
     cy.get('.switch').click();
     cy.get('.ticket-number').then(elements => {
       elements[0].innerText.split(', ').forEach(number => {
@@ -51,11 +85,21 @@ context('Actions', () => {
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', 2);
+    cy.get('.switch').click();
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
     cy.get('.bonus-number').type(34);
-    cy.get('#result').click();
+    cy.get('.open-result-modal-button[type=submit]').click();
 
     cy.get('.modal').should('be.visible');
   });
@@ -64,11 +108,21 @@ context('Actions', () => {
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', 2);
+    cy.get('.switch').click();
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
     cy.get('.bonus-number').type(34);
-    cy.get('#result').click();
+    cy.get('.open-result-modal-button[type=submit]').click();
     cy.get('#reset').click();
     cy.get('.modal').should('not.to.be.visible');
   });
@@ -76,6 +130,7 @@ context('Actions', () => {
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('.winning-number[name=first]').type(99);
+    cy.get('.winning-number[name=second]').focus();
     cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
   });
 
@@ -87,7 +142,7 @@ context('Actions', () => {
       cy.wrap(element).type(1);
     });
     cy.get('.bonus-number').type(34);
-    cy.get('#result').click();
+    cy.get('.open-result-modal-button[type=submit]').click();
     cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
   });
 });
