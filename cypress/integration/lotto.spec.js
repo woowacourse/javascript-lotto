@@ -20,7 +20,7 @@ describe('racing-game', () => {
       });
     });
     cy.get('.bonus-number').type(inputNumbers.shift());
-    cy.get('.open-result-modal-button').click();
+    cy.get('#winning-number-input-form__button').click();
   };
 
   const playLottoGame = (inputNumbers) => {
@@ -95,14 +95,14 @@ describe('racing-game', () => {
 
   it('"다시 시작하기" 버튼 클릭시 행운의 로또 초기 화면으로 돌아가야 한다.', () => {
     playLottoGame();
-    cy.get('.modal').should('be.visible');
+    cy.get('#result-modal').should('be.visible');
 
-    cy.get('.restart-button').click();
-    cy.get('.modal').should('not.be.visible');
+    cy.get('.result-modal__restart-button').click();
+    cy.get('#result-modal').should('not.be.visible');
     cy.get('#purchase-result-section').should('not.be.visible');
     cy.get('#winning-number-input-form').should('not.be.visible');
 
     playLottoGame();
-    cy.get('.modal').should('be.visible');
+    cy.get('#result-modal').should('be.visible');
   });
 });

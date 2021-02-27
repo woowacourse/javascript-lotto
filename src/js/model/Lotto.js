@@ -4,11 +4,11 @@ export default class Lotto {
     this.purchasePrice = 0;
   }
 
-  setTickets(ticket) {
+  addTicket(ticket) {
     this.tickets.push(ticket);
   }
 
-  addTicket() {
+  getTickets() {
     return this.tickets;
   }
 

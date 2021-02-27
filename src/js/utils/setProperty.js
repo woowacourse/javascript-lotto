@@ -13,3 +13,11 @@ export const disabledElement = (element) => {
 export const enabledElement = (element) => {
   element.removeAttribute('disabled');
 };
+
+export const openModal = (modal) => {
+  modal.classList.add('open');
+};
+
+export const closeModal = (modal) => {
+  modal.classList.remove('open');
+};
