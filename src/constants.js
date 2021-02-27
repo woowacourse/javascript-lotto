@@ -1,3 +1,5 @@
+import { deepFreeze } from "./utils/freeze.js";
+
 export const LOTTO = Object.freeze({
   NUMBER_LIST_LENGTH: 6,
   CORRECT_NUMBER_LENGTH: 7,
@@ -19,7 +21,7 @@ export const MESSAGE = Object.freeze({
     '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
 });
 
-export const REWARDS = Object.freeze([
+export const REWARDS = deepFreeze([
   {
     matchCount: 3,
     isBonusMatched: false,
