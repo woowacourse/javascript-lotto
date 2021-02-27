@@ -45,11 +45,20 @@ export const SELECTORS = {
     SUBMIT_BUTTON: '#money-submit-button',
   },
 
+  LOTTO_NUMBERS_INPUT: {
+    SECTION: '.lotto-numbers-input-section',
+    FORM: '#lotto-numbers-input-form',
+    LOTTO_COUNT_TEXT: '.lotto-count',
+    INPUT: '.lotto-number',
+    SUBMIT_BUTTON: '#lotto-numbers-input-button',
+    AUTO_BUTTON: '#lotto-numbers-auto-button',
+  },
+
   LOTTO_LIST: {
     SECTION: '.lotto-list-section',
     CONTAINER: '.lotto-list-container',
     ELEMENT: '.lotto-list',
-    LOTTO_COUNT_TEXT: '.lotto-count',
+    LOTTO_COUNT_TEXT: '.purchased-lotto-count',
     LOTTO_NUMBERS_TEXT: '.lotto-numbers',
     LOTTO_NUMBERS_TOGGLE_BUTTON: '.lotto-numbers-toggle-button',
   },
