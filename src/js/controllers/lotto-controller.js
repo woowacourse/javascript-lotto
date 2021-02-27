@@ -27,15 +27,6 @@ class LottoController {
     return getQuotient(price, LOTTO.PRICE);
   }
 
-  generateLotto() {
-    const lotto = new Set();
-    while (lotto.size !== LOTTO.SIZE) {
-      lotto.add(generateRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
-    }
-
-    return sortByNumber([...lotto]);
-  }
-
   renderPocketLottos() {
     const lottos = this.model.lottos;
     const pocketDetail = this.model.detail;
@@ -62,7 +53,7 @@ class LottoController {
 
     const count = this.getCount(price);
     for (let i = 0; i < count; i++) {
-      this.model.addLotto(this.generateLotto());
+      this.model.addLotto();
     }
     this.managePocket();
   }
