@@ -1,4 +1,4 @@
-import Ticket from "../components/ticket.js"
+import Ticket from "./ticket.js"
 import { RANK } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
