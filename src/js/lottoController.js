@@ -120,6 +120,10 @@ export default class LottoController {
   }
 
   _calculateWinnings(winningNumbers, bonusNumber) {
+    if (this._isAlreadyCalculatedInWinnings()) {
+      return;
+    }
+
     this._lottos.forEach(lotto => {
       const myNumbers = lotto.getNumbers();
       const {
@@ -134,6 +138,10 @@ export default class LottoController {
 
       this._winnings[rank]++;
     });
+  }
+
+  _isAlreadyCalculatedInWinnings() {
+    return Object.values(this._winnings).some(winning => winning !== 0);
   }
 
   _getRank(winningCount, bonusCount) {
