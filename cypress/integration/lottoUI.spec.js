@@ -11,6 +11,7 @@ import {
   PURCHASE_AMOUNT_ALERT_MESSAGE,
   WINNING_NUMBER_CHECK_MESSAGE,
   MANUAL_SELECT_REQUEST_MESSAGE,
+  TICKET_ISSUE_CONFIRM_MESSAGE,
 } from '../../src/js/constants/display.js';
 
 describe('구매금액 입력 UI 검사', () => {
@@ -71,14 +72,12 @@ describe('구매금액 입력 UI 검사', () => {
 });
 
 describe('수동구매/자동구매 UI 검사', () => {
+  const numOfLotto = 5;
+  const summary = (auto, manual) => `· 자동: ${auto} 장\n· 수동: ${manual} 장`;
+
   before(() => {
     cy.visit('http://localhost:5500/');
   });
-
-  const numOfLotto = 5;
-  const summary = (auto, manual) => `
-  · 자동: ${auto} 장
-  · 수동: ${manual} 장`;
 
   it('Enter키 이벤트로 로또를 구입한 후 로또 발급버튼, 자동/수동 매수, 로또용지 추가버튼이 표시된다.', () => {
     cy.get('.purchase-option-section').should('not.be.visible');
@@ -146,14 +145,27 @@ describe('수동구매/자동구매 UI 검사', () => {
     cy.get('.select-paper input').eq(5).click().should('be.checked');
     cy.get('.select-check-message').should('have.text', '');
   });
+
+  it('로또복권 발행 버튼을 누르면, 자동/수동구매 수량이 적힌 컨펌메세지를 표시한다.', () => {
+    const confirmStub = cy.stub();
+
+    cy.on('window:confirm', confirmStub);
+    cy.get('.issue-ticket-button')
+      .should('not.be.disabled')
+      .click()
+      .then(() => {
+        const actualMessage = confirmStub.getCall(0).lastArg;
+        expect(actualMessage).to.equal(TICKET_ISSUE_CONFIRM_MESSAGE(numOfLotto - numOfManualSelect, numOfManualSelect));
+      });
+  });
 });
 
 describe('구매한 로또 UI 검사', () => {
+  const numOfLotto = 3;
+
   before(() => {
     cy.visit('http://localhost:5500/');
   });
-
-  const numOfLotto = 3;
 
   it('Enter키 이벤트로 로또를 구입한 후 입력된 로또 구입 금액으로 발급한 로또를 화면에 표시한다.', () => {
     cy.get('.purchase-amount-input')

@@ -9,6 +9,8 @@ export const PURCHASE_AMOUNT_ALERT_MESSAGE = {
 };
 
 export const MANUAL_SELECT_REQUEST_MESSAGE = (num) => `${num}개를 더 골라주세요!`;
+export const TICKET_ISSUE_CONFIRM_MESSAGE = ({ auto, manual }) =>
+  `자동 ${auto}장, 수동 ${manual}장 으로 로또를 발급합니다.\n확정하시겠습니까?`;
 
 export const LOTTO_NUMBER_SEPARATOR = ', ';
 
