@@ -10,6 +10,7 @@ import {
   LOTTO_NUMBER_SEPARATOR,
   PURCHASE_AMOUNT_ALERT_MESSAGE,
   WINNING_NUMBER_CHECK_MESSAGE,
+  MANUAL_SELECT_REQUEST_MESSAGE,
 } from '../../src/js/constants/display.js';
 
 describe('구매금액 입력 UI 검사', () => {
@@ -89,8 +90,8 @@ describe('수동구매/자동구매 UI 검사', () => {
       .type('{enter}');
 
     cy.get('.purchase-option-section').should('be.visible');
-    cy.get('.issue-ticket-button').should('be.visible');
-    cy.get('.paper-add-button').should('be.visible');
+    cy.get('.issue-ticket-button').should('be.visible').should('not.be.disabled');
+    cy.get('.paper-add-button').should('be.visible').should('not.be.disabled');
   });
 
   it('자동구매가 기본옵션으로 표시된다.', () => {
@@ -122,10 +123,28 @@ describe('수동구매/자동구매 UI 검사', () => {
   });
 
   it('로또용지 삭제버튼을 누르면 해당 로또용지가 화면에서 사라지고 해당 적용수량은 자동구매로 전환된다.', () => {
-    cy.get('number-selectors').should('have.length', numOfManualSelect);
+    cy.get('.number-selectors').should('have.length', numOfManualSelect);
     cy.get('.paper-remove-button').first().click();
     numOfManualSelect = 1;
     cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
+  });
+
+  it('로또용지에서 6개 보다 적게 고르면, 상태메세지가 화면에 표시되고 로또 발급버튼이 비활성화된다.', () => {
+    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(6));
+    cy.get('.issue-ticket-button').should('be.disabled');
+
+    cy.get('.select-paper input').eq(0).click().should('be.checked');
+    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(5));
+    cy.get('.select-paper input').eq(1).click().should('be.checked');
+    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(4));
+    cy.get('.select-paper input').eq(2).click().should('be.checked');
+    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(3));
+    cy.get('.select-paper input').eq(3).click().should('be.checked');
+    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(2));
+    cy.get('.select-paper input').eq(4).click().should('be.checked');
+    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(1));
+    cy.get('.select-paper input').eq(5).click().should('be.checked');
+    cy.get('.select-check-message').should('have.text', '');
   });
 });
 

@@ -21,7 +21,7 @@ export const getSelectPaperHTML = () => {
     <ul class="select-paper m-0 p-0">
       ${[...Array(45)].map((_, i) => getSelectPaperItemHTML(i + 1)).join('')}
     </ul>
-    <div class="select-check-message text-sm">6개를 모두 골라주세요!</div>
+    <div class="select-check-message text-sm"></div>
     <button type="button" class="paper-remove-button r-btn">-</button>
   </div>`;
 };

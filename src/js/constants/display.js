@@ -8,6 +8,8 @@ export const PURCHASE_AMOUNT_ALERT_MESSAGE = {
     `입력된 금액에서 ${change}원을 제외한 금액으로 로또를 구매했습니다.\n거스름돈 챙겨가세요.`,
 };
 
+export const MANUAL_SELECT_REQUEST_MESSAGE = (num) => `${num}개를 더 골라주세요!`;
+
 export const LOTTO_NUMBER_SEPARATOR = ', ';
 
 export const WINNING_NUMBER_CHECK_MESSAGE = {
