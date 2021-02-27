@@ -109,3 +109,7 @@
 .content-evenly {
   align-content: space-around;
 }
+
+.float-right {
+  float: right;
+}
