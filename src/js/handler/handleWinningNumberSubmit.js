@@ -34,7 +34,7 @@ const isValidRange = (num) => {
 };
 
 export const handleWinningNumberSubmit = (lotto) => {
-  const winningNumbers = [...$$('.winning-number')].map((winningNumber) =>
+  const winningNumbers = $$('.winning-number').map((winningNumber) =>
     Number(winningNumber.value),
   );
   const bonusNumber = Number($('.bonus-number').value);
