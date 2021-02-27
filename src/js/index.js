@@ -41,15 +41,15 @@ class LottoApp {
 
     const lottoCount = Math.floor(money / LOTTO.PRICE);
     this.data.cost = LOTTO.PRICE * lottoCount;
-    this.data.lottos = this.generateLottos(lottoCount);
 
+    this.view.renderLottoNumbersInput(lottoCount);
     this.view.renderLottoList(this.data.lottos);
     showElement($(SELECTORS.LOTTO_LIST.SECTION));
-    showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
     disableElement($(SELECTORS.MONEY_INPUT.INPUT));
     disableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
-    $(`${SELECTORS.WINNING_NUMBER_INPUT.INPUT}:first-child`).focus();
+    showElement($(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION));
+    $(`${SELECTORS.LOTTO_NUMBERS_INPUT.INPUT}:first-child`).focus();
   }
 
   handleToggleLottoNumbers() {

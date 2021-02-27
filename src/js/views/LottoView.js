@@ -2,6 +2,10 @@ import { $, $all, createElement } from '../utils/utils.js';
 import { SELECTORS } from '../constants.js';
 
 export default class LottoView {
+  renderLottoNumbersInput(lottoCount) {
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.LOTTO_COUNT_TEXT).textContent = lottoCount;
+  }
+
   renderLottoList(lottos) {
     const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
 
