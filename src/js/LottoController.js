@@ -27,7 +27,6 @@ export default class LottoController {
   reset() {
     this.lottos = [];
     this.purchasedPrice = 0;
-    this.isResultCalculated = false;
 
     this.inputPriceView.show().resetInputPrice();
     this.purchasedLottosView.hide().resetToggleSwitch();
@@ -66,18 +65,14 @@ export default class LottoController {
   }
 
   inputNumbersHandler(winningNumbers) {
-    console.log(winningNumbers);
     if (!isUniqueWinningNumber(winningNumbers)) {
       alert(ALERT_MESSAGES.DUPLICATE_NUMS);
       return;
     }
 
     const lottoProcessor = new LottoProcessor(this.lottos, winningNumbers);
-    if (!this.isResultCalculated) {
-      lottoProcessor.checkMatchingNums();
-      lottoProcessor.calculateEarningRate(this.purchasedPrice);
-      this.isResultCalculated = true;
-    }
+    lottoProcessor.checkMatchingNums();
+    lottoProcessor.calculateEarningRate(this.purchasedPrice);
 
     this.winningResultView.showModal(
       lottoProcessor.rankCounts,
