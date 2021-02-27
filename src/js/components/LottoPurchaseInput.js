@@ -1,11 +1,16 @@
 import { LOTTO } from '../utils/constants.js';
 import { $, clearInputValue } from '../utils/dom.js';
 import { ERROR_MESSAGE } from '../utils/message.js';
-import { createLottos, updatePayment } from '../redux/action.js';
+import {
+  changePurchaseType,
+  createLottos,
+  updatePayment,
+} from '../redux/action.js';
 import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 import Input from './Input/Input.js';
+import ManualLottoInput from './ManualLottoInput.js';
 
 export default class LottoPurchaseInput extends Component {
   initRender() {
@@ -18,7 +23,7 @@ export default class LottoPurchaseInput extends Component {
           <label class="switch">
             ${new Input({
               type: 'checkbox',
-              classes: ['manual-input-toggle-button'],
+              classes: ['purchase-type-toggle-button'],
             }).getTemplate()}
             <span class="text-base font-normal">수동구매</span>
           </label>
@@ -40,20 +45,28 @@ export default class LottoPurchaseInput extends Component {
         }).getTemplate()}
       </div>
     </div>
-    <p data-section="purchaseInputMessage" class="text-xs text-center"></p>
+    <p data-section="messageBox" class="text-xs text-center"></p>
+    <div id="manual-lotto-input-container" class="d-none"></div>
     `;
+
+    this.mountComponent();
   }
 
   setup() {
     store.subscribe(this.render.bind(this));
   }
 
+  mountComponent() {
+    this.manualLottoInput = new ManualLottoInput(
+      $('#manual-lotto-input-container'),
+    );
+  }
+
   selectDOM() {
-    this.$lottoPurchaseInputContainer = $('#lotto-purchase-input-container');
     this.$purchaseInput = $('#lotto-purchase-input');
     this.$purchaseButton = $('#lotto-purchase-btn');
-    this.$purchaseInputMessage = $('[data-section=purchaseInputMessage]');
-    this.$manualInputToggleButton = $('.manual-input-toggle-button');
+    this.$messageBox = $('[data-section=messageBox]');
+    this.$purchaseTypeToggleButton = $('.purchase-type-toggle-button');
   }
 
   bindEvent() {
@@ -62,32 +75,33 @@ export default class LottoPurchaseInput extends Component {
       this.onChangeInput.bind(this),
     );
     this.$purchaseButton.addEventListener('click', this.onSubmit.bind(this));
-    this.$lottoPurchaseInputContainer.addEventListener(
-      'submit',
-      this.onSubmit.bind(this),
-    );
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    if (this.$purchaseButton.disabled) return;
+  onSubmit() {
     const payment = Number(this.$purchaseInput.value);
     store.dispatch(updatePayment(payment));
-    if (this.$manualInputToggleButton.checked) {
-      console.log(this.$manualInputToggleButton.checked);
-      return;
+    if (this.$purchaseTypeToggleButton.checked) {
+      store.dispatch(
+        changePurchaseType(this.$purchaseTypeToggleButton.checked),
+      );
+    } else {
+      store.dispatch(createLottos(payment));
     }
-    store.dispatch(createLottos(payment));
   }
 
   onChangeInput(e) {
+    if (e.key === 'Enter') {
+      if (this.$purchaseButton.disabled) return;
+      this.onSubmit();
+      return;
+    }
     const [text, result] = this.validatePurchaseInputValue(e.target.value);
-    this.$purchaseInputMessage.textContent = text;
+    this.$messageBox.textContent = text;
     if (result === 'success') {
-      this.$purchaseInputMessage.style.color = 'green';
+      this.$messageBox.style.color = 'green';
       this.$purchaseButton.disabled = false;
     } else if (result === 'error') {
-      this.$purchaseInputMessage.style.color = 'red';
+      this.$messageBox.style.color = 'red';
       this.$purchaseButton.disabled = true;
     }
   }
@@ -108,19 +122,22 @@ export default class LottoPurchaseInput extends Component {
   clearView() {
     clearInputValue(this.$purchaseInput);
     this.$purchaseInput.disabled = false;
+    this.$purchaseTypeToggleButton.disabled = false;
     this.$purchaseButton.disabled = true;
-    this.$purchaseInputMessage.textContent = '';
+    this.$messageBox.textContent = '';
+    this.manualLottoInput.classList.remove('d-none');
     return;
   }
 
   disableInputArea() {
     this.$purchaseInput.disabled = true;
     this.$purchaseButton.disabled = true;
-    this.$purchaseInputMessage.textContent = '';
+    this.$purchaseTypeToggleButton.disabled = true;
+    this.$messageBox.textContent = '';
   }
 
   render(prevStates, states) {
-    if (states.payment === 0) {
+    if (states.payment === -1) {
       this.clearView();
       return;
     }

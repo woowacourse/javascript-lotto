@@ -79,7 +79,7 @@ export default class LottoDisplay extends Component {
       return;
     }
 
-    if (prevStates.lottos !== states.lottos) {
+    if (states.purchaseType === 'auto' && prevStates.lottos !== states.lottos) {
       this.updateLottoView(states.lottos);
     }
   }

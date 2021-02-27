@@ -13,7 +13,8 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.winning-number,
+.manual-lotto-number {
   width: 30px;
   height: 36px;
 }
@@ -23,11 +24,7 @@ body {
   height: 36px;
 }
 
-svg{
-  padding: 5px;
-}
-
-svg:hover{
+#add-btn:hover {
   cursor: pointer;
 }
 
@@ -35,6 +32,15 @@ svg:hover{
   stroke: gray;
   fill: transparent;
   stroke-linecap: round;
-  stroke-width: 2;
-  cursor: pointer;
+  stroke-width: 1;
+}
+
+span{
+  vertical-align: middle;
+}
+
+img{
+  object-fit: scale-down;
+  width: 16px;
+  height: 16px;
 }

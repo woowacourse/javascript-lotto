@@ -1,31 +1,44 @@
-import { LOTTO, REWARDS } from '../utils/constants.js';
+import { LOTTO, PURCHASE_TYPE, REWARDS } from '../utils/constants.js';
 import {
   CALCULATE_PROFIT,
   CREATE_LOTTOS,
   DECIDE_WINNER,
+  MANUAL_PURCHASE,
+  AUTO_PURCHASE,
   RESTART,
   UPDATE_PAYMENT,
+  ADD_LOTTO,
 } from '../redux/actionType.js';
 
 const paymentReducer = (state = 0, { type, payload = {} }) => {
   switch (type) {
     case UPDATE_PAYMENT:
-      if (payload.payment) {
-        return payload.payment;
-      }
-      return state;
+      return payload.payment;
     case RESTART:
-      return 0;
+      return -1;
+    default:
+      return state;
+  }
+};
+
+const purchaseTypeReducer = (state = 'auto', { type }) => {
+  switch (type) {
+    case MANUAL_PURCHASE:
+      return PURCHASE_TYPE.MANUAL;
+    case AUTO_PURCHASE:
+      return PURCHASE_TYPE.AUTO;
     default:
       return state;
   }
 };
 
 const lottosReducer = (state = [], { type, payload = {} }) => {
+  const { lottos } = payload;
   switch (type) {
     case CREATE_LOTTOS:
-      const { lottos } = payload;
-      return lottos;
+      return [...state, ...lottos];
+    case ADD_LOTTO:
+      return [...state, ...lottos];
     case RESTART:
       return [];
     default:
@@ -60,6 +73,7 @@ export const winningCountReducer = (state, lottos, { type, payload = {} }) => {
 
   switch (type) {
     case DECIDE_WINNER:
+      console.log(lottos);
       const { winningNumbers, bonusNumber } = payload;
       const winningCountTemp = {};
       let i = 0;
@@ -112,6 +126,7 @@ export const profitReducer = (state, lottoCount, winningCount, { type }) => {
 const combineReducers = (states, action) => {
   return {
     payment: paymentReducer(states.payment, action),
+    purchaseType: purchaseTypeReducer(states.purchaseType, action),
     lottos: lottosReducer(states.lottos, action),
     winningCount: winningCountReducer(
       states.winningCount,

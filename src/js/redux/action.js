@@ -1,24 +1,42 @@
 import { generateRandomNumber } from '../utils/common.js';
 import { LOTTO } from '../utils/constants.js';
 import {
+  ADD_LOTTO,
+  AUTO_PURCHASE,
   CALCULATE_PROFIT,
   CREATE_LOTTOS,
   DECIDE_WINNER,
+  MANUAL_PURCHASE,
   RESTART,
   UPDATE_PAYMENT,
 } from './actionType.js';
 
-export const updatePayment = value => {
+export const updatePayment = payment => {
   'use strict';
+  payment -= payment % LOTTO.PRICE;
   return {
     type: UPDATE_PAYMENT,
-    payload: { payment: value },
+    payload: { payment },
+  };
+};
+
+export const changePurchaseType = isManual => {
+  'use strict';
+  return {
+    type: isManual ? MANUAL_PURCHASE : AUTO_PURCHASE,
+  };
+};
+
+export const addLotto = numbers => {
+  'use strict';
+  return {
+    type: ADD_LOTTO,
+    payload: { lottos: [numbers] },
   };
 };
 
 export const createLottos = payment => {
   'use strict';
-
   const generateLottoNumbers = () => {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < LOTTO.LENGTH) {

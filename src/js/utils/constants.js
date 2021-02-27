@@ -12,3 +12,8 @@ export const REWARDS = Object.freeze({
   rank4: 50000,
   rank5: 5000,
 });
+
+export const PURCHASE_TYPE = {
+  MANUAL: 'manual',
+  AUTO: 'auto',
+};

@@ -9,6 +9,7 @@ export default class App extends Component {
   setup() {
     this.states = {
       payment: 0,
+      purchaseType: 'auto',
       lottos: [],
       winningCount: {},
       profit: 0,
@@ -35,12 +36,12 @@ export default class App extends Component {
     <div class="d-flex justify-center mt-5">
       <div class="w-100">
         <h1 class="text-center">🎱 행운의 로또</h1>
-        <form id="lotto-purchase-input-container" class="mt-5 d-flex flex-col">
-        </form>
+        <div id="lotto-purchase-input-container" class="mt-5 d-flex flex-col">
+        </div>
         <section id="lotto-display-container" class="mt-9 d-none">
         </section>
-        <form id="lotto-winning-number-input-container" class="mt-9 d-none">
-        </form>
+        <div id="lotto-winning-number-input-container" class="mt-9 d-none">
+        </div>
       </div>
     </div>
     <div class="modal"></div>

@@ -1,4 +1,3 @@
-import Component from '../core/Component.js';
 import { store } from '../index.js';
 import { calculateProfit, decideWinner } from '../redux/action.js';
 import { isEmptyValue, isInRange } from '../utils/common.js';
@@ -6,24 +5,22 @@ import { LOTTO } from '../utils/constants.js';
 import { $, $$, clearInputValue } from '../utils/dom.js';
 import { ERROR_MESSAGE } from '../utils/message.js';
 import Button from './Button/Button.js';
+import Component from '../core/Component.js';
 import Input from './Input/Input.js';
+import LottoNumbersInput from './Input/LottoNumbersInput.js';
 
 export default class WinningNumbersInput extends Component {
   initRender() {
     this.$target.innerHTML = `
           <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
           <div class="d-flex flex-col">
+            
             <div class="d-flex number-input-container">
               <div class="winning-number-container d-flex flex-col flex-grow">
                   <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
-                  <div>
-                  ${new Input({
-                    type: 'number',
+                  ${new LottoNumbersInput({
                     classes: ['winning-number', 'mx-1', 'text-center'],
-                  })
-                    .getTemplate()
-                    .repeat(6)}
-                  </div>
+                  }).getTemplate()}
               </div>
               <div class="bonus-number-container d-flex flex-col flex-grow">
                 <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
@@ -35,7 +32,7 @@ export default class WinningNumbersInput extends Component {
                 </div>
               </div>
             </div>
-            <p data-section="winningInputMessage" class="text-xs text-center"></p>
+            <p data-section="messageBox" class="text-xs text-center"></p>
           </div>
           ${new Button({
             type: 'button',
@@ -56,7 +53,7 @@ export default class WinningNumbersInput extends Component {
     this.$openResultModalButton = $('.open-result-modal-button');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
-    this.$winningInputMessage = $('[data-section=winningInputMessage]');
+    this.$messageBox = $('[data-section=messageBox]', this.$target);
   }
 
   setup() {
@@ -87,12 +84,12 @@ export default class WinningNumbersInput extends Component {
       bonusNumber,
     );
 
-    this.$winningInputMessage.textContent = text;
+    this.$messageBox.textContent = text;
     if (result === 'success') {
-      this.$winningInputMessage.style.color = 'green';
+      this.$messageBox.style.color = 'green';
       this.$openResultModalButton.disabled = false;
     } else if (result === 'error') {
-      this.$winningInputMessage.style.color = 'red';
+      this.$messageBox.style.color = 'red';
       this.$openResultModalButton.disabled = true;
     }
   }
@@ -139,7 +136,7 @@ export default class WinningNumbersInput extends Component {
   clearView() {
     this.hideWinningNumbersInputView();
     this.$winningNumberInputs.forEach(clearInputValue);
-    this.clearWinningInputMessage();
+    this.clearMessageBox();
     clearInputValue(this.$bonusNumberInput);
   }
 
@@ -151,8 +148,8 @@ export default class WinningNumbersInput extends Component {
     this.$target.classList.add('d-none');
   }
 
-  clearWinningInputMessage() {
-    this.$winningInputMessage.textContent = '';
+  clearMessageBox() {
+    this.$messageBox.textContent = '';
   }
 
   render(prevStates, states) {
@@ -161,12 +158,12 @@ export default class WinningNumbersInput extends Component {
       return;
     }
 
-    if (prevStates.lottos !== states.lottos) {
+    if (prevStates.lottos !== states.lottos && states.purchaseType === 'auto') {
       this.displayWinningNumbersInputView();
     }
 
     if (prevStates.winningCount !== states.winningCount) {
-      this.clearWinningInputMessage();
+      this.clearMessageBox();
     }
   }
 }

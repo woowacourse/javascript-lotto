@@ -27,7 +27,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       });
 
     cy.get('.open-result-modal-button').should('be.disabled');
-    cy.get('[data-section=winningInputMessage]').should(
+    cy.get('[data-section=messageBox]').should(
       'have.text',
       ERROR_MESSAGE.OUT_OF_RANGE,
     );
@@ -49,7 +49,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       });
 
     cy.get('.open-result-modal-button').should('be.disabled');
-    cy.get('[data-section=winningInputMessage]').should(
+    cy.get('[data-section=messageBox]').should(
       'have.text',
       ERROR_MESSAGE.DUPLICATED_NUMBER,
     );
@@ -65,7 +65,7 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
     });
 
     cy.get('.open-result-modal-button').should('be.disabled');
-    cy.get('[data-section=winningInputMessage]').should(
+    cy.get('[data-section=messageBox]').should(
       'have.text',
       ERROR_MESSAGE.EMPTY_INPUT_NUMBER,
     );

@@ -4,7 +4,6 @@ import { restart } from '../redux/action.js';
 import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
-import Svg from './Svg/Svg.js';
 
 export default class RewardModalDisplay extends Component {
   winningCountTemplate(matchedCount, reward, rank) {
@@ -27,7 +26,9 @@ export default class RewardModalDisplay extends Component {
     this.$target.innerHTML = `
       <div class="modal-inner p-10">
         <div class="modal-close">
-          ${new Svg('x').getTemplate()}
+          <svg viewbox="0 0 40 40">
+            <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
+          </svg>
         </div>
 
         <h2 class="text-center">🏆 당첨 통계 🏆</h2>
