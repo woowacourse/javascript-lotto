@@ -52,73 +52,87 @@ describe("lotto 미션 테스트", () => {
       });
   });
 
-  it("확인버튼 클릭시 금액에 맞는 수의 로또를 보여준다.", () => {
+  it("확인버튼 클릭시 금액에 맞는 수의 로또번호 입력 폼을 보여준다.", () => {
     cy.get("#price-input").type("3000");
     cy.get("#price-submit-button").click();
-    cy.get("#confirmation").should("be.visible");
-    cy.get("#lotto-list-label").should("have.text", "총 3개를 구매하였습니다.");
-    cy.get("#lotto-tickets").children().should("have.length", 3);
+    cy.get("#purchase-form").should("be.visible");
+    cy.get("#lotto-numbers-input").children().should("have.length", 3);
+    for (let i = 1; i < 4; i++) {
+      cy.get(`#lotto-numbers-input > li:nth-child(${i}) > input`).should(
+        ($inputs) => {
+          expect($inputs).to.have.length(6);
+        }
+      );
+    }
   });
 
-  it("번호보기가 true이면 로또 번호를 보여준다.", () => {
-    cy.get(".switch").click();
-    cy.get(".lotto-numbers").each(($winningNumber) => {
-      const isNumbers = $winningNumber[0].innerText
-        .split(",")
-        .every((value) => !isNaN(value.trim()));
+  // it("확인버튼 클릭시 금액에 맞는 수의 로또를 보여준다.", () => {
+  //   cy.get("#price-input").type("3000");
+  //   cy.get("#price-submit-button").click();
+  //   cy.get("#confirmation").should("be.visible");
+  //   cy.get("#lotto-list-label").should("have.text", "총 3개를 구매하였습니다.");
+  //   cy.get("#lotto-tickets").children().should("have.length", 3);
+  // });
 
-      expect(isNumbers).to.be.true;
-    });
-  });
+  // it("번호보기가 true이면 로또 번호를 보여준다.", () => {
+  //   cy.get(".switch").click();
+  //   cy.get(".lotto-numbers").each(($winningNumber) => {
+  //     const isNumbers = $winningNumber[0].innerText
+  //       .split(",")
+  //       .every((value) => !isNaN(value.trim()));
 
-  it("알맞지 않은 금액을 입력하면 모든 view가 초기화 된다.", () => {
-    cy.get("#price-input").type("3");
-    cy.get("#price-submit-button").click();
-    cy.get("#price-input").should("have.value", "");
-    cy.get("#confirmation").should("not.be.visible");
-  });
+  //     expect(isNumbers).to.be.true;
+  //   });
+  // });
 
-  it("지난 주 당첨번호를 입력하고 1등인지 확인한다.", () => {
-    const baseNumber = new Array(45).fill(0);
+  // it("알맞지 않은 금액을 입력하면 모든 view가 초기화 된다.", () => {
+  //   cy.get("#price-input").type("3");
+  //   cy.get("#price-submit-button").click();
+  //   cy.get("#price-input").should("have.value", "");
+  //   cy.get("#confirmation").should("not.be.visible");
+  // });
 
-    cy.get("#price-input").type("1000{enter}");
-    cy.get("#lotto-list-label").should("have.text", "총 1개를 구매하였습니다.");
-    cy.get(".switch").click();
-    cy.get(".lotto-numbers")
-      .eq(0)
-      .then((value) => {
-        value[0].innerText.split(",").forEach((v, i) => {
-          baseNumber[v - 1] = 1;
-          cy.get(`input[name='winning-number']:nth-child(${i + 1})`).type(v);
-        });
-      });
-    cy.get("input[name='bonus-number']:nth-child(1)").type(
-      baseNumber.indexOf(0) + 1
-    );
-    cy.get("#open-result-modal-button")
-      .click()
-      .then(() => {
-        cy.get("#prize-table > tr:nth-child(5) > td:nth-child(3)").should(
-          "have.text",
-          "1개"
-        );
-        cy.get("#earning-rate").should(
-          "have.text",
-          "당신의 총 수익률은 200000000%입니다."
-        );
-      });
-  });
+  // it("지난 주 당첨번호를 입력하고 1등인지 확인한다.", () => {
+  //   const baseNumber = new Array(45).fill(0);
 
-  it("다시 시작 버튼을 눌렀을 때 모든 뷰가 초기화 되는지 확인한다.", () => {
-    cy.get("#restart-button").click();
-    cy.get("#price-input").should("have.value", "");
-    cy.get("#confirmation").should("not.be.visible");
-  });
+  //   cy.get("#price-input").type("1000{enter}");
+  //   cy.get("#lotto-list-label").should("have.text", "총 1개를 구매하였습니다.");
+  //   cy.get(".switch").click();
+  //   cy.get(".lotto-numbers")
+  //     .eq(0)
+  //     .then((value) => {
+  //       value[0].innerText.split(",").forEach((v, i) => {
+  //         baseNumber[v - 1] = 1;
+  //         cy.get(`input[name='winning-number']:nth-child(${i + 1})`).type(v);
+  //       });
+  //     });
+  //   cy.get("input[name='bonus-number']:nth-child(1)").type(
+  //     baseNumber.indexOf(0) + 1
+  //   );
+  //   cy.get("#open-result-modal-button")
+  //     .click()
+  //     .then(() => {
+  //       cy.get("#prize-table > tr:nth-child(5) > td:nth-child(3)").should(
+  //         "have.text",
+  //         "1개"
+  //       );
+  //       cy.get("#earning-rate").should(
+  //         "have.text",
+  //         "당신의 총 수익률은 200000000%입니다."
+  //       );
+  //     });
+  // });
 
-  it("금액 입력 후 엔터키를 누르면 금액에 맞는 수의 로또를 보여준다.", () => {
-    cy.get("#price-input").type("5000{enter}");
-    cy.get("#confirmation").should("be.visible");
-    cy.get("#lotto-list-label").should("have.text", "총 5개를 구매하였습니다.");
-    cy.get("#lotto-tickets").children().should("have.length", 5);
-  });
+  // it("다시 시작 버튼을 눌렀을 때 모든 뷰가 초기화 되는지 확인한다.", () => {
+  //   cy.get("#restart-button").click();
+  //   cy.get("#price-input").should("have.value", "");
+  //   cy.get("#confirmation").should("not.be.visible");
+  // });
+
+  // it("금액 입력 후 엔터키를 누르면 금액에 맞는 수의 로또를 보여준다.", () => {
+  //   cy.get("#price-input").type("5000{enter}");
+  //   cy.get("#confirmation").should("be.visible");
+  //   cy.get("#lotto-list-label").should("have.text", "총 5개를 구매하였습니다.");
+  //   cy.get("#lotto-tickets").children().should("have.length", 5);
+  // });
 });
