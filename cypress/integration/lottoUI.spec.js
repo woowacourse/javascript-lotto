@@ -120,6 +120,13 @@ describe('수동구매/자동구매 UI 검사', () => {
   it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화 된다.', () => {
     cy.get('.paper-add-button').should('be.disabled');
   });
+
+  it('로또용지 삭제버튼을 누르면 해당 로또용지가 화면에서 사라지고 해당 적용수량은 자동구매로 전환된다.', () => {
+    cy.get('number-selectors').should('have.length', numOfManualSelect);
+    cy.get('.paper-remove-button').first().click();
+    numOfManualSelect = 1;
+    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
+  });
 });
 
 describe('구매한 로또 UI 검사', () => {
