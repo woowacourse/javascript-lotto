@@ -27,6 +27,7 @@ export const isUniqueArray = (array) => {
   return array.length === new Set(array).size;
 };
 
+// TODO: hidden(visibility) 대신 display 속성 이용
 export const showElement = ($element) => {
   $element.classList.remove('hidden');
 };

@@ -67,6 +67,7 @@ class LottoApp {
     this.generateLotto(lottoNumbers);
     this.data.lottoCount = this.data.lottoCount - 1;
 
+    // TODO: 로또가 생성 될 때마다 view 를 업데이트 하고 싶다!
     this.view.renderLottoNumbersInput(this.data.lottoCount);
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
     this.view.renderLottoList(this.data.lottos);
@@ -81,6 +82,7 @@ class LottoApp {
     $(`${SELECTORS.LOTTO_NUMBERS_INPUT.INPUT}:first-child`).focus();
   }
 
+  // TODO: 당첨번호 입력 할 때와 공통되는 로직 추출
   handleInputLottoNumbers(event) {
     if (!event.target.classList.contains('lotto-number')) return;
 
@@ -94,6 +96,7 @@ class LottoApp {
     }
   }
 
+  // TODO: 반복문 수정 (while) 없이 쓰는 법을 생각해보자.
   handleAutoGenerateLottoNumbers() {
     while (this.data.lottoCount > 0) {
       this.generateLotto();

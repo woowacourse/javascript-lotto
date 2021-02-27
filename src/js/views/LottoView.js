@@ -6,6 +6,7 @@ export default class LottoView {
     $(SELECTORS.LOTTO_NUMBERS_INPUT.LOTTO_COUNT_TEXT).textContent = lottoCount;
   }
 
+  // TODO: 현재 토글 버튼에 대한 옵션과 상관 없이 표시되는 문제 해결
   renderLottoList(lottos) {
     const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
 
