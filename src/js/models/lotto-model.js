@@ -1,3 +1,5 @@
+import Lotto from "./lotto.js";
+
 class LottoModel {
   constructor() {
     this._lottos = [];
@@ -12,8 +14,10 @@ class LottoModel {
     this._lottos = newLottos;
   }
 
-  addLotto(newLotto) {
-    this._lottos.push(newLotto);
+  addLotto() {
+    const lotto = new Lotto();
+    lotto.generateLotto();
+    this._lottos.push(lotto);
   }
 
   get detail() {

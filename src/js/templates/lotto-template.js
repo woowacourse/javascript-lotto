@@ -22,12 +22,14 @@ class Template {
   }
 
   pocketLottosDetail(lottos) {
+    console.log(lottos[0].numbers);
     return lottos
+      .map((lotto) => lotto.numbers)
       .map(
-        (lotto) => `
+        (numbers) => `
             <div class="pocket-lotto-detail">
             <span class="mx-1 text-4xl">🎟️ </span>
-            <span class="pocket-lotto-numbers">${lotto.join(", ")}</span>
+            <span class="pocket-lotto-numbers">${numbers.join(", ")}</span>
             </div>
             `
       )
