@@ -1,5 +1,5 @@
 import LottosModel from "./lottos.js"
-import { RANK } from "../constants/constant.js"
+import { RANK, TICKET } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
 class LottoGameModel {
@@ -82,7 +82,7 @@ class LottoGameModel {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
-    return getProfitRate(income, this.#lottos.length * 1000)
+    return getProfitRate(income, this.#lottos.length * TICKET.PRICE)
   }
 
   get lottoResult() {
