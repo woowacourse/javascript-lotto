@@ -10,12 +10,13 @@ const isValidPrice = (price) => {
 
 export const handlePurchasePriceSubmit = (lotto) => {
   const purchasePrice = $('#purchase-price-input-form__input').value;
-  const smallChange = purchasePrice % VALUE.LOTTO.TICKET_PRICE;
 
   if (!isValidPrice(purchasePrice)) {
     alert(ERR_MESSAGE.LOTTO.INVALID_PRICE);
     return;
   }
+
+  const smallChange = purchasePrice % VALUE.LOTTO.TICKET_PRICE;
 
   if (smallChange) {
     alert(MESSAGE.LOTTO.SMALL_CHANGE(smallChange));
