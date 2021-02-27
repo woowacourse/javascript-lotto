@@ -128,20 +128,12 @@ export default class LottoController {
       } = this._countEqualNumbers(winningNumbers, bonusNumber, myNumbers);
 
       const rank = this._getRank(winningCount, bonusCount);
-      if (rank) {
-        this._winnings[rank]++;
+      if (rank === 'none') {
+        return;
       }
+
+      this._winnings[rank]++;
     });
-  }
-
-  _getEarningRate() {
-    const moneySpent = this._lottos.length * LOTTO_SETTINGS.LOTTO_PRICE;
-    let earning = 0;
-
-    for (let key of Object.keys(this._winnings)) {
-      earning += this._winnings[key] * PRIZE[key.toUpperCase()];
-    }
-    return Math.round(((earning - moneySpent) / moneySpent) * 100);
   }
 
   _getRank(winningCount, bonusCount) {
@@ -153,7 +145,17 @@ export default class LottoController {
       '5,1': 'second',
       '6,0': 'first',
     }
-    return RANK_MATCHING[`${winningCount},${bonusCount}`];
+    return RANK_MATCHING[`${winningCount},${bonusCount}`] || 'none';
+  }
+
+  _getEarningRate() {
+    const moneySpent = this._lottos.length * LOTTO_SETTINGS.LOTTO_PRICE;
+    let earning = 0;
+
+    for (let key of Object.keys(this._winnings)) {
+      earning += this._winnings[key] * PRIZE[key.toUpperCase()];
+    }
+    return Math.round(((earning - moneySpent) / moneySpent) * 100);
   }
 
   _countEqualNumbers(winningNumbers, bonusNumber, myNumbers) {
