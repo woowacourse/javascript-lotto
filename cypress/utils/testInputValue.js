@@ -14,5 +14,4 @@ export const typeInputValue = (input, value) => {
 export const testInputValue = (button, alertMessage = '') => {
   cy.get(button).click();
   alertMessage && checkAlert(alertMessage);
-  // cy.get(input).should('have.value', alertMessage ? '' : value);
 };

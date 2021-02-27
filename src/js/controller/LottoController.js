@@ -1,4 +1,4 @@
-import { MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../constants/index.js';
+import { MAX_LOTTO_NUMBER } from '../constants/index.js';
 import { $, validator } from '../util/index.js';
 export class LottoController {
   constructor(model, view) {
@@ -74,9 +74,7 @@ export class LottoController {
 
   handleResult(event) {
     event.preventDefault();
-    const numbers = this.$winningNumberInputs
-      .filter($input => $input.value !== '')
-      .map($input => Number($input.value));
+    const numbers = this.$winningNumberInputs.filter($input => $input.value !== '').map($input => Number($input.value));
     const alertMessage = validator.lottoNumbers(numbers);
 
     if (alertMessage) {

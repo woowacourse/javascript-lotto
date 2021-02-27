@@ -1,7 +1,7 @@
 import {
   MSG_BLANK_INPUT,
   MSG_OUT_RANGED_LOTTO_NUMBERS,
-  MSG_OVERLAPPED_LOTTO_NUMBERS,
+  MSG_DUPLICATED_LOTTO_NUMBERS,
 } from '../constants/alertMessage.js';
 import {
   WINNING_NUMBER_COUNT,
@@ -13,7 +13,7 @@ import {
 
 const isRangeOf = (min, max, numbers) => numbers.every(number => min <= number && number <= max);
 
-const isOverlapped = numbers => numbers.length !== new Set(numbers).size;
+const isDuplicated = numbers => numbers.length !== new Set(numbers).size;
 
 export const validator = {
   purchaseAmount: money => {
@@ -30,8 +30,8 @@ export const validator = {
     if (!isRangeOf(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, numbers)) {
       return MSG_OUT_RANGED_LOTTO_NUMBERS;
     }
-    if (isOverlapped(numbers)) {
-      return MSG_OVERLAPPED_LOTTO_NUMBERS;
+    if (isDuplicated(numbers)) {
+      return MSG_DUPLICATED_LOTTO_NUMBERS;
     }
 
     return '';

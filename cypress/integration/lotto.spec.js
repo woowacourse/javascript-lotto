@@ -1,7 +1,7 @@
 import { testInputValue } from '../utils/index.js';
 import {
   MSG_INVALID_PURCHASE_AMOUNT,
-  MSG_OVERLAPPED_LOTTO_NUMBERS,
+  MSG_DUPLICATED_LOTTO_NUMBERS,
   MSG_OUT_RANGED_LOTTO_NUMBERS,
   MSG_BLANK_INPUT,
 } from '../../src/js/constants/index.js';
@@ -47,7 +47,7 @@ describe('Lotto test', () => {
   });
 
   it('부적절한 당첨 번호를 검사한다. (중복)', () => {
-    testWinnigNumbers(['1', '2', '3', '4', '5', '5', '45'], MSG_OVERLAPPED_LOTTO_NUMBERS);
+    testWinnigNumbers(['1', '2', '3', '4', '5', '5', '45'], MSG_DUPLICATED_LOTTO_NUMBERS);
   });
 
   it('부적절한 당첨 번호를 검사한다. (범위 밖)', () => {
