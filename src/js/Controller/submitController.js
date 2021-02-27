@@ -14,8 +14,9 @@ import {
   closeModal,
 } from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
-import Result from "../Model/Result.js";
+import result from "../Model/Result.js";
 
+console.log(result);
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
     "submit",
@@ -77,13 +78,13 @@ const handleResultSubmit = (event) => {
 };
 
 const setNumbers = (winningNumbers, bonusNumber) => {
-  Result.setWinningNumbers(winningNumbers);
-  Result.setBonusNumber(bonusNumber);
+  result.setWinningNumbers(winningNumbers);
+  result.setBonusNumber(bonusNumber);
 };
 
 const setWinningResult = (ticketBundle) => {
-  Result.setRanks(ticketBundle);
-  Result.setMatchingCounts();
+  result.setRanks(ticketBundle);
+  result.setMatchingCounts();
 };
 
 const renderWinningResult = () => {
