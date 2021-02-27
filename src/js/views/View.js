@@ -5,11 +5,13 @@ export default class View {
   }
 
   show() {
+    if (!this.$element) return;
     this.$element.style.display = 'block';
     return this;
   }
 
   hide() {
+    if (!this.$element) return;
     this.$element.style.display = 'none';
     return this;
   }

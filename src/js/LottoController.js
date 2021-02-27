@@ -66,10 +66,10 @@ export default class LottoController {
   }
 
   createAutoLottos(lottoCount) {
-    this.lottos = Array.from({ length: lottoCount }, () => {
-      const lotto = new Lotto();
-      return lotto;
+    const newLottos = Array.from({ length: lottoCount }, () => {
+      return new Lotto();
     });
+    this.lottos = [...this.lottos, ...newLottos];
   }
 
   createManualLottos(manualNumbers, ticketNumber) {
@@ -88,14 +88,16 @@ export default class LottoController {
     }
 
     if (this.isAutoPurchase) {
-      this.purchaseAutomatically();
+      this.purchaseAutomatically(
+        this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT
+      );
     } else {
       this.purchaseManually();
     }
   }
 
-  purchaseAutomatically() {
-    this.createAutoLottos(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
+  purchaseAutomatically(count) {
+    this.createAutoLottos(count);
     this.purchasedLottosView.show();
     this.purchasedLottosView.renderLottos(this.lottos);
     this.winningResultView.show();
@@ -129,7 +131,10 @@ export default class LottoController {
     if (manualCount < this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT) {
       const agreeAutoPurchase = confirm(ALERT_MESSAGES.TURN_TO_AUTO_PURCHASE);
       if (agreeAutoPurchase) {
-        console.log('자동 구매로 전환');
+        this.manualInputView.hide();
+        this.purchaseAutomatically(
+          this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT - manualCount
+        );
       }
     }
   }
