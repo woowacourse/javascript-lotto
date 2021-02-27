@@ -145,19 +145,15 @@ export default class LottoController {
   }
 
   _getRank(winningCount, bonusCount) {
-    if (winningCount === 3) {
-      return 'fifth';
-    } else if (winningCount === 4) {
-      return 'fourth';
-    } else if (winningCount === 5) {
-      if (!bonusCount) {
-        return 'third';
-      }
-      return 'second';
-    } else if (winningCount === 6) {
-      return 'first';
+    const RANK_MATCHING = {
+      // key: 'winningCount,bonusCount'
+      '3,0': 'fifth',
+      '4,0': 'fourth',
+      '5,0': 'third',
+      '5,1': 'second',
+      '6,0': 'first',
     }
-    return '';
+    return RANK_MATCHING[`${winningCount},${bonusCount}`];
   }
 
   _countEqualNumbers(winningNumbers, bonusNumber, myNumbers) {
