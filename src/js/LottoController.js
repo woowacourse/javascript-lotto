@@ -136,6 +136,11 @@ export default class LottoController {
           this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT - manualCount
         );
       }
+    } else {
+      this.manualInputView.hide();
+      this.purchasedLottosView.show();
+      this.purchasedLottosView.renderLottos(this.lottos);
+      this.winningResultView.show();
     }
   }
 
