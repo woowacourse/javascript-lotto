@@ -7,13 +7,25 @@ describe('로또 게임 테스트', () => {
     cy.visit('http://127.0.0.1:5500/');
   });
 
-  const price = 10000;
+  const price = 5000;
   const lottoTotalCount = price / 1000;
   const LOTT0_LENGTH = 7;
 
   function clickAfterTypePrice() {
     cy.get('#input-price').type(price);
     cy.get('#input-price-btn').click();
+  }
+
+  function typeManualNumberAndConfirm() {
+    cy.get('.manual-wrapper').each((manualTicket, outerIdx) => {
+      cy.wrap(manualTicket)
+        .find('.manual-number')
+        .each((manualNumber, innerIdx) => {
+          cy.wrap(manualNumber).type(innerIdx + 10); // type random number
+        });
+      // 버튼이 위에서부터 하나씩 사라지기 때문에 항상 0번째 index를 클릭
+      cy.get('.manual-input-btn').eq(0).click();
+    });
   }
 
   function typeWinningNumber() {
@@ -51,7 +63,16 @@ describe('로또 게임 테스트', () => {
     cy.get('.manual-wrapper').should('have.length', lottoTotalCount);
   });
 
-  it('(자동 구매 선택 시) 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+  it('수동 구매 번호를 모두 올바르게 입력하면, 확정된 로또 티켓을 보여준다.', () => {
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+    typeManualNumberAndConfirm();
+    cy.get('.manual-wrapper').each(manualTicket => {
+      cy.wrap(manualTicket).find('.lotto-detail').should('be.visible');
+    });
+  });
+
+  it('자동 구매 선택 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
     cy.get('#purchased-lottos').should('be.visible');
 <<<<<<< HEAD
@@ -104,7 +125,7 @@ describe('로또 게임 테스트', () => {
     cy.get('.lotto-wrapper').children('.lotto-detail').should('not.be.visible');
   });
 
-  it('모든 숫자의 입력을 완료하면, 결과 확인 버튼이 활성화된다.', () => {
+  it('당첨 숫자를 모두 입력하면, 결과 확인 버튼이 활성화된다.', () => {
     clickAfterTypePrice();
     typeWinningNumber();
 
