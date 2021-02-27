@@ -1,6 +1,7 @@
 import { getRandomNumber } from '../../../src/js/utils/utils.js';
 import LottoProcessor from '../../../src/js/utils/lottoProcessor.js';
 import Lotto from '../../../src/js/Lotto.js';
+import { $ } from '../../../src/js/utils/selector.js';
 
 describe('로또 게임 테스트', () => {
   beforeEach(() => {
@@ -26,6 +27,17 @@ describe('로또 게임 테스트', () => {
       // 버튼이 위에서부터 하나씩 사라지기 때문에 항상 0번째 index를 클릭
       cy.get('.manual-input-btn').eq(0).click();
     });
+  }
+
+  function typeNotEnoughManualInput() {
+    // 로또 1장만 입력 후 구매 확정
+    cy.get('.manual-wrapper')
+      .eq(0)
+      .find('.manual-number')
+      .each((manualNumber, idx) => {
+        cy.wrap(manualNumber).type(idx + 10); // type random number
+      });
+    cy.get('.manual-input-btn').eq(0).click();
   }
 
   function typeWinningNumber() {
@@ -78,15 +90,8 @@ describe('로또 게임 테스트', () => {
 
     cy.get('#manual-btn').click();
     clickAfterTypePrice();
+    typeNotEnoughManualInput();
 
-    // 로또 1장만 입력 후 구매 확정
-    cy.get('.manual-wrapper')
-      .eq(0)
-      .find('.manual-number')
-      .each((manualNumber, idx) => {
-        cy.wrap(manualNumber).type(idx + 10); // type random number
-      });
-    cy.get('.manual-input-btn').eq(0).click();
     cy.get('#manual-confirm-btn')
       .click()
       .then(() => {
@@ -94,6 +99,26 @@ describe('로또 게임 테스트', () => {
           '남은 금액은 자동구매로 진행됩니다. 계속하시겠습니까?'
         );
       });
+  });
+
+  it('수동 구매 후 남는 금액으로 자동 구매 동의 시 자동 구매를 진행한다. ', () => {
+    const alertStub = cy.stub();
+    cy.on('window:confirm', alertStub);
+
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+    typeNotEnoughManualInput();
+
+    cy.get('#manual-confirm-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(
+          '남은 금액은 자동구매로 진행됩니다. 계속하시겠습니까?'
+        );
+      });
+
+    cy.on('window:confirm', () => true);
+    cy.get('#purchased-lottos').should('be.visible');
   });
 
   it('자동 구매 선택 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
