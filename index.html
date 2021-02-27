@@ -21,6 +21,31 @@
             <button id="money-submit-button" type="submit" class="btn btn-cyan">확인</button>
           </div>
         </form>
+        <section class="lotto-numbers-input-section d-flex justify-between mt-5">
+          <form id="lotto-numbers-input-form" class="w-100">
+            <label for="lotto-numbers-input-first" class="mb-1 d-block">구입할 로또의 번호를 입력해 주세요.</label>
+            <label class="mb-2">총 <span class="lotto-count">
+                <!--번호 입력이 필요한 로또 개수--></span>개 남았습니다.</label>
+            <div class="d-flex justify-between mt-2 items-center">
+              <div class="w-100 d-flex justify-between mr-2">
+                <input type="number" id="lotto-numbers-input-first" class="lotto-number mx-1 text-center"
+                  name="lotto-number" aria-label="lotto-number1" min="1" max="45" required />
+                <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="lotto-number1"
+                  min="1" max="45" required />
+                <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="lotto-number1"
+                  min="1" max="45" required />
+                <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="lotto-number1"
+                  min="1" max="45" required />
+                <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="lotto-number1"
+                  min="1" max="45" required />
+                <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="lotto-number1"
+                  min="1" max="45" required />
+              </div>
+              <button type="submit" id="lotto-numbers-input-button" class="btn btn-cyan">확인</button>
+            </div>
+            <button type="button" id="lotto-numbers-auto-button" class="w-100 mt-5 btn btn-cyan">남은 로또 자동구매하기</button>
+          </form>
+        </section>
         <section class="lotto-list-section mt-9 hidden">
           <div class="d-flex">
             <label class="flex-auto my-0">총 <span class="lotto-count">
@@ -46,7 +71,7 @@
                   번호</label>
                 <div>
                   <input type="number" name="winning-number" aria-label="winning-number1" id="first-winning-number"
-                    class="winning-number mx-1 text-center" min="1" max="45" required autofocus />
+                    class="winning-number mx-1 text-center" min="1" max="45" required />
                   <input type="number" name="winning-number" aria-label="winning-number2"
                     class="winning-number mx-1 text-center" min="1" max="45" required />
                   <input type="number" name="winning-number" aria-label="winning-number3"
