@@ -1,42 +1,12 @@
 import { onModalClose, resetInput } from "../utils.js";
 import { $modal, $priceInput, $earningRate } from "../elements.js";
-
+import { LOTTO_TABLE } from "../constants.js";
+import { prizeTable, rankingTable } from "../tables.js";
 export default class LottoConfirmationController {
   constructor(lottoModel, lottoView) {
     this.lottoModel = lottoModel;
     this.lottoView = lottoView;
-    this.prizeTable = {
-      ranking1: {
-        num: 0,
-        prize: 2000000000,
-        condition: "6개",
-      },
-      ranking2: {
-        num: 0,
-        prize: 30000000,
-        condition: "5개 + 보너스볼",
-      },
-      ranking3: {
-        num: 0,
-        prize: 1500000,
-        condition: "5개",
-      },
-      ranking4: {
-        num: 0,
-        prize: 50000,
-        condition: "4개",
-      },
-      ranking5: {
-        num: 0,
-        prize: 5000,
-        condition: "3개",
-      },
-      noPrize: {
-        num: 0,
-        prize: 0,
-        condition: "2개 이하",
-      },
-    };
+    this.prizeTable = prizeTable;
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
@@ -48,22 +18,19 @@ export default class LottoConfirmationController {
   }
 
   checkRanking(lottoNumber, winningNumber, bonusNumber) {
-    const numOfMatched = this.countMatchedNumbers(lottoNumber, winningNumber);
-    switch (numOfMatched) {
-      case 3:
-        return "ranking5";
-      case 4:
-        return "ranking4";
-      case 5:
-        if (this.countMatchedNumbers(lottoNumber, [bonusNumber]) === 1) {
-          return "ranking2";
-        }
-        return "ranking3";
-      case 6:
-        return "ranking1";
-      default:
-        return "noPrize";
+    const matchedNumberCount = this.countMatchedNumbers(
+      lottoNumber,
+      winningNumber
+    );
+
+    if (
+      matchedNumberCount === 5 &&
+      this.countMatchedNumbers(lottoNumber, [bonusNumber]) === 1
+    ) {
+      return LOTTO_TABLE.RANKING2.NAME;
     }
+
+    return rankingTable[matchedNumberCount] || LOTTO_TABLE.NO_PRIZE.NAME;
   }
 
   setPrizeTable(winningNumber, bonusNumber) {
