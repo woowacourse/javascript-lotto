@@ -73,7 +73,6 @@ export const winningCountReducer = (state, lottos, { type, payload = {} }) => {
 
   switch (type) {
     case DECIDE_WINNER:
-      console.log(lottos);
       const { winningNumbers, bonusNumber } = payload;
       const winningCountTemp = {};
       let i = 0;

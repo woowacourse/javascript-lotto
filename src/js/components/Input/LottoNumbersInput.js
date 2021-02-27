@@ -9,7 +9,7 @@ export default class LottoNumbersInput {
   }
 
   getTemplate() {
-    return `<div class="lotto-number-input-wrapper w-100">
+    return `<div class="lotto-number-input-wrapper">
     ${new Input({ type: this.type, classes: this.classes })
       .getTemplate()
       .repeat(6)}

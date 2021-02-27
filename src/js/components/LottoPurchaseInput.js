@@ -122,10 +122,10 @@ export default class LottoPurchaseInput extends Component {
   clearView() {
     clearInputValue(this.$purchaseInput);
     this.$purchaseInput.disabled = false;
+    this.$purchaseTypeToggleButton.checked = false;
     this.$purchaseTypeToggleButton.disabled = false;
     this.$purchaseButton.disabled = true;
     this.$messageBox.textContent = '';
-    this.manualLottoInput.classList.remove('d-none');
     return;
   }
 

@@ -24,14 +24,14 @@ export default class ManualLottoInput extends Component {
       </div>
       <div id="manual-lotto-input-area" class="w-100 my-3 d-flex justify-around items-center">
         ${new LottoNumbersInput({
-          classes: ['manual-lotto-number', 'mx-1', 'text-center'],
+          classes: ['manual-lotto-number', 'mx-1', 'text-center', 'w-100'],
         }).getTemplate()}
         ${new Button({
           id: 'manual-lotto-purchase-btn',
           type: 'button',
           classes: ['btn', 'btn-cyan'],
           disabled: true,
-          text: '구매',
+          text: '수동구매',
         }).getTemplate()}
         </div>
         <p data-section="messageBox" class="text-xs text-center"></p>
@@ -100,7 +100,7 @@ export default class ManualLottoInput extends Component {
 
   onClickPurchaseButton() {
     const lottoNumbers = this.$numberInputs.map(({ value }) => Number(value));
-    this.clearView();
+    this.clearInputArea();
     if (store.getStates().payment - LOTTO.PRICE >= 0) {
       store.dispatch(updatePayment(store.getStates().payment - LOTTO.PRICE));
       store.dispatch(addLotto(lottoNumbers));
@@ -108,7 +108,7 @@ export default class ManualLottoInput extends Component {
   }
 
   onClickFinishButton() {
-    this.$target.innerHTML = '';
+    this.clearView();
     store.dispatch(changePurchaseType(false));
     store.dispatch(createLottos(store.getStates().payment));
   }
@@ -128,12 +128,21 @@ export default class ManualLottoInput extends Component {
   }
 
   clearView() {
+    this.$target.classList.add('d-none');
+  }
+
+  clearInputArea() {
     this.$messageBox.textContent = '';
     this.$manualLottoPurchaseButton.disabled = true;
     this.$numberInputs.forEach(clearInputValue);
   }
 
-  render(prevStates, states) {
+  render(_, states) {
+    if (states.payment === -1) {
+      this.clearView();
+      return;
+    }
+
     if (states.purchaseType === PURCHASE_TYPE.MANUAL) {
       this.$currPaymentAmount.textContent = states.payment;
       this.$target.classList.remove('d-none');
