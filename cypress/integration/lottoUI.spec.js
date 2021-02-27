@@ -12,7 +12,7 @@ import {
   WINNING_NUMBER_CHECK_MESSAGE,
 } from '../../src/js/constants/display.js';
 
-describe('구매금액 입력 검사', () => {
+describe('구매금액 입력 UI 검사', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
@@ -66,6 +66,32 @@ describe('구매금액 입력 검사', () => {
         expect(actualMessage).to.equal(PURCHASE_AMOUNT_HAS_CHANGE(change));
       });
     cy.get('.purchased-lotto-section').should('be.visible');
+  });
+});
+
+describe('수동구매/자동구매 UI 검사', () => {
+  before(() => {
+    cy.visit('http://localhost:5500/');
+  });
+
+  const numOfLotto = 3;
+
+  it('Enter키 이벤트로 로또를 구입한 후 로또 발급버튼, 자동/수동 매수, 로또용지 추가버튼이 표시된다.', () => {
+    const purchaseNumberSummary = `
+    · 자동: ${numOfLotto} 장
+    <br />
+    · 수동: 0 장`;
+    cy.get('.purchase-option-section').should('not.be.visible');
+    cy.get('.issue-ticket-button').should('not.be.visible');
+    cy.get('.paper-add-button').should('not.be.visible');
+
+    cy.get('.purchase-amount-input')
+      .type(LOTTO_PRICE * numOfLotto)
+      .type('{enter}');
+    cy.get('.purchase-option-section').should('be.visible');
+    cy.get('.issue-ticket-button').should('be.visible');
+    cy.get('.paper-add-button').should('be.visible');
+    cy.get('.purchase-number-summary').should('have.text', purchaseNumberSummary);
   });
 });
 
@@ -128,7 +154,7 @@ describe('구매한 로또 UI 검사', () => {
   });
 });
 
-describe('당첨번호 입력 검사', () => {
+describe('당첨번호 입력 UI 검사', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
     cy.get('.purchase-amount-input').type(LOTTO_PRICE).type('{enter}');
