@@ -26,7 +26,7 @@ class LottoApp {
     };
   }
 
-  generateLotto(numbers = []) {
+  generateLotto(numbers) {
     this.data.lottos.push(new Lotto(numbers));
   }
 
@@ -49,7 +49,7 @@ class LottoApp {
     disableElement($(SELECTORS.MONEY_INPUT.INPUT));
     disableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
-    showElement($(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION));
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.remove('d-none');
     $(`${SELECTORS.LOTTO_NUMBERS_INPUT.INPUT}:first-child`).focus();
   }
 
@@ -92,6 +92,19 @@ class LottoApp {
         $nextInput.select();
       }
     }
+  }
+
+  handleAutoGenerateLottoNumbers() {
+    while (this.data.lottoCount > 0) {
+      this.generateLotto();
+      this.data.lottoCount = this.data.lottoCount - 1;
+    }
+
+    $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
+    this.view.renderLottoList(this.data.lottos);
+
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.add('d-none');
+    showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
   }
 
   handleToggleLottoNumbers() {
@@ -182,6 +195,7 @@ class LottoApp {
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener('input', this.handleInputLottoNumbers.bind(this));
     $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener('submit', this.handleSubmitLottoNumbers.bind(this));
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.AUTO_BUTTON).addEventListener('click', this.handleAutoGenerateLottoNumbers.bind(this));
 
     $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener(
       'change',
