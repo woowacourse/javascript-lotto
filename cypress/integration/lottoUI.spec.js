@@ -53,7 +53,7 @@ describe('구매금액 입력 UI 검사', () => {
     cy.get('.purchase-amount-input').should('have.focus');
   });
 
-  it('입력된 로또 구입 금액이 로또 한 장의 금액으로 나누어 떨어지지 않을 경우 alert으로 거스름돈 금액을 알려주고 구매한 로또를 표시한다.', () => {
+  it('입력된 로또 구입 금액이 로또 한 장의 금액으로 나누어 떨어지지 않을 경우 alert으로 거스름돈 금액을 알려주고 수동/자동구매 화면을 표시한다.', () => {
     const amountWithChange = Math.ceil(LOTTO_PRICE * 1.1);
     const { PURCHASE_AMOUNT_HAS_CHANGE } = PURCHASE_AMOUNT_ALERT_MESSAGE;
     const alertStub = cy.stub();
@@ -67,11 +67,11 @@ describe('구매금액 입력 UI 검사', () => {
         const actualMessage = alertStub.getCall(0).lastArg;
         expect(actualMessage).to.equal(PURCHASE_AMOUNT_HAS_CHANGE(change));
       });
-    cy.get('.purchased-lotto-section').should('be.visible');
+    cy.get('.ticket-issue-section').should('be.visible');
   });
 });
 
-describe('수동구매/자동구매 UI 검사', () => {
+describe('수동/자동구매 UI 검사', () => {
   const numOfLotto = 5;
   const summary = (auto, manual) => `· 자동: ${auto} 장\n· 수동: ${manual} 장`;
 
@@ -79,7 +79,7 @@ describe('수동구매/자동구매 UI 검사', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('Enter키 이벤트로 로또를 구입한 후 로또 발급버튼, 자동/수동 매수, 로또용지 추가버튼이 표시된다.', () => {
+  it('정상적인 로또구입 금액을 투입하면, 로또 발급버튼, 자동/수동 매수, 로또용지 추가버튼이 표시된다.', () => {
     cy.get('.purchase-option-section').should('not.be.visible');
     cy.get('.issue-ticket-button').should('not.be.visible');
     cy.get('.paper-add-button').should('not.be.visible');
@@ -117,7 +117,7 @@ describe('수동구매/자동구매 UI 검사', () => {
     cy.get('.purchase-number-summary').should('have.text', summary(0, numOfLotto));
   });
 
-  it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화 된다.', () => {
+  it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화된다.', () => {
     cy.get('.paper-add-button').should('be.disabled');
   });
 
@@ -146,7 +146,7 @@ describe('수동구매/자동구매 UI 검사', () => {
     cy.get('.select-check-message').should('have.text', '');
   });
 
-  it('로또복권 발행 버튼을 누르면, 자동/수동구매 수량이 적힌 컨펌메세지를 표시한다.', () => {
+  it('로또 발급하기 버튼을 누르면, 자동/수동구매 수량이 적힌 컨펌메세지를 표시한다.', () => {
     const confirmStub = cy.stub();
 
     cy.on('window:confirm', confirmStub);
@@ -158,16 +158,29 @@ describe('수동구매/자동구매 UI 검사', () => {
         expect(actualMessage).to.equal(TICKET_ISSUE_CONFIRM_MESSAGE(numOfLotto - numOfManualSelect, numOfManualSelect));
       });
   });
+
+  it('로또 발급 컨펌메세지에서 "취소"를 선택할 경우에 로또를 발급하지 않지 않는다.', () => {
+    cy.contains('취소').click();
+    cy.get('.purchased-lotto-section').should('not.be.visible');
+    cy.get('.issue-ticket-button').should('not.be.visible');
+  });
+
+  it('로또 발급 컨펌메세지에서 "확인"을 선택할 경우에 해당섹션은 화면에서 숨기고 로또를 발급한다.', () => {
+    cy.get('.issue-ticket-button').click();
+    cy.contains('확인').click();
+    cy.get('.ticket-issue-section').should('not.be.visible');
+    cy.get('.purchased-lotto-section').should('be.visible');
+  });
 });
 
-describe('구매한 로또 UI 검사', () => {
+describe('발급한 로또 UI 검사', () => {
   const numOfLotto = 3;
 
   before(() => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('Enter키 이벤트로 로또를 구입한 후 입력된 로또 구입 금액으로 발급한 로또를 화면에 표시한다.', () => {
+  it('로또 발급하기 버튼을 누르면, 자동 또는 수동 구매로 발급한 로또를 화면에 표시한다.', () => {
     cy.get('.purchase-amount-input')
       .type(LOTTO_PRICE * numOfLotto)
       .type('{enter}');
@@ -223,9 +236,11 @@ describe('당첨번호 입력 UI 검사', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
     cy.get('.purchase-amount-input').type(LOTTO_PRICE).type('{enter}');
+    cy.get('.issue-ticket-button').click();
+    cy.contains('확인');
   });
 
-  it('로또를 구매하면 당첨번호를 입력할 수 있는 창이 표시된다.', () => {
+  it('로또를 발급하면 당첨번호를 입력할 수 있는 창이 표시된다.', () => {
     cy.get('.winning-number-form').should('be.visible');
   });
 
