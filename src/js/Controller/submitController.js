@@ -13,7 +13,7 @@ import {
   showModal,
   closeModal,
 } from "../Handler/elementHandler.js";
-import TicketBundle from "../Model/TicketBundle.js";
+import ticketBundle from "../Model/TicketBundle.js";
 import result from "../Model/Result.js";
 
 console.log(result);
@@ -42,8 +42,8 @@ const handlePurchaseAmountSubmit = (event) => {
   }
 
   $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
-  TicketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
-  renderTickets(TicketBundle.ticketBundle.length);
+  ticketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
+  renderTickets(ticketBundle.ticketBundle.length);
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
 
@@ -55,8 +55,8 @@ const renderTickets = (ticketCount) => {
 
 const handleToggleButton = (event) => {
   event.target.checked
-    ? printTicketVertical(TicketBundle.ticketBundle)
-    : printTicketHorizontal(TicketBundle.ticketBundle.length);
+    ? printTicketVertical(ticketBundle.ticketBundle)
+    : printTicketHorizontal(ticketBundle.ticketBundle.length);
 };
 
 const handleResultSubmit = (event) => {
@@ -73,7 +73,7 @@ const handleResultSubmit = (event) => {
   }
 
   setNumbers(inputWinningNumbers, inputBonusNumber);
-  setWinningResult(TicketBundle.ticketBundle);
+  setWinningResult(ticketBundle.ticketBundle);
   renderWinningResult();
 };
 
