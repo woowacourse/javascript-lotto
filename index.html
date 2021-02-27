@@ -11,7 +11,7 @@
       <div class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-          <form id="cost-submit-form" class="mt-5" onsubmit="return false">
+          <form id="cost-submit-form" class="mt-5">
             <label class="mb-2 d-inline-block"
               >구입할 금액을 입력해주세요.
             </label>
@@ -46,7 +46,7 @@
               class="d-flex flex-wrap hide-lotto-numbers"
             ></div>
           </section>
-          <form id="correct-number-input-form" class="mt-9 hide" onsubmit="return false">
+          <form id="correct-number-input-form" class="mt-9 hide">
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
@@ -87,12 +87,11 @@
                     type="number"
                     class="bonus-number correct-number text-center"
                   />
-                  <input type="submit" class="multi-submit-input" />
                 </div>
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               id="result-modal-open-button"
               class="mt-5 btn btn-cyan w-100"
             >

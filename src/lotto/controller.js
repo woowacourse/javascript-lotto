@@ -44,7 +44,8 @@ const showWinningResult = () => {
   lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
 };
 
-const onCostSubmit = () => {
+const onCostSubmit = (e) => {
+  e.preventDefault();
   const cost = Number($costInput.value);
   const userGuideMessage = message.getCostValidation(cost);
   if (userGuideMessage) {
@@ -62,7 +63,8 @@ const onShowLottoNumbersToggle = (e) => {
     : lottoGameView.hideLottoNumbers();
 };
 
-const onResultModalOpen = () => {
+const onResultModalOpen = (e) => {
+  e.preventDefault();
   const correctNumbers = getCorrectNumbers();
   const userGuideMessage = message.getModalOpenValidation(correctNumbers);
   if (userGuideMessage) {
