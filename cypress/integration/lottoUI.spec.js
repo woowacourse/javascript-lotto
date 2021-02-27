@@ -74,7 +74,10 @@ describe('수동구매/자동구매 UI 검사', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  const numOfLotto = 3;
+  const numOfLotto = 5;
+  const summary = (auto, manual) => `
+  · 자동: ${auto} 장
+  · 수동: ${manual} 장`;
 
   it('Enter키 이벤트로 로또를 구입한 후 로또 발급버튼, 자동/수동 매수, 로또용지 추가버튼이 표시된다.', () => {
     cy.get('.purchase-option-section').should('not.be.visible');
@@ -91,12 +94,20 @@ describe('수동구매/자동구매 UI 검사', () => {
   });
 
   it('자동구매가 기본옵션으로 표시된다.', () => {
-    const purchaseNumberSummary = `
-    · 자동: ${numOfLotto} 장
-    <br />
-    · 수동: 0 장`;
+    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto, 0));
+  });
 
-    cy.get('.purchase-number-summary').should('have.text', purchaseNumberSummary);
+  let numOfManualSelect = 0;
+
+  it('용지추가 버튼을 누를 때마다 로또번호 선택용지가 한 장씩 화면에 추가된다.', () => {
+    numOfManualSelect = 1;
+    cy.get('.paper-add-button').click();
+    cy.get('number-selectors').should('have.length', numOfManualSelect);
+    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
+    numOfManualSelect = 2;
+    cy.get('.paper-add-button').click();
+    cy.get('number-selectors').should('have.length', numOfManualSelect);
+    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
   });
 });
 
