@@ -10,7 +10,7 @@ const getProfit = (winningRank) => {
     [VALUE.WINNING_RANK.NONE]: VALUE.WINNING_PRICE.NONE,
   };
 
-  return profits[winningRank];
+  return profits[winningRank] || VALUE.WINNING_PRICE.NONE;
 };
 
 const getRank = (winningCount) => {
@@ -24,7 +24,7 @@ const getRank = (winningCount) => {
     [VALUE.HIT_COUNT.NONE]: VALUE.WINNING_RANK.NONE,
   };
 
-  return rank[winningCount];
+  return rank[winningCount] || VALUE.WINNING_RANK.NONE;
 };
 
 const getWinningRank = (winnigCount, hasBonusCount) => {

@@ -1,7 +1,8 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { closeModal } from '../view/viewModalPage.js';
-import { initializePurchaseResultSection } from '../view/viewPurchaseResultSection.js';
+import { hidePurchaseSection } from '../view/viewPurchaseSection.js';
 import { hideWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
+import { initializePurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 
 export const restartLottoGame = () => {
   $('#purchase-price-input-form__input').value = '';
@@ -10,6 +11,7 @@ export const restartLottoGame = () => {
   });
   $('.bonus-number').value = '';
 
+  hidePurchaseSection();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
 };

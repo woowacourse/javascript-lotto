@@ -1,18 +1,8 @@
-import Ticket from '../model/Ticket.js';
 import { $ } from '../utils/querySelector.js';
-import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
-import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
+import { disabledElement } from '../utils/setProperty.js';
+import { ERR_MESSAGE, MESSAGE, VALUE } from '../utils/constant.js';
+import { renderPurchaseSection } from '../view/viewPurchaseSection.js';
 import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
-
-const setLotto = (lotto, amountOfLottoTicket) => {
-  const purchasePrice = amountOfLottoTicket * VALUE.LOTTO.TICKET_PRICE;
-
-  lotto.setPurchasePrice(purchasePrice);
-
-  while (amountOfLottoTicket--) {
-    lotto.addTicket(new Ticket());
-  }
-};
 
 const isValidPrice = (price) => {
   return price >= VALUE.LOTTO.TICKET_PRICE;
@@ -26,17 +16,17 @@ export const handlePurchasePriceSubmit = (lotto) => {
     return;
   }
 
-  const amountOfLottoTicket = Math.floor(
-    purchasePrice / VALUE.LOTTO.TICKET_PRICE,
-  );
+  const smallChange = purchasePrice % VALUE.LOTTO.TICKET_PRICE;
 
-  setLotto(lotto, amountOfLottoTicket);
+  if (smallChange) {
+    alert(MESSAGE.LOTTO.SMALL_CHANGE(smallChange));
+  }
 
-  const lottoTicketNumbers = lotto
-    .getTickets()
-    .map((ticket) => ticket.getNumbers());
+  lotto.setPurchasePrice(purchasePrice - smallChange);
+  lotto.setPurchaseBudget(purchasePrice - smallChange);
 
-  renderPurchaseResultSection(amountOfLottoTicket, lottoTicketNumbers);
   showWinningNumberInputForm();
-  $('.winning-number').focus();
+  renderPurchaseSection(lotto);
+  disabledElement($('#purchase-price-input-form__button'));
+  $('#auto-purchase-input-form__input').focus();
 };

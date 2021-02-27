@@ -7,8 +7,16 @@ export default class Lotto {
     return this.tickets;
   }
 
+  getPurchaseBudget() {
+    return this.purchaseBudget;
+  }
+
   setPurchasePrice(purchasePrice) {
     this.purchasePrice = purchasePrice;
+  }
+
+  setPurchaseBudget(purchaseBudget) {
+    this.purchaseBudget = purchaseBudget;
   }
 
   addTicket(ticket) {
@@ -18,5 +26,6 @@ export default class Lotto {
   clear() {
     this.tickets = [];
     this.purchasePrice = 0;
+    this.purchaseBudget = 0;
   }
 }

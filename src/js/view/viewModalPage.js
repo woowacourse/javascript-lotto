@@ -13,9 +13,9 @@ export const closeModal = () => {
 export const renderRankCount = (rankCountMap) => {
   const $$resultRankCount = $$('.result-rank-count');
   $$resultRankCount.forEach(($resultRankCount, index) => {
-    $resultRankCount.innerText = `${rankCountMap.get(
-      $$resultRankCount.length - index,
-    )}개`;
+    $resultRankCount.innerText = `${
+      rankCountMap[$$resultRankCount.length - index]
+    }개`;
   });
 };
 

@@ -25,23 +25,10 @@ describe('racing-game', () => {
 
   const playLottoGame = (inputNumbers) => {
     typePurchasePriceAndClickSubmitButton();
+    cy.get('#auto-purchase-input-form__input').type(3);
+    cy.get('#auto-purchase-input-form__button').click({ force: true });
     typeWinningNumbersAndClickShowResultButton(inputNumbers);
   };
-
-  it('구입 금액에 3000원을 입력 시, 로또 3개가 자동으로 구입되야 한다.', () => {
-    typePurchasePriceAndClickSubmitButton(3000);
-
-    cy.get('#purchase-result-section__label').should(
-      'have.text',
-      '총 3개를 구매하였습니다.',
-    );
-    cy.get('#purchase-result-section__row-align')
-      .children('span')
-      .its('length')
-      .then((len) => {
-        expect(len).to.equal(3);
-      });
-  });
 
   it('구입 금액에 1000원 이하의 값을 입력 시, 경고 메시지가 출력되야 한다.', () => {
     typePurchasePriceAndClickSubmitButton(-1);
@@ -52,8 +39,28 @@ describe('racing-game', () => {
     );
   });
 
-  it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
+  it('구입 금액 입력 후 토글을 통해 수동 구매와 자동 구매를 선택할 수 있어야 한다.', () => {
     typePurchasePriceAndClickSubmitButton();
+
+    cy.get('#auto-purchase-input-form').should('be.visible');
+    cy.get('#purchase-section__toggle').click({ force: true });
+    cy.get('#auto-purchase-input-form').should('not.be.visible');
+    cy.get('#manual-purchase-input-form').should('be.visible');
+  });
+
+  it('자동으로 로또를 구매한 후 남은 금액을 사용자에게 보여줘야 한다.', () => {
+    typePurchasePriceAndClickSubmitButton();
+
+    cy.get('#auto-purchase-input-form__input').type(3);
+    cy.get('#auto-purchase-input-form__button').click({ force: true });
+    cy.get('#purchase-section__budget').should(
+      'have.text',
+      '남은 금액 : 2000원',
+    );
+  });
+
+  it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
+    playLottoGame();
 
     cy.get('#purchase-result-section__toggle').click({ force: true });
     cy.get('#purchase-result-section__row-align').should('not.be.visible');
@@ -77,15 +84,6 @@ describe('racing-game', () => {
     cy.get('@windowAlert').should(
       'be.calledWith',
       ERR_MESSAGE.WINNING_NUMBER.DUPLICATE,
-    );
-  });
-
-  it('"1 ~ 45"가 아닌 번호를 입력시, 경고 메시지가 출력되야 한다.', () => {
-    playLottoGame([5, 10, 15, 25, 30, 35, 50]);
-
-    cy.get('@windowAlert').should(
-      'be.calledWith',
-      ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE,
     );
   });
 
