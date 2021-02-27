@@ -1,6 +1,7 @@
 import { ELEMENT } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
 import result from "../Model/Result.js";
+import { getTotalPrize } from "../Controller/submitController.js";
 
 export const printPurchaseAmountLabel = (ticketCount) => {
   $(
@@ -36,7 +37,7 @@ export const printTicketVertical = (ticketBundle) => {
 
 export const printWinningResult = () => {
   const winningCounts = $$(ELEMENT.WINNING_COUNT);
-  const totalPrize = Number($(ELEMENT.WIN_NUMBER_CONTAINER).dataset.totalPrize);
+  const totalPrize = getTotalPrize();
   const money = Number($(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money);
   const earningRate = ((totalPrize - money) / money) * 100;
 

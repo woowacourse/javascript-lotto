@@ -1,10 +1,4 @@
-import {
-  ELEMENT,
-  MATCHING_NUMBER,
-  RANK,
-  WINNING_PRIZE,
-} from "../Util/constants.js";
-import { $ } from "../Util/querySelector.js";
+import { MATCHING_NUMBER, RANK, WINNING_PRIZE } from "../Util/constants.js";
 
 class Result {
   constructor() {
@@ -56,18 +50,32 @@ class Result {
       [RANK.FIFTH, WINNING_PRIZE.FIFTH],
     ];
     let tmpMatchingCounts = [];
-    let totalPrize = 0;
 
     rankInfo.forEach((rankArray, i) => {
       const matchingCount = this.ranks.filter((rank) => rank === rankArray[0])
         .length;
 
       tmpMatchingCounts.push(matchingCount);
-      totalPrize += this.calculatePrize(rankInfo, i, matchingCount);
     });
 
     this.matchingCounts = tmpMatchingCounts;
-    $(ELEMENT.WIN_NUMBER_CONTAINER).dataset.totalPrize = totalPrize;
+  }
+
+  calculateTotalPrize() {
+    const rankInfo = [
+      [RANK.FIRST, WINNING_PRIZE.FIRST],
+      [RANK.SECOND, WINNING_PRIZE.SECOND],
+      [RANK.THIRD, WINNING_PRIZE.THIRD],
+      [RANK.FOURTH, WINNING_PRIZE.FOURTH],
+      [RANK.FIFTH, WINNING_PRIZE.FIFTH],
+    ];
+    let totalPrize = 0;
+
+    rankInfo.forEach((_, i) => {
+      totalPrize += this.calculatePrize(rankInfo, i, this.matchingCounts[i]);
+    });
+
+    return totalPrize;
   }
 
   calculatePrize(rankInfo, i, matchingCount) {

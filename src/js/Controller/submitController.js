@@ -16,7 +16,6 @@ import {
 import ticketBundle from "../Model/TicketBundle.js";
 import result from "../Model/Result.js";
 
-console.log(result);
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
     "submit",
@@ -80,6 +79,10 @@ const handleResultSubmit = (event) => {
 const setNumbers = (winningNumbers, bonusNumber) => {
   result.setWinningNumbers(winningNumbers);
   result.setBonusNumber(bonusNumber);
+};
+
+export const getTotalPrize = () => {
+  return result.calculateTotalPrize();
 };
 
 const setWinningResult = (ticketBundle) => {
