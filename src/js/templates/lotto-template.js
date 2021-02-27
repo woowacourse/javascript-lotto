@@ -22,7 +22,6 @@ class Template {
   }
 
   pocketLottosDetail(lottos) {
-    console.log(lottos[0].numbers);
     return lottos
       .map((lotto) => lotto.numbers)
       .map(

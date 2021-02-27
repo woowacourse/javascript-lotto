@@ -7,7 +7,7 @@
  * @param {Number} min 최솟값
  * @param {Number} max 최댓값
  */
-export const getRandomNumber = (min, max) =>
+export const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min) + min + 1);
 
 /**

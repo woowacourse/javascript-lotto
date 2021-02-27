@@ -1,7 +1,7 @@
 import LottoModel from "../models/lotto-model.js";
 import LottoView from "../views/lotto-view.js";
 import { getPriceInputErrorMessage } from "../validators/price-validator.js";
-import { $, getQuotient, getRandomNumber, sortByNumber } from "../util.js";
+import { $, getQuotient, generateRandomNumber, sortByNumber } from "../util.js";
 import { LOTTO, SELECTOR } from "../constants/index.js";
 
 class LottoController {
@@ -30,7 +30,7 @@ class LottoController {
   generateLotto() {
     const lotto = new Set();
     while (lotto.size !== LOTTO.SIZE) {
-      lotto.add(getRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+      lotto.add(generateRandomNumber(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
     }
 
     return sortByNumber([...lotto]);
