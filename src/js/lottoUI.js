@@ -1,5 +1,5 @@
 import { $, $$ } from './utils/util.js';
-import { UI_SETTINGS, LOTTO_SETTINGS } from './utils/constants/settings.js';
+import { UI_SETTINGS, LOTTO_SETTINGS, RANK } from './utils/constants/settings.js';
 import { DOM_CLASSES, DOM_IDS } from './utils/constants/dom.js';
 
 export default class LottoUI {
@@ -113,27 +113,27 @@ export default class LottoUI {
                 <tr class="text-center">
                   <td class="p-3">3개</td>
                   <td class="p-3">5,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="fifth">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="${RANK.FIFTH}">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">4개</td>
                   <td class="p-3">50,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="fourth">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="${RANK.FOURTH}">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개</td>
                   <td class="p-3">1,500,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="third">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="${RANK.THIRD}">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개 + 보너스볼</td>
                   <td class="p-3">30,000,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="second">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="${RANK.SECOND}">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">6개</td>
                   <td class="p-3">2,000,000,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="first">n개</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="${RANK.FIRST}">n개</td>
                 </tr>
               </tbody>
             </table>

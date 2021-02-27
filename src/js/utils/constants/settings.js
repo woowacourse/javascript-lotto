@@ -11,6 +11,15 @@ export const UI_SETTINGS = {
   DEFAULT_VISIBILITY: false,
 }
 
+export const RANK = {
+  FIRST: 'first',
+  SECOND: 'second',
+  THIRD: 'third',
+  FOURTH: 'fourth',
+  FIFTH: 'fifth',
+  NONE: 'none',
+}
+
 export const PRIZE = {
   FIRST: 2000000000,
   SECOND: 30000000,
