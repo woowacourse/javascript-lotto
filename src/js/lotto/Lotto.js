@@ -18,7 +18,11 @@ export default class Lotto {
     e.preventDefault();
     const price = e.target.elements["price-input"].value;
 
-    this.lottoController.purchase(price);
+    this.lottoController.initLottoPurchase(price);
+  }
+
+  onPurchase(e) {
+    e.preventDefault();
   }
 
   onToggleLottoNumbers(e) {

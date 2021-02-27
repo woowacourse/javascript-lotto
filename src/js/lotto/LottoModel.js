@@ -1,9 +1,17 @@
 import { shuffle } from "../utils.js";
+import { LOTTO_PRICE } from "./constants/lotto_constants.js";
 
 export default class LottoModel {
   constructor() {
-    this.lottoList = []; // [ { number: [0, ] } ]
+    this.lottoList = null;
     this.price = 0;
+    this.numOfLottoes = 0;
+  }
+
+  init(price) {
+    this.lottoList = []; //[ { number: [0, ] } ]
+    this.price = price;
+    this.numOfLottoes = price / LOTTO_PRICE;
   }
 
   createLotto() {
@@ -16,9 +24,8 @@ export default class LottoModel {
     };
   }
 
-  buy(price) {
-    const numOfLottoes = price / 1000;
-    this.price = price;
+  buy() {
+    const numOfLottoes = this.price / 1000;
     this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
   }
 }

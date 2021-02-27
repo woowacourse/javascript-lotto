@@ -1,4 +1,3 @@
-
 const $ = (selector) => {
   const selected = document.querySelectorAll(selector);
 
@@ -21,3 +20,5 @@ export const $earningRate = $("#earning-rate");
 export const $restartButton = $("#restart-button");
 export const $winningNumberInputs = $(".winning-number");
 export const $bonusNumberInput = $("#bonus-number");
+export const $purchaseForm = $("#purchase-form");
+export const $lottoNumbersInput = $("#lotto-numbers-input");
