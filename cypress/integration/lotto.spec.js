@@ -30,19 +30,6 @@ describe("lotto 미션 테스트", () => {
       });
   });
 
-  it("구입 금액에 음수을 입력하면 경고 메시지를 보여준다.", () => {
-    const alertCalled = cy.stub();
-    cy.on("window:alert", alertCalled);
-
-    cy.get("#price-input").clear();
-    cy.get("#price-input").type("-1000");
-    cy.get("#price-submit-button")
-      .click()
-      .then(() => {
-        expect(alertCalled.getCall(0)).to.be.calledWith(INVALID_PRICE_ERROR);
-      });
-  });
-
   it("구입 금액에 아무것도 입력하지 않으면 경고 메시지를 보여준다.", () => {
     const alertCalled = cy.stub();
     cy.on("window:alert", alertCalled);
