@@ -72,6 +72,30 @@ describe('로또 게임 테스트', () => {
     });
   });
 
+  it('수동 구매 후 남는 금액 발생 시 자동 구매 진행 확인창이 뜬다. ', () => {
+    const alertStub = cy.stub();
+    cy.on('window:confirm', alertStub);
+
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+
+    // 로또 1장만 입력 후 구매 확정
+    cy.get('.manual-wrapper')
+      .eq(0)
+      .find('.manual-number')
+      .each((manualNumber, idx) => {
+        cy.wrap(manualNumber).type(idx + 10); // type random number
+      });
+    cy.get('.manual-input-btn').eq(0).click();
+    cy.get('#manual-confirm-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(
+          '남은 금액은 자동구매로 진행됩니다. 계속하시겠습니까?'
+        );
+      });
+  });
+
   it('자동 구매 선택 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
     cy.get('#purchased-lottos').should('be.visible');
