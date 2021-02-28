@@ -35,6 +35,8 @@ export default class LottoView {
   }
 
   renderLottoList(lottos) {
+    if ($('.lotto-list')) $('.lotto-list').remove();
+
     const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
 
     const lottoFragments = lottos.map((lotto) => {
@@ -53,6 +55,6 @@ export default class LottoView {
 
     $lottoList.append(...lottoFragments);
     $('.lotto-list-container').append($lottoList);
-    $('.lotto-count').textContent = lottos.length;
+    this.renderLottoCount(lottos.length);
   }
 }

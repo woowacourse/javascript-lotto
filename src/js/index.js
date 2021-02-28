@@ -79,6 +79,21 @@ class LottoApp {
     this.view.renderLotto(lotto, this.data.availablePurchaseCount, this.data.lottos.length);
   }
 
+  handleAutoPurchase() {
+    const purchasedLottos = this.generateLottos(this.data.availablePurchaseCount);
+
+    this.data.lottos = [...this.data.lottos, ...purchasedLottos];
+    this.data.availablePurchaseCount = 0;
+
+    this.view.renderLottoList(this.data.lottos);
+    this.view.renderLottoCount(this.data.lottos.length);
+    this.view.renderPurchaseCount(this.data.availablePurchaseCount);
+
+    hideElement($('.lotto-number-section'));
+    showElement($('.winning-number-form-section'));
+    $('.winning-number').focus();
+  }
+
   handleToggleLottoNumbers() {
     $('.lotto-list').classList.toggle('show-number');
   }
@@ -168,6 +183,8 @@ class LottoApp {
     $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
 
     $('#lotto-number-form').addEventListener('submit', this.handleSubmitLottoNumbers.bind(this));
+
+    $('#auto-purchase-button').addEventListener('click', this.handleAutoPurchase.bind(this));
 
     $('.lotto-numbers-toggle-button').addEventListener(
       'change',
