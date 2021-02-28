@@ -50,7 +50,7 @@ export default class LottoController {
 
     $(`#${DOM_IDS.APP}`).addEventListener('submit', event => {
       event.preventDefault();
-      if (event.target.closest(`.${DOM_CLASSES.LOTTO_AMOUNT_FORM_MANUAL}`)) {
+      if (event.target.closest(`.${DOM_CLASSES.LOTTO_AMOUNT_FORM}`)) {
         this._handleAmountInput();
         return;
       }

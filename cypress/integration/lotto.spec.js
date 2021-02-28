@@ -8,6 +8,7 @@ import { getRandomNumber } from '../../src/js/utils/util.js';
 const SUCCESS_INPUT = {
   MONEY: 5000,
   MANUAL_AMOUNT: 2,
+  AUTO_AMOUNT: 2,
   MANUAL_SELECT_NUMBERS: [
     1, 2, 3, 4, 5, 6,
     7, 8, 9, 10, 11, 12
@@ -54,6 +55,21 @@ context('로또 UI 테스트', () => {
     it('소비자는 수동 구매를 할 수 있어야 한다.', () => {
       jumpToResultInputUI();
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, true);
+    });
+    it('소비자는 자동 구매를 할 수 있어야한다.', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+
+      typeNumbers(SUCCESS_INPUT.MANUAL_SELECT_NUMBERS, `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
+      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+
+      cy.get(`.${DOM_CLASSES.LOTTO_CONTAINER} .${DOM_CLASSES.LOTTO_TICKET}`).then(elements => {
+        expect(elements).should('have.length',
+          SUCCESS_INPUT.MANUAL_AMOUNT + SUCCESS_INPUT.AUTO_AMOUNT);
+      })
     });
   });
 
@@ -202,7 +218,7 @@ function testChildNodeExistence(selector, existenceToExpect) {
 
 function jumpToResultInputUI() {
   typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-  typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
+  typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
   typeNumbers(SUCCESS_INPUT.MANUAL_SELECT_NUMBERS, `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
   click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 }

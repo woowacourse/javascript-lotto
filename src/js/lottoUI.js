@@ -34,17 +34,17 @@ export default class LottoUI {
 
   _getTemplateLottoAmount() {
     return `
-    <form class="${DOM_CLASSES.LOTTO_AMOUNT_FORM_MANUAL}">
+    <form class="${DOM_CLASSES.LOTTO_AMOUNT_FORM}">
       <label> 수동으로 구매할 갯수를 입력해주세요.
         <p>수동 : <input type="number" class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}" placeholder="수동 구매 갯수"/></p>
       </label>
-      <button type="submit" class="btn btn-cyan ${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}">확인</button>
+      <button type="submit" class="btn btn-cyan ${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}">확인</button>
     </form>
     `
   }
 
   renderManualSelectUI(amount) {
-    $(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`).disable();
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`)
       .insertAdjacentHTML('beforeend', this._getTemplateManualSelects(amount));
   }

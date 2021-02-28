@@ -5,9 +5,10 @@ export const DOM_CLASSES = {
   MONEY_FORM_SUBMIT: 'money-input-form__submit',
 
   LOTTO_AMOUNT_CONTAINER: 'lotto-amount-div',
-  LOTTO_AMOUNT_FORM_MANUAL: 'lotto-amount-form--manual',
+  LOTTO_AMOUNT_FORM: 'lotto-amount-form',
   LOTTO_AMOUNT_INPUT_MANUAL: 'lotto-amount-form__input--manual',
-  LOTTO_AMOUNT_SUBMIT_MANUAL: 'lotto-amount-form__submit--manual',
+  LOTTO_AMOUNT_INPUT_AUTO: 'lotto-amount-form__input--auto',
+  LOTTO_AMOUNT_SUBMIT: 'lotto-amount-form__submit',
 
   MANUAL_SELECT_CONTAINER: 'manual-select-div',
   MANUAL_SELECT_FORM: 'manual-select-form',
