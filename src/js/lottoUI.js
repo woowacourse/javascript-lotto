@@ -48,7 +48,7 @@ export default class LottoUI {
 
   renderManualSelectUI(amount) {
     $(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`).disable();
-    $(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`)
+    $(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`)
       .insertAdjacentHTML('beforeend', this._getTemplateManualSelects(amount));
   }
 
