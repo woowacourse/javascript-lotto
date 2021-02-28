@@ -15,3 +15,14 @@ export const hasDuplicatedElement = (list) => {
 export const isShortLength = (list, expectedLength) => {
   return list.length < expectedLength;
 };
+
+export const getNthElementUpdated = (array, nth, newContent) => {
+  return array
+    .slice(0, nth)
+    .concat(newContent)
+    .concat(array.slice(nth + 1));
+};
+
+export const getNthElementRemoved = (array, nth) => {
+  return array.slice(0, nth).concat(array.slice(nth + 1));
+};

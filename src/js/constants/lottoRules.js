@@ -6,6 +6,8 @@ export const LOTTO_NUMBERS_LENGTH = 6;
 export const BONUS_NUMBER_LENGTH = 1;
 export const TOTAL_NUMBERS_LENGTH = LOTTO_NUMBERS_LENGTH + BONUS_NUMBER_LENGTH;
 
+export const DEFAULT_MANUAL_QUANTITY = 1;
+
 export const BONUS_COUNT = 0.5;
 export const BONUS_CHECK_REQUIRED_COUNT = 5;
 export const WINNING_PRIZE = {

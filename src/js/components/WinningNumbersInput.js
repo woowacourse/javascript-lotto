@@ -49,6 +49,7 @@ export default class WinningNumberInput {
       winningNumbers: [...e.currentTarget.querySelectorAll('.winning-number')].map(($input) => $input.value),
       bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
     };
+
     const { isFulfilled, checkMessage } = this.validateInput(
       [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
     );

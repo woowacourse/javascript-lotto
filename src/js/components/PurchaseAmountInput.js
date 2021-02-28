@@ -6,6 +6,7 @@ import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
 export default class PurchaseAmountInput {
   constructor({ stageManager }) {
     this.stageManager = stageManager;
+    this.checkMessage = '';
 
     this.selectDOMs();
     this.subscribeAppStages();

@@ -1,9 +1,12 @@
-const getSelectPaperItemHTML = (quantity) => {
+import { LOTTO_PAPER_CHECK_MESSAGE } from '../constants/display.js';
+import { LOTTO_NUMBERS_LENGTH } from '../constants/lottoRules.js';
+
+const getSelectPaperItemHTML = (number) => {
   return `
   <li>
     <label>
-      <input type="checkbox" aria-label="select${quantity}" />
-      <span>${quantity}</span>
+      <input type="checkbox" value=${number} aria-label="select${number}" />
+      <span>${number}</span>
     </label>
   </li>
   `;
@@ -15,19 +18,21 @@ const getApplyQuantitySelectHTML = (quantity) => {
     : `<option value="${quantity}">${quantity}장</option>`;
 };
 
-export const getSelectPaperHTML = ({ maxQuantity }) => {
+export const getSelectPaperHTML = ({ issueNum, maxQuantity }) => {
   return `
-  <div class="manual-select-paper mt-3 d-flex flex-col">
+  <div class="manual-select-paper mt-3 d-flex flex-col" data-issue-num=${issueNum}>
     <div class="quantity-applier mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
       <select class="quantity-select">
         ${[...Array(maxQuantity)].map((_, i) => getApplyQuantitySelectHTML(i + 1)).join('')}
       </select>
     </div>
-    <ul class="select-paper m-0 p-0">
+    <ul class="select-number-list m-0 p-0">
       ${[...Array(45)].map((_, i) => getSelectPaperItemHTML(i + 1)).join('')}
     </ul>
-    <div class="manual-select-check-message text-sm"></div>
+    <div class="manual-select-check-message text-sm">${LOTTO_PAPER_CHECK_MESSAGE.NEED_TO_SELECT_MORE(
+      LOTTO_NUMBERS_LENGTH
+    )}</div>
     <button type="button" class="paper-remove-button r-btn">-</button>
   </div>`;
 };

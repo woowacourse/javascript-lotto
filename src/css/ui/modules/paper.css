@@ -10,14 +10,14 @@
 
 /* 로또용지 */
 
-.select-paper {
+.select-number-list {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 10px 6px;
   list-style: none;
 }
 
-.select-paper label {
+.select-number-list label {
   margin: 0;
   padding: 0;
   display: inline-block;
@@ -29,7 +29,7 @@
   user-select: none;
 }
 
-.select-paper input {
+.select-number-list input {
   position: absolute;
   opacity: 0;
   height: 0;
@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 
-.select-paper span {
+.select-number-list span {
   display: inline-block;
   text-align: center;
   padding: 3px 1px;
@@ -48,8 +48,8 @@
   box-sizing: border-box;
 }
 
-.select-paper span::before,
-.select-paper span::after {
+.select-number-list span::before,
+.select-number-list span::after {
   content: '';
   display: inline-block;
   position: absolute;
@@ -61,35 +61,35 @@
   box-sizing: border-box;
 }
 
-.select-paper span::before {
+.select-number-list span::before {
   left: 0;
   border-left: 1px solid #e3bfbf;
 }
 
-.select-paper span::after {
+.select-number-list span::after {
   right: 0;
   border-right: 1px solid #e3bfbf;
 }
 
-.select-paper input:hover ~ span {
+.select-number-list input:hover ~ span {
   color: white;
   background-color: #ff7070;
   font-weight: 400;
 }
 
-.select-paper input:checked ~ span {
+.select-number-list input:checked ~ span {
   color: white;
   background-color: #cb4342;
 }
 
-.select-paper input:hover ~ span::before,
-.select-paper input:hover ~ span::after,
-.select-paper input:checked ~ span::before,
-.select-paper input:checked ~ span::after {
+.select-number-list input:hover ~ span::before,
+.select-number-list input:hover ~ span::after,
+.select-number-list input:checked ~ span::before,
+.select-number-list input:checked ~ span::after {
   opacity: 0;
 }
 
-.select-paper input:focus ~ span {
+.select-number-list input:focus ~ span {
   border-color: black;
   outline-color: black;
 }

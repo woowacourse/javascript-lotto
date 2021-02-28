@@ -10,7 +10,7 @@ import {
   PURCHASED_QUANTITY_MESSAGE,
   LOTTO_NUMBER_SEPARATOR,
   WINNING_NUMBER_CHECK_MESSAGE,
-  MANUAL_SELECT_CHECK_MESSAGE,
+  LOTTO_PAPER_CHECK_MESSAGE,
   TICKET_ISSUE_CONFIRM_MESSAGE,
 } from '../../src/js/constants/display.js';
 
@@ -136,21 +136,21 @@ describe('수동/자동구매 UI 검사', () => {
   });
 
   it('로또용지에서 6개 보다 적게 고를 경우, 상태메세지가 화면에 표시되고 로또 발급버튼이 비활성화된다.', () => {
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(6));
+    cy.get('.manual-select-check-message').should('have.text', LOTTO_PAPER_CHECK_MESSAGE.NEED_TO_SELECT_MORE(6));
     cy.get('.ticket-issue-button').should('be.disabled');
 
-    cy.get('.select-paper input').eq(0).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(5));
-    cy.get('.select-paper input').eq(1).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(4));
-    cy.get('.select-paper input').eq(2).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(3));
-    cy.get('.select-paper input').eq(3).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(2));
-    cy.get('.select-paper input').eq(4).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(1));
-    cy.get('.select-paper input').eq(5).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', '');
+    cy.get('.select-number-list span').eq(0).click();
+    cy.get('.select-number-list input').eq(0).should('be.checked');
+    cy.get('.select-number-list span').eq(1).click();
+    cy.get('.select-number-list input').eq(1).should('be.checked');
+    cy.get('.select-number-list span').eq(2).click();
+    cy.get('.select-number-list input').eq(2).should('be.checked');
+    cy.get('.select-number-list span').eq(3).click();
+    cy.get('.select-number-list input').eq(3).should('be.checked');
+    cy.get('.select-number-list span').eq(4).click();
+    cy.get('.select-number-list input').eq(4).should('be.checked');
+    cy.get('.select-number-list span').eq(5).click();
+    cy.get('.select-number-list input').eq(5).should('be.checked');
   });
 
   it('로또 발급하기 버튼을 누를 경우, 자동/수동구매 수량이 적힌 컨펌메세지가 표시된다.', () => {

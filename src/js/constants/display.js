@@ -1,4 +1,4 @@
-import { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_PRICE } from './lottoRules.js';
+import { LOTTO_NUMBERS_LENGTH, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_PRICE } from './lottoRules.js';
 
 export const PURCHASED_QUANTITY_MESSAGE = (numOfLotto) => `총 ${numOfLotto}개를 구매하였습니다.`;
 export const PURCHASE_AMOUNT_ALERT_MESSAGE = {
@@ -8,7 +8,10 @@ export const PURCHASE_AMOUNT_ALERT_MESSAGE = {
     `입력된 금액에서 ${change}원을 제외한 금액으로 로또를 구매했습니다.\n거스름돈 챙겨가세요.`,
 };
 
-export const MANUAL_SELECT_CHECK_MESSAGE = (num) => `${num}개를 더 골라주세요!`;
+export const LOTTO_PAPER_CHECK_MESSAGE = {
+  NEED_TO_SELECT_MORE: (num) => `${num}개를 더 골라주세요!`,
+  CANNOT_SELECT_MORE: `${LOTTO_NUMBERS_LENGTH}개를 모두 고르셨습니다.`,
+};
 export const TICKET_ISSUE_CONFIRM_MESSAGE = ({ auto, manual }) =>
   `자동 ${auto}장, 수동 ${manual}장 으로 로또를 발급합니다.\n확정하시겠습니까?`;
 
