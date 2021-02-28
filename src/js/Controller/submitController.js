@@ -79,6 +79,8 @@ const handleSelfPurchaseSubmit = (event) => {
     (number) => (number.value = "")
   );
   $$(".self-purchase-lotto-number")[0].focus();
+
+  renderTickets(tickets.length);
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
 
@@ -95,16 +97,16 @@ const handleAutoPurchaseSubmit = (event) => {
     autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE
   );
 
-  console.log(ticketBundle.ticketBundle);
+  renderTickets(tickets.length);
   $("#auto-purchase-input").value = "";
   $("#auto-purchase-input").focus();
 };
 
-// const renderTickets = (ticketCount) => {
-//   printPurchaseAmountLabel(ticketCount);
-//   printTicketHorizontal(ticketCount);
-//   showPurchaseResult();
-// };
+const renderTickets = (ticketCount) => {
+  printPurchaseAmountLabel(ticketCount);
+  printTicketHorizontal(ticketCount);
+  showPurchaseResult();
+};
 
 const handleToggleButton = (event) => {
   event.target.checked
