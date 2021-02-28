@@ -54,7 +54,12 @@ const getTotalYield = (lotto) => {
     0,
   );
 
-  return Number(((totalProfit / lotto.purchasePrice) * 100).toFixed(2));
+  return Number(
+    (
+      (totalProfit / (lotto.getAmount() * VALUE.LOTTO.TICKET_PRICE)) *
+      100
+    ).toFixed(2),
+  );
 };
 
 const setTicketResult = (ticket, winningNumbers, bonusNumber) => {

@@ -7,6 +7,12 @@ const selfResultTableTemplate = (index, joinedselfNumbers) => {
           </tr>`;
 };
 
+export const renderPurchaseModalSelfInputFormLabel = (amountOfLottoTicket) => {
+  $(
+    '#purchase-modal__self-input-form__label',
+  ).innerText = `총 ${amountOfLottoTicket}개를 구매 할 수 있습니다.`;
+};
+
 export const renderSelfResultTable = (index, selfNumbers) => {
   $('#purchase-modal__self-result-section__table > tbody').insertAdjacentHTML(
     'beforeend',
