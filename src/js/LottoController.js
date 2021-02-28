@@ -109,7 +109,7 @@ export default class LottoController {
 
   confirmManualPurchaseHandler(manualCount) {
     if (manualCount < this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT) {
-      const agreeAutoPurchase = confirm(ALERT_MESSAGES.TURN_TO_AUTO_PURCHASE);
+      const agreeAutoPurchase = confirm(ALERT_MESSAGES.CONVERT_TO_AUTO_ALERT);
       if (agreeAutoPurchase) {
         this.manualInputView.hide();
         this.purchaseAutomatically(

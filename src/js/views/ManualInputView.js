@@ -1,6 +1,6 @@
 import View from './View.js';
 import { $, $$ } from '../utils/selector.js';
-import { LOTTO_NUMBERS } from '../utils/constants.js';
+import { ALERT_MESSAGES, LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class ManualInputView extends View {
   constructor($element) {
@@ -73,6 +73,9 @@ export default class ManualInputView extends View {
 
   showAllConfirmButton() {
     const allConfirmBtn = document.createElement('template');
+    const convertToAutoCaption = document.createElement('template');
+    convertToAutoCaption.innerHTML = `<p id="convert-auto-caption">${ALERT_MESSAGES.CONVERT_TO_AUTO_WARNING}</>`;
+
     allConfirmBtn.innerHTML = `
       <button
         type="submit"
@@ -82,7 +85,7 @@ export default class ManualInputView extends View {
         구매 확정하기
       </button>
     `;
-    this.$element.appendChild(allConfirmBtn.content);
+    this.$element.append(convertToAutoCaption.content, allConfirmBtn.content);
   }
 
   bindConfirmEvent() {
