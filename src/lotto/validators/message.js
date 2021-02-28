@@ -13,6 +13,17 @@ const message = {
     return '';
   },
 
+  getPurchaseAutoCountValidation(purchaseCount, remainCount) {
+    if (validator.isPurchaseCountZero(purchaseCount)) {
+      return MESSAGE.SHOULD_HAVE_PURCHASE_COUNT;
+    }
+    if (validator.isExceededRemainCount(purchaseCount, remainCount)) {
+      return MESSAGE.GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT(remainCount);
+    }
+
+    return '';
+  },
+
   getCorrectNumberValidation(correctNumbers) {
     if (validator.isDuplicatedNumberExist(correctNumbers)) {
       return MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE;

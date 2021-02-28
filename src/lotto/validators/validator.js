@@ -13,6 +13,14 @@ const validator = {
     return cost < LOTTO.PRICE;
   },
 
+  isExceededRemainCount(purchaseCount, remainCount) {
+    return remainCount < purchaseCount;
+  },
+
+  isPurchaseCountZero(purchaseCount) {
+    return purchaseCount === 0;
+  },
+
   isDuplicatedNumberExist(numbers) {
     return new Set(numbers).size !== numbers.length;
   },

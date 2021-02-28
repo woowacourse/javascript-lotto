@@ -23,6 +23,8 @@ import { getCorrectNumbers } from './domReader.js';
 
 const lottoGame = new LottoGame();
 
+let remainLottoCount;
+
 const getTotalProfit = (rankItemList) => {
   return rankItemList.reduce(
     (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
@@ -30,10 +32,8 @@ const getTotalProfit = (rankItemList) => {
   );
 };
 
-const purchaseLottoItems = (cost) => {
-  const lottoItemCount = cost / LOTTO.PRICE;
-  lottoGame.init();
-  lottoGame.addLottoItems(lottoItemCount);
+const purchaseAutoLottoItems = (count) => {
+  lottoGame.addLottoItems(count);
   lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
 };
 
@@ -57,19 +57,33 @@ const onCostSubmit = (e) => {
     $costInput.value = '';
     return;
   }
+  remainLottoCount = cost / LOTTO.PRICE;
   lottoGameView.displayChoiceMethodButton();
   lottoGameView.resetToggleButton();
-  purchaseLottoItems(cost);
 };
 
 const onAutoPurchase = () => {
   lottoGameView.hideManualLottoNumbersForm();
   lottoGameView.displayAutoCountForm();
+  lottoGameView.displayRemainLottoNumberCount(remainLottoCount);
 }
 
 const onManualPurchase = () => {
   lottoGameView.hideAutoCountForm();
   lottoGameView.displayManualLottoNumbersForm();
+  lottoGameView.displayRemainLottoNumberCount(remainLottoCount);
+}
+
+const onAutoCount = (e) => {
+  e.preventDefault();
+  const count = Number($autoCountInput.value);
+  const userGuideMessage = message.getPurchaseAutoCountValidation(count, remainLottoCount);
+  if (userGuideMessage) {
+    lottoGameView.showMessage(userGuideMessage);
+    $autoCountInput.value = '';
+    return;
+  }
+  purchaseAutoLottoItems(count);
 }
 
 const onShowLottoNumbersToggle = (e) => {
@@ -126,6 +140,7 @@ const controller = {
     $costSubmitForm.addEventListener('submit', onCostSubmit);
     $autoPurchaseButton.addEventListener('click', onAutoPurchase);
     $manualPurchaseButton.addEventListener('click', onManualPurchase);
+    $autoCountForm.addEventListener('submit', onAutoCount);
     $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $correctNumberInputForm.addEventListener('submit', onResultModalOpen);

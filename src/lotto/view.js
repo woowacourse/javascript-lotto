@@ -8,6 +8,7 @@ import {
   $purchaseItemCount,
   $purchaseItemList,
   $purchaseResult,
+  $remainCount,
   $lottoNumbersToggleButton,
   $resultTbody,
   $profitRate,
@@ -39,7 +40,8 @@ const view = {
     $choicePurchaseMethod.classList.add('hide');
   },
 
-  displayRemainLottoNumberCount() {
+  displayRemainLottoNumberCount(count) {
+    $remainCount.innerText = count;
     $remainLottoCountText.classList.remove('hide');
   },
 

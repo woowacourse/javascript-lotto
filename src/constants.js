@@ -15,6 +15,10 @@ export const MESSAGE = Object.freeze({
   GET_SHOULD_NOT_HAVE_CHANGE_MESSAGE(cost) {
     return `남는 금액이 있습니다. ${cost % 1000}만큼의 돈을 빼주세요`;
   },
+  SHOULD_HAVE_PURCHASE_COUNT: '1개 이상으로 구매해주세요.',
+  GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT(remainCount) {
+    return `${remainCount}개 이하로만 구매할 수 있습니다.`;
+  },
   DUPLICATED_NUMBER_EXIST_MESSAGE: '당첨번호들 중 중복된 숫자가 존재합니다.',
   NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자들만 당첨번호로 입력해주세요`,
   SHOULD_INPUT_ALL_NUMBERS_MESSAGE:
