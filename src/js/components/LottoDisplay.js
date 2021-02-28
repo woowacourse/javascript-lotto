@@ -1,22 +1,21 @@
+import { lottoManager } from './App.js';
+import { isEmptyArray } from '../utils/common.js';
 import { $ } from '../utils/dom.js';
 
 export default class LottoDisplay {
-  constructor(props) {
-    this.props = props;
-
-    this.setup();
+  constructor() {
     this.initState();
+    this.subscribeAction();
     this.selectDOM();
     this.bindEvent();
   }
 
-  setup() {
-    ({ lottoManager: this.lottoManager } = this.props);
-    this.lottoManager.subscribe(this.render.bind(this));
-  }
-
   initState() {
     this.isToggled = false;
+  }
+
+  subscribeAction() {
+    lottoManager.subscribe(this.render.bind(this));
   }
 
   selectDOM() {
@@ -38,7 +37,7 @@ export default class LottoDisplay {
   }
 
   createTotalLottoCountHTML() {
-    return `총 ${this.lottoManager.lottos.length}개를 구매하였습니다.`;
+    return `총 ${lottoManager.lottos.length}개를 구매하였습니다.`;
   }
 
   createLottoHTML() {
@@ -49,7 +48,7 @@ export default class LottoDisplay {
           )}</span>`
         : '';
 
-    return this.lottoManager.lottos
+    return lottoManager.lottos
       .map(
         ({ numbers }) =>
           `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">🎟️ ${lottoNumbersHTML(
@@ -66,10 +65,12 @@ export default class LottoDisplay {
   }
 
   render() {
-    this.lottoManager.lottos
-      ? this.$target.classList.remove('d-none')
-      : this.$target.classList.add('d-none');
+    if (isEmptyArray(lottoManager.lottos)) {
+      this.$target.classList.add('d-none');
+      return;
+    }
 
+    this.$target.classList.remove('d-none');
     this.$lottoCount.innerHTML = this.createTotalLottoCountHTML();
     this.$lottoDisplayArea.innerHTML = this.createLottoHTML();
   }

@@ -1,45 +1,47 @@
-import { $, clearInput } from '../utils/dom.js';
+import { lottoManager } from './App.js';
+import {
+  $,
+  clearInputValue,
+  disableElements,
+  enableElements,
+} from '../utils/dom.js';
 import { LOTTO } from '../utils/constants.js';
-import { mod, divide } from '../utils/common.js';
+import { mod, divide, isEmptyArray } from '../utils/common.js';
 import { ERROR_MESSAGE, GUIDE_MESSAGE } from '../utils/message.js';
 
 export default class LottoPurchaseInput {
-  constructor(props) {
-    this.props = props;
-
+  constructor() {
+    this.subscribeAction();
     this.selectDOM();
     this.bindEvent();
   }
 
+  subscribeAction() {
+    lottoManager.subscribe(this.reset.bind(this));
+  }
+
   selectDOM() {
+    this.$target = $('#lotto-purchase-input-container');
     this.$purchaseInput = $('#lotto-purchase-input');
     this.$purchaseButton = $('#lotto-purchase-btn');
   }
 
   bindEvent() {
-    this.$purchaseButton.addEventListener('click', () => {
-      this.onPurchaseLotto();
-    });
-
-    this.$purchaseInput.addEventListener('keydown', e => {
-      if (e.key !== 'Enter') {
-        return;
-      }
-
+    this.$target.addEventListener('submit', e => {
       e.preventDefault();
+
       this.onPurchaseLotto();
     });
   }
 
   onPurchaseLotto() {
-    const { lottoManager } = this.props;
     const purchaseInputValue = this.$purchaseInput.value.trim();
     const payment = Number(purchaseInputValue);
 
     const errorMessage = validatePurchaseInputValue(payment);
     if (errorMessage) {
       alert(errorMessage);
-      clearInput(this.$purchaseInput);
+      clearInputValue(this.$purchaseInput);
       return;
     }
 
@@ -47,16 +49,20 @@ export default class LottoPurchaseInput {
     const remainingMoney = mod(payment, LOTTO.PRICE);
     alert(GUIDE_MESSAGE.PAYMENT_RESULT_MESSAGE(lottoCount, remainingMoney));
 
+    disableElements(this.$purchaseInput, this.$purchaseInput);
     lottoManager.createLottos(lottoCount);
+  }
+
+  reset() {
+    if (isEmptyArray(lottoManager.lottos)) {
+      clearInputValue(this.$purchaseInput);
+      enableElements(this.$purchaseInput, this.$purchaseButton);
+    }
   }
 }
 
 const validatePurchaseInputValue = payment => {
-  if (!Number.isInteger(payment)) {
-    return ERROR_MESSAGE.NOT_INTEGER_NUMBER_ERROR;
-  }
-
   if (payment < LOTTO.PRICE) {
-    return ERROR_MESSAGE.PAYMENT_AMOUNT_ERROR;
+    return ERROR_MESSAGE.PAYMENT_AMOUNT;
   }
 };

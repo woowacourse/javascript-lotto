@@ -22,7 +22,7 @@
                 class="w-100 mr-2 pl-2"
                 placeholder="구입 금액"
                 />
-              <button id="lotto-purchase-btn" type="button" class="btn btn-cyan">확인</button>
+              <button id="lotto-purchase-btn" type="submit" class="btn btn-cyan">확인</button>
             </div>
           </form>
           <section id="lotto-display-container" class="mt-9 d-none">
@@ -38,7 +38,7 @@
             <div id="lotto-display-area" class="d-flex flex-wrap">
             </div>
           </section>
-          <!-- <form class="mt-9">
+          <form id="lotto-winning-number-input-container" class="mt-9 d-none">
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
@@ -80,16 +80,16 @@
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               class="open-result-modal-button mt-5 btn btn-cyan w-100"
             >
               결과 확인하기
             </button>
-          </form> -->
+          </form>
         </div>
       </div>
 
-      <!-- <div class="modal">
+      <div class="modal">
         <div class="modal-inner p-10">
           <div class="modal-close">
             <svg viewbox="0 0 40 40">
@@ -111,37 +111,37 @@
                 <tr class="text-center">
                   <td class="p-3">3개</td>
                   <td class="p-3">5,000</td>
-                  <td class="p-3">n개</td>
+                  <td data-prize="FIFTH" class="p-3">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">4개</td>
                   <td class="p-3">50,000</td>
-                  <td class="p-3">n개</td>
+                  <td data-prize="FOURTH" class="p-3">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개</td>
                   <td class="p-3">1,500,000</td>
-                  <td class="p-3">n개</td>
+                  <td data-prize="THIRD" class="p-3">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개 + 보너스볼</td>
                   <td class="p-3">30,000,000</td>
-                  <td class="p-3">n개</td>
+                  <td data-prize="SECOND" class="p-3">n개</td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">6개</td>
                   <td class="p-3">2,000,000,000</td>
-                  <td class="p-3">n개</td>
+                  <td data-prize="FIRST" class="p-3">n개</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="text-center font-bold">당신의 총 수익률은 %입니다.</p>
+          <p id="total-profit" class="text-center font-bold">당신의 총 수익률은 %입니다.</p>
           <div class="d-flex justify-center mt-5">
-            <button type="button" class="btn btn-cyan">다시 시작하기</button>
+            <button id="restart-btn" type="button" class="btn btn-cyan">다시 시작하기</button>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
