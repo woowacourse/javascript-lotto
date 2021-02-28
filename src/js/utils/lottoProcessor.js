@@ -5,9 +5,9 @@ export default class LottoProcessor {
     this.lottos = lottos;
     this.winningNumbers = winningNumbers.slice(
       0,
-      LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1
+      LOTTO_NUMBERS.LOTTO_MANUAL_COUNT
     );
-    this.bonusNumber = winningNumbers[LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1];
+    this.bonusNumber = winningNumbers[LOTTO_NUMBERS.LOTTO_MANUAL_COUNT];
     this.rankCounts = Array(5).fill(0);
     this.earningRate = 0;
   }

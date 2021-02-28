@@ -35,7 +35,7 @@ export default class ManualInputView extends View {
   }
 
   createManualInput() {
-    return [...Array(LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1)]
+    return [...Array(LOTTO_NUMBERS.LOTTO_MANUAL_COUNT)]
       .map(
         (_, i) => `
           <input
