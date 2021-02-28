@@ -63,12 +63,11 @@ context('로또 UI 테스트', () => {
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
 
-      typeNumbers(SUCCESS_INPUT.MANUAL_SELECT_NUMBERS, `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
+      typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, SUCCESS_INPUT.MANUAL_SELECT_NUMBERS);
       click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 
       cy.get(`.${DOM_CLASSES.LOTTO_CONTAINER} .${DOM_CLASSES.LOTTO_TICKET}`).then(elements => {
-        expect(elements).should('have.length',
-          SUCCESS_INPUT.MANUAL_AMOUNT + SUCCESS_INPUT.AUTO_AMOUNT);
+        expect(elements.length).to.equal(SUCCESS_INPUT.MANUAL_AMOUNT + SUCCESS_INPUT.AUTO_AMOUNT);
       })
     });
   });
@@ -195,10 +194,10 @@ function typeResultNumbers([...lottoNumbers], bonusNumber) {
     cy.log(`당첨번호 입력이 ${LOTTO_SETTINGS.LOTTO_NUMBER_SIZE}개가 아닙니다.`);
     return;
   }
-  typeNumbers(lottoNumbers.concat(bonusNumber), `.${DOM_CLASSES.RESULT_INPUT_FORM}`);
+  typeNumbers(`.${DOM_CLASSES.RESULT_INPUT_FORM}`, lottoNumbers.concat(bonusNumber));
 }
 
-function typeNumbers(inputs, targetSelector) {
+function typeNumbers(targetSelector, inputs) {
   cy.get(`${targetSelector} input`).then($$numbers => {
     [...$$numbers].forEach(($number, idx) => {
       if (!inputs[idx]) {
@@ -219,6 +218,6 @@ function testChildNodeExistence(selector, existenceToExpect) {
 function jumpToResultInputUI() {
   typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
   typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
-  typeNumbers(SUCCESS_INPUT.MANUAL_SELECT_NUMBERS, `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
+  typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, SUCCESS_INPUT.MANUAL_SELECT_NUMBERS);
   click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 }

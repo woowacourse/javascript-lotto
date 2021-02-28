@@ -5,6 +5,7 @@ import { LOTTO_SETTINGS, PRIZE, RANK } from './utils/constants/settings.js';
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import { isNumbersDuplicated } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
+import LottosBundle from './models/LottosBundle.js';
 export default class LottoController {
   constructor() {
     this.lottoUI = new LottoUI();
@@ -12,10 +13,7 @@ export default class LottoController {
   }
 
   _initState() {
-    /* TODO Array(n) [Lotto,Lotto] 
-    -> Array(n) [Array,Array]으로 만들어주는 
-    _lottos 내부 메서드 추가예정 */
-    this._lottos = [];
+    this._lottosBundle = new LottosBundle();
     this._winnings = {
       [RANK.FIRST]: 0,
       [RANK.SECOND]: 0,
@@ -90,19 +88,19 @@ export default class LottoController {
     this.lottoUI.renderLottoAmountUI();
   }
 
-  _makeLottos(moneyInput) {
-    const lottoAmount = Math.floor(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
-
-    for (let i = 0; i < lottoAmount; i++) {
-      const lotto = new Lotto();
-      lotto.setNumbersByAuto();
-      this._lottos.push(lotto);
-    }
+  _handleAmountInput() {
+    const manualAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
+    const autoAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`).value);
+    this.lottoUI.renderManualSelectUI(manualAmount);
+    this._makeLottos(autoAmount);
   }
 
-  _handleAmountInput() {
-    const amount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
-    this.lottoUI.renderManualSelectUI(amount);
+  _makeLottos(amount) {
+    new Array(amount).fill(0).map(() => {
+      const lotto = new Lotto();
+      lotto.setNumbersByAuto();
+      this._lottosBundle.push(lotto);
+    });
   }
 
   _handleManualSelect() {
@@ -114,13 +112,12 @@ export default class LottoController {
             .map((inputElement) =>
               Number(inputElement.value)));
 
-
     numbersBundle.forEach((numbers) => {
       const lotto = new Lotto();
       lotto.setNumbers(numbers);
-      this._lottos.push(lotto);
+      this._lottosBundle.push(lotto);
     });
-    this.lottoUI.renderCheckLottoUI(numbersBundle);
+    this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
     this.lottoUI.renderResultInputUI();
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
@@ -142,7 +139,7 @@ export default class LottoController {
   }
 
   _getEarningRate() {
-    const moneySpent = this._lottos.length * LOTTO_SETTINGS.LOTTO_PRICE;
+    const moneySpent = this._lottosBundle.length * LOTTO_SETTINGS.LOTTO_PRICE;
     let earning = 0;
 
     for (let rank of Object.keys(this._winnings)) {
@@ -173,7 +170,7 @@ export default class LottoController {
       return;
     }
 
-    this._lottos.forEach(lotto => {
+    this._lottosBundle.forEach(lotto => {
       const myNumbers = lotto.getNumbers();
       const {
         winningCount,
