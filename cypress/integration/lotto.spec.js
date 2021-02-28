@@ -37,6 +37,10 @@ const submitAutoBuy = (value) => {
     .click("auto-button")
 }
 
+const submitManualBuy = (value) => {
+  cw.type(SELECTOR.BUY_INPUT, value).click(SELECTOR.BUY_BUTTON)
+}
+
 const testDetail = () => {
   cw.click(SELECTOR.POCKET_TOGGLE, { force: true }).should(
     SELECTOR.POCKET_LOTTO_NUMBERS,
@@ -67,19 +71,24 @@ describe("ui-play", () => {
 
   it("사이트 접속시에 제목과 구입 금액 영역만 보여진다.", () => {
     cy.get(SELECTOR.BUY_SECTION).children().should("exist")
-    cw.get("buy-method").children().should("not.exist")
+    cw.get(".buy-method").children().should("not.exist")
     cy.get(SELECTOR.POCKET_SECTION).children().should("not.exist")
     cy.get(SELECTOR.WINNING_SECTION).children().should("not.exist")
   })
 
   it("금액을 입력하고 버튼을 클릭하면 수동 구매 영역이 보여진다", () => {
     submitAutoBuy(5000)
-    cw.get("buy-method").children().should("exist")
+    cw.get(".buy-method").children().should("exist")
+  })
+
+  it("금액을 입력하고 버튼을 클릭하면 구매가능한 로또 개수가 보여진다", () => {
+    submitManualBuy(5000)
+    cy.get(".buy-method .available").contains(5)
   })
 
   it("금액을 입력하고 확인 버튼, 나머지 자동구매 버튼을 클릭하면 수동 구매 영역 감춰지고 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
     submitAutoBuy(5000)
-    cw.get("buy-method").children().should("not.exist")
+    cw.get(".buy-method").children().should("not.exist")
     cy.get(SELECTOR.POCKET_SECTION).children().should("exist")
     cy.get(SELECTOR.WINNING_SECTION).children().should("exist")
   })
