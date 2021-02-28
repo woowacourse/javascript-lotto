@@ -9,4 +9,5 @@ export const ERROR_MESSAGE = {
   DUPLICATED_NUMBER: '중복된 숫자가 존재합니다. 당첨 번호를 다시 입력해주세요.',
   VALID_INPUT_NUMBER: '정상적으로 입력하셨습니다.',
   CANNOT_BUY_MANUAL_LOTTO: '더 이상 수동으로 로또를 구매할 수 없습니다.',
+  INPUT_OVERFLOW: '금액이 너무 큽니다.',
 };

@@ -80,6 +80,11 @@ export default class LottoPurchaseInput extends Component {
 
   onSubmit() {
     const payment = Number(this.$purchaseInput.value);
+    const lottoCount = Math.floor(payment / LOTTO.PRICE);
+    if (lottoCount > 2 ** 32 - 1) {
+      alert(ERROR_MESSAGE.INPUT_OVERFLOW);
+      return;
+    }
     store.dispatch(updatePayment(payment));
     if (this.$purchaseTypeToggleButton.checked) {
       store.dispatch(changePurchaseType(MANUAL_PURCHASE));

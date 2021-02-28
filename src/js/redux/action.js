@@ -47,16 +47,7 @@ export const createLottos = payment => {
     }
     return [...lottoNumbers];
   };
-
   const lottoCount = Math.floor(payment / LOTTO.PRICE);
-
-  if (lottoCount > 2 ** 32 - 1) {
-    return {
-      type: CREATE_LOTTOS,
-      payload: { lottos: [] },
-    };
-  }
-
   const lottos = Array.from({ length: lottoCount }, () =>
     generateLottoNumbers(),
   );
