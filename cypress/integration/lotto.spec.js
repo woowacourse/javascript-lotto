@@ -25,12 +25,12 @@ describe('기능 테스트', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
     cy.get('#manual-purchase-button').click();
-    cy.get('.manual-lotto-number-input').eq(0).type(1);
-    cy.get('.manual-lotto-number-input').eq(1).type(2);
-    cy.get('.manual-lotto-number-input').eq(2).type(3);
-    cy.get('.manual-lotto-number-input').eq(3).type(4);
-    cy.get('.manual-lotto-number-input').eq(4).type(5);
-    cy.get('.manual-lotto-number-input').eq(5).type(6);
+    cy.get('.manual-lotto-number').eq(0).type(1);
+    cy.get('.manual-lotto-number').eq(1).type(2);
+    cy.get('.manual-lotto-number').eq(2).type(3);
+    cy.get('.manual-lotto-number').eq(3).type(4);
+    cy.get('.manual-lotto-number').eq(4).type(5);
+    cy.get('.manual-lotto-number').eq(5).type(6);
     cy.get('#manual-lotto-submit-button').click();
     cy.get('#lotto-count').should('have.text', '1');
     cy.get('.lotto-item').should('have.length', '1');
@@ -123,39 +123,42 @@ describe('유저 입력 값 테스트', () => {
   it('입력된 로또번호 중 1 ~ 45 사이의 숫자가 아닌 숫자가 있다면 안내메시지를 출력한다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
-    cy.get('.manual-lotto-number-input').eq(0).type(1);
-    cy.get('.manual-lotto-number-input').eq(1).type(2);
-    cy.get('.manual-lotto-number-input').eq(2).type(46);
-    cy.get('.manual-lotto-number-input').eq(3).click();
+    cy.get('#manual-purchase-button').click();
+    cy.get('.manual-lotto-number').eq(0).type(1);
+    cy.get('.manual-lotto-number').eq(1).type(2);
+    cy.get('.manual-lotto-number').eq(2).type(46);
+    cy.get('.manual-lotto-number').eq(3).click();
     cy.get('@alertStub').should(
       'be.calledWith',
       MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE,
     );
-    cy.get('.manual-lotto-number-input').eq(2).should('have.text', '');
+    cy.get('.manual-lotto-number').eq(2).should('have.text', '');
   });
 
-  it('입력된 번호 중 중복된 번호가 있다면 안내메시지를 출력한다.', () => {
+  it('입력된 로또번호 중 중복된 번호가 있다면 안내메시지를 출력한다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
-    cy.get('.manual-lotto-number-input').eq(0).type(1);
-    cy.get('.manual-lotto-number-input').eq(1).type(2);
-    cy.get('.manual-lotto-number-input').eq(2).type(2);
-    cy.get('.manual-lotto-number-input').eq(3).click();
+    cy.get('#manual-purchase-button').click();
+    cy.get('.manual-lotto-number').eq(0).type(1);
+    cy.get('.manual-lotto-number').eq(1).type(2);
+    cy.get('.manual-lotto-number').eq(2).type(2);
+    cy.get('.manual-lotto-number').eq(3).click();
     cy.get('@alertStub').should(
       'be.calledWith',
       MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE,
     );
-    cy.get('.manual-lotto-number-input').eq(2).should('have.text', '');
+    cy.get('.manual-lotto-number').eq(2).should('have.text', '');
   });
   
-  it('번호가 모두 입력되지 않으면 안내메시지를 출력한다.', () => {
+  it('로또번호가 모두 입력되지 않으면 안내메시지를 출력한다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
-    cy.get('.manual-lotto-number-input').eq(0).type(1);
-    cy.get('.manual-lotto-number-input').eq(1).type(2);
-    cy.get('.manual-lotto-number-input').eq(2).type(3);
-    cy.get('.manual-lotto-number-input').eq(3).type(4);
-    cy.get('.manual-lotto-number-input').eq(4).type(5);   
+    cy.get('#manual-purchase-button').click();
+    cy.get('.manual-lotto-number').eq(0).type(1);
+    cy.get('.manual-lotto-number').eq(1).type(2);
+    cy.get('.manual-lotto-number').eq(2).type(3);
+    cy.get('.manual-lotto-number').eq(3).type(4);
+    cy.get('.manual-lotto-number').eq(4).type(5);   
     cy.get('#manual-lotto-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
