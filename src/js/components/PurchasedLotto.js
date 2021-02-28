@@ -11,7 +11,6 @@ export default class PurchasedLotto {
     this.lottoTickets = lottoTickets;
 
     this.attachEvents();
-    this.render();
   }
 
   attachEvents() {
