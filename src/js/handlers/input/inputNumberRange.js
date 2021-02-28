@@ -1,8 +1,8 @@
-import { EXCEED_RANGE_NUMBER } from '../lib/constants/alertMessage.js';
+import { EXCEED_RANGE_NUMBER } from '../../lib/constants/alertMessage.js';
 import {
   TICKET_MAX_NUMBER,
   TICKET_MIN_NUMBER,
-} from '../lib/constants/lotto.js';
+} from '../../lib/constants/lotto.js';
 
 const isValidRange = number => {
   return number >= TICKET_MIN_NUMBER && number <= TICKET_MAX_NUMBER;

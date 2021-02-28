@@ -1,6 +1,6 @@
 import { $, randomColor } from './lib/utils/dom.js';
 import detailModeToggleHandler from './handlers/detailModeToggle.js';
-import purchaseAmountHandler from './handlers/lottoPurchase.js';
+import purchaseAmountHandler from './handlers/purchaseAmount.js';
 import lottoResetHandler from './handlers/lottoReset.js';
 import { closeModal } from './lib/utils/modal.js';
 
