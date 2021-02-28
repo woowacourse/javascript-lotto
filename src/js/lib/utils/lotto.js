@@ -5,10 +5,17 @@ import {
   TICKET_PRIZE,
 } from '../constants/lotto.js';
 
-function getSliceArrayByLottoLength(manualInputValueArray) {
+function getValueArrayFromElements(elements) {
+  return elements.reduce((acc, cur) => {
+    acc.push(Number(cur.value));
+    return acc;
+  }, []);
+}
+
+function sliceArray(numberArray, sliceBy) {
   let counter = -1;
-  return manualInputValueArray.reduce((final, curr, i) => {
-    if (i % TICKET_NUMBER_AMOUNT === 0) {
+  return numberArray.reduce((final, curr, i) => {
+    if (i % sliceBy === 0) {
       final.push([curr]);
       counter++;
     } else {
@@ -79,7 +86,8 @@ function getWinners(tickets, winningNumber) {
 }
 
 export {
-  getSliceArrayByLottoLength,
+  getValueArrayFromElements,
+  sliceArray,
   getTicketNumber,
   getProfitPercent,
   getWinners,

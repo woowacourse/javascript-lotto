@@ -128,6 +128,19 @@ context('Actions', () => {
   });
 
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
+    let i = 1;
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', 2);
+    cy.get('.switch').click();
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('.winning-number[name=first]').type(99);
     cy.get('.winning-number[name=second]').focus();
@@ -135,9 +148,20 @@ context('Actions', () => {
   });
 
   it('당첨번호는 중복될 수 없다.', () => {
-    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('input[name=manual-purchase-input]').type('1');
+    cy.get('#manual-purchase-submit').click();
+    cy.get('.manual-number').each(element => {
+      cy.wrap(element).type(i++);
+    });
+    cy.get('#manual-number-submit').click();
+    cy.get('input[name=auto-purchase-input]').type('1');
+    cy.get('#auto-purchase-form > .d-flex > .btn').click();
+    cy.get('.ticket-number').should('have.length', 2);
+    cy.get('.switch').click();
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(1);
     });

@@ -1,13 +1,20 @@
 import { lotto } from '../model/lotto.js';
-import $ from '../lib/utils/dom.js';
+import {
+  $,
+  disableElements,
+  insertAfter,
+  focusInput,
+} from '../lib/utils/dom.js';
 import {
   DUPLICATE_WINNING_NUMBER,
+  EXCEED_MONEY_AMOUNT,
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../lib/constants/alertMessage.js';
-import { TICKET_PRICE } from '../lib/constants/lotto.js';
+import { TICKET_NUMBER_AMOUNT, TICKET_PRICE } from '../lib/constants/lotto.js';
 import {
-  getSliceArrayByLottoLength,
+  sliceArray,
   getTicketNumber,
+  getValueArrayFromElements,
 } from '../lib/utils/lotto.js';
 import { money } from '../model/money.js';
 import {
@@ -32,10 +39,6 @@ const updateTicketListView = tickets => {
   $('#toggle-detail-mode').classList.remove('hide');
 };
 
-const focusFirstWinningNumberInput = () => {
-  $('.winning-number[name=first]').focus();
-};
-
 const lottoPurchaseHandler = event => {
   event.preventDefault();
   const autoPurchaseAmount = Number(
@@ -46,9 +49,7 @@ const lottoPurchaseHandler = event => {
   const availableAmount = Math.floor(money.totalAmount / TICKET_PRICE);
 
   if (money.totalAmount < money.autoPurchase) {
-    alert(
-      `구입 가능 금액을 초과했습니다. ${availableAmount}개 이내의 개수를 입력해주세요.`
-    );
+    alert(EXCEED_MONEY_AMOUNT(availableAmount));
     event.target.reset();
     return;
   }
@@ -62,54 +63,52 @@ const lottoPurchaseHandler = event => {
   });
 
   lotto.setTickets(autoTickets);
-
+  money.totalAmount -= money.autoPurchase;
+  $('#remaining-money').innerHTML = money.totalAmount;
   updateTicketListView(lotto.tickets);
 
-  $('#ticket-list').insertAdjacentHTML(
-    'afterend',
-    createWinningNumberInputTemplate()
-  );
+  insertAfter($('#ticket-list'), createWinningNumberInputTemplate());
+
   $('#winning-number-form').addEventListener('change', inputNumberRangeHandler);
   $('#winning-number-form').addEventListener(
     'submit',
     winningNumberSubmitHandler
   );
-
-  focusFirstWinningNumberInput();
+  disableElements(event);
+  focusInput('.winning-number', 'first');
 };
 
 const buyManualNumber = event => {
   event.preventDefault();
-  const manualInputArray = [...event.target.elements].slice(
+  const manualNumberElements = [...event.target.elements].slice(
     0,
     event.target.elements.length - 1
   );
 
-  const manualInputValueArray = manualInputArray.reduce((acc, cur) => {
-    acc.push(Number(cur.value));
-    return acc;
-  }, []);
-
-  const validManualInputArray = getSliceArrayByLottoLength(
-    manualInputValueArray
+  const manualNumbers = getValueArrayFromElements(manualNumberElements);
+  const validManualNumber = sliceArray(
+    manualNumbers,
+    TICKET_NUMBER_AMOUNT
   ).filter(ticket => !hasDuplicate(ticket));
 
-  if (validManualInputArray.length === 0) {
+  if (validManualNumber.length === 0) {
     alert(DUPLICATE_WINNING_NUMBER);
     return;
   }
 
-  lotto.tickets = validManualInputArray;
+  lotto.tickets = validManualNumber;
 
   const newAvailableAmount = money.totalAmount / TICKET_PRICE;
   if (newAvailableAmount === 0) {
-    focusFirstWinningNumberInput();
+    focusInput('.winning-number', 'first');
     return;
   }
+  $('#remaining-money').innerHTML = money.totalAmount;
+  disableElements(event);
+  insertAfter(event.target, createAutoPurchaseTemplate());
 
-  event.target.insertAdjacentHTML('afterend', createAutoPurchaseTemplate());
   $('#auto-purchase-form').addEventListener('submit', lottoPurchaseHandler);
-  $('input[name=auto-purchase-input]').focus();
+  focusInput('input', 'auto-purchase-input');
 };
 
 const manualPurchaseHandler = event => {
@@ -118,31 +117,23 @@ const manualPurchaseHandler = event => {
     event.target.elements['manual-purchase-input'].value
   );
   money.manualPurchase = manualPurchaseAmount * TICKET_PRICE;
-
   const availableAmount = Math.floor(money.totalAmount / TICKET_PRICE);
 
   if (money.totalAmount < money.manualPurchase) {
-    alert(
-      `구입 가능 금액을 초과했습니다. ${availableAmount}개 이내의 개수를 입력해주세요.`
-    );
+    alert(EXCEED_MONEY_AMOUNT(availableAmount));
     event.target.reset();
     return;
   }
 
   money.totalAmount -= money.manualPurchase;
 
-  event.target.elements['manual-purchase-submit'].disabled = true;
-  event.target.insertAdjacentHTML(
-    'afterend',
-    createManualInputTemplate(manualPurchaseAmount)
-  );
+  disableElements(event);
+  insertAfter(event.target, createManualInputTemplate(manualPurchaseAmount));
 
   $('#manual-number-form').addEventListener('change', inputNumberRangeHandler);
   $('#manual-number-form').addEventListener('submit', buyManualNumber);
-
-  $('.manual-number').length === 6
-    ? $('.manual-number[name=first]').focus()
-    : $('.manual-number[name=first]')[0].focus();
+  $('#remaining-money').innerHTML = money.totalAmount;
+  focusInput('.manual-number', 'first');
 };
 
 const purchaseAmountHandler = event => {
@@ -154,10 +145,11 @@ const purchaseAmountHandler = event => {
     return;
   }
 
-  event.target.elements['payment-button'].disabled = true;
-  event.target.insertAdjacentHTML('afterend', createManualPurchaseTemplate());
+  disableElements(event);
+  insertAfter(event.target, createManualPurchaseTemplate());
+  $('#remaining-money').innerHTML = money.totalAmount;
   $('#manual-purchase-form').addEventListener('submit', manualPurchaseHandler);
-  $('input[name=manual-purchase-input]').focus();
+  focusInput('input', 'manual-purchase-input');
 };
 
 export default purchaseAmountHandler;

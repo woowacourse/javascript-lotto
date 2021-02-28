@@ -1,4 +1,4 @@
-import $ from './lib/utils/dom.js';
+import { $, randomColor } from './lib/utils/dom.js';
 import detailModeToggleHandler from './handlers/detailModeToggle.js';
 import purchaseAmountHandler from './handlers/lottoPurchase.js';
 import lottoResetHandler from './handlers/lottoReset.js';
@@ -9,6 +9,7 @@ function initEventListeners() {
   $('#payment-form').addEventListener('submit', purchaseAmountHandler);
   $('#reset').addEventListener('click', lottoResetHandler);
   $('.modal-close').addEventListener('click', closeModal);
+  $('.remains').style.borderColor = randomColor();
 }
 
 initEventListeners();
