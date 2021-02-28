@@ -2,6 +2,9 @@ import { $, $$ } from '../utils/dom.js';
 import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Input from './Input/Input.js';
+import { AUTO_PURCHASE } from '../redux/actionType.js';
+import { PURCHASE_TYPE } from '../utils/constants.js';
+import Button from './Button/Button.js';
 
 export default class LottoDisplay extends Component {
   initRender() {
@@ -20,11 +23,27 @@ export default class LottoDisplay extends Component {
     </div>
     <div id="lotto-display-area" class="d-flex flex-wrap">
     </div>
+    <div class="d-flex justify-center mt-2 items-center">
+      ${new Button({
+        id: 'prev-page-btn',
+        type: 'button',
+        classes: ['btn', 'btn-cyan', 'mr-1'],
+        disabled: true,
+        text: '◁ 이전',
+      }).getTemplate()}
+      <span class="text-xs"><span id="page-number">1</span>번째 페이지</span>
+      ${new Button({
+        id: 'next-page-btn',
+        type: 'button',
+        classes: ['btn', 'btn-cyan', 'ml-1'],
+        disabled: true,
+        text: '다음 ▷',
+      }).getTemplate()}
+      </div>
     `;
   }
 
   setup() {
-    this.isToggled = false;
     store.subscribe(this.render.bind(this));
   }
 
@@ -32,6 +51,9 @@ export default class LottoDisplay extends Component {
     this.$toggleButton = $('.lotto-numbers-toggle-button');
     this.$lottoCount = $('#total-lotto-count');
     this.$lottoDisplayArea = $('#lotto-display-area');
+    this.$prevPageButton = $('#prev-page-btn');
+    this.$pageNumber = $('#page-number');
+    this.$nextPageButton = $('#next-page-btn');
   }
 
   bindEvent() {
@@ -39,14 +61,44 @@ export default class LottoDisplay extends Component {
       'change',
       this.onToggleSwitch.bind(this),
     );
+    this.$prevPageButton.addEventListener(
+      'click',
+      this.onMovePrevPage.bind(this),
+    );
+    this.$nextPageButton.addEventListener(
+      'click',
+      this.onMoveNextPage.bind(this),
+    );
   }
 
   onToggleSwitch() {
-    this.$lottoDisplayArea.classList.toggle('flex-col');
-    this.$lottoDisplayArea.classList.toggle('items-start');
-    $$('.lotto-numbers').forEach($lottoNumbers => {
-      $lottoNumbers.classList.toggle('d-none');
-    });
+    if (this.$toggleButton.checked) {
+      this.$lottoDisplayArea.classList.add('flex-col');
+      this.$lottoDisplayArea.classList.add('items-start');
+      $$('.lotto-numbers').forEach($lottoNumbers => {
+        $lottoNumbers.classList.remove('d-none');
+      });
+    } else {
+      this.$lottoDisplayArea.classList.remove('flex-col');
+      this.$lottoDisplayArea.classList.remove('items-start');
+      $$('.lotto-numbers').forEach($lottoNumbers => {
+        $lottoNumbers.classList.add('d-none');
+      });
+    }
+  }
+
+  onMovePrevPage() {
+    const pageIndex = Number(this.$pageNumber.textContent);
+    if (pageIndex <= 1) return;
+    this.$pageNumber.textContent = pageIndex - 1;
+    this.updateLottoView(store.getStates().lottos);
+  }
+
+  onMoveNextPage() {
+    const pageIndex = Number(this.$pageNumber.textContent);
+    if (pageIndex >= Math.ceil(store.getStates().lottos.length / 10)) return;
+    this.$pageNumber.textContent = pageIndex + 1;
+    this.updateLottoView(store.getStates().lottos);
   }
 
   lottoCountText(lottoCount) {
@@ -56,9 +108,9 @@ export default class LottoDisplay extends Component {
   lottoTemplate(numbers) {
     return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">
               <img class="ticket" src="https://img.icons8.com/ios-filled/50/000000/ticket-confirmed.png"/>
-              <span class="lotto-numbers d-none text-2xl ml-4">${numbers.join(
-                ', ',
-              )}</span>
+              <span class="lotto-numbers ${
+                this.$toggleButton.checked ? '' : 'd-none'
+              } text-2xl ml-4">${numbers.join(', ')}</span>
             </span>`;
   }
 
@@ -69,11 +121,24 @@ export default class LottoDisplay extends Component {
   }
 
   updateLottoView(lottos) {
+    console.log(lottos);
+    const pageIndex = Number(this.$pageNumber.textContent);
     this.$target.classList.remove('d-none');
     this.$lottoCount.innerHTML = this.lottoCountText(lottos.length);
     this.$lottoDisplayArea.innerHTML = lottos
+      .slice((pageIndex - 1) * 10, (pageIndex - 1) * 10 + 10)
       .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
       .join('');
+    if (pageIndex <= 1) {
+      this.$prevPageButton.disabled = true;
+    } else {
+      this.$prevPageButton.disabled = false;
+    }
+    if (pageIndex >= Math.ceil(store.getStates().lottos.length / 10)) {
+      this.$nextPageButton.disabled = true;
+    } else {
+      this.$nextPageButton.disabled = false;
+    }
   }
 
   render(prevStates, states) {
@@ -81,8 +146,10 @@ export default class LottoDisplay extends Component {
       this.clearView();
       return;
     }
-
-    if (states.purchaseType === 'auto' && prevStates.lottos !== states.lottos) {
+    if (
+      states.purchaseType === PURCHASE_TYPE.AUTO &&
+      prevStates.lottos !== states.lottos
+    ) {
       this.updateLottoView(states.lottos);
     }
   }

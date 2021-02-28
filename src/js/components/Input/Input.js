@@ -20,6 +20,6 @@ export default class Input {
       this.type
     } class="${this.classes.join(' ')}" placeholder="${
       this.placeholder
-    }" min="${LOTTO.MIN_NUM}" max="${LOTTO.MAX_NUM}"/>`;
+    }" min="${LOTTO.MIN_NUM}" max="${LOTTO.MAX_NUM}" maxlength="2"/>`;
   }
 }

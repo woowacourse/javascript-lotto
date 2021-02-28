@@ -20,10 +20,13 @@ export const updatePayment = payment => {
   };
 };
 
-export const changePurchaseType = isManual => {
+export const changePurchaseType = purchaseType => {
   'use strict';
+  if (purchaseType !== MANUAL_PURCHASE && purchaseType !== AUTO_PURCHASE) {
+    purchaseType = AUTO_PURCHASE;
+  }
   return {
-    type: isManual ? MANUAL_PURCHASE : AUTO_PURCHASE,
+    type: purchaseType,
   };
 };
 

@@ -12,6 +12,7 @@ import Button from './Button/Button.js';
 import LottoNumbersInput from './Input/LottoNumbersInput.js';
 import Component from '../core/Component.js';
 import { isEmptyValue, isInRange } from '../utils/common.js';
+import { AUTO_PURCHASE } from '../redux/actionType.js';
 
 export default class ManualLottoInput extends Component {
   initRender() {
@@ -35,13 +36,13 @@ export default class ManualLottoInput extends Component {
         }).getTemplate()}
         </div>
         <p data-section="messageBox" class="text-xs text-center"></p>
-      ${new Button({
-        id: 'manual-lotto-finish-btn',
-        type: 'button',
-        classes: ['btn', 'btn-cyan', 'w-100'],
-        disabled: false,
-        text: '잔액으로 자동구매 하기',
-      }).getTemplate()}
+            ${new Button({
+              id: 'manual-lotto-finish-btn',
+              type: 'button',
+              classes: ['btn', 'btn-cyan', 'w-100'],
+              disabled: false,
+              text: '잔액으로 자동구매 하기',
+            }).getTemplate()}
     </div>
         `;
   }
@@ -86,16 +87,17 @@ export default class ManualLottoInput extends Component {
 
   onClickPurchaseButton() {
     const lottoNumbers = this.$numberInputs.map(({ value }) => Number(value));
+    const nextPaymentState = store.getStates().payment - LOTTO.PRICE;
     this.clearInputArea();
-    if (store.getStates().payment - LOTTO.PRICE >= 0) {
-      store.dispatch(updatePayment(store.getStates().payment - LOTTO.PRICE));
+    if (nextPaymentState >= 0) {
+      store.dispatch(updatePayment(nextPaymentState));
       store.dispatch(addLotto(lottoNumbers));
     }
   }
 
   onClickFinishButton() {
     this.clearView();
-    store.dispatch(changePurchaseType(false));
+    store.dispatch(changePurchaseType(AUTO_PURCHASE));
     store.dispatch(createLottos(store.getStates().payment));
   }
 
@@ -115,6 +117,7 @@ export default class ManualLottoInput extends Component {
 
   clearView() {
     this.$target.classList.add('d-none');
+    this.clearInputArea();
   }
 
   clearInputArea() {

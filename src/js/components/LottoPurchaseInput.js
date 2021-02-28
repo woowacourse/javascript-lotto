@@ -11,6 +11,7 @@ import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 import Input from './Input/Input.js';
 import ManualLottoInput from './ManualLottoInput.js';
+import { MANUAL_PURCHASE } from '../redux/actionType.js';
 
 export default class LottoPurchaseInput extends Component {
   initRender() {
@@ -81,9 +82,7 @@ export default class LottoPurchaseInput extends Component {
     const payment = Number(this.$purchaseInput.value);
     store.dispatch(updatePayment(payment));
     if (this.$purchaseTypeToggleButton.checked) {
-      store.dispatch(
-        changePurchaseType(this.$purchaseTypeToggleButton.checked),
-      );
+      store.dispatch(changePurchaseType(MANUAL_PURCHASE));
     } else {
       store.dispatch(createLottos(payment));
     }

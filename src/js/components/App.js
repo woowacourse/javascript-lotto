@@ -45,6 +45,7 @@ export default class App extends Component {
       </div>
     </div>
     <div class="modal"></div>
+</div>
     `;
   }
 }
