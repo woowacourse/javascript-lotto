@@ -4,6 +4,12 @@ describe('기능 테스트', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5501');
   });
+  it('소비자는 자동 / 수동 구매를 선택할 수 있다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('#auto-purchase-button').click();
+    cy.get('#manual-purchase-button').click();
+  });
 
   it('소비자는 자동으로 구매한 로또 개수만큼의 복권을 받는다.', () => {
     cy.get('#cost-input').type('3000');
