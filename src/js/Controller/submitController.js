@@ -102,10 +102,16 @@ const renderWinningResult = (matchingCounts) => {
 
 const handleRestartButton = () => {
   closeModal();
+  initializeStates();
   clearWinningBonusNumber();
   clearPurchaseAmountInput();
   hidePurchaseResult();
   $(ELEMENT.TOGGLE_BUTTON).checked = false;
+};
+
+const initializeStates = () => {
+  ticketBundle.initializeTicketBundle();
+  winningResult.initializeWinningResult();
 };
 
 const clearPurchaseAmountInput = () => {

@@ -7,6 +7,12 @@ class WinningResult {
     this.matchingCounts = [];
   }
 
+  initializeWinningResult() {
+    this.winningNumbers = [];
+    this.bonusNumber = 0;
+    this.matchingCounts = [];
+  }
+
   setWinningNumbers(winningNumbers) {
     this.winningNumbers = winningNumbers.map((number) => Number(number));
   }
