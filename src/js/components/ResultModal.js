@@ -42,11 +42,12 @@ export default class ResultModal {
     this.setState({ isVisible: false });
   }
 
+  getTotalPrize() {
+    return this.lottoTickets.reduce((acc, lottoTicket) => acc + WINNING_PRIZE[lottoTicket.totalMatchCount].PRIZE, 0);
+  }
+
   getLottoRateOfReturn() {
-    const profit = this.lottoTickets.reduce(
-      (acc, lottoTicket) => acc + WINNING_PRIZE[lottoTicket.totalMatchCount].PRIZE,
-      0
-    );
+    const profit = this.getTotalPrize();
     const loss = this.lottoTickets.length * LOTTO_PRICE;
     const rateOfReturn = getRateOfReturn(profit, loss);
 
