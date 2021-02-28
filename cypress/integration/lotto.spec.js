@@ -299,6 +299,16 @@ describe("ui-exception", () => {
         "1이상 45이하의 숫자에서만 구입이 가능합니다."
       )
     })
+
+    it("수동 번호에 소수가 있으면 alert가 발생해야 한다", () => {
+      submitManualBuy(5000)
+      submitManualLotto([2, 3.1, 4, 23, 9, 44])
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        "번호는 반드시 자연수여야 합니다."
+      )
+    })
   })
 
   describe("ui-answer-exception", () => {
