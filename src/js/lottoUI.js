@@ -67,7 +67,8 @@ export default class LottoUI {
                   min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
                   max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
                   class="winning-number mx-1 text-center 
-                    ${DOM_CLASSES.RESULT_WINNING_NUMBER}" />`.repeat(6)}
+                    ${DOM_CLASSES.RESULT_WINNING_NUMBER}" 
+                  required />`.repeat(6)}
               </div>
             </div>
             <div class="bonus-number-container flex-grow">
