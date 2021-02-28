@@ -11,16 +11,17 @@ const getSelectPaperItemHTML = (quantity) => {
 
 const getApplyQuantitySelectHTML = (quantity) => {
   return quantity === 1
-    ? `<option value="${quantity}" selected>${quantity}장</option>`
+    ? `<option value="${quantity}" class="selected" selected>${quantity}장</option>`
     : `<option value="${quantity}">${quantity}장</option>`;
 };
 
-export const getSelectPaperHTML = (maxQuantity) => {
+export const getSelectPaperHTML = ({ maxQuantity }) => {
+  console.log(maxQuantity);
   return `
   <div class="manual-select-paper mt-2 d-flex flex-col">
-    <div class="quantity-apply mb-5 d-flex items-end">
+    <div class="quantity-applier mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
-      <select class="quantity-apply-select">
+      <select class="quantity-select">
         ${[...Array(maxQuantity)].map((_, i) => getApplyQuantitySelectHTML(i + 1)).join('')}
       </select>
     </div>

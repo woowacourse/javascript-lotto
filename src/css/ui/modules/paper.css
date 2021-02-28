@@ -1,7 +1,7 @@
 .manual-select-paper {
   position: relative;
   margin-right: 12px;
-  padding: 16px 24px;
+  padding: 24px 32px;
   border-radius: 2px;
   border: 1px solid #e3bfbf;
   box-sizing: border-box;
@@ -12,7 +12,7 @@
 .select-paper {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 10px;
+  gap: 10px 6px;
   list-style: none;
 }
 
@@ -39,7 +39,7 @@
 .select-paper span {
   display: inline-block;
   text-align: center;
-  padding: 6px 1.5px;
+  padding: 3px 1px;
   min-width: 24px;
   font-size: 0.95rem;
   color: #cb4342;
@@ -47,37 +47,32 @@
   box-sizing: border-box;
 }
 
-.select-paper span::before {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  border-top: 1px solid #cb4342;
-  border-left: 1px solid #cb4342;
-  border-right: 1px solid #cb4342;
-  box-sizing: border-box;
-}
-
+.select-paper span::before,
 .select-paper span::after {
   content: '';
   display: inline-block;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 4px;
-  border-bottom: 1px solid #cb4342;
-  border-left: 1px solid #cb4342;
-  border-right: 1px solid #cb4342;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-top: 1px solid #e3bfbf;
+  border-bottom: 1px solid #e3bfbf;
   box-sizing: border-box;
+}
+
+.select-paper span::before {
+  left: 0;
+  border-left: 1px solid #e3bfbf;
+}
+
+.select-paper span::after {
+  right: 0;
+  border-right: 1px solid #e3bfbf;
 }
 
 .select-paper input:hover ~ span {
   color: white;
-  background-color: #cb4342;
+  background-color: #ff7070;
   font-weight: 400;
 }
 
@@ -86,6 +81,8 @@
   background-color: #cb4342;
 }
 
+.select-paper input:hover ~ span::before,
+.select-paper input:hover ~ span::after,
 .select-paper input:checked ~ span::before,
 .select-paper input:checked ~ span::after {
   opacity: 0;

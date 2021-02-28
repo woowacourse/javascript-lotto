@@ -1,6 +1,6 @@
 import { PURCHASE_AMOUNT_COMPLETED } from '../constants/appStages.js';
 import { getSelectPaperHTML } from '../layouts/selectPaper.js';
-import { $, $$, show } from '../utils/DOM.js';
+import { $, $$, select, unselect, show } from '../utils/DOM.js';
 
 export default class PurchaseOptionInput {
   constructor({ stageManager }) {
@@ -32,8 +32,34 @@ export default class PurchaseOptionInput {
   }
 
   onAddPaper() {
-    this.$manualSelectForm.insertAdjacentHTML('beforeEnd', getSelectPaperHTML(this.autoQuantity - 1));
-    this.setState({ autoQuantity: this.autoQuantity - 1, manualQuantity: this.manualQuantity + 1 });
+    const defaultManualQuantity = 1;
+
+    this.setState({
+      autoQuantity: this.autoQuantity - defaultManualQuantity,
+      manualQuantity: this.manualQuantity + defaultManualQuantity,
+    });
+    this.$manualSelectForm.insertAdjacentHTML(
+      'beforeEnd',
+      getSelectPaperHTML({ maxQuantity: defaultManualQuantity + this.autoQuantity })
+    );
+    this.$manualSelectForm.lastChild
+      .querySelector('select')
+      .addEventListener('change', this.onSelectQuantityApplier.bind(this));
+  }
+
+  onSelectQuantityApplier({ target }) {
+    const prevOption = target.querySelector('.selected');
+    const prevQuantity = prevOption.value;
+    const currQuantity = target.value;
+    const currOption = target.querySelector(`[value="${currQuantity}"]`);
+    const diffManualQuantity = currQuantity - prevQuantity;
+
+    unselect(prevOption);
+    select(currOption);
+    this.setState({
+      autoQuantity: this.autoQuantity - diffManualQuantity,
+      manualQuantity: this.manualQuantity + diffManualQuantity,
+    });
   }
 
   renderQuantitySummary() {

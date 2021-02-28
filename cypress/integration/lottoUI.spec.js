@@ -115,8 +115,8 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.manual-quantity').should('have.text', numOfManualSelect);
   });
 
-  it('자동구매 수량이 남아있을 경우, 적용수량을 조정해서 수동구매로 전환할 수 있다.', () => {
-    cy.get('.manual-select-paper')
+  it('자동구매 수량이 남아있을 경우, 적용수량을 증가시켜 수동구매로 추가전환할 수 있다.', () => {
+    cy.get('.quantity-select')
       .first()
       .select(`${1 + numOfLotto - numOfManualSelect}장`);
     cy.get('.auto-quantity').should('have.text', 0);
