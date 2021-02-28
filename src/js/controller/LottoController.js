@@ -86,19 +86,12 @@ export class LottoController {
 
   handleLottoToggle() {
     this.$lottoContainer = $('#lotto-container');
-    this.$lottoNumbers = document.getElementsByClassName('lotto-numbers');
+    this.$lottoNumbers = $('[data-lotto-numbers]');
 
     this.$lottoContainer.toggleClass('flex-col'); // toggle()을 이용해 flex direction 변경.
-
-    if (this.$lottoToggle.isCheckedInput()) {
-      Array.from(this.$lottoNumbers).forEach(lottoNumber => {
-        lottoNumber.style.display = 'block';
-      });
-    } else {
-      Array.from(this.$lottoNumbers).forEach(lottoNumber => {
-        lottoNumber.style.display = 'none';
-      });
-    }
+    this.$lottoToggle.isCheckedInput() //
+      ? this.$lottoNumbers.show()
+      : this.$lottoNumbers.hide();
   }
 
   handleLengthLimit({ target, target: { value } }) {
