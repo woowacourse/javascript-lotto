@@ -240,71 +240,74 @@ describe("ui-exception", () => {
       .as(ALERT_STUB)
   })
 
-  it("금액에 소수점을 입력했을때 alert가 발생한다", () => {
-    submitAutoBuy(432.13)
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT
-    )
+  describe("ui-buy-exception", () => {
+    it("금액에 소수점을 입력했을때 alert가 발생한다", () => {
+      submitAutoBuy(432.13)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.PRICE_CANNOT_BE_FLOAT
+      )
+    })
+
+    it("금액에 음수를 입력했을때 alert가 발생한다", () => {
+      submitAutoBuy(-1000)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE
+      )
+    })
+
+    it("금액에 1000원 미만을 입력했을때 alert가 발생한다", () => {
+      submitAutoBuy(500)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND
+      )
+    })
   })
 
-  it("금액에 음수를 입력했을때 alert가 발생한다", () => {
-    submitAutoBuy(-1000)
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.PRICE_CANNOT_BE_NEGATIVE
-    )
-  })
+  describe("ui-answer-exception", () => {
+    it("당첨 번호를 전부 입력하지 않은 상태로 결과 확인하기 버튼을 누르면 alert가 발생한다.", () => {
+      submitAutoBuy(5000)
+      submitAnswer([1, 2, "", 4, "", 6], 7)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.ANSWER_CANNOT_BE_EMPTY
+      )
+    })
 
-  it("금액에 1000원 미만을 입력했을때 alert가 발생한다", () => {
-    submitAutoBuy(500)
+    it("당첨 번호에 중복되는 숫자가 있으면 alert가 발생해야 한다.", () => {
+      submitAutoBuy(5000)
+      submitAnswer([1, 2, 3, 4, 4, 26], 17)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.ANSWER_CANNOT_BE_DUPLICATED
+      )
+    })
 
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.PRICE_CANNOT_BE_LESS_THAN_THOUSAND
-    )
-  })
+    it("당첨 번호가 1이상 45이하가 아닌 숫자가 있을때 alert가 발생해야 한다.", () => {
+      submitAutoBuy(5000)
+      submitAnswer([40, 41, 42, 43, 44, 46], -1)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.ANSWER_CANNOT_BE_OUT_RANGE
+      )
+    })
 
-  it("당첨 번호를 전부 입력하지 않은 상태로 결과 확인하기 버튼을 누르면 alert가 발생한다.", () => {
-    submitAutoBuy(5000)
-    submitAnswer([1, 2, "", 4, "", 6], 7)
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.ANSWER_CANNOT_BE_EMPTY
-    )
-  })
-
-  it("당첨 번호에 중복되는 숫자가 있으면 alert가 발생해야 한다.", () => {
-    submitAutoBuy(5000)
-    submitAnswer([1, 2, 3, 4, 4, 26], 17)
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.ANSWER_CANNOT_BE_DUPLICATED
-    )
-  })
-
-  it("당첨 번호가 1이상 45이하가 아닌 숫자가 있을때 alert가 발생해야 한다.", () => {
-    submitAutoBuy(5000)
-    submitAnswer([40, 41, 42, 43, 44, 46], -1)
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.ANSWER_CANNOT_BE_OUT_RANGE
-    )
-  })
-
-  it("당첨 번호에 소수가 있으면 alert가 발생해야 한다.", () => {
-    submitAutoBuy(5000)
-    submitAnswer([1, 2.3, 4.5, 6, 34, 43], 3.14)
-    cw.should(
-      `@${ALERT_STUB}`,
-      "be.calledWith",
-      ERROR_MESSAGE.ANSWER_CANNOT_BE_FLOAT
-    )
+    it("당첨 번호에 소수가 있으면 alert가 발생해야 한다.", () => {
+      submitAutoBuy(5000)
+      submitAnswer([1, 2.3, 4.5, 6, 34, 43], 3.14)
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        ERROR_MESSAGE.ANSWER_CANNOT_BE_FLOAT
+      )
+    })
   })
 })
