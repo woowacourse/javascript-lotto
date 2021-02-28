@@ -3,6 +3,7 @@ import { SELECTOR } from './constants.js';
 
 export const $costSubmitForm = $(SELECTOR.COST_SUBMIT_FORM);
 export const $costInput = $(SELECTOR.COST_INPUT);
+export const $choicePurchaseMethod = $(SELECTOR.CHOICE_PURCHASE_METHOD);
 export const $autoPurchaseButton = $(SELECTOR.AUTO_PURCHASE_BUTTON);
 export const $manualPurchaseButton = $(SELECTOR.MANUAL_PURCHASE_BUTTON);
 export const $remainLottoCountText = $(SELECTOR.REMAIN_LOTTO_COUNT_TEXT);

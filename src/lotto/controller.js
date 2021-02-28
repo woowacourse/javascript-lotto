@@ -7,6 +7,11 @@ import {
   $costSubmitForm,
   $lottoNumbersToggleButton,
   $costInput,
+  $autoPurchaseButton,
+  $manualPurchaseButton,
+  $autoCountForm,
+  $autoCountInput,
+  $manualLottoNumbersForm,
   $modal,
   $modalClose,
   $correctNumberWrapper,
@@ -52,9 +57,20 @@ const onCostSubmit = (e) => {
     $costInput.value = '';
     return;
   }
+  lottoGameView.displayChoiceMethodButton();
   lottoGameView.resetToggleButton();
   purchaseLottoItems(cost);
 };
+
+const onAutoPurchase = () => {
+  lottoGameView.hideManualLottoNumbersForm();
+  lottoGameView.displayAutoCountForm();
+}
+
+const onManualPurchase = () => {
+  lottoGameView.hideAutoCountForm();
+  lottoGameView.displayManualLottoNumbersForm();
+}
 
 const onShowLottoNumbersToggle = (e) => {
   e.target.checked
@@ -108,6 +124,8 @@ const onModalAccessibility = (e) => {
 const controller = {
   bindLottoGameEvents() {
     $costSubmitForm.addEventListener('submit', onCostSubmit);
+    $autoPurchaseButton.addEventListener('click', onAutoPurchase);
+    $manualPurchaseButton.addEventListener('click', onManualPurchase);
     $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $correctNumberInputForm.addEventListener('submit', onResultModalOpen);

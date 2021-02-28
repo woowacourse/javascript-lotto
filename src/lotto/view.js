@@ -1,6 +1,10 @@
 import {
   $modal,
   $costInput,
+  $choicePurchaseMethod,
+  $remainLottoCountText,
+  $autoCountForm,
+  $manualLottoNumbersForm,
   $purchaseItemCount,
   $purchaseItemList,
   $purchaseResult,
@@ -19,21 +23,56 @@ import {
 const view = {
   init() {
     view.closeResultModal();
-    view.hidePurchaseResult()
+    view.hidePurchaseResult();
     view.hideCorrectNumberInputForm();
     $costInput.value = '';
     $$correctNumberInputs.forEach(
-      ($correctNumberInput) => $correctNumberInput.value = '');
+      ($correctNumberInput) => ($correctNumberInput.value = ''),
+    );
+  },
+
+  displayChoiceMethodButton() {
+    $choicePurchaseMethod.classList.remove('hide');
+  },
+
+  hideChoiceMethodButton() {
+    $choicePurchaseMethod.classList.add('hide');
+  },
+
+  displayRemainLottoNumberCount() {
+    $remainLottoCountText.classList.remove('hide');
+  },
+
+  hideRemainLottoNumberCount() {
+    $remainLottoCountText.classList.add('hide');
+  },
+
+  displayAutoCountForm() {
+    $autoCountForm.classList.remove('hide');
+  },
+
+  hideAutoCountForm() {
+    $autoCountForm.classList.add('hide');
+  },
+
+  displayManualLottoNumbersForm() {
+    $manualLottoNumbersForm.classList.remove('hide');
+  },
+
+  hideManualLottoNumbersForm() {
+    $manualLottoNumbersForm.classList.add('hide');
   },
 
   displayPurchaseResult(lottoItemList) {
     $purchaseResult.classList.remove('hide');
-    $purchaseItemCount.innerHTML = getResultItemCountTemplate(lottoItemList.length);
+    $purchaseItemCount.innerHTML = getResultItemCountTemplate(
+      lottoItemList.length,
+    );
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
     view.displayCorrectNumberInputForm();
   },
 
-  hidePurchaseResult(){
+  hidePurchaseResult() {
     $purchaseResult.classList.add('hide');
   },
 
@@ -72,7 +111,7 @@ const view = {
 
   showMessage(message) {
     alert(message);
-  }
+  },
 };
 
 export default view;
