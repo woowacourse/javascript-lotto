@@ -86,23 +86,32 @@ describe("ui-play", () => {
 
   it("금액을 입력하고 버튼을 클릭하면 수동 구매 영역이 보여진다", () => {
     submitAutoBuy(5000)
-    cw.get(".buy-method").children().should("exist")
+    cw.get("#buy-method").children().should("exist")
   })
 
   it("금액을 입력하고 버튼을 클릭하면 구매가능한 로또 개수가 보여진다", () => {
     submitManualBuy(5000)
-    cy.get(".buy-method .available").contains(5)
+    cy.get("#buy-method .available").contains(5)
   })
 
   it("수동 번호를 입력하고 수동 구매 버튼을 누르면 현재 구매가능 개수가 한개 줄어든다", () => {
     submitManualBuy(5000)
     submitManualLotto([1, 2, 3, 4, 5, 6])
-    cy.get(".buy-method .available").contains(4)
+    cy.get("#buy-method .available").then((number) => {
+      expect(number.text()).to.equal(4)
+    })
   })
 
+  it("수동 번호를 입력하고 수동 구매 버튼을 누르면 구매한 수동 번호 목록에 보여진다", () => {
+    submitManualBuy(5000)
+    submitManualLotto([1, 2, 3, 4, 5, 6])
+    cy.get("#manual p").then((number) => {
+      expect(number.text()).to.equal("1 2 3 4 5 6")
+    })
+  })
   it("금액을 입력하고 확인 버튼, 나머지 자동구매 버튼을 클릭하면 수동 구매 영역 감춰지고 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
     submitAutoBuy(5000)
-    cw.get(".buy-method").children().should("not.exist")
+    cw.get("#buy-method").children().should("not.exist")
     cy.get(SELECTOR.POCKET_SECTION).children().should("exist")
     cy.get(SELECTOR.WINNING_SECTION).children().should("exist")
   })
