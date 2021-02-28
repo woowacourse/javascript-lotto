@@ -147,6 +147,7 @@ export default class PurchaseOptionInput {
 
   renderSection() {
     show(this.$purchaseOptionSection);
+    show(this.$manualSelectForm);
     show(this.$ticketIssueButton);
     show(this.$paperAdder);
     this.setState({ autoQuantity: this.stageManager.numOfLotto, manualQuantity: 0 });

@@ -45,7 +45,7 @@ export default class WinningResultDisplay {
       return getTableRowHTML({
         DESCRIPTION,
         PRIZE,
-        numOfWinningTicket: lottoTickets.filter((ticket) => ticket.totalMatchCount === key).length,
+        numOfWinningTicket: lottoTickets.filter((ticket) => ticket.numOfMatch === key).length,
       });
     }).join('');
   }
