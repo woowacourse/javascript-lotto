@@ -52,6 +52,11 @@ context('로또 UI 테스트', () => {
   });
 
   describe('수동 and 자동 구입 갯수 입력 부분', () => {
+    it('자동과 수동 구매 갯수 전부 입력하여야 다음 단계로 진행할 수 있다.', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+      testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
+    })
     it('소비자는 수동 구매를 할 수 있어야 한다.', () => {
       jumpToResultInputUI();
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, true);
