@@ -18,3 +18,11 @@ export const showModal = () => {
 export const closeModal = () => {
   $(ELEMENT.MODAL).classList.remove(ELEMENT.OPEN);
 };
+
+export const showPurchaseSection = () => {
+  $("#purchase-section").classList.remove(ELEMENT.HIDDEN);
+};
+
+export const hidePurchaseSection = () => {
+  $("#purchase-section").classList.add(ELEMENT.HIDDEN);
+};

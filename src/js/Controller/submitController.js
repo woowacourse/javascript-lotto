@@ -12,6 +12,7 @@ import {
   hidePurchaseResult,
   showModal,
   closeModal,
+  showPurchaseSection,
 } from "../Handler/elementHandler.js";
 import ticketBundle from "../Model/TicketBundle.js";
 import winningResult from "../Model/WinningResult.js";
@@ -42,18 +43,22 @@ const handlePurchaseAmountSubmit = (event) => {
 
   $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
 
-  const tickets = ticketBundle.makeTicketBundle(
-    money / STANDARD_NUMBER.ONE_TICKET_PRICE
-  );
-  renderTickets(tickets.length);
-  $$(ELEMENT.WINNING_NUMBER)[0].focus();
+  renderPurchaseSection();
+  // const tickets = ticketBundle.makeTicketBundle(
+  //   money / STANDARD_NUMBER.ONE_TICKET_PRICE
+  // );
+  // renderTickets(tickets.length);
+  // $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
 
-const renderTickets = (ticketCount) => {
-  printPurchaseAmountLabel(ticketCount);
-  printTicketHorizontal(ticketCount);
-  showPurchaseResult();
+const renderPurchaseSection = () => {
+  showPurchaseSection();
 };
+// const renderTickets = (ticketCount) => {
+//   printPurchaseAmountLabel(ticketCount);
+//   printTicketHorizontal(ticketCount);
+//   showPurchaseResult();
+// };
 
 const handleToggleButton = (event) => {
   event.target.checked
