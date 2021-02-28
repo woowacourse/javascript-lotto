@@ -1,7 +1,7 @@
 import { getRandomNumber } from '../../../src/js/utils/utils.js';
 import LottoProcessor from '../../../src/js/utils/lottoProcessor.js';
+import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
 import Lotto from '../../../src/js/Lotto.js';
-import { $ } from '../../../src/js/utils/selector.js';
 
 describe('로또 게임 테스트', () => {
   beforeEach(() => {
@@ -43,7 +43,7 @@ describe('로또 게임 테스트', () => {
   function typeWinningNumber() {
     const numbers = new Set();
     while (numbers.size < LOTT0_LENGTH) {
-      numbers.add(getRandomNumber());
+      numbers.add(getRandomNumber(1, LOTTO_NUMBERS.LOTTO_MAX_NUM));
     }
 
     cy.get('.winning-number').each((winningNumber, idx) => {
