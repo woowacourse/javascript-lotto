@@ -126,9 +126,24 @@ describe('유저 입력 값 테스트', () => {
     cy.get('.manual-lotto-number-input').eq(0).type(1);
     cy.get('.manual-lotto-number-input').eq(1).type(2);
     cy.get('.manual-lotto-number-input').eq(2).type(46);
+    cy.get('.manual-lotto-number-input').eq(3).click();
     cy.get('@alertStub').should(
       'be.calledWith',
       MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE,
+    );
+    cy.get('.manual-lotto-number-input').eq(2).should('have.text', '');
+  });
+
+  it('입력된 번호 중 중복된 번호가 있다면 안내메시지를 출력한다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('.manual-lotto-number-input').eq(0).type(1);
+    cy.get('.manual-lotto-number-input').eq(1).type(2);
+    cy.get('.manual-lotto-number-input').eq(2).type(2);
+    cy.get('.manual-lotto-number-input').eq(3).click();
+    cy.get('@alertStub').should(
+      'be.calledWith',
+      MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE,
     );
     cy.get('.manual-lotto-number-input').eq(2).should('have.text', '');
   });
