@@ -7,6 +7,7 @@ import {
   printTicketVertical,
   printWinningResult,
 } from "../View/receiptView.js";
+import { renderBalance } from "../View/receiptView.js";
 import {
   showPurchaseResult,
   hidePurchaseResult,
@@ -16,6 +17,7 @@ import {
 } from "../Handler/elementHandler.js";
 import ticketBundle from "../Model/TicketBundle.js";
 import winningResult from "../Model/WinningResult.js";
+import balance from "../Model/Balance.js";
 
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
@@ -51,6 +53,9 @@ const handlePurchaseAmountSubmit = (event) => {
 
   $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
 
+  balance.setBalance(money);
+  renderBalance(balance.balance);
+
   renderPurchaseSection();
   // const tickets = ticketBundle.makeTicketBundle(
   //   money / STANDARD_NUMBER.ONE_TICKET_PRICE
@@ -75,6 +80,9 @@ const handleSelfPurchaseSubmit = (event) => {
   }
   const tickets = ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
 
+  balance.subtractionSelfPurchaseBalance();
+  renderBalance(balance.balance);
+
   Array.from($$(".self-purchase-lotto-number")).map(
     (number) => (number.value = "")
   );
@@ -92,6 +100,9 @@ const handleAutoPurchaseSubmit = (event) => {
   if (!isValidMoney(autoPurchasePrice)) {
     return;
   }
+
+  balance.subtractionAutoPurchaseBalance(autoPurchasePrice);
+  renderBalance(balance.balance);
 
   const tickets = ticketBundle.makeAutoTicketBundle(
     autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE

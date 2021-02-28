@@ -2,6 +2,10 @@ import { ELEMENT } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
 import { getTotalPrize } from "../Controller/submitController.js";
 
+export const renderBalance = (currentBalance) => {
+  $("#current-money").innerText = `구매 가능 금액: ${currentBalance}원`;
+};
+
 export const printPurchaseAmountLabel = (ticketCount) => {
   $(
     ELEMENT.PURCHASE_AMOUNT_LABEL
