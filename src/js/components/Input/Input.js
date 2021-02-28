@@ -7,12 +7,14 @@ export default class Input {
     type = 'text',
     placeholder = '',
     disabled = false,
+    maxlength = 10,
   }) {
     this.id = id;
     this.classes = classes;
     this.type = type;
     this.placeholder = placeholder;
     this.disabled = disabled;
+    this.maxlength = maxlength;
   }
 
   getTemplate() {
@@ -20,6 +22,8 @@ export default class Input {
       this.type
     } class="${this.classes.join(' ')}" placeholder="${
       this.placeholder
-    }" min="${LOTTO.MIN_NUM}" max="${LOTTO.MAX_NUM}" maxlength="2"/>`;
+    }" min="${LOTTO.MIN_NUM}" max="${LOTTO.MAX_NUM}" maxlength="${
+      this.maxlength
+    }"/>`;
   }
 }

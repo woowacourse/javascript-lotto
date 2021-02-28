@@ -28,6 +28,7 @@ export default class WinningNumbersInput extends Component {
                 ${new Input({
                   type: 'number',
                   classes: ['bonus-number', 'text-center'],
+                  maxlength: 2,
                 }).getTemplate()}
                 </div>
               </div>

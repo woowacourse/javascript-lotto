@@ -26,6 +26,7 @@ export default class ManualLottoInput extends Component {
       <div id="manual-lotto-input-area" class="w-100 my-3 d-flex justify-around items-center">
         ${new LottoNumbersInput({
           classes: ['manual-lotto-number', 'mx-1', 'text-center', 'w-100'],
+          maxlength: 2,
         }).getTemplate()}
         ${new Button({
           id: 'manual-lotto-purchase-btn',

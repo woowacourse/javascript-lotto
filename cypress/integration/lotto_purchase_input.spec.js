@@ -8,7 +8,7 @@ describe('LOTTO - 구매할 금액 입력 테스트', () => {
   });
 
   it('수동구매를 클릭할 경우, 수동 로또 번호 입력란이 출력된다.', () => {
-    cy.get('#lotto-purchase-input').type('1000');
+    cy.get('#lotto-purchase-input').type('2000');
     cy.get('.purchase-type-toggle-button').click({ force: true });
     cy.get('#lotto-purchase-btn').click();
     cy.get('#manual-lotto-input-container').should('to.be.visible');

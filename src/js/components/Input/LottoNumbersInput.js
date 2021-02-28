@@ -4,16 +4,27 @@ import { ERROR_MESSAGE } from '../../utils/message.js';
 import Input from './Input.js';
 
 export default class LottoNumbersInput {
-  constructor({ id, classes = [], type = 'number', placeholder = '' }) {
+  constructor({
+    id,
+    classes = [],
+    type = 'number',
+    placeholder = '',
+    maxlength = 10,
+  }) {
     this.id = id;
     this.classes = classes;
     this.type = type;
     this.placeholder = placeholder;
+    this.maxlength = maxlength;
   }
 
   getTemplate() {
     return `<div class="lotto-number-input-wrapper">
-    ${new Input({ type: this.type, classes: this.classes })
+    ${new Input({
+      type: this.type,
+      classes: this.classes,
+      maxlength: this.maxlength,
+    })
       .getTemplate()
       .repeat(6)}
       </div>`;
