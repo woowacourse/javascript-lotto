@@ -1,5 +1,5 @@
 import { lotto } from '../model/lotto.js';
-import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
+import { DUPLICATE_INPUT_NUMBER } from '../lib/constants/alertMessage.js';
 import { getProfitPercent, getWinners } from '../lib/utils/lotto.js';
 import { hasDuplicate } from '../lib/utils/validation.js';
 import { showModal, updateModalView } from '../lib/utils/modal.js';
@@ -24,7 +24,7 @@ const winningNumberSubmitHandler = event => {
   };
 
   if (hasDuplicate([...winningNumber.main, winningNumber.bonus])) {
-    alert(DUPLICATE_WINNING_NUMBER);
+    alert(DUPLICATE_INPUT_NUMBER);
     return;
   }
 

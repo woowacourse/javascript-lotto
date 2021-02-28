@@ -34,7 +34,7 @@ body {
 
 .caution {
   font-size: 0.7rem;
-  color: crimson;
+  color: red;
 }
 
 .middle {
@@ -44,8 +44,28 @@ body {
 .remains {
   border: 1px dashed #00bcd4;
   border-radius: 0.2rem;
+  background-color: #cdffff6b;
+  text-align: center;
 }
 
 .alert {
-  color: crimson;
+  color: red;
+}
+
+input:focus:invalid {
+  border: 1px solid red;
+  border-radius: 0.2rem;
+}
+.manual-number:focus:invalid,
+.winning-number:focus:invalid {
+  width: 32px;
+  height: 38px;
+}
+
+*:focus {
+  outline: none;
+}
+
+input:focus:valid {
+  color: none;
 }

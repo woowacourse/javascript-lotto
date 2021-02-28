@@ -12,6 +12,7 @@ const inputNumberRangeHandler = ({ target }) => {
   if (target.value.length && !isValidRange(Number(target.value))) {
     alert(EXCEED_RANGE_NUMBER);
     target.value = '';
+    target.focus();
   }
 };
 

@@ -1,5 +1,5 @@
 import {
-  DUPLICATE_WINNING_NUMBER,
+  DUPLICATE_INPUT_NUMBER,
   EXCEED_RANGE_NUMBER,
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
@@ -167,6 +167,6 @@ context('Actions', () => {
     });
     cy.get('.bonus-number').type(34);
     cy.get('.open-result-modal-button[type=submit]').click();
-    cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
+    cy.get('@alert').should('be.calledWith', DUPLICATE_INPUT_NUMBER);
   });
 });

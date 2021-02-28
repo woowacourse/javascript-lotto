@@ -5,7 +5,7 @@ import {
   TICKET_PRIZE,
 } from '../constants/lotto.js';
 
-function getValueArrayFromElements(elements) {
+function getValueFromElements(elements) {
   return elements.reduce((acc, cur) => {
     acc.push(Number(cur.value));
     return acc;
@@ -86,7 +86,7 @@ function getWinners(tickets, winningNumber) {
 }
 
 export {
-  getValueArrayFromElements,
+  getValueFromElements,
   sliceArray,
   getTicketNumber,
   getProfitPercent,

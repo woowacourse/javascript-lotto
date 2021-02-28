@@ -26,6 +26,7 @@ const clearLottoApp = () => {
 
   $('#toggle-detail-mode').classList.add('hide');
   $('input[name=payment-input]').focus();
+  $('#remaining-money').innerHTML = '0';
 };
 
 const lottoResetHandler = () => {

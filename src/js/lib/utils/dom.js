@@ -35,7 +35,14 @@ export const focusInput = (selector, name) => {
 
 export const randomColor = () => {
   setInterval(() => {
-    const randomColor = 'rgb(0,' + random(0, 200) + ',' + random(0, 255) + ')';
+    const randomColor =
+      'rgb(' +
+      random(0, 255) +
+      ',' +
+      random(0, 255) +
+      ',' +
+      random(0, 255) +
+      ')';
     $('.remains').style.borderColor = randomColor;
   }, 1000);
 };
