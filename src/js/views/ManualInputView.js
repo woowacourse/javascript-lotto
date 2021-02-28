@@ -3,19 +3,20 @@ import { $, $$ } from '../utils/selector.js';
 import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class ManualInputView extends View {
-  constructor(id, count) {
-    const manualInputWrapper = document.createElement('ul');
-    manualInputWrapper.setAttribute('id', id);
-    super(manualInputWrapper);
+  constructor($element) {
+    super($element);
+  }
 
-    this.createManualLottos(count);
+  init(count) {
+    this.count = count;
+    this.createManualLottos();
     this.bindManualInputEvent();
     this.showAllConfirmButton();
     this.bindConfirmEvent();
   }
 
-  createManualLottos(count) {
-    const lottoTicekts = [...Array(count)]
+  createManualLottos() {
+    const lottoTicekts = [...Array(this.count)]
       .map(
         (_, idx) => `
           <li id="manual-wrapper-${idx}" class="mx-1 my-2 text-4xl manual-wrapper">
@@ -86,7 +87,14 @@ export default class ManualInputView extends View {
 
   bindConfirmEvent() {
     $('#manual-confirm-btn').addEventListener('click', () => {
-      this.emit('confirm', [...$$('.lotto-detail')].length);
+      this.emit(
+        'confirmAll',
+        [...$$('.manual-wrapper > .lotto-detail')].length
+      );
     });
+  }
+
+  resetManualInputs() {
+    this.$element.innerHTML = '';
   }
 }

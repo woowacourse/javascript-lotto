@@ -30,6 +30,7 @@ export default class LottoController {
       $('#purchase-type')
     );
     this.inputPriceView = new InputPriceView($('#input-price-form'));
+    this.manualInputView = new ManualInputView($('#manual-input-wrapper'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
 <<<<<<< HEAD
     this.winningResultView = new WinningResultView($('#winning-numbers-form'));
@@ -49,34 +50,27 @@ export default class LottoController {
     this.purchasedPrice = 0;
 
     this.inputPriceView.resetInputPrice();
+    this.manualInputView.hide().resetManualInputs();
     this.purchasedLottosView.hide().resetToggleSwitch();
     this.winningResultView.hide().resetWinningNumbers();
   }
 
   bindEvents() {
     this.purchaseTypeSelectView.on('selectType', e => {
-      this.isAutoPurchase = e.detail;
+      this.selectTypeHandler(e.detail);
     });
     this.inputPriceView.on('submitPrice', e =>
       this.inputPriceHandler(e.detail)
     );
+
     this.winningResultView
       .on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail))
       .on('clickResetBtn', () => this.reset());
   }
 
-  createAutoLottos(lottoCount) {
-    const newLottos = Array.from({ length: lottoCount }, () => {
-      return new Lotto();
-    });
-    this.lottos = [...this.lottos, ...newLottos];
-  }
-
-  createManualLottos(manualNumbers, ticketNumber) {
-    const lotto = new Lotto();
-    lotto.inputManualNumbers(manualNumbers);
-    this.lottos.push(lotto);
-    this.manualInputView.confirmManualLottos(lotto, ticketNumber);
+  selectTypeHandler(isAuto) {
+    this.reset();
+    this.isAutoPurchase = isAuto;
   }
 
   inputPriceHandler(inputPrice) {
@@ -104,14 +98,13 @@ export default class LottoController {
   }
 
   purchaseManually() {
-    this.manualInputView = new ManualInputView(
-      'manual-input-wrapper',
-      this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT
-    );
+    this.manualInputView
+      .show()
+      .init(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
     this.manualInputView.on('submitNumbers', e =>
       this.inputManualNumbersHandler(e.detail)
     );
-    this.manualInputView.on('confirm', e =>
+    this.manualInputView.on('confirmAll', e =>
       this.confirmManualPurchaseHandler(e.detail)
     );
   }
@@ -142,6 +135,20 @@ export default class LottoController {
       this.purchasedLottosView.renderLottos(this.lottos);
       this.winningResultView.show();
     }
+  }
+
+  createAutoLottos(lottoCount) {
+    const newLottos = Array.from({ length: lottoCount }, () => {
+      return new Lotto();
+    });
+    this.lottos = [...this.lottos, ...newLottos];
+  }
+
+  createManualLottos(manualNumbers, ticketNumber) {
+    const lotto = new Lotto();
+    lotto.inputManualNumbers(manualNumbers);
+    this.lottos.push(lotto);
+    this.manualInputView.confirmManualLottos(lotto, ticketNumber);
   }
 
   inputWinningNumbersHandler(winningNumbers) {
