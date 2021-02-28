@@ -1,7 +1,9 @@
 export function createTicketTemplate(ticketNumbers) {
   return `<div>
-            <span class="mx-1 text-4xl">🎟️ </span>
-            <span class="ticket-number hide">${ticketNumbers.join(', ')}</span>
+            <span class="mx-1 text-4xl middle">🎟️ </span>
+            <span class="ticket-number hide middle">${ticketNumbers.join(
+              ', '
+            )}</span>
           </div>`;
 }
 
@@ -54,6 +56,7 @@ export function createAutoPurchaseTemplate() {
 
 function createManualTicketNumberTemplate() {
   return `<div class="m-2">
+            <span class="text-4xl middle">🎟️</span>
             <input
               type="number"
               class="manual-number mx-1 text-center"

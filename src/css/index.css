@@ -36,3 +36,16 @@ body {
   font-size: 0.7rem;
   color: crimson;
 }
+
+.middle {
+  vertical-align: middle;
+}
+
+.remains {
+  border: 1px dashed #00bcd4;
+  border-radius: 0.2rem;
+}
+
+.alert {
+  color: crimson;
+}
