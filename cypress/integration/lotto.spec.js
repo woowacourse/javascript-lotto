@@ -48,6 +48,14 @@ const testDetail = () => {
   )
 }
 
+const submitManualLotto = (numbers) => {
+  cy.get(".manual-number").each(($manualNumber, i) => {
+    numbers[i] && cy.wrap($manualNumber).type(numbers[i])
+  })
+
+  cw.click("#manual-button")
+}
+
 const submitAnswer = (numbers, bonus) => {
   cy.get(SELECTOR.WINNING_NUMBER).each(($winningNumber, i) => {
     numbers[i] && cy.wrap($winningNumber).type(numbers[i])
@@ -84,6 +92,12 @@ describe("ui-play", () => {
   it("금액을 입력하고 버튼을 클릭하면 구매가능한 로또 개수가 보여진다", () => {
     submitManualBuy(5000)
     cy.get(".buy-method .available").contains(5)
+  })
+
+  it("수동 번호를 입력하고 수동 구매 버튼을 누르면 현재 구매가능 개수가 한개 줄어든다", () => {
+    submitManualBuy(5000)
+    submitManualLotto([1, 2, 3, 4, 5, 6])
+    cy.get(".buy-method .available").contains(4)
   })
 
   it("금액을 입력하고 확인 버튼, 나머지 자동구매 버튼을 클릭하면 수동 구매 영역 감춰지고 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
