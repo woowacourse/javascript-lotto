@@ -5,7 +5,7 @@ const inputNumberDuplicateHandler = ({ target }) => {
   const sliceRange = { begin: 1, end: 7 };
   let inputArray = [...target.parentElement.children];
 
-  if (target.parentElement.children.length !== 8) {
+  if (target.parentElement.children.length !== 7) {
     sliceRange.begin = 0;
     inputArray = [...target.form];
   }

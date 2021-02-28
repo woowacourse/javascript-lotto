@@ -10,12 +10,14 @@ import { getValueFromElements, sliceArray } from '../lib/utils/lotto.js';
 import {
   createAutoPurchaseTemplate,
   createManualInputTemplate,
+  createWinningNumberInputTemplate,
 } from '../lib/utils/template.js';
 import { lotto } from '../model/lotto.js';
 import { money } from '../model/money.js';
 import inputNumberDuplicateHandler from './input/inputNumberDuplicate.js';
 import inputNumberRangeHandler from './input/inputNumberRange.js';
 import lottoPurchaseHandler from './lottoPurchase.js';
+import winningNumberSubmitHandler from './winningNumberSubmit.js';
 
 const getManualInputs = (event, begin) => {
   return [...event.target.elements].slice(
@@ -36,6 +38,21 @@ const buyManualNumber = event => {
 
   const newAvailableAmount = money.totalAmount / TICKET_PRICE;
   if (newAvailableAmount === 0) {
+    insertAfter(event.target, createWinningNumberInputTemplate());
+
+    $('#winning-number-form').addEventListener(
+      'change',
+      inputNumberDuplicateHandler
+    );
+    $('#winning-number-form').addEventListener(
+      'change',
+      inputNumberRangeHandler
+    );
+    $('#winning-number-form').addEventListener(
+      'submit',
+      winningNumberSubmitHandler
+    );
+    disableElements(event);
     focusInput('.winning-number', 'first');
     return;
   }

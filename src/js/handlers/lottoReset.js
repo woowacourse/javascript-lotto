@@ -12,11 +12,10 @@ const clearLottoApp = () => {
   ];
 
   const notManualArray = [
-    '#payment-form',
-    '#manual-purchase-form',
-    '#auto-purchase-form',
-    '#winning-number-form',
+    ...manualArray.slice(0, 2),
+    ...manualArray.slice(3, 5),
   ];
+  const notAutoArray = [...manualArray.slice(0, 3), ...manualArray.slice(4, 5)];
 
   $('#ticket-list').innerHTML = '';
   $('#ticket-count').innerHTML = '';
@@ -24,12 +23,18 @@ const clearLottoApp = () => {
   $('input[name=payment-input]').disabled = false;
   $('button[name=payment-button]').disabled = false;
 
-  if ($('#manual-number-form').length !== 0) {
+  if (
+    $('#manual-number-form').length !== 0 &&
+    $('#auto-purchase-form').length !== 0
+  ) {
     resetForm(manualArray);
-    removeDOM(manualArray.slice(1, 5));
-  } else {
+    removeDOM(manualArray.slice(1));
+  } else if ($('#manual-number-form').length === 0) {
     resetForm(notManualArray);
-    removeDOM(notManualArray.slice(1, 4));
+    removeDOM(notManualArray.slice(1));
+  } else if ($('#auto-purchase-form').length === 0) {
+    resetForm(notAutoArray);
+    removeDOM(notAutoArray.slice(1));
   }
 
   $('#toggle-detail-mode').classList.add('hide');

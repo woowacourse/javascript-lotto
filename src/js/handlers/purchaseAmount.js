@@ -16,6 +16,7 @@ const purchaseAmountHandler = event => {
 
   if (money.totalAmount < TICKET_PRICE) {
     alert(LESS_THAN_TICKET_PRICE_MESSAGE);
+    $('input[name=payment-input]').value = '';
     return;
   }
 
