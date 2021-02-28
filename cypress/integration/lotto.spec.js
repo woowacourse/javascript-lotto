@@ -120,7 +120,20 @@ describe('유저 입력 값 테스트', () => {
     cy.get('#purchase-result').should('not.be.visible');
   });
 
-  it('입력된 번호들 중 중복된 번호가 있다면 안내메세지를 출력한다.', () => {
+  it('입력된 로또번호 중 1 ~ 45 사이의 숫자가 아닌 숫자가 있다면 안내메시지를 출력한다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('.manual-lotto-number-input').eq(0).type(1);
+    cy.get('.manual-lotto-number-input').eq(1).type(2);
+    cy.get('.manual-lotto-number-input').eq(2).type(46);
+    cy.get('@alertStub').should(
+      'be.calledWith',
+      MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE,
+    );
+    cy.get('.manual-lotto-number-input').eq(2).should('have.text', '');
+  });
+
+  it('입력된 당첨번호들 중 중복된 번호가 있다면 안내메세지를 출력한다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
     cy.get('.winning-number').eq(0).type(1);
@@ -136,7 +149,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('.winning-number').eq(5).should('have.text', '');
   });
 
-  it('입력된 번호들 중 1 ~ 45 사이의 숫자가 아닌 숫자가 있다면 안내메시지를 출력한다.', () => {
+  it('입력된 당첨번호들 중 1 ~ 45 사이의 숫자가 아닌 숫자가 있다면 안내메시지를 출력한다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
     cy.get('.winning-number').eq(0).type(1);
