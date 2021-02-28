@@ -33,6 +33,6 @@ export const getSelectPaperHTML = ({ issueNum, maxQuantity }) => {
     <div class="manual-select-check-message text-sm">${LOTTO_PAPER_CHECK_MESSAGE.NEED_TO_SELECT_MORE(
       LOTTO_NUMBERS_LENGTH
     )}</div>
-    <button type="button" class="paper-remove-button r-btn">-</button>
+    <button type="button" class="paper-remove-button r-btn btn-rose">-</button>
   </div>`;
 };
