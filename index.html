@@ -37,7 +37,7 @@
             </div>
           </form>
 
-          <section id="purchase-result-section" class="mt-9">
+          <section id="purchase-result-section" class="mt-9 d-none">
             <div class="d-flex">
               <label id="purchase-result-section__label" class="flex-auto my-0">
                 총 0개를 구매하였습니다.
@@ -132,7 +132,9 @@
           <h2 class="text-center">🎟️ 로또 구매 🎟️</h2>
 
           <form id="purchase-modal__self-input-form" class="mt-9">
-            <label class="flex-auto d-inline-block"
+            <label
+              id="purchase-modal__self-input-form__label"
+              class="flex-auto d-inline-block"
               >총 n개를 구매 할 수 있습니다.</label
             >
             <div class="d-flex">
@@ -168,7 +170,11 @@
                   required
                 />
               </div>
-              <button type="submit" class="ml-5 mt-5 btn btn-cyan">
+              <button
+                type="submit"
+                id="purchase-modal__self-input-form__button"
+                class="ml-5 mt-5 btn btn-cyan"
+              >
                 수동 구매
               </button>
             </div>
@@ -176,35 +182,33 @@
 
           <section id="purchase-modal__self-result-section" class="mt-4">
             <div class="scroll">
-              <table class="border-collapse border border-black">
+              <table
+                id="purchase-modal__self-result-section__table"
+                class="border-collapse border border-black"
+              >
                 <thead>
                   <tr class="text-center">
                     <th class="p-3">No.</th>
                     <th class="p-3 w-100">번호</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr class="text-center">
-                    <td class="p-3">1</td>
-                    <td class="p-3 w-100">5, 10, 15, 20, 25, 30</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           </section>
 
-          <section id="purchase-modal__auto-section" class="mt-9">
+          <form id="purchase-modal__auto-input-form" class="mt-9">
             <label class="flex-auto my-0"
-              >자동 구매를 누르면 나머지 티켓은 자동 입력으로 구매됩니다.</label
+              >구매 완료를 누르면 나머지 티켓은 자동 입력으로 구매됩니다.</label
             >
             <button
-              type="button"
-              id="purchase-modal__auto-section__button"
+              type="submit"
+              id="purchase-modal__auto-input-form__button"
               class="mt-5 btn btn-cyan w-100"
             >
-              자동 구매
+              구매 완료
             </button>
-          </section>
+          </form>
         </div>
       </div>
 

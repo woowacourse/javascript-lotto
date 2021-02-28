@@ -36,7 +36,7 @@ describe('racing-game', () => {
 
   const playLottoGame = (inputNumbers) => {
     typePurchasePriceAndClickSubmitButton();
-    cy.get('#purchase-modal__auto-section__button').click();
+    cy.get('#purchase-modal__auto-input-form__button').click();
     typeWinningNumbersAndClickShowResultButton(inputNumbers);
   };
 
@@ -69,8 +69,8 @@ describe('racing-game', () => {
   });
 
   it('구로또 구매 모달에서 자동 구매를 누르면 로또가 자동으로 구입되야 한다.', () => {
-    typePurchasePriceAndClickSubmitButton();
-    cy.get('#purchase-modal__auto-section__button').click();
+    typePurchasePriceAndClickSubmitButton(3000);
+    cy.get('#purchase-modal__auto-input-form__button').click();
 
     cy.get('#purchase-result-section__label').should(
       'have.text',
@@ -95,7 +95,7 @@ describe('racing-game', () => {
 
   it('"번호보기" 토글 버튼 클릭시 구매한 로또의 번호를 볼 수 있어야 한다.', () => {
     typePurchasePriceAndClickSubmitButton();
-    cy.get('#purchase-modal__auto-section__button').click();
+    cy.get('#purchase-modal__auto-input-form__button').click();
 
     cy.get('#purchase-result-section__toggle').click({ force: true });
     cy.get('#purchase-result-section__row-align').should('not.be.visible');
