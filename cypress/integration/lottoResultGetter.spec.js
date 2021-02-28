@@ -40,10 +40,17 @@ describe('당첨통계 계산 메서드 검사', () => {
     expect(lottoTicket8.totalMatchCount).to.equal(0);
   });
 
+  function getLottoRateOfReturn(lottoTickets, winningNumber) {
+    const resultModal = new ResultModal({ lottoTickets, winningNumber });
+    resultModal.setTotalMatchCounts();
+
+    return resultModal.getLottoRateOfReturn();
+  }
+
   it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(5)].map(() => new LottoTicket([7, 8, 9, 10, 11, 12]));
     ('');
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
+    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
 
     expect(rateOfReturn).to.equal(-100);
   });
@@ -52,7 +59,7 @@ describe('당첨통계 계산 메서드 검사', () => {
     const lottoTickets = [...Array(4)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 7, 8, 9]));
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
+    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
 
     expect(rateOfReturn).to.equal(0);
   });
@@ -61,7 +68,7 @@ describe('당첨통계 계산 메서드 검사', () => {
     const lottoTickets = [...Array(4)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 4, 5, 6]));
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
+    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
 
     expect(rateOfReturn).to.equal(39999900);
   });
@@ -70,7 +77,7 @@ describe('당첨통계 계산 메서드 검사', () => {
     const lottoTickets = [...Array(12)]
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 11, 12, 13]));
-    const rateOfReturn = new ResultModal({ lottoTickets, winningNumber }).getLottoRateOfReturn();
+    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
 
     expect(rateOfReturn).to.equal(-61.54);
   });

@@ -22,7 +22,6 @@ export default class ResultModal {
 
     this.onRestart = onRestart;
 
-    this.setTotalMatchCounts();
     this.attachEvents();
   }
 
