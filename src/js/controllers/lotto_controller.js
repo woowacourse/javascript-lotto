@@ -23,7 +23,7 @@ class LottoController {
     this.#handlePrice()
   }
 
-  #manageManual() {
+  #manageBuyMethod() {
     const price = getBuyInput()
     const errorMessage = checkPriceValid(price)
     if (errorMessage) {
@@ -35,6 +35,14 @@ class LottoController {
     this.view.resetWinningSection()
     this.#handleManual()
     this.#handleAuto()
+  }
+
+  #manageManual() {
+    // TODO : 입력값 받아오기
+    // TODO : 유효성 검사
+    // TODO : 모델에 넣기 (ticket 발급해서)
+    // TODO : 가져와 렌더링 - renderManualSection
+    this.view.renderManualNumbers([1, 2, 3, 4, 5, 6])
   }
 
   #manageLotto() {
@@ -71,11 +79,16 @@ class LottoController {
   #handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON)
     $buyButton.addEventListener("click", () => {
-      this.#manageManual()
+      this.#manageBuyMethod()
     })
   }
 
-  #handleManual() {}
+  #handleManual() {
+    const $manualButton = $("#manual-button")
+    $manualButton.addEventListener("click", () => {
+      this.#manageManual()
+    })
+  }
 
   #handleAuto() {
     const $autoButton = $("#auto-button")

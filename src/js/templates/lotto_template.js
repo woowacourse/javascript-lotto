@@ -38,16 +38,20 @@ export const buyMethodSectionTemplate = (amount) => {
       </button>
     </div>
   </form>
-  <div id="manual">
-    <hr />
-    <h4 class="d-flex justify-center">구매한 수동 번호</h4>
-    <p class="d-flex justify-center">1 3 36 8 10 45</p>
-    <hr />
-  </div>
+  <div id="manual"></div>
   <button id="auto-button" type="button" class="btn btn-cyan">
     나머지 자동 구매
   </button>
   `
+}
+
+export const manualPreviewTemplate = (numbers) => {
+  return `
+    <hr />
+    <h4 class="d-flex justify-center">구매한 수동 번호</h4>
+    <p class="d-flex justify-center">1 3 36 8 10 45</p>
+    ${numbers}
+    `
 }
 
 export const pocketSectionTemplate = (lottos) => {
