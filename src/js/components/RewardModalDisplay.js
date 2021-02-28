@@ -1,6 +1,6 @@
 import { lottoManager } from './App.js';
 import { isEmptyObject } from '../utils/common.js';
-import { $, $$ } from '../utils/dom.js';
+import { $, $$, addClassNames, removeClassNames } from '../utils/dom.js';
 
 export default class RewardModalDisplay {
   constructor() {
@@ -39,11 +39,11 @@ export default class RewardModalDisplay {
   }
 
   onModalClose() {
-    this.$target.classList.remove('open');
+    removeClassNames(this.$target, 'open');
   }
 
   onModalShow() {
-    this.$target.classList.add('open');
+    addClassNames(this.$target, 'open');
   }
 
   render() {

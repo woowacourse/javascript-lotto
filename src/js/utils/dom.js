@@ -16,3 +16,22 @@ export const enableElements = (...$elements) => {
     $elem.disabled = false;
   });
 };
+
+export const removeClassNames = ($target, ...names) => {
+  names.forEach(className => {
+    if (!$target.classList.contains(className)) {
+      return;
+    }
+    $target.classList.remove(className);
+  });
+};
+
+export const addClassNames = ($target, ...names) => {
+  names.forEach(className => {
+    if ($target.classList.contains(className)) {
+      return;
+    }
+
+    $target.classList.add(className);
+  });
+};
