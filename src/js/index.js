@@ -79,6 +79,23 @@ class LottoApp {
     this.view.renderLotto(lotto, this.data.availablePurchaseCount, this.data.lottos.length);
   }
 
+  handleInputLottoNumbers(event) {
+    if (event.target.value.length < 2) return;
+
+    const $nextInput = event.target.nextElementSibling;
+
+    if ($nextInput) {
+      $nextInput.focus();
+      $nextInput.select();
+      return;
+    }
+
+    if (event.target.classList.contains('winning-number')) {
+      $('.bonus-number').focus();
+      $('.bonus-number').select();
+    }
+  }
+
   handleAutoPurchase() {
     const purchasedLottos = this.generateLottos(this.data.availablePurchaseCount);
 
@@ -96,23 +113,6 @@ class LottoApp {
 
   handleToggleLottoNumbers() {
     $('.lotto-list').classList.toggle('show-number');
-  }
-
-  handleInputWinningNumbers(event) {
-    if (!event.target.classList.contains('winning-number')) return;
-
-    if (event.target.value.length >= 2) {
-      const $nextInput = event.target.nextElementSibling;
-
-      if ($nextInput) {
-        $nextInput.focus();
-        $nextInput.select();
-        return;
-      }
-
-      $('.bonus-number').focus();
-      $('.bonus-number').select();
-    }
   }
 
   handleSubmitWinningNumbers(event) {
@@ -184,6 +184,8 @@ class LottoApp {
 
     $('#lotto-number-form').addEventListener('submit', this.handleSubmitLottoNumbers.bind(this));
 
+    $('#lotto-number-form').addEventListener('input', this.handleInputLottoNumbers.bind(this));
+
     $('#auto-purchase-button').addEventListener('click', this.handleAutoPurchase.bind(this));
 
     $('.lotto-numbers-toggle-button').addEventListener(
@@ -191,7 +193,7 @@ class LottoApp {
       this.handleToggleLottoNumbers.bind(this)
     );
 
-    $('#winning-number-form').addEventListener('input', this.handleInputWinningNumbers.bind(this));
+    $('#winning-number-form').addEventListener('input', this.handleInputLottoNumbers.bind(this));
     $('#winning-number-form').addEventListener(
       'submit',
       this.handleSubmitWinningNumbers.bind(this)
