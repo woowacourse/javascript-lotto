@@ -16,9 +16,8 @@ const getApplyQuantitySelectHTML = (quantity) => {
 };
 
 export const getSelectPaperHTML = ({ maxQuantity }) => {
-  console.log(maxQuantity);
   return `
-  <div class="manual-select-paper mt-2 d-flex flex-col">
+  <div class="manual-select-paper mt-3 d-flex flex-col">
     <div class="quantity-applier mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
       <select class="quantity-select">

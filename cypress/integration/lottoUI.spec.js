@@ -128,7 +128,7 @@ describe('수동/자동구매 UI 검사', () => {
   });
 
   it('로또용지 삭제버튼을 누를 경우, 해당 로또용지가 화면에서 사라지고 해당 적용수량은 자동구매로 전환된다.', () => {
-    cy.get('..manual-select-paper').should('have.length', numOfManualSelect);
+    cy.get('.manual-select-paper').should('have.length', numOfManualSelect);
     cy.get('.paper-remove-button').first().click();
     numOfManualSelect = 1;
     cy.get('.auto-quantity').should('have.text', numOfLotto - numOfManualSelect);
@@ -181,7 +181,7 @@ describe('수동/자동구매 UI 검사', () => {
 
   it('로또를 발급한 경우, 사용한 로또용지와 로또용지 추가버튼을 화면에서 숨기고, 로또발급하기 버튼을 비활성화된다.', () => {
     cy.get('.paper-add-button').should('not.be.visible');
-    cy.get('..manual-select-paper').forEach(($el) => cy.wrap($el).should('not.be.visible'));
+    cy.get('.manual-select-paper').forEach(($el) => cy.wrap($el).should('not.be.visible'));
     cy.get('.ticket-issue-button').should('be.disabled');
   });
 });

@@ -19,7 +19,7 @@ export default class PurchaseOptionInput {
     this.$manualQuantity = $('.manual-quantity');
     this.$ticketIssueButton = $('.ticket-issue-button');
     this.$manualSelectForm = $('.manual-select-form');
-    this.$manualSelectAdd = $('.manual-select-add');
+    this.$paperAdder = $('.paper-adder');
     this.$paperAddButton = $('.paper-add-button');
   }
 
@@ -45,6 +45,19 @@ export default class PurchaseOptionInput {
     this.$manualSelectForm.lastChild
       .querySelector('select')
       .addEventListener('change', this.onSelectQuantityApplier.bind(this));
+    this.$manualSelectForm.lastChild
+      .querySelector('.paper-remove-button')
+      .addEventListener('click', this.onRemovePaper.bind(this));
+  }
+
+  onRemovePaper({ target }) {
+    const currQuantity = target.parentNode.querySelector('select').value;
+
+    target.parentNode.remove();
+    this.setState({
+      autoQuantity: this.autoQuantity + currQuantity,
+      manualQuantity: this.manualQuantity - currQuantity,
+    });
   }
 
   onSelectQuantityApplier({ target }) {
@@ -70,7 +83,7 @@ export default class PurchaseOptionInput {
   renderSection() {
     show(this.$purchaseOptionSection);
     show(this.$ticketIssueButton);
-    show(this.$manualSelectAdd);
+    show(this.$paperAdder);
     this.setState({ autoQuantity: this.stageManager.numOfLotto, manualQuantity: 0 });
   }
 

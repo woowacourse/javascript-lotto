@@ -5,6 +5,7 @@
   border-radius: 2px;
   border: 1px solid #e3bfbf;
   box-sizing: border-box;
+  box-shadow: 2px 2px 4px 1px rgba(16, 16, 16, 0.2);
 }
 
 /* 로또용지 */
