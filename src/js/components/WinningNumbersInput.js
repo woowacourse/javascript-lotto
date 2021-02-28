@@ -117,22 +117,6 @@ export default class WinningNumbersInput extends Component {
     );
   }
 
-  validateWinningNumbersInputValue = (winningNumbers, bonusNumber) => {
-    const numbers = [...winningNumbers, bonusNumber].map(Number);
-    if (winningNumbers.some(isEmptyValue) || isEmptyValue(bonusNumber)) {
-      return [ERROR_MESSAGE.EMPTY_INPUT_NUMBER, 'error'];
-    }
-    if (
-      !numbers.every(number => isInRange(number, LOTTO.MIN_NUM, LOTTO.MAX_NUM))
-    ) {
-      return [ERROR_MESSAGE.OUT_OF_RANGE, 'error'];
-    }
-    if (new Set(numbers).size !== numbers.length) {
-      return [ERROR_MESSAGE.DUPLICATED_NUMBER, 'error'];
-    }
-    return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
-  };
-
   clearView() {
     this.hideWinningNumbersInputView();
     this.$winningNumberInputs.forEach(clearInputValue);

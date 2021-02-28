@@ -20,7 +20,6 @@ export default class LottoNumbersInput {
   }
 
   static validateLottoNumbersInputValue = numbers => {
-    numbers = numbers.map(Number);
     if (numbers.some(isEmptyValue)) {
       return [ERROR_MESSAGE.EMPTY_INPUT_NUMBER, 'error'];
     }

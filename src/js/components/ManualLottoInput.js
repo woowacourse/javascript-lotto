@@ -72,6 +72,7 @@ export default class ManualLottoInput extends Component {
     const lottoNumbers = Array.from(this.$numberInputs).map(input =>
       input.value === '' ? '' : Number(input.value),
     );
+    console.log(lottoNumbers);
     const [text, result] = LottoNumbersInput.validateLottoNumbersInputValue(
       lottoNumbers,
     );
