@@ -1,7 +1,8 @@
 import Lotto from './Model/Lotto.js';
 import { $ } from './utils/querySelector.js';
-import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
 import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
+import { handlePurchaseModal } from './handler/handlePurchaseModal.js';
+import { handlePurchaseResultToggle } from './handler/handlePurchaseResultToggle.js';
 import { handleWinningNumberInput } from './handler/handleWinningNumberInput.js';
 import { handleResultModal } from './handler/handleResultModal.js';
 
@@ -11,6 +12,11 @@ const init = () => {
   $('#purchase-price-input-form').addEventListener('submit', (event) => {
     event.preventDefault();
     handlePurchasePriceInput(lotto);
+  });
+
+  $('#purchase-modal').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handlePurchaseModal(event, lotto);
   });
 
   $('#purchase-result-section__toggle').addEventListener(

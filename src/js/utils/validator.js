@@ -12,3 +12,7 @@ export const isValidRange = (nums) => {
     (num) => VALUE.LOTTO.MIN_NUM <= num && num <= VALUE.LOTTO.MAX_NUM,
   );
 };
+
+export const isEqual = (value1, value2) => {
+  return value1 === value2;
+};
