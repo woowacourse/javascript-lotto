@@ -19,3 +19,7 @@ export const renderSelfResultTable = (index, selfNumbers) => {
     selfResultTableTemplate(index, selfNumbers.join(', ')),
   );
 };
+
+export const clearSelfResultTable = () => {
+  $('#purchase-modal__self-result-section__table > tbody').innerHTML = ''
+};

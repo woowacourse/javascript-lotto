@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { closeModal } from '../utils/setProperty.js';
+import { clearSelfResultTable } from '../view/viewPurchaseModal.js';
 import { initializePurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import { hideWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
@@ -13,6 +14,7 @@ const restartLottoGame = (lotto) => {
   lotto.initialize();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
+  clearSelfResultTable()
   closeModal($('#result-modal'));
 };
 

@@ -7,14 +7,13 @@ import { renderSelfResultTable } from '../view/viewPurchaseModal.js';
 import { renderPurchaseResultSection } from '../view/viewPurchaseResultSection.js';
 import { showWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
-const selfTicketsNumbers = [];
-
 const setTickets = (lotto) => {
+  const selfTicketsNumbers = lotto.getSelves()
+  const amountOfRestTicket = lotto.getAmount() - selfTicketsNumbers.length;
+
   selfTicketsNumbers.forEach((selfTicketNumbers) => {
     lotto.addTicket(new Ticket(selfTicketNumbers));
   });
-
-  const amountOfRestTicket = lotto.getAmount() - selfTicketsNumbers.length;
 
   for (let i = 0; i < amountOfRestTicket; i++) {
     lotto.addTicket(new Ticket());
@@ -31,7 +30,7 @@ export const handlePurchaseModal = ({ target }, lotto) => {
   }
 
   if (target.id === 'purchase-modal__self-input-form') {
-    if (isEqual(lotto.getAmount(), selfTicketsNumbers.length)) {
+    if (isEqual(lotto.getAmount(), lotto.getSelves().length)) {
       return alert(ERR_MESSAGE.LOTTO.OVER_PURCHASE);
     }
 
@@ -47,8 +46,8 @@ export const handlePurchaseModal = ({ target }, lotto) => {
       return alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
     }
 
-    selfTicketsNumbers.push(selfNumbers);
-    renderSelfResultTable(selfTicketsNumbers.length, selfNumbers);
+    lotto.addSelfNumbers(selfNumbers);
+    renderSelfResultTable(lotto.getSelves().length, selfNumbers);
 
     $$('.self-number').forEach((selfNumber) => {
       selfNumber.value = '';
