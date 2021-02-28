@@ -1,9 +1,4 @@
-import {
-  ELEMENT,
-  MATCHING_NUMBER,
-  RANK,
-  WINNING_PRIZE,
-} from "../Util/constants.js";
+import { ELEMENT, RANK, WINNING_PRIZE } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
 class Result {
@@ -34,13 +29,13 @@ class Result {
 
   decideRank(matchingCount, ticket) {
     switch (matchingCount) {
-      case MATCHING_NUMBER.SIX:
+      case 6:
         return RANK.FIRST;
-      case MATCHING_NUMBER.FIVE:
+      case 5:
         return ticket.includes(this.bonusNumber) ? RANK.SECOND : RANK.THIRD;
-      case MATCHING_NUMBER.FOUR:
+      case 4:
         return RANK.FOURTH;
-      case MATCHING_NUMBER.THREE:
+      case 3:
         return RANK.FIFTH;
       default:
         return RANK.LOSER;
@@ -49,29 +44,23 @@ class Result {
 
   setMatchingCounts() {
     const rankInfo = [
-      [RANK.FIRST, WINNING_PRIZE.FIRST],
-      [RANK.SECOND, WINNING_PRIZE.SECOND],
-      [RANK.THIRD, WINNING_PRIZE.THIRD],
-      [RANK.FOURTH, WINNING_PRIZE.FOURTH],
-      [RANK.FIFTH, WINNING_PRIZE.FIFTH],
+      [RANK.FIRST, WINNING_PRIZE[RANK.FIRST]],
+      [RANK.SECOND, WINNING_PRIZE[RANK.SECOND]],
+      [RANK.THIRD, WINNING_PRIZE[RANK.THIRD]],
+      [RANK.FOURTH, WINNING_PRIZE[RANK.FOURTH]],
+      [RANK.FIFTH, WINNING_PRIZE[RANK.FIFTH]],
     ];
-    let tmpMatchingCounts = [];
-    let totalPrize = 0;
 
-    rankInfo.forEach((rankArray, i) => {
+    rankInfo.forEach((rankArray) => {
       const matchingCount = this.ranks.filter((rank) => rank === rankArray[0])
         .length;
 
-      tmpMatchingCounts.push(matchingCount);
-      totalPrize += this.calculatePrize(rankInfo, i, matchingCount);
+      this.matchingCounts.push(matchingCount);
     });
 
-    this.matchingCounts = tmpMatchingCounts;
-    $(ELEMENT.WIN_NUMBER_CONTAINER).dataset.totalPrize = totalPrize;
-  }
-
-  calculatePrize(rankInfo, i, matchingCount) {
-    return matchingCount * rankInfo[i][1];
+    $(ELEMENT.WIN_NUMBER_CONTAINER).dataset.totalPrize = this.ranks
+      .map((rank) => WINNING_PRIZE[rank])
+      .reduce((pre, cur) => pre + cur);
   }
 }
 
