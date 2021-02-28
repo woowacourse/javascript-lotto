@@ -75,9 +75,7 @@ context('로또 UI 테스트', () => {
       cy.on('window:alert', alertStub);
 
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
-        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
-      });
+      cy.get(`.${DOM_CLASSES.MODAL}`).should('not.be.visible');
     });
 
     it('당첨 번호와 보너스 번호는 중복이 있어서는 안된다.', () => {

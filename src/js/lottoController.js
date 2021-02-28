@@ -5,7 +5,6 @@ import { LOTTO_SETTINGS, PRIZE } from './utils/constants/settings.js';
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import {
   isNumbersDuplicated,
-  isInputsEmpty,
 } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
 export default class LottoController {
@@ -100,10 +99,6 @@ export default class LottoController {
       .map(input => Number(input.value));
     const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
     const numbers = [...winningNumbers, bonusNumber];
-    if (isInputsEmpty(numbers)) {
-      alert(ALERT_MESSAGES.EMPTY_RESULT_INPUT);
-      return;
-    }
 
     if (isNumbersDuplicated(numbers)) {
       alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
