@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "cypress": "^6.5.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",

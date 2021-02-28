@@ -21,10 +21,8 @@ module.exports = {
     'no-prototype-builtins': 'off',
     'max-depth': ['error', 2],
     'max-lines-per-function': ['error', 15],
-    'linebreak-style': [
-      'error',
-      require('os').EOL === '\r\n' ? 'windows' : 'unix',
-    ],
+    'linebreak-style': ['error', require('os').EOL === '\r\n' ? 'windows' : 'unix'],
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    parser: 'babel-eslint',
   },
 };
