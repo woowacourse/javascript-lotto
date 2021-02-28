@@ -33,6 +33,10 @@ export const initializeEvents = () => {
     "submit",
     handleSelfPurchaseSubmit
   );
+  $("#auto-purchase-container").addEventListener(
+    "submit",
+    handleAutoPurchaseSubmit
+  );
 };
 
 const handlePurchaseAmountSubmit = (event) => {
@@ -58,11 +62,6 @@ const handlePurchaseAmountSubmit = (event) => {
 const renderPurchaseSection = () => {
   showPurchaseSection();
 };
-// const renderTickets = (ticketCount) => {
-//   printPurchaseAmountLabel(ticketCount);
-//   printTicketHorizontal(ticketCount);
-//   showPurchaseResult();
-// };
 
 const handleSelfPurchaseSubmit = (event) => {
   event.preventDefault();
@@ -82,6 +81,30 @@ const handleSelfPurchaseSubmit = (event) => {
   $$(".self-purchase-lotto-number")[0].focus();
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
+
+const handleAutoPurchaseSubmit = (event) => {
+  event.preventDefault();
+
+  const autoPurchasePrice = $("#auto-purchase-input").value;
+
+  if (!isValidMoney(autoPurchasePrice)) {
+    return;
+  }
+
+  const tickets = ticketBundle.makeAutoTicketBundle(
+    autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE
+  );
+
+  console.log(ticketBundle.ticketBundle);
+  $("#auto-purchase-input").value = "";
+  $("#auto-purchase-input").focus();
+};
+
+// const renderTickets = (ticketCount) => {
+//   printPurchaseAmountLabel(ticketCount);
+//   printTicketHorizontal(ticketCount);
+//   showPurchaseResult();
+// };
 
 const handleToggleButton = (event) => {
   event.target.checked

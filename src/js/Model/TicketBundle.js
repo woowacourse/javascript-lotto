@@ -9,10 +9,10 @@ class TicketBundle {
     this.ticketBundle = [];
   }
 
-  makeTicketBundle(ticketLength) {
-    this.ticketBundle = Array.from({ length: ticketLength }, () =>
-      this.generateRandomNumbers()
-    );
+  makeAutoTicketBundle(ticketcounts) {
+    for (let i = 0; i < ticketcounts; i++) {
+      this.ticketBundle.push(this.generateRandomNumbers());
+    }
 
     return this.ticketBundle;
   }
