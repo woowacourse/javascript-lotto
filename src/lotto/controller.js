@@ -16,10 +16,13 @@ import {
   $modalClose,
   $correctNumberWrapper,
   $restartButton,
-  $correctNumberInputForm
+  $correctNumberInputForm,
+  $manualLottoNumbersWrapper,
+  $$correctNumberInputs,
+  $$lottoNumberInputs
 } from '../elements.js';
 import message from './validators/message.js';
-import { getCorrectNumbers } from './domReader.js';
+import { getAllNumbers } from './domReader.js';
 
 const lottoGame = new LottoGame();
 
@@ -87,7 +90,11 @@ const onAutoCount = (e) => {
   }
   $autoCountInput.value = '';
   purchaseAutoLottoItems(count);
-}
+};
+
+const onManualLotto = (e) => {
+  e.preventDefault();
+};
 
 const onShowLottoNumbersToggle = (e) => {
   e.target.checked
@@ -97,7 +104,7 @@ const onShowLottoNumbersToggle = (e) => {
 
 const onResultModalOpen = (e) => {
   e.preventDefault();
-  const correctNumbers = getCorrectNumbers();
+  const correctNumbers = getAllNumbers($$correctNumberInputs);
   const userGuideMessage = message.getModalOpenValidation(correctNumbers);
   if (userGuideMessage) {
     lottoGameView.showMessage(userGuideMessage);
@@ -111,8 +118,8 @@ const onResultModalClose = () => {
   lottoGameView.closeResultModal();
 };
 
-const onCorrectNumberInput = (e) => {
-  const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
+const onCorrectNumberInput = (e, $$elements) => {
+  const userGuideMessage = message.getCorrectNumberValidation(getAllNumbers($$elements));
   if (userGuideMessage) {
     lottoGameView.showMessage(userGuideMessage);
     e.target.value = '';
@@ -144,10 +151,16 @@ const controller = {
     $autoPurchaseButton.addEventListener('click', onAutoPurchase);
     $manualPurchaseButton.addEventListener('click', onManualPurchase);
     $autoCountForm.addEventListener('submit', onAutoCount);
+    $manualLottoNumbersForm.addEventListener('submit', onManualLotto);
     $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $correctNumberInputForm.addEventListener('submit', onResultModalOpen);
-    $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
+    $manualLottoNumbersWrapper.addEventListener('focusout', (e) => {
+      onCorrectNumberInput(e, $$lottoNumberInputs);
+    });
+    $correctNumberWrapper.addEventListener('focusout', (e) => {
+      onCorrectNumberInput(e, $$correctNumberInputs);
+    });
     $restartButton.addEventListener('click', onRestart);
     window.addEventListener('keyup', onModalAccessibility);
   },
