@@ -47,7 +47,6 @@ class LottoGameModel {
     this.#addAnswerLotto(answer.numbers, answer.bonus)
 
     this.#lottos.forEach((ticket) => {
-      console.log(ticket.numbers)
       const { match, bonusMatch } = this.#calculateMatch(ticket)
 
       let key = ""
@@ -76,6 +75,10 @@ class LottoGameModel {
 
   get lottos() {
     return this.#lottos
+  }
+
+  get amount() {
+    return this.#lottos.length
   }
 
   get profitRate() {

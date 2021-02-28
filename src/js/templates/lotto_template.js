@@ -18,11 +18,11 @@ export const buySectionTemplate = () => {
     `
 }
 
-export const buyMethodSectionTemplate = () => {
+export const buyMethodSectionTemplate = (amount) => {
   return `
   <form class="mt-5 mb-3">
     <label class="mb-2 d-inline-block">
-      현재 구매가능 개수 : <span class="available">0</span>
+      현재 구매가능 개수 : <span class="available">${amount}</span>
     </label>
     <div class="d-flex buy-manual">
       <div id="manual-numbers">

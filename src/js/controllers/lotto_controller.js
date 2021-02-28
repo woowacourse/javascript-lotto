@@ -24,7 +24,13 @@ class LottoController {
   }
 
   #manageManual() {
-    this.view.renderBuyMethodSection()
+    const price = getBuyInput()
+    const errorMessage = checkPriceValid(price)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
+
+    this.view.renderBuyMethodSection(getTicketsCount(price))
     this.view.resetPocketSection()
     this.view.resetWinningSection()
     this.#handleManual()
@@ -32,13 +38,7 @@ class LottoController {
   }
 
   #manageLotto() {
-    const price = getBuyInput()
-    const errorMessage = checkPriceValid(price)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
-
-    this.model.generateLottos(getTicketsCount(price))
+    this.model.generateLottos(this.model.amount)
     this.#managePocket()
   }
 

@@ -14,9 +14,9 @@ class LottoView {
     $buySection.innerHTML = buySectionTemplate()
   }
 
-  renderBuyMethodSection() {
+  renderBuyMethodSection(amount) {
     const $buyMethodSection = $("#buy-method")
-    $buyMethodSection.innerHTML = buyMethodSectionTemplate()
+    $buyMethodSection.innerHTML = buyMethodSectionTemplate(amount)
   }
 
   renderPocketSection(amount) {
