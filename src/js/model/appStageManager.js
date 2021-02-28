@@ -44,9 +44,9 @@ export default class AppStageManager {
   }
 
   createTickets() {
-    const numToCreate = this.numOfLotto - this.lottoTickets.length;
+    const autoTickets = [...Array(this.numOfLotto - this.lottoTickets.length)].map(() => new LottoTicket());
 
-    this.lottoTickets = [...this.lottoTickets, ...Array(numToCreate)].map(() => new LottoTicket());
+    this.lottoTickets = this.lottoTickets.concat(autoTickets);
     this.setStates({ stage: TICKET_ISSUE_COMPLETED });
   }
 
