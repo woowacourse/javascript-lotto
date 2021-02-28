@@ -4,6 +4,7 @@ import { getAnswerInput } from "../components/winning.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
 import { checkAnswerValid, checkPriceValid } from "../validators/validator.js"
+import { getManualInput } from "../components/manual.js"
 
 class LottoController {
   constructor(model, view) {
@@ -38,7 +39,7 @@ class LottoController {
   }
 
   #manageManual() {
-    // TODO : 입력값 받아오기
+    const manualNumbers = getManualInput()
     // TODO : 유효성 검사
     // TODO : 모델에 넣기 (ticket 발급해서)
     // TODO : 가져와 렌더링 - renderManualSection
