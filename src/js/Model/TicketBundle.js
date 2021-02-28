@@ -9,6 +9,8 @@ class TicketBundle {
     this.ticketBundle = Array.from({ length: ticketLength }, () =>
       this.generateRandomNumbers()
     );
+
+    return this.ticketBundle;
   }
 
   generateRandomNumbers() {

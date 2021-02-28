@@ -14,7 +14,7 @@ import {
   closeModal,
 } from "../Handler/elementHandler.js";
 import ticketBundle from "../Model/TicketBundle.js";
-import result from "../Model/Result.js";
+import winningResult from "../Model/WinningResult.js";
 
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
@@ -41,8 +41,11 @@ const handlePurchaseAmountSubmit = (event) => {
   }
 
   $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
-  ticketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
-  renderTickets(ticketBundle.ticketBundle.length);
+
+  const tickets = ticketBundle.makeTicketBundle(
+    money / STANDARD_NUMBER.ONE_TICKET_PRICE
+  );
+  renderTickets(tickets.length);
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
 
@@ -72,26 +75,28 @@ const handleResultSubmit = (event) => {
   }
 
   setNumbers(inputWinningNumbers, inputBonusNumber);
-  setWinningResult(ticketBundle.ticketBundle);
-  renderWinningResult();
+  const matchingCounts = setWinningResult(ticketBundle.ticketBundle);
+  renderWinningResult(matchingCounts);
 };
 
 const setNumbers = (winningNumbers, bonusNumber) => {
-  result.setWinningNumbers(winningNumbers);
-  result.setBonusNumber(bonusNumber);
+  winningResult.setWinningNumbers(winningNumbers);
+  winningResult.setBonusNumber(bonusNumber);
 };
 
 export const getTotalPrize = () => {
-  return result.calculateTotalPrize();
+  return winningResult.calculateTotalPrize();
 };
 
 const setWinningResult = (ticketBundle) => {
-  result.setRanks(ticketBundle);
-  result.setMatchingCounts();
+  const ranks = winningResult.setRanks(ticketBundle);
+  const matchingCounts = winningResult.setMatchingCounts(ranks);
+
+  return matchingCounts;
 };
 
-const renderWinningResult = () => {
-  printWinningResult();
+const renderWinningResult = (matchingCounts) => {
+  printWinningResult(matchingCounts);
   showModal();
 };
 

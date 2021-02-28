@@ -1,10 +1,9 @@
 import { MATCHING_NUMBER, RANK, WINNING_PRIZE } from "../Util/constants.js";
 
-class Result {
+class WinningResult {
   constructor() {
     this.winningNumbers = [];
     this.bonusNumber = 0;
-    this.ranks = [];
     this.matchingCounts = [];
   }
 
@@ -17,13 +16,16 @@ class Result {
   }
 
   setRanks(ticketBundle) {
-    this.ranks = ticketBundle.map((ticket) => {
+    let ranks = [];
+    ranks = ticketBundle.map((ticket) => {
       const matchingCount = ticket.filter((number) =>
         this.winningNumbers.includes(number)
       ).length;
 
       return this.decideRank(matchingCount, ticket);
     });
+
+    return ranks;
   }
 
   decideRank(matchingCount, ticket) {
@@ -41,7 +43,7 @@ class Result {
     }
   }
 
-  setMatchingCounts() {
+  setMatchingCounts(ranks) {
     const rankInfo = [
       [RANK.FIRST, WINNING_PRIZE.FIRST],
       [RANK.SECOND, WINNING_PRIZE.SECOND],
@@ -52,13 +54,15 @@ class Result {
     let tmpMatchingCounts = [];
 
     rankInfo.forEach((rankArray, i) => {
-      const matchingCount = this.ranks.filter((rank) => rank === rankArray[0])
+      const matchingCount = ranks.filter((rank) => rank === rankArray[0])
         .length;
 
       tmpMatchingCounts.push(matchingCount);
     });
 
     this.matchingCounts = tmpMatchingCounts;
+
+    return this.matchingCounts;
   }
 
   calculateTotalPrize() {
@@ -83,4 +87,4 @@ class Result {
   }
 }
 
-export default new Result();
+export default new WinningResult();
