@@ -1,7 +1,14 @@
 export default class Lotto {
   constructor() {
+    this.amount = 0;
     this.tickets = [];
-    this.purchasePrice = 0;
+  }
+  setAmount(amount) {
+    this.amount = amount;
+  }
+
+  getAmount() {
+    return this.amount;
   }
 
   addTicket(ticket) {
@@ -12,12 +19,8 @@ export default class Lotto {
     return this.tickets;
   }
 
-  setPurchasePrice(purchasePrice) {
-    this.purchasePrice = purchasePrice;
-  }
-
   initialize() {
+    this.amount = 0;
     this.tickets = [];
-    this.purchasePrice = 0;
   }
 }
