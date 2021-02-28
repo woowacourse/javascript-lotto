@@ -1,4 +1,4 @@
-import Ticket from '../Model/Ticket.js';
+import Ticket from '../model/Ticket.js';
 import { $, $$ } from '../utils/querySelector.js';
 import { isDuplicate, isValidRange, isEqual } from '../utils/validator.js';
 import { ERR_MESSAGE } from '../utils/constant.js';

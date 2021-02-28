@@ -1,4 +1,4 @@
-import Lotto from './Model/Lotto.js';
+import Lotto from './model/Lotto.js';
 import { $ } from './utils/querySelector.js';
 import { handlePurchasePriceInput } from './handler/handlePurchasePriceInput.js';
 import { handlePurchaseModal } from './handler/handlePurchaseModal.js';
