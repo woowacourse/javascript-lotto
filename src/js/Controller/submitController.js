@@ -9,7 +9,7 @@ import {
 } from "../View/receiptView.js";
 import {
   showPurchaseResult,
-  hidePurchaseResult,
+  resetPurchaseResult,
   showModal,
   closeModal,
 } from "../Handler/elementHandler.js";
@@ -95,8 +95,7 @@ const handleRestartButton = () => {
   closeModal();
   clearWinningBonusNumber();
   clearPurchaseAmountInput();
-  hidePurchaseResult();
-  $(ELEMENT.TOGGLE_BUTTON).checked = false;
+  resetPurchaseResult();
 };
 
 const clearPurchaseAmountInput = () => {
