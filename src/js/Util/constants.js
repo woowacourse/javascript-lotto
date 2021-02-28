@@ -39,28 +39,22 @@ export let STANDARD_NUMBER = {
   MAX_LOTTO_NUMBER: 45,
 };
 
-export const MATCHING_NUMBER = {
-  SIX: 6,
-  FIVE: 5,
-  FOUR: 4,
-  THREE: 3,
-};
-
 export const RANK = {
-  FIRST: "first",
-  SECOND: "second",
-  THIRD: "third",
-  FOURTH: "fourth",
-  FIFTH: "fifth",
-  LOSER: "loser",
+  FIRST: "FIRST",
+  SECOND: "SECOND",
+  THIRD: "THRID",
+  FOURTH: "FOURTH",
+  FIFTH: "FIFTH",
+  LOSER: "LOSER",
 };
 
 export const WINNING_PRIZE = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
+  [RANK.FIRST]: 2000000000,
+  [RANK.SECOND]: 30000000,
+  [RANK.THIRD]: 1500000,
+  [RANK.FOURTH]: 50000,
+  [RANK.FIFTH]: 5000,
+  [RANK.LOSER]: 0,
 };
 
 export const ALERT_MESSAGE = {
