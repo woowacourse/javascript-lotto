@@ -101,8 +101,7 @@ export default class WinningNumberInput {
   }
 
   reset() {
-    this.$winningNumberInputs.forEach(($input) => clearInputValue($input));
-    clearInputValue(this.$bonusNumberInput);
+    this.$winningNumberForm.reset();
   }
 
   renderCheckMessage() {

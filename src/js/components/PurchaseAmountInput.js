@@ -53,6 +53,6 @@ export default class PurchaseAmountInput {
   }
 
   reset() {
-    clearInputValue(this.$purchaseAmountInput);
+    this.$purchaseAmountForm.reset();
   }
 }
