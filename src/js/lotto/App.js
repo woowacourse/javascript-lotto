@@ -3,13 +3,10 @@ import State from '../shared/models/State.js';
 import PaymentForm from './components/paymentForm.js';
 import PurchasingForm from './components/purchasingForm.js';
 import { $ } from '../shared/utils/DOM.js';
+import LottoMachine from './models/LottoMachine.js';
+import { UNIT_AMOUNT } from './utils/constants.js';
 
 export default class App extends Component {
-  constructor($target) {
-    super($target);
-    this.initState();
-  }
-
   initState() {
     this.state = new State({
       money: 0,
@@ -26,12 +23,20 @@ export default class App extends Component {
     this.state.setState({ money });
   }
 
+  purchase(...purchasedTickets) {
+    const { money, tickets } = this.state.getState();
+    const newMoney = money - UNIT_AMOUNT * purchasedTickets.length;
+    const newTickets = [...tickets, ...purchasedTickets];
+
+    this.state.setState({ money: newMoney, tickets: newTickets });
+  }
+
   renderPurchasingForm() {
     this.$purchasingSection.style.display = 'block';
   }
 
   mountTemplate() {
-    return `
+    this.$target.innerHTML = `
       <div class="d-flex justify-center mt-5">
         <section class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
@@ -47,6 +52,10 @@ export default class App extends Component {
       insert: this.insert.bind(this),
       render: this.renderPurchasingForm.bind(this),
     });
-    new PurchasingForm(this.$purchasingSection, {});
+    new PurchasingForm(this.$purchasingSection, {
+      state: this.state,
+      machine: new LottoMachine(),
+      purchase: this.purchase.bind(this),
+    });
   }
 }

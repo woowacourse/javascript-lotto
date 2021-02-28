@@ -6,13 +6,19 @@ export default class State {
     this.handlers = new Set();
   }
 
-  get() {
+  getState() {
     return { ...this.#state };
   }
 
   setState(newState) {
-    this.state = Object.assign({}, this.state, newState);
+    this.#state = Object.assign({}, this.#state, newState);
     this.notify();
+  }
+
+  subscribe(handler) {
+    if (typeof handler === 'function') {
+      this.handlers.add(handler);
+    }
   }
 
   notify() {
