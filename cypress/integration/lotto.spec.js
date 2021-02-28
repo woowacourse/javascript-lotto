@@ -5,9 +5,15 @@ import { LOTTO_SETTINGS } from '../../src/js/utils/constants/settings.js';
 import { DOM_CLASSES } from '../../src/js/utils/constants/dom.js';
 import { getRandomNumber } from '../../src/js/utils/util.js';
 
-const COMMON_INPUT = {
+const SUCCESS_INPUT = {
   MONEY: 5000,
   MANUAL_AMOUNT: 2,
+  MANUAL_SELECT_NUMBERS: [
+    1, 2, 3, 4, 5, 6,
+    7, 8, 9, 10, 11, 12
+  ],
+  RESULT_WINNING_NUMBER: [1, 2, 3, 4, 5, 6],
+  RESULT_BONUS_NUMBER: 7,
 }
 const NOT_INTEGER_MONEY_INPUT = 5000.5;
 const SHORT_MONEY_INPUT = 500;
@@ -19,7 +25,7 @@ context('로또 UI 테스트', () => {
 
   describe('금액 입력 부분', () => {
     it('로또 구입 금액을 입력하면, 수동과 자동 구입 갯수 입력부가 표시된다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`, true);
     });
     it('입력받는 구입 금액은 최소 1000원 이상이어야 한다.', () => {
@@ -39,40 +45,23 @@ context('로또 UI 테스트', () => {
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
     });
     it('로또 구입 금액을 입력받으면, 구입 버튼이 비활성화된다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       cy.get(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).should('be.disabled');
     });
   });
 
   describe('수동 and 자동 구입 갯수 입력 부분', () => {
     it('소비자는 수동 구매를 할 수 있어야 한다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+      jumpToResultInputUI();
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, true);
     });
   });
 
   describe('구입한 로또 확인 부분', () => {
     it('번호 보기 토글 버튼을 클릭하면, 복권 번호가 화면에 표시된다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
-
+      jumpToResultInputUI();
       cy.get(`.${DOM_CLASSES.LOTTO_SWITCH}`).click();
-      cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('have.length', COMMON_INPUT.MANUAL_AMOUNT);
+      cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('have.length', SUCCESS_INPUT.MANUAL_AMOUNT);
       cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('be.visible');
       cy.get(`.${DOM_CLASSES.LOTTO_SWITCH}`).click();
       cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('not.be.visible');
@@ -81,43 +70,17 @@ context('로또 UI 테스트', () => {
 
   describe('로또 당첨 번호 입력 부분', () => {
     it('로또 구입에 필요한 정보를 모두 입력하면 로또 당첨 번호 입력부가 표시된다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+      jumpToResultInputUI();
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).should('be.visible');
     });
     it('결과 확인하기 버튼을 누르면 당첨 통계 모달창을 띄운다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
-      typeResultNumbers([1, 2, 3, 4, 5, 6], 7);
-
+      jumpToResultInputUI();
+      typeResultNumbers(SUCCESS_INPUT.RESULT_WINNING_NUMBER, SUCCESS_INPUT.RESULT_BONUS_NUMBER);
       click(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`);
       cy.get(`.${DOM_CLASSES.MODAL}`).should("be.visible");
     })
     it('당첨 번호와 보너스 번호를 입력하여야만 결과를 확인할 수 있다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
-
+      jumpToResultInputUI();
       click(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`);
       cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
     });
@@ -125,17 +88,8 @@ context('로또 UI 테스트', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
 
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+      jumpToResultInputUI();
       typeResultNumbers([5, 5, 5, 5, 5, 5], 5);
-
       click(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
       });
@@ -144,17 +98,8 @@ context('로또 UI 테스트', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
 
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+      jumpToResultInputUI();
       typeResultNumbers([55, 65, 75, 85, 95, 105], 115);
-
       click(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`)
       cy.get(`.${DOM_CLASSES.MODAL}`).should('not.be.visible');
     });
@@ -162,16 +107,8 @@ context('로또 UI 테스트', () => {
 
   describe('당첨 통계 부분', () => {
     it('당첨 통계에서는 당첨 갯수와 수익률을 확인할 수 있다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
-      typeResultNumbers([1, 2, 3, 4, 5, 6], 7);
+      jumpToResultInputUI();
+      typeResultNumbers(SUCCESS_INPUT.RESULT_WINNING_NUMBER, SUCCESS_INPUT.RESULT_BONUS_NUMBER);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL_WINNING_COUNT}`).then(($$winningCounts) => {
@@ -186,32 +123,16 @@ context('로또 UI 테스트', () => {
       })
     });
     it('X 표시를 누르면 모달 창을 닫을 수 있다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
-      typeResultNumbers([1, 2, 3, 4, 5, 6], 7);
+      jumpToResultInputUI();
+      typeResultNumbers(SUCCESS_INPUT.RESULT_WINNING_NUMBER, SUCCESS_INPUT.RESULT_BONUS_NUMBER);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL_CLOSE}`).click();
       cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
     });
     it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
-      typeNumbers(
-        [
-          1, 2, 3, 4, 5, 6,
-          7, 8, 9, 10, 11, 12
-        ],
-        `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
-      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
-      typeResultNumbers([1, 2, 3, 4, 5, 6], 7);
+      jumpToResultInputUI();
+      typeResultNumbers(SUCCESS_INPUT.RESULT_WINNING_NUMBER, SUCCESS_INPUT.RESULT_BONUS_NUMBER);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
@@ -239,7 +160,6 @@ context('로또 기능 테스트', () => {
     }
   });
 });
-
 
 function typeAndClick(inputSelector, inputString, submitSelector) {
   type(inputSelector, inputString);
@@ -278,4 +198,11 @@ function testChildNodeExistence(selector, existenceToExpect) {
   cy.get(selector).then(element => {
     expect(element[0].hasChildNodes()).be.equal(existenceToExpect);
   });
+}
+
+function jumpToResultInputUI() {
+  typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+  typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`);
+  typeNumbers(SUCCESS_INPUT.MANUAL_SELECT_NUMBERS, `.${DOM_CLASSES.MANUAL_SELECT_FORM}`);
+  click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 }
