@@ -3,7 +3,7 @@ import { hasElementOutOfRange, isShortLength, hasDuplicatedElement } from '../ut
 import {
   APP_RESET,
   RESULT_REQUESTED,
-  PURCHASE_OPTION_COMPLETED,
+  TICKET_ISSUE_COMPLETED,
   WINNING_NUMBER_COMPLETED,
 } from '../constants/appStages.js';
 import { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, TOTAL_NUMBERS_LENGTH } from '../constants/lottoRules.js';
@@ -29,7 +29,7 @@ export default class WinningNumberInput {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_OPTION_COMPLETED, this.renderForm.bind(this));
+    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.renderForm.bind(this));
     this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
   }
 
