@@ -66,12 +66,14 @@ export default class LottoManager {
 
   calculateProfitMargin() {
     const investment = this.lottos.length * LOTTO.PRICE;
-    const profit = Object.keys(this.winningResult).reduce(
-      (profit, key) => profit + LOTTO_REWARD[key] * this.winningResult[key],
-      0,
-    );
+    let totalProfit = 0;
 
-    return ((profit - investment) / investment) * 100;
+    for (const key of Object.keys(this.winningResult)) {
+      const profit = LOTTO_REWARD[key] * this.winningResult[key];
+      totalProfit += profit || 0;
+    }
+
+    return ((totalProfit - investment) / investment) * 100;
   }
 
   static isValidLottoNumbers(numbers) {
