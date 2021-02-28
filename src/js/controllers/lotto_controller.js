@@ -23,6 +23,14 @@ class LottoController {
     this.#handlePrice()
   }
 
+  #manageManual() {
+    this.view.renderBuyMethodSection()
+    this.view.resetPocketSection()
+    this.view.resetWinningSection()
+    this.#handleManual()
+    this.#handleAuto()
+  }
+
   #manageLotto() {
     const price = getBuyInput()
     const errorMessage = checkPriceValid(price)
@@ -35,6 +43,7 @@ class LottoController {
   }
 
   #managePocket() {
+    this.view.resetBuyMethodSection()
     this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
     this.#handlePocket()
@@ -62,6 +71,15 @@ class LottoController {
   #handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON)
     $buyButton.addEventListener("click", () => {
+      this.#manageManual()
+    })
+  }
+
+  #handleManual() {}
+
+  #handleAuto() {
+    const $autoButton = $("#auto-button")
+    $autoButton.addEventListener("click", () => {
       this.#manageLotto()
     })
   }
