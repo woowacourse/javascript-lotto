@@ -3,6 +3,28 @@ import { PURCHASE_AMOUNT_SUBMITTED, APP_RESET } from '../constants/appStages.js'
 import { MONETARY_UNIT, LOTTO_PRICE } from '../constants/lottoRules.js';
 import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
 
+const validateInput = (purchaseAmount) => {
+  if (purchaseAmount % MONETARY_UNIT) {
+    return {
+      isError: true,
+      message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY,
+    };
+  }
+  if (purchaseAmount < LOTTO_PRICE) {
+    return {
+      isError: true,
+      message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW,
+    };
+  }
+
+  const change = purchaseAmount % LOTTO_PRICE;
+
+  return {
+    isError: false,
+    message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change),
+    change,
+  };
+};
 export default class PurchaseAmountInput {
   constructor({ stageManager }) {
     this.stageManager = stageManager;
@@ -31,32 +53,9 @@ export default class PurchaseAmountInput {
     });
   }
 
-  validateInput(purchaseAmount) {
-    if (purchaseAmount % MONETARY_UNIT) {
-      return {
-        isError: true,
-        message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY,
-      };
-    }
-    if (purchaseAmount < LOTTO_PRICE) {
-      return {
-        isError: true,
-        message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW,
-      };
-    }
-
-    const change = purchaseAmount % LOTTO_PRICE;
-
-    return {
-      isError: false,
-      message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change),
-      change,
-    };
-  }
-
   onSubmitPurchaseAmount() {
     const purchaseAmount = this.$purchaseAmountInput.value;
-    const { isError, message } = this.validateInput(purchaseAmount);
+    const { isError, message } = validateInput(purchaseAmount);
 
     if (isError) {
       this.requestValidInput(message);
