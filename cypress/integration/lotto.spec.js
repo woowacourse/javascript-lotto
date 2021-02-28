@@ -4,11 +4,15 @@ describe('기능 테스트', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5501');
   });
-  it('소비자는 낸 금액에 맞는 개수만큼의 복권을 받는다.', () => {
+
+  it('소비자는 자동으로 구매한 로또 개수만큼의 복권을 받는다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
-    cy.get('#lotto-count').should('have.text', '3');
-    cy.get('.lotto-item').should('have.length', '3');
+    cy.get('#auto-purchase-button').click();
+    cy.get('#auto-count-input').type(2);
+    cy.get('#auto-count-submit-button').click();
+    cy.get('#lotto-count').should('have.text', '2');
+    cy.get('.lotto-item').should('have.length', '2');
   });
 
   it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
@@ -71,7 +75,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('#cost-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.SHOULD_EXCEED_MIN_COST
+      MESSAGE.SHOULD_EXCEED_MIN_COST,
     );
     cy.get('#purchase-result').should('not.be.visible');
   });
@@ -81,7 +85,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('#cost-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.GET_SHOULD_NOT_HAVE_CHANGE_MESSAGE(3500)
+      MESSAGE.GET_SHOULD_NOT_HAVE_CHANGE_MESSAGE(3500),
     );
     cy.get('#purchase-result').should('not.be.visible');
   });
@@ -97,7 +101,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('.winning-number').eq(5).click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE
+      MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE,
     );
     cy.get('.winning-number').eq(5).should('have.text', '');
   });
@@ -113,7 +117,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('.winning-number').eq(5).click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE
+      MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE,
     );
     cy.get('.winning-number').eq(4).should('have.text', '');
   });
@@ -130,7 +134,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('#result-modal-open-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
-      MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE
+      MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE,
     );
     cy.get('#modal').should('not.be.visible');
   });
