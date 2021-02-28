@@ -123,6 +123,8 @@ export default class LottoDisplay extends Component {
     this.$target.classList.add('d-none');
     this.$lottoDisplayArea.innerHTML = '';
     this.$toggleButton.checked = false;
+    this.onToggleSwitch();
+    this.$pageNumber.textContent = 1;
   }
 
   toggleActivationPageMoveButton(pageIndex) {
