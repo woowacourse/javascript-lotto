@@ -11,26 +11,85 @@
       <div class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-          <form id="cost-submit-form" class="mt-5">
+          <form id="purchase-form" class="mt-5 mb-10">
             <label class="mb-2 d-inline-block"
-              >구입할 금액을 입력해주세요.
+              >추가할 금액을 입력해주세요.
             </label>
             <div class="d-flex">
               <input
                 id="cost-input"
                 type="number"
-                class="w-100 mr-2 pl-2"
+                class="w-70 mr-5 pl-2"
                 placeholder="구입 금액"
               />
               <button
-                id="cost-submit-button"
+                id="cost-add-button"
                 type="button"
-                class="btn btn-cyan"
+                class="btn btn-color-cyan"
               >
-                확인
+                금액추가
               </button>
             </div>
+            <div id="purchase-number-wrapper" class="mt-3">
+              <div>
+                <h4 class="mb-3 text-left">로또 직접 구매</h4>
+                <div class="d-flex items-center">
+                  <div class="d-flex justify-between w-70 mr-8">
+                    <input
+                      type="number"
+                      data-custom-input
+                      class="user-lotto-number text-center"
+                    />
+                    <input
+                      type="number"
+                      data-custom-input
+                      class="user-lotto-number text-center"
+                    />
+                    <input
+                      type="number"
+                      data-custom-input
+                      class="user-lotto-number text-center"
+                    />
+                    <input
+                      type="number"
+                      data-custom-input
+                      class="user-lotto-number text-center"
+                    />
+                    <input
+                      type="number"
+                      data-custom-input
+                      class="user-lotto-number text-center"
+                    />
+                    <input
+                      type="number"
+                      data-custom-input
+                      class="user-lotto-number text-center"
+                    />
+                  </div>
+                  <button
+                    id="passive-purchase-button"
+                    type="button"
+                    class="btn btn-color-cyan"
+                  >
+                    수동구매
+                  </button>
+                </div>
+              </div>
+            </div>
           </form>
+          <h4 class="pr-1 mb-3 text-right">
+            현재 입금된 금액 : <span id="deposit">0</span>원
+          </h4>
+          <div class="d-flex justify-end">
+            <button
+              id="auto-purchase-button"
+              type="button"
+              class="btn btn-color-cyan mr-1"
+            >
+              자동구매
+            </button>
+          </div>
+
           <section id="purchase-result" class="mt-9 removed">
             <div class="d-flex">
               <label id="purchase-item-count" class="flex-auto my-0"></label>
@@ -100,7 +159,7 @@
             <button
               type="button"
               id="result-modal-open-button"
-              class="mt-5 btn btn-cyan w-100"
+              class="mt-5 btn btn-color-cyan w-100"
             >
               결과 확인하기
             </button>
@@ -133,7 +192,11 @@
             당신의 총 수익률은 <span id="profit-rate"></span>%입니다.
           </p>
           <div class="d-flex justify-center mt-5">
-            <button id="restart-button" type="button" class="btn btn-cyan">
+            <button
+              id="restart-button"
+              type="button"
+              class="btn btn-color-cyan"
+            >
               다시 시작하기
             </button>
           </div>

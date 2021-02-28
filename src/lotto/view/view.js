@@ -1,4 +1,4 @@
-import { CSS_CLASS } from '../constants.js';
+import { CSS_CLASS } from '../../constants.js';
 import {
   $modal,
   $costInput,
@@ -10,22 +10,24 @@ import {
   $profitRate,
   $correctNumberWrapper,
   $winningNumberInputForm,
-} from '../elements.js';
+  $deposit
+} from '../../elements.js';
 import {
   getResultItemCountTemplate,
   getResultItemListTemplate,
   getModalTbodyTemplate,
-} from '../templates.js';
-import { $ } from '../utils/querySelector.js';
+} from './templates.js';
+import { $ } from '../../utils/querySelector.js';
 
 const view = {
-  initLottoGame() {
+  initLottoGame(initialDeposit) {
     view.hideResultModal();
     view.hideLottoNumbers();
     view.hideWinningNumberInputForm();
     view.hidePurchaseResult()
     view.initWinningNumberInputs();
-    $costInput.value = '';
+    view.emptyCostInput();
+    view.showDeposit(initialDeposit);
   },
 
   initWinningNumberInputs() {
@@ -67,6 +69,10 @@ const view = {
     $profitRate.innerText = profitRate;
   },
 
+  showDeposit(deposit) {
+    $deposit.innerText = deposit;
+  },
+
   showMessage(message) {
     alert(message);
   },
@@ -86,6 +92,10 @@ const view = {
 
   hidePurchaseResult(){
     $purchaseResult.classList.add(CSS_CLASS.REMOVED);
+  },
+
+  emptyCostInput() {
+    $costInput.value = '';
   }
 };
 

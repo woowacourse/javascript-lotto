@@ -1,14 +1,16 @@
-import { getRandomNumber } from '../utils/random.js';
+import { getRandomNumber } from '../../utils/random.js';
 import {
   LOTTO,
   REWARDS,
-  BONUS_ITEM_MATCH_COUNT
-} from '../constants.js';
+  BONUS_ITEM_MATCH_COUNT,
+  GAME
+} from '../../constants.js';
 
 export default class LottoGame {
   #lottoItemList = [];
   #winningNumberList = [];
   #bonusNumber = null;
+  #deposit = GAME.INITIAL_DEPOSIT;
 
   get LottoItemList() {
     return this.#lottoItemList;
@@ -22,10 +24,15 @@ export default class LottoGame {
     return this.#lottoItemList.length * LOTTO.PRICE;
   }
 
+  get Deposit() {
+    return this.#deposit;
+  }
+
   initGame() {
     this.initLottoItemList();
     this.#winningNumberList = [];
     this.#bonusNumber = null;
+    this.#deposit = 0;
   }
 
   initLottoItemList() {
@@ -72,6 +79,13 @@ export default class LottoGame {
     return rankItemList;
   }
 
+  getTotalProfit(rankItemList) {
+    return rankItemList.reduce(
+      (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
+      0
+    );
+  }
+
   assignMatchCount() {
     this.#lottoItemList.forEach((lottoItem) => {
       const allNumberList = [
@@ -102,5 +116,17 @@ export default class LottoGame {
 
   addLottoItems = (lottoItemCount) => {
     [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
-  };
+  }
+
+  saveDeposit = (money) => {
+    this.#deposit += money;
+  }
+
+  getAffordableLottoItemCount() {
+    return parseInt(this.#deposit / LOTTO.PRICE); 
+  }
+
+  spendDeposit = () => {
+    this.#deposit = this.#deposit % LOTTO.PRICE;
+  }
 }

@@ -1,13 +1,14 @@
-import validator from './validator.js';
+import validator from '../../utils/validator.js';
 import { MESSAGE } from '../../constants.js';
 
 const guide = {
   getCostCheckResult(cost) {
-    if (validator.isMoneyLessThanMinCost(cost)) {
-      return MESSAGE.SHOULD_EXCEED_MIN_COST;
+    if (!validator.isMoneyMoreThanZero(cost)) {
+      return MESSAGE.SHOULD_MORE_THAN_ZERO;
     }
-    if (validator.isChangeMoneyExist(cost)) {
-      return MESSAGE.GET_SHOULD_NOT_HAVE_CHANGE_MESSAGE(cost);
+
+    if (!validator.isInteger(cost)) {
+      return MESSAGE.SHOULD_BE_INTERGER;
     }
 
     return '';

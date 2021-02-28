@@ -1,5 +1,5 @@
-import { $correctNumberWrapper } from '../elements.js';
-import { $ } from '../utils/querySelector.js';
+import { $correctNumberWrapper } from '../../elements.js';
+import { $ } from '../../utils/querySelector.js';
 
 export const getCorrectNumbers = () => {
   const winningNumbers = $('.winning-number', $correctNumberWrapper)

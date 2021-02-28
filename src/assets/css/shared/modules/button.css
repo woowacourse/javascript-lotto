@@ -8,11 +8,16 @@
   cursor: pointer;
 }
 
-.btn-cyan {
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-color-cyan {
   background-color: #00bcd4 !important;
   border-color: #00bcd4 !important;
 }
 
-.btn.btn-cyan:hover {
+.btn.btn-color-cyan:hover {
   background-color: #018c9e !important;
 }

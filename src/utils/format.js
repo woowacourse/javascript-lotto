@@ -1,1 +1,1 @@
-export const getKRString = (number) => number.toLocaleString('ko-KR');
+export const getKRMoneyString = (number) => number.toLocaleString('ko-KR');

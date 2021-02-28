@@ -1,8 +1,8 @@
-import { getKRString } from './utils/format.js';
+import { getKRMoneyString } from '../../utils/format.js';
 
 export const getResultItemCountTemplate = (lottoItemCount) => {
   return `
-    총 <span id="lotto-count">${lottoItemCount}</span>개를 구매하였습니다.
+    총 <span id="lotto-count">${lottoItemCount}</span>개를 자동으로 구매하였습니다.
   `;
 };
 
@@ -29,7 +29,7 @@ export const getModalTbodyTemplate = (rankItemList) =>
     (rankItem) => `
     <tr class="text-center">
       <td class="p-3">${rankItem.matchCount}개 ${rankItem.shouldCheckBonus ? ' + 보너스볼' : ''}</td>
-      <td class="p-3">${getKRString(rankItem.money)}</td>
+      <td class="p-3">${getKRMoneyString(rankItem.money)}</td>
       <td class="p-3">${rankItem.winCount}개</td>
     </tr>
     `

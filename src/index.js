@@ -1,3 +1,3 @@
-import controller from './lotto/controller.js';
+import controller from './lotto/controller/controller.js';
 
 controller.bindLottoGameEvents();
