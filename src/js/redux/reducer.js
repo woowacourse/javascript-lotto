@@ -40,15 +40,12 @@ const purchaseTypeReducer = (state = 'auto', { type }) => {
 
 const lottosReducer = (state = [], { type, payload = {} }) => {
   const { lottos } = payload;
-  switch (type) {
-    case CREATE_LOTTOS:
-      return [...state, ...lottos];
-    case ADD_LOTTO:
-      return [...state, ...lottos];
-    case RESTART:
-      return [];
-    default:
-      return state;
+  if (type === CREATE_LOTTOS || type === ADD_LOTTO) {
+    return [...state, ...lottos];
+  } else if (type === RESTART) {
+    return [];
+  } else {
+    return state;
   }
 };
 
