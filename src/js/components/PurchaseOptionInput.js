@@ -1,9 +1,10 @@
 import LottoPaper from '../model/LottoPaper.js';
 import { PURCHASE_AMOUNT_COMPLETED, PURCHASE_OPTION_COMPLETED } from '../constants/appStages.js';
 import { getSelectPaperHTML } from '../layouts/selectPaper.js';
-import { $, select, unselect, show, enable, disable } from '../utils/DOM.js';
+import { $, select, unselect, show, enable, disable, hide } from '../utils/DOM.js';
 import { getNthElementRemoved } from '../utils/general.js';
 import { TICKET_ISSUE_CONFIRM_MESSAGE } from '../constants/display.js';
+import LottoTicket from '../model/LottoTicket.js';
 
 export default class PurchaseOptionInput {
   constructor({ stageManager }) {
@@ -51,7 +52,7 @@ export default class PurchaseOptionInput {
       'beforeEnd',
       getSelectPaperHTML({ issueNum: newPaper.issueNum, maxQuantity: newPaper.quantity + this.autoQuantity })
     );
-    newPaper.$checkMessage = this.$manualSelectForm.querySelector('.manual-select-check-message');
+    newPaper.$checkMessage = this.$manualSelectForm.lastChild.querySelector('.manual-select-check-message');
     this.$manualSelectForm.lastChild.addEventListener('change', this.onChangePaper.bind(this));
   }
 
@@ -120,9 +121,22 @@ export default class PurchaseOptionInput {
       TICKET_ISSUE_CONFIRM_MESSAGE({ auto: this.autoQuantity, manual: this.manualQuantity })
     );
 
-    if (response === true) {
-      this.stageManager.setStates({ stage: PURCHASE_OPTION_COMPLETED });
+    if (response === false) {
+      return;
     }
+
+    const manualLottoTickets = this.papers.reduce(
+      (acc, cur) => acc.concat(...[...Array(cur.quantity)].map(() => new LottoTicket(cur.numbers))),
+      []
+    );
+
+    this.stageManager.setStates({
+      stage: PURCHASE_OPTION_COMPLETED,
+      lottoTickets: manualLottoTickets,
+    });
+    hide(this.$manualSelectForm);
+    hide(this.$paperAdder);
+    disable(this.$ticketIssueButton);
   }
 
   renderQuantitySummary() {

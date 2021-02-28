@@ -68,6 +68,9 @@ export default class AppStageManager {
   }
 
   setStates({ stage, numOfLotto, lottoTickets, winningNumber }) {
+    if (lottoTickets) {
+      console.log(lottoTickets);
+    }
     this.stage = stage ?? this.stage;
     this.numOfLotto = numOfLotto ?? this.numOfLotto;
     this.lottoTickets = lottoTickets ?? this.lottoTickets;
