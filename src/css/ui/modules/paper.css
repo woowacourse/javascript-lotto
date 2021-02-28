@@ -1,4 +1,4 @@
-.number-selectors {
+.manual-select-paper {
   position: relative;
   margin-right: 12px;
   padding: 16px 24px;
@@ -106,7 +106,7 @@
 
 /* 로또용지 선택 체크메시지 */
 
-.select-check-message {
+.manual-select-check-message {
   position: absolute;
   right: 16px;
   bottom: 14px;

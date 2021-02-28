@@ -104,25 +104,23 @@ describe('수동/자동구매 UI 검사', () => {
   it('로또용지 추가버튼을 누를 때마다 로또번호 선택용지가 한 장씩 화면에 추가된다.', () => {
     numOfManualSelect = 1;
     cy.get('.paper-add-button').click();
-    cy.get('number-selectors').should('have.length', numOfManualSelect);
-    cy.get('.purchase-quantity-summary').should(
-      'have.text',
-      summary(numOfLotto - numOfManualSelect, numOfManualSelect)
-    );
+    cy.get('.manual-select-paper').should('have.length', numOfManualSelect);
+    cy.get('.auto-quantity').should('have.text', numOfLotto - numOfManualSelect);
+    cy.get('.manual-quantity').should('have.text', numOfManualSelect);
+
     numOfManualSelect = 2;
     cy.get('.paper-add-button').click();
-    cy.get('number-selectors').should('have.length', numOfManualSelect);
-    cy.get('.purchase-quantity-summary').should(
-      'have.text',
-      summary(numOfLotto - numOfManualSelect, numOfManualSelect)
-    );
+    cy.get('.manual-select-paper').should('have.length', numOfManualSelect);
+    cy.get('.auto-quantity').should('have.text', numOfLotto - numOfManualSelect);
+    cy.get('.manual-quantity').should('have.text', numOfManualSelect);
   });
 
   it('자동구매 수량이 남아있을 경우, 적용수량을 조정해서 수동구매로 전환할 수 있다.', () => {
-    cy.get('number-selectors')
+    cy.get('.manual-select-paper')
       .first()
       .select(`${1 + numOfLotto - numOfManualSelect}장`);
-    cy.get('.purchase-quantity-summary').should('have.text', summary(0, numOfLotto));
+    cy.get('.auto-quantity').should('have.text', 0);
+    cy.get('.manual-quantity').should('have.text', numOfLotto);
   });
 
   it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화된다.', () => {
@@ -130,13 +128,11 @@ describe('수동/자동구매 UI 검사', () => {
   });
 
   it('로또용지 삭제버튼을 누를 경우, 해당 로또용지가 화면에서 사라지고 해당 적용수량은 자동구매로 전환된다.', () => {
-    cy.get('.number-selectors').should('have.length', numOfManualSelect);
+    cy.get('..manual-select-paper').should('have.length', numOfManualSelect);
     cy.get('.paper-remove-button').first().click();
     numOfManualSelect = 1;
-    cy.get('.purchase-quantity-summary').should(
-      'have.text',
-      summary(numOfLotto - numOfManualSelect, numOfManualSelect)
-    );
+    cy.get('.auto-quantity').should('have.text', numOfLotto - numOfManualSelect);
+    cy.get('.manual-quantity').should('have.text', numOfManualSelect);
   });
 
   it('로또용지에서 6개 보다 적게 고를 경우, 상태메세지가 화면에 표시되고 로또 발급버튼이 비활성화된다.', () => {
@@ -185,7 +181,7 @@ describe('수동/자동구매 UI 검사', () => {
 
   it('로또를 발급한 경우, 사용한 로또용지와 로또용지 추가버튼을 화면에서 숨기고, 로또발급하기 버튼을 비활성화된다.', () => {
     cy.get('.paper-add-button').should('not.be.visible');
-    cy.get('.number-selectors').forEach(($el) => cy.wrap($el).should('not.be.visible'));
+    cy.get('..manual-select-paper').forEach(($el) => cy.wrap($el).should('not.be.visible'));
     cy.get('.ticket-issue-button').should('be.disabled');
   });
 });

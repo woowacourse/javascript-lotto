@@ -1,9 +1,9 @@
-const getSelectPaperItemHTML = (index) => {
+const getSelectPaperItemHTML = (quantity) => {
   return `
   <li>
     <label>
-      <input type="checkbox" aria-label="select${index}" />
-      <span>${index}</span>
+      <input type="checkbox" aria-label="select${quantity}" />
+      <span>${quantity}</span>
     </label>
   </li>
   `;
@@ -17,10 +17,10 @@ const getApplyQuantitySelectHTML = (quantity) => {
 
 export const getSelectPaperHTML = (maxQuantity) => {
   return `
-  <div class="number-selectors d-flex flex-col">
-    <div class="apply-quantity mb-5 d-flex items-end">
+  <div class="manual-select-paper mt-2 d-flex flex-col">
+    <div class="quantity-apply mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
-      <select class="apply-quantity-select">
+      <select class="quantity-apply-select">
         ${[...Array(maxQuantity)].map((_, i) => getApplyQuantitySelectHTML(i + 1)).join('')}
       </select>
     </div>
