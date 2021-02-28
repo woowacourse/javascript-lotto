@@ -7,11 +7,11 @@ import {
   updatePayment,
 } from '../redux/action.js';
 import { store } from '../index.js';
+import { MANUAL_PURCHASE } from '../redux/actionType.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 import Input from './Input/Input.js';
 import ManualLottoInput from './ManualLottoInput.js';
-import { MANUAL_PURCHASE } from '../redux/actionType.js';
 
 export default class LottoPurchaseInput extends Component {
   initRender() {

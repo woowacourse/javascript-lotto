@@ -1,9 +1,7 @@
 import { store } from '../index.js';
 import { calculateProfit, decideWinner } from '../redux/action.js';
-import { isEmptyValue, isInRange } from '../utils/common.js';
-import { LOTTO, PURCHASE_TYPE } from '../utils/constants.js';
+import { PURCHASE_TYPE } from '../utils/constants.js';
 import { $, $$, clearInputValue } from '../utils/dom.js';
-import { ERROR_MESSAGE } from '../utils/message.js';
 import Button from './Button/Button.js';
 import Component from '../core/Component.js';
 import Input from './Input/Input.js';
@@ -121,6 +119,7 @@ export default class WinningNumbersInput extends Component {
   clearView() {
     this.hideWinningNumbersInputView();
     this.$winningNumberInputs.forEach(clearInputValue);
+    this.$openResultModalButton.disabled = true;
     this.clearMessageBox();
     clearInputValue(this.$bonusNumberInput);
   }

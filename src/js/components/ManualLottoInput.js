@@ -1,5 +1,4 @@
 import { $, $$, clearInputValue } from '../utils/dom.js';
-import { ERROR_MESSAGE } from '../utils/message.js';
 import { store } from '../index.js';
 import { LOTTO, PURCHASE_TYPE } from '../utils/constants.js';
 import {
@@ -11,7 +10,6 @@ import {
 import Button from './Button/Button.js';
 import LottoNumbersInput from './Input/LottoNumbersInput.js';
 import Component from '../core/Component.js';
-import { isEmptyValue, isInRange } from '../utils/common.js';
 import { AUTO_PURCHASE } from '../redux/actionType.js';
 
 export default class ManualLottoInput extends Component {

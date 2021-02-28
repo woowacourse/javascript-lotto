@@ -1,9 +1,8 @@
 import { $, $$ } from '../utils/dom.js';
 import { store } from '../index.js';
+import { PURCHASE_TYPE } from '../utils/constants.js';
 import Component from '../core/Component.js';
 import Input from './Input/Input.js';
-import { AUTO_PURCHASE } from '../redux/actionType.js';
-import { PURCHASE_TYPE } from '../utils/constants.js';
 import Button from './Button/Button.js';
 
 export default class LottoDisplay extends Component {
