@@ -36,6 +36,15 @@ describe('기능 테스트', () => {
     cy.get('.lotto-item').should('have.length', '1');
   });
 
+  it('입력한 금액 / 로또 가격이 0이 되면 결과 확인하기 버튼이 활성화된다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('#auto-purchase-button').click();
+    cy.get('#auto-count-input').type(3);
+    cy.get('#auto-count-submit-button').click();
+    cy.get('#result-modal-open-button').should('be.visible');
+  });
+
   it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
     cy.get('#cost-input').type('5000');
     cy.get('#cost-submit-button').click();
