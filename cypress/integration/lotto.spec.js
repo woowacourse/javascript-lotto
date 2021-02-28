@@ -87,6 +87,8 @@ describe("ui-play", () => {
   it("금액을 입력하고 버튼을 클릭하면 수동 구매 영역이 보여진다", () => {
     submitAutoBuy(5000)
     cy.get("#buy-method").children().should("exist")
+    cy.get(SELECTOR.POCKET_SECTION).children().should("not.exist")
+    cy.get(SELECTOR.WINNING_SECTION).children().should("not.exist")
   })
 
   it("금액을 입력하고 버튼을 클릭하면 구매가능한 로또 개수가 보여진다", () => {
@@ -124,6 +126,15 @@ describe("ui-play", () => {
       .then((numbers) => {
         expect(numbers.text()).to.equal("1 2 3 4 5 6")
       })
+  })
+
+  it("구매 가능 개수가 1개인 상태에서 수동 구매를 하면 수동 구매 영역 감춰지고 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
+    submitManualBuy(1000)
+    const manualNumbers = [1, 2, 3, 4, 5, 6]
+    submitManualLotto(manualNumbers)
+    cy.get("#buy-method").children().should("not.exist")
+    cy.get(SELECTOR.POCKET_SECTION).children().should("not.exist")
+    cy.get(SELECTOR.WINNING_SECTION).children().should("not.exist")
   })
 
   it("금액을 입력하고 확인 버튼, 나머지 자동구매 버튼을 클릭하면 수동 구매 영역 감춰지고 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
