@@ -11,6 +11,7 @@ export default class ManualInputView extends View {
     this.count = count;
     this.createManualLottos();
     this.bindManualInputEvent();
+    this.bindFocusEvent();
     this.showAllConfirmButton();
     this.bindConfirmEvent();
   }
@@ -62,6 +63,26 @@ export default class ManualInputView extends View {
         });
       });
     });
+  }
+
+  bindFocusEvent() {
+    $$('.manual-number').forEach(manualNumber => {
+      manualNumber.addEventListener('input', () =>
+        this.moveFocus(manualNumber)
+      );
+    });
+  }
+
+  moveFocus($element) {
+    if ($element.value.length === 2) {
+      if (
+        Number($element.dataset.manualIndex) ===
+        LOTTO_NUMBERS.LOTTO_MANUAL_COUNT - 1
+      ) {
+        return;
+      }
+      $element.nextElementSibling.focus();
+    }
   }
 
   confirmManualLottos(lotto, ticketNumber) {
