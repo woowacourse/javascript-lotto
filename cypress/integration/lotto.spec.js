@@ -279,6 +279,16 @@ describe("ui-exception", () => {
         "수동 구매 번호를 전부 입력해주세요."
       )
     })
+
+    it("수동 번호에 중복되는 숫자가 있으면 alert가 발생한다", () => {
+      submitManualBuy(5000)
+      submitManualLotto([2, 3, 4, 4, 9, 10])
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        "중복된 번호로 구입하실 수 없습니다."
+      )
+    })
   })
 
   describe("ui-answer-exception", () => {
