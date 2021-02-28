@@ -16,12 +16,12 @@ export const MESSAGE = Object.freeze({
     return `남는 금액이 있습니다. ${cost % 1000}만큼의 돈을 빼주세요`;
   },
   SHOULD_HAVE_PURCHASE_COUNT: '1개 이상으로 구매해주세요.',
-  GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT(remainCount) {
+  GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT_MESSAGE(remainCount) {
     return `${remainCount}개 이하로만 구매할 수 있습니다.`;
   },
-  DUPLICATED_NUMBER_EXIST_MESSAGE: '입력된 번호 중 중복된 번호가 존재합니다.',
-  NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자만 입력할 수 있습니다.`,
-  SHOULD_INPUT_ALL_NUMBERS_MESSAGE:
+  DUPLICATED_NUMBER_EXIST: '입력된 번호 중 중복된 번호가 존재합니다.',
+  NUMBER_RANGE_EXCEEDED: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자만 입력할 수 있습니다.`,
+  SHOULD_INPUT_ALL_NUMBERS:
     '모든 번호를 입력해주셔야 결과를 확인할 수 있습니다.',
 });
 

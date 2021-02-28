@@ -18,7 +18,7 @@ const message = {
       return MESSAGE.SHOULD_HAVE_PURCHASE_COUNT;
     }
     if (validator.isExceededRemainCount(purchaseCount, remainCount)) {
-      return MESSAGE.GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT(remainCount);
+      return MESSAGE.GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT_MESSAGE(remainCount);
     }
 
     return '';
@@ -26,10 +26,10 @@ const message = {
 
   getCorrectNumberValidation(correctNumbers) {
     if (validator.isDuplicatedNumberExist(correctNumbers)) {
-      return MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE;
+      return MESSAGE.DUPLICATED_NUMBER_EXIST;
     }
     if (validator.isNumberOutOfRangeExist(correctNumbers)) {
-      return MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE;
+      return MESSAGE.NUMBER_RANGE_EXCEEDED;
     }
 
     return '';
@@ -37,7 +37,7 @@ const message = {
 
   getModalOpenValidation(correctNumbers) {
     if (validator.isEmptyCorrectNumberExist(correctNumbers)) {
-      return MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE;
+      return MESSAGE.SHOULD_INPUT_ALL_NUMBERS;
     }
 
     return '';
