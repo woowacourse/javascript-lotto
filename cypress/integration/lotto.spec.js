@@ -149,7 +149,7 @@ describe('유저 입력 값 테스트', () => {
     );
     cy.get('.manual-lotto-number').eq(2).should('have.text', '');
   });
-  
+
   it('로또번호가 모두 입력되지 않으면 안내메시지를 출력한다.', () => {
     cy.get('#cost-input').type('3000');
     cy.get('#cost-submit-button').click();
@@ -158,7 +158,7 @@ describe('유저 입력 값 테스트', () => {
     cy.get('.manual-lotto-number').eq(1).type(2);
     cy.get('.manual-lotto-number').eq(2).type(3);
     cy.get('.manual-lotto-number').eq(3).type(4);
-    cy.get('.manual-lotto-number').eq(4).type(5);   
+    cy.get('.manual-lotto-number').eq(4).type(5);
     cy.get('#manual-lotto-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
