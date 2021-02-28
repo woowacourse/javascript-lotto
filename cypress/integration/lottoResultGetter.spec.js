@@ -1,6 +1,6 @@
 import LottoTicket from '../../src/js/model/LottoTicket.js';
 import ResultModal from '../../src/js/components/ResultModal.js';
-import { BOUNS_COUNT } from '../../src/js/constants.js';
+import { BONUS_COUNT } from '../../src/js/constants.js';
 
 describe('당첨통계 계산 메서드 검사', () => {
   before(() => {
@@ -31,7 +31,7 @@ describe('당첨통계 계산 메서드 검사', () => {
     lottoTicket8.setTotalMatchCount(winningNumber);
 
     expect(lottoTicket1.totalMatchCount).to.equal(6);
-    expect(lottoTicket2.totalMatchCount).to.equal(5 + BOUNS_COUNT);
+    expect(lottoTicket2.totalMatchCount).to.equal(5 + BONUS_COUNT);
     expect(lottoTicket3.totalMatchCount).to.equal(5);
     expect(lottoTicket4.totalMatchCount).to.equal(4);
     expect(lottoTicket5.totalMatchCount).to.equal(3);
