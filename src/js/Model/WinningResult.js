@@ -6,7 +6,7 @@ import {
 } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
-class Result {
+class WinningResult {
   constructor() {
     this.winningNumbers = [];
     this.bonusNumber = 0;
@@ -75,4 +75,4 @@ class Result {
   }
 }
 
-export default new Result();
+export default new WinningResult();

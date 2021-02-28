@@ -9,12 +9,12 @@ import {
 } from "../View/receiptView.js";
 import {
   showPurchaseResult,
-  hidePurchaseResult,
+  resetPurchaseResult,
   showModal,
   closeModal,
 } from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
-import Result from "../Model/Result.js";
+import WinningResult from "../Model/WinningResult.js";
 
 export const initializeEvents = () => {
   $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
@@ -77,13 +77,13 @@ const handleResultSubmit = (event) => {
 };
 
 const setNumbers = (winningNumbers, bonusNumber) => {
-  Result.setWinningNumbers(winningNumbers);
-  Result.setBonusNumber(bonusNumber);
+  WinningResult.setWinningNumbers(winningNumbers);
+  WinningResult.setBonusNumber(bonusNumber);
 };
 
 const setWinningResult = (ticketBundle) => {
-  Result.setRanks(ticketBundle);
-  Result.setMatchingCounts();
+  WinningResult.setRanks(ticketBundle);
+  WinningResult.setMatchingCounts();
 };
 
 const renderWinningResult = () => {
@@ -95,8 +95,7 @@ const handleRestartButton = () => {
   closeModal();
   clearWinningBonusNumber();
   clearPurchaseAmountInput();
-  hidePurchaseResult();
-  $(ELEMENT.TOGGLE_BUTTON).checked = false;
+  resetPurchaseResult();
 };
 
 const clearPurchaseAmountInput = () => {

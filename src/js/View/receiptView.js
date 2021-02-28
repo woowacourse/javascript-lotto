@@ -1,6 +1,6 @@
 import { ELEMENT } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
-import Result from "../Model/Result.js";
+import WinningResult from "../Model/WinningResult.js";
 
 export const printPurchaseAmountLabel = (ticketCount) => {
   $(
@@ -40,9 +40,9 @@ export const printWinningResult = () => {
   const money = Number($(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money);
   const earningRate = ((totalPrize - money) / money) * 100;
 
-  Result.matchingCounts.reverse();
+  WinningResult.matchingCounts.reverse();
   winningCounts.forEach((count, i) => {
-    count.innerText = `${Result.matchingCounts[i]}개`;
+    count.innerText = `${WinningResult.matchingCounts[i]}개`;
   });
 
   $(
