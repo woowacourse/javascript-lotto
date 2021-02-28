@@ -17,6 +17,12 @@ class TicketBundle {
     return this.ticketBundle;
   }
 
+  setSelfTicket(selfPurchaseLottoNumbers) {
+    this.ticketBundle.push(selfPurchaseLottoNumbers);
+
+    return this.ticketBundle;
+  }
+
   generateRandomNumbers() {
     const numbers = Array.from(
       { length: STANDARD_NUMBER.LOTTO_MAX_NUMBER },

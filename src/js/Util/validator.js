@@ -31,7 +31,7 @@ const isInValidNumber = (money) => {
   return !/^[0-9]+$/.test(money);
 };
 
-export const isValidWinningNumbers = (array) => {
+export const isValidNumbers = (array) => {
   if (isBlankIncluded(array)) {
     alert(ALERT_MESSAGE.BLANK_FORBIDDEN);
     return;

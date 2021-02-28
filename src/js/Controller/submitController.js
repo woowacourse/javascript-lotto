@@ -1,6 +1,6 @@
 import { ELEMENT, STANDARD_NUMBER } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
-import { isValidMoney, isValidWinningNumbers } from "../Util/validator.js";
+import { isValidMoney, isValidNumbers } from "../Util/validator.js";
 import {
   printPurchaseAmountLabel,
   printTicketHorizontal,
@@ -29,6 +29,10 @@ export const initializeEvents = () => {
   );
   $(ELEMENT.MODAL_CLOSE).addEventListener("click", closeModal);
   $(ELEMENT.RESTART_BUTTON).addEventListener("click", handleRestartButton);
+  $("#self-purchase-container").addEventListener(
+    "submit",
+    handleSelfPurchaseSubmit
+  );
 };
 
 const handlePurchaseAmountSubmit = (event) => {
@@ -60,6 +64,25 @@ const renderPurchaseSection = () => {
 //   showPurchaseResult();
 // };
 
+const handleSelfPurchaseSubmit = (event) => {
+  event.preventDefault();
+
+  const selfPurchaseLottoNumbers = Array.from(
+    $$(".self-purchase-lotto-number")
+  ).map((number) => Number(number.value));
+
+  if (!isValidNumbers(selfPurchaseLottoNumbers)) {
+    return;
+  }
+  const tickets = ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
+
+  Array.from($$(".self-purchase-lotto-number")).map(
+    (number) => (number.value = "")
+  );
+  $$(".self-purchase-lotto-number")[0].focus();
+  $$(ELEMENT.WINNING_NUMBER)[0].focus();
+};
+
 const handleToggleButton = (event) => {
   event.target.checked
     ? printTicketVertical(ticketBundle.ticketBundle)
@@ -74,7 +97,7 @@ const handleResultSubmit = (event) => {
   );
   const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
 
-  if (!isValidWinningNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
+  if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
     clearWinningBonusNumber();
     return;
   }
