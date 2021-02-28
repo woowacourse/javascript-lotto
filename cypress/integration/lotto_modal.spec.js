@@ -5,7 +5,7 @@ describe('LOTTO - 모달 동작 테스트', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('결과 확인하기 버튼을 누르면, 모달이 화면에 출력한다.', () => {
+  it('결과 확인하기 버튼을 누르면, 모달을 화면에 출력한다.', () => {
     let count = 1;
     cy.get('#lotto-purchase-input').type('4500');
     cy.get('#lotto-purchase-btn').click();
