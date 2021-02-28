@@ -6,9 +6,9 @@ import {
   MONETARY_UNIT,
 } from '../../src/js/constants/lottoRules.js';
 import {
+  PURCHASE_AMOUNT_ALERT_MESSAGE,
   PURCHASED_QUANTITY_MESSAGE,
   LOTTO_NUMBER_SEPARATOR,
-  PURCHASE_AMOUNT_ALERT_MESSAGE,
   WINNING_NUMBER_CHECK_MESSAGE,
   MANUAL_SELECT_CHECK_MESSAGE,
   TICKET_ISSUE_CONFIRM_MESSAGE,
@@ -73,7 +73,8 @@ describe('구매금액 입력 UI 검사', () => {
 
 describe('수동/자동구매 UI 검사', () => {
   const numOfLotto = 5;
-  const summary = (auto, manual) => `· 자동: ${auto} 장\n· 수동: ${manual} 장`;
+  const summary = ({ auto, manual }) => `· 자동: ${auto} 장
+  · 수동: ${manual} 장`;
 
   before(() => {
     cy.visit('http://localhost:5500/');
@@ -94,7 +95,8 @@ describe('수동/자동구매 UI 검사', () => {
 
   it('정상적인 로또구입 금액을 투입하면, 전체 자동구매 수량을 기본값으로 해서 화면에 표시된다.', () => {
     cy.get('.purchase-option-section').should('be.visible');
-    cy.get('.purchase-quantity-summary').should('have.text', summary(numOfLotto, 0));
+    cy.get('.auto-quantity').should('have.text', numOfLotto);
+    cy.get('.manual-quantity').should('have.text', 0);
   });
 
   let numOfManualSelect = 0;

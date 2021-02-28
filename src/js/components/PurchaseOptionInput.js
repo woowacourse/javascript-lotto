@@ -11,7 +11,8 @@ export default class PurchaseOptionInput {
 
   selectDOMs() {
     this.$purchaseOptionSection = $('.purchase-option-section');
-    this.$purchaseQuantitySummary = $('.purchase-quantity-summary');
+    this.$autoQuantity = $('.auto-quantity');
+    this.$manualQuantity = $('.manual-quantity');
     this.$ticketIssueButton = $('.ticket-issue-button');
     this.$manualSelectAdd = $('.manual-select-add');
     this.$paperAddButton = $('.paper-add-button');
@@ -23,9 +24,15 @@ export default class PurchaseOptionInput {
     this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderSection.bind(this));
   }
 
+  updateQuantitySummary({ auto, manual }) {
+    this.$autoQuantity.innerText = auto;
+    this.$manualQuantity.innerText = manual;
+  }
+
   renderSection() {
     show(this.$purchaseOptionSection);
     show(this.$ticketIssueButton);
     show(this.$manualSelectAdd);
+    this.updateQuantitySummary({ auto: this.stageManager.numOfLotto, manual: 0 });
   }
 }
