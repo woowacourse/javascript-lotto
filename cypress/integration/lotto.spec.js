@@ -21,6 +21,21 @@ describe('기능 테스트', () => {
     cy.get('.lotto-item').should('have.length', '2');
   });
 
+  it('수동 구매를 선택한 경우 직접 로또 번호를 입력할 수 있다.', () => {
+    cy.get('#cost-input').type('3000');
+    cy.get('#cost-submit-button').click();
+    cy.get('#manual-purchase-button').click();
+    cy.get('.manual-lotto-number-input').eq(0).type(1);
+    cy.get('.manual-lotto-number-input').eq(1).type(2);
+    cy.get('.manual-lotto-number-input').eq(2).type(3);
+    cy.get('.manual-lotto-number-input').eq(3).type(4);
+    cy.get('.manual-lotto-number-input').eq(4).type(5);
+    cy.get('.manual-lotto-number-input').eq(5).type(6);
+    cy.get('#manual-lotto-submit-button').click();
+    cy.get('#lotto-count').should('have.text', '1');
+    cy.get('.lotto-item').should('have.length', '1');
+  });
+
   it('소비자가 받은 각각의 복권에서 중복되는 숫자가 존재하면 안된다.', () => {
     cy.get('#cost-input').type('5000');
     cy.get('#cost-submit-button').click();
