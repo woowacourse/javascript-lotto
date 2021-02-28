@@ -16,10 +16,10 @@ export default class LottoUI {
   _getTemplateMoneyInputUI() {
     return `
     <form class= "${DOM_CLASSES.MONEY_FORM} mt-5">
-      <label class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
+      <label for="${DOM_IDS.MONEY_FORM_INPUT}" class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
       </label>
       <div class="d-flex">
-        <input type="number" step='1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
+        <input type="number" id="${DOM_IDS.MONEY_FORM_INPUT}" step='1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
         <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MONEY_FORM_SUBMIT}">확인</button>
       </div>
     </form>
@@ -65,39 +65,51 @@ export default class LottoUI {
 
   _getTemplateResultInputUI() {
     return `
+    
     <form class= "${DOM_CLASSES.RESULT_INPUT_FORM} mt-9">
-        <label class="flex-auto d-inline-block mb-3 result-info">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label>
-        <div class="d-flex">
+      <label class="flex-auto d-inline-block mb-3 result-info">지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.    
+      </label>
+      <div class="d-flex">
+        <div>
+          <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
           <div>
-            <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
-            <div>
-              ${`<input 
-                type="number" 
-                min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
-                max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
-                class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}"
-                required
-                />`.repeat(6)}
-            </div>
-          </div>
-          <div class="bonus-number-container flex-grow">
-            <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
-            <div class="d-flex justify-center">
-              <input 
-              type="number" 
-              min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
-              max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
-              class="bonus-number text-center ${DOM_CLASSES.RESULT_BONUS_NUMBER}" 
-              required
-              />
-            </div>
+            ${this._getTemplateResultWinningNumbers()}
           </div>
         </div>
-        <button type="submit" class="${DOM_CLASSES.RESULT_INPUT_SUBMIT} mt-5 btn btn-cyan w-100">
-      결과 확인하기
-        </button>
-      </form>
+        <div class="bonus-number-container flex-grow">
+          <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
+          <div class="d-flex justify-center">
+            <input 
+            type="number" 
+            min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
+            max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
+            class="bonus-number text-center ${DOM_CLASSES.RESULT_BONUS_NUMBER}" 
+            aria-label="보너스 번호"
+            required
+            />
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="${DOM_CLASSES.RESULT_INPUT_SUBMIT} mt-5 btn btn-cyan w-100">
+    결과 확인하기
+      </button>
+    </form>
     `;
+  }
+
+  _getTemplateResultWinningNumbers() {
+    const winningNumberAmount = 6;
+    const templates = new Array(winningNumberAmount).fill(0)
+      .map((template, idx) => `
+      <input 
+        type="number" 
+        min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
+        max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
+        class="winning-number mx-1 text-center ${DOM_CLASSES.RESULT_WINNING_NUMBER}"
+        aria-label="당첨번호 ${idx + 1}번째 숫자"
+        required
+        />`);
+    return templates.join('');
   }
 
   initModal() {

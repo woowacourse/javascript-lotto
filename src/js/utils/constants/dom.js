@@ -24,4 +24,5 @@ export const DOM_CLASSES = {
 
 export const DOM_IDS = {
   APP: 'app',
+  MONEY_FORM_INPUT: 'money-input-form__input',
 }
