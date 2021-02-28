@@ -6,3 +6,7 @@ export const isCorrectPurchaseUnit = input => {
     input / LOTTO_NUMBERS.LOTTO_UNIT
   );
 };
+
+export const isUniqueWinningNumber = input => {
+  return new Set(input).size === LOTTO_NUMBERS.WINNING_NUMBER_COUNT;
+};
