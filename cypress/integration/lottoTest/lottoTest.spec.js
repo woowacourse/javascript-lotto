@@ -30,7 +30,7 @@ describe('로또 게임 테스트', () => {
   }
 
   function typeNotEnoughManualInput() {
-    // 로또 1장만 입력 후 구매 확정
+    // 로또 1장만 입력 후 구매 확정 (오류 테스트)
     cy.get('.manual-wrapper')
       .eq(0)
       .find('.manual-number')
@@ -117,13 +117,13 @@ describe('로또 게임 테스트', () => {
     cy.get('#purchased-lottos').should('be.visible');
   });
 
-  it('자동 구매 선택 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+  it('자동 구매 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#winning-numbers-form').should('be.visible');
   });
 
-  it('사용자는 로또 구입 금액을 입력하면, Enter를 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+  it('자동 구매 시 사용자가 로또 구입 금액 입력 후 enter를 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     cy.get('#input-price').type(`${price}{enter}`);
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#winning-numbers-form').should('be.visible');
