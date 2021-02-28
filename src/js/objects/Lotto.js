@@ -28,7 +28,7 @@ export default class Lotto {
       return THIRD;
     } else if (matchCount === 4) {
       return FOURTH;
-    } else if (matchCount == 3) {
+    } else if (matchCount === 3) {
       return FIFTH;
     }
 
