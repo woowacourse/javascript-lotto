@@ -16,15 +16,17 @@ export class LottoController {
     this.$resetButton = $('#reset-button');
     this.$autoAmountPurchaseForm = $('#auto-amount-purchase-form');
     this.$manualPurchaseForm = $('#manual-purchase-form');
+    this.$purchaseTypeToggle = $('#purchase-type-toggle-button');
 
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
+    this.$autoAmountPurchaseForm.setEvent('submit', this.handleAutoAmountInput.bind(this));
+    this.$manualPurchaseForm.setEvent('submit', this.handleManualInputs.bind(this));
+    this.$purchaseTypeToggle.setEvent('click', this.handlePurchaseTypeToggle.bind(this));
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
     this.$winningNumberInputs.setEvent('input', this.handleLengthLimit.bind(this));
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
     this.$modalClose.setEvent('click', () => this.$modal.removeClass('open'));
     this.$resetButton.setEvent('click', this.reset.bind(this));
-    this.$autoAmountPurchaseForm.setEvent('submit', this.handleAutoAmountInput.bind(this));
-    this.$manualPurchaseForm.setEvent('submit', this.handleManualInputs.bind(this));
   }
 
   handlePurchaseAmountInput(event) {
@@ -41,6 +43,7 @@ export class LottoController {
     }
 
     this.machine.insert(money);
+    this.view.renderPurchaseSection(money);
     this.view.renderLottoSection(this.machine.lottos);
     this.$purchaseAmountInput.disable();
     this.$purchaseAmountSubmit.disable();
@@ -64,6 +67,7 @@ export class LottoController {
     }
     this.$autoAmountInput.setValue('');
     this.machine.publishLottosByAuto(autoAmount);
+    this.view.renderPurchaseSection(this.machine.currentMoney);
     this.view.renderLottoSection(this.machine.lottos);
   }
 
@@ -75,13 +79,24 @@ export class LottoController {
     const alertMessage = validator.manualPurchase(leftMoney);
 
     if (alertMessage) {
-      this.handleInputException(this.$manualAmountInput, alertMessage);
+      this.handleInputException(this.$manualInputs, alertMessage);
 
       return;
     }
     this.$manualInputs.setValue('');
     this.machine.publishLottoByManual(manualNumbers);
+    this.view.renderPurchaseSection(this.machine.currentMoney);
     this.view.renderLottoSection(this.machine.lottos);
+  }
+
+  handlePurchaseTypeToggle() {
+    if (this.$purchaseTypeToggle.isCheckedInput()) {
+      this.$autoAmountPurchaseForm.hide();
+      this.$manualPurchaseForm.show();
+    } else {
+      this.$autoAmountPurchaseForm.show();
+      this.$manualPurchaseForm.hide();
+    }
   }
 
   handleLottoToggle() {

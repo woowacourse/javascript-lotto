@@ -3,6 +3,12 @@
 import { $ } from '../util/index.js';
 
 export class LottoView {
+  renderPurchaseSection(money) {
+    this.$purchaseSection = $('#purchase-section');
+    $('#current-money').innerText(money);
+    this.$purchaseSection.show();
+  }
+
   renderLottoSection(lottos) {
     this.$lottoSection = $('#lotto-section');
     this.$lottoResultForm = $('#lotto-result-form');
