@@ -76,7 +76,7 @@ context('로또 UI 테스트', () => {
     it('번호 보기 토글 버튼을 클릭하면, 복권 번호가 화면에 표시된다.', () => {
       jumpToResultInputUI();
       cy.get(`.${DOM_CLASSES.LOTTO_SWITCH}`).click();
-      cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('have.length', SUCCESS_INPUT.MANUAL_AMOUNT);
+      cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('have.length', SUCCESS_INPUT.MANUAL_AMOUNT + SUCCESS_INPUT.AUTO_AMOUNT);
       cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('be.visible');
       cy.get(`.${DOM_CLASSES.LOTTO_SWITCH}`).click();
       cy.get(`.${DOM_CLASSES.LOTTO_TICKET_NUMBER}`).should('not.be.visible');
@@ -217,7 +217,9 @@ function testChildNodeExistence(selector, existenceToExpect) {
 
 function jumpToResultInputUI() {
   typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-  typeAndClick(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT, `.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+  type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT);
+  type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
+  click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
   typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, SUCCESS_INPUT.MANUAL_SELECT_NUMBERS);
   click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 }
