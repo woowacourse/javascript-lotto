@@ -269,6 +269,18 @@ describe("ui-exception", () => {
     })
   })
 
+  describe("ui-manual-exception", () => {
+    it("수동 번호를 전부 입력하지 않은 상태로 결과 확인하기 버튼을 누르면 alert가 발생한다", () => {
+      submitManualBuy(5000)
+      submitManualLotto([2, "", 4, "", 9, 10])
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        "수동 구매 번호를 전부 입력해주세요."
+      )
+    })
+  })
+
   describe("ui-answer-exception", () => {
     it("당첨 번호를 전부 입력하지 않은 상태로 결과 확인하기 버튼을 누르면 alert가 발생한다.", () => {
       submitAutoBuy(5000)
