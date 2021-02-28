@@ -4,13 +4,12 @@ import {
   RESULT_TABLE_DISPLAY_KEY,
   RATE_OF_RETURN_MESSAGE,
   WINNING_PRIZE,
-  LOTTO_NUMBERS_LENGTH,
 } from '../constants.js';
 import { $ } from '../utils/DOM.js';
 import { getRateOfReturn } from '../utils/general.js';
 
 export default class ResultModal {
-  constructor({ isVisible, lottoTickets, winningNumber, onRestart }) {
+  constructor({ isVisible = false, lottoTickets, winningNumber, onRestart }) {
     this.$modal = $('.modal');
     this.$modalClose = $('.modal-close');
     this.$resultTableBody = $('.result-table-body');

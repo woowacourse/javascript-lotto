@@ -21,7 +21,6 @@ export default class App {
       onShowModal: this.onShowModal.bind(this),
     });
     this.resultModal = new ResultModal({
-      isVisible: false,
       lottoTickets: this.lottoTickets,
       winningNumber: this.winningNumber,
       onRestart: this.onRestart.bind(this),
