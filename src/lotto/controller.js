@@ -94,6 +94,13 @@ const onAutoCount = (e) => {
 
 const onManualLotto = (e) => {
   e.preventDefault();
+  const lottoNumbers = getAllNumbers($$lottoNumberInputs);
+  const userGuideMessage = message.getPurchaseManualLottoValidation(lottoNumbers);
+  if (userGuideMessage) {
+    lottoGameView.showMessage(userGuideMessage);
+    $autoCountInput.value = '';
+    return;
+  }
 };
 
 const onShowLottoNumbersToggle = (e) => {
@@ -111,7 +118,7 @@ const onResultModalOpen = (e) => {
     return;
   }
   assignResult(correctNumbers);
-  showWinningResult()
+  showWinningResult();
 };
 
 const onResultModalClose = () => {

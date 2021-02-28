@@ -21,8 +21,10 @@ export const MESSAGE = Object.freeze({
   },
   DUPLICATED_NUMBER_EXIST: '입력된 번호 중 중복된 번호가 존재합니다.',
   NUMBER_RANGE_EXCEEDED: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자만 입력할 수 있습니다.`,
-  SHOULD_INPUT_ALL_NUMBERS:
-    '모든 번호를 입력해주셔야 결과를 확인할 수 있습니다.',
+  SHOULD_FILL_ALL_LOTTO_NUMBERS:
+    '모든 로또번호를 입력해주셔야 로또를 구매할 수 있습니다.',
+    SHOULD_FILL_ALL_WINNING_NUMBERS:
+    '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
 });
 
 export const REWARDS = deepFreeze([

@@ -18,7 +18,9 @@ const message = {
       return MESSAGE.SHOULD_HAVE_PURCHASE_COUNT;
     }
     if (validator.isExceededRemainCount(purchaseCount, remainCount)) {
-      return MESSAGE.GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT_MESSAGE(remainCount);
+      return MESSAGE.GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT_MESSAGE(
+        remainCount,
+      );
     }
 
     return '';
@@ -37,10 +39,16 @@ const message = {
 
   getModalOpenValidation(correctNumbers) {
     if (validator.isEmptyCorrectNumberExist(correctNumbers)) {
-      return MESSAGE.SHOULD_INPUT_ALL_NUMBERS;
+      return MESSAGE.SHOULD_FILL_ALL_WINNING_NUMBERS;
     }
 
     return '';
+  },
+
+  getPurchaseManualLottoValidation(lottoNumbers) {
+    if (validator.isEmptyCorrectNumberExist(lottoNumbers)) {
+      return MESSAGE.SHOULD_FILL_ALL_LOTTO_NUMBERS;
+    }
   },
 };
 
