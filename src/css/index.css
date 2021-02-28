@@ -27,7 +27,7 @@ body {
   display: none;
 }
 
-.lotto-div__ticket {
+.lotto-ticket {
   display: flex;
   vertical-align: middle;
 }

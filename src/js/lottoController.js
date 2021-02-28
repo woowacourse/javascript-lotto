@@ -12,6 +12,9 @@ export default class LottoController {
   }
 
   _initState() {
+    /* TODO Array(n) [Lotto,Lotto] 
+    -> Array(n) [Array,Array]으로 만들어주는 
+    _lottos 내부 메서드 추가예정 */
     this._lottos = [];
     this._winnings = {
       [RANK.FIRST]: 0,
@@ -47,8 +50,17 @@ export default class LottoController {
 
     $(`#${DOM_IDS.APP}`).addEventListener('submit', event => {
       event.preventDefault();
+      if (event.target.closest(`.${DOM_CLASSES.LOTTO_AMOUNT_FORM_MANUAL}`)) {
+        this._handleAmountInput();
+        return;
+      }
+      if (event.target.closest(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`)) {
+        this._handleManualSelect();
+        return;
+      }
       if (event.target.closest(`.${DOM_CLASSES.RESULT_INPUT_FORM}`)) {
         this._handleResultInput();
+        return;
       }
     });
 
@@ -75,13 +87,7 @@ export default class LottoController {
       return;
     }
 
-    this._makeLottos(moneyInput);
-    const numbersBundle = this._lottos.map(lotto => lotto.getNumbers());
-
-    //TODO: 수동 로또 구입 구현
-    this.lottoUI.renderCheckLottoUI(numbersBundle);
-    this.lottoUI.renderResultInputUI();
-    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
+    this.lottoUI.renderLottoAmountUI();
   }
 
   _makeLottos(moneyInput) {
@@ -89,9 +95,34 @@ export default class LottoController {
 
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto();
-      lotto.createNumbers();
+      lotto.setNumbersByAuto();
       this._lottos.push(lotto);
     }
+  }
+
+  _handleAmountInput() {
+    const amount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
+    this.lottoUI.renderManualSelectUI(amount);
+  }
+
+  _handleManualSelect() {
+    const ticketElements = $$(`.${DOM_CLASSES.MANUAL_SELECT_FORM} > .${DOM_CLASSES.CSS_LOTTO_TICKET}`);
+    const numbersBundle =
+      [...ticketElements]
+        .map((ticketElement) =>
+          [...ticketElement.getElementsByClassName(DOM_CLASSES.MANUAL_SELECT_INPUT)]
+            .map((inputElement) =>
+              Number(inputElement.value)));
+
+
+    numbersBundle.forEach((numbers) => {
+      const lotto = new Lotto();
+      lotto.setNumbers(numbers);
+      this._lottos.push(lotto);
+    });
+    this.lottoUI.renderCheckLottoUI(numbersBundle);
+    this.lottoUI.renderResultInputUI();
+    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
   _handleResultInput() {

@@ -26,8 +26,64 @@ export default class LottoUI {
     `;
   }
 
-  renderCheckLottoUI(numbersBundle) {
+  renderLottoAmountUI() {
     $(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).disable();
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`)
+      .insertAdjacentHTML('beforeend', this._getTemplateLottoAmount());
+  }
+
+  _getTemplateLottoAmount() {
+    return `
+    <form class="${DOM_CLASSES.LOTTO_AMOUNT_FORM_MANUAL}">
+      <label> 수동으로 구매할 갯수를 입력해주세요.
+        <p>수동 : <input type="number" class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}" placeholder="수동 구매 갯수"/></p>
+      </label>
+      <button type="submit" class="btn btn-cyan ${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}">확인</button>
+    </form>
+    `
+  }
+
+  renderManualSelectUI(amount) {
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT_MANUAL}`).disable();
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`)
+      .insertAdjacentHTML('beforeend', this._getTemplateManualSelects(amount));
+  }
+
+  _getTemplateManualSelects(amount) {
+    //TODO: form tag의 aria-label 동작하는지 확인해야함
+    const templates = new Array(amount).fill(0).map((template, lottoIdx) =>
+      `<span class= "mx-1 text-4xl ${DOM_CLASSES.CSS_LOTTO_TICKET}">
+        🎟️
+          ${this._getTemplateManualInputs(lottoIdx)}
+        </span>
+      `);
+
+    return `
+    <form aria-label="각 로또 번호를 수동으로 입력해주세요." class="${DOM_CLASSES.MANUAL_SELECT_FORM}">
+      ${templates.join("")}
+      <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MANUAL_SELECT_SUBMIT}">수동구매</button>
+    </form>
+    `
+  }
+
+  _getTemplateManualInputs(lottoIdx) {
+    const templates = new Array(LOTTO_SETTINGS.LOTTO_NUMBER_SIZE).fill(0)
+      .map((template, numberIdx) =>
+        `
+        <input 
+        type="number" 
+        min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
+        max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
+        class="winning-number mx-1 text-center ${DOM_CLASSES.MANUAL_SELECT_INPUT}"
+        aria-label="${lottoIdx + 1}번째 로또 중 ${numberIdx + 1}번째 숫자"
+        required
+        />
+        `);
+    return templates.join('');
+  }
+
+  renderCheckLottoUI(numbersBundle) {
+    $(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`)
       .insertAdjacentHTML('beforeend', this._getTemplateCheckLottoUI(numbersBundle));
   }
@@ -46,7 +102,7 @@ export default class LottoUI {
       </div>
       <div class="d-flex flex-wrap lotto-ticket-container">
       ${numbersBundle.map(numbers => `
-        <span class= "mx-1 text-4xl ${DOM_CLASSES.LOTTO_TICKET}">
+        <span class= "mx-1 text-4xl lotto-ticket ${DOM_CLASSES.LOTTO_TICKET}">
         🎟️
           <span class="${DOM_CLASSES.LOTTO_TICKET_NUMBER}${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : ' hidden'}">
             ${numbers.join(', ')}
@@ -98,8 +154,7 @@ export default class LottoUI {
   }
 
   _getTemplateResultWinningNumbers() {
-    const winningNumberAmount = 6;
-    const templates = new Array(winningNumberAmount).fill(0)
+    const templates = new Array(LOTTO_SETTINGS.LOTTO_NUMBER_SIZE).fill(0)
       .map((template, idx) => `
       <input 
         type="number" 

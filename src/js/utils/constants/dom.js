@@ -9,6 +9,11 @@ export const DOM_CLASSES = {
   LOTTO_AMOUNT_INPUT_MANUAL: 'lotto-amount-form__input--manual',
   LOTTO_AMOUNT_SUBMIT_MANUAL: 'lotto-amount-form__submit--manual',
 
+  MANUAL_SELECT_CONTAINER: 'manual-select-div',
+  MANUAL_SELECT_FORM: 'manual-select-form',
+  MANUAL_SELECT_INPUT: 'manual-select-form__input',
+  MANUAL_SELECT_SUBMIT: 'manual-select-form__submit',
+
   LOTTO_CONTAINER: 'lotto-div',
   LOTTO_SWITCH: 'lotto-div__switch',
   LOTTO_TICKET: 'lotto-div__ticket',
@@ -25,6 +30,8 @@ export const DOM_CLASSES = {
   MODAL_EARNING_RATE: 'modal__earning-rate',
   MODAL_CLOSE: 'modal__close',
   MODAL_RESTART_BUTTON: 'modal__restart-button',
+
+  CSS_LOTTO_TICKET: 'lotto-ticket',
 }
 
 export const DOM_IDS = {
