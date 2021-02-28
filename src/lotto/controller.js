@@ -33,8 +33,10 @@ const getTotalProfit = (rankItemList) => {
 };
 
 const purchaseAutoLottoItems = (count) => {
+  remainLottoCount -= count;
   lottoGame.addLottoItems(count);
   lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
+  lottoGameView.displayRemainLottoNumberCount(remainLottoCount);
 };
 
 const assignResult = (correctNumbers) => {
@@ -83,6 +85,7 @@ const onAutoCount = (e) => {
     $autoCountInput.value = '';
     return;
   }
+  $autoCountInput.value = '';
   purchaseAutoLottoItems(count);
 }
 
