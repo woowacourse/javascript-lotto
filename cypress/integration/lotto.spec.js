@@ -158,6 +158,8 @@ context('로또 UI 테스트', () => {
       cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
       cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
 
+      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`, false);
+      testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
       testChildNodeExistence(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`, false);
     });

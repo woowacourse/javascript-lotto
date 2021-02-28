@@ -36,6 +36,8 @@ export default class LottoController {
     clearInput(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
     $(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).focus();
 
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`).clearChildren();
+    $(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`).clearChildren();
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildren();
     $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildren();
   }
