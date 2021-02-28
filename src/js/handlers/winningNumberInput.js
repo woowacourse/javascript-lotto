@@ -8,14 +8,11 @@ const isValidRange = number => {
   return number >= TICKET_MIN_NUMBER && number <= TICKET_MAX_NUMBER;
 };
 
-const winningNumberInputHandler = ({ target }) => {
-  console.log(target);
-  console.log(target.value);
-
+const inputNumberRangeHandler = ({ target }) => {
   if (target.value.length && !isValidRange(Number(target.value))) {
     alert(EXCEED_RANGE_NUMBER);
     target.value = '';
   }
 };
 
-export default winningNumberInputHandler;
+export default inputNumberRangeHandler;
