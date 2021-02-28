@@ -13,6 +13,11 @@ body {
   margin: 0 auto;
 }
 
+.lotto-number {
+  width: 30px;
+  height: 36px;
+}
+
 .winning-number {
   width: 30px;
   height: 36px;

@@ -5,7 +5,7 @@ import {
   MSG_OVERLAPPED_NUMBERS,
   MSG_SUFFIX,
 } from '../../src/js/lotto/utils/constants.js';
-import { typeInputValue } from '../utils/testInputValue.js';
+import { typeInputValue, testInputValue } from '../utils/testInputValue.js';
 
 describe('Lotto test', () => {
   before(() => {
