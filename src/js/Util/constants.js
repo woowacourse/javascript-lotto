@@ -1,5 +1,6 @@
 export const ELEMENT = {
   PURCHASE_AMOUNT_INPUT: "#purchase-amount-input",
+  AUTO_PURCHASE_INPUT: "#auto-purchase-input",
   PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
 
   PURCHASE_AMOUNT_SUBMIT_BUTTON: "#purchase-amount-submit-button",
@@ -11,11 +12,14 @@ export const ELEMENT = {
   RECEIPT_CONTAINER: "#receipt-container",
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
   WIN_NUMBER_CONTAINER: "#win-number-container",
+  SELF_PURCHASE_CONTAINER: "#self-purchase-container",
+  AUTO_PURCHASE_CONTAINER: "#auto-purchase-container",
 
   BONUS_NUMBER: ".bonus-number",
   WINNING_NUMBER: ".winning-number",
   LOTTO_IMAGE_NUMBER: "#lotto-image-number",
   WINNING_COUNT: ".winning-count",
+  SELF_PURCHASE_LOTTO_NUMBER: ".self-purchase-lotto-number",
 
   TOTAL_EARNING_RATE: "#total-earning-rate",
 
@@ -71,4 +75,6 @@ export const ALERT_MESSAGE = {
   BLANK_FORBIDDEN: "공백은 입력 불가능합니다.",
   OUT_OF_WINNING_NUMBER_RANGE: `${STANDARD_NUMBER.MIN_LOTTO_NUMBER}에서 ${STANDARD_NUMBER.MAX_LOTTO_NUMBER}까지의 숫자만 입력 가능합니다.`,
   DUPLICATED_INPUT_FORBIDDEN: "중복된 값은 입력 불가능합니다.",
+
+  OVER_CURRENT_BALANCE: "구매 가능 금액을 초과하여 구매할 수 없습니다.",
 };

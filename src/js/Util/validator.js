@@ -65,7 +65,7 @@ export const isDuplicatedNumber = (array) => {
 
 export const isUnderCurrentBalance = (currentBalance, autoPurchasePrice) => {
   if (currentBalance < autoPurchasePrice) {
-    alert("구매 가능 금액을 초과하여 구매할 수 없습니다.");
+    alert(ALERT_MESSAGE.OVER_CURRENT_BALANCE);
     return;
   }
 

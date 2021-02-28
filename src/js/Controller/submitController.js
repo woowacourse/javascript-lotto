@@ -36,11 +36,11 @@ export const initializeEvents = () => {
   );
   $(ELEMENT.MODAL_CLOSE).addEventListener("click", closeModal);
   $(ELEMENT.RESTART_BUTTON).addEventListener("click", handleRestartButton);
-  $("#self-purchase-container").addEventListener(
+  $(ELEMENT.SELF_PURCHASE_CONTAINER).addEventListener(
     "submit",
     handleSelfPurchaseSubmit
   );
-  $("#auto-purchase-container").addEventListener(
+  $(ELEMENT.AUTO_PURCHASE_CONTAINER).addEventListener(
     "submit",
     handleAutoPurchaseSubmit
   );
@@ -79,7 +79,7 @@ const handleSelfPurchaseSubmit = (event) => {
   }
 
   const selfPurchaseLottoNumbers = Array.from(
-    $$(".self-purchase-lotto-number")
+    $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)
   ).map((number) => Number(number.value));
 
   if (!isValidNumbers(selfPurchaseLottoNumbers)) {
@@ -91,10 +91,10 @@ const handleSelfPurchaseSubmit = (event) => {
   balance.subtractionSelfPurchaseBalance();
   renderBalance(balance.balance);
 
-  Array.from($$(".self-purchase-lotto-number")).map(
+  Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
     (number) => (number.value = "")
   );
-  $$(".self-purchase-lotto-number")[0].focus();
+  $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
 
   renderTickets(tickets.length);
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
@@ -103,7 +103,7 @@ const handleSelfPurchaseSubmit = (event) => {
 const handleAutoPurchaseSubmit = (event) => {
   event.preventDefault();
 
-  const autoPurchasePrice = $("#auto-purchase-input").value;
+  const autoPurchasePrice = $(ELEMENT.AUTO_PURCHASE_INPUT).value;
 
   if (!isUnderCurrentBalance(balance.balance, autoPurchasePrice)) {
     clearAutoPurchaseInput();
@@ -123,8 +123,8 @@ const handleAutoPurchaseSubmit = (event) => {
   );
 
   renderTickets(tickets.length);
-  $("#auto-purchase-input").value = "";
-  $("#auto-purchase-input").focus();
+  $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
+  $(ELEMENT.AUTO_PURCHASE_INPUT).focus();
 };
 
 const renderTickets = (ticketCount) => {
@@ -205,12 +205,12 @@ const clearWinningBonusNumber = () => {
 };
 
 const clearSelfPurchaseInput = () => {
-  Array.from($$(".self-purchase-lotto-number")).map(
+  Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
     (number) => (number.value = "")
   );
-  $$(".self-purchase-lotto-number")[0].focus();
+  $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
 };
 
 const clearAutoPurchaseInput = () => {
-  $("#auto-purchase-input").value = "";
+  $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
 };

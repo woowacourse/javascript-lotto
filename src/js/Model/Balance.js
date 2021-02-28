@@ -1,3 +1,5 @@
+import { STANDARD_NUMBER } from "../Util/constants.js";
+
 class Balance {
   constructor() {
     this.balance = 0;
@@ -10,7 +12,7 @@ class Balance {
   }
 
   subtractionSelfPurchaseBalance() {
-    this.balance -= 1000;
+    this.balance -= STANDARD_NUMBER.ONE_TICKET_PRICE;
   }
 
   subtractionAutoPurchaseBalance(autoPurchasePrice) {
