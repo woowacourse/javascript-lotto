@@ -1,15 +1,25 @@
 import { lotto } from '../model/lotto.js';
 import $ from '../lib/utils/dom.js';
-import { LESS_THAN_TICKET_PRICE_MESSAGE } from '../lib/constants/alertMessage.js';
+import {
+  DUPLICATE_WINNING_NUMBER,
+  LESS_THAN_TICKET_PRICE_MESSAGE,
+} from '../lib/constants/alertMessage.js';
 import { TICKET_PRICE } from '../lib/constants/lotto.js';
-import { getTicketNumber } from '../lib/utils/lotto.js';
+import {
+  getSliceArrayByLottoLength,
+  getTicketNumber,
+} from '../lib/utils/lotto.js';
 import { money } from '../model/money.js';
 import {
   createTicketTemplate,
   createAutoPurchaseTemplate,
   createManualPurchaseTemplate,
   createManualInputTemplate,
+  createWinningNumberInputTemplate,
 } from '../lib/utils/template.js';
+import { hasDuplicate } from '../lib/utils/validation.js';
+import inputNumberRangeHandler from './winningNumberInput.js';
+import winningNumberSubmitHandler from './winningNumberSubmit.js';
 
 const updateTicketListView = tickets => {
   const ticketsTemplate = tickets.reduce(
@@ -54,36 +64,42 @@ const lottoPurchaseHandler = event => {
   lotto.setTickets(autoTickets);
 
   updateTicketListView(lotto.tickets);
+
+  $('#ticket-list').insertAdjacentHTML(
+    'afterend',
+    createWinningNumberInputTemplate()
+  );
+  $('#winning-number-form').addEventListener('change', inputNumberRangeHandler);
+  $('#winning-number-form').addEventListener(
+    'submit',
+    winningNumberSubmitHandler
+  );
+
   focusFirstWinningNumberInput();
 };
 
 const buyManualNumber = event => {
   event.preventDefault();
+  const manualInputArray = [...event.target.elements].slice(
+    0,
+    event.target.elements.length - 1
+  );
 
-  const { first, second, third, fourth, fifth, sixth } = event.target.elements;
+  const manualInputValueArray = manualInputArray.reduce((acc, cur) => {
+    acc.push(Number(cur.value));
+    return acc;
+  }, []);
 
-  if (event.target.elements.length - 1 !== 6) {
-    for (let i = 0; i < (event.target.elements.length - 1) / 6; i++) {
-      const manualArray = [
-        Number(first[i].value),
-        Number(second[i].value),
-        Number(third[i].value),
-        Number(fourth[i].value),
-        Number(fifth[i].value),
-        Number(sixth[i].value),
-      ];
-      lotto.tickets.push(manualArray);
-    }
-  } else {
-    lotto.tickets.push([
-      Number(first.value),
-      Number(second.value),
-      Number(third.value),
-      Number(fourth.value),
-      Number(fifth.value),
-      Number(sixth.value),
-    ]);
+  const validManualInputArray = getSliceArrayByLottoLength(
+    manualInputValueArray
+  ).filter(ticket => !hasDuplicate(ticket));
+
+  if (validManualInputArray.length === 0) {
+    alert(DUPLICATE_WINNING_NUMBER);
+    return;
   }
+
+  lotto.tickets = validManualInputArray;
 
   const newAvailableAmount = money.totalAmount / TICKET_PRICE;
   if (newAvailableAmount === 0) {
@@ -120,12 +136,17 @@ const manualPurchaseHandler = event => {
     'afterend',
     createManualInputTemplate(manualPurchaseAmount)
   );
+
+  $('#manual-number-form').addEventListener('change', inputNumberRangeHandler);
   $('#manual-number-form').addEventListener('submit', buyManualNumber);
+
+  $('.manual-number').length === 6
+    ? $('.manual-number[name=first]').focus()
+    : $('.manual-number[name=first]')[0].focus();
 };
 
 const purchaseAmountHandler = event => {
   event.preventDefault();
-
   money.totalAmount = Number(event.target.elements['payment-input'].value);
 
   if (money.totalAmount < TICKET_PRICE) {

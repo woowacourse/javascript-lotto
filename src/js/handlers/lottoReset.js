@@ -12,7 +12,14 @@ const clearLottoApp = () => {
   $('#auto-purchase-form').reset();
   $('#winning-number-form').reset();
 
+  $('button[name=payment-button]').disabled = false;
+  $('#manual-purchase-form').parentNode.removeChild($('#manual-purchase-form'));
+  $('#manual-number-form').parentNode.removeChild($('#manual-number-form'));
+  $('#auto-purchase-form').parentNode.removeChild($('#auto-purchase-form'));
+  $('#winning-number-form').parentNode.removeChild($('#winning-number-form'));
+
   $('#toggle-detail-mode').classList.add('hide');
+  $('input[name=payment-input]').focus();
 };
 
 const lottoResetHandler = () => {
