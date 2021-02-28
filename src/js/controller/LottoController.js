@@ -9,11 +9,13 @@ export class LottoController {
   initEvent() {
     this.$purchaseAmountForm = $('#purchase-amount-form');
     this.$lottoToggle = $('#lotto-numbers-toggle-button');
-    this.$winningNumberInputs = $('[data-winning-number]');
+    this.$winningNumberInputs = $('.lotto-number');
     this.$resultForm = $('#lotto-result-form');
     this.$modal = $('#modal');
     this.$modalClose = $('#modal-close');
     this.$resetButton = $('#reset-button');
+    this.$autoAmountPurchaseForm = $('#auto-amount-purchase-form');
+    this.$manualPurchaseForm = $('#manual-purchase-form');
 
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
     this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
@@ -21,6 +23,8 @@ export class LottoController {
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
     this.$modalClose.setEvent('click', () => this.$modal.removeClass('open'));
     this.$resetButton.setEvent('click', this.reset.bind(this));
+    this.$autoAmountPurchaseForm.setEvent('submit', this.handleAutoAmountInput.bind(this));
+    this.$manualPurchaseForm.setEvent('submit', this.handleManualInputs.bind(this));
   }
 
   handlePurchaseAmountInput(event) {
@@ -37,7 +41,6 @@ export class LottoController {
     }
 
     this.machine.insert(money);
-    this.machine.publishLottosByAuto();
     this.view.renderLottoSection(this.machine.lottos);
     this.$purchaseAmountInput.disable();
     this.$purchaseAmountSubmit.disable();
@@ -48,14 +51,54 @@ export class LottoController {
     $input.setValue('');
   }
 
+  handleAutoAmountInput(event) {
+    event.preventDefault();
+    this.$autoAmountInput = $('#auto-amount-input');
+    const leftMoney = this.machine.currentMoney;
+    const autoAmount = Number(this.$autoAmountInput.getValue());
+    const alertMessage = validator.autoPurchase(leftMoney, autoAmount);
+    if (alertMessage) {
+      this.handleInputException(this.$autoAmountInput, alertMessage);
+
+      return;
+    }
+    this.$autoAmountInput.setValue('');
+    this.machine.publishLottosByAuto(autoAmount);
+    this.view.renderLottoSection(this.machine.lottos);
+  }
+
+  handleManualInputs(event) {
+    event.preventDefault();
+    this.$manualInputs = $('[data-manual-lotto-number]');
+    const leftMoney = this.machine.currentMoney;
+    const manualNumbers = this.$manualInputs.map(input => input.value);
+    const alertMessage = validator.manualPurchase(leftMoney);
+
+    if (alertMessage) {
+      this.handleInputException(this.$manualAmountInput, alertMessage);
+
+      return;
+    }
+    this.$manualInputs.setValue('');
+    this.machine.publishLottoByManual(manualNumbers);
+    this.view.renderLottoSection(this.machine.lottos);
+  }
+
   handleLottoToggle() {
     this.$lottoContainer = $('#lotto-container');
-    this.$lottoNumbers = $('[data-lotto-numbers]');
+    this.$lottoNumbers = document.getElementsByClassName('lotto-numbers');
 
     this.$lottoContainer.toggleClass('flex-col'); // toggle()을 이용해 flex direction 변경.
-    this.$lottoToggle.isCheckedInput() //
-      ? this.$lottoNumbers.show()
-      : this.$lottoNumbers.hide();
+
+    if (this.$lottoToggle.isCheckedInput()) {
+      Array.from(this.$lottoNumbers).forEach(lottoNumber => {
+        lottoNumber.style.display = 'block';
+      });
+    } else {
+      Array.from(this.$lottoNumbers).forEach(lottoNumber => {
+        lottoNumber.style.display = 'none';
+      });
+    }
   }
 
   handleLengthLimit({ target, target: { value } }) {
