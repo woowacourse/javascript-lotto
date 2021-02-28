@@ -56,32 +56,20 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
     checkInvalid(200, '값은 1000 이상이어야 합니다.');
 
     cy.get('#purchased-lottos').should('not.be.visible');
-<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('not.be.visible');
-=======
-    cy.get('#input-winning-nums').should('not.be.visible');
->>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('로또 구입 금액은 최대 100,000원으로 제한한다.', () => {
     checkInvalid(120000, '값은 100000 이하여야 합니다.');
 
     cy.get('#purchased-lottos').should('not.be.visible');
-<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('not.be.visible');
-=======
-    cy.get('#input-winning-nums').should('not.be.visible');
->>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('로또 구입 금액은 1,000원 단위여야 한다.', () => {
     exceptionAlert(1200, '로또 구입 금액을 1,000원 단위로 입력해 주세요.');
     cy.get('#purchased-lottos').should('not.be.visible');
-<<<<<<< HEAD
     cy.get('#winning-numbers-form').should('not.be.visible');
-=======
-    cy.get('#input-winning-nums').should('not.be.visible');
->>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   });
 
   it('수동 구매 시 로또 번호에는 중복된 숫자를 입력할 수 없다.', () => {

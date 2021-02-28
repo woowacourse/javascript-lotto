@@ -6,17 +6,8 @@ import {
   isUniqueManualNumber,
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
-<<<<<<< HEAD
-import { $ } from './utils/dom.js';
 import LottoProcessor from './utils/lottoProcessor.js';
-=======
 import { $ } from './utils/selector.js';
-import {
-  compareNumbers,
-  calculateEarningRate,
-  countByRank,
-} from './utils/utils.js';
->>>>>>> 739d581... feat: show manual input form when choose manual purchase
 
 import PurchaseTypeSelectView from './views/PurchaseTypeSelectView.js';
 import InputPriceView from './views/InputPriceView.js';
@@ -32,11 +23,7 @@ export default class LottoController {
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.manualInputView = new ManualInputView($('#manual-input-wrapper'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
-<<<<<<< HEAD
     this.winningResultView = new WinningResultView($('#winning-numbers-form'));
-=======
-    this.winningResultView = new WinningResultView($('#input-winning-nums'));
->>>>>>> 56b3a9e... refactor: rename lotto-input-nums to lotto-winning-nums
   }
 
   init() {
