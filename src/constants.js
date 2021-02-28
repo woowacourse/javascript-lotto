@@ -19,10 +19,10 @@ export const MESSAGE = Object.freeze({
   GET_SHOULD_FILL_LESS_THAN_REMAIN_COUNT(remainCount) {
     return `${remainCount}개 이하로만 구매할 수 있습니다.`;
   },
-  DUPLICATED_NUMBER_EXIST_MESSAGE: '당첨번호들 중 중복된 숫자가 존재합니다.',
-  NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자들만 당첨번호로 입력해주세요`,
+  DUPLICATED_NUMBER_EXIST_MESSAGE: '입력된 번호 중 중복된 번호가 존재합니다.',
+  NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자만 입력할 수 있습니다.`,
   SHOULD_INPUT_ALL_NUMBERS_MESSAGE:
-    '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
+    '모든 번호를 입력해주셔야 결과를 확인할 수 있습니다.',
 });
 
 export const REWARDS = deepFreeze([
