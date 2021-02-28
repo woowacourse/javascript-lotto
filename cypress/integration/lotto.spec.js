@@ -69,6 +69,11 @@ describe("ui-play", () => {
     cy.get(SELECTOR.WINNING_SECTION).children().should("not.exist")
   })
 
+  it("금액을 입력하고 버튼을 클릭하면 수동 구매 영역이 보여진다", () => {
+    submitBuy(5000)
+    cw.get("buy-method").children().should("exist")
+  })
+
   it("금액을 입력하고 버튼을 클릭하면 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
     submitBuy(5000)
     cy.get(SELECTOR.POCKET_SECTION).children().should("exist")
