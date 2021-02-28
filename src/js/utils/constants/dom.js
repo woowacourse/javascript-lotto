@@ -4,6 +4,11 @@ export const DOM_CLASSES = {
   MONEY_FORM_INPUT: 'money-input-form__input',
   MONEY_FORM_SUBMIT: 'money-input-form__submit',
 
+  LOTTO_AMOUNT_CONTAINER: 'lotto-amount-div',
+  LOTTO_AMOUNT_FORM_MANUAL: 'lotto-amount-form--manual',
+  LOTTO_AMOUNT_INPUT_MANUAL: 'lotto-amount-form__input--manual',
+  LOTTO_AMOUNT_SUBMIT_MANUAL: 'lotto-amount-form__submit--manual',
+
   LOTTO_CONTAINER: 'lotto-div',
   LOTTO_SWITCH: 'lotto-div__switch',
   LOTTO_TICKET: 'lotto-div__ticket',

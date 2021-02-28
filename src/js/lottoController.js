@@ -77,6 +77,8 @@ export default class LottoController {
 
     this._makeLottos(moneyInput);
     const numbersBundle = this._lottos.map(lotto => lotto.getNumbers());
+
+    //TODO: 수동 로또 구입 구현
     this.lottoUI.renderCheckLottoUI(numbersBundle);
     this.lottoUI.renderResultInputUI();
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
