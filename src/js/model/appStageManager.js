@@ -2,9 +2,10 @@ import LottoTicket from './LottoTicket.js';
 import { getRateOfReturn } from '../utils/general.js';
 import {
   APP_INIT,
-  PURCHASE_AMOUNT_COMPLETED,
-  PURCHASE_OPTION_COMPLETED,
-  WINNING_NUMBER_COMPLETED,
+  PURCHASE_AMOUNT_SUBMITTED,
+  TICKET_ISSUE_REQUESTED,
+  TICKET_ISSUE_COMPLETED,
+  WINNING_NUMBER_SUBMITTED,
   RESULT_REQUESTED,
   APP_RESET,
 } from '../constants/appStages.js';
@@ -19,9 +20,10 @@ export default class AppStageManager {
     this.rateOfReturn = 0;
 
     this.subscribers = {
-      [PURCHASE_AMOUNT_COMPLETED]: [],
-      [PURCHASE_OPTION_COMPLETED]: [],
-      [WINNING_NUMBER_COMPLETED]: [],
+      [PURCHASE_AMOUNT_SUBMITTED]: [],
+      [TICKET_ISSUE_REQUESTED]: [],
+      [TICKET_ISSUE_COMPLETED]: [],
+      [WINNING_NUMBER_SUBMITTED]: [],
       [RESULT_REQUESTED]: [],
       [APP_RESET]: [],
     };
@@ -42,7 +44,10 @@ export default class AppStageManager {
   }
 
   createTickets() {
-    this.lottoTickets = [...Array(this.numOfLotto)].map(() => new LottoTicket());
+    const numToCreate = this.numOfLotto - this.lottoTickets.length;
+
+    this.lottoTickets = [...this.lottoTickets, ...Array(numToCreate)].map(() => new LottoTicket());
+    this.setStates({ stage: TICKET_ISSUE_COMPLETED });
   }
 
   scoreTickets() {
@@ -61,16 +66,13 @@ export default class AppStageManager {
   }
 
   selfSubscribe() {
-    this.subscribe(PURCHASE_AMOUNT_COMPLETED, this.createTickets.bind(this));
-    this.subscribe(WINNING_NUMBER_COMPLETED, this.scoreTickets.bind(this));
-    this.subscribe(WINNING_NUMBER_COMPLETED, this.calculateRateOfReturn.bind(this));
+    this.subscribe(TICKET_ISSUE_REQUESTED, this.createTickets.bind(this));
+    this.subscribe(WINNING_NUMBER_SUBMITTED, this.scoreTickets.bind(this));
+    this.subscribe(WINNING_NUMBER_SUBMITTED, this.calculateRateOfReturn.bind(this));
     this.subscribe(APP_RESET, this.resetStates.bind(this));
   }
 
   setStates({ stage, numOfLotto, lottoTickets, winningNumber }) {
-    if (lottoTickets) {
-      console.log(lottoTickets);
-    }
     this.stage = stage ?? this.stage;
     this.numOfLotto = numOfLotto ?? this.numOfLotto;
     this.lottoTickets = lottoTickets ?? this.lottoTickets;

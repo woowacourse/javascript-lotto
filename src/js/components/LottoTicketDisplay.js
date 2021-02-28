@@ -1,5 +1,5 @@
 import { $ } from '../utils/DOM.js';
-import { APP_RESET, PURCHASE_OPTION_COMPLETED } from '../constants/appStages.js';
+import { APP_RESET, TICKET_ISSUE_COMPLETED } from '../constants/appStages.js';
 import { PURCHASED_QUANTITY_MESSAGE } from '../constants/display.js';
 import { getLottoTicketHTML } from '../layouts/ticket.js';
 
@@ -20,7 +20,7 @@ export default class LottoTicketDisplay {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_OPTION_COMPLETED, this.renderTicketDisplay.bind(this));
+    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.renderTicketDisplay.bind(this));
     this.stageManager.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
   }
 

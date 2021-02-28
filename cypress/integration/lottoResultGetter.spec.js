@@ -1,7 +1,7 @@
 import AppStageManager from '../../src/js/model/AppStageManager.js';
 import LottoTicket from '../../src/js/model/LottoTicket.js';
 import { BONUS_COUNT } from '../../src/js/constants/lottoRules.js';
-import { WINNING_NUMBER_COMPLETED } from '../../src/js/constants/appStages.js';
+import { WINNING_NUMBER_SUBMITTED } from '../../src/js/constants/appStages.js';
 
 describe('당첨통계 계산 메서드 검사', () => {
   before(() => {
@@ -46,7 +46,7 @@ describe('당첨통계 계산 메서드 검사', () => {
   it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
     const lottoTickets = [...Array(5)].map(() => new LottoTicket([7, 8, 9, 10, 11, 12]));
 
-    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    lottoManager.setStates({ stage: WINNING_NUMBER_SUBMITTED, lottoTickets, winningNumber });
     expect(lottoManager.rateOfReturn).to.equal(-100);
   });
 
@@ -55,7 +55,7 @@ describe('당첨통계 계산 메서드 검사', () => {
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 7, 8, 9]));
 
-    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    lottoManager.setStates({ stage: WINNING_NUMBER_SUBMITTED, lottoTickets, winningNumber });
     expect(lottoManager.rateOfReturn).to.equal(0);
   });
 
@@ -64,7 +64,7 @@ describe('당첨통계 계산 메서드 검사', () => {
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 4, 5, 6]));
 
-    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    lottoManager.setStates({ stage: WINNING_NUMBER_SUBMITTED, lottoTickets, winningNumber });
     expect(lottoManager.rateOfReturn).to.equal(39999900);
   });
 
@@ -73,7 +73,7 @@ describe('당첨통계 계산 메서드 검사', () => {
       .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
       .concat(new LottoTicket([1, 2, 3, 11, 12, 13]));
 
-    lottoManager.setStates({ stage: WINNING_NUMBER_COMPLETED, lottoTickets, winningNumber });
+    lottoManager.setStates({ stage: WINNING_NUMBER_SUBMITTED, lottoTickets, winningNumber });
     expect(lottoManager.rateOfReturn).to.equal(-61.54);
   });
 });

@@ -3,8 +3,8 @@ import { hasElementOutOfRange, isShortLength, hasDuplicatedElement } from '../ut
 import {
   APP_RESET,
   RESULT_REQUESTED,
-  PURCHASE_OPTION_COMPLETED,
-  WINNING_NUMBER_COMPLETED,
+  TICKET_ISSUE_COMPLETED,
+  WINNING_NUMBER_SUBMITTED,
 } from '../constants/appStages.js';
 import { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, TOTAL_NUMBERS_LENGTH } from '../constants/lottoRules.js';
 import { WINNING_NUMBER_CHECK_MESSAGE } from '../constants/display.js';
@@ -29,7 +29,7 @@ export default class WinningNumberInput {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_OPTION_COMPLETED, this.renderForm.bind(this));
+    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.renderForm.bind(this));
     this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
   }
 
@@ -59,7 +59,7 @@ export default class WinningNumberInput {
       return;
     }
     this.stageManager.setStates({
-      stage: WINNING_NUMBER_COMPLETED,
+      stage: WINNING_NUMBER_SUBMITTED,
       winningNumber: {
         winningNumbers: winningNumbers.map((v) => Number(v)),
         bonusNumber: Number(bonusNumber),

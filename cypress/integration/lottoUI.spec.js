@@ -194,6 +194,8 @@ describe('발급한 로또 UI 검사', () => {
     cy.get('.purchase-amount-input')
       .type(LOTTO_PRICE * numOfLotto)
       .type('{enter}');
+    cy.get('.ticket-issue-button').click();
+    cy.on('window:confirm', () => true);
     cy.get('.purchased-lotto-section').should('be.visible');
     cy.get('.purchased-lotto-label').should('have.text', PURCHASED_QUANTITY_MESSAGE(numOfLotto));
     cy.get('.lotto-ticket-container > li').should('have.length', numOfLotto);
@@ -217,21 +219,6 @@ describe('발급한 로또 UI 검사', () => {
         expect(Number(lottoNumber)).to.be.within(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
       });
     });
-  });
-
-  it('로또를 재구입하면 기존에 구매한 로또를 삭제하고 새로 구매한 로또를 보여준다.', () => {
-    const nextNumOfLotto = numOfLotto * 2;
-
-    cy.get('.purchase-amount-input')
-      .clear()
-      .type(LOTTO_PRICE * nextNumOfLotto);
-    cy.get('.purchase-amount-button').click();
-    cy.get('.lotto-ticket-container > li').should('have.length', nextNumOfLotto);
-  });
-
-  it('번호보기 토글이 활성화된 상태에서 재구입을 하면, 토글 상태가 변하지 않고 새로 구매한 로또번호를 보여준다.', () => {
-    cy.get('.lotto-numbers-toggle-button').should('be.checked');
-    cy.get('.lotto-numbers').should('be.visible');
   });
 
   it('번호보기 토글이 활성화된 상태에서 토글을 누르면, 로또 아이콘이 가로로 배치되고 로또 번호가 사라진다.', () => {
@@ -339,6 +326,7 @@ describe('당첨 결과 모달 UI 검사', () => {
     const { winningNumbers, bonusNumber } = winningNumber;
 
     cy.get('.purchase-amount-input').type(LOTTO_PRICE).type('{enter}');
+    cy.get('.ticket-issue-button').click();
     cy.get('.winning-number').each(($el, index) => {
       cy.wrap($el).type(winningNumbers[index]);
     });

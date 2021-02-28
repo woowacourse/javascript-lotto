@@ -1,5 +1,5 @@
 import { $, clearInputValue, disable, enable } from '../utils/DOM.js';
-import { PURCHASE_AMOUNT_COMPLETED, APP_RESET } from '../constants/appStages.js';
+import { PURCHASE_AMOUNT_SUBMITTED, APP_RESET } from '../constants/appStages.js';
 import { MONETARY_UNIT, LOTTO_PRICE } from '../constants/lottoRules.js';
 import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
 
@@ -20,7 +20,7 @@ export default class PurchaseAmountInput {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.deactivate.bind(this));
+    this.stageManager.subscribe(PURCHASE_AMOUNT_SUBMITTED, this.deactivate.bind(this));
     this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
   }
 
@@ -69,7 +69,7 @@ export default class PurchaseAmountInput {
       alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
     this.stageManager.setStates({
-      stage: PURCHASE_AMOUNT_COMPLETED,
+      stage: PURCHASE_AMOUNT_SUBMITTED,
       numOfLotto: (purchaseAmount - change) / LOTTO_PRICE,
     });
   }
