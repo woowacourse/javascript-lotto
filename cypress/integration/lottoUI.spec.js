@@ -123,7 +123,7 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.manual-quantity').should('have.text', numOfLotto);
   });
 
-  it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화된다.', () => {
+  it('남은 자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화된다.', () => {
     cy.get('.paper-add-button').should('be.disabled');
   });
 

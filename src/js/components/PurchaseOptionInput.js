@@ -1,6 +1,6 @@
 import { PURCHASE_AMOUNT_COMPLETED } from '../constants/appStages.js';
 import { getSelectPaperHTML } from '../layouts/selectPaper.js';
-import { $, $$, select, unselect, show } from '../utils/DOM.js';
+import { $, select, unselect, show, enable, disable } from '../utils/DOM.js';
 
 export default class PurchaseOptionInput {
   constructor({ stageManager }) {
@@ -78,5 +78,6 @@ export default class PurchaseOptionInput {
     this.autoQuantity = Number(autoQuantity);
     this.manualQuantity = Number(manualQuantity);
     this.renderQuantitySummary();
+    this.autoQuantity === 0 ? disable(this.$paperAddButton) : enable(this.$paperAddButton);
   }
 }
