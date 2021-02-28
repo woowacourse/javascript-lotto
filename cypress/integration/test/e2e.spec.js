@@ -58,7 +58,7 @@ context("e2e test", () => {
       .click()
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(
-          ALERT_MESSAGE.INVALID_MONEY_RANGE
+          ALERT_MESSAGE.OUT_OF_MONEY_RANGE
         );
       });
     cy.reload();
@@ -68,7 +68,7 @@ context("e2e test", () => {
       .click()
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(
-          ALERT_MESSAGE.INVALID_MONEY_RANGE
+          ALERT_MESSAGE.OUT_OF_MONEY_RANGE
         );
       });
   });
@@ -82,7 +82,9 @@ context("e2e test", () => {
     cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(
+          ALERT_MESSAGE.STRING_AND_BLANK_FORBIDDEN
+        );
       });
     cy.reload();
 
@@ -90,14 +92,18 @@ context("e2e test", () => {
     cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(
+          ALERT_MESSAGE.STRING_AND_BLANK_FORBIDDEN
+        );
       });
     cy.reload();
 
     cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(
+          ALERT_MESSAGE.STRING_AND_BLANK_FORBIDDEN
+        );
       });
     cy.reload();
 
@@ -105,7 +111,9 @@ context("e2e test", () => {
     cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_NUMBER);
+        expect(stub.getCall(0)).to.be.calledWith(
+          ALERT_MESSAGE.STRING_AND_BLANK_FORBIDDEN
+        );
       });
   });
 

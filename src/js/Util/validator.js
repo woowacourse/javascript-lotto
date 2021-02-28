@@ -2,11 +2,11 @@ import { ALERT_MESSAGE, STANDARD_NUMBER } from "./constants.js";
 
 export const isValidMoney = (money) => {
   if (isInValidNumber(money)) {
-    alert(ALERT_MESSAGE.INVALID_NUMBER);
+    alert(ALERT_MESSAGE.STRING_AND_BLANK_FORBIDDEN);
     return false;
   }
   if (isInvalidPriceRange(money)) {
-    alert(ALERT_MESSAGE.INVALID_MONEY_RANGE);
+    alert(ALERT_MESSAGE.OUT_OF_MONEY_RANGE);
     return false;
   }
   if (isNotThousandMultiples(money)) {
@@ -33,15 +33,15 @@ const isInValidNumber = (money) => {
 
 export const isValidWinningNumbers = (array) => {
   if (isBlankIncluded(array)) {
-    alert(ALERT_MESSAGE.BLANK_INCLUDED);
+    alert(ALERT_MESSAGE.BLANK_FORBIDDEN);
     return;
   }
   if (isInvalidLottoNumberRange(array)) {
-    alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
+    alert(ALERT_MESSAGE.OUT_OF_WINNING_NUMBER_RANGE);
     return;
   }
   if (isDuplicatedNumber(array)) {
-    alert(ALERT_MESSAGE.DUPLICATED_WINNING_NUMBER);
+    alert(ALERT_MESSAGE.DUPLICATED_INPUT_FORBIDDEN);
     return;
   }
   return true;
