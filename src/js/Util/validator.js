@@ -62,3 +62,12 @@ export const isInvalidLottoNumberRange = (array) => {
 export const isDuplicatedNumber = (array) => {
   return array.length !== new Set(array).size;
 };
+
+export const isUnderCurrentBalance = (currentBalance, autoPurchasePrice) => {
+  if (currentBalance < autoPurchasePrice) {
+    alert("구매 가능 금액을 초과하여 구매할 수 없습니다.");
+    return;
+  }
+
+  return true;
+};

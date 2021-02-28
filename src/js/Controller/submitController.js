@@ -1,6 +1,10 @@
 import { ELEMENT, STANDARD_NUMBER } from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
-import { isValidMoney, isValidNumbers } from "../Util/validator.js";
+import {
+  isValidMoney,
+  isValidNumbers,
+  isUnderCurrentBalance,
+} from "../Util/validator.js";
 import {
   printPurchaseAmountLabel,
   printTicketHorizontal,
@@ -71,11 +75,19 @@ const renderPurchaseSection = () => {
 const handleSelfPurchaseSubmit = (event) => {
   event.preventDefault();
 
+  if (
+    !isUnderCurrentBalance(balance.balance, STANDARD_NUMBER.ONE_TICKET_PRICE)
+  ) {
+    clearSelfPurchaseInput();
+    return;
+  }
+
   const selfPurchaseLottoNumbers = Array.from(
     $$(".self-purchase-lotto-number")
   ).map((number) => Number(number.value));
 
   if (!isValidNumbers(selfPurchaseLottoNumbers)) {
+    clearSelfPurchaseInput();
     return;
   }
   const tickets = ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
@@ -97,7 +109,13 @@ const handleAutoPurchaseSubmit = (event) => {
 
   const autoPurchasePrice = $("#auto-purchase-input").value;
 
+  if (!isUnderCurrentBalance(balance.balance, autoPurchasePrice)) {
+    clearAutoPurchaseInput();
+    return;
+  }
+
   if (!isValidMoney(autoPurchasePrice)) {
+    clearAutoPurchaseInput();
     return;
   }
 
@@ -187,4 +205,15 @@ const clearWinningBonusNumber = () => {
   Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
   $(ELEMENT.BONUS_NUMBER).value = "";
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
+};
+
+const clearSelfPurchaseInput = () => {
+  Array.from($$(".self-purchase-lotto-number")).map(
+    (number) => (number.value = "")
+  );
+  $$(".self-purchase-lotto-number")[0].focus();
+};
+
+const clearAutoPurchaseInput = () => {
+  $("#auto-purchase-input").value = "";
 };
