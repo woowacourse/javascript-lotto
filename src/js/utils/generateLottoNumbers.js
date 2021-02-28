@@ -1,14 +1,15 @@
-const MIN = 1;
-const MAX = 45;
+import { Lotto } from "../models/index.js";
 
-const getRandomNumber = () => Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
+const getRandomNumber = () =>
+  Math.floor(
+    Math.random() * (Lotto.MAX_NUMBER - Lotto.MIN_NUMBER + 1) + Lotto.MIN_NUMBER
+  );
 
 export const generateLottoNumbers = () => {
-  const randomNumbers = [];
-  while (randomNumbers.length < 6) {
-    const randomNumber = getRandomNumber();
-    if (!randomNumbers.includes(randomNumber)) randomNumbers.push(randomNumber);
+  const randomNumbers = new Set();
+  while (randomNumbers.size < Lotto.NUMBERS_LENGTH) {
+    randomNumbers.add(getRandomNumber());
   }
 
-  return randomNumbers;
+  return [...randomNumbers];
 };
