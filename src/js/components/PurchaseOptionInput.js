@@ -141,6 +141,8 @@ export default class PurchaseOptionInput {
   }
 
   reset() {
+    hide(this.$purchaseOptionSection);
+    hide(this.$ticketIssueButton);
     this.setState({ autoQuantity: 0, manualQuantity: 0, papers: [], maxIndex: 0 });
   }
 
