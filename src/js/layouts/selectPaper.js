@@ -1,4 +1,4 @@
-const getSelectPaperItemHTML = ({ index }) => {
+const getSelectPaperItemHTML = (index) => {
   return `
   <li>
     <label>
@@ -9,13 +9,19 @@ const getSelectPaperItemHTML = ({ index }) => {
   `;
 };
 
-export const getSelectPaperHTML = () => {
+const getApplyQuantitySelectHTML = (quantity) => {
+  return quantity === 1
+    ? `<option value="${quantity}" selected>${quantity}장</option>`
+    : `<option value="${quantity}">${quantity}장</option>`;
+};
+
+export const getSelectPaperHTML = (maxQuantity) => {
   return `
   <div class="number-selectors d-flex flex-col">
     <div class="apply-quantity mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
       <select class="apply-quantity-select">
-        <option class="selected" value="1">1장</option>
+        ${[...Array(maxQuantity)].map((_, i) => getApplyQuantitySelectHTML(i + 1)).join('')}
       </select>
     </div>
     <ul class="select-paper m-0 p-0">

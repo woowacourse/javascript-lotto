@@ -3,6 +3,7 @@ import { getRateOfReturn } from '../utils/general.js';
 import {
   APP_INIT,
   PURCHASE_AMOUNT_COMPLETED,
+  PURCHASE_OPTION_COMPLETED,
   WINNING_NUMBER_COMPLETED,
   RESULT_REQUESTED,
   APP_RESET,
@@ -19,6 +20,7 @@ export default class AppStageManager {
 
     this.subscribers = {
       [PURCHASE_AMOUNT_COMPLETED]: [],
+      [PURCHASE_OPTION_COMPLETED]: [],
       [WINNING_NUMBER_COMPLETED]: [],
       [RESULT_REQUESTED]: [],
       [APP_RESET]: [],

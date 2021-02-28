@@ -10,7 +10,7 @@ import {
   LOTTO_NUMBER_SEPARATOR,
   PURCHASE_AMOUNT_ALERT_MESSAGE,
   WINNING_NUMBER_CHECK_MESSAGE,
-  MANUAL_SELECT_REQUEST_MESSAGE,
+  MANUAL_SELECT_CHECK_MESSAGE,
   TICKET_ISSUE_CONFIRM_MESSAGE,
 } from '../../src/js/constants/display.js';
 
@@ -53,7 +53,7 @@ describe('구매금액 입력 UI 검사', () => {
     cy.get('.purchase-amount-input').should('have.focus');
   });
 
-  it('입력된 로또 구입 금액이 로또 한 장의 금액으로 나누어 떨어지지 않을 경우 alert으로 거스름돈 금액을 알려주고 수동/자동구매 화면을 표시한다.', () => {
+  it('입력된 로또 구입 금액이 로또 한 장의 금액으로 나누어 떨어지지 않을 경우 alert으로 거스름돈 금액을 알려주고 구입금액 입력을 비활성화한다.', () => {
     const amountWithChange = Math.ceil(LOTTO_PRICE * 1.1);
     const { PURCHASE_AMOUNT_HAS_CHANGE } = PURCHASE_AMOUNT_ALERT_MESSAGE;
     const alertStub = cy.stub();
@@ -67,7 +67,6 @@ describe('구매금액 입력 UI 검사', () => {
         const actualMessage = alertStub.getCall(0).lastArg;
         expect(actualMessage).to.equal(PURCHASE_AMOUNT_HAS_CHANGE(change));
       });
-    cy.get('.ticket-issue-section').should('be.visible');
     cy.get('.purchase-amount-button').should('be.disabled');
   });
 });
@@ -95,7 +94,7 @@ describe('수동/자동구매 UI 검사', () => {
 
   it('정상적인 로또구입 금액을 투입하면, 전체 자동구매 수량을 기본값으로 해서 화면에 표시된다.', () => {
     cy.get('.purchase-option-section').should('be.visible');
-    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto, 0));
+    cy.get('.purchase-quantity-summary').should('have.text', summary(numOfLotto, 0));
   });
 
   let numOfManualSelect = 0;
@@ -104,18 +103,24 @@ describe('수동/자동구매 UI 검사', () => {
     numOfManualSelect = 1;
     cy.get('.paper-add-button').click();
     cy.get('number-selectors').should('have.length', numOfManualSelect);
-    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
+    cy.get('.purchase-quantity-summary').should(
+      'have.text',
+      summary(numOfLotto - numOfManualSelect, numOfManualSelect)
+    );
     numOfManualSelect = 2;
     cy.get('.paper-add-button').click();
     cy.get('number-selectors').should('have.length', numOfManualSelect);
-    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
+    cy.get('.purchase-quantity-summary').should(
+      'have.text',
+      summary(numOfLotto - numOfManualSelect, numOfManualSelect)
+    );
   });
 
   it('자동구매 수량이 남아있을 경우, 적용수량을 조정해서 수동구매로 전환할 수 있다.', () => {
     cy.get('number-selectors')
       .first()
       .select(`${1 + numOfLotto - numOfManualSelect}장`);
-    cy.get('.purchase-number-summary').should('have.text', summary(0, numOfLotto));
+    cy.get('.purchase-quantity-summary').should('have.text', summary(0, numOfLotto));
   });
 
   it('자동구매 수량이 0매일 경우, 로또용지 추가버튼이 비활성화된다.', () => {
@@ -126,23 +131,26 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.number-selectors').should('have.length', numOfManualSelect);
     cy.get('.paper-remove-button').first().click();
     numOfManualSelect = 1;
-    cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
+    cy.get('.purchase-quantity-summary').should(
+      'have.text',
+      summary(numOfLotto - numOfManualSelect, numOfManualSelect)
+    );
   });
 
   it('로또용지에서 6개 보다 적게 고를 경우, 상태메세지가 화면에 표시되고 로또 발급버튼이 비활성화된다.', () => {
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(6));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(6));
     cy.get('.ticket-issue-button').should('be.disabled');
 
     cy.get('.select-paper input').eq(0).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(5));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(5));
     cy.get('.select-paper input').eq(1).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(4));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(4));
     cy.get('.select-paper input').eq(2).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(3));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(3));
     cy.get('.select-paper input').eq(3).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(2));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(2));
     cy.get('.select-paper input').eq(4).click().should('be.checked');
-    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(1));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_CHECK_MESSAGE(1));
     cy.get('.select-paper input').eq(5).click().should('be.checked');
     cy.get('.manual-select-check-message').should('have.text', '');
   });

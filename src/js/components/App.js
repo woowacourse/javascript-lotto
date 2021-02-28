@@ -1,4 +1,5 @@
 import PurchaseAmountInput from './PurchaseAmountInput.js';
+import PurchaseOptionInput from './PurchaseOptionInput.js';
 import LottoTicketDisplay from './LottoTicketDisplay.js';
 import WinningNumberInput from './WinningNumbersInput.js';
 import WinningResultDisplay from './WinningResultDisplay.js';
@@ -11,6 +12,9 @@ export default class App {
 
   init() {
     this.purchaseAmountInput = new PurchaseAmountInput({
+      stageManager: this.stageManager,
+    });
+    this.purchaseOptionInput = new PurchaseOptionInput({
       stageManager: this.stageManager,
     });
     this.lottoTicketDisplay = new LottoTicketDisplay({

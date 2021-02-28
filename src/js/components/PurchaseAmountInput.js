@@ -1,4 +1,4 @@
-import { $, clearInputValue } from '../utils/DOM.js';
+import { $, clearInputValue, disable, enable } from '../utils/DOM.js';
 import { PURCHASE_AMOUNT_COMPLETED, APP_RESET } from '../constants/appStages.js';
 import { MONETARY_UNIT, LOTTO_PRICE } from '../constants/lottoRules.js';
 import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
@@ -7,19 +7,20 @@ export default class PurchaseAmountInput {
   constructor({ stageManager }) {
     this.stageManager = stageManager;
 
-    this.selectDOM();
+    this.selectDOMs();
     this.subscribeAppStages();
     this.attachEvent();
   }
 
-  selectDOM() {
+  selectDOMs() {
     this.$purchaseAmountForm = $('.purchase-amount-form');
     this.$purchaseAmountInput = $('.purchase-amount-input');
     this.$purchaseAmountButton = $('.purchase-amount-button');
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(APP_RESET, this.resetPurchaseAmountInput.bind(this));
+    this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.deactivate.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
   }
 
   attachEvent() {
@@ -29,7 +30,7 @@ export default class PurchaseAmountInput {
     });
   }
 
-  validatePurchaseAmount(purchaseAmount) {
+  validateInput(purchaseAmount) {
     if (purchaseAmount % MONETARY_UNIT) {
       return {
         isError: true,
@@ -54,7 +55,7 @@ export default class PurchaseAmountInput {
 
   onSubmitPurchaseAmount() {
     const purchaseAmount = this.$purchaseAmountInput.value;
-    const { isError, message } = this.validatePurchaseAmount(purchaseAmount);
+    const { isError, message } = this.validateInput(purchaseAmount);
 
     if (isError) {
       this.requestValidInput(message);
@@ -78,7 +79,14 @@ export default class PurchaseAmountInput {
     this.$purchaseAmountInput.focus();
   }
 
-  resetPurchaseAmountInput() {
+  deactivate() {
+    disable(this.$purchaseAmountInput);
+    disable(this.$purchaseAmountButton);
+  }
+
+  reset() {
     clearInputValue(this.$purchaseAmountInput);
+    enable(this.$purchaseAmountInput);
+    enable(this.$purchaseAmountButton);
   }
 }

@@ -1,5 +1,5 @@
 import { $ } from '../utils/DOM.js';
-import { APP_RESET, PURCHASE_AMOUNT_COMPLETED } from '../constants/appStages.js';
+import { APP_RESET, PURCHASE_OPTION_COMPLETED } from '../constants/appStages.js';
 import { PURCHASED_QUANTITY_MESSAGE } from '../constants/display.js';
 import { getLottoTicketHTML } from '../layouts/ticket.js';
 
@@ -7,12 +7,12 @@ export default class LottoTicketDisplay {
   constructor({ stageManager }) {
     this.stageManager = stageManager;
 
-    this.selectDOM();
+    this.selectDOMs();
     this.subscribeAppStages();
     this.attachEvents();
   }
 
-  selectDOM() {
+  selectDOMs() {
     this.$purchasedLottoSection = $('.purchased-lotto-section');
     this.$lottoTicketContainer = $('.lotto-ticket-container');
     this.$purchasedLottoLabel = $('.purchased-lotto-label');
@@ -20,7 +20,7 @@ export default class LottoTicketDisplay {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderTicketDisplay.bind(this));
+    this.stageManager.subscribe(PURCHASE_OPTION_COMPLETED, this.renderTicketDisplay.bind(this));
     this.stageManager.subscribe(APP_RESET, this.resetTicketDisplay.bind(this));
   }
 

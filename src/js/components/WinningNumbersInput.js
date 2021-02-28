@@ -3,7 +3,7 @@ import { hasElementOutOfRange, isShortLength, hasDuplicatedElement } from '../ut
 import {
   APP_RESET,
   RESULT_REQUESTED,
-  PURCHASE_AMOUNT_COMPLETED,
+  PURCHASE_OPTION_COMPLETED,
   WINNING_NUMBER_COMPLETED,
 } from '../constants/appStages.js';
 import { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, TOTAL_NUMBERS_LENGTH } from '../constants/lottoRules.js';
@@ -15,12 +15,12 @@ export default class WinningNumberInput {
     this.isFulfilled = false;
     this.checkMessage = '';
 
-    this.selectDOM();
+    this.selectDOMs();
     this.subscribeAppStages();
     this.attachEvents();
   }
 
-  selectDOM() {
+  selectDOMs() {
     this.$winningNumberForm = $('.winning-number-form');
     this.$winningNumberInputs = $$('.winning-number');
     this.$bonusNumberInput = $('.bonus-number');
@@ -29,8 +29,8 @@ export default class WinningNumberInput {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_AMOUNT_COMPLETED, this.renderForm.bind(this));
-    this.stageManager.subscribe(APP_RESET, this.resetWinningNumber.bind(this));
+    this.stageManager.subscribe(PURCHASE_OPTION_COMPLETED, this.renderForm.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
   }
 
   attachEvents() {
@@ -49,7 +49,7 @@ export default class WinningNumberInput {
       winningNumbers: [...e.currentTarget.querySelectorAll('.winning-number')].map(($input) => $input.value),
       bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
     };
-    const { isFulfilled, checkMessage } = this.validateWinningNumbers(
+    const { isFulfilled, checkMessage } = this.validateInput(
       [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
     );
 
@@ -66,7 +66,7 @@ export default class WinningNumberInput {
     });
   }
 
-  validateWinningNumbers(numbersWithoutBlank) {
+  validateInput(numbersWithoutBlank) {
     if (hasElementOutOfRange(numbersWithoutBlank, { min: LOTTO_MIN_NUMBER, max: LOTTO_MAX_NUMBER })) {
       return {
         isFulfilled: false,
@@ -101,7 +101,7 @@ export default class WinningNumberInput {
     }
   }
 
-  resetWinningNumber() {
+  reset() {
     hide(this.$winningNumberForm);
     clearInputValue(this.$bonusNumberInput);
     this.$winningNumberInputs.forEach(($input) => clearInputValue($input));
