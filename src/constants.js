@@ -1,4 +1,4 @@
-import { deepFreeze } from "./utils/freeze.js";
+import { deepFreeze } from './utils/freeze.js';
 
 export const LOTTO = Object.freeze({
   NUMBER_LIST_LENGTH: 6,
@@ -56,6 +56,14 @@ export const CHECK_SECOND_CONDITION_NUMBER = REWARDS.find(
 export const SELECTOR = Object.freeze({
   COST_SUBMIT_FORM: '#cost-submit-form',
   COST_INPUT: '#cost-input',
+  AUTO_PURCHASE_BUTTON: '#auto-purchase-button',
+  MANUAL_PURCHASE_BUTTON: '#manual-purchase-button',
+  REMAIN_LOTTO_COUNT_TEXT: '#remain-lotto-count-text',
+  REMAIN_COUNT: '#remain-count',
+  AUTO_COUNT_FORM: '#auto-count-form',
+  AUTO_COUNT_INPUT: '#auto-count-input',
+  MANUAL_LOTTO_NUMBERS_FORM: '#manual-lotto-numbers-form',
+  MANUAL_LOTTO_NUMBERS_WRAPPER: '#manual-lotto-numbers-wrapper',
   PURCHASE_RESULT: '#purchase-result',
   PURCHASE_ITEM_COUNT: '#purchase-item-count',
   LOTTO_NUMBERS_TOGGLE_BUTTON: '#lotto-numbers-toggle-button',
@@ -67,5 +75,6 @@ export const SELECTOR = Object.freeze({
   PROFIT_RATE: '#profit-rate',
   RESTART_BUTTON: '#restart-button',
   CORRECT_NUMBER_INPUT_FORM: '#correct-number-input-form',
+  LOTTO_NUMBER: '.lotto-number',
   CORRECT_NUMBER: '.correct-number',
 });
