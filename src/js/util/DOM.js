@@ -1,4 +1,4 @@
-/* eslint-disable max-lines-per-function */
+import { memoize } from './index.js';
 
 export const $ = (() => {
   const constructor = function (selector) {
@@ -7,6 +7,10 @@ export const $ = (() => {
     }
     this.targets = document.querySelectorAll(selector);
     this.target = this.targets.length === 1 && this.targets[0];
+  };
+
+  const makeNewConstructor = function (selector) {
+    return new constructor(selector);
   };
 
   constructor.prototype.each = function (callBack) {
@@ -129,8 +133,10 @@ export const $ = (() => {
     return this.target.checked;
   };
 
+  const memoized = memoize(makeNewConstructor);
+
   const instantiate = selector => {
-    return new constructor(selector);
+    return memoized(selector);
   };
 
   return instantiate;
