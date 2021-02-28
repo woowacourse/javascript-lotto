@@ -63,16 +63,25 @@ const manualPurchaseHandler = event => {
 
   money.totalAmount -= money.manualPurchase;
   disableElements(event);
-  insertAfter(event.target, createManualInputTemplate(manualPurchaseAmount));
+  if (manualPurchaseAmount !== 0) {
+    insertAfter(event.target, createManualInputTemplate(manualPurchaseAmount));
+    $('#manual-number-form').addEventListener(
+      'change',
+      inputNumberDuplicateHandler
+    );
+    $('#manual-number-form').addEventListener(
+      'change',
+      inputNumberRangeHandler
+    );
+    $('#manual-number-form').addEventListener('submit', buyManualNumber);
+    focusInput('.manual-number', 'first');
+  } else {
+    insertAfter(event.target, createAutoPurchaseTemplate());
+    focusInput('input', 'auto-purchase-input');
+    $('#auto-purchase-form').addEventListener('submit', lottoPurchaseHandler);
+  }
 
-  $('#manual-number-form').addEventListener(
-    'change',
-    inputNumberDuplicateHandler
-  );
-  $('#manual-number-form').addEventListener('change', inputNumberRangeHandler);
-  $('#manual-number-form').addEventListener('submit', buyManualNumber);
   $('#remaining-money').innerHTML = money.totalAmount;
-  focusInput('.manual-number', 'first');
 };
 
 export default manualPurchaseHandler;

@@ -5,7 +5,10 @@ import {
   insertAfter,
   focusInput,
 } from '../lib/utils/dom.js';
-import { EXCEED_MONEY_AMOUNT } from '../lib/constants/alertMessage.js';
+import {
+  AT_LEAST_ONE,
+  EXCEED_MONEY_AMOUNT,
+} from '../lib/constants/alertMessage.js';
 import { TICKET_PRICE } from '../lib/constants/lotto.js';
 import { getTicketNumber } from '../lib/utils/lotto.js';
 import { money } from '../model/money.js';
@@ -57,6 +60,12 @@ const lottoPurchaseHandler = event => {
   $('#remaining-money').innerHTML = money.totalAmount;
   updateTicketListView(lotto.tickets);
 
+  if (autoTickets.length === 0) {
+    alert(AT_LEAST_ONE);
+    focusInput('input', 'auto-purchase-input');
+    event.target.reset();
+    return;
+  }
   insertAfter($('#ticket-list'), createWinningNumberInputTemplate());
 
   $('#winning-number-form').addEventListener(
