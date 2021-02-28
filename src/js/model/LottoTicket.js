@@ -3,7 +3,7 @@ import {
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
   LOTTO_NUMBERS_LENGTH,
-  BOUNS_COUNT,
+  BONUS_COUNT,
   BONUS_CHECK_REQUIRED_COUNT,
 } from '../constants.js';
 
@@ -41,6 +41,6 @@ export default class LottoTicket {
   }
 
   getBonusNumberMatchCount(bonusNumber) {
-    return this.numbers.includes(bonusNumber) ? BOUNS_COUNT : 0;
+    return this.numbers.includes(bonusNumber) ? BONUS_COUNT : 0;
   }
 }

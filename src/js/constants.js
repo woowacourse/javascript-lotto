@@ -21,7 +21,7 @@ export const WINNING_NUMBER_CHECK_MESSAGE = {
   COMPLETED: '당첨번호 입력이 완료되었습니다. 인생역전의 기회, 지금 결과를 확인하세요!',
 };
 
-export const BOUNS_COUNT = 0.5;
+export const BONUS_COUNT = 0.5;
 export const RATE_OF_RETURN_DECIMAL_PLACE = 2;
 export const RATE_OF_RETURN_MESSAGE = (rateOfReturn) => `당신의 총 수익률은 ${rateOfReturn}%입니다.`;
 export const BONUS_CHECK_REQUIRED_COUNT = 5;
