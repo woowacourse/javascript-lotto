@@ -5,10 +5,16 @@ class TicketBundle {
     this.ticketBundle = [];
   }
 
+  initializeTicketBundle() {
+    this.ticketBundle = [];
+  }
+
   makeTicketBundle(ticketLength) {
     this.ticketBundle = Array.from({ length: ticketLength }, () =>
       this.generateRandomNumbers()
     );
+
+    return this.ticketBundle;
   }
 
   generateRandomNumbers() {
