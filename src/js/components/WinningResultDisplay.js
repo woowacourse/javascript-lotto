@@ -1,8 +1,8 @@
 import { $ } from '../utils/DOM.js';
+import { getTableRowHTML } from '../layouts/table.js';
 import { RESULT_REQUESTED, APP_RESET } from '../constants/appStages.js';
 import { WINNING_PRIZE } from '../constants/lottoRules.js';
 import { RESULT_TABLE_DISPLAY_KEY, RATE_OF_RETURN_MESSAGE } from '../constants/display.js';
-import { getTableRowHTML } from '../layouts/table.js';
 
 export default class WinningResultDisplay {
   constructor({ stageManager }) {

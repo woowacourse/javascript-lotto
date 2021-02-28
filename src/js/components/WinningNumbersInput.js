@@ -1,4 +1,4 @@
-import { $, $$, show, hide, enable, clearInputValue } from '../utils/DOM.js';
+import { $, $$, show, hide, enable } from '../utils/DOM.js';
 import { hasElementOutOfRange, isShortLength, hasDuplicatedElement } from '../utils/general.js';
 import {
   APP_RESET,
@@ -101,12 +101,6 @@ export default class WinningNumberInput {
     }
   }
 
-  reset() {
-    hide(this.$winningNumberForm);
-    clearInputValue(this.$bonusNumberInput);
-    this.$winningNumberInputs.forEach(($input) => clearInputValue($input));
-  }
-
   renderCheckMessage() {
     this.$winningNumberCheckMessage.innerText = this.checkMessage;
     if (!this.isFulfilled) {
@@ -120,5 +114,10 @@ export default class WinningNumberInput {
   renderForm() {
     show(this.$winningNumberForm);
     this.$winningNumberInputs[0].focus();
+  }
+
+  reset() {
+    this.$winningNumberForm.reset();
+    hide(this.$winningNumberForm);
   }
 }

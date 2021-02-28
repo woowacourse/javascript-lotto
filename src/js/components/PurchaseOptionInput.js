@@ -1,10 +1,10 @@
 import LottoPaper from '../model/LottoPaper.js';
-import { PURCHASE_AMOUNT_SUBMITTED, TICKET_ISSUE_REQUESTED, APP_RESET } from '../constants/appStages.js';
-import { getSelectPaperHTML } from '../layouts/selectPaper.js';
-import { $, select, unselect, show, enable, disable, hide } from '../utils/DOM.js';
-import { getNthElementRemoved } from '../utils/general.js';
-import { TICKET_ISSUE_CONFIRM_MESSAGE } from '../constants/display.js';
 import LottoTicket from '../model/LottoTicket.js';
+import { getNthElementRemoved } from '../utils/general.js';
+import { $, select, unselect, show, enable, disable, hide } from '../utils/DOM.js';
+import { getSelectPaperHTML } from '../layouts/selectPaper.js';
+import { PURCHASE_AMOUNT_SUBMITTED, TICKET_ISSUE_REQUESTED, APP_RESET } from '../constants/appStages.js';
+import { TICKET_ISSUE_CONFIRM_MESSAGE } from '../constants/display.js';
 
 export default class PurchaseOptionInput {
   constructor({ stageManager }) {
@@ -140,12 +140,6 @@ export default class PurchaseOptionInput {
     disable(this.$ticketIssueButton);
   }
 
-  reset() {
-    hide(this.$purchaseOptionSection);
-    hide(this.$ticketIssueButton);
-    this.setState({ autoQuantity: 0, manualQuantity: 0, papers: [], maxIndex: 0 });
-  }
-
   renderQuantitySummary() {
     this.$autoQuantity.innerText = this.autoQuantity;
     this.$manualQuantity.innerText = this.manualQuantity;
@@ -169,5 +163,11 @@ export default class PurchaseOptionInput {
     this.papers.every((paper) => paper.isFulfilled)
       ? enable(this.$ticketIssueButton)
       : disable(this.$ticketIssueButton);
+  }
+
+  reset() {
+    hide(this.$purchaseOptionSection);
+    hide(this.$ticketIssueButton);
+    this.setState({ autoQuantity: 0, manualQuantity: 0, papers: [], maxIndex: 0 });
   }
 }

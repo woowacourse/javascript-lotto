@@ -55,14 +55,12 @@ export default class PurchaseAmountInput {
 
   onSubmitPurchaseAmount() {
     const purchaseAmount = this.$purchaseAmountInput.value;
-    const { isError, message } = validateInput(purchaseAmount);
+    const { isError, message, change } = validateInput(purchaseAmount);
 
     if (isError) {
       this.requestValidInput(message);
       return;
     }
-
-    const change = purchaseAmount % LOTTO_PRICE;
 
     if (change > 0) {
       alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
@@ -85,7 +83,7 @@ export default class PurchaseAmountInput {
   }
 
   reset() {
-    clearInputValue(this.$purchaseAmountInput);
+    this.$purchaseAmountForm.reset();
     enable(this.$purchaseAmountInput);
     enable(this.$purchaseAmountButton);
   }
