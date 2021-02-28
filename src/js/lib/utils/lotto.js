@@ -49,7 +49,11 @@ function getProfitPercent(winners, ticketAmount) {
     }
   }
 
-  return ((totalProfit - paymentAmount) / paymentAmount) * 100;
+  const percentage = ((totalProfit - paymentAmount) / paymentAmount) * 100;
+
+  return Number.isInteger(percentage)
+    ? percentage
+    : '약 ' + percentage.toFixed(2);
 }
 
 function getRank(ticket, { main, bonus }) {
