@@ -18,6 +18,7 @@ import {
   showModal,
   closeModal,
   showPurchaseSection,
+  hidePurchaseSection,
 } from "../Handler/elementHandler.js";
 import ticketBundle from "../Model/TicketBundle.js";
 import winningResult from "../Model/WinningResult.js";
@@ -59,13 +60,8 @@ const handlePurchaseAmountSubmit = (event) => {
 
   balance.setBalance(money);
   renderBalance(balance.balance);
-
   renderPurchaseSection();
-  // const tickets = ticketBundle.makeTicketBundle(
-  //   money / STANDARD_NUMBER.ONE_TICKET_PRICE
-  // );
-  // renderTickets(tickets.length);
-  // $$(ELEMENT.WINNING_NUMBER)[0].focus();
+  $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
 
 const renderPurchaseSection = () => {
@@ -188,6 +184,7 @@ const handleRestartButton = () => {
   clearWinningBonusNumber();
   clearPurchaseAmountInput();
   hidePurchaseResult();
+  hidePurchaseSection();
   $(ELEMENT.TOGGLE_BUTTON).checked = false;
 };
 
