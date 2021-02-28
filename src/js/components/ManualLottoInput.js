@@ -59,22 +59,6 @@ export default class ManualLottoInput extends Component {
     this.$manualLottoFinishButton = $('#manual-lotto-finish-btn');
   }
 
-  validateLottoNumbersInputValue = numbers => {
-    numbers = numbers.map(Number);
-    if (numbers.some(isEmptyValue)) {
-      return [ERROR_MESSAGE.EMPTY_INPUT_NUMBER, 'error'];
-    }
-    if (
-      !numbers.every(number => isInRange(number, LOTTO.MIN_NUM, LOTTO.MAX_NUM))
-    ) {
-      return [ERROR_MESSAGE.OUT_OF_RANGE, 'error'];
-    }
-    if (new Set(numbers).size !== numbers.length) {
-      return [ERROR_MESSAGE.DUPLICATED_NUMBER, 'error'];
-    }
-    return [ERROR_MESSAGE.VALID_INPUT_NUMBER, 'success'];
-  };
-
   onMoveCursorToNextInput({ target }) {
     if (target.value.length > 1) {
       target.value = target.value.slice(0, 2);
@@ -87,7 +71,9 @@ export default class ManualLottoInput extends Component {
     const lottoNumbers = Array.from(this.$numberInputs).map(input =>
       input.value === '' ? '' : Number(input.value),
     );
-    const [text, result] = this.validateLottoNumbersInputValue(lottoNumbers);
+    const [text, result] = LottoNumbersInput.validateLottoNumbersInputValue(
+      lottoNumbers,
+    );
     this.$messageBox.textContent = text;
     if (result === 'success') {
       this.$messageBox.style.color = 'green';

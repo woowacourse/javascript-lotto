@@ -1,7 +1,7 @@
 import { store } from '../index.js';
 import { calculateProfit, decideWinner } from '../redux/action.js';
 import { isEmptyValue, isInRange } from '../utils/common.js';
-import { LOTTO } from '../utils/constants.js';
+import { LOTTO, PURCHASE_TYPE } from '../utils/constants.js';
 import { $, $$, clearInputValue } from '../utils/dom.js';
 import { ERROR_MESSAGE } from '../utils/message.js';
 import Button from './Button/Button.js';
@@ -79,10 +79,10 @@ export default class WinningNumbersInput extends Component {
       this.$bonusNumberInput.value === ''
         ? ''
         : Number(this.$bonusNumberInput.value);
-    const [text, result] = this.validateWinningNumbersInputValue(
-      winningNumbers,
+    const [text, result] = LottoNumbersInput.validateLottoNumbersInputValue([
+      ...winningNumbers,
       bonusNumber,
-    );
+    ]);
 
     this.$messageBox.textContent = text;
     if (result === 'success') {
@@ -158,7 +158,10 @@ export default class WinningNumbersInput extends Component {
       return;
     }
 
-    if (prevStates.lottos !== states.lottos && states.purchaseType === 'auto') {
+    if (
+      prevStates.lottos !== states.lottos &&
+      states.purchaseType === PURCHASE_TYPE.AUTO
+    ) {
       this.displayWinningNumbersInputView();
     }
 
