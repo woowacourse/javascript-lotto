@@ -12,19 +12,18 @@ const getSelectPaperItemHTML = (number) => {
   `;
 };
 
-const getApplyQuantitySelectHTML = (quantity) => {
+export const getApplyQuantitySelectHTML = ({ quantity }) => {
   return quantity === 1
     ? `<option value="${quantity}" class="selected" selected>${quantity}장</option>`
     : `<option value="${quantity}">${quantity}장</option>`;
 };
 
-export const getSelectPaperHTML = ({ issueNum, maxQuantity }) => {
+export const getSelectPaperHTML = ({ issueNum }) => {
   return `
   <div class="manual-select-paper mt-3 d-flex flex-col" data-issue-num=${issueNum}>
     <div class="quantity-applier mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
       <select class="quantity-select">
-        ${[...Array(maxQuantity)].map((_, i) => getApplyQuantitySelectHTML(i + 1)).join('')}
       </select>
     </div>
     <ul class="select-number-list m-0 p-0">
