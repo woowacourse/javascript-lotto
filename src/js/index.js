@@ -18,6 +18,7 @@ class LottoApp {
     this.data = {
       lottos: [],
       cost: 0,
+      availablePurchaseCount: 0,
     };
 
     this.bindEvents();
@@ -37,17 +38,45 @@ class LottoApp {
       return;
     }
 
-    const lottoCount = Math.floor(money / LOTTO.PRICE);
-    this.data.cost = LOTTO.PRICE * lottoCount;
-    this.data.lottos = this.generateLottos(lottoCount);
+    this.data.availablePurchaseCount = Math.floor(money / LOTTO.PRICE);
+    this.data.cost = LOTTO.PRICE * this.data.availablePurchaseCount;
 
-    this.view.renderLottoList(this.data.lottos);
+    this.view.renderPurchaseCount(this.data.availablePurchaseCount);
+
+    showElement($('.lotto-number-section'));
     showElement($('.lotto-list-section'));
-    showElement($('.winning-number-form-section'));
     disableElement($('#money-input'));
     disableElement($('#money-submit-button'));
 
-    $('.winning-number').focus();
+    $('.lotto-number').focus();
+  }
+
+  handleSubmitLottoNumbers(event) {
+    event.preventDefault();
+
+    const $lottoNumbers = [...event.target.elements['lotto-number']];
+    const lottoNumbers = $lottoNumbers.map(($number) => $number.valueAsNumber);
+
+    if (!isUniqueArray(lottoNumbers)) {
+      alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      return;
+    }
+
+    const lotto = new Lotto(lottoNumbers);
+
+    this.data.availablePurchaseCount -= 1;
+    this.data.lottos = [...this.data.lottos, lotto];
+
+    $('#lotto-number-form').reset();
+    $('.lotto-number').focus();
+
+    if (this.data.availablePurchaseCount <= 0) {
+      hideElement($('.lotto-number-section'));
+      showElement($('.winning-number-form-section'));
+      $('.winning-number').focus();
+    }
+
+    this.view.renderLotto(lotto, this.data.availablePurchaseCount, this.data.lottos.length);
   }
 
   handleToggleLottoNumbers() {
@@ -137,6 +166,8 @@ class LottoApp {
 
   bindEvents() {
     $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
+
+    $('#lotto-number-form').addEventListener('submit', this.handleSubmitLottoNumbers.bind(this));
 
     $('.lotto-numbers-toggle-button').addEventListener(
       'change',

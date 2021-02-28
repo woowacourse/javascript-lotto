@@ -11,6 +11,29 @@ export default class LottoView {
     $('.winning-rate').textContent = winningRate;
   }
 
+  renderPurchaseCount(purchaseCount) {
+    $('.lotto-purchase-count').textContent = purchaseCount;
+  }
+
+  renderLottoCount(lottoCount) {
+    $('.lotto-count').textContent = lottoCount;
+  }
+
+  renderLotto(lotto, purchaseCount, lottoCount) {
+    if (!$('.lotto-list')) {
+      const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
+      $('.lotto-list-container').append($lottoList);
+    }
+
+    const $lotto = createElement('span', 'lotto mx-1 text-4xl', '🎟️ ');
+    $lotto.appendChild(createElement('span', 'lotto-numbers', lotto.numbers.join(', ')));
+
+    $('.lotto-list').appendChild($lotto);
+
+    this.renderPurchaseCount(purchaseCount);
+    this.renderLottoCount(lottoCount);
+  }
+
   renderLottoList(lottos) {
     const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
 
