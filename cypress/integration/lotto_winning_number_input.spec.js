@@ -114,7 +114,9 @@ describe('LOTTO - 당첨번호 입력 및 상금확인 테스트', () => {
       expect(result[key]).to.equal(value);
     }
 
+    // 수익률(%) : ((수익 - 투자금액) / 투자금액) * 100
+    const expectedProfitMargin = ((300000000 * 5 - 5000) / 5000) * 100;
     const profitMargin = lottoManager.calculateProfitMargin();
-    expect(profitMargin).to.equal(100 * ((300000000 * 5 - 5000) / 5000));
+    expect(profitMargin).to.equal(expectedProfitMargin);
   });
 });
