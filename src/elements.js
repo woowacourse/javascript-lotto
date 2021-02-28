@@ -3,13 +3,11 @@ import { SELECTOR } from './constants.js';
 
 export const $costSubmitForm = $(SELECTOR.COST_SUBMIT_FORM);
 export const $costInput = $(SELECTOR.COST_INPUT);
-export const $costSubmitButton = $(SELECTOR.COST_SUBMIT_BUTTON);
 export const $purchaseResult = $(SELECTOR.PURCHASE_RESULT);
 export const $purchaseItemCount = $(SELECTOR.PURCHASE_ITEM_COUNT);
 export const $lottoNumbersToggleButton = $(SELECTOR.LOTTO_NUMBERS_TOGGLE_BUTTON);
 export const $purchaseItemList = $(SELECTOR.PURCHASE_ITEM_LIST);
 export const $correctNumberWrapper = $(SELECTOR.CORRECT_NUMBER_WRAPPER);
-export const $resultModalOpenButton = $(SELECTOR.RESULT_MODAL_OPEN_BUTTON);
 export const $modalClose = $(SELECTOR.MODAL_CLOSE);
 export const $modal = $(SELECTOR.MODAL);
 export const $resultTbody = $(SELECTOR.RESULT_TBODY);

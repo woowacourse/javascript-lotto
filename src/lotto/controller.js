@@ -4,8 +4,6 @@ import { getProfitRate } from '../utils/calculate.js';
 import { getKRString } from '../utils/format.js';
 import { LOTTO } from '../constants.js';
 import {
-  $resultModalOpenButton,
-  $costSubmitButton,
   $costSubmitForm,
   $lottoNumbersToggleButton,
   $costInput,
@@ -96,11 +94,9 @@ const onRestart = () => {
 const controller = {
   bindLottoGameEvents() {
     $costSubmitForm.addEventListener('submit', onCostSubmit);
-    $costSubmitButton.addEventListener('click', onCostSubmit);
     $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $correctNumberInputForm.addEventListener('submit', onResultModalOpen);
-    $resultModalOpenButton.addEventListener('click', onResultModalOpen);
     $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
     $restartButton.addEventListener('click', onRestart);
   },
