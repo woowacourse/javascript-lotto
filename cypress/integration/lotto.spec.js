@@ -289,6 +289,16 @@ describe("ui-exception", () => {
         "중복된 번호로 구입하실 수 없습니다."
       )
     })
+
+    it("수동 번호가 1이상 45이하가 아닌 숫자가 있을때 alert가 발생해야 한다", () => {
+      submitManualBuy(5000)
+      submitManualLotto([2, 3, 4, 46, 9, 0])
+      cw.should(
+        `@${ALERT_STUB}`,
+        "be.calledWith",
+        "1이상 45이하의 숫자에서만 구입이 가능합니다."
+      )
+    })
   })
 
   describe("ui-answer-exception", () => {
