@@ -36,10 +36,20 @@ export default class LottoUI {
     return `
     <form class="${DOM_CLASSES.LOTTO_AMOUNT_FORM}">
       <label> 수동으로 구매할 갯수를 입력해주세요.
-        <p><input type="number" class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}" placeholder="수동 구매 갯수"/></p>
+        <p><input 
+        type="number" 
+        class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}" 
+        placeholder="수동 구매 갯수"
+        required
+        /></p>
       </label>
       <label> 자동으로 구매할 갯수를 입력해주세요.
-        <p><input type="number" class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}" placeholder="자동 구매 갯수"/></p>
+        <p><input 
+        type="number" 
+        class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}" 
+        placeholder="자동 구매 갯수"
+        required
+        /></p>
       </label>
       <button type="submit" class="btn btn-cyan ${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}">확인</button>
     </form>
