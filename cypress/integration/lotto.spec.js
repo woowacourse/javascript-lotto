@@ -209,4 +209,87 @@ describe('LOTTO 테스트', () => {
         expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
       });
   });
+
+  it('구입할 금액 입력 후, 로또를 수동 구매하면 구입한 로또 목록에 해당 로또가 추가된다.', () => {
+    const lottoNumbers = [3, 9, 11, 20, 21, 25];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.get('#lotto-number-form').submit();
+
+    cy.get('.lotto-count').should('have.value', '1');
+    cy.get('.lotto .lotto-numbers').should('have.value', lottoNumbers.join(', '));
+  });
+
+  it('구입할 수 있는 로또 개수의 개수가 0개이면 수동 구매 폼과 자동 구매 버튼이 비활성화된다.', () => {
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('#auto-purchase-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput) => {
+      cy.wrap(lottoNumberInput).should('be.disabled');
+    });
+
+    cy.get('#purchase-button').should('be.disabled');
+  });
+
+  it('나머지 자동 구매 버튼을 클릭하면 구입할 수 있는 로또의 개수만큼 자동 구매되어 구입한 로또 목록에 추가된다.', () => {
+    const lottoNumbers = [3, 9, 11, 20, 21, 25];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.get('#lotto-number-form').submit();
+    cy.get('#auto-purchase-button').click();
+
+    cy.get('.lotto').should('have.length', '10');
+  });
+
+  it('입력된 수동 구매 번호가 1 ~ 45 사이의 숫자가 아니면, 경고창을 띄운다.', () => {
+    const alertStub = cy.stub();
+    const lottoNumbers = [3, 9, 11, 20, 21, 46];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.on('window:alert', alertStub);
+    cy.get('.open-result-modal-button')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      });
+  });
+
+  it('입력된 수동 구매 번호가 중복된 번호가 있으면, 경고창을 띄운다.', () => {
+    const alertStub = cy.stub();
+    const lottoNumbers = [3, 9, 11, 20, 20, 46];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.on('window:alert', alertStub);
+    cy.get('.open-result-modal-button')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      });
+  });
 });
