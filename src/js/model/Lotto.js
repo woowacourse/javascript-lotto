@@ -2,6 +2,7 @@ export default class Lotto {
   constructor() {
     this.amount = 0;
     this.tickets = [];
+    this.purchasePrice = 0;
   }
   setAmount(amount) {
     this.amount = amount;
