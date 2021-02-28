@@ -112,7 +112,7 @@ export default class LottoDisplay extends Component {
 
   lottoTemplate(numbers) {
     return `<span data-test="lotto" class="mx-1 text-4xl d-flex items-center justify-center">
-              <img class="ticket" src="https://img.icons8.com/ios-filled/50/000000/ticket-confirmed.png"/>
+              <img class="ticket" src="https://thumbs.dreamstime.com/b/lottery-icon-realistic-objects-eps-illustration-78053199.jpg"/>      
               <span class="lotto-numbers ${
                 this.$toggleButton.checked ? '' : 'd-none'
               } text-2xl ml-4">${numbers.join(', ')}</span>
