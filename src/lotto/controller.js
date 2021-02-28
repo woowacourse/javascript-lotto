@@ -7,6 +7,7 @@ import {
   $costSubmitForm,
   $lottoNumbersToggleButton,
   $costInput,
+  $modal,
   $modalClose,
   $correctNumberWrapper,
   $restartButton,
@@ -91,6 +92,19 @@ const onRestart = () => {
   lottoGameView.init();
 };
 
+const onModalAccessibility = (e) => {
+  if (!$modal.classList.contains('open')) return;
+
+  if (e.code === "Escape"){
+    onResultModalClose();
+    return;
+  }
+
+  if (e.code === "Space"){
+    onRestart();
+  }
+};
+
 const controller = {
   bindLottoGameEvents() {
     $costSubmitForm.addEventListener('submit', onCostSubmit);
@@ -99,6 +113,7 @@ const controller = {
     $correctNumberInputForm.addEventListener('submit', onResultModalOpen);
     $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
     $restartButton.addEventListener('click', onRestart);
+    window.addEventListener('keyup', onModalAccessibility);
   },
 };
 
