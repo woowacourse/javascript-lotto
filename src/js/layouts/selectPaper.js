@@ -21,7 +21,7 @@ export const getSelectPaperHTML = () => {
     <ul class="select-paper m-0 p-0">
       ${[...Array(45)].map((_, i) => getSelectPaperItemHTML(i + 1)).join('')}
     </ul>
-    <div class="select-check-message text-sm"></div>
+    <div class="manual-select-check-message text-sm"></div>
     <button type="button" class="paper-remove-button r-btn">-</button>
   </div>`;
 };

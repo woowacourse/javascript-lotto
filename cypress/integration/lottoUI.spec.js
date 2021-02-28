@@ -68,6 +68,7 @@ describe('구매금액 입력 UI 검사', () => {
         expect(actualMessage).to.equal(PURCHASE_AMOUNT_HAS_CHANGE(change));
       });
     cy.get('.ticket-issue-section').should('be.visible');
+    cy.get('.purchase-amount-button').should('be.disabled');
   });
 });
 
@@ -79,21 +80,21 @@ describe('수동/자동구매 UI 검사', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('정상적인 로또구입 금액을 투입하면, 로또 발급버튼, 자동/수동 매수, 로또용지 추가버튼이 표시된다.', () => {
+  it('정상적인 로또구입 금액을 투입하면, 로또 발급버튼, 로또용지 추가버튼이 표시된다.', () => {
     cy.get('.purchase-option-section').should('not.be.visible');
-    cy.get('.issue-ticket-button').should('not.be.visible');
+    cy.get('.ticket-issue-button').should('not.be.visible');
     cy.get('.paper-add-button').should('not.be.visible');
 
     cy.get('.purchase-amount-input')
       .type(LOTTO_PRICE * numOfLotto)
       .type('{enter}');
 
-    cy.get('.purchase-option-section').should('be.visible');
-    cy.get('.issue-ticket-button').should('be.visible').should('not.be.disabled');
+    cy.get('.ticket-issue-button').should('be.visible').should('not.be.disabled');
     cy.get('.paper-add-button').should('be.visible').should('not.be.disabled');
   });
 
-  it('자동구매가 기본옵션으로 표시된다.', () => {
+  it('정상적인 로또구입 금액을 투입하면, 전체 자동구매 수량을 기본값으로 해서 화면에 표시된다.', () => {
+    cy.get('.purchase-option-section').should('be.visible');
     cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto, 0));
   });
 
@@ -121,36 +122,36 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.paper-add-button').should('be.disabled');
   });
 
-  it('로또용지 삭제버튼을 누르면 해당 로또용지가 화면에서 사라지고 해당 적용수량은 자동구매로 전환된다.', () => {
+  it('로또용지 삭제버튼을 누를 경우, 해당 로또용지가 화면에서 사라지고 해당 적용수량은 자동구매로 전환된다.', () => {
     cy.get('.number-selectors').should('have.length', numOfManualSelect);
     cy.get('.paper-remove-button').first().click();
     numOfManualSelect = 1;
     cy.get('.purchase-number-summary').should('have.text', summary(numOfLotto - numOfManualSelect, numOfManualSelect));
   });
 
-  it('로또용지에서 6개 보다 적게 고르면, 상태메세지가 화면에 표시되고 로또 발급버튼이 비활성화된다.', () => {
-    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(6));
-    cy.get('.issue-ticket-button').should('be.disabled');
+  it('로또용지에서 6개 보다 적게 고를 경우, 상태메세지가 화면에 표시되고 로또 발급버튼이 비활성화된다.', () => {
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(6));
+    cy.get('.ticket-issue-button').should('be.disabled');
 
     cy.get('.select-paper input').eq(0).click().should('be.checked');
-    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(5));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(5));
     cy.get('.select-paper input').eq(1).click().should('be.checked');
-    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(4));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(4));
     cy.get('.select-paper input').eq(2).click().should('be.checked');
-    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(3));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(3));
     cy.get('.select-paper input').eq(3).click().should('be.checked');
-    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(2));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(2));
     cy.get('.select-paper input').eq(4).click().should('be.checked');
-    cy.get('.select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(1));
+    cy.get('.manual-select-check-message').should('have.text', MANUAL_SELECT_REQUEST_MESSAGE(1));
     cy.get('.select-paper input').eq(5).click().should('be.checked');
-    cy.get('.select-check-message').should('have.text', '');
+    cy.get('.manual-select-check-message').should('have.text', '');
   });
 
-  it('로또 발급하기 버튼을 누르면, 자동/수동구매 수량이 적힌 컨펌메세지를 표시한다.', () => {
+  it('로또 발급하기 버튼을 누를 경우, 자동/수동구매 수량이 적힌 컨펌메세지가 표시된다.', () => {
     const confirmStub = cy.stub();
 
     cy.on('window:confirm', confirmStub);
-    cy.get('.issue-ticket-button')
+    cy.get('.ticket-issue-button')
       .should('not.be.disabled')
       .click()
       .then(() => {
@@ -159,17 +160,23 @@ describe('수동/자동구매 UI 검사', () => {
       });
   });
 
-  it('로또 발급 컨펌메세지에서 "취소"를 선택할 경우에 로또를 발급하지 않지 않는다.', () => {
+  it('로또 발급 컨펌메세지에서 "취소"를 선택할 경우, 로또가 발급되지 않는다.', () => {
     cy.contains('취소').click();
     cy.get('.purchased-lotto-section').should('not.be.visible');
-    cy.get('.issue-ticket-button').should('not.be.visible');
+    cy.get('.ticket-issue-button').should('not.be.visible');
   });
 
-  it('로또 발급 컨펌메세지에서 "확인"을 선택할 경우에 해당섹션은 화면에서 숨기고 로또를 발급한다.', () => {
-    cy.get('.issue-ticket-button').click();
+  it('로또 발급 컨펌메세지에서 "확인"을 선택할 경우, 발급된 로또가 화면에 표시된다.', () => {
+    cy.get('.ticket-issue-button').click();
     cy.contains('확인').click();
-    cy.get('.ticket-issue-section').should('not.be.visible');
+    cy.get('.purchase-option-section').should('be.visible');
     cy.get('.purchased-lotto-section').should('be.visible');
+  });
+
+  it('로또를 발급한 경우, 사용한 로또용지와 로또용지 추가버튼을 화면에서 숨기고, 로또발급하기 버튼을 비활성화된다.', () => {
+    cy.get('.paper-add-button').should('not.be.visible');
+    cy.get('.number-selectors').forEach(($el) => cy.wrap($el).should('not.be.visible'));
+    cy.get('.ticket-issue-button').should('be.disabled');
   });
 });
 
@@ -236,7 +243,7 @@ describe('당첨번호 입력 UI 검사', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
     cy.get('.purchase-amount-input').type(LOTTO_PRICE).type('{enter}');
-    cy.get('.issue-ticket-button').click();
+    cy.get('.ticket-issue-button').click();
     cy.contains('확인');
   });
 
