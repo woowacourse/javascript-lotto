@@ -44,6 +44,7 @@ export default class LottoDisplay extends Component {
   }
 
   setup() {
+    this.lottoViewAmount = 10;
     store.subscribe(this.render.bind(this));
   }
 
@@ -96,7 +97,11 @@ export default class LottoDisplay extends Component {
 
   onMoveNextPage() {
     const pageIndex = Number(this.$pageNumber.textContent);
-    if (pageIndex >= Math.ceil(store.getStates().lottos.length / 10)) return;
+    if (
+      pageIndex >=
+      Math.ceil(store.getStates().lottos.length / this.lottoViewAmount)
+    )
+      return;
     this.$pageNumber.textContent = pageIndex + 1;
     this.updateLottoView(store.getStates().lottos);
   }
@@ -120,25 +125,29 @@ export default class LottoDisplay extends Component {
     this.$toggleButton.checked = false;
   }
 
+  toggleActivationPageMoveButton(pageIndex) {
+    pageIndex <= 1
+      ? (this.$prevPageButton.disabled = true)
+      : (this.$prevPageButton.disabled = false);
+
+    pageIndex >=
+    Math.ceil(store.getStates().lottos.length / this.lottoViewAmount)
+      ? (this.$nextPageButton.disabled = true)
+      : (this.$nextPageButton.disabled = false);
+  }
+
   updateLottoView(lottos) {
-    console.log(lottos);
     const pageIndex = Number(this.$pageNumber.textContent);
     this.$target.classList.remove('d-none');
     this.$lottoCount.innerHTML = this.lottoCountText(lottos.length);
     this.$lottoDisplayArea.innerHTML = lottos
-      .slice((pageIndex - 1) * 10, (pageIndex - 1) * 10 + 10)
+      .slice(
+        (pageIndex - 1) * this.lottoViewAmount,
+        (pageIndex - 1) * this.lottoViewAmount + this.lottoViewAmount,
+      )
       .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
       .join('');
-    if (pageIndex <= 1) {
-      this.$prevPageButton.disabled = true;
-    } else {
-      this.$prevPageButton.disabled = false;
-    }
-    if (pageIndex >= Math.ceil(store.getStates().lottos.length / 10)) {
-      this.$nextPageButton.disabled = true;
-    } else {
-      this.$nextPageButton.disabled = false;
-    }
+    this.toggleActivationPageMoveButton(pageIndex);
   }
 
   render(prevStates, states) {
