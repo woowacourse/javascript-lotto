@@ -6,6 +6,7 @@ export default class PurchaseAmountInput {
     this.$purchaseAmountForm = $('.purchase-amount-form');
     this.$purchaseAmountInput = $('.purchase-amount-input');
     this.$purchaseAmountButton = $('.purchase-amount-button');
+
     this.createLottoTickets = createLottoTickets;
 
     this.attachEvents();

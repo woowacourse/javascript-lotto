@@ -7,6 +7,7 @@ export default class PurchasedLotto {
     this.$lottoTicketContainer = $('.lotto-ticket-container');
     this.$purchasedLottoLabel = $('.purchased-lotto-label');
     this.$lottoNumbersToggleButton = $('.lotto-numbers-toggle-button');
+
     this.lottoTickets = lottoTickets;
 
     this.attachEvents();

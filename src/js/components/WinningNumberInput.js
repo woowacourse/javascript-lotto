@@ -18,6 +18,7 @@ export default class WinningNumberInput {
     this.isVisible = isVisible;
     this.checkMessage = '';
     this.winningNumber = {};
+
     this.updateWinningNumber = updateWinningNumber;
     this.onShowModal = onShowModal;
 
