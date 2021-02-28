@@ -151,31 +151,28 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.select-number-list input').eq(4).should('be.checked');
     cy.get('.select-number-list span').eq(5).click();
     cy.get('.select-number-list input').eq(5).should('be.checked');
+    cy.get('.paper-remove-button').click();
   });
 
   it('로또 발급하기 버튼을 누를 경우, 자동/수동구매 수량이 적힌 컨펌메세지가 표시된다.', () => {
-    const confirmStub = cy.stub();
-
-    cy.on('window:confirm', confirmStub);
-    cy.get('.ticket-issue-button')
-      .should('not.be.disabled')
-      .click()
-      .then(() => {
-        const actualMessage = confirmStub.getCall(0).lastArg;
-        expect(actualMessage).to.equal(TICKET_ISSUE_CONFIRM_MESSAGE(numOfLotto - numOfManualSelect, numOfManualSelect));
-      });
+    cy.get('.ticket-issue-button').should('not.be.disabled');
+    cy.on('window:confirm', (actualMessage) => {
+      expect(actualMessage).to.equal(TICKET_ISSUE_CONFIRM_MESSAGE(numOfLotto, 0));
+      return false;
+    });
   });
 
   it('로또 발급 컨펌메세지에서 "취소"를 선택할 경우, 로또가 발급되지 않는다.', () => {
-    cy.contains('취소').click();
     cy.get('.purchased-lotto-section').should('not.be.visible');
-    cy.get('.ticket-issue-button').should('not.be.visible');
+    cy.get('.ticket-issue-button').should('be.visible');
   });
 
   it('로또 발급 컨펌메세지에서 "확인"을 선택할 경우, 발급된 로또가 화면에 표시된다.', () => {
-    cy.get('.ticket-issue-button').click();
-    cy.contains('확인').click();
-    cy.get('.purchase-option-section').should('be.visible');
+    cy.on('window:confirm', (actualMessage) => {
+      expect(actualMessage).to.equal(TICKET_ISSUE_CONFIRM_MESSAGE(numOfLotto, 0));
+      return true;
+    });
+    cy.get('.purchase-option-section').should('not.be.visible');
     cy.get('.purchased-lotto-section').should('be.visible');
   });
 

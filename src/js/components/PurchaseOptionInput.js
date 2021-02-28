@@ -1,8 +1,9 @@
 import LottoPaper from '../model/LottoPaper.js';
-import { PURCHASE_AMOUNT_COMPLETED } from '../constants/appStages.js';
+import { PURCHASE_AMOUNT_COMPLETED, PURCHASE_OPTION_COMPLETED } from '../constants/appStages.js';
 import { getSelectPaperHTML } from '../layouts/selectPaper.js';
 import { $, select, unselect, show, enable, disable } from '../utils/DOM.js';
 import { getNthElementRemoved } from '../utils/general.js';
+import { TICKET_ISSUE_CONFIRM_MESSAGE } from '../constants/display.js';
 
 export default class PurchaseOptionInput {
   constructor({ stageManager }) {
@@ -34,6 +35,7 @@ export default class PurchaseOptionInput {
   attachEvents() {
     this.$paperAddButton.addEventListener('click', this.onAddPaper.bind(this));
     this.$manualSelectForm.addEventListener('click', this.onRemovePaper.bind(this));
+    this.$ticketIssueButton.addEventListener('click', this.onIssueLottoTickets.bind(this));
   }
 
   onAddPaper() {
@@ -58,8 +60,9 @@ export default class PurchaseOptionInput {
       return;
     }
     const $paper = target.parentNode;
+    const issueNum = Number($paper.dataset.issueNum);
+    const targeIndex = this.papers.map((paper) => paper.issueNum).indexOf(issueNum);
     const currQuantity = Number($paper.querySelector('select').value);
-    const targeIndex = this.papers.map((paper) => paper.issueNum).indexOf($paper.dataset.issueNum);
 
     target.parentNode.remove();
     this.setState({
@@ -70,7 +73,8 @@ export default class PurchaseOptionInput {
   }
 
   onChangePaper({ target, currentTarget }) {
-    const lottoPaper = this.papers[currentTarget.dataset.issueNum];
+    const targetIssueNum = Number(currentTarget.dataset.issueNum);
+    const lottoPaper = this.papers.find((paper) => paper.issueNum === targetIssueNum);
 
     if (target.type === 'checkbox') {
       this.onChangeCheckbox({ target, lottoPaper });
@@ -111,6 +115,16 @@ export default class PurchaseOptionInput {
     });
   }
 
+  onIssueLottoTickets() {
+    const response = window.confirm(
+      TICKET_ISSUE_CONFIRM_MESSAGE({ auto: this.autoQuantity, manual: this.manualQuantity })
+    );
+
+    if (response === true) {
+      this.stageManager.setStates({ stage: PURCHASE_OPTION_COMPLETED });
+    }
+  }
+
   renderQuantitySummary() {
     this.$autoQuantity.innerText = this.autoQuantity;
     this.$manualQuantity.innerText = this.manualQuantity;
@@ -125,7 +139,7 @@ export default class PurchaseOptionInput {
 
   setState({ autoQuantity, manualQuantity, papers, maxIndex }) {
     this.autoQuantity = autoQuantity ?? this.autoQuantity;
-    this.manualQuantity = manualQuantity ?? this.autoQuantity;
+    this.manualQuantity = manualQuantity ?? this.manualQuantity;
     this.papers = papers ?? this.papers;
     this.maxIndex = maxIndex ?? this.maxIndex;
 
