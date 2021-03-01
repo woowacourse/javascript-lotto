@@ -86,11 +86,14 @@ export default class LottoView {
     $earningRate.innerText = `당신의 총 수익률은 ${earningRate}%입니다.`;
   }
 
-  resetLottoView() {
+  resetPurchaseForm() {
     $priceInput.value = "";
+    hideElement($purchaseForm);
+  }
+
+  resetLottoView() {
     $bonusNumberInput.value = "";
     $winningNumberInputs.forEach(($input) => ($input.value = ""));
-    hideElement($purchaseForm);
     hideElement($confirmation);
   }
 }

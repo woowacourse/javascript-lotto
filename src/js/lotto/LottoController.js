@@ -19,14 +19,14 @@ export default class LottoController {
   initLottoPurchase(price) {
     if (!isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
-      this.lottoView.resetLottoView();
+      this.lottoView.resetPurchaseForm();
 
       return;
     }
 
     this.lottoModel.init(price);
-    this.initRankedCount();
     this.lottoView.showPurchaseForm(this.lottoModel.numOfLottoes);
+    this.initRankedCount();
   }
 
   initRankedCount() {
@@ -36,15 +36,16 @@ export default class LottoController {
     });
   }
 
-  purchase(price) {
-    this.lottoModel.buy(price);
-    this.lottoView.showConfirmation(this.lottoModel.lottoList);
+  purchase(purchaseFormElements) {
+    this.lottoModel.buy(purchaseFormElements);
+    this.lottoView.resetPurchaseForm();
+    this.lottoView.showConfirmation(this.lottoModel.lottoTickets);
   }
 
   toggleLottoNumbers(checked) {
     checked
-      ? this.lottoView.showTicketDetails(this.lottoModel.lottoList)
-      : this.lottoView.showTickets(this.lottoModel.lottoList.length);
+      ? this.lottoView.showTicketDetails(this.lottoModel.lottoTickets)
+      : this.lottoView.showTickets(this.lottoModel.lottoTickets.length);
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
@@ -88,7 +89,7 @@ export default class LottoController {
       return;
     }
 
-    this.lottoModel.lottoList.forEach((lotto) => {
+    this.lottoModel.lottoTickets.forEach((lotto) => {
       const ranking = this.getRanking(lotto.number, winningNumber, bonusNumber);
       this.rankedCount[ranking]++;
     });
