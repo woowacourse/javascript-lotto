@@ -79,8 +79,8 @@ export default class LottoController {
     }
 
     this._makeLottos(moneyInput);
-    const numbersBundle = this._lottos.map(lotto => lotto.getNumbers());
-    this.lottoUI.renderCheckLottoUI(numbersBundle);
+    const numbersCollection = this._lottos.map(lotto => lotto.getNumbers());
+    this.lottoUI.renderCheckLottoUI(numbersCollection);
     this.lottoUI.renderResultInputUI();
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
