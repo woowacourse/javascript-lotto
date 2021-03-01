@@ -94,10 +94,10 @@ export default class LottoController {
     const manualAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
     const autoAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`).value);
     this.lottoUI.renderManualSelectUI(manualAmount);
-    this._makeLottos(autoAmount);
+    this._makeLottosByAuto(autoAmount);
   }
 
-  _makeLottos(amount) {
+  _makeLottosByAuto(amount) {
     new Array(amount).fill(0).map(() => {
       const lotto = new Lotto();
       lotto.setNumbersByAuto();
@@ -114,14 +114,24 @@ export default class LottoController {
             .map((inputElement) =>
               Number(inputElement.value)));
 
+    const isBundleDuplicated = numbersBundle.some((numbers) => isNumbersDuplicated(numbers));
+    if (isBundleDuplicated) {
+      alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
+      return;
+    }
+
+    this._makeLottosByManual(numbersBundle);
+    this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
+    this.lottoUI.renderResultInputUI();
+    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
+  }
+
+  _makeLottosByManual(numbersBundle) {
     numbersBundle.forEach((numbers) => {
       const lotto = new Lotto();
       lotto.setNumbers(numbers);
       this._lottosBundle.push(lotto);
     });
-    this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
-    this.lottoUI.renderResultInputUI();
-    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
   _handleResultInput() {
