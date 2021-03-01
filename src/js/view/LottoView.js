@@ -54,6 +54,7 @@ export class LottoView {
   }
 
   reset() {
+    this.$purchaseSection.hide();
     this.$lottoSection.hide();
     this.$lottoResultForm.hide();
   }

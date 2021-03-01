@@ -5,6 +5,7 @@ import {
   MSG_NOT_ENOUGH_MONEY,
 } from '../constants/alertMessage.js';
 import {
+  LOTTO_NUMBER_COUNT,
   WINNING_NUMBER_COUNT,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
@@ -39,6 +40,19 @@ export const validator = {
     return '';
   },
   lottoNumbers: numbers => {
+    if (numbers.length < LOTTO_NUMBER_COUNT) {
+      return MSG_BLANK_INPUT;
+    }
+    if (!isRangeOf(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, numbers)) {
+      return MSG_OUT_RANGED_LOTTO_NUMBERS;
+    }
+    if (isDuplicated(numbers)) {
+      return MSG_DUPLICATED_LOTTO_NUMBERS;
+    }
+
+    return '';
+  },
+  winningNumbers: numbers => {
     if (numbers.length < WINNING_NUMBER_COUNT) {
       return MSG_BLANK_INPUT;
     }

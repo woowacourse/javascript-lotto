@@ -21,8 +21,8 @@ export class LottoController {
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
     this.$autoAmountPurchaseForm.setEvent('submit', this.handleAutoAmountInput.bind(this));
     this.$manualPurchaseForm.setEvent('submit', this.handleManualInputs.bind(this));
-    this.$purchaseTypeToggle.setEvent('click', this.handlePurchaseTypeToggle.bind(this));
-    this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
+    this.$purchaseTypeToggle.setEvent('change', this.handlePurchaseTypeToggle.bind(this));
+    this.$lottoToggle.setEvent('change', this.handleLottoToggle.bind(this));
     this.$winningNumberInputs.setEvent('input', this.handleLengthLimit.bind(this));
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
     this.$modalClose.setEvent('click', () => this.$modal.removeClass('open'));
@@ -75,8 +75,8 @@ export class LottoController {
     event.preventDefault();
     this.$manualInputs = $('[data-manual-lotto-number]');
     const leftMoney = this.machine.currentMoney;
-    const manualNumbers = this.$manualInputs.map(input => Number(input.value));
-    const alertMessage = validator.manualPurchase(leftMoney);
+    const manualNumbers = this.$manualInputs.filter($input => $input.value !== '').map($input => Number($input.value));
+    const alertMessage = validator.manualPurchase(leftMoney) || validator.lottoNumbers(manualNumbers);
 
     if (alertMessage) {
       this.handleInputException(this.$manualInputs, alertMessage);
@@ -126,7 +126,7 @@ export class LottoController {
   handleResult(event) {
     event.preventDefault();
     const numbers = this.$winningNumberInputs.filter($input => $input.value !== '').map($input => Number($input.value));
-    const alertMessage = validator.lottoNumbers(numbers);
+    const alertMessage = validator.winningNumbers(numbers);
 
     if (alertMessage) {
       this.handleInputException(this.$winningNumberInputs, alertMessage);

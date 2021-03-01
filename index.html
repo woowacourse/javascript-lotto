@@ -29,7 +29,7 @@
             <div class="d-flex mt-7">
               <label class="flex-auto my-0 font-bold">남은 잔액 <span id="current-money"></span>원</label>
               <div class="flex-auto d-flex justify-end pr-1">
-                <label class="switch">
+                <label class="switch" id="purchase-type-switch">
                   <input type="checkbox" id="purchase-type-toggle-button" />
                   <span class="text-base font-normal">자동/수동</span>
                 </label>
@@ -64,7 +64,7 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" class="mt-5 btn btn-cyan w-100" id="manual-amount-submit">구매</button>
+              <button type="submit" class="mt-5 btn btn-cyan w-100" id="manual-purchase-submit">구매</button>
             </form>
           </section>
           <!-- lotto section -->
@@ -72,7 +72,7 @@
             <div class="d-flex">
               <label class="flex-auto my-0">총 <span id="lotto-count"></span>개를 구매하였습니다.</label>
               <div class="flex-auto d-flex justify-end pr-1">
-                <label class="switch">
+                <label class="switch" id="lotto-numbers-switch">
                   <input type="checkbox" id="lotto-numbers-toggle-button" />
                   <span class="text-base font-normal">번호보기</span>
                 </label>
