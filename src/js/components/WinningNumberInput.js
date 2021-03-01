@@ -27,7 +27,10 @@ export default class WinningNumberInput {
 
   attachEvents() {
     this.$winningNumberForm.addEventListener('keyup', this.onChangeWinningNumberInput.bind(this));
-    this.$openResultModalButton.addEventListener('click', this.onShowModal.bind(this));
+    this.$winningNumberForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.onShowModal();
+    });
   }
 
   onChangeWinningNumberInput(e) {
