@@ -89,6 +89,10 @@ class LottoGameModel {
     return getProfitRate(income, this.#lottos.length * TICKET.PRICE)
   }
 
+  get lottos() {
+    return this.#lottos.lottos
+  }
+
   get lottoResult() {
     return this.#lottoResult
   }

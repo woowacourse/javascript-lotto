@@ -44,16 +44,14 @@ class LottoController {
   #manageManual() {
     const manualNumbers = getManualInput()
     // TODO : 유효성 검사
-    // TODO : 모델에 넣기 (ticket 발급해서)
-    this.model.generateManualLotto()
-    // TODO : amount 한개 줄이기
-    // TODO : 가져와 렌더링 - renderManualSection
-    this.view.renderManualNumbers([1, 2, 3, 4, 5, 6])
-  }
 
-  #manageLotto() {
-    this.model.generateLottos(this.model.amount)
-    this.#managePocket()
+    this.model.generateManualLotto(manualNumbers)
+    this.view.renderManualNumbers(this.model.lottos)
+    if (this.model.amount === 0) {
+      this.#managePocket()
+    }
+
+    // TODO : 가져와 렌더링 - renderManualSection
   }
 
   #managePocket() {
@@ -99,7 +97,7 @@ class LottoController {
   #handleAuto() {
     const $autoButton = $("#auto-button")
     $autoButton.addEventListener("click", () => {
-      this.#manageLotto()
+      this.#managePocket()
     })
   }
 
