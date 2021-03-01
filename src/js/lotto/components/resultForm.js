@@ -29,6 +29,7 @@ export default class ResultForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
+    const { tickets } = this.props.state.getState();
     const numbers = getInputNumbers(this.$winningNumberInputs);
     const alertMessage = checkValidNumbers(numbers, LOTTO_NUMBER_COUNT + BONUS_NUMBER_COUNT);
 
@@ -38,7 +39,7 @@ export default class ResultForm extends Component {
       return;
     }
 
-    this.props.handleResult(numbers);
+    this.props.handleResult(this.props.calculator.getResult(numbers, tickets));
   }
 
   mountTemplate() {

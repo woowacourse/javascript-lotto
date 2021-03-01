@@ -1,5 +1,5 @@
 import { Component, State } from '../shared/models/index.js';
-import { PaymentForm, PurchasingForm, LottoDetail, ResultForm } from './components/index.js';
+import { PaymentForm, PurchasingForm, LottoDetail, ResultForm, ResultModal } from './components/index.js';
 import { LottoMachine, ProfitCalculator } from './models/index.js';
 import { $ } from '../shared/utils/DOM.js';
 import { UNIT_AMOUNT } from './utils/constants.js';
@@ -21,6 +21,7 @@ export default class App extends Component {
     this.$purchasingSection = $('#purchasing-section');
     this.$lottoDetailSection = $('#lotto-detail-section');
     this.$resultSection = $('#result-section');
+    this.$modal = $('#modal');
   }
 
   handleInsertion(money) {
@@ -41,12 +42,13 @@ export default class App extends Component {
     }
   }
 
-  handleResult(winningNumbers) {
-    const { tickets } = this.state.getState();
-    const { rankCounts, earningRate } = this.calculator.getResult(winningNumbers, tickets);
-
+  handleResult({ rankCounts, earningRate }) {
     this.state.setState({ rankCounts, earningRate });
-    // this.$modal.classList.add('open');
+    this.$modal.classList.add('open');
+  }
+
+  close() {
+    this.$modal.classList.remove('open');
   }
 
   mountTemplate() {
@@ -58,8 +60,16 @@ export default class App extends Component {
           <section id="purchasing-section" class="d-none"></section>
           <section id="lotto-detail-section" class="mt-9 d-none"></section>
           <section id="result-section" class="d-none"></section>
+          <div class="modal" id="modal"></div>
         </section>
       </div>`;
+  }
+
+  reset() {
+    this.initState();
+    this.mountTemplate();
+    this.initDOM();
+    this.mountChildComponents();
   }
 
   mountChildComponents() {
@@ -76,7 +86,13 @@ export default class App extends Component {
     });
     new ResultForm(this.$resultSection, {
       state: this.state,
+      calculator: this.calculator,
       handleResult: this.handleResult.bind(this),
+    });
+    new ResultModal(this.$modal, {
+      state: this.state,
+      close: this.close.bind(this),
+      reset: this.reset.bind(this),
     });
   }
 }

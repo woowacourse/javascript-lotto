@@ -50,7 +50,7 @@ describe('Lotto test', () => {
   });
 
   it('잔액 내의 모든 로또 구매를 마치면, 결과 입력 창을 렌더링한다.', () => {
-    cy.get('#result-form').should('be.visible');
+    cy.get('#lotto-result-form').should('be.visible');
   });
 
   it('토글 버튼을 클릭했을 때, 로또의 번호를 확인할 수 있다.', () => {
