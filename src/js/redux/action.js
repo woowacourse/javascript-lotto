@@ -1,7 +1,6 @@
 import { generateRandomNumber } from '../utils/common.js';
-import { LOTTO } from '../utils/constants.js';
+import { LOTTO, PURCHASE_TYPE } from '../utils/constants.js';
 import {
-  ADD_LOTTO,
   AUTO_PURCHASE,
   CALCULATE_PROFIT,
   CREATE_LOTTOS,
@@ -30,16 +29,16 @@ export const changePurchaseType = purchaseType => {
   };
 };
 
-export const addLotto = (numbers, purchaseType) => {
+export const createLottos = props => {
   'use strict';
-  return {
-    type: ADD_LOTTO,
-    payload: { lottos: [numbers], purchaseType },
-  };
-};
+  const { payment, lottoNumbers, purchaseType } = props;
+  if (purchaseType === PURCHASE_TYPE.MANUAL) {
+    return {
+      type: CREATE_LOTTOS,
+      payload: { lottos: [lottoNumbers] },
+    };
+  }
 
-export const createLottos = payment => {
-  'use strict';
   const generateLottoNumbers = () => {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < LOTTO.LENGTH) {

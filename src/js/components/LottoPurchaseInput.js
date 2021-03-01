@@ -1,4 +1,4 @@
-import { LOTTO } from '../utils/constants.js';
+import { LOTTO, PURCHASE_TYPE } from '../utils/constants.js';
 import { $, clearInputValue } from '../utils/dom.js';
 import { ERROR_MESSAGE } from '../utils/message.js';
 import {
@@ -89,7 +89,9 @@ export default class LottoPurchaseInput extends Component {
     if (this.$purchaseTypeToggleButton.checked) {
       store.dispatch(changePurchaseType(MANUAL_PURCHASE));
     } else {
-      store.dispatch(createLottos(payment));
+      store.dispatch(
+        createLottos({ payment, paymentType: PURCHASE_TYPE.AUTO }),
+      );
     }
   }
 

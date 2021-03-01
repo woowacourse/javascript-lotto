@@ -12,7 +12,6 @@ import {
   AUTO_PURCHASE,
   RESTART,
   UPDATE_PAYMENT,
-  ADD_LOTTO,
 } from '../redux/actionType.js';
 import { getMatchedCount } from '../utils/common.js';
 
@@ -40,12 +39,13 @@ const purchaseTypeReducer = (state = 'auto', { type }) => {
 
 const lottosReducer = (state = [], { type, payload = {} }) => {
   const { lottos } = payload;
-  if (type === CREATE_LOTTOS || type === ADD_LOTTO) {
-    return [...state, ...lottos];
-  } else if (type === RESTART) {
-    return [];
-  } else {
-    return state;
+  switch (type) {
+    case CREATE_LOTTOS:
+      return [...state, ...lottos];
+    case RESTART:
+      return [];
+    default:
+      return state;
   }
 };
 

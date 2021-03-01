@@ -2,15 +2,14 @@ import { $, $$, clearInputValue } from '../utils/dom.js';
 import { store } from '../index.js';
 import { LOTTO, PURCHASE_TYPE } from '../utils/constants.js';
 import {
-  addLotto,
   changePurchaseType,
   createLottos,
   updatePayment,
 } from '../redux/action.js';
+import { AUTO_PURCHASE } from '../redux/actionType.js';
 import Button from './Button/Button.js';
 import LottoNumbersInput from './Input/LottoNumbersInput.js';
 import Component from '../core/Component.js';
-import { AUTO_PURCHASE } from '../redux/actionType.js';
 
 export default class ManualLottoInput extends Component {
   initRender() {
@@ -90,14 +89,24 @@ export default class ManualLottoInput extends Component {
     this.clearInputArea();
     if (nextPaymentState >= 0) {
       store.dispatch(updatePayment(nextPaymentState));
-      store.dispatch(addLotto(lottoNumbers));
+      store.dispatch(
+        createLottos({
+          lottoNumbers,
+          purchaseType: store.getStates().purchaseType,
+        }),
+      );
     }
   }
 
   onClickFinishButton() {
     this.clearView();
     store.dispatch(changePurchaseType(AUTO_PURCHASE));
-    store.dispatch(createLottos(store.getStates().payment));
+    store.dispatch(
+      createLottos({
+        payment: store.getStates().payment,
+        purchaseType: PURCHASE_TYPE.AUTO,
+      }),
+    );
   }
 
   bindEvent() {
