@@ -88,11 +88,15 @@ context('Actions', () => {
   it('한 번 로또를 구입하면 다시 구매할 수 없다.', () => {
     cy.get('input[name=payment-input]').type('1000');
     cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
+    cy.get('input[name=payment-input]').should('be.disabled');
+    cy.get('input[name=payment-button]').should('be.disabled');
   });
 
   it('토글 버튼을 누르면 티켓의 번호를 보여준다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
     cy.get('.switch').click();
     cy.get('.ticket-number').should('have.length', 5);
   });
@@ -100,6 +104,7 @@ context('Actions', () => {
   it('각 티켓은 1-45 사이의 6개 랜덤 숫자를 가진다.', () => {
     cy.get('input[name=payment-input]').type('1000');
     cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
     cy.get('.switch').click();
     cy.get('.ticket-number').then(elements => {
       elements[0].innerText.split(', ').forEach(number => {
@@ -114,6 +119,7 @@ context('Actions', () => {
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
@@ -127,6 +133,7 @@ context('Actions', () => {
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
@@ -138,6 +145,9 @@ context('Actions', () => {
 
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
     cy.get('.winning-number[name=first]').type(99);
     cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
   });
@@ -146,6 +156,7 @@ context('Actions', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(1);
     });
