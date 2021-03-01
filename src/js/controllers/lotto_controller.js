@@ -1,5 +1,4 @@
 import Buy from "../components/buy.js"
-import { getTicketsCount } from "../components/pocket.js"
 import { getAnswerInput } from "../components/winning.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
@@ -29,8 +28,7 @@ class LottoController {
     const price = this.buy.manageBuyInput()
     if (!price) return
 
-    const amount = getTicketsCount(price)
-    this.model.issueLottos(amount)
+    this.model.issueLottos(this.buy.getTicketsCount(price))
     this.view.renderBuyMethodSection(this.model.lottos)
     this.view.resetPocketSection()
     this.view.resetWinningSection()

@@ -1,6 +1,6 @@
 import { checkPriceValid } from "../validators/validator.js"
-import { SELECTOR } from "../constants/constant.js"
-import { $ } from "../util.js"
+import { SELECTOR, TICKET } from "../constants/constant.js"
+import { $, getQuotient } from "../util.js"
 
 class Buy {
   #getBuyInput() {
@@ -18,6 +18,10 @@ class Buy {
     }
 
     return price
+  }
+
+  getTicketsCount(price) {
+    return getQuotient(price, TICKET.PRICE)
   }
 }
 
