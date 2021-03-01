@@ -5,6 +5,7 @@ class LottosModel {
 
   constructor() {
     this.#lottos = []
+    this.#amount = 0
   }
 
   #addTicket(ticket) {
@@ -17,8 +18,22 @@ class LottosModel {
     this.#addTicket(ticket)
   }
 
+  generateManualTicket(numbers) {
+    const ticket = new TicketModel()
+    ticket.generateManualNumbers(numbers)
+    this.#addTicket(ticket)
+  }
+
+  decreaseAmount(number) {
+    this.#amount -= number
+  }
+
   get lottos() {
     return this.#lottos
+  }
+
+  set amount(newAmount) {
+    this.#amount = newAmount
   }
 }
 

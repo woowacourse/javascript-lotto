@@ -8,7 +8,7 @@ class LottoGameModel {
   #lottoResult
 
   constructor() {
-    this.#lottos = []
+    this.#lottos = null
     this.#answerLotto = {
       numbers: null,
       bonus: null,
@@ -35,12 +35,22 @@ class LottoGameModel {
     return { match, bonusMatch }
   }
 
-  generateLottos(count) {
-    const lottosModel = new LottosModel()
+  generateLottos() {
+    this.#lottos = new LottosModel()
+  }
+
+  set amount(newAmount) {
+    this.#lottos && (this.#lottos.amount = newAmount)
+  }
+
+  generateRandomLottos(count) {
     for (let i = 0; i < count; i++) {
-      lottosModel.generateRandomTicket()
+      this.#lottos && this.#lottos.generateRandomTicket()
     }
-    this.#lottos = lottosModel.lottos
+  }
+
+  generateManualLotto(numbers) {
+    this.#lottos && this.#lottos.generateManualLotto(numbers)
   }
 
   calculateLottosResult(answer) {
@@ -73,14 +83,6 @@ class LottoGameModel {
     })
   }
 
-  get lottos() {
-    return this.#lottos
-  }
-
-  get amount() {
-    return this.#lottos.length
-  }
-
   get profitRate() {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
@@ -93,6 +95,7 @@ class LottoGameModel {
   }
 
   reset() {
+    this.#lottos = null
     this.#answerLotto = {
       numbers: null,
       bonus: null,
@@ -105,6 +108,7 @@ class LottoGameModel {
       [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
     }
   }
+
   init() {
     this.#lottoResult = {
       [RANK.FIFTH.TEXT]: { price: RANK.FIFTH.PRICE, count: 0 },
