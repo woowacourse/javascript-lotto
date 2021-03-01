@@ -13,6 +13,18 @@ export default class LottoPurchaseController {
   }
 
   onClickAutoPurchaseButton() {
+    if (
+      confirm(
+        `다음과 같은 로또 구매 내역을 확정하시겠습니까?
+
+구입 금액: ${this.lottoModel.price}원 (로또 1개 가격: 1000원)          
+수동 구매: ${this.lottoModel.lottoList.length}개
+자동 구매: ${this.lottoModel.price / 1000 - this.lottoModel.lottoList.length}개`
+      ) === false
+    ) {
+      return;
+    }
+
     this.lottoModel.autoPurchase();
     this.lottoView.showConfirmation(this.lottoModel.lottoList);
 
