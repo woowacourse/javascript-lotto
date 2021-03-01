@@ -21,15 +21,35 @@ const validator = {
     return Number.isInteger(cost);
   },
 
+  isArrayWithContent(array) {
+    if (!Array.isArray(array) || array.length === 0) {
+      return false;
+    };
+
+    return true;
+  },
+
   isDuplicatedNumberExist(numbers) {
+    if (validator.isArrayWithContent(numbers)) {
+      return
+    }
+
     return new Set(numbers).size !== numbers.length;
   },
 
   isNumberOutOfRangeExist(numbers) {
+    if (validator.isArrayWithContent(numbers)) {
+      return
+    }
+
     return numbers.some((number) => isNumberOutOfRange(number));
   },
 
   isEmptyCorrectNumberExist(numbers) {
+    if (validator.isArrayWithContent(numbers)) {
+      return
+    }
+
     return numbers.length < LOTTO.CORRECT_NUMBER_LENGTH;
   },
 };
