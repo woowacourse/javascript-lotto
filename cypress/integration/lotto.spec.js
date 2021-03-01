@@ -50,7 +50,7 @@ const testDetail = () => {
 
 const submitManualLotto = (numbers) => {
   cy.get(".manual-number").each(($manualNumber, i) => {
-    numbers[i] && cy.wrap($manualNumber).type(numbers[i])
+    numbers[i] !== "" && cy.wrap($manualNumber).type(numbers[i])
   })
 
   cw.click("#manual-button")
@@ -58,7 +58,7 @@ const submitManualLotto = (numbers) => {
 
 const submitAnswer = (numbers, bonus) => {
   cy.get(SELECTOR.WINNING_NUMBER).each(($winningNumber, i) => {
-    numbers[i] && cy.wrap($winningNumber).type(numbers[i])
+    numbers[i] !== "" && cy.wrap($winningNumber).type(numbers[i])
   })
 
   cw.type(SELECTOR.BONUS_NUMBER, bonus).click(SELECTOR.OPEN_RESULT_MODAL_BUTTON)
@@ -292,7 +292,7 @@ describe("ui-exception", () => {
 
     it("수동 번호가 1이상 45이하가 아닌 숫자가 있을때 alert가 발생해야 한다", () => {
       submitManualBuy(5000)
-      submitManualLotto([2, 3, 4, 46, 9, 0])
+      submitManualLotto([2, 0, 4, 46, 9, 5])
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
