@@ -1,9 +1,9 @@
 import LottoGame from './lotto/LottoGame.js';
 import LottoController from './lotto/controller.js';
-import view from './lotto/view.js';
+import View from './lotto/views/view.js';
 
 const init = () => {
-  const lottoController = new LottoController(new LottoGame(), view);
+  const lottoController = new LottoController(new LottoGame(), new View());
   lottoController.bindLottoGameEvents();
 };
 

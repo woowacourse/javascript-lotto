@@ -36,16 +36,16 @@ export default class LottoController {
   #purchaseAutoLottoItems(count) {
     this.#remainLottoCount -= count;
     this.#lottoModel.addLottoItems(count);
-    this.#lottoView.displayPurchaseResult(this.#lottoModel.lottoItemList);
-    this.#lottoView.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.resultSection.displayPurchaseResult(this.#lottoModel.lottoItemList);
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
     this.#checkPurchaseLottoDone();
   }
 
   #purchaseManualLottoItem(lottoNumbers) {
     this.#remainLottoCount -= 1;
     this.#lottoModel.addLottoItem(lottoNumbers);
-    this.#lottoView.displayPurchaseResult(this.#lottoModel.lottoItemList);
-    this.#lottoView.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.resultSection.displayPurchaseResult(this.#lottoModel.lottoItemList);
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
     this.#checkPurchaseLottoDone();
   }
 
@@ -61,16 +61,13 @@ export default class LottoController {
       getTotalProfit(rankItemList),
     );
 
-    this.#lottoView.openResultModal(rankItemList, getKRString(profitRate));
+    this.#lottoView.modalSection.openResultModal(rankItemList, getKRString(profitRate));
   }
 
   #checkPurchaseLottoDone() {
     if (this.#remainLottoCount === 0) {
-      this.#lottoView.hideChoiceMethodButton();
-      this.#lottoView.hideRemainLottoNumberCount();
-      this.#lottoView.hideAutoCountForm();
-      this.#lottoView.hideManualLottoNumbersForm();
-      this.#lottoView.displayCorrectNumberInputForm();
+      this.#lottoView.purchaseSection.hideAllPurchaseSection();
+      this.#lottoView.winningSection.displayCorrectNumberInputForm();
     }
   }
 
@@ -85,20 +82,20 @@ export default class LottoController {
     }
 
     this.#remainLottoCount = cost / LOTTO.PRICE;
-    this.#lottoView.displayChoiceMethodButton();
-    this.#lottoView.resetToggleButton();
+    this.#lottoView.purchaseSection.displayChoiceMethodButton();
+    this.#lottoView.resultSection.resetToggleButton();
   }
 
   #onAutoSelect() {
-    this.#lottoView.hideManualLottoNumbersForm();
-    this.#lottoView.displayAutoCountForm();
-    this.#lottoView.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.purchaseSection.hideManualLottoNumbersForm();
+    this.#lottoView.purchaseSection.displayAutoCountForm();
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
   }
 
   #onManualSelect() {
-    this.#lottoView.hideAutoCountForm();
-    this.#lottoView.displayManualLottoNumbersForm();
-    this.#lottoView.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.purchaseSection.hideAutoCountForm();
+    this.#lottoView.purchaseSection.displayManualLottoNumbersForm();
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
   }
 
   #onAutoPurchase(e) {
@@ -133,8 +130,8 @@ export default class LottoController {
 
   #onShowLottoNumbersToggle(e) {
     e.target.checked
-      ? this.#lottoView.displayLottoNumbers()
-      : this.#lottoView.hideLottoNumbers();
+      ? this.#lottoView.resultSection.displayLottoNumbers()
+      : this.#lottoView.resultSection.hideLottoNumbers();
   }
 
   #onResultModalOpen(e) {
@@ -150,7 +147,7 @@ export default class LottoController {
   }
 
   #onResultModalClose() {
-    this.#lottoView.closeResultModal();
+    this.#lottoView.modalSection.closeResultModal();
   }
 
   #onAllNumberInput(e, $$elements) {
