@@ -10,6 +10,13 @@ context('Actions', () => {
     cy.visit('http://localhost:5500/');
   });
 
+  it('1000원 미만의 금액은 입력할 수 없다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('input[name=payment-input]').type('0');
+    cy.get('button[name=payment-button]').click();
+    cy.get('@alert').should('be.calledWith', LESS_THAN_TICKET_PRICE_MESSAGE);
+  });
+
   it('티켓 구매 금액 입력 시, 발급 가능한 티켓 수량을 보여준다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
@@ -76,19 +83,6 @@ context('Actions', () => {
     cy.get('button[name=payment-button]').click();
     cy.get('#lotto-issue-end-button').click();
     cy.get('#ticket-list .issued-ticket').should('have.length', 5);
-  });
-
-  it('구입 금액을 입력받아 티켓을 생성한다.', () => {
-    cy.get('input[name=payment-input]').type('5000');
-    cy.get('button[name=payment-button]').click();
-    cy.get('#ticket-list > div').should('have.length', 5);
-  });
-
-  it('1000원 미만의 금액은 입력할 수 없다.', () => {
-    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
-    cy.get('input[name=payment-input]').type('0');
-    cy.get('button[name=payment-button]').click();
-    cy.get('@alert').should('be.calledWith', LESS_THAN_TICKET_PRICE_MESSAGE);
   });
 
   it('한 번 로또를 구입하면 다시 구매할 수 없다.', () => {

@@ -4,6 +4,7 @@ import { getProfitPercent, getWinners } from '../lib/service/lotto.js';
 import { hasDuplicateInArray } from '../lib/utils/validation.js';
 import { updateResultModalView } from '../lib/viewController/resultModal.js';
 import { openModal } from '../lib/viewController/app.js';
+import { $ } from '../lib/utils/dom.js';
 
 const winningNumberSubmitHandler = event => {
   event.preventDefault();
