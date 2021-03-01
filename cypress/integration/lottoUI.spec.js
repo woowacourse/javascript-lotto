@@ -15,8 +15,6 @@ context('로또 UI 테스트', () => {
   describe('금액 입력 부분', () => {
     it('로또 구입 금액을 입력하면, 수동 구매와 자동 구매 갯수를 정하는 input이 나타난다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      // cy.get(`.${DOM_CLASSES.LOTTO_TICKET}`).should('have.length', Math.floor(COMMON_MONEY_INPUT / LOTTO_SETTINGS.LOTTO_PRICE));
-
       testChildNodeExist(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`);
     });
 
@@ -45,17 +43,31 @@ context('로또 UI 테스트', () => {
   });
 
   describe('로또 자동/수동 구매 정보 입력 부분', () => {
-    it('자동/수동 구매 갯수를 정하면 수동 번호 입력란이 표시된다', () => {
+    it('자동/수동 구매 갯수를 정하면 수동 번호 입력란이 표시된다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       cy.get(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`).click();
       
       cy.document().then(doc => {
         const lottoAmount = doc.querySelector(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).value / LOTTO_SETTINGS.LOTTO_PRICE;
         const autoLottoAmount = doc.querySelector(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
-        cy.get(`.${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}`).then(elements => {
-          expect(elements.length).to.equal(lottoAmount - autoLottoAmount);
+        cy.get(`.${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}`).then($$papers => {
+          expect($$papers.length).to.equal(lottoAmount - autoLottoAmount);
         });
       });
+    });
+
+    it('수동 구매 번호를 입력하면 로또 번호 확인란과 당첨 번호 입력란이 표시된다.', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      cy.get(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`).click();
+      cy.get(`.${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}`).then($$papers => {
+        [...$$papers].forEach($paper => {
+          const numberInputs = $paper.querySelectorAll(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`);
+          typeLottoNumbers(numberInputs, [1, 2, 3, 4, 5, 6]);
+        });
+      });
+      cy.get(`.${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT}`).click();
+      cy.get(`.${DOM_CLASSES.LOTTO_TICKET}`).should('have.length', Math.floor(COMMON_MONEY_INPUT / LOTTO_SETTINGS.LOTTO_PRICE));
+      cy.get(`.${DOM_CLASSES.RESULT_INPUT_FORM}`).should('be.visible');
     });
   });
 
@@ -79,7 +91,7 @@ context('로또 UI 테스트', () => {
 
     it('결과 확인하기 버튼을 누르면 당첨 통계 모달창을 띄운다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+      typeResultNumbers([1, 2, 3, 4, 5, 6, 7]);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL}`).should("be.visible");
@@ -98,7 +110,7 @@ context('로또 UI 테스트', () => {
       cy.on('window:alert', alertStub);
 
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeLottoNumbers([5, 5, 5, 5, 5, 5, 5]);
+      typeResultNumbers([5, 5, 5, 5, 5, 5, 5]);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click().then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
@@ -110,7 +122,7 @@ context('로또 UI 테스트', () => {
       cy.on('window:alert', alertStub);
 
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeLottoNumbers([55, 65, 75, 85, 95, 105, 115]);
+      typeResultNumbers([55, 65, 75, 85, 95, 105, 115]);
 
       cy.get(`.${DOM_CLASSES.MODAL}`).should('not.be.visible');
     });
@@ -119,7 +131,7 @@ context('로또 UI 테스트', () => {
   describe('당첨 통계 부분', () => {
     it('당첨 통계에서는 당첨 갯수와 수익률을 확인할 수 있다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+      typeResultNumbers([1, 2, 3, 4, 5, 6, 7]);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL_WINNING_COUNT}`).then(($$winningCounts) => {
@@ -136,7 +148,7 @@ context('로또 UI 테스트', () => {
 
     it('X 표시를 누르면 모달 창을 닫을 수 있다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+      typeResultNumbers([1, 2, 3, 4, 5, 6, 7]);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL_CLOSE}`).click();
@@ -145,7 +157,7 @@ context('로또 UI 테스트', () => {
 
     it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      typeLottoNumbers([1, 2, 3, 4, 5, 6, 7]);
+      typeResultNumbers([1, 2, 3, 4, 5, 6, 7]);
 
       cy.get(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`).click();
       cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
@@ -162,7 +174,13 @@ function typeAndClick(inputSelector, inputString, submitSelector) {
   return cy.get(submitSelector).click();
 }
 
-function typeLottoNumbers(inputs) {
+function typeLottoNumbers(numberInputs, inputs) {
+  [...numberInputs].forEach(($number, idx) => {
+    cy.get($number).type(inputs[idx]);
+  });
+}
+
+function typeResultNumbers(inputs) {
   const LENGTH_LIMIT = LOTTO_SETTINGS.LOTTO_NUMBER_SIZE + LOTTO_SETTINGS.BONUS_NUMBER_SIZE;
   if (inputs.length !== LENGTH_LIMIT) {
     cy.log(`로또 숫자 갯수가 ${LENGTH_LIMIT}개가 아닙니다.`);
@@ -172,7 +190,7 @@ function typeLottoNumbers(inputs) {
   cy.get(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).then($$numbers => {
     [...$$numbers].forEach(($number, idx) => {
       cy.get($number).type(inputs[idx]);
-    })
+    });
   });
   cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(inputs[inputs.length - 1]);
 }
