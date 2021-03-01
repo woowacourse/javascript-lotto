@@ -13,7 +13,6 @@ import {
   RESTART,
   UPDATE_PAYMENT,
 } from '../redux/actionType.js';
-import { getMatchedCount } from '../utils/common.js';
 
 const paymentReducer = (state = 0, { type, payload = {} }) => {
   switch (type) {
@@ -68,7 +67,10 @@ export const winningCountReducer = (state, lottos, { type, payload = {} }) => {
 
       lottos.forEach(lottoNumbers => {
         let rank =
-          RANK_FOR_MATCHED_COUNT[getMatchedCount(winningNumbers, lottoNumbers)];
+          RANK_FOR_MATCHED_COUNT[
+            winningNumbers.filter(number => lottoNumbers.includes(number))
+              .length
+          ];
         rank = rank === 3 && lottoNumbers.includes(bonusNumber) ? 2 : rank;
         rank && winningCountTemp[`rank${rank}`]++;
       });
