@@ -36,6 +36,19 @@ context('Actions', () => {
     cy.get('#issuable-ticket-amount').should('have.text', 4);
   });
 
+  it('발급 가능한 티켓이 0장이면 티켓을 발급할 수 없다.', () => {
+    cy.get('input[name=payment-input]').type('1000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('.js-manual-input').each((element, idx) => {
+      cy.wrap(element).type(idx + 1);
+    });
+    cy.get('#manual-submit').click();
+    cy.get('.js-manual-input').each(element => {
+      cy.wrap(element).should('be.disabled');
+    });
+    cy.get('#manual-submit').should('be.disabled');
+  });
+
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
