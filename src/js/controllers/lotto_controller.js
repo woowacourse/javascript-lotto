@@ -3,7 +3,10 @@ import { getTicketsCount } from "../components/pocket.js"
 import { getAnswerInput } from "../components/winning.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
-import { checkAnswerValid, checkPriceValid } from "../validators/validator.js"
+import {
+  checkLottoNumberValid,
+  checkPriceValid,
+} from "../validators/validator.js"
 import { getManualInput } from "../components/manual.js"
 
 class LottoController {
@@ -42,7 +45,10 @@ class LottoController {
 
   #manageManual() {
     const manualNumbers = getManualInput()
-    // TODO : 유효성 검사
+    const errorMessage = checkLottoNumberValid(manualNumbers)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
 
     const generatedLottos = this.model.lottos
     this.model.generateManualLotto(manualNumbers)
@@ -66,7 +72,8 @@ class LottoController {
 
   #manageModalOpen() {
     const answer = getAnswerInput()
-    const errorMessage = checkAnswerValid(answer)
+    const lottos = [...answer.numbers, answer.bonus]
+    const errorMessage = checkLottoNumberValid(lottos)
     if (errorMessage) {
       return alert(errorMessage)
     }
