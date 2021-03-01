@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 
+import { LOTTO_TYPE_AUTO } from '../constants/index.js';
 import { $ } from '../util/index.js';
 
 export class LottoView {
@@ -25,7 +26,7 @@ export class LottoView {
             <div class="lotto-wrapper d-flex items-start">
               <span class="lotto mx-1 text-4xl">🎟️ </span>
               <span data-lotto-numbers=${idx} class="mx-1 text-2xl mt-1">
-                ${lotto.numbers.join(', ')}
+                ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
               </span>
             </div>
           `);
@@ -36,7 +37,7 @@ export class LottoView {
             <div class="lotto-wrapper d-flex items-start">
               <span class="lotto mx-1 text-4xl">🎟️ </span>
               <span data-lotto-numbers=${idx} class="mx-1 text-2xl d-none mt-1">
-                ${lotto.numbers.join(', ')}
+              ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
               </span>
             </div>
           `);
