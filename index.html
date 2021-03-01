@@ -13,15 +13,18 @@
           <h1 class="text-center">🎱 행운의 로또</h1>
           <form class="mt-5" data-js-selector="cash-container">
             <label class="mb-2 d-inline-block"
-              >구입할 금액을 입력해주세요. (로또 1장의 가격: 1,000원)
+              >구입할 금액을 입력해주세요.
             </label>
             <div class="d-flex">
               <input
                 type="number"
                 class="w-100 mr-2 pl-2"
-                placeholder="구입 금액"
+                placeholder="구입 금액(로또 1장의 가격은 1,000원입니다)"
                 data-js-selector="cash-container__input"
+                name="cash-container__input"
+                min="1000"
                 autofocus
+                required
               />
               <button
                 type="submit"
@@ -69,50 +72,62 @@
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    name="winning-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="01"
+                    placeholder="00"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    name="winning-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="02"
+                    placeholder="00"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    name="winning-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="03"
+                    placeholder="00"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    name="winning-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="04"
+                    placeholder="00"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    name="winning-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="05"
+                    placeholder="00"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number mx-1 text-center"
+                    name="winning-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="06"
+                    placeholder="00"
+                    required
                   />
                 </div>
               </div>
@@ -122,10 +137,12 @@
                   <input
                     type="number"
                     class="bonus-number text-center"
+                    name="bonus-number"
                     min="1"
                     max="45"
                     step="1"
-                    placeholder="07"
+                    placeholder="00"
+                    required
                   />
                 </div>
               </div>
@@ -215,7 +232,7 @@
           </p>
           <div class="d-flex justify-center mt-5">
             <button
-              type="button"
+              type="reset"
               class="btn btn-cyan"
               data-js-selector="modal__restart-button"
             >
