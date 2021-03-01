@@ -23,7 +23,7 @@ export const MESSAGE = Object.freeze({
   NUMBER_RANGE_EXCEEDED: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자만 입력할 수 있습니다.`,
   SHOULD_FILL_ALL_LOTTO_NUMBERS:
     '모든 로또번호를 입력해주셔야 로또를 구매할 수 있습니다.',
-    SHOULD_FILL_ALL_WINNING_NUMBERS:
+  SHOULD_FILL_ALL_WINNING_NUMBERS:
     '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
 });
 
