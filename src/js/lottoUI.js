@@ -153,10 +153,16 @@ export default class LottoUI {
   }
 
   showModal() {
-    $(`.${DOM_CLASSES.MODAL}`).classList.add('open');
+    const modalElement = $(`.${DOM_CLASSES.MODAL}`);
+    if (!modalElement.classList.contains('open')) {
+      modalElement.classList.add('open');
+    }
   }
 
   hideModal() {
-    $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
+    const modalElement = $(`.${DOM_CLASSES.MODAL}`);
+    if (modalElement.classList.contains('open')) {
+      $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
+    }
   }
 }
