@@ -16,7 +16,7 @@ export default class LottoModel {
 
   getAutoSelectedNumbers(fixedNumbers, requiredLength) {
     if (requiredLength === 0) {
-      return;
+      return [];
     }
 
     const baseNumbers = Array.from({ length: 45 }, (_, i) => i + 1).filter(
@@ -28,11 +28,14 @@ export default class LottoModel {
   }
 
   createLottoTicket(fixedNumbers) {
+    console.log(fixedNumbers);
+    console.log(fixedNumbers.length);
+    const autoSelectedNumbers = this.getAutoSelectedNumbers(
+      fixedNumbers,
+      6 - fixedNumbers.length
+    );
     this.lottoTickets.push({
-      number: [
-        ...fixedNumbers,
-        ...this.getAutoSelectedNumbers(fixedNumbers, 6 - fixedNumbers.length),
-      ],
+      number: [...fixedNumbers, ...autoSelectedNumbers],
     });
   }
 
