@@ -40,6 +40,15 @@ const purchaseAutoLottoItems = (count) => {
   lottoGame.addLottoItems(count);
   lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
   lottoGameView.displayRemainLottoNumberCount(remainLottoCount);
+  checkPurchaseLottoDone();
+};
+
+const purchaseManualLottoItem = (lottoNumbers) => {
+  remainLottoCount -= 1;
+  lottoGame.addLottoItem(lottoNumbers);
+  lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
+  lottoGameView.displayRemainLottoNumberCount(remainLottoCount);
+  checkPurchaseLottoDone();
 };
 
 const assignResult = (correctNumbers) => {
@@ -52,6 +61,15 @@ const showWinningResult = () => {
   const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
   lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
 };
+
+const checkPurchaseLottoDone = () => {
+  if (remainLottoCount === 0) {
+    lottoGameView.hideChoiceMethodButton();
+    lottoGameView.hideRemainLottoNumberCount();
+    lottoGameView.hideAutoCountForm();
+    lottoGameView.hideManualLottoNumbersForm();
+  }
+}
 
 const onCostSubmit = (e) => {
   e.preventDefault();
@@ -101,6 +119,10 @@ const onManualLotto = (e) => {
     $autoCountInput.value = '';
     return;
   }
+  $$lottoNumberInputs.forEach(
+    ($lottoNumberInput) => ($lottoNumberInput.value = ''),
+  );
+  purchaseManualLottoItem(lottoNumbers);
 };
 
 const onShowLottoNumbersToggle = (e) => {

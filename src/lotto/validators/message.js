@@ -46,7 +46,7 @@ const message = {
   },
 
   getPurchaseManualLottoValidation(lottoNumbers) {
-    if (validator.isEmptyCorrectNumberExist(lottoNumbers)) {
+    if (validator.isEmptyLottoNumberExist(lottoNumbers)) {
       return MESSAGE.SHOULD_FILL_ALL_LOTTO_NUMBERS;
     }
   },

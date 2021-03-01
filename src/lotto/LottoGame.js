@@ -73,8 +73,11 @@ export default class LottoGame {
     return [...numberList].sort((a, b) => a - b);
   }
 
-  #addLottoItem() {
-    const lottoNumberList = this.#getLottoNumberList();
+  addLottoItem(lottoNumbers) {
+    const lottoNumberList = lottoNumbers 
+      ? lottoNumbers 
+      : this.#getLottoNumberList();
+      
     this.#lottoItemList.push({
       lottoNumberList,
       matchCount: 0,
@@ -83,7 +86,7 @@ export default class LottoGame {
   }
 
   addLottoItems = (lottoItemCount) => {
-    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
+    [...Array(lottoItemCount)].forEach(() => this.addLottoItem());
   };
 
   assignCorrectNumbers(correctNumbers) {
