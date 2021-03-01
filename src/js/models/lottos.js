@@ -2,7 +2,7 @@ import TicketModel from "./ticket.js"
 
 class LottosModel {
   #lottos
-
+  #amount
   constructor() {
     this.#lottos = []
     this.#amount = 0

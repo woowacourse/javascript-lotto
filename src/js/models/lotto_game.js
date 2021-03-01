@@ -48,7 +48,7 @@ class LottoGameModel {
   }
 
   generateManualLotto(numbers) {
-    this.#lottos && this.#lottos.generateManualLotto(numbers)
+    this.#lottos && this.#lottos.generateManualTicket(numbers)
     this.#lottos.decreaseAmount()
   }
 
