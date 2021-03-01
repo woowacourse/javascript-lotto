@@ -44,6 +44,21 @@ context('로또 UI 테스트', () => {
     });
   });
 
+  describe('로또 자동/수동 구매 정보 입력 부분', () => {
+    it('자동/수동 구매 갯수를 정하면 수동 번호 입력란이 표시된다', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      cy.get(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`).click();
+      
+      cy.document().then(doc => {
+        const lottoAmount = doc.querySelector(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).value / LOTTO_SETTINGS.LOTTO_PRICE;
+        const autoLottoAmount = doc.querySelector(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
+        cy.get(`.${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}`).then(elements => {
+          expect(elements.length).to.equal(lottoAmount - autoLottoAmount);
+        });
+      });
+    });
+  });
+
   describe('구입한 로또 확인 부분', () => {
     it('번호 보기 토글 버튼을 클릭하면, 복권 번호가 화면에 표시된다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
