@@ -13,9 +13,12 @@ context('로또 UI 테스트', () => {
   });
 
   describe('금액 입력 부분', () => {
-    it('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급한다.', () => {
+    it('로또 구입 금액을 입력하면, 수동 구매와 자동 구매 갯수를 정하는 input이 나타난다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      cy.get(`.${DOM_CLASSES.LOTTO_TICKET}`).should('have.length', Math.floor(COMMON_MONEY_INPUT / LOTTO_SETTINGS.LOTTO_PRICE));
+      // cy.get(`.${DOM_CLASSES.LOTTO_TICKET}`).should('have.length', Math.floor(COMMON_MONEY_INPUT / LOTTO_SETTINGS.LOTTO_PRICE));
+
+      cy.get(`.${DOM_CLASSES.BUYING_FORM_AUTO_INPUT}`).should('be.visible');
+      cy.get(`.${DOM_CLASSES.BUYING_FORM_MANUAL_INPUT}`).should('be.visible');
     });
 
     it('입력받는 구입 금액은 최소 1000원 이상이어야 한다.', () => {

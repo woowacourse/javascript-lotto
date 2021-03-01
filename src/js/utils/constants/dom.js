@@ -4,6 +4,9 @@ export const DOM_CLASSES = {
   MONEY_FORM_INPUT: 'money-input-form__input',
   MONEY_FORM_SUBMIT: 'money-input-form__submit',
 
+  BUYING_FORM_AUTO_INPUT: 'buying-input-form__auto',
+  BUYING_FORM_MANUAL_INPUT: 'buying-input-form__manual',
+
   LOTTO_CONTAINER: 'lotto-div',
   LOTTO_SWITCH: 'lotto-div__switch',
   LOTTO_TICKET: 'lotto-div__ticket',
