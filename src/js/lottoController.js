@@ -32,8 +32,6 @@ export default class LottoController {
 
   _initState() {
     this._firstTimeOpeningModal = true;
-    this._totalLottoCount = 0;
-    this._manualLottoCount = 0;
     this._lottos = [];
     this._winnings = {
       first: 0,
@@ -76,6 +74,7 @@ export default class LottoController {
       }
       if (event.target.closest(`.${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT}`)) {
         this._handleManualNumberInput();
+        return;
       }
     });
     
@@ -92,12 +91,12 @@ export default class LottoController {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
-    this._totalLottoCount = moneyInput / LOTTO_SETTINGS.LOTTO_PRICE;
-    this.lottoUI.renderBuyingInputUI(this._totalLottoCount);
+
+    this.lottoUI.renderBuyingInputUI(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
   }
 
   _handleBuyingNumberInput() {
-    this.lottoUI.renderBuyingNumberInput(this._totalLottoCount);
+    this.lottoUI.renderBuyingNumberInput();
   }
 
   _handleCheckLottoSwitch() {
@@ -108,10 +107,10 @@ export default class LottoController {
     $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).disable();
     $(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`).disable();
 
-    this._manualLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max 
+    const manualLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max 
       - $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
-    if (this._manualLottoCount) {
-      this.lottoUI.renderManualLottoInputs(this._manualLottoCount);
+    if (manualLottoCount) {
+      this.lottoUI.renderManualLottoInputs(manualLottoCount);
       $(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`).focus();
       return;
     }
@@ -130,13 +129,12 @@ export default class LottoController {
       this._makeManualLottos(numbers);
     }
 
-    $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).clearChildren();
-    
     this._makeAutoLottos();
     const numbersCollection = this._lottos.map(lotto => lotto.getNumbers());
     this.lottoUI.renderCheckLottoUI(numbersCollection);
     this.lottoUI.renderResultInputUI();
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
+    $(`.${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT}`).disable();
   }
 
   _makeManualLottos(numbers) {
@@ -146,7 +144,7 @@ export default class LottoController {
   }
 
   _makeAutoLottos() {
-    const autoLottoCount = this._totalLottoCount - this._manualLottoCount;
+    const autoLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
     for (let i = 0; i < autoLottoCount; i++) {
       const lotto = new Lotto();
       lotto.createNumbers();

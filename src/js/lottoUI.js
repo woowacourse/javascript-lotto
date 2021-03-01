@@ -44,15 +44,16 @@ export default class LottoUI {
       </form>
     `);
 
-    this.renderBuyingNumberInput(lottoCount);
+    this.renderBuyingNumberInput();
   }
 
-  renderBuyingNumberInput(lottoCount) {
+  renderBuyingNumberInput() {
+    const totalLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max; 
     const autoLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
     const countInfo = $(`.${DOM_CLASSES.BUYING_FORM_COUNT_INFO}`);
     countInfo.clearChildren();
     countInfo.insertAdjacentHTML('beforeend', `
-      ${autoLottoCount}개 자동 / ${lottoCount - autoLottoCount}개 수동
+      ${autoLottoCount}개 자동 / ${totalLottoCount - autoLottoCount}개 수동
     `);
   }
 
@@ -67,13 +68,14 @@ export default class LottoUI {
           ${`<input 
             type="number" 
             min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
-            max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
+            max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}" 
             class="winning-number mx-1 text-center 
               ${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}" 
             required />`.repeat(6)}
         </div>
       </div>
     `.repeat(manualLottoCount);
+    console.log(manualLottosHTML);
 
     $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
       <form class="${DOM_CLASSES.BUYING_FORM} mt-9">
@@ -86,11 +88,11 @@ export default class LottoUI {
     `);
   }
 
-  renderCheckLottoUI(numbersBundle) {
+  renderCheckLottoUI(numbersCollection) {
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).insertAdjacentHTML('beforeend', `
       <section class= "mt-9">
         <div class="d-flex">
-          <label class="flex-auto my-0">총 ${numbersBundle.length}개를 구매하였습니다.</label>
+          <label class="flex-auto my-0">총 ${numbersCollection.length}개를 구매하였습니다.</label>
           <div class="flex-auto d-flex justify-end pr-1">
             <label class="switch">
               <input type="checkbox" ${UI_SETTINGS.DEFAULT_VISIBILITY ? 'checked' : ''}/>
@@ -99,7 +101,7 @@ export default class LottoUI {
           </div>
         </div>
         <div class="d-flex flex-wrap lotto-ticket-container">
-        ${numbersBundle.map(numbers => `
+        ${numbersCollection.map(numbers => `
           <span class= "mx-1 text-4xl ${DOM_CLASSES.LOTTO_TICKET}">
           🎟️
             <span class="${DOM_CLASSES.LOTTO_TICKET_NUMBER}${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : ' hidden'}">
@@ -226,7 +228,7 @@ export default class LottoUI {
   hideModal() {
     const modalElement = $(`.${DOM_CLASSES.MODAL}`);
     if (modalElement.classList.contains('open')) {
-      $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
+      modalElement.classList.remove('open');
     }
   }
 }
