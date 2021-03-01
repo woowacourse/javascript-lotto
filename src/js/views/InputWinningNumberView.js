@@ -12,9 +12,7 @@ export default class InputWinningNumberView extends View {
   }
 
   resetWinningNumbers() {
-    this.$winningNumberInputs.forEach(winningNumber => {
-      winningNumber.value = '';
-    });
+    this.$element.reset();
     this.winningNumbers = [];
   }
 

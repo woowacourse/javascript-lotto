@@ -8,7 +8,7 @@ export default class InputPriceView extends View {
   }
 
   resetInputPrice() {
-    $('#input-price').value = '';
+    $('#input-price-form').reset();
     $('#input-price').focus();
   }
 
