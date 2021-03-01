@@ -24,7 +24,8 @@ const ERROR_INPUT = {
     1, 2, 3, 4, 5, 6,
     7, 8, 9, 10, 11, 11
   ],
-
+  CANT_BUY_AMOUNT_MANUAL: 6,
+  CANT_BUT_AMOUNT_AUTO: 6,
 }
 
 context('로또 UI 테스트', () => {
@@ -93,6 +94,17 @@ context('로또 UI 테스트', () => {
         expect(elements.length).to.equal(COMMON_MANUAL_AMOUNT + SUCCESS_INPUT.AUTO_AMOUNT);
       })
     });
+    it('자동과 수동으로 구매하는 로또 구입 비용이 가진 금액을 넘어서는 안된다.', () => {
+      const alertStub = cy.stub();
+      cy.on('window:alert', alertStub);
+
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, ERROR_INPUT.CANT_BUY_AMOUNT_MANUAL);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, ERROR_INPUT.CANT_BUT_AMOUNT_AUTO);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`).then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.CANT_BUY_AMOUNT);
+      });
+    });
   });
 
   describe('수동 로또 번호 선택 부분', () => {
@@ -147,6 +159,7 @@ context('로또 UI 테스트', () => {
       });
     });
     it('당첨 번호와 보너스 번호는 1~45의 숫자를 가진다.', () => {
+      //TODO ALERT 안쓰는 테스트들 관련 코드 다 지워줘야함
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
 
