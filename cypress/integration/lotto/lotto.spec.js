@@ -49,6 +49,17 @@ context('Actions', () => {
     cy.get('#manual-submit').should('be.disabled');
   });
 
+  it('중복된 번호를 제출하면 에러메시지가 노출된다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('input[name=payment-input]').type('1000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('.js-manual-input').each(element => {
+      cy.wrap(element).type(1);
+    });
+    cy.get('#manual-submit').click();
+    cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
+  });
+
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
