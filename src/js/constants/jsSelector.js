@@ -30,6 +30,8 @@ const JS_SELECTOR = Object.freeze({
     LOTTO: "purchase-modal-container__lotto",
     BUTTON: "purchase-modal-container__button",
     TOGGLE: "purchase-modal-container__toggle",
+    AUTO: "purchase-modal-container__auto",
+    MANUAL: "purchase-modal-container__manual",
     INPUT: "purchase-modal-container__input",
   },
 });

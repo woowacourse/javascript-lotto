@@ -151,21 +151,22 @@ class PurchaseModalContainer extends Container {
     }
 
     const $lotto = target.closest(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTO));
+    const $auto = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.AUTO), {
+      $parent: $lotto,
+    });
+    const $manual = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.MANUAL), {
+      $parent: $lotto,
+    });
     const $$inputs = $$(toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT), {
       $parent: $lotto,
     });
 
-    if (target.checked) {
-      $$inputs.forEach(($input) => {
-        $input.disabled = true;
-      });
-
-      return;
-    }
-
     $$inputs.forEach(($input) => {
-      $input.disabled = false;
+      $input.toggleDisabled();
     });
+
+    $auto.toggle(CLASSNAME.COMMON.HIDDEN);
+    $manual.toggle(CLASSNAME.COMMON.HIDDEN);
   }
 
   cancelPurchase() {

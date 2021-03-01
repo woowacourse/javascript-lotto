@@ -35,11 +35,11 @@ class PurchaseModalPresentational extends Presentational {
 
   TEMPLATE(index) {
     return `
-    <div class="d-flex items-center" data-js-selector="purchase-modal-container__lotto">
-      <span>${index + 1}.</span>
+    <div class="d-flex items-center my-4" data-js-selector="purchase-modal-container__lotto">
+      <span class="font-normal text-base --unselectable">${index + 1}.</span>
       <div class="d-flex flex-row justify-center">
         <div class="flex-auto flex-row d-flex justify-center pr-1">
-          <label class="switch">
+          <label class="switch mr-2">
             <input
               type="checkbox"
               class="lotto-numbers-toggle-button"
@@ -48,8 +48,8 @@ class PurchaseModalPresentational extends Presentational {
             />
             <span class="text-base font-normal --unselectable"></span>
           </label>
-          <span class="text-base font-normal --unselectable">자동</span>
-          <span class="text-base font-normal --unselectable --hidden"
+          <span class="text-base font-normal --unselectable" data-js-selector="purchase-modal-container__auto">자동</span>
+          <span class="text-base font-normal --unselectable --hidden" data-js-selector="purchase-modal-container__manual"
             >수동</span
           >
         </div>

@@ -19,6 +19,9 @@ const HTMLInputElementCustomMethods = {
   isEmpty() {
     return this.value === "";
   },
+  toggleDisabled() {
+    this.disabled = !this.disabled;
+  },
 };
 
 const cache = new WeakMap();
