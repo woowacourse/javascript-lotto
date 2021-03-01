@@ -4,12 +4,12 @@
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
 <p align="middle">
-<img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
-<img src="https://img.shields.io/badge/language-html-red.svg?style=flat-square"/>
-<img src="https://img.shields.io/badge/language-css-blue.svg?style=flat-square"/>
-<img src="https://img.shields.io/badge/language-js-yellow.svg?style=flat-square"/>
-<a href="https://github.com/daybrush/moveable/blob/master/LICENSE" target="_blank">
-  <img src="https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D"/>
+  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
+  <img src="https://img.shields.io/badge/language-html-red.svg?style=flat-square"/>
+  <img src="https://img.shields.io/badge/language-css-blue.svg?style=flat-square"/>
+  <img src="https://img.shields.io/badge/language-js-yellow.svg?style=flat-square"/>
+  <a href="https://github.com/daybrush/moveable/blob/master/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D"/>
   </a>
 </p>
 
@@ -22,6 +22,10 @@
 ## 기능 구현 목록
 
 ### Step 1
+- [ ] 로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.
+- [ ] 로또 1장의 가격은 1,000원이다.
+- [ ] 소비자는 **자동 구매**를 할 수 있어야 한다.
+- [ ] 복권 번호는 번호보기 토글 버튼을 클릭하면, 볼 수 있어야 한다.
 
 - [x] 구입 금액 입력받아서 티켓을 생성한다.
   - [x] 공백은 입력할 수 없다.
