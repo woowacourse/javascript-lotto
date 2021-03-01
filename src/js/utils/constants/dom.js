@@ -37,5 +37,7 @@ export const DOM_CLASSES = {
 
 export const DOM_IDS = {
   APP: 'app',
+  LOTTO_AMOUNT_INPUT_MANUAL: 'lotto-amount-form__input--manual',
+  LOTTO_AMOUNT_INPUT_AUTO: 'lotto-amount-form__input--auto',
   MONEY_FORM_INPUT: 'money-input-form__input',
 }

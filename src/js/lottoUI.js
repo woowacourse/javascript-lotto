@@ -34,24 +34,36 @@ export default class LottoUI {
 
   _getTemplateLottoAmount() {
     return `
-    <form class="${DOM_CLASSES.LOTTO_AMOUNT_FORM}">
-      <label> 수동으로 구매할 갯수를 입력해주세요.
-        <p><input 
-        type="number" 
-        class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}" 
-        placeholder="수동 구매 갯수"
-        required
-        /></p>
-      </label>
-      <label> 자동으로 구매할 갯수를 입력해주세요.
-        <p><input 
-        type="number" 
-        class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}" 
-        placeholder="자동 구매 갯수"
-        required
-        /></p>
-      </label>
-      <button type="submit" class="btn btn-cyan ${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}">확인</button>
+    <form class="${DOM_CLASSES.LOTTO_AMOUNT_FORM} mt-5">
+      <div class="d-flex">
+        <div class="d-flex fw-wrap">  
+          <label class="mb-2" for="${DOM_IDS.LOTTO_AMOUNT_INPUT_MANUAL}"> 
+          <strong>수동</strong>으로 구매할 갯수를 <br>
+          입력해주세요.
+          </label>
+          <input 
+          type="number" 
+          id="${DOM_IDS.LOTTO_AMOUNT_INPUT_MANUAL}"
+          class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL} w-100 pl-2 mr-2 amount-number" 
+          placeholder="수동 구매 갯수"
+          required
+          />
+        </div>
+        <div class="d-flex fw-wrap">
+          <label class="mb-2" "${DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO}"> 
+          <strong>자동</strong>으로 구매할 갯수를 <br> 
+          입력해주세요.
+          </label>
+          <input 
+          type="number" 
+          id="${DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO}"
+          class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO} w-100 pl-2 mr-2 amount-number" 
+          placeholder="자동 구매 갯수"
+          required
+          />
+        </div>
+      </div>
+      <button type="submit" class="${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT} btn btn-cyan mt-5 w-100">확인</button>
     </form>
     `
   }
@@ -65,17 +77,22 @@ export default class LottoUI {
   _getTemplateManualSelects(amount) {
     //TODO: form tag의 aria-label 동작하는지 확인해야함
     const templates = new Array(amount).fill(0).map((template, lottoIdx) =>
-      `<span class= "mx-1 text-4xl ${DOM_CLASSES.CSS_LOTTO_TICKET}">
+      `<span class= "mx-1 text-4xl mt-2 ${DOM_CLASSES.CSS_LOTTO_TICKET}">
         🎟️
           ${this._getTemplateManualInputs(lottoIdx)}
         </span>
       `);
 
     return `
-    <form aria-label="각 로또 번호를 수동으로 입력해주세요." class="${DOM_CLASSES.MANUAL_SELECT_FORM}">
-      ${templates.join("")}
-      <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MANUAL_SELECT_SUBMIT}">수동구매</button>
-    </form>
+    <div class="mt-5">
+      <label class="mb-2">
+      <strong>수동</strong>으로 구입한 로또의 번호를 직접 입력해주세요.
+      </label>
+      <form class="${DOM_CLASSES.MANUAL_SELECT_FORM}">
+        ${templates.join("")}
+        <button type="submit" class="btn btn-cyan mt-5 w-100 ${DOM_CLASSES.MANUAL_SELECT_SUBMIT}">수동구매</button>
+      </form>
+    </div>
     `
   }
 
@@ -103,7 +120,7 @@ export default class LottoUI {
 
   _getTemplateCheckLottoUI(numbersBundle) {
     return `
-    <section class= "mt-9">
+    <section class= "mt-5">
       <div class="d-flex">
         <label class="flex-auto my-0">총 ${numbersBundle.length}개를 구매하였습니다.</label>
         <div class="flex-auto d-flex justify-end pr-1">
@@ -115,7 +132,7 @@ export default class LottoUI {
       </div>
       <div class="d-flex flex-wrap lotto-ticket-container">
       ${numbersBundle.map(numbers => `
-        <span class= "mx-1 text-4xl lotto-ticket ${DOM_CLASSES.LOTTO_TICKET}">
+        <span class= "mx-3 text-4xl lotto-ticket ${DOM_CLASSES.LOTTO_TICKET}">
         🎟️
           <span class="${DOM_CLASSES.LOTTO_TICKET_NUMBER}${UI_SETTINGS.DEFAULT_VISIBILITY ? '' : ' hidden'}">
             ${numbers.join(', ')}
