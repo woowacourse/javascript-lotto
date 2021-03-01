@@ -4,8 +4,10 @@ export const DOM_CLASSES = {
   MONEY_FORM_INPUT: 'money-input-form__input',
   MONEY_FORM_SUBMIT: 'money-input-form__submit',
 
-  BUYING_FORM_AUTO_INPUT: 'buying-input-form__auto',
-  BUYING_FORM_MANUAL_INPUT: 'buying-input-form__manual',
+  BUYING_INPUT_CONTAINER: 'buying-input-div',
+  BUYING_FORM: 'buying-input-form',
+  BUYING_FORM_H4:'buying-input-form__h4',
+  BUYING_FORM_RANGE_INPUT: 'buying-input-form__range',
 
   LOTTO_CONTAINER: 'lotto-div',
   LOTTO_SWITCH: 'lotto-div__switch',

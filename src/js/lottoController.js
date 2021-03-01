@@ -69,6 +69,12 @@ export default class LottoController {
         return;
       }
     });
+    
+    $(`#${DOM_IDS.APP}`).addEventListener('mousemove', event => {
+      if (event.target.closest(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`)) {
+        this.lottoUI.renderBuyingNumberInput();
+      }
+    });
   }
 
   _handleMoneyInput() {
@@ -78,11 +84,14 @@ export default class LottoController {
       return;
     }
 
-    this._makeLottos(moneyInput);
-    const numbersCollection = this._lottos.map(lotto => lotto.getNumbers());
-    this.lottoUI.renderCheckLottoUI(numbersCollection);
-    this.lottoUI.renderResultInputUI();
-    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
+    // 구입 금액을 저장하고, 구입 갯수를 정하는 input form이 등장한다.
+    this.lottoUI.renderBuyingInputUI(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
+
+    // this._makeLottos(moneyInput);
+    // const numbersCollection = this._lottos.map(lotto => lotto.getNumbers());
+    // this.lottoUI.renderCheckLottoUI(numbersCollection);
+    // this.lottoUI.renderResultInputUI();
+    // $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
   _makeLottos(moneyInput) {

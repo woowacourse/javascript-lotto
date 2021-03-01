@@ -17,8 +17,7 @@ context('로또 UI 테스트', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       // cy.get(`.${DOM_CLASSES.LOTTO_TICKET}`).should('have.length', Math.floor(COMMON_MONEY_INPUT / LOTTO_SETTINGS.LOTTO_PRICE));
 
-      cy.get(`.${DOM_CLASSES.BUYING_FORM_AUTO_INPUT}`).should('be.visible');
-      cy.get(`.${DOM_CLASSES.BUYING_FORM_MANUAL_INPUT}`).should('be.visible');
+      testChildNodeExist(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`);
     });
 
     it('입력받는 구입 금액은 최소 1000원 이상이어야 한다.', () => {
@@ -36,7 +35,7 @@ context('로또 UI 테스트', () => {
       cy.on('window:alert', alertStub);
 
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, NOT_INTEGER_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      testChildNodeExist(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
+      testChildNodeNotExist(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
     });
 
     it('로또 구입 금액을 입력받으면, 구입 버튼이 비활성화된다.', () => {
@@ -137,8 +136,8 @@ context('로또 UI 테스트', () => {
       cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
       cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
 
-      testChildNodeExist(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
-      testChildNodeExist(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`);
+      testChildNodeNotExist(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
+      testChildNodeNotExist(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`);
     });
   });
 });
@@ -163,8 +162,14 @@ function typeLottoNumbers(inputs) {
   cy.get(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).type(inputs[inputs.length - 1]);
 }
 
-function testChildNodeExist(selector) {
+function testChildNodeNotExist(selector) {
   cy.get(selector).then(element => {
     expect(element[0].hasChildNodes()).to.be.false;
+  });
+}
+
+function testChildNodeExist(selector) {
+  cy.get(selector).then(element => {
+    expect(element[0].hasChildNodes()).to.be.true;
   });
 }
