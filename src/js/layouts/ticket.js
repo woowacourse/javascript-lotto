@@ -4,8 +4,6 @@ export const getLottoTicketHTML = (lottoTicket) => {
   return `
   <li class="mx-1 text-4xl d-flex items-center">
     🎟️
-    <span class="text-xl ml-5 d-none lotto-numbers">
-      ${lottoTicket.numbers.join(LOTTO_NUMBER_SEPARATOR)}
-    </span>
+    <span class="lotto-numbers text-xl ml-5 d-none">${lottoTicket.numbers.join(LOTTO_NUMBER_SEPARATOR)}</span>
   </li>`;
 };

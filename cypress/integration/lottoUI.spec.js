@@ -73,8 +73,6 @@ describe('구매금액 입력 UI 검사', () => {
 
 describe('수동/자동구매 UI 검사', () => {
   const numOfLotto = 5;
-  const summary = ({ auto, manual }) => `· 자동: ${auto} 장
-  · 수동: ${manual} 장`;
 
   before(() => {
     cy.visit('http://localhost:5500/');
@@ -139,20 +137,19 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.manual-select-check-message').should('have.text', LOTTO_PAPER_CHECK_MESSAGE.NEED_TO_SELECT_MORE(6));
     cy.get('.ticket-issue-button').should('be.disabled');
 
-    cy.get('.select-number-list span').eq(0).click();
-    cy.get('.select-number-list input').eq(0).should('be.checked');
-    cy.get('.select-number-list span').eq(1).click();
-    cy.get('.select-number-list input').eq(1).should('be.checked');
-    cy.get('.select-number-list span').eq(2).click();
-    cy.get('.select-number-list input').eq(2).should('be.checked');
-    cy.get('.select-number-list span').eq(3).click();
-    cy.get('.select-number-list input').eq(3).should('be.checked');
-    cy.get('.select-number-list span').eq(4).click();
-    cy.get('.select-number-list input').eq(4).should('be.checked');
-    cy.get('.ticket-issue-button').should('be.disabled');
+    [...Array(5)].forEach((_, i) => {
+      cy.get('.select-number-list span').eq(i).click();
+      cy.get('.select-number-list input').eq(i).should('be.checked');
+      cy.get('.ticket-issue-button').should('be.disabled');
+    });
     cy.get('.select-number-list span').eq(5).click();
     cy.get('.select-number-list input').eq(5).should('be.checked');
     cy.get('.ticket-issue-button').should('not.be.disabled');
+  });
+
+  it('로또 용지에서 적용수량을 조정하면, 자동/수동구매 수량이 실시간으로 반영된다.', () => {
+    numOfManualSelect = numOfLotto;
+    cy.get('.quantity-select').first().select(`${numOfManualSelect}장`);
   });
 
   it('로또 발급하기 버튼을 누를 경우, 자동/수동구매 수량이 적힌 컨펌메세지가 표시된다.', () => {
@@ -180,6 +177,23 @@ describe('수동/자동구매 UI 검사', () => {
     cy.get('.paper-add-button').should('not.be.visible');
     cy.get('.manual-select-paper').should('not.be.visible');
     cy.get('.ticket-issue-button').should('be.disabled');
+  });
+
+  it('발급된 수동로또의 번호가 입력한 번호와 일치한다.', () => {
+    cy.get('.lotto-numbers').each(($el) => cy.wrap($el).should('have.text', '1, 2, 3, 4, 5, 6'));
+  });
+
+  it('당첨결과확인 시 발급된 수동로또의 당첨개수와 수익률이 정상적으로 표시된다.', () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    cy.get('.winning-number').each(($el, index) => {
+      cy.wrap($el).type(winningNumbers[index]);
+    });
+    cy.get('.bonus-number').type(bonusNumber);
+    cy.get('.open-result-modal-button').click();
+    cy.get('.result-table-body>tr').eq(4).get('td').eq(3);
+    cy.get('.rate-of-return').should('have.text', '당신의 총 수익률은 199999900%입니다.');
   });
 });
 
