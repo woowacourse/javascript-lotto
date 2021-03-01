@@ -58,8 +58,18 @@ context('로또 UI 테스트', () => {
       testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
     })
     it('소비자는 수동 구매를 할 수 있어야 한다.', () => {
-      jumpToResultInputUI();
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, true);
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, 0);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+
+      typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, SUCCESS_INPUT.MANUAL_SELECT_NUMBERS);
+      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+
+      cy.get(`.${DOM_CLASSES.LOTTO_CONTAINER} .${DOM_CLASSES.LOTTO_TICKET}`).then(elements => {
+        expect(elements.length).to.equal(SUCCESS_INPUT.MANUAL_AMOUNT);
+      })
     });
     it('소비자는 자동 구매를 할 수 있어야한다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
@@ -75,6 +85,10 @@ context('로또 UI 테스트', () => {
         expect(elements.length).to.equal(SUCCESS_INPUT.MANUAL_AMOUNT + SUCCESS_INPUT.AUTO_AMOUNT);
       })
     });
+  });
+
+  describe('수동 로또 번호 선택 부분', () => {
+
   });
 
   describe('구입한 로또 확인 부분', () => {
