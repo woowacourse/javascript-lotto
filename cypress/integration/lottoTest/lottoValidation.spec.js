@@ -88,6 +88,7 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
 
   it('로또 당첨 번호에는 중복된 숫자를 입력할 수 없다.', () => {
     clickAfterTypePrice();
+
     cy.get('.winning-number').each(winningNumber => {
       cy.wrap(winningNumber).type('7');
     });

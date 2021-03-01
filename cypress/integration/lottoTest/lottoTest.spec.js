@@ -68,6 +68,7 @@ describe('로또 게임 테스트', () => {
   it('수동 구매를 선택하고 금액을 입력하면, 금액만큼의 번호 입력 폼을 보여준다.', () => {
     cy.get('#manual-btn').click();
     clickAfterTypePrice();
+
     cy.get('.manual-wrapper').should('have.length', lottoTotalCount);
   });
 
@@ -75,6 +76,7 @@ describe('로또 게임 테스트', () => {
     cy.get('#manual-btn').click();
     clickAfterTypePrice();
     typeManualNumberAndConfirm();
+
     cy.get('.manual-wrapper').each(manualTicket => {
       cy.wrap(manualTicket).find('.lotto-detail').should('be.visible');
     });
@@ -119,6 +121,7 @@ describe('로또 게임 테스트', () => {
 
   it('자동 구매 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     clickAfterTypePrice();
+
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#winning-numbers-form').should('be.visible');
   });

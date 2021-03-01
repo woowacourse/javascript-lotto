@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $, $$ } from '../utils/selector.js';
+import { $, $$ } from '../utils/dom.js';
 import { ALERT_MESSAGES, LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class ManualInputView extends View {

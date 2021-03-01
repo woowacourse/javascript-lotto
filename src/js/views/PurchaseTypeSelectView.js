@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $ } from '../utils/selector.js';
+import { $ } from '../utils/dom.js';
 
 export default class PurchaseTypeSelectView extends View {
   constructor($element) {

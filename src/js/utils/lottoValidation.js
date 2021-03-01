@@ -8,8 +8,7 @@ export const isCorrectPurchaseUnit = input => {
 };
 
 export const isUniqueManualNumber = input => {
-  const uniqueNums = new Set(input);
-  return uniqueNums.size === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1;
+  return new Set(input).size === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1;
 };
 
 export const isUniqueWinningNumber = input => {

@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $, $$ } from '../utils/selector.js';
+import { $, $$ } from '../utils/dom.js';
 import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class WinningResultView extends View {

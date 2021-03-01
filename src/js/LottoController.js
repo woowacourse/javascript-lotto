@@ -7,7 +7,7 @@ import {
   isUniqueWinningNumber,
 } from './utils/lottoValidation.js';
 import LottoProcessor from './utils/lottoProcessor.js';
-import { $ } from './utils/selector.js';
+import { $ } from './utils/dom.js';
 
 import PurchaseTypeSelectView from './views/PurchaseTypeSelectView.js';
 import InputPriceView from './views/InputPriceView.js';
