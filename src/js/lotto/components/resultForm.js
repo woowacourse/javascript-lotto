@@ -1,5 +1,5 @@
 import { Component } from '../../shared/models/index.js';
-import { $$, $ } from '../../shared/utils/DOM.js';
+import { $$, $, disable } from '../../shared/utils/DOM.js';
 import { BONUS_NUMBER_COUNT, LOTTO_NUMBER_COUNT, MAX_LOTTO_NUMBER } from '../utils/constants.js';
 import { getInputNumbers } from '../utils/util.js';
 import { checkValidNumbers } from '../utils/validate.js';
@@ -40,6 +40,7 @@ export default class ResultForm extends Component {
     }
 
     this.props.handleResult(this.props.calculator.getResult(numbers, tickets));
+    disable(...this.$winningNumberInputs);
   }
 
   mountTemplate() {

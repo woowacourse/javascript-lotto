@@ -11,14 +11,15 @@ export default class PaymentForm extends Component {
   }
 
   initEvent() {
-    this.$input.addEventListener('input', this.limitLength);
+    this.$input.addEventListener('input', this.limitPayment);
     this.$form.addEventListener('submit', this.onSubmit.bind(this));
   }
 
-  limitLength({ target }) {
-    const maxLength = String(MAX_PAYMENT).length;
-    if (target.value.length > maxLength) {
-      target.value = target.value.slice(0, maxLength);
+  limitPayment({ target }) {
+    const payment = Number(target.value);
+
+    if (payment > MAX_PAYMENT) {
+      target.value = `${Math.floor(payment / 10)}`;
     }
   }
 
@@ -29,19 +30,19 @@ export default class PaymentForm extends Component {
 
     if (alertMessage) {
       alert(alertMessage);
+      this.$input.value = '';
 
       return;
     }
 
     this.props.handleInsertion(money);
     disable(this.$input, this.$button);
-    $(`[data-lotto-number='0']`).focus();
   }
 
   mountTemplate() {
     this.$target.innerHTML = `
       <form class="mt-5" id="payment-form" novalidate>
-        <label for="payment-input" class="mb-2 d-inline-block">구입할 금액을 입력해주세요.</label>
+        <label for="payment-input" class="mb-2 d-inline-block">구입할 금액을 입력해주세요. (제한 금액: 100,000)</label>
         <div class="d-flex">
           <input
             type="number"

@@ -1,7 +1,7 @@
 import { Component, State } from '../shared/models/index.js';
 import { PaymentForm, PurchasingForm, LottoDetail, ResultForm, ResultModal } from './components/index.js';
 import { LottoMachine, ProfitCalculator } from './models/index.js';
-import { $ } from '../shared/utils/DOM.js';
+import { $, show } from '../shared/utils/DOM.js';
 import { UNIT_AMOUNT } from './utils/constants.js';
 
 export default class App extends Component {
@@ -26,8 +26,8 @@ export default class App extends Component {
 
   handleInsertion(money) {
     this.state.setState({ money });
-    this.$purchasingSection.style.display = 'block';
-    this.$lottoDetailSection.style.display = 'block';
+    show(this.$purchasingSection, this.$lottoDetailSection);
+    $(`[data-lotto-number='0']`).focus();
   }
 
   handlePurchasing(...purchasedTickets) {
@@ -38,7 +38,8 @@ export default class App extends Component {
     this.state.setState({ money: newMoney, tickets: newTickets });
 
     if (newMoney === 0) {
-      this.$resultSection.style.display = 'block';
+      show(this.$resultSection);
+      $(`[data-winning-number='0']`).focus();
     }
   }
 
@@ -47,7 +48,7 @@ export default class App extends Component {
     this.$modal.classList.add('open');
   }
 
-  close() {
+  closeModal() {
     this.$modal.classList.remove('open');
   }
 
@@ -91,7 +92,7 @@ export default class App extends Component {
     });
     new ResultModal(this.$modal, {
       state: this.state,
-      close: this.close.bind(this),
+      close: this.closeModal.bind(this),
       reset: this.reset.bind(this),
     });
   }

@@ -6,3 +6,9 @@ export const disable = (...elements) => {
     element.disabled = true;
   });
 };
+
+export const show = (...elements) => {
+  elements.forEach(element => {
+    element.style.display = 'block';
+  });
+};
