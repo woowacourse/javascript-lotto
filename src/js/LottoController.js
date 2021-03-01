@@ -43,13 +43,18 @@ export default class LottoController {
   }
 
   bindEvents() {
-    this.purchaseTypeSelectView.on('selectType', e => {
-      this.selectTypeHandler(e.detail);
-    });
+    this.purchaseTypeSelectView.on('selectType', e =>
+      this.selectTypeHandler(e.detail)
+    );
     this.inputPriceView.on('submitPrice', e =>
       this.inputPriceHandler(e.detail)
     );
-
+    this.manualInputView.on('submitNumbers', e =>
+      this.inputManualNumbersHandler(e.detail)
+    );
+    this.manualInputView.on('confirmAll', e =>
+      this.confirmManualPurchaseHandler(e.detail)
+    );
     this.winningResultView
       .on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail))
       .on('clickResetBtn', () => this.reset());
@@ -88,12 +93,6 @@ export default class LottoController {
     this.manualInputView
       .show()
       .init(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
-    this.manualInputView.on('submitNumbers', e =>
-      this.inputManualNumbersHandler(e.detail)
-    );
-    this.manualInputView.on('confirmAll', e =>
-      this.confirmManualPurchaseHandler(e.detail)
-    );
   }
 
   inputManualNumbersHandler(eventDetail) {
