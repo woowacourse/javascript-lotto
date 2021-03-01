@@ -3,6 +3,7 @@ import { LOTTO, REWARDS, CHECK_SECOND_CONDITION_NUMBER } from '../constants.js';
 
 export default class LottoGame {
   #lottoItemList;
+  #remainLottoCount;
   #winningNumberList;
   #bonusNumber;
 
@@ -12,6 +13,10 @@ export default class LottoGame {
 
   get lottoItemList() {
     return this.#lottoItemList;
+  }
+
+  get remainLottoCount() {
+    return this.#remainLottoCount;
   }
 
   get winningNumberList() {
@@ -24,8 +29,13 @@ export default class LottoGame {
 
   init() {
     this.#lottoItemList = [];
+    this.#remainLottoCount = 0;
     this.#winningNumberList = [];
     this.#bonusNumber = null;
+  }
+
+  assignRemainLottoCount(count) {
+    this.#remainLottoCount = count;
   }
 
   // 2등을 구하기 위해서 당첨 숫자의 일치개수가 5개인 경우에만 보너스숫자가 일치하는지 확인
@@ -89,6 +99,8 @@ export default class LottoGame {
       matchCount: 0,
       isBonusMatched: false,
     });
+
+    this.#remainLottoCount--;
   }
 
   addLottoItems = (lottoItemCount) => {

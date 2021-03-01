@@ -24,7 +24,6 @@ import { getAllNumbers } from './domReader.js';
 import { getTotalProfit } from "./totalProfit.js";
 
 export default class LottoController {
-  #remainLottoCount;
   #lottoModel;
   #lottoView;
 
@@ -34,18 +33,16 @@ export default class LottoController {
   }
 
   #purchaseAutoLottoItems(count) {
-    this.#remainLottoCount -= count;
     this.#lottoModel.addLottoItems(count);
     this.#lottoView.resultSection.displayPurchaseResult(this.#lottoModel.lottoItemList);
-    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#lottoModel.remainLottoCount);
     this.#checkPurchaseLottoDone();
   }
 
   #purchaseManualLottoItem(lottoNumbers) {
-    this.#remainLottoCount--;
     this.#lottoModel.addLottoItem(lottoNumbers);
     this.#lottoView.resultSection.displayPurchaseResult(this.#lottoModel.lottoItemList);
-    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#lottoModel.remainLottoCount);
     this.#checkPurchaseLottoDone();
   }
 
@@ -65,7 +62,7 @@ export default class LottoController {
   }
 
   #checkPurchaseLottoDone() {
-    if (this.#remainLottoCount === 0) {
+    if (this.#lottoModel.remainLottoCount === 0) {
       this.#lottoView.purchaseSection.hideAllPurchaseSection();
       this.#lottoView.winningSection.displayCorrectNumberInputForm();
     }
@@ -81,7 +78,7 @@ export default class LottoController {
       return;
     }
 
-    this.#remainLottoCount = cost / LOTTO.PRICE;
+    this.#lottoModel.assignRemainLottoCount(cost / LOTTO.PRICE);
     this.#lottoView.costSection.disableButton();
     this.#lottoView.purchaseSection.displayChoiceMethodButton();
     this.#lottoView.resultSection.resetToggleButton();
@@ -90,20 +87,20 @@ export default class LottoController {
   #onAutoSelect() {
     this.#lottoView.purchaseSection.hideManualLottoNumbersForm();
     this.#lottoView.purchaseSection.displayAutoCountForm();
-    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#lottoModel.remainLottoCount);
   }
 
   #onManualSelect() {
     this.#lottoView.purchaseSection.hideAutoCountForm();
     this.#lottoView.purchaseSection.displayManualLottoNumbersForm();
-    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
+    this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#lottoModel.remainLottoCount);
   }
 
   #onAutoPurchase(e) {
     e.preventDefault();
     const count = Number($autoCountInput.value);
     this.#lottoView.purchaseSection.autoCountInputInit();
-    const userGuideMessage = message.getPurchaseAutoCountValidation(count, this.#remainLottoCount);
+    const userGuideMessage = message.getPurchaseAutoCountValidation(count, this.#lottoModel.remainLottoCount);
     if (userGuideMessage) {
       this.#lottoView.showMessage(userGuideMessage);
       return;
