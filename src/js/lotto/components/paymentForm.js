@@ -1,4 +1,4 @@
-import Component from '../../shared/models/Component.js';
+import { Component } from '../../shared/models/index.js';
 import { $, disable } from '../../shared/utils/DOM.js';
 import { MAX_PAYMENT } from '../utils/constants.js';
 import { checkValidPayment } from '../utils/validate.js';
@@ -35,7 +35,6 @@ export default class PaymentForm extends Component {
 
     this.props.insert(money);
     disable(this.$input, this.$button);
-    this.props.render();
     $(`[data-lotto-number='0']`).focus();
   }
 

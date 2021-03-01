@@ -1,4 +1,4 @@
-import Component from '../../shared/models/Component.js';
+import { Component } from '../../shared/models/index.js';
 import { $$, $ } from '../../shared/utils/DOM.js';
 import { LOTTO_NUMBER_COUNT, MAX_LOTTO_NUMBER, MSG_SPENT_ALL_MONEY, UNIT_AMOUNT } from '../utils/constants.js';
 import { getInputNumbers } from '../utils/util.js';
@@ -19,12 +19,16 @@ export default class PurchasingForm extends Component {
   }
 
   initEvent() {
-    this.$lottoNumberInputs.forEach($input => $input.addEventListener('input', this.limitLength));
+    this.$target.addEventListener('input', this.limitInputLength);
     this.$manualForm.addEventListener('submit', this.onSubmit.bind(this));
     this.$autoButton.addEventListener('click', this.onClick.bind(this));
   }
 
-  limitLength({ target }) {
+  limitInputLength({ target }) {
+    if (target.dataset.lottoNumber === undefined) {
+      return;
+    }
+
     const maxLength = String(MAX_LOTTO_NUMBER).length;
 
     if (target.value.length > maxLength) {

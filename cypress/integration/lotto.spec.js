@@ -39,7 +39,7 @@ describe('Lotto test', () => {
     testInputValue('#manual-purchasing-submit');
     cy.get('#lotto-container') //
       .find('.lotto-wrapper')
-      .should('have.length', 3);
+      .should('have.length', 1);
   });
 
   it('잔액으로 자동 구매를 했을 때, 알맞게 누적된 로또를 렌더링한다.', () => {
