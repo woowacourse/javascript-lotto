@@ -95,6 +95,10 @@ describe('기능 테스트', () => {
     cy.get('#result-modal-open-button').click();
     cy.get('#restart-button').click();
     cy.get('#cost-input').should('have.value', '');
+    cy.get('#choice-purchase-method').should('not.be.visible');
+    cy.get('#remain-lotto-count-text').should('not.be.visible');
+    cy.get('#auto-count-form').should('not.be.visible');
+    cy.get('#manual-lotto-numbers-form').should('not.be.visible');
     cy.get('#purchase-result').should('not.be.visible');
     cy.get('#correct-number-input-form').should('not.be.visible');
     cy.get('#modal').should('not.be.visible');
