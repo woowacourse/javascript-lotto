@@ -76,12 +76,12 @@ export default class PurchaseOptionInput {
     if (target.type !== 'button') {
       return;
     }
-    const $paper = target.parentNode;
+    const $paper = target.parentNode.parentNode;
     const issueNum = Number($paper.dataset.issueNum);
     const targeIndex = this.papers.map((paper) => paper.issueNum).indexOf(issueNum);
     const currQuantity = Number($paper.querySelector('select').value);
 
-    target.parentNode.remove();
+    $paper.remove();
     this.setStates({
       autoQuantity: this.autoQuantity + currQuantity,
       manualQuantity: this.manualQuantity - currQuantity,
@@ -180,10 +180,6 @@ export default class PurchaseOptionInput {
     hide(this.$ticketIssueButton);
     this.$manualSelectForm.innerHTML = '';
     this.setStates({ autoQuantity: 0, manualQuantity: 0, papers: [], maxIndex: 0 });
-  }
-
-  updateEachPaperMaxQuantity() {
-    this.papers.map((paper) => paper.setStates({ maxQuantity: paper.quantity + this.autoQuantity }));
   }
 
   render() {
