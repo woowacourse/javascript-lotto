@@ -81,6 +81,12 @@ const view = {
     alert(message);
   },
 
+  tryConfirm(message) {
+    if (typeof message !== 'string' || message.length === 0) return;
+
+    return confirm(message);
+  },
+
   hideLottoNumbers() {
     $resultItemList.classList.remove(CSS_CLASS.FLEX_DIRECTION_COLUMN);
     $resultItemList.classList.add(CSS_CLASS.LOTTO_NUMBERS_REMOVED);

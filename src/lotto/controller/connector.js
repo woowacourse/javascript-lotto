@@ -9,14 +9,14 @@ const service = {
     lottoGame.addLottoItem(lottoNumberList);
     lottoGame.spendOneLottoMoney();
     lottoGameView.showPurchaseResult(lottoGame.LottoItemList);
-    lottoGameView.showDeposit(lottoGame.Deposit);
+    lottoGameView.showDeposit(getKRMoneyString(lottoGame.Deposit));
   },
 
   purchaseAsManyLottos() {
     lottoGame.addLottoItems(lottoGame.getAffordableLottoItemCount());
     lottoGame.spendAsManyMoney();
     lottoGameView.showPurchaseResult(lottoGame.LottoItemList);
-    lottoGameView.showDeposit(lottoGame.Deposit);
+    lottoGameView.showDeposit(getKRMoneyString(lottoGame.Deposit));
   },
 
   depositMoney(cost) {
@@ -42,6 +42,13 @@ const service = {
     const rankItemList = lottoGame.getRankItemList();
     const profitRate = getProfitRate(lottoGame.TotalCost, lottoGame.getTotalProfit(rankItemList));
     lottoGameView.showResultModal(rankItemList, getKRMoneyString(profitRate));
+  },
+
+  askUserPermission(message, callback) {
+    const isConfirmed = lottoGameView.tryConfirm(message);
+    if (isConfirmed) {
+      callback && callback();
+    }
   },
 
   restart() {

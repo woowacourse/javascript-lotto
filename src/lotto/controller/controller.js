@@ -48,7 +48,7 @@ const onPurchase = () => {
     return;
   }
   if (getCustomLottoNumbers().length < LOTTO.NUMBER_LIST_LENGTH) {
-    lottoGameView.showMessage(MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE);
+    lottoGameView.showMessage(MESSAGE.SHOULD_INPUT_ALL_NUMBERS);
     return;
   }
 
@@ -72,7 +72,15 @@ const onResultModalOpen = () => {
     connector.guideUserInput(userGuideMessage);
     return;
   }
-  connector.showWinningResult(correctNumbers);
+  if (lottoGame.Deposit === 0) {
+    connector.showWinningResult(correctNumbers);
+    return;
+  }
+  const userConfirmMessage = MESSAGE.getChangeExistGuideMessage(lottoGame.Deposit);
+  connector.askUserPermission(userConfirmMessage, () => {
+    connector.purchaseAsManyLottos();
+    connector.showWinningResult(correctNumbers);
+  });
 };
 
 const onResultModalClose = () => {

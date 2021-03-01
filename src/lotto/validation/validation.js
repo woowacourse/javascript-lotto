@@ -16,10 +16,10 @@ const guide = {
 
   getInputNumbersCheckResult(InputNumbers) {
     if (validator.isDuplicatedNumberExist(InputNumbers)) {
-      return MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE;
+      return MESSAGE.DUPLICATED_NUMBER_EXIST;
     }
     if (validator.isNumberOutOfRangeExist(InputNumbers)) {
-      return MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE;
+      return MESSAGE.NUMBER_RANGE_EXCEEDED;
     }
 
     return '';
@@ -27,7 +27,7 @@ const guide = {
 
   getModalOpenCheckResult(correctNumbers) {
     if (validator.isEmptyCorrectNumberExist(correctNumbers)) {
-      return MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE;
+      return MESSAGE.SHOULD_INPUT_ALL_NUMBERS;
     }
 
     return '';
