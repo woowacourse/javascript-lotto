@@ -6,7 +6,7 @@ import { TICKET_PRICE } from '../lib/constants/lotto.js';
 import { getTicketAmount, createTickets } from '../lib/service/lotto.js';
 import { openModal } from '../lib/viewController/app.js';
 import { $, disableForm } from '../lib/utils/dom.js';
-import { updateIssuableTicketAmountText } from '../lib/viewController/lottoIssueModal.js';
+import { updateLottoIssueModalView } from '../lib/viewController/lottoIssueModal.js';
 
 const lottoPurchaseHandler = event => {
   event.preventDefault();
@@ -19,7 +19,7 @@ const lottoPurchaseHandler = event => {
   }
 
   lotto.setIssuableTicketAmount(getTicketAmount(paymentInput));
-  updateIssuableTicketAmountText();
+  updateLottoIssueModalView();
   openModal($('#lotto-issue-modal'));
   disableForm(event.target);
 };

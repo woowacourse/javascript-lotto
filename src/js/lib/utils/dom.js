@@ -7,4 +7,10 @@ const disableForm = $target => {
   }
 };
 
-export { $, $$, disableForm };
+const enableForm = $target => {
+  for (const $element of $target.elements) {
+    $element.disabled = false;
+  }
+};
+
+export { $, $$, disableForm, enableForm };

@@ -1,14 +1,20 @@
-import { $, $$ } from '../utils/dom.js';
+import { lotto } from '../state/lotto.js';
+import { $, enableForm } from '../utils/dom.js';
+import { updateLottoIssueModalView } from './lottoIssueModal.js';
+import { updateTicketListView } from './ticketList.js';
 
 const clearLottoApp = () => {
-  $('#ticket-list').innerHTML = '';
-  $('#ticket-count').innerHTML = '';
-  $('input[name=payment-input]').value = '';
-  $$('.winning-number').forEach($input => {
-    $input.value = '';
-  });
-  $('.bonus-number').value = '';
-  $('#toggle-detail-mode').classList.add('hide');
+  const $paymentForm = $('#payment-submit');
+  const $lottoNumberForm = $('#lotto-number-form');
+  $paymentForm.reset();
+  $lottoNumberForm.reset();
+
+  enableForm($paymentForm);
+
+  updateTicketListView();
+  updateLottoIssueModalView();
+  hideDOMElement($lottoNumberForm);
+  hideDOMElement($('#ticket-list-wrapper'));
 };
 
 const openModal = $target => {
@@ -19,4 +25,12 @@ const closeModal = $target => {
   $target.classList.remove('open');
 };
 
-export { clearLottoApp, openModal, closeModal };
+const showDOMElement = $target => {
+  $target.classList.remove('hide');
+};
+
+const hideDOMElement = $target => {
+  $target.classList.add('hide');
+};
+
+export { clearLottoApp, openModal, closeModal, showDOMElement, hideDOMElement };

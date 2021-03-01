@@ -1,5 +1,5 @@
 import { lotto } from '../state/lotto.js';
-import { $ } from '../utils/dom.js';
+import { $, disableForm, enableForm } from '../utils/dom.js';
 import { createTicketTemplate } from './teamplates/ticket.js';
 
 const updateIssuableTicketAmountText = () => {
@@ -21,14 +21,19 @@ const updateEndButtonText = () => {
   }
 };
 
+const updateFormState = () => {
+  if (lotto.issuableTicketAmount) {
+    enableForm($('#manual-issue-form'));
+  } else {
+    disableForm($('#manual-issue-form'));
+  }
+};
+
 const updateLottoIssueModalView = () => {
   updateIssuableTicketAmountText();
   updateIssuedTicketBoxView();
   updateEndButtonText();
+  updateFormState();
 };
 
-export {
-  updateLottoIssueModalView,
-  updateIssuableTicketAmountText,
-  updateIssuedTicketBoxView,
-};
+export { updateLottoIssueModalView };

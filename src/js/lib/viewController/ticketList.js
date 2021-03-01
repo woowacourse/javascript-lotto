@@ -12,7 +12,6 @@ const updateTicketListView = () => {
   $(
     '#ticket-count'
   ).innerHTML = `총 ${lotto.tickets.length}개를 구매하였습니다.`;
-  $('#toggle-detail-mode').classList.remove('hide');
 };
 
 const turnDetailModeOn = () => {
