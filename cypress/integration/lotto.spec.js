@@ -89,8 +89,15 @@ describe('Lotto test', () => {
     testWinnigNumbers(['1', '2', '3', '', '5', '6', '45'], MSG_BLANK_INPUT);
   });
 
-  it('적절한 당첨 번호를 입력 받아 결과를 모달창으로 띄운다.', () => {
+  it('적절한 당첨 번호를 입력 받아 결과 확인버튼을 누를 때 남은 잔액이 있을 시 confirm 창을 띄워 자동 구매를 진행한다.', () => {
     testWinnigNumbers(['1', '2', '3', '4', '5', '6', '45']);
+    cy.get('#lotto-container') //
+      .find('.lotto-wrapper')
+      .should('have.length', 5);
+    cy.get('#current-money').contains('0');
+  });
+
+  it('적절한 당첨 번호를 입력 받아 결과를 모달창으로 띄운다.', () => {
     cy.get('#modal').should('be.visible');
   });
 

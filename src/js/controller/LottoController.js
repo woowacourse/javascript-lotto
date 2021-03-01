@@ -1,4 +1,4 @@
-import { MAX_LOTTO_NUMBER } from '../constants/index.js';
+import { MAX_LOTTO_NUMBER, UNIT_AMOUNT } from '../constants/index.js';
 import { $, validator } from '../util/index.js';
 export class LottoController {
   constructor(model, view) {
@@ -127,11 +127,26 @@ export class LottoController {
     event.preventDefault();
     const numbers = this.$winningNumberInputs.filter($input => $input.value !== '').map($input => Number($input.value));
     const alertMessage = validator.winningNumbers(numbers);
+    const currentMoney = this.machine.currentMoney;
 
     if (alertMessage) {
       this.handleInputException(this.$winningNumberInputs, alertMessage);
 
       return;
+    }
+
+    if (currentMoney > 0) {
+      const answer = confirm(
+        `현재 남은 잔액은 ${currentMoney}원 입니다.\n확인 버튼을 누르시면 남은 잔액으로 자동 구매를 진행합니다.`
+      );
+
+      if (answer) {
+        this.machine.publishLottosByAuto(currentMoney / UNIT_AMOUNT);
+        this.view.renderPurchaseSection(this.machine.currentMoney);
+        this.view.renderLottoSection(this.machine.lottos);
+      } else {
+        return;
+      }
     }
 
     this.view.renderWinningResult(this.machine.getWinningStatistics(numbers));
