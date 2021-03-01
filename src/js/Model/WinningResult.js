@@ -22,8 +22,7 @@ class WinningResult {
   }
 
   setRanks(ticketBundle) {
-    let ranks = [];
-    ranks = ticketBundle.map((ticket) => {
+    const ranks = ticketBundle.map((ticket) => {
       const matchingCount = ticket.filter((number) =>
         this.winningNumbers.includes(number)
       ).length;
@@ -49,7 +48,7 @@ class WinningResult {
     }
   }
 
-  setMatchingCounts(ranks) {
+  makeRankInfo() {
     const rankInfo = [
       [RANK.FIRST, WINNING_PRIZE.FIRST],
       [RANK.SECOND, WINNING_PRIZE.SECOND],
@@ -57,6 +56,12 @@ class WinningResult {
       [RANK.FOURTH, WINNING_PRIZE.FOURTH],
       [RANK.FIFTH, WINNING_PRIZE.FIFTH],
     ];
+
+    return rankInfo;
+  }
+
+  setMatchingCounts(ranks) {
+    const rankInfo = this.makeRankInfo();
     let tmpMatchingCounts = [];
 
     rankInfo.forEach((rankArray, i) => {
@@ -72,13 +77,7 @@ class WinningResult {
   }
 
   calculateTotalPrize() {
-    const rankInfo = [
-      [RANK.FIRST, WINNING_PRIZE.FIRST],
-      [RANK.SECOND, WINNING_PRIZE.SECOND],
-      [RANK.THIRD, WINNING_PRIZE.THIRD],
-      [RANK.FOURTH, WINNING_PRIZE.FOURTH],
-      [RANK.FIFTH, WINNING_PRIZE.FIFTH],
-    ];
+    const rankInfo = this.makeRankInfo();
     let totalPrize = 0;
 
     rankInfo.forEach((_, i) => {
