@@ -27,7 +27,6 @@ export default class LottoUI {
   }
 
   renderLottoAmountUI() {
-    $(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`)
       .insertAdjacentHTML('beforeend', this._getTemplateLottoAmount());
   }
@@ -69,7 +68,6 @@ export default class LottoUI {
   }
 
   renderManualSelectUI(amount) {
-    $(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`)
       .insertAdjacentHTML('beforeend', this._getTemplateManualSelects(amount));
   }
@@ -113,7 +111,6 @@ export default class LottoUI {
   }
 
   renderCheckLottoUI(numbersBundle) {
-    $(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`)
       .insertAdjacentHTML('beforeend', this._getTemplateCheckLottoUI(numbersBundle));
   }
@@ -281,5 +278,15 @@ export default class LottoUI {
 
   hideModal() {
     $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
+  }
+  disablePreviousForm(event) {
+    const buttons = event.target.getElementsByTagName('button');
+    const inputElements = event.target.getElementsByTagName('input');
+    [...buttons].forEach((button) => {
+      button.disabled = true;
+    });
+    [...inputElements].forEach((inputElement) => {
+      inputElement.disabled = true;
+    });
   }
 }
