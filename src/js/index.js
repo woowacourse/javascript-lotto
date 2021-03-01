@@ -4,7 +4,7 @@ import {
   detailModeToggleHandler,
   lottoPurchaseHandler,
   lottoResetHandler,
-  winningNumberInputHandler,
+  formNumberInputHandler,
   winningNumberSubmitHandler,
 } from './handlers/index.js';
 import manualIssueHandler from './handlers/manualIssue.js';
@@ -16,7 +16,8 @@ const initEventListeners = () => {
   $('.modal-close').addEventListener('click', ({ target }) =>
     closeModal(target)
   );
-  $('#lotto-number-form').addEventListener('keyup', winningNumberInputHandler);
+  $('#lotto-number-form').addEventListener('keyup', formNumberInputHandler);
+  $('#manual-issue-form').addEventListener('keyup', formNumberInputHandler);
   $('#lotto-number-form').addEventListener(
     'submit',
     winningNumberSubmitHandler
