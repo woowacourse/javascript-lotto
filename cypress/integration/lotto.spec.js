@@ -48,9 +48,6 @@ context('로또 UI 테스트', () => {
         });
     });
     it('입력받는 구입 금액은 정수여야한다.', () => {
-      const alertStub = cy.stub();
-      cy.on('window:alert', alertStub);
-
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, ERROR_INPUT.NOT_INTEGER_MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
     });
@@ -159,10 +156,6 @@ context('로또 UI 테스트', () => {
       });
     });
     it('당첨 번호와 보너스 번호는 1~45의 숫자를 가진다.', () => {
-      //TODO ALERT 안쓰는 테스트들 관련 코드 다 지워줘야함
-      const alertStub = cy.stub();
-      cy.on('window:alert', alertStub);
-
       jumpToResultInputUI();
       typeResultNumbers([55, 65, 75, 85, 95, 105], 115);
       click(`.${DOM_CLASSES.RESULT_INPUT_SUBMIT}`)
