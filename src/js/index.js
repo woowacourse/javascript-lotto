@@ -7,6 +7,7 @@ import {
   winningNumberInputHandler,
   winningNumberSubmitHandler,
 } from './handlers/index.js';
+import manualIssueHandler from './handlers/manualIssue.js';
 
 const initEventListeners = () => {
   $('#toggle-detail-mode').addEventListener('change', detailModeToggleHandler);
@@ -20,7 +21,7 @@ const initEventListeners = () => {
     'submit',
     winningNumberSubmitHandler
   );
-  // $('#lotto-issue-modal').addEventListener();
+  $('#manual-issue-form').addEventListener('submit', manualIssueHandler);
 };
 
 initEventListeners();

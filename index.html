@@ -170,16 +170,17 @@
           <section class="mt-5 text-center">
             <h1>로또 발급하기</h1>
             <div class="mt-3">
-              <div class="ticket-box">
-                <span class="cursor-pointer mx-1 text-4xl">🎟️ </span>
-              </div>
+              <div
+                id="issued-ticket-list"
+                class="ticket-box d-flex flex-wrap justify-center"
+              ></div>
             </div>
             <div class="mt-3">
               <div>현재 발급 가능한 수량</div>
               <div><span id="issuable-ticket-amount">0</span> 장</div>
             </div>
             <div class="mt-5">
-              <form class="p-2">
+              <form id="manual-issue-form" class="p-2">
                 <div class="text-center">
                   원하시는 번호를 직접 입력해주세요.
                 </div>
@@ -187,39 +188,43 @@
                   <input
                     type="number"
                     name="manual-first"
-                    class="manual-number mx-1 text-center"
+                    class="js-manual-input manual-number mx-1 text-center"
                     required
                   />
                   <input
                     type="number"
                     name="manual-second"
-                    class="manual-number mx-1 text-center"
+                    class="js-manual-input manual-number mx-1 text-center"
                     required
                   />
                   <input
                     type="number"
                     name="manual-third"
-                    class="manual-number mx-1 text-center"
+                    class="js-manual-input manual-number mx-1 text-center"
                     required
                   />
                   <input
                     type="number"
                     name="manual-fourth"
-                    class="manual-number mx-1 text-center"
+                    class="js-manual-input manual-number mx-1 text-center"
                   />
                   <input
                     type="number"
                     name="manual-fifth"
-                    class="manual-number mx-1 text-center"
+                    class="js-manual-input manual-number mx-1 text-center"
                     required
                   />
                   <input
                     type="number"
                     name="manual-sixth"
-                    class="manual-number mx-1 text-center"
+                    class="js-manual-input manual-number mx-1 text-center"
                     required
                   />
-                  <button type="submit" class="btn btn-cyan btn__square ml-2">
+                  <button
+                    type="submit"
+                    id="manual-submit"
+                    class="btn btn-cyan btn__square ml-2"
+                  >
                     발급
                   </button>
                 </div>
