@@ -8,7 +8,7 @@ const reducer = (state, action) => {
         lottos: [...state.lottos, ...action.payload],
       };
 
-    case ACTION_TYPE.WINNING_NUMBERS.SET:
+    case ACTION_TYPE.WINNING_NUMBER.SET:
       return {
         ...state,
         winningNumber: { ...action.payload },

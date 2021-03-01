@@ -2,8 +2,8 @@ const ACTION_TYPE = Object.freeze({
   LOTTOS: {
     ADDED: "lottos/added",
   },
-  WINNING_NUMBERS: {
-    SET: "winningNumbers/set",
+  WINNING_NUMBER: {
+    SET: "winningNumber/set",
   },
   CLEAR: "CLEAR",
 });

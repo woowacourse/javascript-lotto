@@ -21,12 +21,6 @@ const createPresentaional = () => {
   const $$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT));
   const $bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
 
-  const clear = () => {
-    $$inputs.forEach(($input) => $input.clear());
-    $bonusInput.clear();
-    $container.hide();
-  };
-
   const render = ({ isLottoInitialAdded, isLottoCleared }) => {
     if (isLottoInitialAdded) {
       $container.show();
@@ -34,7 +28,9 @@ const createPresentaional = () => {
     }
 
     if (isLottoCleared) {
-      clear();
+      $$inputs.forEach(($input) => $input.clear());
+      $bonusInput.clear();
+      $container.hide();
       return;
     }
   };
@@ -69,8 +65,8 @@ const createPresentaional = () => {
     }
   };
 
-  const init = (eventHandler) => {
-    $container.addEventListener("submit", eventHandler);
+  const init = (createAction) => {
+    $container.addEventListener("submit", createAction);
   };
 
   return { init, render, notifyError };

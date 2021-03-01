@@ -7,15 +7,31 @@ import {
 } from "../../utils/index.js";
 import Presentational from "./Presentational.js";
 
-const createContainer = () => {
-  const getWinningNumberWithValidation = (event) => {
-    event.preventDefault();
-    const { elements } = event.target;
+const select = (state) => state.lottos;
 
-    const $$inputs = elements[CLASSNAME.WINNING_NUMBER.INPUT];
-    const $bonusInput = elements[CLASSNAME.WINNING_NUMBER.BONUS_INPUT];
+const createContainer = () => {
+  let currentLottos = select(store.getState());
+
+  const handleStateChange = () => {
+    const previousLottos = currentLottos;
+    currentLottos = select(store.getState());
+
+    const hasChanged = previousLottos !== currentLottos;
+    if (!hasChanged) return;
+
+    Presentational.render({
+      isLottoInitialAdded: previousLottos.length === 0,
+      isLottoCleared: currentLottos.length === 0,
+    });
+  };
+  const createActionWinningNumberSet = (event) => {
+    event.preventDefault();
 
     try {
+      const { elements } = event.target;
+      const $$inputs = elements[CLASSNAME.WINNING_NUMBER.INPUT];
+      const $bonusInput = elements[CLASSNAME.WINNING_NUMBER.BONUS_INPUT];
+
       const numbers = Array.from($$inputs).map(($input) => {
         return readLottoNumber($input.value);
       });
@@ -24,7 +40,7 @@ const createContainer = () => {
       validateLottoNumbersAreUnique(...numbers, bonusNumber);
 
       store.dispatch({
-        type: ACTION_TYPE.WINNING_NUMBERS.SET,
+        type: ACTION_TYPE.WINNING_NUMBER.SET,
         payload: {
           numbers,
           bonusNumber,
@@ -40,27 +56,9 @@ const createContainer = () => {
     }
   };
 
-  const select = (state) => state.lottos;
-
-  let currentLottos = select(store.getState());
-
-  const render = () => {
-    const previousLottos = currentLottos;
-    currentLottos = select(store.getState());
-
-    const hasChanged = previousLottos !== currentLottos;
-    if (!hasChanged) return;
-
-    Presentational.render({
-      isLottoInitialAdded: previousLottos.length === 0,
-      isLottoCleared: currentLottos.length === 0,
-    });
-  };
-
   const init = () => {
-    Presentational.init(getWinningNumberWithValidation);
-
-    store.subscribe(render);
+    Presentational.init(createActionWinningNumberSet);
+    store.subscribe(handleStateChange);
   };
 
   return { init };

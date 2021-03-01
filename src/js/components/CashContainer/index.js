@@ -1,43 +1,47 @@
 import { ACTION_TYPE, JS_SELECTOR } from "../../constants/index.js";
-import { toNumber, generateLottoNumbers } from "../../utils/index.js";
+import {
+  toNumber,
+  generateLottoNumbers,
+  validateCash,
+} from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
-import {
-  CustomError,
-  NotAnIntegerError,
-  OutOfRangeError,
-} from "../../errors/index.js";
+import { CustomError } from "../../errors/index.js";
 import Presentational from "./Presentational.js";
 
+const select = (state) => state.lottos;
+
 const createContainer = () => {
-  const validateCash = (cash) => {
-    if (!Number.isInteger(cash)) {
-      throw new NotAnIntegerError(cash);
-    }
+  let currentLottos = select(store.getState());
 
-    if (cash < Lotto.UNIT_PRICE) {
-      throw new OutOfRangeError(cash, { min: Lotto.UNIT_PRICE });
-    }
+  const handleStateChange = () => {
+    let previousLottos = currentLottos;
+    currentLottos = select(store.getState());
+
+    const hasChanged = previousLottos !== currentLottos;
+
+    if (!hasChanged) return;
+
+    Presentational.render();
   };
 
-  const createLottos = (cash) => {
-    const lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
-
-    return [...Array(lottoCount)].map(() => new Lotto(generateLottoNumbers()));
-  };
-
-  const createLottosAfterValidation = (event) => {
+  const createActionLottosAdded = (event) => {
     event.preventDefault();
 
-    const $cashInput = event.target.elements[JS_SELECTOR.CASH.INPUT];
-
     try {
+      const $cashInput = event.target.elements[JS_SELECTOR.CASH.INPUT];
       const cash = toNumber($cashInput.value);
+
       validateCash(cash);
+
+      const lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
+      const lottos = Array.from({ length: lottoCount }).map(
+        () => new Lotto(generateLottoNumbers())
+      );
 
       store.dispatch({
         type: ACTION_TYPE.LOTTOS.ADDED,
-        payload: createLottos(cash),
+        payload: lottos,
       });
     } catch (error) {
       if (error instanceof CustomError) {
@@ -49,24 +53,9 @@ const createContainer = () => {
     }
   };
 
-  const select = (state) => state.lottos;
-
-  let currentLottos = select(store.getState());
-
-  const render = () => {
-    let previousLottos = currentLottos;
-    currentLottos = select(store.getState());
-
-    const hasChanged = previousLottos !== currentLottos;
-
-    if (!hasChanged) return;
-
-    Presentational.render();
-  };
-
   const init = () => {
-    Presentational.init({ createLottosAfterValidation });
-    store.subscribe(render);
+    Presentational.init(createActionLottosAdded);
+    store.subscribe(handleStateChange);
   };
 
   return { init };

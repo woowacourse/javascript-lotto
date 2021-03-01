@@ -10,11 +10,6 @@ const createPresentaional = () => {
   const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
   const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 
-  const render = () => {
-    $cashInput.clear();
-    $cashInput.focus();
-  };
-
   const notifyError = (error) => {
     $cashInput.clear();
     $cashInput.focus();
@@ -37,8 +32,13 @@ const createPresentaional = () => {
     }
   };
 
-  const init = ({ createLottosAfterValidation }) => {
-    $cashContainer.addEventListener("submit", createLottosAfterValidation);
+  const render = () => {
+    $cashInput.clear();
+    $cashInput.focus();
+  };
+
+  const init = (createAction) => {
+    $cashContainer.addEventListener("submit", createAction);
   };
 
   return { init, render, notifyError };

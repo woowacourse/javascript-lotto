@@ -3,82 +3,74 @@ import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
 import Presentaional from "./Presentational.js";
 
+const WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
+
+const isRanked = {
+  First: ({ matchCount }) => matchCount === 6,
+  Second: ({ matchCount, isBonusMatched }) => {
+    return matchCount === 5 && isBonusMatched;
+  },
+  Third: ({ matchCount, isBonusMatched }) => {
+    return matchCount === 5 && !isBonusMatched;
+  },
+  Fourth: ({ matchCount }) => matchCount === 4,
+  Fifth: ({ matchCount }) => matchCount === 3,
+};
+
+const toWinningCountIndex = (match) => {
+  if (isRanked.First(match)) return 0;
+  if (isRanked.Second(match)) return 1;
+  if (isRanked.Third(match)) return 2;
+  if (isRanked.Fourth(match)) return 3;
+  if (isRanked.Fifth(match)) return 4;
+  return 5;
+};
+
+const getMatch = (lotto, { numbers, bonusNumber }) => {
+  return {
+    matchCount:
+      lotto.numbers.length +
+      numbers.length -
+      new Set([...lotto.numbers, ...numbers]).size,
+    isBonusMatched: lotto.numbers.includes(bonusNumber),
+  };
+};
+
+const produceWinningCount = (lottos, winningNumber) => {
+  return lottos
+    .map((lotto) => getMatch(lotto, winningNumber))
+    .map((match) => toWinningCountIndex(match))
+    .reduce((winningCount, index) => {
+      winningCount[index] += 1;
+      return winningCount;
+    }, Array(WINNING_MONEY_UNITS.length).fill(0));
+};
+
+const calculateProfitRate = (winningCounts, investment) => {
+  const totalWinningMoney = Array.from({
+    length: WINNING_MONEY_UNITS.length,
+  }).reduce((total, _, index) => {
+    return total + WINNING_MONEY_UNITS[index] * winningCounts[index];
+  }, 0);
+
+  return totalWinningMoney / investment - 1;
+};
+
 const createModal = () => {
-  const WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
+  const select = (state) => state.winningNumber;
 
-  const isRanked = {
-    First: ({ matchCount }) => matchCount === 6,
-    Second: ({ matchCount, isBonusMatched }) => {
-      return matchCount === 5 && isBonusMatched;
-    },
-    Third: ({ matchCount, isBonusMatched }) => {
-      return matchCount === 5 && !isBonusMatched;
-    },
-    Fourth: ({ matchCount }) => matchCount === 4,
-    Fifth: ({ matchCount }) => matchCount === 3,
-  };
+  let currentWinningNumber = select(store.getState());
 
-  const toWinningCountIndex = (match) => {
-    if (isRanked.First(match)) return 0;
-    if (isRanked.Second(match)) return 1;
-    if (isRanked.Third(match)) return 2;
-    if (isRanked.Fourth(match)) return 3;
-    if (isRanked.Fifth(match)) return 4;
-    return 5;
-  };
+  const handleStateChange = () => {
+    let previousWinningNumber = currentWinningNumber;
+    currentWinningNumber = select(store.getState());
 
-  const getMatch = (lotto, { numbers, bonusNumber }) => {
-    return {
-      matchCount:
-        lotto.numbers.length +
-        numbers.length -
-        new Set([...lotto.numbers, ...numbers]).size,
-      isBonusMatched: lotto.numbers.includes(bonusNumber),
-    };
-  };
-
-  const calculateProfitRate = (lottos, winningCounts) => {
-    const totalWinningMoney = [...Array(WINNING_MONEY_UNITS.length)].reduce(
-      (total, _, index) =>
-        total + WINNING_MONEY_UNITS[index] * winningCounts[index],
-      0
-    );
-
-    return totalWinningMoney / (lottos.length * Lotto.UNIT_PRICE) - 1;
-  };
-
-  const produceWinningCount = (lottos, winningNumber) => {
-    const winningCount = Array(WINNING_MONEY_UNITS.length).fill(0);
-
-    lottos.forEach((lotto) => {
-      winningCount[toWinningCountIndex(getMatch(lotto, winningNumber))]++;
-    });
-
-    return winningCount;
-  };
-
-  const select = (state) => ({
-    lottos: state.lottos,
-    winningNumber: state.winningNumber,
-  });
-
-  let currentValue = select(store.getState());
-
-  const render = () => {
-    let previousValue = currentValue;
-    currentValue = select(store.getState());
-    const { winningNumber: previousWinningNumber } = previousValue;
-    const {
-      lottos: currentLottos,
-      winningNumber: currentWinningNumber,
-    } = currentValue;
-
+    const { lottos: currentLottos } = store.getState();
     const hasChanged = previousWinningNumber !== currentWinningNumber;
 
     if (!hasChanged) return;
 
-    const isCleared =
-      currentLottos.length === 0 && currentWinningNumber.numbers.length === 0;
+    const isCleared = currentWinningNumber.numbers.length === 0;
 
     if (isCleared) {
       Presentaional.render({ isCleared: true });
@@ -89,19 +81,20 @@ const createModal = () => {
       currentLottos,
       currentWinningNumber
     );
-    const profitRate = calculateProfitRate(currentLottos, winningCounts);
+    const investment = currentLottos.length * Lotto.UNIT_PRICE;
+    const profitRate = calculateProfitRate(winningCounts, investment);
 
-    Presentaional.render({ isCleared: false, winningCounts, profitRate });
+    Presentaional.render({ winningCounts, profitRate });
   };
 
-  const restart = () => {
+  const createActionClear = () => {
     store.dispatch({ type: ACTION_TYPE.CLEAR });
   };
 
   const init = () => {
-    Presentaional.init({ restart });
+    Presentaional.init(createActionClear);
 
-    store.subscribe(render);
+    store.subscribe(handleStateChange);
   };
 
   return { init };

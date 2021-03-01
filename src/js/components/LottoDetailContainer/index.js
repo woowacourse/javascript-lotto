@@ -6,7 +6,7 @@ const createContainer = () => {
 
   let currentLottos = select(store.getState());
 
-  const render = () => {
+  const handleStateChange = () => {
     const previousLottos = currentLottos;
     currentLottos = select(store.getState());
 
@@ -21,7 +21,7 @@ const createContainer = () => {
 
   const init = () => {
     Presentational.init();
-    store.subscribe(render);
+    store.subscribe(handleStateChange);
   };
 
   return { init };
