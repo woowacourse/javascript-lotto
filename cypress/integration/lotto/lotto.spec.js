@@ -3,6 +3,7 @@ import {
   EXCEED_RANGE_NUMBER,
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
+import { TICKET_MAX_NUMBER } from '../../../src/js/lib/constants/lotto';
 
 context('Actions', () => {
   beforeEach(() => {
@@ -58,6 +59,16 @@ context('Actions', () => {
     });
     cy.get('#manual-submit').click();
     cy.get('@alert').should('be.calledWith', DUPLICATE_NUMBER_MESSAGE);
+  });
+
+  it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+    cy.get('input[name=payment-input]').type('1000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('.js-manual-input').each(element => {
+      cy.wrap(element).type(TICKET_MAX_NUMBER + 1);
+    });
+    cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
