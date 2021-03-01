@@ -14,6 +14,7 @@ export default class LottoController {
 
   _initState() {
     this._lottosBundle = new LottosBundle();
+    this._myMoney = 0;
     this._winnings = {
       [RANK.FIRST]: 0,
       [RANK.SECOND]: 0,
@@ -86,13 +87,19 @@ export default class LottoController {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
-
+    this._myMoney = moneyInput;
     this.lottoUI.renderLottoAmountUI();
   }
 
   _handleAmountInput() {
     const manualAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
     const autoAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`).value);
+    const moneyToNeed = LOTTO_SETTINGS.LOTTO_PRICE * (manualAmount + autoAmount);
+    if (this._myMoney < moneyToNeed) {
+      alert(ALERT_MESSAGES.CANT_BUY_AMOUNT);
+      return;
+    }
+
     this.lottoUI.renderManualSelectUI(manualAmount);
     this._makeLottosByAuto(autoAmount);
   }
