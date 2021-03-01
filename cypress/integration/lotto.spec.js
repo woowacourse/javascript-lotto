@@ -5,6 +5,7 @@ import { LOTTO_SETTINGS } from '../../src/js/utils/constants/settings.js';
 import { DOM_CLASSES } from '../../src/js/utils/constants/dom.js';
 import { getRandomNumber } from '../../src/js/utils/util.js';
 
+//TODO 종속적인 요소들 밖으로 빼기
 const COMMON_MONEY_INPUT = 5000;
 const COMMON_MANUAL_AMOUNT = 2;
 const SUCCESS_INPUT = {
@@ -23,6 +24,10 @@ const ERROR_INPUT = {
   MANUAL_SELECT_NUMBERS_DUPLICATED: [
     1, 2, 3, 4, 5, 6,
     7, 8, 9, 10, 11, 11
+  ],
+  MANUAL_SELECT_NUMBERS_OUT_OF_RANGE: [
+    1, 2, 3, 4, 5, 6,
+    46, -1, 9, 10, 11, 12
   ],
   CANT_BUY_AMOUNT_MANUAL: 6,
   CANT_BUT_AMOUNT_AUTO: 6,
@@ -112,6 +117,18 @@ context('로또 UI 테스트', () => {
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
 
       typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, ERROR_INPUT.MANUAL_SELECT_NUMBERS_DUPLICATED);
+      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+
+      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
+    });
+    it('수동으로 구매하는 로또 번호는 1~45 사이의 숫자를 가진다.', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_MANUAL_AMOUNT);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+
+      typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, ERROR_INPUT.MANUAL_SELECT_NUMBERS_OUT_OF_RANGE);
       click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
