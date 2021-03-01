@@ -15,6 +15,7 @@ describe('LOTTO 테스트', () => {
 
     cy.focused().should('have.attr', 'id', 'money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.lotto-list-section').should('be.visible');
     cy.get('.winning-number-form-section').should('be.visible');
@@ -28,6 +29,7 @@ describe('LOTTO 테스트', () => {
   it('사용자가 토글 버튼을 누르면 로또의 번호를 볼 수 있다.', () => {
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
     cy.get('#lotto-numbers-toggle').click();
 
     cy.get('.lotto-numbers').each(($elem) => {
@@ -48,6 +50,7 @@ describe('LOTTO 테스트', () => {
   it('각 로또 안의 번호가 중복되지 않았는지 확인한다.', () => {
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
     cy.get('#lotto-numbers-toggle').click();
 
     cy.get('.lotto-numbers').each(($elem) => {
@@ -75,6 +78,7 @@ describe('LOTTO 테스트', () => {
   it('사용자가 5500 원을 입력하면 화면에 로또가 5개 보여진다.', () => {
     cy.get('#money-input').type('5500');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.lotto-list').children().should('have.length', 5);
   });
@@ -83,6 +87,7 @@ describe('LOTTO 테스트', () => {
     const winningNumbers = [9, 11, 3, 25, 21, 2];
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.winning-number').each((winningNumberInput, index) => {
       cy.wrap(winningNumberInput).type(winningNumbers[index]);
@@ -108,6 +113,7 @@ describe('LOTTO 테스트', () => {
     const winningNumbers = [9, 11, 3, 25, 21, 2];
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.winning-number').each((winningNumberInput, index) => {
       cy.wrap(winningNumberInput).type(winningNumbers[index]);
@@ -129,6 +135,7 @@ describe('LOTTO 테스트', () => {
     const winningNumbers = [9, 11, 3, 25, 21, 2];
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.winning-number').each((winningNumberInput, index) => {
       cy.wrap(winningNumberInput).type(winningNumbers[index]);
@@ -146,6 +153,7 @@ describe('LOTTO 테스트', () => {
     const winningNumbers = [10, 11, 30, 25, 21, 20];
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.winning-number').each((winningNumberInput, index) => {
       cy.wrap(winningNumberInput)
@@ -195,6 +203,7 @@ describe('LOTTO 테스트', () => {
 
     cy.get('#money-input').type('10000');
     cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
 
     cy.get('.winning-number').each((winningNumberInput, index) => {
       cy.wrap(winningNumberInput).type(winningNumbers[index]);
@@ -205,6 +214,79 @@ describe('LOTTO 테스트', () => {
     cy.on('window:alert', alertStub);
     cy.get('.open-result-modal-button')
       .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      });
+  });
+
+  it('구입할 금액 입력 후, 로또를 수동 구매하면 구입한 로또 목록에 해당 로또가 추가된다.', () => {
+    const lottoNumbers = [3, 9, 11, 20, 21, 25];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.get('#lotto-number-form').submit();
+
+    cy.get('.lotto-count').should('have.text', '1');
+    cy.get('.lotto .lotto-numbers').should('have.text', lottoNumbers.join(', '));
+  });
+
+  it('구입할 수 있는 로또 개수의 개수가 0개이면 수동 구매 폼을 보이지 않게 한다.', () => {
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+    cy.get('#auto-purchase-button').click();
+
+    cy.get('#lotto-number-form').should('be.not.visible');
+  });
+
+  it('나머지 자동 구매 버튼을 클릭하면 구입할 수 있는 로또의 개수만큼 자동 구매되어 구입한 로또 목록에 추가된다.', () => {
+    const lottoNumbers = [3, 9, 11, 20, 21, 25];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.get('#lotto-number-form').submit();
+    cy.get('#auto-purchase-button').click();
+
+    cy.get('.lotto').should('have.length', '10');
+  });
+
+  it('입력된 수동 구매 번호가 1 ~ 45 사이의 숫자가 아니면, 로또를 구매할 수 없다.', () => {
+    const lottoNumbers = [3, 9, 11, 20, 21, 46];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.get('.lotto').should('have.length', 0);
+  });
+
+  it('입력된 수동 구매 번호가 중복된 번호가 있으면, 경고창을 띄운다.', () => {
+    const alertStub = cy.stub();
+    const lottoNumbers = [3, 9, 11, 20, 20, 45];
+
+    cy.get('#money-input').type('10000');
+    cy.get('#money-submit-button').click();
+
+    cy.get('.lotto-number').each((lottoNumberInput, index) => {
+      cy.wrap(lottoNumberInput).type(lottoNumbers[index]);
+    });
+
+    cy.on('window:alert', alertStub);
+
+    cy.get('#lotto-number-form')
+      .submit()
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
       });

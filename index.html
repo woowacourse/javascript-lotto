@@ -16,14 +16,33 @@
         <form class="mt-5" id="money-input-form">
           <label for="money-input" class="mb-2 d-inline-block">구입할 금액을 입력해주세요.</label>
           <div class="d-flex">
-            <input id="money-input" aria-label="money-input" type="number" min="0" class="w-100 mr-2 pl-2" placeholder="구입 금액" autofocus/>
+            <input id="money-input" type="number" min="0" class="w-100 mr-2 pl-2" placeholder="구입 금액" autofocus/>
             <button id="money-submit-button" type="submit" class="btn btn-cyan">확인</button>
           </div>
         </form>
+        <section class="lotto-number-section mt-9 hidden">
+          <h2>로또 번호 선택</h2>
+          <form id="lotto-number-form">
+            <label class="flex-auto my-0">구입할 수 있는 로또의 개수는 <strong class="lotto-purchase-count">0<!--로또 개수--></strong>개입니다</label>
+            <div class="d-flex mt-5 items-end">
+              <fieldset>
+                <legend class="mt-0 mb-3 text-center font-bold">번호 입력</legend>
+                <input type="number" name="lotto-number" aria-label="첫번째 번호" class="lotto-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="lotto-number" aria-label="두번째 번호" class="lotto-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="lotto-number" aria-label="세번째 번호" class="lotto-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="lotto-number" aria-label="네번째 번호" class="lotto-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="lotto-number" aria-label="다섯번째 번호" class="lotto-number mx-1 text-center" min="1" max="45" required />
+                <input type="number" name="lotto-number" aria-label="여섯번째 번호" class="lotto-number mx-1 text-center" min="1" max="45" required />
+              </fieldset>
+              <button id="purchase-button" class="btn btn-cyan ml-3">구매</button>
+            </div>
+          </form>
+          <button id="auto-purchase-button" class="mt-5 btn btn-cyan w-100">나머지 자동 구매</button>
+        </section>
         <section class="lotto-list-section mt-9 hidden">
           <h2>구입한 로또 목록</h2>
           <div class="d-flex">
-            <label class="flex-auto my-0">총 <span class="lotto-count"><!--로또 개수--></span>개를 구매하였습니다.</label>
+            <label class="flex-auto my-0">총 <span class="lotto-count">0<!--로또 개수--></span>개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
               <label class="switch" id="lotto-numbers-toggle">
                 <input type="checkbox" class="lotto-numbers-toggle-button" />

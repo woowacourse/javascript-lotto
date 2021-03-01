@@ -18,6 +18,7 @@ class LottoApp {
     this.data = {
       lottos: [],
       cost: 0,
+      availablePurchaseCount: 0,
     };
 
     this.bindEvents();
@@ -37,38 +38,81 @@ class LottoApp {
       return;
     }
 
-    const lottoCount = Math.floor(money / LOTTO.PRICE);
-    this.data.cost = LOTTO.PRICE * lottoCount;
-    this.data.lottos = this.generateLottos(lottoCount);
+    this.data.availablePurchaseCount = Math.floor(money / LOTTO.PRICE);
+    this.data.cost = LOTTO.PRICE * this.data.availablePurchaseCount;
 
-    this.view.renderLottoList(this.data.lottos);
+    this.view.renderPurchaseCount(this.data.availablePurchaseCount);
+
+    showElement($('.lotto-number-section'));
     showElement($('.lotto-list-section'));
-    showElement($('.winning-number-form-section'));
     disableElement($('#money-input'));
     disableElement($('#money-submit-button'));
 
+    $('.lotto-number').focus();
+  }
+
+  handleSubmitLottoNumbers(event) {
+    event.preventDefault();
+
+    const $lottoNumbers = [...event.target.elements['lotto-number']];
+    const lottoNumbers = $lottoNumbers.map(($number) => $number.valueAsNumber);
+
+    if (!isUniqueArray(lottoNumbers)) {
+      alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      return;
+    }
+
+    const lotto = new Lotto(lottoNumbers);
+
+    this.data.availablePurchaseCount -= 1;
+    this.data.lottos = [...this.data.lottos, lotto];
+
+    $('#lotto-number-form').reset();
+    $('.lotto-number').focus();
+
+    if (this.data.availablePurchaseCount <= 0) {
+      hideElement($('.lotto-number-section'));
+      showElement($('.winning-number-form-section'));
+      $('.winning-number').focus();
+    }
+
+    this.view.renderLotto(lotto, this.data.availablePurchaseCount, this.data.lottos.length);
+  }
+
+  handleInputLottoNumbers(event) {
+    if (event.target.value.length < 2) return;
+
+    const $nextInput = event.target.nextElementSibling;
+
+    if ($nextInput) {
+      $nextInput.focus();
+      $nextInput.select();
+      return;
+    }
+
+    if (event.target.classList.contains('winning-number')) {
+      $('.bonus-number').focus();
+      $('.bonus-number').select();
+    }
+  }
+
+  handleAutoPurchase() {
+    const purchasedLottos = this.generateLottos(this.data.availablePurchaseCount);
+
+    this.data.lottos = [...this.data.lottos, ...purchasedLottos];
+    this.data.availablePurchaseCount = 0;
+
+    this.view.renderLottoList(this.data.lottos);
+    this.view.renderLottoCount(this.data.lottos.length);
+    this.view.renderPurchaseCount(this.data.availablePurchaseCount);
+
+    hideElement($('.lotto-number-section'));
+    showElement($('.winning-number-form-section'));
     $('.winning-number').focus();
   }
 
   handleToggleLottoNumbers() {
     $('.lotto-list').classList.toggle('show-number');
-  }
-
-  handleInputWinningNumbers(event) {
-    if (!event.target.classList.contains('winning-number')) return;
-
-    if (event.target.value.length >= 2) {
-      const $nextInput = event.target.nextElementSibling;
-
-      if ($nextInput) {
-        $nextInput.focus();
-        $nextInput.select();
-        return;
-      }
-
-      $('.bonus-number').focus();
-      $('.bonus-number').select();
-    }
   }
 
   handleSubmitWinningNumbers(event) {
@@ -138,12 +182,18 @@ class LottoApp {
   bindEvents() {
     $('#money-input-form').addEventListener('submit', this.handleSubmitMoney.bind(this));
 
+    $('#lotto-number-form').addEventListener('submit', this.handleSubmitLottoNumbers.bind(this));
+
+    $('#lotto-number-form').addEventListener('input', this.handleInputLottoNumbers.bind(this));
+
+    $('#auto-purchase-button').addEventListener('click', this.handleAutoPurchase.bind(this));
+
     $('.lotto-numbers-toggle-button').addEventListener(
       'change',
       this.handleToggleLottoNumbers.bind(this)
     );
 
-    $('#winning-number-form').addEventListener('input', this.handleInputWinningNumbers.bind(this));
+    $('#winning-number-form').addEventListener('input', this.handleInputLottoNumbers.bind(this));
     $('#winning-number-form').addEventListener(
       'submit',
       this.handleSubmitWinningNumbers.bind(this)
