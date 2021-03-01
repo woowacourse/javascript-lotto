@@ -45,7 +45,7 @@ export default class LottoPurchaseController {
 
     this.lottoModel.manualPurchase(manaulPurcahseNumber);
 
-    if (this.lottoModel.purchaseEveryLotto()) {
+    if (this.lottoModel.isEveryLottoPurchased()) {
       this.onClickAutoPurchaseButton();
     }
 

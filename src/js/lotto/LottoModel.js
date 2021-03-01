@@ -38,7 +38,7 @@ export default class LottoModel {
     );
   }
 
-  purchaseEveryLotto() {
+  isEveryLottoPurchased() {
     return this.lottoList.length === this.price / 1000;
   }
 }
