@@ -55,6 +55,7 @@ class LottoController {
   }
 
   #managePocket() {
+    this.model.generateRandomLottos(this.model.lottos.amount)
     this.view.resetBuyMethodSection()
     this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
