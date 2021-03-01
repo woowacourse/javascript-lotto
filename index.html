@@ -29,6 +29,43 @@
               <button type="submit" class="purchase-amount-button btn btn-cyan">확인</button>
             </div>
           </form>
+          <section class="manual-lotto-purchase-section mt-6 d-none">
+            <h2 class="text-lg">로또 수동 구매하기</h2>
+            <span class="remaining-count d-block text-sm mt-3">남은 로또 : 3장 (총 5장)</span>
+            <form>
+              <div class="d-flex mt-3">
+                <div class="d-flex">
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                </div>
+                <div class="flex-grow">
+                  <button type="submit" class="add-manual-lotto-button btn btn-cyan mw-none ml-3">+</button>
+                </div>
+              </div>
+              <span class="lotto-number-check-message d-block m-1 text-sm text-red">중복된 번호가 있습니다.</span>
+            </form>
+            <section class="purchased-manual-lotto-section mt-5">
+              <h3 class="text-base">수동 구매한 로또 목록</h3>
+              <ul class="purchased-manual-lotto-list pl-3">
+                <li>
+                  <span>01, 02, 03, 04, 05, 06</span>
+                  <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
+                </li>
+                <li>
+                  <span>01, 02, 03, 04, 05, 06</span>
+                  <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
+                </li>
+              </ul>
+            </section>
+            <div class="mt-5">
+              <sapn class="d-block text-sm text-gray">남은 금액이 있는 경우 자동으로 구매합니다.</sapn>
+              <button type="button" class="lotto-purchase-button btn btn-cyan w-100 mt-2">로또 구매하기</button>
+            </div>
+          </section>
           <section class="purchased-lotto-section mt-9 d-none">
             <div class="d-flex">
               <h2 class="purchased-lotto-label flex-auto my-0 font-normal text-base"></h2>
@@ -64,10 +101,8 @@
                 </div>
               </section>
             </div>
-            <div class="winning-number-check-message mt-3 text-sm text-red h-2r spacing-sm"></div>
-            <button type="submit" class="open-result-modal-button mt-5 btn btn-cyan w-100" disabled>
-              결과 확인하기
-            </button>
+            <div class="winning-number-check-message m-3 text-sm text-red h-2r spacing-sm"></div>
+            <button type="submit" class="open-result-modal-button mt-3 btn btn-cyan w-100" disabled>결과 확인하기</button>
           </form>
         </div>
       </section>

@@ -5,3 +5,7 @@
 .flex-col-with-num .lotto-numbers {
   display: inline;
 }
+
+.purchased-manual-lotto-list {
+  list-style: none;
+}
