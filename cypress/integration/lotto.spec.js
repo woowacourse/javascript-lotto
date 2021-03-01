@@ -120,6 +120,15 @@ context('로또 UI 테스트', () => {
         expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.CANT_BUY_AMOUNT);
       });
     });
+    it('수동으로 구매하는 로또 수량이 없을 시 번호 수동 선택 창은 스킵한다.', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, ZERO_AMOUNT_INPUT);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+
+      testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
+    });
   });
 
   describe('수동 로또 번호 선택 부분', () => {
