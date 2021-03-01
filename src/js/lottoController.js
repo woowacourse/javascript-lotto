@@ -86,6 +86,7 @@ export default class LottoController {
     this._myMoney = moneyInput;
     this.lottoUI.renderLottoAmountUI();
     this.lottoUI.disablePreviousForm(event);
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).focus();
   }
 
   _handleAmountInput(event) {
@@ -106,9 +107,11 @@ export default class LottoController {
     if (manualAmount === 0) {
       this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
       this.lottoUI.renderResultInputUI();
+      $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
       return;
     }
     this.lottoUI.renderManualSelectUI(manualAmount);
+    $(`.${DOM_CLASSES.MANUAL_SELECT_INPUT}`).focus();
   }
 
   _makeLottosByAuto(amount) {
