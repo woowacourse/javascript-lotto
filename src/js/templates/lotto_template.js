@@ -57,7 +57,7 @@ export const pocketSectionTemplate = (lottos) => {
   return `
         <div class="d-flex">
             <label class="flex-auto my-0">총 ${
-              lottos.lottos.length
+              lottos.count
             }개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">

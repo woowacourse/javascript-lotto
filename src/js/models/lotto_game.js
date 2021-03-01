@@ -35,19 +35,19 @@ class LottoGameModel {
     return { match, bonusMatch }
   }
 
-  generateLottos(newAmount) {
+  issueLottos(newAmount) {
     this.#issuedLottos = new LottosModel()
     this.#issuedLottos.amount = newAmount
   }
 
-  generateRandomLottos(count) {
+  issueRandomLottos(count) {
     for (let i = 0; i < count; i++) {
       this.#issuedLottos && this.#issuedLottos.generateRandomTicket()
       this.#issuedLottos.decreaseAmount()
     }
   }
 
-  generateManualLotto(numbers) {
+  issueManualLotto(numbers) {
     this.#issuedLottos && this.#issuedLottos.generateManualTicket(numbers)
     this.#issuedLottos.decreaseAmount()
   }

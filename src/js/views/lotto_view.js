@@ -21,7 +21,6 @@ class LottoView {
 
   renderPocketSection(lottos) {
     const $pocketSection = $(SELECTOR.POCKET_SECTION)
-    console.log(lottos)
     $pocketSection.innerHTML = pocketSectionTemplate(lottos)
   }
 

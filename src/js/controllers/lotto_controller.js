@@ -35,7 +35,7 @@ class LottoController {
     }
 
     const amount = getTicketsCount(price)
-    this.model.generateLottos(amount)
+    this.model.issueLottos(amount)
     this.view.renderBuyMethodSection(this.model.lottos)
     this.view.resetPocketSection()
     this.view.resetWinningSection()
@@ -51,7 +51,7 @@ class LottoController {
     }
 
     const generatedLottos = this.model.lottos
-    this.model.generateManualLotto(manualNumbers)
+    this.model.issueManualLotto(manualNumbers)
     if (generatedLottos.amount === 0) {
       this.#managePocket()
     } else {
@@ -62,7 +62,7 @@ class LottoController {
   }
 
   #managePocket() {
-    this.model.generateRandomLottos(this.model.lottos.amount)
+    this.model.issueRandomLottos(this.model.lottos.amount)
     this.view.resetBuyMethodSection()
     this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
