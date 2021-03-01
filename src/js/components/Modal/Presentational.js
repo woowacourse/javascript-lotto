@@ -25,12 +25,18 @@ const createPresentational = () => {
   );
 
   const closeModal = () => {
-    $container.classList.remove(CLASSNAME.MODAL.OPEN);
+    $container.hide();
+  };
+
+  const closeModalIfDimmedClicked = (event) => {
+    if (event.target.classList.contains(CLASSNAME.MODAL)) {
+      closeModal();
+    }
   };
 
   const render = ({ isCleared = false, winningCounts, profitRate }) => {
     if (isCleared) {
-      $container.classList.remove(CLASSNAME.MODAL.OPEN);
+      $container.hide();
       return;
     }
 
@@ -40,11 +46,12 @@ const createPresentational = () => {
         $td.innerText = `${winningCounts[index]}개`;
       });
     $profitRateParagraph.innerText = TEMPLATE(profitRate);
-    $container.classList.add(CLASSNAME.MODAL.OPEN);
+    $container.show();
   };
 
   const init = (createAction) => {
     $close.addEventListener("click", closeModal);
+    $container.addEventListener("click", closeModalIfDimmedClicked);
     $restartButton.addEventListener("click", createAction);
   };
 
