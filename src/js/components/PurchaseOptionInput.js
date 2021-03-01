@@ -7,12 +7,13 @@ import { PURCHASE_AMOUNT_SUBMITTED, TICKET_ISSUE_REQUESTED, APP_RESET } from '..
 import { TICKET_ISSUE_CONFIRM_MESSAGE } from '../constants/display.js';
 
 export default class PurchaseOptionInput {
-  constructor({ stageManager }) {
+  constructor({ stageManager, lottoManager }) {
     this.stageManager = stageManager;
+    this.lottoManager = lottoManager;
+    this.maxIndex = 0;
     this.autoQuantity = 0;
     this.manualQuantity = 0;
     this.papers = [];
-    this.maxIndex = 0;
 
     this.selectDOMs();
     this.subscribeAppStages();
@@ -30,8 +31,9 @@ export default class PurchaseOptionInput {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(PURCHASE_AMOUNT_SUBMITTED, this.renderSection.bind(this));
-    this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
+    this.stageManager.subscribe(PURCHASE_AMOUNT_SUBMITTED, this.showSection.bind(this));
+    this.stageManager.subscribe(TICKET_ISSUE_REQUESTED, this.deactivateSection.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetSection.bind(this));
   }
 
   attachEvents() {
@@ -43,27 +45,31 @@ export default class PurchaseOptionInput {
   onAddPaper() {
     const newPaper = new LottoPaper(this.maxIndex);
 
-    this.setState({
+    this.$manualSelectForm.insertAdjacentHTML('beforeEnd', getSelectPaperHTML({ issueNum: newPaper.issueNum }));
+
+    const $paper = this.$manualSelectForm.lastChild;
+
+    newPaper.setStates({
+      $checkMessage: $paper.querySelector('.manual-select-check-message'),
+      $quantitySelect: $paper.querySelector('.quantity-select'),
+    });
+    $paper.addEventListener('change', this.onChangePaper.bind(this));
+    $paper.addEventListener('keyup', (e) => {
+      if (e.key !== 'Enter') {
+        return;
+      }
+      const target = e.target.parentNode.querySelector('input');
+
+      target.checked = true;
+      this.onChangePaper({ target, currentTarget: e.currentTarget });
+    });
+
+    this.setStates({
       autoQuantity: this.autoQuantity - newPaper.quantity,
       manualQuantity: this.manualQuantity + newPaper.quantity,
       papers: [...this.papers, newPaper],
       maxIndex: Number(this.maxIndex) + 1,
     });
-    this.$manualSelectForm.insertAdjacentHTML('beforeEnd', getSelectPaperHTML({ issueNum: newPaper.issueNum }));
-
-    const $manualSelectPaper = this.$manualSelectForm.lastChild;
-
-    newPaper.$checkMessage = $manualSelectPaper.querySelector('.manual-select-check-message');
-    newPaper.$quantitySelect = $manualSelectPaper.querySelector('.quantity-select');
-    $manualSelectPaper.addEventListener('change', this.onChangePaper.bind(this));
-    $manualSelectPaper.addEventListener('keyup', (e) => {
-      if (e.key === 'Enter') {
-        const target = e.target.parentNode.querySelector('input');
-        target.checked = true;
-        this.onChangePaper({ target, currentTarget: e.currentTarget });
-      }
-    });
-    this.updateQuantitySelect();
   }
 
   onRemovePaper({ target }) {
@@ -76,12 +82,11 @@ export default class PurchaseOptionInput {
     const currQuantity = Number($paper.querySelector('select').value);
 
     target.parentNode.remove();
-    this.setState({
+    this.setStates({
       autoQuantity: this.autoQuantity + currQuantity,
       manualQuantity: this.manualQuantity - currQuantity,
       papers: getNthElementRemoved(this.papers, targeIndex),
     });
-    this.updateQuantitySelect();
   }
 
   onChangePaper({ target, currentTarget }) {
@@ -100,7 +105,7 @@ export default class PurchaseOptionInput {
   onChangeCheckbox({ target, lottoPaper }) {
     if (target.checked === false) {
       lottoPaper.remove(Number(target.value));
-      this.setState({});
+      this.render();
       return;
     }
     if (lottoPaper.isFulfilled) {
@@ -108,7 +113,7 @@ export default class PurchaseOptionInput {
       return;
     }
     lottoPaper.add(Number(target.value));
-    this.setState({});
+    this.render();
   }
 
   onChangeQuantityApplier({ target, lottoPaper }) {
@@ -120,71 +125,74 @@ export default class PurchaseOptionInput {
 
     unselect(prevOption);
     select(currOption);
-    lottoPaper.setState({ quantity: currQuantity });
-    this.setState({
+    lottoPaper.setStates({ quantity: currQuantity });
+    this.setStates({
       autoQuantity: this.autoQuantity - diffManualQuantity,
       manualQuantity: this.manualQuantity + diffManualQuantity,
     });
-    this.updateQuantitySelect();
-  }
-
-  updateQuantitySelect() {
-    this.papers.forEach((paper) => paper.setState({ maxQuantity: paper.quantity + this.autoQuantity }));
   }
 
   onRequestIssueTickets() {
     const response = window.confirm(
-      TICKET_ISSUE_CONFIRM_MESSAGE({ auto: this.autoQuantity, manual: this.manualQuantity })
+      TICKET_ISSUE_CONFIRM_MESSAGE({
+        auto: this.autoQuantity,
+        manual: this.manualQuantity,
+      })
     );
 
     if (response === false) {
       return;
     }
 
-    const manualLottoTickets = this.papers.reduce(
-      (acc, cur) => acc.concat(...[...Array(cur.quantity)].map(() => new LottoTicket(cur.numbers))),
-      []
-    );
-
-    this.stageManager.setStates({
-      stage: TICKET_ISSUE_REQUESTED,
-      lottoTickets: manualLottoTickets,
+    this.lottoManager.issueTickets({
+      manualTickets: this.papers.reduce(
+        (acc, cur) => acc.concat(...[...Array(cur.quantity)].map(() => new LottoTicket(cur.numbers))),
+        []
+      ),
     });
+    this.stageManager.setStates({ stage: TICKET_ISSUE_REQUESTED });
+  }
+
+  setStates({ autoQuantity, manualQuantity, papers, maxIndex }) {
+    this.autoQuantity = autoQuantity ?? this.autoQuantity;
+    this.manualQuantity = manualQuantity ?? this.manualQuantity;
+    this.papers = papers ?? this.papers;
+    this.maxIndex = maxIndex ?? this.maxIndex;
+    this.render();
+  }
+
+  showSection() {
+    show(this.$purchaseOptionSection);
+    show(this.$ticketIssueButton);
+    show(this.$manualSelectForm);
+    show(this.$paperAdder);
+    this.setStates({ autoQuantity: this.lottoManager.numOfLotto, manualQuantity: 0 });
+  }
+
+  deactivateSection() {
     hide(this.$manualSelectForm);
     hide(this.$paperAdder);
     disable(this.$ticketIssueButton);
   }
 
-  renderQuantitySummary() {
-    this.$autoQuantity.innerText = this.autoQuantity;
-    this.$manualQuantity.innerText = this.manualQuantity;
-  }
-
-  renderSection() {
-    show(this.$purchaseOptionSection);
-    show(this.$ticketIssueButton);
-    show(this.$manualSelectForm);
-    show(this.$paperAdder);
-    this.setState({ autoQuantity: this.stageManager.numOfLotto, manualQuantity: 0 });
-  }
-
-  setState({ autoQuantity, manualQuantity, papers, maxIndex }) {
-    this.autoQuantity = autoQuantity ?? this.autoQuantity;
-    this.manualQuantity = manualQuantity ?? this.manualQuantity;
-    this.papers = papers ?? this.papers;
-    this.maxIndex = maxIndex ?? this.maxIndex;
-
-    this.renderQuantitySummary();
-    this.autoQuantity === 0 ? disable(this.$paperAddButton) : enable(this.$paperAddButton);
-    this.papers.every((paper) => paper.isFulfilled)
-      ? enable(this.$ticketIssueButton)
-      : disable(this.$ticketIssueButton);
-  }
-
-  reset() {
+  resetSection() {
     hide(this.$purchaseOptionSection);
     hide(this.$ticketIssueButton);
     this.$manualSelectForm.innerHTML = '';
-    this.setState({ autoQuantity: 0, manualQuantity: 0, papers: [], maxIndex: 0 });
+    this.setStates({ autoQuantity: 0, manualQuantity: 0, papers: [], maxIndex: 0 });
+  }
+
+  updateEachPaperMaxQuantity() {
+    this.papers.map((paper) => paper.setStates({ maxQuantity: paper.quantity + this.autoQuantity }));
+  }
+
+  render() {
+    this.$autoQuantity.innerText = this.autoQuantity;
+    this.$manualQuantity.innerText = this.manualQuantity;
+    this.autoQuantity === 0 ? disable(this.$paperAddButton) : enable(this.$paperAddButton);
+    this.papers.map((paper) => paper.setStates({ maxQuantity: paper.quantity + this.autoQuantity }));
+    this.papers.every((paper) => paper.isFulfilled)
+      ? enable(this.$ticketIssueButton)
+      : disable(this.$ticketIssueButton);
   }
 }

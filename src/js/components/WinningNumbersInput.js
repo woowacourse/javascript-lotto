@@ -3,6 +3,7 @@ import { hasElementOutOfRange, isShortLength, hasDuplicatedElement } from '../ut
 import {
   APP_RESET,
   RESULT_REQUESTED,
+  RESULT_PREPARED,
   TICKET_ISSUE_COMPLETED,
   WINNING_NUMBER_SUBMITTED,
 } from '../constants/appStages.js';
@@ -34,8 +35,9 @@ const validateInput = (numbersWithoutBlank) => {
   };
 };
 export default class WinningNumberInput {
-  constructor({ stageManager }) {
+  constructor({ stageManager, lottoManager }) {
     this.stageManager = stageManager;
+    this.lottoManager = lottoManager;
     this.isFulfilled = false;
     this.checkMessage = '';
 
@@ -53,8 +55,9 @@ export default class WinningNumberInput {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.renderForm.bind(this));
-    this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
+    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.showSection.bind(this));
+    this.stageManager.subscribe(RESULT_PREPARED, this.activateButton.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetSection.bind(this));
   }
 
   attachEvents() {
@@ -69,29 +72,31 @@ export default class WinningNumberInput {
       return;
     }
 
-    const { winningNumbers, bonusNumber } = {
-      winningNumbers: [...e.currentTarget.querySelectorAll('.winning-number')].map(($input) => $input.value),
-      bonusNumber: e.currentTarget.querySelector('.bonus-number').value,
+    const { numbers, bonus } = {
+      numbers: [...e.currentTarget.querySelectorAll('.winning-number')].map(($input) => $input.value),
+      bonus: e.currentTarget.querySelector('.bonus-number').value,
     };
 
     const { isFulfilled, checkMessage } = validateInput(
-      [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v))
+      [...numbers, bonus].filter((v) => v !== '').map((v) => Number(v))
     );
 
-    this.setState({ isFulfilled, checkMessage });
+    this.setStates({ isFulfilled, checkMessage });
     if (!isFulfilled) {
       return;
     }
+    this.lottoManager.setStates({
+      winningNumber: {
+        numbers: numbers.map((v) => Number(v)),
+        bonus: Number(bonus),
+      },
+    });
     this.stageManager.setStates({
       stage: WINNING_NUMBER_SUBMITTED,
-      winningNumber: {
-        winningNumbers: winningNumbers.map((v) => Number(v)),
-        bonusNumber: Number(bonusNumber),
-      },
     });
   }
 
-  setState({ isFulfilled, checkMessage }) {
+  setStates({ isFulfilled, checkMessage }) {
     if (typeof isFulfilled === 'boolean') {
       this.isFulfilled = isFulfilled;
     }
@@ -101,6 +106,10 @@ export default class WinningNumberInput {
     }
   }
 
+  activateButton() {
+    enable(this.$openResultModalButton);
+  }
+
   renderCheckMessage() {
     this.$winningNumberCheckMessage.innerText = this.checkMessage;
     if (!this.isFulfilled) {
@@ -108,15 +117,14 @@ export default class WinningNumberInput {
       return;
     }
     this.$winningNumberCheckMessage.classList.replace('text-red', 'text-green');
-    enable(this.$openResultModalButton);
   }
 
-  renderForm() {
+  showSection() {
     show(this.$winningNumberForm);
     this.$winningNumberInputs[0].focus();
   }
 
-  reset() {
+  resetSection() {
     this.$winningNumberForm.reset();
     hide(this.$winningNumberForm);
   }

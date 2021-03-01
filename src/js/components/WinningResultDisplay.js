@@ -1,12 +1,13 @@
 import { $ } from '../utils/DOM.js';
 import { getTableRowHTML } from '../layouts/table.js';
-import { RESULT_REQUESTED, APP_RESET } from '../constants/appStages.js';
+import { APP_RESET, RESULT_REQUESTED } from '../constants/appStages.js';
 import { WINNING_PRIZE } from '../constants/lottoRules.js';
 import { RESULT_TABLE_DISPLAY_KEY, RATE_OF_RETURN_MESSAGE } from '../constants/display.js';
 
 export default class WinningResultDisplay {
-  constructor({ stageManager }) {
+  constructor({ stageManager, lottoManager }) {
     this.stageManager = stageManager;
+    this.lottoManager = lottoManager;
 
     this.selectDOM();
     this.subscribeAppStages();
@@ -22,25 +23,21 @@ export default class WinningResultDisplay {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(RESULT_REQUESTED, this.renderResult.bind(this));
+    this.stageManager.subscribe(RESULT_REQUESTED, this.showSection.bind(this));
   }
 
   attachEvents() {
-    this.$modalClose.addEventListener('click', this.onCloseModal.bind(this));
+    this.$modalClose.addEventListener('click', this.hideSection.bind(this));
     this.$resetButton.addEventListener('click', () => {
-      this.onCloseModal();
+      this.hideSection();
       this.stageManager.setStates({ stage: APP_RESET });
     });
-  }
-
-  onCloseModal() {
-    this.$modal.classList.remove('open');
   }
 
   getTableBodyHTML() {
     return RESULT_TABLE_DISPLAY_KEY.map((key) => {
       const { DESCRIPTION, PRIZE } = WINNING_PRIZE[key];
-      const { lottoTickets } = this.stageManager;
+      const { lottoTickets } = this.lottoManager;
 
       return getTableRowHTML({
         DESCRIPTION,
@@ -50,9 +47,13 @@ export default class WinningResultDisplay {
     }).join('');
   }
 
-  renderResult() {
+  showSection() {
     this.$resultTableBody.innerHTML = this.getTableBodyHTML();
-    this.$rateOfReturn.innerText = RATE_OF_RETURN_MESSAGE(this.stageManager.rateOfReturn);
+    this.$rateOfReturn.innerText = RATE_OF_RETURN_MESSAGE(this.lottoManager.rateOfReturn);
     this.$modal.classList.add('open');
+  }
+
+  hideSection() {
+    this.$modal.classList.remove('open');
   }
 }

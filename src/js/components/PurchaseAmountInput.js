@@ -1,4 +1,4 @@
-import { $, clearInputValue, disable, enable } from '../utils/DOM.js';
+import { $, disable, enable } from '../utils/DOM.js';
 import { PURCHASE_AMOUNT_SUBMITTED, APP_RESET } from '../constants/appStages.js';
 import { MONETARY_UNIT, LOTTO_PRICE } from '../constants/lottoRules.js';
 import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
@@ -17,18 +17,15 @@ const validateInput = (purchaseAmount) => {
     };
   }
 
-  const change = purchaseAmount % LOTTO_PRICE;
-
   return {
     isError: false,
-    message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change),
-    change,
+    message: '',
   };
 };
 export default class PurchaseAmountInput {
-  constructor({ stageManager }) {
+  constructor({ stageManager, lottoManager }) {
     this.stageManager = stageManager;
-    this.checkMessage = '';
+    this.lottoManager = lottoManager;
 
     this.selectDOMs();
     this.subscribeAppStages();
@@ -43,7 +40,7 @@ export default class PurchaseAmountInput {
 
   subscribeAppStages() {
     this.stageManager.subscribe(PURCHASE_AMOUNT_SUBMITTED, this.deactivate.bind(this));
-    this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetSection.bind(this));
   }
 
   attachEvent() {
@@ -55,25 +52,25 @@ export default class PurchaseAmountInput {
 
   onSubmitPurchaseAmount() {
     const purchaseAmount = this.$purchaseAmountInput.value;
-    const { isError, message, change } = validateInput(purchaseAmount);
+    const { isError, message } = validateInput(purchaseAmount);
 
     if (isError) {
       this.requestValidInput(message);
       return;
     }
 
+    const change = purchaseAmount % LOTTO_PRICE;
+
     if (change > 0) {
       alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
-    this.stageManager.setStates({
-      stage: PURCHASE_AMOUNT_SUBMITTED,
-      numOfLotto: (purchaseAmount - change) / LOTTO_PRICE,
-    });
+    this.lottoManager.setStates({ numOfLotto: (purchaseAmount - change) / LOTTO_PRICE });
+    this.stageManager.setStates({ stage: PURCHASE_AMOUNT_SUBMITTED });
   }
 
   requestValidInput(errorMessage) {
     alert(errorMessage);
-    clearInputValue(this.$purchaseAmountInput);
+    this.$purchaseAmountForm.reset();
     this.$purchaseAmountInput.focus();
   }
 
@@ -82,7 +79,7 @@ export default class PurchaseAmountInput {
     disable(this.$purchaseAmountButton);
   }
 
-  reset() {
+  resetSection() {
     this.$purchaseAmountForm.reset();
     enable(this.$purchaseAmountInput);
     enable(this.$purchaseAmountButton);

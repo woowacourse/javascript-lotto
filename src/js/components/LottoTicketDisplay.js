@@ -4,8 +4,9 @@ import { APP_RESET, TICKET_ISSUE_COMPLETED } from '../constants/appStages.js';
 import { PURCHASED_QUANTITY_MESSAGE } from '../constants/display.js';
 
 export default class LottoTicketDisplay {
-  constructor({ stageManager }) {
+  constructor({ stageManager, lottoManager }) {
     this.stageManager = stageManager;
+    this.lottoManager = lottoManager;
 
     this.selectDOMs();
     this.subscribeAppStages();
@@ -20,8 +21,8 @@ export default class LottoTicketDisplay {
   }
 
   subscribeAppStages() {
-    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.renderTicketDisplay.bind(this));
-    this.stageManager.subscribe(APP_RESET, this.reset.bind(this));
+    this.stageManager.subscribe(TICKET_ISSUE_COMPLETED, this.showSection.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetSection.bind(this));
   }
 
   attachEvents() {
@@ -43,16 +44,15 @@ export default class LottoTicketDisplay {
     this.$lottoTicketContainer.classList.remove('flex-col-with-num');
   }
 
-  renderTicketDisplay() {
-    const { numOfLotto } = this.stageManager;
-    const { lottoTickets } = this.stageManager;
+  showSection() {
+    const { numOfLotto, lottoTickets } = this.lottoManager;
 
     this.$purchasedLottoSection.classList.remove('d-none');
     this.$purchasedLottoLabel.innerHTML = PURCHASED_QUANTITY_MESSAGE(numOfLotto);
     this.$lottoTicketContainer.innerHTML = lottoTickets.map(getLottoTicketHTML).join('');
   }
 
-  reset() {
+  resetSection() {
     this.$purchasedLottoSection.classList.add('d-none');
     this.$lottoNumbersToggleButton.checked = false;
     this.hideNumbers();

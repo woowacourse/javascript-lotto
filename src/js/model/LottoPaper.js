@@ -15,16 +15,16 @@ export default class LottoPaper {
   }
 
   add(number) {
-    this.setState({ numbers: [...this.numbers, number] });
+    this.setStates({ numbers: [...this.numbers, number] });
   }
 
   remove(number) {
     const index = this.numbers.indexOf(number);
 
-    this.setState({ numbers: getNthElementRemoved(this.numbers, index) });
+    this.setStates({ numbers: getNthElementRemoved(this.numbers, index) });
   }
 
-  setState({ numbers, quantity, maxQuantity, $checkMessage, $quantitySelect }) {
+  setStates({ numbers, quantity, maxQuantity, $checkMessage, $quantitySelect }) {
     if (numbers) {
       this.numbers = numbers.sort((a, b) => a - b);
       this.isFulfilled = this.numbers.length === LOTTO_NUMBERS_LENGTH;
