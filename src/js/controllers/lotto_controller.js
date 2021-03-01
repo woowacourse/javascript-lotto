@@ -48,9 +48,10 @@ class LottoController {
     this.view.renderBuyMethodSection(this.model.lottos)
     if (this.model.amount === 0) {
       this.#managePocket()
+    } else {
+      this.#handleManual()
+      this.#handleAuto()
     }
-
-    // TODO : 가져와 렌더링 - renderManualSection
   }
 
   #managePocket() {

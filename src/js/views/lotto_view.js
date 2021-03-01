@@ -4,7 +4,6 @@ import {
   pocketSectionTemplate,
   winningSectionTemplate,
   modalSectionTemplate,
-  manualPreviewTemplate,
 } from "../templates/lotto_template.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
@@ -20,9 +19,10 @@ class LottoView {
     $buyMethodSection.innerHTML = buyMethodSectionTemplate(lottos)
   }
 
-  renderPocketSection(amount) {
+  renderPocketSection(lottos) {
     const $pocketSection = $(SELECTOR.POCKET_SECTION)
-    $pocketSection.innerHTML = pocketSectionTemplate(amount)
+    console.log(lottos)
+    $pocketSection.innerHTML = pocketSectionTemplate(lottos)
   }
 
   renderWinningSection() {

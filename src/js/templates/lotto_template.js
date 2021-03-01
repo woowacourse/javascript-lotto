@@ -58,7 +58,7 @@ export const pocketSectionTemplate = (lottos) => {
   return `
         <div class="d-flex">
             <label class="flex-auto my-0">총 ${
-              lottos.length
+              lottos.lottos.length
             }개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
@@ -71,7 +71,7 @@ export const pocketSectionTemplate = (lottos) => {
             </div>
         </div>
         <div id="pocket-lottos" class="flex-wrap">
-        ${lottos
+        ${lottos.lottos
           .map(
             (lotto) => `
                   <div class="pocket-lotto-detail">
