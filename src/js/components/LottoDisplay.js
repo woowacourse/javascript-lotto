@@ -43,7 +43,7 @@ export default class LottoDisplay extends Component {
   }
 
   setup() {
-    this.lottoViewAmount = 10;
+    this.lottoCountPerPage = 10;
     store.subscribe(this.render.bind(this));
   }
 
@@ -104,7 +104,7 @@ export default class LottoDisplay extends Component {
     const pageIndex = Number(this.$pageNumber.textContent);
     if (
       pageIndex >=
-      Math.ceil(store.getStates().lottos.length / this.lottoViewAmount)
+      Math.ceil(store.getStates().lottos.length / this.lottoCountPerPage)
     )
       return;
     this.$pageNumber.textContent = pageIndex + 1;
@@ -138,7 +138,7 @@ export default class LottoDisplay extends Component {
       : (this.$prevPageButton.disabled = false);
 
     pageIndex >=
-    Math.ceil(store.getStates().lottos.length / this.lottoViewAmount)
+    Math.ceil(store.getStates().lottos.length / this.lottoCountPerPage)
       ? (this.$nextPageButton.disabled = true)
       : (this.$nextPageButton.disabled = false);
   }
@@ -149,8 +149,8 @@ export default class LottoDisplay extends Component {
     this.$lottoCount.innerHTML = this.lottoCountText(lottos.length);
     this.$lottoDisplayArea.innerHTML = lottos
       .slice(
-        (pageIndex - 1) * this.lottoViewAmount,
-        (pageIndex - 1) * this.lottoViewAmount + this.lottoViewAmount,
+        (pageIndex - 1) * this.lottoCountPerPage,
+        (pageIndex - 1) * this.lottoCountPerPage + this.lottoCountPerPage,
       )
       .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
       .join('');
