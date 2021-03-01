@@ -75,7 +75,7 @@ export default class LottoGame {
 
   addLottoItem(lottoNumbers) {
     const lottoNumberList = lottoNumbers 
-      ? lottoNumbers 
+      ? lottoNumbers.sort((a, b) => a - b)
       : this.#getLottoNumberList();
       
     this.#lottoItemList.push({
