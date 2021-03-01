@@ -1,5 +1,3 @@
-import LottoModel from "./LottoModel.js";
-import LottoView from "./LottoView.js";
 import { onModalShow } from "../utils.js";
 import { $modal } from "../elements.js";
 import {
@@ -7,47 +5,15 @@ import {
   INVALID_WINNGNUMBER_ERROR,
   DUPLICATED_WINNINGNUMBER_ERROR,
 } from "../constants.js";
-
+import {
+  isValidPrice,
+  isNumbersInRange,
+  isDistinctNumbers,
+} from "../validates.js";
 export default class LottoController {
-  constructor() {
-    this.lottoModel = new LottoModel();
-    this.lottoView = new LottoView();
-    this.prizeTable = {
-      ranking1: {
-        num: 0,
-        prize: 2000000000,
-        condition: "6개",
-      },
-      ranking2: {
-        num: 0,
-        prize: 30000000,
-        condition: "5개 + 보너스볼",
-      },
-      ranking3: {
-        num: 0,
-        prize: 1500000,
-        condition: "5개",
-      },
-      ranking4: {
-        num: 0,
-        prize: 50000,
-        condition: "4개",
-      },
-      ranking5: {
-        num: 0,
-        prize: 5000,
-        condition: "3개",
-      },
-      noPrize: {
-        num: 0,
-        prize: 0,
-        condition: "2개 이하",
-      },
-    };
-  }
-
-  isValidPrice(price) {
-    return price > 0 && price % 1000 === 0; // price는 1000원 단위의 양수여야 한다.
+  constructor(lottoModel, lottoView) {
+    this.lottoModel = lottoModel;
+    this.lottoView = lottoView;
   }
 
   isNumbersInRange(numbers, min, max) {
@@ -61,8 +27,8 @@ export default class LottoController {
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
-    const matchedNumbers = lottoNumber.filter((num) => 
-      resultNumber.indexOf(num) !== -1
+    const matchedNumbers = lottoNumber.filter(
+      (num) => resultNumber.indexOf(num) !== -1
     );
 
     return matchedNumbers.length;
@@ -110,14 +76,20 @@ export default class LottoController {
   }
 
   onSubmitPrice(price) {
-    if (!this.isValidPrice(price)) {
+    this.lottoView.resetLottoView(); // 구입 금액 재입력 했을 경우
+    this.lottoModel.resetLottoList();
+
+    if (!isValidPrice(price)) {
       alert(INVALID_PRICE_ERROR);
       this.lottoView.resetLottoView();
 
       return;
     }
-    this.lottoModel.buy(price);
-    this.lottoView.showConfirmation(this.lottoModel.lottoList);
+    this.lottoModel.setPrice(price);
+    this.lottoView.showPurchase(
+      this.lottoModel.lottoList,
+      this.lottoModel.price
+    );
   }
 
   onToggleLottoNumbers(e) {
@@ -128,22 +100,16 @@ export default class LottoController {
 
   onSubmitResultNumber(winningNumber, bonusNumber) {
     const numbers = [...winningNumber, bonusNumber];
-    if (!this.isNumbersInRange(numbers, 1, 45)) {
+    if (!isNumbersInRange(numbers, 1, 45)) {
       alert(INVALID_WINNGNUMBER_ERROR);
 
       return;
     }
-    if (!this.isDistinctNumbers(numbers)) {
+    if (!isDistinctNumbers(numbers)) {
       alert(DUPLICATED_WINNINGNUMBER_ERROR);
 
       return;
     }
-
-    this.setPrizeTable(winningNumber, bonusNumber);
-
-    const earningRate = this.calculateEarningRate();
-    this.lottoView.showPrizeTable(this.prizeTable);
-    this.lottoView.showEarningRate(earningRate);
 
     onModalShow($modal);
   }

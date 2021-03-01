@@ -1,18 +1,35 @@
-import { showElement, hideElement } from "../utils.js";
+import { showElement, hideElement, resetInput } from "../utils.js";
 import {
   $confirmation,
   $lottoListLabel,
   $lottoTickets,
   $lottoNumbersToggleButton,
-  $priceInput,
   $prizeTable,
-  $earningRate,
+  $manualPurchaseNumberInputs,
   $winningNumberInputs,
   $bonusNumberInput,
+  $manualPurchaseDetail,
+  $purchaseProgress,
+  $purchase,
 } from "../elements.js";
 
 export default class LottoView {
   constructor() {}
+
+  showPurchaseProgress(totalLottoCount, currentLottoCount) {
+    $purchaseProgress.innerHTML = `총 ${totalLottoCount}개의 로또 중 ${currentLottoCount}개를 수동 구매하였습니다.`;
+  }
+
+  showPurchase(lottoList, price) {
+    const totalLottoCount = price / 1000;
+
+    this.showPurchaseProgress(totalLottoCount, lottoList.length);
+    showElement($purchase);
+  }
+
+  showManualPurchaseDetail() {
+    showElement($manualPurchaseDetail);
+  }
 
   showTickets(num) {
     $lottoTickets.innerHTML = '<span class="mx-1 text-4xl">🎟️ </span>'.repeat(
@@ -61,19 +78,18 @@ export default class LottoView {
       .join("");
   }
 
-  showEarningRate(earningRate) {
-    $earningRate.innerHTML = `당신의 총 수익률은 ${earningRate}%입니다.`;
-  }
+  resetManualPurchaseDetailView() {
+    $manualPurchaseNumberInputs.forEach(($manualPurchaseNumberInput) =>
+      resetInput($manualPurchaseNumberInput)
+    );
 
-  resetInput($input) {
-    $input.value = "";
+    hideElement($manualPurchaseDetail);
   }
 
   resetLottoView() {
-    this.resetInput($priceInput);
-    this.resetInput($bonusNumberInput);
+    resetInput($bonusNumberInput);
     $winningNumberInputs.forEach(($winningNumberInput) =>
-      this.resetInput($winningNumberInput)
+      resetInput($winningNumberInput)
     );
 
     hideElement($confirmation);

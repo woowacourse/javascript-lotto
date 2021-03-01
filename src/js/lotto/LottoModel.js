@@ -6,6 +6,14 @@ export default class LottoModel {
     this.price = 0;
   }
 
+  resetLottoList() {
+    this.lottoList = [];
+  }
+
+  setPrice(price) {
+    this.price = price;
+  }
+
   createLotto() {
     const baseNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
 
@@ -16,9 +24,21 @@ export default class LottoModel {
     };
   }
 
-  buy(price) {
-    const numOfLottoes = price / 1000;
-    this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
-    this.price = price;
+  manualPurchase(manualPurcahseNumbers) {
+    this.lottoList.push({
+      number: [...manualPurcahseNumbers].sort((a, b) => a - b),
+    });
+  }
+
+  autoPurchase() {
+    const leftLottoCount = this.price / 1000 - this.lottoList.length;
+
+    this.lottoList = [...this.lottoList].concat(
+      [...Array(leftLottoCount)].map(() => this.createLotto())
+    );
+  }
+
+  isEveryLottoPurchased() {
+    return this.lottoList.length === this.price / 1000;
   }
 }

@@ -16,3 +16,8 @@
 .btn.btn-cyan:hover {
   background-color: #018c9e !important;
 }
+
+.btn-border-cyan {
+  background-color: white !important;
+  border: 1.5px solid #00bcd4 !important;
+}

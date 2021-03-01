@@ -1,5 +1,5 @@
-@import './shared/index.css';
-@import './ui/index.css';
+@import "./shared/index.css";
+@import "./ui/index.css";
 
 html,
 body {
@@ -11,6 +11,11 @@ body {
 #app {
   max-width: 400px;
   margin: 0 auto;
+}
+
+.manual-purchase-number {
+  width: 24px;
+  height: 30px;
 }
 
 .winning-number {
