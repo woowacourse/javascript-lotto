@@ -26,11 +26,11 @@ const message = {
     return '';
   },
 
-  getCorrectNumberValidation(correctNumbers) {
-    if (validator.isDuplicatedNumberExist(correctNumbers)) {
+  getAllNumberValidation(allNumbers) {
+    if (validator.isDuplicatedNumberExist(allNumbers)) {
       return MESSAGE.DUPLICATED_NUMBER_EXIST;
     }
-    if (validator.isNumberOutOfRangeExist(correctNumbers)) {
+    if (validator.isNumberOutOfRangeExist(allNumbers)) {
       return MESSAGE.NUMBER_RANGE_EXCEEDED;
     }
 
