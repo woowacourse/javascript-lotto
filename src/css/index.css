@@ -27,12 +27,16 @@ body {
   display: none;
 }
 
-.lotto-ticket {
+.lotto-div__ticket {
   display: flex;
   vertical-align: middle;
 }
 
-.lotto-ticket-number {
+.lotto-div__number {
   font-size: 20px;
   margin-left: 5px;
+}
+
+.result-info {
+  font-size: 15px;
 }

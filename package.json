@@ -10,7 +10,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "prettier": "^2.2.1"
   },
-  "description": "<p align=\"middle\" >\r   <img width=\"200px;\" src=\"./src/images/lotto_ball.png\"/>\r </p>\r <h2 align=\"middle\">level1 - 행운의 로또</h2>\r <p align=\"middle\">자바스크립트로 구현 하는 로또 어플리케이션</p>\r <p align=\"middle\">\r <img src=\"https://img.shields.io/badge/version-1.0.0-blue?style=flat-square\" alt=\"template version\"/>\r <img src=\"https://img.shields.io/badge/language-html-red.svg?style=flat-square\"/>\r <img src=\"https://img.shields.io/badge/language-css-blue.svg?style=flat-square\"/>\r <img src=\"https://img.shields.io/badge/language-js-yellow.svg?style=flat-square\"/>\r <a href=\"https://github.com/daybrush/moveable/blob/master/LICENSE\" target=\"_blank\">\r   <img src=\"https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D\"/>\r   </a>\r </p>",
+  "description": "행운의 로또 프로젝트",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

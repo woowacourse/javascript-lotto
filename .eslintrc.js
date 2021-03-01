@@ -14,6 +14,7 @@ module.exports = {
     'no-console': 'off',
     'no-alert': 'off',
     'max-depth': ['error', 2],
+    'eol-last': ['error', 'always'],
     // "max-lines-per-function": ["error", 17],
   },
   parserOptions: {
