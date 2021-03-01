@@ -16,8 +16,15 @@ const SUCCESS_INPUT = {
   RESULT_WINNING_NUMBER: [1, 2, 3, 4, 5, 6],
   RESULT_BONUS_NUMBER: 7,
 }
-const NOT_INTEGER_MONEY_INPUT = 5000.5;
-const SHORT_MONEY_INPUT = 500;
+
+const ERROR_INPUT = {
+  NOT_INTEGER_MONEY: 5000.5,
+  SHORT_MONEY: 500,
+  MANUAL_SELECT_NUMBERS_DUPLICATED: [
+    1, 2, 3, 4, 5, 6,
+    7, 8, 9, 10, 11, 11
+  ],
+}
 
 context('로또 UI 테스트', () => {
   beforeEach(() => {
@@ -33,7 +40,7 @@ context('로또 UI 테스트', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
 
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SHORT_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`)
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, ERROR_INPUT.SHORT_MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`)
         .then(() => {
           expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.UNDER_MIN_PRICE);
         });
@@ -42,7 +49,7 @@ context('로또 UI 테스트', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
 
-      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, NOT_INTEGER_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, ERROR_INPUT.NOT_INTEGER_MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
     });
     it('로또 구입 금액을 입력받으면, 구입 버튼이 비활성화된다.', () => {
@@ -88,6 +95,17 @@ context('로또 UI 테스트', () => {
   });
 
   describe('수동 로또 번호 선택 부분', () => {
+    it('수동으로 구매하는 각 로또 내에서 번호의 중복이 있어서는 안된다.', () => {
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, SUCCESS_INPUT.MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, SUCCESS_INPUT.MANUAL_AMOUNT);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
+
+      typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, ERROR_INPUT.MANUAL_SELECT_NUMBERS_DUPLICATED);
+      click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
+
+      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
+    });
 
   });
 
