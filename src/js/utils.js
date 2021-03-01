@@ -24,3 +24,9 @@ export const shuffle = (arr) => {
 export const resetInput = ($input) => {
   $input.value = "";
 };
+
+export const countIntersection = (arr1, arr2) => {
+  const intersection = arr1.filter((element) => arr2.includes(element));
+
+  return intersection.length;
+};

@@ -1,4 +1,4 @@
-import { onModalClose, resetInput } from "../utils.js";
+import { onModalClose, resetInput, countIntersection } from "../utils.js";
 import { $modal, $priceInput, $earningRate } from "../elements.js";
 import { LOTTO_TABLE } from "../constants.js";
 import { prizeTable, rankingTable } from "../tables.js";
@@ -9,23 +9,12 @@ export default class LottoConfirmationController {
     this.prizeTable = prizeTable;
   }
 
-  countMatchedNumbers(lottoNumber, resultNumber) {
-    const matchedNumbers = lottoNumber.filter(
-      (num) => resultNumber.indexOf(num) !== -1
-    );
-
-    return matchedNumbers.length;
-  }
-
   checkRanking(lottoNumber, winningNumber, bonusNumber) {
-    const matchedNumberCount = this.countMatchedNumbers(
-      lottoNumber,
-      winningNumber
-    );
+    const matchedNumberCount = countIntersection(lottoNumber, winningNumber);
 
     if (
       matchedNumberCount === 5 &&
-      this.countMatchedNumbers(lottoNumber, [bonusNumber]) === 1
+      countIntersection(lottoNumber, [bonusNumber]) === 1
     ) {
       return LOTTO_TABLE.RANKING2.NAME;
     }
