@@ -13,18 +13,6 @@ export default class LottoController {
     this._initState();
   }
 
-  _initState() {
-    this._firstTimeOpeningModal = true;
-    this._lottos = [];
-    this._winnings = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0,
-      fifth: 0,
-    };
-  }
-
   initGame() {
     this.lottoUI.initUI();
     this._initEventListener();
@@ -40,6 +28,18 @@ export default class LottoController {
 
     $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildren();
     $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildren();
+  }
+
+  _initState() {
+    this._firstTimeOpeningModal = true;
+    this._lottos = [];
+    this._winnings = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
   }
 
   _initEventListener() {
