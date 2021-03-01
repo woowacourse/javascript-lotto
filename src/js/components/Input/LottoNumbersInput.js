@@ -1,4 +1,4 @@
-import { isEmptyValue, isInRange } from '../../utils/common.js';
+import { isEmptyValue, isInNumberInterval } from '../../utils/common.js';
 import { LOTTO } from '../../utils/constants.js';
 import { ERROR_MESSAGE } from '../../utils/message.js';
 import Input from './Input.js';
@@ -35,7 +35,9 @@ export default class LottoNumbersInput {
       return [ERROR_MESSAGE.EMPTY_INPUT_NUMBER, 'error'];
     }
     if (
-      !numbers.every(number => isInRange(number, LOTTO.MIN_NUM, LOTTO.MAX_NUM))
+      !numbers.every(number =>
+        isInNumberInterval(number, LOTTO.MIN_NUM, LOTTO.MAX_NUM),
+      )
     ) {
       return [ERROR_MESSAGE.OUT_OF_RANGE, 'error'];
     }
