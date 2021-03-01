@@ -56,7 +56,7 @@ export default class LottoUI {
     `);
   }
 
-  renderManualLottos(manualLottoCount) {
+  renderManualLottoInputs(manualLottoCount) {
     const manualLottosHTML = `
       <div class="d-flex flex-col 
         border-2 border-solid border-blue rounded

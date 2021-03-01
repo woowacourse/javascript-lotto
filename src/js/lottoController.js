@@ -32,6 +32,8 @@ export default class LottoController {
 
   _initState() {
     this._firstTimeOpeningModal = true;
+    this._totalLottoCount = 0;
+    this._manualLottoCount = 0;
     this._lottos = [];
     this._winnings = {
       first: 0,
@@ -72,6 +74,9 @@ export default class LottoController {
         this._handleLottoCountInput();
         return;
       }
+      if (event.target.closest(`.${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT}`)) {
+        this._handleManualNumberInput();
+      }
     });
     
     $(`#${DOM_IDS.APP}`).addEventListener('mousemove', event => {
@@ -87,26 +92,12 @@ export default class LottoController {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
-    // 구입 금액을 저장하고, 구입 갯수를 정하는 input form이 등장한다.
-    this.lottoUI.renderBuyingInputUI(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
-  }
-
-  _makeLottos(moneyInput) {
-    const lottoAmount = Math.floor(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
-    // 전체 로또 개수(lottoCount, lottoAmount)
-    // 수동 로또 개수(manualLottoCount = _handleLottoCountInput에 있음)
-    // 자동 = 전체 - 수동
-
-    for (let i = 0; i < lottoAmount; i++) {
-      const lotto = new Lotto();
-      lotto.createNumbers();
-      this._lottos.push(lotto);
-    }
+    this._totalLottoCount = moneyInput / LOTTO_SETTINGS.LOTTO_PRICE;
+    this.lottoUI.renderBuyingInputUI(this._totalLottoCount);
   }
 
   _handleBuyingNumberInput() {
-    const lottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max;
-    this.lottoUI.renderBuyingNumberInput(lottoCount);
+    this.lottoUI.renderBuyingNumberInput(this._totalLottoCount);
   }
 
   _handleCheckLottoSwitch() {
@@ -116,14 +107,51 @@ export default class LottoController {
   _handleLottoCountInput() {
     $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).disable();
     $(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`).disable();
-    const manualLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max 
+
+    this._manualLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max 
       - $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
-    this.lottoUI.renderManualLottos(manualLottoCount);
+    this.lottoUI.renderManualLottoInputs(this._manualLottoCount);
     $(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`).focus();
   }
 
+  _handleManualNumberInput() {    
+    const lottoPapers = $$(`.${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}`);
+    for (let i = 0; i < lottoPapers.length; i++) {
+      const numberInputs = lottoPapers[i].querySelectorAll(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`);
+      const numbers = Array.from(numberInputs).map(numberInput => Number(numberInput.value));
+      if (isNumbersDuplicated(numbers)) {
+        alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
+        return;
+      }
+      this._makeManualLottos(numbers);
+    }
+
+    $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).clearChildren();
+    
+    this._makeAutoLottos();
+    const numbersCollection = this._lottos.map(lotto => lotto.getNumbers());
+    this.lottoUI.renderCheckLottoUI(numbersCollection);
+    this.lottoUI.renderResultInputUI();
+    $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
+  }
+
+  _makeManualLottos(numbers) {
+    const lotto = new Lotto();
+    lotto.setNumbers(numbers);
+    this._lottos.push(lotto);
+  }
+
+  _makeAutoLottos() {
+    const autoLottoCount = this._totalLottoCount - this._manualLottoCount;
+    for (let i = 0; i < autoLottoCount; i++) {
+      const lotto = new Lotto();
+      lotto.createNumbers();
+      this._lottos.push(lotto);
+    }
+  }
+
   _handleResultInput() {
-    const winningNumbers = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)]
+    const winningNumbers = Array.from($$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`))
       .map(input => Number(input.value));
     const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
     const numbers = [...winningNumbers, bonusNumber];
