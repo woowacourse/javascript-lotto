@@ -1,4 +1,3 @@
-
 export const getAllNumbers = ($$elements) => {
   return $$elements
     .filter(({ value }) => value !== '')
