@@ -44,7 +44,7 @@ const validator = {
   },
 
   isNumberOutOfRangeExist(numbers) {
-    if (!validator.isArrayWithContent(numbers)) {
+    if (!Array.isArray(numbers)) {
       return;
     }
 
@@ -52,7 +52,7 @@ const validator = {
   },
 
   isEmptyCorrectNumberExist(numbers) {
-    if (!validator.isArrayWithContent(numbers)) {
+    if (!Array.isArray(numbers)) {
       return;
     }
 

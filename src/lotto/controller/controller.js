@@ -16,7 +16,7 @@ import validation from '../validation/validation.js';
 import lottoGameView from '../view/view.js';
 import { lottoGame } from '../../store.js';
 import { getCorrectNumbers, getCustomLottoNumbers } from '../view/domReader.js';
-import { MESSAGE, VALIDATION } from '../../constants.js';
+import { LOTTO, MESSAGE, VALIDATION } from '../../constants.js';
 
 const onCostAdd = () => {
   const cost = Number($depositInput.value);
@@ -45,6 +45,10 @@ const onAutoPurchase = () => {
 const onPurchase = () => {
   if (!canBuyLotto()) {
     lottoGameView.showMessage(MESSAGE.NOT_ENOUGH_MONEY);
+    return;
+  }
+  if (getCustomLottoNumbers().length < LOTTO.NUMBER_LIST_LENGTH) {
+    lottoGameView.showMessage(MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE);
     return;
   }
 

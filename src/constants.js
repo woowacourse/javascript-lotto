@@ -15,7 +15,7 @@ export const MESSAGE = Object.freeze({
   SHOULD_BE_INTERGER: '추가할 금액은 0 이상의 정수여야 합니다',
   NOT_ENOUGH_MONEY: '로또를 구매할 돈이 부족합니다. 돈을 더 입금해주세요',
   SHOULD_INPUT_ALL_NUMBERS_MESSAGE:
-    '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
+    '모든 번호를 입력해주셔야 결과를 확인할 수 있습니다.',
   DUPLICATED_NUMBER_EXIST_MESSAGE: '번호들 중 중복된 숫자가 존재합니다.',
   NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자들만 번호로 입력해주세요`,
 });
