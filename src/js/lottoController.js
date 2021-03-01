@@ -110,8 +110,12 @@ export default class LottoController {
 
     this._manualLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max 
       - $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
-    this.lottoUI.renderManualLottoInputs(this._manualLottoCount);
-    $(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`).focus();
+    if (this._manualLottoCount) {
+      this.lottoUI.renderManualLottoInputs(this._manualLottoCount);
+      $(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`).focus();
+      return;
+    }
+    this._handleManualNumberInput();
   }
 
   _handleManualNumberInput() {    
