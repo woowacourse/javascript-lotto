@@ -1,5 +1,5 @@
 import {
-  DUPLICATE_WINNING_NUMBER,
+  DUPLICATE_NUMBER_MESSAGE,
   EXCEED_RANGE_NUMBER,
   LESS_THAN_TICKET_PRICE_MESSAGE,
 } from '../../../src/js/lib/constants/alertMessage';
@@ -57,7 +57,7 @@ context('Actions', () => {
       cy.wrap(element).type(1);
     });
     cy.get('#manual-submit').click();
-    cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
+    cy.get('@alert').should('be.calledWith', DUPLICATE_NUMBER_MESSAGE);
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
@@ -139,6 +139,6 @@ context('Actions', () => {
     });
     cy.get('.bonus-number').type(34);
     cy.get('#result').click();
-    cy.get('@alert').should('be.calledWith', DUPLICATE_WINNING_NUMBER);
+    cy.get('@alert').should('be.calledWith', DUPLICATE_NUMBER_MESSAGE);
   });
 });

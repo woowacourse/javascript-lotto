@@ -1,7 +1,7 @@
 import { lotto } from '../lib/state/lotto.js';
-import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
+import { DUPLICATE_NUMBER_MESSAGE } from '../lib/constants/alertMessage.js';
 import { getProfitPercent, getWinners } from '../lib/service/lotto.js';
-import { hasDuplicatesInArryay } from '../lib/utils/validation.js';
+import { hasDuplicateInArray } from '../lib/utils/validation.js';
 import { updateResultModalView } from '../lib/viewController/resultModal.js';
 import { openModal } from '../lib/viewController/app.js';
 
@@ -25,8 +25,8 @@ const winningNumberSubmitHandler = event => {
     bonus: Number(bonus.value),
   };
 
-  if (hasDuplicatesInArryay([...winningNumber.main, winningNumber.bonus])) {
-    alert(DUPLICATE_WINNING_NUMBER);
+  if (hasDuplicateInArray([...winningNumber.main, winningNumber.bonus])) {
+    alert(DUPLICATE_NUMBER_MESSAGE);
     return;
   }
 
