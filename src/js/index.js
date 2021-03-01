@@ -1,5 +1,5 @@
 import { $ } from './lib/utils/dom.js';
-import { closeModal } from './lib/viewController/modal.js';
+import { closeModal } from './lib/viewController/app.js';
 import {
   detailModeToggleHandler,
   lottoPurchaseHandler,
@@ -8,16 +8,19 @@ import {
   winningNumberSubmitHandler,
 } from './handlers/index.js';
 
-function initEventListeners() {
+const initEventListeners = () => {
   $('#toggle-detail-mode').addEventListener('change', detailModeToggleHandler);
   $('#payment-submit').addEventListener('submit', lottoPurchaseHandler);
   $('#reset').addEventListener('click', lottoResetHandler);
-  $('.modal-close').addEventListener('click', closeModal);
+  $('.modal-close').addEventListener('click', ({ target }) =>
+    closeModal(target)
+  );
   $('#lotto-number-form').addEventListener('keyup', winningNumberInputHandler);
   $('#lotto-number-form').addEventListener(
     'submit',
     winningNumberSubmitHandler
   );
-}
+  // $('#lotto-issue-modal').addEventListener();
+};
 
 initEventListeners();

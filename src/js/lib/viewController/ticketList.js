@@ -1,5 +1,5 @@
 import { createTicketTemplate } from './teamplates/ticket.js';
-import $ from '../utils/dom.js';
+import { $ } from '../utils/dom.js';
 
 const updateTicketListView = tickets => {
   const ticketsTemplate = tickets.reduce(

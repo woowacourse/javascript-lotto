@@ -2,7 +2,8 @@ import { lotto } from '../lib/state/lotto.js';
 import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
 import { getProfitPercent, getWinners } from '../lib/service/lotto.js';
 import { hasDuplicatesInArryay } from '../lib/utils/validation.js';
-import { showModal, updateModalView } from '../lib/viewController/modal.js';
+import { updateResultModalView } from '../lib/viewController/resultModal.js';
+import { openModal } from '../lib/viewController/app.js';
 
 const winningNumberSubmitHandler = event => {
   event.preventDefault();
@@ -31,8 +32,8 @@ const winningNumberSubmitHandler = event => {
 
   const winners = getWinners(lotto.tickets, winningNumber);
   const profitPercent = getProfitPercent(winners, lotto.tickets.length);
-  updateModalView(winners, profitPercent);
-  showModal();
+  updateResultModalView(winners, profitPercent);
+  openModal($('#result-modal'));
 };
 
 export default winningNumberSubmitHandler;

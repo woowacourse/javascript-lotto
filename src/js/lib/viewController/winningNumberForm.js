@@ -1,5 +1,7 @@
 import { $ } from '../utils/dom.js';
 
-export const focusFirstWinningNumberInput = () => {
+const focusFirstWinningNumberInput = () => {
   $('.winning-number[name=first]').focus();
 };
+
+export { focusFirstWinningNumberInput };

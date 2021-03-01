@@ -11,4 +11,12 @@ const clearLottoApp = () => {
   $('#toggle-detail-mode').classList.add('hide');
 };
 
-export { clearLottoApp };
+const openModal = $target => {
+  $target.classList.add('open');
+};
+
+const closeModal = $target => {
+  $target.classList.remove('open');
+};
+
+export { clearLottoApp, openModal, closeModal };
