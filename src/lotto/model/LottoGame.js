@@ -39,31 +39,20 @@ export default class LottoGame {
     this.#lottoItemList = [];
   }
 
-  #getLottoNumberList() {
-    const numberList = new Set();
-    while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
-      numberList.add(getRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
-    }
-
-    return [...numberList];
+  addLottoItems = (lottoItemCount) => {
+    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
   }
 
-  #getWinCountWithBonus(matchCount) {
-    return this.#lottoItemList.filter(
-      (lottoItem) =>
-        lottoItem.bonusNumberMatched && lottoItem.matchCount === matchCount
-    ).length;
+  saveDeposit = (money) => {
+    this.#deposit += money;
   }
 
-  #getWinCount(matchCount, winCountWithBonus) {
-    const winCount = this.#lottoItemList.filter(
-      (lottoItem) => lottoItem.matchCount === matchCount
-    ).length;
-    if (matchCount === BONUS_ITEM_MATCH_COUNT && winCountWithBonus) {
-      return winCount - winCountWithBonus;
-    }
+  spendDeposit = () => {
+    this.#deposit = this.#deposit % LOTTO.PRICE;
+  }
 
-    return winCount;
+  getAffordableLottoItemCount() {
+    return parseInt(this.#deposit / LOTTO.PRICE); 
   }
 
   getRankItemList() {
@@ -104,6 +93,34 @@ export default class LottoGame {
     this.#bonusNumber = numbers.pop();
     this.#winningNumberList = numbers;
   }
+  
+  #getLottoNumberList() {
+    const numberList = new Set();
+    while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
+      numberList.add(getRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
+    }
+
+    return [...numberList];
+  }
+
+  #getWinCountWithBonus(matchCount) {
+    return this.#lottoItemList.filter(
+      (lottoItem) =>
+        lottoItem.bonusNumberMatched && lottoItem.matchCount === matchCount
+    ).length;
+  }
+
+  #getWinCount(matchCount, winCountWithBonus) {
+    const winCount = this.#lottoItemList.filter(
+      (lottoItem) => lottoItem.matchCount === matchCount
+    ).length;
+    if (matchCount === BONUS_ITEM_MATCH_COUNT && winCountWithBonus) {
+      return winCount - winCountWithBonus;
+    }
+
+    return winCount;
+  }
+
 
   #addLottoItem() {
     const lottoNumberList = this.#getLottoNumberList();
@@ -114,19 +131,5 @@ export default class LottoGame {
     });
   }
 
-  addLottoItems = (lottoItemCount) => {
-    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
-  }
-
-  saveDeposit = (money) => {
-    this.#deposit += money;
-  }
-
-  getAffordableLottoItemCount() {
-    return parseInt(this.#deposit / LOTTO.PRICE); 
-  }
-
-  spendDeposit = () => {
-    this.#deposit = this.#deposit % LOTTO.PRICE;
-  }
+  
 }
