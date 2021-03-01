@@ -102,14 +102,13 @@ export default class LottoController {
   #onAutoPurchase(e) {
     e.preventDefault();
     const count = Number($autoCountInput.value);
+    this.#lottoView.purchaseSection.autoCountInputInit();
     const userGuideMessage = message.getPurchaseAutoCountValidation(count, this.#remainLottoCount);
     if (userGuideMessage) {
       this.#lottoView.showMessage(userGuideMessage);
-      $autoCountInput.value = '';
       return;
     }
 
-    $autoCountInput.value = '';
     this.#purchaseAutoLottoItems(count);
   }
 
@@ -119,13 +118,10 @@ export default class LottoController {
     const userGuideMessage = message.getPurchaseManualLottoValidation(lottoNumbers);
     if (userGuideMessage) {
       this.#lottoView.showMessage(userGuideMessage);
-      $autoCountInput.value = '';
       return;
     }
 
-    $$lottoNumberInputs.forEach(
-      ($lottoNumberInput) => ($lottoNumberInput.value = ''),
-    );
+    this.#lottoView.purchaseSection.lottoNumberInputsInit();
     this.#purchaseManualLottoItem(lottoNumbers);
   }
 

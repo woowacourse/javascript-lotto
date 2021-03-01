@@ -4,9 +4,21 @@ import {
   $autoCountForm,
   $manualLottoNumbersForm,
   $remainCount,
+  $autoCountInput,
+  $$lottoNumberInputs,
 } from '../../elements.js';
 
 const purchaseSection = {
+  autoCountInputInit() {
+    $autoCountInput.value = '';
+  },
+
+  lottoNumberInputsInit() {
+    $$lottoNumberInputs.forEach(
+      ($lottoNumberInput) => ($lottoNumberInput.value = ''),
+    );
+  },
+
   displayChoiceMethodButton() {
     $choicePurchaseMethod.classList.remove('hide');
   },
