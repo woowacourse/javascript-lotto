@@ -30,8 +30,8 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
   });
 
   it("X 버튼을 눌렀을 경우에 결과화면 결과모달이 닫힌다", () => {
-    cy.get(toCS(CLASSNAME.MODAL.CLOSE)).click();
-    cy.get(toCS(CLASSNAME.MODAL)).should("not.be.visible");
+    cy.get(toDAS(JS_SELECTOR.RESULT_MODAL.CLOSE)).click();
+    cy.get(toDAS(JS_SELECTOR.RESULT_MODAL.CONTAINER)).should("not.be.visible");
   });
 
   it("유저가 구매한 로또 정보에 대한 수익률이 결과모달에 표시된다", () => {
@@ -72,7 +72,4 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
         );
       });
   });
-
-  cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER)).should("be.visible");
-  cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.BUTTON)).should("be.visible");
 });

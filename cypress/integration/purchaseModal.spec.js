@@ -18,7 +18,7 @@ describe("로또구매 모달 테스트", () => {
       `자동구매와 수동구매 옵션을 토글할 수 있다.`,
     () => {
       cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT)).should("be.disabled");
-      cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.TOGGLE)).click();
+      cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.TOGGLE)).click({ force: true });
       cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT)).should("not.be.disabled");
     }
   );
@@ -29,7 +29,7 @@ describe("로또구매 모달 테스트", () => {
       `구매한 로또 갯수만큼 아이콘 정보와 당첨번호 입력란을 보여준다.`,
     () => {
       numberInput.forEach((number, index) => {
-        cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT).eq(index)).type(number);
+        cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT)).eq(index).type(number);
       });
       cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.BUTTON)).click();
 

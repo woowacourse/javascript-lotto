@@ -1,5 +1,4 @@
 import { ALERT_MESSAGE, JS_SELECTOR } from "../../src/js/constants/index.js";
-import { Lotto } from "../../src/js/models/index.js";
 import { toDataAttributeSelector as toDAS } from "../../src/js/utils/querySelector.js";
 
 describe("구입 금액 입력 테스트", () => {
@@ -59,11 +58,9 @@ describe("구입 금액 입력 테스트", () => {
 
   it("유저가 유효한 금액을 입력한 경우, 구매 모달창을 띄운다.", () => {
     const userInput = 4500;
-    const lottoCount = Math.floor(userInput / Lotto.UNIT_PRICE);
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
 
-    cy.get(toDAS(JS_SELECTOR.WINNING_NUMBER.CONTAINER)).should("be.visible");
-    cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).should("have.value", "");
+    cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER)).should("be.visible");
   });
 });

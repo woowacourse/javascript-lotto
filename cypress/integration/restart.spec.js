@@ -46,10 +46,13 @@ describe("다시 시작하기 테스트: 당첨 결과에 대한 모달이 표�
     );
     cy.get(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT)).should("have.value", "");
 
-    const userInput = 5500;
+    const userInput = 1000;
     const lottoCount = Math.floor(userInput / Lotto.UNIT_PRICE);
+
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
+
+    cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.BUTTON)).click();
 
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER)).should("be.visible");
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL)).should(
