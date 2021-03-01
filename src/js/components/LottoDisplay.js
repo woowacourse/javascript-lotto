@@ -135,13 +135,9 @@ export default class LottoDisplay extends Component {
     const lastPageIndex = Math.ceil(
       store.getStates().lottos.length / this.lottoCountPerPage,
     );
-    pageIndex <= 1
-      ? (this.$prevPageButton.disabled = true)
-      : (this.$prevPageButton.disabled = false);
 
-    pageIndex >= lastPageIndex
-      ? (this.$nextPageButton.disabled = true)
-      : (this.$nextPageButton.disabled = false);
+    this.$prevPageButton.disabled = pageIndex <= 1;
+    this.$nextPageButton.disabled = pageIndex >= lastPageIndex;
   }
 
   updateLottoView(lottos) {
