@@ -9,17 +9,17 @@ export default class ManualInputView extends View {
 
   init(count) {
     this.count = count;
-    this.createManualLottos();
+    this.manualTicketNumbers = [];
+
+    this.createManualForms();
     this.bindManualInputEvent();
     this.bindFocusEvent();
     this.showAllConfirmButton();
     this.bindConfirmEvent();
   }
 
-  createManualLottos() {
-    // const lottoTickets = Array.from({length: this.count}, (_, idx) => `<li>....</li>`).join('')
-
-    const lottoTicekts = Array.from(
+  createManualForms() {
+    const manualForms = Array.from(
       { length: this.count },
       (_, idx) =>
         `<li id="manual-wrapper-${idx}" class="mx-1 my-2 text-4xl manual-wrapper">
@@ -31,7 +31,8 @@ export default class ManualInputView extends View {
         </li>
       `
     ).join('');
-    this.$element.innerHTML = lottoTicekts;
+
+    this.$element.innerHTML = manualForms;
     $('#input-price-form').insertAdjacentElement('afterend', this.$element);
   }
 
@@ -56,12 +57,20 @@ export default class ManualInputView extends View {
     $$('.manual-input-form').forEach((manualTicket, idx) => {
       manualTicket.addEventListener('submit', e => {
         e.preventDefault();
-        this.emit('submitNumbers', {
-          numbers: [...manualTicket.getElementsByTagName('input')],
-          ticketNumber: idx,
+        this.emit('submitTicket', {
+          numberInputs: [...manualTicket.getElementsByTagName('input')],
+          ticketIdx: idx,
         });
       });
     });
+  }
+
+  saveTemporaryTicket(ticketNumbers, idx) {
+    this.manualTicketNumbers.push(ticketNumbers);
+    $(`#manual-wrapper-${idx}`).innerHTML = `
+      <span class="lotto-icon">🎟️ </span>
+      <span class="lotto-detail">${ticketNumbers.join(', ')}</span>
+    `;
   }
 
   bindFocusEvent() {
@@ -83,13 +92,6 @@ export default class ManualInputView extends View {
     return Number(manualIndex) === LOTTO_NUMBERS.LOTTO_MANUAL_COUNT - 1;
   }
 
-  confirmManualLottos(lotto, ticketNumber) {
-    $(`#manual-wrapper-${ticketNumber}`).innerHTML = `
-      <span class="lotto-icon">🎟️ </span>
-      <span class="lotto-detail">${lotto.numberDetail}</span>
-    `;
-  }
-
   showAllConfirmButton() {
     const allConfirmBtn = document.createElement('div');
     allConfirmBtn.innerHTML = `
@@ -108,10 +110,7 @@ export default class ManualInputView extends View {
 
   bindConfirmEvent() {
     $('#manual-confirm-btn').addEventListener('click', () => {
-      this.emit(
-        'confirmAll',
-        [...$$('.manual-wrapper > .lotto-detail')].length
-      );
+      this.emit('confirmAll', this.manualTicketNumbers);
     });
   }
 

@@ -49,8 +49,8 @@ export default class LottoController {
     this.inputPriceView.on('submitPrice', e =>
       this.inputPriceHandler(e.detail)
     );
-    this.manualInputView.on('submitNumbers', e =>
-      this.inputManualNumbersHandler(e.detail)
+    this.manualInputView.on('submitTicket', e =>
+      this.inputManualTicketHandler(e.detail)
     );
     this.manualInputView.on('confirmAll', e =>
       this.confirmManualPurchaseHandler(e.detail)
@@ -84,8 +84,7 @@ export default class LottoController {
 
   purchaseAutomatically(count) {
     this.createAutoLottos(count);
-    this.purchasedLottosView.show();
-    this.purchasedLottosView.renderLottos(this.lottos);
+    this.purchasedLottosView.show().renderLottos(this.lottos);
     this.winningResultView.show();
   }
 
@@ -95,46 +94,50 @@ export default class LottoController {
       .init(this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT);
   }
 
-  inputManualNumbersHandler(eventDetail) {
-    const ticketNumbers = eventDetail.numbers.map(manualNumber =>
-      Number(manualNumber.value)
+  inputManualTicketHandler(eventDetail) {
+    const ticketNumbers = eventDetail.numberInputs.map(input =>
+      Number(input.value)
     );
     if (!isUniqueManualNumber(ticketNumbers)) {
       alert(ALERT_MESSAGES.DUPLICATE_NUMS);
       return;
     }
-    this.createManualLottos(ticketNumbers, eventDetail.ticketNumber);
+    this.manualInputView.saveTemporaryTicket(
+      ticketNumbers,
+      eventDetail.ticketIdx
+    );
   }
 
-  confirmManualPurchaseHandler(manualCount) {
-    if (manualCount < this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT) {
+  confirmManualPurchaseHandler(manualTickets) {
+    const manualCount = manualTickets.length;
+    const lottoTotalCount = this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT;
+
+    if (manualCount < lottoTotalCount) {
       const agreeAutoPurchase = confirm(ALERT_MESSAGES.CONVERT_TO_AUTO_ALERT);
       if (agreeAutoPurchase) {
+        this.createManualLottos(manualTickets);
         this.manualInputView.hide();
-        this.purchaseAutomatically(
-          this.purchasedPrice / LOTTO_NUMBERS.LOTTO_UNIT - manualCount
-        );
+        this.purchaseAutomatically(lottoTotalCount - manualCount);
       }
     } else {
+      this.createManualLottos(manualTickets);
       this.manualInputView.hide();
-      this.purchasedLottosView.show();
-      this.purchasedLottosView.renderLottos(this.lottos);
+      this.purchasedLottosView.show().renderLottos(this.lottos);
       this.winningResultView.show();
     }
   }
 
   createAutoLottos(lottoCount) {
     const newLottos = Array.from({ length: lottoCount }, () => {
-      return new Lotto();
+      const lotto = new Lotto();
+      lotto.initRandomNumbers();
+      return lotto;
     });
     this.lottos = [...this.lottos, ...newLottos];
   }
 
-  createManualLottos(manualNumbers, ticketNumber) {
-    const lotto = new Lotto();
-    lotto.inputManualNumbers(manualNumbers);
-    this.lottos.push(lotto);
-    this.manualInputView.confirmManualLottos(lotto, ticketNumber);
+  createManualLottos(manualTickets) {
+    this.lottos = manualTickets.map(manualNumbers => new Lotto(manualNumbers));
   }
 
   inputWinningNumbersHandler(winningNumbers) {

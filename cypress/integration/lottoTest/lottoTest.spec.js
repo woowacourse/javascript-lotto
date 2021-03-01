@@ -206,8 +206,7 @@ describe('로또 게임 테스트', () => {
     const rankCounts = [1, 1, 0, 0, 2];
 
     lottoNumsArr.forEach(lottoNums => {
-      const lotto = new Lotto();
-      lotto.inputManualNumbers(new Set(lottoNums));
+      const lotto = new Lotto(lottoNums);
       lottos.push(lotto);
     });
 
@@ -224,8 +223,7 @@ describe('로또 게임 테스트', () => {
     const earningRate = (sum / purchasedPrice - 1) * 100;
 
     lottoNumsArr.forEach(lottoNums => {
-      const lotto = new Lotto();
-      lotto.inputManualNumbers(new Set(lottoNums));
+      const lotto = new Lotto(lottoNums);
       lottos.push(lotto);
     });
 
