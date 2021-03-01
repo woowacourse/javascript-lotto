@@ -16,6 +16,17 @@ context('Actions', () => {
     cy.get('#issuable-ticket-amount').should('have.text', 5);
   });
 
+  it('수동으로 번호 6자리를 입력해 티켓을 발급한다.', () => {
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('.js-manual-input').each((element, idx) => {
+      cy.wrap(element).type(idx + 1);
+    });
+    cy.get('#manual-submit').click();
+    cy.get('.issued-ticket').should('have.length', 1);
+    cy.get('#issuable-ticket-amount').should('have.text', 4);
+  });
+
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
