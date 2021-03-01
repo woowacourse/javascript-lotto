@@ -43,7 +43,7 @@ export default class ResultForm extends Component {
 
   mountTemplate() {
     this.$target.innerHTML = `
-      <form class="mt-9 d-none" id="lotto-result-form" novalidate>
+      <form class="mt-9" id="lotto-result-form" novalidate>
         <label class="flex-auto d-inline-block mb-3">
           지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
         </label>
@@ -82,7 +82,7 @@ export default class ResultForm extends Component {
           <input
             type="number"
             class="winning-number mx-1 text-center"
-            data-winnning-number=${idx}
+            data-winning-number=${idx}
           />`;
       }
 

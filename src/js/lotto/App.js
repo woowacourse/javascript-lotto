@@ -1,6 +1,6 @@
 import { Component, State } from '../shared/models/index.js';
 import { PaymentForm, PurchasingForm, LottoDetail, ResultForm } from './components/index.js';
-import LottoMachine from './models/LottoMachine.js';
+import { LottoMachine, ProfitCalculator } from './models/index.js';
 import { $ } from '../shared/utils/DOM.js';
 import { UNIT_AMOUNT } from './utils/constants.js';
 
@@ -9,9 +9,11 @@ export default class App extends Component {
     this.state = new State({
       money: 0,
       tickets: [],
-      rankCount: [0, 0, 0, 0, 0], //인덱스 = 순위, value = 당첨 개수.
+      rankCounts: [0, 0, 0, 0, 0], //인덱스 = 순위, value = 당첨 개수.
       earningRate: 0,
     });
+    this.machine = new LottoMachine();
+    this.calculator = new ProfitCalculator();
   }
 
   initDOM() {
@@ -41,10 +43,10 @@ export default class App extends Component {
 
   handleResult(winningNumbers) {
     const { tickets } = this.state.getState();
-    const { rankCount, earningRate } = new ProfitCalculator(winningNumbers, tickets);
+    const { rankCounts, earningRate } = this.calculator.getResult(winningNumbers, tickets);
 
-    this.state.setState({ rankCount, earningRate });
-    this.$modal.classList.add('open');
+    this.state.setState({ rankCounts, earningRate });
+    // this.$modal.classList.add('open');
   }
 
   mountTemplate() {
@@ -66,7 +68,7 @@ export default class App extends Component {
     });
     new PurchasingForm(this.$purchasingSection, {
       state: this.state,
-      machine: new LottoMachine(),
+      machine: this.machine,
       handlePurchasing: this.handlePurchasing.bind(this),
     });
     new LottoDetail(this.$lottoDetailSection, {

@@ -53,7 +53,7 @@ export default class PurchasingForm extends Component {
       return;
     }
 
-    this.props.handlePurchase(this.props.machine.publishLotto(numbers));
+    this.props.handlePurchasing(this.props.machine.publishLotto(numbers));
     this.$lottoNumberInputs.forEach($input => {
       $input.value = '';
     });
@@ -72,7 +72,7 @@ export default class PurchasingForm extends Component {
     for (let i = 0; i < money / UNIT_AMOUNT; i++) {
       tickets.push(this.props.machine.publishLotto());
     }
-    this.props.handlePurchase(...tickets);
+    this.props.handlePurchasing(...tickets);
   }
 
   mountTemplate() {
