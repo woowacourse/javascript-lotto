@@ -42,10 +42,11 @@
   display: inline-block;
   text-align: center;
   padding: 3px 1px;
-  min-width: 24px;
+  width: 24px;
   font-size: 0.95rem;
   color: #cb4342;
   letter-spacing: -0.1rem;
+  background-color: white;
   box-sizing: border-box;
 }
 
@@ -59,6 +60,7 @@
   height: 100%;
   border-top: 1px solid #e3bfbf;
   border-bottom: 1px solid #e3bfbf;
+  box-sizing: border-box;
 }
 
 .select-number-list span::before {
@@ -91,17 +93,19 @@
   opacity: 0;
 }
 
-.select-number-list input ~ span:focus {
-  outline-width: 1px;
-  outline-color: black;
+.select-number-list input:focus ~ span::before,
+.select-number-list input:focus ~ span::after {
+  border-width: 2px;
+  border-color: black;
+  opacity: 1;
 }
 
 /* 로또용지 삭제버튼 */
 
 .paper-remove-button {
   position: absolute;
-  top: -10px;
-  right: -12px;
+  top: -7px;
+  right: -13px;
 }
 
 /* 로또용지 선택 체크메시지 */

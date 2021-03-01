@@ -3,13 +3,6 @@
   min-width: 64px;
   padding: 0 6px;
   border-radius: 2px;
-  border-color: #e77c7e;
-  box-sizing: border-box;
-}
-
-.quantity-select:active {
-  outline: black !important;
-}
-.quantity-select:focus {
-  outline: black !important;
+  outline-width: 3px;
+  outline-color: black;
 }

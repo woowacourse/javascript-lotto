@@ -60,7 +60,7 @@ export default class PurchaseOptionInput {
       }
       const target = e.target.parentNode.querySelector('input');
 
-      target.checked = true;
+      target.checked = !target.checked;
       this.onChangePaper({ target, currentTarget: e.currentTarget });
     });
 
