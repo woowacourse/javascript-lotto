@@ -12,16 +12,7 @@ import Presentational from "./Presentational.js";
 const select = (state) => state.lottos;
 
 const createContainer = () => {
-  let currentLottos = select(store.getState());
-
   const handleStateChange = () => {
-    let previousLottos = currentLottos;
-    currentLottos = select(store.getState());
-
-    const hasChanged = previousLottos !== currentLottos;
-
-    if (!hasChanged) return;
-
     Presentational.render();
   };
 
@@ -55,7 +46,10 @@ const createContainer = () => {
 
   const init = () => {
     Presentational.init(createActionLottosAdded);
-    store.subscribe(handleStateChange);
+    store.subscribe(
+      handleStateChange,
+      (prev, curr) => select(prev) !== select(curr)
+    );
   };
 
   return { init };

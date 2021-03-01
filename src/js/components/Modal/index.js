@@ -56,32 +56,20 @@ const calculateProfitRate = (winningCounts, investment) => {
   return totalWinningMoney / investment - 1;
 };
 
+const select = (state) => state.winningNumber;
+
 const createModal = () => {
-  const select = (state) => state.winningNumber;
-
-  let currentWinningNumber = select(store.getState());
-
   const handleStateChange = () => {
-    let previousWinningNumber = currentWinningNumber;
-    currentWinningNumber = select(store.getState());
-
-    const { lottos: currentLottos } = store.getState();
-    const hasChanged = previousWinningNumber !== currentWinningNumber;
-
-    if (!hasChanged) return;
-
-    const isCleared = currentWinningNumber.numbers.length === 0;
+    const { lottos, winningNumber } = store.getState();
+    const isCleared = winningNumber.numbers.length === 0;
 
     if (isCleared) {
       Presentaional.render({ isCleared: true });
       return;
     }
 
-    const winningCounts = produceWinningCount(
-      currentLottos,
-      currentWinningNumber
-    );
-    const investment = currentLottos.length * Lotto.UNIT_PRICE;
+    const winningCounts = produceWinningCount(lottos, winningNumber);
+    const investment = lottos.length * Lotto.UNIT_PRICE;
     const profitRate = calculateProfitRate(winningCounts, investment);
 
     Presentaional.render({ winningCounts, profitRate });
@@ -94,7 +82,10 @@ const createModal = () => {
   const init = () => {
     Presentaional.init(createActionClear);
 
-    store.subscribe(handleStateChange);
+    store.subscribe(
+      handleStateChange,
+      (prev, curr) => select(prev) !== select(curr)
+    );
   };
 
   return { init };
