@@ -142,7 +142,7 @@ This project is [MIT](https://github.com/woowacourse/javascript-lotto/blob/main/
   2. When: 유저가 다시 시작하기 버튼을 클릭한다.
   3. Then: 모달창이 닫히고 유저가 구매한 로또 정보와 당첨 번호에 대한 모든 데이터가 초기화 된다.
 
-- [ ] 로또 수동구매
+- [x] 로또 수동구매
   1. Given: 유저가 유효한 로또 구입 금액을 입력하고 구매방법 선택에 대한 모달창이 나타난다.
   2. When: 수동구매를 위해 유저가 로또 번호를 선택하고 선택완료 버튼을 누른다.
   3. Then: 

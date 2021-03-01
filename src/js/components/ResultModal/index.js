@@ -1,13 +1,13 @@
-import { ACTION_TYPE, CLASSNAME } from "../../constants/index.js";
+import { ACTION_TYPE, CLASSNAME, JS_SELECTOR } from "../../constants/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
-import { $, toClassSelector as toCS } from "../../utils/index.js";
+import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import Presentaional from "./Presentational.js";
 
 const createResultModal = () => {
   const WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
 
-  const $container = $(toCS(CLASSNAME.MODAL));
+  const $container = $(toDAS(JS_SELECTOR.RESULT_MODAL.CONTAINER));
 
   const isRanked = {
     First: ({ matchCount }) => matchCount === 6,

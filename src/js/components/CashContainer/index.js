@@ -3,11 +3,7 @@ import {
   ALERT_MESSAGE,
   JS_SELECTOR,
 } from "../../constants/index.js";
-import {
-  $,
-  toDataAttributeSelector as toDAS,
-  generateLottoNumbers,
-} from "../../utils/index.js";
+import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
 import { EmptyInputError, ValidationError } from "../../errors/index.js";
@@ -32,12 +28,6 @@ const createContainer = () => {
     }
   };
 
-  const createLottos = (cash) => {
-    const lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
-
-    return [...Array(lottoCount)].map(() => new Lotto(generateLottoNumbers()));
-  };
-
   const createLottosAfterValidation = (event) => {
     event.preventDefault();
 
@@ -46,13 +36,13 @@ const createContainer = () => {
       validate(cash);
 
       store.dispatch({
-        type: ACTION_TYPE.LOTTOS.ADDED,
-        payload: createLottos(cash),
+        type: ACTION_TYPE.LOTTOS.ADDING,
+        payload: cash,
       });
     } catch (error) {
       if (
-        error instanceof EmptyInputError ||
-        error instanceof ValidationError
+        error instanceof ValidationError ||
+        error instanceof EmptyInputError
       ) {
         alert(error.message);
         $cashInput.clear();

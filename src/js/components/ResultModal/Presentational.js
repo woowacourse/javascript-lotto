@@ -1,14 +1,9 @@
 import { CLASSNAME, JS_SELECTOR } from "../../constants/index.js";
-import {
-  $,
-  $$,
-  toClassSelector as toCS,
-  toDataAttributeSelector as toDAS,
-} from "../../utils/index.js";
+import { $, $$, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 
 const createPresentational = () => {
-  const $container = $(toCS(CLASSNAME.MODAL));
-  const $close = $(toCS(CLASSNAME.MODAL.CLOSE));
+  const $container = $(toDAS(JS_SELECTOR.RESULT_MODAL.CONTAINER));
+  const $close = $(toDAS(JS_SELECTOR.RESULT_MODAL.CLOSE));
   const $restartButton = $(toDAS(JS_SELECTOR.RESULT_MODAL.RESTART_BUTTON));
   const $profitRateParagraph = $(
     toDAS(JS_SELECTOR.RESULT_MODAL.PROFIT_RATE_PARAGRAPH)
