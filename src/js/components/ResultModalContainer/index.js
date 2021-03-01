@@ -20,17 +20,6 @@ class ResultModalContainer extends Container {
     this.WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
 
     this.$container = $(toDAS(JS_SELECTOR.RESULT_MODAL.CONTAINER));
-    this.isRanked = {
-      First: ({ matchCount }) => matchCount === 6,
-      Second: ({ matchCount, isBonusMatched }) => {
-        return matchCount === 5 && isBonusMatched;
-      },
-      Third: ({ matchCount, isBonusMatched }) => {
-        return matchCount === 5 && !isBonusMatched;
-      },
-      Fourth: ({ matchCount }) => matchCount === 4,
-      Fifth: ({ matchCount }) => matchCount === 3,
-    };
   }
 
   select() {
@@ -49,6 +38,7 @@ class ResultModalContainer extends Container {
 
     if (isCleared) {
       this.Presentational.render({ isCleared: true });
+      this.updateValue();
       return;
     }
 
@@ -74,17 +64,7 @@ class ResultModalContainer extends Container {
         this.toWinningCountIndex(this.getMatch(lotto, winningNumber))
       ]++;
     });
-
     return winningCount;
-  }
-
-  toWinningCountIndex(match) {
-    if (this.isRanked.First(match)) return 0;
-    if (this.isRanked.Second(match)) return 1;
-    if (this.isRanked.Third(match)) return 2;
-    if (this.isRanked.Fourth(match)) return 3;
-    if (this.isRanked.Fifth(match)) return 4;
-    return 5;
   }
 
   getMatch(lotto, { numbers, bonusNumber }) {
@@ -95,6 +75,21 @@ class ResultModalContainer extends Container {
         new Set([...lotto.numbers, ...numbers]).size,
       isBonusMatched: lotto.numbers.includes(bonusNumber),
     };
+  }
+
+  toWinningCountIndex({ matchCount, isBonusMatched }) {
+    const matchPrize = {
+      6: 0,
+      5: isBonusMatched ? 1 : 2,
+      4: 3,
+      3: 4,
+    };
+
+    if (matchCount in matchPrize === false) {
+      return 5;
+    }
+
+    return matchPrize[matchCount];
   }
 
   calculateProfitRate(lottos, winningCounts) {
