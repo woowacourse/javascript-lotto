@@ -10,8 +10,6 @@ import { $, $$, toClassSelector as toCS } from "../../utils/index.js";
 import Presentational from "./Presentational.js";
 
 const createContainer = () => {
-  const $$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT));
-  const $bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
 
   const toNumbers = ($$inputs, $bonusInput) => {
     const inputs = [...$$inputs];
@@ -56,6 +54,10 @@ const createContainer = () => {
 
   const getWinningNumberWithValidation = (event) => {
     event.preventDefault();
+    const { elements } = event.target;
+
+    const $$inputs = elements[CLASSNAME.WINNING_NUMBER.INPUT];
+    const $bonusInput = elements[CLASSNAME.WINNING_NUMBER.BONUS_INPUT];
 
     try {
       const [numbers, bonusNumber] = toNumbers($$inputs, $bonusInput);

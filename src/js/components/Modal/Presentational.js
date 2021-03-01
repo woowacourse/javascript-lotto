@@ -22,6 +22,10 @@ const createPresentational = () => {
       maximumFractionDigits: 2,
     })}입니다.`;
 
+  const closeModal = () => {
+    $container.classList.remove(CLASSNAME.MODAL.OPEN);
+  };
+
   const render = ({ isCleared, winningCounts, profitRate }) => {
     if (isCleared) {
       $container.classList.remove(CLASSNAME.MODAL.OPEN);
@@ -35,7 +39,7 @@ const createPresentational = () => {
     $container.classList.add(CLASSNAME.MODAL.OPEN);
   };
 
-  const init = ({ closeModal, restart }) => {
+  const init = ({ restart }) => {
     $close.addEventListener("click", closeModal);
     $restartButton.addEventListener("click", restart);
   };

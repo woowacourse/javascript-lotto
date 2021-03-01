@@ -14,7 +14,6 @@ import { EmptyInputError, ValidationError } from "../../errors/index.js";
 import Presentational from "./Presentational.js";
 
 const createContainer = () => {
-  const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
 
   const toNumber = (cashInputValue) => {
     if (cashInputValue === "") {
@@ -40,6 +39,8 @@ const createContainer = () => {
 
   const createLottosAfterValidation = (event) => {
     event.preventDefault();
+
+    const $cashInput = event.target.elements[JS_SELECTOR.CASH.INPUT];
 
     try {
       const cash = toNumber($cashInput.value);

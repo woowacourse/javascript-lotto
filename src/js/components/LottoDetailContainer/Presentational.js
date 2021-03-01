@@ -30,7 +30,12 @@ export const createPresentational = () => {
   `;
   };
 
-  const render = ({ lottos, isLottoCleared, toggleDetailMode }) => {
+  const toggleDetailMode = (force) => {
+    $lottoIconWrapper.toggle("flex-col", force);
+    $lottoDetailContainer.toggle("detail", force);
+  };
+
+  const render = ({ lottos, isLottoCleared }) => {
     if (isLottoCleared) {
       toggleDetailMode(false);
       $toggleButton.checked = false;
@@ -47,7 +52,7 @@ export const createPresentational = () => {
     $lottoDetailContainer.show();
   };
 
-  const init = ({ toggleDetailMode }) => {
+  const init = () => {
     $toggleButton.addEventListener("change", (event) => {
       toggleDetailMode(event.target.checked);
     });
