@@ -55,7 +55,7 @@ class LottoGameModel {
   calculateLottosResult(answer) {
     this.#addAnswerLotto(answer.numbers, answer.bonus)
 
-    this.#lottos.forEach((ticket) => {
+    this.#lottos.lottos.forEach((ticket) => {
       const { match, bonusMatch } = this.#calculateMatch(ticket)
 
       let key = ""
@@ -86,7 +86,7 @@ class LottoGameModel {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
-    return getProfitRate(income, this.#lottos.length * TICKET.PRICE)
+    return getProfitRate(income, this.#lottos.lottos.length * TICKET.PRICE)
   }
 
   get lottos() {
