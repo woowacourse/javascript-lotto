@@ -6,6 +6,8 @@ import Input from './Input/Input.js';
 import Button from './Button/Button.js';
 
 export default class LottoDisplay extends Component {
+  static lottoCountPerPage = 10;
+
   initRender() {
     this.$target.innerHTML = `
     <div class="d-flex">
@@ -43,7 +45,6 @@ export default class LottoDisplay extends Component {
   }
 
   setup() {
-    this.lottoCountPerPage = 10;
     store.subscribe(this.render.bind(this));
   }
 
@@ -103,7 +104,7 @@ export default class LottoDisplay extends Component {
   onMoveNextPage() {
     const pageIndex = Number(this.$pageNumber.textContent);
     const lastPageIndex = Math.ceil(
-      store.getStates().lottos.length / this.lottoCountPerPage,
+      store.getStates().lottos.length / LottoDisplay.lottoCountPerPage,
     );
     if (pageIndex >= lastPageIndex) return;
     this.$pageNumber.textContent = pageIndex + 1;
@@ -133,7 +134,7 @@ export default class LottoDisplay extends Component {
 
   toggleActivationPageMoveButton(pageIndex) {
     const lastPageIndex = Math.ceil(
-      store.getStates().lottos.length / this.lottoCountPerPage,
+      store.getStates().lottos.length / LottoDisplay.lottoCountPerPage,
     );
 
     this.$prevPageButton.disabled = pageIndex <= 1;
@@ -146,8 +147,9 @@ export default class LottoDisplay extends Component {
     this.$lottoCount.innerHTML = this.lottoCountText(lottos.length);
     this.$lottoDisplayArea.innerHTML = lottos
       .slice(
-        (pageIndex - 1) * this.lottoCountPerPage,
-        (pageIndex - 1) * this.lottoCountPerPage + this.lottoCountPerPage,
+        (pageIndex - 1) * LottoDisplay.lottoCountPerPage,
+        (pageIndex - 1) * LottoDisplay.lottoCountPerPage +
+          LottoDisplay.lottoCountPerPage,
       )
       .map(lottoNumbers => this.lottoTemplate(lottoNumbers))
       .join('');
