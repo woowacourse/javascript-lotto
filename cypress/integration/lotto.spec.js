@@ -12,6 +12,13 @@ const inputCorrectNumbers = (...numbers) => {
   });
 };
 
+const purchaseCustomLotto = (...numbers) => {
+  numbers.forEach((number, i) => {
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(i).type(number);
+  });
+  cy.get(SELECTOR.PURCHASE_BUTTON).click();
+}
+
 const inputBonusNumber = (bonusNumber) => {
   cy.get(SELECTOR.CORRECT_NUMBER_INPUT_BONUS).type(bonusNumber);
 };
@@ -98,6 +105,60 @@ describe('자동 구매', () => {
   });
 });
 
+describe('수동 구매', () => {
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:5501');
+    cy.window()
+      .then((win) => cy.stub(win, 'alert'))
+      .as('alertStub');
+  });
+
+  it('수동으로 구매할 로또 번호를 입력 중에 입력한 로또 번호들 중 중복된 번호가 있는지 검사', () => {
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(0).type(1);
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(1).type(2);
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(2).type(2);
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(3).click()
+    cy.get('@alertStub').should('be.calledWith', MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE);
+  });
+
+  it(`수동으로 구매할 로또 번호를 입력 중에 입력한 로또 번호들 중 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 외의 번호가 있는지 검사`, () => {
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(0).type(1);
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(1).type(2);
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(2).type(55);
+    cy.get(SELECTOR.PURCHASE_INPUT).eq(3).click()
+    cy.get('@alertStub').should('be.calledWith', MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE);
+  });
+
+  it(`구매가 이루어질 때마다 입금한 금액에서 ${LOTTO.PRICE}원이 빠져나가는지 검사`, () => {
+    const money = 3000;
+    depositMoney(money);
+    purchaseCustomLotto(1,2,3,4,5,6);
+    cy.get(SELECTOR.DEPOSIT_PRESENTER).should('have.text', getKRMoneyString(2000));
+  });
+
+  it(`구매가 이루어질 때마다 직접 입력한 번호대로 로또가 추가되는지 검사`, () => {
+    const money = 3000;
+    depositMoney(money);
+    purchaseCustomLotto(1,2,3,4,5,6);
+    cy.get(SELECTOR.LOTTO_NUMBERS).last().should('have.text', '1, 2, 3, 4, 5, 6');
+  });
+
+  it(`구입할 로또의 번호가 모두 입력되지 않으면 수동 구매를 수행할 수 없음`, () => {
+    const money = 3000;
+    depositMoney(money);
+    purchaseCustomLotto(1,2,3,4,5);
+    cy.get('@alertStub').should('be.calledWith', MESSAGE.SHOULD_INPUT_ALL_NUMBERS_MESSAGE);
+  });
+
+  it(`입금된 총 금액이 ${LOTTO.PRICE} 미만일 때 수동 구매를 수행할 수 없음`, () => {
+    const money = 500;
+    depositMoney(money);
+    purchaseCustomLotto(1,2,3,4,5,6);
+    cy.get('@alertStub').should('be.calledWith', MESSAGE.NOT_ENOUGH_MONEY);
+  });
+
+});
+
 describe('당첨번호 입력', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5501');
@@ -106,13 +167,26 @@ describe('당첨번호 입력', () => {
       .as('alertStub');
   });
 
-  it(`남은 돈이 ${LOTTO.PRICE} 미만이라면 로또를 자동 구매할 수 없음`, () => {
-    const money = 500;
+  it('당첨 번호를 입력 중에 입력한 로또 번호들 중 중복된 번호가 있는지 검사', () => {
+    const money = 3000;
     depositMoney(money);
-    cy.get(SELECTOR.AUTO_PURCHASE_BUTTON).click();
-    cy.get('@alertStub').should('be.calledWith', MESSAGE.NOT_ENOUGH_MONEY);
-    cy.get(SELECTOR.DEPOSIT_PRESENTER).should('have.text', money);
+    cy.get(SELECTOR.CORRECT_NUMBER_INPUT).eq(0).type(1);
+    cy.get(SELECTOR.CORRECT_NUMBER_INPUT).eq(1).type(2);
+    cy.get(SELECTOR.CORRECT_NUMBER_ICORRECT_NUMBER_INPUT_BONUSNPUT).type(2);
+    cy.get(SELECTOR.CORRECT_NUMBER_INPUT).eq(2).click()
+    cy.get('@alertStub').should('be.calledWith', MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE);
   });
+
+  it(`당첨 번호를 입력 중에 입력한 로또 번호들 중 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 외의 번호가 있는지 검사`, () => {
+    const money = 3000;
+    depositMoney(money);
+    cy.get(SELECTOR.CORRECT_NUMBER_INPUT).eq(0).type(1);
+    cy.get(SELECTOR.CORRECT_NUMBER_INPUT).eq(1).type(2);
+    cy.get(SELECTOR.CORRECT_NUMBER_ICORRECT_NUMBER_INPUT_BONUSNPUT).type(56);
+    cy.get(SELECTOR.CORRECT_NUMBER_INPUT).eq(2).click()
+    cy.get('@alertStub').should('be.calledWith', MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE);
+  });
+
 });
 
 describe('결과 확인', () => {

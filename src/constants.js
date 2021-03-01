@@ -62,6 +62,7 @@ export const SELECTOR = Object.freeze({
   DEPOSIT_BUTTON: '#deposit__button',
   DEPOSIT_PRESENTER: '#deposit-presenter',
   PURCHASE: '#purchase',
+  PURCHASE_INPUT: '.purchase__input',
   AUTO_PURCHASE_BUTTON: '#auto-purchase__button',
   RESULT: '#result',
   RESULT_TEXT: '#result__text',
