@@ -43,16 +43,8 @@ class Result {
   }
 
   setMatchingCounts() {
-    const rankInfo = [
-      [RANK.FIRST, WINNING_PRIZE[RANK.FIRST]],
-      [RANK.SECOND, WINNING_PRIZE[RANK.SECOND]],
-      [RANK.THIRD, WINNING_PRIZE[RANK.THIRD]],
-      [RANK.FOURTH, WINNING_PRIZE[RANK.FOURTH]],
-      [RANK.FIFTH, WINNING_PRIZE[RANK.FIFTH]],
-    ];
-
-    rankInfo.forEach((rankArray) => {
-      const matchingCount = this.ranks.filter((rank) => rank === rankArray[0])
+    Object.values(RANK).forEach((rankValue) => {
+      const matchingCount = this.ranks.filter((rank) => rank === rankValue)
         .length;
 
       this.matchingCounts.push(matchingCount);

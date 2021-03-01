@@ -41,6 +41,8 @@ export const printWinningResult = () => {
   const earningRate = ((totalPrize - money) / money) * 100;
 
   Result.matchingCounts.reverse();
+  Result.matchingCounts = Result.matchingCounts.slice(1);
+
   winningCounts.forEach((count, i) => {
     count.innerText = `${Result.matchingCounts[i]}개`;
   });
