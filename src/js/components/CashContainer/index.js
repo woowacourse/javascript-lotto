@@ -46,10 +46,7 @@ const createContainer = () => {
 
   const init = () => {
     Presentational.init(createActionLottosAdded);
-    store.subscribe(
-      handleStateChange,
-      (prev, curr) => select(prev) !== select(curr)
-    );
+    store.subscribe(handleStateChange, select);
   };
 
   return { init };

@@ -82,10 +82,7 @@ const createModal = () => {
   const init = () => {
     Presentaional.init(createActionClear);
 
-    store.subscribe(
-      handleStateChange,
-      (prev, curr) => select(prev) !== select(curr)
-    );
+    store.subscribe(handleStateChange, select);
   };
 
   return { init };

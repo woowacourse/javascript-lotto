@@ -10,8 +10,7 @@ import Presentational from "./Presentational.js";
 const select = (state) => state.lottos;
 
 const createContainer = () => {
-  const handleStateChange = (previousState) => {
-    const previousLottos = select(previousState);
+  const handleStateChange = (previousLottos) => {
     const currentLottos = select(store.getState());
 
     Presentational.render({
@@ -53,10 +52,7 @@ const createContainer = () => {
 
   const init = () => {
     Presentational.init(createActionWinningNumberSet);
-    store.subscribe(
-      handleStateChange,
-      (prev, curr) => select(prev) !== select(curr)
-    );
+    store.subscribe(handleStateChange, select);
   };
 
   return { init };

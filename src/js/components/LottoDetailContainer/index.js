@@ -12,10 +12,7 @@ const createContainer = () => {
 
   const init = () => {
     Presentational.init();
-    store.subscribe(
-      handleStateChange,
-      (prev, curr) => select(prev) !== select(curr)
-    );
+    store.subscribe(handleStateChange, select);
   };
 
   return { init };
