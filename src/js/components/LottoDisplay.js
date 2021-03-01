@@ -71,20 +71,26 @@ export default class LottoDisplay extends Component {
     );
   }
 
+  showOnlyLottoImages() {
+    this.$lottoDisplayArea.classList.remove('flex-col');
+    this.$lottoDisplayArea.classList.remove('items-start');
+    $$('.lotto-numbers').forEach($lottoNumbers => {
+      $lottoNumbers.classList.add('d-none');
+    });
+  }
+
+  showAllOfLottoInfo() {
+    this.$lottoDisplayArea.classList.add('flex-col');
+    this.$lottoDisplayArea.classList.add('items-start');
+    $$('.lotto-numbers').forEach($lottoNumbers => {
+      $lottoNumbers.classList.remove('d-none');
+    });
+  }
+
   onToggleSwitch() {
-    if (this.$toggleButton.checked) {
-      this.$lottoDisplayArea.classList.add('flex-col');
-      this.$lottoDisplayArea.classList.add('items-start');
-      $$('.lotto-numbers').forEach($lottoNumbers => {
-        $lottoNumbers.classList.remove('d-none');
-      });
-    } else {
-      this.$lottoDisplayArea.classList.remove('flex-col');
-      this.$lottoDisplayArea.classList.remove('items-start');
-      $$('.lotto-numbers').forEach($lottoNumbers => {
-        $lottoNumbers.classList.add('d-none');
-      });
-    }
+    this.$toggleButton.checked
+      ? this.showAllOfLottoInfo()
+      : this.showOnlyLottoImages();
   }
 
   onMovePrevPage() {
