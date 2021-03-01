@@ -8,7 +8,7 @@ import {
 describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표시된다", () => {
   const userInput = 4500;
 
-  before(() => {
+  beforeEach(() => {
     cy.visit("/");
 
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
@@ -30,6 +30,11 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
 
   it("X 버튼을 눌렀을 경우에 결과화면 결과모달이 닫힌다", () => {
     cy.get(toCS(CLASSNAME.MODAL.CLOSE)).click();
+    cy.get(toCS(CLASSNAME.MODAL)).should("not.be.visible");
+  });
+
+  it("모달의 외곽 어두운 부분(Dimmed)을 클릭한 경우에 결과화면 결과모달이 닫힌다", () => {
+    cy.get(toCS(CLASSNAME.MODAL)).click("topLeft");
     cy.get(toCS(CLASSNAME.MODAL)).should("not.be.visible");
   });
 
