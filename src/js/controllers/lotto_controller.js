@@ -86,7 +86,7 @@ class LottoController {
 
   #manageModalClose() {
     this.view.toggleModalSection()
-    this.model.resetLottoResult()
+    this.model.reset()
   }
 
   #handlePrice() {

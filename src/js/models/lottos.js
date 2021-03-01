@@ -32,6 +32,10 @@ class LottosModel {
     return this.#lottos
   }
 
+  get count() {
+    return this.#lottos.length
+  }
+
   get amount() {
     return this.#amount
   }

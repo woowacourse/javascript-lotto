@@ -3,12 +3,12 @@ import { RANK, TICKET } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
 class LottoGameModel {
-  #lottos
+  #issuedLottos
   #answerLotto
   #lottoResult
 
   constructor() {
-    this.#lottos = null
+    this.#issuedLottos = null
     this.#answerLotto = {
       numbers: null,
       bonus: null,
@@ -36,26 +36,26 @@ class LottoGameModel {
   }
 
   generateLottos(newAmount) {
-    this.#lottos = new LottosModel()
-    this.#lottos.amount = newAmount
+    this.#issuedLottos = new LottosModel()
+    this.#issuedLottos.amount = newAmount
   }
 
   generateRandomLottos(count) {
     for (let i = 0; i < count; i++) {
-      this.#lottos && this.#lottos.generateRandomTicket()
-      this.#lottos.decreaseAmount()
+      this.#issuedLottos && this.#issuedLottos.generateRandomTicket()
+      this.#issuedLottos.decreaseAmount()
     }
   }
 
   generateManualLotto(numbers) {
-    this.#lottos && this.#lottos.generateManualTicket(numbers)
-    this.#lottos.decreaseAmount()
+    this.#issuedLottos && this.#issuedLottos.generateManualTicket(numbers)
+    this.#issuedLottos.decreaseAmount()
   }
 
   calculateLottosResult(answer) {
     this.#addAnswerLotto(answer.numbers, answer.bonus)
 
-    this.#lottos.lottos.forEach((ticket) => {
+    this.#issuedLottos.lottos.forEach((ticket) => {
       const { match, bonusMatch } = this.#calculateMatch(ticket)
 
       let key = ""
@@ -86,19 +86,19 @@ class LottoGameModel {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
-    return getProfitRate(income, this.#lottos.lottos.length * TICKET.PRICE)
+    return getProfitRate(income, this.#issuedLottos.count * TICKET.PRICE)
   }
 
   get lottos() {
-    return this.#lottos
+    return this.#issuedLottos
   }
 
   get lottoResult() {
     return this.#lottoResult
   }
 
-  reset() {
-    this.#lottos = null
+  init() {
+    this.#issuedLottos = null
     this.#answerLotto = {
       numbers: null,
       bonus: null,
@@ -112,7 +112,7 @@ class LottoGameModel {
     }
   }
 
-  init() {
+  reset() {
     this.#lottoResult = {
       [RANK.FIFTH.TEXT]: { price: RANK.FIFTH.PRICE, count: 0 },
       [RANK.FOURTH.TEXT]: { price: RANK.FOURTH.PRICE, count: 0 },
