@@ -20,6 +20,11 @@ class TicketModel {
     this.#sortByNumber()
   }
 
+  generateManualNumbers(numbers) {
+    this.#numbers = new Set(numbers)
+    this.#sortByNumber()
+  }
+
   get numbers() {
     return [...this.#numbers]
   }
