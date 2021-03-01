@@ -57,7 +57,10 @@ export default class LottoController {
     );
     this.winningResultView
       .on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail))
-      .on('clickResetBtn', () => this.reset());
+      .on('clickResetBtn', () => {
+        this.reset();
+        this.purchaseTypeSelectView.switchPurchaseType(true);
+      });
   }
 
   selectTypeHandler(isAuto) {
