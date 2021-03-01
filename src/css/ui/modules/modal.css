@@ -47,10 +47,20 @@ svg {
   stroke-width: 5;
 }
 
+.modal-inner__ticket-issue {
+  max-width: 360px;
+  height: fit-content;
+}
+
 @media screen and (max-width: 768px) {
   .modal-inner {
     width: 90%;
     height: 90%;
     box-sizing: border-box;
+  }
+
+  .modal-inner__ticket-issue {
+    width: 95%;
+    height: fit-content;
   }
 }
