@@ -1,7 +1,7 @@
 import { $, $$, clearInput } from './utils/util.js';
 import Lotto from './models/Lotto.js';
 import { ALERT_MESSAGES } from './utils/constants/alert.js';
-import { LOTTO_SETTINGS, PRIZE } from './utils/constants/settings.js';
+import { LOTTO_SETTINGS, PRIZES, WIN_COUNTS, RANKS } from './utils/constants/settings.js';
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import {
   isNumbersDuplicated,
@@ -193,18 +193,18 @@ export default class LottoController {
     let earning = 0;
 
     for (let key of Object.keys(this._winnings)) {
-      earning += this._winnings[key] * PRIZE[key.toUpperCase()];
+      earning += this._winnings[key] * PRIZES[key.toUpperCase()];
     }
     return Math.round(((earning - moneySpent) / moneySpent) * 100);
   }
 
   _getRank(winningCount, bonusCount) {
     const ranks = {
-      '3,0': 'fifth',
-      '4,0': 'fourth',
-      '5,0': 'third',
-      '5,1': 'second',
-      '6,0': 'first',
+      [`${WIN_COUNTS.WINNING_COUNT_THREE},${WIN_COUNTS.BONUS_COUNT_ZERO}`]: RANKS.FIFTH,
+      [`${WIN_COUNTS.WINNING_COUNT_FOUR},${WIN_COUNTS.BONUS_COUNT_ZERO}`]: RANKS.FOURTH,
+      [`${WIN_COUNTS.WINNING_COUNT_FIVE},${WIN_COUNTS.BONUS_COUNT_ZERO}`]: RANKS.THIRD,
+      [`${WIN_COUNTS.WINNING_COUNT_FIVE},${WIN_COUNTS.BONUS_COUNT_ONE}`]: RANKS.SECOND,
+      [`${WIN_COUNTS.WINNING_COUNT_SIX},${WIN_COUNTS.BONUS_COUNT_ZERO}`]: RANKS.FIRST,
     }
 
     return ranks[`${winningCount},${bonusCount}`] || '';
