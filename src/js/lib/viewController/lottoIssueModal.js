@@ -2,7 +2,7 @@ import { lotto } from '../state/lotto.js';
 import { $ } from '../utils/dom.js';
 import { createTicketTemplate } from './teamplates/ticket.js';
 
-const updateIssuableTicketAmountView = () => {
+const updateIssuableTicketAmountText = () => {
   $('#issuable-ticket-amount').innerText = lotto.issuableTicketAmount;
 };
 
@@ -13,4 +13,24 @@ const updateIssuedTicketBoxView = () => {
   );
 };
 
-export { updateIssuableTicketAmountView, updateIssuedTicketBoxView };
+const updateEndButtonText = () => {
+  if (!lotto.issuableTicketAmount) {
+    $('#end-button').innerText = '발급 완료';
+  }
+
+  // else {
+  //   $('#end-button').innerText = '나머지는 자동 구매';
+  // }
+};
+
+const updateLottoIssueModalView = () => {
+  updateIssuableTicketAmountText();
+  updateIssuedTicketBoxView();
+  updateEndButtonText();
+};
+
+export {
+  updateLottoIssueModalView,
+  updateIssuableTicketAmountText,
+  updateIssuedTicketBoxView,
+};

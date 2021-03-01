@@ -1,8 +1,6 @@
 import { lotto } from '../lib/state/lotto.js';
-import {
-  updateIssuableTicketAmountView,
-  updateIssuedTicketBoxView,
-} from '../lib/viewController/lottoIssueModal.js';
+import { disableForm } from '../lib/utils/dom.js';
+import { updateLottoIssueModalView } from '../lib/viewController/lottoIssueModal.js';
 
 const manualIssueHandler = event => {
   event.preventDefault();
@@ -25,9 +23,11 @@ const manualIssueHandler = event => {
   ].map(({ value }) => Number(value));
 
   lotto.addTickets(newTicket);
-  updateIssuedTicketBoxView();
   lotto.decreaseIssuableTicketAmount();
-  updateIssuableTicketAmountView();
+  updateLottoIssueModalView();
+  if (!lotto.issuableTicketAmount) {
+    disableForm(event.target);
+  }
 };
 
 export default manualIssueHandler;
