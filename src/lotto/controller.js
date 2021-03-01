@@ -77,11 +77,12 @@ export default class LottoController {
     const userGuideMessage = message.getCostValidation(cost);
     if (userGuideMessage) {
       this.#lottoView.showMessage(userGuideMessage);
-      $costInput.value = '';
+      this.#lottoView.costSection.init();
       return;
     }
 
     this.#remainLottoCount = cost / LOTTO.PRICE;
+    this.#lottoView.costSection.disableButton();
     this.#lottoView.purchaseSection.displayChoiceMethodButton();
     this.#lottoView.resultSection.resetToggleButton();
   }

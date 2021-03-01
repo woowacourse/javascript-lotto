@@ -62,6 +62,7 @@ export const CHECK_SECOND_CONDITION_NUMBER = REWARDS.find(
 export const SELECTOR = Object.freeze({
   COST_SUBMIT_FORM: '#cost-submit-form',
   COST_INPUT: '#cost-input',
+  COST_SUBMIT_BUTTON: '#cost-submit-button',
   CHOICE_PURCHASE_METHOD: '#choice-purchase-method',
   AUTO_PURCHASE_BUTTON: '#auto-purchase-button',
   MANUAL_PURCHASE_BUTTON: '#manual-purchase-button',
