@@ -1,9 +1,24 @@
 import { $$ } from "../util.js"
+import { checkLottoNumberValid } from "../validators/validator.js"
 
-export const getManualInput = () => {
-  const numbers = [...$$(".manual-number")].map(({ value }) => {
-    return value === "" ? NaN : Number(value)
-  })
+class Manual {
+  #getManualInput() {
+    const numbers = [...$$(".manual-number")].map(({ value }) => {
+      return value === "" ? NaN : Number(value)
+    })
 
-  return numbers
+    return numbers
+  }
+
+  manageManualInput() {
+    const manualNumbers = this.#getManualInput()
+    const errorMessage = checkLottoNumberValid(manualNumbers)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
+
+    return manualNumbers
+  }
 }
+
+export default Manual
