@@ -1,11 +1,11 @@
 import {
   $,
-  isUniqueArray,
   showElement,
   hideElement,
   disableElement,
   enableElement,
   $all,
+  getDuplicatedValueIndex,
 } from './utils/utils.js';
 import { getPriceByRank } from './utils/lottoUtils.js';
 import { ALERT_MESSAGE, LOTTO, VALUE, SELECTORS } from './constants.js';
@@ -50,7 +50,7 @@ class LottoApp {
     disableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.remove('d-none');
-    $(`${SELECTORS.LOTTO_NUMBERS_INPUT.INPUT}:first-child`).focus();
+    $('#lotto-numbers-input-first').focus();
   }
 
   handleSubmitLottoNumbers(event) {
@@ -59,7 +59,10 @@ class LottoApp {
     const $lottoNumbers = [...event.target.elements['lotto-number']];
     const lottoNumbers = $lottoNumbers.map(($number) => $number.valueAsNumber);
 
-    if (!isUniqueArray([...lottoNumbers])) {
+    const duplicatedNumberIndex = getDuplicatedValueIndex(lottoNumbers);
+    if (duplicatedNumberIndex >= 0) {
+      $lottoNumbers[duplicatedNumberIndex].focus();
+      $lottoNumbers[duplicatedNumberIndex].select();
       alert(ALERT_MESSAGE.INVALID_LOTTO_NUMBER_INPUT);
       return;
     }
@@ -80,7 +83,7 @@ class LottoApp {
     }
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).reset();
-    $(`${SELECTORS.LOTTO_NUMBERS_INPUT.INPUT}:first-child`).focus();
+    $('#lotto-numbers-input-first').focus();
   }
 
   // TODO: 당첨번호 입력 할 때와 공통되는 로직 추출
@@ -113,8 +116,7 @@ class LottoApp {
   }
 
   handleToggleLottoNumbers() {
-    $(SELECTORS.LOTTO_LIST.ELEMENT).classList.toggle('flex-col');
-    $all(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TEXT).forEach($numbers => $numbers.classList.toggle('d-none'));
+    $(SELECTORS.LOTTO_LIST.CONTAINER).classList.toggle('show-number');
   }
 
   handleInputWinningNumbers(event) {
@@ -137,11 +139,23 @@ class LottoApp {
   handleSubmitWinningNumbers(event) {
     event.preventDefault();
 
-    const bonusNumber = event.target.elements['bonus-number'].valueAsNumber;
+    const $bonusNumber = event.target.elements['bonus-number'];
+    const bonusNumber = $bonusNumber.valueAsNumber;
     const $winningNumbers = [...event.target.elements['winning-number']];
     const winningNumbers = $winningNumbers.map(($number) => $number.valueAsNumber);
 
-    if (!isUniqueArray([...winningNumbers, bonusNumber])) {
+    const duplicatedNumberIndex = getDuplicatedValueIndex([...winningNumbers]);
+
+    if (duplicatedNumberIndex >= 0) {
+      $winningNumbers[duplicatedNumberIndex].focus();
+      $winningNumbers[duplicatedNumberIndex].select();
+      alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
+      return;
+    }
+
+    if (winningNumbers.includes(bonusNumber)) {
+      $bonusNumber.focus();
+      $bonusNumber.select();
       alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
       return;
     }
@@ -186,6 +200,7 @@ class LottoApp {
     enableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
     $(SELECTORS.MONEY_INPUT.FORM).reset();
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).reset();
     $(SELECTORS.WINNING_NUMBER_INPUT.FORM).reset();
     $(SELECTORS.MONEY_INPUT.INPUT).focus();
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
@@ -193,6 +208,13 @@ class LottoApp {
 
   handleCloseModal() {
     hideElement($(SELECTORS.MODAL.CONTAINER));
+    $(SELECTORS.WINNING_NUMBER_INPUT.FIRST_INPUT).focus();
+  }
+
+  changeToggleByEnter(event) {
+    if (event.key === 'Enter') {
+      event.target.click();
+    }
   }
 
   bindEvents() {
@@ -206,6 +228,8 @@ class LottoApp {
       'change',
       this.handleToggleLottoNumbers.bind(this)
     );
+
+    $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener('keypress', this.changeToggleByEnter.bind(this));
 
     $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener('input', this.handleInputWinningNumbers.bind(this));
     $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener(

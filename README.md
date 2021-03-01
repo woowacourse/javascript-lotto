@@ -147,6 +147,32 @@ src/js
   - [x] 사용자가 입력한 로또의 번호와, 생성된 로또의 번호가 같은지 확인한다.
 - [x] 사용자는 '자동 구매' 버튼을 눌러 자동으로 남은 만큼의 로또를 생성할 수 있다.
 
+## 웹 접근성 / 웹 표준 체크 리스트
+
+- [x] 주요한 기능이 포함된 요소에는 적절한 태그명을 사용해야 한다
+  - 서비스 전체 기능을 담는 container div 태그를 main으로 변경
+  - 특정 기능을 담는 요소들을 section으로 구분.
+- [x] 각 section 에는 header가 존재해야한다.
+  - 각 섹션에 맞는 제목 추가
+- [x] 각 input 에는 label이 붙어있는지?
+  - label이 존재하지 않는 input폼은 aria-label로 label 대체 문구 표시
+  - label에는 각 input이 무엇을 입력 받는지 명시한다.
+- [x] 여섯 개의 당첨번호를 입력하는 폼은 fieldset으로 묶어주고 legend로 설명을 곁들임
+- [x] 하나의 HTML 문서에는 하나의 autofocus만
+- [x] modal의 경우는 role="dialog" aria-modal="true" 속성 부여
+- [x] modal에서 닫기 버튼에 aria-label="닫기" 부여
+
+- [x] 사용자가 해야하는 동작의 흐름을 focus 해주기 (초점이동)
+  - [x] 모달이 close 됐을 때, 당첨 번호의 첫 input으로 focusing
+  - [x] input checkbox focus 설정 및 enter key으로 조작 가능하게 함(키보드 조작 고려)
+- [x] 키보드 사용 보장
+
+  - enter / 확인 버튼을 이용해서 폼 제출 가능하게 함.
+  - button focus 시에 스타일 변화를 주어 이용가능함을 표시
+
+- [x] 오류 발생 시점으로 초점 이동
+  - 숫자 중복 오류 발생 시 해당 입력 칸으로 focus 이동
+
 <br>
 
 ## 📝 License

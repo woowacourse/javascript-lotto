@@ -17,7 +17,7 @@ export default class LottoView {
       const $lotto = fragment.appendChild(createElement('span', 'lotto mx-1 text-4xl d-flex .items-center', '🎟️ '));
 
       childrenFragment.appendChild(
-        createElement('span', 'lotto-numbers d-none', lotto.NumbersString)
+        createElement('span', 'lotto-numbers', lotto.NumbersString)
       );
       $lotto.appendChild(childrenFragment);
 

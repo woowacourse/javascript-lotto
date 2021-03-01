@@ -23,8 +23,17 @@ export const getRandomNumberArray = (min, max, length) => {
   return numberArray;
 };
 
-export const isUniqueArray = (array) => {
-  return array.length === new Set(array).size;
+export const getDuplicatedValueIndex = (array) => {
+  const tempArray = [];
+
+  for (let idx = 0; idx < array.length; idx++) {
+    if (tempArray.includes(array[idx])) {
+      return idx;
+    }
+    tempArray.push(array[idx]);
+  }
+
+  return -1;
 };
 
 // TODO: hidden(visibility) 대신 display 속성 이용

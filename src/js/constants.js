@@ -68,6 +68,7 @@ export const SELECTORS = {
     SECTION: '.winning-number-form-section',
     FORM: '#winning-number-form',
     INPUT: '.winning-number',
+    FIRST_INPUT: '#first-winning-number'
   },
 
   BONUS_NUMBER_INPUT: {
