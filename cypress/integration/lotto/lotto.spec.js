@@ -24,7 +24,7 @@ context('Actions', () => {
       cy.wrap(element).type(idx + 1);
     });
     cy.get('#manual-submit').click();
-    cy.get('.issued-ticket').should('have.length', 1);
+    cy.get('#issued-ticket-list .issued-ticket').should('have.length', 1);
   });
 
   it('발급 시, 발급 가능한 티켓 수량을 차감한다.', () => {
@@ -69,6 +69,13 @@ context('Actions', () => {
       cy.wrap(element).type(TICKET_MAX_NUMBER + 1);
     });
     cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
+  });
+
+  it('수동 구매 종료 시, 나머지 발급 가능한 티켓을 자동 구매한다.', () => {
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('#lotto-issue-end-button').click();
+    cy.get('#ticket-list .issued-ticket').should('have.length', 5);
   });
 
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {

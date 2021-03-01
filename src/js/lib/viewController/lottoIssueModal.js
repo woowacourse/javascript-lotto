@@ -15,9 +15,9 @@ const updateIssuedTicketBoxView = () => {
 
 const updateEndButtonText = () => {
   if (!lotto.issuableTicketAmount) {
-    $('#end-button').innerText = '발급 완료';
+    $('#lotto-issue-end-button').innerText = '발급 완료';
   } else {
-    $('#end-button').innerText = '나머지는 자동 구매';
+    $('#lotto-issue-end-button').innerText = '나머지는 자동 구매';
   }
 };
 
