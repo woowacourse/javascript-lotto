@@ -1,4 +1,3 @@
-
 import { onModalShow } from "../utils.js";
 import { $modal } from "../elements.js";
 import {
@@ -28,8 +27,8 @@ export default class LottoController {
   }
 
   countMatchedNumbers(lottoNumber, resultNumber) {
-    const matchedNumbers = lottoNumber.filter((num) => 
-      resultNumber.indexOf(num) !== -1
+    const matchedNumbers = lottoNumber.filter(
+      (num) => resultNumber.indexOf(num) !== -1
     );
 
     return matchedNumbers.length;
