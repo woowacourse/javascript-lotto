@@ -1,3 +1,7 @@
+.border-test-layout {
+  border: 1px solid black;
+}
+
 /* Border Width */
 .border-0 {
   border-width: 0px;

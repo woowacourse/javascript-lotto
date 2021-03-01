@@ -1,24 +1,53 @@
 import { shuffle } from "../utils.js";
+import { LOTTO_PRICE } from "./constants/lotto_constants.js";
 
 export default class LottoModel {
   constructor() {
-    this.lottoList = []; // [ { number: [0, ] } ]
+    this.lottoTickets = null;
     this.price = 0;
+    this.numOfLottoes = 0;
   }
 
-  createLotto() {
-    const baseNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+  init(price) {
+    this.lottoTickets = []; //[ { number: [0, ] } ]
+    this.price = price;
+    this.numOfLottoes = price / LOTTO_PRICE;
+  }
 
+  getAutoSelectedNumbers(fixedNumbers, requiredLength) {
+    if (requiredLength === 0) {
+      return [];
+    }
+
+    const baseNumbers = Array.from({ length: 45 }, (_, i) => i + 1).filter(
+      (num) => !fixedNumbers.includes(num)
+    );
     shuffle(baseNumbers);
 
-    return {
-      number: baseNumbers.slice(0, 6).sort((a, b) => a - b),
-    };
+    return baseNumbers.slice(0, requiredLength).sort((a, b) => a - b);
   }
 
-  buy(price) {
-    const numOfLottoes = price / 1000;
-    this.price = price;
-    this.lottoList = [...Array(numOfLottoes)].map(() => this.createLotto());
+  createLottoTicket(fixedNumbers) {
+    console.log(fixedNumbers);
+    console.log(fixedNumbers.length);
+    const autoSelectedNumbers = this.getAutoSelectedNumbers(
+      fixedNumbers,
+      6 - fixedNumbers.length
+    );
+    this.lottoTickets.push({
+      number: [...fixedNumbers, ...autoSelectedNumbers],
+    });
+  }
+
+  buy(purchaseFormElements) {
+    [...Array(this.numOfLottoes)].forEach((_, index) => {
+      const fixedNumbers = Array.from(
+        purchaseFormElements[`lotto-number-${index}`]
+      )
+        .map(($input) => Number($input.value))
+        .filter((value) => value !== 0);
+
+      this.createLottoTicket(fixedNumbers);
+    });
   }
 }

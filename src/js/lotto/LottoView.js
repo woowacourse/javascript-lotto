@@ -1,5 +1,5 @@
 import { showElement, hideElement } from "../utils.js";
-import { RANKINGS, PRIZE_TABLE } from "./constants/prizeTable.js";
+import { RANKINGS, PRIZE_TABLE } from "./constants/lotto_constants.js";
 import {
   $confirmation,
   $lottoListLabel,
@@ -10,10 +10,31 @@ import {
   $earningRate,
   $winningNumberInputs,
   $bonusNumberInput,
+  $purchaseForm,
+  $lottoNumbersInput,
 } from "../elements.js";
 
 export default class LottoView {
   constructor() {}
+
+  showPurchaseForm(numOfLottoes) {
+    showElement($purchaseForm);
+    $lottoNumbersInput.innerHTML = [...Array(numOfLottoes)]
+      .map((_, index) => {
+        return `
+        <li class="mt-3 mb-4">
+          ${`<input 
+              type="number" 
+              min="1" 
+              max="45" 
+              name="lotto-number-${index}"
+              class="winning-number mx-1 text-center"
+            />`.repeat(6)}
+        </li>
+      `;
+      })
+      .join("");
+  }
 
   showTickets(num) {
     $lottoTickets.innerHTML = '<span class="mx-1 text-4xl">🎟️ </span>'.repeat(
@@ -65,8 +86,12 @@ export default class LottoView {
     $earningRate.innerText = `당신의 총 수익률은 ${earningRate}%입니다.`;
   }
 
-  resetLottoView() {
+  resetPurchaseForm() {
     $priceInput.value = "";
+    hideElement($purchaseForm);
+  }
+
+  resetLottoView() {
     $bonusNumberInput.value = "";
     $winningNumberInputs.forEach(($input) => ($input.value = ""));
     hideElement($confirmation);

@@ -5,6 +5,7 @@ import {
   $priceSubmitForm,
   $winningNumberForm,
   $restartButton,
+  $purchaseForm,
 } from "../elements.js";
 import { onModalClose } from "../utils.js";
 import LottoController from "./LottoController.js";
@@ -18,7 +19,12 @@ export default class Lotto {
     e.preventDefault();
     const price = e.target.elements["price-input"].value;
 
-    this.lottoController.purchase(price);
+    this.lottoController.initLottoPurchase(price);
+  }
+
+  onPurchase(e) {
+    e.preventDefault();
+    this.lottoController.purchase(e.target.elements);
   }
 
   onToggleLottoNumbers(e) {
@@ -42,19 +48,17 @@ export default class Lotto {
 
   init() {
     $priceSubmitForm.addEventListener("submit", this.onSubmitPrice.bind(this));
-
+    $purchaseForm.addEventListener("submit", this.onPurchase.bind(this));
     $lottoNumbersToggleButton.addEventListener(
       "change",
       this.onToggleLottoNumbers.bind(this)
     );
 
+    $restartButton.addEventListener("click", this.onRestart.bind(this));
+    $modalClose.addEventListener("click", () => onModalClose($modal));
     $winningNumberForm.addEventListener(
       "submit",
       this.onSubmitResultNumber.bind(this)
     );
-
-    $restartButton.addEventListener("click", this.onRestart.bind(this));
-
-    $modalClose.addEventListener("click", () => onModalClose($modal));
   }
 }
