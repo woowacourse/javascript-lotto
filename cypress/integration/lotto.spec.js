@@ -5,7 +5,6 @@ import { LOTTO_SETTINGS } from '../../src/js/utils/constants/settings.js';
 import { DOM_CLASSES } from '../../src/js/utils/constants/dom.js';
 import { getRandomNumber } from '../../src/js/utils/util.js';
 
-//TODO 종속적인 요소들 밖으로 빼기
 const COMMON_MONEY_INPUT = 5000;
 const COMMON_MANUAL_AMOUNT = 2;
 const ZERO_AMOUNT_INPUT = 0;
@@ -114,6 +113,7 @@ context('로또 UI 테스트', () => {
       cy.on('window:alert', alertStub);
 
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, ERROR_INPUT.CANT_BUY_AMOUNT_MANUAL);
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, ERROR_INPUT.CANT_BUT_AMOUNT_AUTO);
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`).then(() => {
@@ -134,6 +134,7 @@ context('로또 UI 테스트', () => {
   describe('수동 로또 번호 선택 부분', () => {
     it('수동으로 구매하는 각 로또 내에서 번호의 중복이 있어서는 안된다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_MANUAL_AMOUNT);
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);

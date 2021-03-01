@@ -130,7 +130,6 @@ export default class LottoController {
           [...ticketElement.getElementsByClassName(DOM_CLASSES.MANUAL_SELECT_INPUT)]
             .map((inputElement) =>
               Number(inputElement.value)));
-
     const isBundleDuplicated = numbersBundle.some((numbers) => isNumbersDuplicated(numbers));
     if (isBundleDuplicated) {
       alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
@@ -170,12 +169,9 @@ export default class LottoController {
 
   _getEarningRate() {
     const moneySpent = this._lottosBundle.length * LOTTO_SETTINGS.LOTTO_PRICE;
-    let earning = 0;
-
-    for (let rank of Object.keys(this._winnings)) {
-      earning +=
-        this._winnings[rank] * this._getPrizeMoneyForRank(rank);
-    }
+    const earning = Object.keys(this._winnings).reduce((acc, rank) =>
+      acc + this._winnings[rank] * this._getPrizeMoneyForRank(rank)
+      , 0);
     return Math.round(((earning - moneySpent) / moneySpent) * 100);
   }
 
@@ -204,7 +200,6 @@ export default class LottoController {
         winningCount,
         bonusCount
       } = this._countEqualNumbers(winningNumbers, bonusNumber, myNumbers);
-
       const rank = this._getRank(winningCount, bonusCount);
       if (rank === RANK.NONE) {
         return;

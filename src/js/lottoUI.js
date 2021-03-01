@@ -73,7 +73,6 @@ export default class LottoUI {
   }
 
   _getTemplateManualSelects(amount) {
-    //TODO: form tag의 aria-label 동작하는지 확인해야함
     const templates = new Array(amount).fill(0).map((template, lottoIdx) =>
       `<span class= "mx-1 text-4xl mt-2 ${DOM_CLASSES.CSS_LOTTO_TICKET}">
         🎟️
@@ -279,6 +278,7 @@ export default class LottoUI {
   hideModal() {
     $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
   }
+
   disablePreviousForm(event) {
     const buttons = event.target.getElementsByTagName('button');
     const inputElements = event.target.getElementsByTagName('input');
