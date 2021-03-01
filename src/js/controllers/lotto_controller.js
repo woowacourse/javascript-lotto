@@ -1,12 +1,9 @@
-import { getBuyInput } from "../components/buy.js"
+import Buy from "../components/buy.js"
 import { getTicketsCount } from "../components/pocket.js"
 import { getAnswerInput } from "../components/winning.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
-import {
-  checkLottoNumberValid,
-  checkPriceValid,
-} from "../validators/validator.js"
+import { checkLottoNumberValid } from "../validators/validator.js"
 import { getManualInput } from "../components/manual.js"
 
 class LottoController {
@@ -16,6 +13,7 @@ class LottoController {
   }
 
   init() {
+    this.buy = new Buy()
     this.model.init()
     this.view.init()
     this.#handlePrice()
@@ -28,11 +26,8 @@ class LottoController {
   }
 
   #manageBuyMethod() {
-    const price = getBuyInput()
-    const errorMessage = checkPriceValid(price)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
+    const price = this.buy.manageBuyInput()
+    if (!price) return
 
     const amount = getTicketsCount(price)
     this.model.issueLottos(amount)
