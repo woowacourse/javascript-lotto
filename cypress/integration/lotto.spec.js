@@ -85,7 +85,7 @@ describe("ui-play", () => {
   })
 
   it("금액을 입력하고 버튼을 클릭하면 수동 구매 영역이 보여진다", () => {
-    submitAutoBuy(5000)
+    submitManualBuy(5000)
     cy.get("#buy-method").children().should("exist")
     cy.get(SELECTOR.POCKET_SECTION).children().should("not.exist")
     cy.get(SELECTOR.WINNING_SECTION).children().should("not.exist")
@@ -94,7 +94,7 @@ describe("ui-play", () => {
   it("금액을 입력하고 버튼을 클릭하면 구매가능한 로또 개수가 보여진다", () => {
     submitManualBuy(5000)
     cy.get("#buy-method .available").then((number) => {
-      expect(number.text()).to.equal(5)
+      expect(number.text()).to.equal("5")
     })
   })
 
@@ -102,7 +102,7 @@ describe("ui-play", () => {
     submitManualBuy(5000)
     submitManualLotto([1, 2, 3, 4, 5, 6])
     cy.get("#buy-method .available").then((number) => {
-      expect(number.text()).to.equal(4)
+      expect(number.text()).to.equal("4")
     })
   })
 
@@ -133,8 +133,8 @@ describe("ui-play", () => {
     const manualNumbers = [1, 2, 3, 4, 5, 6]
     submitManualLotto(manualNumbers)
     cy.get("#buy-method").children().should("not.exist")
-    cy.get(SELECTOR.POCKET_SECTION).children().should("not.exist")
-    cy.get(SELECTOR.WINNING_SECTION).children().should("not.exist")
+    cy.get(SELECTOR.POCKET_SECTION).children().should("exist")
+    cy.get(SELECTOR.WINNING_SECTION).children().should("exist")
   })
 
   it("금액을 입력하고 확인 버튼, 나머지 자동구매 버튼을 클릭하면 수동 구매 영역 감춰지고 구매 내역 영역과 당첨 번호 확인 영역이 보여진다", () => {
@@ -242,7 +242,7 @@ describe("ui-exception", () => {
 
   describe("ui-buy-exception", () => {
     it("금액에 소수점을 입력했을때 alert가 발생한다", () => {
-      submitAutoBuy(432.13)
+      submitManualBuy(432.13)
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
@@ -251,7 +251,7 @@ describe("ui-exception", () => {
     })
 
     it("금액에 음수를 입력했을때 alert가 발생한다", () => {
-      submitAutoBuy(-1000)
+      submitManualBuy(-1000)
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
@@ -260,7 +260,7 @@ describe("ui-exception", () => {
     })
 
     it("금액에 1000원 미만을 입력했을때 alert가 발생한다", () => {
-      submitAutoBuy(500)
+      submitManualBuy(500)
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
@@ -276,7 +276,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        "수동 구매 번호를 전부 입력해주세요."
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_EMPTY
       )
     })
 
@@ -286,7 +286,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        "중복된 번호로 구입하실 수 없습니다."
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_DUPLICATED
       )
     })
 
@@ -296,7 +296,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        "1이상 45이하의 숫자에서만 구입이 가능합니다."
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_OUT_RANGE
       )
     })
 
@@ -306,7 +306,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        "번호는 반드시 자연수여야 합니다."
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_FLOAT
       )
     })
   })
@@ -318,7 +318,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        ERROR_MESSAGE.ANSWER_CANNOT_BE_EMPTY
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_EMPTY
       )
     })
 
@@ -328,7 +328,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        ERROR_MESSAGE.ANSWER_CANNOT_BE_DUPLICATED
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_DUPLICATED
       )
     })
 
@@ -338,7 +338,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        ERROR_MESSAGE.ANSWER_CANNOT_BE_OUT_RANGE
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_OUT_RANGE
       )
     })
 
@@ -348,7 +348,7 @@ describe("ui-exception", () => {
       cw.should(
         `@${ALERT_STUB}`,
         "be.calledWith",
-        ERROR_MESSAGE.ANSWER_CANNOT_BE_FLOAT
+        ERROR_MESSAGE.LOTTO_CANNOT_BE_FLOAT
       )
     })
   })
