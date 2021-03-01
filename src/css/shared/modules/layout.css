@@ -32,6 +32,10 @@
   display: none;
 }
 
+.v-hidden {
+  visibility: hidden;
+}
+
 /* Layout - Top / Right / Bottom / Left */
 
 .mt-2 {
