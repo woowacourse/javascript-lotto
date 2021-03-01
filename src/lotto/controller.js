@@ -115,6 +115,12 @@ export default class LottoController {
   #onManualPurchase(e) {
     e.preventDefault();
     const lottoNumbers = getAllNumbers($$lottoNumberInputs);
+    const userGuideMessage = message.getAllNumberValidation(lottoNumbers);
+    if (userGuideMessage) {
+      this.#lottoView.showMessage(userGuideMessage);
+      return;
+    }    
+
     this.#lottoView.purchaseSection.lottoNumberInputsInit();
     this.#purchaseManualLottoItem(lottoNumbers);
     e.target.elements['first-lotto-number'].focus();
@@ -129,6 +135,12 @@ export default class LottoController {
   #onResultModalOpen(e) {
     e.preventDefault();
     const correctNumbers = getAllNumbers($$correctNumberInputs);
+    const userGuideMessage = message.getAllNumberValidation(correctNumbers);
+    if (userGuideMessage) {
+      this.#lottoView.showMessage(userGuideMessage);
+      return;
+    }
+
     this.#assignResult(correctNumbers);
     this.#showWinningResult();
   }
