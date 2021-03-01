@@ -24,6 +24,15 @@ context('Actions', () => {
     });
     cy.get('#manual-submit').click();
     cy.get('.issued-ticket').should('have.length', 1);
+  });
+
+  it('발급 시, 발급 가능한 티켓 수량을 차감한다.', () => {
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('button[name=payment-button]').click();
+    cy.get('.js-manual-input').each((element, idx) => {
+      cy.wrap(element).type(idx + 1);
+    });
+    cy.get('#manual-submit').click();
     cy.get('#issuable-ticket-amount').should('have.text', 4);
   });
 
