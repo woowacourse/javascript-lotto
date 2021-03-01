@@ -8,31 +8,33 @@
   </head>
   <body>
     <main id="app" class="p-3">
+      <h1 class="text-center">🎱 행운의 로또</h1>
       <div class="d-flex justify-center mt-5">
-        <section class="w-100">
-          <h1 class="text-center">🎱 행운의 로또</h1>
+        <div class="w-100">
           <form id="input-price-form" class="mt-5">
-            <label for="input-price" class="mb-2 d-inline-block">
-              구입할 금액을 입력해주세요.
-            </label>
-            <div class="d-flex">
-              <input
-                type="number"
-                id="input-price"
-                class="w-100 mr-2 pl-2"
-                name="price"
-                placeholder="구입 금액"
-                required
-                min="1000"
-                max="100000"
-              />
-              <button type="submit" id="input-price-btn" class="btn btn-cyan">
-                확인
-              </button>
-            </div>
+              <h2 class="text-center">💵 로또 구입하기 💵</h2>
+              <label for="input-price" class="mb-2 d-inline-block">
+                구입할 금액을 입력해주세요.
+              </label>
+              <div class="d-flex">
+                <input
+                  type="number"
+                  id="input-price"
+                  class="w-100 mr-2 pl-2"
+                  name="price"
+                  placeholder="구입 금액"
+                  required
+                  min="1000"
+                  max="100000"
+                />
+                <button type="submit" id="input-price-btn" class="btn btn-cyan">
+                  확인
+                </button>
+              </div>
           </form>
 
           <section id="purchased-lottos" class="mt-9">
+            <h2 class="text-center">🎰 구매결과 🎰</h2>
             <div class="d-flex">
               <label class="flex-auto my-0"
                 >총 <span id="total-purchased">5</span>개를
@@ -53,12 +55,13 @@
           </section>
 
           <form class="mt-9" id="input-lotto-nums">
-            <label class="flex-auto d-inline-block mb-3"
+              <h2 class="text-center">📝 당첨번호 입력 📝</h2>
+              <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
             <div class="d-flex">
               <div>
-                <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
+                <h3 class="mt-0 mb-3 text-center">당첨 번호</h3>
                 <div>
                   <input
                     type="number"
@@ -117,7 +120,7 @@
                 </div>
               </div>
               <div class="bonus-number-container flex-grow">
-                <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
+                <h3 class="mt-0 mb-3 text-center">보너스 번호</h3>
                 <div class="d-flex justify-center">
                   <input
                     type="number"
@@ -139,10 +142,10 @@
               결과 확인하기
             </button>
           </form>
-        </section>
+        </div>
       </div>
 
-      <div class="modal">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="title-dialog">
         <div class="modal-inner p-10">
           <div class="modal-close">
             <svg viewbox="0 0 40 40">
@@ -150,7 +153,7 @@
             </svg>
           </div>
 
-          <h2 class="text-center">🏆 당첨 통계 🏆</h2>
+          <h2 id="title-dialog" class="text-center" >🏆 당첨 통계 🏆</h2>
           <div class="d-flex justify-center">
             <table class="result-table border-collapse border border-black">
               <thead>
