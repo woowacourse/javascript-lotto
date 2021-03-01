@@ -56,6 +56,13 @@ export default class PurchaseOptionInput {
     newPaper.$checkMessage = $manualSelectPaper.querySelector('.manual-select-check-message');
     newPaper.$quantitySelect = $manualSelectPaper.querySelector('.quantity-select');
     $manualSelectPaper.addEventListener('change', this.onChangePaper.bind(this));
+    $manualSelectPaper.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        const target = e.target.parentNode.querySelector('input');
+        target.checked = true;
+        this.onChangePaper({ target, currentTarget: e.currentTarget });
+      }
+    });
     this.updateQuantitySelect();
   }
 

@@ -1,12 +1,14 @@
 import { LOTTO_PAPER_CHECK_MESSAGE } from '../constants/display.js';
 import { LOTTO_NUMBERS_LENGTH } from '../constants/lottoRules.js';
 
+let tabIndex = 0;
+
 const getSelectPaperItemHTML = (number) => {
   return `
   <li>
     <label>
       <input type="checkbox" value=${number} aria-label="select${number}" />
-      <span>${number}</span>
+      <span tabIndex=${tabIndex++}>${number}</span>
     </label>
   </li>
   `;
@@ -23,7 +25,7 @@ export const getSelectPaperHTML = ({ issueNum }) => {
   <div class="manual-select-paper mt-3 d-flex flex-col" data-issue-num=${issueNum}>
     <div class="quantity-applier mb-5 d-flex items-end">
       <label class="mr-2 text-sm">적용수량</label>
-      <select class="quantity-select">
+      <select class="quantity-select" tabIndex=${tabIndex++}>
       </select>
     </div>
     <ul class="select-number-list m-0 p-0">
