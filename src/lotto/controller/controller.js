@@ -14,12 +14,12 @@ import validation from '../validation/validation.js';
 import lottoGameView from '../view/view.js';
 import { lottoGame } from '../../store.js';
 import { getCorrectNumbers } from '../view/domReader.js';
-import { MESSAGE, VALID_CHECK_RESULT } from '../../constants.js';
+import { MESSAGE, VALIDATION } from '../../constants.js';
 
 const onCostAdd = () => {
   const cost = Number($depositInput.value);
   const userGuideMessage = validation.getCostCheckResult(cost);
-  if (userGuideMessage !== VALID_CHECK_RESULT) {
+  if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
     connector.guideUserInput(userGuideMessage);
     return;
   }
@@ -48,7 +48,7 @@ const onCostAddByEnterKey = (e) => {
 const onResultModalOpen = () => {
   const correctNumbers = getCorrectNumbers();
   const userGuideMessage = validation.getModalOpenCheckResult(correctNumbers);
-  if (userGuideMessage !== VALID_CHECK_RESULT) {
+  if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
     connector.guideUserInput(userGuideMessage);
     return;
   }
@@ -61,7 +61,7 @@ const onResultModalClose = () => {
 
 const onCorrectNumberInput = (e) => {
   const userGuideMessage = validation.getCorrectNumberCheckResult(getCorrectNumbers());
-  if (userGuideMessage !== VALID_CHECK_RESULT) {
+  if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
     connector.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
       e.target.focus();

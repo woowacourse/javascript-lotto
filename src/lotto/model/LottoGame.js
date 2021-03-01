@@ -121,7 +121,6 @@ export default class LottoGame {
     return winCount;
   }
 
-
   #addLottoItem() {
     const lottoNumberList = this.#getLottoNumberList();
     this.#lottoItemList.push({
@@ -131,5 +130,4 @@ export default class LottoGame {
     });
   }
 
-  
 }
