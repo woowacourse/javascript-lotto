@@ -14,6 +14,7 @@ export default class LottoController {
   }
 
   _initState() {
+    this._firstTimeOpeningModal = true;
     this._lottos = [];
     this._winnings = {
       first: 0,
@@ -105,7 +106,9 @@ export default class LottoController {
       return;
     }
 
-    this._calculateWinnings(winningNumbers, bonusNumber);
+    if (this._firstTimeOpeningModal) {
+      this._calculateWinnings(winningNumbers, bonusNumber);
+    }
     this.lottoUI.showModal();
     this.lottoUI.renderWinningResult(this._winnings, this._getEarningRate());
   }
@@ -126,6 +129,7 @@ export default class LottoController {
       if (rank) {
         this._winnings[rank]++;
       }
+      this._firstTimeOpeningModal = false;
     });
   }
 
