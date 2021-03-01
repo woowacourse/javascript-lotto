@@ -1,6 +1,15 @@
-import { $correctNumberInputForm } from '../../elements.js';
+import {
+  $$correctNumberInputs,
+  $correctNumberInputForm,
+} from '../../elements.js';
 
 const winningSection = {
+  correctNumberInputsInit() {
+    $$correctNumberInputs.forEach(
+      ($correctNumber) => ($correctNumber.value = ''),
+    );
+  },
+
   displayCorrectNumberInputForm() {
     $correctNumberInputForm.classList.remove('hide');
   },

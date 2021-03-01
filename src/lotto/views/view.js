@@ -15,13 +15,12 @@ export default class View {
   }
 
   init() {
-    this.costSection.init();
+    this.costSection.costInputInit();
+    this.costSection.activateButton();
     this.modalSection.closeResultModal();
     this.resultSection.hidePurchaseResult();
     this.winningSection.hideCorrectNumberInputForm();
-    $$correctNumberInputs.forEach(
-      ($correctNumberInput) => ($correctNumberInput.value = ''),
-    );
+    this.winningSection.correctNumberInputsInit();
   }
 
   showMessage(message) {

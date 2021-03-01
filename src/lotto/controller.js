@@ -77,7 +77,7 @@ export default class LottoController {
     const userGuideMessage = message.getCostValidation(cost);
     if (userGuideMessage) {
       this.#lottoView.showMessage(userGuideMessage);
-      this.#lottoView.costSection.init();
+      this.#lottoView.costSection.costInputInit();
       return;
     }
 

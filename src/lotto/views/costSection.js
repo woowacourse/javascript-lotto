@@ -1,9 +1,8 @@
 import { $costInput, $costSubmitButton } from '../../elements.js';
 
 const costSection = {
-  init() {
+  costInputInit() {
     $costInput.value = '';
-    costSection.activateButton();
   },
 
   activateButton() {
