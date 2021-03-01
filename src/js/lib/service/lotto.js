@@ -1,10 +1,10 @@
-import { TICKET_PRICE } from '../constants/lotto.js';
 import createRandomNumber from '../utils/random.js';
 import {
   TICKET_NUMBER_AMOUNT,
   TICKET_MIN_NUMBER,
   TICKET_MAX_NUMBER,
   TICKET_PRIZE,
+  TICKET_PRICE,
 } from '../constants/lotto.js';
 
 const getTicketNumber = () => {

@@ -1,4 +1,3 @@
-import { lotto } from '../state/lotto.js';
 import { $, enableForm } from '../utils/dom.js';
 import { updateLottoIssueModalView } from './lottoIssueModal.js';
 import { updateTicketListView } from './ticketList.js';

@@ -1,6 +1,5 @@
 import { DUPLICATE_NUMBER_MESSAGE } from '../lib/constants/alertMessage.js';
 import { lotto } from '../lib/state/lotto.js';
-import { disableForm } from '../lib/utils/dom.js';
 import { hasDuplicateInArray } from '../lib/utils/validation.js';
 import { updateLottoIssueModalView } from '../lib/viewController/lottoIssueModal.js';
 
@@ -32,9 +31,7 @@ const manualIssueHandler = event => {
   lotto.addTickets(newTicket);
   lotto.decreaseIssuableTicketAmount();
   updateLottoIssueModalView();
-  if (!lotto.issuableTicketAmount) {
-    disableForm(event.target);
-  }
+  event.target.reset();
 };
 
 export default manualIssueHandler;

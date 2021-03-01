@@ -4,7 +4,7 @@ import { $ } from '../lib/utils/dom.js';
 import { closeModal, showDOMElement } from '../lib/viewController/app.js';
 import { updateTicketListView } from '../lib/viewController/ticketList.js';
 
-const lottoIssueEndHandler = event => {
+const lottoIssueEndHandler = () => {
   if (lotto.issuableTicketAmount) {
     const newTickets = createTickets(lotto.issuableTicketAmount);
     lotto.addTickets(...newTickets);
