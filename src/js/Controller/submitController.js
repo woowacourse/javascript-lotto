@@ -56,7 +56,7 @@ const handlePurchaseAmountSubmit = (event) => {
     return;
   }
 
-  $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
+  // $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
 
   balance.setBalance(money);
   renderBalance(balance.balance);
@@ -153,8 +153,9 @@ const handleResultSubmit = (event) => {
   }
 
   setNumbers(inputWinningNumbers, inputBonusNumber);
-  const matchingCounts = setWinningResult(ticketBundle.ticketBundle);
-  renderWinningResult(matchingCounts);
+  const initialBalance = balance.initialBalance;
+  const winningDatas = makeWinningDatas(initialBalance);
+  renderWinningResult(winningDatas);
 };
 
 const setNumbers = (winningNumbers, bonusNumber) => {
@@ -162,6 +163,13 @@ const setNumbers = (winningNumbers, bonusNumber) => {
   winningResult.setBonusNumber(bonusNumber);
 };
 
+const makeWinningDatas = (initialBalance) => {
+  const matchingCounts = setWinningResult(ticketBundle.ticketBundle);
+  const totalPrize = getTotalPrize();
+  const earningRate = ((totalPrize - initialBalance) / initialBalance) * 100;
+
+  return { matchingCounts, earningRate };
+};
 export const getTotalPrize = () => {
   return winningResult.calculateTotalPrize();
 };
@@ -173,8 +181,8 @@ const setWinningResult = (ticketBundle) => {
   return matchingCounts;
 };
 
-const renderWinningResult = (matchingCounts) => {
-  printWinningResult(matchingCounts);
+const renderWinningResult = (winningDatas) => {
+  printWinningResult(winningDatas);
   showModal();
 };
 

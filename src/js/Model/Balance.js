@@ -2,10 +2,12 @@ import { STANDARD_NUMBER } from "../Util/constants.js";
 
 class Balance {
   constructor() {
+    this.initialBalance = 0;
     this.balance = 0;
   }
 
   setBalance(money) {
+    this.initialBalance = money;
     this.balance = money;
 
     return this.balance;
