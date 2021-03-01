@@ -22,11 +22,6 @@ class LottoDetailContainer extends Container {
     return state.lottos;
   }
 
-  toggleDetailMode(force) {
-    this.$lottoIconWrapper.toggle("flex-col", force);
-    this.$lottoDetailContainer.toggle("detail", force);
-  }
-
   render() {
     if (!this.hasChanged()) return;
 
@@ -37,6 +32,11 @@ class LottoDetailContainer extends Container {
     });
 
     this.updateValue();
+  }
+
+  toggleDetailMode(force) {
+    this.$lottoIconWrapper.toggle("flex-col", force);
+    this.$lottoDetailContainer.toggle("detail", force);
   }
 }
 

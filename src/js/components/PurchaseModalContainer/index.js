@@ -37,6 +37,70 @@ class PurchaseModalContainer extends Container {
     this.lottoCount = 0;
   }
 
+  select() {
+    const state = store.getState();
+    return {
+      isPurchasing: state.isPurchasing,
+      cash: state.cash,
+    };
+  }
+
+  render() {
+    const { isPurchasing, cash } = this.select();
+
+    if (!isPurchasing) return;
+
+    this.lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
+    this.Presentational.render(this.lottoCount);
+  }
+
+  createLottosAfterValidation(event) {
+    event.preventDefault();
+
+    try {
+      const lottos = [];
+      [...Array(this.lottoCount)].forEach((_, index) => {
+        const purchaseLottos = $$(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTO));
+        const purchaseLottoToggleButton = $(
+          toDAS(JS_SELECTOR.PURCHASE_MODAL.TOGGLE),
+          {
+            $parent: purchaseLottos[index],
+          }
+        );
+        const purchaseLottoInputs = $$(
+          toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT),
+          { $parent: purchaseLottos[index] }
+        );
+
+        if (purchaseLottoToggleButton.checked) {
+          lottos.push(new Lotto(generateLottoNumbers()));
+        } else {
+          const lottoNumbers = this.toNumbers(purchaseLottoInputs);
+          this.validate(lottoNumbers);
+          lottos.push(new Lotto(lottoNumbers));
+        }
+      });
+
+      store.dispatch({
+        type: ACTION_TYPE.LOTTOS.ADDED,
+        payload: lottos,
+      });
+    } catch (error) {
+      if (
+        error instanceof EmptyInputError ||
+        error instanceof ValidationError
+      ) {
+        alert(error.message);
+        return;
+      }
+
+      throw error;
+    }
+
+    this.$lottos.innerHTML = "";
+    this.closeModal();
+  }
+
   toNumbers($$inputs) {
     const inputs = [...$$inputs];
 
@@ -77,6 +141,10 @@ class PurchaseModalContainer extends Container {
     }
   }
 
+  closeModal() {
+    this.$container.classList.remove(CLASSNAME.MODAL.OPEN);
+  }
+
   togglePurchaseLottoMode({ target }) {
     if (target.dataset.jsSelector !== JS_SELECTOR.PURCHASE_MODAL.TOGGLE) {
       return;
@@ -100,69 +168,6 @@ class PurchaseModalContainer extends Container {
     });
   }
 
-  createLottosAfterValidation(event) {
-    event.preventDefault();
-
-    try {
-      const lottos = [];
-      [...Array(this.lottoCount)].forEach((_, index) => {
-        const purchaseLottos = $$(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTO));
-        const purchaseLottoToggleButton = $(
-          toDAS(JS_SELECTOR.PURCHASE_MODAL.TOGGLE),
-          {
-            $parent: purchaseLottos[index],
-          }
-        );
-        const purchaseLottoInputs = $$(
-          toDAS(JS_SELECTOR.PURCHASE_MODAL.INPUT),
-          { $parent: purchaseLottos[index] }
-        );
-        if (purchaseLottoToggleButton.checked) {
-          lottos.push(new Lotto(generateLottoNumbers()));
-        } else {
-          const lottoNumbers = this.toNumbers(purchaseLottoInputs);
-          this.validate(lottoNumbers);
-          lottos.push(new Lotto(lottoNumbers));
-        }
-      });
-
-      store.dispatch({
-        type: ACTION_TYPE.LOTTOS.ADDED,
-        payload: lottos,
-      });
-    } catch (error) {
-      if (
-        error instanceof EmptyInputError ||
-        error instanceof ValidationError
-      ) {
-        alert(error.message);
-        return;
-      }
-
-      throw error;
-    }
-
-    this.$lottos.innerHTML = "";
-    this.closeModal();
-  }
-
-  select() {
-    const state = store.getState();
-    return {
-      isPurchasing: state.isPurchasing,
-      cash: state.cash,
-    };
-  }
-
-  render() {
-    const { isPurchasing, cash } = this.select();
-
-    if (!isPurchasing) return;
-
-    this.lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
-    this.Presentational.render(this.lottoCount);
-  }
-
   cancelPurchase() {
     this.$lottos.innerHTML = "";
 
@@ -171,10 +176,6 @@ class PurchaseModalContainer extends Container {
     });
 
     this.closeModal();
-  }
-
-  closeModal() {
-    this.$container.classList.remove(CLASSNAME.MODAL.OPEN);
   }
 }
 

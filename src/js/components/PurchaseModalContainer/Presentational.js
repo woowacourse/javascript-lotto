@@ -14,6 +14,25 @@ class PurchaseModalPresentational extends Presentational {
     this.$close = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CLOSE));
   }
 
+  setEventListener({
+    eventListeners: {
+      createLottosAfterValidation,
+      togglePurchaseLottoMode,
+      cancelPurchase,
+    },
+  }) {
+    this.$form.addEventListener("submit", createLottosAfterValidation);
+    this.$form.addEventListener("change", togglePurchaseLottoMode);
+    this.$close.addEventListener("click", cancelPurchase);
+  }
+
+  render(lottoCount) {
+    [...Array(lottoCount)].forEach((_, index) => {
+      this.$lottos.innerHTML += this.TEMPLATE(index);
+    });
+    this.$container.classList.add(CLASSNAME.MODAL.OPEN);
+  }
+
   TEMPLATE(index) {
     return `
     <div class="d-flex items-center" data-js-selector="purchase-modal-container__lotto">
@@ -98,25 +117,6 @@ class PurchaseModalPresentational extends Presentational {
       </div>
     </div>
   `;
-  }
-
-  render(lottoCount) {
-    [...Array(lottoCount)].forEach((_, index) => {
-      this.$lottos.innerHTML += this.TEMPLATE(index);
-    });
-    this.$container.classList.add(CLASSNAME.MODAL.OPEN);
-  }
-
-  setEventListener({
-    eventListeners: {
-      createLottosAfterValidation,
-      togglePurchaseLottoMode,
-      cancelPurchase,
-    },
-  }) {
-    this.$form.addEventListener("submit", createLottosAfterValidation);
-    this.$form.addEventListener("change", togglePurchaseLottoMode);
-    this.$close.addEventListener("click", cancelPurchase);
   }
 }
 

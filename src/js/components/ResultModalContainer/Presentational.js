@@ -19,12 +19,9 @@ class ResultModalPresentational extends Presentational {
     ];
   }
 
-  TEMPLATE(profitRate) {
-    return `당신의 총 수익률은 ${profitRate.toLocaleString("en-US", {
-      style: "percent",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}입니다.`;
+  setEventListener({ eventListeners: { closeModal, restart } }) {
+    this.$close.addEventListener("click", closeModal);
+    this.$restartButton.addEventListener("click", restart);
   }
 
   render({ isCleared, winningCounts, profitRate }) {
@@ -41,9 +38,12 @@ class ResultModalPresentational extends Presentational {
     this.$container.classList.add(CLASSNAME.MODAL.OPEN);
   }
 
-  setEventListener({ eventListeners: { closeModal, restart } }) {
-    this.$close.addEventListener("click", closeModal);
-    this.$restartButton.addEventListener("click", restart);
+  TEMPLATE(profitRate) {
+    return `당신의 총 수익률은 ${profitRate.toLocaleString("en-US", {
+      style: "percent",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}입니다.`;
   }
 }
 

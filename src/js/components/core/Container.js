@@ -12,12 +12,16 @@ class Container {
     throw new Error("initalize() must be implemented.");
   }
 
+  subscribe() {
+    store.subscribe(this.render.bind(this));
+  }
+
   select() {
     throw new Error("select() must be implemented.");
   }
 
-  updateValue() {
-    this.previousValue = this.currentValue;
+  render() {
+    throw new Error("render() must be implemented.");
   }
 
   hasChanged() {
@@ -25,12 +29,8 @@ class Container {
     return this.previousValue !== this.currentValue;
   }
 
-  subscribe() {
-    store.subscribe(this.render.bind(this));
-  }
-
-  render() {
-    throw new Error("render() must be implemented.");
+  updateValue() {
+    this.previousValue = this.currentValue;
   }
 }
 

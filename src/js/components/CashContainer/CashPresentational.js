@@ -12,13 +12,13 @@ class CashPresentational extends Presentational {
     this.$cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
   }
 
+  setEventListener({ eventListeners: { createLottosAfterValidation } }) {
+    this.$cashContainer.addEventListener("submit", createLottosAfterValidation);
+  }
+
   render() {
     this.$cashInput.clear();
     this.$cashInput.focus();
-  }
-
-  setEventListener({ eventListeners: { createLottosAfterValidation } }) {
-    this.$cashContainer.addEventListener("submit", createLottosAfterValidation);
   }
 }
 

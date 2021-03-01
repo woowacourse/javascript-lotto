@@ -18,23 +18,10 @@ class LottoDetailPresentational extends Presentational {
     this.$toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
   }
 
-  TEMPLATE(lotto) {
-    return `
-    <div class="d-flex items-center">
-      <span
-        class="mx-1 text-4xl"
-        data-js-selector=${JS_SELECTOR.LOTTO_DETAIL.ICON}
-        >🎟️
-      </span>
-      <span 
-        class="lotto-numbers"
-        data-js-selector=${JS_SELECTOR.LOTTO_DETAIL.NUMBERS}
-      >${lotto.numbers
-        .map((number) => number.toString().padStart(2, 0))
-        .join(", ")}
-      </span>
-    </div>
-  `;
+  setEventListener({ eventListeners: { toggleDetailMode } }) {
+    this.$toggleButton.addEventListener("change", (event) => {
+      toggleDetailMode(event.target.checked);
+    });
   }
 
   render({ lottos, isLottoCleared, toggleDetailMode }) {
@@ -54,10 +41,23 @@ class LottoDetailPresentational extends Presentational {
     this.$lottoDetailContainer.show();
   }
 
-  setEventListener({ eventListeners: { toggleDetailMode } }) {
-    this.$toggleButton.addEventListener("change", (event) => {
-      toggleDetailMode(event.target.checked);
-    });
+  TEMPLATE(lotto) {
+    return `
+    <div class="d-flex items-center">
+      <span
+        class="mx-1 text-4xl"
+        data-js-selector=${JS_SELECTOR.LOTTO_DETAIL.ICON}
+        >🎟️
+      </span>
+      <span 
+        class="lotto-numbers"
+        data-js-selector=${JS_SELECTOR.LOTTO_DETAIL.NUMBERS}
+      >${lotto.numbers
+        .map((number) => number.toString().padStart(2, 0))
+        .join(", ")}
+      </span>
+    </div>
+  `;
   }
 }
 

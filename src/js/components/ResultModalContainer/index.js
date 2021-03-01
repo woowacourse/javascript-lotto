@@ -33,6 +33,51 @@ class ResultModalContainer extends Container {
     };
   }
 
+  select() {
+    const state = store.getState();
+    return {
+      lottos: state.lottos,
+      winningNumber: state.winningNumber,
+    };
+  }
+
+  render() {
+    if (!this.hasChanged()) return;
+
+    const { lottos, winningNumber } = this.currentValue;
+    const isCleared = lottos.length === 0 && winningNumber.numbers.length === 0;
+
+    if (isCleared) {
+      this.Presentational.render({ isCleared: true });
+      return;
+    }
+
+    const winningCounts = this.produceWinningCount(lottos, winningNumber);
+    const profitRate = this.calculateProfitRate(lottos, winningCounts);
+    this.Presentational.render({ isCleared: false, winningCounts, profitRate });
+    this.updateValue();
+  }
+
+  hasChanged() {
+    this.currentValue = this.select();
+    const { winningNumber: previousWinningNumber } = this.previousValue;
+    const { winningNumber: currentWinningNumber } = this.currentValue;
+
+    return previousWinningNumber !== currentWinningNumber;
+  }
+
+  produceWinningCount(lottos, winningNumber) {
+    const winningCount = Array(this.WINNING_MONEY_UNITS.length).fill(0);
+
+    lottos.forEach((lotto) => {
+      winningCount[
+        this.toWinningCountIndex(this.getMatch(lotto, winningNumber))
+      ]++;
+    });
+
+    return winningCount;
+  }
+
   toWinningCountIndex(match) {
     if (this.isRanked.First(match)) return 0;
     if (this.isRanked.Second(match)) return 1;
@@ -62,51 +107,6 @@ class ResultModalContainer extends Container {
     );
 
     return totalWinningMoney / (lottos.length * Lotto.UNIT_PRICE) - 1;
-  }
-
-  produceWinningCount(lottos, winningNumber) {
-    const winningCount = Array(this.WINNING_MONEY_UNITS.length).fill(0);
-
-    lottos.forEach((lotto) => {
-      winningCount[
-        this.toWinningCountIndex(this.getMatch(lotto, winningNumber))
-      ]++;
-    });
-
-    return winningCount;
-  }
-
-  select() {
-    const state = store.getState();
-    return {
-      lottos: state.lottos,
-      winningNumber: state.winningNumber,
-    };
-  }
-
-  hasChanged() {
-    this.currentValue = this.select();
-    const { winningNumber: previousWinningNumber } = this.previousValue;
-    const { winningNumber: currentWinningNumber } = this.currentValue;
-
-    return previousWinningNumber !== currentWinningNumber;
-  }
-
-  render() {
-    if (!this.hasChanged()) return;
-
-    const { lottos, winningNumber } = this.currentValue;
-    const isCleared = lottos.length === 0 && winningNumber.numbers.length === 0;
-
-    if (isCleared) {
-      this.Presentational.render({ isCleared: true });
-      return;
-    }
-
-    const winningCounts = this.produceWinningCount(lottos, winningNumber);
-    const profitRate = this.calculateProfitRate(lottos, winningCounts);
-    this.Presentational.render({ isCleared: false, winningCounts, profitRate });
-    this.updateValue();
   }
 
   restart() {

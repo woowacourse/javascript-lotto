@@ -25,20 +25,16 @@ class CashContainer extends Container {
     this.$cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
   }
 
-  toNumber(cashInputValue) {
-    if (cashInputValue === "") {
-      throw new EmptyInputError(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
-    }
-
-    return Number(cashInputValue);
+  select() {
+    const state = store.getState();
+    return state.lottos;
   }
 
-  validate(cash) {
-    if (cash < Lotto.UNIT_PRICE) {
-      throw new ValidationError(
-        ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE
-      );
-    }
+  render() {
+    if (!this.hasChanged()) return;
+
+    this.Presentational.render();
+    this.updateValue();
   }
 
   createLottosAfterValidation(event) {
@@ -70,16 +66,20 @@ class CashContainer extends Container {
     }
   }
 
-  select() {
-    const state = store.getState();
-    return state.lottos;
+  toNumber(cashInputValue) {
+    if (cashInputValue === "") {
+      throw new EmptyInputError(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
+    }
+
+    return Number(cashInputValue);
   }
 
-  render() {
-    if (!this.hasChanged()) return;
-
-    this.Presentational.render();
-    this.updateValue();
+  validate(cash) {
+    if (cash < Lotto.UNIT_PRICE) {
+      throw new ValidationError(
+        ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE
+      );
+    }
   }
 }
 

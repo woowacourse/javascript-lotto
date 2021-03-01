@@ -27,6 +27,53 @@ class WinningNumberContainer extends Container {
     this.$bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
   }
 
+  select() {
+    const state = store.getState();
+    return state.lottos;
+  }
+
+  render() {
+    if (!this.hasChanged()) return;
+
+    this.Presentational.render({
+      isLottoInitialAdded: this.previousValue.length === 0,
+      isLottoCleared: this.currentValue.length === 0,
+    });
+
+    this.updateValue();
+  }
+
+  getWinningNumberWithValidation(event) {
+    event.preventDefault();
+
+    try {
+      const [numbers, bonusNumber] = this.toNumbers(
+        this.$$inputs,
+        this.$bonusInput
+      );
+
+      this.validate(numbers, bonusNumber);
+
+      store.dispatch({
+        type: ACTION_TYPE.WINNING_NUMBERS.SET,
+        payload: {
+          numbers,
+          bonusNumber,
+        },
+      });
+    } catch (error) {
+      if (
+        error instanceof EmptyInputError ||
+        error instanceof ValidationError
+      ) {
+        alert(error.message);
+        return;
+      }
+
+      throw error;
+    }
+  }
+
   toNumbers($$inputs, $bonusInput) {
     const inputs = [...$$inputs];
 
@@ -66,54 +113,6 @@ class WinningNumberContainer extends Container {
         ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.OUT_OF_RANGE
       );
     }
-  }
-
-  getWinningNumberWithValidation(event) {
-    event.preventDefault();
-
-    try {
-      const [numbers, bonusNumber] = this.toNumbers(
-        this.$$inputs,
-        this.$bonusInput
-      );
-
-      this.validate(numbers, bonusNumber);
-
-      store.dispatch({
-        type: ACTION_TYPE.WINNING_NUMBERS.SET,
-        payload: {
-          numbers,
-          bonusNumber,
-        },
-      });
-    } catch (error) {
-      if (
-        error instanceof EmptyInputError ||
-        error instanceof ValidationError
-      ) {
-        alert(error.message);
-        return;
-      }
-
-      throw error;
-    }
-  }
-
-  select() {
-    const state = store.getState();
-    return state.lottos;
-  }
-  // this.currentLottos = select(store.getState());
-
-  render() {
-    if (!this.hasChanged()) return;
-
-    this.Presentational.render({
-      isLottoInitialAdded: this.previousValue.length === 0,
-      isLottoCleared: this.currentValue.length === 0,
-    });
-
-    this.updateValue();
   }
 }
 

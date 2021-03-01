@@ -22,10 +22,8 @@ class WinningNumberPresentational extends Presentational {
     });
   }
 
-  clear() {
-    this.$$inputs.forEach(($input) => $input.clear());
-    this.$bonusInput.clear();
-    this.$container.hide();
+  setEventListener({ eventListeners: { getWinningNumberWithValidation } }) {
+    this.$container.addEventListener("submit", getWinningNumberWithValidation);
   }
 
   render({ isLottoInitialAdded, isLottoCleared }) {
@@ -40,8 +38,10 @@ class WinningNumberPresentational extends Presentational {
     }
   }
 
-  setEventListener({ eventListeners: { getWinningNumberWithValidation } }) {
-    this.$container.addEventListener("submit", getWinningNumberWithValidation);
+  clear() {
+    this.$$inputs.forEach(($input) => $input.clear());
+    this.$bonusInput.clear();
+    this.$container.hide();
   }
 }
 
