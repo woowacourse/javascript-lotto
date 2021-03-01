@@ -33,7 +33,7 @@ export default class PaymentForm extends Component {
       return;
     }
 
-    this.props.insert(money);
+    this.props.handleInsertion(money);
     disable(this.$input, this.$button);
     $(`[data-lotto-number='0']`).focus();
   }

@@ -1,5 +1,5 @@
 import { Component, State } from '../shared/models/index.js';
-import { PaymentForm, PurchasingForm, LottoDetail } from './components/index.js';
+import { PaymentForm, PurchasingForm, LottoDetail, ResultForm } from './components/index.js';
 import LottoMachine from './models/LottoMachine.js';
 import { $ } from '../shared/utils/DOM.js';
 import { UNIT_AMOUNT } from './utils/constants.js';
@@ -9,6 +9,8 @@ export default class App extends Component {
     this.state = new State({
       money: 0,
       tickets: [],
+      rankCount: [0, 0, 0, 0, 0], //인덱스 = 순위, value = 당첨 개수.
+      earningRate: 0,
     });
   }
 
@@ -19,13 +21,13 @@ export default class App extends Component {
     this.$resultSection = $('#result-section');
   }
 
-  insert(money) {
+  handleInsertion(money) {
     this.state.setState({ money });
     this.$purchasingSection.style.display = 'block';
     this.$lottoDetailSection.style.display = 'block';
   }
 
-  purchase(...purchasedTickets) {
+  handlePurchasing(...purchasedTickets) {
     const { money, tickets } = this.state.getState();
     const newMoney = money - UNIT_AMOUNT * purchasedTickets.length;
     const newTickets = [...tickets, ...purchasedTickets];
@@ -35,6 +37,14 @@ export default class App extends Component {
     if (newMoney === 0) {
       this.$resultSection.style.display = 'block';
     }
+  }
+
+  handleResult(winningNumbers) {
+    const { tickets } = this.state.getState();
+    const { rankCount, earningRate } = new ProfitCalculator(winningNumbers, tickets);
+
+    this.state.setState({ rankCount, earningRate });
+    this.$modal.classList.add('open');
   }
 
   mountTemplate() {
@@ -52,15 +62,19 @@ export default class App extends Component {
 
   mountChildComponents() {
     new PaymentForm(this.$paymentSection, {
-      insert: this.insert.bind(this),
+      handleInsertion: this.handleInsertion.bind(this),
     });
     new PurchasingForm(this.$purchasingSection, {
       state: this.state,
       machine: new LottoMachine(),
-      purchase: this.purchase.bind(this),
+      handlePurchasing: this.handlePurchasing.bind(this),
     });
     new LottoDetail(this.$lottoDetailSection, {
       state: this.state,
+    });
+    new ResultForm(this.$resultSection, {
+      state: this.state,
+      handleResult: this.handleResult.bind(this),
     });
   }
 }
