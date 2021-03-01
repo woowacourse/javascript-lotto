@@ -51,9 +51,13 @@ export default class WinningResultView extends View {
 
   moveFocus($element, idx) {
     if ($element.value.length === 2) {
-      if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
+      if (this.isLastWinningNumber(idx)) return;
       $$('.winning-number')[idx + 1].focus();
     }
+  }
+
+  isLastWinningNumber(winningIdx) {
+    return winningIdx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1;
   }
 
   handleShowResult(e) {

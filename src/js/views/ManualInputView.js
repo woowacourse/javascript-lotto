@@ -74,14 +74,13 @@ export default class ManualInputView extends View {
 
   moveFocus($element) {
     if ($element.value.length === 2) {
-      if (
-        Number($element.dataset.manualIndex) ===
-        LOTTO_NUMBERS.LOTTO_MANUAL_COUNT - 1
-      ) {
-        return;
-      }
+      if (this.isLastManualNumber($element.dataset.manualIndex)) return;
       $element.nextElementSibling.focus();
     }
+  }
+
+  isLastManualNumber(manualIndex) {
+    return Number(manualIndex) === LOTTO_NUMBERS.LOTTO_MANUAL_COUNT - 1;
   }
 
   confirmManualLottos(lotto, ticketNumber) {
