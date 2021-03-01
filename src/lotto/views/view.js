@@ -1,4 +1,3 @@
-import { $costInput, $$correctNumberInputs } from '../../elements.js';
 import costSection from './costSection.js';
 import purchaseSection from './purchaseSection.js';
 import resultSection from './resultSection.js';
