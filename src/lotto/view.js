@@ -71,7 +71,6 @@ const view = {
       lottoItemList.length,
     );
     $purchaseItemList.innerHTML = getResultItemListTemplate(lottoItemList);
-    view.displayCorrectNumberInputForm();
   },
 
   hidePurchaseResult() {

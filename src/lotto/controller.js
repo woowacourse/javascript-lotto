@@ -70,6 +70,7 @@ export default class LottoController {
       this.#lottoView.hideRemainLottoNumberCount();
       this.#lottoView.hideAutoCountForm();
       this.#lottoView.hideManualLottoNumbersForm();
+      this.#lottoView.displayCorrectNumberInputForm();
     }
   }
 
