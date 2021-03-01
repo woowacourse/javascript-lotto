@@ -1,9 +1,8 @@
 import Buy from "../components/buy.js"
 import Manual from "../components/manual.js"
-import { getAnswerInput } from "../components/answer.js"
+import Answer from "../components/answer.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
-import { checkLottoNumberValid } from "../validators/validator.js"
 
 class LottoController {
   constructor(model, view) {
@@ -14,6 +13,7 @@ class LottoController {
   init() {
     this.buy = new Buy()
     this.manual = new Manual()
+    this.answer = new Answer()
     this.model.init()
     this.view.init()
     this.#handlePrice()
@@ -63,12 +63,8 @@ class LottoController {
   }
 
   #manageModalOpen() {
-    const answer = getAnswerInput()
-    const lottos = [...answer.numbers, answer.bonus]
-    const errorMessage = checkLottoNumberValid(lottos)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
+    const answer = this.answer.manageAnswerInput()
+    if (!answer) return
 
     this.model.calculateLottosResult(answer)
     this.view.renderModalSection(this.model.lottoResult, this.model.profitRate)
