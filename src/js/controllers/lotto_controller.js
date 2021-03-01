@@ -32,9 +32,8 @@ class LottoController {
     }
 
     const amount = getTicketsCount(price)
-
     this.model.generateLottos(amount)
-    this.view.renderBuyMethodSection(amount)
+    this.view.renderBuyMethodSection(this.model.lottos)
     this.view.resetPocketSection()
     this.view.resetWinningSection()
     this.#handleManual()
@@ -46,7 +45,7 @@ class LottoController {
     // TODO : 유효성 검사
 
     this.model.generateManualLotto(manualNumbers)
-    this.view.renderManualNumbers(this.model.lottos)
+    this.view.renderBuyMethodSection(this.model.lottos)
     if (this.model.amount === 0) {
       this.#managePocket()
     }

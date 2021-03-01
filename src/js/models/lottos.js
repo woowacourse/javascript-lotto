@@ -32,6 +32,10 @@ class LottosModel {
     return this.#lottos
   }
 
+  get amount() {
+    return this.#amount
+  }
+
   set amount(newAmount) {
     this.#amount = newAmount
   }

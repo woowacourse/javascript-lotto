@@ -90,7 +90,11 @@ class LottoGameModel {
   }
 
   get lottos() {
-    return this.#lottos.lottos
+    return this.#lottos
+  }
+
+  get amount() {
+    return this.#lottos.amount
   }
 
   get lottoResult() {

@@ -18,11 +18,11 @@ export const buySectionTemplate = () => {
     `
 }
 
-export const buyMethodSectionTemplate = (amount) => {
+export const buyMethodSectionTemplate = (lottos) => {
   return `
   <form class="mt-5 mb-3">
     <label class="mb-2 d-inline-block">
-      현재 구매가능 개수 : <span class="available">${amount}</span>
+      현재 구매가능 개수 : <span class="available">${lottos.amount}</span>
     </label>
     <div class="d-flex buy-manual">
       <div id="manual-numbers">
@@ -38,24 +38,20 @@ export const buyMethodSectionTemplate = (amount) => {
       </button>
     </div>
   </form>
-  <div id="manual"></div>
+  <div id="manual">
+  <hr />
+  <h4 class="d-flex justify-center">구매한 수동 번호</h4>
+  <p class="d-flex justify-center">1 3 36 8 10 45</p>
+  ${lottos.lottos
+    .map((lotto) => {
+      return `<p class="d-flex justify-center">${lotto.numbers.join(" ")}</p>`
+    })
+    .join("")}
+  </div>
   <button id="auto-button" type="button" class="btn btn-cyan">
     나머지 자동 구매
   </button>
   `
-}
-
-export const manualPreviewTemplate = (lottos) => {
-  return `
-    <hr />
-    <h4 class="d-flex justify-center">구매한 수동 번호</h4>
-    <p class="d-flex justify-center">1 3 36 8 10 45</p>
-    ${lottos
-      .map((lotto) => {
-        return `<p class="d-flex justify-center">${lotto.numbers.join(" ")}</p>`
-      })
-      .join("")}
-    `
 }
 
 export const pocketSectionTemplate = (lottos) => {
