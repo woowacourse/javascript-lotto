@@ -34,26 +34,26 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
   });
 
   it("유저가 구매한 로또 정보에 대한 수익률이 결과모달에 표시된다", () => {
-    let totalWinningMoney = 0;
-    cy.get(".modal .result-table > tbody tr")
-      .each(($tr) => {
-        cy.wrap($tr)
-          .children(toDAS(JS_SELECTOR.MODAL.WINNING_MONEY_UNIT))
-          .invoke("text")
-          .then((winningMoneyUnitText) => {
-            cy.wrap($tr)
-              .children(toDAS(JS_SELECTOR.MODAL.WINNING_COUNT))
-              .invoke("text")
-              .then((winningCountText) => {
-                const winningCount = Number(winningCountText.slice(0, -1));
-                const winningMoneyUnit = Number(
-                  winningMoneyUnitText.replace(/,/g, "")
-                );
-                totalWinningMoney += winningCount * winningMoneyUnit;
-              });
-          });
+    let winningCounts = [];
+    let winningMoneyUnits = [];
+    cy.get(toDAS(JS_SELECTOR.MODAL.WINNING_MONEY_UNIT))
+      .each(($winningMoneyUnit) => {
+        winningMoneyUnits.push(
+          Number($winningMoneyUnit.text().trim().replace(/,/g, ""))
+        );
       })
       .then(() => {
+        cy.get(toDAS(JS_SELECTOR.MODAL.WINNING_COUNT)).each(($winningCount) => {
+          winningCounts.push(Number($winningCount.text().trim().slice(0, -1)));
+        });
+      })
+      .then(() => {
+        const totalWinningMoney = Array.from({
+          length: winningMoneyUnits.length,
+        }).reduce((total, _, index) => {
+          return total + winningCounts[index] * winningMoneyUnits[index];
+        }, 0);
+
         const investment = userInput - (userInput % Lotto.UNIT_PRICE);
         const profitRate = totalWinningMoney / investment - 1;
         const profitRateParagraph = `당신의 총 수익률은 ${profitRate.toLocaleString(
