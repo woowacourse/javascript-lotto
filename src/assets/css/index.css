@@ -14,19 +14,32 @@ body {
   margin: 0 auto;
 }
 
-.user-lotto-number {
+.purchase__input {
   width: 30px;
   height: 36px;
 }
 
-.winning-number {
+.correct-number__input {
   width: 30px;
   height: 36px;
 }
 
-.bonus-number {
+.correct-number__input--bonus {
   width: 30px;
   height: 36px;
+}
+
+.result__item-list--numbers-removed .lotto-numbers {
+  display: none;
+}
+
+.result__item-list--numbers-added .lotto-numbers {
+  display: initial;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
 }
 
 .lotto-icon {
@@ -36,19 +49,6 @@ body {
   padding-bottom: 4px;
 }
 
-#purchase-item-list.lotto-numbers-removed .lotto-numbers {
-  display: none;
-}
-
-#purchase-item-list.lotto-numbers-added .lotto-numbers {
-  display: '';
-}
-
-.lotto-item {
-  display: flex;
-  align-items: center;
-}
-
 .lotto-numbers {
   margin-left: 10px;
   font-size: 16px;
@@ -56,6 +56,6 @@ body {
   color: rgba(0, 0, 0, 0.85);
 }
 
-#auto-purchase-button {
+#auto-purchase__button {
   width: 165px;
 }

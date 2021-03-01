@@ -1,7 +1,7 @@
-.block-added {
-  display: none;
+.d-block {
+  display: block;
 }
 
-.removed {
+.d-none {
   display: none;
 }

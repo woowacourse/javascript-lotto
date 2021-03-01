@@ -1,11 +1,11 @@
 import {
-  $resultModalOpenButton,
-  $costAddButton,
-  $purchaseForm,
-  $lottoNumbersToggleButton,
-  $costInput,
-  $modalClose,
-  $correctNumberWrapper,
+  $modalOpenButton,
+  $depositAddButton,
+  $deposit,
+  $resultNumbersToggleButton,
+  $depositInput,
+  $modalCloseButton,
+  $correctNumberInputWrapper,
   $restartButton,
   $autoPurchaseButton
 } from '../../elements.js';
@@ -17,7 +17,7 @@ import { getCorrectNumbers } from '../view/domReader.js';
 import { MESSAGE, VALID_CHECK_RESULT } from '../../constants.js';
 
 const onCostAdd = () => {
-  const cost = Number($costInput.value);
+  const cost = Number($depositInput.value);
   const userGuideMessage = validation.getCostCheckResult(cost);
   if (userGuideMessage !== VALID_CHECK_RESULT) {
     connector.guideUserInput(userGuideMessage);
@@ -75,13 +75,13 @@ const onRestart = () => {
 
 const controller = {
   bindLottoGameEvents() {
-    $purchaseForm.addEventListener('submit', onCostAddByEnterKey);
-    $costAddButton.addEventListener('click', onCostAdd);
+    $deposit.addEventListener('submit', onCostAddByEnterKey);
+    $depositAddButton.addEventListener('click', onCostAdd);
     $autoPurchaseButton.addEventListener('click', onAutoPurchase);
-    $lottoNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
-    $modalClose.addEventListener('click', onResultModalClose);
-    $resultModalOpenButton.addEventListener('click', onResultModalOpen);
-    $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
+    $resultNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
+    $modalCloseButton.addEventListener('click', onResultModalClose);
+    $modalOpenButton.addEventListener('click', onResultModalOpen);
+    $correctNumberInputWrapper.addEventListener('focusout', onCorrectNumberInput);
     $restartButton.addEventListener('click', onRestart);
   },
 };

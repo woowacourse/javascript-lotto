@@ -27,7 +27,7 @@
   position: relative;
 }
 
-#modal-close {
+#modal__close-button {
   margin: 20px;
   width: 20px;
   position: absolute;
