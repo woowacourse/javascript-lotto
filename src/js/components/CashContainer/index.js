@@ -1,33 +1,22 @@
-import {
-  ACTION_TYPE,
-  ALERT_MESSAGE,
-  JS_SELECTOR,
-} from "../../constants/index.js";
-import {
-  $,
-  toDataAttributeSelector as toDAS,
-  generateLottoNumbers,
-} from "../../utils/index.js";
+import { ACTION_TYPE, JS_SELECTOR } from "../../constants/index.js";
+import { toNumber, generateLottoNumbers } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
-import { EmptyInputError, ValidationError } from "../../errors/index.js";
+import {
+  CustomError,
+  NotAnIntegerError,
+  OutOfRangeError,
+} from "../../errors/index.js";
 import Presentational from "./Presentational.js";
 
 const createContainer = () => {
-
-  const toNumber = (cashInputValue) => {
-    if (cashInputValue === "") {
-      throw new EmptyInputError(ALERT_MESSAGE.ERROR.CASH_INPUT.NOT_A_NUMBER);
+  const validateCash = (cash) => {
+    if (!Number.isInteger(cash)) {
+      throw new NotAnIntegerError(cash);
     }
 
-    return Number(cashInputValue);
-  };
-
-  const validate = (cash) => {
     if (cash < Lotto.UNIT_PRICE) {
-      throw new ValidationError(
-        ALERT_MESSAGE.ERROR.CASH_INPUT.UNDER_LOTTO_PRICE
-      );
+      throw new OutOfRangeError(cash, { min: Lotto.UNIT_PRICE });
     }
   };
 
@@ -44,20 +33,15 @@ const createContainer = () => {
 
     try {
       const cash = toNumber($cashInput.value);
-      validate(cash);
+      validateCash(cash);
 
       store.dispatch({
         type: ACTION_TYPE.LOTTOS.ADDED,
         payload: createLottos(cash),
       });
     } catch (error) {
-      if (
-        error instanceof EmptyInputError ||
-        error instanceof ValidationError
-      ) {
-        alert(error.message);
-        $cashInput.clear();
-        $cashInput.focus();
+      if (error instanceof CustomError) {
+        Presentational.notifyError(error);
         return;
       }
 
