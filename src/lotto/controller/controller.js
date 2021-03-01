@@ -7,13 +7,15 @@ import {
   $modalCloseButton,
   $correctNumberInputWrapper,
   $restartButton,
-  $autoPurchaseButton
+  $autoPurchaseButton,
+  $purchaseInputWrapper,
+  $purchaseButton
 } from '../../elements.js';
 import connector from './connector.js';
 import validation from '../validation/validation.js';
 import lottoGameView from '../view/view.js';
 import { lottoGame } from '../../store.js';
-import { getCorrectNumbers } from '../view/domReader.js';
+import { getCorrectNumbers, getCustomLottoNumbers } from '../view/domReader.js';
 import { MESSAGE, VALIDATION } from '../../constants.js';
 
 const onCostAdd = () => {
@@ -27,13 +29,27 @@ const onCostAdd = () => {
   lottoGameView.emptyCostInput();
 };
 
+const canBuyLotto = () => {
+  return lottoGame.getAffordableLottoItemCount() >= 1
+}
+
 const onAutoPurchase = () => {
-  if (lottoGame.getAffordableLottoItemCount() < 1) {
+  if (!canBuyLotto()) {
     lottoGameView.showMessage(MESSAGE.NOT_ENOUGH_MONEY);
     return;
   }
-  connector.purchaseLottoItems(lottoGame.Deposit);
-  lottoGameView.initToggleButton();
+
+  connector.purchaseAsManyLottos();
+}
+
+const onPurchase = () => {
+  if (!canBuyLotto()) {
+    lottoGameView.showMessage(MESSAGE.NOT_ENOUGH_MONEY);
+    return;
+  }
+
+  const lottoNumberList = getCustomLottoNumbers();
+  connector.purchaseOneLotto(lottoNumberList);
 }
 
 const onShowLottoNumbersToggle = (e) => {
@@ -59,8 +75,18 @@ const onResultModalClose = () => {
   lottoGameView.hideResultModal();
 };
 
+const onCustomLottoNumberInput = (e) => {
+  const userGuideMessage = validation.getInputNumbersCheckResult(getCustomLottoNumbers());
+  if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
+    connector.guideUserInput(userGuideMessage, () => {
+      e.target.value = '';
+      e.target.focus();
+    });
+  }
+}
+
 const onCorrectNumberInput = (e) => {
-  const userGuideMessage = validation.getCorrectNumberCheckResult(getCorrectNumbers());
+  const userGuideMessage = validation.getInputNumbersCheckResult(getCorrectNumbers());
   if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
     connector.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
@@ -78,6 +104,8 @@ const controller = {
     $deposit.addEventListener('submit', onCostAddByEnterKey);
     $depositAddButton.addEventListener('click', onCostAdd);
     $autoPurchaseButton.addEventListener('click', onAutoPurchase);
+    $purchaseButton.addEventListener('click', onPurchase);
+    $purchaseInputWrapper.addEventListener('focusout', onCustomLottoNumberInput);
     $resultNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
     $modalCloseButton.addEventListener('click', onResultModalClose);
     $modalOpenButton.addEventListener('click', onResultModalOpen);

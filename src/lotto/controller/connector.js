@@ -5,9 +5,16 @@ import lottoGameView from '../view/view.js';
 import { GAME, LOTTO } from '../../constants.js';
 
 const service = {
-  purchaseLottoItems() {
+  purchaseOneLotto(lottoNumberList) {
+    lottoGame.addLottoItem(lottoNumberList);
+    lottoGame.spendOneLottoMoney();
+    lottoGameView.showPurchaseResult(lottoGame.LottoItemList);
+    lottoGameView.showDeposit(lottoGame.Deposit);
+  },
+
+  purchaseAsManyLottos() {
     lottoGame.addLottoItems(lottoGame.getAffordableLottoItemCount());
-    lottoGame.spendDeposit();
+    lottoGame.spendAsManyMoney();
     lottoGameView.showPurchaseResult(lottoGame.LottoItemList);
     lottoGameView.showDeposit(lottoGame.Deposit);
   },

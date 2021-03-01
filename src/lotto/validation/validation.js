@@ -14,11 +14,11 @@ const guide = {
     return '';
   },
 
-  getCorrectNumberCheckResult(correctNumbers) {
-    if (validator.isDuplicatedNumberExist(correctNumbers)) {
+  getInputNumbersCheckResult(InputNumbers) {
+    if (validator.isDuplicatedNumberExist(InputNumbers)) {
       return MESSAGE.DUPLICATED_NUMBER_EXIST_MESSAGE;
     }
-    if (validator.isNumberOutOfRangeExist(correctNumbers)) {
+    if (validator.isNumberOutOfRangeExist(InputNumbers)) {
       return MESSAGE.NUMBER_RANGE_EXCEEDED_MESSAGE;
     }
 

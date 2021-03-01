@@ -39,8 +39,18 @@ export default class LottoGame {
     this.#lottoItemList = [];
   }
 
+  addLottoItem(lottoNumberList) {
+    if (!Array.isArray(lottoNumberList) || lottoNumberList.length !== LOTTO.NUMBER_LIST_LENGTH) return;
+    
+    this.#lottoItemList.push({
+      lottoNumberList,
+      matchCount: 0,
+      bonusNumberMatched: false,
+    });
+  }
+
   addLottoItems = (lottoItemCount) => {
-    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
+    [...Array(lottoItemCount)].forEach(() => this.#addRandomLottoItem());
   }
 
   saveDeposit = (money) => {
@@ -49,7 +59,11 @@ export default class LottoGame {
     this.#deposit += money;
   }
 
-  spendDeposit = () => {
+  spendOneLottoMoney = () => {
+    this.#deposit -= LOTTO.PRICE;
+  }
+
+  spendAsManyMoney = () => {
     this.#deposit = this.#deposit % LOTTO.PRICE;
   }
 
@@ -125,7 +139,7 @@ export default class LottoGame {
     return winCount;
   }
 
-  #addLottoItem() {
+  #addRandomLottoItem() {
     const lottoNumberList = this.#getLottoNumberList();
     this.#lottoItemList.push({
       lottoNumberList,

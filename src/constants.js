@@ -16,8 +16,8 @@ export const MESSAGE = Object.freeze({
   NOT_ENOUGH_MONEY: '로또를 구매할 돈이 부족합니다. 돈을 더 입금해주세요',
   SHOULD_INPUT_ALL_NUMBERS_MESSAGE:
     '모든 당첨번호를 입력해주셔야 결과를 확인할 수 있습니다.',
-  DUPLICATED_NUMBER_EXIST_MESSAGE: '당첨번호들 중 중복된 숫자가 존재합니다.',
-  NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자들만 당첨번호로 입력해주세요`,
+  DUPLICATED_NUMBER_EXIST_MESSAGE: '번호들 중 중복된 숫자가 존재합니다.',
+  NUMBER_RANGE_EXCEEDED_MESSAGE: `${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자들만 번호로 입력해주세요`,
 });
 
 export const REWARDS = Object.freeze([
@@ -62,7 +62,9 @@ export const SELECTOR = Object.freeze({
   DEPOSIT_BUTTON: '#deposit__button',
   DEPOSIT_PRESENTER: '#deposit-presenter',
   PURCHASE: '#purchase',
+  PURCHASE_BUTTON: '#purchase__button',
   PURCHASE_INPUT: '.purchase__input',
+  PURCHASE_INPUT_WRAPPER: '#purchase__input-wrapper',
   AUTO_PURCHASE_BUTTON: '#auto-purchase__button',
   RESULT: '#result',
   RESULT_TEXT: '#result__text',

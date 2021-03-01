@@ -2,7 +2,7 @@ import { getKRMoneyString } from '../../utils/format.js';
 
 export const getResultItemCountTemplate = (lottoItemCount) => {
   return `
-    총 <span id="result__item-count">${lottoItemCount}</span>개를 자동으로 구매하였습니다.
+    총 <span id="result__item-count">${lottoItemCount}</span>개를 구매하였습니다.
   `;
 };
 
