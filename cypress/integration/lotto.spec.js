@@ -8,9 +8,9 @@ import { getRandomNumber } from '../../src/js/utils/util.js';
 //TODO 종속적인 요소들 밖으로 빼기
 const COMMON_MONEY_INPUT = 5000;
 const COMMON_MANUAL_AMOUNT = 2;
+const ZERO_AMOUNT_INPUT = 0;
 const SUCCESS_INPUT = {
   AUTO_AMOUNT: 2,
-  AUTO_AMOUNT_ZERO: 0,
   MANUAL_SELECT_NUMBERS: [
     1, 2, 3, 4, 5, 6,
     7, 8, 9, 10, 11, 12
@@ -68,11 +68,24 @@ context('로또 UI 테스트', () => {
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
       testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
     })
+    it('로또 총 구입 갯수는 반드시 1개 이상이어야 한다.', () => {
+      const alertStub = cy.stub();
+      cy.on('window:alert', alertStub);
+
+      typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
+
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, ZERO_AMOUNT_INPUT);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, ZERO_AMOUNT_INPUT);
+      click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`).then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(ALERT_MESSAGES.UNDER_MIN_AMOUNT_TO_BUY);
+      });
+    });
+
     it('소비자는 수동 구매를 할 수 있어야 한다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
 
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`, COMMON_MANUAL_AMOUNT);
-      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT_ZERO);
+      type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, ZERO_AMOUNT_INPUT);
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
 
       typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, SUCCESS_INPUT.MANUAL_SELECT_NUMBERS);
