@@ -15,11 +15,8 @@
 
 ## 🔥 Projects!
 
-<p align="middle">
-  <img width="400" src="./src/images/lotto_ui_guide.png">
-</p>
-
-[데모 페이지](https://jum0.github.io/javascript-lotto/)
+![lotto-step3-image1](https://user-images.githubusercontent.com/67591151/109479580-de2f9500-7abd-11eb-893c-1d307322c038.jpg)
+![lotto-step3-image2](https://user-images.githubusercontent.com/67591151/109479597-e1c31c00-7abd-11eb-9607-d9272834dd41.jpg)
 
 ## 구현할 기능
 
