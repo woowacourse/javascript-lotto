@@ -74,7 +74,7 @@ export default class LottoController {
     }
   }
 
-  #onCostSubmit(e) {
+  #onCost(e) {
     e.preventDefault();
     const cost = Number($costInput.value);
     const userGuideMessage = message.getCostValidation(cost);
@@ -89,19 +89,19 @@ export default class LottoController {
     this.#lottoView.resetToggleButton();
   }
 
-  #onAutoPurchase() {
+  #onAutoSelect() {
     this.#lottoView.hideManualLottoNumbersForm();
     this.#lottoView.displayAutoCountForm();
     this.#lottoView.displayRemainLottoNumberCount(this.#remainLottoCount);
   }
 
-  #onManualPurchase() {
+  #onManualSelect() {
     this.#lottoView.hideAutoCountForm();
     this.#lottoView.displayManualLottoNumbersForm();
     this.#lottoView.displayRemainLottoNumberCount(this.#remainLottoCount);
   }
 
-  #onAutoCount(e) {
+  #onAutoPurchase(e) {
     e.preventDefault();
     const count = Number($autoCountInput.value);
     const userGuideMessage = message.getPurchaseAutoCountValidation(count, this.#remainLottoCount);
@@ -115,7 +115,7 @@ export default class LottoController {
     this.#purchaseAutoLottoItems(count);
   }
 
-  #onManualLotto(e) {
+  #onManualPurchase(e) {
     e.preventDefault();
     const lottoNumbers = getAllNumbers($$lottoNumberInputs);
     const userGuideMessage = message.getPurchaseManualLottoValidation(lottoNumbers);
@@ -181,11 +181,11 @@ export default class LottoController {
   }
 
   bindLottoGameEvents() {
-    $costSubmitForm.addEventListener('submit', this.#onCostSubmit.bind(this));
-    $autoPurchaseButton.addEventListener('click', this.#onAutoPurchase.bind(this));
-    $manualPurchaseButton.addEventListener('click', this.#onManualPurchase.bind(this));
-    $autoCountForm.addEventListener('submit', this.#onAutoCount.bind(this));
-    $manualLottoNumbersForm.addEventListener('submit', this.#onManualLotto.bind(this));
+    $costSubmitForm.addEventListener('submit', this.#onCost.bind(this));
+    $autoPurchaseButton.addEventListener('click', this.#onAutoSelect.bind(this));
+    $manualPurchaseButton.addEventListener('click', this.#onManualSelect.bind(this));
+    $autoCountForm.addEventListener('submit', this.#onAutoPurchase.bind(this));
+    $manualLottoNumbersForm.addEventListener('submit', this.#onManualPurchase.bind(this));
     $lottoNumbersToggleButton.addEventListener('change', this.#onShowLottoNumbersToggle.bind(this));
     $modalClose.addEventListener('click', this.#onResultModalClose.bind(this));
     $correctNumberInputForm.addEventListener('submit', this.#onResultModalOpen.bind(this));
