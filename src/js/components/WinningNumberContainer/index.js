@@ -87,7 +87,7 @@ const createContainer = () => {
   let currentLottos = select(store.getState());
 
   const render = () => {
-    let previousLottos = currentLottos;
+    const previousLottos = currentLottos;
     currentLottos = select(store.getState());
 
     const hasChanged = previousLottos !== currentLottos;
