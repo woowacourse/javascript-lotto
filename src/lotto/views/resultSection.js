@@ -21,7 +21,7 @@ const resultSection = {
   hidePurchaseResult() {
     $purchaseResult.classList.add('hide');
   },
-  
+
   displayLottoNumbers() {
     $purchaseItemList.classList.add('flex-col');
     $purchaseItemList.classList.remove('hide-lotto-numbers');

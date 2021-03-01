@@ -28,14 +28,6 @@ const validator = {
   isNumberOutOfRangeExist(numbers) {
     return numbers.some((number) => isNumberOutOfRange(number));
   },
-
-  isEmptyLottoNumberExist(numbers) {
-    return numbers.length < LOTTO.NUMBER_LIST_LENGTH;
-  },
-
-  isEmptyCorrectNumberExist(numbers) {
-    return numbers.length < LOTTO.CORRECT_NUMBER_LENGTH;
-  },
 };
 
 export default validator;
