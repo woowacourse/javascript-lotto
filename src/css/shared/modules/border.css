@@ -82,7 +82,7 @@
 .rounded-sm {
   border-radius: 0.125rem;
 }
-rounded {
+.rounded {
   border-radius: 0.25rem;
 }
 .rounded-md {
@@ -358,4 +358,12 @@ rounded {
 
 .border-black {
   border-color: black;
+}
+
+.border-blue {
+  border-color: #00bcd4;
+} 
+
+.border-solid {
+  border-style: solid;
 }

@@ -68,11 +68,15 @@ export default class LottoController {
         this.restartGame();
         return;
       }
+      if (event.target.closest(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`)) {
+        this._handleLottoCountInput();
+        return;
+      }
     });
     
     $(`#${DOM_IDS.APP}`).addEventListener('mousemove', event => {
       if (event.target.closest(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`)) {
-        this.lottoUI.renderBuyingNumberInput();
+        this._handleBuyingNumberInput();
       }
     });
   }
@@ -83,25 +87,39 @@ export default class LottoController {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
-
     // 구입 금액을 저장하고, 구입 갯수를 정하는 input form이 등장한다.
     this.lottoUI.renderBuyingInputUI(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
-
-    // this._makeLottos(moneyInput);
-    // const numbersCollection = this._lottos.map(lotto => lotto.getNumbers());
-    // this.lottoUI.renderCheckLottoUI(numbersCollection);
-    // this.lottoUI.renderResultInputUI();
-    // $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
   _makeLottos(moneyInput) {
     const lottoAmount = Math.floor(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
+    // 전체 로또 개수(lottoCount, lottoAmount)
+    // 수동 로또 개수(manualLottoCount = _handleLottoCountInput에 있음)
+    // 자동 = 전체 - 수동
 
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto();
       lotto.createNumbers();
       this._lottos.push(lotto);
     }
+  }
+
+  _handleBuyingNumberInput() {
+    const lottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max;
+    this.lottoUI.renderBuyingNumberInput(lottoCount);
+  }
+
+  _handleCheckLottoSwitch() {
+    this.lottoUI.toggleLottoNumbers();
+  }
+
+  _handleLottoCountInput() {
+    $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).disable();
+    $(`.${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT}`).disable();
+    const manualLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max 
+      - $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
+    this.lottoUI.renderManualLottos(manualLottoCount);
+    $(`.${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}`).focus();
   }
 
   _handleResultInput() {
@@ -120,10 +138,6 @@ export default class LottoController {
     }
     this.lottoUI.showModal();
     this.lottoUI.renderWinningResult(this._winnings, this._getEarningRate());
-  }
-
-  _handleCheckLottoSwitch() {
-    this.lottoUI.toggleLottoNumbers();
   }
 
   _calculateWinnings(winningNumbers, bonusNumber) {

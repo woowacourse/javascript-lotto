@@ -24,28 +24,66 @@ export default class LottoUI {
   renderBuyingInputUI(lottoCount) {
     $(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).disable();
     $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
-      <form class="${DOM_CLASSES.BUYING_FORM}" mt-9">
+      <form class="${DOM_CLASSES.BUYING_FORM} mt-4">
         <div class="my-4">
           <label class="flex-auto">자동 구매와 수동 구매 갯수를 지정해주세요.</label>
           <div class="d-flex justify-evenly">
             <label class="mb-2 d-inline-block w-100 text-center">
-              <h4 class="text-center mb-2 mt-4 ${DOM_CLASSES.BUYING_FORM_H4}"></h4>
+              <h4 class="text-center mb-2 mt-4 ${DOM_CLASSES.BUYING_FORM_COUNT_INFO}"></h4>
               <input type="range" 
                 class="text-center w-90 ${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}" 
                 step="1" 
                 min="0" 
-                max="${lottoCount}"
-                value="${lottoCount}" />
+                max="${lottoCount}" />
             </label>
           </div>
         </div>
-        <button type="submit" class="${DOM_CLASSES.RESULT_INPUT_SUBMIT} btn btn-cyan w-100">
+        <button type="submit" class="${DOM_CLASSES.BUYING_FORM_COUNT_SUBMIT} btn btn-cyan w-100">
           구매 결정하기
         </button>
       </form>
     `);
 
-    this.renderBuyingNumberInput();
+    this.renderBuyingNumberInput(lottoCount);
+  }
+
+  renderBuyingNumberInput(lottoCount) {
+    const autoLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
+    const countInfo = $(`.${DOM_CLASSES.BUYING_FORM_COUNT_INFO}`);
+    countInfo.clearChildren();
+    countInfo.insertAdjacentHTML('beforeend', `
+      ${autoLottoCount}개 자동 / ${lottoCount - autoLottoCount}개 수동
+    `);
+  }
+
+  renderManualLottos(manualLottoCount) {
+    const manualLottosHTML = `
+      <div class="d-flex flex-col 
+        border-2 border-solid border-blue rounded
+        mt-6 mb-2 w-100 pt-10 pb-14
+        text-center ${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}">
+        <h4 class="mt-0 mb-3 text-center">응모 번호 입력</h4>
+        <div>
+          ${`<input 
+            type="number" 
+            min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
+            max="${LOTTO_SETTINGS.MAX_LOTTO_NUMBER}"
+            class="winning-number mx-1 text-center 
+              ${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}" 
+            required />`.repeat(6)}
+        </div>
+      </div>
+    `.repeat(manualLottoCount);
+
+    $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
+      <form class="${DOM_CLASSES.BUYING_FORM} mt-9">
+        ${manualLottosHTML}
+        <button type="submit" 
+          class="${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT} btn btn-cyan w-100 mt-4">
+          번호 입력 완료하기
+        </button>
+      </form>
+    `);
   }
 
   renderCheckLottoUI(numbersBundle) {
@@ -190,15 +228,5 @@ export default class LottoUI {
     if (modalElement.classList.contains('open')) {
       $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
     }
-  }
-
-  renderBuyingNumberInput() {
-    const lottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).max;
-    const autoLottoCount = $(`.${DOM_CLASSES.BUYING_FORM_RANGE_INPUT}`).value;
-    const h4 = $(`.${DOM_CLASSES.BUYING_FORM_H4}`);
-    h4.clearChildren();
-    h4.insertAdjacentHTML('beforeend', `
-      ${autoLottoCount}개 자동 / ${lottoCount - autoLottoCount}개 수동
-    `);
   }
 }

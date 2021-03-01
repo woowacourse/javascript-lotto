@@ -6,8 +6,12 @@ export const DOM_CLASSES = {
 
   BUYING_INPUT_CONTAINER: 'buying-input-div',
   BUYING_FORM: 'buying-input-form',
-  BUYING_FORM_H4:'buying-input-form__h4',
+  BUYING_FORM_COUNT_INFO:'buying-input-form__count-info',
   BUYING_FORM_RANGE_INPUT: 'buying-input-form__range',
+  BUYING_FORM_COUNT_SUBMIT: 'buying-input-form__count-submit',
+  BUYING_FORM_MANUAL_PAPER: 'buying-input-form__manual-paper',
+  BUYING_FORM_MANUAL_NUMBER: 'buying-input-form__manual-number',
+  BUYING_FORM_NUMBER_SUBMIT: 'buying-input-form__number-submit',
 
   LOTTO_CONTAINER: 'lotto-div',
   LOTTO_SWITCH: 'lotto-div__switch',
