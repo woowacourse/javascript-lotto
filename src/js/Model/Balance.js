@@ -21,5 +21,3 @@ export default class Balance {
     this.balance -= autoPurchasePrice;
   }
 }
-
-// export default new Balance();

@@ -63,6 +63,7 @@ export default class SubmitController {
 
     if (!isValidMoney(money)) {
       this.clearPurchaseAmountInput();
+
       return;
     }
 
@@ -86,6 +87,7 @@ export default class SubmitController {
       )
     ) {
       clearSelfPurchaseInput();
+
       return;
     }
 
@@ -95,6 +97,7 @@ export default class SubmitController {
 
     if (!isValidNumbers(selfPurchaseLottoNumbers)) {
       clearSelfPurchaseInput();
+
       return;
     }
     const tickets = this.ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
@@ -119,11 +122,13 @@ export default class SubmitController {
 
     if (!isUnderCurrentBalance(this.balance.balance, autoPurchasePrice)) {
       clearAutoPurchaseInput();
+
       return;
     }
 
     if (!isValidMoney(autoPurchasePrice)) {
       clearAutoPurchaseInput();
+
       return;
     }
 
@@ -161,6 +166,7 @@ export default class SubmitController {
 
     if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
       clearWinningBonusNumber();
+
       return;
     }
 

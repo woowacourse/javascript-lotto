@@ -3,6 +3,8 @@ export const ELEMENT = {
   AUTO_PURCHASE_INPUT: "#auto-purchase-input",
   PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
 
+  PURCHASE_SECTION: "#purchase-section",
+
   PURCHASE_AMOUNT_SUBMIT_BUTTON: "#purchase-amount-submit-button",
   AUTO_PURCHASE_SUBMIT_BUTTON: "#auto-purchase-submit-button",
   TOGGLE_BUTTON: ".toggle-button",

@@ -32,5 +32,3 @@ export default class TicketBundle {
       .sort((a, b) => a - b);
   }
 }
-
-// export default new TicketBundle();

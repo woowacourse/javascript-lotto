@@ -20,9 +20,9 @@ export const closeModal = () => {
 };
 
 export const showPurchaseSection = () => {
-  $("#purchase-section").classList.remove(ELEMENT.HIDDEN);
+  $(ELEMENT.PURCHASE_SECTION).classList.remove(ELEMENT.HIDDEN);
 };
 
 export const hidePurchaseSection = () => {
-  $("#purchase-section").classList.add(ELEMENT.HIDDEN);
+  $(ELEMENT.PURCHASE_SECTION).classList.add(ELEMENT.HIDDEN);
 };

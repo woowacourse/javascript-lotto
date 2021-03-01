@@ -85,5 +85,3 @@ export default class WinningResult {
     return matchingCount * rankInfo[i][1];
   }
 }
-
-// export default new WinningResult();
