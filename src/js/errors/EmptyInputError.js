@@ -1,6 +1,12 @@
-export default class EmptyInputError extends TypeError {
+class EmptyInputError extends TypeError {
   constructor(message) {
     super(message);
-    this.message = message;
+    this._message = message;
+  }
+
+  get message() {
+    return this._message;
   }
 }
+
+export default EmptyInputError;

@@ -13,15 +13,31 @@ import {
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
 import { EmptyInputError, ValidationError } from "../../errors/index.js";
-import Presentational from "./Presentational.js";
+import PurchaseModalPresentational from "./Presentational.js";
+import { Container } from "../core/index.js";
 
-const createContainer = () => {
-  const $container = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER));
-  const $lottos = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTOS));
+class PurchaseModalContainer extends Container {
+  constructor() {
+    super();
+    this.Presentational = new PurchaseModalPresentational({
+      eventListeners: {
+        createLottosAfterValidation: this.createLottosAfterValidation.bind(
+          this
+        ),
+        togglePurchaseLottoMode: this.togglePurchaseLottoMode.bind(this),
+        cancelPurchase: this.cancelPurchase.bind(this),
+      },
+    });
+  }
 
-  let lottoCount = 0;
+  initalize() {
+    this.$container = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER));
+    this.$lottos = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTOS));
 
-  const toNumbers = ($$inputs) => {
+    this.lottoCount = 0;
+  }
+
+  toNumbers($$inputs) {
     const inputs = [...$$inputs];
 
     if (inputs.some(($input) => $input.isEmpty())) {
@@ -35,9 +51,9 @@ const createContainer = () => {
       .sort((a, b) => a - b);
 
     return numbers;
-  };
+  }
 
-  const validate = (numbers) => {
+  validate(numbers) {
     const numbersSet = new Set([...numbers]);
 
     if (numbersSet.size < numbers.length) {
@@ -59,9 +75,9 @@ const createContainer = () => {
         ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.OUT_OF_RANGE
       );
     }
-  };
+  }
 
-  const togglePurchaseLottoMode = ({ target }) => {
+  togglePurchaseLottoMode({ target }) {
     if (target.dataset.jsSelector !== JS_SELECTOR.PURCHASE_MODAL.TOGGLE) {
       return;
     }
@@ -82,14 +98,14 @@ const createContainer = () => {
     $$inputs.forEach(($input) => {
       $input.disabled = false;
     });
-  };
+  }
 
-  const createLottosAfterValidation = (event) => {
+  createLottosAfterValidation(event) {
     event.preventDefault();
 
     try {
       const lottos = [];
-      [...Array(lottoCount)].forEach((_, index) => {
+      [...Array(this.lottoCount)].forEach((_, index) => {
         const purchaseLottos = $$(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTO));
         const purchaseLottoToggleButton = $(
           toDAS(JS_SELECTOR.PURCHASE_MODAL.TOGGLE),
@@ -104,8 +120,8 @@ const createContainer = () => {
         if (purchaseLottoToggleButton.checked) {
           lottos.push(new Lotto(generateLottoNumbers()));
         } else {
-          const lottoNumbers = toNumbers(purchaseLottoInputs);
-          validate(lottoNumbers);
+          const lottoNumbers = this.toNumbers(purchaseLottoInputs);
+          this.validate(lottoNumbers);
           lottos.push(new Lotto(lottoNumbers));
         }
       });
@@ -126,52 +142,40 @@ const createContainer = () => {
       throw error;
     }
 
-    $lottos.innerHTML = "";
-    closeModal();
-  };
+    this.$lottos.innerHTML = "";
+    this.closeModal();
+  }
 
-  const select = (state) => ({
-    isPurchasing: state.isPurchasing,
-    cash: state.cash,
-  });
+  select() {
+    const state = store.getState();
+    return {
+      isPurchasing: state.isPurchasing,
+      cash: state.cash,
+    };
+  }
 
-  const render = () => {
-    const currentValue = select(store.getState());
-
-    const { isPurchasing, cash } = currentValue;
+  render() {
+    const { isPurchasing, cash } = this.select();
 
     if (!isPurchasing) return;
 
-    lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
-    Presentational.render(lottoCount);
-  };
+    this.lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
+    this.Presentational.render(this.lottoCount);
+  }
 
-  const cancelPurchase = () => {
-    $lottos.innerHTML = "";
+  cancelPurchase() {
+    this.$lottos.innerHTML = "";
 
     store.dispatch({
       type: ACTION_TYPE.LOTTOS.CANCEL_ADDING,
     });
 
-    closeModal();
-  };
+    this.closeModal();
+  }
 
-  const closeModal = () => {
-    $container.classList.remove(CLASSNAME.MODAL.OPEN);
-  };
+  closeModal() {
+    this.$container.classList.remove(CLASSNAME.MODAL.OPEN);
+  }
+}
 
-  const init = () => {
-    Presentational.init({
-      createLottosAfterValidation,
-      togglePurchaseLottoMode,
-      cancelPurchase,
-    });
-    store.subscribe(render);
-  };
-
-  return { init };
-};
-
-const CashContainer = createContainer();
-
-export default CashContainer;
+export default PurchaseModalContainer;

@@ -1,38 +1,21 @@
 import { CLASSNAME, JS_SELECTOR } from "../../constants/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
+import { Presentational } from "../core/index.js";
 
-const createPresentaional = () => {
-  const $container = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER));
-  const $form = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.FORM));
-  const $lottos = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTOS));
-  const $close = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CLOSE));
+class PurchaseModalPresentational extends Presentational {
+  constructor({ eventListeners }) {
+    super({ eventListeners });
+  }
 
-  const render = (lottoCount) => {
-    [...Array(lottoCount)].forEach((_, index) => {
-      $lottos.innerHTML += TEMPLATE(index);
-    });
-    $container.classList.add(CLASSNAME.MODAL.OPEN);
-  };
+  initalize() {
+    this.$container = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CONTAINER));
+    this.$form = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.FORM));
+    this.$lottos = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTOS));
+    this.$close = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CLOSE));
+  }
 
-  const init = ({
-    createLottosAfterValidation,
-    togglePurchaseLottoMode,
-    cancelPurchase,
-  }) => {
-    $form.addEventListener("submit", createLottosAfterValidation);
-    $form.addEventListener("change", togglePurchaseLottoMode);
-    $close.addEventListener("click", cancelPurchase);
-  };
-
-  return { init, render };
-};
-
-const Presentational = createPresentaional();
-
-export default Presentational;
-
-const TEMPLATE = (index) => {
-  return `
+  TEMPLATE(index) {
+    return `
     <div class="d-flex items-center" data-js-selector="purchase-modal-container__lotto">
       <span>${index + 1}.</span>
       <div class="d-flex flex-row justify-center">
@@ -115,4 +98,26 @@ const TEMPLATE = (index) => {
       </div>
     </div>
   `;
-};
+  }
+
+  render(lottoCount) {
+    [...Array(lottoCount)].forEach((_, index) => {
+      this.$lottos.innerHTML += this.TEMPLATE(index);
+    });
+    this.$container.classList.add(CLASSNAME.MODAL.OPEN);
+  }
+
+  setEventListener({
+    eventListeners: {
+      createLottosAfterValidation,
+      togglePurchaseLottoMode,
+      cancelPurchase,
+    },
+  }) {
+    this.$form.addEventListener("submit", createLottosAfterValidation);
+    this.$form.addEventListener("change", togglePurchaseLottoMode);
+    this.$close.addEventListener("click", cancelPurchase);
+  }
+}
+
+export default PurchaseModalPresentational;

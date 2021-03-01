@@ -4,14 +4,21 @@ import {
   toClassSelector as toCS,
   toDataAttributeSelector as toDAS,
 } from "../../utils/index.js";
+import { Presentational } from "../core/index.js";
 
-export const createPresentational = () => {
-  const $lottoDetailLabel = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL));
-  const $lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
-  const $lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
-  const $toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
+class LottoDetailPresentational extends Presentational {
+  constructor({ eventListeners }) {
+    super({ eventListeners });
+  }
 
-  const TEMPLATE = (lotto) => {
+  initalize() {
+    this.$lottoDetailLabel = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.LABEL));
+    this.$lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
+    this.$lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
+    this.$toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
+  }
+
+  TEMPLATE(lotto) {
     return `
     <div class="d-flex items-center">
       <span
@@ -28,34 +35,30 @@ export const createPresentational = () => {
       </span>
     </div>
   `;
-  };
+  }
 
-  const render = ({ lottos, isLottoCleared, toggleDetailMode }) => {
+  render({ lottos, isLottoCleared, toggleDetailMode }) {
     if (isLottoCleared) {
       toggleDetailMode(false);
-      $toggleButton.checked = false;
-      $lottoDetailContainer.hide();
+      this.$toggleButton.checked = false;
+      this.$lottoDetailContainer.hide();
       return;
     }
 
-    $lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
+    this.$lottoDetailLabel.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
 
-    $lottoIconWrapper.innerHTML = lottos
-      .map((lotto) => TEMPLATE(lotto))
+    this.$lottoIconWrapper.innerHTML = lottos
+      .map((lotto) => this.TEMPLATE(lotto))
       .join("");
 
-    $lottoDetailContainer.show();
-  };
+    this.$lottoDetailContainer.show();
+  }
 
-  const init = ({ toggleDetailMode }) => {
-    $toggleButton.addEventListener("change", (event) => {
+  setEventListener({ eventListeners: { toggleDetailMode } }) {
+    this.$toggleButton.addEventListener("change", (event) => {
       toggleDetailMode(event.target.checked);
     });
-  };
+  }
+}
 
-  return { init, render };
-};
-
-const Presentaional = createPresentational();
-
-export default Presentaional;
+export default LottoDetailPresentational;

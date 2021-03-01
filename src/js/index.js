@@ -6,8 +6,8 @@ import {
   ResultModal,
 } from "./components/index.js";
 
-CashContainer.init();
-PurchaseModal.init();
-LottoDetailContainer.init();
-WinningNumberContainer.init();
-ResultModal.init();
+new CashContainer();
+new PurchaseModal();
+new LottoDetailContainer();
+new WinningNumberContainer();
+new ResultModal();

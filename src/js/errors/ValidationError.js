@@ -1,6 +1,12 @@
-export default class ValidationError extends Error {
+class ValidationError extends Error {
   constructor(message) {
     super(message);
-    this.message = message;
+    this._message = message;
+  }
+
+  get message() {
+    return this._message;
   }
 }
+
+export default ValidationError;
