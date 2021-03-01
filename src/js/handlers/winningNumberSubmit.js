@@ -1,11 +1,12 @@
-import { lotto } from '../model/lotto.js';
+import { lotto } from '../lib/state/lotto.js';
 import { DUPLICATE_WINNING_NUMBER } from '../lib/constants/alertMessage.js';
-import { getProfitPercent, getWinners } from '../lib/utils/lotto.js';
+import { getProfitPercent, getWinners } from '../lib/service/lotto.js';
 import { hasDuplicate } from '../lib/utils/validation.js';
-import { showModal, updateModalView } from '../lib/utils/modal.js';
+import { showModal, updateModalView } from '../lib/viewController/modal.js';
 
 const winningNumberSubmitHandler = event => {
   event.preventDefault();
+
   const {
     first,
     second,

@@ -1,13 +1,11 @@
-import $ from './dom.js';
-
-const $modal = $('.modal');
+import $ from '../utils/dom.js';
 
 const showModal = () => {
-  $modal.classList.add('open');
+  $('.modal').classList.add('open');
 };
 
 const closeModal = () => {
-  $modal.classList.remove('open');
+  $('.modal').classList.remove('open');
 };
 
 const updateModalView = (winners, profitPercent) => {
