@@ -42,7 +42,7 @@ export default class LottoController {
   }
 
   #purchaseManualLottoItem(lottoNumbers) {
-    this.#remainLottoCount -= 1;
+    this.#remainLottoCount--;
     this.#lottoModel.addLottoItem(lottoNumbers);
     this.#lottoView.resultSection.displayPurchaseResult(this.#lottoModel.lottoItemList);
     this.#lottoView.purchaseSection.displayRemainLottoNumberCount(this.#remainLottoCount);
@@ -115,14 +115,9 @@ export default class LottoController {
   #onManualPurchase(e) {
     e.preventDefault();
     const lottoNumbers = getAllNumbers($$lottoNumberInputs);
-    const userGuideMessage = message.getPurchaseManualLottoValidation(lottoNumbers);
-    if (userGuideMessage) {
-      this.#lottoView.showMessage(userGuideMessage);
-      return;
-    }
-
     this.#lottoView.purchaseSection.lottoNumberInputsInit();
     this.#purchaseManualLottoItem(lottoNumbers);
+    e.target.elements['first-lotto-number'].focus();
   }
 
   #onShowLottoNumbersToggle(e) {
@@ -134,11 +129,6 @@ export default class LottoController {
   #onResultModalOpen(e) {
     e.preventDefault();
     const correctNumbers = getAllNumbers($$correctNumberInputs);
-    const userGuideMessage = message.getModalOpenValidation(correctNumbers);
-    if (userGuideMessage) {
-      this.#lottoView.showMessage(userGuideMessage);
-      return;
-    }
     this.#assignResult(correctNumbers);
     this.#showWinningResult();
   }

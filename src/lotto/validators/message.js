@@ -36,20 +36,6 @@ const message = {
 
     return '';
   },
-
-  getModalOpenValidation(correctNumbers) {
-    if (validator.isEmptyCorrectNumberExist(correctNumbers)) {
-      return MESSAGE.SHOULD_FILL_ALL_WINNING_NUMBERS;
-    }
-
-    return '';
-  },
-
-  getPurchaseManualLottoValidation(lottoNumbers) {
-    if (validator.isEmptyLottoNumberExist(lottoNumbers)) {
-      return MESSAGE.SHOULD_FILL_ALL_LOTTO_NUMBERS;
-    }
-  },
 };
 
 export default message;
