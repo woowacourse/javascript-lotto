@@ -2,8 +2,7 @@ import { lottoGame } from '../../store.js';
 import { getProfitRate } from '../../utils/calculate.js';
 import { getKRMoneyString } from '../../utils/format.js';
 import lottoGameView from '../view/view.js';
-import { GAME } from '../../constants.js';
-
+import { GAME, LOTTO } from '../../constants.js';
 
 const service = {
   purchaseLottoItems() {
@@ -14,8 +13,10 @@ const service = {
   },
 
   depositMoney(cost) {
+    if (Number.isNaN(cost)) return;
+
     lottoGame.saveDeposit(cost);
-    lottoGameView.showDeposit(lottoGame.Deposit);
+    lottoGameView.showDeposit(getKRMoneyString(lottoGame.Deposit));
   },
 
   toggleLottoItemNumbers(checked) {
@@ -27,6 +28,8 @@ const service = {
   },
 
   showWinningResult(inputNumbers) {
+    if (!Array.isArray(inputNumbers) || inputNumbers.length !== LOTTO.CORRECT_NUMBER_LENGTH) return;
+    
     lottoGame.assignInputNumbers(inputNumbers);
     lottoGame.assignMatchCount();
     const rankItemList = lottoGame.getRankItemList();
@@ -40,6 +43,7 @@ const service = {
   },
 
   guideUserInput(message, callback) {
+    if (typeof message !== 'string' || message === '') return;
     lottoGameView.showMessage(message);
     callback && callback();
   },

@@ -6,14 +6,20 @@ const isNumberOutOfRange = (number) => {
 
 const validator = {
   isChangeMoneyExist(cost) {
+    if (Number.isNaN(cost)) return;
+
     return cost % LOTTO.PRICE !== 0;
   },
 
   isMoneyLessThanMinCost(cost) {
+    if (Number.isNaN(cost)) return;
+
     return cost < LOTTO.PRICE;
   },
 
   isMoneyMoreThanZero(cost) {
+    if (Number.isNaN(cost)) return;
+
     return cost > 0;
   },
 
@@ -24,14 +30,14 @@ const validator = {
   isArrayWithContent(array) {
     if (!Array.isArray(array) || array.length === 0) {
       return false;
-    };
+    }
 
     return true;
   },
 
   isDuplicatedNumberExist(numbers) {
     if (validator.isArrayWithContent(numbers)) {
-      return
+      return;
     }
 
     return new Set(numbers).size !== numbers.length;
@@ -39,7 +45,7 @@ const validator = {
 
   isNumberOutOfRangeExist(numbers) {
     if (validator.isArrayWithContent(numbers)) {
-      return
+      return;
     }
 
     return numbers.some((number) => isNumberOutOfRange(number));
@@ -47,7 +53,7 @@ const validator = {
 
   isEmptyCorrectNumberExist(numbers) {
     if (validator.isArrayWithContent(numbers)) {
-      return
+      return;
     }
 
     return numbers.length < LOTTO.CORRECT_NUMBER_LENGTH;

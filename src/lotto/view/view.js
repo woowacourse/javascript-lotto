@@ -21,6 +21,8 @@ import { $ } from '../../utils/querySelector.js';
 
 const view = {
   initLottoGame(initialDeposit) {
+    if (Number.isNaN(initialDeposit)) return;
+
     view.hideResultModal();
     view.hideLottoNumbers();
     view.hideWinningNumberInputForm();
@@ -74,6 +76,8 @@ const view = {
   },
 
   showMessage(message) {
+    if (typeof message !== 'string' || message.length === 0) return;
+    
     alert(message);
   },
 

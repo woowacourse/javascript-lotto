@@ -44,6 +44,8 @@ export default class LottoGame {
   }
 
   saveDeposit = (money) => {
+    if (Number.isNaN(money) || money <= 0) return;
+
     this.#deposit += money;
   }
 
@@ -90,6 +92,8 @@ export default class LottoGame {
   }
 
   assignInputNumbers(numbers) {
+    if (!Array.isArray(numbers) || numbers.length !== LOTTO.CORRECT_NUMBER_LENGTH) return;
+    
     this.#bonusNumber = numbers.pop();
     this.#winningNumberList = numbers;
   }

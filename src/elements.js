@@ -4,6 +4,7 @@ import { SELECTOR } from './constants.js';
 export const $deposit = $(SELECTOR.DEPOSIT);
 export const $depositInput = $(SELECTOR.DEPOSIT_INPUT);
 export const $depositAddButton = $(SELECTOR.DEPOSIT_BUTTON);
+export const $depositPresenter = $(SELECTOR.DEPOSIT_PRESENTER);
 export const $result = $(SELECTOR.RESULT);
 export const $resultItemCount = $(SELECTOR.RESULT_TEXT);
 export const $resultNumbersToggleButton = $(
@@ -18,5 +19,4 @@ export const $modalTbody = $(SELECTOR.MODAL_TBODY);
 export const $profitRate = $(SELECTOR.PROFIT_RATE);
 export const $restartButton = $(SELECTOR.RESTART_BUTTON);
 export const $correctNumber = $(SELECTOR.CORRECT_NUMBER);
-export const $depositPresenter = $(SELECTOR.DEPOSIT_PRESENTER);
 export const $autoPurchaseButton = $(SELECTOR.AUTO_PURCHASE_BUTTON);

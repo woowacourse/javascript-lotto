@@ -1,4 +1,5 @@
 import { SELECTOR, MESSAGE, GAME, LOTTO } from '../../src/constants.js';
+import { getKRMoneyString } from '../../src/utils/format.js';
 
 const depositMoney = (money) => {
   cy.get(SELECTOR.DEPOSIT_INPUT).type(money);
@@ -26,12 +27,12 @@ describe('금액 추가', () => {
   it('금액이 알맞게 추가되는지 검사', () => {
     const firstMoney = 3500;
     depositMoney(firstMoney);
-    cy.get(SELECTOR.DEPOSIT_PRESENTER).should('have.text', firstMoney);
+    cy.get(SELECTOR.DEPOSIT_PRESENTER).should('have.text', getKRMoneyString(firstMoney));
     const secondMoney = 1500;
     depositMoney(secondMoney);
     cy.get(SELECTOR.DEPOSIT_PRESENTER).should(
       'have.text',
-      firstMoney + secondMoney
+      getKRMoneyString(firstMoney + secondMoney)
     );
   });
 
