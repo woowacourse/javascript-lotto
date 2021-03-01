@@ -9,6 +9,12 @@ context('Actions', () => {
     cy.visit('http://localhost:5500/');
   });
 
+  it('티켓 구매 금액 입력 시, 발급 가능한 티켓 수량을 보여준다.', () => {
+    cy.get('input[name=payment-input]').type('5000');
+    cy.get('#lotto-issue-modal').should('be.visible');
+    cy.get('#issuable-amount').should('have.text', 5);
+  });
+
   it('구입 금액을 입력받아 티켓을 생성한다.', () => {
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
