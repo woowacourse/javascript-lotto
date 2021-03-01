@@ -6,6 +6,7 @@ import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import { isNumbersDuplicated } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
 import LottosBundle from './models/LottosBundle.js';
+import Winnings from './models/Winnings.js';
 export default class LottoController {
   constructor() {
     this.lottoUI = new LottoUI();
@@ -14,14 +15,8 @@ export default class LottoController {
 
   _initState() {
     this._lottosBundle = new LottosBundle();
+    this._winnings = new Winnings();
     this._myMoney = 0;
-    this._winnings = {
-      [RANK.FIRST]: 0,
-      [RANK.SECOND]: 0,
-      [RANK.THIRD]: 0,
-      [RANK.FOURTH]: 0,
-      [RANK.FIFTH]: 0,
-    };
   }
 
   initGame() {
@@ -198,9 +193,7 @@ export default class LottoController {
   }
 
   _calculateWinnings(winningNumbers, bonusNumber) {
-    if (this._isAlreadyCalculatedInWinnings()) {
-      return;
-    }
+    this._winnings.initValue();
 
     this._lottosBundle.forEach(lotto => {
       const myNumbers = lotto.getNumbers();
@@ -216,10 +209,6 @@ export default class LottoController {
 
       this._winnings[rank]++;
     });
-  }
-
-  _isAlreadyCalculatedInWinnings() {
-    return Object.values(this._winnings).some(winning => winning !== 0);
   }
 
   _getRank(winningCount, bonusCount) {
