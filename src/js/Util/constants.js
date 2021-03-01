@@ -4,6 +4,7 @@ export const ELEMENT = {
   PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
 
   PURCHASE_AMOUNT_SUBMIT_BUTTON: "#purchase-amount-submit-button",
+  AUTO_PURCHASE_SUBMIT_BUTTON: "#auto-purchase-submit-button",
   TOGGLE_BUTTON: ".toggle-button",
   RESTART_BUTTON: "#restart-button",
   OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",

@@ -62,7 +62,7 @@ export default class SubmitController {
     const money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
 
     if (!isValidMoney(money)) {
-      clearPurchaseAmountInput();
+      this.clearPurchaseAmountInput();
       return;
     }
 
