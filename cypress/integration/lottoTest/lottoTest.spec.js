@@ -1,6 +1,6 @@
+import LottoRankController from '../../../src/js/controllers/LottoRankController.js';
 import {
   getRandomNumber,
-  setRanks,
   calculateEarningRate,
 } from '../../../src/js/utils/utils.js';
 import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
@@ -9,7 +9,7 @@ describe('로또 게임 테스트', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5500/');
   });
-
+  const lottoRankController = new LottoRankController();
   const price = 10000;
   const lottoTotalCount = price / 1000;
   const LOTT0_LENGTH = 7;
@@ -100,7 +100,6 @@ describe('로또 게임 테스트', () => {
   });
 
   // 당첨 번호가 다음과 같다고 가정한다.   21, 6, 43, 29, 35, 16, 보너스 숫자 : 17
-
   const lottoNumsArr = [
     [21, 6, 43, 29, 35, 16], // 1등 (6개 일치)
     [21, 6, 43, 29, 35, 17], // 2등 (5개 + 보너스)
@@ -115,9 +114,9 @@ describe('로또 게임 테스트', () => {
     const isMatchBonusArr = [false, true, false, false, false, false]; // 보너스 숫자와 일치하는지 여부
     const resultRank = [1, 2, 0, 0, 5, 5].join('');
 
-    expect(setRanks(matchingNumCounts, isMatchBonusArr).join('')).to.be.equal(
-      resultRank
-    );
+    expect(
+      lottoRankController.initRanks(matchingNumCounts, isMatchBonusArr).join('')
+    ).to.be.equal(resultRank);
   });
 
   it('수익률을 올바르게 계산한다.', () => {

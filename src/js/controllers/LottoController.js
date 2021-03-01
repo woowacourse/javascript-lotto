@@ -1,32 +1,31 @@
-import InputPriceView from './views/InputPriceView.js';
-import PurchasedLottosView from './views/PurchasedLottosView.js';
-import InputWinningNumberView from './views/InputWinningNumberView.js';
-import ResultModalView from './views/ResultModalView.js';
+import LottoRankController from './LottoRankController.js';
 
-import LottoTicket from './model/LottoTicket.js';
+import InputPriceView from '../views/InputPriceView.js';
+import PurchasedLottosView from '../views/PurchasedLottosView.js';
+import InputWinningNumberView from '../views/InputWinningNumberView.js';
+import ResultModalView from '../views/ResultModalView.js';
 
-import { LOTTO_NUMBERS, ALERT_MESSAGES } from './utils/constants.js';
-import { $ } from './utils/dom.js';
+import LottoTicket from '../model/LottoTicket.js';
+
+import { ALERT_MESSAGES, LOTTO_NUMBERS } from '../utils/constants.js';
+import { $ } from '../utils/dom.js';
 import {
   isCorrectPurchaseUnit,
   isUniqueWinningNumber,
-} from './utils/lottoValidation.js';
-import {
-  checkMatchingCount,
-  checkBonusNums,
-  setRanks,
-  countByRank,
-  calculateEarningRate,
-} from './utils/utils.js';
+} from '../utils/lottoValidation.js';
+import { calculateEarningRate, countByRank } from '../utils/utils.js';
 
 export default class LottoController {
   constructor() {
+    this.lottoRankController = new LottoRankController();
+
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchasedLottosView = new PurchasedLottosView($('#purchased-lottos'));
     this.inputWinningNumberView = new InputWinningNumberView(
       $('#input-lotto-nums')
     );
     this.resultModalView = new ResultModalView($('.modal'));
+
     this.lottoTicket = new LottoTicket();
   }
 
@@ -86,34 +85,17 @@ export default class LottoController {
       return;
     }
 
-    const ranks = setRanks(
-      this.countMatchingNums(winningNumbers),
-      this.filterIsMatchingBonus(winningNumbers)
+    const ranks = this.lottoRankController.setRanks(
+      this.lottoTicket.lottos,
+      winningNumbers
     );
-    this.lottoTicket.rankCounts = countByRank(ranks);
+
+    this.lottoTicket.rankCounts = countByRank(ranks, LOTTO_NUMBERS.RANK_SIZE);
     this.lottoTicket.earningRate = calculateEarningRate(
       this.purchasedPrice,
       this.lottoTicket.rankCounts
     );
 
     this.renderResultModal();
-  }
-
-  countMatchingNums(winningNumbers) {
-    return this.lottoTicket.lottos.map(lotto =>
-      checkMatchingCount(
-        lotto,
-        winningNumbers.slice(0, LOTTO_NUMBERS.LOTTO_COUNT)
-      )
-    );
-  }
-
-  filterIsMatchingBonus(winningNumbers) {
-    return this.lottoTicket.lottos.map(lotto =>
-      checkBonusNums(
-        lotto,
-        winningNumbers[LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1]
-      )
-    );
   }
 }
