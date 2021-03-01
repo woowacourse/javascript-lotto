@@ -114,7 +114,6 @@ describe('유저 입력 값 테스트', () => {
   });
 
   it('금액은 1000원 이상을 입력해야 한다. 그 이하로 입력시 안내메세지를 출력한다.', () => {
-    cy.get('#cost-input').type('500');
     cy.get('#cost-submit-button').click();
     cy.get('@alertStub').should(
       'be.calledWith',
