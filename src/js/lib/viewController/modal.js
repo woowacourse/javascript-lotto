@@ -1,4 +1,4 @@
-import $ from '../utils/dom.js';
+import { $ } from '../utils/dom.js';
 
 const showModal = () => {
   $('.modal').classList.add('open');

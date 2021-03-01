@@ -1,10 +1,10 @@
-import $ from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 
 const clearLottoApp = () => {
   $('#ticket-list').innerHTML = '';
   $('#ticket-count').innerHTML = '';
   $('input[name=payment-input]').value = '';
-  $('.winning-number').forEach($input => {
+  $$('.winning-number').forEach($input => {
     $input.value = '';
   });
   $('.bonus-number').value = '';

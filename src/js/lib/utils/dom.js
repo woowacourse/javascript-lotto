@@ -1,7 +1,4 @@
-const $ = selector => {
-  const elements = document.querySelectorAll(selector);
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
 
-  return elements.length === 1 ? elements[0] : elements;
-};
-
-export default $;
+export { $, $$ };

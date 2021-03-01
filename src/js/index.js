@@ -1,4 +1,4 @@
-import $ from './lib/utils/dom.js';
+import { $ } from './lib/utils/dom.js';
 import { closeModal } from './lib/viewController/modal.js';
 import {
   detailModeToggleHandler,
