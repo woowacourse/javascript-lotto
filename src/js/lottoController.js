@@ -99,6 +99,10 @@ export default class LottoController {
       alert(ALERT_MESSAGES.CANT_BUY_AMOUNT);
       return;
     }
+    if (manualAmount + autoAmount < LOTTO_SETTINGS.MIN_AMOUNT_TO_BUY) {
+      alert(ALERT_MESSAGES.UNDER_MIN_AMOUNT_TO_BUY);
+      return;
+    }
 
     this.lottoUI.renderManualSelectUI(manualAmount);
     this._makeLottosByAuto(autoAmount);

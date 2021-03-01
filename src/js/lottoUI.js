@@ -50,7 +50,7 @@ export default class LottoUI {
           />
         </div>
         <div class="d-flex fw-wrap">
-          <label class="mb-2" "${DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO}"> 
+          <label class="mb-2" for="${DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO}"> 
           <strong>자동</strong>으로 구매할 갯수를 <br> 
           입력해주세요.
           </label>
