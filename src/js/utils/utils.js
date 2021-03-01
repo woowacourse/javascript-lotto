@@ -5,6 +5,10 @@ export function getRandomNumber() {
   return Math.floor(Math.random() * LOTTO_NUMBERS.LOTTO_MAX_NUM) + 1;
 }
 
+export function changeObjectToSet(object) {
+  return new Set(Object.values(object));
+}
+
 export function checkMatchingCount(lotto, winningNumbers) {
   return winningNumbers.reduce((matchingCount, winningNumber) => {
     if (lotto.numbers.has(winningNumber)) {
