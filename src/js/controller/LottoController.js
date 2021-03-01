@@ -75,7 +75,7 @@ export class LottoController {
     event.preventDefault();
     this.$manualInputs = $('[data-manual-lotto-number]');
     const leftMoney = this.machine.currentMoney;
-    const manualNumbers = this.$manualInputs.map(input => input.value);
+    const manualNumbers = this.$manualInputs.map(input => Number(input.value));
     const alertMessage = validator.manualPurchase(leftMoney);
 
     if (alertMessage) {

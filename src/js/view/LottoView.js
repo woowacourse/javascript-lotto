@@ -25,7 +25,7 @@ export class LottoView {
           return (html += ` 
             <div class="lotto-wrapper d-flex items-start">
               <span class="lotto mx-1 text-4xl">🎟️ </span>
-              <span data-lotto-numbers=${idx} class="mx-1 text-2xl mt-1">
+              <span data-lotto-numbers=${idx} class="mx-1 text-xl font-bold mt-2">
                 ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
               </span>
             </div>
@@ -36,7 +36,7 @@ export class LottoView {
           return (html += ` 
             <div class="lotto-wrapper d-flex items-start">
               <span class="lotto mx-1 text-4xl">🎟️ </span>
-              <span data-lotto-numbers=${idx} class="mx-1 text-2xl d-none mt-1">
+              <span data-lotto-numbers=${idx} class="mx-1 text-xl font-bold d-none mt-2">
               ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
               </span>
             </div>
