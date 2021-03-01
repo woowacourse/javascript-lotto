@@ -14,12 +14,7 @@ body {
   margin: 0 auto;
 }
 
-.purchase__input {
-  width: 30px;
-  height: 36px;
-}
-
-.correct-number__input {
+.input-box {
   width: 30px;
   height: 36px;
 }
