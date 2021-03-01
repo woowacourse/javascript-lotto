@@ -21,6 +21,7 @@ import {
 } from '../elements.js';
 import message from './validators/message.js';
 import { getAllNumbers } from './domReader.js';
+import { getTotalProfit } from "./totalProfit.js";
 
 export default class LottoController {
   #remainLottoCount;
@@ -30,13 +31,6 @@ export default class LottoController {
   constructor(model, view) {
     this.#lottoModel = model;
     this.#lottoView = view;
-  }
-
-  #getTotalProfit(rankItemList) {
-    return rankItemList.reduce(
-      (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
-      0,
-    );
   }
 
   #purchaseAutoLottoItems(count) {
@@ -64,7 +58,7 @@ export default class LottoController {
     const rankItemList = this.#lottoModel.getRankItemList();
     const profitRate = getProfitRate(
       this.#lottoModel.totalCost,
-      this.#getTotalProfit(rankItemList),
+      getTotalProfit(rankItemList),
     );
 
     this.#lottoView.openResultModal(rankItemList, getKRString(profitRate));
