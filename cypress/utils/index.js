@@ -1,1 +1,1 @@
-export { testInputValue } from './testInputValue.js';
+export { testInputValue, checkAlert } from './testInputValue.js';
