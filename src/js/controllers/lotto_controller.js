@@ -44,11 +44,12 @@ class LottoController {
     const manualNumbers = getManualInput()
     // TODO : 유효성 검사
 
+    const generatedLottos = this.model.lottos
     this.model.generateManualLotto(manualNumbers)
-    this.view.renderBuyMethodSection(this.model.lottos)
-    if (this.model.amount === 0) {
+    if (generatedLottos.amount === 0) {
       this.#managePocket()
     } else {
+      this.view.renderBuyMethodSection(generatedLottos)
       this.#handleManual()
       this.#handleAuto()
     }

@@ -41,7 +41,6 @@ export const buyMethodSectionTemplate = (lottos) => {
   <div id="manual">
   <hr />
   <h4 class="d-flex justify-center">구매한 수동 번호</h4>
-  <p class="d-flex justify-center">1 3 36 8 10 45</p>
   ${lottos.lottos
     .map((lotto) => {
       return `<p class="d-flex justify-center">${lotto.numbers.join(" ")}</p>`
