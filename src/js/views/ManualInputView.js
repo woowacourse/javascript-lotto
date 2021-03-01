@@ -91,11 +91,9 @@ export default class ManualInputView extends View {
   }
 
   showAllConfirmButton() {
-    const allConfirmBtn = document.createElement('template');
-    const convertToAutoCaption = document.createElement('template');
-    convertToAutoCaption.innerHTML = `<p id="convert-auto-caption">${ALERT_MESSAGES.CONVERT_TO_AUTO_WARNING}</>`;
-
+    const allConfirmBtn = document.createElement('div');
     allConfirmBtn.innerHTML = `
+      <div id="convert-auto-caption">${ALERT_MESSAGES.CONVERT_TO_AUTO_WARNING}</div>
       <button
         type="submit"
         id="manual-confirm-btn"
@@ -104,7 +102,8 @@ export default class ManualInputView extends View {
         구매 확정하기
       </button>
     `;
-    this.$element.append(convertToAutoCaption.content, allConfirmBtn.content);
+
+    this.$element.append(allConfirmBtn);
   }
 
   bindConfirmEvent() {
