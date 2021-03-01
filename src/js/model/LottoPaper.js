@@ -1,7 +1,7 @@
 import { LOTTO_PAPER_CHECK_MESSAGE } from '../constants/display.js';
 import { LOTTO_NUMBERS_LENGTH, DEFAULT_MANUAL_QUANTITY } from '../constants/lottoRules.js';
 import { getApplyQuantitySelectHTML } from '../layouts/selectPaper.js';
-import { getNthElementRemoved } from '../utils/general.js';
+import { getNthElementRemoved as getElementRemoved } from '../utils/general.js';
 
 export default class LottoPaper {
   constructor(issueNum) {
@@ -19,9 +19,7 @@ export default class LottoPaper {
   }
 
   remove(number) {
-    const index = this.numbers.indexOf(number);
-
-    this.setStates({ numbers: getNthElementRemoved(this.numbers, index) });
+    this.setStates({ numbers: getElementRemoved(this.numbers, number) });
   }
 
   setStates({ numbers, quantity, maxQuantity, $checkMessage, $quantitySelect }) {
