@@ -1,13 +1,7 @@
 import { MATCHING_NUMBER, RANK, WINNING_PRIZE } from "../Util/constants.js";
 
-class WinningResult {
+export default class WinningResult {
   constructor() {
-    this.winningNumbers = [];
-    this.bonusNumber = 0;
-    this.matchingCounts = [];
-  }
-
-  initializeWinningResult() {
     this.winningNumbers = [];
     this.bonusNumber = 0;
     this.matchingCounts = [];
@@ -92,4 +86,4 @@ class WinningResult {
   }
 }
 
-export default new WinningResult();
+// export default new WinningResult();

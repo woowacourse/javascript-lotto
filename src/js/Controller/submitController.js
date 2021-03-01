@@ -20,203 +20,221 @@ import {
   showPurchaseSection,
   hidePurchaseSection,
 } from "../Handler/elementHandler.js";
-import ticketBundle from "../Model/TicketBundle.js";
-import winningResult from "../Model/WinningResult.js";
-import balance from "../Model/Balance.js";
+import TicketBundle from "../Model/TicketBundle.js";
+import Balance from "../Model/Balance.js";
+import WinningResult from "../Model/WinningResult.js";
 
-export const initializeEvents = () => {
-  $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
-    "submit",
-    handlePurchaseAmountSubmit
-  );
-  $(ELEMENT.TOGGLE_BUTTON).addEventListener("click", handleToggleButton);
-  $(ELEMENT.WIN_NUMBER_CONTAINER).addEventListener(
-    "submit",
-    handleResultSubmit
-  );
-  $(ELEMENT.MODAL_CLOSE).addEventListener("click", closeModal);
-  $(ELEMENT.RESTART_BUTTON).addEventListener("click", handleRestartButton);
-  $(ELEMENT.SELF_PURCHASE_CONTAINER).addEventListener(
-    "submit",
-    handleSelfPurchaseSubmit
-  );
-  $(ELEMENT.AUTO_PURCHASE_CONTAINER).addEventListener(
-    "submit",
-    handleAutoPurchaseSubmit
-  );
-};
-
-const handlePurchaseAmountSubmit = (event) => {
-  event.preventDefault();
-
-  const money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
-
-  if (!isValidMoney(money)) {
-    clearPurchaseAmountInput();
-    return;
+export default class SubmitController {
+  constructor() {
+    this.ticketBundle = new TicketBundle();
+    this.balance = new Balance();
+    this.winningResult = new WinningResult();
   }
 
-  balance.setBalance(money);
-  renderBalance(balance.balance);
-  renderPurchaseSection();
-  $$(ELEMENT.WINNING_NUMBER)[0].focus();
-};
+  initializeEvents = () => {
+    $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
+      "submit",
+      this.handlePurchaseAmountSubmit
+    );
+    $(ELEMENT.TOGGLE_BUTTON).addEventListener("click", this.handleToggleButton);
+    $(ELEMENT.WIN_NUMBER_CONTAINER).addEventListener(
+      "submit",
+      this.handleResultSubmit
+    );
+    $(ELEMENT.MODAL_CLOSE).addEventListener("click", closeModal);
+    $(ELEMENT.RESTART_BUTTON).addEventListener(
+      "click",
+      this.handleRestartButton
+    );
+    $(ELEMENT.SELF_PURCHASE_CONTAINER).addEventListener(
+      "submit",
+      this.handleSelfPurchaseSubmit
+    );
+    $(ELEMENT.AUTO_PURCHASE_CONTAINER).addEventListener(
+      "submit",
+      this.handleAutoPurchaseSubmit
+    );
+  };
 
-const renderPurchaseSection = () => {
-  showPurchaseSection();
-};
+  handlePurchaseAmountSubmit = (event) => {
+    event.preventDefault();
 
-const handleSelfPurchaseSubmit = (event) => {
-  event.preventDefault();
+    const money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
 
-  if (
-    !isUnderCurrentBalance(balance.balance, STANDARD_NUMBER.ONE_TICKET_PRICE)
-  ) {
-    clearSelfPurchaseInput();
-    return;
-  }
+    if (!isValidMoney(money)) {
+      clearPurchaseAmountInput();
+      return;
+    }
 
-  const selfPurchaseLottoNumbers = Array.from(
-    $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)
-  ).map((number) => Number(number.value));
+    this.balance.setBalance(money);
+    renderBalance(this.balance.balance);
+    this.renderPurchaseSection();
+    $$(ELEMENT.WINNING_NUMBER)[0].focus();
+  };
 
-  if (!isValidNumbers(selfPurchaseLottoNumbers)) {
-    clearSelfPurchaseInput();
-    return;
-  }
-  const tickets = ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
+  renderPurchaseSection = () => {
+    showPurchaseSection();
+  };
 
-  balance.subtractionSelfPurchaseBalance();
-  renderBalance(balance.balance);
+  handleSelfPurchaseSubmit = (event) => {
+    event.preventDefault();
 
-  Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
-    (number) => (number.value = "")
-  );
-  $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
+    if (
+      !isUnderCurrentBalance(
+        this.balance.balance,
+        STANDARD_NUMBER.ONE_TICKET_PRICE
+      )
+    ) {
+      clearSelfPurchaseInput();
+      return;
+    }
 
-  renderTickets(tickets.length);
-  $$(ELEMENT.WINNING_NUMBER)[0].focus();
-};
+    const selfPurchaseLottoNumbers = Array.from(
+      $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)
+    ).map((number) => Number(number.value));
 
-const handleAutoPurchaseSubmit = (event) => {
-  event.preventDefault();
+    if (!isValidNumbers(selfPurchaseLottoNumbers)) {
+      clearSelfPurchaseInput();
+      return;
+    }
+    const tickets = this.ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
 
-  const autoPurchasePrice = $(ELEMENT.AUTO_PURCHASE_INPUT).value;
+    this.balance.subtractionSelfPurchaseBalance();
+    renderBalance(this.balance.balance);
 
-  if (!isUnderCurrentBalance(balance.balance, autoPurchasePrice)) {
-    clearAutoPurchaseInput();
-    return;
-  }
+    Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
+      (number) => (number.value = "")
+    );
 
-  if (!isValidMoney(autoPurchasePrice)) {
-    clearAutoPurchaseInput();
-    return;
-  }
+    this.renderTickets(tickets.length);
 
-  balance.subtractionAutoPurchaseBalance(autoPurchasePrice);
-  renderBalance(balance.balance);
+    $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
+    $$(ELEMENT.WINNING_NUMBER)[0].focus();
+  };
 
-  const tickets = ticketBundle.makeAutoTicketBundle(
-    autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE
-  );
+  handleAutoPurchaseSubmit = (event) => {
+    event.preventDefault();
 
-  renderTickets(tickets.length);
-  $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
-  $(ELEMENT.AUTO_PURCHASE_INPUT).focus();
-};
+    const autoPurchasePrice = $(ELEMENT.AUTO_PURCHASE_INPUT).value;
 
-const renderTickets = (ticketCount) => {
-  printPurchaseAmountLabel(ticketCount);
-  printTicketHorizontal(ticketCount);
-  showPurchaseResult();
-};
+    if (!isUnderCurrentBalance(this.balance.balance, autoPurchasePrice)) {
+      clearAutoPurchaseInput();
+      return;
+    }
 
-const handleToggleButton = (event) => {
-  event.target.checked
-    ? printTicketVertical(ticketBundle.ticketBundle)
-    : printTicketHorizontal(ticketBundle.ticketBundle.length);
-};
+    if (!isValidMoney(autoPurchasePrice)) {
+      clearAutoPurchaseInput();
+      return;
+    }
 
-const handleResultSubmit = (event) => {
-  event.preventDefault();
+    this.balance.subtractionAutoPurchaseBalance(autoPurchasePrice);
+    renderBalance(this.balance.balance);
 
-  const inputWinningNumbers = Array.from($$(ELEMENT.WINNING_NUMBER)).map(
-    (number) => number.value
-  );
-  const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
+    const tickets = this.ticketBundle.makeAutoTicketBundle(
+      autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE
+    );
 
-  if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
-    clearWinningBonusNumber();
-    return;
-  }
+    this.renderTickets(tickets.length);
+    $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
+    $(ELEMENT.AUTO_PURCHASE_INPUT).focus();
+  };
 
-  setNumbers(inputWinningNumbers, inputBonusNumber);
-  const initialBalance = balance.initialBalance;
-  const winningDatas = makeWinningDatas(initialBalance);
-  renderWinningResult(winningDatas);
-};
+  renderTickets = (ticketCount) => {
+    printPurchaseAmountLabel(ticketCount);
+    printTicketHorizontal(ticketCount);
+    showPurchaseResult();
+  };
 
-const setNumbers = (winningNumbers, bonusNumber) => {
-  winningResult.setWinningNumbers(winningNumbers);
-  winningResult.setBonusNumber(bonusNumber);
-};
+  handleToggleButton = (event) => {
+    event.target.checked
+      ? printTicketVertical(this.ticketBundle.ticketBundle)
+      : printTicketHorizontal(this.ticketBundle.ticketBundle.length);
+  };
 
-const makeWinningDatas = (initialBalance) => {
-  const matchingCounts = setWinningResult(ticketBundle.ticketBundle);
-  const totalPrize = getTotalPrize();
-  const earningRate = ((totalPrize - initialBalance) / initialBalance) * 100;
+  handleResultSubmit = (event) => {
+    event.preventDefault();
 
-  return { matchingCounts, earningRate };
-};
-export const getTotalPrize = () => {
-  return winningResult.calculateTotalPrize();
-};
+    const inputWinningNumbers = Array.from($$(ELEMENT.WINNING_NUMBER)).map(
+      (number) => number.value
+    );
+    const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
 
-const setWinningResult = (ticketBundle) => {
-  const ranks = winningResult.setRanks(ticketBundle);
-  const matchingCounts = winningResult.setMatchingCounts(ranks);
+    if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
+      clearWinningBonusNumber();
+      return;
+    }
 
-  return matchingCounts;
-};
+    this.setNumbers(inputWinningNumbers, inputBonusNumber);
+    const initialBalance = this.balance.initialBalance;
+    const winningDatas = this.makeWinningDatas(initialBalance);
+    this.renderWinningResult(winningDatas);
+  };
 
-const renderWinningResult = (winningDatas) => {
-  printWinningResult(winningDatas);
-  showModal();
-};
+  setNumbers = (winningNumbers, bonusNumber) => {
+    this.winningResult.setWinningNumbers(winningNumbers);
+    this.winningResult.setBonusNumber(bonusNumber);
+  };
 
-const handleRestartButton = () => {
-  closeModal();
-  initializeStates();
-  clearWinningBonusNumber();
-  clearPurchaseAmountInput();
-  hidePurchaseResult();
-  hidePurchaseSection();
-  $(ELEMENT.TOGGLE_BUTTON).checked = false;
-};
+  makeWinningDatas = (initialBalance) => {
+    const matchingCounts = this.setWinningResult(
+      this.ticketBundle.ticketBundle
+    );
+    const totalPrize = this.getTotalPrize();
+    const earningRate = ((totalPrize - initialBalance) / initialBalance) * 100;
 
-const initializeStates = () => {
-  ticketBundle.initializeTicketBundle();
-  winningResult.initializeWinningResult();
-};
+    return { matchingCounts, earningRate };
+  };
 
-const clearPurchaseAmountInput = () => {
-  $(ELEMENT.PURCHASE_AMOUNT_INPUT).value = "";
-  $(ELEMENT.PURCHASE_AMOUNT_INPUT).focus();
-};
+  getTotalPrize = () => {
+    return this.winningResult.calculateTotalPrize();
+  };
 
-const clearWinningBonusNumber = () => {
-  Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
-  $(ELEMENT.BONUS_NUMBER).value = "";
-  $$(ELEMENT.WINNING_NUMBER)[0].focus();
-};
+  renderWinningResult = (winningDatas) => {
+    printWinningResult(winningDatas);
+    showModal();
+  };
 
-const clearSelfPurchaseInput = () => {
-  Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
-    (number) => (number.value = "")
-  );
-  $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
-};
+  setWinningResult = (ticketBundle) => {
+    const ranks = this.winningResult.setRanks(ticketBundle);
+    const matchingCounts = this.winningResult.setMatchingCounts(ranks);
 
-const clearAutoPurchaseInput = () => {
-  $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
-};
+    return matchingCounts;
+  };
+
+  handleRestartButton = () => {
+    closeModal();
+    this.initializeStates();
+    this.clearWinningBonusNumber();
+    this.clearPurchaseAmountInput();
+    hidePurchaseResult();
+    hidePurchaseSection();
+    $(ELEMENT.TOGGLE_BUTTON).checked = false;
+  };
+
+  clearPurchaseAmountInput = () => {
+    $(ELEMENT.PURCHASE_AMOUNT_INPUT).value = "";
+    $(ELEMENT.PURCHASE_AMOUNT_INPUT).focus();
+  };
+
+  clearWinningBonusNumber = () => {
+    Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
+    $(ELEMENT.BONUS_NUMBER).value = "";
+    $$(ELEMENT.WINNING_NUMBER)[0].focus();
+  };
+
+  clearSelfPurchaseInput = () => {
+    Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
+      (number) => (number.value = "")
+    );
+    $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
+  };
+
+  clearAutoPurchaseInput = () => {
+    $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
+  };
+
+  initializeStates = () => {
+    this.ticketBundle = new TicketBundle();
+    this.winningResult = new WinningResult();
+  };
+}

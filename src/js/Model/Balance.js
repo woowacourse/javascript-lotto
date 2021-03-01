@@ -1,6 +1,6 @@
 import { STANDARD_NUMBER } from "../Util/constants.js";
 
-class Balance {
+export default class Balance {
   constructor() {
     this.initialBalance = 0;
     this.balance = 0;
@@ -22,4 +22,4 @@ class Balance {
   }
 }
 
-export default new Balance();
+// export default new Balance();

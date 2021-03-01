@@ -1,11 +1,7 @@
 import { STANDARD_NUMBER } from "../Util/constants.js";
 
-class TicketBundle {
+export default class TicketBundle {
   constructor() {
-    this.ticketBundle = [];
-  }
-
-  initializeTicketBundle() {
     this.ticketBundle = [];
   }
 
@@ -37,4 +33,4 @@ class TicketBundle {
   }
 }
 
-export default new TicketBundle();
+// export default new TicketBundle();

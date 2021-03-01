@@ -1,8 +1,9 @@
-import { initializeEvents } from "./Controller/submitController.js";
+import SubmitController from "./Controller/SubmitController.js";
 
 class App {
   constructor() {
-    initializeEvents();
+    this.submitController = new SubmitController();
+    this.submitController.initializeEvents();
   }
 }
 
