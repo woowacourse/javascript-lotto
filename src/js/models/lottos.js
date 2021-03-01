@@ -24,8 +24,8 @@ class LottosModel {
     this.#addTicket(ticket)
   }
 
-  decreaseAmount(number) {
-    this.#amount -= number
+  decreaseAmount() {
+    this.#amount -= 1
   }
 
   get lottos() {

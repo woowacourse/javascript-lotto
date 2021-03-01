@@ -31,7 +31,10 @@ class LottoController {
       return alert(errorMessage)
     }
 
-    this.view.renderBuyMethodSection(getTicketsCount(price))
+    const amount = getTicketsCount(price)
+
+    this.model.generateLottos(amount)
+    this.view.renderBuyMethodSection(amount)
     this.view.resetPocketSection()
     this.view.resetWinningSection()
     this.#handleManual()
@@ -42,6 +45,8 @@ class LottoController {
     const manualNumbers = getManualInput()
     // TODO : 유효성 검사
     // TODO : 모델에 넣기 (ticket 발급해서)
+    this.model.generateManualLotto()
+    // TODO : amount 한개 줄이기
     // TODO : 가져와 렌더링 - renderManualSection
     this.view.renderManualNumbers([1, 2, 3, 4, 5, 6])
   }

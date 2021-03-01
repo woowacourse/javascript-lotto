@@ -35,22 +35,21 @@ class LottoGameModel {
     return { match, bonusMatch }
   }
 
-  generateLottos() {
+  generateLottos(newAmount) {
     this.#lottos = new LottosModel()
-  }
-
-  set amount(newAmount) {
-    this.#lottos && (this.#lottos.amount = newAmount)
+    this.#lottos.amount = newAmount
   }
 
   generateRandomLottos(count) {
     for (let i = 0; i < count; i++) {
       this.#lottos && this.#lottos.generateRandomTicket()
+      this.#lottos.decreaseAmount()
     }
   }
 
   generateManualLotto(numbers) {
     this.#lottos && this.#lottos.generateManualLotto(numbers)
+    this.#lottos.decreaseAmount()
   }
 
   calculateLottosResult(answer) {
