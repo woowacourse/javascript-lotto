@@ -90,7 +90,7 @@ context('Actions', () => {
     cy.get('button[name=payment-button]').click();
     cy.get('#lotto-issue-end-button').click();
     cy.get('input[name=payment-input]').should('be.disabled');
-    cy.get('input[name=payment-button]').should('be.disabled');
+    cy.get('button[name=payment-button]').should('be.disabled');
   });
 
   it('토글 버튼을 누르면 티켓의 번호를 보여준다.', () => {

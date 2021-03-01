@@ -5,7 +5,7 @@ import { LESS_THAN_TICKET_PRICE_MESSAGE } from '../lib/constants/alertMessage.js
 import { TICKET_PRICE } from '../lib/constants/lotto.js';
 import { getTicketAmount, createTickets } from '../lib/service/lotto.js';
 import { openModal } from '../lib/viewController/app.js';
-import { $ } from '../lib/utils/dom.js';
+import { $, disableForm } from '../lib/utils/dom.js';
 import { updateIssuableTicketAmountText } from '../lib/viewController/lottoIssueModal.js';
 
 const lottoPurchaseHandler = event => {
@@ -21,6 +21,7 @@ const lottoPurchaseHandler = event => {
   lotto.setIssuableTicketAmount(getTicketAmount(paymentInput));
   updateIssuableTicketAmountText();
   openModal($('#lotto-issue-modal'));
+  disableForm(event.target);
 };
 
 export default lottoPurchaseHandler;
