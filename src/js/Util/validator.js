@@ -31,36 +31,36 @@ const isInValidNumber = (money) => {
   return !/^[0-9]+$/.test(money);
 };
 
-export const isValidNumbers = (array) => {
-  if (isBlankIncluded(array)) {
+export const isValidNumbers = (numbers) => {
+  if (isBlankIncluded(numbers)) {
     alert(ALERT_MESSAGE.BLANK_FORBIDDEN);
     return;
   }
-  if (isInvalidLottoNumberRange(array)) {
+  if (isInvalidLottoNumberRange(numbers)) {
     alert(ALERT_MESSAGE.OUT_OF_WINNING_NUMBER_RANGE);
     return;
   }
-  if (isDuplicatedNumber(array)) {
+  if (isDuplicatedNumber(numbers)) {
     alert(ALERT_MESSAGE.DUPLICATED_INPUT_FORBIDDEN);
     return;
   }
   return true;
 };
 
-export const isBlankIncluded = (array) => {
-  return array.includes("");
+export const isBlankIncluded = (numbers) => {
+  return numbers.includes("");
 };
 
-export const isInvalidLottoNumberRange = (array) => {
-  return !array.every(
+export const isInvalidLottoNumberRange = (numbers) => {
+  return !numbers.every(
     (num) =>
       num >= STANDARD_NUMBER.MIN_LOTTO_NUMBER &&
       num <= STANDARD_NUMBER.MAX_LOTTO_NUMBER
   );
 };
 
-export const isDuplicatedNumber = (array) => {
-  return array.length !== new Set(array).size;
+export const isDuplicatedNumber = (numbers) => {
+  return numbers.length !== new Set(numbers).size;
 };
 
 export const isUnderCurrentBalance = (currentBalance, autoPurchasePrice) => {

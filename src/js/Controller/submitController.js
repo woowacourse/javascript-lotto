@@ -56,8 +56,6 @@ const handlePurchaseAmountSubmit = (event) => {
     return;
   }
 
-  // $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
-
   balance.setBalance(money);
   renderBalance(balance.balance);
   renderPurchaseSection();
