@@ -102,11 +102,10 @@ export default class LottoDisplay extends Component {
 
   onMoveNextPage() {
     const pageIndex = Number(this.$pageNumber.textContent);
-    if (
-      pageIndex >=
-      Math.ceil(store.getStates().lottos.length / this.lottoCountPerPage)
-    )
-      return;
+    const lastPageIndex = Math.ceil(
+      store.getStates().lottos.length / this.lottoCountPerPage,
+    );
+    if (pageIndex >= lastPageIndex) return;
     this.$pageNumber.textContent = pageIndex + 1;
     this.updateLottoView(store.getStates().lottos);
   }
@@ -133,12 +132,14 @@ export default class LottoDisplay extends Component {
   }
 
   toggleActivationPageMoveButton(pageIndex) {
+    const lastPageIndex = Math.ceil(
+      store.getStates().lottos.length / this.lottoCountPerPage,
+    );
     pageIndex <= 1
       ? (this.$prevPageButton.disabled = true)
       : (this.$prevPageButton.disabled = false);
 
-    pageIndex >=
-    Math.ceil(store.getStates().lottos.length / this.lottoCountPerPage)
+    pageIndex >= lastPageIndex
       ? (this.$nextPageButton.disabled = true)
       : (this.$nextPageButton.disabled = false);
   }
