@@ -1,0 +1,117 @@
+.manual-select-paper {
+  position: relative;
+  margin-right: 12px;
+  padding: 24px 32px;
+  border-radius: 2px;
+  border: 1px solid #e3bfbf;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 4px 1px rgba(16, 16, 16, 0.2);
+}
+
+/* 로또용지 */
+
+.select-number-list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px 6px;
+  list-style: none;
+}
+
+.select-number-list label {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select-number-list input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.select-number-list span {
+  display: inline-block;
+  text-align: center;
+  padding: 3px 1px;
+  width: 24px;
+  font-size: 0.95rem;
+  color: #cb4342;
+  letter-spacing: -0.1rem;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.select-number-list span::before,
+.select-number-list span::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-top: 1px solid #e3bfbf;
+  border-bottom: 1px solid #e3bfbf;
+  box-sizing: border-box;
+}
+
+.select-number-list span::before {
+  left: 0;
+  border-left: 1px solid #e3bfbf;
+}
+
+.select-number-list span::after {
+  right: 0;
+  border-right: 1px solid #e3bfbf;
+}
+
+.select-number-list input:hover ~ span {
+  color: white;
+  background-color: #ff7070;
+  font-weight: 400;
+}
+
+.select-number-list input:checked ~ span {
+  color: white;
+  background-color: #cb4342;
+}
+
+.select-number-list input:hover ~ span::before,
+.select-number-list input:hover ~ span::after,
+.select-number-list input:checked ~ span::before,
+.select-number-list input:checked ~ span::after,
+.select-number-list input ~ span:focus::before,
+.select-number-list input ~ span:focus::after {
+  opacity: 0;
+}
+
+.select-number-list input:focus ~ span::before,
+.select-number-list input:focus ~ span::after {
+  border-width: 2px;
+  border-color: black;
+  opacity: 1;
+}
+
+/* 로또용지 삭제버튼 */
+
+.paper-remove-button {
+  position: absolute;
+  top: -7px;
+  right: -13px;
+}
+
+/* 로또용지 선택 체크메시지 */
+
+.manual-select-check-message {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+}

@@ -12,20 +12,40 @@
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
           <form class="purchase-amount-form mt-5 d-flex">
-            <label class="w-100 d-flex flex-col">
-              <span class="mb-2 d-block">구입할 금액을 입력해주세요.</span>
+            <label class="w-100 d-flex flex-col justify-between">
+              <h2 class="mb-2 text-lg font-normal">구입할 금액을 입력해주세요.</h2>
               <input
                 type="number"
                 step="any"
                 class="purchase-amount-input pl-2 mr-2 input"
                 placeholder="구입 금액"
+                autofocus
                 required
               />
             </label>
             <div class="d-flex items-end">
-              <button type="submit" class="purchase-amount-button btn btn-cyan">확인</button>
+              <button type="submit" class="purchase-amount-button btn btn-rose">투입</button>
             </div>
           </form>
+          <section class="purchase-option-section d-none mt-10">
+            <h2 class="mb-1 text-lg font-normal">자동 및 수동구매 매수를 확정해주세요.</h2>
+            <div class="d-flex justify-between items-start">
+              <div class="mt-0 mb-4 text-base">
+                <p class="my-0">· 자동 : <span class="auto-quantity d-inline-block mw-2r text-right"></span> 장</p>
+                <p class="my-0">· 수동 : <span class="manual-quantity d-inline-block mw-2r text-right"></span> 장</p>
+              </div>
+              <button type="submit" class="ticket-issue-button btn btn-rose" form="number-select-form">
+                로또 발급하기
+              </button>
+            </div>
+            <div class="paper-adder my-3 d-flex justify-end items-center">
+              <label>
+                <span class="mr-1">용지추가</span>
+                <button type="button" class="paper-add-button r-btn btn-rose">+</button>
+              </label>
+            </div>
+            <form id="manual-select-form" class="manual-select-form mt-6"></form>
+          </section>
           <section class="purchased-lotto-section mt-9 d-none">
             <div class="d-flex">
               <h2 class="purchased-lotto-label flex-auto my-0 text-lg font-normal"></h2>
@@ -111,7 +131,7 @@
               </section>
             </div>
             <div class="winning-number-check-message mt-3 text-sm text-red h-2r spacing-sm"></div>
-            <button type="button" class="open-result-modal-button mt-5 btn btn-cyan w-100" disabled>
+            <button type="button" class="open-result-modal-button mt-5 btn btn-rose w-100" disabled>
               결과 확인하기
             </button>
           </form>
@@ -140,7 +160,7 @@
           </div>
           <p class="rate-of-return text-center font-bold"></p>
           <div class="d-flex justify-center mt-5">
-            <button type="reset" class="reset-button btn btn-cyan" form="winning-number-form">다시 시작하기</button>
+            <button type="reset" class="reset-button btn btn-rose" form="winning-number-form">다시 시작하기</button>
           </div>
         </div>
       </section>

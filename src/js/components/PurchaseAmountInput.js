@@ -1,17 +1,49 @@
-import { $, clearInputValue } from '../utils/DOM.js';
-import { LOTTO_PRICE, MONETARY_UNIT, PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants.js';
+import { $, disable, enable } from '../utils/DOM.js';
+import { PURCHASE_AMOUNT_SUBMITTED, APP_RESET } from '../constants/appStages.js';
+import { MONETARY_UNIT, LOTTO_PRICE } from '../constants/lottoRules.js';
+import { PURCHASE_AMOUNT_ALERT_MESSAGE } from '../constants/display.js';
 
+const validateInput = (purchaseAmount) => {
+  if (purchaseAmount % MONETARY_UNIT) {
+    return {
+      isError: true,
+      message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY,
+    };
+  }
+  if (purchaseAmount < LOTTO_PRICE) {
+    return {
+      isError: true,
+      message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW,
+    };
+  }
+
+  return {
+    isError: false,
+    message: '',
+  };
+};
 export default class PurchaseAmountInput {
-  constructor({ createLottoTickets }) {
+  constructor({ stageManager, lottoManager }) {
+    this.stageManager = stageManager;
+    this.lottoManager = lottoManager;
+
+    this.selectDOMs();
+    this.subscribeAppStages();
+    this.attachEvent();
+  }
+
+  selectDOMs() {
     this.$purchaseAmountForm = $('.purchase-amount-form');
     this.$purchaseAmountInput = $('.purchase-amount-input');
     this.$purchaseAmountButton = $('.purchase-amount-button');
-    this.createLottoTickets = createLottoTickets;
-
-    this.attachEvents();
   }
 
-  attachEvents() {
+  subscribeAppStages() {
+    this.stageManager.subscribe(PURCHASE_AMOUNT_SUBMITTED, this.deactivate.bind(this));
+    this.stageManager.subscribe(APP_RESET, this.resetSection.bind(this));
+  }
+
+  attachEvent() {
     this.$purchaseAmountForm.addEventListener('submit', (e) => {
       e.preventDefault();
       this.onSubmitPurchaseAmount();
@@ -20,46 +52,36 @@ export default class PurchaseAmountInput {
 
   onSubmitPurchaseAmount() {
     const purchaseAmount = this.$purchaseAmountInput.value;
-    const { isError, message, change } = this.validatePurchaseAmount(purchaseAmount);
+    const { isError, message } = validateInput(purchaseAmount);
 
     if (isError) {
-      alert(message);
-      clearInputValue(this.$purchaseAmountInput);
-      this.$purchaseAmountInput.focus();
+      this.requestValidInput(message);
       return;
-    }
-
-    if (change > 0) {
-      alert(message);
-    }
-    this.createLottoTickets((purchaseAmount - change) / LOTTO_PRICE);
-  }
-
-  validatePurchaseAmount(purchaseAmount) {
-    if (purchaseAmount % MONETARY_UNIT) {
-      return {
-        isError: true,
-        message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_INVALID_MONEY,
-      };
-    }
-
-    if (purchaseAmount < LOTTO_PRICE) {
-      return {
-        isError: true,
-        message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_IS_TOO_LOW,
-      };
     }
 
     const change = purchaseAmount % LOTTO_PRICE;
 
-    return {
-      isError: false,
-      message: PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change),
-      change,
-    };
+    if (change > 0) {
+      alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
+    }
+    this.lottoManager.setStates({ numOfLotto: (purchaseAmount - change) / LOTTO_PRICE });
+    this.stageManager.setStates({ stage: PURCHASE_AMOUNT_SUBMITTED });
   }
 
-  reset() {
-    clearInputValue(this.$purchaseAmountInput);
+  requestValidInput(errorMessage) {
+    alert(errorMessage);
+    this.$purchaseAmountForm.reset();
+    this.$purchaseAmountInput.focus();
+  }
+
+  deactivate() {
+    disable(this.$purchaseAmountInput);
+    disable(this.$purchaseAmountButton);
+  }
+
+  resetSection() {
+    this.$purchaseAmountForm.reset();
+    enable(this.$purchaseAmountInput);
+    enable(this.$purchaseAmountButton);
   }
 }
