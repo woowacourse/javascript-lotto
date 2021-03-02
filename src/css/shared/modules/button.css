@@ -9,10 +9,20 @@
 }
 
 .btn-cyan {
-  background-color: #00bcd4 !important;
-  border-color: #00bcd4 !important;
+  background-color: hsl(187, 100%, 42%) !important;
+  border-color: hsl(187, 100%, 42%) !important;
 }
 
 .btn.btn-cyan:hover {
-  background-color: #018c9e !important;
+  background-color: hsl(187, 100%, 31%) !important;
+}
+
+.btn-red {
+  background-color: hsl(7, 100%, 66%) !important;
+  border-color: hsl(7, 100%, 66%) !important;
+}
+
+
+.btn.btn-red:hover {
+  background-color:hsl(7, 100%, 57%) !important;
 }

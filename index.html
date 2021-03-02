@@ -35,6 +35,27 @@
               </button>
             </div>
           </form>
+
+          <section
+            class="mt-9 --hidden"
+            data-js-selector="issue-manager-container"
+          >
+            <h2
+              class="text-base font-normal"
+              data-js-selector="issue-manager-container__title"
+            ></h2>
+            <form class="d-flex flex-col" data-js-selector="issue-manager-form">
+              <div data-js-selector="issue-manager-form__entry-list"></div>
+              <div class="mt-3 d-flex">
+                <button type="reset" class="btn btn-red w-50 m-2">
+                  재작성
+                </button>
+                <button type="submit" class="btn btn-cyan w-50 m-2">
+                  발급
+                </button>
+              </div>
+            </form>
+          </section>
           <section
             class="mt-9 --hidden"
             data-js-selector="lotto-detail-container"

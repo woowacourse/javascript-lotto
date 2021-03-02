@@ -1,6 +1,11 @@
 @import './shared/index.css';
 @import './ui/index.css';
 
+:root {
+  --number-width: 30px;
+  --number-height: 36px;
+}
+
 html,
 body {
   margin: 0;
@@ -14,13 +19,18 @@ body {
 }
 
 .winning-number {
-  width: 30px;
-  height: 36px;
+  width: var(--number-width);
+  height: var(--number-height);
 }
 
 .bonus-number {
-  width: 30px;
-  height: 36px;
+  width: var(--number-width);
+  height: var(--number-height);
+}
+
+.issue-lotto-number {
+  width: var(--number-width);
+  height: var(--number-height);
 }
 
 .--hidden {
