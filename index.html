@@ -11,6 +11,10 @@
       <div class="d-flex justify-center mt-5">
         <section class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
+          <div id="purchase-type" class="d-flex justify-center">
+            <button id="auto-btn" class="btn btn-cyan m-0 btn-left">자동구매</button>
+            <button id="manual-btn" class="btn btn-default m-0 btn-right">수동구매</button>
+          </div>
           <form id="input-price-form" class="mt-5">
             <label for="input-price" class="mb-2 d-inline-block">
               구입할 금액을 입력해주세요.
@@ -25,6 +29,7 @@
                 required
                 min="1000"
                 max="100000"
+                autofocus
               />
               <button type="submit" id="input-price-btn" class="btn btn-cyan">
                 확인
@@ -32,12 +37,13 @@
             </div>
           </form>
 
+          <ul id="manual-input-wrapper"></ul>
+
           <section id="purchased-lottos" class="mt-9">
             <div class="d-flex">
-              <label class="flex-auto my-0"
-                >총 <span id="total-purchased">5</span>개를
-                구매하였습니다.</label
-              >
+              <label class="flex-auto my-0">
+                총 <span id="total-purchased">5</span>개를 구매하였습니다.
+              </label>
               <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                   <input
@@ -64,7 +70,7 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     aria-label="winning-number-1"
-                    data-index-num="1"
+                    data-winning-index="1"
                     required
                     min="1"
                     max="45"
@@ -73,7 +79,7 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     aria-label="winning-number-2"
-                    data-index-num="2"
+                    data-winning-index="2"
                     required
                     min="1"
                     max="45"
@@ -82,7 +88,7 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     aria-label="winning-number-3"
-                    data-index-num="3"
+                    data-winning-index="3"
                     required
                     min="1"
                     max="45"
@@ -91,7 +97,7 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     aria-label="winning-number-4"
-                    data-index-num="4"
+                    data-winning-index="4"
                     required
                     min="1"
                     max="45"
@@ -100,7 +106,7 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     aria-label="winning-number-5"
-                    data-index-num="5"
+                    data-winning-index="5"
                     required
                     min="1"
                     max="45"
@@ -109,21 +115,21 @@
                     type="number"
                     class="winning-number mx-1 text-center"
                     aria-label="winning-number-6"
-                    data-index-num="6"
+                    data-winning-index="6"
                     required
                     min="1"
                     max="45"
                   />
                 </div>
               </div>
-              <div class="bonus-number-container flex-grow">
+              <div class="flex-grow">
                 <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
                 <div class="d-flex justify-center">
                   <input
                     type="number"
                     class="winning-number bonus-number text-center"
                     aria-label="winning-number-bounus"
-                    data-index-num="7"
+                    data-winning-index="7"
                     required
                     min="1"
                     max="45"

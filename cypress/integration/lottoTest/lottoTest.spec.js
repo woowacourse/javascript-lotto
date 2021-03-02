@@ -1,5 +1,6 @@
 import { getRandomNumber } from '../../../src/js/utils/utils.js';
 import LottoProcessor from '../../../src/js/utils/lottoProcessor.js';
+import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
 import Lotto from '../../../src/js/Lotto.js';
 
 describe('로또 게임 테스트', () => {
@@ -7,7 +8,7 @@ describe('로또 게임 테스트', () => {
     cy.visit('http://127.0.0.1:5500/');
   });
 
-  const price = 10000;
+  const price = 5000;
   const lottoTotalCount = price / 1000;
   const LOTT0_LENGTH = 7;
 
@@ -16,10 +17,33 @@ describe('로또 게임 테스트', () => {
     cy.get('#input-price-btn').click();
   }
 
+  function typeManualNumberAndConfirm() {
+    cy.get('.manual-wrapper').each(manualTicket => {
+      cy.wrap(manualTicket)
+        .find('.manual-number')
+        .each((manualNumber, innerIdx) => {
+          cy.wrap(manualNumber).type(innerIdx + 10); // type random number
+        });
+      // 버튼이 위에서부터 하나씩 사라지기 때문에 항상 0번째 index를 클릭
+      cy.get('.manual-input-btn').eq(0).click();
+    });
+  }
+
+  function typeNotEnoughManualInput() {
+    // 로또 1장만 입력 후 구매 확정 (오류 테스트)
+    cy.get('.manual-wrapper')
+      .eq(0)
+      .find('.manual-number')
+      .each((manualNumber, idx) => {
+        cy.wrap(manualNumber).type(idx + 10); // type random number
+      });
+    cy.get('.manual-input-btn').eq(0).click();
+  }
+
   function typeWinningNumber() {
     const numbers = new Set();
     while (numbers.size < LOTT0_LENGTH) {
-      numbers.add(getRandomNumber());
+      numbers.add(getRandomNumber(1, LOTTO_NUMBERS.LOTTO_MAX_NUM));
     }
 
     cy.get('.winning-number').each((winningNumber, idx) => {
@@ -27,19 +51,82 @@ describe('로또 게임 테스트', () => {
     });
   }
 
-  it('프로그램을 시작하면 구입금액 입력폼만 보인다.', () => {
+  it('프로그램을 시작하면 구매 방식(자동/수동) 선택지와 구입금액 입력폼이 보인다.', () => {
+    cy.get('#purchase-type').should('be.visible');
     cy.get('#input-price-form').should('be.visible');
     cy.get('#purchased-lottos').should('not.be.visible');
     cy.get('#winning-numbers-form').should('not.be.visible');
   });
 
-  it('사용자는 로또 구입 금액을 입력하면, 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+  it('구매 방식(자동/수동) 선택지를 클릭하면 버튼의 배경색이 서로 바뀐다.', () => {
+    cy.get('#auto-btn').click();
+    cy.get('#auto-btn').should('have.class', 'btn-cyan');
+    cy.get('#manual-btn').click();
+    cy.get('#manual-btn').should('have.class', 'btn-cyan');
+  });
+
+  it('수동 구매를 선택하고 금액을 입력하면, 금액만큼의 번호 입력 폼을 보여준다.', () => {
+    cy.get('#manual-btn').click();
     clickAfterTypePrice();
+
+    cy.get('.manual-wrapper').should('have.length', lottoTotalCount);
+  });
+
+  it('수동 구매 번호를 모두 올바르게 입력하면, 확정된 로또 티켓을 보여준다.', () => {
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+    typeManualNumberAndConfirm();
+
+    cy.get('.manual-wrapper').each(manualTicket => {
+      cy.wrap(manualTicket).find('.lotto-detail').should('be.visible');
+    });
+  });
+
+  it('수동 구매 후 남는 금액 발생 시 자동 구매 진행 확인창이 뜬다. ', () => {
+    const alertStub = cy.stub();
+    cy.on('window:confirm', alertStub);
+
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+    typeNotEnoughManualInput();
+
+    cy.get('#manual-confirm-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(
+          '남은 금액은 자동구매로 진행됩니다. 계속하시겠습니까?'
+        );
+      });
+  });
+
+  it('수동 구매 후 남는 금액으로 자동 구매 동의 시 자동 구매를 진행한다. ', () => {
+    const alertStub = cy.stub();
+    cy.on('window:confirm', alertStub);
+
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+    typeNotEnoughManualInput();
+
+    cy.get('#manual-confirm-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(
+          '남은 금액은 자동구매로 진행됩니다. 계속하시겠습니까?'
+        );
+      });
+
+    cy.on('window:confirm', () => true);
+    cy.get('#purchased-lottos').should('be.visible');
+  });
+
+  it('자동 구매 시 로또 구입 금액을 입력하고 확인 버튼을 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+    clickAfterTypePrice();
+
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#winning-numbers-form').should('be.visible');
   });
 
-  it('사용자는 로또 구입 금액을 입력하면, Enter를 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
+  it('자동 구매 시 사용자가 로또 구입 금액 입력 후 enter를 누르면 사용자가 구매한 로또와 지난 주 당첨 로또 입력폼이 보인다.', () => {
     cy.get('#input-price').type(`${price}{enter}`);
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#winning-numbers-form').should('be.visible');
@@ -74,7 +161,7 @@ describe('로또 게임 테스트', () => {
     cy.get('.lotto-wrapper').children('.lotto-detail').should('not.be.visible');
   });
 
-  it('모든 숫자의 입력을 완료하면, 결과 확인 버튼이 활성화된다.', () => {
+  it('당첨 숫자를 모두 입력하면, 결과 확인 버튼이 활성화된다.', () => {
     clickAfterTypePrice();
     typeWinningNumber();
 
@@ -119,8 +206,7 @@ describe('로또 게임 테스트', () => {
     const rankCounts = [1, 1, 0, 0, 2];
 
     lottoNumsArr.forEach(lottoNums => {
-      const lotto = new Lotto();
-      lotto.inputManualNumbers(new Set(lottoNums));
+      const lotto = new Lotto(lottoNums);
       lottos.push(lotto);
     });
 
@@ -137,8 +223,7 @@ describe('로또 게임 테스트', () => {
     const earningRate = (sum / purchasedPrice - 1) * 100;
 
     lottoNumsArr.forEach(lottoNums => {
-      const lotto = new Lotto();
-      lotto.inputManualNumbers(new Set(lottoNums));
+      const lotto = new Lotto(lottoNums);
       lottos.push(lotto);
     });
 
@@ -147,6 +232,22 @@ describe('로또 게임 테스트', () => {
     lottoProcessor.calculateEarningRate(purchasedPrice);
 
     expect(lottoProcessor.earningRate).to.be.equal(earningRate);
+  });
+
+  it('두개의 숫자를 입력하면, 자동으로 다음 숫자 칸으로 focus가 이동한다.', () => {
+    clickAfterTypePrice();
+
+    for (let i = 0; i < LOTT0_LENGTH; i++) {
+      cy.get('.winning-number')
+        .eq(i)
+        .type(String(10 + i));
+
+      if (i === LOTT0_LENGTH - 1) break;
+
+      cy.get('.winning-number')
+        .eq(i + 1)
+        .should('be.focused');
+    }
   });
 
   it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
@@ -167,21 +268,5 @@ describe('로또 게임 테스트', () => {
     cy.get('.winning-number').each(winningNumber => {
       cy.wrap(winningNumber).should('have.value', '');
     });
-  });
-
-  it('두개의 숫자를 입력하면, 자동으로 다음 숫자 칸으로 focus가 이동한다.', () => {
-    clickAfterTypePrice();
-
-    for (let i = 0; i < LOTT0_LENGTH; i++) {
-      cy.get('.winning-number')
-        .eq(i)
-        .type(String(10 + i));
-
-      if (i === LOTT0_LENGTH - 1) break;
-
-      cy.get('.winning-number')
-        .eq(i + 1)
-        .should('be.focused');
-    }
   });
 });

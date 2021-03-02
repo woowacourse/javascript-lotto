@@ -3,13 +3,24 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
     cy.visit('http://127.0.0.1:5500/');
   });
 
-  const price = 10000;
+  const price = 5000;
 
   function exceptionAlert(wrongPrice, alertMessage) {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#input-price').type(wrongPrice);
     cy.get('#input-price-btn')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
+      });
+  }
+
+  function manualNumberAlert(alertMessage, idx) {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    cy.get('.manual-input-btn')
+      .eq(idx)
       .click()
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
@@ -61,8 +72,23 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
     cy.get('#winning-numbers-form').should('not.be.visible');
   });
 
+  it('수동 구매 시 로또 번호에는 중복된 숫자를 입력할 수 없다.', () => {
+    cy.get('#manual-btn').click();
+    clickAfterTypePrice();
+
+    cy.get('.manual-wrapper').each((manualTicket, idx) => {
+      cy.wrap(manualTicket)
+        .find('.manual-number')
+        .each(manualNumber => {
+          cy.wrap(manualNumber).type('7');
+        });
+      manualNumberAlert('로또 번호에는 중복된 숫자를 입력할 수 없습니다.', idx);
+    });
+  });
+
   it('로또 당첨 번호에는 중복된 숫자를 입력할 수 없다.', () => {
     clickAfterTypePrice();
+
     cy.get('.winning-number').each(winningNumber => {
       cy.wrap(winningNumber).type('7');
     });

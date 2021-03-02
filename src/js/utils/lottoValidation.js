@@ -7,6 +7,10 @@ export const isCorrectPurchaseUnit = input => {
   );
 };
 
+export const isUniqueManualNumber = input => {
+  return new Set(input).size === LOTTO_NUMBERS.LOTTO_MANUAL_COUNT;
+};
+
 export const isUniqueWinningNumber = input => {
   return new Set(input).size === LOTTO_NUMBERS.WINNING_NUMBER_COUNT;
 };

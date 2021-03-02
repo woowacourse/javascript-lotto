@@ -7,3 +7,15 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+input.manual-number {
+  outline: 0;
+  border-width: 0 0 0.1rem;
+  border-color: gray;
+  line-height: 2rem;
+  transition: border 500ms linear;
+}
+
+input.manual-number:focus {
+  border-color: #00bcd4;
+}

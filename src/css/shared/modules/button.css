@@ -8,6 +8,15 @@
   cursor: pointer;
 }
 
+.btn-default {
+  background-color: #ffffff;
+  border: 0.15rem solid #00bcd4 !important;
+}
+
+.btn.btn-default:hover {
+  background-color: #daedf0 !important;
+}
+
 .btn-cyan {
   background-color: #00bcd4 !important;
   border-color: #00bcd4 !important;
@@ -15,4 +24,19 @@
 
 .btn.btn-cyan:hover {
   background-color: #018c9e !important;
+}
+
+.btn-left {
+  border-radius: 4px 0 0 4px !important;
+  border-right: none !important;
+}
+
+.btn-right {
+  border-radius: 0 4px 4px 0 !important;
+  border-left: none !important;
+}
+
+.btn.btn-small {
+  min-width: 0;
+  height: 32px;
 }
