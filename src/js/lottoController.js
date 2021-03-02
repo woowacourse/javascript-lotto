@@ -8,6 +8,7 @@ import {
   isSomeNumberOutOfRange,
 } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
+
 export default class LottoController {
   constructor() {
     this.lottoUI = new LottoUI();
