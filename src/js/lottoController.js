@@ -5,6 +5,7 @@ import { LOTTO_SETTINGS, PRIZES, WIN_COUNTS, RANKS } from './utils/constants/set
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import {
   isNumbersDuplicated,
+  isSomeNumberOutOfRange,
 } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
 export default class LottoController {
@@ -126,6 +127,10 @@ export default class LottoController {
         alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
         return;
       }
+      if(isSomeNumberOutOfRange(numbers)) {
+        alert(ALERT_MESSAGES.NUMBER_OUT_OF_RANGE);
+        return;
+      }
       this._makeManualLottos(numbers);
     }
 
@@ -135,6 +140,7 @@ export default class LottoController {
     this.lottoUI.renderResultInputUI();
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
     $(`.${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT}`).disable();
+    $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).clearChildren();
   }
 
   _makeManualLottos(numbers) {

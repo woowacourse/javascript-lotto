@@ -58,13 +58,15 @@ export default class LottoUI {
   }
 
   renderManualLottoInputs(manualLottoCount) {
-    const manualLottosHTML = `
-      <div class="d-flex flex-col 
+    // manual number input에 값을 입력하지 않거나 -1, 0을 입력해도 다음으로 넘어가는 버그 수정해야 함.
+    $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
+      <form class="${DOM_CLASSES.BUYING_FORM} mt-9">
+    ${`<div class="d-flex flex-col 
         border-2 border-solid border-blue rounded
         mt-6 mb-2 w-100 pt-10 pb-14
         text-center ${DOM_CLASSES.BUYING_FORM_MANUAL_PAPER}">
-        <h4 class="mt-0 mb-3 text-center">응모 번호 입력</h4>
-        <div>
+          <h4 class="mt-0 mb-3 text-center">응모 번호 입력</h4>
+          <label>
           ${`<input 
             type="number" 
             min="${LOTTO_SETTINGS.MIN_LOTTO_NUMBER}" 
@@ -72,14 +74,8 @@ export default class LottoUI {
             class="winning-number mx-1 text-center 
               ${DOM_CLASSES.BUYING_FORM_MANUAL_NUMBER}" 
             required />`.repeat(6)}
-        </div>
-      </div>
-    `.repeat(manualLottoCount);
-    console.log(manualLottosHTML);
-
-    $(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`).insertAdjacentHTML('beforeend', `
-      <form class="${DOM_CLASSES.BUYING_FORM} mt-9">
-        ${manualLottosHTML}
+          </label>
+        </div>`.repeat(manualLottoCount)}
         <button type="submit" 
           class="${DOM_CLASSES.BUYING_FORM_NUMBER_SUBMIT} btn btn-cyan w-100 mt-4">
           번호 입력 완료하기
