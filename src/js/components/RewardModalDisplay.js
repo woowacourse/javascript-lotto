@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/dom.js';
-import { store } from './App.js';
 import { REWARDS } from '../utils/constants.js';
 import { restart } from '../redux/action.js';
+import { store } from '../index.js';
 import Component from '../core/Component.js';
 import Button from './Button/Button.js';
 
@@ -16,14 +16,14 @@ export default class RewardModalDisplay extends Component {
     `;
   }
 
-  mainTemplate() {
+  initRender() {
     const matchedCountText = ['3개', '4개', '5개', '5개 + 보너스볼', '6개'];
     const rewards = Array.from(
       { length: 5 },
       (_, i) => REWARDS[`rank${5 - i}`],
     );
 
-    return `
+    this.$target.innerHTML = `
       <div class="modal-inner p-10">
         <div class="modal-close">
           <svg viewbox="0 0 40 40">
@@ -59,7 +59,7 @@ export default class RewardModalDisplay extends Component {
           type: 'reset',
           classes: ['btn', 'btn-cyan'],
           text: '다시 시작하기',
-        }).mainTemplate()}
+        }).getTemplate()}
         </div>
       </div>
     `;
@@ -102,28 +102,31 @@ export default class RewardModalDisplay extends Component {
     this.$target.classList.remove('open');
   }
 
+  updateWinningCountView(winningCount) {
+    const getWinningCountText = key =>
+      Object.keys(winningCount).length === 0 ? '0개' : `${winningCount[key]}개`;
+
+    this.$winningCountTexts.forEach($winningCountText => {
+      const key = $winningCountText.getAttribute('data-td');
+      $winningCountText.textContent = getWinningCountText(key);
+    });
+  }
+
+  updateProfitView(profit) {
+    this.$profitText.textContent = `당신의 총 수익률은 ${profit}% 입니다.`;
+  }
+
   render(prevStates, states) {
-    if (states === undefined) {
-      this.$target.innerHTML = this.mainTemplate();
+    if (states.profit === 0) {
+      this.onModalClose();
       return;
     }
 
-    if (prevStates.winningCount !== states.winningCount) {
-      const getWinningCountText = key =>
-        Object.keys(states.winningCount).length === 0
-          ? '0개'
-          : `${states.winningCount[key]}개`;
-
-      this.$winningCountTexts.forEach($winningCountText => {
-        const key = $winningCountText.getAttribute('data-td');
-        $winningCountText.textContent = getWinningCountText(key);
-      });
-    }
-
     if (prevStates.profit !== states.profit) {
-      this.$profitText.textContent = `당신의 총 수익률은 ${states.profit}% 입니다.`;
+      this.updateWinningCountView(states.winningCount);
+      this.updateProfitView(states.profit);
     }
 
-    states.profit === 0 ? this.onModalClose() : this.onModalShow();
+    this.onModalShow();
   }
 }

@@ -13,7 +13,8 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.winning-number,
+.manual-lotto-number {
   width: 30px;
   height: 36px;
 }
@@ -21,4 +22,35 @@ body {
 .bonus-number {
   width: 30px;
   height: 36px;
+}
+
+#add-btn:hover {
+  cursor: pointer;
+}
+
+.plus-icon {
+  stroke: gray;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+span{
+  vertical-align: middle;
+}
+
+img{
+  object-fit: scale-down;
+  width: 16px;
+  height: 16px;
+}
+
+.lotto-number-input-wrapper{
+  width: 300px;
+}
+
+.ticket{
+  object-fit: scale-down;
+  width: 32px;
+  height: 32px;
 }

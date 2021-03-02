@@ -3,18 +3,15 @@ export default class Component {
     this.$target = target;
     this.$props = props;
     this.setup();
-    this.render();
+    this.initRender();
     this.selectDOM();
     this.bindEvent();
   }
   setup() {}
   mainTemplate() {}
-  mountComponent() {}
-  render() {
-    this.$target.innerHTML = this.mainTemplate();
-  }
-  setState() {}
+  initRender() {}
+  render() {}
   selectDOM() {}
   bindEvent() {}
-  clear() {}
+  clearView() {}
 }

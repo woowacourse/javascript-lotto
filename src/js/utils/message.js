@@ -8,9 +8,6 @@ export const ERROR_MESSAGE = {
   OUT_OF_RANGE: '1~45 사이의 숫자만 가능합니다. 당첨 번호를 다시 입력해주세요.',
   DUPLICATED_NUMBER: '중복된 숫자가 존재합니다. 당첨 번호를 다시 입력해주세요.',
   VALID_INPUT_NUMBER: '정상적으로 입력하셨습니다.',
-};
-
-export const GUIDE_MESSAGE = {
-  PAYMENT_RESULT_MESSAGE: (lottoCount, remainingMoney) =>
-    `로또 ${lottoCount}개 구매 완료. 거스름돈 : ${remainingMoney}원`,
+  CANNOT_BUY_MANUAL_LOTTO: '더 이상 수동으로 로또를 구매할 수 없습니다.',
+  INPUT_OVERFLOW: '금액이 너무 큽니다.',
 };
