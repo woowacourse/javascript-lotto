@@ -26,43 +26,41 @@ const getProfitPercent = (winners, ticketAmount) => {
   let totalProfit = 0;
   const paymentAmount = ticketAmount * 1000;
 
-  for (const winner in winners) {
-    if (Object.hasOwnProperty.call(winners, winner)) {
-      totalProfit += winners[winner] * TICKET_PRIZE[winner];
-    }
+  for (const [idx, winner] of winners.entries()) {
+    totalProfit += winner * TICKET_PRIZE[idx];
   }
 
   return ((totalProfit - paymentAmount) / paymentAmount) * 100;
 };
 
+const SCORE = {
+  SIX: 6,
+  FIVE: 5,
+  FOUR: 4,
+  THREE: 3,
+};
+
 const getRank = (ticket, { main, bonus }) => {
   const score = ticket.filter(number => main.includes(number)).length;
 
-  if (score === 5 && ticket.includes(bonus)) {
-    return 'second';
-  }
+  const scoreMap = {
+    [SCORE.SIX]: 0,
+    [SCORE.FIVE]: ticket.includes(bonus) ? 1 : 2,
+    [SCORE.FOUR]: 3,
+    [SCORE.THREE]: 4,
+  };
 
-  if (score < 3) {
-    return 'loser';
-  }
-
-  return ['fifth', 'fourth', 'third', 'first'][score - 3];
+  return scoreMap[score] ?? -1;
 };
 
 const getWinners = (tickets, winningNumber) => {
-  const winners = {
-    first: 0,
-    second: 0,
-    third: 0,
-    fourth: 0,
-    fifth: 0,
-  };
+  const winners = [0, 0, 0, 0, 0];
 
   tickets.forEach(ticket => {
     const rank = getRank(ticket, winningNumber);
-    if (rank === 'loser') return;
-
-    winners[rank] += 1;
+    if (rank !== -1) {
+      winners[rank] += 1;
+    }
   });
 
   return winners;
