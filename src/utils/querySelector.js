@@ -1,5 +1,12 @@
-const $ = (selector) => document.querySelector(selector);
+const isElement = (target) => {
+  return target.nodeType && [1, 9].includes(target.nodeType)
+}
 
-const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+const $ = (selector, target = document) => {
+  if (typeof selector !== 'string' || !isElement(target)) return;
 
-export { $, $$ };
+  const all = target.querySelectorAll(selector);
+  return all.length > 1 ? [...all] : all[0];
+};
+
+export { $ };

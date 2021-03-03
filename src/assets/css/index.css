@@ -14,14 +14,27 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.input-box {
   width: 30px;
   height: 36px;
 }
 
-.bonus-number {
+.correct-number__input--bonus {
   width: 30px;
   height: 36px;
+}
+
+.result__item-list--numbers-removed .lotto-numbers {
+  display: none;
+}
+
+.result__item-list--numbers-added .lotto-numbers {
+  display: initial;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
 }
 
 .lotto-icon {
@@ -31,18 +44,13 @@ body {
   padding-bottom: 4px;
 }
 
-#purchase-item-list.hide-lotto-numbers .lotto-numbers {
-  display: none;
-}
-
-.lotto-item {
-  display: flex;
-  align-items: center;
-}
-
 .lotto-numbers {
   margin-left: 10px;
   font-size: 16px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.85);
+}
+
+#auto-purchase__button {
+  width: 165px;
 }
