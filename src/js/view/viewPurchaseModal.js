@@ -1,4 +1,5 @@
 import { $, $$ } from '../utils/querySelector.js';
+import { openModal } from '../utils/setProperty.js';
 
 const selfResultTableTemplate = (index, joinedselfNumbers) => {
   return `<tr class="text-center">
@@ -7,10 +8,11 @@ const selfResultTableTemplate = (index, joinedselfNumbers) => {
           </tr>`;
 };
 
-export const renderPurchaseModalSelfInputFormLabel = (amountOfLottoTicket) => {
+export const renderPurchaseModal = (amountOfLottoTicket) => {
   $(
     '#purchase-modal__self-input-form__label',
   ).innerText = `총 ${amountOfLottoTicket}개를 구매 할 수 있습니다.`;
+  openModal($('#purchase-modal'));
 };
 
 export const renderSelfResultTable = (index, selfNumbers) => {
@@ -21,5 +23,5 @@ export const renderSelfResultTable = (index, selfNumbers) => {
 };
 
 export const clearSelfResultTable = () => {
-  $('#purchase-modal__self-result-section__table > tbody').innerHTML = ''
+  $('#purchase-modal__self-result-section__table > tbody').innerHTML = '';
 };

@@ -1,7 +1,6 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { isDuplicate, isValidRange } from '../utils/validator.js';
 import { ERROR_MESSAGE, VALUE } from '../utils/constant.js';
-import { openModal } from '../utils/setProperty.js';
 import { renderResultModal } from '../view/viewResultModal.js';
 
 const getProfit = (winningRank) => {
@@ -100,5 +99,4 @@ export const handleWinningNumberInput = (lotto) => {
   const totalYield = getTotalYield(lotto);
 
   renderResultModal(ranckCountMap, totalYield);
-  openModal($('#result-modal'));
 };

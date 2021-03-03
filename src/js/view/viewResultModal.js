@@ -1,4 +1,5 @@
 import { $, $$ } from '../utils/querySelector.js';
+import { openModal, closeModal } from '../utils/setProperty.js';
 
 export const renderRankCount = (rankCountMap) => {
   const $$resultRankCount = $$('.result-modal__rank-count');
@@ -16,4 +17,9 @@ export const renderTotalYield = (totalYield) => {
 export const renderResultModal = (rankCountMap, totalYield) => {
   renderRankCount(rankCountMap);
   renderTotalYield(totalYield);
+  openModal($('#result-modal'));
+};
+
+export const closeResultModal = () => {
+  closeModal($('#result-modal'));
 };
