@@ -1,4 +1,4 @@
-import { ERR_MESSAGE } from '../../src/js/utils/constant.js';
+import { ERROR_MESSAGE } from '../../src/js/utils/constant.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -64,7 +64,7 @@ describe('racing-game', () => {
 
     cy.get('@windowAlert').should(
       'be.calledWith',
-      ERR_MESSAGE.LOTTO.OVER_PURCHASE,
+      ERROR_MESSAGE.LOTTO.OVER_PURCHASE,
     );
   });
 
@@ -89,7 +89,7 @@ describe('racing-game', () => {
 
     cy.get('@windowAlert').should(
       'be.calledWith',
-      ERR_MESSAGE.LOTTO.INVALID_PRICE,
+      ERROR_MESSAGE.LOTTO.INVALID_PRICE,
     );
   });
 
@@ -122,7 +122,7 @@ describe('racing-game', () => {
 
     cy.get('@windowAlert').should(
       'be.calledWith',
-      ERR_MESSAGE.WINNING_NUMBER.DUPLICATE,
+      ERROR_MESSAGE.WINNING_NUMBER.DUPLICATE,
     );
   });
 
@@ -131,7 +131,7 @@ describe('racing-game', () => {
 
     cy.get('@windowAlert').should(
       'be.calledWith',
-      ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE,
+      ERROR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE,
     );
   });
 

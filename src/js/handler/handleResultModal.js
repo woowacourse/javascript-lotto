@@ -14,7 +14,7 @@ const restartLottoGame = (lotto) => {
   lotto.initialize();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
-  clearSelfResultTable()
+  clearSelfResultTable();
   closeModal($('#result-modal'));
 };
 

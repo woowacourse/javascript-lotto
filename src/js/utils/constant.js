@@ -35,7 +35,7 @@ export const VALUE = {
   },
 };
 
-export const ERR_MESSAGE = {
+export const ERROR_MESSAGE = {
   LOTTO: {
     INVALID_PRICE: `${VALUE.LOTTO.TICKET_PRICE}원 이상의 금액만 입력이 가능합니다.`,
     OVER_PURCHASE: '구매 가능한 갯수만큼만 번호를 입력할 수 있습니다.',

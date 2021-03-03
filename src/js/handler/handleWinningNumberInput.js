@@ -1,6 +1,6 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { isDuplicate, isValidRange } from '../utils/validator.js';
-import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
+import { ERROR_MESSAGE, VALUE } from '../utils/constant.js';
 import { openModal } from '../utils/setProperty.js';
 import { renderResultModal } from '../view/viewResultModal.js';
 
@@ -85,11 +85,11 @@ export const handleWinningNumberInput = (lotto) => {
   const bonusNumber = Number($('.bonus-number').value);
 
   if (!isValidRange([...winningNumbers, bonusNumber])) {
-    return alert(ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
+    return alert(ERROR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
   }
 
   if (isDuplicate([...winningNumbers, bonusNumber])) {
-    return alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
+    return alert(ERROR_MESSAGE.WINNING_NUMBER.DUPLICATE);
   }
 
   lotto.tickets.forEach((ticket) => {
