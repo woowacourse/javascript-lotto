@@ -12,6 +12,10 @@ export const resetPurchaseResult = () => {
   $(ELEMENT.TOGGLE_BUTTON).checked = false;
 };
 
+export const showPurchaseOption = () => {
+  $(ELEMENT.PURCHASE_OPTION_CONTAINER).classList.remove(ELEMENT.HIDDEN);
+};
+
 export const showModal = () => {
   $(ELEMENT.MODAL).classList.add(ELEMENT.OPEN);
 };

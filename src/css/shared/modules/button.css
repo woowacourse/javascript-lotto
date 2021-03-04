@@ -13,6 +13,33 @@
   border-color: #00bcd4 !important;
 }
 
+.btn-apple-green {
+  background-color: #8db600 !important;
+  border-color: #8db600 !important;
+}
+
+.btn-blush {
+  background-color: #de5d83 !important;
+  border-color: #de5d83 !important;
+}
+
+.baker-miller-pink {
+  background-color: #ff91af !important;
+  border-color: #ff91af !important;
+}
+
 .btn.btn-cyan:hover {
   background-color: #018c9e !important;
+}
+
+.add-btn.btn-cyan:hover {
+  background-color: #018c9e !important;
+}
+
+.add-btn.btn-apple-green:hover {
+  background-color: #759117 !important;
+}
+
+.add-btn.btn-blush:hover {
+  background-color: #a76076 !important;
 }

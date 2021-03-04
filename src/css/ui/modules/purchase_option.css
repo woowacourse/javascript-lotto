@@ -1,0 +1,42 @@
+#purchase-option-container > label {
+  display: flex;
+}
+
+.purchase-add-button {
+  display: flex;
+}
+
+.add-btn {
+  height: 36px;
+  min-width: 64px;
+  padding: 0 16px;
+  border-radius: 18px;
+  outline: 0;
+  border-style: none;
+  cursor: pointer;
+}
+
+.auto-purchase-add-button {
+  display: inline-block;
+  width: 50%;
+}
+
+.manual-purchase-add-button {
+  margin-left: 10px;
+  width: 50%;
+}
+
+.circle {
+  height: 36px;
+  padding: 0 8px;
+  margin: 0 10px 0 10px;
+  border-radius: 18px;
+  outline: 0;
+  border-style: none;
+  pointer-events: none;
+}
+
+.user-number {
+  width: 30px;
+  height: 36px;
+}

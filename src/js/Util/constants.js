@@ -7,7 +7,8 @@ export const ELEMENT = {
   RESTART_BUTTON: "#restart-button",
   OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",
 
-  PURCHASE_CONTAINER: "#purchase-container",
+  PURCHASE_AMOUNT_CONTAINER: "#purchase-amount-container",
+  PURCHASE_OPTION_CONTAINER: "#purchase-option-container",
   RECEIPT_CONTAINER: "#receipt-container",
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
   WIN_NUMBER_CONTAINER: "#win-number-container",

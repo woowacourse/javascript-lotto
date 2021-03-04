@@ -11,7 +11,9 @@
       <div class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-          <form id="purchase-container" class="mt-5">
+          
+          <!-- purchase-amount-container -->
+          <form id="purchase-amount-container" class="mt-5">
             <label class="mb-2 d-inline-block"
               >구입할 금액을 입력해주세요.
             </label>
@@ -32,6 +34,74 @@
               </button>
             </div>
           </form>
+
+          <!-- purchase-option-container -->
+          <form id="purchase-option-container" class="mt-9 hidden">
+              <label id="purchase-balance-label" class="flex-auto d-inline-block mb-2"
+                >잔액 : 5,000원</label
+              >
+              <label id="puchase-status-label" class="flex-auto d-inline-block mb-3"
+                >구매 현황 : 자동 0장, 수동 0장</label
+              >
+            <div class>
+              <div>
+                <!-- <h4 class="mt-0 mb-3 text-center">당첨 번호</h4> -->
+                <div>
+                  <button
+                class="circle baker-miller-pink"
+              >
+                수동 번호
+              </button>
+                  <input
+                    type="number"
+                    class="user-number mx-1  text-center"
+                    />
+                  <input
+                    type="number"
+                    class="user-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="user-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="user-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="user-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="user-number mx-1 text-center"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="purchase-add-button">
+              <button
+                type="button"
+                class="auto-purchase-add-button mt-5 add-btn btn-cyan"
+              >
+                자동 구매 추가
+              </button>
+              <button
+                type="button"
+                class="manual-purchase-add-button mt-5 add-btn btn-blush"
+              >
+                수동 구매 추가
+              </button>
+            </div>
+            <button
+              type="button"
+              class="open-result-modal-button mt-5 btn btn-cyan w-100"
+            >
+              로또 구매
+            </button>
+          </form>
+          
+          <!-- receipt-container -->
           <section id="receipt-container" class="mt-9 hidden">
             <div class="d-flex">
               <label id="purchase-amount-label" class="flex-auto my-0"

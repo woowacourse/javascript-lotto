@@ -12,12 +12,13 @@ import {
   resetPurchaseResult,
   showModal,
   closeModal,
+  showPurchaseOption,
 } from "../Handler/elementHandler.js";
 import TicketBundle from "../Model/TicketBundle.js";
 import Result from "../Model/Result.js";
 
 export const initializeEvents = () => {
-  $(ELEMENT.PURCHASE_CONTAINER).addEventListener(
+  $(ELEMENT.PURCHASE_AMOUNT_CONTAINER).addEventListener(
     "submit",
     handlePurchaseAmountSubmit
   );
@@ -40,8 +41,11 @@ const handlePurchaseAmountSubmit = (event) => {
     return;
   }
 
+  disableElement(ELEMENT.PURCHASE_AMOUNT_INPUT);
+  disableElement(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON);
   $(ELEMENT.TICKET_IMAGE_NUMBER_CONTAINER).dataset.money = money;
   TicketBundle.makeTicketBundle(money / STANDARD_NUMBER.ONE_TICKET_PRICE);
+
   renderTickets(TicketBundle.ticketBundle.length);
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
 };
@@ -49,7 +53,8 @@ const handlePurchaseAmountSubmit = (event) => {
 const renderTickets = (ticketCount) => {
   printPurchaseAmountLabel(ticketCount);
   printTicketHorizontal(ticketCount);
-  showPurchaseResult();
+  showPurchaseOption();
+  // showPurchaseResult();
 };
 
 const handleToggleButton = (event) => {
@@ -107,4 +112,8 @@ const clearWinningBonusNumber = () => {
   Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
   $(ELEMENT.BONUS_NUMBER).value = "";
   $$(ELEMENT.WINNING_NUMBER)[0].focus();
+};
+
+const disableElement = (element) => {
+  $(element).disabled = true;
 };
