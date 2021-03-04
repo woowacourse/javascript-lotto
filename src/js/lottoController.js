@@ -42,28 +42,28 @@ export default class LottoController {
   _initEventListener() {
     $(`.${DOM_CLASSES.MONEY_FORM}`).addEventListener('submit', event => {
       event.preventDefault();
-      this._handleMoneyInput(event);
+      this._onPurchasePriceSubmit(event);
     });
 
     $(`#${DOM_IDS.APP}`).addEventListener('submit', event => {
       event.preventDefault(event);
       if (event.target.closest(`.${DOM_CLASSES.LOTTO_AMOUNT_FORM}`)) {
-        this._handleAmountInput(event);
+        this._onLottoAmountSubmit(event);
         return;
       }
       if (event.target.closest(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`)) {
-        this._handleManualSelect(event);
+        this._onManualLottoNumberSubmit(event);
         return;
       }
       if (event.target.closest(`.${DOM_CLASSES.RESULT_INPUT_FORM}`)) {
-        this._handleResultInput();
+        this._onResultLottoNumberSubmit();
         return;
       }
     });
 
     $(`#${DOM_IDS.APP}`).addEventListener('click', event => {
       if (event.target.closest(`.${DOM_CLASSES.LOTTO_SWITCH}`)) {
-        this._handleCheckLottoSwitch();
+        this.lottoUI.toggleLottoNumbers();
         return;
       }
       if (event.target.closest(`.${DOM_CLASSES.MODAL_CLOSE}`)) {
@@ -77,7 +77,7 @@ export default class LottoController {
     });
   }
 
-  _handleMoneyInput(event) {
+  _onPurchasePriceSubmit(event) {
     const moneyInput = Number($(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).value);
     if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
@@ -89,7 +89,7 @@ export default class LottoController {
     $(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).focus();
   }
 
-  _handleAmountInput(event) {
+  _onLottoAmountSubmit(event) {
     const manualAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
     const autoAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`).value);
     const moneyToNeed = LOTTO_SETTINGS.LOTTO_PRICE * (manualAmount + autoAmount);
@@ -122,7 +122,7 @@ export default class LottoController {
     });
   }
 
-  _handleManualSelect(event) {
+  _onManualLottoNumberSubmit(event) {
     const ticketElements = $$(`.${DOM_CLASSES.MANUAL_SELECT_FORM} > .${DOM_CLASSES.CSS_LOTTO_TICKET}`);
     const numbersBundle =
       [...ticketElements]
@@ -151,7 +151,7 @@ export default class LottoController {
     });
   }
 
-  _handleResultInput() {
+  _onResultLottoNumberSubmit() {
     const winningNumbers = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)]
       .map(input => Number(input.value));
     const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
@@ -185,10 +185,6 @@ export default class LottoController {
     }
 
     return prize[rank];
-  }
-
-  _handleCheckLottoSwitch() {
-    this.lottoUI.toggleLottoNumbers();
   }
 
   _calculateWinnings(winningNumbers, bonusNumber) {
