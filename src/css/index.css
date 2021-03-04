@@ -41,11 +41,6 @@ body {
   font-size: 15px;
 }
 
-.plr-2 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 .fw-wrap {
   flex-wrap: wrap;
 }
