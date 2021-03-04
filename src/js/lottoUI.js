@@ -19,8 +19,16 @@ export default class LottoUI {
       <label for="${DOM_IDS.MONEY_FORM_INPUT}" class="mb-2 d-inline-block">구입할 금액을 입력해주세요.
       </label>
       <div class="d-flex">
-        <input type="number" id="${DOM_IDS.MONEY_FORM_INPUT}" step='1' class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" placeholder="구입 금액" />
-        <button type="submit" class="btn btn-cyan ${DOM_CLASSES.MONEY_FORM_SUBMIT}">확인</button>
+        <input 
+        type="number" 
+        id="${DOM_IDS.MONEY_FORM_INPUT}" 
+        step='1' 
+        class="w-100 mr-2 pl-2 ${DOM_CLASSES.MONEY_FORM_INPUT}" 
+        placeholder="구입 금액" 
+        />
+        <button 
+        type="submit" 
+        class="btn btn-cyan ${DOM_CLASSES.MONEY_FORM_SUBMIT}">확인</button>
       </div>
     </form>
     `;
@@ -41,7 +49,7 @@ export default class LottoUI {
           입력해주세요.
           </label>
           <input 
-          type="number" 
+          type="number"
           id="${DOM_IDS.LOTTO_AMOUNT_INPUT_MANUAL}"
           class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL} w-100 pl-2 mr-2 amount-number" 
           placeholder="수동 구매 갯수"
@@ -54,7 +62,7 @@ export default class LottoUI {
           입력해주세요.
           </label>
           <input 
-          type="number" 
+          type="number"
           id="${DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO}"
           class="${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO} w-100 pl-2 mr-2 amount-number" 
           placeholder="자동 구매 갯수"
@@ -279,9 +287,9 @@ export default class LottoUI {
     $(`.${DOM_CLASSES.MODAL}`).classList.remove('open');
   }
 
-  disablePreviousForm(event) {
-    const buttons = event.target.getElementsByTagName('button');
-    const inputElements = event.target.getElementsByTagName('input');
+  disablePreviousForm(formElement) {
+    const buttons = formElement.getElementsByTagName('button');
+    const inputElements = formElement.getElementsByTagName('input');
     [...buttons].forEach((button) => {
       button.disabled = true;
     });

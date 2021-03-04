@@ -78,20 +78,21 @@ export default class LottoController {
   }
 
   _onPurchasePriceSubmit(event) {
-    const moneyInput = Number($(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).value);
+    const moneyInput = Number(event.target[DOM_IDS.MONEY_FORM_INPUT].value);
     if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
     this._myMoney = moneyInput;
     this.lottoUI.renderLottoAmountUI();
-    this.lottoUI.disablePreviousForm(event);
+    this.lottoUI.disablePreviousForm(event.target);
     $(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).focus();
   }
 
   _onLottoAmountSubmit(event) {
-    const manualAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).value);
-    const autoAmount = Number($(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`).value);
+    const form = event.target;
+    const manualAmount = Number(form[DOM_IDS.LOTTO_AMOUNT_INPUT_MANUAL].value);
+    const autoAmount = Number(form[DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO].value);
     const moneyToNeed = LOTTO_SETTINGS.LOTTO_PRICE * (manualAmount + autoAmount);
     if (this._myMoney < moneyToNeed) {
       alert(ALERT_MESSAGES.CANT_BUY_AMOUNT);
@@ -103,7 +104,7 @@ export default class LottoController {
     }
 
     this._makeLottosByAuto(autoAmount);
-    this.lottoUI.disablePreviousForm(event);
+    this.lottoUI.disablePreviousForm(form);
     if (manualAmount === 0) {
       this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
       this.lottoUI.renderResultInputUI();
@@ -139,7 +140,7 @@ export default class LottoController {
     this._makeLottosByManual(numbersBundle);
     this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
     this.lottoUI.renderResultInputUI();
-    this.lottoUI.disablePreviousForm(event);
+    this.lottoUI.disablePreviousForm(event.target);
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
