@@ -8,7 +8,7 @@ import {
 
 context("e2e test", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5500/index.html");
+    cy.visit("http://127.0.0.1:5501/index.html");
   });
 
   it("초기 상태에서 입력 창 아래 부분이 숨김 처리 되어 있는 것을 확인한다.", () => {
@@ -200,5 +200,11 @@ context("e2e test", () => {
     cy.get(ELEMENT.MODAL).should("not.to.be.visible");
     cy.get("section").eq(0).should("have.class", ELEMENT.HIDDEN);
     cy.get("form").eq(1).should("have.class", ELEMENT.HIDDEN);
+  });
+
+  it.only("구입 금액을 입력하면 자동 및 수동 구매할 수 있는 창이 나타난다.", () => {
+    cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type("3000");
+    cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
+    cy.get(ELEMENT.PURCHASE_OPTION_CONTAINER).should("to.be.visible");
   });
 });
