@@ -1,4 +1,5 @@
 import { getKRMoneyString } from '../../utils/format.js';
+import { CSS_CLASS } from '../../constants.js';
 
 export const getResultItemCountTemplate = (lottoItemCount) => {
   return `
@@ -6,7 +7,7 @@ export const getResultItemCountTemplate = (lottoItemCount) => {
   `;
 };
 
-const getNumberListTemplate = ({lottoNumberList}) => {
+const getNumberListTemplate = ({ lottoNumberList }) => {
   return lottoNumberList.join(', ');
 };
 
@@ -17,7 +18,9 @@ export const getResultItemListTemplate = (lottoItemList) => {
         ` 
         <div class="mx-1 text-4xl lotto-item">
           <span class="lotto-icon">🎟️</span>
-          <span class="lotto-numbers">${getNumberListTemplate(lottoItem)}</span>
+          <span class="lotto-numbers ${
+            CSS_CLASS.REMOVED
+          }">${getNumberListTemplate(lottoItem)}</span>
         </div>
       `
     )
@@ -25,12 +28,16 @@ export const getResultItemListTemplate = (lottoItemList) => {
 };
 
 export const getModalTbodyTemplate = (rankItemList) =>
-  rankItemList.map(
-    (rankItem) => `
+  rankItemList
+    .map(
+      (rankItem) => `
     <tr class="text-center">
-      <td class="p-3">${rankItem.matchCount}개 ${rankItem.shouldCheckBonus ? ' + 보너스볼' : ''}</td>
+      <td class="p-3">${rankItem.matchCount}개 ${
+        rankItem.shouldCheckBonus ? ' + 보너스볼' : ''
+      }</td>
       <td class="p-3">${getKRMoneyString(rankItem.money)}</td>
       <td class="p-3">${rankItem.winCount}개</td>
     </tr>
     `
-  ).join('');
+    )
+    .join('');

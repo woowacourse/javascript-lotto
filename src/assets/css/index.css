@@ -24,14 +24,6 @@ body {
   height: 36px;
 }
 
-.result__item-list--numbers-removed .lotto-numbers {
-  display: none;
-}
-
-.result__item-list--numbers-added .lotto-numbers {
-  display: initial;
-}
-
 .lotto-item {
   display: flex;
   align-items: center;
