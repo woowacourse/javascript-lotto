@@ -2,10 +2,10 @@ import TicketModel from "./ticket.js"
 
 class LottosModel {
   #lottos
-  #amount
+  #issuableCount
   constructor() {
     this.#lottos = []
-    this.#amount = 0
+    this.#issuableCount = 0
   }
 
   #addTicket(ticket) {
@@ -24,8 +24,8 @@ class LottosModel {
     this.#addTicket(ticket)
   }
 
-  decreaseAmount() {
-    this.#amount -= 1
+  decreaseIssuableCount() {
+    this.#issuableCount -= 1
   }
 
   get lottos() {
@@ -36,12 +36,12 @@ class LottosModel {
     return this.#lottos.length
   }
 
-  get amount() {
-    return this.#amount
+  get issuableCount() {
+    return this.#issuableCount
   }
 
-  set amount(newAmount) {
-    this.#amount = newAmount
+  set issuableCount(newIssuableCount) {
+    this.#issuableCount = newIssuableCount
   }
 }
 

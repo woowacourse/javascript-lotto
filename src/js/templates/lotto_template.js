@@ -22,7 +22,9 @@ export const buyMethodSectionTemplate = (lottos) => {
   return `
   <form class="mt-5 mb-3">
     <label class="mb-2 d-inline-block">
-      현재 구매가능 개수 : <span class="available">${lottos.amount}</span>
+      현재 구매가능 개수 : <span class="available">${
+        lottos.issuableCount
+      }</span>
     </label>
     <div class="d-flex buy-manual">
       <div id="manual-numbers">

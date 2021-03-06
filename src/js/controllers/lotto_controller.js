@@ -44,7 +44,7 @@ class LottoController {
     this.model.issueManualLotto(manualNumbers)
 
     const generatedLottos = this.model.lottos
-    if (generatedLottos.amount === 0) {
+    if (generatedLottos.issuableCount === 0) {
       this.#managePocket()
     } else {
       this.view.renderBuyMethodSection(generatedLottos)
@@ -54,7 +54,7 @@ class LottoController {
   }
 
   #managePocket() {
-    this.model.issueRandomLottos(this.model.lottos.amount)
+    this.model.issueRandomLottos(this.model.lottos.issuableCount)
     this.view.resetBuyMethodSection()
     this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
