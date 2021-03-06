@@ -12,19 +12,20 @@ import { Container } from "../core/index.js";
 
 class WinningNumberContainer extends Container {
   constructor() {
-    super();
-    this.Presentational = new WinningNumberPresentational({
-      eventListeners: {
-        getWinningNumberWithValidation: this.getWinningNumberWithValidation.bind(
-          this
-        ),
-      },
-    });
+    super(WinningNumberPresentational);
   }
 
   initalize() {
     this.$$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT));
     this.$bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
+  }
+
+  getEventListeners() {
+    return {
+      getWinningNumberWithValidation: this.getWinningNumberWithValidation.bind(
+        this
+      ),
+    };
   }
 
   select() {

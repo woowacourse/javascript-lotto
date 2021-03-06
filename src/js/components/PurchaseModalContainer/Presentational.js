@@ -3,8 +3,8 @@ import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import { Presentational } from "../core/index.js";
 
 class PurchaseModalPresentational extends Presentational {
-  constructor({ eventListeners }) {
-    super({ eventListeners });
+  constructor(eventListeners) {
+    super(eventListeners);
   }
 
   initalize() {
@@ -14,12 +14,10 @@ class PurchaseModalPresentational extends Presentational {
     this.$close = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CLOSE));
   }
 
-  setEventListener({
-    eventListeners: {
-      createLottosAfterValidation,
-      togglePurchaseLottoMode,
-      cancelPurchase,
-    },
+  setEventListeners({
+    createLottosAfterValidation,
+    togglePurchaseLottoMode,
+    cancelPurchase,
   }) {
     this.$form.addEventListener("submit", createLottosAfterValidation);
     this.$form.addEventListener("change", togglePurchaseLottoMode);

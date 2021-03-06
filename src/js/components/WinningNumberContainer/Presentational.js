@@ -8,8 +8,8 @@ import {
 import { Presentational } from "../core/index.js";
 
 class WinningNumberPresentational extends Presentational {
-  constructor({ eventListeners }) {
-    super({ eventListeners });
+  constructor(eventListeners) {
+    super(eventListeners);
   }
 
   initalize() {
@@ -22,7 +22,7 @@ class WinningNumberPresentational extends Presentational {
     });
   }
 
-  setEventListener({ eventListeners: { getWinningNumberWithValidation } }) {
+  setEventListeners({ getWinningNumberWithValidation }) {
     this.$container.addEventListener("submit", getWinningNumberWithValidation);
   }
 

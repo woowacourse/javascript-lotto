@@ -3,8 +3,8 @@ import { $, $$, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import { Presentational } from "../core/index.js";
 
 class ResultModalPresentational extends Presentational {
-  constructor({ eventListeners }) {
-    super({ eventListeners });
+  constructor(eventListeners) {
+    super(eventListeners);
   }
 
   initalize() {
@@ -19,7 +19,7 @@ class ResultModalPresentational extends Presentational {
     ];
   }
 
-  setEventListener({ eventListeners: { closeModal, restart } }) {
+  setEventListeners({ closeModal, restart }) {
     this.$close.addEventListener("click", closeModal);
     this.$restartButton.addEventListener("click", restart);
   }

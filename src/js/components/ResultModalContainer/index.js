@@ -6,7 +6,7 @@ import { Container } from "../core/index.js";
 
 class ResultModalContainer extends Container {
   constructor() {
-    super();
+    super(ResultModalPresentational);
     this.Presentational = new ResultModalPresentational({
       eventListeners: {
         restart: this.restart.bind(this),
@@ -19,6 +19,13 @@ class ResultModalContainer extends Container {
     this.WINNING_MONEY_UNITS = [2e9, 30e6, 1.5e6, 50e3, 5e3, 0];
 
     this.$container = $(toDAS(JS_SELECTOR.RESULT_MODAL.CONTAINER));
+  }
+
+  getEventListeners() {
+    return {
+      restart: this.restart.bind(this),
+      closeModal: this.closeModal.bind(this),
+    };
   }
 
   select() {

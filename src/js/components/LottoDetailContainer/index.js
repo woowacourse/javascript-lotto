@@ -5,15 +5,16 @@ import { Container } from "../core/index.js";
 
 class LottoDetailContainer extends Container {
   constructor() {
-    super();
-    this.Presentational = new LottoDetailPresentational({
-      eventListeners: { toggleDetailMode: this.toggleDetailMode.bind(this) },
-    });
+    super(LottoDetailPresentational);
   }
 
   initalize() {
     this.$lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
     this.$lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
+  }
+
+  getEventListeners() {
+    return { toggleDetailMode: this.toggleDetailMode.bind(this) };
   }
 
   select() {

@@ -17,7 +17,7 @@ import { Container } from "../core/index.js";
 
 class PurchaseModalContainer extends Container {
   constructor() {
-    super();
+    super(PurchaseModalPresentational);
     this.Presentational = new PurchaseModalPresentational({
       eventListeners: {
         createLottosAfterValidation: this.createLottosAfterValidation.bind(
@@ -34,6 +34,14 @@ class PurchaseModalContainer extends Container {
     this.$lottos = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.LOTTOS));
 
     this.lottoCount = 0;
+  }
+
+  getEventListeners() {
+    return {
+      createLottosAfterValidation: this.createLottosAfterValidation.bind(this),
+      togglePurchaseLottoMode: this.togglePurchaseLottoMode.bind(this),
+      cancelPurchase: this.cancelPurchase.bind(this),
+    };
   }
 
   select() {

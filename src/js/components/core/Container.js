@@ -1,8 +1,9 @@
 import store from "../../store/index.js";
 
 class Container {
-  constructor() {
+  constructor(Presentational) {
     this.initalize();
+    this.createPresentational(Presentational);
     this.store = store;
     this.subscribe();
     this.previousValue = this.select();
@@ -11,6 +12,14 @@ class Container {
 
   initalize() {
     throw new Error("initalize() must be implemented.");
+  }
+
+  createPresentational(Presentational) {
+    this.Presentational = new Presentational(this.getEventListeners());
+  }
+
+  getEventListeners() {
+    throw new Error("getEventListeners() must be implemented.");
   }
 
   subscribe() {

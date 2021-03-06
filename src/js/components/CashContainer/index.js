@@ -10,18 +10,17 @@ import { Container } from "../core/index.js";
 import CashPresentational from "./CashPresentational.js";
 class CashContainer extends Container {
   constructor() {
-    super();
-    this.Presentational = new CashPresentational({
-      eventListeners: {
-        createLottosAfterValidation: this.createLottosAfterValidation.bind(
-          this
-        ),
-      },
-    });
+    super(CashPresentational);
   }
 
   initalize() {
     this.$cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
+  }
+
+  getEventListeners() {
+    return {
+      createLottosAfterValidation: this.createLottosAfterValidation.bind(this),
+    };
   }
 
   select() {

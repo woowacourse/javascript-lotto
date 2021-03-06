@@ -1,15 +1,15 @@
 class Presentational {
-  constructor({ eventListeners }) {
+  constructor(eventListeners) {
     this.initalize();
-    this.setEventListener({ eventListeners });
+    this.setEventListeners(eventListeners);
   }
 
   initalize() {
     throw new Error("initalize() must be implemented.");
   }
 
-  setEventListener() {
-    throw new Error("setEventListener() must be implemented.");
+  setEventListeners() {
+    throw new Error("setEventListeners() must be implemented.");
   }
 
   render() {

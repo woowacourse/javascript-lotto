@@ -7,8 +7,8 @@ import {
 import { Presentational } from "../core/index.js";
 
 class LottoDetailPresentational extends Presentational {
-  constructor({ eventListeners }) {
-    super({ eventListeners });
+  constructor(eventListeners) {
+    super(eventListeners);
   }
 
   initalize() {
@@ -18,7 +18,7 @@ class LottoDetailPresentational extends Presentational {
     this.$toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
   }
 
-  setEventListener({ eventListeners: { toggleDetailMode } }) {
+  setEventListeners({ toggleDetailMode }) {
     this.$toggleButton.addEventListener("change", (event) => {
       toggleDetailMode(event.target.checked);
     });

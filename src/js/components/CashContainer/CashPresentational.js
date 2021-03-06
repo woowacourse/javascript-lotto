@@ -3,8 +3,8 @@ import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import { Presentational } from "../core/index.js";
 
 class CashPresentational extends Presentational {
-  constructor({ eventListeners }) {
-    super({ eventListeners });
+  constructor(eventListeners) {
+    super(eventListeners);
   }
 
   initalize() {
@@ -12,7 +12,7 @@ class CashPresentational extends Presentational {
     this.$cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
   }
 
-  setEventListener({ eventListeners: { createLottosAfterValidation } }) {
+  setEventListeners({ createLottosAfterValidation }) {
     this.$cashContainer.addEventListener("submit", createLottosAfterValidation);
   }
 
