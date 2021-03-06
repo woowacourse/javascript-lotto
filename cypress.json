@@ -1,3 +1,10 @@
 {
-  "baseUrl": "http://localhost:5500"
+  "baseUrl": "http://localhost:5500",
+  "testFiles": [
+    "cashInput.spec.js",
+    "lottoNumbersToggle.spec.js",
+    "winningNumberInput.spec.js",
+    "resultModal.spec.js",
+    "restart.spec.js"
+  ]
 }
