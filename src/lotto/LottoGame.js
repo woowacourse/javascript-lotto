@@ -3,6 +3,7 @@ import { LOTTO, REWARDS, CHECK_SECOND_CONDITION_NUMBER } from '../constants.js';
 
 export default class LottoGame {
   #lottoItemList;
+  #remainLottoCount;
   #winningNumberList;
   #bonusNumber;
 
@@ -12,6 +13,10 @@ export default class LottoGame {
 
   get lottoItemList() {
     return this.#lottoItemList;
+  }
+
+  get remainLottoCount() {
+    return this.#remainLottoCount;
   }
 
   get winningNumberList() {
@@ -24,14 +29,21 @@ export default class LottoGame {
 
   init() {
     this.#lottoItemList = [];
+    this.#remainLottoCount = 0;
     this.#winningNumberList = [];
     this.#bonusNumber = null;
   }
 
+  assignRemainLottoCount(count) {
+    this.#remainLottoCount = count;
+  }
+
   // 2등을 구하기 위해서 당첨 숫자의 일치개수가 5개인 경우에만 보너스숫자가 일치하는지 확인
   #assignBonusNumberMatched(lottoItem) {
-    if(lottoItem.matchCount === CHECK_SECOND_CONDITION_NUMBER){
-      lottoItem.isBonusMatched = lottoItem.lottoNumberList.includes(this.#bonusNumber);
+    if (lottoItem.matchCount === CHECK_SECOND_CONDITION_NUMBER) {
+      lottoItem.isBonusMatched = lottoItem.lottoNumberList.includes(
+        this.#bonusNumber,
+      );
     }
   }
 
@@ -54,7 +66,11 @@ export default class LottoGame {
 
   getRankItemList() {
     const rankItemList = REWARDS.map((reward) => {
-      const winCount = this.#getWinCount(reward.matchCount, reward.isBonusMatched);
+      const winCount = this.#getWinCount(
+        reward.matchCount,
+        reward.isBonusMatched,
+      );
+      
       return {
         ...reward,
         winCount,
@@ -73,17 +89,22 @@ export default class LottoGame {
     return [...numberList].sort((a, b) => a - b);
   }
 
-  #addLottoItem() {
-    const lottoNumberList = this.#getLottoNumberList();
+  addLottoItem(lottoNumbers) {
+    const lottoNumberList = lottoNumbers
+      ? lottoNumbers.sort((a, b) => a - b)
+      : this.#getLottoNumberList();
+
     this.#lottoItemList.push({
       lottoNumberList,
       matchCount: 0,
       isBonusMatched: false,
     });
+
+    this.#remainLottoCount--;
   }
 
   addLottoItems = (lottoItemCount) => {
-    [...Array(lottoItemCount)].forEach(() => this.#addLottoItem());
+    [...Array(lottoItemCount)].forEach(() => this.addLottoItem());
   };
 
   assignCorrectNumbers(correctNumbers) {

@@ -13,16 +13,20 @@ const validator = {
     return cost < LOTTO.PRICE;
   },
 
+  isExceededRemainCount(purchaseCount, remainCount) {
+    return remainCount < purchaseCount;
+  },
+
+  isPurchaseCountZero(purchaseCount) {
+    return purchaseCount === 0;
+  },
+
   isDuplicatedNumberExist(numbers) {
     return new Set(numbers).size !== numbers.length;
   },
 
   isNumberOutOfRangeExist(numbers) {
     return numbers.some((number) => isNumberOutOfRange(number));
-  },
-
-  isEmptyCorrectNumberExist(numbers) {
-    return numbers.length < LOTTO.CORRECT_NUMBER_LENGTH;
   },
 };
 

@@ -13,6 +13,15 @@
   border-color: #00bcd4 !important;
 }
 
+.btn-gray {
+  background-color: #aaa9a98c !important;
+  border-color: #aaa9a98c !important;
+}
+
 .btn.btn-cyan:hover {
   background-color: #018c9e !important;
+}
+
+.btn.btn-gray:hover {
+  background-color: #4b48488e !important;
 }

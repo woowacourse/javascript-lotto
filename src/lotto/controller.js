@@ -1,88 +1,153 @@
 import LottoGame from './LottoGame.js';
-import lottoGameView from './view.js';
+import LottoView from './views/View.js';
 import { getProfitRate } from '../utils/calculate.js';
 import { getKRString } from '../utils/format.js';
 import { LOTTO } from '../constants.js';
 import {
-  $resultModalOpenButton,
-  $costSubmitButton,
   $costSubmitForm,
   $lottoNumbersToggleButton,
   $costInput,
+  $autoPurchaseButton,
+  $manualPurchaseButton,
+  $autoCountForm,
+  $autoCountInput,
+  $manualLottoNumbersForm,
+  $modal,
   $modalClose,
   $correctNumberWrapper,
   $restartButton,
-  $correctNumberInputForm
+  $correctNumberInputForm,
+  $manualLottoNumbersWrapper,
+  $$correctNumberInputs,
+  $$lottoNumberInputs,
 } from '../elements.js';
 import message from './validators/message.js';
-import { getCorrectNumbers } from './domReader.js';
+import { getAllNumbers } from './domReader.js';
+import { getTotalProfit } from './totalProfit.js';
 
 const lottoGame = new LottoGame();
+const lottoView = new LottoView();
 
-const getTotalProfit = (rankItemList) => {
-  return rankItemList.reduce(
-    (acc, rankItem) => acc + rankItem.money * rankItem.winCount,
-    0,
-  );
+const purchaseAutoLottoItems = (count) => {
+  lottoGame.addLottoItems(count);
+  lottoView.resultSection.displayPurchaseResult(lottoGame.lottoItemList);
+  lottoView.purchaseSection.displayRemainLottoNumberCount(lottoGame.remainLottoCount);
+  checkPurchaseLottoDone();
 };
 
-const purchaseLottoItems = (cost) => {
-  const lottoItemCount = cost / LOTTO.PRICE;
-  lottoGame.init();
-  lottoGame.addLottoItems(lottoItemCount);
-  lottoGameView.displayPurchaseResult(lottoGame.lottoItemList);
+const purchaseManualLottoItem = (lottoNumbers) => {
+  lottoGame.addLottoItem(lottoNumbers);
+  lottoView.resultSection.displayPurchaseResult(lottoGame.lottoItemList);
+  lottoView.purchaseSection.displayRemainLottoNumberCount(lottoGame.remainLottoCount);
+  checkPurchaseLottoDone();
 };
 
 const assignResult = (correctNumbers) => {
   lottoGame.assignCorrectNumbers(correctNumbers);
   lottoGame.assignMatchCount();
-}
+};
 
 const showWinningResult = () => {
   const rankItemList = lottoGame.getRankItemList();
   const profitRate = getProfitRate(lottoGame.totalCost, getTotalProfit(rankItemList));
-  lottoGameView.openResultModal(rankItemList, getKRString(profitRate));
+  lottoView.modalSection.openResultModal(rankItemList, getKRString(profitRate));
 };
 
-const onCostSubmit = (e) => {
+const checkPurchaseLottoDone = () => {
+  if (lottoGame.remainLottoCount === 0) {
+    lottoView.purchaseSection.hideAllPurchaseSection();
+    lottoView.winningSection.displayCorrectNumberInputForm();
+  }
+};
+
+const onCost = (e) => {
   e.preventDefault();
   const cost = Number($costInput.value);
   const userGuideMessage = message.getCostValidation(cost);
   if (userGuideMessage) {
-    lottoGameView.showMessage(userGuideMessage);
-    $costInput.value = '';
+    lottoView.showMessage(userGuideMessage);
+    lottoView.costSection.costInputInit();
     return;
   }
-  lottoGameView.resetToggleButton();
-  purchaseLottoItems(cost);
+
+  lottoGame.assignRemainLottoCount(cost / LOTTO.PRICE);
+  lottoView.costSection.disableButton();
+  lottoView.purchaseSection.displayChoiceMethodButton();
+  lottoView.resultSection.resetToggleButton();
+};
+
+const onAutoSelect = () => {
+  lottoView.purchaseSection.hideManualLottoNumbersForm();
+  lottoView.purchaseSection.displayAutoCountForm();
+  lottoView.purchaseSection.displayRemainLottoNumberCount(lottoGame.remainLottoCount);
+};
+
+const onManualSelect = () => {
+  lottoView.purchaseSection.hideAutoCountForm();
+  lottoView.purchaseSection.displayManualLottoNumbersForm();
+  lottoView.purchaseSection.displayRemainLottoNumberCount(lottoGame.remainLottoCount);
+};
+
+const onAutoPurchase = (e) => {
+  e.preventDefault();
+  const count = Number($autoCountInput.value);
+  const userGuideMessage = message.getPurchaseAutoCountValidation(
+    count,
+    lottoGame.remainLottoCount,
+    );
+  
+  lottoView.purchaseSection.autoCountInputInit();
+  if (userGuideMessage) {
+    lottoView.showMessage(userGuideMessage);
+    return;
+  }
+
+  purchaseAutoLottoItems(count);
+};
+
+const onManualPurchase = (e) => {
+  e.preventDefault();
+  const lottoNumbers = getAllNumbers($$lottoNumberInputs);
+  const userGuideMessage = message.getAllNumberValidation(lottoNumbers);
+  if (userGuideMessage) {
+    lottoView.showMessage(userGuideMessage);
+    return;
+  }
+
+  lottoView.purchaseSection.lottoNumberInputsInit();
+  purchaseManualLottoItem(lottoNumbers);
+  e.target.elements['first-lotto-number'].focus();
 };
 
 const onShowLottoNumbersToggle = (e) => {
   e.target.checked
-    ? lottoGameView.displayLottoNumbers() 
-    : lottoGameView.hideLottoNumbers();
+    ? lottoView.resultSection.displayLottoNumbers()
+    : lottoView.resultSection.hideLottoNumbers();
 };
 
 const onResultModalOpen = (e) => {
   e.preventDefault();
-  const correctNumbers = getCorrectNumbers();
-  const userGuideMessage = message.getModalOpenValidation(correctNumbers);
+  const correctNumbers = getAllNumbers($$correctNumberInputs);
+  const userGuideMessage = message.getAllNumberValidation(correctNumbers);
   if (userGuideMessage) {
-    lottoGameView.showMessage(userGuideMessage);
+    lottoView.showMessage(userGuideMessage);
     return;
   }
+
   assignResult(correctNumbers);
-  showWinningResult()
+  showWinningResult();
 };
 
 const onResultModalClose = () => {
-  lottoGameView.closeResultModal();
+  lottoView.modalSection.closeResultModal();
 };
 
-const onCorrectNumberInput = (e) => {
-  const userGuideMessage = message.getCorrectNumberValidation(getCorrectNumbers());
+const onAllNumberInput = (e, $$elements) => {
+  const userGuideMessage = message.getAllNumberValidation(
+    getAllNumbers($$elements),
+  );
   if (userGuideMessage) {
-    lottoGameView.showMessage(userGuideMessage);
+    lottoView.showMessage(userGuideMessage);
     e.target.value = '';
     e.target.focus();
   }
@@ -90,19 +155,40 @@ const onCorrectNumberInput = (e) => {
 
 const onRestart = () => {
   lottoGame.init();
-  lottoGameView.init();
+  lottoView.init();
+};
+
+const onModalAccessibility = (e) => {
+  if (!$modal.classList.contains('open')) return;
+
+  if (e.code === 'Escape') {
+    onResultModalClose();
+    return;
+  }
+
+  if (e.code === 'Space') {
+    onRestart();
+  }
 };
 
 const controller = {
   bindLottoGameEvents() {
-    $costSubmitForm.addEventListener('submit', onCostSubmit);
-    $costSubmitButton.addEventListener('click', onCostSubmit);
+    $costSubmitForm.addEventListener('submit', onCost);
+    $autoPurchaseButton.addEventListener('click', onAutoSelect);
+    $manualPurchaseButton.addEventListener('click', onManualSelect);
+    $autoCountForm.addEventListener('submit', onAutoPurchase);
+    $manualLottoNumbersForm.addEventListener('submit', onManualPurchase);
     $lottoNumbersToggleButton.addEventListener('change', onShowLottoNumbersToggle);
     $modalClose.addEventListener('click', onResultModalClose);
     $correctNumberInputForm.addEventListener('submit', onResultModalOpen);
-    $resultModalOpenButton.addEventListener('click', onResultModalOpen);
-    $correctNumberWrapper.addEventListener('focusout', onCorrectNumberInput);
+    $manualLottoNumbersWrapper.addEventListener('focusout', (e) => {
+      onAllNumberInput(e, $$lottoNumberInputs);
+    });
+    $correctNumberWrapper.addEventListener('focusout', (e) => {
+      onAllNumberInput(e, $$correctNumberInputs);
+    });
     $restartButton.addEventListener('click', onRestart);
+    window.addEventListener('keyup', onModalAccessibility);
   },
 };
 

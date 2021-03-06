@@ -1,7 +1,5 @@
-import { $$correctNumberInputs } from '../elements.js';
-
-export const getCorrectNumbers = () => {
-  return $$correctNumberInputs
+export const getAllNumbers = ($$elements) => {
+  return $$elements
     .filter(({ value }) => value !== '')
     .map(({ value }) => Number(value));
 };

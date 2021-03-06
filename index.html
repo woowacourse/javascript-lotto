@@ -20,14 +20,112 @@
                 id="cost-input"
                 type="number"
                 class="w-100 mr-2 pl-2"
+                min="1000"
                 placeholder="구입 금액"
               />
               <button
                 id="cost-submit-button"
-                type="button"
+                type="submit"
                 class="btn btn-cyan"
               >
                 확인
+              </button>
+            </div>
+          </form>
+          <div id="choice-purchase-method" class="mt-4 text-center hide">
+            <button
+              type="button"
+              id="auto-purchase-button"
+              class="btn btn-gray mr-4"
+            >
+              자동 구매
+            </button>
+            <button
+              type="button"
+              id="manual-purchase-button"
+              class="btn btn-gray"
+            >
+              수동 구매
+            </button>
+          </div>
+          <div id="remain-lotto-count-text" class="mt-2 text-center hide">
+            최대
+            <span id="remain-count"></span>
+            개를 구매할 수 있습니다.
+          </div>
+          <form id="auto-count-form" class="mt-4 hide">
+            <div class="d-flex">
+              <input
+                type="number"
+                class="w-100 mr-2 pl-2"
+                id="auto-count-input"
+                min="1"
+                placeholder="자동으로 구매할 로또의 개수를 입력해주세요."
+              />
+              <button
+                id="auto-count-submit-button"
+                type="submit"
+                class="btn btn-cyan"
+              >
+                구매
+              </button>
+            </div>
+          </form>
+          <form id="manual-lotto-numbers-form" class="mt-2 hide">
+            <h4 class="mt-0 mb-3 text-center">로또 번호</h4>
+            <div
+              id="manual-lotto-numbers-wrapper"
+              class="d-flex items-center justify-center"
+            >
+              <input
+                type="number"
+                id="first-lotto-number"
+                class="lotto-number mx-1 text-center"
+                min="1"
+                max="45"
+                required
+              />
+              <input
+                type="number"
+                class="lotto-number mx-1 text-center"
+                min="1"
+                max="45"
+                required
+              />
+              <input
+                type="number"
+                class="lotto-number mx-1 text-center"
+                min="1"
+                max="45"
+                required
+              />
+              <input
+                type="number"
+                class="lotto-number mx-1 text-center"
+                min="1"
+                max="45"
+                required
+              />
+              <input
+                type="number"
+                class="lotto-number mx-1 text-center"
+                min="1"
+                max="45"
+                required
+              />
+              <input
+                type="number"
+                class="lotto-number mx-1 text-center"
+                min="1"
+                max="45"
+                required
+              />
+              <button
+                id="manual-lotto-submit-button"
+                type="submit"
+                class="btn btn-cyan"
+              >
+                구매
               </button>
             </div>
           </form>
@@ -57,26 +155,44 @@
                   <input
                     type="number"
                     class="winning-number correct-number mx-1 text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number correct-number mx-1 text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number correct-number mx-1 text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number correct-number mx-1 text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number correct-number mx-1 text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                   <input
                     type="number"
                     class="winning-number correct-number mx-1 text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                 </div>
               </div>
@@ -86,6 +202,9 @@
                   <input
                     type="number"
                     class="bonus-number correct-number text-center"
+                    min="1"
+                    max="45"
+                    required
                   />
                 </div>
               </div>

@@ -14,7 +14,7 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.winning-number, .lotto-number {
   width: 30px;
   height: 36px;
 }

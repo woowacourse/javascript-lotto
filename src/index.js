@@ -1,3 +1,7 @@
 import controller from './lotto/controller.js';
 
-controller.bindLottoGameEvents();
+const init = () => {
+  controller.bindLottoGameEvents();
+};
+
+init();
