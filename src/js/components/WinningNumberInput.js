@@ -1,11 +1,11 @@
 import {
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
-  WINNING_NUMBER_CHECK_MESSAGE,
+  LOTTO_NUMBER_CHECK_MESSAGE,
   LOTTO_NUMBERS_LENGTH,
   BONUS_NUMBER_LENGTH,
 } from '../constants.js';
-import { $, $$, show, hide, enable, clearInputValue, disable } from '../utils/DOM.js';
+import { $, $$, show, hide, enable, disable } from '../utils/DOM.js';
 
 export default class WinningNumberInput {
   constructor({ isVisible, updateWinningNumber, onShowModal }) {
@@ -48,7 +48,7 @@ export default class WinningNumberInput {
     );
     this.setState({ checkMessage });
 
-    if (this.checkMessage === WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+    if (this.checkMessage === LOTTO_NUMBER_CHECK_MESSAGE.COMPLETED) {
       this.setState({
         winningNumber: {
           winningNumbers: winningNumbers.map((v) => Number(v)),
@@ -61,18 +61,18 @@ export default class WinningNumberInput {
 
   validateInput(inputValues) {
     if (inputValues.some(this.isOutOfRange)) {
-      return WINNING_NUMBER_CHECK_MESSAGE.OUT_OF_RANGE;
+      return LOTTO_NUMBER_CHECK_MESSAGE.OUT_OF_RANGE;
     }
 
     if (this.isDuplicated(inputValues)) {
-      return WINNING_NUMBER_CHECK_MESSAGE.DUPLICATED;
+      return LOTTO_NUMBER_CHECK_MESSAGE.DUPLICATED;
     }
 
     if (this.hasBlank(inputValues)) {
-      return WINNING_NUMBER_CHECK_MESSAGE.HAS_BLANK;
+      return LOTTO_NUMBER_CHECK_MESSAGE.HAS_BLANK;
     }
 
-    return WINNING_NUMBER_CHECK_MESSAGE.COMPLETED;
+    return LOTTO_NUMBER_CHECK_MESSAGE.COMPLETED;
   }
 
   isOutOfRange(number) {
@@ -110,7 +110,7 @@ export default class WinningNumberInput {
   renderCheckMessage() {
     this.$winningNumberCheckMessage.innerText = this.checkMessage;
 
-    if (this.checkMessage !== WINNING_NUMBER_CHECK_MESSAGE.COMPLETED) {
+    if (this.checkMessage !== LOTTO_NUMBER_CHECK_MESSAGE.COMPLETED) {
       this.$winningNumberCheckMessage.classList.replace('text-green', 'text-red');
       disable(this.$openResultModalButton);
       return;

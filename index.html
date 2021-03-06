@@ -31,10 +31,10 @@
           </form>
           <section class="manual-lotto-purchase-section mt-6 d-none">
             <h2 class="text-lg">로또 수동 구매하기</h2>
-            <span class="remaining-count d-block text-sm mt-3">남은 로또 : 3장 (총 5장)</span>
+            <div class="remaining-count text-sm mt-3"></div>
             <form>
               <div class="d-flex mt-3">
-                <div class="d-flex">
+                <div class="manual-lotto-number d-flex">
                   <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
                   <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
                   <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
@@ -43,7 +43,7 @@
                   <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
                 </div>
                 <div class="flex-grow">
-                  <button type="submit" class="add-manual-lotto-button btn btn-cyan mw-none ml-3">+</button>
+                  <button type="submit" class="add-manual-lotto-button btn btn-cyan mw-none ml-3" disabled>+</button>
                 </div>
               </div>
               <span class="lotto-number-check-message d-block m-1 text-sm text-red">중복된 번호가 있습니다.</span>
@@ -52,11 +52,11 @@
               <h3 class="text-base">수동 구매한 로또 목록</h3>
               <ul class="purchased-manual-lotto-list pl-3">
                 <li>
-                  <span>01, 02, 03, 04, 05, 06</span>
+                  <span>1, 2, 3, 4, 5, 6</span>
                   <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
                 </li>
                 <li>
-                  <span>01, 02, 03, 04, 05, 06</span>
+                  <span>1, 2, 3, 4, 5, 6</span>
                   <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
                 </li>
               </ul>
