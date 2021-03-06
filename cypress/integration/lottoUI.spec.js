@@ -262,26 +262,27 @@ describe.only('로또 수동 구매 UI 검사', () => {
     const lottoNumbers = [1, 2, 3, 4, 5, 6];
     const { HAS_BLANK, COMPLETED } = LOTTO_NUMBER_CHECK_MESSAGE;
 
-    cy.get('.manual-lotto-number').first().should('have.focus');
-    cy.get('.add-manual-lotto-buttonn').should('be.disabled');
-    cy.get('.manual-lotto-number').each(($el, index) => {
+    cy.get('.add-manual-lotto-button').should('be.disabled');
+    cy.get('.manual-lotto-number > input[type=number]').each(($el, index) => {
       cy.wrap($el).type(lottoNumbers[index]);
-      cy.get('.add-manual-lotto-buttonn').should('be.disabled');
 
       if (index < lottoNumbers.length - 1) {
+        cy.get('.add-manual-lotto-button').should('be.disabled');
         cy.get('.lotto-number-check-message').should('have.text', HAS_BLANK);
         cy.get('.lotto-number-check-message').should('have.class', 'text-red');
       }
     });
     cy.get('.lotto-number-check-message').should('have.text', COMPLETED);
     cy.get('.lotto-number-check-message').should('have.class', 'text-green');
-    cy.get('.add-manual-lotto-buttonn').should('not.be.disabled');
+    cy.get('.add-manual-lotto-button').should('not.be.disabled');
   });
 
   it('입력된 번호가 1 ~ 45 범위가 아니면, 입력칸 하단에 재입력 요청 메세지를 표시한다.', () => {
     const { OUT_OF_RANGE } = LOTTO_NUMBER_CHECK_MESSAGE;
 
-    cy.get('.manual-lotto-number').type(LOTTO_MAX_NUMBER + 1);
+    cy.get('.manual-lotto-number > input[type=number]')
+      .first()
+      .type(LOTTO_MAX_NUMBER + 1);
     cy.get('.lotto-number-check-message').should('have.text', OUT_OF_RANGE);
     cy.get('.lotto-number-check-message').should('have.class', 'text-red');
   });
@@ -290,7 +291,7 @@ describe.only('로또 수동 구매 UI 검사', () => {
     const lottoNumbers = [1, 2, 3, 4, 5, 5];
     const { DUPLICATED } = LOTTO_NUMBER_CHECK_MESSAGE;
 
-    cy.get('.manual-lotto-number').each(($el, index) => {
+    cy.get('.manual-lotto-number > input[type=number]').each(($el, index) => {
       cy.wrap($el).type(lottoNumbers[index]);
     });
     cy.get('.lotto-number-check-message').should('have.text', DUPLICATED);
@@ -300,18 +301,18 @@ describe.only('로또 수동 구매 UI 검사', () => {
   it('모든 번호가 올바르게 입력되어 로또를 구매하면 수동 구매한 로또 목록에 나타난다.', () => {
     const lottoNumbers = [1, 2, 3, 4, 5, 6];
 
-    cy.get('.manual-lotto-number').each(($el, index) => {
+    cy.get('.manual-lotto-number > input[type=number]').each(($el, index) => {
       cy.wrap($el).type(lottoNumbers[index]);
     });
     cy.get('.add-manual-lotto-button').click();
-    cy.get('.remaining-count').should('hava.text', REMAINING_QUANTITY_TO_PURCHASE_MESSAGE(numOfLotto - 1, numOfLotto));
-    cy.get('.purchased-manual-lotto-list li').first().should('have.text', lottoNumbers.join(LOTTO_NUMBER_SEPARATOR));
+    cy.get('.remaining-count').should('have.text', REMAINING_QUANTITY_TO_PURCHASE_MESSAGE(numOfLotto - 1, numOfLotto));
+    cy.get('.purchased-manual-lotto-list span').first().should('have.text', lottoNumbers.join(LOTTO_NUMBER_SEPARATOR));
   });
 
   it('수동 구매 후 남은 금액이 있는 경우 자동으로 구매하고, 구매가 완료되면 수동 구매 창이 사라진다.', () => {
     const lottoNumbers = [1, 2, 3, 4, 5, 6];
 
-    cy.get('.manual-lotto-number').each(($el, index) => {
+    cy.get('.manual-lotto-number > input[type=number]').each(($el, index) => {
       cy.wrap($el).type(lottoNumbers[index]);
     });
     cy.get('.add-manual-lotto-button').click();

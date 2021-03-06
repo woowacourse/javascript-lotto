@@ -32,7 +32,7 @@
           <section class="manual-lotto-purchase-section mt-6 d-none">
             <h2 class="text-lg">로또 수동 구매하기</h2>
             <div class="remaining-count text-sm mt-3"></div>
-            <form>
+            <form class="manual-lotto-purchase-form">
               <div class="d-flex mt-3">
                 <div class="manual-lotto-number d-flex">
                   <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
@@ -46,20 +46,11 @@
                   <button type="submit" class="add-manual-lotto-button btn btn-cyan mw-none ml-3" disabled>+</button>
                 </div>
               </div>
-              <span class="lotto-number-check-message d-block m-1 text-sm text-red">중복된 번호가 있습니다.</span>
+              <span class="lotto-number-check-message d-block m-1 text-sm text-red"></span>
             </form>
             <section class="purchased-manual-lotto-section mt-5">
               <h3 class="text-base">수동 구매한 로또 목록</h3>
-              <ul class="purchased-manual-lotto-list pl-3">
-                <li>
-                  <span>1, 2, 3, 4, 5, 6</span>
-                  <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
-                </li>
-                <li>
-                  <span>1, 2, 3, 4, 5, 6</span>
-                  <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
-                </li>
-              </ul>
+              <ul class="purchased-manual-lotto-list pl-3"></ul>
             </section>
             <div class="mt-5">
               <sapn class="d-block text-sm text-gray">남은 금액이 있는 경우 자동으로 구매합니다.</sapn>
@@ -109,7 +100,7 @@
 
       <section class="modal" role="dialog" aria-labelledby="result-modal-title">
         <div class="modal-inner p-10">
-          <button class="modal-close">
+          <button type="button" class="modal-close">
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>

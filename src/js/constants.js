@@ -20,7 +20,7 @@ export const LOTTO_NUMBER_CHECK_MESSAGE = {
   OUT_OF_RANGE: `${LOTTO_MIN_NUMBER} ~ ${LOTTO_MAX_NUMBER} 범위를 벗어난 값이 있습니다. 확인 후 다시 입력해주세요.`,
   DUPLICATED: '중복된 값이 있습니다. 확인 후 다시 입력해주세요.',
   HAS_BLANK: '아직 입력하지 않은 번호가 있습니다.',
-  COMPLETED: '당첨번호 입력이 완료되었습니다. 인생역전의 기회, 지금 결과를 확인하세요!',
+  COMPLETED: '번호 입력이 완료되었습니다!',
 };
 
 export const BONUS_COUNT = 0.5;
