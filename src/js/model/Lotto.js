@@ -4,9 +4,7 @@ export class Lotto {
 
   constructor(type, numbers) {
     this.#type = type;
-    this.#numbers = numbers.sort((a, b) => {
-      return a - b;
-    });
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   get type() {

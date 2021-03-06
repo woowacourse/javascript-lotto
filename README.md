@@ -19,6 +19,10 @@
   <img width="400" src="./src/images/lotto_ui.png">
 </p>
 
+## [🧶데모 사이트](https://yungo1846.github.io/javascript-lotto/)
+
+<br/>
+
 ### 🎯 step1 구입 기능
 
 - [x] 로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.

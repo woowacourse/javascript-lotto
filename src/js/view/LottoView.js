@@ -6,6 +6,7 @@ import { $ } from '../util/index.js';
 export class LottoView {
   renderPurchaseSection(money) {
     this.$purchaseSection = $('#purchase-section');
+    this.$lottoNumbersToggleButton = $('#lotto-numbers-toggle-button');
     $('#current-money').innerText(money);
     this.$purchaseSection.show();
   }
@@ -20,29 +21,16 @@ export class LottoView {
     this.$lottoResultForm.show();
 
     function lottoTemplate(lottos) {
-      if ($('#lotto-numbers-toggle-button').isCheckedInput()) {
-        return lottos.reduce((html, lotto, idx) => {
-          return (html += ` 
+      return lottos.reduce((html, lotto, idx) => {
+        return (html += ` 
             <div class="lotto-wrapper d-flex items-start">
               <span class="lotto mx-1 text-4xl">🎟️ </span>
-              <span data-lotto-numbers=${idx} class="mx-1 text-xl font-bold mt-2">
+              <span data-lotto-numbers=${idx} class="mx-1 text-xl font-bold d-none mt-2">
                 ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
               </span>
             </div>
           `);
-        }, '');
-      } else {
-        return lottos.reduce((html, lotto, idx) => {
-          return (html += ` 
-            <div class="lotto-wrapper d-flex items-start">
-              <span class="lotto mx-1 text-4xl">🎟️ </span>
-              <span data-lotto-numbers=${idx} class="mx-1 text-xl font-bold d-none mt-2">
-              ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
-              </span>
-            </div>
-          `);
-        }, '');
-      }
+      }, '');
     }
   }
 

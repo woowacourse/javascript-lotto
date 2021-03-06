@@ -140,13 +140,13 @@ export class LottoController {
         `현재 남은 잔액은 ${currentMoney}원 입니다.\n확인 버튼을 누르시면 남은 잔액으로 자동 구매를 진행합니다.`
       );
 
-      if (answer) {
-        this.machine.publishLottosByAuto(currentMoney / UNIT_AMOUNT);
-        this.view.renderPurchaseSection(this.machine.currentMoney);
-        this.view.renderLottoSection(this.machine.lottos);
-      } else {
+      if (!answer) {
         return;
       }
+
+      this.machine.publishLottosByAuto(currentMoney / UNIT_AMOUNT);
+      this.view.renderPurchaseSection(this.machine.currentMoney);
+      this.view.renderLottoSection(this.machine.lottos);
     }
 
     this.view.renderWinningResult(this.machine.getWinningStatistics(numbers));
