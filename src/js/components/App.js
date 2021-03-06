@@ -51,7 +51,7 @@ export default class App {
 
   onRestart() {
     this.setState({ lottoTickets: [], winningNumber: {} });
-    this.purchaseAmountInput.reset();
+    this.lottoPurchase.reset();
   }
 
   setState({ lottoTickets, winningNumber }) {

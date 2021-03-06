@@ -15,6 +15,10 @@ export default class LottoPurchase {
     });
   }
 
+  reset() {
+    this.purchaseAmountInput.reset();
+  }
+
   updateNumOfLotto(numOfLotto) {
     this.setState({ numOfLotto });
   }

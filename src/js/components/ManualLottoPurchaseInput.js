@@ -1,9 +1,5 @@
 import { $, hide, show } from '../utils/DOM.js';
-import {
-  LOTTO_NUMBER_SEPARATOR,
-  REMAINING_QUANTITY_TO_PURCHASE_MESSAGE,
-  LOTTO_NUMBER_CHECK_MESSAGE,
-} from '../constants.js';
+import { LOTTO_NUMBER_SEPARATOR, REMAINING_QUANTITY_TO_PURCHASE_MESSAGE } from '../constants.js';
 import { getLottoNumberCheckMessage, renderCheckMessage } from '../model/LottoNumbersValidation.js';
 import LottoTicket from '../model/LottoTicket.js';
 
@@ -57,6 +53,7 @@ export default class ManualLottoPurchaseInput {
 
   updatelottoTicketNumbers({ target }) {
     const lottoNumbers = Array.from(target.querySelectorAll('.lotto-number')).map(($input) => Number($input.value));
+    this.$lottoNumberForm.reset();
 
     this.setState({ lottoTicketNumbers: [...this.lottoTicketNumbers, lottoNumbers] });
   }
@@ -90,7 +87,6 @@ export default class ManualLottoPurchaseInput {
     return `
       <li>
         <span>${lottoNumbers.join(LOTTO_NUMBER_SEPARATOR)}</span>
-        <button type="button" class="remove-lotto-button ml-5 btn-transparent">삭제</button>
       </li>
     `;
   }

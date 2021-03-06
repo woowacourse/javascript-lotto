@@ -38,7 +38,7 @@ export default class WinningNumberInput {
     };
 
     const checkMessage = getLottoNumberCheckMessage({
-      type: 'lottoNumbers',
+      type: 'winningNumbers',
       numbers: [...winningNumbers, bonusNumber].filter((v) => v !== '').map((v) => Number(v)),
     });
 

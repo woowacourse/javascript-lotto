@@ -1,9 +1,8 @@
 import LottoTicket from '../../src/js/model/LottoTicket.js';
-import ResultModal from '../../src/js/components/ResultModal.js';
-import { BONUS_COUNT } from '../../src/js/constants.js';
+import { BONUS_COUNT, LOTTO_PRICE, RATE_OF_RETURN_MESSAGE } from '../../src/js/constants.js';
 
 describe('당첨통계 계산 메서드 검사', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
 
@@ -40,45 +39,72 @@ describe('당첨통계 계산 메서드 검사', () => {
     expect(lottoTicket8.totalMatchCount).to.equal(0);
   });
 
-  function getLottoRateOfReturn(lottoTickets, winningNumber) {
-    const resultModal = new ResultModal({ lottoTickets, winningNumber });
-    resultModal.setTotalMatchCounts();
+  const purchaseManualLottoTickets = (lottoTicketNumbers) => {
+    lottoTicketNumbers.forEach((numbers) => {
+      cy.get('.manual-lotto-number > input[type=number]').each(($el, index) => {
+        cy.wrap($el).type(numbers[index]);
+      });
+      cy.get('.add-manual-lotto-button').click();
+    });
+    cy.get('.lotto-purchase-button').click();
+  };
 
-    return resultModal.getLottoRateOfReturn();
-  }
+  const typeWinningNumbers = () => {
+    cy.get('.winning-number').each(($el, index) => {
+      cy.wrap($el).type(winningNumber.winningNumbers[index]);
+    });
+    cy.get('.bonus-number').type(winningNumber.bonusNumber);
+    cy.get('.open-result-modal-button').click();
+  };
 
   it('구매금액이 5,000원이고 당첨금액이 0원이면, -100의 수익률(%)을 반환한다.', () => {
-    const lottoTickets = [...Array(5)].map(() => new LottoTicket([7, 8, 9, 10, 11, 12]));
-    ('');
-    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
+    cy.get('.purchase-amount-input')
+      .type(LOTTO_PRICE * 5)
+      .type('{enter}');
 
-    expect(rateOfReturn).to.equal(-100);
+    const lottoTicketNumbers = [...Array(5)].map(() => [7, 8, 9, 10, 11, 12]);
+    purchaseManualLottoTickets(lottoTicketNumbers);
+    typeWinningNumbers();
+
+    cy.get('.rate-of-return').should('have.text', RATE_OF_RETURN_MESSAGE(-100));
   });
 
   it('구매금액이 5,000원이고 당첨금액이 5,000원이면, 0의 수익률(%)을 반환한다.', () => {
-    const lottoTickets = [...Array(4)]
-      .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
-      .concat(new LottoTicket([1, 2, 3, 7, 8, 9]));
-    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
+    cy.get('.purchase-amount-input')
+      .type(LOTTO_PRICE * 5)
+      .type('{enter}');
 
-    expect(rateOfReturn).to.equal(0);
+    const lottoTicketNumbers = [...Array(4)].map(() => [7, 8, 9, 10, 11, 12]);
+    lottoTicketNumbers.push([1, 2, 3, 7, 8, 9]);
+    purchaseManualLottoTickets(lottoTicketNumbers);
+    typeWinningNumbers();
+
+    cy.get('.rate-of-return').should('have.text', RATE_OF_RETURN_MESSAGE(0));
   });
 
   it('구매금액이 5,000원이고 당첨금액이 2,000,000,000원이면, 39999900의 수익률(%)을 반환한다.', () => {
-    const lottoTickets = [...Array(4)]
-      .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
-      .concat(new LottoTicket([1, 2, 3, 4, 5, 6]));
-    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
+    cy.get('.purchase-amount-input')
+      .type(LOTTO_PRICE * 5)
+      .type('{enter}');
 
-    expect(rateOfReturn).to.equal(39999900);
+    const lottoTicketNumbers = [...Array(4)].map(() => [7, 8, 9, 10, 11, 12]);
+    lottoTicketNumbers.push([1, 2, 3, 4, 5, 6]);
+    purchaseManualLottoTickets(lottoTicketNumbers);
+    typeWinningNumbers();
+
+    cy.get('.rate-of-return').should('have.text', RATE_OF_RETURN_MESSAGE(39999900));
   });
 
   it('구매금액이 13,000원이고 당첨금액이 5,000원이면, -61.54의 수익률(%)을 반환한다.', () => {
-    const lottoTickets = [...Array(12)]
-      .map(() => new LottoTicket([7, 8, 9, 10, 11, 12]))
-      .concat(new LottoTicket([1, 2, 3, 11, 12, 13]));
-    const rateOfReturn = getLottoRateOfReturn(lottoTickets, winningNumber);
+    cy.get('.purchase-amount-input')
+      .type(LOTTO_PRICE * 13)
+      .type('{enter}');
 
-    expect(rateOfReturn).to.equal(-61.54);
+    const lottoTicketNumbers = [...Array(12)].map(() => [7, 8, 9, 10, 11, 12]);
+    lottoTicketNumbers.push([1, 2, 3, 11, 12, 13]);
+    purchaseManualLottoTickets(lottoTicketNumbers);
+    typeWinningNumbers();
+
+    cy.get('.rate-of-return').should('have.text', RATE_OF_RETURN_MESSAGE(-61.54));
   });
 });
