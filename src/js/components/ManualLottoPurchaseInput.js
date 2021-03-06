@@ -5,6 +5,7 @@ import {
   LOTTO_NUMBER_CHECK_MESSAGE,
 } from '../constants.js';
 import { getLottoNumberCheckMessage, renderCheckMessage } from '../model/LottoNumbersValidation.js';
+import LottoTicket from '../model/LottoTicket.js';
 
 export default class ManualLottoPurchaseInput {
   constructor({ isVisible, numOfLotto, updateLottoTickets }) {
@@ -14,11 +15,12 @@ export default class ManualLottoPurchaseInput {
     this.$addLottoButton = $('.add-manual-lotto-button');
     this.$lottoNumCheckMessage = $('.lotto-number-check-message');
     this.$purchasedLottoList = $('.purchased-manual-lotto-list');
+    this.$lottoPurchaseButton = $('.lotto-purchase-button');
 
     this.isVisible = isVisible;
     this.numOfLotto = numOfLotto;
     this.lottoTicketNumbers = [];
-    this.updateLottoTickets = updateLottoTickets;
+    this.updatelottoTickets = updateLottoTickets;
 
     this.attachEvents();
   }
@@ -29,6 +31,7 @@ export default class ManualLottoPurchaseInput {
       e.preventDefault();
       this.updatelottoTicketNumbers(e);
     });
+    this.$lottoPurchaseButton.addEventListener('click', this.purchaseLottoTickets.bind(this));
   }
 
   onChangeLottoNumberInput(e) {
@@ -53,9 +56,26 @@ export default class ManualLottoPurchaseInput {
   }
 
   updatelottoTicketNumbers({ target }) {
-    const lottoNumbers = Array.from(target.querySelectorAll('.lotto-number')).map(($input) => $input.value);
+    const lottoNumbers = Array.from(target.querySelectorAll('.lotto-number')).map(($input) => Number($input.value));
 
     this.setState({ lottoTicketNumbers: [...this.lottoTicketNumbers, lottoNumbers] });
+  }
+
+  purchaseLottoTickets() {
+    this.updatelottoTickets({
+      manualLottoTickets: this.lottoTicketNumbers.map((numbers) => new LottoTicket(numbers)),
+      numOfRest: this.numOfLotto - this.lottoTicketNumbers.length,
+    });
+
+    this.reset();
+  }
+
+  reset() {
+    this.setState({
+      isVisible: false,
+      numOfLotto: 0,
+      lottoTicketNumbers: [],
+    });
   }
 
   setState({ isVisible, numOfLotto, lottoTicketNumbers }) {

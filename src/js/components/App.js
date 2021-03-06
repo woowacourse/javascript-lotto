@@ -34,8 +34,10 @@ export default class App {
   }
 
   updateLottoTickets({ manualLottoTickets, numOfRest }) {
+    const restLottoTickets = this.createLottoTickets(numOfRest);
+
     this.setState({
-      lottoTickets: [...manualLottoTickets, this.createLottoTickets(numOfRest)],
+      lottoTickets: [...manualLottoTickets, ...restLottoTickets],
     });
   }
 
