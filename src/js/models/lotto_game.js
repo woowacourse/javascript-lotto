@@ -22,7 +22,7 @@ class LottoGameModel {
     }
   }
 
-  #addAnswerLotto(numbers, bonus) {
+  #addAnswerLotto({ numbers, bonus }) {
     this.#answerLotto = { numbers, bonus }
   }
 
@@ -41,7 +41,7 @@ class LottoGameModel {
   }
 
   calculateLottosResult(answer) {
-    this.#addAnswerLotto(answer.numbers, answer.bonus)
+    this.#addAnswerLotto(answer)
 
     this.#issuedLottos.lottos.forEach((ticket) => {
       const { match, bonusMatch } = this.#calculateMatch(ticket)
