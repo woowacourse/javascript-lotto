@@ -3,31 +3,10 @@ import {
   LOTTO,
   REWARDS,
   BONUS_ITEM_MATCH_COUNT,
-  GAME
+  GAME,
 } from '../../constants.js';
 
 export default class LottoGame {
-  #lottoItemList = [];
-  #winningNumberList = [];
-  #bonusNumber = null;
-  #deposit = GAME.INITIAL_DEPOSIT;
-
-  get LottoItemList() {
-    return this.#lottoItemList;
-  }
-
-  get WinningNumberList() {
-    return this.#winningNumberList;
-  }
-
-  get TotalCost() {
-    return this.#lottoItemList.length * LOTTO.PRICE;
-  }
-
-  get Deposit() {
-    return this.#deposit;
-  }
-
   initGame() {
     this.initLottoItemList();
     this.#winningNumberList = [];
@@ -40,8 +19,12 @@ export default class LottoGame {
   }
 
   addLottoItem(lottoNumberList) {
-    if (!Array.isArray(lottoNumberList) || lottoNumberList.length !== LOTTO.NUMBER_LIST_LENGTH) return;
-    
+    if (
+      !Array.isArray(lottoNumberList) ||
+      lottoNumberList.length !== LOTTO.NUMBER_LIST_LENGTH
+    )
+      return;
+
     this.#lottoItemList.push({
       lottoNumberList,
       matchCount: 0,
@@ -51,24 +34,24 @@ export default class LottoGame {
 
   addLottoItems = (lottoItemCount) => {
     [...Array(lottoItemCount)].forEach(() => this.#addRandomLottoItem());
-  }
+  };
 
   saveDeposit = (money) => {
     if (Number.isNaN(money) || money <= 0) return;
 
     this.#deposit += money;
-  }
+  };
 
   spendOneLottoMoney = () => {
     this.#deposit -= LOTTO.PRICE;
-  }
+  };
 
   spendAsManyMoney = () => {
     this.#deposit = this.#deposit % LOTTO.PRICE;
-  }
+  };
 
   getAffordableLottoItemCount() {
-    return parseInt(this.#deposit / LOTTO.PRICE); 
+    return parseInt(this.#deposit / LOTTO.PRICE);
   }
 
   getRankItemList() {
@@ -106,12 +89,16 @@ export default class LottoGame {
   }
 
   assignInputNumbers(numbers) {
-    if (!Array.isArray(numbers) || numbers.length !== LOTTO.CORRECT_NUMBER_LENGTH) return;
-    
+    if (
+      !Array.isArray(numbers) ||
+      numbers.length !== LOTTO.CORRECT_NUMBER_LENGTH
+    )
+      return;
+
     this.#bonusNumber = numbers.pop();
     this.#winningNumberList = numbers;
   }
-  
+
   #getLottoNumberList() {
     const numberList = new Set();
     while (numberList.size < LOTTO.NUMBER_LIST_LENGTH) {
@@ -148,4 +135,24 @@ export default class LottoGame {
     });
   }
 
+  #lottoItemList = [];
+  #winningNumberList = [];
+  #bonusNumber = null;
+  #deposit = GAME.INITIAL_DEPOSIT;
+
+  get LottoItemList() {
+    return this.#lottoItemList;
+  }
+
+  get WinningNumberList() {
+    return this.#winningNumberList;
+  }
+
+  get TotalCost() {
+    return this.#lottoItemList.length * LOTTO.PRICE;
+  }
+
+  get Deposit() {
+    return this.#deposit;
+  }
 }
