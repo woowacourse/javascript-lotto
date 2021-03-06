@@ -18,18 +18,61 @@
               <input
                 type="number"
                 class="w-100 mr-2 pl-2"
-                placeholder="구입 금액 (1000원 단위)"
+                placeholder="구입 금액 (1,000원 단위)"
                 id="purchase-amount-input"
               />
               <button type="submit" class="btn btn-cyan" id="purchase-amount-submit">확인</button>
             </div>
           </form>
+          <!-- purchase section -->
+          <section class="mt-5 d-none" id="purchase-section">
+            <div class="d-flex mt-7">
+              <label class="flex-auto my-0 font-bold">남은 잔액 <span id="current-money"></span>원</label>
+              <div class="flex-auto d-flex justify-end pr-1">
+                <label class="switch" id="purchase-type-switch">
+                  <input type="checkbox" id="purchase-type-toggle-button" />
+                  <span class="text-base font-normal">자동/수동</span>
+                </label>
+              </div>
+            </div>
+            <form class="mt-5" id="auto-amount-purchase-form" novalidate>
+              <h3>🎰 자동 구매</h3>
+              <label class="mb-2 d-inline-block">구입할 장수를 입력해주세요. </label>
+              <div class="d-flex">
+                <input
+                  type="number"
+                  class="w-100 mr-2 pl-2"
+                  placeholder="구입 장수 (1장에 1,000원)"
+                  id="auto-amount-input"
+                />
+                <button type="submit" class="btn btn-cyan" id="auto-amount-submit">구매</button>
+              </div>
+            </form>
+            <form class="mt-5 d-none" id="manual-purchase-form" novalidate>
+              <h3>🎲 수동 구매</h3>
+              <label class="mb-2 d-inline-block">1부터 45까지의 번호를 입력해주세요. </label>
+              <div class="d-flex justify-center mt-3">
+                <div>
+                  <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
+                  <div>
+                    <input type="text" class="lotto-number mx-1 text-center" data-manual-lotto-number="0" />
+                    <input type="text" class="lotto-number mx-1 text-center" data-manual-lotto-number="1" />
+                    <input type="text" class="lotto-number mx-1 text-center" data-manual-lotto-number="2" />
+                    <input type="text" class="lotto-number mx-1 text-center" data-manual-lotto-number="3" />
+                    <input type="text" class="lotto-number mx-1 text-center" data-manual-lotto-number="4" />
+                    <input type="text" class="lotto-number mx-1 text-center" data-manual-lotto-number="5" />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="mt-5 btn btn-cyan w-100" id="manual-purchase-submit">구매</button>
+            </form>
+          </section>
           <!-- lotto section -->
           <section class="mt-9 d-none" id="lotto-section">
             <div class="d-flex">
               <label class="flex-auto my-0">총 <span id="lotto-count"></span>개를 구매하였습니다.</label>
               <div class="flex-auto d-flex justify-end pr-1">
-                <label class="switch">
+                <label class="switch" id="lotto-numbers-switch">
                   <input type="checkbox" id="lotto-numbers-toggle-button" />
                   <span class="text-base font-normal">번호보기</span>
                 </label>
@@ -40,24 +83,24 @@
           <!-- lotto-result-form -->
           <form class="mt-9 d-none" id="lotto-result-form" novalidate>
             <label class="flex-auto d-inline-block mb-3"
-              >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요. (1부터 45까지의 숫자를 입력해주세요.)</label
+              >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요. (1부터 45까지의 번호를 입력해주세요.)</label
             >
             <div class="d-flex">
               <div>
                 <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
                 <div>
-                  <input type="text" class="winning-number mx-1 text-center" data-winning-number="0" />
-                  <input type="text" class="winning-number mx-1 text-center" data-winning-number="1" />
-                  <input type="text" class="winning-number mx-1 text-center" data-winning-number="2" />
-                  <input type="text" class="winning-number mx-1 text-center" data-winning-number="3" />
-                  <input type="text" class="winning-number mx-1 text-center" data-winning-number="4" />
-                  <input type="text" class="winning-number mx-1 text-center" data-winning-number="5" />
+                  <input type="text" class="lotto-number mx-1 text-center" data-winning-number="0" />
+                  <input type="text" class="lotto-number mx-1 text-center" data-winning-number="1" />
+                  <input type="text" class="lotto-number mx-1 text-center" data-winning-number="2" />
+                  <input type="text" class="lotto-number mx-1 text-center" data-winning-number="3" />
+                  <input type="text" class="lotto-number mx-1 text-center" data-winning-number="4" />
+                  <input type="text" class="lotto-number mx-1 text-center" data-winning-number="5" />
                 </div>
               </div>
               <div class="bonus-number-container flex-grow">
                 <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
                 <div class="d-flex justify-center">
-                  <input type="text" class="bonus-number text-center" id="bonus-number" data-winning-number="6" />
+                  <input type="text" class="lotto-number text-center" id="bonus-number" data-winning-number="6" />
                 </div>
               </div>
             </div>

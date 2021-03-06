@@ -1,8 +1,16 @@
 /* eslint-disable max-lines-per-function */
 
+import { LOTTO_TYPE_AUTO } from '../constants/index.js';
 import { $ } from '../util/index.js';
 
 export class LottoView {
+  renderPurchaseSection(money) {
+    this.$purchaseSection = $('#purchase-section');
+    this.$lottoNumbersToggleButton = $('#lotto-numbers-toggle-button');
+    $('#current-money').innerText(money);
+    this.$purchaseSection.show();
+  }
+
   renderLottoSection(lottos) {
     this.$lottoSection = $('#lotto-section');
     this.$lottoResultForm = $('#lotto-result-form');
@@ -15,13 +23,13 @@ export class LottoView {
     function lottoTemplate(lottos) {
       return lottos.reduce((html, lotto, idx) => {
         return (html += ` 
-          <div class="lotto-wrapper d-flex items-start">
-            <span class="lotto mx-1 text-4xl">🎟️ </span>
-            <span data-lotto-numbers=${idx} class="mx-1 text-2xl d-none">
-              ${lotto.numbers.join(', ')}
-            </span>
-          </div>
-        `);
+            <div class="lotto-wrapper d-flex items-start">
+              <span class="lotto mx-1 text-4xl">🎟️ </span>
+              <span data-lotto-numbers=${idx} class="mx-1 text-xl font-bold d-none mt-2">
+                ${lotto.type === LOTTO_TYPE_AUTO ? '자동' : '수동'} ${lotto.numbers.join(', ')}
+              </span>
+            </div>
+          `);
       }, '');
     }
   }
@@ -34,6 +42,7 @@ export class LottoView {
   }
 
   reset() {
+    this.$purchaseSection.hide();
     this.$lottoSection.hide();
     this.$lottoResultForm.hide();
   }

@@ -6,29 +6,39 @@ import {
   LOTTO_NUMBER_COUNT,
   WINNING_NUMBER_COUNT,
   PRIZE_MONEY,
+  LOTTO_TYPE_AUTO,
+  LOTTO_TYPE_MANUAL,
 } from '../constants/index.js';
 import { Lotto } from './Lotto.js';
 
 export class LottoMachine {
   #lottos = [];
   #insertedMoney = 0;
+  #currentMoney = 0;
 
   get lottos() {
     return [...this.#lottos];
   }
 
-  insert(money) {
-    this.#insertedMoney = money;
+  get currentMoney() {
+    return this.#currentMoney;
   }
 
-  publishLottosByAuto() {
-    const count = this.#insertedMoney / UNIT_AMOUNT;
+  insert(money) {
+    this.#insertedMoney = money;
+    this.#currentMoney = money;
+  }
+
+  publishLottosByAuto(amount) {
+    const count = amount;
 
     for (let i = 0; i < count; i++) {
       const numbers = this.getRandomLottoNumbers();
 
-      this.#lottos.push(new Lotto(numbers));
+      this.#lottos.push(new Lotto(LOTTO_TYPE_AUTO, numbers));
     }
+
+    this.#currentMoney -= amount * UNIT_AMOUNT;
   }
 
   getRandomLottoNumbers() {
@@ -43,6 +53,11 @@ export class LottoMachine {
     }
 
     return numbers;
+  }
+
+  publishLottoByManual(numbers) {
+    this.#lottos.push(new Lotto(LOTTO_TYPE_MANUAL, numbers));
+    this.#currentMoney -= UNIT_AMOUNT;
   }
 
   getWinningStatistics(winningNumbers) {

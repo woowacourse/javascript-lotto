@@ -1,5 +1,3 @@
-import { memoize } from './index.js';
-
 export const $ = (() => {
   const constructor = function (selector) {
     if (!selector) {
@@ -7,10 +5,6 @@ export const $ = (() => {
     }
     this.targets = document.querySelectorAll(selector);
     this.target = this.targets.length === 1 && this.targets[0];
-  };
-
-  const makeNewConstructor = function (selector) {
-    return new constructor(selector);
   };
 
   constructor.prototype.each = function (callBack) {
@@ -133,10 +127,8 @@ export const $ = (() => {
     return this.target.checked;
   };
 
-  const memoized = memoize(makeNewConstructor);
-
   const instantiate = selector => {
-    return memoized(selector);
+    return new constructor(selector);
   };
 
   return instantiate;

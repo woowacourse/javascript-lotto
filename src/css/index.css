@@ -13,7 +13,7 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.lotto-number {
   width: 30px;
   height: 36px;
 }
@@ -21,4 +21,9 @@ body {
 .bonus-number {
   width: 30px;
   height: 36px;
+}
+
+#lotto-container {
+  max-width: 400px;
+  overflow-y: scroll;
 }

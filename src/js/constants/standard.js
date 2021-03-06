@@ -5,6 +5,9 @@ export const LOTTO_NUMBER_COUNT = 6;
 export const BONUS_NUMBER_COUNT = 1;
 export const WINNING_NUMBER_COUNT = LOTTO_NUMBER_COUNT + BONUS_NUMBER_COUNT;
 
+export const LOTTO_TYPE_AUTO = 'auto';
+export const LOTTO_TYPE_MANUAL = 'manual';
+
 const PRIZE_MONEY_1ST = 2000000000;
 const PRIZE_MONEY_2ND = 30000000;
 const PRIZE_MONEY_3RD = 1500000;

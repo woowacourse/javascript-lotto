@@ -1,4 +1,4 @@
-import { MAX_LOTTO_NUMBER } from '../constants/index.js';
+import { MAX_LOTTO_NUMBER, UNIT_AMOUNT } from '../constants/index.js';
 import { $, validator } from '../util/index.js';
 export class LottoController {
   constructor(model, view) {
@@ -9,14 +9,20 @@ export class LottoController {
   initEvent() {
     this.$purchaseAmountForm = $('#purchase-amount-form');
     this.$lottoToggle = $('#lotto-numbers-toggle-button');
-    this.$winningNumberInputs = $('[data-winning-number]');
+    this.$winningNumberInputs = $('.lotto-number');
     this.$resultForm = $('#lotto-result-form');
     this.$modal = $('#modal');
     this.$modalClose = $('#modal-close');
     this.$resetButton = $('#reset-button');
+    this.$autoAmountPurchaseForm = $('#auto-amount-purchase-form');
+    this.$manualPurchaseForm = $('#manual-purchase-form');
+    this.$purchaseTypeToggle = $('#purchase-type-toggle-button');
 
     this.$purchaseAmountForm.setEvent('submit', this.handlePurchaseAmountInput.bind(this));
-    this.$lottoToggle.setEvent('click', this.handleLottoToggle.bind(this));
+    this.$autoAmountPurchaseForm.setEvent('submit', this.handleAutoAmountInput.bind(this));
+    this.$manualPurchaseForm.setEvent('submit', this.handleManualInputs.bind(this));
+    this.$purchaseTypeToggle.setEvent('change', this.handlePurchaseTypeToggle.bind(this));
+    this.$lottoToggle.setEvent('change', this.handleLottoToggle.bind(this));
     this.$winningNumberInputs.setEvent('input', this.handleLengthLimit.bind(this));
     this.$resultForm.setEvent('submit', this.handleResult.bind(this));
     this.$modalClose.setEvent('click', () => this.$modal.removeClass('open'));
@@ -37,7 +43,7 @@ export class LottoController {
     }
 
     this.machine.insert(money);
-    this.machine.publishLottosByAuto();
+    this.view.renderPurchaseSection(money);
     this.view.renderLottoSection(this.machine.lottos);
     this.$purchaseAmountInput.disable();
     this.$purchaseAmountSubmit.disable();
@@ -46,6 +52,51 @@ export class LottoController {
   handleInputException($input, alertMessage) {
     alert(alertMessage);
     $input.setValue('');
+  }
+
+  handleAutoAmountInput(event) {
+    event.preventDefault();
+    this.$autoAmountInput = $('#auto-amount-input');
+    const leftMoney = this.machine.currentMoney;
+    const autoAmount = Number(this.$autoAmountInput.getValue());
+    const alertMessage = validator.autoPurchase(leftMoney, autoAmount);
+    if (alertMessage) {
+      this.handleInputException(this.$autoAmountInput, alertMessage);
+
+      return;
+    }
+    this.$autoAmountInput.setValue('');
+    this.machine.publishLottosByAuto(autoAmount);
+    this.view.renderPurchaseSection(this.machine.currentMoney);
+    this.view.renderLottoSection(this.machine.lottos);
+  }
+
+  handleManualInputs(event) {
+    event.preventDefault();
+    this.$manualInputs = $('[data-manual-lotto-number]');
+    const leftMoney = this.machine.currentMoney;
+    const manualNumbers = this.$manualInputs.filter($input => $input.value !== '').map($input => Number($input.value));
+    const alertMessage = validator.manualPurchase(leftMoney) || validator.lottoNumbers(manualNumbers);
+
+    if (alertMessage) {
+      this.handleInputException(this.$manualInputs, alertMessage);
+
+      return;
+    }
+    this.$manualInputs.setValue('');
+    this.machine.publishLottoByManual(manualNumbers);
+    this.view.renderPurchaseSection(this.machine.currentMoney);
+    this.view.renderLottoSection(this.machine.lottos);
+  }
+
+  handlePurchaseTypeToggle() {
+    if (this.$purchaseTypeToggle.isCheckedInput()) {
+      this.$autoAmountPurchaseForm.hide();
+      this.$manualPurchaseForm.show();
+    } else {
+      this.$autoAmountPurchaseForm.show();
+      this.$manualPurchaseForm.hide();
+    }
   }
 
   handleLottoToggle() {
@@ -75,12 +126,27 @@ export class LottoController {
   handleResult(event) {
     event.preventDefault();
     const numbers = this.$winningNumberInputs.filter($input => $input.value !== '').map($input => Number($input.value));
-    const alertMessage = validator.lottoNumbers(numbers);
+    const alertMessage = validator.winningNumbers(numbers);
+    const currentMoney = this.machine.currentMoney;
 
     if (alertMessage) {
       this.handleInputException(this.$winningNumberInputs, alertMessage);
 
       return;
+    }
+
+    if (currentMoney > 0) {
+      const answer = confirm(
+        `현재 남은 잔액은 ${currentMoney}원 입니다.\n확인 버튼을 누르시면 남은 잔액으로 자동 구매를 진행합니다.`
+      );
+
+      if (!answer) {
+        return;
+      }
+
+      this.machine.publishLottosByAuto(currentMoney / UNIT_AMOUNT);
+      this.view.renderPurchaseSection(this.machine.currentMoney);
+      this.view.renderLottoSection(this.machine.lottos);
     }
 
     this.view.renderWinningResult(this.machine.getWinningStatistics(numbers));
