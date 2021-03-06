@@ -1,16 +1,16 @@
-import PurchaseAmountInput from './PurchaseAmountInput.js';
 import PurchasedLotto from './PurchasedLotto.js';
 import LottoTicket from '../model/LottoTicket.js';
 import WinningNumberInput from './WinningNumberInput.js';
 import ResultModal from './ResultModal.js';
+import LottoPurchase from './LottoPurchase.js';
 
 export default class App {
   constructor() {
     this.lottoTickets = [];
     this.winningNumber = {};
 
-    this.purchaseAmountInput = new PurchaseAmountInput({
-      createLottoTickets: this.createLottoTickets.bind(this),
+    this.lottoPurchase = new LottoPurchase({
+      updateLottoTickets: this.updateLottoTickets.bind(this),
     });
     this.purchasedLotto = new PurchasedLotto({
       lottoTickets: this.lottoTickets,
@@ -28,8 +28,14 @@ export default class App {
   }
 
   createLottoTickets(numOfLotto) {
+    return Array(numOfLotto)
+      .fill()
+      .map((v) => new LottoTicket());
+  }
+
+  updateLottoTickets({ manualLottoTickets, numOfRest }) {
     this.setState({
-      lottoTickets: new Array(numOfLotto).fill().map((v) => new LottoTicket()),
+      lottoTickets: [...manualLottoTickets, this.createLottoTickets(numOfRest)],
     });
   }
 

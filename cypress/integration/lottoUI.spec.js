@@ -243,7 +243,7 @@ describe('당첨 결과 모달 UI 검사', () => {
   });
 });
 
-describe('로또 수동 구매 UI 검사', () => {
+describe.only('로또 수동 구매 UI 검사', () => {
   const numOfLotto = 5;
 
   beforeEach(() => {
@@ -255,7 +255,7 @@ describe('로또 수동 구매 UI 검사', () => {
 
   it('로또 구매금액 입력 시 로또를 수동구매하는 창이 나타나고 구매 가능한 로또 개수를 표시한다', () => {
     cy.get('.manual-lotto-purchase-section').should('be.visible');
-    cy.get('.remaining-count').should('hava.text', REMAINING_QUANTITY_TO_PURCHASE_MESSAGE(numOfLotto, numOfLotto));
+    cy.get('.remaining-count').should('have.text', REMAINING_QUANTITY_TO_PURCHASE_MESSAGE(numOfLotto, numOfLotto));
   });
 
   it('6개의 로또번호가 모두 정상입력되기 전까지 + 버튼이 비활성화 되어 있다.', () => {

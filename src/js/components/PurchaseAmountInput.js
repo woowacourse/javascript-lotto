@@ -2,12 +2,12 @@ import { MONETARY_UNIT, PURCHASE_AMOUNT_ALERT_MESSAGE, LOTTO_PRICE } from '../co
 import { $, clearInputValue } from '../utils/DOM.js';
 
 export default class PurchaseAmountInput {
-  constructor({ createLottoTickets }) {
+  constructor({ updateNumOfLotto }) {
     this.$purchaseAmountForm = $('.purchase-amount-form');
     this.$purchaseAmountInput = $('.purchase-amount-input');
     this.$purchaseAmountButton = $('.purchase-amount-button');
 
-    this.createLottoTickets = createLottoTickets;
+    this.updateNumOfLotto = updateNumOfLotto;
 
     this.attachEvents();
   }
@@ -37,7 +37,7 @@ export default class PurchaseAmountInput {
       alert(PURCHASE_AMOUNT_ALERT_MESSAGE.PURCHASE_AMOUNT_HAS_CHANGE(change));
     }
 
-    this.createLottoTickets((purchaseAmount - change) / LOTTO_PRICE);
+    this.updateNumOfLotto((purchaseAmount - change) / LOTTO_PRICE);
   }
 
   validateInput(purchaseAmount) {
