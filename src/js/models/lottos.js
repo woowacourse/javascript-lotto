@@ -12,20 +12,24 @@ class LottosModel {
     this.#lottos.push(ticket)
   }
 
-  generateRandomTicket() {
-    const ticket = new TicketModel()
-    ticket.generateRandomNumbers()
-    this.#addTicket(ticket)
+  #decreaseIssuableCount() {
+    this.#issuableCount -= 1
+  }
+
+  generateRandomTickets() {
+    ;[...Array(this.#issuableCount)].forEach(() => {
+      const ticket = new TicketModel()
+      ticket.generateRandomNumbers()
+      this.#addTicket(ticket)
+      this.#decreaseIssuableCount()
+    })
   }
 
   generateManualTicket(numbers) {
     const ticket = new TicketModel()
     ticket.generateManualNumbers(numbers)
     this.#addTicket(ticket)
-  }
-
-  decreaseIssuableCount() {
-    this.#issuableCount -= 1
+    this.#decreaseIssuableCount()
   }
 
   get lottos() {

@@ -40,18 +40,6 @@ class LottoGameModel {
     this.#issuedLottos.issuableCount = newIssuableCount
   }
 
-  issueRandomLottos(count) {
-    for (let i = 0; i < count; i++) {
-      this.#issuedLottos && this.#issuedLottos.generateRandomTicket()
-      this.#issuedLottos.decreaseIssuableCount()
-    }
-  }
-
-  issueManualLotto(numbers) {
-    this.#issuedLottos && this.#issuedLottos.generateManualTicket(numbers)
-    this.#issuedLottos.decreaseIssuableCount()
-  }
-
   calculateLottosResult(answer) {
     this.#addAnswerLotto(answer.numbers, answer.bonus)
 
