@@ -1,6 +1,5 @@
 import { ACTION_TYPE, CLASSNAME, JS_SELECTOR } from "../../constants/index.js";
 import { Lotto } from "../../models/index.js";
-import store from "../../store/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import ResultModalPresentational from "./Presentational.js";
 import { Container } from "../core/index.js";
@@ -23,7 +22,7 @@ class ResultModalContainer extends Container {
   }
 
   select() {
-    const state = store.getState();
+    const state = this.store.getState();
     return {
       lottos: state.lottos,
       winningNumber: state.winningNumber,
@@ -105,7 +104,7 @@ class ResultModalContainer extends Container {
   }
 
   restart() {
-    store.dispatch({ type: ACTION_TYPE.CLEAR });
+    this.store.dispatch({ type: ACTION_TYPE.CLEAR });
   }
 
   closeModal() {

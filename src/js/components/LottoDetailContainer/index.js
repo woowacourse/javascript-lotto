@@ -1,5 +1,4 @@
 import { JS_SELECTOR } from "../../constants/index.js";
-import store from "../../store/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import LottoDetailPresentational from "./Presentational.js";
 import { Container } from "../core/index.js";
@@ -18,7 +17,7 @@ class LottoDetailContainer extends Container {
   }
 
   select() {
-    const state = store.getState();
+    const state = this.store.getState();
     return state.lottos;
   }
 

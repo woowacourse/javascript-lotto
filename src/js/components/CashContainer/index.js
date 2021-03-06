@@ -5,7 +5,6 @@ import {
 } from "../../constants/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
-import store from "../../store/index.js";
 import { EmptyInputError, ValidationError } from "../../errors/index.js";
 import { Container } from "../core/index.js";
 import CashPresentational from "./CashPresentational.js";
@@ -26,7 +25,7 @@ class CashContainer extends Container {
   }
 
   select() {
-    const state = store.getState();
+    const state = this.store.getState();
     return state.lottos;
   }
 
@@ -40,14 +39,14 @@ class CashContainer extends Container {
   createLottosAfterValidation(event) {
     event.preventDefault();
 
-    const { isPurchasing } = store.getState();
+    const { isPurchasing } = this.store.getState();
     if (isPurchasing) return;
 
     try {
       const cash = this.toNumber(this.$cashInput.value);
       this.validate(cash);
 
-      store.dispatch({
+      this.store.dispatch({
         type: ACTION_TYPE.LOTTOS.ADDING,
         payload: cash,
       });

@@ -3,6 +3,7 @@ import store from "../../store/index.js";
 class Container {
   constructor() {
     this.initalize();
+    this.store = store;
     this.subscribe();
     this.previousValue = this.select();
     this.currentValue = this.select();
@@ -13,7 +14,7 @@ class Container {
   }
 
   subscribe() {
-    store.subscribe(this.render.bind(this));
+    this.store.subscribe(this.render.bind(this));
   }
 
   select() {

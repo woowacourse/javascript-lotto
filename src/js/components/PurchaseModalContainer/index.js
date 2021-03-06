@@ -11,7 +11,6 @@ import {
   $,
 } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
-import store from "../../store/index.js";
 import { EmptyInputError, ValidationError } from "../../errors/index.js";
 import PurchaseModalPresentational from "./Presentational.js";
 import { Container } from "../core/index.js";
@@ -38,7 +37,7 @@ class PurchaseModalContainer extends Container {
   }
 
   select() {
-    const state = store.getState();
+    const state = this.store.getState();
     return {
       isPurchasing: state.isPurchasing,
       cash: state.cash,
@@ -81,7 +80,7 @@ class PurchaseModalContainer extends Container {
         }
       });
 
-      store.dispatch({
+      this.store.dispatch({
         type: ACTION_TYPE.LOTTOS.ADDED,
         payload: lottos,
       });
@@ -172,7 +171,7 @@ class PurchaseModalContainer extends Container {
   cancelPurchase() {
     this.$lottos.innerHTML = "";
 
-    store.dispatch({
+    this.store.dispatch({
       type: ACTION_TYPE.LOTTOS.CANCEL_ADDING,
     });
 
