@@ -10,7 +10,7 @@ class Buy {
     return Number(value)
   }
 
-  manageBuyInput() {
+  getPrice() {
     const price = this.#getBuyInput()
     const errorMessage = checkPriceValid(price)
     if (errorMessage) {

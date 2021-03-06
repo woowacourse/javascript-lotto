@@ -25,36 +25,49 @@ class LottoController {
     this.#handlePrice()
   }
 
-  #manageBuyMethod() {
-    const price = this.buy.manageBuyInput()
+  #savePrice() {
+    const price = this.buy.getPrice()
     if (!price) return
 
     this.model.issueLottos(this.buy.getTicketsCount(price))
-    this.view.renderBuyMethodSection(this.model.lottos)
+    this.#showBuyMethod(this.model.lottos)
+  }
+
+  #saveManualNumbers() {
+    const manualNumbers = this.manual.getManualNumbers()
+    if (!manualNumbers) return
+
+    this.model.lottos.generateManualTicket(manualNumbers)
+    const generatedLottos = this.model.lottos
+    if (generatedLottos.issuableCount === 0) {
+      this.#showPocket()
+    } else {
+      this.#showBuyMethod(generatedLottos)
+    }
+  }
+
+  #saveAnswerInput() {
+    const answer = this.answer.manageAnswerInput()
+    if (!answer) return
+
+    this.model.calculateLottosResult(answer)
+    this.#showResultModal()
+  }
+
+  #issueRemainingCount() {
+    this.model.lottos.generateRandomTickets()
+    this.#showPocket()
+  }
+
+  #showBuyMethod(lottos) {
+    this.view.renderBuyMethodSection(lottos)
     this.view.resetPocketSection()
     this.view.resetWinningSection()
     this.#handleManual()
     this.#handleAuto()
   }
 
-  #manageManual() {
-    const manualNumbers = this.manual.manageManualInput()
-    if (!manualNumbers) return
-
-    this.model.lottos.generateManualTicket(manualNumbers)
-
-    const generatedLottos = this.model.lottos
-    if (generatedLottos.issuableCount === 0) {
-      this.#managePocket()
-    } else {
-      this.view.renderBuyMethodSection(generatedLottos)
-      this.#handleManual()
-      this.#handleAuto()
-    }
-  }
-
-  #managePocket() {
-    this.model.lottos.generateRandomTickets()
+  #showPocket() {
     this.view.resetBuyMethodSection()
     this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
@@ -62,17 +75,13 @@ class LottoController {
     this.#handleModalOpen()
   }
 
-  #manageModalOpen() {
-    const answer = this.answer.manageAnswerInput()
-    if (!answer) return
-
-    this.model.calculateLottosResult(answer)
+  #showResultModal() {
     this.view.renderModalSection(this.model.lottoResult, this.model.profitRate)
     this.#handleModalClose()
     this.#handleReset()
   }
 
-  #manageModalClose() {
+  #hideResultModal() {
     this.view.toggleModalSection()
     this.model.reset()
   }
@@ -80,21 +89,22 @@ class LottoController {
   #handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON)
     $buyButton.addEventListener("click", () => {
-      this.#manageBuyMethod()
+      this.#savePrice()
     })
   }
 
   #handleManual() {
     const $manualButton = $("#manual-button")
     $manualButton.addEventListener("click", () => {
-      this.#manageManual()
+      this.#saveManualNumbers()
     })
   }
 
   #handleAuto() {
     const $autoButton = $("#auto-button")
     $autoButton.addEventListener("click", () => {
-      this.#managePocket()
+      this.model.lottos.generateRandomTickets()
+      this.#issueRemainingCount()
     })
   }
 
@@ -108,14 +118,14 @@ class LottoController {
   #handleModalOpen() {
     const $showResultButton = $(SELECTOR.OPEN_RESULT_MODAL_BUTTON)
     $showResultButton.addEventListener("click", () => {
-      this.#manageModalOpen()
+      this.#saveAnswerInput()
     })
   }
 
   #handleModalClose() {
     const $modalClose = $(SELECTOR.MODAL_CLOSE)
     $modalClose.addEventListener("click", () => {
-      this.#manageModalClose()
+      this.#hideResultModal()
     })
   }
 

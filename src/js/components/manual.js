@@ -10,7 +10,7 @@ class Manual {
     return numbers
   }
 
-  manageManualInput() {
+  getManualNumbers() {
     const manualNumbers = this.#getManualInput()
     const errorMessage = checkLottoNumberValid(manualNumbers)
     if (errorMessage) {
