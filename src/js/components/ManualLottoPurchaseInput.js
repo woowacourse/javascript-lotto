@@ -1,4 +1,4 @@
-import { $, hide, show } from '../utils/DOM.js';
+import { $, disable, hide, show } from '../utils/DOM.js';
 import { LOTTO_NUMBER_SEPARATOR, REMAINING_QUANTITY_TO_PURCHASE_MESSAGE } from '../constants.js';
 import { getLottoNumberCheckMessage, renderCheckMessage } from '../model/LottoNumbersValidation.js';
 import LottoTicket from '../model/LottoTicket.js';
@@ -56,6 +56,8 @@ export default class ManualLottoPurchaseInput {
     this.$lottoNumberForm.reset();
 
     this.setState({ lottoTicketNumbers: [...this.lottoTicketNumbers, lottoNumbers] });
+    this.$lottoNumCheckMessage.innerText = '';
+    disable(this.$addLottoButton);
   }
 
   purchaseLottoTickets() {
