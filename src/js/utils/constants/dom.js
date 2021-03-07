@@ -33,6 +33,7 @@ export const DOM_CLASSES = {
   MODAL_WINNING_COUNT: 'modal__winning-count',
   MODAL_EARNING_RATE: 'modal__earning-rate',
   MODAL_CLOSE: 'modal-close',
+  MODAL_INNER: 'modal-inner',
   MODAL_RESTART_BUTTON: 'modal__restart-button',
 
   CSS_LOTTO_TICKET: 'lotto-ticket',

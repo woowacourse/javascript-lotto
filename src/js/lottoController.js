@@ -6,7 +6,7 @@ import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import { isNumbersDuplicated } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
 import LottosBundle from './models/LottosBundle.js';
-import Winnings from './models/Winnings.js';
+import { WINNINGS } from './models/Winnings.js';
 export default class LottoController {
   constructor() {
     this.lottoUI = new LottoUI();
@@ -15,7 +15,7 @@ export default class LottoController {
 
   _initState() {
     this._lottosBundle = new LottosBundle();
-    this._winnings = new Winnings();
+    this._winnings = WINNINGS;
     this._myMoney = 0;
   }
 
@@ -47,6 +47,11 @@ export default class LottoController {
     $(`.${DOM_CLASSES.MODAL_CLOSE}`).addEventListener('click', this.lottoUI.closeModal);
     $(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).addEventListener('click', () => {
       this.restartGame();
+    });
+    $(`.${DOM_CLASSES.MODAL}`).addEventListener('click', (event) => {
+      if (event.target.classList.contains(`${DOM_CLASSES.MODAL}`)) {
+        this.lottoUI.closeModal();
+      }
     });
   }
 
@@ -165,7 +170,7 @@ export default class LottoController {
   }
 
   _calculateWinnings(winningNumbers, bonusNumber) {
-    this._winnings.initValue();
+    this._winnings = WINNINGS;
 
     this._lottosBundle.forEach(lotto => {
       const myNumbers = lotto.getNumbers();

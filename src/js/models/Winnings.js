@@ -1,14 +1,9 @@
 import { RANK } from '../utils/constants/settings.js'
-export default class Winnings {
-  constructor() {
-    this.initValue();
-  }
 
-  initValue() {
-    this[RANK.FIRST] = 0;
-    this[RANK.SECOND] = 0;
-    this[RANK.THIRD] = 0;
-    this[RANK.FOURTH] = 0;
-    this[RANK.FIFTH] = 0;
-  }
+export const WINNINGS = {
+  [RANK.FIRST]: 0,
+  [RANK.SECOND]: 0,
+  [RANK.THIRD]: 0,
+  [RANK.FOURTH]: 0,
+  [RANK.FIFTH]: 0,
 }
