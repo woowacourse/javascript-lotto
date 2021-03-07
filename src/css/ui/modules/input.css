@@ -4,6 +4,15 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type='number'] {
-  -moz-appearance: textfield;
+form input[type="number"]:focus {
+  outline: none;
+  border-radius: 3px;
+}
+
+input:focus:invalid {
+  border: 2px solid red;
+}
+
+input:focus:valid {
+  border: 2px solid green;
 }
