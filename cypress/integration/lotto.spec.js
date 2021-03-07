@@ -40,7 +40,7 @@ context('로또 UI 테스트', () => {
   describe('금액 입력 부분', () => {
     it('로또 구입 금액을 입력하면, 수동과 자동 구입 갯수 입력부가 표시된다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`, true);
+      testVisible(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`, true);
     });
     it('입력받는 구입 금액은 최소 1000원 이상이어야 한다.', () => {
       const alertStub = cy.stub();
@@ -53,7 +53,7 @@ context('로또 UI 테스트', () => {
     });
     it('입력받는 구입 금액은 정수여야한다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, ERROR_INPUT.NOT_INTEGER_MONEY, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
     });
     it('로또 구입 금액을 입력받으면, 구입 버튼이 비활성화된다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
@@ -65,7 +65,7 @@ context('로또 UI 테스트', () => {
     it('자동과 수동 구매 갯수 전부 입력하여야 다음 단계로 진행할 수 있다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
-      testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
     })
     it('로또 총 구입 갯수는 반드시 1개 이상이어야 한다.', () => {
       const alertStub = cy.stub();
@@ -127,7 +127,7 @@ context('로또 UI 테스트', () => {
       type(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_AUTO}`, SUCCESS_INPUT.AUTO_AMOUNT);
       click(`.${DOM_CLASSES.LOTTO_AMOUNT_SUBMIT}`);
 
-      testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
     });
   });
 
@@ -142,7 +142,7 @@ context('로또 UI 테스트', () => {
       typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, ERROR_INPUT.MANUAL_SELECT_NUMBERS_DUPLICATED);
       click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
     });
     it('수동으로 구매하는 로또 번호는 1~45 사이의 숫자를 가진다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
@@ -154,7 +154,7 @@ context('로또 UI 테스트', () => {
       typeNumbers(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`, ERROR_INPUT.MANUAL_SELECT_NUMBERS_OUT_OF_RANGE);
       click(`.${DOM_CLASSES.MANUAL_SELECT_SUBMIT}`);
 
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
     });
   });
 
@@ -236,10 +236,10 @@ context('로또 UI 테스트', () => {
       cy.get(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).click();
       cy.get(`.${DOM_CLASSES.MODAL}`).should("not.be.visible");
 
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`, false);
-      testChildNodeExistence(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
-      testChildNodeExistence(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
-      testChildNodeExistence(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.LOTTO_CONTAINER}`, false);
+      testVisible(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`, false);
     });
   });
 });
@@ -294,10 +294,12 @@ function typeNumbers(targetSelector, inputs) {
   });
 }
 
-function testChildNodeExistence(selector, existenceToExpect) {
-  cy.get(selector).then(element => {
-    expect(element[0].hasChildNodes()).be.equal(existenceToExpect);
-  });
+function testVisible(selector, visibilityToExpect) {
+  if (visibilityToExpect) {
+    cy.get(selector).should(`be.visible`);
+    return;
+  }
+  cy.get(selector).should(`not.be.visible`);
 }
 
 function jumpToResultInputUI() {

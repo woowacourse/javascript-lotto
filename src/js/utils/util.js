@@ -21,10 +21,6 @@ export function $$(selector) {
   return document.querySelectorAll(selector);
 };
 
-export function clearInput(selector) {
-  $(selector).value = '';
-}
-
 export function getRandomNumber(start, end) {
   return Math.round((1 - Math.random()) * (end - start)) + start;
 }
