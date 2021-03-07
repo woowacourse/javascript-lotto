@@ -1,5 +1,5 @@
 import { $, $$ } from './utils/util.js';
-import { UI_SETTINGS, LOTTO_SETTINGS } from './utils/constants/settings.js';
+import { UI_SETTINGS, LOTTO_SETTINGS, PRIZES, WIN_STRINGS, RANKS } from './utils/constants/settings.js';
 import { DOM_CLASSES, DOM_IDS } from './utils/constants/dom.js';
 
 export default class LottoUI {
@@ -156,7 +156,6 @@ export default class LottoUI {
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
           </div>
-
           <h2 class="text-center">🏆 당첨 통계 🏆</h2>
           <div class="d-flex justify-center">
             <table class="result-table border-collapse border border-black">
@@ -168,31 +167,13 @@ export default class LottoUI {
                 </tr>
               </thead>
               <tbody>
+              ${Object.keys(PRIZES).map(key => `
                 <tr class="text-center">
-                  <td class="p-3">3개</td>
-                  <td class="p-3">5,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="fifth">n개</td>
+                  <td class="p-3">${WIN_STRINGS[key]}</td>
+                  <td class="p-3">${PRIZES[key].toLocaleString('en')}</td>
+                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="${RANKS[key]}">n개</td>
                 </tr>
-                <tr class="text-center">
-                  <td class="p-3">4개</td>
-                  <td class="p-3">50,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="fourth">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">5개</td>
-                  <td class="p-3">1,500,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="third">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">5개 + 보너스볼</td>
-                  <td class="p-3">30,000,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="second">n개</td>
-                </tr>
-                <tr class="text-center">
-                  <td class="p-3">6개</td>
-                  <td class="p-3">2,000,000,000</td>
-                  <td class="${DOM_CLASSES.MODAL_WINNING_COUNT} p-3" data-rank="first">n개</td>
-                </tr>
+              `).join('')}
               </tbody>
             </table>
           </div>

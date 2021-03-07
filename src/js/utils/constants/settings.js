@@ -19,6 +19,14 @@ export const PRIZES = {
   FIFTH: 5000,
 }
 
+export const WIN_STRINGS = {
+  FIRST: '6개',
+  SECOND: '5개 + 보너스볼',
+  THIRD: '5개',
+  FOURTH: '4개',
+  FIFTH: '3개',
+}
+
 export const WIN_COUNTS = {
   WINNING_COUNT_THREE: 3,
   WINNING_COUNT_FOUR: 4,

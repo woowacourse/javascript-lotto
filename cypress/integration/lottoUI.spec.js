@@ -13,7 +13,7 @@ context('로또 UI 테스트', () => {
   });
 
   describe('금액 입력 부분', () => {
-    it('로또 구입 금액을 입력하면, 수동 구매와 자동 구매 갯수를 정하는 input이 나타난다.', () => {
+    it('로또 구입 금액을 입력하면, 수동 구매와 자동 구매 갯수를 정하는 input이 출력된다.', () => {
       typeAndClick(`.${DOM_CLASSES.MONEY_FORM_INPUT}`, COMMON_MONEY_INPUT, `.${DOM_CLASSES.MONEY_FORM_SUBMIT}`);
       testChildNodeExist(`.${DOM_CLASSES.BUYING_INPUT_CONTAINER}`);
     });
