@@ -7,12 +7,6 @@ import { Container } from "../core/index.js";
 class ResultModalContainer extends Container {
   constructor() {
     super(ResultModalPresentational);
-    this.Presentational = new ResultModalPresentational({
-      eventListeners: {
-        restart: this.restart.bind(this),
-        closeModal: this.closeModal.bind(this),
-      },
-    });
   }
 
   initalize() {
@@ -55,6 +49,7 @@ class ResultModalContainer extends Container {
   }
 
   hasChanged() {
+    this.previousValue = this.currentValue;
     this.currentValue = this.select();
     const { winningNumber: previousWinningNumber } = this.previousValue;
     const { winningNumber: currentWinningNumber } = this.currentValue;

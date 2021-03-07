@@ -7,7 +7,7 @@ import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
 import { EmptyInputError, ValidationError } from "../../errors/index.js";
 import { Container } from "../core/index.js";
-import CashPresentational from "./CashPresentational.js";
+import CashPresentational from "./Presentational.js";
 class CashContainer extends Container {
   constructor() {
     super(CashPresentational);

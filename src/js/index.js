@@ -1,13 +1,4 @@
-import {
-  CashContainer,
-  PurchaseModal,
-  LottoDetailContainer,
-  WinningNumberContainer,
-  ResultModal,
-} from "./components/index.js";
+import App from "./App.js";
+import store from "./store/index.js";
 
-new CashContainer();
-new PurchaseModal();
-new LottoDetailContainer();
-new WinningNumberContainer();
-new ResultModal();
+new App(store);

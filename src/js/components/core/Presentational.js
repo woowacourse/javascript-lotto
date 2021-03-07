@@ -1,7 +1,8 @@
 class Presentational {
   constructor(eventListeners) {
     this.initalize();
-    this.setEventListeners(eventListeners);
+    this.eventListeners = eventListeners;
+    // this.setEventListeners(eventListeners);
   }
 
   initalize() {

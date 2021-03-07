@@ -18,7 +18,9 @@ class LottoDetailPresentational extends Presentational {
     this.$toggleButton = $(toCS(CLASSNAME.LOTTO_DETAIL.TOGGLE_BUTTON));
   }
 
-  setEventListeners({ toggleDetailMode }) {
+  setEventListeners() {
+    const { toggleDetailMode } = this.eventListeners;
+
     this.$toggleButton.addEventListener("change", (event) => {
       toggleDetailMode(event.target.checked);
     });

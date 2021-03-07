@@ -19,7 +19,9 @@ class ResultModalPresentational extends Presentational {
     ];
   }
 
-  setEventListeners({ closeModal, restart }) {
+  setEventListeners() {
+    const { closeModal, restart } = this.eventListeners;
+
     this.$close.addEventListener("click", closeModal);
     this.$restartButton.addEventListener("click", restart);
   }

@@ -14,11 +14,13 @@ class PurchaseModalPresentational extends Presentational {
     this.$close = $(toDAS(JS_SELECTOR.PURCHASE_MODAL.CLOSE));
   }
 
-  setEventListeners({
-    createLottosAfterValidation,
-    togglePurchaseLottoMode,
-    cancelPurchase,
-  }) {
+  setEventListeners() {
+    const {
+      createLottosAfterValidation,
+      togglePurchaseLottoMode,
+      cancelPurchase,
+    } = this.eventListeners;
+
     this.$form.addEventListener("submit", createLottosAfterValidation);
     this.$form.addEventListener("change", togglePurchaseLottoMode);
     this.$close.addEventListener("click", cancelPurchase);

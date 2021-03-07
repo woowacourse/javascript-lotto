@@ -22,7 +22,9 @@ class WinningNumberPresentational extends Presentational {
     });
   }
 
-  setEventListeners({ getWinningNumberWithValidation }) {
+  setEventListeners() {
+    const { getWinningNumberWithValidation } = this.eventListeners;
+
     this.$container.addEventListener("submit", getWinningNumberWithValidation);
   }
 

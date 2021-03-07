@@ -18,15 +18,6 @@ import { Container } from "../core/index.js";
 class PurchaseModalContainer extends Container {
   constructor() {
     super(PurchaseModalPresentational);
-    this.Presentational = new PurchaseModalPresentational({
-      eventListeners: {
-        createLottosAfterValidation: this.createLottosAfterValidation.bind(
-          this
-        ),
-        togglePurchaseLottoMode: this.togglePurchaseLottoMode.bind(this),
-        cancelPurchase: this.cancelPurchase.bind(this),
-      },
-    });
   }
 
   initalize() {

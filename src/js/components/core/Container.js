@@ -1,13 +1,7 @@
-import store from "../../store/index.js";
-
 class Container {
   constructor(Presentational) {
     this.initalize();
     this.createPresentational(Presentational);
-    this.store = store;
-    this.subscribe();
-    this.previousValue = this.select();
-    this.currentValue = this.select();
   }
 
   initalize() {
@@ -22,7 +16,9 @@ class Container {
     throw new Error("getEventListeners() must be implemented.");
   }
 
-  subscribe() {
+  subscribe(store) {
+    this.store = store;
+    this.currentValue = this.select();
     this.store.subscribe(this.render.bind(this));
   }
 
@@ -35,6 +31,7 @@ class Container {
   }
 
   hasChanged() {
+    this.previousValue = this.currentValue;
     this.currentValue = this.select();
     return this.previousValue !== this.currentValue;
   }
