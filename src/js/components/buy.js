@@ -1,9 +1,28 @@
-import { SELECTOR } from "../constants/constant.js"
-import { $ } from "../util.js"
+import { checkPriceValid } from "../validators/validator.js"
+import { SELECTOR, TICKET } from "../constants/constant.js"
+import { $, getQuotient } from "../util.js"
 
-export const getBuyInput = () => {
-  const value = $(SELECTOR.BUY_INPUT).value
-  $(SELECTOR.BUY_INPUT).value = ""
+class Buy {
+  #getBuyInput() {
+    const value = $(SELECTOR.BUY_INPUT).value
+    $(SELECTOR.BUY_INPUT).value = ""
 
-  return Number(value)
+    return Number(value)
+  }
+
+  getPrice() {
+    const price = this.#getBuyInput()
+    const errorMessage = checkPriceValid(price)
+    if (errorMessage) {
+      return alert(errorMessage)
+    }
+
+    return price
+  }
+
+  getTicketsCount(price) {
+    return getQuotient(price, TICKET.PRICE)
+  }
 }
+
+export default Buy

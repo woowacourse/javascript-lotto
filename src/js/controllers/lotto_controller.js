@@ -1,9 +1,8 @@
-import { getBuyInput } from "../components/buy.js"
-import { getTicketsCount } from "../components/pocket.js"
-import { getAnswerInput } from "../components/winning.js"
+import Buy from "../components/buy.js"
+import Manual from "../components/manual.js"
+import Answer from "../components/answer.js"
 import { $ } from "../util.js"
 import { SELECTOR } from "../constants/constant.js"
-import { checkAnswerValid, checkPriceValid } from "../validators/validator.js"
 
 class LottoController {
   constructor(model, view) {
@@ -12,6 +11,9 @@ class LottoController {
   }
 
   init() {
+    this.buy = new Buy()
+    this.manual = new Manual()
+    this.answer = new Answer()
     this.model.init()
     this.view.init()
     this.#handlePrice()
@@ -23,49 +25,86 @@ class LottoController {
     this.#handlePrice()
   }
 
-  #manageLotto() {
-    const price = getBuyInput()
-    const errorMessage = checkPriceValid(price)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
+  #savePrice() {
+    const price = this.buy.getPrice()
+    if (!price) return
 
-    for (let i = 0; i < getTicketsCount(price); i++) {
-      this.model.generateRandomTicket()
-    }
-    this.#managePocket()
+    this.model.issueLottos(this.buy.getTicketsCount(price))
+    this.#showBuyMethod(this.model.lottos)
   }
 
-  #managePocket() {
-    const tickets = this.model.tickets
-    this.view.renderPocketSection(tickets)
+  #saveManualNumbers() {
+    const manualNumbers = this.manual.getManualNumbers()
+    if (!manualNumbers) return
+
+    this.model.lottos.generateManualTicket(manualNumbers)
+    const generatedLottos = this.model.lottos
+    if (generatedLottos.issuableCount === 0) {
+      this.#showPocket()
+    } else {
+      this.#showBuyMethod(generatedLottos)
+    }
+  }
+
+  #saveAnswerInput() {
+    const answer = this.answer.manageAnswerInput()
+    if (!answer) return
+
+    this.model.calculateLottosResult(answer)
+    this.#showResultModal()
+  }
+
+  #issueRemainingCount() {
+    this.model.lottos.generateRandomTickets()
+    this.#showPocket()
+  }
+
+  #showBuyMethod(lottos) {
+    this.view.renderBuyMethodSection(lottos)
+    this.view.resetPocketSection()
+    this.view.resetWinningSection()
+    this.#handleManual()
+    this.#handleAuto()
+  }
+
+  #showPocket() {
+    this.view.resetBuyMethodSection()
+    this.view.renderPocketSection(this.model.lottos)
     this.view.renderWinningSection()
     this.#handlePocket()
     this.#handleModalOpen()
   }
 
-  #manageModalOpen() {
-    const { numbers, bonus } = getAnswerInput()
-    const errorMessage = checkAnswerValid(numbers, bonus)
-    if (errorMessage) {
-      return alert(errorMessage)
-    }
-
-    this.model.calculateLottosResult(numbers, bonus)
+  #showResultModal() {
     this.view.renderModalSection(this.model.lottoResult, this.model.profitRate)
     this.#handleModalClose()
     this.#handleReset()
   }
 
-  #manageModalClose() {
+  #hideResultModal() {
     this.view.toggleModalSection()
-    this.model.resetLottoResult()
+    this.model.reset()
   }
 
   #handlePrice() {
     const $buyButton = $(SELECTOR.BUY_BUTTON)
     $buyButton.addEventListener("click", () => {
-      this.#manageLotto()
+      this.#savePrice()
+    })
+  }
+
+  #handleManual() {
+    const $manualButton = $("#manual-button")
+    $manualButton.addEventListener("click", () => {
+      this.#saveManualNumbers()
+    })
+  }
+
+  #handleAuto() {
+    const $autoButton = $("#auto-button")
+    $autoButton.addEventListener("click", () => {
+      this.model.lottos.generateRandomTickets()
+      this.#issueRemainingCount()
     })
   }
 
@@ -79,14 +118,14 @@ class LottoController {
   #handleModalOpen() {
     const $showResultButton = $(SELECTOR.OPEN_RESULT_MODAL_BUTTON)
     $showResultButton.addEventListener("click", () => {
-      this.#manageModalOpen()
+      this.#saveAnswerInput()
     })
   }
 
   #handleModalClose() {
     const $modalClose = $(SELECTOR.MODAL_CLOSE)
     $modalClose.addEventListener("click", () => {
-      this.#manageModalClose()
+      this.#hideResultModal()
     })
   }
 

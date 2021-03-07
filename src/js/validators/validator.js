@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from "../constants/constant.js"
-import AnswerValidator from "./answer_validator.js"
+import LottoNumberValidator from "./lotto_number_validator.js"
 import PriceValidator from "./price_validator.js"
 
 export const checkPriceValid = (price) => {
@@ -18,23 +18,21 @@ export const checkPriceValid = (price) => {
   return ""
 }
 
-export const checkAnswerValid = (numbers, bonus) => {
-  const answers = [...numbers, bonus]
-
-  if (AnswerValidator.isLessFilled(answers)) {
-    return ERROR_MESSAGE.ANSWER_CANNOT_BE_EMPTY
+export const checkLottoNumberValid = (lottos) => {
+  if (LottoNumberValidator.isLessFilled(lottos)) {
+    return ERROR_MESSAGE.LOTTO_CANNOT_BE_EMPTY
   }
 
-  if (AnswerValidator.isDuplicated(answers)) {
-    return ERROR_MESSAGE.ANSWER_CANNOT_BE_DUPLICATED
+  if (LottoNumberValidator.isDuplicated(lottos)) {
+    return ERROR_MESSAGE.LOTTO_CANNOT_BE_DUPLICATED
   }
 
-  if (AnswerValidator.isOutLottoRange(answers)) {
-    return ERROR_MESSAGE.ANSWER_CANNOT_BE_OUT_RANGE
+  if (LottoNumberValidator.isOutLottoRange(lottos)) {
+    return ERROR_MESSAGE.LOTTO_CANNOT_BE_OUT_RANGE
   }
 
-  if (AnswerValidator.isFloat(answers)) {
-    return ERROR_MESSAGE.ANSWER_CANNOT_BE_FLOAT
+  if (LottoNumberValidator.isFloat(lottos)) {
+    return ERROR_MESSAGE.LOTTO_CANNOT_BE_FLOAT
   }
 
   return ""

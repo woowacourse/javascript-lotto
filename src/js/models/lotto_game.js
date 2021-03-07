@@ -1,14 +1,14 @@
-import Ticket from "../components/ticket.js"
-import { RANK } from "../constants/constant.js"
+import LottosModel from "./lottos.js"
+import { RANK, TICKET } from "../constants/constant.js"
 import { getProfitRate } from "../util.js"
 
-class LottoModel {
-  #tickets
+class LottoGameModel {
+  #issuedLottos
   #answerLotto
   #lottoResult
 
   constructor() {
-    this.#tickets = []
+    this.#issuedLottos = null
     this.#answerLotto = {
       numbers: null,
       bonus: null,
@@ -22,11 +22,7 @@ class LottoModel {
     }
   }
 
-  #addTicket(ticket) {
-    this.#tickets.push(ticket)
-  }
-
-  #addAnswerLotto(numbers, bonus) {
+  #addAnswerLotto({ numbers, bonus }) {
     this.#answerLotto = { numbers, bonus }
   }
 
@@ -39,26 +35,15 @@ class LottoModel {
     return { match, bonusMatch }
   }
 
-  get tickets() {
-    return this.#tickets
+  issueLottos(newIssuableCount) {
+    this.#issuedLottos = new LottosModel()
+    this.#issuedLottos.issuableCount = newIssuableCount
   }
 
-  get answerLotto() {
-    return this.#answerLotto
-  }
+  calculateLottosResult(answer) {
+    this.#addAnswerLotto(answer)
 
-  get lottoResult() {
-    return this.#lottoResult
-  }
-
-  generateRandomTicket() {
-    const ticket = new Ticket()
-    ticket.generateRandomNumbers()
-    this.#addTicket(ticket)
-  }
-
-  calculateLottosResult(numbers, bonus) {
-    const calculateLottoResult = (ticket) => {
+    this.#issuedLottos.lottos.forEach((ticket) => {
       const { match, bonusMatch } = this.#calculateMatch(ticket)
 
       let key = ""
@@ -82,28 +67,47 @@ class LottoModel {
       }
 
       key && this.#lottoResult[key].count++
-    }
-
-    this.#addAnswerLotto(numbers, bonus)
-    this.#tickets.forEach(calculateLottoResult)
+    })
   }
 
   get profitRate() {
     const income = Object.values(this.#lottoResult).reduce((acc, cur) => {
       return acc + cur.price * cur.count
     }, 0)
-    return getProfitRate(income, this.#tickets.length * 1000)
+    return getProfitRate(income, this.#issuedLottos.count * TICKET.PRICE)
   }
 
-  resetLottoResult() {
-    for (let i in this.#lottoResult) {
-      this.#lottoResult[i].count = 0
-    }
+  get lottos() {
+    return this.#issuedLottos
+  }
+
+  get lottoResult() {
+    return this.#lottoResult
   }
 
   init() {
-    this.#tickets = []
-    this.resetLottoResult()
+    this.#issuedLottos = null
+    this.#answerLotto = {
+      numbers: null,
+      bonus: null,
+    }
+    this.#lottoResult = {
+      [RANK.FIFTH.TEXT]: { price: RANK.FIFTH.PRICE, count: 0 },
+      [RANK.FOURTH.TEXT]: { price: RANK.FOURTH.PRICE, count: 0 },
+      [RANK.THIRD.TEXT]: { price: RANK.THIRD.PRICE, count: 0 },
+      [RANK.SECOND.TEXT]: { price: RANK.SECOND.PRICE, count: 0 },
+      [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
+    }
+  }
+
+  reset() {
+    this.#lottoResult = {
+      [RANK.FIFTH.TEXT]: { price: RANK.FIFTH.PRICE, count: 0 },
+      [RANK.FOURTH.TEXT]: { price: RANK.FOURTH.PRICE, count: 0 },
+      [RANK.THIRD.TEXT]: { price: RANK.THIRD.PRICE, count: 0 },
+      [RANK.SECOND.TEXT]: { price: RANK.SECOND.PRICE, count: 0 },
+      [RANK.FIRST.TEXT]: { price: RANK.FIRST.PRICE, count: 0 },
+    }
   }
 }
-export default LottoModel
+export default LottoGameModel

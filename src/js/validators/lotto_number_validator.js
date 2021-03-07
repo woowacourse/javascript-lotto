@@ -1,12 +1,12 @@
 import { TICKET } from "../constants/constant.js"
 
-class AnswerValidator {
+class LottoNumberValidator {
   static isLessFilled(numbers) {
     return numbers.some((number) => isNaN(number))
   }
 
   static isDuplicated(numbers) {
-    return new Set(numbers).size !== TICKET.SIZE + TICKET.BONUS_SIZE
+    return new Set(numbers).size !== numbers.length
   }
 
   static isOutLottoRange(numbers) {
@@ -20,4 +20,4 @@ class AnswerValidator {
   }
 }
 
-export default AnswerValidator
+export default LottoNumberValidator

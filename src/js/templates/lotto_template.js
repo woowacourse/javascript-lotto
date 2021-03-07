@@ -18,11 +18,48 @@ export const buySectionTemplate = () => {
     `
 }
 
+export const buyMethodSectionTemplate = (lottos) => {
+  return `
+  <form class="mt-5 mb-3">
+    <label class="mb-2 d-inline-block">
+      현재 구매가능 개수 : <span class="available">${
+        lottos.issuableCount
+      }</span>
+    </label>
+    <div class="d-flex buy-manual">
+      <div id="manual-numbers">
+        <input type="number" class="manual-number mx-1 text-center" />
+        <input type="number" class="manual-number mx-1 text-center" />
+        <input type="number" class="manual-number mx-1 text-center" />
+        <input type="number" class="manual-number mx-1 text-center" />
+        <input type="number" class="manual-number mx-1 text-center" />
+        <input type="number" class="manual-number mx-1 text-center" />
+      </div>
+      <button id="manual-button" type="button" class="btn">
+        수동 구매
+      </button>
+    </div>
+  </form>
+  <div id="manual">
+  <hr />
+  <h4 class="d-flex justify-center">구매한 수동 번호</h4>
+  ${lottos.lottos
+    .map((lotto) => {
+      return `<p class="d-flex justify-center">${lotto.numbers.join(" ")}</p>`
+    })
+    .join("")}
+  </div>
+  <button id="auto-button" type="button" class="btn btn-cyan">
+    나머지 자동 구매
+  </button>
+  `
+}
+
 export const pocketSectionTemplate = (lottos) => {
   return `
         <div class="d-flex">
             <label class="flex-auto my-0">총 ${
-              lottos.length
+              lottos.count
             }개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
@@ -35,7 +72,7 @@ export const pocketSectionTemplate = (lottos) => {
             </div>
         </div>
         <div id="pocket-lottos" class="flex-wrap">
-        ${lottos
+        ${lottos.lottos
           .map(
             (lotto) => `
                   <div class="pocket-lotto-detail">

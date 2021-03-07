@@ -1,5 +1,6 @@
 import {
   buySectionTemplate,
+  buyMethodSectionTemplate,
   pocketSectionTemplate,
   winningSectionTemplate,
   modalSectionTemplate,
@@ -13,9 +14,14 @@ class LottoView {
     $buySection.innerHTML = buySectionTemplate()
   }
 
-  renderPocketSection(amount) {
+  renderBuyMethodSection(lottos) {
+    const $buyMethodSection = $("#buy-method")
+    $buyMethodSection.innerHTML = buyMethodSectionTemplate(lottos)
+  }
+
+  renderPocketSection(lottos) {
     const $pocketSection = $(SELECTOR.POCKET_SECTION)
-    $pocketSection.innerHTML = pocketSectionTemplate(amount)
+    $pocketSection.innerHTML = pocketSectionTemplate(lottos)
   }
 
   renderWinningSection() {
@@ -40,6 +46,11 @@ class LottoView {
     $modalSection.classList.toggle("open")
   }
 
+  resetBuyMethodSection() {
+    const $buyMethodSection = $("#buy-method")
+    $buyMethodSection.innerHTML = ``
+  }
+
   resetPocketSection() {
     const $pocketSection = $(SELECTOR.POCKET_SECTION)
     $pocketSection.innerHTML = ""
@@ -58,6 +69,7 @@ class LottoView {
 
   reset() {
     this.renderBuySection()
+    this.resetBuyMethodSection()
     this.resetPocketSection()
     this.resetWinningSection()
     this.resetModalSection()

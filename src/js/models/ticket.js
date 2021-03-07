@@ -1,18 +1,15 @@
 import { TICKET } from "../constants/constant.js"
 import { generateRandomNumber, sortByNumber } from "../util.js"
 
-class Ticket {
+class TicketModel {
   #numbers
+
   constructor() {
     this.#numbers = new Set()
   }
 
   #sortByNumber() {
     this.#numbers = new Set(sortByNumber([...this.#numbers]))
-  }
-
-  get numbers() {
-    return [...this.#numbers]
   }
 
   generateRandomNumbers() {
@@ -22,6 +19,15 @@ class Ticket {
 
     this.#sortByNumber()
   }
+
+  generateManualNumbers(numbers) {
+    this.#numbers = new Set(numbers)
+    this.#sortByNumber()
+  }
+
+  get numbers() {
+    return [...this.#numbers]
+  }
 }
 
-export default Ticket
+export default TicketModel
