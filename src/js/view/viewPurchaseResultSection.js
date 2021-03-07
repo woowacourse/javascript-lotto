@@ -11,15 +11,18 @@ const $purchaseResultSectionRowAlign = $('#purchase-result-section__row-align');
 const $purchaseResultSectionColAlign = $('#purchase-result-section__col-align');
 const $purchasePriceInputFormButton = $('#purchase-price-input-form__button');
 
-const lottoTicketIconTemplate = () => {
+const getLottoTicketIconTemplate = () => {
   return `<span class="purchase-result-section__lotto-icon mx-1 text-4xl">
             🎟️
           </span>`;
 };
 
-const lottoTicketDetailTemplate = (isAutomated, joinedLottoTicketNumbers) => {
+const getLottoTicketDetailTemplate = (
+  isAutomated,
+  joinedLottoTicketNumbers,
+) => {
   return `<div class="d-flex">
-            ${lottoTicketIconTemplate()}
+            ${getLottoTicketIconTemplate()}
             <span class="mx-1 mt-2">${
               isAutomated ? '- 자 동 -' : '- 수 동 -'
             }</span>
@@ -33,13 +36,13 @@ export const renderPurchaseResultSection = (lotto) => {
   const $purchaseResultSectionLabel = $('#purchase-result-section__label');
 
   $purchaseResultSectionLabel.innerText = `총 ${amountOfLottoTicket}개를 구매하였습니다.`;
-  $purchaseResultSectionRowAlign.innerHTML = lottoTicketIconTemplate().repeat(
+  $purchaseResultSectionRowAlign.innerHTML = getLottoTicketIconTemplate().repeat(
     amountOfLottoTicket,
   );
 
   $purchaseResultSectionColAlign.innerHTML = lottoTickets
     .map((lottoTicket) =>
-      lottoTicketDetailTemplate(
+      getLottoTicketDetailTemplate(
         lottoTicket.getAutomated(),
         lottoTicket.getNumbers().join(', '),
       ),
