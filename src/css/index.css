@@ -27,7 +27,7 @@ body {
   display: none;
 }
 
-.lotto-div__ticket {
+.lotto-ticket {
   display: flex;
   vertical-align: middle;
 }
@@ -39,4 +39,13 @@ body {
 
 .result-info {
   font-size: 15px;
+}
+
+.fw-wrap {
+  flex-wrap: wrap;
+}
+
+.amount-number {
+  width: 180px;
+  height: 36px;
 }

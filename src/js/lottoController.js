@@ -1,10 +1,12 @@
-import { $, $$, clearInput } from './utils/util.js';
+import { $, $$ } from './utils/util.js';
 import Lotto from './models/Lotto.js';
 import { ALERT_MESSAGES } from './utils/constants/alert.js';
 import { LOTTO_SETTINGS, PRIZE, RANK } from './utils/constants/settings.js';
 import { DOM_IDS, DOM_CLASSES } from './utils/constants/dom.js';
 import { isNumbersDuplicated } from './utils/validation.js';
 import LottoUI from './lottoUI.js';
+import LottosBundle from './models/LottosBundle.js';
+import { WINNINGS } from './models/Winnings.js';
 export default class LottoController {
   constructor() {
     this.lottoUI = new LottoUI();
@@ -12,14 +14,9 @@ export default class LottoController {
   }
 
   _initState() {
-    this._lottos = [];
-    this._winnings = {
-      [RANK.FIRST]: 0,
-      [RANK.SECOND]: 0,
-      [RANK.THIRD]: 0,
-      [RANK.FOURTH]: 0,
-      [RANK.FIFTH]: 0,
-    };
+    this._lottosBundle = new LottosBundle();
+    this._winnings = WINNINGS;
+    this._myMoney = 0;
   }
 
   initGame() {
@@ -30,69 +27,114 @@ export default class LottoController {
 
   restartGame() {
     this._initState();
-    this.lottoUI.hideModal();
-    $(`.${DOM_CLASSES.MONEY_FORM_SUBMIT}`).enable();
-    clearInput(`.${DOM_CLASSES.MONEY_FORM_INPUT}`);
+    this.lottoUI.closeModal();
+    this.lottoUI.initAllForm();
     $(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).focus();
 
-    $(`.${DOM_CLASSES.LOTTO_CONTAINER}`).clearChildren();
-    $(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`).clearChildren();
+    this.lottoUI.hideElement(`.${DOM_CLASSES.LOTTO_AMOUNT_CONTAINER}`);
+    this.lottoUI.hideElement(`.${DOM_CLASSES.MANUAL_SELECT_CONTAINER}`);
+    this.lottoUI.hideElement(`.${DOM_CLASSES.LOTTO_CONTAINER}`);
+    this.lottoUI.hideElement(`.${DOM_CLASSES.RESULT_INPUT_CONTAINER}`);
   }
 
   _initEventListener() {
-    $(`.${DOM_CLASSES.MONEY_FORM}`).addEventListener('submit', event => {
-      event.preventDefault();
-      this._handleMoneyInput();
-    });
+    $(`.${DOM_CLASSES.MONEY_FORM}`).addEventListener('submit', this._onPurchasePriceSubmit);
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_FORM}`).addEventListener('submit', this._onLottoAmountSubmit);
+    $(`.${DOM_CLASSES.MANUAL_SELECT_FORM}`).addEventListener('submit', this._onManualLottoNumberSubmit);
+    $(`.${DOM_CLASSES.RESULT_INPUT_FORM}`).addEventListener('submit', this._onResultLottoNumberSubmit);
 
-    $(`#${DOM_IDS.APP}`).addEventListener('submit', event => {
-      event.preventDefault();
-      if (event.target.closest(`.${DOM_CLASSES.RESULT_INPUT_FORM}`)) {
-        this._handleResultInput();
-      }
+    $(`.${DOM_CLASSES.LOTTO_SWITCH}`).addEventListener('click', this.lottoUI.toggleLottoNumbers);
+    $(`.${DOM_CLASSES.MODAL_CLOSE}`).addEventListener('click', this.lottoUI.closeModal);
+    $(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`).addEventListener('click', () => {
+      this.restartGame();
     });
-
-    $(`#${DOM_IDS.APP}`).addEventListener('click', event => {
-      if (event.target.closest(`.${DOM_CLASSES.LOTTO_SWITCH}`)) {
-        this._handleCheckLottoSwitch();
-        return;
-      }
-      if (event.target.closest(`.${DOM_CLASSES.MODAL_CLOSE}`)) {
-        this.lottoUI.hideModal();
-        return;
-      }
-      if (event.target.closest(`.${DOM_CLASSES.MODAL_RESTART_BUTTON}`)) {
-        this.restartGame();
-        return;
+    $(`.${DOM_CLASSES.MODAL}`).addEventListener('click', (event) => {
+      if (event.target.classList.contains(`${DOM_CLASSES.MODAL}`)) {
+        this.lottoUI.closeModal();
       }
     });
   }
 
-  _handleMoneyInput() {
-    const moneyInput = Number($(`.${DOM_CLASSES.MONEY_FORM_INPUT}`).value);
+  _onPurchasePriceSubmit = (event) => {
+    event.preventDefault();
+    const moneyInput = Number(event.target[DOM_IDS.MONEY_FORM_INPUT].value);
     if (moneyInput < LOTTO_SETTINGS.LOTTO_PRICE) {
       alert(ALERT_MESSAGES.UNDER_MIN_PRICE);
       return;
     }
+    this._myMoney = moneyInput;
+    this.lottoUI.renderLottoAmountUI();
+    this.lottoUI.disablePreviousForm(event.target);
+    $(`.${DOM_CLASSES.LOTTO_AMOUNT_INPUT_MANUAL}`).focus();
+  }
 
-    this._makeLottos(moneyInput);
-    const numbersBundle = this._lottos.map(lotto => lotto.getNumbers());
-    this.lottoUI.renderCheckLottoUI(numbersBundle);
+  _onLottoAmountSubmit = (event) => {
+    event.preventDefault(event);
+    const form = event.target;
+    const manualAmount = Number(form[DOM_IDS.LOTTO_AMOUNT_INPUT_MANUAL].value);
+    const autoAmount = Number(form[DOM_IDS.LOTTO_AMOUNT_INPUT_AUTO].value);
+    const moneyToNeed = LOTTO_SETTINGS.LOTTO_PRICE * (manualAmount + autoAmount);
+    if (this._myMoney < moneyToNeed) {
+      alert(ALERT_MESSAGES.CANT_BUY_AMOUNT);
+      return;
+    }
+    if (manualAmount + autoAmount < LOTTO_SETTINGS.MIN_AMOUNT_TO_BUY) {
+      alert(ALERT_MESSAGES.UNDER_MIN_AMOUNT_TO_BUY);
+      return;
+    }
+
+    this._makeLottosByAuto(autoAmount);
+    this.lottoUI.disablePreviousForm(form);
+    if (manualAmount === 0) {
+      this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
+      this.lottoUI.renderResultInputUI();
+      $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
+      return;
+    }
+    this.lottoUI.renderManualSelectUI(manualAmount);
+    $(`.${DOM_CLASSES.MANUAL_SELECT_INPUT}`).focus();
+  }
+
+  _makeLottosByAuto(amount) {
+    new Array(amount).fill(0).map(() => {
+      const lotto = new Lotto();
+      lotto.setNumbersByAuto();
+      this._lottosBundle.push(lotto);
+    });
+  }
+
+  _onManualLottoNumberSubmit = (event) => {
+    event.preventDefault(event);
+    const ticketElements = $$(`.${DOM_CLASSES.MANUAL_SELECT_FORM} > .${DOM_CLASSES.CSS_LOTTO_TICKET}`);
+    const numbersBundle =
+      [...ticketElements]
+        .map((ticketElement) =>
+          [...ticketElement.getElementsByClassName(DOM_CLASSES.MANUAL_SELECT_INPUT)]
+            .map((inputElement) =>
+              Number(inputElement.value)));
+    const isBundleDuplicated = numbersBundle.some((numbers) => isNumbersDuplicated(numbers));
+    if (isBundleDuplicated) {
+      alert(ALERT_MESSAGES.DUPLICATED_NUMBERS_EXIST);
+      return;
+    }
+
+    this._makeLottosByManual(numbersBundle);
+    this.lottoUI.renderCheckLottoUI(this._lottosBundle.getNumbersBundle());
     this.lottoUI.renderResultInputUI();
+    this.lottoUI.disablePreviousForm(event.target);
     $(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`).focus();
   }
 
-  _makeLottos(moneyInput) {
-    const lottoAmount = Math.floor(moneyInput / LOTTO_SETTINGS.LOTTO_PRICE);
-
-    for (let i = 0; i < lottoAmount; i++) {
+  _makeLottosByManual(numbersBundle) {
+    numbersBundle.forEach((numbers) => {
       const lotto = new Lotto();
-      lotto.createNumbers();
-      this._lottos.push(lotto);
-    }
+      lotto.setNumbers(numbers);
+      this._lottosBundle.push(lotto);
+    });
   }
 
-  _handleResultInput() {
+  _onResultLottoNumberSubmit = (event) => {
+    event.preventDefault(event);
     const winningNumbers = [...$$(`.${DOM_CLASSES.RESULT_WINNING_NUMBER}`)]
       .map(input => Number(input.value));
     const bonusNumber = Number($(`.${DOM_CLASSES.RESULT_BONUS_NUMBER}`).value);
@@ -104,18 +146,14 @@ export default class LottoController {
     }
 
     this._calculateWinnings(winningNumbers, bonusNumber);
-    this.lottoUI.showModal();
     this.lottoUI.renderWinningResult(this._winnings, this._getEarningRate());
   }
 
   _getEarningRate() {
-    const moneySpent = this._lottos.length * LOTTO_SETTINGS.LOTTO_PRICE;
-    let earning = 0;
-
-    for (let rank of Object.keys(this._winnings)) {
-      earning +=
-        this._winnings[rank] * this._getPrizeMoneyForRank(rank);
-    }
+    const moneySpent = this._lottosBundle.length * LOTTO_SETTINGS.LOTTO_PRICE;
+    const earning = Object.keys(this._winnings).reduce((acc, rank) =>
+      acc + this._winnings[rank] * this._getPrizeMoneyForRank(rank)
+      , 0);
     return Math.round(((earning - moneySpent) / moneySpent) * 100);
   }
 
@@ -131,22 +169,15 @@ export default class LottoController {
     return prize[rank];
   }
 
-  _handleCheckLottoSwitch() {
-    this.lottoUI.toggleLottoNumbers();
-  }
-
   _calculateWinnings(winningNumbers, bonusNumber) {
-    if (this._isAlreadyCalculatedInWinnings()) {
-      return;
-    }
+    this._winnings = WINNINGS;
 
-    this._lottos.forEach(lotto => {
+    this._lottosBundle.forEach(lotto => {
       const myNumbers = lotto.getNumbers();
       const {
         winningCount,
         bonusCount
       } = this._countEqualNumbers(winningNumbers, bonusNumber, myNumbers);
-
       const rank = this._getRank(winningCount, bonusCount);
       if (rank === RANK.NONE) {
         return;
@@ -154,10 +185,6 @@ export default class LottoController {
 
       this._winnings[rank]++;
     });
-  }
-
-  _isAlreadyCalculatedInWinnings() {
-    return Object.values(this._winnings).some(winning => winning !== 0);
   }
 
   _getRank(winningCount, bonusCount) {

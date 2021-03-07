@@ -4,7 +4,9 @@ export const LOTTO_SETTINGS = {
 
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
+
   LOTTO_PRICE: 1000,
+  MIN_AMOUNT_TO_BUY: 1,
 }
 
 export const UI_SETTINGS = {
