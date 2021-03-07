@@ -2,6 +2,7 @@ export default class Lotto {
   constructor() {
     this.amount = 0;
     this.tickets = [];
+    this.inputtedSelfNumbers = [];
   }
   setAmount(amount) {
     this.amount = amount;
@@ -19,8 +20,17 @@ export default class Lotto {
     return this.tickets;
   }
 
+  addInputtedSelfNumbers(numbers) {
+    this.inputtedSelfNumbers.push(numbers);
+  }
+
+  getInputtedSelfNumbers() {
+    return this.inputtedSelfNumbers;
+  }
+
   initialize() {
     this.amount = 0;
     this.tickets = [];
+    this.inputtedSelfNumbers = [];
   }
 }
