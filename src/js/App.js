@@ -1,10 +1,8 @@
-import {
-  CashContainer,
-  PurchaseModalContainer,
-  LottoDetailContainer,
-  WinningNumberContainer,
-  ResultModalContainer,
-} from "./components/index.js";
+import CashContainer from "./components/CashContainer.js";
+import LottoDetailContainer from "./components/LottoDetailContainer.js";
+import PurchaseModalContainer from "./components/PurchaseModalContainer.js";
+import ResultModalContainer from "./components/ResultModalContainer.js";
+import WinningNumberContainer from "./components/WinningNumberContainer.js";
 
 class App {
   constructor(store) {
