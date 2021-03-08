@@ -13,9 +13,9 @@ import {
   $correctNumber,
 } from '../../elements.js';
 import {
-  getResultItemCountTemplate,
-  getResultItemListTemplate,
-  getModalTbodyTemplate,
+  resultItemCountTemplate,
+  resultItemListTemplate,
+  modalTbodyTemplate,
 } from './templates.js';
 import { $ } from '../../utils/querySelector.js';
 
@@ -47,10 +47,8 @@ const view = {
   showPurchaseResult(lottoItemList) {
     $result.classList.remove(CSS_CLASS.REMOVED);
     $resultItemList.classList.remove(CSS_CLASS.REMOVED);
-    $resultItemCount.innerHTML = getResultItemCountTemplate(
-      lottoItemList.length
-    );
-    $resultItemList.innerHTML = getResultItemListTemplate(lottoItemList);
+    $resultItemCount.innerHTML = resultItemCountTemplate(lottoItemList.length);
+    $resultItemList.innerHTML = resultItemListTemplate(lottoItemList);
     view.showWinningNumberForm();
   },
 
@@ -67,7 +65,7 @@ const view = {
 
   showResultModal(rankItemList, profitRate) {
     $modal.classList.add(CSS_CLASS.OPEN);
-    $modalTbody.innerHTML = getModalTbodyTemplate(rankItemList);
+    $modalTbody.innerHTML = modalTbodyTemplate(rankItemList);
     $profitRate.innerText = profitRate;
   },
 

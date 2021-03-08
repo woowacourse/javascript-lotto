@@ -9,7 +9,7 @@ import {
   $restartButton,
   $autoPurchaseButton,
   $purchaseInputWrapper,
-  $purchaseButton
+  $purchaseButton,
 } from '../../elements.js';
 import connector from './connector.js';
 import validation from '../validation/validation.js';
@@ -29,21 +29,21 @@ const onCostAdd = () => {
   lottoGameView.emptyCostInput();
 };
 
-const canBuyLotto = () => {
-  return lottoGame.getAffordableLottoItemCount() >= 1
-}
+const hasEnoughMoney = () => {
+  return lottoGame.getAffordableLottoItemCount() >= 1;
+};
 
 const onAutoPurchase = () => {
-  if (!canBuyLotto()) {
+  if (!hasEnoughMoney()) {
     lottoGameView.showMessage(MESSAGE.NOT_ENOUGH_MONEY);
     return;
   }
 
   connector.purchaseAsManyLottos();
-}
+};
 
 const onPurchase = () => {
-  if (!canBuyLotto()) {
+  if (!hasEnoughMoney()) {
     lottoGameView.showMessage(MESSAGE.NOT_ENOUGH_MONEY);
     return;
   }
@@ -54,7 +54,7 @@ const onPurchase = () => {
 
   const lottoNumberList = getCustomLottoNumbers();
   connector.purchaseOneLotto(lottoNumberList);
-}
+};
 
 const onShowLottoNumbersToggle = (e) => {
   connector.toggleLottoItemNumbers(e.target.checked);
@@ -76,7 +76,9 @@ const onResultModalOpen = () => {
     connector.showWinningResult(correctNumbers);
     return;
   }
-  const userConfirmMessage = MESSAGE.getChangeExistGuideMessage(lottoGame.Deposit);
+  const userConfirmMessage = MESSAGE.getChangeExistGuideMessage(
+    lottoGame.Deposit
+  );
   connector.askUserPermission(userConfirmMessage, () => {
     connector.purchaseAsManyLottos();
     connector.showWinningResult(correctNumbers);
@@ -88,17 +90,21 @@ const onResultModalClose = () => {
 };
 
 const onCustomLottoNumberInput = (e) => {
-  const userGuideMessage = validation.getInputNumbersCheckResult(getCustomLottoNumbers());
+  const userGuideMessage = validation.getInputNumbersCheckResult(
+    getCustomLottoNumbers()
+  );
   if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
     connector.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
       e.target.focus();
     });
   }
-}
+};
 
 const onCorrectNumberInput = (e) => {
-  const userGuideMessage = validation.getInputNumbersCheckResult(getCorrectNumbers());
+  const userGuideMessage = validation.getInputNumbersCheckResult(
+    getCorrectNumbers()
+  );
   if (userGuideMessage !== VALIDATION.NO_ERROR_MESSAGE) {
     connector.guideUserInput(userGuideMessage, () => {
       e.target.value = '';
@@ -117,11 +123,20 @@ const controller = {
     $depositAddButton.addEventListener('click', onCostAdd);
     $autoPurchaseButton.addEventListener('click', onAutoPurchase);
     $purchaseButton.addEventListener('click', onPurchase);
-    $purchaseInputWrapper.addEventListener('focusout', onCustomLottoNumberInput);
-    $resultNumbersToggleButton.addEventListener('click', onShowLottoNumbersToggle);
+    $purchaseInputWrapper.addEventListener(
+      'focusout',
+      onCustomLottoNumberInput
+    );
+    $resultNumbersToggleButton.addEventListener(
+      'click',
+      onShowLottoNumbersToggle
+    );
     $modalCloseButton.addEventListener('click', onResultModalClose);
     $modalOpenButton.addEventListener('click', onResultModalOpen);
-    $correctNumberInputWrapper.addEventListener('focusout', onCorrectNumberInput);
+    $correctNumberInputWrapper.addEventListener(
+      'focusout',
+      onCorrectNumberInput
+    );
     $restartButton.addEventListener('click', onRestart);
   },
 };
