@@ -9,6 +9,7 @@ export default class ResultModalView extends View {
 
   showModal(rankCounts, earningRate) {
     this.$element.classList.add('open');
+
     this.renderRanks(rankCounts);
     this.renderEarningRate(earningRate);
   }
@@ -25,19 +26,21 @@ export default class ResultModalView extends View {
 
   bindModalCloseEvent() {
     $('.modal-close').addEventListener('click', () => this.closeModal());
-    $('main').addEventListener('click', () => this.closeModal());
-    $('.modal-inner').addEventListener('click', e => e.stopPropagation());
-    $('#reset-btn').addEventListener('click', () =>
-      this.clickResetBtnHandler()
-    );
-  }
+    $('.modal').addEventListener('click', e => {
+      if (e.target.classList.contains('modal')) {
+        this.closeModal();
+      }
+    });
 
-  clickResetBtnHandler() {
-    this.closeModal();
-    this.emit('clickResetBtn');
+    $('#reset-btn').addEventListener('click', () => this.onResetBtnHandler());
   }
 
   closeModal() {
     this.$element.classList.remove('open');
+  }
+
+  onResetBtnHandler() {
+    this.closeModal();
+    this.emit('clickResetBtn');
   }
 }
