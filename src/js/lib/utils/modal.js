@@ -1,4 +1,6 @@
+
 import { $ } from './dom.js';
+
 
 const $modal = $('.modal');
 

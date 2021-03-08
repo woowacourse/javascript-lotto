@@ -1,4 +1,5 @@
 import { lotto } from '../model/lotto.js';
+
 import {
   $,
   disableElements,
@@ -20,6 +21,7 @@ import {
 import inputNumberRangeHandler from './input/inputNumberRange.js';
 import inputNumberDuplicateHandler from './input/inputNumberDuplicate.js';
 import winningNumberSubmitHandler from './winningNumberSubmit.js';
+
 
 const updateTicketListView = tickets => {
   const ticketsTemplate = tickets.reduce(

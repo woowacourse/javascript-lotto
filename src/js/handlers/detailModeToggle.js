@@ -1,3 +1,4 @@
+
 import { $ } from '../lib/utils/dom.js';
 
 const onDetailMode = ticketList => {

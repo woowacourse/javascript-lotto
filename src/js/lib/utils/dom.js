@@ -1,6 +1,8 @@
+
 import random from './random.js';
 
 export const $ = selector => {
+
   const elements = document.querySelectorAll(selector);
 
   return elements.length === 1 ? elements[0] : elements;
@@ -49,3 +51,4 @@ export const randomColor = () => {
     $('.remains').style.background = randomColor('0.1');
   }, 1000);
 };
+

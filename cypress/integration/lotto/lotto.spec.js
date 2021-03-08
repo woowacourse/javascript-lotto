@@ -34,6 +34,8 @@ context('Actions', () => {
     cy.get('input[name=payment-input]').type('0');
     cy.get('button[name=payment-button]').click();
     cy.get('@alert').should('be.calledWith', LESS_THAN_TICKET_PRICE_MESSAGE);
+
+    cy.get('#ticket-list > div').should('have.length', 5);
   });
 
   it('한 번 로또를 구입하면 다시 구매할 수 없다.', () => {
@@ -85,6 +87,7 @@ context('Actions', () => {
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+
     cy.get('input[name=manual-purchase-input]').type('1');
     cy.get('#manual-purchase-submit').click();
     cy.get('.manual-number').each(element => {
@@ -95,11 +98,13 @@ context('Actions', () => {
     cy.get('#auto-purchase-form > .d-flex > .btn').click();
     cy.get('.ticket-number').should('have.length', 2);
     cy.get('.switch').click();
+
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
     cy.get('.bonus-number').type(34);
     cy.get('.open-result-modal-button[type=submit]').click();
+
 
     cy.get('.modal').should('be.visible');
   });
@@ -108,6 +113,7 @@ context('Actions', () => {
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
+
     cy.get('input[name=manual-purchase-input]').type('1');
     cy.get('#manual-purchase-submit').click();
     cy.get('.manual-number').each(element => {
@@ -118,16 +124,20 @@ context('Actions', () => {
     cy.get('#auto-purchase-form > .d-flex > .btn').click();
     cy.get('.ticket-number').should('have.length', 2);
     cy.get('.switch').click();
+
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(i++);
     });
     cy.get('.bonus-number').type(34);
+
     cy.get('.open-result-modal-button[type=submit]').click();
+
     cy.get('#reset').click();
     cy.get('.modal').should('not.to.be.visible');
   });
 
   it('당첨번호는 1~45 사이의 숫자여야한다.', () => {
+
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
@@ -144,10 +154,12 @@ context('Actions', () => {
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
     cy.get('.winning-number[name=first]').type(99);
     cy.get('.winning-number[name=second]').focus();
+
     cy.get('@alert').should('be.calledWith', EXCEED_RANGE_NUMBER);
   });
 
   it('당첨번호는 중복될 수 없다.', () => {
+
     let i = 1;
     cy.get('input[name=payment-input]').type('5000');
     cy.get('button[name=payment-button]').click();
@@ -162,11 +174,14 @@ context('Actions', () => {
     cy.get('.ticket-number').should('have.length', 2);
     cy.get('.switch').click();
     cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+
     cy.get('.winning-number').each(element => {
       cy.wrap(element).type(1);
     });
     cy.get('.bonus-number').type(34);
+
     cy.get('.open-result-modal-button[type=submit]').click();
     cy.get('@alert').should('be.calledWith', DUPLICATE_INPUT_NUMBER);
+
   });
 });
