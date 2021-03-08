@@ -1,33 +1,33 @@
 import { getKRMoneyString } from '../../utils/format.js';
 import { CSS_CLASS } from '../../constants.js';
 
-export const getResultItemCountTemplate = (lottoItemCount) => {
+export const resultItemCountTemplate = (lottoItemCount) => {
   return `
     총 <span id="result__item-count">${lottoItemCount}</span>개를 구매하였습니다.
   `;
 };
 
-const getNumberListTemplate = ({ lottoNumberList }) => {
+const numberListTemplate = ({ lottoNumberList }) => {
   return lottoNumberList.join(', ');
 };
 
-export const getResultItemListTemplate = (lottoItemList) => {
+export const resultItemListTemplate = (lottoItemList) => {
   return lottoItemList
     .map(
       (lottoItem) =>
         ` 
         <div class="mx-1 text-4xl lotto-item">
           <span class="lotto-icon">🎟️</span>
-          <span class="lotto-numbers ${
-            CSS_CLASS.REMOVED
-          }">${getNumberListTemplate(lottoItem)}</span>
+          <span class="lotto-numbers ${CSS_CLASS.REMOVED}">${numberListTemplate(
+          lottoItem
+        )}</span>
         </div>
       `
     )
     .join('');
 };
 
-export const getModalTbodyTemplate = (rankItemList) =>
+export const modalTbodyTemplate = (rankItemList) =>
   rankItemList
     .map(
       (rankItem) => `
