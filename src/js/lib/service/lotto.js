@@ -23,12 +23,10 @@ const createTickets = ticketAmount =>
 const getTicketAmount = money => Math.floor(money / TICKET_PRICE);
 
 const getProfitPercent = (winners, ticketAmount) => {
-  let totalProfit = 0;
   const paymentAmount = ticketAmount * 1000;
-
-  for (const [idx, winner] of winners.entries()) {
-    totalProfit += winner * TICKET_PRIZE[idx];
-  }
+  const totalProfit = winners.reduce(
+    (total, winner, index) => total + winner * TICKET_PRIZE[index]
+  );
 
   return ((totalProfit - paymentAmount) / paymentAmount) * 100;
 };
