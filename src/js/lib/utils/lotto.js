@@ -5,6 +5,28 @@ import {
   TICKET_PRIZE,
 } from '../constants/lotto.js';
 
+
+function getValueFromElements(elements) {
+  return elements.reduce((acc, cur) => {
+    acc.push(Number(cur.value));
+    return acc;
+  }, []);
+}
+
+function sliceArray(numberArray, sliceBy) {
+  let counter = -1;
+  return numberArray.reduce((final, curr, i) => {
+    if (i % sliceBy === 0) {
+      final.push([curr]);
+      counter++;
+    } else {
+      final[counter].push(curr);
+    }
+    return final;
+  }, []);
+}
+
+
 function getTicketNumber() {
   const ticketNumber = new Set();
 
@@ -29,7 +51,13 @@ function getProfitPercent(winners, ticketAmount) {
     }
   }
 
-  return ((totalProfit - paymentAmount) / paymentAmount) * 100;
+
+  const percentage = ((totalProfit - paymentAmount) / paymentAmount) * 100;
+
+  return Number.isInteger(percentage)
+    ? percentage
+    : '약 ' + percentage.toFixed(2);
+
 }
 
 function getRank(ticket, { main, bonus }) {
@@ -65,4 +93,11 @@ function getWinners(tickets, winningNumber) {
   return winners;
 }
 
-export { getTicketNumber, getProfitPercent, getWinners };
+export {
+  getValueFromElements,
+  sliceArray,
+  getTicketNumber,
+  getProfitPercent,
+  getWinners,
+};
+

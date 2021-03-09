@@ -1,4 +1,5 @@
-import $ from '../lib/utils/dom.js';
+
+import { $ } from '../lib/utils/dom.js';
 
 const onDetailMode = ticketList => {
   ticketList.classList.add('detail-mode');
