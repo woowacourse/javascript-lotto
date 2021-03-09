@@ -5,23 +5,12 @@ import { updateLottoIssueModalView } from '../lib/viewController/lottoIssueModal
 
 const manualIssueHandler = event => {
   event.preventDefault();
-  const {
-    'manual-first': $first,
-    'manual-second': $second,
-    'manual-third': $third,
-    'manual-fourth': $fourth,
-    'manual-fifth': $fifth,
-    'manual-sixth': $sixth,
-  } = event.target.elements;
 
-  const newTicket = [
-    $first,
-    $second,
-    $third,
-    $fourth,
-    $fifth,
-    $sixth,
-  ].map(({ value }) => Number(value));
+  const manualInputs = [...event.target.elements].filter(element =>
+    element.classList.contains('js-manual-input')
+  );
+
+  const newTicket = manualInputs.map(({ value }) => Number(value));
 
   if (hasDuplicateInArray(newTicket)) {
     alert(DUPLICATE_NUMBER_MESSAGE);
