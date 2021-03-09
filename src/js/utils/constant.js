@@ -35,9 +35,15 @@ export const VALUE = {
   },
 };
 
-export const ERR_MESSAGE = {
+export const ERROR_MESSAGE = {
   LOTTO: {
     INVALID_PRICE: `${VALUE.LOTTO.TICKET_PRICE}원 이상의 금액만 입력이 가능합니다.`,
+    OVER_PURCHASE: '구매 가능한 갯수만큼만 번호를 입력할 수 있습니다.',
+  },
+
+  WINNING_NUMBER: {
+    DUPLICATE: '중복된 값은 입력할 수 없습니다.',
+    OUT_OF_RANGE: `${VALUE.LOTTO.MIN_NUM} ~ ${VALUE.LOTTO.MAX_NUM} 사이의 값만 입력이 가능합니다.`,
   },
 
   WINNING_NUMBER: {

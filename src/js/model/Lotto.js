@@ -1,23 +1,36 @@
 export default class Lotto {
   constructor() {
+    this.amount = 0;
     this.tickets = [];
-    this.purchasePrice = 0;
+    this.inputtedSelfNumbers = [];
+  }
+  setAmount(amount) {
+    this.amount = amount;
   }
 
-  setTickets(ticket) {
+  getAmount() {
+    return this.amount;
+  }
+
+  addTicket(ticket) {
     this.tickets.push(ticket);
   }
 
-  addTicket() {
+  getTickets() {
     return this.tickets;
   }
 
-  setPurchasePrice(purchasePrice) {
-    this.purchasePrice = purchasePrice;
+  addInputtedSelfNumbers(numbers) {
+    this.inputtedSelfNumbers.push(numbers);
+  }
+
+  getInputtedSelfNumbers() {
+    return this.inputtedSelfNumbers;
   }
 
   initialize() {
+    this.amount = 0;
     this.tickets = [];
-    this.purchasePrice = 0;
+    this.inputtedSelfNumbers = [];
   }
 }

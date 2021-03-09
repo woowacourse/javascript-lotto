@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/querySelector.js';
 import { isDuplicate, isValidRange } from '../utils/validator.js';
-import { ERR_MESSAGE, VALUE } from '../utils/constant.js';
-import { openModal, renderModal } from '../view/viewModalPage.js';
+import { ERROR_MESSAGE, VALUE } from '../utils/constant.js';
+import { renderResultModal } from '../view/viewResultModal.js';
 
 const getProfit = (winningRank) => {
   const profits = {
@@ -53,7 +53,12 @@ const getTotalYield = (lotto) => {
     0,
   );
 
-  return Number(((totalProfit / lotto.purchasePrice) * 100).toFixed(2));
+  return Number(
+    (
+      (totalProfit / (lotto.getAmount() * VALUE.LOTTO.TICKET_PRICE)) *
+      100
+    ).toFixed(2),
+  );
 };
 
 const setTicketResult = (ticket, winningNumbers, bonusNumber) => {
@@ -79,11 +84,11 @@ export const handleWinningNumberInput = (lotto) => {
   const bonusNumber = Number($('.bonus-number').value);
 
   if (!isValidRange([...winningNumbers, bonusNumber])) {
-    return alert(ERR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
+    return alert(ERROR_MESSAGE.WINNING_NUMBER.OUT_OF_RANGE);
   }
 
   if (isDuplicate([...winningNumbers, bonusNumber])) {
-    return alert(ERR_MESSAGE.WINNING_NUMBER.DUPLICATE);
+    return alert(ERROR_MESSAGE.WINNING_NUMBER.DUPLICATE);
   }
 
   lotto.tickets.forEach((ticket) => {
@@ -93,6 +98,5 @@ export const handleWinningNumberInput = (lotto) => {
   const ranckCountMap = getRankCountMap(lotto);
   const totalYield = getTotalYield(lotto);
 
-  renderModal(ranckCountMap, totalYield);
-  openModal();
+  renderResultModal(ranckCountMap, totalYield);
 };

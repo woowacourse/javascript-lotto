@@ -1,6 +1,7 @@
 import { $, $$ } from '../utils/querySelector.js';
-import { closeModal } from '../view/viewModalPage.js';
+import { clearSelfResultTable } from '../view/viewPurchaseModal.js';
 import { initializePurchaseResultSection } from '../view/viewPurchaseResultSection.js';
+import { closeResultModal } from '../view/viewResultModal.js';
 import { hideWinningNumberInputForm } from '../view/viewWinningNumberInputForm.js';
 
 const restartLottoGame = (lotto) => {
@@ -13,16 +14,17 @@ const restartLottoGame = (lotto) => {
   lotto.initialize();
   hideWinningNumberInputForm();
   initializePurchaseResultSection();
-  closeModal();
+  clearSelfResultTable();
+  closeResultModal();
 };
 
-export const handleModalPage = ({ target }, lotto) => {
-  if (target.classList.contains('close-button')) {
-    closeModal();
+export const handleResultModal = ({ target }, lotto) => {
+  if (target.classList.contains('result-modal__close-button')) {
+    closeResultModal();
     return;
   }
 
-  if (target.classList.contains('restart-button')) {
+  if (target.classList.contains('result-modal__restart-button')) {
     restartLottoGame(lotto);
   }
 };
