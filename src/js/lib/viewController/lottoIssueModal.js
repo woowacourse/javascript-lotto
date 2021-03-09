@@ -14,19 +14,15 @@ const updateIssuedTicketBoxView = () => {
 };
 
 const updateEndButtonText = () => {
-  if (!lotto.issuableTicketAmount) {
-    $('#lotto-issue-end-button').innerText = '발급 완료';
-  } else {
-    $('#lotto-issue-end-button').innerText = '나머지는 자동 구매';
-  }
+  $('#lotto-issue-end-button').innerText = lotto.issuableTicketAmount
+    ? '나머지는 자동 구매'
+    : '발급 완료';
 };
 
 const updateFormState = () => {
-  if (lotto.issuableTicketAmount) {
-    enableForm($('#manual-issue-form'));
-  } else {
-    disableForm($('#manual-issue-form'));
-  }
+  lotto.issuableTicketAmount
+    ? enableForm($('#manual-issue-form'))
+    : disableForm($('#manual-issue-form'));
 };
 
 const updateLottoIssueModalView = () => {

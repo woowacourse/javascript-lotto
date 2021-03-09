@@ -4,11 +4,7 @@ import {
 } from '../lib/viewController/ticketList.js';
 
 const detailModeToggleHandler = ({ target }) => {
-  if (target.checked) {
-    turnDetailModeOn();
-  } else {
-    turnDetailModeOff();
-  }
+  target.checked ? turnDetailModeOn() : turnDetailModeOff();
 };
 
 export default detailModeToggleHandler;
