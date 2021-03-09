@@ -8,15 +8,18 @@
   </head>
   <body>
     <div id="app" class="p-3">
-      <section class="d-flex justify-center mt-5">
+      <header>
+        <h1 class="text-center text-2xl">🎱 행운의 로또</h1>
+      </header>
+      <section class="d-flex justify-center mt-5 w-100">
         <div class="w-100">
-          <h1 class="text-center">🎱 행운의 로또</h1>
           <form class="purchase-amount-form mt-5 d-flex">
             <label class="w-100 d-flex flex-col">
               <span class="mb-2 d-block">구입할 금액을 입력해주세요.</span>
               <input
                 type="number"
                 step="any"
+                min="0"
                 class="purchase-amount-input pl-2 mr-2 input"
                 placeholder="구입 금액"
                 required
@@ -26,9 +29,37 @@
               <button type="submit" class="purchase-amount-button btn btn-cyan">확인</button>
             </div>
           </form>
+          <section class="manual-lotto-purchase-section mt-6 d-none">
+            <h2 class="text-lg">로또 수동 구매하기</h2>
+            <div class="remaining-count text-sm mt-3"></div>
+            <form class="manual-lotto-purchase-form">
+              <div class="d-flex mt-3">
+                <div class="manual-lotto-number d-flex">
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                  <input type="number" min="1" max="45" class="lotto-number mx-1 text-center" required />
+                </div>
+                <div class="flex-grow">
+                  <button type="submit" class="add-manual-lotto-button btn btn-cyan mw-none ml-3" disabled>+</button>
+                </div>
+              </div>
+              <span class="lotto-number-check-message d-block m-1 text-sm text-red h-2r spacing-sm"></span>
+            </form>
+            <section class="purchased-manual-lotto-section mt-5">
+              <h3 class="text-base">수동 구매한 로또 목록</h3>
+              <ul class="purchased-manual-lotto-list pl-3"></ul>
+            </section>
+            <div class="mt-5">
+              <sapn class="d-block text-sm text-gray">남은 금액이 있는 경우 자동으로 구매합니다.</sapn>
+              <button type="button" class="lotto-purchase-button btn btn-cyan w-100 mt-2">로또 구매하기</button>
+            </div>
+          </section>
           <section class="purchased-lotto-section mt-9 d-none">
             <div class="d-flex">
-              <h4 class="purchased-lotto-label flex-auto my-0 font-normal"></h4>
+              <h2 class="purchased-lotto-label flex-auto my-0 font-normal text-base"></h2>
               <div class="flex-auto d-flex justify-end pr-1">
                 <label class="switch">
                   <input type="checkbox" class="lotto-numbers-toggle-button" />
@@ -39,12 +70,12 @@
             <ul class="lotto-ticket-container d-flex flex-wrap pl-0"></ul>
           </section>
           <form class="winning-number-form d-none mt-9">
-            <label class="flex-auto d-inline-block mb-3">
+            <div class="flex-auto d-inline-block mb-3 text-sm">
               지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
-            </label>
+            </div>
             <div class="d-flex">
               <section>
-                <h4 class="mt-0 mb-3 text-center">당첨 번호</h4>
+                <h2 class="mt-0 mb-3 text-center text-base">당첨 번호</h2>
                 <div>
                   <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
                   <input type="number" min="1" max="45" class="winning-number mx-1 text-center" required />
@@ -55,28 +86,26 @@
                 </div>
               </section>
               <section class="bonus-number-container flex-grow">
-                <h4 class="mt-0 mb-3 text-center">보너스 번호</h4>
+                <h2 class="mt-0 mb-3 text-center text-base">보너스 번호</h2>
                 <div class="d-flex justify-center">
                   <input type="number" min="1" max="45" class="bonus-number text-center" required />
                 </div>
               </section>
             </div>
-            <div class="winning-number-check-message mt-3 text-sm text-red h-2r spacing-sm"></div>
-            <button type="button" class="open-result-modal-button mt-5 btn btn-cyan w-100" disabled>
-              결과 확인하기
-            </button>
+            <div class="winning-number-check-message m-3 text-sm text-red h-2r spacing-sm"></div>
+            <button type="submit" class="open-result-modal-button mt-3 btn btn-cyan w-100" disabled>결과 확인하기</button>
           </form>
         </div>
       </section>
 
-      <section class="modal">
+      <section class="modal" role="dialog" aria-labelledby="result-modal-title">
         <div class="modal-inner p-10">
-          <div class="modal-close">
+          <button type="button" class="modal-close">
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
-          </div>
-          <h2 class="text-center">🏆 당첨 통계 🏆</h2>
+          </button>
+          <h2 id="result-modal-title" class="text-center">🏆 당첨 통계 🏆</h2>
           <div class="d-flex justify-center">
             <table class="result-table border-collapse border border-black">
               <thead>
@@ -91,11 +120,12 @@
           </div>
           <p class="rate-of-return text-center font-bold"></p>
           <div class="d-flex justify-center mt-5">
-            <button type="button" class="restart-button btn btn-cyan">다시 시작하기</button>
+            <button type="reset" class="restart-button btn btn-cyan">다시 시작하기</button>
           </div>
         </div>
       </section>
     </div>
+    
     <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>

@@ -6,6 +6,8 @@ export const LOTTO_NUMBERS_LENGTH = 6;
 export const BONUS_NUMBER_LENGTH = 1;
 export const LOTTO_NUMBER_SEPARATOR = ', ';
 export const PURCHASED_QUANTITY_MESSAGE = (numOfLotto) => `총 ${numOfLotto}개를 구매하였습니다.`;
+export const REMAINING_QUANTITY_TO_PURCHASE_MESSAGE = (remainingQuantity, totalQuantity) =>
+  `남은 로또 : ${remainingQuantity}장 (총 ${totalQuantity}장)`;
 
 export const PURCHASE_AMOUNT_ALERT_MESSAGE = {
   PURCHASE_AMOUNT_IS_INVALID_MONEY: `화폐단위 미만의 자릿수가 포함된 금액입니다.\n${LOTTO_PRICE}원 단위로 입력해주세요`,
@@ -14,11 +16,11 @@ export const PURCHASE_AMOUNT_ALERT_MESSAGE = {
     `입력된 금액에서 ${change}원을 제외한 금액으로 로또를 구매했습니다.\n거스름돈 챙겨가세요.`,
 };
 
-export const WINNING_NUMBER_CHECK_MESSAGE = {
+export const LOTTO_NUMBER_CHECK_MESSAGE = {
   OUT_OF_RANGE: `${LOTTO_MIN_NUMBER} ~ ${LOTTO_MAX_NUMBER} 범위를 벗어난 값이 있습니다. 확인 후 다시 입력해주세요.`,
   DUPLICATED: '중복된 값이 있습니다. 확인 후 다시 입력해주세요.',
   HAS_BLANK: '아직 입력하지 않은 번호가 있습니다.',
-  COMPLETED: '당첨번호 입력이 완료되었습니다. 인생역전의 기회, 지금 결과를 확인하세요!',
+  COMPLETED: '번호 입력이 완료되었습니다!',
 };
 
 export const BONUS_COUNT = 0.5;

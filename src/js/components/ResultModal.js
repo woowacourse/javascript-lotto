@@ -26,8 +26,8 @@ export default class ResultModal {
   }
 
   attachEvents() {
-    this.$modalClose?.addEventListener('click', this.closeModal.bind(this));
-    this.$restartButton?.addEventListener('click', () => {
+    this.$modalClose.addEventListener('click', this.closeModal.bind(this));
+    this.$restartButton.addEventListener('click', () => {
       this.onRestart();
       this.closeModal();
     });

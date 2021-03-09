@@ -45,9 +45,10 @@ export default class PurchasedLotto {
   createLottoTicketHTML(lottoTicket) {
     return `
     <li class="mx-1 text-4xl d-flex items-center">
-      🎟️
+      🎟️ 
       <span class="text-xl ml-5 d-none lotto-numbers">
-        ${lottoTicket.numbers.join(LOTTO_NUMBER_SEPARATOR)}
+        [${lottoTicket.type}] 
+        <span>${lottoTicket.numbers.join(LOTTO_NUMBER_SEPARATOR)}</span>
       </span>
     </li>`;
   }

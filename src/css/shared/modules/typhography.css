@@ -7,6 +7,10 @@
   color: rgb(0, 125, 27);
 }
 
+.text-gray {
+  color: gray;
+}
+
 .text-left {
   text-align: left;
 }

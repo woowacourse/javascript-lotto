@@ -1,3 +1,5 @@
 import App from './components/App.js';
 
-new App();
+window.addEventListener('DOMContentLoaded', () => {
+  new App();
+});

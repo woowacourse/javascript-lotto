@@ -1,16 +1,16 @@
-import PurchaseAmountInput from './PurchaseAmountInput.js';
 import PurchasedLotto from './PurchasedLotto.js';
 import LottoTicket from '../model/LottoTicket.js';
 import WinningNumberInput from './WinningNumberInput.js';
 import ResultModal from './ResultModal.js';
+import LottoPurchase from './LottoPurchase.js';
 
 export default class App {
   constructor() {
     this.lottoTickets = [];
     this.winningNumber = {};
 
-    this.purchaseAmountInput = new PurchaseAmountInput({
-      createLottoTickets: this.createLottoTickets.bind(this),
+    this.lottoPurchase = new LottoPurchase({
+      updateLottoTickets: this.updateLottoTickets.bind(this),
     });
     this.purchasedLotto = new PurchasedLotto({
       lottoTickets: this.lottoTickets,
@@ -28,8 +28,16 @@ export default class App {
   }
 
   createLottoTickets(numOfLotto) {
+    return Array(numOfLotto)
+      .fill()
+      .map((v) => new LottoTicket());
+  }
+
+  updateLottoTickets({ manualLottoTickets, numOfRest }) {
+    const restLottoTickets = this.createLottoTickets(numOfRest);
+
     this.setState({
-      lottoTickets: new Array(numOfLotto).fill().map((v) => new LottoTicket()),
+      lottoTickets: [...manualLottoTickets, ...restLottoTickets],
     });
   }
 
@@ -43,14 +51,14 @@ export default class App {
 
   onRestart() {
     this.setState({ lottoTickets: [], winningNumber: {} });
-    this.purchaseAmountInput.reset();
+    this.lottoPurchase.reset();
   }
 
   setState({ lottoTickets, winningNumber }) {
     if (lottoTickets) {
       this.lottoTickets = lottoTickets;
       this.purchasedLotto.setState({ lottoTickets: this.lottoTickets });
-      this.winningNumberInput.setState({ isVisible: lottoTickets.length > 0 });
+      this.winningNumberInput.setState({ isVisible: this.lottoTickets.length > 0 });
       this.resultModal.setState({ lottoTickets: this.lottoTickets });
     }
 

@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.mw-none {
+  min-width: 0 !important;
+}
+
 .h-2r {
   height: 2rem;
 }

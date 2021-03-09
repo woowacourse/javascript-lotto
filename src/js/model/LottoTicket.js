@@ -10,6 +10,7 @@ import {
 export default class LottoTicket {
   constructor(numbers) {
     this.numbers = (numbers ?? this.createLottoNumbers()).sort((a, b) => a - b);
+    this.type = numbers ? '수동' : '자동';
     this.totalMatchCount = 0;
   }
 
