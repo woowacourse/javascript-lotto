@@ -10,6 +10,10 @@ export default class Lotto {
     return [...this._numbers];
   }
 
+  setNumbers(numbers) {
+    this._numbers = numbers;
+  }
+
   createNumbers() {
     const numberSet = new Set();
     while (numberSet.size < LOTTO_SETTINGS.LOTTO_NUMBER_SIZE) {
