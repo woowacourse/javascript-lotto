@@ -5,11 +5,20 @@ import lottoGameView from '../view/view.js';
 import { GAME, LOTTO } from '../../constants.js';
 
 const service = {
-  purchaseLottoItems() {
-    lottoGame.addLottoItems(lottoGame.getAffordableLottoItemCount());
-    lottoGame.spendDeposit();
+  purchaseOneLotto(lottoNumberList) {
+    lottoGame.addLottoItem(lottoNumberList);
+    lottoGame.spendOneLottoMoney();
     lottoGameView.showPurchaseResult(lottoGame.LottoItemList);
-    lottoGameView.showDeposit(lottoGame.Deposit);
+    lottoGameView.showDeposit(getKRMoneyString(lottoGame.Deposit));
+    lottoGameView.initToggleButton();
+  },
+
+  purchaseAsManyLottos() {
+    lottoGame.addLottoItems(lottoGame.getAffordableLottoItemCount());
+    lottoGame.spendAsManyMoney();
+    lottoGameView.showPurchaseResult(lottoGame.LottoItemList);
+    lottoGameView.showDeposit(getKRMoneyString(lottoGame.Deposit));
+    lottoGameView.initToggleButton();
   },
 
   depositMoney(cost) {
@@ -28,13 +37,27 @@ const service = {
   },
 
   showWinningResult(inputNumbers) {
-    if (!Array.isArray(inputNumbers) || inputNumbers.length !== LOTTO.CORRECT_NUMBER_LENGTH) return;
-    
+    if (
+      !Array.isArray(inputNumbers) ||
+      inputNumbers.length !== LOTTO.CORRECT_NUMBER_LENGTH
+    )
+      return;
+
     lottoGame.assignInputNumbers(inputNumbers);
     lottoGame.assignMatchCount();
     const rankItemList = lottoGame.getRankItemList();
-    const profitRate = getProfitRate(lottoGame.TotalCost, lottoGame.getTotalProfit(rankItemList));
+    const profitRate = getProfitRate(
+      lottoGame.TotalCost,
+      lottoGame.getTotalProfit(rankItemList)
+    );
     lottoGameView.showResultModal(rankItemList, getKRMoneyString(profitRate));
+  },
+
+  askUserPermission(message, callback) {
+    const isConfirmed = lottoGameView.tryConfirm(message);
+    if (isConfirmed) {
+      callback && callback();
+    }
   },
 
   restart() {

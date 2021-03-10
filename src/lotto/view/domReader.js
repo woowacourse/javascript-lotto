@@ -1,4 +1,4 @@
-import { $correctNumberInputWrapper } from '../../elements.js';
+import { $correctNumberInputWrapper, $purchaseInputWrapper } from '../../elements.js';
 import { SELECTOR } from '../../constants.js';
 import { $ } from '../../utils/querySelector.js';
 
@@ -13,4 +13,12 @@ export const getCorrectNumbers = () => {
       : [...winningNumbers, Number(bonusNumberInput)];
 
   return correctNumbers;
+};
+
+export const getCustomLottoNumbers = () => {
+  const cutomLottoNumbers = $(SELECTOR.PURCHASE_INPUT, $purchaseInputWrapper)
+    .filter(({ value }) => value !== '')
+    .map(({ value }) => Number(value));
+
+  return cutomLottoNumbers;
 };

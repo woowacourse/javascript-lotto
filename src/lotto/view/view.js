@@ -1,4 +1,4 @@
-import { CSS_CLASS } from '../../constants.js';
+import { CSS_CLASS, SELECTOR } from '../../constants.js';
 import {
   $depositInput,
   $depositPresenter,
@@ -10,23 +10,22 @@ import {
   $modalTbody,
   $profitRate,
   $correctNumberInputWrapper,
-  $correctNumber
+  $correctNumber,
 } from '../../elements.js';
 import {
-  getResultItemCountTemplate,
-  getResultItemListTemplate,
-  getModalTbodyTemplate,
+  resultItemCountTemplate,
+  resultItemListTemplate,
+  modalTbodyTemplate,
 } from './templates.js';
 import { $ } from '../../utils/querySelector.js';
 
 const view = {
   initLottoGame(initialDeposit) {
     if (Number.isNaN(initialDeposit)) return;
-
     view.hideResultModal();
     view.hideLottoNumbers();
     view.hideWinningNumberInputForm();
-    view.hidePurchaseResult()
+    view.hidePurchaseResult();
     view.initWinningNumberInputs();
     view.emptyCostInput();
     view.showDeposit(initialDeposit);
@@ -42,32 +41,31 @@ const view = {
 
   initToggleButton() {
     $resultNumbersToggleButton.checked = false;
-    $resultItemList.classList.add(CSS_CLASS.LOTTO_NUMBERS_REMOVED);
-    $resultItemList.classList.remove(CSS_CLASS.FLEX_DIRECTION_COLUMN);
+    view.hideLottoNumbers();
   },
 
   showPurchaseResult(lottoItemList) {
     $result.classList.remove(CSS_CLASS.REMOVED);
     $resultItemList.classList.remove(CSS_CLASS.REMOVED);
-    $resultItemCount.innerHTML = getResultItemCountTemplate(
-      lottoItemList.length
-    );
-    $resultItemList.innerHTML = getResultItemListTemplate(lottoItemList);
+    $resultItemCount.innerHTML = resultItemCountTemplate(lottoItemList.length);
+    $resultItemList.innerHTML = resultItemListTemplate(lottoItemList);
     view.showWinningNumberForm();
   },
 
   showWinningNumberForm() {
     $correctNumber.classList.remove(CSS_CLASS.REMOVED);
   },
-  
+
   showLottoNumbers() {
+    $(SELECTOR.LOTTO_NUMBERS).forEach(($lottoNumbers) =>
+      $lottoNumbers.classList.remove(CSS_CLASS.REMOVED)
+    );
     $resultItemList.classList.add(CSS_CLASS.FLEX_DIRECTION_COLUMN);
-    $resultItemList.classList.remove(CSS_CLASS.LOTTO_NUMBERS_REMOVED);
   },
 
   showResultModal(rankItemList, profitRate) {
     $modal.classList.add(CSS_CLASS.OPEN);
-    $modalTbody.innerHTML = getModalTbodyTemplate(rankItemList);
+    $modalTbody.innerHTML = modalTbodyTemplate(rankItemList);
     $profitRate.innerText = profitRate;
   },
 
@@ -77,13 +75,27 @@ const view = {
 
   showMessage(message) {
     if (typeof message !== 'string' || message.length === 0) return;
-    
+
     alert(message);
+  },
+
+  tryConfirm(message) {
+    if (typeof message !== 'string' || message.length === 0) return;
+
+    return confirm(message);
   },
 
   hideLottoNumbers() {
     $resultItemList.classList.remove(CSS_CLASS.FLEX_DIRECTION_COLUMN);
-    $resultItemList.classList.add(CSS_CLASS.LOTTO_NUMBERS_REMOVED);
+    const lottoNumbers = $(SELECTOR.LOTTO_NUMBERS);
+    if (!Array.isArray(lottoNumbers)) {
+      lottoNumbers.classList.add(CSS_CLASS.REMOVED);
+      return;
+    }
+
+    lottoNumbers.forEach(($lottoNumbers) =>
+      $lottoNumbers.classList.add(CSS_CLASS.REMOVED)
+    );
   },
 
   hideResultModal() {
@@ -94,13 +106,13 @@ const view = {
     $correctNumber.classList.add(CSS_CLASS.REMOVED);
   },
 
-  hidePurchaseResult(){
+  hidePurchaseResult() {
     $result.classList.add(CSS_CLASS.REMOVED);
   },
 
   emptyCostInput() {
     $depositInput.value = '';
-  }
+  },
 };
 
 export default view;
