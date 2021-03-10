@@ -139,15 +139,44 @@
           </form>
         </div>
       </div>
-
-      <div class="modal">
+      <div class="modal" data-js-selector="purchase-modal-container">
         <div class="modal-inner p-10">
-          <div class="modal-close">
+          <div
+            class="modal-close"
+            data-js-selector="purchase-modal-container__close"
+          >
             <svg viewbox="0 0 40 40">
               <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>
           </div>
-
+          <h2 class="text-center">로또 번호 선택</h2>
+          <form
+            class="d-flex flex-col justify-center"
+            data-js-selector="purchase-modal-container__form"
+          >
+            <div data-js-selector="purchase-modal-container__lottos"></div>
+            <div class="d-flex justify-center mt-5">
+              <button
+                type="submit"
+                class="btn btn-cyan"
+                data-js-selector="purchase-modal-container__button"
+              >
+                확인
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal" data-js-selector="result-modal-container">
+        <div class="modal-inner p-10">
+          <div
+            class="modal-close"
+            data-js-selector="result-modal-container__close"
+          >
+            <svg viewbox="0 0 40 40">
+              <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
+            </svg>
+          </div>
           <h2 class="text-center">🏆 당첨 통계 🏆</h2>
           <div class="d-flex justify-center">
             <table class="result-table border-collapse border border-black">
@@ -161,46 +190,76 @@
               <tbody>
                 <tr class="text-center">
                   <td class="p-3">3개</td>
-                  <td class="p-3" data-js-selector="modal__winning-money-unit">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-money-unit"
+                  >
                     5,000
                   </td>
-                  <td class="p-3" data-js-selector="modal__winning-count">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-count"
+                  >
                     n개
                   </td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">4개</td>
-                  <td class="p-3" data-js-selector="modal__winning-money-unit">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-money-unit"
+                  >
                     50,000
                   </td>
-                  <td class="p-3" data-js-selector="modal__winning-count">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-count"
+                  >
                     n개
                   </td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개</td>
-                  <td class="p-3" data-js-selector="modal__winning-money-unit">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-money-unit"
+                  >
                     1,500,000
                   </td>
-                  <td class="p-3" data-js-selector="modal__winning-count">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-count"
+                  >
                     n개
                   </td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">5개 + 보너스볼</td>
-                  <td class="p-3" data-js-selector="modal__winning-money-unit">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-money-unit"
+                  >
                     30,000,000
                   </td>
-                  <td class="p-3" data-js-selector="modal__winning-count">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-count"
+                  >
                     n개
                   </td>
                 </tr>
                 <tr class="text-center">
                   <td class="p-3">6개</td>
-                  <td class="p-3" data-js-selector="modal__winning-money-unit">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-money-unit"
+                  >
                     2,000,000,000
                   </td>
-                  <td class="p-3" data-js-selector="modal__winning-count">
+                  <td
+                    class="p-3"
+                    data-js-selector="result-modal-container__winning-count"
+                  >
                     n개
                   </td>
                 </tr>
@@ -209,7 +268,7 @@
           </div>
           <p
             class="text-center font-bold"
-            data-js-selector="modal__profit-rate"
+            data-js-selector="result-modal-container__profit-rate"
           >
             당신의 총 수익률은 %입니다.
           </p>
@@ -217,7 +276,7 @@
             <button
               type="button"
               class="btn btn-cyan"
-              data-js-selector="modal__restart-button"
+              data-js-selector="result-modal-container__restart-button"
             >
               다시 시작하기
             </button>

@@ -2,6 +2,8 @@ import reducer from "../reducer/index.js";
 
 const initialState = {
   lottos: [],
+  isPurchasing: false,
+  cash: 0,
   winningNumber: { numbers: [], bonusNumber: 0 },
 };
 

@@ -1,43 +1,43 @@
 import { JS_SELECTOR } from "../../constants/index.js";
-import store from "../../store/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
-import Presentational from "./Presentational.js";
+import LottoDetailPresentational from "./Presentational.js";
+import { Container } from "../core/index.js";
 
-const createContainer = () => {
-  const $lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
-  const $lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
+class LottoDetailContainer extends Container {
+  constructor() {
+    super(LottoDetailPresentational);
+  }
 
-  const select = (state) => state.lottos;
+  initalize() {
+    this.$lottoIconWrapper = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER));
+    this.$lottoDetailContainer = $(toDAS(JS_SELECTOR.LOTTO_DETAIL.CONTAINER));
+  }
 
-  let currentLottos = select(store.getState());
+  getEventListeners() {
+    return { toggleDetailMode: this.toggleDetailMode.bind(this) };
+  }
 
-  const toggleDetailMode = (force) => {
-    $lottoIconWrapper.toggle("flex-col", force);
-    $lottoDetailContainer.toggle("detail", force);
-  };
+  select() {
+    const state = this.store.getState();
+    return state.lottos;
+  }
 
-  const render = () => {
-    const previousLottos = currentLottos;
-    currentLottos = select(store.getState());
+  render() {
+    if (!this.hasChanged()) return;
 
-    const hasChanged = previousLottos !== currentLottos;
-    if (!hasChanged) return;
-
-    Presentational.render({
-      lottos: currentLottos,
-      isLottoCleared: currentLottos.length === 0,
-      toggleDetailMode,
+    this.Presentational.render({
+      lottos: this.currentValue,
+      isLottoCleared: this.currentValue.length === 0,
+      toggleDetailMode: this.toggleDetailMode.bind(this),
     });
-  };
 
-  const init = () => {
-    Presentational.init({ toggleDetailMode });
-    store.subscribe(render);
-  };
+    this.updateValue();
+  }
 
-  return { init };
-};
-
-const LottoDetailContainer = createContainer();
+  toggleDetailMode(force) {
+    this.$lottoIconWrapper.toggle("flex-col", force);
+    this.$lottoDetailContainer.toggle("detail", force);
+  }
+}
 
 export default LottoDetailContainer;

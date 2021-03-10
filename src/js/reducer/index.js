@@ -6,6 +6,22 @@ const reducer = (state, action) => {
       return {
         ...state,
         lottos: [...state.lottos, ...action.payload],
+        isPurchasing: false,
+        cash: 0,
+      };
+
+    case ACTION_TYPE.LOTTOS.ADDING:
+      return {
+        ...state,
+        isPurchasing: true,
+        cash: action.payload,
+      };
+
+    case ACTION_TYPE.LOTTOS.CANCEL_ADDING:
+      return {
+        ...state,
+        isPurchasing: false,
+        cash: 0,
       };
 
     case ACTION_TYPE.WINNING_NUMBERS.SET:
@@ -15,7 +31,12 @@ const reducer = (state, action) => {
       };
 
     case ACTION_TYPE.CLEAR:
-      return { lottos: [], winningNumber: { numbers: [], bonusNumber: 0 } };
+      return {
+        lottos: [],
+        isPurchasing: false,
+        cash: 0,
+        winningNumber: { numbers: [], bonusNumber: 0 },
+      };
 
     default:
       return { ...state };

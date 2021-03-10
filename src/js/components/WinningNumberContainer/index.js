@@ -7,13 +7,75 @@ import { EmptyInputError, ValidationError } from "../../errors/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
 import { $, $$, toClassSelector as toCS } from "../../utils/index.js";
-import Presentational from "./Presentational.js";
+import WinningNumberPresentational from "./Presentational.js";
+import { Container } from "../core/index.js";
 
-const createContainer = () => {
-  const $$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT));
-  const $bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
+class WinningNumberContainer extends Container {
+  constructor() {
+    super(WinningNumberPresentational);
+  }
 
-  const toNumbers = ($$inputs, $bonusInput) => {
+  initalize() {
+    this.$$inputs = $$(toCS(CLASSNAME.WINNING_NUMBER.INPUT));
+    this.$bonusInput = $(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT));
+  }
+
+  getEventListeners() {
+    return {
+      getWinningNumberWithValidation: this.getWinningNumberWithValidation.bind(
+        this
+      ),
+    };
+  }
+
+  select() {
+    const state = store.getState();
+    return state.lottos;
+  }
+
+  render() {
+    if (!this.hasChanged()) return;
+
+    this.Presentational.render({
+      isLottoInitialAdded: this.previousValue.length === 0,
+      isLottoCleared: this.currentValue.length === 0,
+    });
+
+    this.updateValue();
+  }
+
+  getWinningNumberWithValidation(event) {
+    event.preventDefault();
+
+    try {
+      const [numbers, bonusNumber] = this.toNumbers(
+        this.$$inputs,
+        this.$bonusInput
+      );
+
+      this.validate(numbers, bonusNumber);
+
+      store.dispatch({
+        type: ACTION_TYPE.WINNING_NUMBERS.SET,
+        payload: {
+          numbers,
+          bonusNumber,
+        },
+      });
+    } catch (error) {
+      if (
+        error instanceof EmptyInputError ||
+        error instanceof ValidationError
+      ) {
+        alert(error.message);
+        return;
+      }
+
+      throw error;
+    }
+  }
+
+  toNumbers($$inputs, $bonusInput) {
     const inputs = [...$$inputs];
 
     if (inputs.some(($input) => $input.isEmpty()) || $bonusInput.isEmpty()) {
@@ -28,9 +90,9 @@ const createContainer = () => {
     const bonusNumber = Number($bonusInput.value);
 
     return [numbers, bonusNumber];
-  };
+  }
 
-  const validate = (numbers, bonusNumber) => {
+  validate(numbers, bonusNumber) {
     const numbersSet = new Set([...numbers, bonusNumber]);
 
     if (numbersSet.size < numbers.length + 1) {
@@ -52,62 +114,7 @@ const createContainer = () => {
         ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.OUT_OF_RANGE
       );
     }
-  };
-
-  const getWinningNumberWithValidation = (event) => {
-    event.preventDefault();
-
-    try {
-      const [numbers, bonusNumber] = toNumbers($$inputs, $bonusInput);
-
-      validate(numbers, bonusNumber);
-
-      store.dispatch({
-        type: ACTION_TYPE.WINNING_NUMBERS.SET,
-        payload: {
-          numbers,
-          bonusNumber,
-        },
-      });
-    } catch (error) {
-      if (
-        error instanceof EmptyInputError ||
-        error instanceof ValidationError
-      ) {
-        alert(error.message);
-        return;
-      }
-
-      throw error;
-    }
-  };
-
-  const select = (state) => state.lottos;
-
-  let currentLottos = select(store.getState());
-
-  const render = () => {
-    let previousLottos = currentLottos;
-    currentLottos = select(store.getState());
-
-    const hasChanged = previousLottos !== currentLottos;
-    if (!hasChanged) return;
-
-    Presentational.render({
-      isLottoInitialAdded: previousLottos.length === 0,
-      isLottoCleared: currentLottos.length === 0,
-    });
-  };
-
-  const init = () => {
-    Presentational.init(getWinningNumberWithValidation);
-
-    store.subscribe(render);
-  };
-
-  return { init };
-};
-
-const WinningNumberContainer = createContainer();
+  }
+}
 
 export default WinningNumberContainer;

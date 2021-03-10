@@ -1,22 +1,27 @@
 import { JS_SELECTOR } from "../../constants/index.js";
 import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
+import { Presentational } from "../core/index.js";
 
-const createPresentaional = () => {
-  const $cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
-  const $cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
+class CashPresentational extends Presentational {
+  constructor(eventListeners) {
+    super(eventListeners);
+  }
 
-  const render = () => {
-    $cashInput.clear();
-    $cashInput.focus();
-  };
+  initalize() {
+    this.$cashContainer = $(toDAS(JS_SELECTOR.CASH.CONTAINER));
+    this.$cashInput = $(toDAS(JS_SELECTOR.CASH.INPUT));
+  }
 
-  const init = ({ createLottosAfterValidation }) => {
-    $cashContainer.addEventListener("submit", createLottosAfterValidation);
-  };
+  setEventListeners() {
+    const { createLottosAfterValidation } = this.eventListeners;
 
-  return { init, render };
-};
+    this.$cashContainer.addEventListener("submit", createLottosAfterValidation);
+  }
 
-const Presentational = createPresentaional();
+  render() {
+    this.$cashInput.clear();
+    this.$cashInput.focus();
+  }
+}
 
-export default Presentational;
+export default CashPresentational;

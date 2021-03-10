@@ -15,6 +15,7 @@ describe("당첨 번호 입력 테스트", () => {
     const userInput = 4500;
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
+    cy.get(toDAS(JS_SELECTOR.PURCHASE_MODAL.BUTTON)).click();
   });
 
   it("유저가 정상적으로 로또를 구매한 후 당첨번호를 모두 입력하지 않았을 때 에러메시지를 alert로 출력한다", () => {
