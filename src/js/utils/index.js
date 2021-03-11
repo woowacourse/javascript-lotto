@@ -12,6 +12,7 @@ import {
   validateLottoNumbersAreUnique,
 } from "./validate.js";
 import { wrap } from "./proxy.js";
+import { notify } from "./notify.js";
 
 export {
   $,
@@ -25,4 +26,5 @@ export {
   validateLottoNumber,
   validateLottoNumbersAreUnique,
   wrap,
+  notify,
 };

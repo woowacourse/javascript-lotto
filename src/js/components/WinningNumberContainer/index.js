@@ -1,4 +1,8 @@
-import { ACTION_TYPE, CLASSNAME } from "../../constants/index.js";
+import {
+  ACTION_TYPE,
+  CLASSNAME,
+  SUGGESTION_MESSAGE,
+} from "../../constants/index.js";
 import { CustomError } from "../../errors/index.js";
 import store from "../../store/index.js";
 import {
@@ -42,7 +46,9 @@ const createContainer = () => {
       });
     } catch (error) {
       if (error instanceof CustomError) {
-        Presentational.notifyError(error);
+        Presentational.notifyError(
+          `${error.message} ${SUGGESTION_MESSAGE.LOTTO_NUMBERS_INPUT}`
+        );
         return;
       }
 

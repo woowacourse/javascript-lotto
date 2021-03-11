@@ -1,17 +1,9 @@
-import {
-  ALERT_MESSAGE,
-  CLASSNAME,
-  JS_SELECTOR,
-} from "../../constants/index.js";
-import {
-  DuplicatedNumbersError,
-  NotAnIntegerError,
-  NotANumberError,
-  OutOfRangeError,
-} from "../../errors/index.js";
+import { CLASSNAME, JS_SELECTOR } from "../../constants/index.js";
+
 import {
   $,
   $$,
+  notify,
   toClassSelector as toCS,
   toDataAttributeSelector as toDAS,
 } from "../../utils/index.js";
@@ -35,34 +27,8 @@ const createPresentaional = () => {
     }
   };
 
-  const notifyError = (error) => {
-    if (error instanceof NotANumberError) {
-      alert(
-        `${error.message} ${ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.NOT_A_NUMBER}`
-      );
-      return;
-    }
-
-    if (error instanceof NotAnIntegerError) {
-      alert(
-        `${error.message} ${ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.NOT_AN_INTEGER}`
-      );
-      return;
-    }
-
-    if (error instanceof OutOfRangeError) {
-      alert(
-        `${error.message} ${ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.OUT_OF_RANGE}`
-      );
-      return;
-    }
-
-    if (error instanceof DuplicatedNumbersError) {
-      alert(
-        `${error.message} ${ALERT_MESSAGE.ERROR.WINNING_NUMBERS_INPUT.DUPLICATED}`
-      );
-      return;
-    }
+  const notifyError = (message) => {
+    notify(message);
   };
 
   const init = (createAction) => {

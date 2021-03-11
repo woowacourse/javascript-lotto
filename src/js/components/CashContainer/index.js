@@ -1,4 +1,8 @@
-import { ACTION_TYPE, JS_SELECTOR } from "../../constants/index.js";
+import {
+  ACTION_TYPE,
+  JS_SELECTOR,
+  SUGGESTION_MESSAGE,
+} from "../../constants/index.js";
 import { toNumber, validateCash } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
@@ -27,7 +31,9 @@ const createContainer = () => {
       });
     } catch (error) {
       if (error instanceof CustomError) {
-        Presentational.notifyError(error);
+        Presentational.notifyError(
+          `${error.message} ${SUGGESTION_MESSAGE.CASH_INPUT}`
+        );
         return;
       }
 
