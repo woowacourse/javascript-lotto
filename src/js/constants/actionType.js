@@ -1,4 +1,7 @@
 const ACTION_TYPE = Object.freeze({
+  CASH: {
+    ADDED: "cash/added",
+  },
   LOTTOS: {
     ADDED: "lottos/added",
   },
