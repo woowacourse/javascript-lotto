@@ -9,7 +9,7 @@ import store from "../../store/index.js";
 import { CustomError } from "../../errors/index.js";
 import Presentational from "./Presentational.js";
 
-const select = (state) => state.lottos;
+const select = (state) => state.cash;
 
 const createContainer = () => {
   const handleStateChange = () => {
