@@ -4,7 +4,8 @@ const TEMPLATE = {
   },
   ENTRY: (index) => {
     return `
-  <div class="my-2" data-js-selector="issue-manager__entry">
+<div class="d-flex justify-between items-center my-4" data-js-selector="issue-manager__entry">
+  <div class="d-flex justify-center items-center">
     <label class="text-sm font-normal" data-issue-mode="auto">
       <input type="radio" name="issue-mode-${index}" value="auto" data-entry-index="${index}" checked />
       <span>자동</span>
@@ -13,6 +14,8 @@ const TEMPLATE = {
       <input type="radio" name="issue-mode-${index}" value="manual" data-entry-index="${index}" />
       <span>수동</span>
     </label>
+  </div>
+  <div>
     <input
       type="number"
       class="issue-lotto-number mx-1 text-center"
@@ -80,6 +83,7 @@ const TEMPLATE = {
       name="entry__number-${index}"
     />
   </div>
+</div>
 `;
   },
 };
