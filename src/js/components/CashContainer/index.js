@@ -1,9 +1,5 @@
 import { ACTION_TYPE, JS_SELECTOR } from "../../constants/index.js";
-import {
-  toNumber,
-  generateLottoNumbers,
-  validateCash,
-} from "../../utils/index.js";
+import { toNumber, validateCash } from "../../utils/index.js";
 import { Lotto } from "../../models/index.js";
 import store from "../../store/index.js";
 import { CustomError } from "../../errors/index.js";
@@ -16,7 +12,7 @@ const createContainer = () => {
     Presentational.render();
   };
 
-  const createActionLottosAdded = (event) => {
+  const createActionCashAdded = (event) => {
     event.preventDefault();
 
     try {
@@ -25,14 +21,9 @@ const createContainer = () => {
 
       validateCash(cash);
 
-      const lottoCount = Math.floor(cash / Lotto.UNIT_PRICE);
-      const lottos = Array.from({ length: lottoCount }).map(
-        () => new Lotto(generateLottoNumbers())
-      );
-
       store.dispatch({
-        type: ACTION_TYPE.LOTTOS.ADDED,
-        payload: lottos,
+        type: ACTION_TYPE.CASH.ADDED,
+        payload: cash - (cash % Lotto.UNIT_PRICE),
       });
     } catch (error) {
       if (error instanceof CustomError) {
@@ -45,7 +36,7 @@ const createContainer = () => {
   };
 
   const init = () => {
-    Presentational.init(createActionLottosAdded);
+    Presentational.init(createActionCashAdded);
     store.subscribe(handleStateChange, select);
   };
 

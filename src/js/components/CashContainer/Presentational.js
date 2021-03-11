@@ -34,7 +34,6 @@ const createPresentaional = () => {
 
   const render = () => {
     $cashInput.clear();
-    $cashInput.focus();
   };
 
   const init = (createAction) => {
