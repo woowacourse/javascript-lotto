@@ -7,6 +7,7 @@ import {
   toDataAttributeSelector as toDAS,
   toClassSelector as toCS,
 } from "../../src/js/utils/querySelector.js";
+import { typeWinningNumbers } from "./utils.js";
 
 describe("당첨 번호 입력 테스트", () => {
   beforeEach(() => {
@@ -18,13 +19,6 @@ describe("당첨 번호 입력 테스트", () => {
     cy.get(toDAS(JS_SELECTOR.ISSUE_MANAGER.SUBMIT_BUTTON)).click();
     cy.get(toCS(CLASSNAME.MODAL)).should("not.be.visible");
   });
-
-  const typeWinningNumbers = (winningNumbers, bonusNumber) => {
-    cy.get(toCS(CLASSNAME.WINNING_NUMBER.INPUT)).each(($input, index) => {
-      cy.wrap($input).type(winningNumbers[index]);
-    });
-    cy.get(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT)).type(bonusNumber);
-  };
 
   it("유저가 정상적으로 로또를 구매한 후 중복된 당첨번호를 입력했을 때 에러메시지를 alert로 출력한다", () => {
     const WINNING_NUMBERS = [1, 5, 8, 34, 44, 45];
