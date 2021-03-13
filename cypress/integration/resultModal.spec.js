@@ -4,6 +4,7 @@ import {
   toClassSelector as toCS,
   toDataAttributeSelector as toDAS,
 } from "../../src/js/utils/index.js";
+import { typeWinningNumbers } from "./utils.js";
 
 describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표시된다", () => {
   const userInput = 4500;
@@ -13,17 +14,12 @@ describe("당첨 결과 모달 테스트: 당첨 결과에 대한 모달이 표�
 
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
+    cy.get(toDAS(JS_SELECTOR.ISSUE_MANAGER.SUBMIT_BUTTON)).click();
 
     const WINNING_NUMBERS = [1, 5, 8, 34, 44, 45];
     const BONUS_NUMBER = 7;
 
-    WINNING_NUMBERS.forEach((number, index) => {
-      const inputClassName = `${CLASSNAME.WINNING_NUMBER.INPUT}:nth-child(${
-        index + 1
-      })`;
-      cy.get(toCS(inputClassName)).type(number);
-    });
-    cy.get(toCS(CLASSNAME.WINNING_NUMBER.BONUS_INPUT)).type(BONUS_NUMBER);
+    typeWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
 
     cy.get(toCS(CLASSNAME.WINNING_NUMBER.OPEN_RESULT_MODAL_BUTTON)).click();
   });
