@@ -13,6 +13,7 @@ describe("번호보기 토글 테스트", () => {
     const userInput = 4500;
     cy.get(toDAS(JS_SELECTOR.CASH.INPUT)).type(userInput);
     cy.get(toDAS(JS_SELECTOR.CASH.BUTTON)).click();
+    cy.get(toDAS(JS_SELECTOR.ISSUE_MANAGER.SUBMIT_BUTTON)).click();
 
     cy.get(toDAS(JS_SELECTOR.LOTTO_DETAIL.ICON_WRAPPER)).should(
       "not.have.class",
