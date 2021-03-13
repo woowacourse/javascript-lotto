@@ -7,5 +7,6 @@
     "winningNumberInput.spec.js",
     "resultModal.spec.js",
     "restart.spec.js"
-  ]
+  ],
+  "watchForFileChanges": false
 }
