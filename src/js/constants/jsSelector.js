@@ -10,6 +10,7 @@ const JS_SELECTOR = Object.freeze({
     FORM: "issue-manager-form",
     ENTRY_LIST: "issue-manager-form__entry-list",
     ENTRY: "issue-manager__entry",
+    SUBMIT_BUTTON: "issue-manager-form__submit-button",
   },
   LOTTO_DETAIL: {
     CONTAINER: "lotto-detail-container",
