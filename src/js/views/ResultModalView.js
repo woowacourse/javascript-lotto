@@ -26,8 +26,8 @@ export default class ResultModalView extends View {
 
   bindModalCloseEvent() {
     $('.modal-close').addEventListener('click', () => this.closeModal());
-    $('.modal').addEventListener('click', e => {
-      if (e.target.classList.contains('modal')) {
+    $('.modal').addEventListener('click', ({ currentTarget, target }) => {
+      if (currentTarget === target) {
         this.closeModal();
       }
     });
