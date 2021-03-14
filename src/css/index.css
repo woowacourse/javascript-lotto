@@ -14,7 +14,8 @@ body {
   margin: 0 auto;
 }
 
-.winning-number {
+.winning-number,
+.manual-number {
   width: 30px;
   height: 36px;
 }
@@ -28,6 +29,14 @@ body {
   display: none;
 }
 
-.detail-mode .lotto-numbers {
+.detail-mode .ticket-number {
   display: inline;
+}
+
+.ticket-box {
+  min-height: 40px;
+  background-color: #f6feff;
+  border-radius: 0.725rem;
+  padding: 8px;
+  box-sizing: border-box;
 }

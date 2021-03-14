@@ -4,12 +4,12 @@
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
 <p align="middle">
-<img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
-<img src="https://img.shields.io/badge/language-html-red.svg?style=flat-square"/>
-<img src="https://img.shields.io/badge/language-css-blue.svg?style=flat-square"/>
-<img src="https://img.shields.io/badge/language-js-yellow.svg?style=flat-square"/>
-<a href="https://github.com/daybrush/moveable/blob/master/LICENSE" target="_blank">
-  <img src="https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D"/>
+  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
+  <img src="https://img.shields.io/badge/language-html-red.svg?style=flat-square"/>
+  <img src="https://img.shields.io/badge/language-css-blue.svg?style=flat-square"/>
+  <img src="https://img.shields.io/badge/language-js-yellow.svg?style=flat-square"/>
+  <a href="https://github.com/daybrush/moveable/blob/master/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D"/>
   </a>
 </p>
 
@@ -19,44 +19,13 @@
   <img width="400" src="./src/images/lotto_ui.png">
 </p>
 
-## 주안점
-
-1. 컴포넌트에서 반복적으로 사용되는 코드패턴을 발견하면 부모추상클래스의 메서드로 선언하고 있습니다. 자식클래스가 오버라이드를 해주면 메서드가 부모클래스에서 호출되도록 하고 있습니다.
-2. UX를 고려해서 기능을 추가 해봤습니다.
-   1. 모달창의 외부영역을 클릭하면 모달 닫힘
-   2. 초기화면, 구매입력창에 autofocus
-   3. 로또 구매 시, 당첨번호 입력창으로 focus
-   4. 당첨번호 두 자리를 입력하면 다음 당첨번호 입력창으로 focus
-   5. 허용범위를 벗어나는 당첨번호는 입력 시점에서 alert 및 입력창 clear
-   6. user-select none 처리
-   7. form 입력창 required 처리
-3. 컴포넌트를 잘 나눴는지 의문입니다. 당첨번호 폼 컴포넌트가 하는 일이 많다고 생각을 하게됐는데 App컴포넌트에서 결과출력 버튼을 갖는게 나았을지 고민이었습니다.
-
-## 데모
-
-https://jho2301.github.io/javascript-lotto/
-
-## Web VSCode 환경
-
-https://github.surf/jho2301/javascript-lotto/tree/step2
-
-## 클래스 구조도
-
-![wooteco_lotto_step2 (2)](https://user-images.githubusercontent.com/44419181/108629310-95b31e80-74a2-11eb-97c7-a841d5323130.png)
-
-## 컴포넌트 구조
-
-![component_organization](https://user-images.githubusercontent.com/44419181/108621175-700f2080-7474-11eb-8a41-a7554fb00c84.png)
-
-![component_organization_2](https://user-images.githubusercontent.com/44419181/108621236-de53e300-7474-11eb-8c88-55e7b16e8287.png)
-
-## 디렉토리 구조
-
-![image](https://user-images.githubusercontent.com/44419181/108621186-7f8e6980-7474-11eb-85a3-5ef16b409557.png)
-
-## ✏️ 기능 구현 목록
+## 기능 구현 목록
 
 ### Step 1
+- [ ] 로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.
+- [ ] 로또 1장의 가격은 1,000원이다.
+- [ ] 소비자는 **자동 구매**를 할 수 있어야 한다.
+- [ ] 복권 번호는 번호보기 토글 버튼을 클릭하면, 볼 수 있어야 한다.
 
 - [x] 구입 금액 입력받아서 티켓을 생성한다.
   - [x] 공백은 입력할 수 없다.
@@ -73,12 +42,24 @@ https://github.surf/jho2301/javascript-lotto/tree/step2
 - [x] 다시 시작하기 버튼을 누르면 초기화되어서 다시 구매를 시작할 수 있다.
 - [x] 한 번 로또를 구입하면 다시 구매할 수 없다.
 
+### Step 3
+
+- [x] 티켓 구매 금액 입력 시, 발급 가능한 티켓 수량을 보여준다.
+- [x] 수동으로 번호 6자리를 입력해 티켓을 발급한다.
+  - [x] 발급 시, 발급 가능한 티켓 수량을 차감한다.
+  - [x] 발급 가능한 티켓이 0장이면 티켓을 발급할 수 없다.
+  - [x] 중복된 번호를 제출하면 에러메시지가 노출된다.
+  - [x] 숫자들은 모두 1 - 45 범위의 숫자여야 한다.
+- [x] 수동 구매 종료 시, 나머지 발급 가능한 티켓을 자동 구매한다.
+
+## ✏️ 기능 요구 사항
+
 ### 🎯 step1 구입 기능
 
 - [x] 로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.
 - [x] 로또 1장의 가격은 1,000원이다.
 - [x] 소비자는 **자동 구매**를 할 수 있어야 한다.
-- [x] 복권 번호는 번호보기 토글 버튼을 클릭하면, 볼 수 있어야 한다.
+- [x] # 복권 번호는 번호보기 토글 버튼을 클릭하면, 볼 수 있어야 한다.
 
 ### 🎯🎯 step2 당첨 결과 기능
 
