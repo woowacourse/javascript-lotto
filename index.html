@@ -32,7 +32,7 @@
               </div>
           </form>
 
-          <section id="purchased-lottos" class="mt-9" aria-label="purchase-result">
+          <section id="purchased-lottos" class="mt-9" aria-label="purchase-items">
             <div class="d-flex">
               <label class="flex-auto my-0"
                 >총 <span id="total-purchased">5</span>개를
@@ -52,13 +52,13 @@
             <ul id="lotto-icons" class="d-flex flex-wrap"></ul>
           </section>
 
-          <form class="mt-9" id="input-lotto-nums">
-              <label class="flex-auto d-inline-block mb-3"
+          <form class="mt-9" id="input-lotto-nums" aria-labelledby="input-winning-numbers">
+              <label id="input-winning-numbers" class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
             <div class="d-flex">
               <div>
-                <h2 class="mt-0 mb-3 text-center">당첨 번호</h2>
+                <p class="mt-0 mb-3 text-center font-bold">당첨 번호</p>
                 <div>
                   <input
                     type="number"
@@ -117,7 +117,7 @@
                 </div>
               </div>
               <div class="bonus-number-container flex-grow">
-                <h2 class="mt-0 mb-3 text-center">보너스 번호</h2>
+                <p class="mt-0 mb-3 text-center font-bold">보너스 번호</p>
                 <div class="d-flex justify-center">
                   <input
                     type="number"
@@ -142,7 +142,7 @@
         </div>
       </div>
 
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="title-dialog">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="title-dialog">
         <div class="modal-inner p-10">
           <button type="button" class="modal-close" aria-label="close-button">
             <svg viewbox="0 0 40 40">
@@ -206,7 +206,7 @@
             <button type="reset" id="reset-btn" class="btn btn-cyan">다시 시작하기</button>
           </div>
         </div>
-      </div>
+      </section>
     </main>
     <script type="module" src="./src/js/index.js"></script>
   </body>
