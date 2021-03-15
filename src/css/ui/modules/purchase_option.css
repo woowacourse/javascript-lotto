@@ -16,12 +16,12 @@
   cursor: pointer;
 }
 
-.auto-purchase-add-button {
+.auto-number-purchase-button {
   display: inline-block;
   width: 50%;
 }
 
-.manual-purchase-add-button {
+.manual-number-purchase-button {
   margin-left: 10px;
   width: 50%;
 }

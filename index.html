@@ -13,22 +13,20 @@
           <h1 class="text-center">🎱 행운의 로또</h1>
           
           <!-- purchase-amount-container -->
-          <form id="purchase-amount-container" class="mt-5">
+          <form class="purchase-amount-container mt-5">
             <label class="mb-2 d-inline-block"
               >구입할 금액을 입력해주세요.
             </label>
             <div class="d-flex">
               <input
                 type="number"
-                id="purchase-amount-input"
-                class="w-100 mr-2 pl-2"
+                class="purchase-amount-input w-100 mr-2 pl-2"
                 placeholder="구입 금액"
                 autofocus
               />
               <button
                 type="submit"
-                id="purchase-amount-submit-button"
-                class="btn btn-cyan"
+                class="purchase-amount-submit-button btn btn-cyan"
               >
                 확인
               </button>
@@ -37,10 +35,10 @@
 
           <!-- purchase-option-container -->
           <form id="purchase-option-container" class="mt-9 hidden">
-              <label id="purchase-balance-label" class="flex-auto d-inline-block mb-2"
+              <label class="purchase-balance-label flex-auto d-inline-block mb-2"
                 >잔액 : 5,000원</label
               >
-              <label id="puchase-status-label" class="flex-auto d-inline-block mb-3"
+              <label class="purchase-status-label flex-auto d-inline-block mb-3"
                 >구매 현황 : 자동 0장, 수동 0장</label
               >
             <div class>
@@ -82,13 +80,13 @@
             <div class="purchase-add-button">
               <button
                 type="button"
-                class="auto-purchase-add-button mt-5 add-btn btn-cyan"
+                class="auto-number-purchase-button mt-5 add-btn btn-cyan"
               >
                 자동 구매 추가
               </button>
               <button
                 type="button"
-                class="manual-purchase-add-button mt-5 add-btn btn-blush"
+                class="manual-number-purchase-button mt-5 add-btn btn-blush"
               >
                 수동 구매 추가
               </button>
