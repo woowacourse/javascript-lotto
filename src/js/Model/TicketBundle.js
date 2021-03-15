@@ -1,13 +1,15 @@
-import { STANDARD_NUMBER } from "../Util/constants.js";
+import messenger from "../Messenger.js";
+import { MESSAGE, STANDARD_NUMBER } from "../Util/constants.js";
 
 class TicketBundle {
   constructor() {
     this.ticketBundle = [];
-  }
 
-  makeTicketBundle(ticketLength) {
-    this.ticketBundle = Array.from({ length: ticketLength }, () =>
-      this.generateRandomNumbers()
+    messenger.addMessageListener(
+      MESSAGE.AUTO_NUMBER_PURCHASE_BUTTON_CLICKED,
+      () => {
+        this.ticketBundle.push(this.generateRandomNumbers());
+      }
     );
   }
 
@@ -25,4 +27,4 @@ class TicketBundle {
   }
 }
 
-export default new TicketBundle();
+export default TicketBundle;
