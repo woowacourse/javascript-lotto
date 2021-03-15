@@ -15,4 +15,11 @@ describe("purchaseOption container를 테스트한다", () => {
       .invoke("text")
       .should("eq", `잔액 : ${Number(money).toLocaleString()}원`);
   });
+
+  it("자동 구매 추가 버튼을 누르면 자동 1장이 추가된다.", () => {
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).click();
+    cy.get(ELEMENT.PURCHASE_STATUS_LABEL)
+      .invoke("text")
+      .should("eq", `구매 현황: 자동 1장, 수동 0 장`);
+  });
 });
