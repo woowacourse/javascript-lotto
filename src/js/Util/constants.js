@@ -8,6 +8,7 @@ const ELEMENT = {
   AUTO_NUMBER_PURCHASE_BUTTON: ".auto-number-purchase-button",
   MANUAL_NUMBER_PURCHASE_BUTTON: ".manual-number-purchase-button",
   PURCHASE_STATUS_LABEL: ".purchase-status-label",
+  MANUAL_NUMBER: ".manual-number",
 
   PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
 
@@ -70,7 +71,7 @@ const ALERT_MESSAGE = {
   NOT_THOUSAND_MULTIPLES: "1000원 단위로만 입력 가능합니다.",
 
   BLANK_INCLUDED: "공백은 입력 불가능합니다.",
-  INVALID_WINNING_NUMBER_RANGE: "1에서 45까지의 숫자만 입력 가능합니다.",
+  INVALID_NUMBER_RANGE: "1에서 45까지의 숫자만 입력 가능합니다.",
   DUPLICATED_WINNING_NUMBER: "중복된 값은 입력 불가능합니다.",
 };
 
@@ -79,6 +80,8 @@ const MESSAGE = {
   AUTO_NUMBER_PURCHASE_BUTTON_CLICKED: "AUTO_NUMBER_PURCHASE_BUTTON_CLICKED",
   MANUAL_NUMBER_PURCHASE_BUTTON_CLICKED:
     "MANUAL_NUMBER_PURCHASE_BUTTON_CLICKED",
+  MANUAL_NUMBERS_CREATED: "MANUAL_NUMBERS_CREATED",
+  MANUAL_NUMBERS_NOT_CREATED: "MANUAL_NUMBERS_NOT_CREATED",
 };
 
 export {

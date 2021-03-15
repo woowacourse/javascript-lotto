@@ -31,13 +31,13 @@ const isInValidNumber = (money) => {
   return !/^[0-9]+$/.test(money);
 };
 
-const isValidWinningNumbers = (array) => {
+const isValidNumbers = (array) => {
   if (isBlankIncluded(array)) {
     alert(ALERT_MESSAGE.BLANK_INCLUDED);
     return;
   }
   if (isInvalidLottoNumberRange(array)) {
-    alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
+    alert(ALERT_MESSAGE.INVALID_NUMBER_RANGE);
     return;
   }
   if (isDuplicatedNumber(array)) {
@@ -65,7 +65,7 @@ const isDuplicatedNumber = (array) => {
 
 export {
   isValidMoney,
-  isValidWinningNumbers,
+  isValidNumbers,
   isBlankIncluded,
   isInvalidLottoNumberRange,
   isDuplicatedNumber,
