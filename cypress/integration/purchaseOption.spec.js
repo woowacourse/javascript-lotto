@@ -33,7 +33,7 @@ describe("purchaseOption container를 테스트한다", () => {
       .should("eq", `구매 현황: 자동 0 장, 수동 1 장`);
   });
 
-  it.only("올바르지 않은 번호 입력 후, 수동 구매 추가 버튼을 누르면 alert가 나타난다.", () => {
+  it("올바르지 않은 번호 입력 후, 수동 구매 추가 버튼을 누르면 alert가 나타난다.", () => {
     cy.get(ELEMENT.MANUAL_NUMBER).then((els) => {
       [...els].forEach((el, i) => cy.wrap(el).type(i));
     });
@@ -47,6 +47,28 @@ describe("purchaseOption container를 테스트한다", () => {
         expect(stub.getCall(0)).to.be.calledWith(
           ALERT_MESSAGE.INVALID_NUMBER_RANGE
         );
+      });
+  });
+
+  it("잔액이 없는 경우, 자동 구매 추가 버튼이나 수동 구매 추가 버튼을 누르면 alert가 나타난다", () => {
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).click();
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).click();
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).click();
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).click();
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).click();
+
+    const stub = cy.stub();
+    cy.on("window:alert", stub);
+
+    cy.get(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON)
+      .click()
+      .then(() => {
+        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.NO_BALANCE);
+      });
+    cy.get(ELEMENT.MANUAL_NUMBER_PURCHASE_BUTTON)
+      .click()
+      .then(() => {
+        expect(stub.getCall(0)).to.be.calledWith(ALERT_MESSAGE.NO_BALANCE);
       });
   });
 });
