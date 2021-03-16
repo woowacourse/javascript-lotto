@@ -21,6 +21,18 @@ class PurchaseOption {
       messenger.dispatchMessage(MESSAGE.MANUAL_NUMBER_PURCHASE_BUTTON_CLICKED);
     });
 
+    $(ELEMENT.PURCHASE_PAYMENT_BUTTON).addEventListener("click", () => {
+      if (
+        confirm(
+          `현재 자동 구매 ${this.autoNumberTicketCount} 장, 수동 구매 ${this.manualNumberTicketCount} 장을 구매하셨습니다.\n확인을 누르시면 티켓이 발급됩니다.\n(잔액이 남아있는 경우, 자동 번호로 진행됩니다.)`
+        )
+      ) {
+        messenger.dispatchMessage(MESSAGE.PURCHASE_PAYMENT_BUTTON_CLICKED, {
+          balance: this.money / STANDARD_NUMBER.ONE_TICKET_PRICE,
+        });
+      }
+    });
+
     messenger.addMessageListener(MESSAGE.MONEY_SUBMITTED, ({ money }) => {
       this.money = Number(money);
       this.autoNumberTicketCount = 0;
@@ -50,10 +62,16 @@ class PurchaseOption {
       MESSAGE.MANUAL_NUMBERS_NOT_CREATED,
       this.clearManualNumbers
     );
+
+    messenger.addMessageListener(MESSAGE.TICKET_ADDED_AS_BALANCE, () => {});
   }
 
   showPurchaseOption() {
     $(ELEMENT.PURCHASE_OPTION_CONTAINER).classList.remove(ELEMENT.HIDDEN);
+  }
+
+  hidePurchaseOption() {
+    $(ELEMENT.PURCHASE_OPTION_CONTAINER).classList.add(ELEMENT.HIDDEN);
   }
 
   render() {

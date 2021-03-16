@@ -16,6 +16,21 @@ class TicketBundle {
       MESSAGE.MANUAL_NUMBER_PURCHASE_BUTTON_CLICKED,
       this.addManualNumbers.bind(this)
     );
+
+    messenger.addMessageListener(
+      MESSAGE.PURCHASE_PAYMENT_BUTTON_CLICKED,
+      this.addRandomNumbersAsBalance.bind(this)
+    );
+  }
+
+  addRandomNumbersAsBalance({ balance }) {
+    for (let i = 0; i < balance; i++) {
+      this.addRandomNumbers();
+    }
+
+    messenger.dispatchMessage(MESSAGE.TICKET_ADDED_AS_BALANCE, {
+      tickets: this.ticketBundle,
+    });
   }
 
   addRandomNumbers() {
