@@ -73,6 +73,7 @@ const ALERT_MESSAGE = {
   BLANK_INCLUDED: "공백은 입력 불가능합니다.",
   INVALID_NUMBER_RANGE: "1에서 45까지의 숫자만 입력 가능합니다.",
   DUPLICATED_WINNING_NUMBER: "중복된 값은 입력 불가능합니다.",
+  NO_BALANCE: "잔액이 부족합니다.",
 };
 
 const MESSAGE = {

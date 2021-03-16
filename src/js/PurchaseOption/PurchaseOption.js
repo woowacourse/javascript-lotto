@@ -1,14 +1,23 @@
 import messenger from "../Messenger.js";
-import { ELEMENT, MESSAGE, STANDARD_NUMBER } from "../Util/constants.js";
+import {
+  ELEMENT,
+  ALERT_MESSAGE,
+  MESSAGE,
+  STANDARD_NUMBER,
+} from "../Util/constants.js";
 import { $, $$ } from "../Util/querySelector.js";
 
 class PurchaseOption {
   constructor() {
     $(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).addEventListener("click", () => {
+      if (!this.validateBalance()) return;
+
       messenger.dispatchMessage(MESSAGE.AUTO_NUMBER_PURCHASE_BUTTON_CLICKED);
     });
 
     $(ELEMENT.MANUAL_NUMBER_PURCHASE_BUTTON).addEventListener("click", () => {
+      if (!this.validateBalance()) return;
+
       messenger.dispatchMessage(MESSAGE.MANUAL_NUMBER_PURCHASE_BUTTON_CLICKED);
     });
 
@@ -48,11 +57,11 @@ class PurchaseOption {
   }
 
   render() {
-    this.renderBlance();
+    this.renderBalance();
     this.renderPurchaseStatus();
   }
 
-  renderBlance() {
+  renderBalance() {
     $(
       ELEMENT.PURCHASE_BALANCE_LABEL
     ).innerText = `잔액 : ${this.money.toLocaleString()}원`;
@@ -66,6 +75,15 @@ class PurchaseOption {
 
   clearManualNumbers() {
     Array.from($$(ELEMENT.MANUAL_NUMBER)).map((number) => (number.value = ""));
+  }
+
+  validateBalance() {
+    if (this.money === 0) {
+      alert(ALERT_MESSAGE.NO_BALANCE);
+
+      return;
+    }
+    return true;
   }
 }
 
