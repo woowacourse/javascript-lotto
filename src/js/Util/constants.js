@@ -3,12 +3,13 @@ const ELEMENT = {
   PURCHASE_AMOUNT_INPUT: ".purchase-amount-input",
   PURCHASE_AMOUNT_SUBMIT_BUTTON: ".purchase-amount-submit-button",
 
-  PURCHASE_OPTION_CONTAINER: "#purchase-option-container",
+  PURCHASE_OPTION_CONTAINER: ".purchase-option-container",
   PURCHASE_BALANCE_LABEL: ".purchase-balance-label",
   AUTO_NUMBER_PURCHASE_BUTTON: ".auto-number-purchase-button",
   MANUAL_NUMBER_PURCHASE_BUTTON: ".manual-number-purchase-button",
   PURCHASE_STATUS_LABEL: ".purchase-status-label",
   MANUAL_NUMBER: ".manual-number",
+  PURCHASE_PAYMENT_BUTTON: ".purchase-payment-button",
 
   PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
 

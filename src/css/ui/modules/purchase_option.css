@@ -1,4 +1,4 @@
-#purchase-option-container > label {
+.purchase-option-container > label {
   display: flex;
 }
 
@@ -34,9 +34,4 @@
   outline: 0;
   border-style: none;
   pointer-events: none;
-}
-
-.user-number {
-  width: 30px;
-  height: 36px;
 }
