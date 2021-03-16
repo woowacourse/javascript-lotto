@@ -26,7 +26,10 @@ class TicketBundle {
   addManualNumbers() {
     const manualNumbers = this.makeManualNumbers();
 
-    if (!manualNumbers) return;
+    if (!manualNumbers) {
+      messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_NOT_CREATED);
+      return;
+    }
 
     this.ticketBundle.push(manualNumbers);
     messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_CREATED);
@@ -51,10 +54,7 @@ class TicketBundle {
       (number) => number.value
     );
 
-    if (!isValidNumbers(manualNumbers)) {
-      messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_NOT_CREATED);
-      return;
-    }
+    if (!isValidNumbers(manualNumbers)) return;
 
     return manualNumbers.map((number) => Number(number));
   }
