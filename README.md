@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/language-css-blue.svg?style=flat-square"/>
   <img src="https://img.shields.io/badge/language-js-yellow.svg?style=flat-square"/>
   <a href="https://github.com/daybrush/moveable/blob/master/LICENSE" target="_blank">
-    <img src="https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D"/>
+    <img src="https://img.shields.io/github/license/woowacourse/javascript-lotto.svg?style=flat-square&label=license&color=08CE5D"/>
   </a>
 </p>
 
