@@ -29,16 +29,12 @@ class TicketBundle {
 
     messenger.addMessageListener(
       MESSAGE.RESTART_BUTTON_CLICKED,
-      this.reset.bind(this)
+      this.init.bind(this)
     );
   }
 
   init() {
     this.ticketBundle = [];
-  }
-
-  reset() {
-    this.init();
   }
 
   passTicketBundle() {

@@ -22,7 +22,10 @@ class PurchaseAmount {
 
     this.money = $(ELEMENT.PURCHASE_AMOUNT_INPUT).value;
 
-    if (!isValidMoney(this.money)) return;
+    if (!isValidMoney(this.money)) {
+      clearInput(ELEMENT.PURCHASE_AMOUNT_INPUT);
+      return;
+    }
 
     messenger.dispatchMessage(MESSAGE.MONEY_SUBMITTED, {
       money: this.money,
