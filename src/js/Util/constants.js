@@ -1,8 +1,10 @@
 const ELEMENT = {
+  // purchase-amount-container
   PURCHASE_AMOUNT_CONTAINER: ".purchase-amount-container",
   PURCHASE_AMOUNT_INPUT: ".purchase-amount-input",
   PURCHASE_AMOUNT_SUBMIT_BUTTON: ".purchase-amount-submit-button",
 
+  // purchase-option-container
   PURCHASE_OPTION_CONTAINER: ".purchase-option-container",
   PURCHASE_BALANCE_LABEL: ".purchase-balance-label",
   AUTO_NUMBER_PURCHASE_BUTTON: ".auto-number-purchase-button",
@@ -11,25 +13,25 @@ const ELEMENT = {
   MANUAL_NUMBER: ".manual-number",
   PURCHASE_PAYMENT_BUTTON: ".purchase-payment-button",
 
-  PURCHASE_AMOUNT_LABEL: "#purchase-amount-label",
-
+  // receipt-container
+  RECEIPT_CONTAINER: ".receipt-container",
+  TICKET_IMAGE_NUMBER_AREA: ".ticket-image-number-area",
   TOGGLE_BUTTON: ".toggle-button",
-  RESTART_BUTTON: "#restart-button",
-  OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",
+  PURCHASE_AMOUNT_LABEL: ".purchase-amount-label",
 
-  RECEIPT_CONTAINER: "#receipt-container",
-  TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
-  WIN_NUMBER_CONTAINER: "#win-number-container",
-
-  BONUS_NUMBER: ".bonus-number",
+  // win-number-container
+  WINNING_NUMBER_CONTAINER: ".winning-number-container",
   WINNING_NUMBER: ".winning-number",
-  LOTTO_IMAGE_NUMBER: "#lotto-image-number",
-  WINNING_COUNT: ".winning-count",
+  BONUS_NUMBER: ".bonus-number",
 
-  TOTAL_EARNING_RATE: "#total-earning-rate",
-
+  // modal-container
   MODAL: ".modal",
+  WINNING_COUNT: ".winning-count",
+  RESTART_BUTTON: "#restart-button",
+  TOTAL_EARNING_RATE: "#total-earning-rate",
   MODAL_CLOSE: ".modal-close",
+
+  LOTTO_IMAGE_NUMBER: "#lotto-image-number",
 
   HIDDEN: "hidden",
   FLEX_COL: "flex-col",
@@ -51,7 +53,7 @@ let STANDARD_NUMBER = {
 const RANK = {
   FIRST: "FIRST",
   SECOND: "SECOND",
-  THIRD: "THRID",
+  THIRD: "THIRD",
   FOURTH: "FOURTH",
   FIFTH: "FIFTH",
   LOSER: "LOSER",
@@ -86,6 +88,12 @@ const MESSAGE = {
   MANUAL_NUMBERS_NOT_CREATED: "MANUAL_NUMBERS_NOT_CREATED",
   PURCHASE_PAYMENT_BUTTON_CLICKED: "PURCHASE_PAYMENT_BUTTON_CLICKED",
   TICKET_ADDED_AS_BALANCE: "TICKET_ADDED_AS_BALANCE",
+  WINNING_NUMBER_SUBMITTED: "WINNING_NUMBER_SUBMITTED",
+  WINNING_NUMBER_SET: "WINNING_NUMBER_SET",
+  TICKET_BUNDLE_PASSED: "TICKET_BUNDLE_PASSED",
+  MONEY_TOTAL_PRIZE_MATCHING_COUNT_PREPARED:
+    "MONEY_TOTAL_PRIZE_MATCHING_COUNT_PREPARED",
+  RESTART_BUTTON_CLICKED: "RESTART_BUTTON_CLICKED",
 };
 
 export {

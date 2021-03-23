@@ -5,7 +5,7 @@ import { isValidNumbers } from "../Util/validator.js";
 
 class TicketBundle {
   constructor() {
-    this.ticketBundle = [];
+    this.init();
 
     messenger.addMessageListener(
       MESSAGE.AUTO_NUMBER_PURCHASE_BUTTON_CLICKED,
@@ -21,6 +21,30 @@ class TicketBundle {
       MESSAGE.PURCHASE_PAYMENT_BUTTON_CLICKED,
       this.addRandomNumbersAsBalance.bind(this)
     );
+
+    messenger.addMessageListener(
+      MESSAGE.WINNING_NUMBER_SET,
+      this.passTicketBundle.bind(this)
+    );
+
+    messenger.addMessageListener(
+      MESSAGE.RESTART_BUTTON_CLICKED,
+      this.reset.bind(this)
+    );
+  }
+
+  init() {
+    this.ticketBundle = [];
+  }
+
+  reset() {
+    this.init();
+  }
+
+  passTicketBundle() {
+    messenger.dispatchMessage(MESSAGE.TICKET_BUNDLE_PASSED, {
+      ticketBundle: this.ticketBundle,
+    });
   }
 
   addRandomNumbersAsBalance({ balance }) {
@@ -35,7 +59,6 @@ class TicketBundle {
 
   addRandomNumbers() {
     this.ticketBundle.push(this.makeRandomNumbers());
-    console.log(this.ticketBundle);
   }
 
   addManualNumbers() {
@@ -48,7 +71,6 @@ class TicketBundle {
 
     this.ticketBundle.push(manualNumbers);
     messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_CREATED);
-    console.log(this.ticketBundle);
   }
 
   makeRandomNumbers() {

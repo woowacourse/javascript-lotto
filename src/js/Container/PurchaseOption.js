@@ -5,6 +5,7 @@ import {
   MESSAGE,
   STANDARD_NUMBER,
 } from "../Util/constants.js";
+import { hideContainer, showContainer } from "../Util/DOM.js";
 import { $, $$ } from "../Util/querySelector.js";
 
 class PurchaseOption {
@@ -38,7 +39,7 @@ class PurchaseOption {
       this.autoNumberTicketCount = 0;
       this.manualNumberTicketCount = 0;
 
-      this.showPurchaseOption();
+      showContainer(ELEMENT.PURCHASE_OPTION_CONTAINER);
       this.render();
     });
 
@@ -63,15 +64,9 @@ class PurchaseOption {
       this.clearManualNumbers
     );
 
-    messenger.addMessageListener(MESSAGE.TICKET_ADDED_AS_BALANCE, () => {});
-  }
-
-  showPurchaseOption() {
-    $(ELEMENT.PURCHASE_OPTION_CONTAINER).classList.remove(ELEMENT.HIDDEN);
-  }
-
-  hidePurchaseOption() {
-    $(ELEMENT.PURCHASE_OPTION_CONTAINER).classList.add(ELEMENT.HIDDEN);
+    messenger.addMessageListener(MESSAGE.TICKET_ADDED_AS_BALANCE, () => {
+      hideContainer(ELEMENT.PURCHASE_OPTION_CONTAINER);
+    });
   }
 
   render() {

@@ -1,20 +1,72 @@
-import { ELEMENT, RANK, WINNING_PRIZE } from "../Util/constants.js";
+import messenger from "../Messenger.js";
+import { ELEMENT, MESSAGE, RANK, WINNING_PRIZE } from "../Util/constants.js";
 import { $ } from "../Util/querySelector.js";
 
 class Result {
   constructor() {
+    this.init();
+
+    messenger.addMessageListener(
+      MESSAGE.MONEY_SUBMITTED,
+      this.setMoney.bind(this)
+    );
+
+    messenger.addMessageListener(
+      MESSAGE.WINNING_NUMBER_SUBMITTED,
+      this.setNumbers.bind(this)
+    );
+
+    messenger.addMessageListener(
+      MESSAGE.TICKET_BUNDLE_PASSED,
+      this.handleResult.bind(this)
+    );
+
+    messenger.addMessageListener(
+      MESSAGE.RESTART_BUTTON_CLICKED,
+      this.reset.bind(this)
+    );
+  }
+
+  init() {
+    this.money = 0;
     this.winningNumbers = [];
     this.bonusNumber = 0;
     this.ranks = [];
     this.matchingCounts = [];
+    this.totalPrize = 0;
   }
 
-  setWinningNumbers(winningNumbers) {
+  reset() {
+    this.init();
+  }
+
+  setMoney({ money }) {
+    this.money = money;
+  }
+
+  passMoneyTotalPrizeMatchingCount() {
+    messenger.dispatchMessage(
+      MESSAGE.MONEY_TOTAL_PRIZE_MATCHING_COUNT_PREPARED,
+      {
+        money: this.money,
+        totalPrize: this.totalPrize,
+        matchingCounts: this.matchingCounts,
+      }
+    );
+  }
+
+  setNumbers({ winningNumbers, bonusNumber }) {
     this.winningNumbers = winningNumbers.map((number) => Number(number));
+    this.bonusNumber = Number(bonusNumber);
+
+    messenger.dispatchMessage(MESSAGE.WINNING_NUMBER_SET);
   }
 
-  setBonusNumber(bonusNumber) {
-    this.bonusNumber = Number(bonusNumber);
+  handleResult({ ticketBundle }) {
+    this.setRanks(ticketBundle);
+    this.setMatchingCounts();
+
+    this.passMoneyTotalPrizeMatchingCount();
   }
 
   setRanks(ticketBundle) {
@@ -50,10 +102,10 @@ class Result {
       this.matchingCounts.push(matchingCount);
     });
 
-    $(ELEMENT.WIN_NUMBER_CONTAINER).dataset.totalPrize = this.ranks
+    this.totalPrize = this.ranks
       .map((rank) => WINNING_PRIZE[rank])
       .reduce((pre, cur) => pre + cur);
   }
 }
 
-export default new Result();
+export default Result;
