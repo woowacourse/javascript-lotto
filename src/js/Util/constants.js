@@ -18,11 +18,13 @@ const ELEMENT = {
   TICKET_IMAGE_NUMBER_AREA: ".ticket-image-number-area",
   TOGGLE_BUTTON: ".toggle-button",
   PURCHASE_AMOUNT_LABEL: ".purchase-amount-label",
+  LOTTO_IMAGE_NUMBER: "#lotto-image-number",
 
   // win-number-container
   WINNING_NUMBER_CONTAINER: ".winning-number-container",
   WINNING_NUMBER: ".winning-number",
   BONUS_NUMBER: ".bonus-number",
+  OPEN_RESULT_MODAL_BUTTON: ".open-result-modal-button",
 
   // modal-container
   MODAL: ".modal",
@@ -30,8 +32,6 @@ const ELEMENT = {
   RESTART_BUTTON: "#restart-button",
   TOTAL_EARNING_RATE: "#total-earning-rate",
   MODAL_CLOSE: ".modal-close",
-
-  LOTTO_IMAGE_NUMBER: "#lotto-image-number",
 
   HIDDEN: "hidden",
   FLEX_COL: "flex-col",
