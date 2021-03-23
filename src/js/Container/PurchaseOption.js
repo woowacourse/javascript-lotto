@@ -5,8 +5,8 @@ import {
   MESSAGE,
   STANDARD_NUMBER,
 } from "../Util/constants.js";
-import { hideContainer, showContainer } from "../Util/DOM.js";
-import { $, $$ } from "../Util/querySelector.js";
+import { clearInput, hideContainer, showContainer } from "../Util/DOM.js";
+import { $ } from "../Util/querySelector.js";
 
 class PurchaseOption {
   constructor() {
@@ -55,17 +55,20 @@ class PurchaseOption {
     messenger.addMessageListener(MESSAGE.MANUAL_NUMBERS_CREATED, () => {
       this.money -= STANDARD_NUMBER.ONE_TICKET_PRICE;
       this.manualNumberTicketCount += 1;
-      this.clearManualNumbers();
+      clearInput(ELEMENT.MANUAL_NUMBER);
       this.render();
     });
 
-    messenger.addMessageListener(
-      MESSAGE.MANUAL_NUMBERS_NOT_CREATED,
-      this.clearManualNumbers
-    );
+    messenger.addMessageListener(MESSAGE.MANUAL_NUMBERS_NOT_CREATED, () => {
+      clearInput(ELEMENT.MANUAL_NUMBER);
+    });
 
     messenger.addMessageListener(MESSAGE.TICKET_ADDED_AS_BALANCE, () => {
       hideContainer(ELEMENT.PURCHASE_OPTION_CONTAINER);
+    });
+
+    messenger.addMessageListener(MESSAGE.RESTART_BUTTON_CLICKED, () => {
+      clearInput(ELEMENT.MANUAL_NUMBER);
     });
   }
 
@@ -84,10 +87,6 @@ class PurchaseOption {
     $(
       ELEMENT.PURCHASE_STATUS_LABEL
     ).innerText = `구매 현황: 자동 ${this.autoNumberTicketCount} 장, 수동 ${this.manualNumberTicketCount} 장`;
-  }
-
-  clearManualNumbers() {
-    Array.from($$(ELEMENT.MANUAL_NUMBER)).map((number) => (number.value = ""));
   }
 
   validateBalance() {

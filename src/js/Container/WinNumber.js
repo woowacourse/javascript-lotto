@@ -1,6 +1,6 @@
 import messenger from "../Messenger.js";
 import { ELEMENT, MESSAGE } from "../Util/constants.js";
-import { hideContainer, showContainer } from "../Util/DOM.js";
+import { clearInput, hideContainer, showContainer } from "../Util/DOM.js";
 import { $, $$ } from "../Util/querySelector.js";
 import { isValidNumbers } from "../Util/validator.js";
 
@@ -22,7 +22,6 @@ class WinningNumber {
 
   handleWinningNumber(event) {
     event.preventDefault();
-
     const inputWinningNumbers = Array.from($$(ELEMENT.WINNING_NUMBER)).map(
       (number) => number.value
     );
@@ -40,8 +39,8 @@ class WinningNumber {
   }
 
   clearWinningBonusNumber() {
-    Array.from($$(ELEMENT.WINNING_NUMBER)).map((number) => (number.value = ""));
-    $(ELEMENT.BONUS_NUMBER).value = "";
+    clearInput(ELEMENT.WINNING_NUMBER);
+    clearInput(ELEMENT.BONUS_NUMBER);
     $$(ELEMENT.WINNING_NUMBER)[0].focus();
   }
 }
