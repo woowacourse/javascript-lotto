@@ -60,14 +60,18 @@ const createPresentational = () => {
   };
 
   const reset = (event) => {
-    if (confirm("수동으로 기입한 로또 번호들을 초기화하시겠습니까?")) {
-      Array.from(event.target.elements)
-        .filter(($input) => $input.type === "number")
-        .forEach(($input) => ($input.disabled = true));
+    event.preventDefault();
+
+    if (!confirm("수동으로 기입한 로또 번호들을 초기화하시겠습니까?")) {
       return;
     }
 
-    event.preventDefault();
+    Array.from(event.target.elements)
+      .filter(($input) => $input.type === "number")
+      .forEach(($input) => {
+        $input.value = "";
+        $input.disabled = true;
+      });
   };
 
   const init = (createAction) => {
