@@ -1,6 +1,6 @@
 import messenger from "../Messenger.js";
 import { ELEMENT, MESSAGE } from "../Util/constants.js";
-import { clearInput, showModal, closeModal } from "../Util/DOM.js";
+import { clearInput, openElement, closeElement } from "../Util/DOM.js";
 import { $, $$ } from "../Util/querySelector.js";
 
 class Modal {
@@ -11,7 +11,7 @@ class Modal {
     );
 
     $(ELEMENT.MODAL_CLOSE).addEventListener("click", () => {
-      closeModal(ELEMENT.MODAL);
+      closeElement(ELEMENT.MODAL);
     });
     $(ELEMENT.RESTART_BUTTON).addEventListener(
       "click",
@@ -21,13 +21,13 @@ class Modal {
 
   handleModal({ money, totalPrize, matchingCounts }) {
     this.render(money, totalPrize, matchingCounts);
-    showModal(ELEMENT.MODAL);
+    openElement(ELEMENT.MODAL);
   }
 
   handleRestartButton() {
     clearInput(ELEMENT.WINNING_NUMBER);
     clearInput(ELEMENT.BONUS_NUMBER);
-    closeModal(ELEMENT.MODAL);
+    closeElement(ELEMENT.MODAL);
 
     messenger.dispatchMessage(MESSAGE.RESTART_BUTTON_CLICKED);
   }

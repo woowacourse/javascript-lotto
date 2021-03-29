@@ -1,5 +1,10 @@
 import messenger from "../Messenger.js";
-import { ELEMENT, MESSAGE, STANDARD_NUMBER } from "../Util/constants.js";
+import {
+  ELEMENT,
+  ERROR_MESSAGE,
+  MESSAGE,
+  STANDARD_NUMBER,
+} from "../Util/constants.js";
 import { $$ } from "../Util/querySelector.js";
 import { isValidNumbers } from "../Util/validator.js";
 
@@ -44,9 +49,7 @@ class TicketBundle {
   }
 
   addRandomNumbersAsBalance({ balance }) {
-    for (let i = 0; i < balance; i++) {
-      this.addRandomNumbers();
-    }
+    [...Array(balance)].forEach(() => this.addRandomNumbers());
 
     messenger.dispatchMessage(MESSAGE.TICKET_ADDED_AS_BALANCE, {
       tickets: this.ticketBundle,
@@ -54,22 +57,22 @@ class TicketBundle {
   }
 
   addRandomNumbers() {
-    this.ticketBundle.push(this.makeRandomNumbers());
+    this.ticketBundle.push(this.generateRandomNumbers());
   }
 
   addManualNumbers() {
-    const manualNumbers = this.makeManualNumbers();
+    try {
+      const manualNumbers = this.generateManualNumbers();
 
-    if (!manualNumbers) {
+      this.ticketBundle.push(manualNumbers);
+      messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_CREATED);
+    } catch (error) {
+      console.log(error);
       messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_NOT_CREATED);
-      return;
     }
-
-    this.ticketBundle.push(manualNumbers);
-    messenger.dispatchMessage(MESSAGE.MANUAL_NUMBERS_CREATED);
   }
 
-  makeRandomNumbers() {
+  generateRandomNumbers() {
     const numbers = Array.from(
       { length: STANDARD_NUMBER.LOTTO_MAX_NUMBER },
       (_, i) => i + 1
@@ -82,12 +85,13 @@ class TicketBundle {
       .sort((a, b) => a - b);
   }
 
-  makeManualNumbers() {
+  generateManualNumbers() {
     const manualNumbers = Array.from($$(ELEMENT.MANUAL_NUMBER)).map(
       (number) => number.value
     );
 
-    if (!isValidNumbers(manualNumbers)) return;
+    if (!isValidNumbers(manualNumbers))
+      throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
 
     return manualNumbers.map((number) => Number(number));
   }

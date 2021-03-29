@@ -93,7 +93,7 @@ class PurchaseOption {
     if (this.money === 0) {
       alert(ALERT_MESSAGE.NO_BALANCE);
 
-      return;
+      return false;
     }
     return true;
   }

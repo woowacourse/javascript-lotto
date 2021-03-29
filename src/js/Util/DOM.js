@@ -9,11 +9,11 @@ const hideContainer = ($container) => {
   $($container).classList.add(ELEMENT.HIDDEN);
 };
 
-const showModal = ($element) => {
+const openElement = ($element) => {
   $($element).classList.add(ELEMENT.OPEN);
 };
 
-const closeModal = ($element) => {
+const closeElement = ($element) => {
   $($element).classList.remove(ELEMENT.OPEN);
 };
 
@@ -37,8 +37,8 @@ const clearInput = (selector) => {
 export {
   showContainer,
   hideContainer,
-  showModal,
-  closeModal,
+  openElement,
+  closeElement,
   ableElement,
   disableElement,
   clearInput,
