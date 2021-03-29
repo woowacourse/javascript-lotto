@@ -118,7 +118,7 @@ context("e2e test", () => {
 
   it("생성된 번호가 1부터 45 범위 안에 있는지 확인한다.", () => {
     const ticketBundle = new TicketBundle();
-    const checkingArray = ticketBundle.makeRandomNumbers();
+    const checkingArray = ticketBundle.generateRandomNumbers();
 
     checkingArray.forEach((number) => {
       expect(0 < number && number < 46).to.be.true;
@@ -134,9 +134,7 @@ context("e2e test", () => {
   });
 
   it("금액을 입력한 후, 로또 발급 버튼을 누르면 전체 금액의 로또가 생성되는지 확인한다. ", () => {
-    cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type(money);
-    cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
-    cy.get(ELEMENT.PURCHASE_PAYMENT_BUTTON).click();
+    getAutoNumberTicketsBy(5000);
     cy.get(ELEMENT.PURCHASE_AMOUNT_LABEL).then(($label) => {
       expect($label).to.have.text(
         `총 ${money / STANDARD_NUMBER.ONE_TICKET_PRICE}개를 구매하였습니다.`
@@ -145,9 +143,7 @@ context("e2e test", () => {
   });
 
   it("구입 금액으로 살 수 있는 로또의 개수만큼 로또 용지 그림이 출력되는 것을 확인한다.", () => {
-    cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type(money);
-    cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
-    cy.get(ELEMENT.PURCHASE_PAYMENT_BUTTON).click();
+    getAutoNumberTicketsBy(5000);
     cy.get(ELEMENT.TICKET_IMAGE_NUMBER_AREA)
       .find(".text-4xl")
       .its("length")
@@ -155,9 +151,7 @@ context("e2e test", () => {
   });
 
   it("토글 버튼을 클릭하면 각 로또의 번호가 출력된다.", () => {
-    cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type(money);
-    cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
-    cy.get(ELEMENT.PURCHASE_PAYMENT_BUTTON).click();
+    getAutoNumberTicketsBy(5000);
 
     cy.get(ELEMENT.TOGGLE_BUTTON).click({ force: true });
     cy.get(ELEMENT.LOTTO_IMAGE_NUMBER)
@@ -181,34 +175,22 @@ context("e2e test", () => {
   });
 
   it("결과 확인 버튼을 누르면 모달창이 나타난다.", () => {
-    let i = 1;
+    const firstNumber = 1;
+    const bonusNumber = 7;
 
-    cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type(money);
-    cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
-    cy.get(ELEMENT.PURCHASE_PAYMENT_BUTTON).click();
+    getAutoNumberTicketsBy(5000);
+    typeWinningNumberFrom(firstNumber, bonusNumber);
 
-    cy.get(ELEMENT.WINNING_NUMBER).each((number) => {
-      cy.wrap(number).type(i++);
-    });
-    cy.get(ELEMENT.BONUS_NUMBER).type(7);
-
-    cy.get(ELEMENT.OPEN_RESULT_MODAL_BUTTON).click();
     cy.get(ELEMENT.MODAL).should("to.be.visible");
   });
 
-  it("다시 시작하기 버튼을 누르면 초기화 돼서 다시 구매를 시작할 수 있다.", () => {
-    let i = 1;
+  it.only("다시 시작하기 버튼을 누르면 초기화 돼서 다시 구매를 시작할 수 있다.", () => {
+    const firstNumber = 1;
+    const bonusNumber = 7;
 
-    cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type(money);
-    cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
-    cy.get(ELEMENT.PURCHASE_PAYMENT_BUTTON).click();
+    getAutoNumberTicketsBy(5000);
+    typeWinningNumberFrom(firstNumber, bonusNumber);
 
-    cy.get(ELEMENT.WINNING_NUMBER).each((number) => {
-      cy.wrap(number).type(i++);
-    });
-    cy.get(ELEMENT.BONUS_NUMBER).type(7);
-
-    cy.get(ELEMENT.OPEN_RESULT_MODAL_BUTTON).click();
     cy.get(ELEMENT.MODAL).should("to.be.visible");
     cy.get(ELEMENT.RESTART_BUTTON).click();
 
@@ -223,3 +205,18 @@ context("e2e test", () => {
     cy.get(ELEMENT.PURCHASE_OPTION_CONTAINER).should("to.be.visible");
   });
 });
+
+const getAutoNumberTicketsBy = (money) => {
+  cy.get(ELEMENT.PURCHASE_AMOUNT_INPUT).type(money);
+  cy.get(ELEMENT.PURCHASE_AMOUNT_SUBMIT_BUTTON).click();
+  cy.get(ELEMENT.PURCHASE_PAYMENT_BUTTON).click();
+};
+
+const typeWinningNumberFrom = (firstNumber, bonusNumber) => {
+  cy.get(ELEMENT.WINNING_NUMBER).each((number) => {
+    cy.wrap(number).type(firstNumber++);
+  });
+  cy.get(ELEMENT.BONUS_NUMBER).type(bonusNumber);
+
+  cy.get(ELEMENT.OPEN_RESULT_MODAL_BUTTON).click();
+};
