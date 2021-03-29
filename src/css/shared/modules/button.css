@@ -9,37 +9,37 @@
 }
 
 .btn-cyan {
-  background-color: #00bcd4 !important;
-  border-color: #00bcd4 !important;
+  background-color: #00bcd4;
+  border-color: #00bcd4;
 }
 
 .btn-apple-green {
-  background-color: #8db600 !important;
-  border-color: #8db600 !important;
+  background-color: #8db600;
+  border-color: #8db600;
 }
 
 .btn-blush {
-  background-color: #de5d83 !important;
-  border-color: #de5d83 !important;
+  background-color: #de5d83;
+  border-color: #de5d83;
 }
 
 .baker-miller-pink {
-  background-color: #ff91af !important;
-  border-color: #ff91af !important;
+  background-color: #ff91af;
+  border-color: #ff91af;
 }
 
 .btn.btn-cyan:hover {
-  background-color: #018c9e !important;
+  background-color: #018c9e;
 }
 
 .add-btn.btn-cyan:hover {
-  background-color: #018c9e !important;
+  background-color: #018c9e;
 }
 
 .add-btn.btn-apple-green:hover {
-  background-color: #759117 !important;
+  background-color: #759117;
 }
 
 .add-btn.btn-blush:hover {
-  background-color: #a76076 !important;
+  background-color: #a76076;
 }
