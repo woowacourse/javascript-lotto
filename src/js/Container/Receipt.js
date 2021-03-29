@@ -69,13 +69,14 @@ class Receipt {
 
   printTicketsVertical() {
     const ticketImageNumberArea = $(ELEMENT.TICKET_IMAGE_NUMBER_AREA);
-    let ticketImageNumberTemplate = "";
-
-    this.tickets.forEach((ticket) => {
-      ticketImageNumberTemplate += `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${ticket.join(
-        ", "
-      )}</span></div>`;
-    });
+    const ticketImageNumberTemplate = this.tickets.reduce(
+      (accTemplate, ticket) =>
+        accTemplate +
+        `<div id="lotto-image-number" class="d-flex flex-wrap"><span class="mx-1 text-4xl">🎟️</span><span id="lotto-number" class="mx-1 mt-1 text-xl">${ticket.join(
+          ", "
+        )}</span></div>`,
+      ""
+    );
 
     ticketImageNumberArea.innerHTML = ticketImageNumberTemplate;
     ticketImageNumberArea.classList.add(ELEMENT.FLEX_COL);
