@@ -5,7 +5,19 @@ import { $ } from "../Util/querySelector.js";
 class Result {
   constructor() {
     this.init();
+    this.addMessageListeners();
+  }
 
+  init() {
+    this.money = 0;
+    this.winningNumbers = [];
+    this.bonusNumber = 0;
+    this.ranks = [];
+    this.matchingCounts = [];
+    this.totalPrize = 0;
+  }
+
+  addMessageListeners() {
     messenger.addMessageListener(
       MESSAGE.MONEY_SUBMITTED,
       this.setMoney.bind(this)
@@ -25,15 +37,6 @@ class Result {
       MESSAGE.RESTART_BUTTON_CLICKED,
       this.reset.bind(this)
     );
-  }
-
-  init() {
-    this.money = 0;
-    this.winningNumbers = [];
-    this.bonusNumber = 0;
-    this.ranks = [];
-    this.matchingCounts = [];
-    this.totalPrize = 0;
   }
 
   reset() {

@@ -6,14 +6,18 @@ import { isValidNumbers } from "../Util/validator.js";
 
 class WinningNumber {
   constructor() {
-    messenger.addMessageListener(MESSAGE.TICKET_ADDED_AS_BALANCE, () => {
-      showContainer(ELEMENT.WINNING_NUMBER_CONTAINER);
-    });
+    this.addMessageListeners();
 
     $(ELEMENT.WINNING_NUMBER_CONTAINER).addEventListener(
       "submit",
       this.handleWinningNumber.bind(this)
     );
+  }
+
+  addMessageListeners() {
+    messenger.addMessageListener(MESSAGE.TICKET_ADDED_AS_BALANCE, () => {
+      showContainer(ELEMENT.WINNING_NUMBER_CONTAINER);
+    });
 
     messenger.addMessageListener(MESSAGE.RESTART_BUTTON_CLICKED, () => {
       hideContainer(ELEMENT.WINNING_NUMBER_CONTAINER);

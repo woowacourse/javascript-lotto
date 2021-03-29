@@ -10,6 +10,11 @@ import { $ } from "../Util/querySelector.js";
 
 class PurchaseOption {
   constructor() {
+    this.addEventListeners();
+    this.addMessageListeners();
+  }
+
+  addEventListeners() {
     $(ELEMENT.AUTO_NUMBER_PURCHASE_BUTTON).addEventListener("click", () => {
       if (!this.validateBalance()) return;
 
@@ -33,7 +38,9 @@ class PurchaseOption {
         });
       }
     });
+  }
 
+  addMessageListeners() {
     messenger.addMessageListener(MESSAGE.MONEY_SUBMITTED, ({ money }) => {
       this.money = Number(money);
       this.autoNumberTicketCount = 0;

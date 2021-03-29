@@ -5,6 +5,10 @@ import { $ } from "../Util/querySelector.js";
 
 class Receipt {
   constructor() {
+    this.addMessageListeners();
+  }
+
+  addMessageListeners() {
     messenger.addMessageListener(
       MESSAGE.TICKET_ADDED_AS_BALANCE,
       this.handleReceipt.bind(this)
