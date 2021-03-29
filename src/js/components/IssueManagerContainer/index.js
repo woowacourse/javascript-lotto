@@ -1,5 +1,4 @@
-import { ACTION_TYPE, SUGGESTION_MESSAGE } from "../../constants/index.js";
-import { CustomError } from "../../errors/index.js";
+import { ACTION_TYPE } from "../../constants/index.js";
 import Lotto from "../../models/Lotto.js";
 import store from "../../store/index.js";
 import {
@@ -58,33 +57,22 @@ const createContainer = () => {
   const createActionLottosAdded = (event) => {
     event.preventDefault();
 
-    try {
-      const totalIssuableLottoCount = select(store.getState());
-      const $$entries = Array.from({ length: totalIssuableLottoCount }).map(
-        (_, index) => {
-          return [
-            event.target.elements[`issue-mode-${index}`],
-            event.target.elements[`entry__number-${index}`],
-          ];
-        }
-      );
-
-      store.dispatch({
-        type: ACTION_TYPE.LOTTOS.ADDED,
-        payload: $$entries
-          .map(toLottoNumbers)
-          .map((numbers) => new Lotto(numbers)),
-      });
-    } catch (error) {
-      if (error instanceof CustomError) {
-        Presentational.notifyError(
-          `${error.message} ${SUGGESTION_MESSAGE.LOTTO_NUMBERS_INPUT}`
-        );
-        return;
+    const totalIssuableLottoCount = select(store.getState());
+    const $$entries = Array.from({ length: totalIssuableLottoCount }).map(
+      (_, index) => {
+        return [
+          event.target.elements[`issue-mode-${index}`],
+          event.target.elements[`entry__number-${index}`],
+        ];
       }
+    );
 
-      throw error;
-    }
+    store.dispatch({
+      type: ACTION_TYPE.LOTTOS.ADDED,
+      payload: $$entries
+        .map(toLottoNumbers)
+        .map((numbers) => new Lotto(numbers)),
+    });
   };
 
   const init = () => {

@@ -1,8 +1,4 @@
-import {
-  $,
-  notify,
-  toDataAttributeSelector as toDAS,
-} from "../../utils/index.js";
+import { $, toDataAttributeSelector as toDAS } from "../../utils/index.js";
 import TEMPLATE from "./template.js";
 
 const createPresentational = () => {
@@ -28,10 +24,6 @@ const createPresentational = () => {
     $entryList.insertAdjacentHTML("beforeend", newEntries);
 
     $container.show();
-  };
-
-  const notifyError = (message) => {
-    notify(message);
   };
 
   const toggleDisabled = (event) => {
@@ -80,7 +72,7 @@ const createPresentational = () => {
     $form.addEventListener("click", toggleDisabled);
   };
 
-  return { init, notifyError, render };
+  return { init, render };
 };
 
 const Presentational = createPresentational();
