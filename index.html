@@ -11,30 +11,98 @@
       <div class="d-flex justify-center mt-5">
         <div class="w-100">
           <h1 class="text-center">🎱 행운의 로또</h1>
-          <form id="purchase-container" class="mt-5">
+          
+          <!-- purchase-amount-container -->
+          <form class="purchase-amount-container mt-5">
             <label class="mb-2 d-inline-block"
               >구입할 금액을 입력해주세요.
             </label>
             <div class="d-flex">
               <input
                 type="number"
-                id="purchase-amount-input"
-                class="w-100 mr-2 pl-2"
+                class="purchase-amount-input w-100 mr-2 pl-2"
                 placeholder="구입 금액"
                 autofocus
               />
               <button
                 type="submit"
-                id="purchase-amount-submit-button"
-                class="btn btn-cyan"
+                class="purchase-amount-submit-button btn btn-cyan"
               >
                 확인
               </button>
             </div>
           </form>
-          <section id="receipt-container" class="mt-9 hidden">
+
+          <!-- purchase-option-container -->
+          <div class="purchase-option-container mt-9 hidden">
+              <label class="purchase-balance-label flex-auto d-inline-block mb-2"
+                >잔액 : 5,000원</label
+              >
+              <label class="purchase-status-label flex-auto d-inline-block mb-3"
+                >구매 현황 : 자동 0장, 수동 0장</label
+              >
+            <div class>
+              <div>
+                <!-- <h4 class="mt-0 mb-3 text-center">당첨 번호</h4> -->
+                <div>
+                  <button
+                class="circle baker-miller-pink"
+              >
+                수동 번호
+              </button>
+                  <input
+                    type="number"
+                    class="manual-number mx-1  text-center"
+                    />
+                  <input
+                    type="number"
+                    class="manual-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="manual-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="manual-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="manual-number mx-1 text-center"
+                  />
+                  <input
+                    type="number"
+                    class="manual-number mx-1 text-center"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="purchase-add-button">
+              <button
+                type="button"
+                class="auto-number-purchase-button mt-5 add-btn btn-cyan"
+              >
+                자동 번호 추가
+              </button>
+              <button
+                type="button"
+                class="manual-number-purchase-button mt-5 add-btn btn-blush"
+              >
+                수동 번호 추가
+              </button>
+            </div>
+            <button
+              type="button"
+              class="purchase-payment-button mt-5 btn btn-cyan w-100"
+            >
+              로또 발급
+            </button>
+          </div>
+          
+          <!-- receipt-container -->
+          <section class="receipt-container mt-9 hidden">
             <div class="d-flex">
-              <label id="purchase-amount-label" class="flex-auto my-0"
+              <label class="purchase-amount-label flex-auto my-0"
                 >총 5개를 구매하였습니다.</label
               >
               <div class="flex-auto d-flex justify-end pr-1">
@@ -45,8 +113,7 @@
               </div>
             </div>
             <div
-              id="ticket-image-number-container"
-              class="d-flex flex-wrap flex-col"
+              class="ticket-image-number-area d-flex flex-wrap flex-col"
             >
               <span class="mx-1 text-4xl">🎟️ </span>
               <span class="mx-1 text-4xl">🎟️ </span>
@@ -55,7 +122,9 @@
               <span class="mx-1 text-4xl">🎟️ </span>
             </div>
           </section>
-          <form id="win-number-container" class="mt-9 hidden">
+
+          <!-- win-number-container -->
+          <form class="winning-number-container mt-9 hidden">
             <label class="flex-auto d-inline-block mb-3"
               >지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.</label
             >
@@ -107,6 +176,7 @@
         </div>
       </div>
 
+      <!-- modal -->
       <div class="modal">
         <div class="modal-inner p-10">
           <div class="modal-close">

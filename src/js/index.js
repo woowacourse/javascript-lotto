@@ -1,9 +1,3 @@
-import { initializeEvents } from "./Controller/submitController.js";
+import App from "./App.js";
 
-class App {
-  constructor() {
-    initializeEvents();
-  }
-}
-
-export const app = new App();
+const app = new App();

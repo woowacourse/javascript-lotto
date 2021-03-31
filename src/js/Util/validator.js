@@ -1,6 +1,6 @@
 import { ALERT_MESSAGE, STANDARD_NUMBER } from "./constants.js";
 
-export const isValidMoney = (money) => {
+const isValidMoney = (money) => {
   if (isInValidNumber(money)) {
     alert(ALERT_MESSAGE.INVALID_NUMBER);
     return false;
@@ -31,13 +31,13 @@ const isInValidNumber = (money) => {
   return !/^[0-9]+$/.test(money);
 };
 
-export const isValidWinningNumbers = (array) => {
+const isValidNumbers = (array) => {
   if (isBlankIncluded(array)) {
     alert(ALERT_MESSAGE.BLANK_INCLUDED);
     return;
   }
   if (isInvalidLottoNumberRange(array)) {
-    alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
+    alert(ALERT_MESSAGE.INVALID_NUMBER_RANGE);
     return;
   }
   if (isDuplicatedNumber(array)) {
@@ -47,11 +47,11 @@ export const isValidWinningNumbers = (array) => {
   return true;
 };
 
-export const isBlankIncluded = (array) => {
+const isBlankIncluded = (array) => {
   return array.includes("");
 };
 
-export const isInvalidLottoNumberRange = (array) => {
+const isInvalidLottoNumberRange = (array) => {
   return !array.every(
     (num) =>
       num >= STANDARD_NUMBER.MIN_LOTTO_NUMBER &&
@@ -59,6 +59,14 @@ export const isInvalidLottoNumberRange = (array) => {
   );
 };
 
-export const isDuplicatedNumber = (array) => {
+const isDuplicatedNumber = (array) => {
   return array.length !== new Set(array).size;
+};
+
+export {
+  isValidMoney,
+  isValidNumbers,
+  isBlankIncluded,
+  isInvalidLottoNumberRange,
+  isDuplicatedNumber,
 };
