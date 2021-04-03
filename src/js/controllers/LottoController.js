@@ -12,7 +12,7 @@ import { $ } from '../utils/dom.js';
 import {
   isCorrectPurchaseUnit,
   isUniqueWinningNumber,
-} from '../utils/lottoValidation.js';
+} from '../lottoValidation.js';
 import { calculateEarningRate, countByRank } from '../utils/utils.js';
 
 export default class LottoController {
@@ -42,19 +42,6 @@ export default class LottoController {
     this.inputWinningNumberView.hide().resetWinningNumbers();
   }
 
-  renderPurchaseResult() {
-    this.purchasedLottosView.show();
-    this.purchasedLottosView.renderLottos(this.lottoTicket.lottos);
-    this.inputWinningNumberView.show();
-  }
-
-  renderResultModal() {
-    this.resultModalView.showModal(
-      this.lottoTicket.rankCounts,
-      this.lottoTicket.earningRate
-    );
-  }
-
   bindEvents() {
     this.inputPriceView.on('submitPrice', e =>
       this.inputPriceHandler(e.detail)
@@ -69,14 +56,23 @@ export default class LottoController {
 
   inputPriceHandler(inputPrice) {
     this.purchasedPrice = inputPrice;
+    this.purchasedLottosView.resetToggleSwitch();
+
     if (!isCorrectPurchaseUnit(this.purchasedPrice)) {
       this.inputPriceView.resetInputPrice();
       alert(ALERT_MESSAGES.INCORRECT_UNIT);
+
       return;
     }
 
     this.lottoTicket.lottos = inputPrice;
     this.renderPurchaseResult();
+  }
+
+  renderPurchaseResult() {
+    this.purchasedLottosView.show();
+    this.purchasedLottosView.renderLottos(this.lottoTicket.lottos);
+    this.inputWinningNumberView.show();
   }
 
   inputWinningNumbersHandler(winningNumbers) {
@@ -97,5 +93,12 @@ export default class LottoController {
     );
 
     this.renderResultModal();
+  }
+
+  renderResultModal() {
+    this.resultModalView.showModal(
+      this.lottoTicket.rankCounts,
+      this.lottoTicket.earningRate
+    );
   }
 }

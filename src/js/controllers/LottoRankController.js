@@ -1,10 +1,13 @@
-import { lottoPrices } from '../utils/lottoPrices.js';
+import { lottoPrices } from '../model/lottoPrices.js';
 import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class LottoRankController {
   setRanks(lottos, winningNumbers) {
     const matchingCounts = this.getMatchingNums(lottos, winningNumbers);
-    const isMatchBonusArr = this.getMatchingBonus(lottos, winningNumbers);
+    const isMatchBonusArr = this.getMatchingBonus(
+      lottos,
+      winningNumbers[LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1]
+    );
 
     return this.initRanks(matchingCounts, isMatchBonusArr);
   }
@@ -27,14 +30,13 @@ export default class LottoRankController {
     }, 0);
   }
 
-  getMatchingBonus(lottos, winningNumbers) {
-    return lottos.map(lotto =>
-      lotto.numbers.has(winningNumbers[LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1])
-    );
+  getMatchingBonus(lottos, bonusNumber) {
+    return lottos.map(lotto => lotto.numbers.has(bonusNumber));
   }
 
   initRanks(matchingCounts, isMatchBonusArr) {
     const ranks = [];
+
     for (let i = 0; i < matchingCounts.length; i++) {
       const lottoPrice = this.findLottoRank(
         matchingCounts[i],

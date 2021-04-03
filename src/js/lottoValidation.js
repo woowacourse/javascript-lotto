@@ -1,5 +1,5 @@
-import { LOTTO_NUMBERS } from './constants.js';
-import { changeObjectToSet } from './utils.js';
+import { LOTTO_NUMBERS } from './utils/constants.js';
+import { changeObjectToSet } from './utils/utils.js';
 
 export const isCorrectPurchaseUnit = input => {
   return (

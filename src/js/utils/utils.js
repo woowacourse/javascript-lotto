@@ -1,5 +1,5 @@
 import { LOTTO_NUMBERS } from './constants.js';
-import { lottoPrices } from './lottoPrices.js';
+import { lottoPrices } from '../model/lottoPrices.js';
 
 export function getRandomNumber() {
   return Math.floor(Math.random() * LOTTO_NUMBERS.LOTTO_MAX_NUM) + 1;
