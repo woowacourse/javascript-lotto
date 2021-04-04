@@ -16,6 +16,16 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
       });
   }
 
+  function inputNumberAlert(alertMessage) {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    cy.get('#save-manual-input')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
+      });
+  }
+
   function winningNumberAlert(alertMessage) {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
@@ -70,5 +80,15 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
       cy.wrap(winningNumber).type('7');
     });
     winningNumberAlert('로또 번호에는 중복된 숫자를 입력할 수 없습니다.');
+  });
+
+  it('수동으로 입력하는 로또 번호에는 중복된 숫자를 입력할 수 없다.', () => {
+    clickAfterTypePrice();
+    cy.get('#mixed-purchase-btn').click();
+
+    cy.get('.manual-lotto-number').each(inputNumber => {
+      cy.wrap(inputNumber).type('7');
+    });
+    inputNumberAlert('로또 번호에는 중복된 숫자를 입력할 수 없습니다.');
   });
 });
