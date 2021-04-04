@@ -28,6 +28,8 @@ export default class ManualPurchaseView extends View {
     $('#manual-purchase-form').addEventListener('submit', e => {
       this.submitInputNumberHandler(e);
     });
+
+    return this;
   }
 
   inputManualNumberHandler($element) {
@@ -54,6 +56,8 @@ export default class ManualPurchaseView extends View {
   renderMixedPurchaseInputForm() {
     $('#manual-purchase').innerHTML = this.manualPurchasedInputForm();
     $('.manual-lotto-number').focus();
+
+    return this;
   }
 
   manualPurchasedInputForm() {
