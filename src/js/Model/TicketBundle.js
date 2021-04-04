@@ -13,8 +13,8 @@ export default class TicketBundle {
     return this.ticketBundle;
   }
 
-  setSelfTicket(selfPurchaseLottoNumbers) {
-    this.ticketBundle.push(selfPurchaseLottoNumbers);
+  addManualTicket(manualPurchaseLottoNumbers) {
+    this.ticketBundle.push(manualPurchaseLottoNumbers);
 
     return this.ticketBundle;
   }

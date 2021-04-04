@@ -15,14 +15,14 @@ export const ELEMENT = {
   RECEIPT_CONTAINER: "#receipt-container",
   TICKET_IMAGE_NUMBER_CONTAINER: "#ticket-image-number-container",
   WIN_NUMBER_CONTAINER: "#win-number-container",
-  SELF_PURCHASE_CONTAINER: "#self-purchase-container",
+  MANUAL_PURCHASE_CONTAINER: "#manual-purchase-container",
   AUTO_PURCHASE_CONTAINER: "#auto-purchase-container",
 
   BONUS_NUMBER: ".bonus-number",
   WINNING_NUMBER: ".winning-number",
   LOTTO_IMAGE_NUMBER: "#lotto-image-number",
   WINNING_COUNT: ".winning-count",
-  SELF_PURCHASE_LOTTO_NUMBER: ".self-purchase-lotto-number",
+  MANUAL_PURCHASE_LOTTO_NUMBER: ".manual-purchase-lotto-number",
 
   TOTAL_EARNING_RATE: "#total-earning-rate",
 

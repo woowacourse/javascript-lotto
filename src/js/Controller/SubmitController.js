@@ -46,9 +46,9 @@ export default class SubmitController {
       "click",
       this.handleRestartButton
     );
-    $(ELEMENT.SELF_PURCHASE_CONTAINER).addEventListener(
+    $(ELEMENT.MANUAL_PURCHASE_CONTAINER).addEventListener(
       "submit",
-      this.handleSelfPurchaseSubmit
+      this.handleManualPurchaseSubmit
     );
     $(ELEMENT.AUTO_PURCHASE_CONTAINER).addEventListener(
       "submit",
@@ -77,7 +77,7 @@ export default class SubmitController {
     showPurchaseSection();
   };
 
-  handleSelfPurchaseSubmit = (event) => {
+  handleManualPurchaseSubmit = (event) => {
     event.preventDefault();
 
     if (
@@ -86,32 +86,34 @@ export default class SubmitController {
         STANDARD_NUMBER.ONE_TICKET_PRICE
       )
     ) {
-      clearSelfPurchaseInput();
+      clearManualPurchaseInput();
 
       return;
     }
 
-    const selfPurchaseLottoNumbers = Array.from(
-      $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)
+    const manualPurchaseLottoNumbers = Array.from(
+      $$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)
     ).map((number) => Number(number.value));
 
-    if (!isValidNumbers(selfPurchaseLottoNumbers)) {
-      clearSelfPurchaseInput();
+    if (!isValidNumbers(manualPurchaseLottoNumbers)) {
+      clearManualPurchaseInput();
 
       return;
     }
-    const tickets = this.ticketBundle.setSelfTicket(selfPurchaseLottoNumbers);
+    const tickets = this.ticketBundle.addManualTicket(
+      manualPurchaseLottoNumbers
+    );
 
-    this.balance.subtractionSelfPurchaseBalance();
+    this.balance.subtractionManualPurchaseBalance();
     renderBalance(this.balance.balance);
 
-    Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
+    Array.from($$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)).map(
       (number) => (number.value = "")
     );
 
     this.renderTickets(tickets.length);
 
-    $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
+    $$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)[0].focus();
     $$(ELEMENT.WINNING_NUMBER)[0].focus();
   };
 
@@ -165,7 +167,7 @@ export default class SubmitController {
     const inputBonusNumber = $(ELEMENT.BONUS_NUMBER).value;
 
     if (!isValidNumbers(inputWinningNumbers.concat(inputBonusNumber))) {
-      clearWinningBonusNumber();
+      this.clearWinningBonusNumber();
 
       return;
     }
@@ -228,11 +230,11 @@ export default class SubmitController {
     $$(ELEMENT.WINNING_NUMBER)[0].focus();
   };
 
-  clearSelfPurchaseInput = () => {
-    Array.from($$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)).map(
+  clearManualPurchaseInput = () => {
+    Array.from($$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)).map(
       (number) => (number.value = "")
     );
-    $$(ELEMENT.SELF_PURCHASE_LOTTO_NUMBER)[0].focus();
+    $$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)[0].focus();
   };
 
   clearAutoPurchaseInput = () => {

@@ -8,7 +8,7 @@ import TicketBundle from "../../../src/js/Model/TicketBundle.js";
 
 context("e2e test", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5502/javascript-lotto/");
+    cy.visit("http://localhost:5500");
   });
 
   it("초기 상태에서 입력 창 아래 부분이 숨김 처리 되어 있는 것을 확인한다.", () => {
