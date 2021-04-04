@@ -1,6 +1,6 @@
 describe('로또 금액 입력 예외 처리 테스트', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5500/');
+    cy.visit('http://127.0.0.1:8080/');
   });
 
   const price = 10000;
@@ -45,24 +45,27 @@ describe('로또 금액 입력 예외 처리 테스트', () => {
     checkInvalid(200, '값은 1000 이상이어야 합니다.');
 
     cy.get('#purchased-lotto-result').should('not.be.visible');
-    cy.get('#input-lotto-nums').should('not.be.visible');
+    cy.get('#input-winning-lotto-nums').should('not.be.visible');
   });
 
   it('로또 구입 금액은 최대 100,000원으로 제한한다.', () => {
     checkInvalid(120000, '값은 100000 이하여야 합니다.');
 
     cy.get('#purchased-lotto-result').should('not.be.visible');
-    cy.get('#input-lotto-nums').should('not.be.visible');
+    cy.get('#input-winning-lotto-nums').should('not.be.visible');
   });
 
   it('로또 구입 금액은 1,000원 단위여야 한다.', () => {
     exceptionAlert(1200, '로또 구입 금액을 1,000원 단위로 입력해 주세요.');
+
     cy.get('#purchased-lotto-result').should('not.be.visible');
-    cy.get('#input-lotto-nums').should('not.be.visible');
+    cy.get('#input-winning-lotto-nums').should('not.be.visible');
   });
 
   it('로또 당첨 번호에는 중복된 숫자를 입력할 수 없다.', () => {
     clickAfterTypePrice();
+    cy.get('#auto-purchase-btn').click();
+
     cy.get('.winning-number').each(winningNumber => {
       cy.wrap(winningNumber).type('7');
     });
