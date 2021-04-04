@@ -1,5 +1,5 @@
-import { ELEMENT } from "../Util/constants.js";
-import { $ } from "../Util/querySelector.js";
+import { ELEMENT } from "./constants.js";
+import { $ } from "./querySelector.js";
 
 export const showPurchaseResult = () => {
   $(ELEMENT.RECEIPT_CONTAINER).classList.remove(ELEMENT.HIDDEN);

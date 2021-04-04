@@ -10,16 +10,16 @@ import {
   printTicketHorizontal,
   printTicketVertical,
   printWinningResult,
+  renderBalance,
 } from "../View/receiptView.js";
-import { renderBalance } from "../View/receiptView.js";
 import {
   showPurchaseResult,
   hidePurchaseResult,
   showModal,
   closeModal,
-  showPurchaseSection,
   hidePurchaseSection,
-} from "../Handler/elementHandler.js";
+  showPurchaseSection,
+} from "../Util/dom.js";
 import TicketBundle from "../Model/TicketBundle.js";
 import Balance from "../Model/Balance.js";
 import WinningResult from "../Model/WinningResult.js";
@@ -68,12 +68,8 @@ export default class SubmitController {
 
     this.balance = new Balance(money);
     renderBalance(this.balance.balance);
-    this.renderPurchaseSection();
-    $$(ELEMENT.WINNING_NUMBER)[0].focus();
-  };
-
-  renderPurchaseSection = () => {
     showPurchaseSection();
+    $$(ELEMENT.WINNING_NUMBER)[0].focus();
   };
 
   handleManualPurchaseSubmit = (event) => {
@@ -90,21 +86,18 @@ export default class SubmitController {
       return;
     }
 
-    const manualPurchaseLottoNumbers = Array.from(
-      $$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)
-    ).map((number) => Number(number.value));
-
+    const manualPurchaseLottoNumbers = this.ticketBundle.getManualPurchaseLottoNumbers();
     if (!isValidNumbers(manualPurchaseLottoNumbers)) {
       this.clearManualPurchaseInput();
 
       return;
     }
+
     const tickets = this.ticketBundle.addManualTicket(
       manualPurchaseLottoNumbers
     );
 
-    this.balance.subtractionManualPurchaseBalance();
-    renderBalance(this.balance.balance);
+    renderBalance(this.balance.subtractionManualPurchaseBalance());
 
     Array.from($$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)).map(
       (number) => (number.value = "")
@@ -133,22 +126,16 @@ export default class SubmitController {
       return;
     }
 
-    this.balance.subtractionAutoPurchaseBalance(autoPurchasePrice);
-    renderBalance(this.balance.balance);
-
-    const tickets = this.ticketBundle.makeAutoTicketBundle(
-      autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE
+    renderBalance(
+      this.balance.subtractionAutoPurchaseBalance(autoPurchasePrice)
     );
 
-    this.renderTickets(tickets.length);
-    $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
-    $(ELEMENT.AUTO_PURCHASE_INPUT).focus();
-  };
+    const autoTicketLength = this.ticketBundle.getAutoTicketLength(
+      autoPurchasePrice
+    );
 
-  renderTickets = (ticketCount) => {
-    printPurchaseAmountLabel(ticketCount);
-    printTicketHorizontal(ticketCount);
-    showPurchaseResult();
+    this.renderTickets(autoTicketLength);
+    this.clearAutoPurchaseInput();
   };
 
   handleToggleButton = (event) => {
@@ -170,42 +157,13 @@ export default class SubmitController {
 
       return;
     }
+    this.winningResult.setNumbers(inputWinningNumbers, inputBonusNumber);
 
-    this.setNumbers(inputWinningNumbers, inputBonusNumber);
-    const initialBalance = this.balance.initialBalance;
-    const winningDatas = this.makeWinningDatas(initialBalance);
-    this.renderWinningResult(winningDatas);
-  };
-
-  setNumbers = (winningNumbers, bonusNumber) => {
-    this.winningResult.setWinningNumbers(winningNumbers);
-    this.winningResult.setBonusNumber(bonusNumber);
-  };
-
-  makeWinningDatas = (initialBalance) => {
-    const matchingCounts = this.setWinningResult(
+    const winningDatas = this.winningResult.getWinningDatas(
+      this.balance.initialBalance,
       this.ticketBundle.ticketBundle
     );
-    const totalPrize = this.getTotalPrize();
-    const earningRate = ((totalPrize - initialBalance) / initialBalance) * 100;
-
-    return { matchingCounts, earningRate };
-  };
-
-  getTotalPrize = () => {
-    return this.winningResult.calculateTotalPrize();
-  };
-
-  renderWinningResult = (winningDatas) => {
-    printWinningResult(winningDatas);
-    showModal();
-  };
-
-  setWinningResult = (ticketBundle) => {
-    const ranks = this.winningResult.setRanks(ticketBundle);
-    const matchingCounts = this.winningResult.setMatchingCounts(ranks);
-
-    return matchingCounts;
+    this.renderWinningResult(winningDatas);
   };
 
   handleRestartButton = () => {
@@ -216,6 +174,17 @@ export default class SubmitController {
     hidePurchaseResult();
     hidePurchaseSection();
     $(ELEMENT.TOGGLE_BUTTON).checked = false;
+  };
+
+  renderTickets = (ticketCount) => {
+    printPurchaseAmountLabel(ticketCount);
+    printTicketHorizontal(ticketCount);
+    showPurchaseResult();
+  };
+
+  renderWinningResult = (winningDatas) => {
+    printWinningResult(winningDatas);
+    showModal();
   };
 
   clearPurchaseAmountInput = () => {
@@ -238,6 +207,7 @@ export default class SubmitController {
 
   clearAutoPurchaseInput = () => {
     $(ELEMENT.AUTO_PURCHASE_INPUT).value = "";
+    $(ELEMENT.AUTO_PURCHASE_INPUT).focus();
   };
 
   initializeStates = () => {

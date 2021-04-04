@@ -8,9 +8,13 @@ export default class Balance {
 
   subtractionManualPurchaseBalance() {
     this.balance -= STANDARD_NUMBER.ONE_TICKET_PRICE;
+
+    return this.balance;
   }
 
   subtractionAutoPurchaseBalance(autoPurchasePrice) {
     this.balance -= autoPurchasePrice;
+
+    return this.balance;
   }
 }

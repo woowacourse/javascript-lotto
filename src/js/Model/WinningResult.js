@@ -27,6 +27,11 @@ export default class WinningResult {
     return ranks;
   }
 
+  setNumbers = (winningNumbers, bonusNumber) => {
+    this.setWinningNumbers(winningNumbers);
+    this.setBonusNumber(bonusNumber);
+  };
+
   decideRank(matchingCount, ticket) {
     switch (matchingCount) {
       case MATCHING_NUMBER.SIX:
@@ -70,6 +75,13 @@ export default class WinningResult {
     return this.matchingCounts;
   }
 
+  getMatchingCounts(ticketBundle) {
+    const ranks = this.setRanks(ticketBundle);
+    const matchingCounts = this.setMatchingCounts(ranks);
+
+    return matchingCounts;
+  }
+
   calculateTotalPrize() {
     const rankInfo = this.makeRankInfo();
     let totalPrize = 0;
@@ -81,7 +93,19 @@ export default class WinningResult {
     return totalPrize;
   }
 
+  getTotalPrize() {
+    return this.calculateTotalPrize();
+  }
+
   calculatePrize(rankInfo, i, matchingCount) {
     return matchingCount * rankInfo[i][1];
+  }
+
+  getWinningDatas(initialBalance, ticketBundle) {
+    const matchingCounts = this.getMatchingCounts(ticketBundle);
+    const totalPrize = this.getTotalPrize();
+    const earningRate = ((totalPrize - initialBalance) / initialBalance) * 100;
+
+    return { matchingCounts, earningRate };
   }
 }
