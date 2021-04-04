@@ -43,6 +43,8 @@ export default class PurchasedResultView extends View {
   }
 
   renderLottos(lottos) {
+    this.resetToggleSwitch();
+
     $('#total-purchased').innerText = lottos.length;
     $('#lotto-icons').innerHTML = this.createLottoIcons(lottos);
 

@@ -51,7 +51,9 @@ export default class LottoController {
       .on('mixedPurchase', () => this.manualPurchaseLottoHandler())
       .on('allAutoPurchase', () => this.autoPurchaseLottoHandler());
 
-    this.manualPurchaseView.on('submitNumbers', e => this.purchaseOneLottoHandler(e.detail));
+    this.manualPurchaseView
+      .on('submitNumbers', e => this.purchaseOneLottoHandler(e.detail))
+      .on('remainingAutoPurchase', () => this.autoPurchaseLottoHandler());
 
     this.inputWinningNumberView.on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail));
 
@@ -71,7 +73,6 @@ export default class LottoController {
     this.amountOfLotto = calculateCount(this.purchasedPrice);
 
     this.purchaseLottoView.show();
-    this.purchasedResultView.resetToggleSwitch();
   }
 
   renderPurchaseResult() {
