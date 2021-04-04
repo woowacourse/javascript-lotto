@@ -2,6 +2,10 @@ import Lotto from './Lotto.js';
 
 export default class LottoTicket {
   constructor() {
+    this.init();
+  }
+
+  init() {
     this.lottos = [];
     this.rankCounts = [];
     this.earningRate = 0;
