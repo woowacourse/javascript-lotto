@@ -37,10 +37,12 @@ export default class LottoController {
     this.purchasedPrice = 0;
     this.amountOfLotto = 0;
 
+    this.lottoTicket.init();
+
     this.inputPriceView.show().resetInputPrice();
     this.purchaseLottoView.hide().resetButton();
     this.manualPurchaseView.hide().resetManualPurchaseForm();
-    this.purchasedResultView.hide().resetToggleSwitch();
+    this.purchasedResultView.hide();
     this.inputWinningNumberView.hide().resetWinningNumbers();
   }
 
@@ -82,11 +84,7 @@ export default class LottoController {
   }
 
   manualPurchaseLottoHandler() {
-    this.manualPurchaseView
-      .show()
-      .renderMixedPurchaseInputForm()
-      .bindManualPurchaseEvent()
-      .showRemainingCount(this.amountOfLotto);
+    this.manualPurchaseView.show().showRemainingCount(this.amountOfLotto);
   }
 
   autoPurchaseLottoHandler() {
@@ -104,7 +102,8 @@ export default class LottoController {
     this.purchasedResultView.show().renderLottos(this.lottoTicket.getLottos());
 
     if (this.amountOfLotto === 1) {
-      this.purchaseLottosView.hide();
+      this.purchaseLottoView.hide();
+      this.renderPurchaseResult();
     }
 
     this.amountOfLotto -= 1;

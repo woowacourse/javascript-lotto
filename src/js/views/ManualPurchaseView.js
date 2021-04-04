@@ -6,12 +6,14 @@ export default class ManualPurchaseView extends View {
   constructor($element) {
     super($element);
     this.renderMixedPurchaseInputForm();
+    this.bindManualPurchaseEvent();
 
     this.inputNumbers = [];
   }
 
   resetManualPurchaseForm() {
     $('#manual-purchase-form').reset();
+
     this.inputNumbers = [];
   }
 
