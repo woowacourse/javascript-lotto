@@ -1,7 +1,7 @@
 import View from './View.js';
 import { $, $$ } from '../utils/dom.js';
 
-export default class PurchasedLottosView extends View {
+export default class PurchasedResultView extends View {
   constructor($element) {
     super($element);
     this.$lottoIconsDiv = $('#lotto-icons');
