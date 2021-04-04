@@ -27,7 +27,6 @@ import WinningResult from "../Model/WinningResult.js";
 export default class SubmitController {
   constructor() {
     this.ticketBundle = new TicketBundle();
-    this.balance = new Balance();
     this.winningResult = new WinningResult();
   }
 
@@ -67,7 +66,7 @@ export default class SubmitController {
       return;
     }
 
-    this.balance.setBalance(money);
+    this.balance = new Balance(money);
     renderBalance(this.balance.balance);
     this.renderPurchaseSection();
     $$(ELEMENT.WINNING_NUMBER)[0].focus();
@@ -86,7 +85,7 @@ export default class SubmitController {
         STANDARD_NUMBER.ONE_TICKET_PRICE
       )
     ) {
-      clearManualPurchaseInput();
+      this.clearManualPurchaseInput();
 
       return;
     }
@@ -96,7 +95,7 @@ export default class SubmitController {
     ).map((number) => Number(number.value));
 
     if (!isValidNumbers(manualPurchaseLottoNumbers)) {
-      clearManualPurchaseInput();
+      this.clearManualPurchaseInput();
 
       return;
     }
@@ -123,13 +122,13 @@ export default class SubmitController {
     const autoPurchasePrice = $(ELEMENT.AUTO_PURCHASE_INPUT).value;
 
     if (!isUnderCurrentBalance(this.balance.balance, autoPurchasePrice)) {
-      clearAutoPurchaseInput();
+      this.clearAutoPurchaseInput();
 
       return;
     }
 
     if (!isValidMoney(autoPurchasePrice)) {
-      clearAutoPurchaseInput();
+      this.clearAutoPurchaseInput();
 
       return;
     }
