@@ -32,7 +32,28 @@
               </div>
           </form>
 
-          <section id="purchased-lottos" class="mt-9" aria-label="purchase-items">
+          <section id="purchase-lottos" class="mt-9" aria-label="purchase-lotto">
+            <div class="d-flex justify-center">
+              <button id="mixed-purchase-btn" type="button" class="purchase-method-btns btn mx-1 hover-btn">혼합 구매</button>
+              <button id="auto-purchase-btn" type="button" class="purchase-method-btns btn mx-1 hover-btn">자동 구매</button>
+            </div>
+    
+            <div id="mixed-purchase">
+              <div>
+                <p id="remaining-lotto-count" class="my-5 text-center font-bold">수동 구매</p>
+                <div id="manual-purchase"></div>
+              </div>
+              <button
+                type="button"
+                id="remaining-auto-purchase-btn"
+                class="mt-5 btn btn-cyan w-100"
+              >
+                완료(나머지 자동 구매하기)
+              </button>
+            </div>
+          </section>
+
+          <section id="purchased-lotto-result" class="mt-9" aria-label="purchase-items">
             <div class="d-flex">
               <label class="flex-auto my-0"
                 >총 <span id="total-purchased">5</span>개를
@@ -62,7 +83,7 @@
                 <div>
                   <input
                     type="number"
-                    class="winning-number mx-1 text-center"
+                    class="winning-number mx-1 text-center number-input"
                     aria-label="winning-number-1"
                     data-index-num="0"
                     required
@@ -71,7 +92,7 @@
                   />
                   <input
                     type="number"
-                    class="winning-number mx-1 text-center"
+                    class="winning-number mx-1 text-center number-input"
                     aria-label="winning-number-2"
                     data-index-num="1"
                     required
@@ -80,7 +101,7 @@
                   />
                   <input
                     type="number"
-                    class="winning-number mx-1 text-center"
+                    class="winning-number mx-1 text-center number-input"
                     aria-label="winning-number-3"
                     data-index-num="2"
                     required
@@ -89,7 +110,7 @@
                   />
                   <input
                     type="number"
-                    class="winning-number mx-1 text-center"
+                    class="winning-number mx-1 text-center number-input"
                     aria-label="winning-number-4"
                     data-index-num="3"
                     required
@@ -98,7 +119,7 @@
                   />
                   <input
                     type="number"
-                    class="winning-number mx-1 text-center"
+                    class="winning-number mx-1 text-center number-input"
                     aria-label="winning-number-5"
                     data-index-num="4"
                     required
@@ -107,7 +128,7 @@
                   />
                   <input
                     type="number"
-                    class="winning-number mx-1 text-center"
+                    class="winning-number mx-1 text-center number-input"
                     aria-label="winning-number-6"
                     data-index-num="5"
                     required
@@ -121,7 +142,7 @@
                 <div class="d-flex justify-center">
                   <input
                     type="number"
-                    class="winning-number bonus-number text-center"
+                    class="winning-number bonus-number text-center number-input"
                     aria-label="winning-number-bounus"
                     data-index-num="6"
                     required

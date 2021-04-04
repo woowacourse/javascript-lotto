@@ -7,3 +7,8 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.number-input {
+  width: 30px;
+  height: 36px;
+}
