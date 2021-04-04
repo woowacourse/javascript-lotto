@@ -2,7 +2,7 @@ import LottoRankController from '../../../src/js/controllers/LottoRankController
 import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
 import { calculateEarningRate, getRandomNumber } from '../../../src/js/utils/utils.js';
 
-describe('로또 게임 테스트', () => {
+describe('로또 게임 자동 구매 테스트', () => {
   before(() => {
     cy.visit('http://127.0.0.1:8080/');
   });
