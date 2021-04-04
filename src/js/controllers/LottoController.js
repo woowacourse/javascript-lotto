@@ -78,7 +78,13 @@ export default class LottoController {
     this.inputWinningNumberView.show();
   }
 
-  manualPurchaseLottoHandler() {}
+  manualPurchaseLottoHandler() {
+    this.manualPurchaseView
+      .show()
+      .renderMixedPurchaseInputForm()
+      .bindManualPurchaseEvent()
+      .showRemainingCount(this.amountOfLotto);
+  }
 
   autoPurchaseLottoHandler() {
     this.lottoTicket.addAutoPurchaseLottos(this.amountOfLotto);
