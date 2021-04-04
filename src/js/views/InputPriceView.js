@@ -18,7 +18,8 @@ export default class InputPriceView extends View {
 
   inputPriceHandler(e) {
     e.preventDefault();
+    const inputPrice = e.target.elements.price.value;
 
-    this.emit('submitPrice', e.target.elements.price.value);
+    this.emit('submitPrice', inputPrice);
   }
 }

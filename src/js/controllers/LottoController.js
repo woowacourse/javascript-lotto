@@ -1,4 +1,4 @@
-import LottoRankController from './LottoRankController.js';
+import { setRanks } from './lottoRankController.js';
 
 import InputPriceView from '../views/InputPriceView.js';
 import PurchaseLottosView from '../views/PurchaseLottoView.js';
@@ -9,20 +9,26 @@ import ResultModalView from '../views/ResultModalView.js';
 
 import LottoTicket from '../model/LottoTicket.js';
 
-import { calculateCount, calculateEarningRate, countByRank } from '../utils/utils.js';
+import {
+  calculateCount,
+  calculateEarningRate,
+  countByRank,
+} from '../utils/utils.js';
 import { ALERT_MESSAGES, LOTTO_NUMBERS } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 
 import { isCorrectPurchaseUnit, isUniqueNumbers } from '../lottoValidation.js';
 export default class LottoController {
   constructor() {
-    this.lottoRankController = new LottoRankController();
-
     this.inputPriceView = new InputPriceView($('#input-price-form'));
     this.purchaseLottoView = new PurchaseLottosView($('#purchase-lottos'));
     this.manualPurchaseView = new ManualPurchaseView($('#mixed-purchase'));
-    this.purchasedResultView = new PurchasedResultView($('#purchased-lotto-result'));
-    this.inputWinningNumberView = new InputWinningNumberView($('#input-winning-lotto-nums'));
+    this.purchasedResultView = new PurchasedResultView(
+      $('#purchased-lotto-result')
+    );
+    this.inputWinningNumberView = new InputWinningNumberView(
+      $('#input-winning-lotto-nums')
+    );
     this.resultModalView = new ResultModalView($('.modal'));
 
     this.lottoTicket = new LottoTicket();
@@ -46,45 +52,75 @@ export default class LottoController {
     this.inputWinningNumberView.hide().resetWinningNumbers();
   }
 
+  renderManualPurchaseInputForm() {
+    this.renderPurchasedLottos();
+
+    this.manualPurchaseView
+      .show()
+      .resetManualPurchaseForm()
+      .showRemainingCount(this.amountOfLotto);
+  }
+
+  renderPurchasedLottos() {
+    this.purchasedResultView.show().renderLottos(this.lottoTicket.getLottos());
+  }
+
+  renderPurchaseResult() {
+    this.purchaseLottoView.hide();
+
+    this.renderPurchasedLottos();
+    this.inputWinningNumberView.show();
+  }
+
+  renderResultModal() {
+    this.resultModalView.showModal(
+      this.lottoTicket.rankCounts,
+      this.lottoTicket.earningRate
+    );
+  }
+
+  updateResult(winningNumbers) {
+    const ranks = setRanks(this.lottoTicket.getLottos(), winningNumbers);
+
+    this.lottoTicket.rankCounts = countByRank(ranks, LOTTO_NUMBERS.RANK_SIZE);
+    this.lottoTicket.earningRate = calculateEarningRate(
+      this.purchasedPrice,
+      this.lottoTicket.rankCounts
+    );
+  }
+
   bindEvents() {
-    this.inputPriceView.on('submitPrice', e => this.inputPriceHandler(e.detail));
+    this.inputPriceView.on('submitPrice', e =>
+      this.inputPriceHandler(e.detail)
+    );
 
     this.purchaseLottoView
-      .on('mixedPurchase', () => this.manualPurchaseLottoHandler())
+      .on('mixedPurchase', () => this.renderManualPurchaseInputForm())
       .on('allAutoPurchase', () => this.autoPurchaseLottoHandler());
 
     this.manualPurchaseView
       .on('submitNumbers', e => this.purchaseOneLottoHandler(e.detail))
       .on('remainingAutoPurchase', () => this.autoPurchaseLottoHandler());
 
-    this.inputWinningNumberView.on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail));
+    this.inputWinningNumberView.on('submitNumbers', e =>
+      this.inputWinningNumbersHandler(e.detail)
+    );
 
     this.resultModalView.on('clickResetBtn', () => this.reset());
   }
 
   inputPriceHandler(inputPrice) {
-    this.purchasedPrice = inputPrice;
-
-    if (!isCorrectPurchaseUnit(this.purchasedPrice)) {
+    if (!isCorrectPurchaseUnit(inputPrice)) {
       this.inputPriceView.resetInputPrice();
       alert(ALERT_MESSAGES.INCORRECT_UNIT);
 
       return;
     }
 
+    this.purchasedPrice = inputPrice;
     this.amountOfLotto = calculateCount(this.purchasedPrice);
 
     this.purchaseLottoView.show();
-  }
-
-  renderPurchaseResult() {
-    this.purchaseLottoView.hide();
-    this.purchasedResultView.show().renderLottos(this.lottoTicket.getLottos());
-    this.inputWinningNumberView.show();
-  }
-
-  manualPurchaseLottoHandler() {
-    this.manualPurchaseView.show().showRemainingCount(this.amountOfLotto);
   }
 
   autoPurchaseLottoHandler() {
@@ -99,16 +135,10 @@ export default class LottoController {
     }
 
     this.lottoTicket.addManualPurchaseLotto(inputNumbers);
-    this.purchasedResultView.show().renderLottos(this.lottoTicket.getLottos());
 
-    if (this.amountOfLotto === 1) {
-      this.purchaseLottoView.hide();
-      this.renderPurchaseResult();
-    }
-
-    this.amountOfLotto -= 1;
-    this.manualPurchaseView.resetManualPurchaseForm();
-    this.manualPurchaseView.showRemainingCount(this.amountOfLotto);
+    --this.amountOfLotto === LOTTO_NUMBERS.REMAINING_ZERO
+      ? this.renderPurchaseResult()
+      : this.renderManualPurchaseInputForm();
   }
 
   inputWinningNumbersHandler(winningNumbers) {
@@ -117,18 +147,7 @@ export default class LottoController {
       return;
     }
 
-    const ranks = this.lottoRankController.setRanks(this.lottoTicket.getLottos(), winningNumbers);
-
-    this.lottoTicket.rankCounts = countByRank(ranks, LOTTO_NUMBERS.RANK_SIZE);
-    this.lottoTicket.earningRate = calculateEarningRate(
-      this.purchasedPrice,
-      this.lottoTicket.rankCounts
-    );
-
+    this.updateResult(winningNumbers);
     this.renderResultModal();
-  }
-
-  renderResultModal() {
-    this.resultModalView.showModal(this.lottoTicket.rankCounts, this.lottoTicket.earningRate);
   }
 }

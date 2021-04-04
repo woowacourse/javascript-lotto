@@ -7,14 +7,14 @@ export default class ManualPurchaseView extends View {
     super($element);
     this.renderMixedPurchaseInputForm();
     this.bindManualPurchaseEvent();
-
     this.inputNumbers = [];
   }
 
   resetManualPurchaseForm() {
     $('#manual-purchase-form').reset();
-
     this.inputNumbers = [];
+
+    return this;
   }
 
   bindManualPurchaseEvent() {
@@ -23,15 +23,17 @@ export default class ManualPurchaseView extends View {
     });
 
     $$('.manual-lotto-number').forEach(($inputNumber, idx) => {
-      $inputNumber.addEventListener('change', () => this.inputManualNumberHandler($inputNumber));
-      $inputNumber.addEventListener('input', () => this.moveFocusHandler($inputNumber, idx));
+      $inputNumber.addEventListener('change', () =>
+        this.inputManualNumberHandler($inputNumber)
+      );
+      $inputNumber.addEventListener('input', () =>
+        this.moveFocusHandler($inputNumber, idx)
+      );
     });
 
     $('#manual-purchase-form').addEventListener('submit', e => {
       this.submitInputNumberHandler(e);
     });
-
-    return this;
   }
 
   inputManualNumberHandler($element) {
@@ -52,14 +54,14 @@ export default class ManualPurchaseView extends View {
   }
 
   showRemainingCount(remainingCount) {
-    $('#remaining-lotto-count').innerText = `수동 구매: ${remainingCount}개 가능`;
+    $(
+      '#remaining-lotto-count'
+    ).innerText = `수동 구매: ${remainingCount}개 가능`;
   }
 
   renderMixedPurchaseInputForm() {
     $('#manual-purchase').innerHTML = this.manualPurchasedInputForm();
     $('.manual-lotto-number').focus();
-
-    return this;
   }
 
   manualPurchasedInputForm() {
