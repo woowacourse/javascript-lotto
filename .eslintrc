@@ -9,11 +9,10 @@
     "prettier/prettier": [
       "error",
       {
-        "printWidth": 100,
         "endOfLine": "auto"
       }
     ],
-    "max-depth": ["error", 2]
+    "max-depth": ["error", 2],
   },
   "parser": "babel-eslint",
   "parserOptions": {

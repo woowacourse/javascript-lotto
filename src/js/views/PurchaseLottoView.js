@@ -6,7 +6,6 @@ export default class PurchaseLottosView extends View {
     super($element);
 
     this.bindPurchaseLottoEvent();
-    this.resetButton();
   }
 
   resetButton() {
@@ -18,6 +17,7 @@ export default class PurchaseLottosView extends View {
       if (button.classList.contains('btn-clicked')) {
         button.classList.remove('btn-clicked');
       }
+
       button.classList.remove('cursor-not-allowed');
       button.classList.add('hover-btn');
       button.removeAttribute('disabled');
@@ -25,8 +25,12 @@ export default class PurchaseLottosView extends View {
   }
 
   bindPurchaseLottoEvent() {
-    $('#mixed-purchase-btn').addEventListener('click', e => this.mixedPurchaseHandler(e));
-    $('#auto-purchase-btn').addEventListener('click', e => this.autoPurchaseHandler(e));
+    $('#mixed-purchase-btn').addEventListener('click', e =>
+      this.mixedPurchaseHandler(e)
+    );
+    $('#auto-purchase-btn').addEventListener('click', e =>
+      this.autoPurchaseHandler(e)
+    );
   }
 
   mixedPurchaseHandler(e) {
