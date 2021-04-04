@@ -5,6 +5,10 @@ export function getRandomNumber() {
   return Math.floor(Math.random() * LOTTO_NUMBERS.LOTTO_MAX_NUM) + 1;
 }
 
+export function calculateCount(inputPrice) {
+  return inputPrice / LOTTO_NUMBERS.LOTTO_UNIT;
+}
+
 export function changeObjectToSet(object) {
   return new Set(Object.values(object));
 }
