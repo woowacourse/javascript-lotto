@@ -32,7 +32,7 @@ describe('로또 게임 수동 구매 테스트', () => {
     cy.get('#mixed-purchase-btn').click();
 
     cy.get('#mixed-purchase').should('be.visible');
-    cy.get('#purchased-lotto-result').should('not.be.visible');
+    cy.get('#purchased-lotto-result').should('be.visible');
     cy.get('#input-winning-lotto-nums').should('not.be.visible');
   });
 
@@ -53,7 +53,9 @@ describe('로또 게임 수동 구매 테스트', () => {
 
     cy.get('#purchased-lotto-result').should('be.visible');
     cy.get('#total-purchased').should('have.text', lottoTotalCount);
-    cy.get('#lotto-icons').children('.lotto-wrapper').should('have.length', lottoTotalCount);
+    cy.get('#lotto-icons')
+      .children('.lotto-wrapper')
+      .should('have.length', lottoTotalCount);
 
     cy.get('#input-winning-lotto-nums').should('be.visible');
   });
