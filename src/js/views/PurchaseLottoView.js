@@ -4,7 +4,13 @@ import { $, $$ } from '../utils/dom.js';
 export default class PurchaseLottosView extends View {
   constructor($element) {
     super($element);
+
     this.bindPurchaseLottoEvent();
+    this.resetButton();
+  }
+
+  resetButton() {
+    this.resetPurchaseMethodButton();
   }
 
   resetPurchaseMethodButton() {
@@ -16,8 +22,6 @@ export default class PurchaseLottosView extends View {
       button.classList.add('hover-btn');
       button.removeAttribute('disabled');
     });
-
-    return this;
   }
 
   bindPurchaseLottoEvent() {
@@ -27,9 +31,26 @@ export default class PurchaseLottosView extends View {
 
   mixedPurchaseHandler(e) {
     this.emit('mixedPurchase');
+
+    this.checkClickedButton(e.target);
   }
 
   autoPurchaseHandler(e) {
     this.emit('allAutoPurchase');
+
+    this.checkClickedButton(e.target);
+  }
+
+  checkClickedButton(clickedButton) {
+    clickedButton.classList.add('btn-clicked');
+    this.blockPurchaseMethodButton();
+  }
+
+  blockPurchaseMethodButton() {
+    $$('.purchase-method-btns').forEach(button => {
+      button.classList.add('cursor-not-allowed');
+      button.setAttribute('disabled', true);
+      button.classList.remove('hover-btn');
+    });
   }
 }

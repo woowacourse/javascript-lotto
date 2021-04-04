@@ -9,11 +9,11 @@ import ResultModalView from '../views/ResultModalView.js';
 
 import LottoTicket from '../model/LottoTicket.js';
 
+import { calculateCount, calculateEarningRate, countByRank } from '../utils/utils.js';
 import { ALERT_MESSAGES, LOTTO_NUMBERS } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
-import { isCorrectPurchaseUnit, isUniqueWinningNumber } from '../lottoValidation.js';
-import { calculateCount, calculateEarningRate, countByRank } from '../utils/utils.js';
 
+import { isCorrectPurchaseUnit, isUniqueWinningNumber } from '../lottoValidation.js';
 export default class LottoController {
   constructor() {
     this.lottoRankController = new LottoRankController();
@@ -22,7 +22,7 @@ export default class LottoController {
     this.purchaseLottoView = new PurchaseLottosView($('#purchase-lottos'));
     this.manualPurchaseView = new ManualPurchaseView($('#mixed-purchase'));
     this.purchasedResultView = new PurchasedResultView($('#purchased-lotto-result'));
-    this.inputWinningNumberView = new InputWinningNumberView($('#input-lotto-nums'));
+    this.inputWinningNumberView = new InputWinningNumberView($('#input-winning-lotto-nums'));
     this.resultModalView = new ResultModalView($('.modal'));
 
     this.lottoTicket = new LottoTicket();
@@ -35,9 +35,10 @@ export default class LottoController {
 
   reset() {
     this.purchasedPrice = 0;
+    this.amountOfLotto = 0;
 
     this.inputPriceView.show().resetInputPrice();
-    this.purchaseLottoView.hide();
+    this.purchaseLottoView.hide().resetButton();
     this.manualPurchaseView.hide().resetManualPurchaseForm();
     this.purchasedResultView.hide().resetToggleSwitch();
     this.inputWinningNumberView.hide().resetWinningNumbers();
@@ -56,7 +57,7 @@ export default class LottoController {
   }
 
   inputPriceHandler(inputPrice) {
-    this.purchasedResultView.resetToggleSwitch();
+    this.purchasedPrice = inputPrice;
 
     if (!isCorrectPurchaseUnit(this.purchasedPrice)) {
       this.inputPriceView.resetInputPrice();
@@ -65,22 +66,24 @@ export default class LottoController {
       return;
     }
 
-    this.purchasedPrice = inputPrice;
     this.amountOfLotto = calculateCount(this.purchasedPrice);
 
-    this.lottoTicket.lottos = inputPrice;
     this.purchaseLottoView.show();
+    this.purchasedResultView.resetToggleSwitch();
   }
 
   renderPurchaseResult() {
-    this.purchasedResultView.show();
-    this.purchasedResultView.renderLottos(this.lottoTicket.lottos);
+    this.purchaseLottoView.hide();
+    this.purchasedResultView.show().renderLottos(this.lottoTicket.getLottos());
     this.inputWinningNumberView.show();
   }
 
   manualPurchaseLottoHandler() {}
 
-  autoPurchaseLottoHandler() {}
+  autoPurchaseLottoHandler() {
+    this.lottoTicket.addAutoPurchaseLottos(this.amountOfLotto);
+    this.renderPurchaseResult();
+  }
 
   inputWinningNumbersHandler(winningNumbers) {
     if (!isUniqueWinningNumber(winningNumbers)) {
@@ -88,7 +91,7 @@ export default class LottoController {
       return;
     }
 
-    const ranks = this.lottoRankController.setRanks(this.lottoTicket.lottos, winningNumbers);
+    const ranks = this.lottoRankController.setRanks(this.lottoTicket.getLottos(), winningNumbers);
 
     this.lottoTicket.rankCounts = countByRank(ranks, LOTTO_NUMBERS.RANK_SIZE);
     this.lottoTicket.earningRate = calculateEarningRate(

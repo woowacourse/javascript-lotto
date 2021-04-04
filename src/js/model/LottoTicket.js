@@ -1,5 +1,4 @@
 import Lotto from './Lotto.js';
-import { LOTTO_NUMBERS } from '../utils/constants.js';
 
 export default class LottoTicket {
   constructor() {
@@ -8,17 +7,25 @@ export default class LottoTicket {
     this.earningRate = 0;
   }
 
-  get lottos() {
-    return this._lottos;
+  getLottos() {
+    return this.lottos;
   }
 
-  set lottos(inputPrice) {
-    const count = inputPrice / LOTTO_NUMBERS.LOTTO_UNIT;
-
-    this._lottos = Array.from({ length: count }, () => {
+  addAutoPurchaseLottos(count) {
+    const remainingLottos = Array.from({ length: count }, () => {
       const lotto = new Lotto();
+      lotto.initNumbers();
       return lotto;
     });
+
+    this.lottos = [...this.lottos, ...remainingLottos];
+  }
+
+  addManualPurchaseLotto(newLotto) {
+    const lotto = new Lotto();
+    lotto.numbers = newLotto;
+
+    this.lottos = [...this.lottos, lotto];
   }
 
   get rankCounts() {

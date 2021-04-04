@@ -1,0 +1,8 @@
+.btn-clicked {
+  background-color: #00bcd4;
+  border-color: #00bcd4;
+}
+
+.hover-btn:hover {
+  background-color: #00bcd4;
+}
