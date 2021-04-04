@@ -1,13 +1,15 @@
-import LottoRankController from '../../../src/js/controllers/LottoRankController.js';
+import { initRanks } from '../../../src/js/controllers/LottoRankController.js';
 import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
-import { calculateEarningRate, getRandomNumber } from '../../../src/js/utils/utils.js';
+import {
+  calculateEarningRate,
+  getRandomNumber,
+} from '../../../src/js/utils/utils.js';
 
 describe('로또 게임 자동 구매 테스트', () => {
   before(() => {
     cy.visit('http://127.0.0.1:8080/');
   });
 
-  const lottoRankController = new LottoRankController();
   const price = 10000;
   const lottoTotalCount = price / LOTTO_NUMBERS.LOTTO_UNIT;
   const LOTT0_LENGTH = 7;
@@ -62,7 +64,9 @@ describe('로또 게임 자동 구매 테스트', () => {
 
   it('사용자가 구매한 로또의 개수와 개수 만큼의 로또 이모지를 보여준다.', () => {
     cy.get('#total-purchased').should('have.text', lottoTotalCount);
-    cy.get('#lotto-icons').children('.lotto-wrapper').should('have.length', lottoTotalCount);
+    cy.get('#lotto-icons')
+      .children('.lotto-wrapper')
+      .should('have.length', lottoTotalCount);
     cy.get('#input-winning-lotto-nums').should('be.visible');
   });
 
@@ -105,7 +109,7 @@ describe('로또 게임 자동 구매 테스트', () => {
     const isMatchBonusArr = [false, true, false, false, false, false]; // 보너스 숫자와 일치하는지 여부
     const resultRank = [1, 2, 0, 0, 5, 5].join('');
 
-    expect(lottoRankController.initRanks(matchingNumCounts, isMatchBonusArr).join('')).to.be.equal(
+    expect(initRanks(matchingNumCounts, isMatchBonusArr).join('')).to.be.equal(
       resultRank
     );
   });
@@ -116,7 +120,9 @@ describe('로또 게임 자동 구매 테스트', () => {
     const purchasedPrice = lottoNumsArr.length * LOTTO_NUMBERS.LOTTO_UNIT;
     const earningRate = (sum / purchasedPrice - 1) * 100;
 
-    expect(calculateEarningRate(purchasedPrice, rankCounts)).to.be.equal(earningRate);
+    expect(calculateEarningRate(purchasedPrice, rankCounts)).to.be.equal(
+      earningRate
+    );
   });
 
   it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
