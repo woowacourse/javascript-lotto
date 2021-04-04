@@ -14,10 +14,7 @@ export default class LottoRankController {
 
   getMatchingNums(lottos, winningNumbers) {
     return lottos.map(lotto =>
-      this.checkMatchingCount(
-        lotto,
-        winningNumbers.slice(0, LOTTO_NUMBERS.LOTTO_COUNT)
-      )
+      this.checkMatchingCount(lotto, winningNumbers.slice(0, LOTTO_NUMBERS.LOTTO_COUNT))
     );
   }
 
@@ -38,10 +35,7 @@ export default class LottoRankController {
     const ranks = [];
 
     for (let i = 0; i < matchingCounts.length; i++) {
-      const lottoPrice = this.findLottoRank(
-        matchingCounts[i],
-        isMatchBonusArr[i]
-      );
+      const lottoPrice = this.findLottoRank(matchingCounts[i], isMatchBonusArr[i]);
       ranks.push(lottoPrice ? lottoPrice.rank : 0);
     }
 
@@ -51,8 +45,7 @@ export default class LottoRankController {
   findLottoRank(matchingCount, isMatchBonus) {
     return lottoPrices.find(
       lottoPrice =>
-        lottoPrice.matchNumberCount === matchingCount &&
-        lottoPrice.matchBonus === isMatchBonus
+        lottoPrice.matchNumberCount === matchingCount && lottoPrice.matchBonus === isMatchBonus
     );
   }
 }

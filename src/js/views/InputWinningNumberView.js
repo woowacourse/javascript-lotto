@@ -18,17 +18,11 @@ export default class InputWinningNumberView extends View {
 
   bindNumberInputEvent() {
     this.$winningNumberInputs.forEach((winningNumber, idx) => {
-      winningNumber.addEventListener('change', () =>
-        this.inputWinningNumberHandler(winningNumber)
-      );
-      winningNumber.addEventListener('input', () =>
-        this.moveFocusHandler(winningNumber, idx)
-      );
+      winningNumber.addEventListener('change', () => this.inputWinningNumberHandler(winningNumber));
+      winningNumber.addEventListener('input', () => this.moveFocusHandler(winningNumber, idx));
     });
 
-    this.$element.addEventListener('submit', e =>
-      this.submitWinningNumberHandler(e)
-    );
+    this.$element.addEventListener('submit', e => this.submitWinningNumberHandler(e));
   }
 
   inputWinningNumberHandler($element) {
