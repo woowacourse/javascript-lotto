@@ -13,7 +13,7 @@ import { calculateCount, calculateEarningRate, countByRank } from '../utils/util
 import { ALERT_MESSAGES, LOTTO_NUMBERS } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 
-import { isCorrectPurchaseUnit, isUniqueWinningNumber } from '../lottoValidation.js';
+import { isCorrectPurchaseUnit, isUniqueNumbers } from '../lottoValidation.js';
 export default class LottoController {
   constructor() {
     this.lottoRankController = new LottoRankController();
@@ -50,6 +50,8 @@ export default class LottoController {
     this.purchaseLottoView
       .on('mixedPurchase', () => this.manualPurchaseLottoHandler())
       .on('allAutoPurchase', () => this.autoPurchaseLottoHandler());
+
+    this.manualPurchaseView.on('submitNumbers', e => this.purchaseOneLottoHandler(e.detail));
 
     this.inputWinningNumberView.on('submitNumbers', e => this.inputWinningNumbersHandler(e.detail));
 
@@ -91,8 +93,26 @@ export default class LottoController {
     this.renderPurchaseResult();
   }
 
+  purchaseOneLottoHandler(inputNumbers) {
+    if (!isUniqueNumbers(inputNumbers, LOTTO_NUMBERS.LOTTO_COUNT)) {
+      alert(ALERT_MESSAGES.DUPLICATE_NUMS);
+      return;
+    }
+
+    this.lottoTicket.addManualPurchaseLotto(inputNumbers);
+    this.purchasedResultView.show().renderLottos(this.lottoTicket.getLottos());
+
+    if (this.amountOfLotto === 1) {
+      this.purchaseLottosView.hide();
+    }
+
+    this.amountOfLotto -= 1;
+    this.manualPurchaseView.resetManualPurchaseForm();
+    this.manualPurchaseView.showRemainingCount(this.amountOfLotto);
+  }
+
   inputWinningNumbersHandler(winningNumbers) {
-    if (!isUniqueWinningNumber(winningNumbers)) {
+    if (!isUniqueNumbers(winningNumbers, LOTTO_NUMBERS.WINNING_NUMBER_COUNT)) {
       alert(ALERT_MESSAGES.DUPLICATE_NUMS);
       return;
     }
