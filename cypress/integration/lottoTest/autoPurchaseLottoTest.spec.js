@@ -1,4 +1,4 @@
-import { initRanks } from '../../../src/js/controllers/LottoRankController.js';
+import { initRanks } from '../../../src/js/controllers/lottoRankController.js';
 import { LOTTO_NUMBERS } from '../../../src/js/utils/constants.js';
 import {
   calculateEarningRate,
@@ -128,7 +128,6 @@ describe('로또 게임 자동 구매 테스트', () => {
   it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다.', () => {
     cy.get('#reset-btn').click();
     cy.get('.modal').should('not.be.visible');
-
     cy.get('#input-price-form').should('be.visible');
     cy.get('#input-price').should('have.value', '');
 
