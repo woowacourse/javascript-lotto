@@ -1,27 +1,27 @@
 import View from './View.js';
 import { $, $$ } from '../utils/dom.js';
 
-export default class PurchasedLottosView extends View {
+export default class PurchasedResultView extends View {
   constructor($element) {
     super($element);
     this.$lottoIconsDiv = $('#lotto-icons');
-    this.toggleSwitch = $('#lotto-switch');
+    this.$toggleSwitch = $('#lotto-switch');
     this.bindToggleSwitchEvent();
   }
 
   resetToggleSwitch() {
-    this.toggleSwitch.checked = false;
+    this.$toggleSwitch.checked = false;
     this.hideLottoDetailView();
   }
 
   bindToggleSwitchEvent() {
-    $('#lotto-switch').addEventListener('click', () => {
+    this.$toggleSwitch.addEventListener('click', () => {
       this.toggleSwitchHandler();
     });
   }
 
   toggleSwitchHandler() {
-    if (this.toggleSwitch.checked) {
+    if (this.$toggleSwitch.checked) {
       this.showLottoDetailView();
     } else {
       this.hideLottoDetailView();
@@ -43,13 +43,15 @@ export default class PurchasedLottosView extends View {
   }
 
   renderLottos(lottos) {
+    this.resetToggleSwitch();
+
     $('#total-purchased').innerText = lottos.length;
-    $('#lotto-icons').innerHTML = this.createLottoIconTemplate(lottos);
+    $('#lotto-icons').innerHTML = this.createLottoIcons(lottos);
 
     this.hideLottoDetailView();
   }
 
-  createLottoIconTemplate(lottos) {
+  createLottoIcons(lottos) {
     return lottos
       .map(
         lotto => `

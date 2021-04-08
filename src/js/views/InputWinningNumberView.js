@@ -6,7 +6,7 @@ export default class InputWinningNumberView extends View {
   constructor($element) {
     super($element);
     this.$winningNumberInputs = $$('.winning-number');
-    this.winningNumbers = {};
+    this.winningNumbers = [];
 
     this.bindNumberInputEvent();
   }
@@ -38,6 +38,7 @@ export default class InputWinningNumberView extends View {
   moveFocusHandler($element, idx) {
     if ($element.value.length === 2) {
       if (idx === LOTTO_NUMBERS.WINNING_NUMBER_COUNT - 1) return;
+
       this.$winningNumberInputs[idx + 1].focus();
     }
   }

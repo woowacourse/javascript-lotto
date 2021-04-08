@@ -4,7 +4,6 @@ import { getRandomNumber } from '../utils/utils.js';
 export default class Lotto {
   constructor() {
     this._numbers = new Set();
-    this.initNumbers();
   }
 
   initNumbers() {
@@ -15,6 +14,10 @@ export default class Lotto {
 
   get numbers() {
     return this._numbers;
+  }
+
+  set numbers(inputNumber) {
+    inputNumber.forEach(number => this._numbers.add(number));
   }
 
   get numberDetailString() {
