@@ -1,20 +1,35 @@
-import { STANDARD_NUMBER } from "../Util/constants.js";
+import { STANDARD_NUMBER, ELEMENT } from "../Util/constants.js";
+import { $$ } from "../Util/querySelector.js";
 
-class TicketBundle {
+export default class TicketBundle {
   constructor() {
     this.ticketBundle = [];
   }
 
-  initializeTicketBundle() {
-    this.ticketBundle = [];
-  }
-
-  makeTicketBundle(ticketLength) {
-    this.ticketBundle = Array.from({ length: ticketLength }, () =>
-      this.generateRandomNumbers()
-    );
+  makeAutoTicketBundle(ticketcounts) {
+    for (let i = 0; i < ticketcounts; i++) {
+      this.ticketBundle.push(this.generateRandomNumbers());
+    }
 
     return this.ticketBundle;
+  }
+
+  getAutoTicketLength(autoPurchasePrice) {
+    return this.makeAutoTicketBundle(
+      autoPurchasePrice / STANDARD_NUMBER.ONE_TICKET_PRICE
+    ).length;
+  }
+
+  addManualTicket(manualPurchaseLottoNumbers) {
+    this.ticketBundle.push(manualPurchaseLottoNumbers);
+
+    return this.ticketBundle;
+  }
+
+  getManualPurchaseLottoNumbers() {
+    return Array.from($$(ELEMENT.MANUAL_PURCHASE_LOTTO_NUMBER)).map((number) =>
+      Number(number.value)
+    );
   }
 
   generateRandomNumbers() {
@@ -30,5 +45,3 @@ class TicketBundle {
       .sort((a, b) => a - b);
   }
 }
-
-export default new TicketBundle();

@@ -32,6 +32,78 @@
               </button>
             </div>
           </form>
+          <section id="purchase-section" class="mt-9 hidden">
+            <div class="d-flex justify-center"></div>
+            <label id="current-money" class="flex-auto my-50"
+              >구매 가능 금액: 3000원</label
+            >
+            <form id="manual-purchase-container" class="mt-9">
+              <h4 class="mt-0 mb-3">수동 구매</h4>
+              <label class="flex-auto d-inline-block mb-3"
+                >수동 구매할 로또 번호 6개를 입력해주세요.</label
+              >
+              <div class="d-flex">
+                <div>
+                  <div>
+                    <input
+                      type="number"
+                      class="manual-purchase-lotto-number mx-1 text-center"
+                      autofocus
+                    />
+                    <input
+                      type="number"
+                      class="manual-purchase-lotto-number mx-1 text-center"
+                    />
+                    <input
+                      type="number"
+                      class="manual-purchase-lotto-number mx-1 text-center"
+                    />
+                    <input
+                      type="number"
+                      class="manual-purchase-lotto-number mx-1 text-center"
+                    />
+                    <input
+                      type="number"
+                      class="manual-purchase-lotto-number mx-1 text-center"
+                    />
+                    <input
+                      type="number"
+                      class="manual-purchase-lotto-number mx-1 text-center"
+                    />
+                    <button
+                      type="submit"
+                      id="manual-purchase-submit-button"
+                      class="btn btn-cyan mx-1 text-center"
+                    >
+                      확인
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form id="auto-purchase-container" class="mt-9">
+              <h4 class="mt-0 mb-3">자동 구매</h4>
+              <label class="flex-auto d-inline-block mb-3"
+                >자동 구매할 금액을 입력해주세요.</label
+              >
+              <div class="d-flex">
+                <input
+                  type="number"
+                  id="auto-purchase-input"
+                  class="w-100 mr-2 pl-2"
+                  placeholder="1000원 단위로 입력 가능합니다."
+                  autofocus
+                />
+                <button
+                  type="submit"
+                  id="auto-purchase-submit-button"
+                  class="btn btn-cyan"
+                >
+                  확인
+                </button>
+              </div>
+            </form>
+          </section>
           <section id="receipt-container" class="mt-9 hidden">
             <div class="d-flex">
               <label id="purchase-amount-label" class="flex-auto my-0"

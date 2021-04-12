@@ -1,5 +1,5 @@
-import { ELEMENT } from "../Util/constants.js";
-import { $ } from "../Util/querySelector.js";
+import { ELEMENT } from "./constants.js";
+import { $ } from "./querySelector.js";
 
 export const showPurchaseResult = () => {
   $(ELEMENT.RECEIPT_CONTAINER).classList.remove(ELEMENT.HIDDEN);
@@ -17,4 +17,12 @@ export const showModal = () => {
 
 export const closeModal = () => {
   $(ELEMENT.MODAL).classList.remove(ELEMENT.OPEN);
+};
+
+export const showPurchaseSection = () => {
+  $(ELEMENT.PURCHASE_SECTION).classList.remove(ELEMENT.HIDDEN);
+};
+
+export const hidePurchaseSection = () => {
+  $(ELEMENT.PURCHASE_SECTION).classList.add(ELEMENT.HIDDEN);
 };
