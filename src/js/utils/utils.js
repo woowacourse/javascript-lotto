@@ -1,5 +1,3 @@
-import { VALUE } from '../constants.js';
-
 export const $ = (selector) => document.querySelector(selector);
 export const $all = (selector) => [...document.querySelectorAll(selector)];
 
@@ -36,7 +34,6 @@ export const getDuplicatedValueIndex = (array) => {
   return -1;
 };
 
-// TODO: hidden(visibility) 대신 display 속성 이용
 export const showElement = ($element) => {
   $element.classList.remove('hidden');
 };

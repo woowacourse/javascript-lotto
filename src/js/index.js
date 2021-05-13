@@ -8,9 +8,9 @@ import {
   getDuplicatedValueIndex,
 } from './utils/utils.js';
 import { getPriceByRank } from './utils/lottoUtils.js';
-import { ALERT_MESSAGE, LOTTO, VALUE, SELECTORS } from './constants.js';
+import { ALERT_MESSAGE, LOTTO, VALUES, SELECTORS } from './constants.js';
 import Lotto from './models/Lotto.js';
-import LottoView from './views/LottoView.js';
+import LottoView from './LottoView.js';
 
 class LottoApp {
   constructor() {
@@ -70,7 +70,6 @@ class LottoApp {
     this.generateLotto(lottoNumbers);
     this.data.lottoCount = this.data.lottoCount - 1;
 
-    // TODO: 로또가 생성 될 때마다 view 를 업데이트 하고 싶다!
     this.view.renderLottoNumbersInput(this.data.lottoCount);
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
     this.view.renderLottoList(this.data.lottos);
@@ -86,7 +85,6 @@ class LottoApp {
     $('#lotto-numbers-input-first').focus();
   }
 
-  // TODO: 당첨번호 입력 할 때와 공통되는 로직 추출
   handleInputLottoNumbers(event) {
     if (!event.target.classList.contains('lotto-number')) return;
 
@@ -100,12 +98,8 @@ class LottoApp {
     }
   }
 
-  // TODO: 반복문 수정 (while) 없이 쓰는 법을 생각해보자.
   handleAutoGenerateLottoNumbers() {
-    while (this.data.lottoCount > 0) {
-      this.generateLotto();
-      this.data.lottoCount = this.data.lottoCount - 1;
-    }
+    [...Array(this.data.lottoCount)].map(() => this.generateLotto());
 
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
     this.view.renderLottoList(this.data.lottos);
@@ -169,12 +163,12 @@ class LottoApp {
 
   getResult(winningNumbers, bonusNumber) {
     const winningRankCounts = {
-      [VALUE.RANK.FIRST]: 0,
-      [VALUE.RANK.SECOND]: 0,
-      [VALUE.RANK.THIRD]: 0,
-      [VALUE.RANK.FOURTH]: 0,
-      [VALUE.RANK.FIFTH]: 0,
-      [VALUE.RANK.LOSE]: 0,
+      [VALUES.RANK.FIRST]: 0,
+      [VALUES.RANK.SECOND]: 0,
+      [VALUES.RANK.THIRD]: 0,
+      [VALUES.RANK.FOURTH]: 0,
+      [VALUES.RANK.FIFTH]: 0,
+      [VALUES.RANK.LOSE]: 0,
     };
 
     let winningTotalPrice = 0;
@@ -220,18 +214,33 @@ class LottoApp {
   bindEvents() {
     $(SELECTORS.MONEY_INPUT.FORM).addEventListener('submit', this.handleSubmitMoney.bind(this));
 
-    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener('input', this.handleInputLottoNumbers.bind(this));
-    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener('submit', this.handleSubmitLottoNumbers.bind(this));
-    $(SELECTORS.LOTTO_NUMBERS_INPUT.AUTO_BUTTON).addEventListener('click', this.handleAutoGenerateLottoNumbers.bind(this));
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener(
+      'input',
+      this.handleInputLottoNumbers.bind(this)
+    );
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener(
+      'submit',
+      this.handleSubmitLottoNumbers.bind(this)
+    );
+    $(SELECTORS.LOTTO_NUMBERS_INPUT.AUTO_BUTTON).addEventListener(
+      'click',
+      this.handleAutoGenerateLottoNumbers.bind(this)
+    );
 
     $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener(
       'change',
       this.handleToggleLottoNumbers.bind(this)
     );
 
-    $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener('keypress', this.changeToggleByEnter.bind(this));
+    $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener(
+      'keypress',
+      this.changeToggleByEnter.bind(this)
+    );
 
-    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener('input', this.handleInputWinningNumbers.bind(this));
+    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener(
+      'input',
+      this.handleInputWinningNumbers.bind(this)
+    );
     $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener(
       'submit',
       this.handleSubmitWinningNumbers.bind(this)

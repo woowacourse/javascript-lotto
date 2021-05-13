@@ -11,7 +11,7 @@ export const LOTTO = {
   PRICE: 1000,
 };
 
-export const VALUE = {
+export const VALUES = {
   WINNING_PRICE: {
     FIRST: 2000000000,
     SECOND: 30000000,
@@ -27,7 +27,7 @@ export const VALUE = {
     THREE: 3,
     FOUR: 4,
     FIVE: 5,
-    SIX: 6
+    SIX: 6,
   },
   RANK: {
     FIRST: 1,
@@ -35,8 +35,8 @@ export const VALUE = {
     THIRD: 3,
     FOURTH: 4,
     FIFTH: 5,
-    LOSE: 6
-  }
+    LOSE: 6,
+  },
 };
 
 export const SELECTORS = {
@@ -68,7 +68,7 @@ export const SELECTORS = {
     SECTION: '.winning-number-form-section',
     FORM: '#winning-number-form',
     INPUT: '.winning-number',
-    FIRST_INPUT: '#first-winning-number'
+    FIRST_INPUT: '#first-winning-number',
   },
 
   BONUS_NUMBER_INPUT: {
@@ -81,5 +81,5 @@ export const SELECTORS = {
     RESTART_BUTTON: '.restart-button',
     WINNING_COUNT_TEXT: '.winning-count',
     WINNING_RATE_TEXT: '.winning-rate',
-  }
-}
+  },
+};

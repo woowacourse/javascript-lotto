@@ -1,5 +1,5 @@
 import { getRandomNumberArray, getMatchCount } from '../utils/utils.js';
-import { LOTTO, VALUE } from '../constants.js';
+import { LOTTO, VALUES } from '../constants.js';
 import { getRankByMatchCount } from '../utils/lottoUtils.js';
 export default class Lotto {
   constructor(numbers) {
@@ -35,7 +35,7 @@ export default class Lotto {
     const matchCount = getMatchCount(winningNumber, this.numbers);
 
     return matchCount === 5 && this.isIncludeBonus(bonusNumber)
-      ? VALUE.RANK.SECOND
+      ? VALUES.RANK.SECOND
       : getRankByMatchCount(matchCount);
   }
 }
