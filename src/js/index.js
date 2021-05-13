@@ -4,7 +4,6 @@ import {
   hideElement,
   disableElement,
   enableElement,
-  $all,
   getDuplicatedValueIndex,
 } from './utils/utils.js';
 import { getPriceByRank } from './utils/lottoUtils.js';
@@ -200,9 +199,15 @@ class LottoApp {
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
   }
 
-  handleCloseModal() {
+  closeModal() {
     hideElement($(SELECTORS.MODAL.CONTAINER));
     $(SELECTORS.WINNING_NUMBER_INPUT.FIRST_INPUT).focus();
+  }
+
+  handleDimmedClick(event) {
+    if (event.target === event.currentTarget) {
+      this.closeModal();
+    }
   }
 
   changeToggleByEnter(event) {
@@ -246,7 +251,8 @@ class LottoApp {
       this.handleSubmitWinningNumbers.bind(this)
     );
 
-    $(SELECTORS.MODAL.CANCEL).addEventListener('click', this.handleCloseModal.bind(this));
+    $(SELECTORS.MODAL.CONTAINER).addEventListener('click', this.handleDimmedClick.bind(this));
+    $(SELECTORS.MODAL.CANCEL).addEventListener('click', this.closeModal.bind(this));
 
     $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
   }
