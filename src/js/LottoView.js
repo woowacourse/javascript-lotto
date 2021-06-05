@@ -36,15 +36,6 @@ export default class LottoView {
     $(SELECTORS.MODAL.WINNING_RATE_TEXT).textContent = winningRate;
   }
 
-  openModal() {
-    $(SELECTORS.MODAL.CONTAINER).classList.add('open');
-  }
-
-  closeModal() {
-    $(SELECTORS.MODAL.CONTAINER).classList.remove('open');
-    $(SELECTORS.WINNING_NUMBER_INPUT.FIRST_INPUT).focus();
-  }
-
   reset() {
     hideElement($(SELECTORS.LOTTO_LIST.SECTION));
     hideElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
@@ -56,7 +47,5 @@ export default class LottoView {
     $(SELECTORS.WINNING_NUMBER_INPUT.FORM).reset();
     $(SELECTORS.MONEY_INPUT.INPUT).focus();
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
-
-    this.closeModal();
   }
 }

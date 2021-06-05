@@ -9,10 +9,12 @@ import { getPriceByRank } from './utils/lottoUtils.js';
 import { ALERT_MESSAGE, LOTTO, VALUES, SELECTORS } from './constants.js';
 import Lotto from './models/Lotto.js';
 import LottoView from './LottoView.js';
+import Modal from './Modal/Modal.js';
 
 class LottoApp {
   constructor() {
     this.view = new LottoView();
+    this.modal = new Modal($(SELECTORS.MODAL.CONTAINER));
     this.bindEvents();
   }
 
@@ -166,7 +168,7 @@ class LottoApp {
 
     this.getResult();
     this.view.renderWinningResult(this.data.winningRankCounts, this.data.earningRate);
-    this.view.openModal();
+    this.modal.open();
   }
 
   getResult() {
@@ -182,12 +184,7 @@ class LottoApp {
   handleRestart() {
     this.init();
     this.view.reset();
-  }
-
-  handleDimmedClick(event) {
-    if (event.target === event.currentTarget) {
-      this.view.closeModal();
-    }
+    this.modal.close();
   }
 
   changeToggleByEnter(event) {
@@ -197,6 +194,8 @@ class LottoApp {
   }
 
   bindEvents() {
+    $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
+
     $(SELECTORS.MONEY_INPUT.FORM).addEventListener('submit', this.handleSubmitMoney.bind(this));
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener(
@@ -230,10 +229,6 @@ class LottoApp {
       'submit',
       this.handleSubmitWinningNumbers.bind(this)
     );
-
-    $(SELECTORS.MODAL.CONTAINER).addEventListener('click', this.handleDimmedClick.bind(this));
-    $(SELECTORS.MODAL.CANCEL).addEventListener('click', this.view.closeModal.bind(this));
-    $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
   }
 }
 
