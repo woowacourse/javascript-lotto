@@ -35,11 +35,11 @@ export const getDuplicatedValueIndex = (array) => {
 };
 
 export const showElement = ($element) => {
-  $element.classList.remove('hidden');
+  $element.classList.remove('d-none');
 };
 
 export const hideElement = ($element) => {
-  $element.classList.add('hidden');
+  $element.classList.add('d-none');
 };
 
 export const enableElement = ($element) => {

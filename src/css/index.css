@@ -25,11 +25,6 @@ button:disabled {
   pointer-events: none;
 }
 
-.hidden {
-  display: none;
-  opacity: 0;
-}
-
 .lotto-list-container.show-number .lotto-list {
   flex-direction: column;
 }

@@ -1,7 +1,6 @@
 .modal {
-  /* opacity: 0; */
-  /* visibility: hidden; */
-  display: flex;
+  display: none;
+  opacity: 0;
   position: fixed;
   top: 0;
   right: 0;
@@ -14,7 +13,7 @@
 
 .modal.open {
   opacity: 1;
-  visibility: visible;
+  display: flex;
 }
 
 .modal-inner {

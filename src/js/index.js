@@ -1,10 +1,9 @@
 import {
   $,
   showElement,
-  hideElement,
   disableElement,
-  enableElement,
   getDuplicatedValueIndex,
+  hideElement,
 } from './utils/utils.js';
 import { getPriceByRank } from './utils/lottoUtils.js';
 import { ALERT_MESSAGE, LOTTO, VALUES, SELECTORS } from './constants.js';
@@ -22,6 +21,17 @@ class LottoApp {
       lottos: [],
       lottoCount: 0,
       cost: 0,
+      winningNumbers: [],
+      bonusNumber: 0,
+      winningRankCounts: {
+        [VALUES.RANK.FIRST]: 0,
+        [VALUES.RANK.SECOND]: 0,
+        [VALUES.RANK.THIRD]: 0,
+        [VALUES.RANK.FOURTH]: 0,
+        [VALUES.RANK.FIFTH]: 0,
+        [VALUES.RANK.LOSE]: 0,
+      },
+      earningRate: 0,
     };
   }
 
@@ -45,10 +55,10 @@ class LottoApp {
     this.view.renderLottoNumbersInput(this.data.lottoCount);
     this.view.renderLottoList(this.data.lottos);
     showElement($(SELECTORS.LOTTO_LIST.SECTION));
+    showElement($(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION));
     disableElement($(SELECTORS.MONEY_INPUT.INPUT));
     disableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
 
-    $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.remove('d-none');
     $('#lotto-numbers-input-first').focus();
   }
 
@@ -57,8 +67,8 @@ class LottoApp {
 
     const $lottoNumbers = [...event.target.elements['lotto-number']];
     const lottoNumbers = $lottoNumbers.map(($number) => $number.valueAsNumber);
-
     const duplicatedNumberIndex = getDuplicatedValueIndex(lottoNumbers);
+
     if (duplicatedNumberIndex >= 0) {
       $lottoNumbers[duplicatedNumberIndex].focus();
       $lottoNumbers[duplicatedNumberIndex].select();
@@ -74,7 +84,7 @@ class LottoApp {
     this.view.renderLottoList(this.data.lottos);
 
     if (this.data.lottoCount === 0) {
-      $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.add('d-none');
+      hideElement($(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION));
       showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
       $(`${SELECTORS.WINNING_NUMBER_INPUT.INPUT}:first-child`).focus();
       return;
@@ -90,10 +100,8 @@ class LottoApp {
     if (event.target.value.length >= 2) {
       const $nextInput = event.target.nextElementSibling;
 
-      if ($nextInput) {
-        $nextInput.focus();
-        $nextInput.select();
-      }
+      $nextInput?.focus();
+      $nextInput?.select();
     }
   }
 
@@ -133,11 +141,12 @@ class LottoApp {
     event.preventDefault();
 
     const $bonusNumber = event.target.elements['bonus-number'];
-    const bonusNumber = $bonusNumber.valueAsNumber;
     const $winningNumbers = [...event.target.elements['winning-number']];
-    const winningNumbers = $winningNumbers.map(($number) => $number.valueAsNumber);
 
-    const duplicatedNumberIndex = getDuplicatedValueIndex([...winningNumbers]);
+    this.data.bonusNumber = $bonusNumber.valueAsNumber;
+    this.data.winningNumbers = $winningNumbers.map(($number) => $number.valueAsNumber);
+
+    const duplicatedNumberIndex = getDuplicatedValueIndex([...this.data.winningNumbers]);
 
     if (duplicatedNumberIndex >= 0) {
       $winningNumbers[duplicatedNumberIndex].focus();
@@ -146,7 +155,7 @@ class LottoApp {
       return;
     }
 
-    if (winningNumbers.includes(bonusNumber)) {
+    if (this.data.winningNumbers.includes(this.data.bonusNumber)) {
       $bonusNumber.focus();
       $bonusNumber.select();
       alert(ALERT_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
@@ -155,58 +164,29 @@ class LottoApp {
 
     showElement($(SELECTORS.MODAL.CONTAINER));
 
-    const result = this.getResult(winningNumbers, bonusNumber);
-    const { winningRankCounts, resultRate } = result;
-    this.view.renderWinningResult(winningRankCounts, resultRate);
+    this.getResult();
+    this.view.renderWinningResult(this.data.winningRankCounts, this.data.earningRate);
+    this.view.openModal();
   }
 
-  getResult(winningNumbers, bonusNumber) {
-    const winningRankCounts = {
-      [VALUES.RANK.FIRST]: 0,
-      [VALUES.RANK.SECOND]: 0,
-      [VALUES.RANK.THIRD]: 0,
-      [VALUES.RANK.FOURTH]: 0,
-      [VALUES.RANK.FIFTH]: 0,
-      [VALUES.RANK.LOSE]: 0,
-    };
+  getResult() {
+    const winningTotalPrice = this.data.lottos.reduce((total, lotto) => {
+      const rank = lotto.getWinningRank(this.data.winningNumbers, this.data.bonusNumber);
+      this.data.winningRankCounts[rank] += 1;
+      return total + getPriceByRank(rank);
+    }, 0);
 
-    let winningTotalPrice = 0;
-
-    this.data.lottos.forEach((lotto) => {
-      const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
-      winningRankCounts[rank] += 1;
-      winningTotalPrice += getPriceByRank(rank);
-    });
-
-    const resultRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
-
-    return { winningRankCounts, resultRate };
+    this.data.earningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
   }
 
   handleRestart() {
     this.init();
-
-    hideElement($(SELECTORS.LOTTO_LIST.SECTION));
-    hideElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
-    hideElement($(SELECTORS.MODAL.CONTAINER));
-    enableElement($(SELECTORS.MONEY_INPUT.INPUT));
-    enableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
-
-    $(SELECTORS.MONEY_INPUT.FORM).reset();
-    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).reset();
-    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).reset();
-    $(SELECTORS.MONEY_INPUT.INPUT).focus();
-    $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
-  }
-
-  closeModal() {
-    hideElement($(SELECTORS.MODAL.CONTAINER));
-    $(SELECTORS.WINNING_NUMBER_INPUT.FIRST_INPUT).focus();
+    this.view.reset();
   }
 
   handleDimmedClick(event) {
     if (event.target === event.currentTarget) {
-      this.closeModal();
+      this.view.closeModal();
     }
   }
 
@@ -252,8 +232,7 @@ class LottoApp {
     );
 
     $(SELECTORS.MODAL.CONTAINER).addEventListener('click', this.handleDimmedClick.bind(this));
-    $(SELECTORS.MODAL.CANCEL).addEventListener('click', this.closeModal.bind(this));
-
+    $(SELECTORS.MODAL.CANCEL).addEventListener('click', this.view.closeModal.bind(this));
     $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
   }
 }
