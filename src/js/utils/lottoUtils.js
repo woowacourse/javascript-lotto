@@ -43,7 +43,7 @@ export const getWinningResult = (lottos = [], winningNumbers, bonusNumber) => {
     return total + getPriceByRank(rank);
   }, 0);
 
-  const earningRate = ((winningTotalPrice / lottos.length) * LOTTO1.PRICE * 100).toFixed(2);
+  const earningRate = ((winningTotalPrice / lottos.length) * LOTTO.PRICE * 100).toFixed(2);
 
   return { winningRankCounts, earningRate };
 };

@@ -1,8 +1,10 @@
-import { $, $all, createElement, enableElement, hideElement } from '../utils/utils.js';
+import { $, createElement, showElement } from '../utils/utils.js';
 import { SELECTORS } from '../constants.js';
 
 export default class LottoListView {
   render(lottos) {
+    showElement($(SELECTORS.LOTTO_LIST.SECTION));
+
     const $lottoList = createElement('div', 'lotto-list d-flex flex-wrap');
 
     const lottoFragments = lottos.map((lotto) => {

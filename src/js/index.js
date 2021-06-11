@@ -1,27 +1,33 @@
 import { $, showElement, getDuplicatedValueIndex, hideElement } from './utils/utils.js';
 import { getWinningResult } from './utils/lottoUtils.js';
 import { ALERT_MESSAGE, SELECTORS } from './constants.js';
-import Lotto from './models/Lotto.js';
-import LottoView from './LottoView.js';
 import Modal from './Modal/Modal.js';
+
+import Lotto from './models/Lotto.js';
+
 import PurchaseFormController from './controllers/PurchaseFormController.js';
+import LottoNumberInputController from './controllers/LottoNumberInputController.js';
 import LottoListController from './controllers/LottoListController.js';
+import WinningNumberInputController from './controllers/WinningNumberInputController.js';
+
+import LottoView from './LottoView.js';
 import LottoResultView from './views/LottoResultView.js';
 import LottoListView from './views/LottoListView.js';
-import LottoNumberInputController from './controllers/LottoNumberInputController.js';
-import WinningNumberInputController from './controllers/WinningNumberInputController.js';
+import LottoNumberInputView from './views/LottoNumberInputView.js';
 
 class LottoApp {
   constructor() {
-    this.view = new LottoView();
     this.modal = new Modal($(SELECTORS.MODAL.CONTAINER));
+
     this.purchaseFormController = new PurchaseFormController();
     this.lottoListController = new LottoListController();
     this.lottoNumberInputController = new LottoNumberInputController();
-    this.winningNumberinputController = new WinningNumberInputController();
+    this.winningNumberInputController = new WinningNumberInputController();
 
+    this.view = new LottoView();
+    this.lottoNumberInputView = new LottoNumberInputView();
     this.lottoListView = new LottoListView();
-    this.lottotResultView = new LottoResultView();
+    this.lottoResultView = new LottoResultView();
 
     this.bindEvents();
   }
@@ -56,9 +62,9 @@ class LottoApp {
     this.generateLotto(lottoNumbers);
     this.data.lottoCount = this.data.lottoCount - 1;
 
-    this.view.renderLottoNumbersInput(this.data.lottoCount);
+    this.lottoNumberInputView.render(this.data.lottoCount);
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
-    this.view.renderLottoList(this.data.lottos);
+    this.lottoListView.render(this.data.lottos);
 
     if (this.data.lottoCount === 0) {
       hideElement($(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION));
@@ -113,7 +119,7 @@ class LottoApp {
       this.data.bonusNumber
     );
 
-    this.lottotResultView.render(winningRankCounts, earningRate);
+    this.lottoResultView.render(winningRankCounts, earningRate);
     this.modal.open();
   }
 
@@ -126,8 +132,8 @@ class LottoApp {
   bindEvents() {
     document.addEventListener('purchase', (event) => {
       this.data.lottoCount = event.detail.lottoCount;
+      this.lottoNumberInputView.render(this.data.lottoCount);
       this.lottoListView.render(this.data.lottos);
-      showElement($(SELECTORS.LOTTO_LIST.SECTION));
     });
 
     $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
