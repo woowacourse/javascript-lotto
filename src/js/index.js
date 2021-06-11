@@ -10,11 +10,13 @@ import { ALERT_MESSAGE, LOTTO, VALUES, SELECTORS } from './constants.js';
 import Lotto from './models/Lotto.js';
 import LottoView from './LottoView.js';
 import Modal from './Modal/Modal.js';
+import PurchaseFormController from './PurchaseForm/PurchaseFormController.js';
 
 class LottoApp {
   constructor() {
     this.view = new LottoView();
     this.modal = new Modal($(SELECTORS.MODAL.CONTAINER));
+    this.purchaseFormController = new PurchaseFormController();
     this.bindEvents();
   }
 
@@ -39,29 +41,6 @@ class LottoApp {
 
   generateLotto(numbers) {
     this.data.lottos.push(new Lotto(numbers));
-  }
-
-  handleSubmitMoney(event) {
-    event.preventDefault();
-
-    const money = Number(event.target.elements['money-input'].value);
-
-    if (money < LOTTO.PRICE) {
-      alert(ALERT_MESSAGE.INVALID_MONEY_INPUT);
-      return;
-    }
-
-    this.data.lottoCount = Math.floor(money / LOTTO.PRICE);
-    this.data.cost = LOTTO.PRICE * this.data.lottoCount;
-
-    this.view.renderLottoNumbersInput(this.data.lottoCount);
-    this.view.renderLottoList(this.data.lottos);
-    showElement($(SELECTORS.LOTTO_LIST.SECTION));
-    showElement($(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION));
-    disableElement($(SELECTORS.MONEY_INPUT.INPUT));
-    disableElement($(SELECTORS.MONEY_INPUT.SUBMIT_BUTTON));
-
-    $('#lotto-numbers-input-first').focus();
   }
 
   handleSubmitLottoNumbers(event) {
@@ -194,9 +173,13 @@ class LottoApp {
   }
 
   bindEvents() {
-    $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
+    document.addEventListener('purchase', (event) => {
+      this.data.lottoCount = event.detail.lottoCount;
+      this.view.renderLottoList(this.data.lottos);
+      showElement($(SELECTORS.LOTTO_LIST.SECTION));
+    });
 
-    $(SELECTORS.MONEY_INPUT.FORM).addEventListener('submit', this.handleSubmitMoney.bind(this));
+    $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener(
       'input',
