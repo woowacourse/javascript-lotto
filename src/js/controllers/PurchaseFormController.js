@@ -1,7 +1,7 @@
 import { $ } from '../utils/utils.js';
 import { SELECTORS } from '../constants.js';
-import PurchaseFormModel from './PurchaseFormModel.js';
-import PurchaseFormView from './PurchaseFormView.js';
+import PurchaseFormModel from '../models/PurchaseFormModel.js';
+import PurchaseFormView from '../views/PurchaseFormView.js';
 
 export default class PurchaseFormController {
   constructor() {

@@ -1,4 +1,4 @@
-import { VALUES } from '../constants.js';
+import { LOTTO, VALUES } from '../constants.js';
 
 export const getPriceByRank = (rank = VALUES.RANK.LOSE) => {
   const price = {
@@ -25,4 +25,25 @@ export const getRankByMatchCount = (matchCount = VALUES.MATCHED_COUNT.ZERO) => {
   };
 
   return rank[matchCount];
+};
+
+export const getWinningResult = (lottos = [], winningNumbers, bonusNumber) => {
+  const winningRankCounts = {
+    [VALUES.RANK.FIRST]: 0,
+    [VALUES.RANK.SECOND]: 0,
+    [VALUES.RANK.THIRD]: 0,
+    [VALUES.RANK.FOURTH]: 0,
+    [VALUES.RANK.FIFTH]: 0,
+    [VALUES.RANK.LOSE]: 0,
+  };
+
+  const winningTotalPrice = lottos.reduce((total, lotto) => {
+    const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
+    winningRankCounts[rank] += 1;
+    return total + getPriceByRank(rank);
+  }, 0);
+
+  const earningRate = ((winningTotalPrice / lottos.length) * LOTTO1.PRICE * 100).toFixed(2);
+
+  return { winningRankCounts, earningRate };
 };

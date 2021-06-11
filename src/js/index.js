@@ -1,22 +1,28 @@
-import {
-  $,
-  showElement,
-  disableElement,
-  getDuplicatedValueIndex,
-  hideElement,
-} from './utils/utils.js';
-import { getPriceByRank } from './utils/lottoUtils.js';
-import { ALERT_MESSAGE, LOTTO, VALUES, SELECTORS } from './constants.js';
+import { $, showElement, getDuplicatedValueIndex, hideElement } from './utils/utils.js';
+import { getWinningResult } from './utils/lottoUtils.js';
+import { ALERT_MESSAGE, SELECTORS } from './constants.js';
 import Lotto from './models/Lotto.js';
 import LottoView from './LottoView.js';
 import Modal from './Modal/Modal.js';
-import PurchaseFormController from './PurchaseForm/PurchaseFormController.js';
+import PurchaseFormController from './controllers/PurchaseFormController.js';
+import LottoListController from './controllers/LottoListController.js';
+import LottoResultView from './views/LottoResultView.js';
+import LottoListView from './views/LottoListView.js';
+import LottoNumberInputController from './controllers/LottoNumberInputController.js';
+import WinningNumberInputController from './controllers/WinningNumberInputController.js';
 
 class LottoApp {
   constructor() {
     this.view = new LottoView();
     this.modal = new Modal($(SELECTORS.MODAL.CONTAINER));
     this.purchaseFormController = new PurchaseFormController();
+    this.lottoListController = new LottoListController();
+    this.lottoNumberInputController = new LottoNumberInputController();
+    this.winningNumberinputController = new WinningNumberInputController();
+
+    this.lottoListView = new LottoListView();
+    this.lottotResultView = new LottoResultView();
+
     this.bindEvents();
   }
 
@@ -24,18 +30,8 @@ class LottoApp {
     this.data = {
       lottos: [],
       lottoCount: 0,
-      cost: 0,
       winningNumbers: [],
       bonusNumber: 0,
-      winningRankCounts: {
-        [VALUES.RANK.FIRST]: 0,
-        [VALUES.RANK.SECOND]: 0,
-        [VALUES.RANK.THIRD]: 0,
-        [VALUES.RANK.FOURTH]: 0,
-        [VALUES.RANK.FIFTH]: 0,
-        [VALUES.RANK.LOSE]: 0,
-      },
-      earningRate: 0,
     };
   }
 
@@ -75,47 +71,15 @@ class LottoApp {
     $('#lotto-numbers-input-first').focus();
   }
 
-  handleInputLottoNumbers(event) {
-    if (!event.target.classList.contains('lotto-number')) return;
-
-    if (event.target.value.length >= 2) {
-      const $nextInput = event.target.nextElementSibling;
-
-      $nextInput?.focus();
-      $nextInput?.select();
-    }
-  }
-
   handleAutoGenerateLottoNumbers() {
     [...Array(this.data.lottoCount)].map(() => this.generateLotto());
 
     $(SELECTORS.LOTTO_LIST.ELEMENT).remove();
-    this.view.renderLottoList(this.data.lottos);
+    this.lottoListView.render(this.data.lottos);
 
     $(SELECTORS.LOTTO_NUMBERS_INPUT.SECTION).classList.add('d-none');
     showElement($(SELECTORS.WINNING_NUMBER_INPUT.SECTION));
     $(`${SELECTORS.WINNING_NUMBER_INPUT.INPUT}:first-child`).focus();
-  }
-
-  handleToggleLottoNumbers() {
-    $(SELECTORS.LOTTO_LIST.CONTAINER).classList.toggle('show-number');
-  }
-
-  handleInputWinningNumbers(event) {
-    if (!event.target.classList.contains('winning-number')) return;
-
-    if (event.target.value.length >= 2) {
-      const $nextInput = event.target.nextElementSibling;
-
-      if ($nextInput) {
-        $nextInput.focus();
-        $nextInput.select();
-        return;
-      }
-
-      $(SELECTORS.BONUS_NUMBER_INPUT.INPUT).focus();
-      $(SELECTORS.BONUS_NUMBER_INPUT.INPUT).select();
-    }
   }
 
   handleSubmitWinningNumbers(event) {
@@ -143,48 +107,31 @@ class LottoApp {
       return;
     }
 
-    showElement($(SELECTORS.MODAL.CONTAINER));
+    const { winningRankCounts, earningRate } = getWinningResult(
+      this.data.lottos,
+      this.data.winningNumbers,
+      this.data.bonusNumber
+    );
 
-    this.getResult();
-    this.view.renderWinningResult(this.data.winningRankCounts, this.data.earningRate);
+    this.lottotResultView.render(winningRankCounts, earningRate);
     this.modal.open();
-  }
-
-  getResult() {
-    const winningTotalPrice = this.data.lottos.reduce((total, lotto) => {
-      const rank = lotto.getWinningRank(this.data.winningNumbers, this.data.bonusNumber);
-      this.data.winningRankCounts[rank] += 1;
-      return total + getPriceByRank(rank);
-    }, 0);
-
-    this.data.earningRate = ((winningTotalPrice / this.data.cost) * 100).toFixed(2);
   }
 
   handleRestart() {
     this.init();
-    this.view.reset();
+    this.view.init();
     this.modal.close();
-  }
-
-  changeToggleByEnter(event) {
-    if (event.key === 'Enter') {
-      event.target.click();
-    }
   }
 
   bindEvents() {
     document.addEventListener('purchase', (event) => {
       this.data.lottoCount = event.detail.lottoCount;
-      this.view.renderLottoList(this.data.lottos);
+      this.lottoListView.render(this.data.lottos);
       showElement($(SELECTORS.LOTTO_LIST.SECTION));
     });
 
     $(SELECTORS.MODAL.RESTART_BUTTON).addEventListener('click', this.handleRestart.bind(this));
 
-    $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener(
-      'input',
-      this.handleInputLottoNumbers.bind(this)
-    );
     $(SELECTORS.LOTTO_NUMBERS_INPUT.FORM).addEventListener(
       'submit',
       this.handleSubmitLottoNumbers.bind(this)
@@ -194,20 +141,6 @@ class LottoApp {
       this.handleAutoGenerateLottoNumbers.bind(this)
     );
 
-    $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener(
-      'change',
-      this.handleToggleLottoNumbers.bind(this)
-    );
-
-    $(SELECTORS.LOTTO_LIST.LOTTO_NUMBERS_TOGGLE_BUTTON).addEventListener(
-      'keypress',
-      this.changeToggleByEnter.bind(this)
-    );
-
-    $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener(
-      'input',
-      this.handleInputWinningNumbers.bind(this)
-    );
     $(SELECTORS.WINNING_NUMBER_INPUT.FORM).addEventListener(
       'submit',
       this.handleSubmitWinningNumbers.bind(this)
