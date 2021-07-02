@@ -1,7 +1,5 @@
-import { VALUE } from '../constants.js';
-
-export const $ = (selector) => document.querySelector(selector);
-export const $all = (selector) => [...document.querySelectorAll(selector)];
+export const $ = (selector, $target = document) => $target.querySelector(selector);
+export const $all = (selector, $target = document) => [...$target.querySelectorAll(selector)];
 
 export const createElement = (tagName, className, text = '') => {
   const $element = document.createElement(tagName);
@@ -23,16 +21,25 @@ export const getRandomNumberArray = (min, max, length) => {
   return numberArray;
 };
 
-export const isUniqueArray = (array) => {
-  return array.length === new Set(array).size;
+export const getDuplicatedValueIndex = (array) => {
+  const tempArray = [];
+
+  for (let idx = 0; idx < array.length; idx++) {
+    if (tempArray.includes(array[idx])) {
+      return idx;
+    }
+    tempArray.push(array[idx]);
+  }
+
+  return -1;
 };
 
 export const showElement = ($element) => {
-  $element.classList.remove('hidden');
+  $element.classList.remove('d-none');
 };
 
 export const hideElement = ($element) => {
-  $element.classList.add('hidden');
+  $element.classList.add('d-none');
 };
 
 export const enableElement = ($element) => {

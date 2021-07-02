@@ -1,28 +1,49 @@
-import { VALUE } from '../constants.js';
+import { LOTTO, VALUES } from '../constants.js';
 
-export const getPriceByRank = (rank = VALUE.RANK.LOSE) => {
+export const getPriceByRank = (rank = VALUES.RANK.LOSE) => {
   const price = {
-    [VALUE.RANK.FIRST]: VALUE.WINNING_PRICE.FIRST,
-    [VALUE.RANK.SECOND]: VALUE.WINNING_PRICE.SECOND,
-    [VALUE.RANK.THIRD]: VALUE.WINNING_PRICE.THIRD,
-    [VALUE.RANK.FOURTH]: VALUE.WINNING_PRICE.FOURTH,
-    [VALUE.RANK.FIFTH]: VALUE.WINNING_PRICE.FIFTH,
-    [VALUE.RANK.LOSE]: VALUE.WINNING_PRICE.LOSE,
-  }
+    [VALUES.RANK.FIRST]: VALUES.WINNING_PRICE.FIRST,
+    [VALUES.RANK.SECOND]: VALUES.WINNING_PRICE.SECOND,
+    [VALUES.RANK.THIRD]: VALUES.WINNING_PRICE.THIRD,
+    [VALUES.RANK.FOURTH]: VALUES.WINNING_PRICE.FOURTH,
+    [VALUES.RANK.FIFTH]: VALUES.WINNING_PRICE.FIFTH,
+    [VALUES.RANK.LOSE]: VALUES.WINNING_PRICE.LOSE,
+  };
 
   return price[rank];
 };
 
-export const getRankByMatchCount = (matchCount = VALUE.MATCHED_COUNT.ZERO) => {
+export const getRankByMatchCount = (matchCount = VALUES.MATCHED_COUNT.ZERO) => {
   const rank = {
-    [VALUE.MATCHED_COUNT.SIX]: VALUE.RANK.FIRST,
-    [VALUE.MATCHED_COUNT.FIVE]: VALUE.RANK.THIRD,
-    [VALUE.MATCHED_COUNT.FOUR]: VALUE.RANK.FOURTH,
-    [VALUE.MATCHED_COUNT.THREE]: VALUE.RANK.FIFTH,
-    [VALUE.MATCHED_COUNT.TWO]: VALUE.RANK.LOSE,
-    [VALUE.MATCHED_COUNT.ONE]: VALUE.RANK.LOSE,
-    [VALUE.MATCHED_COUNT.ZERO]: VALUE.RANK.LOSE
-  }
+    [VALUES.MATCHED_COUNT.SIX]: VALUES.RANK.FIRST,
+    [VALUES.MATCHED_COUNT.FIVE]: VALUES.RANK.THIRD,
+    [VALUES.MATCHED_COUNT.FOUR]: VALUES.RANK.FOURTH,
+    [VALUES.MATCHED_COUNT.THREE]: VALUES.RANK.FIFTH,
+    [VALUES.MATCHED_COUNT.TWO]: VALUES.RANK.LOSE,
+    [VALUES.MATCHED_COUNT.ONE]: VALUES.RANK.LOSE,
+    [VALUES.MATCHED_COUNT.ZERO]: VALUES.RANK.LOSE,
+  };
 
   return rank[matchCount];
-}
+};
+
+export const getWinningResult = (lottos = [], winningNumbers, bonusNumber) => {
+  const winningRankCounts = {
+    [VALUES.RANK.FIRST]: 0,
+    [VALUES.RANK.SECOND]: 0,
+    [VALUES.RANK.THIRD]: 0,
+    [VALUES.RANK.FOURTH]: 0,
+    [VALUES.RANK.FIFTH]: 0,
+    [VALUES.RANK.LOSE]: 0,
+  };
+
+  const winningTotalPrice = lottos.reduce((total, lotto) => {
+    const rank = lotto.getWinningRank(winningNumbers, bonusNumber);
+    winningRankCounts[rank] += 1;
+    return total + getPriceByRank(rank);
+  }, 0);
+
+  const earningRate = ((winningTotalPrice / lottos.length) * LOTTO.PRICE * 100).toFixed(2);
+
+  return { winningRankCounts, earningRate };
+};

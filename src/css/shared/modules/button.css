@@ -13,6 +13,7 @@
   border-color: #00bcd4 !important;
 }
 
-.btn.btn-cyan:hover {
+.btn.btn-cyan:hover,
+.btn.btn-cyan:focus {
   background-color: #018c9e !important;
 }

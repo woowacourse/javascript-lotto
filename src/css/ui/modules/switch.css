@@ -58,6 +58,10 @@
   transition: background-color 0.2s, transform 0.2s;
 }
 
+.switch > input:focus {
+  background-color: rgb(100, 100, 100);
+}
+
 .switch > input:checked {
   right: -10px;
   background-color: rgb(0, 188, 212);

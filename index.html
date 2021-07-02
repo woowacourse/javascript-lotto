@@ -16,15 +16,47 @@
         <form class="mt-5" id="money-input-form">
           <label for="money-input" class="mb-2 d-inline-block">구입할 금액을 입력해주세요.</label>
           <div class="d-flex">
-            <input id="money-input" type="number" min="0" class="w-100 mr-2 pl-2" placeholder="구입 금액" autofocus
-              required />
+            <input id="money-input" type="number" min="1000" max="100000" class="w-100 mr-2 pl-2" placeholder="구입 금액"
+              autofocus required />
             <button id="money-submit-button" type="submit" class="btn btn-cyan">확인</button>
           </div>
         </form>
-        <section class="lotto-list-section mt-9 hidden">
-          <div class="d-flex">
-            <label class="flex-auto my-0">총 <span class="lotto-count">
-                <!--로또 개수--></span>개를 구매하였습니다.</label>
+        <section class="lotto-numbers-input-section d-flex flex-col justify-between mt-5 d-none">
+          <h2 class="text-center">로또 번호 입력</h2>
+          <form id="lotto-numbers-input-form" class="w-100">
+            <label for="lotto-numbers-input-first" class="mb-1 d-block">구입할 로또의 번호를 입력해 주세요.</label>
+            <label class="mb-2">총 <span class="lotto-count">
+                <!--번호 입력이 필요한 로또 개수-->
+              </span>개 남았습니다.</label>
+            <div class="d-flex justify-between mt-2 items-center">
+              <div class="w-100 mr-2">
+                <fieldset class="w-100 d-flex border-0 justify-between">
+                  <legend class="mt-0 mb-3 text-center text-base d-block font-semibold">로또 번호</legend>
+                  <input type="number" id="lotto-numbers-input-first" class="lotto-number text-center"
+                    name="lotto-number" aria-label="첫 번째 로또 번호" min="1" max="45" required />
+                  <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="두 번째 로또 번호"
+                    min="1" max="45" required />
+                  <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="세 번째 로또 번호"
+                    min="1" max="45" required />
+                  <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="네 번째 로또 번호"
+                    min="1" max="45" required />
+                  <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="다섯 번째 로또 번호"
+                    min="1" max="45" required />
+                  <input type="number" class="lotto-number text-center" name="lotto-number" aria-label="여섯 번째 로또 번호"
+                    min="1" max="45" required />
+                </fieldset>
+              </div>
+              <button type="submit" id="lotto-numbers-input-button" class="btn btn-cyan">확인</button>
+            </div>
+            <button type="button" id="lotto-numbers-auto-button" class="w-100 mt-5 btn btn-cyan">남은 로또 자동구매하기</button>
+          </form>
+        </section>
+        <section class="lotto-list-section mt-9 d-none">
+          <h2 class="text-center">구입한 로또 목록</h2>
+          <div class="d-flex m">
+            <label class="flex-auto my-0">총 <span class="purchased-lotto-count">
+                <!--로또 개수-->
+              </span>개를 구매하였습니다.</label>
             <div class="flex-auto d-flex justify-end pr-1">
               <label for="lotto-numbers-toggle-button" class="switch" id="lotto-numbers-toggle">
                 <input type="checkbox" id="lotto-numbers-toggle-button" class="lotto-numbers-toggle-button" />
@@ -36,28 +68,31 @@
             <!-- 로또 목록 -->
           </div>
         </section>
-        <section class="winning-number-form-section hidden">
-          <form class="mt-9" id="winning-number-form">
+        <section class="winning-number-form-section d-none">
+          <h2 class="text-center">당첨 번호 입력</h2>
+          <form class="mt-3" id="winning-number-form">
             <label class="flex-auto d-inline-block mb-3">지난 주 당첨번호 6개와 보너스 넘버 1개를
               입력해주세요.</label>
             <div class="d-flex">
               <div>
-                <label for="first-winning-number" class="mt-0 mb-3 text-center text-base d-block font-semibold">당첨
-                  번호</label>
-                <div>
-                  <input type="number" name="winning-number" aria-label="winning-number1" id="first-winning-number"
-                    class="winning-number mx-1 text-center" min="1" max="45" required />
-                  <input type="number" name="winning-number" aria-label="winning-number2"
-                    class="winning-number mx-1 text-center" min="1" max="45" required />
-                  <input type="number" name="winning-number" aria-label="winning-number3"
-                    class="winning-number mx-1 text-center" min="1" max="45" required />
-                  <input type="number" name="winning-number" aria-label="winning-number4"
-                    class="winning-number mx-1 text-center" min="1" max="45" required />
-                  <input type="number" name="winning-number" aria-label="winning-number5"
-                    class="winning-number mx-1 text-center" min="1" max="45" required />
-                  <input type="number" name="winning-number" aria-label="winning-number6"
-                    class="winning-number mx-1 text-center" min="1" max="45" required />
-                </div>
+                <fieldset class="border-0">
+                  <legend class="mt-0 mb-3 text-center text-base d-block font-semibold">당첨
+                    번호</legend>
+                  <div>
+                    <input type="number" name="winning-number" aria-label="첫 번째 당첨번호" id="first-winning-number"
+                      class="winning-number mx-1 text-center" min="1" max="45" required />
+                    <input type="number" name="winning-number" aria-label="두 번째 당첨번호"
+                      class="winning-number mx-1 text-center" min="1" max="45" required />
+                    <input type="number" name="winning-number" aria-label="세 번째 당첨번호"
+                      class="winning-number mx-1 text-center" min="1" max="45" required />
+                    <input type="number" name="winning-number" aria-label="네 번째 당첨번호"
+                      class="winning-number mx-1 text-center" min="1" max="45" required />
+                    <input type="number" name="winning-number" aria-label="다섯 번째 당첨번호"
+                      class="winning-number mx-1 text-center" min="1" max="45" required />
+                    <input type="number" name="winning-number" aria-label="여섯 번째 당첨번호"
+                      class="winning-number mx-1 text-center" min="1" max="45" required />
+                  </div>
+                </fieldset>
               </div>
               <div class="bonus-number-container flex-grow">
                 <label for="bonus-number" class="mt-0 mb-3 text-center text-base d-block font-semibold">보너스 번호</label>
@@ -75,13 +110,13 @@
       </div>
     </div>
 
-    <div class="modal hidden">
+    <div class="modal" role="dialog" aria-modal="true">
       <div class="modal-inner p-10">
-        <div class="modal-close">
+        <button class="modal-close" type="button" aria-label="닫기">
           <svg viewbox="0 0 40 40">
             <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
           </svg>
-        </div>
+        </button>
 
         <h2 class="text-center">🏆 당첨 통계 🏆</h2>
         <div class="d-flex justify-center">
