@@ -1,5 +1,5 @@
 <p align="middle" >
-  <img width="200px;" src="./src/images/lotto_ball.png"/>
+  <img width="200px;" src="./images/lotto_ball.png"/>
 </p>
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
@@ -14,7 +14,7 @@
 ## 🔥 Projects!
 
 <p align="middle">
-  <img width="400" src="./src/images/lotto_ui.png">
+  <img width="400" src="./images/lotto_ui.png">
 </p>
 
 ### 🎯 step1 구입 기능
