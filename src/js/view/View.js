@@ -11,4 +11,12 @@ export class View {
   registerInput() {
     this.moneyInput = document.getElementById('input-space');
   }
+
+  showLottos() {
+    this.lotteryStatusContainer = document.getElementById('lottery-status-container');
+    this.winningLotteryContainer = document.getElementById('winning-lottery-container');
+
+    this.lotteryStatusContainer.style.visibility = 'visible';
+    this.winningLotteryContainer.style.visibility = 'visible';
+  }
 }

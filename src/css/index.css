@@ -21,7 +21,7 @@
   top: 28px;
 }
 
-#input-button {
+#purchase-button {
   padding: 6px;
   width: 15%;
   background: #00bcd4;
@@ -35,6 +35,7 @@
 }
 
 #lottery-status-container {
+  visibility: collapse;
   display: grid;
   padding: 10px;
   width: 70%;
@@ -59,11 +60,12 @@
   grid-area: tg;
 }
 
-#winning-lottery-input-container {
+#winning-lottery-container {
   display: grid;
   padding: 10px;
   width: 70%;
   grid-gap: 3px;
+  visibility: collapse;
 
   grid-template-areas:
     'hd hd hd hd hd hd hd hd'

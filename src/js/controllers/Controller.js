@@ -7,11 +7,13 @@ export class Controller {
     this.lottoGame = new LottoGame();
     this.purchaseLotto();
   }
+
   purchaseLotto() {
     this.view.purchaseBtn.addEventListener('click', (e) => {
       this.lottoGame.insertMoney(Number(this.view.moneyInput.value));
       this.lottoGame.buyLotto();
       this.clearMoneyInput();
+      this.view.showLottos();
     });
   }
 
