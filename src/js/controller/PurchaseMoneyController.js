@@ -1,4 +1,4 @@
-import { pickLottoNumber } from '../util/index.js';
+import { invalidPurchaseMoney } from '../util/validator.js';
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 
 export default class PurchaseMoneyController {
@@ -11,8 +11,11 @@ export default class PurchaseMoneyController {
     this.view.addSubmitEvent(this.onSubmitHandler.bind(this));
   }
 
-  onSubmitHandler(money) {
-    console.log(money);
-    console.log('pickLottoNumber', pickLottoNumber(6));
+  onSubmitHandler(purchaseMoney) {
+    try {
+      invalidPurchaseMoney(purchaseMoney);
+    } catch (e) {
+      alert(e);
+    }
   }
 }

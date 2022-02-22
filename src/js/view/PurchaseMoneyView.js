@@ -12,8 +12,8 @@ export default class PurchaseMoneyView {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
 
-      const money = this.input.value;
-      submitHandler(money);
+      const purchaseMoney = Number(this.input.value);
+      submitHandler(purchaseMoney);
     });
   }
 }
