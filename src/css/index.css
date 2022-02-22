@@ -1,5 +1,5 @@
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -13,7 +13,7 @@ body {
   height: 90vh;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.07);
-  font-family: "NanumBarunGothic", sans-serif;
+  font-family: 'NanumBarunGothic', sans-serif;
 
   display: flex;
   justify-content: center;
@@ -58,7 +58,7 @@ section {
   margin-bottom: 20px;
 }
 
-#display-lotto-section {
+#lotto-section {
   display: flex;
   flex-direction: row;
 }
@@ -78,19 +78,19 @@ section {
 #lotto-container {
   display: flex;
 }
-#lotto-container[data-align="horizon"] {
+#lotto-container[data-align='horizon'] {
   flex-direction: row;
   gap: 10px;
 }
 
-#lotto-container[data-align="horizon"] .number {
+#lotto-container[data-align='horizon'] .number {
   display: none;
 }
 
-#lotto-container[data-align="vertical"] {
+#lotto-container[data-align='vertical'] {
   flex-direction: column;
 }
-#lotto-container[data-align="vertical"] .lotto {
+#lotto-container[data-align='vertical'] .lotto {
   display: flex;
   align-items: center;
   gap: 10px;

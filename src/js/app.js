@@ -17,23 +17,29 @@ class LottoGameManager {
   }
 
   #initializeHandler() {
-    this.$chargeForm.addEventListener('submit', this.onChargeInputFormSubmit);
+    this.$chargeForm.addEventListener('submit', this.onSubmitChargeInputForm);
+    this.$alignConverter.addEventListener('change', this.onChangeAlignState);
   }
 
-  onChargeInputFormSubmit = (e) => {
+  onSubmitChargeInputForm = (e) => {
     e.preventDefault();
     try {
       const { value: chargeInputStr } = this.$chargeInput;
       const chargeInput = Number(chargeInputStr);
-      // 모델을 변경했다.
+      // mutate model
       this.lottoGameModel.createLottoList(chargeInput);
 
-      // 뷰를 변경한다.
+      // mutate view by new model state
       const lottoList = this.lottoGameModel.getLottoList();
-      this.lottoGameView.renderLottoList(lottoList);
+      this.lottoGameView.renderLottoSection(lottoList);
     } catch ({ message }) {
       alert(message);
     }
+  };
+
+  onChangeAlignState = (e) => {
+    const { checked } = this.$alignConverter;
+    this.lottoGameView.renderAlignState(checked ? 'vertical' : 'horizon');
   };
 
   start() {
