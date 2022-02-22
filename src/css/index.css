@@ -1,0 +1,202 @@
+:root {
+  --color-primary: #00bcd4;
+  --color-lighten: #80deea;
+  --color-placeholder: #8b8b8b;
+  --color-border: #b4b4b4;
+  --color-white: white;
+  --color-dimmed: rgba(0, 0, 0, 0.5);
+  --color-unchecked-round: #ededed;
+  --color-unchecked-slide: rgba(33, 33, 33, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  border: 1px solid var(--color-border);
+  outline: 0;
+  border-radius: 4px;
+}
+
+input::placeholder {
+  color: var(--color-placeholder);
+}
+
+button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 414px;
+  padding: 0 16px;
+}
+
+h1 {
+  margin-top: 52px;
+  margin-bottom: 16px;
+  line-height: 36px;
+}
+
+.purchase__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.purchase__description {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.purchase__input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.purchase__input {
+  width: 310px;
+  height: 36px;
+  margin-right: 16px;
+  padding-left: 8px;
+}
+
+.purchase__submit {
+  width: 56px;
+  height: 36px;
+}
+
+.lotto-list__section {
+  width: 100%;
+}
+
+.lotto-list__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto-list__title {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.lotto-list__toggle-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  display: inline-block;
+  bottom: -29px;
+  right: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch .lotto-list__toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-unchecked-slide);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: -3px;
+  background-color: var(--color-unchecked-round);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.68);
+}
+
+.slider.round {
+  border-radius: 34px;
+  width: 34px;
+  height: 14px;
+  /* box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0); */
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.lotto-list__toggle-input:checked + .slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+  background-color: var(--color-primary);
+}
+
+.lotto-list__toggle-input:checked + .slider {
+  background-color: var(--color-lighten);
+}
+
+.lotto-lists {
+  display: flex;
+}
+
+.lotto-lists.unfold {
+  flex-direction: column;
+}
+
+.lotto-list {
+  display: flex;
+  align-items: center;
+}
+
+.lotto-list__ticket {
+  display: inline-block;
+  background-image: url('../../images/lotto_ticket.svg');
+  width: 34px;
+  height: 36px;
+  margin-right: 8px;
+}
+
+.lotto-list__ticket:last-child {
+  margin-right: 0;
+}
+
+.lotto-list__numbers {
+  display: none;
+}
+
+.lotto-lists.unfold .lotto-list__numbers {
+  display: inline;
+}
