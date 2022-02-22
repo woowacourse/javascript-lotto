@@ -108,8 +108,24 @@ header {
 }
 
 .lotto-item-container > .item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 2rem;
   grid-column: 1 span;
+}
+
+.lotto-item-container > .item > .numbers {
+  display: none;
+  font-size: 1rem;
+}
+
+.lotto-item-container.show > .item {
+  grid-column: 8 span;
+}
+
+.lotto-item-container.show > .item > .numbers {
+  display: block;
 }
 
 .winning-number-section {
