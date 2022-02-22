@@ -15,10 +15,12 @@ export default class App {
   handlePriceInputEvent(event) {
     event.preventDefault();
     const lottoPrice = checkLottoPrice(getLottoPrice());
-    if (lottoPrice) {
-      this.lottoPrice = lottoPrice;
+    if (!lottoPrice) {
+      $('.lotto-price-input').value = '';
+      return;
     }
-    $('.lotto-price-input').value = '';
+    this.lottoPrice = lottoPrice;
+    $('.lotto-price-input').disabled = true;
   }
 }
 
