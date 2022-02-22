@@ -3,7 +3,7 @@ import { isValidPurchaseMoney } from './utils/validator.js';
 
 export default class LottoController {
   constructor(lottoModel, views) {
-    this.model = lottoModel;
+    this.lottoModel = lottoModel;
     this.lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.lottoNumberInputView = views.lottoPurchaseInputView;
@@ -21,10 +21,13 @@ export default class LottoController {
 
   submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
-    if (isValidPurchaseMoney(purchaseMoney)) {
-      return console.log(purchaseMoney);
+    if (!isValidPurchaseMoney(purchaseMoney)) {
+      return alert('문제!');
     }
-
-    alert('문제!')
+    this.lottoPurchaseResultView.renderLottoPurchaseCount(purchaseMoney / 1000);
+    this.lottoModel.setLottoList(purchaseMoney / 1000);
+    this.lottoPurchaseResultView.renderLottoPurchaseResult(
+      this.lottoModel.getLottoList()
+    );
   }
 }
