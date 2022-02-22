@@ -4,11 +4,22 @@ import { ID_SELECTOR } from '../constants.js';
 export default class LottoListView {
   constructor() {
     this.configureDOM();
+    this.onClickToggle();
   }
 
   configureDOM() {
     this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
     this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
+    this.$toggle = $(ID_SELECTOR.TOGGLE);
+    this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
+  }
+
+  onClickToggle() {
+    this.$toggle.addEventListener('click', e => {
+      const isChecked = this.$toggleInput.checked;
+      this.$toggleInput.checked = !isChecked;
+      this.$lottoLists.classList.toggle('unfold');
+    });
   }
 
   showDescription(quantity) {
