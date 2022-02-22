@@ -1,13 +1,3 @@
-// - [] 구입할 금액을 입력할 수 있어야 한다
-//   - [] 금액은 천 단위로 입력해야 한다
-//   - [] 금액은 빈값으로 입력할 수 없다
-//   - [] 금액은 음수를 입력할 수 없다
-// - [] 구입한 로또 금액만큼 로또를 발급할 수 있어야 한다
-//   - [] 발급 후 로또의 번호를 볼 수 없다
-//   - [] 로또 한장의 가격은 1000원이다
-//   - [] 로또의 번호는 자동으로 정해진다
-//   - [] 로또의 번호는 중복없이 1이상 45이하이다
-// - [] 구입한 로또 금액만큼 로또 개수를 확인할 수 있어야 한다
 // - [] 번호 보기 토글 버튼을 클릭해 로또 번호를 볼 수 있어야 한다.
 
 // e2e 테스트
@@ -16,10 +6,7 @@
 // })
 
 // unit 테스트
-//   - [] 금액은 천 단위로 입력해야 한다 (validation)
-//   - [] 금액은 빈값으로 입력할 수 없다 (validation)
-//   - [] 금액은 음수를 입력할 수 없다 (validation)
-//   - [] 로또 번호 생성 함수
+// [] 로또 번호 생성 함수
 import {
   isDividedByThousand,
   isEmptyValue,
@@ -44,3 +31,29 @@ test('금액은 양의 정수를 입력해야한다', () => {
   purchaseMoney = 0;
   expect(isPositiveValue(purchaseMoney)).toBe(false);
 })
+
+
+function generateLotto() {
+  const lottoNum = new Set();
+
+  while (lottoNum.size < 6) {
+    lottoNum.add(generateRandomNum());
+  }
+
+  return lottoNum;
+}
+
+function generateRandomNum() {
+  return Math.floor(Math.random() * (45 - 2)) + 1;
+}
+
+// [] 로또 번호 생성 함수
+test('구입한 로또 금액만큼 로또 개수를 확인할 수 있어야 한다', () => {
+  const lottoCount = 4;
+  const lottoResult = Array.from({ length: lottoCount }).map(() => generateLotto());
+  const isCorrectLottoLength = lottoResult.every((result) => result.size === 6);
+
+  expect(lottoResult).toHaveLength(lottoCount);
+  expect(isCorrectLottoLength).toBe(true);
+})
+
