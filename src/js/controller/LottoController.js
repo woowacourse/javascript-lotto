@@ -1,10 +1,12 @@
 import LottoModel from '../model/LottoModel.js';
 import ResultView from '../view/resultView.js';
+import InputView from '../view/inputView.js';
 
 export default class LottoController {
   constructor() {
     this.model = new LottoModel();
     this.resultView = new ResultView();
+    this.inputView = new InputView();
   }
 
   init() {
@@ -45,6 +47,7 @@ export default class LottoController {
       const lottoCount = this.model.getLottoCount();
       this.resultView.renderResult(lottoCount);
       this.initAfterRenderResult();
+      this.inputView.renderWinningNumbersInput();
     } catch (err) {
       alert(err);
     }
