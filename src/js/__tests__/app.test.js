@@ -1,10 +1,9 @@
-// ### 1단계 기능목록
-// - [ ] 랜덤한 번호를 6개 생성할 수 있어야 한다.
-// - [ ] 번호 6개를 가진 로또를 발급할 수 있다.
-// - [ ] 계산된 로또개수만큼 로또를 자동 구매할 수 있어야 한다.
-
 import LottoApp from '../LottoApp.js';
 import validator from '../utils/validator.js';
+
+function isValidLottoNumberRange(value) {
+  return 1 <= value && value <= 45;
+}
 
 describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -48,5 +47,15 @@ describe('금액이 입력되면', () => {
         '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
       );
     });
+  });
+});
+
+describe('로또 번호를 생성하여', () => {
+  test('생성된 로또 번호가 정수여야한다.', () => {
+    expect(Number.isInteger(LottoApp.generateLottoNumber())).toBe(true);
+  });
+
+  test('생성된 로또 번호가 1부터 45 사이여야 한다.', () => {
+    expect(isValidLottoNumberRange(LottoApp.generateLottoNumber())).toBe(true);
   });
 });
