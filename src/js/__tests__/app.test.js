@@ -1,4 +1,5 @@
 import LottoNumbers from '../LottoNumbers.js';
+import Lotto from '../Lotto.js';
 import LottoApp from '../LottoApp.js';
 import { getLottoNumberList, getLottoNumber } from '../utils/lottoUtils.js';
 import { validator, isValidLottoNumberRange, isValidlottoNumbers } from '../utils/validator.js';
@@ -58,12 +59,6 @@ describe('로또 번호를 생성하여', () => {
   });
 });
 
-/**lotto
- * 숫자 6개 들어있다
- * 지난 주 숫자들과 비교
- **/
-
-// 6개의 번호를 가진 로또를 발급할 수 있다.
 describe('새로운 로또를 발급하여', () => {
   test('6개의 로또번호를 가져야한다.', () => {
     const lottoApp = new LottoApp();
@@ -74,5 +69,18 @@ describe('새로운 로또를 발급하여', () => {
     }
 
     expect(isValidLotto(lotto)).toBe(true);
+  });
+});
+
+describe('주어진 개수만큼', () => {
+  test('로또를 자동 구매할 수 있어야 한다.', () => {
+    const lottoCount = 6;
+    const lottoApp = new LottoApp();
+
+    lottoApp.issueLottoWithCount(lottoCount);
+
+    expect(
+      lottoApp.lottoList.length === 6 && lottoApp.lottoList.every((lotto) => lotto instanceof Lotto)
+    ).toBe(true);
   });
 });
