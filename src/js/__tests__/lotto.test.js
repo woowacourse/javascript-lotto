@@ -1,7 +1,5 @@
-import Lotto from "../domains/Lotto";
-
-const LOTTO_MIN_NUMBER = 1;
-const LOTTO_MAX_NUMBER = 45;
+import Lotto from "../domains/Lotto.js";
+import { LOTTO } from "../constants/constants.js";
 
 function isInRange(arr, min, max) {
   return arr.every((item) => item >= min && item <= max);
@@ -17,7 +15,7 @@ describe("로또 단위 테스트 ", () => {
   lotto.numbers = lotto.generateNumbers(lotto.generateRandomNumber);
 
   test("로또는 1부터 45번까지의 숫자들을 가진다.", () => {
-    expect(isInRange(lotto.numbers, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER)).toBe(
+    expect(isInRange(lotto.numbers, LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER)).toBe(
       true
     );
   });

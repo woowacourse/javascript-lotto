@@ -1,7 +1,4 @@
-const LOTTO_MAX_NUMBER = 45;
-const LOTTO_MIN_NUMBER = 1;
-const LOTTO_NUMBER_QUANTITY = 6;
-
+import { LOTTO } from "../constants/constants.js";
 export default class Lotto {
   #numbers = [];
 
@@ -15,7 +12,7 @@ export default class Lotto {
 
   generateNumbers(generateRandomNumber) {
     const set = new Set();
-    while (set.size < LOTTO_NUMBER_QUANTITY) {
+    while (set.size < LOTTO.NUMBER_QUANTITY) {
       set.add(generateRandomNumber());
     }
     return [...set];
@@ -30,7 +27,7 @@ export default class Lotto {
 
   generateRandomNumber() {
     return Math.floor(
-      Math.random() * (LOTTO_MAX_NUMBER - LOTTO_MIN_NUMBER) + LOTTO_MIN_NUMBER
+      Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) + LOTTO.MIN_NUMBER
     );
   }
 }
