@@ -1,7 +1,7 @@
-import Lotto from '../Lotto.js';
+import LottoNumbers from '../LottoNumbers.js';
 import LottoApp from '../LottoApp.js';
-import { getRandomIntList } from '../utils/utils.js';
-import { validator, isValidLottoNumberRange } from '../utils/validator.js';
+import { getLottoNumberList, getLottoNumber } from '../utils/lottoUtils.js';
+import { validator, isValidLottoNumberRange, isValidlottoNumbers } from '../utils/validator.js';
 
 describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -50,11 +50,11 @@ describe('금액이 입력되면', () => {
 
 describe('로또 번호를 생성하여', () => {
   test('생성된 로또 번호가 정수여야한다.', () => {
-    expect(Number.isInteger(LottoApp.generateLottoNumber())).toBe(true);
+    expect(Number.isInteger(getLottoNumber())).toBe(true);
   });
 
   test('생성된 로또 번호가 1부터 45 사이여야 한다.', () => {
-    expect(isValidLottoNumberRange(LottoApp.generateLottoNumber())).toBe(true);
+    expect(isValidLottoNumberRange(getLottoNumber())).toBe(true);
   });
 });
 
@@ -70,7 +70,7 @@ describe('새로운 로또를 발급하여', () => {
     const lotto = lottoApp.issueLotto();
 
     function isValidLotto(lotto) {
-      return undefined;
+      return isValidlottoNumbers(lotto.getNumbers());
     }
 
     expect(isValidLotto(lotto)).toBe(true);

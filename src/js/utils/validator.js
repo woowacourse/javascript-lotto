@@ -14,6 +14,15 @@ export function isValidLottoNumberRange(value) {
   return 1 <= value && value <= 45;
 }
 
+export function isValidlottoNumbers(lottoNumbers) {
+  return (
+    lottoNumbers.length === 6 &&
+    lottoNumbers.every(
+      (lottoNumber) => isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
+    )
+  );
+}
+
 export const validator = {
   checkChargeAmount: (chargeAmount) => {
     if (!isNumber(chargeAmount)) {
