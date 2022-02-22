@@ -1,15 +1,5 @@
 import Lotto from "./Lotto";
-
-function isValidCharge(charge) {
-  if (Number.isInteger(charge)) {
-    return charge >= 1000;
-  }
-  return false;
-}
-
-function getAvailableLottoAmount(charge) {
-  return Math.floor(charge / 1000);
-}
+import { isValidCharge, getRandomNumber } from "../utils/validator";
 
 class LottoGame {
   constructor() {
@@ -19,7 +9,9 @@ class LottoGame {
   createLottoList(availableLottoAmount) {
     for (let i = 0; i < availableLottoAmount; i++) {
       try {
-        this.lottoList.push(Lotto.create(this.createLottoNumbers()));
+        const lottoNumbers = this.createLottoNumbers();
+        const lotto = Lotto.create(lottoNumbers);
+        this.lottoList.push(lotto);
       } catch ({ message }) {
         console.log(message);
       }
@@ -27,16 +19,24 @@ class LottoGame {
   }
 
   createLottoNumbers() {
-    const lottoNumbers = [1, 2, 3, 4, 5, 6];
+    const lottoArray = new Set();
 
-    return lottoNumbers;
+    while (lottoArray.size < 6) {
+      lottoArray.add(getRandomNumber());
+    }
+
+    return [...lottoArray];
   }
 
   inputCharge(charge) {
     if (isValidCharge(charge)) {
-      return getAvailableLottoAmount(charge);
+      return this.getAvailableLottoAmount(charge);
     }
     throw new Error("금액은 1000원 이상이어야합니다.");
+  }
+
+  getAvailableLottoAmount(charge) {
+    return Math.floor(charge / 1000);
   }
 }
 
