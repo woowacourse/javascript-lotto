@@ -12,7 +12,7 @@
 UI
 
 - [x] html, css 작성 // TODO css style refactoring
-- [ ] dom 연결, test 연결
+- [x] 구매할 금액을 입력하고 구입버튼을 누르면 로또를 구매한다.
 - [ ] get user input
 - [ ] 번호 보기 토글 버튼을 클릭해 로또 번호를 볼 수 있어야 한다.
 - [ ] e2e
