@@ -1,4 +1,4 @@
-import { LottoGame } from '../LottoGame.js';
+import { LottoGame } from '../model/LottoGame.js';
 
 test('로또 구매 금액을 입력할 수 있다.', () => {
   const lottoGame = new LottoGame();
