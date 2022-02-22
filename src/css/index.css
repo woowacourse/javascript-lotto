@@ -1,0 +1,123 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  outline: none;
+}
+
+body {
+  width: 98vw;
+  height: 90vh;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.07);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 25vw;
+  min-width: 414px;
+  padding: 50px;
+
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.header-title {
+  font-size: 34px;
+  text-align: center;
+}
+
+#charge-input-form {
+  display: flex;
+  height: 36px;
+}
+
+#charge-input {
+  flex: 1;
+  margin-right: 20px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+button {
+  border-radius: 4px;
+  background-color: #00bcd4;
+  color: #ffffff;
+  border: 0;
+  min-height: 36px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+#display-lotto-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.lotto-wrapper {
+  flex: 1;
+}
+
+.lotto {
+  font-size: 34px;
+}
+
+.lotto .number {
+  font-size: 16px;
+}
+
+#lotto-container {
+  display: flex;
+}
+#lotto-container[data-align="horizon"] {
+  flex-direction: row;
+  gap: 10px;
+}
+
+#lotto-container[data-align="horizon"] .number {
+  display: none;
+}
+
+#lotto-container[data-align="vertical"] {
+  flex-direction: column;
+}
+#lotto-container[data-align="vertical"] .lotto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#align-converter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.win-number-input-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+#result-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.win-number-input-wrapper input {
+  width: 30px;
+  height: 30px;
+}
+
+.bonus-number-wrapper {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
