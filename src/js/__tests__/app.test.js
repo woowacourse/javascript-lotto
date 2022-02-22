@@ -12,7 +12,19 @@
 import LottoApp from '../LottoApp.js';
 
 function checkIsValidChargeAmount(chargeAmount) {
-  return undefined;
+  if (typeof chargeAmount !== 'number') {
+    throw new Error('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
+  }
+  if (chargeAmount % 1000) {
+    throw new Error(
+      '입력된 금액이 1000으로 나누어 떨어지지 않습니다. 1000으로 나누어 떨어지는 금액을 입력해주세요.'
+    );
+  }
+  if (chargeAmount < 1000 || chargeAmount > 10000) {
+    throw new Error(
+      '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
+    );
+  }
 }
 
 describe('1단계 기능목록', () => {
