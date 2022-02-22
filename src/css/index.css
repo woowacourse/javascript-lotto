@@ -73,12 +73,19 @@ span {
 }
 
 #ticket-container {
-  display: grid;
   width: 414px;
   grid-template-columns: 4fr 1fr;
   padding: 16px;
   box-sizing: border-box;
   grid-row-gap: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: grid;
 }
 
 #ticket-container > label {

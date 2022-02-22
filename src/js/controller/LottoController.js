@@ -1,12 +1,14 @@
 import LottoBundle from '../model/LottoBundle.js';
 import { $ } from '../utils/selector.js';
 import { validateMoney } from '../validator/moneyValidator.js';
+import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
 
 export default class LottoController {
   constructor() {
     this.model = new LottoBundle();
     this.purchaseView = new PurchaseView();
+    this.issuedTicketView = new IssuedTicketView();
   }
 
   init() {
@@ -31,6 +33,7 @@ export default class LottoController {
       this.model.createLottoBundle(count);
       console.log(this.model.lottos);
       // TODO : 구매한 lotto들을 보여준다. (view)
+      this.issuedTicketView.renderTicketContainer();
     } catch (error) {
       alert(error.message);
     }
