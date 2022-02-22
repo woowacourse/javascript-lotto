@@ -1,5 +1,6 @@
 import { $ } from './utils/dom.js';
 import { getLottoPrice, checkLottoPrice } from './core/checkInputValue.js';
+import { makeLottos } from './core/playLotto.js';
 export default class App {
   constructor() {
     this.lottoPrice = 0;
@@ -21,6 +22,7 @@ export default class App {
     }
     this.lottoPrice = lottoPrice;
     $('.lotto-price-input').disabled = true;
+    makeLottos(this.lottoPrice / 1000);
   }
 }
 
