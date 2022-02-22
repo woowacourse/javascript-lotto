@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  font-size: 34px;
+}
+
+#app {
+  width: 414px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#lotto-price-form {
+  margin-top: 40px;
+}
+
+#lotto-price-input {
+  width: 310px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  padding-left: 8px;
+}
+
+#lotto-price-button {
+  width: 56px;
+  height: 36px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn {
+  background: #00bcd4;
+  color: white;
+}
