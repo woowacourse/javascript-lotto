@@ -21,13 +21,13 @@
         <form class="lotto-money-form">
           <label for="lotto-money-input">구입할 금액을 입력해주세요.</label>
           <div class="lotto-money-input-container">
-            <input min="0" name="lotto-money-input" type="number" placeholder="금액" />
+            <input min="0" id="lotto-money-input" name="lotto-money-input" type="number" placeholder="금액" />
             <button id="lotto-purchase-button" class="btn">구입</button>
           </div>
         </form>
       </section>
       
-      <section>
+      <section class="lotto-list-section">
         <h2 hidden>로또 번호 목록</h2>
 
         <div class="lotto-title">
@@ -37,7 +37,7 @@
 
         <div class="lotto-list-container">
             <div class="lotto-item-container">
-              <div class="item">🎟️</div>
+              <div class="item"><span>🎟️</span> <span>1,2,3,4,5</span></div>
               <div class="item">🎟️</div>
               <div class="item">🎟️</div>
               <div class="item">🎟️</div>
@@ -49,7 +49,7 @@
             </div>
 
             <div>
-              <div class="lotto-number-toggle" data-state="off"></div>
+              <div id="lotto-number-toggle" data-state="off"></div>
             </div>
         </div>
 
@@ -83,7 +83,7 @@
       </section>
     </main>
   </div>
-  <script type="module" src="./src/js/index.js"></script>
+  <script type="module" src="./src/index.js"></script>
 </body>
 
 </html>

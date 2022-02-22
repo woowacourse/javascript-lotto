@@ -62,13 +62,13 @@ header {
   padding: 0.5rem 0;
 }
 
-.lotto-number-toggle {
+#lotto-number-toggle {
   position: relative;
   width: 100%;
   height: 1.5rem;
 }
 
-.lotto-number-toggle::before {
+#lotto-number-toggle::before {
   position: absolute;
   top: 0.15rem;
   display: block;
@@ -80,7 +80,7 @@ header {
   transition: background-color ease 0.3s;
 }
 
-.lotto-number-toggle::after {
+#lotto-number-toggle::after {
   position: absolute;
   top: 0px;
   display: block;
@@ -93,11 +93,11 @@ header {
   transition: transform ease 0.3s, background-color ease 0.3s;
 }
 
-.lotto-number-toggle[data-state='on']::before {
+#lotto-number-toggle[data-state='on']::before {
   background-color: #80deea;
 }
 
-.lotto-number-toggle[data-state='on']::after {
+#lotto-number-toggle[data-state='on']::after {
   background-color: #00bcd4;
   transform: translateX(100%);
 }
