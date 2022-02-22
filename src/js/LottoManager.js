@@ -10,7 +10,7 @@ export default class LottoManager {
   }
 
   issueLottoWithCount(count) {
-    return Array(count)
+    this.lottoList = Array(count)
       .fill()
       .map(() => LottoManager.issueLotto());
   }

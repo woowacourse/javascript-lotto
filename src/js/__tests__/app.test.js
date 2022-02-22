@@ -73,9 +73,10 @@ describe('새로운 로또를 발급하여', () => {
 describe('주어진 개수만큼', () => {
   test('로또를 자동 구매할 수 있어야 한다.', () => {
     const lottoCount = 6;
-    const LottoManager = new LottoManager();
-    const lottoList = LottoManager.issueLottoWithCount(lottoCount);
+    const lottoManager = new LottoManager();
 
-    expect(isValidLottoList(lottoList, lottoCount)).toBe(true);
+    lottoManager.issueLottoWithCount(lottoCount);
+
+    expect(isValidLottoList(lottoManager.lottoList, lottoCount)).toBe(true);
   });
 });
