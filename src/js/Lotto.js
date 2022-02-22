@@ -1,4 +1,4 @@
-import { createRandomNumberList } from './app.js';
+import { createRandomNumberList } from './utils.js';
 
 export default class Lotto {
   constructor() {
