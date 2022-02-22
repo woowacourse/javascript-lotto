@@ -1,0 +1,7 @@
+@import url('reset.css');
+
+#app {
+  width: 414px;
+  height: 727px;
+  border: 2px solid black;
+}
