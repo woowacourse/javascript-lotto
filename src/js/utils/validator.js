@@ -1,4 +1,4 @@
-import { NUMBER } from "../constants/number";
+import { NUMBER } from '../constants/number';
 
 export function isValidLength(lottoNumber) {
   return lottoNumber.length === NUMBER.LOTTO_NUMBER_LENGTH;

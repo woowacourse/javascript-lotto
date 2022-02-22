@@ -1,5 +1,5 @@
-import { isValidNumber, isValidLength } from "../utils/validator";
-import { ERROR_MESSAGE } from "../constants/errorMessage";
+import { isValidNumber, isValidLength } from '../utils/validator';
+import { ERROR_MESSAGE } from '../constants/errorMessage';
 
 class Lotto {
   constructor(lottoNumbers) {
