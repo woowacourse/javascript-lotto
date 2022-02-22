@@ -10,7 +10,11 @@ function isValidChargeAmountRange(chargeAmount) {
   return chargeAmount >= 1000 && chargeAmount <= 10000;
 }
 
-const validator = {
+export function isValidLottoNumberRange(value) {
+  return 1 <= value && value <= 45;
+}
+
+export const validator = {
   checkChargeAmount: (chargeAmount) => {
     if (!isNumber(chargeAmount)) {
       throw new Error('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
@@ -29,5 +33,3 @@ const validator = {
     }
   },
 };
-
-export default validator;

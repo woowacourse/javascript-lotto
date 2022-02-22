@@ -1,9 +1,5 @@
 import LottoApp from '../LottoApp.js';
-import validator from '../utils/validator.js';
-
-function isValidLottoNumberRange(value) {
-  return 1 <= value && value <= 45;
-}
+import { validator, isValidLottoNumberRange } from '../utils/validator.js';
 
 describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
