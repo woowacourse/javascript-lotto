@@ -78,19 +78,19 @@ section {
 #lotto-container {
   display: flex;
 }
-#lotto-container[data-align='horizon'] {
+#lotto-container[data-visible-state='false'] {
   flex-direction: row;
   gap: 10px;
 }
 
-#lotto-container[data-align='horizon'] .number {
+#lotto-container[data-visible-state='false'] .number {
   display: none;
 }
 
-#lotto-container[data-align='vertical'] {
+#lotto-container[data-visible-state='true'] {
   flex-direction: column;
 }
-#lotto-container[data-align='vertical'] .lotto {
+#lotto-container[data-visible-state='true'] .lotto {
   display: flex;
   align-items: center;
   gap: 10px;

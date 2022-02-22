@@ -1,6 +1,7 @@
 import LottoGameModel from './models/LottoGame';
 import { SELECTOR } from './constants/selector';
 import LottoGameView from './views';
+import { findElement } from './utils/elementSelector';
 
 class LottoGameManager {
   constructor() {}
@@ -11,9 +12,9 @@ class LottoGameManager {
   }
 
   #initializeDOM() {
-    this.$chargeForm = document.querySelector(SELECTOR.CHARGE_INPUT_FORM);
-    this.$chargeInput = document.querySelector(SELECTOR.CHARGE_INPUT);
-    this.$alignConverter = document.querySelector(SELECTOR.ALIGN_CONVERTER);
+    this.$chargeForm = findElement(SELECTOR.CHARGE_INPUT_FORM);
+    this.$chargeInput = findElement(SELECTOR.CHARGE_INPUT);
+    this.$alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
   }
 
   #initializeHandler() {
@@ -39,7 +40,7 @@ class LottoGameManager {
 
   onChangeAlignState = (e) => {
     const { checked } = this.$alignConverter;
-    this.lottoGameView.renderAlignState(checked ? 'vertical' : 'horizon');
+    this.lottoGameView.renderAlignState(checked);
   };
 
   start() {

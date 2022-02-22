@@ -1,10 +1,13 @@
+import { SELECTOR } from '../constants/selector';
+import { findElement } from '../utils/elementSelector';
+
 class LottoGameView {
   constructor() {
     this.#initializeDOM();
   }
   #initializeDOM() {
-    this.$purchasedMessage = document.querySelector('#purchased-message');
-    this.$lottoContainer = document.querySelector('#lotto-container');
+    this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
+    this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
   }
 
   renderLottoSection(lottoList) {
@@ -18,9 +21,8 @@ class LottoGameView {
       .join('');
   }
 
-  renderPurchasedMessage(length) {
-    console.log(length);
-    this.$purchasedMessage.innerText = `총 ${length}개를 구매하였습니다.`;
+  renderPurchasedMessage(lottoAmount) {
+    this.$purchasedMessage.innerText = `총 ${lottoAmount}개를 구매하였습니다.`;
   }
 
   generateLottoTemplate({ lottoNumbers }) {
@@ -30,8 +32,8 @@ class LottoGameView {
       </div>`;
   }
 
-  renderAlignState(alignState) {
-    this.$lottoContainer.setAttribute('data-align', alignState);
+  renderAlignState(visibleState) {
+    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
   }
 }
 export default LottoGameView;
