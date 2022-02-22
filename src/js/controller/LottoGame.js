@@ -1,10 +1,13 @@
+import Lotto from "../model/Lotto.js";
+import LottoResult from "../views/LottoResult.js";
 import { $ } from "../utils/dom.js";
-import { ERROR_MESSAGES, SELECTOR } from "../utils/constants.js";
+import { ERROR_MESSAGES, SELECTOR, AMOUNT_UNIT } from "../utils/constants.js";
 import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
 
 export default class LottoGame {
   constructor() {
     this.lottos = [];
+    this.view = new LottoResult();
   }
   bindEvents() {
     $(SELECTOR.PURCHASE_FORM).addEventListener("submit", this.handlePurchaseSubmit.bind(this));
@@ -17,9 +20,19 @@ export default class LottoGame {
       alert(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
       return;
     }
-    if (!isValidAmountUnit(value)) {
+    if (!isValidAmountUnit(Number(value))) {
       alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
       return;
+    }
+    const lottoTicketCount = Math.floor(value / AMOUNT_UNIT);
+    this.makeLottoTicket(lottoTicketCount);
+    this.view.renderPurchaseInfomation(lottoTicketCount);
+  }
+
+  makeLottoTicket(count) {
+    for (let i = 0; i < count; i += 1) {
+      const lo = new Lotto();
+      lo.makeRandomNumber();
     }
   }
 }
