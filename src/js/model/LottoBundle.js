@@ -1,4 +1,4 @@
-import Lotto from './Lotto';
+import Lotto from './Lotto.js';
 
 export default class LottoBundle {
   constructor() {

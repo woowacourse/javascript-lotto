@@ -1,10 +1,10 @@
-import Lotto from '../Lotto';
-import LottoBundle from '../LottoBundle';
+import Lotto from '../model/Lotto';
+import LottoBundle from '../model/LottoBundle';
 
 describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
   test('입력받는 구입 금액은 1,000원 단위로 입력되어야 한다', () => {
-    const is1000Unit = (money) => money % 1000 === 0;
-    expect(is1000Unit(2000)).toBe(true);
+    const isThousandUnit = (money) => money % 1000 === 0;
+    expect(isThousandUnit(2000)).toBe(true);
   });
 
   test('입력받는 구입 금액은 1,000원 이상이어야 한다.', () => {
