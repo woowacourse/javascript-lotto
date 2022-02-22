@@ -19,6 +19,8 @@ export default class Lotto {
     while (this.#pickedNumber.length !== 6) {
       this.pushNumberIntoPickedNumber(getRandomNumber(1, 45));
     }
+
+    return this;
   }
 
   get pickedNumber() {
