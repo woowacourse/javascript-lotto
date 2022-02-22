@@ -6,12 +6,91 @@
   <title>🎱 행운의 로또</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-
 <body>
   <div id="app">
-    <h1>🎱 행운의 로또</h1>
+    <h1 class="app-title">🎱 행운의 로또</h1>
+    <section class="cash-input-section">
+      <label for="cash-input">구입할 금액을 입력해주세요.</label>
+      <div class="cash-input-container">
+        <input class="cash-input" type="number" name="cash-input" placeholder="금액"/>
+        <button class="cash-input-button">구입</button>
+      </div>
+    </section>
+    <section class="purchased-lotto-section">
+      <div>
+        <label>총 7개를 구매하였습니다.</label>
+        <div class="lotto-number-container">
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+          <div class="lotto">
+            <p class="lotto-image">🎟️</p>
+            <p class="lotto-numbers hide">12, 28, 22, 37, 19, 23</p>
+          </div>
+        </div>
+      </div>
+      <div class="show-number-toggle-container">
+        <label>번호 보기</label>
+        <input type="checkbox"/>
+      </div>
+    </section>
+    <section class="winner-number-section">
+      <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+      <form class="winner-number-input-form">
+        <fieldset class="winner-number-input-container">
+          <legend>당첨 번호</legend>
+          <input type="number" class="winner-number-input" data-order="one">
+          <input type="number" class="winner-number-input">
+          <input type="number" class="winner-number-input">
+          <input type="number" class="winner-number-input">
+          <input type="number" class="winner-number-input">
+          <input type="number" class="winner-number-input">
+        </fieldset>
+        <fieldset class="bonus-number-input-container">
+          <legend>보너스 번호</legend>
+          <input type="number" class="bonus-number-input">
+        </fieldset>
+      </form>
+      <button class="result-button">결과 확인하기</button>
+    </section>
   </div>
-  <script type="module" src="./src/js/index.js"></script>
 </body>
 
 </html>
