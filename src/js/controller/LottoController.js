@@ -1,8 +1,10 @@
 import LottoModel from '../model/LottoModel.js';
+import ResultView from '../view/resultView.js';
 
 export default class LottoController {
   constructor() {
     this.model = new LottoModel();
+    this.resultView = new ResultView();
   }
 
   init() {
@@ -25,7 +27,8 @@ export default class LottoController {
 
     const { value } = this.$lottoPriceInput;
     try {
-      this.model.setLottoCount(value);
+      const lottoCount = this.model.getLottoCount(value);
+      this.resultView.renderResult(lottoCount);
     } catch (err) {
       alert(err);
     }

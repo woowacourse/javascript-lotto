@@ -1,11 +1,7 @@
 export default class LottoModel {
-  constructor() {
-    this.lottoCount = 0;
-  }
-
-  setLottoCount(value) {
+  getLottoCount(value) {
     this.checkValidLottoCount(value);
-    this.lottoCount = value / 1000;
+    return value / 1000;
   }
 
   checkValidLottoCount(value) {
