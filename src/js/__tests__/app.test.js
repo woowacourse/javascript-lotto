@@ -27,7 +27,7 @@ test('구매를 할 수 있다.', () => {
   expect(lottoGame.lottoWallet.length).toBe(3);
 });
 
-test('로또 번호를 자동으로 생성한다.', () => {
+test('로또 번호를 중복없이 자동으로 생성한다.', () => {
   const lottoGame = new LottoGame();
   lottoGame.insertMoney(1000);
   lottoGame.buyLotto();

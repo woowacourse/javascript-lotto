@@ -4,10 +4,13 @@ export class Lotto {
   }
 
   makeNumbers() {
-    for (let i = 0; i < 7; i++) {
-      this.numbers.push(this.getRandomInt(1, 45));
+    const temp = new Set();
+    while (temp.size < 7) {
+      temp.add(this.getRandomInt(1, 45));
     }
+    this.numbers = Array.from(temp);
   }
+
   getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
