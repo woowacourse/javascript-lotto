@@ -1,5 +1,5 @@
 export default class Lotto {
-  constructor() {
-    this.numbers = [];
+  constructor(numbers) {
+    this.numbers = numbers;
   }
 }
