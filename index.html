@@ -8,11 +8,13 @@
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
-      <form class="purchase__form">
-        <label for="" class="purchase__description">구입할 금액을 입력해주세요.</label>
+      <form id="purchase-form" class="purchase__form">
+        <label for="purchase-input" class="purchase__description"
+          >구입할 금액을 입력해주세요.</label
+        >
         <div class="purchase__input-container">
           <input
-            id=""
+            id="purchase-input"
             class="purchase__input"
             placeholder="금액"
             type="number"
@@ -24,16 +26,16 @@
       </form>
       <section class="lotto-list__section">
         <header class="lotto-list__header">
-          <h4 class="lotto-list__title">총 7개를 구매하였습니다.</h4>
+          <h4 id="lotto-list-description" class="lotto-list__description"></h4>
           <div class="lotto-list__toggle-container">
             <span class="lotto-list__toggle-description">번호 보기</span>
-            <span class="switch">
-              <input type="checkbox" class="lotto-list__toggle-input" checked />
+            <span id="toggle" class="toggle">
+              <input type="checkbox" id="toggle-input" class="lotto-list__toggle-input" checked />
               <label class="slider round"></label>
             </span>
           </div>
         </header>
-        <ul class="lotto-lists opened unfold">
+        <ul id="lotto-lists" class="lotto-lists opened unfold">
           <li class="lotto-list">
             <span class="lotto-list__ticket"></span>
             <span class="lotto-list__numbers">12, 28, 22, 37, 19, 23</span>

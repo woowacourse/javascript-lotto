@@ -94,7 +94,7 @@ h1 {
   justify-content: space-between;
 }
 
-.lotto-list__title {
+.lotto-list__description {
   font-size: 15px;
   font-weight: 400;
 }
@@ -105,8 +105,8 @@ h1 {
   position: relative;
 }
 
-/* The switch - the box around the slider */
-.switch {
+/* The toggle - the box around the slider */
+.toggle {
   position: absolute;
   display: inline-block;
   bottom: -29px;
@@ -114,7 +114,7 @@ h1 {
 }
 
 /* Hide default HTML checkbox */
-.switch .lotto-list__toggle-input {
+.toggle .lotto-list__toggle-input {
   opacity: 0;
   width: 0;
   height: 0;
