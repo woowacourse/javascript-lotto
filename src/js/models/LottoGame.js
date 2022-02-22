@@ -1,19 +1,21 @@
 import Lotto from "./Lotto";
 import { isValidCharge, getRandomNumber } from "../utils/validator";
-
+import { ERROR_MESSAGE } from "../constants/errorMessage";
 class LottoGameModel {
   constructor() {
     this.lottoList = [];
   }
 
-  createLottoList(availableLottoAmount) {
+  createLottoList(chargeInput) {
+    const availableLottoAmount = this.inputCharge(chargeInput);
+
     for (let i = 0; i < availableLottoAmount; i++) {
       try {
         const lottoNumbers = this.createLottoNumbers();
         const lotto = Lotto.create(lottoNumbers);
         this.lottoList.push(lotto);
       } catch ({ message }) {
-        console.log(message);
+        alert(message);
       }
     }
   }
@@ -32,7 +34,7 @@ class LottoGameModel {
     if (isValidCharge(charge)) {
       return this.getAvailableLottoAmount(charge);
     }
-    throw new Error("금액은 1000원 이상이어야합니다.");
+    throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
   }
 
   getAvailableLottoAmount(charge) {

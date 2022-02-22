@@ -1,4 +1,5 @@
 import { isValidNumber, isValidLength } from "../utils/validator";
+import { ERROR_MESSAGE } from "../constants/errorMessage";
 
 class Lotto {
   constructor(lottoNumbers) {
@@ -9,7 +10,7 @@ class Lotto {
     if (isValidNumber(lottoNumbers) && isValidLength(lottoNumbers)) {
       return new Lotto(lottoNumbers);
     }
-    throw new Error("잘못된 입력 값");
+    throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_IS_INVALIDATE);
   }
 
   lottoScore(winNumber) {}

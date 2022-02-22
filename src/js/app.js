@@ -1,4 +1,6 @@
 import LottoGameModel from "./models/LottoGame";
+import { SELECTOR } from "./constants/selector";
+
 class LottoGameManager {
   constructor() {}
 
@@ -7,9 +9,9 @@ class LottoGameManager {
   }
 
   #initializeDOM() {
-    this.$chargeForm = document.querySelector("#charge-input-form");
-    this.$chargeInput = document.querySelector("#charge-input");
-    this.$alignConverter = document.querySelector("#align-converter");
+    this.$chargeForm = document.querySelector(SELECTOR.CHARGE_INPUT_FORM);
+    this.$chargeInput = document.querySelector(SELECTOR.CHARGE_INPUT);
+    this.$alignConverter = document.querySelector(SELECTOR.ALIGN_CONVERTER);
   }
 
   #initializeHandler() {
@@ -21,10 +23,12 @@ class LottoGameManager {
     try {
       const { value: chargeInputStr } = this.$chargeInput;
       const chargeInput = Number(chargeInputStr);
-      const availableLottoAmount = this.lottoGameModel.inputCharge(chargeInput);
-      this.lottoGameModel.createLottoList(availableLottoAmount);
-    } catch (error) {
-      alert(error.message);
+      // 모델을 변경했다.
+      this.lottoGameModel.createLottoList(chargeInput);
+
+      // 뷰를 변경한다.
+    } catch ({ message }) {
+      alert(message);
     }
   };
 
