@@ -6,6 +6,10 @@ class LottoGameModel {
     this.lottoList = [];
   }
 
+  getLottoList() {
+    return this.lottoList;
+  }
+
   createLottoList(chargeInput) {
     const availableLottoAmount = this.inputCharge(chargeInput);
 

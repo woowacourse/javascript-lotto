@@ -1,11 +1,13 @@
 import LottoGameModel from './models/LottoGame';
 import { SELECTOR } from './constants/selector';
+import LottoGameView from './views';
 
 class LottoGameManager {
   constructor() {}
 
   #initializeGame() {
     this.lottoGameModel = new LottoGameModel();
+    this.lottoGameView = new LottoGameView();
   }
 
   #initializeDOM() {
@@ -27,6 +29,8 @@ class LottoGameManager {
       this.lottoGameModel.createLottoList(chargeInput);
 
       // 뷰를 변경한다.
+      const lottoList = this.lottoGameModel.getLottoList();
+      this.lottoGameView.renderLottoList(lottoList);
     } catch ({ message }) {
       alert(message);
     }

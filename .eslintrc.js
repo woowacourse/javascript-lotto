@@ -8,7 +8,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     /** spread eslint error  */
-    ecmaVersion: '2018',
+    ecmaVersion: '13',
   },
   rules: {
     'no-var': 'error',
