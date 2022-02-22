@@ -14,7 +14,7 @@ export const isValueDivideThousand = value => {
 
 describe('사용자의 입력값을 테스트', () => {
   test('사용자가 입력한 로또 금액값이 Number 타입인지 확인한다', () => {
-    const value = ['', 'ss'];
+    const value = ['', 'ss', '%@%'];
     value.forEach(item => {
       expect(isValueTypeNumber(item)).toBe(false);
     });
