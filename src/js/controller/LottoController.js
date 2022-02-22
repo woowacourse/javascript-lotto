@@ -1,5 +1,9 @@
+import LottoModel from '../model/LottoModel.js';
+
 export default class LottoController {
-  constructor() {}
+  constructor() {
+    this.model = new LottoModel();
+  }
 
   init() {
     this.initDOMs();
@@ -20,6 +24,10 @@ export default class LottoController {
     event.preventDefault();
 
     const { value } = this.$lottoPriceInput;
-    console.log(value);
+    try {
+      this.model.setLottoCount(value);
+    } catch (err) {
+      alert(err);
+    }
   }
 }
