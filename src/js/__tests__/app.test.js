@@ -20,18 +20,12 @@
 //   - [] 금액은 빈값으로 입력할 수 없다 (validation)
 //   - [] 금액은 음수를 입력할 수 없다 (validation)
 //   - [] 로또 번호 생성 함수
+import {
+  isDividedByThousand,
+  isEmptyValue,
+  isPositiveValue,
+} from '../utils/validator.js';
 
-function isDividedByThousand(purchaseMoney) {
-  return purchaseMoney % 1000 === 0;
-}
-
-function isEmptyValue(purchaseMoney) {
-  return !!purchaseMoney;
-}
-
-function isPositiveValue(purchaseMoney) {
-  return purchaseMoney > 0;
-}
 test('금액은 천 단위로 입력해야 한다', () => {
   const purchaseMoney = 3000;
 
@@ -41,7 +35,7 @@ test('금액은 천 단위로 입력해야 한다', () => {
 test('금액은 빈값으로 입력할 수 없다 ', () => {
   const purchaseMoney = '';
 
-  expect(isEmptyValue(purchaseMoney)).toBe(false);
+  expect(isEmptyValue(purchaseMoney)).toBe(true);
 });
 
 test('금액은 양의 정수를 입력해야한다', () => {
