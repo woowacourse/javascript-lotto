@@ -1,10 +1,12 @@
+import Lotto from './Lotto.js';
+
 export default class Lottos {
   constructor() {
     this.init();
   }
 
   init() {
-    console.log('Test Lottos');
+    this.lottoList = null;
   }
 
   getLottos() {
@@ -13,5 +15,10 @@ export default class Lottos {
 
   setLottos(lottos) {
     this.lottos = lottos;
+  }
+
+  makeLottos(count) {
+    const newLottos = [...Array(count)].map(() => new Lotto());
+    this.setLottos(newLottos);
   }
 }
