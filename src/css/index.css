@@ -153,3 +153,16 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.align-row {
+  display: inline-block;
+}
+
+.align-column {
+  display: block;
+}
+
+.ticket-icon {
+  font-size: 34px;
+  margin: 0 8px 0 0;
+}

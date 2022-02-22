@@ -1,3 +1,4 @@
+import { ticketTemplate } from '../layouts/template.js';
 import { $, $$ } from '../utils/selector.js';
 
 export default class IssuedTicketView {
@@ -18,7 +19,19 @@ export default class IssuedTicketView {
   }
 
   //   - [ ] 로또 구입 버튼을 누르면, 구매한 티켓의 수를 보여준다.
-  renderTicketCount() {}
+  renderTicketCount(count) {
+    this.$ticketCount.textContent = count;
+  }
+
+  renderTicketIcon(lottos) {
+    let template = '';
+
+    lottos.forEach((lotto) => {
+      template += ticketTemplate(lotto.numbers);
+    });
+
+    this.$issuedTicketContainer.innerHTML = template;
+  }
 }
 
 // - [ ] 렌더링 (IssuedTicketView)

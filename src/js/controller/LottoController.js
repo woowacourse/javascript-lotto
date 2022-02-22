@@ -32,8 +32,9 @@ export default class LottoController {
       const count = money / 1000;
       this.model.createLottoBundle(count);
       console.log(this.model.lottos);
-      // TODO : 구매한 lotto들을 보여준다. (view)
       this.issuedTicketView.renderTicketContainer();
+      this.issuedTicketView.renderTicketCount(count);
+      this.issuedTicketView.renderTicketIcon(this.model.lottos);
     } catch (error) {
       alert(error.message);
     }
