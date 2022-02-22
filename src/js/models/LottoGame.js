@@ -27,6 +27,10 @@ class LottoGameModel {
     }
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
   }
+
+  getAvailableLottoAmount(charge) {
+    return Math.floor(charge / 1000);
+  }
 }
 
 export default LottoGameModel;
