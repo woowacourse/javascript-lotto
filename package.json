@@ -17,7 +17,10 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.6.0",
     "eslint-config-prettier": "^8.4.0",
+<<<<<<< HEAD
     "gh-pages": "^3.2.3",
+=======
+>>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "style-loader": "^3.3.1",

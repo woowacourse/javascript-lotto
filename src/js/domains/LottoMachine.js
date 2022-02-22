@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -42,6 +43,10 @@ export default class LottoMachine {
 =======
 import Lotto from "../domains/Lotto.js";
 >>>>>>> e00c8b0 (feat: 로또 기계가 투입금액에서 로또 가격을 나눈 개수만큼의 로또를 발급하도록 구현)
+=======
+import { LOTTO } from '../constants/constants.js';
+import Lotto from '../domains/Lotto.js';
+>>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -51,7 +56,14 @@ export default class LottoMachine {
   }
 
   set inputMoney(money) {
+    this.validateMoney(money);
     this.#inputMoney = money;
+  }
+
+  validateMoney(money) {
+    if (!this.isValidInputMoney(money)) {
+      throw new Error(`${LOTTO.PRICE}단위로 입력해주세요`);
+    }
   }
 
   get lottos() {
@@ -60,6 +72,10 @@ export default class LottoMachine {
 
   set lottos(lottos) {
     this.#lottos = lottos;
+  }
+
+  isValidInputMoney(money) {
+    return money % LOTTO.PRICE === 0;
   }
 
   operateLottoMachine() {

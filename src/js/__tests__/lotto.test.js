@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Lotto from "../domains/Lotto.js";
 import { LOTTO } from "../constants/constants.js";
 import { isInRange, isDuplicated } from "../validations/utils.js";
@@ -24,6 +25,10 @@ const LOTTO_MAX_NUMBER = 45;
 import Lotto from "../domains/Lotto.js";
 import { LOTTO } from "../constants/constants.js";
 >>>>>>> 0d4f4f9 (refactor: 로또 관련 상수 결합)
+=======
+import Lotto from '../domains/Lotto.js';
+import { LOTTO } from '../constants/constants.js';
+>>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
 
 function isInRange(arr, min, max) {
   return arr.every((item) => item >= min && item <= max);
@@ -34,22 +39,26 @@ function isDuplicated(arr) {
   return set.size === arr.length;
 }
 
-describe("로또 단위 테스트 ", () => {
+describe('로또 단위 테스트 ', () => {
   const lotto = new Lotto();
   lotto.numbers = lotto.generateNumbers(lotto.generateRandomNumber);
 
+<<<<<<< HEAD
   test("로또는 1부터 45번까지의 숫자들을 가진다.", () => {
 <<<<<<< HEAD
     expect(isInRange(lotto.numbers, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER)).toBe(
 >>>>>>> f98c3df (feat: 로또 숫자 생성 함수 구현)
 =======
+=======
+  test('로또는 1부터 45번까지의 숫자들을 가진다.', () => {
+>>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
     expect(isInRange(lotto.numbers, LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER)).toBe(
 >>>>>>> 0d4f4f9 (refactor: 로또 관련 상수 결합)
       true
     );
   });
 
-  test("로또는 총 6개의 숫자를 가진다.", () => {
+  test('로또는 총 6개의 숫자를 가진다.', () => {
     expect(lotto.numbers).toHaveLength(6);
   });
 <<<<<<< HEAD
@@ -57,7 +66,7 @@ describe("로또 단위 테스트 ", () => {
 =======
 >>>>>>> 57f94ab (feat: 로또의 각 숫자들은 중복되지 않도록 구현)
 
-  test("로또의 각 숫자들은 중복되지 않는다.", () => {
+  test('로또의 각 숫자들은 중복되지 않는다.', () => {
     expect(isDuplicated(lotto.numbers)).toBe(true);
   });
 <<<<<<< HEAD

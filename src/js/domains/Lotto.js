@@ -1,6 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
+=======
+import { LOTTO } from '../constants/constants.js';
+>>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
 export default class Lotto {
   #numbers = [];
 
