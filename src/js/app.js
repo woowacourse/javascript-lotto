@@ -5,3 +5,11 @@ export const isPositiveInteger = (payment) => {
 
   return true;
 };
+
+export const isDivisibleBy = (payment, quotient) => {
+  if (payment % quotient !== 0) {
+    throw new Error('error');
+  }
+
+  return parseInt(payment / quotient);
+};
