@@ -1,0 +1,259 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#input-container {
+  display: flex;
+  padding: 10px;
+  width: 70%;
+  flex-direction: column;
+}
+
+#input-space {
+  width: 80%;
+  height: 36px;
+  left: 0px;
+  top: 28px;
+}
+
+#input-button {
+  padding: 6px;
+  width: 15%;
+  background: #00bcd4;
+  border-radius: 4px;
+}
+
+#input-button-area {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+#lottery-status-container {
+  display: grid;
+  padding: 10px;
+  width: 70%;
+  flex-direction: column;
+  grid-template-areas:
+    'nl nl nl nl nl nl nl tg'
+    'ic ic ic ic ic ic ic sw';
+}
+#lottery-number-label {
+  grid-area: nl;
+}
+
+.lotto-icons {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  grid-area: ic;
+}
+.toggle {
+  grid-area: tg;
+}
+
+#winning-lottery-input-container {
+  display: grid;
+  padding: 10px;
+  width: 70%;
+  grid-gap: 3px;
+
+  grid-template-areas:
+    'hd hd hd hd hd hd hd hd'
+    'hd2 hd2 .  .  .  .  . hd3'
+    'wn1 wn2 wn3 wn4 wn5 wn6 . wn7'
+    'cr cr cr cr cr cr cr cr';
+}
+#header1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  grid-area: hd;
+  padding: 5px;
+}
+#header2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  grid-area: hd2;
+  padding: 5px;
+}
+#header3 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  grid-area: hd3;
+  padding: 5px;
+}
+#winning-number1 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn1;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#winning-number2 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn2;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#winning-number3 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn3;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#winning-number4 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn4;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#winning-number5 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn5;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#winning-number6 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn6;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+#winning-number7 {
+  height: 35px;
+  width: 35px;
+  grid-area: wn7;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+#confirm-result {
+  grid-area: cr;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px;
+  width: 100%;
+  background: #00bcd4;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+/* 토글 버튼 */
+.switch {
+  grid-area: sw;
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 21px;
+  top: 5px;
+  left: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 2.5px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+button {
+  align-items: center;
+  justify-content: center;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  border-radius: 10px;
+  border-color: #00bcd4;
+
+  cursor: pointer;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
