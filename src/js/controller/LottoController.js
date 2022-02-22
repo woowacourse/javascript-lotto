@@ -1,3 +1,5 @@
+import { validateMoney } from '../validator/moneyValidator';
+
 export default class LottoController {
   constructor() {
     this.bindEvents();
@@ -11,8 +13,7 @@ export default class LottoController {
     const money = this.view.getMoneyToPurchase();
 
     try {
-      // validate
-      // 유효성 검사 -> bool
+      validateMoney(money);
       // model 금액 저장
       // view 보여줘라
     } catch (error) {}
