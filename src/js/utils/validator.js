@@ -1,3 +1,5 @@
+import Lotto from '../Lotto.js';
+
 function isNumber(value) {
   return !isNaN(value);
 }
@@ -21,6 +23,14 @@ export function isValidlottoNumbers(lottoNumbers) {
       (lottoNumber) => isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
     )
   );
+}
+
+export function isValidLotto(lotto) {
+  return isValidlottoNumbers(lotto.getNumbers());
+}
+
+export function isValidLottoList(lottoList, count) {
+  return lottoList.length === count && lottoList.every((lotto) => lotto instanceof Lotto);
 }
 
 export const validator = {

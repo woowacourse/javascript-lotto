@@ -1,14 +1,17 @@
-import LottoNumbers from '../LottoNumbers.js';
-import Lotto from '../Lotto.js';
-import LottoApp from '../LottoApp.js';
-import { getLottoNumberList, getLottoNumber } from '../utils/lottoUtils.js';
-import { validator, isValidLottoNumberRange, isValidlottoNumbers } from '../utils/validator.js';
+import LottoManager from '../LottoManager.js';
+import { getLottoNumber } from '../utils/lottoUtils.js';
+import {
+  validator,
+  isValidLottoNumberRange,
+  isValidLottoList,
+  isValidLotto,
+} from '../utils/validator.js';
 
 describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
     const chargeAmount = 2000;
 
-    expect(LottoApp.getNumberOfLotto(chargeAmount)).toBe(2);
+    expect(LottoManager.getNumberOfLotto(chargeAmount)).toBe(2);
   });
 
   describe('유효성을 검증하여', () => {
@@ -61,12 +64,7 @@ describe('로또 번호를 생성하여', () => {
 
 describe('새로운 로또를 발급하여', () => {
   test('6개의 로또번호를 가져야한다.', () => {
-    const lottoApp = new LottoApp();
-    const lotto = lottoApp.issueLotto();
-
-    function isValidLotto(lotto) {
-      return isValidlottoNumbers(lotto.getNumbers());
-    }
+    const lotto = LottoManager.issueLotto();
 
     expect(isValidLotto(lotto)).toBe(true);
   });
@@ -75,12 +73,9 @@ describe('새로운 로또를 발급하여', () => {
 describe('주어진 개수만큼', () => {
   test('로또를 자동 구매할 수 있어야 한다.', () => {
     const lottoCount = 6;
-    const lottoApp = new LottoApp();
+    const LottoManager = new LottoManager();
+    const lottoList = LottoManager.issueLottoWithCount(lottoCount);
 
-    lottoApp.issueLottoWithCount(lottoCount);
-
-    expect(
-      lottoApp.lottoList.length === 6 && lottoApp.lottoList.every((lotto) => lotto instanceof Lotto)
-    ).toBe(true);
+    expect(isValidLottoList(lottoList, lottoCount)).toBe(true);
   });
 });
