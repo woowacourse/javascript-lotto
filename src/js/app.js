@@ -6,10 +6,10 @@ export const isPositiveInteger = (payment) => {
   return true;
 };
 
-export const isDivisibleBy = (payment, quotient) => {
-  if (payment % quotient !== 0) {
+export const isDivisibleBy = (payment, price) => {
+  if (payment % price !== 0) {
     throw new Error('error');
   }
 
-  return parseInt(payment / quotient);
+  return parseInt(payment / price);
 };

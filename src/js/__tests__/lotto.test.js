@@ -24,16 +24,16 @@ test('구입 금액은 양의 정수이다. 성공 케이스', () => {
 
 test('구입 금액이 1000으로 나누어 떨어진다. 실패 케이스', () => {
   const payment = 33;
-  const quotient = 1000;
+  const lottoPrice = 1000;
 
   expect(() => {
-    isDivisibleBy(payment, quotient);
+    isDivisibleBy(payment, lottoPrice);
   }).toThrowError();
 });
 
 test('구입 금액이 1000으로 나누어 떨어진다. 성공 케이스', () => {
   const payment = 3000;
-  const quotient = 1000;
+  const lottoPrice = 1000;
 
-  expect(isDivisibleBy(payment, quotient)).toBe(3);
+  expect(isDivisibleBy(payment, lottoPrice)).toBe(3);
 });
