@@ -10,22 +10,7 @@
 // - [ ] 계산된 로또개수만큼 로또를 자동 구매할 수 있어야 한다.
 
 import LottoApp from '../LottoApp.js';
-
-function checkIsValidChargeAmount(chargeAmount) {
-  if (typeof chargeAmount !== 'number') {
-    throw new Error('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
-  }
-  if (chargeAmount % 1000) {
-    throw new Error(
-      '입력된 금액이 1000으로 나누어 떨어지지 않습니다. 1000으로 나누어 떨어지는 금액을 입력해주세요.'
-    );
-  }
-  if (chargeAmount < 1000 || chargeAmount > 10000) {
-    throw new Error(
-      '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-    );
-  }
-}
+import validator from '../utils/validator.js';
 
 describe('1단계 기능목록', () => {
   test('금액이 주어지면 발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -38,7 +23,7 @@ describe('1단계 기능목록', () => {
     const chargeAmount = '만원';
 
     expect(() => {
-      checkIsValidChargeAmount(chargeAmount);
+      validator.checkChargeAmount(chargeAmount);
     }).toThrowError('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
   });
 
@@ -46,7 +31,7 @@ describe('1단계 기능목록', () => {
     const chargeAmount = 1001;
 
     expect(() => {
-      checkIsValidChargeAmount(chargeAmount);
+      validator.checkChargeAmount(chargeAmount);
     }).toThrowError(
       '입력된 금액이 1000으로 나누어 떨어지지 않습니다. 1000으로 나누어 떨어지는 금액을 입력해주세요.'
     );
@@ -57,13 +42,13 @@ describe('1단계 기능목록', () => {
     const secondChargeAmount = 11000;
 
     expect(() => {
-      checkIsValidChargeAmount(firstChargeAmount);
+      validator.checkChargeAmount(firstChargeAmount);
     }).toThrowError(
       '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
     );
 
     expect(() => {
-      checkIsValidChargeAmount(secondChargeAmount);
+      validator.checkChargeAmount(secondChargeAmount);
     }).toThrowError(
       '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
     );
