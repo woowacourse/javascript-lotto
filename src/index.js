@@ -1,2 +1,3 @@
 import "./css/index";
-import "./js/app";
+import RacingGameManager from "./js/app";
+export default new RacingGameManager().start();

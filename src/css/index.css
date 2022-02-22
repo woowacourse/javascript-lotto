@@ -13,6 +13,7 @@ body {
   height: 90vh;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.07);
+  font-family: "NanumBarunGothic", sans-serif;
 
   display: flex;
   justify-content: center;

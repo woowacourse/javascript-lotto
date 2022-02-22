@@ -1,7 +1,7 @@
 import Lotto from "./Lotto";
 import { isValidCharge, getRandomNumber } from "../utils/validator";
 
-class LottoGame {
+class LottoGameModel {
   constructor() {
     this.lottoList = [];
   }
@@ -40,4 +40,4 @@ class LottoGame {
   }
 }
 
-export default LottoGame;
+export default LottoGameModel;
