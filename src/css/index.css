@@ -1,0 +1,209 @@
+@import url('reset.css');
+
+:root {
+  --primary: #00bcd4;
+  --lighten: #80deea;
+}
+
+body {
+  background: #f9f9f9;
+}
+
+#app {
+  box-sizing: border-box;
+  width: 430px;
+  min-height: 727px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 52px 16px 40px;
+}
+
+#lotto-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+#charge-submit-form {
+  margin-bottom: 28px;
+}
+
+.blue-button {
+  box-sizing: border-box;
+  height: 36px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+#charge-input-wrap {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#charge-input {
+  box-sizing: border-box;
+  width: 80%;
+  height: 100%;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 0px 8px;
+}
+
+#charge-submit-button {
+  width: 56px;
+  height: 100%;
+}
+
+.normal-text {
+  display: block;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 8px;
+}
+
+#purchased-ticket-section,
+#winner-number-input-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+#purchased-ticket-section {
+  margin-bottom: 32px;
+}
+
+#purchased-ticket-container {
+  width: 80%;
+}
+
+.ticket {
+  font-weight: 600;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+#ticket-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 36px;
+}
+
+#ticket-list li {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+.ticket-number {
+  margin: 0 0 0 8px;
+}
+
+#winner-number-input-wrap {
+  margin-bottom: 24px;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.winner-number-input {
+  box-sizing: border-box;
+  width: 34px;
+  height: 36px;
+  padding: 0px 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.winner-number-input::-webkit-outer-spin-button,
+.winner-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#check-result-button {
+  width: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+#show-number-toggle {
+  mix-blend-mode: normal;
+  opacity: 0.38;
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 14px;
+  margin-top: 7px;
+}
+
+#show-number-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(33, 33, 33, 0.08);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 7px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  top: -3px;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+
+  background: #ededed;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12),
+    0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: var(--lighten);
+}
+
+input:checked + .slider:before {
+  background: var(--primary);
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+}
