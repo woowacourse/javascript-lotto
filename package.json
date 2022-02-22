@@ -25,6 +25,7 @@
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "testMatch": ["**/*.spec.[jt]s?(x)", "**/*.test.[jt]s?(x)"]
   }
 }
