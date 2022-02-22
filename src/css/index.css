@@ -1,0 +1,35 @@
+@import './reset.css';
+@import './purchaseMoney.css';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5e5e5;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 414px;
+  height: 727px;
+  padding: 0 16px;
+  background: #ffffff;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  /* identical to box height, or 106% */
+
+  text-align: center;
+
+  color: #000000;
+
+  margin: 52px 0 16px;
+}

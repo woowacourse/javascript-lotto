@@ -1,0 +1,43 @@
+#purchase-money-container {
+  height: 64px;
+}
+
+#purchase-money-container label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  color: rgba(0, 0, 0, 0.87);
+}
+
+form > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#purchase-money-input {
+  width: 290px;
+  height: 32px;
+  border: 1px solid #8b8b8b;
+  border-radius: 4px;
+  padding-left: 7px;
+}
+
+#purchase-money-input::placeholder {
+  color: #8b8b8b;
+}
+
+#purchase-money-button {
+  width: 56px;
+  height: 36px;
+  font-size: 14px;
+  background: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

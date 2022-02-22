@@ -1,5 +1,5 @@
-import Lotto from './model/Lotto';
-import LottoGame from './controller/LottoGame';
+import Lotto from './model/Lotto.js';
+import LottoGame from './controller/LottoGame.js';
 
 export default class App {
   constructor() {
