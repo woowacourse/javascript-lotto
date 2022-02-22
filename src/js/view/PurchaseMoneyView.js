@@ -5,13 +5,15 @@ export default class PurchaseMoneyView {
 
   initDom() {
     this.form = document.getElementById('purchase-money-form');
+    this.input = document.getElementById('purchase-money-input');
   }
 
   addSubmitEvent(submitHandler) {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
 
-      submitHandler();
+      const money = this.input.value;
+      submitHandler(money);
     });
   }
 }

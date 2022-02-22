@@ -4,6 +4,14 @@ export default class Lotto {
   }
 
   init() {
-    console.log('Test');
+    this.numberList = [];
+  }
+
+  getList() {
+    return this.numberList;
+  }
+
+  setList(numberList) {
+    this.numberList = numberList;
   }
 }

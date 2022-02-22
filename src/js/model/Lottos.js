@@ -1,6 +1,5 @@
 export default class Lottos {
   constructor() {
-    this.lottos = [];
     this.init();
   }
 
