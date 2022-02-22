@@ -18,6 +18,7 @@ export default class LottoController {
     this.$lottoPriceForm = document.querySelector('#lotto-price-form');
     this.$lottoPriceInput = document.querySelector('#lotto-price-input');
     this.$lottoPriceButton = document.querySelector('#lotto-price-button');
+    this.$result = document.querySelector('#result');
   }
 
   bindEvent() {
@@ -35,6 +36,7 @@ export default class LottoController {
 
   bindEventAfterRenderResult() {
     this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
+    this.$result.addEventListener('click', this.clickCheckResultButtonHandler.bind(this));
   }
 
   submitLottoPriceHandler(event) {
@@ -53,13 +55,26 @@ export default class LottoController {
     }
   }
 
-  changeCheckBoxHandler(event) {
-    const { target } = event;
+  changeCheckBoxHandler({ target }) {
     if (target.checked) {
       const lottos = this.model.getLottos();
       this.resultView.renderLottos(lottos);
       return;
     }
     this.resultView.initLottos();
+  }
+
+  clickCheckResultButtonHandler({ target }) {
+    if (target.id !== 'check-result-button') return;
+
+    const $winningNumberInputs = document.querySelectorAll('.winning-number-input');
+    const $bonusNumberInput = document.querySelector('.bonus-number-input');
+
+    const winnerNumberArray = Array.from($winningNumberInputs).map(($winningNumberInput) =>
+      Number($winningNumberInput.value),
+    );
+    const bonusNumber = $bonusNumberInput.value;
+
+    this.model.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
   }
 }
