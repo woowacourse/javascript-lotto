@@ -155,7 +155,7 @@ input:checked + .slider:before {
 }
 
 .align-row {
-  display: inline-block;
+  display: flex;
 }
 
 .align-column {
@@ -165,4 +165,9 @@ input:checked + .slider:before {
 .ticket-icon {
   font-size: 34px;
   margin: 0 8px 0 0;
+  vertical-align: middle;
+}
+
+.ticket-container {
+  margin: 0 0 8px 0;
 }

@@ -20,6 +20,10 @@ export default class LottoController {
       'submit',
       this.purchaseFormHandler.bind(this),
     );
+    $('#lotto-number-toggle').addEventListener(
+      'click',
+      this.toggleHandler.bind(this),
+    );
   }
 
   purchaseFormHandler(e) {
@@ -35,8 +39,17 @@ export default class LottoController {
       this.issuedTicketView.renderTicketContainer();
       this.issuedTicketView.renderTicketCount(count);
       this.issuedTicketView.renderTicketIcon(this.model.lottos);
+      this.issuedTicketView.hideTicketDetails();
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  toggleHandler(e) {
+    if (e.target.checked) {
+      this.issuedTicketView.showTicketDetails();
+      return;
+    }
+    this.issuedTicketView.hideTicketDetails();
   }
 }
