@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+}
+
+label {
+  display: block;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto-result-container {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+  font-size: 32px;
+  gap: 8px;
+}
+
+.winning-number-input {
+  width: 34px;
+  height: 36px;
+}
+
+#check-result-button {
+  width: 100%;
+}

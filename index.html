@@ -4,11 +4,54 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./src/css/index.css" />
   </head>
 
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
+      <form>
+        <label for="dsd">구입할 금액을 입력해주세요.</label>
+        <input id="dsd" type="number" placeholder="금액" />
+        <button type="submit">구입</button>
+      </form>
+      <section>
+        <h2 hidden>로또 구매 현황표시</h2>
+        <div class="space-between">
+          <span>총 -개를 구매하였습니다.</span><span>번호 보기</span>
+        </div>
+        <div class="space-between">
+          <div class="lotto-result-container">
+            <div>🎟️</div>
+            <div>🎟️</div>
+            <div>🎟️</div>
+            <div>🎟️</div>
+            <div>🎟️</div>
+            <div>🎟️</div>
+          </div>
+          <div><input type="checkbox" /></div>
+        </div>
+      </section>
+      <section>
+        <h2 hidden>당첨번호 입력</h2>
+        <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</span>
+        <div class="space-between">
+          <span>당첨 번호</span>
+          <span>보너스 번호</span>
+        </div>
+        <div class="space-between">
+          <div>
+            <input class="winning-number-input" type="number" />
+            <input class="winning-number-input" type="number" />
+            <input class="winning-number-input" type="number" />
+            <input class="winning-number-input" type="number" />
+            <input class="winning-number-input" type="number" />
+            <input class="winning-number-input" type="number" />
+          </div>
+          <input class="winning-number-input" type="number" />
+        </div>
+        <button id="check-result-button">결과 확인하기</button>
+      </section>
     </div>
     <script type="module" src="./src/index.js"></script>
   </body>
