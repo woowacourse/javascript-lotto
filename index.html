@@ -8,8 +8,15 @@
 
   <body>
     <div id="app">
-      <section>
-        <h1>🎱 행운의 로또</h1>
+      <section class="title-container">
+        <h1 class="lotto-title">🎱 행운의 로또</h1>
+      </section>
+      <section class="purchase-container">
+        <form class="purchase-form">
+          <label>구입할 금액을 입력해주세요.</label>
+          <input class="purchase-input" type="number" placeholder="구입 금액" />
+          <button class="purchase-button">구입</button>
+        </form>
       </section>
     </div>
     <script type="module" src="./src/js/index.js"></script>
