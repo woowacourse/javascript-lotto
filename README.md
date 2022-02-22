@@ -11,6 +11,11 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+## UI 구현
+
+- [ ] 피그마 양식에 따라 마크업 작성
+- [ ] 피그마 양식에 따라 css style 작성
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
@@ -26,7 +31,6 @@ npm run start
 ```
 npm run build
 ```
-
 
 <br>
 
