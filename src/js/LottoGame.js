@@ -1,6 +1,9 @@
+import { Lotto } from './Lotto.js';
+
 export class LottoGame {
   constructor() {
     this.moneyInput;
+    this.lottoWallet = [];
   }
 
   insertMoney(moneyInput) {
@@ -27,5 +30,11 @@ export class LottoGame {
 
   isMoneyInteger(input) {
     return Number.isInteger(input);
+  }
+
+  buyLotto() {
+    for (let i = 0; i * 1000 < this.moneyInput; i++) {
+      this.lottoWallet.push(new Lotto());
+    }
   }
 }
