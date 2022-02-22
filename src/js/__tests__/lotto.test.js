@@ -1,4 +1,9 @@
-import { isPositiveInteger, isDivisibleBy } from '../app.js';
+import {
+  isPositiveInteger,
+  isDivisibleBy,
+  createRandomNumber,
+  createRandomNumberList,
+} from '../app.js';
 
 test('구입 금액은 양의 정수이다. 실패 케이스', () => {
   const payment = -1;
