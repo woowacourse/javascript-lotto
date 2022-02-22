@@ -1,5 +1,5 @@
-import LottoGameModel from "./models/LottoGame";
-import { SELECTOR } from "./constants/selector";
+import LottoGameModel from './models/LottoGame';
+import { SELECTOR } from './constants/selector';
 
 class LottoGameManager {
   constructor() {}
@@ -15,7 +15,7 @@ class LottoGameManager {
   }
 
   #initializeHandler() {
-    this.$chargeForm.addEventListener("submit", this.onChargeInputFormSubmit);
+    this.$chargeForm.addEventListener('submit', this.onChargeInputFormSubmit);
   }
 
   onChargeInputFormSubmit = (e) => {

@@ -1,6 +1,6 @@
-import Lotto from "./Lotto";
-import { isValidCharge, getRandomNumber } from "../utils/validator";
-import { ERROR_MESSAGE } from "../constants/errorMessage";
+import Lotto from './Lotto';
+import { isValidCharge, getRandomNumber } from '../utils/validator';
+import { ERROR_MESSAGE } from '../constants/errorMessage';
 class LottoGameModel {
   constructor() {
     this.lottoList = [];
@@ -9,7 +9,7 @@ class LottoGameModel {
   createLottoList(chargeInput) {
     const availableLottoAmount = this.inputCharge(chargeInput);
 
-    for (let i = 0; i < availableLottoAmount; i++) {
+    for (let i = 0; i < availableLottoAmount; i = i + 1) {
       try {
         const lottoNumbers = this.createLottoNumbers();
         const lotto = Lotto.create(lottoNumbers);
