@@ -22,15 +22,41 @@ export default class LottoController {
     this.$lottoPriceForm.addEventListener('submit', this.submitLottoPriceHandler.bind(this));
   }
 
+  initAfterRenderResult() {
+    this.initDOMsAfterRenderResult();
+    this.bindEventAfterRenderResult();
+  }
+
+  initDOMsAfterRenderResult() {
+    this.$checkbox = document.querySelector('#view-checkbox');
+  }
+
+  bindEventAfterRenderResult() {
+    this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
+  }
+
   submitLottoPriceHandler(event) {
     event.preventDefault();
 
     const { value } = this.$lottoPriceInput;
     try {
-      const lottoCount = this.model.getLottoCount(value);
+      this.model.setLottoCount(value);
+      this.model.setLottos();
+      const lottoCount = this.model.getLottoCount();
       this.resultView.renderResult(lottoCount);
+      this.initAfterRenderResult();
     } catch (err) {
       alert(err);
     }
+  }
+
+  changeCheckBoxHandler(event) {
+    const { target } = event;
+    if (target.checked) {
+      const lottos = this.model.getLottos();
+      this.resultView.renderLottos(lottos);
+      return;
+    }
+    this.resultView.initLottos();
   }
 }

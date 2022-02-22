@@ -56,6 +56,8 @@ label {
 }
 
 #result-lotto {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 10px;
   font-size: 34px;
 }
@@ -106,4 +108,19 @@ label {
 
 .toggle-switch input[type='checkbox']:checked + label .toggle-track:after {
   left: 5px;
+}
+
+.checked {
+  flex-direction: column;
+}
+
+.lotto-numbers {
+  font-size: 15px;
+  margin-left: 15px;
+  line-height: 43px;
+}
+
+.lotto {
+  display: flex;
+  margin-right: 10px;
 }

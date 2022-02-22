@@ -1,7 +1,16 @@
 export default class LottoModel {
-  getLottoCount(value) {
+  constructor() {
+    this.lottoCount = 0;
+    this.lottos = [];
+  }
+
+  setLottoCount(value) {
     this.checkValidLottoCount(value);
-    return value / 1000;
+    this.lottoCount = value / 1000;
+  }
+
+  getLottoCount() {
+    return this.lottoCount;
   }
 
   checkValidLottoCount(value) {
@@ -21,4 +30,24 @@ export default class LottoModel {
   isOverThousand = (value) => value >= 1000;
 
   isNumber = (value) => value.match(/[0-9]/);
+
+  getRandomNumber = (min, max) => Math.floor(Math.random() * max + min);
+
+  getLottoNumbers() {
+    const lottoNumberSet = new Set();
+    while (lottoNumberSet.size < 6) {
+      lottoNumberSet.add(this.getRandomNumber(1, 45));
+    }
+    return [...lottoNumberSet];
+  }
+
+  setLottos() {
+    for (let i = 0; i < this.getLottoCount(); i += 1) {
+      this.lottos.push(this.getLottoNumbers());
+    }
+  }
+
+  getLottos() {
+    return this.lottos;
+  }
 }
