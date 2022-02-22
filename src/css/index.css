@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+button {
+  background-color: #00bcd4;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  padding: 8px;
+}
+
+#app {
+  margin: 50px auto;
+  width: 400px;
+  padding: 50px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.app-title {
+  text-align: center;
+}
+
+.cash-input-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cash-input-container {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.cash-input {
+  flex: 0.85;
+  padding: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.cash-input-button {
+  flex: 0.15;
+}
+
+.purchased-lotto-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.lotto-number-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0 5px;
+}
+
+.lotto-image {
+  font-size: 2rem;
+}
+
+.hide {
+  display: none;
+}
+
+.show-number-toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.winner-number-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  margin-bottom: 10px;
+}
+
+.winner-number-input-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winner-number-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.winner-number-input,
+.bonus-number-input {
+  width: 1.5rem;
+  font-size: 1.5rem;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.bonus-number-input-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.result-button {
+  width: 100%;
+}
