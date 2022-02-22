@@ -73,8 +73,12 @@ export default class LottoController {
     const winnerNumberArray = Array.from($winningNumberInputs).map(($winningNumberInput) =>
       Number($winningNumberInput.value),
     );
-    const bonusNumber = $bonusNumberInput.value;
+    const bonusNumber = Number($bonusNumberInput.value);
 
-    this.model.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
+    try {
+      this.model.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
+    } catch (err) {
+      alert(err);
+    }
   }
 }
