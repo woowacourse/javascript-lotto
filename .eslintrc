@@ -11,6 +11,7 @@
   "rules": {
     "prettier/prettier": ["error"],
     "max-depth": ["error", 1],
+    "import/extensions": "off",
     "max-lines-per-function": ["error", 15]
   }
 }
