@@ -82,7 +82,7 @@ header h1 {
 }
 
 .lotto-grid div {
-  padding-right: 8px;
+  padding-right: 3px;
 }
 
 .lotto-container {
@@ -146,7 +146,7 @@ header h1 {
 	background: #80DEEA;
 }
 
-h3 {
+h2 {
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -157,6 +157,7 @@ h3 {
 .winning-text-contatiner {
   display: flex;
   justify-content: space-between;
+  margin-top: 8px;
 }
 
 .winning-numbers {
