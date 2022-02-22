@@ -22,16 +22,6 @@ describe('1단계 기능목록', () => {
     expect(LottoApp.getNumberOfLotto(chargeAmount)).toBe(2);
   });
 
-  test('입력된 금액이 공백으로 이루어져 있으면 에러를 throw한다.', () => {
-    const chargeAmount = ' ';
-
-    expect(() => {
-      checkIsValidChargeAmount(chargeAmount);
-    }).toThrowError(
-      '입력된 금액이 공백으로 이루어져 있습니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-    );
-  });
-
   test('입력된 금액이 숫자가 아니면 에러를 throw한다.', () => {
     const chargeAmount = '만원';
 
@@ -40,8 +30,8 @@ describe('1단계 기능목록', () => {
     }).toThrowError('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
   });
 
-  test('1000으로 나눠서 안떨어지는 금액이 입려되면 에러를 throw한다.', () => {
-    const chargeAmount = '1001';
+  test('1000으로 나눠서 안떨어지는 금액이 입력되면 에러를 throw한다.', () => {
+    const chargeAmount = 1001;
 
     expect(() => {
       checkIsValidChargeAmount(chargeAmount);
@@ -51,8 +41,8 @@ describe('1단계 기능목록', () => {
   });
 
   test('입력된 금액이 1000부터 10000 사이가 아니면 에러를 throw한다.', () => {
-    const firstChargeAmount = '999';
-    const secondChargeAmount = '10001';
+    const firstChargeAmount = 0;
+    const secondChargeAmount = 11000;
 
     expect(() => {
       checkIsValidChargeAmount(firstChargeAmount);
