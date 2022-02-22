@@ -9,11 +9,13 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
-      <form>
-        <label for="dsd">구입할 금액을 입력해주세요.</label>
-        <input id="dsd" type="number" placeholder="금액" />
-        <button type="submit">구입</button>
+      <header>🎱 행운의 로또</header>
+      <form id="purchase-money-form">
+        <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
+        <div class="space-between">
+          <input id="purchase-money-input" type="number" placeholder="금액" />
+          <button id="purchase-money-button" type="submit">구입</button>
+        </div>
       </form>
       <section>
         <h2 hidden>로또 구매 현황표시</h2>
@@ -31,13 +33,42 @@
           </div>
           <div><input type="checkbox" /></div>
         </div>
-      </section>
-      <section>
-        <h2 hidden>당첨번호 입력</h2>
-        <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</span>
         <div class="space-between">
-          <span>당첨 번호</span>
-          <span>보너스 번호</span>
+          <div class="lotto-result-container">
+            <div class="items-center">
+              🎟️
+              <div class="lotto-numbers-container">1, 1, 1, 1, 1, 1</div>
+            </div>
+            <div class="items-center">
+              🎟️
+              <div class="lotto-numbers-container">12, 28, 17, 3, 16, 9</div>
+            </div>
+            <div class="items-center">
+              🎟️
+              <div class="lotto-numbers-container">12, 28, 17, 3, 16, 9</div>
+            </div>
+            <div class="items-center">
+              🎟️
+              <div class="lotto-numbers-container">12, 28, 17, 3, 16, 9</div>
+            </div>
+            <div class="items-center">
+              🎟️
+              <div class="lotto-numbers-container">12, 28, 17, 3, 16, 9</div>
+            </div>
+            <div class="items-center">
+              🎟️
+              <div class="lotto-numbers-container">12, 28, 17, 3, 16, 9</div>
+            </div>
+          </div>
+          <div><input type="checkbox" /></div>
+        </div>
+      </section>
+      <form id="winning-number-form">
+        <h2 hidden>당첨번호 입력</h2>
+        <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</label>
+        <div class="space-between">
+          <label>당첨 번호</label>
+          <label>보너스 번호</label>
         </div>
         <div class="space-between">
           <div>
@@ -50,8 +81,8 @@
           </div>
           <input class="winning-number-input" type="number" />
         </div>
-        <button id="check-result-button">결과 확인하기</button>
-      </section>
+        <button id="check-result-button" type="submit">결과 확인하기</button>
+      </form>
     </div>
     <script type="module" src="./src/index.js"></script>
   </body>

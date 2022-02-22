@@ -1,6 +1,26 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
   display: flex;
   justify-content: center;
+  margin: 0px;
+}
+
+button {
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 36px;
+}
+
+section {
+  width: 100%;
 }
 
 #app {
@@ -8,16 +28,36 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 420px;
+  width: 390px;
+  padding: 52px 16px;
+  gap: 32px;
+}
+
+header {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: -16px;
 }
 
 label {
   display: block;
+  text-align: start;
+  margin-bottom: 8px;
+}
+
+.items-center {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .space-between {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .lotto-result-container {
@@ -28,6 +68,19 @@ label {
   gap: 8px;
 }
 
+.lotto-result-container {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+  font-size: 32px;
+  gap: 8px;
+}
+
+.lotto-numbers-container {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
 .winning-number-input {
   width: 34px;
   height: 36px;
@@ -35,4 +88,34 @@ label {
 
 #check-result-button {
   width: 100%;
+}
+
+#purchase-money-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#purchase-money-input {
+  width: 310px;
+  height: 36px;
+}
+
+input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#purchase-money-button {
+  margin-top: 2px;
+  width: 56px;
+}
+
+#winning-number-form {
+  width: 100%;
+}
+
+#check-result-button {
+  margin-top: 24px;
 }
