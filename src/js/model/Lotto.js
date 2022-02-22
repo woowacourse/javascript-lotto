@@ -4,6 +4,7 @@ import { CONDITIONS } from '../constants/constants.js';
 export class Lotto {
   constructor() {
     this.numbers = [];
+    this.makeNumbers();
   }
 
   makeNumbers() {
