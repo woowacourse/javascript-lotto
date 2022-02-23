@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
   },
   extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  plugins: ['prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -22,6 +23,7 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': 'off',
-    'max-lines-per-function': ['error', { max: 15 }],
+    'max-lines-per-function': ['error', 20],
+    'max-depth': ['error', 1],
   },
 };
