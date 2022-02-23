@@ -1,33 +1,33 @@
+import { CASH_INPUT_RANGE, ERROR_MESSAGE, LOTTO_PRICE } from '../constants/constants';
+import { isNumberInRange } from '../utils/utils';
+
 class LottoManager {
   buyLotto(cashInput) {
+    this.lottoPrice = LOTTO_PRICE;
     try {
-      LottoManager.validateCashInput(cashInput);
-      // 뭔가 처리
+      this.#validateCashInput(Number(cashInput));
+      // todo: 로또 구매 구현
     } catch (error) {
       alert(error.message);
     }
   }
 
-  static validateCashInput(cashInput) {
-    if (!LottoManager.isValidCashInput(Number(cashInput))) {
-      throw new Error('1000원 단위, 1000-50000원 범위가 아님');
+  #validateCashInput(cashInput) {
+    if (!cashInput) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT_MESSAGE);
     }
-  }
-
-  static isNumberInRange({ number, min, max }) {
-    return number >= min && number <= max;
+    if (
+      !isNumberInRange({ number: cashInput, min: CASH_INPUT_RANGE.MIN, max: CASH_INPUT_RANGE.MAX })
+    ) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_MESSAGE);
+    }
+    if (!LottoManager.isNoChangeLeft(cashInput, this.lottoPrice)) {
+      throw new Error(ERROR_MESSAGE.INVALID_UNIT_MESSAGE);
+    }
   }
 
   static isNoChangeLeft(insertCash, price) {
     return insertCash % price === 0;
-  }
-
-  static isValidCashInput(cashInput) {
-    return (
-      !!cashInput &&
-      LottoManager.isNoChangeLeft(cashInput, 1000) &&
-      LottoManager.isNumberInRange({ number: cashInput, min: 1000, max: 50000 })
-    );
   }
 }
 
