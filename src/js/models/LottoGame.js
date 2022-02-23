@@ -13,7 +13,7 @@ class LottoGameModel {
   }
 
   createLottoList(chargeInput) {
-    const availableLottoAmount = this.inputCharge(chargeInput);
+    const availableLottoAmount = this.exchangeChargeToLottoAmount(chargeInput);
 
     for (let lottoCount = 0; lottoCount < availableLottoAmount; lottoCount = lottoCount + 1) {
       try {
@@ -36,15 +36,11 @@ class LottoGameModel {
     return [...lottoArray];
   }
 
-  inputCharge(charge) {
+  exchangeChargeToLottoAmount(charge) {
     if (isValidCharge(charge)) {
-      return this.getAvailableLottoAmount(charge);
+      return Math.floor(charge / NUMBER.LOTTO_PRICE);
     }
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
-  }
-
-  getAvailableLottoAmount(charge) {
-    return Math.floor(charge / NUMBER.LOTTO_PRICE);
   }
 }
 
