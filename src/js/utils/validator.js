@@ -1,24 +1,28 @@
 import Lotto from '../Model/Lotto/Lotto.js';
+import { LOTTO, ERROR_MESSAGE, PAYMENT } from './contants.js';
 
 function isNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
 function isDividedByThousand(value) {
-  return value % 1000 === 0;
+  return value % LOTTO.PRICE === 0;
 }
 
 function isValidChargeAmountRange(chargeAmount) {
-  return chargeAmount >= 1000 && chargeAmount <= 10000;
+  return (
+    chargeAmount >= PAYMENT.AMOUNT_RANGE.MIN &&
+    chargeAmount <= PAYMENT.AMOUNT_RANGE.MAX
+  );
 }
 
 export function isValidLottoNumberRange(value) {
-  return value >= 1 && value <= 45;
+  return value >= LOTTO.NUMBER_RANGE.MIN && value <= LOTTO.NUMBER_RANGE.MAX;
 }
 
 export function isValidlottoNumbers(lottoNumbers) {
   return (
-    lottoNumbers.length === 6 &&
+    lottoNumbers.length === LOTTO.NUMBER_LENGTH &&
     lottoNumbers.every(
       (lottoNumber) =>
         isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
@@ -40,21 +44,15 @@ export function isValidLottoList(lottoList, count) {
 export const validator = {
   checkChargeAmount: (chargeAmount) => {
     if (!isNumber(chargeAmount)) {
-      throw new Error(
-        '입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-      );
+      throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
     }
 
     if (!isDividedByThousand(chargeAmount)) {
-      throw new Error(
-        '입력된 금액이 1000으로 나누어 떨어지지 않습니다. 1000으로 나누어 떨어지는 금액을 입력해주세요.'
-      );
+      throw new Error(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
     }
 
     if (!isValidChargeAmountRange(chargeAmount)) {
-      throw new Error(
-        '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-      );
+      throw new Error(ERROR_MESSAGE.OUT_OF_AMOUNT_RANGE);
     }
   },
 };

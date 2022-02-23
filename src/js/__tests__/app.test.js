@@ -7,6 +7,7 @@ import {
   isValidLottoList,
   isValidLotto,
 } from '../utils/validator.js';
+import { ERROR_MESSAGE } from '../utils/contants.js';
 
 describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -22,9 +23,7 @@ describe('금액이 입력되면', () => {
 
       expect(() => {
         validator.checkChargeAmount(chargeAmount);
-      }).toThrowError(
-        '입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-      );
+      }).toThrowError(ERROR_MESSAGE.NOT_A_NUMBER);
     });
 
     test('1000으로 나눠서 안떨어지는 금액이 입력되면 에러를 throw한다.', () => {
@@ -32,9 +31,7 @@ describe('금액이 입력되면', () => {
 
       expect(() => {
         validator.checkChargeAmount(chargeAmount);
-      }).toThrowError(
-        '1000으로 나누어 떨어지지 않습니다. 1000으로 나누어 떨어지는 금액을 입력해주세요.'
-      );
+      }).toThrowError(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
     });
 
     test('1000부터 10000 사이가 아니면 에러를 throw한다.', () => {
@@ -43,15 +40,11 @@ describe('금액이 입력되면', () => {
 
       expect(() => {
         validator.checkChargeAmount(firstChargeAmount);
-      }).toThrowError(
-        '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-      );
+      }).toThrowError(ERROR_MESSAGE.OUT_OF_AMOUNT_RANGE);
 
       expect(() => {
         validator.checkChargeAmount(secondChargeAmount);
-      }).toThrowError(
-        '입력된 금액이 1000부터 10000 사이가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
-      );
+      }).toThrowError(ERROR_MESSAGE.OUT_OF_AMOUNT_RANGE);
     });
   });
 });

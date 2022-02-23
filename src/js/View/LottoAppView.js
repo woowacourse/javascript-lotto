@@ -1,7 +1,9 @@
 import View from '../core/View.js';
+import template from '../templates/template.js';
+
 import { $ } from '../utils/utils.js';
 import { validator } from '../utils/validator.js';
-import template from '../templates/template.js';
+import { SELECTOR } from '../utils/contants.js';
 
 export default class LottoAppView extends View {
   template() {
@@ -11,12 +13,11 @@ export default class LottoAppView extends View {
   }
 
   afterMounted() {
-    this.$paymentInput = $('#payment-input');
-    this.$paymentSubmit = $('#payment-submit');
+    this.$paymentInput = $(SELECTOR.PAYMENT_INPUT);
   }
 
   bindOnClickPaymentSubmit(callback) {
-    this.bindEventListener('click', '#payment-submit', () => {
+    this.bindEventListener('click', SELECTOR.PAYMENT_SUBMIT, () => {
       const amount = this.$paymentInput.valueAsNumber;
 
       try {
@@ -29,7 +30,7 @@ export default class LottoAppView extends View {
   }
 
   bindOnClickNumberToggle() {
-    this.bindEventListener('click', '#slider', () => {
+    this.bindEventListener('click', SELECTOR.SLIDER, () => {
       const { isShowNumber } = this.state;
       this.update({ isShowNumber: !isShowNumber });
     });

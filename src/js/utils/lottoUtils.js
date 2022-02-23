@@ -1,11 +1,12 @@
 import getRandomInt from './utils.js';
+import { LOTTO } from './contants.js';
 
 export function getLottoNumber() {
-  return getRandomInt(1, 45);
+  return getRandomInt(LOTTO.NUMBER_RANGE.MIN, LOTTO.NUMBER_RANGE.MAX);
 }
 
 export function getLottoNumberList() {
-  return Array(6)
+  return Array(LOTTO.NUMBER_LENGTH)
     .fill()
     .map(() => getLottoNumber());
 }
