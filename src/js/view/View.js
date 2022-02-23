@@ -13,11 +13,12 @@ export class View {
     this.moneyInput = document.getElementById('money-input');
   }
 
-  showLottos() {
+  showLottoStatusContainer() {
     this.lottoStatusContainer = document.getElementById('lotto-status-container');
-    this.winningLottoContainer = document.getElementById('winning-lotto-container');
-
     this.lottoStatusContainer.style.visibility = 'visible';
+  }
+  showWinningLottoContainer() {
+    this.winningLottoContainer = document.getElementById('winning-lotto-container');
     this.winningLottoContainer.style.visibility = 'visible';
   }
 
@@ -29,8 +30,7 @@ export class View {
     this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
   }
 
-  lottosDetail(lottoWallet) {
-    let text = '';
+  lottosToggleOn(lottoWallet) {
     const paddedLottoNumbers = [];
     lottoWallet.forEach((lotto) => {
       paddedLottoNumbers.push(lotto.numbers.map((x) => String(x).padStart(3, ' ')));
@@ -40,7 +40,16 @@ export class View {
       return `🎟️ ${padded}<br>`;
     });
 
-    console.log(lottoStatusString);
     this.lottoIcons.innerHTML = lottoStatusString.join('');
+  }
+
+  lottosToggleOff(lottoWallet) {
+    this.lottoIcons = document.getElementById('lotto-icons');
+    this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
+  }
+
+  clearMoneyInput() {
+    this.moneyInput.value = '';
+    this.moneyInput.focus();
   }
 }
