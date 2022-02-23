@@ -75,3 +75,15 @@ it('구입할 금액을 1000원 단위로 입력하지 않았을 경우 에러�
       cy.get('#payment-input').should('have.focus');
     });
 });
+
+it('구입할 금액을 조건에 맞게 입력한 후 구입 버튼을 누르면, 구입 버튼이 비활성화 된다.', () => {
+  cy.visit('/index.html');
+  const input = 3000;
+
+  cy.get('#payment-input').type(input);
+  cy.get('#payment-button')
+    .click()
+    .then(() => {
+      cy.get('#payment-button').should('be.disabled');
+    });
+});
