@@ -11,6 +11,7 @@
   "rules": {
     "no-param-reassign": ["error", { "props": false }],
     "implicit-arrow-linebreak": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "no-alert": "off"
   }
 }

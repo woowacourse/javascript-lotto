@@ -48,6 +48,18 @@ export default class LottoController {
     this.$checkbox.removeEventListener('change', this.changeCheckBoxHandler.bind(this));
   }
 
+  closePopupHandler() {
+    this.popupView.toggleMainContainerState();
+    this.popupView.closePopup();
+  }
+
+  initLottoGame() {
+    this.inputView.initLottoPriceInput();
+    this.resultView.initResult();
+    this.model.initGame();
+    this.unbindEvent();
+  }
+
   submitLottoPriceHandler(event) {
     event.preventDefault();
 
@@ -55,8 +67,8 @@ export default class LottoController {
     try {
       this.model.setLottoCount(value);
       this.model.setLottos(this.model.generateLottos());
-      const lottoCount = this.model.getLottoCount();
-      this.resultView.renderResult(lottoCount);
+
+      this.resultView.renderResult(this.model.getLottoCount());
       this.initAfterRenderResult();
       this.inputView.renderWinningNumbersInput();
     } catch (err) {
@@ -66,10 +78,10 @@ export default class LottoController {
 
   changeCheckBoxHandler({ target }) {
     if (target.checked) {
-      const lottos = this.model.getLottos();
-      this.resultView.renderLottos(lottos);
+      this.resultView.renderLottos(this.model.getLottos());
       return;
     }
+
     this.resultView.initLottos();
   }
 
@@ -86,9 +98,11 @@ export default class LottoController {
 
     try {
       this.model.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
-      const winningType = this.model.calculateWinningNumbers();
-      const earningRate = this.model.calculateEarningRate();
-      this.popupView.renderPopup(winningType, earningRate);
+
+      this.popupView.renderPopup(
+        this.model.calculateWinningNumbers(),
+        this.model.calculateEarningRate(),
+      );
       this.popupView.toggleMainContainerState();
     } catch (err) {
       alert(err);
@@ -97,18 +111,15 @@ export default class LottoController {
 
   clickClosePopupButtonHandler({ target }) {
     if (target.id !== 'close-popup-button') return;
+
     this.model.initWinningType();
-    this.popupView.toggleMainContainerState();
-    this.popupView.closePopup();
+    this.closePopupHandler();
   }
 
   clickRestartButtonHandler({ target }) {
     if (target.id !== 'restart-button') return;
-    this.popupView.toggleMainContainerState(); //중복 처리해야됨
-    this.popupView.closePopup();
-    this.inputView.initLottoPriceInput();
-    this.resultView.initResult();
-    this.model.initGame();
-    this.unbindEvent();
+
+    this.closePopupHandler();
+    this.initLottoGame();
   }
 }
