@@ -1,5 +1,7 @@
-const isEmpty = money => {
-  return money === '';
+import { ERROR_MESSAGE, RULES } from '../constants';
+
+const isZero = money => {
+  return money === 0;
 };
 
 const isNotNumber = money => {
@@ -7,20 +9,22 @@ const isNotNumber = money => {
 };
 
 const isNotUnitOfThousand = purchaseMoney => {
-  return purchaseMoney % 1000 !== 0 || purchaseMoney < 1000;
+  return (
+    purchaseMoney % RULES.LOTTO_PRICE !== 0 || purchaseMoney < RULES.LOTTO_PRICE
+  );
 };
 
 const invalidPurchaseMoney = purchaseMoney => {
-  if (isEmpty(purchaseMoney)) {
-    throw new Error('구입할 금액을 입력해 주세요.');
+  if (isZero(purchaseMoney)) {
+    throw new Error(ERROR_MESSAGE.ZERO_MONEY);
   }
 
   if (isNotNumber(purchaseMoney)) {
-    throw new Error('구입할 금액은 숫자여야 합니다.');
+    throw new Error(ERROR_MESSAGE.NOT_NUMBER_TYPE);
   }
 
   if (isNotUnitOfThousand(purchaseMoney)) {
-    throw new Error('구입할 금액의 단위는 1,000원 단위 입니다.');
+    throw new Error(ERROR_MESSAGE.NOT_UNIT_OF_THOUSAND);
   }
 };
 

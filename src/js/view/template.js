@@ -1,3 +1,5 @@
+import { RULES } from '../constants/index.js';
+
 const PURCHASED_LOTTO_TEMPLATE = `
   <div id="purchased-lotto-box">
     <p>
@@ -37,7 +39,7 @@ const LOTTO_NUMBER_FORM = `
       <div id="winning-number-box">
         <p>당첨 번호</p>
         <div class="input-box">
-          ${INPUT_ELEMENT.repeat(6)}
+          ${INPUT_ELEMENT.repeat(RULES.LOTTO_COUNT)}
         </div>
       </div>
       <div id="bonus-number-box">

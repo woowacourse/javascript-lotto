@@ -1,8 +1,13 @@
+import { RULES } from '../constants/index.js';
+
 const pickLottoNumber = n => {
   const lottos = new Set();
 
   while (lottos.size < n) {
-    const number = getRandomNumber(1, 45);
+    const number = getRandomNumber(
+      RULES.MIN_LOTTO_NUMBER,
+      RULES.MAX_LOTTO_NUMBER,
+    );
     lottos.add(number);
   }
 

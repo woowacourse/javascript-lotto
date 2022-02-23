@@ -1,4 +1,5 @@
 import { pickLottoNumber } from '../util/common.js';
+import { RULES } from '../constants/index.js';
 
 export default class Lotto {
   constructor() {
@@ -6,7 +7,7 @@ export default class Lotto {
   }
 
   init() {
-    this.numberList = pickLottoNumber(6);
+    this.numberList = pickLottoNumber(RULES.LOTTO_COUNT);
   }
 
   setList(numberList) {

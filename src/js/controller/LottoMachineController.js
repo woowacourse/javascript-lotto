@@ -1,5 +1,6 @@
 import Lottos from '../model/Lottos.js';
 import { invalidPurchaseMoney } from '../util/validator.js';
+import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import LottoNumberView from '../view/LottoNumberView.js';
@@ -24,13 +25,11 @@ export default class LottoMachineController {
   }
 
   rePurchase() {
-    return confirm(
-      '다시 구입하시면 이미 구입했던 로또는 사라집니다. 다시 구입하시겠습니까?',
-    );
+    return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
   }
 
   purchaseLotto(purchaseMoney) {
-    const lottoCount = purchaseMoney / 1000;
+    const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
     this.model.makeLottos(lottoCount);
 
     this.view.purchasedLottoView.render({
