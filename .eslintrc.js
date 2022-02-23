@@ -20,7 +20,4 @@ module.exports = {
       },
     ],
   },
-  globals: {
-    MissionUtils: 'readonly',
-  },
 };

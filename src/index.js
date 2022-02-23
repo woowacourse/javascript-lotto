@@ -1,2 +1,3 @@
-import "./css/index";
-import "./js/app";
+import runLottoGame from './js/app.js';
+
+runLottoGame();
