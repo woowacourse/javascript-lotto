@@ -1,0 +1,49 @@
+#align-converter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.converter {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+label[for='align-converter'] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.checkmark {
+  display: block;
+  position: relative;
+  margin-top: 1rem;
+  top: 0;
+  right: 0;
+  height: 14px;
+  width: 34px;
+  background-color: rgba(33, 33, 33, 0.08);
+  border-radius: 7px;
+}
+.converter:checked ~ .checkmark {
+  background-color: #80deea;
+}
+
+.checkmark .circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: absolute;
+  top: -3px;
+  transition: 0.2s transform;
+}
+.converter:checked ~ .checkmark .circle {
+  background-color: #00bcd4;
+  transform: translateX(70%);
+}
+.converter ~ .checkmark .circle {
+  background-color: #ededed;
+}

@@ -1,3 +1,5 @@
-import "./css/index";
-import RacingGameManager from "./js/app";
+import './css/index';
+import './css/converter';
+import './css/nanumbarungothic';
+import RacingGameManager from './js/app';
 export default new RacingGameManager().start();
