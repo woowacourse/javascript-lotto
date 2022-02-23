@@ -67,10 +67,17 @@ export default class LottoModel {
     return [...lottoNumberSet];
   }
 
-  setLottos() {
+  generateLottos() {
+    const lottos = [];
     for (let i = 0; i < this.getLottoCount(); i += 1) {
-      this.lottos.push(this.getLottoNumbers());
+      lottos.push(this.getLottoNumbers());
     }
+
+    return lottos;
+  }
+
+  setLottos(lottos) {
+    this.lottos = lottos;
   }
 
   getLottos() {
