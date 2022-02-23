@@ -1,3 +1,5 @@
+import { LOTTO_NUMBERS, ALERT_MESSAGE } from '../constants/index';
+
 export default class LottoModel {
   constructor() {
     this.lottoCount = 0;
@@ -17,7 +19,7 @@ export default class LottoModel {
 
   setLottoCount(value) {
     this.checkValidLottoCount(value);
-    this.lottoCount = value / 1000;
+    this.lottoCount = value / LOTTO_NUMBERS.THOUSAND;
   }
 
   getLottoCount() {
@@ -26,34 +28,37 @@ export default class LottoModel {
 
   checkValidLottoCount(value) {
     if (!this.isNumber(value)) {
-      throw Error('숫자를 입력하세요.');
+      throw Error(ALERT_MESSAGE.MUST_NUMBER);
     }
     if (!this.isOverThousand(value)) {
-      throw Error('1000원 이상을 입력해주세요.');
+      throw Error(ALERT_MESSAGE.OVER_THOUSAND_INPUT);
     }
     if (!this.isDividedThousand(value)) {
-      throw Error('1000으로 나누어 떨어지는 값을 입력해주세요');
+      throw Error(ALERT_MESSAGE.DIVIDED_BY_THOUSAND);
     }
   }
 
   checkValidWinningNumbers(value) {
     if (this.isOverRangeNumbers(value)) {
-      throw Error('1 ~ 45 사이의 숫자를 입력해주세요.');
+      throw Error(ALERT_MESSAGE.OUT_OF_BOUNDS);
     }
     if (this.isDuplicateWinningNumbers(value)) {
-      throw Error('중복되지 않은 숫자를 입력해주세요.');
+      throw Error(ALERT_MESSAGE.DUPLICATED_NUMBERS);
     }
   }
 
-  isDividedThousand = (value) => value % 1000 === 0;
+  isDividedThousand = (value) => value % LOTTO_NUMBERS.THOUSAND === 0;
 
-  isOverThousand = (value) => value >= 1000;
+  isOverThousand = (value) => value >= LOTTO_NUMBERS.THOUSAND;
 
   isNumber = (value) => value.match(/[0-9]/);
 
   isDuplicateWinningNumbers = (value) => [...new Set(value)].length !== value.length;
 
-  isOverRangeNumbers = (value) => value.some((elem) => elem > 45 || elem < 1);
+  isOverRangeNumbers = (value) =>
+    value.some(
+      (elem) => elem > LOTTO_NUMBERS.MAX_LOTTO_NUMBER || elem < LOTTO_NUMBERS.MIN_LOTTO_NUMBER,
+    );
 
   isAllNumber = (value) => value.every((elem) => typeof elem === 'number');
 
@@ -61,8 +66,10 @@ export default class LottoModel {
 
   getLottoNumbers() {
     const lottoNumberSet = new Set();
-    while (lottoNumberSet.size < 6) {
-      lottoNumberSet.add(this.getRandomNumber(1, 45));
+    while (lottoNumberSet.size < LOTTO_NUMBERS.LOTTO_LENGTH) {
+      lottoNumberSet.add(
+        this.getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER),
+      );
     }
     return [...lottoNumberSet];
   }
@@ -125,11 +132,11 @@ export default class LottoModel {
 
   calculateEarningRate() {
     const winningPriceInfo = {
-      3: 5000,
-      4: 50000,
-      5: 1500000,
-      5.5: 30000000,
-      6: 2000000000,
+      3: LOTTO_NUMBERS.FIFTH_WINNINGS,
+      4: LOTTO_NUMBERS.FOURTH_WINNINGS,
+      5: LOTTO_NUMBERS.THIRD_WINNINGS,
+      5.5: LOTTO_NUMBERS.SECOND_WINNINGS,
+      6: LOTTO_NUMBERS.FIRST_WINNINGS,
     };
 
     return Math.floor(
@@ -137,7 +144,7 @@ export default class LottoModel {
         (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
         0,
       ) /
-        (this.lottoCount * 1000)) *
+        (this.lottoCount * LOTTO_NUMBERS.THOUSAND)) *
         100,
     );
   }

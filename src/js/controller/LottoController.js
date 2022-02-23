@@ -1,7 +1,7 @@
-import LottoModel from '../model/LottoModel.js';
-import ResultView from '../view/resultView.js';
-import InputView from '../view/inputView.js';
-import PopupView from '../view/PopupView.js';
+import LottoModel from '../model/LottoModel';
+import ResultView from '../view/resultView';
+import InputView from '../view/inputView';
+import PopupView from '../view/PopupView';
 
 export default class LottoController {
   constructor() {
