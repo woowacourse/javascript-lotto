@@ -1,31 +1,41 @@
-import { ERROR_MESSAGE, RULES } from '../constants';
+import { ERROR_MESSAGE, RULES } from '../constants/index.js';
 
-const isZero = money => {
-  return money === 0;
+const isExist = value => {
+  return value !== null;
 };
 
-const isNotNumber = money => {
-  return Number.isNaN(money) || typeof money !== 'number';
+const isZero = value => {
+  return value === 0;
 };
 
-const isNotUnitOfThousand = purchaseMoney => {
-  return (
-    purchaseMoney % RULES.LOTTO_PRICE !== 0 || purchaseMoney < RULES.LOTTO_PRICE
-  );
+const isNotNumber = value => {
+  return Number.isNaN(value) || typeof value !== 'number';
 };
 
-const invalidPurchaseMoney = purchaseMoney => {
-  if (isZero(purchaseMoney)) {
+const isNegativeNumber = value => {
+  return value < 0;
+};
+
+const isNotUnitOfThousand = value => {
+  return value % RULES.LOTTO_PRICE !== 0;
+};
+
+const invalidPurchaseMoney = value => {
+  if (isZero(value)) {
     throw new Error(ERROR_MESSAGE.ZERO_MONEY);
   }
 
-  if (isNotNumber(purchaseMoney)) {
+  if (isNotNumber(value)) {
     throw new Error(ERROR_MESSAGE.NOT_NUMBER_TYPE);
   }
 
-  if (isNotUnitOfThousand(purchaseMoney)) {
+  if (isNegativeNumber(value)) {
+    throw new Error(ERROR_MESSAGE.NEGATIVE_NUMBER);
+  }
+
+  if (isNotUnitOfThousand(value)) {
     throw new Error(ERROR_MESSAGE.NOT_UNIT_OF_THOUSAND);
   }
 };
 
-export { invalidPurchaseMoney };
+export { invalidPurchaseMoney, isExist };

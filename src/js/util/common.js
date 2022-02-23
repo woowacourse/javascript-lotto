@@ -1,5 +1,9 @@
 import { RULES } from '../constants/index.js';
 
+const getRandomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const pickLottoNumber = n => {
   const lottos = new Set();
 
@@ -12,10 +16,6 @@ const pickLottoNumber = n => {
   }
 
   return [...lottos];
-};
-
-const getRandomNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 export { pickLottoNumber };

@@ -13,7 +13,7 @@ export default class PurchasedLottoView {
     this.container = document.getElementById('purchased-lotto-container');
   }
 
-  render({ lottoCount, lottos }) {
+  render(lottoCount, lottos) {
     this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
 
     this.purchasedLottoCount = document.getElementById('purchased-lotto-count');

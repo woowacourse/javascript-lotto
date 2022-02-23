@@ -6,7 +6,7 @@ export default class Lottos {
   }
 
   init() {
-    this.lottoList = null;
+    this.lottos = null;
   }
 
   setLottos(lottos) {

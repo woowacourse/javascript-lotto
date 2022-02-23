@@ -47,7 +47,7 @@ describe('구입할 금액 입력 기능 테스트', () => {
   it('구입할 금액으로 양의 정수여야 한다.', () => {
     const purchaseMoney = -1;
     expect(() => invalidPurchaseMoney(purchaseMoney)).toThrow(
-      ERROR_MESSAGE.NOT_UNIT_OF_THOUSAND,
+      ERROR_MESSAGE.NEGATIVE_NUMBER,
     );
   });
 });
