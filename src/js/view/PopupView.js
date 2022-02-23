@@ -1,6 +1,7 @@
 export default class PopupView {
   constructor() {
     this.$popup = document.querySelector('#popup');
+    this.$mainContainer = document.querySelector('.main-container');
   }
 
   makePopupTemplate() {
@@ -52,5 +53,10 @@ export default class PopupView {
 
   renderPopup() {
     this.$popup.insertAdjacentHTML('beforeend', this.makePopupTemplate());
+  }
+
+  toggleMainContainerState() {
+    this.$mainContainer.classList.toggle('blocked');
+    this.$popup.classList.toggle('emphasized');
   }
 }

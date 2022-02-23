@@ -80,6 +80,7 @@ export default class LottoController {
     try {
       this.model.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
       this.popupView.renderPopup();
+      this.popupView.toggleMainContainerState();
     } catch (err) {
       alert(err);
     }

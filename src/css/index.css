@@ -180,7 +180,7 @@ label {
   width: 350px;
   padding-bottom: 20px;
   padding-top: 10px;
-  background-color: beige;
+  background-color: #ffffff;
   position: absolute;
   transform: translate(-50%, -50%);
 }
@@ -224,4 +224,13 @@ table tr {
   position: absolute;
   top: 50%;
   left: 50%;
+}
+
+.blocked {
+  pointer-events: none;
+}
+
+.emphasized {
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
+  z-index: 100;
 }
