@@ -64,7 +64,7 @@ header h1 {
 .lotto-grid {
   display: grid;
   margin: 10px 0px 30px 0px;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .lotto-grid-detail {
