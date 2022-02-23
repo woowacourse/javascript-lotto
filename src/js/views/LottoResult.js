@@ -16,10 +16,10 @@ export default class LottoResult {
   }
 
   renderLottoNumbers(lottos) {
-    lottos.forEach((lotto) => {
+    lottos.forEach(({ numbers }) => {
       this.lottoNumberList.insertAdjacentHTML(
         "beforeend",
-        `<li>🎟️<span class="lotto-numbers">${[...lotto.numbers]}</span></li>`,
+        `<li>🎟️<span class="lotto-numbers">${numbers}</span></li>`,
       );
     });
   }

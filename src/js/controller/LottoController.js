@@ -6,8 +6,8 @@ import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js"
 
 export default class LottoController {
   constructor() {
-    this.model = new LottoGame();
-    this.view = new LottoResult();
+    this.lottoGameModel = new LottoGame();
+    this.lottoResultView = new LottoResult();
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
   }
 
@@ -17,9 +17,9 @@ export default class LottoController {
   }
 
   showLottoNumber() {
-    const count = this.model.getLottosLength();
-    this.view.renderPurchaseInfomation(count);
-    this.view.renderLottoIcons(count);
+    const lottoTicketCount = this.lottoGameModel.getLottoCount();
+    this.lottoResultView.renderPurchaseInfomation(lottoTicketCount);
+    this.lottoResultView.renderLottoIcons(lottoTicketCount);
   }
 
   onSubmitPurchase(e) {
@@ -35,17 +35,18 @@ export default class LottoController {
       return;
     }
     const lottoCount = Math.floor(value / AMOUNT_UNIT);
-    this.model.makeLottoTicket(lottoCount);
+    this.lottoGameModel.makeLottoTicket(lottoCount);
     this.showLottoNumber();
   }
 
   onClickSwitch() {
-    this.view.resetLottoList();
+    this.lottoResultView.resetLottoList();
+
     this.switchInput.classList.toggle("lotto-number");
     if (this.switchInput.classList.contains("lotto-number")) {
-      this.view.renderLottoNumbers(this.model.getLottoList());
+      this.lottoResultView.renderLottoNumbers(this.lottoGameModel.getLottoList());
       return;
     }
-    this.view.renderLottoIcons(this.model.getLottosLength());
+    this.lottoResultView.renderLottoIcons(this.lottoGameModel.getLottoCount());
   }
 }

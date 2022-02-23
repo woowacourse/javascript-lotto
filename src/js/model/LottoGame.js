@@ -9,7 +9,7 @@ export default class LottoGame {
     return this.lottos;
   }
 
-  getLottosLength() {
+  getLottoCount() {
     return this.lottos.length;
   }
 

@@ -1,8 +1,28 @@
-import LottoGame from "../controller/LottoGame.js";
+import Lotto from "../model/Lotto.js";
+import LottoGame from "../model/LottoGame.js";
+import { isValidAmountUnit, isValidMinimumAmount } from "../utils/validation.js";
 
-describe("테스트 그룹 ", () => {
-  test("구입할 금액에 따른 로또 티켓 객체를 만들 수 있다.", () => {
-    const game = new LottoGame();
-    expect(game.makeLottoTicket(3)).toBe(game.lottos.length);
+describe("로또 게임 테스트", () => {
+  test("6개 숫자를 가지는 로또 인스턴스를 생성할 수 있다.", () => {
+    const lotto = new Lotto();
+    lotto.makeRandomNumber();
+    expect(lotto.numbers.length).toBe(6);
+  });
+
+  test("구입한 개수 만큼 로또 객체가 만들어 진다.", () => {
+    const lottoCount = 5;
+    const lottoGame = new LottoGame();
+    lottoGame.makeLottoTicket(lottoCount);
+    expect(lottoGame.getLottoCount()).toBe(lottoCount);
+  });
+
+  test("구입할 금액은 1000원 이상이여야 한다.", () => {
+    const amount = 500;
+    expect(isValidMinimumAmount(amount)).toBe(false);
+  });
+
+  test("구입할 금액 단위는 1000원 이어야 한다.", () => {
+    const amount = 2200;
+    expect(isValidAmountUnit(amount)).toBe(false);
   });
 });
