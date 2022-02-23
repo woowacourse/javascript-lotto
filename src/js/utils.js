@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from './constants/constants';
+import { View } from './view/View';
 
 export const validator = {
   isInputValid(input) {
@@ -10,6 +11,12 @@ export const validator = {
       alert(ERROR_MESSAGE.NOT_INTEGER_INPUT_ERROR);
       throw new Error(ERROR_MESSAGE.NOT_INTEGER_INPUT_ERROR);
     }
+
+    if (!this.isMoneyMultiplesOfThousand(input)) {
+      alert(ERROR_MESSAGE.NOT_MUTIPLE_THOUSAND);
+      throw new Error(ERROR_MESSAGE.NOT_MUTIPLE_THOUSAND);
+    }
+
     return true;
   },
 
@@ -19,6 +26,10 @@ export const validator = {
 
   isMoneyInteger(input) {
     return Number.isInteger(input);
+  },
+
+  isMoneyMultiplesOfThousand(input) {
+    return input % 1000 === 0;
   },
 };
 

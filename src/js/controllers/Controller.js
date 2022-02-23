@@ -1,5 +1,6 @@
 import { View } from '../view/View.js';
 import { LottoGame } from '../model/LottoGame.js';
+import { validator } from '../utils.js';
 
 export class Controller {
   constructor() {
@@ -11,6 +12,10 @@ export class Controller {
   purchaseLotto() {
     this.view.purchaseBtn.addEventListener('click', (e) => {
       e.preventDefault();
+
+      if (this.detectInvalidInput()) {
+        return;
+      }
 
       this.lottoGame.insertMoney(Number(this.view.moneyInput.value));
       this.lottoGame.buyLotto();
@@ -32,5 +37,15 @@ export class Controller {
       }
       this.view.lottosToggleOff(this.lottoGame.lottoWallet);
     });
+  }
+
+  detectInvalidInput() {
+    try {
+      validator.isInputValid(Number(this.view.moneyInput.value));
+    } catch (err) {
+      this.view.clearMoneyInput();
+      return true;
+    }
+    return false;
   }
 }

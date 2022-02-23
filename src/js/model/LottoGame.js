@@ -1,5 +1,4 @@
 import { Lotto } from './Lotto.js';
-import { validator } from '../utils.js';
 import { CONDITIONS } from '../constants/constants.js';
 
 export class LottoGame {
@@ -9,9 +8,7 @@ export class LottoGame {
   }
 
   insertMoney(moneyInput) {
-    if (validator.isInputValid(moneyInput)) {
-      this.moneyInput = moneyInput;
-    }
+    this.moneyInput = moneyInput;
   }
 
   buyLotto() {
