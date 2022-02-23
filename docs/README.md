@@ -12,7 +12,7 @@
 - [x] 예외처리 (PurchaseView)
   - [x] 1,000원 미만으로 돈이 입력됐을 때, alert를 띄운다.
   - [x] 1,000원 단위로 입력되지 않았을 때, alert를 띄운다.
-  - [ ] JS의 정수 범위를 넘어갔을 때 alert를 띄운다. (Number.MAX_SAFE_INTEGER)
+  - [x] 1,000,000원 초과한 돈이 입력됐을 때 alert를 띄운다.
 - [x] 렌더링 (IssuedTicketView)
   - [x] 로또 구입 버튼을 누르면, 티켓을 볼 수 있는 section을 보여준다.
   - [x] 로또 구입 버튼을 누르면, 구매한 티켓의 수를 보여준다.

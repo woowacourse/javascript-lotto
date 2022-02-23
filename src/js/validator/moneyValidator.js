@@ -2,8 +2,12 @@ import EXCEPTION from '../constants/exception.js';
 import LOTTO from '../constants/lotto.js';
 
 const moneyValidator = {
-  isCorrectRange(money) {
+  isOverMinimum(money) {
     return money >= LOTTO.PRICE_PER_TICKET;
+  },
+
+  isUnderMaximum(money) {
+    return money <= LOTTO.INVENTORY * LOTTO.PRICE_PER_TICKET;
   },
 
   isThousandUnit(money) {
@@ -12,8 +16,12 @@ const moneyValidator = {
 };
 
 const validateMoney = (money) => {
-  if (!moneyValidator.isCorrectRange(money)) {
-    throw new Error(EXCEPTION.INVALID_RANGE);
+  if (!moneyValidator.isOverMinimum(money)) {
+    throw new Error(EXCEPTION.INVALID_RANGE.MINIMUM);
+  }
+
+  if (!moneyValidator.isUnderMaximum(money)) {
+    throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
   }
 
   if (!moneyValidator.isThousandUnit(money)) {
