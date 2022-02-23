@@ -3,6 +3,7 @@ export const SELECTOR = {
   PURCHASE_INPUT: ".purchase-input",
   PURCHASE_BUTTON: ".purchase-button",
   PURCHASE_INFOMATION: ".purchase-infomation",
+  LOTTO_NUMBER_LIST: ".lotto-number-list",
 };
 
 export const MINIMUM_AMOUNT = 1000;
@@ -12,7 +13,7 @@ export const AMOUNT_UNIT = 1000;
 export const LOTTO_NUMBER = {
   LENGTH: 6,
   RANGE_MIN: 1,
-  RANGH_MAX: 45,
+  RANGE_MAX: 45,
 };
 
 export const ERROR_MESSAGES = {

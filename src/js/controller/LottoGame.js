@@ -10,11 +10,12 @@ export default class LottoGame {
     this.view = new LottoResult();
   }
   bindEvents() {
-    $(SELECTOR.PURCHASE_FORM).addEventListener("submit", this.handlePurchaseSubmit.bind(this));
+    $(SELECTOR.PURCHASE_FORM).addEventListener("submit", this.onSubmitPurchase.bind(this));
   }
 
-  handlePurchaseSubmit(e) {
+  onSubmitPurchase(e) {
     e.preventDefault();
+
     const { value } = $(SELECTOR.PURCHASE_INPUT);
     if (!isValidMinimumAmount(Number(value))) {
       alert(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
@@ -27,12 +28,14 @@ export default class LottoGame {
     const lottoTicketCount = Math.floor(value / AMOUNT_UNIT);
     this.makeLottoTicket(lottoTicketCount);
     this.view.renderPurchaseInfomation(lottoTicketCount);
+    this.view.renderLottoIcons(lottoTicketCount);
   }
 
   makeLottoTicket(count) {
     for (let i = 0; i < count; i += 1) {
-      const lo = new Lotto();
-      lo.makeRandomNumber();
+      const lotto = new Lotto();
+      lotto.makeRandomNumber();
+      this.lottos.push(lotto);
     }
   }
 }

@@ -8,7 +8,7 @@ export default class Lotto {
 
   makeRandomNumber() {
     while (this.numbers.length < LOTTO_NUMBER.LENGTH) {
-      const randomNumber = getRandomNumber(LOTTO_NUMBER.RANGE_MIN, LOTTO_NUMBER.RANGH_MAX);
+      const randomNumber = getRandomNumber(LOTTO_NUMBER.RANGE_MIN, LOTTO_NUMBER.RANGE_MAX);
       if (!this.numbers.includes(randomNumber)) {
         this.numbers.push(randomNumber);
       }
