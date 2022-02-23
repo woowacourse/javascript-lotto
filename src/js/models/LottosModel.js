@@ -1,15 +1,13 @@
 import Lotto from './Lotto.js';
-import { isDivisible, isPositiveInteger } from '../utils/validator.js';
+import { checkValidMoneyInput } from '../utils/Lotto/validator.js';
+import { LOTTO_SETTING } from '../constants/setting.js';
 
 export default class LottosModel {
   #lottos = [];
 
   buy(inputMoney) {
-    if (!isDivisible(inputMoney, 1000) || !isPositiveInteger(inputMoney)) {
-      throw new Error('올바른 입력이 아닙니다.');
-    }
-
-    const lottoCount = inputMoney / 1000;
+    checkValidMoneyInput(inputMoney);
+    const lottoCount = inputMoney / LOTTO_SETTING.PRICE;
     Array.from({ length: lottoCount }, () => this.#lottos.push(new Lotto().generate()));
   }
 

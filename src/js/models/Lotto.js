@@ -1,14 +1,15 @@
 import { getRandomNumber } from '../utils/data-manager.js';
+import { LOTTO_SETTING } from '../constants/setting.js';
 
 export default class Lotto {
   #pickedNumber = [];
 
   pushNumberIntoPickedNumber(number) {
-    if (this.#pickedNumber.includes(number) === true) {
+    if (this.#pickedNumber.includes(number)) {
       return;
     }
 
-    if (this.#pickedNumber.length >= 6) {
+    if (this.#pickedNumber.length >= LOTTO_SETTING.LOTTO_NUMBER_LENGTH) {
       return;
     }
 
@@ -16,8 +17,9 @@ export default class Lotto {
   }
 
   generate() {
-    while (this.#pickedNumber.length !== 6) {
-      this.pushNumberIntoPickedNumber(getRandomNumber(1, 45));
+    const { LOTTO_NUMBER_LENGTH, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
+    while (this.#pickedNumber.length !== LOTTO_NUMBER_LENGTH) {
+      this.pushNumberIntoPickedNumber(getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER));
     }
 
     return this;
