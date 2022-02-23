@@ -23,8 +23,11 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
+    this.purchase(chargeInputNumber);
+  }
+
+  purchase(chargeInputNumber) {
     const { quotient: newLottoCount } = divider(chargeInputNumber, LOTTO_PRICE);
     this.lottoManager.generateNewLottos(newLottoCount);
-    console.log("Validation Pass!");
   }
 }
