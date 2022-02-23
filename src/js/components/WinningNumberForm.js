@@ -24,22 +24,24 @@ class WinningNumberForm extends Component {
     return `
       <form>
         <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
-        <fieldset>
-          <label>당첨 번호</label>
-          <div>
-            <input />
-            <input />
-            <input />
-            <input />
-            <input />
-            <input />
-          </div>
-        </fieldset>
-        <fieldset>
-          <label>보너스 번호</label>
-          <input />
-        </fieldset>
-        <button>결과 확인하기</button>
+        <div class="wrapper">
+          <fieldset>
+            <label>당첨 번호</label>
+            <div class="d-flex">
+              <input class="form-control" maxlength="2"/>
+              <input class="form-control" maxlength="2"/>
+              <input class="form-control" maxlength="2"/>
+              <input class="form-control" maxlength="2"/>
+              <input class="form-control" maxlength="2"/>
+              <input class="form-control" maxlength="2"/>
+            </div>
+          </fieldset>
+          <fieldset>
+            <label>보너스 번호</label>
+            <input class="form-control" maxlength="2"/>
+          </fieldset>
+        </div>
+        <button class="btn btn-cyan w-100">결과 확인하기</button>
       </form>
     `;
   }

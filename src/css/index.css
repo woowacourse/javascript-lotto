@@ -24,6 +24,10 @@ body {
   background-color: white;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 ul {
   margin: 0;
   list-style: none;
@@ -33,6 +37,7 @@ ul {
 lotto-list {
   display: flex;
 }
+
 lotto-list > .lotto-list-container {
   flex: 1;
 }
@@ -55,4 +60,37 @@ lotto-list lotto-item img {
 }
 
 lotto-list-toggle {
+}
+
+winning-number-form > form {
+  display: flex;
+  flex-direction: column;
+}
+
+winning-number-form label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+winning-number-form input.form-control {
+  width: 34px;
+  height: 36px;
+  padding: 0;
+  margin-right: 8px;
+  text-align: center;
+}
+
+winning-number-form .wrapper {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+winning-number-form fieldset {
+  flex: 1;
+}
+
+winning-number-form fieldset:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
