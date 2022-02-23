@@ -37,11 +37,9 @@ module.exports = {
 
   scopes: [
     { name: 'ui' },
-    { name: 'android' },
-    { name: 'ios' },
-    { name: 'home' },
     { name: 'planner' },
     { name: 'settings' },
+    { name: 'todo' },
   ],
 
   scopeOverrides: {
