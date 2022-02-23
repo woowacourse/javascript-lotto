@@ -17,9 +17,10 @@ class LottoListToggle extends Component {
 
   template(checked) {
     return `
-      <label>번호보기</label>
-      <input type="checkbox" ${checked} />
-      <span class="slider"></span>
+      <label class="switch" for="checkbox">
+        <input id="checkbox" type="checkbox" ${checked} />
+        <div class="slider round"></div>
+      </label>
     `;
   }
 

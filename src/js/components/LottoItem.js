@@ -18,7 +18,7 @@ class LottoItem extends Component {
 
   template(lottoNums) {
     return `
-      <li><img src=${LottoImage} />${lottoNums}</li>
+      <img src=${LottoImage} />${lottoNums}
     `;
   }
 }

@@ -5,6 +5,7 @@
 @import './flex.css';
 @import './form.css';
 @import './typhography.css';
+@import './switch.css';
 
 body {
   width: 100%;
@@ -21,4 +22,37 @@ body {
   border: 1px solid var(--gray-700);
   border-radius: 4px;
   background-color: white;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+lotto-list {
+  display: flex;
+}
+lotto-list > .lotto-list-container {
+  flex: 1;
+}
+
+lotto-list > .lotto-list-container label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+lotto-list > .toggle-container {
+}
+
+lotto-list lotto-item {
+  display: flex;
+  align-items: center;
+}
+
+lotto-list lotto-item img {
+  margin-right: 8px;
+}
+
+lotto-list-toggle {
 }
