@@ -14,6 +14,14 @@ export default class LottoListView {
     this.#lottoNumberToggle.addEventListener('click', this.toggleShow.bind(this));
   }
 
+  showLottoList() {
+    this.#container.classList.add('show');
+  }
+
+  hideLottoList() {
+    this.#container.classList.remove('show');
+  }
+
   toggleShow() {
     const toggle = this.#lottoNumberToggle.dataset;
     toggle.state = toggle.state === 'on' ? 'off' : 'on';

@@ -46,6 +46,14 @@ header {
   margin-top: 0.8rem;
 }
 
+.lotto-list-section {
+  display: none;
+}
+
+.lotto-list-section.show {
+  display: block;
+}
+
 .lotto-list-container {
   display: grid;
   grid-template-columns: 80% 10%;
@@ -128,8 +136,9 @@ header {
   display: block;
 }
 
+.lotto-list-section,
 .winning-number-section {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .winning-number-container {

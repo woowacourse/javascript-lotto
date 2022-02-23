@@ -22,6 +22,7 @@ export default class LottoController {
   handleMoneyInputSubmit({ moneyInput }) {
     try {
       this.#LottosModel.buy(moneyInput);
+      this.#LottoListView.showLottoList();
       this.#LottoListView.renderLottoList(this.#LottosModel.list);
     } catch (error) {
       alert(error);
