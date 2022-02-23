@@ -75,7 +75,6 @@ export default class LottoModel {
 
     this.winningLottoNumbers.winningNumbers = winnerNumberArray;
     this.winningLottoNumbers.bonus = bonusNumber;
-    console.log(this.winningLottoNumbers);
   }
 
   getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber) {
