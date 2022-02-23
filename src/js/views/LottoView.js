@@ -25,6 +25,7 @@ export default class LottoView {
       this.inputMoney();
       this.machine.operateLottoMachine();
       this.renderLottoResult();
+      this.controlLottoContainers();
     } catch (e) {
       alert(e.message);
     }
@@ -67,5 +68,10 @@ export default class LottoView {
   disablePurchase() {
     $('purchase-money-input').disabled = true;
     $('purchase-money-button').disabled = true;
+  }
+
+  controlLottoContainers() {
+    $('lotto-result-section').hidden = !$('lotto-result-section').hidden;
+    $('winning-number-form').hidden = !$('winning-number-form').hidden;
   }
 }
