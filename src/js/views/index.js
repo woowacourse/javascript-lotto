@@ -5,6 +5,7 @@ class LottoGameView {
   constructor() {
     this.#initializeDOM();
   }
+
   #initializeDOM() {
     this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
     this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
