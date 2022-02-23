@@ -46,7 +46,9 @@ export default class LottoApp {
           template.purchasedSection(this.purchasedLottoList)
         );
       } catch (error) {
-        console.error(error);
+        alert(error.message);
+        $paymentInput.value = '';
+        $paymentInput.focus();
       }
     });
 
