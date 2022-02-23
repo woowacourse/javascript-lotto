@@ -1,4 +1,5 @@
 import ticketTemplate from '../layouts/template.js';
+import { emit, on } from '../utils/event.js';
 import { $, $$ } from '../utils/selector.js';
 
 export default class IssuedTicketView {
@@ -7,6 +8,16 @@ export default class IssuedTicketView {
     this.$ticketCount = $('#ticket-count');
     this.$issuedTicketContainer = $('#issued-ticket-container');
     this.$lottoNumberToggle = $('#lotto-number-toggle');
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    on(this.$lottoNumberToggle, 'click', (e) => this.handleToggle(e));
+  }
+
+  handleToggle(e) {
+    const { checked } = e.target;
+    emit(this.$lottoNumberToggle, '@toggle', { checked });
   }
 
   getMoneyToPurchase() {

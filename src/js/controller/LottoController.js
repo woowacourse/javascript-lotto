@@ -1,41 +1,32 @@
 import LottoBundle from '../model/LottoBundle.js';
-import { $ } from '../utils/selector.js';
 import validateMoney from '../validator/moneyValidator.js';
 import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
+import { on } from '../utils/event.js';
 
 export default class LottoController {
   constructor() {
     this.model = new LottoBundle();
     this.purchaseView = new PurchaseView();
     this.issuedTicketView = new IssuedTicketView();
+    this.subscribeViewEvents();
   }
 
-  init() {
-    this.bindEvents();
-  }
-
-  bindEvents() {
-    $('#purchase-form').addEventListener(
-      'submit',
-      this.purchaseFormHandler.bind(this),
+  subscribeViewEvents() {
+    on(this.purchaseView.$purchaseForm, '@submit', (e) =>
+      this.purchaseLotto(e.detail.money),
     );
-    $('#lotto-number-toggle').addEventListener(
-      'click',
-      this.toggleHandler.bind(this),
+
+    on(this.issuedTicketView.$lottoNumberToggle, '@toggle', (e) =>
+      this.toggleDetails(e.detail.checked),
     );
   }
 
-  purchaseFormHandler(e) {
-    e.preventDefault();
-
-    const money = this.purchaseView.getMoneyToPurchase();
-
+  purchaseLotto(money) {
     try {
       validateMoney(money);
       const count = money / 1000;
       this.model.createLottoBundle(count);
-      console.log(this.model.lottos);
       this.issuedTicketView.renderTicketContainer();
       this.issuedTicketView.renderTicketCount(count);
       this.issuedTicketView.renderTicketIcon(this.model.lottos);
@@ -46,8 +37,8 @@ export default class LottoController {
     }
   }
 
-  toggleHandler(e) {
-    if (e.target.checked) {
+  toggleDetails(checked) {
+    if (checked) {
       this.issuedTicketView.showTicketDetails();
       return;
     }
