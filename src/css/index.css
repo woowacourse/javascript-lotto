@@ -70,6 +70,12 @@ button {
   grid-gap: 0 5px;
 }
 
+.lotto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .lotto-image {
   font-size: 2rem;
 }
@@ -185,4 +191,8 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.one-column-grid {
+  grid-template-columns: repeat(1, 1fr);
 }

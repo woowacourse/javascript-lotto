@@ -1,3 +1,4 @@
+import { doc } from 'prettier';
 import { SELECTOR } from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
@@ -14,6 +15,23 @@ class LottoView {
       SELECTOR.LOTTO_NUMBER_CONTAINER_CLASS,
       this.purchasedLottoSection
     );
+  }
+
+  toggleShowLottoNumbers(checked) {
+    const lottoNumbersElements = Array.from(
+      this.lottoNumberContainer.querySelectorAll('.lotto-numbers')
+    );
+    if (checked) {
+      lottoNumbersElements.forEach((lottoElement) => {
+        lottoElement.classList.remove(SELECTOR.HIDE_CLASSNAME);
+      });
+      this.lottoNumberContainer.classList.add('one-column-grid');
+      return;
+    }
+    lottoNumbersElements.forEach((lottoElement) => {
+      lottoElement.classList.add(SELECTOR.HIDE_CLASSNAME);
+    });
+    this.lottoNumberContainer.classList.remove('one-column-grid');
   }
 
   renderLottos(lottos) {
