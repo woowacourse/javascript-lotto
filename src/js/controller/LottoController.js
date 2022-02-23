@@ -21,6 +21,7 @@ export default class LottoController {
     this.$lottoPriceInput = document.querySelector('#lotto-price-input');
     this.$lottoPriceButton = document.querySelector('#lotto-price-button');
     this.$result = document.querySelector('#result');
+    this.$popup = document.querySelector('#popup');
   }
 
   bindEvent() {
@@ -39,6 +40,7 @@ export default class LottoController {
   bindEventAfterRenderResult() {
     this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
     this.$result.addEventListener('click', this.clickCheckResultButtonHandler.bind(this));
+    this.$popup.addEventListener('click', this.clickClosePopupButtonHandler.bind(this));
   }
 
   submitLottoPriceHandler(event) {
@@ -84,5 +86,11 @@ export default class LottoController {
     } catch (err) {
       alert(err);
     }
+  }
+
+  clickClosePopupButtonHandler({ target }) {
+    if (target.id !== 'close-popup-button') return;
+    this.popupView.toggleMainContainerState();
+    this.popupView.closePopup();
   }
 }
