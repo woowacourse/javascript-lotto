@@ -1,5 +1,4 @@
 import { LOTTO_RULE } from './constants.js';
-import { generateRandomNumber } from './utils/common.js';
 export default class Model {
   #lottoList = [];
 
@@ -21,4 +20,8 @@ export default class Model {
     }
     return lottoNumbers;
   }
+}
+
+function generateRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max + 1 - min)) + min;
 }
