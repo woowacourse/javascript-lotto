@@ -1,12 +1,20 @@
-import LottoMachine from '../LottoMachine';
+import { validateCharge } from '../validation';
 import ValidationError from '../ValidationError';
 
-describe("로또 게임 기능 단위 테스트", () => {
-  it("1000원 미만의 금액을 입력했을 때 charge에 저장하지 못한다.", () => {
-    const LackCharge = 500;
-    const lottoMachine = new LottoMachine();
+describe("로또 구입 금액 유효성 검사 테스트", () => {
+
+  it("구입 금액은 정수인 숫자로 입력해야한다.", () => {
+    const notIntegerValue = "abc";
     expect(() =>
-      lottoMachine.validateCharge(LackCharge)
+      validateCharge(notIntegerValue)
     ).toThrow(ValidationError);
   });
+
+  it("구입 금액은 1000원 이상이여야 한다.", () => {
+    const lessThanMinimumValue = 500;
+    expect(() =>
+      validateCharge(lessThanMinimumValue)
+    ).toThrow(ValidationError);
+  });
+
 });
