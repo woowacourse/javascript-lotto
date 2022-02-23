@@ -1,6 +1,7 @@
 @import './reset.css';
 @import './purchaseMoney.css';
 @import './purchasedLotto.css';
+@import './toggle.css';
 @import './lottoNumber.css';
 
 body {
