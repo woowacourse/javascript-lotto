@@ -12,17 +12,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _eventListener_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./eventListener.js */ "./src/js/eventListener.js");
-/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+/* harmony import */ var _eventListener_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventListener.js */ "./src/js/eventListener.js");
 
 
 
-var runLotto = function runLotto() {
-  (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#fare-form').addEventListener('submit', _eventListener_js__WEBPACK_IMPORTED_MODULE_0__.onSubmitFareForm);
-  (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#lotto-viewer-controller').addEventListener('change', _eventListener_js__WEBPACK_IMPORTED_MODULE_0__.onChangeLottoViewerController);
+var runLottoGame = function runLottoGame() {
+  (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#fare-form').addEventListener('submit', _eventListener_js__WEBPACK_IMPORTED_MODULE_1__.onSubmitFareForm);
+  (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-viewer-controller').addEventListener('change', _eventListener_js__WEBPACK_IMPORTED_MODULE_1__.onChangeLottoViewerController);
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (runLotto);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (runLottoGame);
 
 /***/ }),
 
@@ -83,8 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "onSubmitFareForm": () => (/* binding */ onSubmitFareForm),
 /* harmony export */   "onChangeLottoViewerController": () => (/* binding */ onChangeLottoViewerController)
 /* harmony export */ });
-/* harmony import */ var _validation_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation/index.js */ "./src/js/validation/index.js");
-/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+/* harmony import */ var _validation_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation/index.js */ "./src/js/validation/index.js");
 /* harmony import */ var _domain_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./domain/index.js */ "./src/js/domain/index.js");
 /* harmony import */ var _lottoGame_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lottoGame.js */ "./src/js/lottoGame.js");
 /* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./view.js */ "./src/js/view.js");
@@ -97,8 +97,8 @@ var onSubmitFareForm = function onSubmitFareForm(e) {
   e.preventDefault();
 
   try {
-    var inputedFare = (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#fare-input').value;
-    _validation_index_js__WEBPACK_IMPORTED_MODULE_0__.validator.validateFare(inputedFare);
+    var inputedFare = (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#fare-input').value;
+    _validation_index_js__WEBPACK_IMPORTED_MODULE_1__.validator.validateFare(inputedFare);
     _view_js__WEBPACK_IMPORTED_MODULE_4__["default"].renderLottoList(_lottoGame_js__WEBPACK_IMPORTED_MODULE_3__["default"].createLottos((0,_domain_index_js__WEBPACK_IMPORTED_MODULE_2__.calculateLottoCount)(inputedFare)));
     _view_js__WEBPACK_IMPORTED_MODULE_4__["default"].renderFare((0,_domain_index_js__WEBPACK_IMPORTED_MODULE_2__.calculateRemainFare)(inputedFare));
   } catch (error) {
@@ -106,7 +106,7 @@ var onSubmitFareForm = function onSubmitFareForm(e) {
   }
 };
 var onChangeLottoViewerController = function onChangeLottoViewerController() {
-  return (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#lottos-container').classList.toggle('detail');
+  return (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#lottos-container').classList.toggle('detail');
 };
 
 /***/ }),
@@ -121,15 +121,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
-/* harmony import */ var _constant_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constant/index.js */ "./src/js/constant/index.js");
+/* harmony import */ var _constant_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constant/index.js */ "./src/js/constant/index.js");
+/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
 
 
 var lottoGame = {
   lottos: [],
   createLottos: function createLottos(lottoCount) {
     for (var i = 0; i < lottoCount; i += 1) {
-      this.lottos.push((0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.createRandomNumbers)(_constant_index_js__WEBPACK_IMPORTED_MODULE_1__.LOTTO_RULES.MIN_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_1__.LOTTO_RULES.MAX_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_1__.LOTTO_RULES.BALL_COUNT));
+      this.lottos.push((0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.createRandomNumbers)(_constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.MIN_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.MAX_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.BALL_COUNT));
     }
 
     return this.lottos;
@@ -151,11 +151,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var template = {
   defaultLottoList: function defaultLottoList(count) {
-    return "<p class=\"lotto\">\uD83C\uDF9F</p>".repeat(count);
+    return '<p class="lotto">🎟️</p>'.repeat(count);
   },
   detailLottoList: function detailLottoList(lottos) {
     return lottos.map(function (lotto) {
-      return "<p class=\"lotto\">\uD83C\uDF9F <span class=\"lotto-number\">".concat(lotto.join(', '), "</span></p>");
+      return "<p class=\"lotto\">\n          \uD83C\uDF9F\uFE0F<span class=\"lotto-number\">".concat(lotto.join(', '), "</span>\n        </p>");
     }).join('');
   }
 };
@@ -171,9 +171,12 @@ var template = {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createRandomNumbers": () => (/* binding */ createRandomNumbers),
-/* harmony export */   "$": () => (/* binding */ $)
+/* harmony export */   "$": () => (/* binding */ $),
+/* harmony export */   "createRandomNumbers": () => (/* binding */ createRandomNumbers)
 /* harmony export */ });
+var $ = function $(selector) {
+  return document.querySelector(selector);
+};
 var createRandomNumbers = function createRandomNumbers(minRange, maxRange, count) {
   var candidate = Array(maxRange - minRange + 1).fill().map(function (_, i) {
     return i + minRange;
@@ -181,9 +184,6 @@ var createRandomNumbers = function createRandomNumbers(minRange, maxRange, count
   return Array(count).fill().map(function () {
     return candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
   });
-};
-var $ = function $(selector) {
-  return document.querySelector(selector);
 };
 
 /***/ }),
@@ -224,24 +224,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _template_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template/index.js */ "./src/js/template/index.js");
-/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+/* harmony import */ var _template_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template/index.js */ "./src/js/template/index.js");
 
 
 var view = {
   renderLottoList: function renderLottoList(lottos) {
     this.renderDefaultLottoArea(lottos.length);
     this.renderDetailLottoArea(lottos);
-    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#lotto-count').innerText = lottos.length;
+    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-count').innerText = lottos.length;
   },
   renderDefaultLottoArea: function renderDefaultLottoArea(count) {
-    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#lottos-container .lottos.default').innerHTML = _template_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].defaultLottoList(count);
+    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#lottos-container .lottos.default').innerHTML = _template_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].defaultLottoList(count);
   },
   renderDetailLottoArea: function renderDetailLottoArea(lottos) {
-    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#lottos-container .lottos.detail').innerHTML = _template_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].detailLottoList(lottos);
+    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#lottos-container .lottos.detail').innerHTML = _template_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].detailLottoList(lottos);
   },
   renderFare: function renderFare(fare) {
-    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.$)('#fare-input').value = fare;
+    (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#fare-input').value = fare;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (view);
@@ -267,7 +267,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html {\n  height: 100%;\n}\n\np {\n  margin: 0;\n}\n\n.lotto-app-input {\n  border: 1px solid #b4b4b4;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n\n.lotto-app-button {\n  background: #00bcd4;\n  border-radius: 4px;\n  border: none;\n  font-weight: bold;\n  font-size: 14px;\n  color: white;\n  line-height: 16px;\n  letter-spacing: 1.25px;\n}\n\nbody {\n  display: flex;\n  justify-content: center;\n  margin-top: 100px;\n}\n\n.app {\n  width: 414px;\n  padding: 52px 0;\n  border: 1px solid rgba(0, 0, 0, 0.12);\n}\n\n.app-title {\n  text-align: center;\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  margin-bottom: 16px;\n}\n\n.submit-form {\n  padding: 0 16px;\n}\n\n.submit-form label {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.input-wrap {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 4px;\n  height: 36px;\n}\n\n.input-wrap input {\n  width: calc(100% - 70px);\n  height: 100%;\n  padding-left: 10px;\n}\n\n.input-wrap button {\n  width: 52px;\n  height: 100%;\n}\n\n.lotto-list {\n  margin-top: 28px;\n  width: 100%;\n}\n\n.lotto-list-header {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n\n.lotto-list-header p {\n  font-size: 15px;\n  line-height: 24px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.lotto-list-body {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n  padding: 0 16px 0 12px;\n}\n\n.lottos-container {\n  width: calc(100% - 70px);\n}\n\n.lottos-container .lottos.detail,\n.lottos-container.detail .lottos.default {\n  display: none;\n}\n\n.lottos-container.detail .lottos.detail {\n  display: block;\n}\n\n.lottos.default {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.lotto {\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.lottos.default .lotto {\n  margin: 0 4px;\n}\n\n.lotto-number {\n  vertical-align: middle;\n  font-size: 15px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.toggle-wrap {\n  position: relative;\n  display: inline-block;\n  margin-top: 5px;\n  width: 34px;\n  height: 34px;\n}\n\n.toggle-wrap input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n/* The slider */\n.slider {\n  height: 20px;\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(33, 33, 33, 0.08);\n  transition: 0.4s;\n}\n\n.slider:before {\n  position: absolute;\n  content: '';\n  width: 25px;\n  height: 25px;\n  left: -12.5px;\n  bottom: -2px;\n  background-color: #ededed;\n  transition: 0.4s;\n  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);\n}\n\ninput:checked + .slider {\n  background-color: #80deea;\n}\n\ninput:checked + .slider:before {\n  background-color: #00bcd4;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(34px);\n}\n\n.slider.round {\n  border-radius: 34px;\n}\n\n.slider.round:before {\n  border-radius: 50%;\n}\n\n.lotto-match {\n  margin-top: 32px;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n\n.lotto-match p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.lotto-match-header {\n  display: flex;\n  justify-content: space-between;\n}\n\n.lotto-match-header p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.number-container {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.match-number-input {\n  width: 34px;\n  height: 36px;\n}\n\n.match-numbers .match-number-input {\n  margin-left: 8px;\n}\n\n.match-numbers .match-number-input:first-child {\n  margin-left: 0px;\n}\n\n.result-button {\n  margin-top: 24px;\n  width: 100%;\n  height: 36px;\n}\n", "",{"version":3,"sources":["webpack://./src/css/index.css"],"names":[],"mappings":"AAAA;EACE,YAAY;AACd;;AAEA;EACE,SAAS;AACX;;AAEA;EACE,yBAAyB;EACzB,kBAAkB;EAClB,sBAAsB;AACxB;;AAEA;EACE,mBAAmB;EACnB,kBAAkB;EAClB,YAAY;EACZ,iBAAiB;EACjB,eAAe;EACf,YAAY;EACZ,iBAAiB;EACjB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,YAAY;EACZ,eAAe;EACf,qCAAqC;AACvC;;AAEA;EACE,kBAAkB;EAClB,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,eAAe;EACf,YAAY;AACd;;AAEA;EACE,wBAAwB;EACxB,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,gBAAgB;EAChB,WAAW;AACb;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,WAAW;EACX,eAAe;EACf,sBAAsB;AACxB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,eAAe;EACf,sBAAsB;AACxB;;AAEA;EACE,wBAAwB;AAC1B;;AAEA;;EAEE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,eAAe;AACjB;;AAEA;EACE,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,sBAAsB;EACtB,eAAe;EACf,qBAAqB;EACrB,0BAA0B;AAC5B;;AAEA;EACE,kBAAkB;EAClB,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,YAAY;AACd;;AAEA;EACE,UAAU;EACV,QAAQ;EACR,SAAS;AACX;;AAEA,eAAe;AACf;EACE,YAAY;EACZ,kBAAkB;EAClB,eAAe;EACf,MAAM;EACN,OAAO;EACP,QAAQ;EACR,SAAS;EACT,wCAAwC;EACxC,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,WAAW;EACX,WAAW;EACX,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,yBAAyB;EACzB,gBAAgB;EAChB,wCAAwC;AAC1C;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,eAAe;EACf,sBAAsB;AACxB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,8BAA8B;AAChC;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,eAAe;AACjB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;EAChB,WAAW;EACX,YAAY;AACd","sourcesContent":["html {\n  height: 100%;\n}\n\np {\n  margin: 0;\n}\n\n.lotto-app-input {\n  border: 1px solid #b4b4b4;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n\n.lotto-app-button {\n  background: #00bcd4;\n  border-radius: 4px;\n  border: none;\n  font-weight: bold;\n  font-size: 14px;\n  color: white;\n  line-height: 16px;\n  letter-spacing: 1.25px;\n}\n\nbody {\n  display: flex;\n  justify-content: center;\n  margin-top: 100px;\n}\n\n.app {\n  width: 414px;\n  padding: 52px 0;\n  border: 1px solid rgba(0, 0, 0, 0.12);\n}\n\n.app-title {\n  text-align: center;\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  margin-bottom: 16px;\n}\n\n.submit-form {\n  padding: 0 16px;\n}\n\n.submit-form label {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.input-wrap {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 4px;\n  height: 36px;\n}\n\n.input-wrap input {\n  width: calc(100% - 70px);\n  height: 100%;\n  padding-left: 10px;\n}\n\n.input-wrap button {\n  width: 52px;\n  height: 100%;\n}\n\n.lotto-list {\n  margin-top: 28px;\n  width: 100%;\n}\n\n.lotto-list-header {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n\n.lotto-list-header p {\n  font-size: 15px;\n  line-height: 24px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.lotto-list-body {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n  padding: 0 16px 0 12px;\n}\n\n.lottos-container {\n  width: calc(100% - 70px);\n}\n\n.lottos-container .lottos.detail,\n.lottos-container.detail .lottos.default {\n  display: none;\n}\n\n.lottos-container.detail .lottos.detail {\n  display: block;\n}\n\n.lottos.default {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.lotto {\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.lottos.default .lotto {\n  margin: 0 4px;\n}\n\n.lotto-number {\n  vertical-align: middle;\n  font-size: 15px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.toggle-wrap {\n  position: relative;\n  display: inline-block;\n  margin-top: 5px;\n  width: 34px;\n  height: 34px;\n}\n\n.toggle-wrap input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n/* The slider */\n.slider {\n  height: 20px;\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(33, 33, 33, 0.08);\n  transition: 0.4s;\n}\n\n.slider:before {\n  position: absolute;\n  content: '';\n  width: 25px;\n  height: 25px;\n  left: -12.5px;\n  bottom: -2px;\n  background-color: #ededed;\n  transition: 0.4s;\n  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);\n}\n\ninput:checked + .slider {\n  background-color: #80deea;\n}\n\ninput:checked + .slider:before {\n  background-color: #00bcd4;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(34px);\n}\n\n.slider.round {\n  border-radius: 34px;\n}\n\n.slider.round:before {\n  border-radius: 50%;\n}\n\n.lotto-match {\n  margin-top: 32px;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n\n.lotto-match p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.lotto-match-header {\n  display: flex;\n  justify-content: space-between;\n}\n\n.lotto-match-header p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n.number-container {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.match-number-input {\n  width: 34px;\n  height: 36px;\n}\n\n.match-numbers .match-number-input {\n  margin-left: 8px;\n}\n\n.match-numbers .match-number-input:first-child {\n  margin-left: 0px;\n}\n\n.result-button {\n  margin-top: 24px;\n  width: 100%;\n  height: 36px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html {\n  height: 100%;\n}\np {\n  margin: 0;\n}\n.lotto-app-input {\n  border: 1px solid #b4b4b4;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n.lotto-app-button {\n  background: #00bcd4;\n  border-radius: 4px;\n  border: none;\n  font-weight: bold;\n  font-size: 14px;\n  color: white;\n  line-height: 16px;\n  letter-spacing: 1.25px;\n}\nbody {\n  display: flex;\n  justify-content: center;\n  margin-top: 100px;\n}\n.app {\n  width: 414px;\n  padding: 52px 0;\n  border: 1px solid rgba(0, 0, 0, 0.12);\n}\n.app-title {\n  text-align: center;\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  margin-bottom: 16px;\n}\n.submit-form {\n  padding: 0 16px;\n}\n.submit-form label {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.input-wrap {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 4px;\n  height: 36px;\n}\n.input-wrap input {\n  width: calc(100% - 70px);\n  height: 100%;\n  padding-left: 10px;\n}\n.input-wrap button {\n  width: 52px;\n  height: 100%;\n}\n.lotto-list {\n  margin-top: 28px;\n  width: 100%;\n}\n.lotto-list-header {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n.lotto-list-header p {\n  font-size: 15px;\n  line-height: 24px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.lotto-list-body {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n  padding: 0 16px 0 12px;\n}\n.lottos-container {\n  width: calc(100% - 70px);\n}\n.lottos-container .lottos.detail,\n.lottos-container.detail .lottos.default {\n  display: none;\n}\n.lottos-container.detail .lottos.detail {\n  display: block;\n}\n.lottos.default {\n  display: flex;\n  flex-wrap: wrap;\n}\n.lotto {\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.lottos.default .lotto {\n  margin: 0 4px;\n}\n.lotto-number {\n  margin-left: 8px;\n  vertical-align: middle;\n  font-size: 15px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.toggle-wrap {\n  position: relative;\n  display: inline-block;\n  margin-top: 5px;\n  width: 34px;\n  height: 34px;\n}\n.toggle-wrap input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n/* The slider */\n.slider {\n  height: 20px;\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(33, 33, 33, 0.08);\n  transition: 0.4s;\n}\n.slider:before {\n  position: absolute;\n  content: '';\n  width: 25px;\n  height: 25px;\n  left: -12.5px;\n  bottom: -2px;\n  background-color: #ededed;\n  transition: 0.4s;\n  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);\n}\ninput:checked + .slider {\n  background-color: #80deea;\n}\ninput:checked + .slider:before {\n  background-color: #00bcd4;\n}\ninput:checked + .slider:before {\n  transform: translateX(34px);\n}\n.slider.round {\n  border-radius: 34px;\n}\n.slider.round:before {\n  border-radius: 50%;\n}\n.lotto-match {\n  margin-top: 32px;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n.lotto-match p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.lotto-match-header {\n  display: flex;\n  justify-content: space-between;\n}\n.lotto-match-header p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.number-container {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n.match-number-input {\n  width: 34px;\n  height: 36px;\n}\n.match-numbers .match-number-input {\n  margin-left: 8px;\n}\n.match-numbers .match-number-input:first-child {\n  margin-left: 0px;\n}\n.result-button {\n  margin-top: 24px;\n  width: 100%;\n  height: 36px;\n}\n", "",{"version":3,"sources":["webpack://./src/css/index.css"],"names":[],"mappings":"AAAA;EACE,YAAY;AACd;AACA;EACE,SAAS;AACX;AACA;EACE,yBAAyB;EACzB,kBAAkB;EAClB,sBAAsB;AACxB;AACA;EACE,mBAAmB;EACnB,kBAAkB;EAClB,YAAY;EACZ,iBAAiB;EACjB,eAAe;EACf,YAAY;EACZ,iBAAiB;EACjB,sBAAsB;AACxB;AACA;EACE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;AACA;EACE,YAAY;EACZ,eAAe;EACf,qCAAqC;AACvC;AACA;EACE,kBAAkB;EAClB,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,mBAAmB;AACrB;AACA;EACE,eAAe;AACjB;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,0BAA0B;AAC5B;AACA;EACE,aAAa;EACb,8BAA8B;EAC9B,eAAe;EACf,YAAY;AACd;AACA;EACE,wBAAwB;EACxB,YAAY;EACZ,kBAAkB;AACpB;AACA;EACE,WAAW;EACX,YAAY;AACd;AACA;EACE,gBAAgB;EAChB,WAAW;AACb;AACA;EACE,aAAa;EACb,8BAA8B;EAC9B,WAAW;EACX,eAAe;EACf,sBAAsB;AACxB;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,0BAA0B;AAC5B;AACA;EACE,aAAa;EACb,8BAA8B;EAC9B,eAAe;EACf,sBAAsB;AACxB;AACA;EACE,wBAAwB;AAC1B;AACA;;EAEE,aAAa;AACf;AACA;EACE,cAAc;AAChB;AACA;EACE,aAAa;EACb,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,0BAA0B;AAC5B;AACA;EACE,aAAa;AACf;AACA;EACE,gBAAgB;EAChB,sBAAsB;EACtB,eAAe;EACf,qBAAqB;EACrB,0BAA0B;AAC5B;AACA;EACE,kBAAkB;EAClB,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,YAAY;AACd;AACA;EACE,UAAU;EACV,QAAQ;EACR,SAAS;AACX;AACA,eAAe;AACf;EACE,YAAY;EACZ,kBAAkB;EAClB,eAAe;EACf,MAAM;EACN,OAAO;EACP,QAAQ;EACR,SAAS;EACT,wCAAwC;EACxC,gBAAgB;AAClB;AACA;EACE,kBAAkB;EAClB,WAAW;EACX,WAAW;EACX,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,yBAAyB;EACzB,gBAAgB;EAChB,wCAAwC;AAC1C;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,2BAA2B;AAC7B;AACA;EACE,mBAAmB;AACrB;AACA;EACE,kBAAkB;AACpB;AACA;EACE,gBAAgB;EAChB,eAAe;EACf,sBAAsB;AACxB;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,0BAA0B;AAC5B;AACA;EACE,aAAa;EACb,8BAA8B;AAChC;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,0BAA0B;AAC5B;AACA;EACE,aAAa;EACb,8BAA8B;EAC9B,eAAe;AACjB;AACA;EACE,WAAW;EACX,YAAY;AACd;AACA;EACE,gBAAgB;AAClB;AACA;EACE,gBAAgB;AAClB;AACA;EACE,gBAAgB;EAChB,WAAW;EACX,YAAY;AACd","sourcesContent":["html {\n  height: 100%;\n}\np {\n  margin: 0;\n}\n.lotto-app-input {\n  border: 1px solid #b4b4b4;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n.lotto-app-button {\n  background: #00bcd4;\n  border-radius: 4px;\n  border: none;\n  font-weight: bold;\n  font-size: 14px;\n  color: white;\n  line-height: 16px;\n  letter-spacing: 1.25px;\n}\nbody {\n  display: flex;\n  justify-content: center;\n  margin-top: 100px;\n}\n.app {\n  width: 414px;\n  padding: 52px 0;\n  border: 1px solid rgba(0, 0, 0, 0.12);\n}\n.app-title {\n  text-align: center;\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  margin-bottom: 16px;\n}\n.submit-form {\n  padding: 0 16px;\n}\n.submit-form label {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.input-wrap {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 4px;\n  height: 36px;\n}\n.input-wrap input {\n  width: calc(100% - 70px);\n  height: 100%;\n  padding-left: 10px;\n}\n.input-wrap button {\n  width: 52px;\n  height: 100%;\n}\n.lotto-list {\n  margin-top: 28px;\n  width: 100%;\n}\n.lotto-list-header {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n.lotto-list-header p {\n  font-size: 15px;\n  line-height: 24px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.lotto-list-body {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n  padding: 0 16px 0 12px;\n}\n.lottos-container {\n  width: calc(100% - 70px);\n}\n.lottos-container .lottos.detail,\n.lottos-container.detail .lottos.default {\n  display: none;\n}\n.lottos-container.detail .lottos.detail {\n  display: block;\n}\n.lottos.default {\n  display: flex;\n  flex-wrap: wrap;\n}\n.lotto {\n  font-weight: 600;\n  font-size: 34px;\n  line-height: 36px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.lottos.default .lotto {\n  margin: 0 4px;\n}\n.lotto-number {\n  margin-left: 8px;\n  vertical-align: middle;\n  font-size: 15px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.toggle-wrap {\n  position: relative;\n  display: inline-block;\n  margin-top: 5px;\n  width: 34px;\n  height: 34px;\n}\n.toggle-wrap input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n/* The slider */\n.slider {\n  height: 20px;\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(33, 33, 33, 0.08);\n  transition: 0.4s;\n}\n.slider:before {\n  position: absolute;\n  content: '';\n  width: 25px;\n  height: 25px;\n  left: -12.5px;\n  bottom: -2px;\n  background-color: #ededed;\n  transition: 0.4s;\n  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);\n}\ninput:checked + .slider {\n  background-color: #80deea;\n}\ninput:checked + .slider:before {\n  background-color: #00bcd4;\n}\ninput:checked + .slider:before {\n  transform: translateX(34px);\n}\n.slider.round {\n  border-radius: 34px;\n}\n.slider.round:before {\n  border-radius: 50%;\n}\n.lotto-match {\n  margin-top: 32px;\n  padding: 0 16px;\n  box-sizing: border-box;\n}\n.lotto-match p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.lotto-match-header {\n  display: flex;\n  justify-content: space-between;\n}\n.lotto-match-header p {\n  font-size: 15px;\n  line-height: 24px;\n  letter-spacing: 0.5px;\n  color: rgba(0, 0, 0, 0.87);\n}\n.number-container {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n.match-number-input {\n  width: 34px;\n  height: 36px;\n}\n.match-numbers .match-number-input {\n  margin-left: 8px;\n}\n.match-numbers .match-number-input:first-child {\n  margin-left: 0px;\n}\n.result-button {\n  margin-top: 24px;\n  width: 100%;\n  height: 36px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
