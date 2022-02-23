@@ -28,6 +28,11 @@ export default class App {
       'click',
       this.toggleButtonClickEvent,
     );
+
+    $('.purchased-lotto-list-container').addEventListener(
+      'click',
+      handleToggleButtonClick,
+    );
   }
   handleLottoFormSubmitEvent(e) {
     e.preventDefault();
