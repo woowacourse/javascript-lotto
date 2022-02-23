@@ -2,6 +2,7 @@ import { $ } from '../utils/dom';
 import { ERROR_MESSAGE } from './constants';
 import { isValidMoneyInput } from './validator';
 import Lotto from '../model/Lotto';
+import { showResult } from '../view/lottoView';
 
 export default class LottoController {
   constructor() {
@@ -24,5 +25,6 @@ export default class LottoController {
       const lotto = new Lotto();
       this.lottos.push(lotto.lottoNumbers);
     }
+    showResult(this.lottos.length);
   }
-}
+  

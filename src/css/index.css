@@ -193,3 +193,7 @@ h2 {
 #bonus-number {
   margin-right: 0;
 }
+
+.d-none {
+  display: none;
+}
