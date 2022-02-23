@@ -1,4 +1,5 @@
 import LottoManager from '../model/lottoManager.js';
+import { generateRandomNumberInRange } from '../utils/utils';
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {
@@ -33,5 +34,11 @@ describe('구입 금액 검증 테스트 ', () => {
   test('올바른 입력 값을 입력하면 오류가 발생하지 않는다.', () => {
     const cashInput = '2000';
     expect(() => lottoManger.buyLotto(cashInput)).not.toThrow();
+  });
+});
+
+describe('로또 번호 생성 테스트', () => {
+  test('생성된 숫자가 1 - 45 범위인지 확인한다.', () => {
+    expect(generateRandomNumberInRange(1, 45)).toBeWithinRange(1, 45);
   });
 });
