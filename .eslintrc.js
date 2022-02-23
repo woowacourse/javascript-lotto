@@ -3,12 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
     es6: true,
+    node: true,
   },
   extends: ['tui', 'prettier'],
   parserOptions: {
     sourceType: 'module',
-    /** spread eslint error  */
-    ecmaVersion: '13',
+    /** spread eslint error  - 최신버젼의 ecmaVersion*/
+    ecmaVersion: 'latest',
   },
   rules: {
     'no-var': 'error',
