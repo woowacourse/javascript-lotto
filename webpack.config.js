@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: ['./src/index.js', './src/css/index.css', './src/css/toggle.css'],
   resolve: {
     extensions: ['.js', '.css'],
   },
