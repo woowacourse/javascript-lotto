@@ -1,10 +1,13 @@
 import { selectDom } from '../utils/utils';
-import LottoManager from '../model/lottoManager';
 import { SELECTOR } from '../constants/constants';
+
+import LottoManager from '../model/lottoManager';
 import LottoView from '../view/lottoView';
 
 class LottoController {
   startLotto() {
+    this.view = new LottoView();
+    this.lottoManager = new LottoManager();
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
     this.cashInputSection.addEventListener('click', this.#onCashInputButtonClick);
   }
@@ -15,26 +18,24 @@ class LottoController {
     if (target.className === SELECTOR.CASH_INPUT_BUTTON_CLASSNAME) {
       const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
 
-      this.lottoManager = new LottoManager();
       try {
         this.lottoManager.buyLotto(cashInput.value);
-        this.view = new LottoView();
-        this.view.beforeRenderLottos(cashInput, target);
+        this.view.beforeRenderLottos();
         this.view.renderLottos(this.lottoManager.lottos);
-        this.initToggleButtonHandler();
+        this.#initToggleButtonHandler();
       } catch (error) {
         alert(error.message);
       }
     }
   };
 
-  initToggleButtonHandler() {
+  #initToggleButtonHandler() {
     this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
     this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
   }
 
   #onShowNumberToggleButtonClick = ({ target }) => {
-    this.view.toggleShowLottoNumbers(target.checked);
+    this.view.toggleLottoNumbersShow(target.checked);
   };
 }
 

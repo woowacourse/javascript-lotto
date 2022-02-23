@@ -7,8 +7,8 @@ export const SELECTOR = Object.freeze({
   PURCHASED_LOTTO_SECTION_CLASS: '.purchased-lotto-section',
   WINNER_NUMBER_SECTION_CLASS: '.winner-number-section',
 
-  LOTTO_SHOW_CONTAINER_CLASS: '.lotto-show-container',
-  LOTTO_NUMBER_CONTAINER_CLASS: '.lotto-number-container',
+  LOTTO_SHOW_CONTAINER_CLASS: '.lotto-container',
+  LOTTO_NUMBER_CONTAINER_CLASS: '.lotto-grid',
 
   SHOW_NUMBER_TOGGLE_BUTTON_CLASS: '.show-number-toggle-button',
 
@@ -20,6 +20,8 @@ export const SELECTOR = Object.freeze({
   ONE_COLUMN_GRID_CLASSNAME: 'one-column-grid',
   HIDE_NUMBERS_CLASSNAME: 'hide-numbers',
 });
+
+export const DISABLED_PURCHASE_BUTTON_TEXT = '구입완료';
 
 export const LOTTO_PRICE = 1000;
 export const CASH_INPUT_RANGE = Object.freeze({

@@ -48,7 +48,7 @@ describe('로또 번호 생성 테스트', () => {
 
   test('범위가 1 - 45인 고유한 숫자 6개가 생성되는지 확인한다.', () => {
     const lotto = new Lotto();
-    lotto.lottoNumbers.forEach((number) =>
+    lotto.lottoNumberSet.forEach((number) =>
       expect(number).toBeWithinRange(LOTTO_NUMBER_RANGE.MIN, LOTTO_NUMBER_RANGE.MAX)
     );
   });

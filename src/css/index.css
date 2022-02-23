@@ -17,6 +17,18 @@ button {
   cursor: pointer;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 input:focus {
   outline: none;
 }
@@ -69,7 +81,7 @@ input:focus {
   gap: 20px;
 }
 
-.lotto-number-container {
+.lotto-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 0 5px;
@@ -118,10 +130,11 @@ legend {
 
 .winner-number-input,
 .bonus-number-input {
-  width: 1.5rem;
+  width: 3rem;
   font-size: 1.5rem;
   border: 1px solid #b4b4b4;
   border-radius: 4px;
+  text-align: center;
 }
 
 .bonus-number-input-container {
@@ -170,8 +183,8 @@ legend {
   left: -5px;
   bottom: calc(50% - 10px);
   background-color: #ededed;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   box-shadow: 0 1px 3px #00000050;
 }
 

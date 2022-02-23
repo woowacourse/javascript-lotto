@@ -1,12 +1,12 @@
-import { LOTTO_IMAGE, SELECTOR } from '../constants/constants';
+import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, SELECTOR } from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
   constructor() {
-    this.initDom();
+    this.#initDom();
   }
 
-  initDom() {
+  #initDom() {
     this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
     this.lottoShowContainer = selectDom(SELECTOR.LOTTO_SHOW_CONTAINER_CLASS);
@@ -17,15 +17,15 @@ class LottoView {
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
   }
 
-  toggleShowLottoNumbers(checked) {
-    const { classList } = this.lottoNumberContainer;
-    if (checked) {
-      classList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
-      classList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+  toggleLottoNumbersShow(isVisible) {
+    const { classList: lottoNumberClassList } = this.lottoNumberContainer;
+    if (isVisible) {
+      lottoNumberClassList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+      lottoNumberClassList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
       return;
     }
-    classList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
-    classList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+    lottoNumberClassList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+    lottoNumberClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
   }
 
   beforeRenderLottos() {
@@ -33,7 +33,7 @@ class LottoView {
     const cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
     cashInput.disabled = true;
     cashInputButton.disabled = true;
-    cashInputButton.textContent = '구입완료';
+    cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
   }
 
   renderLottos(lottos) {
@@ -41,7 +41,7 @@ class LottoView {
     this.winnerNumberSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
 
     this.lottoShowContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
-    this.lottoNumberContainer.append(...LottoView.generateLottoElementTemplate(lottos));
+    this.lottoNumberContainer.append(...LottoView.generateLottoElementsArray(lottos));
   }
 
   static generatePurchasedLabel(length) {
@@ -50,7 +50,7 @@ class LottoView {
     return labelElement;
   }
 
-  static generateLottoElementTemplate(lottos) {
+  static generateLottoElementsArray(lottos) {
     return lottos.map((lotto) => LottoView.generateLottoElement(lotto));
   }
 
@@ -61,7 +61,7 @@ class LottoView {
     lottoImage.textContent = LOTTO_IMAGE;
 
     const lottoNumbers = createElementWithClassName('p', SELECTOR.LOTTO_NUMBERS_CLASSNAME);
-    lottoNumbers.textContent = Array.from(lotto.lottoNumbers).join(', ');
+    lottoNumbers.textContent = Array.from(lotto.lottoNumberSet).join(', ');
 
     lottoElement.append(lottoImage, lottoNumbers);
     return lottoElement;

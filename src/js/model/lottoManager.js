@@ -19,7 +19,7 @@ class LottoManager {
     ) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_MESSAGE);
     }
-    if (!LottoManager.isNoChangeLeft(cashInput, this.lottoPrice)) {
+    if (!this.#isNoChangeLeft(cashInput)) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT_MESSAGE);
     }
   }
@@ -32,8 +32,8 @@ class LottoManager {
     this.lottos = Array.from({ length: this.purchaseAmount }, () => new Lotto());
   }
 
-  static isNoChangeLeft(insertCash, price) {
-    return insertCash % price === 0;
+  #isNoChangeLeft(insertCash) {
+    return insertCash % this.lottoPrice === 0;
   }
 }
 
