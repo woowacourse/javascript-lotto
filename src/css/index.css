@@ -41,3 +41,7 @@ header {
   color: #000000;
   margin: 52px 0 16px;
 }
+
+.hidden {
+  display: none;
+}

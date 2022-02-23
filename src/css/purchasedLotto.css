@@ -106,7 +106,3 @@ input:checked + .slider:before {
 .purchased-lotto-number {
   margin-left: 8px;
 }
-
-.hidden {
-  display: none;
-}

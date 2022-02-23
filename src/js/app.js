@@ -1,4 +1,4 @@
-import PurchaseMoneyController from './controller/PurchaseMoneyController.js';
+import LottoMachineController from './controller/LottoMachineController.js';
 
 export default class App {
   constructor() {
@@ -6,6 +6,6 @@ export default class App {
   }
 
   init() {
-    this.purchaseMoneyController = new PurchaseMoneyController();
+    this.lottoMachineController = new LottoMachineController();
   }
 }
