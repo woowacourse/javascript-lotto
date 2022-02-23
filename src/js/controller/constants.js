@@ -3,6 +3,8 @@ export const ERROR_MESSAGE = {
 };
 
 export const MONEY_INPUT = {
-  MIN: 1000,
-  MAX: 10000,
+  MIN_PRICE: 1000,
+  MAX_PRICE: 10000,
 };
+
+export const LOTTO_PRICE = 1000;

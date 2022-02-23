@@ -1,4 +1,5 @@
-const generateRandomNumber = () => Math.floor(Math.random() * 45) + 1;
+import { LOTTO_DIGIT } from './constants';
+import { generateRandomNumber } from '../utils/number';
 
 export default class Lotto {
   constructor() {
@@ -7,7 +8,7 @@ export default class Lotto {
   }
 
   generateLottoNumbers = () => {
-    while (this.lottoNumbers.length < 6) {
+    while (this.lottoNumbers.length < LOTTO_DIGIT) {
       const randomNumber = generateRandomNumber();
       if (!this.lottoNumbers.includes(randomNumber)) {
         this.lottoNumbers.push(randomNumber);
