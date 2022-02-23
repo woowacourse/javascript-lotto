@@ -6,3 +6,5 @@ function getRandomInt(min, max) {
 }
 
 export default getRandomInt;
+
+export const $ = (selector) => document.querySelector(selector);

@@ -1,4 +1,4 @@
-import Lotto from '../Lotto.js';
+import Lotto from '../Model/Lotto.js';
 
 function isNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);

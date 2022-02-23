@@ -1,4 +1,4 @@
-import LottoNumbers from './LottoNumbers';
+import LottoNumbers from './LottoNumbers.js';
 
 export default class Lotto {
   constructor() {

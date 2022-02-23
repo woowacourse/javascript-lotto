@@ -1,4 +1,4 @@
-import LottoManager from '../LottoManager.js';
+import LottoManager from '../Model/LottoManager.js';
 import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,
@@ -20,7 +20,9 @@ describe('금액이 입력되면', () => {
 
       expect(() => {
         validator.checkChargeAmount(chargeAmount);
-      }).toThrowError('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
+      }).toThrowError(
+        '입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
+      );
     });
 
     test('1000으로 나눠서 안떨어지는 금액이 입력되면 에러를 throw한다.', () => {
