@@ -1,12 +1,14 @@
 import { CASH_INPUT_RANGE, ERROR_MESSAGE, LOTTO_PRICE } from '../constants/constants';
 import { isNumberInRange } from '../utils/utils';
+import Lotto from './lotto';
 
 class LottoManager {
   buyLotto(cashInput) {
     this.lottoPrice = LOTTO_PRICE;
     try {
       this.#validateCashInput(Number(cashInput));
-      // todo: 로또 구매 구현
+      this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
+      this.generateLottos();
     } catch (error) {
       alert(error.message);
     }
@@ -24,6 +26,14 @@ class LottoManager {
     if (!LottoManager.isNoChangeLeft(cashInput, this.lottoPrice)) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT_MESSAGE);
     }
+  }
+
+  #getLottoPurchaseAmount(cashInput) {
+    return cashInput / this.lottoPrice;
+  }
+
+  generateLottos() {
+    this.lottos = Array.from({ length: this.purchaseAmount }, () => new Lotto());
   }
 
   static isNoChangeLeft(insertCash, price) {
