@@ -33,7 +33,7 @@ module.exports = {
       value: ':green_heart: ci',
       name: '💚 ci:\tAdd or update regards to build process',
     },
-    { value: '✏️ typo', name: '✏️ typo:\tFix typo' },
+    { value: ':pencil2: typo', name: '✏️ typo:\tFix typo' },
   ],
 
   scopes: [
