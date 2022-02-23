@@ -1,5 +1,5 @@
-import LottoModel from '../Model/LottoModel.js';
-import Payment from '../Model/Payment.js';
+import LottoModel from '../Model/Lotto/LottoModel.js';
+import Payment from '../Model/Payment/Payment.js';
 import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,

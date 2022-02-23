@@ -1,4 +1,4 @@
-import { getLottoNumberList } from '../utils/lottoUtils.js';
+import { getLottoNumberList } from '../../utils/lottoUtils.js';
 
 export default class LottoNumbers {
   constructor() {

@@ -1,5 +1,5 @@
-import LottoModel from './LottoModel.js';
-import Payment from './Payment.js';
+import LottoModel from './Lotto/LottoModel.js';
+import Payment from './Payment/Payment.js';
 
 export default class Model {
   lottoModel;
