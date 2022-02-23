@@ -1,0 +1,52 @@
+#lotto-number-container {
+  margin-top: 32px;
+}
+
+#lotto-number-container p {
+  padding-bottom: 8px;
+}
+
+#winning-number-box {
+  display: flex;
+  flex-direction: column;
+}
+
+#bonus-number-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.winning-number-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.winning-number-input::-webkit-outer-spin-button,
+.winning-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#bonus-number-box .winning-number-input {
+  margin-right: 0;
+}
+
+.input-box {
+  display: flex;
+}
+
+#result-button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 10px 0;
+  background: #00bcd4;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 @import './reset.css';
 @import './purchaseMoney.css';
 @import './purchasedLotto.css';
+@import './lottoNumber.css';
 
 body {
   display: flex;
@@ -9,12 +10,22 @@ body {
   background: #e5e5e5;
 }
 
+body section {
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
 #app {
   display: flex;
   flex-direction: column;
   width: 414px;
-  height: 727px;
-  padding: 0 16px;
+  min-height: 727px;
+  padding: 0 16px 10px;
   background: #ffffff;
 }
 
@@ -26,11 +37,7 @@ header {
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
-  /* identical to box height, or 106% */
-
   text-align: center;
-
   color: #000000;
-
   margin: 52px 0 16px;
 }

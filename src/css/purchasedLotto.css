@@ -3,15 +3,6 @@
   min-height: 68px;
   display: flex;
   justify-content: space-between;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  color: rgba(0, 0, 0, 0.87);
-
   margin-top: 28px;
 }
 
@@ -19,10 +10,11 @@
   display: flex;
   flex-direction: column;
   min-width: 310px;
+  max-width: 310px;
 }
 
 #purchased-lotto-box > p {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .purchased-lotto-image {
@@ -33,8 +25,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
   padding-bottom: 15px;
+}
+
+#toggle-box label {
+  margin-top: 13px;
 }
 
 /* toggle */
@@ -101,17 +96,17 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-p {
-  margin: 0px;
-  display: inline-block;
-  font-size: 15px;
-  font-weight: bold;
+.purchased-lotto-item {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  padding-bottom: 4px;
 }
 
-#lotto-number-container {
-  display: none;
+.purchased-lotto-number {
+  margin-left: 8px;
 }
 
-#purchased-lotto-list-on {
+.hidden {
   display: none;
 }
