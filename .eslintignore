@@ -6,3 +6,6 @@ cypress.json
 /cypress/**
 index.html
 /src/js/__tests__/app.test.js
+webpack.config.js
+/dist/**
+commitlint.config.js

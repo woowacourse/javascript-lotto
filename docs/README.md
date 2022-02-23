@@ -62,14 +62,19 @@
 - [x] `utils` 폴더에 있는 파일들의 범용성 확인하기
   - [x] `selector` 함수를 범용성있게 만들기
 - [x] `if`문 점검하기 (드모르간 법칙)
-- [ ] 테스트 코드 전반적으로 리팩토링 하기
-- [ ] package.json에서 안 쓰는 스크립트 점검(webpack, husky)
+- [x] 테스트 코드 전반적으로 리팩토링 하기
+- [x] package.json에서 안 쓰는 스크립트 점검
 - [x] HTML에다가 넣어둔 Dummy HTML 코드 삭제
 - [x] `emit`, `on` 유틸함수를 이용하여 MVC 패턴을 개선
 - [ ] 변수 이름 점검
   - [ ] 클래스 이름 컨벤션에 따라 점검
 - [x] 상수 분리
   - `Object.freeze` 사용
+
+## build 및 deploy 관련
+
+- [x] webpack development mode
+- [x] webpack production mode
 
 ## MVC 패턴
 
