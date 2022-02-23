@@ -1,4 +1,4 @@
-import LottoController from './controller/LottoController.js';
+import LottoController from './controller/LottoController';
 
 const lottoManager = new LottoController();
 lottoManager.init();
