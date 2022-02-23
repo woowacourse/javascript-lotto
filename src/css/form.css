@@ -1,0 +1,42 @@
+fieldset {
+  padding: 0;
+  border: none;
+}
+
+.form-label {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 8px 8px 4px;
+  border: 1px solid var(--gray-900);
+  border-radius: 4px;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.form-control.submitted {
+  background-color: var(--gray-800);
+}
+
+.form-control:disabled {
+  background-color: var(--gray-800);
+  cursor: not-allowed;
+}
+
+.form-control:focus {
+  background-color: white !important;
+}
+
+::placeholder {
+  color: var(--gray-900);
+  opacity: 1; /* Firefox */
+}
