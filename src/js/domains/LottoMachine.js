@@ -13,12 +13,6 @@ export default class LottoMachine {
     this.#inputMoney = money;
   }
 
-  validateMoney(money) {
-    if (!this.isValidInputMoney(money)) {
-      throw new Error(`${LOTTO.PRICE}단위로 입력해주세요`);
-    }
-  }
-
   get lottos() {
     return this.#lottos;
   }
@@ -27,13 +21,26 @@ export default class LottoMachine {
     this.#lottos = lottos;
   }
 
-  isValidInputMoney(money) {
+  validateMoney(money) {
+    if (!this.isValidUnit(money)) {
+      throw new Error(`${LOTTO.PRICE}단위로 입력해주세요`);
+    }
+    if (!this.isOverZero(money)) {
+      throw new Error('0원보다 큰 금액을 입력해주세요.');
+    }
+  }
+
+  isOverZero(money) {
+    return money > 0;
+  }
+
+  isValidUnit(money) {
     return money % LOTTO.PRICE === 0;
   }
 
   operateLottoMachine() {
     this.lottos = this.generateLottos();
-    this.inputMoney = 0;
+    this.#inputMoney = 0;
   }
 
   generateLottos() {

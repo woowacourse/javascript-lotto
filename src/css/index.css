@@ -1,5 +1,5 @@
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -34,7 +34,7 @@ section {
 }
 
 header {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
   font-size: 34px;
@@ -60,15 +60,7 @@ label {
   width: 100%;
 }
 
-.lotto-result-container {
-  display: flex;
-  width: 300px;
-  flex-wrap: wrap;
-  font-size: 32px;
-  gap: 8px;
-}
-
-.lotto-result-container {
+#lotto-result-container {
   display: flex;
   width: 300px;
   flex-wrap: wrap;
