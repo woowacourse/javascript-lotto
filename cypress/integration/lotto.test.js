@@ -53,7 +53,8 @@ it('구입할 금액이 1000원 이상 10000원 이하가 아닌 경우 에러�
       expect(alertStub).to.be.calledWith(
         '구입할 금액은 1000원 이상 10000원 이하를 입력해주셔야 합니다.'
       );
-      cy.get('#payment-input').should('text', '').should('have.foucs');
+      cy.get('#payment-input').should('have.value', '');
+      cy.get('#payment-input').should('have.focus');
     });
 });
 
@@ -70,6 +71,7 @@ it('구입할 금액을 1000원 단위로 입력하지 않았을 경우 에러�
       expect(alertStub).to.be.calledWith(
         '구입할 금액은 1000원 단위로 입력해주셔야 합니다'
       );
-      cy.get('#payment-input').should('text', '').should('have.foucs');
+      cy.get('#payment-input').should('have.value', '');
+      cy.get('#payment-input').should('have.focus');
     });
 });
