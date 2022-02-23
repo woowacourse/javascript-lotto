@@ -125,3 +125,15 @@ section {
   flex-direction: column;
   align-items: flex-end;
 }
+
+#align-converter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+label[for='align-converter'] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
