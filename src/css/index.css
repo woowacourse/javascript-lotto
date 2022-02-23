@@ -89,6 +89,10 @@ h1 {
   width: 100%;
 }
 
+.lotto-list__section-display-none {
+  display: none;
+}
+
 .lotto-list__header {
   display: flex;
   justify-content: space-between;

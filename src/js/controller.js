@@ -18,6 +18,7 @@ export default class Controller {
   onSubmitCash(cash) {
     const quantity = cash / LOTTO_PRICE;
     this.model.buyLotto(quantity);
+    this.lottoListView.displayLottoListSection();
     this.lottoListView.showDescription(quantity);
     this.lottoListView.showLottoList(this.model.getLottoList());
   }

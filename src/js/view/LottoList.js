@@ -1,5 +1,5 @@
 import { $, replaceHTML } from '../utils/dom.js';
-import { ID_SELECTOR } from '../constants.js';
+import { ID_SELECTOR, CLASS_SELECTOR } from '../constants.js';
 
 export default class LottoListView {
   constructor() {
@@ -8,6 +8,7 @@ export default class LottoListView {
   }
 
   configureDOM() {
+    this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
     this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
     this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
     this.$toggle = $(ID_SELECTOR.TOGGLE);
@@ -37,5 +38,9 @@ export default class LottoListView {
       )
       .join('');
     replaceHTML(this.$lottoLists, template);
+  }
+
+  displayLottoListSection() {
+    this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }
 }

@@ -12,6 +12,11 @@ export const ID_SELECTOR = {
   TOGGLE: 'toggle',
   TOGGLE_INPUT: 'toggle-input',
   LOTTO_LISTS: 'lotto-lists',
+  LOTTO_LIST_SECTION: 'lotto-list-section',
+};
+
+export const CLASS_SELECTOR = {
+  LOTTO_LIST_SECTION_DISPLAY_NONE: 'lotto-list__section-display-none',
 };
 
 export const LOTTO_PRICE = 1000;
