@@ -7,15 +7,6 @@ export default class View {
 
   constructor($target) {
     this.$target = $target;
-    this.init();
-    this.render();
-  }
-
-  init() {
-    this.state = {
-      isShowNumber: false,
-      lottoList: [],
-    };
   }
 
   cacheDOMElements() {

@@ -5,6 +5,10 @@ export default class Controller {
   }
 
   init() {
+    this.model.init((message) => {
+      this.updateView(message);
+    });
+
     this.bindEventHandlers();
     console.log('controller loaded...');
   }

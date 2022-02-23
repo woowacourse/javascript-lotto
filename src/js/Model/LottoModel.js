@@ -1,9 +1,7 @@
 import Lotto from './Lotto.js';
 
 export default class LottoModel {
-  static getNumberOfLotto(amount) {
-    return parseInt(amount / 1000, 10);
-  }
+  lottoList;
 
   static issueLotto() {
     return new Lotto();
@@ -19,8 +17,8 @@ export default class LottoModel {
       .map(() => LottoModel.issueLotto());
   }
 
-  purchase(amount) {
-    this.issueLottoWithCount(LottoModel.getNumberOfLotto(amount));
+  purchase(count) {
+    this.issueLottoWithCount(count);
 
     return this.lottoList;
   }

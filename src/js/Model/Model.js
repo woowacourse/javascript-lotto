@@ -1,18 +1,20 @@
 import LottoModel from './LottoModel.js';
+import Payment from './Payment.js';
 
 export default class Model {
-  constructor() {
-    this.init();
-    this.lottoModel = new LottoModel();
-  }
+  lottoModel;
 
-  init() {
-    console.log('model loaded...');
+  init(callback) {
+    const message = { lottoList: [] };
+
+    this.lottoModel = new LottoModel();
+    callback(message);
   }
 
   purchase(amount, callback) {
+    const numberOfTicket = new Payment(amount).getNumberOfLotto();
     const message = {
-      lottoList: this.lottoModel.purchase(amount),
+      lottoList: this.lottoModel.purchase(numberOfTicket),
     };
 
     callback(message);

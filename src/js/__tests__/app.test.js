@@ -1,4 +1,5 @@
 import LottoModel from '../Model/LottoModel.js';
+import Payment from '../Model/Payment.js';
 import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,
@@ -10,8 +11,9 @@ import {
 describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
     const chargeAmount = 2000;
+    const payment = new Payment(chargeAmount);
 
-    expect(LottoModel.getNumberOfLotto(chargeAmount)).toBe(2);
+    expect(payment.getNumberOfLotto()).toBe(2);
   });
 
   describe('유효성을 검증하여', () => {
