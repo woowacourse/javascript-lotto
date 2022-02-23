@@ -11,11 +11,16 @@ export default class Controller {
 
   bindEventHandlers() {
     this.view.bindOnClickPaymentSubmit(this.purchase.bind(this));
+    this.view.bindOnClickNumberToggle();
   }
 
   purchase(amount) {
     this.model.purchase(amount, (message) => {
-      this.view.render(message);
+      this.updateView(message);
     });
+  }
+
+  updateView(message) {
+    this.view.update(message);
   }
 }

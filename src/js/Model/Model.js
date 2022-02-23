@@ -15,7 +15,6 @@ export default class Model {
       lottoList: this.lottoModel.purchase(amount),
     };
 
-    console.log(message);
     callback(message);
   }
 }
