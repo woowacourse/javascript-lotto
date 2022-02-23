@@ -10,29 +10,37 @@ export class View {
   }
 
   registerInput() {
-    this.moneyInput = document.getElementById('input-space');
+    this.moneyInput = document.getElementById('money-input');
   }
 
   showLottos() {
-    this.lotteryStatusContainer = document.getElementById('lottery-status-container');
-    this.winningLotteryContainer = document.getElementById('winning-lottery-container');
+    this.lottoStatusContainer = document.getElementById('lotto-status-container');
+    this.winningLottoContainer = document.getElementById('winning-lotto-container');
 
-    this.lotteryStatusContainer.style.visibility = 'visible';
-    this.winningLotteryContainer.style.visibility = 'visible';
+    this.lottoStatusContainer.style.visibility = 'visible';
+    this.winningLottoContainer.style.visibility = 'visible';
   }
 
   showLottoIcons(lottoWallet) {
-    this.showLottoIcons = document.getElementById('lotto-icons');
-    this.showLottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
+    this.lottoIcons = document.getElementById('lotto-icons');
+    this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
 
-    this.lotteryNumberLabel = document.getElementById('lottery-number-label');
-    this.lotteryNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
+    this.lottoNumberLabel = document.getElementById('lotto-quantity-label');
+    this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
   }
 
   lottosDetail(lottoWallet) {
-    const lottoStatusString = lottoWallet.map((x) => x.numbers.join(', '));
     let text = '';
-    lottoStatusString.forEach((x) => (text += `🎟️  ${x}<br>`));
-    this.showLottoIcons.innerHTML = text;
+    const paddedLottoNumbers = [];
+    lottoWallet.forEach((lotto) => {
+      paddedLottoNumbers.push(lotto.numbers.map((x) => String(x).padStart(3, ' ')));
+    });
+
+    const lottoStatusString = paddedLottoNumbers.map((padded) => {
+      return `🎟️ ${padded}<br>`;
+    });
+
+    console.log(lottoStatusString);
+    this.lottoIcons.innerHTML = lottoStatusString.join('');
   }
 }

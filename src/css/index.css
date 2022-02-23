@@ -7,14 +7,20 @@
   height: 100%;
 }
 
-#input-container {
+#money-input-container {
   display: flex;
   padding: 10px;
   width: 70%;
   flex-direction: column;
 }
 
-#input-space {
+#money-input-field {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+#money-input {
   width: 80%;
   height: 36px;
   left: 0px;
@@ -28,13 +34,7 @@
   border-radius: 4px;
 }
 
-#input-button-area {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 10px;
-}
-
-#lottery-status-container {
+#lotto-status-container {
   visibility: collapse;
   display: grid;
   padding: 10px;
@@ -44,7 +44,8 @@
     'nl nl nl nl nl nl nl tg'
     'ic ic ic ic ic ic ic sw';
 }
-#lottery-number-label {
+
+#lotto-quantity-label {
   grid-area: nl;
 }
 
@@ -52,15 +53,16 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 600;
-  font-size: 34px;
+  font-size: 20px;
   line-height: 36px;
   grid-area: ic;
 }
-.toggle {
+
+#toggle-label {
   grid-area: tg;
 }
 
-#winning-lottery-container {
+#winning-lotto-container {
   display: grid;
   padding: 10px;
   width: 70%;
@@ -69,11 +71,12 @@
 
   grid-template-areas:
     'hd hd hd hd hd hd hd hd'
-    'hd2 hd2 .  .  .  .  . hd3'
+    'hd2 hd2 hd2  hd2  .  .  . hd3'
     'wn1 wn2 wn3 wn4 wn5 wn6 . wn7'
     'cr cr cr cr cr cr cr cr';
 }
-#header1 {
+
+#winning-lotto-guide-label {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -82,7 +85,8 @@
   grid-area: hd;
   padding: 5px;
 }
-#header2 {
+
+#winning-number-label {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -91,7 +95,8 @@
   grid-area: hd2;
   padding: 5px;
 }
-#header3 {
+
+#bonus-number-label {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -100,72 +105,39 @@
   grid-area: hd3;
   padding: 5px;
 }
-#winning-number1 {
+
+.winning-number {
   height: 35px;
   width: 35px;
-  grid-area: wn1;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   border-radius: 4px;
+}
+
+#winning-number1 {
+  grid-area: wn1;
 }
 #winning-number2 {
-  height: 35px;
-  width: 35px;
   grid-area: wn2;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 4px;
 }
 #winning-number3 {
-  height: 35px;
-  width: 35px;
   grid-area: wn3;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 4px;
 }
 #winning-number4 {
-  height: 35px;
-  width: 35px;
   grid-area: wn4;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 4px;
 }
 #winning-number5 {
-  height: 35px;
-  width: 35px;
   grid-area: wn5;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 4px;
 }
 #winning-number6 {
-  height: 35px;
-  width: 35px;
   grid-area: wn6;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 4px;
 }
-
 #winning-number7 {
-  height: 35px;
-  width: 35px;
   grid-area: wn7;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 4px;
 }
 
-#confirm-result {
+#confirm-result-label {
   grid-area: cr;
   display: flex;
   flex-direction: row;
