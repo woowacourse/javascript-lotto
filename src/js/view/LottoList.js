@@ -31,7 +31,7 @@ export default class LottoListView {
       .map(
         lotto => `
         <li class="lotto-list">
-          <span class="lotto-list__ticket"></span>
+          <span class="lotto-list__ticket">🎟️</span>
           <span class="lotto-list__numbers">${[...lotto.values()].join(', ')}</span>
         </li>`,
       )

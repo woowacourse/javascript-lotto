@@ -183,9 +183,7 @@ h1 {
 
 .lotto-list__ticket {
   display: inline-block;
-  background-image: url('../../images/lotto_ticket.svg');
-  width: 34px;
-  height: 36px;
+  font-size: 34px;
   margin-right: 8px;
 }
 

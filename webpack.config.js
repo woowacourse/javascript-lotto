@@ -34,22 +34,6 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: /\.svg$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: './dist/',
-          name: '[name].[ext]?[hash]',
-        },
-      },
-      {
-        test: /\.svg$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8000,
-          name: 'images/[hash]-[name].[ext]',
-        },
-      },
     ],
   },
   plugins: [
