@@ -1,7 +1,8 @@
+import Model from '../core/Model.js';
 import LottoModel from './Lotto/LottoModel.js';
 import Payment from './Payment/Payment.js';
 
-export default class Model {
+export default class LottoAppModel extends Model {
   lottoModel;
 
   init(callback) {
