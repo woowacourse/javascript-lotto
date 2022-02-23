@@ -1,5 +1,5 @@
-import { getRandomNumber } from '../utils/data-manager.js';
-import { LOTTO_SETTING } from '../constants/setting.js';
+import { getRandomNumber } from '../utils/data-manager';
+import { LOTTO_SETTING } from '../constants/setting';
 
 export default class Lotto {
   #pickedNumber = [];

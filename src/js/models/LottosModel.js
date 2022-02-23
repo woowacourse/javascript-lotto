@@ -1,6 +1,6 @@
-import Lotto from './Lotto.js';
-import { checkValidMoneyInput } from '../utils/Lotto/validator.js';
-import { LOTTO_SETTING } from '../constants/setting.js';
+import Lotto from './Lotto';
+import { checkValidMoneyInput } from '../utils/Lotto/validator';
+import { LOTTO_SETTING } from '../constants/setting';
 
 export default class LottosModel {
   #lottos = [];

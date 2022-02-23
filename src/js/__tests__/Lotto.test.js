@@ -1,4 +1,4 @@
-import Lotto from '../models/Lotto.js';
+import Lotto from '../models/Lotto';
 
 it('로또번호는 중복될 수 없다.', () => {
   const duplicatedNumber = 1;

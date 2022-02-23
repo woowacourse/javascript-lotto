@@ -1,6 +1,6 @@
-import { $ } from '../utils/element-manager.js';
-import { SELECTOR } from '../constants/selector.js';
-import { makeLottosCountTemplate, makeLottoTemplate } from '../utils/Lotto/template-manager.js';
+import { $ } from '../utils/element-manager';
+import { SELECTOR } from '../constants/selector';
+import { makeLottosCountTemplate, makeLottoTemplate } from '../utils/Lotto/template-manager';
 
 export default class LottoListView {
   #container;

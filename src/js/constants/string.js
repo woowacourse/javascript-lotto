@@ -1,4 +1,4 @@
-import { LOTTO_SETTING } from './setting.js';
+import { LOTTO_SETTING } from './setting';
 
 export const ERROR_MESSAGE = {
   NOT_POSITIVE_NUMBER_INPUT: '0 이상의 숫자만 입력할 수 있습니다.',

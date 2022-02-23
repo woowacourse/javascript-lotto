@@ -1,5 +1,5 @@
-import { $ } from '../utils/element-manager.js';
-import { SELECTOR } from '../constants/selector.js';
+import { $ } from '../utils/element-manager';
+import { SELECTOR } from '../constants/selector';
 
 export default class MoneyInputView {
   #container;

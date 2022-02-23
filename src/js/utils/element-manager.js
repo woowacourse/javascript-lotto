@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants/selector.js';
+import { SELECTOR } from '../constants/selector';
 
 export const $ = (parentElement, childSelector = null) => {
   const target = childSelector || parentElement;

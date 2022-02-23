@@ -1,6 +1,6 @@
-import { isDivisible, isPositiveInteger } from '../validator.js';
-import { LOTTO_SETTING } from '../../constants/setting.js';
-import { ERROR_MESSAGE } from '../../constants/string.js';
+import { isDivisible, isPositiveInteger } from '../validator';
+import { LOTTO_SETTING } from '../../constants/setting';
+import { ERROR_MESSAGE } from '../../constants/string';
 
 export const checkValidMoneyInput = (money) => {
   if (!isPositiveInteger(money)) {

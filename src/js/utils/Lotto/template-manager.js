@@ -1,4 +1,4 @@
-import { SELECTOR } from '../../constants/selector.js';
+import { SELECTOR } from '../../constants/selector';
 
 export const makeLottosCountTemplate = (count) => `총 ${count}개를 구매하였습니다.`;
 export const makeLottoTemplate = (numbers) => `

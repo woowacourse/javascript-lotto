@@ -1,9 +1,9 @@
-import MoneyInputView from '../views/MoneyInputView.js';
-import LottoListView from '../views/LottoListView.js';
-import LottosModel from '../models/LottosModel.js';
+import MoneyInputView from '../views/MoneyInputView';
+import LottoListView from '../views/LottoListView';
+import LottosModel from '../models/LottosModel';
 
-import { $ } from '../utils/element-manager.js';
-import { SELECTOR } from '../constants/selector.js';
+import { $ } from '../utils/element-manager';
+import { SELECTOR } from '../constants/selector';
 
 export default class LottoController {
   #MoneyInputView = new MoneyInputView($(`.${SELECTOR.CLASS.LOTTO_MONEY_SECTION}`));

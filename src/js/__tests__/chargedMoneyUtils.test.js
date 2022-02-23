@@ -1,5 +1,5 @@
-import { isPositiveInteger, isDivisible } from '../utils/validator.js';
-import { LOTTO_SETTING } from '../constants/setting.js';
+import { isPositiveInteger, isDivisible } from '../utils/validator';
+import { LOTTO_SETTING } from '../constants/setting';
 
 it('입력란이 빈칸일 수 없다.', () => {
   const input = '';
