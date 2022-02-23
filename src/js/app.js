@@ -5,6 +5,8 @@ import {
   renderLastLottoNumber,
   renderPurchasedLottoList,
 } from './views/render.js';
+import { handleToggleButtonClick } from './component/toggleButton.js';
+
 export default class App {
   constructor() {
     this.lottoPrice = 0;
@@ -14,6 +16,11 @@ export default class App {
     $('.lotto-price-input-form').addEventListener(
       'submit',
       this.handlePriceInputEvent,
+    );
+
+    $('.purchased-lotto-list-container').addEventListener(
+      'click',
+      handleToggleButtonClick,
     );
   }
 

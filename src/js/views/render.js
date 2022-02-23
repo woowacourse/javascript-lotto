@@ -5,8 +5,8 @@ export const renderPurchasedLottoList = lottoCount => {
     <p>번호보기</p>
     </div>
     <div>
-        <div class="purchased-lotto-list"></div>
-        <p class="toggle-button on"></p>
+        <div class="purchased-lotto-list">${'🎟️'.repeat(lottoCount)}</div>
+        <button class="toggle-button">toggle</button>
     </div>`;
   $('.purchased-lotto-list-container').insertAdjacentHTML(
     'beforeend',
