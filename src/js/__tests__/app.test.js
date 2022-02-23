@@ -2,7 +2,7 @@ import { LOTTO_PRICE, LOTTO_RULE } from '../constants';
 import Model from '../model';
 import { validateCashInput } from '../utils/validation';
 
-describe('', () => {
+describe('로또 구매 테스트', () => {
   let model;
   beforeEach(() => {
     model = new Model();

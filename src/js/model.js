@@ -1,16 +1,16 @@
 import { LOTTO_RULE } from './constants.js';
 import { generateRandomNumber } from './utils/common.js';
 export default class Model {
-  lottoList = [];
+  #lottoList = [];
 
   getLottoList() {
-    return this.lottoList;
+    return this.#lottoList;
   }
 
   buyLotto(quantity) {
-    this.lottoList = [];
+    this.#lottoList = [];
     for (let i = 0; i < quantity; i++) {
-      this.lottoList.push(this.makeLottoNumbers());
+      this.#lottoList.push(this.makeLottoNumbers());
     }
   }
 

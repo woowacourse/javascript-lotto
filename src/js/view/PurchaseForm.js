@@ -2,10 +2,10 @@ import { $ } from '../utils/dom.js';
 import { ID_SELECTOR } from '../constants.js';
 export default class PurchaseFormView {
   constructor() {
-    this.configureDOM();
+    this.#configureDOM();
   }
 
-  configureDOM() {
+  #configureDOM() {
     this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
   }
 

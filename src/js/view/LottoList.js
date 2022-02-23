@@ -3,11 +3,11 @@ import { ID_SELECTOR, CLASS_SELECTOR } from '../constants.js';
 
 export default class LottoListView {
   constructor() {
-    this.configureDOM();
-    this.onClickToggle();
+    this.#configureDOM();
+    this.#onClickToggle();
   }
 
-  configureDOM() {
+  #configureDOM() {
     this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
     this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
     this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
@@ -15,7 +15,7 @@ export default class LottoListView {
     this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
   }
 
-  onClickToggle() {
+  #onClickToggle() {
     this.$toggle.addEventListener('click', () => {
       const isChecked = this.$toggleInput.checked;
       this.$toggleInput.checked = !isChecked;
@@ -24,20 +24,20 @@ export default class LottoListView {
   }
 
   showLottoListSection(lottoList) {
-    this.displayLottoListSection();
-    this.showDescription(lottoList.length);
-    this.showLottoList(lottoList);
+    this.#displayLottoListSection();
+    this.#showDescription(lottoList.length);
+    this.#showLottoList(lottoList);
   }
 
-  displayLottoListSection() {
+  #displayLottoListSection() {
     this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }
 
-  showDescription(quantity) {
+  #showDescription(quantity) {
     this.$lottoListDescription.textContent = `총 ${quantity}개를 구매하였습니다.`;
   }
 
-  showLottoList(lottoList) {
+  #showLottoList(lottoList) {
     const template = lottoList
       .map(
         lotto => `
