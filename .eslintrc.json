@@ -3,7 +3,7 @@
     "browser": true,
     "es2022": true
   },
-  "extends": ["eslint:recommended", "airbnb-base"],
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": "latest"
