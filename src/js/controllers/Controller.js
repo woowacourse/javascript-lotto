@@ -23,7 +23,7 @@ export class Controller {
       this.view.clearMoneyInput();
       this.view.showLottoStatusContainer();
       this.view.showWinningLottoContainer();
-      this.view.showLottoIcons(this.lottoGame.lottoWallet);
+      this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
 
       this.bindToggleEvent();
     });

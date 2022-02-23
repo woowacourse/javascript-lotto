@@ -17,12 +17,13 @@ export class View {
     this.lottoStatusContainer = document.getElementById('lotto-status-container');
     this.lottoStatusContainer.style.visibility = 'visible';
   }
+
   showWinningLottoContainer() {
     this.winningLottoContainer = document.getElementById('winning-lotto-container');
     this.winningLottoContainer.style.visibility = 'visible';
   }
 
-  showLottoIcons(lottoWallet) {
+  showPurchasedLottos(lottoWallet) {
     this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
 
@@ -31,15 +32,8 @@ export class View {
   }
 
   lottosToggleOn(lottoWallet) {
-    const paddedLottoNumbers = [];
-    lottoWallet.forEach((lotto) => {
-      paddedLottoNumbers.push(lotto.numbers.map((x) => String(x).padStart(3, ' ')));
-    });
-
-    const lottoStatusString = paddedLottoNumbers.map((padded) => {
-      return `🎟️ ${padded}<br>`;
-    });
-
+    const paddedLottoNumbers = this.padLottoNumbers(lottoWallet);
+    const lottoStatusString = paddedLottoNumbers.map((padded) => `🎟️ ${padded}<br>`);
     this.lottoIcons.innerHTML = lottoStatusString.join('');
   }
 
@@ -55,5 +49,9 @@ export class View {
 
   uncheckToggleSwitch() {
     this.toggleBtn.checked = false;
+  }
+
+  padLottoNumbers(lottoWallet) {
+    return lottoWallet.map((lotto) => lotto.numbers.map((x) => String(x).padStart(3, ' ')));
   }
 }

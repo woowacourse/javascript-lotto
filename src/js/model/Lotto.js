@@ -4,14 +4,14 @@ import { CONDITIONS } from '../constants/constants.js';
 export class Lotto {
   constructor() {
     this.numbers = [];
-    this.makeNumbers();
+    this.makeLottoNumber();
   }
 
-  makeNumbers() {
-    const temp = new Set();
-    while (temp.size < CONDITIONS.LOTTO_SIZE) {
-      temp.add(getValues.randomInt(CONDITIONS.LOTTO_NUM_MIN, CONDITIONS.LOTTO_NUM_MAX));
+  makeLottoNumber() {
+    const tempLottoNumbers = new Set();
+    while (tempLottoNumbers.size < CONDITIONS.LOTTO_SIZE) {
+      tempLottoNumbers.add(getValues.randomInt(CONDITIONS.LOTTO_NUM_MIN, CONDITIONS.LOTTO_NUM_MAX));
     }
-    this.numbers = Array.from(temp);
+    this.numbers = [...tempLottoNumbers];
   }
 }
