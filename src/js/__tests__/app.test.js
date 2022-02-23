@@ -1,4 +1,4 @@
-import LottoManager from '../Model/LottoManager.js';
+import LottoModel from '../Model/LottoModel.js';
 import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,
@@ -11,7 +11,7 @@ describe('금액이 입력되면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
     const chargeAmount = 2000;
 
-    expect(LottoManager.getNumberOfLotto(chargeAmount)).toBe(2);
+    expect(LottoModel.getNumberOfLotto(chargeAmount)).toBe(2);
   });
 
   describe('유효성을 검증하여', () => {
@@ -66,7 +66,7 @@ describe('로또 번호를 생성하여', () => {
 
 describe('새로운 로또를 발급하여', () => {
   test('6개의 로또번호를 가져야한다.', () => {
-    const lotto = LottoManager.issueLotto();
+    const lotto = LottoModel.issueLotto();
 
     expect(isValidLotto(lotto)).toBe(true);
   });
@@ -75,10 +75,10 @@ describe('새로운 로또를 발급하여', () => {
 describe('주어진 개수만큼', () => {
   test('로또를 자동 구매할 수 있어야 한다.', () => {
     const lottoCount = 6;
-    const lottoManager = new LottoManager();
+    const lottoModel = new LottoModel();
 
-    lottoManager.issueLottoWithCount(lottoCount);
+    lottoModel.issueLottoWithCount(lottoCount);
 
-    expect(isValidLottoList(lottoManager.lottoList, lottoCount)).toBe(true);
+    expect(isValidLottoList(lottoModel.lottoList, lottoCount)).toBe(true);
   });
 });

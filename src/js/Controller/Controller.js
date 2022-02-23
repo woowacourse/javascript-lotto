@@ -5,6 +5,17 @@ export default class Controller {
   }
 
   init() {
+    this.bindEventHandlers();
     console.log('controller loaded...');
+  }
+
+  bindEventHandlers() {
+    this.view.bindOnClickPaymentSubmit(this.purchase.bind(this));
+  }
+
+  purchase(amount) {
+    this.model.purchase(amount, (message) => {
+      this.view.render(message);
+    });
   }
 }
