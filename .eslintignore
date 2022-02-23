@@ -1,0 +1,7 @@
+/node_modules/**
+README.md
+LICENSE
+cypress.json
+/docs/**
+/cypress/**
+index.html

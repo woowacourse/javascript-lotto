@@ -29,7 +29,7 @@ export default class IssuedTicketView {
       template += ticketTemplate(lotto.numbers);
     });
 
-    this.$issuedTicketContainer.innerHTML = template;
+    this.$issuedTicketContainer.insertAdjacentHTML('beforeend', template);
   }
 
   showTicketDetails() {
