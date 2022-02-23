@@ -8,16 +8,17 @@ class LottoList extends Component {
   }
 
   render() {
-    const { lottoList } = window.store.getState();
-    this.innerHTML = this.template(lottoList);
+    const { lottoList, lottoListVisibility } = window.store.getState();
+    this.innerHTML = this.template(lottoListVisibility, lottoList);
   }
 
-  template(lottoList) {
+  template(lottoListVisibility, lottoList) {
     const image = `<img src="${LottoImage}" alt="lotto"></img>`;
-    const lists = lottoList
-      .map((lottoNums) => `<lotto-item data-lotto-nums="${lottoNums.join(', ')}"></lotto-item>`)
-      .join('');
-
+    const lists = lottoListVisibility
+      ? lottoList
+          .map((lottoNums) => `<lotto-item data-lotto-nums="${lottoNums.join(', ')}"></lotto-item>`)
+          .join('')
+      : '';
     return `
       <article>
         <label>총 ${lottoList.length}개를 구매하였습니다.</label>
