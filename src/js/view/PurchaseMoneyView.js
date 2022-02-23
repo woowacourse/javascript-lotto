@@ -16,4 +16,8 @@ export default class PurchaseMoneyView {
       submitHandler(purchaseMoney);
     });
   }
+
+  resetInputValue() {
+    this.input.value = '';
+  }
 }

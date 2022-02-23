@@ -23,23 +23,47 @@ export default class LottoMachineController {
     this.view.purchaseMoneyView.addSubmitEvent(this.onSubmitHandler.bind(this));
   }
 
-  onSubmitHandler(purchaseMoney) {
-    try {
-      invalidPurchaseMoney(purchaseMoney);
-    } catch (e) {
-      alert(e);
-      return;
-    }
+  rePurchase() {
+    return confirm(
+      '다시 구입하시면 이미 구입했던 로또는 사라집니다. 다시 구입하시겠습니까?',
+    );
+  }
 
+  purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / 1000;
     this.model.makeLottos(lottoCount);
 
-    //TODO
     this.view.purchasedLottoView.render({
       lottoCount,
       lottos: this.model.getLottos(),
     });
 
     this.view.lottoNumberView.render();
+  }
+
+  onSubmitHandler(purchaseMoney) {
+    try {
+      invalidPurchaseMoney(purchaseMoney);
+    } catch (e) {
+      this.view.purchaseMoneyView.resetInputValue();
+      alert(e);
+      return;
+    }
+
+    if (this.model.getLottos()) {
+      if (!this.rePurchase()) {
+        this.view.purchaseMoneyView.resetInputValue();
+        return;
+      }
+      this.reset();
+    }
+
+    this.purchaseLotto(purchaseMoney);
+  }
+
+  reset() {
+    this.model.init();
+    this.view.purchasedLottoView.reset();
+    this.view.lottoNumberView.reset();
   }
 }

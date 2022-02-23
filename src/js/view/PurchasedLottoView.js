@@ -45,4 +45,9 @@ export default class PurchasedLottoView {
       this.purchasedLottoListOn.classList.toggle('hidden');
     });
   }
+
+  reset() {
+    this.container.removeChild(this.container.lastElementChild);
+    this.container.removeChild(this.container.lastElementChild);
+  }
 }

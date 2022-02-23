@@ -12,4 +12,8 @@ export default class LottoNumberView {
   render() {
     this.container.insertAdjacentHTML('beforeend', LOTTO_NUMBER_FORM);
   }
+
+  reset() {
+    this.container.removeChild(this.container.lastElementChild);
+  }
 }
