@@ -29,7 +29,7 @@ class LottoGameModel {
   }
 
   getAvailableLottoAmount(charge) {
-    return Math.floor(charge / 1000);
+    return Math.floor(charge / NUMBER.LOTTO_PRICE);
   }
 }
 
