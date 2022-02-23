@@ -2,6 +2,7 @@ import Lottos from '../model/Lottos.js';
 import { invalidPurchaseMoney } from '../util/validator.js';
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
+import LottoNumberView from '../view/LottoNumberView.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -13,6 +14,7 @@ export default class LottoMachineController {
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
+      lottoNumberView: new LottoNumberView(),
     };
     this.model = new Lottos();
   }
@@ -37,5 +39,7 @@ export default class LottoMachineController {
       lottoCount,
       lottos: this.model.getLottos(),
     });
+
+    this.view.lottoNumberView.render();
   }
 }
