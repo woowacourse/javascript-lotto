@@ -16,10 +16,10 @@ export class Controller {
       if (this.detectInvalidInput()) {
         return;
       }
-
       this.lottoGame.insertMoney(Number(this.view.moneyInput.value));
       this.lottoGame.buyLotto();
 
+      this.view.uncheckToggleSwitch();
       this.view.clearMoneyInput();
       this.view.showLottoStatusContainer();
       this.view.showWinningLottoContainer();

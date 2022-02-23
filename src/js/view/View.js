@@ -52,4 +52,8 @@ export class View {
     this.moneyInput.value = '';
     this.moneyInput.focus();
   }
+
+  uncheckToggleSwitch() {
+    this.toggleBtn.checked = false;
+  }
 }
