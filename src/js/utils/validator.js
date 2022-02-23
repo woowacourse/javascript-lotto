@@ -1,7 +1,7 @@
 import Lotto from '../Lotto.js';
 
 function isNumber(value) {
-  return !isNaN(value);
+  return typeof value === 'number' && Number.isFinite(value);
 }
 
 function isDividedByThousand(value) {
@@ -13,14 +13,15 @@ function isValidChargeAmountRange(chargeAmount) {
 }
 
 export function isValidLottoNumberRange(value) {
-  return 1 <= value && value <= 45;
+  return value >= 1 && value <= 45;
 }
 
 export function isValidlottoNumbers(lottoNumbers) {
   return (
     lottoNumbers.length === 6 &&
     lottoNumbers.every(
-      (lottoNumber) => isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
+      (lottoNumber) =>
+        isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
     )
   );
 }
@@ -30,13 +31,18 @@ export function isValidLotto(lotto) {
 }
 
 export function isValidLottoList(lottoList, count) {
-  return lottoList.length === count && lottoList.every((lotto) => lotto instanceof Lotto);
+  return (
+    lottoList.length === count &&
+    lottoList.every((lotto) => lotto instanceof Lotto)
+  );
 }
 
 export const validator = {
   checkChargeAmount: (chargeAmount) => {
     if (!isNumber(chargeAmount)) {
-      throw new Error('입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.');
+      throw new Error(
+        '입력된 금액이 숫자가 아닙니다. 1000 이상 10000 이하의 금액을 입력해주세요.'
+      );
     }
 
     if (!isDividedByThousand(chargeAmount)) {

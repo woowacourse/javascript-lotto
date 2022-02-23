@@ -1,6 +1,8 @@
-export function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+function getRandomInt(min, max) {
+  const ceiledMin = Math.ceil(min);
+  const flooredMax = Math.floor(max);
 
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (flooredMax - ceiledMin)) + ceiledMin;
 }
+
+export default getRandomInt;

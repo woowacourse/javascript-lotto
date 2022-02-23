@@ -1,4 +1,4 @@
-import { getRandomInt } from './utils.js';
+import getRandomInt from './utils.js';
 
 export function getLottoNumber() {
   return getRandomInt(1, 45);

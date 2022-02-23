@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint src",
     "test": "jest --watch --no-cache",
     "start": "webpack serve --open",
     "build": "webpack"
