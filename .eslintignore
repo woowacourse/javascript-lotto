@@ -5,3 +5,4 @@ cypress.json
 /docs/**
 /cypress/**
 index.html
+/src/js/__tests__/app.test.js

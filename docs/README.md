@@ -64,11 +64,11 @@
 - [x] `if`문 점검하기 (드모르간 법칙)
 - [ ] 테스트 코드 전반적으로 리팩토링 하기
 - [ ] package.json에서 안 쓰는 스크립트 점검(webpack, husky)
-- [ ] HTML에다가 넣어둔 Dummy HTML 코드 삭제
+- [x] HTML에다가 넣어둔 Dummy HTML 코드 삭제
 - [x] `emit`, `on` 유틸함수를 이용하여 MVC 패턴을 개선
 - [ ] 변수 이름 점검
   - [ ] 클래스 이름 컨벤션에 따라 점검
-- [ ] 상수 분리
+- [x] 상수 분리
   - `Object.freeze` 사용
 
 ## MVC 패턴
