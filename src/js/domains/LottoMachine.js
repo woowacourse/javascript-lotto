@@ -22,22 +22,22 @@ export default class LottoMachine {
     this.#lottos = lottos;
   }
 
+  get lottoQuantity() {
+    return this.#inputMoney / LOTTO.PRICE;
+  }
+
   operateLottoMachine() {
     this.lottos = this.generateLottos();
     this.#inputMoney = 0;
   }
 
   generateLottos() {
-    return Array(this.calculateLottoQuantity())
+    return Array(this.lottoQuantity)
       .fill()
       .map(() => {
         const lotto = new Lotto();
         lotto.numbers = lotto.pickNumbers(lotto.generateRandomNumber);
         return lotto;
       });
-  }
-
-  calculateLottoQuantity() {
-    return this.#inputMoney / LOTTO.PRICE;
   }
 }
