@@ -3,13 +3,13 @@ import validateMoney from '../validator/moneyValidator.js';
 import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
 import { on } from '../utils/event.js';
+import LOTTO from '../constants/lotto.js';
 
 export default class LottoController {
   constructor() {
     this.model = new LottoBundle();
     this.purchaseView = new PurchaseView();
     this.issuedTicketView = new IssuedTicketView();
-    this.subscribeViewEvents();
   }
 
   subscribeViewEvents() {
@@ -25,7 +25,7 @@ export default class LottoController {
   purchaseLotto(money) {
     try {
       validateMoney(money);
-      const count = money / 1000;
+      const count = money / LOTTO.PRICE_PER_TICKET;
       this.model.createLottoBundle(count);
       this.issuedTicketView.renderTicketContainer();
       this.issuedTicketView.renderTicketCount(count);

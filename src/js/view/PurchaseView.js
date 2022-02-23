@@ -1,12 +1,13 @@
+import ID from '../constants/selector.js';
 import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
 
 export default class PurchaseView {
   constructor() {
-    this.$purchaseContainer = $('#purchase-container');
-    this.$purchaseForm = $('#purchase-form');
-    this.$purchaseInput = $('#purchase-input');
-    this.$purchaseButton = $('#purchase-button');
+    this.$purchaseContainer = $(ID.PURCHASE_CONTAINER);
+    this.$purchaseForm = $(ID.PURCHASE_FORM);
+    this.$purchaseInput = $(ID.PURCHASE_INPUT);
+    this.$purchaseButton = $(ID.PURCHASE_BUTTON);
     this.bindEvents();
   }
 

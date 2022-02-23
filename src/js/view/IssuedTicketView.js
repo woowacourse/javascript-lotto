@@ -1,13 +1,14 @@
 import ticketTemplate from '../layouts/template.js';
 import { emit, on } from '../utils/event.js';
 import { $, $$ } from '../utils/selector.js';
+import ID from '../constants/selector.js';
 
 export default class IssuedTicketView {
   constructor() {
-    this.$ticketContainer = $('#ticket-container');
-    this.$ticketCount = $('#ticket-count');
-    this.$issuedTicketContainer = $('#issued-ticket-container');
-    this.$lottoNumberToggle = $('#lotto-number-toggle');
+    this.$ticketContainer = $(ID.TICKET_CONTAINER);
+    this.$ticketCount = $(ID.TICKET_COUNT);
+    this.$issuedTicketDiv = $(ID.ISSUED_TICKET_DIV);
+    this.$lottoNumberToggle = $(ID.LOTTO_NUMBER_TOGGLE);
     this.bindEvents();
   }
 
@@ -40,18 +41,18 @@ export default class IssuedTicketView {
       template += ticketTemplate(lotto.numbers);
     });
 
-    this.$issuedTicketContainer.insertAdjacentHTML('beforeend', template);
+    this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
   }
 
   showTicketDetails() {
-    this.$issuedTicketContainer.classList.remove('align-row');
+    this.$issuedTicketDiv.classList.remove('align-row');
     $$('.ticket-numbers').forEach((ticketContainer) => {
       ticketContainer.classList.remove('hidden');
     });
   }
 
   hideTicketDetails() {
-    this.$issuedTicketContainer.classList.add('align-row');
+    this.$issuedTicketDiv.classList.add('align-row');
     $$('.ticket-numbers').forEach((ticketContainer) => {
       ticketContainer.classList.add('hidden');
     });
