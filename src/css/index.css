@@ -5,3 +5,20 @@
   height: 727px;
   border: 2px solid black;
 }
+
+#lotto-list {
+  display: flex;
+}
+
+.lotto-list-column {
+  flex-direction: column;
+}
+
+.lotto-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.hidden {
+  display: none;
+}

@@ -6,9 +6,9 @@ export const lottoPurchaseCountTemplate = (count) => {
 
 export const lottoTemplate = (numbers) => {
   return `
-    <div>
+    <div class="lotto-wrap">
       <div>🎟️</div>
-      <p>${numbers.join(',')}</p>
+      <p class="lotto-numbers hidden">${numbers.join(',')}</p>
     </div>
   `;
 };

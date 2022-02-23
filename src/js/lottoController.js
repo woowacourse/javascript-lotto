@@ -17,6 +17,15 @@ export default class LottoController {
       '@purchaseMoney',
       this.submitPurchaseLotto.bind(this)
     );
+    on(
+      this.lottoPurchaseResultView.showLottoToggle,
+      '@lottoToggle',
+      this.submitLottoToggle.bind(this)
+    );
+  }
+
+  submitLottoToggle() {
+    this.lottoPurchaseResultView.toggleLottoNumbers();
   }
 
   submitPurchaseLotto(event) {
