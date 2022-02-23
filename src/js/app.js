@@ -35,6 +35,9 @@ export default class LottoApp {
           1000
         );
 
+        document.querySelector('#payment-button').disabled =
+          !document.querySelector('#payment-button').disabled;
+        document.querySelector('#payment-button').classList.toggle('disabled');
         for (let i = 0; i < this.purchasedLottoCount; i++) {
           const lotto = new Lotto();
           lotto.setLotto();
