@@ -1,18 +1,22 @@
 const getRandomNumber = (max, min) =>
   Math.floor(Math.random() * (max + 1 - min)) + min;
 
-const isExistNumber = (numberArray, number) => numberArray.includes(number);
+const isExistNumber = (randomNumbers, number) => randomNumbers.includes(number);
 
-export const generateRandomNumbers = ({ count, max, min }) => {
-  const numberArray = [];
+const pushNonExistNumber = (randomNumbers, number) => {
+  if (!isExistNumber(randomNumbers, number)) {
+    randomNumbers.push(number);
+  }
+};
 
-  while (numberArray.length < count) {
-    const number = getRandomNumber(max, min);
+const generateRandomNumbers = ({ count, max, min }) => {
+  const randomNumbers = [];
 
-    if (!isExistNumber(numberArray, number)) {
-      numberArray.push(number);
-    }
+  while (randomNumbers.length < count) {
+    pushNonExistNumber(randomNumbers, getRandomNumber(max, min));
   }
 
-  return numberArray;
+  return randomNumbers;
 };
+
+export default generateRandomNumbers;

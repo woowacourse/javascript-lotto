@@ -1,4 +1,4 @@
-import { $, $$ } from '../utils/selector.js';
+import { $ } from '../utils/selector.js';
 
 export default class PurchaseView {
   constructor() {

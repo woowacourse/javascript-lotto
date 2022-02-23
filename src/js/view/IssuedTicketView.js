@@ -1,4 +1,4 @@
-import { ticketTemplate } from '../layouts/template.js';
+import ticketTemplate from '../layouts/template.js';
 import { $, $$ } from '../utils/selector.js';
 
 export default class IssuedTicketView {

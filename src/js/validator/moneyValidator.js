@@ -8,7 +8,7 @@ const moneyValidator = {
   },
 };
 
-export const validateMoney = (money) => {
+const validateMoney = (money) => {
   if (!moneyValidator.isCorrectRange(money)) {
     throw new Error('1000원 이상의 금액이 투입되어야 합니다.');
   }
@@ -17,3 +17,5 @@ export const validateMoney = (money) => {
     throw new Error('1000원 단위의 금액이 투입되어야 합니다.');
   }
 };
+
+export default validateMoney;

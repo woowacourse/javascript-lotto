@@ -1,6 +1,6 @@
 import LottoBundle from '../model/LottoBundle.js';
 import { $ } from '../utils/selector.js';
-import { validateMoney } from '../validator/moneyValidator.js';
+import validateMoney from '../validator/moneyValidator.js';
 import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
 
