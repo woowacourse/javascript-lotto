@@ -5,7 +5,6 @@ class LottoItem extends Component {
   constructor() {
     super();
     this.lottoNums = this.getAttribute('data-lotto-nums');
-    console.log('this.lotto : ', this.lottoNums);
   }
 
   connectedCallback() {
