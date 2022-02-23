@@ -17,7 +17,6 @@ class LottoController {
     const { target } = e;
     if (target.className === SELECTOR.CASH_INPUT_BUTTON_CLASSNAME) {
       const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
-
       try {
         this.lottoManager.buyLotto(cashInput.value);
         this.view.beforeRenderLottos();
