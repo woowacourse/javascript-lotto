@@ -35,7 +35,7 @@ export default class LottoController {
       return;
     }
     const lottoCount = Math.floor(value / AMOUNT_UNIT);
-    this.lottoGameModel.makeLottoTicket(lottoCount);
+    this.lottoGameModel.generateLottoTicket(lottoCount);
     this.showLottoNumber();
   }
 

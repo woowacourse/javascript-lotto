@@ -5,14 +5,14 @@ import { isValidAmountUnit, isValidMinimumAmount } from "../utils/validation.js"
 describe("로또 게임 테스트", () => {
   test("6개 숫자를 가지는 로또 인스턴스를 생성할 수 있다.", () => {
     const lotto = new Lotto();
-    lotto.makeRandomNumber();
+    lotto.generateRandomNumber();
     expect(lotto.numbers.length).toBe(6);
   });
 
   test("구입한 개수 만큼 로또 객체가 만들어 진다.", () => {
     const lottoCount = 5;
     const lottoGame = new LottoGame();
-    lottoGame.makeLottoTicket(lottoCount);
+    lottoGame.generateLottoTicket(lottoCount);
     expect(lottoGame.getLottoCount()).toBe(lottoCount);
   });
 

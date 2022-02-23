@@ -13,10 +13,10 @@ export default class LottoGame {
     return this.lottos.length;
   }
 
-  makeLottoTicket(count) {
+  generateLottoTicket(count) {
     for (let i = 0; i < count; i += 1) {
       const lotto = new Lotto();
-      lotto.makeRandomNumber();
+      lotto.generateRandomNumber();
       this.lottos.push(lotto);
     }
   }

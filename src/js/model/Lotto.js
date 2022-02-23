@@ -6,7 +6,7 @@ export default class Lotto {
     this.numbers = [];
   }
 
-  makeRandomNumber() {
+  generateRandomNumber() {
     while (this.numbers.length < LOTTO_NUMBER.LENGTH) {
       const randomNumber = getRandomNumber(LOTTO_NUMBER.RANGE_MIN, LOTTO_NUMBER.RANGE_MAX);
       if (!this.numbers.includes(randomNumber)) {
