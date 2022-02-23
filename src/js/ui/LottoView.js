@@ -1,11 +1,14 @@
 import LottoMachine from '../domains/LottoMachine.js';
 import $ from './utils.js';
-import { ticketImg, lottoNumberTemplate } from './template.js';
+import {
+  ticketImg,
+  lottoNumberTemplate,
+  purchaseMessageTemplate,
+} from './template.js';
 
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
-    this.isToggleChecked = $('lotto-result-toggle-checkbox').checked;
   }
 
   bindEvents() {
@@ -22,9 +25,11 @@ export default class LottoView {
   handlePurchaseForm(event) {
     event.preventDefault();
     try {
-      this.inputMoney();
+      this.userInputMoney();
       this.machine.operateLottoMachine();
-      this.renderLottoResult();
+      this.renderLottoAmount();
+      this.renderLotto();
+      this.disablePurchase();
       this.controlLottoContainers();
     } catch (e) {
       alert(e.message);
@@ -32,37 +37,39 @@ export default class LottoView {
   }
 
   handleResultToggle() {
-    this.isToggleChecked = $('lotto-result-toggle-checkbox').checked;
-    if (this.isToggleChecked) {
-      $('lotto-result-container').replaceChildren();
-      this.machine.lottos.map((lotto) => {
-        $('lotto-result-container').insertAdjacentHTML(
-          'beforeEnd',
-          lottoNumberTemplate(lotto.numbers.join(', '))
-        );
-      });
-    }
-    if (!this.isToggleChecked) {
-      $('lotto-result-container').replaceChildren();
-      this.machine.lottos.map(() => {
-        $('lotto-result-container').insertAdjacentHTML('beforeEnd', ticketImg);
-      });
-    }
+    this.renderLotto();
   }
 
-  inputMoney() {
+  userInputMoney() {
     this.machine.inputMoney = Number($('purchase-money-input').value);
   }
 
-  renderLottoResult() {
-    $(
-      'lotto-result-span'
-    ).textContent = `총 ${this.machine.lottos.length}개를 구매하였습니다.`;
+  renderLotto() {
+    $('lotto-result-container').replaceChildren();
+    $('lotto-result-toggle-checkbox').checked
+      ? this.renderLottoNumbers()
+      : this.renderLottoImgs();
+  }
 
+  renderLottoImgs() {
     this.machine.lottos.map(() => {
       $('lotto-result-container').insertAdjacentHTML('beforeEnd', ticketImg);
     });
-    this.disablePurchase();
+  }
+
+  renderLottoNumbers() {
+    this.machine.lottos.map((lotto) => {
+      $('lotto-result-container').insertAdjacentHTML(
+        'beforeEnd',
+        lottoNumberTemplate(lotto.numbers.join(', '))
+      );
+    });
+  }
+
+  renderLottoAmount() {
+    $('lotto-result-span').textContent = purchaseMessageTemplate(
+      this.machine.lottos
+    );
   }
 
   disablePurchase() {

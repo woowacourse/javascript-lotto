@@ -10,19 +10,12 @@ export default class Lotto {
     this.#numbers = numbers;
   }
 
-  generateNumbers(generateRandomNumber) {
+  pickNumbers(generateRandomNumber) {
     const set = new Set();
     while (set.size < LOTTO.NUMBER_QUANTITY) {
       set.add(generateRandomNumber());
     }
     return [...set];
-  }
-
-  generateRandomNumberNotInNumbers(generateRandomNumber) {
-    const randomNumber = generateRandomNumber();
-    if (this.#numbers.every((item) => item !== randomNumber)) {
-      return randomNumber;
-    }
   }
 
   generateRandomNumber() {

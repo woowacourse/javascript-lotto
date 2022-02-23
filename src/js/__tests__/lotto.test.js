@@ -12,7 +12,7 @@ function isDuplicated(arr) {
 
 describe('로또 단위 테스트 ', () => {
   const lotto = new Lotto();
-  lotto.numbers = lotto.generateNumbers(lotto.generateRandomNumber);
+  lotto.numbers = lotto.pickNumbers(lotto.generateRandomNumber);
 
   test('로또는 1부터 45번까지의 숫자들을 가진다.', () => {
     expect(isInRange(lotto.numbers, LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER)).toBe(

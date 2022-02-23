@@ -19,6 +19,15 @@ button {
   height: 36px;
 }
 
+button:disabled {
+  background-color: #8b8b8b;
+  cursor: not-allowed;
+}
+
+input:disabled {
+  cursor: not-allowed;
+}
+
 section {
   width: 100%;
 }

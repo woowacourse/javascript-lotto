@@ -6,3 +6,7 @@ export function lottoNumberTemplate(lottoNumber) {
              <div class="lotto-numbers-container">${lottoNumber}</div>
           </div>`;
 }
+
+export function purchaseMessageTemplate({ length }) {
+  return `총 ${length}개를 구매하였습니다.`;
+}
