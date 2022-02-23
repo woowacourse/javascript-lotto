@@ -50,6 +50,7 @@ export default class LottoController {
       this.issuedTicketView.showTicketDetails();
       return;
     }
+
     this.issuedTicketView.hideTicketDetails();
   }
 }
