@@ -3,6 +3,7 @@ import LottoModel from './lottoModel.js';
 import LottoPurchaseInputView from './views/lottoPurchaseInputView.js';
 import LottoPurchaseResultView from './views/lottoPurchaseResultView.js';
 import LottoNumberInputView from './views/lottoNumberInputView.js';
+import '../css/index.css';
 
 const startLotto = () => {
   const lottoModel = new LottoModel();
