@@ -7,13 +7,12 @@ export default class PurchaseFormView {
 
   configureDOM() {
     this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
-    this.$purchaseInput = $(ID_SELECTOR.PURCHASE_INPUT, this.$purchaseForm);
   }
 
   setOnSubmitCash(fn) {
     this.$purchaseForm.addEventListener('submit', event => {
       event.preventDefault();
-      fn(this.$purchaseInput.value);
+      fn(event.target.elements.cash.value);
     });
   }
 }

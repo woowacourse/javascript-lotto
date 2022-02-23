@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <div id="app">
+    <main id="app">
       <h1>🎱 행운의 로또</h1>
       <form id="purchase-form" class="purchase__form">
-        <label for="purchase-input" class="purchase__description"
-          >구입할 금액을 입력해주세요.</label
-        >
+        <label for="purchase-input" class="purchase__description">
+          구입할 금액을 입력해주세요.
+        </label>
         <div class="purchase__input-container">
           <input
             id="purchase-input"
             class="purchase__input"
             placeholder="금액"
+            name="cash"
             type="number"
             min="1000"
             max="100000"
+            required
           />
           <button class="purchase__submit">구입</button>
         </div>
@@ -37,6 +39,6 @@
         </header>
         <ul id="lotto-lists" class="lotto-lists"></ul>
       </section>
-    </div>
+    </main>
   </body>
 </html>
