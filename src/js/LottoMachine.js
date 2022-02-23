@@ -3,7 +3,7 @@ import { $, divider } from './util';
 import { validateCharge } from './validation';
 
 import LottoManager from './LottoManager';
-import LottoMachineView from './LottoMachineView';
+import LottoMachineView from './View/LottoMachineView';
 
 export default class LottoMachine {
   constructor() {
@@ -14,6 +14,7 @@ export default class LottoMachine {
 
   setEvent() {
     $("#charge-submit-form").addEventListener("submit", this.onSubmitCharge.bind(this));
+    $('#show-number-toggle-input').addEventListener('click', this.reverseLottoDisplayState.bind(this));
   }
 
   onSubmitCharge(event) {
@@ -31,5 +32,12 @@ export default class LottoMachine {
   purchase(chargeInputNumber) {
     const { quotient: newLottoCount } = divider(chargeInputNumber, LOTTO_PRICE);
     this.lottoManager.generateNewLottos(newLottoCount);
+    this.lottoMachineView.updateOnPurchase(this.lottoManager.lottos);
   }
+
+  reverseLottoDisplayState() {
+    const displayState = $('#show-number-toggle-input').checked;
+    this.lottoMachineView.switchLottoList(displayState);
+  }
+
 }

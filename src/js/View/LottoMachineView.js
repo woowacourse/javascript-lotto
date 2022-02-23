@@ -1,21 +1,22 @@
-import { $ } from './util';
+import { $ } from '../util';
+import { lottoListTemplate, lottoTotalNumber } from './template';
 
 export default class LottoMachineView {
   constructor() {
-    this.setEvent();
     this.LottoListDisplay = {
       Icon: this.showLottoIconList,
       Number: this.showLottoNumberList
     }
   }
 
-  setEvent() {
-    $('#show-number-toggle-input').addEventListener('click', this.reverseLottoDisplayState.bind(this));
+  switchLottoList(displayState) {
+    this.LottoListDisplay[displayState ? 'Number' : 'Icon']();
   }
 
-  reverseLottoDisplayState() {
-    const displayState = $('#show-number-toggle-input').checked;
-    this.LottoListDisplay[displayState ? 'Number' : 'Icon']();
+  updateOnPurchase(lottos) {
+    $('#lotto-total-number').innerHTML = lottoTotalNumber(lottos.length);
+    $('#ticket-container').innerHTML = lottoListTemplate.icon(lottos.length);
+    $('#ticket-list').innerHTML = lottoListTemplate.number(lottos);
   }
 
   showLottoIconList() {
