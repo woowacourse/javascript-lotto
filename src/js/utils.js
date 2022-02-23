@@ -18,10 +18,10 @@ const createRandomNumber = (minNumber, maxNumber) => {
   return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
 };
 
-const createRandomNumberList = (count) => {
+const createRandomNumberList = () => {
   const randomNumberList = [];
 
-  while (randomNumberList.length < count) {
+  while (randomNumberList.length < 6) {
     const random = createRandomNumber(1, 45);
     if (!randomNumberList.includes(random)) {
       randomNumberList.push(random);

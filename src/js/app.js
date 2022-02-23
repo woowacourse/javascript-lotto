@@ -1,4 +1,5 @@
 import { isPositiveInteger, isDivisibleBy } from './utils';
+import Lotto from './Lotto';
 
 const paymentSection = `<section id="payment-section">
 <h2 hidden>구입할 금액</h2>
@@ -15,7 +16,9 @@ const purchasedSection = (resultInput) => `
       <div class="lotto-list-container">
         <p class="purchased-total-count">총 ${resultInput}개를 구매하였습니다.</p>
         <ul id="lotto-list">
-          ${'<li class="lotto">🎟️</li>'.repeat(resultInput)}
+          ${`<li class="lotto">
+              <p class="lotto-ticket">🎟️</p>
+            </li>`.repeat(resultInput)}
         </ul>
       </div>
       <div class="lotto-list-toggle-container">
@@ -30,6 +33,8 @@ export default class LottoApp {
     this.$app = document.querySelector(app);
     this.$app.insertAdjacentHTML('beforeend', paymentSection);
 
+    this.resultInput = 0;
+    this.resultLottoList = [];
     this.main();
   }
 
@@ -51,18 +56,35 @@ export default class LottoApp {
     this.bindEventListener('click', '#payment-button', () => {
       const $paymentInput = document.querySelector('#payment-input');
       try {
-        const resultInput = isDivisibleBy(
+        this.resultInput = isDivisibleBy(
           isPositiveInteger($paymentInput.valueAsNumber),
           1000
         );
 
         this.$app.insertAdjacentHTML(
           'beforeend',
-          purchasedSection(resultInput)
+          purchasedSection(this.resultInput)
         );
       } catch (error) {
         console.error(error);
       }
+    });
+
+    this.bindEventListener('click', '#lotto-list-toggle-button', () => {
+      for (let i = 0; i < this.resultInput; i++) {
+        const lotto = new Lotto();
+        lotto.setLotto();
+        this.resultLottoList.push(lotto.getLotto());
+      }
+
+      this.resultLottoList.forEach((lotto, index) => {
+        document
+          .querySelectorAll('.lotto')
+          [index].insertAdjacentHTML(
+            'beforeend',
+            `<p class="lotto-number">${lotto.join(', ')}</p>`
+          );
+      });
     });
   }
 }

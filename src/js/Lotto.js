@@ -6,7 +6,7 @@ export default class Lotto {
   }
 
   setLotto() {
-    this.lottoNumberList = createRandomNumberList(6);
+    this.lottoNumberList = createRandomNumberList();
   }
 
   getLotto() {
