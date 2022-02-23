@@ -1,5 +1,6 @@
 import { LOTTO } from '../constants/constants.js';
 import Lotto from '../domains/Lotto.js';
+import validateMoney from '../validations/LottoMachine.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -9,7 +10,7 @@ export default class LottoMachine {
   }
 
   set inputMoney(money) {
-    this.validateMoney(money);
+    validateMoney(money);
     this.#inputMoney = money;
   }
 
@@ -19,23 +20,6 @@ export default class LottoMachine {
 
   set lottos(lottos) {
     this.#lottos = lottos;
-  }
-
-  validateMoney(money) {
-    if (!this.isValidUnit(money)) {
-      throw new Error(`${LOTTO.PRICE}단위로 입력해주세요`);
-    }
-    if (!this.isOverZero(money)) {
-      throw new Error('0원보다 큰 금액을 입력해주세요.');
-    }
-  }
-
-  isOverZero(money) {
-    return money > 0;
-  }
-
-  isValidUnit(money) {
-    return money % LOTTO.PRICE === 0;
   }
 
   operateLottoMachine() {
