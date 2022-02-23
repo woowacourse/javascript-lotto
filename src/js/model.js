@@ -8,6 +8,7 @@ export default class Model {
   }
 
   buyLotto(quantity) {
+    this.lottoList = [];
     for (let i = 0; i < quantity; i++) {
       this.lottoList.push(this.makeLottoNumbers());
     }
