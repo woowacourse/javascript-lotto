@@ -1,7 +1,4 @@
-#purchase-input {
-  width: 310px;
-  height: 36px;
-  padding: 8px;
+input {
   border: 1px solid var(--secondary);
   box-sizing: border-box;
   border-radius: 4px;
@@ -10,8 +7,14 @@
   align-self: stretch;
   flex-grow: 0;
   margin: 4px 0px;
+  padding: 8px;
 }
 
-#purchase-input:focus {
+input:focus {
   outline: none;
+}
+
+#purchase-input {
+  width: 310px;
+  height: 36px;
 }

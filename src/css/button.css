@@ -1,17 +1,9 @@
 button {
   cursor: pointer;
-}
-
-#purchase-button {
-  padding: 6px;
-  width: 56px;
-  height: 36px;
   background: var(--primary);
   border-radius: 4px;
   border: var(--primary);
-  margin-left: 8px;
-  font-family: Roboto;
-  font-style: normal;
+  padding: 6px;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
@@ -22,7 +14,13 @@ button {
   flex-grow: 0;
 }
 
-#purchase-button:disabled {
+button:disabled {
   background: var(--secondary);
   cursor: not-allowed;
+}
+
+#purchase-button {
+  width: 56px;
+  height: 36px;
+  margin-left: 8px;
 }
