@@ -72,13 +72,17 @@ export default class LottoMachine {
     this.#lottos = lottos;
   }
 
+  get lottoQuantity() {
+    return this.#inputMoney / LOTTO.PRICE;
+  }
+
   operateLottoMachine() {
     this.lottos = this.generateLottos();
     this.#inputMoney = 0;
   }
 
   generateLottos() {
-    return Array(this.calculateLottoQuantity())
+    return Array(this.lottoQuantity)
       .fill()
       .map(() => {
         const lotto = new Lotto();
@@ -86,6 +90,7 @@ export default class LottoMachine {
         return lotto;
       });
   }
+<<<<<<< HEAD
 
   calculateLottoQuantity() {
 <<<<<<< HEAD
@@ -95,4 +100,6 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
 >>>>>>> e00c8b0 (feat: 로또 기계가 투입금액에서 로또 가격을 나눈 개수만큼의 로또를 발급하도록 구현)
   }
+=======
+>>>>>>> 9b14578 (refactor: 메서드 역할 상세화)
 }
