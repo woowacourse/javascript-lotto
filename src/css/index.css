@@ -196,3 +196,7 @@ input:checked + .slider:before {
 .one-column-grid {
   grid-template-columns: repeat(1, 1fr);
 }
+
+.hide-numbers .lotto-numbers {
+  display: none;
+}

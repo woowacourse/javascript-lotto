@@ -26,12 +26,12 @@ class LottoController {
   };
 
   initToggleButtonHandler() {
-    this.showNumberToggleButton = selectDom('.show-number-toggle-button');
-    this.showNumberToggleButton.addEventListener('click', this.onShowNumberToggleButtonClick);
+    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
+    this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
   }
 
-  onShowNumberToggleButtonClick = (e) => {
-    this.view.toggleShowLottoNumbers(e.target.checked);
+  #onShowNumberToggleButtonClick = ({ target }) => {
+    this.view.toggleShowLottoNumbers(target.checked);
   };
 }
 

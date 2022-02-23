@@ -1,5 +1,4 @@
-import { doc } from 'prettier';
-import { SELECTOR } from '../constants/constants';
+import { LOTTO_IMAGE, SELECTOR } from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
@@ -18,20 +17,14 @@ class LottoView {
   }
 
   toggleShowLottoNumbers(checked) {
-    const lottoNumbersElements = Array.from(
-      this.lottoNumberContainer.querySelectorAll('.lotto-numbers')
-    );
+    const { classList } = this.lottoNumberContainer;
     if (checked) {
-      lottoNumbersElements.forEach((lottoElement) => {
-        lottoElement.classList.remove(SELECTOR.HIDE_CLASSNAME);
-      });
-      this.lottoNumberContainer.classList.add('one-column-grid');
+      classList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+      classList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
       return;
     }
-    lottoNumbersElements.forEach((lottoElement) => {
-      lottoElement.classList.add(SELECTOR.HIDE_CLASSNAME);
-    });
-    this.lottoNumberContainer.classList.remove('one-column-grid');
+    classList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+    classList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
   }
 
   renderLottos(lottos) {
@@ -56,10 +49,9 @@ class LottoView {
     const lottoElement = createElementWithClassName('div', SELECTOR.LOTTO_CLASSNAME);
 
     const lottoImage = createElementWithClassName('p', SELECTOR.LOTTO_IMAGE_CLASSNAME);
-    lottoImage.textContent = '🎟️';
+    lottoImage.textContent = LOTTO_IMAGE;
 
     const lottoNumbers = createElementWithClassName('p', SELECTOR.LOTTO_NUMBERS_CLASSNAME);
-    lottoNumbers.classList.add(SELECTOR.HIDE_CLASSNAME);
     lottoNumbers.textContent = Array.from(lotto.lottoNumbers).join(', ');
 
     lottoElement.append(lottoImage, lottoNumbers);
