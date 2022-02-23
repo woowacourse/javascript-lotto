@@ -52,6 +52,9 @@ export default class LottoApp {
 
     this.bindEventListener('click', '#lotto-list-toggle-button', () => {
       // toggle 기능 구현 하면될 듯
+      document.querySelectorAll('.lotto-number').forEach((element) => {
+        element.classList.toggle('invisible');
+      });
     });
   }
 }
