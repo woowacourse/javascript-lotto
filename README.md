@@ -11,6 +11,10 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+## 데모 페이지
+
+https://nan-noo.github.io/javascript-lotto/
+
 ## UI 구현
 
 - [x] 피그마 양식에 따라 마크업 작성
