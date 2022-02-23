@@ -1,4 +1,6 @@
 export const MIN_CHARGE_INPUT = 1000;
+
+export const LOTTO_PRICE = 1000;
 export const LOTTO_NUMBER = {
   MIN: 1,
   MAX: 45,
