@@ -4,6 +4,7 @@ export const SELECTOR = {
   PURCHASE_BUTTON: ".purchase-button",
   PURCHASE_INFOMATION: ".purchase-infomation",
   LOTTO_NUMBER_LIST: ".lotto-number-list",
+  SWITCH_INPUT: ".switch-input",
 };
 
 export const MINIMUM_AMOUNT = 1000;

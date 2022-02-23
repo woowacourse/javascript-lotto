@@ -14,4 +14,14 @@ export default class LottoResult {
   renderLottoIcons(count) {
     this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️</li>`.repeat(count));
   }
+
+  renderLottoNumbers(lottos) {
+    lottos.forEach((lotto) => {
+      this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️${[...lotto.numbers]}</li>`);
+    });
+  }
+
+  resetLottoList() {
+    this.lottoNumberList.replaceChildren("");
+  }
 }
