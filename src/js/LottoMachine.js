@@ -2,9 +2,12 @@ import { LOTTO_PRICE } from './constants';
 import { $, divider } from './util';
 import { validateCharge } from './validation';
 
+import LottoManager from './LottoManager';
+
 export default class LottoMachine {
   constructor() {
     this.setEvent();
+    this.lottoManager = new LottoManager();
   }
 
   setEvent() {
@@ -20,7 +23,8 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    const newLottoCount = divider(chargeInputNumber, LOTTO_PRICE);
+    const { quotient: newLottoCount } = divider(chargeInputNumber, LOTTO_PRICE);
+    this.lottoManager.generateNewLottos(newLottoCount);
     console.log("Validation Pass!");
   }
 }
