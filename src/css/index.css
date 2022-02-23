@@ -115,7 +115,7 @@ header {
   grid-column: 1 span;
 }
 
-.lotto-item-container > .item > .numbers {
+.lotto-item-container > .item > .item-number {
   display: none;
   font-size: 1rem;
 }
@@ -124,7 +124,7 @@ header {
   grid-column: 8 span;
 }
 
-.lotto-item-container.show > .item > .numbers {
+.lotto-item-container.show > .item > .item-number {
   display: block;
 }
 
