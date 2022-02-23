@@ -36,6 +36,48 @@ const template = {
     </li>
     `;
   },
+  lastWeekWinningNumberSection: `
+    <section id="last-week-winning-number-section">
+      <h2 hidden>지난 주 당첨 번호</h2>
+      <p>지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+      <div class="winning-number-container">
+        <div class="">
+          <p>당첨 번호</p>
+          <ul id="last-week-number-list">
+            <li class="last-week-number">
+              <input type="number" class="last-week-number-input" />
+            </li>
+            <li class="last-week-number">
+              <input type="number" class="last-week-number-input" />
+            </li>
+            <li class="last-week-number">
+              <input type="number" class="last-week-number-input" />
+            </li>
+            <li class="last-week-number">
+              <input type="number" class="last-week-number-input" />
+            </li>
+            <li class="last-week-number">
+              <input type="number" class="last-week-number-input" />
+            </li>
+            <li class="last-week-number">
+              <input type="number" class="last-week-number-input" />
+            </li>
+          </ul>
+        </div>
+        <div class="last-week-bonus-number-container">
+          <p>보너스 번호</p>
+          <input type="number" id="last-week-bonus-number-input" />
+        </div>
+      </div>
+    </section>
+  `,
+
+  resultCheckingSection: `
+    <section id="result-checking-section">
+      <h2 hidden>결과 확인</h2>
+      <button id="result-checking-button">결과 확인하기</button>
+    </section>
+  `,
 };
 
 export default template;

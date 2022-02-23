@@ -48,6 +48,16 @@ export default class LottoApp {
           'beforeend',
           template.purchasedSection(this.purchasedLottoList)
         );
+
+        this.$app.insertAdjacentHTML(
+          'beforeend',
+          template.lastWeekWinningNumberSection
+        );
+
+        this.$app.insertAdjacentHTML(
+          'beforeend',
+          template.resultCheckingSection
+        );
       } catch (error) {
         alert(error.message);
         $paymentInput.value = '';
