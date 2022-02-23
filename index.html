@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/src/css/index.css" />
-    <link rel="stylesheet" type="text/css" href="/src/css/toggle.css" />
-  </head>
 
-  <body>
-    <div id="app">
-      <header>🎱 행운의 로또</header>
-      <form id="purchase-money-form">
-        <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
-        <div class="space-between">
-          <input id="purchase-money-input" type="number" placeholder="금액" />
-          <button id="purchase-money-button" type="submit">구입</button>
-        </div>
-      </form>
-      <section id="lotto-result-section" hidden>
-        <h2 hidden>로또 구매 현황표시</h2>
-        <div class="space-between">
-          <span id="lotto-result-span"></span>
-          <span>번호 보기</span>
-        </div>
-        <div class="space-between">
-          <div id="lotto-result-container"></div>
-          <label id="lotto-result-toggle" class="switch">
-            <input id="lotto-result-toggle-checkbox" type="checkbox" />
-            <span class="slider round"></span>
-          </label>
-        </div>
-      </section>
-      <form id="winning-number-form" hidden>
-        <h2 hidden>당첨번호 입력</h2>
-        <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</label>
-        <div class="space-between">
-          <label>당첨 번호</label>
-          <label>보너스 번호</label>
-        </div>
-        <div class="space-between">
-          <div>
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./src/css/index.css" rel="stylesheet">
+  <link href="./src/css/toggle.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <header>🎱 행운의 로또</header>
+    <form id="purchase-money-form">
+      <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
+      <div class="space-between">
+        <input id="purchase-money-input" type="number" placeholder="금액" />
+        <button id="purchase-money-button" type="submit">구입</button>
+      </div>
+    </form>
+    <section id="lotto-result-section" hidden>
+      <h2 hidden>로또 구매 현황표시</h2>
+      <div class="space-between">
+        <span id="lotto-result-span"></span>
+        <span>번호 보기</span>
+      </div>
+      <div class="space-between">
+        <div id="lotto-result-container"></div>
+        <label id="lotto-result-toggle" class="switch">
+          <input id="lotto-result-toggle-checkbox" type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </section>
+    <form id="winning-number-form" hidden>
+      <h2 hidden>당첨번호 입력</h2>
+      <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</label>
+      <div class="space-between">
+        <label>당첨 번호</label>
+        <label>보너스 번호</label>
+      </div>
+      <div class="space-between">
+        <div>
+          <input class="winning-number-input" type="number" />
+          <input class="winning-number-input" type="number" />
+          <input class="winning-number-input" type="number" />
+          <input class="winning-number-input" type="number" />
+          <input class="winning-number-input" type="number" />
           <input class="winning-number-input" type="number" />
         </div>
-        <button id="check-result-button" type="submit">결과 확인하기</button>
-      </form>
-    </div>
-    <script type="module" src="/src/index.js"></script>
-  </body>
+        <input class="winning-number-input" type="number" />
+      </div>
+      <button id="check-result-button" type="submit">결과 확인하기</button>
+    </form>
+  </div>
+  <script type="module" src="./src/index.js"></script>
+</body>
+
 </html>
