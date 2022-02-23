@@ -1,0 +1,17 @@
+#purchase-input {
+  width: 310px;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid var(--secondary);
+  box-sizing: border-box;
+  border-radius: 4px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 4px 0px;
+}
+
+#purchase-input:focus {
+  outline: none;
+}

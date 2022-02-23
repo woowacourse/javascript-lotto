@@ -1,0 +1,19 @@
+#purchase-container {
+  display: flex;
+  flex-direction: column;
+  width: 414px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+#ticket-container {
+  width: 414px;
+  grid-template-columns: 4fr 1fr;
+  padding: 16px;
+  box-sizing: border-box;
+  grid-row-gap: 12px;
+}
+
+.ticket-icon-container {
+  margin: 0 0 8px 0;
+}
