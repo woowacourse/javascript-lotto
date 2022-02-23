@@ -1,16 +1,21 @@
 import LottoMachine from '../domains/LottoMachine.js';
 import $ from './utils.js';
-import { ticketImg } from './template.js';
+import { ticketImg, lottoNumberTemplate } from './template.js';
 
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
+    this.isToggleChecked = $('lotto-result-toggle-checkbox').checked;
   }
 
   bindEvents() {
     $('purchase-money-form').addEventListener(
       'submit',
       this.handlePurchaseForm.bind(this)
+    );
+    $('lotto-result-toggle').addEventListener(
+      'click',
+      this.handleResultToggle.bind(this)
     );
   }
 
@@ -22,6 +27,25 @@ export default class LottoView {
       this.renderLottoResult();
     } catch (e) {
       alert(e.message);
+    }
+  }
+
+  handleResultToggle() {
+    this.isToggleChecked = $('lotto-result-toggle-checkbox').checked;
+    if (this.isToggleChecked) {
+      $('lotto-result-container').replaceChildren();
+      this.machine.lottos.map((lotto) => {
+        $('lotto-result-container').insertAdjacentHTML(
+          'beforeEnd',
+          lottoNumberTemplate(lotto.numbers.join(', '))
+        );
+      });
+    }
+    if (!this.isToggleChecked) {
+      $('lotto-result-container').replaceChildren();
+      this.machine.lottos.map(() => {
+        $('lotto-result-container').insertAdjacentHTML('beforeEnd', ticketImg);
+      });
     }
   }
 
@@ -37,5 +61,11 @@ export default class LottoView {
     this.machine.lottos.map(() => {
       $('lotto-result-container').insertAdjacentHTML('beforeEnd', ticketImg);
     });
+    this.disablePurchase();
+  }
+
+  disablePurchase() {
+    $('purchase-money-input').disabled = true;
+    $('purchase-money-button').disabled = true;
   }
 }
