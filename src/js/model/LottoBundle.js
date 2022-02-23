@@ -2,17 +2,19 @@ import repeatCallback from '../utils/repeat.js';
 import Lotto from './Lotto.js';
 
 export default class LottoBundle {
-  constructor() {
-    this.lottos = [];
+  #lottos = [];
+
+  get lottos() {
+    return this.#lottos;
   }
 
-  pushLottoToBundle() {
+  #pushLottoToBundle() {
     const lotto = new Lotto();
     lotto.generateLottoNumbers();
-    this.lottos.push(lotto);
+    this.#lottos.push(lotto);
   }
 
   createLottoBundle(count) {
-    repeatCallback(count, () => this.pushLottoToBundle());
+    repeatCallback(count, () => this.#pushLottoToBundle());
   }
 }

@@ -42,7 +42,7 @@
 
 ## 리팩토링할 사항
 
-- [ ] 모델 캡슐화
+- [x] 모델 캡슐화(private class fields, method)
 - [x] CSS
   - [x] CSS 분리하기
   - [x] CSS 변수 사용하기

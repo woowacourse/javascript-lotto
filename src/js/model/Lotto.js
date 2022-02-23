@@ -2,12 +2,14 @@ import generateRandomNumbers from '../utils/random.js';
 import LOTTO from '../constants/lotto.js';
 
 export default class Lotto {
-  constructor() {
-    this.numbers = [];
+  #numbers = [];
+
+  get numbers() {
+    return this.#numbers;
   }
 
   generateLottoNumbers() {
-    this.numbers = generateRandomNumbers({
+    this.#numbers = generateRandomNumbers({
       count: LOTTO.NUMBER_COUNT,
       max: LOTTO.MAX_NUMBER,
       min: LOTTO.MIN_NUMBER,
