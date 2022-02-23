@@ -3,6 +3,7 @@ import MoneyForm from './components/MoneyForm';
 
 const initialState = {
   money: 0,
+  lottoList: [],
 };
 
 window.store = new Store(initialState);
