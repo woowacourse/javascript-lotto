@@ -3,7 +3,6 @@ import { isDivisible, isPositiveInteger } from '../utils/validator.js';
 
 export default class LottosModel {
   #lottos = [];
-  #isLottoNumberVisible = false;
 
   buy(inputMoney) {
     if (!isDivisible(inputMoney, 1000) || !isPositiveInteger(inputMoney)) {
