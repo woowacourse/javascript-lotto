@@ -134,4 +134,20 @@ export default class LottoModel {
         100,
     );
   }
+
+  initGame() {
+    this.lottoCount = 0;
+    this.lottos = [];
+    this.winningLottoNumbers = {
+      winningNumbers: [],
+      bonus: 0,
+    };
+    this.winningType = {
+      3: 0,
+      4: 0,
+      5: 0,
+      5.5: 0,
+      6: 0,
+    };
+  }
 }

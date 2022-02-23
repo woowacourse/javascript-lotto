@@ -1,6 +1,7 @@
 export default class InputView {
   constructor() {
     this.$result = document.querySelector('#result');
+    this.$lottoPriceInput = document.querySelector('#lotto-price-input');
   }
 
   renderWinningNumbersInput() {
@@ -31,5 +32,9 @@ export default class InputView {
         <button id="check-result-button" class="btn">결과 확인하기</button>
       </div>
     `;
+  }
+
+  initLottoPriceInput() {
+    this.$lottoPriceInput.value = '';
   }
 }

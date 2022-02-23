@@ -26,6 +26,9 @@ export default class LottoController {
 
   bindEvent() {
     this.$lottoPriceForm.addEventListener('submit', this.submitLottoPriceHandler.bind(this));
+    this.$result.addEventListener('click', this.clickCheckResultButtonHandler.bind(this));
+    this.$popup.addEventListener('click', this.clickClosePopupButtonHandler.bind(this));
+    this.$popup.addEventListener('click', this.clickRestartButtonHandler.bind(this));
   }
 
   initAfterRenderResult() {
@@ -39,8 +42,10 @@ export default class LottoController {
 
   bindEventAfterRenderResult() {
     this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
-    this.$result.addEventListener('click', this.clickCheckResultButtonHandler.bind(this));
-    this.$popup.addEventListener('click', this.clickClosePopupButtonHandler.bind(this));
+  }
+
+  unbindEvent() {
+    this.$checkbox.removeEventListener('change', this.changeCheckBoxHandler.bind(this));
   }
 
   submitLottoPriceHandler(event) {
@@ -95,5 +100,15 @@ export default class LottoController {
     this.model.initWinningType();
     this.popupView.toggleMainContainerState();
     this.popupView.closePopup();
+  }
+
+  clickRestartButtonHandler({ target }) {
+    if (target.id !== 'restart-button') return;
+    this.popupView.toggleMainContainerState(); //중복 처리해야됨
+    this.popupView.closePopup();
+    this.inputView.initLottoPriceInput();
+    this.resultView.initResult();
+    this.model.initGame();
+    this.unbindEvent();
   }
 }
