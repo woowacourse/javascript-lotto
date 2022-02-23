@@ -1,11 +1,12 @@
 import { $ } from '../utils/element-manager.js';
+import { SELECTOR } from '../constants/selector.js';
 
 export default class LottoListView {
   #container;
   #lottoNumberToggle;
   constructor($element) {
     this.#container = $element;
-    this.#lottoNumberToggle = $($element, '#lotto-number-toggle');
+    this.#lottoNumberToggle = $($element, `#${SELECTOR.ID.NUMBER_TOGGLE}`);
   }
 
   bindLottoNumberToggle() {
@@ -14,29 +15,24 @@ export default class LottoListView {
 
   toggleShow() {
     const toggleDataset = this.#lottoNumberToggle.dataset;
-    if (toggleDataset.state === 'on') {
-      toggleDataset.state = 'off';
-    } else if (toggleDataset.state === 'off') {
-      toggleDataset.state = 'on';
-    }
-
-    $(this.#container, '.lotto-item-container').classList.toggle('show');
+    toggleDataset.state = toggleDataset.state === 'on' ? 'off' : 'on';
+    $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`).classList.toggle('show');
   }
 
   renderLottoList(lottos) {
-    $(this.#container, '.lotto-item-container').innerHTML = lottos
+    $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`).innerHTML = lottos
       .map((numbers) => this.makeLottoTemplate(numbers))
       .join('');
 
     $(
       this.#container,
-      '#lotto-bought-count'
+      `#${SELECTOR.ID.LOTTO_BOUGHT_COUNT}`
     ).textContent = `총 ${lottos.length}개를 구매하였습니다.`;
   }
 
   makeLottoTemplate(numbers) {
     return `
-    <div class="item"><span>🎟️</span> <span class="numbers">${numbers}</span></div>
+    <div class="${SELECTOR.CLASS.LOTTO_ITEM}"><span>🎟️</span> <span class="${SELECTOR.CLASS.LOTTO_ITEM_NUMBER}">${numbers}</span></div>
     `;
   }
 }

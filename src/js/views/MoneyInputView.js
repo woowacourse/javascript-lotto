@@ -1,4 +1,5 @@
 import { $ } from '../utils/element-manager.js';
+import { SELECTOR } from '../constants/selector.js';
 
 export default class MoneyInputView {
   #container;
@@ -9,9 +10,9 @@ export default class MoneyInputView {
   bindMoneyInputSubmit(handler) {
     const $container = this.#container;
 
-    $($container, '#lotto-purchase-button').addEventListener('click', (event) => {
+    $($container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).addEventListener('click', (event) => {
       event.preventDefault();
-      handler({ moneyInput: $($container, '#lotto-money-input').value });
+      handler({ moneyInput: $($container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value });
     });
   }
 }
