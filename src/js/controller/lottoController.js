@@ -13,12 +13,13 @@ class LottoController {
     e.preventDefault();
     const { target } = e;
     if (target.className === SELECTOR.CASH_INPUT_BUTTON_CLASSNAME) {
-      const { value: cashInput } = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
+      const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
 
       this.lottoManager = new LottoManager();
       try {
-        this.lottoManager.buyLotto(cashInput);
+        this.lottoManager.buyLotto(cashInput.value);
         this.view = new LottoView();
+        this.view.beforeRenderLottos(cashInput, target);
         this.view.renderLottos(this.lottoManager.lottos);
         this.initToggleButtonHandler();
       } catch (error) {

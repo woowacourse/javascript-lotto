@@ -14,6 +14,11 @@ button {
   border-radius: 4px;
   color: #fff;
   padding: 8px;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
 }
 
 #app {
@@ -199,4 +204,13 @@ input:checked + .slider:before {
 
 .hide-numbers .lotto-numbers {
   display: none;
+}
+
+button:disabled {
+  background-color: #b4b4b4;
+  cursor: default;
+}
+
+input:disabled {
+  color: #b4b4b4;
 }

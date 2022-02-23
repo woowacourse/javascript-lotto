@@ -1,6 +1,7 @@
 export const SELECTOR = Object.freeze({
   CASH_INPUT_SECTION_CLASS: '.cash-input-section',
   CASH_INPUT_CLASS: '.cash-input',
+  CASH_INPUT_BUTTON_CLASS: '.cash-input-button',
   CASH_INPUT_BUTTON_CLASSNAME: 'cash-input-button',
 
   PURCHASED_LOTTO_SECTION_CLASS: '.purchased-lotto-section',

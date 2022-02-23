@@ -14,6 +14,7 @@ class LottoView {
       SELECTOR.LOTTO_NUMBER_CONTAINER_CLASS,
       this.purchasedLottoSection
     );
+    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
   }
 
   toggleShowLottoNumbers(checked) {
@@ -25,6 +26,14 @@ class LottoView {
     }
     classList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
     classList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+  }
+
+  beforeRenderLottos() {
+    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
+    const cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
+    cashInput.disabled = true;
+    cashInputButton.disabled = true;
+    cashInputButton.textContent = '구입완료';
   }
 
   renderLottos(lottos) {
