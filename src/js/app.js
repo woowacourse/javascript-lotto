@@ -3,11 +3,13 @@ import MoneyForm from './components/MoneyForm';
 import LottoList from './components/LottoList';
 import LottoItem from './components/LottoItem';
 import LottoListToggle from './components/LottoListToggle';
+import WinningNumberForm from './components/WinningNumberForm';
 
 const initialState = {
   money: 0,
   lottoList: [],
   lottoListVisibility: false,
+  winningNumbers: [],
 };
 
 window.store = new Store(initialState);
@@ -18,5 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <money-form></money-form>
     <lotto-list></lotto-list>
     <lotto-list-toggle></lotto-list-toggle>
+    <winning-number-form></winning-number-form>
   `;
 });
