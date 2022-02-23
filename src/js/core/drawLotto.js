@@ -3,9 +3,24 @@ import {
   RANDOM_MIN,
   RANDOM_MAX,
   NUMBER_LIST_LENGTH,
+  LOTTO_PRICE,
 } from '../constants/constant.js';
+import {
+  renderLastLottoNumber,
+  renderPurchasedLottoList,
+} from '../views/render.js';
 
-export const makeLottos = lottoCount => {
+export const drawLotto = lottoPrice => {
+  if (lottoPrice === undefined) {
+    return;
+  }
+  const lottoCount = numberOfLotto(lottoPrice);
+  makeLottos(lottoCount);
+  renderPurchasedLottoList(lottoCount);
+  renderLastLottoNumber();
+};
+
+const makeLottos = lottoCount => {
   const lottos = [];
   while (lottos.length !== lottoCount) {
     const numberList = makeRandomNumberList();
@@ -13,6 +28,10 @@ export const makeLottos = lottoCount => {
       lottos.push(new Lotto(numberList));
     }
   }
+};
+
+export const numberOfLotto = value => {
+  return value / LOTTO_PRICE;
 };
 
 const makeRandomNumberList = () => {
