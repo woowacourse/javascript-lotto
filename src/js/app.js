@@ -1,4 +1,5 @@
 import { isPositiveInteger, isDivisibleBy } from './utils';
+import { DOM_STRING, SELECTOR, MONEY } from './constants';
 import Lotto from './Lotto';
 import template from './templates';
 
@@ -25,22 +26,23 @@ export default class LottoApp {
     });
   }
 
-  // purchased section
   main() {
-    this.bindEventListener('click', '#payment-button', () => {
-      const $paymentInput = document.querySelector('#payment-input');
+    this.bindEventListener('click', SELECTOR.$PAYMENT_BUTTON, () => {
+      const $paymentInput = document.querySelector(SELECTOR.$PAYMENT_INPUT);
       try {
         this.purchasedLottoCount = isDivisibleBy(
           isPositiveInteger($paymentInput.valueAsNumber),
-          1000
+          MONEY.STANDARD
         );
 
-        document.querySelector('#payment-button').disabled =
-          !document.querySelector('#payment-button').disabled;
-        document.querySelector('#payment-button').classList.toggle('disabled');
+        document.querySelector(SELECTOR.$PAYMENT_BUTTON).disabled =
+          !document.querySelector(SELECTOR.$PAYMENT_BUTTON).disabled;
+        document
+          .querySelector(SELECTOR.$PAYMENT_BUTTON)
+          .classList.toggle(DOM_STRING.DISABLED);
 
-        document.querySelector('#payment-input').disabled =
-          !document.querySelector('#payment-input').disabled;
+        document.querySelector(SELECTOR.$PAYMENT_INPUT).disabled =
+          !document.querySelector(SELECTOR.$PAYMENT_INPUT).disabled;
 
         for (let i = 0; i < this.purchasedLottoCount; i++) {
           const lotto = new Lotto();
@@ -69,22 +71,21 @@ export default class LottoApp {
       }
     });
 
-    this.bindEventListener('click', '#lotto-list-toggle-button', () => {
-      // toggle 기능 구현 하면될 듯
+    this.bindEventListener('click', SELECTOR.$LOTTO_LIST_TOGGLE_BUTTON, () => {
       document
-        .querySelector('#lotto-list-toggle-button')
-        .classList.toggle('toggle-switch');
+        .querySelector(SELECTOR.$LOTTO_LIST_TOGGLE_BUTTON)
+        .classList.toggle(DOM_STRING.TOGGLE_SWITCH);
 
       document
-        .querySelector('#lotto-list')
-        .classList.toggle('direction-column');
+        .querySelector(SELECTOR.$LOTTO_LIST)
+        .classList.toggle(DOM_STRING.DIRECTION_COLUMN);
 
-      document.querySelectorAll('.lotto').forEach((element) => {
-        element.classList.toggle('display-flex');
+      document.querySelectorAll(SELECTOR.$LOTTO).forEach((element) => {
+        element.classList.toggle(DOM_STRING.DISPLAY_FLEX);
       });
 
-      document.querySelectorAll('.lotto-number').forEach((element) => {
-        element.classList.toggle('invisible');
+      document.querySelectorAll(SELECTOR.$LOTTO_NUMBER).forEach((element) => {
+        element.classList.toggle(DOM_STRING.INVISIBLE);
       });
     });
   }

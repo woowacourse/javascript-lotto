@@ -1,25 +1,26 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { SELECTOR } from '../../src/js/constants';
+
+Cypress.Commands.add('paymentFormSubmit', (input, callback) => {
+  cy.get(SELECTOR.$PAYMENT_INPUT).type(input);
+  cy.get(SELECTOR.$PAYMENT_BUTTON).click().then(callback);
+});
+
+Cypress.Commands.add(
+  'checkAlertMessage',
+  ({ input, inputSelector, buttonSelector, errorMessage }) => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(inputSelector).type(input);
+    cy.get(buttonSelector)
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.calledWith(errorMessage);
+      });
+  }
+);
+
+Cypress.Commands.add('initializeInput', (selector) => {
+  cy.get(selector).should('have.value', '');
+  cy.get(selector).should('have.focus');
+});
