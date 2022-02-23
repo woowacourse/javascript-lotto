@@ -1,6 +1,5 @@
 #app {
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
   max-width: 400px;
   margin: 0 auto;
@@ -15,6 +14,7 @@
   justify-content: center;
 }
 
+/* purchase */
 .purchase-form {
   display: flex;
   flex-direction: column;
@@ -54,6 +54,7 @@
   justify-content: space-between;
 }
 
+/* switch */
 .number-switch {
   display: flex;
   align-items: center;
@@ -84,7 +85,6 @@
   transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
 }
 
-/* switch */
 .switch > span {
   display: inline-block;
   width: 100%;
@@ -181,6 +181,7 @@
   line-height: 28px;
 }
 
+/* number-list */
 .lotto-number-list {
   display: flex;
   flex-wrap: wrap;
@@ -190,6 +191,8 @@
 }
 
 .lotto-number-list > li {
+  display: flex;
+  align-items: center;
   padding-right: 8px;
   font-size: 36px;
 }
@@ -237,4 +240,9 @@
   border: none;
   background: #00bcd4;
   border-radius: 4px;
+}
+
+.lotto-numbers {
+  margin: 0 18px;
+  font-size: 24px;
 }

@@ -1,13 +1,12 @@
-import Lotto from "../model/Lotto.js";
+import LottoGame from "../model/LottoGame.js";
 import LottoResult from "../views/LottoResult.js";
 import { $ } from "../utils/dom.js";
 import { ERROR_MESSAGES, SELECTOR, AMOUNT_UNIT } from "../utils/constants.js";
 import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
 
-export default class LottoGame {
+export default class LottoController {
   constructor() {
-    this.lottos = [];
-    this.lottoCount = 0;
+    this.model = new LottoGame();
     this.view = new LottoResult();
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
   }
@@ -15,6 +14,12 @@ export default class LottoGame {
   bindEvents() {
     $(SELECTOR.PURCHASE_FORM).addEventListener("submit", this.onSubmitPurchase.bind(this));
     this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
+  }
+
+  showLottoNumber() {
+    const count = this.model.getLottosLength();
+    this.view.renderPurchaseInfomation(count);
+    this.view.renderLottoIcons(count);
   }
 
   onSubmitPurchase(e) {
@@ -29,31 +34,18 @@ export default class LottoGame {
       alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
       return;
     }
-    this.lottoCount = Math.floor(value / AMOUNT_UNIT);
-    this.makeLottoTicket();
+    const lottoCount = Math.floor(value / AMOUNT_UNIT);
+    this.model.makeLottoTicket(lottoCount);
     this.showLottoNumber();
-  }
-
-  showLottoNumber() {
-    this.view.renderPurchaseInfomation(this.lottoCount);
-    this.view.renderLottoIcons(this.lottoCount);
-  }
-
-  makeLottoTicket() {
-    for (let i = 0; i < this.lottoCount; i += 1) {
-      const lotto = new Lotto();
-      lotto.makeRandomNumber();
-      this.lottos.push(lotto);
-    }
   }
 
   onClickSwitch() {
     this.view.resetLottoList();
-    this.switchInput.classList.toggle("toggle");
-    if (this.switchInput.classList.contains("toggle")) {
-      this.view.renderLottoNumbers(this.lottos);
+    this.switchInput.classList.toggle("lotto-number");
+    if (this.switchInput.classList.contains("lotto-number")) {
+      this.view.renderLottoNumbers(this.model.getLottoList());
       return;
     }
-    this.view.renderLottoIcons(this.lottos.length);
+    this.view.renderLottoIcons(this.model.getLottosLength());
   }
 }
