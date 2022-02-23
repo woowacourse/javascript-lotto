@@ -1,5 +1,7 @@
 import LottoManager from '../model/lottoManager.js';
+import Lotto from '../model/lotto.js';
 import { generateRandomNumberInRange } from '../utils/utils';
+import { LOTTO_PRICE } from '../constants/constants';
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {
@@ -43,9 +45,14 @@ describe('로또 번호 생성 테스트', () => {
   });
 
   test('범위가 1 - 45인 고유한 숫자 6개가 생성되는지 확인한다.', () => {
+    const lotto = new Lotto();
+    lotto.lottoNumbers.forEach((number) => expect(number).toBeWithinRange(1, 45));
+  });
+
+  test('투입한 금액만큼의 로또가 생성되는지 확인한다.', () => {
     const lottoManager = new LottoManager();
-    lottoManager.buyLotto('5000');
-    expect(lottoManager.lottos).toHaveLength(5);
-    lottoManager.lottos[0].lottoNumbers.forEach((number) => expect(number).toBeWithinRange(1, 45));
+    const cashInput = '5000';
+    lottoManager.buyLotto(cashInput);
+    expect(lottoManager.lottos).toHaveLength(Number(cashInput) / LOTTO_PRICE);
   });
 });
