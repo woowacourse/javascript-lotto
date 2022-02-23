@@ -8,7 +8,7 @@ class LottoManager {
     try {
       this.#validateCashInput(Number(cashInput));
       this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
-      this.generateLottos();
+      this.#generateLottos();
     } catch (error) {
       alert(error.message);
     }
@@ -32,7 +32,7 @@ class LottoManager {
     return cashInput / this.lottoPrice;
   }
 
-  generateLottos() {
+  #generateLottos() {
     this.lottos = Array.from({ length: this.purchaseAmount }, () => new Lotto());
   }
 
