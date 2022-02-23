@@ -1,2 +1,4 @@
 import './css/index.css';
-import './js/app';
+import LottoMachine from './js/LottoMachine.js';
+
+new LottoMachine();
