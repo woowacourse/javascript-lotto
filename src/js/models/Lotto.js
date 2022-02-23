@@ -12,8 +12,6 @@ class Lotto {
     }
     throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_IS_INVALIDATE);
   }
-
-  // lottoScore(winNumber) {}
 }
 
 export default Lotto;

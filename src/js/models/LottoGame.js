@@ -1,6 +1,8 @@
 import Lotto from './Lotto';
 import { isValidCharge, getRandomNumber } from '../utils/validator';
 import { ERROR_MESSAGE } from '../constants/errorMessage';
+import { NUMBER } from '../constants/number';
+
 class LottoGameModel {
   constructor() {
     this.lottoList = [];
@@ -13,7 +15,7 @@ class LottoGameModel {
   createLottoList(chargeInput) {
     const availableLottoAmount = this.inputCharge(chargeInput);
 
-    for (let i = 0; i < availableLottoAmount; i = i + 1) {
+    for (let lottoCount = 0; lottoCount < availableLottoAmount; lottoCount = lottoCount + 1) {
       try {
         const lottoNumbers = this.createLottoNumbers();
         const lotto = Lotto.create(lottoNumbers);
@@ -27,7 +29,7 @@ class LottoGameModel {
   createLottoNumbers() {
     const lottoArray = new Set();
 
-    while (lottoArray.size < 6) {
+    while (lottoArray.size < NUMBER.LOTTO_NUMBER_LENGTH) {
       lottoArray.add(getRandomNumber());
     }
 
@@ -42,7 +44,7 @@ class LottoGameModel {
   }
 
   getAvailableLottoAmount(charge) {
-    return Math.floor(charge / 1000);
+    return Math.floor(charge / NUMBER.LOTTO_PRICE);
   }
 }
 
