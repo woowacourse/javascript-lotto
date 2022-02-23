@@ -31,6 +31,9 @@ button {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
 button:disabled {
   background-color: #8b8b8b;
   cursor: not-allowed;

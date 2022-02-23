@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LottoView from "./ui/LottoView.js";
 
 function App() {
@@ -9,6 +10,9 @@ function App() {
 export default App;
 =======
 import LottoView from './views/LottoView.js';
+=======
+import LottoView from './ui/LottoView.js';
+>>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
 
 window.addEventListener('DOMContentLoaded', () => {
   const lottoView = new LottoView();
