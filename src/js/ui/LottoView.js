@@ -62,10 +62,14 @@ export default class LottoView {
       this.renderLotto();
       this.disablePurchase();
 <<<<<<< HEAD
+<<<<<<< HEAD
       this.showLottoContainers();
 =======
       this.controlLottoContainers();
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
+=======
+      this.showLottoContainers();
+>>>>>>> ccddd2a (refactor: 메서드명 변경)
     } catch (e) {
       alert(e.message);
     }
@@ -178,6 +182,7 @@ export default class LottoView {
     $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = true;
   }
 
+<<<<<<< HEAD
   controlLottoContainers() {
     $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = !$(
       SELECTOR.ID.LOTTO_RESULT_SECTION
@@ -186,5 +191,10 @@ export default class LottoView {
       SELECTOR.ID.WINNING_NUMBER_FORM
     ).hidden;
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
+=======
+  showLottoContainers() {
+    $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = false;
+    $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
+>>>>>>> ccddd2a (refactor: 메서드명 변경)
   }
 }
