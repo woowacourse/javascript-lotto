@@ -6,6 +6,13 @@ export default class LottoModel {
       winningNumbers: [],
       bonus: 0,
     };
+    this.winningType = {
+      3: 0,
+      4: 0,
+      5: 0,
+      5.5: 0,
+      6: 0,
+    };
   }
 
   setLottoCount(value) {
@@ -79,5 +86,52 @@ export default class LottoModel {
 
   getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber) {
     return [].concat(winnerNumberArray, bonusNumber);
+  }
+
+  calculateWinningNumbers() {
+    this.lottos.forEach((lotto) => {
+      let winningCount =
+        2 * lotto.length -
+        [...new Set(lotto.concat(this.winningLottoNumbers.winningNumbers))].length;
+
+      if (winningCount === 5 && lotto.includes(this.winningLottoNumbers.bonus)) {
+        winningCount += 0.5;
+      }
+
+      if (winningCount >= 3) {
+        this.winningType[winningCount] += 1;
+      }
+    });
+
+    return this.winningType;
+  }
+
+  initWinningType() {
+    this.winningType = {
+      3: 0,
+      4: 0,
+      5: 0,
+      5.5: 0,
+      6: 0,
+    };
+  }
+
+  calculateEarningRate() {
+    const winningPriceInfo = {
+      3: 5000,
+      4: 50000,
+      5: 1500000,
+      5.5: 30000000,
+      6: 2000000000,
+    };
+
+    return Math.floor(
+      (Object.entries(this.winningType).reduce(
+        (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
+        0,
+      ) /
+        (this.lottoCount * 1000)) *
+        100,
+    );
   }
 }

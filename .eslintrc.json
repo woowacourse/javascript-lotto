@@ -10,6 +10,7 @@
   },
   "rules": {
     "no-param-reassign": ["error", { "props": false }],
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off"
   }
 }
