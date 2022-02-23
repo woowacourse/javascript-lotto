@@ -9,12 +9,12 @@ export default class Lottos {
     this.lottoList = null;
   }
 
-  getLottos() {
-    return this.lottos;
-  }
-
   setLottos(lottos) {
     this.lottos = lottos;
+  }
+
+  getLottos() {
+    return this.lottos;
   }
 
   makeLottos(count) {

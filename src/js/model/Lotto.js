@@ -9,11 +9,11 @@ export default class Lotto {
     this.numberList = pickLottoNumber(6);
   }
 
-  getList() {
-    return this.numberList;
-  }
-
   setList(numberList) {
     this.numberList = numberList;
+  }
+
+  getList() {
+    return this.numberList;
   }
 }

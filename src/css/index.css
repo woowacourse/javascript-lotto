@@ -1,5 +1,6 @@
 @import './reset.css';
 @import './purchaseMoney.css';
+@import './purchasedLotto.css';
 
 body {
   display: flex;

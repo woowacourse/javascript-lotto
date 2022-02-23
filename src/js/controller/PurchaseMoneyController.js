@@ -21,7 +21,8 @@ export default class PurchaseMoneyController {
     try {
       invalidPurchaseMoney(purchaseMoney);
     } catch (e) {
-      return alert(e);
+      alert(e);
+      return;
     }
 
     const lottoCount = purchaseMoney / 1000;
