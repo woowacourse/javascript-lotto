@@ -2,6 +2,7 @@ import { LOTTO } from '../constants';
 
 export const PURCHASE_LOTTO = 'purchase-lotto';
 export const TOGGLE_LOTTO_LIST = 'toggle-lotto-list';
+export const SET_WINNING_NUMBERS = 'set-winning-numbers';
 
 const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -39,6 +40,8 @@ export function reducer(state, { type, payload }) {
     newState.lottoList = lottoList;
   } else if (type === TOGGLE_LOTTO_LIST) {
     newState.lottoListVisibility = payload;
+  } else if (type === SET_WINNING_NUMBERS) {
+    newState.winningNumbers = payload;
   }
 
   return newState;
