@@ -1,4 +1,5 @@
-import { $ } from './util';
+import { LOTTO_PRICE } from './constants';
+import { $, divider } from './util';
 import { validateCharge } from './validation';
 
 export default class LottoMachine {
@@ -12,13 +13,14 @@ export default class LottoMachine {
 
   onSubmitCharge(event) {
     event.preventDefault();
-    const number = Number($("#charge-input").value);
+    const chargeInputNumber = Number($("#charge-input").value);
     try {
-      validateCharge(number);
+      validateCharge(chargeInputNumber);
     } catch (error) {
       alert(error.message);
       return;
     }
+    const newLottoCount = divider(chargeInputNumber, LOTTO_PRICE);
     console.log("Validation Pass!");
   }
 }
