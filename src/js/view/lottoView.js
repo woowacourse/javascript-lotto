@@ -1,3 +1,4 @@
+import { SELECTOR } from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
@@ -6,20 +7,27 @@ class LottoView {
   }
 
   initDom() {
-    this.purchasedLottoSection = selectDom('.purchased-lotto-section');
-    this.winnerNumberSection = selectDom('.winner-number-section');
-    this.lottoShowContainer = selectDom('.lotto-show-container');
-    this.lottoNumberContainer = selectDom('.lotto-number-container', this.purchasedLottoSection);
+    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
+    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
+    this.lottoShowContainer = selectDom(SELECTOR.LOTTO_SHOW_CONTAINER_CLASS);
+    this.lottoNumberContainer = selectDom(
+      SELECTOR.LOTTO_NUMBER_CONTAINER_CLASS,
+      this.purchasedLottoSection
+    );
   }
 
   renderLottos(lottos) {
-    this.purchasedLottoSection.classList.remove('hide');
-    this.winnerNumberSection.classList.remove('hide');
+    this.purchasedLottoSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
+    this.winnerNumberSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
 
-    const labelElement = document.createElement('label');
-    labelElement.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
-    this.lottoShowContainer.prepend(labelElement);
+    this.lottoShowContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
     this.lottoNumberContainer.append(...LottoView.generateLottoElementTemplate(lottos));
+  }
+
+  static generatePurchasedLabel(length) {
+    const labelElement = document.createElement('label');
+    labelElement.textContent = `총 ${length}개를 구매하였습니다.`;
+    return labelElement;
   }
 
   static generateLottoElementTemplate(lottos) {
@@ -27,12 +35,15 @@ class LottoView {
   }
 
   static generateLottoElement(lotto) {
-    const lottoElement = createElementWithClassName('div', 'lotto');
-    const lottoImage = createElementWithClassName('p', 'lotto-image');
+    const lottoElement = createElementWithClassName('div', SELECTOR.LOTTO_CLASSNAME);
+
+    const lottoImage = createElementWithClassName('p', SELECTOR.LOTTO_IMAGE_CLASSNAME);
     lottoImage.textContent = '🎟️';
-    const lottoNumbers = createElementWithClassName('p', 'lotto-numbers');
-    lottoNumbers.classList.add('hide');
+
+    const lottoNumbers = createElementWithClassName('p', SELECTOR.LOTTO_NUMBERS_CLASSNAME);
+    lottoNumbers.classList.add(SELECTOR.HIDE_CLASSNAME);
     lottoNumbers.textContent = Array.from(lotto.lottoNumbers).join(', ');
+
     lottoElement.append(lottoImage, lottoNumbers);
     return lottoElement;
   }

@@ -2,6 +2,18 @@ export const SELECTOR = Object.freeze({
   CASH_INPUT_SECTION_CLASS: '.cash-input-section',
   CASH_INPUT_CLASS: '.cash-input',
   CASH_INPUT_BUTTON_CLASSNAME: 'cash-input-button',
+
+  PURCHASED_LOTTO_SECTION_CLASS: '.purchased-lotto-section',
+  WINNER_NUMBER_SECTION_CLASS: '.winner-number-section',
+
+  LOTTO_SHOW_CONTAINER_CLASS: '.lotto-show-container',
+  LOTTO_NUMBER_CONTAINER_CLASS: '.lotto-number-container',
+
+  LOTTO_CLASSNAME: 'lotto',
+  LOTTO_IMAGE_CLASSNAME: 'lotto-image',
+  LOTTO_NUMBERS_CLASSNAME: 'lotto-numbers',
+
+  HIDE_CLASSNAME: 'hide',
 });
 
 export const LOTTO_PRICE = 1000;
