@@ -9,7 +9,7 @@ export default class View {
   }
 
   init() {
-    this.render();
+    this.render({ lottoList: [] });
     this.cacheDOMElements();
     console.log('view loaded...');
   }
@@ -57,29 +57,18 @@ export default class View {
       </section>
       <section id="ticket-section">
         <div>
-          <label>총 <span>7</span>개를 구매하였습니다.</label>
-          <ul id="ticket-list" class="ticket-list-column">
-            <li class="ticket">
-              <p>🎟<span class="ticket-numbers">1, 2, 3, 4, 5, 6</span></p>
-            </li>
-            <li class="ticket">
-              <p>🎟</p>
-            </li>
-            <li class="ticket">
-              <p>🎟</p>
-            </li>
-            <li class="ticket">
-              <p>🎟</p>
-            </li>
-            <li class="ticket">
-              <p>🎟</p>
-            </li>
-            <li class="ticket">
-              <p>🎟</p>
-            </li>
-            <li class="ticket">
-              <p>🎟</p>
-            </li>
+          <label>총 <span>${
+            message.lottoList.length
+          }</span>개를 구매하였습니다.</label>
+          <ul id="ticket-list" class="ticket-list-row">
+            ${message.lottoList
+              .map(
+                (lotto) =>
+                  `<li class="ticket"><p>🎟<span class="ticket-numbers">${lotto
+                    .getNumbers()
+                    .join(', ')}</span></p></li>`
+              )
+              .join('')}
           </ul>
         </div>
         <div id="show-number-toggle-area">

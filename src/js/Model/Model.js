@@ -11,8 +11,11 @@ export default class Model {
   }
 
   purchase(amount, callback) {
-    const message = this.lottoModel.purchase(amount);
+    const message = {
+      lottoList: this.lottoModel.purchase(amount),
+    };
 
+    console.log(message);
     callback(message);
   }
 }
