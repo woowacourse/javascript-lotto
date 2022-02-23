@@ -27,14 +27,18 @@ export default class LottoController {
       validateMoney(money);
       const count = money / LOTTO.PRICE_PER_TICKET;
       this.model.createLottoBundle(count);
-      this.issuedTicketView.renderTicketContainer();
-      this.issuedTicketView.renderTicketCount(count);
-      this.issuedTicketView.renderTicketIcon(this.model.lottos);
-      this.issuedTicketView.hideTicketDetails();
-      this.purchaseView.deactivatePurchase();
+      this.renderLotto(count);
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  renderLotto(count) {
+    this.issuedTicketView.renderTicketContainer();
+    this.issuedTicketView.renderTicketCount(count);
+    this.issuedTicketView.renderTicketIcon(this.model.lottos);
+    this.issuedTicketView.hideTicketDetails();
+    this.purchaseView.deactivatePurchase();
   }
 
   toggleDetails(checked) {
