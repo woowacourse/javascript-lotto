@@ -3,7 +3,7 @@ const isPositiveInteger = (payment) => {
     throw new Error('');
   }
 
-  return true;
+  return payment;
 };
 
 const isDivisibleBy = (payment, price) => {
