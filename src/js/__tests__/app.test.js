@@ -41,4 +41,11 @@ describe('로또 번호 생성 테스트', () => {
   test('생성된 숫자가 1 - 45 범위인지 확인한다.', () => {
     expect(generateRandomNumberInRange(1, 45)).toBeWithinRange(1, 45);
   });
+
+  test('범위가 1 - 45인 고유한 숫자 6개가 생성되는지 확인한다.', () => {
+    const lottoManager = new LottoManager();
+    lottoManager.buyLotto('5000');
+    expect(lottoManager.lottos).toHaveLength(5);
+    lottoManager.lottos[0].lottoNumbers.forEach((number) => expect(number).toBeWithinRange(1, 45));
+  });
 });
