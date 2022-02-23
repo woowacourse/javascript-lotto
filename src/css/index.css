@@ -120,11 +120,11 @@ header {
   font-size: 1rem;
 }
 
-.lotto-item-container.show > .item {
+.lotto-item-container[data-list='open'] > .item {
   grid-column: 8 span;
 }
 
-.lotto-item-container.show > .item > .item-number {
+.lotto-item-container[data-list='open'] > .item > .item-number {
   display: block;
 }
 
