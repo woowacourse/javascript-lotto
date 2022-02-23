@@ -171,3 +171,12 @@ input:checked + .slider:before {
 .ticket-container {
   margin: 0 0 8px 0;
 }
+
+button {
+  cursor: pointer;
+}
+
+#purchase-button:disabled {
+  background: #b4b4b4;
+  cursor: not-allowed;
+}

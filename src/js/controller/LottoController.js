@@ -40,6 +40,7 @@ export default class LottoController {
       this.issuedTicketView.renderTicketCount(count);
       this.issuedTicketView.renderTicketIcon(this.model.lottos);
       this.issuedTicketView.hideTicketDetails();
+      this.purchaseView.deactivatePurchase();
     } catch (error) {
       alert(error.message);
     }
