@@ -1,6 +1,8 @@
 import Component from '../abstracts/component';
 import createAction from '../flux/actionCreator';
 import { SET_WINNING_NUMBERS } from '../flux/reducer';
+import ValidationError from '../validation/validation-error';
+import { validateWinningNumbers } from '../validation/validators';
 
 class WinningNumberForm extends Component {
   connectedCallback() {
@@ -17,17 +19,17 @@ class WinningNumberForm extends Component {
         <fieldset>
           <label>당첨 번호</label>
           <div>
-            <input type="number" />
-            <input type="number" />
-            <input type="number" />
-            <input type="number" />
-            <input type="number" />
-            <input type="number" />
+            <input />
+            <input />
+            <input />
+            <input />
+            <input />
+            <input />
           </div>
         </fieldset>
         <fieldset>
           <label>보너스 번호</label>
-          <input type="number" />
+          <input />
         </fieldset>
         <button>결과 확인하기</button>
       </form>
@@ -38,9 +40,25 @@ class WinningNumberForm extends Component {
     this.addEvent('submit', 'form', (event) => {
       event.preventDefault();
       const $winningNumberInputs = [...this.querySelectorAll('input')];
-      const winningNumbers = $winningNumberInputs.map((input) => input.valueAsNumber);
-      window.store.dispatch(createAction(SET_WINNING_NUMBERS, winningNumbers));
+      const winningNumbers = $winningNumberInputs.map((input) => input.value);
+
+      try {
+        this.pickLottoNumbers(winningNumbers);
+      } catch (e) {
+        console.error(e);
+        alert(e.message);
+      }
     });
+  }
+
+  pickLottoNumbers(winningNumbers) {
+    const { hasError, errorMessage } = validateWinningNumbers(winningNumbers);
+
+    if (hasError) {
+      throw new ValidationError(errorMessage);
+    }
+
+    window.store.dispatch(createAction(SET_WINNING_NUMBERS, winningNumbers));
   }
 }
 
