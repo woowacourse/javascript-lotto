@@ -57,8 +57,8 @@
 - [ ] `innerHTML`을 `insertAdjacentHTML`로 리팩토링 하기
 - [ ] `for`문 대신 간결한 고차함수로 리팩토링 하기 (`some`, `every` ..)
 - [ ] 코드 컨벤션 읽으면서 코드 점검하기
-- [ ] `utils` 폴더에 있는 파일들의 범용성 확인하기
-  - [ ] `selector` 함수를 범용성있게 만들기
+- [x] `utils` 폴더에 있는 파일들의 범용성 확인하기
+  - [x] `selector` 함수를 범용성있게 만들기
 - [ ] `if`문 점검하기 (드모르간 법칙)
 - [ ] 테스트 코드 전반적으로 리팩토링 하기
 - [ ] package.json에서 안 쓰는 스크립트 점검(webpack, husky)
