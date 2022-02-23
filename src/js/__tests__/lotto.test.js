@@ -1,13 +1,4 @@
-import { LOTTO_PRICE } from '../constants/constant.js';
-
-export const numberOfLotto = value => {
-  return value / LOTTO_PRICE;
-};
-
-export const isOverlapLottoNumber = lottoNumbers => {
-  const isCorrectValue = lottoNumbers.length === new Set(lottoNumbers).size;
-  return isCorrectValue;
-};
+import { numberOfLotto, isOverlapLottoNumber } from '../core/drawLotto.js';
 
 describe('로또가 알맞게 생성이 되는지 테스트', () => {
   test('입력 금액에 맞게 로또를 생성되는지 확인한다', () => {
