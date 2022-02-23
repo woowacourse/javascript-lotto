@@ -8,7 +8,7 @@ export const lottoTemplate = (numbers) => {
   return `
     <div class="lotto-wrap">
       <div>🎟️</div>
-      <p class="lotto-numbers hidden">${numbers.join(',')}</p>
+      <p class="lotto-numbers hidden">${numbers.join(', ')}</p>
     </div>
   `;
 };

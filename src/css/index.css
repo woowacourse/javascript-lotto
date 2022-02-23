@@ -1,9 +1,59 @@
 @import url('reset.css');
 
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  margin: 52px 0px 16px 0px;
+}
+
 #app {
   width: 414px;
-  height: 727px;
+  height: 727px;  
   border: 2px solid black;
+  padding: 0px 16px;
+}
+
+label[for="purchase-money"] {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#lotto-purchase-form > button {
+  background: #00BCD4;
+  border-radius: 4px;
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+  color: #FFFFFF;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  margin-left: 15px;
+
+  outline: none;
+  border: none;
+}
+
+#lotto-purchase-input {
+  height: 36px;
+  width: 294px;
+  border: 1px solid #B4B4B4;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 10px 5px;
+}
+
+#lotto-purchase-input::placeholder {
+  color: #8B8B8B;
 }
 
 #lotto-list {
@@ -21,4 +71,91 @@
 
 .hidden {
   display: none;
+}
+
+
+#lotto-purchase-result {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+.lotto-wrap {
+  font-size: 30px;
+  margin-right: 8px;
+}
+
+.lotto-numbers {
+  font-size: 16px;
+  line-height: 38px;
+  margin-left: 6px;
+  word-spacing: 1px;
+}
+
+#lotto-toggle-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 20px;
+  margin-top: 4px;
+  margin-left: 24px;
+}
+
+#show-lotto-toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 3px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(10px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
