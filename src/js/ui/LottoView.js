@@ -31,7 +31,7 @@ export default class LottoView {
       this.renderLottoAmount();
       this.renderLotto();
       this.disablePurchase();
-      this.controlLottoContainers();
+      this.showLottoContainers();
     } catch (e) {
       alert(e.message);
     }
@@ -81,12 +81,8 @@ export default class LottoView {
     $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = true;
   }
 
-  controlLottoContainers() {
-    $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = !$(
-      SELECTOR.ID.LOTTO_RESULT_SECTION
-    ).hidden;
-    $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = !$(
-      SELECTOR.ID.WINNING_NUMBER_FORM
-    ).hidden;
+  showLottoContainers() {
+    $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = false;
+    $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
   }
 }
