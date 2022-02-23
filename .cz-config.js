@@ -43,6 +43,7 @@ module.exports = {
     { name: 'todo' },
     { name: 'flux' },
     { name: 'component' },
+    { name: 'validation' },
   ],
 
   scopeOverrides: {
