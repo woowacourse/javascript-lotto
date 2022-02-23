@@ -99,6 +99,7 @@ header h1 {
 
 /* Toggle Button */
 .cm-toggle {
+  height: 20px;
 	-webkit-appearance: none;
 	-webkit-tap-highlight-color: transparent;
 	position: relative;
