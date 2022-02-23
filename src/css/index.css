@@ -1,11 +1,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
 =======
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
 >>>>>>> 59d0533 (design: 피그마와 일치하도록 UI 구현)
+=======
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+>>>>>>> 8a86911 (feat: 뷰에서 로또의 갯수 렌더링 기능 추가)
   -webkit-appearance: none;
   margin: 0;
 }
@@ -64,10 +69,14 @@ section {
 
 header {
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-family: 'Roboto';
 =======
   font-family: "Roboto";
 >>>>>>> 59d0533 (design: 피그마와 일치하도록 UI 구현)
+=======
+  font-family: 'Roboto';
+>>>>>>> 8a86911 (feat: 뷰에서 로또의 갯수 렌더링 기능 추가)
   font-style: normal;
   font-weight: 600;
   font-size: 34px;
@@ -116,6 +125,7 @@ label {
   width: 100%;
 }
 
+<<<<<<< HEAD
 .lotto-result-container {
   display: flex;
   width: 300px;
@@ -127,6 +137,9 @@ label {
 
 .lotto-result-container {
 >>>>>>> 5634c93 (feat: HTML 작성)
+=======
+#lotto-result-container {
+>>>>>>> 8a86911 (feat: 뷰에서 로또의 갯수 렌더링 기능 추가)
   display: flex;
   width: 300px;
   flex-wrap: wrap;

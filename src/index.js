@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import "./css/index.css";
 import "./css/toggle.css";
 import App from "./js/app.js";
@@ -15,3 +16,8 @@ window.addEventListener('DOMContentLoaded', () => {
   lottoView.bindEvents();
 });
 >>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
+=======
+import './css/index.css';
+import './css/toggle.css';
+import './js/app.js';
+>>>>>>> 8a86911 (feat: 뷰에서 로또의 갯수 렌더링 기능 추가)
