@@ -38,6 +38,10 @@ export default class LottoApp {
         document.querySelector('#payment-button').disabled =
           !document.querySelector('#payment-button').disabled;
         document.querySelector('#payment-button').classList.toggle('disabled');
+
+        document.querySelector('#payment-input').disabled =
+          !document.querySelector('#payment-input').disabled;
+
         for (let i = 0; i < this.purchasedLottoCount; i++) {
           const lotto = new Lotto();
           lotto.setLotto();
@@ -67,6 +71,18 @@ export default class LottoApp {
 
     this.bindEventListener('click', '#lotto-list-toggle-button', () => {
       // toggle 기능 구현 하면될 듯
+      document
+        .querySelector('#lotto-list-toggle-button')
+        .classList.toggle('toggle-switch');
+
+      document
+        .querySelector('#lotto-list')
+        .classList.toggle('direction-column');
+
+      document.querySelectorAll('.lotto').forEach((element) => {
+        element.classList.toggle('display-flex');
+      });
+
       document.querySelectorAll('.lotto-number').forEach((element) => {
         element.classList.toggle('invisible');
       });
