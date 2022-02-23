@@ -18,7 +18,7 @@ button {
 
 #app {
   margin: 50px auto;
-  width: 400px;
+  width: 500px;
   padding: 50px 20px;
 
   display: flex;
@@ -74,10 +74,6 @@ button {
   font-size: 2rem;
 }
 
-.hide {
-  display: none;
-}
-
 .show-number-toggle-container {
   display: flex;
   flex-direction: column;
@@ -123,4 +119,8 @@ legend {
 
 .result-button {
   width: 100%;
+}
+
+.hide {
+  display: none;
 }

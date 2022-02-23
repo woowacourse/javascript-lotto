@@ -1,6 +1,7 @@
 import { selectDom } from '../utils/utils';
 import LottoManager from '../model/lottoManager';
 import { SELECTOR } from '../constants/constants';
+import LottoView from '../view/lottoView';
 
 class LottoController {
   startLotto() {
@@ -15,6 +16,8 @@ class LottoController {
       const { value: cashInput } = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
       this.lottoManager = new LottoManager();
       this.lottoManager.buyLotto(cashInput);
+      this.view = new LottoView();
+      this.view.renderLottos(this.lottoManager.lottos);
     }
   }
 }
