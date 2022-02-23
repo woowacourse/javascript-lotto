@@ -27,10 +27,6 @@ class LottoGameModel {
     }
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
   }
-
-  getAvailableLottoAmount(charge) {
-    return Math.floor(charge / NUMBER.LOTTO_PRICE);
-  }
 }
 
 export default LottoGameModel;
