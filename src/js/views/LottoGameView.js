@@ -1,10 +1,22 @@
 import { SELECTOR } from "../utils/constants.js";
 import { $ } from "../utils/dom.js";
 
-export default class LottoResult {
+export default class LottoGameView {
   constructor() {
     this.purchaseInfomation = $(SELECTOR.PURCHASE_INFOMATION);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
+    this.switchInput = $(SELECTOR.SWITCH_INPUT);
+    this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
+    this.purchaseButton = $(SELECTOR.PURCHASE_BUTTON);
+  }
+
+  disablePurchaseForm() {
+    this.purchaseInput.setAttribute("disabled", true);
+    this.purchaseButton.setAttribute("disabled", true);
+  }
+
+  enableSwitch() {
+    this.switchInput.removeAttribute("disabled");
   }
 
   renderPurchaseInfomation(count) {

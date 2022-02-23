@@ -1,5 +1,5 @@
 import LottoGame from "../model/LottoGame.js";
-import LottoResult from "../views/LottoResult.js";
+import LottoGameView from "../views/LottoGameView.js";
 import { $ } from "../utils/dom.js";
 import { ERROR_MESSAGES, SELECTOR, AMOUNT_UNIT } from "../utils/constants.js";
 import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
@@ -7,10 +7,9 @@ import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js"
 export default class LottoController {
   constructor() {
     this.lottoGameModel = new LottoGame();
-    this.lottoResultView = new LottoResult();
+    this.lottoGameView = new LottoGameView();
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
-    this.purchaseButton = $(SELECTOR.PURCHASE_BUTTON);
   }
 
   bindEvents() {
@@ -18,15 +17,11 @@ export default class LottoController {
     this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
   }
 
-  showLottoNumber() {
-    const lottoTicketCount = this.lottoGameModel.getLottoCount();
-    this.lottoResultView.renderPurchaseInfomation(lottoTicketCount);
-    this.lottoResultView.renderLottoIcons(lottoTicketCount);
-  }
-
-  disablePurchaseForm() {
-    this.purchaseInput.setAttribute("disabled", true);
-    this.purchaseButton.setAttribute("disabled", true);
+  handleLottoNumber(lottoCount) {
+    this.lottoGameView.disablePurchaseForm();
+    this.lottoGameView.enableSwitch();
+    this.lottoGameView.renderPurchaseInfomation(lottoCount);
+    this.lottoGameView.renderLottoIcons(lottoCount);
   }
 
   onSubmitPurchase(e) {
@@ -43,18 +38,17 @@ export default class LottoController {
     }
     const lottoCount = Math.floor(value / AMOUNT_UNIT);
     this.lottoGameModel.generateLottoTicket(lottoCount);
-    this.showLottoNumber();
-    this.disablePurchaseForm();
+    this.handleLottoNumber(lottoCount);
   }
 
   onClickSwitch() {
-    this.lottoResultView.resetLottoList();
+    this.lottoGameView.resetLottoList();
 
     this.switchInput.classList.toggle("lotto-number");
     if (this.switchInput.classList.contains("lotto-number")) {
-      this.lottoResultView.renderLottoNumbers(this.lottoGameModel.getLottoList());
+      this.lottoGameView.renderLottoNumbers(this.lottoGameModel.getLottoList());
       return;
     }
-    this.lottoResultView.renderLottoIcons(this.lottoGameModel.getLottoCount());
+    this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
   }
 }
