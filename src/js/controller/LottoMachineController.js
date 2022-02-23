@@ -1,9 +1,11 @@
 import Lottos from '../model/Lottos.js';
-import { invalidPurchaseMoney, isExist } from '../util/validator.js';
-import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
+
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import LottoNumberView from '../view/LottoNumberView.js';
+
+import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
+import { validatePurchaseMoney, isExist } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -52,7 +54,7 @@ export default class LottoMachineController {
 
   onSubmitHandler(purchaseMoney) {
     try {
-      invalidPurchaseMoney(purchaseMoney);
+      validatePurchaseMoney(purchaseMoney);
     } catch (error) {
       this.view.purchaseMoneyView.resetInputValue();
       alert(error);

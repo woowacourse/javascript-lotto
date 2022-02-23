@@ -1,5 +1,5 @@
-import { pickLottoNumber } from '../util/common.js';
 import { RULES } from '../constants/index.js';
+import { pickLottoNumber } from '../util/common.js';
 
 export default class Lotto {
   constructor() {

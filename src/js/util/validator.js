@@ -20,7 +20,7 @@ const isNotUnitOfThousand = value => {
   return value % RULES.LOTTO_PRICE !== 0;
 };
 
-const invalidPurchaseMoney = value => {
+const validatePurchaseMoney = value => {
   if (isZero(value)) {
     throw new Error(ERROR_MESSAGE.ZERO_MONEY);
   }
@@ -38,4 +38,4 @@ const invalidPurchaseMoney = value => {
   }
 };
 
-export { invalidPurchaseMoney, isExist };
+export { validatePurchaseMoney, isExist };

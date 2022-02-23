@@ -1,5 +1,26 @@
 import { RULES } from '../constants/index.js';
 
+const LOTTO_IMAGE_TEMPLATE = `
+  <span class="purchased-lotto-image">🎟️</span>
+`;
+
+const getLottoListTemplate = lottos => {
+  return lottos
+    .map(lotto => {
+      return getLottoDetailTemplate(lotto.getList());
+    })
+    .join('');
+};
+
+const getLottoDetailTemplate = lotto => {
+  return `
+    <div class="purchased-lotto-item">
+      ${LOTTO_IMAGE_TEMPLATE}
+      <div class="purchased-lotto-number">${lotto.join(', ')}</div>
+    </div>
+  `;
+};
+
 const PURCHASED_LOTTO_TEMPLATE = `
   <div id="purchased-lotto-box">
     <p>
@@ -16,19 +37,6 @@ const PURCHASED_LOTTO_TEMPLATE = `
     </label>
   </div>
 `;
-
-const LOTTO_IMAGE_TEMPLATE = `
-  <span class="purchased-lotto-image">🎟️</span>
-`;
-
-const getLottoDetailTemplate = lotto => {
-  return `
-    <div class="purchased-lotto-item">
-      ${LOTTO_IMAGE_TEMPLATE}
-      <div class="purchased-lotto-number">${lotto.join(', ')}</div>
-    </div>
-  `;
-};
 
 const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
 
@@ -57,5 +65,6 @@ export {
   PURCHASED_LOTTO_TEMPLATE,
   LOTTO_IMAGE_TEMPLATE,
   LOTTO_NUMBER_FORM,
+  getLottoListTemplate,
   getLottoDetailTemplate,
 };
