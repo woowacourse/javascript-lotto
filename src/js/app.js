@@ -1,6 +1,7 @@
 import Store from './flux/store';
 import MoneyForm from './components/MoneyForm';
 import LottoList from './components/LottoList';
+import LottoItem from './components/LottoItem';
 
 const initialState = {
   money: 0,

@@ -1,5 +1,5 @@
 import Component from '../abstracts/component';
-import lottoImage from '../../../images/lotto.png';
+import LottoImage from '../../../images/lotto.png';
 
 class LottoList extends Component {
   connectedCallback() {
@@ -13,9 +13,17 @@ class LottoList extends Component {
   }
 
   template(lottoList) {
+    const image = `<img src="${LottoImage}" alt="lotto"></img>`;
+    const lists = lottoList
+      .map((lottoNums) => `<lotto-item data-lotto-nums="${lottoNums.join(', ')}"></lotto-item>`)
+      .join('');
+
     return `
-      <label>총 ${lottoList.length}개를 구매하였습니다.</label>
-      <img src="${lottoImage}" alt="lotto"></img>
+      <article>
+        <label>총 ${lottoList.length}개를 구매하였습니다.</label>
+        <div>${image.repeat(lottoList.length)}</div>
+      </article>
+      <ul>${lists}</ul>
     `;
   }
 }
