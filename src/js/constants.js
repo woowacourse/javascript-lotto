@@ -17,6 +17,10 @@ export const ID_SELECTOR = {
 
 export const CLASS_SELECTOR = {
   LOTTO_LIST_SECTION_DISPLAY_NONE: 'lotto-list__section-display-none',
+  LOTTO_LIST: 'lotto-list',
+  LOTTO_LIST_TICKET: 'lotto-list__ticket',
+  LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
+  UNFOLD: 'unfold',
 };
 
 export const LOTTO_PRICE = 1000;

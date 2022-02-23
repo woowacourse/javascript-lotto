@@ -19,11 +19,8 @@ export default class Controller {
   onSubmitCash(cash) {
     try {
       validateCashInput(cash);
-      const quantity = cash / LOTTO_PRICE;
-      this.model.buyLotto(quantity);
-      this.lottoListView.displayLottoListSection();
-      this.lottoListView.showDescription(quantity);
-      this.lottoListView.showLottoList(this.model.getLottoList());
+      this.model.buyLotto(cash / LOTTO_PRICE);
+      this.lottoListView.showLottoListSection(this.model.getLottoList());
     } catch ({ message }) {
       alert(message);
     }

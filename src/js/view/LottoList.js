@@ -16,11 +16,21 @@ export default class LottoListView {
   }
 
   onClickToggle() {
-    this.$toggle.addEventListener('click', e => {
+    this.$toggle.addEventListener('click', () => {
       const isChecked = this.$toggleInput.checked;
       this.$toggleInput.checked = !isChecked;
-      this.$lottoLists.classList.toggle('unfold');
+      this.$lottoLists.classList.toggle(CLASS_SELECTOR.UNFOLD);
     });
+  }
+
+  showLottoListSection(lottoList) {
+    this.displayLottoListSection();
+    this.showDescription(lottoList.length);
+    this.showLottoList(lottoList);
+  }
+
+  displayLottoListSection() {
+    this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }
 
   showDescription(quantity) {
@@ -31,16 +41,14 @@ export default class LottoListView {
     const template = lottoList
       .map(
         lotto => `
-        <li class="lotto-list">
-          <span class="lotto-list__ticket">🎟️</span>
-          <span class="lotto-list__numbers">${[...lotto.values()].join(', ')}</span>
+        <li class="${CLASS_SELECTOR.LOTTO_LIST}">
+          <span class="${CLASS_SELECTOR.LOTTO_LIST_TICKET}">🎟️</span>
+          <span class="${CLASS_SELECTOR.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(
+          ', ',
+        )}</span>
         </li>`,
       )
       .join('');
     replaceHTML(this.$lottoLists, template);
-  }
-
-  displayLottoListSection() {
-    this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }
 }
