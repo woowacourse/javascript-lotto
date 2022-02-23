@@ -207,3 +207,7 @@ input:checked + .slider:before {
   -ms-transform: translateX(14px);
   transform: translateX(14px);
 }
+
+.display-none {
+  display: none !important;
+}

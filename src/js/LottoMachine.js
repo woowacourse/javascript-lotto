@@ -3,11 +3,13 @@ import { $, divider } from './util';
 import { validateCharge } from './validation';
 
 import LottoManager from './LottoManager';
+import LottoMachineView from './LottoMachineView';
 
 export default class LottoMachine {
   constructor() {
     this.setEvent();
     this.lottoManager = new LottoManager();
+    this.lottoMachineView = new LottoMachineView();
   }
 
   setEvent() {
