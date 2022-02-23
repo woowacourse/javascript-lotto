@@ -40,15 +40,11 @@ module.exports = {
     { name: 'planner' },
     { name: 'settings' },
     { name: 'todo' },
+    { name: 'flux' },
   ],
 
   scopeOverrides: {
-    fix: [
-      { name: 'merge' },
-      { name: 'style' },
-      { name: 'test' },
-      { name: 'hotfix' },
-    ],
+    fix: [{ name: 'merge' }, { name: 'style' }, { name: 'test' }, { name: 'hotfix' }],
   },
 
   allowCustomScopes: true,
