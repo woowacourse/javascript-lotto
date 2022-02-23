@@ -2,23 +2,23 @@ import { $ } from './util';
 import { validateCharge } from './validation';
 
 export default class LottoMachine {
-    constructor() {
-        this.setEvent();
-    }
+  constructor() {
+    this.setEvent();
+  }
 
-    setEvent() {
-        $("#charge-submit-form").addEventListener("submit", this.onSubmitCharge.bind(this));
-    }
+  setEvent() {
+    $("#charge-submit-form").addEventListener("submit", this.onSubmitCharge.bind(this));
+  }
 
-    onSubmitCharge(event) {
-        event.preventDefault();
-        const number = $("#charge-input").value;
-        try {
-            validateCharge(number);
-        } catch (error) {
-            alert(error.message);
-            return;
-        }
-        console.log("Validation Pass!");
+  onSubmitCharge(event) {
+    event.preventDefault();
+    const number = Number($("#charge-input").value);
+    try {
+      validateCharge(number);
+    } catch (error) {
+      alert(error.message);
+      return;
     }
+    console.log("Validation Pass!");
+  }
 }
