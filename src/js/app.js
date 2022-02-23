@@ -18,8 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#app').innerHTML = `
     <h1>🎱 행운의 로또</h1>
     <money-form></money-form>
-    <lotto-list></lotto-list>
-    <lotto-list-toggle></lotto-list-toggle>
-    <winning-number-form></winning-number-form>
+    <lotto-list hidden></lotto-list>
+    <winning-number-form hidden></winning-number-form>
   `;
 });

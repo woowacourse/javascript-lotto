@@ -11,6 +11,14 @@ class WinningNumberForm extends Component {
     this.setEvent();
   }
 
+  render() {
+    this.innerHTML = this.template();
+    const { money } = window.store.getState();
+    if (money > 0) {
+      this.show();
+    }
+  }
+
   // eslint-disable-next-line max-lines-per-function
   template() {
     return `

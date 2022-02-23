@@ -33,6 +33,14 @@ class Component extends HTMLElement {
   notify() {
     this.render();
   }
+
+  hide() {
+    this.setAttribute('hidden', true);
+  }
+
+  show() {
+    this.removeAttribute('hidden');
+  }
 }
 
 export default Component;
