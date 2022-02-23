@@ -5,13 +5,9 @@ import Lotto from './lotto';
 class LottoManager {
   buyLotto(cashInput) {
     this.lottoPrice = LOTTO_PRICE;
-    try {
-      this.#validateCashInput(Number(cashInput));
-      this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
-      this.#generateLottos();
-    } catch (error) {
-      alert(error.message);
-    }
+    this.#validateCashInput(Number(cashInput));
+    this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
+    this.#generateLottos();
   }
 
   #validateCashInput(cashInput) {

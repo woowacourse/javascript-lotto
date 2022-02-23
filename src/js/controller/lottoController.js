@@ -16,12 +16,14 @@ class LottoController {
       const { value: cashInput } = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
 
       this.lottoManager = new LottoManager();
-      this.lottoManager.buyLotto(cashInput);
-
-      this.view = new LottoView();
-      this.view.renderLottos(this.lottoManager.lottos);
-
-      this.initToggleButtonHandler();
+      try {
+        this.lottoManager.buyLotto(cashInput);
+        this.view = new LottoView();
+        this.view.renderLottos(this.lottoManager.lottos);
+        this.initToggleButtonHandler();
+      } catch (error) {
+        alert(error.message);
+      }
     }
   };
 
