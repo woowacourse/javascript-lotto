@@ -1,3 +1,5 @@
+import { LOTTO } from './utils/constants.js';
+
 export default class LottoModel {
   #lottoList;
 
@@ -18,7 +20,7 @@ export default class LottoModel {
   #generateLotto() {
     const lottoNum = new Set();
 
-    while (lottoNum.size < 6) {
+    while (lottoNum.size < LOTTO.NUMBER_LENGTH) {
       lottoNum.add(this.#generateRandomNum());
     }
 
@@ -26,6 +28,9 @@ export default class LottoModel {
   }
 
   #generateRandomNum() {
-    return Math.floor(Math.random() * (45 - 2)) + 1;
+    return (
+      Math.floor(Math.random() * (LOTTO.MAX_DIGIT - LOTTO.MIN_DIGIT + 1)) +
+      LOTTO.MIN_DIGIT
+    );
   }
 }

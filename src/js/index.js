@@ -4,7 +4,7 @@ import LottoPurchaseInputView from './views/lottoPurchaseInputView.js';
 import LottoPurchaseResultView from './views/lottoPurchaseResultView.js';
 import LottoNumberInputView from './views/lottoNumberInputView.js';
 
-const init = () => {
+const startLotto = () => {
   const lottoModel = new LottoModel();
 
   const views = {
@@ -13,8 +13,9 @@ const init = () => {
     lottoNumberInputView: new LottoNumberInputView(),
   };
 
-  // eslint-disable-next-line no-new
-  new LottoController(lottoModel, views);
+  const lottoController = new LottoController(lottoModel, views);
+
+  lottoController.init();
 };
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', startLotto);
