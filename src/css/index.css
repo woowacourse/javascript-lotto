@@ -5,8 +5,7 @@ body {
 #app {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   padding: 20px;
   background: #FFFFFF;
   font-family: Roboto;
@@ -95,6 +94,7 @@ header h1 {
   font-size: 34px;
   display: flex;
   align-items: center;
+  margin-right: 8px;
 }
 
 /* Toggle Button */

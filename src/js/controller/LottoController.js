@@ -1,14 +1,22 @@
 import { $ } from '../utils/dom';
-import { ERROR_MESSAGE } from './constants';
+import { ERROR_MESSAGE, LOTTO_PRICE } from './constants';
 import { isValidMoneyInput } from './validator';
 import Lotto from '../model/Lotto';
-import { showResult } from '../view/lottoView';
+import { showResult, toggleNumberDetail } from '../view/lottoView';
 
 export default class LottoController {
   constructor() {
     this.lottos = [];
-    const purchaseForm = $('.purchase-form');
-    purchaseForm.addEventListener('submit', this.purchaseHandler);
+    $('.purchase-form').addEventListener('submit', this.purchaseHandler);
+    $('.cm-toggle').addEventListener('click', toggleNumberDetail);
+  }
+
+  getLottos = (moneyInput) => {
+    const numberOfLottos = parseInt(moneyInput / LOTTO_PRICE);
+    for (let i = 0; i < numberOfLottos; i += 1) {
+      const lotto = new Lotto();
+      this.lottos.push(lotto.lottoNumbers);
+    }
   }
 
   purchaseHandler = e => {
@@ -19,12 +27,7 @@ export default class LottoController {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
-
-    const numberOfLottos = parseInt(moneyInput / 1000);
-    for (let i = 0; i < numberOfLottos; i += 1) {
-      const lotto = new Lotto();
-      this.lottos.push(lotto.lottoNumbers);
-    }
-    showResult(this.lottos.length);
+    this.getLottos(moneyInput);
+    showResult(this.lottos);
   }
-  
+}
