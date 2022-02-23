@@ -1,5 +1,4 @@
 import { ERROR_MESSAGE } from './constants/constants';
-import { View } from './view/View';
 
 export const validator = {
   isInputValid(input) {
