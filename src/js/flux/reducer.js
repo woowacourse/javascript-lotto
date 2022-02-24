@@ -1,20 +1,9 @@
 import { LOTTO } from '../constants';
+import { pickUniqueNumbersInRange } from '../utils';
 
 export const PURCHASE_LOTTO = 'purchase-lotto';
 export const TOGGLE_LOTTO_LIST = 'toggle-lotto-list';
 export const SET_WINNING_NUMBERS = 'set-winning-numbers';
-
-const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-const pickUniqueNumbersInRange = (startInclusive, endInclusive, count) => {
-  const numSet = new Set([pickNumberInRange(startInclusive, endInclusive)]);
-
-  while (numSet.size < count) {
-    numSet.add(pickNumberInRange(startInclusive, endInclusive));
-  }
-
-  return [...numSet.values()];
-};
 
 const generateLottoList = (money) => {
   const lottoList = [];
