@@ -1,4 +1,4 @@
-import { LOTTO_PRICE } from './constants/constants';
+import { LOTTO_PRICE, SELECTOR } from './constants/constants';
 import { $, divider } from './utils/util';
 import validateCharge from './validation';
 
@@ -13,13 +13,13 @@ export default class LottoMachine {
   }
 
   setEvent() {
-    $('#charge-submit-form').addEventListener('submit', this.onSubmitCharge.bind(this));
-    $('#show-number-toggle-input').addEventListener('click', this.reverseLottoStyle.bind(this));
+    $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
+    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
   }
 
   onSubmitCharge(event) {
     event.preventDefault();
-    const chargeInputNumber = Number($('#charge-input').value);
+    const chargeInputNumber = Number($(SELECTOR.CHARGE_INPUT).value);
     try {
       validateCharge(chargeInputNumber);
     } catch (error) {
@@ -36,7 +36,7 @@ export default class LottoMachine {
   }
 
   reverseLottoStyle() {
-    const style = $('#show-number-toggle-input').checked ? 'number' : 'icon';
+    const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
     this.lottoMachineView.switchLottoListStyle(style);
   }
 }

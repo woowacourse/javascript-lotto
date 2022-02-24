@@ -1,5 +1,6 @@
 import { $ } from '../utils/util';
 import { lottoListTemplate, lottoTotalNumber } from './template';
+import { SELECTOR } from '../constants/constants';
 
 export default class LottoMachineView {
   constructor() {
@@ -14,18 +15,18 @@ export default class LottoMachineView {
   }
 
   updateOnPurchase(lottos) {
-    $('#lotto-total-number').innerHTML = lottoTotalNumber(lottos.length);
-    $('#lotto-list-icon').innerHTML = lottoListTemplate.icon(lottos.length);
-    $('#lotto-list-number').innerHTML = lottoListTemplate.number(lottos);
+    $(SELECTOR.LOTTO_TOTAL_NUMBER).innerHTML = lottoTotalNumber(lottos.length);
+    $(SELECTOR.LOTTO_LIST_ICON).innerHTML = lottoListTemplate.icon(lottos.length);
+    $(SELECTOR.LOTTO_LIST_NUMBER).innerHTML = lottoListTemplate.number(lottos);
   }
 
   showLottoIconList() {
-    $('#lotto-list-icon').classList.remove('display-none');
-    $('#lotto-list-number').classList.add('display-none');
+    $(SELECTOR.LOTTO_LIST_ICON).classList.remove('display-none');
+    $(SELECTOR.LOTTO_LIST_NUMBER).classList.add('display-none');
   }
 
   showLottoNumberList() {
-    $('#lotto-list-icon').classList.add('display-none');
-    $('#lotto-list-number').classList.remove('display-none');
+    $(SELECTOR.LOTTO_LIST_ICON).classList.add('display-none');
+    $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove('display-none');
   }
 }
