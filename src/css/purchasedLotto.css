@@ -6,9 +6,11 @@
   margin-top: 28px;
 }
 
-#purchased-lotto-box {
+#purchased-lotto-container > div {
   display: flex;
-  flex-direction: column;
+}
+
+#purchased-lotto-box {
   min-width: 310px;
   max-width: 310px;
 }

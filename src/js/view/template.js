@@ -20,6 +20,7 @@ const getLottoDetailTemplate = lotto => {
 };
 
 const PURCHASED_LOTTO_TEMPLATE = `
+<div id="test">
   <div id="purchased-lotto-box">
     <p>
       총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
@@ -34,6 +35,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
       <span class="slider round"></span>
     </label>
   </div>
+</div>
 `;
 
 const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
