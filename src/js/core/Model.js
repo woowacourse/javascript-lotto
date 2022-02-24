@@ -3,10 +3,14 @@ import { cloneObject } from '../utils/utils.js';
 export default class Model {
   state;
 
-  init(initState, callback) {
+  init(callback) {
+    const initState = {
+      lottoList: [],
+    };
+
     this.update(initState);
 
-    callback();
+    callback(this.getState());
   }
 
   update(newState) {
