@@ -1,9 +1,5 @@
 # 로또 미션
 
-## 데모 페이지
-
-https://daaaayeah.github.io/javascript-lotto/
-
 ## 기능 목록
 
 - [x] 로또를 구입한다.

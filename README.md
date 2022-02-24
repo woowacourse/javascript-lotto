@@ -11,6 +11,15 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+<br>
+
+## 데모 페이지
+
+[링크 클릭](https://daaaayeah.github.io/javascript-lotto/)
+<img src='docs/preview.png'/>
+
+<br>
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
@@ -27,6 +36,11 @@ npm run start
 npm run build
 ```
 
+<br>
+
+## 설계도
+
+<img src="docs/construction.png"/>
 
 <br>
 
