@@ -45,3 +45,30 @@
 - [ ] [예외] 모든 값을 입력해야 한다.
   - `[1, 5, 10, 14, 35, 45]` -> 에러 발생
 - [ ] 예외 발생시, alert 경고창을 발생시킨다.
+
+<br>
+<br>
+<br>
+
+---
+
+### 파일구조
+
+<br>
+<p >
+  <img width="20%;" src="../images/file_structure.png"/>
+</p>
+<br>
+<br>
+
+---
+
+### 클래스 다이어그램
+
+<br>
+<br>
+<p align="middle" >
+  <img width="100%;" src="../images/class_diagram.png"/>
+</p>
+
+---
