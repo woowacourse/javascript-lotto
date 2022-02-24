@@ -21,7 +21,7 @@ export default class LottoAppView extends View {
       const amount = this.$paymentInput.valueAsNumber;
 
       try {
-        validator.checkChargeAmount(amount);
+        validator.checkPurchaseAmount(amount);
         callback(amount);
       } catch (e) {
         alert(e);

@@ -1,5 +1,3 @@
-import LottoModel from '../models/Lotto/LottoModel.js';
-import Payment from '../models/Payment/Payment.js';
 import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,
@@ -8,49 +6,49 @@ import {
   isValidLotto,
 } from '../utils/validator.js';
 import { ERROR_MESSAGE } from '../configs/contants.js';
+import LottoAppModel from '../models/LottoAppModel.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
-    const chargeAmount = 2000;
-    const payment = new Payment(chargeAmount);
+    const purchaseAmount = 2000;
 
-    expect(payment.getNumberOfLotto()).toBe(2);
+    expect(LottoAppModel.getNumberOfLotto(purchaseAmount)).toBe(2);
   });
 
   describe('유효성을 검증하여', () => {
     test('숫자가 아니면 에러를 throw한다.', () => {
-      const chargeAmount = '만원';
+      const purchaseAmount = '만원';
 
       expect(() => {
-        validator.checkChargeAmount(chargeAmount);
+        validator.checkPurchaseAmount(purchaseAmount);
       }).toThrowError(ERROR_MESSAGE.NOT_A_NUMBER);
     });
 
     test('1000으로 나눠서 안떨어지는 금액이 입력되면 에러를 throw한다.', () => {
-      const chargeAmount = 1001;
+      const purchaseAmount = 1001;
 
       expect(() => {
-        validator.checkChargeAmount(chargeAmount);
+        validator.checkPurchaseAmount(purchaseAmount);
       }).toThrowError(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
     });
 
     test('1000부터 10000 사이가 아니면 에러를 throw한다.', () => {
-      const firstChargeAmount = 0;
-      const secondChargeAmount = 11000;
+      const firstPurchaseAmount = 0;
+      const secondPurchaseAmount = 11000;
 
       expect(() => {
-        validator.checkChargeAmount(firstChargeAmount);
-      }).toThrowError(ERROR_MESSAGE.OUT_OF_AMOUNT_RANGE);
+        validator.checkPurchaseAmount(firstPurchaseAmount);
+      }).toThrowError(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
 
       expect(() => {
-        validator.checkChargeAmount(secondChargeAmount);
-      }).toThrowError(ERROR_MESSAGE.OUT_OF_AMOUNT_RANGE);
+        validator.checkPurchaseAmount(secondPurchaseAmount);
+      }).toThrowError(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
     });
   });
 });
 
-describe('LottoModel은', () => {
-  const lottoModel = new LottoModel();
+describe('LottoAppModel은', () => {
+  const lottoAppModel = new LottoAppModel();
 
   describe('로또 번호를 생성하여', () => {
     const lottoNumber = getLottoNumber();
@@ -65,7 +63,7 @@ describe('LottoModel은', () => {
   });
 
   test('6개의 로또번호를 가진 로또를 생성할 수 있어야 한다.', () => {
-    const lotto = LottoModel.issueLotto();
+    const lotto = LottoAppModel.issueLotto();
 
     expect(isValidLotto(lotto)).toBe(true);
   });
@@ -73,8 +71,10 @@ describe('LottoModel은', () => {
   test('주어진 개수만큼 로또를 자동 구매할 수 있어야 한다.', () => {
     const lottoCount = 6;
 
-    lottoModel.issueLottoWithCount(lottoCount);
+    lottoAppModel.issueLottoWithCount(lottoCount);
 
-    expect(isValidLottoList(lottoModel.lottoList, lottoCount)).toBe(true);
+    expect(isValidLottoList(lottoAppModel.state.lottoList, lottoCount)).toBe(
+      true
+    );
   });
 });
