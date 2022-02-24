@@ -1,9 +1,9 @@
-import { LOTTO_PRICE } from './constants';
-import { $, divider } from './util';
-import { validateCharge } from './validation';
+import { LOTTO_PRICE } from './constants/constants';
+import { $, divider } from './utils/util';
+import validateCharge from './validation';
 
 import LottoManager from './LottoManager';
-import LottoMachineView from './View/LottoMachineView';
+import LottoMachineView from './view/LottoMachineView';
 
 export default class LottoMachine {
   constructor() {
@@ -13,13 +13,19 @@ export default class LottoMachine {
   }
 
   setEvent() {
-    $("#charge-submit-form").addEventListener("submit", this.onSubmitCharge.bind(this));
-    $('#show-number-toggle-input').addEventListener('click', this.reverseLottoDisplayState.bind(this));
+    $('#charge-submit-form').addEventListener(
+      'submit',
+      this.onSubmitCharge.bind(this)
+    );
+    $('#show-number-toggle-input').addEventListener(
+      'click',
+      this.reverseLottoDisplayState.bind(this)
+    );
   }
 
   onSubmitCharge(event) {
     event.preventDefault();
-    const chargeInputNumber = Number($("#charge-input").value);
+    const chargeInputNumber = Number($('#charge-input').value);
     try {
       validateCharge(chargeInputNumber);
     } catch (error) {
@@ -39,5 +45,4 @@ export default class LottoMachine {
     const displayState = $('#show-number-toggle-input').checked;
     this.lottoMachineView.switchLottoList(displayState);
   }
-
 }
