@@ -59,6 +59,12 @@
   - HTML
   - CSS
 
+## 구조도
+
+<p align="middle" >
+  <img width="400px;" src="./images/structure_diagram.png"/ style="border: 10px solid white">
+</p>
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
