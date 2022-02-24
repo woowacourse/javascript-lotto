@@ -18,6 +18,10 @@ export default class lottoPurchaseResultView {
     emit(this.showLottoToggle, '@lottoToggle', '');
   }
 
+  cleanLottoList() {
+    this.lottoList.innerHTML = '';
+  }
+
   renderLottoPurchaseCount(count) {
     this.lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
   }
