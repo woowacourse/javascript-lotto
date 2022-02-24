@@ -1,0 +1,35 @@
+#purchased-lotto-container {
+  width: 100%;
+  min-height: 68px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+#purchased-lotto-container > div {
+  display: flex;
+}
+
+#purchased-lotto-box {
+  min-width: 310px;
+  max-width: 310px;
+}
+
+#purchased-lotto-box > p {
+  margin-bottom: 12px;
+}
+
+.purchased-lotto-image {
+  font-size: 34px;
+}
+
+.purchased-lotto-item {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+.purchased-lotto-number {
+  margin-left: 8px;
+}
