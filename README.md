@@ -13,7 +13,7 @@
 
 ## 데모 페이지
 
-https://nan-noo.github.io/javascript-lotto/
+https://uk960214.github.io/javascript-lotto/
 
 ## UI 구현
 
