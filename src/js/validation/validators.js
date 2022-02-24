@@ -27,7 +27,12 @@ export const validateMoney = (money) => {
   return new ValidationResult(false);
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const validateWinningNumbers = (numbers) => {
+  if (new Set(numbers).size !== numbers.length) {
+    return new ValidationResult(true, ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
+  }
+
   for (let i = 0; i < numbers.length; i += 1) {
     if (isEmpty(numbers[i])) {
       return new ValidationResult(true, ERROR_MESSAGE.EMPTY_WINNING_NUMBERS);
@@ -39,5 +44,6 @@ export const validateWinningNumbers = (numbers) => {
       return new ValidationResult(true, ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE);
     }
   }
+
   return new ValidationResult(false);
 };
