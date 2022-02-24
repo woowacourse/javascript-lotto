@@ -1,4 +1,4 @@
-import { DOM_STRING } from '../utils/contants.js';
+import { DOM_STRING } from '../configs/contants.js';
 
 const template = {
   app: (props) => {

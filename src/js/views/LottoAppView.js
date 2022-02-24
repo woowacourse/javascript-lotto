@@ -3,7 +3,7 @@ import template from '../templates/template.js';
 
 import { $ } from '../utils/utils.js';
 import { validator } from '../utils/validator.js';
-import { SELECTOR } from '../utils/contants.js';
+import { SELECTOR } from '../configs/contants.js';
 
 export default class LottoAppView extends View {
   template() {

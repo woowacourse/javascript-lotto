@@ -1,8 +1,8 @@
-import LottoAppModel from './Model/LottoAppModel.js';
-import LottoAppView from './View/LottoAppView.js';
-import LottoAppController from './Controller/LottoAppController.js';
+import LottoAppModel from './models/LottoAppModel.js';
+import LottoAppView from './views/LottoAppView.js';
+import LottoAppController from './controllers/LottoAppController.js';
 import { $ } from './utils/utils.js';
-import { SELECTOR } from './utils/contants.js';
+import { SELECTOR } from './configs/contants.js';
 
 export default class App {
   constructor() {

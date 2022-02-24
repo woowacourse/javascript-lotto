@@ -1,5 +1,5 @@
-import Lotto from '../Model/Lotto/Lotto.js';
-import { LOTTO, ERROR_MESSAGE, PAYMENT } from './contants.js';
+import Lotto from '../models/Lotto/Lotto.js';
+import { LOTTO, ERROR_MESSAGE, PAYMENT } from '../configs/contants.js';
 
 function isNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);

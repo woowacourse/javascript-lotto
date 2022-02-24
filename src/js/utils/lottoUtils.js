@@ -1,5 +1,5 @@
 import getRandomInt from './utils.js';
-import { LOTTO } from './contants.js';
+import { LOTTO } from '../configs/contants.js';
 
 export function getLottoNumber() {
   return getRandomInt(LOTTO.NUMBER_RANGE.MIN, LOTTO.NUMBER_RANGE.MAX);

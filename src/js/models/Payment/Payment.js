@@ -1,4 +1,4 @@
-import { LOTTO } from '../../utils/contants.js';
+import { LOTTO } from '../../configs/contants.js';
 
 export default class Payment {
   constructor(amount) {

@@ -1,5 +1,5 @@
-import LottoModel from '../Model/Lotto/LottoModel.js';
-import Payment from '../Model/Payment/Payment.js';
+import LottoModel from '../models/Lotto/LottoModel.js';
+import Payment from '../models/Payment/Payment.js';
 import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,
@@ -7,7 +7,7 @@ import {
   isValidLottoList,
   isValidLotto,
 } from '../utils/validator.js';
-import { ERROR_MESSAGE } from '../utils/contants.js';
+import { ERROR_MESSAGE } from '../configs/contants.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
