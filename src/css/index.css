@@ -104,13 +104,10 @@ button {
   cursor: pointer;
   width: 34px;
   height: 14px;
-  /* top: 0; */
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
-  /* border-radius: 20px;
-  background-color: #ccc; */
   background: rgba(33, 33, 33, 0.08);
   border-radius: 7px;
   -webkit-transition: 0.4s;
@@ -132,7 +129,6 @@ button {
 }
 .toggle-button input:checked + .onoff-switch {
   background-color: #80deea;
-  /* box-shadow: inset 1px 5px 1px #e3ae56; */
 }
 .toggle-button input:checked + .onoff-switch:before {
   background-color: #00bcd4;
@@ -160,7 +156,6 @@ button {
 .last-lotto-winning-number-main {
   display: flex;
   flex-direction: row;
-  /* margin-top: 30px; */
   justify-content: space-between;
 }
 

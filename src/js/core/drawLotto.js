@@ -5,11 +5,6 @@ import {
   NUMBER_LIST_LENGTH,
   LOTTO_PRICE,
 } from '../constants/constant.js';
-import {
-  renderLastLottoNumber,
-  renderPurchasedLottoList,
-} from '../views/render.js';
-
 export const drawLotto = lottoPrice => {
   if (lottoPrice === undefined) {
     return;
