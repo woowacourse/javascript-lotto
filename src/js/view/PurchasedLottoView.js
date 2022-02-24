@@ -19,19 +19,18 @@ export default class PurchasedLottoView {
   }
 
   renderPurchasedLottoList(lottos) {
-    this.detailPurchasedLottoList = document.getElementById(
-      'detail-purchased-lotto-list',
+    this.purchasedLottoList = document.getElementById('purchased-lotto-list');
+    this.purchasedLottoList.insertAdjacentHTML(
+      'beforeend',
+      getLottoListTemplate(lottos),
     );
-
-    const lottoList = getLottoListTemplate(lottos);
-    this.detailPurchasedLottoList.insertAdjacentHTML('beforeend', lottoList);
   }
 
   addToggleClickEvent() {
-    this.toggle = document.getElementById('on-off-switch');
+    this.switch = document.getElementById('on-off-switch');
 
-    this.toggle.addEventListener('click', () => {
-      const classList = this.detailPurchasedLottoList.classList;
+    this.switch.addEventListener('click', () => {
+      const classList = this.purchasedLottoList.classList;
 
       if (classList.contains('switch-off')) {
         classList.replace('switch-off', 'switch-on');

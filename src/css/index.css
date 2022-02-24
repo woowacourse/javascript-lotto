@@ -1,8 +1,8 @@
 @import './reset.css';
-@import './purchaseMoney.css';
-@import './purchasedLotto.css';
+@import './purchase-money.css';
+@import './purchased-lotto.css';
 @import './toggle.css';
-@import './winningNumber.css';
+@import './winning-number.css';
 
 body {
   min-height: 100vh;
