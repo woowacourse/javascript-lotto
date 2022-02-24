@@ -44,6 +44,7 @@ module.exports = {
     { name: 'flux' },
     { name: 'component' },
     { name: 'validation' },
+    { name: 'util' },
   ],
 
   scopeOverrides: {
