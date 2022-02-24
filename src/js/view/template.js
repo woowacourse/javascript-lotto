@@ -20,22 +20,22 @@ const getLottoDetailTemplate = lotto => {
 };
 
 const PURCHASED_LOTTO_TEMPLATE = `
-<div id="test">
-  <div id="purchased-lotto-box">
-    <p>
-      총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
-    </p>
-    <div id="single-purchased-lotto-list"></div>
-    <div id="detail-purchased-lotto-list" class="hidden"></div>
+  <div>
+    <div id="purchased-lotto-box">
+      <p>
+        총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
+      </p>
+      <div id="single-purchased-lotto-list"></div>
+      <div id="detail-purchased-lotto-list" class="hidden"></div>
+    </div>
+    <div id="toggle-box">
+      <p>번호 보기</p>
+      <label for="on-off-switch" class="switch">
+        <input id="on-off-switch" type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+    </div>
   </div>
-  <div id="toggle-box">
-    <p>번호 보기</p>
-    <label for="on-off-switch" class="switch">
-      <input id="on-off-switch" type="checkbox" />
-      <span class="slider round"></span>
-    </label>
-  </div>
-</div>
 `;
 
 const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
