@@ -1,12 +1,19 @@
 import { $ } from '../utils/dom.js';
 export const renderPurchasedLottoList = lottoCount => {
-  const template = `<div> 
+  // $('.purchased-lotto-list').remove();
+  const template = `
+    <div class="purchased-lotto-header"> 
     <p class="purchased-lotto-list-title">총 ${lottoCount}를 구매하셨습니다</p>
     <p>번호보기</p>
     </div>
-    <div>
-        <div class="purchased-lotto-list">${'🎟️'.repeat(lottoCount)}</div>
-        <button class="toggle-button">toggle</button>
+    <div class="purchased-lotto-main">
+        <div class="purchased-lotto-list">${'<p>🎟️</p>'.repeat(
+          lottoCount,
+        )}</div> 
+        <label class="toggle-button">
+          <input type="checkbox" class="checkbox">
+          <span class="onoff-switch"></span>
+        </label>
     </div>`;
   $('.purchased-lotto-list-container').insertAdjacentHTML(
     'beforeend',
@@ -14,27 +21,58 @@ export const renderPurchasedLottoList = lottoCount => {
   );
 };
 
+/*
+export const renderLottoList = () => {
+  $('.purchased-lotto-list').remove();
+  const template = `<div class="purchased-lotto-list is-active></div>`;
+  $('.purchased-lotto-main').insertAdjacentHTML('afterbegin', template);
+};
+export const renderPurchasedLottoList = lottoCount => {
+  const template = `
+    <div class="purchased-lotto-header"> 
+    <p class="purchased-lotto-list-title">총 ${lottoCount}를 구매하셨습니다</p>
+    <p>번호보기</p>
+    </div>
+    <div class="purchased-lotto-main">
+        <div class="purchased-lotto-list">${'<p>🎟️</p>'.repeat(
+          lottoCount,
+        )}</div>
+        <label class="toggle-button">
+          <input type="checkbox" class="checkbox">
+          <span class="onoff-switch"></span>
+        </label>
+    </div>`;
+  $('.purchased-lotto-list-container').insertAdjacentHTML(
+    'beforeend',
+    template,
+  );
+};
+*/
+
 export const renderLastLottoNumber = () => {
   const template = `
-    <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-        <div>
-          <p>당첨 번호</p>
-          <p>보너스 번호</p>
-        </div>
-        <div class="last-lotto-number-input">
-          <div class="last-lotto-winning-number-container">
-            <input type="number" class="last-lotto-winning-number" />
-            <input type="number" class="last-lotto-winning-number" />
-            <input type="number" class="last-lotto-winning-number" />
-            <input type="number" class="last-lotto-winning-number" />
-            <input type="number" class="last-lotto-winning-number" />
-            <input type="number" class="last-lotto-winning-number" />
-          </div>
-          <div class="last-lotto-bonus-number-container">
-            <input type="number" class="last-lotto-bonus-number" />
-          </div>
-        </div>
-        <button type="button" class="check-result-button">결과 확인하기</button>
+    <div class="last-lotto-winning-number-title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+    <div class="last-lotto-winning-number-header">
+      <p>당첨 번호</p>
+      <p>보너스 번호</p>
+    </div>
+    <div class="last-lotto-winning-number-main">
+      <div class="last-lotto-winning-number-main-container">
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+      </div>
+      <div class="last-lotto-bonus-number-container">
+        <input type="number" class="last-lotto-winning-number-input" />
+      </div>
+    </div>
+    <button type="button" class="check-result-button">결과 확인하기</button>
     `;
-  $('.last-lotto-number-container').insertAdjacentHTML('beforeend', template);
+  $('.last-lotto-winning-number-container').insertAdjacentHTML(
+    'beforeend',
+    template,
+  );
 };
