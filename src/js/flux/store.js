@@ -1,4 +1,4 @@
-import { reducer } from './reducer';
+import reducer from './reducer';
 
 class Store {
   #subscribers = [];

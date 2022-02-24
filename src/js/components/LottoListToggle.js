@@ -1,6 +1,6 @@
 import Component from '../abstracts/component';
+import { ACTION } from '../constants';
 import createAction from '../flux/actionCreator';
-import { TOGGLE_LOTTO_LIST } from '../flux/reducer';
 
 class LottoListToggle extends Component {
   connectedCallback() {
@@ -26,7 +26,7 @@ class LottoListToggle extends Component {
 
   setEvent() {
     this.addEvent('click', 'input', (event) => {
-      window.store.dispatch(createAction(TOGGLE_LOTTO_LIST, event.target.checked));
+      window.store.dispatch(createAction(ACTION.TOGGLE_LOTTO_LIST, event.target.checked));
     });
   }
 }

@@ -1,6 +1,6 @@
 import Component from '../abstracts/component';
+import { ACTION } from '../constants';
 import createAction from '../flux/actionCreator';
-import { SET_WINNING_NUMBERS } from '../flux/reducer';
 import ValidationError from '../validation/validation-error';
 import { validateWinningNumbers } from '../validation/validators';
 
@@ -68,7 +68,7 @@ class WinningNumberForm extends Component {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(createAction(SET_WINNING_NUMBERS, winningNumbers));
+    window.store.dispatch(createAction(ACTION.SET_WINNING_NUMBERS, winningNumbers));
   }
 }
 

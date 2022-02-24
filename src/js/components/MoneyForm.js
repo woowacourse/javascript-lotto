@@ -1,6 +1,6 @@
 import Component from '../abstracts/component';
 import createAction from '../flux/actionCreator';
-import { PURCHASE_LOTTO } from '../flux/reducer';
+import { ACTION } from '../constants';
 import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
@@ -48,7 +48,7 @@ class MoneyForm extends Component {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(createAction(PURCHASE_LOTTO, money));
+    window.store.dispatch(createAction(ACTION.PURCHASE_LOTTO, money));
   }
 }
 

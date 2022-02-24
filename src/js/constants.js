@@ -1,3 +1,9 @@
+export const ACTION = {
+  PURCHASE_LOTTO: 'purchase-lotto',
+  TOGGLE_LOTTO_LIST: 'toggle-lotto-list',
+  SET_WINNING_NUMBERS: 'set-winning-numbers',
+};
+
 export const ERROR_MESSAGE = {
   EMPTY_MONEY: '금액을 입력해 주세요!',
   NOT_INTEGER: '정수만 입력해 주세요!',

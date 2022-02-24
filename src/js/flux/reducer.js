@@ -1,9 +1,5 @@
-import { LOTTO } from '../constants';
+import { ACTION, LOTTO } from '../constants';
 import { pickUniqueNumbersInRange } from '../utils';
-
-export const PURCHASE_LOTTO = 'purchase-lotto';
-export const TOGGLE_LOTTO_LIST = 'toggle-lotto-list';
-export const SET_WINNING_NUMBERS = 'set-winning-numbers';
 
 const generateLottoList = (money) => {
   const lottoList = [];
@@ -20,16 +16,16 @@ const generateLottoList = (money) => {
   return lottoList;
 };
 
-export function reducer(state, { type, payload }) {
+export default function reducer(state, { type, payload }) {
   const newState = { ...state };
 
-  if (type === PURCHASE_LOTTO) {
+  if (type === ACTION.PURCHASE_LOTTO) {
     newState.money = payload;
     const lottoList = generateLottoList(payload);
     newState.lottoList = lottoList;
-  } else if (type === TOGGLE_LOTTO_LIST) {
+  } else if (type === ACTION.TOGGLE_LOTTO_LIST) {
     newState.lottoListVisibility = payload;
-  } else if (type === SET_WINNING_NUMBERS) {
+  } else if (type === ACTION.SET_WINNING_NUMBERS) {
     newState.winningNumbers = payload;
   }
 
