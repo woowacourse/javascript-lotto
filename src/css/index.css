@@ -50,6 +50,10 @@ lotto-list > .lotto-list-container {
   flex: 1;
 }
 
+lotto-list .lotto-images img {
+  margin-right: 8px;
+}
+
 lotto-list > .lotto-list-container label {
   display: block;
   margin-bottom: 8px;
