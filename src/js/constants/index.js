@@ -1,6 +1,6 @@
 export const CONFIRM_MESSAGE = Object.freeze({
   RE_PURCHASE:
-    '다시 구입하시면 이미 구입했던 로또는 사라집니다. 다시 구입하시겠습니까?',
+    '로또를 다시 구입하면 이미 구입한 로또는 사라집니다.\n다시 구입하시겠습니까?',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
