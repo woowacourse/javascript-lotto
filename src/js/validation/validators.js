@@ -41,6 +41,5 @@ export const validateWinningNumbers = (numbers) => {
   if (new Set(numbers).size !== numbers.length) {
     return new ValidationResult(true, ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
   }
-
   return new ValidationResult(false);
 };

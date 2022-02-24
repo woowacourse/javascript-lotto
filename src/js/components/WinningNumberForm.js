@@ -8,6 +8,7 @@ class WinningNumberForm extends Component {
   render() {
     this.innerHTML = this.template();
     const { money } = window.store.getState();
+
     if (money > 0) {
       this.show();
     }
