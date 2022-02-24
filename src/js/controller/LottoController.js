@@ -1,7 +1,7 @@
 import LottoGame from "../model/LottoGame.js";
 import LottoGameView from "../views/LottoGameView.js";
 import { $ } from "../utils/dom.js";
-import { ERROR_MESSAGES, SELECTOR, AMOUNT_UNIT } from "../utils/constants.js";
+import { ERROR_MESSAGES, SELECTOR, AMOUNT } from "../utils/constants.js";
 import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
 
 export default class LottoController {
@@ -38,7 +38,7 @@ export default class LottoController {
       alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
       return;
     }
-    const lottoCount = Math.floor(purchaseAmount / AMOUNT_UNIT);
+    const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
     this.lottoGameModel.generateLottoTicket(lottoCount);
     this.handleLottoNumber(lottoCount);
   }

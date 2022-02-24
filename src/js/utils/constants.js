@@ -7,9 +7,10 @@ export const SELECTOR = {
   SWITCH_INPUT: ".switch-input",
 };
 
-export const MINIMUM_AMOUNT = 1000;
-
-export const AMOUNT_UNIT = 1000;
+export const AMOUNT = {
+  MINIMUM: 1000,
+  UNIT: 1000,
+};
 
 export const LOTTO_NUMBER = {
   LENGTH: 6,
@@ -18,6 +19,6 @@ export const LOTTO_NUMBER = {
 };
 
 export const ERROR_MESSAGES = {
-  INVALID_MINIMUM_AMOUNT: `금액은 ${MINIMUM_AMOUNT}원 이상으로 입력해주세요.`,
-  INVALID_AMOUNT_UNIT: `${AMOUNT_UNIT}원 단위로 입력해주세요.`,
+  INVALID_MINIMUM_AMOUNT: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
+  INVALID_AMOUNT_UNIT: `${AMOUNT.UNIT}원 단위로 입력해주세요.`,
 };

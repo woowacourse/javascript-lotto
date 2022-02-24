@@ -1,9 +1,9 @@
-import { MINIMUM_AMOUNT, AMOUNT_UNIT } from "./constants.js";
+import { AMOUNT } from "./constants.js";
 
 export const isValidMinimumAmount = (amount) => {
-  return amount >= MINIMUM_AMOUNT;
+  return amount >= AMOUNT.MINIMUM;
 };
 
 export const isValidAmountUnit = (amount) => {
-  return amount % AMOUNT_UNIT === 0;
+  return amount % AMOUNT.UNIT === 0;
 };
