@@ -59,6 +59,18 @@
   - HTML
   - CSS
 
+<br />
+
+### 설계도
+
+<img width="500px;" src="./images/blueprint.png"/>
+
+### 구조도
+
+<img width="1000px;" src="./images/structure_diagram.png"/>
+
+<br />
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
@@ -75,19 +87,19 @@ npm run start
 npm run build
 ```
 
-<br>
+<br />
 
 ## 👏 Contributing
 
 만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요.
 
-<br>
+<br />
 
 ## 🐞 Bug Report
 
 버그를 발견한다면, [Issues](https://github.com/woowacourse/javascript-lotto/issues)에 등록해주세요.
 
-<br>
+<br />
 
 ## 📝 License
 
