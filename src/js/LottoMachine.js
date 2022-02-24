@@ -7,9 +7,9 @@ import LottoMachineView from './view/LottoMachineView';
 
 export default class LottoMachine {
   constructor() {
-    this.setEvent();
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
+    this.setEvent();
   }
 
   setEvent() {
