@@ -1,6 +1,5 @@
 import { $ } from '../utils/dom.js';
 export const renderPurchasedLottoList = lottoCount => {
-  // $('.purchased-lotto-list').remove();
   const template = `
     <div class="purchased-lotto-header"> 
     <p class="purchased-lotto-list-title">총 ${lottoCount}를 구매하셨습니다</p>

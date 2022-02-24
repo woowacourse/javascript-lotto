@@ -1,3 +1,6 @@
+## github-pages 주소
+- https://jihyeok-um.github.io/javascript-lotto/
+
 ## 🎯 기능 요구사항 - 구입기능
 
 ### 기능 요구사항
@@ -38,4 +41,4 @@
 
 ### 배포 요구사항
 
-- [ ] 실행 가능한 페이지에 접근할 수 있도록 github page 기능을 이용하고, 해당 링크를 PR과 README에 작성한다.
+- [X] 실행 가능한 페이지에 접근할 수 있도록 github page 기능을 이용하고, 해당 링크를 PR과 README에 작성한다.
