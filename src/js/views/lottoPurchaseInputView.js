@@ -12,6 +12,10 @@ export default class LottoPurchaseInputView {
     on(this.lottoPurchaseForm, 'submit', this.handlePurchaseLotto.bind(this));
   }
 
+  cleanLottoPurchaseInput() {
+    this.lottoPurchaseInput.value = '';
+  }
+
   handlePurchaseLotto(event) {
     event.preventDefault();
     const purchaseMoney = this.lottoPurchaseInput.valueAsNumber;

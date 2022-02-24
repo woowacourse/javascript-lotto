@@ -26,6 +26,7 @@ export default class LottoController {
   submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
     if (!isValidPurchaseMoney(purchaseMoney)) {
+      this.lottoNumberInputView.cleanLottoPurchaseInput();
       return alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
     }
 
