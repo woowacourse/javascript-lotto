@@ -11,8 +11,7 @@
 }
 
 #purchased-lotto-box {
-  min-width: 310px;
-  max-width: 310px;
+  width: 310px;
 }
 
 #purchased-lotto-box > p {
@@ -21,15 +20,21 @@
 
 .purchased-lotto-image {
   font-size: 34px;
+  margin-right: 8px;
 }
 
-.purchased-lotto-item {
+.switch-on .purchased-lotto-item {
   display: flex;
-  min-height: 36px;
   align-items: center;
+  min-height: 36px;
   padding-bottom: 4px;
 }
 
-.purchased-lotto-number {
-  margin-left: 8px;
+.switch-off {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.switch-off .purchased-lotto-number {
+  display: none;
 }

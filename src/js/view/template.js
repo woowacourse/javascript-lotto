@@ -30,8 +30,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
       <p>
         총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
       </p>
-      <div id="single-purchased-lotto-list"></div>
-      <div id="detail-purchased-lotto-list" class="hidden"></div>
+      <div id="detail-purchased-lotto-list" class="switch-off"></div>
     </div>
     <div id="toggle-box">
       <p>번호 보기</p>

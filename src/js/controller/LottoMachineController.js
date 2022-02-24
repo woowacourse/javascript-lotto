@@ -27,7 +27,7 @@ export default class LottoMachineController {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
     const lottos = this.model.makeLottos(lottoCount);
 
-    this.view.purchasedLottoView.render(lottoCount, lottos);
+    this.view.purchasedLottoView.render(lottos, lottoCount);
     this.view.winningNumberView.render();
   }
 

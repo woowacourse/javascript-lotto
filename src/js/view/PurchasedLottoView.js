@@ -1,8 +1,4 @@
-import {
-  LOTTO_IMAGE_TEMPLATE,
-  PURCHASED_LOTTO_TEMPLATE,
-  getLottoListTemplate,
-} from './template.js';
+import { PURCHASED_LOTTO_TEMPLATE, getLottoListTemplate } from './template.js';
 
 export default class PurchasedLottoView {
   constructor() {
@@ -13,25 +9,16 @@ export default class PurchasedLottoView {
     this.container = document.getElementById('purchased-lotto-container');
   }
 
-  render(lottoCount, lottos) {
+  render(lottos, lottoCount) {
     this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
     this.purchasedLottoCount = document.getElementById('purchased-lotto-count');
     this.purchasedLottoCount.textContent = lottoCount;
 
-    this.renderPurchasedLottoList(lottoCount, lottos);
+    this.renderPurchasedLottoList(lottos);
     this.addToggleClickEvent();
   }
 
-  renderPurchasedLottoList(lottoCount, lottos) {
-    this.singlePurchasedLottoList = document.getElementById(
-      'single-purchased-lotto-list',
-    );
-
-    this.singlePurchasedLottoList.insertAdjacentHTML(
-      'afterbegin',
-      LOTTO_IMAGE_TEMPLATE.repeat(lottoCount),
-    );
-
+  renderPurchasedLottoList(lottos) {
     this.detailPurchasedLottoList = document.getElementById(
       'detail-purchased-lotto-list',
     );
@@ -44,8 +31,13 @@ export default class PurchasedLottoView {
     this.toggle = document.getElementById('on-off-switch');
 
     this.toggle.addEventListener('click', () => {
-      this.singlePurchasedLottoList.classList.toggle('hidden');
-      this.detailPurchasedLottoList.classList.toggle('hidden');
+      const classList = this.detailPurchasedLottoList.classList;
+
+      if (classList.contains('switch-off')) {
+        classList.replace('switch-off', 'switch-on');
+        return;
+      }
+      classList.replace('switch-on', 'switch-off');
     });
   }
 

@@ -6,11 +6,6 @@
   padding-bottom: 8px;
 }
 
-#win-number-box {
-  display: flex;
-  flex-direction: column;
-}
-
 #bonus-number-box {
   display: flex;
   flex-direction: column;
@@ -33,10 +28,6 @@
 
 #bonus-number-box .winning-number-input {
   margin-right: 0;
-}
-
-.input-box {
-  display: flex;
 }
 
 #result-button {
