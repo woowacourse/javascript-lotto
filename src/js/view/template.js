@@ -1,9 +1,5 @@
 import { RULES } from '../constants/index.js';
 
-const LOTTO_IMAGE_TEMPLATE = `
-  <span class="purchased-lotto-image">🎟️</span>
-`;
-
 const getLottoListTemplate = lottos => {
   const initValue = '';
 
@@ -18,7 +14,7 @@ const getLottoListTemplate = lottos => {
 const getLottoDetailTemplate = lotto => {
   return `
     <div class="purchased-lotto-item">
-      ${LOTTO_IMAGE_TEMPLATE}
+    <span class="purchased-lotto-image">🎟️</span>
       <div class="purchased-lotto-number">${lotto.join(', ')}</div>
     </div>
   `;
@@ -32,7 +28,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
       </p>
       <div id="detail-purchased-lotto-list" class="switch-off"></div>
     </div>
-    <div id="toggle-box">
+    <div id="switch-box">
       <p>번호 보기</p>
       <label for="on-off-switch" class="switch">
         <input id="on-off-switch" type="checkbox" />
@@ -65,9 +61,4 @@ const WINNING_NUMBER_FORM = `
   </form>
 `;
 
-export {
-  PURCHASED_LOTTO_TEMPLATE,
-  LOTTO_IMAGE_TEMPLATE,
-  WINNING_NUMBER_FORM,
-  getLottoListTemplate,
-};
+export { PURCHASED_LOTTO_TEMPLATE, WINNING_NUMBER_FORM, getLottoListTemplate };

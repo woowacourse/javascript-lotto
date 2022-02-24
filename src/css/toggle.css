@@ -1,11 +1,11 @@
-#toggle-box {
+#switch-box {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   padding-bottom: 15px;
 }
 
-#toggle-box label {
+#switch-box label {
   margin-top: 13px;
 }
 
