@@ -1,3 +1,23 @@
+### [데모페이지](https://intae92.github.io/javascript-lotto/)
+
+---
+
+### 파일구조
+
+<p align="middle" >
+  <img width="100%;" src="../images/structure_tree.png"/>
+</p>
+
+---
+
+### 클래스 다이어그램
+
+<p align="middle" >
+  <img width="100%;" src="../images/structure_diagram.png"/>
+</p>
+
+---
+
 ### 🎯 기능 요구사항 목록 🎯
 
 <br>
