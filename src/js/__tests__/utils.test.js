@@ -1,5 +1,5 @@
 import { RULES } from '../constants/index.js';
-import { convertToNumber, pickLottoNumber } from '../util/common.js';
+import { convertToNumber, pickLottoNumber } from '../utils/common.js';
 
 describe('로또 번호 랜덤 생성 함수 기능 테스트', () => {
   it('로또 랜덤 번호는 총 6개를 가져야 한다.', () => {

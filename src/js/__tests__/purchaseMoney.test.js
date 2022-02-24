@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from '../constants/index.js';
-import { validatePurchaseMoney } from '../util/validator.js';
+import { validatePurchaseMoney } from '../utils/validator.js';
 
 describe('구입할 금액 입력 기능 테스트', () => {
   it('구입할 금액으로 0을 입력할 수 없다.', () => {

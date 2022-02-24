@@ -5,8 +5,8 @@ import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
-import { isEmpty } from '../util/common.js';
-import { validatePurchaseMoney } from '../util/validator.js';
+import { isEmpty } from '../utils/common.js';
+import { validatePurchaseMoney } from '../utils/validator.js';
 
 export default class LottoMachineController {
   constructor() {

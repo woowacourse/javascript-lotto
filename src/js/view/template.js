@@ -1,6 +1,6 @@
 import { RULES } from '../constants/index.js';
 
-const getLottoListTemplate = lottos => {
+export const getLottoListTemplate = lottos => {
   const initValue = '';
 
   const lottoListTemplate = lottos.reduce(
@@ -20,7 +20,7 @@ const getLottoDetailTemplate = lotto => {
   `;
 };
 
-const PURCHASED_LOTTO_TEMPLATE = `
+export const PURCHASED_LOTTO_TEMPLATE = `
   <div>
     <div id="purchased-lotto-box">
       <p>
@@ -38,9 +38,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
   </div>
 `;
 
-const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
-
-const WINNING_NUMBER_FORM = `
+export const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
     <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
     <div id="winning-number-boxes">
@@ -61,4 +59,4 @@ const WINNING_NUMBER_FORM = `
   </form>
 `;
 
-export { PURCHASED_LOTTO_TEMPLATE, WINNING_NUMBER_FORM, getLottoListTemplate };
+const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;

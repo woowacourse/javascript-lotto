@@ -1,4 +1,4 @@
-import { convertToNumber } from '../util/common.js';
+import { convertToNumber } from '../utils/common.js';
 
 export default class PurchaseMoneyView {
   constructor() {

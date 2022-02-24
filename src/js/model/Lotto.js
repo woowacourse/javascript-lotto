@@ -1,5 +1,5 @@
 import { RULES } from '../constants/index.js';
-import { pickLottoNumber } from '../util/common.js';
+import { pickLottoNumber } from '../utils/common.js';
 
 export default class Lotto {
   #numberList = null;

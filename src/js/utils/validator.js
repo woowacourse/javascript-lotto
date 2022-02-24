@@ -6,7 +6,7 @@ import {
   isNotUnitOfThousand,
 } from './common.js';
 
-const validatePurchaseMoney = value => {
+export const validatePurchaseMoney = value => {
   if (isZero(value)) {
     throw new Error(ERROR_MESSAGE.ZERO_MONEY);
   }
@@ -23,5 +23,3 @@ const validatePurchaseMoney = value => {
     throw new Error(ERROR_MESSAGE.NOT_UNIT_OF_THOUSAND);
   }
 };
-
-export { validatePurchaseMoney };
