@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --watch --no-cache",
-    "start": "webpack serve --open",
-    "build": "webpack"
+    "start": "webpack-dev-server --hot --open",
+    "build": "webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
