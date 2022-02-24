@@ -45,6 +45,7 @@ module.exports = {
     { name: 'component' },
     { name: 'validation' },
     { name: 'util' },
+    { name: 'unit' },
   ],
 
   scopeOverrides: {
