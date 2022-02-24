@@ -5,7 +5,7 @@ import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
-import { validatePurchaseMoney, isExist } from '../util/validator.js';
+import { validatePurchaseMoney, isEmpty } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -36,22 +36,6 @@ export default class LottoMachineController {
     this.view.winningNumberView.render();
   }
 
-  tryNoRePurchase() {
-    return !confirm(CONFIRM_MESSAGE.RE_PURCHASE);
-  }
-
-  //TODO
-  tryRePurchase(lottos) {
-    if (isExist(lottos)) {
-      if (this.tryNoRePurchase()) {
-        this.view.purchaseMoneyView.resetInputValue();
-        return true;
-      }
-      this.reset();
-      return false;
-    }
-  }
-
   onSubmitHandler(purchaseMoney) {
     try {
       validatePurchaseMoney(purchaseMoney);
@@ -62,11 +46,22 @@ export default class LottoMachineController {
     }
     const lottos = this.model.getLottos();
 
-    if (this.tryRePurchase(lottos)) {
+    if (isEmpty(lottos)) {
+      this.purchaseLotto(purchaseMoney);
       return;
     }
 
-    this.purchaseLotto(purchaseMoney);
+    if (this.tryRePurchase()) {
+      this.reset();
+      this.purchaseLotto(purchaseMoney);
+      return;
+    }
+
+    this.view.purchaseMoneyView.resetInputValue();
+  }
+
+  tryRePurchase() {
+    return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
   }
 
   reset() {

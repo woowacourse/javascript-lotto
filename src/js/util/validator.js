@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE, RULES } from '../constants/index.js';
 
-const isExist = value => {
-  return value !== null;
+const isEmpty = value => {
+  return value === null;
 };
 
 const isZero = value => {
@@ -38,4 +38,4 @@ const validatePurchaseMoney = value => {
   }
 };
 
-export { isExist, validatePurchaseMoney };
+export { isEmpty, validatePurchaseMoney };
