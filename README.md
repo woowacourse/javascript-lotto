@@ -62,7 +62,7 @@
 ## 구조도
 
 <p align="middle" >
-  <img width="400px;" src="./images/structure_diagram.png"/ style="border: 10px solid white">
+  <img width="1000px;" src="./images/structure_diagram.png" />
 </p>
 
 ## ⚙️ Before Started
