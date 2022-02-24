@@ -1,12 +1,12 @@
-#lotto-number-container {
+#winning-number-container {
   margin-top: 32px;
 }
 
-#lotto-number-container p {
+#winning-number-container p {
   padding-bottom: 8px;
 }
 
-#winning-number-box {
+#win-number-box {
   display: flex;
   flex-direction: column;
 }

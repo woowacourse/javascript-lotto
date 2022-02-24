@@ -9,7 +9,6 @@
   margin-top: 13px;
 }
 
-/* toggle */
 .switch {
   position: relative;
   display: inline-block;
@@ -18,12 +17,10 @@
   vertical-align: middle;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   display: none;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -64,7 +61,6 @@ input:checked + .slider:before {
   background-color: #00bcd4;
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }

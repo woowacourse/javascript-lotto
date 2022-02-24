@@ -5,11 +5,9 @@ const LOTTO_IMAGE_TEMPLATE = `
 `;
 
 const getLottoListTemplate = lottos => {
-  return lottos
-    .map(lotto => {
-      return getLottoDetailTemplate(lotto.getList());
-    })
-    .join('');
+  return lottos.reduce((result, lotto) => {
+    return (result += getLottoDetailTemplate(lotto.getList()));
+  }, '');
 };
 
 const getLottoDetailTemplate = lotto => {
@@ -26,13 +24,13 @@ const PURCHASED_LOTTO_TEMPLATE = `
     <p>
       총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
     </p>
-    <div id="purchased-lotto-list-off" ></div>
-      <div id="purchased-lotto-list-on" class="hidden"></div>
+    <div id="single-purchased-lotto-list"></div>
+    <div id="detail-purchased-lotto-list" class="hidden"></div>
   </div>
   <div id="toggle-box">
     <p>번호 보기</p>
-    <label for="purchased-lotto-number-switch" class="switch">
-      <input id="purchased-lotto-number-switch" type="checkbox" />
+    <label for="on-off-switch" class="switch">
+      <input id="on-off-switch" type="checkbox" />
       <span class="slider round"></span>
     </label>
   </div>
@@ -40,11 +38,11 @@ const PURCHASED_LOTTO_TEMPLATE = `
 
 const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
 
-const LOTTO_NUMBER_FORM = `
-  <form id="lotto-number-form">
+const WINNING_NUMBER_FORM = `
+  <form id="winning-number-form">
     <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-    <div id="lotto-number-box">
-      <div id="winning-number-box">
+    <div id="winning-number-boxes">
+      <div id="win-number-box">   
         <p>당첨 번호</p>
         <div class="input-box">
           ${INPUT_ELEMENT.repeat(RULES.LOTTO_COUNT)}
@@ -64,7 +62,6 @@ const LOTTO_NUMBER_FORM = `
 export {
   PURCHASED_LOTTO_TEMPLATE,
   LOTTO_IMAGE_TEMPLATE,
-  LOTTO_NUMBER_FORM,
+  WINNING_NUMBER_FORM,
   getLottoListTemplate,
-  getLottoDetailTemplate,
 };

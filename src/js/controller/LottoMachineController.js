@@ -2,7 +2,7 @@ import Lottos from '../model/Lottos.js';
 
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
-import LottoNumberView from '../view/LottoNumberView.js';
+import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
 import { validatePurchaseMoney, isExist } from '../util/validator.js';
@@ -18,7 +18,7 @@ export default class LottoMachineController {
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
-      lottoNumberView: new LottoNumberView(),
+      winningNumberView: new WinningNumberView(),
     };
   }
 
@@ -33,7 +33,7 @@ export default class LottoMachineController {
     const lottos = this.model.getLottos();
 
     this.view.purchasedLottoView.render(lottoCount, lottos);
-    this.view.lottoNumberView.render();
+    this.view.winningNumberView.render();
   }
 
   tryNoRePurchase() {
@@ -72,6 +72,6 @@ export default class LottoMachineController {
   reset() {
     this.model.init();
     this.view.purchasedLottoView.reset();
-    this.view.lottoNumberView.reset();
+    this.view.winningNumberView.reset();
   }
 }

@@ -2,7 +2,7 @@
 @import './purchaseMoney.css';
 @import './purchasedLotto.css';
 @import './toggle.css';
-@import './lottoNumber.css';
+@import './winningNumber.css';
 
 body {
   display: flex;

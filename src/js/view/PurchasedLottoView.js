@@ -23,29 +23,29 @@ export default class PurchasedLottoView {
   }
 
   renderPurchasedLottoList(lottoCount, lottos) {
-    this.purchasedLottoListOff = document.getElementById(
-      'purchased-lotto-list-off',
+    this.singlePurchasedLottoList = document.getElementById(
+      'single-purchased-lotto-list',
     );
 
-    this.purchasedLottoListOff.insertAdjacentHTML(
+    this.singlePurchasedLottoList.insertAdjacentHTML(
       'afterbegin',
       LOTTO_IMAGE_TEMPLATE.repeat(lottoCount),
     );
 
-    this.purchasedLottoListOn = document.getElementById(
-      'purchased-lotto-list-on',
+    this.detailPurchasedLottoList = document.getElementById(
+      'detail-purchased-lotto-list',
     );
 
     const lottoList = getLottoListTemplate(lottos);
-    this.purchasedLottoListOn.insertAdjacentHTML('beforeend', lottoList);
+    this.detailPurchasedLottoList.insertAdjacentHTML('beforeend', lottoList);
   }
 
   addToggleClickEvent() {
-    this.toggle = document.getElementById('purchased-lotto-number-switch');
+    this.toggle = document.getElementById('on-off-switch');
 
     this.toggle.addEventListener('click', () => {
-      this.purchasedLottoListOff.classList.toggle('hidden');
-      this.purchasedLottoListOn.classList.toggle('hidden');
+      this.singlePurchasedLottoList.classList.toggle('hidden');
+      this.detailPurchasedLottoList.classList.toggle('hidden');
     });
   }
 
