@@ -63,9 +63,9 @@ const template = {
               <p>🎟
               ${
                 (isShowNumber &&
-                  `<span class="${DOM_STRING.TICKET_NUMBERS}">${lotto
-                    .getNumbers()
-                    .join(', ')}</span>`) ||
+                  `<span class="${
+                    DOM_STRING.TICKET_NUMBERS
+                  }">${lotto.numbers.join(', ')}</span>`) ||
                 ''
               }
               

@@ -12,7 +12,7 @@ export default class LottoAppModel extends Model {
   }
 
   purchase(amount, callback) {
-    this.issueLottoWithCount(this.getNumberOfLotto(amount));
+    this.issueLottoWithCount(LottoAppModel.getNumberOfLotto(amount));
 
     callback(this.getState());
   }

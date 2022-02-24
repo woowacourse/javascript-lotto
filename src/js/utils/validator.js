@@ -19,7 +19,7 @@ export const isValidlottoNumbers = (lottoNumbers) =>
       isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
   );
 
-export const isValidLotto = (lotto) => isValidlottoNumbers(lotto.getNumbers());
+export const isValidLotto = (lotto) => isValidlottoNumbers(lotto.numbers);
 
 export const isValidLottoList = (lottoList, count) =>
   lottoList.length === count &&

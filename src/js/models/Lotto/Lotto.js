@@ -1,11 +1,14 @@
-import LottoNumbers from './LottoNumbers.js';
+import { getLottoNumberList } from '../../utils/lottoUtils.js';
+import { cloneObject } from '../../utils/utils.js';
 
 export default class Lotto {
   constructor() {
-    this.numbers = new LottoNumbers();
+    this.numbers = getLottoNumberList();
+
+    Object.freeze(this);
   }
 
   getNumbers() {
-    return this.numbers.list;
+    return cloneObject(this.numbers.list);
   }
 }
