@@ -10,6 +10,7 @@ p {
   box-sizing: border-box;
 }
 .lotto-app-button {
+  cursor: pointer;
   background: #00bcd4;
   border-radius: 4px;
   border: none;
@@ -25,7 +26,6 @@ body {
   margin-top: 100px;
 }
 .app {
-  width: 414px;
   padding: 52px 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
@@ -80,7 +80,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
-  padding: 0 16px 0 12px;
+  padding-right: 16px;
 }
 .lottos-container {
   width: calc(100% - 70px);
@@ -91,10 +91,12 @@ body {
 }
 .lottos-container.detail .lottos.detail {
   display: block;
+  padding-left: 16px;
 }
 .lottos.default {
   display: flex;
   flex-wrap: wrap;
+  padding-left: 12px;
 }
 .lotto {
   font-weight: 600;
@@ -126,7 +128,7 @@ body {
 }
 /* The slider */
 .slider {
-  height: 20px;
+  height: 14px;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -139,10 +141,10 @@ body {
 .slider:before {
   position: absolute;
   content: '';
-  width: 25px;
-  height: 25px;
-  left: -12.5px;
-  bottom: -2px;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  bottom: -3px;
   background-color: #ededed;
   transition: 0.4s;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
@@ -154,7 +156,7 @@ input:checked + .slider:before {
   background-color: #00bcd4;
 }
 input:checked + .slider:before {
-  transform: translateX(34px);
+  transform: translateX(14px);
 }
 .slider.round {
   border-radius: 34px;
