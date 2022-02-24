@@ -3,14 +3,14 @@ import { lottoListTemplate, lottoTotalNumber } from './template';
 
 export default class LottoMachineView {
   constructor() {
-    this.lottoListDisplay = {
+    this.showLottoList = {
       icon: this.showLottoIconList,
       number: this.showLottoNumberList,
     };
   }
 
-  switchLottoList(displayState) {
-    this.lottoListDisplay[displayState ? 'number' : 'icon']();
+  switchLottoListStyle(style) {
+    this.showLottoList[style]();
   }
 
   updateOnPurchase(lottos) {

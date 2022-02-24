@@ -13,14 +13,8 @@ export default class LottoMachine {
   }
 
   setEvent() {
-    $('#charge-submit-form').addEventListener(
-      'submit',
-      this.onSubmitCharge.bind(this)
-    );
-    $('#show-number-toggle-input').addEventListener(
-      'click',
-      this.reverseLottoDisplayState.bind(this)
-    );
+    $('#charge-submit-form').addEventListener('submit', this.onSubmitCharge.bind(this));
+    $('#show-number-toggle-input').addEventListener('click', this.reverseLottoStyle.bind(this));
   }
 
   onSubmitCharge(event) {
@@ -41,8 +35,8 @@ export default class LottoMachine {
     this.lottoMachineView.updateOnPurchase(this.lottoManager.lottos);
   }
 
-  reverseLottoDisplayState() {
-    const displayState = $('#show-number-toggle-input').checked;
-    this.lottoMachineView.switchLottoList(displayState);
+  reverseLottoStyle() {
+    const style = $('#show-number-toggle-input').checked ? 'number' : 'icon';
+    this.lottoMachineView.switchLottoListStyle(style);
   }
 }
