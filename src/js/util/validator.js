@@ -1,14 +1,10 @@
-import { ERROR_MESSAGE, RULES } from '../constants/index.js';
-
-const isEmpty = value => value === null;
-
-const isZero = value => value === 0;
-
-const isNotNumber = value => Number.isNaN(value) || typeof value !== 'number';
-
-const isNegativeNumber = value => value < 0;
-
-const isNotUnitOfThousand = value => value % RULES.LOTTO_PRICE !== 0;
+import { ERROR_MESSAGE } from '../constants/index.js';
+import {
+  isZero,
+  isNotNumber,
+  isNegativeNumber,
+  isNotUnitOfThousand,
+} from './common.js';
 
 const validatePurchaseMoney = value => {
   if (isZero(value)) {
@@ -28,4 +24,4 @@ const validatePurchaseMoney = value => {
   }
 };
 
-export { isEmpty, validatePurchaseMoney };
+export { validatePurchaseMoney };

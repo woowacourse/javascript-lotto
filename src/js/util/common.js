@@ -1,5 +1,15 @@
 import { RULES } from '../constants/index.js';
 
+const isEmpty = value => value === null;
+
+const isZero = value => value === 0;
+
+const isNotNumber = value => Number.isNaN(value) || typeof value !== 'number';
+
+const isNegativeNumber = value => value < 0;
+
+const isNotUnitOfThousand = value => value % RULES.LOTTO_PRICE !== 0;
+
 const convertToNumber = value => Number(value);
 
 const getRandomNumber = (min, max) => {
@@ -21,4 +31,12 @@ const pickLottoNumber = n => {
   return [...lottos];
 };
 
-export { convertToNumber, pickLottoNumber };
+export {
+  convertToNumber,
+  pickLottoNumber,
+  isZero,
+  isNotNumber,
+  isEmpty,
+  isNegativeNumber,
+  isNotUnitOfThousand,
+};
