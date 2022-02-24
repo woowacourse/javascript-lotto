@@ -5,24 +5,27 @@ import { NUMBER } from '../constants/number';
 
 class LottoGameModel {
   constructor() {
-    this.lottoList = [];
+    this.lottoList = null;
   }
 
   getLottoList() {
-    return this.lottoList;
+    /** getter로 가져간 lottoList를 변경하여도 lottoList의 멤버에겐 영향이 없다. */
+    return this.lottoList.deepCopy();
   }
 
   createLottoList(chargeInput) {
-    const availableLottoAmount = this.exchangeChargeToLottoAmount(chargeInput);
-
-    for (let lottoCount = 0; lottoCount < availableLottoAmount; lottoCount = lottoCount + 1) {
-      try {
+    /** 정상적이지 않은 로또가 하나라도 존재한다면, 멤버는 빈 값이고 사용자는 금액을 다시 입력하여야 한다. */
+    try {
+      const lottoList = [];
+      const availableLottoAmount = this.exchangeChargeToLottoAmount(chargeInput);
+      for (let lottoCount = 0; lottoCount < availableLottoAmount; lottoCount = lottoCount + 1) {
         const lottoNumbers = this.createLottoNumbers();
         const lotto = Lotto.create(lottoNumbers);
-        this.lottoList.push(lotto);
-      } catch ({ message }) {
-        alert(message);
+        lottoList.push(lotto);
       }
+      this.lottoList = lottoList;
+    } catch ({ message }) {
+      alert(message);
     }
   }
 
