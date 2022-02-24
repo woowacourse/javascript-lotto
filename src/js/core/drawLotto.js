@@ -15,19 +15,18 @@ export const drawLotto = lottoPrice => {
     return;
   }
   const lottoCount = numberOfLotto(lottoPrice);
-  makeLottos(lottoCount);
-  renderPurchasedLottoList(lottoCount);
-  renderLastLottoNumber();
+  return makeLottos(lottoCount);
 };
 
 const makeLottos = lottoCount => {
-  const lottos = [];
-  while (lottos.length !== lottoCount) {
+  const lottoList = [];
+  while (lottoList.length !== lottoCount) {
     const numberList = makeRandomNumberList();
     if (isOverlapLottoNumber(numberList)) {
-      lottos.push(new Lotto(numberList));
+      lottoList.push(new Lotto(numberList));
     }
   }
+  return lottoList;
 };
 
 export const numberOfLotto = value => {

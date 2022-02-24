@@ -76,6 +76,11 @@ export const renderLastLottoNumber = () => {
   );
 };
 
+export const removePurchasedLottoList = () => {
+  if ($('.purchased-lotto-list')) {
+    $('.purchased-lotto-list').remove();
+  }
+};
 export const renderLastLottoNumber = () => {
   const template = `
     <div class="last-lotto-winning-number-title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>

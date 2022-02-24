@@ -192,3 +192,17 @@ button {
   height: 36px;
   margin-top: 24px;
 }
+
+.purchased-lotto-list.is-active {
+  flex-direction: column;
+}
+
+.lotto-item-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.lotto-item-number {
+  font-size: 15px;
+  margin-left: 8px;
+}
