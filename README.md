@@ -11,6 +11,12 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+### 데모 사이트
+
+https://liswktjs.github.io/javascript-lotto/
+
+기능요구사항은 docs/README.md에 있습니다:)
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
@@ -26,7 +32,6 @@ npm run start
 ```
 npm run build
 ```
-
 
 <br>
 
