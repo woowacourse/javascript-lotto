@@ -15,6 +15,7 @@
 }
 
 /* purchase */
+
 .purchase-form {
   display: flex;
   flex-direction: column;
@@ -45,6 +46,7 @@
 }
 
 /* lotto-number */
+
 .lotto-number-container {
   margin-top: 10px;
 }
@@ -55,6 +57,7 @@
 }
 
 /* switch */
+
 .number-switch {
   display: flex;
   align-items: center;
@@ -94,7 +97,6 @@
 .switch > span::before {
   content: "";
   float: right;
-  display: inline-block;
   margin: 5px 0 5px 10px;
   border-radius: 7px;
   width: 36px;
@@ -133,6 +135,7 @@
 }
 
 /* Hover, Focus */
+
 .switch:hover > input {
   opacity: 0.04;
 }
@@ -182,6 +185,7 @@
 }
 
 /* number-list */
+
 .lotto-number-list {
   display: flex;
   flex-wrap: wrap;
@@ -195,6 +199,16 @@
   align-items: center;
   padding-right: 8px;
   font-size: 36px;
+}
+
+.lotto-numbers {
+  margin-left: 14px;
+  font-size: 24px;
+}
+
+.show-numbers {
+  display: flex;
+  flex-direction: column;
 }
 
 /* winning */
@@ -231,6 +245,8 @@
   justify-content: flex-end;
 }
 
+/* result-button */
+
 .result-button {
   width: 100%;
   height: 36px;
@@ -240,9 +256,4 @@
   border: none;
   background: #00bcd4;
   border-radius: 4px;
-}
-
-.lotto-numbers {
-  margin: 0 18px;
-  font-size: 24px;
 }

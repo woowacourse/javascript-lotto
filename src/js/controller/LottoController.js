@@ -10,6 +10,7 @@ export default class LottoController {
     this.lottoGameView = new LottoGameView();
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
+    this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
   }
 
   bindEvents() {
@@ -44,8 +45,8 @@ export default class LottoController {
   onClickSwitch() {
     this.lottoGameView.resetLottoList();
 
-    this.switchInput.classList.toggle("lotto-number");
-    if (this.switchInput.classList.contains("lotto-number")) {
+    this.lottoNumberList.classList.toggle("show-numbers");
+    if (this.lottoNumberList.classList.contains("show-numbers")) {
       this.lottoGameView.renderLottoNumbers(this.lottoGameModel.getLottoList());
       return;
     }
