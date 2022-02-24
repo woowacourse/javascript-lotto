@@ -29,7 +29,11 @@ export default class LottoController {
       this.lottoNumberInputView.cleanLottoPurchaseInput();
       return alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
     }
-
+    if (purchaseMoney > LOTTO.MAX_COST) {
+      this.lottoNumberInputView.cleanLottoPurchaseInput();
+      return alert(ERROR_MESSAGE.MORE_THAN_MAX_COST);
+    }
+    this.lottoPurchaseResultView.cleanLottoList();
     this.lottoPurchaseResultView.renderLottoPurchaseCount(purchaseMoney / LOTTO.COST_UNIT);
     this.lottoModel.setLottoList(purchaseMoney / LOTTO.COST_UNIT);
     this.lottoPurchaseResultView.renderLottoPurchaseResult(this.lottoModel.getLottoList());
