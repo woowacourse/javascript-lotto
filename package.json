@@ -36,6 +36,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "jest": {
+    "testPathIgnorePatterns": ["<rootDir>/cypress"],
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
