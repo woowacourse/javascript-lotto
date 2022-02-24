@@ -15,8 +15,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #E5E5E5;
-  
+  background-color: #e5e5e5;
+
   height: 100vh;
 }
 
@@ -25,12 +25,12 @@ p,
 label {
   font-size: 15px;
   line-height: 24px;
-	letter-spacing: 0.5px;
-	color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 input {
-  border: 1px solid #B4B4B4;
+  border: 1px solid #b4b4b4;
 }
 
 input::-webkit-inner-spin-button {
@@ -38,16 +38,16 @@ input::-webkit-inner-spin-button {
 }
 
 input:focus {
-  outline: 1px solid #00BCD4;
+  outline: 1px solid #00bcd4;
   border: none;
 }
 
 button {
-  background: inherit; 
-  border: none; 
-  box-shadow: none; 
-  padding: 0; 
-  overflow: visible; 
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  overflow: visible;
   cursor: pointer;
 }
 
@@ -81,14 +81,14 @@ h1 {
   line-height: 36px;
 
   text-align: center;
-  
+
   margin-top: 52px;
   margin-bottom: 16px;
 }
 
 /* payment-section */
 #payment-section {
-	margin-bottom: 28px;
+  margin-bottom: 28px;
 }
 
 #payment-section label {
@@ -96,24 +96,24 @@ h1 {
 }
 
 #payment-section .payment-form {
-	display: flex;
+  display: flex;
 }
 
 #payment-section .payment-form #payment-input {
   flex-grow: 1;
 
-	border-radius: 4px;
-	padding: 8px 8px;
+  border-radius: 4px;
+  padding: 8px 8px;
 
   margin-right: 16px;
 }
 
 #payment-section .payment-form #payment-input::placeholder {
-	font-size: 15px;
-	line-height: 24px;
-	letter-spacing: 0.5px;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
   margin: 0 10px;
-  color: #8B8B8B;
+  color: #8b8b8b;
 }
 
 #payment-section .payment-form #payment-button {
@@ -123,31 +123,32 @@ h1 {
 
 #payment-section .payment-form #payment-button,
 #result-checking-section #result-checking-button {
-	background-color: #00BCD4;
-	color: white;
-	border-radius: 4px;
+  background-color: #00bcd4;
+  color: white;
+  border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
 }
 
 /* purchased-lotto-list section */
 #purchased-lotto-list-section {
-	display: flex;
+  display: flex;
   justify-content: space-between;
-	margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
-#purchased-lotto-list-section .lotto-list-container .purchased-total-count{
-	margin-bottom: 8px;
+#purchased-lotto-list-section .lotto-list-container .purchased-total-count {
+  margin-bottom: 8px;
 }
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
-	display: flex;
+  display: flex;
   gap: 8px;
 }
 
-
-#purchased-lotto-list-section .lotto-list-container #lotto-list.direction-column {
+#purchased-lotto-list-section
+  .lotto-list-container
+  #lotto-list.direction-column {
   flex-direction: column;
   gap: 4px;
 }
@@ -158,12 +159,19 @@ h1 {
   line-height: 36px;
 }
 
-#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto.display-flex {
+#purchased-lotto-list-section
+  .lotto-list-container
+  #lotto-list
+  .lotto.display-flex {
   display: flex;
   align-items: center;
 }
 
-#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto.display-flex .lotto-ticket {
+#purchased-lotto-list-section
+  .lotto-list-container
+  #lotto-list
+  .lotto.display-flex
+  .lotto-ticket {
   margin-right: 8px;
 }
 
@@ -174,19 +182,19 @@ h1 {
 }
 
 #purchased-lotto-list-section .lotto-list-toggle-container p {
-	margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 #purchased-lotto-list-section #lotto-list-toggle-button {
   width: 34px;
   height: 20px;
-  background-image: url("../../images/toggle_off.svg");
+  background-image: url('../../images/toggle_off.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 #purchased-lotto-list-section #lotto-list-toggle-button.toggle-switch {
-  background-image: url("../../images/toggle_on.svg");
+  background-image: url('../../images/toggle_on.svg');
 }
 
 /* last-week-winning-number-section */
@@ -200,27 +208,36 @@ h1 {
 
 #last-week-winning-number-section .winning-number-container {
   display: flex;
-	justify-content: space-between;
+  justify-content: space-between;
 }
 
-#last-week-winning-number-section .winning-number-container #last-week-number-list {
-	display: flex;
-	gap: 8px;
+#last-week-winning-number-section
+  .winning-number-container
+  #last-week-number-list {
+  display: flex;
+  gap: 8px;
 }
 
-#last-week-winning-number-section .winning-number-container .last-week-bonus-number-container{
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
+#last-week-winning-number-section
+  .winning-number-container
+  .last-week-bonus-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-#last-week-winning-number-section .winning-number-container #last-week-bonus-number-input,
-#last-week-winning-number-section .winning-number-container #last-week-number-list .last-week-number-input {
-	width: 34px;
-	height: 36px;
-	border-radius: 4px;
+#last-week-winning-number-section
+  .winning-number-container
+  #last-week-bonus-number-input,
+#last-week-winning-number-section
+  .winning-number-container
+  #last-week-number-list
+  .last-week-number-input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
   padding: 0;
-	text-align: center;
+  text-align: center;
 }
 
 /* result-checking-section */
@@ -231,7 +248,7 @@ h1 {
 #result-checking-section #result-checking-button {
   flex-grow: 1;
   padding: 6px 6px 8px;
-	height: 36px;
+  height: 36px;
 }
 
 .switch {
