@@ -1,8 +1,9 @@
+import { $, $$ } from '../utils/selector';
 import makeTemplate from './template';
 
 export default class ResultView {
   constructor() {
-    this.$result = document.querySelector('#result');
+    this.$result = $('#result');
   }
 
   renderResult(count) {
@@ -11,8 +12,8 @@ export default class ResultView {
   }
 
   renderLottos(lottos) {
-    const $lottos = document.querySelectorAll('.lotto');
-    const $resultLottos = document.querySelector('#result-lotto');
+    const $lottos = $$('.lotto');
+    const $resultLottos = $('#result-lotto');
 
     $lottos.forEach(($lotto, idx) => {
       $lotto.insertAdjacentHTML(
@@ -25,8 +26,8 @@ export default class ResultView {
   }
 
   initLottos() {
-    const $lottosNumbers = document.querySelectorAll('.lotto-numbers');
-    const $resultLottos = document.querySelector('#result-lotto');
+    const $lottosNumbers = $$('.lotto-numbers');
+    const $resultLottos = $('#result-lotto');
 
     $lottosNumbers.forEach(($lottosNumber) => {
       $lottosNumber.remove();

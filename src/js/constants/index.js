@@ -1,5 +1,5 @@
 export const LOTTO_NUMBERS = Object.freeze({
-  THOUSAND: 1000,
+  LOTTO_PRICE: 1000,
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
   LOTTO_LENGTH: 6,

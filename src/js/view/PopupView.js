@@ -1,9 +1,10 @@
+import { $ } from '../utils/selector';
 import makeTemplate from './template';
 
 export default class PopupView {
   constructor() {
-    this.$popup = document.querySelector('#popup');
-    this.$mainContainer = document.querySelector('.main-container');
+    this.$popup = $('#popup');
+    this.$mainContainer = $('.main-container');
   }
 
   renderPopup(winningType, earningRate) {

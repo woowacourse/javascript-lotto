@@ -5,29 +5,40 @@ import { LOTTO_NUMBERS } from '../constants/index';
 import { checkValidLottoCount, checkValidWinningNumbers } from '../utils/validator';
 
 export default class LottoModel {
+  #lottoCount;
+
+  #lottos;
+
+  #winningLottoNumbers;
+
+  #winningType;
+
+  #earningRate;
+
   constructor() {
-    this.lottoCount = 0;
-    this.lottos = [];
-    this.winningLottoNumbers = {
+    this.#lottoCount = 0;
+    this.#lottos = [];
+    this.#winningLottoNumbers = {
       winningNumbers: [],
       bonus: 0,
     };
-    this.winningType = {
+    this.#winningType = {
       3: 0,
       4: 0,
       5: 0,
       5.5: 0,
       6: 0,
     };
+    this.#earningRate = 0;
   }
 
   setLottoCount(value) {
     checkValidLottoCount(value);
-    this.lottoCount = value / LOTTO_NUMBERS.THOUSAND;
+    this.#lottoCount = value / LOTTO_NUMBERS.LOTTO_PRICE;
   }
 
   getLottoCount() {
-    return this.lottoCount;
+    return this.#lottoCount;
   }
 
   getLottoNumbers() {
@@ -41,18 +52,23 @@ export default class LottoModel {
   }
 
   setLottos(lottos) {
-    this.lottos = lottos;
+    this.#lottos = lottos;
   }
 
   getLottos() {
-    return this.lottos;
+    return this.#lottos;
+  }
+
+  buyLottos(inputMoney) {
+    this.setLottoCount(inputMoney);
+    this.setLottos(this.generateLottos());
   }
 
   setWinningLottoNumbers(winnerNumberArray, bonusNumber) {
     checkValidWinningNumbers(getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber));
 
-    this.winningLottoNumbers.winningNumbers = winnerNumberArray;
-    this.winningLottoNumbers.bonus = bonusNumber;
+    this.#winningLottoNumbers.winningNumbers = winnerNumberArray;
+    this.#winningLottoNumbers.bonus = bonusNumber;
   }
 
   generateLottos() {
@@ -64,25 +80,23 @@ export default class LottoModel {
     return lottos;
   }
 
-  calculateWinningNumbers() {
-    this.lottos.forEach((lotto) => {
+  setWinningNumbers() {
+    this.#lottos.forEach((lotto) => {
       let winningCount =
         2 * lotto.length -
-        [...new Set(lotto.concat(this.winningLottoNumbers.winningNumbers))].length;
+        [...new Set(lotto.concat(this.#winningLottoNumbers.winningNumbers))].length;
 
-      if (winningCount === 5 && lotto.includes(this.winningLottoNumbers.bonus)) {
+      if (winningCount === 5 && lotto.includes(this.#winningLottoNumbers.bonus)) {
         winningCount += 0.5;
       }
 
       if (winningCount >= 3) {
-        this.winningType[winningCount] += 1;
+        this.#winningType[winningCount] += 1;
       }
     });
-
-    return this.winningType;
   }
 
-  calculateEarningRate() {
+  setEarningRate() {
     const winningPriceInfo = {
       3: LOTTO_NUMBERS.FIFTH_WINNINGS,
       4: LOTTO_NUMBERS.FOURTH_WINNINGS,
@@ -91,14 +105,27 @@ export default class LottoModel {
       6: LOTTO_NUMBERS.FIRST_WINNINGS,
     };
 
-    return Math.floor(
-      (Object.entries(this.winningType).reduce(
+    this.#earningRate = Math.floor(
+      (Object.entries(this.#winningType).reduce(
         (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
         0,
       ) /
-        (this.lottoCount * LOTTO_NUMBERS.THOUSAND)) *
+        (this.#lottoCount * LOTTO_NUMBERS.LOTTO_PRICE)) *
         100,
     );
+  }
+
+  calculateLottoResult(winningArray, bonusNumber) {
+    this.setWinningLottoNumbers(winningArray, bonusNumber);
+    this.setWinningNumbers();
+    this.setEarningRate();
+  }
+
+  getLottoResultInfo() {
+    return {
+      winningType: this.#winningType,
+      earningRate: this.#earningRate,
+    };
   }
 
   initWinningType() {
@@ -112,18 +139,19 @@ export default class LottoModel {
   }
 
   initGame() {
-    this.lottoCount = 0;
-    this.lottos = [];
-    this.winningLottoNumbers = {
+    this.#lottoCount = 0;
+    this.#lottos = [];
+    this.#winningLottoNumbers = {
       winningNumbers: [],
       bonus: 0,
     };
-    this.winningType = {
+    this.#winningType = {
       3: 0,
       4: 0,
       5: 0,
       5.5: 0,
       6: 0,
     };
+    this.#earningRate = 0;
   }
 }

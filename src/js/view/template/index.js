@@ -23,7 +23,7 @@ const makeTemplate = Object.freeze({
     </div>
     `,
 
-  makePopupTemplate: (winningType, earningRate) => `
+  makePopupTemplate: ({ winningType, earningRate }) => `
     <div class="popup-container">
       <button id="close-popup-button">X</button>
       <h2>🏆 당첨 통계 🏆</h2>

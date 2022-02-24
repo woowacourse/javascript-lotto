@@ -2,6 +2,7 @@ import LottoModel from '../model/LottoModel';
 import ResultView from '../view/resultView';
 import InputView from '../view/inputView';
 import PopupView from '../view/PopupView';
+import { $, $$ } from '../utils/selector';
 
 export default class LottoController {
   constructor() {
@@ -17,11 +18,11 @@ export default class LottoController {
   }
 
   initDOMs() {
-    this.$lottoPriceForm = document.querySelector('#lotto-price-form');
-    this.$lottoPriceInput = document.querySelector('#lotto-price-input');
-    this.$lottoPriceButton = document.querySelector('#lotto-price-button');
-    this.$result = document.querySelector('#result');
-    this.$popup = document.querySelector('#popup');
+    this.$lottoPriceForm = $('#lotto-price-form');
+    this.$lottoPriceInput = $('#lotto-price-input');
+    this.$lottoPriceButton = $('#lotto-price-button');
+    this.$result = $('#result');
+    this.$popup = $('#popup');
   }
 
   bindEvent() {
@@ -37,7 +38,7 @@ export default class LottoController {
   }
 
   initDOMsAfterRenderResult() {
-    this.$checkbox = document.querySelector('#view-checkbox');
+    this.$checkbox = $('#view-checkbox');
   }
 
   bindEventAfterRenderResult() {
@@ -65,8 +66,7 @@ export default class LottoController {
 
     const { value } = this.$lottoPriceInput;
     try {
-      this.model.setLottoCount(value);
-      this.model.setLottos(this.model.generateLottos());
+      this.model.buyLottos(Number(value));
 
       this.resultView.renderResult(this.model.getLottoCount());
       this.initAfterRenderResult();
@@ -88,8 +88,8 @@ export default class LottoController {
   clickCheckResultButtonHandler({ target }) {
     if (target.id !== 'check-result-button') return;
 
-    const $winningNumberInputs = document.querySelectorAll('.winning-number-input');
-    const $bonusNumberInput = document.querySelector('.bonus-number-input');
+    const $winningNumberInputs = $$('.winning-number-input');
+    const $bonusNumberInput = $('.bonus-number-input');
 
     const winnerNumberArray = Array.from($winningNumberInputs).map(($winningNumberInput) =>
       Number($winningNumberInput.value),
@@ -97,12 +97,9 @@ export default class LottoController {
     const bonusNumber = Number($bonusNumberInput.value);
 
     try {
-      this.model.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
+      this.model.calculateLottoResult(winnerNumberArray, bonusNumber);
 
-      this.popupView.renderPopup(
-        this.model.calculateWinningNumbers(),
-        this.model.calculateEarningRate(),
-      );
+      this.popupView.renderPopup(this.model.getLottoResultInfo());
       this.popupView.toggleMainContainerState();
     } catch (err) {
       alert(err);

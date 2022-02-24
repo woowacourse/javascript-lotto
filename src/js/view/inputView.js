@@ -1,9 +1,10 @@
+import { $ } from '../utils/selector';
 import makeTemplate from './template';
 
 export default class InputView {
   constructor() {
-    this.$result = document.querySelector('#result');
-    this.$lottoPriceInput = document.querySelector('#lotto-price-input');
+    this.$result = $('#result');
+    this.$lottoPriceInput = $('#lotto-price-input');
   }
 
   renderWinningNumbersInput() {

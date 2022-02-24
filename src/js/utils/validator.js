@@ -1,11 +1,11 @@
 import { LOTTO_NUMBERS, ALERT_MESSAGE } from '../constants/index';
 
 const validator = Object.freeze({
-  isDividedThousand: (value) => value % LOTTO_NUMBERS.THOUSAND === 0,
+  isDividedThousand: (value) => value % LOTTO_NUMBERS.LOTTO_PRICE === 0,
 
-  isOverThousand: (value) => value >= LOTTO_NUMBERS.THOUSAND,
+  isOverThousand: (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE,
 
-  isNumber: (value) => value.match(/[0-9]/),
+  isNumber: (value) => Number.isInteger(value),
 
   isDuplicateWinningNumbers: (value) => [...new Set(value)].length !== value.length,
 
@@ -14,7 +14,7 @@ const validator = Object.freeze({
       (elem) => elem > LOTTO_NUMBERS.MAX_LOTTO_NUMBER || elem < LOTTO_NUMBERS.MIN_LOTTO_NUMBER,
     ),
 
-  isAllNumber: (value) => value.every((elem) => typeof elem === 'number'),
+  isAllNumber: (value) => value.every((elem) => Number.isInteger(elem)),
 });
 
 export const checkValidLottoCount = (value) => {
