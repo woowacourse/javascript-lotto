@@ -26,7 +26,6 @@ export default class PurchasedLottoView {
     this.singlePurchasedLottoList = document.getElementById(
       'single-purchased-lotto-list',
     );
-
     this.singlePurchasedLottoList.insertAdjacentHTML(
       'afterbegin',
       LOTTO_IMAGE_TEMPLATE.repeat(lottoCount),
@@ -35,7 +34,6 @@ export default class PurchasedLottoView {
     this.detailPurchasedLottoList = document.getElementById(
       'detail-purchased-lotto-list',
     );
-
     const lottoList = getLottoListTemplate(lottos);
     this.detailPurchasedLottoList.insertAdjacentHTML('beforeend', lottoList);
   }

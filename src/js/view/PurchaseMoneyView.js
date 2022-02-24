@@ -11,7 +11,7 @@ export default class PurchaseMoneyView {
   }
 
   addSubmitEvent(submitHandler) {
-    this.form.addEventListener('submit', e => {
+    this.form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const purchaseMoney = convertToNumber(this.input.value);

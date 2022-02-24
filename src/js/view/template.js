@@ -4,20 +4,14 @@ const LOTTO_IMAGE_TEMPLATE = `
   <span class="purchased-lotto-image">🎟️</span>
 `;
 
-const getLottoListTemplate = lottos => {
-  return lottos.reduce((result, lotto) => {
-    return (result += getLottoDetailTemplate(lotto.getList()));
-  }, '');
-};
-
-const getLottoDetailTemplate = lotto => {
-  return `
+const getLottoDetailTemplate = (lotto) => `
     <div class="purchased-lotto-item">
       ${LOTTO_IMAGE_TEMPLATE}
       <div class="purchased-lotto-number">${lotto.join(', ')}</div>
     </div>
   `;
-};
+
+const getLottoListTemplate = (lottos) => lottos.reduce((result, lotto) => (result + getLottoDetailTemplate(lotto.getList())), '');
 
 const PURCHASED_LOTTO_TEMPLATE = `
   <div>
@@ -38,7 +32,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
   </div>
 `;
 
-const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
+const INPUT_ELEMENT = '<input type="number" class="winning-number-input" />';
 
 const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
