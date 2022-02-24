@@ -5,12 +5,6 @@ import ValidationError from '../validation/validation-error';
 import { validateWinningNumbers } from '../validation/validators';
 
 class WinningNumberForm extends Component {
-  connectedCallback() {
-    this.render();
-    this.subscribe();
-    this.setEvent();
-  }
-
   render() {
     this.innerHTML = this.template();
     const { money } = window.store.getState();

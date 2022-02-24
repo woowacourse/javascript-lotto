@@ -3,12 +3,6 @@ import { ACTION } from '../constants';
 import createAction from '../flux/actionCreator';
 
 class LottoListToggle extends Component {
-  connectedCallback() {
-    this.render();
-    this.subscribe();
-    this.setEvent();
-  }
-
   render() {
     const { lottoListVisibility } = window.store.getState();
     const checked = lottoListVisibility ? 'checked' : '';

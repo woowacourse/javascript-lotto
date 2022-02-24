@@ -2,11 +2,6 @@ import Component from '../abstracts/component';
 import LottoImage from '../../../images/lotto.png';
 
 class LottoList extends Component {
-  connectedCallback() {
-    this.render();
-    this.subscribe();
-  }
-
   render() {
     const { money, lottoList, lottoListVisibility } = window.store.getState();
     this.innerHTML = this.template(lottoList, lottoListVisibility);

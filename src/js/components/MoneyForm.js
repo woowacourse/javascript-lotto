@@ -5,12 +5,6 @@ import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
 class MoneyForm extends Component {
-  connectedCallback() {
-    this.render();
-    this.subscribe();
-    this.setEvent();
-  }
-
   render() {
     this.innerHTML = this.template();
   }

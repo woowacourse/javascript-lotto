@@ -7,11 +7,6 @@ class LottoItem extends Component {
     this.lottoNums = this.getAttribute('data-lotto-nums');
   }
 
-  connectedCallback() {
-    this.render();
-    this.subscribe();
-  }
-
   render() {
     this.innerHTML = this.template(this.lottoNums);
   }
