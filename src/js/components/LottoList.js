@@ -28,8 +28,8 @@ class LottoList extends Component {
         <ul class="lotto-list">${lists}</ul>
       </div>
       <div class="toggle-container">
-        <label>번호보기</label>
-        <lotto-list-toggle></lotto-list-toggle>
+      <label class="mb-3">번호 보기</label>
+      <lotto-list-toggle></lotto-list-toggle>
       </div>
     `;
   }
