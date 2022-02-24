@@ -1,4 +1,6 @@
 export const SELECTOR = Object.freeze({
+  APP_ID: '#app',
+
   CASH_INPUT_SECTION_CLASS: '.cash-input-section',
   CASH_INPUT_CLASS: '.cash-input',
   CASH_INPUT_BUTTON_CLASS: '.cash-input-button',
@@ -7,8 +9,8 @@ export const SELECTOR = Object.freeze({
   PURCHASED_LOTTO_SECTION_CLASS: '.purchased-lotto-section',
   WINNER_NUMBER_SECTION_CLASS: '.winner-number-section',
 
-  LOTTO_SHOW_CONTAINER_CLASS: '.lotto-container',
-  LOTTO_NUMBER_CONTAINER_CLASS: '.lotto-grid',
+  LOTTO_CONTAINER_CLASS: '.lotto-container',
+  LOTTO_GRID_CLASS: '.lotto-grid',
 
   SHOW_NUMBER_TOGGLE_BUTTON_CLASS: '.show-number-toggle-button',
 

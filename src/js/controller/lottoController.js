@@ -9,22 +9,26 @@ class LottoController {
     this.view = new LottoView();
     this.lottoManager = new LottoManager();
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
-    this.cashInputSection.addEventListener('click', this.#onCashInputButtonClick);
+    this.cashInputSection.addEventListener('click', this.#onCashInputSectionClick);
   }
 
-  #onCashInputButtonClick = (e) => {
+  #onCashInputSectionClick = (e) => {
     e.preventDefault();
     const { target } = e;
     if (target.className === SELECTOR.CASH_INPUT_BUTTON_CLASSNAME) {
-      const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
-      try {
-        this.lottoManager.buyLotto(cashInput.value);
-        this.view.beforeRenderLottos();
-        this.view.renderLottos(this.lottoManager.lottos);
-        this.#initToggleButtonHandler();
-      } catch (error) {
-        alert(error.message);
-      }
+      this.#onCashInputButtonClick();
+    }
+  };
+
+  #onCashInputButtonClick = () => {
+    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
+    try {
+      this.lottoManager.buyLotto(cashInput.value);
+      this.view.beforeRenderLottos();
+      this.view.renderLottos(this.lottoManager.lottos);
+      this.#initToggleButtonHandler();
+    } catch (error) {
+      alert(error.message);
     }
   };
 

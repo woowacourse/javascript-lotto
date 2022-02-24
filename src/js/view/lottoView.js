@@ -7,25 +7,26 @@ class LottoView {
   }
 
   #initDom() {
-    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
-    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
-    this.lottoShowContainer = selectDom(SELECTOR.LOTTO_SHOW_CONTAINER_CLASS);
-    this.lottoNumberContainer = selectDom(
-      SELECTOR.LOTTO_NUMBER_CONTAINER_CLASS,
-      this.purchasedLottoSection
-    );
-    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
+    this.app = selectDom(SELECTOR.APP_ID);
+
+    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS, this.app);
+
+    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS, this.app);
+    this.lottoContainer = selectDom(SELECTOR.LOTTO_CONTAINER_CLASS, this.purchasedLottoSection);
+    this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
+
+    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS, this.app);
   }
 
   toggleLottoNumbersShow(isVisible) {
-    const { classList: lottoNumberClassList } = this.lottoNumberContainer;
+    const { classList: lottoGridClassList } = this.lottoGrid;
     if (isVisible) {
-      lottoNumberClassList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
-      lottoNumberClassList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+      lottoGridClassList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+      lottoGridClassList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
       return;
     }
-    lottoNumberClassList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
-    lottoNumberClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+    lottoGridClassList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
+    lottoGridClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
   }
 
   beforeRenderLottos() {
@@ -40,8 +41,8 @@ class LottoView {
     this.purchasedLottoSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
     this.winnerNumberSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
 
-    this.lottoShowContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
-    this.lottoNumberContainer.append(...LottoView.generateLottoElementsArray(lottos));
+    this.lottoContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
+    this.lottoGrid.append(...LottoView.generateLottoElementsArray(lottos));
   }
 
   static generatePurchasedLabel(length) {
