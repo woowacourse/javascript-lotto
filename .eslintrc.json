@@ -16,5 +16,5 @@
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "class-methods-use-this": "off"
   },
-  "ignorePatterns": ["cypress/*", "test/*"]
+  "ignorePatterns": ["**/*.test.*"]
 }
