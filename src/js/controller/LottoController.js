@@ -11,7 +11,7 @@ export default class LottoController {
     $('.cm-toggle').addEventListener('click', toggleNumberDetail);
   }
 
-  getLottos = (moneyInput) => {
+  getLottos(moneyInput) {
     const numberOfLottos = parseInt(moneyInput / LOTTO_PRICE);
     for (let i = 0; i < numberOfLottos; i += 1) {
       const lotto = new Lotto();
@@ -19,7 +19,7 @@ export default class LottoController {
     }
   }
 
-  purchaseHandler = e => {
+  purchaseHandler = (e) => {
     e.preventDefault();
     const moneyInput = Number($('.money-input').value);
 
@@ -29,5 +29,5 @@ export default class LottoController {
     }
     this.getLottos(moneyInput);
     showResult(this.lottos);
-  }
+  };
 }

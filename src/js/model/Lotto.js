@@ -7,12 +7,12 @@ export default class Lotto {
     this.generateLottoNumbers();
   }
 
-  generateLottoNumbers = () => {
+  generateLottoNumbers() {
     while (this.lottoNumbers.length < LOTTO_DIGIT) {
       const randomNumber = generateRandomNumber();
       if (!this.lottoNumbers.includes(randomNumber)) {
         this.lottoNumbers.push(randomNumber);
       }
     }
-  };
+  }
 }

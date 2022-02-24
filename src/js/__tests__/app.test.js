@@ -1,17 +1,17 @@
-describe("금액 테스트", () => {
+describe('금액 테스트', () => {
   const MIN_MONEY = 1000;
   const MAX_MONEY = 10000;
 
-  it("입력된 금액은 1000원으로 나누어 떨어져야 한다.", () => {
-    const isThousandMultiple = money => money % MIN_MONEY === 0;
+  it('입력된 금액은 1000원으로 나누어 떨어져야 한다.', () => {
+    const isThousandMultiple = (money) => money % MIN_MONEY === 0;
 
     expect(isThousandMultiple(1000)).toBe(true);
   });
 
-  it("입력된 금액은 1000원 이상 10000원 이하여야 한다.", () => {
-    const isOverThouand = money => money >= MIN_MONEY;
-    const isUnderMillion = money => money <= MAX_MONEY;
-    const isValidMoneyRange = money => isOverThouand(money) && isUnderMillion(money);
+  it('입력된 금액은 1000원 이상 10000원 이하여야 한다.', () => {
+    const isOverThouand = (money) => money >= MIN_MONEY;
+    const isUnderMillion = (money) => money <= MAX_MONEY;
+    const isValidMoneyRange = (money) => isOverThouand(money) && isUnderMillion(money);
 
     expect(isValidMoneyRange(9000)).toBe(true);
   });
@@ -32,12 +32,11 @@ describe('랜덤 숫자 테스트', () => {
         }
       }
       return numbers;
-    }
+    };
 
     // set 길이 6인지 확인하는 메서드
-    const isNoDuplicate = numbers => new Set([...numbers]).size;
+    const isNoDuplicate = (numbers) => new Set([...numbers]).size;
 
     expect(isNoDuplicate(generateLottoNumber())).toBe(6);
   });
-
 });

@@ -1,3 +1,3 @@
-import "./css/reset";
-import "./css/index";
-import "./js/app";
+import './css/reset';
+import './css/index';
+import './js/app';

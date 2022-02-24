@@ -1,5 +1,5 @@
 body {
-  background: #F9F9F9;
+  background: #f9f9f9;
 }
 
 #app {
@@ -7,7 +7,7 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
   padding: 20px;
-  background: #FFFFFF;
+  background: #ffffff;
   font-family: Roboto;
 }
 
@@ -35,7 +35,7 @@ header h1 {
 .money-input {
   width: 310px;
   height: 36px;
-  border: 1px solid #B4B4B4;
+  border: 1px solid #b4b4b4;
   box-sizing: border-box;
   border-radius: 4px;
   flex: none;
@@ -48,9 +48,9 @@ header h1 {
 .purchase-button {
   width: 56px;
   height: 36px;
-  background: #00BCD4;
+  background: #00bcd4;
   border-radius: 4px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   margin-left: 10px;
 }
@@ -100,13 +100,13 @@ header h1 {
 /* Toggle Button */
 .cm-toggle {
   height: 20px;
-	-webkit-appearance: none;
-	-webkit-tap-highlight-color: transparent;
-	position: relative;
-	border: 0;
-	outline: 0;
-	cursor: pointer;
-	margin: 10px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  margin: 10px;
   opacity: 0.4;
   padding-top: 6px;
 }
@@ -132,7 +132,7 @@ header h1 {
   left: -1px;
   top: 3px;
   border-radius: 50%;
-  background: #EDEDED;
+  background: #ededed;
   box-shadow: 1px 1px 3px rgb(0 0 0 / 60%);
 }
 
@@ -140,11 +140,11 @@ header h1 {
 .cm-toggle:checked:before {
   left: 20px;
   box-shadow: -1px 1px 3px rgb(0 0 0 / 60%);
-  background: #00BCD4;
+  background: #00bcd4;
 }
 /* Background color when toggle button will be active */
 .cm-toggle:checked:after {
-	background: #80DEEA;
+  background: #80deea;
 }
 
 h2 {
@@ -165,7 +165,7 @@ h2 {
   width: 34px;
   height: 36px;
   border-radius: 4px;
-  border: 1px solid #B4B4B4;
+  border: 1px solid #b4b4b4;
   box-sizing: border-box;
   margin-right: 8px;
 }
@@ -187,8 +187,8 @@ h2 {
   line-height: 16px;
   letter-spacing: 1.25px;
   text-transform: uppercase;
-  background: #00BCD4;
-  color: #FFFFFF;
+  background: #00bcd4;
+  color: #ffffff;
 }
 
 #bonus-number {
