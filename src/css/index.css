@@ -59,6 +59,7 @@ body {
 .input-wrap button {
   width: 52px;
   height: 100%;
+  cursor: pointer;
 }
 .lotto-list {
   margin-top: 28px;
@@ -124,9 +125,9 @@ body {
   width: 0;
   height: 0;
 }
-/* The slider */
+
 .slider {
-  height: 20px;
+  height: 14px;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -139,9 +140,9 @@ body {
 .slider:before {
   position: absolute;
   content: '';
-  width: 25px;
-  height: 25px;
-  left: -12.5px;
+  width: 20px;
+  height: 20px;
+  left: -1px;
   bottom: -2px;
   background-color: #ededed;
   transition: 0.4s;
@@ -154,7 +155,7 @@ input:checked + .slider:before {
   background-color: #00bcd4;
 }
 input:checked + .slider:before {
-  transform: translateX(34px);
+  transform: translateX(15px);
 }
 .slider.round {
   border-radius: 34px;
