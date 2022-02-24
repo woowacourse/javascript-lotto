@@ -3,7 +3,7 @@ import { $, divider } from './utils/util';
 import validateCharge from './validation';
 
 import LottoManager from './LottoManager';
-import LottoMachineView from './view/LottoMachineView';
+import LottoMachineView from './views/LottoMachineView';
 
 export default class LottoMachine {
   constructor() {
