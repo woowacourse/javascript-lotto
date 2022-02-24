@@ -7,9 +7,6 @@ export const renderPurchasedLottoList = lottoCount => {
     <p>번호보기</p>
     </div>
     <div class="purchased-lotto-main">
-        <div class="purchased-lotto-list">${'<p>🎟️</p>'.repeat(
-          lottoCount,
-        )}</div> 
         <label class="toggle-button">
           <input type="checkbox" class="checkbox">
           <span class="onoff-switch"></span>
@@ -19,36 +16,39 @@ export const renderPurchasedLottoList = lottoCount => {
     'beforeend',
     template,
   );
+  renderPurchasedLottoListContent(lottoCount);
 };
 
-/*
-export const renderLottoList = () => {
-  $('.purchased-lotto-list').remove();
-  const template = `<div class="purchased-lotto-list is-active></div>`;
+export const renderPurchasedLottoListContent = lottoCount => {
+  removePurchasedLottoList();
+  const template = `
+  <div class="purchased-lotto-list">
+  ${'<p>🎟️</p>'.repeat(lottoCount)}
+  </div> `;
   $('.purchased-lotto-main').insertAdjacentHTML('afterbegin', template);
 };
-export const renderPurchasedLottoList = lottoCount => {
-  const template = `
-    <div class="purchased-lotto-header"> 
-    <p class="purchased-lotto-list-title">총 ${lottoCount}를 구매하셨습니다</p>
-    <p>번호보기</p>
-    </div>
-    <div class="purchased-lotto-main">
-        <div class="purchased-lotto-list">${'<p>🎟️</p>'.repeat(
-          lottoCount,
-        )}</div>
-        <label class="toggle-button">
-          <input type="checkbox" class="checkbox">
-          <span class="onoff-switch"></span>
-        </label>
-    </div>`;
-  $('.purchased-lotto-list-container').insertAdjacentHTML(
-    'beforeend',
-    template,
-  );
-};
-*/
 
+export const renderPurchasedLottoListContentIsActive = lottoObject => {
+  removePurchasedLottoList();
+
+  const template = `
+  <div class="purchased-lotto-list is-active">
+  ${lottoObject
+    .map(lotto => {
+      return `<div class="lotto-item-container"><p>🎟️</p>
+    <div class="lotto-item-number">${lotto.Numbers}</div></div>`;
+    })
+    .join('')}
+  </div>
+  `;
+  $('.purchased-lotto-main').insertAdjacentHTML('afterbegin', template);
+};
+
+export const removePurchasedLottoList = () => {
+  if ($('.purchased-lotto-list')) {
+    $('.purchased-lotto-list').remove();
+  }
+};
 export const renderLastLottoNumber = () => {
   const template = `
     <div class="last-lotto-winning-number-title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
