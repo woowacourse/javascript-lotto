@@ -16,7 +16,7 @@ export const validateMoney = (money) => {
     return new ValidationResult(true, ERROR_MESSAGE.EMPTY_MONEY);
   }
   if (!isNumber(money)) {
-    return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER);
+    return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER_MONEY);
   }
   if (parseInt(money, 10) < 1000) {
     return new ValidationResult(true, ERROR_MESSAGE.UNDER_MIN_MONEY);
@@ -34,7 +34,7 @@ export const validateWinningNumbers = (numbers) => {
       return new ValidationResult(true, ERROR_MESSAGE.EMPTY_WINNING_NUMBERS);
     }
     if (!isNumber(numbers[i])) {
-      return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER);
+      return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER_WINNING_NUMBER);
     }
     if (numbers[i] < LOTTO.RANGE.MIN || numbers[i] > LOTTO.RANGE.MAX) {
       return new ValidationResult(true, ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE);
