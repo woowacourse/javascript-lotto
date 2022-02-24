@@ -2,19 +2,17 @@ import { RULES } from '../constants/index.js';
 import { pickLottoNumber } from '../util/common.js';
 
 export default class Lotto {
+  #numberList = null;
+
   constructor() {
-    this.init();
+    this.#init();
   }
 
-  init() {
-    this.numberList = pickLottoNumber(RULES.LOTTO_NUMS);
-  }
-
-  setList(numberList) {
-    this.numberList = numberList;
+  #init() {
+    this.#numberList = pickLottoNumber(RULES.LOTTO_NUMS);
   }
 
   getList() {
-    return this.numberList;
+    return this.#numberList;
   }
 }

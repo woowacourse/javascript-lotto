@@ -70,7 +70,7 @@ export default class LottoMachineController {
   }
 
   reset() {
-    this.model.init();
+    this.model.reset();
     this.view.purchasedLottoView.reset();
     this.view.winningNumberView.reset();
   }
