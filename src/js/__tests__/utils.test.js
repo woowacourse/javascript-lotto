@@ -19,6 +19,6 @@ describe('숫자 타입으로 변환해주는 함수 기능 테스트', () => {
   it('문자열을 숫자 타입으로 변환해야 한다.', () => {
     const string = '11000';
 
-    expect(convertToNumber(string)).toEqual(expect.any(Number));
+    expect(convertToNumber(string)).toBe(Number(string));
   });
 });
