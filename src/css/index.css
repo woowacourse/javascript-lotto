@@ -103,7 +103,7 @@ body {
   line-height: 36px;
   color: rgba(0, 0, 0, 0.87);
 }
-.lottos.default .lotto {
+.lottos .lotto {
   margin: 0 4px;
 }
 .lotto-number {
