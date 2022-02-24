@@ -34,11 +34,10 @@ export default class LottoController {
   }
 
   renderLotto(count) {
-    this.issuedTicketView.renderTicketContainer();
+    this.issuedTicketView.showTicketContainer();
     this.issuedTicketView.renderTicketCount(count);
-    this.issuedTicketView.renderTicketIcon(this.model.lottos);
-    this.issuedTicketView.hideTicketDetails();
-    this.purchaseView.deactivatePurchase();
+    this.issuedTicketView.renderIssuedTickets(this.model.lottos);
+    this.purchaseView.deactivatePurchaseForm();
   }
 
   toggleDetails(checked) {

@@ -25,16 +25,15 @@ export default class IssuedTicketView {
     return this.$purchaseInput.valueAsNumber;
   }
 
-  renderTicketContainer() {
-    this.$ticketContainer.classList.remove('hidden');
-    this.$ticketContainer.classList.add('show');
+  showTicketContainer() {
+    this.$ticketContainer.classList.replace('hidden', 'show');
   }
 
   renderTicketCount(count) {
     this.$ticketCount.textContent = count;
   }
 
-  renderTicketIcon(lottos) {
+  renderIssuedTickets(lottos) {
     let template = '';
 
     lottos.forEach((lotto) => {

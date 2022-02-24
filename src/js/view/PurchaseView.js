@@ -4,7 +4,6 @@ import { $ } from '../utils/selector.js';
 
 export default class PurchaseView {
   constructor() {
-    this.$purchaseContainer = $(ID.PURCHASE_CONTAINER);
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);
@@ -25,7 +24,7 @@ export default class PurchaseView {
     return this.$purchaseInput.valueAsNumber;
   }
 
-  deactivatePurchase() {
+  deactivatePurchaseForm() {
     this.$purchaseButton.disabled = true;
     this.$purchaseInput.disabled = true;
   }
