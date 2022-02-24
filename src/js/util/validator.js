@@ -1,24 +1,14 @@
 import { ERROR_MESSAGE, RULES } from '../constants/index.js';
 
-const isEmpty = value => {
-  return value === null;
-};
+const isEmpty = value => value === null;
 
-const isZero = value => {
-  return value === 0;
-};
+const isZero = value => value === 0;
 
-const isNotNumber = value => {
-  return Number.isNaN(value) || typeof value !== 'number';
-};
+const isNotNumber = value => Number.isNaN(value) || typeof value !== 'number';
 
-const isNegativeNumber = value => {
-  return value < 0;
-};
+const isNegativeNumber = value => value < 0;
 
-const isNotUnitOfThousand = value => {
-  return value % RULES.LOTTO_PRICE !== 0;
-};
+const isNotUnitOfThousand = value => value % RULES.LOTTO_PRICE !== 0;
 
 const validatePurchaseMoney = value => {
   if (isZero(value)) {

@@ -3,10 +3,6 @@ import Lotto from './Lotto.js';
 export default class Lottos {
   #lottos = null;
 
-  constructor() {
-    this.#lottos = null;
-  }
-
   #setLottos(lottos) {
     this.#lottos = lottos;
   }
@@ -16,8 +12,10 @@ export default class Lottos {
   }
 
   makeLottos(count) {
-    const newLottos = [...Array(count)].map(() => new Lotto());
-    this.#setLottos(newLottos);
+    const lottos = [...Array(count)].map(() => new Lotto());
+    this.#setLottos(lottos);
+
+    return lottos;
   }
 
   reset() {

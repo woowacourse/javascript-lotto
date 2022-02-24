@@ -5,9 +5,14 @@ const LOTTO_IMAGE_TEMPLATE = `
 `;
 
 const getLottoListTemplate = lottos => {
-  return lottos.reduce((result, lotto) => {
-    return (result += getLottoDetailTemplate(lotto.getList()));
-  }, '');
+  const initValue = '';
+
+  const lottoListTemplate = lottos.reduce(
+    (result, lotto) => (result += getLottoDetailTemplate(lotto.getList())),
+    initValue,
+  );
+
+  return lottoListTemplate;
 };
 
 const getLottoDetailTemplate = lotto => {
