@@ -9,7 +9,7 @@ import {
 } from '../utils/validator.js';
 import { ERROR_MESSAGE } from '../utils/contants.js';
 
-describe('금액이 입력되면', () => {
+describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
     const chargeAmount = 2000;
     const payment = new Payment(chargeAmount);
@@ -49,28 +49,29 @@ describe('금액이 입력되면', () => {
   });
 });
 
-describe('로또 번호를 생성하여', () => {
-  test('생성된 로또 번호가 정수여야한다.', () => {
-    expect(Number.isInteger(getLottoNumber())).toBe(true);
+describe('LottoModel은', () => {
+  const lottoModel = new LottoModel();
+
+  describe('로또 번호를 생성하여', () => {
+    const lottoNumber = getLottoNumber();
+
+    test('생성된 로또 번호가 정수여야한다.', () => {
+      expect(Number.isInteger(lottoNumber)).toBe(true);
+    });
+
+    test('생성된 로또 번호가 1부터 45 사이여야 한다.', () => {
+      expect(isValidLottoNumberRange(lottoNumber)).toBe(true);
+    });
   });
 
-  test('생성된 로또 번호가 1부터 45 사이여야 한다.', () => {
-    expect(isValidLottoNumberRange(getLottoNumber())).toBe(true);
-  });
-});
-
-describe('새로운 로또를 발급하여', () => {
-  test('6개의 로또번호를 가져야한다.', () => {
+  test('6개의 로또번호를 가진 로또를 생성할 수 있어야 한다.', () => {
     const lotto = LottoModel.issueLotto();
 
     expect(isValidLotto(lotto)).toBe(true);
   });
-});
 
-describe('주어진 개수만큼', () => {
-  test('로또를 자동 구매할 수 있어야 한다.', () => {
+  test('주어진 개수만큼 로또를 자동 구매할 수 있어야 한다.', () => {
     const lottoCount = 6;
-    const lottoModel = new LottoModel();
 
     lottoModel.issueLottoWithCount(lottoCount);
 
