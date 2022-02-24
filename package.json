@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "homepage": "http://lokba.github.io/javascript-lotto",
+  "homepage": "https://lah1203.github.io/javascript-lotto/",
   "scripts": {
     "test": "jest --watch --no-cache",
     "start": "webpack serve --open",
@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-prettier": "^0.0.0-empty",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "style-loader": "^3.3.1",
