@@ -10,11 +10,16 @@ export default class LottoMachine {
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
     this.setEvent();
+    this.initialize();
   }
 
   setEvent() {
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
+  }
+
+  initialize() {
+    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
   }
 
   onSubmitCharge(event) {
@@ -32,7 +37,7 @@ export default class LottoMachine {
   purchase(chargeInputNumber) {
     const { quotient: newLottoCount } = divider(chargeInputNumber, LOTTO_PRICE);
     this.lottoManager.generateNewLottos(newLottoCount);
-    this.lottoMachineView.updateOnPurchase(this.lottoManager.lottos);
+    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
   }
 
   reverseLottoStyle() {
