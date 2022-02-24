@@ -1,5 +1,12 @@
 # 로또 미션 1단계 (마르코 X 무비)
 
+- 데모페이지 : https://wonsss.github.io/javascript-lotto/
+
+## 도식화
+
+![lotto schema](/images/lotto_schema.png)
+![lotto schema2](/images/lotto_schema2.png)
+
 ## 기능 요구사항
 
 - [x] 로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.
@@ -38,7 +45,6 @@
     - 자동발급된 로또의 번호는 중복되어서는 안된다.
     - 발급받은 로또 6개 숫자 모두가 1부터 45 범위 안에 있어야 한다.
     - 발급한 로또는 모두 각각 독립적으로 랜덤한 번호를 추천한다
-  - [ ] 번호 보기 토글 버튼을 클릭해 로또 번호를 볼 수 있어야 한다. (UI)
 
 ## 리팩토링할 사항
 
@@ -66,34 +72,36 @@
 - [x] package.json에서 안 쓰는 스크립트 점검
 - [x] HTML에다가 넣어둔 Dummy HTML 코드 삭제
 - [x] `emit`, `on` 유틸함수를 이용하여 MVC 패턴을 개선
-- [ ] 변수 이름 점검
-  - [ ] 클래스 이름 컨벤션에 따라 점검
+- [x] 변수 이름 점검
 - [x] 상수 분리
   - `Object.freeze` 사용
 
 ## build 및 deploy 관련
 
-- [x] webpack development mode
-- [x] webpack production mode
+- [x] webpack development mode 확인
+- [x] webpack production mode 확인
 
 ## MVC 패턴
 
 ### Model
 
-- 데이터를 가지고 있다.
+- 데이터를 관리한다.
 - 데이터를 수정하는 메서드를 가지고 있다.
-- View와 Controller에 의존하지 않는다.
 - 캡슐화되어 있다.
+- View와 Controller에 의존하지 않는다.
 
 ### View
 
+- 사용자가 보는 화면을 관리한다.
+- 데이터를 돔에 출력한다.
+- 사용자가 발생한 이벤트를 처리한다.
+  - 이벤트 발생을 인지한다. (on)
+  - 이벤트 발생을 컨트롤러에게 알린다. (emit, custom event dispatch)
 - 데이터를 가지고 있으면 안된다.
 - Model과 Controller에 의존하지 않는다.
-- 화면에 UI를 렌더링한다.
-- 이벤트 발생을 인지한다. (on)
-- 이벤트 발생을 컨트롤러에게 알린다. (emit, custom event dispatch)
 
 ### Controller
 
-- Model과 View를 모니터링한다.
-- View의 이벤트 발생 여부를 Subscribe하여 이벤트 발생을 파악하고 처리한다.
+- 서로 분리된 Model과 View를 연결한다.
+- View의 이벤트 발생 여부가 전달되면 이벤트에 따라 Model이 데이터를 관리하도록 시킨다.
+- Model이 갖고 있는 데이터를 View에게 전달하여 화면에 출력하도록 시킨다.
