@@ -58,7 +58,6 @@ export default class App {
     renderPurchasedLottoList(this.lottoList.length);
     renderLastLottoNumber();
   }
-
   handleToggleButtonClick(e) {
     e.preventDefault();
     if (!e.target.classList.contains(`onoff-switch`)) {
