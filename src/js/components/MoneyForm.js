@@ -5,10 +5,6 @@ import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
 class MoneyForm extends Component {
-  render() {
-    this.innerHTML = this.template();
-  }
-
   template() {
     return `
       <form>
