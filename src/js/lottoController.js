@@ -3,7 +3,7 @@ import { isValidPurchaseMoney } from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
 
 export default class LottoController {
-  constructor(lottoModel, views) {
+  constructor (lottoModel, views) {
     this.lottoModel = lottoModel;
     this.lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.lottoPurchaseResultView = views.lottoPurchaseResultView;
@@ -15,16 +15,8 @@ export default class LottoController {
   }
 
   submitView() {
-    on(
-      this.lottoPurchaseInputView.lottoPurchaseForm,
-      '@purchaseMoney',
-      this.submitPurchaseLotto.bind(this)
-    );
-    on(
-      this.lottoPurchaseResultView.showLottoToggle,
-      '@lottoToggle',
-      this.submitLottoToggle.bind(this)
-    );
+    on(this.lottoPurchaseInputView.lottoPurchaseForm, '@purchaseMoney', this.submitPurchaseLotto.bind(this));
+    on(this.lottoPurchaseResultView.showLottoToggle, '@lottoToggle', this.submitLottoToggle.bind(this));
   }
 
   submitLottoToggle() {
@@ -33,17 +25,12 @@ export default class LottoController {
 
   submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
-
     if (!isValidPurchaseMoney(purchaseMoney)) {
       return alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
     }
 
-    this.lottoPurchaseResultView.renderLottoPurchaseCount(
-      purchaseMoney / LOTTO.COST_UNIT
-    );
+    this.lottoPurchaseResultView.renderLottoPurchaseCount(purchaseMoney / LOTTO.COST_UNIT);
     this.lottoModel.setLottoList(purchaseMoney / LOTTO.COST_UNIT);
-    this.lottoPurchaseResultView.renderLottoPurchaseResult(
-      this.lottoModel.getLottoList()
-    );
+    this.lottoPurchaseResultView.renderLottoPurchaseResult(this.lottoModel.getLottoList());
   }
 }

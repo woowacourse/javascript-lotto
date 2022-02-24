@@ -13,6 +13,7 @@
     "max-depth": ["error", 1],
     "no-new": "off",
     "import/extensions": "off",
-    "max-lines-per-function": ["error", 15]
+    "max-lines-per-function": ["error", 15],
+    "printWidth": 100
   }
 }

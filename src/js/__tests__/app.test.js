@@ -1,9 +1,3 @@
-// e2e 테스트
-// test('구입할 금액을 입력하면, 로또 구매 갯수를 확인할 수 있다.', () => {
-//
-// })
-
-// unit 테스트
 import {
   isDividedByThousand,
   isEmptyValue,

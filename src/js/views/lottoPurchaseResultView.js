@@ -1,8 +1,5 @@
 import { $, $$, emit, on } from '../utils/helper.js';
-import {
-  lottoPurchaseCountTemplate,
-  lottoPurchaseResultTemplate,
-} from '../utils/template.js';
+import { lottoPurchaseCountTemplate, lottoPurchaseResultTemplate } from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
   constructor() {
@@ -26,15 +23,11 @@ export default class lottoPurchaseResultView {
   }
 
   renderLottoPurchaseResult(lottoList) {
-    this.lottoList.insertAdjacentHTML(
-      'afterbegin',
-      lottoPurchaseResultTemplate(lottoList)
-    );
+    this.lottoList.insertAdjacentHTML('afterbegin', lottoPurchaseResultTemplate(lottoList));
   }
 
   toggleLottoNumbers() {
     this.lottoNumbers = $$('.lotto-numbers');
-
     this.lottoList.classList.toggle('lotto-list-column');
     this.lottoNumbers.forEach((element) => element.classList.toggle('hidden'));
   }

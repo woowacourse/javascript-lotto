@@ -11,9 +11,5 @@ export const isPositiveValue = (purchaseMoney) => {
 };
 
 export const isValidPurchaseMoney = (purchaseMoney) => {
-  return (
-    isDividedByThousand(purchaseMoney) &&
-    !isEmptyValue(purchaseMoney) &&
-    isPositiveValue(purchaseMoney)
-  );
+  return isDividedByThousand(purchaseMoney) && !isEmptyValue(purchaseMoney) && isPositiveValue(purchaseMoney);
 };
