@@ -1,3 +1,5 @@
+import { convertToNumber } from '../util/common.js';
+
 export default class PurchaseMoneyView {
   constructor() {
     this.initDom();
@@ -12,7 +14,8 @@ export default class PurchaseMoneyView {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
 
-      const purchaseMoney = Number(this.input.value);
+      const purchaseMoney = convertToNumber(this.input.value);
+
       submitHandler(purchaseMoney);
     });
   }

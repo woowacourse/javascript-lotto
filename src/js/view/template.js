@@ -45,7 +45,7 @@ const WINNING_NUMBER_FORM = `
       <div id="win-number-box">   
         <p>당첨 번호</p>
         <div class="input-box">
-          ${INPUT_ELEMENT.repeat(RULES.LOTTO_COUNT)}
+        ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
         </div>
       </div>
       <div id="bonus-number-box">

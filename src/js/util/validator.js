@@ -38,4 +38,4 @@ const validatePurchaseMoney = value => {
   }
 };
 
-export { validatePurchaseMoney, isExist };
+export { isExist, validatePurchaseMoney };

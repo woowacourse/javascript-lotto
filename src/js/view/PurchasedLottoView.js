@@ -50,6 +50,7 @@ export default class PurchasedLottoView {
   }
 
   reset() {
+    //TODO
     this.container.removeChild(this.container.lastElementChild);
     this.container.removeChild(this.container.lastElementChild);
   }

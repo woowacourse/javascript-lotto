@@ -7,7 +7,7 @@ export default class Lotto {
   }
 
   init() {
-    this.numberList = pickLottoNumber(RULES.LOTTO_COUNT);
+    this.numberList = pickLottoNumber(RULES.LOTTO_NUMS);
   }
 
   setList(numberList) {
