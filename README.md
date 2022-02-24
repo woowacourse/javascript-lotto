@@ -11,6 +11,12 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+<br />
+
+> [🎱 로또 어플리케이션 데모 페이지](https://soyi47.github.io/javascript-lotto/)
+
+<br />
+
 ## 기능 목록
 
 1. - [x] 로또 구입 금액 입력 기능
