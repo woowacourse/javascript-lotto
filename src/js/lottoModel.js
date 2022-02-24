@@ -1,10 +1,10 @@
 import { LOTTO } from './utils/constants.js';
 
 export default class LottoModel {
-  #lottoList;
+  #lottoList = [];
 
-  constructor() {
-    this.#lottoList = [];
+  constructor(lottoList) {
+    this.#lottoList = lottoList;
   }
 
   getLottoList() {
