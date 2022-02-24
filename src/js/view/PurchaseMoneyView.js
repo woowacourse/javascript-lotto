@@ -1,4 +1,5 @@
 import { convertToNumber } from '../utils/common.js';
+import { validatePurchaseMoney } from '../utils/validator.js';
 
 export default class PurchaseMoneyView {
   constructor() {
@@ -13,10 +14,15 @@ export default class PurchaseMoneyView {
   addSubmitEvent(submitHandler) {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
-
       const purchaseMoney = convertToNumber(this.input.value);
 
-      submitHandler(purchaseMoney);
+      try {
+        validatePurchaseMoney(purchaseMoney);
+        submitHandler(purchaseMoney);
+      } catch (error) {
+        this.resetInputValue();
+        alert(error);
+      }
     });
   }
 

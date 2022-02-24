@@ -6,7 +6,6 @@ import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
 import { isEmpty } from '../utils/common.js';
-import { validatePurchaseMoney } from '../utils/validator.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -24,22 +23,7 @@ export default class LottoMachineController {
     this.view.purchaseMoneyView.addSubmitEvent(this.onSubmitHandler.bind(this));
   }
 
-  purchaseLotto(purchaseMoney) {
-    const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
-    const lottos = this.model.makeLottos(lottoCount);
-
-    this.view.purchasedLottoView.render(lottos, lottoCount);
-    this.view.winningNumberView.render();
-  }
-
   onSubmitHandler(purchaseMoney) {
-    try {
-      validatePurchaseMoney(purchaseMoney);
-    } catch (error) {
-      this.view.purchaseMoneyView.resetInputValue();
-      alert(error);
-      return;
-    }
     const lottos = this.model.getLottos();
 
     if (isEmpty(lottos)) {
@@ -54,6 +38,14 @@ export default class LottoMachineController {
     }
 
     this.view.purchaseMoneyView.resetInputValue();
+  }
+
+  purchaseLotto(purchaseMoney) {
+    const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
+    const lottos = this.model.makeLottos(lottoCount);
+
+    this.view.purchasedLottoView.render(lottos, lottoCount);
+    this.view.winningNumberView.render();
   }
 
   tryRePurchase() {
