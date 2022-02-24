@@ -18,7 +18,7 @@ export default class Lottos {
     return lottos;
   }
 
-  reset() {
+  resetStatus() {
     this.#setLottos(null);
   }
 }

@@ -13,7 +13,7 @@ export default class WinningNumberView {
     this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
   }
 
-  reset() {
+  resetScreen() {
     this.container.removeChild(this.container.lastElementChild);
   }
 }

@@ -11,8 +11,11 @@ export default class PurchasedLottoView {
 
   render(lottos, lottoCount) {
     this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
-    this.purchasedLottoCount = document.getElementById('purchased-lotto-count');
-    this.purchasedLottoCount.textContent = lottoCount;
+
+    const purchasedLottoCount = document.getElementById(
+      'purchased-lotto-count',
+    );
+    purchasedLottoCount.textContent = lottoCount;
 
     this.renderPurchasedLottoList(lottos);
     this.addSwitchClickEvent();
@@ -27,8 +30,8 @@ export default class PurchasedLottoView {
   }
 
   addSwitchClickEvent() {
-    this.switch = document.getElementById('on-off-switch');
-    this.switch.addEventListener('click', this.switchClickHandler.bind(this));
+    const switchButton = document.getElementById('on-off-switch');
+    switchButton.addEventListener('click', this.switchClickHandler.bind(this));
   }
 
   switchClickHandler() {
@@ -39,7 +42,7 @@ export default class PurchasedLottoView {
       : classList.replace('switch-on', 'switch-off');
   }
 
-  reset() {
+  resetScreen() {
     this.container.removeChild(this.container.lastElementChild);
   }
 }

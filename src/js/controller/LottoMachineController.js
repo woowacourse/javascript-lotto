@@ -53,8 +53,8 @@ export default class LottoMachineController {
   }
 
   reset() {
-    this.model.reset();
-    this.view.purchasedLottoView.reset();
-    this.view.winningNumberView.reset();
+    this.model.resetStatus();
+    this.view.purchasedLottoView.resetScreen();
+    this.view.winningNumberView.resetScreen();
   }
 }
