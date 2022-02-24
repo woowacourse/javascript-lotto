@@ -15,7 +15,7 @@ export default class PurchasedLottoView {
     this.purchasedLottoCount.textContent = lottoCount;
 
     this.renderPurchasedLottoList(lottos);
-    this.addToggleClickEvent();
+    this.addSwitchClickEvent();
   }
 
   renderPurchasedLottoList(lottos) {
@@ -26,18 +26,17 @@ export default class PurchasedLottoView {
     );
   }
 
-  addToggleClickEvent() {
+  addSwitchClickEvent() {
     this.switch = document.getElementById('on-off-switch');
+    this.switch.addEventListener('click', this.switchClickHandler.bind(this));
+  }
 
-    this.switch.addEventListener('click', () => {
-      const classList = this.purchasedLottoList.classList;
+  switchClickHandler() {
+    const classList = this.purchasedLottoList.classList;
 
-      if (classList.contains('switch-off')) {
-        classList.replace('switch-off', 'switch-on');
-        return;
-      }
-      classList.replace('switch-on', 'switch-off');
-    });
+    classList.contains('switch-off')
+      ? classList.replace('switch-off', 'switch-on')
+      : classList.replace('switch-on', 'switch-off');
   }
 
   reset() {
