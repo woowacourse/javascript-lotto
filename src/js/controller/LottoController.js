@@ -11,10 +11,11 @@ export default class LottoController {
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
+    this.purchaseForm = $(SELECTOR.PURCHASE_FORM);
   }
 
   bindEvents() {
-    $(SELECTOR.PURCHASE_FORM).addEventListener("submit", this.onSubmitPurchase.bind(this));
+    this.purchaseForm.addEventListener("submit", this.onSubmitPurchase.bind(this));
     this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
   }
 
@@ -28,16 +29,16 @@ export default class LottoController {
   onSubmitPurchase(e) {
     e.preventDefault();
 
-    const { value } = this.purchaseInput;
-    if (!isValidMinimumAmount(Number(value))) {
+    const purchaseAmount = Number(this.purchaseInput.value);
+    if (!isValidMinimumAmount(purchaseAmount)) {
       alert(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
       return;
     }
-    if (!isValidAmountUnit(Number(value))) {
+    if (!isValidAmountUnit(purchaseAmount)) {
       alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
       return;
     }
-    const lottoCount = Math.floor(value / AMOUNT_UNIT);
+    const lottoCount = Math.floor(purchaseAmount / AMOUNT_UNIT);
     this.lottoGameModel.generateLottoTicket(lottoCount);
     this.handleLottoNumber(lottoCount);
   }
