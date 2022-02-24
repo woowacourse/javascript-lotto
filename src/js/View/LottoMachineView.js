@@ -10,6 +10,10 @@ export default class LottoMachineView {
     };
   }
 
+  updateChargeInput(value) {
+    $(SELECTOR.CHARGE_INPUT).value = value;
+  }
+
   switchLottoListStyle(style) {
     this.showLottoList[style]();
   }

@@ -35,9 +35,10 @@ export default class LottoMachine {
   }
 
   purchase(chargeInputNumber) {
-    const { quotient: newLottoCount } = divider(chargeInputNumber, LOTTO_PRICE);
+    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputNumber, LOTTO_PRICE);
     this.lottoManager.generateNewLottos(newLottoCount);
     this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
+    this.lottoMachineView.updateChargeInput(remainCharge);
   }
 
   reverseLottoStyle() {
