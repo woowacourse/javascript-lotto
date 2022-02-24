@@ -9,9 +9,7 @@ module.exports = {
     extensions: ['.js', '.css'],
   },
   devServer: {
-    port: 9000,
-    contentBase: __dirname + '/dist/',
-    host: 'localhost',
+    port: 9001,
   },
   devtool: 'source-map',
   output: {
