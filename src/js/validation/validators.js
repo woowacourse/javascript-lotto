@@ -6,8 +6,6 @@ const isEmpty = (str) => {
 };
 
 const isNumber = (num) => {
-  // Number => 소수점도 허용하기 때문에 사용하지 않는다
-  // parseInt => 중간에 문자가 있어도 숫자를 리턴하기 때문에 사용하지 않는다
   return /^-?[0-9]+$/g.test(num);
 };
 
