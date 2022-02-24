@@ -1,6 +1,6 @@
-import Component from '../abstracts/component';
-import createAction from '../flux/actionCreator';
 import { ACTION } from '../constants';
+import createAction from '../flux/actionCreator';
+import Component from '../abstracts/component';
 import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 

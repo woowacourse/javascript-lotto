@@ -1,9 +1,11 @@
 import Store from './flux/store';
+
 import './components/MoneyForm';
 import './components/LottoList';
-import './components/LottoItem';
 import './components/LottoListToggle';
+import './components/LottoItem';
 import './components/WinningNumberForm';
+
 import '../css/index.css';
 
 const initialState = {

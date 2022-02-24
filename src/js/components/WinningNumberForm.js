@@ -1,8 +1,8 @@
-import Component from '../abstracts/component';
 import { ACTION } from '../constants';
 import createAction from '../flux/actionCreator';
-import ValidationError from '../validation/validation-error';
+import Component from '../abstracts/component';
 import { validateWinningNumbers } from '../validation/validators';
+import ValidationError from '../validation/validation-error';
 
 class WinningNumberForm extends Component {
   render() {

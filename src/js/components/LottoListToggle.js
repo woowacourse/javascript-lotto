@@ -1,6 +1,6 @@
-import Component from '../abstracts/component';
 import { ACTION } from '../constants';
 import createAction from '../flux/actionCreator';
+import Component from '../abstracts/component';
 
 class LottoListToggle extends Component {
   render() {
