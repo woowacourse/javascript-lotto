@@ -9,7 +9,9 @@
     "build": "webpack",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run —brower chrome",
-    "cypress:test": "npm run cypress:run"
+    "cypress:test": "npm run cypress:run",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -24,6 +26,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "prettier": "2.5.1",
