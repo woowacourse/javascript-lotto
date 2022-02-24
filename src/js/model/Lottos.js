@@ -4,10 +4,6 @@ export default class Lottos {
   #lottos = null;
 
   constructor() {
-    this.#init();
-  }
-
-  #init() {
     this.#lottos = null;
   }
 

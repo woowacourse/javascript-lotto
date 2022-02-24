@@ -9,17 +9,14 @@ import { validatePurchaseMoney, isEmpty } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
-    this.init();
-    this.setEventHandler();
-  }
-
-  init() {
     this.model = new Lottos();
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
       winningNumberView: new WinningNumberView(),
     };
+
+    this.setEventHandler();
   }
 
   setEventHandler() {

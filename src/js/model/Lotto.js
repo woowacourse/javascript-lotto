@@ -5,10 +5,6 @@ export default class Lotto {
   #numberList = null;
 
   constructor() {
-    this.#init();
-  }
-
-  #init() {
     this.#numberList = pickLottoNumber(RULES.LOTTO_NUMS);
   }
 
