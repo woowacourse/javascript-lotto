@@ -29,7 +29,7 @@ class LottoList extends Component {
       </div>
       <div class="toggle-container">
       <label class="mb-3">번호 보기</label>
-      <lotto-list-toggle></lotto-list-toggle>
+      <lotto-list-toggle class="d-flex justify-content-end"></lotto-list-toggle>
       </div>
     `;
   }
