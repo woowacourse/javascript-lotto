@@ -1,8 +1,4 @@
-import {
-  isDividedByThousand,
-  isEmptyValue,
-  isPositiveValue,
-} from '../utils/validator.js';
+import { isDividedByThousand, isEmptyValue, isPositiveValue } from '../utils/validator.js';
 
 import LottoModel from '../lottoModel.js';
 
