@@ -1,4 +1,5 @@
 @import url('./color.css');
+
 body {
   height: 100%;
   width: 100%;
@@ -55,7 +56,6 @@ button {
   border-radius: 4px;
   margin-right: 16px;
 }
-
 .lotto-price-submit-button {
   width: 56px;
   height: 36px;
@@ -66,6 +66,7 @@ button {
 }
 
 /*purchased-lotto-list*/
+
 .purchased-lotto-list-container {
   display: flex;
   height: fit-content;
@@ -159,7 +160,6 @@ button {
 }
 
 /*last-lotto-winnding-number*/
-
 .last-lotto-winning-number-container {
   margin-top: 30px;
 }
