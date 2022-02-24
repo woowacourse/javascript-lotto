@@ -1,0 +1,60 @@
+.width-34px {
+  width: 34px;
+}
+
+.width-56px {
+  width: 56px;
+}
+
+.width-80 {
+  width: 80%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.height-36px {
+  height: 36px;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.margin-left-8px {
+  margin-left: 8px;
+}
+
+.margin-bottom-8px {
+  margin-bottom: 8px;
+}
+
+.margin-bottom-24px {
+  margin-bottom: 24px;
+}
+
+.margin-bottom-28px {
+  margin-bottom: 28px;
+}
+
+.margin-bottom-32px {
+  margin-bottom: 32px;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+.display-none {
+  display: none !important;
+}
