@@ -40,7 +40,7 @@ export const validateWinningNumbers = (numbers) => {
       return new ValidationResult(true, ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE);
     }
   }
-  if (new Set(numbers).size === numbers.length) {
+  if (new Set(numbers).size !== numbers.length) {
     return new ValidationResult(true, ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
   }
 
