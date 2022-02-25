@@ -17,28 +17,27 @@ h1 {
 
 #app {
   width: 414px;
-  height: 727px;  
+  height: 727px;
   border: 2px solid black;
   padding: 0px 16px;
 }
 
-label[for="purchase-money"] {
+label[for='purchase-money'] {
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
 }
 
 #lotto-purchase-form > button {
-  background: #00BCD4;
+  background: #00bcd4;
   border-radius: 4px;
   width: 56px;
   height: 36px;
   padding: 6px 6px 6px 8px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
   letter-spacing: 1.25px;
   margin-left: 15px;
-
   outline: none;
   border: none;
 }
@@ -46,14 +45,14 @@ label[for="purchase-money"] {
 #lotto-purchase-input {
   height: 36px;
   width: 294px;
-  border: 1px solid #B4B4B4;
+  border: 1px solid #b4b4b4;
   box-sizing: border-box;
   border-radius: 4px;
   padding: 10px 5px;
 }
 
 #lotto-purchase-input::placeholder {
-  color: #8B8B8B;
+  color: #8b8b8b;
 }
 
 #lotto-list {
@@ -72,7 +71,6 @@ label[for="purchase-money"] {
 .hidden {
   display: none;
 }
-
 
 #lotto-purchase-result {
   width: 100%;
@@ -122,28 +120,28 @@ label[for="purchase-money"] {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 13px;
   width: 13px;
   left: 4px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
