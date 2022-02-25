@@ -46,5 +46,9 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
+  },
+  "dependencies": {
+    "jsdoc": "^3.6.10",
+    "jsdoc-webpack-plugin": "^0.3.0"
   }
 }
