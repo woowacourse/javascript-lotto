@@ -3,6 +3,7 @@ export const LOTTO = {
   MAXIMUM_NUMBER: 45,
   PRICE: 1000,
   NUMBER_QUANTITY: 6,
+  INPUT_LIMMIT: 10000000,
 };
 
 export const SELECTOR = {

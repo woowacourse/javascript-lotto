@@ -12,7 +12,13 @@
       <form id="purchase-money-form">
         <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
         <div class="space-between">
-          <input id="purchase-money-input" type="number" placeholder="금액" />
+          <input
+            id="purchase-money-input"
+            type="number"
+            placeholder="금액"
+            min="1"
+            max="10000000"
+          />
           <button id="purchase-money-button" type="submit">구입</button>
         </div>
       </form>

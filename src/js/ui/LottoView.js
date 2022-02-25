@@ -42,7 +42,9 @@ export default class LottoView {
   }
 
   userInputMoney() {
-    this.machine.inputMoney = Number($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
+    this.machine.inputMoney = Number.parseInt(
+      $(SELECTOR.ID.PURCHASE_MONEY_INPUT).value
+    );
   }
 
   renderLotto() {
