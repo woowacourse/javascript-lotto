@@ -21,16 +21,14 @@ const createRandomNumber = (minNumber, maxNumber) => {
 };
 
 const createRandomNumberList = () => {
-  const randomNumberList = [];
+  const randomNumbers = new Set();
 
-  while (randomNumberList.length < LOTTO.LENGTH) {
-    const random = createRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
-    if (!randomNumberList.includes(random)) {
-      randomNumberList.push(random);
-    }
+  while (randomNumbers.size < LOTTO.LENGTH) {
+    const randomNumber = createRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
+    randomNumbers.add(randomNumber);
   }
 
-  return randomNumberList;
+  return [...randomNumbers];
 };
 
 export {

@@ -1,15 +1,13 @@
-import { createRandomNumberList } from './utils.js';
+import { createRandomNumberList } from './utils';
 
 export default class Lotto {
-  constructor() {
-    this.lottoNumberList = [];
-  }
+  #lottoNumberList = [];
 
   setLotto() {
-    this.lottoNumberList = createRandomNumberList();
+    this.#lottoNumberList = createRandomNumberList();
   }
 
   getLotto() {
-    return this.lottoNumberList;
+    return this.#lottoNumberList;
   }
 }
