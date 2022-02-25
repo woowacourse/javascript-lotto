@@ -18,4 +18,8 @@ export default class LottoPurchaseInputView {
 
     emit(this.lottoPurchaseForm, '@purchaseMoney', purchaseMoney);
   }
+
+  resetPurchaseMoney() {
+    this.lottoPurchaseForm.reset();
+  }
 }
