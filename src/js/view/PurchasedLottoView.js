@@ -2,10 +2,6 @@ import { PURCHASED_LOTTO_TEMPLATE, getLottoListTemplate } from './template.js';
 
 export default class PurchasedLottoView {
   constructor() {
-    this.initDom();
-  }
-
-  initDom() {
     this.container = document.getElementById('purchased-lotto-container');
   }
 

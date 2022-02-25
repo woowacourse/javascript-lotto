@@ -9,6 +9,7 @@ import { isEmpty } from '../utils/common.js';
 
 export default class LottoMachineController {
   constructor() {
+    //멤버변수 초기화
     this.model = new Lottos();
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
@@ -16,10 +17,7 @@ export default class LottoMachineController {
       winningNumberView: new WinningNumberView(),
     };
 
-    this.setEventHandler();
-  }
-
-  setEventHandler() {
+    //이벤트 리스너 등록
     this.view.purchaseMoneyView.addSubmitEvent(this.onSubmitHandler.bind(this));
   }
 
