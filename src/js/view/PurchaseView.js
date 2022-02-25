@@ -7,20 +7,20 @@ export default class PurchaseView {
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);
-    this.bindEvents();
+    this.#bindEvents();
   }
 
-  bindEvents() {
-    on(this.$purchaseForm, 'submit', (e) => this.handleSubmit(e));
+  #bindEvents() {
+    on(this.$purchaseForm, 'submit', (e) => this.#handleSubmit(e));
   }
 
-  handleSubmit(e) {
+  #handleSubmit(e) {
     e.preventDefault();
-    const money = this.getMoneyToPurchase();
+    const money = this.#getMoneyToPurchase();
     emit(this.$purchaseForm, '@submit', { money });
   }
 
-  getMoneyToPurchase() {
+  #getMoneyToPurchase() {
     return this.$purchaseInput.valueAsNumber;
   }
 

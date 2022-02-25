@@ -9,20 +9,16 @@ export default class IssuedTicketView {
     this.$ticketCount = $(ID.TICKET_COUNT);
     this.$issuedTicketDiv = $(ID.ISSUED_TICKET_DIV);
     this.$lottoNumberToggle = $(ID.LOTTO_NUMBER_TOGGLE);
-    this.bindEvents();
+    this.#bindEvents();
   }
 
-  bindEvents() {
-    on(this.$lottoNumberToggle, 'click', (e) => this.handleToggle(e));
+  #bindEvents() {
+    on(this.$lottoNumberToggle, 'click', (e) => this.#handleToggle(e));
   }
 
-  handleToggle(e) {
+  #handleToggle(e) {
     const { checked } = e.target;
     emit(this.$lottoNumberToggle, '@toggle', { checked });
-  }
-
-  getMoneyToPurchase() {
-    return this.$purchaseInput.valueAsNumber;
   }
 
   showTicketContainer() {

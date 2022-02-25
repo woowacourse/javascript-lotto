@@ -8,13 +8,13 @@ export default class LottoBundle {
     return this.#lottos;
   }
 
+  createLottoBundle(count) {
+    repeatCallback(count, () => this.#pushLottoToBundle());
+  }
+
   #pushLottoToBundle() {
     const lotto = new Lotto();
     lotto.generateLottoNumbers();
     this.#lottos.push(lotto);
-  }
-
-  createLottoBundle(count) {
-    repeatCallback(count, () => this.#pushLottoToBundle());
   }
 }
