@@ -1,5 +1,6 @@
 const template = {
   paymentSection: `
+  <h1>🎱 행운의 로또</h1>
   <section id="payment-section">
     <h2 hidden>구입할 금액</h2>
     <label for="payment-input">구입할 금액을 입력해주세요.</label>
@@ -71,7 +72,6 @@ const template = {
       </div>
     </section>
   `,
-
   resultCheckingSection: `
     <section id="result-checking-section">
       <h2 hidden>결과 확인</h2>

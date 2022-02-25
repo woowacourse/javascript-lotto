@@ -16,11 +16,11 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #e5e5e5;
-
-  height: 100vh;
 }
 
+/* ****** */
 /* COMMON */
+/* ****** */
 p,
 label {
   font-size: 15px;
@@ -69,10 +69,11 @@ button {
   border-radius: 4px;
   background-color: white;
 
-  padding: 0 16px;
+  margin-top: 10px;
+  padding: 52px 16px;
 
   min-height: 727px;
-  min-width: 414px;
+  width: 414px;
 }
 
 h1 {
@@ -82,17 +83,19 @@ h1 {
 
   text-align: center;
 
-  margin-top: 52px;
   margin-bottom: 16px;
 }
 
+/* *************** */
 /* payment-section */
+/* *************** */
 #payment-section {
   margin-bottom: 28px;
 }
 
 #payment-section label {
   display: block;
+  margin-bottom: 4px;
 }
 
 #payment-section .payment-form {
@@ -130,7 +133,9 @@ h1 {
   font-size: 14px;
 }
 
+/* **************************** */
 /* purchased-lotto-list section */
+/* **************************** */
 #purchased-lotto-list-section {
   display: flex;
   justify-content: space-between;
@@ -143,6 +148,8 @@ h1 {
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 320px;
   gap: 8px;
 }
 
@@ -197,7 +204,9 @@ h1 {
   background-image: url('../../images/toggle_on.svg');
 }
 
+/* ******************************** */
 /* last-week-winning-number-section */
+/* ******************************** */
 #last-week-winning-number-section {
   margin-bottom: 24px;
 }
@@ -240,7 +249,9 @@ h1 {
   text-align: center;
 }
 
+/* *********************** */
 /* result-checking-section */
+/* *********************** */
 #result-checking-section {
   display: flex;
 }
