@@ -1,13 +1,12 @@
 #purchased-lotto-container {
   width: 100%;
   min-height: 68px;
-  display: flex;
-  justify-content: space-between;
   margin-top: 28px;
 }
 
 #purchased-lotto-container > div {
   display: flex;
+  justify-content: space-between;
 }
 
 #purchased-lotto-box {
