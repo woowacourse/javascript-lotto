@@ -1,29 +1,16 @@
-import { isPositiveInteger } from '../utils/validator';
 import { getRandomNumber } from '../utils/data-manager';
 import { LOTTO_SETTING } from '../constants/setting';
-
-const isValidRangeNumber = (min, max, number) => number >= min && number <= max;
+import { checkValidLottoNumberInput } from '../utils/Lotto/validator';
 
 export default class Lotto {
   #pickedNumbers = [];
 
   pushNumberIntoPickedNumbers(number) {
-    if (!isPositiveInteger(number)) {
+    try {
+      checkValidLottoNumberInput({ input: number, pickedNumbers: this.#pickedNumbers });
+    } catch (err) {
       return;
     }
-
-    if (!isValidRangeNumber(1, 45, number)) {
-      return;
-    }
-
-    if (this.#pickedNumbers.includes(number)) {
-      return;
-    }
-
-    if (this.#pickedNumbers.length >= LOTTO_SETTING.LOTTO_NUMBER_LENGTH) {
-      return;
-    }
-
     this.#pickedNumbers.push(number);
   }
 
