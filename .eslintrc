@@ -14,5 +14,6 @@
     "no-new": "off",
     "import/extensions": "off",
     "max-lines-per-function": ["error", 15]
-  }
+  },
+  "ignorePatterns": ["app.test.js"]
 }
