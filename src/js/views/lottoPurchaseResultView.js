@@ -35,7 +35,8 @@ export default class lottoPurchaseResultView {
   toggleLottoNumbers() {
     this.lottoNumbers = $$('.lotto-numbers');
 
-    this.lottoList.classList.toggle('lotto-list-column');
+    this.lottoList.classList.toggle('grid-columns-six');
+    this.lottoList.classList.toggle('grid-columns-one');
     this.lottoNumbers.forEach((element) => element.classList.toggle('hidden'));
   }
 }
