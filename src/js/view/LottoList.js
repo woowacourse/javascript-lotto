@@ -4,7 +4,7 @@ import { ID_SELECTOR, CLASS_SELECTOR } from '../constants.js';
 export default class LottoListView {
   constructor() {
     this.#configureDOM();
-    this.#onClickToggle();
+    this.#bindToggleClick();
   }
 
   #configureDOM() {
@@ -15,7 +15,7 @@ export default class LottoListView {
     this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
   }
 
-  #onClickToggle() {
+  #bindToggleClick() {
     this.$toggle.addEventListener('click', () => {
       const isChecked = this.$toggleInput.checked;
       this.$toggleInput.checked = !isChecked;

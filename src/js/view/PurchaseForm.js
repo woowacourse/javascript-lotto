@@ -9,10 +9,10 @@ export default class PurchaseFormView {
     this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
   }
 
-  setOnSubmitCash(fn) {
+  bindSubmitCash(handler) {
     this.$purchaseForm.addEventListener('submit', event => {
       event.preventDefault();
-      fn(event.target.elements.cash.value);
+      handler(event.target.elements.cash.value);
     });
   }
 }

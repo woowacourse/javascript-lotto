@@ -14,10 +14,10 @@ export default class Controller {
   }
 
   #bindEventHandlers() {
-    this.#purchaseFormView.setOnSubmitCash(cash => this.#onSubmitCash(cash));
+    this.#purchaseFormView.bindSubmitCash(cash => this.#handleSubmitCash(cash));
   }
 
-  #onSubmitCash(cash) {
+  #handleSubmitCash(cash) {
     try {
       validateCashInput(cash);
       this.#model.buyLotto(cash / LOTTO_PRICE);
