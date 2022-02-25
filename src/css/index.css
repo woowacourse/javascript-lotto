@@ -4,7 +4,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin: 40px 0px;
+}
+
+button {
+  cursor: pointer;
 }
 
 h1 {
@@ -40,6 +44,10 @@ label[for='purchase-money'] {
   margin-left: 15px;
   outline: none;
   border: none;
+}
+
+#lotto-purchase-form > button:disabled {
+  background: gray;
 }
 
 #lotto-purchase-input {

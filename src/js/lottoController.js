@@ -41,6 +41,7 @@ export default class LottoController {
       return;
     }
 
+    this.lottoPurchaseInputView.disablePurchaseLottoForm();
     this.lottoPurchaseResultView.renderLottoPurchaseCount(
       purchaseMoney / LOTTO.COST_UNIT
     );

@@ -4,6 +4,7 @@ export default class LottoPurchaseInputView {
   constructor() {
     this.lottoPurchaseForm = $('#lotto-purchase-form');
     this.lottoPurchaseInput = $('#lotto-purchase-input');
+    this.lottoPurchaseButton = $('#lotto-purchase-button');
 
     this.attachEvents();
   }
@@ -21,5 +22,10 @@ export default class LottoPurchaseInputView {
 
   resetPurchaseMoney() {
     this.lottoPurchaseForm.reset();
+  }
+
+  disablePurchaseLottoForm() {
+    this.lottoPurchaseInput.disabled = true;
+    this.lottoPurchaseButton.disabled = true;
   }
 }
