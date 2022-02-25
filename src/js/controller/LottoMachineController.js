@@ -22,7 +22,7 @@ export default class LottoMachineController {
   }
 
   onSubmitHandler(purchaseMoney) {
-    const lottos = this.model.getLottos();
+    const lottos = this.model.lottos;
 
     if (isEmpty(lottos)) {
       this.purchaseLotto(purchaseMoney);

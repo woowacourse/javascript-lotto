@@ -8,7 +8,7 @@ export default class Lotto {
     this.#numberList = pickLottoNumber(RULES.LOTTO_NUMS);
   }
 
-  getList() {
+  get numberList() {
     return this.#numberList;
   }
 }
