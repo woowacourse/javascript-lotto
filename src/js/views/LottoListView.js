@@ -5,6 +5,7 @@ import { makeLottosCountTemplate, makeLottoTemplate } from '../utils/Lotto/templ
 export default class LottoListView {
   #container;
   #lottoNumberToggle;
+
   constructor($element) {
     this.#container = $element;
     this.#lottoNumberToggle = $($element, `#${SELECTOR.ID.NUMBER_TOGGLE}`);
