@@ -1,5 +1,5 @@
 import { on } from './utils/helper.js';
-import { isValidPurchaseMoney } from './utils/validator.js';
+import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue } from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
 
 export default class LottoController {
@@ -25,13 +25,14 @@ export default class LottoController {
 
   submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
-    if (!isValidPurchaseMoney(purchaseMoney)) {
+    try {
+      isDividedByThousand(purchaseMoney);
+      isEmptyValue(purchaseMoney);
+      isPositiveValue(purchaseMoney);
+      isMaxPurchaseLotto(purchaseMoney);
+    } catch (error) {
       this.lottoNumberInputView.cleanLottoPurchaseInput();
-      return alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
-    }
-    if (purchaseMoney > LOTTO.MAX_COST) {
-      this.lottoNumberInputView.cleanLottoPurchaseInput();
-      return alert(ERROR_MESSAGE.MORE_THAN_MAX_COST);
+      return alert(error);
     }
     this.lottoPurchaseResultView.cleanLottoList();
     this.lottoPurchaseResultView.renderLottoPurchaseCount(purchaseMoney / LOTTO.COST_UNIT);

@@ -1,15 +1,25 @@
+import { ERROR_MESSAGE } from "./constants.js";
+
 export const isDividedByThousand = (purchaseMoney) => {
-  return purchaseMoney % 1000 === 0;
+  if (purchaseMoney % 1000 !== 0) {
+    throw ERROR_MESSAGE.NOT_VALIDE_UNIT_PURCHASE_MONEY;
+  }
 };
 
 export const isEmptyValue = (purchaseMoney) => {
-  return !purchaseMoney;
+  if (!purchaseMoney) {
+    throw ERROR_MESSAGE.EMPTY_PURCHASE_MONEY;
+  }
 };
 
 export const isPositiveValue = (purchaseMoney) => {
-  return purchaseMoney > 0;
+  if (purchaseMoney <= 0) {
+    throw ERROR_MESSAGE.NOT_VALID_PURCHASE_MONEY;
+  }
 };
 
-export const isValidPurchaseMoney = (purchaseMoney) => {
-  return isDividedByThousand(purchaseMoney) && !isEmptyValue(purchaseMoney) && isPositiveValue(purchaseMoney);
-};
+export const isMaxPurchaseLotto = (purchaseMoney) => {
+  if (purchaseMoney > 5000) {
+    throw ERROR_MESSAGE.MORE_THAN_MAX_COST;
+  }
+}
