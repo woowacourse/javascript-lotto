@@ -14,7 +14,9 @@ export default class Lotto {
   pickNumbers() {
     const set = new Set();
     while (set.size < LOTTO.NUMBER_QUANTITY) {
-      set.add(generateRandomNumberRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
+      set.add(
+        generateRandomNumberRange(LOTTO.MINIMUM_NUMBER, LOTTO.MAXIMUM_NUMBER)
+      );
     }
     return [...set];
   }
