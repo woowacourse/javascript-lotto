@@ -19,7 +19,9 @@ const template = {
           lottoList.length
         }개를 구매하였습니다.</p>
         <ul id="lotto-list">
-          ${lottoList.map((lotto) => this.lottoLi(lotto)).join('')}
+          ${lottoList
+            .map((lotto) => this.lottoTicketAndNumberElement(lotto))
+            .join('')}
         </ul>
       </div>
       <div class="lotto-list-toggle-container">
@@ -29,7 +31,7 @@ const template = {
     </section>
     `;
   },
-  lottoLi(lotto) {
+  lottoTicketAndNumberElement(lotto) {
     return `
     <li class="lotto">
       <p class="lotto-ticket">🎟️</p>
