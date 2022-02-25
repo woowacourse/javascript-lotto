@@ -15,6 +15,17 @@ describe('로또 구매 테스트', () => {
     expect(model.makeLottoNumbers().size).toBe(LOTTO_RULE.NUMBERS_COUNT);
   });
 
+  test(`로또 번호는 ${LOTTO_RULE.MIN_NUMBER} 이상 ${LOTTO_RULE.MAX_NUMBER} 이하이다.`, () => {
+    const model = new Model();
+    const lottoNumbers = model.makeLottoNumbers();
+
+    const isIncluded = Array.from(lottoNumbers).every(aNumber => {
+      return LOTTO_RULE.MIN_NUMBER <= aNumber && aNumber <= LOTTO_RULE.MAX_NUMBER;
+    });
+
+    expect(isIncluded).toBeTruthy();
+  });
+
   test(`금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면, 에러를 생성한다.`, () => {
     const cash = 1500;
     expect(() => validateCashInput(cash)).toThrow();
