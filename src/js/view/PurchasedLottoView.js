@@ -1,5 +1,43 @@
-import { PURCHASED_LOTTO_TEMPLATE, getLottoListTemplate } from './template.js';
+//template
+const getLottoListTemplate = lottos => {
+  const initValue = '';
 
+  const lottoListTemplate = lottos.reduce(
+    (result, lotto) => result + getLottoItemTemplate(lotto.getList()),
+    initValue,
+  );
+
+  return lottoListTemplate;
+};
+
+const getLottoItemTemplate = lotto => {
+  return `
+    <div class="purchased-lotto-item">
+      <span class="purchased-lotto-image">🎟️</span>
+      <div class="purchased-lotto-number">${lotto.join(', ')}</div>
+    </div>
+  `;
+};
+
+const PURCHASED_LOTTO_TEMPLATE = `
+  <div>
+    <div id="purchased-lotto-box">
+      <p>
+        총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
+      </p>
+      <div id="purchased-lotto-list" class="switch-off"></div>
+    </div>
+    <div id="switch-box">
+      <p>번호 보기</p>
+      <label for="on-off-switch" class="switch">
+        <input id="on-off-switch" type="checkbox"/>
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+`;
+
+//class
 export default class PurchasedLottoView {
   constructor() {
     this.container = document.getElementById('purchased-lotto-container');
