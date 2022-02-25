@@ -1,7 +1,7 @@
 import { NUMBER } from '../constants/number';
 
 export function isValidLength(lottoNumber) {
-  return lottoNumber.length === NUMBER.LOTTO_NUMBER_LENGTH;
+  return lottoNumber.length === NUMBER.LOTTO_NUMBER_AMOUNT;
 }
 
 export function isValidNumber(lottoNumbers) {
