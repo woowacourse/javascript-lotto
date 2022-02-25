@@ -3,7 +3,7 @@ const getLottoListTemplate = lottos => {
   const initValue = '';
 
   const lottoListTemplate = lottos.reduce(
-    (result, lotto) => result + getLottoItemTemplate(lotto.numberList),
+    (result, lotto) => result + getLottoItemTemplate(lotto.numbers),
     initValue,
   );
 

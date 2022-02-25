@@ -1,4 +1,4 @@
-import Lottos from '../model/Lottos.js';
+import PurchasedLottos from '../model/PurchasedLottos.js';
 
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
@@ -10,7 +10,7 @@ import { isEmpty } from '../utils/common.js';
 export default class LottoMachineController {
   constructor() {
     //멤버변수 초기화
-    this.model = new Lottos();
+    this.model = new PurchasedLottos();
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
@@ -40,7 +40,7 @@ export default class LottoMachineController {
 
   purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
-    const lottos = this.model.makeLottos(lottoCount);
+    const lottos = this.model.purchaseLotto(lottoCount);
 
     this.view.purchasedLottoView.render(lottos, lottoCount);
     this.view.winningNumberView.render();

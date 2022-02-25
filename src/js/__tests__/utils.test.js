@@ -3,15 +3,15 @@ import { convertToNumber, pickLottoNumber } from '../utils/common.js';
 
 describe('로또 번호 랜덤 생성 함수 기능 테스트', () => {
   it('로또 랜덤 번호는 총 6개를 가져야 한다.', () => {
-    const numberList = pickLottoNumber(RULES.LOTTO_NUMS);
+    const numbers = pickLottoNumber(RULES.LOTTO_NUMS);
 
-    expect(numberList).toHaveLength(RULES.LOTTO_NUMS);
+    expect(numbers).toHaveLength(RULES.LOTTO_NUMS);
   });
 
   it('로또 랜덤 번호는 중복이 있어서는 안된다.', () => {
-    const numberList = pickLottoNumber(RULES.LOTTO_NUMS);
+    const numbers = pickLottoNumber(RULES.LOTTO_NUMS);
 
-    expect(numberList).toHaveLength(new Set(numberList).size);
+    expect(numbers).toHaveLength(new Set(numbers).size);
   });
 });
 
