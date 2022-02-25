@@ -34,12 +34,9 @@ export default class IssuedTicketView {
   }
 
   renderIssuedTickets(lottos) {
-    let template = '';
-
-    lottos.forEach((lotto) => {
-      template += ticketTemplate(lotto.numbers);
-    });
-
+    const template = lottos
+      .map((lotto) => ticketTemplate(lotto.numbers))
+      .join('');
     this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
   }
 
