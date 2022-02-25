@@ -36,7 +36,7 @@ export default class LottoMachine {
       .fill()
       .map(() => {
         const lotto = new Lotto();
-        lotto.numbers = lotto.pickNumbers(lotto.generateRandomNumber);
+        lotto.numbers = lotto.pickNumbers();
         return lotto;
       });
   }
