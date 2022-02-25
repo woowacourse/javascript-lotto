@@ -24,21 +24,27 @@ export const convertToNumber = value => {
   return Number(value);
 };
 
-export const pickLottoNumber = n => {
-  const lottos = new Set();
+export const pickLottoNumber = count => {
+  //로또번호 1 ~ 45를 소유하고 있는 배열
+  const lottoNumbers = [...Array(RULES.MAX_LOTTO_NUMBER)].map(
+    (_, index) => index + 1,
+  );
+  const numbers = [];
 
-  while (lottos.size < n) {
-    const number = getRandomNumber(
-      RULES.MIN_LOTTO_NUMBER,
-      RULES.MAX_LOTTO_NUMBER,
-    );
+  //로또번호 전체 갯수
+  let totalNumber = RULES.MAX_LOTTO_NUMBER;
 
-    lottos.add(number);
+  for (let i = 0; i < count; i++) {
+    const index = getRandomIndexNumber(0, totalNumber - 1);
+
+    numbers.push(lottoNumbers[index]);
+    lottoNumbers.splice(index, 1);
+    totalNumber--;
   }
 
-  return [...lottos];
+  return numbers;
 };
 
-const getRandomNumber = (min, max) => {
+const getRandomIndexNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
