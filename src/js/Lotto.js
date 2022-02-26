@@ -5,7 +5,7 @@ export default class Lotto {
   #numbers;
 
   constructor() {
-    this.#numbers = this.generateNumbersAutomatically();
+    this.generateNumbersAutomatically();
   }
 
   get numbers() {
@@ -13,13 +13,13 @@ export default class Lotto {
   }
 
   generateNumbersAutomatically() {
-    const numbers = new Set();
+    const pickNewNumbers = new Set();
 
-    while (numbers.size !== LOTTO_NUMBER.LENGTH) {
+    while (pickNewNumbers.size !== LOTTO_NUMBER.LENGTH) {
       const randomNumber = generateRandomInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX);
-      numbers.add(randomNumber);
+      pickNewNumbers.add(randomNumber);
     }
 
-    return numbers;
+    this.#numbers = pickNewNumbers;
   }
 }
