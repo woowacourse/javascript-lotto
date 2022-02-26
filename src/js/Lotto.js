@@ -5,14 +5,6 @@ export default class Lotto {
   #numbers;
 
   constructor() {
-    this.generateNumbersAutomatically();
-  }
-
-  get numbers() {
-    return this.#numbers;
-  }
-
-  generateNumbersAutomatically() {
     const pickNewNumbers = new Set();
 
     while (pickNewNumbers.size !== LOTTO_NUMBER.LENGTH) {
@@ -21,5 +13,9 @@ export default class Lotto {
     }
 
     this.#numbers = pickNewNumbers;
+  }
+
+  get numbers() {
+    return this.#numbers;
   }
 }
