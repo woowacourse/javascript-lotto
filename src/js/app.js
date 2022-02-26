@@ -1,7 +1,7 @@
 import { $ } from './utils/dom.js';
 import { getLottoPrice, checkLottoPrice } from './core/checkInputValue.js';
 import { toggleButton } from './component/toggleButton.js';
-import { drawLotto } from './core/drawLotto.js';
+import { makeLottoList } from './core/makeLottoList.js';
 import {
   renderPurchasedLottoList,
   renderLastLottoNumber,
@@ -50,7 +50,7 @@ export default class App {
     if (!this.lottoPriceValid) {
       return;
     }
-    this.lottoList = drawLotto(this.lottoPrice);
+    this.lottoList = makeLottoList(this.lottoPrice);
     renderPurchasedLottoList(this.lottoList.length);
     renderLastLottoNumber();
   }

@@ -5,17 +5,9 @@ import {
   NUMBER_LIST_LENGTH,
   LOTTO_PRICE,
 } from '../constants/constant.js';
-export const drawLotto = lottoPrice => {
-  if (lottoPrice === undefined) {
-    return;
-  }
-  const lottoCount = numberOfLotto(lottoPrice);
-  return makeLottos(lottoCount);
-};
-
-const makeLottos = lottoCount => {
+export const makeLottoList = lottoPrice => {
   const lottoList = [];
-  while (lottoList.length !== lottoCount) {
+  while (lottoList.length !== calculateGameCount(lottoPrice)) {
     const numberList = makeRandomNumberList();
     if (isOverlapLottoNumber(numberList)) {
       lottoList.push(new Lotto(numberList));
@@ -24,18 +16,15 @@ const makeLottos = lottoCount => {
   return lottoList;
 };
 
-export const numberOfLotto = value => {
+export const calculateGameCount = value => {
   return value / LOTTO_PRICE;
 };
 
 const makeRandomNumberList = () => {
-  const randomNumberList = [];
-  for (let i = 0; i < NUMBER_LIST_LENGTH; i++) {
-    randomNumberList.push(
-      Math.floor(Math.random() * (RANDOM_MAX - RANDOM_MIN)) + RANDOM_MIN,
-    );
-  }
-  return randomNumberList;
+  return Array.from(
+    { length: NUMBER_LIST_LENGTH },
+    () => Math.floor(Math.random() * (RANDOM_MAX - RANDOM_MIN)) + RANDOM_MIN,
+  );
 };
 
 export const isOverlapLottoNumber = lottoNumbers => {
