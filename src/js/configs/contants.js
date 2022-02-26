@@ -1,28 +1,3 @@
-export const SELECTOR = {
-  APP: '#app',
-  TITLE: '#title',
-  PAYMENT_SECTION: '#payment-section',
-  TICKET_SECTION: '#ticket-section',
-  WINNING_NUMBER_SECTION: '#winning-number-section',
-  PAYMENT_INPUT: '#payment-input',
-  PAYMENT_SUBMIT: '#payment-submit',
-  SWITCH: '.switch',
-  SLIDER: '#slider',
-  TICKET_LIST_WRAP: '#ticket-list-wrap',
-  TICKET_LIST: '#ticket-list',
-  TICKET_LIST_COLUMN: '.ticket-list-column',
-  TICKET_LIST_ROW: '.ticket-list-row',
-  TICKET: '.ticket',
-  TICKET_NUMBERS: '.ticket-numbers',
-  SHOW_NUMBER_TOGGLE_AREA: '#show-number-toggle-area',
-  WINNING_NUMBER_FIELDSET: '#winning-number-fieldset',
-  WINNING_NUMBER_FORM: '#winning-number-form',
-  WINNING_NUMBER_INPUT_WRAP: '#winning-number-input-wrap',
-  WINNING_NUMBER_INPUT: '.winning-number-input',
-  SHOW_RESULT_BUTTON: '#show-result-button',
-  BONUS_NUMBER_FORM: '#bonus-number-form',
-};
-
 export const DOM_STRING = {
   APP: 'app',
   TITLE: 'title',
@@ -46,6 +21,31 @@ export const DOM_STRING = {
   WINNING_NUMBER_INPUT: 'winning-number-input',
   SHOW_RESULT_BUTTON: 'show-result-button',
   BONUS_NUMBER_FORM: 'bonus-number-form',
+};
+
+export const SELECTOR = {
+  APP: `#${DOM_STRING.APP}`,
+  TITLE: `#${DOM_STRING.TITLE}`,
+  PAYMENT_SECTION: `#${DOM_STRING.PAYMENT_SECTION}`,
+  TICKET_SECTION: `#${DOM_STRING.TICKET_SECTION}`,
+  WINNING_NUMBER_SECTION: `#${DOM_STRING.WINNING_NUMBER_SECTION}`,
+  PAYMENT_INPUT: `#${DOM_STRING.PAYMENT_INPUT}`,
+  PAYMENT_SUBMIT: `#${DOM_STRING.PAYMENT_SUBMIT}`,
+  SWITCH: `.${DOM_STRING.SWITCH}`,
+  SLIDER: `#${DOM_STRING.SLIDER}`,
+  TICKET_LIST_WRAP: `#${DOM_STRING.TICKET_LIST_WRAP}`,
+  TICKET_LIST: `#${DOM_STRING.TICKET_LIST}`,
+  TICKET_LIST_COLUMN: `.${DOM_STRING.TICKET_LIST_COLUMN}`,
+  TICKET_LIST_ROW: `.${DOM_STRING.TICKET_LIST_ROW}`,
+  TICKET: `.${DOM_STRING.TICKET}`,
+  TICKET_NUMBERS: `.${DOM_STRING.TICKET_NUMBERS}`,
+  SHOW_NUMBER_TOGGLE_AREA: `#${DOM_STRING.SHOW_NUMBER_TOGGLE_AREA}`,
+  WINNING_NUMBER_FIELDSET: `#${DOM_STRING.WINNING_NUMBER_FIELDSET}`,
+  WINNING_NUMBER_FORM: `#${DOM_STRING.WINNING_NUMBER_FORM}`,
+  WINNING_NUMBER_INPUT_WRAP: `#${DOM_STRING.WINNING_NUMBER_INPUT_WRAP}`,
+  WINNING_NUMBER_INPUT: `.${DOM_STRING.WINNING_NUMBER_INPUT}`,
+  SHOW_RESULT_BUTTON: `#${DOM_STRING.SHOW_RESULT_BUTTON}`,
+  BONUS_NUMBER_FORM: `#${DOM_STRING.BONUS_NUMBER_FORM}`,
 };
 
 export const LOTTO = {
