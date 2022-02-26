@@ -1,9 +1,4 @@
-import LottoBundle from '../model/LottoBundle.js';
-import validateMoney from '../validator/moneyValidator.js';
-import IssuedTicketView from '../view/IssuedTicketView.js';
-import PurchaseView from '../view/PurchaseView.js';
 import { on } from '../utils/event.js';
-import LOTTO from '../constants/lotto.js';
 
 /**
  * @module controller/LottoController
@@ -13,10 +8,10 @@ import LOTTO from '../constants/lotto.js';
  * @classdesc view와 model을 연결하는 controller
  */
 export default class LottoController {
-  constructor() {
-    this.model = new LottoBundle();
-    this.purchaseView = new PurchaseView();
-    this.issuedTicketView = new IssuedTicketView();
+  constructor(model, purchaseView, issuedTicketView) {
+    this.model = model;
+    this.purchaseView = purchaseView;
+    this.issuedTicketView = issuedTicketView;
     this.#subscribeViewEvents();
   }
 
@@ -39,23 +34,24 @@ export default class LottoController {
    */
   #purchaseLotto(money) {
     try {
-      validateMoney(money);
-      const count = money / LOTTO.PRICE_PER_TICKET;
-      this.model.createLottoBundle(count);
-      this.#renderLotto(count);
+      this.model.setMoney(money);
+      this.model.setCount();
+      this.model.setPenny();
+      this.model.createLottoBundle();
+      this.#renderLotto();
     } catch (error) {
       alert(error.message);
     }
   }
 
   /** @method renderLotto
-   * @param {number} count 구입되어 출력되어야 하는 로또의 개수
    * @description 구입한 로또의 개수만큼 렌더링할 것을 View에 요청한다.
    */
-  #renderLotto(count) {
+  #renderLotto() {
     this.issuedTicketView.showTicketContainer();
-    this.issuedTicketView.renderTicketCount(count);
-    this.issuedTicketView.renderIssuedTickets(this.model.lottos);
+    this.issuedTicketView.renderTicketCount();
+    this.issuedTicketView.renderIssuedTickets();
+    this.purchaseView.renderPenny();
     this.purchaseView.deactivatePurchaseForm();
   }
 

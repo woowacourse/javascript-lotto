@@ -9,10 +9,6 @@ const moneyValidator = {
   isUnderMaximum(money) {
     return money <= LOTTO.INVENTORY * LOTTO.PRICE_PER_TICKET;
   },
-
-  isThousandUnit(money) {
-    return money % LOTTO.PRICE_PER_TICKET === 0;
-  },
 };
 
 const validateMoney = (money) => {
@@ -23,10 +19,7 @@ const validateMoney = (money) => {
   if (!moneyValidator.isUnderMaximum(money)) {
     throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
   }
-
-  if (!moneyValidator.isThousandUnit(money)) {
-    throw new Error(EXCEPTION.INVALID_UNIT);
-  }
+  return true;
 };
 
 export default validateMoney;

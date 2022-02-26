@@ -1,3 +1,4 @@
+import LOTTO from '../constants/lotto.js';
 import ID from '../constants/selector.js';
 import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
@@ -11,7 +12,8 @@ import { $ } from '../utils/selector.js';
  * @classdesc 로또를 구입하는 섹션 화면을 담당하는 view 클래스
  */
 export default class PurchaseView {
-  constructor() {
+  constructor(model) {
+    this.model = model;
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);
@@ -48,5 +50,10 @@ export default class PurchaseView {
   deactivatePurchaseForm() {
     this.$purchaseButton.disabled = true;
     this.$purchaseInput.disabled = true;
+  }
+
+  renderPenny() {
+    this.$purchaseInput.valueAsNumber =
+      this.model.money - this.model.count * LOTTO.PRICE_PER_TICKET;
   }
 }

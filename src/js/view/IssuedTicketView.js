@@ -12,7 +12,8 @@ import ID from '../constants/selector.js';
  * @classdesc 발행된 로또 티켓 섹션 화면을 담당하는 view 클래스
  */
 export default class IssuedTicketView {
-  constructor() {
+  constructor(model) {
+    this.model = model;
     this.$ticketContainer = $(ID.TICKET_CONTAINER);
     this.$ticketCount = $(ID.TICKET_COUNT);
     this.$issuedTicketDiv = $(ID.ISSUED_TICKET_DIV);
@@ -46,16 +47,16 @@ export default class IssuedTicketView {
    * @description 구입한 로또 개수를 화면에 렌더링한다.
    * @param {number} count 구입되어 출력되어야 하는 로또의 개수
    */
-  renderTicketCount(count) {
-    this.$ticketCount.textContent = count;
+  renderTicketCount() {
+    this.$ticketCount.textContent = this.model.count;
   }
 
   /**
    * @description 구입한 로또 상세정보를 화면에 렌더링한다.
    * @param {array} lottos 6개의 숫자로 이뤄진 로또 배열들을 구입된 로또 개수만큼 요소로 갖는 배열
    */
-  renderIssuedTickets(lottos) {
-    const template = lottos
+  renderIssuedTickets() {
+    const template = this.model.lottos
       .map((lotto) => ticketTemplate(lotto.numbers))
       .join('');
     this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
