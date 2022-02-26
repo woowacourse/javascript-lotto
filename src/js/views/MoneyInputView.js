@@ -12,7 +12,7 @@ export default class MoneyInputView {
 
     $($container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).addEventListener('click', (event) => {
       event.preventDefault();
-      handler({ moneyInput: $($container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value });
+      handler({ inputValue: $($container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value });
     });
   }
 }
