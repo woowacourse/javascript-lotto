@@ -1,0 +1,26 @@
+input {
+  border: 1px solid var(--secondary);
+  box-sizing: border-box;
+  border-radius: 4px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 4px 0px;
+  padding: 8px;
+}
+
+/* 키보드로 인풋에 포커스 시 */
+input:focus-visible {
+  outline: 3px solid var(--secondary);
+}
+
+/* 마우스, 터치로 인풋에 포커스 시 */
+input:focus:not(:focus-visible) {
+  outline: none;
+}
+
+#purchase-input {
+  width: 310px;
+  height: 36px;
+}

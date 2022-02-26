@@ -1,0 +1,24 @@
+@import './root.css';
+@import './button.css';
+@import './container.css';
+@import './text.css';
+@import './toggle.css';
+@import './input.css';
+@import './display.css';
+
+body {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--surface);
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

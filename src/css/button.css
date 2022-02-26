@@ -1,0 +1,36 @@
+button {
+  cursor: pointer;
+  background: var(--primary);
+  border-radius: 4px;
+  border: var(--primary);
+  padding: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: var(--white);
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+button:disabled {
+  background: var(--secondary);
+  cursor: not-allowed;
+}
+
+/* 키보드로 버튼에 포커스 시 */
+button:focus-visible {
+  outline: 3px solid var(--secondary);
+}
+
+/* 마우스, 터치로 버튼에 포커스 시 */
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+#purchase-button {
+  width: 56px;
+  height: 36px;
+  margin-left: 8px;
+}
