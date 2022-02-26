@@ -40,8 +40,8 @@ describe('입력한 요금만큼 로또를 생성할 수 있다.', () => {
   });
 });
 
-describe(`중복되지 않는 ${LOTTO_RULES.MIN_RANGE} ~ ${LOTTO_RULES.MAX_RANGE} 사이의 숫자를 ${LOTTO_RULES.BALL_COUNT}개 생성한다.`, () => {
-  test(`${LOTTO_RULES.MIN_RANGE}이상의 숫자만 있어야 한다.`, () => {
+describe(`중복되지 않는 1 ~ 45 사이의 숫자를 6개 생성한다.`, () => {
+  test(`1 이상의 숫자만 있어야 한다.`, () => {
     createRandomNumbers(
       LOTTO_RULES.MIN_RANGE,
       LOTTO_RULES.MAX_RANGE,
@@ -51,7 +51,7 @@ describe(`중복되지 않는 ${LOTTO_RULES.MIN_RANGE} ~ ${LOTTO_RULES.MAX_RANGE
     });
   });
 
-  test(`${LOTTO_RULES.MAX_RANGE}이하의 숫자만 있어야 한다.`, () => {
+  test(`45 이하의 숫자만 있어야 한다.`, () => {
     createRandomNumbers(
       LOTTO_RULES.MIN_RANGE,
       LOTTO_RULES.MAX_RANGE,
@@ -69,7 +69,7 @@ describe(`중복되지 않는 ${LOTTO_RULES.MIN_RANGE} ~ ${LOTTO_RULES.MAX_RANGE
     ).toBe(LOTTO_RULES.BALL_COUNT);
   });
 
-  test(`${LOTTO_RULES.BALL_COUNT}개의 숫자가 반환돼야 한다.`, () => {
+  test(`6개의 숫자가 반환돼야 한다.`, () => {
     expect(
       createRandomNumbers(LOTTO_RULES.MIN_RANGE, LOTTO_RULES.MAX_RANGE, LOTTO_RULES.BALL_COUNT)
         .length,
