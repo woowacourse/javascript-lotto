@@ -8,10 +8,10 @@ export default class App {
   constructor() {
     const lottoAppModel = new LottoModel();
     const lottoAppView = new LottoView($(SELECTOR.APP));
-    this.controller = new LottoController(lottoAppModel, lottoAppView);
+    this.lottoController = new LottoController(lottoAppModel, lottoAppView);
   }
 
   init() {
-    this.controller.init();
+    this.lottoController.init();
   }
 }
