@@ -2,7 +2,7 @@ import Model from '../core/Model.js';
 import { LOTTO } from '../configs/contants.js';
 import Lotto from './Lotto/Lotto.js';
 
-export default class LottoAppModel extends Model {
+export default class LottoModel extends Model {
   static issueLotto() {
     return new Lotto();
   }
@@ -12,7 +12,7 @@ export default class LottoAppModel extends Model {
   }
 
   purchase(amount, callback) {
-    this.issueLottoWithCount(LottoAppModel.getNumberOfLotto(amount));
+    this.issueLottoWithCount(LottoModel.getNumberOfLotto(amount));
 
     callback(this.getState());
   }
@@ -21,7 +21,7 @@ export default class LottoAppModel extends Model {
     this.update({
       lottoList: Array(count)
         .fill()
-        .map(() => LottoAppModel.issueLotto()),
+        .map(() => LottoModel.issueLotto()),
     });
   }
 }

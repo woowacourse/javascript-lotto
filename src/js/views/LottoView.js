@@ -5,7 +5,7 @@ import { $ } from '../utils/utils.js';
 import { validator } from '../utils/validator.js';
 import { SELECTOR } from '../configs/contants.js';
 
-export default class LottoAppView extends View {
+export default class LottoView extends View {
   template() {
     const { lottoList, isShowNumber } = this.state;
 
