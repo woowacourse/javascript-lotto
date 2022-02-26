@@ -11,8 +11,8 @@ describe('Lottos 인스턴스 객체 생성 테스트', () => {
     const lottos = new Lottos();
     const count = 10;
 
-    lottos.makeLottos(count);
+    const newLottos = lottos.makeNewLottos(count);
 
-    expect(lottos.getLottos()).toHaveLength(count);
+    expect(newLottos).toHaveLength(count);
   });
 });

@@ -19,9 +19,10 @@ export default class Lottos {
     return this.#lottos;
   }
 
-  makeLottos(count) {
+  makeNewLottos(count) {
     const newLottos = [...Array(count)].map(() => new Lotto());
     this.#setLottos(newLottos);
+    return this.getLottos();
   }
 
   reset() {
