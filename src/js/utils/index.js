@@ -1,11 +1,13 @@
+import * as _ from 'lodash';
+
 export const $ = (selector) => document.querySelector(selector);
 
 export const createRandomNumbers = (minRange, maxRange, count) => {
   const candidate = Array(maxRange - minRange + 1)
     .fill()
-    .map((_, i) => i + minRange);
+    .map((n, i) => i + minRange);
 
-  return Array(count)
-    .fill()
-    .map(() => candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0]);
+  const shuffledCandiate = _.shuffle(candidate);
+
+  return shuffledCandiate.slice(0, count);
 };
