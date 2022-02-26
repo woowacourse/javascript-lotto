@@ -2,6 +2,8 @@ import { NUMBER } from '../constants/number';
 import { lottoNumberClosure } from '../utils/gameUtil';
 
 class Lotto {
+  /** check Validation을 하는 기능이 필요할까 싶었다. */
+  /** 사용자의 입력으로 발생하는 것이 아닌, 개발자의 코드로 발생되는 에러라면, 검증은 유틸함수에 대해 테스팅 한다면 될 것 같다. */
   constructor() {
     this.lottoNumbers = this.createLottoNumbers();
   }
