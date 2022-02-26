@@ -55,6 +55,14 @@
   overflow: hidden;
 }
 
+.vertical-align-super {
+  vertical-align: super;
+}
+
+.display-inline {
+  display: inline !important;
+}
+
 .display-none {
   display: none !important;
 }

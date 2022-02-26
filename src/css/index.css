@@ -72,7 +72,7 @@ body {
   color: rgba(0, 0, 0, 0.87);
 }
 
-.purchased-lotto-section,
+/* .purchased-lotto-section, */
 .winner-number-input-wrap {
   display: flex;
   justify-content: space-between;
@@ -84,16 +84,21 @@ body {
   color: rgba(0, 0, 0, 0.87);
 }
 
-.lotto-list-icon-style {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+.grid-div {
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
-.lotto-list-number li {
+.lotto-list-icon-style {
   display: flex;
-  align-items: center;
-  height: 36px;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.lotto-list-number {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
 }
 
 .show-number-toggle {
