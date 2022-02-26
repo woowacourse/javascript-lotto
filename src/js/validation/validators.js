@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE, LOTTO } from '../constants';
 import ValidationResult from './validation-result';
 
-const isEmpty = (str) => {
+const isEmptyStr = (str) => {
   return str.trim() === '';
 };
 
@@ -10,7 +10,7 @@ const isNumber = (num) => {
 };
 
 export const validateMoney = (money) => {
-  if (isEmpty(money)) {
+  if (isEmptyStr(money)) {
     return new ValidationResult(true, ERROR_MESSAGE.EMPTY_MONEY);
   }
   if (!isNumber(money)) {
@@ -28,7 +28,7 @@ export const validateMoney = (money) => {
 // eslint-disable-next-line max-lines-per-function
 export const validateWinningNumbers = (numbers) => {
   for (let i = 0; i < numbers.length; i += 1) {
-    if (isEmpty(numbers[i])) {
+    if (isEmptyStr(numbers[i])) {
       return new ValidationResult(true, ERROR_MESSAGE.EMPTY_WINNING_NUMBERS);
     }
     if (!isNumber(numbers[i])) {
