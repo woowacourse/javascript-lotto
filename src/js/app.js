@@ -1,5 +1,5 @@
-import { isPositiveInteger, isDivisibleBy } from './utils';
-import { DOM_STRING, SELECTOR, MONEY } from './constants';
+import { isPositiveInteger, divideBy } from './utils';
+import { DOM_STRING, SELECTOR, MONEY, ERROR_MESSAGE } from './constants';
 import Lotto from './Lotto';
 import {
   generatePaymentSection,
@@ -10,7 +10,6 @@ import {
 import {
   getElement,
   getElements,
-  alertMessage,
   bindEventListener,
   render,
   initInput,
@@ -23,8 +22,7 @@ export default class LottoApp {
     this.$app = getElement(app);
     render(this.$app, generatePaymentSection());
 
-    this.purchasedLottoCount = 0;
-    this.purchasedLottoList = [];
+    this.lottoList = [];
     this.bindEvent();
   }
 
@@ -46,37 +44,43 @@ export default class LottoApp {
 
   onSubmitPayment() {
     const $paymentInput = getElement(SELECTOR.$PAYMENT_INPUT);
+    const payment = Number($paymentInput.value);
 
     try {
-      this.purchasedLottoCount = isDivisibleBy(
-        isPositiveInteger($paymentInput.valueAsNumber),
-        MONEY.STANDARD
-      );
+      if (!isPositiveInteger(payment)) {
+        throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
+      }
+      if (!divideBy(payment, MONEY.STANDARD)) {
+        throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_STANDARD);
+      }
 
-      toggleClassName(
-        getElement(SELECTOR.$PAYMENT_BUTTON),
-        DOM_STRING.DISABLED
-      );
-
-      disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
-      disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
-
-      this.setPurchasedLottoList();
-
-      render(this.$app, generatePurchasedSection(this.purchasedLottoList));
-      render(this.$app, generateWinningNumberSection());
-      render(this.$app, generateResultCheckingSection());
-    } catch (error) {
-      alertMessage(error.message);
+      this.disablePayment();
+      this.setPurchasedLottoList(payment / MONEY.STANDARD);
+      this.renderPurchasedSection();
+    } catch ({ message }) {
+      alert(message);
       initInput($paymentInput);
     }
   }
 
-  setPurchasedLottoList() {
-    for (let i = 0; i < this.purchasedLottoCount; i++) {
+  disablePayment() {
+    toggleClassName(getElement(SELECTOR.$PAYMENT_BUTTON), DOM_STRING.DISABLED);
+
+    disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
+    disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
+  }
+
+  renderPurchasedSection() {
+    render(this.$app, generatePurchasedSection(this.lottoList));
+    render(this.$app, generateWinningNumberSection());
+    render(this.$app, generateResultCheckingSection());
+  }
+
+  setPurchasedLottoList(count) {
+    for (let i = 0; i < count; i++) {
       const lotto = new Lotto();
       lotto.setLotto();
-      this.purchasedLottoList.push(lotto.getLotto());
+      this.lottoList.push(lotto.getLotto());
     }
   }
 

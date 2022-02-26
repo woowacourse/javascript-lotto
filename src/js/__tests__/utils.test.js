@@ -1,6 +1,6 @@
 import {
   isPositiveInteger,
-  isDivisibleBy,
+  divideBy,
   createRandomNumber,
   createRandomNumberList,
 } from '../utils';
@@ -27,42 +27,36 @@ expect.extend({
 });
 
 describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케이스)', () => {
-  test('구입할 금액이 양의 정수가 아닐 경우 에러메시지를 보여준다. 입력: -1, 실패 케이스', () => {
+  test('구입할 금액이 양의 정수인지 확인한다. 입력: -1, 실패 케이스', () => {
     const payment = -1;
 
-    expect(() => {
-      isPositiveInteger(payment);
-    }).toThrowError();
+    expect(isPositiveInteger(payment)).toBe(false);
   });
 
-  test('구입할 금액이 양의 정수가 아닐 경우 에러메시지를 보여준다. 입력: " ", 실패 케이스', () => {
+  test('구입할 금액이 양의 정수인지 확인한다. 입력: " ", 실패 케이스', () => {
     const payment = ' ';
 
-    expect(() => {
-      isPositiveInteger(payment);
-    }).toThrowError();
+    expect(isPositiveInteger(payment)).toBe(false);
   });
 
-  test('구입할 금액이 양의 정수일 경우 입력한 금액을 반환한다. 입력: 3, 성공 케이스', () => {
+  test('구입할 금액이 양의 정수인지 확인하다. 입력: 3, 성공 케이스', () => {
     const payment = 3;
 
-    expect(isPositiveInteger(payment)).toBe(3);
+    expect(isPositiveInteger(payment)).toBe(true);
   });
 });
 
 describe(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는지 확인한다 (실패/성공 케이스)`, () => {
   test(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지 않은 경우 에러메시지를 보여준다. 입력: 33, 실패 케이스`, () => {
-    const payment = 33;
+    const payment = 133;
 
-    expect(() => {
-      isDivisibleBy(payment, MONEY.STANDARD);
-    }).toThrowError();
+    expect(divideBy(payment, MONEY.STANDARD)).toBe(false);
   });
 
   test(`구입 금액이 ${MONEY.STANDARD}으로 나누어 떨어질 경우 (구입 금액/${MONEY.STANDARD})을 반환한다. 입력: 3000, 성공 케이스`, () => {
     const payment = 3000;
 
-    expect(isDivisibleBy(payment, MONEY.STANDARD)).toBe(3);
+    expect(divideBy(payment, MONEY.STANDARD)).toBe(true);
   });
 });
 

@@ -1,26 +1,15 @@
-import { ERROR_MESSAGE, LOTTO } from './constants';
+import { LOTTO } from './constants';
 
-const isPositiveInteger = (payment) => {
-  if (!Number.isInteger(payment) || payment <= 0) {
-    throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
-  }
+export const isPositiveInteger = (payment) =>
+  Number.isInteger(payment) && payment > 0;
 
-  return payment;
-};
+export const divideBy = (payment, price) => payment % price === 0;
 
-const isDivisibleBy = (payment, price) => {
-  if (payment % price !== 0) {
-    throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_STANDARD);
-  }
-
-  return parseInt(payment / price);
-};
-
-const createRandomNumber = (minNumber, maxNumber) => {
+export const createRandomNumber = (minNumber, maxNumber) => {
   return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
 };
 
-const createRandomNumberList = () => {
+export const createRandomNumberList = () => {
   const randomNumberList = [];
 
   while (randomNumberList.length < LOTTO.LENGTH) {
@@ -31,11 +20,4 @@ const createRandomNumberList = () => {
   }
 
   return randomNumberList;
-};
-
-export {
-  isPositiveInteger,
-  isDivisibleBy,
-  createRandomNumber,
-  createRandomNumberList,
 };
