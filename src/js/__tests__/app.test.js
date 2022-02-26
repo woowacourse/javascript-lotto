@@ -1,4 +1,4 @@
-import { LOTTO_PRICE, LOTTO_RULE } from '../constants';
+import { ALERT_MESSAGE, LOTTO_PRICE, LOTTO_RULE } from '../constants';
 import Model from '../model';
 import { validateCashInput } from '../utils/validation';
 
@@ -28,6 +28,6 @@ describe('로또 구매 테스트', () => {
 
   test(`로또 구입 금액을 입력했을 때, 금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면 에러를 생성한다.`, () => {
     const cash = 1500;
-    expect(() => validateCashInput(cash)).toThrow();
+    expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.NOT_DIVISIBLE);
   });
 });
