@@ -1,5 +1,12 @@
 import { $ } from './utils/index.js';
-import template from './template/index.js';
+
+const getDefaultLottoListTemplate = (count) => '<p class="lotto">🎟️</p>'.repeat(count);
+
+const getDetailLottoListTemplate = (lottos) => {
+  return lottos
+    .map((lotto) => `<p class="lotto">🎟️<span class="lotto-number">${lotto.join(', ')}</span></p>`)
+    .join('');
+};
 
 const view = {
   renderLottoList(lottos) {
@@ -9,11 +16,11 @@ const view = {
   },
 
   renderDefaultLottoArea(count) {
-    $('#lottos-container .lottos.default').innerHTML = template.defaultLottoList(count);
+    $('#lottos-container .lottos.default').innerHTML = getDefaultLottoListTemplate(count);
   },
 
   renderDetailLottoArea(lottos) {
-    $('#lottos-container .lottos.detail').innerHTML = template.detailLottoList(lottos);
+    $('#lottos-container .lottos.detail').innerHTML = getDetailLottoListTemplate(lottos);
   },
 
   renderFare(fare) {
