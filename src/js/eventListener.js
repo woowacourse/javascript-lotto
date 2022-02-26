@@ -12,8 +12,12 @@ export const onSubmitFareForm = (e) => {
 
     validator.validateFare(fare);
 
-    view.renderLottoList(lottoGame.createLottos(calculateLottoCount(fare)));
-    view.renderFare(calculateRemainFare(fare));
+    const lottoCount = calculateLottoCount(fare);
+    const lottoList = lottoGame.createLottos(lottoCount);
+    view.renderLottoList(lottoList);
+
+    const remainFare = calculateRemainFare(fare);
+    view.renderFare(remainFare);
   } catch (error) {
     alert(error.message);
   }
