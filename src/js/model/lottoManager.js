@@ -18,7 +18,7 @@ class LottoManager {
 
   #validateCashInput(cashInput) {
     if (!cashInput) {
-      throw new Error(ERROR_MESSAGE.EMPTY_INPUT_MESSAGE);
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
     if (
       !isNumberInRange({ number: cashInput, min: CASH_INPUT_RANGE.MIN, max: CASH_INPUT_RANGE.MAX })
@@ -26,7 +26,7 @@ class LottoManager {
       throw new Error(ERROR_MESSAGE.CASH_INPUT_OUT_OF_RANGE);
     }
     if (!this.#isNoChangeLeft(cashInput)) {
-      throw new Error(ERROR_MESSAGE.INVALID_UNIT_MESSAGE);
+      throw new Error(ERROR_MESSAGE.INVALID_UNIT);
     }
   }
 
