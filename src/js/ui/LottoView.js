@@ -26,7 +26,7 @@ export default class LottoView {
   handlePurchaseForm(event) {
     event.preventDefault();
     try {
-      this.userInputMoney();
+      this.insertMoney();
       this.machine.operateLottoMachine();
       this.renderLottoAmount();
       this.renderLotto();
@@ -41,7 +41,7 @@ export default class LottoView {
     this.renderLotto();
   }
 
-  userInputMoney() {
+  insertMoney() {
     this.machine.inputMoney = Number($(DOM.ID.PURCHASE_MONEY_INPUT).value);
   }
 
