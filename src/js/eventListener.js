@@ -23,5 +23,5 @@ export const onSubmitFareForm = (e) => {
   }
 };
 
-export const onChangeLottoViewerController = () =>
+export const onToggleLottoViewerController = () =>
   $('#lottos-container').classList.toggle('detail');
