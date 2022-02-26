@@ -1,4 +1,3 @@
-import '../utils/customPrototypeMethod';
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import LottoGame from '../models/LottoGame';
 
