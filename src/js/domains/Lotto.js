@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
 =======
 import { LOTTO } from '../constants/constants.js';
@@ -31,6 +32,9 @@ const LOTTO_NUMBER_QUANTITY = 6;
 =======
 import { LOTTO } from "../constants/constants.js";
 >>>>>>> 0d4f4f9 (refactor: 로또 관련 상수 결합)
+=======
+import { LOTTO } from "../constants/constants.js";
+>>>>>>> 111f2e8 (refactor: Domain Lotto pickNumbers 로직 간소화)
 export default class Lotto {
   #numbers = [];
 
@@ -38,19 +42,15 @@ export default class Lotto {
     return this.#numbers;
   }
 
-  set numbers(numbers) {
-    this.#numbers = numbers;
-  }
-
-  pickNumbers(generateRandomNumber) {
+  pickNumbers(strategy = this.#generateRandomNumber) {
     const set = new Set();
     while (set.size < LOTTO.NUMBER_QUANTITY) {
-      set.add(generateRandomNumber());
+      set.add(strategy());
     }
-    return [...set];
+    this.#numbers = [...set];
   }
 
-  generateRandomNumber() {
+  #generateRandomNumber() {
     return Math.floor(
 <<<<<<< HEAD
       Math.random() * (LOTTO_MAX_NUMBER - LOTTO_MIN_NUMBER) + LOTTO_MIN_NUMBER

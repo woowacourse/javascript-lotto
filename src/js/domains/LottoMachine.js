@@ -37,6 +37,7 @@ export default class LottoMachine {
       .map(() => {
         const lotto = new Lotto();
         lotto.pickNumbers();
+<<<<<<< HEAD
         return lotto;
       });
 =======
@@ -89,6 +90,8 @@ export default class LottoMachine {
       .map(() => {
         const lotto = new Lotto();
         lotto.numbers = lotto.pickNumbers(lotto.generateRandomNumber);
+=======
+>>>>>>> 111f2e8 (refactor: Domain Lotto pickNumbers 로직 간소화)
         return lotto;
       });
   }
