@@ -39,6 +39,5 @@ const makeRandomNumberList = () => {
 };
 
 export const isOverlapLottoNumber = lottoNumbers => {
-  const isCorrectValue = lottoNumbers.length === new Set(lottoNumbers).size;
-  return isCorrectValue;
+  return lottoNumbers.length === new Set(lottoNumbers).size;
 };
