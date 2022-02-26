@@ -48,13 +48,25 @@ describe('소비자는 자동 구매를 할 수 있어야 한다.', () => {
 
     expect(isCorrectRange(lotto.numbers)).toBe(true);
   });
-
   test('발급한 로또는 모두 각각 독립적으로 랜덤한 번호를 추천한다.', () => {
-    const lottoCount = 2;
+    let trialNumber = 100;
+    let differentCount = 0;
+    let totalCount = 0;
+    const lottoBundle = new LottoBundle();
+    lottoBundle.createLottoBundle(trialNumber);
 
-    const issuedLotto1 = [1, 2, 3, 4, 5, 6];
-    const issuedLotto2 = [1, 2, 3, 4, 5, 6];
+    for (let i = 0; i < trialNumber; i++) {
+      for (let j = i + 1; j < trialNumber; j++) {
+        totalCount += 1;
+        if (
+          JSON.stringify(lottoBundle.lottos[i].numbers) !==
+          JSON.stringify(lottoBundle.lottos[j].numbers)
+        ) {
+          differentCount += 1;
+        }
+      }
+    }
 
-    expect(JSON.stringify(issuedLotto1)).toBe(JSON.stringify(issuedLotto2));
+    expect(differentCount / totalCount).toBeGreaterThanOrEqual(0.99);
   });
 });
