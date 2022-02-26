@@ -20,7 +20,7 @@ describe('로또 게임 모델 테스트', () => {
     }
   });
 
-  it('로또 번호 배열들을 입력하여 로또 모델을 생성하고 관리할 수 있어야 한다.', () => {
+  it('금액 값을 통해 구매할 수 있는 로또 갯수를 구하고, 이를 통해 해당 갯수만큼의 로또를 가진 lottoList 멤버 값을 구할 수 있다.', () => {
     const lottoGame = new LottoGame();
     const charge = 5000;
     const availableLottoAmount = lottoGame.exchangeChargeToLottoAmount(charge);
@@ -28,17 +28,5 @@ describe('로또 게임 모델 테스트', () => {
     lottoGame.createLottoList(charge);
 
     expect(lottoGame.lottoList.length).toBe(availableLottoAmount);
-  });
-
-  /** 이 부분이 lottoGame의 테스트인지, 유틸 함수에 대한 테스트인지 궁금하다. */
-  it('lottoList의 getter는 깊게 복사된 값을 반환한다.', () => {
-    const lottoGame = new LottoGame();
-    const charge = 5000;
-
-    lottoGame.createLottoList(charge);
-
-    const lottoListFromGetterFunc = lottoGame.getLottoList();
-
-    expect(lottoListFromGetterFunc !== lottoGame.lottoList).toBe(true);
   });
 });
