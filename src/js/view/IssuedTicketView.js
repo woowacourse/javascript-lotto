@@ -2,6 +2,7 @@ import ticketTemplate from '../layouts/template.js';
 import { emit, on } from '../utils/event.js';
 import { $, $$ } from '../utils/selector.js';
 import ID from '../constants/selector.js';
+import EVENT from '../constants/event.js';
 
 /**
  * @module view/IssuedTicketView
@@ -33,7 +34,7 @@ export default class IssuedTicketView {
    */
   #handleToggle(e) {
     const { checked } = e.target;
-    emit(this.$lottoNumberToggle, '@toggle', { checked });
+    emit(this.$lottoNumberToggle, EVENT.TOGGLE, { checked });
   }
 
   /**

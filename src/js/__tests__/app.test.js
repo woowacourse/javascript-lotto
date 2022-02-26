@@ -1,3 +1,4 @@
+import LOTTO from '../constants/lotto';
 import Lotto from '../model/Lotto';
 import LottoBundle from '../model/LottoBundle';
 
@@ -20,7 +21,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
     const validMoney = 5000;
     const lottoCount = 5;
     const lottoBundle = new LottoBundle();
-    const getLottoCount = (money) => money / 1000;
+    const getLottoCount = (money) => money / LOTTO.PRICE_PER_TICKET;
 
     lottoBundle.createLottoBundle(getLottoCount(validMoney));
     expect(lottoBundle.lottos.length).toBe(lottoCount);

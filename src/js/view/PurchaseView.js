@@ -1,3 +1,4 @@
+import EVENT from '../constants/event.js';
 import LOTTO from '../constants/lotto.js';
 import ID from '../constants/selector.js';
 import { on, emit } from '../utils/event.js';
@@ -33,7 +34,7 @@ export default class PurchaseView {
   #handleSubmit(e) {
     e.preventDefault();
     const money = this.#getMoneyToPurchase();
-    emit(this.$purchaseForm, '@submit', { money });
+    emit(this.$purchaseForm, EVENT.SUBMIT, { money });
   }
 
   /** @method getMoneyToPurchase
