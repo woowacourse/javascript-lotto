@@ -35,5 +35,8 @@
       "^.+\\.js$": "babel-jest"
     }
   },
-  "homepage": "https://woose28.github.io/javascript-lotto/"
+  "homepage": "https://woose28.github.io/javascript-lotto/",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
