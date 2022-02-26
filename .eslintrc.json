@@ -12,7 +12,7 @@
     // project requirement
     "max-depth": ["error", 2],
     "max-lines-per-function": [
-      "warn",
+      "off",
       { "max": 15, "skipBlankLines": false, "skipComments": false }
     ],
     "no-alert": "off",
