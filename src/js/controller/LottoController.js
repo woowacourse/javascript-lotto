@@ -20,7 +20,7 @@ export default class LottoController {
     this.#LottoListView.bindLottoNumberToggle();
   }
 
-  handleMoneyInputSubmit({ inputValue: money }) {
+  handleMoneyInputSubmit({ moneyInputValue: money }) {
     try {
       checkValidMoneyInput(money);
 
