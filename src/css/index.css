@@ -126,13 +126,6 @@ form {
   width: 286px;
 }
 
-#ticket-list {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  width: 286px;
-}
-
 .ticket-list-row {
   flex-direction: row;
 }
