@@ -10,7 +10,7 @@ describe('로또 구매 테스트', () => {
     expect(model.getLottoList().length).toBe(lottoQuantity);
   });
 
-  test(`로또 1개당 ${LOTTO_RULE.NUMBERS_COUNT}개의 번호가 할당된다.`, () => {
+  test(`로또 구입 금액을 입력하면, 로또 1개당 ${LOTTO_RULE.NUMBERS_COUNT}개의 번호가 할당된다.`, () => {
     const model = new Model();
     expect(model.makeLottoNumbers().length).toBe(LOTTO_RULE.NUMBERS_COUNT);
   });
@@ -26,7 +26,7 @@ describe('로또 구매 테스트', () => {
     expect(isIncluded).toBeTruthy();
   });
 
-  test(`금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면, 에러를 생성한다.`, () => {
+  test(`로또 구입 금액을 입력했을 때, 금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면 에러를 생성한다.`, () => {
     const cash = 1500;
     expect(() => validateCashInput(cash)).toThrow();
   });
