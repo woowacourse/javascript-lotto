@@ -39,7 +39,6 @@ describe('로또 게임 모델 테스트', () => {
     lottoGame.createLottoList(charge);
 
     const lottoListFromGetterFunc = lottoGame.getLottoList();
-
-    expect(lottoListFromGetterFunc !== lottoGame.lottoList).toBe(true);
+    expect(lottoListFromGetterFunc).toEqual(lottoGame.lottoList);
   });
 });
