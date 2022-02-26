@@ -5,11 +5,11 @@ export function isValidLength(lottoNumber) {
 }
 
 export function isValidNumber(lottoNumbers) {
-  return lottoNumbers.every(
+  return !lottoNumbers.some(
     (number) =>
-      Number.isInteger(number) &&
-      number >= NUMBER.LOTTO_MIN_NUMBER &&
-      number <= NUMBER.LOTTO_MAX_NUMBER
+      !Number.isInteger(number) ||
+      number < NUMBER.LOTTO_MIN_NUMBER ||
+      number > NUMBER.LOTTO_MAX_NUMBER
   );
 }
 
