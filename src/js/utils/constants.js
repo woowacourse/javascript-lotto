@@ -19,6 +19,6 @@ export const LOTTO_NUMBER = {
 };
 
 export const ERROR_MESSAGES = {
-  INVALID_MINIMUM_AMOUNT: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
-  INVALID_AMOUNT_UNIT: `금액은 ${AMOUNT.UNIT}원 단위로 입력해주세요.`,
+  MINIMUM_AMOUNT_IS_SMALL: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
+  NOT_DIVIDED_INTO_THOUSAND: `금액은 ${AMOUNT.UNIT}원 단위로 입력해주세요.`,
 };
