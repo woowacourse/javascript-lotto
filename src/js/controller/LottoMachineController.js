@@ -1,6 +1,6 @@
 import Lottos from '../model/Lottos.js';
 
-import PurchaseMoneyView from '../view/purchaseMoneyView.js';
+import PurchaseMoneyView from '../view/PurchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
 
