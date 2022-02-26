@@ -68,7 +68,7 @@ label[for='purchase-money'] {
 }
 
 .grid-columns-six {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .grid-columns-one {
@@ -90,6 +90,10 @@ label[for='purchase-money'] {
   display: flex;
   justify-content: space-between;
   margin-top: 28px;
+}
+
+#lotto-list-wrap {
+  width: 80%;
 }
 
 .lotto-wrap {

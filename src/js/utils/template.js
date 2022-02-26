@@ -1,3 +1,5 @@
+import lotto from '../../images/lotto.png';
+
 export const lottoPurchaseCountTemplate = (count) => {
   return `
     총 ${count}개를 구매하였습니다.
@@ -7,7 +9,7 @@ export const lottoPurchaseCountTemplate = (count) => {
 export const lottoTemplate = (numbers) => {
   return `
     <div class="lotto-wrap">
-      <div>🎟️</div>
+      <img src=${lotto} />
       <p class="lotto-numbers hidden">${numbers.join(', ')}</p>
     </div>
   `;
