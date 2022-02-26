@@ -1,27 +1,31 @@
-import Model from '../core/Model.js';
 import { LOTTO } from '../configs/contants.js';
 import Lotto from './Lotto/Lotto.js';
 
-export default class LottoModel extends Model {
+export default class LottoModel {
   static issueLotto() {
     return new Lotto();
   }
 
-  static getNumberOfLotto(amount) {
+  static getCountOfLotto(amount) {
     return parseInt(amount / LOTTO.PRICE, 10);
   }
 
-  purchase(amount, callback) {
-    this.issueLottoWithCount(LottoModel.getNumberOfLotto(amount));
-
-    callback(this.getState());
+  init() {
+    this.lottoList = [];
   }
 
-  issueLottoWithCount(count) {
-    this.update({
-      lottoList: Array(count)
-        .fill()
-        .map(() => LottoModel.issueLotto()),
-    });
+  getLottoList() {
+    return this.lottoList;
+  }
+
+  createLottoListWithAmount(amount) {
+    const count = LottoModel.getCountOfLotto(amount);
+    this.lottoList = this.issueLottosWithCount(count);
+  }
+
+  issueLottosWithCount(count) {
+    return Array(count)
+      .fill()
+      .map(() => LottoModel.issueLotto());
   }
 }
