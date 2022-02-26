@@ -10,16 +10,11 @@ export default class LottoMachine {
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
     this.setEvent();
-    this.initialize();
   }
 
   setEvent() {
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
-  }
-
-  initialize() {
-    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
   }
 
   onSubmitCharge(event) {
