@@ -1,14 +1,20 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LottoMachine from "../domains/LottoMachine.js";
 import $ from "./utils.js";
 =======
 import LottoMachine from '../domains/LottoMachine.js';
 import $ from './utils.js';
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
+=======
+import LottoMachine from "../domains/LottoMachine.js";
+import $ from "./utils.js";
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
 import {
   ticketImg,
   lottoNumberTemplate,
   purchaseMessageTemplate,
+<<<<<<< HEAD
 <<<<<<< HEAD
 } from "./template.js";
 import { DOM } from "../constants/constants.js";
@@ -19,6 +25,10 @@ import { DOM } from "../constants/constants.js";
 =======
 import { SELECTOR } from '../constants/constants.js';
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
+=======
+} from "./template.js";
+import { DOM } from "../constants/constants.js";
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
 
 export default class LottoView {
   constructor() {
@@ -38,13 +48,18 @@ export default class LottoView {
   }
 
   bindEvents() {
-    $(SELECTOR.ID.PURCHASE_MONEY_FORM).addEventListener(
-      'submit',
+    $(DOM.ID.PURCHASE_MONEY_FORM).addEventListener(
+      "submit",
       this.handlePurchaseForm.bind(this)
     );
+<<<<<<< HEAD
     $(SELECTOR.ID.LOTTO_RESULT_TOGGLE).addEventListener(
       'click',
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
+=======
+    $(DOM.ID.LOTTO_RESULT_TOGGLE).addEventListener(
+      "click",
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
       this.handleResultToggle.bind(this)
     );
   }
@@ -89,10 +104,11 @@ export default class LottoView {
     $(DOM.ID.TOGGLE_CHECKBOX).checked
 =======
   userInputMoney() {
-    this.machine.inputMoney = Number($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
+    this.machine.inputMoney = Number($(DOM.ID.PURCHASE_MONEY_INPUT).value);
   }
 
   renderLotto() {
+<<<<<<< HEAD
 <<<<<<< HEAD
     $('lotto-result-container').replaceChildren();
     $('lotto-result-toggle-checkbox').checked
@@ -101,12 +117,17 @@ export default class LottoView {
     $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
     $(SELECTOR.ID.TOGGLE_CHECKBOX).checked
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
+=======
+    $(DOM.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
+    $(DOM.ID.TOGGLE_CHECKBOX).checked
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
       ? this.renderLottoNumbers()
       : this.renderLottoImgs();
   }
 
   renderLottoImgs() {
     this.machine.lottos.map(() => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
@@ -119,6 +140,10 @@ export default class LottoView {
 =======
       $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
         'beforeEnd',
+=======
+      $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
+        "beforeEnd",
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
         ticketImg
       );
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
@@ -127,6 +152,7 @@ export default class LottoView {
 
   renderLottoNumbers() {
     this.machine.lottos.map((lotto) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
@@ -140,11 +166,17 @@ export default class LottoView {
         'beforeEnd',
         lottoNumberTemplate(lotto.numbers.join(', '))
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
+=======
+      $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
+        "beforeEnd",
+        lottoNumberTemplate(lotto.numbers.join(", "))
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
       );
     });
   }
 
   renderLottoAmount() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     $(DOM.ID.LOTTO_RESULT_SPAN).textContent = purchaseMessageTemplate(
@@ -154,11 +186,15 @@ export default class LottoView {
 =======
     $(SELECTOR.ID.LOTTO_RESULT_SPAN).textContent = purchaseMessageTemplate(
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
+=======
+    $(DOM.ID.LOTTO_RESULT_SPAN).textContent = purchaseMessageTemplate(
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
       this.machine.lottos
     );
   }
 
   disablePurchase() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     $(DOM.ID.PURCHASE_MONEY_INPUT).disabled = true;
@@ -180,6 +216,10 @@ export default class LottoView {
 =======
     $(SELECTOR.ID.PURCHASE_MONEY_INPUT).disabled = true;
     $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = true;
+=======
+    $(DOM.ID.PURCHASE_MONEY_INPUT).disabled = true;
+    $(DOM.ID.PURCHASE_MONEY_BUTTON).disabled = true;
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
   }
 
 <<<<<<< HEAD
@@ -193,8 +233,13 @@ export default class LottoView {
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
 =======
   showLottoContainers() {
+<<<<<<< HEAD
     $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = false;
     $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
 >>>>>>> ccddd2a (refactor: 메서드명 변경)
+=======
+    $(DOM.ID.LOTTO_RESULT_SECTION).hidden = false;
+    $(DOM.ID.WINNING_NUMBER_FORM).hidden = false;
+>>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
   }
 }
