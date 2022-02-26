@@ -22,11 +22,7 @@ export default class Model {
 }
 
 function makeAllLottoNumbers(min, max) {
-  const result = [];
-  for (let i = min; i <= max; i++) {
-    result.push(i);
-  }
-  return result;
+  return [...Array(max + 1).keys()].slice(min);
 }
 
 function shuffle(array) {
