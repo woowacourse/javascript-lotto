@@ -12,20 +12,19 @@ export default class Lotto {
     return true;
   }
 
-  pushNumberIntoPickedNumber(testNumber = null) {
+  pushNumberIntoPickedNumber(putNumber) {
     if (this.#isNumberListComplete()) {
       return;
     }
 
-    const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
-    const randomNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-
-    this.#pickedNumberList.add(testNumber || randomNumber);
+    this.#pickedNumberList.add(putNumber);
   }
 
   generateNumberList() {
+    const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
     while (this.#isNumberListComplete() === false) {
-      this.pushNumberIntoPickedNumber();
+      const randomNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
+      this.pushNumberIntoPickedNumber(randomNumber);
     }
   }
 
