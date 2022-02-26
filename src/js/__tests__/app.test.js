@@ -96,7 +96,7 @@ describe('당첨 번호 입력에 대한 유효성 검사를 한다', () => {
     );
   });
 
-  test('로또 숫자 범위 외의 값을 허용하지 않는다', () => {
+  test('로또 숫자 범위(1 ~ 45) 외의 값을 허용하지 않는다', () => {
     let invalidWinningNumbers = ['0', '2', '3', '4', '5', '6', '7'];
     expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE
