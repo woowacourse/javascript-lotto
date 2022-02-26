@@ -1,6 +1,6 @@
-import { LOTTO } from '../constants/constants.js';
-import Lotto from '../domains/Lotto.js';
-import validateMoney from '../validations/LottoMachine.js';
+import { LOTTO } from "../constants/constants.js";
+import Lotto from "../domains/Lotto.js";
+import validateMoney from "../validations/LottoMachine.js";
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -18,16 +18,12 @@ export default class LottoMachine {
     return this.#lottos;
   }
 
-  set lottos(lottos) {
-    this.#lottos = lottos;
-  }
-
   get lottoQuantity() {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
   operateLottoMachine() {
-    this.lottos = this.generateLottos();
+    this.#lottos = this.generateLottos();
     this.#inputMoney = 0;
   }
 
