@@ -4,18 +4,14 @@ import LottoGameView from './views';
 import { findElement } from './utils/elementSelector';
 
 class LottoGameManager {
-  #initializeGame() {
+  init() {
     this.lottoGameModel = new LottoGameModel();
     this.lottoGameView = new LottoGameView();
-  }
 
-  #initializeDOM() {
     this.$chargeForm = findElement(SELECTOR.CHARGE_INPUT_FORM);
     this.$chargeInput = findElement(SELECTOR.CHARGE_INPUT);
     this.$alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
-  }
 
-  #initializeHandler() {
     this.$chargeForm.addEventListener('submit', this.onSubmitChargeInputForm);
     this.$alignConverter.addEventListener('change', this.onChangeAlignState);
   }
@@ -43,11 +39,5 @@ class LottoGameManager {
     const { checked: alignState } = e.target;
     this.lottoGameView.renderAlignState(alignState);
   };
-
-  start() {
-    this.#initializeGame();
-    this.#initializeDOM();
-    this.#initializeHandler();
-  }
 }
 export default LottoGameManager;

@@ -4,4 +4,4 @@ import './css/nanumbarungothic.css';
 import './js/utils/customPrototypeMethod';
 import RacingGameManager from './js/app';
 
-export default new RacingGameManager().start();
+export default new RacingGameManager().init();
