@@ -13,15 +13,11 @@ export default class Lotto {
   }
 
   generateNumbersAutomatically() {
-    const numbers = [];
+    const numbers = new Set();
 
-    while (numbers.length !== LOTTO_NUMBER.LENGTH) {
-      const randomNumber = generateRandomInRange(
-        LOTTO_NUMBER.MIN,
-        LOTTO_NUMBER.MAX
-      );
-      if (!numbers.find(number => number === randomNumber))
-        numbers.push(randomNumber);
+    while (numbers.size !== LOTTO_NUMBER.LENGTH) {
+      const randomNumber = generateRandomInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX);
+      numbers.add(randomNumber);
     }
 
     return numbers;

@@ -8,7 +8,7 @@ const lottoListTemplate = {
         `<li>
       <span class="lotto-icon">🎟️</span>
       <span class="normal-text margin-left-8px">
-      ${lotto.numbers.join(', ')}
+      ${[...lotto.numbers].join(', ')}
       </span>
     </li>`
     );
