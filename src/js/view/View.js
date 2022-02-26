@@ -1,44 +1,45 @@
 export class View {
   constructor() {
-    this.registerButtons();
-    this.registerInput();
+    this.registerDOM();
   }
-
-  registerButtons() {
+  registerDOM() {
     this.purchaseBtn = document.getElementById('purchase-button');
     this.toggleBtn = document.getElementById('toggle-check');
-  }
-
-  registerInput() {
     this.moneyInput = document.getElementById('money-input');
+    this.winningLottoContainer = document.getElementById(
+      'winning-lotto-container'
+    );
+    this.lottoIcons = document.getElementById('lotto-icons');
+    this.lottoNumberLabel = document.getElementById('lotto-quantity-label');
+    this.lottoIcons = document.getElementById('lotto-icons');
+    this.lottoStatusContainer = document.getElementById(
+      'lotto-status-container'
+    );
   }
 
   showLottoStatusContainer() {
-    this.lottoStatusContainer = document.getElementById('lotto-status-container');
     this.lottoStatusContainer.style.visibility = 'visible';
   }
 
   showWinningLottoContainer() {
-    this.winningLottoContainer = document.getElementById('winning-lotto-container');
     this.winningLottoContainer.style.visibility = 'visible';
   }
 
   showPurchasedLottos(lottoWallet) {
-    this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
 
-    this.lottoNumberLabel = document.getElementById('lotto-quantity-label');
     this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
   }
 
   lottosToggleOn(lottoWallet) {
     const paddedLottoNumbers = this.padLottoNumbers(lottoWallet);
-    const lottoStatusString = paddedLottoNumbers.map((padded) => `🎟️ ${padded}<br>`);
+    const lottoStatusString = paddedLottoNumbers.map(
+      (padded) => `🎟️ ${padded}<br>`
+    );
     this.lottoIcons.innerHTML = lottoStatusString.join('');
   }
 
   lottosToggleOff(lottoWallet) {
-    this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
   }
 
@@ -52,6 +53,8 @@ export class View {
   }
 
   padLottoNumbers(lottoWallet) {
-    return lottoWallet.map((lotto) => lotto.numbers.map((x) => String(x).padStart(3, ' ')));
+    return lottoWallet.map((lotto) =>
+      lotto.numbers.map((x) => String(x).padStart(3, ' '))
+    );
   }
 }
