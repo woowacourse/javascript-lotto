@@ -20,7 +20,7 @@ it('로또 번호는 숫자 6개를 초과할 수 없다.', () => {
 
 it('로또 번호를 자동으로 생성할 시 숫자 6개를 가져야 한다.', () => {
   const lotto = new Lotto();
-  lotto.generate();
+  lotto.generateNumberList();
 
   expect(lotto.pickedNumber.length).toBe(6);
 });

@@ -23,12 +23,10 @@ export default class Lotto {
     this.#pickedNumberList.add(testNumber || randomNumber);
   }
 
-  generate() {
+  generateNumberList() {
     while (this.#isNumberListComplete() === false) {
       this.pushNumberIntoPickedNumber();
     }
-
-    return this;
   }
 
   get pickedNumber() {
