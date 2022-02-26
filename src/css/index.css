@@ -86,7 +86,7 @@ body {
 
 .grid-div {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 70px;
 }
 
 .lotto-list-icon-style {
