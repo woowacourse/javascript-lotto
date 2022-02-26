@@ -53,8 +53,7 @@ export default class LottoController {
     }
   }
 
-  changeCheckBoxHandler(event) {
-    const { target } = event;
+  changeCheckBoxHandler({ target }) {
     if (target.checked) {
       this.resultView.renderLottos(this.model.getLottos());
       return;
