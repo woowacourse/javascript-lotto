@@ -15,9 +15,12 @@ export default class View {
   }
 
   render() {
+    this.beforeMounted();
     this.$target.innerHTML = this.template();
     this.afterMounted();
   }
+
+  beforeMounted() {}
 
   afterMounted() {}
 
