@@ -5,9 +5,12 @@ import LottoManager from '../model/lottoManager';
 import LottoView from '../view/lottoView';
 
 class LottoController {
-  startLotto() {
+  constructor() {
     this.view = new LottoView();
     this.lottoManager = new LottoManager();
+  }
+
+  startLotto() {
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
     this.cashInputSection.addEventListener('click', this.#onCashInputSectionClick);
   }

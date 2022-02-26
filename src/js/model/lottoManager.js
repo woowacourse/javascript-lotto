@@ -3,6 +3,12 @@ import { isNumberInRange } from '../utils/utils';
 import Lotto from './lotto';
 
 class LottoManager {
+  constructor() {
+    this.lottoPrice = LOTTO_PRICE;
+    this.purchaseAmount = null;
+    this.lottos = null;
+  }
+
   buyLotto(cashInput) {
     this.lottoPrice = LOTTO_PRICE;
     this.#validateCashInput(Number(cashInput));
