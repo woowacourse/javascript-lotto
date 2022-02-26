@@ -1,38 +1,15 @@
-import View from '../core/View.js';
 import template from '../templates/template.js';
 
-import { $ } from '../utils/utils.js';
-import { validator } from '../utils/validator.js';
-import { SELECTOR } from '../configs/contants.js';
-
-export default class LottoView extends View {
-  template() {
-    const { lottoList, isShowNumber } = this.state;
-
-    return template.app({ lottoList, isShowNumber });
+export default class LottoView {
+  constructor(target) {
+    this.$target = target;
   }
 
-  afterMounted() {
-    this.$paymentInput = $(SELECTOR.PAYMENT_INPUT);
+  init() {
+    this.mountTemplate();
   }
 
-  bindOnClickPaymentSubmit(callback) {
-    this.bindEventListener('click', SELECTOR.PAYMENT_SUBMIT, () => {
-      const amount = this.$paymentInput.valueAsNumber;
-
-      try {
-        validator.checkPurchaseAmount(amount);
-        callback(amount);
-      } catch (e) {
-        alert(e);
-      }
-    });
-  }
-
-  bindOnClickNumberToggle() {
-    this.bindEventListener('click', SELECTOR.SLIDER, () => {
-      const { isShowNumber } = this.state;
-      this.update({ isShowNumber: !isShowNumber });
-    });
+  mountTemplate() {
+    this.$target.innerHTML = template.app();
   }
 }
