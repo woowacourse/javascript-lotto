@@ -1,7 +1,12 @@
 import { isPositiveInteger, isDivisibleBy } from './utils';
 import { DOM_STRING, SELECTOR, MONEY } from './constants';
 import Lotto from './Lotto';
-import template from './templates';
+import {
+  generatePaymentSection,
+  generatePurchasedSection,
+  generateWinningNumberSection,
+  generateResultCheckingSection,
+} from './templates';
 import {
   getElement,
   getElements,
@@ -16,11 +21,55 @@ import {
 export default class LottoApp {
   constructor(app) {
     this.$app = getElement(app);
-    render(this.$app, template.paymentSection);
+    render(this.$app, generatePaymentSection());
 
     this.purchasedLottoCount = 0;
     this.purchasedLottoList = [];
     this.bindEvent();
+  }
+
+  bindEvent() {
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: SELECTOR.$PAYMENT_BUTTON,
+      callback: this.onSubmitPayment.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: SELECTOR.$LOTTO_LIST_TOGGLE_BUTTON,
+      callback: this.onClickToggleButton.bind(this),
+    });
+  }
+
+  onSubmitPayment() {
+    const $paymentInput = getElement(SELECTOR.$PAYMENT_INPUT);
+
+    try {
+      this.purchasedLottoCount = isDivisibleBy(
+        isPositiveInteger($paymentInput.valueAsNumber),
+        MONEY.STANDARD
+      );
+
+      toggleClassName(
+        getElement(SELECTOR.$PAYMENT_BUTTON),
+        DOM_STRING.DISABLED
+      );
+
+      disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
+      disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
+
+      this.setPurchasedLottoList();
+
+      render(this.$app, generatePurchasedSection(this.purchasedLottoList));
+      render(this.$app, generateWinningNumberSection());
+      render(this.$app, generateResultCheckingSection());
+    } catch (error) {
+      alertMessage(error.message);
+      initInput($paymentInput);
+    }
   }
 
   setPurchasedLottoList() {
@@ -48,50 +97,6 @@ export default class LottoApp {
 
     getElements(SELECTOR.$LOTTO_NUMBER).forEach((element) => {
       element.classList.toggle(DOM_STRING.INVISIBLE);
-    });
-  }
-
-  onSubmitPayment() {
-    const $paymentInput = getElement(SELECTOR.$PAYMENT_INPUT);
-
-    try {
-      this.purchasedLottoCount = isDivisibleBy(
-        isPositiveInteger($paymentInput.valueAsNumber),
-        MONEY.STANDARD
-      );
-
-      toggleClassName(
-        getElement(SELECTOR.$PAYMENT_BUTTON),
-        DOM_STRING.DISABLED
-      );
-
-      disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
-      disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
-
-      this.setPurchasedLottoList();
-
-      render(this.$app, template.purchasedSection(this.purchasedLottoList));
-      render(this.$app, template.lastWeekWinningNumberSection);
-      render(this.$app, template.resultCheckingSection);
-    } catch (error) {
-      alertMessage(error.message);
-      initInput($paymentInput);
-    }
-  }
-
-  bindEvent() {
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: SELECTOR.$PAYMENT_BUTTON,
-      callback: this.onSubmitPayment.bind(this),
-    });
-
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: SELECTOR.$LOTTO_LIST_TOGGLE_BUTTON,
-      callback: this.onClickToggleButton.bind(this),
     });
   }
 }

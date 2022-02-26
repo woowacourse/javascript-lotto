@@ -152,7 +152,7 @@ h1 {
   gap: 4px;
 }
 
-#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto-ticket {
+#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto-icon {
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
@@ -163,7 +163,7 @@ h1 {
   align-items: center;
 }
 
-#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto.display-flex .lotto-ticket {
+#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto.display-flex .lotto-icon {
   margin-right: 8px;
 }
 
