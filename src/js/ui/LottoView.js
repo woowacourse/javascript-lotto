@@ -1,11 +1,11 @@
-import LottoMachine from '../domains/LottoMachine.js';
-import $ from './utils.js';
+import LottoMachine from "../domains/LottoMachine.js";
+import $ from "./utils.js";
 import {
   ticketImg,
   lottoNumberTemplate,
   purchaseMessageTemplate,
-} from './template.js';
-import { SELECTOR } from '../constants/constants.js';
+} from "./template.js";
+import { DOM } from "../constants/constants.js";
 
 export default class LottoView {
   constructor() {
@@ -13,12 +13,12 @@ export default class LottoView {
   }
 
   bindEvents() {
-    $(SELECTOR.ID.PURCHASE_MONEY_FORM).addEventListener(
-      'submit',
+    $(DOM.ID.PURCHASE_MONEY_FORM).addEventListener(
+      "submit",
       this.handlePurchaseForm.bind(this)
     );
-    $(SELECTOR.ID.LOTTO_RESULT_TOGGLE).addEventListener(
-      'click',
+    $(DOM.ID.LOTTO_RESULT_TOGGLE).addEventListener(
+      "click",
       this.handleResultToggle.bind(this)
     );
   }
@@ -42,20 +42,20 @@ export default class LottoView {
   }
 
   userInputMoney() {
-    this.machine.inputMoney = Number($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
+    this.machine.inputMoney = Number($(DOM.ID.PURCHASE_MONEY_INPUT).value);
   }
 
   renderLotto() {
-    $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
-    $(SELECTOR.ID.TOGGLE_CHECKBOX).checked
+    $(DOM.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
+    $(DOM.ID.TOGGLE_CHECKBOX).checked
       ? this.renderLottoNumbers()
       : this.renderLottoImgs();
   }
 
   renderLottoImgs() {
     this.machine.lottos.map(() => {
-      $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
-        'beforeEnd',
+      $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
+        "beforeEnd",
         ticketImg
       );
     });
@@ -63,26 +63,26 @@ export default class LottoView {
 
   renderLottoNumbers() {
     this.machine.lottos.map((lotto) => {
-      $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
-        'beforeEnd',
-        lottoNumberTemplate(lotto.numbers.join(', '))
+      $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
+        "beforeEnd",
+        lottoNumberTemplate(lotto.numbers.join(", "))
       );
     });
   }
 
   renderLottoAmount() {
-    $(SELECTOR.ID.LOTTO_RESULT_SPAN).textContent = purchaseMessageTemplate(
+    $(DOM.ID.LOTTO_RESULT_SPAN).textContent = purchaseMessageTemplate(
       this.machine.lottos
     );
   }
 
   disablePurchase() {
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).disabled = true;
-    $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = true;
+    $(DOM.ID.PURCHASE_MONEY_INPUT).disabled = true;
+    $(DOM.ID.PURCHASE_MONEY_BUTTON).disabled = true;
   }
 
   showLottoContainers() {
-    $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = false;
-    $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
+    $(DOM.ID.LOTTO_RESULT_SECTION).hidden = false;
+    $(DOM.ID.WINNING_NUMBER_FORM).hidden = false;
   }
 }
