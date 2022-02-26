@@ -10,7 +10,7 @@
     <div id="app">
       <h1>🎱 행운의 로또</h1>
       <section id="money-input-container">
-        <label>구입할 금액을 입력해주세요.</label>
+        <label for="money-input">구입할 금액을 입력해주세요.</label>
         <form id="money-input-field">
           <input type="number" placeholder="금액" id="money-input" step="1000" />
           <button id="purchase-button">구입</button>
@@ -29,9 +29,9 @@
       </section>
 
       <form id="winning-lotto-container">
-        <label id="winning-lotto-guide-label">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
-        <label id="winning-number-label">당첨번호</label>
-        <label id="bonus-number-label">보너스번호</label>
+        <label for="winning-number1" id="winning-lotto-guide-label">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+        <label for="winning-number1" id="winning-number-label">당첨번호</label>
+        <label for="winning-number7" id="bonus-number-label">보너스번호</label>
 
         <input type="number" id="winning-number1" class="winning-number" />
         <input type="number" id="winning-number2" class="winning-number" />
