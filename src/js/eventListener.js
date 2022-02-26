@@ -1,7 +1,7 @@
 import { $ } from './utils/index.js';
 import { validator } from './validation/index.js';
 import { calculateLottoCount, calculateRemainFare } from './domain/index.js';
-import lottoGame from './lottoGame.js';
+import lottoManager from './lottoManager.js';
 import view from './view.js';
 
 export const onSubmitFareForm = (e) => {
@@ -13,7 +13,7 @@ export const onSubmitFareForm = (e) => {
     validator.validateFare(fare);
 
     const lottoCount = calculateLottoCount(fare);
-    const lottoList = lottoGame.createLottos(lottoCount);
+    const lottoList = lottoManager.createLottos(lottoCount);
     view.renderLottoList(lottoList);
 
     const remainFare = calculateRemainFare(fare);

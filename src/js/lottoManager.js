@@ -1,7 +1,7 @@
 import { LOTTO_RULES } from './constant/index.js';
 import { createRandomNumbers } from './utils/index.js';
 
-const lottoGame = {
+const lottoManager = {
   lottos: [],
   createLottos(lottoCount) {
     for (let i = 0; i < lottoCount; i += 1) {
@@ -14,4 +14,4 @@ const lottoGame = {
   },
 };
 
-export default lottoGame;
+export default lottoManager;
