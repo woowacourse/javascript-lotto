@@ -10,6 +10,7 @@ import { DOM } from "../constants/constants.js";
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
+    this.bindEvents();
   }
 
   bindEvents() {
