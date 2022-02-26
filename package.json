@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://usageness.github.io/javascript-lotto",
   "scripts": {
     "test": "jest --watch --no-cache",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack --mode=production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -19,6 +22,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-config-tui": "^5.0.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "prettier": "2.5.1",
