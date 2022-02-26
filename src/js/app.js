@@ -1,4 +1,4 @@
+/* eslint-disable no-new */
 import LottoController from './controller/lottoController';
 
-const lottoController = new LottoController();
-lottoController.startLotto();
+new LottoController();

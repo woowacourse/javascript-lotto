@@ -8,13 +8,19 @@ class LottoView {
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS, this.app);
 
     this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS, this.app);
+    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
     this.lottoContainer = selectDom(SELECTOR.LOTTO_CONTAINER_CLASS, this.purchasedLottoSection);
     this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
 
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS, this.app);
   }
 
-  toggleLottoNumbersShow(isVisible) {
+  attachEventListeners(handler) {
+    this.cashInputSection.addEventListener('click', handler);
+    this.showNumberToggleButton.addEventListener('click', this.#toggleLottoNumbersShow);
+  }
+
+  #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
     const { classList: lottoGridClassList } = this.lottoGrid;
     if (isVisible) {
       lottoGridClassList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
@@ -23,7 +29,7 @@ class LottoView {
     }
     lottoGridClassList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
     lottoGridClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
-  }
+  };
 
   disableCashInput() {
     const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);

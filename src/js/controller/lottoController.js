@@ -7,12 +7,8 @@ import LottoView from '../view/lottoView';
 class LottoController {
   constructor() {
     this.view = new LottoView();
+    this.view.attachEventListeners(this.#onCashInputSectionClick);
     this.lottoManager = new LottoManager();
-  }
-
-  startLotto() {
-    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
-    this.cashInputSection.addEventListener('click', this.#onCashInputSectionClick);
   }
 
   #onCashInputSectionClick = ({ target }) => {
@@ -22,24 +18,14 @@ class LottoController {
   };
 
   #processCashInput = () => {
-    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
+    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS);
     try {
       this.lottoManager.buyLotto(cashInput.value);
       this.view.disableCashInput();
       this.view.renderLottos(this.lottoManager.lottos);
-      this.#initToggleButtonHandler();
     } catch (error) {
       alert(error.message);
     }
-  };
-
-  #initToggleButtonHandler() {
-    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
-    this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
-  }
-
-  #onShowNumberToggleButtonClick = ({ target }) => {
-    this.view.toggleLottoNumbersShow(target.checked);
   };
 }
 
