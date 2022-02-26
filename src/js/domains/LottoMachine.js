@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -51,6 +52,11 @@ import Lotto from '../domains/Lotto.js';
 =======
 import validateMoney from '../validations/LottoMachine.js';
 >>>>>>> df9aee0 (refactor: valiate 로직 파일 분리)
+=======
+import { LOTTO } from "../constants/constants.js";
+import Lotto from "../domains/Lotto.js";
+import validateMoney from "../validations/LottoMachine.js";
+>>>>>>> 91ceeb9 (refactor: set lottos메소드를 제거하여 외부에서 lottos에 대한 직접변경 불가하게 함)
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -68,16 +74,12 @@ export default class LottoMachine {
     return this.#lottos;
   }
 
-  set lottos(lottos) {
-    this.#lottos = lottos;
-  }
-
   get lottoQuantity() {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
   operateLottoMachine() {
-    this.lottos = this.generateLottos();
+    this.#lottos = this.generateLottos();
     this.#inputMoney = 0;
   }
 
