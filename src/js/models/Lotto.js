@@ -2,30 +2,33 @@ import { getRandomNumber } from '../utils/data-manager';
 import { LOTTO_SETTING } from '../constants/setting';
 
 export default class Lotto {
-  #pickedNumber = [];
+  #pickedNumberList = new Set();
 
-  pushNumberIntoPickedNumber(number) {
-    if (this.#pickedNumber.includes(number)) {
-      return;
+  #isNumberListComplete() {
+    if (this.#pickedNumberList.size !== LOTTO_SETTING.LOTTO_NUMBER_LENGTH) {
+      return false;
     }
 
-    if (this.#pickedNumber.length >= LOTTO_SETTING.LOTTO_NUMBER_LENGTH) {
-      return;
-    }
-
-    this.#pickedNumber.push(number);
+    return true;
   }
 
-  generate() {
-    const { LOTTO_NUMBER_LENGTH, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
-    while (this.#pickedNumber.length !== LOTTO_NUMBER_LENGTH) {
-      this.pushNumberIntoPickedNumber(getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER));
+  pushNumberIntoPickedNumber(putNumber) {
+    if (this.#isNumberListComplete()) {
+      return;
     }
 
-    return this;
+    this.#pickedNumberList.add(putNumber);
+  }
+
+  generateNumberList() {
+    const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
+    while (this.#isNumberListComplete() === false) {
+      const randomNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
+      this.pushNumberIntoPickedNumber(randomNumber);
+    }
   }
 
   get pickedNumber() {
-    return this.#pickedNumber;
+    return [...this.#pickedNumberList];
   }
 }
