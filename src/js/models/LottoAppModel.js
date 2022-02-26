@@ -11,6 +11,12 @@ export default class LottoAppModel extends Model {
     return parseInt(amount / LOTTO.PRICE, 10);
   }
 
+  setInitState() {
+    return {
+      lottoList: [],
+    };
+  }
+
   purchase(amount, callback) {
     this.issueLottoWithCount(LottoAppModel.getNumberOfLotto(amount));
 

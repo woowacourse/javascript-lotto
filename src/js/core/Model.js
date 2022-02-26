@@ -4,13 +4,14 @@ export default class Model {
   state;
 
   init(callback) {
-    const initState = {
-      lottoList: [],
-    };
+    const initState = this.setInitState();
 
     this.update(initState);
-
     callback(this.getState());
+  }
+
+  setInitState() {
+    throw new Error('override');
   }
 
   update(newState) {
