@@ -5,7 +5,7 @@ import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
-import { validatePurchaseMoney, isEmpty } from '../util/validator.js';
+import { validatePurchaseMoney, isEmptyArray } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -46,7 +46,7 @@ export default class LottoMachineController {
     }
     const lottos = this.model.getLottos();
 
-    if (isEmpty(lottos)) {
+    if (isEmptyArray(lottos)) {
       this.purchaseLotto(purchaseMoney);
       return;
     }

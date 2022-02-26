@@ -1,14 +1,14 @@
 import Lotto from './Lotto.js';
 
 export default class Lottos {
-  #lottos = null;
+  #lottos = [];
 
   constructor() {
     this.#init();
   }
 
   #init() {
-    this.#lottos = null;
+    this.#lottos = [];
   }
 
   #setLottos(lottos) {
@@ -25,6 +25,6 @@ export default class Lottos {
   }
 
   reset() {
-    this.#setLottos(null);
+    this.#setLottos([]);
   }
 }
