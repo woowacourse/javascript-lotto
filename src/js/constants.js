@@ -5,17 +5,17 @@ export const LOTTO_RULE = {
 };
 
 export const ID_SELECTOR = {
-  APP: 'app',
-  PURCHASE_FORM: 'purchase-form',
-  PURCHASE_INPUT: 'purchase-input',
-  LOTTO_LIST_DESCRIPTION: 'lotto-list-description',
-  TOGGLE: 'toggle',
-  TOGGLE_INPUT: 'toggle-input',
-  LOTTO_LISTS: 'lotto-lists',
-  LOTTO_LIST_SECTION: 'lotto-list-section',
+  APP: '#app',
+  PURCHASE_FORM: '#purchase-form',
+  PURCHASE_INPUT: '#purchase-input',
+  LOTTO_LIST_DESCRIPTION: '#lotto-list-description',
+  TOGGLE: '#toggle',
+  TOGGLE_INPUT: '#toggle-input',
+  LOTTO_LISTS: '#lotto-lists',
+  LOTTO_LIST_SECTION: '#lotto-list-section',
 };
 
-export const CLASS_SELECTOR = {
+export const CLASS_NAME = {
   LOTTO_LIST_SECTION_DISPLAY_NONE: 'lotto-list__section-display-none',
   LOTTO_LIST: 'lotto-list',
   LOTTO_LIST_TICKET: 'lotto-list__ticket',

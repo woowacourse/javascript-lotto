@@ -1,5 +1,5 @@
 import { $, replaceHTML } from '../utils/dom.js';
-import { ID_SELECTOR, CLASS_SELECTOR } from '../constants.js';
+import { ID_SELECTOR, CLASS_NAME } from '../constants.js';
 
 export default class LottoListView {
   constructor() {
@@ -19,7 +19,7 @@ export default class LottoListView {
     this.$toggle.addEventListener('click', () => {
       const isChecked = this.$toggleInput.checked;
       this.$toggleInput.checked = !isChecked;
-      this.$lottoLists.classList.toggle(CLASS_SELECTOR.UNFOLD);
+      this.$lottoLists.classList.toggle(CLASS_NAME.UNFOLD);
     });
   }
 
@@ -30,7 +30,7 @@ export default class LottoListView {
   }
 
   #displayLottoListSection() {
-    this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY_NONE);
+    this.$lottoListSection.classList.remove(CLASS_NAME.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }
 
   #showDescription(quantity) {
@@ -41,9 +41,9 @@ export default class LottoListView {
     const template = lottoList
       .map(
         lotto => `
-        <li class="${CLASS_SELECTOR.LOTTO_LIST}">
-          <span class="${CLASS_SELECTOR.LOTTO_LIST_TICKET}">🎟️</span>
-          <span class="${CLASS_SELECTOR.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(
+        <li class="${CLASS_NAME.LOTTO_LIST}">
+          <span class="${CLASS_NAME.LOTTO_LIST_TICKET}">🎟️</span>
+          <span class="${CLASS_NAME.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(
           ', ',
         )}</span>
         </li>`,
