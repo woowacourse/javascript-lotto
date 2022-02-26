@@ -13,7 +13,8 @@ export const AMOUNT = {
 };
 
 export const LOTTO_NUMBER = {
-  LENGTH: 6,
+  LENGTH_MIN: 0,
+  LENGTH_MAX: 6,
   RANGE_MIN: 1,
   RANGE_MAX: 45,
 };
