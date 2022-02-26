@@ -1,3 +1,3 @@
-import LottoController from "./controller/LottoController.js";
+import LottoGame from "./controller/LottoGame.js";
 
-new LottoController();
+new LottoGame();

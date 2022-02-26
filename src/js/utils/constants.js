@@ -1,10 +1,7 @@
-export const SELECTOR = {
-  PURCHASE_FORM: ".purchase-form",
-  PURCHASE_INPUT: ".purchase-input",
-  PURCHASE_BUTTON: ".purchase-button",
-  PURCHASE_INFOMATION: ".purchase-infomation",
-  LOTTO_NUMBER_LIST: ".lotto-number-list",
-  SWITCH_INPUT: ".switch-input",
+import { $ } from "./dom.js";
+
+export const ELEMENTS = {
+  PURCHASE_INPUT: $(".purchase-input"),
 };
 
 export const AMOUNT = {
