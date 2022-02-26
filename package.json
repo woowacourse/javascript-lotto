@@ -22,6 +22,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.25.4",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "prettier": "2.5.1",
@@ -34,8 +35,5 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
-  },
-  "dependencies": {
-    "gh-pages": "^3.2.3"
   }
 }
