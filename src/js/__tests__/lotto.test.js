@@ -1,14 +1,6 @@
 import Lotto from "../domains/Lotto.js";
 import { LOTTO } from "../constants/constants.js";
-
-function isInRange(arr, min, max) {
-  return arr.every((item) => item >= min && item <= max);
-}
-
-function isDuplicated(arr) {
-  const set = new Set(arr);
-  return set.size === arr.length;
-}
+import { isInRange, isDuplicated } from "../validations/utils.js";
 
 describe("로또 단위 테스트 ", () => {
   const lotto = new Lotto();
