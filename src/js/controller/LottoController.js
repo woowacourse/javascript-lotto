@@ -1,8 +1,8 @@
 import LottoGame from "../model/LottoGame.js";
 import LottoGameView from "../views/LottoGameView.js";
 import { $ } from "../utils/dom.js";
-import { ERROR_MESSAGES, SELECTOR, AMOUNT } from "../utils/constants.js";
-import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
+import { SELECTOR, AMOUNT } from "../utils/constants.js";
+import { validatePurchaseAmount } from "../utils/validation.js";
 
 export default class LottoController {
   constructor() {
@@ -21,7 +21,7 @@ export default class LottoController {
 
   handleLottoNumber(lottoCount) {
     this.lottoGameView.disablePurchaseForm();
-    this.lottoGameView.enableSwitch();
+    this.lottoGameView.enableSwitch(this.switchInput);
     this.lottoGameView.renderPurchaseInfomation(lottoCount);
     this.lottoGameView.renderLottoIcons(lottoCount);
   }
@@ -30,17 +30,14 @@ export default class LottoController {
     e.preventDefault();
 
     const purchaseAmount = Number(this.purchaseInput.value);
-    if (!isValidMinimumAmount(purchaseAmount)) {
-      alert(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
-      return;
+    try {
+      validatePurchaseAmount(purchaseAmount);
+      const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
+      this.lottoGameModel.generateLottoTicket(lottoCount);
+      this.handleLottoNumber(lottoCount);
+    } catch (error) {
+      alert(error);
     }
-    if (!isValidAmountUnit(purchaseAmount)) {
-      alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
-      return;
-    }
-    const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
-    this.lottoGameModel.generateLottoTicket(lottoCount);
-    this.handleLottoNumber(lottoCount);
   }
 
   onClickSwitch() {

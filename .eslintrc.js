@@ -16,7 +16,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "no-new": "off",
-    "no-undef": "off",
     "lines-between-class-members": "off",
   },
   plugins: ["prettier"],

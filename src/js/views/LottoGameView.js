@@ -5,7 +5,6 @@ export default class LottoGameView {
   constructor() {
     this.purchaseInfomation = $(SELECTOR.PURCHASE_INFOMATION);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
-    this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.purchaseButton = $(SELECTOR.PURCHASE_BUTTON);
   }
@@ -15,8 +14,8 @@ export default class LottoGameView {
     this.purchaseButton.setAttribute("disabled", true);
   }
 
-  enableSwitch() {
-    this.switchInput.removeAttribute("disabled");
+  enableSwitch(switchInput) {
+    switchInput.removeAttribute("disabled");
   }
 
   renderPurchaseInfomation(count) {

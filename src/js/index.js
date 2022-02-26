@@ -1,4 +1,4 @@
-import LottoGame from "./controller/LottoController.js";
+import LottoController from "./controller/LottoController.js";
 
-const app = new LottoGame();
+const app = new LottoController();
 app.bindEvents();

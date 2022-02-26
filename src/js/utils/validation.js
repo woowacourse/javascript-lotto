@@ -1,9 +1,12 @@
-import { AMOUNT } from "./constants.js";
+import { ERROR_MESSAGES } from "./constants.js";
+import { isValidAmountUnit, isValidMinimumAmount } from "./general.js";
 
-export const isValidMinimumAmount = (amount) => {
-  return amount >= AMOUNT.MINIMUM;
-};
+export const validatePurchaseAmount = (amount) => {
+  if (isValidMinimumAmount(amount)) {
+    throw new Error(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
+  }
 
-export const isValidAmountUnit = (amount) => {
-  return amount % AMOUNT.UNIT === 0;
+  if (isValidAmountUnit(amount)) {
+    throw new Error(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
+  }
 };
