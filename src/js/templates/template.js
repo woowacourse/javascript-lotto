@@ -1,19 +1,14 @@
 import { DOM_STRING } from '../configs/contants.js';
 
 const template = {
-  app: (props) => {
-    const { lottoList, isShowNumber } = props;
-
+  app: () => {
     return `
       <h4 id="${DOM_STRING.TITLE}">🎱 행운의 로또</h4>
       <section id="${DOM_STRING.PAYMENT_SECTION}">
-        ${template.paymentSection()}
       </section>
       <section id="${DOM_STRING.TICKET_SECTION}">
-        ${template.ticketSection({ lottoList, isShowNumber })}
       </section>
       <section id="${DOM_STRING.WINNING_NUMBER_SECTION}">
-        ${template.winningNumberSection()}
       </section>
     `;
   },
@@ -26,19 +21,39 @@ const template = {
       </form>
     `;
   },
-  ticketSection: (props) => {
-    const { lottoList, isShowNumber } = props;
-
+  ticketSection: () => {
     return `
       <div id="${DOM_STRING.TICKET_LIST_WRAP}">
-        ${template.ticketListWrap({ lottoList, isShowNumber })}
       </div>
       <div id="${DOM_STRING.SHOW_NUMBER_TOGGLE_AREA}">
-        ${template.showNumberToggleArea({ isShowNumber })}
       </div>
     `;
   },
-  showNumberToggleArea: ({ isShowNumber }) => {
+  ticketListWrap: (lottoList, isShowNumber) => {
+    return `
+      <label>총 <span>${lottoList.length}</span>개를 구매하였습니다.</label>
+      <ul id="${DOM_STRING.TICKET_LIST}" class="${
+      isShowNumber ? DOM_STRING.TICKET_LIST_COLUMN : DOM_STRING.TICKET_LIST_ROW
+    }">
+        ${lottoList
+          .map(
+            (lotto) =>
+              `<li class="${DOM_STRING.TICKET}">
+              <p>🎟
+              ${
+                isShowNumber
+                  ? `<span class="${DOM_STRING.TICKET_NUMBERS}">
+                  ${lotto.numbers.join(', ')}</span>`
+                  : ''
+              }
+              </p>
+              </li>`
+          )
+          .join('')}
+      </ul>
+    `;
+  },
+  showNumberToggleArea: (isShowNumber) => {
     return `
       <label for="${DOM_STRING.SLIDER}">번호 보기</label>
       <label class="${DOM_STRING.SWITCH}">
@@ -49,33 +64,6 @@ const template = {
       </label>
     `;
   },
-  ticketListWrap: ({ lottoList, isShowNumber }) => {
-    return `
-      <label>총 <span>${lottoList.length}</span>개를 구매하였습니다.</label>
-      <ul id="${DOM_STRING.TICKET_LIST}" class="${
-      (isShowNumber && DOM_STRING.TICKET_LIST_COLUMN) ||
-      DOM_STRING.TICKET_LIST_ROW
-    }">
-        ${lottoList
-          .map(
-            (lotto) =>
-              `<li class="${DOM_STRING.TICKET}">
-              <p>🎟
-              ${
-                (isShowNumber &&
-                  `<span class="${
-                    DOM_STRING.TICKET_NUMBERS
-                  }">${lotto.numbers.join(', ')}</span>`) ||
-                ''
-              }
-              
-              </p>
-              </li>`
-          )
-          .join('')}
-      </ul>
-    `;
-  },
   winningNumberSection: () => {
     return `
       <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
@@ -83,12 +71,9 @@ const template = {
         <form id="${DOM_STRING.WINNING_NUMBER_FORM}">
           <label for="">당첨 번호</label>
           <div id="${DOM_STRING.WINNING_NUMBER_INPUT_WRAP}">
-            <input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />
-            <input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />
-            <input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />
-            <input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />
-            <input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />
-            <input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />
+            ${`<input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />`.repeat(
+              6
+            )}
           </div>
         </form>
         <form id="${DOM_STRING.BONUS_NUMBER_FORM}">
