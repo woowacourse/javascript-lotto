@@ -2,18 +2,9 @@ import { ACTION, LOTTO } from '../constants';
 import { pickUniqueNumbersInRange } from '../utils';
 
 const generateLottoList = (money) => {
-  const lottoList = [];
   const count = Math.floor(money / 1000);
-
-  for (let i = 0; i < count; i += 1) {
-    const {
-      RANGE: { MIN, MAX },
-      COUNT,
-    } = LOTTO;
-    lottoList.push(pickUniqueNumbersInRange(MIN, MAX, COUNT));
-  }
-
-  return lottoList;
+  const { RANGE, COUNT } = LOTTO;
+  return Array.from({ length: count }, () => pickUniqueNumbersInRange(RANGE.MIN, RANGE.MAX, COUNT));
 };
 
 export default function reducer(state, { type, payload }) {
