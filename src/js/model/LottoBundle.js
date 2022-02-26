@@ -27,7 +27,6 @@ export default class LottoBundle {
    */
   #pushLottoToBundle() {
     const lotto = new Lotto();
-    lotto.generateLottoNumbers();
     this.#lottos.push(lotto);
   }
 }
