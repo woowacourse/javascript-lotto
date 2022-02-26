@@ -1,4 +1,4 @@
-import LottoGame from "../model/LottoGame.js";
+import Lotto from "../model/Lotto.js";
 import LottoGameView from "../views/LottoGameView.js";
 import { $ } from "../utils/dom.js";
 import { SELECTOR, AMOUNT } from "../utils/constants.js";
@@ -6,15 +6,12 @@ import { validatePurchaseAmount } from "../utils/validation.js";
 
 export default class LottoController {
   constructor() {
-    this.lottoGameModel = new LottoGame();
+    this.lottoGameModel = new Lotto();
     this.lottoGameView = new LottoGameView();
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
     this.purchaseForm = $(SELECTOR.PURCHASE_FORM);
-  }
-
-  bindEvents() {
     this.purchaseForm.addEventListener("submit", this.onSubmitPurchase.bind(this));
     this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
   }

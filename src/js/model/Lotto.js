@@ -1,18 +1,28 @@
 import { LOTTO_NUMBER } from "../utils/constants.js";
-import { shuffle } from "../utils/general.js";
+import { shuffleArray } from "../utils/general.js";
 
 export default class Lotto {
   constructor() {
-    this.numbers = [];
+    this.lottos = [];
   }
 
-  generateRandomNumber() {
-    const { LENGTH_MIN, LENGTH_MAX, RANGE_MIN, RANGE_MAX } = LOTTO_NUMBER;
+  getLottoList() {
+    return this.lottos;
+  }
 
-    const lottoNumbers = Array(RANGE_MAX)
-      .fill()
-      .map((num, index) => index + RANGE_MIN);
-    shuffle(lottoNumbers);
-    this.numbers = lottoNumbers.slice(LENGTH_MIN, LENGTH_MAX);
+  getLottoCount() {
+    return this.lottos.length;
+  }
+
+  generateLottoNumber() {
+    const { LENGTH_MIN, LENGTH_MAX, RANGE_MIN, RANGE_MAX } = LOTTO_NUMBER;
+    const lottoNumbers = [...Array(RANGE_MAX)].map((_, index) => index + RANGE_MIN);
+    shuffleArray(lottoNumbers);
+    const selectedNumbers = lottoNumbers.slice(LENGTH_MIN, LENGTH_MAX);
+    return selectedNumbers;
+  }
+
+  generateLottoTicket(count) {
+    this.lottos = [...Array(count)].map(() => this.generateLottoNumber());
   }
 }

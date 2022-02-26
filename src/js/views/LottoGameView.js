@@ -27,7 +27,7 @@ export default class LottoGameView {
   }
 
   renderLottoNumbers(lottos) {
-    lottos.forEach(({ numbers }) => {
+    lottos.forEach((numbers) => {
       this.lottoNumberList.insertAdjacentHTML(
         "beforeend",
         `<li>🎟️<span class="lotto-numbers">${numbers}</span></li>`,
