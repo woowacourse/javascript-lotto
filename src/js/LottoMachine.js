@@ -9,15 +9,15 @@ export default class LottoMachine {
   constructor() {
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
-    this.setEvent();
+    this.#setEvent();
   }
 
-  setEvent() {
-    $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
-    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
+  #setEvent() {
+    $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.#onSubmitCharge.bind(this));
+    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.#reverseLottoStyle.bind(this));
   }
 
-  onSubmitCharge(event) {
+  #onSubmitCharge(event) {
     event.preventDefault();
     const chargeInputNumber = Number($(SELECTOR.CHARGE_INPUT).value);
     try {
@@ -26,17 +26,17 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.purchase(chargeInputNumber);
+    this.#purchase(chargeInputNumber);
   }
 
-  purchase(chargeInputNumber) {
+  #purchase(chargeInputNumber) {
     const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputNumber, LOTTO_PRICE);
     this.lottoManager.generateNewLottos(newLottoCount);
     this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
     this.lottoMachineView.updateChargeInput(remainCharge);
   }
 
-  reverseLottoStyle() {
+  #reverseLottoStyle() {
     if ($(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked) {
       this.lottoMachineView.showLottoNumberList();
       return;
