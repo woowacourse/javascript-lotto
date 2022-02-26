@@ -68,10 +68,14 @@ export default class LottoView {
     event.preventDefault();
     try {
 <<<<<<< HEAD
+<<<<<<< HEAD
       this.insertMoney();
 =======
       this.userInputMoney();
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
+=======
+      this.insertMoney();
+>>>>>>> 7fc9169 (refactor: LottoView 메소드 이름 변경)
       this.machine.operateLottoMachine();
       this.renderLottoAmount();
       this.renderLotto();
@@ -95,6 +99,7 @@ export default class LottoView {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   insertMoney() {
     this.machine.inputMoney = Number($(DOM.ID.PURCHASE_MONEY_INPUT).value);
   }
@@ -104,6 +109,9 @@ export default class LottoView {
     $(DOM.ID.TOGGLE_CHECKBOX).checked
 =======
   userInputMoney() {
+=======
+  insertMoney() {
+>>>>>>> 7fc9169 (refactor: LottoView 메소드 이름 변경)
     this.machine.inputMoney = Number($(DOM.ID.PURCHASE_MONEY_INPUT).value);
   }
 
