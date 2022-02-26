@@ -2,7 +2,7 @@ import { $ } from '../utils/dom.js';
 export const renderPurchasedLottoList = lottoCount => {
   const template = `
     <div class="purchased-lotto-header"> 
-    <p class="purchased-lotto-list-title">총 ${lottoCount}를 구매하셨습니다</p>
+    <p class="purchased-lotto-list-title">총 ${lottoCount} 개를 구매하셨습니다</p>
     <p>번호보기</p>
     </div>
     <div class="purchased-lotto-main">
@@ -35,7 +35,7 @@ export const renderPurchasedLottoListContentIsActive = lottoObject => {
   ${lottoObject
     .map(lotto => {
       return `<div class="lotto-item-container"><p>🎟️</p>
-    <div class="lotto-item-number">${lotto.Numbers}</div></div>`;
+    <div class="lotto-item-number">${lotto.numbers}</div></div>`;
     })
     .join('')}
   </div>

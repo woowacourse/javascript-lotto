@@ -17,7 +17,7 @@ export const checkLottoPrice = userInput => {
     window.alert(NOT_NUMBER_TYPE_ERROR);
     return;
   }
-  if (isValuePositiveNumber(lottoPrice) === false) {
+  if (isPositiveNumber(lottoPrice) === false) {
     window.alert(NOT_POSITIVE_NUMBER_ERROR);
     return;
   }
@@ -32,7 +32,7 @@ export const isValueTypeNumber = value => {
   return Number.isInteger(value);
 };
 
-export const isValuePositiveNumber = value => {
+export const isPositiveNumber = value => {
   return value > 0;
 };
 
