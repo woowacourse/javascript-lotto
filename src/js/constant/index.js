@@ -1,5 +1,5 @@
 export const ERROR_MESSAGE = Object.freeze({
-  LACK_OF_FARE: '요금은 1000원 이상 투입해주세요!',
+  LACK_FARE: '요금은 1000원 이상 투입해주세요!',
 });
 
 export const LOTTO_PRICE = 1000;

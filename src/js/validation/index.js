@@ -5,7 +5,7 @@ export const isEnoughFare = (fare) => fare >= LOTTO_PRICE;
 export const validator = {
   validateFare: (fare) => {
     if (!isEnoughFare(fare)) {
-      throw new Error(ERROR_MESSAGE.LACK_OF_FARE);
+      throw new Error(ERROR_MESSAGE.LACK_FARE);
     }
   },
 };
