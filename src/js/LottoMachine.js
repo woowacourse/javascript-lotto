@@ -26,6 +26,7 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
+    this.lottoMachineView.blockInput();
     this.#purchase(chargeInputNumber);
   }
 

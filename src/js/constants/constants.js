@@ -13,6 +13,7 @@ export const ERROR_MESSAGE = {
 export const SELECTOR = {
   CHARGE_SUBMIT_FORM: '#charge-submit-form',
   CHARGE_INPUT: '#charge-input',
+  PURCHASED_BUTTON: '#purchased-button',
   SHOW_NUMBER_TOGGLE_INPUT: '#show-number-toggle-input',
   LOTTO_LIST_NUMBER: '#lotto-list-number',
   LOTTO_TOTAL_NUMBER: '#lotto-total-number',
