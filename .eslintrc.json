@@ -1,0 +1,29 @@
+{
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "globals": { "_": true },
+  "plugins": ["import", "html"],
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "eol-last": ["error", "always"],
+    "max-depth": ["error", 2],
+    "max-lines-per-function": ["error", 15],
+    "indent": ["error", 2],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
+  }
+}

@@ -1,17 +1,104 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎱 행운의 로또</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🎱 행운의 로또</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-
-<body>
-  <div id="app">
-    <h1>🎱 행운의 로또</h1>
-  </div>
-  <script type="module" src="./src/js/index.js"></script>
-</body>
-
+  <body>
+    <div id="app" class="app-style">
+      <h1 class="lotto-title">🎱 행운의 로또</h1>
+      <form id="charge-submit-form" class="margin-bottom-28px">
+        <label for="charge-input" class="normal-text margin-bottom-8px"> 구입할 금액을 입력해주세요. </label>
+        <div class="charge-input-wrap width-100 height-36px">
+          <input
+            id="charge-input"
+            class="normal-input width-80 height-100"
+            type="number"
+            placeholder="금액"
+            min="1000"
+            required />
+          <button class="blue-button width-56px height-100">구입</button>
+        </div>
+      </form>
+      <section class="purchased-lotto-section margin-bottom-32px">
+        <h2 class="visually-hidden">구입한 로또 목록</h2>
+        <div class="width-80">
+          <p id="lotto-total-number" class="normal-text margin-bottom-8px">총 0개를 구매하였습니다.</p>
+          <div>
+            <!-- 토글 off -->
+            <p id="lotto-list-icon" class="lotto-list-icon-style"></p>
+            <!-- 토글 on -->
+            <ul id="lotto-list-number" class="lotto-list-number display-none"></ul>
+          </div>
+        </div>
+        <div class="align-end">
+          <label class="normal-text margin-bottom-8px">번호 보기</label>
+          <label class="show-number-toggle">
+            <input id="show-number-toggle-input" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </section>
+      <form>
+        <label id="winner-number-label" class="normal-text margin-bottom-8px">
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+        </label>
+        <div class="winner-number-input-wrap margin-bottom-24px">
+          <fieldset>
+            <legend class="normal-text margin-bottom-8px">당첨 번호</legend>
+            <div>
+              <input
+                class="normal-input no-spin-button width-34px height-36px"
+                type="number"
+                min="1"
+                max="45"
+                aria-labelledby="winner-number-label" />
+              <input
+                class="normal-input no-spin-button width-34px height-36px"
+                type="number"
+                min="1"
+                max="45"
+                aria-labelledby="winner-number-label" />
+              <input
+                class="normal-input no-spin-button width-34px height-36px"
+                type="number"
+                min="1"
+                max="45"
+                aria-labelledby="winner-number-label" />
+              <input
+                class="normal-input no-spin-button width-34px height-36px"
+                type="number"
+                min="1"
+                max="45"
+                aria-labelledby="winner-number-label" />
+              <input
+                class="normal-input no-spin-button width-34px height-36px"
+                type="number"
+                min="1"
+                max="45"
+                aria-labelledby="winner-number-label" />
+              <input
+                class="normal-input no-spin-button width-34px height-36px"
+                type="number"
+                min="1"
+                max="45"
+                aria-labelledby="winner-number-label" />
+            </div>
+          </fieldset>
+          <fieldset class="align-end">
+            <legend class="normal-text margin-bottom-8px">보너스 번호</legend>
+            <input
+              class="normal-input no-spin-button width-34px height-36px"
+              type="number"
+              min="1"
+              max="45"
+              aria-labelledby="winner-number-label" />
+          </fieldset>
+        </div>
+        <button id="check-result-button" class="blue-button width-100">결과 확인하기</button>
+      </form>
+    </div>
+  </body>
 </html>
