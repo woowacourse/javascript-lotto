@@ -3,7 +3,7 @@ import { DOM_STRING } from '../configs/contants.js';
 const template = {
   app: () => {
     return `
-      <h4 id="${DOM_STRING.TITLE}">🎱 행운의 로또</h4>
+      <h1 id="${DOM_STRING.TITLE}">🎱 행운의 로또</h1>
       <section id="${DOM_STRING.PAYMENT_SECTION}">
       </section>
       <section id="${DOM_STRING.TICKET_SECTION}">
