@@ -7,13 +7,14 @@ export default class LottoManager {
     this.#lottos = [];
   }
 
-  get lottos() { return this.#lottos; }
+  get lottos() {
+    return this.#lottos;
+  }
 
   generateNewLottos(count) {
-    let currentCount = 0;
-    while ( currentCount < count ) {
+    let currentCount;
+    for (currentCount = 0; currentCount < count; currentCount += 1) {
       this.#lottos.push(new Lotto());
-      currentCount += 1;
     }
   }
 }
