@@ -1,5 +1,5 @@
-import { getRandomNumber } from '../utils/validator';
 import { NUMBER } from '../constants/number';
+import { lottoNumberClosure } from '../utils/gameUtil';
 
 class Lotto {
   constructor() {
@@ -7,13 +7,8 @@ class Lotto {
   }
 
   createLottoNumbers() {
-    const lottoArray = new Set();
-
-    while (lottoArray.size < NUMBER.LOTTO_NUMBER_LENGTH) {
-      lottoArray.add(getRandomNumber());
-    }
-
-    return [...lottoArray];
+    const getLottoNumber = lottoNumberClosure();
+    return [...new Array(NUMBER.LOTTO_NUMBER_LENGTH)].map(() => getLottoNumber());
   }
 }
 

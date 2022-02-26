@@ -5,18 +5,22 @@ export function isValidLength(lottoNumber) {
 }
 
 export function isValidLottoNumbers(lottoNumbers) {
-  return lottoNumbers.every(
-    (number) =>
-      Number.isInteger(number) &&
-      number >= NUMBER.LOTTO_MIN_NUMBER &&
-      number <= NUMBER.LOTTO_MAX_NUMBER
-  );
+  return isValidEveryLottoNumber(lottoNumbers) && hasNotDuplicatedNumber(lottoNumbers);
 }
 
 export function isValidCharge(charge) {
   return Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE;
 }
 
-export function getRandomNumber() {
-  return Math.floor(Math.random() * 45) + 1;
+export function hasNotDuplicatedNumber(array) {
+  return array.length === [...new Set(array)].length;
+}
+
+export function isValidEveryLottoNumber(array) {
+  return array.every(
+    (number) =>
+      Number.isInteger(number) &&
+      number >= NUMBER.LOTTO_MIN_NUMBER &&
+      number <= NUMBER.LOTTO_MAX_NUMBER
+  );
 }
