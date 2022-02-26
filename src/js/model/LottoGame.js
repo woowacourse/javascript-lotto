@@ -14,10 +14,10 @@ export default class LottoGame {
   }
 
   generateLottoTicket(count) {
-    for (let i = 0; i < count; i += 1) {
+    this.lottos = [...Array(count)].map(() => {
       const lotto = new Lotto();
       lotto.generateRandomNumber();
-      this.lottos.push(lotto);
-    }
+      return lotto;
+    });
   }
 }
