@@ -1,4 +1,9 @@
-import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, SELECTOR } from '../constants/constants';
+import {
+  CLASSNAMES,
+  DISABLED_PURCHASE_BUTTON_TEXT,
+  LOTTO_IMAGE,
+  SELECTOR,
+} from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
@@ -23,12 +28,12 @@ class LottoView {
   #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
     const { classList: lottoGridClassList } = this.lottoGrid;
     if (isVisible) {
-      lottoGridClassList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
-      lottoGridClassList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+      lottoGridClassList.add(CLASSNAMES.ONE_COLUMN_GRID_CLASSNAME);
+      lottoGridClassList.remove(CLASSNAMES.HIDE_NUMBERS_CLASSNAME);
       return;
     }
-    lottoGridClassList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
-    lottoGridClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+    lottoGridClassList.remove(CLASSNAMES.ONE_COLUMN_GRID_CLASSNAME);
+    lottoGridClassList.add(CLASSNAMES.HIDE_NUMBERS_CLASSNAME);
   };
 
   disableCashInput() {
@@ -40,8 +45,8 @@ class LottoView {
   }
 
   renderLottos(lottos) {
-    this.purchasedLottoSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
-    this.winnerNumberSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
+    this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
+    this.winnerNumberSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
 
     this.lottoContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
     this.lottoGrid.append(...LottoView.generateLottoElementsArray(lottos));
@@ -58,12 +63,12 @@ class LottoView {
   }
 
   static generateLottoElement(lotto) {
-    const lottoElement = createElementWithClassName('div', SELECTOR.LOTTO_CLASSNAME);
+    const lottoElement = createElementWithClassName('div', CLASSNAMES.LOTTO_CLASSNAME);
 
-    const lottoImage = createElementWithClassName('p', SELECTOR.LOTTO_IMAGE_CLASSNAME);
+    const lottoImage = createElementWithClassName('p', CLASSNAMES.LOTTO_IMAGE_CLASSNAME);
     lottoImage.textContent = LOTTO_IMAGE;
 
-    const lottoNumbers = createElementWithClassName('p', SELECTOR.LOTTO_NUMBERS_CLASSNAME);
+    const lottoNumbers = createElementWithClassName('p', CLASSNAMES.LOTTO_NUMBERS_CLASSNAME);
     lottoNumbers.textContent = Array.from(lotto.lottoNumberSet).join(', ');
 
     lottoElement.append(lottoImage, lottoNumbers);

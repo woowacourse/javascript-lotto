@@ -4,7 +4,6 @@ export const SELECTOR = Object.freeze({
   CASH_INPUT_SECTION_CLASS: '.cash-input-section',
   CASH_INPUT_CLASS: '.cash-input',
   CASH_INPUT_BUTTON_CLASS: '.cash-input-button',
-  CASH_INPUT_BUTTON_CLASSNAME: 'cash-input-button',
 
   PURCHASED_LOTTO_SECTION_CLASS: '.purchased-lotto-section',
   WINNER_NUMBER_SECTION_CLASS: '.winner-number-section',
@@ -13,6 +12,10 @@ export const SELECTOR = Object.freeze({
   LOTTO_GRID_CLASS: '.lotto-grid',
 
   SHOW_NUMBER_TOGGLE_BUTTON_CLASS: '.show-number-toggle-button',
+});
+
+export const CLASSNAMES = {
+  CASH_INPUT_BUTTON_CLASSNAME: 'cash-input-button',
 
   LOTTO_CLASSNAME: 'lotto',
   LOTTO_IMAGE_CLASSNAME: 'lotto-image',
@@ -20,8 +23,9 @@ export const SELECTOR = Object.freeze({
 
   HIDE_CLASSNAME: 'hide',
   ONE_COLUMN_GRID_CLASSNAME: 'one-column-grid',
+
   HIDE_NUMBERS_CLASSNAME: 'hide-numbers',
-});
+};
 
 export const DISABLED_PURCHASE_BUTTON_TEXT = '구입완료';
 

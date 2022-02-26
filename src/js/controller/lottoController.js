@@ -1,5 +1,5 @@
 import { selectDom } from '../utils/utils';
-import { SELECTOR } from '../constants/constants';
+import { CLASSNAMES, SELECTOR } from '../constants/constants';
 
 import LottoManager from '../model/lottoManager';
 import LottoView from '../view/lottoView';
@@ -12,7 +12,7 @@ class LottoController {
   }
 
   #onCashInputSectionClick = ({ target }) => {
-    if (target.className === SELECTOR.CASH_INPUT_BUTTON_CLASSNAME) {
+    if (target.className === CLASSNAMES.CASH_INPUT_BUTTON_CLASSNAME) {
       this.#processCashInput();
     }
   };
