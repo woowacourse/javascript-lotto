@@ -19,7 +19,7 @@ test('금액은 정수이어야 한다.', () => {
   }).toThrow();
 });
 
-test('구매를 할 수 있다.', () => {
+test('입력한 금액에 맞게 로또 개수를 구매할 수 있어야 한다.', () => {
   const lottoGame = new LottoGame();
   lottoGame.insertMoney(3000);
   lottoGame.buyLotto();
