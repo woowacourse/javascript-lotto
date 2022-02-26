@@ -6,11 +6,8 @@ const generateLottoList = (money) => {
   const count = Math.floor(money / 1000);
 
   for (let i = 0; i < count; i += 1) {
-    const {
-      RANGE: { MIN, MAX },
-      COUNT,
-    } = LOTTO;
-    lottoList.push(pickUniqueNumbersInRange(MIN, MAX, COUNT));
+    const { RANGE, COUNT } = LOTTO;
+    lottoList.push(pickUniqueNumbersInRange(RANGE.MIN, RANGE.MAX, COUNT));
   }
 
   return lottoList;
