@@ -6,6 +6,7 @@
 import Lotto from "../domains/Lotto.js";
 import { LOTTO } from "../constants/constants.js";
 import { isInRange, isDuplicated } from "../validations/utils.js";
+<<<<<<< HEAD
 
 describe("로또 단위 테스트 ", () => {
   const lotto = new Lotto();
@@ -43,6 +44,8 @@ function isDuplicated(arr) {
   const set = new Set(arr);
   return set.size === arr.length;
 }
+=======
+>>>>>>> e26881d (refactor: 테스트코드내의 함수들 파일분리)
 
 describe("로또 단위 테스트 ", () => {
   const lotto = new Lotto();
