@@ -56,8 +56,7 @@ export default class LottoController {
   changeCheckBoxHandler(event) {
     const { target } = event;
     if (target.checked) {
-      const lottos = this.model.getLottos();
-      this.resultView.renderLottos(lottos);
+      this.resultView.renderLottos(this.model.getLottos());
       return;
     }
     this.resultView.initLottos();
