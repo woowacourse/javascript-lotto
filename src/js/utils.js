@@ -16,10 +16,8 @@ export const removeValByIndexInArr = (arr, index) => {
 export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 export const pickUniqueNumbersInRange = (startInclusive, endInclusive, count) => {
-  let candidates = range(startInclusive, endInclusive);
-  const until = endInclusive - startInclusive + 1 - count;
-  for (let i = 0; i < until; i += 1) {
-    candidates = removeValByIndexInArr(candidates, pickNumberInRange(0, candidates.length - 1));
-  }
-  return candidates;
+  const removeCount = endInclusive - startInclusive + 1 - count;
+  return Array.from({ length: removeCount }).reduce((acc) => {
+    return removeValByIndexInArr(acc, pickNumberInRange(0, acc.length - 1));
+  }, range(startInclusive, endInclusive));
 };
