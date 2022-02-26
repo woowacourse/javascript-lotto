@@ -7,7 +7,7 @@ it('로또 번호는 중복된 숫자들을 가질 수 없다.', () => {
   lotto.pushNumberIntoPickedNumber(duplicatedNumber);
   lotto.pushNumberIntoPickedNumber(duplicatedNumber);
 
-  expect(lotto.pickedNumber).toContain(1);
+  expect(lotto.pickedNumber).toHaveLength(1);
 });
 
 it('로또 번호는 숫자 6개를 초과할 수 없다.', () => {
