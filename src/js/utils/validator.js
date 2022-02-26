@@ -4,7 +4,7 @@ export function isValidLength(lottoNumber) {
   return lottoNumber.length === NUMBER.LOTTO_NUMBER_LENGTH;
 }
 
-export function isValidNumber(lottoNumbers) {
+export function isValidLottoNumbers(lottoNumbers) {
   return lottoNumbers.every(
     (number) =>
       Number.isInteger(number) &&

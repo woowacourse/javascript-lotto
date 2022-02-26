@@ -1,16 +1,19 @@
-import { isValidNumber, isValidLength } from '../utils/validator';
-import { ERROR_MESSAGE } from '../constants/errorMessage';
+import { getRandomNumber } from '../utils/validator';
+import { NUMBER } from '../constants/number';
 
 class Lotto {
-  constructor(lottoNumbers) {
-    this.lottoNumbers = lottoNumbers;
+  constructor() {
+    this.lottoNumbers = this.createLottoNumbers();
   }
 
-  static create(lottoNumbers) {
-    if (isValidNumber(lottoNumbers) && isValidLength(lottoNumbers)) {
-      return new Lotto(lottoNumbers);
+  createLottoNumbers() {
+    const lottoArray = new Set();
+
+    while (lottoArray.size < NUMBER.LOTTO_NUMBER_LENGTH) {
+      lottoArray.add(getRandomNumber());
     }
-    throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_IS_INVALIDATE);
+
+    return [...lottoArray];
   }
 }
 
