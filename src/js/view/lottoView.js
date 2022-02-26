@@ -29,7 +29,7 @@ class LottoView {
     lottoGridClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
   }
 
-  beforeRenderLottos() {
+  disableCashInput() {
     const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
     const cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
     cashInput.disabled = true;

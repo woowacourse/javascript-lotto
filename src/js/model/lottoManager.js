@@ -17,7 +17,7 @@ class LottoManager {
     if (
       !isNumberInRange({ number: cashInput, min: CASH_INPUT_RANGE.MIN, max: CASH_INPUT_RANGE.MAX })
     ) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_MESSAGE);
+      throw new Error(ERROR_MESSAGE.CASH_INPUT_OUT_OF_RANGE);
     }
     if (!this.#isNoChangeLeft(cashInput)) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT_MESSAGE);
@@ -32,8 +32,8 @@ class LottoManager {
     this.lottos = Array.from({ length: this.purchaseAmount }, () => new Lotto());
   }
 
-  #isNoChangeLeft(insertCash) {
-    return insertCash % this.lottoPrice === 0;
+  #isNoChangeLeft(cashInput) {
+    return cashInput % this.lottoPrice === 0;
   }
 }
 
