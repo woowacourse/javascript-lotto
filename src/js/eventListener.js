@@ -8,12 +8,12 @@ export const onSubmitFareForm = (e) => {
   e.preventDefault();
 
   try {
-    const inputedFare = $('#fare-input').value;
+    const fare = $('#fare-input').value;
 
-    validator.validateFare(inputedFare);
+    validator.validateFare(fare);
 
-    view.renderLottoList(lottoGame.createLottos(calculateLottoCount(inputedFare)));
-    view.renderFare(calculateRemainFare(inputedFare));
+    view.renderLottoList(lottoGame.createLottos(calculateLottoCount(fare)));
+    view.renderFare(calculateRemainFare(fare));
   } catch (error) {
     alert(error.message);
   }
