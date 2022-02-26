@@ -37,7 +37,10 @@ export default class LottoMachine {
   }
 
   reverseLottoStyle() {
-    const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
-    this.lottoMachineView.switchLottoListStyle(style);
+    if ($(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked) {
+      this.lottoMachineView.showLottoNumberList();
+      return;
+    }
+    this.lottoMachineView.showLottoIconList();
   }
 }

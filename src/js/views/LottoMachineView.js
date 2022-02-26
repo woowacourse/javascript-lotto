@@ -3,19 +3,8 @@ import { lottoListTemplate, lottoTotalNumber } from './template';
 import { SELECTOR } from '../constants/constants';
 
 export default class LottoMachineView {
-  constructor() {
-    this.showLottoList = {
-      icon: this.showLottoIconList,
-      number: this.showLottoNumberList,
-    };
-  }
-
   updateChargeInput(value) {
     $(SELECTOR.CHARGE_INPUT).value = value;
-  }
-
-  switchLottoListStyle(style) {
-    this.showLottoList[style]();
   }
 
   updateLottoList(lottos) {
