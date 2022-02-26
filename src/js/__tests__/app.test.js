@@ -18,13 +18,14 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
   });
 
   test('사용자가 입력한 금액만큼 로또가 구매된다.', () => {
-    const validMoney = 5000;
     const lottoCount = 5;
-    const lottoBundle = new LottoBundle();
-    const getLottoCount = (money) => money / LOTTO.PRICE_PER_TICKET;
 
-    lottoBundle.createLottoBundle(getLottoCount(validMoney));
-    expect(lottoBundle.lottos.length).toBe(lottoCount);
+    const model = new LottoBundle();
+    model.setMoney(5000);
+    model.setCount();
+    model.createLottoBundle();
+
+    expect(model.lottos.length).toBe(lottoCount);
   });
 });
 
@@ -53,15 +54,18 @@ describe('소비자는 자동 구매를 할 수 있어야 한다.', () => {
     let trialNumber = 100;
     let differentCount = 0;
     let totalCount = 0;
-    const lottoBundle = new LottoBundle();
-    lottoBundle.createLottoBundle(trialNumber);
+
+    const model = new LottoBundle();
+    model.setMoney(1000000);
+    model.setCount();
+    model.createLottoBundle();
 
     for (let i = 0; i < trialNumber; i++) {
       for (let j = i + 1; j < trialNumber; j++) {
         totalCount += 1;
         if (
-          JSON.stringify(lottoBundle.lottos[i].numbers) !==
-          JSON.stringify(lottoBundle.lottos[j].numbers)
+          JSON.stringify(model.lottos[i].numbers) !==
+          JSON.stringify(model.lottos[j].numbers)
         ) {
           differentCount += 1;
         }
