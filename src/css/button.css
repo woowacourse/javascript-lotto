@@ -19,6 +19,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* 키보드로 버튼에 포커스 시 */
+button:focus-visible {
+  outline: 3px solid var(--secondary);
+}
+
+/* 마우스, 터치로 버튼에 포커스 시 */
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 #purchase-button {
   width: 56px;
   height: 36px;

@@ -10,7 +10,13 @@ input {
   padding: 8px;
 }
 
-input:focus {
+/* 키보드로 인풋에 포커스 시 */
+input:focus-visible {
+  outline: 3px solid var(--secondary);
+}
+
+/* 마우스, 터치로 인풋에 포커스 시 */
+input:focus:not(:focus-visible) {
   outline: none;
 }
 
