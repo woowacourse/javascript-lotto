@@ -1,12 +1,14 @@
+import { LOTTO_NUMBERS, ALERT_MESSAGE } from '../constants';
+
 export default class LottoModel {
   constructor() {
     this.lottoCount = 0;
     this.lottos = [];
   }
 
-  setLottoCount(value) {
-    this.checkValidLottoCount(value);
-    this.lottoCount = value / 1000;
+  setLottoCount(inputPrice) {
+    this.checkValidLottoCount(inputPrice);
+    this.lottoCount = inputPrice / LOTTO_NUMBERS.LOTTO_PRICE;
   }
 
   getLottoCount() {
@@ -15,19 +17,19 @@ export default class LottoModel {
 
   checkValidLottoCount(value) {
     if (!this.isNumber(value)) {
-      throw Error('숫자를 입력하세요.');
+      throw Error(ALERT_MESSAGE.MUST_NUMBER);
     }
     if (!this.isOverThousand(value)) {
-      throw Error('1000원 이상을 입력해주세요.');
+      throw Error(ALERT_MESSAGE.OVER_THOUSAND_INPUT);
     }
     if (!this.isDividedThousand(value)) {
-      throw Error('1000으로 나누어 떨어지는 값을 입력해주세요');
+      throw Error(ALERT_MESSAGE.DIVIDED_BY_THOUSAND);
     }
   }
 
-  isDividedThousand = (value) => value % 1000 === 0;
+  isDividedThousand = (value) => value % LOTTO_NUMBERS.LOTTO_PRICE === 0;
 
-  isOverThousand = (value) => value >= 1000;
+  isOverThousand = (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE;
 
   isNumber = (value) => value.match(/[0-9]/);
 
@@ -35,8 +37,8 @@ export default class LottoModel {
 
   getLottoNumbers() {
     const lottoNumberSet = new Set();
-    while (lottoNumberSet.size < 6) {
-      lottoNumberSet.add(this.getRandomNumber(1, 45));
+    while (lottoNumberSet.size < LOTTO_NUMBERS.LOTTO_LENGTH) {
+      lottoNumberSet.add(this.getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER));
     }
     return [...lottoNumberSet];
   }
