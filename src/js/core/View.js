@@ -22,9 +22,7 @@ export default class View {
   afterMounted() {}
 
   bindEventListener(type, selector, callback) {
-    const children = [...this.$target.querySelectorAll(selector)];
-    const isTarget = (target) =>
-      children.includes(target) || target.closest(selector);
+    const isTarget = (target) => target.closest(selector);
 
     this.$target.addEventListener(type, (e) => {
       if (!isTarget(e.target)) return;
