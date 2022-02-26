@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LottoView from "./ui/LottoView.js";
 
 function App() {
@@ -13,6 +14,9 @@ import LottoView from './views/LottoView.js';
 =======
 import LottoView from './ui/LottoView.js';
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
+=======
+import LottoView from "./ui/LottoView.js";
+>>>>>>> be29b46 (refactor: LottoView BindEvents() constructor내에 추가)
 
 <<<<<<< HEAD
 window.addEventListener('DOMContentLoaded', () => {
@@ -22,9 +26,8 @@ window.addEventListener('DOMContentLoaded', () => {
 >>>>>>> 8a86911 (feat: 뷰에서 로또의 갯수 렌더링 기능 추가)
 =======
 function App() {
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener("DOMContentLoaded", () => {
     const lottoView = new LottoView();
-    lottoView.bindEvents();
   });
 }
 export default App;

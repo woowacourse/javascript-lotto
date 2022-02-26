@@ -34,6 +34,7 @@ export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.bindEvents();
   }
 
@@ -45,6 +46,9 @@ export default class LottoView {
     $(DOM.ID.LOTTO_RESULT_TOGGLE).addEventListener(
       "click",
 =======
+=======
+    this.bindEvents();
+>>>>>>> be29b46 (refactor: LottoView BindEvents() constructor내에 추가)
   }
 
   bindEvents() {
