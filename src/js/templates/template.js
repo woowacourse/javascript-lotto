@@ -1,4 +1,4 @@
-import { DOM_STRING } from '../configs/contants.js';
+import { DOM_STRING, LOTTO } from '../configs/contants.js';
 
 const template = {
   app: () => {
@@ -72,7 +72,7 @@ const template = {
           <label for="">당첨 번호</label>
           <div id="${DOM_STRING.WINNING_NUMBER_INPUT_WRAP}">
             ${`<input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />`.repeat(
-              6
+              LOTTO.NUMBER_LENGTH
             )}
           </div>
         </form>
