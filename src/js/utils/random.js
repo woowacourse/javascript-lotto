@@ -1,8 +1,6 @@
 const getRandomNumber = (max, min) =>
   Math.floor(Math.random() * (max + 1 - min)) + min;
 
-// const isExcludedNumber = (numbers, number) => !numbers.includes(number);
-
 const isExcludedNumber = (numbers, number) => {
   const numbersSet = new Set(numbers);
   return !numbersSet.has(number);
