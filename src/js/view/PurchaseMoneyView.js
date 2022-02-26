@@ -2,10 +2,6 @@ import { convertToNumber } from '../util/common.js';
 
 export default class PurchaseMoneyView {
   constructor() {
-    this.initDom();
-  }
-
-  initDom() {
     this.form = document.getElementById('purchase-money-form');
     this.input = document.getElementById('purchase-money-input');
   }

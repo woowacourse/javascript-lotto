@@ -2,10 +2,6 @@ import { WINNING_NUMBER_FORM } from './template.js';
 
 export default class WinningNumberView {
   constructor() {
-    this.initDom();
-  }
-
-  initDom() {
     this.container = document.getElementById('winning-number-container');
   }
 
