@@ -1,5 +1,5 @@
 import { SELECTOR } from "../utils/constants.js";
-import { $ } from "../utils/dom.js";
+import { $, setDisabled } from "../utils/dom.js";
 
 export default class LottoGameView {
   constructor() {
@@ -11,8 +11,8 @@ export default class LottoGameView {
   }
 
   disablePurchaseForm() {
-    this.purchaseInput.setAttribute("disabled", true);
-    this.purchaseButton.setAttribute("disabled", true);
+    setDisabled(this.purchaseInput);
+    setDisabled(this.purchaseButton);
   }
 
   enableSwitch() {
