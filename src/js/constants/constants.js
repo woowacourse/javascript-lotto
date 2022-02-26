@@ -1,7 +1,7 @@
 export const ERROR_MESSAGE = {
-  NEGATIVE_INPUT_ERROR: 'is money negative',
-  NOT_INTEGER_INPUT_ERROR: 'is money not a integer',
-  NOT_MUTIPLE_THOUSAND: 'is money not mutiple of thousand',
+  NEGATIVE_INPUT_ERROR: '입력한 금액이 음수입니다.',
+  NOT_INTEGER_INPUT_ERROR: '입력한 금액이 자연수가 아닙니다.',
+  NOT_MUTIPLE_THOUSAND: '입력한 금액이 1000원 단위의 금액이 아닙니다.',
 };
 
 export const CONDITIONS = {
