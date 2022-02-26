@@ -20,29 +20,34 @@ export default class LottoBundle {
 
   #lottos = [];
 
+  /** @param {number} money 입력받은 돈 */
   setMoney(money) {
     if (validateMoney(money)) {
       this.#money = money;
     }
   }
 
+  /** @type {number} */
   get money() {
     return this.#money;
   }
 
+  /** 발행할 로또 개수를 저장한다 */
   setCount() {
-    validateMoney(this.#money);
     this.#count = Math.floor(this.#money / LOTTO.PRICE_PER_TICKET);
   }
 
+  /** @type {number} */
   get count() {
     return this.#count;
   }
 
+  /** 거슬러줄 잔돈을 저장한다 */
   setPenny() {
     this.#penny = this.#money - this.#count * LOTTO.PRICE_PER_TICKET;
   }
 
+  /** @type {number} */
   get penny() {
     return this.#penny;
   }
@@ -52,7 +57,7 @@ export default class LottoBundle {
     return this.#lottos;
   }
 
-  /** @param {number} count 구입되어 출력되어야 하는 로또의 개수 */
+  /** 구입된 로또 개수만큼 로또를 만들어 저장한다 */
   createLottoBundle() {
     repeatCallback(this.#count, () => this.#pushLottoToBundle());
   }
