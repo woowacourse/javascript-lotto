@@ -10,7 +10,6 @@ class LottoManager {
   }
 
   buyLotto(cashInput) {
-    this.lottoPrice = LOTTO_PRICE;
     this.#validateCashInput(Number(cashInput));
     this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
     this.#generateLottos();
