@@ -31,7 +31,7 @@ class LottoGameModel {
     const lottoArray = new Set();
 
     while (lottoArray.size < NUMBER.LOTTO_NUMBER_AMOUNT) {
-      lottoArray.add(getRandomNumber());
+      lottoArray.add(getRandomNumber(lottoArray));
     }
 
     return [...lottoArray];

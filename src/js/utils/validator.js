@@ -17,6 +17,13 @@ export function isValidCharge(charge) {
   return Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE;
 }
 
-export function getRandomNumber() {
-  return Math.floor(Math.random() * 45) + 1;
+export function getRandomNumber(array) {
+  let randomNumber = Math.floor(Math.random() * 45) + 1;
+
+  while (array.has(randomNumber)) {
+    if (randomNumber >= 45) randomNumber = 1;
+    else randomNumber += 1;
+  }
+
+  return randomNumber;
 }
