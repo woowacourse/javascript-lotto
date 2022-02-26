@@ -14,15 +14,15 @@ class LottoView {
 
     this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS, this.app);
     this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
+    this.showNumberToggleButton.addEventListener('click', this.#toggleLottoNumbersShow);
     this.lottoContainer = selectDom(SELECTOR.LOTTO_CONTAINER_CLASS, this.purchasedLottoSection);
     this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
 
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS, this.app);
   }
 
-  attachEventListeners(handler) {
+  attachCashInputEventListeners(handler) {
     this.cashInputSection.addEventListener('click', handler);
-    this.showNumberToggleButton.addEventListener('click', this.#toggleLottoNumbersShow);
   }
 
   #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {

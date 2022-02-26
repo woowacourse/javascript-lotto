@@ -7,7 +7,7 @@ import LottoView from '../view/lottoView';
 class LottoController {
   constructor() {
     this.view = new LottoView();
-    this.view.attachEventListeners(this.#onCashInputSectionClick);
+    this.view.attachCashInputEventListeners(this.#onCashInputSectionClick);
     this.lottoManager = new LottoManager();
   }
 
