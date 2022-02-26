@@ -12,7 +12,7 @@ describe('로또 구매 테스트', () => {
 
   test(`로또 1개당 ${LOTTO_RULE.NUMBERS_COUNT}개의 번호가 할당된다.`, () => {
     const model = new Model();
-    expect(model.makeLottoNumbers().size).toBe(LOTTO_RULE.NUMBERS_COUNT);
+    expect(model.makeLottoNumbers().length).toBe(LOTTO_RULE.NUMBERS_COUNT);
   });
 
   test(`로또 번호는 ${LOTTO_RULE.MIN_NUMBER} 이상 ${LOTTO_RULE.MAX_NUMBER} 이하이다.`, () => {

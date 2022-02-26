@@ -14,14 +14,25 @@ export default class Model {
   }
 
   makeLottoNumbers() {
-    const lottoNumbers = new Set();
-    while (lottoNumbers.size < LOTTO_RULE.NUMBERS_COUNT) {
-      lottoNumbers.add(generateRandomNumber(LOTTO_RULE.MIN_NUMBER, LOTTO_RULE.MAX_NUMBER));
-    }
-    return lottoNumbers;
+    return shuffle(makeAllLottoNumbers(LOTTO_RULE.MIN_NUMBER, LOTTO_RULE.MAX_NUMBER)).slice(
+      0,
+      LOTTO_RULE.NUMBERS_COUNT,
+    );
   }
 }
 
-function generateRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max + 1 - min)) + min;
+function makeAllLottoNumbers(min, max) {
+  const result = [];
+  for (let i = min; i <= max; i++) {
+    result.push(i);
+  }
+  return result;
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
