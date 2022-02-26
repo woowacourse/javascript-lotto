@@ -1,4 +1,4 @@
-import { LOTTO } from '../constants/constants.js';
+import { LOTTO } from "../constants/constants.js";
 export default class Lotto {
   #numbers = [];
 
@@ -6,19 +6,15 @@ export default class Lotto {
     return this.#numbers;
   }
 
-  set numbers(numbers) {
-    this.#numbers = numbers;
-  }
-
-  pickNumbers(generateRandomNumber) {
+  pickNumbers(strategy = this.#generateRandomNumber) {
     const set = new Set();
     while (set.size < LOTTO.NUMBER_QUANTITY) {
-      set.add(generateRandomNumber());
+      set.add(strategy());
     }
-    return [...set];
+    this.#numbers = [...set];
   }
 
-  generateRandomNumber() {
+  #generateRandomNumber() {
     return Math.floor(
       Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) + LOTTO.MIN_NUMBER
     );
