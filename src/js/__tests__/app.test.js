@@ -1,37 +1,6 @@
 import { ERROR_MESSAGE } from '../constants';
 import { validateMoney, validateWinningNumbers } from '../validation/validators';
 
-expect.extend({
-  toHaveErrorMessage(received, errorMessage) {
-    const pass = received.errorMessage === errorMessage;
-    if (!pass) {
-      return {
-        message: () =>
-          `'${received.errorMessage}'라는 에러메세지가 나와야 하는데 '${errorMessage}' <- 이게 나왔다`,
-        pass,
-      };
-    }
-    return {
-      message: () => `'${received.errorMessage}'라는 에러메세지가 예상대로 잘 나왔다`,
-      pass,
-    };
-  },
-
-  notToHaveError(received) {
-    const pass = !received.hasError;
-    if (!pass) {
-      return {
-        message: () => `validationResult에 에러가 없길 바랬는데, 에러가 있었다`,
-        pass,
-      };
-    }
-    return {
-      message: () => `validationResult에 예상대로 에러가 없었다`,
-      pass,
-    };
-  },
-});
-
 describe('금액 입력에 대한 유효성 검사를 한다', () => {
   test('빈 입력값을 허용하지 않는다', () => {
     const invalidMoney = '';
@@ -124,4 +93,37 @@ describe('당첨 번호 입력에 대한 유효성 검사를 한다', () => {
     let validWinningNumbers = ['1', '4', '29', '39', '43', '45', '31'];
     expect(validateWinningNumbers(validWinningNumbers)).notToHaveError();
   });
+});
+
+expect.extend({
+  toHaveErrorMessage(received, errorMessage) {
+    const pass = received.errorMessage === errorMessage;
+
+    if (!pass) {
+      return {
+        message: () =>
+          `'${received.errorMessage}'라는 에러 메세지가 나와야 하는데 '${errorMessage}' <- 이게 나왔다`,
+        pass,
+      };
+    }
+    return {
+      message: () => `'${received.errorMessage}'라는 에러 메세지가 예상대로 잘 나왔다`,
+      pass,
+    };
+  },
+
+  notToHaveError(received) {
+    const pass = !received.hasError;
+
+    if (!pass) {
+      return {
+        message: () => `validationResult에 에러가 없길 바랐지만 에러가 있었다`,
+        pass,
+      };
+    }
+    return {
+      message: () => `validationResult에 예상대로 에러가 없었다`,
+      pass,
+    };
+  },
 });
