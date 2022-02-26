@@ -1,8 +1,8 @@
 @import './reset.css';
-@import './purchaseMoney.css';
-@import './purchasedLotto.css';
+@import './purchase_money.css';
+@import './purchased_lotto.css';
 @import './toggle.css';
-@import './winningNumber.css';
+@import './winning_number.css';
 
 body {
   display: flex;
