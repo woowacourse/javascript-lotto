@@ -14,13 +14,11 @@ export default class PurchaseMoneyView {
 
       try {
         validatePurchaseMoney(purchaseMoney);
+        submitHandler(purchaseMoney);
       } catch (error) {
         this.resetInputValue();
         alert(error);
-        return;
       }
-
-      submitHandler(purchaseMoney);
     });
   }
 
