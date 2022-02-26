@@ -1,14 +1,15 @@
+@import url('./color.css');
 body {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: var(--body-background-color);
 }
 
 p {
-  margin: 0px;
+  margin: 0;
 }
 
 h1 {
@@ -17,10 +18,10 @@ h1 {
   text-align: center;
 }
 button {
-  background: #00bcd4;
+  background: var(--button-color);
   border-style: none;
   border-radius: 4px;
-  color: #fff;
+  color: var(--button-font-color);
 }
 
 #app {
@@ -29,7 +30,7 @@ button {
   height: fit-content;
   width: 414px;
   padding: 52px 16px 20px 16px;
-  background-color: #ffffff;
+  background-color: var(--app-background-color);
 }
 /*lottoPriceInput */
 
@@ -49,7 +50,7 @@ button {
 .lotto-price-input {
   width: 90%;
   height: 30px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--border-color);
   box-sizing: border-box;
   border-radius: 4px;
   margin-right: 16px;
@@ -61,7 +62,7 @@ button {
   padding: 6px 6px 6px 8px;
 }
 .lotto-price-submit-button:disabled {
-  background-color: lightslategrey;
+  background-color: var(--button-disabled-color);
 }
 
 /*purchased-lotto-list*/
@@ -114,7 +115,7 @@ button {
   right: 0;
   bottom: 0;
   top: 0;
-  background: rgba(33, 33, 33, 0.08);
+  background: var(--onoff-switch-color);
   border-radius: 7px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -125,19 +126,19 @@ button {
   top: -3px;
   height: 20px;
   width: 20px;
-  left: 0px;
+  left: 0;
   bottom: 4px;
-  background: #f8f8f8;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14);
+  background: var(--toggle-circle-color);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14);
   -webkit-transition: 0.5s;
   transition: 0.4s;
   border-radius: 20px;
 }
 .toggle-button input:checked + .onoff-switch {
-  background-color: #80deea;
+  background-color: var(--onoff-switch-checked-color);
 }
 .toggle-button input:checked + .onoff-switch:before {
-  background-color: #00bcd4;
+  background-color: var(--toggle-circle-checked-color);
   -webkit-transform: translateX(18px);
   -ms-transform: translateX(18px);
   transform: translateX(18px);
@@ -171,7 +172,7 @@ button {
 .last-lotto-winning-number-input {
   width: 34px;
   height: 36px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--border-color);
   box-sizing: border-box;
   border-radius: 4px;
 }

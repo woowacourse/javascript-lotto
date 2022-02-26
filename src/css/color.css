@@ -1,0 +1,12 @@
+:root {
+  --body-background-color: #f9f9f9;
+  --button-color: #00bcd4;
+  --button-font-color: #fff;
+  --app-background-color: #fff;
+  --border-color: #b4b4b4;
+  --button-disabled-color: lightslategrey;
+  --onoff-switch-color: rgba(33, 33, 33, 0.08);
+  --toggle-circle-color: #f8f8f8;
+  --onoff-switch-checked-color: #80deea;
+  --toggle-circle-checked-color: #00bcd4;
+}
