@@ -1,12 +1,10 @@
 import { RULES } from '../constants/index.js';
 
-const convertToNumber = value => Number(value);
+const convertToNumber = (value) => Number(value);
 
-const getRandomNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const pickLottoNumber = n => {
+const pickLottoNumber = (n) => {
   const lottos = new Set();
 
   while (lottos.size < n) {

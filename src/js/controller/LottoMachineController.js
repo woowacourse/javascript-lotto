@@ -36,13 +36,6 @@ export default class LottoMachineController {
   }
 
   onSubmitHandler(purchaseMoney) {
-    try {
-      validatePurchaseMoney(purchaseMoney);
-    } catch (error) {
-      this.view.purchaseMoneyView.resetInputValue();
-      alert(error);
-      return;
-    }
     const lottos = this.model.getLottos();
 
     if (isEmptyArray(lottos)) {
@@ -60,7 +53,7 @@ export default class LottoMachineController {
   }
 
   tryRePurchase() {
-    return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
+    return window.confirm(CONFIRM_MESSAGE.RE_PURCHASE);
   }
 
   reset() {
