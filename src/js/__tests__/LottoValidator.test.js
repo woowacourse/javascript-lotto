@@ -17,9 +17,10 @@ it('로또 구매 금액은 숫자만 입력할 수 있다.', () => {
 });
 
 it('로또 구매 금액은 천원 단위로 입력할 수 있다.', () => {
-  const userInput = 1100;
+  const userMoneyInput = 1100;
+  const priceUnit = LOTTO_SETTING.PRICE;
 
-  expect(isDivisible(userInput, LOTTO_SETTING.PRICE)).toBe(false);
+  expect(isDivisible(userMoneyInput, priceUnit)).toBe(false);
 });
 
 it('로또 구매 금액을 정상적으로 입력할 수 있다.', () => {
