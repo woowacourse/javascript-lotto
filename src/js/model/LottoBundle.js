@@ -19,7 +19,9 @@ export default class LottoBundle {
 
   /** @param {number} count 구입되어 출력되어야 하는 로또의 개수 */
   createLottoBundle(count) {
+    console.time('Array vs Set Performance Test');
     repeatCallback(count, () => this.#pushLottoToBundle());
+    console.timeEnd('Array vs Set Performance Test');
   }
 
   /** @method pushLottoToBundle
