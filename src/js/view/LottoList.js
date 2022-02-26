@@ -24,17 +24,10 @@ export default class LottoListView {
   }
 
   showLottoListSection(lottoList) {
-    this.#displayLottoListSection();
-    this.#showDescription(lottoList.length);
-    this.#showLottoList(lottoList);
-  }
-
-  #displayLottoListSection() {
     this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY_NONE);
-  }
+    this.$lottoListDescription.textContent = `총 ${lottoList.length}개를 구매하였습니다.`;
 
-  #showDescription(quantity) {
-    this.$lottoListDescription.textContent = `총 ${quantity}개를 구매하였습니다.`;
+    this.#showLottoList(lottoList);
   }
 
   #showLottoList(lottoList) {
