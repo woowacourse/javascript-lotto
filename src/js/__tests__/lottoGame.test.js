@@ -10,7 +10,7 @@ describe('로또 게임 모델 테스트', () => {
     expect(availableLottoAmount).toBe(expectedAvailableLottoAmount);
   });
 
-  it('금액은 1000이상의 숫자여야한다.', () => {
+  it('금액이 1000보다 작은 경우 다시 입력해야 한다는 에러를 발생시킨다.', () => {
     const lottoGame = new LottoGame();
     const lessThanLottoPriceCharge = 500;
     try {
@@ -28,5 +28,15 @@ describe('로또 게임 모델 테스트', () => {
     lottoGame.createLottoList(charge);
 
     expect(lottoGame.lottoList.length).toBe(availableLottoAmount);
+  });
+
+  it('입력한 금액이 100000원 이상인 경우 다시 입력해야한다는 에러를 발생시킨다.', () => {
+    const lottoGame = new LottoGame();
+    const charge = 100000;
+    try {
+      lottoGame.exchangeChargeToLottoAmount(charge);
+    } catch ({ message }) {
+      expect(message).toEqual(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
+    }
   });
 });

@@ -9,7 +9,9 @@ export function isValidLottoNumbers(lottoNumbers) {
 }
 
 export function isValidCharge(charge) {
-  return Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE;
+  return (
+    Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE && charge <= NUMBER.LOTTO_MAX_PRICE
+  );
 }
 
 export function hasNotDuplicatedNumber(array) {
