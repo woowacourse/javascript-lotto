@@ -20,7 +20,7 @@ export default class Lottos {
   }
 
   makeLottos(count) {
-    const newLottos = [...Array(count)].map(() => new Lotto());
+    const newLottos = Array.from({ length: count }).map(() => new Lotto());
     this.#setLottos(newLottos);
   }
 
