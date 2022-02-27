@@ -43,8 +43,8 @@ export class View {
     this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
   }
 
-  clearMoneyInput() {
-    this.moneyInput.value = '';
+  clearMoneyInput(remain) {
+    this.moneyInput.value = remain === 0 ? '' : remain;
     this.moneyInput.focus();
   }
 

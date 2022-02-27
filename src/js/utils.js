@@ -8,9 +8,6 @@ export const validator = {
     if (!this.isMoneyInteger(input)) {
       throw new Error(ERROR_MESSAGE.NOT_INTEGER_INPUT_ERROR);
     }
-    if (!this.isMoneyMultiplesOfThousand(input)) {
-      throw new Error(ERROR_MESSAGE.NOT_MUTIPLE_THOUSAND);
-    }
     if (!this.isMoneyTooBig(input)) {
       throw new Error(ERROR_MESSAGE.NOT_AVAILABLE_MONEY);
     }
@@ -22,10 +19,6 @@ export const validator = {
 
   isMoneyInteger(input) {
     return Number.isInteger(input);
-  },
-
-  isMoneyMultiplesOfThousand(input) {
-    return input % 1000 === 0;
   },
 
   isMoneyTooBig(input) {
