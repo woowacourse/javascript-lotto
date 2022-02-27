@@ -15,6 +15,7 @@ import {
 
 export default class LottoApp {
   constructor(app) {
+    this.lotto = new Lotto();
     this.$app = getElement(app);
     this.purchasedLottoList = [];
 
@@ -43,17 +44,6 @@ export default class LottoApp {
     });
   }
 
-  setPurchasedLottoList(purchasedLottoCount) {
-    this.purchasedLottoList = Array(purchasedLottoCount)
-      .fill(0)
-      .map((_, index, list) => {
-        const lotto = new Lotto();
-        lotto.setLotto();
-
-        return (list[index] = lotto.getLotto());
-      });
-  }
-
   onSubmitPayment() {
     const $paymentInput = getElement(SELECTOR.$PAYMENT_INPUT);
 
@@ -71,9 +61,9 @@ export default class LottoApp {
       disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
       disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
 
-      this.setPurchasedLottoList(purchasedLottoCount);
+      this.lotto.setLotto(purchasedLottoCount);
 
-      render(this.$app, template.purchasedSection(this.purchasedLottoList));
+      render(this.$app, template.purchasedSection(this.lotto.getLotto()));
       render(this.$app, template.lastWeekWinningNumberSection);
       render(this.$app, template.resultCheckingSection);
     } catch (error) {
