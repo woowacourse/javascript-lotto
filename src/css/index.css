@@ -15,6 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   background-color: #e5e5e5;
 }
 
@@ -58,17 +59,21 @@ button {
 #payment-section .payment-form #payment-button.disabled {
   background-color: #828282;
   opacity: 0.6;
+
   cursor: default;
 }
 
 #app {
   display: flex;
   flex-direction: column;
+
+  margin-top: 10px;
+  padding: 52px 16px;
+
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: white;
-  margin-top: 10px;
-  padding: 52px 16px;
+
   min-height: 727px;
   width: 414px;
 }
@@ -78,6 +83,7 @@ h1 {
   font-weight: 600;
   line-height: 36px;
   text-align: center;
+
   margin-bottom: 16px;
 }
 
@@ -90,6 +96,7 @@ h1 {
 
 #payment-section label {
   display: block;
+
   margin-bottom: 4px;
 }
 
@@ -99,7 +106,9 @@ h1 {
 
 #payment-section .payment-form #payment-input {
   flex-grow: 1;
+
   border-radius: 4px;
+
   padding: 8px 8px;
   margin-right: 16px;
 }
@@ -108,8 +117,9 @@ h1 {
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
-  margin: 0 10px;
   color: #8b8b8b;
+
+  margin: 0 10px;
 }
 
 #payment-section .payment-form #payment-button {
@@ -119,11 +129,13 @@ h1 {
 
 #payment-section .payment-form #payment-button,
 #result-checking-section #result-checking-button {
-  background-color: #00bcd4;
-  color: white;
-  border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
+  color: white;
+
+  background-color: #00bcd4;
+
+  border-radius: 4px;
 }
 
 /* **************************** */
@@ -132,6 +144,7 @@ h1 {
 #purchased-lotto-list-section {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 32px;
 }
 
@@ -142,14 +155,16 @@ h1 {
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 320px;
+
   gap: 8px;
+  max-width: 320px;
 }
 
 #purchased-lotto-list-section
   .lotto-list-container
   #lotto-list.direction-column {
   flex-direction: column;
+
   gap: 4px;
 }
 
@@ -188,6 +203,7 @@ h1 {
 #purchased-lotto-list-section #lotto-list-toggle-button {
   width: 34px;
   height: 20px;
+
   background-image: url('../../images/toggle_off.svg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -217,6 +233,7 @@ h1 {
   .winning-number-container
   #last-week-number-list {
   display: flex;
+
   gap: 8px;
 }
 
@@ -235,11 +252,13 @@ h1 {
   .winning-number-container
   #last-week-number-list
   .last-week-number-input {
+  text-align: center;
+
   width: 34px;
   height: 36px;
-  border-radius: 4px;
   padding: 0;
-  text-align: center;
+
+  border-radius: 4px;
 }
 
 /* *********************** */
@@ -251,13 +270,15 @@ h1 {
 
 #result-checking-section #result-checking-button {
   flex-grow: 1;
-  padding: 6px 6px 8px;
+
   height: 36px;
+  padding: 6px 6px 8px;
 }
 
 .switch {
   position: relative;
   display: inline-block;
+
   width: 34px;
   height: 14px;
 }
