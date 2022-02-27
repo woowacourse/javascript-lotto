@@ -2,13 +2,13 @@ import { $ } from '../utils/dom';
 import { ERROR_MESSAGE, LOTTO } from '../constants/constants';
 import { isValidMoneyInput } from './validator';
 import Lotto from '../model/Lotto';
-import { showResult, toggleNumberDetail } from '../view/lottoView';
+import LottoView from '../view/LottoView';
 
 export default class LottoController {
   constructor() {
     this.lottoTickets = [];
+    this.lottoView = new LottoView();
     $('.purchase-form').addEventListener('submit', this.handlePurchase);
-    $('.cm-toggle').addEventListener('click', toggleNumberDetail);
   }
 
   issueLottoTickets(moneyInput) {
@@ -29,6 +29,6 @@ export default class LottoController {
       return;
     }
     this.issueLottoTickets(moneyInput);
-    showResult(this.lottoTickets);
+    this.lottoView.showResult(this.lottoTickets);
   };
 }

@@ -1,42 +1,48 @@
-import { $$, $ } from '../utils/dom';
+import { $, $$ } from '../utils/dom';
 
-const showLottoTicketsLength = (lottoTicketsLength) => {
-  const template = `<span>총 ${lottoTicketsLength}개를 구매하였습니다.</span>`;
-  $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
-};
+export default class LottoView {
+  constructor() {
+    $('.cm-toggle').addEventListener('click', this.toggleNumberDetail);
+  }
 
-const showResultElements = () => {
-  $$('.result').forEach((element) => element.classList.remove('d-none'));
-};
+  deactivateForm(enable) {
+    $('.money-input').setAttribute('disabled', enable);
+    $('.purchase-button').setAttribute('disabled', enable);
+  }
 
-const showLottoImage = (lottoTickets) => {
-  const template = lottoTickets
-    .map(
-      (lotto) =>
-        `<div class="lotto-img">
-      🎟️<span class="lotto-number-detail d-none">${lotto.join(', ')}</span>
-    </div>`
-    )
-    .join('');
-  $('.lotto-grid').insertAdjacentHTML('beforeend', template);
-};
+  showResultElements() {
+    $$('.result').forEach((element) => element.classList.remove('d-none'));
+  }
 
-export const toggleNumberDetail = () => {
-  $('.lotto-grid').classList.toggle('lotto-grid-detail');
+  showLottoTicketsLength(lottoTicketsLength) {
+    const template = `<span>총 ${lottoTicketsLength}개를 구매하였습니다.</span>`;
+    $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
+  }
 
-  $$('.lotto-number-detail').forEach((element) => {
-    element.classList.toggle('d-none');
-  });
-};
+  showLottoImage(lottoTickets) {
+    const template = lottoTickets
+      .map(
+        (lotto) =>
+          `<div class="lotto-img">
+        🎟️<span class="lotto-number-detail d-none">${lotto.join(', ')}</span>
+      </div>`
+      )
+      .join('');
+    $('.lotto-grid').insertAdjacentHTML('beforeend', template);
+  }
 
-const deactivateForm = (enable) => {
-  $('.money-input').setAttribute('disabled', enable);
-  $('.purchase-button').setAttribute('disabled', enable);
-};
+  showResult(lottoTickets) {
+    this.deactivateForm(true);
+    this.showResultElements();
+    this.showLottoTicketsLength(lottoTickets.length);
+    this.showLottoImage(lottoTickets);
+  }
 
-export const showResult = (lottoTickets) => {
-  deactivateForm(true);
-  showResultElements();
-  showLottoTicketsLength(lottoTickets.length);
-  showLottoImage(lottoTickets);
-};
+  toggleNumberDetail() {
+    $('.lotto-grid').classList.toggle('lotto-grid-detail');
+
+    $$('.lotto-number-detail').forEach((element) => {
+      element.classList.toggle('d-none');
+    });
+  }
+}
