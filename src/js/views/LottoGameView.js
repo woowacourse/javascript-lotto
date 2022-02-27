@@ -1,33 +1,41 @@
-import { SELECTOR } from "../utils/constants.js";
-import { $ } from "../utils/dom.js";
+import { $, disableElement, enableElement } from "../utils/dom.js";
+import { ELEMENTS } from "../utils/constants.js";
 
 export default class LottoGameView {
   constructor() {
-    this.purchaseInfomation = $(SELECTOR.PURCHASE_INFOMATION);
-    this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
-    this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
-    this.purchaseButton = $(SELECTOR.PURCHASE_BUTTON);
+    this.lottoNumberList = $(".lotto-number-list");
   }
 
-  disablePurchaseForm() {
-    this.purchaseInput.setAttribute("disabled", true);
-    this.purchaseButton.setAttribute("disabled", true);
+  renderPurchaseInfomation(lottoCount) {
+    $(".purchase-infomation").innerText = `총 ${lottoCount}개를 구매하였습니다.`;
   }
 
-  enableSwitch(switchInput) {
-    switchInput.removeAttribute("disabled");
+  renderLottoIcons(lottoCount) {
+    this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️</li>`.repeat(lottoCount));
   }
 
-  renderPurchaseInfomation(count) {
-    this.purchaseInfomation.innerText = `총 ${count}개를 구매하였습니다.`;
+  onClickSwitch(lottoList, lottoCount) {
+    this.resetLottoList();
+    this.lottoNumberList.classList.toggle("show-numbers");
+    if (this.lottoNumberList.classList.contains("show-numbers")) {
+      this.renderLottoNumbers(lottoList);
+      return;
+    }
+    this.renderLottoIcons(lottoCount);
   }
 
-  renderLottoIcons(count) {
-    this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️</li>`.repeat(count));
+  handleLottoNumber(lottoList, lottoCount) {
+    disableElement(ELEMENTS.PURCHASE_INPUT);
+    disableElement($(".purchase-button"));
+    enableElement($(".switch-input"));
+
+    this.renderPurchaseInfomation(lottoCount);
+    this.renderLottoIcons(lottoCount);
+    $(".switch-input").addEventListener("click", () => this.onClickSwitch(lottoList, lottoCount));
   }
 
-  renderLottoNumbers(lottos) {
-    lottos.forEach((numbers) => {
+  renderLottoNumbers(lottoList) {
+    lottoList.forEach((numbers) => {
       this.lottoNumberList.insertAdjacentHTML(
         "beforeend",
         `<li>🎟️<span class="lotto-numbers">${numbers}</span></li>`,
