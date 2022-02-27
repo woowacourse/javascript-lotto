@@ -16,19 +16,11 @@ import {
 export default class LottoApp {
   constructor(app) {
     this.$app = getElement(app);
+    this.purchasedLottoList = [];
+
     render(this.$app, template.paymentSection);
 
-    this.purchasedLottoCount = 0;
-    this.purchasedLottoList = [];
     this.bindEvent();
-  }
-
-  setPurchasedLottoList() {
-    for (let i = 0; i < this.purchasedLottoCount; i++) {
-      const lotto = new Lotto();
-      lotto.setLotto();
-      this.purchasedLottoList.push(lotto.getLotto());
-    }
   }
 
   onClickToggleButton() {
@@ -51,11 +43,22 @@ export default class LottoApp {
     });
   }
 
+  setPurchasedLottoList(purchasedLottoCount) {
+    this.purchasedLottoList = Array(purchasedLottoCount)
+      .fill(0)
+      .map((_, index, list) => {
+        const lotto = new Lotto();
+        lotto.setLotto();
+
+        return (list[index] = lotto.getLotto());
+      });
+  }
+
   onSubmitPayment() {
     const $paymentInput = getElement(SELECTOR.$PAYMENT_INPUT);
 
     try {
-      this.purchasedLottoCount = isDivisibleBy(
+      const purchasedLottoCount = isDivisibleBy(
         isPositiveInteger($paymentInput.valueAsNumber),
         MONEY.STANDARD
       );
@@ -68,7 +71,7 @@ export default class LottoApp {
       disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
       disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
 
-      this.setPurchasedLottoList();
+      this.setPurchasedLottoList(purchasedLottoCount);
 
       render(this.$app, template.purchasedSection(this.purchasedLottoList));
       render(this.$app, template.lastWeekWinningNumberSection);

@@ -1,10 +1,10 @@
-import { createRandomNumberList } from './utils';
+import { createLottoList } from './utils';
 
 export default class Lotto {
   #lottoNumberList = [];
 
   setLotto() {
-    this.#lottoNumberList = createRandomNumberList();
+    this.#lottoNumberList = createLottoList();
   }
 
   getLotto() {
