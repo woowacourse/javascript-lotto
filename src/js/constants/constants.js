@@ -1,5 +1,5 @@
 export const ERROR_MESSAGE = {
-  NEGATIVE_INPUT_ERROR: '입력한 금액이 음수입니다.',
+  NEGATIVE_INPUT_ERROR: '입력한 금액이 양수가 아닙니다.',
   NOT_INTEGER_INPUT_ERROR: '입력한 금액이 자연수가 아닙니다.',
   NOT_MUTIPLE_THOUSAND: '입력한 금액이 1000원 단위의 금액이 아닙니다.',
 };
