@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://jhy979.github.io/javascript-lotto/",
   "scripts": {
     "test": "jest --watch --no-cache",
     "start": "webpack serve --open",
     "build": "webpack",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build&&gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
