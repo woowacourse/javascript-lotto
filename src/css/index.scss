@@ -165,11 +165,11 @@ body {
   flex-direction: column;
 }
 
-.winning-number-input-container {
+.winning-number-inputs-container {
   display: flex;
   justify-content: space-between;
 
-  .winning-number-inputs-container {
+  .winning-number-input-container {
     display: flex;
     gap: 0.5rem;
   }
