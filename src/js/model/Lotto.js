@@ -1,5 +1,5 @@
 import { LOTTO } from '../constants/constants';
-import { generateRandomNumber } from '../utils/number';
+import { generateRandomNumber, shuffleNumber } from '../utils/number';
 
 export default class Lotto {
   constructor() {
@@ -8,11 +8,14 @@ export default class Lotto {
   }
 
   generateLottoNumbers() {
-    while (this.lottoNumbers.length < LOTTO.DIGIT) {
-      const randomNumber = generateRandomNumber();
-      if (!this.lottoNumbers.includes(randomNumber)) {
-        this.lottoNumbers.push(randomNumber);
-      }
+    const candidate = Array(45)
+      .fill()
+      .map((element, index) => index + 1);
+
+    while (this.lottoNumbers.length < 6) {
+      shuffleNumber(candidate);
+      const pickedNumber = candidate.splice(0, 1)[0];
+      this.lottoNumbers.push(pickedNumber);
     }
   }
 }
