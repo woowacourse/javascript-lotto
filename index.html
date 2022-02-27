@@ -9,9 +9,69 @@
 
 <body>
   <div id="app">
-    <h1>🎱 행운의 로또</h1>
+    <header>
+      <h1>🎱 행운의 로또</h1>
+    </header>
+
+    <main>
+      <section class="lotto-money-section">
+        <h2 hidden>구입 금액 입력</h2>
+        <form class="lotto-money-form">
+          <label for="lotto-money-input">구입할 금액을 입력해주세요.</label>
+          <div class="lotto-money-input-container">
+            <input min="0" id="lotto-money-input" name="lotto-money-input" type="number" placeholder="금액" />
+            <button id="lotto-purchase-button" class="btn">구입</button>
+          </div>
+        </form>
+      </section>
+      
+      <section class="lotto-list-section">
+        <h2 hidden>로또 번호 목록</h2>
+
+        <div class="lotto-title">
+          <span id="lotto-bought-count"></span>
+          <span>번호 보기</span>
+        </div>
+
+        <div class="lotto-list-container">
+            <div class="lotto-item-container" data-list="close">
+            </div>
+
+            <div>
+              <div id="lotto-number-toggle" data-state="off"></div>
+            </div>
+        </div>
+
+      </section>
+
+      <section class="winning-number-section">
+        <h2 hidden>결과 확인</h2>
+        <form id="winning-number-form">
+          <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+          <div class="winning-number-container">
+            <div class="lotto-title">
+              <span>당첨 번호</span>
+              <span>보너스 번호</span>
+            </div>
+            <div class="winning-number-input-container">
+              <div class="winning-number-inputs-container">
+                <input class="winning-number-input" min="1" max="45" type="number" />
+                <input class="winning-number-input" min="1" max="45" type="number" />
+                <input class="winning-number-input" min="1" max="45" type="number" />
+                <input class="winning-number-input" min="1" max="45" type="number" />
+                <input class="winning-number-input" min="1" max="45" type="number" />
+                <input class="winning-number-input" min="1" max="45" type="number" />
+              </div>
+              <div class="bonus-number-input-container">
+                <input class="winning-number-input" min="1" max="45" type="number" />
+              </div>
+            </div>
+            <button class="btn" id="show-result-button">결과 확인하기</button>
+        </div>
+        </form>   
+      </section>
+    </main>
   </div>
-  <script type="module" src="./src/js/index.js"></script>
 </body>
 
 </html>
