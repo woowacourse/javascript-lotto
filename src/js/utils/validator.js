@@ -3,8 +3,6 @@ import { LOTTO, ERROR_MESSAGE, PAYMENT } from '../configs/contants.js';
 
 const isNumber = (value) => typeof value === 'number' && Number.isFinite(value);
 
-const isDividedByThousand = (value) => value % LOTTO.PRICE === 0;
-
 const isValidPurchaseAmountRange = (purchaseAmount) =>
   purchaseAmount >= PAYMENT.PURCHASE_AMOUNT.MIN &&
   purchaseAmount <= PAYMENT.PURCHASE_AMOUNT.MAX;
@@ -29,10 +27,6 @@ export const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
     if (!isNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
-    }
-
-    if (!isDividedByThousand(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
     }
 
     if (!isValidPurchaseAmountRange(purchaseAmount)) {
