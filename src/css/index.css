@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  font-size: 34px;
+}
+
+#app {
+  width: 414px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#lotto-price-form {
+  margin-top: 40px;
+}
+
+#lotto-price-input {
+  width: 310px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  padding-left: 8px;
+}
+
+#lotto-price-button {
+  width: 56px;
+  height: 36px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn {
+  background: #00bcd4;
+  color: white;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #80deea;
+}
+
+#result {
+  margin-top: 35px;
+}
+
+#result-container {
+  display: flex;
+}
+
+#purchase-result {
+  width: 75%;
+  margin-right: 30px;
+}
+
+#result-lotto {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 34px;
+}
+
+.toggle-switch input[type='checkbox'] {
+  display: none;
+}
+
+.toggle-track {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 14px;
+  border-radius: 60px;
+  margin-top: 25px;
+  margin-left: 25px;
+  background: #8b8b8b;
+  cursor: pointer;
+}
+
+.toggle-track:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: -15px;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  background: #ededed;
+  border-radius: 100%;
+  transition: left 0.3s;
+}
+
+.toggle-switch input[type='checkbox'] + label .toggle-track:after {
+  display: inline-block;
+  position: absolute;
+  right: 8px;
+  color: #fff;
+}
+
+.toggle-switch input[type='checkbox']:checked + label .toggle-track {
+  background: #80deea;
+}
+
+.toggle-switch input[type='checkbox']:checked + label .toggle-track:before {
+  left: 12px;
+}
+
+.toggle-switch input[type='checkbox']:checked + label .toggle-track:after {
+  left: 5px;
+}
+
+.checked {
+  flex-direction: column;
+}
+
+.lotto-numbers {
+  font-size: 15px;
+  margin-left: 15px;
+  line-height: 43px;
+}
+
+.lotto {
+  display: flex;
+  margin-right: 10px;
+}
+
+.numbers-input {
+  display: flex;
+}
+
+.winning-numbers-input {
+  display: flex;
+  gap: 10px;
+}
+
+.bonus-number {
+  margin-left: 55px;
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-number-input,
+.bonus-number-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.bonus-number-input {
+  align-self: flex-end;
+}
+
+#check-result-button {
+  margin-top: 25px;
+  width: 382px;
+  height: 36px;
+  border-radius: 4px;
+  border: transparent;
+}

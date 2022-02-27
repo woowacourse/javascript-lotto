@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎱 행운의 로또</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🎱 행운의 로또</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-
-<body>
-  <div id="app">
-    <h1>🎱 행운의 로또</h1>
-  </div>
-  <script type="module" src="./src/js/index.js"></script>
-</body>
-
+  <body>
+    <div id="app">
+      <h1>🎱 행운의 로또</h1>
+      <form id="lotto-price-form">
+        <label for="lotto-price">구입할 금액을 입력해주세요.</label>
+        <input type="number" placeholder="금액" id="lotto-price-input" name="lotto-price" />
+        <button id="lotto-price-button" class="btn">구입</button>
+      </form>
+      <div id="result"></div>
+    </div>
+  </body>
 </html>

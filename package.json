@@ -1,12 +1,15 @@
 {
   "name": "javascript-lotto",
+  "homepage": "https://rladpwl0512.github.io/javascript-lotto/",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest --watch --no-cache",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -14,8 +17,11 @@
     "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
-    "html-webpack-plugin": "^5.5.0",
     "css-loader": "^6.6.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "gh-pages": "^3.2.3",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "style-loader": "^3.3.1",
     "webpack": "^5.69.1",
