@@ -15,6 +15,10 @@ class LottoManager {
     this.#generateLottos();
   }
 
+  getLottos() {
+    return this.lottos;
+  }
+
   #validateCashInput(cashInput) {
     if (!cashInput) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT);

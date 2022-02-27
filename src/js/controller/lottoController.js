@@ -21,8 +21,10 @@ class LottoController {
     const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS);
     try {
       this.lottoManager.buyLotto(cashInput.value);
+      const lottos = this.lottoManager.getLottos();
+
       this.view.disableCashInput();
-      this.view.renderLottos(this.lottoManager.lottos);
+      this.view.renderLottos(lottos);
     } catch (error) {
       alert(error.message);
     }
