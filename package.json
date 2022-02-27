@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "http://intae92.github.io/javascript-lotto",
   "scripts": {
     "test": "jest --watch --no-cache",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack --mode=production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -14,8 +17,15 @@
     "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
-    "html-webpack-plugin": "^5.5.0",
     "css-loader": "^6.6.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-prettier": "^0.0.0-empty",
+    "gh-pages": "^3.2.3",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "style-loader": "^3.3.1",
     "webpack": "^5.69.1",
@@ -26,5 +36,14 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
+  },
+  "description": "<p align=\"middle\" >   <img width=\"200px;\" src=\"./images/lotto_ball.png\"/> </p> <h2 align=\"middle\">level1 - 행운의 로또</h2> <p align=\"middle\">자바스크립트로 구현 하는 로또 어플리케이션</p> <p align=\"middle\">   <img src=\"https://img.shields.io/badge/version-1.0.0-blue?style=flat-square\" alt=\"template version\"/>   <img src=\"https://img.shields.io/badge/language-html-red.svg?style=flat-square\"/>   <img src=\"https://img.shields.io/badge/language-css-blue.svg?style=flat-square\"/>   <img src=\"https://img.shields.io/badge/language-js-yellow.svg?style=flat-square\"/>   <img src=\"https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square\"/> </p>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intae92/javascript-lotto.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/intae92/javascript-lotto/issues"
   }
 }
