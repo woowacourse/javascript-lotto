@@ -1,11 +1,14 @@
 export const $ = (selector) => document.querySelector(selector);
 
-export const createRandomNumbers = (minRange, maxRange, count) => {
-  const candidate = Array(maxRange - minRange + 1)
-    .fill()
-    .map((_, i) => i + minRange);
+const createRandomNumber = (minRange, maxRange) =>
+  Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
 
-  return Array(count)
-    .fill()
-    .map(() => candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0]);
+export const createRandomNumbers = (minRange, maxRange, count) => {
+  const ret = new Set();
+
+  while (ret.size < count) {
+    ret.add(createRandomNumber(minRange, maxRange));
+  }
+
+  return [...ret];
 };
