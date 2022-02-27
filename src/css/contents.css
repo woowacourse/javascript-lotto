@@ -1,0 +1,114 @@
+#app {
+  margin: 50px auto;
+  width: 500px;
+  padding: 50px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.app-title {
+  text-align: center;
+}
+
+/* 각 페이지 섹션 기본 설정 */
+.page-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 구입 금액 입력 섹션 */
+.cash-input-container {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.cash-input {
+  flex: 0.85;
+  padding: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.cash-input-button {
+  flex: 0.15;
+}
+
+/* 구입한 로또 표시 섹션 */
+.purchased-lotto-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.lotto-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0 5px;
+}
+
+.lotto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lotto-image {
+  font-size: 2rem;
+}
+
+.show-number-toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* 당첨 번호 입력 섹션 */
+.winner-number-input-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winner-number-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.winner-number-input,
+.bonus-number-input {
+  width: 3rem;
+  font-size: 1.5rem;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.bonus-number-input-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.result-button {
+  width: 100%;
+}
+
+/* 스타일 변경 */
+.hide {
+  display: none;
+}
+
+.one-column-grid {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.hide-numbers .lotto-numbers {
+  display: none;
+}

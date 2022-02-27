@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-var": "error",
+        "max-depth": [
+            "error",
+            2
+        ],
+        "max-lines-per-function": [
+            "error",
+            15
+        ],
+        "no-console": "warn",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "linebreak-style": "off",
+        "import/extensions": "off",
+        "no-alert": "off",
+        "operator-linebreak": "off",
+        "comma-dangle": "off",
+        "object-curly-newline": "off",
+        "class-methods-use-this": "off"
+    }
+}

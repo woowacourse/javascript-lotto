@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+button {
+  background-color: #00bcd4;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #b4b4b4;
+  cursor: default;
+}
+
+input:disabled {
+  color: #b4b4b4;
+}
+
+/* 숫자 입력란 화살표 숨김 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+  outline: none;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  margin-bottom: 10px;
+}
