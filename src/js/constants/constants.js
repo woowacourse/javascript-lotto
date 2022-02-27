@@ -21,18 +21,17 @@ export const SELECTOR = Object.freeze({
   HIDE_NUMBERS_CLASSNAME: 'hide-numbers',
 });
 
-export const DISABLED_PURCHASE_BUTTON_TEXT = '구입완료';
-
+/* 로또 게임 관련 */
 export const LOTTO_PRICE = 1000;
 export const CASH_INPUT_RANGE = Object.freeze({
   MIN: 1000,
   MAX: 50000,
 });
 export const LOTTO_NUMBER_COUNT = 6;
-export const LOTTO_NUMBER_RANGE = {
+export const LOTTO_NUMBER_RANGE = Object.freeze({
   MIN: 1,
   MAX: 45,
-};
+});
 
 export const ERROR_MESSAGE = Object.freeze({
   EMPTY_INPUT_MESSAGE: '구입할 금액을 입력해주세요!',
@@ -41,3 +40,4 @@ export const ERROR_MESSAGE = Object.freeze({
 });
 
 export const LOTTO_IMAGE = '🎟️';
+export const DISABLED_PURCHASE_BUTTON_TEXT = '구입완료';
