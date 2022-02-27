@@ -19,9 +19,9 @@ export default class LottoController {
     this.#LottoListView.bindLottoNumberToggle();
   }
 
-  handleMoneyInputSubmit({ moneyInput }) {
+  handleMoneyInputSubmit({ money }) {
     try {
-      this.#LottosModel.buy(moneyInput);
+      this.#LottosModel.buy(money);
       this.#LottoListView.showLottoList();
       this.#LottoListView.renderLottoList(this.#LottosModel.list);
     } catch (error) {
