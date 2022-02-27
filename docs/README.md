@@ -52,23 +52,23 @@
 
 ---
 
-### 파일구조
+### 파일 구조도(수정본)
 
 <br>
 <p >
-  <img width="20%;" src="../images/file_structure.png"/>
+  <img width="20%;" src="../images/structure.png"/>
 </p>
 <br>
 <br>
 
 ---
 
-### 클래스 다이어그램
+### 클래스 다이어그램(수정본)
 
 <br>
 <br>
 <p align="middle" >
-  <img width="100%;" src="../images/class_diagram.png"/>
+  <img width="100%;" src="../images/classdiagram.png"/>
 </p>
 
 ---
