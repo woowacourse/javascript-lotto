@@ -143,7 +143,6 @@ h1 {
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
 	display: flex;
-  gap: 8px;
 }
 
 
@@ -156,15 +155,12 @@ h1 {
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
+  margin-right: 8px;
 }
 
-#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto.display-flex {
+#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto {
   display: flex;
   align-items: center;
-}
-
-#purchased-lotto-list-section .lotto-list-container #lotto-list .lotto.display-flex .lotto-icon {
-  margin-right: 8px;
 }
 
 #purchased-lotto-list-section .lotto-list-toggle-container {

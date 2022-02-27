@@ -95,10 +95,6 @@ export default class LottoApp {
       CLASS_NAME.DIRECTION_COLUMN
     );
 
-    getElements(SELECTOR.LOTTO).forEach((element) => {
-      element.classList.toggle(CLASS_NAME.DISPLAY_FLEX);
-    });
-
     getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
       element.classList.toggle(CLASS_NAME.INVISIBLE);
     });

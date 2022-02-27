@@ -14,7 +14,6 @@ export const CLASS_NAME = {
   DISABLED: 'disabled',
   TOGGLE_SWITCH: 'toggle-switch',
   DIRECTION_COLUMN: 'direction-column',
-  DISPLAY_FLEX: 'display-flex',
   INVISIBLE: 'invisible',
 };
 
