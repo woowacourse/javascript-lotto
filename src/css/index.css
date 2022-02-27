@@ -5,12 +5,13 @@
 @import './winning-number.css';
 
 body {
-  min-height: 100vh;
-  background: #e5e5e5;
-
   display: flex;
   justify-content: center;
   align-items: center;
+
+  min-height: 100vh;
+
+  background: #e5e5e5;
 }
 
 body section {
@@ -22,16 +23,21 @@ body section {
 #app {
   display: flex;
   flex-direction: column;
+
   width: 414px;
   min-height: 727px;
-  padding: 0 16px 39px;
+
   background: #ffffff;
+
+  padding: 0 16px 39px;
 }
 
 header {
   display: flex;
   justify-content: center;
+
   font-size: 34px;
   line-height: 36px;
+
   margin: 52px 0 16px;
 }

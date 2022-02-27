@@ -11,8 +11,10 @@ form > div {
 #purchase-money-input {
   width: 290px;
   height: 32px;
+
   border: 1px solid #8b8b8b;
   border-radius: 4px;
+
   padding-left: 7px;
 }
 
@@ -23,10 +25,13 @@ form > div {
 #purchase-money-button {
   width: 56px;
   height: 36px;
+
   font-size: 14px;
-  background: #00bcd4;
   color: white;
+
+  background: #00bcd4;
   border: none;
   border-radius: 4px;
+
   cursor: pointer;
 }

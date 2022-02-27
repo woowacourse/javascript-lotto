@@ -1,6 +1,7 @@
 #purchased-lotto-container {
   width: 100%;
   min-height: 68px;
+
   margin-top: 28px;
 }
 
@@ -19,13 +20,16 @@
 
 .purchased-lotto-image {
   font-size: 34px;
+
   margin-right: 8px;
 }
 
 .switch-on .purchased-lotto-item {
   display: flex;
   align-items: center;
+
   min-height: 36px;
+
   padding-bottom: 4px;
 }
 
