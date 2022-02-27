@@ -1,6 +1,6 @@
 import Controller from '../core/Controller.js';
 
-export default class LottoAppController extends Controller {
+export default class AppController extends Controller {
   bindEventHandlers() {
     this.view.bindOnClickPaymentSubmit(this.purchase.bind(this));
     this.view.bindOnClickNumberToggle();
