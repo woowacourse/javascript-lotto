@@ -1,24 +1,12 @@
-export const SELECTOR = Object.freeze({
-  CASH_INPUT_SECTION_CLASS: '.cash-input-section',
-  CASH_INPUT_CLASS: '.cash-input',
-  CASH_INPUT_BUTTON_CLASS: '.cash-input-button',
-  CASH_INPUT_BUTTON_CLASSNAME: 'cash-input-button',
+export const CLASSNAME = Object.freeze({
+  CASH_INPUT_BUTTON: 'cash-input-button',
 
-  PURCHASED_LOTTO_SECTION_CLASS: '.purchased-lotto-section',
-  WINNER_NUMBER_SECTION_CLASS: '.winner-number-section',
+  LOTTO: 'lotto',
+  LOTTO_IMAGE: 'lotto-image',
+  LOTTO_NUMBERS: 'lotto-numbers',
 
-  LOTTO_SHOW_CONTAINER_CLASS: '.lotto-container',
-  LOTTO_NUMBER_CONTAINER_CLASS: '.lotto-grid',
-
-  SHOW_NUMBER_TOGGLE_BUTTON_CLASS: '.show-number-toggle-button',
-
-  LOTTO_CLASSNAME: 'lotto',
-  LOTTO_IMAGE_CLASSNAME: 'lotto-image',
-  LOTTO_NUMBERS_CLASSNAME: 'lotto-numbers',
-
-  HIDE_CLASSNAME: 'hide',
-  ONE_COLUMN_GRID_CLASSNAME: 'one-column-grid',
-  HIDE_NUMBERS_CLASSNAME: 'hide-numbers',
+  HIDE: 'hide',
+  HIDE_NUMBERS: 'hide-numbers',
 });
 
 /* 로또 게임 관련 */
@@ -34,9 +22,9 @@ export const LOTTO_NUMBER_RANGE = Object.freeze({
 });
 
 export const ERROR_MESSAGE = Object.freeze({
-  EMPTY_INPUT_MESSAGE: '구입할 금액을 입력해주세요!',
-  INVALID_UNIT_MESSAGE: `${LOTTO_PRICE}원 단위로 구입이 가능합니다.`,
-  OUT_OF_RANGE_MESSAGE: `${CASH_INPUT_RANGE.MIN}원-${CASH_INPUT_RANGE.MAX}원 사이의 금액을 입력해주세요.`,
+  EMPTY_INPUT: '구입할 금액을 입력해주세요!',
+  INVALID_UNIT: `${LOTTO_PRICE}원 단위로 구입이 가능합니다.`,
+  OUT_OF_RANGE: `${CASH_INPUT_RANGE.MIN}원-${CASH_INPUT_RANGE.MAX}원 사이의 금액을 입력해주세요.`,
 });
 
 export const LOTTO_IMAGE = '🎟️';

@@ -1,29 +1,29 @@
-import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, SELECTOR } from '../constants/constants';
+import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, CLASSNAME } from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoMachineView {
   constructor() {
-    this.cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS);
-    this.cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS);
+    this.cashInputButton = selectDom('.cash-input-button');
+    this.cashInput = selectDom('.cash-input');
 
-    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
-    this.lottoShowContainer = selectDom(SELECTOR.LOTTO_SHOW_CONTAINER_CLASS);
-    this.lottoNumberContainer = selectDom(
-      SELECTOR.LOTTO_NUMBER_CONTAINER_CLASS,
+    this.purchasedLottoSection = selectDom('.purchased-lotto-section');
+    this.lottoShowContainer = selectDom('.lotto-container', this.purchasedLottoSection);
+    this.lottoNumberContainer = selectDom('.lotto-grid', this.purchasedLottoSection);
+    this.showNumberToggleButton = selectDom(
+      '.show-number-toggle-button',
       this.purchasedLottoSection
     );
-    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
 
-    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
+    this.winnerNumberSection = selectDom('.winner-number-section');
   }
 
   toggleLottoNumbersShow(isVisible) {
     const { classList: lottoNumberClassList } = this.lottoNumberContainer;
     if (isVisible) {
-      lottoNumberClassList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+      lottoNumberClassList.remove(CLASSNAME.HIDE_NUMBERS);
       return;
     }
-    lottoNumberClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
+    lottoNumberClassList.add(CLASSNAME.HIDE_NUMBERS);
   }
 
   disableCashInputSection() {
@@ -33,8 +33,8 @@ class LottoMachineView {
   }
 
   renderLottos(lottos) {
-    this.purchasedLottoSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
-    this.winnerNumberSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
+    this.purchasedLottoSection.classList.remove(CLASSNAME.HIDE);
+    this.winnerNumberSection.classList.remove(CLASSNAME.HIDE);
 
     this.lottoShowContainer.prepend(this.#generatePurchasedLabel(lottos.length));
     this.lottoNumberContainer.append(...this.#generateLottoElementsArray(lottos));
@@ -51,12 +51,12 @@ class LottoMachineView {
   }
 
   #generateLottoElement(lotto) {
-    const lottoElement = createElementWithClassName('div', SELECTOR.LOTTO_CLASSNAME);
+    const lottoElement = createElementWithClassName('div', CLASSNAME.LOTTO);
 
-    const lottoImage = createElementWithClassName('p', SELECTOR.LOTTO_IMAGE_CLASSNAME);
+    const lottoImage = createElementWithClassName('p', CLASSNAME.LOTTO_IMAGE);
     lottoImage.textContent = LOTTO_IMAGE;
 
-    const lottoNumbers = createElementWithClassName('p', SELECTOR.LOTTO_NUMBERS_CLASSNAME);
+    const lottoNumbers = createElementWithClassName('p', CLASSNAME.LOTTO_NUMBERS);
     lottoNumbers.textContent = Array.from(lotto.lottoNumberSet).join(', ');
 
     lottoElement.append(lottoImage, lottoNumbers);

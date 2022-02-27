@@ -14,15 +14,15 @@ class LottoGenerator {
 
   #validateCashInput(cashInput) {
     if (!cashInput) {
-      throw new Error(ERROR_MESSAGE.EMPTY_INPUT_MESSAGE);
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
     if (
       !isNumberInRange({ number: cashInput, min: CASH_INPUT_RANGE.MIN, max: CASH_INPUT_RANGE.MAX })
     ) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_MESSAGE);
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
     }
     if (!this.#isNoChangeLeft(cashInput)) {
-      throw new Error(ERROR_MESSAGE.INVALID_UNIT_MESSAGE);
+      throw new Error(ERROR_MESSAGE.INVALID_UNIT);
     }
   }
 
