@@ -1,15 +1,17 @@
-const template = {
-  paymentSection: `
-  <h1>🎱 행운의 로또</h1>
-  <section id="payment-section">
-    <h2 hidden>구입할 금액</h2>
-    <label for="payment-input">구입할 금액을 입력해주세요.</label>
-    <form class="payment-form">
-      <input name="payment-input" id="payment-input" type="number" placeholder="금액" />
-      <button id="payment-button">구입</button>
-    </form>
-  </section>
-  `,
+const createTemplate = {
+  paymentSection() {
+    return `
+    <h1>🎱 행운의 로또</h1>
+    <section id="payment-section">
+      <h2 hidden>구입할 금액</h2>
+      <label for="payment-input">구입할 금액을 입력해주세요.</label>
+      <form class="payment-form">
+        <input name="payment-input" id="payment-input" type="number" placeholder="금액" />
+        <button id="payment-button">구입</button>
+      </form>
+    </section>
+    `;
+  },
   purchasedSection(lottoList) {
     return `
     <section id="purchased-lotto-list-section">
@@ -39,7 +41,8 @@ const template = {
     </li>
     `;
   },
-  lastWeekWinningNumberSection: `
+  lastWeekWinningNumberSection() {
+    return `
     <section id="last-week-winning-number-section">
       <h2 hidden>지난 주 당첨 번호</h2>
       <p>지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.</p>
@@ -73,13 +76,16 @@ const template = {
         </div>
       </div>
     </section>
-  `,
-  resultCheckingSection: `
+  `;
+  },
+  resultCheckingSection() {
+    return `
     <section id="result-checking-section">
       <h2 hidden>결과 확인</h2>
       <button id="result-checking-button">결과 확인하기</button>
     </section>
-  `,
+  `;
+  },
 };
 
-export default template;
+export default createTemplate;

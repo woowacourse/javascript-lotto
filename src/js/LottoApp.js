@@ -1,7 +1,7 @@
 import { isPositiveInteger, isDivisibleBy } from './utils';
 import { DOM_STRING, SELECTOR, MONEY } from './constants';
 import Lotto from './Lotto';
-import template from './templates';
+import createTemplate from './templates';
 import {
   getElement,
   getElements,
@@ -19,7 +19,7 @@ export default class LottoApp {
     this.$app = getElement(app);
     this.purchasedLottoList = [];
 
-    render(this.$app, template.paymentSection);
+    render(this.$app, createTemplate.paymentSection());
 
     this.bindEvent();
   }
@@ -63,9 +63,9 @@ export default class LottoApp {
 
       this.lotto.setLotto(purchasedLottoCount);
 
-      render(this.$app, template.purchasedSection(this.lotto.getLotto()));
-      render(this.$app, template.lastWeekWinningNumberSection);
-      render(this.$app, template.resultCheckingSection);
+      render(this.$app, createTemplate.purchasedSection(this.lotto.getLotto()));
+      render(this.$app, createTemplate.lastWeekWinningNumberSection());
+      render(this.$app, createTemplate.resultCheckingSection());
     } catch (error) {
       alertMessage(error.message);
       initInput($paymentInput);
