@@ -21,10 +21,6 @@
   background-color: var(--cyan-light);
 }
 
-.btn-long {
-  width: 152px;
-}
-
 .btn:disabled {
   cursor: not-allowed;
 }
