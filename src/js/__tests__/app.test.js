@@ -12,11 +12,18 @@ describe('구입 금액 검증 테스트 ', () => {
     const cashInput = '1500';
     expect(() => lottoManger.buyLotto(cashInput)).toThrow();
   });
-  test('입력 값의 범위가 1000원 - 50000원인지 검증한다.', () => {
+  test('입력 값의 범위가 1000원 이상 50000원 미만인지 검증한다.', () => {
+    // 실패 케이스
     const lowCashInput = '900';
     expect(() => lottoManger.buyLotto(lowCashInput)).toThrow();
     const highCashInput = '51000';
     expect(() => lottoManger.buyLotto(highCashInput)).toThrow();
+
+    // 성공 케이스
+    const minCashInput = '1000';
+    expect(() => lottoManger.buyLotto(minCashInput)).not.toThrow();
+    const maxCashInput = '50000';
+    expect(() => lottoManger.buyLotto(maxCashInput)).not.toThrow();
   });
   test('올바른 입력 값을 입력하면 오류가 발생하지 않는다.', () => {
     const cashInput = '2000';
