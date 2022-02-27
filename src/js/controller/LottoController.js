@@ -13,6 +13,7 @@ export default class LottoController {
 
   issueLottoTickets(moneyInput) {
     const purchasedLottoTicketsLength = parseInt(moneyInput / LOTTO.TICKET_PRICE);
+
     for (let i = 0; i < purchasedLottoTicketsLength; i += 1) {
       const lottoTicket = new Lotto();
       this.lottoTickets.push(lottoTicket.lottoNumbers);

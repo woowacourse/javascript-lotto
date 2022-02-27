@@ -22,9 +22,8 @@ const showLottoImage = (lottoTickets) => {
 };
 
 export const toggleNumberDetail = () => {
-  const lottoGrid = $('.lotto-grid');
+  $('.lotto-grid').classList.toggle('lotto-grid-detail');
 
-  lottoGrid.classList.toggle('lotto-grid-detail');
   $$('.lotto-number-detail').forEach((element) => {
     element.classList.toggle('d-none');
   });
