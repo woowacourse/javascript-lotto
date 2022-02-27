@@ -12,7 +12,7 @@ export default class LottoListView {
   }
 
   bindLottoNumberToggle() {
-    this.#lottoNumberToggle.addEventListener('click', this.toggleShow.bind(this));
+    this.#lottoNumberToggle.addEventListener('click', this.toggleShowLottoList.bind(this));
   }
 
   showLottoList() {
@@ -23,7 +23,7 @@ export default class LottoListView {
     this.#container.classList.remove('show');
   }
 
-  toggleShow() {
+  toggleShowLottoList() {
     const toggle = this.#lottoNumberToggle.dataset;
     toggle.state = toggle.state === 'on' ? 'off' : 'on';
 
