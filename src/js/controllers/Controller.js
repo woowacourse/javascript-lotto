@@ -6,10 +6,11 @@ export class Controller {
   constructor() {
     this.view = new View();
     this.lottoGame = new LottoGame();
-    this.bindPurchaseEventHandler();
+    this.bindPurchaseEvent();
+    this.bindToggleEvent();
   }
 
-  bindPurchaseEventHandler() {
+  bindPurchaseEvent() {
     this.view.purchaseBtn.addEventListener(
       'click',
       this.#purchaseLotto.bind(this)
@@ -36,8 +37,6 @@ export class Controller {
       this.view.showLottoStatusContainer();
       this.view.showWinningLottoContainer();
       this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
-
-      this.bindToggleEvent();
     } catch (err) {
       this.view.clearMoneyInput();
       alert(err);
