@@ -33,8 +33,8 @@ class LottoManager {
     }
   }
 
-  #getLottoPurchaseAmount(cashInput) {
-    return cashInput / this.lottoPrice;
+  #getLottoPurchaseAmount(cash) {
+    return cash / this.lottoPrice;
   }
 
   #generateLottos() {
