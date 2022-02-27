@@ -1,4 +1,4 @@
-import { MONEY_INPUT } from './constants';
+import { MONEY_INPUT } from '../constants/constants';
 
 const isThousandMultiple = (money) => money % MONEY_INPUT.MIN_PRICE === 0;
 const isOverThouand = (money) => money >= MONEY_INPUT.MIN_PRICE;

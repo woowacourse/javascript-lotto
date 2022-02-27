@@ -1,3 +1,3 @@
-const LOTTO_MAX_NUMBER = 45;
+import { LOTTO } from '../constants/constants';
 
-export const generateRandomNumber = () => Math.floor(Math.random() * LOTTO_MAX_NUMBER) + 1;
+export const generateRandomNumber = () => Math.floor(Math.random() * LOTTO.MAX_NUMBER) + 1;

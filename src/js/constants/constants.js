@@ -7,4 +7,8 @@ export const MONEY_INPUT = {
   MAX_PRICE: 10000,
 };
 
-export const LOTTO_PRICE = 1000;
+export const LOTTO = {
+  TICKET_PRICE: 1000,
+  DIGIT: 6,
+  MAX_NUMBER: 45,
+};

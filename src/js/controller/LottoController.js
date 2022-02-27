@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom';
-import { ERROR_MESSAGE, LOTTO_PRICE } from './constants';
+import { ERROR_MESSAGE, LOTTO } from '../constants/constants';
 import { isValidMoneyInput } from './validator';
 import Lotto from '../model/Lotto';
 import { showResult, toggleNumberDetail } from '../view/lottoView';
@@ -12,7 +12,7 @@ export default class LottoController {
   }
 
   getLottos(moneyInput) {
-    const numberOfLottos = parseInt(moneyInput / LOTTO_PRICE);
+    const numberOfLottos = parseInt(moneyInput / LOTTO.TICKET_PRICE);
     for (let i = 0; i < numberOfLottos; i += 1) {
       const lotto = new Lotto();
       this.lottos.push(lotto.lottoNumbers);
