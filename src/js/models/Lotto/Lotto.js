@@ -4,7 +4,6 @@ import { LOTTO } from '../../configs/contants.js';
 export default class Lotto {
   constructor() {
     this.numbers = this.getLottoNumberList();
-    Object.freeze(this);
   }
 
   getNumbers() {
