@@ -1,16 +1,16 @@
 export const SELECTOR = {
-  $PAYMENT_BUTTON: '#payment-button',
-  $PAYMENT_INPUT: '#payment-input',
-  $LOTTO_LIST_TOGGLE_BUTTON: '#lotto-list-toggle-button',
-  $LOTTO_LIST: '#lotto-list',
-  $LOTTO_NUMBER: '.lotto-number',
-  $LOTTO: '.lotto',
-  $LAST_WEEK_WINNING_NUMBER_SECTION: '#last-week-winning-number-section',
-  $PURCHASED_TOTAL_COUNT: '.purchased-total-count',
-  $RESULT_CHECKING_BUTTON: '#result-checking-button',
+  PAYMENT_BUTTON: '#payment-button',
+  PAYMENT_INPUT: '#payment-input',
+  LOTTO_LIST_TOGGLE_BUTTON: '#lotto-list-toggle-button',
+  LOTTO_LIST: '#lotto-list',
+  LOTTO_NUMBER: '.lotto-number',
+  LOTTO: '.lotto',
+  LAST_WEEK_WINNING_NUMBER_SECTION: '#last-week-winning-number-section',
+  PURCHASED_TOTAL_COUNT: '.purchased-total-count',
+  RESULT_CHECKING_BUTTON: '#result-checking-button',
 };
 
-export const DOM_STRING = {
+export const CLASS_NAME = {
   DISABLED: 'disabled',
   TOGGLE_SWITCH: 'toggle-switch',
   DIRECTION_COLUMN: 'direction-column',
