@@ -60,7 +60,7 @@ export const LOTTO = {
 export const PAYMENT = {
   PURCHASE_AMOUNT: {
     MIN: 1000,
-    MAX: 10000,
+    MAX: 100000,
   },
 };
 
