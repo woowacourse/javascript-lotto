@@ -5,7 +5,6 @@ import LottoNumber from './lottoNumber';
 class LottoGenerator {
   constructor() {
     this.lottos = [];
-    this.lottoPrice = LOTTO_PRICE;
   }
 
   buyLotto(cashInput) {
@@ -28,7 +27,7 @@ class LottoGenerator {
   }
 
   #getLottoPurchaseAmount(cashInput) {
-    return cashInput / this.lottoPrice;
+    return cashInput / LOTTO_PRICE;
   }
 
   #generateLottos(purchaseAmount) {
@@ -36,7 +35,7 @@ class LottoGenerator {
   }
 
   #isNoChangeLeft(insertCash) {
-    return insertCash % this.lottoPrice === 0;
+    return insertCash % LOTTO_PRICE === 0;
   }
 }
 
