@@ -1,8 +1,9 @@
 import template from '../templates/template.js';
+import { $ } from '../utils/utils.js';
 
 export default class LottoView {
   constructor(target) {
-    this.$target = target;
+    this.$target = $(target);
   }
 
   init() {
