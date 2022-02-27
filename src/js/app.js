@@ -1,5 +1,5 @@
 import { isPositiveInteger, divideBy } from './utils';
-import { DOM_STRING, SELECTOR, MONEY, ERROR_MESSAGE } from './constants';
+import { CLASS_NAME, SELECTOR, MONEY, ERROR_MESSAGE } from './constants';
 import Lotto from './Lotto';
 import {
   generatePaymentSection,
@@ -30,20 +30,20 @@ export default class LottoApp {
     bindEventListener({
       appElement: this.$app,
       type: 'click',
-      selector: SELECTOR.$PAYMENT_BUTTON,
+      selector: SELECTOR.PAYMENT_BUTTON,
       callback: this.onSubmitPayment.bind(this),
     });
 
     bindEventListener({
       appElement: this.$app,
       type: 'click',
-      selector: SELECTOR.$LOTTO_LIST_TOGGLE_BUTTON,
+      selector: SELECTOR.LOTTO_LIST_TOGGLE_BUTTON,
       callback: this.onClickToggleButton.bind(this),
     });
   }
 
   onSubmitPayment() {
-    const $paymentInput = getElement(SELECTOR.$PAYMENT_INPUT);
+    const $paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
     const payment = Number($paymentInput.value);
 
     try {
@@ -64,10 +64,10 @@ export default class LottoApp {
   }
 
   disablePayment() {
-    toggleClassName(getElement(SELECTOR.$PAYMENT_BUTTON), DOM_STRING.DISABLED);
+    toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
-    disableElement(getElement(SELECTOR.$PAYMENT_BUTTON));
-    disableElement(getElement(SELECTOR.$PAYMENT_INPUT));
+    disableElement(getElement(SELECTOR.PAYMENT_BUTTON));
+    disableElement(getElement(SELECTOR.PAYMENT_INPUT));
   }
 
   renderPurchasedSection() {
@@ -86,21 +86,21 @@ export default class LottoApp {
 
   onClickToggleButton() {
     toggleClassName(
-      getElement(SELECTOR.$LOTTO_LIST_TOGGLE_BUTTON),
-      DOM_STRING.TOGGLE_SWITCH
+      getElement(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON),
+      CLASS_NAME.TOGGLE_SWITCH
     );
 
     toggleClassName(
-      getElement(SELECTOR.$LOTTO_LIST),
-      DOM_STRING.DIRECTION_COLUMN
+      getElement(SELECTOR.LOTTO_LIST),
+      CLASS_NAME.DIRECTION_COLUMN
     );
 
-    getElements(SELECTOR.$LOTTO).forEach((element) => {
-      element.classList.toggle(DOM_STRING.DISPLAY_FLEX);
+    getElements(SELECTOR.LOTTO).forEach((element) => {
+      element.classList.toggle(CLASS_NAME.DISPLAY_FLEX);
     });
 
-    getElements(SELECTOR.$LOTTO_NUMBER).forEach((element) => {
-      element.classList.toggle(DOM_STRING.INVISIBLE);
+    getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
+      element.classList.toggle(CLASS_NAME.INVISIBLE);
     });
   }
 }
