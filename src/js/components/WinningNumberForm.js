@@ -31,7 +31,7 @@ class WinningNumberForm extends Component {
               <input class="form-control" maxlength="2"/>
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="bonus-number-container">
             <label>보너스 번호</label>
             <input class="form-control" maxlength="2"/>
           </fieldset>

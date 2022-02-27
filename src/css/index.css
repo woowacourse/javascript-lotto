@@ -46,42 +46,27 @@ lotto-list {
   display: flex;
 }
 
-lotto-list > .lotto-list-container {
+.lotto-list-container {
   flex: 1;
 }
 
-lotto-list .lotto-images img {
+lotto-list img {
   margin-right: 8px;
 }
 
-lotto-list > .lotto-list-container label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-lotto-list > .toggle-container {
-}
-
-lotto-list lotto-item {
+lotto-item {
   display: flex;
   align-items: center;
 }
 
-lotto-list lotto-item img {
-  margin-right: 8px;
-}
-
-lotto-list-toggle {
-}
-
-winning-number-form > form {
+winning-number-form form {
   display: flex;
   flex-direction: column;
 }
 
-winning-number-form label {
-  display: block;
-  margin-bottom: 8px;
+winning-number-form .wrapper {
+  display: flex;
+  margin-bottom: 24px;
 }
 
 winning-number-form input.form-control {
@@ -92,16 +77,11 @@ winning-number-form input.form-control {
   text-align: center;
 }
 
-winning-number-form .wrapper {
-  display: flex;
-  margin-bottom: 24px;
-}
-
 winning-number-form fieldset {
   flex: 1;
 }
 
-winning-number-form fieldset:nth-child(2) {
+.bonus-number-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
