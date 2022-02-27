@@ -5,10 +5,14 @@ import LottoManager from '../model/lottoManager';
 import LottoView from '../view/lottoView';
 
 class LottoController {
-  startLotto() {
+  constructor() {
     this.view = new LottoView();
     this.lottoManager = new LottoManager();
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
+    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
+  }
+
+  startLotto() {
     this.cashInputSection.addEventListener('click', this.#onCashInputButtonClick);
   }
 
@@ -29,7 +33,6 @@ class LottoController {
   };
 
   #initToggleButtonHandler() {
-    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
     this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
   }
 
@@ -38,4 +41,4 @@ class LottoController {
   };
 }
 
-export default LottoController;
+export default new LottoController();

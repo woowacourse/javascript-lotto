@@ -3,10 +3,6 @@ import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
   constructor() {
-    this.#initDom();
-  }
-
-  #initDom() {
     this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
     this.lottoShowContainer = selectDom(SELECTOR.LOTTO_SHOW_CONTAINER_CLASS);
@@ -67,4 +63,5 @@ class LottoView {
     return lottoElement;
   }
 }
+
 export default LottoView;

@@ -3,11 +3,14 @@ import { isNumberInRange } from '../utils/utils';
 import Lotto from './lotto';
 
 class LottoManager {
-  buyLotto(cashInput) {
+  constructor() {
+    this.lottos = [];
     this.lottoPrice = LOTTO_PRICE;
+  }
+
+  buyLotto(cashInput) {
     this.#validateCashInput(Number(cashInput));
-    this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
-    this.#generateLottos();
+    this.#generateLottos(this.#getLottoPurchaseAmount(Number(cashInput)));
   }
 
   #validateCashInput(cashInput) {
@@ -28,8 +31,8 @@ class LottoManager {
     return cashInput / this.lottoPrice;
   }
 
-  #generateLottos() {
-    this.lottos = Array.from({ length: this.purchaseAmount }, () => new Lotto());
+  #generateLottos(purchaseAmount) {
+    this.lottos = Array.from({ length: purchaseAmount }, () => new Lotto());
   }
 
   #isNoChangeLeft(insertCash) {

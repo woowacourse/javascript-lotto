@@ -1,4 +1,3 @@
-import LottoController from './controller/lottoController';
+import lottoController from './controller/lottoController';
 
-const lottoController = new LottoController();
 lottoController.startLotto();
