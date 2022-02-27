@@ -1,5 +1,5 @@
 import { makeLottoNumbers } from './utils/common.js';
-export default class Model {
+export default class LottoData {
   #lottoList = [];
 
   getLottoList() {
