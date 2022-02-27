@@ -1,7 +1,7 @@
 import { $$, $ } from '../utils/dom';
 
-const showLottoTicketsLength = (length) => {
-  const template = `<span>총 ${length}개를 구매하였습니다.</span>`;
+const showLottoTicketsLength = (lottoTicketsLength) => {
+  const template = `<span>총 ${lottoTicketsLength}개를 구매하였습니다.</span>`;
   $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
 };
 
@@ -9,8 +9,8 @@ const showResultElements = () => {
   $$('.result').forEach((element) => element.classList.remove('d-none'));
 };
 
-const showLottoImage = (lottos) => {
-  const template = lottos
+const showLottoImage = (lottoTickets) => {
+  const template = lottoTickets
     .map(
       (lotto) =>
         `<div class="lotto-img">
@@ -35,9 +35,9 @@ const deactivateForm = () => {
   $('.purchase-button').setAttribute('disabled', true);
 };
 
-export const showResult = (lottos) => {
+export const showResult = (lottoTickets) => {
   deactivateForm();
   showResultElements();
-  showLottoTicketsLength(lottos.length);
-  showLottoImage(lottos);
+  showLottoTicketsLength(lottoTickets.length);
+  showLottoImage(lottoTickets);
 };
