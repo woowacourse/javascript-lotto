@@ -24,12 +24,12 @@ class LottoList extends Component {
 
     return `
       <div class="lotto-list-container">
-        <label>총 ${lottoList.length}개를 구매하였습니다.</label>
+        <label class="form-label">총 ${lottoList.length}개를 구매하였습니다.</label>
         <div class="lotto-images">${lottoImages}</div>
         <ul class="lotto-list">${lists}</ul>
       </div>
       <div class="toggle-container">
-      <label class="mb-3">번호 보기</label>
+      <label class="form-label mb-3">번호 보기</label>
       <lotto-list-toggle class="d-flex justify-content-end"></lotto-list-toggle>
       </div>
     `;

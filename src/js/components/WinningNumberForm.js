@@ -18,10 +18,10 @@ class WinningNumberForm extends Component {
   template() {
     return `
       <form>
-        <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+        <label class="form-label">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
         <div class="wrapper">
           <fieldset>
-            <label>당첨 번호</label>
+            <label class="form-label">당첨 번호</label>
             <div class="d-flex">
               <input class="form-control" maxlength="2"/>
               <input class="form-control" maxlength="2"/>
@@ -32,7 +32,7 @@ class WinningNumberForm extends Component {
             </div>
           </fieldset>
           <fieldset class="bonus-number-container">
-            <label>보너스 번호</label>
+            <label class="form-label">보너스 번호</label>
             <input class="form-control" maxlength="2"/>
           </fieldset>
         </div>

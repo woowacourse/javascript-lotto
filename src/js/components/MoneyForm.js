@@ -8,7 +8,7 @@ class MoneyForm extends Component {
   template() {
     return `
       <form>
-        <label class="mb-1">구입할 금액을 입력해주세요.</label>
+        <label class="form-label mb-1">구입할 금액을 입력해주세요.</label>
         <div class="d-flex">
           <input class="form-control mr-4" placeholder="금액"></input>
           <button class="btn btn-cyan">구입</button>
