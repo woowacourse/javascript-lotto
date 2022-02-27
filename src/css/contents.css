@@ -16,14 +16,14 @@
   text-align: center;
 }
 
-/* 구입 금액 입력 섹션 */
-.cash-input-section {
-  width: 100%;
+/* 각 페이지 섹션 기본 설정 */
+.page-section {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+/* 구입 금액 입력 섹션 */
 .cash-input-container {
   width: 100%;
   display: flex;
@@ -42,7 +42,7 @@
 }
 
 /* 구입한 로또 표시 섹션 */
-.purchased-lotto-section {
+.purchased-lotto-container {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -72,12 +72,6 @@
 }
 
 /* 당첨 번호 입력 섹션 */
-.winner-number-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .winner-number-input-form {
   display: flex;
   justify-content: space-between;
