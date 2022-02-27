@@ -33,6 +33,7 @@ body {
 }
 
 .blue-button {
+  cursor: pointer;
   box-sizing: border-box;
   height: 36px;
   background: var(--primary);

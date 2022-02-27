@@ -55,6 +55,20 @@
   overflow: hidden;
 }
 
+button.disable:disabled {
+  cursor: default;
+  pointer-events: none;
+  background-color: #b4b4b4;
+  opacity: 0.8;
+}
+
+input.disable:disabled {
+  cursor: default;
+  pointer-events: none;
+  border-color: #b4b4b4;
+  opacity: 0.8;
+}
+
 .vertical-align-super {
   vertical-align: super;
 }
