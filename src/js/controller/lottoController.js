@@ -13,11 +13,11 @@ class LottoController {
 
   #onCashInputSectionClick = ({ target }) => {
     if (target.className === CLASSNAMES.CASH_INPUT_BUTTON_CLASSNAME) {
-      this.#processCashInput();
+      this.#handleCashInput();
     }
   };
 
-  #processCashInput = () => {
+  #handleCashInput = () => {
     const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS);
     try {
       this.lottoManager.buyLotto(cashInput.value);
