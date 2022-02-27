@@ -41,6 +41,7 @@ export default class TicketSectionView extends View {
           <input
             id="${DOM_STRING.SLIDER}"
             type="checkbox" ${isShowNumber ? 'checked' : ''}
+            ${(lottoList.length === 0 && 'disabled') || ''}
           >
           <span class="${DOM_STRING.SLIDER} round"></span>
         </label>
