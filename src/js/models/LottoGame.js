@@ -16,13 +16,9 @@ class LottoGameModel {
 
   createLottoList(chargeInput) {
     /** 정상적이지 않은 로또가 하나라도 존재한다면, 멤버는 빈 값이고 사용자는 금액을 다시 입력하여야 한다. */
-    try {
-      const availableLottoAmount = this.exchangeChargeToLottoAmount(chargeInput);
-      const lottoList = [...new Array(availableLottoAmount)].map(() => new Lotto());
-      this.lottoList = lottoList;
-    } catch ({ message }) {
-      alert(message);
-    }
+    const availableLottoAmount = this.exchangeChargeToLottoAmount(chargeInput);
+    const lottoList = [...new Array(availableLottoAmount)].map(() => new Lotto());
+    this.lottoList = lottoList;
   }
 
   exchangeChargeToLottoAmount(charge) {
