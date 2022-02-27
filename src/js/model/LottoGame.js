@@ -7,13 +7,14 @@ export class LottoGame {
     this.lottoWallet = [];
   }
 
-  insertMoney(moneyInput) {
-    this.moneyInput = moneyInput;
-  }
+  insertMoney = (moneyInput) => (this.moneyInput = moneyInput);
 
-  buyLotto() {
-    for (let i = 0; i * CONDITIONS.LOTTO_PRICE < this.moneyInput; i++) {
-      this.lottoWallet.push(new Lotto());
-    }
-  }
+  buyLotto = () => {
+    this.lottoWallet = [
+      ...this.lottoWallet,
+      ...[
+        ...new Array(Math.floor(this.moneyInput / CONDITIONS.LOTTO_PRICE)),
+      ].map(() => new Lotto()),
+    ];
+  };
 }
