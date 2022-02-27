@@ -14,10 +14,6 @@ export default class Lotto {
   getLottoNumberList() {
     return Array(LOTTO.NUMBER_LENGTH)
       .fill()
-      .map(() => this.getLottoNumber());
-  }
-
-  getLottoNumber() {
-    return getRandomInt(LOTTO.NUMBER_RANGE.MIN, LOTTO.NUMBER_RANGE.MAX);
+      .map(() => getRandomInt(LOTTO.NUMBER_RANGE.MIN, LOTTO.NUMBER_RANGE.MAX));
   }
 }
