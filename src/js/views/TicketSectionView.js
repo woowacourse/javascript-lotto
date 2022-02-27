@@ -21,8 +21,7 @@ export default class TicketSectionView extends View {
         >
           ${lottoList
             .map(
-              (lotto) =>
-                `<li class="${DOM_STRING.TICKET}">
+              (lotto) => `<li class="${DOM_STRING.TICKET}">
                   <p>🎟${
                     (isShowNumber &&
                       `<span class="${
