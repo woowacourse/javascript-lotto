@@ -15,6 +15,14 @@ describe('로또 구매 테스트', () => {
     expect(makeLottoNumbers().size).toBe(LOTTO_RULE.NUMBERS_COUNT);
   });
 
+  test(`로또 번호는 ${LOTTO_RULE.MIN_NUMBER} 부터 ${LOTTO_RULE.MAX_NUMBER} 사이의 숫자로 이루어져있다.`, () => {
+    const lottoNumbers = makeLottoNumbers();
+    const temp = [...lottoNumbers.values()].every(
+      number => number >= LOTTO_RULE.MIN_NUMBER && number <= LOTTO_RULE.MAX_NUMBER,
+    );
+    expect(temp).toBeTruthy();
+  });
+
   test(`금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면, 에러를 생성한다.`, () => {
     const cash = 1500;
     expect(() => validateCashInput(cash)).toThrow();
