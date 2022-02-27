@@ -104,7 +104,7 @@ body {
     transition: background-color ease 0.3s;
   }
 
-  &[data-state='on']::before {
+  &[data-state='open']::before {
     background-color: #80deea;
   }
 
@@ -121,7 +121,7 @@ body {
     transition: transform ease 0.3s, background-color ease 0.3s;
   }
 
-  &[data-state='on']::after {
+  &[data-state='open']::after {
     background-color: $primary-color;
     transform: translateX(100%);
   }
@@ -144,7 +144,7 @@ body {
     }
   }
 
-  &[data-list='open'] {
+  &[data-state='open'] {
     > .item {
       grid-column: 8 span;
 

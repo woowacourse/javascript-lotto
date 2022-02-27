@@ -19,19 +19,10 @@ export default class LottoListView {
     this.#container.classList.add('show');
   }
 
-  hideLottoList() {
-    this.#container.classList.remove('show');
-  }
-
   toggleShowLottoList() {
-    const toggle = this.#lottoNumberToggle.dataset;
-    toggle.state = toggle.state === 'on' ? 'off' : 'on';
-
-    const { dataset: itemContainer } = $(
-      this.#container,
-      `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`
-    );
-    itemContainer.list = itemContainer.list === 'open' ? 'close' : 'open';
+    const toggle = this.#lottoNumberToggle.dataset.state === 'open' ? 'close' : 'open';
+    this.#lottoNumberToggle.dataset.state = toggle;
+    $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`).dataset.state = toggle;
   }
 
   renderLottoList(lottos) {
