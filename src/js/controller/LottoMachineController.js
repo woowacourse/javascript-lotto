@@ -17,8 +17,11 @@ export default class LottoMachineController {
       winningNumberView: new WinningNumberView(),
     };
 
-    //이벤트 리스너 등록
-    this.view.purchaseMoneyView.addSubmitEvent(this.onSubmitHandler.bind(this));
+    //View handlers 멤버변수에 등록
+    this.view.purchaseMoneyView.addHandler({
+      name: 'purchasedMoneySubmit',
+      handler: this.onSubmitHandler.bind(this),
+    });
   }
 
   onSubmitHandler(purchaseMoney) {
