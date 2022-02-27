@@ -1,8 +1,9 @@
 import {
   isPositiveInteger,
   isDivisibleBy,
-  createRandomNumber,
+  createLottoList,
   createRandomNumberList,
+  shuffleArray,
 } from '../utils';
 
 import { LOTTO, MONEY } from '../constants';
@@ -67,15 +68,17 @@ describe(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는지 
 });
 
 describe('구입한 로또 번호가 올바르게 생성되는지 확인한다', () => {
-  test('구입한 로또의 번호가 1~45 사이의 숫자이도록 한다. 성공 케이스', () => {
-    const randomNumber = createRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
+  test(`${LOTTO.MIN_NUMBER}에서 ${LOTTO.MAX_NUMBER}까지의 숫자가 섞여있는 랜덤 리스트가 올바르게 생성되는지 확인한다.`, () => {
+    const shuffleRandomList = shuffleArray(createRandomNumberList());
 
-    expect(randomNumber).toBeWithinRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
+    shuffleRandomList.forEach((randomNumber) => {
+      expect(randomNumber).toBeWithinRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
+    });
   });
 
   test('구입한 로또 번호는 서로 다른 랜덤한 숫자 6개로 이루어진 값이다, 성공 케이스', () => {
-    const randomNumberList = createRandomNumberList();
+    const lottoList = createLottoList();
 
-    expect(randomNumberList.length).toBe(new Set(randomNumberList).size);
+    expect(lottoList.length).toBe(new Set(lottoList).size);
   });
 });
