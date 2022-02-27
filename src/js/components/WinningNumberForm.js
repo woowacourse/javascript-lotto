@@ -1,4 +1,4 @@
-import { ACTION } from '../constants';
+import ACTION from '../flux/actions';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { validateWinningNumbers } from '../validation/validators';
