@@ -1,18 +1,16 @@
 import { $ } from '../utils/dom.js';
 import { ID_SELECTOR } from '../constants.js';
-export default class PurchaseFormView {
-  constructor() {
-    this.#configureDOM();
-  }
+import View from '../core/View.js';
 
-  #configureDOM() {
+export default class PurchaseFormView extends View {
+  _configureDOM() {
     this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
   }
 
-  setOnSubmitCash(fn) {
+  _bindEvents() {
     this.$purchaseForm.addEventListener('submit', event => {
       event.preventDefault();
-      fn(event.target.elements.cash.value);
+      this.props.submitCashHandler(event.target.elements.cash.value);
     });
   }
 }

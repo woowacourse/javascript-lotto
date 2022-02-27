@@ -1,13 +1,9 @@
 import { $, replaceHTML } from '../utils/dom.js';
 import { ID_SELECTOR, CLASS_NAME } from '../constants.js';
+import View from '../core/View.js';
 
-export default class LottoListView {
-  constructor() {
-    this.#configureDOM();
-    this.#bindEvents();
-  }
-
-  #configureDOM() {
+export default class LottoListView extends View {
+  _configureDOM() {
     this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
     this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
     this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
@@ -15,7 +11,7 @@ export default class LottoListView {
     this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
   }
 
-  #bindEvents() {
+  _bindEvents() {
     this.$toggle.addEventListener('click', () => {
       const isChecked = this.$toggleInput.checked;
       this.$toggleInput.checked = !isChecked;
