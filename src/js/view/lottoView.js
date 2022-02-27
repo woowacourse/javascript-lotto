@@ -3,14 +3,18 @@ import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
   constructor() {
+    this.cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS);
+    this.cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS);
+
     this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
-    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
     this.lottoShowContainer = selectDom(SELECTOR.LOTTO_SHOW_CONTAINER_CLASS);
     this.lottoNumberContainer = selectDom(
       SELECTOR.LOTTO_NUMBER_CONTAINER_CLASS,
       this.purchasedLottoSection
     );
-    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
+    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
+
+    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
   }
 
   toggleLottoNumbersShow(isVisible) {
@@ -24,33 +28,31 @@ class LottoView {
     lottoNumberClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
   }
 
-  beforeRenderLottos() {
-    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
-    const cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
-    cashInput.disabled = true;
-    cashInputButton.disabled = true;
-    cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
+  disableCashInputSection() {
+    this.cashInput.disabled = true;
+    this.cashInputButton.disabled = true;
+    this.cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
   }
 
   renderLottos(lottos) {
     this.purchasedLottoSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
     this.winnerNumberSection.classList.remove(SELECTOR.HIDE_CLASSNAME);
 
-    this.lottoShowContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
-    this.lottoNumberContainer.append(...LottoView.generateLottoElementsArray(lottos));
+    this.lottoShowContainer.prepend(this.#generatePurchasedLabel(lottos.length));
+    this.lottoNumberContainer.append(...this.#generateLottoElementsArray(lottos));
   }
 
-  static generatePurchasedLabel(length) {
+  #generatePurchasedLabel(length) {
     const labelElement = document.createElement('label');
     labelElement.textContent = `총 ${length}개를 구매하였습니다.`;
     return labelElement;
   }
 
-  static generateLottoElementsArray(lottos) {
-    return lottos.map((lotto) => LottoView.generateLottoElement(lotto));
+  #generateLottoElementsArray(lottos) {
+    return lottos.map((lotto) => this.#generateLottoElement(lotto));
   }
 
-  static generateLottoElement(lotto) {
+  #generateLottoElement(lotto) {
     const lottoElement = createElementWithClassName('div', SELECTOR.LOTTO_CLASSNAME);
 
     const lottoImage = createElementWithClassName('p', SELECTOR.LOTTO_IMAGE_CLASSNAME);
