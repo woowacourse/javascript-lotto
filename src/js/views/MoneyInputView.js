@@ -3,6 +3,7 @@ import { SELECTOR } from '../constants/selector';
 
 export default class MoneyInputView {
   #container;
+
   constructor($element) {
     this.#container = $element;
   }
