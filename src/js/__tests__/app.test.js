@@ -1,4 +1,3 @@
-import { getLottoNumber } from '../utils/lottoUtils.js';
 import {
   validator,
   isValidLottoNumberRange,
@@ -7,6 +6,9 @@ import {
 } from '../utils/validator.js';
 import { ERROR_MESSAGE } from '../configs/contants.js';
 import LottoModel from '../models/LottoModel.js';
+import Lotto from '../models/Lotto/Lotto';
+import AppController from '../controllers/AppController.js';
+import AppView from '../views/AppView.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -51,7 +53,7 @@ describe('LottoModel은', () => {
   const lottoModel = new LottoModel();
 
   describe('로또 번호를 생성하여', () => {
-    const lottoNumber = getLottoNumber();
+    const lottoNumber = Lotto.getLottoNumber();
 
     test('생성된 로또 번호가 정수여야한다.', () => {
       expect(Number.isInteger(lottoNumber)).toBe(true);
@@ -69,10 +71,10 @@ describe('LottoModel은', () => {
   });
 
   test('주어진 개수만큼 로또를 자동 구매할 수 있어야 한다.', () => {
+    const appController = new AppController(new LottoModel(), new AppView());
     const lottoCount = 6;
+    const { lottoList } = appController.issueLottoWithCount(lottoCount);
 
-    lottoModel.issueLottoWithCount(lottoCount);
-
-    expect(isValidLottoList(lottoModel.state.lottoList, lottoCount)).toBe(true);
+    expect(isValidLottoList(lottoList, lottoCount)).toBe(true);
   });
 });

@@ -1,4 +1,5 @@
 import Controller from '../core/Controller.js';
+import LottoModel from '../models/LottoModel.js';
 
 export default class AppController extends Controller {
   bindEventHandlers() {
@@ -6,9 +7,19 @@ export default class AppController extends Controller {
     this.view.bindOnClickNumberToggle();
   }
 
-  purchase(amount) {
-    this.model.purchase(amount, (message) => {
-      this.updateView(message);
+  issueLottoWithCount(count) {
+    this.model.update({
+      lottoList: Array(count)
+        .fill()
+        .map(() => LottoModel.issueLotto()),
     });
+
+    return this.model.getState();
+  }
+
+  purchase(amount) {
+    const message = this.issueLottoWithCount(LottoModel.getLottoCount(amount));
+
+    this.updateView(message);
   }
 }

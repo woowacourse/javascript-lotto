@@ -22,8 +22,7 @@ export const isValidlottoNumbers = (lottoNumbers) =>
 export const isValidLotto = (lotto) => isValidlottoNumbers(lotto.numbers);
 
 export const isValidLottoList = (lottoList, count) =>
-  lottoList.length === count &&
-  lottoList.every((lotto) => lotto instanceof Lotto);
+  lottoList.length === count;
 
 export const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
