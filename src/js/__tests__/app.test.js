@@ -12,7 +12,7 @@ describe('구입 금액 검증 테스트 ', () => {
     const cashInput = '1500';
     expect(() => lottoManger.buyLotto(cashInput)).toThrow();
   });
-  test('입력 값의 범위가 1000원 이상 50000원 미만인지 검증한다.', () => {
+  test('입력 값의 범위가 1000원 이상 50000원 이하인지 검증한다.', () => {
     // 실패 케이스
     const lowCashInput = '900';
     expect(() => lottoManger.buyLotto(lowCashInput)).toThrow();
