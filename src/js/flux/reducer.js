@@ -14,17 +14,23 @@ const generateLottoList = (money) => {
   return lottoList;
 };
 
+// eslint-disable-next-line max-lines-per-function
 export default function reducer(state, { type, payload }) {
   const newState = { ...state };
 
-  if (type === ACTION.PURCHASE_LOTTO) {
-    newState.money = payload;
-    const lottoList = generateLottoList(payload);
-    newState.lottoList = lottoList;
-  } else if (type === ACTION.TOGGLE_LOTTO_LIST) {
-    newState.lottoListVisibility = payload;
-  } else if (type === ACTION.SET_WINNING_NUMBERS) {
-    newState.winningNumbers = payload;
+  switch (type) {
+    case ACTION.PURCHASE_LOTTO: {
+      newState.money = payload;
+      newState.lottoList = generateLottoList(payload);
+      break;
+    }
+    case ACTION.TOGGLE_LOTTO_LIST:
+      newState.lottoListVisibility = payload;
+      break;
+    case ACTION.SET_WINNING_NUMBERS:
+      newState.winningNumbers = payload;
+      break;
+    // no default
   }
 
   return newState;
