@@ -1,10 +1,10 @@
-import LottoManager from '../model/lottoManager';
-import LottoView from '../view/lottoView';
+import LottoGenerator from '../model/lottoGenerator';
+import LottoMachineView from '../view/lottoMachineView';
 
-class LottoController {
+class LottoMachine {
   constructor() {
-    this.view = new LottoView();
-    this.lottoManager = new LottoManager();
+    this.view = new LottoMachineView();
+    this.lottoGenerator = new LottoGenerator();
   }
 
   startLotto() {
@@ -14,9 +14,9 @@ class LottoController {
   #onCashInputButtonClick = (e) => {
     e.preventDefault();
     try {
-      this.lottoManager.buyLotto(this.view.cashInput.value);
+      this.lottoGenerator.buyLotto(this.view.cashInput.value);
       this.view.disableCashInputSection();
-      this.view.renderLottos(this.lottoManager.lottos);
+      this.view.renderLottos(this.lottoGenerator.lottos);
       this.view.showNumberToggleButton.addEventListener(
         'click',
         this.#onShowNumberToggleButtonClick
@@ -31,4 +31,4 @@ class LottoController {
   };
 }
 
-export default new LottoController();
+export default new LottoMachine();

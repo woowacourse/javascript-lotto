@@ -1,3 +1,3 @@
-import lottoController from './controller/lottoController';
+import lottoMachine from './controller/lottoMachine';
 
-lottoController.startLotto();
+lottoMachine.startLotto();

@@ -1,8 +1,8 @@
 import { CASH_INPUT_RANGE, ERROR_MESSAGE, LOTTO_PRICE } from '../constants/constants';
 import { isNumberInRange } from '../utils/utils';
-import Lotto from './lotto';
+import LottoNumber from './lottoNumber';
 
-class LottoManager {
+class LottoGenerator {
   constructor() {
     this.lottos = [];
     this.lottoPrice = LOTTO_PRICE;
@@ -32,7 +32,7 @@ class LottoManager {
   }
 
   #generateLottos(purchaseAmount) {
-    this.lottos = Array.from({ length: purchaseAmount }, () => new Lotto());
+    this.lottos = Array.from({ length: purchaseAmount }, () => new LottoNumber());
   }
 
   #isNoChangeLeft(insertCash) {
@@ -40,4 +40,4 @@ class LottoManager {
   }
 }
 
-export default LottoManager;
+export default LottoGenerator;

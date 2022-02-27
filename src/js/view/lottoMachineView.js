@@ -1,7 +1,7 @@
 import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, SELECTOR } from '../constants/constants';
 import { createElementWithClassName, selectDom } from '../utils/utils';
 
-class LottoView {
+class LottoMachineView {
   constructor() {
     this.cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS);
     this.cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS);
@@ -66,4 +66,4 @@ class LottoView {
   }
 }
 
-export default LottoView;
+export default LottoMachineView;
