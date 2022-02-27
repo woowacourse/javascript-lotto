@@ -29,13 +29,13 @@ export const toggleNumberDetail = () => {
   });
 };
 
-const deactivateForm = () => {
-  $('.money-input').setAttribute('disabled', true);
-  $('.purchase-button').setAttribute('disabled', true);
+const deactivateForm = (enable) => {
+  $('.money-input').setAttribute('disabled', enable);
+  $('.purchase-button').setAttribute('disabled', enable);
 };
 
 export const showResult = (lottoTickets) => {
-  deactivateForm();
+  deactivateForm(true);
   showResultElements();
   showLottoTicketsLength(lottoTickets.length);
   showLottoImage(lottoTickets);
