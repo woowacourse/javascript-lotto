@@ -1,9 +1,9 @@
-import LottoView from './ui/LottoView.js';
+import LottoController from './controllers/LottoController.js';
 
 function App() {
   window.addEventListener('DOMContentLoaded', () => {
-    const lottoView = new LottoView();
-    lottoView.bindEvents();
+    const lottoController = new LottoController();
+    lottoController.bindEvents();
   });
 }
 export default App;

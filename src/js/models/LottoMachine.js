@@ -1,5 +1,5 @@
 import { LOTTO } from '../constants/constants.js';
-import Lotto from '../domains/Lotto.js';
+import Lotto from '../models/Lotto.js';
 import validateMoney from '../validations/LottoMachine.js';
 export default class LottoMachine {
   #inputMoney = 0;
@@ -27,7 +27,7 @@ export default class LottoMachine {
   }
 
   operateLottoMachine() {
-    this.lottos = this.generateLottos();
+    this.#lottos = this.generateLottos();
     this.#inputMoney = 0;
   }
 

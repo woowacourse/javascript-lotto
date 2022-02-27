@@ -1,5 +1,5 @@
 import { LOTTO } from '../constants/constants.js';
-import { generateRandomNumberRange } from './utils.js';
+import { generateRandomNumberRange } from '../utils/utils.js';
 export default class Lotto {
   #numbers = [];
 
