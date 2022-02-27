@@ -27,20 +27,18 @@ export class View {
   }
 
   showPurchasedLottos(lottoWallet) {
-    this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
+    this.lottoIcons.innerHTML = '🎟️ '.repeat(lottoWallet.length);
     this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
   }
 
   lottosToggleOn(lottoWallet) {
-    const paddedLottoNumbers = this.padLottoNumbers(lottoWallet);
-    const lottoStatusString = paddedLottoNumbers.map(
-      (padded) => `🎟️ ${padded}<br>`
-    );
-    this.lottoIcons.innerHTML = lottoStatusString.join('');
+    this.lottoIcons.innerHTML = this.padLottoNumbers(lottoWallet)
+      .map((numbers) => `<pre>🎟️ ${numbers}<br></pre>`)
+      .join('');
   }
 
   lottosToggleOff(lottoWallet) {
-    this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
+    this.lottoIcons.innerHTML = '🎟️ '.repeat(lottoWallet.length);
   }
 
   clearMoneyInput(remain) {
@@ -54,7 +52,7 @@ export class View {
 
   padLottoNumbers(lottoWallet) {
     return lottoWallet.map((lotto) =>
-      lotto.numbers.map((x) => String(x).padStart(3, ' '))
+      lotto.numbers.map((number) => String(number).padStart(4, ' '))
     );
   }
 }
