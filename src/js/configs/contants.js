@@ -1,5 +1,6 @@
 export const DOM_STRING = {
   APP: 'app',
+  BLIND: 'blind',
   TITLE: 'title',
   PAYMENT_SECTION: 'payment-section',
   TICKET_SECTION: 'ticket-section',
