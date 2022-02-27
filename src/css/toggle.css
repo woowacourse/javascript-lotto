@@ -28,8 +28,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(33, 33, 33, 0.08);
-  -webkit-transition: 0.4s;
+  background-color: var(--toggle-off-button-color);
   transition: 0.4s;
 }
 
@@ -39,26 +38,19 @@
   height: 20px;
   width: 20px;
   bottom: -2px;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--toggle-off-bar-color);
 
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #80deea;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  background-color: var(--toggle-on-bar-color);
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(13px);
-  -ms-transform: translateX(13px);
   transform: translateX(13px);
 
-  background-color: #00bcd4;
+  background-color: var(--toggle-on-button-color);
 }
 
 .slider.round {

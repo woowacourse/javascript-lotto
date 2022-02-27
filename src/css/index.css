@@ -1,3 +1,4 @@
+@import './global.css';
 @import './reset.css';
 @import './purchaseMoney.css';
 @import './purchasedLotto.css';
@@ -8,11 +9,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #e5e5e5;
+  background: var(--main-bg-color);
 }
 
 body section {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -27,7 +28,7 @@ body section {
   width: 414px;
   min-height: 727px;
   padding: 0 16px 10px;
-  background: #ffffff;
+  background: var(--app-bg-color);
 }
 
 header {
@@ -41,6 +42,10 @@ header {
   text-align: center;
   color: #000000;
   margin: 52px 0 16px;
+}
+
+button {
+  cursor: pointer;
 }
 
 .hidden {

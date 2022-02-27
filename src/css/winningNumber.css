@@ -20,7 +20,7 @@
 .winning-number-input {
   width: 34px;
   height: 36px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--input-color);
   box-sizing: border-box;
   border-radius: 4px;
   margin-right: 5px;
@@ -43,10 +43,8 @@
   width: 100%;
   margin-top: 24px;
   padding: 10px 0;
-  background: #00bcd4;
-  color: #ffffff;
-  font-weight: bold;
+  background: var(--button-bg-color);
+  color: var(--button-text-color);
   border: none;
   border-radius: 4px;
-  cursor: pointer;
 }
