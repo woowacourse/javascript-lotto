@@ -3,7 +3,11 @@ export default class View {
 
   constructor($target) {
     this.$target = $target;
+    this.setup();
+    this.render();
   }
+
+  setup() {}
 
   update(newState) {
     this.state = { ...this.state, ...newState };

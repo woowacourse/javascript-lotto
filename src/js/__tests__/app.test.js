@@ -8,7 +8,6 @@ import { ERROR_MESSAGE } from '../configs/contants.js';
 import LottoModel from '../models/LottoModel.js';
 import Lotto from '../models/Lotto/Lotto';
 import AppController from '../controllers/AppController.js';
-import AppView from '../views/AppView.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -50,8 +49,6 @@ describe('금액이 주어지면', () => {
 });
 
 describe('LottoModel은', () => {
-  const lottoModel = new LottoModel();
-
   describe('로또 번호를 생성하여', () => {
     const lottoNumber = Lotto.getLottoNumber();
 
@@ -71,7 +68,8 @@ describe('LottoModel은', () => {
   });
 
   test('주어진 개수만큼 로또를 자동 구매할 수 있어야 한다.', () => {
-    const appController = new AppController(new LottoModel(), new AppView());
+    const appController = new AppController();
+    appController.init();
     const lottoCount = 6;
     const { lottoList } = appController.issueLottoWithCount(lottoCount);
 
