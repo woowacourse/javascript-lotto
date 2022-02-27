@@ -11,7 +11,7 @@ export default class TicketView {
   render() {
     this.mountTemplate();
     this.afterMounted();
-    this.updateShowNumberToggle();
+    this.mountShowNumberToggleView();
   }
 
   mountTemplate() {
@@ -23,7 +23,7 @@ export default class TicketView {
     this.$showNumberToggleArea = $(SELECTOR.SHOW_NUMBER_TOGGLE_AREA);
   }
 
-  updateShowNumberToggle() {
+  mountShowNumberToggleView() {
     this.$showNumberToggleArea.innerHTML = template.showNumberToggleArea(
       this.isShowNumber
     );
