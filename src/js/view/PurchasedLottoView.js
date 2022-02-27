@@ -11,7 +11,7 @@ export default class PurchasedLottoView {
 
   render(lottoCount, lottos) {
     this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
-    const purchasedLottoCount = document.getElementById('purchased-lotto-count');
+    const purchasedLottoCount = this.container.querySelector('#purchased-lotto-count');
     purchasedLottoCount.textContent = lottoCount;
 
     this.renderPurchasedLottoList(lottoCount, lottos);
