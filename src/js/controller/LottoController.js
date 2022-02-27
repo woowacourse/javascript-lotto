@@ -17,7 +17,7 @@ export default class LottoController {
 
   bindEvents() {
     this.#MoneyInputView.bindMoneyInputSubmit(this.handleMoneyInputSubmit.bind(this));
-    this.#LottoListView.bindLottoNumberToggle();
+    this.#LottoListView.bindLottoNumberToggle(this.handleToggleButtonCLick.bind(this));
   }
 
   handleMoneyInputSubmit({ money }) {
@@ -29,5 +29,9 @@ export default class LottoController {
     } catch (error) {
       alert(error);
     }
+  }
+
+  handleToggleButtonCLick() {
+    this.#LottoListView.toggleShow();
   }
 }

@@ -13,8 +13,8 @@ export default class LottoListView {
     this.#toggle = 'close';
   }
 
-  bindLottoNumberToggle() {
-    this.#lottoNumberToggle.addEventListener('click', this.toggleShow.bind(this));
+  bindLottoNumberToggle(handler) {
+    this.#lottoNumberToggle.addEventListener('click', handler);
   }
 
   showLottoList() {
