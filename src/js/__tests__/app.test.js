@@ -71,16 +71,14 @@ describe(`중복되지 않는 ${LOTTO_RULES.MIN_RANGE} ~ ${LOTTO_RULES.MAX_RANGE
 
   test('중복된 숫자가 있으면 안된다', () => {
     expect(
+      createRandomNumbers(LOTTO_RULES.MIN_RANGE, LOTTO_RULES.MAX_RANGE, LOTTO_RULES.BALL_COUNT)
+        .length,
+    ).toBe(LOTTO_RULES.BALL_COUNT);
+
+    expect(
       new Set(
         createRandomNumbers(LOTTO_RULES.MIN_RANGE, LOTTO_RULES.MAX_RANGE, LOTTO_RULES.BALL_COUNT),
       ).size,
-    ).toBe(LOTTO_RULES.BALL_COUNT);
-  });
-
-  test(`${LOTTO_RULES.BALL_COUNT}개의 숫자가 반환돼야 한다.`, () => {
-    expect(
-      createRandomNumbers(LOTTO_RULES.MIN_RANGE, LOTTO_RULES.MAX_RANGE, LOTTO_RULES.BALL_COUNT)
-        .length,
     ).toBe(LOTTO_RULES.BALL_COUNT);
   });
 });
