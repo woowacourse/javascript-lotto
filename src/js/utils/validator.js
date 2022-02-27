@@ -1,9 +1,9 @@
 import { LOTTO_NUMBERS, ALERT_MESSAGE } from '../constants/index';
 
 const validator = Object.freeze({
-  isDividedThousand: (value) => value % LOTTO_NUMBERS.LOTTO_PRICE === 0,
+  isDividedLottoPrice: (value) => value % LOTTO_NUMBERS.LOTTO_PRICE === 0,
 
-  isOverThousand: (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE,
+  isOverLottoPrice: (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE,
 
   isNumber: (value) => Number.isInteger(value),
 
@@ -15,17 +15,22 @@ const validator = Object.freeze({
     ),
 
   isAllNumber: (value) => value.every((elem) => Number.isInteger(elem)),
+
+  isOverMaxLottoCount: (value) => value / LOTTO_NUMBERS.LOTTO_PRICE > LOTTO_NUMBERS.MAX_LOTTO_COUNT,
 });
 
 export const checkValidLottoCount = (value) => {
   if (!validator.isNumber(value)) {
     throw Error(ALERT_MESSAGE.MUST_NUMBER);
   }
-  if (!validator.isOverThousand(value)) {
-    throw Error(ALERT_MESSAGE.OVER_THOUSAND_INPUT);
+  if (!validator.isOverLottoPrice(value)) {
+    throw Error(ALERT_MESSAGE.OVER_THOUSAND_LOTTO_PRICE);
   }
-  if (!validator.isDividedThousand(value)) {
-    throw Error(ALERT_MESSAGE.DIVIDED_BY_THOUSAND);
+  if (!validator.isDividedLottoPrice(value)) {
+    throw Error(ALERT_MESSAGE.DIVIDED_BY_LOTTO_PRICE);
+  }
+  if (validator.isOverMaxLottoCount(value)) {
+    throw Error(ALERT_MESSAGE.OVER_MAX_LOTTO_COUNT);
   }
 };
 

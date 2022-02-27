@@ -1,5 +1,5 @@
 import getTotalWinningLottoNumbers from '../utils/getTotalWinningLottoNumbers';
-import getRandomNumber from '../utils/random';
+import pickNumberInList from '../utils/random';
 
 import { LOTTO_NUMBERS } from '../constants/index';
 import { checkValidLottoCount, checkValidWinningNumbers } from '../utils/validator';
@@ -42,13 +42,20 @@ export default class LottoModel {
   }
 
   getLottoNumbers() {
-    const lottoNumberSet = new Set();
-    while (lottoNumberSet.size < LOTTO_NUMBERS.LOTTO_LENGTH) {
-      lottoNumberSet.add(
-        getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER),
-      );
+    const checkLottoNumberArray = [...Array(LOTTO_NUMBERS.MAX_LOTTO_NUMBER)].map(
+      (e, idx) => idx + 1,
+    );
+    const lottoNumberArray = [];
+
+    for (let i = 0; i < LOTTO_NUMBERS.LOTTO_LENGTH; i += 1) {
+      const num = pickNumberInList(checkLottoNumberArray);
+      lottoNumberArray.push(num);
+
+      const idx = checkLottoNumberArray.findIndex((lottoNumber) => lottoNumber === num);
+      checkLottoNumberArray.splice(idx, 1);
     }
-    return [...lottoNumberSet];
+
+    return [...lottoNumberArray];
   }
 
   setLottos(lottos) {

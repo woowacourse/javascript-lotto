@@ -1,3 +1,3 @@
-const getRandomNumber = (min, max) => Math.floor(Math.random() * max + min);
+const pickNumberInList = (array) => array[Math.floor(Math.random() * array.length)];
 
-export default getRandomNumber;
+export default pickNumberInList;

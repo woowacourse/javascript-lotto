@@ -64,9 +64,8 @@ export default class LottoController {
   submitLottoPriceHandler(event) {
     event.preventDefault();
 
-    const { value } = this.$lottoPriceInput;
     try {
-      this.model.buyLottos(Number(value));
+      this.model.buyLottos(this.$lottoPriceInput.valueAsNumber);
 
       this.resultView.renderResult(this.model.getLottoCount());
       this.initAfterRenderResult();
@@ -91,10 +90,10 @@ export default class LottoController {
     const $winningNumberInputs = $$('.winning-number-input');
     const $bonusNumberInput = $('.bonus-number-input');
 
-    const winnerNumberArray = Array.from($winningNumberInputs).map(($winningNumberInput) =>
-      Number($winningNumberInput.value),
+    const winnerNumberArray = Array.from($winningNumberInputs).map(
+      ($winningNumberInput) => $winningNumberInput.valueAsNumber,
     );
-    const bonusNumber = Number($bonusNumberInput.value);
+    const bonusNumber = $bonusNumberInput.valueAsNumber;
 
     try {
       this.model.calculateLottoResult(winnerNumberArray, bonusNumber);
