@@ -9,19 +9,24 @@ class Store {
     this.#state = initialState;
   }
 
-  getState() {
-    return this.#state;
-  }
-
   subscribe(component) {
     this.#subscribers.push(component);
   }
 
   dispatch(action) {
-    this.#state = reducer(this.getState(), action);
+    const newState = reducer(this.getState(), action);
+    this.#setState(newState);
     this.#subscribers.forEach((subscriber) => {
       subscriber.notify();
     });
+  }
+
+  getState() {
+    return this.#state;
+  }
+
+  #setState(newState) {
+    this.#state = newState;
   }
 }
 
