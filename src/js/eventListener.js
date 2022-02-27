@@ -1,8 +1,12 @@
 import { $ } from './utils/index.js';
 import { validator } from './validation/index.js';
-import { calculateLottoCount, calculateRemainFare } from './domain/index.js';
+import { LOTTO_PRICE } from './constant/index.js';
 import lottoGame from './lottoGame.js';
 import view from './view.js';
+
+const calculateLottoCount = (fare) => Math.floor(fare / LOTTO_PRICE);
+
+const calculateRemainFare = (fare) => fare % LOTTO_PRICE;
 
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
