@@ -1,2 +1,4 @@
-import "./css/index";
-import "./js/app";
+import './css/index';
+import LottoApp from './js/app';
+
+new LottoApp('#app');
