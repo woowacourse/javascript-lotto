@@ -82,3 +82,60 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
     expect(lottoList.length).toBe(new Set(lottoList).size);
   });
 });
+
+// step2
+describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당첨금이 생성되는지 확인한다.', () => {
+  const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
+  const lastWeekBounsNumber = 7;
+
+  test('유저가 구입한 로또 티켓의 번호가 6개 일치한 경우 1등 당첨 금액이 생성되는지 확인한다.', () => {
+    const userLottoList = [1, 2, 3, 4, 5, 6];
+
+    expect(
+      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+    ).toBe(2000000000);
+  });
+
+  test('유저가 구입한 로또 티켓의 번호가 5개 일치하고 보너스 볼이 맞은 경우 2등 당첨 금액이 생성되는지 확인한다.', () => {
+    const userLottoList = [1, 2, 3, 4, 5, 7];
+
+    expect(
+      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+    ).toBe(30000000);
+  });
+
+  test('유저가 구입한 로또 티켓의 번호가 5개 일치한 경우 3등 당첨 금액이 생성되는지 확인한다.', () => {
+    const userLottoList = [1, 2, 3, 4, 5, 8];
+
+    expect(
+      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+    ).toBe(1500000);
+  });
+
+  test('유저가 구입한 로또 티켓의 번호가 4개 일치한 경우 4등 당첨 금액이 생성되는지 확인한다.', () => {
+    const userLottoList = [1, 2, 3, 4, 8, 9];
+
+    expect(
+      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+    ).toBe(50000);
+  });
+
+  test('유저가 구입한 로또 티켓의 번호가 3개 일치한 경우 5등 당첨 금액이 생성되는지 확인한다.', () => {
+    const userLottoList = [1, 2, 3, 8, 9, 10];
+
+    expect(
+      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+    ).toBe(5000);
+  });
+
+  test('유저가 구입한 로또 티켓의 번호가 2개 이하로 일치한 경우 0원이 생성되는지 확인한다.', () => {
+    const userLottoList = [10, 21, 31, 41, 15, 16];
+
+    expect(
+      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+    ).toBe(0);
+  });
+});
+
+// 총 수익률이 나오는지 확인한다.
+test('수익률 확인', () => {});
