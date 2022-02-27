@@ -1,4 +1,4 @@
-describe('금액 테스트', () => {
+describe('로또 구입 금액 테스트', () => {
   const MIN_MONEY = 1000;
   const MAX_MONEY = 10000;
 
@@ -13,7 +13,8 @@ describe('금액 테스트', () => {
     const isUnderMillion = (money) => money <= MAX_MONEY;
     const isValidMoneyRange = (money) => isOverThouand(money) && isUnderMillion(money);
 
-    expect(isValidMoneyRange(9000)).toBe(true);
+    expect(isValidMoneyRange(1000)).toBe(true);
+    expect(isValidMoneyRange(10000)).toBe(true);
   });
 });
 
