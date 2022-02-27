@@ -56,9 +56,9 @@ describe('로또 번호 생성 테스트', () => {
   });
 
   test('투입한 금액만큼의 로또가 생성되는지 확인한다.', () => {
-    const lottoManager = new LottoGenerator();
+    const lottoGenerator = new LottoGenerator();
     const cashInput = '5000';
-    lottoManager.buyLotto(cashInput);
-    expect(lottoManager.lottos).toHaveLength(Number(cashInput) / LOTTO_PRICE);
+    lottoGenerator.buyLotto(cashInput);
+    expect(lottoGenerator.lottos).toHaveLength(Number(cashInput) / LOTTO_PRICE);
   });
 });
