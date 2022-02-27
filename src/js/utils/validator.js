@@ -27,6 +27,9 @@ export const isValidLottoList = (lottoList, count) =>
   lottoList.length === count &&
   lottoList.every((lotto) => lotto instanceof Lotto);
 
+export const isValidDuplicatedLottoNumber = (lotto) =>
+  lotto.numbers.length === new Set(lotto.numbers).size;
+
 export const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
     if (!isNumber(purchaseAmount)) {
