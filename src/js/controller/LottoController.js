@@ -4,6 +4,7 @@ import LottosModel from '../models/LottosModel';
 
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+import { checkValidMoneyInput } from '../utils/Lotto/validator';
 
 export default class LottoController {
   #MoneyInputView = new MoneyInputView($(`.${SELECTOR.CLASS.LOTTO_MONEY_SECTION}`));
@@ -21,6 +22,7 @@ export default class LottoController {
 
   handleMoneyInputSubmit({ money }) {
     try {
+      checkValidMoneyInput(money);
       this.#LottosModel.buy(money);
       this.#LottoListView.showLottoList();
       this.#LottoListView.renderLottoList(this.#LottosModel.list);
