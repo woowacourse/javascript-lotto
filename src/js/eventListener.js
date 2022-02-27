@@ -4,9 +4,9 @@ import { LOTTO_PRICE } from './constant/index.js';
 import lottoGame from './lottoGame.js';
 import view from './view.js';
 
-const calculateLottoCount = (fare) => Math.floor(fare / LOTTO_PRICE);
+export const calculateLottoCount = (fare) => Math.floor(fare / LOTTO_PRICE);
 
-const calculateRemainFare = (fare) => fare % LOTTO_PRICE;
+export const calculateRemainFare = (fare) => fare % LOTTO_PRICE;
 
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
@@ -16,7 +16,9 @@ export const onSubmitFareForm = (e) => {
 
     validator.validateFare(inputedFare);
 
-    view.renderLottoList(lottoGame.createLottos(calculateLottoCount(inputedFare)));
+    lottoGame.resetLottos();
+    lottoGame.createLottos(calculateLottoCount(inputedFare));
+    view.renderLottoList(lottoGame.getLottos());
     view.renderFare(calculateRemainFare(inputedFare));
   } catch (error) {
     alert(error.message);

@@ -1,6 +1,6 @@
 import lottoGame from '../lottoGame.js';
 import { isEnoughFare } from '../validation/index.js';
-import { calculateLottoCount, calculateRemainFare } from '../domain/index.js';
+import { calculateLottoCount, calculateRemainFare } from '../eventListener.js';
 import { createRandomNumbers } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';
 
@@ -44,7 +44,9 @@ describe('입력한 요금만큼 로또를 생성할 수 있다.', () => {
   test('5000원을 입력하면 5개의 로또가 생성돼야 한다.', () => {
     const fare = 5000;
 
-    expect(lottoGame.createLottos(calculateLottoCount(fare)).length).toBe(5);
+    lottoGame.createLottos(calculateLottoCount(fare));
+
+    expect(lottoGame.getLottos().length).toBe(5);
   });
 });
 
