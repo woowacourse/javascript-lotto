@@ -2,6 +2,7 @@ export class View {
   constructor() {
     this.registerDOM();
   }
+
   registerDOM() {
     this.purchaseBtn = document.getElementById('purchase-button');
     this.toggleBtn = document.getElementById('toggle-check');
@@ -18,16 +19,15 @@ export class View {
   }
 
   showLottoStatusContainer() {
-    this.lottoStatusContainer.style.visibility = 'visible';
+    this.lottoStatusContainer.classList.remove('d-none');
   }
 
   showWinningLottoContainer() {
-    this.winningLottoContainer.style.visibility = 'visible';
+    this.winningLottoContainer.classList.remove('d-none');
   }
 
   showPurchasedLottos(lottoWallet) {
     this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
-
     this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
   }
 

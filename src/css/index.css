@@ -35,7 +35,6 @@
 }
 
 #lotto-status-container {
-  visibility: collapse;
   display: grid;
   padding: 10px;
   width: 70%;
@@ -67,7 +66,6 @@
   padding: 10px;
   width: 70%;
   grid-gap: 3px;
-  visibility: collapse;
 
   grid-template-areas:
     'hd hd hd hd hd hd hd hd'
@@ -230,4 +228,8 @@ button {
   letter-spacing: 1.25px;
   text-transform: uppercase;
   color: #ffffff;
+}
+
+.d-none {
+  visibility: collapse;
 }
