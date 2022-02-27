@@ -20,11 +20,9 @@ class LottoMachineView {
   toggleLottoNumbersShow(isVisible) {
     const { classList: lottoNumberClassList } = this.lottoNumberContainer;
     if (isVisible) {
-      lottoNumberClassList.add(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
       lottoNumberClassList.remove(SELECTOR.HIDE_NUMBERS_CLASSNAME);
       return;
     }
-    lottoNumberClassList.remove(SELECTOR.ONE_COLUMN_GRID_CLASSNAME);
     lottoNumberClassList.add(SELECTOR.HIDE_NUMBERS_CLASSNAME);
   }
 
