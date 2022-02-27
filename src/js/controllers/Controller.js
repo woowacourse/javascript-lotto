@@ -37,7 +37,7 @@ export class Controller {
       this.view.showWinningLottoContainer();
       this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
     } catch (err) {
-      alert(err);
+      alert(err.message);
     }
     this.view.clearMoneyInput(
       this.lottoGame.moneyInput % CONDITIONS.LOTTO_PRICE
