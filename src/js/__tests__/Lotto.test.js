@@ -10,6 +10,7 @@ describe('로또의 번호는 유효한 타입과 유효한 범위여야 한다.
     lotto.pushNumberIntoPickedNumbers(validTypeInput);
 
     expect(lotto.pickedNumbers.length).toBe(1);
+    expect(lotto.pickedNumbers).toContain(10);
   });
 
   it('로또번호는 중복될 수 없다.', () => {
