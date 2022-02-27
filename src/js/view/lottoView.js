@@ -8,17 +8,15 @@ import { createElementWithClassName, selectDom } from '../utils/utils';
 
 class LottoView {
   constructor() {
-    this.app = selectDom(SELECTOR.APP_ID);
+    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
 
-    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS, this.app);
-
-    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS, this.app);
+    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
     this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
     this.showNumberToggleButton.addEventListener('click', this.#toggleLottoNumbersShow);
     this.lottoContainer = selectDom(SELECTOR.LOTTO_CONTAINER_CLASS, this.purchasedLottoSection);
     this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
 
-    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS, this.app);
+    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
   }
 
   attachCashInputEventListeners(handler) {
