@@ -8,6 +8,28 @@ const getDetailLottoListTemplate = (lottos) => {
     .join('');
 };
 
+const lottoMatchSectionTemplate = `
+  <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+  <div class="lotto-match-header">
+    <p>당첨 번호</p>
+    <p>보너스 번호</p>
+  </div>
+  <div class="number-container">
+    <div class="match-numbers">
+      <input class="lotto-app-input match-number-input" type="number" />
+      <input class="lotto-app-input match-number-input" type="number" />
+      <input class="lotto-app-input match-number-input" type="number" />
+      <input class="lotto-app-input match-number-input" type="number" />
+      <input class="lotto-app-input match-number-input" type="number" />
+      <input class="lotto-app-input match-number-input" type="number" />
+    </div>
+    <div class="bonus-number">
+      <input class="lotto-app-input match-number-input" type="number" />
+    </div>
+  </div>
+  <button class="lotto-app-button result-button">결과 확인하기</button>
+`;
+
 const view = {
   renderLottoList(lottos) {
     this.renderDefaultLottoArea(lottos.length);
@@ -25,6 +47,15 @@ const view = {
 
   renderFare(fare) {
     $('#fare-input').value = fare;
+  },
+
+  renderLottoMatchSection() {
+    $('.lotto-match-section').innerHTML = lottoMatchSectionTemplate;
+  },
+
+  deactivateFareForm() {
+    $('#fare-input').setAttribute('disabled', true);
+    $('#fare-button').setAttribute('disabled', true);
   },
 };
 

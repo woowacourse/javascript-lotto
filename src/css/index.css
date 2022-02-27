@@ -61,7 +61,7 @@ body {
   height: 100%;
   cursor: pointer;
 }
-.lotto-list {
+.lotto-list-section {
   margin-top: 28px;
   width: 100%;
 }
@@ -163,12 +163,12 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-.lotto-match {
+.lotto-match-section {
   margin-top: 32px;
   padding: 0 16px;
   box-sizing: border-box;
 }
-.lotto-match p {
+.lotto-match-section p {
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;

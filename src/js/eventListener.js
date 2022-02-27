@@ -18,6 +18,9 @@ export const onSubmitFareForm = (e) => {
 
     const remainFare = calculateRemainFare(fare);
     view.renderFare(remainFare);
+
+    view.deactivateFareForm();
+    view.renderLottoMatchSection();
   } catch (error) {
     alert(error.message);
   }
