@@ -1,4 +1,4 @@
-import { getRandomInt } from '../../utils/utils.js';
+import { getRandomList } from '../../utils/utils.js';
 import { LOTTO } from '../../configs/contants.js';
 
 export default class Lotto {
@@ -12,8 +12,10 @@ export default class Lotto {
   }
 
   getLottoNumberList() {
-    return Array(LOTTO.NUMBER_LENGTH)
-      .fill()
-      .map(() => getRandomInt(LOTTO.NUMBER_RANGE.MIN, LOTTO.NUMBER_RANGE.MAX));
+    return getRandomList(
+      LOTTO.NUMBER_LENGTH,
+      LOTTO.NUMBER_RANGE.MIN,
+      LOTTO.NUMBER_RANGE.MAX
+    );
   }
 }

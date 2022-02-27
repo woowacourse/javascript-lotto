@@ -5,19 +5,17 @@ export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (flooredMax - ceiledMin)) + ceiledMin;
 };
 
-export const $ = (selector) => document.querySelector(selector);
+export const getRandomList = (length, min, max) => {
+  const randomList = [];
 
-export const cloneObject = (obj) => {
-  if (obj === null || typeof obj !== 'object') return obj;
+  while (randomList.length < length) {
+    const randomInt = getRandomInt(min, max);
+    if (!randomList.includes(randomInt)) {
+      randomList.push(randomInt);
+    }
+  }
 
-  const clone = Array.isArray(obj) ? [] : {};
-
-  Object.keys(obj).forEach((key) => {
-    clone[key] =
-      typeof obj[key] === 'object' && obj[key] !== null
-        ? cloneObject(obj[key])
-        : (clone[key] = obj[key]);
-  });
-
-  return clone;
+  return randomList;
 };
+
+export const $ = (selector) => document.querySelector(selector);
