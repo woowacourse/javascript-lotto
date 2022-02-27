@@ -64,14 +64,11 @@ button {
 #app {
   display: flex;
   flex-direction: column;
-
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: white;
-
   margin-top: 10px;
   padding: 52px 16px;
-
   min-height: 727px;
   width: 414px;
 }
@@ -80,9 +77,7 @@ h1 {
   font-size: 34px;
   font-weight: 600;
   line-height: 36px;
-
   text-align: center;
-
   margin-bottom: 16px;
 }
 
@@ -104,10 +99,8 @@ h1 {
 
 #payment-section .payment-form #payment-input {
   flex-grow: 1;
-
   border-radius: 4px;
   padding: 8px 8px;
-
   margin-right: 16px;
 }
 
