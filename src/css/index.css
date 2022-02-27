@@ -1,0 +1,43 @@
+@import './reset.css';
+@import './purchase-money.css';
+@import './purchased-lotto.css';
+@import './switch.css';
+@import './winning-number.css';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background: #e5e5e5;
+}
+
+body section {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+
+  width: 414px;
+  min-height: 727px;
+
+  background: #ffffff;
+
+  padding: 0 16px 39px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+
+  font-size: 34px;
+  line-height: 36px;
+
+  margin: 52px 0 16px;
+}

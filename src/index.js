@@ -1,2 +1,4 @@
-import "./css/index";
-import "./js/app";
+import LottoMachineController from './js/controller/LottoMachineController.js';
+import './css/index.css';
+
+new LottoMachineController();
