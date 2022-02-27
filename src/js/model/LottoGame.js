@@ -14,7 +14,7 @@ export default class LottoGame {
   }
 
   generateLottoTicket(count) {
-    this.lottos = [...Array(count)].map(() => {
+    this.lottos = Array.from({ length: count }).map(() => {
       const lotto = new Lotto();
       lotto.generateRandomNumber();
       return lotto;
