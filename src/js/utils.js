@@ -2,20 +2,18 @@ import { ERROR_MESSAGE } from './constants/constants';
 
 export const validator = {
   isInputValid(input) {
-    if (!this.isMoneyPositive(input)) {
-      alert(ERROR_MESSAGE.NEGATIVE_INPUT_ERROR);
-      throw new Error(ERROR_MESSAGE.NEGATIVE_INPUT_ERROR);
+    if (this.isMoneyNull(input)) {
+      throw new Error(ERROR_MESSAGE.NULL_INPUT_ERROR);
     }
     if (!this.isMoneyInteger(input)) {
-      alert(ERROR_MESSAGE.NOT_INTEGER_INPUT_ERROR);
       throw new Error(ERROR_MESSAGE.NOT_INTEGER_INPUT_ERROR);
     }
-
+    if (!this.isMoneyPositive(input)) {
+      throw new Error(ERROR_MESSAGE.NEGATIVE_INPUT_ERROR);
+    }
     if (!this.isMoneyMultiplesOfThousand(input)) {
-      alert(ERROR_MESSAGE.NOT_MUTIPLE_THOUSAND);
       throw new Error(ERROR_MESSAGE.NOT_MUTIPLE_THOUSAND);
     }
-
     return true;
   },
 
@@ -29,6 +27,10 @@ export const validator = {
 
   isMoneyMultiplesOfThousand(input) {
     return input % 1000 === 0;
+  },
+
+  isMoneyNull(input) {
+    return input === 0;
   },
 };
 

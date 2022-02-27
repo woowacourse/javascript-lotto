@@ -2,7 +2,7 @@ import { View } from '../view/View.js';
 import { LottoGame } from '../model/LottoGame.js';
 import { validator } from '../utils.js';
 
-export class Controller {
+export class LottoController {
   constructor() {
     this.view = new View();
     this.lottoGame = new LottoGame();
@@ -43,6 +43,7 @@ export class Controller {
     try {
       validator.isInputValid(Number(this.view.moneyInput.value));
     } catch (err) {
+      alert(err);
       this.view.clearMoneyInput();
       return true;
     }
