@@ -1,27 +1,27 @@
-export const getElement = (selector) => document.querySelector(selector);
+const getElement = (selector) => document.querySelector(selector);
 
-export const getElements = (selector) => document.querySelectorAll(selector);
+const getElements = (selector) => document.querySelectorAll(selector);
 
-export const alertMessage = (message) => alert(message);
+const alertMessage = (message) => alert(message);
 
-export const toggleClassName = (element, domString) => {
+const toggleClassName = (element, domString) => {
   element.classList.toggle(domString);
 };
 
-export const disableElement = (element) => {
+const disableElement = (element) => {
   element.disabled = !element.disabled;
 };
 
-export const initInput = (inputElement) => {
+const initInput = (inputElement) => {
   inputElement.value = '';
   inputElement.focus();
 };
 
-export const render = (element, template) => {
+const render = (element, template) => {
   element.insertAdjacentHTML('beforeend', template);
 };
 
-export const bindEventListener = ({ appElement, type, selector, callback }) => {
+const bindEventListener = ({ appElement, type, selector, callback }) => {
   const children = [...getElements(selector)];
   const isTarget = (target) =>
     children.includes(target) || target.closest(selector);
@@ -32,4 +32,15 @@ export const bindEventListener = ({ appElement, type, selector, callback }) => {
     e.preventDefault();
     callback(e);
   });
+};
+
+export {
+  getElement,
+  getElements,
+  alertMessage,
+  bindEventListener,
+  render,
+  initInput,
+  disableElement,
+  toggleClassName,
 };

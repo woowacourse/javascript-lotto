@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE, LOTTO } from './constants';
 
-export const isPositiveInteger = (payment) => {
+const isPositiveInteger = (payment) => {
   if (!Number.isInteger(payment) || payment <= 0) {
     throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
   }
@@ -8,7 +8,7 @@ export const isPositiveInteger = (payment) => {
   return payment;
 };
 
-export const isDivisibleBy = (payment, price) => {
+const isDivisibleBy = (payment, price) => {
   if (payment % price !== 0) {
     throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_STANDARD);
   }
@@ -16,30 +16,24 @@ export const isDivisibleBy = (payment, price) => {
   return parseInt(payment / price);
 };
 
-export const createRandomNumberList = (length = LOTTO.MAX_NUMBER) =>
-  Array.from({ length }, (_, index) => index + 1);
-
-export const shuffleArray = (array) => {
-  let currentIndex = array.length;
-  let randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    [array[randomIndex], array[currentIndex]] = [
-      array[currentIndex],
-      array[randomIndex],
-    ];
-  }
-
-  return array;
+const createRandomNumber = (minNumber, maxNumber) => {
+  return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
 };
 
-export const createLottoList = () => {
-  const shuffleLottoList = shuffleArray(createRandomNumberList());
+const createRandomNumberList = () => {
+  const randomNumbers = new Set();
 
-  return Array(LOTTO.LENGTH)
-    .fill(0)
-    .map((_, index, array) => (array[index] = shuffleLottoList.pop()));
+  while (randomNumbers.size < LOTTO.LENGTH) {
+    const randomNumber = createRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
+    randomNumbers.add(randomNumber);
+  }
+
+  return [...randomNumbers];
+};
+
+export {
+  isPositiveInteger,
+  isDivisibleBy,
+  createRandomNumber,
+  createRandomNumberList,
 };
