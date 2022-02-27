@@ -1,6 +1,6 @@
 import { $$, $ } from '../utils/dom';
 
-const showNumberOfLottos = (length) => {
+const showLottoTicketsLength = (length) => {
   const template = `<span>총 ${length}개를 구매하였습니다.</span>`;
   $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
 };
@@ -38,6 +38,6 @@ const deactivateForm = () => {
 export const showResult = (lottos) => {
   deactivateForm();
   showResultElements();
-  showNumberOfLottos(lottos.length);
+  showLottoTicketsLength(lottos.length);
   showLottoImage(lottos);
 };

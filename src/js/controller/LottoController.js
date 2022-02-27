@@ -6,20 +6,20 @@ import { showResult, toggleNumberDetail } from '../view/lottoView';
 
 export default class LottoController {
   constructor() {
-    this.lottos = [];
-    $('.purchase-form').addEventListener('submit', this.purchaseHandler);
+    this.lottoTickets = [];
+    $('.purchase-form').addEventListener('submit', this.handlePurchase);
     $('.cm-toggle').addEventListener('click', toggleNumberDetail);
   }
 
-  getLottos(moneyInput) {
-    const numberOfLottos = parseInt(moneyInput / LOTTO.TICKET_PRICE);
-    for (let i = 0; i < numberOfLottos; i += 1) {
-      const lotto = new Lotto();
-      this.lottos.push(lotto.lottoNumbers);
+  issueLottoTickets(moneyInput) {
+    const purchasedLottoTicketsLength = parseInt(moneyInput / LOTTO.TICKET_PRICE);
+    for (let i = 0; i < purchasedLottoTicketsLength; i += 1) {
+      const lottoTicket = new Lotto();
+      this.lottoTickets.push(lottoTicket.lottoNumbers);
     }
   }
 
-  purchaseHandler = (e) => {
+  handlePurchase = (e) => {
     e.preventDefault();
     const moneyInput = Number($('.money-input').value);
 
@@ -27,7 +27,7 @@ export default class LottoController {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
-    this.getLottos(moneyInput);
-    showResult(this.lottos);
+    this.issueLottoTickets(moneyInput);
+    showResult(this.lottoTickets);
   };
 }
