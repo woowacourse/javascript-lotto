@@ -20,7 +20,7 @@ const shuffleArray = (array) => {
 
 export const generateRandomNumberInRange = ({ min, max, count }) => {
   const numberArray = shuffleArray([...Array(max - min + 1).keys()]);
-  return numberArray.slice(0, count).map((n) => n + 1);
+  return numberArray.slice(0, count).map((n) => n + min);
 };
 
 export const createElementWithClassName = (tag, className) => {
