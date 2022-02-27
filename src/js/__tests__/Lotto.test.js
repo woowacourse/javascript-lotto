@@ -9,7 +9,7 @@ describe('로또의 번호는 유효한 타입과 유효한 범위여야 한다.
     lotto.pushNumberIntoPickedNumbers(validTypeInput);
     lotto.pushNumberIntoPickedNumbers(validTypeInput);
 
-    expect(lotto.pickedNumbers.length).toBe(1);
+    expect(lotto.pickedNumbers.size).toBe(1);
     expect(lotto.pickedNumbers).toContain(10);
   });
 
@@ -20,7 +20,7 @@ describe('로또의 번호는 유효한 타입과 유효한 범위여야 한다.
     lotto.pushNumberIntoPickedNumbers(duplicatedNumber);
     lotto.pushNumberIntoPickedNumbers(duplicatedNumber);
 
-    expect(lotto.pickedNumbers.length).toBe(1);
+    expect(lotto.pickedNumbers.size).toBe(1);
   });
 
   it('로또 숫자는 1에서 45 사이여야 한다.', () => {
@@ -28,7 +28,7 @@ describe('로또의 번호는 유효한 타입과 유효한 범위여야 한다.
     const invalidRangeNumbers = [-1, 0, 46, 100];
 
     invalidRangeNumbers.forEach((number) => lotto.pushNumberIntoPickedNumbers(number));
-    expect(lotto.pickedNumbers.length).toBe(0);
+    expect(lotto.pickedNumbers.size).toBe(0);
   });
 
   it('로또번호는 6자리를 넘어갈 수 없다', () => {
@@ -43,6 +43,6 @@ describe('로또의 번호는 유효한 타입과 유효한 범위여야 한다.
     const lotto = new Lotto();
     lotto.generate();
 
-    expect(lotto.pickedNumbers.length).toBe(6);
+    expect(lotto.pickedNumbers.size).toBe(6);
   });
 });

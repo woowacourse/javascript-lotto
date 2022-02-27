@@ -29,9 +29,6 @@ export const checkValidLottoNumberInput = ({ input, pickedNumbers }) => {
   ) {
     throw new Error();
   }
-  if (isAlreadyExistNumber(pickedNumbers, input)) {
-    throw new Error();
-  }
   if (pickedNumbers.length >= LOTTO_SETTING.LOTTO_NUMBER_LENGTH) {
     throw new Error();
   }

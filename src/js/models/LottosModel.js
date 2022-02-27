@@ -10,6 +10,6 @@ export default class LottosModel {
   }
 
   get list() {
-    return this.#lottos.map((value) => value.pickedNumbers.join(', '));
+    return this.#lottos.map((value) => Array.from(value.pickedNumbers).join(', '));
   }
 }

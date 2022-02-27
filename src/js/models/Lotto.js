@@ -3,7 +3,7 @@ import { LOTTO_SETTING } from '../constants/setting';
 import { checkValidLottoNumberInput } from '../utils/Lotto/validator';
 
 export default class Lotto {
-  #pickedNumbers = [];
+  #pickedNumbers = new Set();
 
   pushNumberIntoPickedNumbers(number) {
     try {
@@ -11,12 +11,12 @@ export default class Lotto {
     } catch (err) {
       return;
     }
-    this.#pickedNumbers.push(number);
+    this.#pickedNumbers.add(number);
   }
 
   generate() {
     const { LOTTO_NUMBER_LENGTH, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
-    while (this.#pickedNumbers.length !== LOTTO_NUMBER_LENGTH) {
+    while (this.#pickedNumbers.size !== LOTTO_NUMBER_LENGTH) {
       this.pushNumberIntoPickedNumbers(getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER));
     }
 
