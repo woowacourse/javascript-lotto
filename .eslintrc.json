@@ -32,6 +32,7 @@
         "no-alert": "off",
         "operator-linebreak": "off",
         "comma-dangle": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "class-methods-use-this": "off"
     }
 }

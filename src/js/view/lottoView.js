@@ -48,21 +48,21 @@ class LottoView {
     this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
     this.winnerNumberSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
 
-    this.lottoContainer.prepend(LottoView.generatePurchasedLabel(lottos.length));
-    this.lottoGrid.append(...LottoView.generateLottoElementsArray(lottos));
+    this.lottoContainer.prepend(this.#generatePurchasedLabel(lottos.length));
+    this.lottoGrid.append(...this.#generateLottoElementsArray(lottos));
   }
 
-  static generatePurchasedLabel(length) {
+  #generatePurchasedLabel(length) {
     const labelElement = document.createElement('label');
     labelElement.textContent = `총 ${length}개를 구매하였습니다.`;
     return labelElement;
   }
 
-  static generateLottoElementsArray(lottos) {
-    return lottos.map((lotto) => LottoView.generateLottoElement(lotto));
+  #generateLottoElementsArray(lottos) {
+    return lottos.map((lotto) => this.#generateLottoElement(lotto));
   }
 
-  static generateLottoElement(lotto) {
+  #generateLottoElement(lotto) {
     const lottoElement = createElementWithClassName('div', CLASSNAMES.LOTTO_CLASSNAME);
 
     const lottoImage = createElementWithClassName('p', CLASSNAMES.LOTTO_IMAGE_CLASSNAME);
