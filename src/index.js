@@ -1,4 +1,10 @@
-import App from './js/app.js';
 import './css/index.css';
+import LottoMachineController from './js/controller/LottoMachineController.js';
 
-new App();
+const app = {
+  init: () => {
+    new LottoMachineController();
+  }
+};
+
+app.init();
