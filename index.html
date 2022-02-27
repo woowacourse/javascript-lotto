@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎱 행운의 로또</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🎱 행운의 로또</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
+  <body>
+    <div id="app">
+      <h1 class="header-title">🎱 행운의 로또</h1>
+      <section id="charge-input-section" aria-labelledby="charge-input-section-title">
+        <h1 id="charge-input-section-title" hidden>금액을 입력하는 섹션입니다.</h1>
+        <p>구입할 금액을 입력해주세요</p>
+        <form id="charge-input-form">
+          <input id="charge-input" type="number" placeholder="금액" />
+          <button id="charge-button">구입</button>
+        </form>
+      </section>
 
-<body>
-  <div id="app">
-    <h1>🎱 행운의 로또</h1>
-  </div>
-  <script type="module" src="./src/js/index.js"></script>
-</body>
+      <section id="lotto-section" aria-labelledby="lotto-section-title">
+        <h1 id="lotto-section-title" hidden>구매한 로또를 확인하는 섹션입니다.</h1>
+        <div class="lotto-wrapper">
+          <span id="purchased-message"></span>
+          <div id="lotto-container" data-visible-state="false">로또를 구매해주세요 😳</div>
+        </div>
+        <div id="align-converter-container" class="flex-column-align-end">
+          <label for="align-converter" class="flex-column-align-end">
+            <span>번호 보기</span>
+            <input id="align-converter" type="checkbox" class="converter" />
+            <span class="checkmark">
+              <span class="circle"></span>
+            </span>
+          </label>
+        </div>
+      </section>
 
+      <section id="win-number-input-section" aria-labelledby="win-number-input-title">
+        <h1 id="win-number-input-title" hidden>당첨 번호 입력 섹션</h1>
+        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <form id="win-number-input-form">
+          <div class="win-number-input-wrapper">
+            <div>
+              <p>당첨 번호</p>
+              <input id="win-number-1" type="number" />
+              <input id="win-number-2" type="number" />
+              <input id="win-number-3" type="number" />
+              <input id="win-number-4" type="number" />
+              <input id="win-number-5" type="number" />
+              <input id="win-number-6" type="number" />
+            </div>
+
+            <div class="bonus-number-wrapper flex-column-align-end">
+              <p>보너스 번호</p>
+              <input id="bonus-number" type="number" />
+            </div>
+          </div>
+
+          <button id="result-button">결과 확인하기</button>
+        </form>
+      </section>
+    </div>
+    <script type="module" src="./src/index.js"></script>
+  </body>
 </html>
