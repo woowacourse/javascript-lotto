@@ -50,28 +50,6 @@ var LOTTO_RULES = {
 
 /***/ }),
 
-/***/ "./src/js/domain/index.js":
-/*!********************************!*\
-  !*** ./src/js/domain/index.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "calculateLottoCount": () => (/* binding */ calculateLottoCount),
-/* harmony export */   "calculateRemainFare": () => (/* binding */ calculateRemainFare)
-/* harmony export */ });
-/* harmony import */ var _constant_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constant/index.js */ "./src/js/constant/index.js");
-
-var calculateLottoCount = function calculateLottoCount(fare) {
-  return Math.floor(fare / _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_PRICE);
-};
-var calculateRemainFare = function calculateRemainFare(fare) {
-  return fare % _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_PRICE;
-};
-
-/***/ }),
-
 /***/ "./src/js/eventListener.js":
 /*!*********************************!*\
   !*** ./src/js/eventListener.js ***!
@@ -80,12 +58,14 @@ var calculateRemainFare = function calculateRemainFare(fare) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "calculateLottoCount": () => (/* binding */ calculateLottoCount),
+/* harmony export */   "calculateRemainFare": () => (/* binding */ calculateRemainFare),
 /* harmony export */   "onSubmitFareForm": () => (/* binding */ onSubmitFareForm),
 /* harmony export */   "onChangeLottoViewerController": () => (/* binding */ onChangeLottoViewerController)
 /* harmony export */ });
 /* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
 /* harmony import */ var _validation_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation/index.js */ "./src/js/validation/index.js");
-/* harmony import */ var _domain_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./domain/index.js */ "./src/js/domain/index.js");
+/* harmony import */ var _constant_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constant/index.js */ "./src/js/constant/index.js");
 /* harmony import */ var _lottoGame_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lottoGame.js */ "./src/js/lottoGame.js");
 /* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./view.js */ "./src/js/view.js");
 
@@ -93,14 +73,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var calculateLottoCount = function calculateLottoCount(fare) {
+  return Math.floor(fare / _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.LOTTO_PRICE);
+};
+var calculateRemainFare = function calculateRemainFare(fare) {
+  return fare % _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.LOTTO_PRICE;
+};
 var onSubmitFareForm = function onSubmitFareForm(e) {
   e.preventDefault();
 
   try {
     var inputedFare = (0,_utils_index_js__WEBPACK_IMPORTED_MODULE_0__.$)('#fare-input').value;
     _validation_index_js__WEBPACK_IMPORTED_MODULE_1__.validator.validateFare(inputedFare);
-    _view_js__WEBPACK_IMPORTED_MODULE_4__["default"].renderLottoList(_lottoGame_js__WEBPACK_IMPORTED_MODULE_3__["default"].createLottos((0,_domain_index_js__WEBPACK_IMPORTED_MODULE_2__.calculateLottoCount)(inputedFare)));
-    _view_js__WEBPACK_IMPORTED_MODULE_4__["default"].renderFare((0,_domain_index_js__WEBPACK_IMPORTED_MODULE_2__.calculateRemainFare)(inputedFare));
+    _lottoGame_js__WEBPACK_IMPORTED_MODULE_3__["default"].resetLottos();
+    _lottoGame_js__WEBPACK_IMPORTED_MODULE_3__["default"].createLottos(calculateLottoCount(inputedFare));
+    _view_js__WEBPACK_IMPORTED_MODULE_4__["default"].renderLottoList(_lottoGame_js__WEBPACK_IMPORTED_MODULE_3__["default"].getLottos());
+    _view_js__WEBPACK_IMPORTED_MODULE_4__["default"].renderFare(calculateRemainFare(inputedFare));
   } catch (error) {
     alert(error.message);
   }
@@ -123,16 +111,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _constant_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constant/index.js */ "./src/js/constant/index.js");
 /* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/index.js */ "./src/js/utils/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
+
+var lottos = [];
 var lottoGame = {
-  lottos: [],
   createLottos: function createLottos(lottoCount) {
     for (var i = 0; i < lottoCount; i += 1) {
-      this.lottos.push((0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.createRandomNumbers)(_constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.MIN_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.MAX_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.BALL_COUNT));
+      lottos.push((0,_utils_index_js__WEBPACK_IMPORTED_MODULE_1__.createRandomNumbers)(_constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.MIN_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.MAX_RANGE, _constant_index_js__WEBPACK_IMPORTED_MODULE_0__.LOTTO_RULES.BALL_COUNT));
     }
 
     return this.lottos;
+  },
+  getLottos: function getLottos() {
+    return lottos.map(function (lotto) {
+      return _toConsumableArray(lotto);
+    });
+  },
+  resetLottos: function resetLottos() {
+    lottos.length = 0;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (lottoGame);
@@ -174,16 +182,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "$": () => (/* binding */ $),
 /* harmony export */   "createRandomNumbers": () => (/* binding */ createRandomNumbers)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 var $ = function $(selector) {
   return document.querySelector(selector);
 };
+
+var createRandomNumber = function createRandomNumber(minRange, maxRange) {
+  return Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+};
+
 var createRandomNumbers = function createRandomNumbers(minRange, maxRange, count) {
-  var candidate = Array(maxRange - minRange + 1).fill().map(function (_, i) {
-    return i + minRange;
-  });
-  return Array(count).fill().map(function () {
-    return candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
-  });
+  var ret = new Set();
+
+  while (ret.size < count) {
+    ret.add(createRandomNumber(minRange, maxRange));
+  }
+
+  return _toConsumableArray(ret);
 };
 
 /***/ }),
