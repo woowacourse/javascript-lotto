@@ -66,6 +66,6 @@ export const PAYMENT = {
 
 export const ERROR_MESSAGE = {
   NOT_A_NUMBER: `입력된 금액이 숫자가 아닙니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상 ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
-  NOT_DIVIDED_BY_THOUSAND: `입력된 금액이 ${LOTTO.PRICE}으로 나누어 떨어지지 않습니다. ${LOTTO.PRICE}으로 나누어 떨어지는 금액을 입력해주세요.`,
-  OUT_OF_PURCHASE_AMOUNT_RANGE: `입력된 금액이 ${PAYMENT.PURCHASE_AMOUNT.MIN} 사이가 아닙니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상 ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
+  OUT_OF_MIN_AMOUNT_RANGE: `로또의 1개의 가격은 ${LOTTO.PRICE} 입니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상의 금액을 입력해주세요.`,
+  OUT_OF_MAX_AMOUNT_RANGE: `최대 입력 금액은 ${PAYMENT.PURCHASE_AMOUNT.MAX} 입니다. ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
 };

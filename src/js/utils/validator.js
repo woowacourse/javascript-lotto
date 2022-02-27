@@ -3,9 +3,13 @@ import { LOTTO, ERROR_MESSAGE, PAYMENT } from '../configs/contants.js';
 
 const isNumber = (value) => typeof value === 'number' && Number.isFinite(value);
 
-const isValidPurchaseAmountRange = (purchaseAmount) =>
-  purchaseAmount >= PAYMENT.PURCHASE_AMOUNT.MIN &&
-  purchaseAmount <= PAYMENT.PURCHASE_AMOUNT.MAX;
+const isValidMinAmountRange = (purchaseAmount) => {
+  return purchaseAmount >= PAYMENT.PURCHASE_AMOUNT.MIN;
+};
+
+const isValidMaxAmountRange = (purchaseAmount) => {
+  return purchaseAmount <= PAYMENT.PURCHASE_AMOUNT.MAX;
+};
 
 export const isValidLottoNumberRange = (value) =>
   value >= LOTTO.NUMBER_RANGE.MIN && value <= LOTTO.NUMBER_RANGE.MAX;
@@ -29,8 +33,12 @@ export const validator = {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
     }
 
-    if (!isValidPurchaseAmountRange(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
+    if (!isValidMinAmountRange(purchaseAmount)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_MIN_AMOUNT_RANGE);
+    }
+
+    if (!isValidMaxAmountRange(purchaseAmount)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_MAX_AMOUNT_RANGE);
     }
   },
 };
