@@ -13,15 +13,15 @@ export const getLottoPrice = () => {
 
 export const checkLottoPrice = userInput => {
   const lottoPrice = Number(userInput);
-  if (isValueTypeNumber(lottoPrice) === false) {
+  if (!isValueTypeNumber(lottoPrice)) {
     window.alert(NOT_NUMBER_TYPE_ERROR);
     return;
   }
-  if (isValuePositiveNumber(lottoPrice) === false) {
+  if (!isValuePositiveNumber(lottoPrice)) {
     window.alert(NOT_POSITIVE_NUMBER_ERROR);
     return;
   }
-  if (isValueDivideThousand(lottoPrice) === false) {
+  if (!isValueDivideThousand(lottoPrice)) {
     window.alert(NOT_DIVIDE_THOUSAND_ERROR);
     return;
   }

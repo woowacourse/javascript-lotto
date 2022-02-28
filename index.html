@@ -4,46 +4,29 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="src/css/index.css" />
+    <link rel="stylesheet" href="src/css/styles.css" />
   </head>
 
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
-      <section
-        class="lotto-price-input-container"
-        aria-labelledby="lotto-price-input-title"
-      >
+      <section class="lotto-price-input-container" aria-labelledby="lotto-price-input-container-title">
         <h2 hidden id="lotto-price-input-title">구입할 금액을 입력하는 곳</h2>
         <form class="lotto-price-input-form">
           <label>구입할 금액을 입력해주세요</label>
           <div>
-            <input type="number" class="lotto-price-input" placeholder="금액" />
-            <button
-              type="submit"
-              class="lotto-price-submit-button button"
-              alt="구입 버튼"
-            >
-              구입
-            </button>
+            <input type="number" class="lotto-price-input" placeholder="금액"/>
+            <button type="submit" class="lotto-price-submit-button button" alt="구입 버튼">구입</button>
           </div>
         </form>
       </section>
-      <section
-        class="purchased-lotto-list-container"
-        aria-labelledby="purchased-lotto-list-container-title"
-      >
-        <h2 hidden id="purchased-lotto-list-container-title">
-          구매한 로또 목록을 보여주는 곳
-        </h2>
+
+      <section class="purchased-lotto-list-container" aria-labelledby="purchased-lotto-list-container-title">
+        <h2 hidden id="purchased-lotto-list-container-title">구매한 로또 목록을 보여주는 곳</h2>
       </section>
-      <section
-        class="last-lotto-winning-number-container"
-        aria-labelledby="last-lotto-winning-number-title"
-      >
-        <h2 hidden id="last-lotto-winning-number-title">
-          지난 주 당첨 번호를 입력 하는 곳
-        </h2>
+
+      <section class="last-lotto-winning-number-container" aria-labelledby="last-lotto-winning-number-container-title">
+        <h2 hidden id="last-lotto-winning-number-title">지난 주 당첨 번호를 입력 하는 곳</h2>
       </section>
     </div>
     <script type="module" src="./src/js/app.js"></script>

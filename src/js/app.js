@@ -16,10 +16,11 @@ export default class App {
     this.lottoPriceValid = false;
     this.lottoList = [];
   }
+
   handleEvent() {
     $('.lotto-price-input-form').addEventListener('submit', e => {
       e.preventDefault();
-      this.handlePriceInputSubmit();
+      this.handleSubmitPriceInput();
     });
     $('.lotto-price-input-form').addEventListener('submit', e => {
       e.preventDefault();
@@ -30,11 +31,11 @@ export default class App {
       if (!e.target.classList.contains(`onoff-switch`)) {
         return;
       }
-      this.handleToggleButtonClick();
+      this.handleClickToggleButton();
     });
   }
 
-  handlePriceInputSubmit() {
+  handleSubmitPriceInput() {
     const lottoPrice = checkLottoPrice(getLottoPrice());
     if (!lottoPrice) {
       $('.lotto-price-input').value = '';
@@ -55,9 +56,10 @@ export default class App {
     renderLastLottoNumber();
   }
 
-  handleToggleButtonClick() {
+  handleClickToggleButton() {
     toggleButton();
     if ($('.purchased-lotto-main').classList.contains('is-active')) {
+      console.log(this.lottoList);
       renderPurchasedLottoListContentIsActive(this.lottoList);
       return;
     }
