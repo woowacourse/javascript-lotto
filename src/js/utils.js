@@ -21,3 +21,6 @@ export const createRandomNumberList = () => {
 
   return randomNumberList;
 };
+
+export const isInRange = (minimum, maximum, number) =>
+  number >= minimum && number <= maximum;

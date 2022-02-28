@@ -1,4 +1,9 @@
-import { isPositiveInteger, divideBy, createRandomNumberList } from '../utils';
+import {
+  isPositiveInteger,
+  divideBy,
+  createRandomNumberList,
+  isInRange,
+} from '../utils';
 
 import { MONEY, LOTTO } from '../constants';
 
@@ -58,6 +63,6 @@ describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 
 
     expect(
       isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, last_week_number)
-    ).toBe(false);
+    ).toBe(true);
   });
 });
