@@ -81,3 +81,55 @@ describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
     cy.get(SELECTOR.LOTTO_NUMBER).should('be.not.visible');
   });
 });
+
+describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 경우', () => {
+  const input = 3000;
+
+  beforeEach(() => {
+    cy.visit('/index.html');
+    cy.get(SELECTOR.PAYMENT_INPUT).type(input);
+    cy.get(SELECTOR.PAYMENT_BUTTON).click();
+  });
+
+  it('당첨번호/보너스 번호는 1 ~ 45 사이의 숫자만 입력 가능하다.', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 46];
+    const bounusNumber = 7;
+
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('.winning-number-input').each(($li, index) => {
+      cy.wrap($li).type(lastWeekNumber[index]);
+    });
+    cy.get('#bonus-number-input').type(bounusNumber);
+
+    cy.get('#result-checking-button')
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.calledWith(
+          '지난주 당첨 번호와 보너스 번호를 잘못 입력하셨습니다. 1 ~ 45 사이의 숫자를 입력해주세요'
+        );
+      });
+  });
+
+  it('당첨번호/보너스 번호는 서로 다른 숫자만 입력 가능하다.', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 7];
+    const bounusNumber = 7;
+
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('.winning-number-input').each(($li, index) => {
+      cy.wrap($li).type(lastWeekNumber[index]);
+    });
+    cy.get('#bonus-number-input').type(bounusNumber);
+
+    cy.get('#result-checking-button')
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.calledWith(
+          '지난주 당첨 번호와 보너스 번호를 잘못 입력하셨습니다. 서로 다른 숫자를 입력해주세요'
+        );
+      });
+  });
+});

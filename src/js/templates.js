@@ -41,30 +41,30 @@ export const generateWinningNumberSection = () => `
     <div class="winning-number-container">
       <div class="">
         <p>당첨 번호</p>
-        <ul id="last-week-number-list">
-          <li class="last-week-number">
-            <input type="number" class="last-week-number-input" />
+        <ul id="winning-number-list">
+          <li class="winning-number">
+            <input type="number" class="winning-number-input" />
           </li>
-          <li class="last-week-number">
-            <input type="number" class="last-week-number-input" />
+          <li class="winning-number">
+            <input type="number" class="winning-number-input" />
           </li>
-          <li class="last-week-number">
-            <input type="number" class="last-week-number-input" />
+          <li class="winning-number">
+            <input type="number" class="winning-number-input" />
           </li>
-          <li class="last-week-number">
-            <input type="number" class="last-week-number-input" />
+          <li class="winning-number">
+            <input type="number" class="winning-number-input" />
           </li>
-          <li class="last-week-number">
-            <input type="number" class="last-week-number-input" />
+          <li class="winning-number">
+            <input type="number" class="winning-number-input" />
           </li>
-          <li class="last-week-number">
-            <input type="number" class="last-week-number-input" />
+          <li class="winning-number">
+            <input type="number" class="winning-number-input" />
           </li>
         </ul>
       </div>
-      <div class="last-week-bonus-number-container">
+      <div class="bonus-number-container">
         <p>보너스 번호</p>
-        <input type="number" id="last-week-bonus-number-input" />
+        <input type="number" id="bonus-number-input" />
       </div>
     </div>
   </section>
