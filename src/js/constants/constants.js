@@ -1,4 +1,5 @@
 export const MIN_CHARGE_INPUT = 1000;
+export const MAX_CHARGE_INPUT = 5000;
 
 export const LOTTO_PRICE = 1000;
 export const LOTTO_NUMBER = {
@@ -9,7 +10,7 @@ export const LOTTO_NUMBER = {
 
 export const ERROR_MESSAGE = {
   INTEGER_CHARGE_INPUT: '구입할 금액은 정수로 입력해주세요.',
-  MIN_CHARGE_INPUT: `구입할 금액을 ${MIN_CHARGE_INPUT}원 이상 입력해주세요. `,
+  CHARGE_INPUT_RANGE: `구입할 금액은 ${MIN_CHARGE_INPUT}원 이상, ${MAX_CHARGE_INPUT}원 이하로 입력해주세요. `,
 };
 
 export const SELECTOR = {
