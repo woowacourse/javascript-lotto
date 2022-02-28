@@ -9,7 +9,12 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "prettier/prettier": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "off"
+      }
+    ],
     "max-depth": ["error", 1],
     "no-new": "off",
     "import/extensions": "off",
