@@ -18,6 +18,6 @@ export default class Lotto {
   }
 
   generateLottoTicket(count) {
-    this.lottos = [...Array(count)].map(() => this.generateLottoNumber());
+    this.lottos = [...Array(count)].map(this.generateLottoNumber);
   }
 }
