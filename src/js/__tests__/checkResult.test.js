@@ -1,3 +1,5 @@
+import { countWinningNumber } from '../checkResult';
+
 describe('결과 확인 테스트', () => {
 
   it('주어진 로또 숫자와 당첨 번호가 일치하는 숫자의 개수를 확인한다.', () => {
