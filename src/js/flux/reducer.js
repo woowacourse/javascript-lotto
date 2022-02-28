@@ -1,6 +1,6 @@
 import ACTION from './actions';
 import { LOTTO } from '../constants';
-import { pickUniqueNumbersInRange } from '../utils';
+import pickUniqueNumbersInRange from '../utils';
 
 const generateLottoList = (money) => {
   const lottoList = [];

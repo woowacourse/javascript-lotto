@@ -1,11 +1,22 @@
-export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+function shuffle(array) {
+  const originArray = array;
+  const newArray = [];
 
-export const pickUniqueNumbersInRange = (startInclusive, endInclusive, count) => {
-  const numSet = new Set([pickNumberInRange(startInclusive, endInclusive)]);
-
-  while (numSet.size < count) {
-    numSet.add(pickNumberInRange(startInclusive, endInclusive));
+  while (originArray.length) {
+    const lastIdx = originArray.length - 1;
+    const randomIdx = Math.floor(Math.random() * originArray.length);
+    [originArray[lastIdx], originArray[randomIdx]] = [originArray[randomIdx], originArray[lastIdx]];
+    newArray.push(originArray.pop());
   }
 
-  return [...numSet.values()];
-};
+  return newArray;
+}
+
+export default function pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
+  const numbers = Array.from(
+    { length: endInclusive - startInclusive + 1 },
+    (v, i) => i + startInclusive
+  );
+
+  return shuffle(numbers).slice(0, count);
+}
