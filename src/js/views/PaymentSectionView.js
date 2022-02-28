@@ -1,5 +1,5 @@
 import View from '../core/View.js';
-import { SELECTOR, DOM_STRING } from '../configs/contants.js';
+import { DOM_STRING } from '../configs/contants.js';
 import { $ } from '../utils/utils.js';
 import { validator } from '../utils/validator.js';
 
@@ -15,15 +15,19 @@ export default class PaymentSectionView extends View {
   }
 
   bindOnClickPaymentSubmit(callback) {
-    this.bindEventListener('click', SELECTOR.PAYMENT_SUBMIT, () => {
-      const amount = $(SELECTOR.PAYMENT_INPUT).valueAsNumber;
+    this.bindEventListener(
+      'click',
+      { attributeName: DOM_STRING.PAYMENT_SUBMIT, attributeType: 'id' },
+      () => {
+        const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
 
-      try {
-        validator.checkPurchaseAmount(amount);
-        callback(amount);
-      } catch (e) {
-        alert(e);
+        try {
+          validator.checkPurchaseAmount(amount);
+          callback(amount);
+        } catch (e) {
+          alert(e);
+        }
       }
-    });
+    );
   }
 }

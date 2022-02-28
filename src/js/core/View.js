@@ -1,3 +1,5 @@
+import { addPrefix } from '../utils/utils';
+
 export default class View {
   state;
 
@@ -28,10 +30,11 @@ export default class View {
 
   afterMounted() {}
 
-  bindEventListener(type, selector, callback) {
+  bindEventListener(eventType, { attributeName, attributeType }, callback) {
+    const selector = addPrefix(attributeName, attributeType);
     const isTarget = (target) => target.closest(selector);
 
-    this.$target.addEventListener(type, (e) => {
+    this.$target.addEventListener(eventType, (e) => {
       if (!isTarget(e.target)) return;
 
       e.preventDefault();

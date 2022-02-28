@@ -17,7 +17,26 @@ export const generateNumberArray = (start, end) => {
   return array;
 };
 
-export const $ = (selector) => document.querySelector(selector);
+export const addPrefix = (selector, type) => {
+  let prefix = '';
+
+  switch (type) {
+    case 'id':
+      prefix = '#';
+      break;
+    case 'class':
+      prefix = '.';
+      break;
+    default:
+      break;
+  }
+
+  return `${prefix}${selector}`;
+};
+
+export const $ = (selector, type = null) => {
+  return document.querySelector(addPrefix(selector, type));
+};
 
 export const cloneObject = (obj) => {
   if (obj === null || typeof obj !== 'object') return obj;

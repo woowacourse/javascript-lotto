@@ -1,5 +1,5 @@
 import View from '../core/View.js';
-import { SELECTOR, DOM_STRING } from '../configs/contants.js';
+import { DOM_STRING } from '../configs/contants.js';
 
 export default class TicketSectionView extends View {
   setup() {
@@ -49,9 +49,13 @@ export default class TicketSectionView extends View {
   }
 
   bindOnClickNumberToggle() {
-    this.bindEventListener('click', SELECTOR.SLIDER, () => {
-      const { isShowNumber } = this.state;
-      this.update({ isShowNumber: !isShowNumber });
-    });
+    this.bindEventListener(
+      'click',
+      { attributeName: DOM_STRING.SLIDER, attributeType: 'id' },
+      () => {
+        const { isShowNumber } = this.state;
+        this.update({ isShowNumber: !isShowNumber });
+      }
+    );
   }
 }

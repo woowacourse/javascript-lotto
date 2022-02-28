@@ -4,7 +4,7 @@ import PaymentSectionView from './views/PaymentSectionView';
 import TicketSectionView from './views/TicketSectionView.js';
 import WinningNumberSectionView from './views/WinningNumberSectionView.js';
 import { $ } from './utils/utils.js';
-import { SELECTOR } from './configs/contants.js';
+import { DOM_STRING } from './configs/contants.js';
 
 export default class App {
   constructor() {
@@ -12,10 +12,14 @@ export default class App {
       lottoModel: new LottoModel(),
     };
     const views = {
-      paymentSectionView: new PaymentSectionView($(SELECTOR.PAYMENT_SECTION)),
-      ticketSectionView: new TicketSectionView($(SELECTOR.TICKET_SECTION)),
+      paymentSectionView: new PaymentSectionView(
+        $(DOM_STRING.PAYMENT_SECTION, 'id')
+      ),
+      ticketSectionView: new TicketSectionView(
+        $(DOM_STRING.TICKET_SECTION, 'id')
+      ),
       winningNumberSectionView: new WinningNumberSectionView(
-        $(SELECTOR.WINNING_NUMBER_SECTION)
+        $(DOM_STRING.WINNING_NUMBER_SECTION, 'id')
       ),
     };
 
