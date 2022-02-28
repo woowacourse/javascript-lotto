@@ -1,11 +1,6 @@
-import {
-  isPositiveInteger,
-  divideBy,
-  createRandomNumber,
-  createRandomNumberList,
-} from '../utils';
+import { isPositiveInteger, divideBy, createRandomNumberList } from '../utils';
 
-import { MONEY } from '../constants';
+import { MONEY, LOTTO } from '../constants';
 
 describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케이스)', () => {
   test('구입할 금액이 양의 정수인지 확인한다. 입력: -1, 실패 케이스', () => {
@@ -46,5 +41,23 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
     const randomNumberList = createRandomNumberList();
 
     expect(randomNumberList.length).toBe(new Set(randomNumberList).size);
+  });
+});
+
+describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 확인한다', () => {
+  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 0, 실패 케이스', () => {
+    const last_week_number = 0;
+
+    expect(
+      isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, last_week_number)
+    ).toBe(false);
+  });
+
+  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 45, 성공 케이스', () => {
+    const last_week_number = 45;
+
+    expect(
+      isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, last_week_number)
+    ).toBe(false);
   });
 });
