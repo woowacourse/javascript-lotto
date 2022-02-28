@@ -22,6 +22,8 @@ export const DOM_STRING = {
   WINNING_NUMBER_INPUT: 'winning-number-input',
   SHOW_RESULT_BUTTON: 'show-result-button',
   BONUS_NUMBER_FORM: 'bonus-number-form',
+  SWITCH_LABEL: 'switch-label',
+  TICKET_EMOJI: 'ticket-emoji',
 };
 
 export const SELECTOR = {
@@ -47,6 +49,8 @@ export const SELECTOR = {
   WINNING_NUMBER_INPUT: `.${DOM_STRING.WINNING_NUMBER_INPUT}`,
   SHOW_RESULT_BUTTON: `#${DOM_STRING.SHOW_RESULT_BUTTON}`,
   BONUS_NUMBER_FORM: `#${DOM_STRING.BONUS_NUMBER_FORM}`,
+  SWITCH_LABEL: `.${DOM_STRING.SWITCH_LABEL}`,
+  TICKET_EMOJI: `.${DOM_STRING.TICKET_EMOJI}`,
 };
 
 export const LOTTO = {

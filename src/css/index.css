@@ -24,7 +24,8 @@ h6 {
   letter-spacing: 0.15px;
 }
 
-label {
+label,
+p {
   display: block;
   margin-bottom: 4px;
   line-height: 24px;
@@ -149,16 +150,26 @@ form {
   display: flex;
 }
 
+.ticket-emoji {
+  display: flex;
+  align-items: center;
+}
+
 .ticket-numbers {
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 36px;
-  vertical-align: middle;
   margin-left: 8px;
 }
 
 #show-number-toggle-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.switch-label {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
