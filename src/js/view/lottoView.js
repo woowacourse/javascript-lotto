@@ -22,9 +22,9 @@ export default class LottoView {
   showLottoImage(lottoTickets) {
     const template = lottoTickets
       .map(
-        (lotto) =>
+        (lottoTicket) =>
           `<div class="lotto-img">
-        🎟️<span class="lotto-number-detail d-none">${lotto.join(', ')}</span>
+        🎟️<span class="lotto-number-detail d-none">${lottoTicket}</span>
       </div>`
       )
       .join('');
