@@ -1,5 +1,5 @@
 import { SELECTOR } from '../constants/selector';
-import { findElement } from '../utils/elementSelector';
+import { findElement } from '../utils/dom';
 
 class LottoContainerView {
   constructor({ $app, ...eventHandlers }) {

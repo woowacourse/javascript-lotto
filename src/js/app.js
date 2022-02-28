@@ -52,7 +52,29 @@ class LottoGameManager {
 
   onSubmitResultForm = (e) => {
     e.preventDefault();
+    const winningNumberInputNodes = [...e.target.querySelectorAll(SELECTOR.WINNING_NUMBER_INPUT)];
+    const { value: bonusNumberInput } = e.target.querySelector(SELECTOR.BONUS_NUMBER_INPUT);
+
+    const winningNumbers = winningNumberInputNodes.map(({ value }) => Number(value));
+    const bonusNumber = Number(bonusNumberInput);
+
+    this.triggerWinningNumberAction(winningNumbers, bonusNumber);
   };
+
+  triggerWinningNumberAction(winningNumbers, bonusNumber) {
+    try {
+      const { statistics, profitRatio } = this.#lottoDomainManager.mutateDomainState({
+        newData: { winningNumbers, bonusNumber },
+        actionKey: MUTATE_DOMAIN_KEY.COMPUTE_RESULT_STATISTICS,
+      });
+      this.#lottoViewManager.renderView({
+        newData: { statistics, profitRatio },
+        actionKey: RENDER_VIEW_KEY.RENDER_STATISTICS,
+      });
+    } catch ({ message }) {
+      alert(message);
+    }
+  }
 
   onClickRestartButton = () => {};
 

@@ -1,5 +1,5 @@
 import { SELECTOR } from '../constants/selector';
-import { findElement } from '../utils/elementSelector';
+import { findElement } from '../utils/dom';
 
 class LottoResultView {
   constructor({ $app, ...eventHandlers }) {
@@ -33,17 +33,17 @@ class LottoResultView {
     <div class="win-number-input-wrapper">
       <div>
         <p>당첨 번호</p>
-        <input id="win-number-1" type="number" />
-        <input id="win-number-2" type="number" />
-        <input id="win-number-3" type="number" />
-        <input id="win-number-4" type="number" />
-        <input id="win-number-5" type="number" />
-        <input id="win-number-6" type="number" />
+        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" />
       </div>
 
       <div class="bonus-number-wrapper flex-column-align-end">
         <p>보너스 번호</p>
-        <input id="bonus-number" type="number" />
+        <input class="bonus-number-input" type="number" />
       </div>
     </div>
 

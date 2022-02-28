@@ -10,4 +10,7 @@ export const SELECTOR = {
 
   WIN_NUMBER_INPUT_SECTION: '#win-number-input-section',
   WIN_NUMBER_INPUT_FORM: '#win-number-input-form',
+
+  WINNING_NUMBER_INPUT: '.winning-number-input',
+  BONUS_NUMBER_INPUT: '.bonus-number-input',
 };

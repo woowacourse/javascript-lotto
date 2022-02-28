@@ -29,23 +29,42 @@ class LottoList {
 
   computeWinResultStatistics(winningNumbers, bonusNumber) {
     if (isValidWinningNumber([...winningNumbers, bonusNumber])) {
-      const statisticsArray = this.lottoList.map((lotto) =>
-        lotto.computeWinResult(winningNumbers, bonusNumber)
-      );
+      const statistics = this.computeStatistics(winningNumbers, bonusNumber);
 
-      const totalProceeds = statisticsArray.reduce(
-        (prev, current) => prev + RANK_PRICE[current],
-        0
-      );
-      return { statistics: this.changeStatisticsMap(statisticsArray), totalProceeds };
+      const profitRatio = this.computeProfitRatio(statistics);
+
+      return { statistics, profitRatio };
     }
     throw new Error(ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE);
+  }
+
+  computeStatistics(winningNumbers, bonusNumber) {
+    const statisticsArray = this.lottoList.map((lotto) =>
+      lotto.computeWinResult(winningNumbers, bonusNumber)
+    );
+    const statisticsMap = this.changeStatisticsMap(statisticsArray);
+
+    return statisticsMap;
+  }
+
+  computeProfitRatio(statistics) {
+    const lottoPurchaseAmount = this.lottoList.length * NUMBER.LOTTO_PRICE;
+
+    const profitAmount = Object.keys(statistics).reduce((prev, currentKey) => {
+      const count = statistics[currentKey];
+
+      const price = RANK_PRICE[currentKey];
+
+      return prev + count * price;
+    }, 0);
+
+    return (profitAmount / lottoPurchaseAmount) * 100;
   }
 
   changeStatisticsMap(statisticsArray) {
     const statisticsMap = {};
 
-    Object.keys(RANK_KEYS).forEach((key) => {
+    Object.values(RANK_KEYS).forEach((key) => {
       statisticsMap[key] = 0;
     });
 
