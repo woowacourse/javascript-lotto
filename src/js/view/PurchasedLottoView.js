@@ -44,8 +44,10 @@ export default class PurchasedLottoView {
     this.toggle = document.getElementById('on-off-switch');
 
     this.toggle.addEventListener('click', () => {
-      this.singlePurchasedLottoList.classList.toggle('hidden');
-      this.detailPurchasedLottoList.classList.toggle('hidden');
+      [
+        this.singlePurchasedLottoList,
+        this.detailPurchasedLottoList
+      ].forEach(list => list.classList.toggle('hidden'));
     });
   }
 
