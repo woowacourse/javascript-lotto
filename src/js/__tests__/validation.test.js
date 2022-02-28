@@ -7,8 +7,13 @@ describe('로또 구입 금액 유효성 검사 테스트', () => {
     expect(() => validateCharge(notIntegerValue)).toThrow(ValidationError);
   });
 
-  it('구입 금액은 1000원 이상이여야 한다.', () => {
+  it('구입 금액은 1000원 이상이어야 한다.', () => {
     const lessThanMinimumValue = 500;
     expect(() => validateCharge(lessThanMinimumValue)).toThrow(ValidationError);
+  });
+
+  it('구입 금액은 5000원 이하여야 한다.', () => {
+    const biggerThanMaximumValue = 5500;
+    expect(() => validateCharge(biggerThanMaximumValue)).toThrow(ValidationError);
   });
 });
