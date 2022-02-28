@@ -27,22 +27,22 @@ class Lotto {
       }
     });
 
-    return this.getLottoScore(countMatchNumber, isContainBonusNumber);
+    return this.getLottoRank(countMatchNumber, isContainBonusNumber);
   }
 
-  getLottoScore(countMatchNumber, isContainBonusNumber) {
+  getLottoRank(countMatchNumber, isContainBonusNumber) {
     switch (countMatchNumber) {
       case 3:
-        return 5;
+        return NUMBER.FIFTH_GRADE_INDEX;
       case 4:
-        return 4;
+        return NUMBER.FOURTH_GRADE_INDEX;
       case 5:
-        return 3;
+        return NUMBER.THIRD_GRADE_INDEX;
       case 6:
-        if (isContainBonusNumber) return 2;
-        return 1;
+        if (isContainBonusNumber) return NUMBER.SECOND_GRADE_INDEX;
+        return NUMBER.FIRST_GRADE_INDEX;
       default:
-        return 0;
+        return NUMBER.NOT_WINNING_INDEX;
     }
   }
 }

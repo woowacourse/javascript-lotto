@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 
 import { ERROR_MESSAGE } from '../constants/errorMessage';
+import { NUMBER } from '../constants/number';
 import Lotto from '../models/Lotto';
 
 describe('로또 모델 테스트', () => {
@@ -24,6 +25,6 @@ describe('로또 모델 테스트', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 7, 6];
 
     const lotto = Lotto.create(lottoNumbers);
-    expect(lotto.result(winningNumbers)).toBe(2);
+    expect(lotto.result(winningNumbers)).toBe(NUMBER.SECOND_GRADE_INDEX);
   });
 });

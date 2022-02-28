@@ -6,6 +6,7 @@ import { NUMBER } from '../constants/number';
 class LottoGameModel {
   constructor() {
     this.lottoList = [];
+    this.winningResult = [0, 0, 0, 0, 0, 0, 0];
   }
 
   getLottoList() {
@@ -42,6 +43,29 @@ class LottoGameModel {
       return Math.floor(charge / NUMBER.LOTTO_PRICE);
     }
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
+  }
+
+  getGameResult(winningNumbers) {
+    this.lottoList.forEach((lotto) => {
+      this.updateLottoRankResult(lotto, winningNumbers);
+    });
+    this.updateLottoEarningRate();
+    return this.winningResult;
+  }
+
+  updateLottoRankResult(lotto, winningNumbers) {
+    this.winningResult[lotto.result(winningNumbers)] += 1;
+  }
+
+  updateLottoEarningRate() {
+    const totalCharge = this.lottoList.length * NUMBER.LOTTO_PRICE;
+    const totalWinningMoney =
+      NUMBER.FIRST_GRADE_PRIZE * this.winningResult[NUMBER.FIRST_GRADE_INDEX] +
+      NUMBER.SECOND_GRADE_PRIZE * this.winningResult[NUMBER.SECOND_GRADE_INDEX] +
+      NUMBER.THIRD_GRADE_PRIZE * this.winningResult[NUMBER.THIRD_GRADE_INDEX] +
+      NUMBER.FOURTH_GRADE_PRIZE * this.winningResult[NUMBER.FOURTH_GRADE_INDEX] +
+      NUMBER.FIFTH_GRADE_PRIZE * this.winningResult[NUMBER.FIFTH_GRADE_INDEX];
+    this.winningResult[NUMBER.EARNING_RATE_INDEX] = Math.floor(totalWinningMoney / totalCharge);
   }
 }
 
