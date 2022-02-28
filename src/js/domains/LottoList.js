@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import { NUMBER } from '../constants/number';
-import { RANK_PRICE } from '../constants/win';
+import { RANK_KEYS, RANK_PRICE } from '../constants/win';
 import { isValidCharge, isValidWinningNumber } from '../utils/validator';
 import Lotto from './Lotto';
 
@@ -45,7 +45,7 @@ class LottoList {
   changeStatisticsMap(statisticsArray) {
     const statisticsMap = {};
 
-    Object.keys(RANK_PRICE).forEach((key) => {
+    Object.keys(RANK_KEYS).forEach((key) => {
       statisticsMap[key] = 0;
     });
 
