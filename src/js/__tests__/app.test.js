@@ -1,5 +1,52 @@
-describe("테스트 그룹 ", () => {
-  it("테스트 명세", () => {
-    expect(true).toBe(true);
+import { CONDITIONS, ERROR_MESSAGE } from '../constants/constants.js';
+import { LottoGame } from '../model/LottoGame.js';
+import { validator } from '../utils.js';
+
+describe('구매 금액에 대한 확인', () => {
+  test('로또 구매 금액을 입력할 수 있다.', () => {
+    const lottoGame = new LottoGame();
+    lottoGame.insertMoney(1000);
+    expect(lottoGame.moneyInput).toBe(1000);
+  });
+
+  test('금액은 자연수이어야 한다.', () => {
+    expect(() => {
+      validator.isInputValid(-10);
+    }).toThrowError(ERROR_MESSAGE.NEGATIVE_INPUT);
+  });
+
+  test('금액은 정수이어야 한다.', () => {
+    expect(() => {
+      validator.isInputValid(1000.7);
+    }).toThrowError(ERROR_MESSAGE.NOT_INTEGER_INPUT);
+  });
+
+  test('100장 이상을 구매할 금액은 제외합니다.', () => {
+    expect(() => {
+      validator.isInputValid(10000000);
+    }).toThrowError(ERROR_MESSAGE.TOO_BIG_INPUT);
+  });
+
+  test('최소 한 장은 살 수 있는 금액을 입력해야 합니다.', () => {
+    expect(() => {
+      validator.isInputValid(CONDITIONS.LOTTO_PRICE - 1);
+    }).toThrowError(ERROR_MESSAGE.TOO_SMALL_INPUT);
+  });
+});
+
+describe('구입한 금액에 맞게 로또가 구매되는지 확인', () => {
+  test('입력한 금액에 맞게 로또 개수를 구매할 수 있어야 한다.', () => {
+    const lottoGame = new LottoGame();
+    lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE * 3);
+    lottoGame.buyLotto();
+    expect(lottoGame.lottoWallet.length).toBe(3);
+  });
+
+  test('로또 번호를 중복없이 자동으로 생성한다.', () => {
+    const lottoGame = new LottoGame();
+    lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE);
+    lottoGame.buyLotto();
+    lottoGame.lottoWallet[0].makeLottoNumber();
+    expect(lottoGame.lottoWallet[0].numbers.length).toBe(CONDITIONS.LOTTO_SIZE);
   });
 });

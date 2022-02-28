@@ -1,0 +1,243 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#money-input-container {
+  display: flex;
+  padding: 10px;
+  width: 70%;
+  flex-direction: column;
+}
+
+#money-input-field {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+#money-input {
+  width: 80%;
+  height: 36px;
+  left: 0px;
+  top: 28px;
+}
+
+#purchase-button {
+  padding: 6px;
+  width: 15%;
+  background: #00bcd4;
+  border-radius: 4px;
+}
+
+#lotto-status-container {
+  display: grid;
+  padding: 10px;
+  width: 70%;
+  flex-direction: column;
+  grid-template-areas:
+    'nl nl nl nl nl nl nl tg'
+    'ic ic ic ic ic ic ic sw';
+}
+
+#lotto-quantity-label {
+  grid-area: nl;
+}
+
+#lotto-quantity {
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 36px;
+}
+
+#lotto-icons {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 15px;
+  grid-area: ic;
+}
+
+#toggle-label {
+  grid-area: tg;
+}
+
+#winning-lotto-container {
+  display: grid;
+  padding: 10px;
+  width: 70%;
+  grid-gap: 3px;
+
+  grid-template-areas:
+    'hd hd hd hd hd hd hd hd'
+    'hd2 hd2 hd2  hd2  .  .  . hd3'
+    'wn1 wn2 wn3 wn4 wn5 wn6 . wn7'
+    'cr cr cr cr cr cr cr cr';
+}
+
+#winning-lotto-guide-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  grid-area: hd;
+  padding: 5px;
+}
+
+#winning-number-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  grid-area: hd2;
+  padding: 5px;
+}
+
+#bonus-number-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  grid-area: hd3;
+  padding: 5px;
+}
+
+.winning-number {
+  height: 35px;
+  width: 35px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+#winning-number1 {
+  grid-area: wn1;
+}
+#winning-number2 {
+  grid-area: wn2;
+}
+#winning-number3 {
+  grid-area: wn3;
+}
+#winning-number4 {
+  grid-area: wn4;
+}
+#winning-number5 {
+  grid-area: wn5;
+}
+#winning-number6 {
+  grid-area: wn6;
+}
+#winning-number7 {
+  grid-area: wn7;
+}
+
+#confirm-result-label {
+  grid-area: cr;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px;
+  width: 100%;
+  background: #00bcd4;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+/* 토글 버튼 */
+.switch {
+  grid-area: sw;
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 21px;
+  top: 5px;
+  left: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 2.5px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+button {
+  align-items: center;
+  justify-content: center;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  border-radius: 10px;
+  border-color: #00bcd4;
+
+  cursor: pointer;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
