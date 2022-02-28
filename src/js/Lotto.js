@@ -16,10 +16,7 @@ export default class Lotto {
     const numbers = [];
 
     while (numbers.length !== LOTTO_NUMBER.LENGTH) {
-      const randomNumber = generateRandomInRange(
-        LOTTO_NUMBER.MIN,
-        LOTTO_NUMBER.MAX
-      );
+      const randomNumber = generateRandomInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX);
       if (!numbers.find(number => number === randomNumber))
         numbers.push(randomNumber);
     }

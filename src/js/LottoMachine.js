@@ -10,18 +10,14 @@ export default class LottoMachine {
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
     this.setEvent();
-    this.initialize();
+    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
   }
 
   setEvent() {
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
   }
-
-  initialize() {
-    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
-  }
-
+  
   onSubmitCharge(event) {
     event.preventDefault();
     const chargeInputNumber = Number($(SELECTOR.CHARGE_INPUT).value);
@@ -43,6 +39,6 @@ export default class LottoMachine {
 
   reverseLottoStyle() {
     const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
-    this.lottoMachineView.switchLottoListStyle(style);
+    this.lottoMachineView.showLottoList[style]();
   }
 }

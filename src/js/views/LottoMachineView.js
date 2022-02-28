@@ -14,10 +14,6 @@ export default class LottoMachineView {
     $(SELECTOR.CHARGE_INPUT).value = value;
   }
 
-  switchLottoListStyle(style) {
-    this.showLottoList[style]();
-  }
-
   updateLottoList(lottos) {
     $(SELECTOR.LOTTO_TOTAL_NUMBER).innerHTML = lottoTotalNumber(lottos.length);
     $(SELECTOR.LOTTO_LIST_ICON).innerHTML = lottoListTemplate.icon(lottos.length);
