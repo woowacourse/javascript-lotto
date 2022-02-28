@@ -1,17 +1,16 @@
 import {
   isPositiveInteger,
   isDivisibleBy,
-  createLottoList,
+  getRateOfReturn,
   createRandomNumberList,
   shuffleArray,
-  confirmLottoList,
-  checkTheLottoRanking,
-  WINNING_COUNT,
-  sumWinningAmount,
-  getRateOfReturn,
 } from '../utils';
 
-import { LOTTO, MONEY, WINNING_AMOUNT } from '../constants';
+import { LOTTO, MONEY } from '../constants';
+
+import Lotto from '../Lotto';
+
+const lotto = new Lotto();
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {
@@ -82,7 +81,7 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
   });
 
   test('구입한 로또 번호는 서로 다른 랜덤한 숫자 6개로 이루어진 값이다, 성공 케이스', () => {
-    const lottoList = createLottoList();
+    const lottoList = lotto.createLottoList();
 
     expect(lottoList.length).toBe(new Set(lottoList).size);
   });
@@ -96,7 +95,11 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
     const userLottoList = [1, 2, 3, 4, 5, 6];
 
     expect(
-      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+      lotto.confirmLottoList(
+        userLottoList,
+        lastWeekLottoList,
+        lastWeekBounsNumber
+      )
     ).toBe(2000000000);
   });
 
@@ -104,7 +107,11 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
     const userLottoList = [1, 2, 3, 4, 5, 7];
 
     expect(
-      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+      lotto.confirmLottoList(
+        userLottoList,
+        lastWeekLottoList,
+        lastWeekBounsNumber
+      )
     ).toBe(30000000);
   });
 
@@ -112,7 +119,11 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
     const userLottoList = [1, 2, 3, 4, 5, 8];
 
     expect(
-      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+      lotto.confirmLottoList(
+        userLottoList,
+        lastWeekLottoList,
+        lastWeekBounsNumber
+      )
     ).toBe(1500000);
   });
 
@@ -120,7 +131,11 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
     const userLottoList = [1, 2, 3, 4, 8, 9];
 
     expect(
-      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+      lotto.confirmLottoList(
+        userLottoList,
+        lastWeekLottoList,
+        lastWeekBounsNumber
+      )
     ).toBe(50000);
   });
 
@@ -128,7 +143,11 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
     const userLottoList = [1, 2, 3, 8, 9, 10];
 
     expect(
-      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+      lotto.confirmLottoList(
+        userLottoList,
+        lastWeekLottoList,
+        lastWeekBounsNumber
+      )
     ).toBe(5000);
   });
 
@@ -136,7 +155,11 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
     const userLottoList = [10, 21, 31, 41, 15, 16];
 
     expect(
-      confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber)
+      lotto.confirmLottoList(
+        userLottoList,
+        lastWeekLottoList,
+        lastWeekBounsNumber
+      )
     ).toBe(0);
   });
 });
@@ -153,42 +176,36 @@ describe('유저가 구매한 로또 티켓들의 등수별 당첨 된 갯수 �
     [1, 2, 12, 13, 9, 10],
   ];
 
-  checkTheLottoRanking(
-    userAllLottoList,
-    lastWeekLottoList,
-    lastWeekBounsNumber
-  );
+  lotto.setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber);
 
   test('1등 당첨 갯수 확인', () => {
-    expect(WINNING_COUNT.FIRST_WINNER).toBe(1);
+    expect(lotto.getWinningCount().firstWinner).toBe(1);
   });
 
   test('2등 당첨 갯수 확인', () => {
-    expect(WINNING_COUNT.SECOND_WINNER).toBe(1);
+    expect(lotto.getWinningCount().secondWinner).toBe(1);
   });
 
   test('3등 당첨 갯수 확인', () => {
-    expect(WINNING_COUNT.THIRD_WINNER).toBe(1);
+    expect(lotto.getWinningCount().thirdWinner).toBe(1);
   });
 
   test('4등 당첨 갯수 확인', () => {
-    expect(WINNING_COUNT.FORTH_WINNER).toBe(1);
+    expect(lotto.getWinningCount().forthWinner).toBe(1);
   });
 
   test('5등 당첨 갯수 확인', () => {
-    expect(WINNING_COUNT.FIFTH_WINNER).toBe(1);
+    expect(lotto.getWinningCount().fifthWinner).toBe(1);
   });
 
   test('낙첨 갯수 확인', () => {
-    expect(WINNING_COUNT.FAILED).toBe(1);
+    expect(lotto.getWinningCount().failed).toBe(1);
   });
 });
 
 test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () => {
-  const testWinningAmount =
-    WINNING_AMOUNT.FORTH_WINNER +
-    WINNING_AMOUNT.FIFTH_WINNER +
-    WINNING_AMOUNT.FAILED;
+  const { forthWinner, fifthWinner, failed } = lotto.getWinningAmount();
+  const testWinningAmount = forthWinner + fifthWinner + failed;
   const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
   const lastWeekBounsNumber = 7;
   const userAllLottoList = [
@@ -197,13 +214,9 @@ test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () =
     [1, 2, 12, 13, 9, 10],
   ];
 
-  checkTheLottoRanking(
-    userAllLottoList,
-    lastWeekLottoList,
-    lastWeekBounsNumber
-  );
+  lotto.setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber);
 
-  expect(sumWinningAmount()).toBe(testWinningAmount);
+  expect(lotto.totalWinningAmount()).toBe(testWinningAmount);
 });
 
 test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () => {
@@ -216,11 +229,9 @@ test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () =
     [1, 2, 11, 4, 9, 10],
   ];
 
-  checkTheLottoRanking(
-    userAllLottoList,
-    lastWeekLottoList,
-    lastWeekBounsNumber
-  );
+  lotto.setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber);
 
-  expect(getRateOfReturn(purchasedAmount)).toBe(testRateOfReturn);
+  expect(getRateOfReturn(lotto.totalWinningAmount(), purchasedAmount)).toBe(
+    testRateOfReturn
+  );
 });
