@@ -4,6 +4,7 @@
 @import './purchasedLotto.css';
 @import './toggle.css';
 @import './winningNumber.css';
+@import './popup.css';
 
 body {
   display: flex;

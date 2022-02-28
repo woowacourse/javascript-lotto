@@ -1,4 +1,4 @@
-import { RULES } from '../constants/index.js';
+import { RULES, REWARD } from '../constants/index.js';
 
 const LOTTO_IMAGE_TEMPLATE = `
   <span class="purchased-lotto-image">🎟️</span>
@@ -61,9 +61,53 @@ const WINNING_NUMBER_FORM = `
   </form>
 `;
 
+const getResultTemplate = (result, percent) => `
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>일치 개수</th>
+          <th>당첨금</th>
+          <th>당첨 개수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3개</td>
+          <td>${REWARD.FIFTH.toLocaleString('ko-KR')}</td>
+          <td>${result.filter(correct => correct.win === 3).length}개</td>
+        </tr>
+        <tr>
+          <td>4개</td>
+          <td>${REWARD.FOURTH.toLocaleString('ko-KR')}</td>
+          <td>${result.filter(correct => correct.win === 4).length}개</td>
+        </tr>
+        <tr>
+          <td>5개</td>
+          <td>${REWARD.THIRD.toLocaleString('ko-KR')}</td>
+          <td>${result.filter(correct => correct.win === 5 && correct.bonus === 0).length}개</td>
+        </tr>
+        <tr>
+          <td>5개+보너스볼</td>
+          <td>${REWARD.SECOND.toLocaleString('ko-KR')}</td>
+          <td>${result.filter(correct => correct.win === 5 && correct.bonus === 1).length}개</td>
+        </tr>
+        <tr>
+          <td>6개</td>
+          <td>${REWARD.FIRST.toLocaleString('ko-KR')}</td>
+          <td>${result.filter(correct => correct.win === 6).length}개</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="result-percent">당신의 총 수익률은 ${percent.toLocaleString('ko-KR')}%입니다.</div>
+    <button id="restart-button">다시 시작하기</button>
+  </div>
+`;
+
 export {
   PURCHASED_LOTTO_TEMPLATE,
   LOTTO_IMAGE_TEMPLATE,
   WINNING_NUMBER_FORM,
   getLottoListTemplate,
+  getResultTemplate,
 };
