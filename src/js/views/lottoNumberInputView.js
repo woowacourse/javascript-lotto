@@ -1,1 +1,5 @@
-export default class LottoNumberInputView {}
+export default class LottoNumberInputView {
+  constructor() {
+  
+  }
+}

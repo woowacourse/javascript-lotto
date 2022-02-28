@@ -1,7 +1,10 @@
-export const $ = (selector, node = document) => node.querySelector(selector);
+export const qs = (selector, scope = document) => {
+  return scope.querySelector(selector);
+}
 
-export const $$ = (selector, node = document) =>
-  node.querySelectorAll(selector);
+export const qsAll = (selector, scope = document) => {
+  return Array.from(scope.querySelectorAll(selector));
+}
 
 export const on = (target, eventName, handler) =>
   target.addEventListener(eventName, handler);

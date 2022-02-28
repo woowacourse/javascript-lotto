@@ -1,9 +1,9 @@
-import { $, on, emit } from '../utils/helper.js';
+import { qs, on, emit } from '../utils/helper.js';
 
 export default class LottoPurchaseInputView {
   constructor() {
-    this.lottoPurchaseForm = $('#lotto-purchase-form');
-    this.lottoPurchaseInput = $('#lotto-purchase-input');
+    this.lottoPurchaseForm = qs('#lotto-purchase-form');
+    this.lottoPurchaseInput = qs('#lotto-purchase-input');
 
     this.attachEvents();
   }
