@@ -30,12 +30,12 @@ describe('금액 입력에 대한 유효성 검사를 한다', () => {
   });
 
   test('1000 단위로 나누어 떨어지지 않는 값을 허용하지 않는다', () => {
-    let invalidMoney = '1001';
+    const invalidMoney = '1001';
     expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
   });
 
   test('1000 단위의 값을 허용한다', () => {
-    let validMoney = '20000';
+    const validMoney = '20000';
     expect(validateMoney(validMoney)).notToHaveError();
   });
 });
@@ -83,14 +83,14 @@ describe('당첨 번호 입력에 대한 유효성 검사를 한다', () => {
   });
 
   test('중복된 값을 허용하지 않는다', () => {
-    let invalidWinningNumbers = ['11', '11', '3', '4', '5', '6', '7'];
+    const invalidWinningNumbers = ['11', '11', '3', '4', '5', '6', '7'];
     expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
       ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS
     );
   });
 
-  test('로또 범위의 숫자를 허용한다', () => {
-    let validWinningNumbers = ['1', '4', '29', '39', '43', '45', '31'];
+  test('로또 범위의 숫자(1 ~ 45)를 허용한다', () => {
+    const validWinningNumbers = ['1', '4', '29', '39', '43', '45', '31'];
     expect(validateWinningNumbers(validWinningNumbers)).notToHaveError();
   });
 });
