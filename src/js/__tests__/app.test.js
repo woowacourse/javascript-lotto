@@ -64,8 +64,10 @@ describe('소비자는 자동 구매를 할 수 있어야 한다.', () => {
 
   test('발급한 로또는 모두 각각 독립적으로 랜덤한 번호를 추천한다.', () => {
     const issuedLotto1 = [1, 2, 3, 4, 5, 6];
-    const issuedLotto2 = [1, 2, 3, 4, 5, 6];
+    const issuedLotto2 = [7, 8, 9, 1, 2, 3];
 
-    expect(JSON.stringify(issuedLotto1)).toBe(JSON.stringify(issuedLotto2));
+    expect(JSON.stringify(issuedLotto1.sort())).not.toBe(
+      JSON.stringify(issuedLotto2.sort()),
+    );
   });
 });
