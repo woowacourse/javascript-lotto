@@ -2,29 +2,29 @@ import EXCEPTION from '../constants/exception.js';
 import LOTTO from '../constants/lotto.js';
 
 const moneyValidator = {
-  isOverMinimum(money) {
-    return money >= LOTTO.PRICE_PER_TICKET;
+  isOverMinimum(money, min) {
+    return money >= min;
   },
 
-  isUnderMaximum(money) {
-    return money <= LOTTO.INVENTORY * LOTTO.PRICE_PER_TICKET;
+  isUnderMaximum(money, stock, pricePerTicket) {
+    return money <= stock * pricePerTicket;
   },
 
-  isThousandUnit(money) {
-    return money % LOTTO.PRICE_PER_TICKET === 0;
+  isCorrectUnit(money, pricePerTicket) {
+    return money % pricePerTicket === 0;
   },
 };
 
 const validateMoney = (money) => {
-  if (!moneyValidator.isOverMinimum(money)) {
+  if (!moneyValidator.isOverMinimum(money, LOTTO.PRICE_PER_TICKET)) {
     throw new Error(EXCEPTION.INVALID_RANGE.MINIMUM);
   }
 
-  if (!moneyValidator.isUnderMaximum(money)) {
+  if (!moneyValidator.isUnderMaximum(money, LOTTO.INVENTORY, LOTTO.PRICE_PER_TICKET)) {
     throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
   }
 
-  if (!moneyValidator.isThousandUnit(money)) {
+  if (!moneyValidator.isCorrectUnit(money, LOTTO.PRICE_PER_TICKET)) {
     throw new Error(EXCEPTION.INVALID_UNIT);
   }
 };
