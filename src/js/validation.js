@@ -1,4 +1,3 @@
-import ValidationError from './utils/ValidationError';
 import { MIN_CHARGE_INPUT, ERROR_MESSAGE, MAX_CHARGE_INPUT } from './constants/constants';
 
 function isChargeValueInValidRange(value) {
@@ -7,7 +6,7 @@ function isChargeValueInValidRange(value) {
 
 export default function validateCharge(charge) {
   if (!Number.isInteger(charge))
-    throw new ValidationError(ERROR_MESSAGE.INTEGER_CHARGE_INPUT);
+    throw new Error(ERROR_MESSAGE.INTEGER_CHARGE_INPUT);
   if (!isChargeValueInValidRange(charge))
-    throw new ValidationError(ERROR_MESSAGE.CHARGE_INPUT_RANGE);
+    throw new Error(ERROR_MESSAGE.CHARGE_INPUT_RANGE);
 }
