@@ -1,7 +1,7 @@
 export const LOTTO_PRICE = 1000;
 export const RANDOM_MIN = 1;
 export const RANDOM_MAX = 45;
-export const NUMBER_LIST_LENGTH = 6;
+export const LOTTO_NUMBER_COUNT = 6;
 
 export const MATCH_NUMBER_3_PRIZE = 5000;
 export const MATCH_NUMBER_4_PRIZE = 50000;

@@ -1,4 +1,9 @@
 import {
+  LOTTO_NUMBER_COUNT,
+  RANDOM_MAX,
+  RANDOM_MIN,
+} from '../constants/constant.js';
+import {
   IS_OVERLAP_LOTTO_NUMBER_ERROR,
   NOT_NUMBER_IN_RANGE,
   NOT_NUMBER_TYPE_ERROR,
@@ -26,13 +31,13 @@ export const checkLastLottoNumberValid = () => {
     let isLottoNumberInRange = false;
     if (checkLastLottoNumbersType(lastLottoNumbers)) {
       isLottoNumberInputPositive =
-        checkLastLottoNumberPositive(lastLottoNumbers);
+        checkLastLottoNumbersPositive(lastLottoNumbers);
     }
     if (isLottoNumberInputPositive) {
-      isLottoNumberInRange = checkLottoNumberInRange(lastLottoNumbers);
+      isLottoNumberInRange = checkLastLottoNumbersInRange(lastLottoNumbers);
     }
     if (isLottoNumberInRange) {
-      checkLottoNumberOverlap(lastLottoNumbers);
+      checkLastLottoNumbersOverlap(lastLottoNumbers);
     }
     return lastLottoNumbers;
   } catch (err) {
@@ -41,35 +46,40 @@ export const checkLastLottoNumberValid = () => {
 };
 
 export const checkLastLottoNumbersType = lastLottoNumbers => {
-  console.log('lastLotto');
   if (
-    lastLottoNumbers.filter(num => isValueTypeNumber(num)).length !==
-    lastLottoNumbers.length
+    lastLottoNumbers.filter(num => {
+      if (isValueTypeNumber(num)) return num;
+    }).length !==
+    LOTTO_NUMBER_COUNT + 1
   ) {
     throw new Error(NOT_NUMBER_TYPE_ERROR);
   }
   return true;
 };
 
-export const checkLastLottoNumberPositive = lastLottoNumbers => {
+export const checkLastLottoNumbersPositive = lastLottoNumbers => {
   if (
-    lastLottoNumbers.filter(num => isPositiveNumber(num)).length !==
-    lastLottoNumbers.length
+    lastLottoNumbers.filter(num => {
+      if (isPositiveNumber(num)) return num;
+    }).length !==
+    LOTTO_NUMBER_COUNT + 1
   ) {
     throw new Error(NOT_POSITIVE_NUMBER_ERROR);
   }
   return true;
 };
 
-export const checkLottoNumberOverlap = lastLottoNumbers => {
+export const checkLastLottoNumbersOverlap = lastLottoNumbers => {
   if (lastLottoNumbers.length === new Set(lastLottoNumbers).size) {
     return true;
   }
   throw new Error(IS_OVERLAP_LOTTO_NUMBER_ERROR);
 };
 
-export const checkLottoNumberInRange = lastLottoNumbers => {
-  if (lastLottoNumbers.filter(num => num > 45 || num < 1).length) {
+export const checkLastLottoNumbersInRange = lastLottoNumbers => {
+  if (
+    lastLottoNumbers.filter(num => num > RANDOM_MAX || num < RANDOM_MIN).length
+  ) {
     throw new Error(NOT_NUMBER_IN_RANGE);
   }
   return true;
