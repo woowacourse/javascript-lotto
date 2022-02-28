@@ -1,5 +1,5 @@
 import { LOTTO_PRICE, SELECTOR } from './constants/constants';
-import { $, divider } from './utils/util';
+import { $, $$, divider } from './utils/util';
 import validateCharge from './validation';
 
 import LottoManager from './LottoManager';
@@ -16,6 +16,7 @@ export default class LottoMachine {
   setEvent() {
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
+    $(SELECTOR.WINNING_NUMBER_FORM).addEventListener('submit', this.onSubmitWinningNumber.bind(this))
   }
   
   onSubmitCharge(event) {
@@ -28,6 +29,11 @@ export default class LottoMachine {
       return;
     }
     this.purchase(chargeInputNumber);
+  }
+
+  onSubmitWinningNumber(event) {
+    event.preventDefault();
+    const winningNumbers = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT)).map((numberInput) => numberInput.value);
   }
 
   purchase(chargeInputNumber) {

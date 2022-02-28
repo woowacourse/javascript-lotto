@@ -20,4 +20,7 @@ export const SELECTOR = {
   LOTTO_LIST_NUMBER: '#lotto-list-number',
   LOTTO_TOTAL_NUMBER: '#lotto-total-number',
   LOTTO_LIST_ICON: '#lotto-list-icon',
+  WINNING_NUMBER_FORM: '#winning-number-form',
+
+  WINNING_NUMBER_INPUT: '.winning-number-input'
 };
