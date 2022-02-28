@@ -1,6 +1,7 @@
 import ID from '../constants/selector.js';
 import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
+import CUSTOM_EVENT from '../constants/event.js';
 
 export default class PurchaseView {
   constructor() {
@@ -17,7 +18,7 @@ export default class PurchaseView {
   handleSubmit(e) {
     e.preventDefault();
     const money = this.getMoneyToPurchase();
-    emit(this.$purchaseForm, '@submit', { money });
+    emit(this.$purchaseForm, CUSTOM_EVENT.SUBMIT, { money });
   }
 
   getMoneyToPurchase() {

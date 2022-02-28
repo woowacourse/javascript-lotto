@@ -4,6 +4,7 @@ import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
 import { on } from '../utils/event.js';
 import LOTTO from '../constants/lotto.js';
+import CUSTOM_EVENT from '../constants/event.js';
 
 export default class LottoController {
   constructor() {
@@ -13,11 +14,11 @@ export default class LottoController {
   }
 
   subscribeViewEvents() {
-    on(this.purchaseView.$purchaseForm, '@submit', (e) =>
+    on(this.purchaseView.$purchaseForm, CUSTOM_EVENT.SUBMIT, (e) =>
       this.purchaseLotto(e.detail.money),
     );
 
-    on(this.issuedTicketView.$lottoNumberToggle, '@toggle', (e) =>
+    on(this.issuedTicketView.$lottoNumberToggle, CUSTOM_EVENT.TOGGLE, (e) =>
       this.toggleDetails(e.detail.checked),
     );
   }
