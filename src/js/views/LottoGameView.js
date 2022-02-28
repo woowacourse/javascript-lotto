@@ -8,6 +8,7 @@ export default class LottoGameView {
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.purchaseButton = $(SELECTOR.PURCHASE_BUTTON);
+    this.winningContainer = $(SELECTOR.WINNING_CONTAINER);
   }
 
   disablePurchaseForm() {
@@ -17,6 +18,10 @@ export default class LottoGameView {
 
   enableSwitch() {
     this.switchInput.removeAttribute("disabled");
+  }
+
+  showWinningInput() {
+    this.winningContainer.removeAttribute("hidden");
   }
 
   renderPurchaseInfomation(count) {

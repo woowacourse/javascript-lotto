@@ -24,6 +24,7 @@ export default class LottoController {
     this.lottoGameView.enableSwitch();
     this.lottoGameView.renderPurchaseInfomation(lottoCount);
     this.lottoGameView.renderLottoIcons(lottoCount);
+    this.lottoGameView.showWinningInput();
   }
 
   #onSubmitPurchase(e) {

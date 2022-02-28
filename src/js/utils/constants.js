@@ -5,6 +5,7 @@ export const SELECTOR = {
   PURCHASE_INFOMATION: ".purchase-infomation",
   LOTTO_NUMBER_LIST: ".lotto-number-list",
   SWITCH_INPUT: ".switch-input",
+  WINNING_CONTAINER: ".winning-container",
 };
 
 export const AMOUNT = {
