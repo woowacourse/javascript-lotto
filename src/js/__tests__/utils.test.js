@@ -8,6 +8,7 @@ import {
   checkTheLottoRanking,
   WINNING_COUNT,
   sumWinningAmount,
+  getRateOfReturn,
 } from '../utils';
 
 import { LOTTO, MONEY, WINNING_AMOUNT } from '../constants';

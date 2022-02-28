@@ -115,3 +115,7 @@ export const sumWinningAmount = () => {
   );
   return totalAmountList.reduce((sum, amount) => amount + sum, 0);
 };
+
+export const getRateOfReturn = (purchasedAmount) => {
+  return Number((sumWinningAmount() / purchasedAmount).toFixed(2));
+};
