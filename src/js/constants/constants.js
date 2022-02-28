@@ -8,14 +8,6 @@ export const LOTTO_NUMBER = {
   LENGTH: 6,
 };
 
-export const MATCH_RESULT_INDEX = {
-  3: 0,
-  4: 1,
-  5: 2,
-  BONUS: 3,
-  6: 4
-}
-
 export const ERROR_MESSAGE = {
   INTEGER_CHARGE_INPUT: '구입할 금액은 정수로 입력해주세요.',
   CHARGE_INPUT_RANGE: `구입할 금액은 ${MIN_CHARGE_INPUT}원 이상, ${MAX_CHARGE_INPUT}원 이하로 입력해주세요. `,

@@ -1,4 +1,4 @@
-import { countWinningNumber, calculateMatchResult } from '../checkResult';
+import { countWinningNumber, calculateMatchResult, calculateProfitRatio } from '../checkResult';
 import Lotto from '../Lotto';
 
 describe('결과 확인 테스트', () => {
