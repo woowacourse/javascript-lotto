@@ -4,8 +4,8 @@ import { generateIntegerArray } from './utils/util';
 export default class Lotto {
   #numbers;
 
-  constructor() {
-    this.#numbers = this.generateNumbersAutomatically();
+  constructor(numbers = this.generateNumbersAutomatically()) {
+    this.#numbers = numbers;
   }
 
   get numbers() {
