@@ -4,8 +4,8 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ["google", "airbnb", "plugin:prettier/recommended"],
+  extends: ['airbnb', 'plugin:prettier/recommended'],
   rules: {
-    "linebreak-style": ["error", "windows"],
+    'linebreak-style': ['error', 'windows'],
   },
 };
