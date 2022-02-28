@@ -1,11 +1,11 @@
-import { $, $$, emit, on } from '../utils/helper.js';
+import { qs, qsAll, emit, on } from '../utils/helper.js';
 import { lottoPurchaseCountTemplate, lottoPurchaseResultTemplate } from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
   constructor() {
-    this.lottoPurchaseCount = $('#lotto-purchase-count');
-    this.lottoList = $('#lotto-list');
-    this.showLottoToggle = $('#show-lotto-toggle');
+    this.lottoPurchaseCount = qs('#lotto-purchase-count');
+    this.lottoList = qs('#lotto-list');
+    this.showLottoToggle = qs('#show-lotto-toggle');
 
     this.attachEvents();
   }
@@ -31,7 +31,7 @@ export default class lottoPurchaseResultView {
   }
 
   toggleLottoNumbers() {
-    this.lottoNumbers = $$('.lotto-numbers');
+    this.lottoNumbers = qsAll('.lotto-numbers');
     this.lottoList.classList.toggle('lotto-list-column');
     this.lottoNumbers.forEach((element) => element.classList.toggle('hidden'));
   }
