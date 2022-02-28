@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "ignorePatterns": ["*.test.js", "*.config.js"],
+    "extends": ["eslint:recommended", "airbnb-base"],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module"
+    },
+    "rules": {
+        "consistent-return": "off",
+        "import/extensions": "off",
+        "no-alert": "off",
+        "class-methods-use-this": "off",
+        "comma-dangle": "off",
+        "lines-between-class-members": "off",
+        "no-param-reassign": "off",
+        "no-new": "off",
+        "object-curly-newline": "off",
+        "implicit-arrow-linebreak": "off",
+        "no-await-in-loop": "off",
+        "import/prefer-default-export": "off"
+    }
+  }
+  
