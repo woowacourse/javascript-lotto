@@ -3,51 +3,56 @@ import { isValidPurchaseMoney } from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
 
 export default class LottoController {
+  #lottoModel;
+
+  #lottoPurchaseInputView;
+
+  #lottoPurchaseResultView;
+
   constructor(lottoModel, views) {
-    this.lottoModel = lottoModel;
-    this.lottoPurchaseInputView = views.lottoPurchaseInputView;
-    this.lottoPurchaseResultView = views.lottoPurchaseResultView;
-    this.lottoNumberInputView = views.lottoPurchaseInputView;
+    this.#lottoModel = lottoModel;
+    this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
+    this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
   }
 
   init() {
-    this.submitView();
+    this.#submitView();
   }
 
-  submitView() {
+  #submitView() {
     on(
-      this.lottoPurchaseInputView.lottoPurchaseForm,
+      this.#lottoPurchaseInputView.lottoPurchaseForm,
       '@purchaseMoney',
-      this.submitPurchaseLotto.bind(this)
+      this.#submitPurchaseLotto.bind(this)
     );
     on(
-      this.lottoPurchaseResultView.showLottoToggle,
+      this.#lottoPurchaseResultView.showLottoToggle,
       '@lottoToggle',
-      this.submitLottoToggle.bind(this)
+      this.#submitLottoToggle.bind(this)
     );
   }
 
-  submitLottoToggle() {
-    this.lottoPurchaseResultView.toggleLottoNumbers();
+  #submitLottoToggle() {
+    this.#lottoPurchaseResultView.toggleLottoNumbers();
   }
 
-  submitPurchaseLotto(event) {
+  #submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
 
     if (!isValidPurchaseMoney(purchaseMoney)) {
       alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
-      this.lottoPurchaseInputView.resetPurchaseMoney();
+      this.#lottoPurchaseInputView.resetPurchaseMoney();
 
       return;
     }
 
-    this.lottoPurchaseInputView.disablePurchaseLottoForm();
-    this.lottoPurchaseResultView.renderLottoPurchaseCount(
+    this.#lottoPurchaseInputView.disablePurchaseLottoForm();
+    this.#lottoPurchaseResultView.renderLottoPurchaseCount(
       purchaseMoney / LOTTO.COST_UNIT
     );
-    this.lottoModel.setLottoList(purchaseMoney / LOTTO.COST_UNIT);
-    this.lottoPurchaseResultView.renderLottoPurchaseResult(
-      this.lottoModel.getLottoList()
+    this.#lottoModel.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
+    this.#lottoPurchaseResultView.renderLottoPurchaseResult(
+      this.#lottoModel.lottoList
     );
   }
 }

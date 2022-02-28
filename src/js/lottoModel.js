@@ -7,11 +7,11 @@ export default class LottoModel {
     this.#lottoList = [];
   }
 
-  getLottoList() {
+  get lottoList() {
     return this.#lottoList;
   }
 
-  setLottoList(lottoCount) {
+  createLottoList(lottoCount) {
     this.#lottoList = Array.from({ length: lottoCount }).map(() =>
       this.#generateLotto()
     );

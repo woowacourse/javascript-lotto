@@ -31,9 +31,9 @@ test('구입한 로또 금액만큼 로또 개수를 확인할 수 있어야 한
   const lottoModel = new LottoModel();
   const lottoCount = 4;
 
-  lottoModel.setLottoList(lottoCount);
+  lottoModel.createLottoList(lottoCount);
 
-  const lottoResult = lottoModel.getLottoList();
+  const lottoResult = lottoModel.lottoList;
   const isCorrectLottoLength = lottoResult.every((result) => result.size === 6);
 
   expect(lottoResult).toHaveLength(lottoCount);

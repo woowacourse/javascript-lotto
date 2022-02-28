@@ -2,7 +2,6 @@ import LottoController from './lottoController.js';
 import LottoModel from './lottoModel.js';
 import LottoPurchaseInputView from './views/lottoPurchaseInputView.js';
 import LottoPurchaseResultView from './views/lottoPurchaseResultView.js';
-import LottoNumberInputView from './views/lottoNumberInputView.js';
 import '../css/index.css';
 
 const startLotto = () => {
@@ -11,7 +10,6 @@ const startLotto = () => {
   const views = {
     lottoPurchaseInputView: new LottoPurchaseInputView(),
     lottoPurchaseResultView: new LottoPurchaseResultView(),
-    lottoNumberInputView: new LottoNumberInputView(),
   };
 
   const lottoController = new LottoController(lottoModel, views);
