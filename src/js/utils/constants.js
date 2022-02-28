@@ -1,9 +1,3 @@
-import { $ } from "./dom.js";
-
-export const ELEMENTS = {
-  PURCHASE_INPUT: $(".purchase-input"),
-};
-
 export const AMOUNT = {
   MINIMUM: 1000,
   UNIT: 1000,
