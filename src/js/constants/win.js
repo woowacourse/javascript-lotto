@@ -11,6 +11,7 @@ export const RANK = {
 };
 
 export const RANK_PRICE = {
+  꽝: 0,
   '5등': 5000,
   '4등': 50000,
   '3등': 1500000,

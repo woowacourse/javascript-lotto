@@ -21,9 +21,9 @@ class Lotto {
     return [...new Array(NUMBER.LOTTO_NUMBER_LENGTH)].map(() => getLottoNumber());
   }
 
-  computeWinResult(winNumbers, bonusNumber) {
+  computeWinResult(winningNumbers, bonusNumber) {
     const { length: numberMatchCount } = this.lottoNumbers.filter((number) =>
-      winNumbers.includes(number)
+      winningNumbers.includes(number)
     );
     const isMatchBonus = this.lottoNumbers.includes(bonusNumber);
     return RANK[`${numberMatchCount}${isMatchBonus}`] ?? RANK.UNRANK;

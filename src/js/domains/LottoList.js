@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import { NUMBER } from '../constants/number';
-import { deepCopy } from '../utils/copy';
-import { isValidCharge } from '../utils/validator';
+import { RANK_PRICE } from '../constants/win';
+import { isValidCharge, isValidWinningNumber } from '../utils/validator';
 import Lotto from './Lotto';
 
 class LottoList {
@@ -10,8 +10,7 @@ class LottoList {
   }
 
   getLottoList() {
-    /** getter로 가져간 lottoList를 변경하여도 lottoList의 멤버에겐 영향이 없다. */
-    return deepCopy(this.lottoList);
+    return this.lottoList;
   }
 
   createLottoList(chargeInput) {
@@ -26,6 +25,35 @@ class LottoList {
       return Math.floor(charge / NUMBER.LOTTO_PRICE);
     }
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
+  }
+
+  computeWinResultStatistics(winningNumbers, bonusNumber) {
+    if (isValidWinningNumber([...winningNumbers, bonusNumber])) {
+      const statisticsArray = this.lottoList.map((lotto) =>
+        lotto.computeWinResult(winningNumbers, bonusNumber)
+      );
+
+      const totalProceeds = statisticsArray.reduce(
+        (prev, current) => prev + RANK_PRICE[current],
+        0
+      );
+      return { statistics: this.changeStatisticsMap(statisticsArray), totalProceeds };
+    }
+    throw new Error(ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE);
+  }
+
+  changeStatisticsMap(statisticsArray) {
+    const statisticsMap = {};
+
+    Object.keys(RANK_PRICE).forEach((key) => {
+      statisticsMap[key] = 0;
+    });
+
+    statisticsArray.forEach((result) => {
+      statisticsMap[result] = statisticsMap[result] + 1;
+    });
+
+    return statisticsMap;
   }
 }
 export default LottoList;

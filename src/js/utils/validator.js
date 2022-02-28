@@ -26,3 +26,10 @@ export function isValidEveryLottoNumber(array) {
       number <= NUMBER.LOTTO_MAX_NUMBER
   );
 }
+
+export function isValidWinningNumber(winningAndBonusNumbers) {
+  return (
+    isValidEveryLottoNumber(winningAndBonusNumbers) &&
+    winningAndBonusNumbers.length === [...new Set(winningAndBonusNumbers)].length
+  );
+}
