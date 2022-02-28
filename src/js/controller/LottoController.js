@@ -37,7 +37,6 @@ export default class LottoController {
     try {
       this.model.setMoney(money);
       this.model.setCount();
-      this.model.setPenny();
       this.model.createLottoBundle();
       this.#renderLotto();
     } catch (error) {
@@ -52,7 +51,6 @@ export default class LottoController {
     this.issuedTicketView.showTicketContainer();
     this.issuedTicketView.renderTicketCount();
     this.issuedTicketView.renderIssuedTickets();
-    this.purchaseView.renderPenny();
     this.purchaseView.deactivatePurchaseForm();
   }
 

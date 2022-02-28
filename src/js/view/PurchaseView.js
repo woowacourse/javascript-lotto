@@ -52,9 +52,4 @@ export default class PurchaseView {
     this.$purchaseButton.disabled = true;
     this.$purchaseInput.disabled = true;
   }
-
-  renderPenny() {
-    this.$purchaseInput.valueAsNumber =
-      this.model.money - this.model.count * LOTTO.PRICE_PER_TICKET;
-  }
 }

@@ -16,8 +16,6 @@ export default class LottoBundle {
 
   #count = 0;
 
-  #penny = 0;
-
   #lottos = [];
 
   /** @param {number} money 입력받은 돈 */
@@ -40,16 +38,6 @@ export default class LottoBundle {
   /** @type {number} */
   get count() {
     return this.#count;
-  }
-
-  /** 거슬러줄 잔돈을 저장한다 */
-  setPenny() {
-    this.#penny = this.#money - this.#count * LOTTO.PRICE_PER_TICKET;
-  }
-
-  /** @type {number} */
-  get penny() {
-    return this.#penny;
   }
 
   /** @type {array} */
