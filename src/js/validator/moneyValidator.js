@@ -1,12 +1,12 @@
 import EXCEPTION from '../constants/exception.js';
 import LOTTO from '../constants/lotto.js';
 
-const moneyValidator = {
-  isOverMinimum(money, min) {
+export const moneyValidator = {
+  isOverMin(money, min) {
     return money >= min;
   },
 
-  isUnderMaximum(money, stock, pricePerTicket) {
+  isUnderMax(money, stock, pricePerTicket) {
     return money <= stock * pricePerTicket;
   },
 
@@ -15,12 +15,14 @@ const moneyValidator = {
   },
 };
 
-const validateMoney = (money) => {
-  if (!moneyValidator.isOverMinimum(money, LOTTO.PRICE_PER_TICKET)) {
+export const validateMoney = (money) => {
+  if (!moneyValidator.isOverMin(money, LOTTO.PRICE_PER_TICKET)) {
     throw new Error(EXCEPTION.INVALID_RANGE.MINIMUM);
   }
 
-  if (!moneyValidator.isUnderMaximum(money, LOTTO.INVENTORY, LOTTO.PRICE_PER_TICKET)) {
+  if (
+    !moneyValidator.isUnderMax(money, LOTTO.INVENTORY, LOTTO.PRICE_PER_TICKET)
+  ) {
     throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
   }
 
@@ -28,5 +30,3 @@ const validateMoney = (money) => {
     throw new Error(EXCEPTION.INVALID_UNIT);
   }
 };
-
-export default validateMoney;
