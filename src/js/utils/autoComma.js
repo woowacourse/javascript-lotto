@@ -1,4 +1,3 @@
-const autoComma = (text) =>
-  String(text).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+const autoComma = (number) => number.toLocaleString();
 
 export default autoComma;
