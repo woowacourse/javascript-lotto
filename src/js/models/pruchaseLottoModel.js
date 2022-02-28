@@ -1,4 +1,4 @@
-import { LOTTO } from './utils/constants.js';
+import { LOTTO } from '../utils/constants.js';
 
 export default class LottoModel {
   #lottoList = [];

@@ -1,5 +1,5 @@
 import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue, userLottoNumberCorrectRange, userLottoNumberOverlap, userLottoNumberPositiveValue } from '../utils/validator.js';
-import LottoModel from '../lottoModel.js';
+import LottoModel from '../models/pruchaseLottoModel.js';
 import { ERROR_MESSAGE } from '../utils/constants.js';
 
 describe('구입금액 테스트', () => {

@@ -1,5 +1,5 @@
 import LottoController from './lottoController.js';
-import LottoModel from './lottoModel.js';
+import LottoModel from './models/pruchaseLottoModel.js';
 import LottoPurchaseInputView from './views/lottoPurchaseInputView.js';
 import LottoPurchaseResultView from './views/lottoPurchaseResultView.js';
 import UserLottoNumberView from './views/userLottoNumberView.js';

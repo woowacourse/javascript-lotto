@@ -1,5 +1,5 @@
 import { on } from './utils/helper.js';
-import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue, userLottoNumberCorrectRange, userLottoNumberOverlap, userLottoNumberPositiveValue } from './utils/validator.js';
+import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isNotPurchaseLotto, isPositiveValue, userLottoNumberCorrectRange, userLottoNumberOverlap, userLottoNumberPositiveValue } from './utils/validator.js';
 import { LOTTO } from './utils/constants.js';
 
 export default class LottoController {
@@ -46,9 +46,10 @@ export default class LottoController {
     const bonusNumber = event.detail.bonusNumber;
     const holeLottoNumber = [...lottoNumbers, ...bonusNumber];
     try {
+      userLottoNumberPositiveValue(holeLottoNumber);
       userLottoNumberOverlap(holeLottoNumber);
       userLottoNumberCorrectRange(holeLottoNumber);
-      userLottoNumberPositiveValue(holeLottoNumber);
+      isNotPurchaseLotto(this.lottoModel.getLottoList());
     } catch (error) {
       return alert(error);
     }
