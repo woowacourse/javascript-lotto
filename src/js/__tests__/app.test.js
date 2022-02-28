@@ -26,10 +26,13 @@ describe('LottoModel', () => {
 });
 
 describe('AppController', () => {
+  const testModels = {
+    lottoModel: new LottoModel(),
+  };
+  const appController = new AppController(testModels);
+
   describe('issueLottoWithCount', () => {
     test('주어진 개수만큼 Lotto 객체를 생성해 lottoList에 저장해야 한다.', () => {
-      const appController = new AppController();
-      appController.init();
       const lottoCount = 6;
       const { lottoList } = appController.issueLottoWithCount(lottoCount);
 
