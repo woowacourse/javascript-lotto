@@ -1,7 +1,9 @@
-import Lotto from '../models/Lotto/Lotto.js';
 import { LOTTO, ERROR_MESSAGE, PAYMENT } from '../configs/contants.js';
 
 const isNumber = (value) => typeof value === 'number' && Number.isFinite(value);
+
+export const isEveryElementsUnique = (array) =>
+  array.length === new Set(array).size;
 
 const isDividedByThousand = (value) => value % LOTTO.PRICE === 0;
 
@@ -19,7 +21,8 @@ export const isValidlottoNumbers = (lottoNumbers) =>
       isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
   );
 
-export const isValidLotto = (lotto) => isValidlottoNumbers(lotto.numbers);
+export const isValidLotto = (lotto) =>
+  isValidlottoNumbers(lotto.numbers) && isEveryElementsUnique(lotto.numbers);
 
 export const isValidLottoList = (lottoList, count) =>
   lottoList.length === count;
