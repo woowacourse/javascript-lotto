@@ -162,25 +162,32 @@ body {
 
 .winning-number-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 0.5rem;
 }
 
-.winning-number-inputs-container {
+.winning-number-inputs-wrapper {
   display: flex;
   justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
 
-  .winning-number-input-container {
-    display: flex;
-    gap: 0.5rem;
-  }
+.winning-number-input {
+  width: 2.2rem;
+  height: 2.2rem;
+  text-align: center;
+}
 
-  .winning-number-input {
-    width: 2.2rem;
-    height: 2.2rem;
-    text-align: center;
-  }
+.bonus-number-wrapper {
+  text-align: right;
+}
+
+.bonus-number-input-wrapper {
+  margin-top: 0.6rem;
 }
 
 #show-result-button {
   margin-top: 1.2rem;
+  width: 100%;
 }
