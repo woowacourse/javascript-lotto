@@ -1,14 +1,32 @@
+import View from "./View.js";
 import { $, disableElement, enableElement } from "../utils/dom.js";
-import { ELEMENTS } from "../utils/constants.js";
+import { validatePurchaseAmount } from "../utils/validation.js";
 
-export default class LottoGameView {
+export default class LottoGameView extends View {
   constructor() {
+    super();
+
+    this.purchaseInput = $(".purchase-input");
     this.lottoNumberList = $(".lotto-number-list");
     this.switchInput = $(".switch-input");
+
+    $(".purchase-form").addEventListener("submit", this.onSubmitPurchaseAmount.bind(this));
+  }
+
+  onSubmitPurchaseAmount(e) {
+    e.preventDefault();
+
+    const purchaseAmount = Number(this.purchaseInput.value);
+    try {
+      validatePurchaseAmount(purchaseAmount);
+      this.handlers.get("submit").forEach((func) => func(purchaseAmount));
+    } catch (error) {
+      alert(error);
+    }
   }
 
   manageElement() {
-    disableElement(ELEMENTS.PURCHASE_INPUT);
+    disableElement(this.purchaseInput);
     disableElement($(".purchase-button"));
     enableElement(this.switchInput);
   }
