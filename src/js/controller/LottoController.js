@@ -1,8 +1,12 @@
 import LottoGame from "../model/LottoGame.js";
 import LottoGameView from "../views/LottoGameView.js";
-import { $ } from "../utils/dom.js";
+import { $, $$ } from "../utils/dom.js";
 import { ERROR_MESSAGES, SELECTOR, AMOUNT } from "../utils/constants.js";
-import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
+import {
+  isValidMinimumAmount,
+  isValidAmountUnit,
+  isValidWinningNumbers,
+} from "../utils/validation.js";
 
 export default class LottoController {
   constructor() {
@@ -12,11 +16,15 @@ export default class LottoController {
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
     this.purchaseForm = $(SELECTOR.PURCHASE_FORM);
+    this.winningNumberInputs = $$(SELECTOR.WINNING_NUMBER_INPUT);
+    this.resultButton = $(SELECTOR.RESULT_BUTTON);
+    this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
   }
 
   bindEvents() {
     this.purchaseForm.addEventListener("submit", this.#onSubmitPurchase.bind(this));
     this.switchInput.addEventListener("click", this.#onClickSwitch.bind(this));
+    this.resultButton.addEventListener("click", this.onClickResult.bind(this));
   }
 
   #handleLottoNumber(lottoCount) {
@@ -53,5 +61,17 @@ export default class LottoController {
       return;
     }
     this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
+  }
+
+  onClickResult() {
+    const winningNumbers = Array.from(this.winningNumberInputs).map(($input) =>
+      Number($input.value),
+    );
+    const winningBonusNumber = Number(this.bonusNumberInput.value);
+
+    if (!isValidWinningNumbers([...winningNumbers, winningBonusNumber])) {
+      alert(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
+      return;
+    }
   }
 }

@@ -6,6 +6,9 @@ export const SELECTOR = {
   LOTTO_NUMBER_LIST: ".lotto-number-list",
   SWITCH_INPUT: ".switch-input",
   WINNING_CONTAINER: ".winning-container",
+  WINNING_NUMBER_INPUT: ".winning-number-input",
+  RESULT_BUTTON: ".result-button",
+  BONUS_NUMBER_INPUT: ".bonus-number-input",
 };
 
 export const AMOUNT = {
@@ -22,4 +25,5 @@ export const LOTTO_NUMBER = {
 export const ERROR_MESSAGES = {
   INVALID_MINIMUM_AMOUNT: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
   INVALID_AMOUNT_UNIT: `${AMOUNT.UNIT}원 단위로 입력해주세요.`,
+  INVALID_LOTTO_RANGE: `당첨 번호는 ${LOTTO_NUMBER.RANGE_MIN}~${LOTTO_NUMBER.RANGE_MAX} 사이의 숫자로 입력해주세요.`,
 };
