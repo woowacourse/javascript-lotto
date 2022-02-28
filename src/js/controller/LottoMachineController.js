@@ -9,11 +9,11 @@ import { validatePurchaseMoney, isEmpty } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
-    this.init();
-    this.setEventHandler();
+    this.#init();
+    this.#setEventHandler();
   }
 
-  init() {
+  #init() {
     this.model = new Lottos();
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
@@ -22,11 +22,11 @@ export default class LottoMachineController {
     };
   }
 
-  setEventHandler() {
-    this.view.purchaseMoneyView.addSubmitEvent(this.onSubmitHandler.bind(this));
+  #setEventHandler() {
+    this.view.purchaseMoneyView.addSubmitEvent(this.#onSubmitHandler.bind(this));
   }
 
-  purchaseLotto(purchaseMoney) {
+  #purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
     this.model.makeLottos(lottoCount);
 
@@ -36,7 +36,7 @@ export default class LottoMachineController {
     this.view.winningNumberView.render();
   }
 
-  onSubmitHandler(purchaseMoney) {
+  #onSubmitHandler(purchaseMoney) {
     try {
       validatePurchaseMoney(purchaseMoney);
     } catch (error) {
@@ -47,24 +47,24 @@ export default class LottoMachineController {
     const lottos = this.model.getLottos();
 
     if (isEmpty(lottos)) {
-      this.purchaseLotto(purchaseMoney);
+      this.#purchaseLotto(purchaseMoney);
       return;
     }
 
-    if (this.tryRePurchase()) {
-      this.reset();
-      this.purchaseLotto(purchaseMoney);
+    if (this.#tryRePurchase()) {
+      this.#reset();
+      this.#purchaseLotto(purchaseMoney);
       return;
     }
 
     this.view.purchaseMoneyView.resetInputValue();
   }
 
-  tryRePurchase() {
+  #tryRePurchase() {
     return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
   }
 
-  reset() {
+  #reset() {
     this.model.reset();
     this.view.purchasedLottoView.reset();
     this.view.winningNumberView.reset();
