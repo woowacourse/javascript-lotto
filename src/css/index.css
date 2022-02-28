@@ -230,6 +230,6 @@ button {
   color: #ffffff;
 }
 
-.d-none {
+.hidden {
   visibility: collapse;
 }

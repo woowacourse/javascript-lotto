@@ -12,17 +12,12 @@
       <section id="money-input-container">
         <label for="money-input">구입할 금액을 입력해주세요.</label>
         <form id="money-input-field">
-          <input
-            type="number"
-            placeholder="금액"
-            id="money-input"
-            step="1000"
-          />
+          <input type="number" placeholder="금액" id="money-input" step="1000" />
           <button id="purchase-button">구입</button>
         </form>
       </section>
 
-      <section id="lotto-status-container" class="d-none">
+      <section id="lotto-status-container" class="hidden">
         <div id="lotto-quantity-label">총 n개를 구매하였습니다</div>
         <div id="toggle-label">번호 보기</div>
         <div id="lotto-icons"></div>
@@ -33,7 +28,7 @@
         </label>
       </section>
 
-      <form id="winning-lotto-container" class="d-none">
+      <form id="winning-lotto-container" class="hidden">
         <label for="winning-number1" id="winning-lotto-guide-label"
           >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
         >

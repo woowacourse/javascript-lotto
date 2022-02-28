@@ -7,23 +7,19 @@ export class View {
     this.purchaseBtn = document.getElementById('purchase-button');
     this.toggleBtn = document.getElementById('toggle-check');
     this.moneyInput = document.getElementById('money-input');
-    this.winningLottoContainer = document.getElementById(
-      'winning-lotto-container'
-    );
+    this.winningLottoContainer = document.getElementById('winning-lotto-container');
     this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoNumberLabel = document.getElementById('lotto-quantity-label');
     this.lottoIcons = document.getElementById('lotto-icons');
-    this.lottoStatusContainer = document.getElementById(
-      'lotto-status-container'
-    );
+    this.lottoStatusContainer = document.getElementById('lotto-status-container');
   }
 
   showLottoStatusContainer() {
-    this.lottoStatusContainer.classList.remove('d-none');
+    this.lottoStatusContainer.classList.remove('hidden');
   }
 
   showWinningLottoContainer() {
-    this.winningLottoContainer.classList.remove('d-none');
+    this.winningLottoContainer.classList.remove('hidden');
   }
 
   showPurchasedLottos(lottoWallet) {
