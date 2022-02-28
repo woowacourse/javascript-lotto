@@ -5,10 +5,10 @@ export default class LottoPurchaseInputView {
     this.lottoPurchaseForm = qs('#lotto-purchase-form');
     this.lottoPurchaseInput = qs('#lotto-purchase-input');
 
-    this.attachEvents();
+    this.bindEvents();
   }
 
-  attachEvents() {
+  bindEvents() {
     on(this.lottoPurchaseForm, 'submit', this.handlePurchaseLotto.bind(this));
   }
 

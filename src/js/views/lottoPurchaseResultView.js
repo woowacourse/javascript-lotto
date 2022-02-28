@@ -7,10 +7,10 @@ export default class lottoPurchaseResultView {
     this.lottoList = qs('#lotto-list');
     this.showLottoToggle = qs('#show-lotto-toggle');
 
-    this.attachEvents();
+    this.bindEvents();
   }
 
-  attachEvents() {
+  bindEvents() {
     on(this.showLottoToggle, 'click', this.handleShowLottoToggle.bind(this));
   }
 
