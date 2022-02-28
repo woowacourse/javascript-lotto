@@ -13,8 +13,8 @@ import EVENT from '../constants/event.js';
  * @classdesc 발행된 로또 티켓 섹션 화면을 담당하는 view 클래스
  */
 export default class IssuedTicketView {
-  constructor(model) {
-    this.model = model;
+  constructor(lottoBundle) {
+    this.lottoBundle = lottoBundle;
     this.$ticketContainer = $(ID.TICKET_CONTAINER);
     this.$ticketCount = $(ID.TICKET_COUNT);
     this.$issuedTicketDiv = $(ID.ISSUED_TICKET_DIV);

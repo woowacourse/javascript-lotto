@@ -13,8 +13,8 @@ import { $ } from '../utils/selector.js';
  * @classdesc 로또를 구입하는 섹션 화면을 담당하는 view 클래스
  */
 export default class PurchaseView {
-  constructor(model) {
-    this.model = model;
+  constructor(lottoBundle) {
+    this.lottoBundle = lottoBundle;
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);

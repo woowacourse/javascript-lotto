@@ -40,6 +40,10 @@ export default class LottoBundle {
     return this.#count;
   }
 
+  set lottos(numbers) {
+    this.#lottos = numbers;
+  }
+
   /** @type {array} */
   get lottos() {
     return this.#lottos;

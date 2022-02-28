@@ -5,7 +5,6 @@
 ## 도식화
 
 ![lotto schema](/images/lotto_schema.png)
-![lotto schema2](/images/lotto_schema2.png)
 
 ## 기능 요구사항
 

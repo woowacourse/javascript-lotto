@@ -9,8 +9,9 @@ import EVENT from '../constants/event.js';
  * @classdesc view와 model을 연결하는 controller
  */
 export default class LottoController {
-  constructor(model, purchaseView, issuedTicketView) {
-    this.model = model;
+  constructor(lottoBundle, purchaseView, issuedTicketView, lottoResult) {
+    this.lottoBundle = lottoBundle;
+    this.lottoResult = lottoResult;
     this.purchaseView = purchaseView;
     this.issuedTicketView = issuedTicketView;
     this.#subscribeViewEvents();
@@ -35,9 +36,9 @@ export default class LottoController {
    */
   #purchaseLotto(money) {
     try {
-      this.model.setMoney(money);
-      this.model.setCount();
-      this.model.createLottoBundle();
+      this.lottoBundle.setMoney(money);
+      this.lottoBundle.setCount();
+      this.lottoBundle.createLottoBundle();
       this.#renderLotto();
     } catch (error) {
       alert(error.message);
