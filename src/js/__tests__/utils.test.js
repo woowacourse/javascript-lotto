@@ -5,6 +5,7 @@ import {
   isInRange,
   winningCount,
   isBounusNumber,
+  isOverlapped,
 } from '../utils';
 
 import { MONEY, LOTTO } from '../constants';
