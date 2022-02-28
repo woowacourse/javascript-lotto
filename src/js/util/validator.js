@@ -38,4 +38,17 @@ const validatePurchaseMoney = value => {
   }
 };
 
-export { isEmpty, validatePurchaseMoney };
+const validateWinningNumbers = numbers => {
+  const filteredNumbers = numbers.filter(number => {
+    return number >= RULES.MIN_LOTTO_NUMBER && number <= RULES.MAX_LOTTO_NUMBER;
+  });
+  
+  if (
+    filteredNumbers.length !== RULES.LOTTO_NUMS + RULES.BONUS_NUMS ||
+    numbers.length > new Set(numbers).size
+  ) {
+    throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS);
+  }
+};
+
+export { isEmpty, validatePurchaseMoney, validateWinningNumbers };
