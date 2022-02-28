@@ -20,6 +20,7 @@ h1 {
   height: 727px;  
   border: 2px solid black;
   padding: 0px 16px;
+  position: relative;
 }
 
 label[for="purchase-money"] {
@@ -71,7 +72,6 @@ label[for="purchase-money"] {
 .hidden {
   display: none;
 }
-
 
 #lotto-purchase-result {
   width: 100%;
@@ -157,4 +157,114 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#user-lotto {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+#user-lotto-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#user-lotto-form {
+  margin-top: 10px;
+}
+
+.user-lotto-number {
+  width: 30px;
+  height: 32px;
+  border-radius: 3px;
+  float: left;
+  margin-right: 6px;
+}
+
+.user-bonus-number {
+  width: 30px;
+  height: 32px;
+  border-radius: 3px;
+  float: right;
+}
+
+#user-lotto-result-button {
+  width: 382px;
+  height: 36px;
+  background-color: #00BCD4;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#user-lotto-result-modal {
+  width: 350px;
+  height: 500px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 4px;
+  position: absolute;
+  top: 114px;
+  left: 32px;
+  display: none;
+}
+
+#user-lotto-modal-close {
+  background-color: white;
+  border: none;
+  margin-top: 4px;
+  margin-left: 310px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#user-lotto-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 4px 0px 20px 0px;
+}
+
+#user-lotto-result-modal > div {
+  width: 318px;
+  height: 30px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  line-height: 30px;
+}
+
+#user-lotto-result-modal > div > p {
+  width: 100px;
+  text-align: center;
+}
+
+hr {
+  width: 318px;
+}
+
+#user-lotto-returnrate {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+#user-lotto-restart {
+  width: 152px;
+  height: 36px;
+  background-color: #00BCD4;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  margin: 30px 0px 0px 100px;
+  cursor: pointer;
 }
