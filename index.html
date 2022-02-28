@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎱 행운의 로또</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="./bundle.js"></script>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <h1 class="app-title">🎱 행운의 로또</h1>
+      <form id="fare-form" class="submit-form">
+        <label>구입할 금액을 입력해주세요.</label>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🎱 행운의 로또</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-
-<body>
-  <div id="app">
-    <h1>🎱 행운의 로또</h1>
-  </div>
-  <script type="module" src="./src/js/index.js"></script>
-</body>
-
+        <div class="input-wrap">
+          <input id="fare-input" class="lotto-app-input" type="number" placeholder="금액" />
+          <button id="fare-button" class="lotto-app-button">구입</button>
+        </div>
+      </form>
+      <section class="lotto-list">
+        <div class="lotto-list-header">
+          <p>총 <span id="lotto-count">0</span>개를 구매하였습니다.</p>
+          <p>번호 보기</p>
+        </div>
+        <div class="lotto-list-body">
+          <div class="lottos-container" id="lottos-container">
+            <div class="lottos default"></div>
+            <div class="lottos detail"></div>
+          </div>
+          <label class="toggle-wrap">
+            <input type="checkbox" id="lotto-viewer-controller" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </section>
+      <section class="lotto-match">
+        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <div class="lotto-match-header">
+          <p>당첨 번호</p>
+          <p>보너스 번호</p>
+        </div>
+        <div class="number-container">
+          <div class="match-numbers">
+            <input class="lotto-app-input match-number-input" type="number" />
+            <input class="lotto-app-input match-number-input" type="number" />
+            <input class="lotto-app-input match-number-input" type="number" />
+            <input class="lotto-app-input match-number-input" type="number" />
+            <input class="lotto-app-input match-number-input" type="number" />
+            <input class="lotto-app-input match-number-input" type="number" />
+          </div>
+          <div class="bonus-number">
+            <input class="lotto-app-input match-number-input" type="number" />
+          </div>
+        </div>
+        <button class="lotto-app-button result-button">결과 확인하기</button>
+      </section>
+    </div>
+  </body>
 </html>

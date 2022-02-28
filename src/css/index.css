@@ -1,0 +1,207 @@
+html {
+  height: 100%;
+}
+p {
+  margin: 0;
+}
+.lotto-app-input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.lotto-app-button {
+  cursor: pointer;
+  background: #00bcd4;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.app {
+  padding: 52px 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.app-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  margin-bottom: 16px;
+}
+.submit-form {
+  padding: 0 16px;
+}
+.submit-form label {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.input-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  height: 36px;
+}
+.input-wrap input {
+  width: calc(100% - 70px);
+  height: 100%;
+  padding-left: 10px;
+}
+.input-wrap button {
+  width: 52px;
+  height: 100%;
+}
+.lotto-list {
+  margin-top: 28px;
+  width: 100%;
+}
+.lotto-list-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+.lotto-list-header p {
+  font-size: 15px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.lotto-list-body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-right: 16px;
+}
+.lottos-container {
+  width: calc(100% - 70px);
+}
+.lottos-container .lottos.detail,
+.lottos-container.detail .lottos.default {
+  display: none;
+}
+.lottos-container.detail .lottos.detail {
+  display: block;
+  padding-left: 16px;
+}
+.lottos.default {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 12px;
+}
+.lotto {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.lottos.default .lotto {
+  margin: 0 4px;
+}
+.lotto-number {
+  margin-left: 8px;
+  vertical-align: middle;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.toggle-wrap {
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+  width: 34px;
+  height: 34px;
+}
+.toggle-wrap input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* The slider */
+.slider {
+  height: 14px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(33, 33, 33, 0.08);
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  left: 0;
+  bottom: -3px;
+  background-color: #ededed;
+  transition: 0.4s;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+input:checked + .slider {
+  background-color: #80deea;
+}
+input:checked + .slider:before {
+  background-color: #00bcd4;
+}
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+.lotto-match {
+  margin-top: 32px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+.lotto-match p {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.lotto-match-header {
+  display: flex;
+  justify-content: space-between;
+}
+.lotto-match-header p {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.number-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.match-number-input {
+  width: 34px;
+  height: 36px;
+}
+.match-numbers .match-number-input {
+  margin-left: 8px;
+}
+.match-numbers .match-number-input:first-child {
+  margin-left: 0px;
+}
+.result-button {
+  margin-top: 24px;
+  width: 100%;
+  height: 36px;
+}
