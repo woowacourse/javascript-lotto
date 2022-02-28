@@ -1,0 +1,53 @@
+@import './global.css';
+@import './reset.css';
+@import './purchaseMoney.css';
+@import './purchasedLotto.css';
+@import './toggle.css';
+@import './winningNumber.css';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--main-bg-color);
+}
+
+body section {
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 414px;
+  min-height: 727px;
+  padding: 0 16px 10px;
+  background: var(--app-bg-color);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  text-align: center;
+  color: #000000;
+  margin: 52px 0 16px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
