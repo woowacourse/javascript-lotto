@@ -4,6 +4,7 @@ import {
   createLottoList,
   createRandomNumberList,
   shuffleArray,
+  confirmLottoList,
 } from '../utils';
 
 import { LOTTO, MONEY } from '../constants';
@@ -83,7 +84,6 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
   });
 });
 
-// step2
 describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당첨금이 생성되는지 확인한다.', () => {
   const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
   const lastWeekBounsNumber = 7;
