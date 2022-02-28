@@ -1,0 +1,43 @@
+@import "./constants/constant.css";
+
+@import "./screen/lastWinningLotto.css";
+@import "./screen/lottoList.css";
+@import "./screen/lottoPriceInput.css";
+
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--body-background-color);
+}
+  
+p {
+  margin: 0;
+}
+  
+h1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+  background: var(--button-background-color);
+  border-style: none;
+  border-radius: 4px;
+  color: var(--button-font-color);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 414px;
+  padding: 52px 16px 20px 16px;
+  background-color: var(--app-background-color);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+}
