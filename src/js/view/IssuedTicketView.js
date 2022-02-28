@@ -35,11 +35,10 @@ export default class IssuedTicketView {
   }
 
   renderIssuedTickets(lottos) {
-    let template = '';
-
-    template += lottos.map((lotto) => ticketTemplate(lotto.numbers)).join('');
-
-    this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
+    this.$issuedTicketDiv.insertAdjacentHTML(
+      'beforeend',
+      lottos.map((lotto) => ticketTemplate(lotto.numbers)).join(''),
+    );
   }
 
   showTicketDetails() {
