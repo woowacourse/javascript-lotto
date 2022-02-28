@@ -205,6 +205,21 @@ test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () =
   expect(sumWinningAmount()).toBe(testWinningAmount);
 });
 
-// test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () => {
-//   // 총 당첨금을 확인했으니, 여기에 총 수익률을 확인한다.
-// });
+test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () => {
+  const purchasedAmount = 2000;
+  const testRateOfReturn = 27.5;
+  const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
+  const lastWeekBounsNumber = 7;
+  const userAllLottoList = [
+    [1, 2, 3, 4, 9, 10],
+    [1, 2, 11, 4, 9, 10],
+  ];
+
+  checkTheLottoRanking(
+    userAllLottoList,
+    lastWeekLottoList,
+    lastWeekBounsNumber
+  );
+
+  expect(getRateOfReturn(purchasedAmount)).toBe(testRateOfReturn);
+});
