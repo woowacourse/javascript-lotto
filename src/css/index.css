@@ -138,3 +138,15 @@ section {
 .show {
   display: block;
 }
+
+.modal-container#result-container {
+  /* padding: 20px; */
+  /* min-width: 300px; */
+  height: 400px;
+}
+
+.modal-container > div {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}

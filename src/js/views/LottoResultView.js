@@ -49,6 +49,15 @@ class LottoResultView {
 
     <button id="result-button">결과 확인하기</button>
   </form>
+</section>
+<section id="win-statistics" aria-labelledby="win-statistics-title" class="hide">
+  <h1 id="win-statistics-title" hidden>당첨 통계 출력</h1>
+  <div class='modal-wrapper'>
+    <div id="result-container"class="modal-container">
+     <span class="modal-cancel-button">❌</span>
+     <div id="result-contents"></div>
+    </div>
+  </div>
 </section>`;
 }
 export default LottoResultView;
