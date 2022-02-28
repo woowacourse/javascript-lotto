@@ -48,12 +48,19 @@
   grid-area: nl;
 }
 
-#lotto-icons {
-  font-family: Roboto;
+#lotto-quantity {
+  margin-top: 8px;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 36px;
+}
+
+#lotto-icons {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 15px;
   grid-area: ic;
 }
 
@@ -231,5 +238,6 @@ button {
 }
 
 .hidden {
-  visibility: collapse;
+  display: none;
+  visibility: hidden;
 }

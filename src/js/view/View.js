@@ -12,6 +12,7 @@ export class View {
     this.lottoNumberLabel = document.getElementById('lotto-quantity-label');
     this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoStatusContainer = document.getElementById('lotto-status-container');
+    this.lottoQuantity = document.getElementById('lotto-quantity');
   }
 
   showLottoStatusContainer() {
@@ -23,18 +24,7 @@ export class View {
   }
 
   showPurchasedLottos(lottoWallet) {
-    this.lottoIcons.innerHTML = '🎟️ '.repeat(lottoWallet.length);
     this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
-  }
-
-  lottosToggleOn(lottoWallet) {
-    this.lottoIcons.innerHTML = this.padLottoNumbers(lottoWallet)
-      .map((numbers) => `<pre>🎟️ ${numbers}<br></pre>`)
-      .join('');
-  }
-
-  lottosToggleOff(lottoWallet) {
-    this.lottoIcons.innerHTML = '🎟️ '.repeat(lottoWallet.length);
   }
 
   clearMoneyInput(remain) {
@@ -44,11 +34,23 @@ export class View {
 
   uncheckToggleSwitch() {
     this.toggleBtn.checked = false;
+    this.lottoIcons.classList.add('hidden');
+    this.lottoQuantity.classList.remove('hidden');
   }
 
   padLottoNumbers(lottoWallet) {
     return lottoWallet.map((lotto) =>
       lotto.numbers.map((number) => String(number).padStart(4, ' '))
     );
+  }
+
+  lottosInfoTemplate(lottoWallet) {
+    this.lottoIcons.innerHTML = this.padLottoNumbers(lottoWallet)
+      .map((numbers) => `<pre>🎟️ ${numbers}<br></pre>`)
+      .join('');
+  }
+
+  lottosQuantityTemplate(lottoWallet) {
+    this.lottoQuantity.innerHTML = '🎟️ '.repeat(lottoWallet.length);
   }
 }
