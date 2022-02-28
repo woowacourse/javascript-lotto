@@ -13,3 +13,7 @@ export const isValidWinningNumbers = (numbers) => {
     (number) => number >= LOTTO_NUMBER.RANGE_MIN && number <= LOTTO_NUMBER.RANGE_MAX,
   );
 };
+
+export const isDuplicatedNumbers = (numbers) => {
+  return numbers.length !== new Set(numbers).size;
+};

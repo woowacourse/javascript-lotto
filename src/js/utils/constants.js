@@ -26,4 +26,5 @@ export const ERROR_MESSAGES = {
   INVALID_MINIMUM_AMOUNT: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
   INVALID_AMOUNT_UNIT: `${AMOUNT.UNIT}원 단위로 입력해주세요.`,
   INVALID_LOTTO_RANGE: `당첨 번호는 ${LOTTO_NUMBER.RANGE_MIN}~${LOTTO_NUMBER.RANGE_MAX} 사이의 숫자로 입력해주세요.`,
+  DUPLICATED_LOTTO_NUMBER: "당첨 번호는 중복 없이 입력해주세요.",
 };

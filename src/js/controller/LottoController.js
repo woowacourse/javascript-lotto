@@ -6,6 +6,7 @@ import {
   isValidMinimumAmount,
   isValidAmountUnit,
   isValidWinningNumbers,
+  isDuplicatedNumbers,
 } from "../utils/validation.js";
 
 export default class LottoController {
@@ -24,7 +25,7 @@ export default class LottoController {
   bindEvents() {
     this.purchaseForm.addEventListener("submit", this.#onSubmitPurchase.bind(this));
     this.switchInput.addEventListener("click", this.#onClickSwitch.bind(this));
-    this.resultButton.addEventListener("click", this.onClickResult.bind(this));
+    this.resultButton.addEventListener("click", this.#onClickResult.bind(this));
   }
 
   #handleLottoNumber(lottoCount) {
@@ -63,14 +64,19 @@ export default class LottoController {
     this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
   }
 
-  onClickResult() {
+  #onClickResult() {
     const winningNumbers = Array.from(this.winningNumberInputs).map(($input) =>
       Number($input.value),
     );
     const winningBonusNumber = Number(this.bonusNumberInput.value);
+    const totalNumbers = [...winningNumbers, winningBonusNumber];
 
-    if (!isValidWinningNumbers([...winningNumbers, winningBonusNumber])) {
+    if (!isValidWinningNumbers(totalNumbers)) {
       alert(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
+      return;
+    }
+    if (isDuplicatedNumbers(totalNumbers)) {
+      alert(ERROR_MESSAGES.DUPLICATED_LOTTO_NUMBER);
       return;
     }
   }
