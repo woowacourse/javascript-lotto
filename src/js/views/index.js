@@ -1,40 +1,43 @@
+import { RENDER_VIEW_KEY } from '../constants/actionKey';
 import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/elementSelector';
+import LottoContainerView from './LottoContainerView';
+import LottoResultView from './LottoResultView';
 
-class LottoGameView {
-  constructor() {
+class LottoViewManager {
+  #containerView = null;
+
+  #resultView = null;
+
+  constructor({ eventHandlers }) {
+    this.#initializeViews(eventHandlers);
     this.#initializeDOM();
+  }
+
+  renderView({ newData, actionKey }) {
+    if (actionKey === RENDER_VIEW_KEY.UPDATE_LOTTO_LIST) {
+      this.#containerView.renderLottoSection(newData);
+      this.#resultView.showWinNumberInputSection();
+    }
+    if (actionKey === RENDER_VIEW_KEY.UPDATE_VISIBLE_STATE) {
+      this.#containerView.renderAlignState(newData);
+    }
+  }
+
+  #initializeViews({
+    onSubmitChargeForm,
+    onChangeAlignState,
+    onSubmitResultForm,
+    onClickRestartButton,
+  }) {
+    const $app = findElement(SELECTOR.APP);
+    this.#containerView = new LottoContainerView({ $app, onSubmitChargeForm, onChangeAlignState });
+    this.#resultView = new LottoResultView({ $app, onSubmitResultForm, onClickRestartButton });
   }
 
   #initializeDOM() {
     this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
     this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
   }
-
-  renderLottoSection(lottoList) {
-    this.renderPurchasedMessage(lottoList.length);
-    this.renderLottoList(lottoList);
-  }
-
-  renderLottoList(lottoList) {
-    this.$lottoContainer.innerHTML = lottoList
-      .map((lotto) => this.generateLottoTemplate(lotto))
-      .join('');
-  }
-
-  renderPurchasedMessage(lottoAmount) {
-    this.$purchasedMessage.innerText = `총 ${lottoAmount}개를 구매하였습니다.`;
-  }
-
-  generateLottoTemplate({ lottoNumbers }) {
-    return `<div class="lotto">
-      <span>🎟️</span>
-      <span class="number">${lottoNumbers.join(', ')}</span>
-      </div>`;
-  }
-
-  renderAlignState(visibleState) {
-    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
-  }
 }
-export default LottoGameView;
+export default LottoViewManager;

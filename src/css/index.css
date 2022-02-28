@@ -131,3 +131,10 @@ section {
   flex-direction: column;
   align-items: flex-end;
 }
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}

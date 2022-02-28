@@ -1,29 +1,29 @@
-import LottoGameModel from './models/LottoGame';
 import { SELECTOR } from './constants/selector';
-import LottoGameView from './views';
-import { findElement } from './utils/elementSelector';
+import LottoViewManager from './views';
+import LottoDomainManager from './domains';
+import { MUTATE_DOMAIN_KEY, RENDER_VIEW_KEY } from './constants/actionKey';
 
 class LottoGameManager {
-  #initializeGame() {
-    this.lottoGameModel = new LottoGameModel();
-    this.lottoGameView = new LottoGameView();
+  #lottoDomainManager = null;
+
+  #lottoViewManager = null;
+
+  #initializeManagers() {
+    this.#lottoDomainManager = new LottoDomainManager();
+    this.#lottoViewManager = new LottoViewManager({
+      eventHandlers: {
+        onSubmitChargeForm: this.onSubmitChargeForm,
+        onChangeAlignState: this.onChangeAlignState,
+        onSubmitResultForm: this.onSubmitResultForm,
+        onClickRestartButton: this.onClickRestartButton,
+      },
+    });
   }
 
-  #initializeDOM() {
-    this.$chargeForm = findElement(SELECTOR.CHARGE_INPUT_FORM);
-    this.$chargeInput = findElement(SELECTOR.CHARGE_INPUT);
-    this.$alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
-  }
-
-  #initializeHandler() {
-    this.$chargeForm.addEventListener('submit', this.onSubmitChargeInputForm);
-    this.$alignConverter.addEventListener('change', this.onChangeAlignState);
-  }
-
-  onSubmitChargeInputForm = (e) => {
+  onSubmitChargeForm = (e) => {
     e.preventDefault();
     try {
-      const { value: chargeInputStr } = this.$chargeInput;
+      const { value: chargeInputStr } = e.target.querySelector(SELECTOR.CHARGE_INPUT);
       const chargeInput = Number(chargeInputStr);
       this.triggerChargeInputAction(chargeInput);
     } catch ({ message }) {
@@ -32,22 +32,32 @@ class LottoGameManager {
   };
 
   triggerChargeInputAction(chargeInput) {
-    // mutate model
-    this.lottoGameModel.createLottoList(chargeInput);
-    // mutate view by new model state
-    const lottoList = this.lottoGameModel.getLottoList();
-    this.lottoGameView.renderLottoSection(lottoList);
+    const lottoList = this.#lottoDomainManager.mutateDomainState({
+      newData: chargeInput,
+      actionKey: MUTATE_DOMAIN_KEY.NEW_CHARGE_INPUT,
+    });
+    this.#lottoViewManager.renderView({
+      newData: lottoList,
+      actionKey: RENDER_VIEW_KEY.UPDATE_LOTTO_LIST,
+    });
   }
 
   onChangeAlignState = (e) => {
     const { checked: alignState } = e.target;
-    this.lottoGameView.renderAlignState(alignState);
+    this.#lottoViewManager.renderView({
+      newData: alignState,
+      actionKey: RENDER_VIEW_KEY.UPDATE_VISIBLE_STATE,
+    });
   };
 
+  onSubmitResultForm = (e) => {
+    e.preventDefault();
+  };
+
+  onClickRestartButton = () => {};
+
   start() {
-    this.#initializeGame();
-    this.#initializeDOM();
-    this.#initializeHandler();
+    this.#initializeManagers();
   }
 }
 export default LottoGameManager;
