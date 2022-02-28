@@ -3,6 +3,7 @@ import Lotto from '../model/Lotto.js';
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
+import PopupView from '../view/PopupView.js';
 
 import { CONFIRM_MESSAGE, RULES, REWARD } from '../constants/index.js';
 import { validatePurchaseMoney, isEmpty, validateWinningNumbers } from '../util/validator.js';
@@ -19,6 +20,7 @@ export default class LottoMachineController {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
       winningNumberView: new WinningNumberView(),
+      popupView: new PopupView(),
     };
   }
 
@@ -130,5 +132,8 @@ export default class LottoMachineController {
 
     const results = this.#countCorrectNumber(this.lottos, numbers);
     const totalReward = this.#calculateTotalReward(results);
+    
+    this.view.popupView.render(results, totalReward / results.length / 10);
+    this.view.popupView.addRestartEvent(this.#reset.bind(this));
   }
 }
