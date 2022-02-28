@@ -82,3 +82,29 @@ export const confirmLottoList = (
 
   return WINNING_AMOUNT.FAILED;
 };
+
+export const WINNING_COUNT = {
+  FIRST_WINNER: 0,
+  SECOND_WINNER: 0,
+  THIRD_WINNER: 0,
+  FORTH_WINNER: 0,
+  FIFTH_WINNER: 0,
+  FAILED: 0,
+};
+
+export const checkTheLottoRanking = (
+  userAllLottoList,
+  lastWeekLottoList,
+  lastWeekBounsNumber
+) => {
+  Object.keys(WINNING_COUNT).forEach((winningKey) => {
+    WINNING_COUNT[winningKey] = userAllLottoList.filter(
+      (userLottoList) =>
+        confirmLottoList(
+          userLottoList,
+          lastWeekLottoList,
+          lastWeekBounsNumber
+        ) === WINNING_AMOUNT[winningKey]
+    ).length;
+  });
+};

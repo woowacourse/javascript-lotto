@@ -5,9 +5,11 @@ import {
   createRandomNumberList,
   shuffleArray,
   confirmLottoList,
+  checkTheLottoRanking,
+  WINNING_COUNT,
 } from '../utils';
 
-import { LOTTO, MONEY, WINNING_AMOUNT } from '../constants';
+import { LOTTO, MONEY } from '../constants';
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {
