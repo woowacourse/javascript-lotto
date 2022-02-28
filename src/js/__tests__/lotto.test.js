@@ -1,3 +1,6 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable no-undef */
+
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import Lotto from '../models/Lotto';
 
@@ -14,5 +17,13 @@ describe('로또 모델 테스트', () => {
     } catch ({ message }) {
       expect(message).toEqual(ERROR_MESSAGE.LOTTO_NUMBER_IS_INVALIDATE);
     }
+  });
+
+  it('로또 모델의 번호와 당첨 번호를 비교하여 등수를 반환할 수 있어야 한다.', () => {
+    const lottoNumbers = [1, 2, 3, 4, 5, 6];
+    const winningNumbers = [1, 2, 3, 4, 5, 7, 6];
+
+    const lotto = Lotto.create(lottoNumbers);
+    expect(lotto.result(winningNumbers)).toBe(2);
   });
 });
