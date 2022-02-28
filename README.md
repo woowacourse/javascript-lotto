@@ -11,6 +11,9 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+## 코드 구조 
+![](https://i.ibb.co/CmhQFkb/IMG-1580.jpg)
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
