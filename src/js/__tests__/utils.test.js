@@ -7,6 +7,7 @@ import {
   confirmLottoList,
   checkTheLottoRanking,
   WINNING_COUNT,
+  sumWinningAmount,
 } from '../utils';
 
 import { LOTTO, MONEY, WINNING_AMOUNT } from '../constants';

@@ -108,3 +108,10 @@ export const checkTheLottoRanking = (
     ).length;
   });
 };
+
+export const sumWinningAmount = () => {
+  const totalAmountList = Object.keys(WINNING_AMOUNT).map(
+    (amountKey) => WINNING_AMOUNT[amountKey] * WINNING_COUNT[amountKey]
+  );
+  return totalAmountList.reduce((sum, amount) => amount + sum, 0);
+};
