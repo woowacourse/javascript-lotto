@@ -1,0 +1,141 @@
+@import "./switch.css";
+
+:root {
+  --color-primary: #00bcd4;
+  --color-light-gray: #b4b4b4;
+  --color-white: #ffffff;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.lotto-title {
+  font-size: 34px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* purchase */
+
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.purchase-input-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.purchase-input {
+  flex: 1;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--color-light-gray);
+}
+
+.purchase-button {
+  color: var(--color-white);
+  margin-left: 10px;
+  width: 56px;
+  background: var(--color-primary);
+  border-radius: 4px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* lotto-number */
+
+.lotto-number-container {
+  margin-top: 10px;
+}
+
+.purchase-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* number-list */
+
+.lotto-number-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.lotto-number-list > li {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  font-size: 36px;
+}
+
+.lotto-numbers {
+  margin-left: 14px;
+  font-size: 24px;
+}
+
+.show-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+/* winning */
+
+.winning-title {
+  font-weight: 400;
+}
+
+.winning-number-input {
+  margin-right: 6px;
+}
+
+.winning-number-input,
+.bonus-number-input {
+  width: 30px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--color-light-gray);
+}
+
+.number-input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.bonus-number-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.bonus-number {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* result-button */
+
+.result-button {
+  width: 100%;
+  height: 36px;
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background: var(--color-primary);
+  border-radius: 4px;
+  cursor: pointer;
+}
