@@ -42,16 +42,16 @@ const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
 
 const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
-    <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+    <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
     <div id="winning-number-boxes">
       <div id="win-number-box">   
-        <p>당첨 번호</p>
+        <label>당첨 번호</label>
         <div class="input-box">
         ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
         </div>
       </div>
       <div id="bonus-number-box">
-        <p>보너스 번호</p>
+        <label>보너스 번호</label>
         <div class="input-box">
           ${INPUT_ELEMENT}
         </div>
