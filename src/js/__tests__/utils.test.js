@@ -9,7 +9,7 @@ import {
   WINNING_COUNT,
 } from '../utils';
 
-import { LOTTO, MONEY } from '../constants';
+import { LOTTO, MONEY, WINNING_AMOUNT } from '../constants';
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {
@@ -182,5 +182,28 @@ describe('유저가 구매한 로또 티켓들의 등수별 당첨 된 갯수 �
   });
 });
 
-// 총 수익률이 나오는지 확인한다.
-// test('수익률 확인', () => {});
+test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () => {
+  const testWinningAmount =
+    WINNING_AMOUNT.FORTH_WINNER +
+    WINNING_AMOUNT.FIFTH_WINNER +
+    WINNING_AMOUNT.FAILED;
+  const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
+  const lastWeekBounsNumber = 7;
+  const userAllLottoList = [
+    [1, 2, 3, 4, 9, 10],
+    [1, 2, 11, 4, 9, 10],
+    [1, 2, 12, 13, 9, 10],
+  ];
+
+  checkTheLottoRanking(
+    userAllLottoList,
+    lastWeekLottoList,
+    lastWeekBounsNumber
+  );
+
+  expect(sumWinningAmount()).toBe(testWinningAmount);
+});
+
+// test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () => {
+//   // 총 당첨금을 확인했으니, 여기에 총 수익률을 확인한다.
+// });
