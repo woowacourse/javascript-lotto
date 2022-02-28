@@ -7,7 +7,7 @@ import {
   confirmLottoList,
 } from '../utils';
 
-import { LOTTO, MONEY } from '../constants';
+import { LOTTO, MONEY, WINNING_AMOUNT } from '../constants';
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {
@@ -137,5 +137,48 @@ describe('유저가 구입한 로또 티켓의 번호가 일치한 만큼의 당
   });
 });
 
+describe('유저가 구매한 로또 티켓들의 등수별 당첨 된 갯수 확인', () => {
+  const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
+  const lastWeekBounsNumber = 7;
+  const userAllLottoList = [
+    [1, 2, 3, 4, 5, 6],
+    [2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 4, 5, 10],
+    [1, 2, 3, 4, 9, 10],
+    [1, 2, 11, 4, 9, 10],
+    [1, 2, 12, 13, 9, 10],
+  ];
+
+  checkTheLottoRanking(
+    userAllLottoList,
+    lastWeekLottoList,
+    lastWeekBounsNumber
+  );
+
+  test('1등 당첨 갯수 확인', () => {
+    expect(WINNING_COUNT.FIRST_WINNER).toBe(1);
+  });
+
+  test('2등 당첨 갯수 확인', () => {
+    expect(WINNING_COUNT.SECOND_WINNER).toBe(1);
+  });
+
+  test('3등 당첨 갯수 확인', () => {
+    expect(WINNING_COUNT.THIRD_WINNER).toBe(1);
+  });
+
+  test('4등 당첨 갯수 확인', () => {
+    expect(WINNING_COUNT.FORTH_WINNER).toBe(1);
+  });
+
+  test('5등 당첨 갯수 확인', () => {
+    expect(WINNING_COUNT.FIFTH_WINNER).toBe(1);
+  });
+
+  test('낙첨 갯수 확인', () => {
+    expect(WINNING_COUNT.FAILED).toBe(1);
+  });
+});
+
 // 총 수익률이 나오는지 확인한다.
-test('수익률 확인', () => {});
+// test('수익률 확인', () => {});
