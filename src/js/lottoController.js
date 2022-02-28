@@ -9,10 +9,13 @@ export default class LottoController {
 
   #lottoPurchaseResultView;
 
+  #lottoWinningNumberInputView;
+
   constructor(lottoModel, views) {
     this.#lottoModel = lottoModel;
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
+    this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
   }
 
   init() {
@@ -54,5 +57,6 @@ export default class LottoController {
     this.#lottoPurchaseResultView.renderLottoPurchaseResult(
       this.#lottoModel.lottoList
     );
+    this.#lottoWinningNumberInputView.renderlottoWinningNumberInput();
   }
 }

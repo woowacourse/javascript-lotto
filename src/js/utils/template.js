@@ -20,3 +20,27 @@ export const lottoPurchaseResultTemplate = (lottoList) => {
     ${lottoList.map((lotto) => lottoTemplate([...lotto])).join('')}
   `;
 };
+
+export const lottoWinningNumberInputTemplate = () => {
+  return `
+    <section>
+      <form>
+        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</p>
+        <div>
+          <label for="lotto-winning-number">당첨 번호</label>
+          <input id="lotto-winning-number" class="lotto-winning-number-container" type="number" />
+          <input class="lotto-winning-number-container" type="number" />
+          <input class="lotto-winning-number-container" type="number" />
+          <input class="lotto-winning-number-container" type="number" />
+          <input class="lotto-winning-number-container" type="number" />
+          <input class="lotto-winning-number-container" type="number" />
+        </div>
+        <div>
+          <label for="lotto-winning-bonus-number">보너스 번호</label>
+          <input id="lotto-winning-bonus-number" class="lotto-winning-number-container" type="number" />
+        </div>
+        <button type="submit">결과 확인하기</button>
+      </form>
+    </section>
+  `;
+};
