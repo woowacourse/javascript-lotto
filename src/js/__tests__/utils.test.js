@@ -53,19 +53,33 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
 
 describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 확인한다', () => {
   test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 0, 실패 케이스', () => {
-    const last_week_number = 0;
+    const lastWeekNumber = 0;
 
-    expect(
-      isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, last_week_number)
-    ).toBe(false);
+    expect(isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)).toBe(
+      false
+    );
   });
 
   test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 45, 성공 케이스', () => {
-    const last_week_number = 45;
+    const lastWeekNumber = 45;
 
-    expect(
-      isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, last_week_number)
-    ).toBe(true);
+    expect(isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)).toBe(
+      true
+    );
+  });
+
+  test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6] 6, 실패 케이스', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 6;
+
+    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(false);
+  });
+
+  test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6] 7, 성공 케이스', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(true);
   });
 });
 
