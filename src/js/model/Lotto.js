@@ -19,6 +19,5 @@ export default class Lotto {
 
   generateLottoTicket(count) {
     this.lottos = [...Array(count)].map(() => this.generateLottoNumber());
-    console.log(this.lottos);
   }
 }

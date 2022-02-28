@@ -4,6 +4,13 @@ import { ELEMENTS } from "../utils/constants.js";
 export default class LottoGameView {
   constructor() {
     this.lottoNumberList = $(".lotto-number-list");
+    this.switchInput = $(".switch-input");
+  }
+
+  manageElement() {
+    disableElement(ELEMENTS.PURCHASE_INPUT);
+    disableElement($(".purchase-button"));
+    enableElement(this.switchInput);
   }
 
   renderPurchaseInfomation(lottoCount) {
@@ -12,26 +19,6 @@ export default class LottoGameView {
 
   renderLottoIcons(lottoCount) {
     this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️</li>`.repeat(lottoCount));
-  }
-
-  onClickSwitch(lottoList, lottoCount) {
-    this.resetLottoList();
-    this.lottoNumberList.classList.toggle("show-numbers");
-    if (this.lottoNumberList.classList.contains("show-numbers")) {
-      this.renderLottoNumbers(lottoList);
-      return;
-    }
-    this.renderLottoIcons(lottoCount);
-  }
-
-  handleLottoNumber(lottoList, lottoCount) {
-    disableElement(ELEMENTS.PURCHASE_INPUT);
-    disableElement($(".purchase-button"));
-    enableElement($(".switch-input"));
-
-    this.renderPurchaseInfomation(lottoCount);
-    this.renderLottoIcons(lottoCount);
-    $(".switch-input").addEventListener("click", () => this.onClickSwitch(lottoList, lottoCount));
   }
 
   renderLottoNumbers(lottoList) {
@@ -45,5 +32,22 @@ export default class LottoGameView {
 
   resetLottoList() {
     this.lottoNumberList.replaceChildren("");
+  }
+
+  onClickSwitch(lottoList, lottoCount) {
+    this.resetLottoList();
+    this.lottoNumberList.classList.toggle("show-numbers");
+    if (this.lottoNumberList.classList.contains("show-numbers")) {
+      this.renderLottoNumbers(lottoList);
+      return;
+    }
+    this.renderLottoIcons(lottoCount);
+  }
+
+  handlePurchasedLotto(lottoList, lottoCount) {
+    this.manageElement();
+    this.renderPurchaseInfomation(lottoCount);
+    this.renderLottoIcons(lottoCount);
+    this.switchInput.addEventListener("click", () => this.onClickSwitch(lottoList, lottoCount));
   }
 }
