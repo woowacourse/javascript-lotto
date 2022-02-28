@@ -8,10 +8,6 @@ export default class Lotto {
     return this.#numbers;
   }
 
-  set numbers(newNumbers) {
-    this.#numbers = newNumbers;
-  }
-
   generateLottoNumbers() {
     this.#numbers = generateRandomNumbers({
       count: LOTTO.NUMBER_COUNT,
