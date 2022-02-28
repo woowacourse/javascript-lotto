@@ -12,13 +12,7 @@
       <form id="charge-submit-form" class="margin-bottom-28px">
         <label for="charge-input" class="normal-text margin-bottom-8px"> 구입할 금액을 입력해주세요. </label>
         <div class="charge-input-wrap width-100 height-36px">
-          <input
-            id="charge-input"
-            class="normal-input width-80 height-100"
-            type="number"
-            placeholder="금액"
-            min="1000"
-            required />
+          <input id="charge-input" class="normal-input width-80 height-100" type="number" placeholder="금액" min="1000" max="5000" required />
           <button class="blue-button width-56px height-100">구입</button>
         </div>
       </form>
@@ -41,60 +35,60 @@
           </label>
         </div>
       </section>
-      <form>
-        <label id="winner-number-label" class="normal-text margin-bottom-8px">
+      <form id="winning-number-form">
+        <label id="winning-number-label" class="normal-text margin-bottom-8px">
           지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
         </label>
-        <div class="winner-number-input-wrap margin-bottom-24px">
+        <div class="winning-number-input-wrap margin-bottom-24px">
           <fieldset>
             <legend class="normal-text margin-bottom-8px">당첨 번호</legend>
             <div>
               <input
-                class="normal-input no-spin-button width-34px height-36px"
+                class="winning-number-input normal-input no-spin-button width-34px height-36px"
                 type="number"
                 min="1"
                 max="45"
-                aria-labelledby="winner-number-label" />
+                aria-labelledby="winning-number-label" />
               <input
-                class="normal-input no-spin-button width-34px height-36px"
+                class="winning-number-input normal-input no-spin-button width-34px height-36px"
                 type="number"
                 min="1"
                 max="45"
-                aria-labelledby="winner-number-label" />
+                aria-labelledby="winning-number-label" />
               <input
-                class="normal-input no-spin-button width-34px height-36px"
+                class="winning-number-input normal-input no-spin-button width-34px height-36px"
                 type="number"
                 min="1"
                 max="45"
-                aria-labelledby="winner-number-label" />
+                aria-labelledby="winning-number-label" />
               <input
-                class="normal-input no-spin-button width-34px height-36px"
+                class="winning-number-input normal-input no-spin-button width-34px height-36px"
                 type="number"
                 min="1"
                 max="45"
-                aria-labelledby="winner-number-label" />
+                aria-labelledby="winning-number-label" />
               <input
-                class="normal-input no-spin-button width-34px height-36px"
+                class="winning-number-input normal-input no-spin-button width-34px height-36px"
                 type="number"
                 min="1"
                 max="45"
-                aria-labelledby="winner-number-label" />
+                aria-labelledby="winning-number-label" />
               <input
-                class="normal-input no-spin-button width-34px height-36px"
+                class="winning-number-input normal-input no-spin-button width-34px height-36px"
                 type="number"
                 min="1"
                 max="45"
-                aria-labelledby="winner-number-label" />
+                aria-labelledby="winning-number-label" />
             </div>
           </fieldset>
           <fieldset class="align-end">
             <legend class="normal-text margin-bottom-8px">보너스 번호</legend>
             <input
-              class="normal-input no-spin-button width-34px height-36px"
+              class="winning-number-input normal-input no-spin-button width-34px height-36px"
               type="number"
               min="1"
               max="45"
-              aria-labelledby="winner-number-label" />
+              aria-labelledby="winning-number-label" />
           </fieldset>
         </div>
         <button id="check-result-button" class="blue-button width-100">결과 확인하기</button>

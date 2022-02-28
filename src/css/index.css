@@ -73,7 +73,7 @@ body {
 }
 
 .purchased-lotto-section,
-.winner-number-input-wrap {
+.winning-number-input-wrap {
   display: flex;
   justify-content: space-between;
 }
