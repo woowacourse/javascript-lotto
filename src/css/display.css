@@ -1,0 +1,20 @@
+.hidden {
+  display: none;
+}
+
+.show {
+  display: grid;
+}
+
+.align-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-column {
+  display: block;
+}
+
+.align-right {
+  justify-self: end;
+}
