@@ -31,5 +31,6 @@ export const winningCount = (lotto, winningLotto) =>
 export const isBounusNumber = (lotto, bounusNumber) =>
   lotto.includes(bounusNumber);
 
-export const isOverlapped = (lotto, bonusNumber) =>
-  new Set(lotto).size === lotto.length && !lotto.includes(bonusNumber);
+export const isOverlapped = (winningLotto, bonusNumber) =>
+  new Set(winningLotto).size !== winningLotto.length ||
+  winningLotto.includes(bonusNumber);

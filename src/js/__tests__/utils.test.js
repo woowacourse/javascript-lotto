@@ -73,14 +73,14 @@ describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 
     const lastWeekNumber = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 6;
 
-    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(false);
+    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(true);
   });
 
   test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6] 7, 성공 케이스', () => {
     const lastWeekNumber = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
 
-    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(true);
+    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(false);
   });
 });
 

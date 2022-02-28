@@ -1,4 +1,4 @@
-import { isPositiveInteger, divideBy } from './utils';
+import { isPositiveInteger, divideBy, isInRange, isOverlapped } from './utils';
 import { CLASS_NAME, SELECTOR, MONEY, ERROR_MESSAGE } from './constants';
 import Lotto from './Lotto';
 import {
@@ -39,6 +39,13 @@ export default class LottoApp {
       type: 'click',
       selector: SELECTOR.LOTTO_LIST_TOGGLE_BUTTON,
       callback: this.onClickToggleButton.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: '#result-checking-section',
+      callback: this.onClickResultButton.bind(this),
     });
   }
 
@@ -98,5 +105,42 @@ export default class LottoApp {
     getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
       element.classList.toggle(CLASS_NAME.INVISIBLE);
     });
+  }
+
+  onClickResultButton() {
+    const $winningNumberInputs = getElements('.winning-number-input');
+    const $bonusNumberInput = getElement('#bonus-number-input');
+    const winningNumber = [];
+    const bonusNumber = Number($bonusNumberInput.value);
+
+    try {
+      $winningNumberInputs.forEach((input) => {
+        if (!isInRange(1, 45, Number(input.value))) {
+          throw new Error(
+            '지난주 당첨 번호또는 보너스 번호를 잘못 입력하셨습니다. 1 ~ 45 사이의 숫자를 입력해주세요'
+          );
+        }
+        winningNumber.push(Number(input.value));
+      });
+
+      if (!isInRange(1, 45, bonusNumber)) {
+        throw new Error(
+          '지난주 당첨 번호또는 보너스 번호를 잘못 입력하셨습니다. 1 ~ 45 사이의 숫자를 입력해주세요'
+        );
+      }
+
+      if (isOverlapped(winningNumber, bonusNumber)) {
+        throw new Error(
+          '지난주 당첨 번호와 보너스 번호를 잘못 입력하셨습니다. 서로 다른 숫자를 입력해주세요'
+        );
+      }
+    } catch ({ message }) {
+      alert(message);
+      $winningNumberInputs.forEach((input) => {
+        initInput(input);
+      });
+      initInput($bonusNumberInput);
+      $winningNumberInputs[0].focus();
+    }
   }
 }
