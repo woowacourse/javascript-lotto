@@ -22,16 +22,18 @@ export default function reducer(state, { type, payload }) {
     case ACTION.PURCHASE_LOTTO: {
       newState.money = payload;
       newState.lottoList = generateLottoList(payload);
-      break;
+
+      return newState;
     }
     case ACTION.TOGGLE_LOTTO_LIST:
       newState.lottoListVisibility = payload;
-      break;
+
+      return newState;
     case ACTION.SET_WINNING_NUMBERS:
       newState.winningNumbers = payload;
-      break;
-    // no default
-  }
 
-  return newState;
+      return newState;
+    default:
+      return state;
+  }
 }
