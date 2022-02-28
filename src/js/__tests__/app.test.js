@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Lotto from "../model/Lotto.js";
 import { ERROR_MESSAGES } from "../utils/constants.js";
 import { validatePurchaseAmount } from "../utils/validation.js";
@@ -6,14 +7,14 @@ import { isValidMinimumAmount, isValidAmountUnit } from "../utils/general.js";
 describe("로또 번호 생성 테스트", () => {
   test("로또 번호는 1부터 45 범위 안에 있어야 한다.", () => {
     const lotto = new Lotto();
-    const numbers = lotto.generateLottoNumber();
+    const lottoNumbers = lotto.generateLottoNumber();
     const isCorrectRange = (numbers) => {
       const isBelowThreshold = (number) => number >= 1 && number <= 45;
 
       return numbers.every(isBelowThreshold);
     };
 
-    expect(isCorrectRange(numbers)).toBe(true);
+    expect(isCorrectRange(lottoNumbers)).toBe(true);
   });
 
   test("로또 번호는 총 6개 가지고 있다.", () => {
