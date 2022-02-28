@@ -1,4 +1,4 @@
-import Lottos from '../model/Lottos.js';
+import Lotto from '../model/Lotto.js';
 
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
@@ -14,7 +14,7 @@ export default class LottoMachineController {
   }
 
   #init() {
-    this.model = new Lottos();
+    this.lottos = null;
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
@@ -26,13 +26,16 @@ export default class LottoMachineController {
     this.view.purchaseMoneyView.addSubmitEvent(this.#onSubmitHandler.bind(this));
   }
 
+  #makeLottos(lottoCount) {
+    const newLottos = Array.from({ length: lottoCount }).map(() => new Lotto());
+    this.lottos = newLottos;
+  }
+
   #purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
-    this.model.makeLottos(lottoCount);
+    this.#makeLottos(lottoCount);
 
-    const lottos = this.model.getLottos();
-
-    this.view.purchasedLottoView.render(lottoCount, lottos);
+    this.view.purchasedLottoView.render(lottoCount, this.lottos);
     this.view.winningNumberView.render();
   }
 
@@ -44,9 +47,8 @@ export default class LottoMachineController {
       alert(error);
       return;
     }
-    const lottos = this.model.getLottos();
-
-    if (isEmpty(lottos)) {
+    
+    if (isEmpty(this.lottos)) {
       this.#purchaseLotto(purchaseMoney);
       return;
     }
@@ -65,7 +67,7 @@ export default class LottoMachineController {
   }
 
   #reset() {
-    this.model.reset();
+    this.lottos = null;
     this.view.purchasedLottoView.reset();
     this.view.winningNumberView.reset();
   }
