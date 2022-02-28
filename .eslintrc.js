@@ -16,6 +16,10 @@ module.exports = {
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "no-new": "off",
+<<<<<<< HEAD
+=======
+    "no-undef": "off",
+>>>>>>> 86adc12 (chore: eslint, prettier 환경 설정)
     "lines-between-class-members": "off",
   },
   plugins: ["prettier"],
