@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import LottoList from '../domains/LottoList';
 
-describe('로또 게임 모델 테스트', () => {
+describe('로또 리스트 도메인 테스트', () => {
   it('로또 게임 모델에 금액이 정상적으로 입력되면, 구매할 수 있는 로또의 수를 반환할 수 있어야 한다.', () => {
     const lottoList = new LottoList();
     const charge = 5000;
@@ -38,6 +38,21 @@ describe('로또 게임 모델 테스트', () => {
       lottoList.createLottoList(charge);
     } catch ({ message }) {
       expect(message).toEqual(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
+    }
+  });
+
+  it('보너스 번호를 포함하여 중복된 숫자가 있으면 에러를 출력한다', () => {
+    const lottoList = new LottoList();
+    const charge = 10000;
+
+    lottoList.createLottoList(charge);
+
+    const winningNumbers = [5, 5, 15, 30, 33, 28];
+    const bonusNumber = 17;
+    try {
+      lottoList.computeWinResultStatistics(winningNumbers, bonusNumber);
+    } catch ({ message }) {
+      expect(message === ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE).toBe(true);
     }
   });
 });
