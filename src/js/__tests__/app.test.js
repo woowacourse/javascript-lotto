@@ -1,4 +1,4 @@
-import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue } from '../utils/validator.js';
+import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue, userLottoNumberCorrectRange, userLottoNumberOverlap, userLottoNumberPositiveValue } from '../utils/validator.js';
 import LottoModel from '../lottoModel.js';
 import { ERROR_MESSAGE } from '../utils/constants.js';
 
@@ -28,6 +28,7 @@ describe('구입금액 테스트', () => {
     expect(() => isMaxPurchaseLotto(purchaseMoney)).toThrow(ERROR_MESSAGE.MORE_THAN_MAX_COST);
   })
 });
+
 test('구입한 로또 금액만큼 로또 개수를 확인할 수 있어야 한다', () => {
   const lottoModel = new LottoModel();
   const lottoCount = 4;
@@ -102,3 +103,20 @@ test('유저가 구입한 로또와 유저가 수동으로 입력한 번호를 �
   expect(winRate).toEqual(406311);
 })
 
+describe('유저가 입력한 로또 숫자 유효성 검사', () => {    
+  const userLottoNumber = [3, 6, 16, 34, 35, 41];
+  const userBonusNumber = [12];
+  const holeLottoNumber = [...userLottoNumber, ...userBonusNumber];
+  test('당첨번호, 보너스번호는 중복되는 숫자가 있을 수 없다', () => {
+    expect(() => userLottoNumberOverlap(holeLottoNumber).not.toThrow(ERROR_MESSAGE.USER_LOTTO_NUMBER_OVERLAP));
+  })
+
+  test('딩첨번호, 보너스 번호는 1이상 45이하여야 한다', () => {
+    expect(() => userLottoNumberCorrectRange(holeLottoNumber).not.toThrow(ERROR_MESSAGE.USER_LOTTO_NUMBER_CORRECT_RANGE));  
+  })
+
+  test('딩첨번호, 보너스 번호 모두 입력해야 한다(빈값이 있어서는 안 된다)', () => {
+    expect(() => userLottoNumberPositiveValue(holeLottoNumber)).not.toThrow(ERROR_MESSAGE.USER_LOTTO_NUMBER_POSITIVE_VALUE); 
+  })
+
+});

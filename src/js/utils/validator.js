@@ -23,3 +23,23 @@ export const isMaxPurchaseLotto = (purchaseMoney) => {
     throw ERROR_MESSAGE.MORE_THAN_MAX_COST;
   }
 }
+
+export const userLottoNumberOverlap = (lottoNumbers) => {
+  const lottoSet = new Set();
+  lottoNumbers.map((number) => lottoSet.add(number));
+  if (lottoSet.size !== lottoNumbers.lottoSet) {
+    throw ERROR_MESSAGE.USER_LOTTO_NUMBER_OVERLAP;
+  }
+}
+
+export const userLottoNumberCorrectRange = (lottoNumbers) => {
+  if (lottoNumbers.filter((number) => number > 45 || number < 1).length === 0) {
+    throw ERROR_MESSAGE.USER_LOTTO_NUMBER_CORRECT_RANGE;
+  }
+}
+
+export const userLottoNumberPositiveValue = (lottoNumbers) => {
+  if (lottoNumbers.filter((number) => !number).length > 0) {
+    throw ERROR_MESSAGE.USER_LOTTO_NUMBER_POSITIVE_VALUE;
+  }
+}
