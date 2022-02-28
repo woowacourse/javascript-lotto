@@ -3,6 +3,8 @@ import {
   divideBy,
   createRandomNumberList,
   isInRange,
+  winningCount,
+  isBounusNumber,
 } from '../utils';
 
 import { MONEY, LOTTO } from '../constants';
@@ -70,15 +72,15 @@ describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 
 describe('지난주 당첨 번호, 보너스 번호와 로또가 몇개 일치하는지 확인한다', () => {
   test('지난주 당첨 번호와 로또가 몇개 일치하는지 확인한다. 성공 케이스', () => {
     const lotto = [1, 2, 3, 4, 5, 6];
-    const winning_lotto = [24, 1, 7, 3, 45, 4];
+    const winningLotto = [24, 1, 7, 3, 45, 4];
 
-    expect(winningCount(lotto, winning_lotto)).toBe(3);
+    expect(winningCount(lotto, winningLotto)).toBe(3);
   });
 
   test('로또 번호 중 보너스 번호와 일치하는 값이 있는지 확인한다. 성공 케이스', () => {
     const lotto = [1, 2, 3, 4, 5, 6];
-    const bounus_number = 2;
+    const bounusNumber = 2;
 
-    expect(isBounusNumber(lotto, bounus_number)).toBe(false);
+    expect(isBounusNumber(lotto, bounusNumber)).toBe(true);
   });
 });

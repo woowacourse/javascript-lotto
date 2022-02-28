@@ -24,3 +24,9 @@ export const createRandomNumberList = () => {
 
 export const isInRange = (minimum, maximum, number) =>
   number >= minimum && number <= maximum;
+
+export const winningCount = (lotto, winningLotto) =>
+  lotto.filter((number) => winningLotto.includes(number)).length;
+
+export const isBounusNumber = (lotto, bounusNumber) =>
+  lotto.includes(bounusNumber);
