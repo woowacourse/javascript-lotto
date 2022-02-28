@@ -12,7 +12,7 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "off"
+        "endOfLine": "auto"
       }
     ],
     "max-depth": ["error", 1],
