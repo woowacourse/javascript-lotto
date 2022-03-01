@@ -1,6 +1,6 @@
 import { LOTTO } from '../constants/constants.js';
 import Lotto from '../models/Lotto.js';
-import validateMoney from '../validations/LottoMachine.js';
+import validateMoney from '../validations/PurchaseLottos.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
