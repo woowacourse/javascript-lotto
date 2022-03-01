@@ -40,20 +40,22 @@ export default class WinningNumberView {
       'winning-number-input',
     );
 
-    winningNumberForm.addEventListener('submit', e => {
-      e.preventDefault();
+    winningNumberForm.addEventListener('submit', this.submitHandler.bind(this));
+  }
 
-      const winningNumberList = Array.from(this.winningNumberInputElements).map(
-        el => (el.value === '' ? null : convertToNumber(el.value)),
-      );
+  submitHandler(e) {
+    e.preventDefault();
 
-      try {
-        validateWinningNumberList(winningNumberList);
-      } catch (error) {
-        this.resetInputElementsValue();
-        alert(error);
-      }
-    });
+    const winningNumberList = Array.from(this.winningNumberInputElements).map(
+      el => (el.value === '' ? null : convertToNumber(el.value)),
+    );
+
+    try {
+      validateWinningNumberList(winningNumberList);
+    } catch (error) {
+      this.resetInputElementsValue();
+      alert(error);
+    }
   }
 
   resetInputElementsValue() {
