@@ -42,6 +42,7 @@ label[for="purchase-money"] {
   margin-left: 15px;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 
 #lotto-purchase-input {
