@@ -6,7 +6,7 @@ function isChargeValueInValidRange(value) {
 
 export default function validateCharge(charge) {
   if (!Number.isInteger(charge))
-    throw new Error(ERROR_MESSAGE.INTEGER_CHARGE_INPUT);
+    throw new Error(ERROR_MESSAGE.CHARGE_INPUT_NOT_INTEGER);
   if (!isChargeValueInValidRange(charge))
-    throw new Error(ERROR_MESSAGE.CHARGE_INPUT_RANGE);
+    throw new Error(ERROR_MESSAGE.CHARGE_INPUT_NOT_IN_RANGE);
 }
