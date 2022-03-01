@@ -1,4 +1,6 @@
 import { RULES } from '../constants/index.js';
+import { convertToNumber } from '../utils/common.js';
+import { validateWinningNumberList } from '../utils/validator.js';
 
 //template
 const INPUT_ELEMENT = `<input type="number" class="winning-number-input"/>`;
@@ -41,11 +43,15 @@ export default class WinningNumberView {
     winningNumberForm.addEventListener('submit', e => {
       e.preventDefault();
 
-      const winningNumberList = Array.from(winningNumberInputElements).map(
-        el => el.value,
+      const winningNumberList = Array.from(winningNumberInputElements).map(el =>
+        el.value === '' ? null : convertToNumber(el.value),
       );
 
-      console.log(winningNumberList);
+      try {
+        validateWinningNumberList(winningNumberList);
+      } catch (error) {
+        alert(error);
+      }
     });
   }
 
