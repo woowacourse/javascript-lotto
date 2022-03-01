@@ -51,7 +51,6 @@ export default class LottoGame {
         this.result[CONVERT_TO_COUNT_INFO[BONUS]][1]++;
         return;
       }
-
       this.result[CONVERT_TO_COUNT_INFO[matchCount]][1]++;
     });
 

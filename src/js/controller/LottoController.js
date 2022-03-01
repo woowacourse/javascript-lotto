@@ -62,6 +62,7 @@ export default class LottoController {
       Number($input.value),
     );
     const bonusNumber = Number(this.bonusNumberInput.value);
+
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
       this.lottoGameModel.generateResult(winningNumbers, bonusNumber);

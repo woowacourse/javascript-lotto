@@ -4,6 +4,10 @@ const isValidMinimumAmount = (amount) => {
   return amount >= AMOUNT.MINIMUM;
 };
 
+const isValidMaximumAmount = (amount) => {
+  return amount <= AMOUNT.MAXIMUM;
+};
+
 const isValidAmountUnit = (amount) => {
   return amount % AMOUNT.UNIT === 0;
 };
@@ -21,6 +25,9 @@ const isDuplicatedNumbers = (numbers) => {
 export const verifyPurchaseAmount = (amount) => {
   if (!isValidMinimumAmount(amount)) {
     throw new Error(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
+  }
+  if (!isValidMaximumAmount(amount)) {
+    throw new Error(ERROR_MESSAGES.INVALID_MAXIMUM_AMOUNT);
   }
   if (!isValidAmountUnit(amount)) {
     throw new Error(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
