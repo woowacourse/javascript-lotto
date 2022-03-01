@@ -8,6 +8,7 @@ export class LottoGame {
     this.winningNumbers;
     this.bonusNumber;
     this.winningStatus = new Array(5).fill(0);
+    this.yield;
   }
 
   insertMoney = (moneyInput) => (this.moneyInput = moneyInput);
@@ -22,13 +23,12 @@ export class LottoGame {
   };
 
   getWinningNumbers(winningNumbers, bonusNumber) {
-    const checkLotto = new Set(Object.values(winningNumbers));
-    this.winningNumbers = checkLotto;
+    this.winningNumbers = new Set(Object.values(winningNumbers));
     this.bonusNumber = bonusNumber;
-    this.yield;
   }
 
   compareLottos() {
+    this.winningStatus.fill(0);
     this.lottoWallet.forEach((lotto, idx) => {
       let count = 0;
       let bonus = 0;

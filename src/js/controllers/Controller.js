@@ -10,7 +10,7 @@ export class Controller {
     this.bindPurchaseEvent();
     this.bindToggleEvent();
     this.bindShowResultEvent();
-    this.bindCloseModalBtn();
+    this.bindCloseModalEvent();
   }
 
   bindPurchaseEvent() {
@@ -25,7 +25,7 @@ export class Controller {
     this.view.showResultBtn.addEventListener('click', this.#showLottoResult.bind(this));
   }
 
-  bindCloseModalBtn() {
+  bindCloseModalEvent() {
     this.view.closeModalBtn.addEventListener('click', this.#closeModal.bind(this));
   }
 
@@ -63,16 +63,15 @@ export class Controller {
     try {
       validator.isWinningInputValid(
         this.view.getWinningNumbersInput(),
-        this.view.bonusNumber.value
+        Number(this.view.bonusNumber.value)
       );
       this.lottoGame.getWinningNumbers(
         this.view.getWinningNumbersInput(),
-        this.view.bonusNumber.value
+        Number(this.view.bonusNumber.value)
       );
       this.lottoGame.compareLottos();
       this.lottoGame.calculateYield();
-      this.view.winStatusTemplate();
-      this.view.showResultModal();
+      this.view.showResultModal(this.lottoGame.winningStatus);
     } catch (err) {
       alert(err.message);
     }

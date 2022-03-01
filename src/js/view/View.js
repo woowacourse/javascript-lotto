@@ -16,6 +16,8 @@ export class View {
     this.showResultBtn = document.getElementById('confirm-result-label');
     this.bonusNumber = document.getElementById('winning-number7');
     this.closeModalBtn = document.getElementById('close-modal-btn');
+    this.modal = document.querySelector('.modal');
+    this.winTable = document.getElementById('win-status');
   }
 
   showLottoStatusContainer() {
@@ -68,56 +70,59 @@ export class View {
 
   getWinningNumbersInput() {
     return {
-      win1: document.getElementById('winning-number1').value,
-      win2: document.getElementById('winning-number2').value,
-      win3: document.getElementById('winning-number3').value,
-      win4: document.getElementById('winning-number4').value,
-      win5: document.getElementById('winning-number5').value,
-      win6: document.getElementById('winning-number6').value,
+      win1: Number(document.getElementById('winning-number1').value),
+      win2: Number(document.getElementById('winning-number2').value),
+      win3: Number(document.getElementById('winning-number3').value),
+      win4: Number(document.getElementById('winning-number4').value),
+      win5: Number(document.getElementById('winning-number5').value),
+      win6: Number(document.getElementById('winning-number6').value),
     };
   }
 
-  showResultModal() {
-    document.querySelector('.modal').classList.add('show');
-    document.querySelector('.modal').classList.add('dark');
+  showResultModal(winningStatus) {
+    this.winTable.textContent = '';
+    this.winTable.insertAdjacentHTML('afterbegin', this.winStatusTemplate(winningStatus));
+    this.modal.classList.add('show');
+    this.modal.classList.add('dark');
   }
 
   closeModal() {
-    document.querySelector('.modal').classList.remove('show');
-    document.querySelector('.modal').classList.remove('dark');
+    this.modal.classList.remove('show');
+    this.modal.classList.remove('dark');
   }
-  winStatusTemplate() {
-    // document.getElementById('win-status').innerHTML = `
-    // <table border="1">
-    //   <th>일치 갯수</th>
-    //   <th>당첨금</th>
-    //   <th>당첨 갯수</th>
-    //   <tr>
-    //       <td>3개</td>
-    //       <td>5,000</td>
-    //       <td>n개</td>
-    //   </tr>
-    //   <tr>
-    //       <td>4개</td>
-    //       <td>50,000</td>
-    //       <td>n개</td>
-    //   </tr>
-    //   <tr>
-    //       <td>5개</td>
-    //       <td>1,500,000</td>
-    //       <td>n개</td>
-    //   </tr>
-    //   <tr>
-    //       <td>5개+보너스볼</td>
-    //       <td>30,000,000</td>
-    //       <td>n개</td>
-    //   </tr>
-    //   <tr>
-    //     <td>6개</td>
-    //     <td>2,000,000,000</td>
-    //     <td>n개</td>
-    //   </tr>
-    // </table>
-    // `;
+
+  winStatusTemplate(winningStatus) {
+    return `
+    <table>
+      <th>일치 갯수</th>
+      <th>당첨금</th>
+      <th>당첨 갯수</th>
+      <tr>
+          <td>3개</td>
+          <td>5,000</td>
+          <td>${winningStatus[0]}개</td>
+      </tr>
+      <tr>
+          <td>4개</td>
+          <td>50,000</td>
+          <td>${winningStatus[1]}개</td>
+      </tr>
+      <tr>
+          <td>5개</td>
+          <td>1,500,000</td>
+          <td>${winningStatus[2]}개</td>
+      </tr>
+      <tr>
+          <td>5개+보너스볼</td>
+          <td>30,000,000</td>
+          <td>${winningStatus[3]}개</td>
+      </tr>
+      <tr>
+        <td>6개</td>
+        <td>2,000,000,000</td>
+        <td>${winningStatus[4]}개</td>
+      </tr>
+    </table>
+    `;
   }
 }
