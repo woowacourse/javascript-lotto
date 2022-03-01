@@ -1,6 +1,6 @@
 import { LottoGame } from '../model/LottoGame.js';
 import { validator } from '../utils.js';
-import { ERROR_MESSAGE } from '../constants/constants';
+import { ERROR_MESSAGE, CONDITIONS } from '../constants/constants';
 
 test('로또 구매 금액을 입력할 수 있다.', () => {
   const lottoGame = new LottoGame();
@@ -55,4 +55,18 @@ test('당첨번호와 보너스번호에 중복된 번호가 있을 시 오류�
   expect(() => {
     validator.isWinningNumbersInputValid([1, 2, 3, 4, 5, 6], 6);
   }).toThrow(ERROR_MESSAGE.HAS_DUPLICATED_BONUS_NUMBER);
+});
+
+test('당첨번호는 min,max 사이의 범위여야 한다.', () => {
+  const lottoGame = new LottoGame();
+  expect(() => {
+    validator.isWinningNumbersInputValid([1, 2, 3, 4, 5, 46], 6);
+  }).toThrow(ERROR_MESSAGE.HAS_OUT_OF_RANGE_NUMBER);
+});
+
+test('보너스 번호는 min,max 사이의 범위여야 한다.', () => {
+  const lottoGame = new LottoGame();
+  expect(() => {
+    validator.isWinningNumbersInputValid([1, 2, 3, 4, 5, 6], 46);
+  }).toThrow(ERROR_MESSAGE.HAS_OUT_OF_RANGE_NUMBER);
 });

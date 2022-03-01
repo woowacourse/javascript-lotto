@@ -35,12 +35,20 @@ export const validator = {
 
   isWinningNumbersInputValid(winningNumbers, bonusNumber) {
     if (!this.isWinningNumberNotDuplicated(winningNumbers)) {
-      console.log('3');
       throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_WINNING_NUMBER);
     }
     if (this.isBonusNumberDuplicated(winningNumbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_BONUS_NUMBER);
     }
+    if (!this.isWinningNumbersInRange(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.HAS_OUT_OF_RANGE_NUMBER);
+    }
+
+    if (!this.isBonusNumbersInRange(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.HAS_OUT_OF_RANGE_NUMBER);
+    }
+
+    return true;
   },
 
   isWinningNumberNotDuplicated(input) {
@@ -48,8 +56,17 @@ export const validator = {
   },
 
   isBonusNumberDuplicated(winningNumbers, bonusNumber) {
-    console.log(winningNumbers.includes(bonusNumber));
     return winningNumbers.includes(bonusNumber);
+  },
+
+  isWinningNumbersInRange(winningNumbers) {
+    return winningNumbers.every((e) => {
+      CONDITIONS.LOTTO_NUM_MIN <= e <= CONDITIONS.LOTTO_NUM_MIN;
+    });
+  },
+
+  isBonusNumbersInRange(bonusNumber) {
+    return CONDITIONS.LOTTO_NUM_MIN <= bonusNumber <= CONDITIONS.LOTTO_NUM_MIN;
   },
 };
 
