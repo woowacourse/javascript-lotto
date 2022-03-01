@@ -3,11 +3,13 @@ import { qs, qsAll, on, emit } from '../utils/helper.js';
 export default class UserLottoNumberView {
   constructor() {
     this.userLottoResultForm = qs('#user-lotto-form');
-    this.userLottoNumber = qsAll('.user-lotto-number');
-    this.userBonusNumber = qs('.user-bonus-number');
+    this.userLottoNumberInput = qsAll('.user-lotto-number');
+    this.userBonusNumberInput = qs('.user-bonus-number');
 
     this.lottoResultModal = qs('#user-lotto-result-modal');
     this.lottoModalCloseButton = qs('#user-lotto-modal-close');
+    this.winLottoResultElement = qsAll('.win-lotto-result');
+    this.winRateElement = qs('#user-lotto-winrate');
     this.lottoRestartButton = qs('#user-lotto-restart');
 
     this.bindEvents();
@@ -22,8 +24,8 @@ export default class UserLottoNumberView {
   handleUserLottoResult(event) {
     event.preventDefault();
     const lottoNumbers = {
-      lottoNumber: this.userLottoNumber.map((numberInput) => Number(numberInput.value)),
-      bonusNumber: [Number(this.userBonusNumber.value)]
+      lottoNumber: this.userLottoNumberInput.map((numberInput) => Number(numberInput.value)),
+      bonusNumber: [Number(this.userBonusNumberInput.value)]
     };
     emit(this.userLottoResultForm, '@userLottoNumbers', lottoNumbers);
   }
@@ -37,15 +39,13 @@ export default class UserLottoNumberView {
   }
 
   handleLottoRestart() {
-  
+    emit(this.lottoRestartButton, '@lottoRestart', '');
   }
 
   cleanLottoResultModal() {
-    this.winLottoResultElement = qsAll('.win-lotto-result');
-    this.winRateElement = qs('#user-lotto-winrate');
-    this.winLottoResultElement.forEach((lottoResultElement) => {
-      lottoResultElement.textContent = '';
-    });
+    this.winLottoResultElement.forEach((lottoResultElement) => lottoResultElement.textContent = '');
+    this.userLottoNumberInput.forEach((lottoInput) => lottoInput.value = '');
+    this.userBonusNumberInput.value = '';
     this.winRateElement.textContent = '';
   }
 

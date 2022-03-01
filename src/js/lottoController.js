@@ -20,6 +20,7 @@ export default class LottoController {
     on(this.lottoPurchaseResultView.showLottoToggle, '@lottoToggle', this.submitLottoToggle.bind(this));
     on(this.userLottoNumberView.userLottoResultForm, '@userLottoNumbers', this.submitUserLottoNumbers.bind(this));
     on(this.userLottoNumberView.lottoModalCloseButton, '@closeLottoModal', this.submitCloseLottoModal.bind(this));
+    on(this.userLottoNumberView.lottoRestartButton, '@lottoRestart', this.submitRestartLotto.bind(this));
   }
 
   submitLottoToggle() {
@@ -68,4 +69,12 @@ export default class LottoController {
   submitCloseLottoModal() {
     this.userLottoNumberView.hideLottoResultModal();
   }
+
+  submitRestartLotto() {
+    this.userLottoNumberView.hideLottoResultModal();
+    this.lottoPurchaseResultView.cleanLottoList();
+    this.lottoPurchaseInputView.cleanLottoPurchaseInput();
+    this.purchaseLottoModel.initPurchaseLotto();
+  }
+
 }

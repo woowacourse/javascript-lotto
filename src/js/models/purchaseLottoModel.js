@@ -1,11 +1,16 @@
 import { LOTTO } from '../utils/constants.js';
 
 export default class PurchaseLottoModel {
-  #purchaseMoney;
+  #purchaseMoney = 0;
   #lottoList = [];
 
+  initPurchaseLotto() {
+    this.#purchaseMoney = 0;
+    this.#lottoList = [];
+  }
+
   setPurchaseMoney(purchaseMoney) {
-    this.#purchaseMoney = purchaseMoney;
+    this.#purchaseMoney = Number(purchaseMoney);
   }
 
   setLottoList() {

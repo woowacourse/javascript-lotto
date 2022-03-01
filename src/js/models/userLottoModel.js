@@ -55,7 +55,7 @@ export default class UserLottoModel {
   }
 
   calculateReturnRate(purchaseMoney) {
-    return (this.#winLottoMoney - purchaseMoney) / purchaseMoney * 100;
+    return (this.#winLottoMoney - purchaseMoney) < 0 ? 0 : (this.#winLottoMoney - purchaseMoney) / purchaseMoney * 100;
   }
 
   getLottoResult() {

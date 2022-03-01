@@ -20,6 +20,8 @@ export default class lottoPurchaseResultView {
 
   cleanLottoList() {
     this.lottoList.innerHTML = '';
+    this.lottoPurchaseCount.textContent = '아직 구매하신 로또가 없습니다.';
+    this.showLottoToggle.checked = false;
   }
 
   renderLottoPurchaseCount(count) {
