@@ -2,7 +2,7 @@ import Lotto from './lotto.js';
 import {
   RANDOM_MIN,
   RANDOM_MAX,
-  NUMBER_LIST_LENGTH,
+  LOTTO_NUMBER_COUNT,
   LOTTO_PRICE,
 } from '../constants/constant.js';
 export const makeLottoList = lottoPrice => {
@@ -22,7 +22,7 @@ export const calculateGameCount = value => {
 
 const makeRandomNumberList = () => {
   return Array.from(
-    { length: NUMBER_LIST_LENGTH },
+    { length: LOTTO_NUMBER_COUNT },
     () => Math.floor(Math.random() * (RANDOM_MAX - RANDOM_MIN)) + RANDOM_MIN,
   );
 };
