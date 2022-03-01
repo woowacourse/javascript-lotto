@@ -13,4 +13,9 @@ export const SELECTOR = {
 
   WINNING_NUMBER_INPUT: '.winning-number-input',
   BONUS_NUMBER_INPUT: '.bonus-number-input',
+
+  WIN_STATISTICS: '#win-statistics',
+  STATISTICS_TABLE_BODY: '#statistics-table-body',
+  PROFIT_RATIO_TEXT: '#profit-ratio-text',
+  RESTART_BUTTON: '#restart-button',
 };

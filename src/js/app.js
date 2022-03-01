@@ -76,7 +76,9 @@ class LottoGameManager {
     }
   }
 
-  onClickRestartButton = () => {};
+  onClickRestartButton = () => {
+    this.start();
+  };
 
   start() {
     this.#initializeManagers();

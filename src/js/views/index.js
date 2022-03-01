@@ -10,8 +10,9 @@ class LottoViewManager {
   #resultView = null;
 
   constructor({ eventHandlers }) {
+    this.$app = findElement(SELECTOR.APP);
+    this.clear();
     this.#initializeViews(eventHandlers);
-    this.#initializeDOM();
   }
 
   #initializeViews({
@@ -20,14 +21,16 @@ class LottoViewManager {
     onSubmitResultForm,
     onClickRestartButton,
   }) {
-    const $app = findElement(SELECTOR.APP);
-    this.#containerView = new LottoContainerView({ $app, onSubmitChargeForm, onChangeAlignState });
-    this.#resultView = new LottoResultView({ $app, onSubmitResultForm, onClickRestartButton });
-  }
-
-  #initializeDOM() {
-    this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
-    this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
+    this.#containerView = new LottoContainerView({
+      $app: this.$app,
+      onSubmitChargeForm,
+      onChangeAlignState,
+    });
+    this.#resultView = new LottoResultView({
+      $app: this.$app,
+      onSubmitResultForm,
+      onClickRestartButton,
+    });
   }
 
   renderView({ newData, actionKey }) {
@@ -39,8 +42,12 @@ class LottoViewManager {
       this.#containerView.renderAlignState(newData);
     }
     if (actionKey === RENDER_VIEW_KEY.RENDER_STATISTICS) {
-      console.log(newData);
+      this.#resultView.renderStatisticsModal(newData);
     }
+  }
+
+  clear() {
+    this.$app.innerHTML = '';
   }
 }
 export default LottoViewManager;

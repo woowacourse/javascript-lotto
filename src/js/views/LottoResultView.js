@@ -1,5 +1,7 @@
 import { SELECTOR } from '../constants/selector';
+import { RANK_PRICE } from '../constants/win';
 import { findElement } from '../utils/dom';
+import { changeCurrencyFormat } from '../utils/util';
 
 class LottoResultView {
   constructor({ $app, ...eventHandlers }) {
@@ -16,14 +18,45 @@ class LottoResultView {
   #initializeDOM() {
     this.$winNumberInputSection = findElement(SELECTOR.WIN_NUMBER_INPUT_SECTION);
     this.$winNumberInputForm = findElement(SELECTOR.WIN_NUMBER_INPUT_FORM);
+
+    this.$winStatistics = findElement(SELECTOR.WIN_STATISTICS);
+    this.$statisticsTableBody = findElement(SELECTOR.STATISTICS_TABLE_BODY);
+    this.$profitRatioText = findElement(SELECTOR.PROFIT_RATIO_TEXT);
+    this.$restartButton = findElement(SELECTOR.RESTART_BUTTON);
   }
 
   #bindEventHandler({ onSubmitResultForm, onClickRestartButton }) {
     this.$winNumberInputForm.addEventListener('submit', onSubmitResultForm);
+    this.$restartButton.addEventListener('click', onClickRestartButton);
   }
 
   showWinNumberInputSection() {
     this.$winNumberInputSection.classList.replace('hide', 'show');
+  }
+
+  renderStatisticsModal({ statistics, profitRatio }) {
+    this.#showWinStatistics();
+    this.$statisticsTableBody.innerHTML = Object.keys(statistics).reduce((prev, currentKey) => {
+      const price = RANK_PRICE[currentKey];
+      const count = statistics[currentKey];
+
+      return prev + this.#generateStatisticsTableData(currentKey, price, count);
+    }, '');
+    this.$profitRatioText.innerHTML = this.#generateProfitRatioText(profitRatio);
+  }
+
+  #showWinStatistics() {
+    this.$winStatistics.classList.replace('hide', 'show');
+  }
+
+  #generateStatisticsTableData(currentKey, price, count) {
+    return `<tr><td>${currentKey}</td><td>${changeCurrencyFormat(
+      price
+    )}</td><td>${count}</td> </tr>`;
+  }
+
+  #generateProfitRatioText(profitRatio) {
+    return `당신의 총 수익률은 ${profitRatio}%입니다.`;
   }
 
   #basicTemplate = `<section id="win-number-input-section" aria-labelledby="win-number-input-title" class="hide">
@@ -55,7 +88,21 @@ class LottoResultView {
   <div class='modal-wrapper'>
     <div id="result-container"class="modal-container">
      <span class="modal-cancel-button">❌</span>
-     <div id="result-contents"></div>
+     <div id="result-contents">
+     <table>
+     <thead>
+      <tr>
+        <th>등수</th>
+        <th>당첨금</th>
+        <th>당첨갯수</th>
+      </tr>
+     </thead>
+     <tbody id="statistics-table-body">
+     </tbody>
+     </table>
+     <div id="profit-ratio-text"></div>
+     <button id="restart-button">다시 시작하기</button>
+     </div>
     </div>
   </div>
 </section>`;
