@@ -1,4 +1,4 @@
-import { LOTTO_RULES } from './constant/index.js';
+import { LOTTO_RULES, LOTTO_PRICE } from './constant/index.js';
 import { createRandomNumbers } from './utils/index.js';
 
 const lottoManager = {
@@ -11,6 +11,12 @@ const lottoManager = {
     }
 
     return this.lottos;
+  },
+  calculateLottoCount(fare) {
+    return Math.floor(fare / LOTTO_PRICE);
+  },
+  calculateRemainFare(fare) {
+    return fare % LOTTO_PRICE;
   },
 };
 
