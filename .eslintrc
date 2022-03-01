@@ -20,5 +20,5 @@
     "import/extensions": "off",
     "max-lines-per-function": ["error", 15]
   },
-  "ignorePatterns": ["app.test.js", "template.js"]
+  "ignorePatterns": ["*test.js", "template.js"]
 }
