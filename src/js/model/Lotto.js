@@ -12,8 +12,7 @@ export default class Lotto {
       .fill()
       .map((element, index) => index + 1);
 
-    shuffleNumber(candidate);
-    const pickedNumbers = candidate.slice(0, 6);
+    const pickedNumbers = shuffleNumber(candidate).slice(0, 6);
     this.lottoNumbers.push(pickedNumbers.join(', '));
   }
 }
