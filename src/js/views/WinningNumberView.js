@@ -11,10 +11,9 @@ export default class WinningNumberView {
   handleResultButtonClick() {
     try {
       this.winningNumbers.forEach((element) => {
-        const inputNumber = element.value;
+        const inputNumber = element.value.trim();
         validateWinningNumber(inputNumber);
       });
-      console.log("click");
     } catch (error) {
       alert(error);
     }

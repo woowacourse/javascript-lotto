@@ -16,3 +16,7 @@ export const isValidTypeNumber = (number) => {
   // eslint-disable-next-line no-restricted-globals
   return isNaN(number);
 };
+
+export const isValidEmptyValue = (number) => {
+  return number.length === 0;
+};

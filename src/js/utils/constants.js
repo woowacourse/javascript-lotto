@@ -11,6 +11,8 @@ export const LOTTO_NUMBER = {
 };
 
 export const ERROR_MESSAGES = {
-  MINIMUM_AMOUNT_IS_SMALL: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
-  NOT_DIVIDED_INTO_THOUSAND: `금액은 ${AMOUNT.UNIT}원 단위로 입력해주세요.`,
+  MINIMUM_AMOUNT_IS_SMALL: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해 주세요.`,
+  NOT_DIVIDED_INTO_THOUSAND: `금액은 ${AMOUNT.UNIT}원 단위로 입력해 주세요.`,
+  NOT_A_NUMBER: "당첨 번호는 숫자만 입력해 주세요.",
+  EMPTY_CAN_NOT_ENTERED: "당첨 번호를 전부 다 입력해 주세요",
 };
