@@ -50,3 +50,21 @@ describe('구입한 금액에 맞게 로또가 구매되는지 확인', () => {
     expect(lottoGame.lottoWallet[0].numbers.length).toBe(CONDITIONS.LOTTO_SIZE);
   });
 });
+
+test('당첨 번호(6개)와 보너스 번호(1개)를 입력받는다.', () => {
+  const lottoGame = new LottoGame();
+  lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE);
+  lottoGame.buyLotto();
+  lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+  expect(lottoGame.winningNumbers.size).toBe(6);
+  expect(lottoGame.bonusNumber).toBe(7);
+});
+
+test('당첨 번호와 보너스 번호가 중복되면 에러를 throw한다.', () => {
+  const lottoGame = new LottoGame();
+  lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE);
+  lottoGame.buyLotto();
+  expect(() => {
+    lottoGame.getWinningNumbers({ win1: 1, win2: 1, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+  }).toThrowError('당첨 번호는 중복될 수 없습니다.');
+});
