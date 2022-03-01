@@ -1,6 +1,6 @@
 import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue, userLottoNumberCorrectRange, userLottoNumberOverlap, userLottoNumberPositiveValue } from '../utils/validator.js';
-import LottoModel from '../models/pruchaseLottoModel.js';
 import { ERROR_MESSAGE } from '../utils/constants.js';
+import PurchaseLottoModel from '../models/purchaseLottoModel.js';
 
 describe('구입금액 테스트', () => {
 
@@ -30,29 +30,17 @@ describe('구입금액 테스트', () => {
 });
 
 test('구입한 로또 금액만큼 로또 개수를 확인할 수 있어야 한다', () => {
-  const lottoModel = new LottoModel();
-  const lottoCount = 4;
+  const purchaseLottoModel = new PurchaseLottoModel();
+  const purchaseMoney = 4000;
 
-  lottoModel.setLottoList(lottoCount);
+  purchaseLottoModel.setPurchaseMoney(purchaseMoney);
+  purchaseLottoModel.setLottoList();
 
-  const lottoResult = lottoModel.getLottoList();
+  const lottoResult = purchaseLottoModel.getLottoList();
   const isCorrectLottoLength = lottoResult.every((result) => result.size === 6);
-
-  expect(lottoResult).toHaveLength(lottoCount);
+  expect(lottoResult).toHaveLength(purchaseMoney / 1000);
   expect(isCorrectLottoLength).toBe(true);
 })
-
-function getLottoNumbersResult(lottoResult, userLottoNumber) {
-  return lottoResult
-    .map((numbers) => Array.from(numbers))
-    .map((numbers) => numbers.filter((numbers) => userLottoNumber.includes(numbers)));
-}
-
-function getLottoBonusResult(lottoResult, userBonusNumber) {
-  return lottoResult
-    .map((numbers) => Array.from(numbers))
-    .map((numbers) => numbers.filter((numbers) => userBonusNumber.includes(numbers)));
-}
 
 function countCorrectLotto(correctNumber, correctLottoArray, winLottoMoney) {
   switch (correctNumber) {
@@ -84,6 +72,18 @@ function distinguishLottoNumber(lottoNumbersResult, lottoBonusResult, lottoResul
     .map((numbers) => numbers.length)
     .map((correctNumber, index) => correctNumber === 5 && lottoBonusResult[index].length > 0 ?  correctNumber = 5.5 : correctNumber)
     .map((correctNumber) => countCorrectLotto(correctNumber, lottoResult, winLottoMoney));
+}
+
+function getLottoNumbersResult(randomLotto, userLottoNumber) {
+  return randomLotto
+    .map((numbers) => Array.from(numbers))
+    .map((numbers) => numbers.filter((number) => userLottoNumber.includes(number)));
+}
+
+function getLottoBonusResult(randomLotto, userBonusNumber) {
+  return randomLotto
+    .map((numbers) => Array.from(numbers))
+    .map((numbers) => numbers.filter((number) => userBonusNumber.includes(number)));
 }
 
 test('유저가 구입한 로또와 유저가 수동으로 입력한 번호를 비교해서 당첨 통계와 수익률을 알 수 있어야 한다.', () => {
