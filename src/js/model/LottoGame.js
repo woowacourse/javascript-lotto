@@ -7,7 +7,7 @@ export class LottoGame {
     this.lottoWallet = [];
     this.winningNumbers;
     this.bonusNumber;
-    // 당첨 번호
+    this.winningStatus = new Array(5).fill(0);
   }
 
   insertMoney = (moneyInput) => (this.moneyInput = moneyInput);
@@ -29,9 +29,36 @@ export class LottoGame {
     this.winningNumbers = checkLotto;
     this.bonusNumber = bonusNumber;
   }
-  // 보유한 로또들의 일치 갯수를 알 수 배열로 확인
 
   // 3, 4, 5, 5+보너스, 6개수를 배열로 반환
+  compareLottos() {
+    this.lottoWallet.forEach((lotto, idx) => {
+      let count = 0;
+      let bonus = 0;
+      lotto.numbers.forEach((number, idx) => {
+        this.winningNumbers.has(number) ? count++ : undefined;
+        this.bonusNumber === number ? bonus++ : undefined;
+      });
+      this.getLottoStatus(count, bonus);
+    });
+  }
 
+  getLottoStatus(count, bonus) {
+    if (count === 3) {
+      this.winningStatus[0]++;
+    }
+    if (count === 4) {
+      this.winningStatus[1]++;
+    }
+    if (count === 5 && bonus === 0) {
+      this.winningStatus[2]++;
+    }
+    if (count === 5 && bonus === 1) {
+      this.winningStatus[3]++;
+    }
+    if (count === 6) {
+      this.winningStatus[4]++;
+    }
+  }
   // 수익률 계산
 }

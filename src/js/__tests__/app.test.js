@@ -68,3 +68,15 @@ test('당첨 번호와 보너스 번호가 중복되면 에러를 throw한다.',
     lottoGame.getWinningNumbers({ win1: 1, win2: 1, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
   }).toThrowError('당첨 번호는 중복될 수 없습니다.');
 });
+
+test('당첨 통계를 위한 배열을 낼 수 있다.', () => {
+  const lottoGame = new LottoGame();
+  lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE * 3);
+  lottoGame.buyLotto();
+  lottoGame.lottoWallet[0].numbers = [1, 2, 3, 4, 5, 6];
+  lottoGame.lottoWallet[1].numbers = [1, 2, 3, 14, 15, 16];
+  lottoGame.lottoWallet[2].numbers = [1, 2, 3, 4, 5, 7];
+  lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+  lottoGame.compareLottos();
+  expect(lottoGame.winningStatus).toEqual([1, 0, 0, 1, 1]);
+});
