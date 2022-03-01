@@ -22,6 +22,11 @@ export default class LottoApp {
     this.bindEvent();
   }
 
+  onClickExitButton() {
+    this.$app.removeChild(getElement('#lotto-result-section'));
+    this.$app.removeChild(getElement('#cover-the-background'));
+  }
+
   onSubmitLottoResultButton() {
     render(this.$app, createTemplate.lottoResultSection());
   }
@@ -91,6 +96,13 @@ export default class LottoApp {
       type: 'click',
       selector: '#result-checking-button',
       callback: this.onSubmitLottoResultButton.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: '#exit-button',
+      callback: this.onClickExitButton.bind(this),
     });
   }
 }
