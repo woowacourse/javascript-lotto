@@ -90,9 +90,6 @@ h1 {
   width: 100%;
 }
 
-.lotto-list__section-display-none {
-  display: none;
-}
 
 .lotto-list__header {
   display: flex;
@@ -155,7 +152,6 @@ h1 {
   border-radius: 34px;
   width: 34px;
   height: 14px;
-  /* box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0); */
 }
 
 .slider.round:before {
@@ -204,4 +200,39 @@ h1 {
 
 .lotto-lists.unfold .lotto-list__numbers {
   display: inline;
+}
+
+.winning-numbers__section{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.winning-numbers__form{
+  display: grid;
+  width: 100%;  
+  margin-top: 10px;
+  grid-template-areas:"a a"
+                      "b b";
+}
+
+.winning-numbers__inputs{
+  grid-area: "a";
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-numbers__input {
+  width: 34px;
+  height: 36px;
+}
+
+.winning-numbers__button{
+  grid-area: "b";
+  width: 100%;
+}
+
+.winning-numbers__section-display-none,
+.lotto-list__section-display-none {
+  display: none;
 }
