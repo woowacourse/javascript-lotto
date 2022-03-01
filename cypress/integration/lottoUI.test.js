@@ -102,7 +102,7 @@ it('결과 확인하기 버튼을 클릭하면 당첨 통계 모달을 확인할
 
   cy.get('#result-checking-button').click();
 
-  cy.get('#lotto-result-section').should('be.visible');
+  cy.get('#lotto-result-section').should('be.exist');
 });
 
 it('당첨 통계 모달에 있는 엑스표 버튼을 클릭하면 당첨 통계 모달이 닫힌다.', () => {
@@ -114,5 +114,5 @@ it('당첨 통계 모달에 있는 엑스표 버튼을 클릭하면 당첨 통�
   cy.get('#result-checking-button').click();
   cy.get('#exit-button').click();
 
-  cy.get('#lotto-result-section').should('be.not.visible');
+  cy.get('#lotto-result-section').should('be.not.exist');
 });
