@@ -1,13 +1,8 @@
 import LottoGame from "../model/LottoGame.js";
 import LottoGameView from "../views/LottoGameView.js";
 import { $, $$ } from "../utils/dom.js";
-import { ERROR_MESSAGES, SELECTOR, AMOUNT } from "../utils/constants.js";
-import {
-  isValidMinimumAmount,
-  isValidAmountUnit,
-  isValidWinningNumbers,
-  isDuplicatedNumbers,
-} from "../utils/validation.js";
+import { SELECTOR, AMOUNT } from "../utils/constants.js";
+import { verifyPurchaseAmount, verifyWinningNumbers } from "../utils/validation.js";
 
 export default class LottoController {
   constructor() {
@@ -39,18 +34,15 @@ export default class LottoController {
   #onSubmitPurchase(e) {
     e.preventDefault();
 
-    const purchaseAmount = Number(this.purchaseInput.value);
-    if (!isValidMinimumAmount(purchaseAmount)) {
-      alert(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
-      return;
+    try {
+      const purchaseAmount = Number(this.purchaseInput.value);
+      verifyPurchaseAmount(purchaseAmount);
+      const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
+      this.lottoGameModel.generateLottoTicket(lottoCount);
+      this.#handleLottoNumber(lottoCount);
+    } catch ({ message }) {
+      alert(message);
     }
-    if (!isValidAmountUnit(purchaseAmount)) {
-      alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
-      return;
-    }
-    const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
-    this.lottoGameModel.generateLottoTicket(lottoCount);
-    this.#handleLottoNumber(lottoCount);
   }
 
   #onClickSwitch() {
@@ -71,13 +63,10 @@ export default class LottoController {
     const winningBonusNumber = Number(this.bonusNumberInput.value);
     const totalNumbers = [...winningNumbers, winningBonusNumber];
 
-    if (!isValidWinningNumbers(totalNumbers)) {
-      alert(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
-      return;
-    }
-    if (isDuplicatedNumbers(totalNumbers)) {
-      alert(ERROR_MESSAGES.DUPLICATED_LOTTO_NUMBER);
-      return;
+    try {
+      verifyWinningNumbers(totalNumbers);
+    } catch ({ message }) {
+      alert(message);
     }
   }
 }
