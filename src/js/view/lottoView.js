@@ -37,14 +37,7 @@ class LottoView {
   };
 
   #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
-    const { classList: lottoGridClassList } = this.lottoGrid;
-    if (isVisible) {
-      lottoGridClassList.add(CLASSNAMES.ONE_COLUMN_GRID_CLASSNAME);
-      lottoGridClassList.remove(CLASSNAMES.HIDE_NUMBERS_CLASSNAME);
-      return;
-    }
-    lottoGridClassList.remove(CLASSNAMES.ONE_COLUMN_GRID_CLASSNAME);
-    lottoGridClassList.add(CLASSNAMES.HIDE_NUMBERS_CLASSNAME);
+    this.lottoGrid.className = `lotto-grid${!isVisible && ' hide-numbers'}`;
   };
 
   disableCashInput() {
