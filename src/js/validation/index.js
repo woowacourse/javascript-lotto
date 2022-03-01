@@ -13,6 +13,8 @@ export const isNotOverlapped = (lottoNumbers) => {
   return lottoNumbersSet.size === lottoNumbers.length;
 };
 
+export const isValidCount = (lottoNumbers) => lottoNumbers.length === LOTTO_RULES.BALL_COUNT;
+
 export const validator = {
   validateFare: (fare) => {
     if (!isEnoughFare(fare)) {

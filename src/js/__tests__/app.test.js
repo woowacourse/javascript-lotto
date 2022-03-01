@@ -1,5 +1,5 @@
 import lottoManager from '../lottoManager.js';
-import { isEnoughFare, isValidRange, isNotOverlapped } from '../validation/index.js';
+import { isEnoughFare, isValidRange, isNotOverlapped, isValidCount } from '../validation/index.js';
 import { createRandomNumbers } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';
 
@@ -78,8 +78,6 @@ describe(`중복되지 않는 1 ~ 45 사이의 숫자를 6개 생성한다.`, ()
     ).toBe(LOTTO_RULES.BALL_COUNT);
   });
 });
-
-const isValidCount = (lottoNumbers) => lottoNumbers.length === LOTTO_RULES.BALL_COUNT;
 
 describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개의 숫자여야 한다.', () => {
   const previousWinningNumber = [7, 15, 30, 37, 39, 44];
