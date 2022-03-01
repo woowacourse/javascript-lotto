@@ -1,6 +1,7 @@
 import Lotto from "../model/Lotto.js";
 import { $, disableElement, enableElement } from "../utils/dom.js";
 import { validatePurchaseAmount } from "../utils/validation.js";
+import WinningNumberView from "./WinningNumberView.js";
 
 export default class LottoGameView {
   constructor() {
@@ -29,6 +30,8 @@ export default class LottoGameView {
     this.renderPurchaseInfomation();
     this.renderLottoIcons();
     this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
+    new WinningNumberView();
+    // winningNumberView.handleWinningNumber();
   }
 
   manageElement() {

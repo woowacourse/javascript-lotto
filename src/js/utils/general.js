@@ -11,3 +11,8 @@ export const isValidMinimumAmount = (amount) => {
 export const isValidAmountUnit = (amount) => {
   return amount % AMOUNT.UNIT !== 0;
 };
+
+export const isValidTypeNumber = (number) => {
+  // eslint-disable-next-line no-restricted-globals
+  return isNaN(number);
+};
