@@ -71,17 +71,17 @@ class LottoView {
   }
 
   #generateLottoElementsArray(lottos) {
-    return lottos.map((lotto) => this.#generateLottoElement(lotto));
+    return lottos.map((lottoNumberSet) => this.#generateLottoElement(lottoNumberSet));
   }
 
-  #generateLottoElement(lotto) {
+  #generateLottoElement(lottoNumberSet) {
     const lottoElement = createElementWithClassName('div', CLASSNAMES.LOTTO_CLASSNAME);
 
     const lottoImage = createElementWithClassName('p', CLASSNAMES.LOTTO_IMAGE_CLASSNAME);
     lottoImage.textContent = LOTTO_IMAGE;
 
     const lottoNumbers = createElementWithClassName('p', CLASSNAMES.LOTTO_NUMBERS_CLASSNAME);
-    lottoNumbers.textContent = Array.from(lotto.lottoNumberSet).join(', ');
+    lottoNumbers.textContent = Array.from(lottoNumberSet).join(', ');
 
     lottoElement.append(lottoImage, lottoNumbers);
     return lottoElement;

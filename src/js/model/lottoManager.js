@@ -21,7 +21,7 @@ class LottoManager {
     this.deliverMessage({
       message: 'LOTTO_GENERATE_COMPLETE',
       to: 'view',
-      params: [...this.lottos],
+      params: this.lottos.map(({ lottoNumberSet }) => lottoNumberSet),
     });
   }
 
