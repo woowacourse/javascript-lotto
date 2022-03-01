@@ -13,6 +13,8 @@ export class View {
     this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoStatusContainer = document.getElementById('lotto-status-container');
     this.lottoQuantity = document.getElementById('lotto-quantity');
+    this.showResultBtn = document.getElementById('confirm-result-label');
+    this.bonusNumber = document.getElementById('winning-number7');
   }
 
   showLottoStatusContainer() {
@@ -61,5 +63,16 @@ export class View {
   lottosQuantityTemplate(lottoWallet) {
     this.lottoQuantity.textContent = '';
     this.lottoQuantity.insertAdjacentHTML('afterbegin', '🎟️ '.repeat(lottoWallet.length));
+  }
+
+  getWinningNumbersInput() {
+    return {
+      win1: document.getElementById('winning-number1').value,
+      win2: document.getElementById('winning-number2').value,
+      win3: document.getElementById('winning-number3').value,
+      win4: document.getElementById('winning-number4').value,
+      win5: document.getElementById('winning-number5').value,
+      win6: document.getElementById('winning-number6').value,
+    };
   }
 }

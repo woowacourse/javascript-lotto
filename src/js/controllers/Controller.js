@@ -9,6 +9,7 @@ export class Controller {
     this.lottoGame = new LottoGame();
     this.bindPurchaseEvent();
     this.bindToggleEvent();
+    this.bindShowResultEvent();
   }
 
   bindPurchaseEvent() {
@@ -18,7 +19,9 @@ export class Controller {
   bindToggleEvent() {
     this.view.toggleBtn.addEventListener('click', this.#controllToggleBtn.bind(this));
   }
-
+  bindShowResultEvent() {
+    this.view.showResultBtn.addEventListener('click', this.#showLottoResult.bind(this));
+  }
   #purchaseLotto(e) {
     try {
       e.preventDefault();
@@ -46,5 +49,23 @@ export class Controller {
     }
     this.view.lottoIcons.classList.add('hidden');
     this.view.lottoQuantity.classList.remove('hidden');
+  }
+
+  #showLottoResult(e) {
+    e.preventDefault();
+    try {
+      validator.isWinningInputValid(
+        this.view.getWinningNumbersInput(),
+        this.view.bonusNumber.value
+      );
+      this.lottoGame.getWinningNumbers(
+        this.view.getWinningNumbersInput(),
+        this.view.bonusNumber.value
+      );
+      this.lottoGame.compareLottos();
+      this.lottoGame.calculateYield();
+    } catch (err) {
+      alert(err.message);
+    }
   }
 }

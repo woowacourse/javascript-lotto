@@ -65,8 +65,8 @@ test('당첨 번호와 보너스 번호가 중복되면 에러를 throw한다.',
   lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE);
   lottoGame.buyLotto();
   expect(() => {
-    lottoGame.getWinningNumbers({ win1: 1, win2: 1, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
-  }).toThrowError('당첨 번호는 중복될 수 없습니다.');
+    validator.isWinningInputValid({ win1: 1, win2: 1, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+  }).toThrowError(ERROR_MESSAGE.WINNGINGS_NO_OVERLAPPED);
 });
 
 test('당첨 통계를 위한 배열을 낼 수 있다.', () => {

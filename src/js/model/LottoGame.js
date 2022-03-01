@@ -23,15 +23,11 @@ export class LottoGame {
 
   getWinningNumbers(winningNumbers, bonusNumber) {
     const checkLotto = new Set(Object.values(winningNumbers));
-    if (checkLotto.size !== CONDITIONS.LOTTO_SIZE || checkLotto.has(bonusNumber)) {
-      throw new Error('당첨 번호는 중복될 수 없습니다.');
-    }
     this.winningNumbers = checkLotto;
     this.bonusNumber = bonusNumber;
     this.yield;
   }
 
-  // 3, 4, 5, 5+보너스, 6개수를 배열로 반환
   compareLottos() {
     this.lottoWallet.forEach((lotto, idx) => {
       let count = 0;
@@ -40,11 +36,11 @@ export class LottoGame {
         this.winningNumbers.has(number) ? count++ : undefined;
         this.bonusNumber === number ? bonus++ : undefined;
       });
-      this.getLottoStatus(count, bonus);
+      this.#getLottoStatus(count, bonus);
     });
   }
 
-  getLottoStatus(count, bonus) {
+  #getLottoStatus(count, bonus) {
     if (count === 3) {
       this.winningStatus[0]++;
     }
