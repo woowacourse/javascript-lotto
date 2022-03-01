@@ -86,6 +86,60 @@ const createTemplate = {
     </section>
   `;
   },
+  lottoResultSection() {
+    return `
+    <div id="cover-the-background"></div>
+    <section id="lotto-result-section">
+      <button id="exit-button"></button>
+      <h2 hidden>구매한 로또 결과</h2>
+      <table>
+      <caption id="lotto-result-table-caption">
+        🏆 당첨 통계 🏆
+      </caption>
+      <thead>
+          <tr>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td>n개</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">당신의 총 수익률은 %입니다.</td>
+          </tr>
+        </tfoot>
+      </table>
+      <button id="restart-button">다시 시작하기</button>
+    </section>
+    `;
+  },
 };
 
 export default createTemplate;

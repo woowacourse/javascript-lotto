@@ -17,11 +17,13 @@ export default class LottoApp {
   constructor(app) {
     this.lotto = new Lotto();
     this.$app = getElement(app);
-    this.purchasedLottoList = [];
 
     render(this.$app, createTemplate.paymentSection());
-
     this.bindEvent();
+  }
+
+  onSubmitLottoResultButton() {
+    render(this.$app, createTemplate.lottoResultSection());
   }
 
   onClickToggleButton() {
@@ -44,7 +46,7 @@ export default class LottoApp {
     });
   }
 
-  onSubmitPayment() {
+  onSubmitPaymentButton() {
     const $paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
 
     try {
@@ -74,7 +76,7 @@ export default class LottoApp {
       appElement: this.$app,
       type: 'click',
       selector: SELECTOR.PAYMENT_BUTTON,
-      callback: this.onSubmitPayment.bind(this),
+      callback: this.onSubmitPaymentButton.bind(this),
     });
 
     bindEventListener({
@@ -82,6 +84,13 @@ export default class LottoApp {
       type: 'click',
       selector: SELECTOR.LOTTO_LIST_TOGGLE_BUTTON,
       callback: this.onClickToggleButton.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: '#result-checking-button',
+      callback: this.onSubmitLottoResultButton.bind(this),
     });
   }
 }

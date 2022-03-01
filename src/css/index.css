@@ -17,6 +17,7 @@ body {
   align-items: center;
 
   background-color: #e5e5e5;
+  height: 100vh;
 }
 
 /* ****** */
@@ -67,15 +68,17 @@ button {
   display: flex;
   flex-direction: column;
 
-  margin-top: 10px;
-  padding: 52px 16px;
+  position: relative;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: white;
 
-  min-height: 727px;
+  height: 727px;
   width: 414px;
+  padding: 52px 16px;
+
+  overflow: scroll;
 }
 
 h1 {
@@ -281,4 +284,111 @@ h1 {
 
   width: 34px;
   height: 14px;
+}
+
+/* ******************** */
+/* lotto-result-section */
+/* ******************** */
+#lotto-result-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 350px;
+  height: 500px;
+
+  padding: 0 16px;
+
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+#lotto-result-section #exit-button {
+  background-image: url('../../images/exit_button.svg');
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 14px;
+  height: 14px;
+}
+
+#lotto-result-section table {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+#lotto-result-section table #lotto-result-table-caption {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+
+  margin: 40px 0 32px;
+}
+
+#lotto-result-section table thead {
+  font-weight: 600;
+}
+
+#lotto-result-section table tr {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+#lotto-result-section table th,
+#lotto-result-section table td {
+  text-align: center;
+  padding: 8px 0;
+}
+
+#lotto-result-section table tfoot td {
+  font-weight: 600;
+  padding: 16px 0 0;
+}
+
+#lotto-result-section table tfoot tr {
+  border-bottom: none;
+}
+
+#lotto-result-section #restart-button {
+  display: block;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+
+  width: 152px;
+  height: 36px;
+
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+
+  color: #fff;
+  background-color: #00bcd4;
+
+  margin: 32px auto 49px;
+}
+
+/* ******************** */
+/* cover-the-background */
+/* ******************** */
+#cover-the-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 727px;
+  width: 414px;
+
+  background-color: rgba(0, 0, 0, 0.5);
 }
