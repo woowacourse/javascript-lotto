@@ -37,6 +37,7 @@ export default class LottoController {
     try {
       const purchaseAmount = Number(this.purchaseInput.value);
       verifyPurchaseAmount(purchaseAmount);
+
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
       this.lottoGameModel.generateLottoTicket(lottoCount);
       this.#handleLottoNumber(lottoCount);
@@ -60,11 +61,11 @@ export default class LottoController {
     const winningNumbers = Array.from(this.winningNumberInputs).map(($input) =>
       Number($input.value),
     );
-    const winningBonusNumber = Number(this.bonusNumberInput.value);
-    const totalNumbers = [...winningNumbers, winningBonusNumber];
-
+    const bonusNumber = Number(this.bonusNumberInput.value);
     try {
-      verifyWinningNumbers(totalNumbers);
+      verifyWinningNumbers([...winningNumbers, bonusNumber]);
+      this.lottoGameModel.generateResult(winningNumbers, bonusNumber);
+      // todo: modal 띄워서 결과를 표시
     } catch ({ message }) {
       alert(message);
     }

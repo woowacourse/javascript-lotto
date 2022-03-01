@@ -28,3 +28,11 @@ export const ERROR_MESSAGES = {
   INVALID_LOTTO_RANGE: `당첨 번호는 ${LOTTO_NUMBER.RANGE_MIN}~${LOTTO_NUMBER.RANGE_MAX} 사이의 숫자로 입력해주세요.`,
   DUPLICATED_LOTTO_NUMBER: "당첨 번호는 중복 없이 입력해주세요.",
 };
+
+export const convertCountToString = {
+  3: "3개",
+  4: "4개",
+  5: "5개",
+  bonus: "5개 + 보너스볼",
+  6: "6개",
+};

@@ -33,10 +33,10 @@ export default class LottoGameView {
   }
 
   renderLottoNumbers(lottos) {
-    lottos.forEach(({ numbers }) => {
+    lottos.forEach((lotto) => {
       this.lottoNumberList.insertAdjacentHTML(
         "beforeend",
-        `<li>🎟️<span class="lotto-numbers">${numbers}</span></li>`,
+        `<li>🎟️<span class="lotto-numbers">${lotto}</span></li>`,
       );
     });
   }

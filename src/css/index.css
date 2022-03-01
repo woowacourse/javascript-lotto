@@ -13,6 +13,17 @@
   margin: 0 auto;
 }
 
+/* input number arrow 제거 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .lotto-title {
   font-size: 34px;
 }
@@ -108,6 +119,8 @@
   height: 36px;
   border-radius: 4px;
   border: 1px solid var(--color-light-gray);
+  text-align: center;
+  -webkit-appearance: none;
 }
 
 .number-input-container {
