@@ -95,11 +95,14 @@ describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개�
   });
 });
 
+const isNotIncludeWinningNumbers = (winnerNumbers, bonumsNumber) =>
+  !winnerNumbers.includes(bonumsNumber);
+
 describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않는 1 ~ 45 사이의 숫자여야 한다.', () => {
   test('보너스 당첨 번호는 지난주 당첨 번호에 속해있으면 안된다.', () => {
     const previousWinningNumber = [7, 15, 30, 37, 39, 44];
     const bonumsNumber = 18;
 
-    expect(isNotContainedWinningNumber(previousWinningNumber, bonumsNumber)).toBeTruthy();
+    expect(isNotIncludeWinningNumbers(previousWinningNumber, bonumsNumber)).toBeTruthy();
   });
 });
