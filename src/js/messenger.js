@@ -1,7 +1,7 @@
 class Messenger {
-  constructor(view, model) {
+  constructor(view, machine) {
     this.view = view;
-    this.model = model;
+    this.machine = machine;
   }
 
   deliverMessage = ({ message, to, params }) => {
@@ -10,10 +10,10 @@ class Messenger {
   };
 
   deliveryManual = {
-    model: {
+    machine: {
       INPUT_CASH: (cash) => {
         try {
-          this.model.buyLotto(cash);
+          this.machine.buyLotto(cash);
         } catch (error) {
           alert(error.message);
         }

@@ -1,16 +1,16 @@
 import LottoView from './view/lottoView';
-import LottoManager from './model/lottoManager';
+import LottoMachine from './machine/lottoMachine';
 
 import Messenger from './messenger';
 
 const lottoApp = () => {
   const lottoView = new LottoView();
-  const lottoManager = new LottoManager();
+  const lottoMachine = new LottoMachine();
 
-  const messenger = new Messenger(lottoView, lottoManager);
+  const messenger = new Messenger(lottoView, lottoMachine);
 
   lottoView.assignMessenger(messenger.deliverMessage);
-  lottoManager.assignMessenger(messenger.deliverMessage);
+  lottoMachine.assignMessenger(messenger.deliverMessage);
 };
 
 export default lottoApp;

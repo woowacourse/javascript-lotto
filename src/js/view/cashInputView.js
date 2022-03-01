@@ -15,7 +15,7 @@ class CashInputView {
 
   #onCashInputButtonClick = () => {
     const { value: cashInput } = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
-    this.deliverMessage({ message: 'INPUT_CASH', to: 'model', params: cashInput });
+    this.deliverMessage({ message: 'INPUT_CASH', to: 'machine', params: cashInput });
   };
 }
 
