@@ -36,23 +36,28 @@ export default class WinningNumberView {
     this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
 
     const winningNumberForm = document.getElementById('winning-number-form');
-    const winningNumberInputElements = document.getElementsByClassName(
+    this.winningNumberInputElements = document.getElementsByClassName(
       'winning-number-input',
     );
 
     winningNumberForm.addEventListener('submit', e => {
       e.preventDefault();
 
-      const winningNumberList = Array.from(winningNumberInputElements).map(el =>
-        el.value === '' ? null : convertToNumber(el.value),
+      const winningNumberList = Array.from(this.winningNumberInputElements).map(
+        el => (el.value === '' ? null : convertToNumber(el.value)),
       );
 
       try {
         validateWinningNumberList(winningNumberList);
       } catch (error) {
+        this.resetInputElementsValue();
         alert(error);
       }
     });
+  }
+
+  resetInputElementsValue() {
+    Array.from(this.winningNumberInputElements).forEach(el => (el.value = ''));
   }
 
   resetScreen() {
