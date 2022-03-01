@@ -35,12 +35,8 @@ class LottoViewManager {
   }
 
   #initializeViews() {
-    this.#containerView = new LottoContainerView({
-      $app: this.$app,
-    });
-    this.#resultView = new LottoResultView({
-      $app: this.$app,
-    });
+    this.#containerView = new LottoContainerView({ $app: this.$app });
+    this.#resultView = new LottoResultView({ $app: this.$app });
   }
 
   #clear() {
@@ -52,13 +48,13 @@ class LottoViewManager {
     onChangeAlignState,
     onSubmitResultForm,
     onClickRestartButton,
-    onClickModalCancelButton,
+    onClickModal,
   }) {
     this.#containerView.bindEventHandler({ onSubmitChargeForm, onChangeAlignState });
     this.#resultView.bindEventHandler({
       onSubmitResultForm,
       onClickRestartButton,
-      onClickModalCancelButton,
+      onClickModal,
     });
   }
 }

@@ -2,3 +2,6 @@
 export const findElement = (selector) => document.querySelector(selector);
 
 export const parseValueFromNode = (node) => node.value;
+
+export const isCancelModal = (className) =>
+  className.includes('modal-cancel-button') || className.includes('modal-wrapper');

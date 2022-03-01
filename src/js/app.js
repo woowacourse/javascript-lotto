@@ -2,6 +2,7 @@ import { SELECTOR } from './constants/selector';
 import LottoViewManager from './views';
 import LottoDomainManager from './domains';
 import { DOMAIN_ACTION, VIEW_ACTION } from './constants/actions';
+import { isCancelModal } from './utils/dom';
 
 class LottoGameManager {
   #lottoDomainManager = null;
@@ -17,7 +18,7 @@ class LottoGameManager {
         onChangeAlignState: this.onChangeAlignState,
         onSubmitResultForm: this.onSubmitResultForm,
         onClickRestartButton: this.onClickRestartButton,
-        onClickModalCancelButton: this.onClickModalCancelButton,
+        onClickModal: this.onClickModal,
       },
       action: VIEW_ACTION.BIND_EVENT_HANDLER,
     });
@@ -85,10 +86,12 @@ class LottoGameManager {
     this.start();
   };
 
-  onClickModalCancelButton = () => {
-    this.#lottoViewManager.work({
-      action: VIEW_ACTION.MODAL_CANCEL,
-    });
+  onClickModal = ({ target: { className } }) => {
+    if (isCancelModal(className)) {
+      this.#lottoViewManager.work({
+        action: VIEW_ACTION.MODAL_CANCEL,
+      });
+    }
   };
 
   start() {

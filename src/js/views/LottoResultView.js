@@ -25,10 +25,10 @@ class LottoResultView {
     this.$modalCancelButton = findElement(SELECTOR.MODAL_CANCEL_BUTTON);
   }
 
-  bindEventHandler({ onSubmitResultForm, onClickRestartButton, onClickModalCancelButton }) {
+  bindEventHandler({ onSubmitResultForm, onClickRestartButton, onClickModal }) {
     this.$winNumberInputForm.addEventListener('submit', onSubmitResultForm);
     this.$restartButton.addEventListener('click', onClickRestartButton);
-    this.$modalCancelButton.addEventListener('click', onClickModalCancelButton);
+    this.$winStatistics.addEventListener('click', onClickModal);
   }
 
   showWinNumberInputSection() {
@@ -91,8 +91,8 @@ class LottoResultView {
 <section id="win-statistics" aria-labelledby="win-statistics-title" class="hide">
   <h1 id="win-statistics-title" hidden>당첨 통계 출력</h1>
   <div class='modal-wrapper'>
-    <div id="result-container"class="modal-container">
-     <span class="modal-cancel-button">❌</span>
+  <div id="result-container"class="modal-container">
+  <span class="modal-cancel-button">❌</span>
      <div id="result-contents">
      <table  class=".result-container-section">
      <thead>
