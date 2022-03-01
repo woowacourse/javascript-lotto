@@ -235,3 +235,33 @@ test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () =
     testRateOfReturn
   );
 });
+
+// 1 ~ 45 사이의 숫자인지 체크
+describe('당첨 번호, 보너스 번호가 1 ~ 45 사이의 숫자인지 확인한다. (실패/성공 케이스)', () => {
+  test('당첨 번호, 보너스 번호 중에 중복된 숫자가 있을 경우 에러메시지를 띄워준다. 입력: [1, 2, 2, 3, 4, 5], 6 / 실패 케이스', () => {
+    const winningNumberList = [1, 2, 2, 3, 4, 5];
+    const bounsNumber = 7;
+
+    expect(() => {
+      isUniqueList(winningNumberList, bounsNumber);
+    }).toThrowError();
+  });
+
+  test('당첨 번호, 보너스 번호 중에 1 ~ 45 사이의 숫자가 아닌 경우 에러메시지를 띄워준다. 입력: [46, 1, 2, 3, 4, 5], 6 / 실패 케이스', () => {
+    const winningNumberList = [46, 1, 2, 3, 4, 5];
+    const bounsNumber = 7;
+
+    expect(() => {
+      isOutOfRange(winningNumberList, bounsNumber);
+    }).toThrowError();
+  });
+
+  // test('당첨 번호, 보너스 번호 중에 중복된 숫자가 없을 경우. 입력: 1, 2, 3, 4, 5, 6, 7 / 성공 케이스', () => {
+  //   const winningNumberList = [1, 2, 3, 4, 5, 6];
+  //   const bounsNumber = 7;
+
+  //   expect(() => {})
+  // });
+});
+
+// 중복값 체크
