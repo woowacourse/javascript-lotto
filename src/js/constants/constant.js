@@ -8,3 +8,10 @@ export const MATCH_NUMBER_4_PRIZE = 50000;
 export const MATCH_NUMBER_5_PRIZE = 1500000;
 export const MATCH_NUMBER_BONUS_PRIZE = 30000000;
 export const MATCH_NUMBER_6_PRIZE = 2000000000;
+
+export const PERCENT_RATE = 100;
+
+export const MATCH_NUMBER_3 = 3;
+export const MATCH_NUMBER_4 = 4;
+export const MATCH_NUMBER_5 = 5;
+export const MATCH_NUMBER_6 = 6;
