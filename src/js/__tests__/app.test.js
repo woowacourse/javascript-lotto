@@ -78,3 +78,11 @@ describe(`중복되지 않는 1 ~ 45 사이의 숫자를 6개 생성한다.`, ()
     ).toBe(LOTTO_RULES.BALL_COUNT);
   });
 });
+
+describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개의 숫자여야 한다.', () => {
+  test('지난 주 당첨 번호 숫자들은 1 ~ 45 사이의 숫자여야 한다.', () => {
+    const previousWinningNumber = [7, 15, 30, 37, 39, 44];
+
+    expect(isValidRange(previousWinningNumber)).toBeTruthy();
+  });
+});
