@@ -18,7 +18,8 @@ export default class LottoMachine {
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.switchLottoListStyle.bind(this));
     $(SELECTOR.WINNING_NUMBER_FORM).addEventListener('submit', this.onSubmitWinningNumber.bind(this));
-    $('#result-modal-close-button').addEventListener('click', this.onClickResultModalCloseButton.bind(this));
+    $('#result-modal-close-button').addEventListener('click', this.onClickCloseResultModalButton.bind(this));
+    $('#restart-button').addEventListener('click', this.onClickRestartButton.bind(this));
   }
   
   onSubmitCharge(event) {
@@ -43,8 +44,13 @@ export default class LottoMachine {
     this.lottoMachineView.openResultModal(result);
   }
 
-  onClickResultModalCloseButton() {
+  onClickCloseResultModalButton() {
     this.lottoMachineView.closeResultModal();
+  }
+
+  onClickRestartButton() {
+    this.lottoManager.initialize();
+    this.lottoMachineView.initialize(this.lottoManager.lottos);
   }
 
   purchase(chargeInputValue) {

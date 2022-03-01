@@ -11,6 +11,12 @@ export default class LottoMachineView {
     };
   }
 
+  initialize(lottos) {
+    this.initializeInputValues();
+    this.updateLottoList(lottos);
+    this.closeResultModal();
+  }
+
   updateChargeInput(value) {
     $(SELECTOR.CHARGE_INPUT).value = value;
   }
@@ -46,5 +52,11 @@ export default class LottoMachineView {
       $('.prize-money', resultRow).innerText = PRIZE_MONEY[resultRow.dataset.matchCount].toLocaleString();
     })
     $('#profit-ratio', this.resultModalArea).innerText = profitRatio;
+  }
+  
+  initializeInputValues() {
+    $$('input').forEach((element) => {
+      element.value = '';
+    })
   }
 }

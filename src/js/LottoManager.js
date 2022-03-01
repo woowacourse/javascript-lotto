@@ -16,4 +16,8 @@ export default class LottoManager {
       currentCount += 1;
     }
   }
+
+  initialize() {
+    this.#lottos.length = 0;
+  }
 }
