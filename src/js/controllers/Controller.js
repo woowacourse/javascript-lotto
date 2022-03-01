@@ -64,6 +64,8 @@ export class Controller {
       );
       this.lottoGame.compareLottos();
       this.lottoGame.calculateYield();
+      this.view.winStatusTemplate();
+      this.view.showResultModal();
     } catch (err) {
       alert(err.message);
     }

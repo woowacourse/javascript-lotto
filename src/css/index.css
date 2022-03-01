@@ -1,3 +1,5 @@
+body {
+}
 #app {
   display: flex;
   flex-direction: column;
@@ -240,4 +242,63 @@ button {
 .hidden {
   display: none;
   visibility: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  display: none;
+  transform: translateX(-50%) translateY(-50%);
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: green;
+}
+
+.show {
+  display: flex;
+}
+
+#win-status {
+  display: flex;
+  padding: 20px;
+}
+
+#restart-button {
+  padding: 6px;
+  min-width: 30%;
+  background: #00bcd4;
+  border-radius: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #dcdcdc;
+}
+
+th,
+td {
+  border-bottom: 1px solid #dcdcdc;
+  padding: 10px;
+}
+
+svg {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.dark {
+  background-color: rgba(0, 0, 0, 0.4);
 }

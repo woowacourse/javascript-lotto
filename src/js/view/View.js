@@ -75,4 +75,44 @@ export class View {
       win6: document.getElementById('winning-number6').value,
     };
   }
+
+  showResultModal() {
+    document.querySelector('.modal').classList.add('show');
+    document.querySelector('body');
+    document.body.classList.add('dark');
+  }
+  winStatusTemplate() {
+    // document.getElementById('win-status').innerHTML = `
+    // <table border="1">
+    //   <th>일치 갯수</th>
+    //   <th>당첨금</th>
+    //   <th>당첨 갯수</th>
+    //   <tr>
+    //       <td>3개</td>
+    //       <td>5,000</td>
+    //       <td>n개</td>
+    //   </tr>
+    //   <tr>
+    //       <td>4개</td>
+    //       <td>50,000</td>
+    //       <td>n개</td>
+    //   </tr>
+    //   <tr>
+    //       <td>5개</td>
+    //       <td>1,500,000</td>
+    //       <td>n개</td>
+    //   </tr>
+    //   <tr>
+    //       <td>5개+보너스볼</td>
+    //       <td>30,000,000</td>
+    //       <td>n개</td>
+    //   </tr>
+    //   <tr>
+    //     <td>6개</td>
+    //     <td>2,000,000,000</td>
+    //     <td>n개</td>
+    //   </tr>
+    // </table>
+    // `;
+  }
 }
