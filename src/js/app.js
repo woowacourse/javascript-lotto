@@ -1,9 +1,8 @@
-import LottoController from './controllers/LottoController.js';
+import PurchaseLottosController from './controllers/PurchaseLottosController.js';
 
 function App() {
   window.addEventListener('DOMContentLoaded', () => {
-    const lottoController = new LottoController();
-    lottoController.bindEvents();
+    new PurchaseLottosController();
   });
 }
 export default App;
