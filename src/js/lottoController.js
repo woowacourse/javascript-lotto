@@ -3,8 +3,9 @@ import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isNotPurchaseLot
 import { LOTTO } from './utils/constants.js';
 
 export default class LottoController {
-  constructor (lottoModel, { lottoPurchaseInputView, lottoPurchaseResultView, userLottoNumberView }) {
-    this.lottoModel = lottoModel;
+  constructor ({ purchaseLottoModel, userLottoModel }, { lottoPurchaseInputView, lottoPurchaseResultView, userLottoNumberView }) {
+    this.purchaseLottoModel = purchaseLottoModel;
+    this.userLottoModel = userLottoModel;
     this.lottoPurchaseInputView = lottoPurchaseInputView;
     this.lottoPurchaseResultView = lottoPurchaseResultView;
     this.userLottoNumberView = userLottoNumberView;
@@ -18,6 +19,7 @@ export default class LottoController {
     on(this.lottoPurchaseInputView.lottoPurchaseForm, '@purchaseMoney', this.submitPurchaseLotto.bind(this));
     on(this.lottoPurchaseResultView.showLottoToggle, '@lottoToggle', this.submitLottoToggle.bind(this));
     on(this.userLottoNumberView.userLottoResultForm, '@userLottoNumbers', this.submitUserLottoNumbers.bind(this));
+    on(this.userLottoNumberView.lottoModalCloseButton, '@closeLottoModal', this.submitCloseLottoModal.bind(this));
   }
 
   submitLottoToggle() {
@@ -37,8 +39,10 @@ export default class LottoController {
     }
     this.lottoPurchaseResultView.cleanLottoList();
     this.lottoPurchaseResultView.renderLottoPurchaseCount(purchaseMoney / LOTTO.COST_UNIT);
-    this.lottoModel.setLottoList(purchaseMoney / LOTTO.COST_UNIT);
-    this.lottoPurchaseResultView.renderLottoPurchaseResult(this.lottoModel.getLottoList());
+    this.purchaseLottoModel.setPurchaseMoney(purchaseMoney);
+    this.purchaseLottoModel.setLottoList();
+    this.purchaseLottoList = this.purchaseLottoModel.getLottoList()
+    this.lottoPurchaseResultView.renderLottoPurchaseResult(this.purchaseLottoList);
   }
 
   submitUserLottoNumbers(event) {
@@ -49,9 +53,19 @@ export default class LottoController {
       userLottoNumberPositiveValue(holeLottoNumber);
       userLottoNumberOverlap(holeLottoNumber);
       userLottoNumberCorrectRange(holeLottoNumber);
-      isNotPurchaseLotto(this.lottoModel.getLottoList());
+      isNotPurchaseLotto(this.purchaseLottoModel.getLottoList());
     } catch (error) {
       return alert(error);
     }
+    this.userLottoModel.setLottoNumberResult(this.purchaseLottoList, lottoNumbers);
+    this.userLottoModel.setBonusNumbersResult(this.purchaseLottoList, bonusNumber);
+    this.userLottoModel.distinguishLottoNumber();
+    this.userLottoNumberView.cleanLottoResultModal();
+    this.userLottoNumberView.showLottoResultModal();
+    this.userLottoNumberView.showLottoResult(this.userLottoModel.getLottoResult(), this.userLottoModel.calculateReturnRate(this.purchaseLottoModel.getPurchaseMoney()));
+  }
+
+  submitCloseLottoModal() {
+    this.userLottoNumberView.hideLottoResultModal();
   }
 }

@@ -1,17 +1,15 @@
 import { LOTTO } from '../utils/constants.js';
 
-export default class LottoModel {
+export default class PurchaseLottoModel {
+  #purchaseMoney;
   #lottoList = [];
 
-  constructor(lottoList) {
-    this.#lottoList = lottoList;
+  setPurchaseMoney(purchaseMoney) {
+    this.#purchaseMoney = purchaseMoney;
   }
 
-  getLottoList() {
-    return this.#lottoList;
-  }
-
-  setLottoList(lottoCount) {
+  setLottoList() {
+    const lottoCount = this.#purchaseMoney / 1000;
     this.#lottoList = Array.from({ length: lottoCount }).map(() =>
       this.#generateLotto()
     );
@@ -29,4 +27,13 @@ export default class LottoModel {
   #generateRandomNum() {
     return Math.floor(Math.random() * (LOTTO.MAX_DIGIT - LOTTO.MIN_DIGIT + 1)) + LOTTO.MIN_DIGIT;
   }
+
+  getPurchaseMoney() {
+    return this.#purchaseMoney;
+  }
+
+  getLottoList() {
+    return this.#lottoList;
+  }
+
 }
