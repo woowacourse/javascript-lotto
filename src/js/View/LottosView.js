@@ -4,7 +4,7 @@ import { $ } from '../utils/index.js';
 
 export default class LottosView extends View {
   constructor() {
-    super(new FareValue($('#fare-input')));
+    super(new FareValue());
     this.$lottoCount = $('#lotto-count');
     this.$lottoContainer = $('#lottos-container');
   }
