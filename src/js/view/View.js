@@ -15,6 +15,7 @@ export class View {
     this.lottoQuantity = document.getElementById('lotto-quantity');
     this.showResultBtn = document.getElementById('confirm-result-label');
     this.bonusNumber = document.getElementById('winning-number7');
+    this.closeModalBtn = document.getElementById('close-modal-btn');
   }
 
   showLottoStatusContainer() {
@@ -79,6 +80,11 @@ export class View {
   showResultModal() {
     document.querySelector('.modal').classList.add('show');
     document.querySelector('.modal').classList.add('dark');
+  }
+
+  closeModal() {
+    document.querySelector('.modal').classList.remove('show');
+    document.querySelector('.modal').classList.remove('dark');
   }
   winStatusTemplate() {
     // document.getElementById('win-status').innerHTML = `

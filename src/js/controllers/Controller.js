@@ -10,6 +10,7 @@ export class Controller {
     this.bindPurchaseEvent();
     this.bindToggleEvent();
     this.bindShowResultEvent();
+    this.bindCloseModalBtn();
   }
 
   bindPurchaseEvent() {
@@ -19,9 +20,15 @@ export class Controller {
   bindToggleEvent() {
     this.view.toggleBtn.addEventListener('click', this.#controllToggleBtn.bind(this));
   }
+
   bindShowResultEvent() {
     this.view.showResultBtn.addEventListener('click', this.#showLottoResult.bind(this));
   }
+
+  bindCloseModalBtn() {
+    this.view.closeModalBtn.addEventListener('click', this.#closeModal.bind(this));
+  }
+
   #purchaseLotto(e) {
     try {
       e.preventDefault();
@@ -69,5 +76,9 @@ export class Controller {
     } catch (err) {
       alert(err.message);
     }
+  }
+
+  #closeModal() {
+    this.view.closeModal();
   }
 }
