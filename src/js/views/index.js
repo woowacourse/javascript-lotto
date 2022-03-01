@@ -9,10 +9,10 @@ class LottoViewManager {
 
   #resultView = null;
 
-  constructor({ eventHandlers }) {
+  constructor() {
     this.$app = findElement(SELECTOR.APP);
     this.#clear();
-    this.#initializeViews(eventHandlers);
+    this.#initializeViews();
   }
 
   work({ payload, action }) {
@@ -26,28 +26,40 @@ class LottoViewManager {
     if (action === VIEW_ACTION.RENDER_STATISTICS) {
       this.#resultView.renderStatisticsModal(payload);
     }
+    if (action === VIEW_ACTION.BIND_EVENT_HANDLER) {
+      this.#bindEventHandlers(payload);
+    }
+    if (action === VIEW_ACTION.MODAL_CANCEL) {
+      this.#resultView.hideWinStatisticsModal();
+    }
   }
 
-  #initializeViews({
-    onSubmitChargeForm,
-    onChangeAlignState,
-    onSubmitResultForm,
-    onClickRestartButton,
-  }) {
+  #initializeViews() {
     this.#containerView = new LottoContainerView({
       $app: this.$app,
-      onSubmitChargeForm,
-      onChangeAlignState,
     });
     this.#resultView = new LottoResultView({
       $app: this.$app,
-      onSubmitResultForm,
-      onClickRestartButton,
     });
   }
 
   #clear() {
     this.$app.innerHTML = '';
+  }
+
+  #bindEventHandlers({
+    onSubmitChargeForm,
+    onChangeAlignState,
+    onSubmitResultForm,
+    onClickRestartButton,
+    onClickModalCancelButton,
+  }) {
+    this.#containerView.bindEventHandler({ onSubmitChargeForm, onChangeAlignState });
+    this.#resultView.bindEventHandler({
+      onSubmitResultForm,
+      onClickRestartButton,
+      onClickModalCancelButton,
+    });
   }
 }
 export default LottoViewManager;

@@ -7,4 +7,6 @@ export const VIEW_ACTION = {
   UPDATE_LOTTO_LIST: 'update_lotto_list',
   UPDATE_VISIBLE_STATE: 'update_visible_state',
   RENDER_STATISTICS: 'render_statistics',
+  BIND_EVENT_HANDLER: 'bind_event_handler',
+  MODAL_CANCEL: 'modal-cancel',
 };

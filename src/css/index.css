@@ -143,6 +143,7 @@ section {
   /* padding: 20px; */
   /* min-width: 300px; */
   height: 400px;
+  overflow-y: scroll;
 }
 
 .modal-container > div {
@@ -166,4 +167,12 @@ table tr {
 table tr td,
 th {
   width: 33%;
+}
+
+.modal-cancel-button {
+  cursor: pointer;
+}
+
+#result-contents > * {
+  margin-bottom: 30px;
 }

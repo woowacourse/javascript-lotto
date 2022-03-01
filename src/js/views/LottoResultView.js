@@ -4,11 +4,10 @@ import { findElement } from '../utils/dom';
 import { changeCurrencyFormat } from '../utils/util';
 
 class LottoResultView {
-  constructor({ $app, ...eventHandlers }) {
+  constructor({ $app }) {
     this.$app = $app;
     this.#initializeTemplate();
     this.#initializeDOM();
-    this.#bindEventHandler(eventHandlers);
   }
 
   #initializeTemplate() {
@@ -23,11 +22,13 @@ class LottoResultView {
     this.$statisticsTableBody = findElement(SELECTOR.STATISTICS_TABLE_BODY);
     this.$profitRatioText = findElement(SELECTOR.PROFIT_RATIO_TEXT);
     this.$restartButton = findElement(SELECTOR.RESTART_BUTTON);
+    this.$modalCancelButton = findElement(SELECTOR.MODAL_CANCEL_BUTTON);
   }
 
-  #bindEventHandler({ onSubmitResultForm, onClickRestartButton }) {
+  bindEventHandler({ onSubmitResultForm, onClickRestartButton, onClickModalCancelButton }) {
     this.$winNumberInputForm.addEventListener('submit', onSubmitResultForm);
     this.$restartButton.addEventListener('click', onClickRestartButton);
+    this.$modalCancelButton.addEventListener('click', onClickModalCancelButton);
   }
 
   showWinNumberInputSection() {
@@ -35,7 +36,7 @@ class LottoResultView {
   }
 
   renderStatisticsModal({ statistics, profitRatio }) {
-    this.#showWinStatistics();
+    this.#showWinStatisticsModal();
     this.$statisticsTableBody.innerHTML = Object.keys(statistics).reduce((prev, currentKey) => {
       const price = RANK_PRICE[currentKey];
       const count = statistics[currentKey];
@@ -45,7 +46,11 @@ class LottoResultView {
     this.$profitRatioText.innerHTML = this.#generateProfitRatioText(profitRatio);
   }
 
-  #showWinStatistics() {
+  hideWinStatisticsModal() {
+    this.$winStatistics.classList.replace('show', 'hide');
+  }
+
+  #showWinStatisticsModal() {
     this.$winStatistics.classList.replace('hide', 'show');
   }
 
@@ -89,7 +94,7 @@ class LottoResultView {
     <div id="result-container"class="modal-container">
      <span class="modal-cancel-button">❌</span>
      <div id="result-contents">
-     <table>
+     <table  class=".result-container-section">
      <thead>
       <tr>
         <th>등수</th>
@@ -100,8 +105,8 @@ class LottoResultView {
      <tbody id="statistics-table-body">
      </tbody>
      </table>
-     <div id="profit-ratio-text"></div>
-     <button id="restart-button">다시 시작하기</button>
+     <div id="profit-ratio-text"  class=".result-container-section"></div>
+     <button id="restart-button"  class=".result-container-section">다시 시작하기</button>
      </div>
     </div>
   </div>

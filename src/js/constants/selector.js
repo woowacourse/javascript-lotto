@@ -18,4 +18,5 @@ export const SELECTOR = {
   STATISTICS_TABLE_BODY: '#statistics-table-body',
   PROFIT_RATIO_TEXT: '#profit-ratio-text',
   RESTART_BUTTON: '#restart-button',
+  MODAL_CANCEL_BUTTON: '.modal-cancel-button',
 };

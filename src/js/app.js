@@ -10,13 +10,16 @@ class LottoGameManager {
 
   #initializeManagers() {
     this.#lottoDomainManager = new LottoDomainManager();
-    this.#lottoViewManager = new LottoViewManager({
-      eventHandlers: {
+    this.#lottoViewManager = new LottoViewManager();
+    this.#lottoViewManager.work({
+      payload: {
         onSubmitChargeForm: this.onSubmitChargeForm,
         onChangeAlignState: this.onChangeAlignState,
         onSubmitResultForm: this.onSubmitResultForm,
         onClickRestartButton: this.onClickRestartButton,
+        onClickModalCancelButton: this.onClickModalCancelButton,
       },
+      action: VIEW_ACTION.BIND_EVENT_HANDLER,
     });
   }
 
@@ -36,6 +39,7 @@ class LottoGameManager {
       payload: chargeInput,
       action: DOMAIN_ACTION.NEW_CHARGE_INPUT,
     });
+
     this.#lottoViewManager.work({
       payload: lottoList,
       action: VIEW_ACTION.UPDATE_LOTTO_LIST,
@@ -67,6 +71,7 @@ class LottoGameManager {
         payload: { winningNumbers, bonusNumber },
         action: DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS,
       });
+
       this.#lottoViewManager.work({
         payload: { statistics, profitRatio },
         action: VIEW_ACTION.RENDER_STATISTICS,
@@ -78,6 +83,12 @@ class LottoGameManager {
 
   onClickRestartButton = () => {
     this.start();
+  };
+
+  onClickModalCancelButton = () => {
+    this.#lottoViewManager.work({
+      action: VIEW_ACTION.MODAL_CANCEL,
+    });
   };
 
   start() {

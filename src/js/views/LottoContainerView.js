@@ -2,11 +2,10 @@ import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/dom';
 
 class LottoContainerView {
-  constructor({ $app, ...eventHandlers }) {
+  constructor({ $app }) {
     this.$app = $app;
     this.#initializeTemplate();
     this.#initializeDOM();
-    this.#bindEventHandler(eventHandlers);
   }
 
   #initializeTemplate() {
@@ -20,7 +19,7 @@ class LottoContainerView {
     this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
   }
 
-  #bindEventHandler({ onSubmitChargeForm, onChangeAlignState }) {
+  bindEventHandler({ onSubmitChargeForm, onChangeAlignState }) {
     this.$chargeForm.addEventListener('submit', onSubmitChargeForm);
     this.$alignConverter.addEventListener('change', onChangeAlignState);
   }
