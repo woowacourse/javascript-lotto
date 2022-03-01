@@ -42,8 +42,8 @@ https://uk960214.github.io/javascript-lotto/
 
 ### UI 구현
 
-- [ ] 피그마 양식에 따라 마크업 작성
-- [ ] 피그마 양식에 따라 css style 작성
+- [x] 피그마 양식에 따라 마크업 작성
+- [x] 피그마 양식에 따라 css style 작성
 
 ### 기능 구현
 

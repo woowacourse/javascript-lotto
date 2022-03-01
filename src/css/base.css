@@ -9,11 +9,12 @@ body {
 }
 
 button {
+  padding: 8px;
   background-color: #00bcd4;
   border: none;
   border-radius: 4px;
   color: #fff;
-  padding: 8px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -38,6 +39,7 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+/* ************************** */
 
 input:focus {
   outline: none;
@@ -49,4 +51,8 @@ fieldset {
 
 legend {
   margin-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
 }
