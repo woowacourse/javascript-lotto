@@ -23,9 +23,10 @@
 
 - [✅] 확장된 설계를 바탕으로 코드를 리팩토링합니다.
 - [✅] 모달 스타일, 마크업을 개발합니다.
-- [😳] 결과 로직을 구현합니다.
+- [✅] 결과 로직을 구현합니다.
   - [✅] Lotto Domain은 로또가 당첨 정보 (등수를) 계산할 수 있습니다.
-  - [✅] Lotto Bundle Domain은 로또들의 당첨정보를 통해 수익금과 당첨통계를 계산할 수 있습니다.
-  - [😳] Lotto Domain Manager에서 Result Submit 기능을 구현하여 당첨 로또의 정보를 입력받습니다.
-  - [😳] Domain Data를 Mutate 합니다.
-  - [😳] Lotto Result View에서 받은 데이터를 기반으로 처리합니다.
+  - [✅] Lotto List Domain은 로또들의 당첨정보를 통해 수익금과 당첨통계를 계산할 수 있습니다.
+  - [✅] Winning Number Submit 기능을 구현하여 당첨 로또의 정보를 Domain Manager에게 전달해줍니다.
+  - [✅] Domain Manager가 구한 정보를 View Manager에게 전달하여 뷰를 그립니다.
+- [✅] 모달의 바깥과 X버튼을 클릭하면 사라지게 합니다.
+- [✅] 재시작 기능을 구현합니다.
