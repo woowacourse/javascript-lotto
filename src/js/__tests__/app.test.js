@@ -85,4 +85,10 @@ describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개�
 
     expect(isValidRange(previousWinningNumber)).toBeTruthy();
   });
+
+  test('지난 주 당첨 번호에는 중복된 숫자가 있으면 안된다.', () => {
+    const previousWinningNumber = [7, 15, 30, 37, 39, 44];
+
+    expect(isNotOverlapped(previousWinningNumber)).toBeTruthy();
+  });
 });
