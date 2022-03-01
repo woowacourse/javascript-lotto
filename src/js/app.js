@@ -42,6 +42,10 @@ export default class App {
       'click',
       toggleLottoResultModal,
     );
+    $('.restart-button').addEventListener('click', e => {
+      e.preventDefault();
+      location.reload();
+    });
   }
   handleLottoFormSubmitEvent(e) {
     e.preventDefault();
