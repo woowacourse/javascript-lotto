@@ -14,4 +14,5 @@ export const ERROR_MESSAGE = Object.freeze({
   USER_LOTTO_NUMBER_OVERLAP: '중복되는 숫자를 입력할 수 없습니다',
   USER_LOTTO_NUMBER_CORRECT_RANGE: '번호는 1부터 45까지 입력해야 합니다',
   USER_LOTTO_NUMBER_POSITIVE_VALUE: '모든 번호를 입력해주세요',
+  NOT_YET_PURCHASE_LOTTO: '로또를 먼저 구입해주세요',
 });
