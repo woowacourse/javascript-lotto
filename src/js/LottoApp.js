@@ -22,6 +22,24 @@ export default class LottoApp {
     this.bindEvent();
   }
 
+  onSubmitRestartButton() {
+    disableElement(getElement(SELECTOR.PAYMENT_INPUT));
+    toggleClassName(getElement(SELECTOR.PAYMENT_INPUT), CLASS_NAME.DISABLED);
+
+    disableElement(getElement(SELECTOR.PAYMENT_BUTTON));
+    toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
+
+    initInput(getElement(SELECTOR.PAYMENT_INPUT));
+
+    this.$app.removeChild(
+      getElement(SELECTOR.LAST_WEEK_WINNING_NUMBER_SECTION)
+    );
+    this.$app.removeChild(getElement('#purchased-lotto-list-section'));
+    this.$app.removeChild(getElement('#result-checking-section'));
+    this.$app.removeChild(getElement('#lotto-result-section'));
+    this.$app.removeChild(getElement('#cover-the-background'));
+  }
+
   onClickExitButton() {
     this.$app.removeChild(getElement('#lotto-result-section'));
     this.$app.removeChild(getElement('#cover-the-background'));
@@ -103,6 +121,13 @@ export default class LottoApp {
       type: 'click',
       selector: '#exit-button',
       callback: this.onClickExitButton.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: '#restart-button',
+      callback: this.onSubmitRestartButton.bind(this),
     });
   }
 }
