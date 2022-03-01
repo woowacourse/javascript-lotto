@@ -206,36 +206,36 @@ h1 {
   display: inline;
 }
 
-#winning-numbers-form {
+#picked-numbers-form {
   width: 100%;
   font-size: 15px;
 }
 
-.winning-numbers__description {
+.picked-numbers__description {
   letter-spacing: 0.5px;
   line-height: 24px;
   margin-bottom: 8px;
 }
 
-.winning-numbers__container {
+.picked-numbers__container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
 }
 
-.winning-number__description {
+.picked-number__description {
   display: block;
   line-height: 24px;
   margin-bottom: 8px;
 }
 
-.winning-number__input {
+.picked-number__input {
   width: 35px;
   height: 35px;
   margin-left: 8px;
 }
 
-.winning-number__input:first-of-type {
+.picked-number__input:first-of-type {
   margin-left: 0;
 }
 
@@ -243,7 +243,7 @@ h1 {
   text-align: right;
 }
 
-.winning-numbers__check-button {
+.picked-numbers__check-button {
   width: 100%;
   height: 36px;
 }

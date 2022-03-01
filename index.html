@@ -39,75 +39,84 @@
         </header>
         <ul id="lotto-lists" class="lotto-lists"></ul>
       </section>
-      <form id="winning-numbers-form">
-        <p class="winning-numbers__description">
+      <form id="picked-numbers-form">
+        <p class="picked-numbers__description">
           지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
         </p>
-        <div class="winning-numbers__container">
+        <div class="picked-numbers__container">
           <div class="winning-numbers__box">
-            <label for="winning-number" class="winning-number__description">당첨 번호</label>
+            <label for="winning-number" class="picked-number__description">당첨 번호</label>
             <input
               id="winning-number1"
-              class="winning-number__input"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
             <input
               id="winning-number2"
-              class="winning-number__input"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
             <input
               id="winning-number3"
-              class="winning-number__input"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
             <input
               id="winning-number4"
-              class="winning-number__input"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
             <input
               id="winning-number5"
-              class="winning-number__input"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
             <input
               id="winning-number6"
-              class="winning-number__input"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
           </div>
           <div class="bonus-number__box">
-            <label for="bonus-number" class="winning-number__description">보너스 번호</label>
+            <label for="bonus-number" class="picked-number__description">보너스 번호</label>
             <input
-              id="bonus-number6"
-              class="winning-number__input"
+              id="bonus-number"
+              class="picked-number__input"
               type="number"
               min="1"
               max="45"
+              name="pickedNumber"
               required
             />
           </div>
         </div>
-        <button class="winning-numbers__check-button">결과 확인하기</button>
+        <button id="picked-numbers-check-button" class="picked-numbers__check-button">
+          결과 확인하기
+        </button>
       </form>
     </main>
   </body>

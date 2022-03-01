@@ -1,5 +1,5 @@
-import { CLASS_SELECTOR, ID_SELECTOR } from '../constants';
-import { $$ } from '../utils/dom';
+import { ID_SELECTOR } from '../constants';
+import { $ } from '../utils/dom';
 
 export class WinningNumberView {
   constructor() {
@@ -7,15 +7,13 @@ export class WinningNumberView {
   }
 
   #configureDOM() {
-    this.$winningNumbersForm = $(ID_SELECTOR.WINNING_NUMBERS_FORM);
-    this.$winningNumbersCheckButton = $(ID_SELECTOR.WINNING_NUMBERS_CHECK_BUTTON);
-    this.$winningNumberInputs = $$(CLASS_SELECTOR.WINNING_NUMBER_INPUT);
+    this.$pickedNumbersForm = $(ID_SELECTOR.PICKED_NUMBERS_FORM);
   }
 
-  bindSubmitCash(handler) {
-    this.$purchaseForm.addEventListener('submit', event => {
+  bindCheckResult(handler) {
+    this.$pickedNumbersForm.addEventListener('submit', event => {
       event.preventDefault();
-      handler(event.target.elements.cash.value);
+      handler([...event.target.elements.pickedNumber].map(input => input.value));
     });
   }
 }
