@@ -1,11 +1,10 @@
-import View from "./View.js";
+import Lotto from "../model/Lotto.js";
 import { $, disableElement, enableElement } from "../utils/dom.js";
 import { validatePurchaseAmount } from "../utils/validation.js";
 
-export default class LottoGameView extends View {
+export default class LottoGameView {
   constructor() {
-    super();
-
+    this.LottoModel = new Lotto();
     this.purchaseInput = $(".purchase-input");
     this.lottoNumberList = $(".lotto-number-list");
     this.switchInput = $(".switch-input");
@@ -13,16 +12,23 @@ export default class LottoGameView extends View {
     $(".purchase-form").addEventListener("submit", this.onSubmitPurchaseAmount.bind(this));
   }
 
-  onSubmitPurchaseAmount(e) {
-    e.preventDefault();
+  renderPurchaseInfomation() {
+    $(
+      ".purchase-infomation",
+    ).innerText = `총 ${this.LottoModel.getLottoCount()}개를 구매하였습니다.`;
+  }
 
-    const purchaseAmount = Number(this.purchaseInput.value);
-    try {
-      validatePurchaseAmount(purchaseAmount);
-      this.handlers.get("submit").forEach((func) => func(purchaseAmount));
-    } catch (error) {
-      alert(error);
-    }
+  renderLottoIcons() {
+    this.lottoNumberList.insertAdjacentHTML(
+      "beforeend",
+      `<li>🎟️</li>`.repeat(this.LottoModel.getLottoCount()),
+    );
+  }
+
+  handlePurchasedLotto() {
+    this.renderPurchaseInfomation();
+    this.renderLottoIcons();
+    this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
   }
 
   manageElement() {
@@ -31,16 +37,22 @@ export default class LottoGameView extends View {
     enableElement(this.switchInput);
   }
 
-  renderPurchaseInfomation(lottoCount) {
-    $(".purchase-infomation").innerText = `총 ${lottoCount}개를 구매하였습니다.`;
+  onSubmitPurchaseAmount(e) {
+    e.preventDefault();
+    const purchaseAmount = Number(this.purchaseInput.value);
+    try {
+      validatePurchaseAmount(purchaseAmount);
+      this.LottoModel.convertLottoCount(purchaseAmount);
+      this.LottoModel.generateLottoTicket();
+      this.manageElement();
+      this.handlePurchasedLotto();
+    } catch (error) {
+      alert(error);
+    }
   }
 
-  renderLottoIcons(lottoCount) {
-    this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️</li>`.repeat(lottoCount));
-  }
-
-  renderLottoNumbers(lottoList) {
-    lottoList.forEach((numbers) => {
+  renderLottoNumbers() {
+    this.LottoModel.getLottoList().forEach((numbers) => {
       this.lottoNumberList.insertAdjacentHTML(
         "beforeend",
         `<li>🎟️<span class="lotto-numbers">${numbers}</span></li>`,
@@ -52,20 +64,13 @@ export default class LottoGameView extends View {
     this.lottoNumberList.replaceChildren("");
   }
 
-  onClickSwitch(lottoList, lottoCount) {
+  onClickSwitch() {
     this.resetLottoList();
     this.lottoNumberList.classList.toggle("show-numbers");
     if (this.lottoNumberList.classList.contains("show-numbers")) {
-      this.renderLottoNumbers(lottoList);
+      this.renderLottoNumbers();
       return;
     }
-    this.renderLottoIcons(lottoCount);
-  }
-
-  handlePurchasedLotto(lottoList, lottoCount) {
-    this.manageElement();
-    this.renderPurchaseInfomation(lottoCount);
-    this.renderLottoIcons(lottoCount);
-    this.switchInput.addEventListener("click", () => this.onClickSwitch(lottoList, lottoCount));
+    this.renderLottoIcons();
   }
 }
