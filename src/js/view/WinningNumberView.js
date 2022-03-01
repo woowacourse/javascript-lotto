@@ -29,7 +29,11 @@ const WINNING_NUMBER_FORM = `
 //class
 export default class WinningNumberView {
   constructor() {
+    this.app = document.getElementById('app');
     this.container = document.getElementById('winning-number-container');
+    this.modal = document.getElementById('winning-statistics-modal');
+    this.restartButton = document.getElementById('restart-button');
+    this.closeButton = document.getElementById('close-button');
   }
 
   render() {
@@ -52,6 +56,9 @@ export default class WinningNumberView {
 
     try {
       validateWinningNumberList(winningNumberList);
+
+      this.app.classList.replace('modal-off', 'modal-on');
+      this.modal.classList.replace('modal-hide', 'modal-show');
     } catch (error) {
       this.resetInputElementsValue();
       alert(error);

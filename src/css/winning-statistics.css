@@ -1,4 +1,4 @@
-#winnig-statistics-modal {
+#winning-statistics-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,15 +13,18 @@
   background: white;
   box-sizing: border-box;
 
-  /* 크기 체크를 위한 임시 코드 */
-  border: 3px solid red;
-
   padding: 40px 16px 49px;
-
-  z-index: 100;
 }
 
-#winnig-statistics-modal > h2 {
+.modal-hide {
+  z-index: -1;
+}
+
+.modal-show {
+  z-index: 1;
+}
+
+#winning-statistics-modal > h2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 32px;

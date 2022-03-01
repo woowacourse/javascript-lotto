@@ -29,9 +29,15 @@ body section {
   width: 414px;
   min-height: 727px;
 
-  background: #ffffff;
-
   padding: 0 16px 39px;
+}
+
+.modal-off {
+  background: #ffffff;
+}
+
+.modal-on {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 header {
