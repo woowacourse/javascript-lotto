@@ -1,33 +1,35 @@
 import { LOTTO_NUMBER_COUNT, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/constants';
 import LottoMachine from '../machine/lottoMachine.js';
+import LottoWinnerMachine from '../machine/lottoWinnerMachine';
 import { generateRandomNumberInRange } from '../utils/utils.js';
 
 describe('구입 금액 검증 테스트 ', () => {
-  const { buyLotto } = new LottoMachine();
+  const lottoMachine = new LottoMachine();
+  const { buyLotto } = lottoMachine;
   test('입력 값이 빈 칸이 아니어야 한다.', () => {
     const cashInput = '';
-    expect(() => buyLotto(cashInput)).toThrow();
+    expect(() => lottoMachine.buyLotto(cashInput)).toThrow();
   });
   test('입력 값이 1000원 단위인지 검증한다.', () => {
     const cashInput = '1500';
-    expect(() => buyLotto(cashInput)).toThrow();
+    expect(() => lottoMachine.buyLotto(cashInput)).toThrow();
   });
   test('입력 값의 범위가 1000원 이상 50000원 이하인지 검증한다.', () => {
     // 실패 케이스
     const lowCashInput = '900';
-    expect(() => buyLotto(lowCashInput)).toThrow();
+    expect(() => lottoMachine.buyLotto(lowCashInput)).toThrow();
     const highCashInput = '51000';
-    expect(() => buyLotto(highCashInput)).toThrow();
+    expect(() => lottoMachine.buyLotto(highCashInput)).toThrow();
 
     // 성공 케이스
     const minCashInput = '1000';
-    expect(() => buyLotto(minCashInput)).not.toThrow();
+    expect(() => lottoMachine.buyLotto(minCashInput)).not.toThrow();
     const maxCashInput = '50000';
-    expect(() => buyLotto(maxCashInput)).not.toThrow();
+    expect(() => lottoMachine.buyLotto(maxCashInput)).not.toThrow();
   });
   test('올바른 입력 값을 입력하면 오류가 발생하지 않는다.', () => {
     const cashInput = '2000';
-    expect(() => buyLotto(cashInput)).not.toThrow();
+    expect(() => lottoMachine.buyLotto(cashInput)).not.toThrow();
   });
 });
 
@@ -55,23 +57,25 @@ describe('로또 번호 생성 테스트', () => {
 });
 
 describe('당첨 번호 입력 검증 테스트', () => {
-  const { setWinnerNumbers } = new lottoWinnerMachine();
+  const lottoWinnerMachine = new LottoWinnerMachine();
+
+  test('올바른 값을 입력하면 오류가 발생하지 않는다.', () => {
+    const validInput = { numbers: [1, 2, 3, 4, 5, 6], bonus: 7 };
+    expect(() => lottoWinnerMachine.setWinnerNumbers(validInput)).not.toThrow();
+  });
+
   test('입력한 값 중 빈 값이 없는 지 검증한다.', () => {
     const inputMissingNumbers = { numbers: [1, 2, 3, 4, 5], bonus: 1 };
     const inputMissingBonus = { numbers: [1, 2, 3, 4, 5, 6] };
-    const validInput = { numbers: [1, 2, 3, 4, 5, 6], bonus: 7 };
 
-    expect(() => setWinnerNumbers(inputMissingNumbers)).toThrow();
-    expect(() => setWinnerNumbers(inputMissingBonus)).toThrow();
-    expect(() => setWinnerNumbers(validInput)).not.toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(inputMissingNumbers)).toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(inputMissingBonus)).toThrow();
   });
 
   test('입력한 값 중 중복이 없는 지 검증한다.', () => {
     const duplicateInput = { numbers: [1, 2, 3, 4, 5, 6], bonus: 1 };
-    const validInput = { numbers: [1, 2, 3, 4, 5, 6], bonus: 7 };
 
-    expect(() => setWinnerNumbers(duplicateInput)).toThrow();
-    expect(() => setWinnerNumbers(validInput)).not.toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(duplicateInput)).toThrow();
   });
 
   test('입력한 값이 모두 1 - 45 범위의 자연수인지 검증한다.', () => {
@@ -79,13 +83,11 @@ describe('당첨 번호 입력 검증 테스트', () => {
     const inputLagerNumber = { numbers: [1, 2, 3, 4, 5, 46], bonus: 1 };
     const inputRealNumber = { numbers: [1.1, 2, 3, 4, 5], bonus: 3 };
     const inputString = { numbers: ['one', 2, 3, 4, 5], bonus: 3 };
-    const validInput = { numbers: [1, 2, 3, 4, 5, 45], bonus: 7 };
 
-    expect(() => setWinnerNumbers(inputSmallerNumber)).toThrow();
-    expect(() => setWinnerNumbers(inputLagerNumber)).toThrow();
-    expect(() => setWinnerNumbers(inputRealNumber)).toThrow();
-    expect(() => setWinnerNumbers(inputString)).toThrow();
-    expect(() => setWinnerNumbers(validInput)).not.toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(inputSmallerNumber)).toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(inputLagerNumber)).toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(inputRealNumber)).toThrow();
+    expect(() => lottoWinnerMachine.setWinnerNumbers(inputString)).toThrow();
   });
 });
 
