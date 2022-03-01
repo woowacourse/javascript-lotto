@@ -32,8 +32,8 @@ export default class LottoResult {
     let fiveBonus = 0;
     let six = 0;
 
-    lottos.forEach((lotto) => {
-      switch (this.countLottoNumbers(lotto)) {
+    lottos.forEach((userLotto) => {
+      switch (this.countLottoNumbers(userLotto)) {
         case 3:
           three += 1;
           break;
@@ -57,25 +57,40 @@ export default class LottoResult {
     this.#winningCounts = { three, four, five, fiveBonus, six };
   }
 
-  countLottoNumbers(lotto) {
+  countLottoNumbers(userLotto) {
     let count = 0;
     const { basicNumbers } = this.#winningNumbers;
     const { bonusNumber } = this.#winningNumbers;
     for (let i = 0; i <= 5; i += 1) {
       for (let j = 0; j <= 5; j += 1) {
-        if (lotto[i] === basicNumbers[j]) {
+        if (userLotto[i] === basicNumbers[j]) {
           count += 1;
         }
       }
     }
     if (count === 5) {
       for (let i = 0; i < 6; i += 1) {
-        if (lotto[i] === bonusNumber) {
+        if (userLotto[i] === bonusNumber) {
           return 'fiveBonus';
         }
       }
     }
 
     return count;
+  }
+
+  calculateYield() {
+    const winningMoney =
+      this.#winningCounts.three * 5000 +
+      this.#winningCounts.four * 50000 +
+      this.#winningCounts.five * 1500000 +
+      this.#winningCounts.fiveBonus * 30000000 +
+      this.#winningCounts.six * 2000000000;
+    const investmentMoney = this.lottoBundle.money;
+    this.#yield = Math.floor(winningMoney / investmentMoney);
+  }
+
+  get yield() {
+    return this.#yield;
   }
 }

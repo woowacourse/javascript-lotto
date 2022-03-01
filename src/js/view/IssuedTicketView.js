@@ -49,7 +49,7 @@ export default class IssuedTicketView {
    * @param {number} count 구입되어 출력되어야 하는 로또의 개수
    */
   renderTicketCount() {
-    this.$ticketCount.textContent = this.model.count;
+    this.$ticketCount.textContent = this.lottoBundle.count;
   }
 
   /**
@@ -57,7 +57,7 @@ export default class IssuedTicketView {
    * @param {array} lottos 6개의 숫자로 이뤄진 로또 배열들을 구입된 로또 개수만큼 요소로 갖는 배열
    */
   renderIssuedTickets() {
-    const template = this.model.lottos
+    const template = this.lottoBundle.lottos
       .map((lotto) => ticketTemplate(lotto.numbers))
       .join('');
     this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);

@@ -22,8 +22,8 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
     const lottoCount = 5;
 
     const lottoBundle = new LottoBundle();
-    lottoBundle.setMoney(5000);
-    lottoBundle.setCount();
+    lottoBundle.money = 5000;
+    lottoBundle.saveCount();
     lottoBundle.createLottoBundle();
 
     expect(lottoBundle.lottos.length).toBe(lottoCount);
@@ -59,8 +59,8 @@ describe(
       let totalCount = 0;
 
       const lottoBundle = new LottoBundle();
-      lottoBundle.setMoney(1000000);
-      lottoBundle.setCount();
+      lottoBundle.money = 1000000;
+      lottoBundle.saveCount();
       lottoBundle.createLottoBundle();
 
       for (let i = 0; i < trialNumber; i++) {
@@ -78,21 +78,27 @@ describe(
       expect(differentCount / totalCount).toBeGreaterThanOrEqual(0.99);
     });
   },
-  describe('당첨 결과를 확인할 수 있어야 한다.', () => {
-    test('결과 확인하기 버튼을 누르면, 당첨번호와 구입한 로또 번호를 비교하여 당첨 금액별 당첨 번호 개수를 계산할 수 있어야 한다.', () => {
-      const lottoBundle = new LottoBundle();
-      lottoBundle.lottos = [
-        [2, 1, 3, 4, 5, 6],
-        [1, 2, 3, 24, 25, 17],
-        [7, 1, 3, 2, 4, 5],
-        [7, 1, 3, 2, 4, 5],
-        [5, 1, 2, 3, 4, 8],
-        [4, 3, 2, 1, 9, 15],
-      ];
 
-      const lottoResult = new LottoResult(lottoBundle);
-      lottoResult.winningNumbers = [1, 2, 3, 4, 5, 6, 7];
+  describe('당첨 결과를 확인할 수 있어야 한다.', () => {
+    // given
+    const lottoBundle = new LottoBundle();
+    lottoBundle.lottos = [
+      [2, 1, 3, 4, 5, 6],
+      [1, 2, 3, 24, 25, 17],
+      [7, 1, 3, 2, 4, 5],
+      [7, 1, 3, 2, 4, 5],
+      [5, 1, 2, 3, 4, 8],
+      [4, 3, 2, 1, 9, 15],
+    ];
+
+    const lottoResult = new LottoResult(lottoBundle);
+    lottoResult.winningNumbers = [1, 2, 3, 4, 5, 6, 7];
+
+    test('결과 확인하기 버튼을 누르면, 당첨번호와 구입한 로또 번호를 비교하여 당첨 금액별 당첨 번호 개수를 계산할 수 있어야 한다.', () => {
+      // when
       lottoResult.calculateWinningCounts();
+
+      // then
       expect(lottoResult.winningCounts).toStrictEqual({
         three: 1,
         four: 1,
@@ -100,6 +106,17 @@ describe(
         fiveBonus: 2,
         six: 1,
       });
+    });
+
+    test('구입 금액과 당첨된 금액을 비교하여 수익률을 계산할 수 있어야 한다.', () => {
+      // given
+      lottoBundle.money = 1000000;
+
+      // when
+      lottoResult.calculateYield();
+
+      // then
+      expect(lottoResult.yield).toBe(2061);
     });
   }),
 );

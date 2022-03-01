@@ -36,8 +36,8 @@ export default class LottoController {
    */
   #purchaseLotto(money) {
     try {
-      this.lottoBundle.setMoney(money);
-      this.lottoBundle.setCount();
+      this.lottoBundle.money = money;
+      this.lottoBundle.saveCount();
       this.lottoBundle.createLottoBundle();
       this.#renderLotto();
     } catch (error) {

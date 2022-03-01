@@ -19,7 +19,7 @@ export default class LottoBundle {
   #lottos = [];
 
   /** @param {number} money 입력받은 돈 */
-  setMoney(money) {
+  set money(money) {
     if (validateMoney(money)) {
       this.#money = money;
     }
@@ -31,7 +31,7 @@ export default class LottoBundle {
   }
 
   /** 발행할 로또 개수를 저장한다 */
-  setCount() {
+  saveCount() {
     this.#count = Math.floor(this.#money / LOTTO.PRICE_PER_TICKET);
   }
 
