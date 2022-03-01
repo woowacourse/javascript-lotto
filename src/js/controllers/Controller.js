@@ -13,7 +13,7 @@ export class LottoController {
     this.view.purchaseBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      if (this.detectInvalidInput()) {
+      if (this.detectInvalidMoneyInput()) {
         return;
       }
       this.lottoGame.insertMoney(Number(this.view.moneyInput.value));
@@ -39,9 +39,9 @@ export class LottoController {
     });
   }
 
-  detectInvalidInput() {
+  detectInvalidMoneyInput() {
     try {
-      validator.isInputValid(Number(this.view.moneyInput.value));
+      validator.isMoneyInputValid(Number(this.view.moneyInput.value));
     } catch (err) {
       alert(err);
       this.view.clearMoneyInput();

@@ -1,7 +1,7 @@
-import { ERROR_MESSAGE } from './constants/constants';
+import { ERROR_MESSAGE, CONDITIONS } from './constants/constants';
 
 export const validator = {
-  isInputValid(input) {
+  isMoneyInputValid(input) {
     if (this.isMoneyNull(input)) {
       throw new Error(ERROR_MESSAGE.NULL_INPUT_ERROR);
     }
@@ -31,6 +31,25 @@ export const validator = {
 
   isMoneyNull(input) {
     return input === 0;
+  },
+
+  isWinningNumbersInputValid(winningNumbers, bonusNumber) {
+    if (!this.isWinningNumberNotDuplicated(winningNumbers)) {
+      console.log('3');
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_WINNING_NUMBER);
+    }
+    if (this.isBonusNumberDuplicated(winningNumbers, bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_BONUS_NUMBER);
+    }
+  },
+
+  isWinningNumberNotDuplicated(input) {
+    return new Set(input).size === CONDITIONS.LOTTO_SIZE;
+  },
+
+  isBonusNumberDuplicated(winningNumbers, bonusNumber) {
+    console.log(winningNumbers.includes(bonusNumber));
+    return winningNumbers.includes(bonusNumber);
   },
 };
 

@@ -3,6 +3,8 @@ export const ERROR_MESSAGE = {
   NOT_INTEGER_INPUT_ERROR: 'please enter integer number',
   NOT_MUTIPLE_THOUSAND: 'please enter number that is mutiples of thousand',
   NULL_INPUT_ERROR: 'please enter input',
+  HAS_DUPLICATED_WINNING_NUMBER: 'please enter winning number without duplication',
+  HAS_DUPLICATED_BONUS_NUMBER: 'please enter bonus number without duplicaiton',
 };
 
 export const CONDITIONS = {
