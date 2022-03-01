@@ -1,10 +1,10 @@
 import { LOTTO_NUMBER_COUNT, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/constants';
-import LottoMachine from '../machine/lottoMachine.js';
+import LottoPurchaseMachine from '../machine/lottoPurchaseMachine.js';
 import LottoWinnerMachine from '../machine/lottoWinnerMachine';
 import { generateRandomNumberInRange } from '../utils/utils.js';
 
 describe('구입 금액 검증 테스트 ', () => {
-  const lottoMachine = new LottoMachine();
+  const lottoMachine = new LottoPurchaseMachine();
   const { buyLotto } = lottoMachine;
   test('입력 값이 빈 칸이 아니어야 한다.', () => {
     const cashInput = '';
@@ -49,7 +49,7 @@ describe('로또 번호 생성 테스트', () => {
   });
 
   test('투입한 금액만큼의 로또가 생성되는지 확인한다.', () => {
-    const lottoMachine = new LottoMachine();
+    const lottoMachine = new LottoPurchaseMachine();
     const cashInput = '5000';
     lottoMachine.buyLotto(cashInput);
     expect(lottoMachine.lottos).toHaveLength(Number(cashInput) / LOTTO_PRICE);

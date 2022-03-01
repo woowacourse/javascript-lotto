@@ -1,7 +1,8 @@
 class Messenger {
-  constructor(view, machine) {
+  constructor(view, purchaseMachine, winnerMachine) {
     this.view = view;
-    this.machine = machine;
+    this.purchaseMachine = purchaseMachine;
+    this.winnerMachine = winnerMachine;
   }
 
   deliverMessage = ({ message, to, params }) => {
@@ -10,10 +11,10 @@ class Messenger {
   };
 
   deliveryManual = {
-    machine: {
+    purchaseMachine: {
       INPUT_CASH: (cash) => {
         try {
-          this.machine.buyLotto(cash);
+          this.purchaseMachine.buyLotto(cash);
         } catch (error) {
           alert(error.message);
         }

@@ -7,7 +7,7 @@ import {
 } from '../constants/constants';
 import { generateRandomNumberInRange, isNumberInRange } from '../utils/utils';
 
-class LottoMachine {
+class LottoPurchaseMachine {
   constructor() {
     this.lottoPrice = LOTTO_PRICE;
     this.lottos = null;
@@ -63,4 +63,4 @@ class LottoMachine {
   }
 }
 
-export default LottoMachine;
+export default LottoPurchaseMachine;
