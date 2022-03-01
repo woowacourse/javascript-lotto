@@ -1,5 +1,4 @@
 import EVENT from '../constants/event.js';
-import LOTTO from '../constants/lotto.js';
 import ID from '../constants/selector.js';
 import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
