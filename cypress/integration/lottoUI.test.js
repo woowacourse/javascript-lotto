@@ -116,3 +116,22 @@ it('당첨 통계 모달에 있는 엑스표 버튼을 클릭하면 당첨 통�
 
   cy.get('#lotto-result-section').should('be.not.exist');
 });
+
+it('당첨 통계 모달에 있는 다시 시작하기 버튼을 클릭하면 행운의 로또가 초기화 된다.', () => {
+  cy.visit('./index.html');
+
+  cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
+  cy.get(SELECTOR.PAYMENT_BUTTON).click();
+
+  cy.get('#result-checking-button').click();
+  cy.get('#restart-button').click();
+
+  cy.get(SELECTOR.PAYMENT_INPUT).should('have.value', '');
+  cy.get(SELECTOR.PAYMENT_INPUT).should('have.focus');
+  cy.get(SELECTOR.PAYMENT_BUTTON).should('be.not.disabled');
+
+  cy.get('#purchased-lotto-list-section').should('be.not.exist');
+  cy.get('#last-week-winning-number-section').should('be.not.exist');
+  cy.get('#result-checking-section').should('be.not.exist');
+  cy.get('#lotto-result-section').should('be.not.exist');
+});
