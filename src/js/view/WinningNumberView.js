@@ -1,7 +1,7 @@
 import { RULES } from '../constants/index.js';
 
 //template
-const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
+const INPUT_ELEMENT = `<input type="number" class="winning-number-input"/>`;
 
 const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
@@ -32,6 +32,21 @@ export default class WinningNumberView {
 
   render() {
     this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
+
+    const winningNumberForm = document.getElementById('winning-number-form');
+    const winningNumberInputElements = document.getElementsByClassName(
+      'winning-number-input',
+    );
+
+    winningNumberForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const winningNumberList = Array.from(winningNumberInputElements).map(
+        el => el.value,
+      );
+
+      console.log(winningNumberList);
+    });
   }
 
   resetScreen() {

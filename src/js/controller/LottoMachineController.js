@@ -22,6 +22,9 @@ export default class LottoMachineController {
       name: 'purchasedMoneySubmit',
       handler: this.onSubmitHandler.bind(this),
     });
+
+    //test를 위한 코드
+    this.view.winningNumberView.render();
   }
 
   onSubmitHandler(purchaseMoney) {
