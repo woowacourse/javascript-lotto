@@ -13,6 +13,7 @@ class LottoView {
 
   assignMessenger(deliverMessage) {
     this.cashInputView.assignMessenger(deliverMessage);
+    this.winnerNumberView.assignMessenger(deliverMessage);
   }
 
   renderLottos(lottos) {

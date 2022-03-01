@@ -9,7 +9,7 @@ const lottoApp = () => {
   const lottoPurchaseMachine = new LottoPurchaseMachine();
   const lottoWinnerMachine = new LottoWinnerMachine();
 
-  const messenger = new Messenger(lottoView, lottoPurchaseMachine);
+  const messenger = new Messenger(lottoView, lottoPurchaseMachine, lottoWinnerMachine);
 
   lottoView.assignMessenger(messenger.deliverMessage);
   lottoPurchaseMachine.assignMessenger(messenger.deliverMessage);

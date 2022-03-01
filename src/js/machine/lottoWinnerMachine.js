@@ -13,7 +13,7 @@ class LottoWinnerMachine {
       throw new Error('6개의 당첨 번호와 보너스 번호를 입력해야 합니다.');
     }
 
-    const allNumbers = [...numbers, bonus];
+    const allNumbers = [...numbers, bonus].map((numberString) => Number(numberString));
     if (!this.#isUniqueInput(allNumbers)) {
       throw new Error('6개의 당첨 번호와 보너스 번호 중에 중복된 숫자가 있습니다.');
     }

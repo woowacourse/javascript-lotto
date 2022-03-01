@@ -20,6 +20,15 @@ class Messenger {
         }
       },
     },
+    winnerMachine: {
+      WINNER_NUMBER_INPUT: (winnerNumbers) => {
+        try {
+          this.winnerMachine.setWinnerNumbers(winnerNumbers);
+        } catch (error) {
+          alert(error.message);
+        }
+      },
+    },
     view: {
       LOTTO_GENERATE_COMPLETE: (lottos) => {
         this.view.renderLottos(lottos);
