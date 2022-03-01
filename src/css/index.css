@@ -9,11 +9,12 @@ input {
 }
 
 body {
-  width: 98vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.07);
   font-family: 'NanumBarunGothic', sans-serif;
+  font-size: 1.1rem;
 
   display: flex;
   justify-content: center;
@@ -23,7 +24,7 @@ body {
 #app {
   width: 25vw;
   min-width: 414px;
-  padding: 50px;
+  padding: 20px;
 
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -46,12 +47,17 @@ body {
   border-radius: 4px;
 }
 
+#charge-button {
+  width: 15%;
+}
+
 button {
   border-radius: 4px;
   background-color: #00bcd4;
   color: #ffffff;
   border: 0;
   min-height: 36px;
+  font-weight: bold;
 }
 
 section {
@@ -80,7 +86,7 @@ section {
 }
 #lotto-container[data-visible-state='false'] {
   flex-direction: row;
-  gap: 10px;
+  gap: 3px;
 }
 
 #lotto-container[data-visible-state='false'] .number {
@@ -97,6 +103,14 @@ section {
   gap: 10px;
 }
 
+#win-number-input-section {
+  margin-top: 40px;
+}
+
+.win-number-input-notice {
+  margin-bottom: 0;
+}
+
 .win-number-input-wrapper {
   display: flex;
   gap: 10px;
@@ -106,17 +120,20 @@ section {
 #result-button {
   width: 100%;
   margin-top: 10px;
+  padding: 13px;
 }
 
 .win-number-input-wrapper input {
   width: 30px;
   height: 30px;
+  font-size: 1.3rem;
 }
 
 .bonus-number-wrapper {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 #align-converter-container {

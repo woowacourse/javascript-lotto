@@ -1,0 +1,70 @@
+#result-modal-area[data-visible-state='false'] {
+  display: none;
+}
+
+#result-modal-area[data-visible-state='true'] {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.background-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background: #ffffff;
+  width: 25vw;
+  border-radius: 4px;
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+}
+
+.winning-statistics-table {
+  padding: 1rem;
+}
+
+.winning-statistics-table > li {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.table-head {
+  border-top: 1px solid #dcdcdc;
+  font-weight: bold;
+}
+
+#modal-close-button {
+  width: 14px;
+  min-height: 14px;
+  background: no-repeat;
+  background-image: url('../../images/modal_close_button.png');
+  position: relative;
+  right: -49%;
+  top: 0;
+}
+
+.modal-title {
+  margin-top: 0;
+}
+
+#earning-rate-notice {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#replay-button {
+  font-size: 1rem;
+  margin: 1rem 0 2rem 0;
+  padding: 0.8rem 2.5rem;
+}
