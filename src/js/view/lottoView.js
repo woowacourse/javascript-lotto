@@ -9,6 +9,7 @@ import { createElementWithClassName, selectDom } from '../utils/utils';
 class LottoView {
   constructor() {
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
+    this.cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
 
     this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
     this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
@@ -17,11 +18,23 @@ class LottoView {
     this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
 
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
+
+    this.deliverMessage = null;
   }
 
-  attachCashInputEventListeners(handler) {
-    this.cashInputSection.addEventListener('click', handler);
+  assignMessenger(deliverMessage) {
+    this.deliverMessage = deliverMessage;
+    this.attachMessengers();
   }
+
+  attachMessengers() {
+    this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
+  }
+
+  #onCashInputButtonClick = () => {
+    const { value: cashInput } = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
+    this.deliverMessage({ message: 'INPUT_CASH', to: 'model', params: cashInput });
+  };
 
   #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
     const { classList: lottoGridClassList } = this.lottoGrid;
@@ -43,6 +56,7 @@ class LottoView {
   }
 
   renderLottos(lottos) {
+    this.disableCashInput();
     this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
     this.winnerNumberSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
 

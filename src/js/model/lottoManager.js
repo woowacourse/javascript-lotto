@@ -7,16 +7,22 @@ class LottoManager {
     this.lottoPrice = LOTTO_PRICE;
     this.purchaseAmount = null;
     this.lottos = null;
+    this.toView = null;
+  }
+
+  assignMessenger(deliverMessage) {
+    this.deliverMessage = deliverMessage;
   }
 
   buyLotto(cashInput) {
     this.#validateCashInput(Number(cashInput));
     this.purchaseAmount = this.#getLottoPurchaseAmount(Number(cashInput));
     this.#generateLottos();
-  }
-
-  getLottos() {
-    return this.lottos;
+    this.deliverMessage({
+      message: 'LOTTO_GENERATE_COMPLETE',
+      to: 'view',
+      params: [...this.lottos],
+    });
   }
 
   #validateCashInput(cashInput) {
