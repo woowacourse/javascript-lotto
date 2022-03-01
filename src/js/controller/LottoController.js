@@ -9,11 +9,20 @@ import EVENT from '../constants/event.js';
  * @classdesc view와 model을 연결하는 controller
  */
 export default class LottoController {
-  constructor(lottoBundle, purchaseView, issuedTicketView, lottoResult) {
+  constructor(
+    lottoBundle,
+    purchaseView,
+    issuedTicketView,
+    lottoResult,
+    winningNumbersView,
+    resultModalView,
+  ) {
     this.lottoBundle = lottoBundle;
     this.lottoResult = lottoResult;
     this.purchaseView = purchaseView;
     this.issuedTicketView = issuedTicketView;
+    this.winningNumbersView = winningNumbersView;
+    this.resultModalView = resultModalView;
     this.#subscribeViewEvents();
   }
 
@@ -27,6 +36,10 @@ export default class LottoController {
 
     on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE, (e) =>
       this.#toggleDetails(e.detail.checked),
+    );
+
+    on(this.winningNumbersView.$winningNumbersForm, EVENT.SUBMIT_RESULT, (e) =>
+      this.#requestResult(e.detail.winningNumbers, e.detail.bonusNumber),
     );
   }
 
@@ -65,5 +78,19 @@ export default class LottoController {
     }
 
     this.issuedTicketView.hideTicketDetails();
+  }
+
+  #requestResult(winningNumbers, bonusNumber) {
+    this.lottoResult.winningNumbers = winningNumbers;
+    this.lottoResult.bonusNumber = bonusNumber;
+    this.lottoResult.calculateWinningCounts();
+    const { winningCounts } = this.lottoResult;
+    this.lottoResult.calculateLottoYield();
+    const { lottoYield } = this.lottoResult;
+    this.renderResultModal(winningCounts, lottoYield);
+  }
+
+  renderResultModal(winningCounts, lottoYield) {
+    this.resultModalView.showModal();
   }
 }

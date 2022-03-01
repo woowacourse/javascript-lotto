@@ -1,13 +1,14 @@
-#modal-container {
+/* #modal-container {
   background-color: var(--white);
   display: none;
-}
+} */
 
-#modal-container.show-modal {
+.modal.show-modal {
   display: block;
 }
 
 .modal {
+  display: none;
   background-color: var(--secondary);
   border-radius: 5px;
   position: absolute;

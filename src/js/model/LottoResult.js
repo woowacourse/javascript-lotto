@@ -5,18 +5,20 @@ export default class LottoResult {
     this.lottoBundle = lottoBundle;
   }
 
-  #winningNumbers = { basicNumbers: [], bonusNumber: 0 }; // { basicNumbers: [1,2,3,4,5,6], bonusNumber: 7 }
+  #winningNumbers = [];
+
+  #bonusNumber = 0;
 
   #winningCounts = { three: 0, four: 0, five: 0, fiveBonus: 0, six: 0 };
 
-  #yield = 0;
+  #lottoYield = 0;
 
-  // numbers = [1,2,3,4,5,6,7]
   set winningNumbers(numbers) {
-    this.#winningNumbers = {
-      basicNumbers: numbers.slice(0, 6),
-      bonusNumber: numbers[6],
-    };
+    this.#winningNumbers = numbers;
+  }
+
+  set bonusNumber(number) {
+    this.#bonusNumber = number;
   }
 
   get winningCounts() {
@@ -24,7 +26,7 @@ export default class LottoResult {
   }
 
   calculateWinningCounts() {
-    const { lottos } = this.lottoBundle;
+    const userLottos = this.lottoBundle.lottos;
 
     let three = 0;
     let four = 0;
@@ -32,7 +34,7 @@ export default class LottoResult {
     let fiveBonus = 0;
     let six = 0;
 
-    lottos.forEach((userLotto) => {
+    userLottos.forEach((userLotto) => {
       switch (this.countLottoNumbers(userLotto)) {
         case 3:
           three += 1;
@@ -59,18 +61,16 @@ export default class LottoResult {
 
   countLottoNumbers(userLotto) {
     let count = 0;
-    const { basicNumbers } = this.#winningNumbers;
-    const { bonusNumber } = this.#winningNumbers;
     for (let i = 0; i <= 5; i += 1) {
       for (let j = 0; j <= 5; j += 1) {
-        if (userLotto[i] === basicNumbers[j]) {
+        if (userLotto[i] === this.#winningNumbers[j]) {
           count += 1;
         }
       }
     }
     if (count === 5) {
       for (let i = 0; i < 6; i += 1) {
-        if (userLotto[i] === bonusNumber) {
+        if (userLotto[i] === this.#bonusNumber) {
           return 'fiveBonus';
         }
       }
@@ -79,7 +79,7 @@ export default class LottoResult {
     return count;
   }
 
-  calculateYield() {
+  calculateLottoYield() {
     const winningMoney =
       this.#winningCounts.three * 5000 +
       this.#winningCounts.four * 50000 +
@@ -87,10 +87,10 @@ export default class LottoResult {
       this.#winningCounts.fiveBonus * 30000000 +
       this.#winningCounts.six * 2000000000;
     const investmentMoney = this.lottoBundle.money;
-    this.#yield = Math.floor(winningMoney / investmentMoney);
+    this.#lottoYield = Math.floor(winningMoney / investmentMoney);
   }
 
-  get yield() {
-    return this.#yield;
+  get lottoYield() {
+    return this.#lottoYield;
   }
 }

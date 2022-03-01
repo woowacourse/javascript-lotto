@@ -35,7 +35,7 @@
       <section id="winning-numbers-container">
         <h2 hidden>로또 당첨 확인 요청</h2>
         <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
-        <form>
+        <form id="winning-numbers-form">
           <div class="winning-numbers-div">
             <label for="basic-number">당첨 번호</label>
             <label class="bonus-label" for="bonus-number">보너스 번호</label>
@@ -49,7 +49,6 @@
                 max="45"
               />
               <input
-                id="basic-number"
                 class="small-input"
                 type="number"
                 required
@@ -57,7 +56,6 @@
                 max="45"
               />
               <input
-                id="basic-number"
                 class="small-input"
                 type="number"
                 required
@@ -65,7 +63,6 @@
                 max="45"
               />
               <input
-                id="basic-number"
                 class="small-input"
                 type="number"
                 required
@@ -73,7 +70,6 @@
                 max="45"
               />
               <input
-                id="basic-number"
                 class="small-input"
                 type="number"
                 required
@@ -81,15 +77,6 @@
                 max="45"
               />
               <input
-                id="basic-number"
-                class="small-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
-              <input
-                id="basic-number"
                 class="small-input"
                 type="number"
                 required
@@ -111,6 +98,12 @@
           </div>
           <button id="result-button" type="submit">결과 확인하기</button>
         </form>
+      </section>
+
+      <!--Modal-->
+      <section id="modal-container">
+        <h2 hidden>로또 당첨 통계 확인 창</h2>
+        <div class="modal"></div>
       </section>
     </div>
   </body>

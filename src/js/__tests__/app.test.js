@@ -109,7 +109,8 @@ describe(
     ];
 
     const lottoResult = new LottoResult(lottoBundle);
-    lottoResult.winningNumbers = [1, 2, 3, 4, 5, 6, 7];
+    lottoResult.winningNumbers = [1, 2, 3, 4, 5, 6];
+    lottoResult.bonusNumber = 7;
 
     test('결과 확인하기 버튼을 누르면, 당첨번호와 구입한 로또 번호를 비교하여 당첨 금액별 당첨 번호 개수를 계산할 수 있어야 한다.', () => {
       // when
@@ -130,10 +131,10 @@ describe(
       lottoBundle.money = 1000000;
 
       // when
-      lottoResult.calculateYield();
+      lottoResult.calculateLottoYield();
 
       // then
-      expect(lottoResult.yield).toBe(2061);
+      expect(lottoResult.lottoYield).toBe(2061);
     });
   }),
 );
