@@ -23,11 +23,6 @@
   margin-right: 5px;
 }
 
-.winning-number-input::-webkit-outer-spin-button,
-.winning-number-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
 #bonus-number-box .winning-number-input {
   margin-right: 0;
 }
