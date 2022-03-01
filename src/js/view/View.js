@@ -24,7 +24,11 @@ export class View {
   }
 
   showPurchasedLottos(lottoWallet) {
-    this.lottoNumberLabel.innerHTML = `총 ${lottoWallet.length}개를 구매하였습니다.`;
+    this.lottoNumberLabel.textContent = '';
+    this.lottoNumberLabel.insertAdjacentHTML(
+      'afterbegin',
+      `총 ${lottoWallet.length}개를 구매하였습니다.`
+    );
   }
 
   clearMoneyInput(remain) {
@@ -45,12 +49,17 @@ export class View {
   }
 
   lottosInfoTemplate(lottoWallet) {
-    this.lottoIcons.innerHTML = this.padLottoNumbers(lottoWallet)
-      .map((numbers) => `<pre>🎟️ ${numbers}<br></pre>`)
-      .join('');
+    this.lottoIcons.textContent = '';
+    this.lottoIcons.insertAdjacentHTML(
+      'afterbegin',
+      this.padLottoNumbers(lottoWallet)
+        .map((numbers) => `<pre>🎟️ ${numbers}<br></pre>`)
+        .join('')
+    );
   }
 
   lottosQuantityTemplate(lottoWallet) {
-    this.lottoQuantity.innerHTML = '🎟️ '.repeat(lottoWallet.length);
+    this.lottoQuantity.textContent = '';
+    this.lottoQuantity.insertAdjacentHTML('afterbegin', '🎟️ '.repeat(lottoWallet.length));
   }
 }
