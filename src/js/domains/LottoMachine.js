@@ -5,6 +5,7 @@ import { LOTTO } from "../constants/constants.js";
 <<<<<<< HEAD
 import Lotto from "../domains/Lotto.js";
 import validateMoney from "../validations/LottoMachine.js";
+import LottoStrategy from "./LottoStrategy.js";
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -34,6 +35,7 @@ export default class LottoMachine {
   generateLottos() {
     return Array(this.lottoQuantity)
       .fill()
+<<<<<<< HEAD
       .map(() => {
         const lotto = new Lotto();
         lotto.pickNumbers();
@@ -104,6 +106,9 @@ export default class LottoMachine {
 =======
     return this.#inputMoney / LOTTO.PRICE;
 >>>>>>> e00c8b0 (feat: 로또 기계가 투입금액에서 로또 가격을 나눈 개수만큼의 로또를 발급하도록 구현)
+=======
+      .map(() => new Lotto(new LottoStrategy()).generate());
+>>>>>>> 9104408 (refactor: Lotto 생성 과정 전략패턴화)
   }
 =======
 >>>>>>> 9b14578 (refactor: 메서드 역할 상세화)

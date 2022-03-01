@@ -9,18 +9,15 @@ import { LOTTO } from '../constants/constants.js';
 export default class Lotto {
   #numbers = [];
 
+  constructor(strategy) {
+    this.pickStrategy = strategy;
+  }
+
   get numbers() {
     return this.#numbers;
   }
 
-  pickNumbers(strategy = this.#generateRandomNumber) {
-    const set = new Set();
-    while (set.size < LOTTO.NUMBER_QUANTITY) {
-      set.add(strategy());
-    }
-    this.#numbers = [...set];
-  }
-
+<<<<<<< HEAD
   #generateRandomNumber() {
     return Math.floor(
       Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) + LOTTO.MIN_NUMBER
@@ -59,5 +56,10 @@ export default class Lotto {
       Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) + LOTTO.MIN_NUMBER
 >>>>>>> 0d4f4f9 (refactor: 로또 관련 상수 결합)
     );
+=======
+  generate() {
+    this.#numbers = this.pickStrategy.pickNumbers();
+    return this;
+>>>>>>> 9104408 (refactor: Lotto 생성 과정 전략패턴화)
   }
 }

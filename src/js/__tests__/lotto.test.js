@@ -8,10 +8,19 @@ import { LOTTO } from "../constants/constants.js";
 import { isInRange, isDuplicated } from "../validations/utils.js";
 <<<<<<< HEAD
 
-describe("로또 단위 테스트 ", () => {
-  const lotto = new Lotto();
-  lotto.pickNumbers();
+let lotto;
 
+class TestStrategy {
+  constructor() {}
+  pickNumbers() {
+    return [1, 2, 3, 4, 5, 6];
+  }
+}
+
+describe("로또 단위 테스트 ", () => {
+  beforeEach(() => {
+    lotto = new Lotto(new TestStrategy()).generate();
+  });
   test("로또는 1부터 45번까지의 숫자들을 가진다.", () => {
     expect(isInRange(lotto.numbers, LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER)).toBe(
 =======
