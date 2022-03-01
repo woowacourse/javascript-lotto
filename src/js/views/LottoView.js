@@ -5,8 +5,9 @@ import {
   purchaseMessageTemplate,
 } from './template.js';
 import { SELECTOR } from '../constants/constants.js';
+import View from './View.js';
 
-export default class LottoView {
+export default class LottoView extends View {
   getInputMoney() {
     return Number.parseInt($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
   }

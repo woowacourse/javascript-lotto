@@ -7,14 +7,13 @@ export default class LottoController {
   constructor() {
     this.machine = new LottoMachine();
     this.view = new LottoView();
-  }
-
-  bindEvents() {
-    $(SELECTOR.ID.PURCHASE_MONEY_FORM).addEventListener(
+    this.view.bindEvent(
+      $(SELECTOR.ID.PURCHASE_MONEY_FORM),
       'submit',
       this.handlePurchaseForm.bind(this)
     );
-    $(SELECTOR.ID.LOTTO_RESULT_TOGGLE).addEventListener(
+    this.view.bindEvent(
+      $(SELECTOR.ID.LOTTO_RESULT_TOGGLE),
       'click',
       this.handleResultToggle.bind(this)
     );

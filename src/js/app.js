@@ -2,8 +2,7 @@ import LottoController from './controllers/LottoController.js';
 
 function App() {
   window.addEventListener('DOMContentLoaded', () => {
-    const lottoController = new LottoController();
-    lottoController.bindEvents();
+    new LottoController();
   });
 }
 export default App;
