@@ -4,7 +4,8 @@ import {
   LOTTO_IMAGE,
   SELECTOR,
 } from '../constants/constants';
-import { createElementWithClassName, selectDom } from '../utils/utils';
+import { div, label, p } from '../utils/createElement';
+import { selectDom } from '../utils/utils';
 
 class PurchasedLottoView {
   constructor() {
@@ -36,9 +37,7 @@ class PurchasedLottoView {
   }
 
   #generatePurchasedLabel(length) {
-    const labelElement = document.createElement('label');
-    labelElement.textContent = `총 ${length}개를 구매하였습니다.`;
-    return labelElement;
+    return label({ children: `총 ${length}개를 구매하였습니다.` });
   }
 
   #generateLottoElementsArray(lottos) {
@@ -46,16 +45,16 @@ class PurchasedLottoView {
   }
 
   #generateLottoElement(lottoNumberSet) {
-    const lottoElement = createElementWithClassName('div', CLASSNAMES.LOTTO_CLASSNAME);
-
-    const lottoImage = createElementWithClassName('p', CLASSNAMES.LOTTO_IMAGE_CLASSNAME);
-    lottoImage.textContent = LOTTO_IMAGE;
-
-    const lottoNumbers = createElementWithClassName('p', CLASSNAMES.LOTTO_NUMBERS_CLASSNAME);
-    lottoNumbers.textContent = Array.from(lottoNumberSet).join(', ');
-
-    lottoElement.append(lottoImage, lottoNumbers);
-    return lottoElement;
+    return div({
+      className: CLASSNAMES.LOTTO_CLASSNAME,
+      children: [
+        p({ className: CLASSNAMES.LOTTO_IMAGE_CLASSNAME, children: LOTTO_IMAGE }),
+        p({
+          className: CLASSNAMES.LOTTO_NUMBERS_CLASSNAME,
+          children: Array.from(lottoNumberSet).join(', '),
+        }),
+      ],
+    });
   }
 }
 
