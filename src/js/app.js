@@ -1,5 +1,8 @@
 import { $ } from './utils/dom.js';
-import { getLottoPrice, checkLottoPrice } from './core/checkInputValue.js';
+import {
+  getLottoPrice,
+  checkLottoPrice,
+} from './core/checkLottoPriceInputValue.js';
 import { toggleButton } from './component/toggleButton.js';
 import { makeLottoList } from './core/makeLottoList.js';
 import {
@@ -8,6 +11,9 @@ import {
   renderPurchasedLottoListContent,
   renderPurchasedLottoListContentIsActive,
 } from './views/render.js';
+import { checkLastLottoNumberValid } from './core/checkLastLottoNumberInput.js';
+import { computeLottoRateOfReturn } from './core/computeLottoRateOfReturn.js';
+import toggleLottoResultModal from './component/toggleLottoResultModal.js';
 
 export default class App {
   constructor() {
@@ -28,9 +34,13 @@ export default class App {
       'click',
       this.toggleButtonClickEvent,
     );
-    $('.purchased-lotto-list-container').addEventListener(
+    $('.last-lotto-winning-number-container').addEventListener(
       'click',
-      handleToggleButtonClick,
+      this.handleCheckResultButtonClick,
+    );
+    $('.winning-rate-close-button').addEventListener(
+      'click',
+      toggleLottoResultModal,
     );
   }
   handleLottoFormSubmitEvent(e) {
@@ -58,6 +68,7 @@ export default class App {
     renderPurchasedLottoList(this.lottoList.length);
     renderLastLottoNumber();
   }
+
   handleToggleButtonClick(e) {
     e.preventDefault();
     if (!e.target.classList.contains(`onoff-switch`)) {
@@ -70,6 +81,27 @@ export default class App {
     }
     renderPurchasedLottoListContent(this.lottoList.length);
   }
+
+  handleCheckResultButtonClick = e => {
+    e.preventDefault();
+    if (!e.target.classList.contains('check-result-button')) {
+      return;
+    }
+    const lastLottoNumbers = checkLastLottoNumberValid();
+    if (!lastLottoNumbers) {
+      document
+        .querySelectorAll('.last-lotto-winning-number-input')
+        .forEach(input => {
+          input.value = '';
+        });
+      return;
+    }
+    const rateOfReturn = computeLottoRateOfReturn(
+      this.lottoList,
+      lastLottoNumbers,
+    );
+    toggleLottoResultModal();
+  };
 }
 
 new App();
