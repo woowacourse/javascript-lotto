@@ -12,6 +12,7 @@ button {
   flex: none;
   order: 0;
   flex-grow: 0;
+  height: 36px;
 }
 
 button:disabled {
@@ -31,6 +32,10 @@ button:focus:not(:focus-visible) {
 
 #purchase-button {
   width: 56px;
-  height: 36px;
+
   margin-left: 8px;
+}
+
+#result-button {
+  width: 100%;
 }

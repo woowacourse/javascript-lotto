@@ -1,6 +1,6 @@
 section {
   width: 414px;
-  padding: 16px;
+  padding: 5px;
   box-sizing: border-box;
 }
 
@@ -16,4 +16,15 @@ section {
 
 .ticket-icon-div {
   margin: 0 0 8px 0;
+}
+
+#winning-numbers-container {
+  margin: 32px 0;
+}
+
+.winning-numbers-div {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-row-gap: 12px;
+  margin: 8px 0;
 }

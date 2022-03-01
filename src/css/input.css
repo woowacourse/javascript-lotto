@@ -24,3 +24,21 @@ input:focus:not(:focus-visible) {
   width: 310px;
   height: 36px;
 }
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.small-input {
+  width: 34px;
+  height: 36px;
+  padding: 0;
+  text-align: center;
+}
+
+.bonus-input {
+  right: 0;
+  float: right;
+}

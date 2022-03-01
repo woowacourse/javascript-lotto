@@ -13,7 +13,12 @@
         <h2 hidden>로또 구매 양식</h2>
         <form id="purchase-form">
           <label for="purchase-input">구입할 금액을 입력해주세요.</label>
-          <input id="purchase-input" type="number" placeholder="금액" />
+          <input
+            id="purchase-input"
+            type="number"
+            placeholder="금액"
+            autofocus
+          />
           <button id="purchase-button" type="submit">구입</button>
         </form>
       </section>
@@ -26,6 +31,86 @@
           <input id="lotto-number-toggle" type="checkbox" />
           <span class="slider round"></span>
         </label>
+      </section>
+      <section id="winning-numbers-container">
+        <h2 hidden>로또 당첨 확인 요청</h2>
+        <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
+        <form>
+          <div class="winning-numbers-div">
+            <label for="basic-number">당첨 번호</label>
+            <label class="bonus-label" for="bonus-number">보너스 번호</label>
+            <div>
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+              <input
+                id="basic-number"
+                class="small-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+            </div>
+
+            <div class="bonus-input">
+              <input
+                id="bonus-number"
+                class="small-input bonus-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+              />
+            </div>
+          </div>
+          <button id="result-button" type="submit">결과 확인하기</button>
+        </form>
       </section>
     </div>
   </body>
