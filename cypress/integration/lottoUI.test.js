@@ -83,7 +83,7 @@ describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
       });
   });
 
-  it('번호 보기 버튼을 비활성화하면 사용자가 구매한 로또 번호가 가려진다', () => {
+  it('번호 보기 버튼을 비활성화하면 사용자가 구매한 로또 번호가 가려진다.', () => {
     cy.get(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON).click();
 
     cy.get(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON)
@@ -103,4 +103,16 @@ it('결과 확인하기 버튼을 클릭하면 당첨 통계 모달을 확인할
   cy.get('#result-checking-button').click();
 
   cy.get('#lotto-result-section').should('be.visible');
+});
+
+it('당첨 통계 모달에 있는 엑스표 버튼을 클릭하면 당첨 통계 모달이 닫힌다.', () => {
+  cy.visit('./index.html');
+
+  cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
+  cy.get(SELECTOR.PAYMENT_BUTTON).click();
+
+  cy.get('#result-checking-button').click();
+  cy.get('#exit-button').click();
+
+  cy.get('#lotto-result-section').should('be.not.visible');
 });
