@@ -19,8 +19,9 @@ h1 {
   width: 414px;
   height: 727px;  
   border: 2px solid black;
+  background-color: white;
   padding: 0px 16px;
-  position: relative;
+  z-index: 2;
 }
 
 label[for="purchase-money"] {
@@ -209,10 +210,8 @@ input:checked + .slider:before {
   border: 1px solid black;
   background-color: white;
   border-radius: 4px;
-  position: absolute;
-  top: 114px;
-  left: 32px;
-  display: none;
+  margin-left: -380px;
+  z-index: 1;
 }
 
 #user-lotto-modal-close {
@@ -249,7 +248,7 @@ hr {
   width: 318px;
 }
 
-#user-lotto-returnrate {
+#user-lotto-winrate {
   text-align: center;
   font-size: 18px;
   margin-top: 30px;
