@@ -41,17 +41,12 @@ export default class LottoGame {
       if (matchCount < MATCH_NUMBER.THREE) {
         return;
       }
-      if (matchCount === MATCH_NUMBER.FIVE) {
-        this.#checkBonusNumber(lotto, bonusNumber);
+      if (matchCount === MATCH_NUMBER.FIVE && lotto.includes(bonusNumber)) {
+        this.result[CONVERT_TO_COUNT_INFO[BONUS]][1]++;
+        return;
       }
+
       this.result[CONVERT_TO_COUNT_INFO[matchCount]][1]++;
     });
-  }
-
-  #checkBonusNumber(lotto, bonusNumber) {
-    if (lotto.includes(bonusNumber)) {
-      this.result[CONVERT_TO_COUNT_INFO[BONUS]][1]++;
-      return;
-    }
   }
 }
