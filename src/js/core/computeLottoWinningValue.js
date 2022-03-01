@@ -18,7 +18,7 @@ export function getLottoPrize(correctCount) {
     case MATCH_NUMBER_3:
       prizeMoney = MATCH_NUMBER_3_PRIZE;
       break;
-    case MATCH_NUMBER_4_PRIZE:
+    case MATCH_NUMBER_4:
       prizeMoney = MATCH_NUMBER_4_PRIZE;
       break;
     case MATCH_NUMBER_5:
