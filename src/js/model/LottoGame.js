@@ -1,4 +1,5 @@
 import {
+  AMOUNT,
   BONUS,
   CONVERT_TO_COUNT_INFO,
   MATCH_COUNT_INFO,
@@ -10,6 +11,7 @@ import Lotto from "./Lotto.js";
 export default class LottoGame {
   constructor() {
     this.lottos = [];
+    this.profitRate = 0;
     this.result = {
       [MATCH_COUNT_INFO.THREE]: [WINNER_PRICE.FIFTH, 0],
       [MATCH_COUNT_INFO.FOUR]: [WINNER_PRICE.FOURTH, 0],
@@ -25,6 +27,10 @@ export default class LottoGame {
 
   getLottoCount() {
     return this.lottos.length;
+  }
+
+  #getTicketAmount() {
+    return this.getLottoCount() * AMOUNT.UNIT;
   }
 
   generateLottoTicket(count) {
@@ -48,5 +54,18 @@ export default class LottoGame {
 
       this.result[CONVERT_TO_COUNT_INFO[matchCount]][1]++;
     });
+
+    this.#calculateProfitRate();
+  }
+
+  #calculateProfitRate() {
+    const totalProfit = Object.keys(this.result)
+      .map((v) => {
+        const [price, count] = this.result[v];
+        return price * count;
+      })
+      .reduce((a, b) => a + b, 0);
+
+    this.profitRate = Math.floor((totalProfit / this.#getTicketAmount()) * 100);
   }
 }
