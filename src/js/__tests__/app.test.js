@@ -93,3 +93,19 @@ test('수익률을 계산할 수 있다.', () => {
   lottoGame.calculateYield();
   expect(lottoGame.yield).toBe(666685);
 });
+
+test('다시 시작을 위해 초기화가 가능하다.', () => {
+  const lottoGame = new LottoGame();
+  lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE * 3);
+  lottoGame.buyLotto();
+  lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+  lottoGame.compareLottos();
+  lottoGame.calculateYield();
+  lottoGame.reStartLottos();
+  expect(lottoGame.moneyInput).toBe(0);
+  expect(lottoGame.lottoWallet.length).toBe(0);
+  expect(lottoGame.winningNumbers.size).toBe(0);
+  expect(lottoGame.bonusNumber).toBe(0);
+  expect(lottoGame.winningStatus.every((winStatus) => winStatus === 0)).toBe(true);
+  expect(lottoGame.yield).toBe(0);
+});

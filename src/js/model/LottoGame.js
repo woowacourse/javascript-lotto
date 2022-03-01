@@ -61,12 +61,21 @@ export class LottoGame {
       this.winningStatus[4]++;
     }
   }
-  // 수익률 계산
+
   calculateYield() {
     let winAmount = 0;
     this.winningStatus.forEach((winStatus, idx) => {
       winAmount += winStatus * WINNINGS[`${idx + 1}-place`];
     });
     this.yield = winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE);
+  }
+
+  reStartLottos() {
+    this.moneyInput = 0;
+    this.lottoWallet = [];
+    this.winningNumbers = new Set();
+    this.bonusNumber = 0;
+    this.winningStatus = new Array(5).fill(0);
+    this.yield = 0;
   }
 }
