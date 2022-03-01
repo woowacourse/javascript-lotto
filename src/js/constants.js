@@ -13,6 +13,8 @@ export const ID_SELECTOR = {
   TOGGLE_INPUT: '#toggle-input',
   LOTTO_LISTS: '#lotto-lists',
   LOTTO_LIST_SECTION: '#lotto-list-section',
+  WINNING_NUMBERS_SECTION: '#winning-numbers-section',
+  WINNING_NUMBERS_FORM: '#winning-numbers-form',
 };
 
 export const CLASS_NAME = {
@@ -21,6 +23,7 @@ export const CLASS_NAME = {
   LOTTO_LIST_TICKET: 'lotto-list__ticket',
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
   UNFOLD: 'unfold',
+  WINNING_NUMBERS_SECTION_DISPLAY_NONE: 'winning-numbers__section-display-none',
 };
 
 export const LOTTO_PRICE = 1000;
