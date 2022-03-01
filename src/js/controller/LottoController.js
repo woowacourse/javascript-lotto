@@ -65,7 +65,6 @@ export default class LottoController {
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
       this.lottoGameModel.generateResult(winningNumbers, bonusNumber);
-      // todo: modal 띄워서 결과를 표시
     } catch ({ message }) {
       alert(message);
     }

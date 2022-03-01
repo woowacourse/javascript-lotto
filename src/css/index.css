@@ -6,11 +6,18 @@
   --color-white: #ffffff;
 }
 
+body {
+  background-color: rgb(247, 245, 241);
+}
+
 #app {
   display: flex;
   flex-direction: column;
   max-width: 400px;
   margin: 0 auto;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: var(--color-white);
 }
 
 /* input number arrow 제거 */

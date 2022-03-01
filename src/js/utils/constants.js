@@ -29,10 +29,35 @@ export const ERROR_MESSAGES = {
   DUPLICATED_LOTTO_NUMBER: "당첨 번호는 중복 없이 입력해주세요.",
 };
 
-export const convertCountToString = {
-  3: "3개",
-  4: "4개",
-  5: "5개",
-  bonus: "5개 + 보너스볼",
-  6: "6개",
+export const MATCH_COUNT_INFO = {
+  THREE: "3개",
+  FOUR: "4개",
+  FIVE: "5개",
+  BONUS: "5개 + 보너스볼",
+  SIX: "6개",
+};
+
+export const MATCH_NUMBER = {
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  SIX: 6,
+};
+
+export const BONUS = "bonus";
+
+export const CONVERT_TO_COUNT_INFO = {
+  [MATCH_NUMBER.THREE]: MATCH_COUNT_INFO.THREE,
+  [MATCH_NUMBER.FOUR]: MATCH_COUNT_INFO.FOUR,
+  [MATCH_NUMBER.FIVE]: MATCH_COUNT_INFO.FIVE,
+  [BONUS]: MATCH_COUNT_INFO.BONUS,
+  [MATCH_NUMBER.SIX]: MATCH_COUNT_INFO.SIX,
+};
+
+export const WINNER_PRICE = {
+  FRIST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
 };

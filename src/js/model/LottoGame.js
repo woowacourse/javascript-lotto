@@ -1,15 +1,21 @@
-import { convertCountToString } from "../utils/constants.js";
+import {
+  BONUS,
+  CONVERT_TO_COUNT_INFO,
+  MATCH_COUNT_INFO,
+  MATCH_NUMBER,
+  WINNER_PRICE,
+} from "../utils/constants.js";
 import Lotto from "./Lotto.js";
 
 export default class LottoGame {
   constructor() {
     this.lottos = [];
     this.result = {
-      "3개": [5000, 0],
-      "4개": [50000, 0],
-      "5개": [1500000, 0],
-      "5개 + 보너스볼": [30000000, 0],
-      "6개": [2000000000, 0],
+      [MATCH_COUNT_INFO.THREE]: [WINNER_PRICE.FIFTH, 0],
+      [MATCH_COUNT_INFO.FOUR]: [WINNER_PRICE.FOURTH, 0],
+      [MATCH_COUNT_INFO.FIVE]: [WINNER_PRICE.THIRD, 0],
+      [MATCH_COUNT_INFO.BONUS]: [WINNER_PRICE.SECOND, 0],
+      [MATCH_COUNT_INFO.SIX]: [WINNER_PRICE.FRIST, 0],
     };
   }
 
@@ -32,17 +38,20 @@ export default class LottoGame {
   generateResult(winningNumbers, bonusNumber) {
     this.lottos.forEach((lotto) => {
       const matchCount = lotto.filter((number) => winningNumbers.includes(number)).length;
-      if (matchCount < 3) {
+      if (matchCount < MATCH_NUMBER.THREE) {
         return;
       }
-      if (matchCount === 5) {
-        if (lotto.includes(bonusNumber)) {
-          this.result[convertCountToString["bonus"]][1]++;
-          return;
-        }
+      if (matchCount === MATCH_NUMBER.FIVE) {
+        this.#checkBonusNumber(lotto, bonusNumber);
       }
-      this.result[convertCountToString[matchCount]][1]++;
+      this.result[CONVERT_TO_COUNT_INFO[matchCount]][1]++;
     });
-    console.log(this.result);
+  }
+
+  #checkBonusNumber(lotto, bonusNumber) {
+    if (lotto.includes(bonusNumber)) {
+      this.result[CONVERT_TO_COUNT_INFO[BONUS]][1]++;
+      return;
+    }
   }
 }
