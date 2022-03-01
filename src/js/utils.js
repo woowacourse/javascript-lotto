@@ -16,6 +16,12 @@ export const isDivisibleBy = (payment, price) => {
   return parseInt(payment / price);
 };
 
+export const isUniqueNumbers = (winningNumberList, bounsNumber) => {
+  winningNumberList.push(bounsNumber);
+
+  return winningNumberList.length !== new Set(winningNumberList).size;
+};
+
 export const createRandomNumberList = (length = LOTTO.MAX_NUMBER) => {
   return Array.from({ length }, (_, index) => index + 1);
 };

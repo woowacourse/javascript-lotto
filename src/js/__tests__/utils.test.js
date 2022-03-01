@@ -4,6 +4,7 @@ import {
   getRateOfReturn,
   createRandomNumberList,
   shuffleArray,
+  isUniqueNumbers,
 } from '../utils';
 
 import { LOTTO, MONEY } from '../constants';
@@ -241,14 +242,14 @@ describe('당첨 번호, 보너스 번호가 중복된 숫자가 있는지 확�
     const winningNumberList = [1, 2, 2, 3, 4, 5];
     const bounsNumber = 7;
 
-    expect(isUniqueNumbers(winningNumberList, bounsNumber)).toBe(false);
+    expect(!isUniqueNumbers(winningNumberList, bounsNumber)).toBe(false);
   });
 
   test('당첨 번호, 보너스 번호 중에 중복된 숫자가 없을 경우 에러메시지를 띄워준다. 입력: [1, 2, 3, 4, 5, 6], 6 / 성공 케이스', () => {
     const winningNumberList = [1, 2, 3, 4, 5, 6];
     const bounsNumber = 7;
 
-    expect(isUniqueNumbers(winningNumberList, bounsNumber)).toBe(true);
+    expect(!isUniqueNumbers(winningNumberList, bounsNumber)).toBe(true);
   });
 });
 
