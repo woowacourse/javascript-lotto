@@ -73,6 +73,7 @@ export function computeLottoRankList(currentLottoNumbers, lastLottoNumberList) {
       lotto.numbers.includes(bonusNumber)
     ) {
       lottoRankObj.rank_2++;
+      return;
     }
     switch (correctCount) {
       case MATCH_NUMBER_3:
