@@ -11,6 +11,7 @@ export class Controller {
     this.bindToggleEvent();
     this.bindShowResultEvent();
     this.bindCloseModalEvent();
+    this.bindRestartEvent();
   }
 
   bindPurchaseEvent() {
@@ -27,6 +28,10 @@ export class Controller {
 
   bindCloseModalEvent() {
     this.view.closeModalBtn.addEventListener('click', this.#closeModal.bind(this));
+  }
+
+  bindRestartEvent() {
+    this.view.restartBtn.addEventListener('click', this.#restartLotto.bind(this));
   }
 
   #purchaseLotto(e) {
@@ -79,5 +84,10 @@ export class Controller {
 
   #closeModal() {
     this.view.closeModal();
+  }
+
+  #restartLotto() {
+    this.lottoGame.reStartLottos();
+    this.view.initView();
   }
 }

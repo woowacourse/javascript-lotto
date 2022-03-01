@@ -20,6 +20,7 @@ export class View {
     this.closeModalBtn = document.getElementById('close-modal-btn');
     this.modal = document.querySelector('.modal');
     this.winTable = document.getElementById('win-status');
+    this.restartBtn = document.getElementById('restart-button');
   }
 
   showLottoStatusContainer() {
@@ -126,5 +127,25 @@ export class View {
       </tr>
     </table>
     `;
+  }
+
+  clearWinningNumbers() {
+    document.getElementById('winning-number1').value = '';
+    document.getElementById('winning-number2').value = '';
+    document.getElementById('winning-number3').value = '';
+    document.getElementById('winning-number4').value = '';
+    document.getElementById('winning-number5').value = '';
+    document.getElementById('winning-number6').value = '';
+    document.getElementById('winning-number7').value = '';
+  }
+  initView() {
+    this.lottoIcons.textContent = '';
+    this.lottoNumberLabel.textContent = '';
+    this.lottoQuantity.textContent = '';
+    this.winTable.textContent = '';
+    this.closeModal();
+    this.lottoStatusContainer.classList.add('hidden');
+    this.winningLottoContainer.classList.add('hidden');
+    this.clearWinningNumbers();
   }
 }
