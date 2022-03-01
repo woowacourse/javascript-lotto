@@ -11,6 +11,14 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+## 🧑‍💻 데모 페이지
+
+[링크](http://woojeongmin.com/javascript-lotto/)
+
+## 🔎 설계
+
+![javascript lotto modeling](./javascript-lotto-modeling.png)
+
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
@@ -27,20 +35,28 @@ npm run start
 npm run build
 ```
 
+## 🎯 구현 기능목록
 
-<br>
+### 1단계
 
-## 👏 Contributing
+- #### 로또 로직
 
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요.
+  - [x] 금액이 주어지면 발급할 로또 개수를 구할 수 있어야 한다.
+  - [x] 입력된 금액의 유효성을 검증할 수 있어야 한다.
+    - [x] 입력된 금액이 숫자가 아니면 에러를 throw한다.
+    - [x] 1000으로 나눠서 안떨어지는 금액이 입려되면 에러를 throw한다.
+    - [x] 입력된 금액이 1000부터 10000 사이가 아니면 에러를 throw한다.
+  - [x] 로또 번호를 생성할 수 있어야 한다.
+    - [x] 로또 번호는 정수여야 한다.
+    - [x] 로또 번호는 1부터 45 사이여야 한다.
+  - [x] 6개의 번호를 가진 로또를 발급할 수 있다.
+  - [x] 계산된 로또개수만큼 로또를 자동 구매할 수 있어야 한다.
 
-<br>
+- #### UI
 
-## 🐞 Bug Report
-
-버그를 발견한다면, [Issues](https://github.com/woowacourse/javascript-lotto/issues)에 등록해주세요.
-
-<br>
+  - [x] 금액을 입력하여 로또를 구입할 수 있어야 한다.
+  - [x] 구입한 모든 로또와 개수를 화면에 출력할 수 있어야 한다.
+  - [x] 번호보기 스위치를 눌러 번호를 보여주고 숨길 수 있어야 한다.
 
 ## 📝 License
 
