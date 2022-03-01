@@ -1,5 +1,7 @@
 export const $ = (selector) => document.querySelector(selector);
 
+export const $$ = (selector) => document.querySelectorAll(selector);
+
 const createRandomNumber = (minRange, maxRange) =>
   Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
 
@@ -12,3 +14,5 @@ export const createRandomNumbers = (minRange, maxRange, count) => {
 
   return [...result];
 };
+
+export const extractNumber = (value) => value.replace(/[^\d]+/, '');

@@ -3,6 +3,7 @@ import LottoCountCalculator from '../CalculatorImpl/LottoCountCalculator.js';
 import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
 import LottoManagerImpl from '../LottoManager/LottoManagerImpl.js';
 import LottosView from '../View/LottosView.js';
+import { extractNumber } from '../utils/index.js';
 
 const validator = new ValidatorImpl();
 const lottoManager = new LottoManagerImpl();
@@ -24,4 +25,10 @@ export const onSubmitFareForm = (e) => {
   }
 };
 
-export const onChangeLottoViewerController = () => lottosView.toggleContainer();
+export const onChangeLottoViewerController = () => {
+  lottosView.toggleContainer();
+};
+
+export const onKeyUpLottoNumbers = (e) => {
+  e.currentTarget.value = extractNumber(e.currentTarget.value.slice(0, 2));
+};

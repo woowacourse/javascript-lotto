@@ -193,6 +193,7 @@ input:checked + .slider:before {
 .match-number-input {
   width: 34px;
   height: 36px;
+  padding-left: 9px;
 }
 .match-numbers .match-number-input {
   margin-left: 8px;
