@@ -11,3 +11,11 @@ export const CONDITIONS = {
   LOTTO_NUM_MAX: 45,
   LOTTO_PRICE: 1000,
 };
+
+export const WINNINGS = {
+  '5-place': 5000,
+  '4-place': 50000,
+  '3-place': 1500000,
+  '2-place': 30000000,
+  '1-place': 2000000000,
+};

@@ -1,5 +1,5 @@
 import { Lotto } from './Lotto.js';
-import { CONDITIONS } from '../constants/constants.js';
+import { CONDITIONS, WINNINGS } from '../constants/constants.js';
 
 export class LottoGame {
   constructor() {
@@ -28,6 +28,7 @@ export class LottoGame {
     }
     this.winningNumbers = checkLotto;
     this.bonusNumber = bonusNumber;
+    this.yield;
   }
 
   // 3, 4, 5, 5+보너스, 6개수를 배열로 반환
@@ -61,4 +62,11 @@ export class LottoGame {
     }
   }
   // 수익률 계산
+  calculateYield() {
+    let winAmount = 0;
+    this.winningStatus.forEach((winStatus, idx) => {
+      winAmount += winStatus * WINNINGS[`${idx + 1}-place`];
+    });
+    this.yield = winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE);
+  }
 }
