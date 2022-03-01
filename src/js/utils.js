@@ -16,6 +16,18 @@ export const isDivisibleBy = (payment, price) => {
   return parseInt(payment / price);
 };
 
+export const isOutOfRange = (winningNumberList, bounsNumber) => {
+  winningNumberList.push(bounsNumber);
+  const lottoAllNumberList = Array.from(
+    { length: 45 },
+    (_, index) => index + 1
+  );
+
+  return !winningNumberList.every((winningNumber) =>
+    lottoAllNumberList.includes(winningNumber)
+  );
+};
+
 export const isUniqueNumbers = (winningNumberList, bounsNumber) => {
   winningNumberList.push(bounsNumber);
 

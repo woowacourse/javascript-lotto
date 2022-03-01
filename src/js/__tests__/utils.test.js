@@ -5,6 +5,7 @@ import {
   createRandomNumberList,
   shuffleArray,
   isUniqueNumbers,
+  isOutOfRange,
 } from '../utils';
 
 import { LOTTO, MONEY } from '../constants';
@@ -258,13 +259,13 @@ describe('당첨 번호, 보너스 번호 중에 1 ~ 45 사이의 숫자가 아�
     const winningNumberList = [46, 2, 3, 4, 5, 6];
     const bounsNumber = 7;
 
-    expect(!isOutOfRange(winningNumberList, bounsNumber)).toBe(false);
+    expect(isOutOfRange(winningNumberList, bounsNumber)).toBe(true);
   });
 
   test('당첨 번호, 보너스 번호 모두 1 ~ 45 사이의 숫자인 경우', () => {
-    const winningNumberList = [46, 2, 3, 4, 5, 6];
+    const winningNumberList = [1, 2, 3, 4, 5, 6];
     const bounsNumber = 7;
 
-    expect(!isOutOfRange(winningNumberList, bounsNumber)).toBe(true);
+    expect(isOutOfRange(winningNumberList, bounsNumber)).toBe(false);
   });
 });
