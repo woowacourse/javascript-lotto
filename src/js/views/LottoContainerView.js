@@ -31,7 +31,7 @@ class LottoContainerView {
 
   renderLottoList(lottoList) {
     this.$lottoContainer.innerHTML = lottoList
-      .map((lotto) => this.generateLottoTemplate(lotto))
+      .map((lotto) => this.#generateLottoTemplate(lotto))
       .join('');
   }
 
@@ -39,15 +39,15 @@ class LottoContainerView {
     this.$purchasedMessage.innerText = `총 ${lottoAmount}개를 구매하였습니다.`;
   }
 
-  generateLottoTemplate({ lottoNumbers }) {
+  renderAlignState(visibleState) {
+    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+  }
+
+  #generateLottoTemplate({ lottoNumbers }) {
     return `<div class="lotto">
       <span>🎟️</span>
       <span class="number">${lottoNumbers.join(', ')}</span>
       </div>`;
-  }
-
-  renderAlignState(visibleState) {
-    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
   }
 
   #basicTemplate = `

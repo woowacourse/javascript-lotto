@@ -36,7 +36,7 @@ class LottoResultView {
   }
 
   renderStatisticsModal({ statistics, profitRatio }) {
-    this.#showWinStatisticsModal();
+    this.showWinStatisticsModal();
     this.$statisticsTableBody.innerHTML = Object.keys(statistics).reduce((prev, currentKey) => {
       const price = RANK_PRICE[currentKey];
       const count = statistics[currentKey];
@@ -50,7 +50,7 @@ class LottoResultView {
     this.$winStatistics.classList.replace('show', 'hide');
   }
 
-  #showWinStatisticsModal() {
+  showWinStatisticsModal() {
     this.$winStatistics.classList.replace('hide', 'show');
   }
 

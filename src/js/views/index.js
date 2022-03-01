@@ -16,22 +16,8 @@ class LottoViewManager {
   }
 
   work({ payload, action }) {
-    if (action === VIEW_ACTION.UPDATE_LOTTO_LIST) {
-      this.#containerView.renderLottoSection(payload);
-      this.#resultView.showWinNumberInputSection();
-    }
-    if (action === VIEW_ACTION.UPDATE_VISIBLE_STATE) {
-      this.#containerView.renderAlignState(payload);
-    }
-    if (action === VIEW_ACTION.RENDER_STATISTICS) {
-      this.#resultView.renderStatisticsModal(payload);
-    }
-    if (action === VIEW_ACTION.BIND_EVENT_HANDLER) {
-      this.#bindEventHandlers(payload);
-    }
-    if (action === VIEW_ACTION.MODAL_CANCEL) {
-      this.#resultView.hideWinStatisticsModal();
-    }
+    const perform = this.#reducer[action];
+    perform(payload);
   }
 
   #initializeViews() {
@@ -57,5 +43,24 @@ class LottoViewManager {
       onClickModal,
     });
   }
+
+  #reducer = {
+    [`${VIEW_ACTION.UPDATE_LOTTO_LIST}`]: (payload) => {
+      this.#containerView.renderLottoSection(payload);
+      this.#resultView.showWinNumberInputSection();
+    },
+    [`${VIEW_ACTION.UPDATE_VISIBLE_STATE}`]: (payload) => {
+      this.#containerView.renderAlignState(payload);
+    },
+    [`${VIEW_ACTION.RENDER_STATISTICS}`]: (payload) => {
+      this.#resultView.renderStatisticsModal(payload);
+    },
+    [`${VIEW_ACTION.MODAL_CANCEL}`]: () => {
+      this.#resultView.hideWinStatisticsModal();
+    },
+    [`${VIEW_ACTION.BIND_EVENT_HANDLER}`]: (payload) => {
+      this.#bindEventHandlers(payload);
+    },
+  };
 }
 export default LottoViewManager;

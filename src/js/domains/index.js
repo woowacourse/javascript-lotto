@@ -1,5 +1,4 @@
 import { DOMAIN_ACTION } from '../constants/actions';
-import { ERROR_MESSAGE } from '../constants/errorMessage';
 import LottoList from './LottoList';
 
 class LottoDomainManager {
@@ -10,27 +9,25 @@ class LottoDomainManager {
   }
 
   work({ payload, action }) {
-    if (action === DOMAIN_ACTION.NEW_CHARGE_INPUT) {
-      return this.#performActionNewChargeInput(payload);
-    }
-    if (action === DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS) {
-      return this.#performActionComputeResultStatistics(payload);
-    }
-    throw new Error(ERROR_MESSAGE.DOMAIN_MANAGER_WORK_ERROR);
-  }
+    const perform = this.#reducer[action];
 
-  #performActionNewChargeInput(chargeInput) {
-    this.#lottoListDomain.createLottoList(chargeInput);
-    return this.#lottoListDomain.getLottoList();
-  }
+    const newDomainState = perform(payload);
 
-  #performActionComputeResultStatistics({ winningNumbers, bonusNumber }) {
-    return this.#lottoListDomain.computeWinResultStatistics(winningNumbers, bonusNumber);
+    return newDomainState;
   }
 
   #initializeDomain() {
     this.#lottoListDomain = new LottoList();
   }
+
+  #reducer = {
+    [`${DOMAIN_ACTION.NEW_CHARGE_INPUT}`]: (chargeInput) => {
+      this.#lottoListDomain.createLottoList(chargeInput);
+      return this.#lottoListDomain.getLottoList();
+    },
+    [`${DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS}`]: ({ winningNumbers, bonusNumber }) =>
+      this.#lottoListDomain.computeWinResultStatistics(winningNumbers, bonusNumber),
+  };
 }
 
 export default LottoDomainManager;

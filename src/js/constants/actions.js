@@ -1,12 +1,12 @@
 export const DOMAIN_ACTION = {
-  NEW_CHARGE_INPUT: 'new_charge_input',
-  COMPUTE_RESULT_STATISTICS: 'compute_result_statistics',
+  NEW_CHARGE_INPUT: 'new-charge-input',
+  COMPUTE_RESULT_STATISTICS: 'compute-result-statistics',
 };
 
 export const VIEW_ACTION = {
-  UPDATE_LOTTO_LIST: 'update_lotto_list',
-  UPDATE_VISIBLE_STATE: 'update_visible_state',
-  RENDER_STATISTICS: 'render_statistics',
-  BIND_EVENT_HANDLER: 'bind_event_handler',
+  UPDATE_LOTTO_LIST: 'update-lotto-list',
+  UPDATE_VISIBLE_STATE: 'update-visible-state',
+  RENDER_STATISTICS: 'render-statistics',
+  BIND_EVENT_HANDLER: 'bind-event-handler',
   MODAL_CANCEL: 'modal-cancel',
 };
