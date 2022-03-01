@@ -1,4 +1,4 @@
-import Lotto from '../domains/Lotto.js';
+import Lotto from '../models/Lotto.js';
 import { LOTTO } from '../constants/constants.js';
 import { isInRange, isDuplicated } from '../utils/utils.js';
 

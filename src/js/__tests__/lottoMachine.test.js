@@ -1,4 +1,4 @@
-import LottoMachine from '../domains/LottoMachine.js';
+import LottoMachine from '../models/LottoMachine.js';
 import { LOTTO } from '../constants/constants.js';
 
 describe('로또 기계 단위 테스트', () => {
