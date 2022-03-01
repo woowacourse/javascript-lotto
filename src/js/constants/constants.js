@@ -13,7 +13,8 @@ export const ERROR_MESSAGE = {
   CHARGE_INPUT_NOT_IN_RANGE: `구입할 금액은 ${MIN_CHARGE_INPUT}원 이상, ${MAX_CHARGE_INPUT}원 이하로 입력해주세요. `,
   WINNING_NUMBERS_INSUFFICIENT: '당첨 번호 6개, 보너스 번호 1개를 입력해주세요.',
   WINNING_NUMBERS_NOT_INTEGER: '당첨 번호와 보너스 번호는 정수로 입력해주세요.',
-  WINNING_NUMBERS_NOT_IN_RANGE: '당첨 번호와 보너스 번호는 1 이상 45 이하 범위 내로 입력해주세요.'
+  WINNING_NUMBERS_NOT_IN_RANGE: '당첨 번호와 보너스 번호는 1 이상 45 이하 범위 내로 입력해주세요.',
+  NO_PURCHASED_TICKET: '구입한 티켓이 없습니다.',
 };
 
 export const MATCH_RESULT_INDEX = {

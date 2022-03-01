@@ -34,22 +34,6 @@ export default class LottoMachine {
     this.purchase(chargeInputValue);
   }
 
-  onSubmitWinningNumber(event) {
-    event.preventDefault();
-    // if ( this.lotteryTicketManager.tickets.length === 0 ) return; // 에러 처리 필요
-    const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
-      .map(numberInput => Number(numberInput.value))
-      .filter(number => number !== 0);
-    try {
-      validateWinningNumbers(winningNumberInputValues);
-    } catch (error) {
-      alert(error.message);
-      return;
-    }
-    const result = this.calculateResult(winningNumberInputValues);
-    this.lottoMachineView.openResultModal(result);
-  }
-
   onClickCloseResultModalButton() {
     this.lottoMachineView.closeResultModal();
   }
@@ -59,9 +43,23 @@ export default class LottoMachine {
     this.lottoMachineView.initialize(this.lotteryTicketManager.tickets);
   }
 
+  onSubmitWinningNumber(event) {
+    event.preventDefault();
+    const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
+      .map(numberInput => Number(numberInput.value)).filter(number => number !== 0);
+    try {
+      this.lotteryTicketManager.checkPurchasedTicketExist();
+      validateWinningNumbers(winningNumberInputValues);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
+    this.showResultModal();
+  }
+
   purchase(chargeInputValue) {
-    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputValue, LOTTERY_TICKET_PRICE);
-    this.lotteryTicketManager.generateNewLottos(newLottoCount);
+    const { quotient: newTicketCount, remainder: remainCharge } = divider(chargeInputValue, LOTTERY_TICKET_PRICE);
+    this.lotteryTicketManager.generateNewLottos(newTicketCount);
     this.lottoMachineView.updateLottoList(this.lotteryTicketManager.tickets);
     this.lottoMachineView.updateChargeInput(remainCharge);
   }
@@ -69,6 +67,11 @@ export default class LottoMachine {
   switchLottoListStyle() {
     const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
     this.lottoMachineView.showLottoList[style]();
+  }
+
+  showResultModal(winningNumberInputValues) {
+    const result = this.calculateResult(winningNumberInputValues);
+    this.lottoMachineView.openResultModal(result);
   }
 
   calculateResult(winningNumberInputValues) {
