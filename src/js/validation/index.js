@@ -7,6 +7,9 @@ export const isValidRange = (lottoNumbers) =>
     (lottoNumber) => lottoNumber >= LOTTO_RULES.MIN_RANGE && lottoNumber <= LOTTO_RULES.MAX_RANGE,
   );
 
+export const isValidRangeNumber = (lottoNumber) =>
+  lottoNumber >= LOTTO_RULES.MIN_RANGE && lottoNumber <= LOTTO_RULES.MAX_RANGE;
+
 export const isNotOverlapped = (lottoNumbers) => {
   const lottoNumbersSet = new Set(lottoNumbers);
 
