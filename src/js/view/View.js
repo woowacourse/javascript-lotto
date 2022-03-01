@@ -78,8 +78,7 @@ export class View {
 
   showResultModal() {
     document.querySelector('.modal').classList.add('show');
-    document.querySelector('body');
-    document.body.classList.add('dark');
+    document.querySelector('.modal').classList.add('dark');
   }
   winStatusTemplate() {
     // document.getElementById('win-status').innerHTML = `
