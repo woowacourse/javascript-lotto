@@ -1,6 +1,7 @@
 import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isPositiveValue, userLottoNumberCorrectRange, userLottoNumberOverlap, userLottoNumberPositiveValue } from '../utils/validator.js';
 import { ERROR_MESSAGE } from '../utils/constants.js';
 import PurchaseLottoModel from '../models/purchaseLottoModel.js';
+import UserLottoModel from '../models/userLottoModel.js';
 
 describe('구입금액 테스트', () => {
 
@@ -42,65 +43,21 @@ test('구입한 로또 금액만큼 로또 개수를 확인할 수 있어야 한
   expect(isCorrectLottoLength).toBe(true);
 })
 
-function countCorrectLotto(correctNumber, correctLottoArray, winLottoMoney) {
-  switch (correctNumber) {
-    case 3 :
-      winLottoMoney[0] += 5000;
-      correctLottoArray[0]++;
-    break;
-    case 4 :
-      winLottoMoney[0] += 50000;
-      correctLottoArray[1]++;
-    break;
-    case 5 :
-      winLottoMoney[0] += 1500000;
-      correctLottoArray[2]++;
-    break;
-    case 5.5:
-      winLottoMoney[0] += 30000000;
-      correctLottoArray[3]++;
-    break;
-    case 6 :
-      winLottoMoney[0] += 2000000000;
-      correctLottoArray[4]++;
-    break;
-  }
-}
-
-function distinguishLottoNumber(lottoNumbersResult, lottoBonusResult, lottoResult, winLottoMoney) {
-  lottoNumbersResult
-    .map((numbers) => numbers.length)
-    .map((correctNumber, index) => correctNumber === 5 && lottoBonusResult[index].length > 0 ?  correctNumber = 5.5 : correctNumber)
-    .map((correctNumber) => countCorrectLotto(correctNumber, lottoResult, winLottoMoney));
-}
-
-function getLottoNumbersResult(randomLotto, userLottoNumber) {
-  return randomLotto
-    .map((numbers) => Array.from(numbers))
-    .map((numbers) => numbers.filter((number) => userLottoNumber.includes(number)));
-}
-
-function getLottoBonusResult(randomLotto, userBonusNumber) {
-  return randomLotto
-    .map((numbers) => Array.from(numbers))
-    .map((numbers) => numbers.filter((number) => userBonusNumber.includes(number)));
-}
-
 test('유저가 구입한 로또와 유저가 수동으로 입력한 번호를 비교해서 당첨 통계와 수익률을 알 수 있어야 한다.', () => {
+  const userLottoModel = new UserLottoModel();
   const userLottoNumber = [3, 6, 16, 34, 35, 41];
   const userBonusNumber = [12];
-  const randomLotto = [[3, 6, 16, 34, 35, 45], [3, 6, 16 , 21, 22, 23], [3, 6, 16, 12, 34, 44], [3, 6, 16, 34, 35, 12], [3, 6, 16, 34, 35, 41]]
-  const lottoResult = Array.from({ length: 5 }, () => 0);
-  const winLottoMoney = [0];
+  const randomLotto = [[3, 6, 16, 34, 35, 45], [3, 6, 16 , 21, 22, 23], [3, 6, 16, 12, 34, 44], [3, 6, 16, 34, 35, 12], [3, 6, 16, 34, 35, 41]];
+  const purchaseMoney = 5000;
 
-  const lottoNumbersResult = getLottoNumbersResult(randomLotto, userLottoNumber);
-  const lottoBonusResult = getLottoBonusResult(randomLotto, userBonusNumber);
+  userLottoModel.setLottoNumberResult(randomLotto, userLottoNumber);
+  userLottoModel.setBonusNumbersResult(randomLotto, userBonusNumber);
+  userLottoModel.distinguishLottoNumber();
+  const lottoResult = userLottoModel.getLottoResult();
+  const winRate = userLottoModel.calculateReturnRate(purchaseMoney);
 
-  distinguishLottoNumber(lottoNumbersResult, lottoBonusResult, lottoResult, winLottoMoney);
-
-  const winRate = winLottoMoney[0] / (randomLotto.length * 1000);
   lottoResult.map((winCount) => expect(winCount).toEqual(1));
-  expect(winRate).toEqual(406311);
+  expect(winRate).toEqual(40631000);
 })
 
 describe('유저가 입력한 로또 숫자 유효성 검사', () => {    
