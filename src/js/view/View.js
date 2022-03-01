@@ -21,6 +21,7 @@ export class View {
     this.modal = document.querySelector('.modal');
     this.winTable = document.getElementById('win-status');
     this.restartBtn = document.getElementById('restart-button');
+    this.yield = document.getElementById('yield');
   }
 
   showLottoStatusContainer() {
@@ -82,7 +83,9 @@ export class View {
     };
   }
 
-  showResultModal(winningStatus) {
+  showResultModal(winningStatus, yieldAmount) {
+    this.yield.textContent = '';
+    this.yield.insertAdjacentHTML('afterbegin', this.yieldTemplate(yieldAmount));
     this.winTable.textContent = '';
     this.winTable.insertAdjacentHTML('afterbegin', this.winStatusTemplate(winningStatus));
     this.modal.classList.add('show');
@@ -129,6 +132,10 @@ export class View {
     `;
   }
 
+  yieldTemplate(yieldAmount) {
+    return `당신의 총 수익률은 ${yieldAmount}% 입니다.`;
+  }
+
   clearWinningNumbers() {
     document.getElementById('winning-number1').value = '';
     document.getElementById('winning-number2').value = '';
@@ -138,6 +145,7 @@ export class View {
     document.getElementById('winning-number6').value = '';
     document.getElementById('winning-number7').value = '';
   }
+
   initView() {
     this.lottoIcons.textContent = '';
     this.lottoNumberLabel.textContent = '';

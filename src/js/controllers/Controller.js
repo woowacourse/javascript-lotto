@@ -76,7 +76,7 @@ export class Controller {
       );
       this.lottoGame.compareLottos();
       this.lottoGame.calculateYield();
-      this.view.showResultModal(this.lottoGame.winningStatus);
+      this.view.showResultModal(this.lottoGame.winningStatus, this.lottoGame.yield);
     } catch (err) {
       alert(err.message);
     }
