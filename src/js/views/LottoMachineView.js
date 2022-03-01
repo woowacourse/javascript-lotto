@@ -2,6 +2,8 @@ import { $, $$ } from '../utils/util';
 import { lottoListTemplate, lottoTotalNumber } from './template';
 import { MATCH_RESULT_INDEX, PRIZE_MONEY, SELECTOR } from '../constants/constants';
 
+const CLASS_DISPLAY_NONE = 'display-none';
+
 export default class LottoMachineView {
   constructor() {
     this.resultModalArea = $('#result-modal-area');
@@ -28,22 +30,22 @@ export default class LottoMachineView {
   }
 
   showLottoIconList() {
-    $(SELECTOR.LOTTO_LIST_ICON).classList.remove('display-none');
-    $(SELECTOR.LOTTO_LIST_NUMBER).classList.add('display-none');
+    $(SELECTOR.LOTTO_LIST_ICON).classList.remove(CLASS_DISPLAY_NONE);
+    $(SELECTOR.LOTTO_LIST_NUMBER).classList.add(CLASS_DISPLAY_NONE);
   }
 
   showLottoNumberList() {
-    $(SELECTOR.LOTTO_LIST_ICON).classList.add('display-none');
-    $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove('display-none');
+    $(SELECTOR.LOTTO_LIST_ICON).classList.add(CLASS_DISPLAY_NONE);
+    $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove(CLASS_DISPLAY_NONE);
   }
 
   openResultModal(result) {
     this.updateResultModal(result);
-    this.resultModalArea.classList.remove('display-none');
+    this.resultModalArea.classList.remove(CLASS_DISPLAY_NONE);
   }
 
   closeResultModal() {
-    this.resultModalArea.classList.add('display-none');
+    this.resultModalArea.classList.add(CLASS_DISPLAY_NONE);
   }
 
   updateResultModal({ matchResult, profitRatio }) {

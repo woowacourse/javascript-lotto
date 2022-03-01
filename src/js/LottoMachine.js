@@ -1,17 +1,17 @@
-import { LOTTO_PRICE, SELECTOR } from './constants/constants';
+import LotteryTicketManager from './LotteryTicketManager';
+import LottoMachineView from './views/LottoMachineView';
+
+import { LOTTERY_TICKET_PRICE, SELECTOR } from './constants/constants';
 import { $, $$, divider } from './utils/util';
 import validateCharge from './validation';
-
-import LottoManager from './LottoManager';
-import LottoMachineView from './views/LottoMachineView';
 import { calculateMatchResult, calculateProfitRatio } from './checkResult';
 
 export default class LottoMachine {
   constructor() {
-    this.lottoManager = new LottoManager();
+    this.lotteryTicketManager = new LotteryTicketManager();
     this.lottoMachineView = new LottoMachineView();
     this.setEvent();
-    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
+    this.lottoMachineView.updateLottoList(this.lotteryTicketManager.tickets);
   }
 
   setEvent() {
@@ -36,7 +36,7 @@ export default class LottoMachine {
 
   onSubmitWinningNumber(event) {
     event.preventDefault();
-    // if ( this.lottoManager.lottos.length === 0 ) return; // 에러 처리 필요
+    // if ( this.lotteryTicketManager.tickets.length === 0 ) return; // 에러 처리 필요
     const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
       .map((numberInput) => Number(numberInput.value));
     const result = this.calculateResult(winningNumberInputValues);
@@ -49,14 +49,14 @@ export default class LottoMachine {
   }
 
   onClickRestartButton() {
-    this.lottoManager.initialize();
-    this.lottoMachineView.initialize(this.lottoManager.lottos);
+    this.lotteryTicketManager.initialize();
+    this.lottoMachineView.initialize(this.lotteryTicketManager.tickets);
   }
 
   purchase(chargeInputValue) {
-    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputValue, LOTTO_PRICE);
-    this.lottoManager.generateNewLottos(newLottoCount);
-    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
+    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputValue, LOTTERY_TICKET_PRICE);
+    this.lotteryTicketManager.generateNewLottos(newLottoCount);
+    this.lottoMachineView.updateLottoList(this.lotteryTicketManager.tickets);
     this.lottoMachineView.updateChargeInput(remainCharge);
   }
 
@@ -68,8 +68,8 @@ export default class LottoMachine {
   calculateResult(winningNumberInputValues) {
     const winningNumbers = winningNumberInputValues.slice(0, 6);
     const bonusNumber = winningNumberInputValues[winningNumberInputValues.length - 1];
-    const matchResult = calculateMatchResult(this.lottoManager.lottos, winningNumbers, bonusNumber);
-    const profitRatio = calculateProfitRatio(this.lottoManager.lottos.length, matchResult) || 0;
+    const matchResult = calculateMatchResult(this.lotteryTicketManager.tickets, winningNumbers, bonusNumber);
+    const profitRatio = calculateProfitRatio(this.lotteryTicketManager.tickets.length, matchResult) || 0;
     return { matchResult, profitRatio }
   }
 }

@@ -1,5 +1,5 @@
 import { countWinningNumber, calculateMatchResult, calculateProfitRatio } from '../checkResult';
-import Lotto from '../Lotto';
+import LotteryTicket from '../LotteryTicket';
 
 describe('결과 확인 테스트', () => {
 
@@ -24,11 +24,11 @@ describe('결과 확인 테스트', () => {
     const winningNumber = [12, 28, 22, 37, 19, 23];
     const bonusNumber = 21;
     const lottos = [
-      new Lotto([12, 28, 22, 37, 19, 23]), // 6개 일치
-      new Lotto([12, 28, 22, 37, 19, 21]), // 5개 일치 + 보너스 일치
-      new Lotto([12, 28, 22, 37, 19, 45]), // 5개 일치
-      new Lotto([12, 28, 22, 37, 14, 20]), // 4개 일치
-      new Lotto([12, 28, 22, 31, 34, 45]), // 3개 일치
+      new LotteryTicket([12, 28, 22, 37, 19, 23]), // 6개 일치
+      new LotteryTicket([12, 28, 22, 37, 19, 21]), // 5개 일치 + 보너스 일치
+      new LotteryTicket([12, 28, 22, 37, 19, 45]), // 5개 일치
+      new LotteryTicket([12, 28, 22, 37, 14, 20]), // 4개 일치
+      new LotteryTicket([12, 28, 22, 31, 34, 45]), // 3개 일치
     ];
 
     const expectedResult = [1, 1, 1, 1, 1];
