@@ -5,6 +5,7 @@
 @import './toggle.css';
 @import './input.css';
 @import './display.css';
+@import './modal.css';
 
 body {
   font-family: Roboto;

@@ -33,7 +33,7 @@ export default class PurchaseView {
   #handleSubmit(e) {
     e.preventDefault();
     const money = this.#getMoneyToPurchase();
-    emit(this.$purchaseForm, EVENT.SUBMIT, { money });
+    emit(this.$purchaseForm, EVENT.SUBMIT_PURCHASE, { money });
   }
 
   /** @method getMoneyToPurchase
@@ -41,7 +41,7 @@ export default class PurchaseView {
    * @description 입력된 로또 구매 금액을 반환한다.
    */
   #getMoneyToPurchase() {
-    return this.$purchaseInput.valueAsNumber;
+    return $purchaseInput.valueAsNumber;
   }
 
   /**

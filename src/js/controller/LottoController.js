@@ -21,7 +21,7 @@ export default class LottoController {
    * @description 뷰의 엘리먼트에서 발생하는 커스텀 이벤트를 구독하고, 발생이 감지되면 콜백함수를 호출한다.
    */
   #subscribeViewEvents() {
-    on(this.purchaseView.$purchaseForm, EVENT.SUBMIT, (e) =>
+    on(this.purchaseView.$purchaseForm, EVENT.SUBMIT_PURCHASE, (e) =>
       this.#purchaseLotto(e.detail.money),
     );
 

@@ -1,0 +1,21 @@
+#modal-container {
+  background-color: var(--white);
+  display: none;
+}
+
+#modal-container.show-modal {
+  display: block;
+}
+
+.modal {
+  background-color: var(--secondary);
+  border-radius: 5px;
+  position: absolute;
+  overflow: hidden;
+  top: 38.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 350px;
+  height: 500px;
+}
