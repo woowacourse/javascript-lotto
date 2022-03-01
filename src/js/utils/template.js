@@ -18,3 +18,9 @@ export const lottoPurchaseResultTemplate = (lottoList) => {
     ${lottoList.map((lotto) => lottoTemplate([...lotto])).join('')}
   `;
 };
+
+export const lottoReturnRateTemplate = (winRate) => {
+  return `
+    당신의 총 수익률은 ${winRate}%입니다.
+  `;
+}

@@ -14,10 +14,8 @@ export default class PurchaseLottoModel {
   }
 
   setLottoList() {
-    const lottoCount = this.#purchaseMoney / 1000;
-    this.#lottoList = Array.from({ length: lottoCount }).map(() =>
-      this.#generateLotto()
-    );
+    const lottoCount = this.#purchaseMoney / LOTTO.COST_UNIT;
+    this.#lottoList = Array.from({ length: lottoCount }).map(() => this.#generateLotto());
   }
 
   #generateLotto() {

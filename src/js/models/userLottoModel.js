@@ -1,3 +1,5 @@
+import { LOTTO } from "../utils/constants.js";
+
 export default class UserLottoModel {
   #lottoNumbersResult;
   #bonusNumbersResult;
@@ -25,30 +27,30 @@ export default class UserLottoModel {
     this.initLottoResult();
     this.#lottoNumbersResult
       .map((numbers) => numbers.length)
-      .map((correctNumber, index) => correctNumber === 5 && this.#bonusNumbersResult[index].length > 0 ?  correctNumber = 5.5 : correctNumber)
+      .map((correctNumber, bonusNumberIndex) => correctNumber === 5 && this.#bonusNumbersResult[bonusNumberIndex].length > 0 ?  correctNumber = 5.5 : correctNumber)
       .map((correctNumber) => this.countCorrectLotto(correctNumber));
   }
 
   countCorrectLotto(correctNumber) {
     switch (correctNumber) {
-      case 3 :
-        this.#winLottoMoney += 5000;
+      case LOTTO.THREE_CORRECT :
+        this.#winLottoMoney += LOTTO.THREE_CORRECT_PRICE;
         this.#lottoResult[0]++;
       break;
-      case 4 :
-        this.#winLottoMoney += 50000;
+      case LOTTO.FOUR_CORRECT :
+        this.#winLottoMoney += LOTTO.FOUR_CORRECT_PRICE;
         this.#lottoResult[1]++;
       break;
-      case 5 :
-        this.#winLottoMoney += 1500000;
+      case LOTTO.FIVE_CORRECT :
+        this.#winLottoMoney += LOTTO.FIVE_CORRECT_PRICE;
         this.#lottoResult[2]++;
       break;
-      case 5.5:
-        this.#winLottoMoney += 30000000;
+      case LOTTO.FIVE_BONUS_CORRECT:
+        this.#winLottoMoney += LOTTO.FIVE_BONUS_CORRECT_PRICE;
         this.#lottoResult[3]++;
       break;
-      case 6 :
-        this.#winLottoMoney += 2000000000;
+      case LOTTO.SIX_CORRECT :
+        this.#winLottoMoney += LOTTO.SIX_CORRECT_PRICE;
         this.#lottoResult[4]++;
       break;
     }

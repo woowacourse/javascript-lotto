@@ -1,4 +1,5 @@
 import { qs, qsAll, on, emit } from "../utils/helper.js";
+import { lottoReturnRateTemplate } from "../utils/template.js";
 
 export default class UserLottoModalView {
   constructor() {
@@ -28,11 +29,11 @@ export default class UserLottoModalView {
     this.lottoResultModal.style.zIndex = 3;
   }
 
-  showLottoResult(lottoResult, returnRate) {
-    this.winLottoResultElement.forEach((lottoResultElement, index) => {
-      lottoResultElement.textContent = `${lottoResult[index]}개`;
+  showLottoResult(lottoWinResult, returnRate) {
+    this.winLottoResultElement.forEach((lottoResultElement, lottoWinResultIndex) => {
+      lottoResultElement.textContent = `${lottoWinResult[lottoWinResultIndex]}개`;
     });
-    this.winRateElement.textContent = `당신의 총 수익률은 ${returnRate}%입니다.`
+    this.winRateElement.textContent = lottoReturnRateTemplate(returnRate);
   }
 
   hideLottoResultModal() {
