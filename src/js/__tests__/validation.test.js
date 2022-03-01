@@ -1,4 +1,4 @@
-import validateCharge from '../validation';
+import { validateCharge, validateWinningNumbers } from '../validation';
 import { ERROR_MESSAGE } from '../constants/constants';
 
 describe('로또 구입 금액 유효성 검사 테스트', () => {

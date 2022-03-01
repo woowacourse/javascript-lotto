@@ -3,7 +3,7 @@ import LottoMachineView from './views/LottoMachineView';
 
 import { LOTTERY_TICKET_PRICE, SELECTOR } from './constants/constants';
 import { $, $$, divider } from './utils/util';
-import validateCharge from './validation';
+import { validateCharge, validateWinningNumbers } from './validation';
 import { calculateMatchResult, calculateProfitRatio } from './checkResult';
 
 export default class LottoMachine {
@@ -38,9 +38,15 @@ export default class LottoMachine {
     event.preventDefault();
     // if ( this.lotteryTicketManager.tickets.length === 0 ) return; // 에러 처리 필요
     const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
-      .map((numberInput) => Number(numberInput.value));
+      .map(numberInput => Number(numberInput.value))
+      .filter(number => number !== 0);
+    try {
+      validateWinningNumbers(winningNumberInputValues);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
     const result = this.calculateResult(winningNumberInputValues);
-
     this.lottoMachineView.openResultModal(result);
   }
 
