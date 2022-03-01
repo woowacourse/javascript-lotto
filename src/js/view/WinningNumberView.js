@@ -20,7 +20,7 @@ const WINNING_NUMBER_FORM = `
         <div class="input-box">
           ${INPUT_ELEMENT}
         </div>
-      </div>ㅂ
+      </div>
     </div>
     <button id="result-button" type="submit">결과 확인하기</button>
   </form>

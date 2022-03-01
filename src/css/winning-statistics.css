@@ -1,0 +1,86 @@
+#winnig-statistics-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  left: 8%;
+  top: 15%;
+
+  width: 350px;
+  height: 500px;
+
+  background: white;
+  box-sizing: border-box;
+
+  /* 크기 체크를 위한 임시 코드 */
+  border: 3px solid red;
+
+  padding: 40px 16px 49px;
+
+  z-index: 100;
+}
+
+#winnig-statistics-modal > h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+#winning-statistics-table {
+  width: 100%;
+
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  border-collapse: collapse;
+
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+#winning-statistics-table th {
+  font-weight: 600;
+  padding: 8px 0;
+}
+
+#winning-statistics-table td {
+  text-align: center;
+  border-top: 1px solid #dcdcdc;
+  padding: 8px 0;
+}
+
+#total-profit-rate-result {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+#restart-button {
+  width: 152px;
+  height: 36px;
+
+  background: #00bcd4;
+  border-radius: 4px;
+  border: none;
+
+  font-weight: 700;
+  color: white;
+  padding: 10px 0;
+
+  cursor: pointer;
+}
+
+#close-button {
+  display: inline-block;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  background: none;
+  border: none;
+
+  font-weight: 800;
+  font-size: 20px;
+
+  cursor: pointer;
+}

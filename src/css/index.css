@@ -3,6 +3,7 @@
 @import './purchased-lotto.css';
 @import './switch.css';
 @import './winning-number.css';
+@import './winning-statistics.css';
 
 body {
   display: flex;
@@ -23,6 +24,7 @@ body section {
 #app {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   width: 414px;
   min-height: 727px;

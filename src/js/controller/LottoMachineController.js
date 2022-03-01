@@ -24,7 +24,7 @@ export default class LottoMachineController {
     });
 
     //test를 위한 코드
-    this.view.winningNumberView.render();
+    // this.view.winningNumberView.render();
   }
 
   onSubmitHandler(purchaseMoney) {
