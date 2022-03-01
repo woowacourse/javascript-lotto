@@ -29,7 +29,9 @@ export default class PurchaseLottosController {
       this.#view.renderPurchasedLottos(this.#machine.lottos);
       this.#view.disablePurchase();
       this.#view.showLottoContainers();
+      this.#machine.checkWinningLottos([1, 2, 3, 4, 5, 6], 7);
     } catch (e) {
+      console.log(e);
       alert(e.message);
     }
   }

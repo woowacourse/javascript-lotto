@@ -4,6 +4,8 @@ import validateMoney from '../validations/PurchaseLottos.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
+  #winningLottos = [0, 0, 0, 0, 0, 0, 0]; // 인덱스의 숫자가 일치하는 숫자의 갯수와 동일
+  #winningLottoWithBonus = 0;
 
   get inputMoney() {
     return this.#inputMoney;
@@ -39,5 +41,19 @@ export default class LottoMachine {
         lotto.numbers = lotto.pickNumbers();
         return lotto;
       });
+  }
+
+  checkWinningLottos(winningNumbers, bonusNumber) {
+    this.#lottos.map(({ numbers }) => {
+      const set = new Set([...numbers, ...winningNumbers]);
+      const coincideNumberQuantity =
+        LOTTO.NUMBER_QUANTITY + LOTTO.NUMBER_QUANTITY - set.size;
+      if (coincideNumberQuantity === 5 && numbers.includes(bonusNumber)) {
+        this.#winningLottoWithBonus += 1;
+        return;
+      }
+      this.#winningLottos[coincideNumberQuantity]++;
+      console.log(this.#winningLottos, this.#winningLottoWithBonus);
+    });
   }
 }
