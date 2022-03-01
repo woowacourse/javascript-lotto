@@ -2,13 +2,11 @@ import { ERROR_MESSAGE, LOTTO_PRICE, LOTTO_RULES } from '../constant/index.js';
 
 export const isEnoughFare = (fare) => fare >= LOTTO_PRICE;
 
-export const isValidRange = (lottoNumbers) =>
-  lottoNumbers.every(
-    (lottoNumber) => lottoNumber >= LOTTO_RULES.MIN_RANGE && lottoNumber <= LOTTO_RULES.MAX_RANGE,
-  );
-
 export const isValidRangeNumber = (lottoNumber) =>
   lottoNumber >= LOTTO_RULES.MIN_RANGE && lottoNumber <= LOTTO_RULES.MAX_RANGE;
+
+export const isValidRangeNumbers = (lottoNumbers) =>
+  lottoNumbers.every((lottoNumber) => isValidRangeNumber(lottoNumber));
 
 export const isNotOverlapped = (lottoNumbers) => {
   const lottoNumbersSet = new Set(lottoNumbers);
