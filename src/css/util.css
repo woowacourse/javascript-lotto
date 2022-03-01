@@ -6,6 +6,10 @@
   width: 56px;
 }
 
+.width-152px {
+  width: 152px;
+}
+
 .width-80 {
   width: 80%;
 }
@@ -44,6 +48,10 @@
 
 .align-end {
   text-align: end;
+}
+
+.font-weight-border {
+  font-weight: 600;
 }
 
 .visually-hidden {

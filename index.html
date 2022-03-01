@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <main id="app" class="app-style">
+    <main id="app" class="app">
       <h1 class="lotto-title">🎱 행운의 로또</h1>
       <form id="charge-submit-form" class="margin-bottom-28px">
         <label for="charge-input" class="normal-text margin-bottom-8px"> 구입할 금액을 입력해주세요. </label>
@@ -93,6 +93,29 @@
         </div>
         <button id="check-result-button" class="blue-button width-100">결과 확인하기</button>
       </form>
+      <div id="result-modal-area" class="dimmed">
+        <section class="result-modal">
+          <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+          <table>
+            <caption class="visually-hidden">당첨 번호 일치 갯수</caption>
+            <thead>
+              <tr>
+                <th>일치 갯수</th><th>당첨금</th><th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>3개</td><td>5,000</td><td>n개</td></tr>
+              <tr><td>4개</td><td>50,000</td><td>n개</td></tr>
+              <tr><td>5개</td><td>1,500,000</td><td>n개</td></tr>
+              <tr><td>5개+보너스볼</td><td>30,000,000</td><td>n개</td></tr>
+              <tr><td>6개</td><td>2,000,000,000</td><td>n개</td></tr>
+            </tbody>
+          </table>
+          <p id="profit-rate" class="normal-text font-weight-border margin-bottom-32px">당신의 총 수익률은 <span >100</span>%입니다.</p>
+          <button id="restart-button" class="blue-button width-152px height-36px">다시 시작하기</button>
+          <button id="close-button" class="close-button" type="button"></button>
+        </section>
+      </div>
     </main>
   </body>
 </html>
