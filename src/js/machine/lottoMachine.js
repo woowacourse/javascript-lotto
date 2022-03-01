@@ -11,7 +11,7 @@ class LottoMachine {
   constructor() {
     this.lottoPrice = LOTTO_PRICE;
     this.lottos = null;
-    this.deliverMessage = null;
+    this.deliverMessage = () => {};
   }
 
   assignMessenger(deliverMessage) {

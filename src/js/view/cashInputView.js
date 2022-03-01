@@ -3,7 +3,7 @@ import { selectDom } from '../utils/utils';
 
 class CashInputView {
   constructor() {
-    this.deliverMessage = null;
+    this.deliverMessage = () => {};
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
     this.cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
     this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
