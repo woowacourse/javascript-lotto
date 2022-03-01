@@ -94,9 +94,13 @@ describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
   });
 });
 
-it('결과 확인하기 커튼을 클릭하면 당첨 통계 모달을 확인할 수 있다.', () => {
+it('결과 확인하기 버튼을 클릭하면 당첨 통계 모달을 확인할 수 있다.', () => {
   cy.visit('./index.html');
 
-  cy.get('#lotto-result-button').click();
+  cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
+  cy.get(SELECTOR.PAYMENT_BUTTON).click();
+
+  cy.get('#result-checking-button').click();
+
   cy.get('#lotto-result-section').should('be.visible');
 });
