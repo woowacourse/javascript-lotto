@@ -1,0 +1,26 @@
+.btn {
+  width: 65px;
+  padding: 10px 0;
+  border-radius: 4px;
+  outline: 0;
+  border-style: none;
+  cursor: pointer;
+  word-break: keep-all;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}
+
+.btn-cyan {
+  color: white;
+  background-color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.btn.btn-cyan:hover {
+  background-color: var(--cyan-light);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}

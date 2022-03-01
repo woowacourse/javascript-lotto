@@ -1,0 +1,80 @@
+@import './normalize.css';
+@import './root.css';
+@import './spacing.css';
+@import './flex.css';
+@import './typhography.css';
+@import './btn.css';
+@import './form.css';
+@import './switch.css';
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--gray-500);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 414px;
+  margin: 56px auto 0;
+  padding: 52px 16px 39px;
+  border: 1px solid var(--gray-700);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+lotto-list {
+  display: flex;
+}
+
+.lotto-list-container {
+  flex: 1;
+}
+
+lotto-list img {
+  margin-right: 8px;
+}
+
+lotto-item {
+  display: flex;
+  align-items: center;
+}
+
+winning-number-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+winning-number-form .wrapper {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+winning-number-form input.form-control {
+  width: 34px;
+  height: 36px;
+  padding: 0;
+  margin-right: 8px;
+  text-align: center;
+}
+
+winning-number-form fieldset {
+  flex: 1;
+}
+
+.bonus-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

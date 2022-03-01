@@ -1,0 +1,14 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+}
