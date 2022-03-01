@@ -3,12 +3,13 @@ import { isDividedByThousand, isEmptyValue, isMaxPurchaseLotto, isNotPurchaseLot
 import { LOTTO } from './utils/constants.js';
 
 export default class LottoController {
-  constructor ({ purchaseLottoModel, userLottoModel }, { lottoPurchaseInputView, lottoPurchaseResultView, userLottoNumberView }) {
+  constructor ({ purchaseLottoModel, userLottoModel }, { lottoPurchaseInputView, lottoPurchaseResultView, userLottoNumberView, userLottoModalView }) {
     this.purchaseLottoModel = purchaseLottoModel;
     this.userLottoModel = userLottoModel;
     this.lottoPurchaseInputView = lottoPurchaseInputView;
     this.lottoPurchaseResultView = lottoPurchaseResultView;
     this.userLottoNumberView = userLottoNumberView;
+    this.userLottoModalView = userLottoModalView;
   }
 
   init() {
@@ -19,8 +20,8 @@ export default class LottoController {
     on(this.lottoPurchaseInputView.lottoPurchaseForm, '@purchaseMoney', this.submitPurchaseLotto.bind(this));
     on(this.lottoPurchaseResultView.showLottoToggle, '@lottoToggle', this.submitLottoToggle.bind(this));
     on(this.userLottoNumberView.userLottoResultForm, '@userLottoNumbers', this.submitUserLottoNumbers.bind(this));
-    on(this.userLottoNumberView.lottoModalCloseButton, '@closeLottoModal', this.submitCloseLottoModal.bind(this));
-    on(this.userLottoNumberView.lottoRestartButton, '@lottoRestart', this.submitRestartLotto.bind(this));
+    on(this.userLottoModalView.lottoModalCloseButton, '@closeLottoModal', this.submitCloseLottoModal.bind(this));
+    on(this.userLottoModalView.lottoRestartButton, '@lottoRestart', this.submitRestartLotto.bind(this));
   }
 
   submitLottoToggle() {
@@ -61,20 +62,21 @@ export default class LottoController {
     this.userLottoModel.setLottoNumberResult(this.purchaseLottoList, lottoNumbers);
     this.userLottoModel.setBonusNumbersResult(this.purchaseLottoList, bonusNumber);
     this.userLottoModel.distinguishLottoNumber();
-    this.userLottoNumberView.cleanLottoResultModal();
-    this.userLottoNumberView.showLottoResultModal();
-    this.userLottoNumberView.showLottoResult(this.userLottoModel.getLottoResult(), this.userLottoModel.calculateReturnRate(this.purchaseLottoModel.getPurchaseMoney()));
+    this.userLottoModalView.cleanLottoResultModal();
+    this.userLottoModalView.showLottoResultModal();
+    this.userLottoModalView.showLottoResult(this.userLottoModel.getLottoResult(), this.userLottoModel.calculateReturnRate(this.purchaseLottoModel.getPurchaseMoney()));
   }
 
   submitCloseLottoModal() {
-    this.userLottoNumberView.hideLottoResultModal();
+    this.userLottoModalView.hideLottoResultModal();
   }
 
   submitRestartLotto() {
-    this.userLottoNumberView.hideLottoResultModal();
+    this.userLottoModalView.hideLottoResultModal();
     this.lottoPurchaseResultView.cleanLottoList();
     this.lottoPurchaseInputView.cleanLottoPurchaseInput();
     this.purchaseLottoModel.initPurchaseLotto();
+    this.userLottoNumberView.cleanUserLottoInput();
   }
 
 }
