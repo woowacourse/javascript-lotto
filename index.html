@@ -104,14 +104,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>3개</td><td>5,000</td><td>n개</td></tr>
-              <tr><td>4개</td><td>50,000</td><td>n개</td></tr>
-              <tr><td>5개</td><td>1,500,000</td><td>n개</td></tr>
-              <tr><td>5개+보너스볼</td><td>30,000,000</td><td>n개</td></tr>
-              <tr><td>6개</td><td>2,000,000,000</td><td>n개</td></tr>
+              <tr class="match-result" data-match-count="3"><td>3개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+              <tr class="match-result" data-match-count="4"><td>4개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+              <tr class="match-result" data-match-count="5"><td>5개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+              <tr class="match-result" data-match-count="BONUS"><td>5개+보너스볼</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+              <tr class="match-result" data-match-count="6"><td>6개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
             </tbody>
           </table>
-          <p id="profit-rate" class="normal-text font-weight-border margin-bottom-32px">당신의 총 수익률은 <span >100</span>%입니다.</p>
+          <p class="normal-text font-weight-border margin-bottom-32px">당신의 총 수익률은 <span id="profit-ratio">100</span>%입니다.</p>
           <button id="restart-button" class="blue-button width-152px height-36px">다시 시작하기</button>
           <button id="result-modal-close-button" class="close-button" type="button"></button>
         </section>

@@ -1,20 +1,4 @@
-import { LOTTO_PRICE } from './constants/constants';
-
-const MATCH_RESULT_INDEX = {
-  3: 0,
-  4: 1,
-  5: 2,
-  BONUS: 3,
-  6: 4
-}
-
-const PRIZE_MONEY = {
-  3: 5000,
-  4: 50000,
-  5: 1500000,
-  BONUS: 30000000,
-  6: 2000000000
-}
+import { LOTTO_PRICE, MATCH_RESULT_INDEX, PRIZE_MONEY } from './constants/constants';
 
 export const countWinningNumber = (ticketNumber, winningNumber) =>  
   ticketNumber.filter((number) => winningNumber.includes(number)).length;

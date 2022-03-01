@@ -40,7 +40,7 @@ export default class LottoMachine {
       .map((numberInput) => Number(numberInput.value));
     const result = this.calculateResult(winningNumberInputValues);
 
-    this.lottoMachineView.openResultModal();
+    this.lottoMachineView.openResultModal(result);
   }
 
   onClickResultModalCloseButton() {
@@ -63,7 +63,7 @@ export default class LottoMachine {
     const winningNumbers = winningNumberInputValues.slice(0, 6);
     const bonusNumber = winningNumberInputValues[winningNumberInputValues.length - 1];
     const matchResult = calculateMatchResult(this.lottoManager.lottos, winningNumbers, bonusNumber);
-    const profitRatio = calculateProfitRatio(this.lottoManager.lottos.length, matchResult);
+    const profitRatio = calculateProfitRatio(this.lottoManager.lottos.length, matchResult) || 0;
     return { matchResult, profitRatio }
   }
 }

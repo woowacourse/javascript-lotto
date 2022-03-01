@@ -1,9 +1,10 @@
-import { $ } from '../utils/util';
+import { $, $$ } from '../utils/util';
 import { lottoListTemplate, lottoTotalNumber } from './template';
-import { SELECTOR } from '../constants/constants';
+import { MATCH_RESULT_INDEX, PRIZE_MONEY, SELECTOR } from '../constants/constants';
 
 export default class LottoMachineView {
   constructor() {
+    this.resultModalArea = $('#result-modal-area');
     this.showLottoList = {
       icon: this.showLottoIconList,
       number: this.showLottoNumberList,
@@ -30,11 +31,20 @@ export default class LottoMachineView {
     $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove('display-none');
   }
 
-  openResultModal() {
-    $('#result-modal-area').classList.remove('display-none');
+  openResultModal(result) {
+    this.updateResultModal(result);
+    this.resultModalArea.classList.remove('display-none');
   }
 
   closeResultModal() {
-    $('#result-modal-area').classList.add('display-none');
+    this.resultModalArea.classList.add('display-none');
+  }
+
+  updateResultModal({ matchResult, profitRatio }) {
+    $$('.match-result', this.resultModalArea).forEach((resultRow) => {
+      $('.match-count', resultRow).innerText = `${matchResult[MATCH_RESULT_INDEX[resultRow.dataset.matchCount]]}개`;
+      $('.prize-money', resultRow).innerText = PRIZE_MONEY[resultRow.dataset.matchCount].toLocaleString();
+    })
+    $('#profit-ratio', this.resultModalArea).innerText = profitRatio;
   }
 }

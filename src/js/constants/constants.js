@@ -13,6 +13,23 @@ export const ERROR_MESSAGE = {
   CHARGE_INPUT_RANGE: `구입할 금액은 ${MIN_CHARGE_INPUT}원 이상, ${MAX_CHARGE_INPUT}원 이하로 입력해주세요. `,
 };
 
+export const MATCH_RESULT_INDEX = {
+  3: 0,
+  4: 1,
+  5: 2,
+  BONUS: 3,
+  6: 4
+}
+
+export const PRIZE_MONEY = {
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  BONUS: 30000000,
+  6: 2000000000
+}
+
+
 export const SELECTOR = {
   CHARGE_SUBMIT_FORM: '#charge-submit-form',
   CHARGE_INPUT: '#charge-input',
