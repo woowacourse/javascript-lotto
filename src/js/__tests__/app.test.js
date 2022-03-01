@@ -1,10 +1,13 @@
-import lottoGame from '../lottoGame.js';
-import { isEnoughFare } from '../validation/index.js';
-import { calculateLottoCount, calculateRemainFare } from '../eventListener.js';
+import LottoManagerImpl from '../LottoManager/LottoManagerImpl.js';
+import ValidatorImpl from '../ValidatorImpl/index.js';
+import LottoCountCalcultor from '../CalculatorImpl/LottoCountCalculator.js';
+import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
 import { createRandomNumbers } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';
 
 describe('요금을 1000원 이상 투입해야 한다.', () => {
+  const { isEnoughFare } = new ValidatorImpl().checkFunctions;
+
   test('1000원 미만은 게임을 실행할 수 없다.', () => {
     const fare1 = 500;
     const fare2 = -500;
@@ -30,7 +33,7 @@ describe('로또를 구매하고 남은 금액을 반환할 수 있어야 한다
   test('1500원을 입력하면 500원이 반환돼야 한다.', () => {
     const fare = 1500;
 
-    expect(calculateRemainFare(fare)).toBe(500);
+    expect(new RemainFareCalculator(fare).execute()).toBe(500);
   });
 });
 
@@ -38,15 +41,16 @@ describe('입력한 요금만큼 로또를 생성할 수 있다.', () => {
   test('5000원을 입력하면 5를 반환해야 한다.', () => {
     const fare = 5000;
 
-    expect(calculateLottoCount(fare)).toBe(5);
+    expect(new LottoCountCalcultor(fare).execute()).toBe(5);
   });
 
   test('5000원을 입력하면 5개의 로또가 생성돼야 한다.', () => {
+    const lottoManager = new LottoManagerImpl();
     const fare = 5000;
 
-    lottoGame.createLottos(calculateLottoCount(fare));
+    lottoManager.createLottos(new LottoCountCalcultor(fare).execute());
 
-    expect(lottoGame.getLottos().length).toBe(5);
+    expect(lottoManager.getLottos().length).toBe(5);
   });
 });
 

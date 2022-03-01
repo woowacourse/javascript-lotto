@@ -1,5 +1,5 @@
 import { $ } from './utils/index.js';
-import { onSubmitFareForm, onChangeLottoViewerController } from './eventListener.js';
+import { onSubmitFareForm, onChangeLottoViewerController } from './EventListener/index.js';
 
 const runLottoGame = () => {
   $('#fare-form').addEventListener('submit', onSubmitFareForm);
