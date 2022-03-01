@@ -1,45 +1,53 @@
 import { $ } from '../utils/utils.js';
-import {
-  ticketImg,
-  lottoNumberTemplate,
-  purchaseMessageTemplate,
-} from './template.js';
 import { SELECTOR } from '../constants/constants.js';
 import View from './View.js';
 
-export default class LottoView extends View {
+const template = {
+  ticketImg: '<div>🎟️</div>',
+  lottoNumberTemplate: (lottoNumber) => {
+    return `<div class="items-center">
+              🎟️
+             <div class="lotto-numbers-container">${lottoNumber}</div>
+          </div>`;
+  },
+  purchaseMessageTemplate: ({ length }) => {
+    return `총 ${length}개를 구매하였습니다.`;
+  },
+};
+
+export default class PurchaseLottosView extends View {
   getInputMoney() {
     return Number.parseInt($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
   }
 
-  renderLotto(lottos) {
+  renderPurchasedLottos(lottos) {
     $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
     $(SELECTOR.ID.TOGGLE_CHECKBOX).checked
-      ? this.renderLottoNumbers(lottos)
-      : this.renderLottoImgs(lottos);
+      ? this.renderPurchasedLottosByNumbers(lottos)
+      : this.renderPurchasedLottosByImage(lottos);
   }
 
-  renderLottoImgs(lottos) {
+  renderPurchasedLottosByImage(lottos) {
     lottos.map(() => {
       $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
         'beforeEnd',
-        ticketImg
+        template.ticketImg
       );
     });
   }
 
-  renderLottoNumbers(lottos) {
+  renderPurchasedLottosByNumbers(lottos) {
     lottos.map((lotto) => {
       $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
         'beforeEnd',
-        lottoNumberTemplate(lotto.numbers.join(', '))
+        template.lottoNumberTemplate(lotto.numbers.join(', '))
       );
     });
   }
 
-  renderLottoAmount(lottos) {
+  renderPurchasedLottosAmountByText(lottos) {
     $(SELECTOR.ID.LOTTO_RESULT_SPAN).textContent =
-      purchaseMessageTemplate(lottos);
+      template.purchaseMessageTemplate(lottos);
   }
 
   disablePurchase() {
