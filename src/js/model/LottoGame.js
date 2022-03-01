@@ -5,6 +5,8 @@ export class LottoGame {
   constructor() {
     this.moneyInput;
     this.lottoWallet = [];
+    this.winningNumbers = [];
+    this.bonusNumber;
   }
 
   insertMoney(moneyInput) {
@@ -15,5 +17,13 @@ export class LottoGame {
     for (let i = 0; i * CONDITIONS.LOTTO_PRICE < this.moneyInput; i++) {
       this.lottoWallet.push(new Lotto());
     }
+  }
+
+  enterWinningNumbers(winningNumbers) {
+    this.winningNumbers = [...new Set(winningNumbers)];
+  }
+
+  enterBonusNumber(bonusNumber) {
+    this.bonusNumber = bonusNumber;
   }
 }

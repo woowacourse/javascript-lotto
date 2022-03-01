@@ -31,5 +31,13 @@ test('로또 번호를 중복없이 자동으로 생성한다.', () => {
   lottoGame.insertMoney(1000);
   lottoGame.buyLotto();
   lottoGame.lottoWallet[0].makeLottoNumber();
-  expect(Set(lottoGame.lottoWallet[0].numbers).size).toBe(7);
+  expect(new Set(lottoGame.lottoWallet[0].numbers).size).toBe(6);
+});
+
+test('당첨번호6개와 보너스를 입력받을 수 있다', () => {
+  const lottoGame = new LottoGame();
+  lottoGame.enterWinningNumbers([1, 2, 3, 4, 5, 6]);
+  lottoGame.enterBonusNumber(7);
+  expect(lottoGame.winningNumbers).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  expect(lottoGame.bonusNumber).toStrictEqual(7);
 });
