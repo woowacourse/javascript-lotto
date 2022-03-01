@@ -1,0 +1,273 @@
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+}
+
+body {
+  letter-spacing: 0.5px;
+}
+
+.blind {
+  display: none;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+}
+
+h6 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+label,
+p {
+  display: block;
+  margin-bottom: 4px;
+  line-height: 24px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+input {
+  height: 36px;
+
+  border: 1px solid #b4b4b4;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+input:placeholder {
+  margin: 0px 10px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+  color: #8b8b8b;
+}
+
+button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  cursor: pointer;
+
+  background: #00bcd4;
+  border-radius: 4px;
+  color: #fff;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  height: 36px;
+}
+
+button:hover {
+  background: #80deea;
+}
+
+button:disabled {
+  background: #b4b4b4;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#app {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 52px;
+  width: 382px;
+  min-height: 727px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#title {
+  text-align: center;
+  margin-top: 52px;
+}
+
+#payment-input {
+  width: 310px;
+}
+
+#payment-submit {
+  width: 56px;
+}
+
+#ticket-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+#ticket-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 286px;
+}
+
+.ticket-list-row {
+  flex-direction: row;
+}
+
+.ticket-list-column {
+  flex-direction: column;
+}
+
+.ticket {
+  height: 36px;
+  font-size: 34px;
+  line-height: 36px;
+}
+
+.ticket > p {
+  width: max-content;
+  display: flex;
+}
+
+.ticket-emoji {
+  display: flex;
+  align-items: center;
+}
+
+.ticket-numbers {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 36px;
+  margin-left: 8px;
+}
+
+#show-number-toggle-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.switch-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  width: 30px;
+  height: 10px;
+  visibility: hidden;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(33, 33, 33, 0.08);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: -3px;
+  background-color: rgb(250, 248, 248);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* switch on: background bar */
+input:checked + .slider {
+  background-color: #80deea;
+}
+
+/* switch on : round */
+input:checked + .slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+  background-color: #00bcd4;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  width: 34px;
+  height: 14px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#winning-number-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#winning-number-fieldset {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+#winning-number-input-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-number-input {
+  width: 34px;
+}
+
+#winning-number-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#bonus-number-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#show-result-button {
+  margin-bottom: 39px;
+}
