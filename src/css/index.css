@@ -3,7 +3,6 @@ body {
   height: 100%;
   width: 100%;
   display: flex;
-  /* position: relative; */
   justify-content: center;
   align-items: center;
   background-color: var(--body-background-color);
@@ -32,7 +31,7 @@ button {
   flex-direction: column;
   height: fit-content;
   width: 414px;
-  padding: 0 16px 20px 16px;
+  padding: 0 16px 80px 16px;
   background-color: var(--app-background-color);
 }
 /*lottoPriceInput */
@@ -63,11 +62,12 @@ button {
   height: 36px;
   padding: 6px 6px 6px 8px;
 }
+.lotto-price-submit-button:hover {
+  background-color: var(--button-disabled-color);
+}
 .lotto-price-submit-button:disabled {
   background-color: var(--button-disabled-color);
 }
-
-/*purchased-lotto-list*/
 
 /*purchased-lotto-list*/
 .purchased-lotto-list-container {
@@ -212,10 +212,10 @@ button {
 }
 /*winning-rate-content*/
 .winning-rate-content-container {
-  display: none;
+  /* display: none; */
   position: absolute;
   top: 114px;
-  left: 32px;
+  left: 50px;
   width: 350px;
   height: 500px;
   border-radius: 4px;
@@ -223,12 +223,16 @@ button {
   padding: 0;
   background-color: var(--app-background-color);
   z-index: 100;
-  transform: translate3d(0, -500px, 0);
+  transform: translate3d(0, 100%, 0);
   transition: transform 300ms ease-in-out;
+  opacity: 0;
+  visibility: hidden;
 }
 .winning-rate-content-container.is-active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
   transform: translate3d(0, 0, 0);
+  transition: transform 300ms ease-in-out;
 }
 
 .winning-rate-title-container {
