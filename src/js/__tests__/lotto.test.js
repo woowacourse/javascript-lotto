@@ -1,4 +1,4 @@
-import { computeLottoRateOfReturn } from '../core/computeLottoRateOfReturn.js';
+import { computeLottoRateOfReturn } from '../core/computeLottoWinningValue.js';
 import Lotto from '../core/lotto.js';
 import {
   calculateGameCount,
@@ -30,7 +30,7 @@ describe('로또와 관련된 테스트를 진행하는 곳', () => {
   });
 
   test('로또 수익율이 올바르게 계산이 되는지 확인한다.', () => {
-    const lastLottoNumbers = [1, 2, 3, 4, 5, 6, 7];
+    const lastLottoNumberList = [[1, 2, 3, 4, 5, 6], 7];
     const currentLottoNumbers = [
       new Lotto([1, 2, 3, 8, 9, 10]),
       new Lotto([1, 2, 3, 8, 9, 10]),
@@ -39,7 +39,7 @@ describe('로또와 관련된 테스트를 진행하는 곳', () => {
       new Lotto([1, 2, 3, 8, 9, 10]),
     ];
     expect(
-      computeLottoRateOfReturn(currentLottoNumbers, lastLottoNumbers),
+      computeLottoRateOfReturn(currentLottoNumbers, lastLottoNumberList),
     ).toBe(500);
   });
 });
