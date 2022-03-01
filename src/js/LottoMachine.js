@@ -4,6 +4,7 @@ import validateCharge from './validation';
 
 import LottoManager from './LottoManager';
 import LottoMachineView from './views/LottoMachineView';
+import { calculateMatchResult, calculateProfitRatio } from './checkResult';
 
 export default class LottoMachine {
   constructor() {
@@ -21,23 +22,28 @@ export default class LottoMachine {
   
   onSubmitCharge(event) {
     event.preventDefault();
-    const chargeInputNumber = Number($(SELECTOR.CHARGE_INPUT).value);
+    const chargeInputValue = Number($(SELECTOR.CHARGE_INPUT).value);
     try {
-      validateCharge(chargeInputNumber);
+      validateCharge(chargeInputValue);
     } catch (error) {
       alert(error.message);
       return;
     }
-    this.purchase(chargeInputNumber);
+    this.purchase(chargeInputValue);
   }
 
   onSubmitWinningNumber(event) {
     event.preventDefault();
-    const winningNumbers = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT)).map((numberInput) => numberInput.value);
+    // if ( this.lottoManager.lottos.length === 0 ) return; // 에러 처리 필요
+    const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
+      .map((numberInput) => Number(numberInput.value));
+
+    const result = this.calculateResult(winningNumberInputValues);
+    console.log(result);
   }
 
-  purchase(chargeInputNumber) {
-    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputNumber, LOTTO_PRICE);
+  purchase(chargeInputValue) {
+    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputValue, LOTTO_PRICE);
     this.lottoManager.generateNewLottos(newLottoCount);
     this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
     this.lottoMachineView.updateChargeInput(remainCharge);
@@ -46,5 +52,13 @@ export default class LottoMachine {
   reverseLottoStyle() {
     const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
     this.lottoMachineView.showLottoList[style]();
+  }
+
+  calculateResult(winningNumberInputValues) {
+    const winningNumbers = winningNumberInputValues.slice(0, 6);
+    const bonusNumber = winningNumberInputValues[winningNumberInputValues.length - 1];
+    const matchResult = calculateMatchResult(this.lottoManager.lottos, winningNumbers, bonusNumber);
+    const profitRatio = calculateProfitRatio(this.lottoManager.lottos.length, matchResult);
+    return { matchResult, profitRatio }
   }
 }
