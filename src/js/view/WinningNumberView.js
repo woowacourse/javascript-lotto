@@ -3,7 +3,7 @@ import { convertToNumber } from '../utils/common.js';
 import { validateWinningNumberList } from '../utils/validator.js';
 
 //template
-const INPUT_ELEMENT = `<input type="number" class="winning-number-input"/>`;
+const INPUT_ELEMENT = `<input type="text" class="winning-number-input" maxlength='2'/>`;
 
 const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
