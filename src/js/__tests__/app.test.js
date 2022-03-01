@@ -101,6 +101,9 @@ describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개�
   });
 });
 
+const isValidRangeNumber = (lottoNumber) =>
+  lottoNumber >= LOTTO_RULES.MIN_RANGE && lottoNumber <= LOTTO_RULES.MAX_RANGE;
+
 describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않는 1 ~ 45 사이의 숫자여야 한다.', () => {
   const bonumsNumber = 18;
 
