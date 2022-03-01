@@ -1,3 +1,5 @@
+import { WINNINGS } from '../constants/constants';
+
 export class View {
   constructor() {
     this.registerDOM();
@@ -99,27 +101,27 @@ export class View {
       <th>당첨 갯수</th>
       <tr>
           <td>3개</td>
-          <td>5,000</td>
+          <td>${WINNINGS['5-place'].toLocaleString()}</td>
           <td>${winningStatus[0]}개</td>
       </tr>
       <tr>
           <td>4개</td>
-          <td>50,000</td>
+          <td>${WINNINGS['4-place'].toLocaleString()}</td>
           <td>${winningStatus[1]}개</td>
       </tr>
       <tr>
           <td>5개</td>
-          <td>1,500,000</td>
+          <td>${WINNINGS['3-place'].toLocaleString()}</td>
           <td>${winningStatus[2]}개</td>
       </tr>
       <tr>
           <td>5개+보너스볼</td>
-          <td>30,000,000</td>
+          <td>${WINNINGS['2-place'].toLocaleString()}</td>
           <td>${winningStatus[3]}개</td>
       </tr>
       <tr>
         <td>6개</td>
-        <td>2,000,000,000</td>
+        <td>${WINNINGS['1-place'].toLocaleString()}</td>
         <td>${winningStatus[4]}개</td>
       </tr>
     </table>
