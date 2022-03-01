@@ -5,6 +5,10 @@ import { NUMBER } from '../constants/number';
 
 class LottoGameModel {
   constructor() {
+    this.initialize();
+  }
+
+  initialize() {
     this.lottoList = [];
     this.winningResult = [0, 0, 0, 0, 0, 0, 0];
   }
