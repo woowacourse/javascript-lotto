@@ -3,17 +3,25 @@ import {
   getLottoPrice,
   checkLottoPrice,
 } from './core/checkLottoPriceInputValue.js';
-import { toggleButton } from './component/toggleButton.js';
+
 import { makeLottoList } from './core/makeLottoList.js';
+import { checkLastLottoNumberValid } from './core/checkLastLottoNumberInput.js';
+
+import {
+  computeLottoRankList,
+  computeLottoRateOfReturn,
+} from './core/computeLottoWinningValue.js';
+import toggleLottoResultModal from './component/toggleLottoResultModal.js';
+import { toggleButton } from './component/toggleButton.js';
+
 import {
   renderPurchasedLottoList,
   renderLastLottoNumber,
   renderPurchasedLottoListContent,
   renderPurchasedLottoListContentIsActive,
+  renderRateOfReturnResult,
+  renderLottoWinningCount,
 } from './views/render.js';
-import { checkLastLottoNumberValid } from './core/checkLastLottoNumberInput.js';
-import { computeLottoRateOfReturn } from './core/computeLottoRateOfReturn.js';
-import toggleLottoResultModal from './component/toggleLottoResultModal.js';
 
 export default class App {
   constructor() {
@@ -100,9 +108,19 @@ export default class App {
         });
       return;
     }
-    const rateOfReturn = computeLottoRateOfReturn(
-      this.lottoList,
-      lastLottoNumbers,
+    const lastLottoNumberList = lastLottoNumbers.slice(
+      0,
+      lastLottoNumbers.length - 1,
+    );
+    const bonusNumber = lastLottoNumbers[lastLottoNumbers.length - 1];
+    renderRateOfReturnResult(
+      computeLottoRateOfReturn(this.lottoList, [
+        lastLottoNumberList,
+        bonusNumber,
+      ]),
+    );
+    renderLottoWinningCount(
+      computeLottoRankList(this.lottoList, [lastLottoNumberList, bonusNumber]),
     );
     toggleLottoResultModal();
   };
