@@ -16,8 +16,9 @@ export default class LottoMachine {
 
   setEvent() {
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
-    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
-    $(SELECTOR.WINNING_NUMBER_FORM).addEventListener('submit', this.onSubmitWinningNumber.bind(this))
+    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.switchLottoListStyle.bind(this));
+    $(SELECTOR.WINNING_NUMBER_FORM).addEventListener('submit', this.onSubmitWinningNumber.bind(this));
+    $('#result-modal-close-button').addEventListener('click', this.onClickResultModalCloseButton.bind(this));
   }
   
   onSubmitCharge(event) {
@@ -37,9 +38,13 @@ export default class LottoMachine {
     // if ( this.lottoManager.lottos.length === 0 ) return; // 에러 처리 필요
     const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
       .map((numberInput) => Number(numberInput.value));
-
     const result = this.calculateResult(winningNumberInputValues);
-    console.log(result);
+
+    this.lottoMachineView.openResultModal();
+  }
+
+  onClickResultModalCloseButton() {
+    this.lottoMachineView.closeResultModal();
   }
 
   purchase(chargeInputValue) {
@@ -49,7 +54,7 @@ export default class LottoMachine {
     this.lottoMachineView.updateChargeInput(remainCharge);
   }
 
-  reverseLottoStyle() {
+  switchLottoListStyle() {
     const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
     this.lottoMachineView.showLottoList[style]();
   }

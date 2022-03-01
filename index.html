@@ -91,9 +91,9 @@
               aria-labelledby="winning-number-label" />
           </fieldset>
         </div>
-        <button id="check-result-button" class="blue-button width-100">결과 확인하기</button>
+        <button class="blue-button width-100">결과 확인하기</button>
       </form>
-      <div id="result-modal-area" class="dimmed">
+      <div id="result-modal-area" class="dimmed display-none">
         <section class="result-modal">
           <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
           <table>
@@ -113,7 +113,7 @@
           </table>
           <p id="profit-rate" class="normal-text font-weight-border margin-bottom-32px">당신의 총 수익률은 <span >100</span>%입니다.</p>
           <button id="restart-button" class="blue-button width-152px height-36px">다시 시작하기</button>
-          <button id="close-button" class="close-button" type="button"></button>
+          <button id="result-modal-close-button" class="close-button" type="button"></button>
         </section>
       </div>
     </main>
