@@ -1,4 +1,5 @@
-import { MUTATE_DOMAIN_KEY } from '../constants/actionKey';
+import { DOMAIN_ACTION } from '../constants/actions';
+import { ERROR_MESSAGE } from '../constants/errorMessage';
 import LottoList from './LottoList';
 
 class LottoDomainManager {
@@ -6,6 +7,16 @@ class LottoDomainManager {
 
   constructor() {
     this.#initializeDomain();
+  }
+
+  work({ payload, action }) {
+    if (action === DOMAIN_ACTION.NEW_CHARGE_INPUT) {
+      return this.#performActionNewChargeInput(payload);
+    }
+    if (action === DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS) {
+      return this.#performActionComputeResultStatistics(payload);
+    }
+    throw new Error(ERROR_MESSAGE.DOMAIN_MANAGER_WORK_ERROR);
   }
 
   #performActionNewChargeInput(chargeInput) {
@@ -19,15 +30,6 @@ class LottoDomainManager {
 
   #initializeDomain() {
     this.#lottoListDomain = new LottoList();
-  }
-
-  mutateDomainState({ newData, actionKey }) {
-    if (actionKey === MUTATE_DOMAIN_KEY.NEW_CHARGE_INPUT) {
-      return this.#performActionNewChargeInput(newData);
-    }
-    if (actionKey === MUTATE_DOMAIN_KEY.COMPUTE_RESULT_STATISTICS) {
-      return this.#performActionComputeResultStatistics(newData);
-    }
   }
 }
 

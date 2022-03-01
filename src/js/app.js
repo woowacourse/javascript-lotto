@@ -1,7 +1,7 @@
 import { SELECTOR } from './constants/selector';
 import LottoViewManager from './views';
 import LottoDomainManager from './domains';
-import { MUTATE_DOMAIN_KEY, RENDER_VIEW_KEY } from './constants/actionKey';
+import { DOMAIN_ACTION, VIEW_ACTION } from './constants/actions';
 
 class LottoGameManager {
   #lottoDomainManager = null;
@@ -32,21 +32,21 @@ class LottoGameManager {
   };
 
   triggerChargeInputAction(chargeInput) {
-    const lottoList = this.#lottoDomainManager.mutateDomainState({
-      newData: chargeInput,
-      actionKey: MUTATE_DOMAIN_KEY.NEW_CHARGE_INPUT,
+    const lottoList = this.#lottoDomainManager.work({
+      payload: chargeInput,
+      action: DOMAIN_ACTION.NEW_CHARGE_INPUT,
     });
-    this.#lottoViewManager.renderView({
-      newData: lottoList,
-      actionKey: RENDER_VIEW_KEY.UPDATE_LOTTO_LIST,
+    this.#lottoViewManager.work({
+      payload: lottoList,
+      action: VIEW_ACTION.UPDATE_LOTTO_LIST,
     });
   }
 
   onChangeAlignState = (e) => {
     const { checked: alignState } = e.target;
-    this.#lottoViewManager.renderView({
-      newData: alignState,
-      actionKey: RENDER_VIEW_KEY.UPDATE_VISIBLE_STATE,
+    this.#lottoViewManager.work({
+      payload: alignState,
+      action: VIEW_ACTION.UPDATE_VISIBLE_STATE,
     });
   };
 
@@ -63,13 +63,13 @@ class LottoGameManager {
 
   triggerWinningNumberAction(winningNumbers, bonusNumber) {
     try {
-      const { statistics, profitRatio } = this.#lottoDomainManager.mutateDomainState({
-        newData: { winningNumbers, bonusNumber },
-        actionKey: MUTATE_DOMAIN_KEY.COMPUTE_RESULT_STATISTICS,
+      const { statistics, profitRatio } = this.#lottoDomainManager.work({
+        payload: { winningNumbers, bonusNumber },
+        action: DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS,
       });
-      this.#lottoViewManager.renderView({
-        newData: { statistics, profitRatio },
-        actionKey: RENDER_VIEW_KEY.RENDER_STATISTICS,
+      this.#lottoViewManager.work({
+        payload: { statistics, profitRatio },
+        action: VIEW_ACTION.RENDER_STATISTICS,
       });
     } catch ({ message }) {
       alert(message);

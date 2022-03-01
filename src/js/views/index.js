@@ -1,4 +1,4 @@
-import { RENDER_VIEW_KEY } from '../constants/actionKey';
+import { VIEW_ACTION } from '../constants/actions';
 import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/dom';
 import LottoContainerView from './LottoContainerView';
@@ -11,8 +11,21 @@ class LottoViewManager {
 
   constructor({ eventHandlers }) {
     this.$app = findElement(SELECTOR.APP);
-    this.clear();
+    this.#clear();
     this.#initializeViews(eventHandlers);
+  }
+
+  work({ payload, action }) {
+    if (action === VIEW_ACTION.UPDATE_LOTTO_LIST) {
+      this.#containerView.renderLottoSection(payload);
+      this.#resultView.showWinNumberInputSection();
+    }
+    if (action === VIEW_ACTION.UPDATE_VISIBLE_STATE) {
+      this.#containerView.renderAlignState(payload);
+    }
+    if (action === VIEW_ACTION.RENDER_STATISTICS) {
+      this.#resultView.renderStatisticsModal(payload);
+    }
   }
 
   #initializeViews({
@@ -33,20 +46,7 @@ class LottoViewManager {
     });
   }
 
-  renderView({ newData, actionKey }) {
-    if (actionKey === RENDER_VIEW_KEY.UPDATE_LOTTO_LIST) {
-      this.#containerView.renderLottoSection(newData);
-      this.#resultView.showWinNumberInputSection();
-    }
-    if (actionKey === RENDER_VIEW_KEY.UPDATE_VISIBLE_STATE) {
-      this.#containerView.renderAlignState(newData);
-    }
-    if (actionKey === RENDER_VIEW_KEY.RENDER_STATISTICS) {
-      this.#resultView.renderStatisticsModal(newData);
-    }
-  }
-
-  clear() {
+  #clear() {
     this.$app.innerHTML = '';
   }
 }
