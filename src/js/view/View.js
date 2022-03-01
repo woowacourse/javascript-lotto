@@ -7,10 +7,13 @@ export class View {
   registerButtons() {
     this.purchaseBtn = document.getElementById('purchase-button');
     this.toggleBtn = document.getElementById('toggle-check');
+    this.resultbtn = document.getElementById('confirm-result-label');
   }
 
   registerInput() {
     this.moneyInput = document.getElementById('money-input');
+    this.winningNumberInput = document.getElementsByClassName('winning-number');
+    this.bonusNumberInput = document.getElementById('bonus-number');
   }
 
   showLottoStatusContainer() {

@@ -26,6 +26,7 @@ export class LottoController {
       this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
 
       this.bindToggleEvent();
+      this.bindResultEvent();
     });
   }
 
@@ -48,5 +49,26 @@ export class LottoController {
       return true;
     }
     return false;
+  }
+
+  bindResultEvent() {
+    this.view.resultbtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.getWinningNumbers();
+      this.getBonusNumbers();
+
+      //결과생성
+      this.lottoGame.findResult();
+      this.lottoGame.calculateEarnRate();
+
+      //modal창생성
+    });
+  }
+
+  getWinningNumbers() {
+    this.lottoGame.enterWinningNumbers(Array.from(this.view.winningNumberInput).map((item) => Number(item.value)));
+  }
+  getBonusNumbers() {
+    this.lottoGame.enterBonusNumber(this.view.bonusNumberInput.value);
   }
 }

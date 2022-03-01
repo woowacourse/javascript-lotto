@@ -78,6 +78,5 @@ export class LottoGame {
     earnMoney += this.result.matchThree * 5000;
 
     this.earnRate = Number(((earnMoney / (this.lottoWallet.length * 1000)) * 100 - 100).toFixed(2));
-    console.log(this.earnRate);
   }
 }
