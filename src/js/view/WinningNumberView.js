@@ -34,6 +34,11 @@ export default class WinningNumberView {
     this.modal = document.getElementById('winning-statistics-modal');
     this.restartButton = document.getElementById('restart-button');
     this.closeButton = document.getElementById('close-button');
+
+    this.closeButton.addEventListener(
+      'click',
+      this.clickCloseButtonHandler.bind(this),
+    );
   }
 
   render() {
@@ -63,6 +68,11 @@ export default class WinningNumberView {
       this.resetInputElementsValue();
       alert(error);
     }
+  }
+
+  clickCloseButtonHandler() {
+    this.app.classList.replace('modal-on', 'modal-off');
+    this.modal.classList.replace('modal-show', 'modal-hide');
   }
 
   resetInputElementsValue() {
