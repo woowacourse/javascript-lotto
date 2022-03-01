@@ -25,8 +25,13 @@ class LottoDomainManager {
       this.#lottoListDomain.createLottoList(chargeInput);
       return this.#lottoListDomain.getLottoList();
     },
-    [`${DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS}`]: ({ winningNumbers, bonusNumber }) =>
-      this.#lottoListDomain.computeWinResultStatistics(winningNumbers, bonusNumber),
+    [`${DOMAIN_ACTION.COMPUTE_RESULT_STATISTICS}`]: ({ winningNumbers, bonusNumber }) => {
+      const result = this.#lottoListDomain.computeStatisticsAndProfitRatio(
+        winningNumbers,
+        bonusNumber
+      );
+      return result;
+    },
   };
 }
 

@@ -27,7 +27,7 @@ class LottoList {
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
   }
 
-  computeWinResultStatistics(winningNumbers, bonusNumber) {
+  computeStatisticsAndProfitRatio(winningNumbers, bonusNumber) {
     if (isValidWinningNumber([...winningNumbers, bonusNumber])) {
       const statistics = this.computeStatistics(winningNumbers, bonusNumber);
 
@@ -61,6 +61,8 @@ class LottoList {
     return (profitAmount / lottoPurchaseAmount) * 100;
   }
 
+  /** 배열 형태 ex) ['1등','1등','2등','3등','꽝','꽝'] 를*/
+  /** 객체 형태 ex) {'1등' : 2, '2등' : 1} 로 바꾼다*/
   changeStatisticsMap(statisticsArray) {
     const statisticsMap = {};
 

@@ -50,7 +50,7 @@ describe('로또 리스트 도메인 테스트', () => {
     const winningNumbers = [5, 5, 15, 30, 33, 28];
     const bonusNumber = 17;
     try {
-      lottoList.computeWinResultStatistics(winningNumbers, bonusNumber);
+      lottoList.computeStatisticsAndProfitRatio(winningNumbers, bonusNumber);
     } catch ({ message }) {
       expect(message === ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE).toBe(true);
     }
