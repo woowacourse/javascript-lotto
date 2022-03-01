@@ -1,4 +1,5 @@
 export const $ = (selector, target = document) => target.getElementById(`${selector}`);
+export const $$ = (selector, target = document) => target.querySelectorAll(`.${selector}`);
 
 const removeChildren = parent => {
   while (parent.firstChild) {
