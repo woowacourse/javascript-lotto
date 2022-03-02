@@ -16,7 +16,7 @@ export default class LottoMachineView {
   initialize(lottos) {
     this.initializeInputValues();
     this.updateLottoList(lottos);
-    this.closeResultModal();
+    this.closeWinningResultModal();
   }
 
   updateChargeInput(value) {
@@ -39,21 +39,21 @@ export default class LottoMachineView {
     $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove(CLASS_DISPLAY_NONE);
   }
 
-  openResultModal(result) {
-    this.updateResultModal(result);
+  openWinningResultModal(result) {
+    this.updateWinningResultModal(result);
     this.resultModalArea.classList.remove(CLASS_DISPLAY_NONE);
   }
 
-  closeResultModal() {
+  closeWinningResultModal() {
     this.resultModalArea.classList.add(CLASS_DISPLAY_NONE);
   }
 
-  updateResultModal({ matchResult, profitRatio }) {
+  updateWinningResultModal({ matchResult, profitRatio }) {
     $$('.match-result', this.resultModalArea).forEach((resultRow) => {
       $('.match-count', resultRow).innerText = `${matchResult[MATCH_RESULT_INDEX[resultRow.dataset.matchCount]]}개`;
       $('.prize-money', resultRow).innerText = PRIZE_MONEY[resultRow.dataset.matchCount].toLocaleString();
     })
-    $('#profit-ratio', this.resultModalArea).innerText = profitRatio;
+    $('#profit-ratio', this.resultModalArea).innerText = Math.round(profitRatio);
   }
   
   initializeInputValues() {

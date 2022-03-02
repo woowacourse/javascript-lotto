@@ -31,11 +31,11 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.purchase(chargeInputValue);
+    this.purchaseLotteryTicket(chargeInputValue);
   }
 
   onClickCloseResultModalButton() {
-    this.lottoMachineView.closeResultModal();
+    this.lottoMachineView.closeWinningResultModal();
   }
 
   onClickRestartButton() {
@@ -54,12 +54,11 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.showResultModal();
+    this.showWinningResultModal(winningNumberInputValues);
   }
 
-  purchase(chargeInputValue) {
-    const { quotient: newTicketCount, remainder: remainCharge } = divider(chargeInputValue, LOTTERY_TICKET_PRICE);
-    this.lotteryTicketManager.generateNewLottos(newTicketCount);
+  purchaseLotteryTicket(chargeInputValue) {
+    const { remainCharge } = this.lotteryTicketManager.purchaseLotteryTicket(chargeInputValue);
     this.lottoMachineView.updateLottoList(this.lotteryTicketManager.tickets);
     this.lottoMachineView.updateChargeInput(remainCharge);
   }
@@ -69,12 +68,12 @@ export default class LottoMachine {
     this.lottoMachineView.showLottoList[style]();
   }
 
-  showResultModal(winningNumberInputValues) {
-    const result = this.calculateResult(winningNumberInputValues);
-    this.lottoMachineView.openResultModal(result);
+  showWinningResultModal(winningNumberInputValues) {
+    const result = this.calculateWinningResult(winningNumberInputValues);
+    this.lottoMachineView.openWinningResultModal(result);
   }
 
-  calculateResult(winningNumberInputValues) {
+  calculateWinningResult(winningNumberInputValues) {
     const winningNumbers = winningNumberInputValues.slice(0, 6);
     const bonusNumber = winningNumberInputValues[winningNumberInputValues.length - 1];
     const matchResult = calculateMatchResult(this.lotteryTicketManager.tickets, winningNumbers, bonusNumber);
