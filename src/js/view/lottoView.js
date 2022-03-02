@@ -13,11 +13,11 @@ class LottoView {
     this.deliverMessage = null;
   }
 
-  restartApp() {
+  restartApp = () => {
     this.resetView();
     this.deliverMessage({ message: 'RESTART_APP', to: 'purchaseMachine' });
     this.deliverMessage({ message: 'RESTART_APP', to: 'winnerMachine' });
-  }
+  };
 
   resetView = () => {
     this.cashInputView.resetView();
@@ -27,6 +27,7 @@ class LottoView {
   };
 
   assignMessenger(deliverMessage) {
+    this.deliverMessage = deliverMessage;
     this.cashInputView.assignMessenger(deliverMessage);
     this.winnerNumberView.assignMessenger(deliverMessage);
   }
