@@ -26,14 +26,12 @@ export const toggleLottosView = () => {
   lottosView.toggleContainer();
 };
 
-const isFilledLottoNumber = (lottoNumber) => lottoNumber.length >= LOTTO_RULES.NUMBER_MAX_LENGTH;
-
 export const writingWinningNumber = (e) => {
   e.currentTarget.value = extractNumber(
     e.currentTarget.value.slice(0, LOTTO_RULES.NUMBER_MAX_LENGTH),
   );
 
-  if (isFilledLottoNumber(e.currentTarget.value)) {
+  if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
     matchResultView.tabNextInput(Number(e.currentTarget.dataset.index));
   }
 };
