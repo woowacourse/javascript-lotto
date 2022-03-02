@@ -1,4 +1,5 @@
 import Validator from '../EventListener/Validator.js';
+import ValidationError from './ValidationError.js';
 import { LOTTO_PRICE, LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 
 const checkFunctions = {
@@ -26,7 +27,7 @@ export default class ValidatorImpl extends Validator {
 
   validateFare(fare) {
     if (this.checkFunctions.isLackFare(fare)) {
-      throw new Error(ERROR_MESSAGE.LACK_OF_FARE);
+      throw new ValidationError(ERROR_MESSAGE.LACK_OF_FARE);
     }
   }
 }

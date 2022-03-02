@@ -4,6 +4,7 @@ import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
 import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
 import LottosView from '../View/LottosView.js';
 import MatchResultView from '../View/MatchResultView.js';
+import ValidationError from '../ValidatorImpl/ValidationError.js';
 import { extractNumber } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';
 
@@ -23,8 +24,13 @@ export const onSubmitFareForm = (e) => {
     lottoCollection.createLottos(new LottoCountCalculator(inputedFare).execute());
     lottosView.render(lottoCollection.getLottos());
     lottosView.setInputValue(new RemainFareCalculator(inputedFare).execute());
-  } catch ({ message }) {
-    alert(message);
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      error.handling();
+      return;
+    }
+
+    throw error;
   }
 };
 
