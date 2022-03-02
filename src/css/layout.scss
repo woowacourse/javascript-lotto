@@ -36,7 +36,12 @@ body {
     transition: filter 0.2s ease;
     cursor: pointer;
 
-    &:hover {
+    &:disabled {
+      background-color: $disable-color;
+      cursor: default;
+    }
+
+    &:hover:not(:disabled) {
       filter: brightness(1.1);
     }
   }
