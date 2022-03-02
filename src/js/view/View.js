@@ -57,6 +57,16 @@ export class View {
     );
   }
 
+  toggleOn() {
+    this.lottoQuantity.classList.add('hidden');
+    this.lottoIcons.classList.remove('hidden');
+  }
+
+  toggleOff() {
+    this.lottoIcons.classList.add('hidden');
+    this.lottoQuantity.classList.remove('hidden');
+  }
+
   lottosInfoTemplate(lottoWallet) {
     this.lottoIcons.textContent = '';
     this.lottoIcons.insertAdjacentHTML(
@@ -152,6 +162,7 @@ export class View {
     this.lottoQuantity.textContent = '';
     this.winTable.textContent = '';
     this.closeModal();
+    this.uncheckToggleSwitch();
     this.lottoStatusContainer.classList.add('hidden');
     this.winningLottoContainer.classList.add('hidden');
     this.clearWinningNumbers();

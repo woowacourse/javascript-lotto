@@ -55,12 +55,10 @@ export class Controller {
 
   #controllToggleBtn() {
     if (this.view.toggleBtn.checked) {
-      this.view.lottoQuantity.classList.add('hidden');
-      this.view.lottoIcons.classList.remove('hidden');
+      this.view.toggleOn();
       return;
     }
-    this.view.lottoIcons.classList.add('hidden');
-    this.view.lottoQuantity.classList.remove('hidden');
+    this.view.toggleOff();
   }
 
   #showLottoResult(e) {
