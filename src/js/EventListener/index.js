@@ -1,5 +1,10 @@
 import coveringTryCatch from './coveringTryCatch.js';
-import { trySubmitFareForm, toggleLottosView, writingWinningNumber } from './domain.js';
+import {
+  trySubmitFareForm,
+  toggleLottosView,
+  writingWinningNumber,
+  tryClickConfirmResultButton,
+} from './domain.js';
 
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
@@ -10,3 +15,7 @@ export const onSubmitFareForm = (e) => {
 export const onChangeLottoViewerController = toggleLottosView;
 
 export const onKeyUpWinningNumbers = writingWinningNumber;
+
+export const onClickConfirmResultButton = () => {
+  coveringTryCatch(tryClickConfirmResultButton);
+};

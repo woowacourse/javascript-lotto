@@ -20,4 +20,8 @@ export default class LottoCollectionImpl extends LottoCollection {
   resetLottos() {
     this.lottos.length = 0;
   }
+
+  isEmpty() {
+    return this.lottos.length === 0;
+  }
 }

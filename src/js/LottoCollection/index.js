@@ -4,4 +4,6 @@ export default class LottoCollection {
   getLottos() {}
 
   resetLottos() {}
+
+  isEmpty() {}
 }
