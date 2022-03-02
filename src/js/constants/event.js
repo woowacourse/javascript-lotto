@@ -1,7 +1,8 @@
 const EVENT = Object.freeze({
-  TOGGLE: '@toggle',
+  TOGGLE_LOTTO_DETAIL: '@toggle-lotto-detail',
   SUBMIT_PURCHASE: '@submit-purchase',
   SUBMIT_RESULT: '@submit-result',
+  CLICK_RESTART: '@click-restart',
 });
 
 export default EVENT;

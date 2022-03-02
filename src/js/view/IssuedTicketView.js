@@ -34,7 +34,7 @@ export default class IssuedTicketView {
    */
   #handleToggle(e) {
     const { checked } = e.target;
-    emit(this.$lottoNumberToggle, EVENT.TOGGLE, { checked });
+    emit(this.$lottoNumberToggle, EVENT.TOGGLE_LOTTO_DETAIL, { checked });
   }
 
   /**
@@ -42,6 +42,10 @@ export default class IssuedTicketView {
    */
   showTicketContainer() {
     this.$ticketContainer.classList.replace('hidden', 'show');
+  }
+
+  hideTicketContainer() {
+    this.$ticketContainer.classList.replace('show', 'hidden');
   }
 
   /**

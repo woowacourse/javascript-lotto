@@ -1,5 +1,6 @@
 import { on } from '../utils/event.js';
 import EVENT from '../constants/event.js';
+import LottoBundle from '../model/LottoBundle.js';
 
 /**
  * @module controller/LottoController
@@ -34,12 +35,18 @@ export default class LottoController {
       this.#purchaseLotto(e.detail.money),
     );
 
-    on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE, (e) =>
-      this.#toggleDetails(e.detail.checked),
+    on(
+      this.issuedTicketView.$lottoNumberToggle,
+      EVENT.TOGGLE_LOTTO_DETAIL,
+      (e) => this.#toggleDetails(e.detail.checked),
     );
 
     on(this.winningNumbersView.$winningNumbersForm, EVENT.SUBMIT_RESULT, (e) =>
       this.#requestResult(e.detail.winningNumbers, e.detail.bonusNumber),
+    );
+
+    on(this.resultModalView.$restartButton, EVENT.CLICK_RESTART, () =>
+      this.#restart(),
     );
   }
 
@@ -87,12 +94,22 @@ export default class LottoController {
     const { winningCounts } = this.lottoResult;
     this.lottoResult.calculateLottoYield();
     const { lottoYield } = this.lottoResult;
-    this.renderResultModal(winningCounts, lottoYield);
+    this.#renderResultModal(winningCounts, lottoYield);
   }
 
-  renderResultModal(winningCounts, lottoYield) {
+  #renderResultModal(winningCounts, lottoYield) {
     this.resultModalView.renderWinningCounts(winningCounts);
     this.resultModalView.renderYield(lottoYield);
     this.resultModalView.showModal();
+  }
+
+  #restart() {
+    this.resultModalView.hideModal();
+    this.lottoBundle.reset();
+    this.lottoResult.reset();
+    this.purchaseView.resetInput();
+    this.issuedTicketView.hideTicketContainer();
+    this.winningNumbersView.resetInput();
+    this.purchaseView.activatePurchaseForm();
   }
 }

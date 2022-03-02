@@ -61,4 +61,10 @@ export default class LottoBundle {
     const lotto = new Lotto();
     this.#lottos.push(lotto);
   }
+
+  reset() {
+    this.#money = 0;
+    this.#count = 0;
+    this.#lottos = [];
+  }
 }

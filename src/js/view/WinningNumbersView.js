@@ -25,4 +25,15 @@ export default class WinningNumbersView {
       bonusNumber,
     });
   }
+
+  removeInputValue() {
+    console.log(this.$winningNumbersForm.event);
+    [0, 1, 2, 3, 4, 5, 6].forEach((i) => {
+      this.$winningNumbersForm.event.target[i].value = '';
+    });
+  }
+
+  resetInput() {
+    $('#winning-numbers-reset').click();
+  }
 }

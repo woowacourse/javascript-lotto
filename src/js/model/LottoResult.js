@@ -93,4 +93,11 @@ export default class LottoResult {
   get lottoYield() {
     return this.#lottoYield;
   }
+
+  reset() {
+    this.#winningNumbers = [];
+    this.#bonusNumber = 0;
+    this.#winningCounts = { three: 0, four: 0, five: 0, fiveBonus: 0, six: 0 };
+    this.#lottoYield = 0;
+  }
 }

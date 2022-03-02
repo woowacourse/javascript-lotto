@@ -1,4 +1,6 @@
+import EVENT from '../constants/event';
 import ID from '../constants/selector';
+import { emit } from '../utils/event';
 import { $ } from '../utils/selector';
 
 export default class ResultModalView {
@@ -6,6 +8,7 @@ export default class ResultModalView {
     this.$modalContainer = $(ID.MODAL_CONTAINER);
     this.$modal = $('.modal');
     this.$closeButton = $('.close');
+    this.$restartButton = $(ID.RESTART_BUTTON);
 
     this.#bindEvents();
   }
@@ -15,6 +18,7 @@ export default class ResultModalView {
     //   e.target !== this.$modal ? this.hideModal() : false,
     // );
     this.$closeButton.addEventListener('click', () => this.hideModal());
+    this.$restartButton.addEventListener('click', () => this.handleRestart());
   }
 
   showModal() {
@@ -23,6 +27,10 @@ export default class ResultModalView {
 
   hideModal() {
     this.$modalContainer.classList.remove('show-modal');
+  }
+
+  handleRestart() {
+    emit(this.$restartButton, EVENT.CLICK_RESTART, {});
   }
 
   renderWinningCounts(winningCounts) {

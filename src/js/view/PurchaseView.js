@@ -51,4 +51,13 @@ export default class PurchaseView {
     this.$purchaseButton.disabled = true;
     this.$purchaseInput.disabled = true;
   }
+
+  activatePurchaseForm() {
+    this.$purchaseButton.disabled = false;
+    this.$purchaseInput.disabled = false;
+  }
+
+  resetInput() {
+    $('#purchase-reset').click();
+  }
 }
