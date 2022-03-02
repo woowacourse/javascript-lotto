@@ -13,17 +13,9 @@ const lottoCollection = new LottoCollectionImpl();
 const lottosView = new LottosView();
 const matchResultView = new MatchResultView();
 
-export const onSubmitFareForm = (e) => {
-  e.preventDefault();
-
+const coveringTryCatch = (tryFunction) => {
   try {
-    const inputedFare = lottosView.getInputValue();
-
-    validator.validateFare(inputedFare);
-    lottoCollection.resetLottos();
-    lottoCollection.createLottos(new LottoCountCalculator(inputedFare).execute());
-    lottosView.render(lottoCollection.getLottos());
-    lottosView.setInputValue(new RemainFareCalculator(inputedFare).execute());
+    tryFunction();
   } catch (error) {
     if (error instanceof ValidationError) {
       error.handling();
@@ -32,6 +24,22 @@ export const onSubmitFareForm = (e) => {
 
     throw error;
   }
+};
+
+const trySubmitFareForm = () => {
+  const inputedFare = lottosView.getInputValue();
+
+  validator.validateFare(inputedFare);
+  lottoCollection.resetLottos();
+  lottoCollection.createLottos(new LottoCountCalculator(inputedFare).execute());
+  lottosView.render(lottoCollection.getLottos());
+  lottosView.setInputValue(new RemainFareCalculator(inputedFare).execute());
+};
+
+export const onSubmitFareForm = (e) => {
+  e.preventDefault();
+
+  coveringTryCatch(trySubmitFareForm);
 };
 
 export const onChangeLottoViewerController = () => {
