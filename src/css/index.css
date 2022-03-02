@@ -71,8 +71,8 @@ button {
 
   padding: 0 16px;
 
-  min-height: 727px;
-  min-width: 414px;
+  height: 727px;
+  width: 414px;
 }
 
 h1 {
@@ -142,12 +142,17 @@ h1 {
 }
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
+  width: 300px;
+  max-height: 280px;
 	display: flex;
+  flex-wrap: wrap;
+  
 }
-
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list.direction-column {
   flex-direction: column;
+  overflow-y: auto;
+  flex-wrap: nowrap;
   gap: 4px;
 }
 
@@ -230,9 +235,89 @@ h1 {
 	height: 36px;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 34px;
-  height: 14px;
+/* modal */
+.modal-background {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  display: none; 
+  background-color: rgba(0, 0, 0, 0.5);; 
+} 
+
+.modal-background.show { 
+  display: block; 
+} 
+
+.modal { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  width: 350px;
+  height: 500px;   
+  padding: 16px; 
+  background-color: rgb(255, 255, 255); 
+  border-radius: 4px;
+  transform: translateX(-50%) translateY(-50%); 
+}
+
+.modal-header {
+  text-align: right;
+}
+
+.modal-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 32px;
+}
+
+table {
+  border-top: 1px solid #DCDCDC;;
+  border-collapse: collapse;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+th {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 8px;
+}
+
+tr {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+td {
+  padding: 8px;
+}
+.modal-earning-weight {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+#restart {
+  padding: 10px 30px;
+  position: absolute;
+  width: 152px;
+  height: 36px;
+  left: 99px;
+  top: 415px;
+  background: #00BCD4;
+  border-radius: 4px;
+  color: white;
 }
