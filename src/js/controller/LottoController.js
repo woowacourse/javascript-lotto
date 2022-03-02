@@ -1,6 +1,7 @@
 import { on } from '../utils/event.js';
 import EVENT from '../constants/event.js';
 import EXCEPTION from '../constants/exception.js';
+import { moneyValidator } from '../validator/moneyValidator.js';
 
 /**
  * @module controller/LottoController
@@ -10,14 +11,7 @@ import EXCEPTION from '../constants/exception.js';
  * @classdesc view와 model을 연결하는 controller
  */
 export default class LottoController {
-  constructor(
-    lottoBundle,
-    purchaseView,
-    issuedTicketView,
-    lottoResult,
-    winningNumbersView,
-    resultModalView,
-  ) {
+  constructor(lottoBundle, purchaseView, issuedTicketView, lottoResult, winningNumbersView, resultModalView) {
     this.lottoBundle = lottoBundle;
     this.lottoResult = lottoResult;
     this.purchaseView = purchaseView;
@@ -31,23 +25,19 @@ export default class LottoController {
    * @description 뷰의 엘리먼트에서 발생하는 커스텀 이벤트를 구독하고, 발생이 감지되면 콜백함수를 호출한다.
    */
   #subscribeViewEvents() {
-    on(this.purchaseView.$purchaseForm, EVENT.SUBMIT_PURCHASE, (e) =>
-      this.#purchaseLotto(e.detail.money),
-    );
+    on(this.purchaseView.$purchaseForm, EVENT.SUBMIT_PURCHASE, (e) => this.#purchaseLotto(e.detail.money));
 
-    on(
-      this.issuedTicketView.$lottoNumberToggle,
-      EVENT.TOGGLE_LOTTO_DETAIL,
-      (e) => this.#toggleDetails(e.detail.checked),
+    on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE_LOTTO_DETAIL, (e) =>
+      this.#toggleDetails(e.detail.checked),
     );
 
     on(this.winningNumbersView.$winningNumbersForm, EVENT.SUBMIT_RESULT, (e) =>
       this.#requestResult(e.detail.winningNumbers, e.detail.bonusNumber),
     );
 
-    on(this.resultModalView.$restartButton, EVENT.CLICK_RESTART, () =>
-      this.#restart(),
-    );
+    on(this.resultModalView.$restartButton, EVENT.CLICK_RESTART, () => this.#restart());
+
+    on(this.purchaseView.$purchaseInput, EVENT.PURCHASE_KEYUP, (e) => this.#convertWonUnitFormat(e.detail.value));
   }
 
   /** @method purchaseLotto
@@ -56,7 +46,7 @@ export default class LottoController {
    */
   #purchaseLotto(money) {
     try {
-      this.lottoBundle.money = money;
+      this.lottoBundle.receivedMoney = money;
       this.lottoBundle.saveCount();
       this.lottoBundle.createLottoBundle();
       this.#renderLotto();
@@ -89,16 +79,14 @@ export default class LottoController {
 
   #requestResult(winningNumbers, bonusNumber) {
     if (this.lottoBundle.isLottoListEmpty()) {
-      alert(EXCEPTION.INSUFFICIENT.PURCHASE_INPUT);
+      alert(EXCEPTION.NOT_YET_PURCHASE);
       return;
     }
 
     const result = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
 
     if (this.lottoResult.isWinningNumbersDuplicated()) {
-      alert(
-        '입력한 당첨 번호 중 중복된 번호가 있습니다. 중복되지 않은 번호를 입력해주세요.',
-      );
+      alert(EXCEPTION.DUPLICATED_NUMBERS);
       return;
     }
 
@@ -119,5 +107,13 @@ export default class LottoController {
     this.issuedTicketView.hideTicketContainer();
     this.winningNumbersView.resetInput();
     this.purchaseView.activatePurchaseForm();
+  }
+
+  #convertWonUnitFormat(value) {
+    console.log(value);
+    if (moneyValidator.isOverMaximum(value)) {
+      alert(EXCEPTION.INVALID_RANGE.MAXIMUM);
+      this.purchaseView.stopInputTyping(value);
+    }
   }
 }

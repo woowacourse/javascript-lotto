@@ -9,14 +9,16 @@ export default class ResultModalView {
     this.$modal = $('.modal');
     this.$closeButton = $('.close');
     this.$restartButton = $(ID.RESTART_BUTTON);
-
+    this.$threeCount = $(ID.THREE_COUNT);
+    this.$fourCount = $(ID.FOUR_COUNT);
+    this.$fiveCount = $(ID.FIVE_COUNT);
+    this.$fiveBonusCount = $(ID.FIVE_BONUS_COUNT);
+    this.$sixCount = $(ID.SIX_COUNT);
+    this.$lottoYieldSpan = $(ID.LOTTO_YIELD_SPAN);
     this.#bindEvents();
   }
 
   #bindEvents() {
-    // window.addEventListener('click', (e) =>
-    //   e.target !== this.$modal ? this.hideModal() : false,
-    // );
     this.$closeButton.addEventListener('click', () => this.hideModal());
     this.$restartButton.addEventListener('click', () => this.handleRestart());
   }
@@ -34,14 +36,14 @@ export default class ResultModalView {
   }
 
   renderWinningCounts(winningCounts) {
-    $(ID.THREE_COUNT).textContent = winningCounts.three;
-    $(ID.FOUR_COUNT).textContent = winningCounts.four;
-    $(ID.FIVE_COUNT).textContent = winningCounts.five;
-    $(ID.FIVE_BONUS_COUNT).textContent = winningCounts.fiveBonus;
-    $(ID.SIX_COUNT).textContent = winningCounts.six;
+    this.$threeCount.textContent = winningCounts['3'];
+    this.$fourCount.textContent = winningCounts['4'];
+    this.$fiveCount.textContent = winningCounts['5'];
+    this.$fiveBonusCount.textContent = winningCounts.fiveBonus;
+    this.$sixCount.textContent = winningCounts['6'];
   }
 
   renderYield(lottoYield) {
-    $(ID.LOTTO_YIELD_SPAN).textContent = lottoYield;
+    this.$lottoYieldSpan.textContent = lottoYield;
   }
 }

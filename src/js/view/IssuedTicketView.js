@@ -45,6 +45,7 @@ export default class IssuedTicketView {
   }
 
   hideTicketContainer() {
+    this.$issuedTicketDiv.textContent = '';
     this.$ticketContainer.classList.replace('show', 'hidden');
   }
 
@@ -61,9 +62,7 @@ export default class IssuedTicketView {
    * @param {array} lottos 6개의 숫자로 이뤄진 로또 배열들을 구입된 로또 개수만큼 요소로 갖는 배열
    */
   renderIssuedTickets() {
-    const template = this.lottoBundle.lottos
-      .map((lotto) => ticketTemplate(lotto.numbers))
-      .join('');
+    const template = this.lottoBundle.lottos.map((lotto) => ticketTemplate(lotto.numbers)).join('');
     this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
   }
 

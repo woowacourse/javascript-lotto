@@ -26,6 +26,8 @@ export default class PurchaseView {
    */
   #bindEvents() {
     on(this.$purchaseForm, 'submit', (e) => this.#handleSubmit(e));
+
+    on(this.$purchaseInput, 'keyup', (e) => this.#handleKeyup(e));
   }
 
   /** @method handleSubmit
@@ -43,6 +45,16 @@ export default class PurchaseView {
    */
   #getMoneyToPurchase() {
     return this.$purchaseInput.valueAsNumber;
+  }
+
+  #handleKeyup(e) {
+    e.preventDefault();
+    const { value } = e.target;
+    emit(this.$purchaseInput, EVENT.PURCHASE_KEYUP, { value });
+  }
+
+  stopInputTyping(value) {
+    this.$purchaseInput.value = value.substr(0, 7);
   }
 
   /**

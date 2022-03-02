@@ -12,20 +12,18 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
 
     // when
     function setMoney(money) {
-      lottoBundle.money = money;
+      lottoBundle.receivedMoney = money;
     }
 
     // then
-    expect(() => setMoney(delimiter)).not.toThrowError(
-      EXCEPTION.INVALID_RANGE.MINIMUM,
-    );
+    expect(() => setMoney(delimiter)).not.toThrowError(EXCEPTION.INVALID_RANGE.MINIMUM);
   });
 
   test('사용자가 입력한 금액만큼 로또가 구매된다.', () => {
     // given
     const lottoCount = 5;
     const lottoBundle = new LottoBundle();
-    lottoBundle.money = 5000;
+    lottoBundle.receivedMoney = 5000;
 
     // when
     lottoBundle.saveCount();
@@ -45,8 +43,7 @@ describe(
       lotto.numbers = [1, 2, 3, 4, 5, 6];
 
       // when
-      const isNumberDuplicated = (numbers) =>
-        numbers.length !== new Set(numbers).size;
+      const isNumberDuplicated = (numbers) => numbers.length !== new Set(numbers).size;
 
       // then
       expect(isNumberDuplicated(lotto.numbers)).toBe(false);
@@ -74,7 +71,7 @@ describe(
       let totalCount = 0;
 
       const lottoBundle = new LottoBundle();
-      lottoBundle.money = 1000000;
+      lottoBundle.receivedMoney = 1000000;
       lottoBundle.saveCount();
       lottoBundle.createLottoBundle();
 
@@ -82,10 +79,7 @@ describe(
       for (let i = 0; i < trialNumber; i++) {
         for (let j = i + 1; j < trialNumber; j++) {
           totalCount += 1;
-          if (
-            JSON.stringify(lottoBundle.lottos[i].numbers) !==
-            JSON.stringify(lottoBundle.lottos[j].numbers)
-          ) {
+          if (JSON.stringify(lottoBundle.lottos[i].numbers) !== JSON.stringify(lottoBundle.lottos[j].numbers)) {
             differentCount += 1;
           }
         }
@@ -118,17 +112,17 @@ describe(
 
       // then
       expect(lottoResult.winningCounts).toStrictEqual({
-        three: 1,
-        four: 1,
-        five: 1,
+        3: 1,
+        4: 1,
+        5: 1,
         fiveBonus: 2,
-        six: 1,
+        6: 1,
       });
     });
 
     test('구입 금액과 당첨된 금액을 비교하여 수익률을 계산할 수 있어야 한다.', () => {
       // given
-      lottoBundle.money = 1000000;
+      lottoBundle.receivedMoney = 1000000;
 
       // when
       lottoResult.calculateLottoYield();

@@ -1,22 +1,25 @@
-const getRandomNumber = (max, min) =>
-  Math.floor(Math.random() * (max + 1 - min)) + min;
+const getRandomNumber = (max, min) => Math.floor(Math.random() * (max + 1 - min)) + min;
 
 const isExcludedNumber = (numbers, number) => {
   const numbersSet = new Set(numbers);
   return !numbersSet.has(number);
 };
 
-const generateRandomNumbers = ({ count, max, min }) => {
-  const randomNumbers = [];
+const pushExcludedNumber = (resultArray, randomNumber) => {
+  if (isExcludedNumber(resultArray, randomNumber)) {
+    resultArray.push(randomNumber);
+  }
+};
 
-  while (randomNumbers.length < count) {
+const generateRandomNumbers = ({ count, max, min }) => {
+  const resultArray = [];
+
+  while (resultArray.length < count) {
     const randomNumber = getRandomNumber(max, min);
-    if (isExcludedNumber(randomNumbers, randomNumber)) {
-      randomNumbers.push(randomNumber);
-    }
+    pushExcludedNumber(resultArray, randomNumber);
   }
 
-  return randomNumbers;
+  return resultArray;
 };
 
 export default generateRandomNumbers;

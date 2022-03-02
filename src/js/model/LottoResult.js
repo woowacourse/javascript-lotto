@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-/* eslint-disable max-depth */
 export default class LottoResult {
   constructor(lottoBundle) {
     this.lottoBundle = lottoBundle;
@@ -9,7 +7,7 @@ export default class LottoResult {
 
   #bonusNumber = 0;
 
-  #winningCounts = { three: 0, four: 0, five: 0, fiveBonus: 0, six: 0 };
+  #winningCounts = { 3: 0, 4: 0, 5: 0, fiveBonus: 0, 6: 0 };
 
   #lottoYield = 0;
 
@@ -38,66 +36,46 @@ export default class LottoResult {
 
   calculateWinningCounts() {
     const userLottos = this.lottoBundle.lottos;
-
-    let three = 0;
-    let four = 0;
-    let five = 0;
-    let fiveBonus = 0;
-    let six = 0;
-
+    const winningCounts = {
+      3: 0,
+      4: 0,
+      5: 0,
+      fiveBonus: 0,
+      6: 0,
+    };
     userLottos.forEach((userLotto) => {
-      switch (this.#countLottoNumbers(userLotto)) {
-        case 3:
-          three += 1;
-          break;
-        case 4:
-          four += 1;
-          break;
-        case 5:
-          five += 1;
-          break;
-        case 'fiveBonus':
-          fiveBonus += 1;
-          break;
-        case 6:
-          six += 1;
-          break;
-        default:
-          break;
-      }
+      winningCounts[this.#countLottoNumbers(userLotto)] += 1;
     });
 
-    this.#winningCounts = { three, four, five, fiveBonus, six };
+    this.#winningCounts = winningCounts;
   }
 
   #countLottoNumbers(userLotto) {
-    let count = 0;
-    for (let i = 0; i <= 5; i += 1) {
-      for (let j = 0; j <= 5; j += 1) {
-        if (userLotto.numbers[i] === this.#winningNumbers[j]) {
-          count += 1;
-        }
-      }
-    }
+    const mergedLottoNumbers = [...userLotto.numbers, ...this.#winningNumbers];
+    const count = mergedLottoNumbers.length - new Set(mergedLottoNumbers).size;
     if (count === 5) {
-      for (let i = 0; i < 6; i += 1) {
-        if (userLotto.numbers[i] === this.#bonusNumber) {
-          return 'fiveBonus';
-        }
-      }
+      return this.#checkBonusNumber(userLotto);
     }
 
     return count;
   }
 
+  #checkBonusNumber(userLotto) {
+    if (userLotto.numbers.includes(this.#bonusNumber)) {
+      return 'fiveBonus';
+    }
+
+    return 5;
+  }
+
   calculateLottoYield() {
     const winningMoney =
-      this.#winningCounts.three * 5000 +
-      this.#winningCounts.four * 50000 +
-      this.#winningCounts.five * 1500000 +
+      this.#winningCounts[3] * 5000 +
+      this.#winningCounts[4] * 50000 +
+      this.#winningCounts[5] * 1500000 +
       this.#winningCounts.fiveBonus * 30000000 +
-      this.#winningCounts.six * 2000000000;
-    const investmentMoney = this.lottoBundle.money;
+      this.#winningCounts[6] * 2000000000;
+    const investmentMoney = this.lottoBundle.receivedMoney;
     this.#lottoYield = Math.floor((winningMoney / investmentMoney) * 100);
   }
 
@@ -114,7 +92,6 @@ export default class LottoResult {
 
   isWinningNumbersDuplicated() {
     const numbers = [...this.#winningNumbers, this.#bonusNumber];
-
     if (numbers.length !== new Set(numbers).size) {
       return true;
     }

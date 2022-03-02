@@ -13,12 +13,7 @@
         <h2 hidden>로또 구매 양식</h2>
         <form id="purchase-form">
           <label for="purchase-input">구입할 금액을 입력해주세요.</label>
-          <input
-            id="purchase-input"
-            type="number"
-            placeholder="금액"
-            autofocus
-          />
+          <input id="purchase-input" type="number" placeholder="금액" autofocus />
           <button id="purchase-button" type="submit">구입</button>
           <input id="purchase-input-reset" type="reset" hidden />
         </form>
@@ -41,60 +36,15 @@
             <label for="basic-number">당첨 번호</label>
             <label class="bonus-label" for="bonus-number">보너스 번호</label>
             <div>
-              <input
-                id="basic-number"
-                class="basic-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
-              <input
-                class="basic-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
-              <input
-                class="basic-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
-              <input
-                class="basic-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
-              <input
-                class="basic-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
-              <input
-                class="basic-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
+              <input id="basic-number" class="basic-input" type="number" required min="1" max="45" />
+              <input class="basic-input" type="number" required min="1" max="45" />
+              <input class="basic-input" type="number" required min="1" max="45" />
+              <input class="basic-input" type="number" required min="1" max="45" />
+              <input class="basic-input" type="number" required min="1" max="45" />
+              <input class="basic-input" type="number" required min="1" max="45" />
             </div>
-
             <div class="bonus-input">
-              <input
-                id="bonus-number"
-                class="basic-input bonus-input"
-                type="number"
-                required
-                min="1"
-                max="45"
-              />
+              <input id="bonus-number" class="basic-input bonus-input" type="number" required min="1" max="45" />
             </div>
           </div>
           <button id="result-button" type="submit">결과 확인하기</button>
@@ -144,9 +94,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="result-span">
-            당신의 총 수익률은 <span id="lotto-yield-span"></span>%입니다.
-          </div>
+          <div class="result-span">당신의 총 수익률은 <span id="lotto-yield-span"></span>%입니다.</div>
           <button id="restart-button">다시 시작하기</button>
         </div>
       </div>

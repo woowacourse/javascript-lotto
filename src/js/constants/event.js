@@ -3,6 +3,7 @@ const EVENT = Object.freeze({
   SUBMIT_PURCHASE: '@submit-purchase',
   SUBMIT_RESULT: '@submit-result',
   CLICK_RESTART: '@click-restart',
+  PURCHASE_KEYUP: '@purchase-keyup',
 });
 
 export default EVENT;
