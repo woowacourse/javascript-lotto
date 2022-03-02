@@ -12,6 +12,11 @@ class LottoGameManager {
   #initializeManagers() {
     this.#lottoDomainManager = new LottoDomainManager();
     this.#lottoViewManager = new LottoViewManager();
+
+    this.#bindEventHandler();
+  }
+
+  #bindEventHandler() {
     this.#lottoViewManager.work({
       payload: {
         onSubmitChargeForm: this.onSubmitChargeForm,
