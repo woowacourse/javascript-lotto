@@ -1,14 +1,27 @@
 import Validator from '../EventListener/Validator.js';
-import { LOTTO_PRICE, ERROR_MESSAGE } from '../constant/index.js';
+import { LOTTO_PRICE, LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
+
+const checkFunctions = {
+  isLackFare(fare) {
+    return fare < LOTTO_PRICE;
+  },
+  isNotNumber(numbers) {
+    return numbers.some((number) => !/^\d+$/.test(number));
+  },
+  overlappedNumber(numbers) {
+    return new Set(numbers).size < numbers.length;
+  },
+  outedOfLottoNumberRange(numbers) {
+    return numbers.some(
+      (number) => number < LOTTO_RULES.MIN_RANGE || number > LOTTO_RULES.MAX_RANGE,
+    );
+  },
+};
 
 export default class ValidatorImpl extends Validator {
   constructor() {
     super();
-    this.checkFunctions = {
-      isLackFare(fare) {
-        return fare < LOTTO_PRICE;
-      },
-    };
+    this.checkFunctions = checkFunctions;
   }
 
   validateFare(fare) {
