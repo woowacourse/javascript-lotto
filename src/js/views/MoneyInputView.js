@@ -5,10 +5,10 @@ export default class MoneyInputView {
   #container;
   #moneyInput;
 
-  constructor($element) {
-    this.#container = $element;
+  constructor(containerSelector) {
+    this.#container = $(containerSelector);
 
-    this.#moneyInput = $($element, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`);
+    this.#moneyInput = $(this.#container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`);
   }
 
   init() {
