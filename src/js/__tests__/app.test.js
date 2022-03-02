@@ -3,6 +3,7 @@ import { getRandomInt } from '../utils/utils.js';
 
 import { ERROR_MESSAGE, LOTTO } from '../configs/contants.js';
 import LottoModel from '../models/LottoModel.js';
+import WinningNumberController from '../controllers/subController/WinningNumberController.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -99,5 +100,29 @@ describe('입력된 당첨번호의 유효성을 검증하여', () => {
     expect(() => {
       validator.checkWinningNumberList(winningNumbers);
     }).toThrowError(ERROR_MESSAGE.IS_DUPLICATED);
+  });
+});
+
+describe('당첨번호와 로또 리스트가 주어지면', () => {
+  const winningNumbers = [1, 23, 16, 42, 34, 9];
+  const lottoNumberList = [
+    [1, 23, 16, 42, 34, 9],
+    [2, 24, 17, 43, 35, 10],
+  ];
+
+  test('당첨번호와 생성된 로또 한 개의 일치하는 갯수를 구할 수 있다.', () => {
+    expect(
+      WinningNumberController.calculateCoincideCount(
+        winningNumbers,
+        lottoNumberList[0]
+      )
+    ).toBe(6);
+
+    expect(
+      WinningNumberController.calculateCoincideCount(
+        winningNumbers,
+        lottoNumberList[1]
+      )
+    ).toBe(0);
   });
 });
