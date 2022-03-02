@@ -39,7 +39,7 @@ export default class LottoController {
       verifyPurchaseAmount(purchaseAmount);
 
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
-      this.lottoGameModel.generateLottoTicket(lottoCount);
+      this.lottoGameModel.generateLottoTickets(lottoCount);
       this.#handleLottoNumber(lottoCount);
     } catch ({ message }) {
       alert(message);

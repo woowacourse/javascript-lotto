@@ -33,7 +33,7 @@ export default class LottoGame {
     return this.getLottoCount() * AMOUNT.UNIT;
   }
 
-  generateLottoTicket(count) {
+  generateLottoTickets(count) {
     this.lottos = Array.from({ length: count }).map(() => {
       const lotto = new Lotto();
       lotto.generateRandomNumber();
