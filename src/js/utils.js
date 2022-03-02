@@ -2,10 +2,10 @@ import { CONDITIONS, ERROR_MESSAGE } from './constants/constants';
 
 export const validator = {
   isInputValid(input) {
-    if (!this.isMoneyPositive(input)) {
+    if (this.isMoneyZeroNegative(input)) {
       throw new Error(ERROR_MESSAGE.NEGATIVE_INPUT);
     }
-    if (!this.isMoneyInteger(input)) {
+    if (this.isMoneyWithDecimalPoint(input)) {
       throw new Error(ERROR_MESSAGE.NOT_INTEGER_INPUT);
     }
     if (this.isMoneyTooBig(input)) {
@@ -16,12 +16,12 @@ export const validator = {
     }
   },
 
-  isMoneyPositive(input) {
-    return input > 0;
+  isMoneyZeroNegative(input) {
+    return input <= 0;
   },
 
-  isMoneyInteger(input) {
-    return Number.isInteger(input);
+  isMoneyWithDecimalPoint(input) {
+    return !Number.isInteger(input);
   },
 
   isMoneyTooBig(input) {
@@ -39,14 +39,14 @@ export const validator = {
     if (this.isWinningsOverlapped(winningNumbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.WINNGINGS_NO_OVERLAPPED);
     }
-    if (this.isWinningOUtCoverage(winningNumbers, bonusNumber)) {
+    if (this.isWinningOutCoverage(winningNumbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.WINNINGS_COVERAGE);
     }
   },
 
   isWinningsEmpty(winningNumbers, bonusNumber) {
     const checkLotto = new Set(Object.values(winningNumbers));
-    return [...checkLotto].some((number) => number === '') || bonusNumber === '';
+    return [...checkLotto].some((number) => number === 0) || bonusNumber === 0;
   },
 
   isWinningsOverlapped(winningNumbers, bonusNumber) {
@@ -54,7 +54,7 @@ export const validator = {
     return checkLotto.size !== CONDITIONS.LOTTO_SIZE || checkLotto.has(bonusNumber);
   },
 
-  isWinningOUtCoverage(winningNumbers, bonusNumber) {
+  isWinningOutCoverage(winningNumbers, bonusNumber) {
     const checkLotto = new Set(Object.values(winningNumbers));
     return (
       [...checkLotto].some(
