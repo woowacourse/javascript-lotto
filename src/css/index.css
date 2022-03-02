@@ -216,17 +216,15 @@ h1 {
 }
 
 .winning-numbers__form{
-  display: grid;
   width: 100%;  
   margin-top: 10px;
-  grid-template-areas:"a a"
-                      "b b";
 }
 
 .winning-numbers__inputs{
-  grid-area: "a";
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-row-gap: 12px;
+  margin: 8px 0;
 }
 
 .winning-numbers__input {
@@ -235,9 +233,16 @@ h1 {
 }
 
 .winning-numbers__button{
-  grid-area: "b";
   width: 100%;
+  margin-top:24px;
+  padding: 10px 0;
 }
+
+.bonus__label, .bonus-number__input{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 
 .winning-numbers__section-display-none,
 .lotto-list__section-display-none {

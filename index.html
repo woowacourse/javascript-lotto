@@ -43,19 +43,19 @@
         <h4>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h4>
         <form id="winning-numbers-form" class="winning-numbers__form">
           <div class="winning-numbers__inputs">
-            <label>당첨 번호</label>
+            <label for="regular-number">당첨 번호</label>
+            <label for="bonus-number" class="bonus__label">보너스 번호</label>
             <div>
-              <input class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
-              <input class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
-              <input class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
-              <input class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
-              <input class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
-              <input class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
+              <input id="regular-number" class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
+              <input id="regular-number" class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
+              <input id="regular-number" class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
+              <input id="regular-number" class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
+              <input id="regular-number" class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
+              <input id="regular-number" class="winning-numbers__input" type="number" name="regularNumber" min="1" max="45" required/>
             </div>
-          </div>
-          <div class="winning-numbers__inputs">
-            <label>보너스 번호</label>
-            <input class="winning-numbers__input" type="number" name="bonusNumber" min="1" max="45" required/>
+            <div class="bonus-number__input">
+              <input id="bonus-number" class="winning-numbers__input" type="number" name="bonusNumber" min="1" max="45" required/>
+            </div>
           </div>
           <button class="winning-numbers__button">결과 확인하기</button>
         </form>
@@ -67,7 +67,7 @@
           <table id="lotto-result" class="winners-table">
           </table>
           <p id="profit-description" class="modal__description">당신의 총 수익률은 %입니다.</p>
-          <button class="restart-button">다시 시작하기</button>
+          <button id="restart-lotto" class="restart-button">다시 시작하기</button>
         </div>
       </section>
     </main>
