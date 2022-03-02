@@ -19,6 +19,7 @@ class LottoContainerView {
     this.$alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
     this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
     this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
+    this.$alignConverterContainer = findElement(SELECTOR.ALIGN_CONVERTER_CONTAINER);
   }
 
   #bindEventHandler(emitEvent) {
@@ -43,6 +44,7 @@ class LottoContainerView {
 
   renderAlignState(visibleState) {
     this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+    this.$alignConverterContainer.setAttribute('data-visible-state', visibleState);
   }
 
   #generateLottoTemplate({ lottoNumbers }) {
@@ -69,7 +71,7 @@ class LottoContainerView {
       <span id="purchased-message"></span>
       <div id="lotto-container" data-visible-state="false">로또를 구매해주세요 😳</div>
     </div>
-    <div id="align-converter-container" class="flex-column-align-end">
+    <div id="align-converter-container" class="flex-column-align-end" data-visible-state="false">
       <label for="align-converter" class="flex-column-align-end">
         <span>번호 보기</span>
         <input id="align-converter" type="checkbox" class="converter" />

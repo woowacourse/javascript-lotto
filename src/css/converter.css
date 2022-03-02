@@ -1,11 +1,12 @@
 .converter {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
 .checkmark {
+  cursor: pointer;
+
   display: block;
   position: relative;
   margin-top: 1rem;
@@ -34,4 +35,8 @@
 }
 .converter ~ .checkmark .circle {
   background-color: #ededed;
+}
+
+.converter:hover {
+  background-color: red;
 }

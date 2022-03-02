@@ -52,6 +52,8 @@ button {
   color: #ffffff;
   border: 0;
   min-height: 36px;
+
+  cursor: pointer;
 }
 
 section {
@@ -130,6 +132,27 @@ section {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  position: relative;
+}
+label[for='align-converter']:hover::before {
+  content: '';
+
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+
+  position: absolute;
+  right: -250px;
+}
+
+#align-converter-container[data-visible-state='false']
+  > label[for='align-converter']:hover::before {
+  background-image: url('/Users/jangjunhyeog/Wowahan/javascript-lotto/images/미리보기-번호보기.png');
+}
+
+#align-converter-container[data-visible-state='true'] > label[for='align-converter']:hover::before {
+  background-image: url('/Users/jangjunhyeog/Wowahan/javascript-lotto/images/미리보기-기본.png');
 }
 
 .hide {
