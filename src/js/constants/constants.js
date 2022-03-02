@@ -17,6 +17,7 @@ export const SELECTOR = {
     PURCHASE_MONEY_BUTTON: '#purchase-money-button',
     LOTTO_RESULT_SECTION: '#lotto-result-section',
     WINNING_NUMBER_FORM: '#winning-number-form',
+    CHECK_RESULT_BUTTON: '#check-result-button',
   },
   CLASS: {
     WINNING_NUMBER_INPUT: '.winning-number-input',

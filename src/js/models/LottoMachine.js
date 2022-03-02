@@ -4,8 +4,8 @@ import validateMoney from '../validations/PurchaseLottos.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
-  #winningLottos = [0, 0, 0, 0, 0, 0]; // 인덱스의 숫자가 일치하는 숫자의 갯수와 동일
-  #winningLottoWithBonus = 0;
+  #winLottos = [0, 0, 0, 0, 0, 0, 0]; // 인덱스의 숫자가 일치하는 숫자의 갯수와 동일
+  #winLottosWithBonus = 0;
 
   get inputMoney() {
     return this.#inputMoney;
@@ -28,15 +28,23 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
+  get winLottos() {
+    return this.#winLottos;
+  }
+
+  get winLottosWithBonus() {
+    return this.#winLottosWithBonus;
+  }
+
   getProfit() {
     const winningPrize = [0, 0, 5000, 50000, 1500000, 2000000000];
     const winningPrizeWithBonus = 30000000;
 
     let profit = 0;
-    this.#winningLottos.map((item, index) => {
+    this.#winLottos.map((item, index) => {
       profit += item * winningPrize[index];
     });
-    profit += this.#winningLottoWithBonus * winningPrizeWithBonus;
+    profit += this.#winLottosWithBonus * winningPrizeWithBonus;
     return profit;
   }
 
@@ -59,23 +67,23 @@ export default class LottoMachine {
       });
   }
 
-  checkWinningLottos(winningNumbers, bonusNumber) {
+  checkWinLottos(winningNumbers, bonusNumber) {
     this.#lottos.map(({ numbers }) => {
       const set = new Set([...numbers, ...winningNumbers]);
       const coincideNumberQuantity =
         LOTTO.NUMBER_QUANTITY + LOTTO.NUMBER_QUANTITY - set.size;
       if (coincideNumberQuantity === 5 && numbers.includes(bonusNumber)) {
-        this.#winningLottoWithBonus += 1;
+        this.#winLottosWithBonus += 1;
         return;
       }
-      this.#winningLottos[coincideNumberQuantity]++;
+      this.#winLottos[coincideNumberQuantity]++;
     });
   }
 
   resetMachine() {
     this.#inputMoney = 0;
     this.#lottos = [];
-    this.#winningLottos = [0, 0, 0, 0, 0, 0];
-    this.#winningLottoWithBonus = 0;
+    this.#winLottos = [0, 0, 0, 0, 0, 0];
+    this.#winLottosWithBonus = 0;
   }
 }
