@@ -105,7 +105,7 @@ describe('입력된 당첨번호의 유효성을 검증하여', () => {
 
 describe('당첨번호와 로또 리스트가 주어지면', () => {
   const winningNumbers = [1, 23, 16, 42, 34, 9];
-  const lottoNumberList = [
+  const lottoNumbersList = [
     [1, 23, 16, 42, 34, 9],
     [2, 24, 17, 43, 35, 10],
   ];
@@ -114,14 +114,14 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     expect(
       WinningNumberController.calculateCoincideCount(
         winningNumbers,
-        lottoNumberList[0]
+        lottoNumbersList[0]
       )
     ).toBe(6);
 
     expect(
       WinningNumberController.calculateCoincideCount(
         winningNumbers,
-        lottoNumberList[1]
+        lottoNumbersList[1]
       )
     ).toBe(0);
   });
@@ -130,7 +130,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     expect(
       WinningNumberController.createCoincideCountList(
         winningNumbers,
-        lottoNumberList
+        lottoNumbersList
       )
     ).toEqual([6, 0]);
   });
