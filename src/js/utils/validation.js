@@ -1,4 +1,4 @@
-import { ERROR_NAME, LOTTO_PRICE } from '../constants';
+import { ERROR_NAME, LOTTO_PRICE, LOTTO_RULE } from '../constants';
 
 export const validateCashInput = cash => {
   if (cash % LOTTO_PRICE !== 0) {
@@ -7,7 +7,7 @@ export const validateCashInput = cash => {
 };
 
 export const validateWinningNumbers = (regularNumbers, bonusNumber) => {
-  if (new Set([...regularNumbers, bonusNumber]).size !== 7) {
+  if (new Set([...regularNumbers, bonusNumber]).size !== LOTTO_RULE.TOTAL_NUMBER_COUNT) {
     throw new Error(ERROR_NAME.DUPLICATED_NUMBERS);
   }
 };
