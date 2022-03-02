@@ -21,7 +21,7 @@ import {
   bindEventListener,
   render,
   initInput,
-  disableElement,
+  toggleDisabled,
   toggleClassName,
 } from './dom';
 
@@ -68,6 +68,13 @@ export default class LottoApp {
         document.querySelector('.modal-background').classList.remove('show');
       }
     });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'click',
+      selector: '#restart',
+      callback: this.onClickRestart.bind(this),
+    });
   }
 
   onSubmitPayment() {
@@ -94,8 +101,8 @@ export default class LottoApp {
   disablePayment() {
     toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
-    disableElement(getElement(SELECTOR.PAYMENT_BUTTON));
-    disableElement(getElement(SELECTOR.PAYMENT_INPUT));
+    toggleDisabled(getElement(SELECTOR.PAYMENT_BUTTON));
+    toggleDisabled(getElement(SELECTOR.PAYMENT_INPUT));
   }
 
   renderPurchasedSection() {
@@ -124,7 +131,7 @@ export default class LottoApp {
     );
 
     getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
-      element.classList.toggle(CLASS_NAME.INVISIBLE);
+      toggleClassName(element, CLASS_NAME.INVISIBLE);
     });
   }
 
@@ -179,8 +186,8 @@ export default class LottoApp {
           Math.floor((totalMoney * 100) / (this.lottoList.length * 5000))
         )
       );
-      $winningNumberInputs.forEach((element) => disableElement(element));
-      disableElement($bonusNumberInput);
+      $winningNumberInputs.forEach((element) => toggleDisabled(element));
+      toggleDisabled($bonusNumberInput);
       getElement('.modal-background').classList.add('show');
     } catch ({ message }) {
       alert(message);
@@ -194,5 +201,17 @@ export default class LottoApp {
 
   onClickModalClose() {
     getElement('.modal-background').classList.remove('show');
+  }
+
+  onClickRestart() {
+    getElement('.modal-background').classList.remove('show');
+    getElement('#purchased-lotto-list-section').remove();
+    getElement('#last-week-winning-number-section').remove();
+    getElement('#result-checking-section').remove();
+    getElement(SELECTOR.PAYMENT_INPUT).value = '';
+    toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
+
+    toggleDisabled(getElement(SELECTOR.PAYMENT_BUTTON));
+    toggleDisabled(getElement(SELECTOR.PAYMENT_INPUT));
   }
 }

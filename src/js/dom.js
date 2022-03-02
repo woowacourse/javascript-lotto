@@ -2,11 +2,11 @@ export const getElement = (selector) => document.querySelector(selector);
 
 export const getElements = (selector) => document.querySelectorAll(selector);
 
-export const toggleClassName = (element, domString) => {
-  element.classList.toggle(domString);
+export const toggleClassName = (element, classname) => {
+  element.classList.toggle(classname);
 };
 
-export const disableElement = (element) => {
+export const toggleDisabled = (element) => {
   element.disabled = !element.disabled;
 };
 
