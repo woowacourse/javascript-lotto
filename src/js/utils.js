@@ -44,7 +44,7 @@ export const isOutOfRange = (winningNumberList, bounsNumber) => {
   );
 };
 
-export const isUniqueNumbers = (winningNumberList, bounsNumber) => {
+export const isDuplicateNumbers = (winningNumberList, bounsNumber) => {
   winningNumberList.push(bounsNumber);
 
   return winningNumberList.length !== new Set(winningNumberList).size;
