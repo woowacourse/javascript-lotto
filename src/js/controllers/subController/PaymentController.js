@@ -1,6 +1,6 @@
 import PaymentView from '../../views/subViews/PaymentView.js';
 import { SELECTOR } from '../../configs/contants.js';
-import { validator } from '../../utils/validator.js';
+import validator from '../../utils/validator.js';
 
 export default class PaymentController {
   constructor(controller) {

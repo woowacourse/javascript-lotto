@@ -18,7 +18,7 @@ describe('입력된 금액의 유효성을 검증하여', () => {
 
     expect(() => {
       validator.checkPurchaseAmount(purchaseAmount);
-    }).toThrowError(ERROR_MESSAGE.NOT_A_NUMBER);
+    }).toThrowError(ERROR_MESSAGE.NOT_A_AMOUNT_NUMBER);
   });
 
   test('로또의 금액인 1000보다 작으면 에러를 throw한다.', () => {
@@ -73,5 +73,31 @@ describe('LottoModel은', () => {
     const lottoList = lottoModel.issueLottosWithCount(lottoCount);
 
     expect(validator.checkLottoList(lottoList, lottoCount)).toBe(true);
+  });
+});
+
+describe('입력된 당첨번호의 유효성을 검증하여', () => {
+  test('번호 모두 정수가 아니면 에러를 throw한다.', () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 1.2];
+
+    expect(() => {
+      validator.checkWinningNumberList(winningNumbers);
+    }).toThrowError(ERROR_MESSAGE.NOT_A_LOTTO_NUMBER);
+  });
+
+  test('번호 모두 1에서 45까지의 값을 가지고 있지 않으면 에러를 throw한다.', () => {
+    const winningNumbers = [0, 45, 1, 2, 3, 4];
+
+    expect(() => {
+      validator.checkWinningNumberList(winningNumbers);
+    }).toThrowError(ERROR_MESSAGE.NOT_A_LOTTO_NUMBER);
+  });
+
+  test('숫자들 중에서 중복이 있으면 에러를 throw한다.', () => {
+    const winningNumbers = [1, 1, 2, 2, 3, 4];
+
+    expect(() => {
+      validator.checkWinningNumberList(winningNumbers);
+    }).toThrowError(ERROR_MESSAGE.IS_DUPLICATED);
   });
 });

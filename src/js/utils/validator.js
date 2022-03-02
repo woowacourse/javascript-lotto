@@ -31,30 +31,40 @@ const isValidLottoList = (lottoList, count) =>
 const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
     if (!isNumber(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
+      throw new Error(ERROR_MESSAGE.NOT_A_AMOUNT_NUMBER);
     }
-
     if (!isValidMinAmountRange(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_MIN_AMOUNT_RANGE);
     }
-
     if (!isValidMaxAmountRange(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_MAX_AMOUNT_RANGE);
     }
   },
+
   checkLottoNumber: (lottoNumber) => {
     return (
       Number.isInteger(lottoNumber) && isValidLottoNumberRange(lottoNumber)
     );
   },
+
   checkLottoNumberList: (lottoNumbers) => {
     return (
       isValidlottoNumbers(lottoNumbers) &&
       isValidDuplicatedLottoNumber(lottoNumbers)
     );
   },
+
   checkLottoList: (lottoList, count) => {
     return isValidLottoList(lottoList, count);
+  },
+
+  checkWinningNumberList: (winningNumbers) => {
+    if (!isValidlottoNumbers(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.NOT_A_LOTTO_NUMBER);
+    }
+    if (!isValidDuplicatedLottoNumber(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.IS_DUPLICATED);
+    }
   },
 };
 
