@@ -41,7 +41,7 @@
 
 #result-button {
   width: 100%;
-  margin-top: 24px;
+  margin: 24px 0 40px;
   padding: 10px 0;
   background: var(--button-bg-color);
   color: var(--button-text-color);
