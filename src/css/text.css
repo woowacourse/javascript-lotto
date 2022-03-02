@@ -11,3 +11,7 @@ label {
 .bonus-label {
   text-align: right;
 }
+
+#purchasable-lotto-count {
+  font-weight: bolder;
+}

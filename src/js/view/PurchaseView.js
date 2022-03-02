@@ -18,6 +18,7 @@ export default class PurchaseView {
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);
     this.$purchaseInputReset = $(ID.PURCHASE_INPUT_RESET);
+    this.$purchasableLottoCount = $(ID.PURCHASABLE_LOTTO_COUNT);
     this.#bindEvents();
   }
 
@@ -54,7 +55,7 @@ export default class PurchaseView {
   }
 
   stopInputTyping(value) {
-    this.#convertWonUnitFormat(value.toString().substr(0, 7));
+    this.#convertWonUnitFormat(value.toString().substr(0, 6));
   }
 
   #convertWonUnitFormat(value) {
@@ -76,5 +77,10 @@ export default class PurchaseView {
 
   resetInput() {
     this.$purchaseInputReset.click();
+  }
+
+  renderPurchasableLottoCount(count = 0) {
+    const lottoCount = Number.isNaN(count) ? 0 : count;
+    this.$purchasableLottoCount.textContent = lottoCount;
   }
 }

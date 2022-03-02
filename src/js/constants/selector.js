@@ -21,6 +21,7 @@ const ID = Object.freeze({
   SIX_COUNT: '#six-count',
   PURCHASE_INPUT_RESET: '#purchase-input-reset',
   WINNING_NUMBERS_RESET: '#winning-numbers-reset',
+  PURCHASABLE_LOTTO_COUNT: '#purchasable-lotto-count',
 });
 
 export default ID;

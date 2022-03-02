@@ -3,6 +3,7 @@ import EVENT from '../constants/event.js';
 import EXCEPTION from '../constants/exception.js';
 import { moneyValidator } from '../validator/moneyValidator.js';
 import insertAutoComma from '../utils/autoComma.js';
+import LOTTO from '../constants/lotto.js';
 
 /**
  * @module controller/LottoController
@@ -107,14 +108,20 @@ export default class LottoController {
   }
 
   #keyupHandler(target) {
-    this.#preventGettingOverLimit(parseInt(target.value.replace(/,/g, ''), 10));
-    insertAutoComma(target);
+    try {
+      const moneyNumber = parseInt(target.value.replace(/,/g, ''), 10);
+      this.#preventGettingOverLimit(moneyNumber);
+      insertAutoComma(target);
+      this.purchaseView.renderPurchasableLottoCount(Math.floor(moneyNumber / LOTTO.PRICE_PER_TICKET) ?? 0);
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   #preventGettingOverLimit(value) {
     if (moneyValidator.isOverMaximum(value)) {
-      alert(EXCEPTION.INVALID_RANGE.MAXIMUM);
       this.purchaseView.stopInputTyping(value);
+      throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
     }
   }
 }
