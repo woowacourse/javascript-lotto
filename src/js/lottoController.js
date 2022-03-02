@@ -54,7 +54,7 @@ export default class LottoController {
       userLottoNumberPositiveValue(holeLottoNumber);
       userLottoNumberOverlap(holeLottoNumber);
       userLottoNumberCorrectRange(holeLottoNumber);
-      isNotPurchaseLotto(ResultLottoDatas.getLottoList());
+      isNotPurchaseLotto(ResultLottoDatas.getPurchaseMoney());
     } catch (error) {
       return alert(error);
     }

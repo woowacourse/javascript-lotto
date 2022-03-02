@@ -44,8 +44,8 @@ export const userLottoNumberPositiveValue = (lottoNumbers) => {
   }
 }
 
-export const isNotPurchaseLotto = (lottoList) => {
-  if (lottoList.length === 0) {
+export const isNotPurchaseLotto = (purchaseMoney) => {
+  if (!purchaseMoney) {
     throw ERROR_MESSAGE.NOT_YET_PURCHASE_LOTTO;
   }
 } 

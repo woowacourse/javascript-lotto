@@ -9,6 +9,7 @@ export default class InputLottoDatas {
 
   initPurchaseLotto() {
     this.#purchaseMoney = 0;
+    ResultLottoDatas.setPurchaseMoney(this.#purchaseMoney);
   }
 
   setUserLotto(userLottoNumbers, userBonusNumber) {
