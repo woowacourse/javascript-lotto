@@ -1,0 +1,29 @@
+.ball {
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: red;
+  display: inline-block;
+  color: #fff;
+  margin: 0 2px;
+  vertical-align: middle;
+}
+
+.ball[data-number='yellow'] {
+  background-color: #e4a716;
+}
+
+.ball[data-number='blue'] {
+  background-color: #1993da;
+}
+
+.ball[data-number='red'] {
+  background-color: #e96353;
+}
+.ball[data-number='black'] {
+  background-color: #8f8f8f;
+}
+.ball[data-number='green'] {
+  background-color: #5ab545;
+}

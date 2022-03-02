@@ -16,6 +16,8 @@ section {
 
 .ticket-icon-div {
   margin: 0 0 8px 0;
+  display: block;
+  position: relative;
 }
 
 #winning-numbers-container {

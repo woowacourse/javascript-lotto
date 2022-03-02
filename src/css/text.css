@@ -6,6 +6,7 @@ label {
   font-size: 34px;
   margin: 0 8px 0 0;
   vertical-align: middle;
+  float: left;
 }
 
 .bonus-label {
