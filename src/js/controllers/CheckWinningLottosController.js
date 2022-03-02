@@ -22,8 +22,6 @@ export default class CheckWinningLottosController {
     this.machine.checkWinLottos(winningNumbers, bonusNumber);
     // ToDo: 모달창 오픈
     const modal = document.querySelector('.modal');
-    const toggle = $(SELECTOR.ID.LOTTO_RESULT_TOGGLE);
     modal.classList.toggle('show');
-    toggle.classList.toggle('hide');
   }
 }

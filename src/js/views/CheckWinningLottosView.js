@@ -18,11 +18,8 @@ export default class CheckWinningLottosView extends View {
 
   handleInputWinningNumber(index) {
     const element = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
-    if (index === 6) {
-      element[index].value = element[index].value.substr(0, 2);
-      return;
-    }
-    if (element[index].value.length > 1) {
+    element[index].value = element[index].value.substr(0, 2);
+    if (index < 6 && element[index].value.length > 1) {
       element[index + 1].focus();
     }
   }

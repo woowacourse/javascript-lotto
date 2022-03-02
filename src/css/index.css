@@ -7,7 +7,6 @@ input[type='number']::-webkit-inner-spin-button {
 body {
   display: flex;
   justify-content: center;
-  margin: 0px;
 }
 
 button {
@@ -120,4 +119,20 @@ input {
 
 #check-result-button {
   margin-top: 24px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 106px);
+  grid-template-rows: repeat(6, 40px);
+  grid-gap: 0;
+  border-top: 1px solid #dcdcdc;
+  margin-bottom: 16px;
+}
+
+.wrapper > div {
+  height: 40px;
+  border-bottom: 1px solid #dcdcdc;
+  line-height: 40px;
+  text-align: center;
 }

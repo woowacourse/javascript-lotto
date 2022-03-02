@@ -7,10 +7,6 @@
   margin-top: 15px;
 }
 
-.switch.hide {
-  display: none;
-}
-
 /* Hide default HTML checkbox */
 .switch input {
   opacity: 0;

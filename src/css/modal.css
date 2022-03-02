@@ -6,20 +6,44 @@
   height: 100%;
   display: none;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 .modal.show {
   display: block;
 }
-.modal_body {
+.modal-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
-  width: 400px;
-  height: 600px;
-  padding: 40px;
+  width: 350px;
+  height: 420px;
+  padding: 40px 0px;
   text-align: center;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
+}
+
+.modal-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0px 0px 32px 0px;
+}
+
+.modal-retry-button {
+  margin-top: 32px;
+  padding: 0px 32px;
+}
+
+.modal-body > span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
 }
