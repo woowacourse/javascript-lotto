@@ -23,9 +23,10 @@ p {
 body {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  padding: 100px 0;
 }
 .app {
+  width: 427px;
   padding: 52px 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
