@@ -1,7 +1,7 @@
 import { LOTTO_PRICE, LOTTO_RULE } from '../constants';
 import LottoData from '../lottoData';
 import { makeLottoNumbers } from '../utils/common';
-import { validateCashInput } from '../utils/validation';
+import { validateCashInput, validateWinningNumbers } from '../utils/validation';
 
 describe('로또 구매 테스트', () => {
   test('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
@@ -26,5 +26,16 @@ describe('로또 구매 테스트', () => {
   test(`금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면, 에러를 생성한다.`, () => {
     const cash = 1500;
     expect(() => validateCashInput(cash)).toThrow();
+  });
+
+  test(`입력된 당첨번호가 중복될 경우, 에러를 생성한다.`, () => {
+    const winningNumbers = [
+      { regularNumbers: [1, 2, 3, 4, 5, 6], bonusNumber: 1 },
+      { regularNumbers: [1, 1, 2, 3, 4, 5], bonusNumber: 10 },
+    ];
+
+    winningNumbers.forEach(({ regularNumbers, bonusNumber }) => {
+      expect(() => validateWinningNumbers(regularNumbers, bonusNumber)).toThrow();
+    });
   });
 });
