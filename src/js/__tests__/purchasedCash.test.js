@@ -3,9 +3,9 @@ import LottoGenerator from '../model/lottoGenerator';
 
 describe('구입 금액 검증 테스트 ', () => {
   const lottoGenerator = new LottoGenerator();
-  test('입력 값이 빈 칸이 아니어야 한다.', () => {
+  test('입력 값이 숫자인지 검증한다.', () => {
     const cashInput = '';
-    expect(() => lottoGenerator.buyLotto(cashInput)).toThrow(ERROR_MESSAGE.EMPTY_INPUT);
+    expect(() => lottoGenerator.buyLotto(cashInput)).toThrow(ERROR_MESSAGE.NOT_A_NUMBER_CASH_INPUT);
   });
   test('입력 값의 범위가 1000 - 50000인지 검증한다.', () => {
     const cashInput = '55000';
