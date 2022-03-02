@@ -47,7 +47,7 @@ class LottoResultView {
     this.$profitRatioText.innerHTML = this.#generateProfitRatioText(profitRatio);
   }
 
-  hideWinStatisticsModal() {
+  hideStatisticsModal() {
     this.$winStatistics.classList.replace('show', 'hide');
   }
 

@@ -42,7 +42,7 @@ class LottoViewManager {
       this.#resultView.renderStatisticsModalContents(payload);
     },
     [`${VIEW_ACTION.MODAL_CANCEL}`]: () => {
-      this.#resultView.hideWinStatisticsModalContents();
+      this.#resultView.hideStatisticsModal();
     },
   };
 }
