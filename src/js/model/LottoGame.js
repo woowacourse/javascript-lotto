@@ -15,7 +15,6 @@ export class LottoGame {
       ['matchThree', 0],
       ['matchUnderThree', 0],
     ]);
-    //this.result = new Map();
     this.earnRate;
   }
 

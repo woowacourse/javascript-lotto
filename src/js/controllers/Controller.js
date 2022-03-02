@@ -31,14 +31,16 @@ export class LottoController {
   }
 
   bindToggleEvent() {
-    this.view.toggleBtn.addEventListener('click', () => {
-      if (this.view.toggleBtn.checked) {
-        this.view.lottosToggleOn(this.lottoGame.lottoWallet);
-        return;
-      }
-      this.view.lottosToggleOff(this.lottoGame.lottoWallet);
-    });
+    this.view.toggleBtn.addEventListener('click', this.bindToggleEventTemp);
   }
+
+  bindToggleEventTemp = () => {
+    if (this.view.toggleBtn.checked) {
+      this.view.lottosToggleOn(this.lottoGame.lottoWallet);
+      return;
+    }
+    this.view.lottosToggleOff(this.lottoGame.lottoWallet);
+  };
 
   detectInvalidMoneyInput() {
     try {
@@ -52,19 +54,24 @@ export class LottoController {
   }
 
   bindResultEvent() {
-    this.view.resultbtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.getWinningNumbers();
-      this.getBonusNumbers();
-
-      //결과생성
-      this.lottoGame.findResult();
-      this.lottoGame.calculateEarnRate();
-
-      //modal창생성
-      this.view.showResultOnModal(this.lottoGame.result, this.lottoGame.earnRate);
-    });
+    this.view.resultbtn.addEventListener('click', this.bindResultEventTemp);
   }
+
+  bindResultEventTemp = (e) => {
+    e.preventDefault();
+    this.getWinningNumbers();
+    this.getBonusNumbers();
+
+    //결과생성
+    this.lottoGame.findResult();
+    this.lottoGame.calculateEarnRate();
+
+    //modal창생성
+    this.view.showResultOnModal(this.lottoGame.result, this.lottoGame.earnRate);
+
+    //restart button bind
+    this.bindRestartEvent();
+  };
 
   getWinningNumbers() {
     this.lottoGame.enterWinningNumbers(Array.from(this.view.winningNumberInput).map((item) => Number(item.value)));
@@ -72,4 +79,13 @@ export class LottoController {
   getBonusNumbers() {
     this.lottoGame.enterBonusNumber(this.view.bonusNumberInput.value);
   }
+
+  bindRestartEvent() {
+    this.view.modal.addEventListener('close', this.bindRestartEventTemp);
+  }
+
+  bindRestartEventTemp = () => {
+    this.view.restart();
+    this.lottoGame = new LottoGame();
+  };
 }

@@ -4,18 +4,26 @@ export class View {
   constructor() {
     this.registerButtons();
     this.registerInput();
+    this.registerModalElements();
   }
 
   registerButtons() {
     this.purchaseBtn = document.getElementById('purchase-button');
     this.toggleBtn = document.getElementById('toggle-check');
     this.resultbtn = document.getElementById('confirm-result-label');
+    this.restartBtn = document.getElementById('restart-button');
   }
 
   registerInput() {
     this.moneyInput = document.getElementById('money-input');
     this.winningNumberInput = document.getElementsByClassName('winning-number');
     this.bonusNumberInput = document.getElementById('bonus-number');
+  }
+
+  registerModalElements() {
+    this.modal = document.getElementById('result-modal');
+    this.resultChartBody = document.getElementById('lotto-result-chart');
+    this.earnRateComment = document.getElementById('earn-rate-percentage');
   }
 
   showLottoStatusContainer() {
@@ -61,12 +69,7 @@ export class View {
   }
 
   showResultOnModal(result, earnRate) {
-    this.modal = document.getElementById('result-modal');
-    this.resultChart = document.getElementById('lotto-result-chart');
-    this.earnRateComment = document.getElementById('earn-rate-percentage');
-    this.restartButton = document.getElementById('restart-button');
-
-    console.log(result);
+    console.log('show result on modal called');
     this.renderResultChart(result);
     this.earnRateComment.innerHTML = `당신의 총 수익률은 ${earnRate}% 입니다.`;
     this.modal.showModal();
@@ -103,7 +106,12 @@ export class View {
         tempPrice = WINNING_PRICE.MATCH_THREE;
         tempValue = value;
       }
-      this.resultChart.insertAdjacentHTML(
+      if (key === 'matchUnderThree') {
+        tempKey = '꽝';
+        tempPrice = 0;
+        tempValue = value;
+      }
+      this.resultChartBody.insertAdjacentHTML(
         'afterbegin',
         `<tr>
           <th>${tempKey}</th>
@@ -112,5 +120,13 @@ export class View {
         </tr>`,
       );
     });
+  }
+
+  restart() {
+    this.lottoStatusContainer.style.visibility = 'collapse';
+    this.winningLottoContainer.style.visibility = 'collapse';
+    //모달창 초기화
+    this.modal.close();
+    this.resultChartBody.innerHTML = '';
   }
 }
