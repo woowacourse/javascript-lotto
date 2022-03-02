@@ -12,7 +12,7 @@
   border-radius: 4px;
 }
 
-.app-title {
+#app-title {
   text-align: center;
 }
 
@@ -27,7 +27,8 @@
 .cash-input-container {
   width: 100%;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 5px;
 }
 
 .cash-input {
@@ -35,9 +36,11 @@
   padding: 8px;
   border: 1px solid #b4b4b4;
   border-radius: 4px;
+  text-align: right;
 }
 
 .cash-input-button {
+  margin-left: 10px;
   flex: 0.15;
 }
 
@@ -84,6 +87,23 @@
 .winner-number-input-container {
   display: flex;
   gap: 8px;
+}
+
+.lotto-rules {
+  padding: 20px;
+  background-color: #b4b4b455;
+  border-radius: 4px;
+}
+
+.lotto-rules-label {
+  font-weight: 600;
+}
+
+.lotto-rules-list {
+  margin-top: 10px;
+  padding-left: 15px;
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 .winner-number-input,
