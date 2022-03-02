@@ -1,5 +1,5 @@
 import Validator from '../EventListener/Validator.js';
-import ValidationError from './ValidationError.js';
+import ValidationError from '../ValidationError/index.js';
 import { LOTTO_PRICE, LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 
 const checkFunctions = {
@@ -31,6 +31,18 @@ export default class ValidatorImpl extends Validator {
   validateFare(fare) {
     if (this.checkFunctions.isLackFare(fare)) {
       throw new ValidationError(ERROR_MESSAGE.LACK_OF_FARE);
+    }
+  }
+
+  validateWinningNumber(winningNumber) {
+    if (this.checkFunctions.isNotNumber(winningNumber)) {
+      throw new ValidationError(ERROR_MESSAGE.WINNING_NUMBER_IS_NOT_NUMBER);
+    }
+    if (this.checkFunctions.overlappedNumber(winningNumber)) {
+      throw new ValidationError(ERROR_MESSAGE.OVERLAPPED_WINNING_NUMBER);
+    }
+    if (this.checkFunctions.outedOfLottoNumberRange(winningNumber)) {
+      throw new ValidationError(ERROR_MESSAGE.OUT_OF_RANGE_WINNING_NUMBER);
     }
   }
 }

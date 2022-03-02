@@ -1,4 +1,4 @@
-import ValidationError from '../ValidatorImpl/ValidationError.js';
+import ValidationError from '../ValidationError/index.js';
 
 const coveringTryCatch = (tryFunction) => {
   try {
