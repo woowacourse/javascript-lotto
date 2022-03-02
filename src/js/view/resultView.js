@@ -4,6 +4,7 @@ import { on } from '../utils/event.js';
 export default class ResultView {
   constructor() {
     this.$resultForm = $('#result-form');
+    this.$resultContainer = $('#result-container');
     this.$statisticsModalContainer = $('#statistics-modal-container');
     this.bindEvents();
   }
@@ -16,5 +17,9 @@ export default class ResultView {
     e.preventDefault();
     this.$statisticsModalContainer.classList.remove('hidden');
     this.$statisticsModalContainer.classList.add('show-flex');
+  }
+
+  showResultView() {
+    this.$resultContainer.classList.remove('hidden');
   }
 }
