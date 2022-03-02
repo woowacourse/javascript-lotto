@@ -10,3 +10,8 @@ export const createElementWithClassName = (tag, className) => {
   element.className = className;
   return element;
 };
+
+export const initInputElement = (inputElement) => {
+  inputElement.value = '';
+  inputElement.focus();
+};

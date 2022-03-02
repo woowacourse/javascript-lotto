@@ -1,10 +1,18 @@
 import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, CLASSNAME } from '../constants/constants';
-import { createElementWithClassName, selectDom } from '../utils/utils';
+import { createElementWithClassName, initInputElement, selectDom } from '../utils/utils';
+
+import LottoGenerator from '../model/lottoGenerator';
 
 class LottoMachineView {
   constructor() {
+    this.lottoGenerator = new LottoGenerator();
+    this.#initDom();
+  }
+
+  #initDom() {
     this.cashInputButton = selectDom('.cash-input-button');
     this.cashInput = selectDom('.cash-input');
+    this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
 
     this.purchasedLottoSection = selectDom('.purchased-lotto-section');
     this.lottoShowContainer = selectDom('.lotto-container', this.purchasedLottoSection);
@@ -17,7 +25,24 @@ class LottoMachineView {
     this.winnerNumberSection = selectDom('.winner-number-section');
   }
 
-  toggleLottoNumbersShow(isVisible) {
+  #onCashInputButtonClick = (e) => {
+    e.preventDefault();
+    try {
+      this.lottoGenerator.buyLotto(this.cashInput.value);
+      this.#disableCashInputSection();
+      this.#renderLottos(this.lottoGenerator.lottos);
+      this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
+    } catch (error) {
+      initInputElement(this.cashInput);
+      alert(error.message);
+    }
+  };
+
+  #onShowNumberToggleButtonClick = ({ target }) => {
+    this.#toggleLottoNumbersShow(target.checked);
+  };
+
+  #toggleLottoNumbersShow(isVisible) {
     const { classList: lottoNumberClassList } = this.lottoNumberContainer;
     if (isVisible) {
       lottoNumberClassList.remove(CLASSNAME.HIDE_NUMBERS);
@@ -26,13 +51,13 @@ class LottoMachineView {
     lottoNumberClassList.add(CLASSNAME.HIDE_NUMBERS);
   }
 
-  disableCashInputSection() {
+  #disableCashInputSection() {
     this.cashInput.disabled = true;
     this.cashInputButton.disabled = true;
     this.cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
   }
 
-  renderLottos(lottos) {
+  #renderLottos(lottos) {
     this.purchasedLottoSection.classList.remove(CLASSNAME.HIDE);
     this.winnerNumberSection.classList.remove(CLASSNAME.HIDE);
 
