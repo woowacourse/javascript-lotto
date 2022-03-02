@@ -19,6 +19,10 @@ const validateMoney = (money) => {
   if (moneyValidator.isOverMaximum(money)) {
     throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
   }
+
+  if (Number.isNaN(money)) {
+    throw new Error(EXCEPTION.INVALID_RANGE.EMPTY);
+  }
   return true;
 };
 
