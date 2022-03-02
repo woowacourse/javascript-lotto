@@ -45,7 +45,7 @@ export const ALERT_MESSAGE = {
 
 export const RANK_BY_MATCHING_NUMBERS = {
   6: 1,
-  bonus: 2,
+  BONUSED_WINNER: 2,
   5: 3,
   4: 4,
   3: 5,

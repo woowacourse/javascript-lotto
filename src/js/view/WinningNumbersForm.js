@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { getWinningNumbers } from '../utils/common.js';
+import { extractWinningNumbers } from '../helper/lotto.js';
 import { ID_SELECTOR } from '../constants.js';
 import View from '../core/View.js';
 
@@ -11,7 +11,7 @@ export default class WinningNumbersFormView extends View {
   _bindEvents() {
     this.$winningNumbersForm.addEventListener('submit', event => {
       event.preventDefault();
-      this.props.submitWinningNumbersHandler(...getWinningNumbers(event.target.elements));
+      this.props.submitWinningNumbersHandler(...extractWinningNumbers(event.target.elements));
     });
   }
 }
