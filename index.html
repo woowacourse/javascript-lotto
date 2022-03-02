@@ -11,14 +11,22 @@
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
+
       <section id="purchase-container">
         <h2 hidden>로또 구매 양식</h2>
         <form id="purchase-form">
           <label for="purchase-input">구입할 금액을 입력해주세요.</label>
-          <input id="purchase-input" type="number" placeholder="금액" />
+          <input
+            id="purchase-input"
+            type="number"
+            placeholder="금액"
+            min="1000"
+            max="10000000"
+          />
           <button id="purchase-button" type="submit">구입</button>
         </form>
       </section>
+
       <section id="ticket-container" class="hidden">
         <h2 hidden>로또 발급 확인</h2>
         <span>총 <span id="ticket-count"></span>개를 구매하였습니다.</span>
@@ -28,6 +36,35 @@
           <input id="lotto-number-toggle" type="checkbox" />
           <span class="slider round"></span>
         </label>
+      </section>
+
+      <section id="result-container">
+        <h2 hidden>로또 결과 입력</h2>
+        <label for="result-form" id="result-form-label"
+          >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
+        >
+        <form id="result-form">
+          <label for="prize-number-div">당첨 번호</label>
+          <label for="bonus-number-input" class="align-right"
+            >보너스 번호</label
+          >
+          <div id="prize-number-div">
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+          </div>
+          <input
+            id="bonus-number-input"
+            class="align-right"
+            type="number"
+            min="1"
+            max="45"
+          />
+          <button id="result-button" type="submit">결과 확인하기</button>
+        </form>
       </section>
     </div>
   </body>
