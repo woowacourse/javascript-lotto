@@ -3,7 +3,7 @@ import { isValidPurchaseMoney } from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
 
 export default class LottoController {
-  #lottoModel;
+  #lottoCreator;
 
   #lottoPurchaseInputView;
 
@@ -11,8 +11,8 @@ export default class LottoController {
 
   #lottoWinningNumberInputView;
 
-  constructor(lottoModel, views) {
-    this.#lottoModel = lottoModel;
+  constructor(lottoCreator, views) {
+    this.#lottoCreator = lottoCreator;
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
@@ -53,9 +53,9 @@ export default class LottoController {
     this.#lottoPurchaseResultView.renderLottoPurchaseCount(
       purchaseMoney / LOTTO.COST_UNIT
     );
-    this.#lottoModel.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
+    this.#lottoCreator.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
     this.#lottoPurchaseResultView.renderLottoPurchaseResult(
-      this.#lottoModel.lottoList
+      this.#lottoCreator.lottoList
     );
     this.#lottoWinningNumberInputView.renderlottoWinningNumberInput();
   }

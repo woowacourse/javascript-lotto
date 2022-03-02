@@ -1,10 +1,11 @@
-import { LOTTO } from './utils/constants.js';
+import { LOTTO } from '../utils/constants.js';
 
-export default class LottoModel {
+export default class LottoCreator {
   #lottoList;
 
   constructor() {
     this.#lottoList = [];
+    this.lottoMatchingResult = {};
   }
 
   get lottoList() {
