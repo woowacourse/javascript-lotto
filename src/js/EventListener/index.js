@@ -9,4 +9,4 @@ export const onSubmitFareForm = (e) => {
 
 export const onChangeLottoViewerController = toggleLottosView;
 
-export const onKeyUpLottoNumbers = writingWinningNumber;
+export const onKeyUpWinningNumbers = writingWinningNumber;
