@@ -2,6 +2,7 @@ import { on } from '../utils/event.js';
 import EVENT from '../constants/event.js';
 import EXCEPTION from '../constants/exception.js';
 import { moneyValidator } from '../validator/moneyValidator.js';
+import insertAutoComma from '../utils/autoComma.js';
 
 /**
  * @module controller/LottoController
@@ -26,18 +27,14 @@ export default class LottoController {
    */
   #subscribeViewEvents() {
     on(this.purchaseView.$purchaseForm, EVENT.SUBMIT_PURCHASE, (e) => this.#purchaseLotto(e.detail.money));
-
     on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE_LOTTO_DETAIL, (e) =>
       this.#toggleDetails(e.detail.checked),
     );
-
     on(this.winningNumbersView.$winningNumbersForm, EVENT.SUBMIT_RESULT, (e) =>
       this.#requestResult(e.detail.winningNumbers, e.detail.bonusNumber),
     );
-
     on(this.resultModalView.$restartButton, EVENT.CLICK_RESTART, () => this.#restart());
-
-    on(this.purchaseView.$purchaseInput, EVENT.PURCHASE_KEYUP, (e) => this.#convertWonUnitFormat(e.detail.value));
+    on(this.purchaseView.$purchaseInput, EVENT.PURCHASE_KEYUP, (e) => this.#keyupHandler(e.detail.target));
   }
 
   /** @method purchaseLotto
@@ -109,8 +106,12 @@ export default class LottoController {
     this.purchaseView.activatePurchaseForm();
   }
 
-  #convertWonUnitFormat(value) {
-    console.log(value);
+  #keyupHandler(target) {
+    this.#preventGettingOverLimit(parseInt(target.value.replace(/,/g, ''), 10));
+    insertAutoComma(target);
+  }
+
+  #preventGettingOverLimit(value) {
     if (moneyValidator.isOverMaximum(value)) {
       alert(EXCEPTION.INVALID_RANGE.MAXIMUM);
       this.purchaseView.stopInputTyping(value);

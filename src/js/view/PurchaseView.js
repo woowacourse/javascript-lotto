@@ -44,17 +44,21 @@ export default class PurchaseView {
    * @description 입력된 로또 구매 금액을 반환한다.
    */
   #getMoneyToPurchase() {
-    return this.$purchaseInput.valueAsNumber;
+    return parseInt(this.$purchaseInput.value.replace(/,/g, ''), 10);
   }
 
   #handleKeyup(e) {
     e.preventDefault();
-    const { value } = e.target;
-    emit(this.$purchaseInput, EVENT.PURCHASE_KEYUP, { value });
+    const { target } = e;
+    emit(this.$purchaseInput, EVENT.PURCHASE_KEYUP, { target });
   }
 
   stopInputTyping(value) {
-    this.$purchaseInput.value = value.substr(0, 7);
+    this.#convertWonUnitFormat(value.toString().substr(0, 7));
+  }
+
+  #convertWonUnitFormat(value) {
+    this.$purchaseInput.value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   /**
