@@ -30,7 +30,7 @@ export default class LottoListView {
       this.#container,
       `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`
     );
-    itemContainer.list = itemContainer.list === 'open' ? 'close' : 'open';
+    itemContainer.list = itemContainer.list === 'list' ? 'icon' : 'list';
   }
 
   renderLottoList(lottos) {
