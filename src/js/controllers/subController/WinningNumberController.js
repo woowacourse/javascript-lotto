@@ -11,11 +11,11 @@ export default class WinningNumberController {
   }
 
   static countCoincide(winningNumbers, lottoNumbers) {
-    const coincideList = winningNumbers.filter(
+    const coincideCount = winningNumbers.filter(
       (winningNumber, index) => winningNumber === lottoNumbers[index]
-    );
+    ).length;
 
-    return coincideList.length;
+    return coincideCount;
   }
 
   constructor() {

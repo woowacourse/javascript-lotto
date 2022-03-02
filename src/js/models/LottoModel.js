@@ -12,6 +12,14 @@ export default class LottoModel {
 
   init() {
     this.lottoList = [];
+    this.winningStatistic = {
+      under: 0,
+      three: 0,
+      four: 0,
+      five: 0,
+      fiveBonus: 0,
+      six: 0,
+    };
   }
 
   getLottoList() {
@@ -27,5 +35,29 @@ export default class LottoModel {
     return Array(count)
       .fill()
       .map(() => LottoModel.issueLotto());
+  }
+
+  setWinningStatistic(coincideCountList) {
+    coincideCountList.forEach((count) => {
+      const countString = this.transToString(count);
+      this.winningStatistic[countString] += 1;
+    });
+  }
+
+  transToString(count) {
+    switch (count) {
+      case 3:
+        return 'three';
+      case 4:
+        return 'four';
+      case 5:
+        return 'five';
+      case 5.5:
+        return 'fiveBonus';
+      case 6:
+        return 'six';
+      default:
+        return 'under';
+    }
   }
 }
