@@ -248,11 +248,6 @@ h1 {
 }
 
 
-.winning-numbers__section-display-none,
-.lotto-list__section-display-none {
-  display: none;
-}
-
 .modal {
   display: block;
   position: fixed;
