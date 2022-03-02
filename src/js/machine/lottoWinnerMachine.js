@@ -72,7 +72,7 @@ class LottoWinnerMachine {
   }
 
   #isFullWinnerNumberInput({ numbers, bonus }) {
-    return numbers.length === 6 && bonus !== undefined;
+    return numbers.every((number) => number !== '') && numbers.length === 6 && bonus !== '';
   }
 
   #isUniqueInput(allNumbers) {
