@@ -12,10 +12,10 @@ export default class PopupView {
     this.closeButton = document.getElementById('close-button');
   }
 
-  render(result, percent) {
+  render(result, rewardRate) {
     this.popup.insertAdjacentHTML(
       'beforeend',
-      getResultTemplate(result, percent),
+      getResultTemplate(result, rewardRate),
     );
     this.visible();
   }

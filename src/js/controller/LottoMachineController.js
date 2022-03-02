@@ -11,6 +11,7 @@ import {
   isEmpty,
   validateWinningNumbers,
 } from '../util/validator.js';
+import { calculateTotalReward, getRanks } from '../util/common.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -81,60 +82,6 @@ export default class LottoMachineController {
     this.view.winningNumberView.reset();
   }
 
-  #countCorrectNumber(lottos, numbers) {
-    const results = [];
-
-    lottos.forEach(lotto => {
-      const lottoList = lotto.getList();
-      let correctWinNumCount = 0;
-      for (let i = 0; i < RULES.LOTTO_NUMS; i++) {
-        if (lottoList.includes(numbers[i])) {
-          correctWinNumCount++;
-        }
-      }
-
-      let correctBonusNumCount = 0;
-      for (
-        let i = RULES.LOTTO_NUMS;
-        i < RULES.LOTTO_NUMS + RULES.BONUS_NUMS;
-        i++
-      ) {
-        if (lottoList.includes(numbers[i])) {
-          correctBonusNumCount++;
-        }
-      }
-
-      results.push({ win: correctWinNumCount, bonus: correctBonusNumCount });
-    });
-
-    return results;
-  }
-
-  #calculateTotalReward(results) {
-    let totalReward = 0;
-
-    results.forEach(result => {
-      const { win, bonus } = result;
-      if (win === RULES.LOTTO_NUMS) {
-        totalReward += REWARD.FIRST;
-      }
-      if (win === RULES.LOTTO_NUMS - 1 && bonus === RULES.BONUS_NUMS) {
-        totalReward += REWARD.SECOND;
-      }
-      if (win === RULES.LOTTO_NUMS - 1 && bonus === 0) {
-        totalReward += REWARD.THIRD;
-      }
-      if (win === RULES.LOTTO_NUMS - 2) {
-        totalReward += REWARD.FOURTH;
-      }
-      if (win === RULES.LOTTO_NUMS - 3) {
-        totalReward += REWARD.FIFTH;
-      }
-    });
-
-    return totalReward;
-  }
-
   #onSubmitWinningNumberHandler(numbers) {
     try {
       validateWinningNumbers(numbers);
@@ -143,10 +90,13 @@ export default class LottoMachineController {
       return;
     }
 
-    const results = this.#countCorrectNumber(this.lottos, numbers);
-    const totalReward = this.#calculateTotalReward(results);
+    const results = getRanks(this.lottos, numbers);
+    const totalReward = calculateTotalReward(results);
+    // 수익률 = (총 상금 / 구매 금액)을 퍼센트 환산
+    // 즉, 원금 상환 === 수익률 100%
+    const rewardRate = totalReward / this.lottos.length / 10;
 
-    this.view.popupView.render(results, totalReward / results.length / 10);
+    this.view.popupView.render(results, rewardRate);
     this.view.popupView.addRestartEvent(this.#reset.bind(this));
   }
 }
