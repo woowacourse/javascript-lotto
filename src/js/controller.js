@@ -6,7 +6,7 @@ import ResultModalView from './view/ResultModal.js';
 import LottoUser from './model/lottoUser.js';
 
 import { $ } from './utils/dom.js';
-import { LOTTO_PRICE, ID_SELECTOR } from './constants.js';
+import { LOTTO_PRICE, ID_SELECTOR, ERROR_MESSAGE } from './constants.js';
 import { validateCashInput, validateWinningNumbers } from './utils/validation';
 
 export default class Controller {
@@ -31,7 +31,7 @@ export default class Controller {
       this.#lottoListView.renderLottoListSection(this.#lottoUser.getBuyedLottos());
       this.#winningNumbersFormView.show();
     } catch ({ message }) {
-      alert(message);
+      alert(ERROR_MESSAGE[message] || ERROR_MESSAGE.UNKNOWN_ERROR);
     }
   }
 
@@ -44,7 +44,7 @@ export default class Controller {
         this.#lottoUser.getProfitRate(),
       );
     } catch ({ message }) {
-      alert(message);
+      alert(ERROR_MESSAGE[message] || ERROR_MESSAGE.UNKNOWN_ERROR);
     }
   }
 

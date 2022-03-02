@@ -38,9 +38,15 @@ export const CLASS_NAME = {
 
 export const LOTTO_PRICE = 1000;
 
-export const ALERT_MESSAGE = {
-  NOT_DIVISIBLE: `${LOTTO_PRICE}으로 나누어떨어지는 금액을 입력해주세요.`,
+export const ERROR_NAME = {
+  NOT_DIVISIBLE_NUMBER: 'NOT_DIVISIBLE_NUMBER',
+  DUPLICATED_NUMBERS: 'DUPLICATED_NUMBERS',
+};
+
+export const ERROR_MESSAGE = {
+  NOT_DIVISIBLE_NUMBER: `${LOTTO_PRICE}으로 나누어떨어지는 금액을 입력해주세요.`,
   DUPLICATED_NUMBERS: '서로 다른 숫자를 입력해주세요 !',
+  UNKNOWN_ERROR: '죄송합니다. 잠시 후에 다시 시도해주세요.',
 };
 
 export const RANK_BY_MATCHING_NUMBERS = {
