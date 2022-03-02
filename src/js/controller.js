@@ -39,7 +39,7 @@ export default class Controller {
     try {
       validateWinningNumbers(reuglarNumbers, bonusNumber);
       this.#lottoUser.setLottoResult(reuglarNumbers, bonusNumber);
-      this.#resultModalView.showLottoResult(
+      this.#resultModalView.renderLottoResult(
         this.#lottoUser.getLottoStatus(),
         this.#lottoUser.getProfitRate(),
       );

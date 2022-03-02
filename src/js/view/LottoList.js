@@ -18,26 +18,25 @@ export default class LottoListView extends View {
     });
   }
 
-  renderLottoListSection(lottoList) {
+  renderLottoListSection(lottos) {
     this.show();
-    this.#showDescription(lottoList.length);
-    this.#showLottoList(lottoList);
+    this.#showDescription(lottos.length);
+    replaceHTML(this.$lottoLists, this.templateLottoList(lottos));
   }
 
   #showDescription(quantity) {
     this.$lottoListDescription.textContent = `총 ${quantity}개를 구매하였습니다.`;
   }
 
-  #showLottoList(lottoList) {
-    const template = lottoList
+  templateLottoList(lottos) {
+    return lottos
       .map(
         lotto => `
         <li class="${CLASS_NAME.LOTTO_LIST}">
           <span class="${CLASS_NAME.LOTTO_LIST_TICKET}">🎟️</span>
-          <span class="${CLASS_NAME.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(', ')}</span>
+          <span class="${CLASS_NAME.LOTTO_LIST_NUMBERS}">${lotto.join(', ')}</span>
         </li>`,
       )
       .join('');
-    replaceHTML(this.$lottoLists, template);
   }
 }

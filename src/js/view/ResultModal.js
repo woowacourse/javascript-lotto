@@ -1,5 +1,5 @@
 import { $, replaceHTML } from '../utils/dom';
-import { ID_SELECTOR, ID_NAME } from '../constants';
+import { ID_SELECTOR, ID_NAME, MATCHING_NUMBER_BY_RANK, PRIZE_STRING_BY_RANK } from '../constants';
 import View from '../core/View';
 
 export default class ResultModal extends View {
@@ -21,43 +21,28 @@ export default class ResultModal extends View {
     });
   }
 
-  showLottoResult(result, profit) {
-    replaceHTML(
-      this.$lottoResult,
-      `
-  <tr class="winners-table__tr">
-    <th>일치 갯수</th>
-    <th>당첨금</th>
-    <th>당첨 갯수</th>
-  </tr>
-  <tr class="winners-table__tr" >
-    <td>3개</td>
-    <td>5,000</td>
-    <td>${result.get(5)}개</td>
-  </tr>
-  <tr class="winners-table__tr">
-    <td>4개</td>
-    <td>50,000</td>
-    <td>${result.get(4)}개</td>
-  </tr>
-  <tr class="winners-table__tr">
-    <td>5개</td>
-    <td>1,500,000</td>
-    <td>${result.get(3)}개</td>
-  </tr>
-  <tr class="winners-table__tr">
-    <td>5개 + 보너스볼</td>
-    <td>30,000,000</td>
-    <td>${result.get(2)}개</td>
-  </tr>
-  <tr class="winners-table__tr">
-    <td>6개</td>
-    <td>2,000,000,000</td>
-    <td>${result.get(1)}개</td>
-  </tr>
-    `,
-    );
+  renderLottoResult(status, profit) {
+    replaceHTML(this.$lottoResult, this.templateLottoResult(status));
     this.$profitDescription.textContent = `당신의 총 수익률은 ${profit}% 입니다.`;
     this.show();
+  }
+
+  templateLottoResult(status) {
+    return `
+    <tr class="winners-table__tr">
+      <th>일치 갯수</th>
+      <th>당첨금</th>
+      <th>당첨 갯수</th>
+      ${[5, 4, 3, 2, 1]
+        .map(
+          rank =>
+            `<tr class="winners-table__tr">
+          <td>${MATCHING_NUMBER_BY_RANK[rank]}</td>
+          <td>${PRIZE_STRING_BY_RANK[rank]}</td>
+          <td>${status.get(rank)}개</td>
+        </tr>`,
+        )
+        .join('')}
+    </tr>`;
   }
 }

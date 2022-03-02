@@ -49,6 +49,14 @@ export const ERROR_MESSAGE = {
   UNKNOWN_ERROR: '죄송합니다. 잠시 후에 다시 시도해주세요.',
 };
 
+export const MATCHING_NUMBER_BY_RANK = {
+  5: '3개',
+  4: '4개',
+  3: '5개',
+  2: '5개 + 보너스번호 ',
+  1: '6개',
+};
+
 export const RANK_BY_MATCHING_NUMBERS = {
   6: 1,
   BONUSED_WINNER: 2,
@@ -64,4 +72,12 @@ export const PRIZE_BY_RANK = {
   4: 50000,
   5: 5000,
   LOSE: 0,
+};
+
+export const PRIZE_STRING_BY_RANK = {
+  1: '2,000,000,000',
+  2: '30,000,000',
+  3: '1,500,000',
+  4: '50,000',
+  5: '5,000',
 };
