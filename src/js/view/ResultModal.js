@@ -1,6 +1,6 @@
-import { $, replaceHTML } from '../utils/dom.js';
-import { ID_SELECTOR, CLASS_NAME, ID_NAME } from '../constants.js';
-import View from '../core/View.js';
+import { $, replaceHTML } from '../utils/dom';
+import { ID_SELECTOR, ID_NAME } from '../constants';
+import View from '../core/View';
 
 export default class ResultModal extends View {
   _configureDOM() {

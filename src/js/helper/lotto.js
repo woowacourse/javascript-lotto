@@ -1,4 +1,4 @@
-import { LOTTO_RULE, PRIZE_BY_RANK, RANK_BY_MATCHING_NUMBERS } from '../constants.js';
+import { LOTTO_RULE, PRIZE_BY_RANK, RANK_BY_MATCHING_NUMBERS } from '../constants';
 
 const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max + 1 - min)) + min;
 

@@ -1,12 +1,12 @@
-import LottoListView from './view/LottoList.js';
-import PurchaseFormView from './view/PurchaseForm.js';
-import WinningNumbersFormView from './view/WinningNumbersForm.js';
-import ResultModalView from './view/ResultModal.js';
+import LottoListView from './view/LottoList';
+import PurchaseFormView from './view/PurchaseForm';
+import WinningNumbersFormView from './view/WinningNumbersForm';
+import ResultModalView from './view/ResultModal';
 
-import LottoUser from './model/lottoUser.js';
+import LottoUser from './model/lottoUser';
 
-import { $ } from './utils/dom.js';
-import { LOTTO_PRICE, ID_SELECTOR, ERROR_MESSAGE } from './constants.js';
+import { $ } from './utils/dom';
+import { LOTTO_PRICE, ID_SELECTOR, ERROR_MESSAGE } from './constants';
 import { validateCashInput, validateWinningNumbers } from './utils/validation';
 
 export default class Controller {

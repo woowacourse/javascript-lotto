@@ -1,4 +1,4 @@
-import { CLASS_NAME } from '../constants.js';
+import { CLASS_NAME } from '../constants';
 
 export default class View {
   constructor(container, props = {}) {

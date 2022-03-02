@@ -1,7 +1,7 @@
-import { $ } from '../utils/dom.js';
-import { extractWinningNumbers } from '../helper/lotto.js';
-import { ID_SELECTOR } from '../constants.js';
-import View from '../core/View.js';
+import { $ } from '../utils/dom';
+import { extractWinningNumbers } from '../helper/lotto';
+import { ID_SELECTOR } from '../constants';
+import View from '../core/View';
 
 export default class WinningNumbersFormView extends View {
   _configureDOM() {

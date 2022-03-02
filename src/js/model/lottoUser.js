@@ -1,4 +1,4 @@
-import { makeLottoNumbers, calcuateUserProfitRate, calculateLottoStatus } from '../helper/lotto.js';
+import { makeLottoNumbers, calcuateUserProfitRate, calculateLottoStatus } from '../helper/lotto';
 
 export default class LottoUser {
   #buyedLottos = [];

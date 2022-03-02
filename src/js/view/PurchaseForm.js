@@ -1,4 +1,4 @@
-import View from '../core/View.js';
+import View from '../core/View';
 
 export default class PurchaseFormView extends View {
   _bindEvents() {

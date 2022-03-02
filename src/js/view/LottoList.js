@@ -1,6 +1,6 @@
-import { $, replaceHTML } from '../utils/dom.js';
-import { ID_SELECTOR, CLASS_NAME } from '../constants.js';
-import View from '../core/View.js';
+import { $, replaceHTML } from '../utils/dom';
+import { ID_SELECTOR, CLASS_NAME } from '../constants';
+import View from '../core/View';
 
 export default class LottoListView extends View {
   _configureDOM() {
