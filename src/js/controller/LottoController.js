@@ -4,7 +4,7 @@ import LottosModel from '../models/LottosModel';
 
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
-import { checkValidMoneyInput } from '../utils/Lotto/validator';
+import { checkValidMoneyInput, checkValidWinningNumberInput } from '../utils/Lotto/validator';
 import WinningNumberInputView from '../views/WinningNumberInputView';
 
 export default class LottoController {
@@ -39,6 +39,10 @@ export default class LottoController {
   }
 
   handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
-    console.log(winningNumbers, bonusNumber);
+    try {
+      checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
+    } catch (error) {
+      alert(error);
+    }
   }
 }
