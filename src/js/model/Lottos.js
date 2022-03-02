@@ -16,7 +16,7 @@ export default class Lottos {
   }
 
   getLottos() {
-    return this.#lottos;
+    return this.#lottos.map((lotto) => lotto.getList());
   }
 
   makeNewLottos(count) {

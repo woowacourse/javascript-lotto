@@ -1,49 +1,92 @@
-import {
-  LOTTO_IMAGE_TEMPLATE,
-  PURCHASED_LOTTO_TEMPLATE,
-  getLottoListTemplate,
-} from './template.js';
+const LOTTO_IMAGE_TEMPLATE = `
+  <span class="purchased-lotto-image">🎟️</span>
+`;
+
+const getLottoDetailTemplate = (lotto) => `
+    <div class="purchased-lotto-item">
+      ${LOTTO_IMAGE_TEMPLATE}
+      <div class="purchased-lotto-number">${lotto.join(', ')}</div>
+    </div>
+  `;
+
+const getLottoListTemplate = (lottos) => lottos.reduce((result, lotto) => (result + getLottoDetailTemplate(lotto)), '');
+
+const TEMPLATE = `
+  <div>
+    <div id="purchased-lotto-box">
+      <p>
+        총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
+      </p>
+      <div id="single-purchased-lotto-list"></div>
+      <div id="detail-purchased-lotto-list" class="hidden"></div>
+    </div>
+
+    <div id="toggle-box">
+      <p>번호 보기</p>
+      <label for="on-off-switch" class="switch">
+        <input id="on-off-switch" type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+  </div>
+
+`;
 
 export default class PurchasedLottoView {
   constructor() {
     this.container = document.getElementById('purchased-lotto-container');
   }
 
-  render(lottoCount, lottos) {
-    this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
-    const purchasedLottoCount = this.container.querySelector('#purchased-lotto-count');
-    purchasedLottoCount.textContent = lottoCount;
+  #paint() {
+    this.container.insertAdjacentHTML('beforeend', TEMPLATE);
+  }
 
-    this.renderPurchasedLottoList(lottoCount, lottos);
+  #render(lottoCount, purchasedLottos) {
+    this.container.querySelector('#purchased-lotto-count').textContent = lottoCount;
+    this.container.querySelector('#single-purchased-lotto-list')
+      .insertAdjacentHTML('beforeend', LOTTO_IMAGE_TEMPLATE.repeat(lottoCount));
+    this.container.querySelector('#detail-purchased-lotto-list')
+      .insertAdjacentHTML('beforeend', getLottoListTemplate(purchasedLottos));
+  }
+
+  #addEvent() {
     this.addToggleClickEvent();
   }
 
-  renderPurchasedLottoList(lottoCount, lottos) {
-    this.singlePurchasedLottoList = this.container.querySelector(
-      '#single-purchased-lotto-list',
-    );
-    this.singlePurchasedLottoList.insertAdjacentHTML(
-      'afterbegin',
-      LOTTO_IMAGE_TEMPLATE.repeat(lottoCount),
-    );
+  // #rePaint() {
+  //   // 토글 default로 변경 시킬 것
+  // }
 
-    this.detailPurchasedLottoList = this.container.querySelector(
-      '#detail-purchased-lotto-list',
-    );
-    const lottoList = getLottoListTemplate(lottos);
-    this.detailPurchasedLottoList.insertAdjacentHTML('beforeend', lottoList);
+  rendering(lottoCount, purchasedLottos) {
+    this.#paint();
+    this.#render(lottoCount, purchasedLottos);
+    this.#addEvent();
+  }
+
+  reflow(lottoCount, purchasedLottos) {
+    this.container.querySelector('#single-purchased-lotto-list').replaceChildren();
+    this.container.querySelector('#detail-purchased-lotto-list').replaceChildren();
+    this.#render(lottoCount, purchasedLottos);
+    // this.#rePaint();
   }
 
   addToggleClickEvent() {
     const switchElement = this.container.querySelector('#on-off-switch');
 
-    switchElement.addEventListener('click', () => {
-      this.singlePurchasedLottoList.classList.toggle('hidden');
-      this.detailPurchasedLottoList.classList.toggle('hidden');
-    });
+    switchElement.addEventListener('click', this.onChangeToggle.bind(this));
+  }
+
+  onChangeToggle() {
+    const single = this.container.querySelector('#single-purchased-lotto-list');
+    const detail = this.container.querySelector('#detail-purchased-lotto-list');
+
+    single.classList.toggle('hidden');
+    detail.classList.toggle('hidden');
   }
 
   reset() {
-    this.container.removeChild(this.container.lastElementChild);
+    // this.container.removeChild(this.container.lastElementChild);
+    this.container.replaceChildren();
   }
 }
