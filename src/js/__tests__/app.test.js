@@ -110,7 +110,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     [2, 24, 17, 43, 35, 10],
   ];
 
-  test('당첨번호와 생성된 로또 한 개의 일치하는 갯수를 구할 수 있다.', () => {
+  test('당첨번호와 생성된 로또 한 개의 일치하는 개수를 구할 수 있다.', () => {
     expect(
       WinningNumberController.calculateCoincideCount(
         winningNumbers,
@@ -124,5 +124,14 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
         lottoNumberList[1]
       )
     ).toBe(0);
+  });
+
+  test('각 로또 일치 개수를 담은 리스트를 구할 수 있다.', () => {
+    expect(
+      WinningNumberController.createCoincideCountList(
+        winningNumbers,
+        lottoNumberList
+      )
+    ).toEqual([6, 0]);
   });
 });
