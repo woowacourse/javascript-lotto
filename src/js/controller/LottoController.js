@@ -62,6 +62,10 @@ export default class LottoController {
       validatePrizeNumber([...numbers.prizeNumbers, numbers.bonusNumber]);
       this.statisticsView.showStatisticsModal();
       this.calculateResult(numbers);
+      this.statisticsView.renderStatistics(
+        this.lottoPrizeModel.prizeCount,
+        this.lottoPrizeModel.rateOfReturn,
+      );
     } catch (error) {
       alert(error.message);
     }
