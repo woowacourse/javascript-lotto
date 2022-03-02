@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { LOTTO_PRICE } from '../constants/constant.js';
+import { LOTTO_INFO } from '../constants/constant.js';
 import { NOT_DIVIDE_THOUSAND_ERROR } from '../constants/errorMessage.js';
 import {
   isValueTypeNumber,
@@ -28,7 +28,7 @@ export const checkLottoPrice = userInput => {
 };
 
 export const isValueDivideThousand = value => {
-  if (value % LOTTO_PRICE === 0) {
+  if (value % LOTTO_INFO.LOTTO_PRICE === 0) {
     return true;
   }
   throw new Error(NOT_DIVIDE_THOUSAND_ERROR);

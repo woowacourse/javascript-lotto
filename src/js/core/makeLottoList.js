@@ -1,10 +1,5 @@
 import Lotto from './lotto.js';
-import {
-  RANDOM_MIN,
-  RANDOM_MAX,
-  LOTTO_NUMBER_COUNT,
-  LOTTO_PRICE,
-} from '../constants/constant.js';
+import { LOTTO_INFO } from '../constants/constant.js';
 export const makeLottoList = lottoPrice => {
   const lottoList = [];
   while (lottoList.length !== calculateGameCount(lottoPrice)) {
@@ -17,13 +12,17 @@ export const makeLottoList = lottoPrice => {
 };
 
 export const calculateGameCount = value => {
-  return value / LOTTO_PRICE;
+  return value / LOTTO_INFO.LOTTO_PRICE;
 };
 
 const makeRandomNumberList = () => {
   return Array.from(
-    { length: LOTTO_NUMBER_COUNT },
-    () => Math.floor(Math.random() * (RANDOM_MAX - RANDOM_MIN)) + RANDOM_MIN,
+    { length: LOTTO_INFO.LOTTO_NUMBER_COUNT },
+    () =>
+      Math.floor(
+        Math.random() *
+          (LOTTO_INFO.LOTTO_NUMBER_MAX - LOTTO_INFO.LOTTO_NUMBER_MIN),
+      ) + LOTTO_INFO.LOTTO_NUMBER_MIN,
   );
 };
 

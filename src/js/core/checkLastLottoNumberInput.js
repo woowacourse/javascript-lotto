@@ -1,8 +1,4 @@
-import {
-  LOTTO_NUMBER_COUNT,
-  RANDOM_MAX,
-  RANDOM_MIN,
-} from '../constants/constant.js';
+import { LOTTO_INFO } from '../constants/constant.js';
 import {
   IS_OVERLAP_LOTTO_NUMBER_ERROR,
   NOT_NUMBER_IN_RANGE,
@@ -50,7 +46,7 @@ export const checkLastLottoNumbersType = lastLottoNumbers => {
     lastLottoNumbers.filter(num => {
       if (isValueTypeNumber(num)) return num;
     }).length !==
-    LOTTO_NUMBER_COUNT + 1
+    LOTTO_INFO.LOTTO_NUMBER_COUNT + 1
   ) {
     throw new Error(NOT_NUMBER_TYPE_ERROR);
   }
@@ -62,7 +58,7 @@ export const checkLastLottoNumbersPositive = lastLottoNumbers => {
     lastLottoNumbers.filter(num => {
       if (isPositiveNumber(num)) return num;
     }).length !==
-    LOTTO_NUMBER_COUNT + 1
+    LOTTO_INFO.LOTTO_NUMBER_COUNT + 1
   ) {
     throw new Error(NOT_POSITIVE_NUMBER_ERROR);
   }
@@ -78,7 +74,10 @@ export const checkLastLottoNumbersOverlap = lastLottoNumbers => {
 
 export const checkLastLottoNumbersInRange = lastLottoNumbers => {
   if (
-    lastLottoNumbers.filter(num => num > RANDOM_MAX || num < RANDOM_MIN).length
+    lastLottoNumbers.filter(
+      num =>
+        num > LOTTO_INFO.LOTTO_NUMBER_MAX || num < LOTTO_INFO.LOTTO_NUMBER_MIN,
+    ).length
   ) {
     throw new Error(NOT_NUMBER_IN_RANGE);
   }
