@@ -32,21 +32,9 @@ export default class WinningNumberView extends View {
   constructor() {
     super();
 
-    //멤버변수 초기화
     this.app = document.getElementById('app');
     this.container = document.getElementById('winning-number-container');
     this.modal = document.getElementById('winning-statistics-modal');
-    this.restartButton = document.getElementById('restart-button');
-    this.closeButton = document.getElementById('close-button');
-    this.winningCounts = document.getElementsByClassName('winning-count');
-    this.totalProfitRate = document.getElementById('total-profit-rate');
-
-    //이벤트
-    this.closeButton.addEventListener('click', this.hideModal.bind(this));
-    this.restartButton.addEventListener(
-      'click',
-      this.clickRestartButtonHandler.bind(this),
-    );
   }
 
   render() {
@@ -58,18 +46,6 @@ export default class WinningNumberView extends View {
     );
 
     winningNumberForm.addEventListener('submit', this.submitHandler.bind(this));
-  }
-
-  renderLottoResult(lottoResult) {
-    const reverseRanking = Object.values(lottoResult).reverse();
-
-    Array.from(this.winningCounts).forEach(
-      (element, index) => (element.textContent = reverseRanking[index] + '개'),
-    );
-  }
-
-  renderTotalProfitRate(totalProfitRate) {
-    this.totalProfitRate.textContent = totalProfitRate;
   }
 
   submitHandler(e) {
@@ -89,16 +65,6 @@ export default class WinningNumberView extends View {
       this.resetInputElementsValue();
       alert(error);
     }
-  }
-
-  clickRestartButtonHandler() {
-    this.hideModal();
-    this.handlers.get('winningNumberClick').forEach(func => func());
-  }
-
-  hideModal() {
-    this.app.classList.replace('modal-on', 'modal-off');
-    this.modal.classList.replace('modal-show', 'modal-hide');
   }
 
   showModal() {

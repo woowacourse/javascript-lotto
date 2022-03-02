@@ -6,6 +6,7 @@ import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
 import { isEmpty } from '../utils/common.js';
+import WinningStatisticsModalView from '../view/WinningStatisticsModalView.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -15,6 +16,7 @@ export default class LottoMachineController {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
       winningNumberView: new WinningNumberView(),
+      winningStatisticsModalView: new WinningStatisticsModalView(),
     };
 
     //View handlers 멤버변수에 등록
@@ -23,8 +25,8 @@ export default class LottoMachineController {
       handler: this.onSubmitHandler.bind(this),
     });
 
-    this.view.winningNumberView.addHandler({
-      name: 'winningNumberClick',
+    this.view.winningStatisticsModalView.addHandler({
+      name: 'winningStatisticsClick',
       handler: this.reset.bind(this),
     });
 
@@ -81,8 +83,8 @@ export default class LottoMachineController {
     const totalProfitRate =
       (totalProfit / (this.model.lottos.length * 1000)) * 100;
 
-    this.view.winningNumberView.renderLottoResult(lottoResult);
-    this.view.winningNumberView.renderTotalProfitRate(totalProfitRate);
+    this.view.winningStatisticsModalView.renderLottoResult(lottoResult);
+    this.view.winningStatisticsModalView.renderTotalProfitRate(totalProfitRate);
   }
 
   onSubmitHandler(purchaseMoney) {
