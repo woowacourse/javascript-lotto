@@ -1,4 +1,5 @@
 import { getResultTemplate } from './template.js';
+import PurchaseMoneyView from './purchaseMoneyView.js';
 
 export default class PopupView {
   constructor() {
@@ -42,6 +43,7 @@ export default class PopupView {
     const restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', () => {
       resetEvent();
+      new PurchaseMoneyView().resetInputValue();
       this.closeHandler();
     });
   }
