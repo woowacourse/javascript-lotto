@@ -49,6 +49,12 @@ export default class LottoBundle {
     return this.#lottos;
   }
 
+  isLottosEmpty() {
+    if (this.#lottos.length === 0) {
+      return true;
+    }
+  }
+
   /** 구입된 로또 개수만큼 로또를 만들어 저장한다 */
   createLottoBundle() {
     repeatCallback(this.#count, () => this.#pushLottoToBundle());

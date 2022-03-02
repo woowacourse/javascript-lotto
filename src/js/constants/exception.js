@@ -6,6 +6,10 @@ const EXCEPTION = Object.freeze({
     MAXIMUM:
       '너무 큰 돈을 입력하셨습니다. 1,000,000원 이하의 금액이 투입되어야 합니다.',
   },
+  INSUFFICIENT: {
+    PURCHASE_INPUT:
+      '아직 로또를 구입하지 않으셨습니다. 먼저 로또를 구입해주세요',
+  },
 });
 
 export default EXCEPTION;

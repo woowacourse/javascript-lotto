@@ -1,5 +1,6 @@
 import { on } from '../utils/event.js';
 import EVENT from '../constants/event.js';
+import EXCEPTION from '../constants/exception.js';
 
 /**
  * @module controller/LottoController
@@ -90,6 +91,10 @@ export default class LottoController {
     this.lottoResult.winningNumbers = winningNumbers;
     this.lottoResult.bonusNumber = bonusNumber;
     this.lottoResult.calculateWinningCounts();
+    if (this.lottoBundle.isLottosEmpty()) {
+      alert(EXCEPTION.INSUFFICIENT.PURCHASE_INPUT);
+      return;
+    }
     const { winningCounts } = this.lottoResult;
     this.lottoResult.calculateLottoYield();
     const { lottoYield } = this.lottoResult;
