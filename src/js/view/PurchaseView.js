@@ -19,6 +19,7 @@ export default class PurchaseView {
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);
     this.$purchaseInputReset = $(ID.PURCHASE_INPUT_RESET);
     this.$purchasableLottoCount = $(ID.PURCHASABLE_LOTTO_COUNT);
+    this.$purchasableLottoDiv = $(ID.PURCHASABLE_LOTTO_DIV);
     this.#bindEvents();
   }
 
@@ -82,5 +83,9 @@ export default class PurchaseView {
   renderPurchasableLottoCount(count = 0) {
     const lottoCount = Number.isNaN(count) ? 0 : count;
     this.$purchasableLottoCount.textContent = lottoCount;
+  }
+
+  hidePurchasableLottoCount() {
+    this.$purchasableLottoDiv.classList.add('hidden');
   }
 }

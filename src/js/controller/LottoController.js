@@ -44,6 +44,7 @@ export default class LottoController {
    */
   #purchaseLotto(money) {
     try {
+      this.purchaseView.hidePurchasableLottoCount();
       this.lottoBundle.receivedMoney = money;
       this.lottoBundle.saveCount();
       this.lottoBundle.createLottoBundle();
