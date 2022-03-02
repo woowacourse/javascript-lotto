@@ -8,10 +8,10 @@ export const lottoPurchaseCountTemplate = (count) => {
 
 export const lottoTemplate = (numbers) => {
   return `
-    <div class="lotto-wrap">
+    <li class="lotto-wrap">
       <img src=${lotto} />
       <p class="lotto-numbers hidden">${numbers.join(', ')}</p>
-    </div>
+    </li>
   `;
 };
 
