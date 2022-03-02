@@ -30,6 +30,7 @@ export default class Controller {
       this.#lottoUser.buyLotto(cash / LOTTO_PRICE);
       this.#lottoListView.renderLottoListSection(this.#lottoUser.getBuyedLottos());
       this.#winningNumbersFormView.show();
+      this.#purchaseFormView.completeSubmit();
     } catch ({ message }) {
       alert(ERROR_MESSAGE[message] || ERROR_MESSAGE.UNKNOWN_ERROR);
     }
@@ -49,7 +50,7 @@ export default class Controller {
   }
 
   #restartHandler() {
-    this.#purchaseFormView.clearInput();
+    this.#purchaseFormView.reset();
     this.#lottoListView.hide();
     this.#winningNumbersFormView.hide();
     this.#resultModalView.hide();

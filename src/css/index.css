@@ -49,6 +49,10 @@ button:disabled, button:hover{
   background-color: var( --color-lighten);
 }
 
+button:disabled{
+  cursor: default;
+}
+
 #app {
   display: flex;
   flex-direction: column;
