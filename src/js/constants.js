@@ -24,11 +24,13 @@ export const ID_SELECTOR = {
   LOTTO_RESULT: '#lotto-result',
   PROFIT_DESCRIPTION: '#profit-description',
   RESTART_BUTTON: '#restart-lotto',
+  RESULT_SUBMIT_BUTTON: '#result-submit-button',
 };
 
 export const ID_NAME = {
   MODAL_CONTAINER: 'modal-container',
   MODAL_CLOSE: 'modal-close',
+  BONUS_NUMBER_INPUT: 'bonus-number',
 };
 
 export const CLASS_NAME = {
