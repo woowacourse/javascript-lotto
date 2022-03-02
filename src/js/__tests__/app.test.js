@@ -9,7 +9,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
   test(`사용자는 ${autoComma(
     LOTTO.PRICE_PER_TICKET,
   )}원 단위로 금액을 투입해야한다.`, () => {
-    const inputMoney = 1000;
+    const inputMoney = LOTTO.PRICE_PER_TICKET * 5;
 
     expect(
       moneyValidator.isCorrectUnit(inputMoney, LOTTO.PRICE_PER_TICKET),
@@ -19,7 +19,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
   test(`사용자는 금액을 ${autoComma(
     LOTTO.PRICE_PER_TICKET,
   )}원 이상 투입해야한다.`, () => {
-    const inputMoney = 1000;
+    const inputMoney = LOTTO.PRICE_PER_TICKET;
 
     expect(moneyValidator.isOverMin(inputMoney, LOTTO.PRICE_PER_TICKET)).toBe(
       true,
@@ -29,7 +29,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
   test(`사용자는 ${autoComma(
     LOTTO.INVENTORY * LOTTO.PRICE_PER_TICKET,
   )}원 이하의 금액을 투입해야한다.`, () => {
-    const inputMoney = 1000000;
+    const inputMoney = LOTTO.INVENTORY * LOTTO.PRICE_PER_TICKET;
 
     expect(
       moneyValidator.isUnderMax(
@@ -41,11 +41,12 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
   });
 
   test('사용자가 입력한 금액만큼 로또가 구매된다.', () => {
-    const inputMoney = 5000;
+    const lottoCount = 5;
+    const inputMoney = LOTTO.PRICE_PER_TICKET * lottoCount;
     const lottoBundle = new LottoBundle();
 
     lottoBundle.createLottoBundle(inputMoney / LOTTO.PRICE_PER_TICKET);
-    expect(lottoBundle.lottos.length).toBe(inputMoney / LOTTO.PRICE_PER_TICKET);
+    expect(lottoBundle.lottos.length).toBe(lottoCount);
   });
 });
 
@@ -87,7 +88,7 @@ describe('사용자가 유효하지 않은 값을 입력했을 경우, 에러를
   test(`사용자가 ${autoComma(
     LOTTO.PRICE_PER_TICKET,
   )}원이하의 금액을 투입했을 경우 에러를 발생시킨다.`, () => {
-    const invalidMoney = 500;
+    const invalidMoney = LOTTO.PRICE_PER_TICKET - LOTTO.PRICE_PER_TICKET / 2;
 
     validateErrorMessage(invalidMoney, EXCEPTION.INVALID_RANGE.MINIMUM);
   });
@@ -101,7 +102,7 @@ describe('사용자가 유효하지 않은 값을 입력했을 경우, 에러를
   test(`사용자가 ${autoComma(
     LOTTO.PRICE_PER_TICKET,
   )}원 단위로 금액을 투입하지 않았을 경우 에러를 발생시킨다.`, () => {
-    const invalidMoney = 1500;
+    const invalidMoney = LOTTO.PRICE_PER_TICKET + LOTTO.PRICE_PER_TICKET / 2;
 
     validateErrorMessage(invalidMoney, EXCEPTION.INVALID_UNIT);
   });
