@@ -3,7 +3,7 @@ import { LOTTO } from './constants';
 export const isPositiveInteger = (payment) =>
   Number.isInteger(payment) && payment > 0;
 
-export const divideBy = (payment, price) => payment % price === 0;
+export const isRemainder = (payment, price) => payment % price !== 0;
 
 export const createRandomNumber = (minNumber, maxNumber) => {
   return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
@@ -22,8 +22,8 @@ export const createRandomNumberList = () => {
   return randomNumberList;
 };
 
-export const isInRange = (minimum, maximum, number) =>
-  number >= minimum && number <= maximum;
+export const isOverRange = (minimum, maximum, number) =>
+  number < minimum || number > maximum;
 
 export const winningCount = (lotto, winningLotto) =>
   lotto.filter((number) => winningLotto.includes(number)).length;

@@ -1,10 +1,11 @@
 import {
   isPositiveInteger,
-  divideBy,
-  isInRange,
+  isRemainder,
+  isOverRange,
   isOverlapped,
   winningCount,
   isBounusNumber,
+  createRandomNumberList,
 } from './utils';
 import { CLASS_NAME, SELECTOR, MONEY, ERROR_MESSAGE } from './constants';
 import Lotto from './Lotto';
@@ -85,12 +86,12 @@ export default class LottoApp {
       if (!isPositiveInteger(payment)) {
         throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
       }
-      if (!divideBy(payment, MONEY.STANDARD)) {
+      if (isRemainder(payment, MONEY.STANDARD)) {
         throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_STANDARD);
       }
 
       this.disablePayment();
-      this.setPurchasedLottoList(payment / MONEY.STANDARD);
+      this.generatePurchasedLottoList(payment / MONEY.STANDARD);
       this.renderPurchasedSection();
     } catch ({ message }) {
       alert(message);
@@ -111,10 +112,10 @@ export default class LottoApp {
     render(this.$app, generateResultCheckingSection());
   }
 
-  setPurchasedLottoList(count) {
+  generatePurchasedLottoList(count) {
     for (let i = 0; i < count; i++) {
       const lotto = new Lotto();
-      lotto.setLotto();
+      lotto.setLotto(createRandomNumberList());
       this.lottoList.push(lotto.getLotto());
     }
   }
@@ -144,8 +145,8 @@ export default class LottoApp {
     try {
       $winningNumberInputs.forEach((input) => {
         if (
-          !isInRange(1, 45, Number(input.value)) ||
-          !isInRange(1, 45, bonusNumber)
+          isOverRange(1, 45, Number(input.value)) ||
+          isOverRange(1, 45, bonusNumber)
         ) {
           throw new Error(
             '지난주 당첨 번호또는 보너스 번호를 잘못 입력하셨습니다. 1 ~ 45 사이의 숫자를 입력해주세요'
@@ -208,10 +209,12 @@ export default class LottoApp {
     getElement('#purchased-lotto-list-section').remove();
     getElement('#last-week-winning-number-section').remove();
     getElement('#result-checking-section').remove();
-    getElement(SELECTOR.PAYMENT_INPUT).value = '';
+
     toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
     toggleDisabled(getElement(SELECTOR.PAYMENT_BUTTON));
     toggleDisabled(getElement(SELECTOR.PAYMENT_INPUT));
+    initInput(getElement(SELECTOR.PAYMENT_INPUT));
+    this.lottoList = [];
   }
 }

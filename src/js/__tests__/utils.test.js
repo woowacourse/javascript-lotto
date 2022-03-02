@@ -1,8 +1,8 @@
 import {
   isPositiveInteger,
-  divideBy,
+  isRemainder,
   createRandomNumberList,
-  isInRange,
+  isOverRange,
   winningCount,
   isBounusNumber,
   isOverlapped,
@@ -31,16 +31,16 @@ describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케
 });
 
 describe(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는지 확인한다 (실패/성공 케이스)`, () => {
-  test(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지 않은 경우 에러메시지를 보여준다. 입력: 33, 실패 케이스`, () => {
+  test(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지 않은 경우 에러메시지를 보여준다. 입력: 33, 성공 케이스`, () => {
     const payment = 133;
 
-    expect(divideBy(payment, MONEY.STANDARD)).toBe(false);
+    expect(isRemainder(payment, MONEY.STANDARD)).toBe(true);
   });
 
-  test(`구입 금액이 ${MONEY.STANDARD}으로 나누어 떨어질 경우 (구입 금액/${MONEY.STANDARD})을 반환한다. 입력: 3000, 성공 케이스`, () => {
+  test(`구입 금액이 ${MONEY.STANDARD}으로 나누어 떨어질 경우 (구입 금액/${MONEY.STANDARD})을 반환한다. 입력: 3000, 실패 케이스`, () => {
     const payment = 3000;
 
-    expect(divideBy(payment, MONEY.STANDARD)).toBe(true);
+    expect(isRemainder(payment, MONEY.STANDARD)).toBe(false);
   });
 });
 
@@ -53,20 +53,20 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
 });
 
 describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 확인한다', () => {
-  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 0, 실패 케이스', () => {
+  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 0, 성공 케이스', () => {
     const lastWeekNumber = 0;
 
-    expect(isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)).toBe(
-      false
-    );
+    expect(
+      isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)
+    ).toBe(true);
   });
 
-  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 45, 성공 케이스', () => {
+  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 45, 실패 케이스', () => {
     const lastWeekNumber = 45;
 
-    expect(isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)).toBe(
-      true
-    );
+    expect(
+      isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)
+    ).toBe(false);
   });
 
   test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6] 6, 실패 케이스', () => {
