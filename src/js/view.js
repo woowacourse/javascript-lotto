@@ -27,7 +27,7 @@ const lottoMatchSectionTemplate = `
       <input class="lotto-app-input match-number-input" type="number" />
     </div>
   </div>
-  <button class="lotto-app-button result-button">결과 확인하기</button>
+  <button id="result-button" class="lotto-app-button">결과 확인하기</button>
 `;
 
 const view = {

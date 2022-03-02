@@ -199,7 +199,7 @@ input:checked + .slider:before {
 .match-numbers .match-number-input:first-child {
   margin-left: 0px;
 }
-.result-button {
+#result-button {
   margin-top: 24px;
   width: 100%;
   height: 36px;

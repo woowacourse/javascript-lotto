@@ -1,7 +1,17 @@
-import { $ } from './utils/index.js';
+import { $, $$ } from './utils/index.js';
 import { validator } from './validation/index.js';
 import lottoManager from './lottoManager.js';
 import view from './view.js';
+
+export const onClickResultButton = () => {
+  const $matchNumberInputs = $$('.match-number-input');
+  const [bonumsNumber, ...previousWinningNumber] = Array.from($matchNumberInputs)
+    .map((inputElement) => inputElement.value)
+    .reverse();
+
+  console.log('입력된 지난주 당첨 번호: ', previousWinningNumber);
+  console.log('입력된 보너스 당첨 번호: ', bonumsNumber);
+};
 
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
@@ -20,6 +30,8 @@ export const onSubmitFareForm = (e) => {
 
     view.deactivateFareForm();
     view.renderLottoMatchSection();
+
+    $('#result-button').addEventListener('click', onClickResultButton);
   } catch (error) {
     alert(error.message);
   }

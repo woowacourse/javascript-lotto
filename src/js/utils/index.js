@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 
 export const $ = (selector) => document.querySelector(selector);
+export const $$ = (selector) => document.querySelectorAll(selector);
 
 export const createRandomNumbers = (minRange, maxRange, count) => {
   const candidate = Array(maxRange - minRange + 1)
