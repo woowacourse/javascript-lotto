@@ -1,5 +1,5 @@
 import { NUMBER } from '../constants/number';
-import { RANK } from '../constants/win';
+import { RANK } from '../constants/rank';
 import { lottoNumberClosure } from '../utils/gameUtil';
 
 class Lotto {

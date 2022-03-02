@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import { NUMBER } from '../constants/number';
-import { RANK_KEYS, RANK_PRICE } from '../constants/win';
+import { RANK_KEYS, RANK_PRICE } from '../constants/rank';
 import { isValidCharge, isValidWinningNumber } from '../utils/validator';
 import Lotto from './Lotto';
 

@@ -1,6 +1,6 @@
 import { EVENT } from '../constants/events';
 import { SELECTOR } from '../constants/selector';
-import { RANK_PRICE } from '../constants/win';
+import { RANK_PRICE } from '../constants/rank';
 import { findElement } from '../utils/dom';
 import { changeCurrencyFormat } from '../utils/util';
 
@@ -72,17 +72,17 @@ class LottoResultView {
     <div class="win-number-input-wrapper">
       <div>
         <p>당첨 번호</p>
-        <input class="winning-number-input" type="number" min="1" max="45" required/>
-        <input class="winning-number-input" type="number" min="1" max="45" required/>
-        <input class="winning-number-input" type="number" min="1" max="45" required/>
-        <input class="winning-number-input" type="number" min="1" max="45" required/>
-        <input class="winning-number-input" type="number" min="1" max="45" required/>
-        <input class="winning-number-input" type="number" min="1" max="45" required/>
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
       </div>
 
       <div class="bonus-number-wrapper flex-column-align-end">
         <p>보너스 번호</p>
-        <input class="bonus-number-input" type="number" min="1" max="45" required/>
+        <input class="bonus-number-input" type="number" min="1" max="45" required maxlength="2"/>
       </div>
     </div>
 
@@ -96,6 +96,7 @@ class LottoResultView {
   <span class="modal-cancel-button">❌</span>
      <div id="result-contents">
      <table  class=".result-container-section">
+     <caption hidden>결과 테이블입니다.</caption>
      <thead>
       <tr>
         <th>등수</th>
