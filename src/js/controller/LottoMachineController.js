@@ -23,8 +23,54 @@ export default class LottoMachineController {
       handler: this.onSubmitHandler.bind(this),
     });
 
-    //test를 위한 코드
-    // this.view.winningNumberView.render();
+    this.view.winningNumberView.addHandler({
+      name: 'winningNumberClick',
+      handler: this.reset.bind(this),
+    });
+
+    this.view.winningNumberView.addHandler({
+      name: 'winningNumberSubmit',
+      handler: this.calculatePurchasedLottoResult.bind(this),
+    });
+  }
+
+  calculatePurchasedLottoResult(winningNumberList) {
+    const winNumbers = winningNumberList.slice(0, 6);
+    const bonusNumber = winningNumberList[winningNumberList.length - 1];
+
+    const lottoResult = { '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
+    let count = 0;
+
+    this.model.lottos.forEach(lotto => {
+      count = 0;
+
+      lotto.numbers.forEach(number => {
+        if (winNumbers.includes(number)) {
+          count++;
+        }
+      });
+
+      if (count === 5 && lotto.numbers.includes(bonusNumber)) {
+        lottoResult['2등']++;
+        return;
+      }
+
+      switch (count) {
+        case 3:
+          lottoResult['5등']++;
+          break;
+        case 4:
+          lottoResult['4등']++;
+          break;
+        case 5:
+          lottoResult['3등']++;
+          break;
+        case 6:
+          lottoResult['1등']++;
+          break;
+        default:
+      }
+    });
   }
 
   onSubmitHandler(purchaseMoney) {
@@ -36,7 +82,9 @@ export default class LottoMachineController {
     }
 
     if (this.tryRePurchase()) {
-      this.reset();
+      this.view.purchasedLottoView.resetScreen();
+      this.view.winningNumberView.resetScreen();
+
       this.purchaseLotto(purchaseMoney);
       return;
     }
@@ -58,6 +106,7 @@ export default class LottoMachineController {
 
   reset() {
     this.model.resetStatus();
+    this.view.purchaseMoneyView.resetInputValue();
     this.view.purchasedLottoView.resetScreen();
     this.view.winningNumberView.resetScreen();
   }
