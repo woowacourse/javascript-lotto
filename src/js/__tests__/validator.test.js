@@ -26,6 +26,11 @@ describe('요금을 1000원 이상 투입해야 한다.', () => {
 });
 
 describe('로또 당첨 번호가 유효해야 한다.', () => {
+  const isNotNumber = (numbers) => numbers.some((number) => !/^\d+$/.test(number));
+  const overlappedNumber = (numbers) => new Set(numbers).size < numbers.length;
+  const outedOfLottoNumberRange = (numbers) =>
+    numbers.some((number) => number < LOTTO_RULES.MIN_RANGE || number > LOTTO_RULES.MAX_RANGE);
+
   test('로또 당첨 번호가 숫자가 아니면 결과를 확인할 수 없다.', () => {
     const winningNumber = ['ab', '1', '2', 3, 4, 5];
 
