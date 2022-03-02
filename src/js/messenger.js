@@ -28,6 +28,9 @@ class Messenger {
           alert(error.message);
         }
       },
+      LOTTO_GENERATE_COMPLETE: (lottos) => {
+        this.winnerMachine.receiveLottos(lottos);
+      },
     },
     view: {
       LOTTO_GENERATE_COMPLETE: (lottos) => {

@@ -1,18 +1,24 @@
-import { LOTTO_NUMBER_RANGE } from '../constants/constants';
+import { LOTTO_RULES } from '../constants/constants';
 import { isNumberInRange } from '../utils/utils';
 
 class LottoWinnerMachine {
   constructor() {
+    this.lottos = [];
     this.numbers = [];
     this.bonus = null;
     this.deliverMessage = () => {};
+    this.prize = LOTTO_RULES.PRIZE;
+    this.matches = {};
+  }
+
+  assignMessenger(deliverMessage) {
+    this.deliverMessage = deliverMessage;
   }
 
   setWinnerNumbers({ numbers, bonus }) {
     if (!this.#isFullWinnerNumberInput({ numbers, bonus })) {
       throw new Error('6개의 당첨 번호와 보너스 번호를 입력해야 합니다.');
     }
-
     const allNumbers = [...numbers, bonus].map((numberString) => Number(numberString));
     if (!this.#isUniqueInput(allNumbers)) {
       throw new Error('6개의 당첨 번호와 보너스 번호 중에 중복된 숫자가 있습니다.');
@@ -20,10 +26,47 @@ class LottoWinnerMachine {
     if (!this.#isValidLottoNumberArray(allNumbers)) {
       throw new Error('6개의 당첨 번호와 보너스 번호는 모두 1-45 사이의 자연수여야 합니다.');
     }
+    this.numbers = [...numbers].map((numberString) => Number(numberString));
+    this.bonus = bonus;
+    this.checkWins();
   }
 
-  assignMessenger(deliverMessage) {
-    this.deliverMessage = deliverMessage;
+  checkWins() {
+    this.lottos.forEach((lotto) => {
+      const match = this.calculateMatch(lotto);
+      this.matches[match] = this.matches[match] + 1 || 1;
+    });
+
+    this.calculateProfit();
+    this.deliverMessage({
+      message: 'WIN_CALCULATE_COMPLETE',
+      to: 'view',
+      params: { matches: this.matches, profit: this.profit },
+    });
+  }
+
+  calculateMatch(lotto) {
+    const match = this.numbers.filter((number) => lotto.has(number)).length;
+    if (match === 5 && lotto.has(this.bonus)) {
+      return '5+';
+    }
+    return `${match}`;
+  }
+
+  calculateProfit() {
+    const prizeMoney = Object.keys(this.matches).reduce((money, match) => {
+      if (this.prize[match]) {
+        return money + this.prize[match] * this.matches[match];
+      }
+      return money;
+    }, 0);
+    const cashInput = this.lottos.length * LOTTO_RULES.PRICE;
+
+    this.profit = (prizeMoney / cashInput) * 100 - 100;
+  }
+
+  receiveLottos(lottos) {
+    this.lottos = lottos;
   }
 
   #isFullWinnerNumberInput({ numbers, bonus }) {
@@ -40,8 +83,11 @@ class LottoWinnerMachine {
 
   #isValidLottoNumber(number) {
     return (
-      isNumberInRange({ number, max: LOTTO_NUMBER_RANGE.MAX, min: LOTTO_NUMBER_RANGE.MIN }) &&
-      Number.isInteger(number)
+      isNumberInRange({
+        number,
+        max: LOTTO_RULES.NUMBER_RANGE.MAX,
+        min: LOTTO_RULES.NUMBER_RANGE.MIN,
+      }) && Number.isInteger(number)
     );
   }
 }

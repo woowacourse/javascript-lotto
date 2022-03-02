@@ -1,15 +1,9 @@
-import {
-  CASH_INPUT_RANGE,
-  ERROR_MESSAGE,
-  LOTTO_NUMBER_COUNT,
-  LOTTO_NUMBER_RANGE,
-  LOTTO_PRICE,
-} from '../constants/constants';
+import { CASH_INPUT_RANGE, ERROR_MESSAGE, LOTTO_RULES } from '../constants/constants';
 import { generateRandomNumberInRange, isNumberInRange } from '../utils/utils';
 
 class LottoPurchaseMachine {
   constructor() {
-    this.lottoPrice = LOTTO_PRICE;
+    this.lottoPrice = LOTTO_RULES.PRICE;
     this.lottos = null;
     this.deliverMessage = () => {};
   }
@@ -25,6 +19,11 @@ class LottoPurchaseMachine {
     this.deliverMessage({
       message: 'LOTTO_GENERATE_COMPLETE',
       to: 'view',
+      params: [...this.lottos],
+    });
+    this.deliverMessage({
+      message: 'LOTTO_GENERATE_COMPLETE',
+      to: 'winnerMachine',
       params: [...this.lottos],
     });
   }
@@ -51,9 +50,9 @@ class LottoPurchaseMachine {
   #generateOneLotto() {
     return new Set(
       generateRandomNumberInRange({
-        min: LOTTO_NUMBER_RANGE.MIN,
-        max: LOTTO_NUMBER_RANGE.MAX,
-        count: LOTTO_NUMBER_COUNT,
+        min: LOTTO_RULES.NUMBER_RANGE.MIN,
+        max: LOTTO_RULES.NUMBER_RANGE.MAX,
+        count: LOTTO_RULES.NUMBER_COUNT,
       })
     );
   }
