@@ -55,6 +55,10 @@ header h1 {
   margin-left: 10px;
 }
 
+.purchase-button:hover {
+  cursor: pointer;
+}
+
 .purchase-status-container {
   margin-top: 28px;
   display: flex;
@@ -189,6 +193,10 @@ h2 {
   text-transform: uppercase;
   background: #00BCD4;
   color: #FFFFFF;
+}
+
+#show-result {
+  cursor: pointer;
 }
 
 #bonus-number {
