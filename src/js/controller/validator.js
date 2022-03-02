@@ -1,4 +1,4 @@
-import { MONEY_INPUT } from './constants';
+import { MONEY_INPUT, WINNING_LOTTO_DIGIT } from './constants';
 
 export const isThousandMultiple = money => money % MONEY_INPUT.MIN_PRICE === 0;
 
@@ -12,3 +12,5 @@ export const isValidMoneyInput = money => {
   return isThousandMultiple(money) && 
          isValidMoneyRange(money);
 }
+
+export const isDuplicatedLottos = lottos => new Set([...lottos]).size !== WINNING_LOTTO_DIGIT;
