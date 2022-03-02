@@ -1,10 +1,4 @@
-import {
-  validator,
-  isValidLottoNumberRange,
-  isValidLottoList,
-  isValidLotto,
-  isValidDuplicatedLottoNumber,
-} from '../utils/validator.js';
+import validator from '../utils/validator.js';
 import { getRandomInt } from '../utils/utils.js';
 
 import { ERROR_MESSAGE, LOTTO } from '../configs/contants.js';
@@ -51,11 +45,11 @@ describe('로또 번호를 생성하여', () => {
   );
 
   test('생성된 로또 번호가 정수여야한다.', () => {
-    expect(Number.isInteger(lottoNumber)).toBe(true);
+    expect(validator.checkLottoNumber(lottoNumber)).toBe(true);
   });
 
   test('생성된 로또 번호가 1부터 45 사이여야 한다.', () => {
-    expect(isValidLottoNumberRange(lottoNumber)).toBe(true);
+    expect(validator.checkLottoNumber(lottoNumber)).toBe(true);
   });
 });
 
@@ -65,19 +59,19 @@ describe('LottoModel은', () => {
   test('6개의 로또번호를 가진 로또를 생성할 수 있어야 한다.', () => {
     const lotto = LottoModel.issueLotto();
 
-    expect(isValidLotto(lotto)).toBe(true);
+    expect(validator.checkLottoNumberList(lotto.numbers)).toBe(true);
   });
 
   test('6개의 로또번호에 중복이 없어야 한다.', () => {
     const lotto = LottoModel.issueLotto();
 
-    expect(isValidDuplicatedLottoNumber(lotto)).toBe(true);
+    expect(validator.checkLottoNumberList(lotto.numbers)).toBe(true);
   });
 
   test('주어진 개수만큼 로또를 자동 구매할 수 있어야 한다.', () => {
     const lottoCount = 6;
     const lottoList = lottoModel.issueLottosWithCount(lottoCount);
 
-    expect(isValidLottoList(lottoList, lottoCount)).toBe(true);
+    expect(validator.checkLottoList(lottoList, lottoCount)).toBe(true);
   });
 });

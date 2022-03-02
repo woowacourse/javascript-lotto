@@ -11,26 +11,24 @@ const isValidMaxAmountRange = (purchaseAmount) => {
   return purchaseAmount <= PAYMENT.PURCHASE_AMOUNT.MAX;
 };
 
-export const isValidLottoNumberRange = (value) =>
+const isValidLottoNumberRange = (value) =>
   value >= LOTTO.NUMBER_RANGE.MIN && value <= LOTTO.NUMBER_RANGE.MAX;
 
-export const isValidlottoNumbers = (lottoNumbers) =>
+const isValidlottoNumbers = (lottoNumbers) =>
   lottoNumbers.length === LOTTO.NUMBER_LENGTH &&
   lottoNumbers.every(
     (lottoNumber) =>
       isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
   );
 
-export const isValidLotto = (lotto) => isValidlottoNumbers(lotto.numbers);
+const isValidDuplicatedLottoNumber = (lottoNumbers) =>
+  lottoNumbers.length === new Set(lottoNumbers).size;
 
-export const isValidLottoList = (lottoList, count) =>
+const isValidLottoList = (lottoList, count) =>
   lottoList.length === count &&
   lottoList.every((lotto) => lotto instanceof Lotto);
 
-export const isValidDuplicatedLottoNumber = (lotto) =>
-  lotto.numbers.length === new Set(lotto.numbers).size;
-
-export const validator = {
+const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
     if (!isNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
@@ -44,4 +42,20 @@ export const validator = {
       throw new Error(ERROR_MESSAGE.OUT_OF_MAX_AMOUNT_RANGE);
     }
   },
+  checkLottoNumber: (lottoNumber) => {
+    return (
+      Number.isInteger(lottoNumber) && isValidLottoNumberRange(lottoNumber)
+    );
+  },
+  checkLottoNumberList: (lottoNumbers) => {
+    return (
+      isValidlottoNumbers(lottoNumbers) &&
+      isValidDuplicatedLottoNumber(lottoNumbers)
+    );
+  },
+  checkLottoList: (lottoList, count) => {
+    return isValidLottoList(lottoList, count);
+  },
 };
+
+export default validator;

@@ -20,6 +20,7 @@
     "import/extensions": ["off"],
     "newline-before-return": 2,
     "class-methods-use-this": "off",
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-undef": "off"
   }
 }
