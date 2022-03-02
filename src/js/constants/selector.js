@@ -14,6 +14,11 @@ const ID = Object.freeze({
   MODAL_CONTAINER: '#modal-container',
   LOTTO_YIELD_SPAN: '#lotto-yield-span',
   RESTART_BUTTON: '#restart-button',
+  THREE_COUNT: '#three-count',
+  FOUR_COUNT: '#four-count',
+  FIVE_COUNT: '#five-count',
+  FIVE_BONUS_COUNT: '#five-bonus-count',
+  SIX_COUNT: '#six-count',
 });
 
 export default ID;

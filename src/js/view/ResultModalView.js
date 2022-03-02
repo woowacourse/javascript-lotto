@@ -25,7 +25,15 @@ export default class ResultModalView {
     this.$modalContainer.classList.remove('show-modal');
   }
 
-  //   renderWinningCounts(winningCounts) {}
+  renderWinningCounts(winningCounts) {
+    $(ID.THREE_COUNT).textContent = winningCounts.three;
+    $(ID.FOUR_COUNT).textContent = winningCounts.four;
+    $(ID.FIVE_COUNT).textContent = winningCounts.five;
+    $(ID.FIVE_BONUS_COUNT).textContent = winningCounts.fiveBonus;
+    $(ID.SIX_COUNT).textContent = winningCounts.six;
+  }
 
-  //   renderYield(lottoYield) {}
+  renderYield(lottoYield) {
+    $(ID.LOTTO_YIELD_SPAN).textContent = lottoYield;
+  }
 }

@@ -63,14 +63,14 @@ export default class LottoResult {
     let count = 0;
     for (let i = 0; i <= 5; i += 1) {
       for (let j = 0; j <= 5; j += 1) {
-        if (userLotto[i] === this.#winningNumbers[j]) {
+        if (userLotto.numbers[i] === this.#winningNumbers[j]) {
           count += 1;
         }
       }
     }
     if (count === 5) {
       for (let i = 0; i < 6; i += 1) {
-        if (userLotto[i] === this.#bonusNumber) {
+        if (userLotto.numbers[i] === this.#bonusNumber) {
           return 'fiveBonus';
         }
       }
@@ -87,7 +87,7 @@ export default class LottoResult {
       this.#winningCounts.fiveBonus * 30000000 +
       this.#winningCounts.six * 2000000000;
     const investmentMoney = this.lottoBundle.money;
-    this.#lottoYield = Math.floor(winningMoney / investmentMoney);
+    this.#lottoYield = Math.floor((winningMoney / investmentMoney) * 100);
   }
 
   get lottoYield() {

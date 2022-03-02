@@ -91,8 +91,8 @@ export default class LottoController {
   }
 
   renderResultModal(winningCounts, lottoYield) {
-    // this.resultModalView.renderWinningCounts(winningCounts);
-    // this.resultModalView.renderYield(lottoYield);
+    this.resultModalView.renderWinningCounts(winningCounts);
+    this.resultModalView.renderYield(lottoYield);
     this.resultModalView.showModal();
   }
 }

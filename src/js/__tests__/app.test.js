@@ -100,12 +100,12 @@ describe(
     // given
     const lottoBundle = new LottoBundle();
     lottoBundle.lottos = [
-      [2, 1, 3, 4, 5, 6],
-      [1, 2, 3, 24, 25, 17],
-      [7, 1, 3, 2, 4, 5],
-      [7, 1, 3, 2, 4, 5],
-      [5, 1, 2, 3, 4, 8],
-      [4, 3, 2, 1, 9, 15],
+      { numbers: [2, 1, 3, 4, 5, 6] },
+      { numbers: [1, 2, 3, 24, 25, 17] },
+      { numbers: [7, 1, 3, 2, 4, 5] },
+      { numbers: [7, 1, 3, 2, 4, 5] },
+      { numbers: [5, 1, 2, 3, 4, 8] },
+      { numbers: [4, 3, 2, 1, 9, 15] },
     ];
 
     const lottoResult = new LottoResult(lottoBundle);
@@ -134,7 +134,7 @@ describe(
       lottoResult.calculateLottoYield();
 
       // then
-      expect(lottoResult.lottoYield).toBe(2061);
+      expect(lottoResult.lottoYield).toBe(206155);
     });
   }),
 );
