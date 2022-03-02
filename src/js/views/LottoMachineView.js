@@ -19,6 +19,7 @@ export default class LottoMachineView {
     this.closeWinningResultModal();
     $('#show-number-toggle-container').classList.add(CLASS_DISPLAY_NONE);
     $('#winning-result-section').classList.add(CLASS_DISPLAY_NONE);
+    this.activatePurchaseForm();
   }
 
   updateChargeInput(value) {
@@ -33,6 +34,16 @@ export default class LottoMachineView {
     $(SELECTOR.LOTTO_TOTAL_NUMBER).innerHTML = lottoTotalNumber(lottos.length);
     $(SELECTOR.LOTTO_LIST_ICON).innerHTML = lottoListTemplate.icon(lottos.length);
     $(SELECTOR.LOTTO_LIST_NUMBER).innerHTML = lottoListTemplate.number(lottos);
+  }
+
+  activatePurchaseForm() {
+    $$('input', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.removeAttribute('disabled'));
+    $$('button', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.removeAttribute('disabled'));
+  }
+
+  disablePurchaseForm() {
+    $$('input', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.setAttribute('disabled', ''));
+    $$('button', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.setAttribute('disabled', ''));
   }
 
   showLottoIconList() {

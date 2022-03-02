@@ -1,8 +1,6 @@
-import { ERROR_MESSAGE, LOTTERY_TICKET_PRICE } from './constants/constants';
+import { ERROR_MESSAGE, LOTTERY_TICKET_PRICE, MAX_NUMBER_PURCHASE } from './constants/constants';
 import LotteryTicket from './LotteryTicket';
 import { divider } from './utils/util';
-
-const MAX_NUMBER_PURCHASE = 5;
 
 export default class LotteryTicketManager {
   #tickets;

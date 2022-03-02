@@ -1,8 +1,8 @@
 import LotteryTicketManager from './LotteryTicketManager';
 import LottoMachineView from './views/LottoMachineView';
 
-import { LOTTERY_TICKET_PRICE, SELECTOR } from './constants/constants';
-import { $, $$, divider } from './utils/util';
+import { MAX_NUMBER_PURCHASE, SELECTOR } from './constants/constants';
+import { $, $$ } from './utils/util';
 import { validateCharge, validateWinningNumbers } from './validation';
 import { calculateMatchResult, calculateProfitRatio } from './checkResult';
 
@@ -61,6 +61,8 @@ export default class LottoMachine {
     const { remainCharge } = this.lotteryTicketManager.purchaseLotteryTicket(chargeInputValue);
     this.lottoMachineView.updateLottoList(this.lotteryTicketManager.tickets);
     this.lottoMachineView.updateChargeInput(remainCharge);
+    if (this.lotteryTicketManager.tickets.length === MAX_NUMBER_PURCHASE)
+      this.lottoMachineView.disablePurchaseForm();
   }
 
   switchLottoListStyle() {

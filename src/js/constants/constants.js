@@ -5,6 +5,8 @@ export const LOTTERY_TICKET_NUMBER = {
   LENGTH: 6,
 };
 
+export const MAX_NUMBER_PURCHASE = 5;
+
 export const MIN_CHARGE_INPUT = 1000;
 export const MAX_CHARGE_INPUT = 5000;
 

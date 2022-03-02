@@ -45,6 +45,11 @@ body {
   border-radius: 4px;
 }
 
+.blue-button:disabled {
+  cursor: not-allowed;
+  background: gray;
+}
+
 .charge-input-wrap {
   display: flex;
   flex-direction: row;
