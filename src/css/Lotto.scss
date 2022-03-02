@@ -11,6 +11,10 @@
       text-align: right;
     }
   }
+
+  section.show {
+    display: block;
+  }
 }
 
 /* 로또 금액 입력 View 스타일 */
@@ -24,6 +28,8 @@ section.lotto-money-section {
 
 /* 로또 목록 입력 View 스타일 */
 section.lotto-list-section {
+  display: none;
+
   .lotto-list-container {
     display: grid;
     grid-template-columns: 80% 15%;
@@ -63,6 +69,8 @@ section.lotto-list-section {
 
 /* 로또 당첨번호 입력 View 스타일 */
 section.winning-number-section {
+  display: none;
+
   .winning-number-input-container {
     display: grid;
     grid-template-columns: repeat(9, 1fr);

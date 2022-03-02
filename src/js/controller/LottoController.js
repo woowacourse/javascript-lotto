@@ -25,12 +25,13 @@ export default class LottoController {
   handleMoneyInputSubmit({ moneyInputValue: money }) {
     try {
       checkValidMoneyInput(money);
-
       this.#LottosModel.buy(money);
+
+      this.#MoneyInputView.init();
       this.#LottoListView.showLottoList();
       this.#LottoListView.renderLottoList(this.#LottosModel.list);
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   }
 }

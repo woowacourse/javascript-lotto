@@ -3,8 +3,16 @@ import { SELECTOR } from '../constants/selector';
 
 export default class MoneyInputView {
   #container;
+  #moneyInput;
+
   constructor($element) {
     this.#container = $element;
+
+    this.#moneyInput = $($element, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`);
+  }
+
+  init() {
+    this.#moneyInput.value = '';
   }
 
   bindMoneyInputSubmit(handler) {
@@ -12,7 +20,7 @@ export default class MoneyInputView {
 
     $($container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).addEventListener('click', (event) => {
       event.preventDefault();
-      handler({ moneyInputValue: $($container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value });
+      handler({ moneyInputValue: this.#moneyInput.value });
     });
   }
 }
