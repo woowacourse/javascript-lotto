@@ -16,3 +16,22 @@ export const RULES = {
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
 };
+
+export const LOTTO_RANKING_REWARD = {
+  '1등': 2000000000,
+  '2등': 30000000,
+  '3등': 1500000,
+  '4등': 50000,
+  '5등': 5000,
+};
+
+export const RANKING_ACCORDING_TO_MATCH_COUNT = {
+  6: '1등',
+  '5+bonus': '2등',
+  5: '3등',
+  4: '4등',
+  3: '5등',
+  2: '꽝',
+  1: '꽝',
+  0: '꽝',
+};

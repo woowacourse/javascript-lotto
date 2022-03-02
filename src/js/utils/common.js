@@ -44,6 +44,10 @@ export const pickLottoNumber = count => {
   return numbers;
 };
 
-function shuffleArray(inputArray) {
+const shuffleArray = inputArray => {
   inputArray.sort(() => Math.random() - 0.5);
-}
+};
+
+export const getProfitRate = (totalProfit, usedMoney) => {
+  return (totalProfit / usedMoney) * 100;
+};
