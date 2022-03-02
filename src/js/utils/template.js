@@ -24,3 +24,4 @@ export const lottoReturnRateTemplate = (winRate) => {
     당신의 총 수익률은 ${winRate}%입니다.
   `;
 }
+

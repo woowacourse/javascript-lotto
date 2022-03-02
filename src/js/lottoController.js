@@ -11,6 +11,7 @@ export default class LottoController {
     this.lottoPurchaseResultView = lottoPurchaseResultView;
     this.userLottoNumberView = userLottoNumberView;
     this.userLottoModalView = userLottoModalView;
+    
   }
 
   init() {
