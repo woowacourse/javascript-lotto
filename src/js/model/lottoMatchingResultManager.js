@@ -35,11 +35,12 @@ export default class LottoMatchingResultManager {
         return winningLottoNumbers.includes(num);
       }).length;
 
-      const keyByMatchedNumCount = this.#getKeyByMatchedNumCount(
-        matchedNumCount,
-        lotto,
-        winningLottoBonusNumber
-      );
+      const keyByMatchedNumCount =
+        LottoMatchingResultManager.getKeyByMatchedNumCount(
+          matchedNumCount,
+          lotto,
+          winningLottoBonusNumber
+        );
 
       this.#lottoMatchingResult[keyByMatchedNumCount] += 1;
     });
@@ -47,7 +48,11 @@ export default class LottoMatchingResultManager {
     return this.#lottoMatchingResult;
   }
 
-  #getKeyByMatchedNumCount(matchedNumCount, lotto, winningLottoBonusNumber) {
+  static getKeyByMatchedNumCount(
+    matchedNumCount,
+    lotto,
+    winningLottoBonusNumber
+  ) {
     let key;
 
     switch (matchedNumCount) {

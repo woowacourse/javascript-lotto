@@ -14,21 +14,21 @@ export default class LottoCreator {
 
   createLottoList(lottoCount) {
     this.#lottoList = Array.from({ length: lottoCount }).map(() =>
-      this.#generateLotto()
+      LottoCreator.generateLotto()
     );
   }
 
-  #generateLotto() {
+  static generateLotto() {
     const lottoNum = new Set();
 
     while (lottoNum.size < LOTTO.NUMBER_LENGTH) {
-      lottoNum.add(this.#generateRandomNum());
+      lottoNum.add(LottoCreator.generateRandomNum());
     }
 
     return lottoNum;
   }
 
-  #generateRandomNum() {
+  static generateRandomNum() {
     return (
       Math.floor(Math.random() * (LOTTO.MAX_DIGIT - LOTTO.MIN_DIGIT + 1)) +
       LOTTO.MIN_DIGIT
