@@ -2,6 +2,7 @@ import { selectDom } from '../utils/utils';
 
 class ResultModalView {
   constructor() {
+    this.body = selectDom('body');
     this.modal = selectDom('.modal');
     this.matchResultTableDataList = this.modal.querySelectorAll('.match-result');
     this.profitSpan = selectDom('.profit', this.modal);
@@ -10,7 +11,7 @@ class ResultModalView {
   }
 
   renderResultModal(results) {
-    this.modal.classList.remove('hide');
+    this.toggleModal('open');
     this.matchResultTableDataList.forEach((td) => {
       const { matchCount } = td.dataset;
       const result = results.matches[matchCount] || 0;
@@ -21,9 +22,12 @@ class ResultModalView {
 
   toggleModal = (action) => {
     if (action === 'open') {
+      this.body.style.overflowY = 'hidden';
+      this.modal.style.top = `${window.scrollY}px`;
       this.modal.classList.remove('hide');
       return;
     }
+    this.body.style.overflowY = 'scroll';
     this.modal.classList.add('hide');
   };
 }
