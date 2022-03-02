@@ -3,10 +3,10 @@ import { WINNING_NUMBER_FORM } from './template.js';
 
 export default class WinningNumberView {
   constructor() {
-    this.initDom();
+    this.#initDom();
   }
 
-  initDom() {
+  #initDom() {
     this.container = document.getElementById('winning-number-container');
   }
 
@@ -31,7 +31,7 @@ export default class WinningNumberView {
     });
   }
 
-  nextFocusHandler(input) {
+  #nextFocusHandler(input) {
     const maxLength = input.getAttribute('maxlength');
     if (input.value.length >= maxLength) {
       input.value = input.value.substr(0, maxLength);
@@ -46,7 +46,7 @@ export default class WinningNumberView {
 
     inputs.forEach(input => {
       input.addEventListener('keyup', () => {
-        this.nextFocusHandler(input);
+        this.#nextFocusHandler(input);
       });
     });
   }

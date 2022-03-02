@@ -3,11 +3,11 @@ import PurchaseMoneyView from './purchaseMoneyView.js';
 
 export default class PopupView {
   constructor() {
-    this.initDom();
-    this.addCloseEvent();
+    this.#initDom();
+    this.#addCloseEvent();
   }
 
-  initDom() {
+  #initDom() {
     this.popup = document.getElementById('popup');
     this.popupBack = document.getElementById('popup-back');
     this.closeButton = document.getElementById('close-button');
@@ -22,21 +22,21 @@ export default class PopupView {
       'beforeend',
       getResultTemplate(result, rewardRate),
     );
-    this.visible();
+    this.#visible();
   }
 
-  visible() {
+  #visible() {
     this.popup.classList.toggle('hidden');
     this.popupBack.classList.toggle('popup-back');
   }
 
-  closeHandler() {
-    this.visible();
+  #closeHandler() {
+    this.#visible();
     this.popup.removeChild(this.popup.lastElementChild);
   }
 
-  addCloseEvent() {
-    this.closeButton.addEventListener('click', this.closeHandler.bind(this));
+  #addCloseEvent() {
+    this.closeButton.addEventListener('click', this.#closeHandler.bind(this));
   }
 
   addRestartEvent(resetEvent) {
@@ -44,7 +44,7 @@ export default class PopupView {
     restartButton.addEventListener('click', () => {
       resetEvent();
       new PurchaseMoneyView().resetInputValue();
-      this.closeHandler();
+      this.#closeHandler();
     });
   }
 }

@@ -6,10 +6,10 @@ import {
 
 export default class PurchasedLottoView {
   constructor() {
-    this.initDom();
+    this.#initDom();
   }
 
-  initDom() {
+  #initDom() {
     this.container = document.getElementById('purchased-lotto-container');
   }
 
@@ -18,11 +18,11 @@ export default class PurchasedLottoView {
     this.purchasedLottoCount = document.getElementById('purchased-lotto-count');
     this.purchasedLottoCount.textContent = lottoCount;
 
-    this.renderPurchasedLottoList(lottoCount, lottos);
-    this.addToggleClickEvent();
+    this.#renderPurchasedLottoList(lottoCount, lottos);
+    this.#addToggleClickEvent();
   }
 
-  renderPurchasedLottoList(lottoCount, lottos) {
+  #renderPurchasedLottoList(lottoCount, lottos) {
     this.singlePurchasedLottoList = document.getElementById(
       'single-purchased-lotto-list',
     );
@@ -40,14 +40,13 @@ export default class PurchasedLottoView {
     this.detailPurchasedLottoList.insertAdjacentHTML('beforeend', lottoList);
   }
 
-  addToggleClickEvent() {
+  #addToggleClickEvent() {
     this.toggle = document.getElementById('on-off-switch');
 
     this.toggle.addEventListener('click', () => {
-      [
-        this.singlePurchasedLottoList,
-        this.detailPurchasedLottoList
-      ].forEach(list => list.classList.toggle('hidden'));
+      [this.singlePurchasedLottoList, this.detailPurchasedLottoList].forEach(
+        list => list.classList.toggle('hidden'),
+      );
     });
   }
 
