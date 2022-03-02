@@ -13,6 +13,10 @@ export default class PopupView {
   }
 
   render(result, rewardRate) {
+    scroll({
+      behavior: 'smooth',
+      top: 0,
+    });
     this.popup.insertAdjacentHTML(
       'beforeend',
       getResultTemplate(result, rewardRate),
