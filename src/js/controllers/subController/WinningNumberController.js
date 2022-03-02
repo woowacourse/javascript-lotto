@@ -2,20 +2,30 @@ import WinningNumberView from '../../views/subViews/WinningNumberView.js';
 import { SELECTOR } from '../../configs/contants.js';
 
 export default class WinningNumberController {
-  static createCoincideCountList(winningNumbers, lottoNumbersList) {
+  static createCoincideCountList(lottoNumbersList, winningNumbers, bonus) {
     const countList = lottoNumbersList.map((lottoNumbers) =>
-      WinningNumberController.countCoincide(winningNumbers, lottoNumbers)
+      WinningNumberController.countCoincide(lottoNumbers, winningNumbers, bonus)
     );
 
     return countList;
   }
 
-  static countCoincide(winningNumbers, lottoNumbers) {
-    const coincideCount = winningNumbers.filter(
+  static countCoincide(lottoNumbers, winningNumbers, bonus) {
+    let coincideCount = winningNumbers.filter(
       (winningNumber, index) => winningNumber === lottoNumbers[index]
     ).length;
 
+    if (
+      WinningNumberController.checkBonus(coincideCount, lottoNumbers, bonus)
+    ) {
+      coincideCount += 0.5;
+    }
+
     return coincideCount;
+  }
+
+  static checkBonus(count, lottoNumbers, bonus) {
+    return lottoNumbers.find((number) => number === bonus) && count === 5;
   }
 
   constructor() {
