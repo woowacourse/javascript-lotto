@@ -5,3 +5,9 @@ export const validateCashInput = cash => {
     throw new Error(ALERT_MESSAGE.NOT_DIVISIBLE);
   }
 };
+
+export const validateWinningNumbers = (regularNumbers, bonusNumber) => {
+  if (new Set([...regularNumbers, bonusNumber]).size !== 7) {
+    throw new Error(ALERT_MESSAGE.DUPLICATED_NUMBERS);
+  }
+};

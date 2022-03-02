@@ -30,4 +30,5 @@ export const LOTTO_PRICE = 1000;
 
 export const ALERT_MESSAGE = {
   NOT_DIVISIBLE: `${LOTTO_PRICE}으로 나누어떨어지는 금액을 입력해주세요.`,
+  DUPLICATED_NUMBERS: '서로 다른 숫자를 입력해주세요 !',
 };

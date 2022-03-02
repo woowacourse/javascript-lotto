@@ -9,3 +9,13 @@ export const makeLottoNumbers = () => {
   }
   return lottoNumbers;
 };
+
+export const getWinningNumbers = ({ regularNumber, bonusNumber }) => {
+  const regularNumbers = [];
+  for (let element of regularNumber.values()) {
+    if (element.value) {
+      regularNumbers.push(Number(element.value));
+    }
+  }
+  return [regularNumbers, Number(bonusNumber.value)];
+};
