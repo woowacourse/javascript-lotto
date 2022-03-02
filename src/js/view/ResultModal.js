@@ -4,26 +4,21 @@ import View from '../core/View.js';
 
 export default class ResultModal extends View {
   _configureDOM() {
-    this.$modalContainer = $(ID_SELECTOR.MODAL_CONTAINER);
-    this.$lottoResult = $(ID_SELECTOR.LOTTO_RESULT);
-    this.$profitDescription = $(ID_SELECTOR.PROFIT_DESCRIPTION);
-    this.$restartButton = $(ID_SELECTOR.RESTART_BUTTON);
+    this.$lottoResult = $(ID_SELECTOR.LOTTO_RESULT, this.container);
+    this.$profitDescription = $(ID_SELECTOR.PROFIT_DESCRIPTION, this.container);
+    this.$restartButton = $(ID_SELECTOR.RESTART_BUTTON, this.container);
   }
 
   _bindEvents() {
-    this.$modalContainer.addEventListener('click', ({ target }) => {
+    this.container.addEventListener('click', ({ target }) => {
       const targetId = target.id;
       if (targetId !== ID_NAME.MODAL_CLOSE && targetId !== ID_NAME.MODAL_CONTAINER) return;
-      this.toggleModal();
+      this.hide();
     });
 
     this.$restartButton.addEventListener('click', () => {
       this.props.clickRestart();
     });
-  }
-
-  toggleModal() {
-    this.$modalContainer.classList.toggle(CLASS_NAME.MODAL_OPEN);
   }
 
   showLottoResult(result, profit) {
@@ -63,6 +58,6 @@ export default class ResultModal extends View {
     `,
     );
     this.$profitDescription.textContent = `당신의 총 수익률은 ${profit}% 입니다.`;
-    this.toggleModal();
+    this.show();
   }
 }

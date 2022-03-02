@@ -4,11 +4,10 @@ import View from '../core/View.js';
 
 export default class LottoListView extends View {
   _configureDOM() {
-    this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
-    this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
-    this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
-    this.$toggle = $(ID_SELECTOR.TOGGLE);
-    this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
+    this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS, this.container);
+    this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION, this.container);
+    this.$toggle = $(ID_SELECTOR.TOGGLE, this.container);
+    this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT, this.container);
   }
 
   _bindEvents() {
@@ -19,18 +18,10 @@ export default class LottoListView extends View {
     });
   }
 
-  showLottoListSection(lottoList) {
-    this.#displayLottoListSection();
+  renderLottoListSection(lottoList) {
+    this.show();
     this.#showDescription(lottoList.length);
     this.#showLottoList(lottoList);
-  }
-
-  hideLottoListSection() {
-    this.$lottoListSection.classList.add(CLASS_NAME.LOTTO_LIST_SECTION_DISPLAY_NONE);
-  }
-
-  #displayLottoListSection() {
-    this.$lottoListSection.classList.remove(CLASS_NAME.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }
 
   #showDescription(quantity) {

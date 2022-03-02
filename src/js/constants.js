@@ -26,14 +26,14 @@ export const ID_NAME = {
   MODAL_CONTAINER: 'modal-container',
   MODAL_CLOSE: 'modal-close',
 };
+
 export const CLASS_NAME = {
-  LOTTO_LIST_SECTION_DISPLAY_NONE: 'lotto-list__section-display-none',
   LOTTO_LIST: 'lotto-list',
   LOTTO_LIST_TICKET: 'lotto-list__ticket',
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
   UNFOLD: 'unfold',
-  WINNING_NUMBERS_SECTION_DISPLAY_NONE: 'winning-numbers__section-display-none',
   MODAL_OPEN: 'modal__open',
+  HIDE: 'hide',
 };
 
 export const LOTTO_PRICE = 1000;
