@@ -33,7 +33,7 @@ export default class Controller {
     try {
       validateWinningNumbers(reuglarNumbers, bonusNumber);
       this.#lottoData.setWinningNumbers(reuglarNumbers, bonusNumber);
-      this.#resultModalView.toggleModal();
+      this.#resultModalView.showLottoResult(...this.#lottoData.getLottoResult());
     } catch ({ message }) {
       alert(message);
     }
