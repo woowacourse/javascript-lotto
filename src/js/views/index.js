@@ -38,10 +38,11 @@ class LottoViewManager {
       this.#containerView.renderAlignState(payload);
     },
     [`${VIEW_ACTION.RENDER_STATISTICS}`]: (payload) => {
-      this.#resultView.renderStatisticsModal(payload);
+      this.#resultView.showStatisticsModal();
+      this.#resultView.renderStatisticsModalContents(payload);
     },
     [`${VIEW_ACTION.MODAL_CANCEL}`]: () => {
-      this.#resultView.hideWinStatisticsModal();
+      this.#resultView.hideWinStatisticsModalContents();
     },
   };
 }
