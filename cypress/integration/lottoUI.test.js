@@ -133,3 +133,30 @@ describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 �
       });
   });
 });
+
+describe('올바른 당첨번호/보너스번호를 입력한 경우', () => {
+  const input = 10000;
+  const lastWeekNumber = [20, 1, 3, 25, 19, 31];
+  const bounusNumber = 7;
+
+  beforeEach(() => {
+    cy.visit('/index.html');
+    cy.get(SELECTOR.PAYMENT_INPUT).type(input);
+    cy.get(SELECTOR.PAYMENT_BUTTON).click();
+    cy.get('.winning-number-input').each(($li, index) => {
+      cy.wrap($li).type(lastWeekNumber[index]);
+    });
+    cy.get('#bonus-number-input').type(bounusNumber);
+    cy.get('#result-checking-button').click();
+  });
+
+  it('올바른 당첨번호/보너스번호를 입력한 경우 모달 창이 보여진다', () => {
+    cy.get('.modal').should('be.visible');
+  });
+
+  it('다시 시작하기 버튼을 누르면 초기 화면으로 돌아간다', () => {
+    cy.get('#restart').click();
+    cy.get('.modal').should('not.be.visible');
+    cy.get(SELECTOR.PAYMENT_INPUT).should('be.empty');
+  });
+});
