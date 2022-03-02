@@ -41,8 +41,8 @@ export default class WinningNumberView extends View {
     this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
 
     const winningNumberForm = document.getElementById('winning-number-form');
-    this.winningNumberInputElements = document.getElementsByClassName(
-      'winning-number-input',
+    this.winningNumberInputs = document.querySelectorAll(
+      '.winning-number-input',
     );
 
     winningNumberForm.addEventListener('submit', this.submitHandler.bind(this));
@@ -51,15 +51,15 @@ export default class WinningNumberView extends View {
   submitHandler(e) {
     e.preventDefault();
 
-    const winningNumberList = Array.from(this.winningNumberInputElements).map(
-      el => (el.value === '' ? null : convertToNumber(el.value)),
+    const winningNumbers = this.winningNumberInputs.map(input =>
+      input.value === '' ? null : convertToNumber(input.value),
     );
 
     try {
-      validateWinningNumberList(winningNumberList);
+      validateWinningNumberList(winningNumbers);
       this.handlers
         .get('winningNumberSubmit')
-        .forEach(func => func(winningNumberList));
+        .forEach(func => func(winningNumbers));
       this.showModal();
     } catch (error) {
       this.resetInputElementsValue();
@@ -73,7 +73,7 @@ export default class WinningNumberView extends View {
   }
 
   resetInputElementsValue() {
-    Array.from(this.winningNumberInputElements).forEach(el => (el.value = ''));
+    this.winningNumberInputs.forEach(input => (input.value = ''));
   }
 
   resetScreen() {

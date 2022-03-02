@@ -1,16 +1,18 @@
 import View from './View';
 
-export default class WinningStatisticsModalView extends View {
+export default class LottoResultModalView extends View {
   constructor() {
     super();
 
+    //멤버변수 초기화
     this.app = document.getElementById('app');
     this.modal = document.getElementById('winning-statistics-modal');
     this.restartButton = document.getElementById('restart-button');
     this.closeButton = document.getElementById('close-button');
-    this.winningCounts = document.getElementsByClassName('winning-count');
+    this.winningCounts = document.querySelectorAll('.winning-count');
     this.totalProfitRate = document.getElementById('total-profit-rate');
 
+    //이벤트
     this.closeButton.addEventListener('click', this.hideModal.bind(this));
     this.restartButton.addEventListener(
       'click',
@@ -19,10 +21,11 @@ export default class WinningStatisticsModalView extends View {
   }
 
   renderLottoResult(lottoResult) {
-    const reverseRanking = Object.values(lottoResult).reverse();
+    const countPerRanking = Object.values(lottoResult);
 
-    Array.from(this.winningCounts).forEach(
-      (element, index) => (element.textContent = reverseRanking[index] + '개'),
+    this.winningCounts.forEach(
+      (winningCount, index) =>
+        (winningCount.textContent = `${countPerRanking[4 - index]}개`),
     );
   }
 
@@ -32,7 +35,7 @@ export default class WinningStatisticsModalView extends View {
 
   clickRestartButtonHandler() {
     this.hideModal();
-    this.handlers.get('winningStatisticsClick').forEach(func => func());
+    this.handlers.get('lottoResultModalClick').forEach(func => func());
   }
 
   hideModal() {
