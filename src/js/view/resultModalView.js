@@ -1,13 +1,15 @@
 import { selectDom } from '../utils/utils';
 
 class ResultModalView {
-  constructor() {
+  constructor(resetFunction) {
     this.body = selectDom('body');
     this.modal = selectDom('.modal');
     this.matchResultTableDataList = this.modal.querySelectorAll('.match-result');
     this.profitSpan = selectDom('.profit', this.modal);
     this.closeButton = selectDom('.close-button', this.modal);
     this.closeButton.addEventListener('click', this.toggleModal);
+    this.restartButton = selectDom('.restart-button', this.modal);
+    this.restartButton.addEventListener('click', resetFunction);
   }
 
   renderResultModal(results) {
@@ -18,6 +20,14 @@ class ResultModalView {
       td.textContent = result || 0;
     });
     this.profitSpan.textContent = results.profit;
+  }
+
+  resetView() {
+    this.toggleModal('close');
+    this.matchResultTableDataList.forEach((td) => {
+      td.textContent = '';
+    });
+    this.profitSpan.textContent = '';
   }
 
   toggleModal = (action) => {

@@ -20,6 +20,14 @@ class WinnerNumberView {
     this.winnerNumberSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
   }
 
+  resetView() {
+    this.winnerNumberSection.classList.add(CLASSNAMES.HIDE_CLASSNAME);
+    this.winnerNumberInputs.forEach((input) => {
+      input.value = '';
+    });
+    this.bonusNumberInput.value = '';
+  }
+
   handleWinnerNumberInput = () => {
     const winnerNumbers = [...this.winnerNumberInputs].map(({ value }) => value);
     const bonusNumber = this.bonusNumberInput.value;

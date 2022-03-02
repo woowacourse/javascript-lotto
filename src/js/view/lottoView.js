@@ -8,10 +8,17 @@ class LottoView {
     this.cashInputView = new CashInputView();
     this.purchasedLottoView = new PurchasedLottoView();
     this.winnerNumberView = new WinnerNumberView();
-    this.resultModalView = new ResultModalView();
+    this.resultModalView = new ResultModalView(this.resetView);
 
     this.deliverMessage = null;
   }
+
+  resetView = () => {
+    this.cashInputView.resetView();
+    this.purchasedLottoView.resetView();
+    this.winnerNumberView.resetView();
+    this.resultModalView.resetView();
+  };
 
   assignMessenger(deliverMessage) {
     this.cashInputView.assignMessenger(deliverMessage);
@@ -19,6 +26,7 @@ class LottoView {
   }
 
   renderLottos(lottos) {
+    this.cashInputView.disableCashInput();
     this.purchasedLottoView.renderLottos(lottos);
     this.winnerNumberView.render();
   }

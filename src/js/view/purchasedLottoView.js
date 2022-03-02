@@ -1,9 +1,4 @@
-import {
-  CLASSNAMES,
-  DISABLED_PURCHASE_BUTTON_TEXT,
-  LOTTO_IMAGE,
-  SELECTOR,
-} from '../constants/constants';
+import { CLASSNAMES, LOTTO_IMAGE, SELECTOR } from '../constants/constants';
 import { div, label, p } from '../utils/createElement';
 import { selectDom } from '../utils/utils';
 
@@ -14,27 +9,29 @@ class PurchasedLottoView {
     this.showNumberToggleButton.addEventListener('click', this.#toggleLottoNumbersShow);
     this.lottoContainer = selectDom(SELECTOR.LOTTO_CONTAINER_CLASS, this.purchasedLottoSection);
     this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
+    this.totalAmountLabel = null;
+  }
+
+  renderLottos(lottos) {
+    this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
+
+    this.totalAmountLabel = this.#generatePurchasedLabel(lottos.length);
+    this.lottoContainer.prepend(this.totalAmountLabel);
+    this.lottoGrid.append(...this.#generateLottoElementsArray(lottos));
+  }
+
+  resetView() {
+    while (this.lottoGrid.firstChild) {
+      this.lottoGrid.removeChild(this.lottoGrid.lastChild);
+    }
+    this.totalAmountLabel.remove();
+    this.purchasedLottoSection.classList.add(CLASSNAMES.HIDE_CLASSNAME);
+    this.lottoGrid.className = 'lotto-grid hide-numbers';
   }
 
   #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
     this.lottoGrid.className = `lotto-grid${!isVisible && ' hide-numbers'}`;
   };
-
-  #disableCashInput() {
-    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
-    const cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
-    cashInput.disabled = true;
-    cashInputButton.disabled = true;
-    cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
-  }
-
-  renderLottos(lottos) {
-    this.#disableCashInput();
-    this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
-
-    this.lottoContainer.prepend(this.#generatePurchasedLabel(lottos.length));
-    this.lottoGrid.append(...this.#generateLottoElementsArray(lottos));
-  }
 
   #generatePurchasedLabel(length) {
     return label({ children: `총 ${length}개를 구매하였습니다.` });
