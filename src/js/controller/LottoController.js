@@ -42,7 +42,7 @@ export default class LottoController {
       const count = money / LOTTO.PRICE_PER_TICKET;
       this.lottoBundleModel.createLottoBundle(count);
       this.renderLotto(count);
-      this.renderResult();
+      this.resultView.showResultView();
     } catch (error) {
       alert(error.message);
     }
@@ -60,8 +60,8 @@ export default class LottoController {
   checkResult(numbers) {
     try {
       validatePrizeNumber([...numbers.prizeNumbers, numbers.bonusNumber]);
-      this.statisticsView.showStatisticsModal();
       this.calculateResult(numbers);
+      this.statisticsView.showStatisticsModal();
       this.statisticsView.renderStatistics(
         this.lottoPrizeModel.prizeCount,
         this.lottoPrizeModel.rateOfReturn,
@@ -76,10 +76,6 @@ export default class LottoController {
     this.issuedTicketView.renderTicketCount(count);
     this.issuedTicketView.renderIssuedTickets(this.lottoBundleModel.lottos);
     this.purchaseView.deactivatePurchaseForm();
-  }
-
-  renderResult() {
-    this.resultView.showResultView();
   }
 
   calculateResult(numbers) {
