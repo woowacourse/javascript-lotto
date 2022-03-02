@@ -82,19 +82,19 @@ export default class LottoController {
       return;
     }
 
-    const result = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
+    const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
 
     if (this.lottoResult.isWinningNumbersDuplicated()) {
       alert(EXCEPTION.DUPLICATED_NUMBERS);
       return;
     }
 
-    this.#renderResultModal(result.winningCounts, result.lottoYield);
+    this.#renderResultModal(winningCounts, lottoYield, winningMoney);
   }
 
-  #renderResultModal(winningCounts, lottoYield) {
+  #renderResultModal(winningCounts, lottoYield, winningMoney) {
     this.resultModalView.renderWinningCounts(winningCounts);
-    this.resultModalView.renderYield(lottoYield);
+    this.resultModalView.renderYield(lottoYield, winningMoney);
     this.resultModalView.showModal();
   }
 

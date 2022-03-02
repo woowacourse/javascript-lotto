@@ -13,3 +13,7 @@ function insertAutoComma(obj) {
 }
 
 export default insertAutoComma;
+
+export const insertComma = (original) => {
+  return original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};

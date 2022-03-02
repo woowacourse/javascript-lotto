@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const purchaseView = new PurchaseView(lottoBundle);
   const issuedTicketView = new IssuedTicketView(lottoBundle);
   const winningNumbersView = new WinningNumbersView(lottoResult);
-  const resultModalView = new ResultModalView();
+  const resultModalView = new ResultModalView(lottoBundle);
   const controller = new LottoController(
     lottoBundle,
     purchaseView,

@@ -13,7 +13,7 @@
         <h2 hidden>로또 구매 양식</h2>
         <form id="purchase-form">
           <label for="purchase-input">구입할 금액을 입력해주세요.</label>
-          <input id="purchase-input" type="text" placeholder="금액" autofocus />
+          <input id="purchase-input" type="text" placeholder="금액" autofocus autocomplete="off" />
           <button id="purchase-button" type="submit">구입</button>
           <input id="purchase-input-reset" type="reset" hidden />
         </form>
@@ -97,7 +97,11 @@
               </tr>
             </tbody>
           </table>
-          <div class="result-span">당신의 총 수익률은 <span id="lotto-yield-span"></span>%입니다.</div>
+          <div class="result-span">
+            당신은 <span id="purchase-money-span"></span>원으로 <br />총 <span id="lotto-profit-span"></span>원의 수익을
+            거두었으며,<br />
+            총 수익률은 <span id="lotto-yield-span"></span>%입니다.
+          </div>
           <button id="restart-button">다시 시작하기</button>
         </div>
       </div>

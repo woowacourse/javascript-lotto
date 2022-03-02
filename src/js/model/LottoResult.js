@@ -11,6 +11,8 @@ export default class LottoResult {
 
   #lottoYield = 0;
 
+  #winningMoney = 0;
+
   set winningNumbers(numbers) {
     this.#winningNumbers = numbers;
   }
@@ -31,6 +33,7 @@ export default class LottoResult {
     return {
       winningCounts: this.#winningCounts,
       lottoYield: this.#lottoYield,
+      winningMoney: this.#winningMoney,
     };
   }
 
@@ -76,6 +79,7 @@ export default class LottoResult {
       this.#winningCounts.fiveBonus * 30000000 +
       this.#winningCounts[6] * 2000000000;
     const investmentMoney = this.lottoBundle.receivedMoney;
+    this.#winningMoney = winningMoney;
     this.#lottoYield = Math.floor((winningMoney / investmentMoney) * 100);
   }
 

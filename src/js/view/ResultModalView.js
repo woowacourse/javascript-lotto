@@ -1,10 +1,12 @@
 import EVENT from '../constants/event';
 import ID from '../constants/selector';
+import { insertComma } from '../utils/autoComma';
 import { emit } from '../utils/event';
 import { $ } from '../utils/selector';
 
 export default class ResultModalView {
-  constructor() {
+  constructor(lottoBundle) {
+    this.lottoBundle = lottoBundle;
     this.$modalContainer = $(ID.MODAL_CONTAINER);
     this.$modal = $('.modal');
     this.$closeButton = $('.close');
@@ -14,7 +16,9 @@ export default class ResultModalView {
     this.$fiveCount = $(ID.FIVE_COUNT);
     this.$fiveBonusCount = $(ID.FIVE_BONUS_COUNT);
     this.$sixCount = $(ID.SIX_COUNT);
+    this.$lottoProfitSpan = $(ID.LOTTO_PROFIT_SPAN);
     this.$lottoYieldSpan = $(ID.LOTTO_YIELD_SPAN);
+    this.$purchaseMoneySpan = $(ID.PURCHASE_MONEY_SPAN);
     this.#bindEvents();
   }
 
@@ -43,7 +47,9 @@ export default class ResultModalView {
     this.$sixCount.textContent = winningCounts['6'];
   }
 
-  renderYield(lottoYield) {
-    this.$lottoYieldSpan.textContent = lottoYield;
+  renderYield(lottoYield, winningMoney) {
+    this.$purchaseMoneySpan.textContent = insertComma(this.lottoBundle.receivedMoney);
+    this.$lottoProfitSpan.textContent = insertComma(winningMoney);
+    this.$lottoYieldSpan.textContent = insertComma(lottoYield);
   }
 }
