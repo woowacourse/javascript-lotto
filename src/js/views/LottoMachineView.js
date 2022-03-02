@@ -17,6 +17,8 @@ export default class LottoMachineView {
     this.initializeInputValues();
     this.updateLottoList(lottos);
     this.closeWinningResultModal();
+    $('#show-number-toggle-container').classList.add(CLASS_DISPLAY_NONE);
+    $('#winning-result-section').classList.add(CLASS_DISPLAY_NONE);
   }
 
   updateChargeInput(value) {
@@ -24,6 +26,10 @@ export default class LottoMachineView {
   }
 
   updateLottoList(lottos) {
+    if (lottos.length !== 0 && $('#show-number-toggle-container').classList.contains(CLASS_DISPLAY_NONE))
+      $('#show-number-toggle-container').classList.remove(CLASS_DISPLAY_NONE);
+    if (lottos.length !== 0 && $('#winning-result-section').classList.contains(CLASS_DISPLAY_NONE))
+      $('#winning-result-section').classList.remove(CLASS_DISPLAY_NONE);
     $(SELECTOR.LOTTO_TOTAL_NUMBER).innerHTML = lottoTotalNumber(lottos.length);
     $(SELECTOR.LOTTO_LIST_ICON).innerHTML = lottoListTemplate.icon(lottos.length);
     $(SELECTOR.LOTTO_LIST_NUMBER).innerHTML = lottoListTemplate.number(lottos);
