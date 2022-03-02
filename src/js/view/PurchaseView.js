@@ -18,7 +18,7 @@ export default class PurchaseView {
   handleSubmit(e) {
     e.preventDefault();
     const money = this.getMoneyToPurchase();
-    emit(this.$purchaseForm, CUSTOM_EVENT.SUBMIT, { money });
+    emit(this.$purchaseForm, CUSTOM_EVENT.PURCHASE, { money });
   }
 
   getMoneyToPurchase() {

@@ -22,6 +22,11 @@ export default class StatisticsView {
     }
   }
 
+  showStatisticsModal() {
+    this.$statisticsModalContainer.classList.remove('hidden');
+    this.$statisticsModalContainer.classList.add('show-flex');
+  }
+
   hideStatisticsModal() {
     this.$statisticsModalContainer.classList.add('hidden');
     this.$statisticsModalContainer.classList.remove('show-flex');

@@ -1,11 +1,13 @@
-import { $ } from '../utils/selector.js';
-import { on } from '../utils/event.js';
+import { $, $$ } from '../utils/selector.js';
+import { on, emit } from '../utils/event.js';
+import CUSTOM_EVENT from '../constants/event.js';
 
 export default class ResultView {
   constructor() {
     this.$resultForm = $('#result-form');
     this.$resultContainer = $('#result-container');
-    this.$statisticsModalContainer = $('#statistics-modal-container');
+    this.$prizeNumberInput = $$('.prize-number-input');
+    this.$bonusNumberInput = $('#bonus-number-input');
     this.bindEvents();
   }
 
@@ -15,8 +17,12 @@ export default class ResultView {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.$statisticsModalContainer.classList.remove('hidden');
-    this.$statisticsModalContainer.classList.add('show-flex');
+    const numbers = {
+      prizeNumbers: this.$prizeNumberInput.map((input) => input.valueAsNumber),
+      bonusNumber: this.$bonusNumberInput.valueAsNumber,
+    };
+
+    emit(this.$resultForm, CUSTOM_EVENT.CHECK_RESULT, { numbers });
   }
 
   showResultView() {
