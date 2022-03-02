@@ -25,6 +25,10 @@ export default class LottoListView extends View {
     this.#showLottoList(lottoList);
   }
 
+  hideLottoListSection() {
+    this.$lottoListSection.classList.add(CLASS_NAME.LOTTO_LIST_SECTION_DISPLAY_NONE);
+  }
+
   #displayLottoListSection() {
     this.$lottoListSection.classList.remove(CLASS_NAME.LOTTO_LIST_SECTION_DISPLAY_NONE);
   }

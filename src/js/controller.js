@@ -16,7 +16,9 @@ export default class Controller {
     submitWinningNumbersHandler: (reuglarNumbers, bonusNumber) =>
       this.#sumbitWinningNumberHandler(reuglarNumbers, bonusNumber),
   });
-  #resultModalView = new ResultModalView();
+  #resultModalView = new ResultModalView({
+    clickRestart: () => this.#restartHandler(),
+  });
 
   #submitCashHanlder(cash) {
     try {
@@ -37,5 +39,13 @@ export default class Controller {
     } catch ({ message }) {
       alert(message);
     }
+  }
+
+  #restartHandler() {
+    this.#purchaseFormView.clearInput();
+    this.#lottoListView.hideLottoListSection();
+    this.#winningNumbersFormView.hideWinningNumberSection();
+    this.#resultModalView.toggleModal();
+    this.#lottoData.init();
   }
 }

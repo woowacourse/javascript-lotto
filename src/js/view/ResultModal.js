@@ -7,6 +7,7 @@ export default class ResultModal extends View {
     this.$modalContainer = $(ID_SELECTOR.MODAL_CONTAINER);
     this.$lottoResult = $(ID_SELECTOR.LOTTO_RESULT);
     this.$profitDescription = $(ID_SELECTOR.PROFIT_DESCRIPTION);
+    this.$restartButton = $(ID_SELECTOR.RESTART_BUTTON);
   }
 
   _bindEvents() {
@@ -14,6 +15,10 @@ export default class ResultModal extends View {
       const targetId = target.id;
       if (targetId !== ID_NAME.MODAL_CLOSE && targetId !== ID_NAME.MODAL_CONTAINER) return;
       this.toggleModal();
+    });
+
+    this.$restartButton.addEventListener('click', () => {
+      this.props.clickRestart();
     });
   }
 

@@ -36,6 +36,7 @@ export const getWinningResult = (lottoList, { regularNumbers, bonusNumber }) => 
     [5, 0],
     ['LOSE', 0],
   ]);
+
   lottoList.forEach(lotto => {
     lotto = [...lotto];
     const matchedNumberCount = getMatchedNumberCount(lotto, regularNumbers);

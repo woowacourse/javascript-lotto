@@ -13,4 +13,8 @@ export default class PurchaseFormView extends View {
       this.props.submitCashHandler(event.target.elements.cash.value);
     });
   }
+
+  clearInput() {
+    this.$purchaseForm.elements.cash.value = '';
+  }
 }

@@ -19,4 +19,8 @@ export default class WinningNumbersFormView extends View {
   showWinningNumbersSection() {
     this.$winningNumberSection.classList.remove(CLASS_NAME.WINNING_NUMBERS_SECTION_DISPLAY_NONE);
   }
+
+  hideWinningNumberSection() {
+    this.$winningNumberSection.classList.add(CLASS_NAME.WINNING_NUMBERS_SECTION_DISPLAY_NONE);
+  }
 }

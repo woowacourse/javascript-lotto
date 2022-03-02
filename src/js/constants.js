@@ -19,6 +19,7 @@ export const ID_SELECTOR = {
   MODAL_CLOSE: '#modal-close',
   LOTTO_RESULT: '#lotto-result',
   PROFIT_DESCRIPTION: '#profit-description',
+  RESTART_BUTTON: '#restart-lotto',
 };
 
 export const ID_NAME = {

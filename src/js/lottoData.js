@@ -30,4 +30,9 @@ export default class LottoData {
     profit = (profit / (this.#lottoList.length * 1000)) * 100;
     return [winningResult, profit];
   }
+
+  init() {
+    this.#lottoList = [];
+    this.#winningNumbers = [];
+  }
 }
