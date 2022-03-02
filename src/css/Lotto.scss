@@ -56,6 +56,12 @@ section.lotto-list-section {
     }
 
     &.list {
+      max-height: 15rem;
+      overflow-y: scroll;
+      background-color: #f3f3f3;
+      border-radius: $border-radius;
+      padding: 0 1rem;
+
       > .item {
         display: block;
 
