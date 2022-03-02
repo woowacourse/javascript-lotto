@@ -10,9 +10,11 @@ export const SELECTOR = Object.freeze({
     NUMBER_TOGGLE: 'lotto-number-toggle',
     LOTTO_MONEY_SECTION: 'lotto-money-section',
     LOTTO_LIST_SECTION: 'lotto-list-section',
+    LOTTO_WINNING_NUMBER_SECTION: 'winning-number-section',
 
     LOTTO_ITEM_CONTAINER: 'lotto-item-container',
     LOTTO_ITEM: 'item',
     LOTTO_ITEM_NUMBER: 'item-number',
+    LOTTO_WINNING_NUMBER: 'winning-number-input',
   }),
 });
