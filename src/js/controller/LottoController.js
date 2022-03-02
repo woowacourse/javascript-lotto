@@ -1,6 +1,5 @@
 import { on } from '../utils/event.js';
 import EVENT from '../constants/event.js';
-import LottoBundle from '../model/LottoBundle.js';
 
 /**
  * @module controller/LottoController

@@ -7,6 +7,7 @@ export default class WinningNumbersView {
   constructor(lottoResult) {
     this.lottoResult = lottoResult;
     this.$winningNumbersForm = $(ID.WINNING_NUMBERS_FORM);
+    this.$winningNumbersInput = $(ID.WINNING_NUMBERS_RESET);
     this.#bindEvents();
   }
 
@@ -34,6 +35,6 @@ export default class WinningNumbersView {
   }
 
   resetInput() {
-    $('#winning-numbers-reset').click();
+    this.$winningNumbersInput.click();
   }
 }

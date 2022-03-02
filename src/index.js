@@ -4,7 +4,7 @@ import LottoBundle from './js/model/LottoBundle.js';
 import PurchaseView from './js/view/PurchaseView.js';
 import IssuedTicketView from './js/view/IssuedTicketView.js';
 import LottoResult from './js/model/LottoResult.js';
-import WinningNumbersView from './js/view/winningNumbersView.js';
+import WinningNumbersView from './js/view/WinningNumbersView.js';
 import ResultModalView from './js/view/ResultModalView.js';
 
 window.addEventListener('DOMContentLoaded', () => {

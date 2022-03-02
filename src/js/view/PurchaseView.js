@@ -17,6 +17,7 @@ export default class PurchaseView {
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);
+    this.$purchaseInputReset = $(ID.PURCHASE_INPUT_RESET);
     this.#bindEvents();
   }
 
@@ -58,6 +59,6 @@ export default class PurchaseView {
   }
 
   resetInput() {
-    $('#purchase-reset').click();
+    this.$purchaseInputReset.click();
   }
 }
