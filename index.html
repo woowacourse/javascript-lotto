@@ -13,7 +13,7 @@
         <label>구입할 금액을 입력해주세요.</label>
 
         <div class="input-wrap">
-          <input id="fare-input" class="lotto-app-input" type="number" placeholder="금액" />
+          <input id="fare-input" class="lotto-app-input" type="number" placeholder="금액" required min="1000" />
           <button id="fare-button" class="lotto-app-button">구입</button>
         </div>
       </form>
@@ -41,15 +41,15 @@
         </div>
         <div class="number-container">
           <div class="match-numbers">
-            <input class="lotto-app-input match-number-input" type="text" />
-            <input class="lotto-app-input match-number-input" type="text" />
-            <input class="lotto-app-input match-number-input" type="text" />
-            <input class="lotto-app-input match-number-input" type="text" />
-            <input class="lotto-app-input match-number-input" type="text" />
-            <input class="lotto-app-input match-number-input" type="text" />
+            <input class="lotto-app-input match-number-input" type="text" required/>
+            <input class="lotto-app-input match-number-input" type="text" required/>
+            <input class="lotto-app-input match-number-input" type="text" required/>
+            <input class="lotto-app-input match-number-input" type="text" required/>
+            <input class="lotto-app-input match-number-input" type="text" required/>
+            <input class="lotto-app-input match-number-input" type="text" required/>
           </div>
           <div class="bonus-number">
-            <input class="lotto-app-input match-number-input" type="text" />
+            <input class="lotto-app-input match-number-input" type="text" required/>
           </div>
         </div>
         <button class="lotto-app-button result-button">결과 확인하기</button>
