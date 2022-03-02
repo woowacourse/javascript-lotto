@@ -1,6 +1,6 @@
 import PaymentController from './subController/PaymentController.js';
 import TicketController from './subController/TicketController.js';
-import WinningNumberContoroller from './subController/WinningNumberContoroller';
+import WinningNumberController from './subController/WinningNumberController';
 
 export default class LottoController {
   constructor(model, view) {
@@ -17,7 +17,7 @@ export default class LottoController {
   setSubControllers() {
     this.paymentController = new PaymentController(this);
     this.ticketController = new TicketController(this);
-    this.winningNumberController = new WinningNumberContoroller();
+    this.winningNumberController = new WinningNumberController();
   }
 
   didPurchaseLottos() {
