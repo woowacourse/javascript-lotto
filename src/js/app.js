@@ -11,10 +11,13 @@ class LottoGameManager {
 
   #lottoViewManager = null;
 
-  #initializeManagers() {
+  start() {
     const { bindEvent, emitEvent } = generateEventFactory();
-
     this.#bindEventHandler(bindEvent);
+    this.#initializeManagers(emitEvent);
+  }
+
+  #initializeManagers(emitEvent) {
     this.#lottoDomainManager = new LottoDomainManager();
     this.#lottoViewManager = new LottoViewManager(emitEvent);
   }
@@ -96,9 +99,5 @@ class LottoGameManager {
   onClickRestartButton = () => {
     this.start();
   };
-
-  start() {
-    this.#initializeManagers();
-  }
 }
 export default LottoGameManager;
