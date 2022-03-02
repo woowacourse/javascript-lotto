@@ -3,17 +3,14 @@ import { SELECTOR } from '../../configs/contants.js';
 
 export default class WinningNumberController {
   static createCoincideCountList(winningNumbers, lottoNumbersList) {
-    const countList = lottoNumbersList.map((lottoNumbers) => {
-      return WinningNumberController.calculateCoincideCount(
-        winningNumbers,
-        lottoNumbers
-      );
-    });
+    const countList = lottoNumbersList.map((lottoNumbers) =>
+      WinningNumberController.countCoincide(winningNumbers, lottoNumbers)
+    );
 
     return countList;
   }
 
-  static calculateCoincideCount(winningNumbers, lottoNumbers) {
+  static countCoincide(winningNumbers, lottoNumbers) {
     const coincideList = winningNumbers.filter(
       (winningNumber, index) => winningNumber === lottoNumbers[index]
     );
