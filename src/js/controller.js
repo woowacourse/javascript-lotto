@@ -9,7 +9,7 @@ export default class Controller {
   #model = new Model();
   #purchaseFormView = new PurchaseFormView();
   #lottoListView = new LottoListView();
-  #WinningNumberView = new WinningNumberView();
+  #winningNumberView = new WinningNumberView();
 
   constructor() {
     this.#bindEventHandlers();
@@ -17,7 +17,7 @@ export default class Controller {
 
   #bindEventHandlers() {
     this.#purchaseFormView.bindSubmitCash(cash => this.#handleSubmitCash(cash));
-    this.#WinningNumberView.bindCheckResult(winningNumbers =>
+    this.#winningNumberView.bindCheckResult(winningNumbers =>
       this.#handleCheckResult(winningNumbers),
     );
   }
@@ -33,5 +33,10 @@ export default class Controller {
     }
   }
 
-  #handleCheckResult(pickedNumbers) {}
+  #handleCheckResult(pickedNumbers) {
+    this.#model.setWinningLottoQuantity(pickedNumbers);
+    const winningLottoQuantity = this.#model.getWinningLottoQuantity();
+    const profitRatio = this.#model.calculateProfitRatio();
+    this.#winningNumberView.showLottoResult(winningLottoQuantity, profitRatio);
+  }
 }

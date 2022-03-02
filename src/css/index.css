@@ -269,7 +269,7 @@ h1 {
   height: 36px;
 }
 
-.modal-background {
+.result-modal-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -281,11 +281,11 @@ h1 {
   background-color: var(--color-dimmed);
 }
 
-.modal-background.open {
+.result-modal-background.open {
   display: flex;
 }
 
-.modal-section {
+.result-modal-section {
   position: relative;
   width: 350px;
   height: 500px;
@@ -297,12 +297,12 @@ h1 {
   border-radius: 4px;
 }
 
-.modal-heading2 {
+.result-modal-heading2 {
   font-size: 20px;
   margin-bottom: 32px;
 }
 
-.modal-grid-container {
+.result-modal-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -310,7 +310,7 @@ h1 {
   margin-bottom: 16px;
 }
 
-.modal-grid-item {
+.result-modal-grid-item {
   line-height: 24px;
   height: 40px;
   text-align: center;
@@ -318,19 +318,19 @@ h1 {
   border-bottom: 1px solid var(--color-grid-border);
 }
 
-.modal-grid-item:nth-child(1),
-.modal-grid-item:nth-child(2),
-.modal-grid-item:nth-child(3) {
+.result-modal-grid-item:nth-child(1),
+.result-modal-grid-item:nth-child(2),
+.result-modal-grid-item:nth-child(3) {
   font-weight: 600;
   border-top: 1px solid var(--color-grid-border);
 }
 
-.modal-profit-ratio {
+.result-modal-profit-ratio-description {
   font-weight: 600;
   margin-bottom: 32px;
 }
 
-.modal-close {
+.result-modal-close {
   background-color: var(--color-white);
   color: black;
   width: 14px;
@@ -340,7 +340,7 @@ h1 {
   right: 16px;
 }
 
-.modal-reset {
+.result-modal-reset {
   width: 152px;
   height: 36px;
 }

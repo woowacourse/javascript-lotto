@@ -49,11 +49,11 @@ describe('로또 구매 테스트', () => {
 
     const winningLottoQuantity = model.getWinningLottoQuantity();
 
-    expect(winningLottoQuantity[3]).toBe(2);
-    expect(winningLottoQuantity[4]).toBe(0);
-    expect(winningLottoQuantity[5]).toBe(0);
-    expect(winningLottoQuantity[5.5]).toBe(1);
-    expect(winningLottoQuantity[6]).toBe(1);
+    expect(winningLottoQuantity['3개']).toBe(2);
+    expect(winningLottoQuantity['4개']).toBe(0);
+    expect(winningLottoQuantity['5개']).toBe(0);
+    expect(winningLottoQuantity['5개+보너스볼']).toBe(1);
+    expect(winningLottoQuantity['6개']).toBe(1);
     expect(model.calculateProfitRatio()).toBe(40600200);
   });
 });

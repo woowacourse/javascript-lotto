@@ -14,6 +14,11 @@ export const ID_SELECTOR = {
   LOTTO_LISTS: 'lotto-lists',
   LOTTO_LIST_SECTION: 'lotto-list-section',
   PICKED_NUMBERS_FORM: 'picked-numbers-form',
+  RESULT_MODAL_BACKGROUND: 'result-modal-background',
+  RESULT_MODAL_GRID_CONTAINER: 'result-modal-grid-container',
+  RESULT_MODAL_CLOSE: 'result-modal-close',
+  RESULT_MODAL_RESET: 'result-modal-reset',
+  RESULT_MODAL_PROFIT_RATIO: 'result-modal-profit-ratio',
 };
 
 export const CLASS_SELECTOR = {
@@ -22,6 +27,7 @@ export const CLASS_SELECTOR = {
   LOTTO_LIST_TICKET: 'lotto-list__ticket',
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
   UNFOLD: 'unfold',
+  OPEN: 'open',
 };
 
 export const LOTTO_PRICE = 1000;
@@ -31,9 +37,9 @@ export const ALERT_MESSAGE = {
 };
 
 export const WINNING_PRIZE = {
-  3: 5000,
-  4: 50000,
-  5: 1500000,
-  5.5: 30000000,
-  6: 2000000000,
+  '3개': 5000,
+  '4개': 50000,
+  '5개': 1500000,
+  '5개+보너스볼': 30000000,
+  '6개': 2000000000,
 };

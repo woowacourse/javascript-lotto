@@ -3,11 +3,11 @@ export default class Model {
   #cash = 0;
   #lottoList = [];
   #winningLottoQuantity = {
-    3: 0,
-    4: 0,
-    5: 0,
-    5.5: 0,
-    6: 0,
+    '3개': 0,
+    '4개': 0,
+    '5개': 0,
+    '5개+보너스볼': 0,
+    '6개': 0,
   };
 
   getCash() {
@@ -49,6 +49,7 @@ export default class Model {
     this.#lottoList.map(lotto => {
       this.#winningLottoQuantity[countSameNumber(lotto, pickedNumber)] += 1;
     });
+    console.log('this.#winningLottoQuantity', this.#winningLottoQuantity);
   }
 
   calculateProfitRatio() {
@@ -78,8 +79,8 @@ function countSameNumber(arr1, arr2) {
 
   const winningCount = winningNumbers.filter(element => arr1.includes(element)).length;
   if (winningCount === 5 && arr1.includes(bonusNumber)) {
-    return 5.5;
+    return '5개+보너스볼';
   }
 
-  return winningCount;
+  return `${winningCount}개`;
 }
