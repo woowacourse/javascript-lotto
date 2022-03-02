@@ -15,6 +15,7 @@ export class Controller {
     this.bindShowResultEvent();
     this.bindCloseModalEvent();
     this.bindRestartEvent();
+    this.bindWinningNumbersEvent();
   }
 
   bindPurchaseEvent() {
@@ -35,6 +36,13 @@ export class Controller {
 
   bindRestartEvent() {
     this.modalView.restartBtn.addEventListener('click', this.#restartLotto.bind(this));
+  }
+
+  bindWinningNumbersEvent() {
+    this.commonView.winningLottoContainer.addEventListener(
+      'input',
+      this.#getNextInputFocus.bind(this)
+    );
   }
 
   #purchaseLotto(e) {
@@ -88,5 +96,16 @@ export class Controller {
     this.lottoGame.reStartLottos();
     this.commonView.initView();
     this.modalView.initModalView();
+  }
+
+  #getNextInputFocus(e) {
+    const $nextInput = e.target.nextElementSibling;
+    if (e.target.value.length < 2) {
+      return;
+    }
+    if ($nextInput) {
+      $nextInput.focus();
+      return;
+    }
   }
 }
