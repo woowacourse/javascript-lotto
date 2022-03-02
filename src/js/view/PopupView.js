@@ -8,16 +8,21 @@ export default class PopupView {
 
   initDom() {
     this.popup = document.getElementById('popup');
+    this.popupBack = document.getElementById('popup-back');
     this.closeButton = document.getElementById('close-button');
   }
 
   render(result, percent) {
-    this.popup.insertAdjacentHTML('beforeend', getResultTemplate(result, percent));
+    this.popup.insertAdjacentHTML(
+      'beforeend',
+      getResultTemplate(result, percent),
+    );
     this.visible();
   }
 
   visible() {
     this.popup.classList.toggle('hidden');
+    this.popupBack.classList.toggle('popup-back');
   }
 
   closeHandler() {

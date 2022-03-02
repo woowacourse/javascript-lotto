@@ -1,3 +1,10 @@
+.popup-back {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: var(--popup-bg-color);
+}
+
 #popup {
   position: absolute;
   width: 350px;
