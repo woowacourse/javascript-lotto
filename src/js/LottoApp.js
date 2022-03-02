@@ -1,4 +1,4 @@
-import { isPositiveInteger, isDivisibleBy } from './utils';
+import { getPurchasedLottoCount } from './utils';
 import { CLASS_NAME, SELECTOR, MONEY } from './constants';
 import Lotto from './Lotto';
 import createTemplate from './templates';
@@ -73,10 +73,15 @@ export default class LottoApp {
     const $paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
 
     try {
-      const purchasedLottoCount = isDivisibleBy(
-        isPositiveInteger($paymentInput.valueAsNumber),
+      const purchasedLottoCount = getPurchasedLottoCount(
+        $paymentInput.valueAsNumber,
         MONEY.STANDARD
       );
+
+      // const purchasedLottoCount = isDivisibleBy(
+      //   isPositiveInteger($paymentInput.valueAsNumber),
+      //   MONEY.STANDARD
+      // );
 
       toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 

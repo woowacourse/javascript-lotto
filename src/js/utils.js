@@ -1,15 +1,31 @@
 import { ERROR_MESSAGE, LOTTO } from './constants';
 
-export const isPositiveInteger = (payment) => {
-  if (!Number.isInteger(payment) || payment <= 0) {
+export const isString = (payment) => {
+  return typeof payment === 'string';
+};
+
+export const isEqualToZero = (payment) => {
+  return payment === 0;
+};
+
+export const isNegativeInteger = (payment) => {
+  return Number.isInteger(payment) && payment < 0;
+};
+
+export const hasRemainder = (payment, price) => {
+  return payment % price !== 0;
+};
+
+export const getPurchasedLottoCount = (payment, price) => {
+  if (
+    isString(payment) ||
+    isNegativeInteger(payment) ||
+    isEqualToZero(payment)
+  ) {
     throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
   }
 
-  return payment;
-};
-
-export const isDivisibleBy = (payment, price) => {
-  if (payment % price !== 0) {
+  if (hasRemainder(payment, price)) {
     throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_STANDARD);
   }
 

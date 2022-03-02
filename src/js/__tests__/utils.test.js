@@ -1,6 +1,8 @@
 import {
-  isPositiveInteger,
-  isDivisibleBy,
+  isNegativeInteger,
+  isEqualToZero,
+  isString,
+  hasRemainder,
   getRateOfReturn,
   createRandomNumberList,
   shuffleArray,
@@ -33,43 +35,58 @@ expect.extend({
   },
 });
 
-describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케이스)', () => {
-  test('구입할 금액이 양의 정수가 아닐 경우 에러메시지를 보여준다. 입력: -1, 실패 케이스', () => {
-    const payment = -1;
+describe('구입할 금액이 문자열인지 확인한다.', () => {
+  test('구입할 금액이 문자열인 경우', () => {
+    const payment = 'asd';
 
-    expect(() => {
-      isPositiveInteger(payment);
-    }).toThrowError();
+    expect(isString(payment)).toBe(true);
   });
 
-  test('구입할 금액이 양의 정수가 아닐 경우 에러메시지를 보여준다. 입력: " ", 실패 케이스', () => {
-    const payment = ' ';
+  test('구입할 금액이 문자열이 아닌 경우', () => {
+    const payment = 3000;
 
-    expect(() => {
-      isPositiveInteger(payment);
-    }).toThrowError();
-  });
-
-  test('구입할 금액이 양의 정수일 경우 입력한 금액을 반환한다. 입력: 3, 성공 케이스', () => {
-    const payment = 3;
-
-    expect(isPositiveInteger(payment)).toBe(3);
+    expect(isString(payment)).toBe(false);
   });
 });
 
-describe(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는지 확인한다 (실패/성공 케이스)`, () => {
-  test(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지 않은 경우 에러메시지를 보여준다. 입력: 33, 실패 케이스`, () => {
-    const payment = 33;
+describe('구입할 금액이 0인지 확인한다.', () => {
+  test('구입할 금액이 0인 경우.', () => {
+    const payment = 0;
 
-    expect(() => {
-      isDivisibleBy(payment, MONEY.STANDARD);
-    }).toThrowError();
+    expect(isEqualToZero(payment)).toBe(true);
   });
-
-  test(`구입 금액이 ${MONEY.STANDARD}으로 나누어 떨어질 경우 (구입 금액/${MONEY.STANDARD})을 반환한다. 입력: 3000, 성공 케이스`, () => {
+  test('구입할 금액이 0이 아닌 경우.', () => {
     const payment = 3000;
 
-    expect(isDivisibleBy(payment, MONEY.STANDARD)).toBe(3);
+    expect(isEqualToZero(payment)).toBe(false);
+  });
+});
+
+describe('구입할 금액이 음의 정수인지 확인한다', () => {
+  test('구입할 금액이 음의 정수인 경우. 입력: -1', () => {
+    const payment = -1;
+
+    expect(isNegativeInteger(payment)).toBe(true);
+  });
+
+  test('구입할 금액이 음의 정수가 아닌 경우. 입력: 3000', () => {
+    const payment = 3000;
+
+    expect(isNegativeInteger(payment)).toBe(false);
+  });
+});
+
+describe(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는지 확인한다.`, () => {
+  test(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지지 않는 경우.`, () => {
+    const payment = 33;
+
+    expect(hasRemainder(payment, MONEY.STANDARD)).toBe(true);
+  });
+
+  test(`구입 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는 경우.`, () => {
+    const payment = 3000;
+
+    expect(hasRemainder(payment, MONEY.STANDARD)).toBe(false);
   });
 });
 
@@ -220,6 +237,7 @@ test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () =
 
   expect(lotto.totalWinningAmount()).toBe(testWinningAmount);
 });
+``;
 
 test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () => {
   const purchasedAmount = 2000;
