@@ -20,16 +20,34 @@ export default class WinningNumberView {
 
   addSubmitEvent(submitHandler) {
     const form = document.getElementById('winning-number-form');
-    const inputs = document.getElementsByClassName('winning-number-input');
+    const inputs = document.querySelectorAll('.winning-number-input');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       const numbers = [];
-      for (let i = 0; i < inputs.length; i++) {
-        numbers.push(convertToNumber(inputs.item(i).value));
-      }
+      inputs.forEach(input => numbers.push(convertToNumber(input.value)));
 
       submitHandler(numbers);
+    });
+  }
+
+  nextFocusHandler(input) {
+    const maxLength = input.getAttribute('maxlength');
+    if (input.value.length >= maxLength) {
+      input.value = input.value.substr(0, maxLength);
+      if (input.nextElementSibling) {
+        input.nextElementSibling.focus();
+      }
+    }
+  }
+
+  addNextInputFocusingEvent() {
+    const inputs = document.querySelectorAll('.winning-number-input');
+
+    inputs.forEach(input => {
+      input.addEventListener('keyup', () => {
+        this.nextFocusHandler(input);
+      });
     });
   }
 }

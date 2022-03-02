@@ -6,12 +6,18 @@ import WinningNumberView from '../view/WinningNumberView.js';
 import PopupView from '../view/PopupView.js';
 
 import { CONFIRM_MESSAGE, RULES, REWARD } from '../constants/index.js';
-import { validatePurchaseMoney, isEmpty, validateWinningNumbers } from '../util/validator.js';
+import {
+  validatePurchaseMoney,
+  isEmpty,
+  validateWinningNumbers,
+} from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
     this.#init();
-    this.view.purchaseMoneyView.addSubmitEvent(this.#onSubmitPurchaseMoneyHandler.bind(this));
+    this.view.purchaseMoneyView.addSubmitEvent(
+      this.#onSubmitPurchaseMoneyHandler.bind(this),
+    );
   }
 
   #init() {
@@ -36,7 +42,10 @@ export default class LottoMachineController {
     this.view.purchasedLottoView.render(lottoCount, this.lottos);
     this.view.winningNumberView.render();
 
-    this.view.winningNumberView.addSubmitEvent(this.#onSubmitWinningNumberHandler.bind(this));
+    this.view.winningNumberView.addSubmitEvent(
+      this.#onSubmitWinningNumberHandler.bind(this),
+    );
+    this.view.winningNumberView.addNextInputFocusingEvent();
   }
 
   #onSubmitPurchaseMoneyHandler(purchaseMoney) {
@@ -44,10 +53,10 @@ export default class LottoMachineController {
       validatePurchaseMoney(purchaseMoney);
     } catch (error) {
       this.view.purchaseMoneyView.resetInputValue();
-      alert(error);
+      alert(error.message);
       return;
     }
-    
+
     if (isEmpty(this.lottos)) {
       this.#purchaseLotto(purchaseMoney);
       return;
@@ -85,7 +94,11 @@ export default class LottoMachineController {
       }
 
       let correctBonusNumCount = 0;
-      for (let i = RULES.LOTTO_NUMS; i < RULES.LOTTO_NUMS + RULES.BONUS_NUMS; i++) {
+      for (
+        let i = RULES.LOTTO_NUMS;
+        i < RULES.LOTTO_NUMS + RULES.BONUS_NUMS;
+        i++
+      ) {
         if (lottoList.includes(numbers[i])) {
           correctBonusNumCount++;
         }
@@ -126,13 +139,13 @@ export default class LottoMachineController {
     try {
       validateWinningNumbers(numbers);
     } catch (error) {
-      alert(error);
+      alert(error.message);
       return;
     }
 
     const results = this.#countCorrectNumber(this.lottos, numbers);
     const totalReward = this.#calculateTotalReward(results);
-    
+
     this.view.popupView.render(results, totalReward / results.length / 10);
     this.view.popupView.addRestartEvent(this.#reset.bind(this));
   }

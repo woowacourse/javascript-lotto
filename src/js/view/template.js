@@ -38,7 +38,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
   </div>
 `;
 
-const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
+const INPUT_ELEMENT = `<input type="number" class="winning-number-input" min="1" max="45" maxlength="2" />`;
 
 const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
@@ -47,7 +47,7 @@ const WINNING_NUMBER_FORM = `
       <div id="win-number-box">   
         <label class="winning-number-label">당첨 번호</label>
         <div class="input-box">
-        ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
+          ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
         </div>
       </div>
       <div id="bonus-number-box">
@@ -85,12 +85,22 @@ const getResultTemplate = (result, percent) => `
         <tr>
           <td>5개</td>
           <td>${REWARD.THIRD.toLocaleString('ko-KR')}</td>
-          <td>${result.filter(correct => correct.win === 5 && correct.bonus === 0).length}개</td>
+          <td>
+            ${
+              result.filter(correct => correct.win === 5 && correct.bonus === 0)
+                .length
+            }개
+          </td>
         </tr>
         <tr>
           <td>5개+보너스볼</td>
           <td>${REWARD.SECOND.toLocaleString('ko-KR')}</td>
-          <td>${result.filter(correct => correct.win === 5 && correct.bonus === 1).length}개</td>
+          <td>
+            ${
+              result.filter(correct => correct.win === 5 && correct.bonus === 1)
+                .length
+            }개
+          </td>
         </tr>
         <tr>
           <td>6개</td>
@@ -99,7 +109,9 @@ const getResultTemplate = (result, percent) => `
         </tr>
       </tbody>
     </table>
-    <div id="result-percent">당신의 총 수익률은 ${percent.toLocaleString('ko-KR')}%입니다.</div>
+    <div id="result-percent">
+      당신의 총 수익률은 ${percent.toLocaleString('ko-KR')}%입니다.
+    </div>
     <button id="restart-button">다시 시작하기</button>
   </div>
 `;
