@@ -6,9 +6,11 @@ export default class WinningNumbers {
   constructor() {
     this.#numbers = new Set();
   }
+
   get numbers() {
     return this.#numbers;
   }
+
   pushNumber(number) {
     if (!isPositiveInteger(number)) {
       return;

@@ -66,8 +66,8 @@ body {
   display: none;
 }
 
-.lotto-list-section.show {
-  display: block;
+.show {
+  display: block !important;
 }
 
 .lotto-list-container {

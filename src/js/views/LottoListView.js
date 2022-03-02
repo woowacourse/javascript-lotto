@@ -7,9 +7,6 @@ export default class LottoListView {
 
   constructor($element) {
     this.#container = $element;
-  }
-
-  bindLottoNumberToggle() {
     $(this.#container, `#${SELECTOR.ID.NUMBER_TOGGLE}`).addEventListener(
       'click',
       this.toggleButtonHandler.bind(this)
