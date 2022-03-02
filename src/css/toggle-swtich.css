@@ -1,0 +1,54 @@
+:root {
+  --toggle-track-background-color: #8b8b8b;
+  --toggle-track-circle-color: #ededed;
+  --not-checked-box-color: #fff;
+  --checked-box-color: #80deea;
+}
+.toggle-switch input[type='checkbox'] {
+  display: none;
+}
+
+.toggle-track {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 14px;
+  border-radius: 60px;
+  margin-top: 25px;
+  margin-left: 25px;
+  background: var(--toggle-track-background-color);
+  cursor: pointer;
+}
+
+.toggle-track:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: -15px;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  background: var(--toggle-track-circle-color);
+  border-radius: 100%;
+  transition: left 0.3s;
+}
+
+.toggle-switch input[type='checkbox'] + label .toggle-track:after {
+  display: inline-block;
+  position: absolute;
+  right: 8px;
+  color: var(--not-checked-box-color);
+}
+
+.toggle-switch input[type='checkbox']:checked + label .toggle-track {
+  background: var(--checked-box-color);
+}
+
+.toggle-switch input[type='checkbox']:checked + label .toggle-track:before {
+  left: 12px;
+}
+
+.toggle-switch input[type='checkbox']:checked + label .toggle-track:after {
+  left: 5px;
+}
