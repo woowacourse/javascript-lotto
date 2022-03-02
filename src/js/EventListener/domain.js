@@ -4,8 +4,9 @@ import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
 import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
 import LottosView from '../View/LottosView.js';
 import MatchResultView from '../View/MatchResultView.js';
+import ValidationError from '../ValidationError/index.js';
 import { extractNumber } from '../utils/index.js';
-import { LOTTO_RULES } from '../constant/index.js';
+import { LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 
 const validator = new ValidatorImpl();
 const lottoCollection = new LottoCollectionImpl();
@@ -34,4 +35,14 @@ export const writingWinningNumber = (e) => {
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
     matchResultView.tabNextInput(Number(e.currentTarget.dataset.index));
   }
+};
+
+export const tryClickConfirmResultButton = () => {
+  if (lottoCollection.isEmpty()) {
+    throw new ValidationError(ERROR_MESSAGE.EMPTY_OF_LOTTO);
+  }
+
+  const winningNumber = matchResultView.getInputValue();
+
+  validator.validateWinningNumber(winningNumber);
 };
