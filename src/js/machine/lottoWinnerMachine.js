@@ -38,10 +38,12 @@ class LottoWinnerMachine {
     });
 
     this.calculateProfit();
+    const matches = { ...this.matches };
+    const { profit } = this;
     this.deliverMessage({
-      message: 'WIN_CALCULATE_COMPLETE',
+      message: 'PROFIT_CALCULATE_COMPLETE',
       to: 'view',
-      params: { matches: this.matches, profit: this.profit },
+      params: { matches, profit },
     });
   }
 

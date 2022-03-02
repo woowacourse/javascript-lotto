@@ -36,6 +36,9 @@ class Messenger {
       LOTTO_GENERATE_COMPLETE: (lottos) => {
         this.view.renderLottos(lottos);
       },
+      PROFIT_CALCULATE_COMPLETE: (result) => {
+        this.view.renderResultModal(result);
+      },
     },
   };
 }
