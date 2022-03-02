@@ -51,9 +51,9 @@ export default class Controller {
 
   #restartHandler() {
     this.#purchaseFormView.reset();
-    this.#lottoListView.hide();
-    this.#winningNumbersFormView.hide();
-    this.#resultModalView.hide();
+    this.#winningNumbersFormView.reset();
     this.#lottoUser.reset();
+    this.#lottoListView.hide();
+    this.#resultModalView.hide();
   }
 }

@@ -17,6 +17,8 @@ export const ID_SELECTOR = {
   LOTTO_LIST_SECTION: '#lotto-list-section',
   WINNING_NUMBERS_SECTION: '#winning-numbers-section',
   WINNING_NUMBERS_FORM: '#winning-numbers-form',
+  REGULAR_NUMBER_INPUT: '#regular-number',
+  BONUS_NUMBER_INPUT: '#bonus-number',
   MODAL_CONTAINER: '#modal-container',
   MODAL_CLOSE: '#modal-close',
   LOTTO_RESULT: '#lotto-result',
