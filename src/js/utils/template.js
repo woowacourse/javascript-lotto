@@ -28,16 +28,14 @@ export const lottoWinningNumberInputTemplate = () => {
         <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</p>
         <div>
           <label for="lotto-winning-number">당첨 번호</label>
-          <input id="lotto-winning-number" class="lotto-winning-number-container" type="number" />
-          <input class="lotto-winning-number-container" type="number" />
-          <input class="lotto-winning-number-container" type="number" />
-          <input class="lotto-winning-number-container" type="number" />
-          <input class="lotto-winning-number-container" type="number" />
-          <input class="lotto-winning-number-container" type="number" />
+          <input id="lotto-winning-number" class="lotto-winning-number-container" maxlength="2" />
+          ${'<input class="lotto-winning-number-container" maxlength="2" />'.repeat(
+            5
+          )}
         </div>
         <div>
           <label for="lotto-winning-bonus-number">보너스 번호</label>
-          <input id="lotto-winning-bonus-number" class="lotto-winning-number-container" type="number" />
+          <input id="lotto-winning-bonus-number" class="lotto-winning-number-container" maxlength="2" />
         </div>
         <button type="submit">결과 확인하기</button>
       </form>
