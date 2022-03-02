@@ -19,6 +19,9 @@ class Messenger {
           alert(error.message);
         }
       },
+      RESTART_APP: () => {
+        this.purchaseMachine.resetData();
+      },
     },
     winnerMachine: {
       WINNER_NUMBER_INPUT: (winnerNumbers) => {
@@ -30,6 +33,9 @@ class Messenger {
       },
       LOTTO_GENERATE_COMPLETE: (lottos) => {
         this.winnerMachine.receiveLottos(lottos);
+      },
+      RESTART_APP: () => {
+        this.winnerMachine.resetData();
       },
     },
     view: {

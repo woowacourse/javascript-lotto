@@ -4,7 +4,7 @@ import { generateRandomNumberInRange, isNumberInRange } from '../utils/utils';
 class LottoPurchaseMachine {
   constructor() {
     this.lottoPrice = LOTTO_RULES.PRICE;
-    this.lottos = null;
+    this.lottos = [];
     this.deliverMessage = () => {};
   }
 
@@ -26,6 +26,10 @@ class LottoPurchaseMachine {
       to: 'winnerMachine',
       params: [...this.lottos],
     });
+  }
+
+  resetData() {
+    this.lottos = [];
   }
 
   #validateCashInput(cashInput) {

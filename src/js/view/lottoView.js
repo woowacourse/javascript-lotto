@@ -8,9 +8,15 @@ class LottoView {
     this.cashInputView = new CashInputView();
     this.purchasedLottoView = new PurchasedLottoView();
     this.winnerNumberView = new WinnerNumberView();
-    this.resultModalView = new ResultModalView(this.resetView);
+    this.resultModalView = new ResultModalView(this.restartApp);
 
     this.deliverMessage = null;
+  }
+
+  restartApp() {
+    this.resetView();
+    this.deliverMessage({ message: 'RESTART_APP', to: 'purchaseMachine' });
+    this.deliverMessage({ message: 'RESTART_APP', to: 'winnerMachine' });
   }
 
   resetView = () => {

@@ -3,11 +3,11 @@ import { isNumberInRange } from '../utils/utils';
 
 class LottoWinnerMachine {
   constructor() {
+    this.deliverMessage = () => {};
+    this.prize = LOTTO_RULES.PRIZE;
     this.lottos = [];
     this.numbers = [];
     this.bonus = null;
-    this.deliverMessage = () => {};
-    this.prize = LOTTO_RULES.PRIZE;
     this.matches = {};
   }
 
@@ -69,6 +69,13 @@ class LottoWinnerMachine {
 
   receiveLottos(lottos) {
     this.lottos = lottos;
+  }
+
+  resetData() {
+    this.lottos = [];
+    this.numbers = [];
+    this.bonus = null;
+    this.matches = {};
   }
 
   #isFullWinnerNumberInput({ numbers, bonus }) {
