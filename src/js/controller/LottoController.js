@@ -1,4 +1,5 @@
 import LottoBundle from '../model/LottoBundle.js';
+import LottoPrize from '../model/LottoPrize.js';
 import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
 import ResultView from '../view/resultView.js';
@@ -8,10 +9,13 @@ import LOTTO from '../constants/lotto.js';
 import CUSTOM_EVENT from '../constants/event.js';
 import { validateMoney } from '../validator/moneyValidator.js';
 import { validatePrizeNumber } from '../validator/prizeNumberValidator.js';
+import returnSameNumberCount from '../utils/compareArray.js';
 
 export default class LottoController {
   constructor() {
-    this.model = new LottoBundle();
+    this.lottoBundleModel = new LottoBundle();
+    this.lottoPrizeModel = new LottoPrize();
+
     this.purchaseView = new PurchaseView();
     this.issuedTicketView = new IssuedTicketView();
     this.resultView = new ResultView();
@@ -36,7 +40,7 @@ export default class LottoController {
     try {
       validateMoney(money);
       const count = money / LOTTO.PRICE_PER_TICKET;
-      this.model.createLottoBundle(count);
+      this.lottoBundleModel.createLottoBundle(count);
       this.renderLotto(count);
       this.renderResult();
     } catch (error) {
@@ -57,6 +61,7 @@ export default class LottoController {
     try {
       validatePrizeNumber([...numbers.prizeNumbers, numbers.bonusNumber]);
       this.statisticsView.showStatisticsModal();
+      this.calculateResult(numbers);
     } catch (error) {
       alert(error.message);
     }
@@ -65,11 +70,29 @@ export default class LottoController {
   renderLotto(count) {
     this.issuedTicketView.showTicketContainer();
     this.issuedTicketView.renderTicketCount(count);
-    this.issuedTicketView.renderIssuedTickets(this.model.lottos);
+    this.issuedTicketView.renderIssuedTickets(this.lottoBundleModel.lottos);
     this.purchaseView.deactivatePurchaseForm();
   }
 
   renderResult() {
     this.resultView.showResultView();
+  }
+
+  calculateResult(numbers) {
+    if (this.lottoPrizeModel.isCalculated) {
+      return;
+    }
+
+    this.lottoPrizeModel.setState();
+    this.lottoBundleModel.lottos.forEach((lotto) => {
+      this.lottoPrizeModel.countPrize(
+        returnSameNumberCount(lotto.numbers, numbers.prizeNumbers),
+        lotto.numbers,
+        numbers.bonusNumber,
+      );
+    });
+    this.lottoPrizeModel.calculateRateOfReturn(
+      this.lottoBundleModel.lottos.length * LOTTO.PRICE_PER_TICKET,
+    );
   }
 }
