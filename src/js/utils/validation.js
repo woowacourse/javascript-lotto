@@ -1,24 +1,24 @@
 import { AMOUNT, ERROR_MESSAGES, LOTTO_NUMBER } from "./constants.js";
 
-const isValidMinimumAmount = (amount) => {
+export const isValidMinimumAmount = (amount) => {
   return amount >= AMOUNT.MINIMUM;
 };
 
-const isValidMaximumAmount = (amount) => {
+export const isValidMaximumAmount = (amount) => {
   return amount <= AMOUNT.MAXIMUM;
 };
 
-const isValidAmountUnit = (amount) => {
+export const isValidAmountUnit = (amount) => {
   return amount % AMOUNT.UNIT === 0;
 };
 
-const isValidWinningNumbers = (numbers) => {
+export const isValidWinningNumbers = (numbers) => {
   return numbers.every(
     (number) => number >= LOTTO_NUMBER.RANGE_MIN && number <= LOTTO_NUMBER.RANGE_MAX,
   );
 };
 
-const isDuplicatedNumbers = (numbers) => {
+export const isDuplicatedNumbers = (numbers) => {
   return numbers.length !== new Set(numbers).size;
 };
 
