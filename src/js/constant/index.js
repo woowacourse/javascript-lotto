@@ -7,5 +7,5 @@ export const LOTTO_RULES = Object.freeze({
 });
 
 export const ERROR_MESSAGE = Object.freeze({
-  LACK_OF_FARE: '요금은 1000원 이상 투입해주세요!',
+  LACK_OF_FARE: `요금은 ${LOTTO_PRICE}원 이상 투입해주세요!`,
 });
