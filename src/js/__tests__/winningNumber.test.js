@@ -1,24 +1,4 @@
-import { isPositiveInteger, isValidRangeNumber } from '../utils/validator';
-
-class WinningNumbers {
-  #numbers;
-
-  constructor() {
-    this.#numbers = new Set();
-  }
-  get numbers() {
-    return this.#numbers;
-  }
-  pushNumber(number) {
-    if (!isPositiveInteger(number)) {
-      return;
-    }
-    if (!isValidRangeNumber(1, 45, number)) {
-      return;
-    }
-    this.#numbers.add(number);
-  }
-}
+import WinningNumbers from '../models/WinningNumbers';
 
 describe('올바른 당첨 번호를 입력한다.', () => {
   it('입력한 당첨 번호가 숫자이다.', () => {
