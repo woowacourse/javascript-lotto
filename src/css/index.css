@@ -3,7 +3,7 @@
 @import './purchased-lotto.css';
 @import './switch.css';
 @import './winning-number.css';
-@import './winning-statistics.css';
+@import './lotto-result.css';
 
 body {
   display: flex;

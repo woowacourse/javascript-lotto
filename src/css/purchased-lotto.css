@@ -1,6 +1,6 @@
 #purchased-lotto-container {
   width: 100%;
-  min-height: 68px;
+  max-height: 295px;
 
   margin-top: 28px;
 }
@@ -18,9 +18,13 @@
   margin-bottom: 12px;
 }
 
+#purchased-lotto-list {
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
 .purchased-lotto-image {
   font-size: 34px;
-
   margin-right: 8px;
 }
 
