@@ -6,6 +6,8 @@ import { $ } from '../utils/element-manager';
 import { checkValidMoneyInput } from '../utils/Lotto/validator';
 import { SELECTOR } from '../constants/selector';
 
+import '../../css/Lotto.scss';
+
 export default class LottoController {
   #MoneyInputView = new MoneyInputView($(`.${SELECTOR.CLASS.LOTTO_MONEY_SECTION}`));
   #LottoListView = new LottoListView($(`.${SELECTOR.CLASS.LOTTO_LIST_SECTION}`));
