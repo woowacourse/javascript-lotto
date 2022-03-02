@@ -71,4 +71,11 @@ export default class LottoMachine {
       this.#winningLottos[coincideNumberQuantity]++;
     });
   }
+
+  resetMachine() {
+    this.#inputMoney = 0;
+    this.#lottos = [];
+    this.#winningLottos = [0, 0, 0, 0, 0, 0];
+    this.#winningLottoWithBonus = 0;
+  }
 }
