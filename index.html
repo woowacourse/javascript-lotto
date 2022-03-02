@@ -13,7 +13,7 @@
       <h2 hidden id="a11y-cash-input-section">구입 금액 입력 섹션</h2>
       <label for="cash-input">구입할 금액을 입력해주세요.</label>
       <div class="cash-input-container">
-        <input class="cash-input" type="number" name="cash-input" placeholder="금액"/>
+        <input class="cash-input" type="number" name="cash-input" placeholder="금액" min="1000" max="50000" step="1000"/>
         <button class="cash-input-button">구입</button>
       </div>
     </section>
@@ -37,12 +37,12 @@
       <form class="winner-number-input-form">
         <fieldset class="winner-number-input-container">
           <legend>당첨 번호</legend>
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
+          <input type="number" class="winner-number-input" min="1" max="45">
+          <input type="number" class="winner-number-input" min="1" max="45">
+          <input type="number" class="winner-number-input" min="1" max="45">
+          <input type="number" class="winner-number-input" min="1" max="45">
+          <input type="number" class="winner-number-input" min="1" max="45">
+          <input type="number" class="winner-number-input" min="1" max="45">
         </fieldset>
         <fieldset class="bonus-number-input-container">
           <legend>보너스 번호</legend>
