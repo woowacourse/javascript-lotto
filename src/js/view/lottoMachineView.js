@@ -10,8 +10,8 @@ class LottoMachineView {
   }
 
   #initDom() {
-    this.cashInputButton = selectDom('.cash-input-button');
     this.cashInput = selectDom('.cash-input');
+    this.cashInputButton = selectDom('.cash-input-button');
     this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
 
     this.purchasedLottoSection = selectDom('.purchased-lotto-section');
@@ -38,17 +38,17 @@ class LottoMachineView {
     }
   };
 
-  #onShowNumberToggleButtonClick = ({ target }) => {
-    this.#toggleLottoNumbersShow(target.checked);
+  #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
+    this.#toggleLottoNumbersShow(isVisible);
   };
 
   #toggleLottoNumbersShow(isVisible) {
-    const { classList: lottoNumberClassList } = this.lottoNumberContainer;
+    const { classList: lottoNumberContainerClassList } = this.lottoNumberContainer;
     if (isVisible) {
-      lottoNumberClassList.remove(CLASSNAME.HIDE_NUMBERS);
+      lottoNumberContainerClassList.remove(CLASSNAME.HIDE_NUMBERS);
       return;
     }
-    lottoNumberClassList.add(CLASSNAME.HIDE_NUMBERS);
+    lottoNumberContainerClassList.add(CLASSNAME.HIDE_NUMBERS);
   }
 
   #disableCashInputSection() {
