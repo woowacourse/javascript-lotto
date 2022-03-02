@@ -38,7 +38,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
 `;
 
 //class
-export default class PurchasedLottoView {
+export default class PurchasedLottosView {
   constructor() {
     this.container = document.getElementById('purchased-lotto-container');
   }

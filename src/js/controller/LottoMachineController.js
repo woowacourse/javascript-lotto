@@ -1,8 +1,8 @@
 import PurchasedLottos from '../model/PurchasedLottos.js';
 
-import PurchaseMoneyView from '../view/purchaseMoneyView.js';
-import PurchasedLottoView from '../view/PurchasedLottoView.js';
-import WinningNumberView from '../view/WinningNumberView.js';
+import InputMoneyView from '../view/InputMoneyView.js';
+import PurchasedLottosView from '../view/PurchasedLottosView.js';
+import InputWinningNumberView from '../view/InputWinningNumberView.js';
 
 import {
   CONFIRM_MESSAGE,
@@ -18,14 +18,14 @@ export default class LottoMachineController {
     //멤버변수 초기화
     this.model = new PurchasedLottos();
     this.view = {
-      purchaseMoneyView: new PurchaseMoneyView(),
-      purchasedLottoView: new PurchasedLottoView(),
-      winningNumberView: new WinningNumberView(),
+      inputMoneyView: new InputMoneyView(),
+      purchasedLottosView: new PurchasedLottosView(),
+      inputWinningNumberView: new InputWinningNumberView(),
       lottoResultModalView: new LottoResultModalView(),
     };
 
     //View handlers 멤버변수에 등록
-    this.view.purchaseMoneyView.addHandler({
+    this.view.inputMoneyView.addHandler({
       name: 'purchasedMoneySubmit',
       handler: this.submitPurchaseMoneyHandler.bind(this),
     });
@@ -35,7 +35,7 @@ export default class LottoMachineController {
       handler: this.reset.bind(this),
     });
 
-    this.view.winningNumberView.addHandler({
+    this.view.inputWinningNumberView.addHandler({
       name: 'winningNumberSubmit',
       handler: this.calculatePurchasedLottoResult.bind(this),
     });
@@ -50,22 +50,22 @@ export default class LottoMachineController {
     }
 
     if (this.tryRePurchase()) {
-      this.view.purchasedLottoView.resetScreen();
-      this.view.winningNumberView.resetScreen();
+      this.view.purchasedLottosView.resetScreen();
+      this.view.inputWinningNumberView.resetScreen();
 
       this.purchaseLotto(purchaseMoney);
       return;
     }
 
-    this.view.purchaseMoneyView.resetInputValue();
+    this.view.inputMoneyView.resetInputValue();
   }
 
   purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
     const lottos = this.model.purchaseLotto(lottoCount);
 
-    this.view.purchasedLottoView.render(lottos, lottoCount);
-    this.view.winningNumberView.render();
+    this.view.purchasedLottosView.render(lottos, lottoCount);
+    this.view.inputWinningNumberView.render();
   }
 
   tryRePurchase() {
@@ -111,8 +111,8 @@ export default class LottoMachineController {
 
   reset() {
     this.model.resetStatus();
-    this.view.purchaseMoneyView.resetInputValue();
-    this.view.purchasedLottoView.resetScreen();
-    this.view.winningNumberView.resetScreen();
+    this.view.inputMoneyView.resetInputValue();
+    this.view.purchasedLottosView.resetScreen();
+    this.view.inputWinningNumberView.resetScreen();
   }
 }

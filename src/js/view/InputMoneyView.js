@@ -3,7 +3,7 @@ import View from './View.js';
 import { convertToNumber } from '../utils/common.js';
 import { validatePurchaseMoney } from '../utils/validator.js';
 
-export default class PurchaseMoneyView extends View {
+export default class InputMoneyView extends View {
   constructor() {
     super();
 

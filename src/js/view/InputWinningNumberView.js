@@ -28,7 +28,7 @@ const WINNING_NUMBER_FORM = `
 `;
 
 //class
-export default class WinningNumberView extends View {
+export default class InputWinningNumberView extends View {
   constructor() {
     super();
 
