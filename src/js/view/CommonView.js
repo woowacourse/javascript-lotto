@@ -4,14 +4,15 @@ export class CommonView {
   }
 
   registerDOM() {
+    this.moneyInput = document.getElementById('money-input');
     this.purchaseBtn = document.getElementById('purchase-button');
     this.toggleBtn = document.getElementById('toggle-check');
-    this.moneyInput = document.getElementById('money-input');
-    this.winningLottoContainer = document.getElementById('winning-lotto-container');
+
+    this.lottoStatusContainer = document.getElementById('lotto-status-container');
     this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoNumberLabel = document.getElementById('lotto-quantity-label');
-    this.lottoIcons = document.getElementById('lotto-icons');
-    this.lottoStatusContainer = document.getElementById('lotto-status-container');
+
+    this.winningLottoContainer = document.getElementById('winning-lotto-container');
     this.lottoQuantity = document.getElementById('lotto-quantity');
     this.showResultBtn = document.getElementById('confirm-result-label');
   }

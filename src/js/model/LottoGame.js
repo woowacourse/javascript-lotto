@@ -68,10 +68,10 @@ export class LottoGame {
 
   reStartLottos() {
     this.moneyInput = 0;
+    this.bonusNumber = 0;
+    this.yield = 0;
     this.lottoWallet = [];
     this.winningNumbers = new Set();
-    this.bonusNumber = 0;
     this.winningStatus = new Array(5).fill(0);
-    this.yield = 0;
   }
 }

@@ -65,19 +65,16 @@ export class Controller {
   }
 
   #showLottoResult(e) {
-    e.preventDefault();
     try {
-      validator.isWinningInputValid(
-        this.modalView.getWinningNumbersInput(),
-        Number(this.modalView.bonusNumber.value)
-      );
-      this.lottoGame.getWinningNumbers(
-        this.modalView.getWinningNumbersInput(),
-        Number(this.modalView.bonusNumber.value)
-      );
+      e.preventDefault();
+      const winningNumbersObj = this.modalView.getWinningNumbersInput();
+      const bonusNumber = Number(this.modalView.bonusNumber.value);
+      validator.isWinningInputValid(winningNumbersObj, bonusNumber);
+      this.lottoGame.getWinningNumbers(winningNumbersObj, bonusNumber);
       this.lottoGame.compareLottos();
       this.lottoGame.calculateYield();
-      this.modalView.showResultModal(this.lottoGame.winningStatus, this.lottoGame.yield);
+      this.modalView.insertResultTemplate(this.lottoGame.winningStatus, this.lottoGame.yield);
+      this.modalView.openModal();
     } catch (err) {
       alert(err.message);
     }

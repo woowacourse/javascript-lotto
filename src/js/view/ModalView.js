@@ -5,14 +5,13 @@ export class ModalView {
     this.registerDOM();
   }
 
-  // registerDOM() {}
-
   registerDOM() {
     this.closeModalBtn = document.getElementById('close-modal-btn');
-    this.modal = document.querySelector('.modal');
-    this.winTable = document.getElementById('win-status');
     this.restartBtn = document.getElementById('restart-button');
+    this.winTable = document.getElementById('win-status');
+    this.modal = document.querySelector('.modal');
     this.yield = document.getElementById('yield');
+
     this.winningNumber1 = document.getElementById('winning-number1');
     this.winningNumber2 = document.getElementById('winning-number2');
     this.winningNumber3 = document.getElementById('winning-number3');
@@ -33,12 +32,15 @@ export class ModalView {
     };
   }
 
-  showResultModal(winningStatus, yieldAmount) {
+  insertResultTemplate(winningStatus, yieldAmount) {
     this.yield.textContent = '';
-    this.winTable.textContent = '';
+    this.yield.insertAdjacentHTML('afterbegin', this.#yieldTemplate(yieldAmount));
 
-    this.yield.insertAdjacentHTML('afterbegin', this.yieldTemplate(yieldAmount));
-    this.winTable.insertAdjacentHTML('afterbegin', this.winStatusTemplate(winningStatus));
+    this.winTable.textContent = '';
+    this.winTable.insertAdjacentHTML('afterbegin', this.#winStatusTemplate(winningStatus));
+  }
+
+  openModal() {
     this.modal.classList.add('show');
     this.modal.classList.add('dark');
   }
@@ -48,7 +50,23 @@ export class ModalView {
     this.modal.classList.remove('dark');
   }
 
-  winStatusTemplate(winningStatus) {
+  clearWinningNumbers() {
+    this.winningNumber1.value = '';
+    this.winningNumber2.value = '';
+    this.winningNumber3.value = '';
+    this.winningNumber4.value = '';
+    this.winningNumber5.value = '';
+    this.winningNumber6.value = '';
+    this.bonusNumber.value = '';
+  }
+
+  initModalView() {
+    this.winTable.textContent = '';
+    this.closeModal();
+    this.clearWinningNumbers();
+  }
+
+  #winStatusTemplate(winningStatus) {
     return `
     <table>
       <th>일치 갯수</th>
@@ -83,23 +101,7 @@ export class ModalView {
     `;
   }
 
-  yieldTemplate(yieldAmount) {
+  #yieldTemplate(yieldAmount) {
     return `당신의 총 수익률은 ${yieldAmount}% 입니다.`;
-  }
-
-  clearWinningNumbers() {
-    this.winningNumber1.value = '';
-    this.winningNumber2.value = '';
-    this.winningNumber3.value = '';
-    this.winningNumber4.value = '';
-    this.winningNumber5.value = '';
-    this.winningNumber6.value = '';
-    this.bonusNumber.value = '';
-  }
-
-  initModalView() {
-    this.winTable.textContent = '';
-    this.closeModal();
-    this.clearWinningNumbers();
   }
 }
