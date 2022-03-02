@@ -1,4 +1,8 @@
-import { getPurchasedLottoCount } from './utils';
+import {
+  getPurchasedLottoCount,
+  getValidWinningNumberAndBonusNumber,
+  getRateOfReturn,
+} from './utils';
 import { CLASS_NAME, SELECTOR, MONEY } from './constants';
 import Lotto from './Lotto';
 import createTemplate from './templates';
@@ -46,7 +50,42 @@ export default class LottoApp {
   }
 
   onSubmitLottoResultButton() {
-    render(this.$app, createTemplate.lottoResultSection());
+    try {
+      const lastWeekNumberList = [];
+      const lastWeekBonusNumber = getElement(
+        '.last-week-bonus-number-input'
+      ).valueAsNumber;
+
+      getElements('.last-week-number-input').forEach((numberInputElement) => {
+        lastWeekNumberList.push(numberInputElement.valueAsNumber);
+      });
+
+      this.lotto.setLastWeekLottoNumbers(
+        getValidWinningNumberAndBonusNumber(
+          lastWeekNumberList,
+          lastWeekBonusNumber
+        )
+      );
+
+      this.lotto.setWinningCount(
+        this.lotto.getLotto(),
+        this.lotto.getLastWeekLottoList(),
+        this.lotto.getLastWeekBonusNumber()
+      );
+
+      render(
+        this.$app,
+        createTemplate.lottoResultSection(
+          this.lotto.getWinningCount(),
+          getRateOfReturn(
+            this.lotto.totalWinningAmount(),
+            this.lotto.getPurchasedAmount()
+          )
+        )
+      );
+    } catch (error) {
+      alertMessage(error.message);
+    }
   }
 
   onClickToggleButton() {
@@ -78,17 +117,13 @@ export default class LottoApp {
         MONEY.STANDARD
       );
 
-      // const purchasedLottoCount = isDivisibleBy(
-      //   isPositiveInteger($paymentInput.valueAsNumber),
-      //   MONEY.STANDARD
-      // );
-
       toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
       disableElement(getElement(SELECTOR.PAYMENT_BUTTON));
       disableElement(getElement(SELECTOR.PAYMENT_INPUT));
 
       this.lotto.setLotto(purchasedLottoCount);
+      this.lotto.setPurchasedAmount(purchasedLottoCount);
 
       render(this.$app, createTemplate.purchasedSection(this.lotto.getLotto()));
       render(this.$app, createTemplate.lastWeekWinningNumberSection());
@@ -96,6 +131,68 @@ export default class LottoApp {
     } catch (error) {
       alertMessage(error.message);
       initInput($paymentInput);
+    }
+  }
+
+  onKeyUpLastWeekFirstNumberInput(e) {
+    if (e.target.value.length >= 2) {
+      getElement('.last-week-second-number-input').focus();
+    }
+  }
+
+  onKeyUpLastWeekSecondNumberInput(e) {
+    if (e.target.value.length >= 2) {
+      getElement('.last-week-third-number-input').focus();
+    }
+
+    if (e.target.value.length === 0 && e.key === 'Backspace') {
+      getElement('.last-week-first-number-input').focus();
+    }
+  }
+
+  onKeyUpLastWeekThirdNumberInput(e) {
+    if (e.target.value.length >= 2) {
+      getElement('.last-week-forth-number-input').focus();
+    }
+
+    if (e.target.value.length === 0 && e.key === 'Backspace') {
+      getElement('.last-week-second-number-input').focus();
+    }
+  }
+
+  onKeyUpLastWeekForthNumberInput(e) {
+    if (e.target.value.length >= 2) {
+      getElement('.last-week-fifth-number-input').focus();
+    }
+
+    if (e.target.value.length === 0 && e.key === 'Backspace') {
+      getElement('.last-week-third-number-input').focus();
+    }
+  }
+
+  onKeyUpLastWeekFifthNumberInput(e) {
+    if (e.target.value.length >= 2) {
+      getElement('.last-week-sixth-number-input').focus();
+    }
+
+    if (e.target.value.length === 0 && e.key === 'Backspace') {
+      getElement('.last-week-forth-number-input').focus();
+    }
+  }
+
+  onKeyUpLastWeekSixthNumberInput(e) {
+    if (e.target.value.length >= 2) {
+      getElement('.last-week-bonus-number-input').focus();
+    }
+
+    if (e.target.value.length === 0 && e.key === 'Backspace') {
+      getElement('.last-week-fifth-number-input').focus();
+    }
+  }
+
+  onKeyUpLastWeekBonusNumberInput(e) {
+    if (e.target.value.length === 0 && e.key === 'Backspace') {
+      getElement('.last-week-sixth-number-input').focus();
     }
   }
 
@@ -133,6 +230,55 @@ export default class LottoApp {
       type: 'click',
       selector: '#restart-button',
       callback: this.onSubmitRestartButton.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-first-number-input',
+      callback: this.onKeyUpLastWeekFirstNumberInput.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-second-number-input',
+      callback: this.onKeyUpLastWeekSecondNumberInput.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-third-number-input',
+      callback: this.onKeyUpLastWeekThirdNumberInput.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-forth-number-input',
+      callback: this.onKeyUpLastWeekForthNumberInput.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-fifth-number-input',
+      callback: this.onKeyUpLastWeekFifthNumberInput.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-sixth-number-input',
+      callback: this.onKeyUpLastWeekSixthNumberInput.bind(this),
+    });
+
+    bindEventListener({
+      appElement: this.$app,
+      type: 'keyup',
+      selector: '.last-week-bonus-number-input',
+      callback: this.onKeyUpLastWeekBonusNumberInput.bind(this),
     });
   }
 }

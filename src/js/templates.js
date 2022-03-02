@@ -6,7 +6,7 @@ const createTemplate = {
       <h2 hidden>구입할 금액</h2>
       <label for="payment-input">구입할 금액을 입력해주세요.</label>
       <form class="payment-form">
-        <input name="payment-input" id="payment-input" type="number" placeholder="금액" />
+        <input name="payment-input" id="payment-input" type="number" placeholder="금액" min="1000" autofocus />
         <button id="payment-button">구입</button>
       </form>
     </section>
@@ -51,28 +51,28 @@ const createTemplate = {
           <p>당첨 번호</p>
           <ul id="last-week-number-list">
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input" />
+              <input type="number" class="last-week-number-input last-week-first-number-input" min="1" max="45" maxlength="2" />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input" />
+              <input type="number" class="last-week-number-input last-week-second-number-input" min="1" max="45" maxlength="2" />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input" />
+              <input type="number" class="last-week-number-input last-week-third-number-input" min="1" max="45" maxlength="2" />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input" />
+              <input type="number" class="last-week-number-input last-week-forth-number-input" min="1" max="45" maxlength="2" />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input" />
+              <input type="number" class="last-week-number-input last-week-fifth-number-input" min="1" max="45" maxlength="2" />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input" />
+              <input type="number" class="last-week-number-input last-week-sixth-number-input" min="1" max="45" maxlength="2" />
             </li>
           </ul>
         </div>
         <div class="last-week-bonus-number-container">
           <p>보너스 번호</p>
-          <input type="number" id="last-week-bonus-number-input" />
+          <input type="number" class="last-week-bonus-number-input" min="1" max="45" maxlength="2" />
         </div>
       </div>
     </section>
@@ -86,7 +86,7 @@ const createTemplate = {
     </section>
   `;
   },
-  lottoResultSection() {
+  lottoResultSection(winningCount, rateOfReturn) {
     return `
     <div id="cover-the-background"></div>
     <section id="lotto-result-section">
@@ -107,32 +107,32 @@ const createTemplate = {
           <tr>
             <td>3개</td>
             <td>5,000</td>
-            <td>n개</td>
+            <td class="fifth-winning-count">${winningCount.fifthWinner}개</td>
           </tr>
           <tr>
             <td>4개</td>
             <td>50,000</td>
-            <td>n개</td>
+            <td class="forth-winning-count">${winningCount.forthWinner}개</td>
           </tr>
           <tr>
             <td>5개</td>
             <td>1,500,000</td>
-            <td>n개</td>
+            <td class="third-winning-count">${winningCount.thirdWinner}개</td>
           </tr>
           <tr>
             <td>5개+보너스볼</td>
             <td>30,000,000</td>
-            <td>n개</td>
+            <td class="second-winning-count">${winningCount.secondWinner}개</td>
           </tr>
           <tr>
             <td>6개</td>
             <td>2,000,000,000</td>
-            <td>n개</td>
+            <td class="first-winning-count">${winningCount.firstWinner}개</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="3">당신의 총 수익률은 %입니다.</td>
+            <td colspan="3" class="rate-of-return">당신의 총 수익률은 ${rateOfReturn}%입니다.</td>
           </tr>
         </tfoot>
       </table>

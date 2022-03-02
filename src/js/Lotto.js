@@ -4,6 +4,12 @@ import { LOTTO } from './constants';
 export default class Lotto {
   #lottoList = [];
 
+  #lastWeekLottoList = [];
+
+  #lastWeekBonusNumber = 0;
+
+  #purchasedAmount = 0;
+
   #winningAmount = {
     firstWinner: 2000000000,
     secondWinner: 30000000,
@@ -22,8 +28,29 @@ export default class Lotto {
     failed: 0,
   };
 
+  getLastWeekLottoList() {
+    return this.#lastWeekLottoList;
+  }
+
+  getLastWeekBonusNumber() {
+    return this.#lastWeekBonusNumber;
+  }
+
+  setLastWeekLottoNumbers({ winningNumberList, bonusNumber }) {
+    this.#lastWeekLottoList = winningNumberList;
+    this.#lastWeekBonusNumber = bonusNumber;
+  }
+
   getWinningAmount() {
     return this.#winningAmount;
+  }
+
+  setPurchasedAmount(count) {
+    this.#purchasedAmount = count * 1000;
+  }
+
+  getPurchasedAmount() {
+    return this.#purchasedAmount;
   }
 
   setLotto(count) {
@@ -36,7 +63,7 @@ export default class Lotto {
     return this.#lottoList;
   }
 
-  setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber) {
+  setWinningCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber) {
     Object.keys(this.#winningCount).forEach((winningKey) => {
       this.#winningCount[winningKey] = userAllLottoList.filter(
         (userLottoList) =>

@@ -32,22 +32,36 @@ export const getPurchasedLottoCount = (payment, price) => {
   return parseInt(payment / price);
 };
 
-export const isOutOfRange = (winningNumberList, bounsNumber) => {
-  winningNumberList.push(bounsNumber);
+export const isOutOfRange = (winningNumberList, bonusNumber) => {
+  const winningNumbers = [...winningNumberList, bonusNumber];
   const lottoAllNumberList = Array.from(
     { length: 45 },
     (_, index) => index + 1
   );
 
-  return !winningNumberList.every((winningNumber) =>
+  return !winningNumbers.every((winningNumber) =>
     lottoAllNumberList.includes(winningNumber)
   );
 };
 
-export const isDuplicateNumbers = (winningNumberList, bounsNumber) => {
-  winningNumberList.push(bounsNumber);
+export const isDuplicateNumbers = (winningNumberList, bonusNumber) => {
+  const winningNumbers = [...winningNumberList, bonusNumber];
 
-  return winningNumberList.length !== new Set(winningNumberList).size;
+  return winningNumbers.length !== new Set(winningNumbers).size;
+};
+
+export const getValidWinningNumberAndBonusNumber = (
+  winningNumberList,
+  bonusNumber
+) => {
+  if (
+    isOutOfRange(winningNumberList, bonusNumber) ||
+    isDuplicateNumbers(winningNumberList, bonusNumber)
+  ) {
+    throw new Error('1 ~ 45 사이의 숫자를 중복 없이 입력해주세요.');
+  }
+
+  return { winningNumberList, bonusNumber };
 };
 
 export const createRandomNumberList = (length = LOTTO.MAX_NUMBER) => {
@@ -72,5 +86,9 @@ export const shuffleArray = (array) => {
 };
 
 export const getRateOfReturn = (totalWinningAmount, purchasedAmount) => {
-  return Number((totalWinningAmount / purchasedAmount).toFixed(2));
+  return Number(
+    (((totalWinningAmount - purchasedAmount) / purchasedAmount) * 100).toFixed(
+      2
+    )
+  );
 };
