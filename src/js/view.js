@@ -16,12 +16,12 @@ const lottoMatchSectionTemplate = `
   </div>
   <div class="number-container">
     <div class="match-numbers">
-      <input class="lotto-app-input match-number-input" type="number" />
-      <input class="lotto-app-input match-number-input" type="number" />
-      <input class="lotto-app-input match-number-input" type="number" />
-      <input class="lotto-app-input match-number-input" type="number" />
-      <input class="lotto-app-input match-number-input" type="number" />
-      <input class="lotto-app-input match-number-input" type="number" />
+      <input class="lotto-app-input match-number-input" type="number" min="1" max="45"/>
+      <input class="lotto-app-input match-number-input" type="number" min="1" max="45"/>
+      <input class="lotto-app-input match-number-input" type="number" min="1" max="45"/>
+      <input class="lotto-app-input match-number-input" type="number" min="1" max="45"/>
+      <input class="lotto-app-input match-number-input" type="number" min="1" max="45"/>
+      <input class="lotto-app-input match-number-input" type="number" min="1" max="45"/>
     </div>
     <div class="bonus-number">
       <input class="lotto-app-input match-number-input" type="number" />
