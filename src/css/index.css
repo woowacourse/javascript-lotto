@@ -279,6 +279,7 @@ button {
   background: #00bcd4;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 table {
@@ -291,6 +292,7 @@ th,
 td {
   border-bottom: 1px solid #dcdcdc;
   padding: 10px;
+  text-align: center;
 }
 
 svg {
