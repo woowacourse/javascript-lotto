@@ -32,12 +32,6 @@ describe('로또 구매 테스트', () => {
   });
 
   test('결과 확인하기 버튼을 누르면, 당첨 갯수와 수익률이 정확히 계산된다', () => {
-    // lottoList 가 있고
-    // pickedNumbers가 있고
-    // 비교하는 함수가 있고
-    // 3,4,5,5.5,6 이 일치하는지 확인하고,
-    // 수익률이 일치하는지 확인한다.
-
     const lottoList = [
       [1, 2, 3, 4, 5, 6],
       [4, 5, 6, 7, 8, 9],
@@ -46,50 +40,20 @@ describe('로또 구매 테스트', () => {
       [13, 14, 15, 16, 17, 18],
     ];
 
-    const cash = lottoList.length * LOTTO_PRICE;
-
     const pickedNumber = [4, 5, 6, 7, 8, 9, 10];
 
-    const winningLottos = {
-      3: 0,
-      4: 0,
-      5: 0,
-      5.5: 0,
-      6: 0,
-    };
+    const model = new Model();
+    model.setLottoList(lottoList);
+    model.setCash(lottoList.length * LOTTO_PRICE);
+    model.setWinningLottoQuantity(pickedNumber);
 
-    const winningPrize = {
-      3: 5000,
-      4: 50000,
-      5: 1500000,
-      5.5: 30000000,
-      6: 2000000000,
-    };
+    const winningLottoQuantity = model.getWinningLottoQuantity();
 
-    function countSameNumber(arr1, arr2) {
-      const winningNumbers = arr2.slice(0, 6);
-      const bonusNumber = arr2.slice(-1)[0];
-
-      const winningCount = winningNumbers.filter(element => arr1.includes(element)).length;
-      if (winningCount === 5 && arr1.includes(bonusNumber)) {
-        return 5.5;
-      }
-
-      return winningCount;
-    }
-
-    lottoList.map(lotto => {
-      winningLottos[countSameNumber(lotto, pickedNumber)] += 1;
-    });
-
-    expect(winningLottos[3]).toBe(2);
-    expect(winningLottos[5.5]).toBe(1);
-    expect(winningLottos[6]).toBe(1);
-    let totalProfit = 0;
-    for (let key in winningPrize) {
-      totalProfit += winningPrize[key] * winningLottos[key];
-    }
-    let profitRatio = (totalProfit / cash) * 100;
-    expect(profitRatio).toBe(40600200);
+    expect(winningLottoQuantity[3]).toBe(2);
+    expect(winningLottoQuantity[4]).toBe(0);
+    expect(winningLottoQuantity[5]).toBe(0);
+    expect(winningLottoQuantity[5.5]).toBe(1);
+    expect(winningLottoQuantity[6]).toBe(1);
+    expect(model.calculateProfitRatio()).toBe(40600200);
   });
 });

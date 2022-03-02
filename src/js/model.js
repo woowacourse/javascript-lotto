@@ -1,9 +1,34 @@
-import { LOTTO_RULE } from './constants.js';
+import { LOTTO_RULE, WINNING_PRIZE } from './constants.js';
 export default class Model {
+  #cash = 0;
   #lottoList = [];
+  #winningLottoQuantity = {
+    3: 0,
+    4: 0,
+    5: 0,
+    5.5: 0,
+    6: 0,
+  };
+
+  getCash() {
+    return this.#cash;
+  }
+
+  setCash(cash) {
+    this.#cash = cash;
+  }
 
   getLottoList() {
     return this.#lottoList;
+  }
+
+  // 테스트를 위한 메서드
+  setLottoList(lottoList) {
+    this.#lottoList = lottoList;
+  }
+
+  getWinningLottoQuantity() {
+    return this.#winningLottoQuantity;
   }
 
   buyLotto(quantity) {
@@ -19,6 +44,20 @@ export default class Model {
       LOTTO_RULE.NUMBERS_COUNT,
     );
   }
+
+  setWinningLottoQuantity(pickedNumber) {
+    this.#lottoList.map(lotto => {
+      this.#winningLottoQuantity[countSameNumber(lotto, pickedNumber)] += 1;
+    });
+  }
+
+  calculateProfitRatio() {
+    let totalProfit = 0;
+    for (let key in WINNING_PRIZE) {
+      totalProfit += WINNING_PRIZE[key] * this.#winningLottoQuantity[key];
+    }
+    return (totalProfit / this.#cash) * 100;
+  }
 }
 
 function makeAllLottoNumbers(min, max) {
@@ -31,4 +70,16 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+function countSameNumber(arr1, arr2) {
+  const winningNumbers = arr2.slice(0, 6);
+  const bonusNumber = arr2.slice(-1)[0];
+
+  const winningCount = winningNumbers.filter(element => arr1.includes(element)).length;
+  if (winningCount === 5 && arr1.includes(bonusNumber)) {
+    return 5.5;
+  }
+
+  return winningCount;
 }

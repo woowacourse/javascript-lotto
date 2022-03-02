@@ -25,6 +25,7 @@ export default class Controller {
   #handleSubmitCash(cash) {
     try {
       validateCashInput(cash);
+      this.#model.setCash(cash);
       this.#model.buyLotto(cash / LOTTO_PRICE);
       this.#lottoListView.showLottoListSection(this.#model.getLottoList());
     } catch ({ message }) {

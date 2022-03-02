@@ -29,3 +29,11 @@ export const LOTTO_PRICE = 1000;
 export const ALERT_MESSAGE = {
   NOT_DIVISIBLE: `${LOTTO_PRICE}으로 나누어떨어지는 금액을 입력해주세요.`,
 };
+
+export const WINNING_PRIZE = {
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  5.5: 30000000,
+  6: 2000000000,
+};
