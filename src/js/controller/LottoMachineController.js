@@ -71,6 +71,8 @@ export default class LottoMachineController {
         default:
       }
     });
+
+    this.view.winningNumberView.renderLottoResult(lottoResult);
   }
 
   onSubmitHandler(purchaseMoney) {

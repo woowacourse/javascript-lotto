@@ -59,6 +59,14 @@ export default class WinningNumberView extends View {
     winningNumberForm.addEventListener('submit', this.submitHandler.bind(this));
   }
 
+  renderLottoResult(lottoResult) {
+    const reverseRanking = Object.values(lottoResult).reverse();
+
+    Array.from(this.winningCounts).forEach(
+      (element, index) => (element.textContent = reverseRanking[index] + '개'),
+    );
+  }
+
   submitHandler(e) {
     e.preventDefault();
 
