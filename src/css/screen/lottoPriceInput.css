@@ -1,0 +1,29 @@
+.lotto-price-input-form > div {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lotto-price-input-container {
+  margin-bottom: 30px;
+}
+
+.lotto-price-input-form label {
+  font-size: 16px;
+}
+
+.lotto-price-input {
+  width: 90%;
+  height: 30px;
+  border: 1px solid var(--lotto-price-input-border-color);
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-right: 16px;
+}
+
+.lotto-price-submit-button {
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+}
