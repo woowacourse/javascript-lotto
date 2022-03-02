@@ -198,3 +198,100 @@ h2 {
 .d-none {
   display: none;
 }
+
+.modal-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width:414px;
+  height: 727px;
+  background:rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  width: 350px;
+  height: 500px;
+  position: absolute;
+  border-radius: 4px;
+  left: calc((414px - 350px) / 2);
+  top: 110px;
+  background-color: white;
+  opacity: 1;
+}
+
+.modal-title {
+  margin-top: 10px;
+}
+
+.modal-closer {
+  margin-left: 92%;
+  padding-top: 16px;
+}
+
+.modal-closer:hover {
+  cursor: pointer;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+}
+
+.content-container {
+  margin-top: 32px;
+  padding: 0 16px 0 16px;
+}
+
+.content-row {
+  border-top: 1px solid #DCDCDC;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0 8px 0;
+  height: 24px;
+}
+
+.content-text {
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+  width: calc(318px / 3);
+}
+
+.result-container {
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.content-title {
+  font-weight: 600;
+  width: 100%;
+}
+
+.winning-count {
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.restart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.restart {
+  line-height: 16px;
+  width: 152px;
+  height: 36px;
+  background: #00BCD4;
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  border-style: none;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+}
