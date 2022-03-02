@@ -15,4 +15,4 @@ export const createRandomNumbers = (minRange, maxRange, count) => {
   return [...result];
 };
 
-export const extractNumber = (value) => value.replace(/[^\d]+/, '');
+export const extractNumber = (value) => value.replace(/[^\d]+/g, '');
