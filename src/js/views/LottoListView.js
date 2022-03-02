@@ -18,11 +18,11 @@ export default class LottoListView {
     this.#lottoNumberToggle.addEventListener('click', this.toggleShow.bind(this));
   }
 
-  showLottoList() {
+  showContainer() {
     this.#container.classList.add('show');
   }
 
-  hideLottoList() {
+  hideContainer() {
     this.#container.classList.remove('show');
   }
 
