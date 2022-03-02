@@ -39,6 +39,7 @@ export default class WinningNumberView extends View {
     this.restartButton = document.getElementById('restart-button');
     this.closeButton = document.getElementById('close-button');
     this.winningCounts = document.getElementsByClassName('winning-count');
+    this.totalProfitRate = document.getElementById('total-profit-rate');
 
     //이벤트
     this.closeButton.addEventListener('click', this.hideModal.bind(this));
@@ -65,6 +66,10 @@ export default class WinningNumberView extends View {
     Array.from(this.winningCounts).forEach(
       (element, index) => (element.textContent = reverseRanking[index] + '개'),
     );
+  }
+
+  renderTotalProfitRate(totalProfitRate) {
+    this.totalProfitRate.textContent = totalProfitRate;
   }
 
   submitHandler(e) {

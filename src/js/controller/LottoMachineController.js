@@ -40,6 +40,7 @@ export default class LottoMachineController {
 
     const lottoResult = { '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
     let count = 0;
+    let totalProfit = 0;
 
     this.model.lottos.forEach(lotto => {
       count = 0;
@@ -52,27 +53,36 @@ export default class LottoMachineController {
 
       if (count === 5 && lotto.numbers.includes(bonusNumber)) {
         lottoResult['2등']++;
+        totalProfit += 30000000;
         return;
       }
 
       switch (count) {
         case 3:
           lottoResult['5등']++;
+          totalProfit += 5000;
           break;
         case 4:
           lottoResult['4등']++;
+          totalProfit += 50000;
           break;
         case 5:
           lottoResult['3등']++;
+          totalProfit += 1500000;
           break;
         case 6:
           lottoResult['1등']++;
+          totalProfit += 2000000000;
           break;
         default:
       }
     });
 
+    const totalProfitRate =
+      (totalProfit / (this.model.lottos.length * 1000)) * 100;
+
     this.view.winningNumberView.renderLottoResult(lottoResult);
+    this.view.winningNumberView.renderTotalProfitRate(totalProfitRate);
   }
 
   onSubmitHandler(purchaseMoney) {
