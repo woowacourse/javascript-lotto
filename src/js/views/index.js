@@ -5,6 +5,8 @@ class LottoGameView {
   constructor() {
     this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
     this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
+    this.$lottoSection = findElement(SELECTOR.LOTTO_SECTION);
+    this.$winNumberInputSection = findElement(SELECTOR.WIN_NUMBER_INPUT_SECTION);
     this.$resultModal = findElement(SELECTOR.RESULT_MODAL);
     this.$earningRateNotice = findElement(SELECTOR.EARNING_RATE_NOTICE);
     this.$firstGradeAmount = findElement(SELECTOR.FIRST_GRADE_AMOUNT);
@@ -17,9 +19,13 @@ class LottoGameView {
   initialize() {
     this.$purchasedMessage.innerText = '';
     this.$lottoContainer.innerHTML = '';
+    this.$lottoSection.setAttribute('data-visible-state', false);
+    this.renderWinNumberInputSection(false);
+    this.renderAlignState(false);
   }
 
   renderLottoSection(lottoList) {
+    this.$lottoSection.setAttribute('data-visible-state', true);
     this.$purchasedMessage.innerText = `총 ${lottoList.length}개를 구매하였습니다.`;
     this.$lottoContainer.innerHTML = lottoList
       .map((lotto) => this.generateLottoTemplate(lotto))
@@ -35,6 +41,10 @@ class LottoGameView {
 
   renderAlignState(visibleState) {
     this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+  }
+
+  renderWinNumberInputSection(visibleState) {
+    this.$winNumberInputSection.setAttribute('data-visible-state', visibleState);
   }
 
   openResultModal(resultArray) {

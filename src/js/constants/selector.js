@@ -6,7 +6,9 @@ export const SELECTOR = {
 
   ALIGN_CONVERTER: '#align-converter',
   PURCHASED_MESSAGE: '#purchased-message',
+  LOTTO_SECTION: '#lotto-section',
   LOTTO_CONTAINER: '#lotto-container',
+  WIN_NUMBER_INPUT_SECTION: '#win-number-input-section',
 
   RESULT_MODAL: '#result-modal-area',
   EARNING_RATE_NOTICE: '#earning-rate-notice',

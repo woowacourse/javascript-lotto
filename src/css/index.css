@@ -8,6 +8,10 @@ input {
   outline: none;
 }
 
+label {
+  cursor: pointer;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -60,13 +64,27 @@ button {
   font-weight: bold;
 }
 
+button:hover {
+  cursor: pointer;
+  background-color: #26daf1;
+}
+
 section {
   margin-bottom: 20px;
 }
 
-#lotto-section {
+#lotto-section[data-visible-state='false'] {
+  display: flex;
+  visibility: hidden;
+  height: 0vh;
+}
+
+#lotto-section[data-visible-state='true'] {
   display: flex;
   flex-direction: row;
+  height: 25vh;
+  visibility: visible;
+  transition: height 1s;
 }
 
 .lotto-wrapper {
@@ -84,6 +102,7 @@ section {
 #lotto-container {
   display: flex;
 }
+
 #lotto-container[data-visible-state='false'] {
   flex-direction: row;
   gap: 3px;
@@ -103,8 +122,16 @@ section {
   gap: 10px;
 }
 
-#win-number-input-section {
+#win-number-input-section[data-visible-state='false'] {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
+#win-number-input-section[data-visible-state='true'] {
   margin-top: 40px;
+  opacity: 1;
+  transition: opacity 1s;
 }
 
 .win-number-input-notice {

@@ -25,19 +25,15 @@ class LottoGameManager {
     try {
       const { value: chargeInputStr } = this.$chargeInput;
       const chargeInput = Number(chargeInputStr);
-      this.triggerChargeInputAction(chargeInput);
-    } catch ({ message }) {
+      this.lottoGameModel.createLottoList(chargeInput);
+
+      const lottoList = this.lottoGameModel.getLottoList();
+      this.lottoGameView.renderLottoSection(lottoList);
+      this.lottoGameView.renderWinNumberInputSection(true);
+    } catch (message) {
       alert(message);
     }
   };
-
-  triggerChargeInputAction(chargeInput) {
-    // mutate model
-    this.lottoGameModel.createLottoList(chargeInput);
-    // mutate view by new model state
-    const lottoList = this.lottoGameModel.getLottoList();
-    this.lottoGameView.renderLottoSection(lottoList);
-  }
 
   onChangeAlignState = (e) => {
     const { checked: alignState } = e.target;

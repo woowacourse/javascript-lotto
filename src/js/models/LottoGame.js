@@ -28,7 +28,7 @@ class LottoGameModel {
       });
       this.lottoList = newLottoList;
     } catch ({ message }) {
-      alert(message);
+      throw message;
     }
   }
 
