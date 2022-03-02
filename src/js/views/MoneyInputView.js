@@ -15,7 +15,18 @@ export default class MoneyInputView {
     this.#moneyInput.value = '';
   }
 
-  bindMoneyInputSubmit(handler) {
+  enableInput() {}
+
+  disableInput() {}
+
+  bindInputKeypress(handler) {
+    this.#moneyInput.addEventListener('keyup', (event) => {
+      event.preventDefault();
+      handler({ isEmpty: this.#moneyInput.value.length > 0 });
+    });
+  }
+
+  bindInputSubmit(handler) {
     const $container = this.#container;
 
     $($container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).addEventListener('click', (event) => {
