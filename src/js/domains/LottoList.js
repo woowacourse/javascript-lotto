@@ -64,17 +64,14 @@ class LottoList {
   /** 배열 형태 ex) ['1등','1등','2등','3등','꽝','꽝'] 를*/
   /** 객체 형태 ex) {'1등' : 2, '2등' : 1} 로 바꾼다*/
   changeStatisticsMap(statisticsArray) {
-    const statisticsMap = {};
-
-    Object.values(RANK_KEYS).forEach((key) => {
-      statisticsMap[key] = 0;
-    });
-
-    statisticsArray.forEach((result) => {
-      statisticsMap[result] = statisticsMap[result] + 1;
-    });
-
-    return statisticsMap;
+    const statisticsMap = Object.values(RANK_KEYS).reduce(
+      (prev, key) => ({ ...prev, [`${key}`]: 0 }),
+      {}
+    );
+    return statisticsArray.reduce(
+      (prev, result) => ({ ...prev, [`${result}`]: prev[result] + 1 }),
+      statisticsMap
+    );
   }
 }
 export default LottoList;
