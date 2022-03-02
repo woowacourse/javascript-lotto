@@ -42,6 +42,7 @@ class LottoList {
     const statisticsArray = this.lottoList.map((lotto) =>
       lotto.computeWinResult(winningNumbers, bonusNumber)
     );
+
     const statisticsMap = this.changeStatisticsMap(statisticsArray);
 
     return statisticsMap;
