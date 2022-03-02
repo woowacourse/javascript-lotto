@@ -237,6 +237,7 @@ button {
   letter-spacing: 1.25px;
   text-transform: uppercase;
   color: #ffffff;
+  point: cursor;
 }
 
 .hidden {
@@ -280,6 +281,7 @@ button {
   min-width: 30%;
   background: #00bcd4;
   border-radius: 4px;
+  point: cursor;
 }
 
 table {
@@ -298,6 +300,7 @@ svg {
   position: absolute;
   right: 20px;
   top: 20px;
+  point: cursor;
 }
 
 .dark {
