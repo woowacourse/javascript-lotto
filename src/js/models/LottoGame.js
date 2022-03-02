@@ -50,6 +50,7 @@ class LottoGameModel {
   }
 
   getGameResult(winningNumbers) {
+    this.winningResult = [0, 0, 0, 0, 0, 0, 0];
     this.lottoList.forEach((lotto) => {
       this.updateLottoRankResult(lotto, winningNumbers);
     });

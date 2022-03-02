@@ -47,7 +47,7 @@ describe('로또 게임 모델 테스트', () => {
   it('당첨 결과를 이용하여 당첨 통계와 수익률을 반환할 수 있어야 한다.', () => {
     const lottoGame = new LottoGame();
     const lottoList = [];
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const winningNumbers = [1, 2, 3, 4, 5, 6, 10];
     const result = [1, 0, 1, 1, 0, 667183, 0];
 
     lottoList.push(Lotto.create([1, 2, 3, 4, 5, 6]));
