@@ -25,4 +25,17 @@ export const validator = {
       throw new Error(ERROR_MESSAGE.LACK_FARE);
     }
   },
+  validateWinningNumbers: (winningNumbers) => {
+    if (!isValidRangeNumbers(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.INVALID_RANGE_WINNING_NUMBERS);
+    }
+
+    if (!isNotOverlapped(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.OVERLAPPED_WINNING_NUMBERS);
+    }
+
+    if (!isValidCount(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.INVALID_COUNT_WINNING_NUMBERS);
+    }
+  },
 };

@@ -5,12 +5,18 @@ import view from './view.js';
 
 export const onClickResultButton = () => {
   const $matchNumberInputs = $$('.match-number-input');
-  const [bonumsNumber, ...previousWinningNumber] = Array.from($matchNumberInputs)
-    .map((inputElement) => inputElement.value)
+  const [bonumsNumber, ...winningNumbers] = Array.from($matchNumberInputs)
+    .map((inputElement) => inputElement.valueAsNumber)
     .reverse();
 
-  console.log('입력된 지난주 당첨 번호: ', previousWinningNumber);
+  console.log('입력된 지난주 당첨 번호: ', winningNumbers);
   console.log('입력된 보너스 당첨 번호: ', bonumsNumber);
+
+  try {
+    validator.validateWinningNumbers(winningNumbers);
+  } catch (error) {
+    alert(error.message);
+  }
 };
 
 export const onSubmitFareForm = (e) => {
