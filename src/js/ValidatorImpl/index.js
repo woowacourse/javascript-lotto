@@ -17,6 +17,9 @@ const checkFunctions = {
       (number) => number < LOTTO_RULES.MIN_RANGE || number > LOTTO_RULES.MAX_RANGE,
     );
   },
+  emptyNumbers(numbers) {
+    return numbers.some((number) => number === '');
+  },
 };
 
 export default class ValidatorImpl extends Validator {

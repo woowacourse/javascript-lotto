@@ -26,15 +26,13 @@ describe('요금을 1000원 이상 투입해야 한다.', () => {
 });
 
 describe('로또 당첨 번호가 유효해야 한다.', () => {
-  const { isNotNumber, overlappedNumber, outedOfLottoNumberRange } = new ValidatorImpl()
-    .checkFunctions;
-
-  const isEmpty = (value) => value === '';
+  const { isNotNumber, overlappedNumber, outedOfLottoNumberRange, emptyNumbers } =
+    new ValidatorImpl().checkFunctions;
 
   test('로또 당첨 번호가 값이 비어있으면 결과를 확인할 수 없다.', () => {
     const winningNumber = [45, '1', '', 3, 4, 5];
 
-    expect(isEmpty(winningNumber)).toBe(false);
+    expect(emptyNumbers(winningNumber)).toBe(true);
   });
 
   test('로또 당첨 번호가 숫자가 아니면 결과를 확인할 수 없다.', () => {
