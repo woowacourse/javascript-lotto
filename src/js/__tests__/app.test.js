@@ -64,30 +64,6 @@ describe(
       // then
       expect(isCorrectRange(lotto.numbers)).toBe(true);
     });
-    test('발급한 로또는 모두 각각 독립적으로 랜덤한 번호를 추천한다.', () => {
-      // given
-      let trialNumber = 100;
-      let differentCount = 0;
-      let totalCount = 0;
-
-      const lottoBundle = new LottoBundle();
-      lottoBundle.receivedMoney = 1000000;
-      lottoBundle.saveCount();
-      lottoBundle.createLottoBundle();
-
-      // when
-      for (let i = 0; i < trialNumber; i++) {
-        for (let j = i + 1; j < trialNumber; j++) {
-          totalCount += 1;
-          if (JSON.stringify(lottoBundle.lottos[i].numbers) !== JSON.stringify(lottoBundle.lottos[j].numbers)) {
-            differentCount += 1;
-          }
-        }
-      }
-
-      // then
-      expect(differentCount / totalCount).toBeGreaterThanOrEqual(0.99);
-    });
   },
 
   describe('당첨 결과를 확인할 수 있어야 한다.', () => {
