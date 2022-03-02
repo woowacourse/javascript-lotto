@@ -38,7 +38,7 @@ export default class LottoController {
     }
   }
 
-  handleWinningNumberSubmit(numbers) {
-    console.log(numbers);
+  handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
+    console.log(winningNumbers, bonusNumber);
   }
 }

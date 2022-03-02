@@ -6,7 +6,6 @@ export default class WinningNumberView {
 
   constructor(element) {
     this.#$container = element;
-    console.log($(this.#$container, `#${SELECTOR.ID.SHOW_RESULT_BUTTON}`));
   }
 
   showWinningNumbers() {
@@ -16,8 +15,11 @@ export default class WinningNumberView {
   bindWinningNumberInputSubmit(handler) {
     $(this.#$container, `#${SELECTOR.ID.SHOW_RESULT_BUTTON}`).addEventListener('click', (event) => {
       event.preventDefault();
-      // $$(this.#$element, $());
-      handler({ numbers: [1, 2, 3] });
+      const winningNumbers = Array.from(
+        $$(this.#$container, `.${SELECTOR.CLASS.WINNING_NUMBER_INPUT}`)
+      ).map((element) => element.value);
+      const bonusNumber = $(this.#$container, '.bonus-number-input').value;
+      handler({ winningNumbers, bonusNumber });
     });
   }
 }
