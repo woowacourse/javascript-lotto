@@ -128,4 +128,21 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
       )
     ).toEqual([6, 0]);
   });
+
+  test('당첨된 로또의 개수별 통계를 구할 수 있다.', () => {
+    const lottoModel = new LottoModel();
+    lottoModel.init();
+    const coincideCountList = [1, 3, 4, 5, 5.5, 6];
+
+    lottoModel.setWinningStatistic(coincideCountList);
+    const answerStatistic = {
+      under: 1,
+      three: 1,
+      four: 1,
+      five: 1,
+      fiveBonus: 1,
+      six: 1,
+    };
+    expect(lottoModel.winningStatistic).toEqual(answerStatistic);
+  });
 });
