@@ -99,7 +99,7 @@ body {
       }
     }
 
-    &[data-state='on'] {
+    &.on {
       &::before {
         background-color: $primary-color;
         opacity: 0.2;

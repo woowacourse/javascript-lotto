@@ -5,9 +5,13 @@ import { makeLottosCountTemplate, makeLottoTemplate } from '../utils/Lotto/templ
 export default class LottoListView {
   #container;
   #lottoNumberToggle;
+  #lottoItemContainer;
+
   constructor($element) {
     this.#container = $element;
+
     this.#lottoNumberToggle = $($element, `#${SELECTOR.ID.NUMBER_TOGGLE}`);
+    this.#lottoItemContainer = $($element, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`);
   }
 
   bindLottoNumberToggle() {
@@ -23,18 +27,12 @@ export default class LottoListView {
   }
 
   toggleShow() {
-    const toggle = this.#lottoNumberToggle.dataset;
-    toggle.state = toggle.state === 'on' ? 'off' : 'on';
-
-    const { dataset: itemContainer } = $(
-      this.#container,
-      `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`
-    );
-    itemContainer.list = itemContainer.list === 'list' ? 'icon' : 'list';
+    this.#lottoNumberToggle.classList.toggle('on');
+    this.#lottoItemContainer.classList.toggle('list');
   }
 
   renderLottoList(lottos) {
-    $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`).innerHTML = lottos
+    this.#lottoItemContainer.innerHTML = lottos
       .map((numbers) => makeLottoTemplate(numbers))
       .join('');
 
