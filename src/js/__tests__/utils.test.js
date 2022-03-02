@@ -195,7 +195,11 @@ describe('유저가 구매한 로또 티켓들의 등수별 당첨 된 갯수 �
     [1, 2, 12, 13, 9, 10],
   ];
 
-  lotto.setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber);
+  lotto.setWinningCount(
+    userAllLottoList,
+    lastWeekLottoList,
+    lastWeekBounsNumber
+  );
 
   test('1등 당첨 갯수 확인', () => {
     expect(lotto.getWinningCount().firstWinner).toBe(1);
@@ -233,7 +237,11 @@ test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () =
     [1, 2, 12, 13, 9, 10],
   ];
 
-  lotto.setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber);
+  lotto.setWinningCount(
+    userAllLottoList,
+    lastWeekLottoList,
+    lastWeekBounsNumber
+  );
 
   expect(lotto.totalWinningAmount()).toBe(testWinningAmount);
 });
@@ -241,7 +249,7 @@ test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () =
 
 test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () => {
   const purchasedAmount = 2000;
-  const testRateOfReturn = 27.5;
+  const testRateOfReturn = 2650;
   const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
   const lastWeekBounsNumber = 7;
   const userAllLottoList = [
@@ -249,7 +257,11 @@ test('유저가 구입한 로또 티켓의 총 수익률을 확인한다.', () =
     [1, 2, 11, 4, 9, 10],
   ];
 
-  lotto.setLottoCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber);
+  lotto.setWinningCount(
+    userAllLottoList,
+    lastWeekLottoList,
+    lastWeekBounsNumber
+  );
 
   expect(getRateOfReturn(lotto.totalWinningAmount(), purchasedAmount)).toBe(
     testRateOfReturn

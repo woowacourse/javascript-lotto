@@ -94,44 +94,43 @@ describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
   });
 });
 
-it('결과 확인하기 버튼을 클릭하면 당첨 통계 모달을 확인할 수 있다.', () => {
-  cy.visit('./index.html');
+describe('당첨 통계 모달', () => {
+  beforeEach(() => {
+    cy.visit('./index.html');
 
-  cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
-  cy.get(SELECTOR.PAYMENT_BUTTON).click();
+    cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
+    cy.get(SELECTOR.PAYMENT_BUTTON).click();
 
-  cy.get('#result-checking-button').click();
+    cy.get('.last-week-number-input').eq(0).type(1);
+    cy.get('.last-week-number-input').eq(1).type(2);
+    cy.get('.last-week-number-input').eq(2).type(3);
+    cy.get('.last-week-number-input').eq(3).type(4);
+    cy.get('.last-week-number-input').eq(4).type(5);
+    cy.get('.last-week-number-input').eq(5).type(6);
+    cy.get('.last-week-bonus-number-input').type(7);
 
-  cy.get('#lotto-result-section').should('be.exist');
-});
+    cy.get('#result-checking-button').click();
+  });
 
-it('당첨 통계 모달에 있는 엑스표 버튼을 클릭하면 당첨 통계 모달이 닫힌다.', () => {
-  cy.visit('./index.html');
+  it('결과 확인하기 버튼을 클릭하면 당첨 통계 모달을 확인할 수 있다.', () => {
+    cy.get('#lotto-result-section').should('be.exist');
+  });
 
-  cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
-  cy.get(SELECTOR.PAYMENT_BUTTON).click();
+  it('당첨 통계 모달에 있는 엑스표 버튼을 클릭하면 당첨 통계 모달이 닫힌다.', () => {
+    cy.get('#exit-button').click();
+    cy.get('#lotto-result-section').should('be.not.exist');
+  });
 
-  cy.get('#result-checking-button').click();
-  cy.get('#exit-button').click();
+  it('당첨 통계 모달에 있는 다시 시작하기 버튼을 클릭하면 행운의 로또가 초기화 된다.', () => {
+    cy.get('#restart-button').click();
 
-  cy.get('#lotto-result-section').should('be.not.exist');
-});
+    cy.get(SELECTOR.PAYMENT_INPUT).should('have.value', '');
+    cy.get(SELECTOR.PAYMENT_INPUT).should('have.focus');
+    cy.get(SELECTOR.PAYMENT_BUTTON).should('be.not.disabled');
 
-it('당첨 통계 모달에 있는 다시 시작하기 버튼을 클릭하면 행운의 로또가 초기화 된다.', () => {
-  cy.visit('./index.html');
-
-  cy.get(SELECTOR.PAYMENT_INPUT).type(3000);
-  cy.get(SELECTOR.PAYMENT_BUTTON).click();
-
-  cy.get('#result-checking-button').click();
-  cy.get('#restart-button').click();
-
-  cy.get(SELECTOR.PAYMENT_INPUT).should('have.value', '');
-  cy.get(SELECTOR.PAYMENT_INPUT).should('have.focus');
-  cy.get(SELECTOR.PAYMENT_BUTTON).should('be.not.disabled');
-
-  cy.get('#purchased-lotto-list-section').should('be.not.exist');
-  cy.get('#last-week-winning-number-section').should('be.not.exist');
-  cy.get('#result-checking-section').should('be.not.exist');
-  cy.get('#lotto-result-section').should('be.not.exist');
+    cy.get('#purchased-lotto-list-section').should('be.not.exist');
+    cy.get('#last-week-winning-number-section').should('be.not.exist');
+    cy.get('#result-checking-section').should('be.not.exist');
+    cy.get('#lotto-result-section').should('be.not.exist');
+  });
 });
