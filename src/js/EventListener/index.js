@@ -1,12 +1,12 @@
 import ValidatorImpl from '../ValidatorImpl/index.js';
 import LottoCountCalculator from '../CalculatorImpl/LottoCountCalculator.js';
 import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
-import LottoManagerImpl from '../LottoManager/LottoManagerImpl.js';
+import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
 import LottosView from '../View/LottosView.js';
 import { extractNumber } from '../utils/index.js';
 
 const validator = new ValidatorImpl();
-const lottoManager = new LottoManagerImpl();
+const lottoCollection = new LottoCollectionImpl();
 const lottosView = new LottosView();
 
 export const onSubmitFareForm = (e) => {
@@ -16,9 +16,9 @@ export const onSubmitFareForm = (e) => {
     const inputedFare = lottosView.getInputValue();
 
     validator.validateFare(inputedFare);
-    lottoManager.resetLottos();
-    lottoManager.createLottos(new LottoCountCalculator(inputedFare).execute());
-    lottosView.render(lottoManager.getLottos());
+    lottoCollection.resetLottos();
+    lottoCollection.createLottos(new LottoCountCalculator(inputedFare).execute());
+    lottosView.render(lottoCollection.getLottos());
     lottosView.setInputValue(new RemainFareCalculator(inputedFare).execute());
   } catch ({ message }) {
     alert(message);

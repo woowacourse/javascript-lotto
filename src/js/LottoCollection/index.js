@@ -1,4 +1,4 @@
-export default class LottoManager {
+export default class LottoCollection {
   createLottos(count) {}
 
   getLottos() {}

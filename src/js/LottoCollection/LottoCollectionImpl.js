@@ -1,7 +1,7 @@
-import LottoManager from './index.js';
+import LottoCollection from './index.js';
 import Lotto from './Lotto.js';
 
-export default class LottoManagerImpl extends LottoManager {
+export default class LottoCollectionImpl extends LottoCollection {
   constructor() {
     super();
     this.lottos = [];
