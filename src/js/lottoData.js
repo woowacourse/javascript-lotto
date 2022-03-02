@@ -1,9 +1,14 @@
 import { makeLottoNumbers } from './utils/common.js';
 export default class LottoData {
   #lottoList = [];
+  #winningNumbers = {};
 
   getLottoList() {
     return this.#lottoList;
+  }
+
+  setWinningNumbers(regularNumbers, bonusNumber) {
+    this.#winningNumbers = { regularNumbers, bonusNumber };
   }
 
   buyLotto(quantity) {
@@ -12,4 +17,6 @@ export default class LottoData {
       this.#lottoList.push(makeLottoNumbers());
     }
   }
+
+  getLottoResult() {}
 }

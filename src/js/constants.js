@@ -15,8 +15,14 @@ export const ID_SELECTOR = {
   LOTTO_LIST_SECTION: '#lotto-list-section',
   WINNING_NUMBERS_SECTION: '#winning-numbers-section',
   WINNING_NUMBERS_FORM: '#winning-numbers-form',
+  MODAL_CONTAINER: '#modal-container',
+  MODAL_CLOSE: '#modal-close',
 };
 
+export const ID_NAME = {
+  MODAL_CONTAINER: 'modal-container',
+  MODAL_CLOSE: 'modal-close',
+};
 export const CLASS_NAME = {
   LOTTO_LIST_SECTION_DISPLAY_NONE: 'lotto-list__section-display-none',
   LOTTO_LIST: 'lotto-list',
@@ -24,6 +30,7 @@ export const CLASS_NAME = {
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
   UNFOLD: 'unfold',
   WINNING_NUMBERS_SECTION_DISPLAY_NONE: 'winning-numbers__section-display-none',
+  MODAL_OPEN: 'modal__open',
 };
 
 export const LOTTO_PRICE = 1000;

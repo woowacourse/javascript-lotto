@@ -2,6 +2,7 @@ import LottoData from './lottoData';
 import LottoListView from './view/LottoList.js';
 import PurchaseFormView from './view/PurchaseForm.js';
 import WinningNumbersFormView from './view/WinningNumbersForm.js';
+import ResultModalView from './view/ResultModal.js';
 import { LOTTO_PRICE } from './constants.js';
 import { validateCashInput, validateWinningNumbers } from './utils/validation';
 
@@ -15,6 +16,7 @@ export default class Controller {
     submitWinningNumbersHandler: (reuglarNumbers, bonusNumber) =>
       this.#sumbitWinningNumberHandler(reuglarNumbers, bonusNumber),
   });
+  #resultModalView = new ResultModalView();
 
   #submitCashHanlder(cash) {
     try {
@@ -30,6 +32,8 @@ export default class Controller {
   #sumbitWinningNumberHandler(reuglarNumbers, bonusNumber) {
     try {
       validateWinningNumbers(reuglarNumbers, bonusNumber);
+      this.#lottoData.setWinningNumbers(reuglarNumbers, bonusNumber);
+      this.#resultModalView.toggleModal();
     } catch ({ message }) {
       alert(message);
     }
