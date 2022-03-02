@@ -44,6 +44,27 @@
         <button id="confirm-result-label">결과 확인하기</button>
       </form>
     </div>
+
+    <dialog id="result-modal">
+      <form method="dialog">
+        <div id="lotto-result-container">
+          <div>🏆 당첨 통계 🏆</div>
+          <table id="lotto-result-chart-table">
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody id="lotto-result-chart"></tbody>
+          </table>
+          <div id="earn-rate-percentage"></div>
+          <button id="restart-button">다시 시작하기</button>
+        </div>
+      </form>
+    </dialog>
+
     <script type="module" src="./src/index.js"></script>
   </body>
 </html>

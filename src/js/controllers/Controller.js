@@ -62,6 +62,7 @@ export class LottoController {
       this.lottoGame.calculateEarnRate();
 
       //modal창생성
+      this.view.showResultOnModal(this.lottoGame.result, this.lottoGame.earnRate);
     });
   }
 

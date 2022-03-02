@@ -14,3 +14,11 @@ export const ERROR_MESSAGE = {
   HAS_DUPLICATED_BONUS_NUMBER: 'please enter bonus number without duplicaiton',
   HAS_OUT_OF_RANGE_NUMBER: `please enter number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX}`,
 };
+
+export const WINNING_PRICE = {
+  MATCH_SIX: 2000000000,
+  MATCH_FIVE_BONUS: 30000000,
+  MATCH_FIVE: 1500000,
+  MATCH_FOUR: 50000,
+  MATCH_THREE: 5000,
+};

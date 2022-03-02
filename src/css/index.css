@@ -240,3 +240,45 @@ button {
   text-transform: uppercase;
   color: #ffffff;
 }
+
+#result-modal {
+  width: 300px;
+  padding: 20px 60px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+#lotto-result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#lotto-result-chart-table {
+  border-collapse: collapse;
+  margin: 10px 10px;
+}
+
+thead,
+tbody,
+tr {
+  border-top: gray 1px solid;
+  border-bottom: gray 1px solid;
+}
+
+th,
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#restart-button {
+  background: #00bcd4;
+  border-radius: 4px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,3 +1,5 @@
+import { WINNING_PRICE } from '../constants/constants';
+
 export class View {
   constructor() {
     this.registerButtons();
@@ -56,5 +58,59 @@ export class View {
 
   padLottoNumbers(lottoWallet) {
     return lottoWallet.map((lotto) => lotto.numbers.map((x) => String(x).padStart(3, ' ')));
+  }
+
+  showResultOnModal(result, earnRate) {
+    this.modal = document.getElementById('result-modal');
+    this.resultChart = document.getElementById('lotto-result-chart');
+    this.earnRateComment = document.getElementById('earn-rate-percentage');
+    this.restartButton = document.getElementById('restart-button');
+
+    console.log(result);
+    this.renderResultChart(result);
+    this.earnRateComment.innerHTML = `당신의 총 수익률은 ${earnRate}% 입니다.`;
+    this.modal.showModal();
+  }
+
+  renderResultChart(result) {
+    let tempKey;
+    let tempPrice;
+    let tempValue;
+
+    result.forEach((value, key) => {
+      if (key === 'matchSix') {
+        tempKey = '6개';
+        tempPrice = WINNING_PRICE.MATCH_SIX;
+        tempValue = value;
+      }
+      if (key === 'matchFiveBonus') {
+        tempKey = '5개+보너스볼';
+        tempPrice = WINNING_PRICE.MATCH_FIVE_BONUS;
+        tempValue = value;
+      }
+      if (key === 'matchFive') {
+        tempKey = '5개';
+        tempPrice = WINNING_PRICE.MATCH_FIVE;
+        tempValue = value;
+      }
+      if (key === 'matchFour') {
+        tempKey = '4개';
+        tempPrice = WINNING_PRICE.MATCH_FOUR;
+        tempValue = value;
+      }
+      if (key === 'matchThree') {
+        tempKey = '3개';
+        tempPrice = WINNING_PRICE.MATCH_THREE;
+        tempValue = value;
+      }
+      this.resultChart.insertAdjacentHTML(
+        'afterbegin',
+        `<tr>
+          <th>${tempKey}</th>
+          <th>${tempPrice}</th>
+          <th>${tempValue}개</th>
+        </tr>`,
+      );
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Lotto } from './Lotto.js';
-import { CONDITIONS } from '../constants/constants.js';
+import { CONDITIONS, WINNING_PRICE } from '../constants/constants.js';
 
 export class LottoGame {
   constructor() {
@@ -7,14 +7,15 @@ export class LottoGame {
     this.lottoWallet = [];
     this.winningNumbers = [];
     this.bonusNumber;
-    this.result = {
-      matchSix: 0,
-      matchFiveBonus: 0,
-      matchFive: 0,
-      matchFour: 0,
-      matchThree: 0,
-      matchUnderThree: 0,
-    };
+    this.result = new Map([
+      ['matchSix', 0],
+      ['matchFiveBonus', 0],
+      ['matchFive', 0],
+      ['matchFour', 0],
+      ['matchThree', 0],
+      ['matchUnderThree', 0],
+    ]);
+    //this.result = new Map();
     this.earnRate;
   }
 
@@ -51,32 +52,32 @@ export class LottoGame {
 
   saveResult(result) {
     let count = result.filter((element) => 6 === element).length;
-    this.result.matchSix = count;
+    this.result.set('matchSix', count);
 
     count = result.filter((element) => 5.5 === element).length;
-    this.result.matchFiveBonus = count;
+    this.result.set('matchFiveBonus', count);
 
     count = result.filter((element) => 5 === element).length;
-    this.result.matchFive = count;
+    this.result.set('matchFive', count);
 
     count = result.filter((element) => 4 === element).length;
-    this.result.matchFour = count;
+    this.result.set('matchFour', count);
 
     count = result.filter((element) => 3 === element).length;
-    this.result.matchThree = count;
+    this.result.set('matchThree', count);
 
     count = result.filter((element) => 3 > element).length;
-    this.result.matchUnderThree = count;
+    this.result.set('matchUnderThree', count);
   }
 
   calculateEarnRate() {
     let earnMoney = 0;
-    earnMoney += this.result.matchSix * 2000000000;
-    earnMoney += this.result.matchFiveBonus * 30000000;
-    earnMoney += this.result.matchFive * 1500000;
-    earnMoney += this.result.matchFour * 50000;
-    earnMoney += this.result.matchThree * 5000;
+    earnMoney += this.result.get('matchSix') * WINNING_PRICE.MATCH_SIX;
+    earnMoney += this.result.get('matchFiveBonus') * WINNING_PRICE.MATCH_FIVE_BONUS;
+    earnMoney += this.result.get('matchFive') * WINNING_PRICE.MATCH_FIVE;
+    earnMoney += this.result.get('matchFour') * WINNING_PRICE.MATCH_FOUR;
+    earnMoney += this.result.get('matchThree') * WINNING_PRICE.MATCH_THREE;
 
-    this.earnRate = Number(((earnMoney / (this.lottoWallet.length * 1000)) * 100 - 100).toFixed(2));
+    this.earnRate = Number(((earnMoney / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE)) * 100 - 100).toFixed(2));
   }
 }
