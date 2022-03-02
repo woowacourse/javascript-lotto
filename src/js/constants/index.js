@@ -13,6 +13,7 @@ export const ERROR_MESSAGE = {
 export const RULES = {
   LOTTO_PRICE: 1000,
   LOTTO_NUMS: 6,
+  WINNING_LOTTO_NUMS: 7,
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
 };

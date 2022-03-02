@@ -45,13 +45,27 @@ export default class WinningNumberView extends View {
       '.winning-number-input',
     );
 
+    this.winningNumberInputs.forEach((inputElement, index) => {
+      inputElement.addEventListener('input', () =>
+        this.moveFocusHandler(inputElement, index),
+      );
+    });
     winningNumberForm.addEventListener('submit', this.submitHandler.bind(this));
+  }
+
+  moveFocusHandler(inputElement, index) {
+    if (inputElement.value.length === 2) {
+      if (index === RULES.WINNING_LOTTO_NUMS - 1) {
+        return;
+      }
+      this.winningNumberInputs[index + 1].focus();
+    }
   }
 
   submitHandler(e) {
     e.preventDefault();
 
-    const winningNumbers = this.winningNumberInputs.map(input =>
+    const winningNumbers = Array.from(this.winningNumberInputs).map(input =>
       input.value === '' ? null : convertToNumber(input.value),
     );
 
