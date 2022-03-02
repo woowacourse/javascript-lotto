@@ -3,6 +3,8 @@ import LottoViewManager from './views';
 import LottoDomainManager from './domains';
 import { DOMAIN_ACTION, VIEW_ACTION } from './constants/actions';
 import { isCancelModal } from './utils/dom';
+import { generateEventFactory } from './utils/event';
+import { EVENT } from './constants/events';
 
 class LottoGameManager {
   #lottoDomainManager = null;
@@ -10,26 +12,22 @@ class LottoGameManager {
   #lottoViewManager = null;
 
   #initializeManagers() {
+    const { bindEvent, emitEvent } = generateEventFactory();
+
+    this.#bindEventHandler(bindEvent);
     this.#lottoDomainManager = new LottoDomainManager();
-    this.#lottoViewManager = new LottoViewManager();
-
-    this.#bindEventHandler();
+    this.#lottoViewManager = new LottoViewManager(emitEvent);
   }
 
-  #bindEventHandler() {
-    this.#lottoViewManager.work({
-      payload: {
-        onSubmitChargeForm: this.onSubmitChargeForm,
-        onChangeAlignState: this.onChangeAlignState,
-        onSubmitResultForm: this.onSubmitResultForm,
-        onClickRestartButton: this.onClickRestartButton,
-        onClickModal: this.onClickModal,
-      },
-      action: VIEW_ACTION.BIND_EVENT_HANDLER,
-    });
+  #bindEventHandler(bindEvent) {
+    bindEvent(EVENT.SUBMIT_CHARGE, this.onSubmitCharge);
+    bindEvent(EVENT.CHANGE_ALIGN_STATE, this.onChangeAlignState);
+    bindEvent(EVENT.SUBMIT_RESULT, this.onSubmitResult);
+    bindEvent(EVENT.CLICK_RESTART_BUTTON, this.onClickRestartButton);
+    bindEvent(EVENT.CLICK_MODAL, this.onClickModal);
   }
 
-  onSubmitChargeForm = (e) => {
+  onSubmitCharge = (e) => {
     e.preventDefault();
     try {
       const { value: chargeInputStr } = e.target.querySelector(SELECTOR.CHARGE_INPUT);
@@ -60,7 +58,7 @@ class LottoGameManager {
     });
   };
 
-  onSubmitResultForm = (e) => {
+  onSubmitResult = (e) => {
     e.preventDefault();
     const winningNumberInputNodes = [...e.target.querySelectorAll(SELECTOR.WINNING_NUMBER_INPUT)];
     const { value: bonusNumberInput } = e.target.querySelector(SELECTOR.BONUS_NUMBER_INPUT);
@@ -87,16 +85,16 @@ class LottoGameManager {
     }
   }
 
-  onClickRestartButton = () => {
-    this.start();
-  };
-
   onClickModal = ({ target: { className } }) => {
     if (isCancelModal(className)) {
       this.#lottoViewManager.work({
         action: VIEW_ACTION.MODAL_CANCEL,
       });
     }
+  };
+
+  onClickRestartButton = () => {
+    this.start();
   };
 
   start() {

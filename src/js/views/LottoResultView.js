@@ -1,13 +1,15 @@
+import { EVENT } from '../constants/events';
 import { SELECTOR } from '../constants/selector';
 import { RANK_PRICE } from '../constants/win';
 import { findElement } from '../utils/dom';
 import { changeCurrencyFormat } from '../utils/util';
 
 class LottoResultView {
-  constructor({ $app }) {
+  constructor({ $app, emitEvent }) {
     this.$app = $app;
     this.#initializeTemplate();
     this.#initializeDOM();
+    this.#bindEventHandler(emitEvent);
   }
 
   #initializeTemplate() {
@@ -25,10 +27,10 @@ class LottoResultView {
     this.$modalCancelButton = findElement(SELECTOR.MODAL_CANCEL_BUTTON);
   }
 
-  bindEventHandler({ onSubmitResultForm, onClickRestartButton, onClickModal }) {
-    this.$winNumberInputForm.addEventListener('submit', onSubmitResultForm);
-    this.$restartButton.addEventListener('click', onClickRestartButton);
-    this.$winStatistics.addEventListener('click', onClickModal);
+  #bindEventHandler(emitEvent) {
+    this.$winNumberInputForm.addEventListener('submit', (e) => emitEvent(EVENT.SUBMIT_RESULT, e));
+    this.$restartButton.addEventListener('click', (e) => emitEvent(EVENT.CLICK_RESTART_BUTTON, e));
+    this.$winStatistics.addEventListener('click', (e) => emitEvent(EVENT.CLICK_MODAL, e));
   }
 
   showWinNumberInputSection() {
