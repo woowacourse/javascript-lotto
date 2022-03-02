@@ -6,6 +6,10 @@
   display: grid;
 }
 
+.show-flex {
+  display: flex;
+}
+
 .align-row {
   display: flex;
   flex-wrap: wrap;

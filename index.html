@@ -66,6 +66,48 @@
           <button id="result-button" type="submit">결과 확인하기</button>
         </form>
       </section>
+
+      <section id="statistics-modal-container" class="hidden">
+        <h2 hidden>당첨 통계 모달</h2>
+        <div id="statistics-modal">
+          <img id="close-button" src="/images/close.svg" />
+          <h3 id="statistics-header">🏆 당첨 통계 🏆</h3>
+          <table>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td><span id="fifth-prize-count">n</span>개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td><span id="fourth-prize-count">n</span>개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td><span id="third-prize-count">n</span>개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td><span id="second-prize-count">n</span>개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td><span id="first-prize-count">n</span>개</td>
+            </tr>
+          </table>
+          <p id="rate-of-return-text">
+            당신의 총 수익률은 <span id="rate-of-return"></span>%입니다.
+          </p>
+          <button id="restart-button" type="button">다시 시작하기</button>
+        </div>
+      </section>
     </div>
   </body>
 </html>

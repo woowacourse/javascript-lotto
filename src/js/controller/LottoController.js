@@ -2,6 +2,8 @@ import LottoBundle from '../model/LottoBundle.js';
 import { validateMoney } from '../validator/moneyValidator.js';
 import IssuedTicketView from '../view/IssuedTicketView.js';
 import PurchaseView from '../view/PurchaseView.js';
+import ResultView from '../view/resultView.js';
+import StatisticsView from '../view/statisticsView.js';
 import { on } from '../utils/event.js';
 import LOTTO from '../constants/lotto.js';
 import CUSTOM_EVENT from '../constants/event.js';
@@ -11,6 +13,8 @@ export default class LottoController {
     this.model = new LottoBundle();
     this.purchaseView = new PurchaseView();
     this.issuedTicketView = new IssuedTicketView();
+    this.resultView = new ResultView();
+    this.statisticsView = new StatisticsView();
   }
 
   subscribeViewEvents() {

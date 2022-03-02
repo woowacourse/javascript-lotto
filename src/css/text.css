@@ -11,3 +11,18 @@ label {
 #result-form-label {
   margin: 0 0 8px 0;
 }
+
+#statistics-header {
+  margin: 0 0 32px 0;
+}
+
+#rate-of-return-text,
+#rate-of-return {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 16px 0 0 0;
+}

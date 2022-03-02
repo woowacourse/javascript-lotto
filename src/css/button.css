@@ -31,3 +31,16 @@ button:disabled {
   grid-column: 1 / 3;
   grid-row-start: 3;
 }
+
+#close-button {
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+#restart-button {
+  width: 152px;
+  height: 36px;
+  margin: 32px 0 0 0;
+}
