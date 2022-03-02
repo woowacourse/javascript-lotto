@@ -8,3 +8,12 @@ export const LOTTO = Object.freeze({
 export const ERROR_MESSAGE = Object.freeze({
   IS_NOT_VALID_PURCHASE_MONEY: '1000원 단위로 금액을 입력해주세요!',
 });
+
+export const LOTTO_MATCHING_RESULT_KEY = Object.freeze({
+  THREE: '3개',
+  FOUR: '4개',
+  FIVE: '5개',
+  FIVE_PLUS_BONUS: '5개+보너스볼',
+  SIX: '6개',
+  NOTHING: '낙첨',
+});

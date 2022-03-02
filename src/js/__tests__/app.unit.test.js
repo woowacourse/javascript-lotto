@@ -3,6 +3,8 @@ import {
   isEmptyValue,
   isPositiveValue,
 } from '../utils/validator.js';
+import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
+
 import LottoMatchingResultManager from '../model/lottoMatchingResultManager.js';
 import LottoCreator from '../model/lottoCreator.js';
 
@@ -66,12 +68,12 @@ describe('로또 모델 테스트', () => {
       );
 
     expect(lottoMatchingResult).toStrictEqual({
-      '3개': 0,
-      '4개': 0,
-      '5개': 0,
-      '5개+보너스볼': 1,
-      '6개': 1,
-      낙첨: 1,
+      [LOTTO_MATCHING_RESULT_KEY.THREE]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.FOUR]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.FIVE]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS]: 1,
+      [LOTTO_MATCHING_RESULT_KEY.SIX]: 1,
+      [LOTTO_MATCHING_RESULT_KEY.NOTHING]: 1,
     });
   });
 });

@@ -1,15 +1,17 @@
 /* eslint-disable max-lines-per-function */
+import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
+
 export default class LottoMatchingResultManager {
   #lottoMatchingResult;
 
   constructor() {
     this.#lottoMatchingResult = {
-      '3개': 0,
-      '4개': 0,
-      '5개': 0,
-      '5개+보너스볼': 0,
-      '6개': 0,
-      낙첨: 0,
+      [LOTTO_MATCHING_RESULT_KEY.THREE]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.FOUR]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.FIVE]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.SIX]: 0,
+      [LOTTO_MATCHING_RESULT_KEY.NOTHING]: 0,
     };
   }
 
@@ -25,6 +27,7 @@ export default class LottoMatchingResultManager {
     );
   }
 
+  // 15줄 넘기지 않도록 하기
   calcLottoMatchingResult(
     winningLottoNumbers,
     winningLottoBonusNumber,
@@ -57,19 +60,21 @@ export default class LottoMatchingResultManager {
 
     switch (matchedNumCount) {
       case 3:
-        key = '3개';
+        key = LOTTO_MATCHING_RESULT_KEY.THREE;
         break;
       case 4:
-        key = '4개';
+        key = LOTTO_MATCHING_RESULT_KEY.FOUR;
         break;
       case 5:
-        key = lotto.includes(winningLottoBonusNumber) ? '5개+보너스볼' : '5개';
+        key = lotto.includes(winningLottoBonusNumber)
+          ? LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS
+          : LOTTO_MATCHING_RESULT_KEY.FIVE;
         break;
       case 6:
-        key = '6개';
+        key = LOTTO_MATCHING_RESULT_KEY.SIX;
         break;
       default:
-        key = '낙첨';
+        key = LOTTO_MATCHING_RESULT_KEY.NOTHING;
     }
 
     return key;
