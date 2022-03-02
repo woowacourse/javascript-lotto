@@ -1,11 +1,13 @@
 import { $ } from '../utils/selector.js';
-import { on } from '../utils/event.js';
+import { on, emit } from '../utils/event.js';
+import CUSTOM_EVENT from '../constants/event.js';
 
 export default class StatisticsView {
   constructor() {
     this.$statisticsModal = $('#statistics-modal');
     this.$statisticsModalContainer = $('#statistics-modal-container');
     this.$closeButton = $('#close-button');
+    this.$restartButton = $('#restart-button');
     this.$firstPrizeCount = $('#first-prize-count');
     this.$secondPrizeCount = $('#second-prize-count');
     this.$thirdPrizeCount = $('#third-prize-count');
@@ -16,16 +18,24 @@ export default class StatisticsView {
   }
 
   bindEvents() {
-    on(this.$statisticsModalContainer, 'click', (e) => this.handleClick(e));
+    on(this.$statisticsModalContainer, 'click', (e) =>
+      this.handleClickForClose(e),
+    );
+
+    on(this.$restartButton, 'click', () => this.handleClickForRestart());
   }
 
-  handleClick(e) {
+  handleClickForClose(e) {
     if (
       e.target === this.$statisticsModalContainer ||
       e.target === this.$closeButton
     ) {
       this.hideStatisticsModal();
     }
+  }
+
+  handleClickForRestart() {
+    emit(this.$restartButton, CUSTOM_EVENT.RESTART, {});
   }
 
   showStatisticsModal() {

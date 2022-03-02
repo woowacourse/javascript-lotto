@@ -2,6 +2,10 @@ import PRIZE from '../constants/prize.js';
 
 export default class LottoPrize {
   constructor() {
+    this.initialize();
+  }
+
+  initialize() {
     this.isCalculated = false;
     this.prizeCount = {
       first: 0,

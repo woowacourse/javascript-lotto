@@ -25,6 +25,16 @@ export default class PurchaseView {
     return this.$purchaseInput.valueAsNumber;
   }
 
+  rerenderView() {
+    this.$purchaseInput.value = '';
+    this.activatePurchaseForm();
+  }
+
+  activatePurchaseForm() {
+    this.$purchaseButton.disabled = false;
+    this.$purchaseInput.disabled = false;
+  }
+
   deactivatePurchaseForm() {
     this.$purchaseButton.disabled = true;
     this.$purchaseInput.disabled = true;

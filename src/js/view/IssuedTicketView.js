@@ -30,6 +30,17 @@ export default class IssuedTicketView {
     this.$ticketContainer.classList.replace('hidden', 'show');
   }
 
+  hideTicketContainer() {
+    this.$ticketContainer.classList.replace('show', 'hidden');
+  }
+
+  rerenderView() {
+    this.$issuedTicketDiv.textContent = '';
+    this.$lottoNumberToggle.checked = false;
+    this.hideTicketDetails();
+    this.hideTicketContainer();
+  }
+
   renderTicketCount(count) {
     this.$ticketCount.textContent = count;
   }

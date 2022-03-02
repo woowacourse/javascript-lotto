@@ -34,6 +34,10 @@ export default class LottoController {
     on(this.resultView.$resultForm, CUSTOM_EVENT.CHECK_RESULT, (e) =>
       this.checkResult(e.detail.numbers),
     );
+
+    on(this.statisticsView.$restartButton, CUSTOM_EVENT.RESTART, () =>
+      this.restart(),
+    );
   }
 
   purchaseLotto(money) {
@@ -94,5 +98,14 @@ export default class LottoController {
     this.lottoPrizeModel.calculateRateOfReturn(
       this.lottoBundleModel.lottos.length * LOTTO.PRICE_PER_TICKET,
     );
+  }
+
+  restart() {
+    this.lottoBundleModel.initialize();
+    this.lottoPrizeModel.initialize();
+    this.purchaseView.rerenderView();
+    this.issuedTicketView.rerenderView();
+    this.resultView.rerenderView();
+    this.statisticsView.hideStatisticsModal();
   }
 }

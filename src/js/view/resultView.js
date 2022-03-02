@@ -28,4 +28,13 @@ export default class ResultView {
   showResultView() {
     this.$resultContainer.classList.remove('hidden');
   }
+
+  hideResultView() {
+    this.$resultContainer.classList.add('hidden');
+  }
+
+  rerenderView() {
+    this.$resultForm.reset();
+    this.hideResultView();
+  }
 }
