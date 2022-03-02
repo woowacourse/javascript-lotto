@@ -1,4 +1,4 @@
-import { LOTTO_NUMBER_COUNT, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/constants';
+import { LOTTO_RULES } from '../constants/constants';
 import LottoPurchaseMachine from '../machine/lottoPurchaseMachine.js';
 import LottoWinnerMachine from '../machine/lottoWinnerMachine';
 import { generateRandomNumberInRange } from '../utils/utils.js';
@@ -37,14 +37,14 @@ describe('로또 번호 생성 테스트', () => {
   test('범위가 1 - 45인 고유한 숫자 6개가 생성되는지 확인한다.', () => {
     const lotto = new Set(
       generateRandomNumberInRange({
-        min: LOTTO_NUMBER_RANGE.MIN,
-        max: LOTTO_NUMBER_RANGE.MAX,
-        count: LOTTO_NUMBER_COUNT,
+        min: LOTTO_RULES.NUMBER_RANGE.MIN,
+        max: LOTTO_RULES.NUMBER_RANGE.MAX,
+        count: LOTTO_RULES.NUMBER_COUNT,
       })
     );
-    expect(lotto.size).toEqual(LOTTO_NUMBER_COUNT);
+    expect(lotto.size).toEqual(LOTTO_RULES.NUMBER_COUNT);
     lotto.forEach((number) =>
-      expect(number).toBeWithinRange(LOTTO_NUMBER_RANGE.MIN, LOTTO_NUMBER_RANGE.MAX)
+      expect(number).toBeWithinRange(LOTTO_RULES.NUMBER_RANGE.MIN, LOTTO_RULES.NUMBER_RANGE.MAX)
     );
   });
 
@@ -52,7 +52,7 @@ describe('로또 번호 생성 테스트', () => {
     const lottoMachine = new LottoPurchaseMachine();
     const cashInput = '5000';
     lottoMachine.buyLotto(cashInput);
-    expect(lottoMachine.lottos).toHaveLength(Number(cashInput) / LOTTO_PRICE);
+    expect(lottoMachine.lottos).toHaveLength(Number(cashInput) / LOTTO_RULES.PRICE);
   });
 });
 
@@ -88,6 +88,68 @@ describe('당첨 번호 입력 검증 테스트', () => {
     expect(() => lottoWinnerMachine.setWinnerNumbers(inputLagerNumber)).toThrow();
     expect(() => lottoWinnerMachine.setWinnerNumbers(inputRealNumber)).toThrow();
     expect(() => lottoWinnerMachine.setWinnerNumbers(inputString)).toThrow();
+  });
+});
+
+describe('당첨 금액 계산 테스트', () => {
+  // 로또 번호, 당첨 번호를 머신에 저장하고 일치 계산
+  const createTestMachine = (lottos, winnerNumbers) => {
+    const testMachine = new LottoWinnerMachine();
+    testMachine.receiveLottos(lottos);
+    testMachine.setWinnerNumbers(winnerNumbers);
+    return testMachine;
+  };
+
+  test('한 개의 로또와 당첨 번호를 비교해 일치 번호의 갯수를 반환한다.', () => {
+    const lottos = [new Set([1, 2, 3, 4, 5, 6])];
+    const winnerNumbers = { numbers: [1, 2, 3, 45, 44, 43], bonus: 6 };
+
+    const testMachine = createTestMachine(lottos, winnerNumbers);
+
+    expect(testMachine.matches[3]).toEqual(1);
+  });
+
+  test('일치 번호의 갯수가 5개일 때 보너스 번호를 체크한다.', () => {
+    const lottos = [new Set([1, 2, 3, 4, 5, 6])];
+    const winnerNumbers = { numbers: [1, 2, 3, 4, 5, 7], bonus: 6 };
+
+    const testMachine = createTestMachine(lottos, winnerNumbers);
+
+    expect(testMachine.matches['5+']).toEqual(1);
+  });
+
+  test('여러 개의 로또와 당첨 번호를 비교해 일치 번호의 갯수를 반환한다.', () => {
+    const lottos = [
+      new Set([1, 2, 3, 4, 5, 6]),
+      new Set([1, 2, 3, 4, 5, 8]),
+      new Set([11, 12, 13, 4, 5, 7]),
+      new Set([11, 12, 13, 4, 5, 7]),
+      new Set([11, 12, 13, 14, 5, 7]),
+    ];
+    const winnerNumbers = { numbers: [1, 2, 3, 4, 5, 7], bonus: 6 };
+
+    const manualMatch = { 2: 1, 3: 2, 5: 1, '5+': 1 };
+
+    const testMachine = createTestMachine(lottos, winnerNumbers);
+
+    expect(testMachine.matches).toEqual(manualMatch);
+  });
+
+  test('로또와 당첨번호를 비교해 수익률을 계산할 수 있다.', () => {
+    const lottos = [
+      new Set([11, 12, 13, 4, 5, 7]),
+      new Set([11, 12, 13, 4, 5, 7]),
+      new Set([11, 12, 13, 14, 5, 7]),
+      new Set([11, 12, 13, 14, 5, 7]),
+      new Set([11, 12, 13, 14, 5, 7]),
+    ];
+    const winnerNumbers = { numbers: [1, 2, 3, 4, 5, 7], bonus: 6 };
+
+    const manualProfit = ((5000 * 2) / 5000) * 100 - 100;
+
+    const testMachine = createTestMachine(lottos, winnerNumbers);
+
+    expect(testMachine.profit).toEqual(manualProfit);
   });
 });
 
