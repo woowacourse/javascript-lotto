@@ -88,17 +88,21 @@ export default class LottoController {
   }
 
   #requestResult(winningNumbers, bonusNumber) {
-    this.lottoResult.winningNumbers = winningNumbers;
-    this.lottoResult.bonusNumber = bonusNumber;
-    this.lottoResult.calculateWinningCounts();
-    if (this.lottoBundle.isLottosEmpty()) {
+    if (this.lottoBundle.isLottoListEmpty()) {
       alert(EXCEPTION.INSUFFICIENT.PURCHASE_INPUT);
       return;
     }
-    const { winningCounts } = this.lottoResult;
-    this.lottoResult.calculateLottoYield();
-    const { lottoYield } = this.lottoResult;
-    this.#renderResultModal(winningCounts, lottoYield);
+
+    const result = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
+
+    if (this.lottoResult.isWinningNumbersDuplicated()) {
+      alert(
+        '입력한 당첨 번호 중 중복된 번호가 있습니다. 중복되지 않은 번호를 입력해주세요.',
+      );
+      return;
+    }
+
+    this.#renderResultModal(result.winningCounts, result.lottoYield);
   }
 
   #renderResultModal(winningCounts, lottoYield) {

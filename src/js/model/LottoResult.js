@@ -25,6 +25,17 @@ export default class LottoResult {
     return this.#winningCounts;
   }
 
+  getLottoResult(winningNumbers, bonusNumber) {
+    this.winningNumbers = winningNumbers;
+    this.bonusNumber = bonusNumber;
+    this.calculateWinningCounts();
+    this.calculateLottoYield();
+    return {
+      winningCounts: this.#winningCounts,
+      lottoYield: this.#lottoYield,
+    };
+  }
+
   calculateWinningCounts() {
     const userLottos = this.lottoBundle.lottos;
 
@@ -35,7 +46,7 @@ export default class LottoResult {
     let six = 0;
 
     userLottos.forEach((userLotto) => {
-      switch (this.countLottoNumbers(userLotto)) {
+      switch (this.#countLottoNumbers(userLotto)) {
         case 3:
           three += 1;
           break;
@@ -59,7 +70,7 @@ export default class LottoResult {
     this.#winningCounts = { three, four, five, fiveBonus, six };
   }
 
-  countLottoNumbers(userLotto) {
+  #countLottoNumbers(userLotto) {
     let count = 0;
     for (let i = 0; i <= 5; i += 1) {
       for (let j = 0; j <= 5; j += 1) {
@@ -99,5 +110,14 @@ export default class LottoResult {
     this.#bonusNumber = 0;
     this.#winningCounts = { three: 0, four: 0, five: 0, fiveBonus: 0, six: 0 };
     this.#lottoYield = 0;
+  }
+
+  isWinningNumbersDuplicated() {
+    const numbers = [...this.#winningNumbers, this.#bonusNumber];
+
+    if (numbers.length !== new Set(numbers).size) {
+      return true;
+    }
+    return false;
   }
 }
