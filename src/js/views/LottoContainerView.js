@@ -56,7 +56,7 @@ class LottoContainerView {
     <h1 id="charge-input-section-title" hidden>금액을 입력하는 섹션입니다.</h1>
     <p>구입할 금액을 입력해주세요</p>
     <form id="charge-input-form">
-      <input id="charge-input" type="number" placeholder="금액" />
+      <input id="charge-input" type="number" placeholder="금액" min="1000" max="100000"/>
       <button id="charge-button">구입</button>
     </form>
   </section>

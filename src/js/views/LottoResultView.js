@@ -71,17 +71,17 @@ class LottoResultView {
     <div class="win-number-input-wrapper">
       <div>
         <p>당첨 번호</p>
-        <input class="winning-number-input" type="number" />
-        <input class="winning-number-input" type="number" />
-        <input class="winning-number-input" type="number" />
-        <input class="winning-number-input" type="number" />
-        <input class="winning-number-input" type="number" />
-        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" min="1" max="45" required/>
+        <input class="winning-number-input" type="number" min="1" max="45" required/>
+        <input class="winning-number-input" type="number" min="1" max="45" required/>
+        <input class="winning-number-input" type="number" min="1" max="45" required/>
+        <input class="winning-number-input" type="number" min="1" max="45" required/>
+        <input class="winning-number-input" type="number" min="1" max="45" required/>
       </div>
 
       <div class="bonus-number-wrapper flex-column-align-end">
         <p>보너스 번호</p>
-        <input class="bonus-number-input" type="number" />
+        <input class="bonus-number-input" type="number" min="1" max="45" required/>
       </div>
     </div>
 
