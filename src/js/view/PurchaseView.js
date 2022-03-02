@@ -41,7 +41,7 @@ export default class PurchaseView {
    * @description 입력된 로또 구매 금액을 반환한다.
    */
   #getMoneyToPurchase() {
-    return $purchaseInput.valueAsNumber;
+    return this.$purchaseInput.valueAsNumber;
   }
 
   /**

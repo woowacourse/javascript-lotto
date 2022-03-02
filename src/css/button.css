@@ -39,3 +39,8 @@ button:focus:not(:focus-visible) {
 #result-button {
   width: 100%;
 }
+
+#restart-button {
+  margin: 0;
+  width: 152px;
+}

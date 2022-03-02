@@ -5,23 +5,27 @@ export default class ResultModalView {
   constructor() {
     this.$modalContainer = $(ID.MODAL_CONTAINER);
     this.$modal = $('.modal');
-    this.bindEvents();
+    this.$closeButton = $('.close');
+
+    this.#bindEvents();
   }
 
-  bindEvents() {
-    window.addEventListener('click', (e) =>
-      e.target !== this.$modal
-        ? this.$modal.classList.remove('show-modal')
-        : false,
-    );
-    window.addEventListener('click', () => console.log('hi'));
+  #bindEvents() {
+    // window.addEventListener('click', (e) =>
+    //   e.target !== this.$modal ? this.hideModal() : false,
+    // );
+    this.$closeButton.addEventListener('click', () => this.hideModal());
   }
 
   showModal() {
-    this.$modal.classList.add('show-modal');
+    this.$modalContainer.classList.add('show-modal');
   }
 
   hideModal() {
-    this.$modal.classList.remove('show-modal');
+    this.$modalContainer.classList.remove('show-modal');
   }
+
+  //   renderWinningCounts(winningCounts) {}
+
+  //   renderYield(lottoYield) {}
 }

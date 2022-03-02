@@ -22,4 +22,5 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 52px 0 0 0;
 }

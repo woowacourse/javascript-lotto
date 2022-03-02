@@ -1,4 +1,5 @@
 const ID = Object.freeze({
+  APP: '#app',
   PURCHASE_CONTAINER: '#purchase-container',
   TICKET_CONTAINER: '#ticket-container',
   PURCHASE_FORM: '#purchase-form',
@@ -11,6 +12,8 @@ const ID = Object.freeze({
   WINNING_NUMBERS_FORM: '#winning-numbers-form',
   RESULT_BUTTON: '#result-button',
   MODAL_CONTAINER: '#modal-container',
+  LOTTO_YIELD_SPAN: '#lotto-yield-span',
+  RESTART_BUTTON: '#restart-button',
 });
 
 export default ID;

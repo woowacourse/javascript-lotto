@@ -101,10 +101,53 @@
       </section>
 
       <!--Modal-->
-      <section id="modal-container">
+      <div id="modal-container" class="modal-background">
         <h2 hidden>로또 당첨 통계 확인 창</h2>
-        <div class="modal"></div>
-      </section>
+        <div class="modal">
+          <div class="close"></div>
+          <h3>🏆 당첨 통계 🏆</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td>n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="result-span">
+            당신의 총 수익률은 <span id="lotto-yield-span"></span>%입니다.
+          </div>
+          <button id="restart-button">다시 시작하기</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
