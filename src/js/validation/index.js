@@ -16,8 +16,8 @@ export const isNotOverlapped = (lottoNumbers) => {
 
 export const isValidCount = (lottoNumbers) => lottoNumbers.length === LOTTO_RULES.BALL_COUNT;
 
-export const isNotIncludeWinningNumbers = (winnerNumbers, bonumsNumber) =>
-  !winnerNumbers.includes(bonumsNumber);
+export const isNotIncludeWinningNumbers = (winningNumbers, bonumsNumber) =>
+  !winningNumbers.includes(bonumsNumber);
 
 export const validator = {
   validateFare: (fare) => {
@@ -36,6 +36,15 @@ export const validator = {
 
     if (!isValidCount(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_COUNT_WINNING_NUMBERS);
+    }
+  },
+  validateBonusNumber: (winningNumbers, bonusNumber) => {
+    if (!isNotIncludeWinningNumbers(winningNumbers, bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INCLUDED_IN_WINNING_NUMBERS);
+    }
+
+    if (!isValidRangeNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INVALID_RANGE_BONUS_NUMBER);
     }
   },
 };

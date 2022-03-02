@@ -9,14 +9,14 @@ export const onClickResultButton = () => {
     .map((inputElement) => inputElement.valueAsNumber)
     .reverse();
 
-  console.log('입력된 지난주 당첨 번호: ', winningNumbers);
-  console.log('입력된 보너스 당첨 번호: ', bonumsNumber);
-
   try {
     validator.validateWinningNumbers(winningNumbers);
+    validator.validateBonusNumber(winningNumbers, bonumsNumber);
   } catch (error) {
     alert(error.message);
   }
+
+  console.log('유효한 당첨 번호와 보너스 번호 입력!');
 };
 
 export const onSubmitFareForm = (e) => {
