@@ -9,7 +9,7 @@ import {
 } from './constants';
 import { isValidMoneyInput, isDuplicatedLottos } from './validator';
 import Lotto from '../model/Lotto';
-import { showResult, toggleNumberDetail } from '../view/lottoView';
+import { showResult, toggleNumberDetail, resetView } from '../view/lottoView';
 import { maxLengthHandler } from '../utils/maxLengthHandler';
 import { showWinnerModal, closeModal } from '../view/modalView';
 
@@ -22,7 +22,14 @@ export default class LottoController {
     $('.winning-numbers-form').addEventListener('submit', this.winningLottoHandler);
     $$('.winning-numbers').forEach(input => input.addEventListener('input', maxLengthHandler));
     $('.modal-closer').addEventListener('click', closeModal);
+    $('.restart').addEventListener('click', this.resetLotto);
   }
+
+  resetLotto = () => {
+    this.lottos = [];
+    this.winningLottos = [];
+    resetView();
+  };
 
   getLottos = (moneyInput) => {
     const numberOfLottos = parseInt(moneyInput / LOTTO_PRICE);
