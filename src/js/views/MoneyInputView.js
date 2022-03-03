@@ -1,5 +1,7 @@
-import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+
+import { $ } from '../utils/element-manager';
+import { onEnableButton } from '../utils/custom-event';
 
 export default class MoneyInputView {
   #container;
@@ -9,27 +11,27 @@ export default class MoneyInputView {
   constructor(containerSelector) {
     this.#container = $(containerSelector);
 
+    this.#defaultElements();
+    this.#bindEvents();
+  }
+
+  #defaultElements() {
     this.#moneyInput = $(this.#container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`);
     this.#moneyInputSubmit = $(this.#container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`);
   }
 
+  #bindEvents() {
+    this.#moneyInput.addEventListener('keyup', this.#handleMoneyInputValue.bind(this));
+  }
+
   init() {
     this.#moneyInput.value = '';
-    this.disableSubmitButton();
+    this.#handleMoneyInputValue();
   }
 
-  enableSubmitButton() {
-    this.#moneyInputSubmit.disabled = false;
-  }
-
-  disableSubmitButton() {
-    this.#moneyInputSubmit.disabled = true;
-  }
-
-  bindInputValue(handler) {
-    this.#moneyInput.addEventListener('keyup', () => {
-      handler({ isEmpty: this.#moneyInput.value.length === 0 });
-    });
+  #handleMoneyInputValue() {
+    const isInputEmpty = this.#moneyInput.value.length === 0;
+    onEnableButton(this.#moneyInputSubmit, () => isInputEmpty === false);
   }
 
   bindInputSubmit(handler) {

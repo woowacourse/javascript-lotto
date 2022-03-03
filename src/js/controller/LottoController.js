@@ -21,18 +21,8 @@ export default class LottoController {
   }
 
   bindEvents() {
-    this.#MoneyInputView.bindInputValue(this.handleMoneyInputKeyPress.bind(this));
     this.#MoneyInputView.bindInputSubmit(this.handleMoneyInputSubmit.bind(this));
     this.#LottoListView.bindLottoNumberToggle();
-  }
-
-  handleMoneyInputKeyPress({ isEmpty }) {
-    if (isEmpty === true) {
-      this.#MoneyInputView.disableSubmitButton();
-      return;
-    }
-
-    this.#MoneyInputView.enableSubmitButton();
   }
 
   handleMoneyInputSubmit({ moneyInputValue: money }) {
