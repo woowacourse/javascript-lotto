@@ -4,6 +4,8 @@ import { createRandomNumbers } from './utils/index.js';
 class LottoManager {
   #lottos = [];
 
+  #fare = null;
+
   createLottos(lottoCount) {
     for (let i = 0; i < lottoCount; i += 1) {
       this.#lottos.push(
@@ -16,6 +18,14 @@ class LottoManager {
 
   getLottos() {
     return this.#lottos;
+  }
+
+  setFare(fare) {
+    this.#fare = fare;
+  }
+
+  getFare() {
+    return this.#fare;
   }
 
   calculateLottoCount(fare) {

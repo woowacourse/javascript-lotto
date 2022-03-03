@@ -22,8 +22,7 @@ export const onClickResultButton = () => {
     return;
   }
 
-  // TODO: 당첨 개수와 수익률 계산하기
-
+  // TODO: 당첨된 로또 개수와 수익률 계산하기
   view.renderWinningStatisticModal();
 
   $('#winning-statistic-modal-close-button').addEventListener('click', onClickModalCloseButton);
@@ -33,26 +32,26 @@ export const onClickResultButton = () => {
 
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
+  const fare = $('#fare-input').value;
 
   try {
-    const fare = $('#fare-input').value;
-
     validator.validateFare(fare);
-
-    const lottoCount = lottoManager.calculateLottoCount(fare);
-    const lottoList = lottoManager.createLottos(lottoCount);
-    view.renderLottoList(lottoList);
-
-    const remainFare = lottoManager.calculateRemainFare(fare);
-    view.renderFare(remainFare);
-
-    view.deactivateFareForm();
-    view.renderLottoMatchSection();
-
-    $('#result-button').addEventListener('click', onClickResultButton);
+    lottoManager.setFare(fare);
   } catch (error) {
     alert(error.message);
   }
+
+  const lottoCount = lottoManager.calculateLottoCount(fare);
+  const lottoList = lottoManager.createLottos(lottoCount);
+  view.renderLottoList(lottoList);
+
+  const remainFare = lottoManager.calculateRemainFare(fare);
+  view.renderFare(remainFare);
+
+  view.deactivateFareForm();
+  view.renderLottoMatchSection();
+
+  $('#result-button').addEventListener('click', onClickResultButton);
 };
 
 export const onToggleLottoViewerController = () =>
