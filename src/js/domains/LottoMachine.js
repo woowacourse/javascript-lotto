@@ -1,14 +1,28 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
 <<<<<<< HEAD
 <<<<<<< HEAD
 import Lotto from "../domains/Lotto.js";
 import validateMoney from "../validations/LottoMachine.js";
 import LottoStrategy from "./LottoStrategy.js";
+=======
+import { LOTTO } from '../constants/constants.js';
+import Lotto from '../domains/Lotto.js';
+import validateMoney from '../validations/LottoMachine.js';
+import LottoStrategy from './LottoStrategy.js';
+>>>>>>> 47fe7b8 (feat: LottoMachine LottoResult 계산 로직 추가)
 export default class LottoMachine {
-  #inputMoney = 0;
-  #lottos = [];
+  #inputMoney;
+  #lottos;
+  #strategy;
+
+  constructor() {
+    this.#inputMoney = 0;
+    this.#lottos = [];
+    this.#strategy = new LottoStrategy();
+  }
 
   get inputMoney() {
     return this.#inputMoney;
@@ -27,6 +41,10 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
+  updateStrategy(strategy) {
+    this.#strategy = strategy;
+  }
+
   operateLottoMachine() {
     this.#lottos = this.generateLottos();
     this.#inputMoney = 0;
@@ -35,6 +53,7 @@ export default class LottoMachine {
   generateLottos() {
     return Array(this.lottoQuantity)
       .fill()
+<<<<<<< HEAD
 <<<<<<< HEAD
       .map(() => {
         const lotto = new Lotto();
@@ -109,6 +128,15 @@ export default class LottoMachine {
 =======
       .map(() => new Lotto(new LottoStrategy()).generate());
 >>>>>>> 9104408 (refactor: Lotto 생성 과정 전략패턴화)
+=======
+      .map(() => new Lotto(this.#strategy).generate());
+  }
+
+  calculateGrade(winningNumbers, bonusNumber) {
+    this.#lottos.forEach((lotto) =>
+      lotto.generateGrade(winningNumbers, bonusNumber)
+    );
+>>>>>>> 47fe7b8 (feat: LottoMachine LottoResult 계산 로직 추가)
   }
 =======
 >>>>>>> 9b14578 (refactor: 메서드 역할 상세화)

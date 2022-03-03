@@ -2,10 +2,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
 =======
 import { LOTTO } from '../constants/constants.js';
 >>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
+=======
+import { LOTTO } from '../constants/constants.js';
+import LottoResultFactory from './LottoResultFactory.js';
+>>>>>>> 47fe7b8 (feat: LottoMachine LottoResult 계산 로직 추가)
 export default class Lotto {
   #numbers = [];
 
@@ -61,5 +66,17 @@ export default class Lotto {
     this.#numbers = this.pickStrategy.pickNumbers();
     return this;
 >>>>>>> 9104408 (refactor: Lotto 생성 과정 전략패턴화)
+  }
+
+  generateGrade(winningNumbers, bonusNumber) {
+    const numberOfMatches = this.#numbers.filter((number) =>
+      winningNumbers.includes(number)
+    ).length;
+
+    const hasBonusNumber = this.#numbers.includes(bonusNumber);
+    this.result = LottoResultFactory.createLottoResult(
+      numberOfMatches,
+      hasBonusNumber
+    );
   }
 }
