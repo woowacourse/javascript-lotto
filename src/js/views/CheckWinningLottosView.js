@@ -1,6 +1,7 @@
 import View from './View.js';
 import { $, $$ } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
+import validateInputWinningNumbers from '../validations/CheckWinningLottos.js';
 
 export default class CheckWinningLottosView extends View {
   constructor() {
@@ -10,30 +11,32 @@ export default class CheckWinningLottosView extends View {
   }
 
   getInputWinningNumbers() {
-    const inputWinningNumbers = new Set();
+    const inputWinningNumbers = [];
     $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element) => {
-      inputWinningNumbers.add(Number.parseInt(element.value));
+      inputWinningNumbers.push(Number.parseInt(element.value));
     });
-    if (inputWinningNumbers.size === 7) return [...inputWinningNumbers];
-    const error = new Error('중복된 숫자가 있습니다.');
-    error.name = 'Duplicated input';
-    throw error;
+    validateInputWinningNumbers(inputWinningNumbers);
+    return inputWinningNumbers;
   }
 
   handleInputWinningNumber(index) {
-    const element = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
-    element[index].value = element[index].value.substr(0, 2);
-    if (index < 6 && element[index].value.length > 1) {
-      element[index + 1].focus();
+    const elements = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
+    elements[index].value = elements[index].value.substr(0, 2);
+    if (index < 6 && elements[index].value.length > 1) {
+      elements[index + 1].focus();
+      // 이전 값들에 대한 확인
+      elements.forEach((element) => {});
     }
   }
 
   handleDeleteWinningNumber(event, index) {
-    const element = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
+    const elements = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
     if (event.key === 'Backspace') {
-      if (index !== 0 && element[index].value.length === 0)
-        element[index - 1].focus();
+      if (index !== 0 && elements[index].value.length === 0)
+        elements[index - 1].focus();
+      return;
     }
+    console.log(elements[index].value);
   }
 
   bindInputWinningNumberEvents() {

@@ -20,6 +20,7 @@ export const SELECTOR = {
     CHECK_RESULT_BUTTON: '#check-result-button',
     COINCIDE_COUNT_BONUS: '#coincide-count-bonus',
     SHOW_PROFIT_RATE: '#show-profit-rate',
+    PURCHASE_MONEY_INPUT_ALERT: '#purchase-money-input-alert',
   },
   CLASS: {
     WINNING_NUMBER_INPUT: '.winning-number-input',

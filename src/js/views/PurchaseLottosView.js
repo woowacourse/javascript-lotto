@@ -1,6 +1,7 @@
 import { $ } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
 import View from './View.js';
+import validateMoney from '../validations/PurchaseLottos.js';
 
 const template = {
   ticketImg: '<div>🎟️</div>',
@@ -16,11 +17,20 @@ const template = {
 };
 
 export default class PurchaseLottosView extends View {
+  constructor() {
+    super();
+    this.bindEvent(
+      $(SELECTOR.ID.PURCHASE_MONEY_INPUT),
+      'keyup',
+      this.handleOnChangeMoneyInput.bind(this)
+    );
+  }
   getInputMoney() {
     return Number.parseInt($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
   }
 
   renderPurchasedLottos(lottos) {
+    this.clearMoneyInput();
     $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
     $(SELECTOR.ID.TOGGLE_CHECKBOX).checked
       ? this.renderPurchasedLottosByNumbers(lottos)
@@ -58,5 +68,23 @@ export default class PurchaseLottosView extends View {
   showLottoContainers() {
     $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = false;
     $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
+  }
+
+  handleOnChangeMoneyInput(event) {
+    try {
+      validateMoney(event.target.value);
+      this.clearMoneyInput();
+    } catch (error) {
+      $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.add('input-alert');
+      $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = error.message;
+    }
+    if (event.target.value.length === 0) {
+      this.clearMoneyInput();
+    }
+  }
+
+  clearMoneyInput() {
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.remove('input-alert');
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = '';
   }
 }

@@ -9,6 +9,21 @@ body {
   justify-content: center;
 }
 
+input:focus {
+  background-color: rgba(63, 207, 226, 0.1);
+  border: 1px solid #00bcd4;
+  outline: none;
+}
+
+.input-alert {
+  border: 1px solid tomato;
+}
+
+.input-alert:focus {
+  border: 1px solid tomato;
+  background-color: rgba(255, 99, 71, 0.1);
+}
+
 button {
   background-color: #00bcd4;
   color: #fff;
@@ -135,4 +150,12 @@ input {
   border-bottom: 1px solid #dcdcdc;
   line-height: 40px;
   text-align: center;
+}
+
+#purchase-money-input-alert {
+  width: 316px;
+  text-align: center;
+  color: tomato;
+  font-size: 12px;
+  margin: 4px;
 }

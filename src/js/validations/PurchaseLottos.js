@@ -13,11 +13,13 @@ function isOverLimit(money) {
 }
 
 export default function validateMoney(money) {
-  if (!isValidUnit(money)) {
-    throw new Error(`${LOTTO.PRICE}단위로 입력해주세요`);
-  }
   if (!isOverZero(money)) {
     throw new Error('0원보다 큰 금액을 입력해주세요.');
+  }
+  if (!isValidUnit(money)) {
+    throw new Error(
+      `로또 가격 단위로 입력해주세요. (현재 로또 가격 : ${LOTTO.PRICE}원)`
+    );
   }
   if (isOverLimit(money)) {
     throw new Error('10,000,000원 보다 큰 금액으로 구입할 수 없습니다.');
