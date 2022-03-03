@@ -5,7 +5,7 @@ import LottosModel from '../models/LottosModel';
 import LottoResultView from '../views/LottoResultView';
 import ModalView from '../views/ModalView';
 
-import { checkValidMoneyInput } from '../utils/Lotto/validator';
+import { checkValidMoneyInput, checkValidWinningNumberList } from '../utils/Lotto/validator';
 import { SELECTOR } from '../constants/selector';
 
 import '../../css/Lotto.scss';
@@ -50,8 +50,11 @@ export default class LottoController {
   }
 
   handleWinningNumberInputSubmit({ winningNumberList }) {
-    console.log(winningNumberList);
-
-    this.#View.LottoResultModal.show();
+    try {
+      checkValidWinningNumberList(winningNumberList);
+      this.#View.LottoResultModal.show();
+    } catch (error) {
+      alert(error.message);
+    }
   }
 }
