@@ -1,9 +1,11 @@
 @import "./switch.css";
+@import "./modal.css";
 
 :root {
   --color-primary: #00bcd4;
   --color-light-gray: #b4b4b4;
   --color-white: #ffffff;
+  --color-table-border: #c8c8c8;
 }
 
 body {
@@ -70,6 +72,10 @@ input[type="number"] {
   border: none;
   font-weight: 600;
   cursor: pointer;
+}
+
+.purchase-button:hover {
+  opacity: 0.6;
 }
 
 /* lotto-number */
@@ -158,4 +164,8 @@ input[type="number"] {
   background: var(--color-primary);
   border-radius: 4px;
   cursor: pointer;
+}
+
+.result-button:hover {
+  opacity: 0.6;
 }

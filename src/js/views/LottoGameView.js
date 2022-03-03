@@ -42,6 +42,6 @@ export default class LottoGameView {
   }
 
   resetLottoList() {
-    this.lottoNumberList.replaceChildren("");
+    this.lottoNumberList.replaceChildren();
   }
 }

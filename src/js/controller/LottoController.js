@@ -1,5 +1,7 @@
 import LottoGame from "../model/LottoGame.js";
 import LottoGameView from "../views/LottoGameView.js";
+import ModalView from "../views/ModalView.js";
+
 import { $, $$ } from "../utils/dom.js";
 import { SELECTOR, AMOUNT } from "../utils/constants.js";
 import { verifyPurchaseAmount, verifyWinningNumbers } from "../utils/validation.js";
@@ -8,6 +10,8 @@ export default class LottoController {
   constructor() {
     this.lottoGameModel = new LottoGame();
     this.lottoGameView = new LottoGameView();
+    this.modalView = new ModalView();
+
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
@@ -66,6 +70,7 @@ export default class LottoController {
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
       this.lottoGameModel.generateResult(winningNumbers, bonusNumber);
+      this.modalView.renderModal(this.lottoGameModel.result, this.lottoGameModel.profitRate);
     } catch ({ message }) {
       alert(message);
     }
