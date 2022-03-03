@@ -4,6 +4,7 @@ export class View {
   constructor() {
     this.registerButtons();
     this.registerInput();
+    this.registerContainers();
     this.registerModalElements();
   }
 
@@ -26,13 +27,16 @@ export class View {
     this.earnRateComment = document.getElementById('earn-rate-percentage');
   }
 
-  showLottoStatusContainer() {
+  registerContainers() {
     this.lottoStatusContainer = document.getElementById('lotto-status-container');
+    this.winningLottoContainer = document.getElementById('winning-lotto-container');
+  }
+
+  showLottoStatusContainer() {
     this.lottoStatusContainer.style.visibility = 'visible';
   }
 
   showWinningLottoContainer() {
-    this.winningLottoContainer = document.getElementById('winning-lotto-container');
     this.winningLottoContainer.style.visibility = 'visible';
   }
 
@@ -53,11 +57,6 @@ export class View {
   lottosToggleOff(lottoWallet) {
     this.lottoIcons = document.getElementById('lotto-icons');
     this.lottoIcons.innerHTML = '🎟️'.repeat(lottoWallet.length);
-  }
-
-  clearMoneyInput() {
-    this.moneyInput.value = '';
-    this.moneyInput.focus();
   }
 
   uncheckToggleSwitch() {
@@ -106,10 +105,9 @@ export class View {
         tempValue = value;
       }
       if (key === 'matchUnderThree') {
-        tempKey = '꽝';
-        tempPrice = 0;
-        tempValue = value;
+        return;
       }
+
       this.resultChartBody.insertAdjacentHTML(
         'afterbegin',
         `<tr>
@@ -122,9 +120,36 @@ export class View {
   }
 
   restart() {
-    this.lottoStatusContainer.style.visibility = 'collapse';
-    this.winningLottoContainer.style.visibility = 'collapse';
+    this.hideLottoStatusContainer();
+    this.hideWinningLottoContainer();
     this.modal.close();
     this.resultChartBody.innerHTML = '';
+    this.clearWinningLottoInputs();
+  }
+
+  hideLottoStatusContainer() {
+    this.lottoStatusContainer.style.visibility = 'collapse';
+  }
+
+  hideWinningLottoContainer() {
+    this.winningLottoContainer.style.visibility = 'collapse';
+  }
+
+  clearMoneyInput() {
+    this.moneyInput.value = '';
+    this.moneyInput.focus();
+  }
+
+  clearWinningLottoInputs() {
+    this.clearWinningNumberInput();
+    this.clearBonusNumberInput();
+  }
+
+  clearWinningNumberInput() {
+    Array.from(this.winningNumberInput).forEach((item) => (item.value = ''));
+  }
+
+  clearBonusNumberInput() {
+    this.bonusNumberInput.value = '';
   }
 }
