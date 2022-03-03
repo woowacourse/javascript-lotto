@@ -3,14 +3,6 @@ import repeatCallback from '../utils/repeat.js';
 import validateMoney from '../validator/moneyValidator.js';
 import Lotto from './Lotto.js';
 
-/**
- * @module model/LottoBundle
- */
-
-/**
- * @class module:model/LottoBundle.LottoBundle
- * @classdesc 6개의 숫자로 이뤄진 로또 배열을 구입된 로또 개수만큼 가지는 로또 번들 모델
- */
 export default class LottoBundle {
   #purchaseMoney = 0;
 
@@ -18,24 +10,20 @@ export default class LottoBundle {
 
   #lottos = [];
 
-  /** @param {number} money 입력받은 돈 */
   set purchaseMoney(money) {
     if (validateMoney(money)) {
       this.#purchaseMoney = Math.floor(money / LOTTO.PRICE_PER_TICKET) * LOTTO.PRICE_PER_TICKET;
     }
   }
 
-  /** @type {number} */
   get purchaseMoney() {
     return this.#purchaseMoney;
   }
 
-  /** 발행할 로또 개수를 저장한다 */
   saveCount() {
     this.#count = Math.floor(this.#purchaseMoney / LOTTO.PRICE_PER_TICKET);
   }
 
-  /** @type {number} */
   get count() {
     return this.#count;
   }
@@ -44,7 +32,6 @@ export default class LottoBundle {
     this.#lottos = numbers;
   }
 
-  /** @type {array} */
   get lottos() {
     return this.#lottos;
   }
@@ -56,14 +43,10 @@ export default class LottoBundle {
     return false;
   }
 
-  /** 구입된 로또 개수만큼 로또를 만들어 저장한다 */
   createLottoBundle() {
     repeatCallback(this.#count, () => this.#pushLottoToBundle());
   }
 
-  /** @method pushLottoToBundle
-   * @description 로또 티켓 한 장의 번호 배열을 로또 번들 배열에 넣는다.
-   */
   #pushLottoToBundle() {
     const lotto = new Lotto();
     this.#lottos.push(lotto);
