@@ -1,4 +1,6 @@
-# 로또
+# 🎱행운의 로또
+## 프로그램 설명 
+사용자가 1장당 1000원인 로또를 구입하고, 로또 번호는 랜덤으로 생성된다. 지난주 당첨번호 6개와 보너스 번호 1개를 입력하면, 사용자가 구매한 로또들과 지난주 당첨번호를 비교 및 계산하여 사용자가 구매한 로또가 몇등으로 당첨되었는지 알려준다. 
 
 ## 구조도
 <img src="./../images/Diagram.jpg">
@@ -33,11 +35,13 @@
   - [x] this.model 이름 변경 
   - [x] getLottoNumbers 네이밍 변경 
   - [x] setLottoCount 네이밍 수정
-  - [ ] generateLottos for문 대신 메서드 사용 
   - [ ] 이벤트 등록의 책임 View로 옮기기 
-  - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 
   - [ ] LottoModel의 while문 수정 (무한루프)
   - [ ] lottoCount 상태로 둘지 고민 
+
+  - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 -> generateLottoNumbers에서 Set을 사용해서, 로또 번호에 중복된 숫자가 나올 가능성이 없음.
+  - [ ] generateLottos for문 대신 메서드 사용 -> 반복횟수가정해져있는경우는 for, while 사용해야하는 것 아닌지?
+
 - [ ] 페어 리뷰어님 
   - [ ] 중복되는 css 컬러 css변수로 관리 
   - [ ] app.test.js에서 LOTTO_NUMBERS, ALERT_MESSAGE 에 있는 데이터 이용해서 검증하기 
