@@ -10,6 +10,8 @@ const template = {
       </section>
       <section id="${DOM_STRING.WINNING_NUMBER_SECTION}">
       </section>
+      <div id="statistic-section-wrap" class="blind">
+      </div>
     `;
   },
   paymentSection: () => {
@@ -90,6 +92,47 @@ const template = {
         </form>
       </fieldset>
       <button id="${DOM_STRING.SHOW_RESULT_BUTTON}">결과 확인하기</button>
+    `;
+  },
+  statisticSectionWrap: (winningStatistic, earningRate) => {
+    return `
+      <section id="statistic-section">
+        <h2>🏆 당첨 통계 🏆</h2>
+        <table id="statistic-table">
+          <tr>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td>n개</td>
+          </tr>
+        </table>
+        <p id="ratio-result">당신의 총 수익률은 <span></span>%입니다.</p>
+        <button id="reset-button">다시 시작하기</button>
+      </section>
     `;
   },
 };
