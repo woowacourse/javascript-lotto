@@ -18,7 +18,7 @@ export default class LottoModel {
     return this.lottoCount;
   }
 
-  getLottoNumbers() {
+  generateLottoNumbers() {
     const lottoNumberSet = new Set();
     while (lottoNumberSet.size < LOTTO_NUMBERS.LOTTO_LENGTH) {
       lottoNumberSet.add(getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER));
@@ -37,7 +37,7 @@ export default class LottoModel {
   generateLottos() {
     const lottos = [];
     for (let i = 0; i < this.getLottoCount(); i += 1) {
-      lottos.push(this.getLottoNumbers());
+      lottos.push(this.generateLottoNumbers());
     }
 
     return lottos;
