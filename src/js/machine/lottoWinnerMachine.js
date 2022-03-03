@@ -13,14 +13,14 @@ class LottoWinnerMachine {
   }
 
   #validateWinnerNumberInput({ numbers, bonus }) {
-    if (!this.#isFullWinnerNumberInput({ numbers, bonus })) {
+    if (this.#hasBlankInput({ numbers, bonus })) {
       throw new Error('6개의 당첨 번호와 보너스 번호를 입력해야 합니다.');
     }
     const allNumbers = [...numbers, bonus].map((numberString) => Number(numberString));
-    if (!this.#isUniqueInput(allNumbers)) {
+    if (this.#hasDuplicateInput(allNumbers)) {
       throw new Error('6개의 당첨 번호와 보너스 번호 중에 중복된 숫자가 있습니다.');
     }
-    if (!this.#isValidLottoNumberArray(allNumbers)) {
+    if (this.#hasInvalidLottoNumber(allNumbers)) {
       throw new Error('6개의 당첨 번호와 보너스 번호는 모두 1-45 사이의 자연수여야 합니다.');
     }
   }
@@ -57,25 +57,25 @@ class LottoWinnerMachine {
     return (prizeMoney / cashInput) * 100 - 100;
   }
 
-  #isFullWinnerNumberInput({ numbers, bonus }) {
-    return numbers.every((number) => number !== '') && numbers.length === 6 && bonus !== '';
+  #hasBlankInput({ numbers, bonus }) {
+    return numbers.some((number) => number === '') || numbers.length !== 6 || bonus === '';
   }
 
-  #isUniqueInput(allNumbers) {
-    return new Set(allNumbers).size === allNumbers.length;
+  #hasDuplicateInput(allNumbers) {
+    return new Set(allNumbers).size !== allNumbers.length;
   }
 
-  #isValidLottoNumberArray(allNumbers) {
-    return allNumbers.every((number) => this.#isValidLottoNumber(number));
+  #hasInvalidLottoNumber(allNumbers) {
+    return allNumbers.some((number) => this.#isInvalidLottoNumber(number));
   }
 
-  #isValidLottoNumber(number) {
+  #isInvalidLottoNumber(number) {
     return (
-      isNumberInRange({
+      !isNumberInRange({
         number,
         max: LOTTO_RULES.NUMBER_RANGE.MAX,
         min: LOTTO_RULES.NUMBER_RANGE.MIN,
-      }) && Number.isInteger(number)
+      }) || !Number.isInteger(number)
     );
   }
 }

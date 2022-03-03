@@ -17,7 +17,7 @@ class LottoPurchaseMachine {
     ) {
       throw new Error(ERROR_MESSAGE.CASH_INPUT_OUT_OF_RANGE);
     }
-    if (!this.#isNoChangeLeft(cashInput)) {
+    if (this.#hasChangeLeft(cashInput)) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT);
     }
   }
@@ -37,8 +37,8 @@ class LottoPurchaseMachine {
     );
   }
 
-  #isNoChangeLeft(cashInput) {
-    return cashInput % LOTTO_RULES.PRICE === 0;
+  #hasChangeLeft(cashInput) {
+    return cashInput % LOTTO_RULES.PRICE !== 0;
   }
 }
 
