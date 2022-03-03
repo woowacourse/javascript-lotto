@@ -93,7 +93,6 @@ export default class WinningNumberView {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    console.log(this.winLottosNumbers, '*********');
 
     if (new Set(this.winLottosNumbers).size !== 7) {
       window.alert('중복된 번호는 입력할 수 없습니다.');
