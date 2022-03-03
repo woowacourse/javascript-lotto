@@ -41,3 +41,9 @@ button {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 5px;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
