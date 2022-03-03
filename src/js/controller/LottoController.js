@@ -1,4 +1,7 @@
+import { $ } from '../utils/dom';
+
 import LottoModel from '../model/LottoModel';
+
 import ResultView from '../view/resultView';
 import InputView from '../view/inputView';
 
@@ -15,9 +18,9 @@ export default class LottoController {
   }
 
   initDOMs() {
-    this.$lottoPriceForm = document.querySelector('#lotto-price-form');
-    this.$lottoPriceInput = document.querySelector('#lotto-price-input');
-    this.$lottoPriceButton = document.querySelector('#lotto-price-button');
+    this.$lottoPriceForm = $('#lotto-price-form');
+    this.$lottoPriceInput = $('#lotto-price-input');
+    this.$lottoPriceButton = $('#lotto-price-button');
   }
 
   bindEvent() {
@@ -30,7 +33,7 @@ export default class LottoController {
   }
 
   initDOMsAfterRenderResult() {
-    this.$checkbox = document.querySelector('#view-checkbox');
+    this.$checkbox = $('#view-checkbox');
   }
 
   bindEventAfterRenderResult() {

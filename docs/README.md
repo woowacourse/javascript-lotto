@@ -45,7 +45,7 @@
 - [ ] 페어 리뷰어님 
   - [x] controller에서 setLottoCount, setLottos를 굳이 노출할 필요가 없다. (읽으면 뭐하는지 잘 모름)controller에서는 행동기반으로 작성! (두개 합쳐서 buyLottos와 같이)
   - [x] value.match(/[0-9]/) 부분을 Number.isInteger를 사용해서 변경 
-  - [ ] 셀렉터 상수로 분리 ($, $$와 같이)
+  - [x] 셀렉터 상수로 분리 ($, $$와 같이)
   - [ ] 실제 로또처럼 한번 뽑힌 로또에 대해서는 다시 안뽑히게 작성해보기 (lottoModel의 while문)
   - [ ] input type="number"에 대한 것의 value를 가져오고 싶을 때, valueAsNumber를 사용해보기 (submitLottoPriceHandler)
   - [ ] 로또 구매 가능 최대 개수 설정 (100개 추천)
@@ -58,3 +58,5 @@
 
 ## 질문 
 - css에서 * 사용 
+- dom 탐색 expensive... 
+- import문 구분 너무 과하지 않은지 
