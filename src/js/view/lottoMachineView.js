@@ -48,8 +48,12 @@ class LottoMachineView {
   #onResultButtonClick = (e) => {
     e.preventDefault();
     try {
-      const numberInputs = Array.from(this.winnerNumberInputs).map((input) => input.value);
-      this.winningCalculator.calculateWinningAmount([...numberInputs, this.bonusNumberInput.value]);
+      const winnerNumberInputs = Array.from(this.winnerNumberInputs).map((input) => input.value);
+      this.winningCalculator.calculateWinningAmount(
+        winnerNumberInputs,
+        this.bonusNumberInput.value,
+        this.lottoGenerator.lottos
+      );
     } catch (error) {
       initInputElement(this.bonusNumberInput);
       this.winnerNumberInputs.forEach((input) => {
