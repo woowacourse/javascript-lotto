@@ -20,3 +20,9 @@ export const initInputElement = (inputElement) => {
 
 export const convertStringNumberArrayToNumberArray = (stringNumberArray) =>
   stringNumberArray.map((string) => Number(string.trim()));
+
+export const handleOnInput = (input, maxlength) => {
+  if (input.value.length >= maxlength) {
+    input.value = input.value.substr(0, maxlength - 1);
+  }
+};

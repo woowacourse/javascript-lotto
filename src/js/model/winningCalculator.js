@@ -33,9 +33,11 @@ class WinningCalculator {
 
   calculateWinningResult(winnerNumberInputs, bonusNumberInput, lottos) {
     this.initWinningCalcualtor();
+
     this.#validateWinnerNumbers(
       convertStringNumberArrayToNumberArray([...winnerNumberInputs, bonusNumberInput])
     );
+
     this.winnerNumbers = convertStringNumberArrayToNumberArray(winnerNumberInputs);
     this.bonusNumber = Number(bonusNumberInput);
     this.#updateTotalWinningCount(lottos);
@@ -57,6 +59,34 @@ class WinningCalculator {
     }
   }
 
+  #updateTotalWinningCount(lottos) {
+    lottos.forEach(
+      (lotto) =>
+        this.totalWinningCount[
+          this.#calculateWinningAmountByLotto(
+            this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
+            Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
+          )
+        ]++
+    );
+  }
+
+  #calculateTotalYield(cashInput, totalWinningAmount) {
+    return Math.round((totalWinningAmount / cashInput) * 100 - 100);
+  }
+
+  #calculateTotalWinningAmount(lottos) {
+    return lottos.reduce(
+      (acc, lotto) =>
+        acc +
+        this.#calculateWinningAmountByLotto(
+          this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
+          Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
+        ),
+      0
+    );
+  }
+
   #isNumberArrayInLottoRange(numberArray) {
     return numberArray.every((number) =>
       isNumberInRange({ number, min: LOTTO_NUMBER_RANGE.MIN, max: LOTTO_NUMBER_RANGE.MAX })
@@ -74,34 +104,6 @@ class WinningCalculator {
     return Object.keys(WINNING_AMOUNT).includes(matchingNumberCount.toString())
       ? WINNING_AMOUNT[matchingNumberCount.toString()]
       : WINNING_AMOUNT.MIN;
-  }
-
-  #updateTotalWinningCount(lottos) {
-    lottos.forEach(
-      (lotto) =>
-        this.totalWinningCount[
-          this.#calculateWinningAmountByLotto(
-            this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
-            Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
-          )
-        ]++
-    );
-  }
-
-  #calculateTotalWinningAmount(lottos) {
-    return lottos.reduce(
-      (acc, lotto) =>
-        acc +
-        this.#calculateWinningAmountByLotto(
-          this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
-          Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
-        ),
-      0
-    );
-  }
-
-  #calculateTotalYield(cashInput, totalWinningAmount) {
-    return Math.round((totalWinningAmount / cashInput) * 100 - 100);
   }
 }
 

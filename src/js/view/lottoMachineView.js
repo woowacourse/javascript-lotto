@@ -1,5 +1,10 @@
 import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, CLASSNAME } from '../constants/constants';
-import { createElementWithClassName, initInputElement, selectDom } from '../utils/utils';
+import {
+  createElementWithClassName,
+  handleOnInput,
+  initInputElement,
+  selectDom,
+} from '../utils/utils';
 
 import LottoGenerator from '../model/lottoGenerator';
 import WinningCalculator from '../model/winningCalculator';
@@ -43,8 +48,11 @@ class LottoMachineView {
     e.preventDefault();
     try {
       this.lottoGenerator.buyLotto(this.cashInput.value);
+
       this.#disableCashInputSection();
       this.#renderLottos(this.lottoGenerator.lottos);
+
+      this.winnerNumberSection.addEventListener('keypress', this.#onInputNumberType);
       this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
       this.resultButton.addEventListener('click', this.#onResultButtonClick);
     } catch (error) {
@@ -53,16 +61,27 @@ class LottoMachineView {
     }
   };
 
+  #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
+    this.#toggleLottoNumbersShow(isVisible);
+  };
+
+  #onInputNumberType = (e) => {
+    if (e.target.className === CLASSNAME.WINNER_NUMBER_INPUT) {
+      handleOnInput(e.target, 2);
+    }
+  };
+
   #onResultButtonClick = (e) => {
     e.preventDefault();
     try {
-      const winnerNumberInputs = Array.from(this.winnerNumberInputs).map((input) => input.value);
       this.winningCalculator.calculateWinningResult(
-        winnerNumberInputs,
+        Array.from(this.winnerNumberInputs).map((input) => input.value),
         this.bonusNumberInput.value,
         this.lottoGenerator.lottos
       );
+
       this.#showResultModal();
+
       this.modalCloseButton.addEventListener('click', this.#onModalCloseButtonClick);
       this.restartButton.addEventListener('click', this.#onRestartButtonClick);
     } catch (error) {
@@ -88,10 +107,6 @@ class LottoMachineView {
     this.winnerNumberSection.classList.add(CLASSNAME.HIDE);
     this.#initBonusNumberInputView();
     this.#initCashInputView();
-  };
-
-  #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
-    this.#toggleLottoNumbersShow(isVisible);
   };
 
   #initBonusNumberInputView() {
