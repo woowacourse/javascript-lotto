@@ -38,7 +38,7 @@ label {
 }
 
 .btn {
-  background: #00bcd4;
+  background-color: #00bcd4;
   color: white;
 }
 
@@ -79,7 +79,7 @@ label {
   border-radius: 60px;
   margin-top: 25px;
   margin-left: 25px;
-  background: #8b8b8b;
+  background-color: #8b8b8b;
   cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ label {
   width: 20px;
   height: 20px;
   margin: 5px;
-  background: #ededed;
+  background-color: #ededed;
   border-radius: 100%;
   transition: left 0.3s;
 }
@@ -105,7 +105,7 @@ label {
 }
 
 .toggle-switch input[type='checkbox']:checked + label .toggle-track {
-  background: #80deea;
+  background-color: #80deea;
 }
 
 .toggle-switch input[type='checkbox']:checked + label .toggle-track:before {
