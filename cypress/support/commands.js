@@ -1,4 +1,4 @@
-import { ID } from '../../src/js/constants';
+import { ID } from '../../src/js/util/constants';
 
 Cypress.Commands.add('paymentFormSubmit', (input) => {
   cy.get(ID.PAYMENT_INPUT).type(input);

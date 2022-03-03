@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, CLASS, ID } from '../../src/js/constants';
+import { ERROR_MESSAGE, CLASS, ID } from '../../src/js/util/constants';
 
 describe('조건에 맞는 구입할 금액을 입력한 경우, 성공 케이스', () => {
   const input = 3000;
@@ -9,10 +9,7 @@ describe('조건에 맞는 구입할 금액을 입력한 경우, 성공 케이�
 
   it('구입할 금액을 조건에 맞게 입력 후 구입 버튼을 누르면, 구입한 로또 갯수를 확인할 수 있다.', () => {
     cy.paymentFormSubmit(input);
-    cy.get(CLASS.PURCHASED_TOTAL_COUNT).should(
-      'text',
-      '총 3개를 구매하였습니다.'
-    );
+    cy.get(CLASS.PURCHASED_TOTAL_COUNT).should('text', '총 3개를 구매하였습니다.');
   });
 
   it('구입할 금액을 조건에 맞게 입력 후 구입 버튼을 누르면, 지난주 당첨 번호 영역이 보여진다.', () => {
@@ -92,8 +89,7 @@ describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 �
   });
 
   it('당첨번호/보너스 번호는 1 ~ 45 사이의 숫자만 입력 가능하다.', () => {
-    const lastWeekNumber = [1, 2, 3, 4, 5, 46];
-    const bounusNumber = 7;
+    const lastWeekNumber = [1, 2, 3, 4, 5, 46, 7];
 
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
@@ -101,7 +97,6 @@ describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 �
     cy.get('.winning-number-input').each(($li, index) => {
       cy.wrap($li).type(lastWeekNumber[index]);
     });
-    cy.get('#bonus-number-input').type(bounusNumber);
 
     cy.get('#result-checking-button')
       .click()
@@ -113,8 +108,7 @@ describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 �
   });
 
   it('당첨번호/보너스 번호는 서로 다른 숫자만 입력 가능하다.', () => {
-    const lastWeekNumber = [1, 2, 3, 4, 5, 7];
-    const bounusNumber = 7;
+    const lastWeekNumber = [1, 2, 3, 4, 5, 7, 5];
 
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
@@ -122,7 +116,6 @@ describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 �
     cy.get('.winning-number-input').each(($li, index) => {
       cy.wrap($li).type(lastWeekNumber[index]);
     });
-    cy.get('#bonus-number-input').type(bounusNumber);
 
     cy.get('#result-checking-button')
       .click()
@@ -136,8 +129,7 @@ describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 �
 
 describe('올바른 당첨번호/보너스번호를 입력한 경우', () => {
   const input = 10000;
-  const lastWeekNumber = [20, 1, 3, 25, 19, 31];
-  const bounusNumber = 7;
+  const lastWeekNumber = [20, 1, 3, 25, 19, 31, 7];
 
   beforeEach(() => {
     cy.visit('/index.html');
@@ -146,7 +138,6 @@ describe('올바른 당첨번호/보너스번호를 입력한 경우', () => {
     cy.get('.winning-number-input').each(($li, index) => {
       cy.wrap($li).type(lastWeekNumber[index]);
     });
-    cy.get('#bonus-number-input').type(bounusNumber);
     cy.get('#result-checking-button').click();
   });
 

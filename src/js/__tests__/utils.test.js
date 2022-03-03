@@ -6,9 +6,9 @@ import {
   winningCount,
   isBounusNumber,
   isOverlapped,
-} from '../utils';
+} from '../util/utils';
 
-import { MONEY, LOTTO } from '../constants';
+import { MONEY, LOTTO } from '../util/constants';
 
 describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케이스)', () => {
   test('구입할 금액이 양의 정수인지 확인한다. 입력: -1, 실패 케이스', () => {

@@ -3,7 +3,7 @@ export const generatePaymentSection = () => `
     <h2 hidden>구입할 금액</h2>
     <label for="payment-input">구입할 금액을 입력해주세요.</label>
     <form class="payment-form">
-      <input name="payment-input" id="payment-input" type="number" placeholder="금액" min="1000" autofocus/>
+      <input name="payment-input" id="payment-input" type="number" placeholder="금액" min="1000" autofocus>
       <button id="payment-button">구입</button>
     </form>
   </section>
@@ -68,9 +68,7 @@ export const generatePurchasedSection = (lottoList) => `
   <section id="purchased-lotto-list-section">
     <h2 hidden>구입한 로또 목록</h2>
     <div class="lotto-list-container">
-      <p class="purchased-total-count">총 ${
-        lottoList.length
-      }개를 구매하였습니다.</p>
+      <p class="purchased-total-count">총 ${lottoList.length}개를 구매하였습니다.</p>
       <ul id="lotto-list">
         ${lottoList.map((lotto) => generatePurchasedLotto(lotto)).join('')}
       </ul>
@@ -91,33 +89,20 @@ export const generateWinningNumberSection = () => `
       <div class="winning-number-inputs">
         <div>
           <p>당첨 번호</p>
-          <ul id="winning-number-list">
-            <li class="winning-number">
-              <input type="number" class="winning-number-input" min="1" max="45" maxlength="2"/>
-            </li>
-            <li class="winning-number">
-              <input type="number" class="winning-number-input" min="1" max="45" maxlength="2"/>
-            </li>
-            <li class="winning-number">
-              <input type="number" class="winning-number-input" min="1" max="45" maxlength="2"/>
-            </li>
-            <li class="winning-number">
-              <input type="number" class="winning-number-input" min="1" max="45" maxlength="2"/>
-            </li>
-            <li class="winning-number">
-              <input type="number" class="winning-number-input" min="1" max="45" maxlength="2"/>
-            </li>
-            <li class="winning-number">
-              <input type="number" class="winning-number-input" min="1" max="45" maxlength="2"/>
-            </li>
-          </ul>
+          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
         </div>
         <div class="bonus-number-container">
           <p>보너스 번호</p>
-        <input type="number" id="bonus-number-input" />
+          <input type="number" class="winning-number-input" id="bonus-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
         </div>
       </div>
-      <button id="result-checking-button">결과 확인하기</button>
+        <p class="error-text hidden">🚫 1 ~ 45 사이의 숫자만 입력해 주세요 🚫</p>
+        <button id="result-checking-button">결과 확인하기</button>
       </form>
     </div>
   </section>

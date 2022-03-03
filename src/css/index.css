@@ -42,6 +42,15 @@ input:focus {
   border: none;
 }
 
+[aria-invalid="true"] {
+  outline: 1.3px solid #E36DB0;
+}
+
+.error-text {
+  color: #E36DB0;
+  text-align: center;
+}
+
 button {
   background: inherit; 
   border: none; 
@@ -53,6 +62,10 @@ button {
 
 .invisible {
   display: none;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 #payment-section .payment-form #payment-button.disabled {
@@ -143,7 +156,7 @@ h1 {
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
   width: 300px;
-  max-height: 280px;
+  max-height: 250px;
 	display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
@@ -212,8 +225,7 @@ h1 {
 	align-items: flex-end;
 }
 
-#winning-number-section .winning-number-container #bonus-number-input,
-#winning-number-section .winning-number-container #winning-number-list .winning-number-input {
+#winning-number-section .winning-number-container  .winning-number-input {
 	width: 34px;
 	height: 36px;
 	border-radius: 4px;
