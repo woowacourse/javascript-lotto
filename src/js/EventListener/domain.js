@@ -2,16 +2,16 @@ import ValidatorImpl from '../ValidatorImpl/index.js';
 import LottoCountCalculator from '../CalculatorImpl/LottoCountCalculator.js';
 import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
 import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
-import LottosView from '../View/LottosView.js';
-import MatchResultView from '../View/MatchResultView.js';
+import LottosViewImpl from '../View/LottosViewImpl.js';
+import MatchResultViewImpl from '../View/MatchResultViewImpl.js';
 import ValidationError from '../ValidationError/index.js';
 import { extractNumber } from '../utils/index.js';
 import { LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 
 const validator = new ValidatorImpl();
 const lottoCollection = new LottoCollectionImpl();
-const lottosView = new LottosView();
-const matchResultView = new MatchResultView();
+const lottosView = new LottosViewImpl();
+const matchResultView = new MatchResultViewImpl();
 
 export const trySubmitFareForm = () => {
   const inputedFare = lottosView.getInputValue();

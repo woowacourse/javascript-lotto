@@ -1,7 +1,7 @@
-import View from '../EventListener/View.js';
+import MatchResultView from '../EventListener/MatchResultView.js';
 import WinningNumberValue from './WinningNumberValue.js';
 
-export default class MatchResultView extends View {
+export default class MatchResultViewImpl extends MatchResultView {
   constructor() {
     super(new WinningNumberValue());
   }

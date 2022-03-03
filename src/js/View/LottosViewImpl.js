@@ -1,8 +1,8 @@
-import View from '../EventListener/View.js';
+import LottosView from '../EventListener/LottosView.js';
 import FareValue from './FareValue.js';
 import { $ } from '../utils/index.js';
 
-export default class LottosView extends View {
+export default class LottosViewImpl extends LottosView {
   constructor() {
     super(new FareValue());
     this.$lottoCount = $('#lotto-count');
