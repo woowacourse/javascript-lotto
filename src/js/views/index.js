@@ -39,8 +39,16 @@ class LottoGameView {
       </div>`;
   }
 
-  renderAlignState(visibleState) {
-    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+  renderAlignState(visibleState, lottoAmount = 0) {
+    if (visibleState) {
+      this.$lottoSection.style.height = `${lottoAmount * 46.364}px`;
+      setTimeout(() => {
+        this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+      }, 500);
+    } else {
+      this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+      this.$lottoSection.style.height = `27vh`;
+    }
   }
 
   renderWinNumberInputSection(visibleState) {

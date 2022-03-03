@@ -4,8 +4,9 @@ input[type='number']::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input {
-  outline: none;
+input:focus {
+  border: 1px solid #00bcd4;
+  outline: 2px solid #00bcd4;
 }
 
 label {
@@ -13,16 +14,16 @@ label {
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: auto;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
   background-color: rgba(0, 0, 0, 0.07);
   font-family: 'NanumBarunGothic', sans-serif;
   font-size: 1.1rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: overlay;
 }
 
 #app {
@@ -82,9 +83,9 @@ section {
 #lotto-section[data-visible-state='true'] {
   display: flex;
   flex-direction: row;
-  height: 25vh;
+  height: 27vh;
   visibility: visible;
-  transition: height 1s;
+  transition: height 0.5s;
 }
 
 .lotto-wrapper {
@@ -101,6 +102,7 @@ section {
 
 #lotto-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #lotto-container[data-visible-state='false'] {
@@ -142,6 +144,10 @@ section {
   display: flex;
   gap: 10px;
   justify-content: space-between;
+}
+
+.win-number-input-wrapper > div > input {
+  text-align: center;
 }
 
 #result-button {

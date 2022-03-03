@@ -37,7 +37,7 @@ class LottoGameManager {
 
   onChangeAlignState = (e) => {
     const { checked: alignState } = e.target;
-    this.lottoGameView.renderAlignState(alignState);
+    this.lottoGameView.renderAlignState(alignState, this.lottoGameModel.getLottoList().length);
   };
 
   onSubmitWinNumberInputForm = (e) => {
