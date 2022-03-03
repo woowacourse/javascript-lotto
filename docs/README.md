@@ -32,11 +32,12 @@
 - [ ] 리뷰어님  
   - [x] this.model 이름 변경 
   - [x] getLottoNumbers 네이밍 변경 
-  - [ ] setLottoCount 네이밍 수정 및 lottoCount 상태로 둘지 고민 
+  - [x] setLottoCount 네이밍 수정
   - [ ] generateLottos for문 대신 메서드 사용 
   - [ ] 이벤트 등록의 책임 View로 옮기기 
   - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 
   - [ ] LottoModel의 while문 수정 (무한루프)
+  - [ ] lottoCount 상태로 둘지 고민 
 - [ ] 페어 리뷰어님 
   - [ ] 중복되는 css 컬러 css변수로 관리 
   - [ ] app.test.js에서 LOTTO_NUMBERS, ALERT_MESSAGE 에 있는 데이터 이용해서 검증하기 
