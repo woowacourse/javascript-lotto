@@ -169,4 +169,15 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     };
     expect(lottoModel.winningStatistic).toEqual(answerStatistic);
   });
+
+  test('총 당첨금을 구할 수 있다.', () => {
+    const lottoModel = new LottoModel();
+    lottoModel.init();
+    const coincideCountList = [1, 3, 4, 5, 5.5, 6];
+
+    lottoModel.setWinningStatistic(coincideCountList);
+    expect(lottoModel.getSumWinnings()).toBe(
+      5000 + 50000 + 1500000 + 30000000 + 2000000000
+    );
+  });
 });
