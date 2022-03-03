@@ -33,27 +33,27 @@ class ResultModal extends Component {
           <tbody>
             <tr>
               <td>3개</td>
-              <td>${PRIZE_MONEY.FIFTH}</td>
+              <td>${PRIZE_MONEY.FIFTH.toLocaleString()}</td>
               <td>${result.winningCounts.fifth}개</td>
             </tr>
             <tr>
               <td>4개</td>
-              <td>${PRIZE_MONEY.FOURTH}</td>
+              <td>${PRIZE_MONEY.FOURTH.toLocaleString()}</td>
               <td>${result.winningCounts.fourth}개</td>
             </tr>
             <tr>
               <td>5개</td>
-              <td>${PRIZE_MONEY.THIRD}</td>
+              <td>${PRIZE_MONEY.THIRD.toLocaleString()}</td>
               <td>${result.winningCounts.third}개</td>
             </tr>
             <tr>
               <td>5개+보너스볼</td>
-              <td>${PRIZE_MONEY.SECOND}</td>
+              <td>${PRIZE_MONEY.SECOND.toLocaleString()}</td>
               <td>${result.winningCounts.second}개</td>
             </tr>
             <tr>
               <td>6개</td>
-              <td>${PRIZE_MONEY.FIRST}</td>
+              <td>${PRIZE_MONEY.FIRST.toLocaleString()}</td>
               <td>${result.winningCounts.first}개</td>
             </tr>
           </tbody>
