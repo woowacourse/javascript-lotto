@@ -17,12 +17,6 @@ export default class WinningNumberValue extends InputValue {
     });
   }
 
-  focusInput(index) {
-    if (index < this.$input.length) {
-      this.$input[index].focus();
-    }
-  }
-
   focusEmptyInput() {
     const emptyInput = this.$input.find(($numberInput) => $numberInput.value === '');
 

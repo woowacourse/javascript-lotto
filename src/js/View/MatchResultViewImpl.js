@@ -6,10 +6,6 @@ export default class MatchResultViewImpl extends MatchResultView {
     super(new WinningNumberValue());
   }
 
-  tabNextInput(currentIndex) {
-    this.inputInstance.focusInput(currentIndex + 1);
-  }
-
   moveTabToEmptyInput() {
     this.inputInstance.focusEmptyInput();
   }

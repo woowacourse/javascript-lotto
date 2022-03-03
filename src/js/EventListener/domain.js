@@ -33,7 +33,6 @@ export const writingWinningNumber = (e) => {
   );
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
-    matchResultView.tabNextInput(Number(e.currentTarget.dataset.index));
     matchResultView.moveTabToEmptyInput();
   }
 };
