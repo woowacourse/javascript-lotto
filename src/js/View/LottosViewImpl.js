@@ -38,7 +38,7 @@ export default class LottosViewImpl extends LottosView {
   resetView() {
     this.$lottoContainer.querySelector('.lottos.default').innerHTML = '';
     this.$lottoContainer.querySelector('.lottos.detail').innerHTML = '';
-    this.$lottoCount.innerText = '';
+    this.$lottoCount.innerText = 0;
   }
 
   focusInput() {
