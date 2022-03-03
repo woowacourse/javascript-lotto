@@ -6,11 +6,13 @@ export default class StatisticView {
     this.$target = $(target);
   }
 
-  render(winningStatistic, earningRate) {
+  mountTemplate(winningStatistic, earningRate) {
     this.$target.innerHTML = template.statisticSectionWrap(
       winningStatistic,
       earningRate
     );
+    this.appearView();
+    this.afterMounted();
   }
 
   appearView() {
@@ -19,5 +21,16 @@ export default class StatisticView {
 
   disappearView() {
     this.$target.classList.add('blind');
+  }
+
+  afterMounted() {
+    this.$resetButton = $('#reset-button');
+  }
+
+  bindOnClickResetButton(callback) {
+    this.$resetButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      callback();
+    });
   }
 }
