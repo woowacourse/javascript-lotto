@@ -111,7 +111,12 @@ export default class LottoView {
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
 =======
       this.showLottoContainers();
+<<<<<<< HEAD
 >>>>>>> ccddd2a (refactor: 메서드명 변경)
+=======
+      this.focusWinningNumberForm();
+      this.bindEventsToResultForm();
+>>>>>>> 2e79a4a (feat: LottoView 금액 제출 후 당첨번호 input 자동 focus)
     } catch (e) {
       alert(e.message);
     }
@@ -286,5 +291,20 @@ export default class LottoView {
     $(DOM.ID.LOTTO_RESULT_SECTION).hidden = false;
     $(DOM.ID.WINNING_NUMBER_FORM).hidden = false;
 >>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
+  }
+
+  focusWinningNumberForm() {
+    document.querySelector('.winning-number-input').focus();
+  }
+
+  bindEventsToResultForm() {
+    $('winning-number-form').addEventListener(
+      'submit',
+      this.handleResultForm.bind(this)
+    );
+  }
+
+  handleResultForm(e) {
+    e.preventDefault();
   }
 }
