@@ -14,14 +14,11 @@ export default class Lotto {
       LOTTO.NUMBER_RANGE.MAX
     );
 
-    return Array(LOTTO.NUMBER_LENGTH)
-      .fill()
-      .map(() => {
-        const randomIndex = getRandomInt(0, completeLottoNumbers.length - 1);
+    return Array.from({ length: LOTTO.NUMBER_LENGTH }, () => {
+      const randomIndex = getRandomInt(0, completeLottoNumbers.length - 1);
 
-        return completeLottoNumbers.splice(randomIndex, 1)[0];
-      })
-      .sort(ascendingOrder);
+      return completeLottoNumbers.splice(randomIndex, 1)[0];
+    }).sort(ascendingOrder);
   }
 
   constructor() {

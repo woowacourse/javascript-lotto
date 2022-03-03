@@ -19,9 +19,7 @@ export default class AppController extends Controller {
 
   issueLottoWithCount(count) {
     this.models.lottoModel.update({
-      lottoList: Array(count)
-        .fill()
-        .map(() => LottoModel.issueLotto()),
+      lottoList: Array.from({ length: count }, () => LottoModel.issueLotto()),
     });
 
     return this.models.lottoModel.getState();
