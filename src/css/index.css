@@ -6,6 +6,7 @@
 @import './form.css';
 @import './typhography.css';
 @import './switch.css';
+@import './modal.css';
 
 body {
   width: 100%;
@@ -105,4 +106,44 @@ winning-number-form fieldset:nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+statistics-modal .modal-dialog {
+  width: 350px;
+  height: 500px;
+  margin: 100px auto 0 auto;
+}
+
+statistics-modal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+statistics-modal table th,
+statistics-modal table td {
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+statistics-modal table td {
+  font-weight: 400;
+}
+
+statistics-modal .earnings-rate {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+}
+
+statistics-modal .btn-reset {
+  width: 152px;
 }

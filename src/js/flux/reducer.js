@@ -1,4 +1,4 @@
-import { ACTION, LOTTO } from '../constants';
+import { ACTION, INITIAL_STATE, LOTTO } from '../constants';
 import { pickUniqueNumbersInRange } from '../utils';
 
 const generateLottoList = (money) => {
@@ -7,6 +7,7 @@ const generateLottoList = (money) => {
   return Array.from({ length: count }, () => pickUniqueNumbersInRange(RANGE.MIN, RANGE.MAX, COUNT));
 };
 
+// eslint-disable-next-line max-lines-per-function
 export default function reducer(state, { type, payload }) {
   const newState = { ...state };
 
@@ -18,6 +19,10 @@ export default function reducer(state, { type, payload }) {
     newState.lottoListVisibility = payload;
   } else if (type === ACTION.SET_WINNING_NUMBERS) {
     newState.winningNumbers = payload;
+  } else if (type === ACTION.TOGGLE_STATISTICS_MODAL) {
+    newState.statisticsModalVisibility = payload;
+  } else if (type === ACTION.RESET) {
+    return { ...INITIAL_STATE };
   }
 
   return newState;

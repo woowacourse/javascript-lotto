@@ -2,6 +2,8 @@ export const ACTION = {
   PURCHASE_LOTTO: 'purchase-lotto',
   TOGGLE_LOTTO_LIST: 'toggle-lotto-list',
   SET_WINNING_NUMBERS: 'set-winning-numbers',
+  TOGGLE_STATISTICS_MODAL: 'toggle-statistics-modal',
+  RESET: 'reset',
 };
 
 export const ERROR_MESSAGE = {
@@ -23,4 +25,16 @@ export const LOTTO = {
   },
   COUNT: 6,
   PRICE: 1000,
+  PRIZE_MONEY: [0, 2000000000, 30000000, 1500000, 50000, 5000],
+};
+
+export const INITIAL_STATE = {
+  money: 0,
+  lottoList: [],
+  lottoListVisibility: false,
+  winningNumbers: {
+    normal: [],
+    bonus: null,
+  },
+  statisticsModalVisibility: false,
 };

@@ -21,3 +21,10 @@ export const pickUniqueNumbersInRange = (startInclusive, endInclusive, count) =>
     return removeValByIndexInArr(acc, pickNumberInRange(0, acc.length - 1));
   }, range(startInclusive, endInclusive));
 };
+
+export const intersect = (a, b) => {
+  const setA = new Set(a);
+  const setB = new Set(b);
+  const intersection = new Set([...setA].filter((x) => setB.has(x)));
+  return Array.from(intersection);
+};

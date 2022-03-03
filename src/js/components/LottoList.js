@@ -4,10 +4,9 @@ import LottoImage from '../../../images/lotto.png';
 class LottoList extends Component {
   render() {
     const { money, lottoList, lottoListVisibility } = window.store.getState();
-    this.innerHTML = this.template(lottoList, lottoListVisibility);
-
+    this.innerHTML = '';
     if (money > 0) {
-      this.show();
+      this.innerHTML = this.template(lottoList, lottoListVisibility);
     }
   }
 

@@ -6,11 +6,11 @@ import ValidationError from '../validation/validation-error';
 
 class WinningNumberForm extends Component {
   render() {
-    this.innerHTML = this.template();
     const { money } = window.store.getState();
 
+    this.innerHTML = '';
     if (money > 0) {
-      this.show();
+      this.innerHTML = this.template();
     }
   }
 
@@ -65,10 +65,11 @@ class WinningNumberForm extends Component {
 
     window.store.dispatch(
       createAction(ACTION.SET_WINNING_NUMBERS, {
-        normal: winningNumbers.slice(0, winningNumbers.length - 1),
-        bonus: winningNumbers[winningNumbers.length - 1],
+        normal: winningNumbers.slice(0, winningNumbers.length - 1).map(Number),
+        bonus: Number(winningNumbers[winningNumbers.length - 1]),
       })
     );
+    window.store.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, true));
   }
 }
 
