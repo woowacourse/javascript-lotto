@@ -95,3 +95,28 @@ section.winning-number-section {
     }
   }
 }
+
+/* 로또 결과 출력 View 스타일 */
+section#lotto-result-modal {
+  #lotto-result-list {
+    tr:hover {
+      background-color: #f3f3f3;
+    }
+
+    td.bold {
+      font-weight: bold;
+    }
+  }
+
+  #lotto-yield-text {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  #hide-result-button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+  }
+}
