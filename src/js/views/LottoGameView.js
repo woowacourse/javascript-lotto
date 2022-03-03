@@ -1,5 +1,5 @@
 import { SELECTOR } from "../utils/constants.js";
-import { $, setDisabled } from "../utils/dom.js";
+import { $, setDisabled, setEnabled } from "../utils/dom.js";
 
 export default class LottoGameView {
   constructor() {
@@ -11,20 +11,53 @@ export default class LottoGameView {
     this.winningContainer = $(SELECTOR.WINNING_CONTAINER);
   }
 
-  disablePurchaseForm() {
+  resetGameView() {
+    this.#enablePurchaseForm();
+    this.#disableSwitch();
+    this.#resetPurchaseInfomation();
+    this.resetLottoList();
+    this.#hideWinningInput();
+  }
+
+  showGameResult(lottoCount) {
+    this.#disablePurchaseForm();
+    this.#enableSwitch();
+    this.#renderPurchaseInfomation(lottoCount);
+    this.renderLottoIcons(lottoCount);
+    this.#showWinningInput();
+  }
+
+  #disablePurchaseForm() {
     setDisabled(this.purchaseInput);
     setDisabled(this.purchaseButton);
   }
 
-  enableSwitch() {
-    this.switchInput.removeAttribute("disabled");
+  #enablePurchaseForm() {
+    setEnabled(this.purchaseInput);
+    setEnabled(this.purchaseButton);
   }
 
-  showWinningInput() {
+  #disableSwitch() {
+    setDisabled(this.switchInput);
+  }
+
+  #enableSwitch() {
+    setEnabled(this.switchInput);
+  }
+
+  #showWinningInput() {
     this.winningContainer.removeAttribute("hidden");
   }
 
-  renderPurchaseInfomation(count) {
+  #hideWinningInput() {
+    this.winningContainer.setAttribute("hidden", true);
+  }
+
+  #resetPurchaseInfomation() {
+    this.purchaseInfomation.innerText = `구매한 로또가 없습니다.`;
+  }
+
+  #renderPurchaseInfomation(count) {
     this.purchaseInfomation.innerText = `총 ${count}개를 구매하였습니다.`;
   }
 

@@ -15,6 +15,8 @@ export const SELECTOR = {
   MODAL_CONTAINER: ".modal-container",
   MODAL_TABLE_BODY: ".modal-table-body",
   MODAL_PROFIT: ".modal-profit",
+  MODAL_CLOSE: ".modal-close",
+  MODAL_RESTART: ".modal-restart",
 };
 
 export const AMOUNT = {

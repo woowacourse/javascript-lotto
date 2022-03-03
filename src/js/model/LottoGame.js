@@ -68,7 +68,7 @@ export default class LottoGame {
     this.profitRate = Math.floor((totalProfit / this.#getTicketAmount()) * 100);
   }
 
-  reset() {
+  resetResult() {
     Object.values(this.result).forEach((v) => (v[1] = 0));
     this.profitRate = 0;
   }

@@ -5,12 +5,13 @@ import ModalView from "../views/ModalView.js";
 import { $, $$ } from "../utils/dom.js";
 import { SELECTOR, AMOUNT } from "../utils/constants.js";
 import { verifyPurchaseAmount, verifyWinningNumbers } from "../utils/validation.js";
+import { clearInput } from "../utils/general.js";
 
 export default class LottoController {
   constructor() {
     this.lottoGameModel = new LottoGame();
     this.lottoGameView = new LottoGameView();
-    this.modalView = new ModalView();
+    this.modalView = new ModalView(this.setClickRestart);
 
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
@@ -28,11 +29,7 @@ export default class LottoController {
   }
 
   #handleLottoNumber(lottoCount) {
-    this.lottoGameView.disablePurchaseForm();
-    this.lottoGameView.enableSwitch();
-    this.lottoGameView.renderPurchaseInfomation(lottoCount);
-    this.lottoGameView.renderLottoIcons(lottoCount);
-    this.lottoGameView.showWinningInput();
+    this.lottoGameView.showGameResult(lottoCount);
   }
 
   #onSubmitPurchase(e) {
@@ -69,11 +66,16 @@ export default class LottoController {
 
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
-      this.lottoGameModel.reset();
+      this.lottoGameModel.resetResult();
       this.lottoGameModel.generateResult(winningNumbers, bonusNumber);
       this.modalView.renderModal(this.lottoGameModel.result, this.lottoGameModel.profitRate);
     } catch ({ message }) {
       alert(message);
     }
   }
+
+  setClickRestart = () => {
+    this.lottoGameView.resetGameView();
+    clearInput(this.purchaseInput, ...this.winningNumberInputs, this.bonusNumberInput);
+  };
 }
