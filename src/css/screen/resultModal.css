@@ -16,12 +16,12 @@
   background: white;
 }
 
-.modal-window-X-button-container {
+.modal-window-close-button-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.modal-window-X-button{
+.modal-window-close-button{
   cursor: pointer;
   margin-top: 10px;
   margin-right: 10px;

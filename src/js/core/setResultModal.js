@@ -1,7 +1,7 @@
 import { LOTTO_PRICE } from '../constants/constant.js';
 
-export const setResultModal = (lottoList, lastWinningNumberList) => {
-  const winningCount = getWinningCount(lottoList, lastWinningNumberList);
+export const setResultModal = (lottoList, winningNumberList) => {
+  const winningCount = getWinningCount(lottoList, winningNumberList);
   const earningRate = getEarningRate(
     lottoList.length,
     getOutputMoney(winningCount),
@@ -10,8 +10,8 @@ export const setResultModal = (lottoList, lastWinningNumberList) => {
   return [winningCount, earningRate];
 };
 
-const getWinningCount = (lottoList, lastWinningNumberList) => {
-  const bonusNumber = lastWinningNumberList[lastWinningNumberList.length - 1];
+const getWinningCount = (lottoList, winningNumberList) => {
+  const bonusNumber = winningNumberList[winningNumberList.length - 1];
   const winningCount = {
     sameThree: 0,
     sameFour: 0,
@@ -19,11 +19,11 @@ const getWinningCount = (lottoList, lastWinningNumberList) => {
     sameFiveAndBonus: 0,
     sameSix: 0,
   };
-  lastWinningNumberList.pop();
+  winningNumberList.pop();
 
   for (let i = 0; i < lottoList.length; i++) {
     const sameList = lottoList[i].filter(num =>
-      lastWinningNumberList.includes(num),
+      winningNumberList.includes(num),
     );
     switch (sameList.length) {
       case 3:
