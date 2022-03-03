@@ -1,6 +1,5 @@
-import { ERROR_MESSAGE, LOTTO_NUMBER_RANGE } from '../constants/constants';
+import { ERROR_MESSAGE } from '../constants/constants';
 import WinningCalculator from '../model/winningCalculator';
-import { isNumberInRange } from '../utils/utils';
 
 expect.extend({
   toBeWithinRange(received, floor, ceiling) {

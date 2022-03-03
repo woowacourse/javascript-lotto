@@ -21,6 +21,15 @@ export const LOTTO_NUMBER_RANGE = Object.freeze({
   MAX: 45,
 });
 
+export const WINNING_AMOUNT = {
+  MIN: 0,
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  6: 2000000000,
+  BONUS: 30000000,
+};
+
 export const ERROR_MESSAGE = Object.freeze({
   NOT_A_NUMBER_CASH_INPUT: '구입할 금액을 입력해주세요.',
   OUT_OF_CASH_RANGE: `${CASH_INPUT_RANGE.MIN}원-${CASH_INPUT_RANGE.MAX}원 사이의 금액을 입력해주세요.`,
