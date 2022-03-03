@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  word-wrap: keep-all;
+  line-height: 1.5;
 }
 
 body {

@@ -1,5 +1,5 @@
 import { SELECTOR } from '../constants/constants';
-import { selectDom } from '../utils/utils';
+import { checkInputMaxLength, selectDom } from '../utils/utils';
 
 class CashInputView {
   constructor() {
@@ -7,6 +7,7 @@ class CashInputView {
     this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
     this.cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
     this.cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
+    this.cashInput.addEventListener('input', checkInputMaxLength);
   }
 
   addRequestHandler(sendRequest) {
@@ -15,7 +16,7 @@ class CashInputView {
 
   handleCashInput = () => {
     const { value: cashInput } = this.cashInput;
-    const lottoArray = this.sendRequest('INPUT_CASH', cashInput);
+    const lottoArray = this.sendRequest('INPUT_CASH', cashInput * 1000);
     return lottoArray;
   };
 

@@ -1,5 +1,5 @@
 import { SELECTOR } from '../constants/constants';
-import { selectDom } from '../utils/utils';
+import { checkInputMaxLength, selectDom } from '../utils/utils';
 
 class WinnerNumberInputView {
   constructor() {
@@ -7,7 +7,12 @@ class WinnerNumberInputView {
     this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll(
       SELECTOR.WINNER_NUMBER_INPUT_CLASS
     );
+    this.winnerNumberInputs.forEach((input) => {
+      input.addEventListener('input', checkInputMaxLength);
+    });
     this.bonusNumberInput = selectDom(SELECTOR.BONUS_NUMBER_INPUT_CLASS, this.winnerNumberSection);
+    this.bonusNumberInput.addEventListener('input', checkInputMaxLength);
+
     this.resultButton = selectDom(SELECTOR.RESULT_BUTTON_CLASS, this.winnerNumberSection);
 
     this.sendRequest = () => {};

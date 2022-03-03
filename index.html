@@ -10,7 +10,10 @@
       <h1 id="app-title">🎱 행운의 로또</h1>
       <section class="cash-input-section page-section" aria-labelledby="cash-input-section-title">
         <h3 id="cash-input-section-title">로또 구입하기</h3>
-        <label for="cash-input">1,000원~50,000원 사이의 금액을 입력해주세요. </label>
+        <label for="cash-input">
+          1,000원~50,000원 사이의 금액을 입력해주세요. <br />
+          로또 1개의 가격은 1000원입니다.
+        </label>
         <div class="cash-input-container">
           <input
             class="cash-input"
@@ -18,9 +21,9 @@
             name="cash-input"
             min="1000"
             max="50000"
+            maxlength="2"
             required
-            placeholder="1,000원 단위로만 구입 가능"
-          />원
+          />,000원
           <button type="button" class="cash-input-button">구입</button>
         </div>
       </section>
@@ -47,6 +50,10 @@
         aria-labelledby="winner-number-section-title"
       >
         <h3 id="winner-number-section-title">당첨 번호 입력하기</h3>
+        <label>
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력하면 <br />
+          구입한 로또의 당첨 여부를 확인할 수 있습니다.
+        </label>
         <div class="lotto-rules">
           <label class="lotto-rules-label">❗ 번호 입력 시 유의사항 ❗</label>
           <ul class="lotto-rules-list">
@@ -55,20 +62,62 @@
             <li>1~45 범위의 자연수만 입력 가능합니다.</li>
           </ul>
         </div>
-        <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+
         <form class="winner-number-input-form">
           <fieldset class="winner-number-input-container">
             <legend>당첨 번호</legend>
-            <input type="number" class="winner-number-input" min="1" max="45" required />
-            <input type="number" class="winner-number-input" min="1" max="45" required />
-            <input type="number" class="winner-number-input" min="1" max="45" required />
-            <input type="number" class="winner-number-input" min="1" max="45" required />
-            <input type="number" class="winner-number-input" min="1" max="45" required />
-            <input type="number" class="winner-number-input" min="1" max="45" required />
+            <input
+              type="number"
+              class="winner-number-input"
+              min="1"
+              max="45"
+              maxlength="2"
+              required
+            />
+            <input
+              type="number"
+              class="winner-number-input"
+              min="1"
+              max="45"
+              maxlength="2"
+              required
+            />
+            <input
+              type="number"
+              class="winner-number-input"
+              min="1"
+              max="45"
+              maxlength="2"
+              required
+            />
+            <input
+              type="number"
+              class="winner-number-input"
+              min="1"
+              max="45"
+              maxlength="2"
+              required
+            />
+            <input
+              type="number"
+              class="winner-number-input"
+              min="1"
+              max="45"
+              maxlength="2"
+              required
+            />
+            <input
+              type="number"
+              class="winner-number-input"
+              min="1"
+              max="45"
+              maxlength="2"
+              required
+            />
           </fieldset>
           <fieldset class="bonus-number-input-container">
             <legend>보너스 번호</legend>
-            <input type="number" class="bonus-number-input" />
+            <input type="number" class="bonus-number-input" maxlength="2" />
           </fieldset>
         </form>
         <button class="result-button">결과 확인하기</button>
