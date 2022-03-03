@@ -94,7 +94,7 @@ describe('당첨 통계를 낼 수 있다.', () => {
     lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
     lottoGame.compareLottos();
     lottoGame.calculateYield();
-    expect(lottoGame.yield).toBe(666685);
+    expect(lottoGame.yield).toEqual(67666833.33);
   });
 
   test('다시 시작을 위해 초기화가 가능하다.', () => {

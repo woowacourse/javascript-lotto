@@ -102,6 +102,6 @@ export class ModalView {
   }
 
   #yieldTemplate(yieldAmount) {
-    return `당신의 총 수익률은 ${yieldAmount}% 입니다.`;
+    return `당신의 총 수익률은 ${yieldAmount.toLocaleString()}% 입니다.`;
   }
 }

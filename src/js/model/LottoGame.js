@@ -61,9 +61,10 @@ export class LottoGame {
   calculateYield() {
     let winAmount = 0;
     this.winningStatus.forEach((winStatus, idx) => {
-      winAmount += winStatus * WINNINGS[`${idx + 1}-place`];
+      winAmount += winStatus * WINNINGS[`${5 - idx}-place`];
     });
-    this.yield = winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE);
+    this.yield = (winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE)) * 100;
+    this.yield = Number(this.yield.toFixed(2));
   }
 
   reStartLottos() {
