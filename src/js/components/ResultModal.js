@@ -2,6 +2,7 @@ import ACTION from '../flux/actions';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { PRIZE_MONEY } from '../constants';
+import CloseImage from '../../../images/close.png';
 
 class ResultModal extends Component {
   render() {
@@ -20,7 +21,7 @@ class ResultModal extends Component {
   template(result) {
     return `
       <article>
-        <button class="close">X</button>
+        <img src="${CloseImage}" class="close"></img>
         <h3>🏆 당첨 통계 🏆</h3>
         <table>
           <thead>
