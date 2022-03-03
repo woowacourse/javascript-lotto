@@ -51,13 +51,6 @@ export default class WinningNumbersView {
   }
 
   removeInputValue() {
-    console.log(this.$winningNumbersForm.event);
-    Array.from({ length: 6 }).forEach((_, index) => {
-      this.$winningNumbersForm.event.target[index].value = '';
-    });
-  }
-
-  resetInput() {
     this.$winningNumbersReset.click();
   }
 }

@@ -54,7 +54,7 @@ export default class PurchaseView {
     this.$purchaseInput.disabled = false;
   }
 
-  resetInput() {
+  removeInputValue() {
     this.$purchaseInputReset.click();
   }
 
@@ -63,7 +63,8 @@ export default class PurchaseView {
     this.$purchasableLottoCount.textContent = lottoCount;
   }
 
-  hidePurchasableLottoCount() {
-    this.$purchasableLottoDiv.classList.add('hidden');
+  togglePurchasableLottoCountDisplay() {
+    this.$purchasableLottoCount.textContent = 0;
+    this.$purchasableLottoDiv.classList.toggle('hidden');
   }
 }

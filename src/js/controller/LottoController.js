@@ -42,7 +42,7 @@ export default class LottoController {
       this.issuedTicketView.showTicketContainer();
       this.issuedTicketView.renderTicketCount(issuedLottos.length);
       this.issuedTicketView.renderIssuedTickets(issuedLottos);
-      this.purchaseView.hidePurchasableLottoCount();
+      this.purchaseView.togglePurchasableLottoCountDisplay();
       this.purchaseView.deactivatePurchaseForm();
     } catch (error) {
       alert(error.message);
@@ -58,19 +58,18 @@ export default class LottoController {
     this.issuedTicketView.hideTicketDetails();
   }
 
-  #validateBeforeRequestResult() {
+  #validateLottoList() {
+    // TODO: 제거
     if (this.lottoVendor.isLottoListEmpty()) {
       throw new Error(EXCEPTION.NOT_YET_PURCHASE);
-    }
-
-    if (this.lottoResult.isWinningNumbersDuplicated()) {
-      throw new Error(EXCEPTION.DUPLICATED_NUMBERS);
     }
   }
 
   #requestResult(winningNumbers, bonusNumber) {
     try {
-      this.#validateBeforeRequestResult();
+      this.#validateLottoList(); // TODO: 제거
+      this.lottoResult.bonusNumber = bonusNumber;
+      this.lottoResult.winningNumbers = winningNumbers;
       const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
       this.#renderResultModal(winningCounts, lottoYield, winningMoney);
     } catch (error) {
@@ -81,24 +80,18 @@ export default class LottoController {
   #renderResultModal(winningCounts, lottoYield, winningMoney) {
     this.resultModalView.renderYield(this.lottoVendor.paidMoney, winningMoney, lottoYield);
     this.resultModalView.renderWinningCounts(winningCounts);
-    this.resultModalView.showModal();
+    this.resultModalView.toggleModalDisplay();
   }
 
   #restart() {
-    this.resultModalView.hideModal();
+    this.resultModalView.toggleModalDisplay();
     this.lottoVendor = new LottoVendor();
     this.lottoResult = new LottoResult(this.lottoVendor);
-    console.log(this.lottoVendor.paidMoney);
-    console.log(this.lottoVendor.lottos);
-    console.log(this.lottoResult.winningNumbers);
-    console.log(this.lottoResult.lottoYield);
-
-    // this.lottoVendor.reset();
-    // this.lottoResult.reset();
-    this.purchaseView.resetInput();
     this.issuedTicketView.hideTicketContainer();
-    this.winningNumbersView.resetInput();
+    this.winningNumbersView.removeInputValue();
+    this.purchaseView.removeInputValue();
     this.purchaseView.activatePurchaseForm();
+    this.purchaseView.togglePurchasableLottoCountDisplay();
   }
 
   #keyupHandler(target) {

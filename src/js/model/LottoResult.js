@@ -1,3 +1,4 @@
+import EXCEPTION from '../constants/exception';
 import LOTTO from '../constants/lotto';
 
 export default class LottoResult {
@@ -16,6 +17,9 @@ export default class LottoResult {
   #winningMoney = 0;
 
   set winningNumbers(numbers) {
+    if (this.isWinningNumbersDuplicated(numbers)) {
+      throw new Error(EXCEPTION.DUPLICATED_NUMBERS);
+    }
     this.#winningNumbers = numbers;
   }
 
@@ -89,8 +93,8 @@ export default class LottoResult {
     return this.#lottoYield;
   }
 
-  isWinningNumbersDuplicated() {
-    const numbers = [...this.#winningNumbers, this.#bonusNumber];
+  isWinningNumbersDuplicated(winningNumbers) {
+    const numbers = [...winningNumbers, this.#bonusNumber];
     if (numbers.length !== new Set(numbers).size) {
       return true;
     }

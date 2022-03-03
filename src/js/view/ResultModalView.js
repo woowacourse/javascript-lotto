@@ -23,16 +23,12 @@ export default class ResultModalView {
   }
 
   #bindEvents() {
-    this.$closeButton.addEventListener('click', () => this.hideModal());
+    this.$closeButton.addEventListener('click', () => this.toggleModalDisplay());
     this.$restartButton.addEventListener('click', () => this.handleRestart());
   }
 
-  showModal() {
-    this.$modalContainer.classList.add('show-modal');
-  }
-
-  hideModal() {
-    this.$modalContainer.classList.remove('show-modal');
+  toggleModalDisplay() {
+    this.$modalContainer.classList.toggle('show-modal');
   }
 
   handleRestart() {
