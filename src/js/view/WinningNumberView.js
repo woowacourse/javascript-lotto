@@ -29,11 +29,11 @@ export class WinningNumberView {
     for (let key in WINNING_PRIZE) {
       template += `
         <div class="result-modal-grid-item">${key}</div>
-        <div class="result-modal-grid-item">${WINNING_PRIZE[key]}</div>
+        <div class="result-modal-grid-item">${WINNING_PRIZE[key].toLocaleString()}</div>
         <div class="result-modal-grid-item">${winningLottoQuantity[key]}개</div>
       `;
     }
     this.$resultModalGridContainer.insertAdjacentHTML('beforeend', template);
-    this.$resultModalProfitRatio.textContent = profitRatio;
+    this.$resultModalProfitRatio.textContent = profitRatio.toLocaleString();
   }
 }
