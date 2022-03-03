@@ -40,3 +40,51 @@ export const lottoWinningNumberInputTemplate = () => {
     </section>
   `;
 };
+
+export const lottoResultModalTemplate = () => {
+  return `
+    <dialog id="lotto-result-dialog">
+      <form method="dialog">
+        <p>🏆당첨 통계🏆</p>
+        <table>
+          <thead>
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td><span id="three-matched-number"></span>개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td><span id="four-matched-number"></span>개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td><span id="five-matched-number"></span>개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td><span id="five-with-bonus-matched-number"></span>개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td><span id="six-matched-number"></span>개</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>당신의 총 수익률을 <span id="profit-rate"></spane>%입니다</p>
+        <button id="restart-button">다시 시작하기</button>
+      </form>
+    </dialog>
+  `;
+};

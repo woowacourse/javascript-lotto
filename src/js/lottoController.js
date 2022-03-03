@@ -17,6 +17,8 @@ export default class LottoController {
 
   #lottoWinningNumberInputView;
 
+  #lottoResultView;
+
   constructor(models, views) {
     this.#lottoCreator = models.lottoCreator;
     this.#lottoResultManager = models.lottoResultManager;
@@ -24,6 +26,7 @@ export default class LottoController {
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
+    this.#lottoResultView = views.lottoResultView;
   }
 
   init() {
@@ -100,7 +103,9 @@ export default class LottoController {
         lottoWinningBonusNumber,
         this.#lottoCreator.lottoList
       );
-      console.log(this.#lottoResultManager.lottoMatchingResult);
+      // console.log(this.#lottoResultManager.lottoMatchingResult);
+      this.#lottoResultView.render();
+
       return;
     }
     alert(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_WINNING_NUMBERS);
