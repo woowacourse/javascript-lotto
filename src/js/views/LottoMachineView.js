@@ -1,9 +1,6 @@
-import { $, $$ } from '../utils/util';
+import { $ } from '../utils/util';
 import WinningResultSectionView from './WinningResultSectionView';
 import PurchaseTicketSectionView from './PurchaseTicketSectionView';
-import { MATCH_RESULT_INDEX, PRIZE_MONEY } from '../constants/constants';
-
-const CLASS_DISPLAY_NONE = 'display-none';
 
 export default class LottoMachineView {
   constructor() {
@@ -14,7 +11,6 @@ export default class LottoMachineView {
   }
 
   initialize(lottos) {
-    this.initializeInputValues();
     this.purchaseTicketSectionView.initialize(lottos);
     this.winningResultSectionView.initialize();
   }
@@ -24,26 +20,7 @@ export default class LottoMachineView {
     this.winningResultSectionView.updateOnPurchase(tickets);
   }
 
-  openWinningResultModal(result) {
-    this.updateWinningResultModal(result);
-    this.resultModalArea.classList.remove(CLASS_DISPLAY_NONE);
-  }
-
-  closeWinningResultModal() {
-    this.resultModalArea.classList.add(CLASS_DISPLAY_NONE);
-  }
-
-  updateWinningResultModal({ matchResult, profitRatio }) {
-    $$('.match-result', this.resultModalArea).forEach((resultRow) => {
-      $('.match-count', resultRow).innerText = `${matchResult[MATCH_RESULT_INDEX[resultRow.dataset.matchCount]]}개`;
-      $('.prize-money', resultRow).innerText = PRIZE_MONEY[resultRow.dataset.matchCount].toLocaleString();
-    })
-    $('#profit-ratio', this.resultModalArea).innerText = Math.round(profitRatio);
-  }
-
-  initializeInputValues() {
-    $$('input').forEach((element) => {
-      element.value = '';
-    })
+  updateOnCheckWinningResult(winningResult){
+    this.winningResultSectionView.updateOnCheckWinningResult(winningResult);
   }
 }

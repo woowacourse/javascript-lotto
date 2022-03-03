@@ -1,8 +1,6 @@
 import LotteryTicketManager from './LotteryTicketManager';
 import LottoMachineView from './views/LottoMachineView';
 
-import { SELECTOR } from './constants/constants';
-import { $, $$ } from './utils/util';
 import { validateCharge, validateWinningNumbers } from './validation';
 import { calculateMatchResult, calculateProfitRatio } from './checkResult';
 
@@ -14,32 +12,25 @@ export default class LottoMachine {
   }
 
   bindEvent() {
-    $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
-    $(SELECTOR.WINNING_NUMBER_FORM).addEventListener('submit', this.onSubmitWinningNumber.bind(this));
-    $('#restart-button').addEventListener('click', this.onClickRestartButton.bind(this));
+    window.addEventListener('purchaseTicket', this.purchaseLotteryTicket.bind(this));
+    window.addEventListener('checkWinningResult', this.checkWinningResult.bind(this));
+    window.addEventListener('restart', this.restart.bind(this));
   }
   
-  onSubmitCharge(event) {
-    event.preventDefault();
-    const chargeInputValue = Number($(SELECTOR.CHARGE_INPUT).value);
+  purchaseLotteryTicket(event) {
+    const { chargeInputValue } = event.detail;
     try {
       validateCharge(chargeInputValue);
     } catch (error) {
       alert(error.message);
       return;
     }
-    this.purchaseLotteryTicket(chargeInputValue);
+    const { remainCharge } = this.lotteryTicketManager.purchaseLotteryTicket(chargeInputValue);
+    this.lottoMachineView.updateOnPurchase(this.lotteryTicketManager.tickets, remainCharge);
   }
 
-  onClickRestartButton() {
-    this.lotteryTicketManager.initialize();
-    this.lottoMachineView.initialize(this.lotteryTicketManager.tickets);
-  }
-
-  onSubmitWinningNumber(event) {
-    event.preventDefault();
-    const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
-      .map(numberInput => Number(numberInput.value)).filter(number => number !== 0);
+  checkWinningResult(event) {
+    const { winningNumberInputValues } = event.detail;
     try {
       this.lotteryTicketManager.checkPurchasedTicketExist();
       validateWinningNumbers(winningNumberInputValues);
@@ -47,17 +38,13 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.showWinningResultModal(winningNumberInputValues);
+    const winningResult = this.calculateWinningResult(winningNumberInputValues);
+    this.lottoMachineView.updateOnCheckWinningResult(winningResult);
   }
 
-  purchaseLotteryTicket(chargeInputValue) {
-    const { remainCharge } = this.lotteryTicketManager.purchaseLotteryTicket(chargeInputValue);
-    this.lottoMachineView.updateOnPurchase(this.lotteryTicketManager.tickets, remainCharge);
-  }
-
-  showWinningResultModal(winningNumberInputValues) {
-    const result = this.calculateWinningResult(winningNumberInputValues);
-    this.lottoMachineView.openWinningResultModal(result);
+  restart() {
+    this.lotteryTicketManager.initialize();
+    this.lottoMachineView.initialize(this.lotteryTicketManager.tickets);
   }
 
   calculateWinningResult(winningNumberInputValues) {

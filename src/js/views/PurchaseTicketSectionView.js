@@ -22,9 +22,22 @@ export default class PurchaseTicketSectionView {
 
   bindEvent() {
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.switchLottoListStyle.bind(this));
+    this.chargeSubmitForm.addEventListener('submit', this.onSubmitCharge.bind(this));
+  }
+
+  onSubmitCharge(event) {
+    event.preventDefault();
+    const chargeInputValue = Number($(SELECTOR.CHARGE_INPUT).value);
+    const purchaseEvent = new CustomEvent('purchaseTicket', {
+      detail: {
+        chargeInputValue
+      }
+    });
+    window.dispatchEvent(purchaseEvent);
   }
 
   initialize(tickets) {
+    this.chargeInput.value = '';
     this.updateLottoList(tickets);
     this.hideTicketListStyleToggle();
     this.activateChargeSubmitForm();
@@ -46,7 +59,7 @@ export default class PurchaseTicketSectionView {
       this.showTicketListStyleToggle();
 
     this.updateLottoList(tickets);
-    this.chargeInput.value = charge;
+    this.chargeInput.value = charge || '';
   }
 
   updateLottoList(tickets) {
