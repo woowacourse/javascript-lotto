@@ -59,7 +59,7 @@ class ResultModal extends Component {
           </tbody>
         </table>
         <label>당신의 총 수익률은 ${result.earningsRate}%입니다.</label>
-        <button>다시 시작하기</button>
+        <button class="restart">다시 시작하기</button>
       </article>
     `;
   }
@@ -68,6 +68,11 @@ class ResultModal extends Component {
     this.addEvent('click', '.close', (event) => {
       event.preventDefault();
       window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, false));
+    });
+
+    this.addEvent('click', '.restart', (event) => {
+      event.preventDefault();
+      window.store.dispatch(createAction(ACTION.RESTART, null));
     });
   }
 }

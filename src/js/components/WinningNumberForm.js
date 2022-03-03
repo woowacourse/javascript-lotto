@@ -9,9 +9,12 @@ class WinningNumberForm extends Component {
     const { money, winningNumbers, bonusNumber } = window.store.getState();
     this.innerHTML = this.template(winningNumbers, bonusNumber);
 
-    if (money > 0) {
-      this.show();
+    if (money === 0) {
+      this.hide();
+
+      return;
     }
+    this.show();
   }
 
   // eslint-disable-next-line max-lines-per-function

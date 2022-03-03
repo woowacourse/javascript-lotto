@@ -1,4 +1,5 @@
 import ACTION from './actions';
+import initialState from './initialState';
 import { LOTTO } from '../constants';
 import pickUniqueNumbersInRange from '../utils';
 
@@ -33,6 +34,8 @@ export default function reducer(state, { type, payload }) {
       newState.resultModalVisibility = payload;
 
       return newState;
+    case ACTION.RESTART:
+      return initialState;
     default:
       return state;
   }

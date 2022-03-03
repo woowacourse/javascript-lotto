@@ -6,9 +6,12 @@ class LottoList extends Component {
     const { money, lottoList, lottoListVisibility } = window.store.getState();
     this.innerHTML = this.template(lottoList, lottoListVisibility);
 
-    if (money > 0) {
-      this.show();
+    if (money === 0) {
+      this.hide();
+
+      return;
     }
+    this.show();
   }
 
   // eslint-disable-next-line max-lines-per-function
