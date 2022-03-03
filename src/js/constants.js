@@ -36,6 +36,7 @@ export const LOTTO_PRICE = 1000;
 
 export const ALERT_MESSAGE = {
   NOT_DIVISIBLE: `${LOTTO_PRICE}으로 나누어떨어지는 금액을 입력해주세요.`,
+  DUPLICATED_NUMBER: '당첨 번호가 서로 중복되지 않게 입력해주세요.',
 };
 
 export const WINNING_PRIZE = {

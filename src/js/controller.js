@@ -2,7 +2,7 @@ import Model from './model.js';
 import LottoListView from './view/LottoList.js';
 import PurchaseFormView from './view/PurchaseForm.js';
 import { LOTTO_PRICE } from './constants.js';
-import { validateCashInput } from './utils/validation';
+import { validateCashInput, validatePickedNumbers } from './utils/validation';
 import { WinningNumberView } from './view/WinningNumberView';
 
 export default class Controller {
@@ -36,10 +36,15 @@ export default class Controller {
   }
 
   #handleCheckResult(pickedNumbers) {
-    this.#model.setWinningLottoQuantity(pickedNumbers);
-    const winningLottoQuantity = this.#model.getWinningLottoQuantity();
-    const profitRatio = this.#model.calculateProfitRatio();
-    this.#winningNumberView.showLottoResult(winningLottoQuantity, profitRatio);
+    try {
+      validatePickedNumbers(pickedNumbers);
+      this.#model.setWinningLottoQuantity(pickedNumbers);
+      const winningLottoQuantity = this.#model.getWinningLottoQuantity();
+      const profitRatio = this.#model.calculateProfitRatio();
+      this.#winningNumberView.showLottoResult(winningLottoQuantity, profitRatio);
+    } catch ({ message }) {
+      alert(message);
+    }
   }
 
   #handleRestart() {
