@@ -9,4 +9,8 @@ export default class MatchResultViewImpl extends MatchResultView {
   tabNextInput(currentIndex) {
     this.inputInstance.focusInput(currentIndex + 1);
   }
+
+  moveTabToEmptyInput() {
+    this.inputInstance.focusEmptyInput();
+  }
 }

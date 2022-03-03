@@ -22,4 +22,12 @@ export default class WinningNumberValue extends InputValue {
       this.$input[index].focus();
     }
   }
+
+  focusEmptyInput() {
+    const emptyInput = this.$input.find(($numberInput) => $numberInput.value === '');
+
+    if (emptyInput !== undefined) {
+      emptyInput.focus();
+    }
+  }
 }
