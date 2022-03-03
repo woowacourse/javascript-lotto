@@ -27,8 +27,7 @@
 - [ ] 다시 시작하기 버튼을 누를시 초기창으로 돌아간다.
 
 ## 리팩터링 
-- [ ] 이벤트 바인딩 함수 자체에 정의해보기 
-- [ ] submitLottoPriceHandler 네이밍 -> handleLottoPriceButtonSubmit
+- [x] submitLottoPriceHandler 네이밍 -> handleLottoPriceButtonSubmit
 - [ ] const { value } 이름 
 - [ ] 리뷰어님  
   - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 

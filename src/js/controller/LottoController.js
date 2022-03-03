@@ -21,7 +21,7 @@ export default class LottoController {
   }
 
   bindEvent() {
-    this.$lottoPriceForm.addEventListener('submit', this.submitLottoPriceHandler.bind(this));
+    this.$lottoPriceForm.addEventListener('submit', this.handleLottoPriceButtonSubmit.bind(this));
   }
 
   initAfterRenderResult() {
@@ -34,10 +34,10 @@ export default class LottoController {
   }
 
   bindEventAfterRenderResult() {
-    this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
+    this.$checkbox.addEventListener('change', this.handleCheckBoxChange.bind(this));
   }
 
-  submitLottoPriceHandler(event) {
+  handleLottoPriceButtonSubmit(event) {
     event.preventDefault();
 
     const { value } = this.$lottoPriceInput;
@@ -53,7 +53,7 @@ export default class LottoController {
     }
   }
 
-  changeCheckBoxHandler({ target }) {
+  handleCheckBoxChange({ target }) {
     if (target.checked) {
       this.resultView.renderLottos(this.model.getLottos());
       return;
