@@ -7,6 +7,10 @@ body {
   margin: 40px 0px;
 }
 
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 button {
   cursor: pointer;
 }
