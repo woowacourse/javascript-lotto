@@ -50,11 +50,11 @@ export default class LottoController {
   submitUserLottoNumbers(event) {
     const lottoNumbers = event.detail.lottoNumber;
     const bonusNumber = event.detail.bonusNumber;
-    const holeLottoNumber = [...lottoNumbers, ...bonusNumber];
+    const holeLottoNumbers = [...lottoNumbers, ...bonusNumber];
     try {
-      userLottoNumberPositiveValue(holeLottoNumber);
-      userLottoNumberOverlap(holeLottoNumber);
-      userLottoNumberCorrectRange(holeLottoNumber);
+      userLottoNumberPositiveValue(holeLottoNumbers);
+      userLottoNumberOverlap(holeLottoNumbers);
+      userLottoNumberCorrectRange(holeLottoNumbers);
       isNotPurchaseLotto(ResultLottoDatas.getPurchaseMoney());
     } catch (error) {
       return alert(error);
