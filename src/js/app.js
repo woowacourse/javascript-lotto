@@ -1,6 +1,9 @@
 import { $ } from './utils/dom.js';
 import { getLottoPrice, checkLottoPrice } from './core/checkLottoPrice.js';
-import { getLastWinnginNumbers } from './core/checkLastWinningNumbers.js';
+import {
+  getLastWinningNumbers,
+  checkLastWinningNumberList,
+} from './core/checkLastWinningNumbers.js';
 import { toggleButton } from './component/toggleButton.js';
 import { drawLotto } from './core/drawLotto.js';
 import {
@@ -8,6 +11,7 @@ import {
   renderLastLottoNumber,
   renderPurchasedLottoListContent,
   renderPurchasedLottoListContentIsActive,
+  renderOpenResultModal,
 } from './views/render.js';
 
 export default class App {
@@ -34,8 +38,10 @@ export default class App {
     );
     $('.last-lotto-winning-number-container').addEventListener(
       'click',
-      this.handleOpenModal.bind(this),
+      this.handleOpenResultModal.bind(this),
     );
+    $('body').addEventListener('click', this.handleCloseModal);
+    $('body').addEventListener('click', this.handleRestart);
   }
 
   handleSubmitPriceInput(e) {
@@ -73,17 +79,31 @@ export default class App {
     renderPurchasedLottoListContent(this.lottoList.length);
   }
 
-  handleOpenModal(e) {
+  handleOpenResultModal(e) {
     if (!e.target.classList.contains(`check-result-button`)) {
       return;
     }
-    const lastWinningNumberList = checkLastWinnginNumberList(
-      getLastWinnginNumbers(),
+    const lastWinningNumberList = checkLastWinningNumberList(
+      getLastWinningNumbers(),
     );
     if (!lastWinningNumberList) {
       return;
     }
     this.lastWinningNumberList = lastWinningNumberList;
+    renderOpenResultModal();
+  }
+
+  handleCloseModal(e) {
+    if (e.target.classList.contains('modal-window-X-button')) {
+      $('#modal').remove();
+      $('#app').classList.toggle('disabled');
+    }
+  }
+
+  handleRestart(e) {
+    if (e.target.classList.contains('restart-button')) {
+      window.location.reload();
+    }
   }
 }
 

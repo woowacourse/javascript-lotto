@@ -1,7 +1,6 @@
-import { isInteger } from 'cypress/types/lodash';
 import { $ } from '../utils/dom.js';
 
-export const getLastWinnginNumbers = () => {
+export const getLastWinningNumbers = () => {
   const lastWinnginNumberList = Array.from(
     document.querySelectorAll('.last-lotto-winning-number-input'),
     number => Number(number.value),
@@ -10,7 +9,7 @@ export const getLastWinnginNumbers = () => {
   return lastWinnginNumberList;
 };
 
-export const checkLastWinnginNumberList = lastWinnginNumberList => {
+export const checkLastWinningNumberList = lastWinnginNumberList => {
   if (!isElementsInteger(lastWinnginNumberList)) {
     window.alert('정수값만 입력가능합니다.');
     return;
@@ -27,16 +26,13 @@ export const checkLastWinnginNumberList = lastWinnginNumberList => {
 };
 
 const isElementsInteger = numberList => {
-  console.log(numberList.every(number => isInteger(number)));
-  return numberList.every(number => isInteger(number));
+  return numberList.every(number => Number.isInteger(number));
 };
 
 const isElementsValidRange = numberList => {
-  console.log(numberList.every(number => number >= 1 && number <= 45));
   return numberList.every(number => number >= 1 && number <= 45);
 };
 
 const isElementsUnique = numberList => {
-  console.log(numberList.length === new Set(numberList).size);
   return numberList.length === new Set(numberList).size;
 };

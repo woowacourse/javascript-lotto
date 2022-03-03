@@ -4,12 +4,18 @@
 @import "./screen/lottoList.css";
 @import "./screen/lottoPriceInput.css";
 
+@import "./screen/resultModal.css";
+
 body {
-  height: 100%;
   width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: var(--body-background-color);
 }
   
@@ -21,6 +27,10 @@ h1 {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+h3 {
+  margin-top: 0;
 }
 
 button {
@@ -40,6 +50,10 @@ button {
   background-color: var(--app-background-color);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 5px;
+}
+
+.disabled {
+  filter: brightness(60%);
 }
 
 input[type=number]::-webkit-inner-spin-button, 

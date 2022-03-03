@@ -1,4 +1,5 @@
 import { $ } from '../utils/dom.js';
+
 export const renderPurchasedLottoList = lottoCount => {
   const template = `
     <div class="purchased-lotto-header"> 
@@ -74,4 +75,56 @@ export const renderLastLottoNumber = () => {
     'beforeend',
     template,
   );
+};
+
+export const renderOpenResultModal = () => {
+  $('#app').classList.toggle('disabled');
+
+  const template = `
+    <div id='modal' class='modal-overlay'>
+    <div class='modal-window'>
+      <header class='modal-window-header'>
+        <div class='modal-window-X-button-container'>
+          <span class='modal-window-X-button'>✖</span>
+        </div>
+        <div class='modal-window-title'><h2>🏆 당첨 통계 🏆</h2></div>
+      </header>
+      <main class='modal-window-main'>
+        <table>
+          <thead>
+            <tr>
+              <th>일치 갯수</th><th>당첨금</th><th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td><td>5,000</td><td>n개</td>
+            </tr>
+            <tr>
+              <td>4개</td><td>50,000</td><td>n개</td>
+            </tr>
+            <tr>
+              <td>5개</td><td>1,500,000</td><td>n개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td><td>30,000,000</td><td>n개</td>
+            </tr>
+            <tr>
+              <td>6개</td><td>2,000,000,000</td><td>n개</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='modal-window-earning-rate'>
+          <h3>당신의 총 수익률은 %입니다.</h3>
+        </div>
+      </main>
+      <footer class='modal-window-footer'>
+        <div>
+          <button class='restart-button'>다시 시작하기</button>
+        </div>
+      </footer>
+    </div>
+    </div>
+  `;
+  $('#app').insertAdjacentHTML('afterend', template);
 };
