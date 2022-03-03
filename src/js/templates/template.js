@@ -107,30 +107,30 @@ const template = {
           <tr>
             <td>3개</td>
             <td>5,000</td>
-            <td>n개</td>
+            <td>${winningStatistic.three}개</td>
           </tr>
           <tr>
             <td>4개</td>
             <td>50,000</td>
-            <td>n개</td>
+            <td>${winningStatistic.four}개</td>
           </tr>
           <tr>
             <td>5개</td>
             <td>1,500,000</td>
-            <td>n개</td>
+            <td>${winningStatistic.five}개</td>
           </tr>
           <tr>
             <td>5개+보너스볼</td>
             <td>30,000,000</td>
-            <td>n개</td>
+            <td>${winningStatistic.fiveBonus}개</td>
           </tr>
           <tr>
             <td>6개</td>
             <td>2,000,000,000</td>
-            <td>n개</td>
+            <td>${winningStatistic.six}개</td>
           </tr>
         </table>
-        <p id="ratio-result">당신의 총 수익률은 <span></span>%입니다.</p>
+        <p id="ratio-result">당신의 총 수익률은 ${earningRate}%입니다.</p>
         <button id="reset-button">다시 시작하기</button>
       </section>
     `;
