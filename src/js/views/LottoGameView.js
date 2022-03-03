@@ -78,6 +78,10 @@ export default class LottoGameView {
     this.lottoNumberList.replaceChildren();
   }
 
+  #preventOverInput(input) {
+    input.value = input.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
+  }
+
   setAutoCursor(winningInputs, bonusInput) {
     winningInputs[0].focus();
 
@@ -85,12 +89,6 @@ export default class LottoGameView {
       winningInput.addEventListener("keyup", () => {
         this.#moveToNextInput(winningInput, bonusInput);
       });
-    });
-
-    bonusInput.addEventListener("keyup", () => {
-      if (bonusInput.value.length >= LOTTO_NUMBER.DIGIT_MAX) {
-        this.#preventOverInput(bonusInput);
-      }
     });
   }
 
@@ -104,9 +102,11 @@ export default class LottoGameView {
     if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && !nextElementSibling) {
       bonusInput.focus();
     }
-  }
 
-  #preventOverInput(input) {
-    input.value = input.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
+    bonusInput.addEventListener("keyup", () => {
+      if (bonusInput.value.length >= LOTTO_NUMBER.DIGIT_MAX) {
+        this.#preventOverInput(bonusInput);
+      }
+    });
   }
 }
