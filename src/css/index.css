@@ -45,6 +45,35 @@ label[for="purchase-money"] {
   cursor: pointer;
 }
 
+#lotto-purchase-form > button:hover {
+  background: #91c5cc;
+  border-radius: 4px;
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+  color: #FFFFFF;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  margin-left: 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+#lotto-purchase-form > button:active {
+  background: #d2d7d8;
+  border-radius: 4px;
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  margin-left: 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 #lotto-purchase-input {
   height: 36px;
   width: 294px;
@@ -200,6 +229,32 @@ input:checked + .slider:before {
   border-radius: 4px;
   margin-top: 20px;
   color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#user-lotto-result-button:hover {
+  width: 382px;
+  height: 36px;
+  background: #91c5cc;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#user-lotto-result-button:active {
+  width: 382px;
+  height: 36px;
+  background: #d2d7d8;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: black;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
