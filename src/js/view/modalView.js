@@ -1,5 +1,9 @@
 import { $, $$ } from '../utils/dom';
 
+export const closeModal = () => {
+  $('.modal-container').classList.add('d-none');
+};
+
 const showWinningCount = winnersStatistic => {
   const winningCountElements = $$('.winning-count');
 

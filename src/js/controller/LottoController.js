@@ -11,7 +11,7 @@ import { isValidMoneyInput, isDuplicatedLottos } from './validator';
 import Lotto from '../model/Lotto';
 import { showResult, toggleNumberDetail } from '../view/lottoView';
 import { maxLengthHandler } from '../utils/maxLengthHandler';
-import { showWinnerModal } from '../view/modalView';
+import { showWinnerModal, closeModal } from '../view/modalView';
 
 export default class LottoController {
   constructor() {
@@ -21,6 +21,7 @@ export default class LottoController {
     $('.cm-toggle').addEventListener('click', toggleNumberDetail);
     $('.winning-numbers-form').addEventListener('submit', this.winningLottoHandler);
     $$('.winning-numbers').forEach(input => input.addEventListener('input', maxLengthHandler));
+    $('.modal-closer').addEventListener('click', closeModal);
   }
 
   getLottos = (moneyInput) => {
