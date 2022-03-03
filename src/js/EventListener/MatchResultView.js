@@ -6,4 +6,8 @@ export default class MatchResultView extends View {
   show() {}
 
   hide() {}
+
+  onModal() {}
+
+  offModal() {}
 }

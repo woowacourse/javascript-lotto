@@ -55,7 +55,7 @@
         </div>
         <button class="lotto-app-button result-button" id="confirm-result-button">결과 확인하기</button>
       </section>
-      <div class="modal hide">
+      <div class="modal hide" id="match-modal">
         <div class="modal-frame">
           <div class="close-button-wrap">
             <p class="close-button">✕</p>
@@ -73,44 +73,44 @@
                 </tr>
               </thead>
   
-              <tbody>
+              <tbody class="match-result">
                 <tr>
                   <td>3개</td>
                   <td>5,000</td>
-                  <td><span></span>개</td>
+                  <td><span class="winning-lotto-count"></span>개</td>
                 </tr>
-  
+
                 <tr>
                   <td>4개</td>
                   <td>50,000</td>
-                  <td><span></span>개</td>
+                  <td><span class="winning-lotto-count"></span>개</td>
                 </tr>
-  
+
                 <tr>
                   <td>5개</td>
                   <td>1,500,000</td>
-                  <td><span></span>개</td>
+                  <td><span class="winning-lotto-count"></span>개</td>
                 </tr>
-  
+
                 <tr>
                   <td>5개+보너스볼</td>
                   <td>30,000,000</td>
-                  <td><span></span>개</td>
+                  <td><span class="winning-lotto-count"></span>개</td>
                 </tr>
-  
+
                 <tr>
                   <td>6개</td>
                   <td>2,000,000,000</td>
-                  <td><span></span>개</td>
+                  <td><span class="winning-lotto-count"></span>개</td>
                 </tr>
               </tbody>
             </table>
           </div>
   
-          <p class="rate-of-return-text">당신의 총 수익률은 <span id="rate-of-return"></span>%입니다.</p>
+          <p class="rate-of-return-text">당신의 총 수익률은 <span class="rate-of-return"></span>%입니다.</p>
   
           <div class="restart-button-wrap">
-            <button  class="lotto-app-button restart-button">다시 시작하기</button>
+            <button class="lotto-app-button restart-button">다시 시작하기</button>
           </div>
         </div>
       </div>

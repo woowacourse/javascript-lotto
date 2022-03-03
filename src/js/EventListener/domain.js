@@ -1,6 +1,7 @@
 import ValidatorImpl from '../ValidatorImpl/index.js';
 import LottoCountCalculator from '../CalculatorImpl/LottoCountCalculator.js';
 import RemainFareCalculator from '../CalculatorImpl/RemainFareCalculator.js';
+import RateOfReturnCalculator from '../CalculatorImpl/RateOfReturnCalculator.js';
 import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
 import LottosViewImpl from '../View/LottosViewImpl.js';
 import MatchResultViewImpl from '../View/MatchResultViewImpl.js';
@@ -44,6 +45,13 @@ export const tryClickConfirmResultButton = () => {
   }
 
   const winningNumber = matchResultView.getInputValue();
-
   validator.validateWinningNumber(winningNumber);
+
+  const matchResult = lottoCollection.matchResult(winningNumber.map(Number));
+  const rateOfReturn = new RateOfReturnCalculator(
+    lottoCollection.getLottos().length,
+    matchResult,
+  ).execute();
+  matchResultView.render({ matchResult, rateOfReturn });
+  matchResultView.onModal();
 };

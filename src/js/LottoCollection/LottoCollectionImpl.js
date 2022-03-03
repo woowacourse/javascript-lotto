@@ -1,5 +1,6 @@
 import LottoCollection from './index.js';
 import Lotto from './Lotto.js';
+import { LOTTO_RULES, MATCH_COUNT_OF_LOTTO_RANKING } from '../constant/index.js';
 
 export default class LottoCollectionImpl extends LottoCollection {
   constructor() {
@@ -11,6 +12,32 @@ export default class LottoCollectionImpl extends LottoCollection {
     for (let i = 0; i < count; i += 1) {
       this.lottos.push(new Lotto());
     }
+  }
+
+  matchResult(winningNumber) {
+    const setedWinningNumber = new Set(winningNumber.slice(0, LOTTO_RULES.BALL_COUNT));
+    const bonusNumber = winningNumber[LOTTO_RULES.BALL_COUNT];
+    const initialValue = {
+      [MATCH_COUNT_OF_LOTTO_RANKING.FIFHT]: 0,
+      [MATCH_COUNT_OF_LOTTO_RANKING.FORUTH]: 0,
+      [MATCH_COUNT_OF_LOTTO_RANKING.THRID]: 0,
+      [MATCH_COUNT_OF_LOTTO_RANKING.SECOND]: 0,
+      [MATCH_COUNT_OF_LOTTO_RANKING.FIRST]: 0,
+    };
+
+    return this.reducingMatchResult(setedWinningNumber, bonusNumber, initialValue);
+  }
+
+  reducingMatchResult(setedWinningNumber, bonusNumber, initialValue) {
+    return this.lottos.reduce((acc, lotto) => {
+      const matchCount = lotto.match(setedWinningNumber, bonusNumber);
+
+      if (matchCount >= MATCH_COUNT_OF_LOTTO_RANKING.FIFHT) {
+        acc[matchCount] += 1;
+      }
+
+      return acc;
+    }, initialValue);
   }
 
   getLottos() {
