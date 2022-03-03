@@ -1,15 +1,12 @@
 import View from "./View.js";
-import { $, disableElement, enableElement } from "../utils/dom.js";
-import { validatePurchaseAmount } from "../utils/validation.js";
+import { $, enableElement } from "../utils/dom.js";
 
-export default class LottoGameView extends View {
+export default class PurchasedLottoView extends View {
   constructor() {
     super();
 
-    this.purchaseInput = $(".purchase-input");
     this.lottoNumberList = $(".lotto-number-list");
     this.switchInput = $(".switch-input");
-    $(".purchase-form").addEventListener("submit", this.onSubmitPurchaseAmount.bind(this));
   }
 
   renderPurchaseInfomation(lottoCount) {
@@ -18,31 +15,6 @@ export default class LottoGameView extends View {
 
   renderLottoIcons(lottoCount) {
     this.lottoNumberList.insertAdjacentHTML("beforeend", `<li>🎟️</li>`.repeat(lottoCount));
-  }
-
-  manageElement() {
-    disableElement(this.purchaseInput);
-    disableElement($(".purchase-button"));
-    enableElement(this.switchInput);
-  }
-
-  handlePurchasedLotto(lottoCount, lottoList) {
-    this.manageElement();
-    this.renderLottoIcons(lottoCount);
-    this.renderPurchaseInfomation(lottoCount);
-    this.switchInput.addEventListener("click", () => this.onClickSwitch(lottoList));
-  }
-
-  onSubmitPurchaseAmount(e) {
-    e.preventDefault();
-
-    const purchaseAmount = Number(this.purchaseInput.value);
-    try {
-      validatePurchaseAmount(purchaseAmount);
-      this.handlers.get("submit").forEach((func) => func(purchaseAmount));
-    } catch (error) {
-      alert(error);
-    }
   }
 
   renderLottoNumbers(lottoList) {
@@ -66,5 +38,12 @@ export default class LottoGameView extends View {
       return;
     }
     this.renderLottoIcons(lottoList.length);
+  }
+
+  handlePurchasedLotto(lottoCount, lottoList) {
+    enableElement(this.switchInput);
+    this.renderLottoIcons(lottoCount);
+    this.renderPurchaseInfomation(lottoCount);
+    this.switchInput.addEventListener("click", () => this.onClickSwitch(lottoList));
   }
 }
