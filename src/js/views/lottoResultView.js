@@ -1,9 +1,8 @@
-import { $ } from '../utils/helper.js';
-import { lottoResultModalTemplate } from '../utils/template.js';
+import { $, on, emit } from '../utils/helper.js';
 import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
 export default class LottoResultView {
-  #app;
+  // #app;
 
   #lottoResultDialog;
 
@@ -19,11 +18,10 @@ export default class LottoResultView {
 
   #profitRate;
 
+  #restartButton;
+
+  // eslint-disable-next-line max-lines-per-function
   constructor() {
-    this.#app = $('#app');
-
-    this.#app.insertAdjacentHTML('beforeend', lottoResultModalTemplate());
-
     this.#lottoResultDialog = $('#lotto-result-dialog');
     this.#threeMatchedNumber = $('#three-matched-number');
     this.#fourMatchedNumber = $('#four-matched-number');
@@ -31,6 +29,13 @@ export default class LottoResultView {
     this.#fiveWithBonusMatchedNumber = $('#five-with-bonus-matched-number');
     this.#sixMatchedNumber = $('#six-matched-number');
     this.#profitRate = $('#profit-rate');
+    this.#restartButton = $('#restart-button');
+
+    this.#attachEvents();
+  }
+
+  #attachEvents() {
+    on(this.#restartButton, 'click', this.#handleRestart.bind(this));
   }
 
   render(lottoMatchingResult, profit) {
