@@ -16,6 +16,8 @@ export const ERROR_MESSAGE = {
     '보너스 번호를 당첨번호와 중복없이 입력해주세요! \n (please enter bonus number without duplicaiton)',
   HAS_OUT_OF_RANGE_NUMBER: `당첨번호는 ${CONDITIONS.LOTTO_NUM_MIN} 와 ${CONDITIONS.LOTTO_NUM_MAX} 사이여야 합니다! \n (please enter winning number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX})`,
   HAS_OUT_OF_RANGE_BONUS_NUMBER: `보너스번호는 ${CONDITIONS.LOTTO_NUM_MIN} 와 ${CONDITIONS.LOTTO_NUM_MAX} 사이여야 합니다! \n (please enter bonus number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX})`,
+  NOT_ENOUGH_WINNING_NUMBER_INPUT: `당첨번호 ${CONDITIONS.LOTTO_SIZE}개 입력 부탁드립니다. \n(please enter winning ${CONDITIONS.LOTTO_SIZE}number)`,
+  NOT_ENOUGH_BONUS_NUMBER_INPUT: `보너스번호 넣어주세요 \n(please enter bonus number)`,
 };
 
 export const WINNING_PRICE = {

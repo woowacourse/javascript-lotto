@@ -1,6 +1,7 @@
 import { View } from '../view/View.js';
 import { LottoGame } from '../model/LottoGame.js';
 import { validator } from '../utils.js';
+import { CONDITIONS, ERROR_MESSAGE } from '../constants/constants.js';
 
 export class LottoController {
   constructor() {
@@ -83,7 +84,6 @@ export class LottoController {
     this.view.showResultOnModal(this.lottoGame);
   };
 
-  //TODO : 얘가 bonus까지 검사하지 않게 분리
   detectInvalidWinningNumberInput() {
     try {
       validator.isWinningNumbersInputValid(this.lottoGame.winningNumbers, this.lottoGame.bonusNumber);
@@ -98,19 +98,28 @@ export class LottoController {
   getWinningNumbers() {
     const winningNumberInputArray = Array.from(this.view.winningNumberInput).map((item) => Number(item.value));
     this.lottoGame.enterWinningNumbers(winningNumberInputArray);
-    if (winningNumberInputArray.filter((element) => element !== 0).length < 6) {
-      alert('당첨번호 6개 입력 부탁드립니다.');
-      let winningNumber = document.getElementById(`winning-number${winningNumberInputArray.indexOf(0)}`);
-      winningNumber.focus();
+    try {
+      this.focusEmptyWinningNumber(winningNumberInputArray);
+    } catch (err) {
+      alert(err);
       return false;
     }
     return true;
   }
 
+  focusEmptyWinningNumber(winningNumberInputArray) {
+    if (winningNumberInputArray.filter((element) => element !== 0).length < CONDITIONS.LOTTO_SIZE) {
+      let winningNumber = document.getElementById(`winning-number${winningNumberInputArray.indexOf(0)}`);
+      winningNumber.focus();
+      console.log(ERROR_MESSAGE.NOT_ENOUGH_WINNING_NUMBER_INPUT);
+      throw new Error(ERROR_MESSAGE.NOT_ENOUGH_WINNING_NUMBER_INPUT);
+    }
+  }
+
   getBonusNumbers() {
     this.lottoGame.enterBonusNumber(this.view.bonusNumberInput.value);
     if (this.lottoGame.bonusNumber === '') {
-      alert('보너스번호 넣어주세요');
+      alert(ERROR_MESSAGE.NOT_ENOUGH_BONUS_NUMBER_INPUT);
       let bonusNumber = document.getElementById('bonus-number');
       bonusNumber.focus();
       return false;
