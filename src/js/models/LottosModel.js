@@ -42,23 +42,27 @@ export default class LottosModel {
   }
 
   getRankNumber(lottoNumberList) {
-    const { RACKING_START_NUMBER, WINNING_MIN_MATCH_NUMBER } = LOTTO_SETTING;
+    const { LOTTO_NUMBER_LENGTH, BONUS_NUMBER_LENGTH } = LOTTO_SETTING;
 
     const matchCount = getListDuplicateCount(lottoNumberList, this.#winningNumberList);
-    const rankNumber = RACKING_START_NUMBER + WINNING_MIN_MATCH_NUMBER - matchCount;
+    const rankNumber = LOTTO_NUMBER_LENGTH + BONUS_NUMBER_LENGTH - matchCount;
 
     if (this.#isBonusWinner(lottoNumberList, matchCount)) {
-      return 2;
+      return 1;
     }
 
     if (LOTTO_SETTING.LOTTO_NUMBER_LENGTH === matchCount) {
-      return 1;
+      return 0;
     }
 
     return rankNumber;
   }
 
   get result() {
+    const rankCountResult = Array.from({ length: LOTTO_SETTING.RACKING_START_NUMBER }, () => 0);
+    this.#lottos.forEach((lotto) => {
+      const rankNumber = this.getRankNumber(lotto.pickedNumber);
+    });
     return '';
   }
 }
