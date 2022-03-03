@@ -1,4 +1,11 @@
 class Component extends HTMLElement {
+  constructor() {
+    if (new.target === Component) {
+      throw new TypeError('Cannot create an instance of an Component class');
+    }
+    super();
+  }
+
   connectedCallback() {
     this.render();
     this.subscribe();
