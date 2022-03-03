@@ -23,6 +23,68 @@ const WINNING_NUMBER_FORM = `
   </form>
 `;
 
+const MODAL_TEMPLATE = `
+  <div id="modal">
+    <div id="dim"></div>
+
+    <div id="modal-container">
+      <button id="exit">X</button>
+      <div id="modal-content">
+        <h2>🏆 당첨 통계 🏆</h2>
+
+
+        <table>
+          <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td>n개</td>
+            </tr>
+
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td>n개</td>
+            </tr>
+
+            <tr>
+              <td>5개</td>
+              <td>1,5000,000</td>
+              <td>n개</td>
+            </tr>
+
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td>n개</td>
+            </tr>
+
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td>n개</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p id="earning-text">당신의 총 수익률은 <span id="earning-rate">100</span>%입니다</p>
+        <div id="modal-footer">
+          <button id="restart-lotto">다시 시작하기</button>
+        </div>
+      </div> 
+
+    </div>
+
+  </div>
+`;
+
 export default class WinningNumberView {
   constructor() {
     this.container = document.getElementById('winning-number-container');
@@ -96,7 +158,10 @@ export default class WinningNumberView {
 
     if (new Set(this.winLottosNumbers).size !== 7) {
       window.alert('중복된 번호는 입력할 수 없습니다.');
+      return;
     }
+
+    this.container.insertAdjacentHTML('beforeend', MODAL_TEMPLATE);
   }
 
   reset() {
