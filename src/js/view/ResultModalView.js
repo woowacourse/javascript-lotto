@@ -18,7 +18,7 @@ export default class ResultModalView {
     this.$sixCount = $(ID.SIX_COUNT);
     this.$lottoProfitSpan = $(ID.LOTTO_PROFIT_SPAN);
     this.$lottoYieldSpan = $(ID.LOTTO_YIELD_SPAN);
-    this.$purchaseMoneySpan = $(ID.PURCHASE_MONEY_SPAN);
+    this.$paidMoneySpan = $(ID.PURCHASE_MONEY_SPAN);
     this.#bindEvents();
   }
 
@@ -48,7 +48,7 @@ export default class ResultModalView {
   }
 
   renderYield(lottoYield, winningMoney) {
-    this.$purchaseMoneySpan.textContent = insertComma(this.lottoBundle.purchaseMoney);
+    this.$paidMoneySpan.textContent = insertComma(this.lottoBundle.paidMoney);
     this.$lottoProfitSpan.textContent = insertComma(winningMoney);
     this.$lottoYieldSpan.textContent = insertComma(lottoYield);
   }

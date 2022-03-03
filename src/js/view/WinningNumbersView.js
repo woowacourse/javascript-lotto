@@ -21,7 +21,7 @@ export default class WinningNumbersView {
 
   #handleSubmit(e) {
     e.preventDefault();
-    const winningNumbers = [0, 1, 2, 3, 4, 5].map((i) => e.target[i].valueAsNumber);
+    const winningNumbers = Array.from({ length: 6 }).map((_, index) => e.target[index].valueAsNumber);
     const bonusNumber = e.target[6].valueAsNumber;
     emit(this.$winningNumbersForm, EVENT.SUBMIT_RESULT, {
       winningNumbers,
@@ -54,8 +54,8 @@ export default class WinningNumbersView {
 
   removeInputValue() {
     console.log(this.$winningNumbersForm.event);
-    [0, 1, 2, 3, 4, 5, 6].forEach((i) => {
-      this.$winningNumbersForm.event.target[i].value = '';
+    Array.from({ length: 6 }).forEach((_, index) => {
+      this.$winningNumbersForm.event.target[index].value = '';
     });
   }
 

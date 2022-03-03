@@ -4,24 +4,24 @@ import validateMoney from '../validator/moneyValidator.js';
 import Lotto from './Lotto.js';
 
 export default class LottoBundle {
-  #purchaseMoney = 0;
+  #paidMoney = 0;
 
   #count = 0;
 
   #lottos = [];
 
-  set purchaseMoney(money) {
+  set paidMoney(money) {
     if (validateMoney(money)) {
-      this.#purchaseMoney = Math.floor(money / LOTTO.PRICE_PER_TICKET) * LOTTO.PRICE_PER_TICKET;
+      this.#paidMoney = Math.floor(money / LOTTO.PRICE_PER_TICKET) * LOTTO.PRICE_PER_TICKET;
     }
   }
 
-  get purchaseMoney() {
-    return this.#purchaseMoney;
+  get paidMoney() {
+    return this.#paidMoney;
   }
 
   saveCount() {
-    this.#count = Math.floor(this.#purchaseMoney / LOTTO.PRICE_PER_TICKET);
+    this.#count = Math.floor(this.#paidMoney / LOTTO.PRICE_PER_TICKET);
   }
 
   get count() {
@@ -37,10 +37,7 @@ export default class LottoBundle {
   }
 
   isLottoListEmpty() {
-    if (this.#lottos.length === 0) {
-      return true;
-    }
-    return false;
+    return this.#lottos.length === 0;
   }
 
   createLottoBundle() {
@@ -53,7 +50,7 @@ export default class LottoBundle {
   }
 
   reset() {
-    this.#purchaseMoney = 0;
+    this.#paidMoney = 0;
     this.#count = 0;
     this.#lottos = [];
   }

@@ -12,7 +12,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
 
     // when
     function setMoney(money) {
-      lottoBundle.purchaseMoney = money;
+      lottoBundle.paidMoney = money;
     }
 
     // then
@@ -23,7 +23,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
     // given
     const lottoCount = 5;
     const lottoBundle = new LottoBundle();
-    lottoBundle.purchaseMoney = 5000;
+    lottoBundle.paidMoney = 5000;
 
     // when
     lottoBundle.saveCount();
@@ -98,7 +98,7 @@ describe(
 
     test('구입 금액과 당첨된 금액을 비교하여 수익률을 계산할 수 있어야 한다.', () => {
       // given
-      lottoBundle.purchaseMoney = 1000000;
+      lottoBundle.paidMoney = 1000000;
 
       // when
       lottoResult.calculateLottoYield();
