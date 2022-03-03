@@ -78,10 +78,6 @@ export default class LottoGameView {
     this.lottoNumberList.replaceChildren();
   }
 
-  #preventOverInput(input) {
-    input.value = input.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
-  }
-
   setAutoCursor(winningInputs, bonusInput) {
     winningInputs[0].focus();
 
@@ -90,6 +86,10 @@ export default class LottoGameView {
         this.#moveToNextInput(winningInput, bonusInput);
       });
     });
+  }
+
+  #preventOverInput(input) {
+    input.value = input.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
   }
 
   #moveToNextInput(winningInput, bonusInput) {
