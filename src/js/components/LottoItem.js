@@ -7,14 +7,14 @@ class LottoItem extends Component {
     this.lottoNums = this.getAttribute('data-lotto-nums');
   }
 
-  render() {
-    this.innerHTML = this.template(this.lottoNums);
-  }
-
   template(lottoNums) {
     return `
       <img src=${LottoImage} />${lottoNums}
     `;
+  }
+
+  render() {
+    this.innerHTML = this.template(this.lottoNums);
   }
 }
 

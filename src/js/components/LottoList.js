@@ -2,14 +2,6 @@ import Component from '../abstracts/component';
 import LottoImage from '../../../images/lotto.png';
 
 class LottoList extends Component {
-  render() {
-    const { money, lottoList, lottoListVisibility } = window.store.getState();
-    this.innerHTML = '';
-    if (money > 0) {
-      this.innerHTML = this.template(lottoList, lottoListVisibility);
-    }
-  }
-
   // eslint-disable-next-line max-lines-per-function
   template(lottoList, lottoListVisibility) {
     const lottoImages = !lottoListVisibility
@@ -32,6 +24,14 @@ class LottoList extends Component {
       <lotto-list-toggle class="d-flex justify-content-end"></lotto-list-toggle>
       </div>
     `;
+  }
+
+  render() {
+    const { money, lottoList, lottoListVisibility } = window.store.getState();
+    this.innerHTML = '';
+    if (money > 0) {
+      this.innerHTML = this.template(lottoList, lottoListVisibility);
+    }
   }
 }
 

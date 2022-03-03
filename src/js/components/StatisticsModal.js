@@ -6,16 +6,39 @@ import Component from '../abstracts/component';
 import { intersect } from '../utils';
 
 class StatisticsModal extends Component {
-  render() {
-    const { statisticsModalVisibility, winningNumbers, lottoList } = window.store.getState();
-    if (!statisticsModalVisibility) {
-      this.innerHTML = '';
-      return;
-    }
-    const winningCounts = this.getWinningCounts(winningNumbers, lottoList);
-    const earningsRate = this.getEarningsRate(winningCounts);
-    this.innerHTML = this.template(winningCounts, earningsRate);
-    document.querySelector('body').classList.add('modal-open');
+  // eslint-disable-next-line max-lines-per-function
+  template(winningCounts, earningsRate) {
+    return `
+      <div class="modal modal-statistics">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+              <button class="btn-close">✕</button>
+            </div>
+            <div class="modal-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>일치 개수</th>
+                    <th>당첨금</th>
+                    <th>당첨 개수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${this.rowsTemplate(winningCounts)}
+                </tbody>
+              </table>
+              <div class="earnings-rate">당신의 총 수익률은 ${earningsRate}%입니다.</div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-cyan btn-reset">다시 시작하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-backdrop"></div>
+    `;
   }
 
   getEarningsRate(winningCounts) {
@@ -52,41 +75,6 @@ class StatisticsModal extends Component {
       .join('');
   }
 
-  // eslint-disable-next-line max-lines-per-function
-  template(winningCounts, earningsRate) {
-    return `
-      <div class="modal modal-statistics">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
-              <button class="btn-close">✕</button>
-            </div>
-            <div class="modal-body">
-              <table>
-                <thead>
-                  <tr>
-                    <th>일치 개수</th>
-                    <th>당첨금</th>
-                    <th>당첨 개수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${this.rowsTemplate(winningCounts)}
-                </tbody>
-              </table>
-              <div class="earnings-rate">당신의 총 수익률은 ${earningsRate}%입니다.</div>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-cyan btn-reset">다시 시작하기</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-backdrop"></div>
-    `;
-  }
-
   setEvent() {
     this.addEvent('click', '.btn-close', () => {
       this.closeModal();
@@ -107,6 +95,18 @@ class StatisticsModal extends Component {
   reset() {
     window.store.dispatch(createAction(ACTION.RESET));
     this.closeModal();
+  }
+
+  render() {
+    const { statisticsModalVisibility, winningNumbers, lottoList } = window.store.getState();
+    if (!statisticsModalVisibility) {
+      this.innerHTML = '';
+      return;
+    }
+    const winningCounts = this.getWinningCounts(winningNumbers, lottoList);
+    const earningsRate = this.getEarningsRate(winningCounts);
+    this.innerHTML = this.template(winningCounts, earningsRate);
+    document.querySelector('body').classList.add('modal-open');
   }
 }
 

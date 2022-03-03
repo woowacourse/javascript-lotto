@@ -6,15 +6,6 @@ import ValidationError from '../validation/validation-error';
 import { consoleErrorWithConditionalAlert } from '../utils';
 
 class WinningNumberForm extends Component {
-  render() {
-    const { money } = window.store.getState();
-
-    this.innerHTML = '';
-    if (money > 0) {
-      this.innerHTML = this.template();
-    }
-  }
-
   // eslint-disable-next-line max-lines-per-function
   template() {
     return `
@@ -70,6 +61,15 @@ class WinningNumberForm extends Component {
       })
     );
     window.store.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, true));
+  }
+
+  render() {
+    const { money } = window.store.getState();
+
+    this.innerHTML = '';
+    if (money > 0) {
+      this.innerHTML = this.template();
+    }
   }
 }
 

@@ -3,12 +3,6 @@ import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 
 class LottoListToggle extends Component {
-  render() {
-    const { lottoListVisibility } = window.store.getState();
-    const checked = lottoListVisibility ? 'checked' : '';
-    this.innerHTML = this.template(checked);
-  }
-
   template(checked) {
     return `
       <label class="switch" for="checkbox">
@@ -22,6 +16,12 @@ class LottoListToggle extends Component {
     this.addEvent('click', 'input', (event) => {
       window.store.dispatch(createAction(ACTION.TOGGLE_LOTTO_LIST, event.target.checked));
     });
+  }
+
+  render() {
+    const { lottoListVisibility } = window.store.getState();
+    const checked = lottoListVisibility ? 'checked' : '';
+    this.innerHTML = this.template(checked);
   }
 }
 
