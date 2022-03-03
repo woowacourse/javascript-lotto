@@ -21,15 +21,21 @@ describe("로또 앱 기능 테스트", () => {
   test("당첨 개수의 금액에 따라 수익률이 계산된다.", () => {
     const lottoGame = new LottoGame();
     lottoGame.lottos = [[1, 2, 3, 43, 44, 45]];
-    lottoGame.generateResult([1, 2, 3, 4, 5, 6], 7);
+
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    lottoGame.generateResult(winningNumbers, bonusNumber);
 
     expect(lottoGame.profitRate).toBe(500);
   });
 
-  test("일치 개수에 따라 당첨 통계의 당첨 개수가 계산된다.", () => {
+  test("일치 개수에 따라 당첨 개수가 계산된다.", () => {
     const lottoGame = new LottoGame();
     lottoGame.lottos = [[1, 2, 3, 4, 5, 45]];
-    lottoGame.generateResult([1, 2, 3, 4, 5, 9], 45);
+
+    const winningNumbers = [1, 2, 3, 4, 5, 9];
+    const bonusNumber = 45;
+    lottoGame.generateResult(winningNumbers, bonusNumber);
 
     const obj = {
       [MATCH_COUNT_INFO.THREE]: [WINNER_PRICE.FIFTH, 0],

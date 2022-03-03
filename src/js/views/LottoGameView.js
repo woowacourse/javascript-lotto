@@ -54,7 +54,7 @@ export default class LottoGameView {
   }
 
   #resetPurchaseInfomation() {
-    this.purchaseInfomation.innerText = `구매한 로또가 없습니다.`;
+    this.purchaseInfomation.innerText = "구매한 로또가 없습니다.";
   }
 
   #renderPurchaseInfomation(count) {
@@ -86,15 +86,27 @@ export default class LottoGameView {
         this.#moveToNextInput(winningInput, bonusInput);
       });
     });
+
+    bonusInput.addEventListener("keyup", () => {
+      if (bonusInput.value.length >= LOTTO_NUMBER.DIGIT_MAX) {
+        this.#preventOverInput(bonusInput);
+      }
+    });
   }
 
   #moveToNextInput(winningInput, bonusInput) {
-    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && winningInput.nextElementSibling) {
-      winningInput.value = winningInput.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
-      winningInput.nextElementSibling.focus();
+    const { nextElementSibling } = winningInput;
+
+    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && nextElementSibling) {
+      this.#preventOverInput(winningInput);
+      nextElementSibling.focus();
     }
-    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && !winningInput.nextElementSibling) {
+    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && !nextElementSibling) {
       bonusInput.focus();
     }
+  }
+
+  #preventOverInput(input) {
+    input.value = input.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
   }
 }

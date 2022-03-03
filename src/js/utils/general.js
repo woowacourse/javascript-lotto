@@ -3,6 +3,6 @@ export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const clearInput = (...$input) => {
-  $input.forEach((input) => (input.value = ""));
+export const clearInput = (...inputs) => {
+  inputs.forEach((input) => (input.value = ""));
 };
