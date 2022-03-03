@@ -7,6 +7,11 @@ export default class PurchaseFormView {
 
   #configureDOM() {
     this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
+    this.$purchaseInput = $(ID_SELECTOR.PURCHASE_INPUT);
+  }
+
+  clearInput() {
+    this.$purchaseInput.value = '';
   }
 
   bindSubmitCash(handler) {

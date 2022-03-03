@@ -20,6 +20,7 @@ export default class Controller {
     this.#winningNumberView.bindCheckResult(winningNumbers =>
       this.#handleCheckResult(winningNumbers),
     );
+    this.#winningNumberView.bindRestart(() => this.#handleRestart());
   }
 
   #handleSubmitCash(cash) {
@@ -28,6 +29,7 @@ export default class Controller {
       this.#model.setCash(cash);
       this.#model.buyLotto(cash / LOTTO_PRICE);
       this.#lottoListView.showLottoListSection(this.#model.getLottoList());
+      this.#winningNumberView.displayPickedNumbersForm();
     } catch ({ message }) {
       alert(message);
     }
@@ -38,5 +40,13 @@ export default class Controller {
     const winningLottoQuantity = this.#model.getWinningLottoQuantity();
     const profitRatio = this.#model.calculateProfitRatio();
     this.#winningNumberView.showLottoResult(winningLottoQuantity, profitRatio);
+  }
+
+  #handleRestart() {
+    this.#winningNumberView.displayNoneResultModal();
+    this.#winningNumberView.displayNonePickedNumbersForm();
+    this.#lottoListView.displayNoneLottoListSection();
+    this.#purchaseFormView.clearInput();
+    this.#winningNumberView.clearInputs();
   }
 }

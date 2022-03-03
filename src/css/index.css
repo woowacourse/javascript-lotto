@@ -112,10 +112,11 @@ h1 {
 .lotto-list__section {
   width: 100%;
   margin-bottom: 14px;
+  display: none;
 }
 
-.lotto-list__section-display-none {
-  display: none;
+.lotto-list__section-display {
+  display: block;
 }
 
 .lotto-list__header {
@@ -229,9 +230,14 @@ h1 {
   display: inline;
 }
 
-#picked-numbers-form {
+.picked-numbers-form {
   width: 100%;
   font-size: 15px;
+  display: none;
+}
+
+.picked-numbers-form-display {
+  display: block;
 }
 
 .picked-numbers__description {
