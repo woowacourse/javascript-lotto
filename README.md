@@ -56,9 +56,7 @@ https://nan-noo.github.io/javascript-lotto/
 
 ## 구조 설계
 
-![구조 설계](https://user-images.githubusercontent.com/54002105/155458584-158a3430-feb7-4d51-ab26-aa40d00948d0.png)
-
-![filedependency](https://user-images.githubusercontent.com/54002105/155449362-98159d59-e0fa-4283-9e4c-9566038d1a00.png)
+- 수정중
 
 ## ⚙️ Before Started
 
