@@ -28,6 +28,6 @@ export default class PaymentController {
 
   purchaseLottos(amount) {
     this.lottoModel.createLottoListWithAmount(amount);
-    this.lottoController.didPurchaseLottos();
+    this.lottoController.afterPurchaseLottos();
   }
 }

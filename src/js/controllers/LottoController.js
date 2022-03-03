@@ -20,7 +20,9 @@ export default class LottoController {
     this.winningNumberController = new WinningNumberController(this);
   }
 
-  didPurchaseLottos() {
+  afterPurchaseLottos() {
     this.ticketController.renderTicketListView();
   }
+
+  afterCalculateResult() {}
 }

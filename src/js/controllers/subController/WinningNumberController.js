@@ -65,6 +65,6 @@ export default class WinningNumberController {
       bonusNumber
     );
     this.lottoModel.setWinningStatistic(coincideCountList);
-    console.log(this.lottoModel.winningStatistic);
+    this.lottoController.afterCalculateResult();
   }
 }
