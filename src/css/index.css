@@ -5,6 +5,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  min-width: 100%;
 }
 
 #money-input-container {
@@ -35,13 +36,15 @@
 }
 
 #lotto-status-container {
+  background-color: #00bcd4;
+  position: relative;
   display: grid;
   padding: 10px;
   width: 70%;
   flex-direction: column;
   grid-template-areas:
-    'nl nl nl nl nl nl nl tg'
-    'ic ic ic ic ic ic ic sw';
+    'nl nl nl nl nl nl nl '
+    'ic ic ic ic ic ic ic ';
 }
 
 #lotto-quantity-label {
@@ -49,6 +52,7 @@
 }
 
 #lotto-quantity {
+  left: 0px;
   margin-top: 8px;
   font-style: normal;
   font-weight: 600;
@@ -65,7 +69,9 @@
 }
 
 #toggle-label {
-  grid-area: tg;
+  position: absolute;
+  top: 5px;
+  right: 5%;
 }
 
 #winning-lotto-container {
@@ -156,13 +162,12 @@
 
 /* 토글 버튼 */
 .switch {
-  grid-area: sw;
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 40px;
   height: 21px;
-  top: 5px;
-  left: 20px;
+  top: 30px;
+  right: 6.5%;
 }
 
 .switch input {
