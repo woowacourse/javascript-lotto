@@ -69,6 +69,7 @@ class LottoResultView {
   #basicTemplate = `<section id="win-number-input-section" aria-labelledby="win-number-input-title" class="hide">
   <h1 id="win-number-input-title" hidden>당첨 번호 입력 섹션</h1>
   <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+  <p><b>(중복이 없는 1~45의 숫자를 입력해주세요.)</b></p>
   <form id="win-number-input-form">
     <div class="win-number-input-wrapper">
       <div>
