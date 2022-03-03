@@ -15,7 +15,7 @@
 
 ## 데모 페이지
 
-[링크 클릭](https://daaaayeah.github.io/javascript-lotto/)
+[링크 클릭](https://airman5573.github.io/javascript-lotto/)
 <img src='docs/preview.png'/>
 
 <br>
