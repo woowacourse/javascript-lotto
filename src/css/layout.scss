@@ -1,24 +1,34 @@
 @import './variables.scss';
+@import './utils/animation.scss';
 
 :root {
   font-size: 15px;
   letter-spacing: 1px;
+
+  &[data-modal] {
+    overflow-y: hidden;
+  }
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: #f9f9f9;
   font-family: 'NanumBarunGothic', sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 5.7rem;
 }
 
 #app {
   width: 28rem;
-  margin: 5.7rem auto;
+  margin: 0 auto;
   padding: 1.05rem;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -125,6 +135,86 @@ body {
       .pointer {
         filter: brightness(0.9);
       }
+    }
+  }
+
+  .modal-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    top: 0px;
+    left: 0px;
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+    overflow-y: scroll;
+
+    @include animate(0.3s ease) {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      position: relative;
+      display: none;
+      width: 25rem;
+      min-height: 30rem;
+      background-color: #fff;
+      border-radius: $border-radius;
+      margin: 0 auto;
+      top: 15%;
+      box-shadow: 0 0 10rem 0.5rem rgba(0, 0, 0, 0.15);
+
+      &.focus {
+        display: block;
+      }
+
+      @include animate(0.3s ease) {
+        from {
+          opacity: 0;
+          transform: translateY(-30%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+    }
+
+    &.disappear {
+      @include animate(0.3s ease) {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: 0;
+        }
+      }
+
+      .modal-content {
+        @include animate(0.3s ease) {
+          from {
+            opacity: 1;
+            transform: translateY(0%);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateY(-30%);
+          }
+        }
+      }
+    }
+
+    &.hide {
+      display: none;
     }
   }
 }
