@@ -61,8 +61,14 @@ export default class LottoController {
   }
 
   handleResetLottos() {
-    [this.#LottosModel, this.#WinningLottoCounter].forEach((model) => {
-      model.reset();
+    [
+      this.#LottosModel,
+      this.#WinningLottoCounter,
+      this.#LottoListView,
+      this.#WinningNumberInputView,
+      this.#MoneyInputView,
+    ].forEach((instance) => {
+      instance.reset();
     });
   }
 }

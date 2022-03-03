@@ -55,4 +55,8 @@ export default class WinningNumberView {
       }
     });
   }
+
+  reset() {
+    this.#$container.replaceChildren();
+  }
 }

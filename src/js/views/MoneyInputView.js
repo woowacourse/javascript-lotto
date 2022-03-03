@@ -16,4 +16,8 @@ export default class MoneyInputView {
       handler({ money: $($container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value });
     });
   }
+
+  reset() {
+    $(this.#container, '#lotto-money-input').value = '';
+  }
 }

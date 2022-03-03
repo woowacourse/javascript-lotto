@@ -32,10 +32,6 @@ export default class LottoListView {
     }
   }
 
-  showLottoList() {
-    this.#container.classList.add('show');
-  }
-
   renderLottoListSection() {
     this.#container.innerHTML = template;
   }
@@ -56,5 +52,9 @@ export default class LottoListView {
     $(this.#container, `#${SELECTOR.ID.LOTTO_BOUGHT_COUNT}`).textContent = makeLottosCountTemplate(
       lottos.length
     );
+  }
+
+  reset() {
+    this.#container.replaceChildren();
   }
 }
