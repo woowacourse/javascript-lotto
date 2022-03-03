@@ -27,7 +27,7 @@ class WinningCalculator {
     this.totalYield = 0;
   }
 
-  calculateWinningAmount(winnerNumberInputs, bonusNumberInput, lottos) {
+  calculateWinningResult(winnerNumberInputs, bonusNumberInput, lottos) {
     this.#validateWinnerNumbers(
       convertStringNumberArrayToNumberArray([...winnerNumberInputs, bonusNumberInput])
     );

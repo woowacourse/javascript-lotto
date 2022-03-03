@@ -26,7 +26,7 @@ describe('당첨 번호와 보너스 번호 검증 테스트', () => {
     const winnerNumberInputs = ['1', '2', '3', '4', '5', '6'];
     const bonusNumberInput = '  ';
     expect(() =>
-      winningCalculator.calculateWinningAmount(
+      winningCalculator.calculateWinningResult(
         winnerNumberInputs,
         bonusNumberInput,
         lottoGenerator.lottos
@@ -37,7 +37,7 @@ describe('당첨 번호와 보너스 번호 검증 테스트', () => {
     const winnerNumberInputs = ['1', '2', '3', '4', '5', '6'];
     const bonusNumberInput = '100';
     expect(() =>
-      winningCalculator.calculateWinningAmount(
+      winningCalculator.calculateWinningResult(
         winnerNumberInputs,
         bonusNumberInput,
         lottoGenerator.lottos
@@ -48,7 +48,7 @@ describe('당첨 번호와 보너스 번호 검증 테스트', () => {
     const winnerNumberInputs = ['1', '2', '3', '4', '5', '6'];
     const bonusNumberInput = '6';
     expect(() =>
-      winningCalculator.calculateWinningAmount(
+      winningCalculator.calculateWinningResult(
         winnerNumberInputs,
         bonusNumberInput,
         lottoGenerator.lottos

@@ -49,7 +49,7 @@ class LottoMachineView {
     e.preventDefault();
     try {
       const winnerNumberInputs = Array.from(this.winnerNumberInputs).map((input) => input.value);
-      this.winningCalculator.calculateWinningAmount(
+      this.winningCalculator.calculateWinningResult(
         winnerNumberInputs,
         this.bonusNumberInput.value,
         this.lottoGenerator.lottos
