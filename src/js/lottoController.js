@@ -20,13 +20,13 @@ export default class LottoController {
 
   submitView() {
     on(this.lottoPurchaseInputView.lottoPurchaseForm, '@purchaseMoney', this.submitPurchaseLotto.bind(this));
-    on(this.lottoPurchaseResultView.showLottoToggle, '@lottoToggle', this.submitLottoToggle.bind(this));
+    on(this.lottoPurchaseResultView.lottoToggle, '@lottoToggle', this.clickLottoToggle.bind(this));
     on(this.userLottoNumberView.userLottoResultForm, '@userLottoNumbers', this.submitUserLottoNumbers.bind(this));
     on(this.userLottoModalView.lottoModalCloseButton, '@closeLottoModal', this.submitCloseLottoModal.bind(this));
     on(this.userLottoModalView.lottoRestartButton, '@lottoRestart', this.submitRestartLotto.bind(this));
   }
 
-  submitLottoToggle() {
+  clickLottoToggle() {
     this.lottoPurchaseResultView.toggleLottoNumbers();
   }
 
@@ -42,6 +42,8 @@ export default class LottoController {
       return alert(error);
     }
     this.lottoPurchaseResultView.cleanLottoList();
+    this.lottoPurchaseResultView.showLottoToggleButton();
+    this.userLottoNumberView.showUserLottoInput();
     this.lottoPurchaseResultView.renderLottoPurchaseCount(purchaseMoney / LOTTO.COST_UNIT);
     this.inputLottoDatas.setPurchaseMoney(purchaseMoney);
     this.lottoPurchaseResultView.renderLottoPurchaseResult(ResultLottoDatas.getLottoList());

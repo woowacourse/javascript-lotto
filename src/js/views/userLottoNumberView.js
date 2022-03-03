@@ -2,6 +2,7 @@ import { qs, qsAll, on, emit } from '../utils/helper.js';
 
 export default class UserLottoNumberView {
   constructor() {
+    this.userLottoWrap = qs('#user-lotto');
     this.userLottoResultForm = qs('#user-lotto-form');
     this.userLottoNumberInput = qsAll('.user-lotto-number');
     this.userBonusNumberInput = qs('.user-bonus-number');
@@ -22,9 +23,14 @@ export default class UserLottoNumberView {
     emit(this.userLottoResultForm, '@userLottoNumbers', lottoNumbers);
   }
 
+  showUserLottoInput() {
+    this.userLottoWrap.style.opacity = 0.99;
+  }
+
   cleanUserLottoInput() {
     this.userLottoNumberInput.forEach((lottoInput) => lottoInput.value = '');
     this.userBonusNumberInput.value = '';
+    this.userLottoWrap.style.opacity = 0;
   }
 
 }

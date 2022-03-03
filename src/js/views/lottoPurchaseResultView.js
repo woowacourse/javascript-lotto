@@ -5,24 +5,29 @@ export default class lottoPurchaseResultView {
   constructor() {
     this.lottoPurchaseCount = qs('#lotto-purchase-count');
     this.lottoList = qs('#lotto-list');
-    this.showLottoToggle = qs('#show-lotto-toggle');
-
+    this.lottoToggle = qs('#show-lotto-toggle');
+    this.toggleButton = qs('#lotto-toggle-wrap');
     this.bindEvents();
   }
 
   bindEvents() {
-    on(this.showLottoToggle, 'click', this.handleShowLottoToggle.bind(this));
+    on(this.lottoToggle, 'click', this.handleShowLottoToggle.bind(this));
   }
 
   handleShowLottoToggle() {
-    emit(this.showLottoToggle, '@lottoToggle', '');
+    emit(this.lottoToggle, '@lottoToggle', '');
   }
 
   cleanLottoList() {
     this.lottoList.innerHTML = '';
     this.lottoPurchaseCount.textContent = '아직 구매하신 로또가 없습니다.';
-    this.showLottoToggle.checked = false;
+    this.lottoToggle.checked = false;
     this.lottoList.classList.remove('lotto-list-column');
+    this.toggleButton.style.opacity = 0;
+  }
+
+  showLottoToggleButton() {
+    this.toggleButton.style.opacity = 0.99;
   }
 
   renderLottoPurchaseCount(count) {
