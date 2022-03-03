@@ -54,6 +54,11 @@ input:placeholder {
   color: #8b8b8b;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 button {
   background: inherit;
   border: none;
@@ -255,6 +260,7 @@ input:checked + .slider:before {
 
 .winning-number-input {
   width: 34px;
+  text-align: center;
 }
 
 #winning-number-form {
