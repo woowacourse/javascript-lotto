@@ -10,6 +10,7 @@ export default class IssuedTicketView {
     this.$ticketCount = $(ID.TICKET_COUNT);
     this.$issuedTicketDiv = $(ID.ISSUED_TICKET_DIV);
     this.$lottoNumberToggle = $(ID.LOTTO_NUMBER_TOGGLE);
+    this.$$ticketWinningRankDiv = null;
     this.#bindEvents();
   }
 
@@ -49,8 +50,9 @@ export default class IssuedTicketView {
   }
 
   highlightWinningTickets(resultList) {
+    this.$$ticketWinningRankDiv = this.$$ticketWinningRankDiv ?? $$('.ticket-numbers');
     resultList.forEach((result, index) => {
-      $$('.ticket-numbers')[index].dataset.rank = result;
+      this.$$ticketWinningRankDiv[index].dataset.rank = result;
     });
   }
 }
