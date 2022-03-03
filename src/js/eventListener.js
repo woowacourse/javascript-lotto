@@ -3,6 +3,11 @@ import { validator } from './validation/index.js';
 import lottoManager from './lottoManager.js';
 import view from './view.js';
 
+export const onClickModalCloseButton = () => {
+  const $winningStatisticModal = $('#winning-statistic-modal');
+  $('#app').removeChild($winningStatisticModal);
+};
+
 export const onClickResultButton = () => {
   const $matchNumberInputs = $$('.match-number-input');
   const [bonumsNumber, ...winningNumbers] = Array.from($matchNumberInputs)
@@ -17,7 +22,13 @@ export const onClickResultButton = () => {
     return;
   }
 
+  // TODO: 당첨 개수와 수익률 계산하기
+
   view.renderWinningStatisticModal();
+
+  $('#winning-statistic-modal-close-button').addEventListener('click', onClickModalCloseButton);
+
+  // TODO: 다시 시작하기 버튼 이벤트 리스너 등록
 };
 
 export const onSubmitFareForm = (e) => {
