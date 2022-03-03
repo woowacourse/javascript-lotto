@@ -4,12 +4,13 @@ import { isNumberInRange } from '../utils/utils';
 class LottoWinnerMachine {
   getMatches(lottoArray, { numbers, bonus }) {
     this.#validateWinnerNumberInput({ numbers, bonus });
+
     const winnerNumbers = {
-      numbers: [...numbers].map((numberString) => Number(numberString)),
-      bonus,
+      numbers: numbers.map((numString) => Number(numString)),
+      bonus: Number(bonus),
     };
-    const matchResult = this.#calculateMatchResult(lottoArray, winnerNumbers);
-    return matchResult;
+
+    return this.#calculateMatchResult(lottoArray, winnerNumbers);
   }
 
   #validateWinnerNumberInput({ numbers, bonus }) {
@@ -26,11 +27,11 @@ class LottoWinnerMachine {
   }
 
   #calculateMatchResult(lottoArray, winnerNumbers) {
-    const matches = {};
-    lottoArray.forEach((lotto) => {
+    const matches = lottoArray.reduce((matchObj, lotto) => {
       const match = this.#calculateMatch(lotto, winnerNumbers);
-      matches[match] = matches[match] + 1 || 1;
-    });
+      matchObj[match] = matchObj[match] + 1 || 1;
+      return matchObj;
+    }, {});
 
     const profit = this.#calculateProfit(matches, lottoArray.length);
 

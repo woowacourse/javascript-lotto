@@ -1,7 +1,7 @@
 import { SELECTOR } from '../constants/constants';
 import { selectDom } from '../utils/utils';
 
-class WinnerNumberView {
+class WinnerNumberInputView {
   constructor() {
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
     this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll(
@@ -21,14 +21,6 @@ class WinnerNumberView {
     this.winnerNumberSection.classList.remove('hide');
   }
 
-  resetView() {
-    this.winnerNumberSection.classList.add('hide');
-    this.winnerNumberInputs.forEach((input) => {
-      input.value = '';
-    });
-    this.bonusNumberInput.value = '';
-  }
-
   handleWinnerNumberInput = () => {
     const winnerNumbers = [...this.winnerNumberInputs].map(({ value }) => value);
     const bonusNumber = this.bonusNumberInput.value;
@@ -39,6 +31,14 @@ class WinnerNumberView {
 
     return matchResult;
   };
+
+  resetView() {
+    this.winnerNumberSection.classList.add('hide');
+    this.winnerNumberInputs.forEach((input) => {
+      input.value = '';
+    });
+    this.bonusNumberInput.value = '';
+  }
 }
 
-export default WinnerNumberView;
+export default WinnerNumberInputView;

@@ -13,6 +13,12 @@ class CashInputView {
     this.sendRequest = sendRequest;
   }
 
+  handleCashInput = () => {
+    const { value: cashInput } = this.cashInput;
+    const lottoArray = this.sendRequest('INPUT_CASH', cashInput);
+    return lottoArray;
+  };
+
   disableCashInput() {
     this.cashInput.disabled = true;
     this.cashInputButton.disabled = true;
@@ -25,12 +31,6 @@ class CashInputView {
     this.cashInputButton.disabled = false;
     this.cashInputButton.textContent = '구입하기';
   }
-
-  handleCashInput = () => {
-    const { value: cashInput } = this.cashInput;
-    const lottoArray = this.sendRequest('INPUT_CASH', cashInput);
-    return lottoArray;
-  };
 }
 
 export default CashInputView;

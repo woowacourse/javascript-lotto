@@ -3,13 +3,13 @@ import { selectDom } from '../utils/utils';
 import CashInputView from './cashInputView';
 import PurchasedLottoView from './purchasedLottoView';
 import ResultModalView from './resultModalView';
-import WinnerNumberView from './winnerNumberView';
+import WinnerNumberInputView from './winnerNumberInputView';
 
 class LottoView {
   constructor() {
     this.cashInputView = new CashInputView();
     this.purchasedLottoView = new PurchasedLottoView();
-    this.winnerNumberView = new WinnerNumberView();
+    this.winnerNumberInputView = new WinnerNumberInputView();
     this.resultModalView = new ResultModalView();
 
     this.#attachEventListeners();
@@ -20,7 +20,7 @@ class LottoView {
   addRequestHandler(sendRequest) {
     this.sendRequest = sendRequest;
     this.cashInputView.addRequestHandler(sendRequest);
-    this.winnerNumberView.addRequestHandler(sendRequest);
+    this.winnerNumberInputView.addRequestHandler(sendRequest);
   }
 
   #attachEventListeners() {
@@ -29,6 +29,7 @@ class LottoView {
     selectDom('.restart-button').addEventListener('click', this.#handleRestart);
   }
 
+  // 금액 입력 시
   #handleCashInput = () => {
     try {
       const lottoArray = this.cashInputView.handleCashInput();
@@ -38,15 +39,27 @@ class LottoView {
     }
   };
 
+  #renderLottos(lottoArray) {
+    this.cashInputView.disableCashInput();
+    this.purchasedLottoView.renderLottos(lottoArray);
+    this.winnerNumberInputView.render();
+  }
+
+  // 당첨 번호 입력 시
   #handleWinnerNumberInput = () => {
     try {
-      const matchResult = this.winnerNumberView.handleWinnerNumberInput();
+      const matchResult = this.winnerNumberInputView.handleWinnerNumberInput();
       this.#renderResultModal(matchResult);
     } catch (e) {
       alert(e.message);
     }
   };
 
+  #renderResultModal(matchResult) {
+    this.resultModalView.renderResultModal(matchResult);
+  }
+
+  // 재시작 클릭 시
   #handleRestart = () => {
     this.#resetView();
     this.sendRequest('RESTART_APP');
@@ -55,18 +68,8 @@ class LottoView {
   #resetView = () => {
     this.cashInputView.resetView();
     this.purchasedLottoView.resetView();
-    this.winnerNumberView.resetView();
+    this.winnerNumberInputView.resetView();
     this.resultModalView.resetView();
   };
-
-  #renderLottos(lottoArray) {
-    this.cashInputView.disableCashInput();
-    this.purchasedLottoView.renderLottos(lottoArray);
-    this.winnerNumberView.render();
-  }
-
-  #renderResultModal(matchResult) {
-    this.resultModalView.renderResultModal(matchResult);
-  }
 }
 export default LottoView;
