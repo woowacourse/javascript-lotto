@@ -1,11 +1,15 @@
 import { $ } from './utils/dom.js';
+
 import { getLottoPrice, checkLottoPrice } from './core/checkLottoPrice.js';
 import {
   getLastWinningNumbers,
   checkLastWinningNumberList,
 } from './core/checkLastWinningNumbers.js';
+
 import { toggleButton } from './component/toggleButton.js';
 import { drawLotto } from './core/drawLotto.js';
+import { setResultModal } from './core/setResultModal.js';
+
 import {
   renderPurchasedLottoList,
   renderLastLottoNumber,
@@ -90,7 +94,9 @@ export default class App {
       return;
     }
     this.lastWinningNumberList = lastWinningNumberList;
-    renderOpenResultModal();
+    renderOpenResultModal(
+      setResultModal(this.lottoList, this.lastWinningNumberList),
+    );
   }
 
   handleCloseModal(e) {

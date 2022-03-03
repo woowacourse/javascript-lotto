@@ -77,7 +77,8 @@ export const renderLastLottoNumber = () => {
   );
 };
 
-export const renderOpenResultModal = () => {
+export const renderOpenResultModal = winningInfo => {
+  console.log(winningInfo);
   $('#app').classList.toggle('disabled');
 
   const template = `
@@ -98,24 +99,24 @@ export const renderOpenResultModal = () => {
           </thead>
           <tbody>
             <tr>
-              <td>3개</td><td>5,000</td><td>n개</td>
+              <td>3개</td><td>5,000</td><td>${winningInfo[0].sameThree}개</td>
             </tr>
             <tr>
-              <td>4개</td><td>50,000</td><td>n개</td>
+              <td>4개</td><td>50,000</td><td>${winningInfo[0].sameFour}개</td>
             </tr>
             <tr>
-              <td>5개</td><td>1,500,000</td><td>n개</td>
+              <td>5개</td><td>1,500,000</td><td>${winningInfo[0].sameFive}개</td>
             </tr>
             <tr>
-              <td>5개+보너스볼</td><td>30,000,000</td><td>n개</td>
+              <td>5개+보너스볼</td><td>30,000,000</td><td>${winningInfo[0].sameFiveAndBonus}개</td>
             </tr>
             <tr>
-              <td>6개</td><td>2,000,000,000</td><td>n개</td>
+              <td>6개</td><td>2,000,000,000</td><td>${winningInfo[0].sameSix}개</td>
             </tr>
           </tbody>
         </table>
         <div class='modal-window-earning-rate'>
-          <h3>당신의 총 수익률은 %입니다.</h3>
+          <h3>당신의 총 수익률은 ${winningInfo[1]}%입니다.</h3>
         </div>
       </main>
       <footer class='modal-window-footer'>
