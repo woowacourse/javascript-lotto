@@ -5,7 +5,7 @@ export const SELECTOR = {
   LOTTO_LIST: '#lotto-list',
   LOTTO_NUMBER: '.lotto-number',
   LOTTO: '.lotto',
-  LAST_WEEK_WINNING_NUMBER_SECTION: '#last-week-winning-number-section',
+  WINNING_NUMBER_SECTION: '#winning-number-section',
   PURCHASED_TOTAL_COUNT: '.purchased-total-count',
   RESULT_CHECKING_BUTTON: '#result-checking-button',
 };

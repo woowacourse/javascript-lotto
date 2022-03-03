@@ -122,7 +122,7 @@ h1 {
 }
 
 #payment-section .payment-form #payment-button,
-#result-checking-section #result-checking-button {
+#result-checking-button {
 	background-color: #00BCD4;
 	color: white;
 	border-radius: 4px;
@@ -190,33 +190,30 @@ h1 {
   background-image: url("../../images/toggle_on.svg");
 }
 
-/* last-week-winning-number-section */
-#last-week-winning-number-section {
-  margin-bottom: 24px;
-}
-
-#last-week-winning-number-section p {
+/* winning-number-section */
+#winning-number-section p {
   margin-bottom: 8px;
 }
 
-#last-week-winning-number-section .winning-number-container {
+#winning-number-section .winning-number-form .winning-number-inputs{
   display: flex;
 	justify-content: space-between;
+  margin-bottom: 24px;
 }
 
-#last-week-winning-number-section .winning-number-container #winning-number-list {
+#winning-number-section .winning-number-container #winning-number-list {
 	display: flex;
 	gap: 8px;
 }
 
-#last-week-winning-number-section .winning-number-container .bonus-number-container{
+#winning-number-section .winning-number-container .bonus-number-container{
 	display: flex;
-	flex-direction: column;
+  flex-direction: column;
 	align-items: flex-end;
 }
 
-#last-week-winning-number-section .winning-number-container #bonus-number-input,
-#last-week-winning-number-section .winning-number-container #winning-number-list .winning-number-input {
+#winning-number-section .winning-number-container #bonus-number-input,
+#winning-number-section .winning-number-container #winning-number-list .winning-number-input {
 	width: 34px;
 	height: 36px;
 	border-radius: 4px;
@@ -224,14 +221,8 @@ h1 {
 	text-align: center;
 }
 
-/* result-checking-section */
-#result-checking-section {
-  display: flex;
-}
-
-#result-checking-section #result-checking-button {
-  flex-grow: 1;
-  padding: 6px 6px 8px;
+#winning-number-section .winning-number-container #result-checking-button {
+  width: 382px;
 	height: 36px;
 }
 

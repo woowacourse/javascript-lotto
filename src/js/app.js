@@ -13,7 +13,6 @@ import {
   generatePaymentSection,
   generatePurchasedSection,
   generateWinningNumberSection,
-  generateResultCheckingSection,
   generateModal,
 } from './templates';
 import {
@@ -60,7 +59,7 @@ export default class LottoApp {
     bindEventListener({
       appElement: this.$app,
       type: 'click',
-      selector: '#result-checking-section',
+      selector: '#result-checking-button',
       callback: this.onClickResultButton.bind(this),
     });
 
@@ -93,6 +92,21 @@ export default class LottoApp {
       this.disablePayment();
       this.generatePurchasedLottoList(payment / MONEY.STANDARD);
       this.renderPurchasedSection();
+
+      const $winningNumberInputs = getElements('.winning-number-input');
+      const $bonusNumberInput = getElement('#bonus-number-input');
+      $winningNumberInputs[0].focus();
+      $winningNumberInputs.forEach((numberInput, index) => {
+        numberInput.addEventListener('input', () => {
+          if (numberInput.value.length === 2) {
+            if (index === 5) {
+              $bonusNumberInput.focus();
+              return;
+            }
+            $winningNumberInputs[index + 1].focus();
+          }
+        });
+      });
     } catch ({ message }) {
       alert(message);
       initInput($paymentInput);
@@ -109,7 +123,6 @@ export default class LottoApp {
   renderPurchasedSection() {
     render(this.$app, generatePurchasedSection(this.lottoList));
     render(this.$app, generateWinningNumberSection());
-    render(this.$app, generateResultCheckingSection());
   }
 
   generatePurchasedLottoList(count) {
@@ -207,8 +220,7 @@ export default class LottoApp {
   onClickRestart() {
     getElement('.modal-background').classList.remove('show');
     getElement('#purchased-lotto-list-section').remove();
-    getElement('#last-week-winning-number-section').remove();
-    getElement('#result-checking-section').remove();
+    getElement(SELECTOR.WINNING_NUMBER_SECTION).remove();
 
     toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
