@@ -16,7 +16,6 @@ export const createElementWithClassName = (tag, className) => {
 
 export const initInputElement = (inputElement) => {
   inputElement.value = '';
-  inputElement.focus();
 };
 
 export const convertStringNumberArrayToNumberArray = (stringNumberArray) =>

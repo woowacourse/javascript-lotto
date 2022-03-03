@@ -2,10 +2,12 @@ import { DISABLED_PURCHASE_BUTTON_TEXT, LOTTO_IMAGE, CLASSNAME } from '../consta
 import { createElementWithClassName, initInputElement, selectDom } from '../utils/utils';
 
 import LottoGenerator from '../model/lottoGenerator';
+import WinningCalculator from '../model/winningCalculator';
 
 class LottoMachineView {
   constructor() {
     this.lottoGenerator = new LottoGenerator();
+    this.winningCalculator = new WinningCalculator();
     this.#initDom();
   }
 
@@ -23,6 +25,9 @@ class LottoMachineView {
     );
 
     this.winnerNumberSection = selectDom('.winner-number-section');
+    this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll('.winner-number-input');
+    this.bonusNumberInput = selectDom('.bonus-number-input', this.winnerNumberSection);
+    this.resultButton = selectDom('.result-button', this.winnerNumberSection);
   }
 
   #onCashInputButtonClick = (e) => {
@@ -32,8 +37,25 @@ class LottoMachineView {
       this.#disableCashInputSection();
       this.#renderLottos(this.lottoGenerator.lottos);
       this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
+      this.resultButton.addEventListener('click', this.#onResultButtonClick);
     } catch (error) {
       initInputElement(this.cashInput);
+      this.cashInput.focus();
+      alert(error.message);
+    }
+  };
+
+  #onResultButtonClick = (e) => {
+    e.preventDefault();
+    try {
+      const numberInputs = Array.from(this.winnerNumberInputs).map((input) => input.value);
+      this.winningCalculator.calculateWinningAmount([...numberInputs, this.bonusNumberInput.value]);
+    } catch (error) {
+      initInputElement(this.bonusNumberInput);
+      this.winnerNumberInputs.forEach((input) => {
+        initInputElement(input);
+      });
+      this.winnerNumberInputs[0].focus();
       alert(error.message);
     }
   };

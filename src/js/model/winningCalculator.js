@@ -12,8 +12,13 @@ import {
 } from '../constants/constants';
 
 class WinningCalculator {
+  constructor() {
+    this.winnerNumbers = [];
+  }
   calculateWinningAmount(winnerNumberInputs) {
     this.#validateWinnerNumbers(convertStringNumberArrayToNumberArray(winnerNumberInputs));
+    this.winnerNumbers = winnerNumberInputs;
+    console.log(this.winnerNumbers);
   }
 
   #validateWinnerNumbers(winnerNumbers) {
