@@ -17,7 +17,8 @@
     <form id="purchase-money-form">
       <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
       <div class="space-between">
-        <input id="purchase-money-input" type="number" placeholder="금액" />
+        <input id="purchase-money-input" type="number" placeholder="금액" autofocus=true max="100000" min="1000"
+          required />
         <button id="purchase-money-button" type="submit">구입</button>
       </div>
     </form>
@@ -44,6 +45,7 @@
       </div>
       <div class="space-between">
         <div>
+<<<<<<< HEAD
           <input class="winning-number-input" type="number" />
           <input class="winning-number-input" type="number" />
           <input class="winning-number-input" type="number" />
@@ -51,8 +53,16 @@
           <input class="winning-number-input" type="number" />
 <<<<<<< HEAD
           <input class="winning-number-input" type="number" />
+=======
+          <input class="winning-number-input" type="number" required min="1" max="45" />
+          <input class="winning-number-input" type="number" required min="1" max="45" />
+          <input class="winning-number-input" type="number" required min="1" max="45" />
+          <input class="winning-number-input" type="number" required min="1" max="45" />
+          <input class="winning-number-input" type="number" required min="1" max="45" />
+          <input class="winning-number-input" type="number" required min="1" max="45" />
+>>>>>>> 9bc1f35 (feat: html input attributes 추가)
         </div>
-        <input class="winning-number-input" type="number" />
+        <input class="winning-number-input" type="number" required min="1" max="45" />
       </div>
       <button id="check-result-button" type="submit">결과 확인하기</button>
     </form>
