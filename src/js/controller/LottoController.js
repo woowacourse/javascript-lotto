@@ -17,8 +17,8 @@ export default class LottoController {
     WinningNumberInput: new WinningNumberInputView(
       `.${SELECTOR.CLASS.LOTTO_WINNING_NUMBER_SECTION}`
     ),
-    LottoModal: new ModalView('#lotto-result-modal'),
-    LottoResult: new LottoResultView('#lotto-result-modal'),
+    LottoResultModal: new ModalView('#lotto-result-modal'),
+    LottoResultContent: new LottoResultView('#lotto-result-modal'),
   };
 
   #LottosModel = new LottosModel();
@@ -28,7 +28,7 @@ export default class LottoController {
   }
 
   bindEvents() {
-    this.#View.MoneyInput.bindInputSubmit(this.handleMoneyInputSubmit.bind(this));
+    this.#View.MoneyInput.bindMoneyInputSubmit(this.handleMoneyInputSubmit.bind(this));
     this.#View.LottoList.bindLottoNumberToggle();
   }
 
@@ -41,6 +41,7 @@ export default class LottoController {
       this.#View.LottoList.showContainer();
       this.#View.LottoList.renderLottoList(this.#LottosModel.list);
       this.#View.WinningNumberInput.showContainer();
+      this.#View.LottoResultModal.show();
     } catch (error) {
       alert(error.message);
     }

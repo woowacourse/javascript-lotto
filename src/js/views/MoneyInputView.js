@@ -34,7 +34,7 @@ export default class MoneyInputView {
     onEnableButton(this.#moneyInputSubmit, () => isInputEmpty === false);
   }
 
-  bindInputSubmit(handler) {
+  bindMoneyInputSubmit(handler) {
     this.#moneyInputSubmit.addEventListener('click', (event) => {
       event.preventDefault();
       handler({ moneyInputValue: this.#moneyInput.value });
