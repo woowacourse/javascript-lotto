@@ -63,12 +63,13 @@ export default class LottoController {
     const purchaseMoney = event.detail;
 
     if (isValidPurchaseMoney(purchaseMoney)) {
+      this.#lottoCreator.purchaseMoney = purchaseMoney;
       this.#lottoPurchaseInputView.disablePurchaseLottoForm();
 
       // 로또 자동 번호 생성 및 렌더링
-      this.#lottoCreator.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
+      this.#lottoCreator.createLottoList();
       this.#lottoPurchaseResultView.render(
-        purchaseMoney / LOTTO.COST_UNIT,
+        this.#lottoCreator.purchaseMoney / LOTTO.COST_UNIT,
         this.#lottoCreator.lottoList
       );
 
@@ -103,8 +104,8 @@ export default class LottoController {
         lottoWinningBonusNumber,
         this.#lottoCreator.lottoList
       );
-      // console.log(this.#lottoResultManager.lottoMatchingResult);
-      this.#lottoResultView.render();
+
+      this.#lottoResultView.render(this.#lottoResultManager.lottoMatchingResult);
 
       return;
     }

@@ -3,16 +3,29 @@ import { LOTTO } from '../utils/constants.js';
 export default class LottoCreator {
   #lottoList;
 
+  #purchaseMoney;
+
   constructor() {
     this.#lottoList = [];
     this.lottoMatchingResult = {};
+    this.#purchaseMoney = 0;
   }
 
   get lottoList() {
     return this.#lottoList;
   }
 
-  createLottoList(lottoCount) {
+  get purchaseMoney() {
+    return this.#purchaseMoney;
+  }
+
+  set purchaseMoney(value) {
+    this.#purchaseMoney = value;
+  }
+
+  createLottoList() {
+    const lottoCount = this.#purchaseMoney / LOTTO.COST_UNIT;
+
     this.#lottoList = Array.from({ length: lottoCount }).map(() => LottoCreator.generateLotto());
   }
 

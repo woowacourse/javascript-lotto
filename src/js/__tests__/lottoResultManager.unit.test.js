@@ -30,4 +30,21 @@ describe('lottoResultManager 클래스 내부 메서드(매칭 결과 확인) �
       [LOTTO_MATCHING_RESULT_KEY.NOTHING]: 1,
     });
   });
+
+  // test('로또 매칭 결과와 구매 금액을 가지고 수익률을 알아낼 수 있어야한다', () => {
+  //   const lottoResultManager = new LottoResultManager();
+  //   const purchaseMoney = 50000;
+
+  //   // const matchResult = {
+  //   //   [LOTTO_MATCHING_RESULT_KEY.THREE]: 0,
+  //   //   [LOTTO_MATCHING_RESULT_KEY.FOUR]: 0,555
+  //   //   [LOTTO_MATCHING_RESULT_KEY.FIVE]: 0,
+  //   //   [LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS]: 1,
+  //   //   [LOTTO_MATCHING_RESULT_KEY.SIX]: 1,
+  //   //   [LOTTO_MATCHING_RESULT_KEY.NOTHING]: 1,
+  //   // };
+
+  //   // 2030000000 / 50000;
+  //   expect(lottoResultManager.calcProfit(purchaseMoney)).toBe(406);
+  // });
 });
