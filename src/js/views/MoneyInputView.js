@@ -12,7 +12,7 @@ export default class MoneyInputView {
     this.#container = $(containerSelector);
 
     this.#defaultElements();
-    this.#bindEvents();
+    this.#bindViewEvents();
   }
 
   #defaultElements() {
@@ -20,7 +20,7 @@ export default class MoneyInputView {
     this.#moneyInputSubmit = $(this.#container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`);
   }
 
-  #bindEvents() {
+  #bindViewEvents() {
     this.#moneyInput.addEventListener('keyup', this.#handleMoneyInputValue.bind(this));
   }
 
