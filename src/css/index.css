@@ -130,6 +130,7 @@ h1 {
   height: 36px;
 }
 
+#lotto-result-section #restart-button,
 #payment-section .payment-form #payment-button,
 #result-checking-section #result-checking-button {
   font-weight: 700;
@@ -139,6 +140,23 @@ h1 {
   background-color: #00bcd4;
 
   border-radius: 4px;
+  transition: all 300ms ease-in-out;
+}
+
+#lotto-result-section #restart-button:hover,
+#payment-section .payment-form #payment-button:hover,
+#result-checking-section #result-checking-button:hover {
+  background-color: #80deea;
+}
+
+#lotto-result-section #restart-button:active,
+#payment-section .payment-form #payment-button:active,
+#result-checking-section #result-checking-button:active {
+  transform: translateY(2px);
+}
+
+#lotto-result-section #restart-button:focus {
+  outline: none;
 }
 
 /* **************************** */
@@ -250,7 +268,7 @@ h1 {
 
 #last-week-winning-number-section
   .winning-number-container
-  #last-week-bonus-number-input,
+  .last-week-bonus-number-input,
 #last-week-winning-number-section
   .winning-number-container
   #last-week-number-list
@@ -290,7 +308,7 @@ h1 {
 /* lotto-result-section */
 /* ******************** */
 #lotto-result-section {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
 
@@ -362,20 +380,13 @@ h1 {
 #lotto-result-section #restart-button {
   display: block;
 
-  font-size: 14px;
-  font-weight: 600;
   line-height: 16px;
   letter-spacing: 1.25px;
 
   width: 152px;
   height: 36px;
 
-  border-radius: 4px;
   padding: 6px 6px 6px 8px;
-
-  color: #fff;
-  background-color: #00bcd4;
-
   margin: 32px auto 49px;
 }
 

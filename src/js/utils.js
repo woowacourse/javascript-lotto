@@ -35,7 +35,7 @@ export const getPurchasedLottoCount = (payment, price) => {
 export const isOutOfRange = (winningNumberList, bonusNumber) => {
   const winningNumbers = [...winningNumberList, bonusNumber];
   const lottoAllNumberList = Array.from(
-    { length: 45 },
+    { length: LOTTO.MAX_NUMBER },
     (_, index) => index + 1
   );
 
@@ -58,7 +58,7 @@ export const getValidWinningNumberAndBonusNumber = (
     isOutOfRange(winningNumberList, bonusNumber) ||
     isDuplicateNumbers(winningNumberList, bonusNumber)
   ) {
-    throw new Error('1 ~ 45 사이의 숫자를 중복 없이 입력해주세요.');
+    throw new Error(ERROR_MESSAGE.NOT_DUPLICATED_NUMBERS);
   }
 
   return { winningNumberList, bonusNumber };

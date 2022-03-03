@@ -1,11 +1,13 @@
+import LottoConsumer from './LottoConsumer';
+import LottoSeller from './LottoSeller';
+import createTemplate from './templates';
+
+import { CLASS_NAME, SELECTOR, MONEY } from './constants';
 import {
   getPurchasedLottoCount,
   getValidWinningNumberAndBonusNumber,
   getRateOfReturn,
 } from './utils';
-import { CLASS_NAME, SELECTOR, MONEY } from './constants';
-import LottoConsumer from './LottoConsumer';
-import createTemplate from './templates';
 import {
   getElement,
   getElements,
@@ -18,7 +20,6 @@ import {
   removeChildElement,
   focusInput,
 } from './dom';
-import LottoSeller from './LottoSeller';
 
 export default class LottoApp {
   constructor(app) {
@@ -27,6 +28,8 @@ export default class LottoApp {
 
     this.$paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
     this.$paymentButton = getElement(SELECTOR.PAYMENT_BUTTON);
+    this.$coverTheBackground = null;
+    this.$lottoResultSection = null;
 
     this.lottoConsumer = new LottoConsumer();
     this.lottoSeller = new LottoSeller();
@@ -47,25 +50,28 @@ export default class LottoApp {
       this.$app,
       getElement(SELECTOR.LAST_WEEK_WINNING_NUMBER_SECTION)
     );
-    removeChildElement(this.$app, getElement('#purchased-lotto-list-section'));
-    removeChildElement(this.$app, getElement('#result-checking-section'));
-    removeChildElement(this.$app, getElement('#lotto-result-section'));
-    removeChildElement(this.$app, getElement('#cover-the-background'));
+    removeChildElement(
+      this.$app,
+      getElement(SELECTOR.PURCHASED_LOTTO_LIST_SECTION)
+    );
+    removeChildElement(this.$app, getElement(SELECTOR.RESULT_CHECKING_SECTION));
+    removeChildElement(this.$app, this.$lottoResultSection);
+    removeChildElement(this.$app, this.$coverTheBackground);
   }
 
   onClickExitButton() {
-    removeChildElement(this.$app, getElement('#lotto-result-section'));
-    removeChildElement(this.$app, getElement('#cover-the-background'));
+    removeChildElement(this.$app, this.$lottoResultSection);
+    removeChildElement(this.$app, this.$coverTheBackground);
   }
 
   onSubmitLottoResultButton() {
     try {
       const lastWeekNumberList = [
-        ...getElements('.last-week-number-input'),
+        ...getElements(SELECTOR.LAST_WEEK_NUMBER_INPUT),
       ].map((numberInputElement) => numberInputElement.valueAsNumber);
 
       const lastWeekBonusNumber = getElement(
-        '.last-week-bonus-number-input'
+        SELECTOR.LAST_WEEK_BONUS_NUMBER_INPUT
       ).valueAsNumber;
 
       this.lottoSeller.setLastWeekLottoNumbers(
@@ -91,6 +97,11 @@ export default class LottoApp {
           )
         )
       );
+
+      this.$coverTheBackground = getElement(SELECTOR.COVER_THE_BACKGROUND);
+      this.$lottoResultSection = getElement(SELECTOR.LOTTO_RESULT_SECTION);
+
+      this.$coverTheBackground.style.height = `${this.$app.scrollHeight}px`;
     } catch (error) {
       alertMessage(error.message);
     }
@@ -137,6 +148,8 @@ export default class LottoApp {
       );
       render(this.$app, createTemplate.lastWeekWinningNumberSection());
       render(this.$app, createTemplate.resultCheckingSection());
+
+      focusInput(getElement(`[data-input-id="${1}"]`));
     } catch (error) {
       alertMessage(error.message);
       initInput(this.$paymentInput);
@@ -159,6 +172,11 @@ export default class LottoApp {
         getElement(`[data-input-id="${Number(e.target.dataset.inputId) - 1}"]`)
       );
     }
+
+    if (e.key === 'Enter' && e.target.dataset.inputId !== '1') {
+      this.onSubmitLottoResultButton();
+      focusInput(getElement(SELECTOR.RESTART_BUTTON));
+    }
   }
 
   bindEvent() {
@@ -179,35 +197,35 @@ export default class LottoApp {
     bindEventListener({
       appElement: this.$app,
       type: 'click',
-      selector: '#result-checking-button',
+      selector: SELECTOR.RESULT_CHECKING_BUTTON,
       callback: this.onSubmitLottoResultButton.bind(this),
     });
 
     bindEventListener({
       appElement: this.$app,
       type: 'click',
-      selector: '#exit-button',
+      selector: SELECTOR.EXIT_BUTTON,
       callback: this.onClickExitButton.bind(this),
     });
 
     bindEventListener({
       appElement: this.$app,
       type: 'click',
-      selector: '#restart-button',
+      selector: SELECTOR.RESTART_BUTTON,
       callback: this.onSubmitRestartButton.bind(this),
     });
 
     bindEventListener({
       appElement: this.$app,
       type: 'keyup',
-      selector: '.last-week-number-input',
+      selector: SELECTOR.LAST_WEEK_NUMBER_INPUT,
       callback: this.onKeyUpLastWeekNumberInput.bind(this),
     });
 
     bindEventListener({
       appElement: this.$app,
       type: 'keyup',
-      selector: '.last-week-bonus-number-input',
+      selector: SELECTOR.LAST_WEEK_BONUS_NUMBER_INPUT,
       callback: this.onKeyUpLastWeekNumberInput.bind(this),
     });
   }
