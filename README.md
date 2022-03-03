@@ -15,6 +15,12 @@
 
 https://uk960214.github.io/javascript-lotto/
 
+## 설계 도식화
+
+### 앱의 핵심 구조
+
+<img src='./images/앱의 핵심 구조.png'>
+
 ## Step1
 
 ### UI 구현
