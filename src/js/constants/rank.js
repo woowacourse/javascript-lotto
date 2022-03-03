@@ -10,7 +10,7 @@ export const RANK_KEYS = {
 export const RANK = {
   '6true': RANK_KEYS.FIRST,
   '6false': RANK_KEYS.FIRST,
-  '5ture': RANK_KEYS.SECOND,
+  '5true': RANK_KEYS.SECOND,
   '5false': RANK_KEYS.THIRD,
   '4true': RANK_KEYS.FORTH,
   '4false': RANK_KEYS.FORTH,
