@@ -1,5 +1,6 @@
 import { $ } from './utils/dom.js';
-import { getLottoPrice, checkLottoPrice } from './core/checkInputValue.js';
+import { getLottoPrice, checkLottoPrice } from './core/checkLottoPrice.js';
+import { getLastWinnginNumbers } from './core/checkLastWinningNumbers.js';
 import { toggleButton } from './component/toggleButton.js';
 import { drawLotto } from './core/drawLotto.js';
 import {
@@ -18,24 +19,26 @@ export default class App {
   }
 
   handleEvent() {
-    $('.lotto-price-input-form').addEventListener('submit', e => {
-      e.preventDefault();
-      this.handleSubmitPriceInput();
-    });
-    $('.lotto-price-input-form').addEventListener('submit', e => {
-      e.preventDefault();
-      this.handleDrawLotto();
-    });
-    $('.purchased-lotto-list-container').addEventListener('click', e => {
-      e.preventDefault();
-      if (!e.target.classList.contains(`onoff-switch`)) {
-        return;
-      }
-      this.handleClickToggleButton();
-    });
+    $('.lotto-price-input-form').addEventListener(
+      'submit',
+      this.handleSubmitPriceInput.bind(this),
+    );
+    $('.lotto-price-input-form').addEventListener(
+      'submit',
+      this.handleDrawLotto.bind(this),
+    );
+    $('.purchased-lotto-list-container').addEventListener(
+      'click',
+      this.handleClickToggleButton.bind(this),
+    );
+    $('.last-lotto-winning-number-container').addEventListener(
+      'click',
+      this.handleOpenModal.bind(this),
+    );
   }
 
-  handleSubmitPriceInput() {
+  handleSubmitPriceInput(e) {
+    e.preventDefault();
     const lottoPrice = checkLottoPrice(getLottoPrice());
     if (!lottoPrice) {
       $('.lotto-price-input').value = '';
@@ -47,7 +50,8 @@ export default class App {
     $('.lotto-price-submit-button').disabled = true;
   }
 
-  handleDrawLotto() {
+  handleDrawLotto(e) {
+    e.preventDefault();
     if (!this.lottoPriceValid) {
       return;
     }
@@ -56,14 +60,23 @@ export default class App {
     renderLastLottoNumber();
   }
 
-  handleClickToggleButton() {
+  handleClickToggleButton(e) {
+    if (!e.target.classList.contains(`onoff-switch`)) {
+      return;
+    }
     toggleButton();
     if ($('.purchased-lotto-main').classList.contains('is-active')) {
-      console.log(this.lottoList);
       renderPurchasedLottoListContentIsActive(this.lottoList);
       return;
     }
     renderPurchasedLottoListContent(this.lottoList.length);
+  }
+
+  handleOpenModal(e) {
+    if (!e.target.classList.contains(`check-result-button`)) {
+      return;
+    }
+    const lastWinningNumberList = getLastWinnginNumbers();
   }
 }
 
