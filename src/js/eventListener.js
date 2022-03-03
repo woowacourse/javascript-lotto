@@ -14,9 +14,10 @@ export const onClickResultButton = () => {
     validator.validateBonusNumber(winningNumbers, bonumsNumber);
   } catch (error) {
     alert(error.message);
+    return;
   }
 
-  console.log('유효한 당첨 번호와 보너스 번호 입력!');
+  view.renderWinningStatisticModal();
 };
 
 export const onSubmitFareForm = (e) => {
