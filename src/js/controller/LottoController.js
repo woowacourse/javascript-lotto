@@ -61,9 +61,12 @@ export default class LottoController {
 
   #requestResult(winningNumbers, bonusNumber) {
     try {
+      this.lottoResult = new LottoResult(this.lottoVendor);
       this.lottoResult.bonusNumber = bonusNumber;
       this.lottoResult.winningNumbers = winningNumbers;
       const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
+      // console.log(this.lottoResult.resultList);
+      this.issuedTicketView.highlightWinningTickets(this.lottoResult.resultList);
       this.#renderResultModal(winningCounts, lottoYield, winningMoney);
     } catch (error) {
       alert(error.message);

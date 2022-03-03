@@ -16,6 +16,8 @@ export default class LottoResult {
 
   #winningMoney = 0;
 
+  #resultList;
+
   set winningNumbers(numbers) {
     if (this.isWinningNumbersDuplicated(numbers)) {
       throw new Error(EXCEPTION.DUPLICATED_NUMBERS);
@@ -45,10 +47,17 @@ export default class LottoResult {
 
   calculateWinningCounts() {
     const userLottos = this.lottoVendor.lottos;
+    this.#resultList = Array.from({ length: this.lottoVendor.lottos.length });
 
-    userLottos.forEach((userLotto) => {
-      this.#winningCounts[this.#getWinningRank(userLotto)] += 1;
+    userLottos.forEach((userLotto, index) => {
+      const winningRank = this.#getWinningRank(userLotto);
+      this.#resultList[index] = winningRank;
+      this.#winningCounts[winningRank] += 1;
     });
+  }
+
+  get resultList() {
+    return this.#resultList;
   }
 
   #getWinningRank(userLotto) {

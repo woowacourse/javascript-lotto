@@ -47,4 +47,10 @@ export default class IssuedTicketView {
       ticketContainer.classList.toggle('hidden');
     });
   }
+
+  highlightWinningTickets(resultList) {
+    resultList.forEach((result, index) => {
+      $$('.ticket-numbers')[index].dataset.rank = result;
+    });
+  }
 }

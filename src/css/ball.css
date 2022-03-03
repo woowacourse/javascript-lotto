@@ -27,3 +27,30 @@
 .ball[data-number='green'] {
   background-color: #5ab545;
 }
+
+.ticket-numbers:after {
+  padding: 3px;
+  vertical-align: middle;
+  border-radius: 6px;
+  color: #fff;
+}
+.ticket-numbers[data-rank='firstPlace']:after {
+  background-color: goldenrod;
+  content: '1등당첨';
+}
+.ticket-numbers[data-rank='secondPlace']:after {
+  background-color: blueviolet;
+  content: '2등당첨';
+}
+.ticket-numbers[data-rank='thirdPlace']:after {
+  background-color: royalblue;
+  content: '3등당첨';
+}
+.ticket-numbers[data-rank='fourthPlace']:after {
+  background-color: saddlebrown;
+  content: '4등당첨';
+}
+.ticket-numbers[data-rank='fifthPlace']:after {
+  background-color: teal;
+  content: '5등당첨';
+}
