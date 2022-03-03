@@ -1,10 +1,11 @@
-import { CLASS_SELECTOR, ID_SELECTOR, WINNING_PRIZE } from '../constants';
+import { CLASS_SELECTOR, ID_SELECTOR, LOTTO_RULE, WINNING_PRIZE } from '../constants';
 import { $, $$, replaceHTML } from '../utils/dom';
 
 export class WinningNumberView {
   constructor() {
     this.#configureDOM();
     this.bindCloseModal();
+    this.bindInput();
   }
 
   #configureDOM() {
@@ -37,6 +38,20 @@ export class WinningNumberView {
 
       handler();
     });
+  }
+
+  bindInput() {
+    this.$pickedNumberInputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        this.#moveFocusHandler(input, index);
+      });
+    });
+  }
+
+  #moveFocusHandler($element, index) {
+    if ($element.value.length === 2 && index !== LOTTO_RULE.NUMBERS_COUNT) {
+      this.$pickedNumberInputs[index + 1].focus();
+    }
   }
 
   displayPickedNumbersForm() {
