@@ -10,7 +10,7 @@ export default class LottoResult {
 
   #bonusNumber = 0;
 
-  #winningCounts = { 3: 0, 4: 0, 5: 0, fiveBonus: 0, 6: 0 };
+  #winningCounts = { fifthPlace: 0, fourthPlace: 0, thirdPlace: 0, secondPlace: 0, firstPlace: 0 };
 
   #lottoYield = 0;
 
@@ -45,45 +45,44 @@ export default class LottoResult {
 
   calculateWinningCounts() {
     const userLottos = this.lottoVendor.lottos;
-    const winningCounts = {
-      3: 0,
-      4: 0,
-      5: 0,
-      fiveBonus: 0,
-      6: 0,
-    };
-    userLottos.forEach((userLotto) => {
-      winningCounts[this.#countLottoNumbers(userLotto)] += 1;
-    });
 
-    this.#winningCounts = winningCounts;
+    userLottos.forEach((userLotto) => {
+      this.#winningCounts[this.#getWinningRank(userLotto)] += 1;
+    });
   }
 
-  #countLottoNumbers(userLotto) {
+  #getWinningRank(userLotto) {
     const mergedLottoNumbers = [...userLotto.numbers, ...this.#winningNumbers];
-    const count = mergedLottoNumbers.length - new Set(mergedLottoNumbers).size;
-    if (count === 5) {
-      return this.#checkBonusNumber(userLotto);
+    const sameCount = mergedLottoNumbers.length - new Set(mergedLottoNumbers).size;
+    switch (sameCount) {
+      case 3:
+        return 'fifthPlace';
+      case 4:
+        return 'fourthPlace';
+      case 5:
+        return this.#checkBonusNumber(userLotto);
+      case 6:
+        return 'firstPlace';
+      default:
     }
-
-    return count;
+    return undefined;
   }
 
   #checkBonusNumber(userLotto) {
     if (userLotto.numbers.includes(this.#bonusNumber)) {
-      return 'fiveBonus';
+      return 'secondPlace';
     }
 
-    return 5;
+    return 'thirdPlace';
   }
 
   calculateLottoYield() {
     const winningMoney =
-      this.#winningCounts[3] * LOTTO.FIFTH_PRIZE +
-      this.#winningCounts[4] * LOTTO.FOURTH_PRIZE +
-      this.#winningCounts[5] * LOTTO.THIRD_PRIZE +
-      this.#winningCounts.fiveBonus * LOTTO.SECOND_PRIZE +
-      this.#winningCounts[6] * LOTTO.FIRST_PRIZE;
+      this.#winningCounts.fifthPlace * LOTTO.FIFTH_PRIZE +
+      this.#winningCounts.fourthPlace * LOTTO.FOURTH_PRIZE +
+      this.#winningCounts.thirdPlace * LOTTO.THIRD_PRIZE +
+      this.#winningCounts.secondPlace * LOTTO.SECOND_PRIZE +
+      this.#winningCounts.firstPlace * LOTTO.FIRST_PRIZE;
     const { paidMoney } = this.lottoVendor;
     this.#winningMoney = winningMoney;
     this.#lottoYield = Math.floor((winningMoney / paidMoney) * 100);

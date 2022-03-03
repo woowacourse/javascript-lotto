@@ -36,11 +36,11 @@ export default class ResultModalView {
   }
 
   renderWinningCounts(winningCounts) {
-    this.$threeCount.textContent = winningCounts['3'];
-    this.$fourCount.textContent = winningCounts['4'];
-    this.$fiveCount.textContent = winningCounts['5'];
-    this.$fiveBonusCount.textContent = winningCounts.fiveBonus;
-    this.$sixCount.textContent = winningCounts['6'];
+    this.$threeCount.textContent = winningCounts.fifthPlace;
+    this.$fourCount.textContent = winningCounts.fourthPlace;
+    this.$fiveCount.textContent = winningCounts.thirdPlace;
+    this.$fiveBonusCount.textContent = winningCounts.secondPlace;
+    this.$sixCount.textContent = winningCounts.firstPlace;
   }
 
   renderYield(paidMoney, winningMoney, lottoYield) {
