@@ -3,57 +3,80 @@ import { SELECTOR } from '../constants/selector';
 import { RANK_PRICE } from '../constants/rank';
 import { findElement } from '../utils/dom';
 import { changeCurrencyFormat } from '../utils/util';
-import { emitEvent } from '../utils/event';
+import { emitListener } from '../utils/event';
 
 class LottoResultView {
+  #app = null;
+
+  #winNumberInputSection = null;
+
+  #winNumberInputForm = null;
+
+  #winStatistics = null;
+
+  #statisticsTableBody = null;
+
+  #profitRatioText = null;
+
+  #restartButton = null;
+
+  #onSubmitResult = null;
+
+  #onClickRestartButton = null;
+
+  #onClickModal = null;
+
   constructor({ $app }) {
-    this.$app = $app;
+    this.#app = $app;
     this.#initializeTemplate();
     this.#initializeDOM();
     this.#bindEventHandler();
   }
 
   #initializeTemplate() {
-    this.$app.insertAdjacentHTML('beforeend', this.#basicTemplate);
+    this.#app.insertAdjacentHTML('beforeend', this.#basicTemplate);
   }
 
   #initializeDOM() {
-    this.$winNumberInputSection = findElement(SELECTOR.WIN_NUMBER_INPUT_SECTION);
-    this.$winNumberInputForm = findElement(SELECTOR.WIN_NUMBER_INPUT_FORM);
+    this.#winNumberInputSection = findElement(SELECTOR.WIN_NUMBER_INPUT_SECTION);
+    this.#winNumberInputForm = findElement(SELECTOR.WIN_NUMBER_INPUT_FORM);
 
-    this.$winStatistics = findElement(SELECTOR.WIN_STATISTICS);
-    this.$statisticsTableBody = findElement(SELECTOR.STATISTICS_TABLE_BODY);
-    this.$profitRatioText = findElement(SELECTOR.PROFIT_RATIO_TEXT);
-    this.$restartButton = findElement(SELECTOR.RESTART_BUTTON);
-    this.$modalCancelButton = findElement(SELECTOR.MODAL_CANCEL_BUTTON);
+    this.#winStatistics = findElement(SELECTOR.WIN_STATISTICS);
+    this.#statisticsTableBody = findElement(SELECTOR.STATISTICS_TABLE_BODY);
+    this.#profitRatioText = findElement(SELECTOR.PROFIT_RATIO_TEXT);
+    this.#restartButton = findElement(SELECTOR.RESTART_BUTTON);
   }
 
   #bindEventHandler() {
-    this.$winNumberInputForm.addEventListener('submit', (e) => emitEvent(EVENT.SUBMIT_RESULT, e));
-    this.$restartButton.addEventListener('click', (e) => emitEvent(EVENT.CLICK_RESTART_BUTTON, e));
-    this.$winStatistics.addEventListener('click', (e) => emitEvent(EVENT.CLICK_MODAL, e));
+    this.#onSubmitResult = (e) => emitListener(EVENT.SUBMIT_RESULT, e);
+    this.#onClickRestartButton = (e) => emitListener(EVENT.CLICK_RESTART_BUTTON, e);
+    this.#onClickModal = (e) => emitListener(EVENT.CLICK_MODAL, e);
+
+    this.#winNumberInputForm.addEventListener('submit', this.#onSubmitResult);
+    this.#restartButton.addEventListener('click', this.#onClickRestartButton);
+    this.#winStatistics.addEventListener('click', this.#onClickModal);
   }
 
   showWinNumberInputSection() {
-    this.$winNumberInputSection.classList.replace(SELECTOR.HIDE, SELECTOR.SHOW);
+    this.#winNumberInputSection.classList.replace(SELECTOR.HIDE, SELECTOR.SHOW);
   }
 
   renderStatisticsModalContents({ statistics, profitRatio }) {
-    this.$statisticsTableBody.innerHTML = Object.keys(statistics).reduce((prev, currentKey) => {
+    this.#statisticsTableBody.innerHTML = Object.keys(statistics).reduce((prev, currentKey) => {
       const price = RANK_PRICE[currentKey];
       const count = statistics[currentKey];
 
       return prev + this.#generateStatisticsTableData(currentKey, price, count);
     }, '');
-    this.$profitRatioText.innerHTML = this.#generateProfitRatioText(profitRatio);
+    this.#profitRatioText.innerHTML = this.#generateProfitRatioText(profitRatio);
   }
 
   hideStatisticsModal() {
-    this.$winStatistics.classList.replace(SELECTOR.SHOW, SELECTOR.HIDE);
+    this.#winStatistics.classList.replace(SELECTOR.SHOW, SELECTOR.HIDE);
   }
 
   showStatisticsModal() {
-    this.$winStatistics.classList.replace(SELECTOR.HIDE, SELECTOR.SHOW);
+    this.#winStatistics.classList.replace(SELECTOR.HIDE, SELECTOR.SHOW);
   }
 
   #generateStatisticsTableData(currentKey, price, count) {

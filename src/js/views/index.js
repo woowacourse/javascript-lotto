@@ -5,12 +5,14 @@ import LottoContainerView from './LottoContainerView';
 import LottoResultView from './LottoResultView';
 
 class LottoViewManager {
+  #app = null;
+
   #containerView = null;
 
   #resultView = null;
 
   constructor() {
-    this.$app = findElement(SELECTOR.APP);
+    this.#app = findElement(SELECTOR.APP);
     this.#clear();
     this.#initializeViews();
   }
@@ -21,12 +23,12 @@ class LottoViewManager {
   }
 
   #initializeViews() {
-    this.#containerView = new LottoContainerView({ $app: this.$app });
-    this.#resultView = new LottoResultView({ $app: this.$app });
+    this.#containerView = new LottoContainerView({ $app: this.#app });
+    this.#resultView = new LottoResultView({ $app: this.#app });
   }
 
   #clear() {
-    this.$app.innerHTML = '';
+    this.#app.innerHTML = '';
   }
 
   #reducer = {

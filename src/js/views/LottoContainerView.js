@@ -1,31 +1,50 @@
 import { EVENT } from '../constants/events';
 import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/dom';
-import { emitEvent } from '../utils/event';
+import { emitListener } from '../utils/event';
 
 class LottoContainerView {
+  #app = null;
+
+  #chargeForm = null;
+
+  #alignConverter = null;
+
+  #lottoContainer = null;
+
+  #purchasedMessage = null;
+
+  #alignConverterContainer = null;
+
+  #onSubmitCharge = null;
+
+  #onChangeAlignState = null;
+
   constructor({ $app }) {
-    this.$app = $app;
+    this.#app = $app;
     this.#initializeTemplate();
     this.#initializeDOM();
     this.#bindEventHandler();
   }
 
   #initializeTemplate() {
-    this.$app.insertAdjacentHTML('beforeend', this.#basicTemplate);
+    this.#app.insertAdjacentHTML('beforeend', this.#basicTemplate);
   }
 
   #initializeDOM() {
-    this.$chargeForm = findElement(SELECTOR.CHARGE_INPUT_FORM);
-    this.$alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
-    this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
-    this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
-    this.$alignConverterContainer = findElement(SELECTOR.ALIGN_CONVERTER_CONTAINER);
+    this.#chargeForm = findElement(SELECTOR.CHARGE_INPUT_FORM);
+    this.#alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
+    this.#lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
+    this.#purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
+    this.#alignConverterContainer = findElement(SELECTOR.ALIGN_CONVERTER_CONTAINER);
   }
 
   #bindEventHandler() {
-    this.$chargeForm.addEventListener('submit', (e) => emitEvent(EVENT.SUBMIT_CHARGE, e));
-    this.$alignConverter.addEventListener('change', (e) => emitEvent(EVENT.CHANGE_ALIGN_STATE, e));
+    this.#onSubmitCharge = (e) => emitListener(EVENT.SUBMIT_CHARGE, e);
+    this.#onChangeAlignState = (e) => emitListener(EVENT.CHANGE_ALIGN_STATE, e);
+
+    this.#chargeForm.addEventListener('submit', this.#onSubmitCharge);
+    this.#alignConverter.addEventListener('change', this.#onChangeAlignState);
   }
 
   renderLottoSection(lottoList) {
@@ -34,18 +53,18 @@ class LottoContainerView {
   }
 
   renderLottoList(lottoList) {
-    this.$lottoContainer.innerHTML = lottoList
+    this.#lottoContainer.innerHTML = lottoList
       .map((lotto) => this.#generateLottoTemplate(lotto))
       .join('');
   }
 
   renderPurchasedMessage(lottoAmount) {
-    this.$purchasedMessage.innerText = `총 ${lottoAmount}개를 구매하였습니다.`;
+    this.#purchasedMessage.innerText = `총 ${lottoAmount}개를 구매하였습니다.`;
   }
 
   renderAlignState(visibleState) {
-    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
-    this.$alignConverterContainer.setAttribute('data-visible-state', visibleState);
+    this.#lottoContainer.setAttribute('data-visible-state', visibleState);
+    this.#alignConverterContainer.setAttribute('data-visible-state', visibleState);
   }
 
   #generateLottoTemplate({ lottoNumbers }) {
