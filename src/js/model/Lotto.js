@@ -4,6 +4,7 @@ import { generateRandomNumber } from '../utils/number';
 export default class Lotto {
   constructor() {
     this.lottoNumbers = [];
+    this.matchedCount = 0;
     this.generateLottoNumbers();
   }
 

@@ -12,7 +12,7 @@ const showResultElements = () => {
 const showLottoImage = (lottos) => {
   const template = lottos.map(lotto => 
     `<div class="lotto-img">
-      🎟️<span class="lotto-number-detail d-none">${lotto.join(', ')}</span>
+      🎟️<span class="lotto-number-detail d-none">${lotto.lottoNumbers.join(', ')}</span>
     </div>`).join('');
   $('.lotto-grid').insertAdjacentHTML('beforeend', template);                        
 }
