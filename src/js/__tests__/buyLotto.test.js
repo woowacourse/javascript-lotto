@@ -12,9 +12,9 @@ describe('로또 번호 생성 테스트', () => {
       })
     );
     expect(lotto.size).toEqual(LOTTO_RULES.NUMBER_COUNT);
-    lotto.forEach((number) =>
-      expect(number).toBeWithinRange(LOTTO_RULES.NUMBER_RANGE.MIN, LOTTO_RULES.NUMBER_RANGE.MAX)
-    );
+    lotto.forEach((number) => {
+      expect(number).toBeWithinRange(LOTTO_RULES.NUMBER_RANGE.MIN, LOTTO_RULES.NUMBER_RANGE.MAX);
+    });
   });
 
   test('투입한 금액만큼의 로또가 생성되는지 확인한다.', () => {
