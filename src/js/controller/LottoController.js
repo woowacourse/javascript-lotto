@@ -77,7 +77,7 @@ export default class LottoController {
 
     try {
       this.model.calculateLottoResult(
-        winnerNumberArray.slice(0, LOTTO_NUMBERS.LOTTO_LENGTH - 1),
+        winnerNumberArray.slice(0, LOTTO_NUMBERS.LOTTO_LENGTH),
         winnerNumberArray[LOTTO_NUMBERS.LOTTO_LENGTH],
       );
 

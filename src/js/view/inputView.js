@@ -128,5 +128,6 @@ export default class InputView {
 
   initLottoPriceInput() {
     this.$lottoPriceInput.value = '';
+    this.$lottoPriceInputMessage.innerText = '';
   }
 }

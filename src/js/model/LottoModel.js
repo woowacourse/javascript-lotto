@@ -79,12 +79,7 @@ export default class LottoModel {
   }
 
   generateLottos() {
-    const lottos = [];
-    for (let i = 0; i < this.getLottoCount(); i += 1) {
-      lottos.push(this.getLottoNumbers());
-    }
-
-    return lottos;
+    return Array.from({ length: this.getLottoCount() }, () => this.getLottoNumbers());
   }
 
   setWinningNumbers() {
@@ -136,7 +131,7 @@ export default class LottoModel {
   }
 
   initWinningType() {
-    this.winningType = {
+    this.#winningType = {
       3: 0,
       4: 0,
       5: 0,
