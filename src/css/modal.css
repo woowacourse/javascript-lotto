@@ -1,0 +1,39 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 250px);
+
+  width: 500px;
+  padding: 50px 20px;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: auto;
+
+  z-index: 5;
+}
+
+.modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  gap: 10px;
+
+  width: 90%;
+  height: 80%;
+
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.yield-result-text {
+  font-weight: bold;
+}

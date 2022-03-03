@@ -48,3 +48,15 @@ fieldset {
 legend {
   margin-bottom: 10px;
 }
+
+table {
+  border-width: 1px;
+  border-top: 1px solid #000;
+  border-collapse: collapse;
+}
+
+tr,
+td {
+  padding: 3px;
+  border-top: 1px solid #dcdcdc;
+}

@@ -8,6 +8,46 @@
 </head>
 <body>
   <main id="app">
+    <div class="modal show">
+      <section class="modal-body">
+        <table class="winning-result-table">
+          <caption><h2>🏆 당첨 통계 🏆</h2></caption>
+          <tr>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td class="winning-count">0개</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td class="winning-count">0개</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td class="winning-count">0개</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td class="winning-count">0개</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td class="winning-count">0개</td>
+          </tr>
+        </table>
+        <p class="yield-result-text">당신의 총 수익률은 100%입니다.</p>
+        <button class="restart-button">다시 시작하기</button>
+      </section>
+    </div>
+
     <h1 class="app-title">🎱 행운의 로또</h1>
     <section class="cash-input-section" aria-labeledby="a11y-cash-input-section">
       <h2 hidden id="a11y-cash-input-section">구입 금액 입력 섹션</h2>
@@ -17,7 +57,7 @@
         <button class="cash-input-button">구입</button>
       </div>
     </section>
-    <section class="purchased-lotto-section hide" aria-labeledby="a11y-purchased-lotto-section">
+    <section class="purchased-lotto-section " aria-labeledby="a11y-purchased-lotto-section">
       <h2 hidden id="a11y-purchased-lotto-section">구입한 로또 표시 섹션</h2>
       <div class="lotto-container">
         <div class="lotto-grid hide-numbers">
@@ -31,7 +71,7 @@
         </label>
       </div>
     </section>
-    <section class="winner-number-section hide" aria-labeledby="a11y-winner-number-section">
+    <section class="winner-number-section " aria-labeledby="a11y-winner-number-section">
       <h2 hidden id="a11y-winner-number-section">당첨 번호 입력 섹션</h2>
       <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
       <form class="winner-number-input-form">
