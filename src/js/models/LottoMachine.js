@@ -49,7 +49,6 @@ export default class LottoMachine {
   }
 
   getProfitRate(profit, startMoney) {
-    // (투자 후 금액 - 투자 원금) / 투자 원금 * 100
     return ((profit - startMoney) / startMoney) * 100;
   }
 

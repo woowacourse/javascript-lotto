@@ -7,13 +7,16 @@ export default class CheckWinningLottosView extends View {
     super();
     this.bindInputWinningNumberEvents();
   }
-  // ToDo: 사용자는 로또의 당첨번호를 입력할 수 있다.
+
   getInputWinningNumbers() {
-    let inputWinningNumbers = [];
+    const inputWinningNumbers = new Set();
     $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element) => {
-      inputWinningNumbers.push(Number.parseInt(element.value));
+      inputWinningNumbers.add(Number.parseInt(element.value));
     });
-    return inputWinningNumbers;
+    if (inputWinningNumbers.size === 7) return [...inputWinningNumbers];
+    const error = new Error('중복된 숫자가 있습니다.');
+    error.name = 'Duplicated input';
+    throw error;
   }
 
   handleInputWinningNumber(index) {
@@ -32,10 +35,10 @@ export default class CheckWinningLottosView extends View {
     });
   }
 
-  // ToDo: 당첨 번호 입력 후 결과 확인하기 버튼 누르면 결과확인 모달창이 생성된다.
   openModal() {
     $(SELECTOR.CLASS.MODAL).classList.toggle('show');
   }
+
   closeModal() {
     $(SELECTOR.CLASS.MODAL).classList.toggle('show');
   }

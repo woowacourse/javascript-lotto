@@ -16,15 +16,20 @@ export default class CheckWinningLottosController {
 
   handleClickCheckResultButton(e) {
     e.preventDefault();
-    const inputWinningNumbers = this.#view.getInputWinningNumbers();
-    const winningNumbers = inputWinningNumbers.splice(0, 6);
-    const bonusNumber = inputWinningNumbers[0];
-    this.machine.countWinLottos(winningNumbers, bonusNumber);
-    this.#view.renderWinLottosCountInModal(
-      this.machine.winLottos,
-      this.machine.winLottosWithBonus
-    );
-    // ToDo: 모달창 오픈
-    this.#view.openModal();
+    try {
+      const inputWinningNumbers = this.#view.getInputWinningNumbers();
+      const winningNumbers = inputWinningNumbers.splice(0, 6);
+      const bonusNumber = inputWinningNumbers[0];
+      this.machine.countWinLottos(winningNumbers, bonusNumber);
+      this.#view.renderWinLottosCountInModal(
+        this.machine.winLottos,
+        this.machine.winLottosWithBonus
+      );
+      // ToDo: 모달창 오픈
+      this.#view.openModal();
+    } catch (error) {
+      if ((error.name = 'Duplicated input')) alert(error.message);
+      console.log(error);
+    }
   }
 }
