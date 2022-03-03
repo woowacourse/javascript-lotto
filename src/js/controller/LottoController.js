@@ -69,6 +69,7 @@ export default class LottoController {
 
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
+      this.lottoGameModel.reset();
       this.lottoGameModel.generateResult(winningNumbers, bonusNumber);
       this.modalView.renderModal(this.lottoGameModel.result, this.lottoGameModel.profitRate);
     } catch ({ message }) {
