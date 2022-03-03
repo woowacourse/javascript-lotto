@@ -21,7 +21,14 @@ class Component extends HTMLElement {
   }
 
   subscribe() {
+    if (!this.shouldSubscribe()) {
+      return;
+    }
     window.store.subscribe(this);
+  }
+
+  shouldSubscribe() {
+    return true;
   }
 
   setEvent() {}

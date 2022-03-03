@@ -18,6 +18,10 @@ class LottoListToggle extends Component {
     });
   }
 
+  shouldSubscribe() {
+    return false;
+  }
+
   render() {
     const { lottoListVisibility } = window.store.getState();
     const checked = lottoListVisibility ? 'checked' : '';

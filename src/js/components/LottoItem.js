@@ -13,6 +13,10 @@ class LottoItem extends Component {
     `;
   }
 
+  shouldSubscribe() {
+    return false;
+  }
+
   render() {
     this.innerHTML = this.template(this.lottoNums);
   }
