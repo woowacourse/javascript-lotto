@@ -38,3 +38,5 @@ export const INITIAL_STATE = {
   },
   statisticsModalVisibility: false,
 };
+
+export const VALIDATION_ERROR_NAME = 'ValidationError';

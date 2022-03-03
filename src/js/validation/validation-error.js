@@ -1,7 +1,9 @@
+import { VALIDATION_ERROR_NAME } from '../constants';
+
 class ValidationError extends Error {
   constructor(message) {
     super(message);
-    this.name = 'ValidationError';
+    this.name = VALIDATION_ERROR_NAME;
   }
 }
 

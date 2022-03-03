@@ -28,3 +28,10 @@ export const intersect = (a, b) => {
   const intersection = new Set([...setA].filter((x) => setB.has(x)));
   return Array.from(intersection);
 };
+
+export const consoleErrorWithConditionalAlert = (error, errorNameForAlert) => {
+  console.error(error);
+  if (error.name === errorNameForAlert) {
+    alert(error.message);
+  }
+};

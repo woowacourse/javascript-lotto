@@ -1,8 +1,9 @@
-import { ACTION } from '../constants';
+import { ACTION, VALIDATION_ERROR_NAME } from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { validateWinningNumbers } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
+import { consoleErrorWithConditionalAlert } from '../utils';
 
 class WinningNumberForm extends Component {
   render() {
@@ -50,8 +51,7 @@ class WinningNumberForm extends Component {
       try {
         this.pickLottoNumbers(winningNumbers);
       } catch (e) {
-        console.error(e);
-        alert(e.message);
+        consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
       }
     });
   }

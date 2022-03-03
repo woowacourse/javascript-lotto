@@ -1,8 +1,9 @@
-import { ACTION } from '../constants';
+import { ACTION, VALIDATION_ERROR_NAME } from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
+import { consoleErrorWithConditionalAlert } from '../utils';
 
 class MoneyForm extends Component {
   template() {
@@ -25,8 +26,7 @@ class MoneyForm extends Component {
       try {
         this.updateMoney($moneyInput.value);
       } catch (e) {
-        console.error(e);
-        alert(e.message);
+        consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
       }
     });
   }
