@@ -5,12 +5,19 @@ import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
 class MoneyForm extends Component {
-  template() {
+  render() {
+    const { money } = window.store.getState();
+    this.innerHTML = this.template(money);
+  }
+
+  template(money) {
+    const moneyInputValue = money > 0 ? money : '';
+
     return `
       <form>
         <label class="form-label mb-1">구입할 금액을 입력해주세요.</label>
         <div class="d-flex">
-          <input class="form-control mr-4" placeholder="금액"></input>
+          <input class="form-control mr-4" placeholder="금액" value="${moneyInputValue}"></input>
           <button class="btn btn-cyan">구입</button>
         </div>
       </form>
