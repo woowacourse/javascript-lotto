@@ -32,6 +32,8 @@ class LottoMachineView {
     this.modal = selectDom('.modal');
     this.winningCountElements = this.modal.querySelectorAll('.winning-count');
     this.yieldResultText = selectDom('.yield-result-text', this.modal);
+    this.modalCloseButton = selectDom('.close-button', this.modal);
+    this.restartButton = selectDom('.restart-button', this.modal);
   }
 
   #onCashInputButtonClick = (e) => {
@@ -59,6 +61,7 @@ class LottoMachineView {
         this.lottoGenerator.lottos
       );
       this.#showResultModal();
+      this.modalCloseButton.addEventListener('click', this.#onModalCloseButtonClick);
     } catch (error) {
       initInputElement(this.bonusNumberInput);
       this.winnerNumberInputs.forEach((input) => {
@@ -67,6 +70,10 @@ class LottoMachineView {
       this.winnerNumberInputs[0].focus();
       alert(error.message);
     }
+  };
+
+  #onModalCloseButtonClick = () => {
+    this.modal.classList.remove('show');
   };
 
   #showResultModal() {
