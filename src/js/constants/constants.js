@@ -6,14 +6,16 @@ export const CONDITIONS = {
 };
 
 export const ERROR_MESSAGE = {
-  NEGATIVE_INPUT_ERROR: 'please enter positive number',
-  NOT_INTEGER_INPUT_ERROR: 'please enter integer number',
-  NOT_MUTIPLE_THOUSAND: 'please enter number that is mutiples of thousand',
-  NULL_INPUT_ERROR: 'please enter input',
-  HAS_DUPLICATED_WINNING_NUMBER: 'please enter winning number without duplication',
-  HAS_DUPLICATED_BONUS_NUMBER: 'please enter bonus number without duplicaiton',
-  HAS_OUT_OF_RANGE_NUMBER: `please enter winning number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX}`,
-  HAS_OUT_OF_RANGE_BONUS_NUMBER: `please enter bonus number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX}`,
+  NEGATIVE_INPUT_ERROR: '양수를 입력해 주세요! \n (please enter positive number)',
+  NOT_INTEGER_INPUT_ERROR: '정수를 입력해 주세요! \n (please enter integer number)',
+  NOT_MUTIPLE_THOUSAND: '1000단위로 입력해 주세요! \n (please enter number that is mutiples of thousand)',
+  NULL_INPUT_ERROR: '입력칸이 비어있어요! \n (please enter input)',
+  HAS_DUPLICATED_WINNING_NUMBER:
+    '당첨번호를 중복없이 입력해 주세요! \n (please enter winning number without duplication)',
+  HAS_DUPLICATED_BONUS_NUMBER:
+    '보너스 번호를 당첨번호와 중복없이 입력해주세요! \n (please enter bonus number without duplicaiton)',
+  HAS_OUT_OF_RANGE_NUMBER: `당첨번호는 ${CONDITIONS.LOTTO_NUM_MIN} 와 ${CONDITIONS.LOTTO_NUM_MAX} 사이여야 합니다! \n (please enter winning number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX})`,
+  HAS_OUT_OF_RANGE_BONUS_NUMBER: `보너스번호는 ${CONDITIONS.LOTTO_NUM_MIN} 와 ${CONDITIONS.LOTTO_NUM_MAX} 사이여야 합니다! \n (please enter bonus number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX})`,
 };
 
 export const WINNING_PRICE = {
