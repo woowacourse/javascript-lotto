@@ -6,8 +6,6 @@ export default class LottoWinningNumberInputView {
 
   #lottoWinningNumberContainers;
 
-  #lottoWinningBonusNumber;
-
   #lottoMatchResultForm;
 
   constructor() {
@@ -17,7 +15,6 @@ export default class LottoWinningNumberInputView {
   selectDOM() {
     this.#lottoMatchResultForm = $('#lotto-match-result-form');
     this.#lottoWinningNumberContainers = $$('.lotto-winning-number-container');
-    this.#lottoWinningBonusNumber = $('#lotto-winning-bonus-number');
   }
 
   get lottoMatchResultForm() {
@@ -35,7 +32,7 @@ export default class LottoWinningNumberInputView {
       Number(element.value)
     );
 
-    const lottoWinningBonusNumber = Number(this.#lottoWinningBonusNumber.value);
+    const lottoWinningBonusNumber = Number(lottoWinningNumbers.pop());
 
     emit(this.#lottoMatchResultForm, '@matchResult', {
       lottoWinningNumbers,
@@ -43,15 +40,19 @@ export default class LottoWinningNumberInputView {
     });
   }
 
-  // #handleBlockNotNumberInput(event) {
-  //   const conditions = ['Key', 'Space'];
-
-  //   if (conditions.some((ele) => event.code.includes(ele))) {
-  //     event.preventDefault();
-  //   }
-  // }
-
   render() {
     this.#lottoPurchaseResult.insertAdjacentHTML('afterend', lottoWinningNumberInputTemplate());
   }
+
+  reset() {
+    this.#lottoMatchResultForm.reset();
+  }
 }
+
+// #handleBlockNotNumberInput(event) {
+//   const conditions = ['Key', 'Space'];
+
+//   if (conditions.some((ele) => event.code.includes(ele))) {
+//     event.preventDefault();
+//   }
+// }

@@ -13,9 +13,7 @@ export default class LottoCreator {
   }
 
   createLottoList(lottoCount) {
-    this.#lottoList = Array.from({ length: lottoCount }).map(() =>
-      LottoCreator.generateLotto()
-    );
+    this.#lottoList = Array.from({ length: lottoCount }).map(() => LottoCreator.generateLotto());
   }
 
   static generateLotto() {
@@ -25,13 +23,10 @@ export default class LottoCreator {
       lottoNum.add(LottoCreator.generateRandomNum());
     }
 
-    return lottoNum;
+    return Array.from(lottoNum);
   }
 
   static generateRandomNum() {
-    return (
-      Math.floor(Math.random() * (LOTTO.MAX_DIGIT - LOTTO.MIN_DIGIT + 1)) +
-      LOTTO.MIN_DIGIT
-    );
+    return Math.floor(Math.random() * (LOTTO.MAX_DIGIT - LOTTO.MIN_DIGIT + 1)) + LOTTO.MIN_DIGIT;
   }
 }

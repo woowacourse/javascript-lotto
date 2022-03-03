@@ -10,6 +10,22 @@ export const isPositiveValue = (value) => {
   return value > 0;
 };
 
+export const isNotDuplicateNumberExistInArray = (valueArray) => {
+  return new Set(valueArray).size === valueArray.length;
+};
+
+export const isNumberInRange = (value, min, max) => {
+  return min <= value && value <= max;
+};
+
+export const isAllNumberInRange = (valueArray, min, max) => {
+  return valueArray.every((value) => isNumberInRange(value, min, max));
+};
+
+export const isNotIncludeSameNumber = (valueArray, target) => {
+  return !valueArray.includes(target);
+};
+
 export const isValidPurchaseMoney = (purchaseMoney) => {
   return (
     isDividedByThousand(purchaseMoney) &&
@@ -18,18 +34,15 @@ export const isValidPurchaseMoney = (purchaseMoney) => {
   );
 };
 
-export const isNotDuplicateNumberExistInArray = (valueArray) => {
-  return new Set(valueArray).size === valueArray.length;
-};
+export const isValidLottoWinningNumbers = (lottoWinningNumbers, min, max) =>
+  isNotDuplicateNumberExistInArray(lottoWinningNumbers) &&
+  isAllNumberInRange(lottoWinningNumbers, min, max);
 
-export const isAllNumberInRange = (valueArray, min, max) => {
-  return valueArray.every((value) => min <= value && value <= max);
-};
-
-export const isNumberInRange = (value, min, max) => {
-  return min <= value && value <= max;
-};
-
-export const isNotIncludeSameNumber = (valueArray, target) => {
-  return !valueArray.includes(target);
-};
+export const isValidLottoWinningBonusNumber = (
+  lottoWinningNumbers,
+  lottoWinningBonusNumber,
+  min,
+  max
+) =>
+  isNumberInRange(lottoWinningBonusNumber, min, max) &&
+  isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber);

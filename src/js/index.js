@@ -1,12 +1,19 @@
 import LottoController from './lottoController.js';
+
 import LottoCreator from './model/lottoCreator.js';
+import LottoResultManager from './model/lottoResultManager.js';
+
 import LottoPurchaseInputView from './views/lottoPurchaseInputView.js';
 import LottoPurchaseResultView from './views/lottoPurchaseResultView.js';
 import LottoWinningNumberInputView from './views/lottoWinningNumberInputView.js';
 import '../css/index.css';
 
+// eslint-disable-next-line max-lines-per-function
 const startLotto = () => {
-  const lottoModel = new LottoCreator();
+  const models = {
+    lottoCreator: new LottoCreator(),
+    lottoResultManager: new LottoResultManager(),
+  };
 
   const views = {
     lottoPurchaseInputView: new LottoPurchaseInputView(),
@@ -14,7 +21,7 @@ const startLotto = () => {
     lottoWinningNumberInputView: new LottoWinningNumberInputView(),
   };
 
-  const lottoController = new LottoController(lottoModel, views);
+  const lottoController = new LottoController(models, views);
 
   lottoController.init();
 };

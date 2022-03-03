@@ -1,9 +1,15 @@
 import { on } from './utils/helper.js';
-import { isValidPurchaseMoney } from './utils/validator.js';
+import {
+  isValidPurchaseMoney,
+  isValidLottoWinningNumbers,
+  isValidLottoWinningBonusNumber,
+} from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
 
 export default class LottoController {
   #lottoCreator;
+
+  #lottoResultManager;
 
   #lottoPurchaseInputView;
 
@@ -11,8 +17,9 @@ export default class LottoController {
 
   #lottoWinningNumberInputView;
 
-  constructor(lottoCreator, views) {
-    this.#lottoCreator = lottoCreator;
+  constructor(models, views) {
+    this.#lottoCreator = models.lottoCreator;
+    this.#lottoResultManager = models.lottoResultManager;
 
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
@@ -52,37 +59,57 @@ export default class LottoController {
   #submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
 
-    if (!isValidPurchaseMoney(purchaseMoney)) {
-      alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
-      this.#lottoPurchaseInputView.resetPurchaseMoney();
+    if (isValidPurchaseMoney(purchaseMoney)) {
+      this.#lottoPurchaseInputView.disablePurchaseLottoForm();
+
+      // 로또 자동 번호 생성 및 렌더링
+      this.#lottoCreator.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
+      this.#lottoPurchaseResultView.render(
+        purchaseMoney / LOTTO.COST_UNIT,
+        this.#lottoCreator.lottoList
+      );
+
+      // 당첨 번호 입력 렌더링
+      this.#lottoWinningNumberInputView.render();
+      this.#lottoWinningNumberInputView.selectDOM();
+      this.#lottoWinningNumberInputView.attachEvents();
+      this.#submitLottoWinningNumberInputView();
 
       return;
     }
 
-    this.#lottoPurchaseInputView.disablePurchaseLottoForm();
-
-    // 로또 자동 번호 생성 및 렌더링
-    this.#lottoCreator.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
-    this.#lottoPurchaseResultView.render(
-      purchaseMoney / LOTTO.COST_UNIT,
-      this.#lottoCreator.lottoList
-    );
-
-    // 당첨 번호 입력 렌더링
-    this.#lottoWinningNumberInputView.render();
-    this.#lottoWinningNumberInputView.selectDOM();
-    this.#lottoWinningNumberInputView.attachEvents();
-    this.#submitLottoWinningNumberInputView();
+    alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
+    this.#lottoPurchaseInputView.resetPurchaseMoney();
   }
 
+  // eslint-disable-next-line max-lines-per-function
   #submitMatchResult(event) {
     const { lottoWinningNumbers, lottoWinningBonusNumber } = event.detail;
 
-    console.log(lottoWinningNumbers, lottoWinningBonusNumber);
-  }
+    if (
+      isValidLottoWinningNumbers(lottoWinningNumbers, LOTTO.MIN_DIGIT, LOTTO.MAX_DIGIT) &&
+      isValidLottoWinningBonusNumber(
+        lottoWinningNumbers,
+        lottoWinningBonusNumber,
+        LOTTO.MIN_DIGIT,
+        LOTTO.MAX_DIGIT
+      )
+    ) {
+      this.#lottoResultManager.createLottoMatchingResult(
+        lottoWinningNumbers,
+        lottoWinningBonusNumber,
+        this.#lottoCreator.lottoList
+      );
+      console.log(this.#lottoResultManager.lottoMatchingResult);
+      return;
+    }
+    alert(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_WINNING_NUMBERS);
 
-  // #submitBlockNotNumberInput(event) {
-  //   event.preventDefault();
-  //   console.log(event.detail);
-  // }
+    this.#lottoWinningNumberInputView.reset();
+  }
 }
+
+// #submitBlockNotNumberInput(event) {
+//   event.preventDefault();
+//   console.log(event.detail);
+// }
