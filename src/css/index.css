@@ -28,6 +28,14 @@ label {
   color: rgba(0, 0, 0, 0.87);
 }
 
+legend {
+  display: block;
+  margin-bottom: 4px;
+  line-height: 24px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+}
+
 input {
   height: 36px;
 
@@ -234,7 +242,7 @@ input:checked + .slider:before {
   flex-direction: column;
 }
 
-#winning-number-fieldset {
+#winning-number-form {
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
@@ -247,14 +255,16 @@ input:checked + .slider:before {
 
 .winning-number-input {
   width: 34px;
+  text-align: center;
 }
 
-#winning-number-form {
-  display: flex;
-  flex-direction: column;
+.winning-number-input::-webkit-outer-spin-button,
+.winning-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-#bonus-number-form {
+#bonus-number-fieldset {
   display: flex;
   flex-direction: column;
   align-items: flex-end;

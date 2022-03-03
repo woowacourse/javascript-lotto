@@ -15,12 +15,14 @@ export const DOM_STRING = {
   TICKET: 'ticket',
   TICKET_NUMBERS: 'ticket-numbers',
   SHOW_NUMBER_TOGGLE_AREA: 'show-number-toggle-area',
-  WINNING_NUMBER_FIELDSET: 'winning-number-fieldset',
   WINNING_NUMBER_FORM: 'winning-number-form',
-  WINNING_NUMBER_INPUT_WRAP: 'winning-number-input-wrap',
+  MAIN_NUMBER_FIELDSET: 'winning-number-fieldset',
+  MAIN_NUMBER_INPUT_WRAP: 'winning-number-input-wrap',
   WINNING_NUMBER_INPUT: 'winning-number-input',
+  MAIN_NUMBER_INPUT: 'main-number-input',
+  BONUS_NUMBER_FIELDSET: 'bonus-number-fieldset',
+  BONUS_NUMBER_INPUT: 'bonus-number-input',
   SHOW_RESULT_BUTTON: 'show-result-button',
-  BONUS_NUMBER_FORM: 'bonus-number-form',
 };
 
 export const LOTTO = {
