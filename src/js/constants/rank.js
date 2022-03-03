@@ -7,23 +7,11 @@ export const RANK_KEYS = {
   UNRANK: '꽝',
 };
 
-export const RANK = {
-  '6true': RANK_KEYS.FIRST,
-  '6false': RANK_KEYS.FIRST,
-  '5true': RANK_KEYS.SECOND,
-  '5false': RANK_KEYS.THIRD,
-  '4true': RANK_KEYS.FORTH,
-  '4false': RANK_KEYS.FORTH,
-  '3true': RANK_KEYS.FIFTH,
-  '3false': RANK_KEYS.FIFTH,
-  UNRANK: RANK_KEYS.UNRANK,
-};
-
-export const RANK_PRICE = {
-  [`${RANK_KEYS.UNRANK}`]: 0,
-  [`${RANK_KEYS.FIFTH}`]: 5000,
-  [`${RANK_KEYS.FORTH}`]: 50000,
-  [`${RANK_KEYS.THIRD}`]: 1500000,
-  [`${RANK_KEYS.SECOND}`]: 30000000,
-  [`${RANK_KEYS.FIRST}`]: 2000000000,
+export const RANK_PRIZE = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FORTH: 50000,
+  FIFTH: 5000,
+  UNRANK: 0,
 };

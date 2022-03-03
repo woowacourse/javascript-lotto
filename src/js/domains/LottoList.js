@@ -1,6 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import { NUMBER } from '../constants/number';
-import { RANK_KEYS, RANK_PRICE } from '../constants/rank';
+import { RANK_KEYS } from '../constants/rank';
+import { computeRankPrize } from '../utils/rank';
 import { isValidCharge, isValidWinningNumber } from '../utils/validator';
 import Lotto from './Lotto';
 
@@ -51,7 +52,7 @@ class LottoList {
 
     const profitAmount = Object.keys(statistics).reduce((prev, currentKey) => {
       const count = statistics[currentKey];
-      const price = RANK_PRICE[currentKey];
+      const price = computeRankPrize(currentKey);
 
       return prev + count * price;
     }, 0);

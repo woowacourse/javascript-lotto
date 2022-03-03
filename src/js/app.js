@@ -105,10 +105,12 @@ class LottoGameManager {
 
     const { value, maxLength } = inputElement;
 
+    /** 인풋 글자 수 제한. */
     if (value.length > maxLength) {
-      /** 인풋 글자 수 제한. */
       inputElement.value = value.slice(0, maxLength);
-      /** 다음 자식으로 포커스 넘어감 */
+    }
+    /** 다음 자식으로 포커스 넘어감 */
+    if (value.length === maxLength) {
       inputElement.nextElementSibling?.focus();
     }
   };

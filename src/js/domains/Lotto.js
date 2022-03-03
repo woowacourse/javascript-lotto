@@ -1,6 +1,6 @@
 import { NUMBER } from '../constants/number';
-import { RANK } from '../constants/rank';
 import { shuffle } from '../utils/gameUtil';
+import { computeRank } from '../utils/rank';
 
 class Lotto {
   #lottoNumbers = null;
@@ -24,7 +24,8 @@ class Lotto {
       winningNumbers.includes(number)
     );
     const isMatchBonus = this.#lottoNumbers.includes(bonusNumber);
-    return RANK[`${numberMatchCount}${isMatchBonus}`] ?? RANK.UNRANK;
+
+    return computeRank(numberMatchCount, isMatchBonus);
   }
 }
 
