@@ -32,6 +32,14 @@ describe('로또 금액 입력 테스트', () => {
       lottoModel.calculateLottoCount(incorrectPrice);
     }).toThrowError(ALERT_MESSAGE.MUST_NUMBER);
   });
+
+  it('로또 금액이 100000만원을 초과할 시, 에러를 반환한다', () => {
+    const lottoModel = new LottoModel();
+    const incorrectPrice = 101000;
+    expect(() => {
+      lottoModel.calculateLottoCount(incorrectPrice);
+    }).toThrowError(ALERT_MESSAGE.IS_OVER_MAX_LOTTO_COUNT);
+  });
 });
 
 describe('로또 번호 테스트', () => {

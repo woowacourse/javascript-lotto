@@ -6,6 +6,8 @@ const validator = Object.freeze({
   isOverThousand: (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE,
 
   isNumber: (value) => Number.isInteger(value),
+
+  isOverMaxLottoCount: (value) => value > LOTTO_NUMBERS.CAN_BUY_MAX_PRICE,
 });
 
 const checkValidLottoCount = (value) => {
@@ -17,6 +19,9 @@ const checkValidLottoCount = (value) => {
   }
   if (!validator.isDividedThousand(value)) {
     throw Error(ALERT_MESSAGE.DIVIDED_BY_THOUSAND);
+  }
+  if (validator.isOverMaxLottoCount(value)) {
+    throw Error(ALERT_MESSAGE.IS_OVER_MAX_LOTTO_COUNT);
   }
 };
 

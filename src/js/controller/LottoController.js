@@ -52,7 +52,7 @@ export default class LottoController {
       this.initAfterRenderResult();
       this.inputView.renderWinningNumbersInput();
     } catch (err) {
-      alert(err);
+      alert(err.message);
     }
   }
 
