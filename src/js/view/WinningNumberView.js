@@ -25,15 +25,23 @@ export class WinningNumberView {
   showLottoResult(winningLottoQuantity, profitRatio) {
     this.$resultModalBackground.classList.add(CLASS_SELECTOR.OPEN);
 
-    let template = '';
-    for (let key in WINNING_PRIZE) {
-      template += `
+    this.$resultModalGridContainer.insertAdjacentHTML(
+      'beforeend',
+      resultGridTemplate(winningLottoQuantity),
+    );
+
+    this.$resultModalProfitRatio.textContent = profitRatio.toLocaleString();
+  }
+}
+
+function resultGridTemplate(winningLottoQuantity) {
+  return Object.keys(WINNING_PRIZE)
+    .map(
+      key => `
         <div class="result-modal-grid-item">${key}</div>
         <div class="result-modal-grid-item">${WINNING_PRIZE[key].toLocaleString()}</div>
         <div class="result-modal-grid-item">${winningLottoQuantity[key]}개</div>
-      `;
-    }
-    this.$resultModalGridContainer.insertAdjacentHTML('beforeend', template);
-    this.$resultModalProfitRatio.textContent = profitRatio.toLocaleString();
-  }
+      `,
+    )
+    .join('');
 }
