@@ -1287,7 +1287,7 @@ var LottosViewImpl = /*#__PURE__*/function (_LottosView) {
     value: function resetView() {
       this.$lottoContainer.querySelector('.lottos.default').innerHTML = '';
       this.$lottoContainer.querySelector('.lottos.detail').innerHTML = '';
-      this.$lottoCount.innerText = '';
+      this.$lottoCount.innerText = 0;
     }
   }, {
     key: "focusInput",
