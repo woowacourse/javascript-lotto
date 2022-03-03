@@ -1,5 +1,5 @@
 import EVENT from '../constants/event';
-import ID from '../constants/selector';
+import ID from '../constants/dom';
 import { insertComma } from '../utils/autoComma';
 import { emit } from '../utils/event';
 import { $ } from '../utils/selector';

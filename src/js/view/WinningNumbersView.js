@@ -1,5 +1,5 @@
 import EVENT from '../constants/event';
-import ID from '../constants/selector';
+import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
 

@@ -1,5 +1,5 @@
 import EVENT from '../constants/event.js';
-import ID from '../constants/selector.js';
+import ID from '../constants/dom.js';
 import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
 
