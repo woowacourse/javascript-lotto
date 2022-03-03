@@ -28,7 +28,7 @@ const MODAL_TEMPLATE = `
     <div id="dim"></div>
 
     <div id="modal-container">
-      <button id="exit">X</button>
+      <button id="exit-button">X</button>
       <div id="modal-content">
         <h2>🏆 당첨 통계 🏆</h2>
 
@@ -76,7 +76,7 @@ const MODAL_TEMPLATE = `
 
         <p id="earning-text">당신의 총 수익률은 <span id="earning-rate">100</span>%입니다</p>
         <div id="modal-footer">
-          <button id="restart-lotto">다시 시작하기</button>
+          <button id="restart-lotto-button">다시 시작하기</button>
         </div>
       </div> 
 
@@ -162,6 +162,24 @@ export default class WinningNumberView {
     }
 
     this.container.insertAdjacentHTML('beforeend', MODAL_TEMPLATE);
+
+    const exitBtn = this.container.querySelector('#exit-button');
+    const restartBtn = this.container.querySelector('#restart-lotto-button');
+
+    exitBtn.addEventListener('click', this.onExit.bind(this));
+    restartBtn.addEventListener('click', this.onRestart.bind(this));
+  }
+
+  onExit(e) {
+    e.preventDefault();
+    const modal = this.container.querySelector('#modal');
+    modal.remove();
+    console.log('exit click');
+  }
+
+  onRestart(e) {
+    e.preventDefault();
+    console.log('restart click');
   }
 
   reset() {

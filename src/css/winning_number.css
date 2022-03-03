@@ -88,7 +88,7 @@
   border-radius: 4px;
 }
 
-#exit {
+#exit-button {
   position: relative;
   left: 300px;
   width: 20px;
@@ -142,7 +142,7 @@ td {
   margin-top: 20px;
 }
 
-#restart-lotto {
+#restart-lotto-button {
   width: 152px;
   height: 36px;
   background: #00bcd4;
