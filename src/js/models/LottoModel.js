@@ -89,4 +89,8 @@ export default class LottoModel {
         return 0;
     }
   }
+
+  getEarningRate(winnings, amount) {
+    return (winnings / amount) * 100;
+  }
 }
