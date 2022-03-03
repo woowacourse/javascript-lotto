@@ -1,21 +1,70 @@
-import { $, $$ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+import { $, $$ } from '../utils/element-manager';
+import { isNumber } from '../utils/validator';
+import { onInputAutoFocus, onEnableButton } from '../utils/custom-event';
 
 export default class WinningNumberInputView {
   #container;
-  #winningNumberInput;
+  #winningNumberInputList;
+  #winningNumberSubmitButton;
 
   constructor(containerSelector) {
     this.#container = $(containerSelector);
-    this.#winningNumberInput = $$(this.#container, SELECTOR.CLASS.LOTTO_WINNING_NUMBER);
+
+    this.#defaultElements();
+    this.#bindViewEvents();
+  }
+
+  #defaultElements() {
+    this.#winningNumberInputList = $$(this.#container, `.${SELECTOR.CLASS.LOTTO_WINNING_NUMBER}`);
+    this.#winningNumberSubmitButton = $(
+      this.#container,
+      `#${SELECTOR.ID.LOTTO_SHOW_RESULT_BUTTON}`
+    );
+  }
+
+  #bindViewEvents() {
+    this.#container.addEventListener('keyup', this.#handleWinningNumberInputValue.bind(this));
   }
 
   init() {
-    this.#winningNumberInput.forEach((element) => {
+    this.#winningNumberInputList.forEach((element) => {
       element.value = '';
     });
 
     this.hideContainer();
+    this.disableSubmitButton();
+  }
+
+  #isWinningNumberInput($input) {
+    const hasLottoWinningNumberClass =
+      $input && $input.classList.contains(SELECTOR.CLASS.LOTTO_WINNING_NUMBER);
+
+    return hasLottoWinningNumberClass === true;
+  }
+
+  #isWinningNumberComplete($input) {
+    const inputValue = $input.value;
+    return inputValue.length === 2 && isNumber(inputValue);
+  }
+
+  #isWinningNumberListEnter() {
+    return [...this.#winningNumberInputList].every(($element) => $element.value);
+  }
+
+  #handleWinningNumberInputValue(event) {
+    if (this.#isWinningNumberInput(event.target) === false) {
+      return;
+    }
+
+    const $currentTarget = event.target;
+    const $nextTarget = event.target.nextElementSibling;
+
+    onInputAutoFocus($currentTarget, $nextTarget, ($current) =>
+      this.#isWinningNumberComplete($current)
+    );
+
+    onEnableButton(this.#winningNumberSubmitButton, () => this.#isWinningNumberListEnter());
   }
 
   showContainer() {
