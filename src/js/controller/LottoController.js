@@ -28,10 +28,6 @@ export default class LottoController {
     this.resultButton.addEventListener("click", this.#onClickResult.bind(this));
   }
 
-  #handleLottoNumber(lottoCount) {
-    this.lottoGameView.showGameResult(lottoCount);
-  }
-
   #onSubmitPurchase(e) {
     e.preventDefault();
 
@@ -41,7 +37,7 @@ export default class LottoController {
 
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
       this.lottoGameModel.generateLottoTickets(lottoCount);
-      this.#handleLottoNumber(lottoCount);
+      this.lottoGameView.showGameView(lottoCount);
     } catch ({ message }) {
       alert(message);
     }

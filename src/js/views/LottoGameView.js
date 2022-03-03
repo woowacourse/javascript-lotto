@@ -19,7 +19,7 @@ export default class LottoGameView {
     this.#hideWinningInput();
   }
 
-  showGameResult(lottoCount) {
+  showGameView(lottoCount) {
     this.#disablePurchaseForm();
     this.#enableSwitch();
     this.#renderPurchaseInfomation(lottoCount);
