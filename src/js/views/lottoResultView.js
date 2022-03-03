@@ -17,6 +17,8 @@ export default class LottoResultView {
 
   #sixMatchedNumber;
 
+  #profitRate;
+
   constructor() {
     this.#app = $('#app');
 
@@ -28,9 +30,10 @@ export default class LottoResultView {
     this.#fiveMatchedNumber = $('#five-matched-number');
     this.#fiveWithBonusMatchedNumber = $('#five-with-bonus-matched-number');
     this.#sixMatchedNumber = $('#six-matched-number');
+    this.#profitRate = $('#profit-rate');
   }
 
-  render(lottoMatchingResult) {
+  render(lottoMatchingResult, profit) {
     this.#lottoResultDialog.showModal();
 
     this.#threeMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.THREE];
@@ -39,5 +42,6 @@ export default class LottoResultView {
     this.#fiveWithBonusMatchedNumber.textContent =
       lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS];
     this.#sixMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.SIX];
+    this.#profitRate.textContent = profit;
   }
 }

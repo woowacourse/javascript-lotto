@@ -103,8 +103,12 @@ export default class LottoController {
         lottoWinningBonusNumber,
         this.#lottoCreator.lottoList
       );
+      const profit = this.#lottoResultManager.calcProfit(
+        this.#lottoCreator.purchaseMoney,
+        lottoMatchResult
+      );
 
-      this.#lottoResultView.render(lottoMatchResult);
+      this.#lottoResultView.render(lottoMatchResult, profit);
 
       return;
     }

@@ -82,7 +82,7 @@ export const lottoResultModalTemplate = () => {
             </tr>
           </tbody>
         </table>
-        <p>당신의 총 수익률을 <span id="profit-rate"></spane>%입니다</p>
+        <p>당신의 총 수익률은 <span id="profit-rate"></span>%입니다</p>
         <button id="restart-button">다시 시작하기</button>
       </form>
     </dialog>
