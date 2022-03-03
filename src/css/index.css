@@ -24,7 +24,13 @@ button {
   border-radius: 4px;
   color: var(--button-font-color);
 }
-
+button:hover {
+  cursor: pointer;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+}
 #app {
   position: relative;
   display: flex;
@@ -67,6 +73,7 @@ button {
 }
 .lotto-price-submit-button:disabled {
   background-color: var(--button-disabled-color);
+  cursor: not-allowed;
 }
 
 /*purchased-lotto-list*/
@@ -179,6 +186,9 @@ button {
   box-sizing: border-box;
   border-radius: 4px;
 }
+.last-lotto-winning-number-input:disabled {
+  cursor: not-allowed;
+}
 
 .last-lotto-winning-number-main {
   display: flex;
@@ -212,7 +222,6 @@ button {
 }
 /*winning-rate-content*/
 .winning-rate-content-container {
-  /* display: none; */
   position: absolute;
   top: 114px;
   left: 50px;
