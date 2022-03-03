@@ -19,6 +19,13 @@ export const LOTTO = {
   PRICE: 1000,
 };
 
+export const MATCH_COUNT = {
+  FIRST: 6,
+  THIRD: 5,
+  FOURTH: 4,
+  FIFTH: 3,
+};
+
 export const PRIZE_MONEY = {
   FIRST: 2000000000,
   SECOND: 30000000,

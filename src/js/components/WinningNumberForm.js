@@ -67,6 +67,7 @@ class WinningNumberForm extends Component {
     }
 
     window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, true));
+    window.store.dispatch(createAction(ACTION.UPDATE_RESULT, winningNumber));
   }
 }
 
