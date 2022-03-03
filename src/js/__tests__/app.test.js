@@ -116,6 +116,55 @@ describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않
   });
 });
 
+const calculateHitCount = (lotto, winningNumbers) => {
+  return lotto.reduce((hitCount, lottoNumber) => {
+    if (winningNumbers.includes(lottoNumber)) {
+      return hitCount + 1;
+    }
+
+    return hitCount;
+  }, 0);
+};
+
+const convertHitCountToRank = (hitCount, isHitBonusNumber) => {
+  if (hitCount === 3) {
+    return 5;
+  }
+
+  if (hitCount === 4) {
+    return 4;
+  }
+
+  if (hitCount === 5) {
+    if (isHitBonusNumber) {
+      return 2;
+    }
+
+    return 3;
+  }
+
+  return 1;
+};
+
+const checkHitBonusNumber = (lotto, bonusNumber) => lotto.includes(bonusNumber);
+
+const calculateWinningCounts = (lottos, winningNumbers, bonumsNumber) => {
+  const winningCounts = new Array(5).fill(0);
+
+  lottos.forEach((lotto) => {
+    const hitCount = calculateHitCount(lotto, winningNumbers);
+    const isHitBonusNumber = checkHitBonusNumber(lotto, bonumsNumber);
+
+    if (hitCount >= 3) {
+      const rank = convertHitCountToRank(hitCount, isHitBonusNumber);
+
+      winningCounts[rank - 1] += 1;
+    }
+  });
+
+  return winningCounts.reverse();
+};
+
 describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호를 이용해서 당첨 결과를 확인할 수 있어야 한다.', () => {
   const lottos = [
     [7, 15, 30, 37, 39, 44],
@@ -126,6 +175,6 @@ describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호�
   const winningNumbers = [7, 15, 30, 37, 39, 44];
   const bonusNumber = 18;
   test('구매한 로또 중 당첨된 로또를 개수를 등수 별로 계산할 수 있어야 한다.', () => {
-    expect(calculateWinningCounts(lottos, winningNumbers, bonusNumber)).tobe([0, 1, 1, 1, 1]);
+    expect(calculateWinningCounts(lottos, winningNumbers, bonusNumber)).toEqual([0, 1, 1, 1, 1]);
   });
 });
