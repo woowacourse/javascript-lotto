@@ -1,6 +1,6 @@
 import { NUMBER } from '../constants/number';
 import { RANK } from '../constants/rank';
-import { lottoNumberClosure } from '../utils/gameUtil';
+import { shuffle } from '../utils/gameUtil';
 
 class Lotto {
   constructor() {
@@ -12,8 +12,8 @@ class Lotto {
   }
 
   createLottoNumbers() {
-    const getLottoNumber = lottoNumberClosure();
-    return [...new Array(NUMBER.LOTTO_NUMBER_LENGTH)].map(() => getLottoNumber());
+    const lottoNumbers = shuffle([...new Array(NUMBER.LOTTO_MAX_NUMBER)].map((_, idx) => idx + 1));
+    return lottoNumbers.slice(0, NUMBER.LOTTO_NUMBER_LENGTH);
   }
 
   computeWinResult(winningNumbers, bonusNumber) {
