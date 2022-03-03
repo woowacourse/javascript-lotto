@@ -17,8 +17,8 @@ export default class WinningNumberView {
       event.preventDefault();
       const winningNumbers = Array.from(
         $$(this.#$container, `.${SELECTOR.CLASS.WINNING_NUMBER_INPUT}`)
-      ).map((element) => element.value);
-      const bonusNumber = $(this.#$container, '.bonus-number-input').value;
+      ).map((element) => Number(element.value));
+      const bonusNumber = Number($(this.#$container, '.bonus-number-input').value);
       handler({ winningNumbers, bonusNumber });
     });
   }

@@ -1,6 +1,7 @@
 import MoneyInputView from '../views/MoneyInputView';
 import LottoListView from '../views/LottoListView';
 import LottosModel from '../models/LottosModel';
+import WinningLottoCounter from '../models/WinningLottoCounter';
 
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
@@ -14,6 +15,7 @@ export default class LottoController {
   #WinningNumberInputView = new WinningNumberInputView(
     $(`.${SELECTOR.CLASS.WINNING_NUMBER_SECTION}`)
   );
+  #WinningLottoCounter = new WinningLottoCounter();
 
   constructor() {
     this.bindEvents();
@@ -24,6 +26,15 @@ export default class LottoController {
     this.#WinningNumberInputView.bindWinningNumberInputSubmit(
       this.handleWinningNumberSubmit.bind(this)
     );
+    document.querySelector('#app').addEventListener('click', (e) => {
+      if (
+        e.target.classList.contains('close-modal-button') ||
+        e.target.classList.contains('reset-button') ||
+        e.target.classList.contains('modal')
+      ) {
+        document.querySelector('.modal').style.display = 'none';
+      }
+    });
   }
 
   handleMoneyInputSubmit({ money }) {
@@ -41,6 +52,12 @@ export default class LottoController {
   handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
     try {
       checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
+      document.querySelector('.modal').style.display = 'block';
+      this.#WinningLottoCounter.setWinningLotto({ winningNumbers, bonusNumber });
+      this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottos);
+      Object.values(this.#WinningLottoCounter.winningCounts).forEach((count, index) => {
+        document.getElementById(`winning-count-${index + 1}th`).textContent = `${count} 개`;
+      });
     } catch (error) {
       alert(error);
     }
