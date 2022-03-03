@@ -10,7 +10,7 @@ export default class Lotto {
   setLottoNumbers = () => {
     while (this.numbers.length === 0) {
       const numberList = this.makeRandomNumberList();
-      if (this.isNotOverlapLottoNumber(numberList)) {
+      if (this.isUniqueLottoNumber(numberList)) {
         this.numbers = numberList;
       }
     }
@@ -26,7 +26,7 @@ export default class Lotto {
     return randomNumberList;
   };
 
-  isNotOverlapLottoNumber = lottoNumbers => {
+  isUniqueLottoNumber = lottoNumbers => {
     return lottoNumbers.length === new Set(lottoNumbers).size;
   };
 }

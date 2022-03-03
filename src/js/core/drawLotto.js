@@ -15,6 +15,6 @@ export const drawLotto = lottoPrice => {
   return lottoList;
 };
 
-const getNumberOfLotto = value => {
+export const getNumberOfLotto = value => {
   return value / LOTTO_PRICE;
 };
