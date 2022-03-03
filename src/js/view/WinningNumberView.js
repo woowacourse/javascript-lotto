@@ -98,21 +98,29 @@ export default class WinningNumberView {
   #render() {
   }
 
-  #addEvent() {
+  #addEvent(props) {
+    const { purchasedLottos } = props;
     const resultBtn = this.container.querySelector('#winning-number-form');
     const winningNumbers = this.container.querySelectorAll('.winning-number-input');
 
-    resultBtn.addEventListener('submit', this.onSubmitHandler.bind(this));
+    const resultEvent = new CustomEvent('submitResult', { detail: { purchasedLottos }, cancelable: true });
+
+    resultBtn.addEventListener('submitResult', this.onSubmitHandler.bind(this));
+    resultBtn.addEventListener('submit', (e) => {
+      e.preventDefault();
+      resultBtn.dispatchEvent(resultEvent);
+    });
+
     winningNumbers.forEach((ele, index) => {
       const event = new CustomEvent('keyupEvent', { detail: { index }, cancelable: true });
 
-      ele.addEventListener('keypress', this.keypressEvnet);
-      ele.addEventListener('keyupEvent', this.keyupEvnet.bind(this));
+      ele.addEventListener('keypress', this.onKeypressHandler);
+      ele.addEventListener('keyupEvent', this.onKeyupHandler.bind(this));
       ele.addEventListener('keyup', () => ele.dispatchEvent(event));
     });
   }
 
-  keypressEvnet(e) {
+  onKeypressHandler(e) {
     const { keyCode, target: { value } } = e;
 
     if (keyCode >= 48 && keyCode <= 57) {
@@ -120,7 +128,7 @@ export default class WinningNumberView {
     }
   }
 
-  keyupEvnet(e) {
+  onKeyupHandler(e) {
     const { target: { value }, detail: { index } } = e;
 
     if (value === '') return;
@@ -144,7 +152,7 @@ export default class WinningNumberView {
     console.log('rendering purchasedLottos', purchasedLottos);
     this.#paint();
     this.#render();
-    this.#addEvent();
+    this.#addEvent({ purchasedLottos });
   }
 
   reflow(purchasedLottos) {
@@ -155,12 +163,21 @@ export default class WinningNumberView {
 
   onSubmitHandler(e) {
     e.preventDefault();
+    const { detail: { purchasedLottos } } = e;
 
     if (new Set(this.winLottosNumbers).size !== 7) {
       window.alert('중복된 번호는 입력할 수 없습니다.');
       return;
     }
+    console.log('this.winLottosNumbers', this.winLottosNumbers, purchasedLottos);
+    const winNumbers = this.winLottosNumbers.slice(0, 6);
+    const bonusNumber = this.winLottosNumbers.slice(6);
+    console.log(winNumbers, bonusNumber);
 
+    this.bindModalEvent();
+  }
+
+  bindModalEvent() {
     this.container.insertAdjacentHTML('beforeend', MODAL_TEMPLATE);
 
     const exitBtn = this.container.querySelector('#exit-button');
