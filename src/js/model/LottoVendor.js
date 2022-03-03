@@ -35,10 +35,6 @@ export default class LottoVendor {
     return Math.floor(this.#paidMoney / LOTTO.PRICE_PER_TICKET);
   }
 
-  isLottoListEmpty() {
-    return this.#lottos.length === 0;
-  }
-
   static settleMoney(money) {
     return Math.floor(money / LOTTO.PRICE_PER_TICKET) * LOTTO.PRICE_PER_TICKET;
   }

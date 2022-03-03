@@ -23,12 +23,13 @@ export default class IssuedTicketView {
   }
 
   showTicketContainer() {
-    this.$ticketContainer.classList.replace('hidden', 'show');
+    this.$ticketContainer.classList.replace('hidden', 'grid');
   }
 
   hideTicketContainer() {
     this.$issuedTicketDiv.textContent = '';
-    this.$ticketContainer.classList.replace('show', 'hidden');
+    this.$issuedTicketDiv.classList.add('align-row');
+    this.$ticketContainer.classList.replace('grid', 'hidden');
   }
 
   renderTicketCount(count) {
@@ -40,17 +41,10 @@ export default class IssuedTicketView {
     this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
   }
 
-  showTicketDetails() {
-    this.$issuedTicketDiv.classList.remove('align-row');
+  toggleTicketDetails() {
+    this.$issuedTicketDiv.classList.toggle('align-row');
     $$('.ticket-numbers').forEach((ticketContainer) => {
-      ticketContainer.classList.remove('hidden');
-    });
-  }
-
-  hideTicketDetails() {
-    this.$issuedTicketDiv.classList.add('align-row');
-    $$('.ticket-numbers').forEach((ticketContainer) => {
-      ticketContainer.classList.add('hidden');
+      ticketContainer.classList.toggle('hidden');
     });
   }
 }

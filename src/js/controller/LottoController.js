@@ -44,6 +44,7 @@ export default class LottoController {
       this.issuedTicketView.renderIssuedTickets(issuedLottos);
       this.purchaseView.togglePurchasableLottoCountDisplay();
       this.purchaseView.deactivatePurchaseForm();
+      this.winningNumbersView.toggleWinningNumbersDisplay();
     } catch (error) {
       alert(error.message);
     }
@@ -51,23 +52,15 @@ export default class LottoController {
 
   #toggleDetails(checked) {
     if (checked) {
-      this.issuedTicketView.showTicketDetails();
+      this.issuedTicketView.toggleTicketDetails();
       return;
     }
 
-    this.issuedTicketView.hideTicketDetails();
-  }
-
-  #validateLottoList() {
-    // TODO: 제거
-    if (this.lottoVendor.isLottoListEmpty()) {
-      throw new Error(EXCEPTION.NOT_YET_PURCHASE);
-    }
+    this.issuedTicketView.toggleTicketDetails();
   }
 
   #requestResult(winningNumbers, bonusNumber) {
     try {
-      this.#validateLottoList(); // TODO: 제거
       this.lottoResult.bonusNumber = bonusNumber;
       this.lottoResult.winningNumbers = winningNumbers;
       const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
@@ -84,14 +77,15 @@ export default class LottoController {
   }
 
   #restart() {
-    this.resultModalView.toggleModalDisplay();
     this.lottoVendor = new LottoVendor();
     this.lottoResult = new LottoResult(this.lottoVendor);
-    this.issuedTicketView.hideTicketContainer();
-    this.winningNumbersView.removeInputValue();
     this.purchaseView.removeInputValue();
     this.purchaseView.activatePurchaseForm();
     this.purchaseView.togglePurchasableLottoCountDisplay();
+    this.issuedTicketView.hideTicketContainer();
+    this.resultModalView.toggleModalDisplay();
+    this.winningNumbersView.removeInputValue();
+    this.winningNumbersView.toggleWinningNumbersDisplay();
   }
 
   #keyupHandler(target) {
