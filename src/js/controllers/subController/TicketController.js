@@ -11,7 +11,7 @@ export default class TicketController {
   }
 
   renderTicketListView() {
-    const lottoList = this.lottoModel.getLottoList();
+    const { lottoList } = this.lottoModel.getState();
     this.ticketView.updateTicketListView(lottoList);
   }
 

@@ -31,6 +31,11 @@ export default class WinningNumberView {
     return { winningNumbers, bonusNumber };
   }
 
+  clearInputs() {
+    this.$$winningNumberInput.forEach((input) => (input.value = ''));
+    this.$bonusNumberInput.value = '';
+  }
+
   bindOnClickShowResultButton(callback) {
     this.$showResultButton.addEventListener('click', (event) => {
       event.preventDefault();

@@ -8,9 +8,8 @@ import WinningNumberController from '../controllers/subController/WinningNumberC
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
     const lottoModel = new LottoModel();
-    lottoModel.init();
     const purchaseAmount = 2000;
-    lottoModel.setAmount(purchaseAmount);
+    lottoModel.setState({ amount: purchaseAmount });
 
     expect(lottoModel.getCountOfLotto()).toBe(2);
   });
@@ -61,13 +60,13 @@ describe('LottoModel은', () => {
   const lottoModel = new LottoModel();
 
   test('6개의 로또번호를 가진 로또를 생성할 수 있어야 한다.', () => {
-    const lotto = LottoModel.issueLotto();
+    const lotto = lottoModel.issueLotto();
 
     expect(validator.checkLottoNumberList(lotto.numbers)).toBe(true);
   });
 
   test('6개의 로또번호에 중복이 없어야 한다.', () => {
-    const lotto = LottoModel.issueLotto();
+    const lotto = lottoModel.issueLotto();
 
     expect(validator.checkLottoNumberList(lotto.numbers)).toBe(true);
   });
@@ -158,10 +157,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
 
   test('당첨된 로또의 개수별 통계를 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
-    lottoModel.init();
     const coincideCountList = [1, 3, 4, 5, 5.5, 6];
-
-    lottoModel.setWinningStatistic(coincideCountList);
     const answerStatistic = {
       under: 1,
       three: 1,
@@ -170,15 +166,18 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
       fiveBonus: 1,
       six: 1,
     };
-    expect(lottoModel.winningStatistic).toEqual(answerStatistic);
+
+    lottoModel.setWinningStatistic(coincideCountList);
+
+    expect(lottoModel.getState().winningStatistic).toEqual(answerStatistic);
   });
 
   test('총 당첨금을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
-    lottoModel.init();
     const coincideCountList = [1, 3, 4, 5, 5.5, 6];
 
     lottoModel.setWinningStatistic(coincideCountList);
+
     expect(lottoModel.getSumWinnings()).toBe(
       5000 + 50000 + 1500000 + 30000000 + 2000000000
     );
@@ -186,9 +185,11 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
 
   test('당첨금과 구입 금액으로 수익률을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
-    lottoModel.init();
-    lottoModel.setAmount(1000);
-    lottoModel.setWinningStatistic([1, 3, 4, 5, 5.5, 6]);
+    const amount = 1000;
+    const coincideCountList = [1, 3, 4, 5, 5.5, 6];
+
+    lottoModel.setState({ amount });
+    lottoModel.setWinningStatistic(coincideCountList);
 
     expect(lottoModel.getEarningRate()).toBe(
       ((5000 + 50000 + 1500000 + 30000000 + 2000000000) / 1000) * 100

@@ -2,61 +2,77 @@ import { LOTTO } from '../configs/contants.js';
 import Lotto from './Lotto/Lotto.js';
 
 export default class LottoModel {
-  static issueLotto() {
-    return new Lotto();
+  state;
+
+  constructor() {
+    this.initialState();
   }
 
-  init() {
-    this.amount = 0;
-    this.lottoList = [];
-    this.winningStatistic = {
-      under: 0,
-      three: 0,
-      four: 0,
-      five: 0,
-      fiveBonus: 0,
-      six: 0,
+  initialState() {
+    this.state = {
+      amount: 0,
+      lottoList: [],
+      winningStatistic: {
+        under: 0,
+        three: 0,
+        four: 0,
+        five: 0,
+        fiveBonus: 0,
+        six: 0,
+      },
     };
   }
 
-  setAmount(amount) {
-    this.amount = amount;
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+  }
+
+  getState() {
+    return this.state;
+  }
+
+  issueLotto() {
+    return new Lotto();
   }
 
   getCountOfLotto() {
-    return parseInt(this.amount / LOTTO.PRICE, 10);
-  }
-
-  getLottoList() {
-    return this.lottoList;
-  }
-
-  getWinningStatistic() {
-    return this.winningStatistic;
+    return parseInt(this.state.amount / LOTTO.PRICE, 10);
   }
 
   getEarningRate() {
     const winnings = this.getSumWinnings();
 
-    return (winnings / this.amount) * 100;
+    return (winnings / this.state.amount) * 100;
   }
 
   createLottoListWithAmount() {
     const count = this.getCountOfLotto();
-    this.lottoList = this.issueLottosWithCount(count);
+    this.state.lottoList = this.issueLottosWithCount(count);
   }
 
   issueLottosWithCount(count) {
     return Array(count)
       .fill()
-      .map(() => LottoModel.issueLotto());
+      .map(() => this.issueLotto());
   }
 
   setWinningStatistic(coincideCountList) {
     coincideCountList.forEach((count) => {
       const countString = this.translateToString(count);
-      this.winningStatistic[countString] += 1;
+      this.state.winningStatistic[countString] += 1;
     });
+  }
+
+  getSumWinnings() {
+    const statisticList = Object.entries(this.state.winningStatistic);
+    const initialValue = 0;
+
+    return statisticList.reduce((prev, curr) => {
+      const numberString = curr[0];
+      const count = curr[1];
+
+      return prev + this.translateToWinnings(numberString) * count;
+    }, initialValue);
   }
 
   translateToString(count) {
@@ -76,19 +92,7 @@ export default class LottoModel {
     }
   }
 
-  getSumWinnings() {
-    const statisticList = Object.entries(this.winningStatistic);
-    const initialValue = 0;
-
-    return statisticList.reduce((prev, curr) => {
-      const numberString = curr[0];
-      const count = curr[1];
-
-      return prev + this.getWinnings(numberString) * count;
-    }, initialValue);
-  }
-
-  getWinnings(numberString) {
+  translateToWinnings(numberString) {
     switch (numberString) {
       case 'three':
         return 5000;

@@ -21,6 +21,11 @@ export default class PaymentView {
     this.$paymentSubmit = $(SELECTOR.PAYMENT_SUBMIT);
   }
 
+  clearInput() {
+    this.$paymentInput.value = '';
+    this.$paymentInput.focus();
+  }
+
   bindOnClickPaymentSubmit(callback) {
     this.$paymentSubmit.addEventListener('click', (event) => {
       event.preventDefault();

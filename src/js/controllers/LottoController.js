@@ -10,7 +10,6 @@ export default class LottoController {
   }
 
   init() {
-    this.lottoModel.init();
     this.lottoView.init();
     this.setSubControllers();
   }
@@ -28,5 +27,12 @@ export default class LottoController {
 
   afterCalculateResult() {
     this.statisticController.renderView();
+  }
+
+  afterClickedResetButton() {
+    this.lottoModel.initialState();
+    this.paymentController.resetInput();
+    this.ticketController.renderTicketListView();
+    this.winningNumberController.resetInput();
   }
 }

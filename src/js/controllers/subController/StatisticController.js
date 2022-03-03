@@ -8,8 +8,8 @@ export default class StatisticController {
   }
 
   renderView() {
-    const winningStatistic = this.lottoModel.getWinningStatistic();
     const earningRate = this.lottoModel.getEarningRate();
+    const { winningStatistic } = this.lottoModel.getState();
     this.statisticView.mountTemplate(winningStatistic, earningRate);
     this.setEventHandler();
   }
@@ -22,5 +22,6 @@ export default class StatisticController {
 
   didClickResetButton() {
     this.statisticView.disappearView();
+    this.lottoController.afterClickedResetButton();
   }
 }

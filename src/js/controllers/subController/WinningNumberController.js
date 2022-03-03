@@ -56,9 +56,8 @@ export default class WinningNumberController {
   }
 
   calculateResult(winningNumbers, bonusNumber) {
-    const lottoNumbersList = this.lottoModel
-      .getLottoList()
-      .map((lotto) => lotto.numbers);
+    const { lottoList } = this.lottoModel.getState();
+    const lottoNumbersList = lottoList.map((lotto) => lotto.numbers);
     const coincideCountList = WinningNumberController.createCoincideCountList(
       lottoNumbersList,
       winningNumbers,
@@ -66,5 +65,9 @@ export default class WinningNumberController {
     );
     this.lottoModel.setWinningStatistic(coincideCountList);
     this.lottoController.afterCalculateResult();
+  }
+
+  resetInput() {
+    this.winningNumberView.clearInputs();
   }
 }

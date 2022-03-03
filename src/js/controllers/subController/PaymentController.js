@@ -27,8 +27,12 @@ export default class PaymentController {
   }
 
   purchaseLottos(amount) {
-    this.lottoModel.setAmount(amount);
+    this.lottoModel.setState({ amount });
     this.lottoModel.createLottoListWithAmount();
     this.lottoController.afterPurchaseLottos();
+  }
+
+  resetInput() {
+    this.paymentView.clearInput();
   }
 }
