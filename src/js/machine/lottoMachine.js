@@ -1,10 +1,10 @@
 import LottoPurchaseMachine from './lottoPurchaseMachine';
-import LottoWinnerMachine from './lottoWinnerMachine';
+import MatchCalculateMachine from './matchCalculateMachine';
 
 export default class LottoMachine {
   constructor() {
     this.purchaseMachine = new LottoPurchaseMachine();
-    this.winnerMachine = new LottoWinnerMachine();
+    this.calculateMachine = new MatchCalculateMachine();
     this.lottoArray = [];
   }
 
@@ -14,7 +14,7 @@ export default class LottoMachine {
   }
 
   getMatches(winnerNumbers) {
-    return this.winnerMachine.getMatches(this.lottoArray, winnerNumbers);
+    return this.calculateMachine.getMatches(this.lottoArray, winnerNumbers);
   }
 
   resetData() {

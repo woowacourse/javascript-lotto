@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE, LOTTO_RULES } from '../constants/constants';
 import { isNumberInRange } from '../utils/utils';
 
-class LottoWinnerMachine {
+class MatchCalculateMachine {
   getMatches(lottoArray, { numbers, bonus }) {
     this.#validateWinnerNumberInput({ numbers, bonus });
 
@@ -81,4 +81,4 @@ class LottoWinnerMachine {
   }
 }
 
-export default LottoWinnerMachine;
+export default MatchCalculateMachine;
