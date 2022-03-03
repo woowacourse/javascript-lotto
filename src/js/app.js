@@ -6,11 +6,6 @@ import {
 
 import { makeLottoList } from './core/makeLottoList.js';
 import { checkLastLottoNumberValid } from './core/checkLastLottoNumberInput.js';
-
-import {
-  computeLottoRankList,
-  computeLottoRateOfReturn,
-} from './core/computeLottoWinningValue.js';
 import toggleLottoResultModal from './component/toggleLottoResultModal.js';
 import { toggleButton } from './component/toggleButton.js';
 
@@ -22,6 +17,8 @@ import {
   renderRateOfReturnResult,
   renderLottoWinningCount,
 } from './views/render.js';
+import CalculateLottoPrize from './core/calculateLottoPrize.js';
+import autoLottoNumberInputPass from './modules/autoLottoNumberInputPass.js';
 
 export default class App {
   constructor() {
@@ -45,6 +42,10 @@ export default class App {
     $('.last-lotto-winning-number-container').addEventListener(
       'click',
       this.handleCheckResultButtonClick,
+    );
+    $('.last-lotto-winning-number-container').addEventListener(
+      'click',
+      autoLottoNumberInputPass,
     );
     $('.winning-rate-close-button').addEventListener(
       'click',
@@ -100,28 +101,24 @@ export default class App {
       return;
     }
     const lastLottoNumbers = checkLastLottoNumberValid();
+    const lottoWinningInputElementList = document.querySelectorAll(
+      '.last-lotto-winning-number-input',
+    );
     if (!lastLottoNumbers) {
-      document
-        .querySelectorAll('.last-lotto-winning-number-input')
-        .forEach(input => {
-          input.value = '';
-        });
+      lottoWinningInputElementList.forEach(input => {
+        input.value = '';
+      });
       return;
     }
-    const lastLottoNumberList = lastLottoNumbers.slice(
-      0,
-      lastLottoNumbers.length - 1,
+    lottoWinningInputElementList.forEach(input => {
+      input.disabled = true;
+    });
+    const lottoPrize = new CalculateLottoPrize(
+      this.lottoList,
+      lastLottoNumbers,
     );
-    const bonusNumber = lastLottoNumbers[lastLottoNumbers.length - 1];
-    renderRateOfReturnResult(
-      computeLottoRateOfReturn(this.lottoList, [
-        lastLottoNumberList,
-        bonusNumber,
-      ]),
-    );
-    renderLottoWinningCount(
-      computeLottoRankList(this.lottoList, [lastLottoNumberList, bonusNumber]),
-    );
+    renderRateOfReturnResult(lottoPrize.computeLottoRateOfReturn());
+    renderLottoWinningCount(lottoPrize.computeLottoRankList());
     toggleLottoResultModal();
   };
 }

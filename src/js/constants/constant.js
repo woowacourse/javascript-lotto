@@ -17,3 +17,8 @@ export const LOTTO_PRIZE_INFO = {
   MATCH_NUMBER_5: 5,
   MATCH_NUMBER_6: 6,
 };
+
+export const NUMBER_INPUT_PASS_INFO = {
+  INPUT_LENGTH: 2,
+  LAST_ELEMENT_MOVE_FLAG: 5,
+};
