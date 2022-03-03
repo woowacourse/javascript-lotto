@@ -27,8 +27,8 @@ export default class LottoController {
   }
 
   initAfterRenderResult() {
-    this.$checkbox = $('#view-checkbox');
-    this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
+    this.$checkBox = $('#view-checkbox');
+    this.$checkBox.addEventListener('change', this.bindChangeEvent);
   }
 
   closePopupHandler() {
@@ -40,7 +40,6 @@ export default class LottoController {
     this.inputView.initLottoPriceInput();
     this.resultView.initResult();
     this.model.initGame();
-    this.$checkbox.removeEventListener('change', this.changeCheckBoxHandler.bind(this)); // 존재하는 이벤트를 해제해준다.
   }
 
   submitLottoPriceHandler(event) {

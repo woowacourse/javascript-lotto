@@ -61,6 +61,13 @@ export default class InputView {
     ) {
       this.$winningNumberInputs[idx + 1].focus();
     }
+
+    if (e.key.match(/[^0-9]/g)) {
+      console.log(e.target.value);
+      e.preventDefault();
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+      return;
+    }
   }
 
   detectInputState(e) {
