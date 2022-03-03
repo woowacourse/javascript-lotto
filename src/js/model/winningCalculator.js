@@ -32,6 +32,7 @@ class WinningCalculator {
   }
 
   calculateWinningResult(winnerNumberInputs, bonusNumberInput, lottos) {
+    this.initWinningCalcualtor();
     this.#validateWinnerNumbers(
       convertStringNumberArrayToNumberArray([...winnerNumberInputs, bonusNumberInput])
     );
