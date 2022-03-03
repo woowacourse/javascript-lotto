@@ -107,7 +107,6 @@ export class LottoController {
 
   getBonusNumbers() {
     this.lottoGame.enterBonusNumber(this.view.bonusNumberInput.value);
-    console.log(this.lottoGame.bonusNumber);
     if (this.lottoGame.bonusNumber === '') {
       alert('보너스번호 넣어주세요');
       let bonusNumber = document.getElementById('bonus-number');

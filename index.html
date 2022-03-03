@@ -12,7 +12,7 @@
       <section id="money-input-container">
         <label>구입할 금액을 입력해주세요.</label>
         <form id="money-input-field">
-          <input type="number" placeholder="금액" id="money-input" step="1000" min="1000" max="100000000" />
+          <input type="number" placeholder="금액" id="money-input" step="1000" maxlength="9" />
           <button id="purchase-button">구입</button>
         </form>
       </section>
@@ -33,13 +33,13 @@
         <label id="winning-number-label">당첨번호</label>
         <label id="bonus-number-label">보너스번호</label>
 
-        <input type="number" id="winning-number0" class="winning-number" min="1" max="45" />
-        <input type="number" id="winning-number1" class="winning-number" min="1" max="45" />
-        <input type="number" id="winning-number2" class="winning-number" min="1" max="45" />
-        <input type="number" id="winning-number3" class="winning-number" min="1" max="45" />
-        <input type="number" id="winning-number4" class="winning-number" min="1" max="45" />
-        <input type="number" id="winning-number5" class="winning-number" min="1" max="45" />
-        <input type="number" id="bonus-number" class="bonus-number" min="1" max="45" />
+        <input type="number" id="winning-number0" class="winning-number" min="1" max="45" maxlength="2" />
+        <input type="number" id="winning-number1" class="winning-number" min="1" max="45" maxlength="2" />
+        <input type="number" id="winning-number2" class="winning-number" min="1" max="45" maxlength="2" />
+        <input type="number" id="winning-number3" class="winning-number" min="1" max="45" maxlength="2" />
+        <input type="number" id="winning-number4" class="winning-number" min="1" max="45" maxlength="2" />
+        <input type="number" id="winning-number5" class="winning-number" min="1" max="45" maxlength="2" />
+        <input type="number" id="bonus-number" class="bonus-number" min="1" max="45" maxlength="2" />
 
         <button id="confirm-result-label">결과 확인하기</button>
       </form>
