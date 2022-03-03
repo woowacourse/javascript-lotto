@@ -21,3 +21,11 @@ export const MATCHED_COUNT = {
 export const LOTTO_INDEX = {
   BONUS: 6,
 };
+
+export const PRIZE = {
+  FIFTH_PLACE: 5000,
+  FOURTH_PLACE: 50000,
+  THIRD_PLACE: 1500000,
+  SEONCD_PLACE: 30000000,
+  FIRST_PLACE: 2000000000,
+};

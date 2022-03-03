@@ -5,6 +5,7 @@ import {
   WINNING_RANK_SIZE,
   MATCHED_COUNT,
   LOTTO_INDEX,
+  PRIZE,
 } from './constants';
 import { isValidMoneyInput, isDuplicatedLottos } from './validator';
 import Lotto from '../model/Lotto';
@@ -83,6 +84,21 @@ export default class LottoController {
     return winnerStatistic;
   }
 
+  getEarningsRate = winnerStatistic => {
+    const cost = Number($('.money-input').value);
+    const prizes = [
+      PRIZE.FIFTH_PLACE,
+      PRIZE.FOURTH_PLACE,
+      PRIZE.THIRD_PLACE,
+      PRIZE.SEONCD_PLACE,
+      PRIZE.FIRST_PLACE
+    ];
+    const profit = winnerStatistic.reduce((sum, currentPrize, index) => {
+      return sum + currentPrize * prizes[index];
+    });
+    return Math.round(profit / cost * 100);
+  }
+
   winningLottoHandler = e => {
     e.preventDefault();
     const winningNumbers = Array.prototype.slice.call($$('.winning-numbers')).map(input => input.value);
@@ -94,6 +110,7 @@ export default class LottoController {
     this.winningLottos = winningNumbers.map(number => +number);
     this.saveMatchedCount();
     const winnerStatistic = this.getWinnerStatistic();
-    showWinnerModal(winnerStatistic);
+    const earningsRate = this.getEarningsRate(winnerStatistic);
+    showWinnerModal(winnerStatistic, earningsRate);
   }
 }
