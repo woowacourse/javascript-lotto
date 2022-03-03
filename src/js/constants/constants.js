@@ -18,9 +18,12 @@ export const SELECTOR = {
     LOTTO_RESULT_SECTION: '#lotto-result-section',
     WINNING_NUMBER_FORM: '#winning-number-form',
     CHECK_RESULT_BUTTON: '#check-result-button',
+    COINCIDE_COUNT_BONUS: '#coincide-count-bonus',
   },
   CLASS: {
     WINNING_NUMBER_INPUT: '.winning-number-input',
     BONUS_NUMBER: '.bonus-number',
+    MODAL: '.modal',
+    COINCIDE_COUNT: '.coincide-count',
   },
 };

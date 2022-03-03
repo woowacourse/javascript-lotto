@@ -33,4 +33,17 @@ export default class CheckWinningLottosView extends View {
   }
 
   // ToDo: 당첨 번호 입력 후 결과 확인하기 버튼 누르면 결과확인 모달창이 생성된다.
+  openModal() {
+    $(SELECTOR.CLASS.MODAL).classList.toggle('show');
+  }
+  closeModal() {
+    $(SELECTOR.CLASS.MODAL).classList.toggle('show');
+  }
+
+  renderWinLottosCountInModal(winLottos, winLottosWithBonus) {
+    $$(SELECTOR.CLASS.COINCIDE_COUNT).forEach((element, index) => {
+      element.textContent = `${winLottos[index + 3]}개`;
+    });
+    $(SELECTOR.ID.COINCIDE_COUNT_BONUS).textContent = `${winLottosWithBonus}개`;
+  }
 }

@@ -67,16 +67,16 @@ export default class LottoMachine {
       });
   }
 
-  checkWinLottos(winningNumbers, bonusNumber) {
+  countWinLottos(winningNumbers, bonusNumber) {
     this.#lottos.map(({ numbers }) => {
       const set = new Set([...numbers, ...winningNumbers]);
-      const coincideNumberQuantity =
+      const coincideNumberCount =
         LOTTO.NUMBER_QUANTITY + LOTTO.NUMBER_QUANTITY - set.size;
-      if (coincideNumberQuantity === 5 && numbers.includes(bonusNumber)) {
+      if (coincideNumberCount === 5 && numbers.includes(bonusNumber)) {
         this.#winLottosWithBonus += 1;
         return;
       }
-      this.#winLottos[coincideNumberQuantity]++;
+      this.#winLottos[coincideNumberCount]++;
     });
   }
 

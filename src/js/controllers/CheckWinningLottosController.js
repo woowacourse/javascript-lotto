@@ -19,9 +19,12 @@ export default class CheckWinningLottosController {
     const inputWinningNumbers = this.#view.getInputWinningNumbers();
     const winningNumbers = inputWinningNumbers.splice(0, 6);
     const bonusNumber = inputWinningNumbers[0];
-    this.machine.checkWinLottos(winningNumbers, bonusNumber);
+    this.machine.countWinLottos(winningNumbers, bonusNumber);
+    this.#view.renderWinLottosCountInModal(
+      this.machine.winLottos,
+      this.machine.winLottosWithBonus
+    );
     // ToDo: 모달창 오픈
-    const modal = document.querySelector('.modal');
-    modal.classList.toggle('show');
+    this.#view.openModal();
   }
 }
