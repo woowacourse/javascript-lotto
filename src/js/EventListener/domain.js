@@ -43,7 +43,7 @@ export const writingWinningNumber = (e) => {
   }
 };
 
-const deriveMatchResult = (winningNumber) => {
+const matchResultRenderingObject = (winningNumber) => {
   const matchResult = lottoCollection.matchResult(winningNumber.map(Number));
   const rateOfReturn = new RateOfReturnCalculator(
     lottoCollection.getLottos().length,
@@ -61,7 +61,7 @@ export const tryClickConfirmResultButton = () => {
   const winningNumber = matchResultView.getInputValue();
   validator.validateWinningNumber(winningNumber);
 
-  matchResultView.render(deriveMatchResult(winningNumber));
+  matchResultView.render(matchResultRenderingObject(winningNumber));
   matchResultView.onModal();
 };
 
