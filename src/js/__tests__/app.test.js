@@ -180,4 +180,13 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
       5000 + 50000 + 1500000 + 30000000 + 2000000000
     );
   });
+
+  test('당첨금과 구입 금액으로 수익률을 구할 수 있다.', () => {
+    const lottoModel = new LottoModel();
+    lottoModel.init();
+    const winnings = 5000;
+    const amount = 1000;
+
+    expect(lottoModel.getEarningRate(winnings, amount)).toBe(500);
+  });
 });
