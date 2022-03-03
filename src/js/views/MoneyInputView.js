@@ -26,7 +26,7 @@ export default class MoneyInputView {
     this.#moneyInputSubmit.disabled = true;
   }
 
-  bindInputKey(handler) {
+  bindInputValue(handler) {
     this.#moneyInput.addEventListener('keyup', () => {
       handler({ isEmpty: this.#moneyInput.value.length === 0 });
     });
