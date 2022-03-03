@@ -47,6 +47,7 @@ module.exports = {
     { name: 'util' },
     { name: 'unit' },
     { name: 'naming' },
+    { name: 'readme' },
   ],
 
   scopeOverrides: {
