@@ -4,7 +4,7 @@ import InputView from '../view/inputView';
 
 export default class LottoController {
   constructor() {
-    this.model = new LottoModel();
+    this.lottoModel = new LottoModel();
     this.resultView = new ResultView();
     this.inputView = new InputView();
   }
@@ -42,10 +42,10 @@ export default class LottoController {
 
     const lottoPriceInput = this.$lottoPriceInput.value;
     try {
-      this.model.setLottoCount(lottoPriceInput);
-      this.model.setLottos(this.model.generateLottos());
+      this.lottoModel.setLottoCount(lottoPriceInput);
+      this.lottoModel.setLottos(this.lottoModel.generateLottos());
 
-      this.resultView.renderResult(this.model.getLottoCount());
+      this.resultView.renderResult(this.lottoModel.getLottoCount());
       this.initAfterRenderResult();
       this.inputView.renderWinningNumbersInput();
     } catch (err) {
@@ -55,7 +55,7 @@ export default class LottoController {
 
   handleCheckBoxChange({ target }) {
     if (target.checked) {
-      this.resultView.renderLottos(this.model.getLottos());
+      this.resultView.renderLottos(this.lottoModel.getLottos());
       return;
     }
     this.resultView.initLottos();

@@ -30,13 +30,13 @@
 - [x] submitLottoPriceHandler 네이밍 -> handleLottoPriceButtonSubmit
 - [x] const { value } 이름 
 - [ ] 리뷰어님  
-  - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 
-  - [ ] LottoModel의 while문 수정 (무한루프)
-  - [ ] this.model 이름 변경 
+  - [x] this.model 이름 변경 
   - [ ] 이벤트 등록의 책임 View로 옮기기 
   - [ ] setLottoCount 네이밍 수정 및 lottoCount 상태로 둘지 고민 
   - [ ] getLottoNumbers 네이밍 변경 
   - [ ] generateLottos for문 대신 메서드 사용 
+  - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 
+  - [ ] LottoModel의 while문 수정 (무한루프)
 - [ ] 페어 리뷰어님 
   - [ ] 중복되는 css 컬러 css변수로 관리 
   - [ ] app.test.js에서 LOTTO_NUMBERS, ALERT_MESSAGE 에 있는 데이터 이용해서 검증하기 
