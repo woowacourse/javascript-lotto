@@ -30,6 +30,8 @@ class LottoMachineView {
     this.resultButton = selectDom('.result-button', this.winnerNumberSection);
 
     this.modal = selectDom('.modal');
+    this.winningCountElements = this.modal.querySelectorAll('.winning-count');
+    this.yieldResultText = selectDom('.yield-result-text', this.modal);
   }
 
   #onCashInputButtonClick = (e) => {
@@ -56,7 +58,7 @@ class LottoMachineView {
         this.bonusNumberInput.value,
         this.lottoGenerator.lottos
       );
-      this.#activateResultModal();
+      this.#showResultModal();
     } catch (error) {
       initInputElement(this.bonusNumberInput);
       this.winnerNumberInputs.forEach((input) => {
@@ -67,8 +69,15 @@ class LottoMachineView {
     }
   };
 
-  #activateResultModal() {
+  #showResultModal() {
     this.modal.classList.add('show');
+
+    this.winningCountElements.forEach((winningCount) => {
+      winningCount.textContent = `${
+        this.winningCalculator.totalWinningCount[winningCount.dataset.winningAmount]
+      }개`;
+    });
+    this.yieldResultText.textContent = `당신의 총 수익률은 ${this.winningCalculator.totalYield}%입니다.`;
   }
 
   #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
