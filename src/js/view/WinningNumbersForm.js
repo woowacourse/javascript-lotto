@@ -7,6 +7,7 @@ export default class WinningNumbersFormView extends View {
   _configureDOM() {
     this.$winningNumbersForm = $(ID_SELECTOR.WINNING_NUMBERS_FORM, this.container);
     this.$submitButton = $(ID_SELECTOR.RESULT_SUBMIT_BUTTON, this.container);
+    this.$bonusNumberInput = $(ID_SELECTOR.BONUS_NUMBER_INPUT, this.container);
   }
 
   _bindEvents() {
@@ -23,7 +24,7 @@ export default class WinningNumbersFormView extends View {
         return;
       }
       if (!target.nextSibling.nextElementSibling) {
-        $(ID_SELECTOR.BONUS_NUMBER_INPUT, this.container).focus();
+        this.$bonusNumberInput.focus();
         return;
       }
       target.nextSibling.nextElementSibling.focus();
