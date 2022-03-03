@@ -1,18 +1,18 @@
 import EXCEPTION from '../constants/exception';
 import LOTTO from '../constants/lotto';
 import Lotto from '../model/Lotto';
-import LottoBundle from '../model/LottoBundle';
+import LottoVendor from '../model/LottoVendor';
 import LottoResult from '../model/LottoResult';
 
 describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
   test('입력받는 구입 금액은 1,000원 이상이어야 한다.', () => {
     // given
-    const lottoBundle = new LottoBundle();
+    const lottoVendor = new LottoVendor();
     const delimiter = 1000;
 
     // when
     function setMoney(money) {
-      lottoBundle.paidMoney = money;
+      lottoVendor.paidMoney = money;
     }
 
     // then
@@ -22,15 +22,15 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
   test('사용자가 입력한 금액만큼 로또가 구매된다.', () => {
     // given
     const lottoCount = 5;
-    const lottoBundle = new LottoBundle();
-    lottoBundle.paidMoney = 5000;
+    const lottoVendor = new LottoVendor();
+    lottoVendor.paidMoney = 5000;
 
     // when
-    lottoBundle.saveCount();
-    lottoBundle.createLottoBundle();
+    lottoVendor.saveCount();
+    lottoVendor.createLottoBundle();
 
     // then
-    expect(lottoBundle.lottos.length).toBe(lottoCount);
+    expect(lottoVendor.lottos.length).toBe(lottoCount);
   });
 });
 
@@ -68,8 +68,8 @@ describe(
 
   describe('당첨 결과를 확인할 수 있어야 한다.', () => {
     // given
-    const lottoBundle = new LottoBundle();
-    lottoBundle.lottos = [
+    const lottoVendor = new LottoVendor();
+    lottoVendor.lottos = [
       { numbers: [2, 1, 3, 4, 5, 6] },
       { numbers: [1, 2, 3, 24, 25, 17] },
       { numbers: [7, 1, 3, 2, 4, 5] },
@@ -78,7 +78,7 @@ describe(
       { numbers: [4, 3, 2, 1, 9, 15] },
     ];
 
-    const lottoResult = new LottoResult(lottoBundle);
+    const lottoResult = new LottoResult(lottoVendor);
     lottoResult.winningNumbers = [1, 2, 3, 4, 5, 6];
     lottoResult.bonusNumber = 7;
 
@@ -98,7 +98,7 @@ describe(
 
     test('구입 금액과 당첨된 금액을 비교하여 수익률을 계산할 수 있어야 한다.', () => {
       // given
-      lottoBundle.paidMoney = 1000000;
+      lottoVendor.paidMoney = 1000000;
 
       // when
       lottoResult.calculateLottoYield();

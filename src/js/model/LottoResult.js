@@ -1,6 +1,6 @@
 export default class LottoResult {
-  constructor(lottoBundle) {
-    this.lottoBundle = lottoBundle;
+  constructor(lottoVendor) {
+    this.lottoVendor = lottoVendor;
   }
 
   #winningNumbers = [];
@@ -38,7 +38,7 @@ export default class LottoResult {
   }
 
   calculateWinningCounts() {
-    const userLottos = this.lottoBundle.lottos;
+    const userLottos = this.lottoVendor.lottos;
     const winningCounts = {
       3: 0,
       4: 0,
@@ -78,7 +78,7 @@ export default class LottoResult {
       this.#winningCounts[5] * 1500000 +
       this.#winningCounts.fiveBonus * 30000000 +
       this.#winningCounts[6] * 2000000000;
-    const investmentMoney = this.lottoBundle.paidMoney;
+    const investmentMoney = this.lottoVendor.paidMoney;
     this.#winningMoney = winningMoney;
     this.#lottoYield = Math.floor((winningMoney / investmentMoney) * 100);
   }

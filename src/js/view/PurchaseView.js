@@ -4,8 +4,8 @@ import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
 
 export default class PurchaseView {
-  constructor(lottoBundle) {
-    this.lottoBundle = lottoBundle;
+  constructor(lottoVendor) {
+    this.lottoVendor = lottoVendor;
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
     this.$purchaseButton = $(ID.PURCHASE_BUTTON);

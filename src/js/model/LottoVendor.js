@@ -3,7 +3,7 @@ import repeatCallback from '../utils/repeat.js';
 import validateMoney from '../validator/moneyValidator.js';
 import Lotto from './Lotto.js';
 
-export default class LottoBundle {
+export default class LottoVendor {
   #paidMoney = 0;
 
   #count = 0;

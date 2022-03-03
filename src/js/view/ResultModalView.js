@@ -5,8 +5,8 @@ import { emit } from '../utils/event';
 import { $ } from '../utils/selector';
 
 export default class ResultModalView {
-  constructor(lottoBundle) {
-    this.lottoBundle = lottoBundle;
+  constructor(lottoVendor) {
+    this.lottoVendor = lottoVendor;
     this.$modalContainer = $(ID.MODAL_CONTAINER);
     this.$modal = $('.modal');
     this.$closeButton = $('.close');
@@ -48,7 +48,7 @@ export default class ResultModalView {
   }
 
   renderYield(lottoYield, winningMoney) {
-    this.$paidMoneySpan.textContent = insertComma(this.lottoBundle.paidMoney);
+    this.$paidMoneySpan.textContent = insertComma(this.lottoVendor.paidMoney);
     this.$lottoProfitSpan.textContent = insertComma(winningMoney);
     this.$lottoYieldSpan.textContent = insertComma(lottoYield);
   }

@@ -5,8 +5,8 @@ import ID from '../constants/dom.js';
 import EVENT from '../constants/event.js';
 
 export default class IssuedTicketView {
-  constructor(lottoBundle) {
-    this.lottoBundle = lottoBundle;
+  constructor(lottoVendor) {
+    this.lottoVendor = lottoVendor;
     this.$ticketContainer = $(ID.TICKET_CONTAINER);
     this.$ticketCount = $(ID.TICKET_COUNT);
     this.$issuedTicketDiv = $(ID.ISSUED_TICKET_DIV);
@@ -33,11 +33,11 @@ export default class IssuedTicketView {
   }
 
   renderTicketCount() {
-    this.$ticketCount.textContent = this.lottoBundle.count;
+    this.$ticketCount.textContent = this.lottoVendor.count;
   }
 
   renderIssuedTickets() {
-    const template = this.lottoBundle.lottos.map((lotto) => ticketTemplate(lotto.numbers)).join('');
+    const template = this.lottoVendor.lottos.map((lotto) => ticketTemplate(lotto.numbers)).join('');
     this.$issuedTicketDiv.insertAdjacentHTML('beforeend', template);
   }
 

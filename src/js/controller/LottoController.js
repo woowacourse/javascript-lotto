@@ -6,8 +6,8 @@ import insertAutoComma from '../utils/autoComma.js';
 import LOTTO from '../constants/lotto.js';
 
 export default class LottoController {
-  constructor(lottoBundle, purchaseView, issuedTicketView, lottoResult, winningNumbersView, resultModalView) {
-    this.lottoBundle = lottoBundle;
+  constructor(lottoVendor, purchaseView, issuedTicketView, lottoResult, winningNumbersView, resultModalView) {
+    this.lottoVendor = lottoVendor;
     this.lottoResult = lottoResult;
     this.purchaseView = purchaseView;
     this.issuedTicketView = issuedTicketView;
@@ -31,9 +31,9 @@ export default class LottoController {
   #purchaseLotto(money) {
     try {
       this.purchaseView.hidePurchasableLottoCount();
-      this.lottoBundle.paidMoney = money;
-      this.lottoBundle.saveCount();
-      this.lottoBundle.createLottoBundle();
+      this.lottoVendor.paidMoney = money;
+      this.lottoVendor.saveCount();
+      this.lottoVendor.createLottoBundle();
       this.#renderLotto();
     } catch (error) {
       alert(error.message);
@@ -57,7 +57,7 @@ export default class LottoController {
   }
 
   #requestResult(winningNumbers, bonusNumber) {
-    if (this.lottoBundle.isLottoListEmpty()) {
+    if (this.lottoVendor.isLottoListEmpty()) {
       alert(EXCEPTION.NOT_YET_PURCHASE);
       return;
     }
@@ -80,7 +80,7 @@ export default class LottoController {
 
   #restart() {
     this.resultModalView.hideModal();
-    this.lottoBundle.reset();
+    this.lottoVendor.reset();
     this.lottoResult.reset();
     this.purchaseView.resetInput();
     this.issuedTicketView.hideTicketContainer();
