@@ -9,15 +9,18 @@ class LottoMachineView {
     this.lottoGenerator = new LottoGenerator();
     this.winningCalculator = new WinningCalculator();
     this.#initDom();
+    this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
   }
 
   #initDom() {
     this.cashInput = selectDom('.cash-input');
     this.cashInputButton = selectDom('.cash-input-button');
-    this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
 
     this.purchasedLottoSection = selectDom('.purchased-lotto-section');
-    this.lottoShowContainer = selectDom('.lotto-container', this.purchasedLottoSection);
+    this.purchasedLottoCountText = selectDom(
+      '.purchased-lotto-count-text',
+      this.purchasedLottoSection
+    );
     this.lottoNumberContainer = selectDom('.lotto-grid', this.purchasedLottoSection);
     this.showNumberToggleButton = selectDom(
       '.show-number-toggle-button',
@@ -45,8 +48,7 @@ class LottoMachineView {
       this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
       this.resultButton.addEventListener('click', this.#onResultButtonClick);
     } catch (error) {
-      initInputElement(this.cashInput);
-      this.cashInput.focus();
+      this.#initCashInputView();
       alert(error.message);
     }
   };
@@ -62,11 +64,9 @@ class LottoMachineView {
       );
       this.#showResultModal();
       this.modalCloseButton.addEventListener('click', this.#onModalCloseButtonClick);
+      this.restartButton.addEventListener('click', this.#onRestartButtonClick);
     } catch (error) {
-      initInputElement(this.bonusNumberInput);
-      this.winnerNumberInputs.forEach((input) => {
-        initInputElement(input);
-      });
+      this.#initBonusNumberInputView();
       this.winnerNumberInputs[0].focus();
       alert(error.message);
     }
@@ -75,6 +75,36 @@ class LottoMachineView {
   #onModalCloseButtonClick = () => {
     this.modal.classList.remove('show');
   };
+
+  #onRestartButtonClick = (e) => {
+    e.preventDefault();
+
+    this.lottoGenerator.initLottos();
+    this.winningCalculator.initWinningCalcualtor();
+
+    this.modal.classList.remove('show');
+    this.#disableCashInputSection(false);
+    this.purchasedLottoSection.classList.add(CLASSNAME.HIDE);
+    this.winnerNumberSection.classList.add(CLASSNAME.HIDE);
+    this.#initBonusNumberInputView();
+    this.#initCashInputView();
+  };
+
+  #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
+    this.#toggleLottoNumbersShow(isVisible);
+  };
+
+  #initBonusNumberInputView() {
+    initInputElement(this.bonusNumberInput);
+    this.winnerNumberInputs.forEach((input) => {
+      initInputElement(input);
+    });
+  }
+
+  #initCashInputView() {
+    initInputElement(this.cashInput);
+    this.cashInput.focus();
+  }
 
   #showResultModal() {
     this.modal.classList.add('show');
@@ -87,10 +117,6 @@ class LottoMachineView {
     this.yieldResultText.textContent = `당신의 총 수익률은 ${this.winningCalculator.totalYield}%입니다.`;
   }
 
-  #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
-    this.#toggleLottoNumbersShow(isVisible);
-  };
-
   #toggleLottoNumbersShow(isVisible) {
     const { classList: lottoNumberContainerClassList } = this.lottoNumberContainer;
     if (isVisible) {
@@ -100,24 +126,19 @@ class LottoMachineView {
     lottoNumberContainerClassList.add(CLASSNAME.HIDE_NUMBERS);
   }
 
-  #disableCashInputSection() {
-    this.cashInput.disabled = true;
-    this.cashInputButton.disabled = true;
-    this.cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
+  #disableCashInputSection(shouldDisable = true) {
+    this.cashInput.disabled = shouldDisable;
+    this.cashInputButton.disabled = shouldDisable;
+    this.cashInputButton.textContent = shouldDisable ? DISABLED_PURCHASE_BUTTON_TEXT : '구입';
   }
 
   #renderLottos(lottos) {
     this.purchasedLottoSection.classList.remove(CLASSNAME.HIDE);
     this.winnerNumberSection.classList.remove(CLASSNAME.HIDE);
 
-    this.lottoShowContainer.prepend(this.#generatePurchasedLabel(lottos.length));
+    this.lottoNumberContainer.innerHTML = '';
+    this.purchasedLottoCountText.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
     this.lottoNumberContainer.append(...this.#generateLottoElementsArray(lottos));
-  }
-
-  #generatePurchasedLabel(length) {
-    const labelElement = document.createElement('label');
-    labelElement.textContent = `총 ${length}개를 구매하였습니다.`;
-    return labelElement;
   }
 
   #generateLottoElementsArray(lottos) {

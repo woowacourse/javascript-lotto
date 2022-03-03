@@ -19,6 +19,6 @@ describe('로또 당첨 결과 테스트', () => {
     expect(winningCalculator.totalWinningCount['30000000']).toEqual(1);
   });
   test('맞춘 숫자 개수에 따른 수익률을 확인한다.', () => {
-    expect(winningCalculator.totalYield).toEqual(3000000);
+    expect(winningCalculator.totalYield).toEqual(2999900);
   });
 });

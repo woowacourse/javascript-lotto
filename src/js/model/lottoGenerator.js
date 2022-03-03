@@ -4,6 +4,10 @@ import LottoNumber from './lottoNumber';
 
 class LottoGenerator {
   constructor() {
+    this.initLottos();
+  }
+
+  initLottos() {
     this.lottos = [];
   }
 

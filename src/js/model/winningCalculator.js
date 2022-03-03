@@ -14,6 +14,10 @@ import {
 
 class WinningCalculator {
   constructor() {
+    this.initWinningCalcualtor();
+  }
+
+  initWinningCalcualtor() {
     this.winnerNumbers = [];
     this.bonusNumber = 0;
     this.totalWinningCount = {
@@ -96,7 +100,7 @@ class WinningCalculator {
   }
 
   #calculateTotalYield(cashInput, totalWinningAmount) {
-    return Math.round((totalWinningAmount / cashInput) * 100);
+    return Math.round((totalWinningAmount / cashInput) * 100 - 100);
   }
 }
 
