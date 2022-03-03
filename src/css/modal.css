@@ -12,7 +12,15 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal.hide {
+  display: none;
+}
+
 .modal.show {
+  display: block;
+}
+
+.modal.on {
   opacity: 1;
 }
 
