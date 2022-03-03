@@ -64,7 +64,7 @@ export default class LottoController {
 
     if (isValidPurchaseMoney(purchaseMoney)) {
       this.#lottoCreator.purchaseMoney = purchaseMoney;
-      this.#lottoPurchaseInputView.disablePurchaseLottoForm();
+      this.#lottoPurchaseInputView.disableForm();
 
       // 로또 자동 번호 생성 및 렌더링
       this.#lottoCreator.createLottoList();
@@ -75,15 +75,14 @@ export default class LottoController {
 
       // 당첨 번호 입력 렌더링
       this.#lottoWinningNumberInputView.render();
-      this.#lottoWinningNumberInputView.selectDOM();
-      this.#lottoWinningNumberInputView.attachEvents();
       this.#submitLottoWinningNumberInputView();
 
       return;
     }
 
     alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
-    this.#lottoPurchaseInputView.resetPurchaseMoney();
+
+    this.#lottoPurchaseInputView.reset();
   }
 
   // eslint-disable-next-line max-lines-per-function

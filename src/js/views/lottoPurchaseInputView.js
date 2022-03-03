@@ -30,11 +30,11 @@ export default class LottoPurchaseInputView {
     emit(this.#lottoPurchaseForm, '@purchaseMoney', purchaseMoney);
   }
 
-  resetPurchaseMoney() {
+  reset() {
     this.#lottoPurchaseForm.reset();
   }
 
-  disablePurchaseLottoForm() {
+  disableForm() {
     this.#lottoPurchaseInput.disabled = true;
     this.#lottoPurchaseButton.disabled = true;
   }

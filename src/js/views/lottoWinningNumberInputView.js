@@ -12,17 +12,8 @@ export default class LottoWinningNumberInputView {
     this.#lottoPurchaseResult = $('#lotto-purchase-result');
   }
 
-  selectDOM() {
-    this.#lottoMatchResultForm = $('#lotto-match-result-form');
-    this.#lottoWinningNumberContainers = $$('.lotto-winning-number-container');
-  }
-
   get lottoMatchResultForm() {
     return this.#lottoMatchResultForm;
-  }
-
-  attachEvents() {
-    on(this.#lottoMatchResultForm, 'submit', this.#handleMatchResult.bind(this));
   }
 
   #handleMatchResult(event) {
@@ -42,6 +33,18 @@ export default class LottoWinningNumberInputView {
 
   render() {
     this.#lottoPurchaseResult.insertAdjacentHTML('afterend', lottoWinningNumberInputTemplate());
+
+    this.#selectDOM();
+    this.#attachEvents();
+  }
+
+  #selectDOM() {
+    this.#lottoMatchResultForm = $('#lotto-match-result-form');
+    this.#lottoWinningNumberContainers = $$('.lotto-winning-number-container');
+  }
+
+  #attachEvents() {
+    on(this.#lottoMatchResultForm, 'submit', this.#handleMatchResult.bind(this));
   }
 
   reset() {
