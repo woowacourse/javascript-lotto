@@ -22,6 +22,7 @@ export const DOM_STRING = {
   WINNING_NUMBER_INPUT: 'winning-number-input',
   SHOW_RESULT_BUTTON: 'show-result-button',
   BONUS_NUMBER_FORM: 'bonus-number-form',
+  BONUS_NUMBER_INPUT: 'bonus-number-input',
   SWITCH_LABEL: 'switch-label',
   TICKET_EMOJI: 'ticket-emoji',
 };
@@ -49,6 +50,7 @@ export const SELECTOR = {
   WINNING_NUMBER_INPUT: `.${DOM_STRING.WINNING_NUMBER_INPUT}`,
   SHOW_RESULT_BUTTON: `#${DOM_STRING.SHOW_RESULT_BUTTON}`,
   BONUS_NUMBER_FORM: `#${DOM_STRING.BONUS_NUMBER_FORM}`,
+  BONUS_NUMBER_INPUT: `.${DOM_STRING.BONUS_NUMBER_INPUT}`,
   SWITCH_LABEL: `.${DOM_STRING.SWITCH_LABEL}`,
   TICKET_EMOJI: `.${DOM_STRING.TICKET_EMOJI}`,
 };
@@ -73,6 +75,7 @@ export const ERROR_MESSAGE = {
   NOT_A_AMOUNT_NUMBER: `입력된 금액이 숫자가 아닙니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상 ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
   OUT_OF_MIN_AMOUNT_RANGE: `로또의 1개의 가격은 ${LOTTO.PRICE} 입니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상의 금액을 입력해주세요.`,
   OUT_OF_MAX_AMOUNT_RANGE: `최대 입력 금액은 ${PAYMENT.PURCHASE_AMOUNT.MAX} 입니다. ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
-  NOT_A_LOTTO_NUMBER: `입력된 당첨번호가 유효하지 않습니다. ${LOTTO.NUMBER_RANGE.MIN}부터 ${LOTTO.NUMBER_RANGE.MAX}까지의 정수를 입력해주세요.`,
+  NOT_A_LOTTO_NUMBER: `입력된 당첨 번호가 유효하지 않습니다. ${LOTTO.NUMBER_RANGE.MIN}부터 ${LOTTO.NUMBER_RANGE.MAX}까지의 정수를 입력해주세요.`,
+  NOT_A_BONUS_NUMBER: `입력된 보너스 번호가 유효하지 않습니다. ${LOTTO.NUMBER_RANGE.MIN}부터 ${LOTTO.NUMBER_RANGE.MAX}까지의 정수를 입력해주세요.`,
   IS_DUPLICATED: `당첨번호가 중복되었습니다. 중복없이 번호를 입력해주세요.`,
 };
