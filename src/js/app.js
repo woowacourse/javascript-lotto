@@ -16,6 +16,7 @@ export default class App {
     this.lottoPrice = 0;
     this.lottoPriceValid = false;
     this.lottoList = [];
+    this.lastWinningNumberList = [];
   }
 
   handleEvent() {
@@ -76,7 +77,13 @@ export default class App {
     if (!e.target.classList.contains(`check-result-button`)) {
       return;
     }
-    const lastWinningNumberList = getLastWinnginNumbers();
+    const lastWinningNumberList = checkLastWinnginNumberList(
+      getLastWinnginNumbers(),
+    );
+    if (!lastWinningNumberList) {
+      return;
+    }
+    this.lastWinningNumberList = lastWinningNumberList;
   }
 }
 
