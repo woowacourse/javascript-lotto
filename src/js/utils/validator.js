@@ -5,7 +5,7 @@ const validator = Object.freeze({
 
   isOverThousand: (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE,
 
-  isNumber: (value) => value.match(/[0-9]/),
+  isNumber: (value) => Number.isInteger(Number(value)),
 });
 
 const checkValidLottoCount = (value) => {
