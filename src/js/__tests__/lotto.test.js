@@ -51,7 +51,7 @@ describe('로또 번호가 얼마나 일치하는지 계산할 수 있다.', () 
 
   test('[6, 24, 19, 1, 43, 3] 일 때, 5개+보너스볼이란 의미로 7이 리턴되어야 한다.', () => {
     const lotto = new Lotto();
-    const lottoNumber = [6, 24, 19, 1, 43, 3];
+    const lottoNumber = [45, 24, 19, 1, 43, 3];
 
     lotto.numbers = lottoNumber;
 
