@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LottoMachine from "../domains/LottoMachine.js";
 import $ from "./utils.js";
 =======
@@ -29,10 +30,21 @@ import { SELECTOR } from '../constants/constants.js';
 } from "./template.js";
 import { DOM } from "../constants/constants.js";
 >>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
+=======
+import LottoMachine from '../domains/LottoMachine.js';
+import $ from './utils.js';
+import {
+  ticketImg,
+  lottoNumberTemplate,
+  purchaseMessageTemplate
+} from './template.js';
+import { DOM } from '../constants/constants.js';
+>>>>>>> a74326a (refator: LottoView 두번이상 DomSelecting하는 요소들 필드화)
 
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     this.bindEvents();
@@ -47,13 +59,16 @@ export default class LottoView {
       "click",
 =======
 =======
+=======
+    this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
+>>>>>>> a74326a (refator: LottoView 두번이상 DomSelecting하는 요소들 필드화)
     this.bindEvents();
 >>>>>>> be29b46 (refactor: LottoView BindEvents() constructor내에 추가)
   }
 
   bindEvents() {
     $(DOM.ID.PURCHASE_MONEY_FORM).addEventListener(
-      "submit",
+      'submit',
       this.handlePurchaseForm.bind(this)
     );
 <<<<<<< HEAD
@@ -62,8 +77,12 @@ export default class LottoView {
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
 =======
     $(DOM.ID.LOTTO_RESULT_TOGGLE).addEventListener(
+<<<<<<< HEAD
       "click",
 >>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
+=======
+      'click',
+>>>>>>> a74326a (refator: LottoView 두번이상 DomSelecting하는 요소들 필드화)
       this.handleResultToggle.bind(this)
     );
   }
@@ -122,6 +141,7 @@ export default class LottoView {
   renderLotto() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     $('lotto-result-container').replaceChildren();
     $('lotto-result-toggle-checkbox').checked
 >>>>>>> 96fc414 (refactor: 함수 분리, 함수명 변경)
@@ -131,6 +151,9 @@ export default class LottoView {
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
 =======
     $(DOM.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
+=======
+    this.$lottoResultContainer.replaceChildren();
+>>>>>>> a74326a (refator: LottoView 두번이상 DomSelecting하는 요소들 필드화)
     $(DOM.ID.TOGGLE_CHECKBOX).checked
 >>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
       ? this.renderLottoNumbers()
@@ -139,6 +162,7 @@ export default class LottoView {
 
   renderLottoImgs() {
     this.machine.lottos.map(() => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -159,11 +183,15 @@ export default class LottoView {
         ticketImg
       );
 >>>>>>> 978f6e4 (refactor: LottoView 셀럭터 상수 분리)
+=======
+      this.$lottoResultContainer.insertAdjacentHTML('beforeEnd', ticketImg);
+>>>>>>> a74326a (refator: LottoView 두번이상 DomSelecting하는 요소들 필드화)
     });
   }
 
   renderLottoNumbers() {
     this.machine.lottos.map((lotto) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -183,6 +211,11 @@ export default class LottoView {
         "beforeEnd",
         lottoNumberTemplate(lotto.numbers.join(", "))
 >>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
+=======
+      this.$lottoResultContainer.insertAdjacentHTML(
+        'beforeEnd',
+        lottoNumberTemplate(lotto.numbers.join(', '))
+>>>>>>> a74326a (refator: LottoView 두번이상 DomSelecting하는 요소들 필드화)
       );
     });
   }
