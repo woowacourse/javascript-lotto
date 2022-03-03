@@ -1,19 +1,21 @@
+import View from "./View.js";
 import { $, $$ } from "../utils/dom.js";
-import { validateWinningNumber } from "../utils/validation.js";
+import { validateWinningNumbers } from "../utils/validation.js";
 
-export default class WinningNumberView {
+export default class WinningNumberView extends View {
   constructor() {
-    this.winningNumbers = $$(".winning-number-input");
-
+    super();
     $(".result-button").addEventListener("click", this.handleResultButtonClick.bind(this));
   }
 
   handleResultButtonClick() {
+    const winningNumberList = Array.from($$(".winning-number-input")).map((element) =>
+      element.value.trim(),
+    );
     try {
-      this.winningNumbers.forEach((element) => {
-        const inputNumber = element.value.trim();
-        validateWinningNumber(inputNumber);
-      });
+      validateWinningNumbers(winningNumberList);
+
+      this.handlers.get("click").forEach((func) => func(winningNumberList));
     } catch (error) {
       alert(error);
     }

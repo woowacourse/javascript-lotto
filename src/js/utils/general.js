@@ -1,15 +1,13 @@
-import { AMOUNT } from "./constants.js";
-
 export const shuffleArray = (array) => {
   array.sort(() => Math.random() - 0.5);
 };
 
-export const isValidMinimumAmount = (amount) => {
-  return amount < AMOUNT.MINIMUM;
+export const isValidMinimumAmount = (amount, min) => {
+  return amount < min;
 };
 
-export const isValidAmountUnit = (amount) => {
-  return amount % AMOUNT.UNIT !== 0;
+export const isValidAmountUnit = (amount, unit) => {
+  return amount % unit !== 0;
 };
 
 export const isValidTypeNumber = (number) => {
@@ -18,5 +16,13 @@ export const isValidTypeNumber = (number) => {
 };
 
 export const isValidEmptyValue = (number) => {
-  return number.length === 0;
+  return number === "";
+};
+
+export const isValidOverlap = (numbers) => {
+  return numbers.length !== [...new Set(numbers)].length;
+};
+
+export const isValidNumberRange = (number, min, max) => {
+  return number < min || number > max;
 };

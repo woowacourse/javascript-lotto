@@ -1,19 +1,34 @@
 import Lotto from "../model/Lotto.js";
-import LottoGameView from "../views/LottoGameView.js";
+import WinningNumber from "../model/WinningNumber.js";
+import PurchasedLottoView from "../views/PurchasedLottoView.js";
+import PurchaseAmountView from "../views/PurchaseAmountView.js";
+import WinningNumberView from "../views/WinningNumberView.js";
 
 export default class LottoGame {
   constructor() {
     this.lottoModel = new Lotto();
-    this.lottoGameView = new LottoGameView();
-    this.lottoGameView.addHandler({
+    this.winningNumberModel = new WinningNumber();
+    this.purchaseAmountView = new PurchaseAmountView();
+    this.purchasedLottoView = new PurchasedLottoView();
+    this.winningNumberView = new WinningNumberView();
+
+    this.purchaseAmountView.addHandler({
       type: "submit",
-      handler: this.purchaseAmountHandler.bind(this),
+      handler: this.onSubmitPurchaseAmount.bind(this),
+    });
+    this.winningNumberView.addHandler({
+      type: "click",
+      handler: this.onClickResultButton.bind(this),
     });
   }
 
-  purchaseAmountHandler(purchaseAmount) {
+  onSubmitPurchaseAmount(purchaseAmount) {
     const lottoCount = this.lottoModel.convertLottoCount(purchaseAmount);
     this.lottoModel.generateLottoTicket(lottoCount);
-    this.lottoGameView.handlePurchasedLotto(lottoCount, this.lottoModel.getLottoList());
+    this.purchasedLottoView.handlePurchasedLotto(lottoCount, this.lottoModel.getLottoList());
+  }
+
+  onClickResultButton(winningNumber) {
+    console.log("onClick");
   }
 }
