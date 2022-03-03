@@ -13,15 +13,15 @@ export const onInputAutoFocus = ($currentTarget, $nextTarget, condition) => {
   $nextTarget.focus();
 };
 
-export const onEnableButton = ($target, condition) => {
-  if ($target instanceof HTMLElement === false) {
+export const onEnableButton = ($eventTarget, condition) => {
+  if ($eventTarget instanceof HTMLElement === false) {
     return;
   }
 
-  if (condition($target) === false) {
-    $target.disabled = true;
+  if (condition($eventTarget) === false) {
+    $eventTarget.disabled = true;
     return;
   }
 
-  $target.disabled = false;
+  $eventTarget.disabled = false;
 };
