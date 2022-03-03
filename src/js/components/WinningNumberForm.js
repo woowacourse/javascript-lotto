@@ -6,8 +6,8 @@ import ValidationError from '../validation/validation-error';
 
 class WinningNumberForm extends Component {
   render() {
-    this.innerHTML = this.template();
-    const { money } = window.store.getState();
+    const { money, winningNumbers, bonusNumber } = window.store.getState();
+    this.innerHTML = this.template(winningNumbers, bonusNumber);
 
     if (money > 0) {
       this.show();
@@ -15,7 +15,12 @@ class WinningNumberForm extends Component {
   }
 
   // eslint-disable-next-line max-lines-per-function
-  template() {
+  template(winningNumbers, bonusNumber) {
+    const winningNumberInputs = winningNumbers
+      .map((number) => `<input class="form-control" maxlength="2" value="${number}"/>`)
+      .join('');
+    const bonusNumberInputValue = bonusNumber > 0 ? bonusNumber : '';
+
     return `
       <form>
         <label class="form-label">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
@@ -23,17 +28,12 @@ class WinningNumberForm extends Component {
           <fieldset>
             <label class="form-label">당첨 번호</label>
             <div class="d-flex">
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
+              ${winningNumberInputs}
             </div>
           </fieldset>
           <fieldset class="bonus-number-container">
             <label class="form-label">보너스 번호</label>
-            <input class="form-control" maxlength="2"/>
+            <input class="form-control" maxlength="2" value="${bonusNumberInputValue}"/>
           </fieldset>
         </div>
         <button class="btn btn-cyan w-100">결과 확인하기</button>
