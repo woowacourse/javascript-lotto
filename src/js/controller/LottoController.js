@@ -30,6 +30,9 @@ export default class LottoController {
   bindEvents() {
     this.#View.MoneyInput.bindMoneyInputSubmit(this.handleMoneyInputSubmit.bind(this));
     this.#View.LottoList.bindLottoNumberToggle();
+    this.#View.WinningNumberInput.bindWinningNumberInputSubmit(
+      this.handleWinningNumberInputSubmit.bind(this)
+    );
   }
 
   handleMoneyInputSubmit({ moneyInputValue: money }) {
@@ -41,9 +44,14 @@ export default class LottoController {
       this.#View.LottoList.showContainer();
       this.#View.LottoList.renderLottoList(this.#LottosModel.list);
       this.#View.WinningNumberInput.showContainer();
-      this.#View.LottoResultModal.show();
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  handleWinningNumberInputSubmit({ winningNumberList }) {
+    console.log(winningNumberList);
+
+    this.#View.LottoResultModal.show();
   }
 }

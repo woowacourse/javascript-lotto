@@ -74,4 +74,15 @@ export default class WinningNumberInputView {
   hideContainer() {
     this.#container.classList.remove('show');
   }
+
+  bindWinningNumberInputSubmit(handler) {
+    this.#winningNumberSubmitButton.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const winningNumberList = [...this.#winningNumberInputList].map(($element) => $element.value);
+      handler({
+        winningNumberList,
+      });
+    });
+  }
 }
