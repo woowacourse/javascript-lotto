@@ -39,6 +39,16 @@ export const writingWinningNumber = (e) => {
   }
 };
 
+const deriveMatchResult = (winningNumber) => {
+  const matchResult = lottoCollection.matchResult(winningNumber.map(Number));
+  const rateOfReturn = new RateOfReturnCalculator(
+    lottoCollection.getLottos().length,
+    matchResult,
+  ).execute();
+
+  return { matchResult, rateOfReturn };
+};
+
 export const tryClickConfirmResultButton = () => {
   if (lottoCollection.isEmpty()) {
     throw new ValidationError(ERROR_MESSAGE.EMPTY_OF_LOTTO);
@@ -47,12 +57,7 @@ export const tryClickConfirmResultButton = () => {
   const winningNumber = matchResultView.getInputValue();
   validator.validateWinningNumber(winningNumber);
 
-  const matchResult = lottoCollection.matchResult(winningNumber.map(Number));
-  const rateOfReturn = new RateOfReturnCalculator(
-    lottoCollection.getLottos().length,
-    matchResult,
-  ).execute();
-  matchResultView.render({ matchResult, rateOfReturn });
+  matchResultView.render(deriveMatchResult(winningNumber));
   matchResultView.onModal();
 };
 
