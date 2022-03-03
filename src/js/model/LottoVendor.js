@@ -31,11 +31,6 @@ export default class LottoVendor {
     repeatCallback(count, () => this.#lottos.push(new Lotto()));
   }
 
-  reset() {
-    this.#paidMoney = 0;
-    this.#lottos = [];
-  }
-
   countTicket() {
     return Math.floor(this.#paidMoney / LOTTO.PRICE_PER_TICKET);
   }

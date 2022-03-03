@@ -58,20 +58,24 @@ export default class LottoController {
     this.issuedTicketView.hideTicketDetails();
   }
 
-  #requestResult(winningNumbers, bonusNumber) {
+  #validateBeforeRequestResult() {
     if (this.lottoVendor.isLottoListEmpty()) {
-      alert(EXCEPTION.NOT_YET_PURCHASE);
-      return;
+      throw new Error(EXCEPTION.NOT_YET_PURCHASE);
     }
-
-    const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
 
     if (this.lottoResult.isWinningNumbersDuplicated()) {
-      alert(EXCEPTION.DUPLICATED_NUMBERS);
-      return;
+      throw new Error(EXCEPTION.DUPLICATED_NUMBERS);
     }
+  }
 
-    this.#renderResultModal(winningCounts, lottoYield, winningMoney);
+  #requestResult(winningNumbers, bonusNumber) {
+    try {
+      this.#validateBeforeRequestResult();
+      const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
+      this.#renderResultModal(winningCounts, lottoYield, winningMoney);
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   #renderResultModal(winningCounts, lottoYield, winningMoney) {
@@ -82,8 +86,15 @@ export default class LottoController {
 
   #restart() {
     this.resultModalView.hideModal();
-    this.lottoVendor.reset();
-    this.lottoResult.reset();
+    this.lottoVendor = new LottoVendor();
+    this.lottoResult = new LottoResult(this.lottoVendor);
+    console.log(this.lottoVendor.paidMoney);
+    console.log(this.lottoVendor.lottos);
+    console.log(this.lottoResult.winningNumbers);
+    console.log(this.lottoResult.lottoYield);
+
+    // this.lottoVendor.reset();
+    // this.lottoResult.reset();
     this.purchaseView.resetInput();
     this.issuedTicketView.hideTicketContainer();
     this.winningNumbersView.resetInput();

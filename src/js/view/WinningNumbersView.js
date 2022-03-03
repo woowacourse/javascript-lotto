@@ -14,7 +14,6 @@ export default class WinningNumbersView {
 
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
-
     this.#enableAutoFocus();
   }
 

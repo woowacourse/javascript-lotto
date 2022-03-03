@@ -1,3 +1,5 @@
+import LOTTO from '../constants/lotto';
+
 export default class LottoResult {
   constructor(lottoVendor) {
     this.lottoVendor = lottoVendor;
@@ -73,25 +75,18 @@ export default class LottoResult {
 
   calculateLottoYield() {
     const winningMoney =
-      this.#winningCounts[3] * 5000 +
-      this.#winningCounts[4] * 50000 +
-      this.#winningCounts[5] * 1500000 +
-      this.#winningCounts.fiveBonus * 30000000 +
-      this.#winningCounts[6] * 2000000000;
-    const investmentMoney = this.lottoVendor.paidMoney;
+      this.#winningCounts[3] * LOTTO.FIFTH_PRIZE +
+      this.#winningCounts[4] * LOTTO.FOURTH_PRIZE +
+      this.#winningCounts[5] * LOTTO.THIRD_PRIZE +
+      this.#winningCounts.fiveBonus * LOTTO.SECOND_PRIZE +
+      this.#winningCounts[6] * LOTTO.FIRST_PRIZE;
+    const { paidMoney } = this.lottoVendor;
     this.#winningMoney = winningMoney;
-    this.#lottoYield = Math.floor((winningMoney / investmentMoney) * 100);
+    this.#lottoYield = Math.floor((winningMoney / paidMoney) * 100);
   }
 
   get lottoYield() {
     return this.#lottoYield;
-  }
-
-  reset() {
-    this.#winningNumbers = [];
-    this.#bonusNumber = 0;
-    this.#winningCounts = { three: 0, four: 0, five: 0, fiveBonus: 0, six: 0 };
-    this.#lottoYield = 0;
   }
 
   isWinningNumbersDuplicated() {
