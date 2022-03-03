@@ -13,16 +13,17 @@ export default class LottoController {
 
   constructor(lottoCreator, views) {
     this.#lottoCreator = lottoCreator;
+
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
   }
 
   init() {
-    this.#submitView();
+    this.#submitInitialView();
   }
 
-  #submitView() {
+  #submitInitialView() {
     on(
       this.#lottoPurchaseInputView.lottoPurchaseForm,
       '@purchaseMoney',
@@ -35,10 +36,19 @@ export default class LottoController {
     );
   }
 
+  #submitLottoWinningNumberInputView() {
+    on(
+      this.#lottoWinningNumberInputView.lottoMatchResultForm,
+      '@matchResult',
+      this.#submitMatchResult.bind(this)
+    );
+  }
+
   #submitLottoToggle() {
     this.#lottoPurchaseResultView.toggleLottoNumbers();
   }
 
+  // eslint-disable-next-line max-lines-per-function
   #submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
 
@@ -50,6 +60,8 @@ export default class LottoController {
     }
 
     this.#lottoPurchaseInputView.disablePurchaseLottoForm();
+
+    // 로또 자동 번호 생성 및 렌더링
     this.#lottoPurchaseResultView.renderLottoPurchaseCount(
       purchaseMoney / LOTTO.COST_UNIT
     );
@@ -57,6 +69,22 @@ export default class LottoController {
     this.#lottoPurchaseResultView.renderLottoPurchaseResult(
       this.#lottoCreator.lottoList
     );
+
+    // 당첨 번호 입력 렌더링
     this.#lottoWinningNumberInputView.renderlottoWinningNumberInput();
+    this.#lottoWinningNumberInputView.selectDOM();
+    this.#lottoWinningNumberInputView.attachEvents();
+    this.#submitLottoWinningNumberInputView();
   }
+
+  #submitMatchResult(event) {
+    const { lottoWinningNumbers, lottoWinningBonusNumber } = event.detail;
+
+    console.log(lottoWinningNumbers, lottoWinningBonusNumber);
+  }
+
+  // #submitBlockNotNumberInput(event) {
+  //   event.preventDefault();
+  //   console.log(event.detail);
+  // }
 }

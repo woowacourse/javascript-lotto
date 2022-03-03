@@ -30,7 +30,7 @@ export default class lottoPurchaseResultView {
   }
 
   #handleShowLottoToggle() {
-    emit(this.#showLottoToggle, '@lottoToggle', '');
+    emit(this.#showLottoToggle, '@lottoToggle');
   }
 
   renderLottoPurchaseCount(count) {
