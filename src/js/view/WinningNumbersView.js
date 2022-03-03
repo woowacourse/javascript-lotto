@@ -4,8 +4,7 @@ import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
 
 export default class WinningNumbersView {
-  constructor(lottoResult) {
-    this.lottoResult = lottoResult;
+  constructor() {
     this.$winningNumbersForm = $(ID.WINNING_NUMBERS_FORM);
     this.$winningNumbersReset = $(ID.WINNING_NUMBERS_RESET);
     this.$$winningNumberInputs = $$('.basic-input');

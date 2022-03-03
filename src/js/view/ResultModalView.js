@@ -47,8 +47,8 @@ export default class ResultModalView {
     this.$sixCount.textContent = winningCounts['6'];
   }
 
-  renderYield(lottoYield, winningMoney) {
-    this.$paidMoneySpan.textContent = insertComma(this.lottoVendor.paidMoney);
+  renderYield(paidMoney, winningMoney, lottoYield) {
+    this.$paidMoneySpan.textContent = insertComma(paidMoney);
     this.$lottoProfitSpan.textContent = insertComma(winningMoney);
     this.$lottoYieldSpan.textContent = insertComma(lottoYield);
   }

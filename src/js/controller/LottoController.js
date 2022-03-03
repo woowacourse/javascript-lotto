@@ -1,18 +1,24 @@
-import { on } from '../utils/event.js';
-import EVENT from '../constants/event.js';
-import EXCEPTION from '../constants/exception.js';
+import LottoVendor from '../model/LottoVendor.js';
+import LottoResult from '../model/LottoResult.js';
+import PurchaseView from '../view/PurchaseView.js';
+import IssuedTicketView from '../view/IssuedTicketView.js';
+import WinningNumbersView from '../view/WinningNumbersView.js';
+import ResultModalView from '../view/ResultModalView.js';
 import { moneyValidator } from '../validator/moneyValidator.js';
+import { on } from '../utils/event.js';
 import insertAutoComma from '../utils/autoComma.js';
+import EVENT from '../constants/event.js';
 import LOTTO from '../constants/lotto.js';
+import EXCEPTION from '../constants/exception.js';
 
 export default class LottoController {
-  constructor(lottoVendor, purchaseView, issuedTicketView, lottoResult, winningNumbersView, resultModalView) {
-    this.lottoVendor = lottoVendor;
-    this.lottoResult = lottoResult;
-    this.purchaseView = purchaseView;
-    this.issuedTicketView = issuedTicketView;
-    this.winningNumbersView = winningNumbersView;
-    this.resultModalView = resultModalView;
+  constructor() {
+    this.lottoVendor = new LottoVendor();
+    this.lottoResult = new LottoResult(this.lottoVendor);
+    this.purchaseView = new PurchaseView();
+    this.issuedTicketView = new IssuedTicketView();
+    this.winningNumbersView = new WinningNumbersView();
+    this.resultModalView = new ResultModalView();
     this.#subscribeViewEvents();
   }
 
@@ -28,23 +34,19 @@ export default class LottoController {
     on(this.purchaseView.$purchaseInput, EVENT.PURCHASE_KEYUP, (e) => this.#keyupHandler(e.detail.target));
   }
 
-  #purchaseLotto(money) {
+  #purchaseLotto(userInputMoney) {
     try {
+      this.lottoVendor.paidMoney = LottoVendor.settleMoney(userInputMoney);
+      this.lottoVendor.createLottos();
+      const issuedLottos = [...this.lottoVendor.lottos];
+      this.issuedTicketView.showTicketContainer();
+      this.issuedTicketView.renderTicketCount(issuedLottos.length);
+      this.issuedTicketView.renderIssuedTickets(issuedLottos);
       this.purchaseView.hidePurchasableLottoCount();
-      this.lottoVendor.paidMoney = money;
-      this.lottoVendor.saveCount();
-      this.lottoVendor.createLottoBundle();
-      this.#renderLotto();
+      this.purchaseView.deactivatePurchaseForm();
     } catch (error) {
       alert(error.message);
     }
-  }
-
-  #renderLotto() {
-    this.issuedTicketView.showTicketContainer();
-    this.issuedTicketView.renderTicketCount();
-    this.issuedTicketView.renderIssuedTickets();
-    this.purchaseView.deactivatePurchaseForm();
   }
 
   #toggleDetails(checked) {
@@ -73,8 +75,8 @@ export default class LottoController {
   }
 
   #renderResultModal(winningCounts, lottoYield, winningMoney) {
+    this.resultModalView.renderYield(this.lottoVendor.paidMoney, winningMoney, lottoYield);
     this.resultModalView.renderWinningCounts(winningCounts);
-    this.resultModalView.renderYield(lottoYield, winningMoney);
     this.resultModalView.showModal();
   }
 

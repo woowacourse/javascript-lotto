@@ -26,8 +26,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
     lottoVendor.paidMoney = 5000;
 
     // when
-    lottoVendor.saveCount();
-    lottoVendor.createLottoBundle();
+    lottoVendor.createLottos();
 
     // then
     expect(lottoVendor.lottos.length).toBe(lottoCount);
