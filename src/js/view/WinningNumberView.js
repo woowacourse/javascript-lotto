@@ -13,12 +13,20 @@ export class WinningNumberView {
     this.$resultModalClose = $(ID_SELECTOR.RESULT_MODAL_CLOSE);
     this.$resultModalReset = $(ID_SELECTOR.RESULT_MODAL_RESET);
     this.$resultModalProfitRatio = $(ID_SELECTOR.RESULT_MODAL_PROFIT_RATIO);
+    this.bindCloseModal();
   }
 
   bindCheckResult(handler) {
     this.$pickedNumbersForm.addEventListener('submit', event => {
       event.preventDefault();
       handler([...event.target.elements.pickedNumber].map(input => input.valueAsNumber));
+    });
+  }
+
+  // 무조건 handler로 넘겨줘서 이벤트는 컨트롤러에서 실행되도록 하는 것이 좋을까?
+  bindCloseModal() {
+    this.$resultModalClose.addEventListener('click', () => {
+      this.$resultModalBackground.classList.remove(CLASS_SELECTOR.OPEN);
     });
   }
 
