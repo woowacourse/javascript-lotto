@@ -13,20 +13,21 @@
           <label for="purchase-money">구입할 금액을 입력해주세요.</label>
           <input
             id="lotto-purchase-input"
+            class="mt-8"
             name="purchase-money"
             type="number"
             placeholder="금액"
             autofocus
           />
-          <button id="lotto-purchase-button" type="submit">구입</button>
+          <button id="lotto-purchase-button" class="base-button" type="submit">구입</button>
         </form>
       </section>
-      <section id="lotto-purchase-result">
+      <section id="lotto-purchase-result" class="mt-28">
         <div id="lotto-list-wrap">
           <p id="lotto-purchase-count">아직 구매하신 로또가 없습니다.</p>
-          <ul id="lotto-list" class="grid-columns-six"></ul>
+          <ul id="lotto-list" class="grid-columns-six mt-8"></ul>
         </div>
-        <div id="lotto-toggle-wrap">
+        <div class="flex flex-direction-column">
           <p>번호보기</p>
           <label class="switch" for="show-lotto-toggle">
             <input
@@ -39,14 +40,14 @@
         </div>
       </section>
       <dialog id="lotto-result-dialog">
-        <form method="dialog">
-          <p>🏆당첨 통계🏆</p>
-          <table>
+        <form method="dialog" class="flex flex-direction-column align-items-center">
+          <p id="lotto-result-title">🏆당첨 통계🏆</p>
+          <table id="lotto-result-table">
             <thead>
               <tr>
-                <th>일치 갯수</th>
-                <th>당첨금</th>
-                <th>당첨 갯수</th>
+                <th class="fw-600">일치 갯수</th>
+                <th class="fw-600">당첨금</th>
+                <th class="fw-600">당첨 갯수</th>
               </tr>
             </thead>
             <tbody>
@@ -77,8 +78,8 @@
               </tr>
             </tbody>
           </table>
-          <p>당신의 총 수익률은 <span id="profit-rate"></span>%입니다</p>
-          <button id="restart-button">다시 시작하기</button>
+          <p class="mt-16 fw-600">당신의 총 수익률은 <span id="profit-rate"></span>%입니다</p>
+          <button id="restart-button" class="mt-32 base-button">다시 시작하기</button>
         </form>
       </dialog> 
     </div>
