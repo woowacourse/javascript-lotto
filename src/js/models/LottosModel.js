@@ -48,11 +48,11 @@ export default class LottosModel {
     const rankNumber = LOTTO_NUMBER_LENGTH + BONUS_NUMBER_LENGTH - matchCount;
 
     if (this.#isBonusWinner(lottoNumberList, matchCount)) {
-      return 1;
+      return LOTTO_SETTING.BONUS_WINNER_INDEX_NUMBER;
     }
 
     if (LOTTO_SETTING.LOTTO_NUMBER_LENGTH === matchCount) {
-      return 0;
+      return LOTTO_SETTING.WINNER_INDEX_NUMBER;
     }
 
     return rankNumber;
