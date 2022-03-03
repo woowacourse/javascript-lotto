@@ -5,6 +5,15 @@ const winningCountsInit = {
   '4th': 0,
   '5th': 0,
 };
+
+const prizeMoney = {
+  '1th': 2000000000,
+  '2th': 30000000,
+  '3th': 1500000,
+  '4th': 50000,
+  '5th': 5000,
+};
+
 export default class WinningLottoCounter {
   #winningCounts;
   #winningLotto;
@@ -29,7 +38,7 @@ export default class WinningLottoCounter {
   calculateWinningCounts(boutghtLottos) {
     const tempWinningCounts = { ...winningCountsInit };
     boutghtLottos.forEach((lotto) => {
-      let hitCount = this.#winningLotto.winningNumbers.reduce((acc, num) => {
+      const hitCount = this.#winningLotto.winningNumbers.reduce((acc, num) => {
         if (lotto.has(num)) {
           acc += 1;
         }
@@ -57,5 +66,13 @@ export default class WinningLottoCounter {
       }
       this.#winningCounts = { ...tempWinningCounts };
     });
+  }
+
+  calculateProfitRate(chargedMoney) {
+    const earnedMoney = Object.entries(this.#winningCounts).reduce(
+      (total, [rank, count]) => (total += prizeMoney[rank] * count),
+      0
+    );
+    return earnedMoney ? Math.round(((earnedMoney - chargedMoney) / chargedMoney) * 100) : -100;
   }
 }

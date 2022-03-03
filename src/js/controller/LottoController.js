@@ -7,14 +7,16 @@ import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
 import { checkValidMoneyInput, checkValidWinningNumberInput } from '../utils/Lotto/validator';
 import WinningNumberInputView from '../views/WinningNumberInputView';
+import ResultModalView from '../views/ResultModalView';
 
 export default class LottoController {
   #MoneyInputView = new MoneyInputView($(`.${SELECTOR.CLASS.LOTTO_MONEY_SECTION}`));
   #LottoListView = new LottoListView($(`.${SELECTOR.CLASS.LOTTO_LIST_SECTION}`));
-  #LottosModel = new LottosModel();
   #WinningNumberInputView = new WinningNumberInputView(
     $(`.${SELECTOR.CLASS.WINNING_NUMBER_SECTION}`)
   );
+  #ResultModalView = new ResultModalView($('.modal'));
+  #LottosModel = new LottosModel();
   #WinningLottoCounter = new WinningLottoCounter();
 
   constructor() {
@@ -26,20 +28,13 @@ export default class LottoController {
     this.#WinningNumberInputView.bindWinningNumberInputSubmit(
       this.handleWinningNumberSubmit.bind(this)
     );
-    document.querySelector('#app').addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('close-modal-button') ||
-        e.target.classList.contains('reset-button') ||
-        e.target.classList.contains('modal')
-      ) {
-        document.querySelector('.modal').style.display = 'none';
-      }
-    });
+    this.#ResultModalView.bindResetLottos(this.handleResetLottos.bind(this));
   }
 
   handleMoneyInputSubmit({ money }) {
     try {
       checkValidMoneyInput(money);
+      this.#LottosModel.chargedMoney = Number(money);
       this.#LottosModel.buy(money);
       this.#LottoListView.showLottoList();
       this.#WinningNumberInputView.showWinningNumbers();
@@ -52,14 +47,20 @@ export default class LottoController {
   handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
     try {
       checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
-      document.querySelector('.modal').style.display = 'block';
       this.#WinningLottoCounter.setWinningLotto({ winningNumbers, bonusNumber });
       this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottos);
-      Object.values(this.#WinningLottoCounter.winningCounts).forEach((count, index) => {
-        document.getElementById(`winning-count-${index + 1}th`).textContent = `${count} 개`;
-      });
+      this.#WinningLottoCounter.calculateProfitRate(this.#LottosModel.chargedMoney);
+      this.#ResultModalView.showResultModal();
+      this.#ResultModalView.renderHitCount(this.#WinningLottoCounter.winningCounts);
+      this.#ResultModalView.renderProfitRage(
+        this.#WinningLottoCounter.calculateProfitRate(this.#LottosModel.chargedMoney)
+      );
     } catch (error) {
       alert(error);
     }
+  }
+
+  handleResetLottos() {
+    window.location.reload();
   }
 }

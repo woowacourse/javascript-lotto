@@ -5,3 +5,6 @@ export const isDivisible = (value, number) => value % number === 0;
 export const isValidRangeNumber = (min, max, number) => number >= min && number <= max;
 
 export const isValidAmount = (list, amount) => (list.length || list.size) === amount;
+
+export const hasClassName = (element, classes) =>
+  classes.some((className) => element.classList.contains(className));

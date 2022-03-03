@@ -3,6 +3,15 @@ import { LOTTO_SETTING } from '../constants/setting';
 
 export default class LottosModel {
   #lottos = [];
+  #chargedMoney = 0;
+
+  get chargedMoney() {
+    return this.#chargedMoney;
+  }
+
+  set chargedMoney(money) {
+    this.#chargedMoney += money;
+  }
 
   buy(inputMoney) {
     const lottoCount = inputMoney / LOTTO_SETTING.PRICE;
