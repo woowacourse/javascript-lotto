@@ -5,6 +5,7 @@ export const SELECTOR = Object.freeze({
     LOTTO_PURCHASE_BUTTON: 'lotto-purchase-button',
     LOTTO_MONEY_INPUT: 'lotto-money-input',
     LOTTO_BOUGHT_COUNT: 'lotto-bought-count',
+    LOTTO_SHOW_RESULT_BUTTON: 'show-result-button',
   }),
   CLASS: Object.freeze({
     NUMBER_TOGGLE: 'lotto-number-toggle',
