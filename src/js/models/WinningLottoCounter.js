@@ -14,16 +14,18 @@ const prizeMoney = {
   '5th': 5000,
 };
 
+const winningLottoInit = {
+  winningNumbers: [],
+  bonusNumber: null,
+};
+
 export default class WinningLottoCounter {
   #winningCounts;
   #winningLotto;
 
   constructor() {
     this.#winningCounts = { ...winningCountsInit };
-    this.#winningLotto = {
-      winningNumbers: [],
-      bonusNumber: null,
-    };
+    this.#winningLotto = { ...winningLottoInit };
   }
 
   get winningCounts() {
@@ -74,5 +76,10 @@ export default class WinningLottoCounter {
       0
     );
     return earnedMoney ? Math.round(((earnedMoney - chargedMoney) / chargedMoney) * 100) : -100;
+  }
+
+  reset() {
+    this.#winningCounts = winningCountsInit;
+    this.#winningLotto = winningLottoInit;
   }
 }

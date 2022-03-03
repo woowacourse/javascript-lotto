@@ -25,4 +25,9 @@ export default class LottosModel {
   get lottos() {
     return this.#lottos.map((lotto) => lotto.pickedNumbers);
   }
+
+  reset() {
+    this.#lottos = [];
+    this.#chargedMoney = 0;
+  }
 }

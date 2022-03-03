@@ -36,9 +36,9 @@ export default class LottoController {
       checkValidMoneyInput(money);
       this.#LottosModel.chargedMoney = Number(money);
       this.#LottosModel.buy(money);
-      this.#LottoListView.showLottoList();
-      this.#WinningNumberInputView.showWinningNumbers();
-      this.#LottoListView.renderLottoList(this.#LottosModel.list);
+      this.#LottoListView.renderLottoListSection();
+      this.#WinningNumberInputView.renderWinningNumbersInput();
+      this.#LottoListView.renderLottoListItems(this.#LottosModel.list);
     } catch (error) {
       alert(error);
     }
@@ -61,6 +61,8 @@ export default class LottoController {
   }
 
   handleResetLottos() {
-    window.location.reload();
+    [this.#LottosModel, this.#WinningLottoCounter].forEach((model) => {
+      model.reset();
+    });
   }
 }
