@@ -9,7 +9,7 @@ export default class ReturnOfCalculator extends Calculator {
   }
 
   execute() {
-    return (this.profits() / (this.buyCount * this.unit)) * 100;
+    return ((this.profits() - this.investment()) / this.investment()) * 100;
   }
 
   profits() {
@@ -17,5 +17,9 @@ export default class ReturnOfCalculator extends Calculator {
       (acc, [matchCount, lottoCount]) => acc + WINNING_AMOUNT_OF_LOTTO[matchCount] * lottoCount,
       0,
     );
+  }
+
+  investment() {
+    return this.buyCount * this.unit;
   }
 }
