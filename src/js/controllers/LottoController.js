@@ -10,13 +10,13 @@ export class LottoController {
   }
 
   bindLottoBtnEvents() {
-    this.bindPurchaseLottoEvent();
-    this.bindToggleEvent();
+    this.bindPurchaseLottoBtnEvent();
+    this.bindToggleBtnEvent();
     this.bindResultBtnEvent();
-    this.bindRestartEvent();
+    this.bindRestartBtnEvent();
   }
 
-  bindPurchaseLottoEvent() {
+  bindPurchaseLottoBtnEvent() {
     this.view.purchaseBtn.addEventListener('click', this.purchaseLottoEvent);
   }
 
@@ -36,7 +36,7 @@ export class LottoController {
     this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
   };
 
-  bindToggleEvent() {
+  bindToggleBtnEvent() {
     this.view.toggleBtn.addEventListener('click', this.toggleEvent);
   }
 
@@ -65,23 +65,59 @@ export class LottoController {
 
   resultEvent = (e) => {
     e.preventDefault();
-    this.getWinningNumbers();
-    this.getBonusNumbers();
+    if (this.getWinningNumbers() === false) {
+      return;
+    }
 
+    if (this.getBonusNumbers() === false) {
+      return;
+    }
+
+    if (this.detectInvalidWinningNumberInput()) {
+      return;
+    }
     this.lottoGame.calculateResult();
     this.lottoGame.calculateEarnRate();
 
     this.view.showResultOnModal(this.lottoGame);
   };
 
-  getWinningNumbers() {
-    this.lottoGame.enterWinningNumbers(Array.from(this.view.winningNumberInput).map((item) => Number(item.value)));
-  }
-  getBonusNumbers() {
-    this.lottoGame.enterBonusNumber(this.view.bonusNumberInput.value);
+  //TODO : 얘가 bonus까지 검사하지 않게 분리
+  detectInvalidWinningNumberInput() {
+    try {
+      validator.isWinningNumbersInputValid(this.lottoGame.winningNumbers, this.lottoGame.bonusNumber);
+    } catch (err) {
+      alert(err);
+      return true;
+    }
+    return false;
   }
 
-  bindRestartEvent() {
+  getWinningNumbers() {
+    const winningNumberInputArray = Array.from(this.view.winningNumberInput).map((item) => Number(item.value));
+    this.lottoGame.enterWinningNumbers(winningNumberInputArray);
+    if (winningNumberInputArray.filter((element) => element !== 0).length < 6) {
+      alert('당첨번호 6개 입력 부탁드립니다.');
+      let winningNumber = document.getElementById(`winning-number${winningNumberInputArray.indexOf(0)}`);
+      winningNumber.focus();
+      return false;
+    }
+    return true;
+  }
+
+  getBonusNumbers() {
+    this.lottoGame.enterBonusNumber(this.view.bonusNumberInput.value);
+    console.log(this.lottoGame.bonusNumber);
+    if (this.lottoGame.bonusNumber === '') {
+      alert('보너스번호 넣어주세요');
+      let bonusNumber = document.getElementById('bonus-number');
+      bonusNumber.focus();
+      return false;
+    }
+    return true;
+  }
+
+  bindRestartBtnEvent() {
     this.view.modal.addEventListener('close', this.restartEvent);
   }
 

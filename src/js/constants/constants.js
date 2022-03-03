@@ -12,7 +12,8 @@ export const ERROR_MESSAGE = {
   NULL_INPUT_ERROR: 'please enter input',
   HAS_DUPLICATED_WINNING_NUMBER: 'please enter winning number without duplication',
   HAS_DUPLICATED_BONUS_NUMBER: 'please enter bonus number without duplicaiton',
-  HAS_OUT_OF_RANGE_NUMBER: `please enter number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX}`,
+  HAS_OUT_OF_RANGE_NUMBER: `please enter winning number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX}`,
+  HAS_OUT_OF_RANGE_BONUS_NUMBER: `please enter bonus number between ${CONDITIONS.LOTTO_NUM_MIN} and ${CONDITIONS.LOTTO_NUM_MAX}`,
 };
 
 export const WINNING_PRICE = {

@@ -72,7 +72,7 @@
   grid-template-areas:
     'hd hd hd hd hd hd hd hd'
     'hd2 hd2 hd2  hd2  .  .  . hd3'
-    'wn1 wn2 wn3 wn4 wn5 wn6 . bn'
+    'wn0 wn1 wn2 wn3 wn4 wn5 . bn'
     'cr cr cr cr cr cr cr cr';
 }
 
@@ -124,6 +124,9 @@
   border-radius: 4px;
 }
 
+#winning-number0 {
+  grid-area: wn0;
+}
 #winning-number1 {
   grid-area: wn1;
 }
@@ -138,9 +141,6 @@
 }
 #winning-number5 {
   grid-area: wn5;
-}
-#winning-number6 {
-  grid-area: wn6;
 }
 #bonus-number {
   grid-area: bn;
