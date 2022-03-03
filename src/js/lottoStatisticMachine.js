@@ -7,6 +7,10 @@ class LottoStatisticMachine {
 
   #winningCounts = new Array(5).fill(null);
 
+  #earningsRate = null;
+
+  #prizeMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+
   calculateWinningCounts(lottos, winningNumbers, bonumsNumber) {
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonumsNumber;
@@ -60,6 +64,20 @@ class LottoStatisticMachine {
     }
 
     return 1;
+  }
+
+  calculateEarningsRate(fare, winningCounts) {
+    const earnings = this.#calculateEarnings(winningCounts);
+
+    this.#earningsRate = (earnings - fare) / fare;
+    return this.#earningsRate;
+  }
+
+  #calculateEarnings(winningCounts) {
+    return winningCounts.reduce(
+      (earnings, winningCount, index) => earnings + this.#prizeMoney[index] * winningCount,
+      0,
+    );
   }
 }
 

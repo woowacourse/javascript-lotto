@@ -117,21 +117,6 @@ describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않
   });
 });
 
-const calculateEarning = (winningCounts) => {
-  const prizeMoney = [5000, 50000, 1500000, 30000000, 2000000000];
-
-  return winningCounts.reduce(
-    (earnings, winningCount, index) => earnings + prizeMoney[index] * winningCount,
-    0,
-  );
-};
-
-const calculateRateReturn = (fare, winningCounts) => {
-  const earnings = calculateEarning(winningCounts);
-
-  return (earnings - fare) / fare;
-};
-
 describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호를 이용해서 당첨 결과를 확인할 수 있어야 한다.', () => {
   test('구매한 로또 중 당첨된 로또를 개수를 등수 별로 계산할 수 있어야 한다.', () => {
     const lottos = [
@@ -156,6 +141,8 @@ describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호�
     const fare = 5000;
     const winningCounts = [0, 0, 1, 0, 0];
 
-    expect(calculateRateReturn(fare, winningCounts)).toBe(299);
+    const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
+
+    expect(earningsRate).toBe(299);
   });
 });
