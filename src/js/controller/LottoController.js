@@ -101,10 +101,10 @@ export default class LottoController {
       PRIZE.SEONCD_PLACE,
       PRIZE.FIRST_PLACE
     ];
-    const profit = winnerStatistic.reduce((sum, currentPrize, index) => {
-      return sum + currentPrize * prizes[index];
-    });
-    return Math.round(profit / cost * 100);
+    const profit = winnerStatistic
+                  .map((matchedCount, index) => matchedCount * prizes[index])
+                  .reduce((sum, currentValue) => sum + currentValue, 0);
+    return Math.round((profit - cost) / cost * 100);
   }
 
   winningLottoHandler = e => {
