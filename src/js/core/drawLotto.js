@@ -5,7 +5,7 @@ export const drawLotto = lottoPrice => {
   if (lottoPrice === undefined) {
     return;
   }
-  const lottoCount = numberOfLotto(lottoPrice);
+  const lottoCount = getNumberOfLotto(lottoPrice);
   const lottoList = [];
   for (let i = 0; i < lottoCount; i++) {
     const lotto = new Lotto();
@@ -15,6 +15,6 @@ export const drawLotto = lottoPrice => {
   return lottoList;
 };
 
-export const numberOfLotto = value => {
+const getNumberOfLotto = value => {
   return value / LOTTO_PRICE;
 };

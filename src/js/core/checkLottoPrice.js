@@ -28,14 +28,14 @@ export const checkLottoPrice = userInput => {
   return lottoPrice;
 };
 
-export const isValueTypeNumber = value => {
+const isValueTypeNumber = value => {
   return Number.isInteger(value);
 };
 
-export const isValuePositiveNumber = value => {
+const isValuePositiveNumber = value => {
   return value > 0;
 };
 
-export const isValueDivideThousand = value => {
+const isValueDivideThousand = value => {
   return value % LOTTO_PRICE === 0;
 };
