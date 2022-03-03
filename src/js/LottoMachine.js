@@ -20,6 +20,14 @@ export default class LottoMachine {
     $(SELECTOR.WINNING_NUMBER_FORM).addEventListener('submit', this.onSubmitWinningNumber.bind(this));
     $('#result-modal-close-button').addEventListener('click', this.onClickCloseResultModalButton.bind(this));
     $('#restart-button').addEventListener('click', this.onClickRestartButton.bind(this));
+    $$('input', $(SELECTOR.WINNING_NUMBER_FORM)).forEach((inputElement, index, inputs) => {
+      inputElement.addEventListener('keyup', (e) => { 
+        if (e.target.value.length === 2 && index !== inputs.length - 1)
+          inputs[index + 1].focus();
+        if (e.target.value.length === 2 && index === inputs.length - 1)
+          $('button', $(SELECTOR.WINNING_NUMBER_FORM)).focus();
+      });
+    })
   }
   
   onSubmitCharge(event) {
@@ -55,6 +63,13 @@ export default class LottoMachine {
       return;
     }
     this.showWinningResultModal(winningNumberInputValues);
+  }
+
+  onTypeWinningNumberInput(event) {
+    if (event.target.value.length === 2 && index !== inputs.length - 1)
+      inputs[index + 1].focus();
+    if (event.target.value.length === 2 && index === inputs.length - 1)
+      $('button', $(SELECTOR.WINNING_NUMBER_FORM)).focus();
   }
 
   purchaseLotteryTicket(chargeInputValue) {
