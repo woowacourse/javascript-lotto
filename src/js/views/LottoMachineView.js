@@ -1,59 +1,27 @@
 import { $, $$ } from '../utils/util';
-import { lottoListTemplate, lottoTotalNumber } from './template';
-import { MATCH_RESULT_INDEX, PRIZE_MONEY, SELECTOR } from '../constants/constants';
+import WinningResultSectionView from './WinningResultSectionView';
+import PurchaseTicketSectionView from './PurchaseTicketSectionView';
+import { MATCH_RESULT_INDEX, PRIZE_MONEY } from '../constants/constants';
 
 const CLASS_DISPLAY_NONE = 'display-none';
 
 export default class LottoMachineView {
   constructor() {
+    this.purchaseTicketSectionView = new PurchaseTicketSectionView();
+    this.winningResultSectionView = new WinningResultSectionView();
+
     this.resultModalArea = $('#result-modal-area');
-    this.showLottoList = {
-      icon: this.showLottoIconList,
-      number: this.showLottoNumberList,
-    };
   }
 
   initialize(lottos) {
     this.initializeInputValues();
-    this.updateLottoList(lottos);
-    this.closeWinningResultModal();
-    $('#show-number-toggle-container').classList.add(CLASS_DISPLAY_NONE);
-    $('#winning-result-section').classList.add(CLASS_DISPLAY_NONE);
-    this.activatePurchaseForm();
+    this.purchaseTicketSectionView.initialize(lottos);
+    this.winningResultSectionView.initialize();
   }
 
-  updateChargeInput(value) {
-    $(SELECTOR.CHARGE_INPUT).value = value;
-  }
-
-  updateLottoList(lottos) {
-    if (lottos.length !== 0 && $('#show-number-toggle-container').classList.contains(CLASS_DISPLAY_NONE))
-      $('#show-number-toggle-container').classList.remove(CLASS_DISPLAY_NONE);
-    if (lottos.length !== 0 && $('#winning-result-section').classList.contains(CLASS_DISPLAY_NONE))
-      $('#winning-result-section').classList.remove(CLASS_DISPLAY_NONE);
-    $(SELECTOR.LOTTO_TOTAL_NUMBER).innerHTML = lottoTotalNumber(lottos.length);
-    $(SELECTOR.LOTTO_LIST_ICON).innerHTML = lottoListTemplate.icon(lottos.length);
-    $(SELECTOR.LOTTO_LIST_NUMBER).innerHTML = lottoListTemplate.number(lottos);
-  }
-
-  activatePurchaseForm() {
-    $$('input', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.removeAttribute('disabled'));
-    $$('button', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.removeAttribute('disabled'));
-  }
-
-  disablePurchaseForm() {
-    $$('input', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.setAttribute('disabled', ''));
-    $$('button', $(SELECTOR.CHARGE_SUBMIT_FORM)).forEach((element) => element.setAttribute('disabled', ''));
-  }
-
-  showLottoIconList() {
-    $(SELECTOR.LOTTO_LIST_ICON).classList.remove(CLASS_DISPLAY_NONE);
-    $(SELECTOR.LOTTO_LIST_NUMBER).classList.add(CLASS_DISPLAY_NONE);
-  }
-
-  showLottoNumberList() {
-    $(SELECTOR.LOTTO_LIST_ICON).classList.add(CLASS_DISPLAY_NONE);
-    $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove(CLASS_DISPLAY_NONE);
+  updateOnPurchase(tickets, charge) {
+    this.purchaseTicketSectionView.updateOnPurchase(tickets, charge);
+    this.winningResultSectionView.updateOnPurchase(tickets);
   }
 
   openWinningResultModal(result) {
@@ -72,7 +40,7 @@ export default class LottoMachineView {
     })
     $('#profit-ratio', this.resultModalArea).innerText = Math.round(profitRatio);
   }
-  
+
   initializeInputValues() {
     $$('input').forEach((element) => {
       element.value = '';
