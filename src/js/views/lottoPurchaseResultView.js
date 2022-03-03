@@ -33,16 +33,18 @@ export default class lottoPurchaseResultView {
     emit(this.#showLottoToggle, '@lottoToggle');
   }
 
-  renderLottoPurchaseCount(count) {
+  render(count, lottoList) {
     this.#lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
-  }
 
-  renderLottoPurchaseResult(lottoList) {
     this.#lottoList.insertAdjacentHTML(
       'afterbegin',
       lottoPurchaseResultTemplate(lottoList)
     );
   }
+
+  // renderLottoPurchaseCount(count) {}
+
+  // renderLottoPurchaseResult(lottoList) {}
 
   toggleLottoNumbers() {
     this.#lottoNumbers = $$('.lotto-numbers');

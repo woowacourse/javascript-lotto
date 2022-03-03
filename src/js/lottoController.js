@@ -62,16 +62,14 @@ export default class LottoController {
     this.#lottoPurchaseInputView.disablePurchaseLottoForm();
 
     // 로또 자동 번호 생성 및 렌더링
-    this.#lottoPurchaseResultView.renderLottoPurchaseCount(
-      purchaseMoney / LOTTO.COST_UNIT
-    );
     this.#lottoCreator.createLottoList(purchaseMoney / LOTTO.COST_UNIT);
-    this.#lottoPurchaseResultView.renderLottoPurchaseResult(
+    this.#lottoPurchaseResultView.render(
+      purchaseMoney / LOTTO.COST_UNIT,
       this.#lottoCreator.lottoList
     );
 
     // 당첨 번호 입력 렌더링
-    this.#lottoWinningNumberInputView.renderlottoWinningNumberInput();
+    this.#lottoWinningNumberInputView.render();
     this.#lottoWinningNumberInputView.selectDOM();
     this.#lottoWinningNumberInputView.attachEvents();
     this.#submitLottoWinningNumberInputView();

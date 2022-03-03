@@ -55,7 +55,7 @@ export default class LottoWinningNumberInputView {
   //   }
   // }
 
-  renderlottoWinningNumberInput() {
+  render() {
     this.#lottoPurchaseResult.insertAdjacentHTML(
       'afterend',
       lottoWinningNumberInputTemplate()
