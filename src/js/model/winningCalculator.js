@@ -15,7 +15,7 @@ import {
 class WinningCalculator {
   constructor() {
     this.winnerNumbers = [];
-    this.bonusNumber = '';
+    this.bonusNumber = 0;
     this.totalWinningCount = {
       0: 0,
       5000: 0,
@@ -34,7 +34,7 @@ class WinningCalculator {
     this.winnerNumbers = convertStringNumberArrayToNumberArray(winnerNumberInputs);
     this.bonusNumber = Number(bonusNumberInput);
     this.#updateTotalWinningCount(lottos);
-    this.totalYield = this.calculateTotalYield(
+    this.totalYield = this.#calculateTotalYield(
       lottos.length * LOTTO_PRICE,
       this.#calculateTotalWinningAmount(lottos)
     );
@@ -62,7 +62,7 @@ class WinningCalculator {
     return lottoNumberArray.filter((number) => winnerNumberArray.includes(number)).length;
   }
 
-  calculateWinningAmountByLotto(matchingNumberCount, isBonusNumberMatched) {
+  #calculateWinningAmountByLotto(matchingNumberCount, isBonusNumberMatched) {
     if (matchingNumberCount === LOTTO_NUMBER_COUNT - 1 && isBonusNumberMatched) {
       return WINNING_AMOUNT.BONUS;
     }
@@ -75,7 +75,7 @@ class WinningCalculator {
     lottos.forEach(
       (lotto) =>
         this.totalWinningCount[
-          this.calculateWinningAmountByLotto(
+          this.#calculateWinningAmountByLotto(
             this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
             Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
           )
@@ -87,7 +87,7 @@ class WinningCalculator {
     return lottos.reduce(
       (acc, lotto) =>
         acc +
-        this.calculateWinningAmountByLotto(
+        this.#calculateWinningAmountByLotto(
           this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
           Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
         ),
@@ -95,7 +95,7 @@ class WinningCalculator {
     );
   }
 
-  calculateTotalYield(cashInput, totalWinningAmount) {
+  #calculateTotalYield(cashInput, totalWinningAmount) {
     return Math.round((totalWinningAmount / cashInput) * 100);
   }
 }
