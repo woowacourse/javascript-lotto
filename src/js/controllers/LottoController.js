@@ -111,7 +111,6 @@ export class LottoController {
     if (winningNumberInputArray.filter((element) => element !== 0).length < CONDITIONS.LOTTO_SIZE) {
       let winningNumber = document.getElementById(`winning-number${winningNumberInputArray.indexOf(0)}`);
       winningNumber.focus();
-      console.log(ERROR_MESSAGE.NOT_ENOUGH_WINNING_NUMBER_INPUT);
       throw new Error(ERROR_MESSAGE.NOT_ENOUGH_WINNING_NUMBER_INPUT);
     }
   }

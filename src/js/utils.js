@@ -34,7 +34,6 @@ export const validator = {
   },
 
   isWinningNumbersInputValid(winningNumbers, bonusNumber) {
-    //duplicated 빈칸이 있으면 0이라서 중첩된걸로 떠버림
     if (!this.isWinningNumberNotDuplicated(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_WINNING_NUMBER);
     }
@@ -42,7 +41,7 @@ export const validator = {
       throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_BONUS_NUMBER);
     }
     if (!this.isWinningNumbersInRange(winningNumbers)) {
-      throw new Error(ERROR_MESSAGE.HAS_OUT_OF_RANGE_NUMBER);
+      throw new Error(ERROR_MESSAGE.HAS_OUT_OF_RANGE_WINNING_NUMBER);
     }
 
     if (!this.isBonusNumbersInRange(bonusNumber)) {
@@ -61,11 +60,11 @@ export const validator = {
   },
 
   isWinningNumbersInRange(winningNumbers) {
-    return winningNumbers.every((e) => CONDITIONS.LOTTO_NUM_MIN <= e && e <= CONDITIONS.LOTTO_NUM_MIN);
+    return winningNumbers.every((e) => CONDITIONS.LOTTO_NUM_MIN <= e && e <= CONDITIONS.LOTTO_NUM_MAX);
   },
 
   isBonusNumbersInRange(bonusNumber) {
-    return CONDITIONS.LOTTO_NUM_MIN <= bonusNumber && bonusNumber <= CONDITIONS.LOTTO_NUM_MIN;
+    return CONDITIONS.LOTTO_NUM_MIN <= bonusNumber && bonusNumber <= CONDITIONS.LOTTO_NUM_MAX;
   },
 };
 
