@@ -1,7 +1,7 @@
 import ACTION from '../flux/actions';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
-import { validateWinningNumbers } from '../validation/validators';
+import { validateWinningNumber } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
 class WinningNumberForm extends Component {
@@ -48,10 +48,10 @@ class WinningNumberForm extends Component {
     this.addEvent('submit', 'form', (event) => {
       event.preventDefault();
       const $winningNumberInputs = [...this.querySelectorAll('input')];
-      const winningNumbers = $winningNumberInputs.map((input) => input.value);
+      const winningNumber = $winningNumberInputs.map((input) => input.value);
 
       try {
-        this.checkResult(winningNumbers);
+        this.checkResult(winningNumber);
       } catch (e) {
         console.error(e);
         alert(e.message);
@@ -59,8 +59,8 @@ class WinningNumberForm extends Component {
     });
   }
 
-  checkResult(winningNumbers) {
-    const { hasError, errorMessage } = validateWinningNumbers(winningNumbers);
+  checkResult(winningNumber) {
+    const { hasError, errorMessage } = validateWinningNumber(winningNumber);
 
     if (hasError) {
       throw new ValidationError(errorMessage);
