@@ -1,5 +1,10 @@
 import Lotto from './Lotto';
-import { isValidCharge, getRandomNumber } from '../utils/validator';
+import {
+  isValidNumber,
+  isValidCharge,
+  getRandomNumber,
+  hasUniqueElement,
+} from '../utils/validator';
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import { NUMBER } from '../constants/number';
 
@@ -14,12 +19,10 @@ class LottoGameModel {
   }
 
   getLottoList() {
-    /** getter로 가져간 lottoList를 변경하여도 lottoList의 멤버에겐 영향이 없다. */
     return this.lottoList.deepCopy();
   }
 
   createLottoList(chargeInput) {
-    /** 정상적이지 않은 로또가 하나라도 존재한다면, 멤버는 빈 값이고 사용자는 금액을 다시 입력하여야 한다. */
     try {
       const availableLottoAmount = this.exchangeChargeToLottoAmount(chargeInput);
       const newLottoList = new Array(availableLottoAmount).fill().map(() => {
@@ -50,12 +53,18 @@ class LottoGameModel {
   }
 
   getGameResult(winningNumbers) {
-    this.winningResult = [0, 0, 0, 0, 0, 0, 0];
-    this.lottoList.forEach((lotto) => {
-      this.updateLottoRankResult(lotto, winningNumbers);
-    });
-    this.updateLottoEarningRate();
-    return this.winningResult;
+    if (isValidNumber(winningNumbers)) {
+      if (hasUniqueElement(winningNumbers)) {
+        this.winningResult = [0, 0, 0, 0, 0, 0, 0];
+        this.lottoList.forEach((lotto) => {
+          this.updateLottoRankResult(lotto, winningNumbers);
+        });
+        this.updateLottoEarningRate();
+        return this.winningResult;
+      }
+      throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER_IS_EXIST);
+    }
+    throw new Error(ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE);
   }
 
   updateLottoRankResult(lotto, winningNumbers) {

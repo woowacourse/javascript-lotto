@@ -27,3 +27,8 @@ export function getRandomNumber(array) {
 
   return randomNumber;
 }
+
+export function hasUniqueElement(element) {
+  const uniqueSet = new Set(element);
+  return uniqueSet.size === element.length;
+}

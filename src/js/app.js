@@ -42,7 +42,17 @@ class LottoGameManager {
 
   onSubmitWinNumberInputForm = (e) => {
     e.preventDefault();
-    const inputWinNumber = [
+    try {
+      const inputWinNumber = this.getInputWinNumber(e);
+      const gameResult = this.lottoGameModel.getGameResult(inputWinNumber);
+      this.lottoGameView.openResultModal(gameResult);
+    } catch (message) {
+      alert(message);
+    }
+  };
+
+  getInputWinNumber(e) {
+    return [
       Number(e.path[0][0].value),
       Number(e.path[0][1].value),
       Number(e.path[0][2].value),
@@ -51,9 +61,7 @@ class LottoGameManager {
       Number(e.path[0][5].value),
       Number(e.path[0][6].value),
     ];
-    const gameResult = this.lottoGameModel.getGameResult(inputWinNumber);
-    this.lottoGameView.openResultModal(gameResult);
-  };
+  }
 
   onClickReplayButton = () => {
     this.lottoGameModel.initialize();
