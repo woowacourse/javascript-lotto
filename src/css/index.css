@@ -35,6 +35,7 @@ input[type='number']::-webkit-inner-spin-button {
   position: relative;
   display: flex;
   flex-direction: column;
+  min-height: 727px;
   height: fit-content;
   width: 414px;
   padding: 0 16px 80px 16px;
