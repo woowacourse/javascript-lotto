@@ -1,11 +1,9 @@
 import { LOTTO_RULES } from '../constants/constants';
-import LottoPurchaseMachine from '../machine/lottoPurchaseMachine.js';
-import LottoWinnerMachine from '../machine/lottoWinnerMachine';
+import LottoMachine from '../machine/lottoMachine';
 import { generateRandomNumberInRange } from '../utils/utils.js';
 
 describe('구입 금액 검증 테스트 ', () => {
-  const lottoMachine = new LottoPurchaseMachine();
-  const { buyLotto } = lottoMachine;
+  const lottoMachine = new LottoMachine();
   test('입력 값이 빈 칸이 아니어야 한다.', () => {
     const cashInput = '';
     expect(() => lottoMachine.buyLotto(cashInput)).toThrow();
@@ -49,33 +47,33 @@ describe('로또 번호 생성 테스트', () => {
   });
 
   test('투입한 금액만큼의 로또가 생성되는지 확인한다.', () => {
-    const lottoMachine = new LottoPurchaseMachine();
+    const lottoMachine = new LottoMachine();
     const cashInput = '5000';
     lottoMachine.buyLotto(cashInput);
-    expect(lottoMachine.lottos).toHaveLength(Number(cashInput) / LOTTO_RULES.PRICE);
+    expect(lottoMachine.lottoArray).toHaveLength(Number(cashInput) / LOTTO_RULES.PRICE);
   });
 });
 
 describe('당첨 번호 입력 검증 테스트', () => {
-  const lottoWinnerMachine = new LottoWinnerMachine();
+  const lottoMachine = new LottoMachine();
 
   test('올바른 값을 입력하면 오류가 발생하지 않는다.', () => {
     const validInput = { numbers: [1, 2, 3, 4, 5, 6], bonus: 7 };
-    expect(() => lottoWinnerMachine.setWinnerNumbers(validInput)).not.toThrow();
+    expect(() => lottoMachine.getMatches(validInput)).not.toThrow();
   });
 
   test('입력한 값 중 빈 값이 없는 지 검증한다.', () => {
     const inputMissingNumbers = { numbers: [1, 2, 3, 4, 5], bonus: 1 };
     const inputMissingBonus = { numbers: [1, 2, 3, 4, 5, 6] };
 
-    expect(() => lottoWinnerMachine.setWinnerNumbers(inputMissingNumbers)).toThrow();
-    expect(() => lottoWinnerMachine.setWinnerNumbers(inputMissingBonus)).toThrow();
+    expect(() => lottoMachine.getMatches(inputMissingNumbers)).toThrow();
+    expect(() => lottoMachine.getMatches(inputMissingBonus)).toThrow();
   });
 
   test('입력한 값 중 중복이 없는 지 검증한다.', () => {
     const duplicateInput = { numbers: [1, 2, 3, 4, 5, 6], bonus: 1 };
 
-    expect(() => lottoWinnerMachine.setWinnerNumbers(duplicateInput)).toThrow();
+    expect(() => lottoMachine.getMatches(duplicateInput)).toThrow();
   });
 
   test('입력한 값이 모두 1 - 45 범위의 자연수인지 검증한다.', () => {
@@ -84,42 +82,41 @@ describe('당첨 번호 입력 검증 테스트', () => {
     const inputRealNumber = { numbers: [1.1, 2, 3, 4, 5], bonus: 3 };
     const inputString = { numbers: ['one', 2, 3, 4, 5], bonus: 3 };
 
-    expect(() => lottoWinnerMachine.setWinnerNumbers(inputSmallerNumber)).toThrow();
-    expect(() => lottoWinnerMachine.setWinnerNumbers(inputLagerNumber)).toThrow();
-    expect(() => lottoWinnerMachine.setWinnerNumbers(inputRealNumber)).toThrow();
-    expect(() => lottoWinnerMachine.setWinnerNumbers(inputString)).toThrow();
+    expect(() => lottoMachine.getMatches(inputSmallerNumber)).toThrow();
+    expect(() => lottoMachine.getMatches(inputLagerNumber)).toThrow();
+    expect(() => lottoMachine.getMatches(inputRealNumber)).toThrow();
+    expect(() => lottoMachine.getMatches(inputString)).toThrow();
   });
 });
 
 describe('당첨 금액 계산 테스트', () => {
   // 로또 번호, 당첨 번호를 머신에 저장하고 일치 계산
-  const createTestMachine = (lottos, winnerNumbers) => {
-    const testMachine = new LottoWinnerMachine();
-    testMachine.receiveLottos(lottos);
-    testMachine.setWinnerNumbers(winnerNumbers);
-    return testMachine;
+  const getMatchResult = (lottoArray, winnerNumbers) => {
+    const lottoMachine = new LottoMachine();
+    lottoMachine.lottoArray = lottoArray;
+    return lottoMachine.getMatches(winnerNumbers);
   };
 
   test('한 개의 로또와 당첨 번호를 비교해 일치 번호의 갯수를 반환한다.', () => {
-    const lottos = [new Set([1, 2, 3, 4, 5, 6])];
+    const lottoArray = [new Set([1, 2, 3, 4, 5, 6])];
     const winnerNumbers = { numbers: [1, 2, 3, 45, 44, 43], bonus: 6 };
 
-    const testMachine = createTestMachine(lottos, winnerNumbers);
+    const matchResult = getMatchResult(lottoArray, winnerNumbers);
 
-    expect(testMachine.matches[3]).toEqual(1);
+    expect(matchResult.matches[3]).toEqual(1);
   });
 
   test('일치 번호의 갯수가 5개일 때 보너스 번호를 체크한다.', () => {
-    const lottos = [new Set([1, 2, 3, 4, 5, 6])];
+    const lottoArray = [new Set([1, 2, 3, 4, 5, 6])];
     const winnerNumbers = { numbers: [1, 2, 3, 4, 5, 7], bonus: 6 };
 
-    const testMachine = createTestMachine(lottos, winnerNumbers);
+    const matchResult = getMatchResult(lottoArray, winnerNumbers);
 
-    expect(testMachine.matches['5+']).toEqual(1);
+    expect(matchResult.matches['5+']).toEqual(1);
   });
 
   test('여러 개의 로또와 당첨 번호를 비교해 일치 번호의 갯수를 반환한다.', () => {
-    const lottos = [
+    const lottoArray = [
       new Set([1, 2, 3, 4, 5, 6]),
       new Set([1, 2, 3, 4, 5, 8]),
       new Set([11, 12, 13, 4, 5, 7]),
@@ -130,13 +127,13 @@ describe('당첨 금액 계산 테스트', () => {
 
     const manualMatch = { 2: 1, 3: 2, 5: 1, '5+': 1 };
 
-    const testMachine = createTestMachine(lottos, winnerNumbers);
+    const matchResult = getMatchResult(lottoArray, winnerNumbers);
 
-    expect(testMachine.matches).toEqual(manualMatch);
+    expect(matchResult.matches).toEqual(manualMatch);
   });
 
   test('로또와 당첨번호를 비교해 수익률을 계산할 수 있다.', () => {
-    const lottos = [
+    const lottoArray = [
       new Set([11, 12, 13, 4, 5, 7]),
       new Set([11, 12, 13, 4, 5, 7]),
       new Set([11, 12, 13, 14, 5, 7]),
@@ -147,9 +144,9 @@ describe('당첨 금액 계산 테스트', () => {
 
     const manualProfit = ((5000 * 2) / 5000) * 100 - 100;
 
-    const testMachine = createTestMachine(lottos, winnerNumbers);
+    const matchResult = getMatchResult(lottoArray, winnerNumbers);
 
-    expect(testMachine.profit).toEqual(manualProfit);
+    expect(matchResult.profit).toEqual(manualProfit);
   });
 });
 

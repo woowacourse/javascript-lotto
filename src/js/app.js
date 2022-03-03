@@ -1,19 +1,15 @@
 import LottoView from './view/lottoView';
-import LottoPurchaseMachine from './machine/lottoPurchaseMachine';
-import LottoWinnerMachine from './machine/lottoWinnerMachine';
 
-import Messenger from './messenger';
+import RequestHandler from './requestHandler';
+import LottoMachine from './machine/lottoMachine';
 
 const lottoApp = () => {
   const lottoView = new LottoView();
-  const lottoPurchaseMachine = new LottoPurchaseMachine();
-  const lottoWinnerMachine = new LottoWinnerMachine();
+  const lottoMachine = new LottoMachine();
 
-  const messenger = new Messenger(lottoView, lottoPurchaseMachine, lottoWinnerMachine);
+  const requestHandler = new RequestHandler(lottoView, lottoMachine);
 
-  lottoView.assignMessenger(messenger.deliverMessage);
-  lottoPurchaseMachine.assignMessenger(messenger.deliverMessage);
-  lottoWinnerMachine.assignMessenger(messenger.deliverMessage);
+  lottoView.addRequestHandler(requestHandler.sendRequest);
 };
 
 export default lottoApp;

@@ -7,13 +7,12 @@ class WinnerNumberView {
     this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll('.winner-number-input');
     this.bonusNumberInput = selectDom('.bonus-number-input', this.winnerNumberSection);
     this.resultButton = selectDom('.result-button', this.winnerNumberSection);
-    this.resultButton.addEventListener('click', this.handleWinnerNumberInput);
 
-    this.deliverMessage = () => {};
+    this.sendRequest = () => {};
   }
 
-  assignMessenger(deliverMessage) {
-    this.deliverMessage = deliverMessage;
+  addRequestHandler(sendRequest) {
+    this.sendRequest = sendRequest;
   }
 
   render() {
@@ -34,11 +33,9 @@ class WinnerNumberView {
 
     const winnerNumberData = { numbers: [...winnerNumbers], bonus: bonusNumber };
 
-    this.deliverMessage({
-      message: 'WINNER_NUMBER_INPUT',
-      to: 'winnerMachine',
-      params: winnerNumberData,
-    });
+    const matchResult = this.sendRequest('INPUT_WINNER_NUMBER', winnerNumberData);
+
+    return matchResult;
   };
 }
 

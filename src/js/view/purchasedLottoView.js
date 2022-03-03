@@ -12,12 +12,12 @@ class PurchasedLottoView {
     this.totalAmountLabel = null;
   }
 
-  renderLottos(lottos) {
+  renderLottos(lottoArray) {
     this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
 
-    this.totalAmountLabel = this.#generatePurchasedLabel(lottos.length);
+    this.totalAmountLabel = this.#generatePurchasedLabel(lottoArray.length);
     this.lottoContainer.prepend(this.totalAmountLabel);
-    this.lottoGrid.append(...this.#generateLottoElementsArray(lottos));
+    this.lottoGrid.append(...this.#generateLottoElementsArray(lottoArray));
   }
 
   resetView() {
