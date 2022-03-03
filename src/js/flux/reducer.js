@@ -1,7 +1,7 @@
 import ACTION from './actions';
 import initialState from './initialState';
-import { LOTTO, MATCH_COUNT } from '../constants';
-import pickUniqueNumbersInRange from '../utils';
+import { LOTTO, MATCH_COUNT, PRIZE_MONEY } from '../constants';
+import { calculateEarningsRate, pickUniqueNumbersInRange } from '../utils';
 
 const generateLottoList = (money) => {
   const lottoList = [];
@@ -51,11 +51,24 @@ const generateWinningCounts = (winningNumbers, bonusNumber) => {
   return winningCounts;
 };
 
+const generateEarningsRate = (winningCounts) => {
+  const { money } = window.store.getState();
+  const currentMoney =
+    winningCounts.fifth * PRIZE_MONEY.FIFTH +
+    winningCounts.fourth * PRIZE_MONEY.FOURTH +
+    winningCounts.third * PRIZE_MONEY.THIRD +
+    winningCounts.second * PRIZE_MONEY.SECOND +
+    winningCounts.first * PRIZE_MONEY.FIRST;
+
+  return calculateEarningsRate(money, currentMoney);
+};
+
 const generateResult = (winningNumber) => {
   const result = {};
   const winningNumbers = winningNumber.slice(0, LOTTO.COUNT);
   const bonusNumber = winningNumber[LOTTO.COUNT];
   result.winningCounts = generateWinningCounts(winningNumbers, bonusNumber);
+  result.earningsRate = generateEarningsRate(result.winningCounts);
 
   return result;
 };

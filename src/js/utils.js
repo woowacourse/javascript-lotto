@@ -12,11 +12,15 @@ function shuffle(array) {
   return newArray;
 }
 
-export default function pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
+export function pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
   const numbers = Array.from(
     { length: endInclusive - startInclusive + 1 },
     (v, i) => i + startInclusive
   );
 
   return shuffle(numbers).slice(0, count);
+}
+
+export function calculateEarningsRate(originMoney, currentMoney) {
+  return ((currentMoney - originMoney) / originMoney) * 100;
 }
