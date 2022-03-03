@@ -63,7 +63,12 @@ class WinningNumberForm extends Component {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(createAction(ACTION.SET_WINNING_NUMBERS, winningNumbers));
+    window.store.dispatch(
+      createAction(ACTION.SET_WINNING_NUMBERS, {
+        normal: winningNumbers.slice(0, winningNumbers.length - 1),
+        bonus: winningNumbers[winningNumbers.length - 1],
+      })
+    );
   }
 }
 

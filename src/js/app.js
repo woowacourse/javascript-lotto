@@ -12,7 +12,10 @@ const initialState = {
   money: 0,
   lottoList: [],
   lottoListVisibility: false,
-  winningNumbers: [],
+  winningNumbers: {
+    normal: [],
+    bonus: null,
+  },
 };
 
 window.store = new Store(initialState);
