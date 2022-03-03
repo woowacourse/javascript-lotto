@@ -30,6 +30,7 @@ export default class Controller {
       this.#model.buyLotto(cash / LOTTO_PRICE);
       this.#lottoListView.showLottoListSection(this.#model.getLottoList());
       this.#winningNumberView.displayPickedNumbersForm();
+      this.#winningNumberView.moveFocusOnWinningNumberInput();
     } catch ({ message }) {
       alert(message);
     }

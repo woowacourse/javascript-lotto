@@ -48,6 +48,10 @@ export class WinningNumberView {
     });
   }
 
+  moveFocusOnWinningNumberInput() {
+    this.$pickedNumberInputs[0].focus();
+  }
+
   #moveFocusHandler($element, index) {
     if ($element.value.length === 2 && index !== LOTTO_RULE.NUMBERS_COUNT) {
       this.$pickedNumberInputs[index + 1].focus();
