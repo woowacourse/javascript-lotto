@@ -35,7 +35,7 @@ class LottoResultView {
   }
 
   showWinNumberInputSection() {
-    this.$winNumberInputSection.classList.replace('hide', 'show');
+    this.$winNumberInputSection.classList.replace(SELECTOR.HIDE, SELECTOR.SHOW);
   }
 
   renderStatisticsModalContents({ statistics, profitRatio }) {
@@ -49,11 +49,11 @@ class LottoResultView {
   }
 
   hideStatisticsModal() {
-    this.$winStatistics.classList.replace('show', 'hide');
+    this.$winStatistics.classList.replace(SELECTOR.SHOW, SELECTOR.HIDE);
   }
 
   showStatisticsModal() {
-    this.$winStatistics.classList.replace('hide', 'show');
+    this.$winStatistics.classList.replace(SELECTOR.HIDE, SELECTOR.SHOW);
   }
 
   #generateStatisticsTableData(currentKey, price, count) {

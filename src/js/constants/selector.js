@@ -20,4 +20,7 @@ export const SELECTOR = {
   RESTART_BUTTON: '#restart-button',
   MODAL_CANCEL_BUTTON: '.modal-cancel-button',
   ALIGN_CONVERTER_CONTAINER: '#align-converter-container',
+
+  HIDE: 'hide',
+  SHOW: 'show',
 };
