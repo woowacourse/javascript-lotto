@@ -1,5 +1,5 @@
 import { CLASS_SELECTOR, ID_SELECTOR, WINNING_PRIZE } from '../constants';
-import { $, $$ } from '../utils/dom';
+import { $, $$, replaceHTML } from '../utils/dom';
 
 export class WinningNumberView {
   constructor() {
@@ -61,24 +61,24 @@ export class WinningNumberView {
 
   showLottoResult(winningLottoQuantity, profitRatio) {
     this.$resultModalBackground.classList.add(CLASS_SELECTOR.OPEN);
-
-    this.$resultModalGridContainer.insertAdjacentHTML(
-      'beforeend',
-      resultGridTemplate(winningLottoQuantity),
-    );
-
+    replaceHTML(this.$resultModalGridContainer, resultGridTemplate(winningLottoQuantity));
     this.$resultModalProfitRatio.textContent = profitRatio.toLocaleString();
   }
 }
 
 function resultGridTemplate(winningLottoQuantity) {
-  return Object.keys(WINNING_PRIZE)
-    .map(
-      key => `
+  return (
+    `<div class="result-modal-grid-item">일치 개수</div>
+    <div class="result-modal-grid-item">당첨금</div>
+    <div class="result-modal-grid-item">당첨 갯수</div>` +
+    Object.keys(WINNING_PRIZE)
+      .map(
+        key => `
         <div class="result-modal-grid-item">${key}</div>
         <div class="result-modal-grid-item">${WINNING_PRIZE[key].toLocaleString()}</div>
         <div class="result-modal-grid-item">${winningLottoQuantity[key]}개</div>
       `,
-    )
-    .join('');
+      )
+      .join('')
+  );
 }
