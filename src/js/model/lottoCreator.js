@@ -7,7 +7,6 @@ export default class LottoCreator {
 
   constructor() {
     this.#lottoList = [];
-    this.lottoMatchingResult = {};
     this.#purchaseMoney = 0;
   }
 

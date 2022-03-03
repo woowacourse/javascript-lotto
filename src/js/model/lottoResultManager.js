@@ -2,10 +2,9 @@
 import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
 export default class LottoResultManager {
-  #lottoMatchingResult;
-
-  constructor() {
-    this.#lottoMatchingResult = {
+  // 15줄 넘기지 않도록 하기
+  static calcLottoMatchingResult(lottoWinningNumbers, lottoWinningBonusNumber, lottoList) {
+    const lottoMatchingResult = {
       [LOTTO_MATCHING_RESULT_KEY.THREE]: 0,
       [LOTTO_MATCHING_RESULT_KEY.FOUR]: 0,
       [LOTTO_MATCHING_RESULT_KEY.FIVE]: 0,
@@ -13,23 +12,7 @@ export default class LottoResultManager {
       [LOTTO_MATCHING_RESULT_KEY.SIX]: 0,
       [LOTTO_MATCHING_RESULT_KEY.NOTHING]: 0,
     };
-  }
 
-  get lottoMatchingResult() {
-    return this.#lottoMatchingResult;
-  }
-
-  createLottoMatchingResult(lottoWinningNumbers, lottoWinningBonusNumber, lottoList) {
-    this.#lottoMatchingResult = this.calcLottoMatchingResult(
-      lottoWinningNumbers,
-      lottoWinningBonusNumber,
-      lottoList
-    );
-  }
-
-  // 15줄 넘기지 않도록 하기
-  calcLottoMatchingResult(lottoWinningNumbers, lottoWinningBonusNumber, lottoList) {
-    console.log(lottoList);
     lottoList.forEach((lotto) => {
       const matchedNumCount = lotto.filter((num) => {
         return lottoWinningNumbers.includes(num);
@@ -41,10 +24,10 @@ export default class LottoResultManager {
         lottoWinningBonusNumber
       );
 
-      this.#lottoMatchingResult[keyByMatchedNumCount] += 1;
+      lottoMatchingResult[keyByMatchedNumCount] += 1;
     });
 
-    return this.#lottoMatchingResult;
+    return lottoMatchingResult;
   }
 
   static getKeyByMatchedNumCount(matchedNumCount, lotto, lottoWinningBonusNumber) {

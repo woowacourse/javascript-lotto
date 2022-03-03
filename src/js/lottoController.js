@@ -21,7 +21,7 @@ export default class LottoController {
 
   constructor(models, views) {
     this.#lottoCreator = models.lottoCreator;
-    this.#lottoResultManager = models.lottoResultManager;
+    this.#lottoResultManager = models.LottoResultManager;
 
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
@@ -98,13 +98,13 @@ export default class LottoController {
         LOTTO.MAX_DIGIT
       )
     ) {
-      this.#lottoResultManager.createLottoMatchingResult(
+      const lottoMatchResult = this.#lottoResultManager.calcLottoMatchingResult(
         lottoWinningNumbers,
         lottoWinningBonusNumber,
         this.#lottoCreator.lottoList
       );
 
-      this.#lottoResultView.render(this.#lottoResultManager.lottoMatchingResult);
+      this.#lottoResultView.render(lottoMatchResult);
 
       return;
     }

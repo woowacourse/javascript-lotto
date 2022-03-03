@@ -13,7 +13,7 @@ import '../css/index.css';
 const startLotto = () => {
   const models = {
     lottoCreator: new LottoCreator(),
-    lottoResultManager: new LottoResultManager(),
+    LottoResultManager,
   };
 
   const views = {
