@@ -1,9 +1,11 @@
 import coveringTryCatch from './coveringTryCatch.js';
 import {
   trySubmitFareForm,
+  catchSubmitFareForm,
   toggleLottosView,
   writingWinningNumber,
   tryClickConfirmResultButton,
+  catchClickConfirmResultButton,
   closeModal,
   restartApp,
 } from './domain.js';
@@ -11,15 +13,17 @@ import {
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
 
-  coveringTryCatch(trySubmitFareForm);
+  coveringTryCatch(trySubmitFareForm, catchSubmitFareForm);
 };
 
 export const onChangeLottoViewerController = toggleLottosView;
 
-export const onKeyUpWinningNumbers = writingWinningNumber;
+export const onKeyUpWinningNumbers = (e) => {
+  coveringTryCatch(() => writingWinningNumber(e), catchClickConfirmResultButton);
+};
 
 export const onClickConfirmResultButton = () => {
-  coveringTryCatch(tryClickConfirmResultButton);
+  coveringTryCatch(tryClickConfirmResultButton, catchClickConfirmResultButton);
 };
 
 export const onClickModalCloseButton = closeModal;

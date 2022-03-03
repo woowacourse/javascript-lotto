@@ -17,11 +17,11 @@ export default class WinningNumberValue extends InputValue {
     });
   }
 
-  focusEmptyInput() {
-    const emptyInput = this.$input.find(($numberInput) => $numberInput.value === '');
+  focusFindedInput(findInputFunction) {
+    const findedInput = findInputFunction(this.$input);
 
-    if (emptyInput !== undefined) {
-      emptyInput.focus();
+    if (findedInput !== undefined) {
+      findedInput.focus();
     }
   }
 }

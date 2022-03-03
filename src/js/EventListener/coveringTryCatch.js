@@ -1,11 +1,12 @@
 import ValidationError from '../ValidationError/index.js';
 
-const coveringTryCatch = (tryFunction) => {
+const coveringTryCatch = (tryFunction, catchFunction) => {
   try {
     tryFunction();
   } catch (error) {
     if (error instanceof ValidationError) {
-      error.handling();
+      alert(error.message);
+      catchFunction(error.orderToView);
       return;
     }
 

@@ -16,3 +16,9 @@ export const createRandomNumbers = (minRange, maxRange, count) => {
 };
 
 export const extractNumber = (value) => value.replace(/[^\d]+/g, '');
+
+export const isEmpty = (value) => value === '';
+
+export const isNotNumber = (value) => !/^\d+$/.test(value);
+
+export const isOutOfRanged = (number, minRange, maxRange) => number < minRange || number > maxRange;

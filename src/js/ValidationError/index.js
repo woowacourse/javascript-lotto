@@ -1,10 +1,7 @@
 export default class ValidationError extends Error {
-  constructor(message) {
+  constructor(message, orderToView) {
     super(message);
     this.name = 'ValidationError';
-  }
-
-  handling() {
-    alert(this.message);
+    this.orderToView = orderToView;
   }
 }
