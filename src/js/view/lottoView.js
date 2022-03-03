@@ -8,7 +8,7 @@ const hideResultElements = () => {
   $$('.result').forEach(element => element.classList.add('d-none'));
   $('.inform-text').remove();
   $('.cm-toggle').checked = false;
-}
+};
 
 const activateForm = () => {
   $('.money-input').removeAttribute('disabled');
@@ -18,7 +18,7 @@ const activateForm = () => {
 const resetInputValue = () => {
   $('.money-input').value = '';
   $$('.winning-numbers').forEach(element => element.value = '');
-}
+};
 
 export const resetView = () => {
   closeModal();
@@ -30,11 +30,11 @@ export const resetView = () => {
 const showNumberOfLottos = (length) => {
   const template = `<span class="inform-text">총 ${length}개를 구매하였습니다.</span>`;
   $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
-}
+};
 
 const showResultElements = () => {
   $$('.result').forEach(element => element.classList.remove('d-none'));
-}
+};
 
 const showLottoImage = (lottos) => {
   const template = lottos.map(lotto => 
@@ -42,7 +42,7 @@ const showLottoImage = (lottos) => {
       🎟️<span class="lotto-number-detail d-none">${lotto.lottoNumbers.join(', ')}</span>
     </div>`).join('');
   $('.lotto-grid').insertAdjacentHTML('beforeend', template);                        
-}
+};
 
 export const toggleNumberDetail = () => {
   const lottoGrid = $('.lotto-grid');
@@ -51,16 +51,16 @@ export const toggleNumberDetail = () => {
   $$('.lotto-number-detail').forEach(element => {
     element.classList.toggle('d-none');
   });
-}
+};
 
 const deactivateForm = () => {
   $('.money-input').setAttribute('disabled', true);
   $('.purchase-button').setAttribute('disabled', true);
-}
+};
 
 export const showResult = (lottos) => {
   deactivateForm();
   showResultElements();
   showNumberOfLottos(lottos.length);
   showLottoImage(lottos);
-}
+};

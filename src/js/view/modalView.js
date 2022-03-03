@@ -16,7 +16,7 @@ const showEarningsRate = earningsRate => {
   const earningsRateElement = $('.earnings-rate');
 
   earningsRateElement.textContent = earningsRate;
-}
+};
 
 export const showWinnerModal = (winnerStatistic, earningsRate) => {
   $('.modal-container').classList.remove('d-none');

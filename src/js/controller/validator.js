@@ -11,6 +11,6 @@ export const isValidMoneyRange = money => isOverThouand(money) && isUnderTenThou
 export const isValidMoneyInput = money => {
   return isThousandMultiple(money) && 
          isValidMoneyRange(money);
-}
+};
 
 export const isDuplicatedLottos = lottos => new Set([...lottos]).size !== WINNING_LOTTO_DIGIT;

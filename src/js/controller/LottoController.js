@@ -36,7 +36,7 @@ export default class LottoController {
     for (let i = 0; i < numberOfLottos; i += 1) {
       this.lottos.push(new Lotto());
     }
-  }
+  };
 
   purchaseHandler = e => {
     e.preventDefault();
@@ -48,7 +48,7 @@ export default class LottoController {
     }
     this.getLottos(moneyInput);
     showResult(this.lottos);
-  }
+  };
 
   getHowManyMatched = lotto => {
     let matchedCount = 0;
@@ -60,7 +60,7 @@ export default class LottoController {
       }
     });
     return matchedCount;
-  }
+  };
 
   saveMatchedCount = () => {
     this.lottos.forEach(lotto => {
@@ -69,12 +69,12 @@ export default class LottoController {
         lotto.matchedCount = matchedCount;
       }
     });
-  }
+  };
 
   isSecondPlace = winner => {
     return winner.matchedCount === MATCHED_COUNT.FIVE_MATCHED
            && winner.lottoNumbers.find(number => number === this.winningLottos[LOTTO_INDEX.BONUS]);
-  }
+  };
 
   isFirstPlace = matchedCount => matchedCount === MATCHED_COUNT.SIX_MATCHED;
 
@@ -90,7 +90,7 @@ export default class LottoController {
       winnerStatistic[winner.matchedCount - 3] += 1;
     });
     return winnerStatistic;
-  }
+  };
 
   getEarningsRate = winnerStatistic => {
     const cost = Number($('.money-input').value);
@@ -105,7 +105,7 @@ export default class LottoController {
                   .map((matchedCount, index) => matchedCount * prizes[index])
                   .reduce((sum, currentValue) => sum + currentValue, 0);
     return Math.round((profit - cost) / cost * 100);
-  }
+  };
 
   winningLottoHandler = e => {
     e.preventDefault();
@@ -120,5 +120,5 @@ export default class LottoController {
     const winnerStatistic = this.getWinnerStatistic();
     const earningsRate = this.getEarningsRate(winnerStatistic);
     showWinnerModal(winnerStatistic, earningsRate);
-  }
+  };
 }
