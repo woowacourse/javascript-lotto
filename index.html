@@ -10,6 +10,9 @@
     <div id="app">
       <div class="modal">
         <div class="modal-body">
+          <div class="modal-close-container">
+            <span id="modal-close-button"></span>
+          </div>
           <h1 class="modal-title">🏆 당첨 통계 🏆</h1>
           <div class="wrapper">
             <div>일치 갯수</div>
@@ -32,7 +35,7 @@
             <div class="coincide-count"></div>
           </div>
           <span id="show-profit-rate"></span>
-          <button id="exit" class="modal-retry-button">다시 시작하기</button>
+          <button id="modal-retry-button">다시 시작하기</button>
         </div>
       </div>
       <header>🎱 행운의 로또</header>
@@ -44,7 +47,7 @@
             type="number"
             placeholder="금액"
             min="1"
-            max="10000000"
+            max="100000"
           />
           <button id="purchase-money-button" type="submit">구입</button>
         </div>
@@ -112,6 +115,7 @@
           </div>
           <input class="winning-number-input" type="number" min="1" max="45" />
         </div>
+        <span id="winning-number-input-alert"></span>
         <button id="check-result-button" type="submit">결과 확인하기</button>
       </form>
     </div>

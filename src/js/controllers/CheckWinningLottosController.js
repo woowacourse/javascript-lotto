@@ -13,6 +13,16 @@ export default class CheckWinningLottosController {
       'click',
       this.handleClickCheckResultButton.bind(this)
     );
+    this.#view.bindEvent(
+      $(SELECTOR.ID.MODAL_CLOSE_BUTTON),
+      'click',
+      this.handleCloseModal.bind(this)
+    );
+    this.#view.bindEvent(
+      $(SELECTOR.ID.MODAL_RETRY_BUTTON),
+      'click',
+      this.handleRetryButton.bind(this)
+    );
   }
 
   handleClickCheckResultButton(e) {
@@ -34,8 +44,22 @@ export default class CheckWinningLottosController {
       );
       this.#view.openModal();
     } catch (error) {
-      if ((error.name = 'Duplicated input')) alert(error.message);
-      console.log(error);
+      alert(error.message);
     }
+  }
+
+  handleCloseModal() {
+    $(SELECTOR.CLASS.MODAL).classList.toggle('show');
+    this.machine.resetWinLottos();
+  }
+
+  handleRetryButton() {
+    this.machine.resetMachine();
+    this.#view.closeModal();
+    this.#view.ablePurchase();
+    this.#view.hideLottoContainers();
+    this.#view.clearWinningNumbersInput();
+    this.#view.clearMoneyInput();
+    this.#view.resetToggle();
   }
 }

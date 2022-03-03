@@ -1,6 +1,6 @@
 function hasDuplicatedNumbers(inputWinningNumbers) {
   const set = new Set(inputWinningNumbers);
-  return set.size !== 7;
+  return set.size !== inputWinningNumbers.length;
 }
 
 function areNumbersInRange(inputWinningNumbers, min, max) {

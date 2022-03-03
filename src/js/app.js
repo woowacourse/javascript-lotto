@@ -7,11 +7,6 @@ function App() {
     const lottoMachine = new LottoMachine();
     new PurchaseLottosController(lottoMachine);
     new CheckWinningLottosController(lottoMachine);
-    const modal = document.querySelector('.modal');
-    document.querySelector('#exit').addEventListener('click', () => {
-      modal.classList.toggle('show');
-      console.log(modal.classList);
-    });
   });
 }
 export default App;

@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $, $$ } from '../utils/utils.js';
+import { $, $$, isDuplicated } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
 import validateInputWinningNumbers from '../validations/CheckWinningLottos.js';
 
@@ -8,6 +8,7 @@ export default class CheckWinningLottosView extends View {
     super();
     this.bindInputWinningNumberEvents();
     this.bindDeleteWinningNumberEvents();
+    this.bindWinningNumberInputError();
   }
 
   getInputWinningNumbers() {
@@ -24,9 +25,9 @@ export default class CheckWinningLottosView extends View {
     elements[index].value = elements[index].value.substr(0, 2);
     if (index < 6 && elements[index].value.length > 1) {
       elements[index + 1].focus();
-      // 이전 값들에 대한 확인
-      elements.forEach((element) => {});
     }
+    elements.forEach((element) => element.classList.remove('input-alert'));
+    $(SELECTOR.ID.WINNING_NUMBER_INPUT_ALERT).textContent = '';
   }
 
   handleDeleteWinningNumber(event, index) {
@@ -36,7 +37,6 @@ export default class CheckWinningLottosView extends View {
         elements[index - 1].focus();
       return;
     }
-    console.log(elements[index].value);
   }
 
   bindInputWinningNumberEvents() {
@@ -51,6 +51,14 @@ export default class CheckWinningLottosView extends View {
     $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element, index) => {
       this.bindEvent(element, 'keydown', (event) => {
         this.handleDeleteWinningNumber(event, index);
+      });
+    });
+  }
+
+  bindWinningNumberInputError() {
+    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element) => {
+      this.bindEvent(element, 'input', (event) => {
+        this.handleWinningNumberInputError(event);
       });
     });
   }
@@ -71,9 +79,93 @@ export default class CheckWinningLottosView extends View {
   }
 
   renderProfitRateInModal(profitRate) {
-    console.log(profitRate);
     $(
       SELECTOR.ID.SHOW_PROFIT_RATE
     ).textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  }
+
+  handleWinningNumberInputError(event) {
+    event.stopPropagation();
+    const elements = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
+    const duplicatedLottosMap = this.getDuplicatedLottosMap(
+      Array.from(elements)
+    );
+
+    const inputWinningNumbers = Array.from(elements).map((element) => {
+      return Number.parseInt(element.value);
+    });
+
+    try {
+      validateInputWinningNumbers(inputWinningNumbers);
+    } catch (error) {
+      this.showError(elements, duplicatedLottosMap);
+      $(SELECTOR.ID.WINNING_NUMBER_INPUT_ALERT).textContent = error.message;
+    }
+  }
+
+  getDuplicatedKey(duplicatedLottosMap) {
+    const duplicatedKey = [];
+    duplicatedLottosMap.forEach((value, key) => {
+      if (value !== 1) {
+        duplicatedKey.push(key);
+      }
+    });
+    return duplicatedKey;
+  }
+
+  getDuplicatedLottosMap(elementsArrayUntilCurrentIndex) {
+    const duplicatedLottosMap = new Map();
+    elementsArrayUntilCurrentIndex.forEach((element) => {
+      if (duplicatedLottosMap.get(element.value) === undefined) {
+        duplicatedLottosMap.set(element.value, 1);
+        return;
+      }
+      duplicatedLottosMap.set(
+        element.value,
+        duplicatedLottosMap.get(element.value) + 1
+      );
+    });
+    return duplicatedLottosMap;
+  }
+
+  isDuplicatedElement(element, duplicatedLottosMap) {
+    return this.getDuplicatedKey(duplicatedLottosMap).some(
+      (item) => item === element.value
+    );
+  }
+
+  showError(elements, duplicatedLottosMap) {
+    Array.from(elements).forEach((element) => {
+      if (this.isDuplicatedElement(element, duplicatedLottosMap)) {
+        element.classList.add('input-alert');
+      }
+      if (element.value < 1 || element.value > 45) {
+        element.classList.add('input-alert');
+      }
+    });
+  }
+
+  hideLottoContainers() {
+    $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = true;
+    $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = true;
+  }
+
+  ablePurchase() {
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).disabled = false;
+    $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = false;
+  }
+
+  clearWinningNumbersInput() {
+    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach(
+      (element) => (element.value = '')
+    );
+  }
+
+  clearMoneyInput() {
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).value = '';
+  }
+
+  resetToggle() {
+    $(SELECTOR.ID.TOGGLE_CHECKBOX).checked = false;
   }
 }

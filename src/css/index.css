@@ -17,6 +17,7 @@ input:focus {
 
 .input-alert {
   border: 1px solid tomato;
+  background-color: rgba(255, 99, 71, 0.1);
 }
 
 .input-alert:focus {
@@ -85,10 +86,24 @@ label {
 
 #lotto-result-container {
   display: flex;
-  width: 300px;
+  width: 310px;
+  max-height: 400px;
+  overflow-y: scroll;
   flex-wrap: wrap;
   font-size: 32px;
   gap: 8px;
+}
+
+#lotto-result-container::-webkit-scrollbar {
+  width: 3px;
+}
+
+#lotto-result-container::-webkit-scrollbar-track {
+  background-color: #00bbd413;
+}
+
+#lotto-result-container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 4px #00bbd478;
 }
 
 .lotto-numbers-container {
@@ -156,6 +171,15 @@ input {
   width: 316px;
   text-align: center;
   color: tomato;
-  font-size: 12px;
-  margin: 4px;
+  font-size: 13px;
+  margin: 6px;
+}
+
+#winning-number-input-alert {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: tomato;
+  font-size: 14px;
+  margin: 6px;
 }

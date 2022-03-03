@@ -22,6 +22,6 @@ export default function validateMoney(money) {
     );
   }
   if (isOverLimit(money)) {
-    throw new Error('10,000,000원 보다 큰 금액으로 구입할 수 없습니다.');
+    throw new Error('100,000원 보다 큰 금액으로 구입할 수 없습니다.');
   }
 }

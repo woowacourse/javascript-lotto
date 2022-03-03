@@ -78,7 +78,12 @@ export default class LottoMachine {
   resetMachine() {
     this.#inputMoney = 0;
     this.#lottos = [];
-    this.#winLottos = [0, 0, 0, 0, 0, 0];
+    this.#winLottos = [0, 0, 0, 0, 0, 0, 0];
+    this.#winLottosWithBonus = 0;
+  }
+
+  resetWinLottos() {
+    this.#winLottos = [0, 0, 0, 0, 0, 0, 0];
     this.#winLottosWithBonus = 0;
   }
 }

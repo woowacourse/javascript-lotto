@@ -20,7 +20,7 @@
   left: 50%;
   width: 350px;
   height: 420px;
-  padding: 40px 0px;
+  padding: 16px 0px 40px 0px;
   text-align: center;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -36,9 +36,9 @@
   margin: 0px 0px 32px 0px;
 }
 
-.modal-retry-button {
+#modal-retry-button {
   margin-top: 32px;
-  padding: 0px 32px;
+  padding: 10px 32px;
 }
 
 .modal-body > span {
@@ -46,4 +46,17 @@
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
+}
+
+.modal-close-container {
+  display: flex;
+  width: 334px;
+  justify-content: end;
+  padding-right: 16px;
+}
+
+#modal-close-button:after {
+  content: '\00d7';
+  font-size: 28px;
+  cursor: pointer;
 }

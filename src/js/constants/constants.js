@@ -3,7 +3,7 @@ export const LOTTO = {
   MAXIMUM_NUMBER: 45,
   PRICE: 1000,
   NUMBER_QUANTITY: 6,
-  INPUT_LIMIT: 10000000,
+  INPUT_LIMIT: 100000,
 };
 
 export const SELECTOR = {
@@ -21,6 +21,9 @@ export const SELECTOR = {
     COINCIDE_COUNT_BONUS: '#coincide-count-bonus',
     SHOW_PROFIT_RATE: '#show-profit-rate',
     PURCHASE_MONEY_INPUT_ALERT: '#purchase-money-input-alert',
+    WINNING_NUMBER_INPUT_ALERT: '#winning-number-input-alert',
+    MODAL_CLOSE_BUTTON: '#modal-close-button',
+    MODAL_RETRY_BUTTON: '#modal-retry-button',
   },
   CLASS: {
     WINNING_NUMBER_INPUT: '.winning-number-input',
