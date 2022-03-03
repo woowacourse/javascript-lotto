@@ -12,27 +12,27 @@ import Lotto from './Lotto.js';
  * @classdesc 6개의 숫자로 이뤄진 로또 배열을 구입된 로또 개수만큼 가지는 로또 번들 모델
  */
 export default class LottoBundle {
-  #receivedMoney = 0;
+  #purchaseMoney = 0;
 
   #count = 0;
 
   #lottos = [];
 
   /** @param {number} money 입력받은 돈 */
-  set receivedMoney(money) {
+  set purchaseMoney(money) {
     if (validateMoney(money)) {
-      this.#receivedMoney = Math.floor(money / LOTTO.PRICE_PER_TICKET) * LOTTO.PRICE_PER_TICKET;
+      this.#purchaseMoney = Math.floor(money / LOTTO.PRICE_PER_TICKET) * LOTTO.PRICE_PER_TICKET;
     }
   }
 
   /** @type {number} */
-  get receivedMoney() {
-    return this.#receivedMoney;
+  get purchaseMoney() {
+    return this.#purchaseMoney;
   }
 
   /** 발행할 로또 개수를 저장한다 */
   saveCount() {
-    this.#count = Math.floor(this.#receivedMoney / LOTTO.PRICE_PER_TICKET);
+    this.#count = Math.floor(this.#purchaseMoney / LOTTO.PRICE_PER_TICKET);
   }
 
   /** @type {number} */
@@ -70,7 +70,7 @@ export default class LottoBundle {
   }
 
   reset() {
-    this.#receivedMoney = 0;
+    this.#purchaseMoney = 0;
     this.#count = 0;
     this.#lottos = [];
   }
