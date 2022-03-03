@@ -1,5 +1,6 @@
 import WinningNumberView from '../../views/subViews/WinningNumberView.js';
 import { SELECTOR } from '../../configs/contants.js';
+import validator from '../../utils/validator.js';
 
 export default class WinningNumberController {
   static createCoincideCountList(lottoNumbersList, winningNumbers, bonus) {
@@ -28,10 +29,42 @@ export default class WinningNumberController {
     return lottoNumbers.find((number) => number === bonus) && count === 5;
   }
 
-  constructor() {
+  constructor(controller) {
+    this.lottoController = controller;
+    this.lottoModel = controller.lottoModel;
     this.winningNumberView = new WinningNumberView(
       SELECTOR.WINNING_NUMBER_SECTION
     );
     this.winningNumberView.render();
+    this.setEventHandler();
+  }
+
+  setEventHandler() {
+    this.winningNumberView.bindOnClickShowResultButton(
+      this.didClickShowResultButton.bind(this)
+    );
+  }
+
+  didClickShowResultButton({ winningNumbers, bonusNumber }) {
+    try {
+      validator.checkWinningNumberList(winningNumbers);
+      validator.checkBonusNumber(bonusNumber);
+      this.calculateResult(winningNumbers, bonusNumber);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  calculateResult(winningNumbers, bonusNumber) {
+    const lottoNumbersList = this.lottoModel
+      .getLottoList()
+      .map((lotto) => lotto.numbers);
+    const coincideCountList = WinningNumberController.createCoincideCountList(
+      lottoNumbersList,
+      winningNumbers,
+      bonusNumber
+    );
+    this.lottoModel.setWinningStatistic(coincideCountList);
+    console.log(this.lottoModel.winningStatistic);
   }
 }
