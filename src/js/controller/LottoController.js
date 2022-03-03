@@ -42,8 +42,7 @@ export default class LottoController {
 
     const lottoPriceInput = this.$lottoPriceInput.value;
     try {
-      this.lottoModel.calculateLottoCount(lottoPriceInput);
-      this.lottoModel.setLottos(this.lottoModel.generateLottos());
+      this.lottoModel.buyLottos(lottoPriceInput);
 
       this.resultView.renderResult(this.lottoModel.getLottoCount());
       this.initAfterRenderResult();

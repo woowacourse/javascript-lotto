@@ -44,7 +44,11 @@ export default class LottoModel {
     for (let i = 0; i < this.getLottoCount(); i += 1) {
       lottos.push(this.generateLottoNumbers());
     }
-
     return lottos;
+  }
+
+  buyLottos(lottoPriceInput) {
+    this.calculateLottoCount(lottoPriceInput);
+    this.setLottos(this.generateLottos());
   }
 }

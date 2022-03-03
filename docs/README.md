@@ -43,16 +43,18 @@
   - [ ] generateLottos for문 대신 메서드 사용 -> 반복횟수가정해져있는경우는 for, while 사용해야하는 것 아닌지?
 
 - [ ] 페어 리뷰어님 
-  - [ ] 중복되는 css 컬러 css변수로 관리 
-  - [ ] app.test.js에서 LOTTO_NUMBERS, ALERT_MESSAGE 에 있는 데이터 이용해서 검증하기 
-  - [ ] constants/TOUSAND는 의미있는 네이밍이 아니라 매직넘버이다. 로또 금액에 대한 변수 네이밍으로 변경하기 
-  - [ ] model에서, getter와 setter를 통해서만 데이터에 접근하고 싶으면 private 사용해보기 
   - [ ] controller에서 setLottoCount, setLottos를 굳이 노출할 필요가 없다. (읽으면 뭐하는지 잘 모름)controller에서는 행동기반으로 작성! (두개 합쳐서 buyLottos와 같이)
   - [ ] value.match(/[0-9]/) 부분을 Number.isInteger를 사용해서 변경 
   - [ ] 셀렉터 상수로 분리 ($, $$와 같이)
   - [ ] 실제 로또처럼 한번 뽑힌 로또에 대해서는 다시 안뽑히게 작성해보기 (lottoModel의 while문)
   - [ ] input type="number"에 대한 것의 value를 가져오고 싶을 때, valueAsNumber를 사용해보기 (submitLottoPriceHandler)
   - [ ] 로또 구매 가능 최대 개수 설정 (100개 추천)
+  - [ ] model에서, getter와 setter를 통해서만 데이터에 접근하고 싶으면 private 사용해보기 
+  - [x] app.test.js에서 LOTTO_NUMBERS, ALERT_MESSAGE 에 있는 데이터 이용해서 검증하기 
+  
 - [ ] 수업 1단계 피드백 
   - [ ] 태그 100% 사용(input-min, max 속성 사용해보기)
   - [ ] 사용자 생각 - catch문 error메시지 
+
+## 질문 
+- css에서 * 사용 
