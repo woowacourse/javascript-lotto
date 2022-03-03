@@ -64,4 +64,4 @@
 - css에서 * 사용 
 - dom 탐색 expensive... 
 - import문 구분 너무 과하지 않은지 
-- input의 min, max, required 속성을 추가해줘서, 이 조건을 만족못할시 input 자체에서 끊어준다. 그렇다면, validator에서 이를 검증하지 않아도 될까요?
+- input의 min, max, required 속성을 추가해줘서, 이 조건을 만족못할시 input 자체에서 끊어준다. (alert메시지 안뜸.) 그렇다면, validator에서 이를 검증하지 않아도 될까요?
