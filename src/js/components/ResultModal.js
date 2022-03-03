@@ -1,3 +1,5 @@
+import ACTION from '../flux/actions';
+import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { PRIZE_MONEY } from '../constants';
 
@@ -6,16 +8,19 @@ class ResultModal extends Component {
     const { resultModalVisibility, result } = window.store.getState();
     this.innerHTML = this.template(result);
 
-    if (resultModalVisibility) {
-      this.show();
+    if (!resultModalVisibility) {
+      this.hide();
+
+      return;
     }
+    this.show();
   }
 
   // eslint-disable-next-line max-lines-per-function
   template(result) {
     return `
       <article>
-        <button>X</button>
+        <button class="close">X</button>
         <h3>🏆 당첨 통계 🏆</h3>
         <table>
           <thead>
@@ -57,6 +62,13 @@ class ResultModal extends Component {
         <button>다시 시작하기</button>
       </article>
     `;
+  }
+
+  setEvent() {
+    this.addEvent('click', '.close', (event) => {
+      event.preventDefault();
+      window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, false));
+    });
   }
 }
 
