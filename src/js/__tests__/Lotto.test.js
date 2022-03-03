@@ -33,6 +33,6 @@ it('로또 번호를 자동으로 생성할 시 1 ~ 45 사이의 숫자만 생�
   lotto.pickedNumber.forEach((number) => {
     expect(typeof number).toEqual('number');
     expect(number).toBeGreaterThanOrEqual(LOTTO_SETTING.MIN_RANDOM_NUMBER);
-    expect(number).toBeLessThan(LOTTO_SETTING.MAX_RANDOM_NUMBER);
+    expect(number).toBeLessThanOrEqual(LOTTO_SETTING.MAX_RANDOM_NUMBER);
   });
 });
