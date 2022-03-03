@@ -46,50 +46,45 @@ const createTemplate = {
     <section id="last-week-winning-number-section">
       <h2 hidden>지난 주 당첨 번호</h2>
       <p>지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <div class="winning-number-container">
-        <div class="">
-          <p>당첨 번호</p>
-          <ul id="last-week-number-list">
-            <li class="last-week-number">
-              <label for="last-week-first-input" hidden>지난주 당첨 첫 번째 번호</label>
-              <input type="number" name="last-week-first-input" class="last-week-number-input" data-input-id="1" min="1" max="45" maxlength="2"  />
-            </li>
-            <li class="last-week-number">
-              <label for="last-week-second-input" hidden>지난주 당첨 두 번째 번호</label>
-              <input type="number" name="last-week-second-input" class="last-week-number-input" data-input-id="2" min="1" max="45" maxlength="2"  />
-            </li>
-            <li class="last-week-number">
-              <label for="last-week-third-input" hidden>지난주 당첨 세 번째 번호</label>
-              <input type="number" name="last-week-third-input" class="last-week-number-input" data-input-id="3" min="1" max="45" maxlength="2"  />
-            </li>
-            <li class="last-week-number">
-              <label for="last-week-forth-input" hidden>지난주 당첨 네 번째 번호</label>
-              <input type="number" name="last-week-forth-input" class="last-week-number-input" data-input-id="4" min="1" max="45" maxlength="2"  />
-            </li>
-            <li class="last-week-number">
-              <label for="last-week-fifth-input" hidden>지난주 당첨 다섯 번째 번호</label>
-              <input type="number" name="last-week-fifth-input" class="last-week-number-input" data-input-id="5" min="1" max="45" maxlength="2"  />
-            </li>
-            <li class="last-week-number">
-              <label for="last-week-sixth-input" hidden>지난주 당첨 여섯 번째 번호</label>
-              <input type="number" name="last-week-sixth-input" class="last-week-number-input" data-input-id="6" min="1" max="45" maxlength="2"  />
-            </li>
-          </ul>
+      <form class="winning-number-form">
+        <div class="winning-number-container">
+          <div class="">
+            <p>당첨 번호</p>
+            <ul id="last-week-number-list">
+              <li class="last-week-number">
+                <label for="last-week-first-input" hidden>지난주 당첨 첫 번째 번호</label>
+                <input type="number" name="last-week-first-input" class="last-week-number-input" data-input-id="1" min="1" max="45" maxlength="2" />
+              </li>
+              <li class="last-week-number">
+                <label for="last-week-second-input" hidden>지난주 당첨 두 번째 번호</label>
+                <input type="number" name="last-week-second-input" class="last-week-number-input" data-input-id="2" min="1" max="45" maxlength="2" />
+              </li>
+              <li class="last-week-number">
+                <label for="last-week-third-input" hidden>지난주 당첨 세 번째 번호</label>
+                <input type="number" name="last-week-third-input" class="last-week-number-input" data-input-id="3" min="1" max="45" maxlength="2" />
+              </li>
+              <li class="last-week-number">
+                <label for="last-week-forth-input" hidden>지난주 당첨 네 번째 번호</label>
+                <input type="number" name="last-week-forth-input" class="last-week-number-input" data-input-id="4" min="1" max="45" maxlength="2" />
+              </li>
+              <li class="last-week-number">
+                <label for="last-week-fifth-input" hidden>지난주 당첨 다섯 번째 번호</label>
+                <input type="number" name="last-week-fifth-input" class="last-week-number-input" data-input-id="5" min="1" max="45" maxlength="2" />
+              </li>
+              <li class="last-week-number">
+                <label for="last-week-sixth-input" hidden>지난주 당첨 여섯 번째 번호</label>
+                <input type="number" name="last-week-sixth-input" class="last-week-number-input" data-input-id="6" min="1" max="45" maxlength="2" />
+              </li>
+            </ul>
+          </div>
+          <div class="last-week-bonus-number-container">
+            <p>보너스 번호</p>
+            <label for="last-week-bonus-input" hidden>지난주 당첨 보너스 번째 번호</label>
+            <input type="number" class="last-week-bonus-number-input" data-input-id="7" min="1" max="45" maxlength="2"  />
+          </div>
         </div>
-        <div class="last-week-bonus-number-container">
-          <p>보너스 번호</p>
-          <label for="last-week-bonus-input" hidden>지난주 당첨 보너스 번째 번호</label>
-          <input type="number" class="last-week-bonus-number-input" data-input-id="7" min="1" max="45" maxlength="2"  />
-        </div>
-      </div>
-    </section>
-  `;
-  },
-  resultCheckingSection() {
-    return `
-    <section id="result-checking-section">
-      <h2 hidden>결과 확인</h2>
-      <button id="result-checking-button">결과 확인하기</button>
+        <button id="result-checking-button">결과 확인하기</button>
+      </form>
     </section>
   `;
   },

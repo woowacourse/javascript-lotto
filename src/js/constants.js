@@ -9,13 +9,13 @@ export const SELECTOR = {
   PURCHASED_TOTAL_COUNT: '.purchased-total-count',
   RESULT_CHECKING_BUTTON: '#result-checking-button',
   PURCHASED_LOTTO_LIST_SECTION: '#purchased-lotto-list-section',
-  RESULT_CHECKING_SECTION: '#result-checking-section',
-  LOTTO_RESULT_SECTION: 'lotto-result-section',
+  LOTTO_RESULT_SECTION: '#lotto-result-section',
   COVER_THE_BACKGROUND: '#cover-the-background',
   LAST_WEEK_NUMBER_INPUT: '.last-week-number-input',
   LAST_WEEK_BONUS_NUMBER_INPUT: '.last-week-bonus-number-input',
   RESTART_BUTTON: '#restart-button',
   EXIT_BUTTON: '#exit-button',
+  WINNING_NUMBER_CONTAINER: '.winning-number-container',
 };
 
 export const CLASS_NAME = {

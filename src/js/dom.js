@@ -26,15 +26,10 @@ export const render = (element, template) => {
   element.insertAdjacentHTML('beforeend', template);
 };
 
-export const bindEventListener = ({ appElement, type, selector, callback }) => {
-  const children = [...getElements(selector)];
-  const isTarget = (target) =>
-    children.includes(target) || target.closest(selector);
+export const bindEventListener = (selector, type, callback) => {
+  selector.addEventListener(type, callback);
+};
 
-  appElement.addEventListener(type, (e) => {
-    if (!isTarget(e.target)) return;
-
-    e.preventDefault();
-    callback(e);
-  });
+export const bindsEventListener = (parentElement, type, callback) => {
+  parentElement.addEventListener(type, callback);
 };
