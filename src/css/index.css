@@ -99,7 +99,7 @@ form {
   left: 50%;
   transform: translate(-50%);
   margin-top: 52px;
-  width: 382px;
+  width: 414px;
   min-height: 727px;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -277,4 +277,76 @@ input:checked + .slider:before {
 
 #show-result-button {
   margin-bottom: 39px;
+}
+
+#statistic-section-wrap {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin-left: -16px;
+}
+
+#statistic-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 350px;
+  height: 500px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#statistic-section > h2 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+#statistic-table {
+  width: 318px;
+  margin-top: 16px;
+}
+
+#statistic-table tr {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+#statistic-table th,
+#statistic-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px 0;
+  height: 24px;
+  font-size: 15px;
+  line-height: 24px;
+  width: calc(100% / 3);
+}
+
+#statistic-table th {
+  font-weight: 600;
+}
+
+#statistic-table td {
+  font-weight: 400;
+}
+
+#ratio-result {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+}
+
+#reset-button {
+  width: 152px;
+  height: 36px;
+  margin: 16px;
 }
