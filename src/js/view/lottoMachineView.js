@@ -28,6 +28,8 @@ class LottoMachineView {
     this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll('.winner-number-input');
     this.bonusNumberInput = selectDom('.bonus-number-input', this.winnerNumberSection);
     this.resultButton = selectDom('.result-button', this.winnerNumberSection);
+
+    this.modal = selectDom('.modal');
   }
 
   #onCashInputButtonClick = (e) => {
@@ -54,6 +56,7 @@ class LottoMachineView {
         this.bonusNumberInput.value,
         this.lottoGenerator.lottos
       );
+      this.#activateResultModal();
     } catch (error) {
       initInputElement(this.bonusNumberInput);
       this.winnerNumberInputs.forEach((input) => {
@@ -63,6 +66,10 @@ class LottoMachineView {
       alert(error.message);
     }
   };
+
+  #activateResultModal() {
+    this.modal.classList.add('show');
+  }
 
   #onShowNumberToggleButtonClick = ({ target: { checked: isVisible } }) => {
     this.#toggleLottoNumbersShow(isVisible);
