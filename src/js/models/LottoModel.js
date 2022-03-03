@@ -6,11 +6,8 @@ export default class LottoModel {
     return new Lotto();
   }
 
-  static getCountOfLotto(amount) {
-    return parseInt(amount / LOTTO.PRICE, 10);
-  }
-
   init() {
+    this.amount = 0;
     this.lottoList = [];
     this.winningStatistic = {
       under: 0,
@@ -22,12 +19,30 @@ export default class LottoModel {
     };
   }
 
+  setAmount(amount) {
+    this.amount = amount;
+  }
+
+  getCountOfLotto() {
+    return parseInt(this.amount / LOTTO.PRICE, 10);
+  }
+
   getLottoList() {
     return this.lottoList;
   }
 
-  createLottoListWithAmount(amount) {
-    const count = LottoModel.getCountOfLotto(amount);
+  getWinningStatistic() {
+    return this.winningStatistic;
+  }
+
+  getEarningRate() {
+    const winnings = this.getSumWinnings();
+
+    return (winnings / this.amount) * 100;
+  }
+
+  createLottoListWithAmount() {
+    const count = this.getCountOfLotto();
     this.lottoList = this.issueLottosWithCount(count);
   }
 
@@ -88,9 +103,5 @@ export default class LottoModel {
       default:
         return 0;
     }
-  }
-
-  getEarningRate(winnings, amount) {
-    return (winnings / amount) * 100;
   }
 }

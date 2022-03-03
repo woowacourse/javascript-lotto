@@ -7,9 +7,12 @@ import WinningNumberController from '../controllers/subController/WinningNumberC
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
+    const lottoModel = new LottoModel();
+    lottoModel.init();
     const purchaseAmount = 2000;
+    lottoModel.setAmount(purchaseAmount);
 
-    expect(LottoModel.getCountOfLotto(purchaseAmount)).toBe(2);
+    expect(lottoModel.getCountOfLotto()).toBe(2);
   });
 });
 
@@ -184,9 +187,11 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   test('당첨금과 구입 금액으로 수익률을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
     lottoModel.init();
-    const winnings = 5000;
-    const amount = 1000;
+    lottoModel.setAmount(1000);
+    lottoModel.setWinningStatistic([1, 3, 4, 5, 5.5, 6]);
 
-    expect(lottoModel.getEarningRate(winnings, amount)).toBe(500);
+    expect(lottoModel.getEarningRate()).toBe(
+      ((5000 + 50000 + 1500000 + 30000000 + 2000000000) / 1000) * 100
+    );
   });
 });
