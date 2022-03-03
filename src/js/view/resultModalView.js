@@ -1,12 +1,13 @@
+import { SELECTOR } from '../constants/constants';
 import { selectDom } from '../utils/utils';
 
 class ResultModalView {
   constructor() {
-    this.body = selectDom('body');
-    this.modal = selectDom('.modal');
-    this.matchResultTableDataList = this.modal.querySelectorAll('.match-result');
-    this.profitSpan = selectDom('.profit', this.modal);
-    this.closeButton = selectDom('.close-button', this.modal);
+    this.body = selectDom(SELECTOR.BODY_TAG);
+    this.modal = selectDom(SELECTOR.MODAL_CLASS);
+    this.matchResultTableDataList = this.modal.querySelectorAll(SELECTOR.MATCH_TABLE_DATA_CLASS);
+    this.profitSpan = selectDom(SELECTOR.PROFIT_SPAN, this.modal);
+    this.closeButton = selectDom(SELECTOR.MODAL_CLOSE_BUTTON_CLASS, this.modal);
     this.closeButton.addEventListener('click', this.#toggleModal);
   }
 

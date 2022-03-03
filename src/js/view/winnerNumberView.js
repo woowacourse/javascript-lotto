@@ -1,12 +1,14 @@
-import { CLASSNAMES, SELECTOR } from '../constants/constants';
+import { SELECTOR } from '../constants/constants';
 import { selectDom } from '../utils/utils';
 
 class WinnerNumberView {
   constructor() {
     this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
-    this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll('.winner-number-input');
-    this.bonusNumberInput = selectDom('.bonus-number-input', this.winnerNumberSection);
-    this.resultButton = selectDom('.result-button', this.winnerNumberSection);
+    this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll(
+      SELECTOR.WINNER_NUMBER_INPUT_CLASS
+    );
+    this.bonusNumberInput = selectDom(SELECTOR.BONUS_NUMBER_INPUT_CLASS, this.winnerNumberSection);
+    this.resultButton = selectDom(SELECTOR.RESULT_BUTTON_CLASS, this.winnerNumberSection);
 
     this.sendRequest = () => {};
   }
@@ -16,11 +18,11 @@ class WinnerNumberView {
   }
 
   render() {
-    this.winnerNumberSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
+    this.winnerNumberSection.classList.remove('hide');
   }
 
   resetView() {
-    this.winnerNumberSection.classList.add(CLASSNAMES.HIDE_CLASSNAME);
+    this.winnerNumberSection.classList.add('hide');
     this.winnerNumberInputs.forEach((input) => {
       input.value = '';
     });

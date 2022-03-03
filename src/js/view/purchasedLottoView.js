@@ -1,4 +1,4 @@
-import { CLASSNAMES, LOTTO_IMAGE, SELECTOR } from '../constants/constants';
+import { SELECTOR } from '../constants/constants';
 import { div, label, p } from '../utils/createElement';
 import { selectDom } from '../utils/utils';
 
@@ -13,7 +13,7 @@ class PurchasedLottoView {
   }
 
   renderLottos(lottoArray) {
-    this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
+    this.purchasedLottoSection.classList.remove('hide');
 
     this.totalAmountLabel = this.#generatePurchasedLabel(lottoArray.length);
     this.lottoContainer.prepend(this.totalAmountLabel);
@@ -25,7 +25,7 @@ class PurchasedLottoView {
       this.lottoGrid.removeChild(this.lottoGrid.lastChild);
     }
     this.totalAmountLabel.remove();
-    this.purchasedLottoSection.classList.add(CLASSNAMES.HIDE_CLASSNAME);
+    this.purchasedLottoSection.classList.add('hide');
     this.lottoGrid.className = 'lotto-grid hide-numbers';
   }
 
@@ -43,11 +43,11 @@ class PurchasedLottoView {
 
   #generateLottoElement(lottoNumberSet) {
     return div({
-      className: CLASSNAMES.LOTTO_CLASSNAME,
+      className: 'lotto',
       children: [
-        p({ className: CLASSNAMES.LOTTO_IMAGE_CLASSNAME, children: LOTTO_IMAGE }),
+        p({ className: 'lotto-image', children: '🎟️' }),
         p({
-          className: CLASSNAMES.LOTTO_NUMBERS_CLASSNAME,
+          className: 'lotto-numbers',
           children: Array.from(lottoNumberSet).join(', '),
         }),
       ],

@@ -10,15 +10,15 @@ class LottoPurchaseMachine {
 
   #validateCashInput(cashInput) {
     if (!cashInput) {
-      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+      throw new Error(ERROR_MESSAGE.EMPTY_CASH_INPUT);
     }
     if (
       !isNumberInRange({ number: cashInput, min: CASH_INPUT_RANGE.MIN, max: CASH_INPUT_RANGE.MAX })
     ) {
-      throw new Error(ERROR_MESSAGE.CASH_INPUT_OUT_OF_RANGE);
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_CASH_INPUT);
     }
     if (this.#hasChangeLeft(cashInput)) {
-      throw new Error(ERROR_MESSAGE.INVALID_UNIT);
+      throw new Error(ERROR_MESSAGE.INVALID_UNIT_CASH_INPUT);
     }
   }
 

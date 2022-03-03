@@ -1,4 +1,4 @@
-import { DISABLED_PURCHASE_BUTTON_TEXT, SELECTOR } from '../constants/constants';
+import { SELECTOR } from '../constants/constants';
 import { selectDom } from '../utils/utils';
 
 class CashInputView {
@@ -16,7 +16,7 @@ class CashInputView {
   disableCashInput() {
     this.cashInput.disabled = true;
     this.cashInputButton.disabled = true;
-    this.cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
+    this.cashInputButton.textContent = '구입완료';
   }
 
   resetView() {

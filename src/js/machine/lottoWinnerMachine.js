@@ -1,4 +1,4 @@
-import { LOTTO_RULES } from '../constants/constants';
+import { ERROR_MESSAGE, LOTTO_RULES } from '../constants/constants';
 import { isNumberInRange } from '../utils/utils';
 
 class LottoWinnerMachine {
@@ -14,14 +14,14 @@ class LottoWinnerMachine {
 
   #validateWinnerNumberInput({ numbers, bonus }) {
     if (this.#hasBlankInput({ numbers, bonus })) {
-      throw new Error('6개의 당첨 번호와 보너스 번호를 입력해야 합니다.');
+      throw new Error(ERROR_MESSAGE.EMPTY_WINNER_INPUT);
     }
     const allNumbers = [...numbers, bonus].map((numberString) => Number(numberString));
     if (this.#hasDuplicateInput(allNumbers)) {
-      throw new Error('6개의 당첨 번호와 보너스 번호 중에 중복된 숫자가 있습니다.');
+      throw new Error(ERROR_MESSAGE.DUPLICATE_WINNER_INPUT);
     }
     if (this.#hasInvalidLottoNumber(allNumbers)) {
-      throw new Error('6개의 당첨 번호와 보너스 번호는 모두 1-45 사이의 자연수여야 합니다.');
+      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_WINNER_INPUT);
     }
   }
 
