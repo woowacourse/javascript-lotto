@@ -37,7 +37,7 @@ export default class LottoMachine {
   }
 
   getProfit() {
-    const winningPrize = [0, 0, 5000, 50000, 1500000, 2000000000];
+    const winningPrize = [0, 0, 0, 5000, 50000, 1500000, 2000000000];
     const winningPrizeWithBonus = 30000000;
 
     let profit = 0;
@@ -46,10 +46,6 @@ export default class LottoMachine {
     });
     profit += this.#winLottosWithBonus * winningPrizeWithBonus;
     return profit;
-  }
-
-  getProfitRate(profit, startMoney) {
-    return ((profit - startMoney) / startMoney) * 100;
   }
 
   operateLottoMachine() {

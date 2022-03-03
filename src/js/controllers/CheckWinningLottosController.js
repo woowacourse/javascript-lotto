@@ -1,6 +1,7 @@
 import CheckWinningLottosView from '../views/CheckWinningLottosView.js';
 import { $ } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
+import { changeProfitToProfitRate } from '../utils/utils.js';
 
 export default class CheckWinningLottosController {
   #view = new CheckWinningLottosView();
@@ -25,7 +26,12 @@ export default class CheckWinningLottosController {
         this.machine.winLottos,
         this.machine.winLottosWithBonus
       );
-      // ToDo: 모달창 오픈
+      this.#view.renderProfitRateInModal(
+        changeProfitToProfitRate(
+          this.machine.getProfit(),
+          this.machine.inputMoney
+        )
+      );
       this.#view.openModal();
     } catch (error) {
       if ((error.name = 'Duplicated input')) alert(error.message);

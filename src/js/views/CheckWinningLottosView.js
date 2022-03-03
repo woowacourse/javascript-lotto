@@ -6,6 +6,7 @@ export default class CheckWinningLottosView extends View {
   constructor() {
     super();
     this.bindInputWinningNumberEvents();
+    this.bindDeleteWinningNumberEvents();
   }
 
   getInputWinningNumbers() {
@@ -27,10 +28,26 @@ export default class CheckWinningLottosView extends View {
     }
   }
 
+  handleDeleteWinningNumber(event, index) {
+    const element = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
+    if (event.key === 'Backspace') {
+      if (index !== 0 && element[index].value.length === 0)
+        element[index - 1].focus();
+    }
+  }
+
   bindInputWinningNumberEvents() {
     $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element, index) => {
       this.bindEvent(element, 'input', () => {
         this.handleInputWinningNumber(index);
+      });
+    });
+  }
+
+  bindDeleteWinningNumberEvents() {
+    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element, index) => {
+      this.bindEvent(element, 'keydown', (event) => {
+        this.handleDeleteWinningNumber(event, index);
       });
     });
   }
@@ -48,5 +65,12 @@ export default class CheckWinningLottosView extends View {
       element.textContent = `${winLottos[index + 3]}개`;
     });
     $(SELECTOR.ID.COINCIDE_COUNT_BONUS).textContent = `${winLottosWithBonus}개`;
+  }
+
+  renderProfitRateInModal(profitRate) {
+    console.log(profitRate);
+    $(
+      SELECTOR.ID.SHOW_PROFIT_RATE
+    ).textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
   }
 }

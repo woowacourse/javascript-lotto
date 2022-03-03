@@ -18,3 +18,7 @@ export function isDuplicated(arr) {
   const set = new Set(arr);
   return set.size === arr.length;
 }
+
+export function changeProfitToProfitRate(profit, startMoney) {
+  return ((profit - startMoney) / startMoney) * 100;
+}
