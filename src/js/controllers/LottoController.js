@@ -6,35 +6,41 @@ export class LottoController {
   constructor() {
     this.view = new View();
     this.lottoGame = new LottoGame();
-    this.purchaseLotto();
+    this.bindLottoBtnEvents();
   }
 
-  purchaseLotto() {
-    this.view.purchaseBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      if (this.detectInvalidMoneyInput()) {
-        return;
-      }
-      this.lottoGame.insertMoney(Number(this.view.moneyInput.value));
-      this.lottoGame.buyLotto();
-
-      this.view.uncheckToggleSwitch();
-      this.view.clearMoneyInput();
-      this.view.showLottoStatusContainer();
-      this.view.showWinningLottoContainer();
-      this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
-
-      this.bindToggleEvent();
-      this.bindResultEvent();
-    });
+  bindLottoBtnEvents() {
+    this.bindPurchaseLottoEvent();
+    this.bindToggleEvent();
+    this.bindResultBtnEvent();
+    this.bindRestartEvent();
   }
+
+  bindPurchaseLottoEvent() {
+    this.view.purchaseBtn.addEventListener('click', this.purchaseLottoEvent);
+  }
+
+  purchaseLottoEvent = (e) => {
+    e.preventDefault();
+
+    if (this.detectInvalidMoneyInput()) {
+      return;
+    }
+    this.lottoGame.insertMoney(Number(this.view.moneyInput.value));
+    this.lottoGame.buyLotto();
+
+    this.view.uncheckToggleSwitch();
+    this.view.clearMoneyInput();
+    this.view.showLottoStatusContainer();
+    this.view.showWinningLottoContainer();
+    this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
+  };
 
   bindToggleEvent() {
-    this.view.toggleBtn.addEventListener('click', this.bindToggleEventTemp);
+    this.view.toggleBtn.addEventListener('click', this.toggleEvent);
   }
 
-  bindToggleEventTemp = () => {
+  toggleEvent = () => {
     if (this.view.toggleBtn.checked) {
       this.view.lottosToggleOn(this.lottoGame.lottoWallet);
       return;
@@ -53,24 +59,19 @@ export class LottoController {
     return false;
   }
 
-  bindResultEvent() {
-    this.view.resultbtn.addEventListener('click', this.bindResultEventTemp);
+  bindResultBtnEvent() {
+    this.view.resultbtn.addEventListener('click', this.resultEvent);
   }
 
-  bindResultEventTemp = (e) => {
+  resultEvent = (e) => {
     e.preventDefault();
     this.getWinningNumbers();
     this.getBonusNumbers();
 
-    //결과생성
-    this.lottoGame.findResult();
+    this.lottoGame.calculateResult();
     this.lottoGame.calculateEarnRate();
 
-    //modal창생성
-    this.view.showResultOnModal(this.lottoGame.result, this.lottoGame.earnRate);
-
-    //restart button bind
-    this.bindRestartEvent();
+    this.view.showResultOnModal(this.lottoGame);
   };
 
   getWinningNumbers() {
@@ -81,10 +82,10 @@ export class LottoController {
   }
 
   bindRestartEvent() {
-    this.view.modal.addEventListener('close', this.bindRestartEventTemp);
+    this.view.modal.addEventListener('close', this.restartEvent);
   }
 
-  bindRestartEventTemp = () => {
+  restartEvent = () => {
     this.view.restart();
     this.lottoGame = new LottoGame();
   };

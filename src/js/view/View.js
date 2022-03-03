@@ -68,10 +68,9 @@ export class View {
     return lottoWallet.map((lotto) => lotto.numbers.map((x) => String(x).padStart(3, ' ')));
   }
 
-  showResultOnModal(result, earnRate) {
-    console.log('show result on modal called');
-    this.renderResultChart(result);
-    this.earnRateComment.innerHTML = `당신의 총 수익률은 ${earnRate}% 입니다.`;
+  showResultOnModal(lottoGame) {
+    this.renderResultChart(lottoGame.result);
+    this.earnRateComment.innerHTML = `당신의 총 수익률은 ${lottoGame.earnRate}% 입니다.`;
     this.modal.showModal();
   }
 
@@ -125,7 +124,6 @@ export class View {
   restart() {
     this.lottoStatusContainer.style.visibility = 'collapse';
     this.winningLottoContainer.style.visibility = 'collapse';
-    //모달창 초기화
     this.modal.close();
     this.resultChartBody.innerHTML = '';
   }

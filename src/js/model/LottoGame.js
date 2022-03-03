@@ -36,7 +36,7 @@ export class LottoGame {
     this.bonusNumber = bonusNumber;
   }
 
-  findResult() {
+  calculateResult() {
     const result = [];
     this.lottoWallet.forEach((lotto) => {
       let temp = this.winningNumbers.filter((num) => lotto.numbers.includes(num)).length;
