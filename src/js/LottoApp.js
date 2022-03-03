@@ -4,7 +4,7 @@ import {
   getRateOfReturn,
 } from './utils';
 import { CLASS_NAME, SELECTOR, MONEY } from './constants';
-import Lotto from './Lotto';
+import LottoConsumer from './LottoConsumer';
 import createTemplate from './templates';
 import {
   getElement,
@@ -15,71 +15,79 @@ import {
   initInput,
   disableElement,
   toggleClassName,
+  removeChildElement,
+  focusInput,
 } from './dom';
+import LottoSeller from './LottoSeller';
 
 export default class LottoApp {
   constructor(app) {
-    this.lotto = new Lotto();
     this.$app = getElement(app);
-
     render(this.$app, createTemplate.paymentSection());
+
+    this.$paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
+    this.$paymentButton = getElement(SELECTOR.PAYMENT_BUTTON);
+
+    this.lottoConsumer = new LottoConsumer();
+    this.lottoSeller = new LottoSeller();
+
     this.bindEvent();
   }
 
   onSubmitRestartButton() {
-    disableElement(getElement(SELECTOR.PAYMENT_INPUT));
-    toggleClassName(getElement(SELECTOR.PAYMENT_INPUT), CLASS_NAME.DISABLED);
+    disableElement(this.$paymentInput);
+    toggleClassName(this.$paymentInput, CLASS_NAME.DISABLED);
 
-    disableElement(getElement(SELECTOR.PAYMENT_BUTTON));
-    toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
+    disableElement(this.$paymentButton);
+    toggleClassName(this.$paymentButton, CLASS_NAME.DISABLED);
 
-    initInput(getElement(SELECTOR.PAYMENT_INPUT));
+    initInput(this.$paymentInput);
 
-    this.$app.removeChild(
+    removeChildElement(
+      this.$app,
       getElement(SELECTOR.LAST_WEEK_WINNING_NUMBER_SECTION)
     );
-    this.$app.removeChild(getElement('#purchased-lotto-list-section'));
-    this.$app.removeChild(getElement('#result-checking-section'));
-    this.$app.removeChild(getElement('#lotto-result-section'));
-    this.$app.removeChild(getElement('#cover-the-background'));
+    removeChildElement(this.$app, getElement('#purchased-lotto-list-section'));
+    removeChildElement(this.$app, getElement('#result-checking-section'));
+    removeChildElement(this.$app, getElement('#lotto-result-section'));
+    removeChildElement(this.$app, getElement('#cover-the-background'));
   }
 
   onClickExitButton() {
-    this.$app.removeChild(getElement('#lotto-result-section'));
-    this.$app.removeChild(getElement('#cover-the-background'));
+    removeChildElement(this.$app, getElement('#lotto-result-section'));
+    removeChildElement(this.$app, getElement('#cover-the-background'));
   }
 
   onSubmitLottoResultButton() {
     try {
-      const lastWeekNumberList = [];
+      const lastWeekNumberList = [
+        ...getElements('.last-week-number-input'),
+      ].map((numberInputElement) => numberInputElement.valueAsNumber);
+
       const lastWeekBonusNumber = getElement(
         '.last-week-bonus-number-input'
       ).valueAsNumber;
 
-      getElements('.last-week-number-input').forEach((numberInputElement) => {
-        lastWeekNumberList.push(numberInputElement.valueAsNumber);
-      });
-
-      this.lotto.setLastWeekLottoNumbers(
+      this.lottoSeller.setLastWeekLottoNumbers(
         getValidWinningNumberAndBonusNumber(
           lastWeekNumberList,
           lastWeekBonusNumber
         )
       );
 
-      this.lotto.setWinningCount(
-        this.lotto.getLotto(),
-        this.lotto.getLastWeekLottoList(),
-        this.lotto.getLastWeekBonusNumber()
+      this.lottoSeller.setWinningCount(
+        this.lottoConsumer.getLottoList(),
+        this.lottoSeller.getLastWeekLottoList(),
+        this.lottoSeller.getLastWeekBonusNumber()
       );
 
       render(
         this.$app,
         createTemplate.lottoResultSection(
-          this.lotto.getWinningCount(),
+          this.lottoSeller.getWinningCount(),
           getRateOfReturn(
-            this.lotto.totalWinningAmount(),
-            this.lotto.getPurchasedAmount()
+            this.lottoSeller.totalWinningAmount(),
+            this.lottoSeller.getPurchasedAmount()
           )
         )
       );
@@ -100,99 +108,56 @@ export default class LottoApp {
     );
 
     getElements(SELECTOR.LOTTO).forEach((element) => {
-      element.classList.toggle(CLASS_NAME.DISPLAY_FLEX);
+      toggleClassName(element, CLASS_NAME.DISPLAY_FLEX);
     });
 
     getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
-      element.classList.toggle(CLASS_NAME.INVISIBLE);
+      toggleClassName(element, CLASS_NAME.INVISIBLE);
     });
   }
 
   onSubmitPaymentButton() {
-    const $paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
-
     try {
       const purchasedLottoCount = getPurchasedLottoCount(
-        $paymentInput.valueAsNumber,
+        this.$paymentInput.valueAsNumber,
         MONEY.STANDARD
       );
 
-      toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
+      toggleClassName(this.$paymentButton, CLASS_NAME.DISABLED);
 
-      disableElement(getElement(SELECTOR.PAYMENT_BUTTON));
-      disableElement(getElement(SELECTOR.PAYMENT_INPUT));
+      disableElement(this.$paymentButton);
+      disableElement(this.$paymentInput);
 
-      this.lotto.setLotto(purchasedLottoCount);
-      this.lotto.setPurchasedAmount(purchasedLottoCount);
+      this.lottoConsumer.setLottoList(purchasedLottoCount);
+      this.lottoSeller.setPurchasedAmount(purchasedLottoCount);
 
-      render(this.$app, createTemplate.purchasedSection(this.lotto.getLotto()));
+      render(
+        this.$app,
+        createTemplate.purchasedSection(this.lottoConsumer.getLottoList())
+      );
       render(this.$app, createTemplate.lastWeekWinningNumberSection());
       render(this.$app, createTemplate.resultCheckingSection());
     } catch (error) {
       alertMessage(error.message);
-      initInput($paymentInput);
+      initInput(this.$paymentInput);
     }
   }
 
-  onKeyUpLastWeekFirstNumberInput(e) {
-    if (e.target.value.length >= 2) {
-      getElement('.last-week-second-number-input').focus();
-    }
-  }
-
-  onKeyUpLastWeekSecondNumberInput(e) {
-    if (e.target.value.length >= 2) {
-      getElement('.last-week-third-number-input').focus();
+  onKeyUpLastWeekNumberInput(e) {
+    if (e.target.value.length >= 2 && e.target.dataset.inputId !== '7') {
+      focusInput(
+        getElement(`[data-input-id="${Number(e.target.dataset.inputId) + 1}"]`)
+      );
     }
 
-    if (e.target.value.length === 0 && e.key === 'Backspace') {
-      getElement('.last-week-first-number-input').focus();
-    }
-  }
-
-  onKeyUpLastWeekThirdNumberInput(e) {
-    if (e.target.value.length >= 2) {
-      getElement('.last-week-forth-number-input').focus();
-    }
-
-    if (e.target.value.length === 0 && e.key === 'Backspace') {
-      getElement('.last-week-second-number-input').focus();
-    }
-  }
-
-  onKeyUpLastWeekForthNumberInput(e) {
-    if (e.target.value.length >= 2) {
-      getElement('.last-week-fifth-number-input').focus();
-    }
-
-    if (e.target.value.length === 0 && e.key === 'Backspace') {
-      getElement('.last-week-third-number-input').focus();
-    }
-  }
-
-  onKeyUpLastWeekFifthNumberInput(e) {
-    if (e.target.value.length >= 2) {
-      getElement('.last-week-sixth-number-input').focus();
-    }
-
-    if (e.target.value.length === 0 && e.key === 'Backspace') {
-      getElement('.last-week-forth-number-input').focus();
-    }
-  }
-
-  onKeyUpLastWeekSixthNumberInput(e) {
-    if (e.target.value.length >= 2) {
-      getElement('.last-week-bonus-number-input').focus();
-    }
-
-    if (e.target.value.length === 0 && e.key === 'Backspace') {
-      getElement('.last-week-fifth-number-input').focus();
-    }
-  }
-
-  onKeyUpLastWeekBonusNumberInput(e) {
-    if (e.target.value.length === 0 && e.key === 'Backspace') {
-      getElement('.last-week-sixth-number-input').focus();
+    if (
+      e.target.value.length === 0 &&
+      e.key === 'Backspace' &&
+      e.target.dataset.inputId !== '1'
+    ) {
+      focusInput(
+        getElement(`[data-input-id="${Number(e.target.dataset.inputId) - 1}"]`)
+      );
     }
   }
 
@@ -235,50 +200,15 @@ export default class LottoApp {
     bindEventListener({
       appElement: this.$app,
       type: 'keyup',
-      selector: '.last-week-first-number-input',
-      callback: this.onKeyUpLastWeekFirstNumberInput.bind(this),
-    });
-
-    bindEventListener({
-      appElement: this.$app,
-      type: 'keyup',
-      selector: '.last-week-second-number-input',
-      callback: this.onKeyUpLastWeekSecondNumberInput.bind(this),
-    });
-
-    bindEventListener({
-      appElement: this.$app,
-      type: 'keyup',
-      selector: '.last-week-third-number-input',
-      callback: this.onKeyUpLastWeekThirdNumberInput.bind(this),
-    });
-
-    bindEventListener({
-      appElement: this.$app,
-      type: 'keyup',
-      selector: '.last-week-forth-number-input',
-      callback: this.onKeyUpLastWeekForthNumberInput.bind(this),
-    });
-
-    bindEventListener({
-      appElement: this.$app,
-      type: 'keyup',
-      selector: '.last-week-fifth-number-input',
-      callback: this.onKeyUpLastWeekFifthNumberInput.bind(this),
-    });
-
-    bindEventListener({
-      appElement: this.$app,
-      type: 'keyup',
-      selector: '.last-week-sixth-number-input',
-      callback: this.onKeyUpLastWeekSixthNumberInput.bind(this),
+      selector: '.last-week-number-input',
+      callback: this.onKeyUpLastWeekNumberInput.bind(this),
     });
 
     bindEventListener({
       appElement: this.$app,
       type: 'keyup',
       selector: '.last-week-bonus-number-input',
-      callback: this.onKeyUpLastWeekBonusNumberInput.bind(this),
+      callback: this.onKeyUpLastWeekNumberInput.bind(this),
     });
   }
 }

@@ -1,23 +1,20 @@
-import { shuffleArray, createRandomNumberList } from './utils';
-import { LOTTO } from './constants';
+import { countingDuplicates } from './utils';
 
-export default class Lotto {
-  #lottoList = [];
-
+export default class LottoSeller {
   #lastWeekLottoList = [];
 
   #lastWeekBonusNumber = 0;
 
   #purchasedAmount = 0;
 
-  #winningAmount = {
+  #winningAmount = Object.freeze({
     firstWinner: 2000000000,
     secondWinner: 30000000,
     thirdWinner: 1500000,
     forthWinner: 50000,
     fifthWinner: 5000,
     failed: 0,
-  };
+  });
 
   #winningCount = {
     firstWinner: 0,
@@ -53,16 +50,6 @@ export default class Lotto {
     return this.#purchasedAmount;
   }
 
-  setLotto(count) {
-    this.#lottoList = Array(count)
-      .fill(0)
-      .map((_, index, list) => (list[index] = this.createLottoList(count)));
-  }
-
-  getLotto() {
-    return this.#lottoList;
-  }
-
   setWinningCount(userAllLottoList, lastWeekLottoList, lastWeekBounsNumber) {
     Object.keys(this.#winningCount).forEach((winningKey) => {
       this.#winningCount[winningKey] = userAllLottoList.filter(
@@ -80,46 +67,30 @@ export default class Lotto {
     return this.#winningCount;
   }
 
-  createLottoList() {
-    const shuffleRandomList = shuffleArray(createRandomNumberList());
-
-    return Array(LOTTO.LENGTH)
-      .fill(0)
-      .map((_, index, list) => (list[index] = shuffleRandomList.pop()));
-  }
-
   confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber) {
-    let count = 0;
+    const count = countingDuplicates(userLottoList, lastWeekLottoList);
 
-    userLottoList.forEach((userLottoNumber) => {
-      lastWeekLottoList.forEach((lastWeekLottoNumber) => {
-        if (userLottoNumber === lastWeekLottoNumber) {
-          count++;
-        }
-      });
-    });
-
-    if (count === 6) {
-      return this.#winningAmount.firstWinner;
-    }
-
-    if (count === 5) {
-      if (userLottoList.includes(lastWeekBounsNumber)) {
-        return this.#winningAmount.secondWinner;
-      }
-
-      return this.#winningAmount.thirdWinner;
-    }
-
-    if (count === 4) {
-      return this.#winningAmount.forthWinner;
+    if (count === 2 || count === 1 || count === 0) {
+      return this.#winningAmount.failed;
     }
 
     if (count === 3) {
       return this.#winningAmount.fifthWinner;
     }
 
-    return this.#winningAmount.failed;
+    if (count === 4) {
+      return this.#winningAmount.forthWinner;
+    }
+
+    if (count === 5 && userLottoList.includes(lastWeekBounsNumber)) {
+      return this.#winningAmount.secondWinner;
+    }
+
+    if (count === 5) {
+      return this.#winningAmount.thirdWinner;
+    }
+
+    return this.#winningAmount.firstWinner;
   }
 
   totalWinningAmount() {

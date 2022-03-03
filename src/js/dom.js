@@ -4,6 +4,9 @@ export const getElements = (selector) => document.querySelectorAll(selector);
 
 export const alertMessage = (message) => alert(message);
 
+export const removeChildElement = (parentElement, childElement) =>
+  parentElement.removeChild(childElement);
+
 export const toggleClassName = (element, domString) => {
   element.classList.toggle(domString);
 };
@@ -11,6 +14,8 @@ export const toggleClassName = (element, domString) => {
 export const disableElement = (element) => {
   element.disabled = !element.disabled;
 };
+
+export const focusInput = (element) => element.focus();
 
 export const initInput = (inputElement) => {
   inputElement.value = '';

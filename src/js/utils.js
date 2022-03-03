@@ -85,6 +85,20 @@ export const shuffleArray = (array) => {
   return array;
 };
 
+export const countingDuplicates = (userLottoList, lastWeekLottoList) => {
+  let count = 0;
+
+  userLottoList.forEach((userLottoNumber) => {
+    lastWeekLottoList.forEach((lastWeekLottoNumber) => {
+      if (userLottoNumber === lastWeekLottoNumber) {
+        count++;
+      }
+    });
+  });
+
+  return count;
+};
+
 export const getRateOfReturn = (totalWinningAmount, purchasedAmount) => {
   return Number(
     (((totalWinningAmount - purchasedAmount) / purchasedAmount) * 100).toFixed(

@@ -51,28 +51,28 @@ const createTemplate = {
           <p>당첨 번호</p>
           <ul id="last-week-number-list">
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input last-week-first-number-input" min="1" max="45" maxlength="2" />
+              <input type="number" class="last-week-number-input" data-input-id="1" min="1" max="45" maxlength="2"  />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input last-week-second-number-input" min="1" max="45" maxlength="2" />
+              <input type="number" class="last-week-number-input" data-input-id="2" min="1" max="45" maxlength="2"  />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input last-week-third-number-input" min="1" max="45" maxlength="2" />
+              <input type="number" class="last-week-number-input" data-input-id="3" min="1" max="45" maxlength="2"  />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input last-week-forth-number-input" min="1" max="45" maxlength="2" />
+              <input type="number" class="last-week-number-input" data-input-id="4" min="1" max="45" maxlength="2"  />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input last-week-fifth-number-input" min="1" max="45" maxlength="2" />
+              <input type="number" class="last-week-number-input" data-input-id="5" min="1" max="45" maxlength="2"  />
             </li>
             <li class="last-week-number">
-              <input type="number" class="last-week-number-input last-week-sixth-number-input" min="1" max="45" maxlength="2" />
+              <input type="number" class="last-week-number-input" data-input-id="6" min="1" max="45" maxlength="2"  />
             </li>
           </ul>
         </div>
         <div class="last-week-bonus-number-container">
           <p>보너스 번호</p>
-          <input type="number" class="last-week-bonus-number-input" min="1" max="45" maxlength="2" />
+          <input type="number" class="last-week-bonus-number-input" data-input-id="7" min="1" max="45" maxlength="2"  />
         </div>
       </div>
     </section>
