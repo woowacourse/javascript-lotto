@@ -12,7 +12,7 @@ export default class ModalView {
     $(SELECTOR.MODAL_RESTART).addEventListener("click", this.#onClickRestart.bind(this));
   }
 
-  #onClickCloseModal() {
+  #onClickCloseModal(e) {
     this.modalContainer.classList.remove("show-modal");
   }
 

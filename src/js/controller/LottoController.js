@@ -56,7 +56,7 @@ export default class LottoController {
     this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
   }
 
-  #onClickResult(e) {
+  #onClickResult() {
     const winningNumbers = Array.from(this.winningNumberInputs).map(($input) =>
       Number($input.value),
     );
@@ -73,6 +73,7 @@ export default class LottoController {
 
   setClickRestart = () => {
     this.lottoGameView.resetGameView();
+    this.purchaseInput.focus();
     clearInput(this.purchaseInput, ...this.winningNumberInputs, this.bonusNumberInput);
   };
 }

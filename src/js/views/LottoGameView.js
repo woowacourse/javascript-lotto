@@ -94,7 +94,6 @@ export default class LottoGameView {
       winningInput.nextElementSibling.focus();
     }
     if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && !winningInput.nextElementSibling) {
-      winningInput.value = winningInput.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
       bonusInput.focus();
     }
   }
