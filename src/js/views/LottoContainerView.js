@@ -20,6 +20,8 @@ class LottoContainerView {
 
   #onChangeAlignState = null;
 
+  #onInputOverMaxLength = null;
+
   constructor({ $app }) {
     this.#app = $app;
     this.#initializeTemplate();
@@ -42,19 +44,21 @@ class LottoContainerView {
   #bindEventHandler() {
     this.#onSubmitCharge = (e) => emitListener(EVENT.SUBMIT_CHARGE, e);
     this.#onChangeAlignState = (e) => emitListener(EVENT.CHANGE_ALIGN_STATE, e);
+    this.#onInputOverMaxLength = (e) => emitListener(EVENT.INPUT_OVER_MAX_LENGTH, e);
 
     this.#chargeForm.addEventListener('submit', this.#onSubmitCharge);
     this.#alignConverter.addEventListener('change', this.#onChangeAlignState);
+    this.#chargeForm.addEventListener('input', this.#onInputOverMaxLength);
   }
 
-  renderLottoSection(lottoList) {
-    this.renderPurchasedMessage(lottoList.length);
-    this.renderLottoList(lottoList);
+  renderLottoSection(lottoNumbersArray) {
+    this.renderPurchasedMessage(lottoNumbersArray.length);
+    this.renderLottoList(lottoNumbersArray);
   }
 
-  renderLottoList(lottoList) {
-    this.#lottoContainer.innerHTML = lottoList
-      .map((lotto) => this.#generateLottoTemplate(lotto))
+  renderLottoList(lottoNumbersArray) {
+    this.#lottoContainer.innerHTML = lottoNumbersArray
+      .map((lottoNumbers) => this.#generateLottoTemplate(lottoNumbers))
       .join('');
   }
 
@@ -67,7 +71,7 @@ class LottoContainerView {
     this.#alignConverterContainer.setAttribute('data-visible-state', visibleState);
   }
 
-  #generateLottoTemplate({ lottoNumbers }) {
+  #generateLottoTemplate(lottoNumbers) {
     return `<div class="lotto">
       <span>🎟️</span>
       <span class="number">${lottoNumbers.join(', ')}</span>
@@ -80,7 +84,7 @@ class LottoContainerView {
     <h1 id="charge-input-section-title" hidden>금액을 입력하는 섹션입니다.</h1>
     <p>구입할 금액을 입력해주세요. <b>(입력 가능 최대 금액은 99999원입니다.)</b></p>
     <form id="charge-input-form">
-      <input id="charge-input" type="number" placeholder="금액" min="1000" max="100000"/>
+      <input id="charge-input" type="number" placeholder="금액" min="1000" max="100000" maxlength="5"/>
       <button id="charge-button">구입</button>
     </form>
   </section>

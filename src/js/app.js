@@ -27,6 +27,7 @@ class LottoGameManager {
     setListener(EVENT.SUBMIT_RESULT, this.onSubmitResult);
     setListener(EVENT.CLICK_RESTART_BUTTON, this.onClickRestartButton);
     setListener(EVENT.CLICK_MODAL, this.onClickModal);
+    setListener(EVENT.INPUT_OVER_MAX_LENGTH, this.onInputOverMaxLength);
   }
 
   onSubmitCharge = (e) => {
@@ -47,7 +48,7 @@ class LottoGameManager {
     });
 
     this.#lottoViewManager.work({
-      payload: lottoList,
+      payload: lottoList.map((lotto) => lotto.getLottoNumbers()),
       action: VIEW_ACTION.UPDATE_LOTTO_LIST,
     });
   }
@@ -97,6 +98,19 @@ class LottoGameManager {
 
   onClickRestartButton = () => {
     this.start();
+  };
+
+  onInputOverMaxLength = (e) => {
+    const { target: inputElement } = e;
+
+    const { value, maxLength } = inputElement;
+
+    if (value.length > maxLength) {
+      /** 인풋 글자 수 제한. */
+      inputElement.value = value.slice(0, maxLength);
+      /** 다음 자식으로 포커스 넘어감 */
+      inputElement.nextElementSibling?.focus();
+    }
   };
 }
 export default LottoGameManager;

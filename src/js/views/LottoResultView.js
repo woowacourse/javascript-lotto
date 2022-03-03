@@ -26,6 +26,8 @@ class LottoResultView {
 
   #onClickModal = null;
 
+  #onInputOverMaxLength = null;
+
   constructor({ $app }) {
     this.#app = $app;
     this.#initializeTemplate();
@@ -51,10 +53,12 @@ class LottoResultView {
     this.#onSubmitResult = (e) => emitListener(EVENT.SUBMIT_RESULT, e);
     this.#onClickRestartButton = (e) => emitListener(EVENT.CLICK_RESTART_BUTTON, e);
     this.#onClickModal = (e) => emitListener(EVENT.CLICK_MODAL, e);
+    this.#onInputOverMaxLength = (e) => emitListener(EVENT.INPUT_OVER_MAX_LENGTH, e);
 
     this.#winNumberInputForm.addEventListener('submit', this.#onSubmitResult);
     this.#restartButton.addEventListener('click', this.#onClickRestartButton);
     this.#winStatistics.addEventListener('click', this.#onClickModal);
+    this.#winNumberInputForm.addEventListener('input', this.#onInputOverMaxLength);
   }
 
   showWinNumberInputSection() {
@@ -97,17 +101,17 @@ class LottoResultView {
     <div class="win-number-input-wrapper">
       <div>
         <p>당첨 번호</p>
-        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
-        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
-        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
-        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
-        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
-        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2"/>
-      </div>
-
-      <div class="bonus-number-wrapper flex-column-align-end">
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2" />
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2" />
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2" />
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2" />
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2" />
+        <input class="winning-number-input" type="number" min="1" max="45" required maxlength="2" />
+        <label for="bonus-number-input" />
+        </div>
+        <div class="bonus-number-wrapper flex-column-align-end">
         <p>보너스 번호</p>
-        <input class="bonus-number-input" type="number" min="1" max="45" required maxlength="2"/>
+        <input id="bonus-number-input" class="bonus-number-input" type="number" min="1" max="45" required maxlength="2"/>
       </div>
     </div>
 
