@@ -1,21 +1,23 @@
+import LottoController from '../controller/lottoController';
 import {
   isThousandMultiple,
   isValidMoneyRange,
+  isDuplicatedLottos,
 } from '../controller/validator';
 import Lotto from '../model/Lotto';
-
-const getNotDuplicatedSize = numbers => new Set([...numbers]).size;
+import { LOTTO_DIGIT } from '../model/constants';
+import { $ } from '../utils/dom';
 
 describe("금액 테스트", () => {
   const MIN_MONEY = 1000;
   const MAX_MONEY = 10000;
 
   it("입력된 금액은 1000원으로 나누어 떨어져야 한다.", () => {
-    expect(isThousandMultiple(1000)).toBe(true);
+    expect(isThousandMultiple(1000)).toBeTruthy();
   });
 
   it("입력된 금액은 1000원 이상 10000원 이하여야 한다.", () => {
-    expect(isValidMoneyRange(9000)).toBe(true);
+    expect(isValidMoneyRange(9000)).toBeTruthy();
   });
 });
 
@@ -23,70 +25,79 @@ describe('랜덤 숫자 테스트', () => {
   it('랜덤 숫자는 중복되지 않는 6개의 숫자이다', () => {
     const lotto = new Lotto();
 
-
-    expect(getNotDuplicatedSize(lotto.lottoNumbers)).toBe(6);
+    expect(new Set([...lotto.lottoNumbers]).size).toBe(LOTTO_DIGIT);
   });
 });
 
 describe('당첨 번호 입력값 테스트', () => {
-  const WINNING_LOTTO_DIGIT = 7;
-
   it('당첨 번호 입력값은 값이 중복되어서는 안 된다', () => {
     const duplicatedLotto = [3,13,16,36,25,41,41];
 
-    expect(getNotDuplicatedSize(duplicatedLotto) === WINNING_LOTTO_DIGIT).toBe(false);
-  });
-
-  it('당첨 번호 입력값에 빈 값이 없어야 한다', () => {
-    const emptyLotto = [1,2,3,4,5,6];
-
-    const hasEmptyNumber = (lotto) => lotto.length === WINNING_LOTTO_DIGIT;
-
-    expect(hasEmptyNumber(emptyLotto)).toBe(false);
-  });
-
-  it('당첨 번호 입력값은 1 ~ 45 범위의 숫자여야 한다', () => {
-    const invalidRangeLotto = [1,2,3,4,5,6,50];
-
-    const isValidLottoRange = (lotto) => lotto.every(number => number >= 1 && number <= 45);
-
-    expect(isValidLottoRange(invalidRangeLotto)).toBe(false);
+    expect(isDuplicatedLottos(duplicatedLotto)).toBeTruthy();
   });
 });
 
-describe('결과 확인 테스트', () => {
-  const winningLotto = [4,15,25,36,41,27,33];
-
-  const getHowManyMatched = (winningLotto, lotto) => {
-    let matchedCount = 0;
-
-    winningLotto.forEach((winningNumber, index) => {
-      if (index === 6) return;
-      if (lotto.find(number => number === winningNumber)) {
-        matchedCount += 1;
-      }
-    });
-
-    return matchedCount;
-  }
-
+describe('결과 확인 테스트', () => {  
   it('나의 로또와 당첨 로또의 숫자가 몇 개 일치하는지 확인할 수 있다', () => {
-    const fourMatchedLotto = [4,15,25,36,42,43];
-
-    expect(getHowManyMatched(winningLotto, fourMatchedLotto)).toBe(4);
+    document.addEventListener('DOMContentLoaded', () => {
+      const controller = new LottoController();
+      controller.winningLottos = [4,15,25,36,41,27,33];
+      const fourMatchedLotto = [4,15,25,36,42,43];
+  
+      expect(controller.getHowManyMatched(fourMatchedLotto)).toBe(4);
+    });
   });
 
-  it('2등 당첨을 확인할 수 있다', () => {
-    const secondPlaceLotto = [4,15,25,36,41,33];
+  it('3등에 당첨된 로또의 개수를 구할 수 있어야 한다', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      const controller = new LottoController();
+      controller.winningLottos = [4,15,25,36,41,27,33];
 
-    const isSeondPlace = (winningLotto, secondPlaceLotto) => {
-      if (getHowManyMatched(winningLotto, secondPlaceLotto) === 5
-        && secondPlaceLotto.find(number => number === winningLotto[6])) {
-          return true;
-        }
-      return false;
-    };
+      const thirdPlaceLotto = new Lotto();
+      thirdPlaceLotto.lottoNumbers = [4,15,25,36,41,1,2];
+      controller.lottos = thirdPlaceLotto;
+  
+      controller.saveMatchedCount();
+      expect(controller.getWinnerStatistic()).toBe([0,0,1,0,0]);
+    });
+  });
 
-    expect(isSeondPlace(winningLotto, secondPlaceLotto)).toBe(true);
+  it('1등과 2등에 당첨된 로또의 개수를 구할 수 있어야 한다', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      const controller = new LottoController();
+      controller.winningLottos = [4,15,25,36,41,27,33];
+
+      const secondPlaceLotto = new Lotto();
+      secondPlaceLotto.lottoNumbers = [4,15,25,36,41,33];
+
+      const firstPlaceLotto = new Lotto();
+      firstPlaceLotto.lottoNumbers = [4,15,25,36,41,27];
+
+      controller.lottos = [firstPlaceLotto, secondPlaceLotto];
+      controller.saveMatchedCount();
+
+      expect(controller.getWinnerStatistic()).toBe([0,0,0,1,1]);
+    });
+  });
+
+  it('수익률을 구할 수 있어야 한다', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      const controller = new LottoController();
+      controller.winningLottos = [4,15,25,36,41,27,33];
+
+      const fifthPlaceLotto = new Lotto();
+      fifthPlaceLotto.lottoNumbers = [4,15,25,1,2,3];
+
+      const fourthPlaceLotto = new Lotto();
+      fourthPlaceLotto.lottoNumbers = [4,15,25,36,1,2];
+
+      controller.lottos = [fifthPlaceLotto, fourthPlaceLotto];
+      controller.saveMatchedCount();
+      
+      $('.money-input').value = 1000;
+      const winnerStatistic = controller.getWinnerStatistic();
+
+      expect(controller.getEarningsRate(winnerStatistic)).toBe(540);
+    });
   });
 });
