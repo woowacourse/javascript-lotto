@@ -6,6 +6,7 @@ module.exports = {
     jest: true,
   },
   extends: ['airbnb-base', 'eslint:recommended', 'plugin:prettier/recommended'],
+  parser: '@babel/eslint-parser',
   rules: {
     'prettier/prettier': [
       'error',
