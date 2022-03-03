@@ -18,3 +18,12 @@ export const LOTTO_MATCHING_RESULT_KEY = Object.freeze({
   SIX: '6개',
   NOTHING: '낙첨',
 });
+
+export const LOTTO_PRIZE_MONEY_UNIT = Object.freeze({
+  THREE: 5000,
+  FOUR: 50000,
+  FIVE: 1500000,
+  FIVE_PLUS_BONUS: 30000000,
+  SIX: 2000000000,
+  NOTHING: 0,
+});

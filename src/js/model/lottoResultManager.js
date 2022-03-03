@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
+import { LOTTO_PRIZE_MONEY_UNIT, LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
 export default class LottoResultManager {
   // 15줄 넘기지 않도록 하기
@@ -53,5 +53,33 @@ export default class LottoResultManager {
     }
 
     return key;
+  }
+
+  static calcProfit(purchaseMoney, lottoMatchingResult) {
+    const totalPrizeMoney = Object.keys(lottoMatchingResult).reduce((currentPrizeMoney, key) => {
+      const prizeAmount = lottoMatchingResult[key];
+      const earnedPrizeMoney = this.getPrizeUnitByKey(key) * prizeAmount;
+
+      return currentPrizeMoney + earnedPrizeMoney;
+    }, 0);
+
+    return Math.round(((totalPrizeMoney - purchaseMoney) / purchaseMoney) * 100);
+  }
+
+  static getPrizeUnitByKey(key) {
+    switch (key) {
+      case LOTTO_MATCHING_RESULT_KEY.THREE:
+        return LOTTO_PRIZE_MONEY_UNIT.THREE;
+      case LOTTO_MATCHING_RESULT_KEY.FOUR:
+        return LOTTO_PRIZE_MONEY_UNIT.FOUR;
+      case LOTTO_MATCHING_RESULT_KEY.FIVE:
+        return LOTTO_PRIZE_MONEY_UNIT.FIVE;
+      case LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS:
+        return LOTTO_PRIZE_MONEY_UNIT.FIVE_PLUS_BONUS;
+      case LOTTO_MATCHING_RESULT_KEY.SIX:
+        return LOTTO_PRIZE_MONEY_UNIT.SIX;
+      default:
+        return 1;
+    }
   }
 }
