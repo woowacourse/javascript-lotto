@@ -3,18 +3,13 @@ import { shuffleArray } from "../utils/general.js";
 
 export default class Lotto {
   #lottos = [];
-  #lottoCount = 0;
 
   getLottoList() {
     return this.#lottos;
   }
 
-  getLottoCount() {
-    return this.#lottoCount;
-  }
-
   convertLottoCount(purchaseAmount) {
-    this.#lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
+    return Math.floor(purchaseAmount / AMOUNT.UNIT);
   }
 
   #generateLottoNumber() {
@@ -24,7 +19,7 @@ export default class Lotto {
     return lottoNumbers.slice(LENGTH_MIN, LENGTH_MAX);
   }
 
-  generateLottoTicket() {
-    this.#lottos = [...Array(this.#lottoCount)].map(this.#generateLottoNumber);
+  generateLottoTicket(count) {
+    this.#lottos = [...Array(count)].map(this.#generateLottoNumber);
   }
 }
