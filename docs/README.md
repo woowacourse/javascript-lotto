@@ -54,10 +54,14 @@
 
 
 - [ ] 수업 1단계 피드백 
-  - [ ] 태그 100% 사용(input-min, max 속성 사용해보기)
-  - [ ] 사용자 생각 - catch문 error메시지, lotto 최대구매가능개수 설명, lotto 금액 입력 
-
+  - [x] 태그 100% 사용(input-min, max, required 속성 사용해보기)
+  - [ ] 사용성 생각 (사용자가 로또 사기 쉽게!, 웹접근성 자료 읽어보기)
+    - [ ] catch문 error메시지
+    - [ ] lotto 최대구매가능개수 설명
+    - [ ] lotto 금액 입력 
+- [ ] input 기본 에러 메시지 커스텀 해보기 
 ## 질문 
 - css에서 * 사용 
 - dom 탐색 expensive... 
 - import문 구분 너무 과하지 않은지 
+- input의 min, max, required 속성을 추가해줘서, 이 조건을 만족못할시 input 자체에서 끊어준다. 그렇다면, validator에서 이를 검증하지 않아도 될까요?

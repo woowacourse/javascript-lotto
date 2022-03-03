@@ -11,7 +11,7 @@
       <h1>🎱 행운의 로또</h1>
       <form id="lotto-price-form">
         <label for="lotto-price">구입할 금액을 입력해주세요.</label>
-        <input type="number" placeholder="금액" id="lotto-price-input" name="lotto-price" />
+        <input type="number" placeholder="금액" id="lotto-price-input" name="lotto-price" min="1000" max="100000" required>
         <button id="lotto-price-button" class="btn">구입</button>
       </form>
       <div id="result"></div>
