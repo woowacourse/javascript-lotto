@@ -42,6 +42,12 @@ export default class LottoGame {
   }
 
   generateResult(winningNumbers, bonusNumber) {
+    this.#resetResult();
+    this.#calculateMatchCount(winningNumbers, bonusNumber);
+    this.#calculateProfitRate();
+  }
+
+  #calculateMatchCount(winningNumbers, bonusNumber) {
     this.lottos.forEach((lotto) => {
       const matchCount = lotto.filter((number) => winningNumbers.includes(number)).length;
       if (matchCount < MATCH_NUMBER.THREE) {
@@ -53,8 +59,6 @@ export default class LottoGame {
       }
       this.result[CONVERT_TO_COUNT_INFO[matchCount]][1]++;
     });
-
-    this.#calculateProfitRate();
   }
 
   #calculateProfitRate() {
@@ -68,7 +72,7 @@ export default class LottoGame {
     this.profitRate = Math.floor((totalProfit / this.#getTicketAmount()) * 100);
   }
 
-  resetResult() {
+  #resetResult() {
     Object.values(this.result).forEach((v) => (v[1] = 0));
     this.profitRate = 0;
   }

@@ -1,4 +1,4 @@
-import { SELECTOR } from "../utils/constants.js";
+import { LOTTO_NUMBER, SELECTOR } from "../utils/constants.js";
 import { $, setDisabled, setEnabled } from "../utils/dom.js";
 
 export default class LottoGameView {
@@ -76,5 +76,26 @@ export default class LottoGameView {
 
   resetLottoList() {
     this.lottoNumberList.replaceChildren();
+  }
+
+  setAutoCursor(winningInputs, bonusInput) {
+    winningInputs[0].focus();
+
+    winningInputs.forEach((winningInput) => {
+      winningInput.addEventListener("keyup", () => {
+        this.#moveToNextInput(winningInput, bonusInput);
+      });
+    });
+  }
+
+  #moveToNextInput(winningInput, bonusInput) {
+    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && winningInput.nextElementSibling) {
+      winningInput.value = winningInput.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
+      winningInput.nextElementSibling.focus();
+    }
+    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && !winningInput.nextElementSibling) {
+      winningInput.value = winningInput.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
+      bonusInput.focus();
+    }
   }
 }

@@ -29,6 +29,7 @@ export const LOTTO_NUMBER = {
   LENGTH: 6,
   RANGE_MIN: 1,
   RANGE_MAX: 45,
+  DIGIT_MAX: 2,
 };
 
 export const ERROR_MESSAGES = {
