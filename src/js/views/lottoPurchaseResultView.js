@@ -1,8 +1,5 @@
 import { $, $$, emit, on } from '../utils/helper.js';
-import {
-  lottoPurchaseCountTemplate,
-  lottoPurchaseResultTemplate,
-} from '../utils/template.js';
+import { lottoPurchaseCountTemplate, lottoPurchaseResultTemplate } from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
   #lottoPurchaseCount;
@@ -36,10 +33,7 @@ export default class lottoPurchaseResultView {
   render(count, lottoList) {
     this.#lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
 
-    this.#lottoList.insertAdjacentHTML(
-      'afterbegin',
-      lottoPurchaseResultTemplate(lottoList)
-    );
+    this.#lottoList.insertAdjacentHTML('afterbegin', lottoPurchaseResultTemplate(lottoList));
   }
 
   // renderLottoPurchaseCount(count) {}

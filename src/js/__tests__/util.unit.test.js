@@ -49,9 +49,7 @@ describe('당첨번호 유효성 검사 유틸 테스트', () => {
   test('각 번호는 1이상 45이하의 숫자들로만 이루어져야한다.', () => {
     const lottoWinningNumbers = [1, 2, 3, 4, 6, 45];
 
-    expect(
-      isAllNumberInRange(lottoWinningNumbers, LOTTO.MIN_DIGIT, LOTTO.MAX_DIGIT)
-    ).toBe(true);
+    expect(isAllNumberInRange(lottoWinningNumbers, LOTTO.MIN_DIGIT, LOTTO.MAX_DIGIT)).toBe(true);
   });
 
   // test('각 번호가 1이상 45이하의 숫자들로만 이루어지지 않은 경우 에러메시지를 보여줘야 한다.', () => {
@@ -65,9 +63,7 @@ describe('보너스번호 유효성 검사 유틸 테스트', () => {
   test('1이상 45이하의 숫자여야 한다.', () => {
     const lottoWinningBonusNumber = 1;
 
-    expect(
-      isNumberInRange(lottoWinningBonusNumber, LOTTO.MIN_DIGIT, LOTTO.MAX_DIGIT)
-    ).toBe(true);
+    expect(isNumberInRange(lottoWinningBonusNumber, LOTTO.MIN_DIGIT, LOTTO.MAX_DIGIT)).toBe(true);
   });
 
   // test('1이상 45이하의 숫자가 아니면, 에러메시지를 보여줘야한다.', () => {
@@ -80,9 +76,7 @@ describe('보너스번호 유효성 검사 유틸 테스트', () => {
     const lottoWinningBonusNumber = 30;
     const lottoWinningNumbers = [1, 2, 3, 4, 6, 7];
 
-    expect(
-      isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber)
-    ).toBe(true);
+    expect(isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber)).toBe(true);
   });
 
   // test('당첨번호와 중복된 경우, 에러메시지를 보여줘야한다.', () => {

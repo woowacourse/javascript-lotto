@@ -15,12 +15,11 @@ describe('lottoMatchingResultManager 클래스 내부 메서드(매칭 결과 �
       [19, 10, 20, 21, 9, 6],
     ];
 
-    const lottoMatchingResult =
-      lottoMatchingResultManager.calcLottoMatchingResult(
-        winningLottoNumbers,
-        winningLottoBonusNumber,
-        lottoList
-      );
+    const lottoMatchingResult = lottoMatchingResultManager.calcLottoMatchingResult(
+      winningLottoNumbers,
+      winningLottoBonusNumber,
+      lottoList
+    );
 
     expect(lottoMatchingResult).toStrictEqual({
       [LOTTO_MATCHING_RESULT_KEY.THREE]: 0,

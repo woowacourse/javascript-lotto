@@ -29,9 +29,7 @@ export const lottoWinningNumberInputTemplate = () => {
         <div>
           <label for="lotto-winning-number">당첨 번호</label>
           <input id="lotto-winning-number" class="lotto-winning-number-container" maxlength="2" />
-          ${'<input class="lotto-winning-number-container" maxlength="2" />'.repeat(
-            5
-          )}
+          ${'<input class="lotto-winning-number-container" maxlength="2" />'.repeat(5)}
         </div>
         <div>
           <label for="lotto-winning-bonus-number">보너스 번호</label>

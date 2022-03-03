@@ -25,19 +25,15 @@ export default class LottoWinningNumberInputView {
   }
 
   attachEvents() {
-    on(
-      this.#lottoMatchResultForm,
-      'submit',
-      this.#handleMatchResult.bind(this)
-    );
+    on(this.#lottoMatchResultForm, 'submit', this.#handleMatchResult.bind(this));
   }
 
   #handleMatchResult(event) {
     event.preventDefault();
 
-    const lottoWinningNumbers = Array.from(
-      this.#lottoWinningNumberContainers
-    ).map((element) => Number(element.value));
+    const lottoWinningNumbers = Array.from(this.#lottoWinningNumberContainers).map((element) =>
+      Number(element.value)
+    );
 
     const lottoWinningBonusNumber = Number(this.#lottoWinningBonusNumber.value);
 
@@ -56,9 +52,6 @@ export default class LottoWinningNumberInputView {
   // }
 
   render() {
-    this.#lottoPurchaseResult.insertAdjacentHTML(
-      'afterend',
-      lottoWinningNumberInputTemplate()
-    );
+    this.#lottoPurchaseResult.insertAdjacentHTML('afterend', lottoWinningNumberInputTemplate());
   }
 }
