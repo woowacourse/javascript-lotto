@@ -53,16 +53,12 @@
 #lotto-quantity {
   left: 0px;
   margin-top: 8px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 36px;
 }
 
 #lotto-icons {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 15px;
   grid-area: ic;
 }
