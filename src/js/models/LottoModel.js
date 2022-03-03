@@ -39,12 +39,12 @@ export default class LottoModel {
 
   setWinningStatistic(coincideCountList) {
     coincideCountList.forEach((count) => {
-      const countString = this.transToString(count);
+      const countString = this.translateToString(count);
       this.winningStatistic[countString] += 1;
     });
   }
 
-  transToString(count) {
+  translateToString(count) {
     switch (count) {
       case 3:
         return 'three';
@@ -58,6 +58,35 @@ export default class LottoModel {
         return 'six';
       default:
         return 'under';
+    }
+  }
+
+  getSumWinnings() {
+    const statisticList = Object.entries(this.winningStatistic);
+    const initialValue = 0;
+
+    return statisticList.reduce((prev, curr) => {
+      const numberString = curr[0];
+      const count = curr[1];
+
+      return prev + this.getWinnings(numberString) * count;
+    }, initialValue);
+  }
+
+  getWinnings(numberString) {
+    switch (numberString) {
+      case 'three':
+        return 5000;
+      case 'four':
+        return 50000;
+      case 'five':
+        return 1500000;
+      case 'fiveBonus':
+        return 30000000;
+      case 'six':
+        return 2000000000;
+      default:
+        return 0;
     }
   }
 }
