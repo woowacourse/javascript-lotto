@@ -41,7 +41,7 @@ export default class LottosModel {
     return matchCount === bonusWinnerRange && lottoNumberList.includes(this.#bonusNumber);
   }
 
-  getRankNumber(lottoNumberList) {
+  getWinningRank(lottoNumberList) {
     const { LOTTO_NUMBER_LENGTH, BONUS_NUMBER_LENGTH } = LOTTO_SETTING;
 
     const matchCount = getListDuplicateCount(lottoNumberList, this.#winningNumberList);
@@ -61,8 +61,13 @@ export default class LottosModel {
   get result() {
     const rankCountResult = Array.from({ length: LOTTO_SETTING.RACKING_START_NUMBER }, () => 0);
     this.#lottos.forEach((lotto) => {
-      const rankNumber = this.getRankNumber(lotto.pickedNumber);
+      const rankIndex = this.getWinningRank(lotto.pickedNumber);
+      if (rankIndex >= LOTTO_SETTING.RACKING_START_NUMBER) {
+        return;
+      }
+      rankCountResult[rankIndex] += 1;
     });
+
     return '';
   }
 }
