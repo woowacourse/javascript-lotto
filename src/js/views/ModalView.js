@@ -36,7 +36,7 @@ export default class ModalView {
 
   async hide() {
     this.#modalContainer.classList.add('disappear');
-    await setDelay(301);
+    await setDelay(300);
 
     this.#modalContainer.classList.add('hide');
     this.#modalContainer.classList.remove('disappear');
