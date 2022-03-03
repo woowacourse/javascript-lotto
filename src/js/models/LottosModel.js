@@ -58,16 +58,20 @@ export default class LottosModel {
     return rankNumber;
   }
 
-  get result() {
-    const rankCountResult = Array.from({ length: LOTTO_SETTING.RACKING_START_NUMBER }, () => 0);
+  getWinningCount() {
+    const output = Array.from({ length: LOTTO_SETTING.RACKING_START_NUMBER }, () => 0);
     this.#lottos.forEach((lotto) => {
       const rankIndex = this.getWinningRank(lotto.pickedNumber);
       if (rankIndex >= LOTTO_SETTING.RACKING_START_NUMBER) {
         return;
       }
-      rankCountResult[rankIndex] += 1;
+      output[rankIndex] += 1;
     });
 
-    return '';
+    return output;
+  }
+
+  get result() {
+    return this.getWinningCount();
   }
 }
