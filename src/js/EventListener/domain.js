@@ -21,6 +21,7 @@ export const trySubmitFareForm = () => {
   lottoCollection.createLottos(new LottoCountCalculator(inputedFare).execute());
   lottosView.render(lottoCollection.getLottos());
   lottosView.setInputValue(new RemainFareCalculator(inputedFare).execute());
+  matchResultView.show();
 };
 
 export const toggleLottosView = () => {

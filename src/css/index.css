@@ -170,9 +170,13 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 .lotto-match {
+  display: none;
   margin-top: 32px;
   padding: 0 16px;
   box-sizing: border-box;
+}
+.lotto-match.show {
+  display: block;
 }
 .lotto-match p {
   font-size: 15px;
