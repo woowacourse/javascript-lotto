@@ -1,8 +1,8 @@
-import { SELECTOR } from '../../src/js/constants';
+import { ID } from '../../src/js/constants';
 
 Cypress.Commands.add('paymentFormSubmit', (input) => {
-  cy.get(SELECTOR.PAYMENT_INPUT).type(input);
-  cy.get(SELECTOR.PAYMENT_BUTTON).click();
+  cy.get(ID.PAYMENT_INPUT).type(input);
+  cy.get(ID.PAYMENT_BUTTON).click();
 });
 
 Cypress.Commands.add(

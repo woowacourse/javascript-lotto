@@ -7,6 +7,54 @@ export const generatePaymentSection = () => `
       <button id="payment-button">구입</button>
     </form>
   </section>
+  <section class="modal-background"> 
+      <div class="modal">
+        <div class="modal-header">
+          <button id="modal-close-button">X</button>
+        </div>
+        <div class="modal-body">
+          <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td class="winning-count">개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td class="winning-count">개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td class="winning-count">개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td class="winning-count">개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td class="winning-count">개</td>
+            </tr>
+            </tbody>
+          </table>
+          <p class="modal-earning-weight">당신의 총 수익률은 <span class="earning-weight"></span>%입니다</p>
+          <button id="restart">다시 시작하기</button>
+        </div>
+      </div> 
+    </section>
   `;
 
 const generatePurchasedLotto = (lotto) => `
@@ -74,48 +122,3 @@ export const generateWinningNumberSection = () => `
     </div>
   </section>
 `;
-
-export const generateModal = (result, earning) => `
-  <div class="modal-background"> 
-      <div class="modal">
-        <div class="modal-header">
-          <button id="modal-close-button">X</button>
-        </div>
-        <div class="modal-body">
-          <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
-          <table>
-            <th>일치 개수</th>
-            <th>당첨금</th>
-            <th>당첨 개수</th>
-            <tr>
-              <td>3개</td>
-              <td>5,000</td>
-              <td>${result[0]}개</td>
-            </tr>
-            <tr>
-              <td>4개</td>
-              <td>50,000</td>
-              <td>${result[1]}개</td>
-            </tr>
-            <tr>
-              <td>5개</td>
-              <td>1,500,000</td>
-              <td>${result[2]}개</td>
-            </tr>
-            <tr>
-              <td>5개+보너스볼</td>
-              <td>30,000,000</td>
-              <td>${result[3]}개</td>
-            </tr>
-            <tr>
-              <td>6개</td>
-              <td>2,000,000,000</td>
-              <td>${result[4]}개</td>
-            </tr>
-          </table>
-          <p class="modal-earning-weight">당신의 총 수익률은 ${earning}%입니다</p>
-          <button id="restart">다시 시작하기</button>
-        </div>
-      </div> 
-    </div>
-  `;

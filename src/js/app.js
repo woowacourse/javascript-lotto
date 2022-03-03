@@ -3,22 +3,29 @@ import {
   isRemainder,
   isOverRange,
   isOverlapped,
-  winningCount,
-  isBounusNumber,
   createRandomNumberList,
+  totalWinningCount,
+  totalWinningMoney,
+  winningRate,
 } from './utils';
-import { CLASS_NAME, SELECTOR, MONEY, ERROR_MESSAGE } from './constants';
+import {
+  CLASS_NAME,
+  ID,
+  MONEY,
+  ERROR_MESSAGE,
+  LOTTO,
+  CLASS,
+} from './constants';
 import Lotto from './Lotto';
 import {
   generatePaymentSection,
   generatePurchasedSection,
   generateWinningNumberSection,
-  generateModal,
 } from './templates';
 import {
-  getElement,
-  getElements,
-  bindEventListener,
+  $,
+  $$,
+  bindClick,
   render,
   initInput,
   toggleDisabled,
@@ -27,7 +34,7 @@ import {
 
 export default class LottoApp {
   constructor(app) {
-    this.$app = getElement(app);
+    this.$app = $(app);
     render(this.$app, generatePaymentSection());
 
     this.lottoList = [];
@@ -35,50 +42,37 @@ export default class LottoApp {
   }
 
   bindEvent() {
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: SELECTOR.PAYMENT_BUTTON,
-      callback: this.onSubmitPayment.bind(this),
-    });
+    bindClick(this.$app, ID.PAYMENT_BUTTON, this.onSubmitPayment.bind(this));
 
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: SELECTOR.LOTTO_LIST_TOGGLE_BUTTON,
-      callback: this.onClickToggleButton.bind(this),
-    });
+    bindClick(
+      this.$app,
+      ID.LOTTO_LIST_TOGGLE_BUTTON,
+      this.onClickToggleButton.bind(this)
+    );
 
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: '#modal-close-button',
-      callback: this.onClickModalClose.bind(this),
-    });
+    bindClick(
+      this.$app,
+      ID.MODAL_CLOSE_BUTTON,
+      this.onClickModalClose.bind(this)
+    );
 
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: '#result-checking-button',
-      callback: this.onClickResultButton.bind(this),
-    });
+    bindClick(
+      this.$app,
+      ID.RESULT_CHECKING_BUTTON,
+      this.onClickResultButton.bind(this)
+    );
 
     window.addEventListener('click', (e) => {
-      if (e.target === document.querySelector('.modal-background')) {
-        document.querySelector('.modal-background').classList.remove('show');
+      if (e.target === document.querySelector(CLASS.MODAL_BACKGROUND)) {
+        this.onClickModalClose();
       }
     });
 
-    bindEventListener({
-      appElement: this.$app,
-      type: 'click',
-      selector: '#restart',
-      callback: this.onClickRestart.bind(this),
-    });
+    bindClick(this.$app, ID.RESTART, this.onClickRestart.bind(this));
   }
 
   onSubmitPayment() {
-    const $paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
+    const $paymentInput = $(ID.PAYMENT_INPUT);
     const payment = Number($paymentInput.value);
 
     try {
@@ -93,8 +87,8 @@ export default class LottoApp {
       this.generatePurchasedLottoList(payment / MONEY.STANDARD);
       this.renderPurchasedSection();
 
-      const $winningNumberInputs = getElements('.winning-number-input');
-      const $bonusNumberInput = getElement('#bonus-number-input');
+      const $winningNumberInputs = $$(CLASS.WINNING_NUMBER_INPUT);
+      const $bonusNumberInput = $(ID.BONUS_NUMBER_INPUT);
       $winningNumberInputs[0].focus();
       $winningNumberInputs.forEach((numberInput, index) => {
         numberInput.addEventListener('input', () => {
@@ -114,10 +108,10 @@ export default class LottoApp {
   }
 
   disablePayment() {
-    toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
+    toggleClassName($(ID.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
-    toggleDisabled(getElement(SELECTOR.PAYMENT_BUTTON));
-    toggleDisabled(getElement(SELECTOR.PAYMENT_INPUT));
+    toggleDisabled($(ID.PAYMENT_BUTTON));
+    toggleDisabled($(ID.PAYMENT_INPUT));
   }
 
   renderPurchasedSection() {
@@ -134,75 +128,57 @@ export default class LottoApp {
   }
 
   onClickToggleButton() {
-    toggleClassName(
-      getElement(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON),
-      CLASS_NAME.TOGGLE_SWITCH
-    );
+    toggleClassName($(ID.LOTTO_LIST_TOGGLE_BUTTON), CLASS_NAME.TOGGLE_SWITCH);
 
-    toggleClassName(
-      getElement(SELECTOR.LOTTO_LIST),
-      CLASS_NAME.DIRECTION_COLUMN
-    );
+    toggleClassName($(ID.LOTTO_LIST), CLASS_NAME.DIRECTION_COLUMN);
 
-    getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
+    $$(CLASS.LOTTO_NUMBER).forEach((element) => {
       toggleClassName(element, CLASS_NAME.INVISIBLE);
     });
   }
 
   onClickResultButton() {
-    const $winningNumberInputs = getElements('.winning-number-input');
-    const $bonusNumberInput = getElement('#bonus-number-input');
+    const $winningNumberInputs = $$(CLASS.WINNING_NUMBER_INPUT);
+    const $bonusNumberInput = $(ID.BONUS_NUMBER_INPUT);
     const winningNumber = [];
     const bonusNumber = Number($bonusNumberInput.value);
 
     try {
       $winningNumberInputs.forEach((input) => {
         if (
-          isOverRange(1, 45, Number(input.value)) ||
-          isOverRange(1, 45, bonusNumber)
+          isOverRange(
+            LOTTO.MIN_NUMBER,
+            LOTTO.MAX_NUMBER,
+            Number(input.value)
+          ) ||
+          isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, bonusNumber)
         ) {
-          throw new Error(
-            '지난주 당첨 번호또는 보너스 번호를 잘못 입력하셨습니다. 1 ~ 45 사이의 숫자를 입력해주세요'
-          );
+          throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
         }
         winningNumber.push(Number(input.value));
       });
 
       if (isOverlapped(winningNumber, bonusNumber)) {
-        throw new Error(
-          '지난주 당첨 번호와 보너스 번호를 잘못 입력하셨습니다. 서로 다른 숫자를 입력해주세요'
-        );
+        throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
       }
 
-      const result = [0, 0, 0, 0, 0];
-      const pay = [5000, 50000, 1500000, 30000000, 2000000000];
-      this.lottoList.forEach((lotto) => {
-        const count = winningCount(lotto, winningNumber);
-        const bonusCount = isBounusNumber(lotto, bonusNumber);
-        if (count === 6) {
-          result[4] += 1;
-        }
-        if (count + bonusCount === 6) {
-          result[3] += 1;
-        }
-        if (count + bonusCount > 2 && count + bonusCount < 6) {
-          result[count + bonusCount - 3] += 1;
-        }
+      const result = totalWinningCount(
+        this.lottoList,
+        winningNumber,
+        bonusNumber
+      );
+      const totalMoney = totalWinningMoney(result);
+
+      $$(CLASS.WINNING_COUNT).forEach((element, index) => {
+        element.textContent = `${result[index]}개`;
       });
-      let totalMoney = 0;
-      result.forEach((count, index) => {
-        totalMoney += count * pay[index];
-      });
-      render(
-        this.$app,
-        generateModal(
-          result,
-          Math.floor((totalMoney * 100) / (this.lottoList.length * 5000))
-        )
+      $(CLASS.EARNING_WEIGHT).textContent = winningRate(
+        totalMoney,
+        this.lottoList.length
       );
       $winningNumberInputs.forEach((element) => toggleDisabled(element));
       toggleDisabled($bonusNumberInput);
-      getElement('.modal-background').classList.add('show');
+      $(CLASS.MODAL_BACKGROUND).classList.add('show');
     } catch ({ message }) {
       alert(message);
       $winningNumberInputs.forEach((input) => {
@@ -214,19 +190,20 @@ export default class LottoApp {
   }
 
   onClickModalClose() {
-    getElement('.modal-background').classList.remove('show');
+    $(CLASS.MODAL_BACKGROUND).classList.remove('show');
   }
 
   onClickRestart() {
-    getElement('.modal-background').classList.remove('show');
-    getElement('#purchased-lotto-list-section').remove();
-    getElement(SELECTOR.WINNING_NUMBER_SECTION).remove();
+    $(CLASS.MODAL_BACKGROUND).classList.remove('show');
+    $(ID.PURCHASED_LOTTO_SECTION).remove();
+    $(ID.WINNING_NUMBER_SECTION).remove();
 
-    toggleClassName(getElement(SELECTOR.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
+    toggleClassName($(ID.PAYMENT_BUTTON), CLASS_NAME.DISABLED);
 
-    toggleDisabled(getElement(SELECTOR.PAYMENT_BUTTON));
-    toggleDisabled(getElement(SELECTOR.PAYMENT_INPUT));
-    initInput(getElement(SELECTOR.PAYMENT_INPUT));
+    toggleDisabled($(ID.PAYMENT_BUTTON));
+    toggleDisabled($(ID.PAYMENT_INPUT));
+    initInput($(ID.PAYMENT_INPUT));
+
     this.lottoList = [];
   }
 }

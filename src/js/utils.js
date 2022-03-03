@@ -1,4 +1,4 @@
-import { LOTTO } from './constants';
+import { LOTTO, MONEY } from './constants';
 
 export const isPositiveInteger = (payment) =>
   Number.isInteger(payment) && payment > 0;
@@ -34,3 +34,32 @@ export const isBounusNumber = (lotto, bounusNumber) =>
 export const isOverlapped = (winningLotto, bonusNumber) =>
   new Set(winningLotto).size !== winningLotto.length ||
   winningLotto.includes(bonusNumber);
+
+export const totalWinningCount = (lottoList, winningNumber, bonusNumber) => {
+  const result = [0, 0, 0, 0, 0];
+  lottoList.forEach((lotto) => {
+    const count = winningCount(lotto, winningNumber);
+    const bonusCount = isBounusNumber(lotto, bonusNumber);
+    if (count === 6) {
+      result[4] += 1;
+    }
+    if (count === 5 && bonusCount === 1) {
+      result[3] += 1;
+    }
+    if (count + bonusCount > 2 && count + bonusCount < 6) {
+      result[count + bonusCount - 3] += 1;
+    }
+  });
+
+  return result;
+};
+
+export const totalWinningMoney = (result) =>
+  result.reduce((sum, count, index) => sum + count * MONEY.PRIZE[index], 0);
+
+export const winningRate = (totalMoney, lottoCount) =>
+  Math.floor(
+    ((totalMoney - lottoCount * MONEY.STANDARD) /
+      (lottoCount * MONEY.STANDARD)) *
+      100
+  );

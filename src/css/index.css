@@ -146,7 +146,7 @@ h1 {
   max-height: 280px;
 	display: flex;
   flex-wrap: wrap;
-  
+  overflow-y: auto;
 }
 
 #purchased-lotto-list-section .lotto-list-container #lotto-list.direction-column {

@@ -53,7 +53,7 @@ describe('구입한 로또 번호가 올바르게 생성되는지 확인한다',
 });
 
 describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 확인한다', () => {
-  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 0, 성공 케이스', () => {
+  test(`지난주 당첨 번호와 보너스 번호는 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 정수이다. 입력: 0, 성공 케이스`, () => {
     const lastWeekNumber = 0;
 
     expect(
@@ -61,7 +61,7 @@ describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 
     ).toBe(true);
   });
 
-  test('지난주 당첨 번호와 보너스 번호는 1 ~ 45 사이의 정수이다. 입력: 45, 실패 케이스', () => {
+  test(`지난주 당첨 번호와 보너스 번호는 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 정수이다. 입력: 45, 실패 케이스`, () => {
     const lastWeekNumber = 45;
 
     expect(
