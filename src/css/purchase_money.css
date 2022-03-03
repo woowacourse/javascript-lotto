@@ -2,7 +2,7 @@
   height: 64px;
 }
 
-form > div {
+#purchase-money-container form > div {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;

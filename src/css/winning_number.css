@@ -17,6 +17,12 @@
   align-items: flex-end;
 }
 
+#winning-number-boxes {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .winning-number-input {
   width: 34px;
   height: 36px;
