@@ -33,7 +33,7 @@ body {
     border: none;
     border-radius: $border-radius;
     font-size: 1rem;
-    transition: filter 0.2s ease;
+    transition: filter 0.2s ease, background-color 0.3s ease;
     cursor: pointer;
 
     &:disabled {
