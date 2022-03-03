@@ -9,4 +9,15 @@ export default class Lotto {
       LOTTO_RULES.BALL_COUNT,
     );
   }
+
+  match(winningNumber, bonusNumber) {
+    const isMatchedBonus = this.numbers.includes(bonusNumber);
+    const matchCount = this.numbers.reduce(
+      (acc, number) => acc + (winningNumber.has(number) ? 1 : 0),
+      0,
+    );
+
+    if (isMatchedBonus && matchCount === 5) return 7;
+    return matchCount;
+  }
 }
