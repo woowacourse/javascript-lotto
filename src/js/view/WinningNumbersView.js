@@ -16,6 +16,7 @@ export default class WinningNumbersView {
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
     this.#enableAutoFocus();
+    this.#enableInputFocusReset();
   }
 
   #handleSubmit(e) {
@@ -49,6 +50,14 @@ export default class WinningNumbersView {
     if (e.target.value.length >= 2) {
       this.$$winningNumberInputs[index + 1].focus();
     }
+  }
+
+  #enableInputFocusReset() {
+    this.$$winningNumberInputs.forEach((input) =>
+      input.addEventListener('focus', () => {
+        input.value = null;
+      }),
+    );
   }
 
   removeInputValue() {
