@@ -14,12 +14,12 @@ const isValidMaxAmountRange = (purchaseAmount) => {
 const isValidLottoNumberRange = (value) =>
   value >= LOTTO.NUMBER_RANGE.MIN && value <= LOTTO.NUMBER_RANGE.MAX;
 
+const isValidLottoNumber = (lottoNumber) =>
+  Number.isInteger(lottoNumber) && isValidLottoNumberRange(lottoNumber);
+
 const isValidlottoNumbers = (lottoNumbers) =>
   lottoNumbers.length === LOTTO.NUMBER_LENGTH &&
-  lottoNumbers.every(
-    (lottoNumber) =>
-      isValidLottoNumberRange(lottoNumber) && Number.isInteger(lottoNumber)
-  );
+  lottoNumbers.every((lottoNumber) => isValidLottoNumber(lottoNumber));
 
 const isValidDuplicatedLottoNumber = (lottoNumbers) =>
   lottoNumbers.length === new Set(lottoNumbers).size;
@@ -42,9 +42,7 @@ const validator = {
   },
 
   checkLottoNumber: (lottoNumber) => {
-    return (
-      Number.isInteger(lottoNumber) && isValidLottoNumberRange(lottoNumber)
-    );
+    return isValidLottoNumber(lottoNumber);
   },
 
   checkLottoNumberList: (lottoNumbers) => {
@@ -64,6 +62,12 @@ const validator = {
     }
     if (!isValidDuplicatedLottoNumber(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.IS_DUPLICATED);
+    }
+  },
+
+  checkBonusNumber: (bonusNumber) => {
+    if (!isValidLottoNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.NOT_A_BONUS_NUMBER);
     }
   },
 };
