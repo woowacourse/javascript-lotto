@@ -206,6 +206,9 @@ input[type='number']::-webkit-inner-spin-button {
   height: 36px;
   margin-top: 24px;
 }
+.check-result-button:hover {
+  background-color: var(--button-disabled-color);
+}
 
 /*overlay*/
 
