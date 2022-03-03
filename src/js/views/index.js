@@ -9,10 +9,10 @@ class LottoViewManager {
 
   #resultView = null;
 
-  constructor(emitEvent) {
+  constructor() {
     this.$app = findElement(SELECTOR.APP);
     this.#clear();
-    this.#initializeViews(emitEvent);
+    this.#initializeViews();
   }
 
   work({ payload, action }) {
@@ -20,9 +20,9 @@ class LottoViewManager {
     perform(payload);
   }
 
-  #initializeViews(emitEvent) {
-    this.#containerView = new LottoContainerView({ $app: this.$app, emitEvent });
-    this.#resultView = new LottoResultView({ $app: this.$app, emitEvent });
+  #initializeViews() {
+    this.#containerView = new LottoContainerView({ $app: this.$app });
+    this.#resultView = new LottoResultView({ $app: this.$app });
   }
 
   #clear() {

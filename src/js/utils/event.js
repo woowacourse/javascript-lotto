@@ -1,4 +1,5 @@
-export const generateEventFactory = () => {
+/** singleton */
+export const { bindEvent, emitEvent } = (function () {
   const eventListeners = {};
 
   return {
@@ -10,4 +11,4 @@ export const generateEventFactory = () => {
       eventListener(e);
     },
   };
-};
+})();

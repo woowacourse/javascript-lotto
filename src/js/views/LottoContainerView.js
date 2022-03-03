@@ -1,13 +1,14 @@
 import { EVENT } from '../constants/events';
 import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/dom';
+import { emitEvent } from '../utils/event';
 
 class LottoContainerView {
-  constructor({ $app, emitEvent }) {
+  constructor({ $app }) {
     this.$app = $app;
     this.#initializeTemplate();
     this.#initializeDOM();
-    this.#bindEventHandler(emitEvent);
+    this.#bindEventHandler();
   }
 
   #initializeTemplate() {
@@ -22,7 +23,7 @@ class LottoContainerView {
     this.$alignConverterContainer = findElement(SELECTOR.ALIGN_CONVERTER_CONTAINER);
   }
 
-  #bindEventHandler(emitEvent) {
+  #bindEventHandler() {
     this.$chargeForm.addEventListener('submit', (e) => emitEvent(EVENT.SUBMIT_CHARGE, e));
     this.$alignConverter.addEventListener('change', (e) => emitEvent(EVENT.CHANGE_ALIGN_STATE, e));
   }

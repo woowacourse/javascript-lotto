@@ -3,7 +3,7 @@ import LottoViewManager from './views';
 import LottoDomainManager from './domains';
 import { DOMAIN_ACTION, VIEW_ACTION } from './constants/actions';
 import { isCancelModal } from './utils/dom';
-import { generateEventFactory } from './utils/event';
+import { bindEvent } from './utils/event';
 import { EVENT } from './constants/events';
 
 class LottoGameManager {
@@ -12,9 +12,8 @@ class LottoGameManager {
   #lottoViewManager = null;
 
   start() {
-    const { bindEvent, emitEvent } = generateEventFactory();
-    this.#bindEventHandler(bindEvent);
-    this.#initializeManagers(emitEvent);
+    this.#bindEventHandler();
+    this.#initializeManagers();
   }
 
   #initializeManagers(emitEvent) {
@@ -22,7 +21,7 @@ class LottoGameManager {
     this.#lottoViewManager = new LottoViewManager(emitEvent);
   }
 
-  #bindEventHandler(bindEvent) {
+  #bindEventHandler() {
     bindEvent(EVENT.SUBMIT_CHARGE, this.onSubmitCharge);
     bindEvent(EVENT.CHANGE_ALIGN_STATE, this.onChangeAlignState);
     bindEvent(EVENT.SUBMIT_RESULT, this.onSubmitResult);
