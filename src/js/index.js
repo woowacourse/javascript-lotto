@@ -23,9 +23,7 @@ const startLotto = () => {
     lottoResultView: new LottoResultView(),
   };
 
-  const lottoController = new LottoController(models, views);
-
-  lottoController.init();
+  new LottoController(models, views);
 };
 
 document.addEventListener('DOMContentLoaded', startLotto);

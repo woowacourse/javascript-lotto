@@ -27,9 +27,6 @@ export default class LottoController {
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
     this.#lottoResultView = views.lottoResultView;
-  }
-
-  init() {
     this.#submitInitialView();
   }
 
@@ -44,14 +41,7 @@ export default class LottoController {
       '@lottoToggle',
       this.#submitLottoToggle.bind(this)
     );
-  }
-
-  #submitLottoWinningNumberInputView() {
-    on(
-      this.#lottoWinningNumberInputView.lottoMatchResultForm,
-      '@matchResult',
-      this.#submitMatchResult.bind(this)
-    );
+    on(this.#lottoResultView.restartButton, '@restart', this.#submitRestart.bind(this));
   }
 
   #submitLottoToggle() {
@@ -79,10 +69,23 @@ export default class LottoController {
 
       return;
     }
-
     alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
-
     this.#lottoPurchaseInputView.reset();
+  }
+
+  #submitRestart() {
+    this.#lottoPurchaseInputView.restart();
+    this.#lottoCreator.restart();
+    this.#lottoPurchaseResultView.restart();
+    this.#lottoWinningNumberInputView.restart();
+  }
+
+  #submitLottoWinningNumberInputView() {
+    on(
+      this.#lottoWinningNumberInputView.lottoMatchResultForm,
+      '@matchResult',
+      this.#submitMatchResult.bind(this)
+    );
   }
 
   // eslint-disable-next-line max-lines-per-function

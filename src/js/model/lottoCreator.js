@@ -41,4 +41,9 @@ export default class LottoCreator {
   static generateRandomNum() {
     return Math.floor(Math.random() * (LOTTO.MAX_DIGIT - LOTTO.MIN_DIGIT + 1)) + LOTTO.MIN_DIGIT;
   }
+
+  restart() {
+    this.#lottoList = [];
+    this.#purchaseMoney = 0;
+  }
 }

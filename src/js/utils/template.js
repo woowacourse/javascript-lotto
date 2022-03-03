@@ -23,7 +23,7 @@ export const lottoPurchaseResultTemplate = (lottoList) => {
 
 export const lottoWinningNumberInputTemplate = () => {
   return `
-    <section>
+    <section id="lotto-winning-number-input-section">
       <form id="lotto-match-result-form">
         <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</p>
         <div>

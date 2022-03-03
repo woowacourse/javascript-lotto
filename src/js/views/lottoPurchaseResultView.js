@@ -36,15 +36,24 @@ export default class lottoPurchaseResultView {
     this.#lottoList.insertAdjacentHTML('afterbegin', lottoPurchaseResultTemplate(lottoList));
   }
 
-  // renderLottoPurchaseCount(count) {}
-
-  // renderLottoPurchaseResult(lottoList) {}
-
   toggleLottoNumbers() {
     this.#lottoNumbers = $$('.lotto-numbers');
 
     this.#lottoList.classList.toggle('grid-columns-six');
     this.#lottoList.classList.toggle('grid-columns-one');
     this.#lottoNumbers.forEach((element) => element.classList.toggle('hidden'));
+  }
+
+  restart() {
+    this.#lottoPurchaseCount.textContent = '아직 구매하신 로또가 없습니다.';
+
+    if (this.#showLottoToggle.checked) {
+      this.#showLottoToggle.checked = false;
+      this.toggleLottoNumbers();
+    }
+
+    while (this.#lottoList.firstChild) {
+      this.#lottoList.removeChild(this.#lottoList.firstChild);
+    }
   }
 }

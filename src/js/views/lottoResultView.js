@@ -2,8 +2,6 @@ import { $, on, emit } from '../utils/helper.js';
 import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
 export default class LottoResultView {
-  // #app;
-
   #lottoResultDialog;
 
   #threeMatchedNumber;
@@ -20,7 +18,6 @@ export default class LottoResultView {
 
   #restartButton;
 
-  // eslint-disable-next-line max-lines-per-function
   constructor() {
     this.#lottoResultDialog = $('#lotto-result-dialog');
     this.#threeMatchedNumber = $('#three-matched-number');
@@ -32,6 +29,10 @@ export default class LottoResultView {
     this.#restartButton = $('#restart-button');
 
     this.#attachEvents();
+  }
+
+  get restartButton() {
+    return this.#restartButton;
   }
 
   #attachEvents() {
@@ -48,5 +49,9 @@ export default class LottoResultView {
       lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS];
     this.#sixMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.SIX];
     this.#profitRate.textContent = profit;
+  }
+
+  #handleRestart() {
+    emit(this.#restartButton, '@restart');
   }
 }

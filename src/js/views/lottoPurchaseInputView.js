@@ -38,4 +38,11 @@ export default class LottoPurchaseInputView {
     this.#lottoPurchaseInput.disabled = true;
     this.#lottoPurchaseButton.disabled = true;
   }
+
+  restart() {
+    this.reset();
+
+    this.#lottoPurchaseInput.disabled = false;
+    this.#lottoPurchaseButton.disabled = false;
+  }
 }

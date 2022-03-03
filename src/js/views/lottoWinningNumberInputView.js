@@ -8,6 +8,8 @@ export default class LottoWinningNumberInputView {
 
   #lottoMatchResultForm;
 
+  #lottoWinningNumberInputSection;
+
   constructor() {
     this.#lottoPurchaseResult = $('#lotto-purchase-result');
   }
@@ -41,6 +43,7 @@ export default class LottoWinningNumberInputView {
   #selectDOM() {
     this.#lottoMatchResultForm = $('#lotto-match-result-form');
     this.#lottoWinningNumberContainers = $$('.lotto-winning-number-container');
+    this.#lottoWinningNumberInputSection = $('#lotto-winning-number-input-section');
   }
 
   #attachEvents() {
@@ -49,6 +52,10 @@ export default class LottoWinningNumberInputView {
 
   reset() {
     this.#lottoMatchResultForm.reset();
+  }
+
+  restart() {
+    this.#lottoWinningNumberInputSection.remove();
   }
 }
 
