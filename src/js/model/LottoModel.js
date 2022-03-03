@@ -43,7 +43,7 @@ export default class LottoModel {
 
   getLottoNumbers() {
     const checkLottoNumberArray = [...Array(LOTTO_NUMBERS.MAX_LOTTO_NUMBER)].map(
-      (e, idx) => idx + 1,
+      (_, idx) => idx + 1,
     );
     const lottoNumberArray = [];
 

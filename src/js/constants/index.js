@@ -18,4 +18,5 @@ export const ALERT_MESSAGE = Object.freeze({
   OUT_OF_BOUNDS: '1 ~ 45 사이의 숫자를 입력해주세요.',
   DUPLICATED_NUMBERS: '중복되지 않은 숫자를 입력해주세요.',
   OVER_MAX_LOTTO_COUNT: '로또는 100개이하만 구매할수 있습니다',
+  EMPTY_INPUT: '빈칸없이 입력해주세요',
 });

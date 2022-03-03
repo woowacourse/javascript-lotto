@@ -1,13 +1,19 @@
 import { LOTTO_NUMBERS, ALERT_MESSAGE } from '../constants/index';
 
-const validator = Object.freeze({
+export const validator = Object.freeze({
   isDividedLottoPrice: (value) => value % LOTTO_NUMBERS.LOTTO_PRICE === 0,
 
   isOverLottoPrice: (value) => value >= LOTTO_NUMBERS.LOTTO_PRICE,
 
   isNumber: (value) => Number.isInteger(value),
 
-  isDuplicateWinningNumbers: (value) => [...new Set(value)].length !== value.length,
+  hasEmptyInput: (value) => value.some((e) => Number.isNaN(e)),
+
+  isDuplicateWinningNumbers: (value) => {
+    const filteredValue = value.filter((e) => !Number.isNaN(e));
+
+    return [...new Set(filteredValue)].length !== filteredValue.length;
+  },
 
   isOverRangeNumbers: (value) =>
     value.some(
@@ -35,10 +41,13 @@ export const checkValidLottoCount = (value) => {
 };
 
 export const checkValidWinningNumbers = (value) => {
+  if (validator.isDuplicateWinningNumbers(value)) {
+    throw Error(ALERT_MESSAGE.DUPLICATED_NUMBERS);
+  }
   if (validator.isOverRangeNumbers(value)) {
     throw Error(ALERT_MESSAGE.OUT_OF_BOUNDS);
   }
-  if (validator.isDuplicateWinningNumbers(value)) {
-    throw Error(ALERT_MESSAGE.DUPLICATED_NUMBERS);
+  if (validator.hasEmptyInput(value)) {
+    throw Error(ALERT_MESSAGE.EMPTY_INPUT);
   }
 };

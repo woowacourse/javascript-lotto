@@ -112,13 +112,13 @@ label {
   flex-direction: column;
 }
 
-.winning-number-input,
-.bonus-number-input {
+.winning-number-input {
   width: 34px;
   height: 36px;
   border: 1px solid var(--input-border-color);
   border-radius: 4px;
   margin-top: 10px;
+  text-align: center;
 }
 
 .bonus-number-input {
@@ -192,4 +192,23 @@ table tr {
 .emphasized {
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
   z-index: 100;
+}
+
+.invalid-input {
+  background-color: rgba(255, 99, 71, 0.1);
+  outline: 1px solid tomato;
+}
+
+.input-error-message {
+  margin-top: 15px;
+  color: red;
+}
+
+.pass {
+  color: #7dcd00;
+}
+
+.btn:disabled {
+  cursor: auto;
+  background-color: #8b8b8b;
 }

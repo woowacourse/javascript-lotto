@@ -3,6 +3,7 @@ import ResultView from '../view/resultView';
 import InputView from '../view/inputView';
 import PopupView from '../view/PopupView';
 import { $, $$ } from '../utils/selector';
+import { LOTTO_NUMBERS } from '../constants';
 
 export default class LottoController {
   constructor() {
@@ -10,14 +11,7 @@ export default class LottoController {
     this.resultView = new ResultView();
     this.inputView = new InputView();
     this.popupView = new PopupView();
-  }
 
-  init() {
-    this.initDOMs();
-    this.bindEvent();
-  }
-
-  initDOMs() {
     this.$lottoPriceForm = $('#lotto-price-form');
     this.$lottoPriceInput = $('#lotto-price-input');
     this.$lottoPriceButton = $('#lotto-price-button');
@@ -25,28 +19,16 @@ export default class LottoController {
     this.$popup = $('#popup');
   }
 
-  bindEvent() {
+  init() {
     this.$lottoPriceForm.addEventListener('submit', this.submitLottoPriceHandler.bind(this));
-    this.$result.addEventListener('click', this.clickCheckResultButtonHandler.bind(this));
+    this.$result.addEventListener('submit', this.submitCheckResultButtonHandler.bind(this));
     this.$popup.addEventListener('click', this.clickClosePopupButtonHandler.bind(this));
     this.$popup.addEventListener('click', this.clickRestartButtonHandler.bind(this));
   }
 
   initAfterRenderResult() {
-    this.initDOMsAfterRenderResult();
-    this.bindEventAfterRenderResult();
-  }
-
-  initDOMsAfterRenderResult() {
     this.$checkbox = $('#view-checkbox');
-  }
-
-  bindEventAfterRenderResult() {
     this.$checkbox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
-  }
-
-  unbindEvent() {
-    this.$checkbox.removeEventListener('change', this.changeCheckBoxHandler.bind(this));
   }
 
   closePopupHandler() {
@@ -58,7 +40,7 @@ export default class LottoController {
     this.inputView.initLottoPriceInput();
     this.resultView.initResult();
     this.model.initGame();
-    this.unbindEvent();
+    this.$checkbox.removeEventListener('change', this.changeCheckBoxHandler.bind(this)); // 존재하는 이벤트를 해제해준다.
   }
 
   submitLottoPriceHandler(event) {
@@ -84,19 +66,20 @@ export default class LottoController {
     this.resultView.initLottos();
   }
 
-  clickCheckResultButtonHandler({ target }) {
-    if (target.id !== 'check-result-button') return;
-
+  submitCheckResultButtonHandler(e) {
+    if (e.target.id !== 'winning-numbers-form') return;
+    e.preventDefault();
     const $winningNumberInputs = $$('.winning-number-input');
-    const $bonusNumberInput = $('.bonus-number-input');
 
-    const winnerNumberArray = Array.from($winningNumberInputs).map(
-      ($winningNumberInput) => $winningNumberInput.valueAsNumber,
+    const winnerNumberArray = Array.from($winningNumberInputs).map(($winningNumberInput) =>
+      Number($winningNumberInput.value),
     );
-    const bonusNumber = $bonusNumberInput.valueAsNumber;
 
     try {
-      this.model.calculateLottoResult(winnerNumberArray, bonusNumber);
+      this.model.calculateLottoResult(
+        winnerNumberArray.slice(0, LOTTO_NUMBERS.LOTTO_LENGTH - 1),
+        winnerNumberArray[LOTTO_NUMBERS.LOTTO_LENGTH],
+      );
 
       this.popupView.renderPopup(this.model.getLottoResultInfo());
       this.popupView.toggleMainContainerState();
