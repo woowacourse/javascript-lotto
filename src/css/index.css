@@ -258,7 +258,8 @@ input:checked + .slider:before {
   gap: 8px;
 }
 
-.winning-number-input {
+.winning-number-input,
+.bonus-number-input {
   width: 34px;
   text-align: center;
 }

@@ -77,7 +77,7 @@ const template = {
         <form id="${DOM_STRING.WINNING_NUMBER_FORM}">
           <label>당첨 번호</label>
           <div id="${DOM_STRING.WINNING_NUMBER_INPUT_WRAP}">
-            ${`<input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" />`.repeat(
+            ${`<input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" maxlength="2" />`.repeat(
               LOTTO.NUMBER_LENGTH
             )}
           </div>
@@ -85,8 +85,8 @@ const template = {
         <form id="${DOM_STRING.BONUS_NUMBER_FORM}">
           <label for="bonus_number">보너스 번호</label>
           <input class="${
-            DOM_STRING.WINNING_NUMBER_INPUT
-          }" type="text" name="bonus_number"/>
+            DOM_STRING.BONUS_NUMBER_INPUT
+          }" type="text" name="bonus_number" maxlength="2" />
         </form>
       </fieldset>
       <button id="${DOM_STRING.SHOW_RESULT_BUTTON}">결과 확인하기</button>
