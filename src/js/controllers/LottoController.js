@@ -34,6 +34,7 @@ export class LottoController {
     this.view.showLottoStatusContainer();
     this.view.showWinningLottoContainer();
     this.view.showPurchasedLottos(this.lottoGame.lottoWallet);
+    this.view.disablePurchaseButton();
   };
 
   bindToggleBtnEvent() {
@@ -88,6 +89,7 @@ export class LottoController {
       validator.isWinningNumbersInputValid(this.lottoGame.winningNumbers, this.lottoGame.bonusNumber);
     } catch (err) {
       alert(err);
+      this.view.clearWinningLottoInputs();
       return true;
     }
     return false;

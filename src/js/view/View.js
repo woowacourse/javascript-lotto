@@ -19,6 +19,9 @@ export class View {
     this.moneyInput = document.getElementById('money-input');
     this.winningNumberInput = document.getElementsByClassName('winning-number');
     this.bonusNumberInput = document.getElementById('bonus-number');
+
+    //나중에 옮길것
+    this.bindWinningNumberOnkeyup();
   }
 
   registerModalElements() {
@@ -28,6 +31,7 @@ export class View {
   }
 
   registerContainers() {
+    this.moneyInputContainer = document.getElementById('money-input-container');
     this.lottoStatusContainer = document.getElementById('lotto-status-container');
     this.winningLottoContainer = document.getElementById('winning-lotto-container');
   }
@@ -122,6 +126,7 @@ export class View {
   restart() {
     this.hideLottoStatusContainer();
     this.hideWinningLottoContainer();
+    this.ablePurchaseButton();
     this.modal.close();
     this.resultChartBody.innerHTML = '';
     this.clearWinningLottoInputs();
@@ -151,5 +156,30 @@ export class View {
 
   clearBonusNumberInput() {
     this.bonusNumberInput.value = '';
+  }
+
+  ablePurchaseButton() {
+    this.purchaseBtn.disabled = false;
+  }
+
+  disablePurchaseButton() {
+    this.purchaseBtn.disabled = true;
+  }
+
+  bindWinningNumberOnkeyup() {
+    Array.from(this.winningNumberInput).forEach((item) => (item.onkeyup = this.moveFocusToNextWinningNumberInput));
+  }
+
+  moveFocusToNextWinningNumberInput() {
+    const index = Number(this.id.charAt(this.id.length - 1)) + 1;
+    let target = document.getElementById(`winning-number${index}`);
+
+    if (index === 6) {
+      target = document.getElementById(`bonus-number`);
+    }
+
+    if (String(this.value).length === 2) {
+      target.focus();
+    }
   }
 }

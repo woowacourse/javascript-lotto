@@ -1,9 +1,14 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 #app {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 700px;
   height: 100%;
 }
 
@@ -283,8 +288,10 @@ td {
   justify-content: center;
 }
 
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
+.winning-number::-webkit-outer-spin-button,
+.winning-number::-webkit-inner-spin-button,
+.bonus-number::-webkit-outer-spin-button,
+.bonus-number::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

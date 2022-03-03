@@ -61,11 +61,11 @@ export const validator = {
   },
 
   isWinningNumbersInRange(winningNumbers) {
-    return winningNumbers.every((e) => CONDITIONS.LOTTO_NUM_MIN <= e <= CONDITIONS.LOTTO_NUM_MIN);
+    return winningNumbers.every((e) => CONDITIONS.LOTTO_NUM_MIN <= e && e <= CONDITIONS.LOTTO_NUM_MIN);
   },
 
   isBonusNumbersInRange(bonusNumber) {
-    return CONDITIONS.LOTTO_NUM_MIN <= bonusNumber <= CONDITIONS.LOTTO_NUM_MIN;
+    return CONDITIONS.LOTTO_NUM_MIN <= bonusNumber && bonusNumber <= CONDITIONS.LOTTO_NUM_MIN;
   },
 };
 

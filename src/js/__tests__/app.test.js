@@ -111,16 +111,18 @@ test('당첨 통계를 구할 수 있다.', () => {
 
   lottoGame.enterWinningNumbers([1, 2, 3, 4, 5, 6]);
   lottoGame.enterBonusNumber(7);
-  lottoGame.findResult();
+  lottoGame.calculateResult();
 
-  expect(lottoGame.result).toStrictEqual({
-    matchFive: 1,
-    matchFiveBonus: 1,
-    matchFour: 1,
-    matchSix: 1,
-    matchThree: 2,
-    matchUnderThree: 1,
-  });
+  expect(lottoGame.result).toStrictEqual(
+    new Map([
+      ['matchSix', 1],
+      ['matchFiveBonus', 1],
+      ['matchFive', 1],
+      ['matchFour', 1],
+      ['matchThree', 2],
+      ['matchUnderThree', 1],
+    ]),
+  );
 });
 
 test('수익률을 소수점 둘째자리 까지 구할 수 있다.', () => {
@@ -142,7 +144,7 @@ test('수익률을 소수점 둘째자리 까지 구할 수 있다.', () => {
 
   lottoGame.enterWinningNumbers([1, 2, 3, 4, 5, 6]);
   lottoGame.enterBonusNumber(7);
-  lottoGame.findResult();
+  lottoGame.calculateResult();
   lottoGame.calculateEarnRate();
   expect(lottoGame.earnRate).toStrictEqual(233.33);
 });
