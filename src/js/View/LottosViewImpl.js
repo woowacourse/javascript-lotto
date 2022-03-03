@@ -9,10 +9,11 @@ export default class LottosViewImpl extends LottosView {
     this.$lottoContainer = $('#lottos-container');
   }
 
-  render(lottos) {
+  render({ lottos, remainFare }) {
     this.renderDefaultLottoArea(lottos.length);
     this.renderDetailLottoArea(lottos);
     this.$lottoCount.innerText = lottos.length;
+    this.setInputValue(remainFare);
   }
 
   renderDefaultLottoArea(count) {

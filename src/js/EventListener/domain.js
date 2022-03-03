@@ -14,14 +14,18 @@ const lottoCollection = new LottoCollectionImpl();
 const lottosView = new LottosViewImpl();
 const matchResultView = new MatchResultViewImpl();
 
+const lottosViewRenderingObject = (fare) => ({
+  lottos: lottoCollection.getLottos(),
+  remainFare: new RemainFareCalculator(fare).execute(),
+});
+
 export const trySubmitFareForm = () => {
   const inputedFare = lottosView.getInputValue();
 
   validator.validateFare(inputedFare);
   lottoCollection.resetLottos();
   lottoCollection.createLottos(new LottoCountCalculator(inputedFare).execute());
-  lottosView.render(lottoCollection.getLottos());
-  lottosView.setInputValue(new RemainFareCalculator(inputedFare).execute());
+  lottosView.render(lottosViewRenderingObject(inputedFare));
   matchResultView.show();
 };
 
