@@ -4,6 +4,8 @@ import {
   toggleLottosView,
   writingWinningNumber,
   tryClickConfirmResultButton,
+  closeModal,
+  restartApp,
 } from './domain.js';
 
 export const onSubmitFareForm = (e) => {
@@ -19,3 +21,7 @@ export const onKeyUpWinningNumbers = writingWinningNumber;
 export const onClickConfirmResultButton = () => {
   coveringTryCatch(tryClickConfirmResultButton);
 };
+
+export const onClickModalCloseButton = closeModal;
+
+export const onClickRestartButton = restartApp;

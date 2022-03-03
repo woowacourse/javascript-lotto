@@ -55,3 +55,17 @@ export const tryClickConfirmResultButton = () => {
   matchResultView.render({ matchResult, rateOfReturn });
   matchResultView.onModal();
 };
+
+export const closeModal = () => {
+  matchResultView.offModal();
+};
+
+export const restartApp = () => {
+  lottoCollection.resetLottos();
+  lottosView.setInputValue('');
+  lottosView.resetView();
+  matchResultView.setInputValue(['', '', '', '', '', '', '']);
+  matchResultView.hide();
+  matchResultView.offModal();
+  lottosView.focusInput();
+};

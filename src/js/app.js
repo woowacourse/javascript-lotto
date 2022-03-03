@@ -4,6 +4,8 @@ import {
   onChangeLottoViewerController,
   onKeyUpWinningNumbers,
   onClickConfirmResultButton,
+  onClickModalCloseButton,
+  onClickRestartButton,
 } from './EventListener/index.js';
 
 const runLottoGame = () => {
@@ -13,6 +15,8 @@ const runLottoGame = () => {
     $numberInput.addEventListener('keyup', onKeyUpWinningNumbers);
   });
   $('#confirm-result-button').addEventListener('click', onClickConfirmResultButton);
+  $('#close-modal-button').addEventListener('click', onClickModalCloseButton);
+  $('#restart-button').addEventListener('click', onClickRestartButton);
 };
 
 export default runLottoGame;

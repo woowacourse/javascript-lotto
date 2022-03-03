@@ -13,4 +13,8 @@ export default class FareValue extends InputValue {
   setValue(value) {
     this.$input.value = value;
   }
+
+  focus() {
+    this.$input.focus();
+  }
 }

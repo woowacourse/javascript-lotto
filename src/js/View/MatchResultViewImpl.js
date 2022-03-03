@@ -47,6 +47,6 @@ export default class MatchResultViewImpl extends MatchResultView {
     this.$modal.classList.remove('on');
     setTimeout(() => {
       this.$modal.classList.add('hide');
-    }, 4000);
+    }, 400);
   }
 }

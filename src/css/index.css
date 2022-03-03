@@ -32,6 +32,7 @@ body {
 .app {
   position: relative;
   width: 435px;
+  min-height: 557px;
   padding: 52px 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
