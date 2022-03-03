@@ -5,6 +5,7 @@ import './components/LottoList';
 import './components/LottoListToggle';
 import './components/LottoItem';
 import './components/WinningNumberForm';
+import './components/ResultModal';
 
 import '../css/index.css';
 
@@ -13,6 +14,11 @@ const initialState = {
   lottoList: [],
   lottoListVisibility: false,
   winningNumbers: [],
+  resultModalVisibility: false,
+  result: {
+    winningCounts: { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 },
+    earningsRate: 0,
+  },
 };
 
 window.store = new Store(initialState);
@@ -23,5 +29,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <money-form class="mb-7"></money-form>
     <lotto-list class="mb-6" hidden></lotto-list>
     <winning-number-form hidden></winning-number-form>
+    <result-modal hidden></result-modal>
   `;
 });

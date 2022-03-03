@@ -48,7 +48,7 @@ class WinningNumberForm extends Component {
       const winningNumbers = $winningNumberInputs.map((input) => input.value);
 
       try {
-        this.pickLottoNumbers(winningNumbers);
+        this.checkResult(winningNumbers);
       } catch (e) {
         console.error(e);
         alert(e.message);
@@ -56,14 +56,14 @@ class WinningNumberForm extends Component {
     });
   }
 
-  pickLottoNumbers(winningNumbers) {
+  checkResult(winningNumbers) {
     const { hasError, errorMessage } = validateWinningNumbers(winningNumbers);
 
     if (hasError) {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(createAction(ACTION.SET_WINNING_NUMBERS, winningNumbers));
+    window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, true));
   }
 }
 

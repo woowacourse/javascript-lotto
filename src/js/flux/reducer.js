@@ -29,8 +29,8 @@ export default function reducer(state, { type, payload }) {
       newState.lottoListVisibility = payload;
 
       return newState;
-    case ACTION.SET_WINNING_NUMBERS:
-      newState.winningNumbers = payload;
+    case ACTION.TOGGLE_RESULT_MODAL:
+      newState.resultModalVisibility = payload;
 
       return newState;
     default:
