@@ -9,9 +9,9 @@ export default class LottoModel {
     this.lottos = [];
   }
 
-  setLottoCount(inputPrice) {
-    checkValidLottoCount(inputPrice);
-    this.lottoCount = inputPrice / LOTTO_NUMBERS.LOTTO_PRICE;
+  setLottoCount(lottoPriceInput) {
+    checkValidLottoCount(lottoPriceInput);
+    this.lottoCount = lottoPriceInput / LOTTO_NUMBERS.LOTTO_PRICE;
   }
 
   getLottoCount() {

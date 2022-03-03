@@ -28,7 +28,7 @@
 
 ## 리팩터링 
 - [x] submitLottoPriceHandler 네이밍 -> handleLottoPriceButtonSubmit
-- [ ] const { value } 이름 
+- [x] const { value } 이름 
 - [ ] 리뷰어님  
   - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 
   - [ ] LottoModel의 while문 수정 (무한루프)

@@ -40,9 +40,9 @@ export default class LottoController {
   handleLottoPriceButtonSubmit(event) {
     event.preventDefault();
 
-    const { value } = this.$lottoPriceInput;
+    const lottoPriceInput = this.$lottoPriceInput.value;
     try {
-      this.model.setLottoCount(value);
+      this.model.setLottoCount(lottoPriceInput);
       this.model.setLottos(this.model.generateLottos());
 
       this.resultView.renderResult(this.model.getLottoCount());
