@@ -2,11 +2,18 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b2d3b16 (chore: webpack 배포 관련 설정)
 import "./css/index.css";
 import "./css/toggle.css";
 import App from "./js/app.js";
+=======
+import './css/index.css';
+import './css/toggle.css';
+import './css/modal';
+import App from './js/app.js';
+>>>>>>> 764b87a (feat: LottoView Restart 버튼 클릭시 모달창 활성화)
 
 App();
 <<<<<<< HEAD

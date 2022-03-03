@@ -306,5 +306,6 @@ export default class LottoView {
 
   handleResultForm(e) {
     e.preventDefault();
+    $('modal').style.display = 'flex';
   }
 }

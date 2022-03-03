@@ -1,0 +1,71 @@
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba( 0, 0, 0, 0.5 );
+}
+#modal .modal-window {
+    background: white;
+    width: 320px;
+    height: 450px;
+    position: relative;
+    top: 50px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#modal .title {
+    margin-top:24px;
+}
+#modal .title h2{
+    margin:0
+}
+#modal #modal-close {
+    position: absolute;
+    right: 16px;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    color: #323232;
+    background-color: inherit;
+    width:5px;
+}
+
+#modal .grid{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3,1fr);
+    font-size:15px;
+    text-align: center;
+    border-bottom: 1px solid #dcdcdc;
+    padding:8px 0px
+}
+
+#modal .content {
+    width: 100%;
+    text-align: center;
+}
+
+#lotto-result-table{
+    border-top:1px solid #dcdcdc;
+    margin:32px 0px 16px 0px;
+}
+
+#lotto-result-rate{
+    font-weight: 600;
+}
+
+#restart{
+    width: 152px;
+    height: 36px;
+    margin-top:2rem;
+}
+.table-title{
+    font-weight:600;
+}
