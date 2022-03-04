@@ -28,7 +28,7 @@ export default class LottoController {
 
   initAfterRenderResult() {
     this.$checkBox = $('#view-checkbox');
-    this.$checkBox.addEventListener('change', this.bindChangeEvent);
+    this.$checkBox.addEventListener('change', this.changeCheckBoxHandler.bind(this));
   }
 
   closePopupHandler() {
