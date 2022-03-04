@@ -81,3 +81,12 @@ export const ERROR_MESSAGE = {
   IS_DUPLICATED_BONUS: `당첨번호와 보너스 번호가 중복됩니다. 중복없이 입력해주세요.`,
   DID_NOT_BUY_LOTTO: `구입한 로또가 없습니다. 로또를 먼저 구입해주세요.`,
 };
+
+export const WINNINGS = {
+  under: 0,
+  three: 5000,
+  four: 50000,
+  five: 1500000,
+  fiveBonus: 30000000,
+  six: 2000000000,
+};
