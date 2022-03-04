@@ -75,6 +75,15 @@ export default class LottoController {
     }
   }
 
+  restart() {
+    this.lottoBundleModel.initialize();
+    this.lottoPrizeModel.initialize();
+    this.purchaseView.rerenderView();
+    this.issuedTicketView.rerenderView();
+    this.resultView.rerenderView();
+    this.statisticsView.hideStatisticsModal();
+  }
+
   renderLotto(count) {
     this.issuedTicketView.showTicketContainer();
     this.issuedTicketView.renderTicketCount(count);
@@ -98,14 +107,5 @@ export default class LottoController {
     this.lottoPrizeModel.calculateRateOfReturn(
       this.lottoBundleModel.lottos.length * LOTTO.PRICE_PER_TICKET,
     );
-  }
-
-  restart() {
-    this.lottoBundleModel.initialize();
-    this.lottoPrizeModel.initialize();
-    this.purchaseView.rerenderView();
-    this.issuedTicketView.rerenderView();
-    this.resultView.rerenderView();
-    this.statisticsView.hideStatisticsModal();
   }
 }
