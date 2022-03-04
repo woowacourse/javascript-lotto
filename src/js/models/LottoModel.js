@@ -19,16 +19,18 @@ export default class LottoModel {
     this.setInitialState();
   }
 
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+  }
+
   setInitialState() {
-    this.state = {
+    const initialState = {
       amount: 0,
       lottoList: [],
       winningStatistic: LottoModel.createWinningStatistic(),
     };
-  }
 
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
+    this.setState(initialState);
   }
 
   setLottoListWithAmount(amount) {
