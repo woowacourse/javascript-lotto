@@ -32,7 +32,6 @@ export default class LottoMachineController {
       EVENT.SUBMIT_MONEY,
       ({ detail }) => this.handlePurchaseLotto(detail.purchaseMoney),
     );
-
     on(this.view.lottoResultModalView.restartButton, EVENT.CLICK_RESTART, () =>
       this.reset(),
     );

@@ -51,15 +51,11 @@ export default class InputWinningNumberView {
     this.winningNumberInputs = document.querySelectorAll(
       '.winning-number-input',
     );
-    this.registerWinningNumbersInputsEvent();
-  }
-
-  registerWinningNumberFormEvent() {
-    const winningNumberForm = document.getElementById('winning-number-form');
-    winningNumberForm.addEventListener(
-      'submit',
-      this.handleWinningNumberFormSubmit.bind(this),
-    );
+    this.winningNumberInputs.forEach((inputElement, index) => {
+      inputElement.addEventListener('input', () =>
+        this.handleWinningNumberInputFocus(inputElement, index),
+      );
+    });
   }
 
   handleWinningNumberFormSubmit(e) {
@@ -78,17 +74,6 @@ export default class InputWinningNumberView {
       this.resetInputElementsValue();
       alert(error);
     }
-  }
-
-  registerWinningNumbersInputsEvent() {
-    this.winningNumberInputs = document.querySelectorAll(
-      '.winning-number-input',
-    );
-    this.winningNumberInputs.forEach((inputElement, index) => {
-      inputElement.addEventListener('input', () =>
-        this.handleWinningNumberInputFocus(inputElement, index),
-      );
-    });
   }
 
   handleWinningNumberInputFocus(inputElement, index) {

@@ -47,10 +47,7 @@ export default class PurchasedLottosView {
       'beforeend',
       PURCHASED_LOTTO_TEMPLATE,
     );
-    this.registerSwitchEvent();
-  }
 
-  registerSwitchEvent() {
     const switchButton = document.getElementById('on-off-switch');
     switchButton.addEventListener('click', this.handleSwitchClick.bind(this));
   }
