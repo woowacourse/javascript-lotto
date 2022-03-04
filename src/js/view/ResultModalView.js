@@ -2,7 +2,7 @@ import EVENT from '../constants/event';
 import ID from '../constants/dom';
 import { insertComma } from '../utils/autoComma';
 import { emit, on } from '../utils/event';
-import { $, $$ } from '../utils/selector';
+import { $ } from '../utils/selector';
 
 export default class ResultModalView {
   constructor(lottoVendor) {

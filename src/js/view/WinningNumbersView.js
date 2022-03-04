@@ -5,7 +5,6 @@ import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
 import { changeDuplicatedInputsColor, changeOkInputsColor, changeOverInputsColor } from '../utils/style';
-import keyCheck from '../utils/keyCheck';
 
 export default class WinningNumbersView {
   constructor() {
