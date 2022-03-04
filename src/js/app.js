@@ -1,3 +1,3 @@
-import LottoController from './controller/lottoController';
+import LottoView from './view/lottoView';
 
-new LottoController();
+new LottoView();
