@@ -55,6 +55,7 @@ export default class LottoView {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.bindEvents();
   }
 
@@ -76,6 +77,16 @@ export default class LottoView {
 =======
     this.lottoModal = new LottoModal(this, this.machine);
 >>>>>>> ed12848 (refactor: Lottoview LottoModal 분리)
+=======
+    this.lottoModal = new LottoModal(this);
+    this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
+    this.$winningNumberInputArr = document.querySelectorAll(
+      '.winning-number-input'
+    );
+    this.$purchaseMoneyInput = $(DOM.ID.PURCHASE_MONEY_INPUT);
+    this.$purchaseMoneyButton = $(DOM.ID.PURCHASE_MONEY_BUTTON);
+    this.bindEvents();
+>>>>>>> f663b5d (refactor: LottoView 2번 이상 사용하는 element 상수화)
   }
 
   bindEvents() {
@@ -259,6 +270,7 @@ export default class LottoView {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     $(DOM.ID.PURCHASE_MONEY_INPUT).disabled = true;
     $(DOM.ID.PURCHASE_MONEY_BUTTON).disabled = true;
   }
@@ -282,6 +294,10 @@ export default class LottoView {
     $(DOM.ID.PURCHASE_MONEY_INPUT).disabled = true;
     $(DOM.ID.PURCHASE_MONEY_BUTTON).disabled = true;
 >>>>>>> 7cf755a (refactor: constant SELECTOR -> DOM)
+=======
+    this.$purchaseMoneyInput.disabled = true;
+    this.$purchaseMoneyButton.disabled = true;
+>>>>>>> f663b5d (refactor: LottoView 2번 이상 사용하는 element 상수화)
   }
 
 <<<<<<< HEAD
@@ -311,7 +327,7 @@ export default class LottoView {
   }
 
   focusWinningNumberForm() {
-    document.querySelector('.winning-number-input').focus();
+    this.$winningNumberInputArr[0].focus();
   }
 
   bindEventsToResultForm() {
@@ -323,9 +339,9 @@ export default class LottoView {
 
   handleResultForm(e) {
     e.preventDefault();
-    const winningNumbers = Array.from(
-      document.querySelectorAll('.winning-number-input')
-    ).map(({ value }) => Number.parseInt(value));
+    const winningNumbers = Array.from(this.$winningNumberInputArr).map(
+      ({ value }) => Number.parseInt(value)
+    );
     try {
       validateArrayNumber(winningNumbers);
       const bonusNumber = winningNumbers.pop();
@@ -343,12 +359,10 @@ export default class LottoView {
   }
 
   reactivatePurchaseForm() {
-    document
-      .querySelectorAll('.winning-number-input')
-      .forEach((element) => (element.value = ''));
-    $('purchase-money-input').value = '';
-    $('purchase-money-input').disabled = false;
-    $('purchase-money-button').disabled = false;
+    this.$winningNumberInputArr.forEach((element) => (element.value = ''));
+    this.$purchaseMoneyInput.value = '';
+    this.$purchaseMoneyInput.disabled = false;
+    this.$purchaseMoneyButton.disabled = false;
     $(DOM.ID.TOGGLE_CHECKBOX).checked = false;
   }
 }

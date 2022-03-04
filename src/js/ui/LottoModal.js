@@ -1,5 +1,3 @@
-import LottoMachine from '../domains/LottoMachine';
-import { validateArrayNumber } from '../validations/utils';
 import { lottoResultTableTemplate } from './template';
 import $ from './utils';
 
