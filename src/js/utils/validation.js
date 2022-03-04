@@ -1,7 +1,7 @@
 import { ALERT_MESSAGE, LOTTO_PRICE, MAX_PURCHASABLE_CASH } from '../constants';
 
 export const validateCashInput = cash => {
-  if (cash >= MAX_PURCHASABLE_CASH) {
+  if (cash > MAX_PURCHASABLE_CASH) {
     throw new Error(ALERT_MESSAGE.OVER_MAX_CASH);
   }
 
