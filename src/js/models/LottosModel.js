@@ -15,7 +15,7 @@ export default class LottosModel {
 
   buy(inputMoney) {
     const lottoCount = inputMoney / LOTTO_SETTING.PRICE;
-    Array.from({ length: lottoCount }, () => this.#lottos.push(new Lotto().generate()));
+    this.#lottos = [...Array(lottoCount)].map((_) => new Lotto().generate());
   }
 
   get list() {

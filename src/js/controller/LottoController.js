@@ -8,6 +8,7 @@ import { SELECTOR } from '../constants/selector';
 import { checkValidMoneyInput, checkValidWinningNumberInput } from '../utils/Lotto/validator';
 import WinningNumberInputView from '../views/WinningNumberInputView';
 import ResultModalView from '../views/ResultModalView';
+import WinningLotto from '../models/WinningLotto';
 
 export default class LottoController {
   #MoneyInputView = new MoneyInputView($(`.${SELECTOR.CLASS.LOTTO_MONEY_SECTION}`));
@@ -35,7 +36,7 @@ export default class LottoController {
     try {
       checkValidMoneyInput(money);
       this.#MoneyInputView.disableNewMoneySubmit();
-      this.#LottosModel.chargedMoney = Number(money);
+      this.#LottosModel.chargedMoney = money;
       this.#LottosModel.buy(money);
       this.#LottoListView.renderLottoListSection();
       this.#WinningNumberInputView.renderWinningNumbersInput();
@@ -48,7 +49,7 @@ export default class LottoController {
   handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
     try {
       checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
-      this.#WinningLottoCounter.setWinningLotto({ winningNumbers, bonusNumber });
+      this.#WinningLottoCounter.setWinningLotto(new WinningLotto({ winningNumbers, bonusNumber }));
       this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottos);
       this.#ResultModalView.showResultModal();
       this.#ResultModalView.renderHitCount(this.#WinningLottoCounter.winningCounts);

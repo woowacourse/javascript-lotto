@@ -32,9 +32,9 @@ export default class WinningLottoCounter {
     return this.#winningCounts;
   }
 
-  setWinningLotto({ winningNumbers, bonusNumber }) {
-    this.#winningLotto.winningNumbers = [...winningNumbers];
-    this.#winningLotto.bonusNumber = bonusNumber;
+  setWinningLotto(WinningLotto) {
+    this.#winningLotto.winningNumbers = [...WinningLotto.winningNumbers];
+    this.#winningLotto.bonusNumber = WinningLotto.bonusNumber;
   }
 
   calculateWinningCounts(boutghtLottos) {
