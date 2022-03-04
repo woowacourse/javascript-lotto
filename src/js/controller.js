@@ -43,6 +43,7 @@ export default class Controller {
       const winningLottoQuantity = this.#model.getWinningLottoQuantity();
       const profitRatio = this.#model.calculateProfitRatio();
       this.#winningNumberView.showLottoResult(winningLottoQuantity, profitRatio);
+      this.#winningNumberView.bindClickModalOutside();
     } catch ({ message }) {
       alert(message);
     }

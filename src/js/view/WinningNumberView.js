@@ -48,6 +48,10 @@ export class WinningNumberView {
     });
   }
 
+  bindClickModalOutside() {
+    this.$resultModalBackground.addEventListener('click', this.displayNoneResultModal.bind(this));
+  }
+
   moveFocusOnWinningNumberInput() {
     this.$pickedNumberInputs[0].focus();
   }
