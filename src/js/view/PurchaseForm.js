@@ -23,7 +23,7 @@ export default class PurchaseFormView {
   }
 
   bindInput() {
-    this.$purchaseInput.addEventListener('keypress', ({ target }) => {
+    this.$purchaseInput.addEventListener('keyup', ({ target }) => {
       if (target.value === '') {
         return;
       }
