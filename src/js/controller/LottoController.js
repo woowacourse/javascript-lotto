@@ -44,7 +44,7 @@ export default class LottoController {
       this.#View.LottoList.renderLottoList(this.#LottosModel.list);
       this.#View.WinningNumberInput.showContainer();
     } catch (error) {
-      alert(error.message);
+      this.#View.MoneyInput.renderMoneyInputError(error.message);
     }
   }
 
@@ -58,7 +58,7 @@ export default class LottoController {
       this.#View.LottoResultContent.renderLottoResultList(winningRankCountList);
       this.#View.LottoResultContent.renderLottoResultYield(playerLottoYield);
     } catch (error) {
-      alert(error.message);
+      this.#View.WinningNumberInput.renderWinningNumberInputError(error.message);
     }
   }
 

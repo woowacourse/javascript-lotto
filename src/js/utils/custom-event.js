@@ -25,3 +25,13 @@ export const onEnableButton = ($eventTarget, condition) => {
 
   $eventTarget.disabled = false;
 };
+
+export const addEventOnce = (eventType, $element, callback) => {
+  if ($element instanceof HTMLElement === false) {
+    return;
+  }
+
+  $element.addEventListener(eventType, callback, {
+    once: true,
+  });
+};

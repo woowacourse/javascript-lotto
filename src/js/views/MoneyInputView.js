@@ -1,11 +1,12 @@
 import { SELECTOR } from '../constants/selector';
 
 import { $ } from '../utils/element-manager';
-import { onEnableButton } from '../utils/custom-event';
+import { addEventOnce, onEnableButton } from '../utils/custom-event';
 
 export default class MoneyInputView {
   #container;
   #moneyInput;
+  #moneyInputErrorMessage;
   #moneyInputSubmit;
 
   constructor(containerSelector) {
@@ -20,6 +21,7 @@ export default class MoneyInputView {
   #defaultElements() {
     this.#moneyInput = $(this.#container, SELECTOR.LOTTO_MONEY_INPUT);
     this.#moneyInputSubmit = $(this.#container, SELECTOR.LOTTO_PURCHASE_BUTTON);
+    this.#moneyInputErrorMessage = $(this.#container, '.error-message');
   }
 
   #bindViewEvents() {
@@ -34,6 +36,17 @@ export default class MoneyInputView {
   #handleMoneyInputValue() {
     const isInputEmpty = this.#moneyInput.value.length === 0;
     onEnableButton(this.#moneyInputSubmit, () => isInputEmpty === false);
+  }
+
+  renderMoneyInputError(message) {
+    this.#moneyInput.classList.add('error');
+    this.#moneyInputErrorMessage.classList.add('show');
+    this.#moneyInputErrorMessage.textContent = message;
+
+    addEventOnce('change', this.#moneyInput, () => {
+      this.#moneyInput.classList.remove('error');
+      this.#moneyInputErrorMessage.classList.remove('show');
+    });
   }
 
   bindMoneyInputSubmit(handler) {

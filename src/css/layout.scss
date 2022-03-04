@@ -89,7 +89,7 @@ body {
         color: #8e3d3d;
       }
 
-      @include animate(0.15s ease-out 3) {
+      @include animate(0.13s ease-out 3) {
         0% {
           transform: translateX(-1rem);
         }
@@ -186,6 +186,35 @@ body {
       .pointer {
         filter: brightness(0.9);
       }
+    }
+  }
+
+  .error-message {
+    display: none;
+    font-size: 0.9rem;
+    color: $warning-color;
+
+    &.show {
+      display: block;
+
+      @include animate(0.3s ease) {
+        from {
+          opacity: 0;
+          transform: translateX(10%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0%);
+        }
+      }
+    }
+
+    &::before {
+      content: '🚨';
+      font-size: 0.7rem;
+      vertical-align: middle;
+      margin-right: 0.2rem;
     }
   }
 
