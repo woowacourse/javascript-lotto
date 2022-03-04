@@ -70,6 +70,12 @@ export default class PurchaseLottosView extends View {
     $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
   }
 
+  clearMoneyInput() {
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.remove('input-alert');
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = '';
+  }
+
+  // 핸들러
   handleOnChangeMoneyInput(event) {
     try {
       validateMoney(event.target.value);
@@ -81,10 +87,5 @@ export default class PurchaseLottosView extends View {
     if (event.target.value.length === 0) {
       this.clearMoneyInput();
     }
-  }
-
-  clearMoneyInput() {
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.remove('input-alert');
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = '';
   }
 }
