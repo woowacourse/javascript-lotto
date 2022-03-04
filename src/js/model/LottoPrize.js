@@ -1,4 +1,4 @@
-import { PRIZE_MONEY } from '../constants/prize.js';
+import { PRIZE_MONEY, SAME_NUMBER_COUNT } from '../constants/prize.js';
 
 export default class LottoPrize {
   constructor() {
@@ -23,15 +23,15 @@ export default class LottoPrize {
 
   countPrize(sameNumberCount, numbers, bonusNumber) {
     switch (sameNumberCount) {
-      case 6:
+      case SAME_NUMBER_COUNT.FIRST:
         this.prizeCount.first += 1;
         break;
 
-      case 4:
+      case SAME_NUMBER_COUNT.FOURTH:
         this.prizeCount.fourth += 1;
         break;
 
-      case 3:
+      case SAME_NUMBER_COUNT.FIFTH:
         this.prizeCount.fifth += 1;
         break;
 
@@ -42,22 +42,16 @@ export default class LottoPrize {
   }
 
   competeForSecondPrize(sameNumberCount, numbers, bonusNumber) {
-    if (sameNumberCount !== 5) {
+    if (sameNumberCount !== SAME_NUMBER_COUNT.SECOND_OR_THIRD) {
       return;
     }
 
-    switch (numbers.includes(bonusNumber)) {
-      case true:
-        this.prizeCount.second += 1;
-        break;
-
-      case false:
-        this.prizeCount.third += 1;
-        break;
-
-      default:
-        break;
+    if (numbers.includes(bonusNumber)) {
+      this.prizeCount.second += 1;
+      return;
     }
+
+    this.prizeCount.third += 1;
   }
 
   calculateRateOfReturn(inputMoney) {

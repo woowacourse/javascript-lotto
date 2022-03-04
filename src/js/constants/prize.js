@@ -7,3 +7,10 @@ export const PRIZE_MONEY = {
 };
 
 export const PRIZE_NAMES = ['first', 'second', 'third', 'fourth', 'fifth'];
+
+export const SAME_NUMBER_COUNT = {
+  FIRST: 6,
+  SECOND_OR_THIRD: 5,
+  FOURTH: 4,
+  FIFTH: 3,
+};
