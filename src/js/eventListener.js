@@ -1,26 +1,16 @@
-import { $, $$ } from './utils/index.js';
+import { $ } from './utils/index.js';
 import { validator } from './validation/index.js';
 import lottoManager from './lottoManager.js';
-import view from './view.js';
+import lottoGameView from './views/index.js';
 import lottoStatisticMachine from './lottoStatisticMachine.js';
 
-export const onClickModalCloseButton = () => {
-  const $winningStatisticModal = $('#winning-statistic-modal');
-  $('#app').removeChild($winningStatisticModal);
-};
-
-export const onClickRestartButton = () => {
+const onClickRestartButton = () => {
   lottoManager.reset();
   lottoStatisticMachine.reset();
-  view.reset();
+  lottoGameView.reset();
 };
 
-export const onClickResultButton = () => {
-  const $matchNumberInputs = $$('.match-number-input');
-  const [bonumsNumber, ...winningNumbers] = Array.from($matchNumberInputs)
-    .map((inputElement) => inputElement.valueAsNumber)
-    .reverse();
-
+const onClickResultButton = (winningNumbers, bonumsNumber) => {
   try {
     validator.validateWinningNumbers(winningNumbers);
     validator.validateBonusNumber(winningNumbers, bonumsNumber);
@@ -36,14 +26,11 @@ export const onClickResultButton = () => {
     winningNumbers,
     bonumsNumber,
   );
+
   const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
 
-  view.renderWinningStatisticModal(winningCounts, earningsRate);
-
-  $('#winning-statistic-modal-close-button').addEventListener('click', onClickModalCloseButton);
-
-  // TODO: 다시 시작하기 버튼 이벤트 리스너 등록
-  $('#restart-button').addEventListener('click', onClickRestartButton);
+  lottoGameView.renderWinningStatisticModal(winningCounts, earningsRate);
+  lottoGameView.bindWinningStatisticModalEvent(onClickRestartButton);
 };
 
 export const onSubmitFareForm = (e) => {
@@ -59,15 +46,10 @@ export const onSubmitFareForm = (e) => {
 
   const lottoCount = lottoManager.calculateLottoCount(fare);
   const lottoList = lottoManager.createLottos(lottoCount);
-  view.renderLottoList(lottoList);
-
   const remainFare = lottoManager.calculateRemainFare(fare);
-  view.renderFare(remainFare);
 
-  view.deactivateFareForm();
-  view.renderLottoMatchSection();
-
-  $('#result-button').addEventListener('click', onClickResultButton);
+  lottoGameView.renderAfterFareSubmit(lottoList, remainFare);
+  lottoGameView.bindLottoMatchViewEvent(onClickResultButton);
 };
 
 export const onToggleLottoViewerController = () =>
