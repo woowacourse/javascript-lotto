@@ -5,8 +5,7 @@ import { emit, on } from '../utils/event';
 import { $ } from '../utils/selector';
 
 export default class ResultModalView {
-  constructor(lottoVendor) {
-    this.lottoVendor = lottoVendor;
+  constructor() {
     this.$modalContainer = $(ID.MODAL_CONTAINER);
     this.$modal = $('.modal');
     this.$closeSmallButton = $('.x-shape');
