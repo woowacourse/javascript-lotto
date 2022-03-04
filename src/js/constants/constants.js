@@ -16,6 +16,7 @@ export const ERROR_MESSAGE = {
   WINNING_NUMBERS_INSUFFICIENT: '당첨 번호 6개, 보너스 번호 1개를 입력해주세요.',
   WINNING_NUMBERS_NOT_INTEGER: '당첨 번호와 보너스 번호는 정수로 입력해주세요.',
   WINNING_NUMBERS_NOT_IN_RANGE: '당첨 번호와 보너스 번호는 1 이상 45 이하 범위 내로 입력해주세요.',
+  WINNING_NUMBERS_DUPLICATED: '당첨 번호와 보너스 번호에 중복이 있습니다.',
   NO_PURCHASED_TICKET: '구입한 티켓이 없습니다.',
 };
 

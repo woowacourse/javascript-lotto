@@ -39,4 +39,10 @@ describe('당첨 번호 유효성 검사 테스트', () => {
     expect(() => validateWinningNumbers(winningNumbersWithInvalidRange))
       .toThrow(ERROR_MESSAGE.WINNING_NUMBERS_NOT_IN_RANGE);
   });
+
+  it('각 번호는 중복되지 않아야 한다.', () => {
+    const winningNumbersDuplicated = [11, 22, 33, 33, 44, 12, 23];
+    expect(() => validateWinningNumbers(winningNumbersDuplicated))
+      .toThrow(ERROR_MESSAGE.WINNING_NUMBERS_DUPLICATED);
+  });
 });
