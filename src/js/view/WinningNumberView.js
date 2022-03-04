@@ -75,12 +75,12 @@ export class WinningNumberView {
 
   displayResultModal() {
     addClassName(this.$resultModalBackground, CLASS_SELECTOR.OPEN);
-    addClassName(this.$body, 'scroll-block');
+    addClassName(this.$body, CLASS_SELECTOR.SCROLL_BLOCK);
   }
 
   displayNoneResultModal() {
     removeClassName(this.$resultModalBackground, CLASS_SELECTOR.OPEN);
-    removeClassName(this.$body, 'scroll-block');
+    removeClassName(this.$body, CLASS_SELECTOR.SCROLL_BLOCK);
   }
 
   clearInputs() {
@@ -96,15 +96,17 @@ export class WinningNumberView {
 
 function resultGridTemplate(winningLottoQuantity) {
   return (
-    `<div class="result-modal-grid-item">일치 개수</div>
-    <div class="result-modal-grid-item">당첨금</div>
-    <div class="result-modal-grid-item">당첨 갯수</div>` +
+    `<div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">일치 개수</div>
+    <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">당첨금</div>
+    <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">당첨 갯수</div>` +
     Object.keys(WINNING_PRIZE)
       .map(
         key => `
-        <div class="result-modal-grid-item">${key}</div>
-        <div class="result-modal-grid-item">${WINNING_PRIZE[key].toLocaleString()}</div>
-        <div class="result-modal-grid-item">${winningLottoQuantity[key]}개</div>
+        <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">${key}</div>
+        <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">${WINNING_PRIZE[
+          key
+        ].toLocaleString()}</div>
+        <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">${winningLottoQuantity[key]}개</div>
       `,
       )
       .join('')

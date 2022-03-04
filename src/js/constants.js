@@ -28,8 +28,10 @@ export const CLASS_SELECTOR = {
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
   PICKED_NUMBERS_FORM_DISPLAY: 'picked-numbers-form-display',
   PICKED_NUMBER_INPUT: 'picked-number__input',
+  RESULT_MODAL_GRID_ITEM: 'result-modal-grid-item',
   UNFOLD: 'unfold',
   OPEN: 'open',
+  SCROLL_BLOCK: ' scroll-block',
 };
 
 export const LOTTO_PRICE = 1000;
