@@ -37,6 +37,7 @@ button:disabled {
   position: absolute;
   top: 16px;
   right: 16px;
+  content: url('/images/close.svg');
 }
 
 #restart-button {
