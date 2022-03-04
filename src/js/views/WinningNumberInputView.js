@@ -23,7 +23,7 @@ export default class WinningNumberInputView {
     this.#winningNumberInputList = $$(this.#container, SELECTOR.LOTTO_WINNING_NUMBER);
     this.#winningNumberSubmitButton = $(this.#container, SELECTOR.LOTTO_SHOW_RESULT_BUTTON);
 
-    this.#winningNumberErrorMessage = $(this.#container, '.error-message');
+    this.#winningNumberErrorMessage = $(this.#container, SELECTOR.ERROR_MESSAGE);
   }
 
   #bindViewEvents() {

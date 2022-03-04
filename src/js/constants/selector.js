@@ -1,5 +1,10 @@
 export const SELECTOR = Object.freeze({
   APP: '#app',
+
+  ERROR_MESSAGE: '.error-message',
+  MODAL_CONTAINER: '.modal-container',
+  MODAL_CLOSE: '.modal-close',
+
   NUMBER_TOGGLE: '#lotto-number-toggle',
   LOTTO_PURCHASE_BUTTON: '#lotto-purchase-button',
   LOTTO_MONEY_INPUT: '#lotto-money-input',
@@ -19,9 +24,6 @@ export const SELECTOR = Object.freeze({
   LOTTO_ITEM: '.item',
   LOTTO_ITEM_NUMBER: '.item-number',
   LOTTO_WINNING_NUMBER: '.winning-number-input',
-
-  MODAL_CONTAINER: '.modal-container',
-  MODAL_CLOSE: '.modal-close',
 });
 
 const replaceSelectorToDomName = (origin) => {

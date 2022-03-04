@@ -20,7 +20,7 @@ export default class MoneyInputView {
   #defaultElements() {
     this.#moneyInput = $(this.#container, SELECTOR.LOTTO_MONEY_INPUT);
     this.#moneyInputSubmit = $(this.#container, SELECTOR.LOTTO_PURCHASE_BUTTON);
-    this.#moneyInputErrorMessage = $(this.#container, '.error-message');
+    this.#moneyInputErrorMessage = $(this.#container, SELECTOR.ERROR_MESSAGE);
   }
 
   #bindViewEvents() {
