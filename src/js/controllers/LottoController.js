@@ -30,7 +30,7 @@ export default class LottoController {
   }
 
   afterClickedResetButton() {
-    this.lottoModel.initialState();
+    this.lottoModel.setInitialState();
     this.paymentController.resetInput();
     this.ticketController.renderTicketListView();
     this.winningNumberController.resetInput();

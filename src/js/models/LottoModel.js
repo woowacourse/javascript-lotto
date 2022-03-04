@@ -5,10 +5,10 @@ export default class LottoModel {
   state;
 
   constructor() {
-    this.initialState();
+    this.setInitialState();
   }
 
-  initialState() {
+  setInitialState() {
     this.state = {
       amount: 0,
       lottoList: [],

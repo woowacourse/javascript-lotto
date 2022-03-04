@@ -21,6 +21,8 @@
     "newline-before-return": 2,
     "class-methods-use-this": "off",
     "no-console": "warn",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-return-assign": "off",
+    "no-param-reassign": "off"
   }
 }
