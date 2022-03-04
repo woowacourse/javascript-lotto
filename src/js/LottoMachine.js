@@ -120,7 +120,7 @@ export default class LottoMachine {
       totalPrize += LOTTO_PRIZE[index] * count;
     });
     const totalCost = this.lottoCount * LOTTO_PRICE;
-    const rateOfReturn = parseFloat(((totalPrize / totalCost) * 100).toFixed(2));
+    const rateOfReturn = parseFloat(((totalPrize / totalCost) * 100 - 100).toFixed(2));
     return rateOfReturn;
   }
 }
