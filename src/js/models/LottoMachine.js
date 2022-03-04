@@ -1,10 +1,10 @@
-import { LOTTO } from '../constants/constants.js';
+import { LOTTO, SELECTOR } from '../constants/constants.js';
 import Lotto from '../models/Lotto.js';
 import validateMoney from '../validations/PurchaseLottos.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
-  #winLottos = [0, 0, 0, 0, 0, 0, 0]; // 인덱스의 숫자가 일치하는 숫자의 갯수와 동일
+  #winLottos = [0, 0, 0, 0, 0, 0, 0]; // [0개 일치, 1개 일치, ... 5개 일치 , 6개 일치]
   #winLottosWithBonus = 0;
 
   get inputMoney() {
@@ -47,14 +47,11 @@ export default class LottoMachine {
   }
 
   getProfit() {
-    const winningPrize = [0, 0, 0, 5000, 50000, 1500000, 2000000000];
-    const winningPrizeWithBonus = 30000000;
-
     let profit = 0;
-    this.#winLottos.map((item, index) => {
-      profit += item * winningPrize[index];
+    this.#winLottos.forEach((winLottoCount, index) => {
+      profit += winLottoCount * LOTTO.WINNING_PRIZE[index];
     });
-    profit += this.#winLottosWithBonus * winningPrizeWithBonus;
+    profit += this.#winLottosWithBonus * LOTTO.WINNING_PRIZE_WITH_BONUS;
     return profit;
   }
 

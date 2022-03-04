@@ -1,3 +1,5 @@
+import { LOTTO } from '../constants/constants';
+
 function hasDuplicatedNumbers(inputWinningNumbers) {
   const set = new Set(inputWinningNumbers);
   return set.size !== inputWinningNumbers.length;
@@ -17,7 +19,13 @@ export default function validateInputWinningNumbers(inputWinningNumbers) {
   if (isBlank(inputWinningNumbers)) {
     throw new Error('입력되지 않은 값이 있습니다.');
   }
-  if (!areNumbersInRange(inputWinningNumbers, 1, 45)) {
+  if (
+    !areNumbersInRange(
+      inputWinningNumbers,
+      LOTTO.MINIMUM_NUMBER,
+      LOTTO.MAXIMUM_NUMBER
+    )
+  ) {
     throw new Error('1 ~ 45 사이의 숫자를 입력해주세요.');
   }
   if (hasDuplicatedNumbers(inputWinningNumbers)) {

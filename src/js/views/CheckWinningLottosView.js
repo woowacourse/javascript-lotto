@@ -1,6 +1,6 @@
 import View from './View.js';
 import { $, $$, isDuplicated } from '../utils/utils.js';
-import { SELECTOR } from '../constants/constants.js';
+import { LOTTO, SELECTOR } from '../constants/constants.js';
 import validateInputWinningNumbers from '../validations/CheckWinningLottos.js';
 
 export default class CheckWinningLottosView extends View {
@@ -23,7 +23,7 @@ export default class CheckWinningLottosView extends View {
   handleInputWinningNumber(index) {
     const elements = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
     elements[index].value = elements[index].value.substr(0, 2);
-    if (index < 6 && elements[index].value.length > 1) {
+    if (index < LOTTO.NUMBER_QUANTITY && elements[index].value.length > 1) {
       elements[index + 1].focus();
     }
     elements.forEach((element) => element.classList.remove('input-alert'));
