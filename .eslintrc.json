@@ -23,6 +23,7 @@
     "no-console": "warn",
     "no-undef": "off",
     "no-return-assign": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-use-before-define": "off"
   }
 }

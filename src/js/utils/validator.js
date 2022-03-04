@@ -1,36 +1,6 @@
 import Lotto from '../models/Lotto/Lotto.js';
 import { LOTTO, ERROR_MESSAGE, PAYMENT } from '../configs/contants.js';
 
-const isNumber = (value) => typeof value === 'number' && Number.isFinite(value);
-
-const isValidMinAmountRange = (purchaseAmount) => {
-  return purchaseAmount >= PAYMENT.PURCHASE_AMOUNT.MIN;
-};
-
-const isValidMaxAmountRange = (purchaseAmount) => {
-  return purchaseAmount <= PAYMENT.PURCHASE_AMOUNT.MAX;
-};
-
-const isValidLottoNumberRange = (value) =>
-  value >= LOTTO.NUMBER_RANGE.MIN && value <= LOTTO.NUMBER_RANGE.MAX;
-
-const isValidLottoNumber = (lottoNumber) =>
-  Number.isInteger(lottoNumber) && isValidLottoNumberRange(lottoNumber);
-
-const isValidlottoNumbers = (lottoNumbers) =>
-  lottoNumbers.length === LOTTO.NUMBER_LENGTH &&
-  lottoNumbers.every((lottoNumber) => isValidLottoNumber(lottoNumber));
-
-const isValidDuplicatedLottoNumber = (lottoNumbers) =>
-  lottoNumbers.length === new Set(lottoNumbers).size;
-
-const isValidLottoList = (lottoList, count) =>
-  lottoList.length === count &&
-  lottoList.every((lotto) => lotto instanceof Lotto);
-
-const isValidDuplicateBonus = (winningNumbers, bonusNumber) =>
-  winningNumbers.includes(bonusNumber);
-
 const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
     if (!isNumber(purchaseAmount)) {
@@ -80,5 +50,47 @@ const validator = {
     }
   },
 };
+
+function isNumber(value) {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function isValidMinAmountRange(purchaseAmount) {
+  return purchaseAmount >= PAYMENT.PURCHASE_AMOUNT.MIN;
+}
+
+function isValidMaxAmountRange(purchaseAmount) {
+  return purchaseAmount <= PAYMENT.PURCHASE_AMOUNT.MAX;
+}
+
+function isValidLottoNumberRange(value) {
+  return value >= LOTTO.NUMBER_RANGE.MIN && value <= LOTTO.NUMBER_RANGE.MAX;
+}
+
+function isValidLottoNumber(lottoNumber) {
+  return Number.isInteger(lottoNumber) && isValidLottoNumberRange(lottoNumber);
+}
+
+function isValidlottoNumbers(lottoNumbers) {
+  return (
+    lottoNumbers.length === LOTTO.NUMBER_LENGTH &&
+    lottoNumbers.every((lottoNumber) => isValidLottoNumber(lottoNumber))
+  );
+}
+
+function isValidDuplicatedLottoNumber(lottoNumbers) {
+  return lottoNumbers.length === new Set(lottoNumbers).size;
+}
+
+function isValidLottoList(lottoList, count) {
+  return (
+    lottoList.length === count &&
+    lottoList.every((lotto) => lotto instanceof Lotto)
+  );
+}
+
+function isValidDuplicateBonus(winningNumbers, bonusNumber) {
+  return winningNumbers.includes(bonusNumber);
+}
 
 export default validator;
