@@ -66,15 +66,15 @@ export default class WinningNumberController {
   }
 
   countSameNumber(lottoNumbers, winningNumbers, bonus) {
-    let Count = lottoNumbers.filter((number) =>
+    let count = lottoNumbers.filter((number) =>
       winningNumbers.includes(number)
     ).length;
 
-    if (this.checkBonus(Count, lottoNumbers, bonus)) {
-      Count = STATISTIC.fiveBonus.number;
+    if (this.checkBonus(count, lottoNumbers, bonus)) {
+      count = STATISTIC.fiveBonus.number;
     }
 
-    return Count;
+    return count;
   }
 
   checkBonus(count, lottoNumbers, bonus) {
@@ -84,10 +84,10 @@ export default class WinningNumberController {
     );
   }
 
-  createStatisticWithCountList(CountList) {
+  createStatisticWithCountList(countList) {
     const winningStatistic = LottoModel.createWinningStatistic();
 
-    CountList.forEach((count) => {
+    countList.forEach((count) => {
       const countString = this.translateToString(count);
       winningStatistic[countString] += 1;
     });
