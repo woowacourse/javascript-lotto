@@ -2,15 +2,11 @@ import { $, $$ } from '../utils/dom';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { lottoTicket } from '../model/lottoTicket';
 import { isInvalidMoneyInput } from '../validator/validator';
+import { deactivateForm } from '../utils/style';
 
 export default class PurchaseLotto {
   constructor() {
     $('.purchase-form').addEventListener('submit', this.handlePurchase);
-  }
-
-  deactivateForm(enable) {
-    $('.money-input').setAttribute('disabled', enable);
-    $('.purchase-button').setAttribute('disabled', enable);
   }
 
   showResultElements() {
@@ -35,7 +31,7 @@ export default class PurchaseLotto {
   }
 
   showResult(lottoTickets) {
-    this.deactivateForm(true);
+    deactivateForm(true, ['.money-input', '.purchase-button']);
     this.showResultElements();
     this.showLottoTicketsLength(lottoTickets.length);
     this.showLottoImage(lottoTickets);
