@@ -31,7 +31,7 @@ export const CLASS_SELECTOR = {
   RESULT_MODAL_GRID_ITEM: 'result-modal-grid-item',
   UNFOLD: 'unfold',
   OPEN: 'open',
-  SCROLL_BLOCK: ' scroll-block',
+  SCROLL_BLOCK: 'scroll-block',
 };
 
 export const LOTTO_PRICE = 1000;
