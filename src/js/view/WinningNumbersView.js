@@ -17,6 +17,7 @@ export default class WinningNumbersView {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
     this.#enableAutoFocus();
     this.#enableInputFocusReset();
+    this.#enableDuplicatedNumbersChecker();
   }
 
   #handleSubmit(e) {
@@ -36,6 +37,7 @@ export default class WinningNumbersView {
           this.#handleAutoFocus(e, index);
           return;
         }
+        console.log(e.target.valueAsNumber);
         e.target.value = e.target.value.substr(0, 2);
         this.$resultButton.click();
       });
@@ -56,6 +58,7 @@ export default class WinningNumbersView {
     this.$$winningNumberInputs.forEach((input) =>
       input.addEventListener('focus', () => {
         input.value = null;
+        this.#enableDuplicatedNumbersChecker();
       }),
     );
   }
@@ -66,5 +69,48 @@ export default class WinningNumbersView {
 
   toggleWinningNumbersDisplay() {
     this.$winningNumbersContainer.classList.toggle('hidden');
+  }
+
+  #enableDuplicatedNumbersChecker() {
+    this.#whitenUniqueInputValue();
+    this.#highlightDuplicatedInputValue();
+  }
+
+  #whitenUniqueInputValue() {
+    const inputNumberList = Array.from({ length: 7 });
+    this.$$winningNumberInputs.forEach((input, index) => {
+      inputNumberList[index] = input.valueAsNumber;
+    });
+    this.changeWhite(inputNumberList, this.$$winningNumberInputs);
+  }
+
+  #highlightDuplicatedInputValue() {
+    const inputNumberList = Array.from({ length: 7 });
+    this.$$winningNumberInputs.forEach((input, index) => {
+      inputNumberList[index] = input.valueAsNumber;
+    });
+    this.changeRed(inputNumberList, this.$$winningNumberInputs);
+  }
+
+  changeWhite(list, $$inputs) {
+    for (let i = 0; i < 7; i += 1) {
+      for (let j = i + 1; j < 7; j += 1) {
+        if (list[i] !== list[j]) {
+          $$inputs[i].style.background = 'white';
+          $$inputs[j].style.background = 'white';
+        }
+      }
+    }
+  }
+
+  changeRed(list, $$inputs) {
+    for (let i = 0; i < 7; i += 1) {
+      for (let j = i + 1; j < 7; j += 1) {
+        if (list[i] === list[j]) {
+          $$inputs[i].style.background = 'orange';
+          $$inputs[j].style.background = 'orange';
+        }
+      }
+    }
   }
 }
