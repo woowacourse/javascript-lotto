@@ -4,7 +4,7 @@ export const LOTTO_RULE = {
   NUMBERS_COUNT: 6,
 };
 
-export const ID_SELECTOR = {
+export const ID = {
   APP: 'app',
   PURCHASE_FORM: 'purchase-form',
   PURCHASE_INPUT: 'purchase-input',
@@ -21,7 +21,7 @@ export const ID_SELECTOR = {
   RESULT_MODAL_PROFIT_RATIO: 'result-modal-profit-ratio',
 };
 
-export const CLASS_SELECTOR = {
+export const CLASS = {
   LOTTO_LIST_SECTION_DISPLAY: 'lotto-list__section-display',
   LOTTO_LIST: 'lotto-list',
   LOTTO_LIST_TICKET: 'lotto-list__ticket',

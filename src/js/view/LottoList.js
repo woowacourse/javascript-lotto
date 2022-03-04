@@ -1,5 +1,5 @@
 import { $, replaceHTML } from '../utils/dom.js';
-import { ID_SELECTOR, CLASS_SELECTOR } from '../constants.js';
+import { ID, CLASS } from '../constants.js';
 
 export default class LottoListView {
   constructor() {
@@ -8,18 +8,18 @@ export default class LottoListView {
   }
 
   #configureDOM() {
-    this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
-    this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
-    this.$lottoListDescriptionQuantity = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION_QUANTITY);
-    this.$toggle = $(ID_SELECTOR.TOGGLE);
-    this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
+    this.$lottoListSection = $(ID.LOTTO_LIST_SECTION);
+    this.$lottoLists = $(ID.LOTTO_LISTS);
+    this.$lottoListDescriptionQuantity = $(ID.LOTTO_LIST_DESCRIPTION_QUANTITY);
+    this.$toggle = $(ID.TOGGLE);
+    this.$toggleInput = $(ID.TOGGLE_INPUT);
   }
 
   #bindToggleClick() {
     this.$toggle.addEventListener('click', () => {
       const isChecked = this.$toggleInput.checked;
       this.$toggleInput.checked = !isChecked;
-      this.$lottoLists.classList.toggle(CLASS_SELECTOR.UNFOLD);
+      this.$lottoLists.classList.toggle(CLASS.UNFOLD);
     });
   }
 
@@ -31,11 +31,11 @@ export default class LottoListView {
   }
 
   displayLottoListSection() {
-    this.$lottoListSection.classList.add(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY);
+    this.$lottoListSection.classList.add(CLASS.LOTTO_LIST_SECTION_DISPLAY);
   }
 
   displayNoneLottoListSection() {
-    this.$lottoListSection.classList.remove(CLASS_SELECTOR.LOTTO_LIST_SECTION_DISPLAY);
+    this.$lottoListSection.classList.remove(CLASS.LOTTO_LIST_SECTION_DISPLAY);
   }
 
   #showLottoList(lottoList) {
@@ -47,9 +47,9 @@ function lottoListTemplate(lottoList) {
   return lottoList
     .map(
       lotto => `
-      <li class="${CLASS_SELECTOR.LOTTO_LIST}">
-        <span class="${CLASS_SELECTOR.LOTTO_LIST_TICKET}">🎟️</span>
-        <span class="${CLASS_SELECTOR.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(', ')}</span>
+      <li class="${CLASS.LOTTO_LIST}">
+        <span class="${CLASS.LOTTO_LIST_TICKET}">🎟️</span>
+        <span class="${CLASS.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(', ')}</span>
       </li>`,
     )
     .join('');

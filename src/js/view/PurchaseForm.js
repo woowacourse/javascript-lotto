@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { ID_SELECTOR } from '../constants.js';
+import { ID } from '../constants.js';
 export default class PurchaseFormView {
   constructor() {
     this.#configureDOM();
@@ -7,8 +7,8 @@ export default class PurchaseFormView {
   }
 
   #configureDOM() {
-    this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
-    this.$purchaseInput = $(ID_SELECTOR.PURCHASE_INPUT);
+    this.$purchaseForm = $(ID.PURCHASE_FORM);
+    this.$purchaseInput = $(ID.PURCHASE_INPUT);
   }
 
   clearInput() {

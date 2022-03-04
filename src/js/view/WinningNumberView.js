@@ -1,4 +1,4 @@
-import { CLASS_SELECTOR, ID_SELECTOR, LOTTO_RULE, WINNING_PRIZE } from '../constants';
+import { CLASS, ID, WINNING_PRIZE } from '../constants';
 import { $, $$, addClassName, removeClassName, replaceHTML } from '../utils/dom';
 
 export class WinningNumberView {
@@ -9,13 +9,13 @@ export class WinningNumberView {
   }
 
   #configureDOM() {
-    this.$pickedNumbersForm = $(ID_SELECTOR.PICKED_NUMBERS_FORM);
-    this.$resultModalBackground = $(ID_SELECTOR.RESULT_MODAL_BACKGROUND);
-    this.$resultModalGridContainer = $(ID_SELECTOR.RESULT_MODAL_GRID_CONTAINER);
-    this.$resultModalClose = $(ID_SELECTOR.RESULT_MODAL_CLOSE);
-    this.$resultModalReset = $(ID_SELECTOR.RESULT_MODAL_RESET);
-    this.$resultModalProfitRatio = $(ID_SELECTOR.RESULT_MODAL_PROFIT_RATIO);
-    this.$pickedNumberInputs = $$(CLASS_SELECTOR.PICKED_NUMBER_INPUT);
+    this.$pickedNumbersForm = $(ID.PICKED_NUMBERS_FORM);
+    this.$resultModalBackground = $(ID.RESULT_MODAL_BACKGROUND);
+    this.$resultModalGridContainer = $(ID.RESULT_MODAL_GRID_CONTAINER);
+    this.$resultModalClose = $(ID.RESULT_MODAL_CLOSE);
+    this.$resultModalReset = $(ID.RESULT_MODAL_RESET);
+    this.$resultModalProfitRatio = $(ID.RESULT_MODAL_PROFIT_RATIO);
+    this.$pickedNumberInputs = $$(CLASS.PICKED_NUMBER_INPUT);
     this.$body = document.querySelector('body');
   }
 
@@ -26,16 +26,15 @@ export class WinningNumberView {
     });
   }
 
-  // 무조건 handler로 넘겨줘서 이벤트는 컨트롤러에서 실행되도록 하는 것이 좋을까?
   bindCloseModal() {
     this.$resultModalClose.addEventListener('click', () => {
-      this.$resultModalBackground.classList.remove(CLASS_SELECTOR.OPEN);
+      this.$resultModalBackground.classList.remove(CLASS.OPEN);
     });
   }
 
   bindRestart(handler) {
     this.$resultModalReset.addEventListener('click', () => {
-      this.$pickedNumbersForm.classList.add(CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY_NONE);
+      this.$pickedNumbersForm.classList.add(CLASS.PICKED_NUMBERS_FORM_DISPLAY_NONE);
 
       handler();
     });
@@ -66,21 +65,21 @@ export class WinningNumberView {
   }
 
   displayPickedNumbersForm() {
-    addClassName(this.$pickedNumbersForm, CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY);
+    addClassName(this.$pickedNumbersForm, CLASS.PICKED_NUMBERS_FORM_DISPLAY);
   }
 
   displayNonePickedNumbersForm() {
-    removeClassName(this.$pickedNumbersForm, CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY);
+    removeClassName(this.$pickedNumbersForm, CLASS.PICKED_NUMBERS_FORM_DISPLAY);
   }
 
   displayResultModal() {
-    addClassName(this.$resultModalBackground, CLASS_SELECTOR.OPEN);
-    addClassName(this.$body, CLASS_SELECTOR.SCROLL_BLOCK);
+    addClassName(this.$resultModalBackground, CLASS.OPEN);
+    addClassName(this.$body, CLASS.SCROLL_BLOCK);
   }
 
   displayNoneResultModal() {
-    removeClassName(this.$resultModalBackground, CLASS_SELECTOR.OPEN);
-    removeClassName(this.$body, CLASS_SELECTOR.SCROLL_BLOCK);
+    removeClassName(this.$resultModalBackground, CLASS.OPEN);
+    removeClassName(this.$body, CLASS.SCROLL_BLOCK);
   }
 
   clearInputs() {
@@ -96,17 +95,15 @@ export class WinningNumberView {
 
 function resultGridTemplate(winningLottoQuantity) {
   return (
-    `<div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">일치 개수</div>
-    <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">당첨금</div>
-    <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">당첨 갯수</div>` +
+    `<div class="${CLASS.RESULT_MODAL_GRID_ITEM}">일치 개수</div>
+    <div class="${CLASS.RESULT_MODAL_GRID_ITEM}">당첨금</div>
+    <div class="${CLASS.RESULT_MODAL_GRID_ITEM}">당첨 갯수</div>` +
     Object.keys(WINNING_PRIZE)
       .map(
         key => `
-        <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">${key}</div>
-        <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">${WINNING_PRIZE[
-          key
-        ].toLocaleString()}</div>
-        <div class="${CLASS_SELECTOR.RESULT_MODAL_GRID_ITEM}">${winningLottoQuantity[key]}개</div>
+        <div class="${CLASS.RESULT_MODAL_GRID_ITEM}">${key}</div>
+        <div class="${CLASS.RESULT_MODAL_GRID_ITEM}">${WINNING_PRIZE[key].toLocaleString()}</div>
+        <div class="${CLASS.RESULT_MODAL_GRID_ITEM}">${winningLottoQuantity[key]}개</div>
       `,
       )
       .join('')
