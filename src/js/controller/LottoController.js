@@ -51,6 +51,18 @@ export default class LottoController {
     this.$checkbox.addEventListener('change', this.handleCheckBoxChange.bind(this));
   }
 
+  closePopupView() {
+    this.popupView.toggleMainContainerState();
+    this.popupView.closePopup();
+  }
+
+  initLottoGame() {
+    this.inputView.initLottoPriceInput();
+    this.resultView.initResult();
+    this.lottoModel.initGame();
+    this.unbindEvent();
+  }
+
   handleLottoPriceButtonSubmit(event) {
     event.preventDefault();
 
@@ -86,10 +98,7 @@ export default class LottoController {
 
     try {
       this.lottoModel.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
-
-      const winningType = this.lottoModel.calculateWinningNumbers();
-      const earningRate = this.lottoModel.calculateEarningRate();
-      this.popupView.renderPopup(winningType, earningRate);
+      this.popupView.renderPopup(this.lottoModel.calculateWinningNumbers(), this.lottoModel.calculateEarningRate());
       this.popupView.toggleMainContainerState();
     } catch (err) {
       alert(err.message);
@@ -99,17 +108,13 @@ export default class LottoController {
   handleClosePopupButtonClick({ target }) {
     if (target.id !== 'close-popup-button') return;
     this.lottoModel.initWinningType();
-    this.popupView.toggleMainContainerState();
-    this.popupView.closePopup();
+    this.closePopupView();
   }
 
   handleRestartButtonClick({ target }) {
     if (target.id !== 'restart-button') return;
-    this.popupView.toggleMainContainerState();
-    this.popupView.closePopup();
-    this.inputView.initLottoPriceInput();
-    this.resultView.initResult();
-    this.lottoModel.initGame();
-    this.unbindEvent();
+
+    this.closePopupView();
+    this.initLottoGame();
   }
 }
