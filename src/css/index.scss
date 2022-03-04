@@ -52,6 +52,12 @@ body {
     &:active {
       background-color: #5cccee;
     }
+    &:disabled {
+      background-color: #b4b4b4;
+    }
+    &:disabled:hover {
+      filter: none;
+    }
   }
 }
 

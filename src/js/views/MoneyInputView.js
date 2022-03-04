@@ -17,7 +17,14 @@ export default class MoneyInputView {
     });
   }
 
+  disableNewMoneySubmit() {
+    $(this.#container, '#lotto-money-input').disabled = true;
+    $(this.#container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).disabled = true;
+  }
+
   reset() {
+    $(this.#container, '#lotto-money-input').disabled = false;
+    $(this.#container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).disabled = false;
     $(this.#container, '#lotto-money-input').value = '';
   }
 }

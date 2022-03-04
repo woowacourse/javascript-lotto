@@ -34,6 +34,7 @@ export default class LottoController {
   handleMoneyInputSubmit({ money }) {
     try {
       checkValidMoneyInput(money);
+      this.#MoneyInputView.disableNewMoneySubmit();
       this.#LottosModel.chargedMoney = Number(money);
       this.#LottosModel.buy(money);
       this.#LottoListView.renderLottoListSection();
