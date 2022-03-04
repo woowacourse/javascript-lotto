@@ -27,7 +27,7 @@ describe('로또 구매 테스트', () => {
   });
 
   test(`로또 구입 금액을 입력했을 때, 금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면 에러를 생성한다.`, () => {
-    const cash = 1500;
+    const cash = LOTTO_PRICE * 1.5;
     expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.NOT_DIVISIBLE);
   });
 
