@@ -11,15 +11,15 @@ export default class WinningNumberView {
   }
 
   winningNumberInputHandler() {
-    this.#winningNumberSection.addEventListener('keypress', this.preventNonDigitInput.bind(this));
+    this.#winningNumberSection.addEventListener('keydown', this.preventNonDigitInput.bind(this));
   }
 
   preventNonDigitInput(event) {
-    if (event.key.match(/[0-9]/) && event.target.value.length < 2) {
+    const inputKeyCode = event.keyCode;
+    if (event.key === 'Backspace' || event.key === 'Tab') {
       return;
     }
-    const keypressInput = event.which;
-    if ((keypressInput !== 8 && keypressInput !== 0 && keypressInput < 48) || keypressInput > 57) {
+    if (inputKeyCode < 49 || inputKeyCode > 57) {
       event.preventDefault();
     }
   }

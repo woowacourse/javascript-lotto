@@ -1,5 +1,3 @@
-import { getRandomNumber } from '../utils/data-manager';
-import { LOTTO_SETTING } from '../constants/setting';
 import { checkValidLottoNumberInput } from '../utils/Lotto/validator';
 
 function shuffle(list) {
