@@ -1,8 +1,17 @@
 import { $, $$ } from '../utils/util';
 import { lottoListTemplate, lottoTotalNumber, totalRateOfReturn } from './template';
-import { SELECTOR } from '../constants/constants';
+import { LOTTO_PRIZE, SELECTOR } from '../constants/constants';
 
 export default class LottoMachineView {
+  #lottoResultTableRows;
+
+  constructor() {
+    this.#lottoResultTableRows = $$('tr', $(SELECTOR.LOTTO_RESULT_TBODY));
+    this.#lottoResultTableRows.forEach((row, index) => {
+      $$('td', row)[1].innerText = LOTTO_PRIZE[index].toLocaleString();
+    });
+  }
+
   updateChargeInput(value) {
     $(SELECTOR.CHARGE_INPUT).value = value;
   }
@@ -37,8 +46,7 @@ export default class LottoMachineView {
   }
 
   showLottoResultTable(lottoResult, rateOfReturn) {
-    const lottoResultTableRows = $$('tr', $(SELECTOR.LOTTO_RESULT_TBODY));
-    lottoResultTableRows.forEach((row, index) => {
+    this.#lottoResultTableRows.forEach((row, index) => {
       $$('td', row)[2].innerText = lottoResult[index];
     });
     $(SELECTOR.RATE_OF_RETURN).innerText = totalRateOfReturn(rateOfReturn);
