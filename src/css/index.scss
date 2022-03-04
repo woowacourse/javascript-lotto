@@ -57,6 +57,7 @@ body {
     }
     &:disabled:hover {
       filter: none;
+      cursor: unset;
     }
   }
 }
