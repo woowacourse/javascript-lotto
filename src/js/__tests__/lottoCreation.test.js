@@ -1,13 +1,5 @@
 import lottoManager from '../lottoManager.js';
-import lottoStatisticMachine from '../lottoStatisticMachine.js';
-import {
-  isEnoughFare,
-  isValidRangeNumber,
-  isValidRangeNumbers,
-  isNotOverlapped,
-  isValidCount,
-  isNotIncludeWinningNumbers,
-} from '../validation/index.js';
+import { isEnoughFare } from '../validation/index.js';
 import { createRandomNumbers } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';
 
@@ -84,65 +76,5 @@ describe(`중복되지 않는 1 ~ 45 사이의 숫자를 6개 생성한다.`, ()
       createRandomNumbers(LOTTO_RULES.MIN_RANGE, LOTTO_RULES.MAX_RANGE, LOTTO_RULES.BALL_COUNT)
         .length,
     ).toBe(LOTTO_RULES.BALL_COUNT);
-  });
-});
-
-describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개의 숫자여야 한다.', () => {
-  const winningNumber = [7, 15, 30, 37, 39, 44];
-
-  test('지난주 당첨 번호 숫자들은 1 ~ 45 사이의 숫자여야 한다.', () => {
-    expect(isValidRangeNumbers(winningNumber)).toBeTruthy();
-  });
-
-  test('지난주 당첨 번호에는 중복된 숫자가 있으면 안된다.', () => {
-    expect(isNotOverlapped(winningNumber)).toBeTruthy();
-  });
-
-  test('지난주 당첨 번호의 숫자 개수는 6개여야 한다.', () => {
-    expect(isValidCount(winningNumber)).toBeTruthy();
-  });
-});
-
-describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않는 1 ~ 45 사이의 숫자여야 한다.', () => {
-  const bonumsNumber = 18;
-
-  test('보너스 당첨 번호는 지난주 당첨 번호에 속해있으면 안된다.', () => {
-    const winningNumber = [7, 15, 30, 37, 39, 44];
-
-    expect(isNotIncludeWinningNumbers(winningNumber, bonumsNumber)).toBeTruthy();
-  });
-
-  test('보너스 당첨 번호는 1 ~ 45 사이의 숫자여야 한다.', () => {
-    expect(isValidRangeNumber(bonumsNumber)).toBeTruthy();
-  });
-});
-
-describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호를 이용해서 당첨 결과를 확인할 수 있어야 한다.', () => {
-  test('구매한 로또 중 당첨된 로또를 개수를 등수 별로 계산할 수 있어야 한다.', () => {
-    const lottos = [
-      [7, 15, 30, 37, 39, 44],
-      [7, 15, 30, 37, 39, 18],
-      [7, 15, 30, 37, 39, 45],
-      [7, 15, 30, 37, 40, 45],
-    ];
-    const winningNumbers = [7, 15, 30, 37, 39, 44];
-    const bonusNumber = 18;
-
-    const winningCounts = lottoStatisticMachine.calculateWinningCounts(
-      lottos,
-      winningNumbers,
-      bonusNumber,
-    );
-
-    expect(winningCounts).toEqual([0, 1, 1, 1, 1]);
-  });
-
-  test('구매한 로또에 대한 수익률을 계산할 수 있어야 한다.', () => {
-    const fare = 5000;
-    const winningCounts = [0, 0, 1, 0, 0];
-
-    const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
-
-    expect(earningsRate).toBe(29900);
   });
 });
