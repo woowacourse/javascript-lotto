@@ -12,6 +12,7 @@ export default class LottoListView {
 
     this.#lottoNumberToggle = $(this.#container, SELECTOR.NUMBER_TOGGLE);
     this.#lottoItemContainer = $(this.#container, SELECTOR.LOTTO_ITEM_CONTAINER);
+    this.init();
   }
 
   init() {

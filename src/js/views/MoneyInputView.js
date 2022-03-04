@@ -13,6 +13,8 @@ export default class MoneyInputView {
 
     this.#defaultElements();
     this.#bindViewEvents();
+
+    this.init();
   }
 
   #defaultElements() {

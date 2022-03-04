@@ -13,6 +13,8 @@ export default class WinningNumberInputView {
 
     this.#defaultElements();
     this.#bindViewEvents();
+
+    this.init();
   }
 
   #defaultElements() {

@@ -12,6 +12,7 @@ export default class LottoResultView {
     this.#container = $(containerSelector);
 
     this.#defaultElements();
+    this.init();
   }
 
   #defaultElements() {
