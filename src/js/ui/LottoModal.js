@@ -7,27 +7,18 @@ export class LottoModal {
   constructor(view) {
     this.lottoView = view;
   }
+
   show(machine) {
-    const winningNumbers = Array.from(
-      document.querySelectorAll('.winning-number-input')
-    ).map(({ value }) => Number.parseInt(value));
-    try {
-      validateArrayNumber(winningNumbers);
-      const bonusNumber = winningNumbers.pop();
-      machine.calculateGrade(winningNumbers, bonusNumber);
-      $('lotto-result-table').replaceChildren();
-      $('lotto-result-table').insertAdjacentHTML(
-        'beforeend',
-        lottoResultTableTemplate(machine)
-      );
-      $(
-        'lotto-result-rate'
-      ).textContent = `당신의 총 수익률은 ${machine.profitRate}%입니다.`;
-      $('modal').style.display = 'flex';
-      this.bindEventsToModalBtn();
-    } catch (e) {
-      alert(e.message);
-    }
+    $('lotto-result-table').replaceChildren();
+    $('lotto-result-table').insertAdjacentHTML(
+      'beforeend',
+      lottoResultTableTemplate(machine)
+    );
+    $(
+      'lotto-result-rate'
+    ).textContent = `당신의 총 수익률은 ${machine.profitRate}%입니다.`;
+    $('modal').style.display = 'flex';
+    this.bindEventsToModalBtn();
   }
 
   bindEventsToModalBtn() {

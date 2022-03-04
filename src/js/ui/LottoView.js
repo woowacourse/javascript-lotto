@@ -323,7 +323,17 @@ export default class LottoView {
 
   handleResultForm(e) {
     e.preventDefault();
-    this.lottoModal.show(this.machine);
+    const winningNumbers = Array.from(
+      document.querySelectorAll('.winning-number-input')
+    ).map(({ value }) => Number.parseInt(value));
+    try {
+      validateArrayNumber(winningNumbers);
+      const bonusNumber = winningNumbers.pop();
+      machine.calculateGrade(winningNumbers, bonusNumber);
+      this.lottoModal.show(this.machine);
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   restart() {
