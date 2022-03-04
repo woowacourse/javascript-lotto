@@ -1,23 +1,13 @@
 import { $ } from '../utils/dom';
-import { ERROR_MESSAGE, LOTTO } from '../constants/constants';
+import { ERROR_MESSAGE } from '../constants/constants';
 import { isValidMoneyInput } from './validator';
-import Lotto from '../model/Lotto';
 import LottoView from '../view/LottoView';
+import { LottoTicket } from '../model/LottoTicket';
 
 export default class LottoController {
   constructor() {
-    this.lottoTickets = [];
     this.lottoView = new LottoView();
     $('.purchase-form').addEventListener('submit', this.handlePurchase);
-  }
-
-  issueLottoTickets(moneyInput) {
-    const purchasedLottoTicketsLength = parseInt(moneyInput / LOTTO.TICKET_PRICE);
-
-    for (let i = 0; i < purchasedLottoTicketsLength; i += 1) {
-      const lottoTicket = new Lotto();
-      this.lottoTickets.push(lottoTicket.lottoNumbers);
-    }
   }
 
   handlePurchase = (e) => {
@@ -28,7 +18,7 @@ export default class LottoController {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
-    this.issueLottoTickets(moneyInput);
-    this.lottoView.showResult(this.lottoTickets);
+    LottoTicket.issueLottoTickets(moneyInput);
+    this.lottoView.showResult(LottoTicket.getLottoTickets());
   };
 }

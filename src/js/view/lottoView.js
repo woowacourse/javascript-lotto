@@ -24,7 +24,7 @@ export default class LottoView {
       .map(
         (lottoTicket) =>
           `<div class="lotto-img">
-        🎟️<span class="lotto-number-detail d-none">${lottoTicket}</span>
+        🎟️<span class="lotto-number-detail d-none">${lottoTicket.join(', ')}</span>
       </div>`
       )
       .join('');
