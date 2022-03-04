@@ -46,10 +46,11 @@ export default class Model {
   }
 
   setWinningLottoQuantity(pickedNumber) {
+    Object.keys(this.#winningLottoQuantity).map(key => (this.#winningLottoQuantity[key] = 0));
+
     this.#lottoList.map(lotto => {
       this.#winningLottoQuantity[countSameNumber(lotto, pickedNumber)] += 1;
     });
-    console.log('this.#winningLottoQuantity', this.#winningLottoQuantity);
   }
 
   calculateProfitRatio() {
