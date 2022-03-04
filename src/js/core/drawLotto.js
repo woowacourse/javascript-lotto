@@ -1,4 +1,5 @@
 import Lotto from '../component/lotto.js';
+
 import { LOTTO_PRICE } from '../constants/constant.js';
 
 export const drawLotto = lottoPrice => {

@@ -1,4 +1,9 @@
-import { $ } from '../utils/dom.js';
+import {
+  $,
+  $app,
+  $boughtLottoListContainer,
+  $winningNumberContainer,
+} from '../utils/dom.js';
 
 export const renderBoughtLottoList = lottoCount => {
   const template = `
@@ -13,7 +18,7 @@ export const renderBoughtLottoList = lottoCount => {
       </label>
     </div>`;
 
-  $('.bought-lotto-list-container').insertAdjacentHTML('beforeend', template);
+  $boughtLottoListContainer.insertAdjacentHTML('beforeend', template);
   renderBoughtLottoItem(lottoCount);
 };
 
@@ -74,11 +79,11 @@ export const renderLastLottoNumber = () => {
     <button type="button" class="result-button">결과 확인하기</button>
     `;
 
-  $('.winning-number-container').insertAdjacentHTML('beforeend', template);
+  $winningNumberContainer.insertAdjacentHTML('beforeend', template);
 };
 
-export const renderOpenResultModal = winningInfo => {
-  $('#app').classList.toggle('disabled');
+export const renderOpenResultModal = (winningCount, earningRate) => {
+  $app.classList.toggle('disabled');
 
   const template = `
     <div id='modal' class='modal-overlay'>
@@ -98,24 +103,24 @@ export const renderOpenResultModal = winningInfo => {
           </thead>
           <tbody>
             <tr>
-              <td>3개</td><td>5,000</td><td>${winningInfo[0].sameThree}개</td>
+              <td>3개</td><td>5,000</td><td>${winningCount.sameThree}개</td>
             </tr>
             <tr>
-              <td>4개</td><td>50,000</td><td>${winningInfo[0].sameFour}개</td>
+              <td>4개</td><td>50,000</td><td>${winningCount.sameFour}개</td>
             </tr>
             <tr>
-              <td>5개</td><td>1,500,000</td><td>${winningInfo[0].sameFive}개</td>
+              <td>5개</td><td>1,500,000</td><td>${winningCount.sameFive}개</td>
             </tr>
             <tr>
-              <td>5개+보너스볼</td><td>30,000,000</td><td>${winningInfo[0].sameFiveAndBonus}개</td>
+              <td>5개+보너스볼</td><td>30,000,000</td><td>${winningCount.sameFiveAndBonus}개</td>
             </tr>
             <tr>
-              <td>6개</td><td>2,000,000,000</td><td>${winningInfo[0].sameSix}개</td>
+              <td>6개</td><td>2,000,000,000</td><td>${winningCount.sameSix}개</td>
             </tr>
           </tbody>
         </table>
         <div class='modal-window-earning-rate'>
-          <h3>당신의 총 수익률은 ${winningInfo[1]}%입니다.</h3>
+          <h3>당신의 총 수익률은 ${earningRate}%입니다.</h3>
         </div>
       </main>
       <footer class='modal-window-footer'>
@@ -127,5 +132,5 @@ export const renderOpenResultModal = winningInfo => {
     </div>
   `;
 
-  $('#app').insertAdjacentHTML('afterend', template);
+  $app.insertAdjacentHTML('afterend', template);
 };

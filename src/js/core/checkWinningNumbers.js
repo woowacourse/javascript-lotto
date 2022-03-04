@@ -1,4 +1,8 @@
-import { $ } from '../utils/dom.js';
+import {
+  NOT_INTEGER_ERROR,
+  NOT_VALID_RANGE_ERROR,
+  NOT_UNIQUE_NUMBER_ERROR,
+} from '../constants/errorMessage.js';
 
 export const getWinningNumbers = () => {
   const winnginNumberList = Array.from(
@@ -11,15 +15,15 @@ export const getWinningNumbers = () => {
 
 export const checkWinningNumberList = winnginNumberList => {
   if (!isElementsInteger(winnginNumberList)) {
-    window.alert('정수 값만 입력가능합니다.');
+    window.alert(NOT_INTEGER_ERROR);
     return;
   }
   if (!isElementsValidRange(winnginNumberList)) {
-    window.alert('1~45의 값만 입력가능합니다.');
+    window.alert(NOT_VALID_RANGE_ERROR);
     return;
   }
   if (!isElementsUnique(winnginNumberList)) {
-    window.alert('값이 중복되지 않아야 합니다.');
+    window.alert(NOT_UNIQUE_NUMBER_ERROR);
     return;
   }
   return winnginNumberList;

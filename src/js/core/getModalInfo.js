@@ -1,16 +1,13 @@
-import { LOTTO_PRICE } from '../constants/constant.js';
+import {
+  LOTTO_PRICE,
+  REWARD_SAME_THREE,
+  REWARD_SAME_FOUR,
+  REWARD_SAME_FIVE,
+  REWARD_SAME_FIVE_BOUNS,
+  REWARD_SAME_SIX,
+} from '../constants/constant.js';
 
-export const setResultModal = (lottoList, winningNumberList) => {
-  const winningCount = getWinningCount(lottoList, winningNumberList);
-  const earningRate = getEarningRate(
-    lottoList.length,
-    getOutputMoney(winningCount),
-  );
-
-  return [winningCount, earningRate];
-};
-
-const getWinningCount = (lottoList, winningNumberList) => {
+export const getWinningCount = (lottoList, winningNumberList) => {
   const bonusNumber = winningNumberList[winningNumberList.length - 1];
   const winningCount = {
     sameThree: 0,
@@ -46,18 +43,18 @@ const getWinningCount = (lottoList, winningNumberList) => {
   return winningCount;
 };
 
-const getEarningRate = (lottoCount, outputMoney) => {
+export const getEarningRate = (lottoCount, outputMoney) => {
   const inputMoney = lottoCount * LOTTO_PRICE;
   const earningRate = parseInt(outputMoney / inputMoney);
   return earningRate;
 };
 
-const getOutputMoney = winningCount => {
+export const getOutputMoney = winningCount => {
   let outputMoney = 0;
-  outputMoney += winningCount.sameThree * 5000;
-  outputMoney += winningCount.sameFour * 50000;
-  outputMoney += winningCount.sameFive * 1500000;
-  outputMoney += winningCount.sameFiveAndBonus * 30000000;
-  outputMoney += winningCount.sameSix * 2000000000;
+  outputMoney += winningCount.sameThree * REWARD_SAME_THREE;
+  outputMoney += winningCount.sameFour * REWARD_SAME_FOUR;
+  outputMoney += winningCount.sameFive * REWARD_SAME_FIVE;
+  outputMoney += winningCount.sameFiveAndBonus * REWARD_SAME_FIVE_BOUNS;
+  outputMoney += winningCount.sameSix * REWARD_SAME_SIX;
   return outputMoney;
 };

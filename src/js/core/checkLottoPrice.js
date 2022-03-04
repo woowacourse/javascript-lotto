@@ -1,4 +1,5 @@
-import { $ } from '../utils/dom.js';
+import { $lottoPriceInput } from '../utils/dom.js';
+
 import { LOTTO_PRICE } from '../constants/constant.js';
 import {
   NOT_DIVIDE_THOUSAND_ERROR,
@@ -7,7 +8,7 @@ import {
 } from '../constants/errorMessage.js';
 
 export const getLottoPrice = () => {
-  const lottoPrice = $('.lotto-price-input').value;
+  const lottoPrice = $lottoPriceInput.value;
   return lottoPrice;
 };
 
