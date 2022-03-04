@@ -26,7 +26,7 @@
   - [x] 결과창의 X를 클릭하면 결과창이 닫긴다.
   - [x] 일치하는 갯수와 수익률을 계산하여 보여준다.
 - [x] 다시 시작하기 버튼을 누를시 초기창으로 돌아간다.
-
+- [x] test code 구현 
 ## 리팩터링 
 - [ ] handle 머시기 네이밍 바꾸기 
 - [x] submitLottoPriceHandler 네이밍 -> handleLottoPriceButtonSubmit

@@ -110,10 +110,7 @@ export default class LottoModel {
     };
 
     return Math.floor(
-      (Object.entries(this.winningType).reduce(
-        (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
-        0,
-      ) / (this.lottoCount * 1000)) * 100,
+      (Object.entries(this.winningType).reduce((acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1], 0) / (this.lottoCount * 1000)) * 100,
     );
   }
 

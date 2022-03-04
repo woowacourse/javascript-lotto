@@ -9,13 +9,13 @@ const validator = Object.freeze({
 
   isOverMaxLottoCount: (value) => value > LOTTO_NUMBERS.CAN_BUY_MAX_PRICE,
 
-  isWinningNumbersDuplicate: (lottoNumbers) => new Set(lottoNumbers).size !== 7,
+  isWinningNumbersDuplicate: (lottoNumbers) => new Set(lottoNumbers).size !== LOTTO_NUMBERS.WINNING_LOTTO_LENGTH,
 
   isAllNumber: (lottoNumbers) => lottoNumbers.every((lottoNumber) => typeof lottoNumber === 'number'),
 
-  isWinningNumbersOverRange: (lottoNumbers) => lottoNumbers.some((lottoNumber) => lottoNumber > 45 || lottoNumber < 1),
+  isWinningNumbersOverRange: (lottoNumbers) => lottoNumbers.some((lottoNumber) => lottoNumber > LOTTO_NUMBERS.MAX_LOTTO_NUMBER || lottoNumber < LOTTO_NUMBERS.MIN_LOTTO_NUMBER),
 
-  isWinningNumbersAllInput: (lottoNumbers) => lottoNumbers.filter((lottoNumber) => !isNaN(lottoNumber)).length === 7,
+  isWinningNumbersAllInput: (lottoNumbers) => lottoNumbers.filter((lottoNumber) => !isNaN(lottoNumber)).length === LOTTO_NUMBERS.WINNING_LOTTO_LENGTH,
 });
 
 export const checkValidLottoCount = (value) => {
@@ -35,13 +35,13 @@ export const checkValidLottoCount = (value) => {
 
 export const checkValidWinningLottoNumbers = (lottoNumbers) => {
   if (!validator.isWinningNumbersAllInput(lottoNumbers)) {
-    throw Error('당첨번호가 모두 입력되지 않았습니다.');
+    throw Error(ALERT_MESSAGE.IS_NOT_INPUT_ALL);
   }
   if (validator.isWinningNumbersOverRange(lottoNumbers)) {
-    throw Error('로또번호는 1부터 45까지의 숫자만 입력할 수 있습니다.');
+    throw Error(ALERT_MESSAGE.OUT_OF_RANGE);
   }
 
   if (validator.isWinningNumbersDuplicate(lottoNumbers)) {
-    throw Error('중복된 번호를 입력하면 안됩니다.');
+    throw Error(ALERT_MESSAGE.DUPLICATED_NUMBERS);
   }
 };
