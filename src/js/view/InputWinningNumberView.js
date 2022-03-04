@@ -82,7 +82,6 @@ export default class InputWinningNumberView extends View {
   }
 
   showModal() {
-    this.app.classList.replace('modal-off', 'modal-on');
     this.modal.classList.replace('modal-hide', 'modal-show');
   }
 

@@ -39,7 +39,6 @@ export default class LottoResultModalView extends View {
   }
 
   hideModal() {
-    this.app.classList.replace('modal-on', 'modal-off');
     this.modal.classList.replace('modal-show', 'modal-hide');
   }
 }

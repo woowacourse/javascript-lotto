@@ -21,7 +21,7 @@
 }
 
 .modal-show {
-  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 0 99999px;
 }
 
 #winning-statistics-modal > h2 {

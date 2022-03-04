@@ -116,3 +116,11 @@ export default class LottoMachineController {
     this.view.inputWinningNumberView.resetScreen();
   }
 }
+
+/**
+ * TODO
+ * 1. 모달창 오픈 시, 배경색 이슈 해결
+ * 2. 리팩토링
+ * 3. 테스트 코드
+ * 4.
+ */

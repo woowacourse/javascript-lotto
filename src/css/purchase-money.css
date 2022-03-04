@@ -16,6 +16,7 @@ form > div {
   border-radius: 4px;
 
   padding-left: 7px;
+  background-color: transparent;
 }
 
 #purchase-money-input::placeholder {

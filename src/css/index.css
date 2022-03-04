@@ -11,6 +11,7 @@ body {
   align-items: center;
 
   min-height: 100vh;
+  z-index: 100;
 
   background: #e5e5e5;
 }
@@ -26,18 +27,12 @@ body section {
   flex-direction: column;
   position: relative;
 
+  background: #ffffff;
+
   width: 414px;
   min-height: 727px;
 
   padding: 0 16px 39px;
-}
-
-.modal-off {
-  background: #ffffff;
-}
-
-.modal-on {
-  background: rgba(0, 0, 0, 0.5);
 }
 
 header {
