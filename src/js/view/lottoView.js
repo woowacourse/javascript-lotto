@@ -5,7 +5,7 @@ import { isValidMoneyInput } from '../validator/validator';
 
 export default class LottoView {
   constructor() {
-    $('.cm-toggle').addEventListener('click', this.toggleNumberDetail);
+    $('.cm-toggle').addEventListener('click', this.handleDetailView);
     $('.purchase-form').addEventListener('submit', this.handlePurchase);
   }
 
@@ -42,7 +42,7 @@ export default class LottoView {
     this.showLottoImage(lottoTickets);
   }
 
-  toggleNumberDetail() {
+  handleDetailView() {
     $('.lotto-grid').classList.toggle('lotto-grid-detail');
 
     $$('.lotto-number-detail').forEach((element) => {
