@@ -15,10 +15,14 @@ export default class LottoController {
   }
 
   setSubControllers() {
-    this.paymentController = new PaymentController(this);
-    this.ticketController = new TicketController(this);
-    this.winningNumberController = new WinningNumberController(this);
-    this.statisticController = new StatisticController(this);
+    this.paymentController = new PaymentController();
+    this.ticketController = new TicketController();
+    this.winningNumberController = new WinningNumberController();
+    this.statisticController = new StatisticController();
+    this.paymentController.init(this);
+    this.ticketController.init(this);
+    this.winningNumberController.init(this);
+    this.statisticController.init(this);
   }
 
   afterPurchaseLottos() {

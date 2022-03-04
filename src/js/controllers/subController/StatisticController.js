@@ -1,7 +1,7 @@
 import StatisticView from '../../views/subViews/StatisticView.js';
 
 export default class StatisticController {
-  constructor(controller) {
+  init(controller) {
     this.lottoController = controller;
     this.lottoModel = controller.lottoModel;
     this.statisticView = new StatisticView('#statistic-section-wrap');

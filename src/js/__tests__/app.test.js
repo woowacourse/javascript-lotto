@@ -106,6 +106,7 @@ describe('입력된 당첨번호의 유효성을 검증하여', () => {
 });
 
 describe('당첨번호와 로또 리스트가 주어지면', () => {
+  const winningNumberController = new WinningNumberController();
   const winningNumbers = [1, 23, 16, 42, 34, 9];
   const lottoNumbersList = [
     [1, 23, 16, 42, 34, 9],
@@ -117,7 +118,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     const bonusNumber = 45;
 
     expect(
-      WinningNumberController.countCoincide(
+      winningNumberController.countCoincide(
         lottoNumbersList[0],
         winningNumbers,
         bonusNumber
@@ -125,7 +126,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     ).toBe(6);
 
     expect(
-      WinningNumberController.countCoincide(
+      winningNumberController.countCoincide(
         lottoNumbersList[1],
         winningNumbers,
         bonusNumber
@@ -136,7 +137,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   test('일치하는 개수가 5개일 때 보너스를 확인하고, 보너스 개수를 추가할 수 있다.', () => {
     const bonusNumber = 6;
     expect(
-      WinningNumberController.countCoincide(
+      winningNumberController.countCoincide(
         lottoNumbersList[2],
         winningNumbers,
         bonusNumber
@@ -147,7 +148,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   test('각 로또 일치 개수를 담은 리스트를 구할 수 있다.', () => {
     const bonusNumber = 6;
     expect(
-      WinningNumberController.createCoincideCountList(
+      winningNumberController.createCoincideCountList(
         lottoNumbersList,
         winningNumbers,
         bonusNumber
