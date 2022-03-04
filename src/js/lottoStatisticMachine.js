@@ -1,4 +1,4 @@
-import { LOTTO_RULES } from './constant/index.js';
+import { LOTTO_RULES, PRIZE_MONEY } from './constant/index.js';
 
 class LottoStatisticMachine {
   #winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
@@ -8,8 +8,6 @@ class LottoStatisticMachine {
   #winningCounts = new Array(5).fill(null);
 
   #earningsRate = null;
-
-  #prizeMoney = [5000, 50000, 1500000, 30000000, 2000000000];
 
   calculateWinningCounts(lottos, winningNumbers, bonumsNumber) {
     this.#winningNumbers = winningNumbers;
@@ -82,7 +80,7 @@ class LottoStatisticMachine {
 
   #calculateEarnings(winningCounts) {
     return winningCounts.reduce(
-      (earnings, winningCount, index) => earnings + this.#prizeMoney[index] * winningCount,
+      (earnings, winningCount, index) => earnings + PRIZE_MONEY[index] * winningCount,
       0,
     );
   }
