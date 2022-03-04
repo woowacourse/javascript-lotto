@@ -23,8 +23,8 @@ export default class LottoController {
     this.$lottoPriceForm = $('#lotto-price-form');
     this.$lottoPriceInput = $('#lotto-price-input');
     this.$lottoPriceButton = $('#lotto-price-button');
+    this.$popup = $('#popup');
     this.$result = $('#result');
-    this.$popup = document.querySelector('#popup');
   }
 
   bindEvent() {
@@ -92,7 +92,6 @@ export default class LottoController {
 
     const $winningNumberInputs = $$('.winning-number-input');
     const $bonusNumberInput = $('.bonus-number-input');
-
     const winnerNumberArray = Array.from($winningNumberInputs).map(($winnnigNumberInput) => $winnnigNumberInput.valueAsNumber);
     const bonusNumber = $bonusNumberInput.valueAsNumber;
 

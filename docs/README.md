@@ -28,19 +28,19 @@
 - [x] 다시 시작하기 버튼을 누를시 초기창으로 돌아간다.
 - [x] test code 구현 
 ## 리팩터링 
-- [ ] handle 머시기 네이밍 바꾸기 
 - [x] submitLottoPriceHandler 네이밍 -> handleLottoPriceButtonSubmit
 - [x] const { value } 이름 
 - [ ] 리뷰어님  
   - [x] this.model 이름 변경 
   - [x] getLottoNumbers 네이밍 변경 
   - [x] setLottoCount 네이밍 수정
-  - [ ] 이벤트 등록의 책임 View로 옮기기 
-  - [ ] LottoModel의 while문 수정 (무한루프)
-  - [ ] lottoCount 상태로 둘지 고민 
 
   - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 -> generateLottoNumbers에서 Set을 사용해서, 로또 번호에 중복된 숫자가 나올 가능성이 없음.
   - [ ] generateLottos for문 대신 메서드 사용 -> 반복횟수가정해져있는경우는 for, while 사용해야하는 것 아닌지?
+  - [ ] 이벤트 등록의 책임 View로 옮기기 -> 패턴
+  - [ ] LottoModel의 while문 수정 (무한루프)
+  - [ ] lottoCount 상태로 둘지 고민 
+
 
 - [ ] 페어 리뷰어님 
   - [x] controller에서 setLottoCount, setLottos를 굳이 노출할 필요가 없다. (읽으면 뭐하는지 잘 모름)controller에서는 행동기반으로 작성! (두개 합쳐서 buyLottos와 같이)
@@ -59,7 +59,6 @@
     - [ ] catch문 error메시지
     - [ ] lotto 최대구매가능개수 설명
     - [ ] lotto 금액 입력 
-- [ ] input 기본 에러 메시지 커스텀 해보기 
 ## 질문 
 - css에서 * 사용 
 - dom 탐색 expensive... 
