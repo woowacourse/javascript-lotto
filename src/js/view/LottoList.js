@@ -10,7 +10,7 @@ export default class LottoListView {
   #configureDOM() {
     this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
     this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
-    this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
+    this.$lottoListDescriptionQuantity = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION_QUANTITY);
     this.$toggle = $(ID_SELECTOR.TOGGLE);
     this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
   }
@@ -25,7 +25,7 @@ export default class LottoListView {
 
   showLottoListSection(lottoList) {
     this.displayLottoListSection();
-    this.$lottoListDescription.textContent = `총 ${lottoList.length}개를 구매하였습니다.`;
+    this.$lottoListDescriptionQuantity.textContent = lottoList.length;
 
     this.#showLottoList(lottoList);
   }

@@ -8,7 +8,7 @@ export const ID_SELECTOR = {
   APP: 'app',
   PURCHASE_FORM: 'purchase-form',
   PURCHASE_INPUT: 'purchase-input',
-  LOTTO_LIST_DESCRIPTION: 'lotto-list-description',
+  LOTTO_LIST_DESCRIPTION_QUANTITY: 'lotto-list-description-quantity',
   TOGGLE: 'toggle',
   TOGGLE_INPUT: 'toggle-input',
   LOTTO_LISTS: 'lotto-lists',
