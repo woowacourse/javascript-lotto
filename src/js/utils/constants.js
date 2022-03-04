@@ -18,3 +18,11 @@ export const ERROR_MESSAGES = {
   OUT_OF_RANGE: `당첨 번호는 ${LOTTO_NUMBER.RANGE_MIN}~${LOTTO_NUMBER.RANGE_MAX} 범위 안으로 입력해 주세요`,
   CAN_NOT_OVERLAP: "당첨 번호는 중복없이 입력해 주세요",
 };
+
+export const LOTTO_RANKING_REWARD = {
+  first: 2000000000,
+  second: 30000000,
+  third: 1500000,
+  fourth: 50000,
+  fifth: 5000,
+};

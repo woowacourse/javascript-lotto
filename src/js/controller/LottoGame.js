@@ -4,6 +4,8 @@ import PurchasedLottoView from "../views/PurchasedLottoView.js";
 import PurchaseAmountView from "../views/PurchaseAmountView.js";
 import WinningNumberView from "../views/WinningNumberView.js";
 import LottoResultView from "../views/lottoResultView.js";
+import { AMOUNT, LOTTO_RANKING_REWARD } from "../utils/constants.js";
+import { calculateProfitRate } from "../utils/general.js";
 
 export default class LottoGame {
   constructor() {
@@ -35,6 +37,18 @@ export default class LottoGame {
     this.lottoModel
       .getLottoList()
       .forEach((lotto) => this.winningNumbersModel.compareWinningNumbers(lotto));
-    this.lottoResultView.renderResultModal();
+
+    const lottoResult = this.winningNumbersModel.getlottoResult();
+    this.calculateTotalProfitRate(lottoResult);
+  }
+
+  calculateTotalProfitRate(lottoResult) {
+    const totalProfit = Object.keys(lottoResult).reduce(
+      (total, ranking) => total + lottoResult[ranking] * LOTTO_RANKING_REWARD[ranking],
+      0,
+    );
+    const usedAmount = this.lottoModel.getLottoList().length * AMOUNT.UNIT;
+    const totalProfitRate = calculateProfitRate(totalProfit, usedAmount);
+    this.lottoResultView.renderResultModal(lottoResult, totalProfitRate);
   }
 }
