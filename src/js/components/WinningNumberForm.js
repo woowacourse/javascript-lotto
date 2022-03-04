@@ -1,4 +1,4 @@
-import { ACTION, VALIDATION_ERROR_NAME } from '../constants';
+import { ACTION, LOTTO, VALIDATION_ERROR_NAME } from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { validateWinningNumbers } from '../validation/validators';
@@ -7,7 +7,15 @@ import { consoleErrorWithConditionalAlert } from '../utils';
 
 class WinningNumberForm extends Component {
   // eslint-disable-next-line max-lines-per-function
-  template() {
+  template({ normal, bonus }) {
+    const normalInputs =
+      normal.length === LOTTO.COUNT
+        ? normal.map((num) => `<input class="form-control" value="${num}" maxlength="2"/>`).join('')
+        : `<input class="form-control" maxlength="2"/>`.repeat(LOTTO.COUNT);
+    const bonusInput =
+      bonus && bonus > 0
+        ? `<input class="form-control" value="${bonus}" maxlength="2"/>`
+        : `<input class="form-control" maxlength="2"/>`;
     return `
       <form>
         <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
@@ -15,17 +23,12 @@ class WinningNumberForm extends Component {
           <fieldset>
             <label>당첨 번호</label>
             <div class="d-flex">
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
+              ${normalInputs}
             </div>
           </fieldset>
           <fieldset>
             <label>보너스 번호</label>
-            <input class="form-control" maxlength="2"/>
+            ${bonusInput}
           </fieldset>
         </div>
         <button class="btn btn-cyan w-100">결과 확인하기</button>
@@ -64,11 +67,11 @@ class WinningNumberForm extends Component {
   }
 
   render() {
-    const { money } = window.store.getState();
-
+    const { money, winningNumbers } = window.store.getState();
+    console.log('winningNumbers : ', winningNumbers);
     this.innerHTML = '';
     if (money > 0) {
-      this.innerHTML = this.template();
+      this.innerHTML = this.template(winningNumbers);
     }
   }
 }
