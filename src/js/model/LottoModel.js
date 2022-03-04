@@ -1,7 +1,7 @@
 import getRandomNumber from '../utils/random';
 
 import { LOTTO_NUMBERS } from '../constants/index';
-import checkValidLottoCount from '../utils/validator';
+import { checkValidLottoCount, checkValidWinningLottoNumbers } from '../utils/validator';
 
 export default class LottoModel {
   constructor() {
@@ -56,7 +56,14 @@ export default class LottoModel {
     this.setLottos(this.generateLottos());
   }
 
+  getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber) {
+    return winnerNumberArray.concat(bonusNumber);
+  }
+
   setWinningLottoNumbers(winnerNumberArray, bonusNumber) {
+    console.log(this.getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber));
+    checkValidWinningLottoNumbers(this.getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber));
+
     this.winningLottoNumberes.winningNumbers = winnerNumberArray;
     this.winningLottoNumberes.bonusNumber = bonusNumber;
   }
