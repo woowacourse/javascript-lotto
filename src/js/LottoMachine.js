@@ -1,4 +1,4 @@
-import { ID, LOTTO_NUMBER, LOTTO_PRICE, SELECTOR } from './constants/constants';
+import { ID, LOTTO_NUMBER, LOTTO_PRICE, LOTTO_PRIZE, SELECTOR } from './constants/constants';
 import { $, $$, divider } from './utils/util';
 import { validateCharge, validateWinnerNumbers } from './validation';
 
@@ -43,6 +43,7 @@ export default class LottoMachine {
 
   #purchase(chargeInputNumber) {
     const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputNumber, LOTTO_PRICE);
+    this.lottoCount = newLottoCount;
     this.lottoManager.generateNewLottos(newLottoCount);
     this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
     this.lottoMachineView.updateChargeInput(remainCharge);
@@ -78,7 +79,8 @@ export default class LottoMachine {
       [...this.winnerNumbers].slice(0, LOTTO_NUMBER.LENGTH),
       this.winnerNumbers[LOTTO_NUMBER.LENGTH]
     );
-    this.lottoMachineView.showLottoResultTable(lottoResult);
+    const rateOfReturn = this.#calculateLottoReturn(lottoResult);
+    this.lottoMachineView.showLottoResultTable(lottoResult, rateOfReturn);
   }
 
   #setCloseModalEvent() {
@@ -110,5 +112,15 @@ export default class LottoMachine {
     this.lottoMachineView.removeLottoResultModal();
     window.removeEventListener('click', this.#closeModalIfClickOutOfModalBind);
     window.removeEventListener('keyup', this.#closeModalwithESCBind);
+  }
+
+  #calculateLottoReturn(lottoResult) {
+    let totalPrize = 0;
+    lottoResult.forEach((count, index) => {
+      totalPrize += LOTTO_PRIZE[index] * count;
+    });
+    const totalCost = this.lottoCount * LOTTO_PRICE;
+    const rateOfReturn = parseFloat(((totalPrize / totalCost) * 100).toFixed(2));
+    return rateOfReturn;
   }
 }

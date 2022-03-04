@@ -1,4 +1,5 @@
 const lottoTotalNumber = number => `총 ${number}개를 구매하였습니다.`;
+const totalRateOfReturn = rate => `당신의 총 수익률은 ${rate}%입니다.`;
 
 const lottoListTemplate = {
   icon: count => '<span class="lotto-icon">🎟️</span>'.repeat(count),
@@ -16,4 +17,4 @@ const lottoListTemplate = {
   },
 };
 
-export { lottoListTemplate, lottoTotalNumber };
+export { lottoListTemplate, lottoTotalNumber, totalRateOfReturn };

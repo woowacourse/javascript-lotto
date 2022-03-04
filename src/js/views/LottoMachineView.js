@@ -1,5 +1,5 @@
 import { $, $$ } from '../utils/util';
-import { lottoListTemplate, lottoTotalNumber } from './template';
+import { lottoListTemplate, lottoTotalNumber, totalRateOfReturn } from './template';
 import { SELECTOR } from '../constants/constants';
 
 export default class LottoMachineView {
@@ -36,10 +36,11 @@ export default class LottoMachineView {
     $(SELECTOR.LOTTO_RESULT_MODAL).classList.add('display-none');
   }
 
-  showLottoResultTable(lottoResult) {
+  showLottoResultTable(lottoResult, rateOfReturn) {
     const lottoResultTableRows = $$('tr', $(SELECTOR.LOTTO_RESULT_TBODY));
     lottoResultTableRows.forEach((row, index) => {
       $$('td', row)[2].innerText = lottoResult[index];
     });
+    $(SELECTOR.RATE_OF_RETURN).innerText = totalRateOfReturn(rateOfReturn);
   }
 }

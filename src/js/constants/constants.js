@@ -27,6 +27,7 @@ export const SELECTOR = {
   LOTTO_RESULT_MODAL: '#lotto-result-modal',
   CLOSE_RESULT_MODAL: '#close-result-modal',
   LOTTO_RESULT_TBODY: '#lotto-result-tbody',
+  RATE_OF_RETURN: '#rate-of-return',
 };
 
 export const ID = {
@@ -41,4 +42,12 @@ export const MATCH_WINNING_NUMBER_INDEX = {
   5: 2,
   '5_AND_BONUS_MATCH': 3,
   6: 4,
+};
+
+export const LOTTO_PRIZE = {
+  0: 5000,
+  1: 50000,
+  2: 1500000,
+  3: 30000000,
+  4: 2000000000,
 };
