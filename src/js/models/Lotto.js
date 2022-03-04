@@ -2,6 +2,11 @@ import { getRandomNumber } from '../utils/data-manager';
 import { LOTTO_SETTING } from '../constants/setting';
 import { checkValidLottoNumberInput } from '../utils/Lotto/validator';
 
+function shuffle(list) {
+  list.sort(() => Math.random() - 0.5);
+  return list;
+}
+
 export default class Lotto {
   #pickedNumbers = new Set();
 
@@ -15,10 +20,8 @@ export default class Lotto {
   }
 
   generate() {
-    const { LOTTO_NUMBER_LENGTH, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
-    while (this.#pickedNumbers.size !== LOTTO_NUMBER_LENGTH) {
-      this.pushNumberIntoPickedNumbers(getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER));
-    }
+    const shuffledList = shuffle([...Array(45)].map((_, idx) => idx + 1).sort());
+    shuffledList.slice(0, 6).forEach((number) => this.pushNumberIntoPickedNumbers(number));
 
     return this;
   }
