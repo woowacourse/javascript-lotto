@@ -1,7 +1,7 @@
 import ACTION from './actions';
 import initialState from './initialState';
 import { LOTTO, MATCH_COUNT, PRIZE_MONEY } from '../constants';
-import { calculateEarningsRate, pickUniqueNumbersInRange } from '../utils';
+import { calculateEarningsRate, intersection, pickUniqueNumbersInRange } from '../utils';
 
 const generateLottoList = (money) => {
   const lottoList = [];
@@ -22,10 +22,7 @@ const generateWinningCounts = (winningNumbers, bonusNumber) => {
 
   // eslint-disable-next-line max-lines-per-function
   lottoList.forEach((lottoItem) => {
-    let winningCount = 0;
-    lottoItem.forEach((number) => {
-      if (winningNumbers.includes(number)) winningCount += 1;
-    });
+    const winningCount = intersection(lottoItem, winningNumbers).length;
 
     switch (winningCount) {
       case MATCH_COUNT.FIFTH:

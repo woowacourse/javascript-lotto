@@ -1,9 +1,10 @@
 :root {
-  --cyan: #00BCD4;
-  --cyan-light: #80DEEA;
-  --gray-900: #B4B4B4;
+  --cyan: #00bcd4;
+  --cyan-light: #80deea;
+  --gray-dark: #323232;
+  --gray-900: #b4b4b4;
   --gray-800: #dfdfdf;
-  --gray-700: #E0E0E0;
-  --gray-600: #F5F5F5;
-  --gray-500: #F9F9F9;
+  --gray-700: #dcdcdc;
+  --gray-600: #e0e0e0;
+  --gray-500: #f9f9f9;
 }

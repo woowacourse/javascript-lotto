@@ -12,3 +12,18 @@ h1 {
   font-size: 34px;
   line-height: 36px;
 }
+
+h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+td {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}

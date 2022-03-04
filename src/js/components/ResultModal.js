@@ -20,7 +20,7 @@ class ResultModal extends Component {
   // eslint-disable-next-line max-lines-per-function
   template(result) {
     return `
-      <article>
+      <article class="d-flex">
         <img src="${CloseImage}" class="close"></img>
         <h3>🏆 당첨 통계 🏆</h3>
         <table>
@@ -59,8 +59,8 @@ class ResultModal extends Component {
             </tr>
           </tbody>
         </table>
-        <label>당신의 총 수익률은 ${result.earningsRate}%입니다.</label>
-        <button class="restart">다시 시작하기</button>
+        <label><b>당신의 총 수익률은 ${result.earningsRate}%입니다.</b></label>
+        <button class="restart btn btn-cyan mt-8">다시 시작하기</button>
       </article>
     `;
   }
