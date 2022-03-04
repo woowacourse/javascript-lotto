@@ -1,14 +1,18 @@
+import { RESULT } from '../constants/constants';
 import LottoResult from './LottoResult';
-
 export default class LottoResultFactory {
   static createLottoResult(numberOfMatches, hasBonus) {
-    if (numberOfMatches === 3) return new LottoResult('fifth', 5000);
-    if (numberOfMatches === 4) return new LottoResult('fourth', 50000);
+    if (numberOfMatches === 3)
+      return new LottoResult(RESULT.FIFTH.NAME, RESULT.FIFTH.REWARD);
+    if (numberOfMatches === 4)
+      return new LottoResult(RESULT.FOURTH.NAME, RESULT.FOURTH.REWARD);
     if (numberOfMatches === 5 && hasBonus) {
-      return new LottoResult('second', 30000000);
+      return new LottoResult(RESULT.SECOND.NAME, RESULT.SECOND.REWARD);
     }
-    if (numberOfMatches === 5) return new LottoResult('third', 1500000);
-    if (numberOfMatches === 6) return new LottoResult('first', 2000000000);
-    return new LottoResult('꽝', 0);
+    if (numberOfMatches === 5)
+      return new LottoResult(RESULT.THIRD.NAME, RESULT.THIRD.REWARD);
+    if (numberOfMatches === 6)
+      return new LottoResult(RESULT.FIRST.NAME, RESULT.FIRST.REWARD);
+    return new LottoResult(RESULT.LOOSING.NAME, RESULT.LOOSING.REWARD);
   }
 }
