@@ -59,4 +59,8 @@ export default class PopupView {
     this.$mainContainer.classList.toggle('blocked');
     this.$popup.classList.toggle('emphasized');
   }
+
+  closePopup() {
+    this.$popup.replaceChildren();
+  }
 }
