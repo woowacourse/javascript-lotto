@@ -30,6 +30,7 @@ label {
 html {
   width: 100%;
   height: auto;
+  min-height: 100vh;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
   align-items: center;
   height: auto;
   background-color: var(--color-body);
+  min-height: 100vh;
 }
 
 .scroll-block {
