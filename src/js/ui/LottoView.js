@@ -81,7 +81,7 @@ export default class LottoView {
     this.lottoModal = new LottoModal(this);
     this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
     this.$winningNumberInputArr = document.querySelectorAll(
-      '.winning-number-input'
+      DOM.CLASS.WINNING_NUMBER_INPUT
     );
     this.$purchaseMoneyInput = $(DOM.ID.PURCHASE_MONEY_INPUT);
     this.$purchaseMoneyButton = $(DOM.ID.PURCHASE_MONEY_BUTTON);
@@ -331,7 +331,7 @@ export default class LottoView {
   }
 
   bindEventsToResultForm() {
-    $('winning-number-form').addEventListener(
+    $(DOM.ID.WINNING_NUMBER_FORM).addEventListener(
       'submit',
       this.handleResultForm.bind(this)
     );
@@ -356,6 +356,7 @@ export default class LottoView {
     this.hideLottoContainers();
     this.reactivatePurchaseForm();
     this.machine = new LottoMachine();
+    this.$purchaseMoneyInput.focus();
   }
 
   reactivatePurchaseForm() {

@@ -1,11 +1,12 @@
+import { DOM } from '../constants/constants';
 import { lottoResultTableTemplate } from './template';
 import $ from './utils';
 
 export class LottoModal {
   constructor(view) {
     this.lottoView = view;
-    this.$container = $('modal');
-    this.$lottoTable = $('lotto-result-table');
+    this.$container = $(DOM.ID.LOTTO_MODAL);
+    this.$lottoTable = $(DOM.ID.LOTTO_RESULT_TABLE);
   }
 
   show(machine) {
@@ -15,15 +16,18 @@ export class LottoModal {
       lottoResultTableTemplate(machine)
     );
     $(
-      'lotto-result-rate'
+      DOM.ID.LOTTO_RESULT_RATIO
     ).textContent = `당신의 총 수익률은 ${machine.profitRate}%입니다.`;
     this.$container.style.display = 'flex';
     this.bindEventsToModalBtn();
   }
 
   bindEventsToModalBtn() {
-    $('modal-close').addEventListener('click', this.closeModal.bind(this));
-    $('restart').addEventListener('click', this.restart.bind(this));
+    $(DOM.ID.MODAL_CLOSE_BUTTON).addEventListener(
+      'click',
+      this.closeModal.bind(this)
+    );
+    $(DOM.ID.RESTART_BUTTON).addEventListener('click', this.restart.bind(this));
   }
   restart() {
     this.closeModal();
