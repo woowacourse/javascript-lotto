@@ -260,6 +260,11 @@ dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 
+#close-tag {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
 #lotto-result-dialog {
   height: 500px;
 }
