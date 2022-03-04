@@ -4,6 +4,7 @@ export const LOTTO = {
   PRICE: 1000,
   NUMBER_QUANTITY: 6,
 };
+<<<<<<< HEAD
 
 export const DOM = {
   ID: {
@@ -18,3 +19,5 @@ export const DOM = {
     WINNING_NUMBER_FORM: "winning-number-form",
   },
 };
+=======
+>>>>>>> 0d4f4f9 (refactor: 로또 관련 상수 결합)

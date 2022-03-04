@@ -1,4 +1,5 @@
 import { LOTTO } from "../constants/constants.js";
+<<<<<<< HEAD
 import Lotto from "../domains/Lotto.js";
 import validateMoney from "../validations/LottoMachine.js";
 export default class LottoMachine {
@@ -35,5 +36,21 @@ export default class LottoMachine {
         lotto.pickNumbers();
         return lotto;
       });
+=======
+
+export default class LottoMachine {
+  #inputPrice = 0;
+
+  get inputPrice() {
+    return this.#inputPrice;
+  }
+
+  set inputPrice(money) {
+    this.#inputPrice = money;
+  }
+
+  calculateLottoQuantity() {
+    return this.#inputPrice / LOTTO.PRICE;
+>>>>>>> 0d4f4f9 (refactor: 로또 관련 상수 결합)
   }
 }
