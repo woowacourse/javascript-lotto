@@ -36,6 +36,16 @@ export default class LottoMachine {
     return this.#winLottosWithBonus;
   }
 
+  generateLottos() {
+    return Array(this.lottoQuantity)
+      .fill()
+      .map(() => {
+        const lotto = new Lotto();
+        lotto.numbers = lotto.pickNumbers();
+        return lotto;
+      });
+  }
+
   getProfit() {
     const winningPrize = [0, 0, 0, 5000, 50000, 1500000, 2000000000];
     const winningPrizeWithBonus = 30000000;
@@ -46,20 +56,6 @@ export default class LottoMachine {
     });
     profit += this.#winLottosWithBonus * winningPrizeWithBonus;
     return profit;
-  }
-
-  operateLottoMachine() {
-    this.#lottos = this.generateLottos();
-  }
-
-  generateLottos() {
-    return Array(this.lottoQuantity)
-      .fill()
-      .map(() => {
-        const lotto = new Lotto();
-        lotto.numbers = lotto.pickNumbers();
-        return lotto;
-      });
   }
 
   countWinLottos(winningNumbers, bonusNumber) {

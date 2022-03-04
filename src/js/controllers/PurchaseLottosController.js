@@ -7,6 +7,7 @@ export default class PurchaseLottosController {
 
   constructor(lottoMachine) {
     this.machine = lottoMachine;
+
     this.#view.bindEvent(
       $(SELECTOR.ID.PURCHASE_MONEY_FORM),
       'submit',
@@ -19,11 +20,16 @@ export default class PurchaseLottosController {
     );
   }
 
+  inputMoney() {
+    this.machine.inputMoney = this.#view.getInputMoney();
+  }
+
+  // 핸들러
   handlePurchaseForm(event) {
     event.preventDefault();
     try {
       this.inputMoney();
-      this.machine.operateLottoMachine();
+      this.machine.lottos = this.machine.generateLottos();
       this.#view.renderPurchasedLottosAmountByText(this.machine.lottos);
       this.#view.renderPurchasedLottos(this.machine.lottos);
       this.#view.disablePurchase();
@@ -35,9 +41,5 @@ export default class PurchaseLottosController {
 
   handleResultToggle() {
     this.#view.renderPurchasedLottos(this.machine.lottos);
-  }
-
-  inputMoney() {
-    this.machine.inputMoney = this.#view.getInputMoney();
   }
 }
