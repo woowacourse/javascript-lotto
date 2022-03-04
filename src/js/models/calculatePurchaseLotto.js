@@ -5,7 +5,7 @@ export default class CalculatePurchaseLotto {
 
   static setLottoGameList(purchaseMoney) {
     const lottoCount = purchaseMoney / LOTTO.COST_UNIT;
-    const lottoList = Array.from({ length: lottoCount }).map(() => this.setOneLottoGame());
+    const lottoList = Array.from({ length: lottoCount }, () => this.setOneLottoGame());
     ResultLottoDatas.setLottoList(lottoList);
   }
 
