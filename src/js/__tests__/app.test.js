@@ -1,5 +1,5 @@
 import Model from '../model';
-import { validateCashInput } from '../utils/validation';
+import { validateCashInput, validatePickedNumbers } from '../utils/validation';
 import { ALERT_MESSAGE } from '../constants/message';
 import { LOTTO_PRICE, LOTTO_RULE, MAX_PURCHASABLE_CASH } from '../constants/lotto';
 
@@ -61,5 +61,12 @@ describe('로또 구매 테스트', () => {
     expect(winningLottoQuantity['5개+보너스볼']).toBe(1);
     expect(winningLottoQuantity['6개']).toBe(1);
     expect(model.calculateProfitRatio()).toBe(40600200);
+  });
+
+  test('결과 확인하기를 눌렀을 때, 당첨번호가 중복되어 있다면 에러를 생성한다.', () => {
+    const pickedNumbers = [1, 2, 2, 3, 4, 5, 6];
+    expect(() => validatePickedNumbers(pickedNumbers)).toThrowError(
+      ALERT_MESSAGE.DUPLICATED_NUMBER,
+    );
   });
 });
