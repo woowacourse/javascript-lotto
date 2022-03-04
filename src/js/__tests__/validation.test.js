@@ -11,7 +11,6 @@ describe('로또 구입 금액 유효성 검사 테스트', () => {
     expect(() => validateCharge(lessThanMinimumValue)).toThrow(ERROR_MESSAGE.MIN_CHARGE_INPUT);
   });
 });
-
 describe('당첨 번호 유효성 검사 테스트', () => {
   it('당첨 번호 중 정수인 숫자가 아닌 것이 있는 경우 에러 메세지를 띄워준다.', () => {
     const notIntegerValueSet = new Set([1, 2, 3, 4, 5, 6, 'a']);
