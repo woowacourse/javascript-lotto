@@ -50,4 +50,9 @@ describe('구입할 금액 입력 기능 테스트', () => {
       ERROR_MESSAGE.NEGATIVE_PURCHASE_MONEY,
     );
   });
+
+  it('구입할 금액을 정상적으로 입력시, 아무 문제가 발생하지 않는다.', () => {
+    const purchaseMoney = 10000;
+    expect(() => validatePurchaseMoney(purchaseMoney)).not.toThrow();
+  });
 });
