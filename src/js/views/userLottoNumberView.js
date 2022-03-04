@@ -17,7 +17,7 @@ export default class UserLottoNumberView {
   }
 
   handleUserLottoInput(event) {
-    event.key !== 'Backspace' && event.target.value.length > 1 ? event.preventDefault() : '';
+    event.code.includes('Digit') && event.target.value.length > 1 ? event.preventDefault() : '';
   }
 
   handleUserLottoResult(event) {
