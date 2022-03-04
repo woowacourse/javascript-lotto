@@ -31,6 +31,7 @@ export default class WinningNumberInputView {
       element.value = '';
     });
 
+    this.#winningNumberSubmitButton.disabled = true;
     this.hideContainer();
   }
 
