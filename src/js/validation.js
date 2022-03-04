@@ -4,6 +4,8 @@ const isChargeWithinValidRange = (charge) => MIN_CHARGE_INPUT <= charge && charg
 
 const isWinningNumberWithinValidRange = (winningNumber) => winningNumber >= 1 && winningNumber <= 45;
 
+const hasDuplicates = (arr) => new Set(arr).size !== arr.length
+
 export const validateCharge = (charge) => {
   if (!Number.isInteger(charge))
     throw new Error(ERROR_MESSAGE.CHARGE_INPUT_NOT_INTEGER);
@@ -14,10 +16,10 @@ export const validateCharge = (charge) => {
 export const validateWinningNumbers = (winningNumbers) => {
   if (winningNumbers.length !== 7)
     throw new Error(ERROR_MESSAGE.WINNING_NUMBERS_INSUFFICIENT)
+  if (hasDuplicates(winningNumbers))
+    throw new Error(ERROR_MESSAGE.WINNING_NUMBERS_DUPLICATED);
   if (winningNumbers.some((number) => !Number.isInteger(number)))
     throw new Error(ERROR_MESSAGE.WINNING_NUMBERS_NOT_INTEGER);
   if (winningNumbers.some((number) => !isWinningNumberWithinValidRange(number)))
     throw new Error(ERROR_MESSAGE.WINNING_NUMBERS_NOT_IN_RANGE);
 }
-
-
