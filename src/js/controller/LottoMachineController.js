@@ -36,12 +36,12 @@ export default class LottoMachineController {
 
     if (isEmptyArray(lottos)) {
       this.view.purchasedLottoView.rendering(lottoCount, purchasedLottos);
-      this.view.winningNumberView.rendering(purchasedLottos, purchaseMoney);
+      this.view.winningNumberView.rendering(purchasedLottos, purchaseMoney, this.reset.bind(this));
       return;
     }
     if (this.tryRePurchase()) {
       this.view.purchasedLottoView.reflow(lottoCount, purchasedLottos);
-      this.view.winningNumberView.reflow(purchasedLottos, purchaseMoney);
+      this.view.winningNumberView.reflow(purchasedLottos, purchaseMoney, this.reset.bind(this));
       return;
     }
 
@@ -58,8 +58,8 @@ export default class LottoMachineController {
 
   reset() {
     this.model.reset();
-
-    // this.view.purchasedLottoView.reset();
-    // this.view.winningNumberView.reset();
+    this.view.purchaseMoneyView.resetInputValue();
+    this.view.purchasedLottoView.reset();
+    this.view.winningNumberView.reset();
   }
 }

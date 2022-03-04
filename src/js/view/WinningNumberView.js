@@ -90,11 +90,11 @@ export default class WinningNumberView {
   }
 
   #addEvent(props) {
-    const { purchasedLottos, purchaseMoney } = props;
+    const { purchasedLottos, purchaseMoney, resetCallback } = props;
     const resultBtn = this.container.querySelector('#winning-number-form');
     const winningNumbers = this.container.querySelectorAll('.winning-number-input');
 
-    const resultEvent = new CustomEvent('submitResult', { detail: { purchasedLottos, purchaseMoney }, cancelable: true });
+    const resultEvent = new CustomEvent('submitResult', { detail: { purchasedLottos, purchaseMoney, resetCallback }, cancelable: true });
 
     resultBtn.addEventListener('submitResult', this.onSubmitHandler.bind(this));
     resultBtn.addEventListener('submit', (e) => {
@@ -139,14 +139,14 @@ export default class WinningNumberView {
     }
   }
 
-  rendering(purchasedLottos, purchaseMoney) {
+  rendering(purchasedLottos, purchaseMoney, resetCallback) {
     console.log('rendering purchasedLottos', purchasedLottos);
     this.#paint();
     this.#render();
-    this.#addEvent({ purchasedLottos, purchaseMoney });
+    this.#addEvent({ purchasedLottos, purchaseMoney, resetCallback });
   }
 
-  reflow(purchasedLottos, purchaseMoney) {
+  reflow(purchasedLottos, purchaseMoney, resetCallback) {
     console.log('reflow purchasedLottos', purchasedLottos);
     this.#render();
     // this.#rePaint();
@@ -154,7 +154,7 @@ export default class WinningNumberView {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    const { detail: { purchasedLottos, purchaseMoney } } = e;
+    const { detail: { purchasedLottos, purchaseMoney, resetCallback } } = e;
 
     if (new Set(this.winLottosNumbers).size !== 7) {
       window.alert('중복된 번호는 입력할 수 없습니다.');
@@ -170,10 +170,10 @@ export default class WinningNumberView {
       bonusNumber,
     });
 
-    this.bindModal(winLottoCount, purchaseMoney);
+    this.bindModal(winLottoCount, purchaseMoney, resetCallback);
   }
 
-  bindModal(winLottoCount, purchaseMoney) {
+  bindModal(winLottoCount, purchaseMoney, resetCallback) {
     this.container.insertAdjacentHTML('beforeend', MODAL_TEMPLATE);
 
     const winMoneyElements = this.container.querySelectorAll('.win-lotto-money');
@@ -200,7 +200,7 @@ export default class WinningNumberView {
     const restartBtn = this.container.querySelector('#restart-lotto-button');
 
     exitBtn.addEventListener('click', this.onExit.bind(this));
-    restartBtn.addEventListener('click', this.onRestart.bind(this));
+    restartBtn.addEventListener('click', resetCallback.bind(this));
   }
 
   onExit(e) {
@@ -208,11 +208,6 @@ export default class WinningNumberView {
     const modal = this.container.querySelector('#modal');
     modal.remove();
     console.log('exit click');
-  }
-
-  onRestart(e) {
-    e.preventDefault();
-    console.log('restart click');
   }
 
   reset() {
