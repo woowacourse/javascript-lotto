@@ -1,8 +1,8 @@
-import View from './View';
+import { EVENT } from '../constants';
+import { emit, on } from '../utils/event';
 
-export default class LottoResultModalView extends View {
+export default class LottoResultModalView {
   constructor() {
-    super();
     //멤버변수 초기화
     this.app = document.getElementById('app');
     this.lottoResultModal = document.getElementById('lotto-result-modal');
@@ -11,11 +11,9 @@ export default class LottoResultModalView extends View {
     this.restartButton = document.getElementById('restart-button');
     this.closeButton = document.getElementById('close-button');
 
+    //이벤트리스너
     this.closeButton.addEventListener('click', this.hideModal.bind(this));
-    this.restartButton.addEventListener(
-      'click',
-      this.clickRestartButtonHandler.bind(this),
-    );
+    on(this.restartButton, 'click', () => this.clickRestartButtonHandler());
   }
 
   renderLottoResult(lottoResult) {
@@ -33,7 +31,7 @@ export default class LottoResultModalView extends View {
 
   clickRestartButtonHandler() {
     this.hideModal();
-    this.handlers.get('lottoResultModalClick').forEach(func => func());
+    emit(this.restartButton, EVENT.CLICK_RESTART, {});
   }
 
   hideModal() {

@@ -4,7 +4,6 @@ const getLottoListTemplate = lottos => {
     (result, lotto) => result + getLottoItemTemplate(lotto.numbers),
     '',
   );
-
   return lottoListTemplate;
 };
 

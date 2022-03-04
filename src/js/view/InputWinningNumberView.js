@@ -1,8 +1,7 @@
-import View from './View.js';
-
-import { RULES } from '../constants/index.js';
+import { EVENT, RULES } from '../constants/index.js';
 import { convertToNumber } from '../utils/common.js';
 import { validateWinningNumberList } from './validator.js';
+import { emit, on } from '../utils/event.js';
 
 //template
 const INPUT_ELEMENT = `<input type="text" class="winning-number-input" maxlength='2'/>`;
@@ -29,10 +28,8 @@ const WINNING_NUMBER_FORM = `
 `;
 
 //class
-export default class InputWinningNumberView extends View {
+export default class InputWinningNumberView {
   constructor() {
-    super();
-
     this.app = document.getElementById('app');
     this.winningNumberContainer = document.getElementById(
       'winning-number-container',
@@ -46,7 +43,14 @@ export default class InputWinningNumberView extends View {
       WINNING_NUMBER_FORM,
     );
 
-    this.registerWinningNumberFormEvent();
+    this.winningNumberForm = document.getElementById('winning-number-form');
+    on(this.winningNumberForm, 'submit', e =>
+      this.handleWinningNumberFormSubmit(e),
+    );
+
+    this.winningNumberInputs = document.querySelectorAll(
+      '.winning-number-input',
+    );
     this.registerWinningNumbersInputsEvent();
   }
 
@@ -60,16 +64,15 @@ export default class InputWinningNumberView extends View {
 
   handleWinningNumberFormSubmit(e) {
     e.preventDefault();
-
     const winningNumbers = Array.from(this.winningNumberInputs).map(input =>
       input.value === '' ? null : convertToNumber(input.value),
     );
 
     try {
       validateWinningNumberList(winningNumbers);
-      this.handlers
-        .get('winningNumberSubmit')
-        .forEach(func => func(winningNumbers));
+      emit(this.winningNumberForm, EVENT.SUBMIT_WINNING_NUMBERS, {
+        winningNumbers,
+      });
       this.showModal();
     } catch (error) {
       this.resetInputElementsValue();

@@ -4,11 +4,13 @@ export const CONFIRM_MESSAGE = {
 };
 
 export const ERROR_MESSAGE = {
+  //구입할 금액 관련
   ZERO_PURCHASE_MONEY: '구입할 금액을 입력해 주세요.',
   INVALID_PURCHASE_MONEY_TYPE: '구입할 금액은 숫자여야 합니다.',
   NEGATIVE_PURCHASE_MONEY: '구입할 금액으로 음수를 입력할 수 없습니다.',
   NOT_PURCHASE_MONEY_UNIT_OF_THOUSAND:
     '구입할 금액의 단위는 1,000원 단위 입니다.',
+  //당첨 번호 관련
   EMPTY_WINNING_NUMBER: '당첨 번호를 모두 입력해주세요.',
   INVALID_WINNING_NUMBER_TYPE: '당첨 번호를 숫자 타입으로 입력해주세요',
   OUT_WINNING_NUMBER_RANGE:
@@ -41,4 +43,10 @@ export const RANKING_ACCORDING_MATCH_COUNT = {
   2: '꽝',
   1: '꽝',
   0: '꽝',
+};
+
+export const EVENT = {
+  SUBMIT_MONEY: '@submit-money',
+  CLICK_RESTART: '@click-restart',
+  SUBMIT_WINNING_NUMBERS: '@submit-winning-numbers',
 };

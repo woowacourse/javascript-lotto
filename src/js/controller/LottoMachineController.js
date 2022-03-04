@@ -7,11 +7,13 @@ import LottoResultModalView from '../view/LottoResultModalView.js';
 
 import {
   CONFIRM_MESSAGE,
+  EVENT,
   LOTTO_RANKING_REWARD,
   RANKING_ACCORDING_MATCH_COUNT,
   RULES,
 } from '../constants/index.js';
 import { isEmpty } from '../utils/common.js';
+import { on } from '../utils/event.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -24,21 +26,16 @@ export default class LottoMachineController {
       lottoResultModalView: new LottoResultModalView(),
     };
 
-    //View handlers 멤버변수에 등록
-    this.view.inputMoneyView.addHandler({
-      name: 'purchasedMoneySubmit',
-      handler: this.handlePurchaseLotto.bind(this),
-    });
+    //subscribe
+    on(
+      this.view.inputMoneyView.purchasedMoneyForm,
+      EVENT.SUBMIT_MONEY,
+      ({ detail }) => this.handlePurchaseLotto(detail.purchaseMoney),
+    );
 
-    this.view.lottoResultModalView.addHandler({
-      name: 'lottoResultModalClick',
-      handler: this.reset.bind(this),
-    });
-
-    this.view.inputWinningNumberView.addHandler({
-      name: 'winningNumberSubmit',
-      handler: this.handlePurchasedLottoResult.bind(this),
-    });
+    on(this.view.lottoResultModalView.restartButton, EVENT.CLICK_RESTART, () =>
+      this.reset(),
+    );
   }
 
   handlePurchaseLotto(purchaseMoney) {
@@ -66,6 +63,14 @@ export default class LottoMachineController {
     this.view.purchasedLottosView.initializeScreen();
     this.view.purchasedLottosView.renderPurchasedLottoList(lottos);
     this.view.inputWinningNumberView.renderWinningNumberForm();
+
+    on(
+      this.view.inputWinningNumberView.winningNumberForm,
+      EVENT.SUBMIT_WINNING_NUMBERS,
+      ({ detail }) => {
+        this.handlePurchasedLottoResult(detail.winningNumbers);
+      },
+    );
   }
 
   tryRePurchase() {

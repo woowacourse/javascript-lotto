@@ -32,7 +32,7 @@ export const pickLottoNumber = count => {
   //로또번호 1 ~ 45를 소유하고 있는 배열
   const lottoNumbers = Array.from(
     { length: RULES.MAX_LOTTO_NUMBER },
-    (_, index) => index,
+    (_, index) => index + 1,
   );
 
   const shuffledLottoNumbers = shuffleArray(lottoNumbers);
