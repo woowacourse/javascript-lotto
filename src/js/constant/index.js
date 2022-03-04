@@ -14,4 +14,8 @@ export const LOTTO_RULES = {
   MIN_RANGE: 1,
   MAX_RANGE: 45,
   BALL_COUNT: 6,
+  MAX_RANK: 5,
 };
+
+export const WINNING_CRITERIA = ['3개', '4개', '5개', '5개 + 보너스볼', '6개'];
+export const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];

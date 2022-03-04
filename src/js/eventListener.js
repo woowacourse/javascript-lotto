@@ -2,6 +2,7 @@ import { $, $$ } from './utils/index.js';
 import { validator } from './validation/index.js';
 import lottoManager from './lottoManager.js';
 import view from './view.js';
+import lottoStatisticMachine from './lottoStatisticMachine.js';
 
 export const onClickModalCloseButton = () => {
   const $winningStatisticModal = $('#winning-statistic-modal');
@@ -22,8 +23,16 @@ export const onClickResultButton = () => {
     return;
   }
 
-  // TODO: 당첨된 로또 개수와 수익률 계산하기
-  view.renderWinningStatisticModal();
+  const lottos = lottoManager.getLottos();
+  const fare = lottoManager.getFare();
+  const winningCounts = lottoStatisticMachine.calculateWinningCounts(
+    lottos,
+    winningNumbers,
+    bonumsNumber,
+  );
+  const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
+
+  view.renderWinningStatisticModal(winningCounts, earningsRate);
 
   $('#winning-statistic-modal-close-button').addEventListener('click', onClickModalCloseButton);
 

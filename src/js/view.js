@@ -1,4 +1,5 @@
 import { $ } from './utils/index.js';
+import { WINNING_CRITERIA, PRIZE_MONEY } from './constant/index.js';
 
 const getDefaultLottoListTemplate = (count) => '<p class="lotto">🎟️</p>'.repeat(count);
 
@@ -6,6 +7,35 @@ const getDetailLottoListTemplate = (lottos) => {
   return lottos
     .map((lotto) => `<p class="lotto">🎟️<span class="lotto-number">${lotto.join(', ')}</span></p>`)
     .join('');
+};
+
+const getWinningStatisticModalTempalte = (winningCounts, earningsRate) => {
+  return `
+  <div id="winning-statistic-modal">
+    <div id="winning-statistic-modal-content">
+        <button id="winning-statistic-modal-close-button">X</button>
+        <p id="winning-statistic-modal-title">🏆당첨 통계🏆</p>
+        <div id="winning-result-container">
+          <div class="winning-result-item">일치 갯수</div>
+          <div class="winning-result-item">당첨금</div>
+          <div class="winning-result-item">당첨 갯수</div>
+          ${winningCounts
+            .map(
+              (winningCount, index) => `
+              <div class="winning-result-item">${WINNING_CRITERIA[index]}</div>
+              <div class="winning-result-item">${new Intl.NumberFormat().format(
+                PRIZE_MONEY[index],
+              )}</div>
+              <div class="winning-result-item">${winningCount}개</div>
+            `,
+            )
+            .join('')}
+        </div>
+        <p id="rate-of-return-text">당신의 총 수익률은 ${earningsRate}%입니다.</p>
+        <button id="restart-button" class="lotto-app-button">다시 시작하기</button>
+    </div>
+  </div>
+  `;
 };
 
 const lottoMatchSectionTemplate = `
@@ -28,37 +58,6 @@ const lottoMatchSectionTemplate = `
     </div>
   </div>
   <button id="result-button" class="lotto-app-button">결과 확인하기</button>
-`;
-
-const winningStatisticModalTempalte = `
-  <div id="winning-statistic-modal">
-    <div id="winning-statistic-modal-content">
-        <button id="winning-statistic-modal-close-button">X</button>
-        <p id="winning-statistic-modal-title">🏆당첨 통계🏆</p>
-        <div id="winning-result-container">
-          <div class="winning-result-item">일치 갯수</div>
-          <div class="winning-result-item">당첨금</div>
-          <div class="winning-result-item">당첨 갯수</div>
-          <div class="winning-result-item">3개</div>
-          <div class="winning-result-item">5,000</div>
-          <div class="winning-result-item"><span class="winning-count">n</span>개</div>
-          <div class="winning-result-item">4개</div>
-          <div class="winning-result-item">5,0000</div>
-          <div class="winning-result-item"><span class="winning-count">n</span>개</div>
-          <div class="winning-result-item">5개</div>
-          <div class="winning-result-item">1,500,000</div>
-          <div class="winning-result-item"><span class="winning-count">n</span>개</div>
-          <div class="winning-result-item">5개+보너스볼</div>
-          <div class="winning-result-item">30,000,000</div>
-          <div class="winning-result-item"><span class="winning-count">n</span>개</div>
-          <div class="winning-result-item">6개</div>
-          <div class="winning-result-item">2,000,000,000</div>
-          <div class="winning-result-item"><span class="winning-count">n</span>개</div>
-        </div>
-        <p id="rate-of-return-text">당신의 총 수익률은 <span></span>%입니다.</p>
-        <button id="restart-button" class="lotto-app-button">다시 시작하기</button>
-    </div>
-  </div>
 `;
 
 const view = {
@@ -84,7 +83,12 @@ const view = {
     $('.lotto-match-section').innerHTML = lottoMatchSectionTemplate;
   },
 
-  renderWinningStatisticModal() {
+  renderWinningStatisticModal(winningCounts, earningsRate) {
+    const winningStatisticModalTempalte = getWinningStatisticModalTempalte(
+      winningCounts,
+      earningsRate,
+    );
+
     $('#app').insertAdjacentHTML('beforeend', winningStatisticModalTempalte);
   },
 
