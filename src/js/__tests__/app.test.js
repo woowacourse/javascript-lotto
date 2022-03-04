@@ -102,4 +102,13 @@ describe('입력된 당첨번호의 유효성을 검증하여', () => {
       validator.checkWinningNumberList(winningNumbers);
     }).toThrowError(ERROR_MESSAGE.IS_DUPLICATED);
   });
+
+  test('당첨번호와 보너스 번호가 중복되면 에러를 throw한다.', () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 6;
+
+    expect(() => {
+      validator.checkDuplicateBonus(winningNumbers, bonusNumber);
+    }).toThrowError(ERROR_MESSAGE.IS_DUPLICATED_BONUS);
+  });
 });
