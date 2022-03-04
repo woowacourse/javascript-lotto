@@ -3,12 +3,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LOTTO } from "../constants/constants.js";
 =======
 import { LOTTO } from '../constants/constants.js';
 >>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
 =======
 import { LOTTO } from '../constants/constants.js';
+=======
+>>>>>>> 176586d (feat: LottoView 당첨번호와 보너스 번호 입력받는 기능)
 import LottoResultFactory from './LottoResultFactory.js';
 >>>>>>> 47fe7b8 (feat: LottoMachine LottoResult 계산 로직 추가)
 export default class Lotto {

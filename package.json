@@ -12,6 +12,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
@@ -49,6 +50,10 @@
   
 =======
   },
+<<<<<<< HEAD
     "homepage" : "https://judonghyeok.github.io/javascript-lotto/"
 >>>>>>> b2d3b16 (chore: webpack 배포 관련 설정)
+=======
+  "homepage": "https://judonghyeok.github.io/javascript-lotto/"
+>>>>>>> 176586d (feat: LottoView 당첨번호와 보너스 번호 입력받는 기능)
 }

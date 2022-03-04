@@ -306,6 +306,13 @@ export default class LottoView {
 
   handleResultForm(e) {
     e.preventDefault();
+    const winningNumbers = Array.from(
+      document.querySelectorAll('.winning-number-input')
+    ).map(({ value }) => Number.parseInt(value));
+    const bonusNumber = winningNumbers.pop();
+    this.machine.calculateGrade(winningNumbers, bonusNumber);
+    console.log(this.machine.lottos);
+    console.log(winningNumbers, bonusNumber);
     $('modal').style.display = 'flex';
   }
 }
