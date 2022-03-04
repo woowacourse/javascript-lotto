@@ -45,11 +45,11 @@ export default class Model {
     );
   }
 
-  setWinningLottoQuantity(pickedNumber) {
+  setWinningLottoQuantity(pickedNumbers) {
     Object.keys(this.#winningLottoQuantity).map(key => (this.#winningLottoQuantity[key] = 0));
 
     this.#lottoList.map(lotto => {
-      this.#winningLottoQuantity[countSameNumber(lotto, pickedNumber)] += 1;
+      this.#winningLottoQuantity[countSameNumber(lotto, pickedNumbers)] += 1;
     });
   }
 
@@ -74,12 +74,12 @@ function shuffle(array) {
   return array;
 }
 
-function countSameNumber(arr1, arr2) {
-  const winningNumbers = arr2.slice(0, 6);
-  const bonusNumber = arr2.slice(-1)[0];
+function countSameNumber(lotto, pickedNumbers) {
+  const winningNumbers = pickedNumbers.slice(0, LOTTO_RULE.NUMBERS_COUNT);
+  const bonusNumber = pickedNumbers.slice(-1)[0];
 
-  const winningCount = winningNumbers.filter(element => arr1.includes(element)).length;
-  if (winningCount === 5 && arr1.includes(bonusNumber)) {
+  const winningCount = winningNumbers.filter(element => lotto.includes(element)).length;
+  if (winningCount === 5 && lotto.includes(bonusNumber)) {
     return '5개+보너스볼';
   }
 
