@@ -40,9 +40,10 @@ export default class Controller {
     try {
       validatePickedNumbers(pickedNumbers);
       this.#model.setWinningLottoQuantity(pickedNumbers);
-      const winningLottoQuantity = this.#model.getWinningLottoQuantity();
-      const profitRatio = this.#model.calculateProfitRatio();
-      this.#winningNumberView.showLottoResult(winningLottoQuantity, profitRatio);
+      this.#winningNumberView.showLottoResult(
+        this.#model.getWinningLottoQuantity(),
+        this.#model.calculateProfitRatio(),
+      );
       this.#winningNumberView.bindClickModalOutside();
     } catch ({ message }) {
       alert(message);
