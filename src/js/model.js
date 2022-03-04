@@ -1,4 +1,4 @@
-import { LOTTO_RULE, WINNING_PRIZE } from './constants.js';
+import { LOTTO_RULE, WINNING_PRIZE } from './constants/lotto';
 export default class Model {
   #cash = 0;
   #lottoList = [];

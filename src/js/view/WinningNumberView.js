@@ -1,4 +1,5 @@
-import { CLASS, ID, WINNING_PRIZE } from '../constants';
+import { ID, CLASS } from '../constants/attribute.js';
+import { WINNING_PRIZE } from '../constants/lotto.js';
 import { $, $$, addClassName, removeClassName, replaceHTML } from '../utils/dom';
 
 export class WinningNumberView {

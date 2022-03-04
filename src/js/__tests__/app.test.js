@@ -1,6 +1,7 @@
-import { ALERT_MESSAGE, LOTTO_PRICE, LOTTO_RULE } from '../constants';
 import Model from '../model';
 import { validateCashInput } from '../utils/validation';
+import { ALERT_MESSAGE } from '../constants/message';
+import { LOTTO_PRICE, LOTTO_RULE } from '../constants/lotto';
 
 describe('로또 구매 테스트', () => {
   test('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {

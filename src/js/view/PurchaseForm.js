@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { ID } from '../constants.js';
+import { ID } from '../constants/attribute.js';
 export default class PurchaseFormView {
   constructor() {
     this.#configureDOM();

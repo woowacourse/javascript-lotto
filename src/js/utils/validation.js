@@ -1,4 +1,5 @@
-import { ALERT_MESSAGE, LOTTO_PRICE, MAX_PURCHASABLE_CASH } from '../constants';
+import { LOTTO_PRICE, MAX_PURCHASABLE_CASH } from '../constants/lotto';
+import { ALERT_MESSAGE } from '../constants/message';
 
 export const validateCashInput = cash => {
   if (cash > MAX_PURCHASABLE_CASH) {

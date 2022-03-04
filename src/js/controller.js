@@ -1,9 +1,10 @@
 import Model from './model.js';
 import LottoListView from './view/LottoList.js';
 import PurchaseFormView from './view/PurchaseForm.js';
-import { LOTTO_PRICE } from './constants.js';
+
 import { validateCashInput, validatePickedNumbers } from './utils/validation';
 import { WinningNumberView } from './view/WinningNumberView';
+import { LOTTO_PRICE } from './constants/lotto.js';
 
 export default class Controller {
   #model = new Model();

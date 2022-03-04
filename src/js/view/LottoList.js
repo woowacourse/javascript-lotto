@@ -1,5 +1,5 @@
+import { ID, CLASS } from '../constants/attribute.js';
 import { $, replaceHTML } from '../utils/dom.js';
-import { ID, CLASS } from '../constants.js';
 
 export default class LottoListView {
   constructor() {
