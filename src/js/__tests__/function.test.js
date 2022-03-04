@@ -28,11 +28,11 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     six: 1,
   };
   const sumWinnings =
-    STATISTIC.three.number +
-    STATISTIC.four.number +
-    STATISTIC.five.number +
-    STATISTIC.fiveBonus.number +
-    STATISTIC.six.number;
+    STATISTIC.three.winnings +
+    STATISTIC.four.winnings +
+    STATISTIC.five.winnings +
+    STATISTIC.fiveBonus.winnings +
+    STATISTIC.six.winnings;
 
   test('당첨번호와 생성된 로또 한 개의 일치하는 개수를 구할 수 있다.', () => {
     const bonusNumber = 45;
