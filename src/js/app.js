@@ -1,7 +1,7 @@
 import LottoView from './view/lottoView';
+import LottoMachine from './machine/lottoMachine';
 
 import RequestHandler from './requestHandler';
-import LottoMachine from './machine/lottoMachine';
 
 const lottoApp = () => {
   const lottoView = new LottoView();
