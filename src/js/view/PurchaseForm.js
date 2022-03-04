@@ -23,7 +23,10 @@ export default class PurchaseFormView {
   }
 
   bindInput() {
-    this.$purchaseInput.addEventListener('keyup', ({ target }) => {
+    this.$purchaseInput.addEventListener('keypress', ({ target }) => {
+      if (target.value === '') {
+        return;
+      }
       target.value = makeNumberWithoutComma(target.value).toLocaleString();
     });
   }
