@@ -41,6 +41,11 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
+  getNumberOfGrade(type) {
+    return this.#lottos.filter(({ result: { grade } }) => grade === type)
+      .length;
+  }
+
   updateStrategy(strategy) {
     this.#strategy = strategy;
   }
