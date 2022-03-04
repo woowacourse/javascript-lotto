@@ -4,12 +4,14 @@ import LottoModel from '../model/LottoModel';
 
 import ResultView from '../view/resultView';
 import InputView from '../view/inputView';
+import PopupView from '../view/popupView';
 
 export default class LottoController {
   constructor() {
     this.lottoModel = new LottoModel();
     this.resultView = new ResultView();
     this.inputView = new InputView();
+    this.popupView = new PopupView();
   }
 
   init() {
@@ -77,6 +79,8 @@ export default class LottoController {
 
     try {
       this.lottoModel.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
+      this.popupView.renderPopup();
+      this.popupView.toggleMainContainerState();
     } catch (err) {
       alert(err.message);
     }
