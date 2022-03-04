@@ -344,4 +344,20 @@ export default class LottoView {
   closeModal() {
     $('modal').style.display = 'none';
   }
+
+  restart() {
+    this.hideLottoContainers();
+    this.machine = new LottoMachine();
+    this.reactivatePurchaseForm();
+  }
+
+  reactivatePurchaseForm() {
+    this.closeModal();
+    document
+      .querySelectorAll('.winning-number-input')
+      .forEach((element) => (element.value = ''));
+    $('purchase-money-input').value = '';
+    $('purchase-money-input').disabled = false;
+    $('purchase-money-button').disabled = false;
+  }
 }
