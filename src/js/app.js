@@ -1,12 +1,12 @@
-import LottoGameModel from './models/LottoGame';
+import LottoRoundModel from './models/LottoRound';
 import { SELECTOR } from './constants/selector';
-import LottoGameView from './views';
+import LottoRoundView from './views';
 import { findElement } from './utils/elementSelector';
 import { isNotValidNumber } from './utils/validator';
 
-class LottoGameManager {
-  lottoGameModel = new LottoGameModel();
-  lottoGameView = new LottoGameView();
+class LottoRoundManager {
+  lottoRoundModel = new LottoRoundModel();
+  lottoRoundView = new LottoRoundView();
   $chargeForm = findElement(SELECTOR.CHARGE_INPUT_FORM);
   $chargeInput = findElement(SELECTOR.CHARGE_INPUT);
   $alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
@@ -30,11 +30,11 @@ class LottoGameManager {
     try {
       const { value: chargeInputStr } = this.$chargeInput;
       const chargeInput = Number(chargeInputStr);
-      this.lottoGameModel.createLottoList(chargeInput);
+      this.lottoRoundModel.createLottoList(chargeInput);
 
-      const lottoList = this.lottoGameModel.getLottoList();
-      this.lottoGameView.renderLottoSection(lottoList);
-      this.lottoGameView.renderWinNumberInputSection(true);
+      const lottoList = this.lottoRoundModel.getLottoList();
+      this.lottoRoundView.renderLottoSection(lottoList);
+      this.lottoRoundView.renderWinNumberInputSection(true);
     } catch (message) {
       alert(message);
     }
@@ -42,16 +42,16 @@ class LottoGameManager {
 
   onChangeAlignState = (e) => {
     const { checked: alignState } = e.target;
-    this.lottoGameView.renderAlignState(alignState, this.lottoGameModel.getLottoList().length);
+    this.lottoRoundView.renderAlignState(alignState, this.lottoRoundModel.getLottoList().length);
   };
 
   onInputWinNumberForm = (e) => {
     if (isNotValidNumber(Number(e.target.value))) {
-      this.lottoGameView.setInvalidInputState(e.target);
+      this.lottoRoundView.setInvalidInputState(e.target);
       e.target.value = '';
       return;
     }
-    this.lottoGameView.setValidInputState(e.target);
+    this.lottoRoundView.setValidInputState(e.target);
     if (e.target.value.length === 2) {
       if (e.target.nextElementSibling !== null) {
         e.target.nextElementSibling.focus();
@@ -67,8 +67,8 @@ class LottoGameManager {
     e.preventDefault();
     try {
       const inputWinNumber = this.getInputWinNumber(e);
-      const gameResult = this.lottoGameModel.getGameResult(inputWinNumber);
-      this.lottoGameView.openResultModal(gameResult);
+      const roundResult = this.lottoRoundModel.getRoundResult(inputWinNumber);
+      this.lottoRoundView.openResultModal(roundResult);
     } catch (message) {
       alert(message);
     }
@@ -87,15 +87,15 @@ class LottoGameManager {
   }
 
   onClickReplayButton = () => {
-    this.lottoGameModel.initialize();
-    this.lottoGameView.initialize();
+    this.lottoRoundModel.initialize();
+    this.lottoRoundView.initialize();
     this.$chargeForm.reset();
     this.$winNumberForm.reset();
-    this.lottoGameView.closeResultModal();
+    this.lottoRoundView.closeResultModal();
   };
 
   onClickCloseModalButton = () => {
-    this.lottoGameView.closeResultModal();
+    this.lottoRoundView.closeResultModal();
   };
 }
-export default LottoGameManager;
+export default LottoRoundManager;

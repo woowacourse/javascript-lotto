@@ -8,7 +8,7 @@ import {
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import { NUMBER } from '../constants/number';
 
-class LottoGameModel {
+class LottoRoundModel {
   constructor() {
     this.initialize();
   }
@@ -52,7 +52,7 @@ class LottoGameModel {
     throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
   }
 
-  getGameResult(winningNumbers) {
+  getRoundResult(winningNumbers) {
     if (isValidNumber(winningNumbers)) {
       if (hasUniqueElement(winningNumbers)) {
         this.winningResult = [0, 0, 0, 0, 0, 0, 0];
@@ -85,4 +85,4 @@ class LottoGameModel {
   }
 }
 
-export default LottoGameModel;
+export default LottoRoundModel;

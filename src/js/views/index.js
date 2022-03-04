@@ -3,7 +3,7 @@ import { findElement } from '../utils/elementSelector';
 import { ELEMENT_PROPERTY } from '../constants/elementProperty';
 import { NUMBER } from '../constants/number';
 
-class LottoGameView {
+class LottoRoundView {
   constructor() {
     this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
     this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
@@ -110,4 +110,4 @@ class LottoGameView {
     this.$resultModal.setAttribute('data-visible-state', false);
   }
 }
-export default LottoGameView;
+export default LottoRoundView;
