@@ -26,6 +26,10 @@ export default class WinningResultSectionView {
   }
 
   onTypeWinningNumber(inputIndex, event) {
+    const regex = /[^0-9]/;
+    event.target.value = event.target.value.replace(regex, '');
+    if (event.target.value.length >= 2) 
+      event.target.value = event.target.value.slice(0, 2);
     if (event.target.value.length >= 2 && inputIndex !== this.winningNumberInputs.length - 1)
       this.winningNumberInputs[inputIndex + 1].focus();
     if (event.target.value.length >= 2 && inputIndex === this.winningNumberInputs.length - 1)
