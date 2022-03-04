@@ -33,6 +33,7 @@ export default class LottoController {
     this.#View.WinningNumberInput.bindWinningNumberInputSubmit(
       this.handleWinningNumberInputSubmit.bind(this)
     );
+    this.#View.LottoResultContent.bindLottoRetryButton(this.handleLottoRetry.bind(this));
   }
 
   handleMoneyInputSubmit({ moneyInputValue: money }) {
@@ -61,5 +62,15 @@ export default class LottoController {
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  handleLottoRetry() {
+    this.#LottosModel.init();
+
+    this.#View.MoneyInput.init();
+    this.#View.LottoList.init();
+    this.#View.WinningNumberInput.init();
+    this.#View.LottoResultModal.hide();
+    this.#View.LottoResultContent.init();
   }
 }

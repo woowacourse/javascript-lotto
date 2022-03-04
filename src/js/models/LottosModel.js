@@ -4,9 +4,19 @@ import { arraySum, getListDuplicateCount } from '../utils/data-manager';
 import Lotto from './Lotto';
 
 export default class LottosModel {
-  #lottos = [];
-  #winningNumberList = [];
-  #bonusNumber = 0;
+  #lottos;
+  #winningNumberList;
+  #bonusNumber;
+
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.#lottos = [];
+    this.#winningNumberList = [];
+    this.#bonusNumber = 0;
+  }
 
   buy(inputMoney) {
     const lottoCount = inputMoney / LOTTO_SETTING.PRICE;

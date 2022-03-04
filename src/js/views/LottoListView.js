@@ -14,6 +14,11 @@ export default class LottoListView {
     this.#lottoItemContainer = $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`);
   }
 
+  init() {
+    this.#lottoItemContainer.innerHTML = '';
+    this.hideContainer();
+  }
+
   bindLottoNumberToggle() {
     this.#lottoNumberToggle.addEventListener('click', this.toggleShow.bind(this));
   }

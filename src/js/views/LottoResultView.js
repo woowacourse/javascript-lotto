@@ -19,6 +19,10 @@ export default class LottoResultView {
     this.#lottoRetryButton = $(this.#container, '#lotto-retry-button');
   }
 
+  init() {
+    this.#lottoResultList.innerHTML = '';
+  }
+
   renderLottoResultList(winningRankCountList) {
     this.#lottoResultList.innerHTML = makeLottoResultTemplate(winningRankCountList);
   }
