@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/dom';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { lottoTicket } from '../model/lottoTicket';
-import { isValidMoneyInput } from '../validator/validator';
+import { isInvalidMoneyInput } from '../validator/validator';
 
 export default class LottoView {
   constructor() {
@@ -54,7 +54,7 @@ export default class LottoView {
     e.preventDefault();
     const moneyInput = Number($('.money-input').value);
 
-    if (!isValidMoneyInput(moneyInput)) {
+    if (isInvalidMoneyInput(moneyInput)) {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
