@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from '../constants';
-import { validateMoney, validateWinningNumbers } from '../validation/validators';
+import { validateMoney, validateWinningNumber } from '../validation/validators';
 
 describe('금액 입력에 대한 유효성 검사를 한다', () => {
   test('빈 입력값을 허용하지 않는다', () => {
@@ -42,56 +42,56 @@ describe('금액 입력에 대한 유효성 검사를 한다', () => {
 
 describe('당첨 번호 입력에 대한 유효성 검사를 한다', () => {
   test('빈 입력값을 허용하지 않는다', () => {
-    const invalidWinningNumbers = ['', '', '', '', '', '', ''];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
-      ERROR_MESSAGE.EMPTY_WINNING_NUMBERS
+    const invalidWinningNumber = ['', '', '', '', '', '', ''];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
+      ERROR_MESSAGE.EMPTY_WINNING_NUMBER
     );
   });
 
   test('숫자가 아닌 값을 허용하지 않는다', () => {
-    let invalidWinningNumbers = ['1.2', '2', '3', '4', '5', '6', '7'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
+    let invalidWinningNumber = ['1.2', '2', '3', '4', '5', '6', '7'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_INTEGER_WINNING_NUMBER
     );
 
-    invalidWinningNumbers = ['e', '2', '3', '4', '5', '6', '7'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
+    invalidWinningNumber = ['e', '2', '3', '4', '5', '6', '7'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_INTEGER_WINNING_NUMBER
     );
 
-    invalidWinningNumbers = ['1', '2', '3', '4', '5', '6', '3  3'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
+    invalidWinningNumber = ['1', '2', '3', '4', '5', '6', '3  3'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_INTEGER_WINNING_NUMBER
     );
   });
 
   test('로또 숫자 범위(1 ~ 45) 외의 값을 허용하지 않는다', () => {
-    let invalidWinningNumbers = ['0', '2', '3', '4', '5', '6', '7'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
+    let invalidWinningNumber = ['0', '2', '3', '4', '5', '6', '7'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE
     );
 
-    invalidWinningNumbers = ['1', '2', '3', '4', '55', '6', '7'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
+    invalidWinningNumber = ['1', '2', '3', '4', '55', '6', '7'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE
     );
 
-    invalidWinningNumbers = ['-1', '2', '3', '4', '5', '6', '7'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
+    invalidWinningNumber = ['-1', '2', '3', '4', '5', '6', '7'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE
     );
   });
 
   test('중복된 값을 허용하지 않는다', () => {
-    const invalidWinningNumbers = ['11', '11', '3', '4', '5', '6', '7'];
-    expect(validateWinningNumbers(invalidWinningNumbers)).toHaveErrorMessage(
-      ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS
+    const invalidWinningNumber = ['11', '11', '3', '4', '5', '6', '7'];
+    expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
+      ERROR_MESSAGE.DUPLICATE_WINNING_NUMBER
     );
   });
 
   test('로또 범위의 숫자(1 ~ 45)를 허용한다', () => {
-    const validWinningNumbers = ['1', '4', '29', '39', '43', '45', '31'];
-    expect(validateWinningNumbers(validWinningNumbers)).notToHaveError();
+    const validWinningNumber = ['1', '4', '29', '39', '43', '45', '31'];
+    expect(validateWinningNumber(validWinningNumber)).notToHaveError();
   });
 });
 
