@@ -33,19 +33,21 @@ const getWinningStatisticModalTempalte = (winningCounts, earningsRate) => {
 class WinningStatisticModalView {
   #app;
 
-  #winningStatisticModal;
+  #winningStatisticModal = null;
 
-  #winningStatisticModalCloseButton;
+  #winningStatisticModalCloseButton = null;
 
-  #restartButton;
+  #restartButton = null;
 
-  #handleRestartButton;
+  #handleRestartButton = null;
 
   constructor() {
     this.#app = $('#app');
   }
 
   renderWinningStatisticModal(winningCounts, earningsRate) {
+    this.#removeWinningStatisticModal();
+
     const winningStatisticModalTemplate = getWinningStatisticModalTempalte(
       winningCounts,
       earningsRate,
@@ -83,6 +85,9 @@ class WinningStatisticModalView {
     }
 
     this.#app.removeChild(this.#winningStatisticModal);
+    this.#winningStatisticModal = null;
+    this.#winningStatisticModalCloseButton = null;
+    this.#restartButton = null;
   }
 
   #isNotFoundedWinningStatisticModal() {
