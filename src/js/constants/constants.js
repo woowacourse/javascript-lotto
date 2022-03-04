@@ -26,8 +26,19 @@ export const SELECTOR = {
   CHECK_RESULT_BUTTON: '#check-result-button',
   LOTTO_RESULT_MODAL: '#lotto-result-modal',
   CLOSE_RESULT_MODAL: '#close-result-modal',
+  LOTTO_RESULT_TBODY: '#lotto-result-tbody',
 };
 
 export const ID = {
   LOTTO_RESULT_MODAL: 'lotto-result-modal',
+};
+
+export const MIN_MATCH_NUMBER_FOR_PRIZE = 3;
+
+export const MATCH_WINNING_NUMBER_INDEX = {
+  3: 0,
+  4: 1,
+  5: 2,
+  '5_AND_BONUS_MATCH': 3,
+  6: 4,
 };

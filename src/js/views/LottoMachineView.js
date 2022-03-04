@@ -1,4 +1,4 @@
-import { $ } from '../utils/util';
+import { $, $$ } from '../utils/util';
 import { lottoListTemplate, lottoTotalNumber } from './template';
 import { SELECTOR } from '../constants/constants';
 
@@ -34,5 +34,12 @@ export default class LottoMachineView {
 
   removeLottoResultModal() {
     $(SELECTOR.LOTTO_RESULT_MODAL).classList.add('display-none');
+  }
+
+  showLottoResultTable(lottoResult) {
+    const lottoResultTableRows = $$('tr', $(SELECTOR.LOTTO_RESULT_TBODY));
+    lottoResultTableRows.forEach((row, index) => {
+      $$('td', row)[2].innerText = lottoResult[index];
+    });
   }
 }

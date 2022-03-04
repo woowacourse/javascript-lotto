@@ -1,4 +1,4 @@
-import { ID, LOTTO_PRICE, SELECTOR } from './constants/constants';
+import { ID, LOTTO_NUMBER, LOTTO_PRICE, SELECTOR } from './constants/constants';
 import { $, $$, divider } from './utils/util';
 import { validateCharge, validateWinnerNumbers } from './validation';
 
@@ -74,6 +74,11 @@ export default class LottoMachine {
   #showLottoResult() {
     this.lottoMachineView.showLottoResultModal();
     this.#setCloseModalEvent();
+    const lottoResult = this.lottoManager.checkWinnerLotto(
+      [...this.winnerNumbers].slice(0, LOTTO_NUMBER.LENGTH),
+      this.winnerNumbers[LOTTO_NUMBER.LENGTH]
+    );
+    this.lottoMachineView.showLottoResultTable(lottoResult);
   }
 
   #setCloseModalEvent() {
