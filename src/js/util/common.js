@@ -23,68 +23,74 @@ const pickLottoNumber = n => {
 };
 
 const findRank = (win, bonus) => {
-  if (win === RULES.LOTTO_NUMS) {
-    return 1;
-  } else if (win === RULES.LOTTO_NUMS - 1 && bonus === RULES.BONUS_NUMS) {
-    return 2;
-  } else if (win === RULES.LOTTO_NUMS - 1) {
-    return 3;
-  } else if (win === RULES.LOTTO_NUMS - 2) {
-    return 4;
-  } else if (win === RULES.LOTTO_NUMS - 3) {
-    return 5;
+  switch (win) {
+    case RULES.LOTTO_NUMS:
+      return 1;
+    case RULES.LOTTO_NUMS - 1:
+      if (bonus === RULES.BONUS_NUMS) {
+        return 2;
+      }
+      return 3;
+    case RULES.LOTTO_NUMS - 2:
+      return 4;
+    case RULES.LOTTO_NUMS - 3:
+      return 5;
   }
 
   return 0;
 };
 
 const countCorrectNumber = (lottoList, winningNumbers) => {
-  let correctCount = 0;
-
-  for (let i = 0; i < winningNumbers.length; i++) {
-    if (lottoList.includes(winningNumbers[i])) {
-      correctCount++;
+  const correctCount = winningNumbers.reduce((count, number) => {
+    if (lottoList.includes(number)) {
+      count++;
     }
-  }
+    return count;
+  }, 0);
 
   return correctCount;
 };
 
 const getRanks = (lottos, winningNumbers) => {
-  const results = [];
   const winNumbers = winningNumbers.slice(0, RULES.LOTTO_NUMS);
   const bonusNumbers = winningNumbers.slice(RULES.LOTTO_NUMS);
 
-  lottos.forEach(lotto => {
+  const results = lottos.reduce((ranks, lotto) => {
     const lottoList = lotto.getList();
     const correctWinNumCount = countCorrectNumber(lottoList, winNumbers);
     const correctBonusNumCount = countCorrectNumber(lottoList, bonusNumbers);
     const rank = findRank(correctWinNumCount, correctBonusNumCount);
 
     if (rank !== 0) {
-      results.push(rank);
+      ranks.push(rank);
     }
-  });
+
+    return ranks;
+  }, []);
 
   return results;
 };
 
 const calculateTotalReward = results => {
-  let totalReward = 0;
-
-  results.forEach(result => {
-    if (result === 1) {
-      totalReward += REWARD.FIRST;
-    } else if (result === 2) {
-      totalReward += REWARD.SECOND;
-    } else if (result === 3) {
-      totalReward += REWARD.THIRD;
-    } else if (result === 4) {
-      totalReward += REWARD.FOURTH;
-    } else if (result === 5) {
-      totalReward += REWARD.FIFTH;
+  const totalReward = results.reduce((sumOfReward, result) => {
+    switch (result) {
+      case 1:
+        sumOfReward += REWARD.FIRST;
+        break;
+      case 2:
+        sumOfReward += REWARD.SECOND;
+        break;
+      case 3:
+        sumOfReward += REWARD.THIRD;
+        break;
+      case 4:
+        sumOfReward += REWARD.FOURTH;
+        break;
+      case 5:
+        sumOfReward += REWARD.FIFTH;
     }
-  });
+    return sumOfReward;
+  }, 0);
 
   return totalReward;
 };

@@ -32,8 +32,7 @@ export default class LottoMachineController {
   }
 
   #makeLottos(lottoCount) {
-    const newLottos = Array.from({ length: lottoCount }).map(() => new Lotto());
-    this.lottos = newLottos;
+    this.lottos = Array.from({ length: lottoCount }).map(() => new Lotto());
   }
 
   #purchaseLotto(purchaseMoney) {
