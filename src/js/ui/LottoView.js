@@ -329,7 +329,7 @@ export default class LottoView {
     try {
       validateArrayNumber(winningNumbers);
       const bonusNumber = winningNumbers.pop();
-      machine.calculateGrade(winningNumbers, bonusNumber);
+      this.machine.calculateGrade(winningNumbers, bonusNumber);
       this.lottoModal.show(this.machine);
     } catch (e) {
       alert(e.message);

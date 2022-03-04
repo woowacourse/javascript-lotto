@@ -6,18 +6,20 @@ import $ from './utils';
 export class LottoModal {
   constructor(view) {
     this.lottoView = view;
+    this.$container = $('modal');
+    this.$lottoTable = $('lotto-result-table');
   }
 
   show(machine) {
-    $('lotto-result-table').replaceChildren();
-    $('lotto-result-table').insertAdjacentHTML(
+    this.$lottoTable.replaceChildren();
+    this.$lottoTable.insertAdjacentHTML(
       'beforeend',
       lottoResultTableTemplate(machine)
     );
     $(
       'lotto-result-rate'
     ).textContent = `당신의 총 수익률은 ${machine.profitRate}%입니다.`;
-    $('modal').style.display = 'flex';
+    this.$container.style.display = 'flex';
     this.bindEventsToModalBtn();
   }
 
@@ -30,6 +32,6 @@ export class LottoModal {
     this.lottoView.restart();
   }
   closeModal() {
-    $('modal').style.display = 'none';
+    this.$container.style.display = 'none';
   }
 }

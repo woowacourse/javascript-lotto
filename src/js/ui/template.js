@@ -12,7 +12,6 @@ export function purchaseMessageTemplate({ length }) {
 }
 
 export function lottoResultTableTemplate(machine) {
-  console.log(machine);
   return `  <div class="grid table-title"><span>일치 갯수</span><span>당첨금</span><span>당첨 갯수</span></div>
     <div class="grid"><span>3개</span><span>5,000</span><span>${machine.getNumberOfGrade(
       'fifth'
