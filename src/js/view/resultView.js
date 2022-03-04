@@ -34,4 +34,8 @@ export default class ResultView {
 
     $resultLottos.classList.toggle('checked');
   }
+
+  initResult() {
+    this.$result.replaceChildren();
+  }
 }

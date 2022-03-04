@@ -29,6 +29,13 @@ export default class LottoController {
 
   bindEvent() {
     this.$lottoPriceForm.addEventListener('submit', this.handleLottoPriceButtonSubmit.bind(this));
+    this.$result.addEventListener('click', this.handleResultButtonClick.bind(this));
+    this.$popup.addEventListener('click', this.handleClosePopupButtonClick.bind(this));
+    this.$popup.addEventListener('click', this.handleRestartButtonClick.bind(this));
+  }
+
+  unbindEvent() {
+    this.$checkbox.removeEventListener('chage', this.handleCheckBoxChange.bind(this));
   }
 
   initAfterRenderResult() {
@@ -42,8 +49,6 @@ export default class LottoController {
 
   bindEventAfterRenderResult() {
     this.$checkbox.addEventListener('change', this.handleCheckBoxChange.bind(this));
-    this.$result.addEventListener('click', this.handleResultButtonClick.bind(this));
-    this.$popup.addEventListener('click', this.handleClosePopupButtonClick.bind(this));
   }
 
   handleLottoPriceButtonSubmit(event) {
@@ -96,5 +101,15 @@ export default class LottoController {
     this.lottoModel.initWinningType();
     this.popupView.toggleMainContainerState();
     this.popupView.closePopup();
+  }
+
+  handleRestartButtonClick({ target }) {
+    if (target.id !== 'restart-button') return;
+    this.popupView.toggleMainContainerState();
+    this.popupView.closePopup();
+    this.inputView.initLottoPriceInput();
+    this.resultView.initResult();
+    this.lottoModel.initGame();
+    this.unbindEvent();
   }
 }
