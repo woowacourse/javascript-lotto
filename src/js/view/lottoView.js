@@ -1,8 +1,12 @@
 import { $, $$ } from '../utils/dom';
+import { ERROR_MESSAGE } from '../constants/constants';
+import { lottoTicket } from '../model/lottoTicket';
+import { isValidMoneyInput } from '../validator/validator';
 
 export default class LottoView {
   constructor() {
     $('.cm-toggle').addEventListener('click', this.toggleNumberDetail);
+    $('.purchase-form').addEventListener('submit', this.handlePurchase);
   }
 
   deactivateForm(enable) {
@@ -45,4 +49,16 @@ export default class LottoView {
       element.classList.toggle('d-none');
     });
   }
+
+  handlePurchase = (e) => {
+    e.preventDefault();
+    const moneyInput = Number($('.money-input').value);
+
+    if (!isValidMoneyInput(moneyInput)) {
+      alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
+      return;
+    }
+    lottoTicket.issueLottoTickets(moneyInput);
+    this.showResult(lottoTicket.getLottoTickets());
+  };
 }
