@@ -23,6 +23,7 @@ export default class WinningNumberController {
     try {
       validator.checkWinningNumberList(winningNumbers);
       validator.checkBonusNumber(bonusNumber);
+      validator.checkDuplicateBonus(winningNumbers, bonusNumber);
       this.calculateResult(winningNumbers, bonusNumber);
     } catch (error) {
       alert(error.message);

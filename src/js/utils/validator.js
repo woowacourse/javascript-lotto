@@ -28,6 +28,9 @@ const isValidLottoList = (lottoList, count) =>
   lottoList.length === count &&
   lottoList.every((lotto) => lotto instanceof Lotto);
 
+const isValidDuplicateBonus = (winningNumbers, bonusNumber) =>
+  winningNumbers.includes(bonusNumber);
+
 const validator = {
   checkPurchaseAmount: (purchaseAmount) => {
     if (!isNumber(purchaseAmount)) {
@@ -68,6 +71,12 @@ const validator = {
   checkBonusNumber: (bonusNumber) => {
     if (!isValidLottoNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_A_BONUS_NUMBER);
+    }
+  },
+
+  checkDuplicateBonus: (winningNumbers, bonusNumber) => {
+    if (isValidDuplicateBonus(winningNumbers, bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.IS_DUPLICATED_BONUS);
     }
   },
 };
