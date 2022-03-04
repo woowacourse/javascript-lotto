@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { $, $$ } from "../utils/dom.js";
+import { $, $$, showElement } from "../utils/dom.js";
 import { validateWinningNumbers } from "../utils/validation.js";
 
 export default class WinningNumberView extends View {
@@ -14,10 +14,13 @@ export default class WinningNumberView extends View {
     );
     try {
       validateWinningNumbers(winningNumberList);
-
       this.handlers.get("click").forEach((func) => func(winningNumberList));
     } catch (error) {
       alert(error);
     }
+  }
+
+  renderResultModal() {
+    showElement($(".result-modal"));
   }
 }
