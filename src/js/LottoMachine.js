@@ -61,7 +61,7 @@ export default class LottoMachine {
   #onSubmitWinnerNumber(event) {
     event.preventDefault();
     this.winnerNumbers = new Set();
-    [...$$('input', $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM))].forEach(winnerNumber =>
+    $$('input', $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM)).forEach(winnerNumber =>
       this.winnerNumbers.add(Number(winnerNumber.value))
     );
     try {
