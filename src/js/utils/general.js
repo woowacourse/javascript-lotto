@@ -26,3 +26,7 @@ export const isValidOverlap = (numbers) => {
 export const isValidNumberRange = (number, min, max) => {
   return number < min || number > max;
 };
+
+export const calculateProfitRate = (totalProfit, usedMoney) => {
+  return Math.floor((totalProfit / usedMoney) * 100);
+};
