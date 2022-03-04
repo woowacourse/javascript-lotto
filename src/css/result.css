@@ -43,8 +43,8 @@
 }
 
 .lotto-result-container table tr {
-  border-top: 1px solid var(--color-light-gray);
-  border-bottom: 1px solid var(--color-light-gray);
+  border-top: 1px solid var(--color-dark-gray);
+  border-bottom: 1px solid var(--color-dark-gray);
 }
 
 .lotto-result-container table th,
