@@ -36,7 +36,9 @@ describe('로또 구매 테스트', () => {
     const cash = MAX_PURCHASABLE_CASH + 1;
     expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.OVER_MAX_CASH);
   });
+});
 
+describe('당첨 결과 확인 테스트', () => {
   test('결과 확인하기 버튼을 누르면, 당첨 갯수와 수익률이 정확히 계산된다', () => {
     const lottoList = [
       [1, 2, 3, 4, 5, 6], // 3개
