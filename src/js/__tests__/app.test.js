@@ -143,6 +143,6 @@ describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호�
 
     const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
 
-    expect(earningsRate).toBe(299);
+    expect(earningsRate).toBe(29900);
   });
 });

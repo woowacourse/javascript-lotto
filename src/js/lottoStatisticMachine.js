@@ -69,7 +69,7 @@ class LottoStatisticMachine {
   calculateEarningsRate(fare, winningCounts) {
     const earnings = this.#calculateEarnings(winningCounts);
 
-    this.#earningsRate = (earnings - fare) / fare;
+    this.#earningsRate = ((earnings - fare) * 100) / fare;
     return this.#earningsRate;
   }
 
