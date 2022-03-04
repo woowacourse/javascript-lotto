@@ -19,7 +19,7 @@ export default class WinningNumberView {
     if (event.key === 'Backspace' || event.key === 'Tab') {
       return;
     }
-    if (inputKeyCode < 49 || inputKeyCode > 57) {
+    if (inputKeyCode < 48 || inputKeyCode > 57) {
       event.preventDefault();
     }
   }
