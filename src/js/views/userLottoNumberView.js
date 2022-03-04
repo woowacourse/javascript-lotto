@@ -1,4 +1,4 @@
-import { qs, qsAll, on, emit } from '../utils/helper.js';
+import { qs, qsAll, on, newCustomEvent } from '../utils/helper.js';
 
 export default class UserLottoNumberView {
   constructor() {
@@ -20,7 +20,7 @@ export default class UserLottoNumberView {
       lottoNumber: this.userLottoNumberInput.map((numberInput) => Number(numberInput.value)),
       bonusNumber: [Number(this.userBonusNumberInput.value)]
     };
-    emit(this.userLottoResultForm, '@userLottoNumbers', lottoNumbers);
+    newCustomEvent(this.userLottoResultForm, '@userLottoNumbers', lottoNumbers);
   }
 
   showUserLottoInput() {

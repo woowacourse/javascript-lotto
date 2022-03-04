@@ -1,4 +1,4 @@
-import { qs, on, emit } from '../utils/helper.js';
+import { qs, on, newCustomEvent } from '../utils/helper.js';
 
 export default class LottoPurchaseInputView {
   constructor() {
@@ -19,6 +19,6 @@ export default class LottoPurchaseInputView {
   handlePurchaseLotto(event) {
     event.preventDefault();
     const purchaseMoney = this.lottoPurchaseInput.value;
-    emit(this.lottoPurchaseForm, '@purchaseMoney', purchaseMoney);
+    newCustomEvent(this.lottoPurchaseForm, '@purchaseMoney', purchaseMoney);
   }
 }

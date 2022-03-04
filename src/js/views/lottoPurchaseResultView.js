@@ -1,4 +1,4 @@
-import { qs, qsAll, emit, on } from '../utils/helper.js';
+import { qs, qsAll, newCustomEvent, on } from '../utils/helper.js';
 import { lottoPurchaseCountTemplate, lottoPurchaseResultTemplate } from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
@@ -15,7 +15,7 @@ export default class lottoPurchaseResultView {
   }
 
   handleShowLottoToggle() {
-    emit(this.lottoToggle, '@lottoToggle', '');
+    newCustomEvent(this.lottoToggle, '@lottoToggle', '');
   }
 
   cleanLottoList() {

@@ -1,4 +1,4 @@
-import { qs, qsAll, on, emit } from "../utils/helper.js";
+import { qs, qsAll, on, newCustomEvent } from "../utils/helper.js";
 import { lottoReturnRateTemplate } from "../utils/template.js";
 
 export default class UserLottoModalView {
@@ -18,11 +18,11 @@ export default class UserLottoModalView {
   }
 
   handleCloaseLottoModal() {
-    emit(this.lottoModalCloseButton, '@closeLottoModal', '');
+    newCustomEvent(this.lottoModalCloseButton, '@closeLottoModal', '');
   }
 
   handleLottoRestart() {
-    emit(this.lottoRestartButton, '@lottoRestart', '');
+    newCustomEvent(this.lottoRestartButton, '@lottoRestart', '');
   }
 
   showLottoResultModal() {
