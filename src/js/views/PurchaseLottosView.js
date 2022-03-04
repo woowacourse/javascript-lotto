@@ -1,11 +1,11 @@
-import { $ } from '../utils/utils.js';
-import { SELECTOR } from '../constants/constants.js';
-import View from './View.js';
-import validateMoney from '../validations/PurchaseLottos.js';
+import { $ } from "../utils/utils.js";
+import { SELECTOR } from "../constants/constants.js";
+import View from "./View.js";
+import validateMoney from "../validations/PurchaseLottos.js";
 
 const template = {
-  ticketImg: '<div>🎟️</div>',
-  lottoNumberTemplate: (lottoNumber) => {
+  ticketImg: "<div>🎟️</div>",
+  lottoNumberTemplate: lottoNumber => {
     return `<div class="items-center">
               🎟️
              <div class="lotto-numbers-container">${lottoNumber}</div>
@@ -13,7 +13,7 @@ const template = {
   },
   purchaseMessageTemplate: ({ length }) => {
     return `총 ${length}개를 구매하였습니다.`;
-  },
+  }
 };
 
 export default class PurchaseLottosView extends View {
@@ -21,10 +21,11 @@ export default class PurchaseLottosView extends View {
     super();
     this.bindEvent(
       $(SELECTOR.ID.PURCHASE_MONEY_INPUT),
-      'keyup',
+      "keyup",
       this.handleOnChangeMoneyInput.bind(this)
     );
   }
+
   getInputMoney() {
     return Number.parseInt($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
   }
@@ -40,17 +41,17 @@ export default class PurchaseLottosView extends View {
   renderPurchasedLottosByImage(lottos) {
     lottos.map(() => {
       $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
-        'beforeEnd',
+        "beforeEnd",
         template.ticketImg
       );
     });
   }
 
   renderPurchasedLottosByNumbers(lottos) {
-    lottos.map((lotto) => {
+    lottos.map(lotto => {
       $(SELECTOR.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
-        'beforeEnd',
-        template.lottoNumberTemplate(lotto.numbers.join(', '))
+        "beforeEnd",
+        template.lottoNumberTemplate(lotto.numbers.join(", "))
       );
     });
   }
@@ -71,8 +72,8 @@ export default class PurchaseLottosView extends View {
   }
 
   clearMoneyInput() {
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.remove('input-alert');
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = '';
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.remove("input-alert");
+    $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = "";
   }
 
   // 핸들러
@@ -81,7 +82,7 @@ export default class PurchaseLottosView extends View {
       validateMoney(event.target.value);
       this.clearMoneyInput();
     } catch (error) {
-      $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.add('input-alert');
+      $(SELECTOR.ID.PURCHASE_MONEY_INPUT).classList.add("input-alert");
       $(SELECTOR.ID.PURCHASE_MONEY_INPUT_ALERT).textContent = error.message;
     }
     if (event.target.value.length === 0) {
