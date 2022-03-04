@@ -4,7 +4,7 @@ import makeTemplate from './template/index';
 export default class PopupView {
   constructor() {
     this.$popup = $('#popup');
-    this.$mainContainer =#('.main-container');
+    this.$mainContainer = $('.main-container');
   }
 
   renderPopup(winningType, earningRate) {
