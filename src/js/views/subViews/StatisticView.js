@@ -25,12 +25,15 @@ export default class StatisticView {
 
   afterMounted() {
     this.$resetButton = $('#reset-button');
+    this.$closeButton = $('#close-button');
   }
 
   bindOnClickResetButton(callback) {
-    this.$resetButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      callback();
-    });
+    [this.$resetButton, this.$closeButton].forEach((button) =>
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        callback();
+      })
+    );
   }
 }

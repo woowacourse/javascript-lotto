@@ -279,6 +279,16 @@ input:checked + .slider:before {
   margin-bottom: 39px;
 }
 
+#close-button {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  background: url('../../images/close.svg');
+}
+
 #statistic-section-wrap {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;

@@ -98,6 +98,7 @@ const template = {
     return `
       <section id="statistic-section">
         <h2>🏆 당첨 통계 🏆</h2>
+        <span id="close-button"></span>
         <table id="statistic-table">
           <tr>
             <th>일치 갯수</th>
