@@ -79,4 +79,5 @@ export const ERROR_MESSAGE = {
   NOT_A_BONUS_NUMBER: `입력된 보너스 번호가 유효하지 않습니다. ${LOTTO.NUMBER_RANGE.MIN}부터 ${LOTTO.NUMBER_RANGE.MAX}까지의 정수를 입력해주세요.`,
   IS_DUPLICATED: `당첨번호가 중복되었습니다. 중복없이 번호를 입력해주세요.`,
   IS_DUPLICATED_BONUS: `당첨번호와 보너스 번호가 중복됩니다. 중복없이 입력해주세요.`,
+  DID_NOT_BUY_LOTTO: `구입한 로또가 없습니다. 로또를 먼저 구입해주세요.`,
 };
