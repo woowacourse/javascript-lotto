@@ -1,3 +1,4 @@
+import { SELECTOR } from '../constants/selector';
 import { $ } from '../utils/element-manager';
 import { makeLottoResultTemplate, makeLottoResultYieldText } from '../utils/Lotto/template-manager';
 
@@ -14,9 +15,9 @@ export default class LottoResultView {
   }
 
   #defaultElements() {
-    this.#lottoResultList = $(this.#container, '#lotto-result-list');
-    this.#lottoResultYield = $(this.#container, '#lotto-yield-text');
-    this.#lottoRetryButton = $(this.#container, '#lotto-retry-button');
+    this.#lottoResultList = $(this.#container, SELECTOR.LOTTO_RESULT_LIST);
+    this.#lottoResultYield = $(this.#container, SELECTOR.LOTTO_YIELD_TEXT);
+    this.#lottoRetryButton = $(this.#container, SELECTOR.LOTTO_RETRY_BUTTON);
   }
 
   init() {

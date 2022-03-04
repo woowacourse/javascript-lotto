@@ -10,8 +10,8 @@ export default class LottoListView {
   constructor(containerSelector) {
     this.#container = $(containerSelector);
 
-    this.#lottoNumberToggle = $(this.#container, `#${SELECTOR.ID.NUMBER_TOGGLE}`);
-    this.#lottoItemContainer = $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`);
+    this.#lottoNumberToggle = $(this.#container, SELECTOR.NUMBER_TOGGLE);
+    this.#lottoItemContainer = $(this.#container, SELECTOR.LOTTO_ITEM_CONTAINER);
   }
 
   init() {
@@ -41,7 +41,7 @@ export default class LottoListView {
       .map((numbers) => makeLottoTemplate(numbers))
       .join('');
 
-    $(this.#container, `#${SELECTOR.ID.LOTTO_BOUGHT_COUNT}`).textContent = makeLottosCountTemplate(
+    $(this.#container, SELECTOR.LOTTO_BOUGHT_COUNT).textContent = makeLottosCountTemplate(
       lottos.length
     );
   }

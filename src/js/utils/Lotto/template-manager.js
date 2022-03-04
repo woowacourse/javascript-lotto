@@ -1,10 +1,10 @@
-import { SELECTOR } from '../../constants/selector';
+import { DOM_NAME } from '../../constants/selector';
 import { LOTTO_SETTING } from '../../constants/setting';
 
 export const makeLottosCountTemplate = (count) => `총 ${count}개를 구매하였습니다.`;
 
 export const makeLottoTemplate = (numbers) => `
-  <div class="${SELECTOR.CLASS.LOTTO_ITEM}"><span>🎟️</span> <span class="${SELECTOR.CLASS.LOTTO_ITEM_NUMBER}">${numbers}</span></div>
+  <div class="${DOM_NAME.CLASS.LOTTO_ITEM}"><span>🎟️</span> <span class="${DOM_NAME.CLASS.LOTTO_ITEM_NUMBER}">${numbers}</span></div>
   `;
 
 export const makeLottoResultTemplate = (winningRankCountList) => {

@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants/selector';
+import { DOM_NAME, SELECTOR } from '../constants/selector';
 import { $, $$ } from '../utils/element-manager';
 import { isNumber } from '../utils/validator';
 import { onInputAutoFocus, onEnableButton } from '../utils/custom-event';
@@ -16,11 +16,8 @@ export default class WinningNumberInputView {
   }
 
   #defaultElements() {
-    this.#winningNumberInputList = $$(this.#container, `.${SELECTOR.CLASS.LOTTO_WINNING_NUMBER}`);
-    this.#winningNumberSubmitButton = $(
-      this.#container,
-      `#${SELECTOR.ID.LOTTO_SHOW_RESULT_BUTTON}`
-    );
+    this.#winningNumberInputList = $$(this.#container, SELECTOR.LOTTO_WINNING_NUMBER);
+    this.#winningNumberSubmitButton = $(this.#container, SELECTOR.LOTTO_SHOW_RESULT_BUTTON);
   }
 
   #bindViewEvents() {
@@ -37,7 +34,7 @@ export default class WinningNumberInputView {
 
   #isWinningNumberInput($input) {
     const hasLottoWinningNumberClass =
-      $input && $input.classList.contains(SELECTOR.CLASS.LOTTO_WINNING_NUMBER);
+      $input && $input.classList.contains(DOM_NAME.CLASS.LOTTO_WINNING_NUMBER);
 
     return hasLottoWinningNumberClass === true;
   }

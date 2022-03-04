@@ -1,3 +1,4 @@
+import { DOM_NAME, SELECTOR } from '../constants/selector';
 import { $ } from '../utils/element-manager';
 import { setDelay } from '../utils/event-manager';
 
@@ -6,7 +7,7 @@ export default class ModalView {
   #modalContent;
 
   constructor(modalContentSelector) {
-    this.#modalContainer = $('.modal-container');
+    this.#modalContainer = $(SELECTOR.MODAL_CONTAINER);
     this.#modalContent = $(modalContentSelector);
 
     this.#bindEvents();
@@ -18,8 +19,8 @@ export default class ModalView {
 
   #handleModalClose({ target: $target }) {
     if (
-      $target.classList.contains('modal-container') === false &&
-      $target.classList.contains('modal-close') === false
+      $target.classList.contains(DOM_NAME.CLASS.MODAL_CONTAINER) === false &&
+      $target.classList.contains(DOM_NAME.CLASS.MODAL_CLOSE) === false
     ) {
       return;
     }
