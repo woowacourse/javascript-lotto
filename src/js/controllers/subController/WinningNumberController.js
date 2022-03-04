@@ -1,5 +1,5 @@
 import WinningNumberView from '../../views/subViews/WinningNumberView.js';
-import { ERROR_MESSAGE, SELECTOR } from '../../configs/contants.js';
+import { ERROR_MESSAGE, SELECTOR, STATISTIC } from '../../configs/contants.js';
 import validator from '../../utils/validator.js';
 import LottoModel from '../../models/LottoModel.js';
 
@@ -71,14 +71,17 @@ export default class WinningNumberController {
     ).length;
 
     if (this.checkBonus(Count, lottoNumbers, bonus)) {
-      Count += 0.5;
+      Count = STATISTIC.fiveBonus.number;
     }
 
     return Count;
   }
 
   checkBonus(count, lottoNumbers, bonus) {
-    return lottoNumbers.find((number) => number === bonus) && count === 5;
+    return (
+      lottoNumbers.find((number) => number === bonus) &&
+      count === STATISTIC.five.number
+    );
   }
 
   createStatisticWithCountList(CountList) {
@@ -93,19 +96,20 @@ export default class WinningNumberController {
   }
 
   translateToString(count) {
-    switch (count) {
-      case 3:
-        return 'three';
-      case 4:
-        return 'four';
-      case 5:
-        return 'five';
-      case 5.5:
-        return 'fiveBonus';
-      case 6:
-        return 'six';
-      default:
-        return 'under';
+    if (count < STATISTIC.three.number) {
+      return STATISTIC.under.numberString;
     }
+
+    const statisticDataList = Object.values(STATISTIC);
+    const targetData = statisticDataList.find((data) => {
+      const { numberString, number } = data;
+      if (number === count) {
+        return numberString;
+      }
+
+      return false;
+    });
+
+    return targetData.numberString;
   }
 }

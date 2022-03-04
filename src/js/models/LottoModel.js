@@ -1,4 +1,4 @@
-import { WINNINGS, LOTTO } from '../configs/contants.js';
+import { STATISTIC, LOTTO } from '../configs/contants.js';
 import Lotto from './Lotto/Lotto.js';
 
 export default class LottoModel {
@@ -58,7 +58,7 @@ export default class LottoModel {
       const numberString = curr[0];
       const count = curr[1];
 
-      return prev + WINNINGS[numberString] * count;
+      return prev + STATISTIC[numberString].winnings * count;
     }, initialValue);
   }
 

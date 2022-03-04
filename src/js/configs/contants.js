@@ -14,13 +14,36 @@ export const PAYMENT = {
   },
 };
 
-export const WINNINGS = {
-  under: 0,
-  three: 5000,
-  four: 50000,
-  five: 1500000,
-  fiveBonus: 30000000,
-  six: 2000000000,
+export const STATISTIC = {
+  under: {
+    winnings: 0,
+    numberString: 'under',
+  },
+  three: {
+    number: 3,
+    winnings: 5000,
+    numberString: 'three',
+  },
+  four: {
+    number: 4,
+    winnings: 50000,
+    numberString: 'four',
+  },
+  five: {
+    number: 5,
+    winnings: 1500000,
+    numberString: 'five',
+  },
+  fiveBonus: {
+    number: 5.5,
+    winnings: 30000000,
+    numberString: 'fiveBonus',
+  },
+  six: {
+    number: 6,
+    winnings: 2000000000,
+    numberString: 'six',
+  },
 };
 
 export const ERROR_MESSAGE = {

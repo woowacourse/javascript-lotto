@@ -1,6 +1,6 @@
 import LottoModel from '../models/LottoModel.js';
 import WinningNumberController from '../controllers/subController/WinningNumberController.js';
-import { WINNINGS } from '../configs/contants.js';
+import { STATISTIC } from '../configs/contants.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -28,11 +28,11 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     six: 1,
   };
   const sumWinnings =
-    WINNINGS.three +
-    WINNINGS.four +
-    WINNINGS.five +
-    WINNINGS.fiveBonus +
-    WINNINGS.six;
+    STATISTIC.three.number +
+    STATISTIC.four.number +
+    STATISTIC.five.number +
+    STATISTIC.fiveBonus.number +
+    STATISTIC.six.number;
 
   test('당첨번호와 생성된 로또 한 개의 일치하는 개수를 구할 수 있다.', () => {
     const bonusNumber = 45;
@@ -97,6 +97,6 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
 
     lottoModel.setState({ amount, winningStatistic });
 
-    expect(lottoModel.getEarningRatio()).toBe((sumWinnings / 1000) * 100);
+    expect(lottoModel.getEarningRatio()).toBe((sumWinnings / amount) * 100);
   });
 });
