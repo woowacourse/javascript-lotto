@@ -41,20 +41,26 @@ export class WinningNumberView {
     });
   }
 
-  bindMoveFocus() {
-    this.$pickedNumberInputs.forEach($input => {
-      $input.addEventListener('input', () => {
-        this.#moveFocusHandler($input);
-      });
-    });
-  }
-
   bindClickModalOutside() {
     this.$resultModalBackground.addEventListener('click', this.displayNoneResultModal.bind(this));
   }
 
-  moveFocusOnWinningNumberInput() {
-    this.$pickedNumberInputs[0].focus();
+  bindMoveFocus() {
+    this.$pickedNumberInputs.forEach(($input, index) => {
+      $input.addEventListener('input', () => {
+        this.#moveFocusHandler($input);
+      });
+
+      $input.addEventListener('keyup', e => {
+        if (e.key === 'Backspace' && $input.value.length === 0) {
+          Array.from(this.$pickedNumberInputs)
+            .slice(0, index)
+            .reverse()
+            .find($input => $input.value !== '')
+            ?.focus();
+        }
+      });
+    });
   }
 
   #moveFocusHandler($element) {
@@ -63,6 +69,10 @@ export class WinningNumberView {
         .find($input => $input.value === '')
         ?.focus();
     }
+  }
+
+  moveFocusOnWinningNumberInput() {
+    this.$pickedNumberInputs[0].focus();
   }
 
   displayPickedNumbersForm() {
