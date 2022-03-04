@@ -5,3 +5,11 @@ export const replaceHTML = (element, template) => {
   element.replaceChildren();
   element.insertAdjacentHTML('beforeend', template);
 };
+
+export const addClassName = ($element, className) => {
+  $element.classList.add(className);
+};
+
+export const removeClassName = ($element, className) => {
+  $element.classList.remove(className);
+};

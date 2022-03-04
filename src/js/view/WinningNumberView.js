@@ -1,11 +1,11 @@
 import { CLASS_SELECTOR, ID_SELECTOR, LOTTO_RULE, WINNING_PRIZE } from '../constants';
-import { $, $$, replaceHTML } from '../utils/dom';
+import { $, $$, addClassName, removeClassName, replaceHTML } from '../utils/dom';
 
 export class WinningNumberView {
   constructor() {
     this.#configureDOM();
     this.bindCloseModal();
-    this.bindInput();
+    this.bindMoveFocus();
   }
 
   #configureDOM() {
@@ -16,6 +16,7 @@ export class WinningNumberView {
     this.$resultModalReset = $(ID_SELECTOR.RESULT_MODAL_RESET);
     this.$resultModalProfitRatio = $(ID_SELECTOR.RESULT_MODAL_PROFIT_RATIO);
     this.$pickedNumberInputs = $$(CLASS_SELECTOR.PICKED_NUMBER_INPUT);
+    this.$body = document.querySelector('body');
   }
 
   bindCheckResult(handler) {
@@ -40,7 +41,7 @@ export class WinningNumberView {
     });
   }
 
-  bindInput() {
+  bindMoveFocus() {
     this.$pickedNumberInputs.forEach($input => {
       $input.addEventListener('input', () => {
         this.#moveFocusHandler($input);
@@ -65,21 +66,21 @@ export class WinningNumberView {
   }
 
   displayPickedNumbersForm() {
-    this.$pickedNumbersForm.classList.add(CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY);
+    addClassName(this.$pickedNumbersForm, CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY);
   }
 
   displayNonePickedNumbersForm() {
-    this.$pickedNumbersForm.classList.remove(CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY);
+    removeClassName(this.$pickedNumbersForm, CLASS_SELECTOR.PICKED_NUMBERS_FORM_DISPLAY);
   }
 
   displayResultModal() {
-    this.$resultModalBackground.classList.add(CLASS_SELECTOR.OPEN);
-    document.querySelector('body').classList.add('scroll-block');
+    addClassName(this.$resultModalBackground, CLASS_SELECTOR.OPEN);
+    addClassName(this.$body, 'scroll-block');
   }
 
   displayNoneResultModal() {
-    this.$resultModalBackground.classList.remove(CLASS_SELECTOR.OPEN);
-    document.querySelector('body').classList.remove('scroll-block');
+    removeClassName(this.$resultModalBackground, CLASS_SELECTOR.OPEN);
+    removeClassName(this.$body, 'scroll-block');
   }
 
   clearInputs() {
