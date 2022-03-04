@@ -33,6 +33,9 @@ export const checkValidWinningNumberInput = (numbers) => {
   if (numbers.length !== 7) {
     throw new Error('빈 입력이 있습니다.');
   }
+  if (new Set(numbers).size !== 7) {
+    throw new Error('번호가 중복됐습니다.');
+  }
   const filters = [isPositiveInteger, isValidRangeLottoNumber];
   const isValidWinningNumber = numbers.every((number) => filters.every((func) => func(number)));
   if (!isValidWinningNumber) {

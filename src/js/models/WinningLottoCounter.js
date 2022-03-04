@@ -38,39 +38,23 @@ export default class WinningLottoCounter {
   }
 
   calculateWinningCounts(boutghtLottos) {
-    const tempWinningCounts = { ...winningCountsInit };
     boutghtLottos.forEach((lotto) => {
-      const hitCount = this.#winningLotto.winningNumbers.reduce((acc, num) => {
+      let hitCount = this.#winningLotto.winningNumbers.reduce((acc, num) => {
         if (lotto.has(num)) {
           acc += 1;
         }
         return acc;
       }, 0);
-      switch (hitCount) {
-        case 6:
-          tempWinningCounts['1th'] += 1;
-          break;
-        case 5:
-          if (lotto.has(this.#winningLotto.bonusNumber)) {
-            tempWinningCounts['2th'] += 1;
-          } else {
-            tempWinningCounts['3th'] += 1;
-          }
-          break;
-        case 4:
-          tempWinningCounts['4th'] += 1;
-          break;
-        case 3:
-          tempWinningCounts['5th'] += 1;
-          break;
-        default:
-          break;
+      const isBonusHit = lotto.has(this.#winningLotto.bonusNumber);
+      hitCount = hitCount !== 6 ? hitCount - 1 : hitCount;
+      hitCount = hitCount === 5 && isBonusHit ? hitCount + 1 : hitCount;
+      if (hitCount >= 2) {
+        this.#winningCounts[`${7 - hitCount}th`] += 1;
       }
-      this.#winningCounts = { ...tempWinningCounts };
     });
   }
 
-  calculateProfitRate(chargedMoney) {
+  getProfitRate(chargedMoney) {
     const earnedMoney = Object.entries(this.#winningCounts).reduce(
       (total, [rank, count]) => (total += prizeMoney[rank] * count),
       0

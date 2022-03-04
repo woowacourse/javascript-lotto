@@ -9,18 +9,20 @@ const template = `
             <div class="winning-numbers-wrapper">
               <span>당첨 번호</span>
               <div class="winning-number-inputs-wrapper">
-                <input id="winning-number-input" class="winning-number-input" min="1" max="45" type="number" />
-                <input id="winning-number-input" class="winning-number-input" min="1" max="45" type="number" />
-                <input id="winning-number-input" class="winning-number-input" min="1" max="45" type="number" />
-                <input id="winning-number-input" class="winning-number-input" min="1" max="45" type="number" />
-                <input id="winning-number-input" class="winning-number-input" min="1" max="45" type="number" />
-                <input id="winning-number-input" class="winning-number-input" min="1" max="45" type="number" />
+              ${[...Array(6)]
+                .map(
+                  (_, index) =>
+                    `<input class="winning-number-input" data-index="${
+                      index + 1
+                    }" min="1" max="45" type="number" />`
+                )
+                .join('')}
               </div>
             </div>
             <div class="bonus-number-wrapper">
               <span>보너스 번호</span>
               <div class="bonus-number-input-wrapper">
-                <input class="bonus-number-input" min="1" max="45" type="number" />
+                <input class="bonus-number-input" data-index="7" min="1" max="45" type="number" />
               </div>
             </div>
           </div>
@@ -34,6 +36,21 @@ export default class WinningNumberView {
 
   constructor(element) {
     this.#$container = element;
+    this.winningNumberInputHandler();
+  }
+
+  winningNumberInputHandler() {
+    this.#$container.addEventListener('keypress', this.preventNonDigitInput.bind(this));
+  }
+
+  preventNonDigitInput(event) {
+    if (event.key.match(/[0-9]/) && event.target.value.length < 2) {
+      return;
+    }
+    const keypressInput = event.which;
+    if ((keypressInput !== 8 && keypressInput !== 0 && keypressInput < 48) || keypressInput > 57) {
+      event.preventDefault();
+    }
   }
 
   renderWinningNumbersInput() {

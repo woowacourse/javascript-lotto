@@ -49,12 +49,10 @@ export default class LottoController {
       checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
       this.#WinningLottoCounter.setWinningLotto({ winningNumbers, bonusNumber });
       this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottos);
-      this.#WinningLottoCounter.calculateProfitRate(this.#LottosModel.chargedMoney);
       this.#ResultModalView.showResultModal();
       this.#ResultModalView.renderHitCount(this.#WinningLottoCounter.winningCounts);
-      this.#ResultModalView.renderProfitRage(
-        this.#WinningLottoCounter.calculateProfitRate(this.#LottosModel.chargedMoney)
-      );
+      const profitRate = this.#WinningLottoCounter.getProfitRate(this.#LottosModel.chargedMoney);
+      this.#ResultModalView.renderProfitRage(profitRate);
     } catch (error) {
       alert(error);
     }

@@ -33,7 +33,13 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          process.env.NODE_ENV === 'production'
+            ? MiniCssExtractPlugin.loader // 프로덕션 환경
+            : 'style-loader', // 개발 환경
+          'css-loader',
+          'sass-loader',
+        ],
         exclude: /node_modules/,
       },
     ],

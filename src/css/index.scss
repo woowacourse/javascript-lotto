@@ -49,6 +49,9 @@ body {
     &:hover {
       filter: brightness(1.1);
     }
+    &:active {
+      background-color: #5cccee;
+    }
   }
 }
 
@@ -130,8 +133,11 @@ body {
   display: grid;
   grid-template-columns: repeat(8, 40px);
   grid-auto-rows: max-content;
+  width: fit-content;
+  padding-right: 10px;
   max-height: 400px;
   overflow-y: auto;
+  overflow-x: hidden;
 
   > .item {
     display: flex;
