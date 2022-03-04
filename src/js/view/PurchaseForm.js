@@ -11,7 +11,7 @@ export default class PurchaseFormView {
   }
 
   clearInput() {
-    this.$purchaseInput.value = '';
+    this.$purchaseForm.reset();
   }
 
   bindSubmitCash(handler) {

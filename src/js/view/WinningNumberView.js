@@ -81,7 +81,7 @@ export class WinningNumberView {
   }
 
   clearInputs() {
-    this.$pickedNumberInputs.forEach(input => (input.value = ''));
+    this.$pickedNumbersForm.reset();
   }
 
   showLottoResult(winningLottoQuantity, profitRatio) {
