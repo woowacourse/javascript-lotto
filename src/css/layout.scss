@@ -65,11 +65,43 @@ body {
     font-size: 1.1rem;
     padding: $form-item-padding;
     -moz-appearance: textfield;
+    transition: border ease 0.2s, background-color ease 0.2s;
+
+    &:focus {
+      outline: 1px solid $primary-color;
+    }
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+
+    &.error {
+      border-color: $warning-color;
+      background-color: #f4dddd;
+
+      &:focus {
+        outline-color: #ddd;
+      }
+
+      &::placeholder {
+        color: #8e3d3d;
+      }
+
+      @include animate(0.15s ease-out 3) {
+        0% {
+          transform: translateX(-1rem);
+        }
+
+        50% {
+          transform: translateX(1rem);
+        }
+
+        to {
+          transform: translateX(0%);
+        }
+      }
     }
   }
 
