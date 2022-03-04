@@ -52,5 +52,6 @@ export const onSubmitFareForm = (e) => {
   lottoGameView.bindLottoMatchViewEvent(onClickResultButton);
 };
 
-export const onToggleLottoViewerController = () =>
+export const onToggleLottoViewerController = () => {
   $('#lottos-container').classList.toggle('detail');
+};

@@ -13,14 +13,20 @@ const getDetailLottoListTemplate = (lottos) => {
 class LottoListView {
   #lottoCount;
 
+  #lottosContainer;
+
   #lottosDefault;
 
   #lottosDetail;
 
+  #lottoViewerController;
+
   constructor() {
     this.#lottoCount = $('#lotto-count');
+    this.#lottosContainer = $('#lottos-container');
     this.#lottosDefault = $('#lottos-container .lottos.default');
     this.#lottosDetail = $('#lottos-container .lottos.detail');
+    this.#lottoViewerController = $('#lotto-viewer-controller');
   }
 
   renderLottoList(lottos) {
@@ -32,6 +38,9 @@ class LottoListView {
   }
 
   reset() {
+    this.#lottosContainer.classList.remove('detail');
+    this.#lottoViewerController.checked = false;
+    this.#lottoCount.innerText = 0;
     this.#lottosDefault.innerHTML = '';
     this.#lottosDetail.innerHTML = '';
   }
