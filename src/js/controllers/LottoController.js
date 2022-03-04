@@ -29,7 +29,7 @@ export default class LottoController {
     this.ticketController.renderTicketListView();
   }
 
-  afterCalculateResult() {
+  afterSetWinningStatistic() {
     this.statisticController.renderView();
   }
 

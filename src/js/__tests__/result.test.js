@@ -14,7 +14,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     const bonusNumber = 45;
 
     expect(
-      winningNumberController.countCoincide(
+      winningNumberController.countSameNumber(
         lottoNumbersList[0],
         winningNumbers,
         bonusNumber
@@ -22,7 +22,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     ).toBe(6);
 
     expect(
-      winningNumberController.countCoincide(
+      winningNumberController.countSameNumber(
         lottoNumbersList[1],
         winningNumbers,
         bonusNumber
@@ -33,7 +33,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   test('일치하는 개수가 5개일 때 보너스를 확인하고, 보너스 개수를 추가할 수 있다.', () => {
     const bonusNumber = 6;
     expect(
-      winningNumberController.countCoincide(
+      winningNumberController.countSameNumber(
         lottoNumbersList[2],
         winningNumbers,
         bonusNumber
@@ -44,7 +44,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   test('각 로또 일치 개수를 담은 리스트를 구할 수 있다.', () => {
     const bonusNumber = 6;
     expect(
-      winningNumberController.createCoincideCountList(
+      winningNumberController.createCountList(
         lottoNumbersList,
         winningNumbers,
         bonusNumber
@@ -53,8 +53,7 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   });
 
   test('당첨된 로또의 개수별 통계를 구할 수 있다.', () => {
-    const lottoModel = new LottoModel();
-    const coincideCountList = [1, 3, 4, 5, 5.5, 6];
+    const CountList = [1, 3, 4, 5, 5.5, 6];
     const answerStatistic = {
       under: 1,
       three: 1,
@@ -64,16 +63,23 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
       six: 1,
     };
 
-    lottoModel.setWinningStatistic(coincideCountList);
-
-    expect(lottoModel.getState().winningStatistic).toEqual(answerStatistic);
+    expect(
+      winningNumberController.createStatisticWithCountList(CountList)
+    ).toEqual(answerStatistic);
   });
 
   test('총 당첨금을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
-    const coincideCountList = [1, 3, 4, 5, 5.5, 6];
+    const winningStatistic = {
+      under: 1,
+      three: 1,
+      four: 1,
+      five: 1,
+      fiveBonus: 1,
+      six: 1,
+    };
 
-    lottoModel.setWinningStatistic(coincideCountList);
+    lottoModel.setState({ winningStatistic });
 
     expect(lottoModel.getSumWinnings()).toBe(
       5000 + 50000 + 1500000 + 30000000 + 2000000000
@@ -83,12 +89,13 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
   test('당첨금과 구입 금액으로 수익률을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
     const amount = 1000;
-    const coincideCountList = [1, 3, 4, 5, 5.5, 6];
+    const countList = [1, 3, 4, 5, 5.5, 6];
+    const winningStatistic =
+      winningNumberController.createStatisticWithCountList(countList);
 
-    lottoModel.setState({ amount });
-    lottoModel.setWinningStatistic(coincideCountList);
+    lottoModel.setState({ amount, winningStatistic });
 
-    expect(lottoModel.getEarningRate()).toBe(
+    expect(lottoModel.getEarningRatio()).toBe(
       ((5000 + 50000 + 1500000 + 30000000 + 2000000000) / 1000) * 100
     );
   });

@@ -8,9 +8,8 @@ describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
     const lottoModel = new LottoModel();
     const purchaseAmount = 2000;
-    lottoModel.setState({ amount: purchaseAmount });
 
-    expect(lottoModel.getCountOfLotto()).toBe(2);
+    expect(lottoModel.getCountOfLotto(purchaseAmount)).toBe(2);
   });
 });
 
@@ -55,7 +54,7 @@ describe('로또 번호를 생성하여', () => {
   });
 });
 
-describe('LottoModel은', () => {
+describe('금액이 입력되면', () => {
   const lottoModel = new LottoModel();
 
   test('6개의 로또번호를 가진 로또를 생성할 수 있어야 한다.', () => {
