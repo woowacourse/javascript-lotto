@@ -13,10 +13,6 @@ export default class Lotto {
   }
 
   pushNumberIntoPickedNumber(putNumber) {
-    if (this.#isNumberListComplete()) {
-      return;
-    }
-
     this.#pickedNumberList.add(putNumber);
   }
 
