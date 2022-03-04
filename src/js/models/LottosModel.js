@@ -1,5 +1,5 @@
 import { LOTTO_SETTING } from '../constants/setting';
-import { getListDuplicateCount } from '../utils/data-manager';
+import { arraySum, getListDuplicateCount } from '../utils/data-manager';
 
 import Lotto from './Lotto';
 
@@ -71,7 +71,21 @@ export default class LottosModel {
     return output;
   }
 
+  getWinningYield(winningRankCountList) {
+    const { WINNING_AMOUNT_UNIT } = LOTTO_SETTING;
+    const winningTotalAmount = arraySum(
+      winningRankCountList.map((value, index) => value * WINNING_AMOUNT_UNIT[index])
+    );
+
+    return Math.round(
+      (winningTotalAmount / (this.#lottos.length * LOTTO_SETTING.PRICE)) * 100 - 100
+    );
+  }
+
   get result() {
-    return this.getWinningCount();
+    const winningRankCountList = this.getWinningCount();
+    const playerLottoYield = this.getWinningYield(winningRankCountList);
+
+    return { winningRankCountList, playerLottoYield };
   }
 }

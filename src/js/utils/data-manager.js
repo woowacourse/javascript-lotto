@@ -3,3 +3,5 @@ export const getRandomNumber = (minNumber, maxNumber) =>
 
 export const getListDuplicateCount = (currentList, compareList) =>
   currentList.filter((value) => compareList.includes(value)).length;
+
+export const arraySum = (array) => array.reduce((previous, current) => previous + current);

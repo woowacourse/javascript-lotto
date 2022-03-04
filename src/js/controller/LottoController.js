@@ -53,6 +53,11 @@ export default class LottoController {
     try {
       checkValidWinningNumberList(winningNumberList);
       this.#View.LottoResultModal.show();
+      this.#LottosModel.winningNumberList = winningNumberList;
+
+      const { winningRankCountList, playerLottoYield } = this.#LottosModel.result;
+      this.#View.LottoResultContent.renderLottoResultList(winningRankCountList);
+      this.#View.LottoResultContent.renderLottoResultYield(playerLottoYield);
     } catch (error) {
       alert(error.message);
     }
