@@ -3,7 +3,7 @@ import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/dom';
 import { changeCurrencyFormat } from '../utils/util';
 import { emitListener } from '../utils/event';
-import { computeRankPrize } from '../utils/rank';
+import { RANK_PRIZE } from '../constants/rank';
 
 class LottoResultView {
   #app = null;
@@ -67,8 +67,8 @@ class LottoResultView {
 
   renderStatisticsModalContents({ statistics, profitRatio }) {
     this.#statisticsTableBody.innerHTML = Object.keys(statistics).reduce((prev, currentKey) => {
-      const price = computeRankPrize(currentKey);
       const count = statistics[currentKey];
+      const price = RANK_PRIZE[currentKey];
 
       return prev + this.#generateStatisticsTableData(currentKey, price, count);
     }, '');

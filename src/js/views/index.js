@@ -32,18 +32,18 @@ class LottoViewManager {
   }
 
   #reducer = {
-    [`${VIEW_ACTION.UPDATE_LOTTO_LIST}`]: (payload) => {
+    [VIEW_ACTION.UPDATE_LOTTO_LIST]: (payload) => {
       this.#containerView.renderLottoSection(payload);
       this.#resultView.showWinNumberInputSection();
     },
-    [`${VIEW_ACTION.UPDATE_VISIBLE_STATE}`]: (payload) => {
+    [VIEW_ACTION.UPDATE_VISIBLE_STATE]: (payload) => {
       this.#containerView.renderAlignState(payload);
     },
-    [`${VIEW_ACTION.RENDER_STATISTICS}`]: (payload) => {
+    [VIEW_ACTION.RENDER_STATISTICS]: (payload) => {
       this.#resultView.showStatisticsModal();
       this.#resultView.renderStatisticsModalContents(payload);
     },
-    [`${VIEW_ACTION.MODAL_CANCEL}`]: () => {
+    [VIEW_ACTION.MODAL_CANCEL]: () => {
       this.#resultView.hideStatisticsModal();
     },
   };

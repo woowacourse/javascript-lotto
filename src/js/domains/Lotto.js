@@ -1,6 +1,6 @@
 import { NUMBER } from '../constants/number';
 import { shuffle } from '../utils/gameUtil';
-import { computeRank } from '../utils/rank';
+import { RANK_KEYS } from '../constants/rank';
 
 class Lotto {
   #lottoNumbers = null;
@@ -25,7 +25,26 @@ class Lotto {
     );
     const isMatchBonus = this.#lottoNumbers.includes(bonusNumber);
 
-    return computeRank(numberMatchCount, isMatchBonus);
+    return this.#computeRank(numberMatchCount, isMatchBonus);
+  }
+
+  #computeRank(numberMatchCount, isMatchBonus) {
+    if (numberMatchCount === 6) {
+      return RANK_KEYS.FIRST;
+    }
+    if (numberMatchCount === 5 && isMatchBonus) {
+      return RANK_KEYS.SECOND;
+    }
+    if (numberMatchCount === 5 && !isMatchBonus) {
+      return RANK_KEYS.THIRD;
+    }
+    if (numberMatchCount === 4) {
+      return RANK_KEYS.FORTH;
+    }
+    if (numberMatchCount === 3) {
+      return RANK_KEYS.FIFTH;
+    }
+    return RANK_KEYS.UNRANK;
   }
 }
 
