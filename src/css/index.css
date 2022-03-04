@@ -100,7 +100,6 @@ form {
   transform: translate(-50%);
   margin-top: 52px;
   width: 414px;
-  min-height: 727px;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -127,6 +126,11 @@ form {
 #ticket-section {
   display: flex;
   justify-content: space-between;
+}
+
+#ticket-list-wrap {
+  overflow: scroll;
+  height: 300px;
 }
 
 #ticket-list {
