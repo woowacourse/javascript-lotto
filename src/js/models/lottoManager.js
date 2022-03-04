@@ -1,5 +1,5 @@
-import { LOTTO_RULES, LOTTO_PRICE } from './constant/index.js';
-import { createRandomNumbers } from './utils/index.js';
+import { LOTTO_RULES, LOTTO_PRICE } from '../constant/index.js';
+import { createRandomNumbers } from '../utils/index.js';
 
 class LottoManager {
   #lottos = [];

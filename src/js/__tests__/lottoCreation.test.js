@@ -1,4 +1,4 @@
-import lottoManager from '../lottoManager.js';
+import lottoManager from '../models/lottoManager.js';
 import { isEnoughFare } from '../validation/index.js';
 import { createRandomNumbers } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';

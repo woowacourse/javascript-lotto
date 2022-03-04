@@ -1,8 +1,8 @@
+import lottoManager from '../models/lottoManager.js';
+import lottoStatisticMachine from '../models/lottoStatisticMachine.js';
+import lottoGameView from '../views/index.js';
 import { $ } from '../utils/index.js';
 import { validator } from '../validation/index.js';
-import lottoManager from '../lottoManager.js';
-import lottoGameView from '../views/index.js';
-import lottoStatisticMachine from '../lottoStatisticMachine.js';
 
 const onClickRestartButton = () => {
   lottoManager.reset();

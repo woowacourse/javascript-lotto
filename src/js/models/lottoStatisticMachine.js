@@ -1,4 +1,4 @@
-import { LOTTO_RULES, PRIZE_MONEY } from './constant/index.js';
+import { LOTTO_RULES, PRIZE_MONEY } from '../constant/index.js';
 
 class LottoStatisticMachine {
   #winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
