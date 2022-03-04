@@ -1,6 +1,22 @@
+import { LOTTO_NUMBERS, REGEX, SUCCESS_MESSAGE } from '../constants';
 import { $, $$ } from '../utils/selector';
 import { checkValidLottoCount, checkValidWinningNumbers } from '../utils/validator';
 import makeTemplate from './template';
+
+const pressKey = {
+  pressBackSpace: ({ key, target }, idx) =>
+    key === 'Backspace' && target.value.length === 0 && idx !== 0,
+
+  pressNumber: ({ key, target }) => key.match(/[0-9]/) && target.value.length < 2,
+
+  pressPossibleKey: ({ key }) =>
+    ['Tab', 'ArrowRight', 'ArrowLeft', 'Backspace'].some((possibleKey) => possibleKey === key),
+
+  pressNumberWhenMaxLength: ({ key, target }, idx) =>
+    key.match(/[0-9]/) && target.value.length === 2 && idx !== LOTTO_NUMBERS.LOTTO_LENGTH,
+
+  pressNotNumber: ({ key }) => key.match(REGEX.NOT_NUMBER),
+};
 
 export default class InputView {
   constructor() {
@@ -35,18 +51,13 @@ export default class InputView {
   }
 
   pressDownWinningNumberInputEventHandler(e, idx) {
-    const possibleKeys = ['Tab', 'ArrowRight', 'ArrowLeft', 'Backspace'];
-    if (e.key.match(/[0-9]/) && e.target.value.length < 2) {
-      return;
-    }
-
-    if (e.key === 'Backspace' && e.target.value.length === 0 && idx !== 0) {
+    if (pressKey.pressBackSpace(e, idx)) {
       this.$winningNumberInputs[idx - 1].focus();
       e.preventDefault();
       return;
     }
 
-    if (possibleKeys.some((key) => key === e.key)) {
+    if (pressKey.pressNumber(e) || pressKey.pressPossibleKey(e)) {
       return;
     }
 
@@ -54,17 +65,13 @@ export default class InputView {
   }
 
   pressUpWinningNumberInputEventHandler(e, idx) {
-    if (
-      e.key.match(/[0-9]/) &&
-      e.target.value.length === 2 &&
-      idx !== this.$winningNumberInputs.length - 1
-    ) {
+    if (pressKey.pressNumberWhenMaxLength(e, idx)) {
       this.$winningNumberInputs[idx + 1].focus();
     }
 
-    if (e.key.match(/[^0-9]/g)) {
+    if (pressKey.pressNotNumber(e)) {
       e.preventDefault();
-      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+      e.target.value = e.target.value.replace(REGEX.NOT_NUMBER, '');
     }
   }
 
@@ -83,7 +90,7 @@ export default class InputView {
     try {
       checkValidLottoCount(valueAsNumber);
 
-      this.$lottoPriceInputMessage.innerText = '구입이 가능합니다';
+      this.$lottoPriceInputMessage.innerText = SUCCESS_MESSAGE.PURCHASE_POSSIBLE;
       this.$lottoPriceInputMessage.classList.add('pass');
       this.$lottoPriceInput.classList.remove('invalid-input');
       this.$lottoPriceButton.disabled = false;
@@ -102,7 +109,7 @@ export default class InputView {
 
     try {
       checkValidWinningNumbers(winnerNumberArray);
-      this.$winningErrorMessage.innerText = '당첨번호 입력이 완료되었습니다.';
+      this.$winningErrorMessage.innerText = SUCCESS_MESSAGE.POSSIBLE_WINNING_NUMBER_INPUT;
       this.$winningErrorMessage.classList.add('pass');
       this.$checkResultButton.disabled = false;
     } catch (err) {
@@ -116,7 +123,7 @@ export default class InputView {
     if (target.tagName !== 'INPUT') {
       return;
     }
-    if (!target.value.match(/(^[1-9]{1}$)|(^[1-3]{1}[0-9]{1}$)|^[4]{1}[0-5]{1}$/)) {
+    if (!target.value.match(REGEX.NUMBER_IN_RANGE)) {
       target.classList.add('invalid-input');
     }
   }

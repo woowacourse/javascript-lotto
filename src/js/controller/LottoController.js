@@ -67,9 +67,9 @@ export default class LottoController {
 
   submitCheckResultButtonHandler(e) {
     if (e.target.id !== 'winning-numbers-form') return;
+
     e.preventDefault();
     const $winningNumberInputs = $$('.winning-number-input');
-
     const winnerNumberArray = Array.from($winningNumberInputs).map(($winningNumberInput) =>
       Number($winningNumberInput.value),
     );

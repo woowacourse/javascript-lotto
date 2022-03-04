@@ -20,3 +20,13 @@ export const ALERT_MESSAGE = Object.freeze({
   OVER_MAX_LOTTO_COUNT: '로또는 100개이하만 구매할수 있습니다',
   EMPTY_INPUT: '빈칸없이 입력해주세요',
 });
+
+export const SUCCESS_MESSAGE = Object.freeze({
+  PURCHASE_POSSIBLE: '구입이 가능합니다',
+  POSSIBLE_WINNING_NUMBER_INPUT: '당첨번호 입력이 완료되었습니다.',
+});
+
+export const REGEX = Object.freeze({
+  NOT_NUMBER: /[^0-9]/g,
+  NUMBER_IN_RANGE: /(^[1-9]{1}$)|(^[1-3]{1}[0-9]{1}$)|^[4]{1}[0-5]{1}$/,
+});
