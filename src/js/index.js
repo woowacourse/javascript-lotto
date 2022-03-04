@@ -7,6 +7,7 @@ import LottoPurchaseInputView from './views/lottoPurchaseInputView.js';
 import LottoPurchaseResultView from './views/lottoPurchaseResultView.js';
 import LottoWinningNumberInputView from './views/lottoWinningNumberInputView.js';
 import LottoResultView from './views/lottoResultView.js';
+
 import '../css/index.css';
 
 // eslint-disable-next-line max-lines-per-function

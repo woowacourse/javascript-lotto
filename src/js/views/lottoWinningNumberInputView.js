@@ -58,11 +58,3 @@ export default class LottoWinningNumberInputView {
     this.#lottoWinningNumberInputSection.remove();
   }
 }
-
-// #handleBlockNotNumberInput(event) {
-//   const conditions = ['Key', 'Space'];
-
-//   if (conditions.some((ele) => event.code.includes(ele))) {
-//     event.preventDefault();
-//   }
-// }

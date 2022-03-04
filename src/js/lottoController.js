@@ -150,8 +150,3 @@ export default class LottoController {
     );
   }
 }
-
-// #submitBlockNotNumberInput(event) {
-//   event.preventDefault();
-//   console.log(event.detail);
-// }

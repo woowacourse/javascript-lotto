@@ -31,34 +31,23 @@ export default class LottoResultManager {
   }
 
   static getKeyByMatchedNumCount(matchedNumCount, lotto, lottoWinningBonusNumber) {
-    let key;
+    const KEY_BY_MATCHED_NUM_COUNT = {
+      3: LOTTO_MATCHING_RESULT_KEY.THREE,
+      4: LOTTO_MATCHING_RESULT_KEY.FOUR,
+      5: lotto.includes(lottoWinningBonusNumber)
+        ? LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS
+        : LOTTO_MATCHING_RESULT_KEY.FIVE,
+      6: LOTTO_MATCHING_RESULT_KEY.SIX,
+      NOTHING: LOTTO_MATCHING_RESULT_KEY.NOTHING,
+    };
 
-    switch (matchedNumCount) {
-      case 3:
-        key = LOTTO_MATCHING_RESULT_KEY.THREE;
-        break;
-      case 4:
-        key = LOTTO_MATCHING_RESULT_KEY.FOUR;
-        break;
-      case 5:
-        key = lotto.includes(lottoWinningBonusNumber)
-          ? LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS
-          : LOTTO_MATCHING_RESULT_KEY.FIVE;
-        break;
-      case 6:
-        key = LOTTO_MATCHING_RESULT_KEY.SIX;
-        break;
-      default:
-        key = LOTTO_MATCHING_RESULT_KEY.NOTHING;
-    }
-
-    return key;
+    return KEY_BY_MATCHED_NUM_COUNT[matchedNumCount] ?? KEY_BY_MATCHED_NUM_COUNT.NOTHING;
   }
 
   static calcProfit(purchaseMoney, lottoMatchingResult) {
     const totalPrizeMoney = Object.keys(lottoMatchingResult).reduce((currentPrizeMoney, key) => {
       const prizeAmount = lottoMatchingResult[key];
-      const earnedPrizeMoney = this.getPrizeUnitByKey(key) * prizeAmount;
+      const earnedPrizeMoney = this.getPrizeUnit(key) * prizeAmount;
 
       return currentPrizeMoney + earnedPrizeMoney;
     }, 0);
@@ -66,20 +55,16 @@ export default class LottoResultManager {
     return Math.round(((totalPrizeMoney - purchaseMoney) / purchaseMoney) * 100);
   }
 
-  static getPrizeUnitByKey(key) {
-    switch (key) {
-      case LOTTO_MATCHING_RESULT_KEY.THREE:
-        return LOTTO_PRIZE_MONEY_UNIT.THREE;
-      case LOTTO_MATCHING_RESULT_KEY.FOUR:
-        return LOTTO_PRIZE_MONEY_UNIT.FOUR;
-      case LOTTO_MATCHING_RESULT_KEY.FIVE:
-        return LOTTO_PRIZE_MONEY_UNIT.FIVE;
-      case LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS:
-        return LOTTO_PRIZE_MONEY_UNIT.FIVE_PLUS_BONUS;
-      case LOTTO_MATCHING_RESULT_KEY.SIX:
-        return LOTTO_PRIZE_MONEY_UNIT.SIX;
-      default:
-        return 1;
-    }
+  static getPrizeUnit(key) {
+    const PRIZE_MONEY_UNIT = {
+      [LOTTO_MATCHING_RESULT_KEY.THREE]: LOTTO_PRIZE_MONEY_UNIT.THREE,
+      [LOTTO_MATCHING_RESULT_KEY.FOUR]: LOTTO_PRIZE_MONEY_UNIT.FOUR,
+      [LOTTO_MATCHING_RESULT_KEY.FIVE]: LOTTO_PRIZE_MONEY_UNIT.FIVE,
+      [LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS]: LOTTO_PRIZE_MONEY_UNIT.FIVE_PLUS_BONUS,
+      [LOTTO_MATCHING_RESULT_KEY.SIX]: LOTTO_PRIZE_MONEY_UNIT.SIX,
+      [LOTTO_MATCHING_RESULT_KEY.NOTHING]: LOTTO_PRIZE_MONEY_UNIT.NOTHING,
+    };
+
+    return PRIZE_MONEY_UNIT[key] ?? PRIZE_MONEY_UNIT.NOTHING;
   }
 }
