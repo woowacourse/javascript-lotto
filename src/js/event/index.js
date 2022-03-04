@@ -1,8 +1,8 @@
-import { $ } from './utils/index.js';
-import { validator } from './validation/index.js';
-import lottoManager from './lottoManager.js';
-import lottoGameView from './views/index.js';
-import lottoStatisticMachine from './lottoStatisticMachine.js';
+import { $ } from '../utils/index.js';
+import { validator } from '../validation/index.js';
+import lottoManager from '../lottoManager.js';
+import lottoGameView from '../views/index.js';
+import lottoStatisticMachine from '../lottoStatisticMachine.js';
 
 const onClickRestartButton = () => {
   lottoManager.reset();
@@ -26,7 +26,6 @@ const onClickResultButton = (winningNumbers, bonumsNumber) => {
     winningNumbers,
     bonumsNumber,
   );
-
   const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
 
   lottoGameView.renderWinningStatisticModal(winningCounts, earningsRate);
