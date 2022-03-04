@@ -79,7 +79,9 @@ class LottoGameModel {
       NUMBER.THIRD_GRADE_PRIZE * this.winningResult[NUMBER.THIRD_GRADE_INDEX] +
       NUMBER.FOURTH_GRADE_PRIZE * this.winningResult[NUMBER.FOURTH_GRADE_INDEX] +
       NUMBER.FIFTH_GRADE_PRIZE * this.winningResult[NUMBER.FIFTH_GRADE_INDEX];
-    this.winningResult[NUMBER.EARNING_RATE_INDEX] = Math.floor(totalWinningMoney / totalCharge);
+    this.winningResult[NUMBER.EARNING_RATE_INDEX] = Math.floor(
+      (totalWinningMoney / totalCharge) * 100
+    );
   }
 }
 

@@ -22,9 +22,11 @@ class LottoGameView {
   initialize() {
     this.$purchasedMessage.innerText = '';
     this.$lottoContainer.innerHTML = '';
+    this.$alignConverter.checked = false;
     this.$lottoSection.setAttribute('data-visible-state', false);
     this.renderWinNumberInputSection(false);
     this.renderAlignState(false);
+    this.$lottoSection.style.height = 0;
   }
 
   renderLottoSection(lottoList) {
@@ -33,6 +35,7 @@ class LottoGameView {
     this.$lottoContainer.innerHTML = lottoList
       .map((lotto) => this.generateLottoTemplate(lotto))
       .join('');
+    this.$lottoSection.style.height = this.#calculateInvisibleLottoSectionHeight(lottoList.length);
   }
 
   generateLottoTemplate({ lottoNumbers }) {
@@ -72,7 +75,8 @@ class LottoGameView {
           NUMBER.LOTTO_ELEMENT_PER_LINE
       );
       return `${
-        linesOfLottoIcon * ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE +
+        linesOfLottoIcon *
+          (ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE + ELEMENT_PROPERTY.GAP_OF_LOTTO_ITEM) +
         ELEMENT_PROPERTY.DEFAULT_HEIGHT_OF_LOTTO_SECTION
       }px`;
     }
@@ -81,6 +85,14 @@ class LottoGameView {
 
   renderWinNumberInputSection(visibleState) {
     this.$winNumberInputSection.setAttribute('data-visible-state', visibleState);
+  }
+
+  setInvalidInputState(target) {
+    target.setAttribute('data-invalid-state', true);
+  }
+
+  setValidInputState(target) {
+    target.setAttribute('data-invalid-state', false);
   }
 
   openResultModal(resultArray) {

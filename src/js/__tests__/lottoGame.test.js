@@ -48,7 +48,7 @@ describe('로또 게임 모델 테스트', () => {
     const lottoGame = new LottoGame();
     const lottoList = [];
     const winningNumbers = [1, 2, 3, 4, 5, 6, 10];
-    const result = [1, 0, 1, 1, 0, 667183, 0];
+    const result = [1, 0, 1, 1, 0, 66718300, 0];
 
     lottoList.push(Lotto.create([1, 2, 3, 4, 5, 6]));
     lottoList.push(Lotto.create([1, 2, 3, 4, 5, 7]));

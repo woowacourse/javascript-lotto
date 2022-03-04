@@ -2,7 +2,8 @@ export const SELECTOR = {
   CHARGE_INPUT_FORM: '#charge-input-form',
   CHARGE_INPUT: '#charge-input',
   WIN_NUMBER_INPUT_FORM: '#win-number-input-form',
-  WIN_NUMBER_INPUT: '#win-number-',
+  LAST_WIN_NUMBER_INPUT: '#win-number-6',
+  BONUS_NUMBER_INPUT: '#bonus-number',
 
   ALIGN_CONVERTER: '#align-converter',
   PURCHASED_MESSAGE: '#purchased-message',

@@ -9,6 +9,16 @@ input:focus {
   outline: 2px solid #00bcd4;
 }
 
+input[data-invalid-state='true'] {
+  background-color: #ffb0cd;
+  border: 1px solid #ff6464;
+  outline: 2px solid #ff6464;
+}
+
+input[data-invalid-state='false'] {
+  background-color: #ffffff;
+}
+
 label {
   cursor: pointer;
 }

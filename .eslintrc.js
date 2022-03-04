@@ -14,7 +14,7 @@ module.exports = {
   rules: {
     'no-var': 'error',
     'max-depth': ['error', 2],
-    'max-lines-per-function': ['error', 15],
+    'max-lines-per-function': ['error', 20],
     'no-console': 'warn',
     'no-param-reassign': 'error',
     'padding-line-between-statements': 0,
@@ -22,5 +22,6 @@ module.exports = {
     'no-undefined': 0,
     'no-constant-condition': 0,
     'no-unused-private-class-members': 0,
+    'lines-between-class-members': 0,
   },
 };

@@ -13,6 +13,10 @@ export function isValidNumber(lottoNumbers) {
   );
 }
 
+export function isNotValidNumber(number) {
+  return number < 1 || number > 45;
+}
+
 export function isValidCharge(charge) {
   return Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE;
 }
