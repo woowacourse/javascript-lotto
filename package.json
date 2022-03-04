@@ -13,6 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
@@ -36,5 +37,8 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.17.2"
   }
 }

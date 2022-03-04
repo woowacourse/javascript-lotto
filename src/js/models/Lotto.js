@@ -20,12 +20,18 @@ export default class Lotto {
     this.#pickedNumberList.add(putNumber);
   }
 
+  #sortNumberList() {
+    this.#pickedNumberList = new Set([...this.#pickedNumberList].sort((a, b) => a > b));
+  }
+
   generateNumberList() {
     const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
     while (this.#isNumberListComplete() === false) {
       const randomNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
       this.pushNumberIntoPickedNumber(randomNumber);
     }
+
+    this.#sortNumberList();
   }
 
   get pickedNumber() {
