@@ -39,17 +39,18 @@ export default class LottoListView {
   }
 
   #showLottoList(lottoList) {
-    const template = lottoList
-      .map(
-        lotto => `
-        <li class="${CLASS_SELECTOR.LOTTO_LIST}">
-          <span class="${CLASS_SELECTOR.LOTTO_LIST_TICKET}">🎟️</span>
-          <span class="${CLASS_SELECTOR.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(
-          ', ',
-        )}</span>
-        </li>`,
-      )
-      .join('');
-    replaceHTML(this.$lottoLists, template);
+    replaceHTML(this.$lottoLists, lottoListTemplate(lottoList));
   }
+}
+
+function lottoListTemplate(lottoList) {
+  return lottoList
+    .map(
+      lotto => `
+      <li class="${CLASS_SELECTOR.LOTTO_LIST}">
+        <span class="${CLASS_SELECTOR.LOTTO_LIST_TICKET}">🎟️</span>
+        <span class="${CLASS_SELECTOR.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(', ')}</span>
+      </li>`,
+    )
+    .join('');
 }
