@@ -7,9 +7,16 @@ export default class LottoModel {
   constructor() {
     this.lottoCount = 0;
     this.lottos = [];
-    this.winningLottoNumberes = {
+    this.winningLottoNumbers = {
       winningNumbers: [],
       bonusNumber: 0,
+    };
+    this.winningType = {
+      3: 0,
+      4: 0,
+      5: 0,
+      5.5: 0,
+      6: 0,
     };
   }
 
@@ -63,7 +70,50 @@ export default class LottoModel {
   setWinningLottoNumbers(winnerNumberArray, bonusNumber) {
     checkValidWinningLottoNumbers(this.getTotalWinningLottoNumbers(winnerNumberArray, bonusNumber));
 
-    this.winningLottoNumberes.winningNumbers = winnerNumberArray;
-    this.winningLottoNumberes.bonusNumber = bonusNumber;
+    this.winningLottoNumbers.winningNumbers = winnerNumberArray;
+    this.winningLottoNumbers.bonusNumber = bonusNumber;
+  }
+
+  calculateWinningNumbers() {
+    this.lottos.forEach((lotto) => {
+      let winningCount = 2 * lotto.length - [...new Set(lotto.concat(this.winningLottoNumbers.winningNumbers))].length;
+
+      if (winningCount === 5 && lotto.includes(this.winningLottoNumbers.bonusNumber)) {
+        winningCount += 0.5;
+      }
+
+      if (winningCount >= 3) {
+        this.winningType[winningCount] += 1;
+      }
+    });
+
+    return this.winningType;
+  }
+
+  initWinningType() {
+    this.winningType = {
+      3: 0,
+      4: 0,
+      5: 0,
+      5.5: 0,
+      6: 0,
+    };
+  }
+
+  calculateEarningRate() {
+    const winningPriceInfo = {
+      3: 5000,
+      4: 50000,
+      5: 1500000,
+      5.5: 30000000,
+      6: 2000000000,
+    };
+
+    return Math.floor(
+      (Object.entries(this.winningType).reduce(
+        (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
+        0,
+      ) / (this.lottoCount * 1000)) * 100,
+    );
   }
 }

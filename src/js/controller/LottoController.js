@@ -81,7 +81,10 @@ export default class LottoController {
 
     try {
       this.lottoModel.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
-      this.popupView.renderPopup();
+
+      const winningType = this.lottoModel.calculateWinningNumbers();
+      const earningRate = this.lottoModel.calculateEarningRate();
+      this.popupView.renderPopup(winningType, earningRate);
       this.popupView.toggleMainContainerState();
     } catch (err) {
       alert(err.message);
@@ -90,7 +93,7 @@ export default class LottoController {
 
   handleClosePopupButtonClick({ target }) {
     if (target.id !== 'close-popup-button') return;
-
+    this.lottoModel.initWinningType();
     this.popupView.toggleMainContainerState();
     this.popupView.closePopup();
   }
