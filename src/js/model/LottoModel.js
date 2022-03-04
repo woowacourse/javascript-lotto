@@ -7,6 +7,10 @@ export default class LottoModel {
   constructor() {
     this.lottoCount = 0;
     this.lottos = [];
+    this.winningLottoNumberes = {
+      winningNumbers: [],
+      bonusNumber: 0,
+    };
   }
 
   setLottoCount(lottoCount) {
@@ -50,5 +54,10 @@ export default class LottoModel {
   buyLottos(lottoPriceInput) {
     this.calculateLottoCount(lottoPriceInput);
     this.setLottos(this.generateLottos());
+  }
+
+  setWinningLottoNumbers(winnerNumberArray, bonusNumber) {
+    this.winningLottoNumberes.winningNumbers = winnerNumberArray;
+    this.winningLottoNumberes.bonusNumber = bonusNumber;
   }
 }

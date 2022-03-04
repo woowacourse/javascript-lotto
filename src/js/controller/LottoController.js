@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom';
+import { $, $$ } from '../utils/dom';
 
 import LottoModel from '../model/LottoModel';
 
@@ -21,6 +21,7 @@ export default class LottoController {
     this.$lottoPriceForm = $('#lotto-price-form');
     this.$lottoPriceInput = $('#lotto-price-input');
     this.$lottoPriceButton = $('#lotto-price-button');
+    this.$result = $('#result');
   }
 
   bindEvent() {
@@ -38,6 +39,7 @@ export default class LottoController {
 
   bindEventAfterRenderResult() {
     this.$checkbox.addEventListener('change', this.handleCheckBoxChange.bind(this));
+    this.$result.addEventListener('click', this.handleResultButtonClick.bind(this));
   }
 
   handleLottoPriceButtonSubmit(event) {
@@ -62,5 +64,17 @@ export default class LottoController {
       return;
     }
     this.resultView.initLottos();
+  }
+
+  handleResultButtonClick({ target }) {
+    if (target.id !== 'check-result-button') return;
+
+    const $winningNumberInputs = $$('.winning-number-input');
+    const $bonusNumberInput = $('.bonus-number-input');
+
+    const winnerNumberArray = Array.from($winningNumberInputs).map(($winnnigNumberInput) => Number($winnnigNumberInput.value));
+    const bonusNumber = $bonusNumberInput.value;
+
+    this.lottoModel.setWinningLottoNumbers(winnerNumberArray, bonusNumber);
   }
 }
