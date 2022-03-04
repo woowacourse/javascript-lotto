@@ -36,12 +36,12 @@ export default class LottoMachineController {
 
     if (isEmptyArray(lottos)) {
       this.view.purchasedLottoView.rendering(lottoCount, purchasedLottos);
-      this.view.winningNumberView.rendering(purchasedLottos);
+      this.view.winningNumberView.rendering(purchasedLottos, purchaseMoney);
       return;
     }
     if (this.tryRePurchase()) {
       this.view.purchasedLottoView.reflow(lottoCount, purchasedLottos);
-      this.view.winningNumberView.reflow(purchasedLottos);
+      this.view.winningNumberView.reflow(purchasedLottos, purchaseMoney);
       return;
     }
 

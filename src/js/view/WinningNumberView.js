@@ -1,4 +1,5 @@
 import { RULES } from '../constants/index.js';
+import { getWinLottoCount } from '../util/common.js';
 
 const INPUT_ELEMENT = '<input type="number" class="winning-number-input" min="1" max="45" step="1" maxlength="2" required/>';
 
@@ -26,13 +27,10 @@ const WINNING_NUMBER_FORM = `
 const MODAL_TEMPLATE = `
   <div id="modal">
     <div id="dim"></div>
-
     <div id="modal-container">
       <button id="exit-button">X</button>
       <div id="modal-content">
         <h2>🏆 당첨 통계 🏆</h2>
-
-
         <table>
           <thead>
               <tr>
@@ -44,44 +42,37 @@ const MODAL_TEMPLATE = `
           <tbody>
             <tr>
               <td>3개</td>
-              <td>5,000</td>
-              <td>n개</td>
+              <td class="win-lotto-money"></td>
+              <td class="win-lotto-count"></td>
             </tr>
-
             <tr>
               <td>4개</td>
-              <td>50,000</td>
-              <td>n개</td>
+              <td class="win-lotto-money"></td>
+              <td class="win-lotto-count"></td>
             </tr>
-
             <tr>
               <td>5개</td>
-              <td>1,5000,000</td>
-              <td>n개</td>
+              <td class="win-lotto-money"></td>
+              <td class="win-lotto-count"></td>
             </tr>
-
             <tr>
               <td>5개+보너스볼</td>
-              <td>30,000,000</td>
-              <td>n개</td>
+              <td class="win-lotto-money"></td>
+              <td class="win-lotto-count"></td>
             </tr>
-
             <tr>
               <td>6개</td>
-              <td>2,000,000,000</td>
-              <td>n개</td>
+              <td class="win-lotto-money"></td>
+              <td class="win-lotto-count"></td>
             </tr>
           </tbody>
         </table>
-
-        <p id="earning-text">당신의 총 수익률은 <span id="earning-rate">100</span>%입니다</p>
+        <p id="earning-text">당신의 총 수익률은 <span id="earning-rate"></span>%입니다</p>
         <div id="modal-footer">
           <button id="restart-lotto-button">다시 시작하기</button>
         </div>
       </div> 
-
     </div>
-
   </div>
 `;
 
@@ -99,11 +90,11 @@ export default class WinningNumberView {
   }
 
   #addEvent(props) {
-    const { purchasedLottos } = props;
+    const { purchasedLottos, purchaseMoney } = props;
     const resultBtn = this.container.querySelector('#winning-number-form');
     const winningNumbers = this.container.querySelectorAll('.winning-number-input');
 
-    const resultEvent = new CustomEvent('submitResult', { detail: { purchasedLottos }, cancelable: true });
+    const resultEvent = new CustomEvent('submitResult', { detail: { purchasedLottos, purchaseMoney }, cancelable: true });
 
     resultBtn.addEventListener('submitResult', this.onSubmitHandler.bind(this));
     resultBtn.addEventListener('submit', (e) => {
@@ -148,14 +139,14 @@ export default class WinningNumberView {
     }
   }
 
-  rendering(purchasedLottos) {
+  rendering(purchasedLottos, purchaseMoney) {
     console.log('rendering purchasedLottos', purchasedLottos);
     this.#paint();
     this.#render();
-    this.#addEvent({ purchasedLottos });
+    this.#addEvent({ purchasedLottos, purchaseMoney });
   }
 
-  reflow(purchasedLottos) {
+  reflow(purchasedLottos, purchaseMoney) {
     console.log('reflow purchasedLottos', purchasedLottos);
     this.#render();
     // this.#rePaint();
@@ -163,22 +154,47 @@ export default class WinningNumberView {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    const { detail: { purchasedLottos } } = e;
+    const { detail: { purchasedLottos, purchaseMoney } } = e;
 
     if (new Set(this.winLottosNumbers).size !== 7) {
       window.alert('중복된 번호는 입력할 수 없습니다.');
       return;
     }
-    console.log('this.winLottosNumbers', this.winLottosNumbers, purchasedLottos);
-    const winNumbers = this.winLottosNumbers.slice(0, 6);
-    const bonusNumber = this.winLottosNumbers.slice(6);
-    console.log(winNumbers, bonusNumber);
 
-    this.bindModalEvent();
+    const winNumbers = this.winLottosNumbers.slice(0, 6);
+    const bonusNumber = this.winLottosNumbers.slice(6).pop();
+
+    const winLottoCount = getWinLottoCount({
+      purchasedLottos,
+      winNumbers,
+      bonusNumber,
+    });
+
+    this.bindModal(winLottoCount, purchaseMoney);
   }
 
-  bindModalEvent() {
+  bindModal(winLottoCount, purchaseMoney) {
     this.container.insertAdjacentHTML('beforeend', MODAL_TEMPLATE);
+
+    const winMoneyElements = this.container.querySelectorAll('.win-lotto-money');
+    const winCountElements = this.container.querySelectorAll('.win-lotto-count');
+
+    const winLottos = Object.values(winLottoCount);
+    let winMoney = 0;
+
+    winLottos.forEach((winLotto, index) => {
+      const { count, money } = winLotto;
+
+      winCountElements[index].textContent = `${count}개`;
+      winMoneyElements[index].textContent = `${money.toLocaleString()}개`;
+
+      if (count > 0) {
+        winMoney += money;
+      }
+    });
+
+    const earningRate = this.container.querySelector('#earning-rate');
+    earningRate.textContent = `${(winMoney / purchaseMoney).toFixed(2)}`;
 
     const exitBtn = this.container.querySelector('#exit-button');
     const restartBtn = this.container.querySelector('#restart-lotto-button');
