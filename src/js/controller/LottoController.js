@@ -1,8 +1,8 @@
 import { $ } from '../utils/dom';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { isValidMoneyInput } from './validator';
+import { lottoTicket } from '../model/lottoTicket';
 import LottoView from '../view/LottoView';
-import { LottoTicket } from '../model/LottoTicket';
 
 export default class LottoController {
   constructor() {
@@ -18,7 +18,7 @@ export default class LottoController {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
-    LottoTicket.issueLottoTickets(moneyInput);
-    this.lottoView.showResult(LottoTicket.getLottoTickets());
+    lottoTicket.issueLottoTickets(moneyInput);
+    this.lottoView.showResult(lottoTicket.getLottoTickets());
   };
 }

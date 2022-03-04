@@ -1,7 +1,7 @@
 import { LOTTO } from '../constants/constants';
 import { shuffleNumber } from '../utils/number';
 
-export const LottoTicket = {
+export const lottoTicket = {
   store: [],
 
   issueLottoTickets(moneyInput) {
