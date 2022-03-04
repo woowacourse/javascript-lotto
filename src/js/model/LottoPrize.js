@@ -1,4 +1,4 @@
-import PRIZE from '../constants/prize.js';
+import { PRIZE_MONEY } from '../constants/prize.js';
 
 export default class LottoPrize {
   constructor() {
@@ -63,11 +63,11 @@ export default class LottoPrize {
   calculateRateOfReturn(inputMoney) {
     const firstValue = inputMoney;
     const lastValue =
-      this.prizeCount.first * PRIZE.FIRST +
-      this.prizeCount.second * PRIZE.SECOND +
-      this.prizeCount.third * PRIZE.THIRD +
-      this.prizeCount.fourth * PRIZE.FOURTH +
-      this.prizeCount.fifth * PRIZE.FIFTH;
+      this.prizeCount.first * PRIZE_MONEY.FIRST +
+      this.prizeCount.second * PRIZE_MONEY.SECOND +
+      this.prizeCount.third * PRIZE_MONEY.THIRD +
+      this.prizeCount.fourth * PRIZE_MONEY.FOURTH +
+      this.prizeCount.fifth * PRIZE_MONEY.FIFTH;
 
     this.rateOfReturn = ((lastValue - firstValue) / firstValue) * 100;
   }
