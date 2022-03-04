@@ -26,7 +26,7 @@ describe('구입금액 테스트', () => {
   })
 
   test('구입 금액은 5000원을 초과할 수 없다', () => {
-    const purchaseMoney = 6000;
+    const purchaseMoney = 220000;
     expect(() => isMaxPurchaseLotto(purchaseMoney)).toThrow(ERROR_MESSAGE.MORE_THAN_MAX_COST);
   })
 });

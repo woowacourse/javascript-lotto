@@ -19,7 +19,7 @@ export const isPositiveValue = (purchaseMoney) => {
 };
 
 export const isMaxPurchaseLotto = (purchaseMoney) => {
-  if (purchaseMoney > 5000) {
+  if (purchaseMoney > 100000) {
     throw ERROR_MESSAGE.MORE_THAN_MAX_COST;
   }
 }

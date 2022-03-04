@@ -88,11 +88,15 @@ label[for="purchase-money"] {
 }
 
 #lotto-list {
+  width: 300px;
+  height: 300px;
+  overflow: scroll;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .lotto-list-column {
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .lotto-wrap {
