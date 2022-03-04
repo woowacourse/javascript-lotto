@@ -1,15 +1,18 @@
 import { $, $$ } from '../utils/util';
-import { MATCH_RESULT_INDEX, PRIZE_MONEY, SELECTOR } from '../constants/constants';
+import { MATCH_RESULT_INDEX, PRIZE_MONEY } from '../constants/constants';
 
 const CLASS_DISPLAY_NONE = 'display-none';
 
 export default class WinningResultSectionView {
   constructor() {
     this.winningResultSection = $('#winning-result-section');
-    this.winningNumberForm = $(SELECTOR.WINNING_NUMBER_FORM);
+    this.winningNumberForm = $('#winning-number-form');
     this.winningNumberInputs = $$('.winning-number-input', this.winningNumberForm);
     this.winningNumberSubmitButton = $('button', this.winningNumberForm);
     this.resultModalArea = $('#result-modal-area', this.winningResultSection);
+    this.resultModalCloseButton = $('#result-modal-close-button', this.resultModalArea);
+    this.restartButton = $('#restart-button', this.resultModalArea);
+    
     this.bindEvent();
   }
 
@@ -18,8 +21,8 @@ export default class WinningResultSectionView {
       inputElement.addEventListener('keyup', this.onTypeWinningNumber.bind(this, index));
     })
     this.winningNumberForm.addEventListener('submit', this.onSubmitWinningNumber.bind(this));
-    $('#result-modal-close-button').addEventListener('click', this.closeWinningResultModal.bind(this));
-    $('#restart-button', this.resultModalArea).addEventListener('click', this.onClickRestartButton.bind(this));
+    this.resultModalCloseButton.addEventListener('click', this.closeWinningResultModal.bind(this));
+    this.restartButton.addEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   onTypeWinningNumber(inputIndex, event) {
@@ -31,7 +34,7 @@ export default class WinningResultSectionView {
 
   onSubmitWinningNumber(event) {
     event.preventDefault();
-    const winningNumberInputValues = Array.from($$(SELECTOR.WINNING_NUMBER_INPUT))
+    const winningNumberInputValues = Array.from(this.winningNumberInputs)
       .map(numberInput => Number(numberInput.value)).filter(number => number !== 0);
     const winningNumberSubmitEvent = new CustomEvent('checkWinningResult', {
       detail: {

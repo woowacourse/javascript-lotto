@@ -34,16 +34,3 @@ export const PRIZE_MONEY = {
   BONUS: 30000000,
   6: 2000000000
 }
-
-
-export const SELECTOR = {
-  CHARGE_SUBMIT_FORM: '#charge-submit-form',
-  CHARGE_INPUT: '#charge-input',
-  SHOW_NUMBER_TOGGLE_INPUT: '#show-number-toggle-input',
-  LOTTO_LIST_NUMBER: '#lotto-list-number',
-  LOTTO_TOTAL_NUMBER: '#lotto-total-number',
-  LOTTO_LIST_ICON: '#lotto-list-icon',
-  WINNING_NUMBER_FORM: '#winning-number-form',
-
-  WINNING_NUMBER_INPUT: '.winning-number-input'
-};
