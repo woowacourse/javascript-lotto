@@ -1,5 +1,6 @@
 import LottoModel from '../models/LottoModel.js';
 import WinningNumberController from '../controllers/subController/WinningNumberController.js';
+import { WINNINGS } from '../configs/contants.js';
 
 describe('금액이 주어지면', () => {
   test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
@@ -18,6 +19,20 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     [2, 24, 17, 43, 35, 10],
     [6, 23, 16, 42, 34, 9],
   ];
+  const winningStatistic = {
+    under: 1,
+    three: 1,
+    four: 1,
+    five: 1,
+    fiveBonus: 1,
+    six: 1,
+  };
+  const sumWinnings =
+    WINNINGS.three +
+    WINNINGS.four +
+    WINNINGS.five +
+    WINNINGS.fiveBonus +
+    WINNINGS.six;
 
   test('당첨번호와 생성된 로또 한 개의 일치하는 개수를 구할 수 있다.', () => {
     const bonusNumber = 45;
@@ -63,49 +78,25 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
 
   test('당첨된 로또의 개수별 통계를 구할 수 있다.', () => {
     const CountList = [1, 3, 4, 5, 5.5, 6];
-    const answerStatistic = {
-      under: 1,
-      three: 1,
-      four: 1,
-      five: 1,
-      fiveBonus: 1,
-      six: 1,
-    };
 
     expect(
       winningNumberController.createStatisticWithCountList(CountList)
-    ).toEqual(answerStatistic);
+    ).toEqual(winningStatistic);
   });
 
   test('총 당첨금을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
-    const winningStatistic = {
-      under: 1,
-      three: 1,
-      four: 1,
-      five: 1,
-      fiveBonus: 1,
-      six: 1,
-    };
-
     lottoModel.setState({ winningStatistic });
 
-    expect(lottoModel.getSumWinnings()).toBe(
-      5000 + 50000 + 1500000 + 30000000 + 2000000000
-    );
+    expect(lottoModel.getSumWinnings()).toBe(sumWinnings);
   });
 
   test('당첨금과 구입 금액으로 수익률을 구할 수 있다.', () => {
     const lottoModel = new LottoModel();
     const amount = 1000;
-    const countList = [1, 3, 4, 5, 5.5, 6];
-    const winningStatistic =
-      winningNumberController.createStatisticWithCountList(countList);
 
     lottoModel.setState({ amount, winningStatistic });
 
-    expect(lottoModel.getEarningRatio()).toBe(
-      ((5000 + 50000 + 1500000 + 30000000 + 2000000000) / 1000) * 100
-    );
+    expect(lottoModel.getEarningRatio()).toBe((sumWinnings / 1000) * 100);
   });
 });

@@ -21,8 +21,8 @@ export default class PaymentController {
     try {
       validator.checkPurchaseAmount(amount);
       this.purchaseLottos(amount);
-    } catch (e) {
-      alert(e.message);
+    } catch (error) {
+      alert(error.message);
     }
   }
 

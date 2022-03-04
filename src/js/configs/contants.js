@@ -14,6 +14,15 @@ export const PAYMENT = {
   },
 };
 
+export const WINNINGS = {
+  under: 0,
+  three: 5000,
+  four: 50000,
+  five: 1500000,
+  fiveBonus: 30000000,
+  six: 2000000000,
+};
+
 export const ERROR_MESSAGE = {
   NOT_A_AMOUNT_NUMBER: `입력된 금액이 숫자가 아닙니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상 ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
   OUT_OF_MIN_AMOUNT_RANGE: `로또의 1개의 가격은 ${LOTTO.PRICE} 입니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상의 금액을 입력해주세요.`,
@@ -23,15 +32,6 @@ export const ERROR_MESSAGE = {
   IS_DUPLICATED: `당첨번호가 중복되었습니다. 중복없이 번호를 입력해주세요.`,
   IS_DUPLICATED_BONUS: `당첨번호와 보너스 번호가 중복됩니다. 중복없이 입력해주세요.`,
   DID_NOT_BUY_LOTTO: `구입한 로또가 없습니다. 로또를 먼저 구입해주세요.`,
-};
-
-export const WINNINGS = {
-  under: 0,
-  three: 5000,
-  four: 50000,
-  five: 1500000,
-  fiveBonus: 30000000,
-  six: 2000000000,
 };
 
 export const DOM_STRING = {
