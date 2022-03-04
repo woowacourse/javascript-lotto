@@ -79,8 +79,8 @@ export default class WinningNumberController {
 
   checkBonus(count, lottoNumbers, bonus) {
     return (
-      lottoNumbers.find((number) => number === bonus) &&
-      count === STATISTIC.five.number
+      count === STATISTIC.five.number &&
+      lottoNumbers.find((number) => number === bonus)
     );
   }
 
