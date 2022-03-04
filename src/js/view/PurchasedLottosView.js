@@ -48,7 +48,20 @@ export default class PurchasedLottosView {
       'beforeend',
       PURCHASED_LOTTO_TEMPLATE,
     );
-    this.setSwitchEvent();
+    this.registerSwitchEvent();
+  }
+
+  registerSwitchEvent() {
+    const switchButton = document.getElementById('on-off-switch');
+    switchButton.addEventListener('click', this.handleSwitchClick.bind(this));
+  }
+
+  handleSwitchClick() {
+    const classList = this.purchasedLottoList.classList;
+
+    classList.contains('switch-off')
+      ? classList.replace('switch-off', 'switch-on')
+      : classList.replace('switch-on', 'switch-off');
   }
 
   renderPurchasedLottoList(lottos) {
@@ -62,19 +75,6 @@ export default class PurchasedLottosView {
       'beforeend',
       getLottoListTemplate(lottos),
     );
-  }
-
-  setSwitchEvent() {
-    const switchButton = document.getElementById('on-off-switch');
-    switchButton.addEventListener('click', this.handleSwitchClick.bind(this));
-  }
-
-  handleSwitchClick() {
-    const classList = this.purchasedLottoList.classList;
-
-    classList.contains('switch-off')
-      ? classList.replace('switch-off', 'switch-on')
-      : classList.replace('switch-on', 'switch-off');
   }
 
   resetScreen() {

@@ -1,12 +1,12 @@
 import { ERROR_MESSAGE, RULES } from '../constants/index.js';
 import {
-  isZero,
-  isNotNumber,
-  isNegativeNumber,
-  isNotThousandUnit,
-  isEmpty,
   isDuplicated,
-} from './common.js';
+  isEmpty,
+  isNegativeNumber,
+  isNotNumber,
+  isNotThousandUnit,
+  isZero,
+} from '../utils/common.js';
 
 export const validatePurchaseMoney = value => {
   if (isZero(value)) {

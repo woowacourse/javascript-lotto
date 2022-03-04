@@ -3,6 +3,7 @@ import PurchasedLottos from '../model/PurchasedLottos.js';
 import InputMoneyView from '../view/InputMoneyView.js';
 import PurchasedLottosView from '../view/PurchasedLottosView.js';
 import InputWinningNumberView from '../view/InputWinningNumberView.js';
+import LottoResultModalView from '../view/LottoResultModalView.js';
 
 import {
   CONFIRM_MESSAGE,
@@ -10,8 +11,7 @@ import {
   RANKING_ACCORDING_MATCH_COUNT,
   RULES,
 } from '../constants/index.js';
-import { calculateProfitRate, isEmpty } from '../utils/common.js';
-import LottoResultModalView from '../view/LottoResultModalView.js';
+import { isEmpty } from '../utils/common.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -27,7 +27,7 @@ export default class LottoMachineController {
     //View handlers 멤버변수에 등록
     this.view.inputMoneyView.addHandler({
       name: 'purchasedMoneySubmit',
-      handler: this.submitPurchaseMoneyHandler.bind(this),
+      handler: this.handlePurchaseLotto.bind(this),
     });
 
     this.view.lottoResultModalView.addHandler({
@@ -37,11 +37,11 @@ export default class LottoMachineController {
 
     this.view.inputWinningNumberView.addHandler({
       name: 'winningNumberSubmit',
-      handler: this.calculatePurchasedLottoResult.bind(this),
+      handler: this.handlePurchasedLottoResult.bind(this),
     });
   }
 
-  submitPurchaseMoneyHandler(purchaseMoney) {
+  handlePurchaseLotto(purchaseMoney) {
     const lottos = this.model.lottos;
 
     if (isEmpty(lottos)) {
@@ -72,10 +72,18 @@ export default class LottoMachineController {
     return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
   }
 
+  handlePurchasedLottoResult(winningNumbers) {
+    const lottoResult = this.calculatePurchasedLottoResult(winningNumbers);
+    this.view.lottoResultModalView.renderLottoResult(lottoResult);
+
+    const totalProfitRate = this.calculateTotalProfitRate(lottoResult);
+    this.view.lottoResultModalView.renderTotalProfitRate(totalProfitRate);
+  }
+
   calculatePurchasedLottoResult(winningNumbers) {
     const winNumbers = winningNumbers.slice(0, 6);
     const bonusNumber = winningNumbers[winningNumbers.length - 1];
-    const lottoResult = this.initializeLottoResult();
+    const lottoResult = this.generateLottoResultObject();
 
     this.model.lottos.forEach(lotto => {
       const matchCount = lotto.calculateMatchCount(winNumbers, bonusNumber);
@@ -86,15 +94,17 @@ export default class LottoMachineController {
       }
     });
 
-    this.view.lottoResultModalView.renderLottoResult(lottoResult);
-    this.calculateTotalProfitRate(lottoResult);
+    return lottoResult;
   }
 
-  initializeLottoResult() {
-    return Object.keys(LOTTO_RANKING_REWARD).reduce((obj, ranking) => {
-      obj[ranking] = 0;
-      return obj;
-    }, {});
+  generateLottoResultObject() {
+    const lottoResult = [];
+
+    for (let ranking of Object.keys(LOTTO_RANKING_REWARD)) {
+      lottoResult[ranking] = 0;
+    }
+
+    return lottoResult;
   }
 
   calculateTotalProfitRate(lottoResult) {
@@ -105,9 +115,8 @@ export default class LottoMachineController {
     );
     const purchasedLottoCount = this.model.lottos.length;
     const usedMoney = purchasedLottoCount * RULES.LOTTO_PRICE;
-    const totalProfitRate = calculateProfitRate(totalProfit, usedMoney);
 
-    this.view.lottoResultModalView.renderTotalProfitRate(totalProfitRate);
+    return (totalProfit / usedMoney) * 100;
   }
 
   reset() {

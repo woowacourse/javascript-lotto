@@ -1,7 +1,8 @@
+import View from './View.js';
+
 import { RULES } from '../constants/index.js';
 import { convertToNumber } from '../utils/common.js';
-import { validateWinningNumberList } from '../utils/validator.js';
-import View from './View.js';
+import { validateWinningNumberList } from './validator.js';
 
 //template
 const INPUT_ELEMENT = `<input type="text" class="winning-number-input" maxlength='2'/>`;
@@ -31,7 +32,7 @@ const WINNING_NUMBER_FORM = `
 export default class InputWinningNumberView extends View {
   constructor() {
     super();
-    //멤버변수 초기화
+
     this.app = document.getElementById('app');
     this.winningNumberContainer = document.getElementById(
       'winning-number-container',
@@ -45,41 +46,16 @@ export default class InputWinningNumberView extends View {
       WINNING_NUMBER_FORM,
     );
 
-    this.setWinningNumberFormEvent();
-    this.setWinningNumbersInputsEvent();
+    this.registerWinningNumberFormEvent();
+    this.registerWinningNumbersInputsEvent();
   }
 
-  setWinningNumberFormEvent() {
+  registerWinningNumberFormEvent() {
     const winningNumberForm = document.getElementById('winning-number-form');
-
     winningNumberForm.addEventListener(
       'submit',
       this.handleWinningNumberFormSubmit.bind(this),
     );
-  }
-
-  setWinningNumbersInputsEvent() {
-    this.winningNumberInputs = document.querySelectorAll(
-      '.winning-number-input',
-    );
-
-    this.winningNumberInputs.forEach((inputElement, index) => {
-      inputElement.addEventListener('input', () =>
-        this.handleWinningNumberInputFocus(inputElement, index),
-      );
-    });
-  }
-
-  handleWinningNumberInputFocus(inputElement, index) {
-    if (inputElement.value.length !== 2) {
-      return;
-    }
-
-    if (index === RULES.WINNING_LOTTO_NUMS - 1) {
-      return;
-    }
-
-    this.winningNumberInputs[index + 1].focus();
   }
 
   handleWinningNumberFormSubmit(e) {
@@ -99,6 +75,29 @@ export default class InputWinningNumberView extends View {
       this.resetInputElementsValue();
       alert(error);
     }
+  }
+
+  registerWinningNumbersInputsEvent() {
+    this.winningNumberInputs = document.querySelectorAll(
+      '.winning-number-input',
+    );
+    this.winningNumberInputs.forEach((inputElement, index) => {
+      inputElement.addEventListener('input', () =>
+        this.handleWinningNumberInputFocus(inputElement, index),
+      );
+    });
+  }
+
+  handleWinningNumberInputFocus(inputElement, index) {
+    if (inputElement.value.length !== 2) {
+      return;
+    }
+
+    if (index === RULES.WINNING_LOTTO_NUMS - 1) {
+      return;
+    }
+
+    this.winningNumberInputs[index + 1].focus();
   }
 
   showModal() {
