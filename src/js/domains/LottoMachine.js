@@ -51,6 +51,12 @@ export default class LottoMachine {
     return ((totalProfit * 100) / this.#totalMoney).toFixed(2);
   }
 
+  init() {
+    this.#inputMoney = 0;
+    this.#lottos = [];
+    this.#totalMoney = 0;
+  }
+
   getNumberOfGrade(type) {
     return this.#lottos.filter(({ result: { grade } }) => grade === type)
       .length;
