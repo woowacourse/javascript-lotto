@@ -18,14 +18,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.6.0",
     "eslint-config-prettier": "^8.4.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "gh-pages": "^3.2.3",
-=======
->>>>>>> a161b95 (feat: 로또 금액을 입력받아 저장하도록 구현)
-=======
-    "gh-pages": "^3.2.3",
->>>>>>> b2d3b16 (chore: webpack 배포 관련 설정)
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "style-loader": "^3.3.1",
@@ -42,18 +35,6 @@
     "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4"
-<<<<<<< HEAD
-
   },
-    "homepage" : "https://judonghyeok.github.io/javascript-lotto/"
-
-  
-=======
-  },
-<<<<<<< HEAD
-    "homepage" : "https://judonghyeok.github.io/javascript-lotto/"
->>>>>>> b2d3b16 (chore: webpack 배포 관련 설정)
-=======
   "homepage": "https://judonghyeok.github.io/javascript-lotto/"
->>>>>>> 176586d (feat: LottoView 당첨번호와 보너스 번호 입력받는 기능)
 }

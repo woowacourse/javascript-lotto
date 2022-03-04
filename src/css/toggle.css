@@ -2,20 +2,9 @@
 .switch {
   position: relative;
   display: inline-block;
-<<<<<<< HEAD
-<<<<<<< HEAD
   width: 34px;
   height: 14px;
   margin-top: 15px;
-=======
-  width: 60px;
-  height: 34px;
->>>>>>> 617f5ec (design: '토글버튼' UI 생성)
-=======
-  width: 34px;
-  height: 14px;
-  margin-top: 15px;
->>>>>>> b8d77a6 (desigin: 토글 UI 수정)
 }
 
 /* Hide default HTML checkbox */
@@ -33,32 +22,19 @@
   left: 0;
   right: 0;
   bottom: 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
   background-color: #ededed;
-=======
-  background-color: #ccc;
->>>>>>> 617f5ec (design: '토글버튼' UI 생성)
-=======
-  background-color: #ededed;
->>>>>>> b8d77a6 (desigin: 토글 UI 수정)
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b8d77a6 (desigin: 토글 UI 수정)
   content: '';
   height: 20px;
   width: 20px;
   left: -1px;
   bottom: -3px;
   background-color: #ededed;
-<<<<<<< HEAD
   -webkit-transition: 0.4s;
   transition: 0.4s;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -77,40 +53,6 @@ input:checked + .slider:before {
   -ms-transform: translateX(15px);
   transform: translateX(15px);
   background-color: #00bcd4;
-=======
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-=======
->>>>>>> b8d77a6 (desigin: 토글 UI 수정)
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-input:checked + .slider {
-  background-color: #80deea;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-}
-
-input:checked + .slider:before {
-<<<<<<< HEAD
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
->>>>>>> 617f5ec (design: '토글버튼' UI 생성)
-=======
-  -webkit-transform: translateX(15px);
-  -ms-transform: translateX(15px);
-  transform: translateX(15px);
-  background-color: #00bcd4;
->>>>>>> b8d77a6 (desigin: 토글 UI 수정)
 }
 
 /* Rounded sliders */
