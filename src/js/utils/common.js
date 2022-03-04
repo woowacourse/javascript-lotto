@@ -33,19 +33,18 @@ export const pickLottoNumber = count => {
   const lottoNumbers = [...Array(RULES.MAX_LOTTO_NUMBER)].map(
     (_, index) => index + 1,
   );
-  shuffleArray(lottoNumbers);
-
+  const shuffledLottoNumbers = shuffleArray(lottoNumbers);
   const numbers = [];
 
   for (let i = 0; i < count; i++) {
-    numbers.push(lottoNumbers.pop());
+    numbers.push(shuffledLottoNumbers.pop());
   }
 
   return numbers;
 };
 
 const shuffleArray = inputArray => {
-  inputArray.sort(() => Math.random() - 0.5);
+  return inputArray.slice().sort(() => Math.random() - 0.5);
 };
 
 export const getProfitRate = (totalProfit, usedMoney) => {
