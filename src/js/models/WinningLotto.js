@@ -1,11 +1,8 @@
-export default class WinningLotto {
-  #winningNumbers;
-  #bonusNumber;
+import { checkValidWinningNumberInput } from '../utils/Lotto/validator';
 
-  constructor({ winningNumbers, bonusNumber }) {
-    this.#winningNumbers = new Set(winningNumbers);
-    this.#bonusNumber = bonusNumber;
-  }
+export default class WinningLotto {
+  #winningNumbers = [];
+  #bonusNumber = null;
 
   get winningNumbers() {
     return this.#winningNumbers;
@@ -15,7 +12,14 @@ export default class WinningLotto {
     return this.#bonusNumber;
   }
 
-  pushNumber(number) {
-    this.#winningNumbers.add(number);
+  generate(winningNumbers, bonusNumber) {
+    try {
+      checkValidWinningNumberInput([...new Set(winningNumbers.concat(bonusNumber))]);
+      this.#winningNumbers = winningNumbers;
+      this.#bonusNumber = bonusNumber;
+      return this;
+    } catch (error) {
+      return new Error();
+    }
   }
 }

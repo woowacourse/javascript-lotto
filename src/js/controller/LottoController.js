@@ -49,7 +49,8 @@ export default class LottoController {
   handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
     try {
       checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
-      this.#WinningLottoCounter.setWinningLotto(new WinningLotto({ winningNumbers, bonusNumber }));
+      const winningLotto = new WinningLotto().generate(winningNumbers, bonusNumber);
+      this.#WinningLottoCounter.setWinningLotto(winningLotto);
       this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottos);
       this.#ResultModalView.showResultModal();
       this.#ResultModalView.renderHitCount(this.#WinningLottoCounter.winningCounts);
