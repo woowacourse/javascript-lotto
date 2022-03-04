@@ -1,5 +1,6 @@
 import { $ } from '../../utils/utils.js';
 import template from '../../templates/template';
+import { DOM_STRING, SELECTOR } from '../../configs/contants.js';
 
 export default class StatisticView {
   constructor(target) {
@@ -16,16 +17,16 @@ export default class StatisticView {
   }
 
   appearView() {
-    this.$target.classList.remove('blind');
+    this.$target.classList.remove(DOM_STRING.BLIND);
   }
 
   disappearView() {
-    this.$target.classList.add('blind');
+    this.$target.classList.add(DOM_STRING.BLIND);
   }
 
   afterMounted() {
-    this.$resetButton = $('#reset-button');
-    this.$closeButton = $('#close-button');
+    this.$resetButton = $(SELECTOR.RESET_BUTTON);
+    this.$closeButton = $(SELECTOR.CLOSE_BUTTON);
   }
 
   bindOnClickResetButton(callback) {

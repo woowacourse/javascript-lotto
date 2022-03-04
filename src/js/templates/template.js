@@ -1,14 +1,14 @@
-import { DOM_STRING, LOTTO } from '../configs/contants.js';
+import { LOTTO } from '../configs/contants.js';
 
 const template = {
   app: () => {
     return `
-      <h1 id="${DOM_STRING.TITLE}">🎱 행운의 로또</h1>
-      <section id="${DOM_STRING.PAYMENT_SECTION}">
+      <h1 id="title">🎱 행운의 로또</h1>
+      <section id="payment-section">
       </section>
-      <section id="${DOM_STRING.TICKET_SECTION}">
+      <section id="ticket-section">
       </section>
-      <section id="${DOM_STRING.WINNING_NUMBER_SECTION}">
+      <section id="winning-number-section">
       </section>
       <div id="statistic-section-wrap" class="blind">
       </div>
@@ -16,38 +16,38 @@ const template = {
   },
   paymentSection: () => {
     return `
-      <h2 hidden>${DOM_STRING.PAYMENT_SECTION}</h2>
-      <label for="${DOM_STRING.PAYMENT_INPUT}">구입할 금액을 입력해주세요.</label>
+      <h2 hidden>payment-section</h2>
+      <label for="payment-input">구입할 금액을 입력해주세요.</label>
       <form>
-        <input type="number" id="${DOM_STRING.PAYMENT_INPUT}" name="${DOM_STRING.PAYMENT_INPUT}" />
-        <button id="${DOM_STRING.PAYMENT_SUBMIT}">구입</button>
+        <input type="number" id="payment-input" />
+        <button id="payment-submit">구입</button>
       </form>
     `;
   },
   ticketSection: () => {
     return `
-      <h2 class="${DOM_STRING.BLIND}">${DOM_STRING.TICKET_SECTION}</h2>
-      <div id="${DOM_STRING.TICKET_LIST_WRAP}">
+      <h2 class="blind">ticket-section</h2>
+      <div id="ticket-list-wrap">
       </div>
-      <div id="${DOM_STRING.SHOW_NUMBER_TOGGLE_AREA}">
+      <div id="show-number-toggle-area">
       </div>
     `;
   },
   ticketListWrap: (lottoList, isShowNumber) => {
     return `
       <p>총 <span>${lottoList.length}</span>개를 구매하였습니다.</p>
-      <ul id="${DOM_STRING.TICKET_LIST}" class="${
-      isShowNumber ? DOM_STRING.TICKET_LIST_COLUMN : DOM_STRING.TICKET_LIST_ROW
-    }">
+      <ul id="ticket-list" class="${
+        isShowNumber ? 'ticket-list-column' : 'ticket-list-row'
+      }">
         ${lottoList
           .map(
             (lotto) =>
-              `<li class="${DOM_STRING.TICKET}">
+              `<li class="ticket">
               <p>
-              <span class="${DOM_STRING.TICKET_EMOJI}">🎟</span>
+              <span class="ticket-emoji">🎟</span>
               ${
                 isShowNumber
-                  ? `<span class="${DOM_STRING.TICKET_NUMBERS}">
+                  ? `<span class="ticket-numbers">
                   ${lotto.numbers.join(', ')}</span>`
                   : ''
               }
@@ -60,38 +60,34 @@ const template = {
   },
   showNumberToggleArea: (isShowNumber) => {
     return `
-      <label class="${DOM_STRING.SWITCH_LABEL}">
+      <label class="switch-label">
       번호 보기
-        <label class="${DOM_STRING.SWITCH}">
-          <input id="${DOM_STRING.SLIDER}" type="checkbox" ${
-      isShowNumber ? 'checked' : ''
-    }/>
-          <span class="${DOM_STRING.SLIDER} round"></span>
+        <label class="switch">
+          <input id="slider" type="checkbox" ${isShowNumber ? 'checked' : ''}/>
+          <span class="slider round"></span>
         </label>
       </label>
     `;
   },
   winningNumberSection: () => {
     return `
-      <h2 class="${DOM_STRING.BLIND}">${DOM_STRING.WINNING_NUMBER_SECTION}</h2>
+      <h2 class="blind">winning-number-section</h2>
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <fieldset id="${DOM_STRING.WINNING_NUMBER_FIELDSET}">
-        <form id="${DOM_STRING.WINNING_NUMBER_FORM}">
+      <fieldset id="winning-number-fieldset">
+        <form id="winning-number-form">
           <label>당첨 번호</label>
-          <div id="${DOM_STRING.WINNING_NUMBER_INPUT_WRAP}">
-            ${`<input class="${DOM_STRING.WINNING_NUMBER_INPUT}" type="text" maxlength="2" />`.repeat(
+          <div id="winning-number-input-wrap">
+            ${`<input class="winning-number-input" type="text" maxlength="2" />`.repeat(
               LOTTO.NUMBER_LENGTH
             )}
           </div>
         </form>
-        <form id="${DOM_STRING.BONUS_NUMBER_FORM}">
+        <form id="bonus-number-form">
           <label for="bonus_number">보너스 번호</label>
-          <input class="${
-            DOM_STRING.BONUS_NUMBER_INPUT
-          }" type="text" name="bonus_number" maxlength="2" />
+          <input class="bonus-number-input" type="text" name="bonus_number" maxlength="2" />
         </form>
       </fieldset>
-      <button id="${DOM_STRING.SHOW_RESULT_BUTTON}">결과 확인하기</button>
+      <button id="show-result-button">결과 확인하기</button>
     `;
   },
   statisticSectionWrap: (winningStatistic, earningRatio) => {
