@@ -1,10 +1,8 @@
 //template
 const getLottoListTemplate = lottos => {
-  const initValue = '';
-
   const lottoListTemplate = lottos.reduce(
     (result, lotto) => result + getLottoItemTemplate(lotto.numbers),
-    initValue,
+    '',
   );
 
   return lottoListTemplate;
@@ -40,22 +38,25 @@ const PURCHASED_LOTTO_TEMPLATE = `
 //class
 export default class PurchasedLottosView {
   constructor() {
-    this.container = document.getElementById('purchased-lotto-container');
+    this.purchasedLottoContainer = document.getElementById(
+      'purchased-lotto-container',
+    );
   }
 
-  render(lottos, lottoCount) {
-    this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
-
-    const purchasedLottoCount = document.getElementById(
-      'purchased-lotto-count',
+  initializeScreen() {
+    this.purchasedLottoContainer.insertAdjacentHTML(
+      'beforeend',
+      PURCHASED_LOTTO_TEMPLATE,
     );
-    purchasedLottoCount.textContent = lottoCount;
-
-    this.renderPurchasedLottoList(lottos);
-    this.addSwitchClickEvent();
+    this.setSwitchEvent();
   }
 
   renderPurchasedLottoList(lottos) {
+    const purchasedLottoCount = document.getElementById(
+      'purchased-lotto-count',
+    );
+    purchasedLottoCount.textContent = lottos.length;
+
     this.purchasedLottoList = document.getElementById('purchased-lotto-list');
     this.purchasedLottoList.insertAdjacentHTML(
       'beforeend',
@@ -63,12 +64,12 @@ export default class PurchasedLottosView {
     );
   }
 
-  addSwitchClickEvent() {
+  setSwitchEvent() {
     const switchButton = document.getElementById('on-off-switch');
-    switchButton.addEventListener('click', this.switchClickHandler.bind(this));
+    switchButton.addEventListener('click', this.handleSwitchClick.bind(this));
   }
 
-  switchClickHandler() {
+  handleSwitchClick() {
     const classList = this.purchasedLottoList.classList;
 
     classList.contains('switch-off')
@@ -77,6 +78,8 @@ export default class PurchasedLottosView {
   }
 
   resetScreen() {
-    this.container.removeChild(this.container.lastElementChild);
+    this.purchasedLottoContainer.removeChild(
+      this.purchasedLottoContainer.lastElementChild,
+    );
   }
 }

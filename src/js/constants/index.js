@@ -26,7 +26,7 @@ export const LOTTO_RANKING_REWARD = {
   '5등': 5000,
 };
 
-export const RANKING_ACCORDING_TO_MATCH_COUNT = {
+export const RANKING_ACCORDING_MATCH_COUNT = {
   6: '1등',
   '5+bonus': '2등',
   5: '3등',

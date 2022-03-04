@@ -20,7 +20,7 @@ export const isDuplicated = list => {
   return list.length !== [...new Set(list)].length;
 };
 
-export const isNotUnitOfThousand = value => {
+export const isNotThousandUnit = value => {
   return value % RULES.LOTTO_PRICE !== 0;
 };
 
@@ -49,6 +49,6 @@ const shuffleArray = inputArray => {
   return inputArray.slice().sort(() => Math.random() - 0.5);
 };
 
-export const getProfitRate = (totalProfit, usedMoney) => {
+export const calculateProfitRate = (totalProfit, usedMoney) => {
   return (totalProfit / usedMoney) * 100;
 };

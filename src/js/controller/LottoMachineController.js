@@ -7,10 +7,10 @@ import InputWinningNumberView from '../view/InputWinningNumberView.js';
 import {
   CONFIRM_MESSAGE,
   LOTTO_RANKING_REWARD,
-  RANKING_ACCORDING_TO_MATCH_COUNT,
+  RANKING_ACCORDING_MATCH_COUNT,
   RULES,
 } from '../constants/index.js';
-import { getProfitRate, isEmpty } from '../utils/common.js';
+import { calculateProfitRate, isEmpty } from '../utils/common.js';
 import LottoResultModalView from '../view/LottoResultModalView.js';
 
 export default class LottoMachineController {
@@ -52,7 +52,6 @@ export default class LottoMachineController {
     if (this.tryRePurchase()) {
       this.view.purchasedLottosView.resetScreen();
       this.view.inputWinningNumberView.resetScreen();
-
       this.purchaseLotto(purchaseMoney);
       return;
     }
@@ -64,19 +63,13 @@ export default class LottoMachineController {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
     const lottos = this.model.purchaseLotto(lottoCount);
 
-    this.view.purchasedLottosView.render(lottos, lottoCount);
-    this.view.inputWinningNumberView.render();
+    this.view.purchasedLottosView.initializeScreen();
+    this.view.purchasedLottosView.renderPurchasedLottoList(lottos);
+    this.view.inputWinningNumberView.renderWinningNumberForm();
   }
 
   tryRePurchase() {
     return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
-  }
-
-  initializeLottoResult() {
-    return Object.keys(LOTTO_RANKING_REWARD).reduce((obj, ranking) => {
-      obj[ranking] = 0;
-      return obj;
-    }, {});
   }
 
   calculatePurchasedLottoResult(winningNumbers) {
@@ -86,14 +79,22 @@ export default class LottoMachineController {
 
     this.model.lottos.forEach(lotto => {
       const matchCount = lotto.calculateMatchCount(winNumbers, bonusNumber);
-      const ranking = RANKING_ACCORDING_TO_MATCH_COUNT[matchCount];
+      const ranking = RANKING_ACCORDING_MATCH_COUNT[matchCount];
 
       if (ranking !== '꽝') {
         lottoResult[ranking]++;
       }
     });
+
     this.view.lottoResultModalView.renderLottoResult(lottoResult);
     this.calculateTotalProfitRate(lottoResult);
+  }
+
+  initializeLottoResult() {
+    return Object.keys(LOTTO_RANKING_REWARD).reduce((obj, ranking) => {
+      obj[ranking] = 0;
+      return obj;
+    }, {});
   }
 
   calculateTotalProfitRate(lottoResult) {
@@ -104,7 +105,7 @@ export default class LottoMachineController {
     );
     const purchasedLottoCount = this.model.lottos.length;
     const usedMoney = purchasedLottoCount * RULES.LOTTO_PRICE;
-    const totalProfitRate = getProfitRate(totalProfit, usedMoney);
+    const totalProfitRate = calculateProfitRate(totalProfit, usedMoney);
 
     this.view.lottoResultModalView.renderTotalProfitRate(totalProfitRate);
   }
@@ -116,11 +117,3 @@ export default class LottoMachineController {
     this.view.inputWinningNumberView.resetScreen();
   }
 }
-
-/**
- * TODO
- * 1. 모달창 오픈 시, 배경색 이슈 해결
- * 2. 리팩토링
- * 3. 테스트 코드
- * 4.
- */

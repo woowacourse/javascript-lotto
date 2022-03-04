@@ -6,19 +6,21 @@ import { validatePurchaseMoney } from '../utils/validator.js';
 export default class InputMoneyView extends View {
   constructor() {
     super();
-
     //멤버변수 초기화
-    this.form = document.getElementById('purchase-money-form');
-    this.input = document.getElementById('purchase-money-input');
+    this.purchasedMoneyForm = document.getElementById('purchase-money-form');
+    this.purchaseMoneyInput = document.getElementById('purchase-money-input');
 
-    //이벤트
-    this.form.addEventListener('submit', this.submitHandler.bind(this));
+    //이벤트리스너 등록
+    this.purchasedMoneyForm.addEventListener(
+      'submit',
+      this.handlePurchasedMoneyFormSubmit.bind(this),
+    );
   }
 
-  submitHandler(e) {
+  handlePurchasedMoneyFormSubmit(e) {
     e.preventDefault();
 
-    const purchaseMoney = convertToNumber(this.input.value);
+    const purchaseMoney = convertToNumber(this.purchaseMoneyInput.value);
 
     try {
       validatePurchaseMoney(purchaseMoney);
@@ -32,6 +34,6 @@ export default class InputMoneyView extends View {
   }
 
   resetInputValue() {
-    this.input.value = '';
+    this.purchaseMoneyInput.value = '';
   }
 }

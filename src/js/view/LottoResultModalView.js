@@ -3,16 +3,14 @@ import View from './View';
 export default class LottoResultModalView extends View {
   constructor() {
     super();
-
     //멤버변수 초기화
     this.app = document.getElementById('app');
-    this.modal = document.getElementById('winning-statistics-modal');
-    this.restartButton = document.getElementById('restart-button');
-    this.closeButton = document.getElementById('close-button');
+    this.lottoResultModal = document.getElementById('lotto-result-modal');
     this.winningCounts = document.querySelectorAll('.winning-count');
     this.totalProfitRate = document.getElementById('total-profit-rate');
+    this.restartButton = document.getElementById('restart-button');
+    this.closeButton = document.getElementById('close-button');
 
-    //이벤트
     this.closeButton.addEventListener('click', this.hideModal.bind(this));
     this.restartButton.addEventListener(
       'click',
@@ -39,6 +37,6 @@ export default class LottoResultModalView extends View {
   }
 
   hideModal() {
-    this.modal.classList.replace('modal-show', 'modal-hide');
+    this.lottoResultModal.classList.replace('show', 'hide');
   }
 }

@@ -1,4 +1,4 @@
-#winning-statistics-modal {
+#lotto-result-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,21 +16,21 @@
   padding: 40px 16px 49px;
 }
 
-.modal-hide {
+.hide {
   z-index: -1;
 }
 
-.modal-show {
+.show {
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 0 99999px;
 }
 
-#winning-statistics-modal > h2 {
+#lotto-result-modal > h2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 32px;
 }
 
-#winning-statistics-table {
+#lotto-result-table {
   width: 100%;
 
   border-top: 1px solid #dcdcdc;
@@ -41,12 +41,12 @@
   margin-bottom: 16px;
 }
 
-#winning-statistics-table th {
+#lotto-result-table th {
   font-weight: 600;
   padding: 8px 0;
 }
 
-#winning-statistics-table td {
+#lotto-result-table td {
   text-align: center;
   border-top: 1px solid #dcdcdc;
   padding: 8px 0;

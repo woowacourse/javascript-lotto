@@ -31,38 +31,58 @@ const WINNING_NUMBER_FORM = `
 export default class InputWinningNumberView extends View {
   constructor() {
     super();
-
+    //멤버변수 초기화
     this.app = document.getElementById('app');
-    this.container = document.getElementById('winning-number-container');
-    this.modal = document.getElementById('winning-statistics-modal');
+    this.winningNumberContainer = document.getElementById(
+      'winning-number-container',
+    );
+    this.modal = document.getElementById('lotto-result-modal');
   }
 
-  render() {
-    this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
+  renderWinningNumberForm() {
+    this.winningNumberContainer.insertAdjacentHTML(
+      'beforeend',
+      WINNING_NUMBER_FORM,
+    );
 
+    this.setWinningNumberFormEvent();
+    this.setWinningNumbersInputsEvent();
+  }
+
+  setWinningNumberFormEvent() {
     const winningNumberForm = document.getElementById('winning-number-form');
+
+    winningNumberForm.addEventListener(
+      'submit',
+      this.handleWinningNumberFormSubmit.bind(this),
+    );
+  }
+
+  setWinningNumbersInputsEvent() {
     this.winningNumberInputs = document.querySelectorAll(
       '.winning-number-input',
     );
 
     this.winningNumberInputs.forEach((inputElement, index) => {
       inputElement.addEventListener('input', () =>
-        this.moveFocusHandler(inputElement, index),
+        this.handleWinningNumberInputFocus(inputElement, index),
       );
     });
-    winningNumberForm.addEventListener('submit', this.submitHandler.bind(this));
   }
 
-  moveFocusHandler(inputElement, index) {
-    if (inputElement.value.length === 2) {
-      if (index === RULES.WINNING_LOTTO_NUMS - 1) {
-        return;
-      }
-      this.winningNumberInputs[index + 1].focus();
+  handleWinningNumberInputFocus(inputElement, index) {
+    if (inputElement.value.length !== 2) {
+      return;
     }
+
+    if (index === RULES.WINNING_LOTTO_NUMS - 1) {
+      return;
+    }
+
+    this.winningNumberInputs[index + 1].focus();
   }
 
-  submitHandler(e) {
+  handleWinningNumberFormSubmit(e) {
     e.preventDefault();
 
     const winningNumbers = Array.from(this.winningNumberInputs).map(input =>
@@ -82,7 +102,7 @@ export default class InputWinningNumberView extends View {
   }
 
   showModal() {
-    this.modal.classList.replace('modal-hide', 'modal-show');
+    this.modal.classList.replace('hide', 'show');
   }
 
   resetInputElementsValue() {
@@ -90,6 +110,8 @@ export default class InputWinningNumberView extends View {
   }
 
   resetScreen() {
-    this.container.removeChild(this.container.lastElementChild);
+    this.winningNumberContainer.removeChild(
+      this.winningNumberContainer.lastElementChild,
+    );
   }
 }

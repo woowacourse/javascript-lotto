@@ -3,7 +3,7 @@ import {
   isZero,
   isNotNumber,
   isNegativeNumber,
-  isNotUnitOfThousand,
+  isNotThousandUnit,
   isEmpty,
   isDuplicated,
 } from './common.js';
@@ -21,7 +21,7 @@ export const validatePurchaseMoney = value => {
     throw new Error(ERROR_MESSAGE.NEGATIVE_NUMBER);
   }
 
-  if (isNotUnitOfThousand(value)) {
+  if (isNotThousandUnit(value)) {
     throw new Error(ERROR_MESSAGE.NOT_UNIT_OF_THOUSAND);
   }
 };
@@ -35,7 +35,7 @@ export const validateWinningNumberList = list => {
     throw new Error('모든 값은 숫자 타입으로 입력해주세요.');
   }
 
-  if (list.some(value => isOutOfLottoNumberRange(value))) {
+  if (list.some(value => isOutLottoNumberRange(value))) {
     throw new Error(
       '모든 값은 로또번호 범위이내로 입력해주세요.(로또번호 : 1 ~ 45)',
     );
@@ -46,6 +46,6 @@ export const validateWinningNumberList = list => {
   }
 };
 
-export const isOutOfLottoNumberRange = value => {
+export const isOutLottoNumberRange = value => {
   return value < RULES.MIN_LOTTO_NUMBER || value > RULES.MAX_LOTTO_NUMBER;
 };
