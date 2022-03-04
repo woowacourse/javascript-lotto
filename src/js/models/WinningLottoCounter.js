@@ -43,7 +43,7 @@ export default class WinningLottoCounter {
       const hitCount = this.#winningLotto.winningNumbers.filter((num) => lotto.has(num)).length;
       const isBonusHit = lotto.has(this.#winningLotto.bonusNumber);
       let rank = 7 - hitCount;
-      rank = hitCount === 5 && isBonusHit ? rank : rank + 1;
+      rank = (hitCount === 5 && isBonusHit) || hitCount === 6 ? rank : rank + 1;
       if (rank <= 5) {
         tempWinningCounts[`${rank}th`] += 1;
       }

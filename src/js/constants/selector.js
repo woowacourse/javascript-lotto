@@ -17,5 +17,11 @@ export const SELECTOR = Object.freeze({
     LOTTO_ITEM_NUMBER: 'item-number',
     WINNING_NUMBER_SECTION: 'winning-number-section',
     WINNING_NUMBER_INPUT: 'winning-number-input',
+
+    RESET_BUTTON: 'reset-button',
+    MODAL: 'modal',
+    CLOSE_MODAL_BUTTON: 'close-modal-button',
+    PROFIT_RATE_WRAPPER: 'profit-rate-wrapper',
+    BONUS_NUMBER_INPUT: 'bonus-number-input',
   }),
 });
