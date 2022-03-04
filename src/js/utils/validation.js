@@ -1,6 +1,10 @@
-import { ALERT_MESSAGE, LOTTO_PRICE } from '../constants';
+import { ALERT_MESSAGE, LOTTO_PRICE, MAX_PURCHASABLE_CASH } from '../constants';
 
 export const validateCashInput = cash => {
+  if (cash >= MAX_PURCHASABLE_CASH) {
+    throw new Error(ALERT_MESSAGE.OVER_MAX_CASH);
+  }
+
   if (cash % LOTTO_PRICE !== 0) {
     throw new Error(ALERT_MESSAGE.NOT_DIVISIBLE);
   }
