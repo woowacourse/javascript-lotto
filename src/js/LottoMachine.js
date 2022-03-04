@@ -23,6 +23,7 @@ export default class LottoMachine {
   }
 
   #setEvent() {
+    this.#makeAutoFocus();
     $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.#onSubmitCharge.bind(this));
     $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.#reverseLottoStyle.bind(this));
     $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM).addEventListener('submit', this.#onSubmitWinnerNumber.bind(this));
@@ -136,5 +137,19 @@ export default class LottoMachine {
     this.lottoMachineView.blockInput(false);
     this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
     this.lottoMachineView.resetInputs();
+  }
+
+  #makeAutoFocus() {
+    const inputArray = $$('input', $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM));
+    inputArray.forEach((inputNode, index) => {
+      inputNode.addEventListener('keyup', function () {
+        if ((index !== LOTTO_NUMBER.LENGTH && this.value.length) === LOTTO_NUMBER.MAX_NUMBER_LENGTH) {
+          inputArray[index + 1].focus();
+        }
+        if (this.value.length > LOTTO_NUMBER.MAX_NUMBER_LENGTH) {
+          this.value = this.value.substr(0, LOTTO_NUMBER.MAX_NUMBER_LENGTH);
+        }
+      });
+    });
   }
 }
