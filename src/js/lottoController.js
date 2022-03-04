@@ -1,8 +1,12 @@
 import { on } from './utils/helper.js';
 import {
-  isValidPurchaseMoney,
-  isValidLottoWinningNumbers,
-  isValidLottoWinningBonusNumber,
+  isDividedByThousand,
+  isEmptyValue,
+  isPositiveValue,
+  isNotDuplicateNumberExistInArray,
+  isNotIncludeSameNumber,
+  isNumberInRange,
+  isAllNumberInRange,
 } from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
 
@@ -52,7 +56,7 @@ export default class LottoController {
   #submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
 
-    if (isValidPurchaseMoney(purchaseMoney)) {
+    if (LottoController.isValidPurchaseMoney(purchaseMoney)) {
       this.#lottoCreator.purchaseMoney = purchaseMoney;
       this.#lottoPurchaseInputView.disableForm();
 
@@ -93,8 +97,12 @@ export default class LottoController {
     const { lottoWinningNumbers, lottoWinningBonusNumber } = event.detail;
 
     if (
-      isValidLottoWinningNumbers(lottoWinningNumbers, LOTTO.MIN_DIGIT, LOTTO.MAX_DIGIT) &&
-      isValidLottoWinningBonusNumber(
+      LottoController.isValidLottoWinningNumbers(
+        lottoWinningNumbers,
+        LOTTO.MIN_DIGIT,
+        LOTTO.MAX_DIGIT
+      ) &&
+      LottoController.isValidLottoWinningBonusNumber(
         lottoWinningNumbers,
         lottoWinningBonusNumber,
         LOTTO.MIN_DIGIT,
@@ -118,6 +126,28 @@ export default class LottoController {
     alert(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_WINNING_NUMBERS);
 
     this.#lottoWinningNumberInputView.reset();
+  }
+
+  static isValidPurchaseMoney(purchaseMoney) {
+    return (
+      isDividedByThousand(purchaseMoney) &&
+      !isEmptyValue(purchaseMoney) &&
+      isPositiveValue(purchaseMoney)
+    );
+  }
+
+  static isValidLottoWinningNumbers(lottoWinningNumbers, min, max) {
+    return (
+      isNotDuplicateNumberExistInArray(lottoWinningNumbers) &&
+      isAllNumberInRange(lottoWinningNumbers, min, max)
+    );
+  }
+
+  static isValidLottoWinningBonusNumber(lottoWinningNumbers, lottoWinningBonusNumber, min, max) {
+    return (
+      isNumberInRange(lottoWinningBonusNumber, min, max) &&
+      isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber)
+    );
   }
 }
 
