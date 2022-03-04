@@ -1,3 +1,9 @@
+:root {
+  --main-color: #00bcd4;
+  --alert-color: tomato;
+  --disabled-color: #8b8b8b;
+}
+
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -11,22 +17,22 @@ body {
 
 input:focus {
   background-color: rgba(63, 207, 226, 0.1);
-  border: 1px solid #00bcd4;
+  border: 1px solid var(--main-color);
   outline: none;
 }
 
 .input-alert {
-  border: 1px solid tomato;
+  border: 1px solid var(--alert-color);
   background-color: rgba(255, 99, 71, 0.1);
 }
 
 .input-alert:focus {
-  border: 1px solid tomato;
+  border: 1px solid var(--alert-color);
   background-color: rgba(255, 99, 71, 0.1);
 }
 
 button {
-  background-color: #00bcd4;
+  background-color: var(--main-color);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -35,7 +41,7 @@ button {
 }
 
 button:disabled {
-  background-color: #8b8b8b;
+  background-color: var(--disabled-color);
   cursor: not-allowed;
 }
 
@@ -170,7 +176,7 @@ input {
 #purchase-money-input-alert {
   width: 316px;
   text-align: center;
-  color: tomato;
+  color: var(--alert-color);
   font-size: 13px;
   margin: 6px;
 }
@@ -179,7 +185,7 @@ input {
   display: inline-block;
   width: 100%;
   text-align: center;
-  color: tomato;
+  color: var(--alert-color);
   font-size: 14px;
   margin: 6px;
 }
