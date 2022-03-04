@@ -8,9 +8,9 @@ export default class StatisticController {
   }
 
   renderView() {
-    const earningRate = this.lottoModel.getEarningRate();
+    const earningRatio = this.lottoModel.getEarningRatio();
     const { winningStatistic } = this.lottoModel.getState();
-    this.statisticView.mountTemplate(winningStatistic, earningRate);
+    this.statisticView.mountTemplate(winningStatistic, earningRatio);
     this.setEventHandler();
   }
 

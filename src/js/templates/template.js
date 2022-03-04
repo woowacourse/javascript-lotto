@@ -94,7 +94,7 @@ const template = {
       <button id="${DOM_STRING.SHOW_RESULT_BUTTON}">결과 확인하기</button>
     `;
   },
-  statisticSectionWrap: (winningStatistic, earningRate) => {
+  statisticSectionWrap: (winningStatistic, earningRatio) => {
     return `
       <section id="statistic-section">
         <h2>🏆 당첨 통계 🏆</h2>
@@ -131,7 +131,7 @@ const template = {
             <td>${winningStatistic.six}개</td>
           </tr>
         </table>
-        <p id="ratio-result">당신의 총 수익률은 ${earningRate}%입니다.</p>
+        <p id="ratio-result">당신의 총 수익률은 ${earningRatio}%입니다.</p>
         <button id="reset-button">다시 시작하기</button>
       </section>
     `;

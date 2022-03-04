@@ -6,10 +6,10 @@ export default class StatisticView {
     this.$target = $(target);
   }
 
-  mountTemplate(winningStatistic, earningRate) {
+  mountTemplate(winningStatistic, earningRatio) {
     this.$target.innerHTML = template.statisticSectionWrap(
       winningStatistic,
-      earningRate
+      earningRatio
     );
     this.appearView();
     this.afterMounted();
