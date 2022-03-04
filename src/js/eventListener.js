@@ -9,6 +9,12 @@ export const onClickModalCloseButton = () => {
   $('#app').removeChild($winningStatisticModal);
 };
 
+export const onClickRestartButton = () => {
+  lottoManager.reset();
+  lottoStatisticMachine.reset();
+  view.reset();
+};
+
 export const onClickResultButton = () => {
   const $matchNumberInputs = $$('.match-number-input');
   const [bonumsNumber, ...winningNumbers] = Array.from($matchNumberInputs)
@@ -37,6 +43,7 @@ export const onClickResultButton = () => {
   $('#winning-statistic-modal-close-button').addEventListener('click', onClickModalCloseButton);
 
   // TODO: 다시 시작하기 버튼 이벤트 리스너 등록
+  $('#restart-button').addEventListener('click', onClickRestartButton);
 };
 
 export const onSubmitFareForm = (e) => {

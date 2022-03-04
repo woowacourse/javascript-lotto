@@ -35,6 +35,11 @@ class LottoManager {
   calculateRemainFare(fare) {
     return fare % LOTTO_PRICE;
   }
+
+  reset() {
+    this.#lottos = [];
+    this.#fare = null;
+  }
 }
 
 const lottoManager = new LottoManager();

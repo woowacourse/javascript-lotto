@@ -92,9 +92,25 @@ const view = {
     $('#app').insertAdjacentHTML('beforeend', winningStatisticModalTempalte);
   },
 
+  activateFareForm() {
+    $('#fare-input').removeAttribute('disabled');
+    $('#fare-button').removeAttribute('disabled');
+  },
+
   deactivateFareForm() {
     $('#fare-input').setAttribute('disabled', true);
     $('#fare-button').setAttribute('disabled', true);
+  },
+
+  reset() {
+    this.activateFareForm();
+    $('#fare-input').value = '';
+    $('.lotto-match-section').innerHTML = '';
+    $('#lottos-container .lottos.default').innerHTML = '';
+    $('#lottos-container .lottos.detail').innerHTML = '';
+
+    const $winningStatisticModal = $('#winning-statistic-modal');
+    $('#app').removeChild($winningStatisticModal);
   },
 };
 

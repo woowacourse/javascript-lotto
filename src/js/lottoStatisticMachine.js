@@ -79,6 +79,13 @@ class LottoStatisticMachine {
       0,
     );
   }
+
+  reset() {
+    this.#winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
+    this.#bonusNumber = null;
+    this.#winningCounts = new Array(5).fill(null);
+    this.#earningsRate = null;
+  }
 }
 
 const lottoStatisticMachine = new LottoStatisticMachine();
