@@ -2,10 +2,10 @@ import { LOTTO_NUMBER, AMOUNT } from "../utils/constants.js";
 import { shuffleArray } from "../utils/general.js";
 
 export default class Lotto {
-  #lottos = [];
+  #lottoList = [];
 
   getLottoList() {
-    return this.#lottos;
+    return this.#lottoList;
   }
 
   convertLottoCount(purchaseAmount) {
@@ -20,6 +20,6 @@ export default class Lotto {
   }
 
   generateLottoTicket(count) {
-    this.#lottos = [...Array(count)].map(this.generateLottoNumber);
+    this.#lottoList = [...Array(count)].map(this.generateLottoNumber);
   }
 }

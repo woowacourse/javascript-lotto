@@ -16,7 +16,7 @@ export const isValidTypeNumber = (number) => {
 };
 
 export const isValidEmptyValue = (number) => {
-  return number === "";
+  return number === 0;
 };
 
 export const isValidOverlap = (numbers) => {

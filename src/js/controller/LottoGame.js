@@ -3,6 +3,7 @@ import WinningNumbers from "../model/WinningNumbers.js";
 import PurchasedLottoView from "../views/PurchasedLottoView.js";
 import PurchaseAmountView from "../views/PurchaseAmountView.js";
 import WinningNumberView from "../views/WinningNumberView.js";
+import LottoResultView from "../views/lottoResultView.js";
 
 export default class LottoGame {
   constructor() {
@@ -11,6 +12,7 @@ export default class LottoGame {
     this.purchasedLottoView = new PurchasedLottoView();
     this.winningNumbersModel = new WinningNumbers();
     this.winningNumberView = new WinningNumberView();
+    this.lottoResultView = new LottoResultView();
 
     this.purchaseAmountView.addHandler({
       type: "submit",
@@ -30,6 +32,9 @@ export default class LottoGame {
 
   onClickResultButton(winningNumbers) {
     this.winningNumbersModel.setWinningNumbers(winningNumbers);
-    this.winningNumberView.renderResultModal();
+    this.lottoModel
+      .getLottoList()
+      .forEach((lotto) => this.winningNumbersModel.compareWinningNumbers(lotto));
+    this.lottoResultView.renderResultModal();
   }
 }

@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { $, $$, showElement } from "../utils/dom.js";
+import { $, $$ } from "../utils/dom.js";
 import { validateWinningNumbers } from "../utils/validation.js";
 
 export default class WinningNumberView extends View {
@@ -10,7 +10,7 @@ export default class WinningNumberView extends View {
 
   handleResultButtonClick() {
     const winningNumberList = Array.from($$(".winning-number-input")).map((element) =>
-      element.value.trim(),
+      Number(element.value.trim()),
     );
     try {
       validateWinningNumbers(winningNumberList);
@@ -18,9 +18,5 @@ export default class WinningNumberView extends View {
     } catch (error) {
       alert(error);
     }
-  }
-
-  renderResultModal() {
-    showElement($(".result-modal"));
   }
 }
