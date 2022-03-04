@@ -159,7 +159,7 @@ input:checked + .slider:before {
 }
 
 .result-modal-wrap {
-  position: absolute;
+  position: fixed;
   display: block;
   top: 0;
   left: 0;
@@ -169,6 +169,8 @@ input:checked + .slider:before {
 
   background-color: rgba(0, 0, 0, 0.4);
   border: 0px;
+
+  overflow: hidden;
 }
 
 .result-modal {
