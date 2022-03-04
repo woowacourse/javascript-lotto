@@ -66,8 +66,8 @@ export default class WinningNumberController {
   }
 
   countSameNumber(lottoNumbers, winningNumbers, bonus) {
-    let Count = winningNumbers.filter(
-      (winningNumber, index) => winningNumber === lottoNumbers[index]
+    let Count = lottoNumbers.filter((number) =>
+      winningNumbers.includes(number)
     ).length;
 
     if (this.checkBonus(Count, lottoNumbers, bonus)) {
