@@ -32,6 +32,20 @@ class LottoStatisticMachine {
     return this.#winningCounts;
   }
 
+  calculateEarningsRate(fare, winningCounts) {
+    const earnings = this.#calculateEarnings(winningCounts);
+
+    this.#earningsRate = ((earnings - fare) * 100) / fare;
+    return this.#earningsRate;
+  }
+
+  reset() {
+    this.#winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
+    this.#bonusNumber = null;
+    this.#winningCounts = new Array(5).fill(null);
+    this.#earningsRate = null;
+  }
+
   #calculateHitCount(lotto) {
     return lotto.reduce((hitCount, lottoNumber) => {
       if (this.#winningNumbers.includes(lottoNumber)) {
@@ -66,25 +80,11 @@ class LottoStatisticMachine {
     return 1;
   }
 
-  calculateEarningsRate(fare, winningCounts) {
-    const earnings = this.#calculateEarnings(winningCounts);
-
-    this.#earningsRate = ((earnings - fare) * 100) / fare;
-    return this.#earningsRate;
-  }
-
   #calculateEarnings(winningCounts) {
     return winningCounts.reduce(
       (earnings, winningCount, index) => earnings + this.#prizeMoney[index] * winningCount,
       0,
     );
-  }
-
-  reset() {
-    this.#winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
-    this.#bonusNumber = null;
-    this.#winningCounts = new Array(5).fill(null);
-    this.#earningsRate = null;
   }
 }
 
