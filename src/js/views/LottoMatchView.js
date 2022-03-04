@@ -31,6 +31,8 @@ class LottoMatchView {
 
   #matchNumberInputs = null;
 
+  #handleResultButton;
+
   constructor() {
     this.#lottoMatchSecteion = $('.lotto-match-section');
   }
@@ -43,7 +45,7 @@ class LottoMatchView {
   }
 
   setOnClickResultButtonHandler(callback) {
-    this.#resultButton?.addEventListener('click', () => {
+    this.#handleResultButton = () => {
       if (this.#isNotFounedMatchNumberInputs()) {
         return;
       }
@@ -51,7 +53,9 @@ class LottoMatchView {
       const [bonusNumber, ...winningNumbers] = this.#getMatchNumbers();
 
       callback(winningNumbers, bonusNumber);
-    });
+    };
+
+    this.#resultButton?.addEventListener('click', this.#handleResultButton);
   }
 
   reset() {
