@@ -42,6 +42,10 @@ body {
   min-height: 100vh;
 }
 
+input:focus {
+  border-color: blue;
+}
+
 .scroll-block {
   overflow: hidden;
 }
