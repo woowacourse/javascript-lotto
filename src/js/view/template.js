@@ -73,31 +73,31 @@ const getResultTable = result => `
     <tbody>
       <tr>
         <td>3개</td>
-        <td>${REWARD.FIFTH.toLocaleString('ko-KR')}</td>
+        <td>${REWARD.FIFTH.toKorean()}</td>
         <td>${result.filter(rank => rank === 5).length}개</td>
       </tr>
       <tr>
         <td>4개</td>
-        <td>${REWARD.FOURTH.toLocaleString('ko-KR')}</td>
+        <td>${REWARD.FOURTH.toKorean()}</td>
         <td>${result.filter(rank => rank === 4).length}개</td>
       </tr>
       <tr>
         <td>5개</td>
-        <td>${REWARD.THIRD.toLocaleString('ko-KR')}</td>
+        <td>${REWARD.THIRD.toKorean()}</td>
         <td>
           ${result.filter(rank => rank === 3).length}개
         </td>
       </tr>
       <tr>
         <td>5개+보너스볼</td>
-        <td>${REWARD.SECOND.toLocaleString('ko-KR')}</td>
+        <td>${REWARD.SECOND.toKorean()}</td>
         <td>
           ${result.filter(rank => rank === 2).length}개
         </td>
       </tr>
       <tr>
         <td>6개</td>
-        <td>${REWARD.FIRST.toLocaleString('ko-KR')}</td>
+        <td>${REWARD.FIRST.toKorean()}</td>
         <td>${result.filter(rank => rank === 1).length}개</td>
       </tr>
     </tbody>
@@ -108,7 +108,7 @@ const getResultTemplate = (result, rewardRate) => `
   <div>
     ${getResultTable(result)}
     <div id="result-percent">
-      당신의 총 수익률은 ${rewardRate.toLocaleString('ko-KR')}%입니다.
+      당신의 총 수익률은 ${rewardRate.toKorean()}%입니다.
     </div>
     <button id="restart-button">다시 시작하기</button>
   </div>
