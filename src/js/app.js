@@ -16,9 +16,9 @@ class LottoGameManager {
     this.#initializeManagers();
   }
 
-  #initializeManagers(emitEvent) {
+  #initializeManagers() {
     this.#lottoDomainManager = new LottoDomainManager();
-    this.#lottoViewManager = new LottoViewManager(emitEvent);
+    this.#lottoViewManager = new LottoViewManager();
   }
 
   #setEventHandler() {
