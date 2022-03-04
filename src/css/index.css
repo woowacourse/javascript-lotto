@@ -1,25 +1,14 @@
 @import './reset.css';
-@import './purchase-money.css';
-@import './purchased-lotto.css';
-@import './switch.css';
-@import './winning-number.css';
-@import './lotto-result.css';
+@import './modal.css';
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
 
+  background: #e5e5e5;
   min-height: 100vh;
   z-index: 100;
-
-  background: #e5e5e5;
-}
-
-body section {
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
 }
 
 #app {
@@ -28,11 +17,15 @@ body section {
   position: relative;
 
   background: #ffffff;
-
   width: 414px;
   min-height: 727px;
-
   padding: 0 16px 39px;
+}
+
+#app > section {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 header {
@@ -41,6 +34,193 @@ header {
 
   font-size: 34px;
   line-height: 36px;
-
   margin: 52px 0 16px;
+}
+
+#purchase-money-container {
+  height: 64px;
+}
+
+form > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#purchase-money-input {
+  width: 290px;
+  height: 32px;
+
+  border: 1px solid #8b8b8b;
+  border-radius: 4px;
+  padding-left: 7px;
+}
+
+#purchase-money-input::placeholder {
+  color: #8b8b8b;
+}
+
+#purchase-money-button {
+  width: 56px;
+  height: 36px;
+
+  background: #00bcd4;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+
+#purchased-lotto-container {
+  width: 100%;
+  max-height: 295px;
+  margin-top: 28px;
+}
+
+#purchased-lotto-container > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+#purchased-lotto-box {
+  width: 310px;
+}
+
+#purchased-lotto-box > p {
+  margin-bottom: 12px;
+}
+
+#purchased-lotto-list {
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.purchased-lotto-image {
+  font-size: 34px;
+  margin-right: 8px;
+}
+
+.switch-on .purchased-lotto-item {
+  display: flex;
+  align-items: center;
+
+  min-height: 36px;
+  padding-bottom: 4px;
+}
+
+.switch-off {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.switch-off .purchased-lotto-number {
+  display: none;
+}
+
+#switch-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-bottom: 15px;
+}
+
+#switch-box label {
+  margin-top: 13px;
+}
+
+.switch {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 16px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(33, 33, 33, 0.08);
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.slider:before {
+  content: '';
+  position: absolute;
+
+  background: rgba(0, 0, 0, 0.15);
+  width: 20px;
+  height: 20px;
+  bottom: -2px;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #80deea;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(13px);
+  background-color: #00bcd4;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#winning-number-container {
+  margin-top: 32px;
+}
+
+#winning-number-container p {
+  padding-bottom: 8px;
+}
+
+#bonus-number-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.winning-number-input {
+  width: 34px;
+  height: 36px;
+
+  box-sizing: border-box;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+#bonus-number-box .winning-number-input {
+  margin-right: 0;
+}
+
+#result-button {
+  width: 100%;
+
+  background: #00bcd4;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 24px;
+  padding: 10px 0;
+  cursor: pointer;
 }
