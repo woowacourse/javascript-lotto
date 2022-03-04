@@ -25,12 +25,12 @@ export const checkValidWinningNumberList = (winningNumberList) => {
     throw new Error(ERROR_MESSAGE.WINNING_NUMBER_EMPTY_INPUT);
   }
 
-  const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
+  const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER, WINNING_NUMBER_LENGTH } = LOTTO_SETTING;
   if (hasOutRangeNumber(winningNumberList, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)) {
     throw new Error(ERROR_MESSAGE.WINNING_NUMBER_NUMBER_RANGE);
   }
 
-  if (isDiffArrayLength(winningNumberList, 7)) {
+  if (isDiffArrayLength(winningNumberList, WINNING_NUMBER_LENGTH)) {
     throw new Error(ERROR_MESSAGE.WINNING_NUMBER_DIFF_LENGTH);
   }
 
