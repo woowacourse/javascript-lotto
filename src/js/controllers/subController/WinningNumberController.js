@@ -29,6 +29,10 @@ export default class WinningNumberController {
     }
   }
 
+  resetInput() {
+    this.winningNumberView.clearInputs();
+  }
+
   calculateResult(winningNumbers, bonusNumber) {
     const { lottoList } = this.lottoModel.getState();
     const lottoNumbersList = lottoList.map((lotto) => lotto.numbers);
@@ -40,10 +44,6 @@ export default class WinningNumberController {
 
     this.lottoModel.setWinningStatistic(coincideCountList);
     this.lottoController.afterCalculateResult();
-  }
-
-  resetInput() {
-    this.winningNumberView.clearInputs();
   }
 
   createCoincideCountList(lottoNumbersList, winningNumbers, bonus) {
