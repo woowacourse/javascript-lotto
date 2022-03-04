@@ -13,11 +13,7 @@
 
 ## 🧑‍💻 데모 페이지
 
-[링크](http://woojeongmin.com/javascript-lotto/)
-
-## 🔎 설계
-
-![javascript lotto modeling](./javascript-lotto-modeling.png)
+[링크](https://kamwoo.github.io/javascript-lotto/)
 
 ## ⚙️ Before Started
 
