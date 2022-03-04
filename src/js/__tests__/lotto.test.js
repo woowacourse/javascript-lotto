@@ -1,0 +1,31 @@
+import Lotto from '../model/Lotto';
+
+describe('소비자는 자동 구매를 할 수 있어야 한다.', () => {
+  test('자동발급된 로또 한 장의 번호들 간에는 중복되어서는 안된다.', () => {
+    // given
+    const lotto = new Lotto();
+    lotto.numbers = [1, 2, 3, 4, 5, 6];
+
+    // when
+    const isNumberDuplicated = (numbers) => numbers.length !== new Set(numbers).size;
+
+    // then
+    expect(isNumberDuplicated(lotto.numbers)).toBe(false);
+  });
+
+  test('발급받은 로또 6개 숫자 모두가 1부터 45 범위 안에 있어야 한다.', () => {
+    // given
+    const lotto = new Lotto();
+    lotto.numbers = [1, 2, 23, 4, 5, 45];
+
+    // when
+    const isCorrectRange = (numbers) => {
+      const isBelowThreshold = (number) => number >= 1 && number <= 45;
+
+      return numbers.every(isBelowThreshold);
+    };
+
+    // then
+    expect(isCorrectRange(lotto.numbers)).toBe(true);
+  });
+});
