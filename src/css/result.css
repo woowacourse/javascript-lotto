@@ -1,0 +1,85 @@
+.lotto-result-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 500px;
+  padding: 0 16px;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-white);
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 18px;
+  background-color: var(--color-white);
+  border: 0;
+  cursor: pointer;
+}
+
+.lotto-result-container table {
+  width: 100%;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+  font-size: 15px;
+  border-collapse: collapse;
+}
+
+.result-table-caption {
+  margin: 40px 0 32px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.lotto-result-container table thead {
+  font-weight: 600;
+}
+
+.lotto-result-container table tr {
+  border-top: 1px solid var(--color-light-gray);
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.lotto-result-container table th,
+.lotto-result-container table td {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.lotto-result-container table tfoot td {
+  font-weight: 600;
+}
+
+.lotto-result-container table tfoot tr {
+  border-bottom: none;
+}
+
+.restart-button {
+  text-align: center;
+  width: 50%;
+  margin-left: 75px;
+  padding: 10px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.result-background {
+  position: fixed;
+  height: 727px;
+  width: 414px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+}

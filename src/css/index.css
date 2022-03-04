@@ -1,9 +1,14 @@
 @import "./switch.css";
+@import "./result.css";
 
 :root {
   --color-primary: #00bcd4;
   --color-light-gray: #b4b4b4;
   --color-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #app {
