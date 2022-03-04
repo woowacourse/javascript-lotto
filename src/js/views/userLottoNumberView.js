@@ -11,7 +11,13 @@ export default class UserLottoNumberView {
   }
 
   bindEvents() {
+    on([...this.userLottoNumberInput], 'keydown', this.handleUserLottoInput.bind(this));
+    on(this.userBonusNumberInput, 'keydown', this.handleUserLottoInput.bind(this));
     on(this.userLottoResultForm, 'submit', this.handleUserLottoResult.bind(this));
+  }
+
+  handleUserLottoInput(event) {
+    event.key !== 'Backspace' && event.target.value.length > 1 ? event.preventDefault() : '';
   }
 
   handleUserLottoResult(event) {
