@@ -31,6 +31,13 @@ describe('로또 번호 생성 테스트', () => {
 });
 
 describe('구매할 금액 테스트', () => {
+  it(`${RULES.LOTTO_PRICE}원 단위의 자연수면 정상적으로 구매가 가능하다.`, () => {
+    const validPrice = 10000;
+
+    // 정상 입력 시 아무것도 반환하지 않음
+    expect(validatePurchaseMoney(validPrice)).toBeUndefined();
+  });
+
   it(`${RULES.LOTTO_PRICE}원 단위가 아니면 에러가 발생한다.`, () => {
     const invalidPrice = 1100;
 
@@ -65,6 +72,20 @@ describe('구매할 금액 테스트', () => {
 });
 
 describe('당첨번호 테스트', () => {
+  it(`${RULES.MIN_LOTTO_NUMBER} ~ ${RULES.MAX_LOTTO_NUMBER} 사이의 값을 중복 없이 모두 입력하였을 경우 정상적으로 결과 계산이 가능하다.`, () => {
+    const validNumbers = [1, 2, 3, 4, 5, 6, 7];
+
+    expect(validateWinningNumbers(validNumbers)).toBeUndefined();
+  });
+
+  it(`${RULES.MIN_LOTTO_NUMBER} ~ ${RULES.MAX_LOTTO_NUMBER}가 아닌 값을 하나라도 입력하면 에러가 발생한다.`, () => {
+    const invalidNumbers = [1, 2, 3, 4, 5, 6, 70];
+
+    expect(() => validateWinningNumbers(invalidNumbers)).toThrowError(
+      ERROR_MESSAGE.INVALID_WINNING_NUMBERS,
+    );
+  });
+
   it('값을 전부 입력하지 않으면 에러가 발생한다.', () => {
     const invalidNumbers = [1, 2, 3, 4, 5, 6];
 
