@@ -1,6 +1,6 @@
 import { $, $$ } from '../utils/dom';
 
-export default class ShowLottoNumber {
+export default class ShowLottoTicketNumber {
   constructor() {
     $('.cm-toggle').addEventListener('click', this.handleDetailView);
   }

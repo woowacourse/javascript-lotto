@@ -1,5 +1,5 @@
 import PurchaseLotto from './handler/PurchaseLotto';
-import ShowLottoNumber from './handler/ShowLottoNumber';
+import ShowLottoTicketNumber from './handler/ShowLottoTicketNumber';
 
 new PurchaseLotto();
-new ShowLottoNumber();
+new ShowLottoTicketNumber();
