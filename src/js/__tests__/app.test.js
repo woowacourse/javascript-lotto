@@ -1,7 +1,7 @@
 import Model from '../model';
 import { validateCashInput } from '../utils/validation';
 import { ALERT_MESSAGE } from '../constants/message';
-import { LOTTO_PRICE, LOTTO_RULE } from '../constants/lotto';
+import { LOTTO_PRICE, LOTTO_RULE, MAX_PURCHASABLE_CASH } from '../constants/lotto';
 
 describe('로또 구매 테스트', () => {
   test('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
@@ -30,6 +30,11 @@ describe('로또 구매 테스트', () => {
   test(`로또 구입 금액을 입력했을 때, 금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면 에러를 생성한다.`, () => {
     const cash = LOTTO_PRICE * 1.5;
     expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.NOT_DIVISIBLE);
+  });
+
+  test(`로또 구입 금액을 입력했을 때, 금액이 ${MAX_PURCHASABLE_CASH}을 넘어가면 에러를 생성한다.`, () => {
+    const cash = MAX_PURCHASABLE_CASH + 1;
+    expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.OVER_MAX_CASH);
   });
 
   test('결과 확인하기 버튼을 누르면, 당첨 갯수와 수익률이 정확히 계산된다', () => {
