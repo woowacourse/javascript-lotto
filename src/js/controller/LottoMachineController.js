@@ -9,7 +9,6 @@ import { isEmptyArray } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
-    console.log('LottoMachineController');
     this.model = new Lottos();
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
@@ -46,10 +45,6 @@ export default class LottoMachineController {
     }
 
     this.view.purchaseMoneyView.resetInputValue();
-  }
-
-  onSubmitLottoResult() {
-    console.log('submit', this.model);
   }
 
   tryRePurchase() {

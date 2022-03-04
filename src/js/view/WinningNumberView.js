@@ -140,16 +140,13 @@ export default class WinningNumberView {
   }
 
   rendering(purchasedLottos, purchaseMoney, resetCallback) {
-    console.log('rendering purchasedLottos', purchasedLottos);
     this.#paint();
     this.#render();
     this.#addEvent({ purchasedLottos, purchaseMoney, resetCallback });
   }
 
   reflow(purchasedLottos, purchaseMoney, resetCallback) {
-    console.log('reflow purchasedLottos', purchasedLottos);
     this.#render();
-    // this.#rePaint();
   }
 
   onSubmitHandler(e) {
@@ -207,7 +204,6 @@ export default class WinningNumberView {
     e.preventDefault();
     const modal = this.container.querySelector('#modal');
     modal.remove();
-    console.log('exit click');
   }
 
   reset() {
