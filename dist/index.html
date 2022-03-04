@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<script defer src="bundle.js"></script></head>
+
+<body>
+  <main id="app">
+    <header>
+      <h1>🎱 행운의 로또</h1>
+    </header>
+    <article>
+      <form class="purchase-form">
+        <div class="money-input-text">
+          <label for="money-input">구입할 금액을 입력해주세요.</label>
+        </div>
+        <input class="money-input" type="number" placeholder="금액" min="1000" max="10000">
+        <button class="purchase-button" type="submit">구입</button>
+      </form>
+    </article>
+    <article class="result d-none">
+      <div class="purchase-status-container">
+        <span>번호 보기</span>
+      </div>
+      <div class="lotto-container">
+        <div class="lotto-grid"></div>
+        <input class="cm-toggle" type="checkbox" name="checkbox">
+      </div>
+    </article>
+    <article class="result d-none">
+      <h2>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h2>
+      <div class="winning-text-contatiner">
+        <span>당첨 번호</span>
+        <span>보너스 번호</span>
+      </div>
+      <form class="winning-numbers-form">
+        <div class="winning-numbers-container">
+          <div>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+          </div>
+          <div>
+            <input class="winning-numbers" id="bonus-number" type="number" min="1" max="45" maxlength="2" required>
+          </div>
+        </div>
+        <button id="show-result" type="submit">결과 확인하기</button>
+      </form>
+    </article>
+    <article class="modal-container d-none">
+      <article class="modal">
+        <img src="./closer.svg" class="modal-closer"></img>
+        <h3 class="modal-title">🏆 당첨 통계 🏆</h3>
+        <div class="content-container">
+          <div class="content-row">
+            <h2 class="content-text content-title">일치 갯수</h2>
+            <h2 class="content-text content-title">당첨금</h2>
+            <h2 class="content-text content-title">당첨 갯수</h2>
+          </div>
+          <div class="content-row">
+            <div class="content-text">3개</div>
+            <div class="content-text">5,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">4개</div>
+            <div class="content-text">50,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">5개</div>
+            <div class="content-text">1,500,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">5개+보너스볼</div>
+            <div class="content-text">30,000,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">6개</div>
+            <div class="content-text">2,000,000,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row result-container">
+            <div class="content-text content-title">당신의 총 수익률은 <span class="earnings-rate"></span>%입니다.</div>
+          </div>
+        </div>
+        <div class="restart-container">
+          <button class="restart">다시 시작하기</button>
+        </div>
+      </article>
+    </article>
+  </main>
+</body>
+
+</html>
