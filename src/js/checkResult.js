@@ -1,12 +1,12 @@
 import { LOTTERY_TICKET_PRICE, MATCH_RESULT_INDEX, PRIZE_MONEY } from './constants/constants';
 
-export const countWinningNumber = (ticketNumber, winningNumber) =>  
+export const countMatchNumber = (ticketNumber, winningNumber) =>  
   ticketNumber.filter((number) => winningNumber.includes(number)).length;
 
 export const calculateMatchResult = (tickets, winningNumber, bonusNumber) => {
   const result = new Array(5).fill(0);
   tickets.forEach((ticket) => {
-    let matchResult = countWinningNumber(ticket.numbers, winningNumber);
+    let matchResult = countMatchNumber(ticket.numbers, winningNumber);
     if ( matchResult < 3 ) return;
     if ( matchResult === 5 && ticket.numbers.includes(bonusNumber)) matchResult = 'BONUS';
     result[MATCH_RESULT_INDEX[matchResult]] += 1;

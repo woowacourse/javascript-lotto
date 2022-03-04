@@ -1,4 +1,4 @@
-import { countWinningNumber, calculateMatchResult, calculateProfitRatio } from '../checkResult';
+import { countMatchNumber, calculateMatchResult, calculateProfitRatio } from '../checkResult';
 import LotteryTicket from '../LotteryTicket';
 
 describe('결과 확인 테스트', () => {
@@ -13,11 +13,11 @@ describe('결과 확인 테스트', () => {
       [12, 28, 30, 31, 34, 45], // 2개 일치
     ]
 
-    expect(countWinningNumber(lottos[0], winningNumber)).toEqual(6);
-    expect(countWinningNumber(lottos[1], winningNumber)).toEqual(5);
-    expect(countWinningNumber(lottos[2], winningNumber)).toEqual(4);
-    expect(countWinningNumber(lottos[3], winningNumber)).toEqual(3);
-    expect(countWinningNumber(lottos[4], winningNumber)).toEqual(2);
+    expect(countMatchNumber(lottos[0], winningNumber)).toEqual(6);
+    expect(countMatchNumber(lottos[1], winningNumber)).toEqual(5);
+    expect(countMatchNumber(lottos[2], winningNumber)).toEqual(4);
+    expect(countMatchNumber(lottos[3], winningNumber)).toEqual(3);
+    expect(countMatchNumber(lottos[4], winningNumber)).toEqual(2);
   });
 
   it('주어진 로또 숫자와, 당첨 번호, 보너스 숫자의 최종 일치 결과를 확인한다.', () => {
