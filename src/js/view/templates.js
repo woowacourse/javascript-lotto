@@ -3,7 +3,7 @@ export const generatePaymentSection = () => `
     <h2 hidden>구입할 금액</h2>
     <label for="payment-input">구입할 금액을 입력해주세요.</label>
     <form class="payment-form">
-      <input name="payment-input" id="payment-input" type="number" placeholder="금액" min="1000" autofocus>
+      <input name="payment-input" id="payment-input" type="number" name="payment" placeholder="금액" min="1000" step="1000" autofocus>
       <button id="payment-button">구입</button>
     </form>
   </section>
@@ -89,16 +89,16 @@ export const generateWinningNumberSection = () => `
       <div class="winning-number-inputs">
         <div>
           <p>당첨 번호</p>
-          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
-          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
-          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
-          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
-          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
-          <input type="number" class="winning-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" min="1" max="45" required/>
+          <input type="number" class="winning-number-input" min="1" max="45" required/>
+          <input type="number" class="winning-number-input" min="1" max="45" required/>
+          <input type="number" class="winning-number-input" min="1" max="45" required/>
+          <input type="number" class="winning-number-input" min="1" max="45" required/>
+          <input type="number" class="winning-number-input" min="1" max="45" required/>
         </div>
         <div class="bonus-number-container">
           <p>보너스 번호</p>
-          <input type="number" class="winning-number-input" id="bonus-number-input" min="1" max="45" maxlength="2" required required aria-invalid="false"/>
+          <input type="number" class="winning-number-input" id="bonus-number-input" min="1" max="45" required required aria-invalid="false"/>
         </div>
       </div>
         <p class="error-text hidden">🚫 1 ~ 45 사이의 숫자만 입력해 주세요 🚫</p>

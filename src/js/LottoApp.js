@@ -1,35 +1,34 @@
 import { isPositiveInteger, isRemainder, isOverRange, isOverlapped } from './util/utils';
 import { ID, MONEY, ERROR_MESSAGE, LOTTO, CLASS } from './util/constants';
 import { generatePaymentSection, generatePurchasedSection, generateWinningNumberSection } from './view/templates';
-import { $, $$, bindClick, render, initInput } from './view/dom';
+import { $, $$, render, initInput } from './view/dom';
 import PurchasedLotto from './PurchasedLotto';
 import { toggleDisablePayment, generateResult, moveFocus, toggleButton, modalClose } from './view/view';
 
 export default class LottoApp {
   constructor(app) {
     this.$app = $(app);
-    render(this.$app, generatePaymentSection());
-
     this.lottoList = [];
+
+    render(this.$app, generatePaymentSection());
     this.bindEvent();
   }
 
   bindEvent() {
-    bindClick(this.$app, ID.PAYMENT_BUTTON, this.onSubmitPayment.bind(this));
-    bindClick(this.$app, ID.LOTTO_LIST_TOGGLE_BUTTON, toggleButton);
-    bindClick(this.$app, ID.MODAL_CLOSE_BUTTON, modalClose);
-    bindClick(this.$app, ID.RESULT_CHECKING_BUTTON, this.onClickResultButton.bind(this));
+    $(ID.PAYMENT_BUTTON).addEventListener('click', this.onSubmitPayment.bind(this));
+    $(ID.MODAL_CLOSE_BUTTON).addEventListener('click', modalClose.bind(this));
 
-    window.addEventListener('click', (e) => {
-      if (e.target === document.querySelector(CLASS.MODAL_BACKGROUND)) {
+    window.addEventListener('click', (event) => {
+      if (event.target === document.querySelector(CLASS.MODAL_BACKGROUND)) {
         modalClose();
       }
     });
 
-    bindClick(this.$app, ID.RESTART, this.onClickRestart.bind(this));
+    $(ID.RESTART).addEventListener('click', this.onClickRestart.bind(this));
   }
 
-  onSubmitPayment() {
+  onSubmitPayment(event) {
+    event.preventDefault();
     const $paymentInput = $(ID.PAYMENT_INPUT);
     const payment = Number($paymentInput.value);
 
@@ -56,9 +55,12 @@ export default class LottoApp {
   renderPurchasedSection() {
     render(this.$app, generatePurchasedSection(this.lottoList.getPurchasedLotto()));
     render(this.$app, generateWinningNumberSection());
+    $(ID.LOTTO_LIST_TOGGLE_BUTTON).addEventListener('click', toggleButton.bind(this));
+    $(ID.RESULT_CHECKING_BUTTON).addEventListener('click', this.onClickResultButton.bind(this));
   }
 
-  onClickResultButton() {
+  onClickResultButton(event) {
+    event.preventDefault();
     const $winningNumberInputs = $$(CLASS.WINNING_NUMBER_INPUT);
     const $bonusNumberInput = $(ID.BONUS_NUMBER_INPUT);
     const winningNumber = [];
@@ -83,9 +85,10 @@ export default class LottoApp {
     }
   }
 
-  onClickRestart() {
+  onClickRestart(event) {
+    event.preventDefault();
     $(CLASS.MODAL_BACKGROUND).classList.remove('show');
-    $(ID.PURCHASED_LOTTO_SECTION).remove();
+    $(ID.PURCHASED_LOTTO_LIST_SECTION).remove();
     $(ID.WINNING_NUMBER_SECTION).remove();
 
     toggleDisablePayment();

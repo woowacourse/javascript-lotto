@@ -16,7 +16,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #E5E5E5;
-  
   height: 100vh;
 }
 
@@ -42,8 +41,10 @@ input:focus {
   border: none;
 }
 
-[aria-invalid="true"] {
-  outline: 1.3px solid #E36DB0;
+input:invalid {
+  border: none;
+  outline: 1.5px solid #E36DB0;
+  background-color: #fcdfef;
 }
 
 .error-text {
@@ -323,4 +324,11 @@ td {
   background: #00BCD4;
   border-radius: 4px;
   color: white;
+}
+
+#payment-section .payment-form #payment-button:hover,
+#result-checking-button:hover,
+#restart:hover {
+  background-color: #82d2df;
+  transition: 0.3s;
 }

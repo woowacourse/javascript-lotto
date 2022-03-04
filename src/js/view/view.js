@@ -9,16 +9,12 @@ export const moveFocus = () => {
 
   $winningNumberInputs.forEach((numberInput, index) => {
     numberInput.addEventListener('input', () => {
-      if (numberInput.value > 45 || numberInput.value < 1) {
-        numberInput.setAttribute('aria-invalid', 'true');
+      if (!numberInput.checkValidity()) {
         $(CLASS.ERROR_TEXT).classList.remove('hidden');
-      } else {
-        numberInput.setAttribute('aria-invalid', 'false');
       }
-      if (Array.from($winningNumberInputs).every((element) => element.getAttribute('aria-invalid') === 'false')) {
+      if (Array.from($winningNumberInputs).every((element) => element.checkValidity())) {
         $(CLASS.ERROR_TEXT).classList.add('hidden');
       }
-
       if (numberInput.value.length === 2) {
         if (index === 5) {
           $bonusNumberInput.focus();

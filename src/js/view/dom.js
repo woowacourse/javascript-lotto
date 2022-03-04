@@ -18,16 +18,3 @@ export const initInput = (inputElement) => {
 export const render = (element, template) => {
   element.insertAdjacentHTML('beforeend', template);
 };
-
-export const bindClick = (appElement, selector, callback) => {
-  const children = [...$$(selector)];
-  const isTarget = (target) =>
-    children.includes(target) || target.closest(selector);
-
-  appElement.addEventListener('click', (e) => {
-    if (!isTarget(e.target)) return;
-
-    e.preventDefault();
-    callback(e);
-  });
-};

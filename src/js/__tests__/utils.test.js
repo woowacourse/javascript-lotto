@@ -56,31 +56,25 @@ describe('입력된 지난주 당첨 번호와 보너스 번호가 올바른지 
   test(`지난주 당첨 번호와 보너스 번호는 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 정수이다. 입력: 0, 성공 케이스`, () => {
     const lastWeekNumber = 0;
 
-    expect(
-      isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)
-    ).toBe(true);
+    expect(isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)).toBe(true);
   });
 
   test(`지난주 당첨 번호와 보너스 번호는 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 정수이다. 입력: 45, 실패 케이스`, () => {
     const lastWeekNumber = 45;
 
-    expect(
-      isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)
-    ).toBe(false);
+    expect(isOverRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, lastWeekNumber)).toBe(false);
   });
 
-  test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6] 6, 실패 케이스', () => {
-    const lastWeekNumber = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 6;
+  test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6, 6] 실패 케이스', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 6, 6];
 
-    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(true);
+    expect(isOverlapped(lastWeekNumber)).toBe(true);
   });
 
-  test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6] 7, 성공 케이스', () => {
-    const lastWeekNumber = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 7;
+  test('지난주 당첨 번호와 보너스 번호는 서로 다른 숫자이다. 입력: [1, 2, 3, 4, 5, 6, 7] 성공 케이스', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 6, 7];
 
-    expect(isOverlapped(lastWeekNumber, bonusNumber)).toBe(false);
+    expect(isOverlapped(lastWeekNumber)).toBe(false);
   });
 });
 

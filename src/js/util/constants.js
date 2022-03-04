@@ -19,7 +19,7 @@ export const ID = {
   MODAL_CLOSE_BUTTON: '#modal-close-button',
   RESTART: '#restart',
   BONUS_NUMBER_INPUT: '#bonus-number-input',
-  PURCHASED_LOTTO_SECTION: '#purchased-lotto-list-section',
+  PURCHASED_LOTTO_LIST_SECTION: '#purchased-lotto-list-section',
 };
 
 export const CLASS_NAME = {
