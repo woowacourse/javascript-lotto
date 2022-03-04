@@ -10,27 +10,6 @@ export default class WinningNumberView {
     this.container = document.getElementById('winning-number-container');
   }
 
-  render() {
-    this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
-  }
-
-  reset() {
-    this.container.removeChild(this.container.lastElementChild);
-  }
-
-  addSubmitEvent(submitHandler) {
-    const form = document.getElementById('winning-number-form');
-    const inputs = document.querySelectorAll('.winning-number-input');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const numbers = [];
-      inputs.forEach(input => numbers.push(convertToNumber(input.value)));
-
-      submitHandler(numbers);
-    });
-  }
-
   #nextFocusHandler(input) {
     const maxLength = input.getAttribute('maxlength');
     if (input.value.length >= maxLength) {
@@ -49,5 +28,26 @@ export default class WinningNumberView {
         this.#nextFocusHandler(input);
       });
     });
+  }
+
+  addSubmitEvent(submitHandler) {
+    const form = document.getElementById('winning-number-form');
+    const inputs = document.querySelectorAll('.winning-number-input');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const numbers = [];
+      inputs.forEach(input => numbers.push(convertToNumber(input.value)));
+
+      submitHandler(numbers);
+    });
+  }
+
+  render() {
+    this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_FORM);
+  }
+
+  reset() {
+    this.container.removeChild(this.container.lastElementChild);
   }
 }
