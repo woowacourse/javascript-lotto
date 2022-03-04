@@ -53,8 +53,8 @@ class LottoList {
     const lottoPurchaseAmount = this.#lottoList.length * NUMBER.LOTTO_PRICE;
 
     const profitAmount = Object.keys(statistics).reduce((prev, currentKey) => {
-      const count = statistics[currentKey];
-      const price = RANK_PRIZE[currentKey];
+      const count = statistics[currentKey] ?? 0;
+      const price = RANK_PRIZE[currentKey] ?? 0;
 
       return prev + count * price;
     }, 0);
