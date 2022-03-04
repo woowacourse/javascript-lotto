@@ -26,6 +26,7 @@
   height: 14px;
   background-color: #ffffff;
   border: none;
+  cursor: pointer;
 }
 #winning-statistic-modal-title {
   margin-top: 10px;

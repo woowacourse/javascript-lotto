@@ -18,6 +18,7 @@ p {
   color: white;
   line-height: 16px;
   letter-spacing: 1.25px;
+  cursor: pointer;
 }
 body {
   display: flex;
