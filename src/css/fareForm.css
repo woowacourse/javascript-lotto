@@ -13,12 +13,22 @@
   margin-top: 4px;
   height: 36px;
 }
-.input-wrap input {
+
+#fare-input {
   width: calc(100% - 70px);
   height: 100%;
   padding-left: 10px;
 }
-.input-wrap button {
+
+#fare-input:disabled {
+  background-color: #e0e0e0;
+}
+
+#fare-button {
   width: 52px;
   height: 100%;
+}
+
+#fare-button:disabled {
+  background-color: #a0a0a0;
 }
