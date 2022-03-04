@@ -69,7 +69,9 @@ export default class LottoGame {
       })
       .reduce((a, b) => a + b, 0);
 
-    this.profitRate = Math.floor((totalProfit / this.#getTicketAmount()) * 100);
+    this.profitRate = Math.floor(
+      ((totalProfit - this.#getTicketAmount()) / this.#getTicketAmount()) * 100,
+    );
   }
 
   #resetResult() {
