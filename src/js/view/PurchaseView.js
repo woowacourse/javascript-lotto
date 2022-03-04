@@ -32,12 +32,12 @@ export default class PurchaseView {
   }
 
   activatePurchaseForm() {
-    this.$purchaseButton.disabled = false;
-    this.$purchaseInput.disabled = false;
+    this.$purchaseButton.removeAttribute('disabled');
+    this.$purchaseInput.removeAttribute('disabled');
   }
 
   deactivatePurchaseForm() {
-    this.$purchaseButton.disabled = true;
-    this.$purchaseInput.disabled = true;
+    this.$purchaseButton.setAttribute('disabled', true);
+    this.$purchaseInput.setAttribute('disabled', true);
   }
 }
