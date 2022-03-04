@@ -5,6 +5,7 @@ import {
   hasOutRangeNumber,
   isDiffArrayLength,
   hasDuplicateItem,
+  getDuplicateIndex,
 } from '../validator';
 import { LOTTO_SETTING } from '../../constants/setting';
 import { ERROR_MESSAGE } from '../../constants/string';
@@ -38,4 +39,24 @@ export const checkValidWinningNumberList = (winningNumberList) => {
   if (hasDuplicateItem(winningNumberList)) {
     throw new Error('당첨 번호는 중복된 숫자를 입력할 수 없습니다.');
   }
+};
+
+export const getWinningNumberErrorIndexList = (winningNumberList) => {
+  const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
+
+  const output = [];
+  winningNumberList.forEach((winningNumber, index) => {
+    if (
+      hasEmptyString([winningNumber]) ||
+      hasOutRangeNumber([winningNumber], MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
+    ) {
+      output.push(index);
+    }
+  });
+
+  if (output.length === 0 && hasDuplicateItem(winningNumberList)) {
+    return getDuplicateIndex(winningNumberList);
+  }
+
+  return output;
 };

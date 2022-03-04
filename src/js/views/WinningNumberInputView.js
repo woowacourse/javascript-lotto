@@ -1,11 +1,13 @@
 import { DOM_NAME, SELECTOR } from '../constants/selector';
 import { $, $$ } from '../utils/element-manager';
 import { isNumber } from '../utils/validator';
-import { onInputAutoFocus, onEnableButton } from '../utils/custom-event';
+import { onInputAutoFocus, onEnableButton, addEventOnce } from '../utils/custom-event';
 
 export default class WinningNumberInputView {
   #container;
+
   #winningNumberInputList;
+  #winningNumberErrorMessage;
   #winningNumberSubmitButton;
 
   constructor(containerSelector) {
@@ -20,6 +22,8 @@ export default class WinningNumberInputView {
   #defaultElements() {
     this.#winningNumberInputList = $$(this.#container, SELECTOR.LOTTO_WINNING_NUMBER);
     this.#winningNumberSubmitButton = $(this.#container, SELECTOR.LOTTO_SHOW_RESULT_BUTTON);
+
+    this.#winningNumberErrorMessage = $(this.#container, '.error-message');
   }
 
   #bindViewEvents() {
@@ -72,6 +76,28 @@ export default class WinningNumberInputView {
 
   hideContainer() {
     this.#container.classList.remove('show');
+  }
+
+  renderWinningNumberInputError(message, errorInputIndex) {
+    this.#winningNumberErrorMessage.classList.add('show');
+    this.#winningNumberErrorMessage.textContent = message;
+
+    const handleInputChange = ({ target: $target }) => {
+      $target.classList.remove('error');
+
+      const inputErrorCount = $$(this.#container, `${SELECTOR.LOTTO_WINNING_NUMBER}.error`).length;
+      if (inputErrorCount > 0) {
+        return;
+      }
+
+      this.#winningNumberErrorMessage.classList.remove('show');
+    };
+
+    errorInputIndex.forEach((elementIndex) => {
+      const $winningNumberInput = this.#winningNumberInputList[elementIndex];
+      $winningNumberInput.classList.add('error');
+      addEventOnce('change', $winningNumberInput, handleInputChange);
+    });
   }
 
   bindWinningNumberInputSubmit(handler) {

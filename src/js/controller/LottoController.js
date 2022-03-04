@@ -5,7 +5,11 @@ import LottosModel from '../models/LottosModel';
 import LottoResultView from '../views/LottoResultView';
 import ModalView from '../views/ModalView';
 
-import { checkValidMoneyInput, checkValidWinningNumberList } from '../utils/Lotto/validator';
+import {
+  checkValidMoneyInput,
+  checkValidWinningNumberList,
+  getWinningNumberErrorIndexList,
+} from '../utils/Lotto/validator';
 import { SELECTOR } from '../constants/selector';
 
 import '../../css/Lotto.scss';
@@ -58,7 +62,8 @@ export default class LottoController {
       this.#View.LottoResultContent.renderLottoResultList(winningRankCountList);
       this.#View.LottoResultContent.renderLottoResultYield(playerLottoYield);
     } catch (error) {
-      this.#View.WinningNumberInput.renderWinningNumberInputError(error.message);
+      const errorInputIndex = getWinningNumberErrorIndexList(winningNumberList);
+      this.#View.WinningNumberInput.renderWinningNumberInputError(error.message, errorInputIndex);
     }
   }
 
