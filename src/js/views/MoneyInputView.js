@@ -1,5 +1,4 @@
 import { SELECTOR } from '../constants/selector';
-
 import { $ } from '../utils/element-manager';
 import { addEventOnce, onEnableButton } from '../utils/custom-event';
 

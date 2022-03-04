@@ -1,16 +1,16 @@
-import MoneyInputView from '../views/MoneyInputView';
-import LottoListView from '../views/LottoListView';
-import WinningNumberInputView from '../views/WinningNumberInputView';
-import LottosModel from '../models/LottosModel';
-import LottoResultView from '../views/LottoResultView';
-import ModalView from '../views/ModalView';
-
+import { SELECTOR } from '../constants/selector';
 import {
   checkValidMoneyInput,
   checkValidWinningNumberList,
   getWinningNumberErrorIndexList,
 } from '../utils/Lotto/validator';
-import { SELECTOR } from '../constants/selector';
+
+import MoneyInputView from '../views/MoneyInputView';
+import LottoListView from '../views/LottoListView';
+import WinningNumberInputView from '../views/WinningNumberInputView';
+import LottoResultView from '../views/LottoResultView';
+import ModalView from '../views/ModalView';
+import LottosModel from '../models/LottosModel';
 
 import '../../css/Lotto.scss';
 

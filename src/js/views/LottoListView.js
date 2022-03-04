@@ -1,5 +1,5 @@
-import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+import { $ } from '../utils/element-manager';
 import { makeLottosCountTemplate, makeLottoTemplate } from '../utils/Lotto/template-manager';
 
 export default class LottoListView {
