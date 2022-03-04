@@ -1,4 +1,4 @@
-import { LOTTO_PRICE, SELECTOR } from './constants/constants';
+import { ID, LOTTO_PRICE, SELECTOR } from './constants/constants';
 import { $, $$, divider } from './utils/util';
 import { validateCharge, validateWinnerNumbers } from './validation';
 
@@ -6,10 +6,20 @@ import LottoManager from './LottoManager';
 import LottoMachineView from './views/LottoMachineView';
 
 export default class LottoMachine {
+  #closeModalIfClickOutOfModalBind;
+
+  #closeModalwithESCBind;
+
   constructor() {
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
+    this.#setBind();
     this.#setEvent();
+  }
+
+  #setBind() {
+    this.#closeModalIfClickOutOfModalBind = this.#closeModalIfClickOutOfModal.bind(this);
+    this.#closeModalwithESCBind = this.#closeModalwithESC.bind(this);
   }
 
   #setEvent() {
@@ -56,6 +66,44 @@ export default class LottoMachine {
       validateWinnerNumbers(this.winnerNumbers);
     } catch (error) {
       alert(error.message);
+      return;
     }
+    this.#showLottoResult();
+  }
+
+  #showLottoResult() {
+    this.lottoMachineView.showLottoResultModal();
+    this.#setCloseModalEvent();
+  }
+
+  #setCloseModalEvent() {
+    $(SELECTOR.CLOSE_RESULT_MODAL).addEventListener('click', this.#clickXButton.bind(this));
+    window.addEventListener('click', this.#closeModalIfClickOutOfModalBind);
+    window.addEventListener('keyup', this.#closeModalwithESCBind);
+  }
+
+  #clickXButton(event) {
+    event.preventDefault();
+    this.#removeModalAndEvent();
+  }
+
+  #closeModalIfClickOutOfModal(event) {
+    event.preventDefault();
+    if (event.target.id === ID.LOTTO_RESULT_MODAL) {
+      this.#removeModalAndEvent();
+    }
+  }
+
+  #closeModalwithESC(event) {
+    event.preventDefault();
+    if (event.key === 'Escape') {
+      this.#removeModalAndEvent();
+    }
+  }
+
+  #removeModalAndEvent() {
+    this.lottoMachineView.removeLottoResultModal();
+    window.removeEventListener('click', this.#closeModalIfClickOutOfModalBind);
+    window.removeEventListener('keyup', this.#closeModalwithESCBind);
   }
 }

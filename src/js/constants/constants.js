@@ -24,4 +24,10 @@ export const SELECTOR = {
   LOTTO_LIST_ICON: '#lotto-list-icon',
   WINNER_NUMBER_SUBMIT_FORM: '#winner-number-submit-form',
   CHECK_RESULT_BUTTON: '#check-result-button',
+  LOTTO_RESULT_MODAL: '#lotto-result-modal',
+  CLOSE_RESULT_MODAL: '#close-result-modal',
+};
+
+export const ID = {
+  LOTTO_RESULT_MODAL: 'lotto-result-modal',
 };

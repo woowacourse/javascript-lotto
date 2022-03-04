@@ -27,4 +27,12 @@ export default class LottoMachineView {
     $(SELECTOR.LOTTO_LIST_ICON).classList.add('display-none');
     $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove('display-none');
   }
+
+  showLottoResultModal() {
+    $(SELECTOR.LOTTO_RESULT_MODAL).classList.remove('display-none');
+  }
+
+  removeLottoResultModal() {
+    $(SELECTOR.LOTTO_RESULT_MODAL).classList.add('display-none');
+  }
 }
