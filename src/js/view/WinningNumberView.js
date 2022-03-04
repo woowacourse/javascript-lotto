@@ -74,10 +74,12 @@ export class WinningNumberView {
 
   displayResultModal() {
     this.$resultModalBackground.classList.add(CLASS_SELECTOR.OPEN);
+    document.querySelector('body').classList.add('scroll-block');
   }
 
   displayNoneResultModal() {
     this.$resultModalBackground.classList.remove(CLASS_SELECTOR.OPEN);
+    document.querySelector('body').classList.remove('scroll-block');
   }
 
   clearInputs() {
@@ -85,7 +87,7 @@ export class WinningNumberView {
   }
 
   showLottoResult(winningLottoQuantity, profitRatio) {
-    this.$resultModalBackground.classList.add(CLASS_SELECTOR.OPEN);
+    this.displayResultModal();
     replaceHTML(this.$resultModalGridContainer, resultGridTemplate(winningLottoQuantity));
     this.$resultModalProfitRatio.textContent = profitRatio.toLocaleString();
   }
