@@ -59,6 +59,7 @@ label[for="purchase-money"] {
   border: none;
   cursor: pointer;
 }
+
 #lotto-purchase-form > button:active {
   background: #d2d7d8;
   border-radius: 4px;
@@ -85,6 +86,10 @@ label[for="purchase-money"] {
 
 #lotto-purchase-input::placeholder {
   color: #8B8B8B;
+}
+
+#purchase-validate-text {
+  color: red;
 }
 
 #lotto-list {

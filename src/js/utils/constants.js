@@ -26,3 +26,7 @@ export const ERROR_MESSAGE = Object.freeze({
   USER_LOTTO_NUMBER_POSITIVE_VALUE: '모든 번호를 입력해주세요',
   NOT_YET_PURCHASE_LOTTO: '로또를 먼저 구입해주세요',
 });
+
+export const MESSAGE = Object.freeze({
+  CAN_PURCHASE_LOTTO: '구매가 가능합니다',
+})
