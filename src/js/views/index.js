@@ -1,5 +1,7 @@
 import { SELECTOR } from '../constants/selector';
 import { findElement } from '../utils/elementSelector';
+import { ELEMENT_PROPERTY } from '../constants/elementProperty';
+import { NUMBER } from '../constants/number';
 
 class LottoGameView {
   constructor() {
@@ -14,6 +16,7 @@ class LottoGameView {
     this.$thirdGradeAmount = findElement(SELECTOR.THIRD_GRADE_AMOUNT);
     this.$fourthGradeAmount = findElement(SELECTOR.FOURTH_GRADE_AMOUNT);
     this.$fifthGradeAmount = findElement(SELECTOR.FIFTH_GRADE_AMOUNT);
+    this.$alignConverter = findElement(SELECTOR.ALIGN_CONVERTER);
   }
 
   initialize() {
@@ -39,16 +42,41 @@ class LottoGameView {
       </div>`;
   }
 
+  // 내부 구현이 너무 길어져서 메서드를 분리
   renderAlignState(visibleState, lottoAmount = 0) {
     if (visibleState) {
-      this.$lottoSection.style.height = `${lottoAmount * 46.364}px`;
-      setTimeout(() => {
-        this.$lottoContainer.setAttribute('data-visible-state', visibleState);
-      }, 500);
-    } else {
+      if (lottoAmount > NUMBER.LOTTO_SECTIONS_DEFALUT_CAPACITY_IN_DETAIL) {
+        this.$lottoSection.style.height = this.#calculateVisibleLottoSectionHeight(lottoAmount);
+        this.$alignConverter.setAttribute('disabled', true);
+        setTimeout(() => {
+          this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+          this.$alignConverter.removeAttribute('disabled');
+        }, NUMBER.ANIMATION_TIME);
+        return;
+      }
       this.$lottoContainer.setAttribute('data-visible-state', visibleState);
-      this.$lottoSection.style.height = `27vh`;
+      return;
     }
+    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+    this.$lottoSection.style.height = this.#calculateInvisibleLottoSectionHeight(lottoAmount);
+  }
+
+  #calculateVisibleLottoSectionHeight(lottoAmount) {
+    return `${lottoAmount * ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE}px`;
+  }
+
+  #calculateInvisibleLottoSectionHeight(lottoAmount) {
+    if (lottoAmount > NUMBER.LOTTO_SECTIONS_DEFALUT_CAPACITY_IN_ICON) {
+      const linesOfLottoIcon = Math.ceil(
+        (lottoAmount - NUMBER.LOTTO_SECTIONS_DEFALUT_CAPACITY_IN_ICON) /
+          NUMBER.LOTTO_ELEMENT_PER_LINE
+      );
+      return `${
+        linesOfLottoIcon * ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE +
+        ELEMENT_PROPERTY.DEFAULT_HEIGHT_OF_LOTTO_SECTION
+      }px`;
+    }
+    return `${ELEMENT_PROPERTY.DEFAULT_HEIGHT_OF_LOTTO_SECTION}px`;
   }
 
   renderWinNumberInputSection(visibleState) {

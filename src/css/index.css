@@ -83,7 +83,7 @@ section {
 #lotto-section[data-visible-state='true'] {
   display: flex;
   flex-direction: row;
-  height: 27vh;
+  height: 237.84px;
   visibility: visible;
   transition: height 0.5s;
 }
