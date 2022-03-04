@@ -5,14 +5,11 @@ export default class LottoModel {
   state;
 
   static createWinningStatistic() {
-    return {
-      under: 0,
-      three: 0,
-      four: 0,
-      five: 0,
-      fiveBonus: 0,
-      six: 0,
-    };
+    const statisticList = Object.keys(STATISTIC).map((numberString) => {
+      return [numberString, 0];
+    });
+
+    return Object.fromEntries(statisticList);
   }
 
   constructor() {
