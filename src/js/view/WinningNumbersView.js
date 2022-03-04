@@ -1,9 +1,11 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable no-param-reassign */
 import EVENT from '../constants/event';
 import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
 import { changeDuplicatedInputsColor, changeOkInputsColor, changeOverInputsColor } from '../utils/style';
+import keyCheck from '../utils/keyCheck';
 
 export default class WinningNumbersView {
   constructor() {
@@ -14,12 +16,39 @@ export default class WinningNumbersView {
     this.$resultButton = $(ID.RESULT_BUTTON);
     this.$basicNumberInput = $(ID.BASIC_NUMBER_INPUT);
     this.#bindEvents();
-    this.#validateInputs();
-    this.#resetFocusedInput();
   }
 
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
+    this.#validateInputs();
+    this.#resetFocusedInput();
+    this.#goBackInput();
+  }
+
+  #goBackInput() {
+    this.$$winningNumberInputs.forEach((input) =>
+      input.addEventListener('keydown', (e) => WinningNumbersView.#deleteKeydownHandler(e)),
+    );
+  }
+
+  static #deleteKeydownHandler(e) {
+    if (e.keyCode === 8 || e.keyCode === 46) {
+      WinningNumbersView.#moveReverseFocus(e);
+    }
+  }
+
+  static #moveReverseFocus(e) {
+    const { activeElement } = document;
+    const eventTarget = e.target;
+    if (activeElement.id === 'bonus-number' && activeElement.value.length <= 1) {
+      activeElement.value = '';
+      $('#last-basic-input').focus();
+      return;
+    }
+    if (eventTarget.previousElementSibling && activeElement.value.length <= 1) {
+      eventTarget.value = '';
+      eventTarget.previousElementSibling.focus();
+    }
   }
 
   #handleSubmit(e) {
