@@ -63,5 +63,10 @@ export default class LottoResultView extends View {
 
   renderResultModal(lottoResult, totalProfitRate) {
     $(".result-modal").innerHTML = lottoResultTemplate(lottoResult, totalProfitRate);
+    $(".close-button").addEventListener("click", this.closeModal.bind(this));
+  }
+
+  closeModal() {
+    $(".result-modal").innerText = "";
   }
 }
