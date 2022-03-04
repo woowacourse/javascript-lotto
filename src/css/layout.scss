@@ -1,9 +1,14 @@
 @import './variables.scss';
 @import './utils/animation.scss';
+@import './utils/responsive.scss';
 
 :root {
   font-size: 15px;
   letter-spacing: 1px;
+
+  @include not-desktop {
+    font-size: 3vw;
+  }
 }
 
 * {
@@ -24,6 +29,10 @@ body {
   font-family: 'NanumBarunGothic', sans-serif;
   margin: 0;
   padding: 5.7rem;
+
+  @include not-desktop {
+    padding: 0;
+  }
 }
 
 #app {
@@ -33,6 +42,10 @@ body {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: $border-radius;
+
+  @include not-desktop {
+    width: 100%;
+  }
 
   button.btn {
     width: 100%;
@@ -256,6 +269,18 @@ body {
       top: 15%;
       box-shadow: 0 0 10rem 0.5rem rgba(0, 0, 0, 0.55);
 
+      @include not-desktop {
+        position: absolute;
+        width: 90%;
+        min-height: unset;
+        max-height: 70%;
+        top: unset;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow-y: scroll;
+      }
+
       &.focus {
         display: block;
       }
@@ -302,6 +327,20 @@ body {
           transform: translateY(0%);
         }
       }
+
+      @include not-desktop {
+        @include animate(0.3s ease) {
+          from {
+            opacity: 0;
+            transform: translate3d(-50%, -30%, 0);
+          }
+
+          to {
+            opacity: 1;
+            transform: translate3d(-50%, 0%, 0);
+          }
+        }
+      }
     }
 
     &.disappear {
@@ -329,6 +368,20 @@ body {
           to {
             opacity: 0;
             transform: translateY(-30%);
+          }
+        }
+
+        @include not-desktop {
+          @include animate(0.3s ease) {
+            from {
+              opacity: 1;
+              transform: translate3d(-50%, 0%, 0);
+            }
+
+            to {
+              opacity: 0;
+              transform: translate3d(-50%, -30%, 0);
+            }
           }
         }
       }
