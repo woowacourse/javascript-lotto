@@ -19,19 +19,26 @@ export default class LottoController {
     this.issuedTicketView = new IssuedTicketView();
     this.winningNumbersView = new WinningNumbersView();
     this.resultModalView = new ResultModalView();
+    this.toggleChecked = false;
     this.#subscribeViewEvents();
   }
 
   #subscribeViewEvents() {
     on(this.purchaseView.$purchaseForm, EVENT.SUBMIT_PURCHASE, (e) => this.#purchaseLotto(e.detail.money));
+
     on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE_LOTTO_DETAIL, (e) =>
       this.#toggleDetails(e.detail.checked),
     );
+
     on(this.winningNumbersView.$winningNumbersForm, EVENT.SUBMIT_RESULT, (e) =>
       this.#requestResult(e.detail.winningNumbers, e.detail.bonusNumber),
     );
+
     on(this.resultModalView.$restartButton, EVENT.CLICK_RESTART, () => this.#restart());
+
     on(this.purchaseView.$purchaseInput, EVENT.PURCHASE_KEYUP, (e) => this.#keyupHandler(e.detail.target));
+
+    on(this.resultModalView.$closeMainButton, '@close-modal', () => this.#closeModal());
   }
 
   #purchaseLotto(userInputMoney) {
@@ -51,11 +58,7 @@ export default class LottoController {
   }
 
   #toggleDetails(checked) {
-    if (checked) {
-      this.issuedTicketView.toggleTicketDetails();
-      return;
-    }
-
+    this.toggleChecked = checked;
     this.issuedTicketView.toggleTicketDetails();
   }
 
@@ -106,5 +109,14 @@ export default class LottoController {
       this.purchaseView.stopInputTyping(value);
       throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
     }
+  }
+
+  #closeModal() {
+    this.resultModalView.toggleModalDisplay();
+
+    if (this.toggleChecked) {
+      return;
+    }
+    this.issuedTicketView.$lottoNumberToggle.click();
   }
 }

@@ -12,13 +12,14 @@ export default class WinningNumbersView {
     this.$winningNumbersReset = $(ID.WINNING_NUMBERS_RESET);
     this.$$winningNumberInputs = $$('.basic-input');
     this.$resultButton = $(ID.RESULT_BUTTON);
+    this.$basicNumberInput = $(ID.BASIC_NUMBER_INPUT);
     this.#bindEvents();
+    this.#validateInputs();
+    this.#resetFocusedInput();
   }
 
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
-    this.#validateInputs();
-    this.#resetFocusedInput();
   }
 
   #handleSubmit(e) {
@@ -94,6 +95,7 @@ export default class WinningNumbersView {
 
   toggleWinningNumbersDisplay() {
     this.$winningNumbersContainer.classList.toggle('hidden');
+    this.$basicNumberInput.focus();
   }
 
   #changeInvalidInputsColor() {

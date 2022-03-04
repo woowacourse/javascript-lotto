@@ -34,7 +34,7 @@
   margin: 7px 0 25px 0;
 }
 
-.close {
+.x-shape {
   box-sizing: border-box;
   display: flex;
   width: 100%;
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.close:after {
+.x-shape:after {
   content: '\00d7';
   font-size: 20pt;
   font-weight: bolder;

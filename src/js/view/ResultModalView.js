@@ -1,15 +1,16 @@
 import EVENT from '../constants/event';
 import ID from '../constants/dom';
 import { insertComma } from '../utils/autoComma';
-import { emit } from '../utils/event';
-import { $ } from '../utils/selector';
+import { emit, on } from '../utils/event';
+import { $, $$ } from '../utils/selector';
 
 export default class ResultModalView {
   constructor(lottoVendor) {
     this.lottoVendor = lottoVendor;
     this.$modalContainer = $(ID.MODAL_CONTAINER);
     this.$modal = $('.modal');
-    this.$closeButton = $('.close');
+    this.$closeSmallButton = $('.x-shape');
+    this.$closeMainButton = $('#close-modal-button');
     this.$restartButton = $(ID.RESTART_BUTTON);
     this.$threeCount = $(ID.THREE_COUNT);
     this.$fourCount = $(ID.FOUR_COUNT);
@@ -23,8 +24,13 @@ export default class ResultModalView {
   }
 
   #bindEvents() {
-    this.$closeButton.addEventListener('click', () => this.toggleModalDisplay());
-    this.$restartButton.addEventListener('click', () => this.handleRestart());
+    on(this.$closeMainButton, 'click', () => this.#handleClose());
+    on(this.$closeSmallButton, 'click', () => this.toggleModalDisplay());
+    on(this.$restartButton, 'click', () => this.handleRestart());
+  }
+
+  #handleClose() {
+    emit(this.$closeMainButton, '@close-modal', {});
   }
 
   toggleModalDisplay() {

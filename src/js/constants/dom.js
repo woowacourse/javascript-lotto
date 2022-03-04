@@ -25,6 +25,7 @@ const ID = Object.freeze({
   PURCHASABLE_LOTTO_DIV: '#purchasable-lotto-div',
   LOTTO_PROFIT_SPAN: '#lotto-profit-span',
   PURCHASE_MONEY_SPAN: '#purchase-money-span',
+  BASIC_NUMBER_INPUT: '#basic-number',
 });
 
 export default ID;
