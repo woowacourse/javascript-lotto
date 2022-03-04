@@ -5,20 +5,19 @@ export default class LottoResultView {
   #container;
   #lottoResultList;
   #lottoResultYield;
+  #lottoRetryButton;
 
   constructor(containerSelector) {
     this.#container = $(containerSelector);
 
     this.#defaultElements();
-    this.#bindViewEvents();
   }
 
   #defaultElements() {
     this.#lottoResultList = $(this.#container, '#lotto-result-list');
     this.#lottoResultYield = $(this.#container, '#lotto-yield-text');
+    this.#lottoRetryButton = $(this.#container, '#lotto-retry-button');
   }
-
-  #bindViewEvents() {}
 
   renderLottoResultList(winningRankCountList) {
     this.#lottoResultList.innerHTML = makeLottoResultTemplate(winningRankCountList);
@@ -26,5 +25,12 @@ export default class LottoResultView {
 
   renderLottoResultYield(playerLottoYield) {
     this.#lottoResultYield.innerHTML = makeLottoResultYieldText(playerLottoYield);
+  }
+
+  bindLottoRetryButton(handler) {
+    this.#lottoRetryButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      handler();
+    });
   }
 }
