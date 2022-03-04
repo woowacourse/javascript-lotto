@@ -17,10 +17,12 @@ export default class LottoMachine {
   #inputMoney;
   #lottos;
   #strategy;
+  #totalMoney;
 
   constructor() {
     this.#inputMoney = 0;
     this.#lottos = [];
+    this.#totalMoney = 0;
     this.#strategy = new LottoStrategy();
   }
 
@@ -41,6 +43,14 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
+  get profitRate() {
+    const totalProfit = this.#lottos.reduce(
+      (prev, acc) => prev + acc.result.price,
+      0
+    );
+    return ((totalProfit * 100) / this.#totalMoney).toFixed(2);
+  }
+
   getNumberOfGrade(type) {
     return this.#lottos.filter(({ result: { grade } }) => grade === type)
       .length;
@@ -52,6 +62,7 @@ export default class LottoMachine {
 
   operateLottoMachine() {
     this.#lottos = this.generateLottos();
+    this.#totalMoney += this.#inputMoney;
     this.#inputMoney = 0;
   }
 
