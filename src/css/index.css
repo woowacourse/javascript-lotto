@@ -3,7 +3,7 @@
 
 :root {
   --color-primary: #00bcd4;
-  --color-light-gray: #b4b4b4;
+  --color-light-gray: #e5e5e5;
   --color-white: #ffffff;
 }
 
@@ -11,11 +11,24 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--color-light-gray);
+}
+
 #app {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: 0 auto;
+  position: relative;
+  width: 414px;
+  height: 727px;
+  padding: 0 16px 39px;
+  background-color: var(--color-white);
 }
 
 .lotto-title {
