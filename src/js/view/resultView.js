@@ -1,13 +1,14 @@
 import { $, $$ } from '../utils/selector.js';
 import { on, emit } from '../utils/event.js';
 import CUSTOM_EVENT from '../constants/event.js';
+import { ID, CLASS } from '../constants/selector.js';
 
 export default class ResultView {
   constructor() {
-    this.$resultForm = $('#result-form');
-    this.$resultContainer = $('#result-container');
-    this.$prizeNumberInput = $$('.prize-number-input');
-    this.$bonusNumberInput = $('#bonus-number-input');
+    this.$resultForm = $(ID.RESULT_FORM);
+    this.$resultContainer = $(ID.RESULT_CONTAINER);
+    this.$prizeNumberInput = $$(CLASS.PRIZE_NUMBER_INPUT);
+    this.$bonusNumberInput = $(ID.BONUS_NUMBER_INPUT);
     this.bindEvents();
   }
 

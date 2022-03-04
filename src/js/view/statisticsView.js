@@ -1,19 +1,20 @@
 import { $ } from '../utils/selector.js';
 import { on, emit } from '../utils/event.js';
 import CUSTOM_EVENT from '../constants/event.js';
+import { ID } from '../constants/selector.js';
 
 export default class StatisticsView {
   constructor() {
-    this.$statisticsModal = $('#statistics-modal');
-    this.$statisticsModalContainer = $('#statistics-modal-container');
-    this.$closeButton = $('#close-button');
-    this.$restartButton = $('#restart-button');
-    this.$firstPrizeCount = $('#first-prize-count');
-    this.$secondPrizeCount = $('#second-prize-count');
-    this.$thirdPrizeCount = $('#third-prize-count');
-    this.$fourthPrizeCount = $('#fourth-prize-count');
-    this.$fifthPrizeCount = $('#fifth-prize-count');
-    this.$rateOfReturn = $('#rate-of-return');
+    this.$statisticsModal = $(ID.STATISTICS_MODAL);
+    this.$statisticsModalContainer = $(ID.STATISTICS_MODAL_CONTAINER);
+    this.$closeButton = $(ID.CLOSE_BUTTON);
+    this.$restartButton = $(ID.RESTART_BUTTON);
+    this.$firstPrizeCount = $(ID.FIRST_PRIZE_COUNT);
+    this.$secondPrizeCount = $(ID.SECOND_PRIZE_COUNT);
+    this.$thirdPrizeCount = $(ID.THIRD_PRIZE_COUNT);
+    this.$fourthPrizeCount = $(ID.FOURTH_PRIZE_COUNT);
+    this.$fifthPrizeCount = $(ID.FIFTH_PRIZE_COUNT);
+    this.$rateOfReturn = $(ID.RATE_OF_RETURN);
     this.bindEvents();
   }
 
