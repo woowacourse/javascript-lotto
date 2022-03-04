@@ -89,7 +89,7 @@ label[for="purchase-money"] {
 
 #lotto-list {
   width: 300px;
-  height: 300px;
+  max-height: 300px;
   overflow: scroll;
   display: flex;
   flex-wrap: wrap;
