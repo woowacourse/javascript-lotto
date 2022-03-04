@@ -30,9 +30,11 @@ export const convertToNumber = value => {
 
 export const pickLottoNumber = count => {
   //로또번호 1 ~ 45를 소유하고 있는 배열
-  const lottoNumbers = [...Array(RULES.MAX_LOTTO_NUMBER)].map(
-    (_, index) => index + 1,
+  const lottoNumbers = Array.from(
+    { length: RULES.MAX_LOTTO_NUMBER },
+    (_, index) => index,
   );
+
   const shuffledLottoNumbers = shuffleArray(lottoNumbers);
   const numbers = [];
 
