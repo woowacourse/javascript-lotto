@@ -58,9 +58,9 @@ export default class LottoController {
       this.#View.LottoResultModal.show();
       this.#LottosModel.winningNumberList = winningNumberList;
 
-      const { winningRankCountList, playerLottoYield } = this.#LottosModel.result;
+      const { winningRankCountList, playerLottoProfitRatio } = this.#LottosModel.result;
       this.#View.LottoResultContent.renderLottoResultList(winningRankCountList);
-      this.#View.LottoResultContent.renderLottoResultYield(playerLottoYield);
+      this.#View.LottoResultContent.renderLottoResultProfitRatio(playerLottoProfitRatio);
     } catch (error) {
       const errorInputIndex = getWinningNumberErrorIndexList(winningNumberList);
       this.#View.WinningNumberInput.renderWinningNumberInputError(error.message, errorInputIndex);

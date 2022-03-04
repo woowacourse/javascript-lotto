@@ -11,7 +11,7 @@ export const SELECTOR = Object.freeze({
   LOTTO_BOUGHT_COUNT: '#lotto-bought-count',
   LOTTO_SHOW_RESULT_BUTTON: '#show-result-button',
   LOTTO_RESULT_LIST: '#lotto-result-list',
-  LOTTO_YIELD_TEXT: '#lotto-yield-text',
+  LOTTO_PROFIT_RATIO_TEXT: '#lotto-profit-ratio-text',
   LOTTO_RETRY_BUTTON: '#lotto-retry-button',
   LOTTO_RESULT_MODAL: '#lotto-result-modal',
 

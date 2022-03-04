@@ -1,11 +1,14 @@
 import { SELECTOR } from '../constants/selector';
 import { $ } from '../utils/element-manager';
-import { makeLottoResultTemplate, makeLottoResultYieldText } from '../utils/Lotto/template-manager';
+import {
+  makeLottoResultTemplate,
+  makeLottoResultProfitRatioText,
+} from '../utils/Lotto/template-manager';
 
 export default class LottoResultView {
   #container;
   #lottoResultList;
-  #lottoResultYield;
+  #lottoResultProfitRatio;
   #lottoRetryButton;
 
   constructor(containerSelector) {
@@ -17,7 +20,7 @@ export default class LottoResultView {
 
   #defaultElements() {
     this.#lottoResultList = $(this.#container, SELECTOR.LOTTO_RESULT_LIST);
-    this.#lottoResultYield = $(this.#container, SELECTOR.LOTTO_YIELD_TEXT);
+    this.#lottoResultProfitRatio = $(this.#container, SELECTOR.LOTTO_PROFIT_RATIO_TEXT);
     this.#lottoRetryButton = $(this.#container, SELECTOR.LOTTO_RETRY_BUTTON);
   }
 
@@ -29,8 +32,8 @@ export default class LottoResultView {
     this.#lottoResultList.innerHTML = makeLottoResultTemplate(winningRankCountList);
   }
 
-  renderLottoResultYield(playerLottoYield) {
-    this.#lottoResultYield.innerHTML = makeLottoResultYieldText(playerLottoYield);
+  renderLottoResultProfitRatio(playerLottoProfitRatio) {
+    this.#lottoResultProfitRatio.innerHTML = makeLottoResultProfitRatioText(playerLottoProfitRatio);
   }
 
   bindLottoRetryButton(handler) {

@@ -22,5 +22,5 @@ export const makeLottoResultTemplate = (winningRankCountList) => {
     .join('');
 };
 
-export const makeLottoResultYieldText = (playerLottoYield) =>
-  `당신의 총 수익률은 ${playerLottoYield.toLocaleString()}% 입니다.`;
+export const makeLottoResultProfitRatioText = (playerLottoProfitRatio) =>
+  `당신의 총 수익률은 ${playerLottoProfitRatio.toLocaleString()}% 입니다.`;

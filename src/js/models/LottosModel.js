@@ -81,7 +81,7 @@ export default class LottosModel {
     return output;
   }
 
-  getWinningYield(winningRankCountList) {
+  getWinningProfitRatio(winningRankCountList) {
     const { WINNING_AMOUNT_UNIT } = LOTTO_SETTING;
     const winningTotalAmount = arraySum(
       winningRankCountList.map((value, index) => value * WINNING_AMOUNT_UNIT[index])
@@ -94,8 +94,8 @@ export default class LottosModel {
 
   get result() {
     const winningRankCountList = this.getWinningCount();
-    const playerLottoYield = this.getWinningYield(winningRankCountList);
+    const playerLottoProfitRatio = this.getWinningProfitRatio(winningRankCountList);
 
-    return { winningRankCountList, playerLottoYield };
+    return { winningRankCountList, playerLottoProfitRatio };
   }
 }
