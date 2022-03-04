@@ -41,9 +41,9 @@ export class WinningNumberView {
   }
 
   bindInput() {
-    this.$pickedNumberInputs.forEach((input, index) => {
-      input.addEventListener('input', () => {
-        this.#moveFocusHandler(input, index);
+    this.$pickedNumberInputs.forEach($input => {
+      $input.addEventListener('input', () => {
+        this.#moveFocusHandler($input);
       });
     });
   }
@@ -52,9 +52,11 @@ export class WinningNumberView {
     this.$pickedNumberInputs[0].focus();
   }
 
-  #moveFocusHandler($element, index) {
-    if ($element.value.length === 2 && index !== LOTTO_RULE.NUMBERS_COUNT) {
-      this.$pickedNumberInputs[index + 1].focus();
+  #moveFocusHandler($element) {
+    if ($element.value.length === 2) {
+      Array.from(this.$pickedNumberInputs)
+        .find($input => $input.value === '')
+        ?.focus();
     }
   }
 
