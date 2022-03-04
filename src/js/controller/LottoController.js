@@ -87,7 +87,7 @@ export default class LottoController {
       return;
     }
 
-    this.lottoPrizeModel.setState();
+    this.lottoPrizeModel.setIsCalculated();
     this.lottoBundleModel.lottos.forEach((lotto) => {
       this.lottoPrizeModel.countPrize(
         returnSameNumberCount(lotto.numbers, numbers.prizeNumbers),

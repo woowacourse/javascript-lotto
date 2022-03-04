@@ -17,7 +17,7 @@ export default class LottoPrize {
     this.rateOfReturn = 0;
   }
 
-  setState() {
+  setIsCalculated() {
     this.isCalculated = true;
   }
 
