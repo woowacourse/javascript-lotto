@@ -33,7 +33,6 @@ export default class WinningNumberInputView {
     });
 
     this.hideContainer();
-    this.disableSubmitButton();
   }
 
   #isWinningNumberInput($input) {
