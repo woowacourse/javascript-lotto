@@ -23,6 +23,10 @@ header h1 {
   text-align: center;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .money-input-text {
   font-style: normal;
   font-weight: normal;
