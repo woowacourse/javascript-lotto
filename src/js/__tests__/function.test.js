@@ -1,6 +1,15 @@
 import LottoModel from '../models/LottoModel.js';
 import WinningNumberController from '../controllers/subController/WinningNumberController.js';
 
+describe('금액이 주어지면', () => {
+  test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
+    const lottoModel = new LottoModel();
+    const purchaseAmount = 2000;
+
+    expect(lottoModel.getCountOfLotto(purchaseAmount)).toBe(2);
+  });
+});
+
 describe('당첨번호와 로또 리스트가 주어지면', () => {
   const winningNumberController = new WinningNumberController();
   const winningNumbers = [1, 23, 16, 42, 34, 9];

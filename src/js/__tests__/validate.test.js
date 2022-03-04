@@ -4,15 +4,6 @@ import { getRandomInt } from '../utils/utils.js';
 import { ERROR_MESSAGE, LOTTO } from '../configs/contants.js';
 import LottoModel from '../models/LottoModel.js';
 
-describe('금액이 주어지면', () => {
-  test('발급할 로또 개수를 구할 수 있어야 한다.', () => {
-    const lottoModel = new LottoModel();
-    const purchaseAmount = 2000;
-
-    expect(lottoModel.getCountOfLotto(purchaseAmount)).toBe(2);
-  });
-});
-
 describe('입력된 금액의 유효성을 검증하여', () => {
   test('숫자가 아니면 에러를 throw한다.', () => {
     const purchaseAmount = '만원';
