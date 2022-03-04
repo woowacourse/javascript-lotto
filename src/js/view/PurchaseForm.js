@@ -3,7 +3,7 @@ import { ID_SELECTOR } from '../constants.js';
 export default class PurchaseFormView {
   constructor() {
     this.#configureDOM();
-    this.bindInput();
+    this.bindAddCommaInNumber();
   }
 
   #configureDOM() {
@@ -18,20 +18,20 @@ export default class PurchaseFormView {
   bindSubmitCash(handler) {
     this.$purchaseForm.addEventListener('submit', event => {
       event.preventDefault();
-      handler(makeNumberWithoutComma(event.target.elements.cash.value));
+      handler(removeCommaInNumber(event.target.elements.cash.value));
     });
   }
 
-  bindInput() {
+  bindAddCommaInNumber() {
     this.$purchaseInput.addEventListener('keyup', ({ target }) => {
       if (target.value === '') {
         return;
       }
-      target.value = makeNumberWithoutComma(target.value).toLocaleString();
+      target.value = removeCommaInNumber(target.value).toLocaleString();
     });
   }
 }
 
-function makeNumberWithoutComma(value) {
+function removeCommaInNumber(value) {
   return Number(value.replace(/,/g, ''));
 }
