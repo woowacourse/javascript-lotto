@@ -1,0 +1,36 @@
+#winning-number-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#winning-number-fieldset {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+#winning-number-input-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-number-input,
+.bonus-number-input {
+  width: 34px;
+  text-align: center;
+}
+
+#winning-number-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#bonus-number-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#show-result-button {
+  margin-bottom: 39px;
+}

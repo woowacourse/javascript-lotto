@@ -1,0 +1,20 @@
+#app {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 52px;
+  width: 414px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#title {
+  text-align: center;
+  margin-top: 52px;
+}
