@@ -19,6 +19,7 @@ export default class IssuedTicketView {
 
   handleToggle(e) {
     const { checked } = e.target;
+
     emit(this.$lottoNumberToggle, CUSTOM_EVENT.TOGGLE, { checked });
   }
 
