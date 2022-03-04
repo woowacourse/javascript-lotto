@@ -22,7 +22,7 @@
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.15px;
-  margin: 30px 0 32px 0;
+  margin: 30px 0 32px;
 }
 
 #close-button {
@@ -30,8 +30,8 @@
   width: 14px;
   left: 320px;
   top: 16px;
-  border-radius: 0px;
-  color: #323232;
+  border-radius: 0;
+  color: var(--close-button-text-color);
   float: right;
   border: none;
   background: var(--app-bg-color);
@@ -43,14 +43,15 @@ table {
   margin: 0 16px;
 }
 
-th, td {
+th,
+td {
   border-top: 2px solid var(--table-line-color);
   border-bottom: 2px solid var(--table-line-color);
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 #result-percent {
-  margin: 16px 0 32px 0;
+  margin: 16px 0 32px;
   font-weight: 600;
 }
 

@@ -40,7 +40,7 @@ header {
   font-size: 34px;
   line-height: 36px;
   text-align: center;
-  color: #000000;
+  color: var(--header-text-color);
   margin: 52px 0 16px;
 }
 
