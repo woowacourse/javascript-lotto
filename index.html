@@ -39,15 +39,23 @@
             <label for="basic-number">당첨 번호</label>
             <label class="bonus-label" for="bonus-number">보너스 번호</label>
             <div>
-              <input id="basic-number" class="basic-input" type="number" required min="1" max="45" />
-              <input class="basic-input" type="number" required min="1" max="45" />
-              <input class="basic-input" type="number" required min="1" max="45" />
-              <input class="basic-input" type="number" required min="1" max="45" />
-              <input class="basic-input" type="number" required min="1" max="45" />
-              <input class="basic-input" type="number" required min="1" max="45" />
+              <input id="basic-number" class="basic-input" type="number" required min="1" max="45" maxlength="2" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" />
             </div>
             <div class="bonus-input">
-              <input id="bonus-number" class="basic-input bonus-input" type="number" required min="1" max="45" />
+              <input
+                id="bonus-number"
+                class="basic-input bonus-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+                maxlength="2"
+              />
             </div>
           </div>
           <button id="result-button" type="submit">결과 확인하기</button>

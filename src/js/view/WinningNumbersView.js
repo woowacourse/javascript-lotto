@@ -1,7 +1,9 @@
+/* eslint-disable no-param-reassign */
 import EVENT from '../constants/event';
 import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
+import { changeDuplicatedInputsColor, changeOkInputsColor, changeOverInputsColor } from '../utils/style';
 
 export default class WinningNumbersView {
   constructor() {
@@ -15,9 +17,8 @@ export default class WinningNumbersView {
 
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
-    this.#enableAutoFocus();
-    this.#enableInputFocusReset();
-    this.#enableDuplicatedNumbersChecker();
+    this.#validateInputs();
+    this.#resetFocusedInput();
   }
 
   #handleSubmit(e) {
@@ -30,35 +31,59 @@ export default class WinningNumbersView {
     });
   }
 
-  #enableAutoFocus() {
+  #validateInputs() {
     this.$$winningNumberInputs.forEach(($input, index) => {
-      $input.addEventListener('keyup', (e) => {
-        if (e.target.valueAsNumber <= 45) {
-          this.#handleAutoFocus(e, index);
-          return;
-        }
-        console.log(e.target.valueAsNumber);
-        e.target.value = e.target.value.substr(0, 2);
-        this.$resultButton.click();
+      $input.addEventListener('input', (e) => {
+        this.#notifyInvalidInputsHandler.call(this, e, index);
       });
     });
   }
 
-  #handleAutoFocus(e, index) {
-    if (index === 6 && e.target.value.length >= 2) {
-      this.$resultButton.focus();
+  #notifyInvalidInputsHandler(e, index) {
+    e.target.value = e.target.value.substr(0, 2);
+    changeOverInputsColor(this.$$winningNumberInputs);
+    if (e.target.valueAsNumber > 45) {
       return;
     }
+    if (e.target.nextElementSibling?.value) {
+      return;
+    }
+    if (this.#isDuplicatedInputs()) {
+      this.#changeInvalidInputsColor();
+      return;
+    }
+    this.#moveAutoFocus(e, index);
+  }
+
+  #isDuplicatedInputs() {
+    const inputNumberList = [];
+    this.$$winningNumberInputs.forEach((input) => {
+      if (!Number.isNaN(input.valueAsNumber)) {
+        inputNumberList.push(input.valueAsNumber);
+      }
+    });
+    if (inputNumberList.length !== new Set(inputNumberList).size) {
+      return true;
+    }
+    return false;
+  }
+
+  #moveAutoFocus(e, index) {
+    if (!e.target.nextElementSibling && e.target.value.length >= 2) {
+      this.$$winningNumberInputs[6].focus();
+      return;
+    }
+
     if (e.target.value.length >= 2) {
       this.$$winningNumberInputs[index + 1].focus();
     }
   }
 
-  #enableInputFocusReset() {
+  #resetFocusedInput() {
     this.$$winningNumberInputs.forEach((input) =>
       input.addEventListener('focus', () => {
         input.value = null;
-        this.#enableDuplicatedNumbersChecker();
+        this.#changeInvalidInputsColor();
       }),
     );
   }
@@ -71,46 +96,13 @@ export default class WinningNumbersView {
     this.$winningNumbersContainer.classList.toggle('hidden');
   }
 
-  #enableDuplicatedNumbersChecker() {
-    this.#whitenUniqueInputValue();
-    this.#highlightDuplicatedInputValue();
-  }
-
-  #whitenUniqueInputValue() {
+  #changeInvalidInputsColor() {
     const inputNumberList = Array.from({ length: 7 });
     this.$$winningNumberInputs.forEach((input, index) => {
       inputNumberList[index] = input.valueAsNumber;
     });
-    this.changeWhite(inputNumberList, this.$$winningNumberInputs);
-  }
-
-  #highlightDuplicatedInputValue() {
-    const inputNumberList = Array.from({ length: 7 });
-    this.$$winningNumberInputs.forEach((input, index) => {
-      inputNumberList[index] = input.valueAsNumber;
-    });
-    this.changeRed(inputNumberList, this.$$winningNumberInputs);
-  }
-
-  changeWhite(list, $$inputs) {
-    for (let i = 0; i < 7; i += 1) {
-      for (let j = i + 1; j < 7; j += 1) {
-        if (list[i] !== list[j]) {
-          $$inputs[i].style.background = 'white';
-          $$inputs[j].style.background = 'white';
-        }
-      }
-    }
-  }
-
-  changeRed(list, $$inputs) {
-    for (let i = 0; i < 7; i += 1) {
-      for (let j = i + 1; j < 7; j += 1) {
-        if (list[i] === list[j]) {
-          $$inputs[i].style.background = 'orange';
-          $$inputs[j].style.background = 'orange';
-        }
-      }
-    }
+    changeOkInputsColor(inputNumberList, this.$$winningNumberInputs);
+    changeDuplicatedInputsColor(inputNumberList, this.$$winningNumberInputs);
+    changeOverInputsColor(this.$$winningNumberInputs);
   }
 }
