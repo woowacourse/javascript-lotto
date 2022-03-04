@@ -1,32 +1,63 @@
 import WinningLotto from '../models/WinningLotto';
 
 describe('올바른 당첨 번호를 입력한다.', () => {
-  it('입력한 당첨 번호가 숫자이다.', () => {
-    const winningLotto = new WinningLotto();
-    const invalidInput = 'a';
-    const validInput = 45;
+  it('당첨 번호는 숫자가 아니면 입력할 수 없다.', () => {
+    const winningLotto = new WinningLotto().generate([1, 2, 3, 4, 5, 'e'], 6);
 
-    winningLotto.pushNumber(invalidInput);
-    expect(winningLotto.numbers.size).toBe(0);
-    winningLotto.pushNumber(validInput);
-    expect(winningLotto.numbers.size).toBe(1);
+    expect(winningLotto).toBe('WRONG_WINNING_LOTTO');
   });
 
-  it('입력한 당첨 번호는 1 ~ 45 사이이다.', () => {
-    const winningLotto = new WinningLotto();
-    const overedRangeNumber = 46;
-    winningLotto.pushNumber(overedRangeNumber);
+  it('당첨 번호는 비어있을 수 없다.', () => {
+    const winningLotto = new WinningLotto().generate([1, 2, 3, 4, 5], 6);
 
-    expect(winningLotto.numbers.size).toBe(0);
+    expect(winningLotto).toBe('WRONG_WINNING_LOTTO');
   });
 
-  it('입력한 당첨 번호는 중복되지 않는다.', () => {
-    const winningLotto = new WinningLotto();
-    const duplicatedNumber = 1;
-    winningLotto.pushNumber(duplicatedNumber);
-    winningLotto.pushNumber(duplicatedNumber);
+  it('보너스 번호는 1 ~ 45 사이의 숫자만 입력할 수 있다.', () => {
+    const winningLotto1 = new WinningLotto().generate([1, 2, 3, 4, 5, 0], 7);
 
-    expect(winningLotto.numbers.size).toBe(1);
-    expect(winningLotto.numbers).toContain(1);
+    expect(winningLotto1).toBe('WRONG_WINNING_LOTTO');
+
+    const winningLotto2 = new WinningLotto().generate([1, 2, 3, 4, 5, 46], 7);
+
+    expect(winningLotto2).toBe('WRONG_WINNING_LOTTO');
+  });
+
+  it('보너스 번호는 숫자가 아니면 입력할 수 없다.', () => {
+    const winningLotto = new WinningLotto().generate([1, 2, 3, 4, 5, 6], 'e');
+
+    expect(winningLotto).toBe('WRONG_WINNING_LOTTO');
+  });
+
+  it('보너스 번호는 비어있을 수 없다.', () => {
+    const winningLotto = new WinningLotto().generate([1, 2, 3, 4, 5, 6]);
+
+    expect(winningLotto).toBe('WRONG_WINNING_LOTTO');
+  });
+
+  it('보너스 번호는 1 ~ 45 사이의 숫자만 입력할 수 있다.', () => {
+    const winningLotto1 = new WinningLotto().generate([1, 2, 3, 4, 5, 6], 46);
+
+    expect(winningLotto1).toBe('WRONG_WINNING_LOTTO');
+
+    const winningLotto2 = new WinningLotto().generate([1, 2, 3, 4, 5, 6], 0);
+
+    expect(winningLotto2).toBe('WRONG_WINNING_LOTTO');
+  });
+
+  it('당첨 번호는 중복될 수 없고, 보너스 번호와도 중복될 수 없다.', () => {
+    const winningLotto1 = new WinningLotto().generate([1, 2, 3, 4, 5, 5], 6);
+
+    expect(winningLotto1).toBe('WRONG_WINNING_LOTTO');
+
+    const winningLotto2 = new WinningLotto().generate([1, 2, 3, 4, 5, 6], 6);
+
+    expect(winningLotto2).toBe('WRONG_WINNING_LOTTO');
+  });
+
+  it('당첨 번호는 숫자를 입력할 수 있다.', () => {
+    const winningLotto = new WinningLotto().generate([1, 2, 3, 4, 5, 6], 7);
+
+    expect(winningLotto.winningNumbers).toContain(1, 2, 3, 4, 5, 6);
   });
 });

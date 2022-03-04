@@ -19,7 +19,7 @@ export default class WinningLotto {
       this.#bonusNumber = bonusNumber;
       return this;
     } catch (error) {
-      return new Error();
+      return 'WRONG_WINNING_LOTTO';
     }
   }
 }
