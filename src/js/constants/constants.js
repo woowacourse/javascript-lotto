@@ -28,6 +28,7 @@ export const SELECTOR = {
   CLOSE_RESULT_MODAL: '#close-result-modal',
   LOTTO_RESULT_TBODY: '#lotto-result-tbody',
   RATE_OF_RETURN: '#rate-of-return',
+  LOTTO_RESTART_BUTTON: '#lotto-restart-button',
 };
 
 export const ID = {

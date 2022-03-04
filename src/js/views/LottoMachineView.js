@@ -16,9 +16,9 @@ export default class LottoMachineView {
     $(SELECTOR.CHARGE_INPUT).value = value;
   }
 
-  blockInput() {
-    $(SELECTOR.CHARGE_INPUT).disabled = true;
-    $(SELECTOR.PURCHASED_BUTTON).disabled = true;
+  blockInput(check) {
+    $(SELECTOR.CHARGE_INPUT).disabled = check;
+    $(SELECTOR.PURCHASED_BUTTON).disabled = check;
   }
 
   updateLottoList(lottos) {
@@ -50,5 +50,12 @@ export default class LottoMachineView {
       $$('td', row)[2].innerText = lottoResult[index];
     });
     $(SELECTOR.RATE_OF_RETURN).innerText = totalRateOfReturn(rateOfReturn);
+  }
+
+  resetInputs() {
+    $$('input').forEach(inputElement => {
+      inputElement.value = '';
+    });
+    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked = false;
   }
 }

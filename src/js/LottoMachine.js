@@ -37,7 +37,7 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.lottoMachineView.blockInput();
+    this.lottoMachineView.blockInput(true);
     this.#purchase(chargeInputNumber);
   }
 
@@ -69,12 +69,16 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
+    this.#lottoResult();
+  }
+
+  #lottoResult() {
+    this.lottoMachineView.showLottoResultModal();
+    this.#setLottoResultEvent();
     this.#showLottoResult();
   }
 
   #showLottoResult() {
-    this.lottoMachineView.showLottoResultModal();
-    this.#setCloseModalEvent();
     const lottoResult = this.lottoManager.checkWinnerLotto(
       [...this.winnerNumbers].slice(0, LOTTO_NUMBER.LENGTH),
       this.winnerNumbers[LOTTO_NUMBER.LENGTH]
@@ -83,7 +87,8 @@ export default class LottoMachine {
     this.lottoMachineView.showLottoResultTable(lottoResult, rateOfReturn);
   }
 
-  #setCloseModalEvent() {
+  #setLottoResultEvent() {
+    $(SELECTOR.LOTTO_RESTART_BUTTON).addEventListener('click', this.#restartLotto.bind(this));
     $(SELECTOR.CLOSE_RESULT_MODAL).addEventListener('click', this.#clickXButton.bind(this));
     window.addEventListener('click', this.#closeModalIfClickOutOfModalBind);
     window.addEventListener('keyup', this.#closeModalwithESCBind);
@@ -122,5 +127,14 @@ export default class LottoMachine {
     const totalCost = this.lottoCount * LOTTO_PRICE;
     const rateOfReturn = parseFloat(((totalPrize / totalCost) * 100 - 100).toFixed(2));
     return rateOfReturn;
+  }
+
+  #restartLotto(event) {
+    event.preventDefault();
+    this.#removeModalAndEvent();
+    this.lottoManager = new LottoManager();
+    this.lottoMachineView.blockInput(false);
+    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
+    this.lottoMachineView.resetInputs();
   }
 }
