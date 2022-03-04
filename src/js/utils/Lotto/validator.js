@@ -22,22 +22,20 @@ export const checkValidMoneyInput = (money) => {
 
 export const checkValidWinningNumberList = (winningNumberList) => {
   if (hasEmptyString(winningNumberList)) {
-    throw new Error('당첨 번호에 빈 칸이 있습니다.');
+    throw new Error(ERROR_MESSAGE.WINNING_NUMBER_EMPTY_INPUT);
   }
 
   const { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
   if (hasOutRangeNumber(winningNumberList, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)) {
-    throw new Error('당첨 번호는 1에서 45까지의 숫자만 입력할 수 있습니다.');
+    throw new Error(ERROR_MESSAGE.WINNING_NUMBER_NUMBER_RANGE);
   }
 
   if (isDiffArrayLength(winningNumberList, 7)) {
-    throw new Error(
-      '당첨 번호는 당첨 번호 6자리와 보너스 번호 1자리로 총 7자리를 입력해주셔야 합니다.'
-    );
+    throw new Error(ERROR_MESSAGE.WINNING_NUMBER_DIFF_LENGTH);
   }
 
   if (hasDuplicateItem(winningNumberList)) {
-    throw new Error('당첨 번호는 중복된 숫자를 입력할 수 없습니다.');
+    throw new Error(ERROR_MESSAGE.WINNING_NUMBER_DUPLICATE_NUMBER);
   }
 };
 
