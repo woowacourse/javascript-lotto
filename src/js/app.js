@@ -1,3 +1,5 @@
-import LottoView from './view/lottoView';
+import PurchaseLotto from './handler/PurchaseLotto';
+import ShowLottoNumber from './handler/ShowLottoNumber';
 
-new LottoView();
+new PurchaseLotto();
+new ShowLottoNumber();

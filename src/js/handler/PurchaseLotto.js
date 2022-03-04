@@ -3,9 +3,8 @@ import { ERROR_MESSAGE } from '../constants/constants';
 import { lottoTicket } from '../model/lottoTicket';
 import { isInvalidMoneyInput } from '../validator/validator';
 
-export default class LottoView {
+export default class PurchaseLotto {
   constructor() {
-    $('.cm-toggle').addEventListener('click', this.handleDetailView);
     $('.purchase-form').addEventListener('submit', this.handlePurchase);
   }
 
@@ -40,14 +39,6 @@ export default class LottoView {
     this.showResultElements();
     this.showLottoTicketsLength(lottoTickets.length);
     this.showLottoImage(lottoTickets);
-  }
-
-  handleDetailView() {
-    $('.lotto-grid').classList.toggle('lotto-grid-detail');
-
-    $$('.lotto-number-detail').forEach((element) => {
-      element.classList.toggle('d-none');
-    });
   }
 
   handlePurchase = (e) => {
