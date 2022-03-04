@@ -29,14 +29,14 @@ label {
 
 html {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
   background-color: var(--color-body);
 }
 
@@ -46,7 +46,6 @@ main {
   border-radius: 4px;
   min-height: 727px;
   position: relative;
-  height: 100%;
 }
 
 input {
@@ -136,7 +135,6 @@ h1 {
   position: relative;
 }
 
-/* The toggle - the box around the slider */
 .toggle {
   position: absolute;
   display: inline-block;
@@ -144,14 +142,12 @@ h1 {
   right: 34px;
 }
 
-/* Hide default HTML checkbox */
 .toggle .lotto-list__toggle-input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -277,7 +273,7 @@ h1 {
 }
 
 .result-modal-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
