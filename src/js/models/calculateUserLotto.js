@@ -20,6 +20,7 @@ export default class CalculateUserLotto {
     this.winLottoMoney = 0;
     this.lottoNumbersResult
       .map((numbers) => numbers.length)
+      .filter((correctCount) => correctCount > 2)
       .map((correctNumber, bonusNumberIndex) => 
         correctNumber === LOTTO.FIVE_CORRECT && this.bonusNumbersResult[bonusNumberIndex].length > 0 
           ? correctNumber = LOTTO.FIVE_BONUS_CORRECT 
@@ -56,7 +57,7 @@ export default class CalculateUserLotto {
 
   static calculateReturnRate() {
     const purchaseMoney = ResultLottoDatas.getPurchaseMoney();
-    const ReturnRate = this.winLottoMoney - purchaseMoney < 0 ? 0 : (this.winLottoMoney - purchaseMoney) / purchaseMoney * 100;
+    const ReturnRate = (this.winLottoMoney - purchaseMoney) / purchaseMoney * 100;
     ResultLottoDatas.setUserWinRate(ReturnRate);
   }
 
