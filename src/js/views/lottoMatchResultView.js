@@ -1,7 +1,7 @@
 import { $, on, emit } from '../utils/helper.js';
 import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
-export default class LottoResultView {
+export default class LottoMatchResultView {
   #lottoResultDialog;
 
   #threeMatchedNumber;
@@ -18,6 +18,8 @@ export default class LottoResultView {
 
   #restartButton;
 
+  #closeTag;
+
   constructor() {
     this.#lottoResultDialog = $('#lotto-result-dialog');
     this.#threeMatchedNumber = $('#three-matched-number');
@@ -27,6 +29,7 @@ export default class LottoResultView {
     this.#sixMatchedNumber = $('#six-matched-number');
     this.#profitRate = $('#profit-rate');
     this.#restartButton = $('#restart-button');
+    this.#closeTag = $('#close-tag');
 
     this.#attachEvents();
   }
@@ -37,6 +40,7 @@ export default class LottoResultView {
 
   #attachEvents() {
     on(this.#restartButton, 'click', this.#handleRestart.bind(this));
+    on(this.#closeTag, 'click', this.#handleCloseDialog.bind(this));
   }
 
   render(lottoMatchingResult, profit) {
@@ -52,6 +56,11 @@ export default class LottoResultView {
   }
 
   #handleRestart() {
+    this.#lottoResultDialog.close();
     emit(this.#restartButton, '@restart');
+  }
+
+  #handleCloseDialog() {
+    this.#lottoResultDialog.close();
   }
 }

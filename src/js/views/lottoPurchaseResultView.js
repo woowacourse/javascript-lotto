@@ -32,7 +32,6 @@ export default class lottoPurchaseResultView {
 
   render(count, lottoList) {
     this.#lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
-
     this.#lottoList.insertAdjacentHTML('afterbegin', lottoPurchaseResultTemplate(lottoList));
   }
 

@@ -6,7 +6,6 @@ describe('lottoResultManager 클래스 내부 메서드(매칭 결과 확인) �
   test('입력한 당첨번호와 구매한 로또의 매칭 결과를 비교할 수 있어야한다.', () => {
     const winningLottoNumbers = [1, 2, 3, 4, 5, 6];
     const winningLottoBonusNumber = 7;
-
     const lottoList = [
       [1, 2, 3, 4, 5, 6],
       [1, 2, 3, 4, 5, 7],

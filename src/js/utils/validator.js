@@ -25,24 +25,3 @@ export const isAllNumberInRange = (valueArray, min, max) => {
 export const isNotIncludeSameNumber = (valueArray, target) => {
   return !valueArray.includes(target);
 };
-
-// export const isValidPurchaseMoney = (purchaseMoney) => {
-//   return (
-//     isDividedByThousand(purchaseMoney) &&
-//     !isEmptyValue(purchaseMoney) &&
-//     isPositiveValue(purchaseMoney)
-//   );
-// };
-
-// export const isValidLottoWinningNumbers = (lottoWinningNumbers, min, max) =>
-//   isNotDuplicateNumberExistInArray(lottoWinningNumbers) &&
-//   isAllNumberInRange(lottoWinningNumbers, min, max);
-
-// export const isValidLottoWinningBonusNumber = (
-//   lottoWinningNumbers,
-//   lottoWinningBonusNumber,
-//   min,
-//   max
-// ) =>
-//   isNumberInRange(lottoWinningBonusNumber, min, max) &&
-//   isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber);

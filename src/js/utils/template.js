@@ -6,18 +6,18 @@ export const lottoPurchaseCountTemplate = (count) => {
   `;
 };
 
+export const lottoPurchaseResultTemplate = (lottoList) => {
+  return `
+    ${lottoList.map((lotto) => lottoTemplate([...lotto])).join('')}
+  `;
+};
+
 export const lottoTemplate = (numbers) => {
   return `
     <li class="flex">
       <img src=${lotto} />
       <p class="lotto-numbers hidden">${numbers.join(', ')}</p>
     </li>
-  `;
-};
-
-export const lottoPurchaseResultTemplate = (lottoList) => {
-  return `
-    ${lottoList.map((lotto) => lottoTemplate([...lotto])).join('')}
   `;
 };
 

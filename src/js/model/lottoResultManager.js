@@ -2,7 +2,6 @@
 import { LOTTO_PRIZE_MONEY_UNIT, LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
 export default class LottoResultManager {
-  // 15줄 넘기지 않도록 하기
   static calcLottoMatchingResult(lottoWinningNumbers, lottoWinningBonusNumber, lottoList) {
     const lottoMatchingResult = {
       [LOTTO_MATCHING_RESULT_KEY.THREE]: 0,

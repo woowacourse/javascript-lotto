@@ -8,7 +8,7 @@
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
-      <section id="lotto-purchase">
+      <section>
         <form id="lotto-purchase-form">
           <label for="purchase-money">구입할 금액을 입력해주세요.</label>
           <input
@@ -22,7 +22,7 @@
           <button id="lotto-purchase-button" class="base-button" type="submit">구입</button>
         </form>
       </section>
-      <section id="lotto-purchase-result" class="mt-28">
+      <section id="lotto-purchase-result-section" class="mt-28">
         <div id="lotto-list-wrap">
           <p id="lotto-purchase-count">아직 구매하신 로또가 없습니다.</p>
           <ul id="lotto-list" class="grid-columns-six mt-8"></ul>
@@ -79,7 +79,7 @@
             </tbody>
           </table>
           <p class="mt-16 fw-600">당신의 총 수익률은 <span id="profit-rate"></span>%입니다</p>
-          <button id="restart-button" class="mt-32 base-button">다시 시작하기</button>
+          <button id="restart-button" type="button" class="mt-32 base-button">다시 시작하기</button>
         </form>
       </dialog> 
     </div>

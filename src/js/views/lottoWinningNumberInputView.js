@@ -2,7 +2,7 @@ import { $, $$, emit, on } from '../utils/helper.js';
 import { lottoWinningNumberInputTemplate } from '../utils/template.js';
 
 export default class LottoWinningNumberInputView {
-  #lottoPurchaseResult;
+  #lottoPurchaseResultSection;
 
   #lottoWinningNumberContainers;
 
@@ -11,7 +11,7 @@ export default class LottoWinningNumberInputView {
   #lottoWinningNumberInputSection;
 
   constructor() {
-    this.#lottoPurchaseResult = $('#lotto-purchase-result');
+    this.#lottoPurchaseResultSection = $('#lotto-purchase-result-section');
   }
 
   get lottoMatchResultForm() {
@@ -24,7 +24,6 @@ export default class LottoWinningNumberInputView {
     const lottoWinningNumbers = Array.from(this.#lottoWinningNumberContainers).map((element) =>
       Number(element.value)
     );
-
     const lottoWinningBonusNumber = Number(lottoWinningNumbers.pop());
 
     emit(this.#lottoMatchResultForm, '@matchResult', {
@@ -34,7 +33,10 @@ export default class LottoWinningNumberInputView {
   }
 
   render() {
-    this.#lottoPurchaseResult.insertAdjacentHTML('afterend', lottoWinningNumberInputTemplate());
+    this.#lottoPurchaseResultSection.insertAdjacentHTML(
+      'afterend',
+      lottoWinningNumberInputTemplate()
+    );
 
     this.#selectDOM();
     this.#attachEvents();

@@ -25,7 +25,7 @@ export default class LottoPurchaseInputView {
 
   #handlePurchaseLotto(event) {
     event.preventDefault();
-    const purchaseMoney = this.#lottoPurchaseInput.valueAsNumber;
+    const purchaseMoney = event.target.elements['lotto-purchase-input'].valueAsNumber;
 
     emit(this.#lottoPurchaseForm, '@purchaseMoney', purchaseMoney);
   }

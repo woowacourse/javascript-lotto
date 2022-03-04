@@ -21,7 +21,7 @@ export default class LottoController {
 
   #lottoWinningNumberInputView;
 
-  #lottoResultView;
+  #lottoMatchResultView;
 
   constructor(models, views) {
     this.#lottoCreator = models.lottoCreator;
@@ -30,7 +30,7 @@ export default class LottoController {
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
-    this.#lottoResultView = views.lottoResultView;
+    this.#lottoMatchResultView = views.lottoMatchResultView;
     this.#submitInitialView();
   }
 
@@ -45,7 +45,7 @@ export default class LottoController {
       '@lottoToggle',
       this.#submitLottoToggle.bind(this)
     );
-    on(this.#lottoResultView.restartButton, '@restart', this.#submitRestart.bind(this));
+    on(this.#lottoMatchResultView.restartButton, '@restart', this.#submitRestart.bind(this));
   }
 
   #submitLottoToggle() {
@@ -60,14 +60,12 @@ export default class LottoController {
       this.#lottoCreator.purchaseMoney = purchaseMoney;
       this.#lottoPurchaseInputView.disableForm();
 
-      // 로또 자동 번호 생성 및 렌더링
       this.#lottoCreator.createLottoList();
       this.#lottoPurchaseResultView.render(
         this.#lottoCreator.purchaseMoney / LOTTO.COST_UNIT,
         this.#lottoCreator.lottoList
       );
 
-      // 당첨 번호 입력 렌더링
       this.#lottoWinningNumberInputView.render();
       this.#submitLottoWinningNumberInputView();
 
@@ -119,7 +117,7 @@ export default class LottoController {
         lottoMatchResult
       );
 
-      this.#lottoResultView.render(lottoMatchResult, profit);
+      this.#lottoMatchResultView.render(lottoMatchResult, profit);
 
       return;
     }
