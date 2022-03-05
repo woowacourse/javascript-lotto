@@ -57,8 +57,7 @@ class WinningNumberForm extends Component {
   setEvent() {
     this.addEvent('submit', 'form', (event) => {
       event.preventDefault();
-      const $winningNumberInputs = [...this.querySelectorAll('input')];
-      const winningNumbers = $winningNumberInputs.map((input) => input.value);
+      const winningNumbers = this.$inputs.map((input) => input.value);
 
       try {
         this.submitLottoNumbers(winningNumbers);
@@ -76,10 +75,10 @@ class WinningNumberForm extends Component {
         return;
       }
       if (currentLength >= maxLength && order < LOTTO.COUNT) {
-        const nextInput = this.querySelector(`input[data-order="${order + 1}"]`);
+        const nextInput = this.$inputs[order + 1];
         nextInput.focus();
       } else if (currentLength === 0 && order > 0 && key === 'Backspace') {
-        const prevInput = this.querySelector(`input[data-order="${order - 1}"]`);
+        const prevInput = this.$inputs[order - 1];
         prevInput.focus();
       }
     });
@@ -106,6 +105,7 @@ class WinningNumberForm extends Component {
     this.innerHTML = '';
     if (money > 0) {
       this.innerHTML = this.template(winningNumbers);
+      this.$inputs = [...this.querySelectorAll('input')];
     }
   }
 }
