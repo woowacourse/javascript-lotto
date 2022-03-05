@@ -8,7 +8,7 @@ export class LottoGame {
     this.winningNumbers;
     this.bonusNumber;
     this.winningStatus = new Array(5).fill(0);
-    this.yield;
+    this.lottoProfit;
   }
 
   insertMoney = (moneyInput) => (this.moneyInput = moneyInput);
@@ -61,19 +61,19 @@ export class LottoGame {
     }
   }
 
-  calculateYield() {
+  getLottoProfit() {
     let winAmount = 0;
     this.winningStatus.forEach((winStatus, idx) => {
       winAmount += winStatus * WINNINGS[`${5 - idx}-place`];
     });
-    this.yield = (winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE)) * 100;
-    this.yield = Number(this.yield.toFixed(2));
+    this.lottoProfit = (winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE)) * 100;
+    this.lottoProfit = Number(this.lottoProfit.toFixed(2));
   }
 
   initLottos() {
     this.moneyInput = 0;
     this.bonusNumber = 0;
-    this.yield = 0;
+    this.lottoProfit = 0;
     this.lottoWallet = [];
     this.winningNumbers = new Set();
     this.winningStatus = new Array(5).fill(0);

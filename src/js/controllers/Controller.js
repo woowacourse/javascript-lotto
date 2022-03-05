@@ -80,8 +80,8 @@ export class Controller {
       validator.isWinningInputValid(winningNumbersObj, bonusNumber);
       this.lottoGame.getWinningNumbers(winningNumbersObj, bonusNumber);
       this.lottoGame.compareLottos();
-      this.lottoGame.calculateYield();
-      this.modalView.insertResultTemplate(this.lottoGame.winningStatus, this.lottoGame.yield);
+      this.lottoGame.getLottoProfit();
+      this.modalView.insertResultTemplate(this.lottoGame.winningStatus, this.lottoGame.lottoProfit);
       this.modalView.openModal();
     } catch (err) {
       alert(err.message);

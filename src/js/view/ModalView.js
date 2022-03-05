@@ -10,7 +10,7 @@ export class ModalView {
     this.restartBtn = document.getElementById('restart-button');
     this.winTable = document.getElementById('win-status');
     this.modal = document.querySelector('.modal');
-    this.yield = document.getElementById('yield');
+    this.lottoProfit = document.getElementById('lotto-profit');
 
     this.winningNumber1 = document.getElementById('winning-number1');
     this.winningNumber2 = document.getElementById('winning-number2');
@@ -32,9 +32,9 @@ export class ModalView {
     };
   }
 
-  insertResultTemplate(winningStatus, yieldAmount) {
-    this.yield.textContent = '';
-    this.yield.insertAdjacentHTML('afterbegin', this.#yieldTemplate(yieldAmount));
+  insertResultTemplate(winningStatus, lottoProfit) {
+    this.lottoProfit.textContent = '';
+    this.lottoProfit.insertAdjacentHTML('afterbegin', this.#lottoProfitTemplate(lottoProfit));
 
     this.winTable.textContent = '';
     this.winTable.insertAdjacentHTML('afterbegin', this.#winStatusTemplate(winningStatus));
@@ -101,7 +101,7 @@ export class ModalView {
     `;
   }
 
-  #yieldTemplate(yieldAmount) {
-    return `당신의 총 수익률은 ${yieldAmount.toLocaleString()}% 입니다.`;
+  #lottoProfitTemplate(lottoProfit) {
+    return `당신의 총 수익률은 ${lottoProfit.toLocaleString()}% 입니다.`;
   }
 }

@@ -93,8 +93,8 @@ describe('당첨 통계를 낼 수 있다.', () => {
     lottoGame.lottoWallet[2].numbers = [1, 2, 3, 4, 5, 7];
     lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
     lottoGame.compareLottos();
-    lottoGame.calculateYield();
-    expect(lottoGame.yield).toEqual(67666833.33);
+    lottoGame.getLottoProfit();
+    expect(lottoGame.lottoProfit).toEqual(67666833.33);
   });
 
   test('다시 시작을 위해 초기화가 가능하다.', () => {
@@ -103,13 +103,13 @@ describe('당첨 통계를 낼 수 있다.', () => {
     lottoGame.buyLotto();
     lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
     lottoGame.compareLottos();
-    lottoGame.calculateYield();
+    lottoGame.getLottoProfit();
     lottoGame.initLottos();
     expect(lottoGame.moneyInput).toBe(0);
     expect(lottoGame.lottoWallet.length).toBe(0);
     expect(lottoGame.winningNumbers.size).toBe(0);
     expect(lottoGame.bonusNumber).toBe(0);
     expect(lottoGame.winningStatus.every((winStatus) => winStatus === 0)).toBe(true);
-    expect(lottoGame.yield).toBe(0);
+    expect(lottoGame.lottoProfit).toBe(0);
   });
 });
