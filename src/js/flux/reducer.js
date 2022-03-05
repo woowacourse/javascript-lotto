@@ -50,12 +50,10 @@ const generateWinningCounts = (winningNumbers, bonusNumber) => {
 
 const generateEarningsRate = (winningCounts) => {
   const { money } = window.store.getState();
-  const currentMoney =
-    winningCounts['5th'] * PRIZE_MONEY['5th'] +
-    winningCounts['4th'] * PRIZE_MONEY['4th'] +
-    winningCounts['3rd'] * PRIZE_MONEY['3rd'] +
-    winningCounts['2nd'] * PRIZE_MONEY['2nd'] +
-    winningCounts['1st'] * PRIZE_MONEY['1st'];
+  const currentMoney = Object.keys(winningCounts).reduce(
+    (acc, rank) => acc + winningCounts[rank] * PRIZE_MONEY[rank],
+    0
+  );
 
   return calculateEarningsRate(money, currentMoney);
 };
