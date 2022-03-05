@@ -1,3 +1,7 @@
+:root {
+  --table-border-color: #dcdcdc;
+}
+
 .modal {
   position: absolute;
   left: 0;
@@ -59,8 +63,8 @@
 
 .match-stat-table {
   width: 100%;
-  border-top: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc;
+  border-top: 1px solid var(--table-border-color);
+  border-bottom: 1px solid var(--table-border-color);
 }
 
 .match-stat-table th,
@@ -78,7 +82,7 @@
 }
 
 .match-stat-table td {
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid var(--table-border-color);
   color: rgba(0, 0, 0, 0.87);
 }
 
