@@ -11,5 +11,7 @@ export const MONEY_INPUT = {
 export const LOTTO = {
   TICKET_PRICE: 1000,
   DIGIT: 6,
+  MIN_NUMBER: 1,
   MAX_NUMBER: 45,
+  WINNING_NUMBER_LENGTH: 7,
 };

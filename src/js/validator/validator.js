@@ -1,4 +1,4 @@
-import { MONEY_INPUT } from '../constants/constants';
+import { LOTTO, MONEY_INPUT } from '../constants/constants';
 import { winningNumber } from '../model/winningNumber';
 
 export const isInvalidMoneyInput = (money) => {
@@ -9,9 +9,12 @@ export const isInvalidMoneyInput = (money) => {
   );
 };
 
-const isDuplicateWinningNumber = (winningNumber) => new Set(winningNumber).size !== 7;
+const isDuplicateWinningNumber = (winningNumber) => {
+  return new Set(winningNumber).size !== LOTTO.WINNING_NUMBER_LENGTH;
+};
+
 const isOverRangeWinningNumber = (winningNumber) => {
-  return winningNumber.some((number) => number < 1 || number > 45);
+  return winningNumber.some((number) => number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER);
 };
 
 export const isInvalidWinningNumberInput = (winningNumber) => {
