@@ -189,7 +189,7 @@ describe('로또 게임을 진행한다.', () => {
 
   test('수익률을 계산할 수 있다.', () => {
     const originMoney = LOTTO.PRICE * 5;
-    const currentMoney = PRIZE_MONEY.FIFTH;
+    const currentMoney = PRIZE_MONEY['5th'];
     const expectEarningsRate = 0;
 
     const earningsRate = calculateEarningsRate(originMoney, currentMoney);

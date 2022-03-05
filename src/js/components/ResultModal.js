@@ -34,28 +34,28 @@ class ResultModal extends Component {
           <tbody>
             <tr>
               <td>3개</td>
-              <td>${PRIZE_MONEY.FIFTH.toLocaleString()}</td>
-              <td>${result.winningCounts.fifth}개</td>
+              <td>${PRIZE_MONEY['5th'].toLocaleString()}</td>
+              <td>${result.winningCounts['5th']}개</td>
             </tr>
             <tr>
               <td>4개</td>
-              <td>${PRIZE_MONEY.FOURTH.toLocaleString()}</td>
-              <td>${result.winningCounts.fourth}개</td>
+              <td>${PRIZE_MONEY['4th'].toLocaleString()}</td>
+              <td>${result.winningCounts['4th']}개</td>
             </tr>
             <tr>
               <td>5개</td>
-              <td>${PRIZE_MONEY.THIRD.toLocaleString()}</td>
-              <td>${result.winningCounts.third}개</td>
+              <td>${PRIZE_MONEY['3rd'].toLocaleString()}</td>
+              <td>${result.winningCounts['3rd']}개</td>
             </tr>
             <tr>
               <td>5개+보너스볼</td>
-              <td>${PRIZE_MONEY.SECOND.toLocaleString()}</td>
-              <td>${result.winningCounts.second}개</td>
+              <td>${PRIZE_MONEY['2nd'].toLocaleString()}</td>
+              <td>${result.winningCounts['2nd']}개</td>
             </tr>
             <tr>
               <td>6개</td>
-              <td>${PRIZE_MONEY.FIRST.toLocaleString()}</td>
-              <td>${result.winningCounts.first}개</td>
+              <td>${PRIZE_MONEY['1st'].toLocaleString()}</td>
+              <td>${result.winningCounts['1st']}개</td>
             </tr>
           </tbody>
         </table>

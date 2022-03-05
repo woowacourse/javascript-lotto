@@ -6,7 +6,7 @@ const initialState = {
   bonusNumber: 0,
   resultModalVisibility: false,
   result: {
-    winningCounts: { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 },
+    winningCounts: { '5th': 0, '4th': 0, '3rd': 0, '2nd': 0, '1st': 0 },
     earningsRate: 0,
   },
 };

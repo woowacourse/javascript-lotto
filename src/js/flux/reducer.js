@@ -17,7 +17,7 @@ const generateLottoList = (money) => {
 
 // eslint-disable-next-line max-lines-per-function
 const generateWinningCounts = (winningNumbers, bonusNumber) => {
-  const winningCounts = { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 };
+  const winningCounts = { '5th': 0, '4th': 0, '3rd': 0, '2nd': 0, '1st': 0 };
   const { lottoList } = window.store.getState();
 
   // eslint-disable-next-line max-lines-per-function
@@ -25,21 +25,21 @@ const generateWinningCounts = (winningNumbers, bonusNumber) => {
     const winningCount = intersection(lottoItem, winningNumbers).length;
 
     switch (winningCount) {
-      case MATCH_COUNT.FIFTH:
-        winningCounts.fifth += 1;
+      case MATCH_COUNT['5th']:
+        winningCounts['5th'] += 1;
         break;
-      case MATCH_COUNT.FOURTH:
-        winningCounts.fourth += 1;
+      case MATCH_COUNT['4th']:
+        winningCounts['4th'] += 1;
         break;
-      case MATCH_COUNT.THIRD:
+      case MATCH_COUNT['3rd']:
         if (!lottoItem.includes(bonusNumber)) {
-          winningCounts.third += 1;
+          winningCounts['3rd'] += 1;
           break;
         }
-        winningCounts.second += 1;
+        winningCounts['2nd'] += 1;
         break;
-      case MATCH_COUNT.FIRST:
-        winningCounts.first += 1;
+      case MATCH_COUNT['1st']:
+        winningCounts['1st'] += 1;
         break;
       // no default
     }
@@ -51,11 +51,11 @@ const generateWinningCounts = (winningNumbers, bonusNumber) => {
 const generateEarningsRate = (winningCounts) => {
   const { money } = window.store.getState();
   const currentMoney =
-    winningCounts.fifth * PRIZE_MONEY.FIFTH +
-    winningCounts.fourth * PRIZE_MONEY.FOURTH +
-    winningCounts.third * PRIZE_MONEY.THIRD +
-    winningCounts.second * PRIZE_MONEY.SECOND +
-    winningCounts.first * PRIZE_MONEY.FIRST;
+    winningCounts['5th'] * PRIZE_MONEY['5th'] +
+    winningCounts['4th'] * PRIZE_MONEY['4th'] +
+    winningCounts['3rd'] * PRIZE_MONEY['3rd'] +
+    winningCounts['2nd'] * PRIZE_MONEY['2nd'] +
+    winningCounts['1st'] * PRIZE_MONEY['1st'];
 
   return calculateEarningsRate(money, currentMoney);
 };

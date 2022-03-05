@@ -20,16 +20,16 @@ export const LOTTO = {
 };
 
 export const MATCH_COUNT = {
-  FIRST: 6,
-  THIRD: 5,
-  FOURTH: 4,
-  FIFTH: 3,
+  '1st': 6,
+  '3rd': 5,
+  '4th': 4,
+  '5th': 3,
 };
 
 export const PRIZE_MONEY = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
+  '1st': 2000000000,
+  '2nd': 30000000,
+  '3rd': 1500000,
+  '4th': 50000,
+  '5th': 5000,
 };
