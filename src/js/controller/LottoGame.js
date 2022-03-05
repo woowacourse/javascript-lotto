@@ -41,14 +41,13 @@ export default class LottoGame {
   }
 
   handlePurchasedLotto() {
-    this.purchasedLottoView.render(this.lottoModel.getLottoList());
+    this.purchasedLottoView.toggleLottoNumbers(this.lottoModel.getLottoList());
   }
 
   handleWinningNumbers(winningNumbers) {
     this.lottoModel
       .getLottoList()
       .forEach((lotto) => this.lottoResultModel.compareWinningNumbers(lotto, winningNumbers));
-
     const lottoResult = this.lottoResultModel.getlottoResult();
     this.calculateTotalProfitRate(lottoResult);
   }
@@ -70,6 +69,6 @@ export default class LottoGame {
     this.winningNumberView.resetWinningNumbersValue();
     this.purchaseAmountView.enableForm();
     this.purchasedLottoView.resetPurchasedLotto();
-    this.purchasedLottoView.renderPurchaseInfomation(this.lottoModel.getLottoList.length);
+    this.purchasedLottoView.renderPurchasedInfomation(this.lottoModel.getLottoList.length);
   }
 }

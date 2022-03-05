@@ -19,6 +19,8 @@ export const ERROR_MESSAGES = {
   CAN_NOT_OVERLAP: "당첨 번호는 중복없이 입력해 주세요",
 };
 
+export const SHOW_NUMBERS_CLASS = "show-numbers";
+
 export const LOTTO_RANKING_REWARD = {
   first: 2000000000,
   second: 30000000,
