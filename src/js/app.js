@@ -1,5 +1,3 @@
-import Store from './flux/store';
-
 import './components/MoneyForm';
 import './components/LottoList';
 import './components/LottoListToggle';
