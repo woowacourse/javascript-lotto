@@ -42,7 +42,10 @@ describe('금액 입력에 대한 유효성 검사를 한다.', () => {
   });
 
   test('1000 단위의 값을 허용한다.', () => {
-    const validMoney = '20000';
+    let validMoney = '1000';
+    expect(validateMoney(validMoney)).notToHaveError();
+
+    validMoney = '20000';
     expect(validateMoney(validMoney)).notToHaveError();
   });
 });
