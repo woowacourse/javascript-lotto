@@ -24,7 +24,7 @@ export default class LottoGame {
       handler: this.handlePurchasedLotto.bind(this),
     });
     this.winningNumberView.addHandler({
-      type: "click",
+      type: "submit",
       handler: this.handleWinningNumbers.bind(this),
     });
     this.lottoResultView.addHandler({

@@ -7,16 +7,18 @@ export default class WinningNumberView extends View {
     super();
 
     this.winningNumberInput = $$(".winning-number-input");
-    $(".result-button").addEventListener("click", this.#onClickResultButton.bind(this));
+    $(".winning-number-form").addEventListener("submit", this.#onClickResultButton.bind(this));
   }
 
-  #onClickResultButton() {
+  #onClickResultButton(e) {
+    e.preventDefault();
+
     const winningNumberList = Array.from(this.winningNumberInput).map((element) =>
       Number(element.value.trim()),
     );
     try {
       validateWinningNumbers(winningNumberList);
-      this.handlers.get("click").forEach((func) => func(winningNumberList));
+      this.handlers.get("submit").forEach((func) => func(winningNumberList));
     } catch (error) {
       alert(error);
     }

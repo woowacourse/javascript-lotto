@@ -129,15 +129,10 @@ body {
   border: 1px solid var(--color-dark-gray);
 }
 
-.number-input-container {
+.winning-number-wrapper {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.bonus-number-wrapper {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 36px;
 }
 
 .bonus-number {

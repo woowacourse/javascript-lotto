@@ -77,7 +77,7 @@
 .result-background {
   position: fixed;
   height: 727px;
-  width: 414px;
+  width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
