@@ -1,5 +1,5 @@
 import { calculateProfitRate } from "../utils/general.js";
-import { LOTTO_RANKING_REWARD } from "../utils/constants.js";
+import { LOTTO_NUMBER, LOTTO_RANKING_REWARD } from "../utils/constants.js";
 
 export default class LottoResultModel {
   #lottoResult = {
@@ -15,7 +15,11 @@ export default class LottoResultModel {
   }
 
   compareWinningNumbers(lotto, winningNumbers) {
-    const matchNumberCount = lotto.filter((number) => winningNumbers.includes(number)).length;
+    const exceptBonusNumbers = winningNumbers.slice(
+      LOTTO_NUMBER.LENGTH_MIN,
+      LOTTO_NUMBER.LENGTH_MAX,
+    );
+    const matchNumberCount = lotto.filter((number) => exceptBonusNumbers.includes(number)).length;
     const isMatchBonus = lotto.includes(winningNumbers[winningNumbers.length - 1]);
     if (matchNumberCount === 6) {
       this.#lottoResult.first += 1;
