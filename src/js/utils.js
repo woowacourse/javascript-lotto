@@ -34,3 +34,7 @@ export const consoleErrorWithConditionalAlert = (error, errorNameForAlert) => {
     alert(error.message);
   }
 };
+
+export const sum = (arr) => {
+  return arr.reduce((acc, cur) => acc + cur, 0);
+};
