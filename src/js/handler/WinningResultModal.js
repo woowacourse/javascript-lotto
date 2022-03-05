@@ -3,6 +3,8 @@ import { winningNumber } from '../model/winningNumber';
 import { isInvalidWinningNumberInput } from '../validator/validator';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { winningStatistics } from '../model/winningStatistics';
+import { activateForm, resetInput } from '../utils/style';
+import { lottoTicket } from '../model/lottoTicket';
 
 export default class WinningResultModal {
   constructor() {
@@ -64,13 +66,33 @@ export default class WinningResultModal {
         <button class="modal-restart-button">다시 시작하기</button>
       </div>
     </div>`;
+
     $('#app').insertAdjacentHTML('afterend', template);
     $('#modal').classList.remove('modal-display-none');
+
     $('.modal-close-button').addEventListener('click', this.closeWinningResultModal);
+    $('.modal-restart-button').addEventListener('click', this.restartLottoPurchase.bind(this));
   }
 
   closeWinningResultModal() {
     $('#modal').classList.add('modal-display-none');
+  }
+
+  initializeElements() {
+    activateForm(['.money-input', '.purchase-button']);
+    $('#modal').parentElement.removeChild($('#modal'));
+    $('.purchase-status-container').replaceChildren();
+    $('.lotto-grid').replaceChildren();
+    $('.cm-toggle').checked = false;
+    $('.lotto-grid').classList.remove('lotto-grid-detail');
+    $$('.result').forEach((element) => element.classList.add('d-none'));
+    resetInput();
+  }
+
+  restartLottoPurchase() {
+    this.initializeElements();
+    lottoTicket.initializeLottoTickets();
+    winningNumber.initializeWinningNumber();
   }
 
   handleWinningResultModal = (e) => {
@@ -85,10 +107,6 @@ export default class WinningResultModal {
     winningNumber.setWinningNumber(userInputWinningNumber);
     winningStatistics.initializeLottoRank();
     winningStatistics.calculateLottoRank(winningNumber.getWinningNumber(), winningNumber.getBonusNumber());
-
-    // 모달 창 띄우기
     this.openWinningResultModal();
-
-    // 다시 시작하기 버튼 이벤트 바인딩
   };
 }

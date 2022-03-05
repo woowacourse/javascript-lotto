@@ -15,7 +15,8 @@ export default class PurchaseLotto {
   }
 
   showLottoTicketsLength(lottoTicketsLength) {
-    const template = `<span>총 ${lottoTicketsLength}개를 구매하였습니다.</span>`;
+    const template = `<span>총 ${lottoTicketsLength}개를 구매하였습니다.</span>
+                      <span>번호 보기</span>`;
     $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
   }
 
@@ -32,7 +33,7 @@ export default class PurchaseLotto {
   }
 
   showResult(lottoTickets) {
-    deactivateForm(true, ['.money-input', '.purchase-button']);
+    deactivateForm(['.money-input', '.purchase-button']);
     this.showResultElements();
     this.showLottoTicketsLength(lottoTickets.length);
     this.showLottoImage(lottoTickets);
@@ -49,7 +50,6 @@ export default class PurchaseLotto {
 
     money.userInput = moneyInput;
     lottoTicket.issueLottoTickets(moneyInput);
-
     this.showResult(lottoTicket.getLottoTickets());
   };
 }
