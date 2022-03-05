@@ -142,14 +142,16 @@ export default class LottoMachine {
   #makeAutoFocus() {
     const inputArray = $$('input', $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM));
     inputArray.forEach((inputNode, index) => {
-      inputNode.addEventListener('keyup', function () {
-        if ((index !== LOTTO_NUMBER.LENGTH && this.value.length) === LOTTO_NUMBER.MAX_NUMBER_LENGTH) {
-          inputArray[index + 1].focus();
-        }
-        if (this.value.length > LOTTO_NUMBER.MAX_NUMBER_LENGTH) {
-          this.value = this.value.substr(0, LOTTO_NUMBER.MAX_NUMBER_LENGTH);
-        }
-      });
+      inputNode.addEventListener('keyup', () => this.#checkWinnerNumberInputLength(inputArray, inputNode, index));
     });
+  }
+
+  #checkWinnerNumberInputLength(inputArray, inputNode, index) {
+    if ((index !== LOTTO_NUMBER.LENGTH && inputNode.value.length) === LOTTO_NUMBER.MAX_NUMBER_LENGTH) {
+      inputArray[index + 1].focus();
+    }
+    if (inputNode.value.length > LOTTO_NUMBER.MAX_NUMBER_LENGTH) {
+      inputNode.value = inputNode.value.substr(0, LOTTO_NUMBER.MAX_NUMBER_LENGTH);
+    }
   }
 }
