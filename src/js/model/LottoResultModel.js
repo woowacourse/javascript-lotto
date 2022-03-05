@@ -1,3 +1,6 @@
+import { calculateProfitRate } from "../utils/general.js";
+import { LOTTO_RANKING_REWARD } from "../utils/constants.js";
+
 export default class LottoResultModel {
   #lottoResult = {
     first: 0,
@@ -33,6 +36,14 @@ export default class LottoResultModel {
     if (matchNumberCount === 3) {
       this.#lottoResult.fifth += 1;
     }
+  }
+
+  calculateTotalProfitRate(lottoResult, usedAmount) {
+    const totalProfit = Object.keys(lottoResult).reduce(
+      (total, ranking) => total + lottoResult[ranking] * LOTTO_RANKING_REWARD[ranking],
+      0,
+    );
+    return calculateProfitRate(totalProfit, usedAmount);
   }
 
   resetLottoResult() {
