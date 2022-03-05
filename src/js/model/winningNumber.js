@@ -5,12 +5,17 @@ export const winningNumber = {
   },
 
   getWinningNumber() {
-    return this.store;
+    return this.store.numbers;
+  },
+
+  getBonusNumber() {
+    return this.store.bonusNumber;
   },
 
   setWinningNumber(number) {
-    this.store.push(number.slice(0, 6));
-    this.store.push(number.slice(6));
+    this.initializeWinningNumber();
+    this.store.numbers.push(number.slice(0, 6));
+    this.store.bonusNumber.push(number.slice(6));
   },
 
   initializeWinningNumber() {

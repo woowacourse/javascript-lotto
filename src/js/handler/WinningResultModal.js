@@ -9,17 +9,17 @@ export default class WinningResultModal {
   }
 
   handleWinningResultModal() {
-    const winningNumber = [];
+    const userInputWinningNumber = [];
     $$('.winning-numbers').forEach((element) => {
-      return winningNumber.push(Number(element.value));
+      return userInputWinningNumber.push(Number(element.value));
     });
 
-    if (isInvalidWinningNumberInput(winningNumber)) {
+    if (isInvalidWinningNumberInput(userInputWinningNumber)) {
       alert(ERROR_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
       return;
     }
 
-    // 당첨 번호 저장
+    winningNumber.setWinningNumber(userInputWinningNumber);
 
     // 모달 창 띄우기
 
