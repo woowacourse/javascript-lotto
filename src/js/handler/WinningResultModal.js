@@ -36,31 +36,31 @@ export default class WinningResultModal {
             <tr>
               <td>3개</td>
               <td>5,000</td>
-              <td class="match-3">n개</td>
+              <td class="match-3">${winningStatistics.store.matchThreeNumbers}개</td>
             </tr>
             <tr>
               <td>4개</td>
               <td>5,0000</td>
-              <td class="match-4">n개</td>
+              <td class="match-4">${winningStatistics.store.matchFourNumbers}개</td>
             </tr>
             <tr>
               <td>5개</td>
               <td>1,500,000</td>
-              <td class="match-5">n개</td>
+              <td class="match-5">${winningStatistics.store.matchFiveNumbers}개</td>
             </tr>
             <tr>
               <td>5개 + 보너스볼</td>
               <td>30,000,000</td>
-              <td class="match-5-bonus-ball">n개</td>
+              <td class="match-5-bonus-ball">${winningStatistics.store.matchFiveNumbersAndBonusBall}개</td>
             </tr>
             <tr>
               <td>6개</td>
               <td>2,000,000,000</td>
-              <td class="match-6">n개</td>
+              <td class="match-6">${winningStatistics.store.matchSixNumbers}개</td>
             </tr>
           </tbody>
         </table>
-        <div class="modal-profit-rate-text">당신의 총 수익률은 %입니다.</div>
+        <div class="modal-profit-rate-text">당신의 총 수익률은 ${winningStatistics.getProfitRate()}%입니다.</div>
         <button class="modal-restart-button">다시 시작하기</button>
       </div>
     </div>`;
