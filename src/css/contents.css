@@ -111,7 +111,12 @@
 
 .bonus-number-input-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bonus-number-input-label {
+  margin-bottom: 10px;
 }
 
 .result-button {

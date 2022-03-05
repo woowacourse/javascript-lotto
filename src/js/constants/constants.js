@@ -16,7 +16,7 @@ export const SELECTOR = Object.freeze({
   BONUS_NUMBER_INPUT_CLASS: '.bonus-number-input',
 
   MODAL_CLASS: '.modal',
-  PROFIT_SPAN: '.profit',
+  PROFIT_SPAN_CLASS: '.profit',
   MATCH_TABLE_DATA_CLASS: '.match-result',
   RESULT_BUTTON_CLASS: '.result-button',
   MODAL_CLOSE_BUTTON_CLASS: '.close-button',
