@@ -38,7 +38,7 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.lottoMachineView.blockInput(true);
+    this.lottoMachineView.setInputDisabled(true);
     this.#purchase(chargeInputNumber);
   }
 
@@ -134,7 +134,7 @@ export default class LottoMachine {
     event.preventDefault();
     this.#removeModalAndEvent();
     this.lottoManager = new LottoManager();
-    this.lottoMachineView.blockInput(false);
+    this.lottoMachineView.setInputDisabled(false);
     this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
     this.lottoMachineView.resetInputs();
   }

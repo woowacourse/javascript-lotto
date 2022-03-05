@@ -16,9 +16,9 @@ export default class LottoMachineView {
     $(SELECTOR.CHARGE_INPUT).value = value;
   }
 
-  blockInput(check) {
-    $(SELECTOR.CHARGE_INPUT).disabled = check;
-    $(SELECTOR.PURCHASED_BUTTON).disabled = check;
+  setInputDisabled(setting) {
+    $(SELECTOR.CHARGE_INPUT).disabled = setting;
+    $(SELECTOR.PURCHASED_BUTTON).disabled = setting;
   }
 
   updateLottoList(lottos) {
