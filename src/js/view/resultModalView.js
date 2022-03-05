@@ -6,7 +6,7 @@ class ResultModalView {
     this.body = selectDom(SELECTOR.BODY_TAG);
     this.modal = selectDom(SELECTOR.MODAL_CLASS);
     this.matchResultTableDataList = this.modal.querySelectorAll(SELECTOR.MATCH_TABLE_DATA_CLASS);
-    this.profitSpan = selectDom(SELECTOR.PROFIT_SPAN, this.modal);
+    this.profitSpan = selectDom(SELECTOR.PROFIT_SPAN_CLASS, this.modal);
     this.closeButton = selectDom(SELECTOR.MODAL_CLOSE_BUTTON_CLASS, this.modal);
     this.closeButton.addEventListener('click', this.#toggleModal);
   }
