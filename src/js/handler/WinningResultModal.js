@@ -3,7 +3,6 @@ import { winningNumber } from '../model/winningNumber';
 import { isInvalidWinningNumberInput } from '../validator/validator';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { winningStatistics } from '../model/winningStatistics';
-import { deactivateForm } from '../utils/style';
 
 export default class WinningResultModal {
   constructor() {
@@ -30,7 +29,6 @@ export default class WinningResultModal {
 
     winningNumber.setWinningNumber(userInputWinningNumber);
     winningStatistics.initializeLottoRank();
-
     winningStatistics.calculateLottoRank(
       winningNumber.getWinningNumber(),
       winningNumber.getBonusNumber()
