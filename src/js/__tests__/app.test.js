@@ -14,7 +14,7 @@ describe('금액 입력에 대한 유효성 검사를 한다.', () => {
     expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.EMPTY_MONEY);
   });
 
-  test('숫자가 아닌 값을 허용하지 않는다.', () => {
+  test('정수가 아닌 값을 허용하지 않는다.', () => {
     let invalidMoney = '1.2';
     expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_INTEGER_MONEY);
 
@@ -55,7 +55,7 @@ describe('당첨 번호 입력에 대한 유효성 검사를 한다.', () => {
     );
   });
 
-  test('숫자가 아닌 값을 허용하지 않는다.', () => {
+  test('정수가 아닌 값을 허용하지 않는다.', () => {
     let invalidWinningNumber = ['1.2', '2', '3', '4', '5', '6', '7'];
     expect(validateWinningNumber(invalidWinningNumber)).toHaveErrorMessage(
       ERROR_MESSAGE.NOT_INTEGER_WINNING_NUMBER
