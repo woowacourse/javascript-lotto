@@ -1,7 +1,7 @@
 import { LOTTO_REWARD } from '../constants/constants';
 import { findSameElementLength } from '../utils/array';
 import { lottoTicket } from './lottoTicket';
-import { userMoneyInput } from './userMoneyInput';
+import { money } from './money';
 
 export const winningStatistics = {
   store: {
@@ -48,7 +48,7 @@ export const winningStatistics = {
       this.store.matchFiveNumbersAndBonusBall * LOTTO_REWARD.MATCH_FIVE_NUMBERS_AND_BONUS_BALL +
       this.store.matchSixNumbers * LOTTO_REWARD.MATCH_SIX_NUMBERS;
 
-    return ((profit - userMoneyInput.store) / userMoneyInput.store) * 100;
+    return ((profit - money.userInput) / money.userInput) * 100;
   },
 
   initializeLottoRank() {
