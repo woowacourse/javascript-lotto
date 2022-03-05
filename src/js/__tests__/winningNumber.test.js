@@ -12,7 +12,7 @@ describe('당첨 번호 테스트', () => {
   });
 
   test('당첨 번호 중 보너스 번호를 가져온다.', () => {
-    expect(winningNumber.bonusNumber).toBe(17);
+    expect(winningNumber.getBonusNumber()).toBe(17);
   });
 
   test('저장된 당첨 번호를 초기화한다.', () => {
