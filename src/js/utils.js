@@ -25,8 +25,7 @@ export const pickUniqueNumbersInRange = (startInclusive, endInclusive, count) =>
 export const intersect = (a, b) => {
   const setA = new Set(a);
   const setB = new Set(b);
-  const intersection = new Set([...setA].filter((x) => setB.has(x)));
-  return Array.from(intersection);
+  return [...setA].filter((x) => setB.has(x));
 };
 
 export const consoleErrorWithConditionalAlert = (error, errorNameForAlert) => {
