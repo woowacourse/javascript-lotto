@@ -4,6 +4,7 @@ import { ACTION, LOTTO } from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { intersect } from '../utils';
+import Store from '../flux/store';
 
 class StatisticsModal extends Component {
   // eslint-disable-next-line max-lines-per-function
@@ -89,16 +90,16 @@ class StatisticsModal extends Component {
 
   closeModal() {
     document.querySelector('body').classList.remove('modal-open');
-    window.store.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, false));
+    Store.instance.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, false));
   }
 
   reset() {
-    window.store.dispatch(createAction(ACTION.RESET));
+    Store.instance.dispatch(createAction(ACTION.RESET));
     this.closeModal();
   }
 
   render() {
-    const { statisticsModalVisibility, winningNumbers, lottoList } = window.store.getState();
+    const { statisticsModalVisibility, winningNumbers, lottoList } = Store.instance.getState();
     if (!statisticsModalVisibility) {
       this.innerHTML = '';
       return;

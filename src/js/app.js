@@ -8,11 +8,6 @@ import './components/WinningNumberForm';
 import './components/StatisticsModal';
 
 import '../css/index.css';
-import { INITIAL_STATE } from './constants';
-
-const initialState = { ...INITIAL_STATE };
-
-window.store = new Store(initialState);
 
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#app').innerHTML = `

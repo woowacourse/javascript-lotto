@@ -4,6 +4,7 @@ import Component from '../abstracts/component';
 import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 import { consoleErrorWithConditionalAlert } from '../utils';
+import Store from '../flux/store';
 
 class MoneyForm extends Component {
   template() {
@@ -38,7 +39,7 @@ class MoneyForm extends Component {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(createAction(ACTION.PURCHASE_LOTTO, money));
+    Store.instance.dispatch(createAction(ACTION.PURCHASE_LOTTO, money));
   }
 }
 

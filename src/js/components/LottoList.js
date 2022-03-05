@@ -1,5 +1,6 @@
 import Component from '../abstracts/component';
 import LottoImage from '../../../images/lotto.png';
+import Store from '../flux/store';
 
 class LottoList extends Component {
   // eslint-disable-next-line max-lines-per-function
@@ -27,7 +28,7 @@ class LottoList extends Component {
   }
 
   render() {
-    const { money, lottoList, lottoListVisibility } = window.store.getState();
+    const { money, lottoList, lottoListVisibility } = Store.instance.getState();
     this.innerHTML = '';
     if (money > 0) {
       this.innerHTML = this.template(lottoList, lottoListVisibility);

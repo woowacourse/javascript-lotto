@@ -4,6 +4,7 @@ import Component from '../abstracts/component';
 import { validateWinningNumbers } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 import { consoleErrorWithConditionalAlert } from '../utils';
+import Store from '../flux/store';
 
 class WinningNumberForm extends Component {
   // eslint-disable-next-line max-lines-per-function
@@ -57,17 +58,17 @@ class WinningNumberForm extends Component {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(
+    Store.instance.dispatch(
       createAction(ACTION.SET_WINNING_NUMBERS, {
         normal: winningNumbers.slice(0, winningNumbers.length - 1).map(Number),
         bonus: Number(winningNumbers[winningNumbers.length - 1]),
       })
     );
-    window.store.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, true));
+    Store.instance.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, true));
   }
 
   render() {
-    const { money, winningNumbers } = window.store.getState();
+    const { money, winningNumbers } = Store.instance.getState();
     console.log('winningNumbers : ', winningNumbers);
     this.innerHTML = '';
     if (money > 0) {

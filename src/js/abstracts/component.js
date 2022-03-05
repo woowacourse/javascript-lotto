@@ -1,3 +1,5 @@
+import Store from '../flux/store';
+
 class Component extends HTMLElement {
   constructor() {
     if (new.target === Component) {
@@ -24,7 +26,7 @@ class Component extends HTMLElement {
     if (!this.shouldSubscribe()) {
       return;
     }
-    window.store.subscribe(this);
+    Store.instance.subscribe(this);
   }
 
   shouldSubscribe() {
