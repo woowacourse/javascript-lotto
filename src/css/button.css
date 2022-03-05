@@ -13,7 +13,7 @@ button {
   order: 0;
   flex-grow: 0;
   height: 36px;
-  margin: 4px 0px;
+  margin: 4px 0;
 }
 
 button:disabled {
