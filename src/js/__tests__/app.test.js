@@ -187,7 +187,7 @@ describe('로또 게임을 진행한다.', () => {
     expect(window.store.getState().resultModalVisibility).toBe(true);
   });
 
-  test('수익률을 계산할 수 있다.', () => {
+  test('로또에 대한 총 수익률을 계산할 수 있다.', () => {
     const originMoney = LOTTO.PRICE * 5;
     const currentMoney = PRIZE_MONEY['5th'];
     const expectEarningsRate = 0;
