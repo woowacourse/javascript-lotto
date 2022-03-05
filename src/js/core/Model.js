@@ -1,5 +1,3 @@
-import { cloneObject } from '../utils/utils.js';
-
 export default class Model {
   state;
 
@@ -19,6 +17,6 @@ export default class Model {
   }
 
   getState() {
-    return cloneObject(this.state);
+    return this.state;
   }
 }

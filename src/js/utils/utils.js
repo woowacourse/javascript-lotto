@@ -7,6 +7,9 @@ export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (flooredMax - ceiledMin)) + ceiledMin;
 };
 
+export const calculateRateOfReturn = (currentValue, initialValue) =>
+  (currentValue - initialValue) / initialValue;
+
 export const generateNumberArray = (start, end) => {
   return Array.from({ length: end - start + 1 }, (_, index) => start + index);
 };
@@ -30,6 +33,10 @@ export const addPrefix = (selector, type) => {
 
 export const $ = (selector, type = null) => {
   return document.querySelector(addPrefix(selector, type));
+};
+
+export const $all = (selector, type = null) => {
+  return document.querySelectorAll(addPrefix(selector, type));
 };
 
 export const cloneObject = (obj) => {

@@ -32,6 +32,14 @@ export const LOTTO = {
     MIN: 1,
     MAX: 45,
   },
+  PRIZE: {
+    first: 2000000000,
+    second: 30000000,
+    third: 1500000,
+    forth: 50000,
+    fifth: 5000,
+    none: 0,
+  },
 };
 
 export const PAYMENT = {

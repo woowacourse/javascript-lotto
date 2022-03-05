@@ -3,8 +3,8 @@ import Lotto from './Lotto/Lotto.js';
 import { LOTTO } from '../configs/contants.js';
 
 export default class LottoModel extends Model {
-  static issueLotto() {
-    return new Lotto();
+  static issueLotto(lottoNumbers) {
+    return new Lotto(lottoNumbers);
   }
 
   static getLottoCount(amount) {

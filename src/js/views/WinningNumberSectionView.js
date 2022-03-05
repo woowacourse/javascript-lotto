@@ -1,4 +1,5 @@
 import View from '../core/View.js';
+import { $, $all } from '../utils/utils.js';
 import { DOM_STRING, LOTTO } from '../configs/contants.js';
 
 export default class WinningNumberSectionView extends View {
@@ -38,5 +39,22 @@ export default class WinningNumberSectionView extends View {
       </form>
       <button id="${DOM_STRING.SHOW_RESULT_BUTTON}">결과 확인하기</button>
     `;
+  }
+
+  bindOnClickShowResultButton(callback) {
+    this.bindEventListener(
+      'click',
+      { attributeName: DOM_STRING.SHOW_RESULT_BUTTON, attributeType: 'id' },
+      () => {
+        const winningNumbers = {
+          main: [...$all(DOM_STRING.MAIN_NUMBER_INPUT, 'class')].map(
+            (node) => node.valueAsNumber
+          ),
+          bonus: $(DOM_STRING.BONUS_NUMBER_INPUT, 'class').valueAsNumber,
+        };
+
+        callback(winningNumbers);
+      }
+    );
   }
 }
