@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-/* eslint-disable no-param-reassign */
 import EVENT from '../constants/event';
 import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
@@ -39,12 +37,12 @@ export default class WinningNumbersView {
   static #moveReverseFocus(e) {
     const { activeElement } = document;
     const eventTarget = e.target;
-    if (activeElement.id === 'bonus-number' && activeElement.value.length <= 1) {
+    if (activeElement.id === 'bonus-number' && activeElement.value.length === 0) {
       activeElement.value = '';
       $('#last-basic-input').focus();
       return;
     }
-    if (eventTarget.previousElementSibling && activeElement.value.length <= 1) {
+    if (eventTarget.previousElementSibling && activeElement.value.length === 0) {
       eventTarget.value = '';
       eventTarget.previousElementSibling.focus();
     }

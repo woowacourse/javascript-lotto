@@ -11,28 +11,28 @@
 }
 
 .ball[data-number='yellow'] {
-  background-color: #e4a716;
+  background-color: var(--ball-yellow);
 }
 
 .ball[data-number='blue'] {
-  background-color: #1993da;
+  background-color: var(--ball-blue);
 }
 
 .ball[data-number='red'] {
-  background-color: #e96353;
+  background-color: var(--ball-red);
 }
 .ball[data-number='black'] {
-  background-color: #8f8f8f;
+  background-color: var(--ball-black);
 }
 .ball[data-number='green'] {
-  background-color: #5ab545;
+  background-color: var(--ball-green);
 }
 
 .ticket-numbers:after {
   padding: 3px;
   vertical-align: middle;
   border-radius: 6px;
-  color: #fff;
+  color: var(--white);
 }
 .ticket-numbers[data-rank='firstPlace']:after {
   background-color: goldenrod;
