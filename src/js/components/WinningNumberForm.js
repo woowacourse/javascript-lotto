@@ -69,7 +69,6 @@ class WinningNumberForm extends Component {
 
   render() {
     const { money, winningNumbers } = Store.instance.getState();
-    console.log('winningNumbers : ', winningNumbers);
     this.innerHTML = '';
     if (money > 0) {
       this.innerHTML = this.template(winningNumbers);
