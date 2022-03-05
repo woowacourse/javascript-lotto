@@ -90,12 +90,12 @@ export default class LottoMachine {
 
   #setLottoResultEvent() {
     $(SELECTOR.LOTTO_RESTART_BUTTON).addEventListener('click', this.#restartLotto.bind(this));
-    $(SELECTOR.CLOSE_RESULT_MODAL).addEventListener('click', this.#clickXButton.bind(this));
+    $(SELECTOR.CLOSE_RESULT_MODAL).addEventListener('click', this.#onStatisticsModalClose.bind(this));
     window.addEventListener('click', this.#closeModalIfClickOutOfModalBind);
     window.addEventListener('keyup', this.#closeModalwithESCBind);
   }
 
-  #clickXButton(event) {
+  #onStatisticsModalClose(event) {
     event.preventDefault();
     this.#removeModalAndEvent();
   }
