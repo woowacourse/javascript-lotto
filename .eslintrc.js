@@ -24,7 +24,8 @@ module.exports = {
     ],
     'no-underscore-dangle': 'off',
     'max-lines-per-function': ['error', 20],
-    'max-depth': ['error', 1],
+    'max-depth': ['error', 2],
     'no-alert': 'off',
+    'consistent-return': 'off',
   },
 };

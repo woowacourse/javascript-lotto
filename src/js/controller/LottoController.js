@@ -67,7 +67,7 @@ export default class LottoController {
       this.lottoResult = new LottoResult(this.lottoVendor);
       this.lottoResult.bonusNumber = bonusNumber;
       this.lottoResult.winningNumbers = winningNumbers;
-      const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult(winningNumbers, bonusNumber);
+      const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult();
       this.issuedTicketView.highlightWinningTickets(this.lottoResult.resultList);
       this.#renderResultModal(winningCounts, lottoYield, winningMoney);
     } catch (error) {

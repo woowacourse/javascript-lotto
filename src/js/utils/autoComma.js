@@ -1,12 +1,9 @@
-/* eslint-disable no-param-reassign */
 function comma(str) {
-  str = String(str);
-  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  return String(str).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
 function uncomma(str) {
-  str = String(str);
-  return str.replace(/[^\d]+/g, '');
+  return String(str).replace(/[^\d]+/g, '');
 }
 
 function insertAutoComma(obj) {

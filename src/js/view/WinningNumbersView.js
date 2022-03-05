@@ -83,16 +83,9 @@ export default class WinningNumbersView {
   }
 
   #isDuplicatedInputs() {
-    const inputNumberList = [];
-    this.$$winningNumberInputs.forEach((input) => {
-      if (!Number.isNaN(input.valueAsNumber)) {
-        inputNumberList.push(input.valueAsNumber);
-      }
-    });
-    if (inputNumberList.length !== new Set(inputNumberList).size) {
-      return true;
-    }
-    return false;
+    const inputNumberList = this.$$winningNumberInputs.filter((input) => !Number.isNaN(input.valueAsNumber));
+
+    return inputNumberList.length !== new Set(inputNumberList).size;
   }
 
   #moveAutoFocus(e, index) {

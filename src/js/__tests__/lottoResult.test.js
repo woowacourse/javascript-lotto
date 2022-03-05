@@ -17,7 +17,7 @@ describe('당첨 결과를 확인할 수 있어야 한다.', () => {
   lottoResult.winningNumbers = [1, 2, 3, 4, 5, 6];
   lottoResult.bonusNumber = 7;
 
-  test('결과 확인하기 버튼을 누르면, 당첨번호와 구입한 로또 번호를 비교하여 당첨 금액별 당첨 번호 개수를 계산할 수 있어야 한다.', () => {
+  test('당첨번호와 구입한 로또 번호를 비교하여 당첨 금액별 당첨 번호 개수를 계산할 수 있어야 한다.', () => {
     // when
     lottoResult.calculateWinningCounts();
 

@@ -5,18 +5,14 @@ const isExcludedNumber = (numbers, number) => {
   return !numbersSet.has(number);
 };
 
-const pushExcludedNumber = (resultArray, randomNumber) => {
-  if (isExcludedNumber(resultArray, randomNumber)) {
-    resultArray.push(randomNumber);
-  }
-};
-
 const generateRandomNumbers = ({ count, max, min }) => {
   const resultArray = [];
 
   while (resultArray.length < count) {
     const randomNumber = getRandomNumber(max, min);
-    pushExcludedNumber(resultArray, randomNumber);
+    if (isExcludedNumber(resultArray, randomNumber)) {
+      resultArray.push(randomNumber);
+    }
   }
 
   return resultArray;

@@ -19,7 +19,7 @@ export default class LottoResult {
   #resultList;
 
   set winningNumbers(numbers) {
-    if (this.isWinningNumbersDuplicated(numbers)) {
+    if (this.#isWinningNumbersDuplicated(numbers)) {
       throw new Error(EXCEPTION.DUPLICATED_NUMBERS);
     }
     this.#winningNumbers = numbers;
@@ -33,9 +33,15 @@ export default class LottoResult {
     return this.#winningCounts;
   }
 
-  getLottoResult(winningNumbers, bonusNumber) {
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+  get resultList() {
+    return this.#resultList;
+  }
+
+  get lottoYield() {
+    return this.#lottoYield;
+  }
+
+  getLottoResult() {
     this.calculateWinningCounts();
     this.calculateLottoYield();
     return {
@@ -56,8 +62,16 @@ export default class LottoResult {
     });
   }
 
-  get resultList() {
-    return this.#resultList;
+  calculateLottoYield() {
+    const winningMoney =
+      this.#winningCounts.fifthPlace * LOTTO.FIFTH_PRIZE +
+      this.#winningCounts.fourthPlace * LOTTO.FOURTH_PRIZE +
+      this.#winningCounts.thirdPlace * LOTTO.THIRD_PRIZE +
+      this.#winningCounts.secondPlace * LOTTO.SECOND_PRIZE +
+      this.#winningCounts.firstPlace * LOTTO.FIRST_PRIZE;
+    const { paidMoney } = this.lottoVendor;
+    this.#winningMoney = winningMoney;
+    this.#lottoYield = Math.floor((winningMoney / paidMoney) * 100);
   }
 
   #getWinningRank(userLotto) {
@@ -74,7 +88,6 @@ export default class LottoResult {
         return 'firstPlace';
       default:
     }
-    return undefined;
   }
 
   #checkBonusNumber(userLotto) {
@@ -85,27 +98,8 @@ export default class LottoResult {
     return 'thirdPlace';
   }
 
-  calculateLottoYield() {
-    const winningMoney =
-      this.#winningCounts.fifthPlace * LOTTO.FIFTH_PRIZE +
-      this.#winningCounts.fourthPlace * LOTTO.FOURTH_PRIZE +
-      this.#winningCounts.thirdPlace * LOTTO.THIRD_PRIZE +
-      this.#winningCounts.secondPlace * LOTTO.SECOND_PRIZE +
-      this.#winningCounts.firstPlace * LOTTO.FIRST_PRIZE;
-    const { paidMoney } = this.lottoVendor;
-    this.#winningMoney = winningMoney;
-    this.#lottoYield = Math.floor((winningMoney / paidMoney) * 100);
-  }
-
-  get lottoYield() {
-    return this.#lottoYield;
-  }
-
-  isWinningNumbersDuplicated(winningNumbers) {
+  #isWinningNumbersDuplicated(winningNumbers) {
     const numbers = [...winningNumbers, this.#bonusNumber];
-    if (numbers.length !== new Set(numbers).size) {
-      return true;
-    }
-    return false;
+    return numbers.length !== new Set(numbers).size;
   }
 }
