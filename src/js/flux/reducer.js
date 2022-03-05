@@ -62,8 +62,8 @@ const generateEarningsRate = (winningCounts) => {
 
 const generateResult = (winningNumber) => {
   const result = {};
-  const winningNumbers = winningNumber.slice(0, LOTTO.COUNT);
-  const bonusNumber = winningNumber[LOTTO.COUNT];
+  const winningNumbers = winningNumber.slice(0, LOTTO.COUNT).map(Number);
+  const bonusNumber = Number(winningNumber[LOTTO.COUNT]);
   result.winningCounts = generateWinningCounts(winningNumbers, bonusNumber);
   result.earningsRate = generateEarningsRate(result.winningCounts);
 
@@ -92,7 +92,7 @@ export default function reducer(state, { type, payload }) {
     case ACTION.UPDATE_RESULT:
       newState.winningNumbers = payload.slice(0, LOTTO.COUNT);
       newState.bonusNumber = payload[LOTTO.COUNT];
-      newState.result = generateResult(payload.map((value) => Number(value)));
+      newState.result = generateResult(payload);
 
       return newState;
     case ACTION.RESTART:
