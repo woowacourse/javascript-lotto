@@ -1,9 +1,9 @@
 import Model from './model.js';
-import LottoListView from './view/LottoList.js';
-import PurchaseFormView from './view/PurchaseForm.js';
+import LottoListView from './view/LottoListView.js';
+import PurchaseFormView from './view/PurchaseFormView.js';
+import WinningNumberView from './view/WinningNumberView';
 
 import { validateCashInput, validatePickedNumbers } from './utils/validation';
-import { WinningNumberView } from './view/WinningNumberView';
 import { LOTTO_PRICE } from './constants/lotto.js';
 
 export default class Controller {

@@ -2,7 +2,7 @@ import { ID, CLASS } from '../constants/attribute.js';
 import { WINNING_PRIZE } from '../constants/lotto.js';
 import { $, $$, addClassName, removeClassName, replaceHTML } from '../utils/dom';
 
-export class WinningNumberView {
+export default class WinningNumberView {
   constructor() {
     this.#configureDOM();
     this.bindCloseModal();
