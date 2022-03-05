@@ -38,6 +38,8 @@ export default class LottosViewImpl extends LottosView {
   resetView() {
     this.$lottoContainer.querySelector('.lottos.default').innerHTML = '';
     this.$lottoContainer.querySelector('.lottos.detail').innerHTML = '';
+    this.$lottoContainer.classList.remove('detail');
+    $('#lotto-viewer-controller').checked = false;
     this.$lottoCount.innerText = 0;
   }
 
