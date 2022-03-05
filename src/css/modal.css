@@ -16,10 +16,6 @@
   display: none;
 }
 
-.modal.show {
-  display: block;
-}
-
 .modal.on {
   opacity: 1;
 }
