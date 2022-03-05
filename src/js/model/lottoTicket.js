@@ -1,5 +1,5 @@
 import { LOTTO } from '../constants/constants';
-import { shuffleNumber } from '../utils/number';
+import { shuffleNumber } from '../utils/array';
 
 export const lottoTicket = {
   store: [],

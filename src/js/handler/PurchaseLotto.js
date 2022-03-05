@@ -3,6 +3,7 @@ import { ERROR_MESSAGE } from '../constants/constants';
 import { lottoTicket } from '../model/lottoTicket';
 import { isInvalidMoneyInput } from '../validator/validator';
 import { deactivateForm } from '../utils/style';
+import { userMoneyInput } from '../model/userMoneyInput';
 
 export default class PurchaseLotto {
   constructor() {
@@ -45,7 +46,10 @@ export default class PurchaseLotto {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
+
     lottoTicket.issueLottoTickets(moneyInput);
+    userMoneyInput.store = moneyInput;
+
     this.showResult(lottoTicket.getLottoTickets());
   };
 }

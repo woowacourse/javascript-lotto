@@ -1,25 +1,23 @@
 export const winningNumber = {
-  store: {
-    numbers: [],
-    bonusNumber: [],
-  },
+  numbers: [],
+  bonusNumber: 0,
 
   getWinningNumber() {
-    return this.store.numbers;
+    return this.numbers[0];
   },
 
   getBonusNumber() {
-    return this.store.bonusNumber;
+    return this.bonusNumber;
   },
 
   setWinningNumber(number) {
     this.initializeWinningNumber();
-    this.store.numbers.push(number.slice(0, 6));
-    this.store.bonusNumber.push(number.slice(6));
+    this.numbers.push(number.slice(0, 6));
+    this.bonusNumber = number.slice(6)[0];
   },
 
   initializeWinningNumber() {
-    this.store.numbers = [];
-    this.store.bonusNumber = [];
+    this.numbers = [];
+    this.bonusNumber = 0;
   },
 };
