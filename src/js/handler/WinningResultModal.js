@@ -5,14 +5,20 @@ import { ERROR_MESSAGE } from '../constants/constants';
 
 export default class WinningResultModal {
   constructor() {
-    $('#show-result').addEventListener('click', this.handleWinningResultModal);
+    $('#show-result').addEventListener('click', this.handleWinningResultModal.bind(this));
   }
 
-  handleWinningResultModal() {
+  getUserInputWinningNumber() {
     const userInputWinningNumber = [];
     $$('.winning-numbers').forEach((element) => {
       return userInputWinningNumber.push(Number(element.value));
     });
+
+    return userInputWinningNumber;
+  }
+
+  handleWinningResultModal() {
+    const userInputWinningNumber = this.getUserInputWinningNumber();
 
     if (isInvalidWinningNumberInput(userInputWinningNumber)) {
       alert(ERROR_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
