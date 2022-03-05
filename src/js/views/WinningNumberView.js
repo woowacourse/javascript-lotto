@@ -7,10 +7,10 @@ export default class WinningNumberView extends View {
     super();
 
     this.winningNumberInput = $$(".winning-number-input");
-    $(".result-button").addEventListener("click", this.onClickResultButton.bind(this));
+    $(".result-button").addEventListener("click", this.#onClickResultButton.bind(this));
   }
 
-  onClickResultButton() {
+  #onClickResultButton() {
     const winningNumberList = Array.from(this.winningNumberInput).map((element) =>
       Number(element.value.trim()),
     );

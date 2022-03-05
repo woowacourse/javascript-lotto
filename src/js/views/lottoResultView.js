@@ -64,16 +64,16 @@ export default class LottoResultView extends View {
 
   renderResultModal(lottoResult, totalProfitRate) {
     this.resultModal.innerHTML = lottoResultTemplate(lottoResult, totalProfitRate);
-    $(".close-button").addEventListener("click", this.closeModal.bind(this));
-    $(".restart-button").addEventListener("click", this.onClickRestartButton.bind(this));
+    $(".close-button").addEventListener("click", this.#closeModal.bind(this));
+    $(".restart-button").addEventListener("click", this.#onClickRestartButton.bind(this));
   }
 
-  closeModal() {
+  #closeModal() {
     this.resultModal.innerText = "";
   }
 
-  onClickRestartButton() {
-    this.closeModal();
+  #onClickRestartButton() {
+    this.#closeModal();
     this.handlers.get("click").forEach((func) => func());
   }
 }

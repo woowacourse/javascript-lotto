@@ -8,7 +8,7 @@ export default class PurchasedLottoView extends View {
 
     this.lottoNumberList = $(".lotto-number-list");
     this.switchInput = $(".switch-input");
-    this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
+    this.switchInput.addEventListener("click", this.#onClickSwitch.bind(this));
   }
 
   renderPurchasedInfomation(lottoCount) {
@@ -29,7 +29,7 @@ export default class PurchasedLottoView extends View {
   }
 
   toggleLottoNumbers(lottoList) {
-    this.resetLottoList();
+    this.#resetLottoList();
     this.lottoNumberList.classList.toggle(SHOW_NUMBERS_CLASS);
     if (this.lottoNumberList.classList.contains(SHOW_NUMBERS_CLASS)) {
       this.renderLottoNumbers(lottoList);
@@ -38,7 +38,7 @@ export default class PurchasedLottoView extends View {
     this.renderLottoIcons(lottoList.length);
   }
 
-  onClickSwitch() {
+  #onClickSwitch() {
     this.handlers.get("click").forEach((func) => func());
   }
 
@@ -52,10 +52,10 @@ export default class PurchasedLottoView extends View {
     disableElement(this.switchInput);
     this.lottoNumberList.classList.remove(SHOW_NUMBERS_CLASS);
     this.switchInput.checked = false;
-    this.resetLottoList();
+    this.#resetLottoList();
   }
 
-  resetLottoList() {
+  #resetLottoList() {
     this.lottoNumberList.replaceChildren("");
   }
 }

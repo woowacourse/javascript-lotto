@@ -8,23 +8,23 @@ export default class PurchaseAmountView extends View {
 
     this.purchaseInput = $(".purchase-input");
     this.purchaseButton = $(".purchase-button");
-    $(".purchase-form").addEventListener("submit", this.onSubmitPurchaseAmount.bind(this));
+    $(".purchase-form").addEventListener("submit", this.#onSubmitPurchaseAmount.bind(this));
   }
 
-  onSubmitPurchaseAmount(e) {
+  #onSubmitPurchaseAmount(e) {
     e.preventDefault();
 
     const purchaseAmount = Number(this.purchaseInput.value);
     try {
       validatePurchaseAmount(purchaseAmount);
       this.handlers.get("submit").forEach((func) => func(purchaseAmount));
-      this.disableForm();
+      this.#disableForm();
     } catch (error) {
       alert(error);
     }
   }
 
-  disableForm() {
+  #disableForm() {
     disableElement(this.purchaseInput);
     disableElement(this.purchaseButton);
   }
