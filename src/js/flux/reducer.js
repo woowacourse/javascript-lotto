@@ -5,7 +5,7 @@ import { calculateEarningsRate, intersection, pickUniqueNumbersInRange } from '.
 
 const generateLottoList = (money) => {
   const lottoList = [];
-  const count = Math.floor(money / 1000);
+  const count = Math.floor(money / LOTTO.PRICE);
 
   for (let i = 0; i < count; i += 1) {
     const { RANGE, COUNT } = LOTTO;

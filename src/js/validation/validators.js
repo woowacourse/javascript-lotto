@@ -16,10 +16,10 @@ export const validateMoney = (money) => {
   if (!isNumber(money)) {
     return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER_MONEY);
   }
-  if (parseInt(money, 10) < 1000) {
+  if (parseInt(money, 10) < LOTTO.PRICE) {
     return new ValidationResult(true, ERROR_MESSAGE.UNDER_MIN_MONEY);
   }
-  if (money % 1000) {
+  if (money % LOTTO.PRICE) {
     return new ValidationResult(true, ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
   }
   return new ValidationResult(false);
