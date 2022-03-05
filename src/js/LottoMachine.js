@@ -13,13 +13,9 @@ export default class LottoMachine {
   constructor() {
     this.lottoManager = new LottoManager();
     this.lottoMachineView = new LottoMachineView();
-    this.#setBind();
-    this.#setEvent();
-  }
-
-  #setBind() {
     this.#closeModalIfClickOutOfModalBind = this.#closeModalIfClickOutOfModal.bind(this);
     this.#closeModalwithESCBind = this.#closeModalwithESC.bind(this);
+    this.#setEvent();
   }
 
   #setEvent() {
