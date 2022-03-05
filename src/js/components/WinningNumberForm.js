@@ -61,7 +61,7 @@ class WinningNumberForm extends Component {
       const winningNumbers = $winningNumberInputs.map((input) => input.value);
 
       try {
-        this.pickLottoNumbers(winningNumbers);
+        this.submitLottoNumbers(winningNumbers);
       } catch (e) {
         consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
       }
@@ -85,7 +85,7 @@ class WinningNumberForm extends Component {
     });
   }
 
-  pickLottoNumbers(winningNumbers) {
+  submitLottoNumbers(winningNumbers) {
     const { hasError, errorMessage } = validateWinningNumbers(winningNumbers);
 
     if (hasError) {
