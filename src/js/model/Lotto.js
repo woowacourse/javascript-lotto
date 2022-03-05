@@ -22,4 +22,8 @@ export default class Lotto {
   generateLottoTicket(count) {
     this.#lottoList = [...Array(count)].map(this.generateLottoNumber);
   }
+
+  resetLottoList() {
+    this.#lottoList = [];
+  }
 }

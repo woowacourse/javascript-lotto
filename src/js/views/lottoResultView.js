@@ -56,17 +56,24 @@ const lottoResultTemplate = (lottoResult, totalProfitRate) => {
 };
 
 export default class LottoResultView extends View {
-  // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
+
+    this.resultModal = $(".result-modal");
   }
 
   renderResultModal(lottoResult, totalProfitRate) {
-    $(".result-modal").innerHTML = lottoResultTemplate(lottoResult, totalProfitRate);
+    this.resultModal.innerHTML = lottoResultTemplate(lottoResult, totalProfitRate);
     $(".close-button").addEventListener("click", this.closeModal.bind(this));
+    $(".restart-button").addEventListener("click", this.onClickRestartButton.bind(this));
   }
 
   closeModal() {
-    $(".result-modal").innerText = "";
+    this.resultModal.innerText = "";
+  }
+
+  onClickRestartButton() {
+    this.closeModal();
+    this.handlers.get("click").forEach((func) => func());
   }
 }

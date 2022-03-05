@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { $, disableElement } from "../utils/dom.js";
+import { $, disableElement, enableElement } from "../utils/dom.js";
 import { validatePurchaseAmount } from "../utils/validation.js";
 
 export default class PurchaseAmountView extends View {
@@ -7,20 +7,34 @@ export default class PurchaseAmountView extends View {
     super();
 
     this.purchaseInput = $(".purchase-input");
-    $(".purchase-form").addEventListener("submit", this.handlePurchaseAmount.bind(this));
+    this.purchaseButton = $(".purchase-button");
+    $(".purchase-form").addEventListener("submit", this.onSubmitPurchaseAmount.bind(this));
   }
 
-  handlePurchaseAmount(e) {
+  onSubmitPurchaseAmount(e) {
     e.preventDefault();
 
     const purchaseAmount = Number(this.purchaseInput.value);
     try {
       validatePurchaseAmount(purchaseAmount);
       this.handlers.get("submit").forEach((func) => func(purchaseAmount));
-      disableElement(this.purchaseInput);
-      disableElement($(".purchase-button"));
+      this.disableForm();
     } catch (error) {
       alert(error);
     }
+  }
+
+  disableForm() {
+    disableElement(this.purchaseInput);
+    disableElement(this.purchaseButton);
+  }
+
+  enableForm() {
+    enableElement(this.purchaseInput);
+    enableElement(this.purchaseButton);
+  }
+
+  resetPurchaseValue() {
+    this.purchaseInput.value = "";
   }
 }

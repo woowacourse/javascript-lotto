@@ -8,7 +8,3 @@ export const disableElement = (element) => {
 export const enableElement = (element) => {
   element.removeAttribute("disabled");
 };
-
-export const showElement = (element) => {
-  element.removeAttribute("hidden");
-};

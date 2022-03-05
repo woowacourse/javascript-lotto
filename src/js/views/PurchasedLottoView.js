@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { $, enableElement } from "../utils/dom.js";
+import { $, disableElement, enableElement } from "../utils/dom.js";
 
 export default class PurchasedLottoView extends View {
   constructor() {
@@ -7,6 +7,7 @@ export default class PurchasedLottoView extends View {
 
     this.lottoNumberList = $(".lotto-number-list");
     this.switchInput = $(".switch-input");
+    this.switchInput.addEventListener("click", this.onClickSwitch.bind(this));
   }
 
   renderPurchaseInfomation(lottoCount) {
@@ -26,11 +27,7 @@ export default class PurchasedLottoView extends View {
     });
   }
 
-  resetLottoList() {
-    this.lottoNumberList.replaceChildren("");
-  }
-
-  onClickSwitch(lottoList) {
+  render(lottoList) {
     this.resetLottoList();
     this.lottoNumberList.classList.toggle("show-numbers");
     if (this.lottoNumberList.classList.contains("show-numbers")) {
@@ -40,10 +37,24 @@ export default class PurchasedLottoView extends View {
     this.renderLottoIcons(lottoList.length);
   }
 
-  handlePurchasedLotto(lottoCount, lottoList) {
+  onClickSwitch() {
+    this.handlers.get("click").forEach((func) => func());
+  }
+
+  handlePurchasedLotto(lottoCount) {
     enableElement(this.switchInput);
     this.renderLottoIcons(lottoCount);
     this.renderPurchaseInfomation(lottoCount);
-    this.switchInput.addEventListener("click", () => this.onClickSwitch(lottoList));
+  }
+
+  resetPurchasedLotto() {
+    disableElement(this.switchInput);
+    this.lottoNumberList.classList.remove("show-numbers");
+    this.switchInput.checked = false;
+    this.resetLottoList();
+  }
+
+  resetLottoList() {
+    this.lottoNumberList.replaceChildren("");
   }
 }
