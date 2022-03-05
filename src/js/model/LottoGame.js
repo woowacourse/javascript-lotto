@@ -41,20 +41,23 @@ export class LottoGame {
   }
 
   #getLottoStatus(count, bonus) {
-    if (count === 3) {
-      this.winningStatus[0]++;
-    }
-    if (count === 4) {
-      this.winningStatus[1]++;
-    }
-    if (count === 5 && bonus === 0) {
-      this.winningStatus[2]++;
-    }
-    if (count === 5 && bonus === 1) {
-      this.winningStatus[3]++;
-    }
-    if (count === 6) {
-      this.winningStatus[4]++;
+    switch (count) {
+      case 3:
+        this.winningStatus[0]++;
+        break;
+      case 4:
+        this.winningStatus[1]++;
+        break;
+      case 5:
+        if (count === 5 && bonus === 0) {
+          this.winningStatus[2]++;
+          break;
+        }
+        this.winningStatus[3]++;
+        break;
+      case 6:
+        this.winningStatus[4]++;
+        break;
     }
   }
 
