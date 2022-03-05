@@ -27,8 +27,10 @@ export default class WinningResultModal {
 
     winningNumber.setWinningNumber(userInputWinningNumber);
 
+    // 등수별 당첨 개수, 수익률 계산
+
     // 모달 창 띄우기
 
-    // 등수별 당첨 개수, 수익률 계산
+    // 다시 시작하기 버튼 이벤트 바인딩
   }
 }

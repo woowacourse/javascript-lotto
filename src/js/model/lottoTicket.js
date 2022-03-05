@@ -14,7 +14,7 @@ export const lottoTicket = {
   },
 
   getLottoTickets() {
-    return this.store;
+    return [...this.store];
   },
 
   generateLottoNumbers() {
