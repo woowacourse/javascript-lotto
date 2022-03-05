@@ -42,12 +42,10 @@ export class ModalView {
 
   openModal() {
     this.modal.classList.add('show');
-    this.modal.classList.add('dark');
   }
 
   closeModal() {
     this.modal.classList.remove('show');
-    this.modal.classList.remove('dark');
   }
 
   clearWinningNumbers() {

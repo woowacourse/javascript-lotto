@@ -252,6 +252,7 @@ button {
   transform: translateX(-50%) translateY(-50%);
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 #modal-body {
@@ -300,8 +301,4 @@ svg {
   right: 20px;
   top: 20px;
   cursor: pointer;
-}
-
-.dark {
-  background-color: rgba(0, 0, 0, 0.4);
 }
