@@ -80,7 +80,7 @@ export default class LottoMachine {
       [...this.winnerNumbers].slice(0, LOTTO_NUMBER.LENGTH),
       this.winnerNumbers[LOTTO_NUMBER.LENGTH]
     );
-    const rateOfReturn = this.#calculateLottoReturn(lottoResult);
+    const rateOfReturn = this.#calculateLottoPrize(lottoResult);
     this.lottoMachineView.showLottoResultTable(lottoResult, rateOfReturn);
   }
 
@@ -116,7 +116,7 @@ export default class LottoMachine {
     window.removeEventListener('keyup', this.#closeModalwithESCBind);
   }
 
-  #calculateLottoReturn(lottoResult) {
+  #calculateLottoPrize(lottoResult) {
     let totalPrize = 0;
     lottoResult.forEach((count, index) => {
       totalPrize += LOTTO_PRIZE[index] * count;
