@@ -1,7 +1,7 @@
 import { LOTTO_NUMBER, AMOUNT } from "../utils/constants.js";
 import { shuffleArray } from "../utils/general.js";
 
-export default class Lotto {
+export default class LottoModel {
   #lottoList = [];
 
   getLottoList() {

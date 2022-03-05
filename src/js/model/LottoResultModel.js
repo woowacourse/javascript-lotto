@@ -1,4 +1,4 @@
-export default class LottoResult {
+export default class LottoResultModel {
   #lottoResult = {
     first: 0,
     second: 0,

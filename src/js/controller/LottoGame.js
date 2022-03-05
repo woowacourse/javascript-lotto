@@ -1,5 +1,5 @@
-import Lotto from "../model/Lotto.js";
-import LottoResult from "../model/LottoResult.js";
+import LottoModel from "../model/LottoModel.js";
+import LottoResultModel from "../model/LottoResultModel.js";
 import PurchasedLottoView from "../views/PurchasedLottoView.js";
 import PurchaseAmountView from "../views/PurchaseAmountView.js";
 import WinningNumberView from "../views/WinningNumberView.js";
@@ -9,8 +9,8 @@ import { calculateProfitRate } from "../utils/general.js";
 
 export default class LottoGame {
   constructor() {
-    this.lottoModel = new Lotto();
-    this.lottoResultModel = new LottoResult();
+    this.lottoModel = new LottoModel();
+    this.lottoResultModel = new LottoResultModel();
     this.purchaseAmountView = new PurchaseAmountView();
     this.purchasedLottoView = new PurchasedLottoView();
     this.winningNumberView = new WinningNumberView();
