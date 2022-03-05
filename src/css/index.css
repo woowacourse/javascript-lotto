@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   position: relative;
   width: 414px;
-  height: 727px;
+  min-height: 727px;
   padding: 0 16px 39px;
   background-color: var(--color-white);
 }
