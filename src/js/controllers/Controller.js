@@ -93,7 +93,7 @@ export class Controller {
   }
 
   #restartLotto() {
-    this.lottoGame.reStartLottos();
+    this.lottoGame.initLottos();
     this.commonView.initView();
     this.modalView.initModalView();
   }

@@ -70,7 +70,7 @@ export class LottoGame {
     this.yield = Number(this.yield.toFixed(2));
   }
 
-  reStartLottos() {
+  initLottos() {
     this.moneyInput = 0;
     this.bonusNumber = 0;
     this.yield = 0;

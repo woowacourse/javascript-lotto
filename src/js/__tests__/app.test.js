@@ -104,7 +104,7 @@ describe('당첨 통계를 낼 수 있다.', () => {
     lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
     lottoGame.compareLottos();
     lottoGame.calculateYield();
-    lottoGame.reStartLottos();
+    lottoGame.initLottos();
     expect(lottoGame.moneyInput).toBe(0);
     expect(lottoGame.lottoWallet.length).toBe(0);
     expect(lottoGame.winningNumbers.size).toBe(0);
