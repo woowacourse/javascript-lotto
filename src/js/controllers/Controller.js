@@ -99,12 +99,12 @@ export class Controller {
   }
 
   #getNextInputFocus(e) {
-    const $nextInput = e.target.nextElementSibling;
+    const now = e.target.id[e.target.id.length - 1];
     if (e.target.value.length < 2) {
       return;
     }
-    if ($nextInput) {
-      $nextInput.focus();
+    if (now <= CONDITIONS.LOTTO_SIZE) {
+      document.getElementById(`winning-number${Number(now) + 1}`).focus();
       return;
     }
   }
