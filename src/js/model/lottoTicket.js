@@ -25,7 +25,7 @@ export const lottoTicket = {
     return shuffleNumber(candidate).slice(0, 6);
   },
 
-  initializeLottoTicket() {
+  initializeLottoTickets() {
     this.store = [];
   },
 };
