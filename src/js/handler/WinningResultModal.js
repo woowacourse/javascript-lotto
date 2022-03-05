@@ -42,7 +42,7 @@ export default class WinningResultModal {
             </tr>
             <tr>
               <td>4개</td>
-              <td>5,0000</td>
+              <td>50,000</td>
               <td class="match-4">${winningStatistics.store.matchFourNumbers}개</td>
             </tr>
             <tr>
