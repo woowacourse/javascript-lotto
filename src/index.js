@@ -6,4 +6,6 @@ import './css/winningStatisticModal.css';
 
 import runLottoGame from './js/app.js';
 
-runLottoGame();
+window.addEventListener('DOMContentLoaded', () => {
+  runLottoGame();
+});
