@@ -22,7 +22,9 @@ export const lottoTicket = {
       .fill()
       .map((element, index) => index + 1);
 
-    return shuffleNumber(candidate).slice(0, 6);
+    return shuffleNumber(candidate)
+      .slice(0, 6)
+      .sort((a, b) => a - b);
   },
 
   initializeLottoTickets() {
