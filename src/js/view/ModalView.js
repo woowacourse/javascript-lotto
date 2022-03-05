@@ -11,25 +11,12 @@ export class ModalView {
     this.winTable = document.getElementById('win-status');
     this.modal = document.querySelector('.modal');
     this.lottoProfit = document.getElementById('lotto-profit');
-
-    this.winningNumber1 = document.getElementById('winning-number1');
-    this.winningNumber2 = document.getElementById('winning-number2');
-    this.winningNumber3 = document.getElementById('winning-number3');
-    this.winningNumber4 = document.getElementById('winning-number4');
-    this.winningNumber5 = document.getElementById('winning-number5');
-    this.winningNumber6 = document.getElementById('winning-number6');
     this.bonusNumber = document.getElementById('winning-number7');
+    this.winningLottoContainer = document.getElementById('winning-lotto-container');
   }
 
   getWinningNumbersInput() {
-    return {
-      win1: Number(this.winningNumber1.value),
-      win2: Number(this.winningNumber2.value),
-      win3: Number(this.winningNumber3.value),
-      win4: Number(this.winningNumber4.value),
-      win5: Number(this.winningNumber5.value),
-      win6: Number(this.winningNumber6.value),
-    };
+    return { ...[...this.winningLottoContainer.winNumber].map((el) => Number(el.value)) };
   }
 
   insertResultTemplate(winningStatus, lottoProfit) {
@@ -49,13 +36,7 @@ export class ModalView {
   }
 
   clearWinningNumbers() {
-    this.winningNumber1.value = '';
-    this.winningNumber2.value = '';
-    this.winningNumber3.value = '';
-    this.winningNumber4.value = '';
-    this.winningNumber5.value = '';
-    this.winningNumber6.value = '';
-    this.bonusNumber.value = '';
+    this.winningLottoContainer.winNumber.forEach((el) => (el.value = ''));
   }
 
   initModalView() {
