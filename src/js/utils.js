@@ -21,8 +21,8 @@ export function pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
   return shuffle(numbers).slice(0, count);
 }
 
-export function intersection(array1, array2) {
-  return array1.filter((value) => array2.includes(value));
+export function intersection(arrayA, arrayB) {
+  return arrayA.filter((value) => arrayB.includes(value));
 }
 
 export function calculateEarningsRate(originMoney, currentMoney) {
