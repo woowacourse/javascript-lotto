@@ -29,10 +29,7 @@ export default class WinningResultModal {
 
     winningNumber.setWinningNumber(userInputWinningNumber);
     winningStatistics.initializeLottoRank();
-    winningStatistics.calculateLottoRank(
-      winningNumber.getWinningNumber(),
-      winningNumber.getBonusNumber()
-    );
+    winningStatistics.calculateLottoRank(winningNumber.getWinningNumber(), winningNumber.getBonusNumber());
 
     // 모달 창 띄우기
 
