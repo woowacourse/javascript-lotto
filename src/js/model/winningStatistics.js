@@ -12,14 +12,14 @@ export const winningStatistics = {
     matchSixNumbers: 0,
   },
 
-  calculateLottoRank(winningNumber, bonusNumber) {
+  calculateLottoRank(winningNumbers, bonusNumber) {
     const lottoTickets = lottoTicket.getLottoTickets();
 
     lottoTickets.forEach((lottoTicket) => {
-      const countMatchWinningNumber = findEqualElementsLength(lottoTicket, winningNumber);
+      const countMatchWinningNumbers = findEqualElementsLength(lottoTicket, winningNumbers);
       const countMatchBonusNumber = lottoTicket.includes(bonusNumber) ? 1 : 0;
 
-      switch (countMatchWinningNumber) {
+      switch (countMatchWinningNumbers) {
         case 6:
           this.store.matchSixNumbers += 1;
           break;

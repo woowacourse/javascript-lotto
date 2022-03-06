@@ -1,6 +1,6 @@
 import { $, $$ } from '../utils/dom';
 import { winningNumber } from '../model/winningNumber';
-import { isInvalidWinningNumberInput } from '../validator/validator';
+import { isInvalidWinningNumbersInput } from '../validator/validator';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { winningStatistics } from '../model/winningStatistics';
 import { activateForm, resetInput } from '../utils/style';
@@ -11,7 +11,7 @@ export default class WinningResultModal {
     $('.winning-numbers-form').addEventListener('submit', this.handleWinningResultModal);
   }
 
-  getUserInputWinningNumber() {
+  getUserInputWinningNumbers() {
     return Array.from($$('.winning-numbers')).map((element) => Number(element.value));
   }
 
@@ -87,21 +87,21 @@ export default class WinningResultModal {
   restartLottoPurchase() {
     this.initializeElements();
     lottoTicket.initializeLottoTickets();
-    winningNumber.initializeWinningNumber();
+    winningNumber.initializeWinningNumbers();
   }
 
   handleWinningResultModal = (e) => {
     e.preventDefault();
-    const userInputWinningNumber = this.getUserInputWinningNumber();
+    const userInputWinningNumbers = this.getUserInputWinningNumbers();
 
-    if (isInvalidWinningNumberInput(userInputWinningNumber)) {
+    if (isInvalidWinningNumbersInput(userInputWinningNumbers)) {
       alert(ERROR_MESSAGE.INVALID_WINNING_NUMBER_INPUT);
       return;
     }
 
-    winningNumber.setWinningNumber(userInputWinningNumber);
+    winningNumber.setWinningNumbers(userInputWinningNumbers);
     winningStatistics.initializeLottoRank();
-    winningStatistics.calculateLottoRank(winningNumber.getWinningNumber(), winningNumber.getBonusNumber());
+    winningStatistics.calculateLottoRank(winningNumber.getWinningNumbers(), winningNumber.getBonusNumber());
     this.openWinningResultModal();
   };
 }

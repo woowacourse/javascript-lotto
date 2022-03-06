@@ -2,7 +2,7 @@ export const winningNumber = {
   numbers: [],
   bonusNumber: 0,
 
-  getWinningNumber() {
+  getWinningNumbers() {
     return this.numbers[0];
   },
 
@@ -10,13 +10,13 @@ export const winningNumber = {
     return this.bonusNumber;
   },
 
-  setWinningNumber(number) {
-    this.initializeWinningNumber();
+  setWinningNumbers(number) {
+    this.initializeWinningNumbers();
     this.numbers.push(number.slice(0, 6));
     this.bonusNumber = number.slice(6)[0];
   },
 
-  initializeWinningNumber() {
+  initializeWinningNumbers() {
     this.numbers = [];
     this.bonusNumber = 0;
   },
