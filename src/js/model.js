@@ -22,11 +22,6 @@ export default class Model {
     return this.#lottoList;
   }
 
-  // 테스트를 위한 메서드
-  setLottoList(lottoList) {
-    this.#lottoList = lottoList;
-  }
-
   getWinningLottoQuantity() {
     return this.#winningLottoQuantity;
   }
