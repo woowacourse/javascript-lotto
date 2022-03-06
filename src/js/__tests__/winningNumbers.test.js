@@ -25,15 +25,15 @@ describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개�
 });
 
 describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않는 1 ~ 45 사이의 숫자여야 한다.', () => {
-  const bonumsNumber = 18;
+  const bonusNumber = 18;
 
   test('보너스 당첨 번호는 지난주 당첨 번호에 속해있으면 안된다.', () => {
     const winningNumber = [7, 15, 30, 37, 39, 44];
 
-    expect(isIncludedWinningNumbers(winningNumber, bonumsNumber)).toBeFalsy();
+    expect(isIncludedWinningNumbers(winningNumber, bonusNumber)).toBeFalsy();
   });
 
   test('보너스 당첨 번호는 1 ~ 45 사이의 숫자여야 한다.', () => {
-    expect(isInvalidRangeNumber(bonumsNumber)).toBeFalsy();
+    expect(isInvalidRangeNumber(bonusNumber)).toBeFalsy();
   });
 });

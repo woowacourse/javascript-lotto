@@ -8,7 +8,7 @@ export const createRandomNumbers = (minRange, maxRange, count) => {
     .fill()
     .map((n, i) => i + minRange);
 
-  const shuffledCandiate = shuffle(candidate);
+  const shuffledCandidate = shuffle(candidate);
 
-  return shuffledCandiate.slice(0, count);
+  return shuffledCandidate.slice(0, count);
 };

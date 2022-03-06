@@ -16,8 +16,8 @@ export const isOverlapped = (lottoNumbers) => {
 
 export const isInvalidCount = (lottoNumbers) => lottoNumbers.length !== LOTTO_RULES.BALL_COUNT;
 
-export const isIncludedWinningNumbers = (winningNumbers, bonumsNumber) =>
-  winningNumbers.includes(bonumsNumber);
+export const isIncludedWinningNumbers = (winningNumbers, bonusNumber) =>
+  winningNumbers.includes(bonusNumber);
 
 export const validator = {
   validateFare: (fare) => {

@@ -10,10 +10,10 @@ const onClickRestartButton = () => {
   lottoGameView.reset();
 };
 
-const onClickResultButton = (winningNumbers, bonumsNumber) => {
+const onClickResultButton = (winningNumbers, bonusNumber) => {
   try {
     validator.validateWinningNumbers(winningNumbers);
-    validator.validateBonusNumber(winningNumbers, bonumsNumber);
+    validator.validateBonusNumber(winningNumbers, bonusNumber);
   } catch (error) {
     alert(error.message);
     return;
@@ -24,7 +24,7 @@ const onClickResultButton = (winningNumbers, bonumsNumber) => {
   const winningCounts = lottoStatisticMachine.calculateWinningCounts(
     lottos,
     winningNumbers,
-    bonumsNumber,
+    bonusNumber,
   );
   const earningsRate = lottoStatisticMachine.calculateEarningsRate(fare, winningCounts);
 

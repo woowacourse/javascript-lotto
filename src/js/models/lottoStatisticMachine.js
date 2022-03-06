@@ -9,9 +9,9 @@ class LottoStatisticMachine {
 
   #earningsRate = 0;
 
-  calculateWinningCounts(lottos, winningNumbers, bonumsNumber) {
+  calculateWinningCounts(lottos, winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
-    this.#bonusNumber = bonumsNumber;
+    this.#bonusNumber = bonusNumber;
 
     const winningCounts = new Array(5).fill(0);
 

@@ -1,7 +1,7 @@
 import { $ } from '../utils/index.js';
 import { WINNING_CRITERIA, PRIZE_MONEY } from '../constant/index.js';
 
-const getWinningStatisticModalTempalte = (winningCounts, earningsRate) => {
+const getWinningStatisticModalTemplate = (winningCounts, earningsRate) => {
   return `
   <div id="winning-statistic-modal">
     <div id="winning-statistic-modal-content">
@@ -48,7 +48,7 @@ class WinningStatisticModalView {
   renderWinningStatisticModal(winningCounts, earningsRate) {
     this.#removeWinningStatisticModal();
 
-    const winningStatisticModalTemplate = getWinningStatisticModalTempalte(
+    const winningStatisticModalTemplate = getWinningStatisticModalTemplate(
       winningCounts,
       earningsRate,
     );

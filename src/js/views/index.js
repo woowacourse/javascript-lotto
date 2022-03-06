@@ -22,7 +22,7 @@ class LottoGameView {
   renderAfterFareSubmit(lottoList, remainFare) {
     this.#fareFormView.renderFare(remainFare);
     this.#lottoListView.renderLottoList(lottoList);
-    this.#lottoMatchView.renderLottoMatchSecteion();
+    this.#lottoMatchView.renderLottoMatchSection();
     this.#fareFormView.deactivateFareForm();
   }
 

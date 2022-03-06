@@ -1,6 +1,6 @@
 import { $, $$ } from '../utils/index.js';
 
-const getLottoMatchSecetionTemplate = () => {
+const getLottoMatchSectionTemplate = () => {
   return `
   <p>지난주 당첨번호 6개와 보너스 번호 1개를 입력해 주세요.</p>
   <div class="lotto-match-header">
@@ -37,8 +37,8 @@ class LottoMatchView {
     this.#lottoMatchSection = $('.lotto-match-section');
   }
 
-  renderLottoMatchSecteion() {
-    this.#lottoMatchSection.innerHTML = getLottoMatchSecetionTemplate();
+  renderLottoMatchSection() {
+    this.#lottoMatchSection.innerHTML = getLottoMatchSectionTemplate();
 
     this.#resultButton = $('#result-button');
     this.#matchNumberInputs = $$('.match-number-input');
