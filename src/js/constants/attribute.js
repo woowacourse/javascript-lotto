@@ -21,7 +21,7 @@ export const CLASS = {
   LOTTO_LIST_TICKET: 'lotto-list__ticket',
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
   PICKED_NUMBER_INPUT: 'picked-number__input',
-  RESULT_MODAL_GRID_ITEM: 'result-modal-grid-item',
+  RESULT_MODAL_GRID_ITEM: 'result-modal__grid-item',
   UNFOLD: 'unfold',
   OPEN: 'open',
   SCROLL_BLOCK: 'scroll-block',
