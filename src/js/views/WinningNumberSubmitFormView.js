@@ -1,18 +1,14 @@
 import { $, $$ } from '../utils/util';
-import { MATCH_RESULT_INDEX, PRIZE_MONEY } from '../constants/constants';
 
 const CLASS_DISPLAY_NONE = 'display-none';
 
-export default class WinningResultSectionView {
+export default class WinningNumberSubmitFormView {
   constructor(app) {
     this.app = app;
     this.winningResultSection = $('#winning-result-section', this.app);
     this.winningNumberForm = $('#winning-number-form', this.winningResultSection);
     this.winningNumberInputs = $$('.winning-number-input', this.winningNumberForm);
     this.winningNumberSubmitButton = $('button', this.winningNumberForm);
-    this.resultModalArea = $('#result-modal-area', this.winningResultSection);
-    this.resultModalCloseButton = $('#result-modal-close-button', this.resultModalArea);
-    this.restartButton = $('#restart-button', this.resultModalArea);
     
     this.bindEvent();
   }
@@ -22,8 +18,6 @@ export default class WinningResultSectionView {
       inputElement.addEventListener('keyup', this.onTypeWinningNumber.bind(this, index));
     })
     this.winningNumberForm.addEventListener('submit', this.onSubmitWinningNumber.bind(this));
-    this.resultModalCloseButton.addEventListener('click', this.changeResultModalVisibility.bind(this));
-    this.restartButton.addEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   onTypeWinningNumber(inputIndex, event) {
@@ -47,25 +41,14 @@ export default class WinningResultSectionView {
     this.app.dispatchEvent(winningNumberSubmitEvent);
   }
 
-  onClickRestartButton() {
-    const restartEvent = new CustomEvent('restart', {});
-    this.app.dispatchEvent(restartEvent);
-  }
-
   initialize() {
     this.winningNumberInputs.forEach((inputElement) => { inputElement.value = ''; });
     this.changeWinningResultSectionVisibility();
-    this.changeResultModalVisibility();
   }
 
   updateOnPurchase(tickets) {
     if (tickets.length !== 0 && !this.isWinningResultSectionVisible())
       this.changeWinningResultSectionVisibility();
-  }
-
-  updateOnCheckWinningResult(winningResult){
-    this.updateWinningResultModal(winningResult);
-    this.changeResultModalVisibility();
   }
 
   isWinningResultSectionVisible() {
@@ -78,17 +61,4 @@ export default class WinningResultSectionView {
       : this.winningResultSection.classList.add(CLASS_DISPLAY_NONE);
   }
 
-  changeResultModalVisibility() {
-    return this.resultModalArea.classList.contains(CLASS_DISPLAY_NONE)
-      ? this.resultModalArea.classList.remove(CLASS_DISPLAY_NONE)
-      : this.resultModalArea.classList.add(CLASS_DISPLAY_NONE);
-  }
-
-  updateWinningResultModal({ matchResult, profitRatio }) {
-    $$('.match-result', this.resultModalArea).forEach((resultRow) => {
-      $('.match-count', resultRow).innerText = `${matchResult[MATCH_RESULT_INDEX[resultRow.dataset.matchCount]]}개`;
-      $('.prize-money', resultRow).innerText = PRIZE_MONEY[resultRow.dataset.matchCount].toLocaleString();
-    })
-    $('#profit-ratio', this.resultModalArea).innerText = Math.round(profitRatio);
-  }
 }
