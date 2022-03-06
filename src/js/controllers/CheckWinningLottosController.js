@@ -1,48 +1,51 @@
-import CheckWinningLottosView from '../views/CheckWinningLottosView.js';
+import WinningLottosModalView from '../views/WinningLottosModalView.js';
+import WinningNumbersInputView from '../views/WinningNumbersInputView.js';
 import { $ } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
 import { changeProfitToProfitRate } from '../utils/utils.js';
 
 export default class CheckWinningLottosController {
-  #view = new CheckWinningLottosView();
-
   constructor(lottoMachine) {
     this.machine = lottoMachine;
-    this.#view.bindEvent(
+    this.inputView = new WinningNumbersInputView();
+    this.modalView = new WinningLottosModalView();
+
+    this.modalView.bindEvent(
       $(SELECTOR.ID.CHECK_RESULT_BUTTON),
       'click',
       this.handleClickCheckResultButton.bind(this)
     );
-    this.#view.bindEvent(
+    this.modalView.bindEvent(
       $(SELECTOR.ID.MODAL_CLOSE_BUTTON),
       'click',
       this.handleCloseModal.bind(this)
     );
-    this.#view.bindEvent(
+    this.modalView.bindEvent(
       $(SELECTOR.ID.MODAL_RETRY_BUTTON),
       'click',
       this.handleRetryButton.bind(this)
     );
   }
 
+  // 핸들러
   handleClickCheckResultButton(e) {
     e.preventDefault();
     try {
-      const inputWinningNumbers = this.#view.getInputWinningNumbers();
+      const inputWinningNumbers = this.inputView.getInputWinningNumbers();
       const winningNumbers = inputWinningNumbers.splice(0, 6);
       const bonusNumber = inputWinningNumbers[0];
       this.machine.countWinLottos(winningNumbers, bonusNumber);
-      this.#view.renderWinLottosCountInModal(
+      this.modalView.renderWinLottosCountInModal(
         this.machine.winLottos,
         this.machine.winLottosWithBonus
       );
-      this.#view.renderProfitRateInModal(
+      this.modalView.renderProfitRateInModal(
         changeProfitToProfitRate(
           this.machine.getProfit(),
           this.machine.inputMoney
         )
       );
-      this.#view.openModal();
+      this.modalView.toggleModal();
     } catch (error) {
       alert(error.message);
     }
@@ -55,11 +58,11 @@ export default class CheckWinningLottosController {
 
   handleRetryButton() {
     this.machine.resetMachine();
-    this.#view.closeModal();
-    this.#view.ablePurchase();
-    this.#view.hideLottoContainers();
-    this.#view.clearWinningNumbersInput();
-    this.#view.clearMoneyInput();
-    this.#view.resetToggle();
+    this.modalView.toggleModal();
+    this.modalView.ablePurchase();
+    this.modalView.hideLottoContainers();
+    this.modalView.clearWinningNumbersInput();
+    this.modalView.clearMoneyInput();
+    this.modalView.resetToggle();
   }
 }

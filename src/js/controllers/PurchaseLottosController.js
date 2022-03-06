@@ -3,17 +3,16 @@ import { $ } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
 
 export default class PurchaseLottosController {
-  #view = new PurchaseLottosView();
-
   constructor(lottoMachine) {
     this.machine = lottoMachine;
+    this.view = new PurchaseLottosView();
 
-    this.#view.bindEvent(
+    this.view.bindEvent(
       $(SELECTOR.ID.PURCHASE_MONEY_FORM),
       'submit',
       this.handlePurchaseForm.bind(this)
     );
-    this.#view.bindEvent(
+    this.view.bindEvent(
       $(SELECTOR.ID.LOTTO_RESULT_TOGGLE),
       'click',
       this.handleResultToggle.bind(this)
@@ -21,7 +20,7 @@ export default class PurchaseLottosController {
   }
 
   inputMoney() {
-    this.machine.inputMoney = this.#view.getInputMoney();
+    this.machine.inputMoney = this.view.getInputMoney();
   }
 
   // 핸들러
@@ -30,16 +29,16 @@ export default class PurchaseLottosController {
     try {
       this.inputMoney();
       this.machine.lottos = this.machine.generateLottos();
-      this.#view.renderPurchasedLottosAmountByText(this.machine.lottos);
-      this.#view.renderPurchasedLottos(this.machine.lottos);
-      this.#view.disablePurchase();
-      this.#view.showLottoContainers();
+      this.view.renderPurchasedLottosAmountByText(this.machine.lottos);
+      this.view.renderPurchasedLottos(this.machine.lottos);
+      this.view.disablePurchase();
+      this.view.showLottoContainers();
     } catch (error) {
       alert(error.message);
     }
   }
 
   handleResultToggle() {
-    this.#view.renderPurchasedLottos(this.machine.lottos);
+    this.view.renderPurchasedLottos(this.machine.lottos);
   }
 }

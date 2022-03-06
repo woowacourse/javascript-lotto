@@ -1,6 +1,6 @@
-import { LOTTO, SELECTOR } from '../constants/constants.js';
-import Lotto from '../models/Lotto.js';
-import validateMoney from '../validations/PurchaseLottos.js';
+import { LOTTO, SELECTOR } from "../constants/constants.js";
+import Lotto from "../models/Lotto.js";
+import validateMoney from "../validations/PurchaseLottos.js";
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -47,10 +47,11 @@ export default class LottoMachine {
   }
 
   getProfit() {
-    let profit = 0;
-    this.#winLottos.forEach((winLottoCount, index) => {
-      profit += winLottoCount * LOTTO.WINNING_PRIZE[index];
-    });
+    let profit = this.#winLottos.reduce(
+      (acc, winLottoCount, index) =>
+        (acc += winLottoCount * LOTTO.WINNING_PRIZE[index]),
+      0
+    );
     profit += this.#winLottosWithBonus * LOTTO.WINNING_PRIZE_WITH_BONUS;
     return profit;
   }

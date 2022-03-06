@@ -3,11 +3,7 @@ import { $, $$, isDuplicated } from '../utils/utils.js';
 import { LOTTO, SELECTOR } from '../constants/constants.js';
 import validateInputWinningNumbers from '../validations/CheckWinningLottos.js';
 
-const template = {
-  showProfitMessage: (profitRate) => `당신의 총 수익률은 ${profitRate}%입니다.`,
-};
-
-export default class CheckWinningLottosView extends View {
+export default class WinningNumbersInputView extends View {
   constructor() {
     super();
     this.bindInputWinningNumberEvents();
@@ -17,7 +13,7 @@ export default class CheckWinningLottosView extends View {
 
   getInputWinningNumbers() {
     const inputWinningNumbers = [];
-    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element) => {
+    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach(element => {
       inputWinningNumbers.push(Number.parseInt(element.value));
     });
     validateInputWinningNumbers(inputWinningNumbers);
@@ -36,7 +32,7 @@ export default class CheckWinningLottosView extends View {
 
   getDuplicatedLottosMap(elementsArrayUntilCurrentIndex) {
     const duplicatedLottosMap = new Map();
-    elementsArrayUntilCurrentIndex.forEach((element) => {
+    elementsArrayUntilCurrentIndex.forEach(element => {
       if (duplicatedLottosMap.get(element.value) === undefined) {
         duplicatedLottosMap.set(element.value, 1);
         return;
@@ -51,32 +47,12 @@ export default class CheckWinningLottosView extends View {
 
   isDuplicatedElement(element, duplicatedLottosMap) {
     return this.getDuplicatedKey(duplicatedLottosMap).some(
-      (item) => item === element.value
+      item => item === element.value
     );
   }
 
-  openModal() {
-    $(SELECTOR.CLASS.MODAL).classList.toggle('show');
-  }
-
-  closeModal() {
-    $(SELECTOR.CLASS.MODAL).classList.toggle('show');
-  }
-
-  renderWinLottosCountInModal(winLottos, winLottosWithBonus) {
-    $$(SELECTOR.CLASS.COINCIDE_COUNT).forEach((element, index) => {
-      element.textContent = `${winLottos[index + 3]}개`;
-    });
-    $(SELECTOR.ID.COINCIDE_COUNT_BONUS).textContent = `${winLottosWithBonus}개`;
-  }
-
-  renderProfitRateInModal(profitRate) {
-    $(SELECTOR.ID.SHOW_PROFIT_RATE).textContent =
-      template.showProfitMessage(profitRate);
-  }
-
   showError(elements, duplicatedLottosMap) {
-    Array.from(elements).forEach((element) => {
+    Array.from(elements).forEach(element => {
       if (this.isDuplicatedElement(element, duplicatedLottosMap)) {
         element.classList.add('input-alert');
       }
@@ -89,30 +65,6 @@ export default class CheckWinningLottosView extends View {
     });
   }
 
-  hideLottoContainers() {
-    $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = true;
-    $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = true;
-  }
-
-  ablePurchase() {
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).disabled = false;
-    $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = false;
-  }
-
-  clearWinningNumbersInput() {
-    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach(
-      (element) => (element.value = '')
-    );
-  }
-
-  clearMoneyInput() {
-    $(SELECTOR.ID.PURCHASE_MONEY_INPUT).value = '';
-  }
-
-  resetToggle() {
-    $(SELECTOR.ID.TOGGLE_CHECKBOX).checked = false;
-  }
-
   // 핸들러
   handleInputWinningNumber(index) {
     const elements = $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT);
@@ -120,7 +72,7 @@ export default class CheckWinningLottosView extends View {
     if (index < LOTTO.NUMBER_QUANTITY && elements[index].value.length > 1) {
       elements[index + 1].focus();
     }
-    elements.forEach((element) => element.classList.remove('input-alert'));
+    elements.forEach(element => element.classList.remove('input-alert'));
     $(SELECTOR.ID.WINNING_NUMBER_INPUT_ALERT).textContent = '';
   }
 
@@ -140,7 +92,7 @@ export default class CheckWinningLottosView extends View {
       Array.from(elements)
     );
 
-    const inputWinningNumbers = Array.from(elements).map((element) => {
+    const inputWinningNumbers = Array.from(elements).map(element => {
       return Number.parseInt(element.value);
     });
 
@@ -163,15 +115,15 @@ export default class CheckWinningLottosView extends View {
 
   bindDeleteWinningNumberEvents() {
     $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element, index) => {
-      this.bindEvent(element, 'keydown', (event) => {
+      this.bindEvent(element, 'keydown', event => {
         this.handleDeleteWinningNumber(event, index);
       });
     });
   }
 
   bindWinningNumberInputError() {
-    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach((element) => {
-      this.bindEvent(element, 'input', (event) => {
+    $$(SELECTOR.CLASS.WINNING_NUMBER_INPUT).forEach(element => {
+      this.bindEvent(element, 'input', event => {
         this.handleWinningNumberInputError(event);
       });
     });
