@@ -12,12 +12,7 @@ export default class WinningResultModal {
   }
 
   getUserInputWinningNumber() {
-    const userInputWinningNumber = [];
-    $$('.winning-numbers').forEach((element) => {
-      return userInputWinningNumber.push(Number(element.value));
-    });
-
-    return userInputWinningNumber;
+    return Array.from($$('.winning-numbers')).map((element) => Number(element.value));
   }
 
   openWinningResultModal() {
