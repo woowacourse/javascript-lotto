@@ -94,6 +94,7 @@ form > div {
 #purchased-lotto-list {
   max-height: 250px;
   overflow-y: scroll;
+  padding-top: 3px;
 }
 
 .purchased-lotto-image {
@@ -127,8 +128,6 @@ form > div {
   flex-direction: column;
   align-items: flex-end;
   padding-bottom: 15px;
-
-  /* TODO */
   position: relative;
 }
 
