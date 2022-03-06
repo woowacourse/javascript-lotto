@@ -1,6 +1,4 @@
-import View from './View.js';
-
-export default class MatchResultView extends View {
+export default class MatchResultView {
   moveTab() {}
 
   show() {}

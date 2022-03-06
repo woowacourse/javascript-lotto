@@ -90,7 +90,7 @@ export const writingWinningNumber = (e) => {
   );
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
-    matchResultView.moveTab(findInputFunctions[ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER]);
+    matchResultView.focusFindedInput(findInputFunctions[ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER]);
   }
 
   if (e.keyCode === ENTER_KEY_CODE) {
@@ -99,7 +99,7 @@ export const writingWinningNumber = (e) => {
 };
 
 export const catchClickConfirmResultButton = (orderToView) => {
-  matchResultView.moveTab(findInputFunctions[orderToView]);
+  matchResultView.focusFindedInput(findInputFunctions[orderToView]);
 };
 
 export const closeModal = () => {

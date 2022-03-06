@@ -1,10 +1,10 @@
 import LottosView from '../EventListener/LottosView.js';
-import FareValue from './FareValue.js';
 import { $ } from '../utils/index.js';
 
 export default class LottosViewImpl extends LottosView {
   constructor() {
-    super(new FareValue());
+    super();
+    this.$input = $('#fare-input');
     this.$lottoCount = $('#lotto-count');
     this.$lottoContainer = $('#lottos-container');
   }
@@ -43,7 +43,15 @@ export default class LottosViewImpl extends LottosView {
     this.$lottoCount.innerText = 0;
   }
 
+  getInputValue() {
+    return this.$input.value;
+  }
+
+  setInputValue(value) {
+    this.$input.value = value;
+  }
+
   focusInput() {
-    this.inputInstance.focus();
+    this.$input.focus();
   }
 }

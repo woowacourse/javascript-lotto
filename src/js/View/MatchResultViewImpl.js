@@ -1,11 +1,11 @@
 import MatchResultView from '../EventListener/MatchResultView.js';
-import WinningNumberValue from './WinningNumberValue.js';
 import { $, $$ } from '../utils/index.js';
 import { MATCH_COUNT_OF_LOTTO_RANKING } from '../constant/index.js';
 
 export default class MatchResultViewImpl extends MatchResultView {
   constructor() {
-    super(new WinningNumberValue());
+    super();
+    this.$inputs = [...$$('.match-number-input')];
     this.$lottoMatchArea = $('#lotto-match-area');
     this.$modal = $('#match-modal');
     this.$winningLottoCounts = $$('.winning-lotto-count');
@@ -48,5 +48,24 @@ export default class MatchResultViewImpl extends MatchResultView {
     setTimeout(() => {
       this.$modal.classList.add('hide');
     }, 400);
+  }
+
+  getInputValue() {
+    return this.$inputs.map(($inputs) => $inputs.value);
+  }
+
+  setInputValue(values) {
+    this.$inputs.forEach(($input, index) => {
+      const $numberInput = $input;
+      $numberInput.value = values[index];
+    });
+  }
+
+  focusFindedInput(findInputFunction) {
+    const findedInput = findInputFunction(this.$inputs);
+
+    if (findedInput !== undefined) {
+      findedInput.focus();
+    }
   }
 }
