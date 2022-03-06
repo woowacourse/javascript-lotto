@@ -229,8 +229,9 @@ describe('유저가 구매한 로또 티켓들의 등수별 당첨 된 갯수를
 
 describe('유저가 구입한 로또 티켓의 당첨금과 수익률을 확인한다.', () => {
   test('유저가 구입한 로또 티켓의 총 당첨금을 확인한다.', () => {
-    const { forthWinner, fifthWinner, failed } = lottoSeller.getWinningAmount();
-    const testWinningAmount = forthWinner + fifthWinner + failed;
+    const { FORTH_WINNER, FIFTH_WINNER, FAILED } =
+      lottoSeller.getWinningAmount();
+    const testWinningAmount = FORTH_WINNER + FIFTH_WINNER + FAILED;
     const lastWeekLottoList = [1, 2, 3, 4, 5, 6];
     const lastWeekBounsNumber = 7;
     const userAllLottoList = [

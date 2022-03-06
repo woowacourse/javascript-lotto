@@ -1,5 +1,5 @@
-import { countingDuplicates } from './utils';
-import { MONEY } from './constants';
+import { countingDuplicates, changeToUpperSnakeCase } from './utils';
+import { MONEY, WINNING_AMOUNT } from './constants';
 
 export default class LottoSeller {
   #lastWeekWinningLottoList = [];
@@ -7,15 +7,6 @@ export default class LottoSeller {
   #lastWeekWinningBonusNumber = 0;
 
   #purchasedAmount = 0;
-
-  #winningAmount = Object.freeze({
-    firstWinner: 2000000000,
-    secondWinner: 30000000,
-    thirdWinner: 1500000,
-    forthWinner: 50000,
-    fifthWinner: 5000,
-    failed: 0,
-  });
 
   #winningCount = {
     firstWinner: 0,
@@ -40,7 +31,7 @@ export default class LottoSeller {
   }
 
   getWinningAmount() {
-    return this.#winningAmount;
+    return WINNING_AMOUNT;
   }
 
   setPurchasedAmount(count) {
@@ -59,7 +50,7 @@ export default class LottoSeller {
             userLottoList,
             lastWeekLottoList,
             lastWeekBounsNumber
-          ) === this.#winningAmount[winningKey]
+          ) === WINNING_AMOUNT[changeToUpperSnakeCase(winningKey)]
       ).length;
     });
   }
@@ -71,33 +62,32 @@ export default class LottoSeller {
   confirmLottoList(userLottoList, lastWeekLottoList, lastWeekBounsNumber) {
     const count = countingDuplicates(userLottoList, lastWeekLottoList);
 
-    if (count === 2 || count === 1 || count === 0) {
-      return this.#winningAmount.failed;
-    }
+    switch (count) {
+      case 3:
+        return WINNING_AMOUNT.FIFTH_WINNER;
 
-    if (count === 3) {
-      return this.#winningAmount.fifthWinner;
-    }
+      case 4:
+        return WINNING_AMOUNT.FORTH_WINNER;
 
-    if (count === 4) {
-      return this.#winningAmount.forthWinner;
-    }
+      case 5:
+        if (userLottoList.includes(lastWeekBounsNumber)) {
+          return WINNING_AMOUNT.SECOND_WINNER;
+        }
+        return WINNING_AMOUNT.THIRD_WINNER;
 
-    if (count === 5 && userLottoList.includes(lastWeekBounsNumber)) {
-      return this.#winningAmount.secondWinner;
-    }
+      case 6:
+        return WINNING_AMOUNT.FIRST_WINNER;
 
-    if (count === 5) {
-      return this.#winningAmount.thirdWinner;
+      default:
+        return WINNING_AMOUNT.FAILED;
     }
-
-    return this.#winningAmount.firstWinner;
   }
 
   totalWinningAmount() {
-    const totalAmountList = Object.keys(this.#winningAmount).map(
+    const totalAmountList = Object.keys(this.#winningCount).map(
       (amountKey) =>
-        this.#winningAmount[amountKey] * this.#winningCount[amountKey]
+        this.#winningCount[amountKey] *
+        WINNING_AMOUNT[changeToUpperSnakeCase(amountKey)]
     );
 
     return totalAmountList.reduce((sum, amount) => amount + sum, 0);

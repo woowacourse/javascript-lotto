@@ -5,9 +5,9 @@ export default class LottoConsumer {
   #lottoList = [];
 
   setLottoList(count) {
-    this.#lottoList = Array(count)
-      .fill(0)
-      .map((_, index, list) => (list[index] = this.createLottoList(count)));
+    this.#lottoList = Array.from({ length: count }, () =>
+      this.createLottoList(count)
+    );
   }
 
   getLottoList() {
@@ -17,8 +17,6 @@ export default class LottoConsumer {
   createLottoList() {
     const shuffleRandomList = shuffleArray(createRandomNumberList());
 
-    return Array(LOTTO.LENGTH)
-      .fill(0)
-      .map((_, index, list) => (list[index] = shuffleRandomList.pop()));
+    return Array.from({ length: LOTTO.LENGTH }, () => shuffleRandomList.pop());
   }
 }
