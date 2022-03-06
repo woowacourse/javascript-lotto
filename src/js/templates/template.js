@@ -1,4 +1,4 @@
-import { LOTTO } from '../configs/contants.js';
+import { LOTTO, STATISTIC } from '../configs/contants.js';
 
 const template = {
   app: () => {
@@ -103,31 +103,21 @@ const template = {
             <th>당첨금</th>
             <th>당첨 갯수</th>
           </tr>
-          <tr>
-            <td>3개</td>
-            <td>5,000</td>
-            <td>${winningStatistic.three}개</td>
-          </tr>
-          <tr>
-            <td>4개</td>
-            <td>50,000</td>
-            <td>${winningStatistic.four}개</td>
-          </tr>
-          <tr>
-            <td>5개</td>
-            <td>1,500,000</td>
-            <td>${winningStatistic.five}개</td>
-          </tr>
-          <tr>
-            <td>5개+보너스볼</td>
-            <td>30,000,000</td>
-            <td>${winningStatistic.fiveBonus}개</td>
-          </tr>
-          <tr>
-            <td>6개</td>
-            <td>2,000,000,000</td>
-            <td>${winningStatistic.six}개</td>
-          </tr>
+          ${Object.values(STATISTIC)
+            .map((data) => {
+              return `
+              <tr>
+                <td>${
+                  data === STATISTIC.fiveBonus
+                    ? `5개+보너스볼`
+                    : `${data.number}개`
+                }</td>
+                <td>${data.winnings.toLocaleString('ko-KR')}</td>
+                <td>${winningStatistic[data.numberString]}</td>
+              </tr>
+            `;
+            })
+            .join('')}
         </table>
         <p id="ratio-result">당신의 총 수익률은 ${earningRatio}%입니다.</p>
         <button id="statistic-section-reset-button">다시 시작하기</button>
