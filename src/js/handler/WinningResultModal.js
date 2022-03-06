@@ -66,12 +66,16 @@ export default class WinningResultModal {
     $('#modal').classList.remove('modal-display-none');
     deactivateForm(['#show-result']);
 
+    window.addEventListener('click', (e) => {
+      e.target === $('#modal') ? this.closeWinningResultModal() : false;
+    });
     $('.modal-close-button').addEventListener('click', this.closeWinningResultModal);
     $('.modal-restart-button').addEventListener('click', this.restartLottoPurchase.bind(this));
   }
 
   closeWinningResultModal() {
     $('#modal').classList.add('modal-display-none');
+    $('#modal').parentElement.removeChild($('#modal'));
     activateForm(['#show-result']);
   }
 
