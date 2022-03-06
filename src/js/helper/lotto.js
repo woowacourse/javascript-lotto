@@ -49,10 +49,10 @@ export const calculateLottoStatus = (lottos, regularNumbers, bonusNumber) => {
   return status;
 };
 
-export const calcuateUserProfitRate = (lottoStatus, buyedLottoCount) => {
-  let profit = 0;
-  for (let [rank, count] of lottoStatus.entries()) {
-    profit += PRIZE_BY_RANK[rank] * count;
-  }
-  return profit / (buyedLottoCount * 1000) / 100;
-};
+export const calcuateUserProfitRate = (lottoStatus, buyedLottoCount) =>
+  [...lottoStatus.entries()].reduce(
+    (previousValue, [rank, count]) => previousValue + PRIZE_BY_RANK[rank] * count,
+    0,
+  ) /
+  (buyedLottoCount * 1000) /
+  100;
