@@ -1,5 +1,5 @@
 import lottoManager from '../models/lottoManager.js';
-import { isEnoughFare } from '../validation/index.js';
+import { isInsufficientFare } from '../validation/index.js';
 import { createRandomNumbers } from '../utils/index.js';
 import { LOTTO_RULES } from '../constant/index.js';
 
@@ -7,13 +7,13 @@ describe('요금을 1000원 이상 투입해야 한다.', () => {
   test('500원을 입력하면 false가 반환돼야 한다.', () => {
     const fare = 500;
 
-    expect(isEnoughFare(fare)).toBe(false);
+    expect(isInsufficientFare(fare)).toBe(true);
   });
 
   test('5000원을 입력하면 true가 반환돼야 한다.', () => {
     const fare = 5000;
 
-    expect(isEnoughFare(fare)).toBe(true);
+    expect(isInsufficientFare(fare)).toBe(false);
   });
 });
 
