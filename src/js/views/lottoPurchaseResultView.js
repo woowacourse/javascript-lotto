@@ -1,4 +1,4 @@
-import { $, $$, emit, on } from '../utils/helper.js';
+import { $, $$, on } from '../utils/helper.js';
 import {
   lottoPurchaseCountTemplate,
   lottoPurchaseResultTemplate,
@@ -6,15 +6,15 @@ import {
 } from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
-  #lottoPurchaseCount;
-
   #lottoList;
-
-  #showLottoToggle;
 
   #lottoNumbers;
 
+  #lottoPurchaseCount;
+
   #lottoPurchaseResultSection;
+
+  #showLottoToggle;
 
   constructor() {
     this.#lottoPurchaseCount = $('#lotto-purchase-count');

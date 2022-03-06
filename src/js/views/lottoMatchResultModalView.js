@@ -2,31 +2,25 @@ import { $, on, emit } from '../utils/helper.js';
 import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
 export default class LottoMatchResultModalView {
+  #closeTag;
+
   #lottoResultDialog;
 
-  #threeMatchedNumber;
-
-  #fourMatchedNumber;
-
-  #fiveMatchedNumber;
-
-  #fiveWithBonusMatchedNumber;
-
-  #sixMatchedNumber;
+  #matchedNumbers;
 
   #profitRate;
 
   #restartButton;
 
-  #closeTag;
-
   constructor() {
     this.#lottoResultDialog = $('#lotto-result-dialog');
-    this.#threeMatchedNumber = $('#three-matched-number');
-    this.#fourMatchedNumber = $('#four-matched-number');
-    this.#fiveMatchedNumber = $('#five-matched-number');
-    this.#fiveWithBonusMatchedNumber = $('#five-with-bonus-matched-number');
-    this.#sixMatchedNumber = $('#six-matched-number');
+    this.#matchedNumbers = {
+      three: $('#three-matched-number'),
+      four: $('#four-matched-number'),
+      five: $('#five-matched-number'),
+      fiveWithBonus: $('#five-with-bonus-matched-number'),
+      six: $('#six-matched-number'),
+    };
     this.#profitRate = $('#profit-rate');
     this.#restartButton = $('#restart-button');
     this.#closeTag = $('#close-tag');
@@ -46,12 +40,12 @@ export default class LottoMatchResultModalView {
   render(lottoMatchingResult, profit) {
     this.#lottoResultDialog.showModal();
 
-    this.#threeMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.THREE];
-    this.#fourMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FOUR];
-    this.#fiveMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FIVE];
-    this.#fiveWithBonusMatchedNumber.textContent =
+    this.#matchedNumbers.three.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.THREE];
+    this.#matchedNumbers.four.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FOUR];
+    this.#matchedNumbers.five.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FIVE];
+    this.#matchedNumbers.fiveWithBonus.textContent =
       lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.FIVE_PLUS_BONUS];
-    this.#sixMatchedNumber.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.SIX];
+    this.#matchedNumbers.six.textContent = lottoMatchingResult[LOTTO_MATCHING_RESULT_KEY.SIX];
     this.#profitRate.textContent = profit;
   }
 

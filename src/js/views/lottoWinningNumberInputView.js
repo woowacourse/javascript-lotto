@@ -4,29 +4,25 @@ import { lottoWinningNumberInputTemplate } from '../utils/template.js';
 export default class LottoWinningNumberInputView {
   #lottoPurchaseResultSection;
 
-  #lottoWinningNumberContainers;
-
-  #lottoMatchResultForm;
-
-  #lottoWinningNumberInputSection;
+  #lottoWinningNumber;
 
   constructor() {
     this.#lottoPurchaseResultSection = $('#lotto-purchase-result-section');
   }
 
-  get lottoMatchResultForm() {
-    return this.#lottoMatchResultForm;
+  get lottoWinningNumberForm() {
+    return this.#lottoWinningNumber.form;
   }
 
   #handleMatchResult(event) {
     event.preventDefault();
 
-    const lottoWinningNumbers = Array.from(this.#lottoWinningNumberContainers).map((element) =>
+    const lottoWinningNumbers = Array.from(this.#lottoWinningNumber.containers).map((element) =>
       Number(element.value)
     );
     const lottoWinningBonusNumber = Number(lottoWinningNumbers.pop());
 
-    emit(this.#lottoMatchResultForm, '@matchResult', {
+    emit(this.#lottoWinningNumber.form, '@matchResult', {
       lottoWinningNumbers,
       lottoWinningBonusNumber,
     });
@@ -43,20 +39,22 @@ export default class LottoWinningNumberInputView {
   }
 
   #selectDOM() {
-    this.#lottoMatchResultForm = $('#lotto-match-result-form');
-    this.#lottoWinningNumberContainers = $$('.lotto-winning-number-container');
-    this.#lottoWinningNumberInputSection = $('#lotto-winning-number-input-section');
+    this.#lottoWinningNumber = {
+      inputSection: $('#lotto-winning-number-input-section'),
+      form: $('#lotto-winning-number-form'),
+      containers: $$('.lotto-winning-number-container'),
+    };
   }
 
   #attachEvents() {
-    on(this.#lottoMatchResultForm, 'submit', this.#handleMatchResult.bind(this));
+    on(this.#lottoWinningNumber.form, 'submit', this.#handleMatchResult.bind(this));
   }
 
   reset() {
-    this.#lottoMatchResultForm.reset();
+    this.#lottoWinningNumber.form.reset();
   }
 
   restart() {
-    this.#lottoWinningNumberInputSection.remove();
+    this.#lottoWinningNumber.inputSection.remove();
   }
 }

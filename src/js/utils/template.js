@@ -40,7 +40,7 @@ export const lottoTemplate = (numbers) => {
 export const lottoWinningNumberInputTemplate = () => {
   return `
     <section id="lotto-winning-number-input-section">
-      <form id="lotto-match-result-form">
+      <form id="lotto-winning-number-form">
         <p class="mt-28">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</p>
         <div class="flex justify-content-space-between mt-8">
           <div>

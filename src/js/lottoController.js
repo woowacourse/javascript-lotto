@@ -41,6 +41,14 @@ export default class LottoController {
     on(this.#lottoMatchResultModalView.restartButton, '@restart', this.#submitRestart.bind(this));
   }
 
+  #submitLottoWinningNumberInputView() {
+    on(
+      this.#lottoWinningNumberInputView.lottoWinningNumberForm,
+      '@matchResult',
+      this.#submitMatchResult.bind(this)
+    );
+  }
+
   #submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
 
@@ -68,14 +76,6 @@ export default class LottoController {
     this.#lottoCreator.restart();
     this.#lottoPurchaseResultView.restart();
     this.#lottoWinningNumberInputView.restart();
-  }
-
-  #submitLottoWinningNumberInputView() {
-    on(
-      this.#lottoWinningNumberInputView.lottoMatchResultForm,
-      '@matchResult',
-      this.#submitMatchResult.bind(this)
-    );
   }
 
   // eslint-disable-next-line max-lines-per-function
