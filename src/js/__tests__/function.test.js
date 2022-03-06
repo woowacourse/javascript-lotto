@@ -64,23 +64,23 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     ).toBe(5.5);
   });
 
-  test('각 로또 일치 개수를 담은 리스트를 구할 수 있다.', () => {
+  test('당첨된 로또의 개수별 통계를 구할 수 있다.', () => {
     const bonusNumber = 6;
+    const answerWinningStatistic = {
+      three: 0,
+      four: 0,
+      five: 0,
+      fiveBonus: 1,
+      six: 1,
+    };
+
     expect(
-      winningNumberController.createCountList(
+      winningNumberController.createWinningStatistic(
         lottoNumbersList,
         winningNumbers,
         bonusNumber
       )
-    ).toEqual([6, 0, 5.5]);
-  });
-
-  test('당첨된 로또의 개수별 통계를 구할 수 있다.', () => {
-    const CountList = [1, 3, 4, 5, 5.5, 6];
-
-    expect(
-      winningNumberController.createStatisticWithCountList(CountList)
-    ).toEqual(winningStatistic);
+    ).toEqual(answerWinningStatistic);
   });
 
   test('총 당첨금을 구할 수 있다.', () => {
@@ -96,6 +96,8 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
 
     lottoModel.setState({ amount, winningStatistic });
 
-    expect(lottoModel.getEarningRatio()).toBe((sumWinnings / amount) * 100);
+    expect(lottoModel.getEarningRatio()).toBe(
+      (sumWinnings / amount) * 100 - 100
+    );
   });
 });

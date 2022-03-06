@@ -48,14 +48,13 @@ export default class LottoModel {
   }
 
   getSumWinnings() {
-    const statisticList = Object.entries(this.state.winningStatistic);
+    const numberStringList = Object.keys(this.state.winningStatistic);
     const initialValue = 0;
 
-    return statisticList.reduce((prev, curr) => {
-      const numberString = curr[0];
-      const count = curr[1];
+    return numberStringList.reduce((sum, numberString) => {
+      const count = this.state.winningStatistic[numberString];
 
-      return prev + STATISTIC[numberString].winnings * count;
+      return sum + STATISTIC[numberString].winnings * count;
     }, initialValue);
   }
 
