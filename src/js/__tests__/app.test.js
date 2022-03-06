@@ -1,8 +1,11 @@
 import {
-  validator,
+  validate,
+  purchaseAmountValidator,
+  winningNumbersValidator,
   isValidLottoList,
   isValidLotto,
 } from '../utils/validator.js';
+import { concatWinningNumbers } from '../utils/utils.js';
 import { ERROR_MESSAGE } from '../configs/contants.js';
 import LottoModel from '../models/LottoModel.js';
 import AppController from '../controllers/AppController.js';
@@ -51,7 +54,7 @@ describe('Step 1', () => {
         const purchaseAmount = '만원';
 
         expect(() => {
-          validator.checkPurchaseAmount(purchaseAmount);
+          validate(purchaseAmount, purchaseAmountValidator);
         }).toThrowError(ERROR_MESSAGE.NOT_A_NUMBER);
       });
 
@@ -59,7 +62,7 @@ describe('Step 1', () => {
         const purchaseAmount = 1001;
 
         expect(() => {
-          validator.checkPurchaseAmount(purchaseAmount);
+          validate(purchaseAmount, purchaseAmountValidator);
         }).toThrowError(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
       });
 
@@ -68,11 +71,11 @@ describe('Step 1', () => {
         const secondPurchaseAmount = 11000;
 
         expect(() => {
-          validator.checkPurchaseAmount(firstPurchaseAmount);
+          validate(firstPurchaseAmount, purchaseAmountValidator);
         }).toThrowError(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
 
         expect(() => {
-          validator.checkPurchaseAmount(secondPurchaseAmount);
+          validate(secondPurchaseAmount, purchaseAmountValidator);
         }).toThrowError(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
       });
     });
@@ -151,7 +154,7 @@ describe('Step 2', () => {
     });
   });
 
-  describe('util', () => {
+  describe.only('util', () => {
     describe('validator', () => {
       test('번호들이 정수가 아니면 에러를 throw한다.', () => {
         const winningNumbers = {
@@ -160,7 +163,11 @@ describe('Step 2', () => {
         };
 
         expect(() => {
-          validator.checkWinningNumbers(winningNumbers);
+          validate(
+            winningNumbers,
+            winningNumbersValidator,
+            concatWinningNumbers
+          );
         }).toThrowError(ERROR_MESSAGE.NOT_INTEGER);
       });
 
@@ -171,7 +178,11 @@ describe('Step 2', () => {
         };
 
         expect(() => {
-          validator.checkWinningNumbers(winningNumbers);
+          validate(
+            winningNumbers,
+            winningNumbersValidator,
+            concatWinningNumbers
+          );
         }).toThrowError(ERROR_MESSAGE.OUT_OF_LOTTO_NUMBER_RANGE);
       });
       test('중복되는 번호가 있으면 에러를 throw한다.', () => {
@@ -181,7 +192,11 @@ describe('Step 2', () => {
         };
 
         expect(() => {
-          validator.checkWinningNumbers(winningNumbers);
+          validate(
+            winningNumbers,
+            winningNumbersValidator,
+            concatWinningNumbers
+          );
         }).toThrowError(ERROR_MESSAGE.DUPLICATED_NUMBER);
       });
     });

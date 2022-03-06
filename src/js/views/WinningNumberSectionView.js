@@ -1,6 +1,6 @@
 import View from '../core/View.js';
-import { $, $all } from '../utils/utils.js';
-import { validator } from '../utils/validator.js';
+import { $, $all, concatWinningNumbers } from '../utils/utils.js';
+import { validate, winningNumbersValidator } from '../utils/validator.js';
 import { DOM_STRING, LOTTO } from '../configs/contants.js';
 
 export default class WinningNumberSectionView extends View {
@@ -66,7 +66,11 @@ export default class WinningNumberSectionView extends View {
         };
 
         try {
-          validator.checkWinningNumbers(winningNumbers);
+          validate(
+            winningNumbers,
+            winningNumbersValidator,
+            concatWinningNumbers
+          );
           callback(winningNumbers);
         } catch (e) {
           alert(e);

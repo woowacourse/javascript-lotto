@@ -1,7 +1,7 @@
 import View from '../core/View.js';
 import { DOM_STRING, PAYMENT, LOTTO } from '../configs/contants.js';
 import { $ } from '../utils/utils.js';
-import { validator } from '../utils/validator.js';
+import { validate, purchaseAmountValidator } from '../utils/validator.js';
 
 export default class PaymentSectionView extends View {
   template() {
@@ -30,7 +30,7 @@ export default class PaymentSectionView extends View {
         const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
 
         try {
-          validator.checkPurchaseAmount(amount);
+          validate(amount, purchaseAmountValidator);
           callback(amount);
         } catch (e) {
           alert(e);

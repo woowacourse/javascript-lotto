@@ -58,3 +58,8 @@ export const cloneObject = (obj) => {
 
   return clone;
 };
+
+export const concatWinningNumbers = (winningNumbers) => [
+  ...winningNumbers.main,
+  winningNumbers.bonus,
+];

@@ -1,5 +1,15 @@
 import { LOTTO, ERROR_MESSAGE, PAYMENT } from '../configs/contants.js';
 
+export const validate = (subject, validator, middleware = (_) => _) => {
+  const modifiedSubject = middleware(subject);
+
+  validator.every(({ test, errorMessage }) => {
+    if (!test(modifiedSubject)) throw new Error(errorMessage);
+
+    return true;
+  });
+};
+
 const isNumber = (value) => typeof value === 'number' && Number.isFinite(value);
 
 export const isEveryElementsUnique = (array) =>
@@ -27,34 +37,34 @@ export const isValidLotto = (lotto) =>
 export const isValidLottoList = (lottoList, count) =>
   lottoList.length === count;
 
-export const validator = {
-  checkPurchaseAmount: (purchaseAmount) => {
-    if (!isNumber(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
-    }
-
-    if (!isDividedByThousand(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
-    }
-
-    if (!isValidPurchaseAmountRange(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
-    }
+export const purchaseAmountValidator = [
+  {
+    test: isNumber,
+    errorMessage: ERROR_MESSAGE.NOT_A_NUMBER,
   },
-  checkWinningNumbers: (winningNumbers) => {
-    const { main, bonus } = winningNumbers;
-    const totalNumbers = [...main, bonus];
-
-    if (!totalNumbers.every((num) => Number.isInteger(num))) {
-      throw new Error(ERROR_MESSAGE.NOT_INTEGER);
-    }
-
-    if (!totalNumbers.every((num) => isValidLottoNumberRange(num))) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_LOTTO_NUMBER_RANGE);
-    }
-
-    if (!isEveryElementsUnique(totalNumbers)) {
-      throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
-    }
+  {
+    test: isDividedByThousand,
+    errorMessage: ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND,
   },
-};
+  {
+    test: isValidPurchaseAmountRange,
+    errorMessage: ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE,
+  },
+];
+
+export const winningNumbersValidator = [
+  {
+    test: (winningNumbers) =>
+      winningNumbers.every((num) => Number.isInteger(num)),
+    errorMessage: ERROR_MESSAGE.NOT_INTEGER,
+  },
+  {
+    test: (winningNumbers) =>
+      winningNumbers.every((num) => isValidLottoNumberRange(num)),
+    errorMessage: ERROR_MESSAGE.OUT_OF_LOTTO_NUMBER_RANGE,
+  },
+  {
+    test: isEveryElementsUnique,
+    errorMessage: ERROR_MESSAGE.DUPLICATED_NUMBER,
+  },
+];
