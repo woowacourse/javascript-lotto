@@ -17,12 +17,12 @@ export default class LottoCollectionImpl extends LottoCollection {
   matchResult(winningNumbers) {
     const winningNumberSet = new Set(winningNumbers.slice(0, LOTTO_RULES.BALL_COUNT));
     const bonusNumber = winningNumbers[LOTTO_RULES.BALL_COUNT];
-    const { FIFHT, FORUTH, THRID, SECOND, FIRST } = MATCH_COUNT_OF_LOTTO_RANKING;
+    const { FIFTH, FORUTH, THIRD, SECOND, FIRST } = MATCH_COUNT_OF_LOTTO_RANKING;
 
     return {
-      [FIFHT]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FIFHT),
+      [FIFTH]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FIFTH),
       [FORUTH]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FORUTH),
-      [THRID]: this.countingMatchedLotto(winningNumberSet, bonusNumber, THRID),
+      [THIRD]: this.countingMatchedLotto(winningNumberSet, bonusNumber, THIRD),
       [SECOND]: this.countingMatchedLotto(winningNumberSet, bonusNumber, SECOND),
       [FIRST]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FIRST),
     };

@@ -17,9 +17,9 @@ export default class MatchResultViewImpl extends MatchResultView {
   }
 
   renderMatchTable(matchResult) {
-    this.$winningLottoCounts[0].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.FIFHT];
+    this.$winningLottoCounts[0].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.FIFTH];
     this.$winningLottoCounts[1].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.FORUTH];
-    this.$winningLottoCounts[2].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.THRID];
+    this.$winningLottoCounts[2].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.THIRD];
     this.$winningLottoCounts[3].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.SECOND];
     this.$winningLottoCounts[4].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.FIRST];
   }
