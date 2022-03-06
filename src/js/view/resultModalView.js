@@ -18,7 +18,7 @@ class ResultModalView {
       const result = matchResult.matches[matchCount] || 0;
       td.textContent = result || 0;
     });
-    this.profitSpan.textContent = matchResult.profit;
+    this.profitSpan.textContent = Math.floor(matchResult.profit);
   }
 
   resetView() {
