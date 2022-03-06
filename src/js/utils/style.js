@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable max-depth */
+
 export const changeOkInputsColor = (list, $$inputs) => {
   for (let i = 0; i < 7; i += 1) {
     for (let j = i + 1; j < 7; j += 1) {

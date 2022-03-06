@@ -48,8 +48,10 @@ export default class WinningNumbersView {
 
   #handleSubmit(e) {
     e.preventDefault();
-    const winningNumbers = Array.from({ length: 6 }).map((_, index) => e.target[index].valueAsNumber);
-    const bonusNumber = e.target[6].valueAsNumber;
+    const winningNumbers = Array.from({ length: this.$$winningNumberInputs.length - 1 }).map(
+      (_, index) => e.target[index].valueAsNumber,
+    );
+    const bonusNumber = e.target[this.$$winningNumberInputs.length - 1].valueAsNumber;
     emit(this.$winningNumbersForm, EVENT.SUBMIT_RESULT, {
       winningNumbers,
       bonusNumber,
@@ -87,7 +89,7 @@ export default class WinningNumbersView {
 
   #moveAutoFocus(e, index) {
     if (!e.target.nextElementSibling && e.target.value.length >= 2) {
-      this.$$winningNumberInputs[6].focus();
+      this.$$winningNumberInputs[this.$$winningNumberInputs.length - 1].focus();
       return;
     }
 
@@ -106,10 +108,8 @@ export default class WinningNumbersView {
   }
 
   #changeInvalidInputsColor() {
-    const inputNumberList = Array.from({ length: 7 });
-    this.$$winningNumberInputs.forEach((input, index) => {
-      inputNumberList[index] = input.valueAsNumber;
-    });
+    const inputNumberList = this.$$winningNumberInputs.map((input) => input.valueAsNumber);
+    console.log(inputNumberList);
     changeOkInputsColor(inputNumberList, this.$$winningNumberInputs);
     changeDuplicatedInputsColor(inputNumberList, this.$$winningNumberInputs);
     changeOverInputsColor(this.$$winningNumberInputs);
