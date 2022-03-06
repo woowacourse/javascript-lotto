@@ -59,7 +59,8 @@ lotto-list {
   display: flex;
 }
 
-lotto-list ul.lotto-list {
+lotto-list ul.lotto-list,
+lotto-list .lotto-images {
   max-height: 400px;
   overflow-y: scroll;
 }
