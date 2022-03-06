@@ -10,7 +10,7 @@
   <body>
     <div id="app" class="app">
       <h1 class="app-title">🎱 행운의 로또</h1>
-      <form id="fare-form" class="submit-form">
+      <form id="fare-form" class="fare-form">
         <label>구입할 금액을 입력해주세요.</label>
 
         <div class="input-wrap">
@@ -40,20 +40,22 @@
           <p>당첨 번호</p>
           <p>보너스 번호</p>
         </div>
-        <div class="number-container">
-          <div class="match-numbers">
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+        <form class="numbers-form" id="numbers-form">
+          <div class="numbers-container">
+            <div class="match-numbers">
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            </div>
+            <div class="bonus-number">
+              <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            </div>
           </div>
-          <div class="bonus-number">
-            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
-          </div>
-        </div>
-        <button class="lotto-app-button result-button" id="confirm-result-button">결과 확인하기</button>
+          <button class="lotto-app-button result-button" id="confirm-result-button">결과 확인하기</button>
+        </form>
       </section>
       <div class="modal hide" id="match-modal">
         <div class="modal-frame">

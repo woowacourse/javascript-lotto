@@ -48,10 +48,10 @@ body {
   line-height: 36px;
   margin-bottom: 16px;
 }
-.submit-form {
+.fare-form {
   padding: 0 16px;
 }
-.submit-form label {
+.fare-form label {
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -201,7 +201,7 @@ input:checked + .slider:before {
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.87);
 }
-.number-container {
+.numbers-container {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;

@@ -35,8 +35,6 @@ const findInputFunctions = {
     ),
 };
 
-const ENTER_KEY_CODE = 13;
-
 const lottosViewRenderingObject = (fare) => ({
   lottos: lottoCollection.getLottos(),
   remainFare: new RemainFareCalculator(fare).execute(),
@@ -89,10 +87,6 @@ export const writingwinningNumbers = (e) => {
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
     matchResultView.focusFindedInput(findInputFunctions[ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER]);
-  }
-
-  if (e.keyCode === ENTER_KEY_CODE) {
-    tryClickConfirmResultButton();
   }
 };
 

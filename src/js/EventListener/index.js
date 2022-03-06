@@ -22,7 +22,9 @@ export const onKeyUpWinningNumbers = (e) => {
   coveringTryCatch(() => writingwinningNumbers(e), catchClickConfirmResultButton);
 };
 
-export const onClickConfirmResultButton = () => {
+export const onSubmitWinningNumbersForm = (e) => {
+  e.preventDefault();
+
   coveringTryCatch(tryClickConfirmResultButton, catchClickConfirmResultButton);
 };
 

@@ -3,7 +3,7 @@ import {
   onSubmitFareForm,
   onChangeLottoViewerController,
   onKeyUpWinningNumbers,
-  onClickConfirmResultButton,
+  onSubmitWinningNumbersForm,
   onClickModalCloseButton,
   onClickRestartButton,
 } from './EventListener/index.js';
@@ -14,7 +14,7 @@ const runLottoGame = () => {
   $$('.match-number-input').forEach(($numberInput) => {
     $numberInput.addEventListener('keyup', onKeyUpWinningNumbers);
   });
-  $('#confirm-result-button').addEventListener('click', onClickConfirmResultButton);
+  $('#numbers-form').addEventListener('submit', onSubmitWinningNumbersForm);
   $('#close-modal-button').addEventListener('click', onClickModalCloseButton);
   $('#restart-button').addEventListener('click', onClickRestartButton);
 };
