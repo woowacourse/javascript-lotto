@@ -2,7 +2,12 @@ export const SELECTOR = {
   CHARGE_INPUT_FORM: '#charge-input-form',
   CHARGE_INPUT: '#charge-input',
   WIN_NUMBER_INPUT_FORM: '#win-number-input-form',
-  LAST_WIN_NUMBER_INPUT: '#win-number-6',
+  WIN_NUMBER_INPUT_1: '#win-number-1',
+  WIN_NUMBER_INPUT_2: '#win-number-2',
+  WIN_NUMBER_INPUT_3: '#win-number-3',
+  WIN_NUMBER_INPUT_4: '#win-number-4',
+  WIN_NUMBER_INPUT_5: '#win-number-5',
+  WIN_NUMBER_INPUT_6: '#win-number-6',
   BONUS_NUMBER_INPUT: '#bonus-number',
 
   ALIGN_CONVERTER: '#align-converter',

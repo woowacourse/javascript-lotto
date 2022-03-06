@@ -13,8 +13,6 @@ class LottoRoundManager {
   $winNumberForm = findElement(SELECTOR.WIN_NUMBER_INPUT_FORM);
   $modalCloseButton = findElement(SELECTOR.MODAL_CLOSE_BUTTON);
   $replayButton = findElement(SELECTOR.REPLAY_BUTTON);
-  $lastWinNumberInput = findElement(SELECTOR.LAST_WIN_NUMBER_INPUT);
-  $bonusNumberInput = findElement(SELECTOR.BONUS_NUMBER_INPUT);
 
   init() {
     this.$chargeForm.addEventListener('submit', this.onSubmitChargeInputForm);
@@ -46,27 +44,29 @@ class LottoRoundManager {
   };
 
   onInputWinNumberForm = (e) => {
-    if (isNotValidNumber(Number(e.target.value))) {
-      this.lottoRoundView.setInvalidInputState(e.target);
+    const targetElement = e.target;
+    if (isNotValidNumber(Number(targetElement.value))) {
+      this.lottoRoundView.setInvalidInputState(targetElement);
       e.target.value = '';
       return;
     }
-    this.lottoRoundView.setValidInputState(e.target);
-    if (e.target.value.length === 2) {
-      if (e.target.nextElementSibling !== null) {
-        e.target.nextElementSibling.focus();
-        return;
-      }
-      if (e.target === this.$lastWinNumberInput) {
-        this.$bonusNumberInput.focus();
-      }
+    this.lottoRoundView.setValidInputState(targetElement);
+    if (targetElement.value.length !== 2) {
+      return;
+    }
+    if (targetElement.nextElementSibling !== null) {
+      targetElement.nextElementSibling.focus();
+      return;
+    }
+    if (targetElement === findElement(SELECTOR.WIN_NUMBER_INPUT_6)) {
+      findElement(SELECTOR.BONUS_NUMBER_INPUT).focus();
     }
   };
 
   onSubmitWinNumberInputForm = (e) => {
     e.preventDefault();
     try {
-      const inputWinNumber = this.getInputWinNumber(e);
+      const inputWinNumber = this.getInputWinNumber();
       const roundResult = this.lottoRoundModel.getRoundResult(inputWinNumber);
       this.lottoRoundView.openResultModal(roundResult);
     } catch (message) {
@@ -74,15 +74,15 @@ class LottoRoundManager {
     }
   };
 
-  getInputWinNumber(e) {
+  getInputWinNumber() {
     return [
-      Number(e.path[0][0].value),
-      Number(e.path[0][1].value),
-      Number(e.path[0][2].value),
-      Number(e.path[0][3].value),
-      Number(e.path[0][4].value),
-      Number(e.path[0][5].value),
-      Number(e.path[0][6].value),
+      Number(findElement(SELECTOR.WIN_NUMBER_INPUT_1).value),
+      Number(findElement(SELECTOR.WIN_NUMBER_INPUT_2).value),
+      Number(findElement(SELECTOR.WIN_NUMBER_INPUT_3).value),
+      Number(findElement(SELECTOR.WIN_NUMBER_INPUT_4).value),
+      Number(findElement(SELECTOR.WIN_NUMBER_INPUT_5).value),
+      Number(findElement(SELECTOR.WIN_NUMBER_INPUT_6).value),
+      Number(findElement(SELECTOR.BONUS_NUMBER_INPUT).value),
     ];
   }
 
