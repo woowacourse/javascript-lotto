@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from '../constants';
-import { validateMoney } from '../validation/validators';
+import { checkDuplicateOfWinningNumberList, checkInvalidRangeOfWinningNumberList, checkNotDevidedByThousandMoney, checkOverMaxMoney, validateMoney } from '../validation/validators';
 import StatisticsModal from '../components/StatisticsModal';
 import { sum } from '../utils';
 
@@ -8,8 +8,12 @@ expect.extend({
     const pass = received.errorMessage === errorMessage;
     if (!pass) {
       return {
-        message: () =>
-          `'${received.errorMessage}'라는 에러메세지가 나와야 하는데 '${errorMessage}' <- 이게 나왔다`,
+        message: () => {
+          if (!received.errorMessage) {
+            return `에러메세지가 안나와야 나와야 하는데 '${errorMessage}' <- 이런 에러 메세지가 나왔다`;
+          }
+          return `'${received.errorMessage}'라는 에러메세지가 나와야 하는데 '${errorMessage}' <- 이게 나왔다`;
+        },
         pass,
       };
     }
@@ -51,71 +55,47 @@ expect.extend({
 });
 
 describe('금액 입력에 대한 유효성 검사를 한다', () => {
-  test('빈 입력값을 허용하지 않는다', () => {
-    const invalidMoney = '';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.EMPTY_MONEY);
-  });
-
-  test('숫자가 아닌 값을 허용하지 않는다', () => {
-    let invalidMoney = '1.2';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_INTEGER_MONEY);
-
-    invalidMoney = '2ab2';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_INTEGER_MONEY);
-
-    invalidMoney = '2   2';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_INTEGER_MONEY);
-  });
-
-  test('1000 미만의 값을 허용하지 않는다', () => {
-    let invalidMoney = '999';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.UNDER_MIN_MONEY);
-
-    invalidMoney = '0';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.UNDER_MIN_MONEY);
-
-    invalidMoney = '-1';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.UNDER_MIN_MONEY);
-  });
-
   test('1000 단위로 나누어 떨어지지 않는 값을 허용하지 않는다', () => {
-    let invalidMoney = '1001';
-    expect(validateMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
+    const invalidMoney = '1001';
+    expect(checkNotDevidedByThousandMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
   });
 
-  test('1000 단위의 값을 허용한다', () => {
-    let validMoney = '20000';
-    expect(validateMoney(validMoney)).notToHaveError();
+  test('1000 단위로 나누어 떨어지는 금액을 허용한다', () => {
+    const validMoney = '12000';
+    expect(checkNotDevidedByThousandMoney(validMoney)).notToHaveError();
+  });
+
+  test('십만원을 초과하는 금액을 허용하지 않는다', () => {
+    const invalidMoney = '101000';
+    expect(checkOverMaxMoney(invalidMoney)).toHaveErrorMessage(ERROR_MESSAGE.OVER_MAX_MONEY);
+  });
+
+  test('십만원이하의 금액을 허용한다', () => {
+    const validMoney = '100000';
+    expect(checkOverMaxMoney(validMoney)).notToHaveError();
   });
 });
 
 describe('당첨 번호 입력에 대한 유효성 검사를 한다', () => {
-  test('빈 입력값을 허용하지 않는다', () => {
-    const invalidWinningNumbers = ['', '', '', '', '', '', ''];
-  });
+  test('로또 숫자 범위(1 ~ 45) 외의 값을 허용하지 않는다', () => {
+    let invalidWinningNumberList = ['0', '2', '3', '4', '5', '6', '7'];
+    expect(checkInvalidRangeOfWinningNumberList(invalidWinningNumberList)).toHaveErrorMessage(ERROR_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
 
-  test('숫자가 아닌 값을 허용하지 않는다', () => {
-    let invalidWinningNumbers = ['1.2', '2', '3', '4', '5', '6', '7'];
+    invalidWinningNumberList = ['1', '2', '3', '4', '55', '6', '7'];
+    expect(checkInvalidRangeOfWinningNumberList(invalidWinningNumberList)).toHaveErrorMessage(ERROR_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
 
-    invalidWinningNumbers = ['e', '2', '3', '4', '5', '6', '7'];
-
-    invalidWinningNumbers = ['1', '2', '3', '4', '5', '6', '3  3'];
-  });
-
-  test('로또 숫자 범위 외의 값을 허용하지 않는다', () => {
-    let invalidWinningNumbers = ['0', '2', '3', '4', '5', '6', '7'];
-
-    invalidWinningNumbers = ['1', '2', '3', '4', '55', '6', '7'];
-
-    invalidWinningNumbers = ['-1', '2', '3', '4', '5', '6', '7'];
+    invalidWinningNumberList = ['-1', '2', '3', '4', '5', '6', '7'];
+    expect(checkInvalidRangeOfWinningNumberList(invalidWinningNumberList)).toHaveErrorMessage(ERROR_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
   });
 
   test('중복된 값을 허용하지 않는다', () => {
-    let invalidWinningNumbers = ['11', '11', '3', '4', '5', '6', '7'];
+    let invalidWinningNumberList = ['11', '11', '3', '4', '5', '6', '7'];
+    expect(checkDuplicateOfWinningNumberList(invalidWinningNumberList)).toHaveErrorMessage(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
   });
 
-  test('로또 범위의 숫자를 허용한다', () => {
+  test('중복되지 않는 로또 범위의 숫자를 허용한다', () => {
     let validWinningNumbers = ['1', '4', '29', '39', '43', '45', '31'];
+    expect(checkInvalidRangeOfWinningNumberList(validWinningNumbers)).notToHaveError();
   });
 });
 
