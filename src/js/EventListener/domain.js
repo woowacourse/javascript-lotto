@@ -6,7 +6,6 @@ import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
 import LottosViewImpl from '../View/LottosViewImpl.js';
 import MatchResultViewImpl from '../View/MatchResultViewImpl.js';
 import ValidationError from '../ValidationError/index.js';
-import { isEmpty, isNotNumber, isOutOfRanged } from '../utils/index.js';
 import { LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 
 const validator = new ValidatorImpl();
@@ -19,7 +18,7 @@ const lottosViewRenderingObject = (fare) => ({
   remainFare: new RemainFareCalculator(fare).execute(),
 });
 
-export const trySubmitFareForm = () => {
+export const createLottos = () => {
   const inputedFare = lottosView.getInputValue();
 
   validator.validateFare(inputedFare);
@@ -29,7 +28,9 @@ export const trySubmitFareForm = () => {
   matchResultView.show();
 };
 
-export const catchSubmitFareForm = () => {};
+export const focusFareInput = () => {
+  lottosView.focusInput();
+};
 
 export const toggleLottosView = () => {
   lottosView.toggleContainer();
@@ -45,7 +46,7 @@ const matchResultRenderingObject = (winningNumbers) => {
   return { matchResult, rateOfReturn };
 };
 
-export const tryClickConfirmResultButton = () => {
+export const renderMatchResultOnModal = () => {
   if (lottoCollection.isEmpty()) {
     throw new ValidationError(ERROR_MESSAGE.EMPTY_OF_LOTTO);
   }
@@ -64,9 +65,7 @@ export const writingwinningNumbers = (e) => {
   }
 };
 
-export const catchClickConfirmResultButton = () => {
-  matchResultView.focusFindedInput();
-};
+export const focusOverlappedInput = () => {};
 
 export const closeModal = () => {
   matchResultView.offModal();

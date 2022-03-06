@@ -1,11 +1,11 @@
-import coveringTryCatch from './coveringTryCatch.js';
+import ValidationError from '../ValidationError/index.js';
 import {
-  trySubmitFareForm,
-  catchSubmitFareForm,
+  createLottos,
+  focusFareInput,
   toggleLottosView,
   writingwinningNumbers,
-  tryClickConfirmResultButton,
-  catchClickConfirmResultButton,
+  renderMatchResultOnModal,
+  focusOverlappedInput,
   closeModal,
   restartApp,
 } from './domain.js';
@@ -13,19 +13,49 @@ import {
 export const onSubmitFareForm = (e) => {
   e.preventDefault();
 
-  coveringTryCatch(trySubmitFareForm, catchSubmitFareForm);
+  try {
+    createLottos();
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      alert(error.message);
+      focusFareInput();
+      return;
+    }
+
+    throw error;
+  }
 };
 
 export const onChangeLottoViewerController = toggleLottosView;
 
 export const onKeyUpWinningNumbers = (e) => {
-  coveringTryCatch(() => writingwinningNumbers(e), catchClickConfirmResultButton);
+  try {
+    writingwinningNumbers(e);
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      alert(error.message);
+      focusOverlappedInput();
+      return;
+    }
+
+    throw error;
+  }
 };
 
 export const onSubmitWinningNumbersForm = (e) => {
   e.preventDefault();
 
-  coveringTryCatch(tryClickConfirmResultButton, catchClickConfirmResultButton);
+  try {
+    renderMatchResultOnModal();
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      alert(error.message);
+      focusOverlappedInput();
+      return;
+    }
+
+    throw error;
+  }
 };
 
 export const onClickModalCloseButton = closeModal;
