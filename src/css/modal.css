@@ -1,0 +1,27 @@
+.modal-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background-color: white;
+  min-width: 400px;
+  padding: 40px;
+  position: relative;
+}
+
+.modal-cancel-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

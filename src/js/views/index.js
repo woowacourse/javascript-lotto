@@ -1,40 +1,51 @@
+import { VIEW_ACTION } from '../constants/actions';
 import { SELECTOR } from '../constants/selector';
-import { findElement } from '../utils/elementSelector';
+import { findElement } from '../utils/dom';
+import LottoContainerView from './LottoContainerView';
+import LottoResultView from './LottoResultView';
 
-class LottoGameView {
+class LottoViewManager {
+  #app = null;
+
+  #containerView = null;
+
+  #resultView = null;
+
   constructor() {
-    this.#initializeDOM();
+    this.#app = findElement(SELECTOR.APP);
+    this.#clear();
+    this.#initializeViews();
   }
 
-  #initializeDOM() {
-    this.$purchasedMessage = findElement(SELECTOR.PURCHASED_MESSAGE);
-    this.$lottoContainer = findElement(SELECTOR.LOTTO_CONTAINER);
+  work({ payload, action }) {
+    const perform = this.#reducer[action];
+    perform(payload);
   }
 
-  renderLottoSection(lottoList) {
-    this.renderPurchasedMessage(lottoList.length);
-    this.renderLottoList(lottoList);
+  #initializeViews() {
+    this.#containerView = new LottoContainerView({ $app: this.#app });
+    this.#resultView = new LottoResultView({ $app: this.#app });
   }
 
-  renderLottoList(lottoList) {
-    this.$lottoContainer.innerHTML = lottoList
-      .map((lotto) => this.generateLottoTemplate(lotto))
-      .join('');
+  #clear() {
+    this.#app.innerHTML = '';
   }
 
-  renderPurchasedMessage(lottoAmount) {
-    this.$purchasedMessage.innerText = `총 ${lottoAmount}개를 구매하였습니다.`;
-  }
-
-  generateLottoTemplate({ lottoNumbers }) {
-    return `<div class="lotto">
-      <span>🎟️</span>
-      <span class="number">${lottoNumbers.join(', ')}</span>
-      </div>`;
-  }
-
-  renderAlignState(visibleState) {
-    this.$lottoContainer.setAttribute('data-visible-state', visibleState);
-  }
+  #reducer = {
+    [VIEW_ACTION.UPDATE_LOTTO_LIST]: (payload) => {
+      this.#containerView.renderLottoSection(payload);
+      this.#resultView.showWinNumberInputSection();
+    },
+    [VIEW_ACTION.UPDATE_VISIBLE_STATE]: (payload) => {
+      this.#containerView.renderAlignState(payload);
+    },
+    [VIEW_ACTION.RENDER_STATISTICS]: (payload) => {
+      this.#resultView.showStatisticsModal();
+      this.#resultView.renderStatisticsModalContents(payload);
+    },
+    [VIEW_ACTION.MODAL_CANCEL]: () => {
+      this.#resultView.hideStatisticsModal();
+    },
+  };
 }
-export default LottoGameView;
+export default LottoViewManager;

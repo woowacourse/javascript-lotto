@@ -1,3 +1,4 @@
+import { CONFIRM_MESSAGE } from '../constants/message';
 import { NUMBER } from '../constants/number';
 
 export function isValidLength(lottoNumber) {
@@ -25,4 +26,15 @@ export function isValidEveryLottoNumber(array) {
       number >= NUMBER.LOTTO_MIN_NUMBER &&
       number <= NUMBER.LOTTO_MAX_NUMBER
   );
+}
+
+export function isValidWinningNumber(winningAndBonusNumbers) {
+  return (
+    isValidEveryLottoNumber(winningAndBonusNumbers) &&
+    winningAndBonusNumbers.length === [...new Set(winningAndBonusNumbers)].length
+  );
+}
+
+export function hasLottoListAndRejectAction(lottoList) {
+  return lottoList && !confirm(CONFIRM_MESSAGE.CREATE_LOTTO_LIST);
 }

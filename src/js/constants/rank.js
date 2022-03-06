@@ -1,0 +1,17 @@
+export const RANK_KEYS = {
+  FIRST: '1등',
+  SECOND: '2등',
+  THIRD: '3등',
+  FORTH: '4등',
+  FIFTH: '5등',
+  UNRANK: '꽝',
+};
+
+export const RANK_PRIZE = {
+  [RANK_KEYS.FIRST]: 2000000000,
+  [RANK_KEYS.SECOND]: 30000000,
+  [RANK_KEYS.THIRD]: 1500000,
+  [RANK_KEYS.FORTH]: 50000,
+  [RANK_KEYS.FIFTH]: 5000,
+  [RANK_KEYS.UNRANK]: 0,
+};

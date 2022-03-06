@@ -52,6 +52,8 @@ button {
   color: #ffffff;
   border: 0;
   min-height: 36px;
+
+  cursor: pointer;
 }
 
 section {
@@ -124,4 +126,76 @@ section {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+/* align converter에 미리보기 기능을 추가한다. */
+#align-converter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  position: relative;
+}
+label[for='align-converter']:hover::before {
+  content: '';
+
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+
+  position: absolute;
+  right: -220px;
+}
+
+#align-converter-container[data-visible-state='false']
+  > label[for='align-converter']:hover::before {
+  background-image: url('/Users/jangjunhyeog/Wowahan/javascript-lotto/images/미리보기-번호보기.png');
+}
+
+#align-converter-container[data-visible-state='true'] > label[for='align-converter']:hover::before {
+  background-image: url('/Users/jangjunhyeog/Wowahan/javascript-lotto/images/미리보기-기본.png');
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+.modal-container#result-container {
+  /* padding: 20px; */
+  /* min-width: 300px; */
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.modal-container > div {
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+}
+
+.modal-container > div > table {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+table tr {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+table tr td,
+th {
+  width: 33%;
+}
+
+.modal-cancel-button {
+  cursor: pointer;
+}
+
+#result-contents > * {
+  margin-bottom: 30px;
 }
