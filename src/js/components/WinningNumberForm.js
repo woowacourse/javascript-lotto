@@ -162,7 +162,7 @@ class WinningNumberForm extends Component {
     try {
       this.showStatisticModal(winningNumberList);
     } catch (e) {
-      consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
+      this.submitLottoNumbers(winningNumberList);
     }
   }
 
@@ -192,9 +192,9 @@ class WinningNumberForm extends Component {
   }
 
   render() {
-    const { money, winningNumbers } = Store.instance.getState();
+    const { lottoList, winningNumbers } = Store.instance.getState();
     this.innerHTML = '';
-    if (money > 0) {
+    if (lottoList.length > 0) {
       this.innerHTML = this.template(winningNumbers);
       this.$inputs = [...this.querySelectorAll('winning-number-input')];
       // addEvent가 작동하지 않아서 이렇게 event handler를 property로 직접 넣어준다.

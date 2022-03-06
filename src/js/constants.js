@@ -1,5 +1,7 @@
 export const ACTION = {
+  SET_MONEY: 'money',
   PURCHASE_LOTTO: 'purchase-lotto',
+  SET_MONEY_FORM_ERROR_MESSAGES: 'set-money-form-error-messages',
   TOGGLE_LOTTO_LIST: 'toggle-lotto-list',
   SET_WINNING_NUMBERS: 'set-winning-numbers',
   TOGGLE_STATISTICS_MODAL: 'toggle-statistics-modal',
@@ -32,6 +34,7 @@ export const WINNING_NUM_PLACEHOLDER = '';
 
 export const INITIAL_STATE = {
   money: 0,
+  moneyFormErrorMessages: [],
   lottoList: [],
   lottoListVisibility: false,
   winningNumbers: {

@@ -43,6 +43,18 @@ label {
   letter-spacing: 0.5px;
 }
 
+.error-list {
+  font-size: 14px;
+}
+
+.error-list li {
+  margin-bottom: 4px;
+}
+
+money-form .error-message {
+  color: red;
+}
+
 lotto-list {
   display: flex;
 }
@@ -155,7 +167,6 @@ winning-number-form fieldset:nth-child(2) {
 
 winning-number-form .error-list {
   margin-top: 20px;
-  font-size: 12px;
 }
 
 winning-number-form winning-number-input.duplicate-error-1 input {

@@ -3,7 +3,7 @@ import { toInt } from '../utils';
 import ValidationResult from './validation-result';
 
 const isEmptyStr = (str) => {
-  return str.trim() === '';
+  return `${str}`.trim() === '';
 };
 
 export const isNumber = (num) => {
@@ -14,20 +14,29 @@ export const isPositiveInteger = (num) => {
   return /^[0-9]+$/g.test(num) && toInt(num, 0) !== 0;
 };
 
-export const validateMoney = (money) => {
+export const checkEmptyMoney = (money) => {
   if (isEmptyStr(money)) {
     return new ValidationResult(true, ERROR_MESSAGE.EMPTY_MONEY);
   }
-  if (!isNumber(money)) {
-    return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER_MONEY);
-  }
-  if (parseInt(money, 10) < 1000) {
+  return new ValidationResult(false);
+};
+
+export const checkUnderMinMoney = (money) => {
+  if (toInt(money, 10) < 1000) {
     return new ValidationResult(true, ERROR_MESSAGE.UNDER_MIN_MONEY);
   }
+  return new ValidationResult(false);
+};
+
+export const checkNotDevidedByThousandMoney = (money) => {
   if (money % 1000) {
     return new ValidationResult(true, ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
   }
   return new ValidationResult(false);
+};
+
+export const validateMoney = (money) => {
+  return [checkEmptyMoney(money), checkUnderMinMoney(money), checkNotDevidedByThousandMoney(money)];
 };
 
 export const checkEmptyOfWinningNumbers = (numbers) => {

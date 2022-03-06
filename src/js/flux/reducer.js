@@ -11,10 +11,13 @@ const generateLottoList = (money) => {
 export default function reducer(state, { type, payload }) {
   const newState = { ...state };
 
-  if (type === ACTION.PURCHASE_LOTTO) {
+  if (type === ACTION.SET_MONEY) {
     newState.money = payload;
-    const lottoList = generateLottoList(payload);
+  } else if (type === ACTION.PURCHASE_LOTTO) {
+    const lottoList = generateLottoList(state.money);
     newState.lottoList = lottoList;
+  } else if (type === ACTION.SET_MONEY_FORM_ERROR_MESSAGES) {
+    newState.moneyFormErrorMessages = payload;
   } else if (type === ACTION.TOGGLE_LOTTO_LIST) {
     newState.lottoListVisibility = payload;
   } else if (type === ACTION.SET_WINNING_NUMBERS) {

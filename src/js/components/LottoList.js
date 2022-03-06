@@ -35,9 +35,9 @@ class LottoList extends Component {
   }
 
   render() {
-    const { money, lottoList, lottoListVisibility, winningNumbers } = Store.instance.getState();
+    const { lottoList, lottoListVisibility, winningNumbers } = Store.instance.getState();
     this.innerHTML = '';
-    if (money > 0) {
+    if (lottoList.length > 0) {
       const isFullfilled =
         winningNumbers.normal.every((num) => num !== WINNING_NUM_PLACEHOLDER && num > 0) &&
         winningNumbers.bonus !== WINNING_NUM_PLACEHOLDER;
