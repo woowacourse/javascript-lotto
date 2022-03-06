@@ -19,13 +19,12 @@ export default class WinningNumbersView {
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
     this.#validateInputs();
-    this.#resetFocusedInput();
     this.#goBackInput();
   }
 
   #goBackInput() {
     this.$$winningNumberInputs.forEach((input) =>
-      input.addEventListener('keydown', (e) => WinningNumbersView.#deleteKeydownHandler(e)),
+      input.addEventListener('keyup', (e) => WinningNumbersView.#deleteKeydownHandler(e)),
     );
   }
 
@@ -39,12 +38,10 @@ export default class WinningNumbersView {
     const { activeElement } = document;
     const eventTarget = e.target;
     if (activeElement.id === 'bonus-number' && activeElement.value.length === 0) {
-      activeElement.value = '';
       $('#last-basic-input').focus();
       return;
     }
     if (eventTarget.previousElementSibling && activeElement.value.length === 0) {
-      eventTarget.value = '';
       eventTarget.previousElementSibling.focus();
     }
   }
@@ -97,15 +94,6 @@ export default class WinningNumbersView {
     if (e.target.value.length >= 2) {
       this.$$winningNumberInputs[index + 1].focus();
     }
-  }
-
-  #resetFocusedInput() {
-    this.$$winningNumberInputs.forEach((input) =>
-      input.addEventListener('focus', () => {
-        input.value = null;
-        this.#changeInvalidInputsColor();
-      }),
-    );
   }
 
   removeInputValue() {
