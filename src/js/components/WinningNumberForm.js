@@ -102,9 +102,8 @@ class WinningNumberForm extends Component {
     });
 
     this.addEvent('keydown', 'winning-number-form', (event) => {
-      const { path, key } = event;
-      const target = path[1];
-      this.handleKeydownEvent(target, key);
+      const { key } = event;
+      this.handleKeydownEvent(key);
     });
 
     this.addEvent('click', 'winning-number-form', (event) => {
@@ -125,17 +124,8 @@ class WinningNumberForm extends Component {
   }
 
   handleKeyupEvent(target, key) {
-    const { order } = target;
-    if (key === 'Backspace' || key === 'Enter') return;
-    if (target.isFull() && order < LOTTO.COUNT) {
-      const nextInput = this.$inputs[order + 1];
-      nextInput.focus();
-    }
-  }
-
-  handleKeydownEvent(target, key) {
     const { order, length } = target;
-    if (key !== 'Backspace' && key !== 'Enter') return;
+    if (key === 'Enter') return;
 
     if (length === 0 && order > 0 && key === 'Backspace') {
       const winningNumberList = this.$inputs.map((input) => {
@@ -146,9 +136,15 @@ class WinningNumberForm extends Component {
       return;
     }
 
-    if (key === 'Enter') {
-      this.handleEnter();
+    if (target.isFull() && order < LOTTO.COUNT) {
+      const nextInput = this.$inputs[order + 1];
+      nextInput.focus();
     }
+  }
+
+  handleKeydownEvent(key) {
+    if (key !== 'Enter') return;
+    this.handleEnter();
   }
 
   handleEnter() {
