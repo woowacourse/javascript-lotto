@@ -1,5 +1,5 @@
 import { LOTTO_REWARD } from '../constants/constants';
-import { findSameElementLength } from '../utils/array';
+import { findEqualElementsLength } from '../utils/array';
 import { lottoTicket } from './lottoTicket';
 import { money } from './money';
 
@@ -16,7 +16,7 @@ export const winningStatistics = {
     const lottoTickets = lottoTicket.getLottoTickets();
 
     lottoTickets.forEach((lottoTicket) => {
-      const countMatchWinningNumber = findSameElementLength(lottoTicket, winningNumber);
+      const countMatchWinningNumber = findEqualElementsLength(lottoTicket, winningNumber);
       const countMatchBonusNumber = lottoTicket.includes(bonusNumber) ? 1 : 0;
 
       switch (countMatchWinningNumber) {
