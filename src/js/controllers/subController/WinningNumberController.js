@@ -14,14 +14,25 @@ export default class WinningNumberController {
     this.setEventHandler();
   }
 
-  resetInput() {
+  resetInputs() {
     this.winningNumberView.clearInputs();
+  }
+
+  showResetButton() {
+    this.winningNumberView.appearResetButton();
   }
 
   setEventHandler() {
     this.winningNumberView.bindOnClickShowResultButton(
       this.didClickShowResultButton.bind(this)
     );
+    this.winningNumberView.bindOnClickResetButton(
+      this.didClickResetButton.bind(this)
+    );
+  }
+
+  didClickResetButton() {
+    this.lottoController.afterClickedResetButton();
   }
 
   didClickShowResultButton({ winningNumbers, bonusNumber }) {

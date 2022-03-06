@@ -1,4 +1,4 @@
-import { LOTTO } from '../configs/contants.js';
+import { LOTTO, STATISTIC } from '../configs/contants.js';
 
 const template = {
   app: () => {
@@ -17,7 +17,7 @@ const template = {
   paymentSection: () => {
     return `
       <label for="payment-input">구입할 금액을 입력해주세요.</label>
-      <form>
+      <form id="payment-form">
         <input type="number" id="payment-input" />
         <button id="payment-submit">구입</button>
       </form>
@@ -45,8 +45,9 @@ const template = {
               <span class="ticket-emoji">🎟</span>
               ${
                 isShowNumber
-                  ? `<span class="ticket-numbers">
-                  ${lotto.numbers.join(', ')}</span>`
+                  ? `<span class="ticket-numbers">${lotto.numbers.join(
+                      ', '
+                    )}</span>`
                   : ''
               }
               </p>
@@ -70,21 +71,25 @@ const template = {
   winningNumberSection: () => {
     return `
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <fieldset id="winning-number-fieldset">
-        <form id="winning-number-form">
-          <label>당첨 번호</label>
-          <div id="winning-number-input-wrap">
-            ${`<input class="winning-number-input" type="text" maxlength="2" />`.repeat(
-              LOTTO.NUMBER_LENGTH
-            )}
-          </div>
-        </form>
-        <form id="bonus-number-form">
-          <label for="bonus_number">보너스 번호</label>
-          <input class="bonus-number-input" type="text" name="bonus_number" maxlength="2" />
-        </form>
-      </fieldset>
-      <button id="show-result-button">결과 확인하기</button>
+      <form id="winning-number-form">
+        <fieldset id="winning-number-fieldset">
+          <legend hidden>당첨번호 입력란</legend>
+          <label id="winning-number-input-label">
+            당첨 번호
+            <ul id="winning-number-input-wrap">
+              ${`<li><input class="winning-number-input" type="text" maxlength="2" /></li>`.repeat(
+                LOTTO.NUMBER_LENGTH
+              )}
+            </ul>
+          </label>
+          <label id="bonus-number-input-label" for="bonus-number-input">
+            보너스 번호
+            <input id="bonus-number-input" type="text" maxlength="2" />
+          </label>
+        </fieldset>
+        <button id="show-result-button">결과 확인하기</button>
+      </form>
+      <button id="winning-number-section-reset-button" class="blind">다시 시작하기</button>
     `;
   },
   statisticSectionWrap: (winningStatistic, earningRatio) => {
@@ -125,7 +130,7 @@ const template = {
           </tr>
         </table>
         <p id="ratio-result">당신의 총 수익률은 ${earningRatio}%입니다.</p>
-        <button id="reset-button">다시 시작하기</button>
+        <button id="statistic-section-reset-button">다시 시작하기</button>
       </section>
     `;
   },

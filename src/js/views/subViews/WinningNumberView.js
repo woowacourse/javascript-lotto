@@ -1,4 +1,4 @@
-import { SELECTOR } from '../../configs/contants.js';
+import { DOM_STRING, SELECTOR } from '../../configs/contants.js';
 import template from '../../templates/template.js';
 import { $, $$ } from '../../utils/utils.js';
 
@@ -20,6 +20,7 @@ export default class WinningNumberView {
     this.$$winningNumberInput = $$(SELECTOR.WINNING_NUMBER_INPUT);
     this.$bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
     this.$showResultButton = $(SELECTOR.SHOW_RESULT_BUTTON);
+    this.$resetButton = $(SELECTOR.WINNING_NUMBER_SECTION_RESET_BUTTON);
   }
 
   getInputedNumbers() {
@@ -36,10 +37,26 @@ export default class WinningNumberView {
     this.$bonusNumberInput.value = '';
   }
 
+  appearResetButton() {
+    this.$resetButton.classList.remove(DOM_STRING.BLIND);
+  }
+
+  disappearResetButton() {
+    this.$resetButton.classList.add(DOM_STRING.BLIND);
+  }
+
   bindOnClickShowResultButton(callback) {
     this.$showResultButton.addEventListener('click', (event) => {
       event.preventDefault();
       callback(this.getInputedNumbers());
+    });
+  }
+
+  bindOnClickResetButton(callback) {
+    this.$resetButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.disappearResetButton();
+      callback();
     });
   }
 }

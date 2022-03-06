@@ -25,16 +25,23 @@ export default class StatisticView {
   }
 
   afterMounted() {
-    this.$resetButton = $(SELECTOR.RESET_BUTTON);
+    this.$resetButton = $(SELECTOR.STATISTIC_SECTION_RESET_BUTTON);
     this.$closeButton = $(SELECTOR.CLOSE_BUTTON);
   }
 
   bindOnClickResetButton(callback) {
-    [this.$resetButton, this.$closeButton].forEach((button) =>
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        callback();
-      })
-    );
+    this.$resetButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.disappearView();
+      callback();
+    });
+  }
+
+  bindOnClickCloseButton(callback) {
+    this.$closeButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.disappearView();
+      callback();
+    });
   }
 }

@@ -12,17 +12,23 @@ export default class StatisticController {
     const earningRatio = this.lottoModel.getEarningRatio();
     const { winningStatistic } = this.lottoModel.getState();
     this.statisticView.mountTemplate(winningStatistic, earningRatio);
-    this.setEventHandler();
+    this.setEventHandlers();
   }
 
-  setEventHandler() {
+  setEventHandlers() {
     this.statisticView.bindOnClickResetButton(
       this.didClickResetButton.bind(this)
+    );
+    this.statisticView.bindOnClickCloseButton(
+      this.didClickCloseButton.bind(this)
     );
   }
 
   didClickResetButton() {
-    this.statisticView.disappearView();
     this.lottoController.afterClickedResetButton();
+  }
+
+  didClickCloseButton() {
+    this.lottoController.afterClickCloseButton();
   }
 }
