@@ -1,19 +1,17 @@
 import LottoController from './lottoController.js';
 
 import LottoCreator from './model/lottoCreator.js';
-import LottoResultManager from './model/lottoResultManager.js';
 
 import views from './views/index.js';
 
 import '../css/index.css';
 
 const startLotto = () => {
-  const models = {
+  const model = {
     lottoCreator: new LottoCreator(),
-    LottoResultManager,
   };
 
-  new LottoController(models, views);
+  new LottoController(model, views);
 };
 
 document.addEventListener('DOMContentLoaded', startLotto);

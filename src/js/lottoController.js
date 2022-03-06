@@ -9,11 +9,10 @@ import {
   isAllNumberInRange,
 } from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
+import { calcLottoMatchingResult, calcProfit } from './utils/lottoResultCalculator.js';
 
 export default class LottoController {
   #lottoCreator;
-
-  #lottoResultManager;
 
   #lottoPurchaseInputView;
 
@@ -23,9 +22,8 @@ export default class LottoController {
 
   #lottoMatchResultModalView;
 
-  constructor(models, views) {
-    this.#lottoCreator = models.lottoCreator;
-    this.#lottoResultManager = models.LottoResultManager;
+  constructor(model, views) {
+    this.#lottoCreator = model.lottoCreator;
 
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
@@ -97,15 +95,12 @@ export default class LottoController {
         max: LOTTO.MAX_DIGIT,
       });
 
-      const lottoMatchResult = this.#lottoResultManager.calcLottoMatchingResult(
+      const lottoMatchResult = calcLottoMatchingResult(
         lottoWinningNumbers,
         lottoWinningBonusNumber,
         this.#lottoCreator.lottoList
       );
-      const profit = this.#lottoResultManager.calcProfit(
-        this.#lottoCreator.purchaseMoney,
-        lottoMatchResult
-      );
+      const profit = calcProfit(this.#lottoCreator.purchaseMoney, lottoMatchResult);
 
       this.#lottoMatchResultModalView.render(lottoMatchResult, profit);
     } catch (err) {

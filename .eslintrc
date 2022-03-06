@@ -20,7 +20,7 @@
     "no-new": "off",
     "no-alert": "off",
     "import/extensions": "off",
-    "max-lines-per-function": ["error", 25]
+    "max-lines-per-function": ["error", 30]
   },
   "ignorePatterns": ["*test.js", "template.js"]
 }
