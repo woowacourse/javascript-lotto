@@ -1,9 +1,16 @@
 import View from '../core/View.js';
 import { $, $all } from '../utils/utils.js';
+import { validator } from '../utils/validator.js';
 import { DOM_STRING, LOTTO } from '../configs/contants.js';
 
 export default class WinningNumberSectionView extends View {
+  setup() {
+    this.state = { lottoList: [] };
+  }
+
   template() {
+    const { lottoList } = this.state;
+
     return `
       <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
       <form id="${DOM_STRING.WINNING_NUMBER_FORM}">
@@ -37,7 +44,12 @@ export default class WinningNumberSectionView extends View {
           >
         </fieldset>
       </form>
-      <button id="${DOM_STRING.SHOW_RESULT_BUTTON}">결과 확인하기</button>
+      <button
+        id="${DOM_STRING.SHOW_RESULT_BUTTON}"
+        ${(lottoList.length === 0 && 'disabled') || ''}
+      >
+        결과 확인하기
+      </button>
     `;
   }
 
@@ -53,7 +65,12 @@ export default class WinningNumberSectionView extends View {
           bonus: $(DOM_STRING.BONUS_NUMBER_INPUT, 'class').valueAsNumber,
         };
 
-        callback(winningNumbers);
+        try {
+          validator.checkWinningNumbers(winningNumbers);
+          callback(winningNumbers);
+        } catch (e) {
+          alert(e);
+        }
       }
     );
   }

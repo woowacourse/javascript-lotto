@@ -15,6 +15,7 @@ export default class PaymentSectionView extends View {
           min="${PAYMENT.PURCHASE_AMOUNT.MIN}"
           max="${PAYMENT.PURCHASE_AMOUNT.MAX}"
           step="${LOTTO.PRICE}"
+          autofocus
         >
         <button id="${DOM_STRING.PAYMENT_SUBMIT}">구입</button>
       </form>

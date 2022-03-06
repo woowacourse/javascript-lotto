@@ -28,34 +28,26 @@ export default class Lotto {
   }
 
   countMatchedNumbers(winningNumbers) {
-    let matchedCount = 0;
+    let matched = 0;
     let isBonusNumberMatched = false;
 
     winningNumbers.main.forEach((num) => {
-      if (this.numbers.includes(num)) matchedCount += 1;
+      if (this.numbers.includes(num)) matched += 1;
     });
 
     if (this.numbers.includes(winningNumbers.bonus))
       isBonusNumberMatched = true;
 
-    return { matchedCount, isBonusNumberMatched };
+    return { matched, isBonusNumberMatched };
   }
 
   matchWinningNumbers(winningNumbers) {
-    const { matchedCount, isBonusNumberMatched } =
-      this.countMatchedNumbers(winningNumbers);
+    const matchedCount = this.countMatchedNumbers(winningNumbers);
+    const result = Object.entries(LOTTO.PRIZE).filter(
+      ([_, { CONDITION }]) =>
+        JSON.stringify(CONDITION) === JSON.stringify(matchedCount)
+    )[0];
 
-    switch (matchedCount) {
-      case 6:
-        return 'first';
-      case 5:
-        return isBonusNumberMatched ? 'second' : 'third';
-      case 4:
-        return 'forth';
-      case 3:
-        return 'fifth';
-      default:
-        return 'none';
-    }
+    return (result && result[0]) || null;
   }
 }

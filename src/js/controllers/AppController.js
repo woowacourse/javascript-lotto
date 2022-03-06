@@ -5,11 +5,16 @@ import { calculateRateOfReturn } from '../utils/utils.js';
 
 export default class AppController extends Controller {
   init() {
-    this.models.lottoModel.init((message) => {
-      this.views.ticketSectionView.update(message);
-    });
-
+    this.initModels();
     this.bindEventHandlers();
+  }
+
+  initModels() {
+    this.models.lottoModel.init((message) => {
+      this.views.paymentSectionView.update(message);
+      this.views.ticketSectionView.update(message);
+      this.views.winningNumberSectionView.update(message);
+    });
   }
 
   bindEventHandlers() {
@@ -19,6 +24,9 @@ export default class AppController extends Controller {
     this.views.ticketSectionView.bindOnClickNumberToggle();
     this.views.winningNumberSectionView.bindOnClickShowResultButton(
       this.updateResult.bind(this)
+    );
+    this.views.resultModalWindowView.bindOnClickModalOverlay(
+      this.initModels.bind(this)
     );
   }
 
@@ -51,33 +59,41 @@ export default class AppController extends Controller {
   }
 
   purchase(amount) {
+    this.models.lottoModel.init();
     const message = this.autoPickLotto(LottoModel.getLottoCount(amount));
 
     this.views.ticketSectionView.update(message);
+    this.views.winningNumberSectionView.update(message);
+  }
+
+  countMatchedTickets(lottoList, winningNumbers) {
+    const rankCount = {};
+
+    Object.keys(LOTTO.PRIZE).forEach((rank) => {
+      if (rank) rankCount[rank] = 0;
+    });
+
+    lottoList.forEach((ticket) => {
+      const rank = ticket.matchWinningNumbers(winningNumbers);
+
+      if (rank) rankCount[rank] += 1;
+    });
+
+    return rankCount;
+  }
+
+  sumPrize(rankCount) {
+    return Object.entries(rankCount).reduce((sum, [rank, count]) => {
+      const amount = LOTTO.PRIZE[rank].AMOUNT;
+
+      return sum + amount * count;
+    }, 0);
   }
 
   checkResult(winningNumbers) {
     const { lottoList } = this.models.lottoModel.getState();
-    const rankCount = {
-      first: 0,
-      second: 0,
-      third: 0,
-      forth: 0,
-      fifth: 0,
-      none: 0,
-    };
-
-    lottoList.forEach((ticket) => {
-      const result = ticket.matchWinningNumbers(winningNumbers);
-
-      rankCount[result] += 1;
-    });
-
-    const totalPrizes = Object.entries(rankCount).reduce(
-      (totalPrizes, [rank, count]) =>
-        (totalPrizes += LOTTO.PRIZE[rank] * count),
-      0
-    );
+    const rankCount = this.countMatchedTickets(lottoList, winningNumbers);
+    const totalPrizes = this.sumPrize(rankCount);
     const purchaseAmount = lottoList.length * 1000;
     const rateOfReturn = calculateRateOfReturn(totalPrizes, purchaseAmount);
 
@@ -89,6 +105,7 @@ export default class AppController extends Controller {
   }
 
   updateResult(winningNumbers) {
-    this.views.ticketSectionView.update(this.checkResult(winningNumbers));
+    this.views.resultModalWindowView.update(this.checkResult(winningNumbers));
+    this.views.resultModalWindowView.showModalWindow();
   }
 }

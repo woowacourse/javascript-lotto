@@ -5,7 +5,8 @@ export default class Model {
     const initState = this.setInitState();
 
     this.update(initState);
-    callback(this.getState());
+
+    if (callback) callback(this.getState());
   }
 
   setInitState() {

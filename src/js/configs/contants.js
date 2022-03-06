@@ -23,6 +23,9 @@ export const DOM_STRING = {
   BONUS_NUMBER_FIELDSET: 'bonus-number-fieldset',
   BONUS_NUMBER_INPUT: 'bonus-number-input',
   SHOW_RESULT_BUTTON: 'show-result-button',
+  RESULT_MODAL_WINDOW: 'result-modal-window',
+  MODAL_OVERLAY: 'modal-overlay',
+  RESTART_BUTTON: 'restart-button',
 };
 
 export const LOTTO = {
@@ -33,12 +36,31 @@ export const LOTTO = {
     MAX: 45,
   },
   PRIZE: {
-    first: 2000000000,
-    second: 30000000,
-    third: 1500000,
-    forth: 50000,
-    fifth: 5000,
-    none: 0,
+    FIRST: {
+      TITLE: '6개',
+      AMOUNT: 2000000000,
+      CONDITION: { matched: 6, isBonusNumberMatched: false },
+    },
+    SECOND: {
+      TITLE: '5개+보너스볼',
+      AMOUNT: 30000000,
+      CONDITION: { matched: 5, isBonusNumberMatched: true },
+    },
+    THIRD: {
+      TITLE: '5개',
+      AMOUNT: 1500000,
+      CONDITION: { matched: 5, isBonusNumberMatched: false },
+    },
+    FORTH: {
+      TITLE: '4개',
+      AMOUNT: 50000,
+      CONDITION: { matched: 4, isBonusNumberMatched: false },
+    },
+    FIFTH: {
+      TITLE: '3개',
+      AMOUNT: 5000,
+      CONDITION: { matched: 3, isBonusNumberMatched: false },
+    },
   },
 };
 

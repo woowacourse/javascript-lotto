@@ -1,4 +1,9 @@
+import { LOTTO } from '../configs/contants';
+
 export const ascendingOrder = (a, b) => a - b;
+
+export const prizeAmountAscendingOrder = (a, b) =>
+  ascendingOrder(LOTTO.PRIZE[a[0]].AMOUNT, LOTTO.PRIZE[b[0]].AMOUNT);
 
 export const getRandomInt = (min, max) => {
   const ceiledMin = Math.ceil(min);

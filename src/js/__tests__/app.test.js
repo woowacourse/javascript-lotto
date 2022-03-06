@@ -90,14 +90,21 @@ describe('Step 2', () => {
             main: [1, 2, 3, 4, 5, 6],
             bonus: 7,
           })
-        ).toBe('first');
+        ).toBe('FIRST');
 
         expect(
           lotto.matchWinningNumbers({
             main: [1, 2, 3, 4, 5, 7],
             bonus: 6,
           })
-        ).toBe('second');
+        ).toBe('SECOND');
+
+        expect(
+          lotto.matchWinningNumbers({
+            main: [39, 40, 41, 42, 43, 44],
+            bonus: 45,
+          })
+        ).toBe(null);
       });
     });
   });
@@ -132,12 +139,11 @@ describe('Step 2', () => {
           appController.checkResult(winningNumbers);
 
         expect(rankCount).toStrictEqual({
-          first: 1,
-          second: 1,
-          third: 1,
-          forth: 2,
-          fifth: 2,
-          none: 3,
+          FIRST: 1,
+          SECOND: 1,
+          THIRD: 1,
+          FORTH: 2,
+          FIFTH: 2,
         });
         expect(totalPrizes).toBe(2031610000);
         expect(rateOfReturn).toBe((2031610000 - 10000) / 10000);
