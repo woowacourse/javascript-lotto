@@ -3,6 +3,7 @@ import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
 import { changeDuplicatedInputsColor, changeOkInputsColor, changeOverInputsColor } from '../utils/style';
+import LOTTO from '../constants/lotto';
 
 export default class WinningNumbersView {
   constructor() {
@@ -68,17 +69,16 @@ export default class WinningNumbersView {
 
   #notifyInvalidInputsHandler(e, index) {
     e.target.value = e.target.value.substr(0, 2);
-    changeOverInputsColor(this.$$winningNumberInputs);
-    if (e.target.valueAsNumber > 45) {
-      return;
-    }
+    this.#changeInvalidInputsColor();
+
     if (e.target.nextElementSibling?.value) {
       return;
     }
-    if (this.#isDuplicatedInputs()) {
-      this.#changeInvalidInputsColor();
+
+    if (!e.target.nextElementSibling && this.$$winningNumberInputs[LOTTO.NUMBER_COUNT].value) {
       return;
     }
+
     this.#moveAutoFocus(e, index);
   }
 

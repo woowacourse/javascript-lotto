@@ -4,8 +4,8 @@ export const changeOkInputsColor = (list, $$inputs) => {
   for (let i = 0; i < 7; i += 1) {
     for (let j = i + 1; j < 7; j += 1) {
       if (list[i] !== list[j]) {
-        $$inputs[i].style.background = '#FFF';
-        $$inputs[j].style.background = '#FFF';
+        $$inputs[i].className = 'ok-input';
+        $$inputs[j].className = 'ok-input';
       }
     }
   }
@@ -15,17 +15,17 @@ export const changeDuplicatedInputsColor = (list, $$inputs) => {
   for (let i = 0; i < 7; i += 1) {
     for (let j = i + 1; j < 7; j += 1) {
       if (list[i] === list[j]) {
-        $$inputs[i].style.background = '#FFBBBB';
-        $$inputs[j].style.background = '#FFBBBB';
+        $$inputs[i].className = 'duplicated-input';
+        $$inputs[j].className = 'duplicated-input';
       }
     }
   }
 };
 
 export const changeOverInputsColor = ($$inputs) => {
-  $$inputs.forEach((input) => {
-    if (input.valueAsNumber > 45) {
-      input.style.background = '#BFFFF0';
+  $$inputs.forEach(($input) => {
+    if ($input.valueAsNumber > 45) {
+      $input.className = 'over-input';
     }
   });
 };
