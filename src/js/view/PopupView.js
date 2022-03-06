@@ -7,6 +7,10 @@ export default class PopupView {
     this.$mainContainer = $('.main-container');
   }
 
+  bindPopupEvent(callback) {
+    this.$popup.addEventListener('click', callback.bind(this));
+  }
+
   renderPopup(winningType, earningRate) {
     this.$popup.insertAdjacentHTML(
       'beforeend',

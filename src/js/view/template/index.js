@@ -2,24 +2,29 @@ const makeTemplate = Object.freeze({
   makeWinningNumbersTemplate: () => `
     <div>
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <div class="numbers-input">
-        <div class="winning-numbers">
-          <div class="winning-numbers-header">당첨 번호</div>
-          <div class="winning-numbers-input">
-            <input type="number" class="winning-number-input"/>
-            <input type="number" class="winning-number-input"/>
-            <input type="number" class="winning-number-input"/>
-            <input type="number" class="winning-number-input"/>
-            <input type="number" class="winning-number-input"/>
-            <input type="number" class="winning-number-input"/>
+      <form id="winning-numbers-form">
+        <div class="numbers-input">
+
+          <div class="winning-numbers">
+            <label class="winning-numbers-header">당첨 번호</label>
+
+            <div class="winning-numbers-input">
+              <input type="text" class="winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength="2"/ >
+              <input type="text" class="winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength="2"/ >
+              <input type="text" class="winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength="2"/ >
+              <input type="text" class="winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength="2"/ >
+              <input type="text" class="winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength="2"/ >
+              <input type="text" class="winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength="2"/ >
+            </div>
+          </div>
+          <div class="bonus-number">
+            <label class="bonus-number-header">보너스 번호</label> 
+            <input type="text" class="bonus-number-input winning-number-input" pattern="^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$" title="1과 45사이의 숫자를 입력하세요" required maxlength='2'/>
           </div>
         </div>
-        <div class="bonus-number">
-          <div class="bonus-number-header">보너스 번호</div> 
-          <input type="number" class="bonus-number-input"/>
-        </div>
-      </div>
-      <button id="check-result-button" class="btn">결과 확인하기</button>
+        <div class="input-error-message" id="winning-input-message"></div>
+        <button id="check-result-button" class="btn" disabled>결과 확인하기</button>
+      </form>
     </div>
     `,
 

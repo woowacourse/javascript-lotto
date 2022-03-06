@@ -5,8 +5,6 @@ import { LOTTO_NUMBERS } from '../constants/index';
 import { checkValidLottoCount, checkValidWinningNumbers } from '../utils/validator';
 
 export default class LottoModel {
-  #lottoCount;
-
   #lottos;
 
   #winningLottoNumbers;
@@ -16,7 +14,6 @@ export default class LottoModel {
   #earningRate;
 
   constructor() {
-    this.#lottoCount = 0;
     this.#lottos = [];
     this.#winningLottoNumbers = {
       winningNumbers: [],
@@ -32,18 +29,13 @@ export default class LottoModel {
     this.#earningRate = 0;
   }
 
-  setLottoCount(value) {
-    checkValidLottoCount(value);
-    this.#lottoCount = value / LOTTO_NUMBERS.LOTTO_PRICE;
-  }
-
   getLottoCount() {
-    return this.#lottoCount;
+    return this.#lottos.length;
   }
 
   getLottoNumbers() {
     const checkLottoNumberArray = [...Array(LOTTO_NUMBERS.MAX_LOTTO_NUMBER)].map(
-      (e, idx) => idx + 1,
+      (_, idx) => idx + 1,
     );
     const lottoNumberArray = [];
 
@@ -58,17 +50,13 @@ export default class LottoModel {
     return [...lottoNumberArray];
   }
 
-  setLottos(lottos) {
-    this.#lottos = lottos;
-  }
-
   getLottos() {
     return this.#lottos;
   }
 
   buyLottos(inputMoney) {
-    this.setLottoCount(inputMoney);
-    this.setLottos(this.generateLottos());
+    checkValidLottoCount(inputMoney);
+    this.#lottos = this.generateLottos(inputMoney / LOTTO_NUMBERS.LOTTO_PRICE);
   }
 
   setWinningLottoNumbers(winnerNumberArray, bonusNumber) {
@@ -78,13 +66,8 @@ export default class LottoModel {
     this.#winningLottoNumbers.bonus = bonusNumber;
   }
 
-  generateLottos() {
-    const lottos = [];
-    for (let i = 0; i < this.getLottoCount(); i += 1) {
-      lottos.push(this.getLottoNumbers());
-    }
-
-    return lottos;
+  generateLottos(lottoCount) {
+    return Array.from({ length: lottoCount }, () => this.getLottoNumbers());
   }
 
   setWinningNumbers() {
@@ -115,9 +98,9 @@ export default class LottoModel {
     this.#earningRate = Math.floor(
       (Object.entries(this.#winningType).reduce(
         (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
-        0,
+        0 - this.getLottoCount() * LOTTO_NUMBERS.LOTTO_PRICE,
       ) /
-        (this.#lottoCount * LOTTO_NUMBERS.LOTTO_PRICE)) *
+        (this.getLottoCount() * LOTTO_NUMBERS.LOTTO_PRICE)) *
         100,
     );
   }
@@ -136,7 +119,7 @@ export default class LottoModel {
   }
 
   initWinningType() {
-    this.winningType = {
+    this.#winningType = {
       3: 0,
       4: 0,
       5: 0,
@@ -146,7 +129,6 @@ export default class LottoModel {
   }
 
   initGame() {
-    this.#lottoCount = 0;
     this.#lottos = [];
     this.#winningLottoNumbers = {
       winningNumbers: [],

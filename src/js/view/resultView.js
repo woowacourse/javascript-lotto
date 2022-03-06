@@ -6,6 +6,10 @@ export default class ResultView {
     this.$result = $('#result');
   }
 
+  bindResultButtonEvent(callback) {
+    this.$result.addEventListener('submit', callback.bind(this));
+  }
+
   renderResult(count) {
     this.$result.replaceChildren();
     this.$result.insertAdjacentHTML('beforeend', makeTemplate.makeResultTemplate(count));
