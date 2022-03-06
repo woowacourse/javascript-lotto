@@ -15,8 +15,6 @@ export const createRandomNumbers = (minRange, maxRange, count) => {
   return [...result];
 };
 
-export const extractNumber = (value) => value.replace(/[^\d]+/g, '');
-
 export const isEmpty = (value) => value === '';
 
 export const isNotNumber = (value) => !/^\d+$/.test(value);

@@ -6,7 +6,7 @@ import LottoCollectionImpl from '../LottoCollection/LottoCollectionImpl.js';
 import LottosViewImpl from '../View/LottosViewImpl.js';
 import MatchResultViewImpl from '../View/MatchResultViewImpl.js';
 import ValidationError from '../ValidationError/index.js';
-import { extractNumber, isEmpty, isNotNumber, isOutOfRanged } from '../utils/index.js';
+import { isEmpty, isNotNumber, isOutOfRanged } from '../utils/index.js';
 import { LOTTO_RULES, ERROR_MESSAGE, ORDER_TO_FOCUS_ON_VIEW } from '../constant/index.js';
 
 const validator = new ValidatorImpl();
@@ -85,9 +85,7 @@ export const tryClickConfirmResultButton = () => {
 };
 
 export const writingWinningNumber = (e) => {
-  e.currentTarget.value = extractNumber(
-    e.currentTarget.value.slice(0, LOTTO_RULES.NUMBER_MAX_LENGTH),
-  );
+  e.currentTarget.value = e.currentTarget.value.slice(0, LOTTO_RULES.NUMBER_MAX_LENGTH);
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
     matchResultView.focusFindedInput(findInputFunctions[ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER]);
