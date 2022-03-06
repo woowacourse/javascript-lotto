@@ -18,8 +18,8 @@ export default class LottoApp {
     $(ID.PAYMENT_BUTTON).addEventListener('click', this.onSubmitPayment.bind(this));
     $(ID.MODAL_CLOSE_BUTTON).addEventListener('click', modalClose);
 
-    window.addEventListener('click', (event) => {
-      if (event.target === document.querySelector(CLASS.MODAL_BACKGROUND)) {
+    $(CLASS.MODAL_BACKGROUND).addEventListener('click', (event) => {
+      if (event.target === $(CLASS.MODAL_BACKGROUND)) {
         modalClose();
       }
     });
