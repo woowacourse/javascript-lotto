@@ -16,7 +16,7 @@ const template = {
   },
   paymentSection: () => {
     return `
-      <h2 hidden>dkan</h2>
+      <h2 class="outliner">구입할 금액 입력</h2>
       <label for="payment-input">구입할 금액을 입력해주세요.</label>
       <form id="payment-form">
         <input type="number" id="payment-input" />
@@ -26,6 +26,7 @@ const template = {
   },
   ticketSection: () => {
     return `
+      <h2 class="outliner">구입한 로또 확인</h2>
       <div id="ticket-list-wrap">
       </div>
       <div id="show-number-toggle-area">
@@ -71,6 +72,7 @@ const template = {
   },
   winningNumberSection: () => {
     return `
+      <h2 class="outliner">지난 주 당첨 번호 입력</h2>
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <form id="winning-number-form">
         <fieldset id="winning-number-fieldset">
