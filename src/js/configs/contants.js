@@ -1,9 +1,14 @@
 export const DOM_STRING = {
   APP: 'app',
   TITLE: 'title',
+  SUBTITLE: 'subtitle',
   PAYMENT_SECTION: 'payment-section',
   TICKET_SECTION: 'ticket-section',
   WINNING_NUMBER_SECTION: 'winning-number-section',
+  INPUT_FORM: 'input-form',
+  HINT: 'hint',
+  STYLED_INPUT: 'styled-input',
+  SUBMIT_BUTTON: 'submit-button',
   PAYMENT_INPUT: 'payment-input',
   PAYMENT_SUBMIT: 'payment-submit',
   SWITCH: 'switch',
@@ -17,6 +22,7 @@ export const DOM_STRING = {
   SHOW_NUMBER_TOGGLE_AREA: 'show-number-toggle-area',
   WINNING_NUMBER_FORM: 'winning-number-form',
   MAIN_NUMBER_FIELDSET: 'winning-number-fieldset',
+  WINNING_NUMBER_LEGEND: 'winning-number-legend',
   MAIN_NUMBER_INPUT_WRAP: 'winning-number-input-wrap',
   WINNING_NUMBER_INPUT: 'winning-number-input',
   MAIN_NUMBER_INPUT: 'main-number-input',
@@ -25,6 +31,10 @@ export const DOM_STRING = {
   SHOW_RESULT_BUTTON: 'show-result-button',
   RESULT_MODAL_WINDOW: 'result-modal-window',
   MODAL_OVERLAY: 'modal-overlay',
+  MODAL_CLOSED: 'modal-closed',
+  MODAL_WINDOW: 'modal-window',
+  MODAL_CONTENT: 'modal-content',
+  RESULT_TABLE: 'result-table',
   RESTART_BUTTON: 'restart-button',
 };
 

@@ -6,10 +6,11 @@ import { validate, purchaseAmountValidator } from '../utils/validator.js';
 export default class PaymentSectionView extends View {
   template() {
     return `
-      <label>구입할 금액을 입력해주세요.</label>
-      <form>
+      <label class="${DOM_STRING.HINT}">구입할 금액을 입력해주세요.</label>
+      <form class="${DOM_STRING.INPUT_FORM}">
         <input
           id="${DOM_STRING.PAYMENT_INPUT}"
+          class="${DOM_STRING.STYLED_INPUT}"
           type="number"
           placeholder="${PAYMENT.PURCHASE_AMOUNT.MIN}"
           min="${PAYMENT.PURCHASE_AMOUNT.MIN}"
@@ -17,7 +18,7 @@ export default class PaymentSectionView extends View {
           step="${LOTTO.PRICE}"
           autofocus
         >
-        <button id="${DOM_STRING.PAYMENT_SUBMIT}">구입</button>
+        <button id="${DOM_STRING.PAYMENT_SUBMIT}" class="${DOM_STRING.SUBMIT_BUTTON}">구입</button>
       </form>
     `;
   }

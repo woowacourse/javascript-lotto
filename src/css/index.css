@@ -7,20 +7,50 @@ body {
   letter-spacing: 0.5px;
 }
 
-h4 {
+#app {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 52px;
+  width: 382px;
+  min-height: 640px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  margin-top: 52px;
+  margin-bottom: 16px;
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
 }
 
-h6 {
+.main-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.subtitle {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.15px;
 }
 
-label {
+.input-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hint {
   display: block;
   margin-bottom: 4px;
   line-height: 24px;
@@ -28,7 +58,7 @@ label {
   color: rgba(0, 0, 0, 0.87);
 }
 
-legend {
+.winning-number-legend {
   display: block;
   margin-bottom: 4px;
   line-height: 24px;
@@ -36,15 +66,14 @@ legend {
   color: rgba(0, 0, 0, 0.87);
 }
 
-input {
+.styled-input {
   height: 36px;
-
   border: 1px solid #b4b4b4;
   box-sizing: border-box;
   border-radius: 4px;
 }
 
-input:placeholder {
+.styled-input:placeholder {
   margin: 0px 10px;
 
   font-family: Roboto;
@@ -57,7 +86,7 @@ input:placeholder {
   color: #8b8b8b;
 }
 
-button {
+.submit-button {
   background: inherit;
   border: none;
   box-shadow: none;
@@ -79,39 +108,12 @@ button {
   height: 36px;
 }
 
-button:hover {
+.submit-button:hover {
   background: #80deea;
 }
 
-button:disabled {
+.submit-button:disabled {
   background: #b4b4b4;
-}
-
-form {
-  display: flex;
-  justify-content: space-between;
-}
-
-#app {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  margin-top: 52px;
-  width: 382px;
-  min-height: 727px;
-
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  padding: 0 16px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-#title {
-  text-align: center;
-  margin-top: 52px;
 }
 
 #payment-input {
@@ -283,11 +285,7 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: rgba(0, 0, 0, 0.3);
-  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
-  /* border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18); */
 }
 
 .modal-closed {

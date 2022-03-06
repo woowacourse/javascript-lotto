@@ -12,16 +12,20 @@ export default class WinningNumberSectionView extends View {
     const { lottoList } = this.state;
 
     return `
-      <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
-      <form id="${DOM_STRING.WINNING_NUMBER_FORM}">
+      <label class="${DOM_STRING.HINT}">
+        지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+      </label>
+      <form id="${DOM_STRING.WINNING_NUMBER_FORM}" class="${
+      DOM_STRING.INPUT_FORM
+    }">
         <fieldset id="${DOM_STRING.MAIN_NUMBER_FIELDSET}">
-          <legend>당첨 번호</legend>
+          <legend class="${DOM_STRING.WINNING_NUMBER_LEGEND}">당첨 번호</legend>
           <div id="${DOM_STRING.MAIN_NUMBER_INPUT_WRAP}">
             ${Array.from(
               { length: LOTTO.NUMBER_LENGTH },
               () => `
                   <input
-                    class="${DOM_STRING.WINNING_NUMBER_INPUT} ${DOM_STRING.MAIN_NUMBER_INPUT}"
+                    class="${DOM_STRING.STYLED_INPUT} ${DOM_STRING.WINNING_NUMBER_INPUT} ${DOM_STRING.MAIN_NUMBER_INPUT}"
                     type="number"
                     min="${LOTTO.NUMBER_RANGE.MIN}"
                     max="${LOTTO.NUMBER_RANGE.MAX}"
@@ -32,11 +36,11 @@ export default class WinningNumberSectionView extends View {
           </div>
         </fieldset>
         <fieldset id="${DOM_STRING.BONUS_NUMBER_FIELDSET}">
-          <label>보너스 번호</label>
+          <label class="${DOM_STRING.HINT}">보너스 번호</label>
           <input
-            class="${DOM_STRING.WINNING_NUMBER_INPUT} ${
-      DOM_STRING.BONUS_NUMBER_INPUT
-    }"
+            class="${DOM_STRING.STYLED_INPUT} ${
+      DOM_STRING.WINNING_NUMBER_INPUT
+    } ${DOM_STRING.BONUS_NUMBER_INPUT}"
             type="number"
             min="${LOTTO.NUMBER_RANGE.MIN}"
             max="${LOTTO.NUMBER_RANGE.MAX}"
@@ -46,6 +50,7 @@ export default class WinningNumberSectionView extends View {
       </form>
       <button
         id="${DOM_STRING.SHOW_RESULT_BUTTON}"
+        class="${DOM_STRING.SUBMIT_BUTTON}"
         ${(lottoList.length === 0 && 'disabled') || ''}
       >
         결과 확인하기
@@ -58,12 +63,7 @@ export default class WinningNumberSectionView extends View {
       'click',
       { attributeName: DOM_STRING.SHOW_RESULT_BUTTON, attributeType: 'id' },
       () => {
-        const winningNumbers = {
-          main: [...$all(DOM_STRING.MAIN_NUMBER_INPUT, 'class')].map(
-            (node) => node.valueAsNumber
-          ),
-          bonus: $(DOM_STRING.BONUS_NUMBER_INPUT, 'class').valueAsNumber,
-        };
+        const winningNumbers = this.getWinningNumbers();
 
         try {
           validate(
@@ -77,5 +77,17 @@ export default class WinningNumberSectionView extends View {
         }
       }
     );
+  }
+
+  getWinningNumbers() {
+    return {
+      main: [...$all(DOM_STRING.MAIN_NUMBER_INPUT, 'class')].map((elem) =>
+        parseInt(elem.valueAsNumber, 10)
+      ),
+      bonus: parseInt(
+        $(DOM_STRING.BONUS_NUMBER_INPUT, 'class').valueAsNumber,
+        10
+      ),
+    };
   }
 }

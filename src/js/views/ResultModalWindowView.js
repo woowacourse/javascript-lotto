@@ -11,13 +11,13 @@ export default class ResultModalWindowView extends View {
     const { isModalOpened, rankCount, rateOfReturn } = this.state;
 
     return `
-      <div id="modal" class="modal-overlay ${
-        isModalOpened ? '' : 'modal-closed'
-      }">
-        <div class="modal-window">
-          <h6 class="modal-title">🏆 당첨 통계 🏆</h6>
-          <div class="modal-content">
-            <table id="result-table">
+      <div class="${DOM_STRING.MODAL_OVERLAY} ${
+      isModalOpened ? '' : DOM_STRING.MODAL_CLOSED
+    }">
+        <div class="${DOM_STRING.MODAL_WINDOW}">
+          <h2 class="${DOM_STRING.SUBTITLE}">🏆 당첨 통계 🏆</h6>
+          <div class="${DOM_STRING.MODAL_CONTENT}">
+            <table id="${DOM_STRING.RESULT_TABLE}">
               <thead>
                 <tr>
                   <th>일치 개수</th>
@@ -42,7 +42,12 @@ export default class ResultModalWindowView extends View {
             </table>
             <p>당신의 총 수익률은 ${rateOfReturn * 100}%입니다.</p>
           </div>
-          <button id="restart-button">다시 시작하기</button>
+          <button
+            id="${DOM_STRING.RESTART_BUTTON}"
+            class="${DOM_STRING.SUBMIT_BUTTON}"
+          >
+            다시 시작하기
+          </button>
         </div>
       </div>
     `;
