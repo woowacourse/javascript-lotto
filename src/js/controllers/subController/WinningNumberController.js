@@ -1,5 +1,5 @@
 import WinningNumberView from '../../views/subViews/WinningNumberView.js';
-import { ERROR_MESSAGE, SELECTOR, STATISTIC } from '../../configs/contants.js';
+import { SELECTOR, STATISTIC } from '../../configs/contants.js';
 import validator from '../../utils/validator.js';
 import LottoModel from '../../models/LottoModel.js';
 
@@ -26,20 +26,11 @@ export default class WinningNumberController {
 
   didClickShowResultButton({ winningNumbers, bonusNumber }) {
     try {
-      this.checkLottoList();
-      validator.checkWinningNumberList(winningNumbers);
-      validator.checkBonusNumber(bonusNumber);
-      validator.checkDuplicateBonus(winningNumbers, bonusNumber);
+      validator.checkWinningAndBonusNumbers(winningNumbers, bonusNumber);
+      validator.checkLottoListExist(this.lottoModel.getState().lottoList);
       this.setWinningStatistic(winningNumbers, bonusNumber);
     } catch (error) {
       alert(error.message);
-    }
-  }
-
-  checkLottoList() {
-    const { lottoList } = this.lottoModel.getState();
-    if (lottoList.length === 0) {
-      throw new Error(ERROR_MESSAGE.DID_NOT_BUY_LOTTO);
     }
   }
 

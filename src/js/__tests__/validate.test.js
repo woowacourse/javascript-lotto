@@ -69,11 +69,13 @@ describe('금액이 입력되면', () => {
 });
 
 describe('입력된 당첨번호의 유효성을 검증하여', () => {
+  const bonusNumber = 6;
+
   test('번호 모두 정수가 아니면 에러를 throw한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 1.2];
 
     expect(() => {
-      validator.checkWinningNumberList(winningNumbers);
+      validator.checkWinningAndBonusNumbers(winningNumbers, bonusNumber);
     }).toThrowError(ERROR_MESSAGE.NOT_A_LOTTO_NUMBER);
   });
 
@@ -81,7 +83,7 @@ describe('입력된 당첨번호의 유효성을 검증하여', () => {
     const winningNumbers = [0, 45, 1, 2, 3, 4];
 
     expect(() => {
-      validator.checkWinningNumberList(winningNumbers);
+      validator.checkWinningAndBonusNumbers(winningNumbers, bonusNumber);
     }).toThrowError(ERROR_MESSAGE.NOT_A_LOTTO_NUMBER);
   });
 
@@ -89,16 +91,15 @@ describe('입력된 당첨번호의 유효성을 검증하여', () => {
     const winningNumbers = [1, 1, 2, 2, 3, 4];
 
     expect(() => {
-      validator.checkWinningNumberList(winningNumbers);
+      validator.checkWinningAndBonusNumbers(winningNumbers, bonusNumber);
     }).toThrowError(ERROR_MESSAGE.IS_DUPLICATED);
   });
 
   test('당첨번호와 보너스 번호가 중복되면 에러를 throw한다.', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 6;
 
     expect(() => {
-      validator.checkDuplicateBonus(winningNumbers, bonusNumber);
+      validator.checkWinningAndBonusNumbers(winningNumbers, bonusNumber);
     }).toThrowError(ERROR_MESSAGE.IS_DUPLICATED_BONUS);
   });
 });

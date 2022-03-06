@@ -29,22 +29,22 @@ const validator = {
     return isValidLottoList(lottoList, count);
   },
 
-  checkWinningNumberList: (winningNumbers) => {
+  checkLottoListExist: (lottoList) => {
+    if (lottoList.length === 0) {
+      throw new Error(ERROR_MESSAGE.DID_NOT_BUY_LOTTO);
+    }
+  },
+
+  checkWinningAndBonusNumbers: (winningNumbers, bonusNumber) => {
     if (!isValidlottoNumbers(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.NOT_A_LOTTO_NUMBER);
     }
     if (!isValidDuplicatedLottoNumber(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.IS_DUPLICATED);
     }
-  },
-
-  checkBonusNumber: (bonusNumber) => {
     if (!isValidLottoNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_A_BONUS_NUMBER);
     }
-  },
-
-  checkDuplicateBonus: (winningNumbers, bonusNumber) => {
     if (isValidDuplicateBonus(winningNumbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.IS_DUPLICATED_BONUS);
     }
