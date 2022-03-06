@@ -22,9 +22,13 @@ describe('로또 모델 테스트', () => {
 
   it('로또 모델의 번호와 당첨 번호를 비교하여 등수를 반환할 수 있어야 한다.', () => {
     const lottoNumbers = [1, 2, 3, 4, 5, 6];
-    const winningNumbers = [1, 2, 3, 4, 5, 7, 6];
+    const winningFirstNumbers = [1, 2, 3, 4, 5, 6, 7];
+    const winningSecondNumbers = [1, 2, 3, 4, 5, 7, 6];
+    const notWinningNumbers = [7, 8, 9, 10, 11, 12, 13];
 
     const lotto = Lotto.create(lottoNumbers);
-    expect(lotto.result(winningNumbers)).toBe(NUMBER.SECOND_GRADE_INDEX);
+    expect(lotto.result(winningFirstNumbers)).toBe(NUMBER.FIRST_GRADE_INDEX);
+    expect(lotto.result(winningSecondNumbers)).toBe(NUMBER.SECOND_GRADE_INDEX);
+    expect(lotto.result(notWinningNumbers)).toBe(NUMBER.NOT_WINNING_INDEX);
   });
 });
