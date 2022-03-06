@@ -1,7 +1,7 @@
 import { EVENT, RULES } from '../constants/index.js';
 import { convertToNumber } from '../utils/common.js';
 import { validateWinningNumberList } from './validator.js';
-import { emit, on } from '../utils/event.js';
+import { event } from '../utils/event.js';
 
 //template
 const INPUT_ELEMENT = `<input type="text" class="winning-number-input" maxlength='2'/>`;
@@ -44,7 +44,7 @@ export default class InputWinningNumberView {
     );
 
     this.winningNumberForm = document.getElementById('winning-number-form');
-    on(this.winningNumberForm, 'submit', e =>
+    event.on(this.winningNumberForm, 'submit', e =>
       this.handleWinningNumberFormSubmit(e),
     );
 
@@ -52,7 +52,7 @@ export default class InputWinningNumberView {
       '.winning-number-input',
     );
     this.winningNumberInputs.forEach((inputElement, index) => {
-      inputElement.addEventListener('input', () =>
+      event.on(inputElement, 'input', () =>
         this.handleWinningNumberInputFocus(inputElement, index),
       );
     });
@@ -66,7 +66,7 @@ export default class InputWinningNumberView {
 
     try {
       validateWinningNumberList(winningNumbers);
-      emit(this.winningNumberForm, EVENT.SUBMIT_WINNING_NUMBERS, {
+      event.emit(this.winningNumberForm, EVENT.SUBMIT_WINNING_NUMBERS, {
         winningNumbers,
       });
       this.showModal();
@@ -76,12 +76,8 @@ export default class InputWinningNumberView {
     }
   }
 
-  handleWinningNumberInputFocus(inputElement, index) {
-    if (inputElement.value.length !== 2) {
-      return;
-    }
-
-    if (index === RULES.WINNING_LOTTO_NUMS - 1) {
+  handleWinningNumberInputFocus(input, index) {
+    if (input.value.length !== 2 || index === RULES.WINNING_LOTTO_NUMS - 1) {
       return;
     }
 

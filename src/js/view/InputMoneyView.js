@@ -1,6 +1,6 @@
 import { convertToNumber } from '../utils/common.js';
 import { validatePurchaseMoney } from './validator.js';
-import { emit, on } from '../utils/event.js';
+import { event } from '../utils/event.js';
 import { EVENT } from '../constants/index.js';
 
 export default class InputMoneyView {
@@ -10,7 +10,7 @@ export default class InputMoneyView {
     this.purchaseMoneyInput = document.getElementById('purchase-money-input');
 
     //subscribe
-    on(this.purchasedMoneyForm, 'submit', e =>
+    event.on(this.purchasedMoneyForm, 'submit', e =>
       this.handlePurchasedMoneyFormSubmit(e),
     );
   }
@@ -21,7 +21,7 @@ export default class InputMoneyView {
 
     try {
       validatePurchaseMoney(purchaseMoney);
-      emit(this.purchasedMoneyForm, EVENT.SUBMIT_MONEY, {
+      event.emit(this.purchasedMoneyForm, EVENT.SUBMIT_MONEY, {
         purchaseMoney,
       });
     } catch (error) {

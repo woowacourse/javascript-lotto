@@ -1,5 +1,5 @@
 import { EVENT } from '../constants';
-import { emit, on } from '../utils/event';
+import { event } from '../utils/event';
 
 export default class LottoResultModalView {
   constructor() {
@@ -13,7 +13,9 @@ export default class LottoResultModalView {
 
     //이벤트 리스너
     this.closeButton.addEventListener('click', this.hideModal.bind(this));
-    on(this.restartButton, 'click', () => this.clickRestartButtonHandler());
+    event.on(this.restartButton, 'click', () =>
+      this.clickRestartButtonHandler(),
+    );
   }
 
   renderLottoResult(lottoResult) {
@@ -31,7 +33,7 @@ export default class LottoResultModalView {
 
   clickRestartButtonHandler() {
     this.hideModal();
-    emit(this.restartButton, EVENT.CLICK_RESTART, {});
+    event.emit(this.restartButton, EVENT.CLICK_RESTART, {});
   }
 
   hideModal() {

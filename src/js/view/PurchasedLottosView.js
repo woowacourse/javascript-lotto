@@ -1,3 +1,5 @@
+import { event } from '../utils/event';
+
 //template
 const getLottoListTemplate = lottos => {
   const lottoListTemplate = lottos.reduce(
@@ -49,7 +51,7 @@ export default class PurchasedLottosView {
     );
 
     const switchButton = document.getElementById('on-off-switch');
-    switchButton.addEventListener('click', this.handleSwitchClick.bind(this));
+    event.on(switchButton, 'click', this.handleSwitchClick.bind(this));
   }
 
   handleSwitchClick() {
