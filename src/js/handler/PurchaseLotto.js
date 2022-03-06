@@ -10,7 +10,7 @@ export default class PurchaseLotto {
     $('.purchase-form').addEventListener('submit', this.handlePurchase);
   }
 
-  showResultElements() {
+  showLottoPurchaseResultElements() {
     $$('.result').forEach((element) => element.classList.remove('display-none'));
   }
 
@@ -32,9 +32,9 @@ export default class PurchaseLotto {
     $('.lotto-grid').insertAdjacentHTML('beforeend', template);
   }
 
-  showResult(lottoTickets) {
+  showLottoPurcahseResult(lottoTickets) {
     deactivateForm(['.money-input', '.purchase-button']);
-    this.showResultElements();
+    this.showLottoPurchaseResultElements();
     this.showLottoTicketsLength(lottoTickets.length);
     this.showLottoImage(lottoTickets);
   }
@@ -50,6 +50,6 @@ export default class PurchaseLotto {
 
     money.userInput = moneyInput;
     lottoTicket.issueLottoTickets(moneyInput);
-    this.showResult(lottoTicket.getLottoTickets());
+    this.showLottoPurcahseResult(lottoTicket.getLottoTickets());
   };
 }
