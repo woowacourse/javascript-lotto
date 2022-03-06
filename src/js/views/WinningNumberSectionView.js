@@ -74,20 +74,7 @@ export default class WinningNumberSectionView extends View {
         attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
         attributeType: 'class',
       },
-      ({ target }) => {
-        target.value = removeNaN(target.value);
-        target.value = ignoreFirstZero(target.value);
-        target.value = target.value.substr(0, 2);
-
-        if (isInputOutOfRange(target, LOTTO.NUMBER_RANGE.MAX)) {
-          const nextInput = getNextSibling(target, {
-            attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
-            attributeType: 'class',
-          });
-
-          if (nextInput) nextInput.focus();
-        }
-      }
+      this.handleOnInputWinningNumberInput.bind(this)
     );
   }
 
@@ -95,21 +82,36 @@ export default class WinningNumberSectionView extends View {
     this.bindEventListener(
       'click',
       { attributeName: DOM_STRING.SHOW_RESULT_BUTTON, attributeType: 'id' },
-      () => {
-        const winningNumbers = this.getWinningNumbers();
-
-        try {
-          validate(
-            winningNumbers,
-            winningNumbersValidator,
-            concatWinningNumbers
-          );
-          callback(winningNumbers);
-        } catch (e) {
-          alert(e);
-        }
-      }
+      this.handleOnClickShowResultButton.bind(this, callback)
     );
+  }
+
+  handleOnInputWinningNumberInput(e) {
+    const { target } = e;
+
+    target.value = removeNaN(target.value);
+    target.value = ignoreFirstZero(target.value);
+    target.value = target.value.substr(0, 2);
+
+    if (isInputOutOfRange(target, LOTTO.NUMBER_RANGE.MAX)) {
+      const nextInput = getNextSibling(target, {
+        attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
+        attributeType: 'class',
+      });
+
+      if (nextInput) nextInput.focus();
+    }
+  }
+
+  handleOnClickShowResultButton(callback) {
+    const winningNumbers = this.getWinningNumbers();
+
+    try {
+      validate(winningNumbers, winningNumbersValidator, concatWinningNumbers);
+      callback(winningNumbers);
+    } catch (e) {
+      alert(e);
+    }
   }
 
   getWinningNumbers() {

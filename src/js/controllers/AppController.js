@@ -61,6 +61,7 @@ export default class AppController extends Controller {
 
   purchase(amount) {
     this.models.lottoModel.init();
+
     const message = this.autoPickLotto(LottoModel.getLottoCount(amount));
 
     this.views.ticketSectionView.update(message);
@@ -95,7 +96,7 @@ export default class AppController extends Controller {
     const { lottoList } = this.models.lottoModel.getState();
     const rankCount = this.countMatchedTickets(lottoList, winningNumbers);
     const totalPrizes = this.sumPrize(rankCount);
-    const purchaseAmount = lottoList.length * 1000;
+    const purchaseAmount = lottoList.length * LOTTO.PRICE;
     const rateOfReturn = calculateRateOfReturn(totalPrizes, purchaseAmount);
 
     return {

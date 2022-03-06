@@ -53,23 +53,25 @@ export default class ResultModalWindowView extends View {
     `;
   }
 
+  bindOnClickModalOverlay(callback) {
+    this.bindEventListener(
+      'click',
+      { attributeName: DOM_STRING.RESTART_BUTTON, attributeType: 'id' },
+      this.handleOnClickModalOverlay.bind(this, callback)
+    );
+  }
+
+  handleOnClickModalOverlay(callback) {
+    this.closeModalWindow();
+
+    callback();
+  }
+
   closeModalWindow() {
     this.update({ isModalOpened: false });
   }
 
   showModalWindow() {
     this.update({ isModalOpened: true });
-  }
-
-  bindOnClickModalOverlay(callback) {
-    this.bindEventListener(
-      'click',
-      { attributeName: DOM_STRING.RESTART_BUTTON, attributeType: 'id' },
-      (e) => {
-        this.closeModalWindow();
-
-        callback();
-      }
-    );
   }
 }

@@ -26,17 +26,22 @@ export default class PaymentSectionView extends View {
   bindOnClickPaymentSubmit(callback) {
     this.bindEventListener(
       'click',
-      { attributeName: DOM_STRING.PAYMENT_SUBMIT, attributeType: 'id' },
-      () => {
-        const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
-
-        try {
-          validate(amount, purchaseAmountValidator);
-          callback(amount);
-        } catch (e) {
-          alert(e);
-        }
-      }
+      {
+        attributeName: DOM_STRING.PAYMENT_SUBMIT,
+        attributeType: 'id',
+      },
+      this.handleOnClickpaymentSubmit.bind(this, callback)
     );
+  }
+
+  handleOnClickpaymentSubmit(callback) {
+    const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
+
+    try {
+      validate(amount, purchaseAmountValidator);
+      callback(amount);
+    } catch (e) {
+      alert(e);
+    }
   }
 }

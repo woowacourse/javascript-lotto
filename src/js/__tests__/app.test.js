@@ -154,7 +154,7 @@ describe('Step 2', () => {
     });
   });
 
-  describe.only('util', () => {
+  describe('util', () => {
     describe('validator', () => {
       test('번호들이 정수가 아니면 에러를 throw한다.', () => {
         const winningNumbers = {
