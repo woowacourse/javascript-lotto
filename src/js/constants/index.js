@@ -13,7 +13,7 @@ export const LOTTO_NUMBERS = Object.freeze({
 
 export const ALERT_MESSAGE = Object.freeze({
   MUST_NUMBER: '숫자를 입력하세요.',
-  OVER_THOUSAND_LOTTO_PRICE: `${LOTTO_NUMBERS.LOTTO_PRICE}원 이상을 입력해주세요.`,
+  OVER_LOTTO_PRICE: `${LOTTO_NUMBERS.LOTTO_PRICE}원 이상을 입력해주세요.`,
   DIVIDED_BY_LOTTO_PRICE: `${LOTTO_NUMBERS.LOTTO_PRICE}으로 나누어 떨어지는 값을 입력해주세요`,
   OUT_OF_BOUNDS: `${LOTTO_NUMBERS.MIN_LOTTO_NUMBER} ~ ${LOTTO_NUMBERS.MAX_LOTTO_NUMBER} 사이의 숫자를 입력해주세요.`,
   DUPLICATED_NUMBERS: '중복되지 않은 숫자를 입력해주세요.',
