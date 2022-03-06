@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE, LOTTO_RULES } from '../constants/constants';
 import { isNumberInRange } from '../utils/utils';
 
-const MatchCalculateMachine = {
+const NumberCalculationHelpers = {
   validateWinnerNumberInput({ numbers, bonus }) {
     if (this.hasBlankInput({ numbers, bonus })) {
       throw new Error(ERROR_MESSAGE.EMPTY_WINNER_INPUT);
@@ -70,12 +70,12 @@ const MatchCalculateMachine = {
 };
 
 export default function calculateNumberMatch(lottoArray, { numbers, bonus }) {
-  MatchCalculateMachine.validateWinnerNumberInput({ numbers, bonus });
+  NumberCalculationHelpers.validateWinnerNumberInput({ numbers, bonus });
 
   const winnerNumbers = {
     numbers: numbers.map((numString) => Number(numString)),
     bonus: Number(bonus),
   };
 
-  return MatchCalculateMachine.calculateMatchResult(lottoArray, winnerNumbers);
+  return NumberCalculationHelpers.calculateMatchResult(lottoArray, winnerNumbers);
 }

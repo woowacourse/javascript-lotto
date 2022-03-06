@@ -1,7 +1,7 @@
 import { CASH_INPUT_RANGE, ERROR_MESSAGE, LOTTO_RULES } from '../constants/constants';
 import { generateRandomNumberInRange, isNumberInRange } from '../utils/utils';
 
-const LottoPurchaseMachine = {
+const LottoGenerationHelpers = {
   validateCashInput(cashInput) {
     if (!cashInput) {
       throw new Error(ERROR_MESSAGE.EMPTY_CASH_INPUT);
@@ -38,6 +38,6 @@ const LottoPurchaseMachine = {
 
 export default function generateLottos(cashInput) {
   const cash = Number(cashInput);
-  LottoPurchaseMachine.validateCashInput(cash);
-  return LottoPurchaseMachine.generateLottos(cash);
+  LottoGenerationHelpers.validateCashInput(cash);
+  return LottoGenerationHelpers.generateLottos(cash);
 }
