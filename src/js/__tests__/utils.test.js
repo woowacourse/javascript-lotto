@@ -11,6 +11,7 @@ import {
   shuffleArray,
   isDuplicateNumbers,
   isOutOfRange,
+  changeToUpperSnakeCase,
 } from '../utils';
 
 const lottoConsumer = new LottoConsumer();
@@ -299,4 +300,10 @@ describe('당첨 번호, 보너스 번호 중에 1 ~ 45 사이의 숫자가 아�
 
     expect(isOutOfRange(winningNumberList, bounsNumber)).toBe(false);
   });
+});
+
+test('카멜케이스의 문자열이 대문자 스네이크 케이스로 변환되는지 확인한다.', () => {
+  const stringInput = 'stringInput';
+
+  expect(changeToUpperSnakeCase(stringInput)).toBe('STRING_INPUT');
 });
