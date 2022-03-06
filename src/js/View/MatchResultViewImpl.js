@@ -24,10 +24,6 @@ export default class MatchResultViewImpl extends MatchResultView {
     this.$winningLottoCounts[4].innerText = matchResult[MATCH_COUNT_OF_LOTTO_RANKING.FIRST];
   }
 
-  moveTab(findInputFunction) {
-    this.inputInstance.focusFindedInput(findInputFunction);
-  }
-
   show() {
     this.$lottoMatchArea.classList.add('show');
   }
