@@ -1,5 +1,5 @@
 export default class MatchResultView {
-  moveTab() {}
+  render(renderingData) {}
 
   show() {}
 
@@ -8,4 +8,12 @@ export default class MatchResultView {
   onModal() {}
 
   offModal() {}
+
+  getInputValue() {}
+
+  setInputValue() {}
+
+  focusEmptyInput() {}
+
+  focusOverlappedInput() {}
 }
