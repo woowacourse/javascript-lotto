@@ -27,9 +27,7 @@ export const CLASS_NAME = {
   INVISIBLE: 'invisible',
 };
 
-export const MONEY = {
-  STANDARD: 1000,
-};
+export const MONEY_STANDARD = 1000;
 
 export const LOTTO = {
   MIN_NUMBER: 1,
@@ -47,7 +45,7 @@ export const WINNING_AMOUNT = {
 };
 
 export const ERROR_MESSAGE = {
-  MONEY_OUT_OF_RANGE: `구입할 금액을 잘못 입력 하셨습니다. 구입할 금액은 ${MONEY.STANDARD}원 이상을 입력해주셔야 합니다`,
-  MONEY_OUT_OF_STANDARD: `구입할 금액을 잘못 입력 하셨습니다. 구입할 금액은 ${MONEY.STANDARD}원 단위로 입력해주셔야 합니다`,
+  MONEY_OUT_OF_RANGE: `구입할 금액을 잘못 입력 하셨습니다. 구입할 금액은 ${MONEY_STANDARD}원 이상을 입력해주셔야 합니다`,
+  MONEY_OUT_OF_STANDARD: `구입할 금액을 잘못 입력 하셨습니다. 구입할 금액은 ${MONEY_STANDARD}원 단위로 입력해주셔야 합니다`,
   NOT_DUPLICATED_NUMBERS: `지난주 당첨 번호는 ${LOTTO.MIN_NUMBER} ~ ${LOTTO.MAX_NUMBER} 사이의 숫자를 중복 없이 입력해주셔야 합니다.`,
 };

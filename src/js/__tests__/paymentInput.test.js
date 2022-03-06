@@ -1,4 +1,4 @@
-import { MONEY } from '../constants';
+import { MONEY_STANDARD } from '../constants';
 import {
   isNegativeInteger,
   isEqualToZero,
@@ -66,16 +66,16 @@ describe('구입할 금액에 음의 정수를 입력하진 않았는지 확인�
   });
 });
 
-describe(`구입할 금액에 입력한 값이 ${MONEY.STANDARD}으로 나누어 떨어지는지 확인한다.`, () => {
-  test(`구입할 금액에 입력한 값이 ${MONEY.STANDARD}으로 나누어 떨어지지 않는 경우. 입력: 33`, () => {
+describe(`구입할 금액에 입력한 값이 ${MONEY_STANDARD}으로 나누어 떨어지는지 확인한다.`, () => {
+  test(`구입할 금액에 입력한 값이 ${MONEY_STANDARD}으로 나누어 떨어지지 않는 경우. 입력: 33`, () => {
     const payment = 33;
 
-    expect(hasRemainder(payment, MONEY.STANDARD)).toBe(true);
+    expect(hasRemainder(payment, MONEY_STANDARD)).toBe(true);
   });
 
-  test(`구입 금액에 입력한 값이 ${MONEY.STANDARD}으로 나누어 떨어지는 경우. 입력: 3000`, () => {
+  test(`구입 금액에 입력한 값이 ${MONEY_STANDARD}으로 나누어 떨어지는 경우. 입력: 3000`, () => {
     const payment = 3000;
 
-    expect(hasRemainder(payment, MONEY.STANDARD)).toBe(false);
+    expect(hasRemainder(payment, MONEY_STANDARD)).toBe(false);
   });
 });

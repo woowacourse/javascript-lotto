@@ -1,5 +1,5 @@
 import { countingDuplicates, changeToUpperSnakeCase } from './utils';
-import { MONEY, WINNING_AMOUNT } from './constants';
+import { MONEY_STANDARD, WINNING_AMOUNT } from './constants';
 
 export default class LottoSeller {
   #lastWeekWinningLottoList = [];
@@ -35,7 +35,7 @@ export default class LottoSeller {
   }
 
   setPurchasedAmount(count) {
-    this.#purchasedAmount = count * MONEY.STANDARD;
+    this.#purchasedAmount = count * MONEY_STANDARD;
   }
 
   getPurchasedAmount() {

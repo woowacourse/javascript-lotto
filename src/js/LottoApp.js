@@ -2,7 +2,7 @@ import LottoConsumer from './LottoConsumer';
 import LottoSeller from './LottoSeller';
 import createTemplate from './templates';
 
-import { CLASS_NAME, SELECTOR, MONEY, LOTTO } from './constants';
+import { CLASS_NAME, SELECTOR, MONEY_STANDARD, LOTTO } from './constants';
 import {
   getPurchasedLottoCount,
   getValidWinningNumberAndBonusNumber,
@@ -133,7 +133,7 @@ export default class LottoApp {
       e.preventDefault();
       const purchasedLottoCount = getPurchasedLottoCount(
         this.$paymentInput.valueAsNumber,
-        MONEY.STANDARD
+        MONEY_STANDARD
       );
 
       disabledElements(
