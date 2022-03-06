@@ -90,12 +90,12 @@ export default class LottoController {
         LOTTO.MIN_DIGIT,
         LOTTO.MAX_DIGIT
       );
-      LottoController.validateLottoWinningBonusNumber(
+      LottoController.validateLottoWinningBonusNumber({
         lottoWinningNumbers,
         lottoWinningBonusNumber,
-        LOTTO.MIN_DIGIT,
-        LOTTO.MAX_DIGIT
-      );
+        min: LOTTO.MIN_DIGIT,
+        max: LOTTO.MAX_DIGIT,
+      });
 
       const lottoMatchResult = this.#lottoResultManager.calcLottoMatchingResult(
         lottoWinningNumbers,
@@ -136,7 +136,12 @@ export default class LottoController {
     throw new Error(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_WINNING_NUMBERS);
   }
 
-  static validateLottoWinningBonusNumber(lottoWinningNumbers, lottoWinningBonusNumber, min, max) {
+  static validateLottoWinningBonusNumber({
+    lottoWinningNumbers,
+    lottoWinningBonusNumber,
+    min,
+    max,
+  }) {
     if (
       isNumberInRange(lottoWinningBonusNumber, min, max) &&
       isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber)
