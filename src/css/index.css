@@ -47,6 +47,11 @@ lotto-list {
   display: flex;
 }
 
+lotto-list ul.lotto-list {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 lotto-list > .lotto-list-container {
   flex: 1;
 }
