@@ -67,10 +67,10 @@ export default class LottoMachine {
       alert(error.message);
       return;
     }
-    this.#setLottoResultModal();
+    this.#renderLottoResultModal();
   }
 
-  #setLottoResultModal() {
+  #renderLottoResultModal() {
     this.lottoMachineView.showLottoResultModal();
     this.#setLottoResultEvent();
     this.#showLottoResult();
