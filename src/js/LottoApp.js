@@ -1,5 +1,5 @@
 import { isPositiveInteger, isRemainder, isOverRange, isOverlapped } from './util/utils';
-import { ID, MONEY, ERROR_MESSAGE, LOTTO, CLASS } from './util/constants';
+import { ID, MONEY_STANDARD, ERROR_MESSAGE, LOTTO, CLASS } from './util/constants';
 import { generatePaymentSection, generatePurchasedSection, generateWinningNumberSection } from './view/templates';
 import { $, $$, render, initInput } from './view/dom';
 import PurchasedLotto from './PurchasedLotto';
@@ -36,12 +36,12 @@ export default class LottoApp {
       if (!isPositiveInteger(payment)) {
         throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
       }
-      if (isRemainder(payment, MONEY.STANDARD)) {
+      if (isRemainder(payment, MONEY_STANDARD)) {
         throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_STANDARD);
       }
 
       toggleDisablePayment();
-      this.lottoList.setPurchasedLotto(payment / MONEY.STANDARD);
+      this.lottoList.setPurchasedLotto(payment / MONEY_STANDARD);
       this.renderPurchasedSection();
 
       moveFocusToNextNumber();

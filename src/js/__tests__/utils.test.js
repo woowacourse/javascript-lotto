@@ -8,7 +8,7 @@ import {
   isOverlapped,
 } from '../util/utils';
 
-import { MONEY, LOTTO } from '../util/constants';
+import { MONEY_STANDARD, LOTTO } from '../util/constants';
 
 describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케이스)', () => {
   test('구입할 금액이 양의 정수인지 확인한다. 입력: -1, 실패 케이스', () => {
@@ -30,17 +30,17 @@ describe('구입할 금액이 양의 정수인지 확인한다(실패/성공 케
   });
 });
 
-describe(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지는지 확인한다 (실패/성공 케이스)`, () => {
-  test(`구입할 금액이 ${MONEY.STANDARD}으로 나누어 떨어지 않은 경우 에러메시지를 보여준다. 입력: 33, 성공 케이스`, () => {
+describe(`구입할 금액이 ${MONEY_STANDARD}으로 나누어 떨어지는지 확인한다 (실패/성공 케이스)`, () => {
+  test(`구입할 금액이 ${MONEY_STANDARD}으로 나누어 떨어지 않은 경우 에러메시지를 보여준다. 입력: 33, 성공 케이스`, () => {
     const payment = 133;
 
-    expect(isRemainder(payment, MONEY.STANDARD)).toBe(true);
+    expect(isRemainder(payment, MONEY_STANDARD)).toBe(true);
   });
 
-  test(`구입 금액이 ${MONEY.STANDARD}으로 나누어 떨어질 경우 (구입 금액/${MONEY.STANDARD})을 반환한다. 입력: 3000, 실패 케이스`, () => {
+  test(`구입 금액이 ${MONEY_STANDARD}으로 나누어 떨어질 경우 (구입 금액/${MONEY_STANDARD})을 반환한다. 입력: 3000, 실패 케이스`, () => {
     const payment = 3000;
 
-    expect(isRemainder(payment, MONEY.STANDARD)).toBe(false);
+    expect(isRemainder(payment, MONEY_STANDARD)).toBe(false);
   });
 });
 

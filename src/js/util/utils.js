@@ -1,4 +1,4 @@
-import { LOTTO, MONEY, RANK, RANK_PRIZE } from './constants';
+import { LOTTO, MONEY_STANDARD, RANK, RANK_PRIZE } from './constants';
 
 export const isPositiveInteger = (payment) => Number.isInteger(payment) && payment > 0;
 
@@ -62,4 +62,4 @@ export const getTotalWinningMoney = (rankCount) =>
   Object.entries(rankCount).reduce((sum, [key, value]) => sum + value * RANK_PRIZE[key], 0);
 
 export const getWinningRate = (totalMoney, lottoCount) =>
-  Math.floor(((totalMoney - lottoCount * MONEY.STANDARD) / (lottoCount * MONEY.STANDARD)) * 100);
+  Math.floor(((totalMoney - lottoCount * MONEY_STANDARD) / (lottoCount * MONEY_STANDARD)) * 100);

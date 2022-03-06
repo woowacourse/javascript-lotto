@@ -61,7 +61,7 @@ describe('조건에 맞지않는 구입할 금액을 입력한 경우, 실패 �
 describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
   const input = 3000;
 
-  beforeEach(() => {
+  before(() => {
     cy.visit('/index.html');
     cy.get(ID.PAYMENT_INPUT).type(input);
     cy.get(ID.PAYMENT_BUTTON).click();
@@ -73,7 +73,6 @@ describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
   });
 
   it('번호 보기 버튼을 비활성화하면 사용자가 구매한 로또 번호가 가려진다', () => {
-    cy.get(ID.LOTTO_LIST_TOGGLE_BUTTON).click();
     cy.get(ID.LOTTO_LIST_TOGGLE_BUTTON).click();
     cy.get(CLASS.LOTTO_NUMBER).should('be.not.visible');
   });
