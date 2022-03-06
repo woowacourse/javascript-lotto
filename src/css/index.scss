@@ -60,6 +60,14 @@ body {
       cursor: unset;
     }
   }
+
+  .show {
+    display: block;
+  }
+
+  .reset-button {
+    padding: 10px 30px;
+  }
 }
 
 .lotto-money-section {
@@ -71,10 +79,6 @@ body {
   grid-template-columns: 80% 15%;
   justify-content: space-between;
   margin-top: 0.8rem;
-}
-
-.show {
-  display: block !important;
 }
 
 .lotto-list-container {
@@ -294,10 +298,6 @@ WINNING MODAL
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.reset-button {
-  padding: 10px 30px !important;
 }
 
 .close-modal-button {

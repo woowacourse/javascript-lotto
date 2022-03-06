@@ -5,7 +5,7 @@ import WinningLottoCounter from '../models/WinningLottoCounter';
 
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
-import { checkValidMoneyInput, checkValidWinningNumberInput } from '../utils/Lotto/validator';
+import { checkValidMoneyInput } from '../utils/Lotto/validator';
 import WinningNumberInputView from '../views/WinningNumberInputView';
 import ResultModalView from '../views/ResultModalView';
 import WinningLotto from '../models/WinningLotto';
