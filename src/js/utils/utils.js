@@ -23,6 +23,16 @@ export const cloneObject = (obj) => {
   return clone;
 };
 
+export const getEmptyCount = (keys) => {
+  const count = {};
+
+  keys.forEach((key) => {
+    if (key) count[key] = 0;
+  });
+
+  return count;
+};
+
 export const concatWinningNumbers = (winningNumbers) => [
   ...winningNumbers.main,
   winningNumbers.bonus,

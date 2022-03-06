@@ -1,7 +1,7 @@
 import Controller from '../core/Controller.js';
 import LottoModel from '../models/LottoModel.js';
 import { LOTTO } from '../configs/contants.js';
-import { calculateRateOfReturn } from '../utils/utils.js';
+import { calculateRateOfReturn, getEmptyCount } from '../utils/utils.js';
 
 export default class AppController extends Controller {
   init() {
@@ -69,11 +69,7 @@ export default class AppController extends Controller {
   }
 
   countMatchedTickets(lottoList, winningNumbers) {
-    const rankCount = {};
-
-    Object.keys(LOTTO.PRIZE).forEach((rank) => {
-      if (rank) rankCount[rank] = 0;
-    });
+    const rankCount = getEmptyCount(Object.keys(LOTTO.PRIZE));
 
     lottoList.forEach((ticket) => {
       const rank = ticket.matchWinningNumbers(winningNumbers);
@@ -86,9 +82,9 @@ export default class AppController extends Controller {
 
   sumPrize(rankCount) {
     return Object.entries(rankCount).reduce((sum, [rank, count]) => {
-      const amount = LOTTO.PRIZE[rank].AMOUNT;
+      const prize = LOTTO.PRIZE[rank].AMOUNT;
 
-      return sum + amount * count;
+      return sum + prize * count;
     }, 0);
   }
 
