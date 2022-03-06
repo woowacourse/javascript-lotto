@@ -25,7 +25,7 @@ const getLottoMatchSecetionTemplate = () => {
 };
 
 class LottoMatchView {
-  #lottoMatchSecteion = null;
+  #lottoMatchSection = null;
 
   #resultButton = null;
 
@@ -34,11 +34,11 @@ class LottoMatchView {
   #handleResultButton;
 
   constructor() {
-    this.#lottoMatchSecteion = $('.lotto-match-section');
+    this.#lottoMatchSection = $('.lotto-match-section');
   }
 
   renderLottoMatchSecteion() {
-    this.#lottoMatchSecteion.innerHTML = getLottoMatchSecetionTemplate();
+    this.#lottoMatchSection.innerHTML = getLottoMatchSecetionTemplate();
 
     this.#resultButton = $('#result-button');
     this.#matchNumberInputs = $$('.match-number-input');
@@ -46,7 +46,7 @@ class LottoMatchView {
 
   setOnClickResultButtonHandler(callback) {
     this.#handleResultButton = () => {
-      if (this.#isNotFounedMatchNumberInputs()) {
+      if (this.#isNotFoundedMatchNumberInputs()) {
         return;
       }
 
@@ -59,10 +59,10 @@ class LottoMatchView {
   }
 
   reset() {
-    this.#lottoMatchSecteion.innerHTML = '';
+    this.#lottoMatchSection.innerHTML = '';
   }
 
-  #isNotFounedMatchNumberInputs() {
+  #isNotFoundedMatchNumberInputs() {
     return this.#matchNumberInputs === null;
   }
 
