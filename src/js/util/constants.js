@@ -27,6 +27,7 @@ export const CLASS_NAME = {
   TOGGLE_SWITCH: 'toggle-switch',
   DIRECTION_COLUMN: 'direction-column',
   INVISIBLE: 'invisible',
+  HIDDEN: 'hidden',
 };
 
 export const MONEY = {

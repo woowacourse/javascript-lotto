@@ -3,12 +3,12 @@ import { ID, MONEY, ERROR_MESSAGE, LOTTO, CLASS } from './util/constants';
 import { generatePaymentSection, generatePurchasedSection, generateWinningNumberSection } from './view/templates';
 import { $, $$, render, initInput } from './view/dom';
 import PurchasedLotto from './PurchasedLotto';
-import { toggleDisablePayment, generateResult, moveFocus, toggleButton, modalClose } from './view/view';
+import { toggleDisablePayment, generateResult, moveFocusToNextNumber, toggleButton, modalClose } from './view/view';
 
 export default class LottoApp {
   constructor(app) {
     this.$app = $(app);
-    this.lottoList = [];
+    this.lottoList = new PurchasedLotto();
 
     render(this.$app, generatePaymentSection());
     this.bindEvent();
@@ -16,7 +16,7 @@ export default class LottoApp {
 
   bindEvent() {
     $(ID.PAYMENT_BUTTON).addEventListener('click', this.onSubmitPayment.bind(this));
-    $(ID.MODAL_CLOSE_BUTTON).addEventListener('click', modalClose.bind(this));
+    $(ID.MODAL_CLOSE_BUTTON).addEventListener('click', modalClose);
 
     window.addEventListener('click', (event) => {
       if (event.target === document.querySelector(CLASS.MODAL_BACKGROUND)) {
@@ -41,11 +41,10 @@ export default class LottoApp {
       }
 
       toggleDisablePayment();
-      this.lottoList = new PurchasedLotto();
       this.lottoList.setPurchasedLotto(payment / MONEY.STANDARD);
       this.renderPurchasedSection();
 
-      moveFocus();
+      moveFocusToNextNumber();
     } catch ({ message }) {
       alert(message);
       initInput($paymentInput);
@@ -55,7 +54,7 @@ export default class LottoApp {
   renderPurchasedSection() {
     render(this.$app, generatePurchasedSection(this.lottoList.getPurchasedLotto()));
     render(this.$app, generateWinningNumberSection());
-    $(ID.LOTTO_LIST_TOGGLE_BUTTON).addEventListener('click', toggleButton.bind(this));
+    $(ID.LOTTO_LIST_TOGGLE_BUTTON).addEventListener('click', toggleButton);
     $(ID.RESULT_CHECKING_BUTTON).addEventListener('click', this.onClickResultButton.bind(this));
   }
 
@@ -87,13 +86,13 @@ export default class LottoApp {
 
   onClickRestart(event) {
     event.preventDefault();
-    $(CLASS.MODAL_BACKGROUND).classList.remove('show');
+    modalClose();
     $(ID.PURCHASED_LOTTO_LIST_SECTION).remove();
     $(ID.WINNING_NUMBER_SECTION).remove();
 
     toggleDisablePayment();
     initInput($(ID.PAYMENT_INPUT));
 
-    this.lottoList = [];
+    this.lottoList = new PurchasedLotto();
   }
 }

@@ -1,6 +1,7 @@
 import { LOTTO, MONEY } from './constants';
 
-export const isPositiveInteger = (payment) => Number.isInteger(payment) && payment > 0;
+export const isPositiveInteger = (payment) =>
+  Number.isInteger(payment) && payment > 0;
 
 export const isRemainder = (payment, price) => payment % price !== 0;
 
@@ -21,15 +22,19 @@ export const createRandomNumberList = () => {
   return randomNumberList;
 };
 
-export const isOverRange = (minimum, maximum, number) => number < minimum || number > maximum;
+export const isOverRange = (minimum, maximum, number) =>
+  number < minimum || number > maximum;
 
-export const winningCount = (lotto, winningLotto) => lotto.filter((number) => winningLotto.includes(number)).length;
+export const winningCount = (lotto, winningLotto) =>
+  lotto.filter((number) => winningLotto.includes(number)).length;
 
-export const isBounusNumber = (lotto, bounusNumber) => lotto.includes(bounusNumber);
+export const isBounusNumber = (lotto, bounusNumber) =>
+  lotto.includes(bounusNumber);
 
-export const isOverlapped = (winningLotto) => new Set(winningLotto).size !== winningLotto.length;
+export const isOverlapped = (winningLotto) =>
+  new Set(winningLotto).size !== winningLotto.length;
 
-export const totalWinningCount = (lottoList, winningNumber, bonusNumber) => {
+export const getTotalWinningCount = (lottoList, winningNumber, bonusNumber) => {
   const result = [0, 0, 0, 0, 0];
   lottoList.forEach((lotto) => {
     const count = winningCount(lotto, winningNumber);
@@ -48,7 +53,12 @@ export const totalWinningCount = (lottoList, winningNumber, bonusNumber) => {
   return result;
 };
 
-export const totalWinningMoney = (result) => result.reduce((sum, count, index) => sum + count * MONEY.PRIZE[index], 0);
+export const totalWinningMoney = (result) =>
+  result.reduce((sum, count, index) => sum + count * MONEY.PRIZE[index], 0);
 
 export const winningRate = (totalMoney, lottoCount) =>
-  Math.floor(((totalMoney - lottoCount * MONEY.STANDARD) / (lottoCount * MONEY.STANDARD)) * 100);
+  Math.floor(
+    ((totalMoney - lottoCount * MONEY.STANDARD) /
+      (lottoCount * MONEY.STANDARD)) *
+      100
+  );
