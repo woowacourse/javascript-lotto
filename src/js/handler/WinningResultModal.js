@@ -9,6 +9,30 @@ import { lottoTicket } from '../model/lottoTicket';
 export default class WinningResultModal {
   constructor() {
     $('.winning-numbers-form').addEventListener('submit', this.handleWinningResultModal);
+    $$('.winning-numbers').forEach((element) => element.addEventListener('input', this.moveNextInput.bind(element)));
+    $$('.winning-numbers').forEach((element) =>
+      element.addEventListener('keydown', this.movePreviousInput.bind(element))
+    );
+  }
+
+  movePreviousInput(e) {
+    if (e.keyCode === 8) {
+      if (e.target === $('#winning-number-1')) return;
+      if (this.value.length !== 0) return;
+      this.previousElementSibling === null ? $('#winning-number-6').focus() : this.previousElementSibling.focus();
+    }
+  }
+
+  moveNextInput() {
+    this.value = this.value.slice(0, this.maxLength);
+
+    if (this.value.length !== this.maxLength) return;
+    this.nextElementSibling === null
+      ? (function () {
+          $('#bonus-number').focus();
+          return;
+        })()
+      : this.nextElementSibling.focus();
   }
 
   getUserInputWinningNumbers() {
