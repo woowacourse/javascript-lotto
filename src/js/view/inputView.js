@@ -120,7 +120,7 @@ export default class InputView {
       this.$lottoPriceInputMessage.innerText = SUCCESS_MESSAGE.PURCHASE_POSSIBLE;
       this.$lottoPriceInputMessage.classList.add('pass');
       this.$lottoPriceInput.classList.remove('invalid-input');
-      this.openLottoPriceButton();
+      this.activeLottoPriceButton();
     } catch (err) {
       this.$lottoPriceInputMessage.innerText = err.message;
       this.$lottoPriceInputMessage.classList.remove('pass');
@@ -135,8 +135,8 @@ export default class InputView {
   }
 
   openLottoPriceForm() {
-    this.openLottoPriceButton();
-    this.openLottoPriceInput();
+    this.activeLottoPriceButton();
+    this.activeLottoPriceInput();
   }
 
   blockLottoPriceButton() {
@@ -147,11 +147,11 @@ export default class InputView {
     this.$lottoPriceInput.disabled = true;
   }
 
-  openLottoPriceButton() {
+  activeLottoPriceButton() {
     this.$lottoPriceButton.disabled = false;
   }
 
-  openLottoPriceInput() {
+  activeLottoPriceInput() {
     this.$lottoPriceInput.disabled = false;
   }
 

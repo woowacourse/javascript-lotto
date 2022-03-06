@@ -50,17 +50,13 @@ export default class LottoModel {
     return [...lottoNumberArray];
   }
 
-  setLottos(lottos) {
-    this.#lottos = lottos;
-  }
-
   getLottos() {
     return this.#lottos;
   }
 
   buyLottos(inputMoney) {
     checkValidLottoCount(inputMoney);
-    this.setLottos(this.generateLottos(inputMoney / LOTTO_NUMBERS.LOTTO_PRICE));
+    this.#lottos = this.generateLottos(inputMoney / LOTTO_NUMBERS.LOTTO_PRICE);
   }
 
   setWinningLottoNumbers(winnerNumberArray, bonusNumber) {
