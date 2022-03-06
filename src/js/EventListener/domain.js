@@ -62,10 +62,13 @@ export const writingwinningNumbers = (e) => {
   e.currentTarget.value = e.currentTarget.value.slice(0, LOTTO_RULES.NUMBER_MAX_LENGTH);
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
+    matchResultView.focusEmptyInput();
   }
 };
 
-export const focusOverlappedInput = () => {};
+export const focusOverlappedInput = () => {
+  matchResultView.focusOverlappedInput();
+};
 
 export const closeModal = () => {
   matchResultView.offModal();

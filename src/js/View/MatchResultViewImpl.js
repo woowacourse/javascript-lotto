@@ -1,5 +1,5 @@
 import MatchResultView from '../EventListener/MatchResultView.js';
-import { $, $$ } from '../utils/index.js';
+import { $, $$, isEmpty } from '../utils/index.js';
 import { MATCH_COUNT_OF_LOTTO_RANKING } from '../constant/index.js';
 
 export default class MatchResultViewImpl extends MatchResultView {
@@ -57,11 +57,29 @@ export default class MatchResultViewImpl extends MatchResultView {
     });
   }
 
-  focusFindedInput(findInputFunction) {
-    const findedInput = findInputFunction(this.$inputs);
+  focusEmptyInput() {
+    const index = this.$inputs.findIndex(($input) => isEmpty($input.value));
 
-    if (findedInput !== undefined) {
-      findedInput.focus();
+    if (index !== -1) {
+      this.focusInputByIndex(index);
     }
+  }
+
+  focusOverlappedInput() {
+    const set = new Set();
+    const index = this.$inputs.findIndex(($input) => {
+      if (set.has($input.value)) return true;
+
+      set.add($input.value);
+      return false;
+    });
+
+    if (index !== -1) {
+      this.focusInputByIndex(index);
+    }
+  }
+
+  focusInputByIndex(index) {
+    this.$inputs[index].focus();
   }
 }
