@@ -77,7 +77,7 @@ export class Controller {
       e.preventDefault();
       const winningNumbersObj = this.modalView.getWinningNumbersInput();
       const bonusNumber = Number(this.modalView.bonusNumber.value);
-      validator.isWinningInputValid(winningNumbersObj, bonusNumber);
+      validator.checkWinningInputValid(winningNumbersObj, bonusNumber);
       this.lottoGame.getWinningNumbers(winningNumbersObj, bonusNumber);
       this.lottoGame.compareLottos();
       this.lottoGame.getLottoProfit();

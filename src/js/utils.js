@@ -1,7 +1,7 @@
 import { CONDITIONS, ERROR_MESSAGE } from './constants/constants';
 
 export const validator = {
-  isInputValid(input) {
+  checkMoneyInputValid(input) {
     if (this.isMoneyZeroNegative(input)) {
       throw new Error(ERROR_MESSAGE.NEGATIVE_INPUT);
     }
@@ -32,7 +32,7 @@ export const validator = {
     return input < CONDITIONS.LOTTO_PRICE;
   },
 
-  isWinningInputValid(winningNumbers, bonusNumber) {
+  checkWinningInputValid(winningNumbers, bonusNumber) {
     if (this.isWinningsEmpty(winningNumbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.WINNINGS_NO_EMPTY);
     }

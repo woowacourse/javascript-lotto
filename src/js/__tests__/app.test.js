@@ -11,25 +11,25 @@ describe('구매 금액에 대한 확인', () => {
 
   test('금액은 자연수이어야 한다.', () => {
     expect(() => {
-      validator.isInputValid(-10);
+      validator.checkMoneyInputValid(-10);
     }).toThrowError(ERROR_MESSAGE.NEGATIVE_INPUT);
   });
 
   test('금액은 정수이어야 한다.', () => {
     expect(() => {
-      validator.isInputValid(1000.7);
+      validator.checkMoneyInputValid(1000.7);
     }).toThrowError(ERROR_MESSAGE.NOT_INTEGER_INPUT);
   });
 
   test('100장 이상을 구매할 금액은 제외합니다.', () => {
     expect(() => {
-      validator.isInputValid(10000000);
+      validator.checkMoneyInputValid(10000000);
     }).toThrowError(ERROR_MESSAGE.TOO_BIG_INPUT);
   });
 
   test('최소 한 장은 살 수 있는 금액을 입력해야 합니다.', () => {
     expect(() => {
-      validator.isInputValid(CONDITIONS.LOTTO_PRICE - 1);
+      validator.checkMoneyInputValid(CONDITIONS.LOTTO_PRICE - 1);
     }).toThrowError(ERROR_MESSAGE.TOO_SMALL_INPUT);
   });
 });
@@ -66,7 +66,7 @@ describe('당첨 번호를 입력 받을 수 있다.', () => {
     lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE);
     lottoGame.buyLotto();
     expect(() => {
-      validator.isWinningInputValid({ win1: 1, win2: 1, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+      validator.checkWinningInputValid({ win1: 1, win2: 1, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
     }).toThrowError(ERROR_MESSAGE.WINNGINGS_NO_OVERLAPPED);
   });
 });
@@ -86,15 +86,14 @@ describe('당첨 통계를 낼 수 있다.', () => {
 
   test('수익률을 계산할 수 있다.', () => {
     const lottoGame = new LottoGame();
-    lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE * 3);
+    lottoGame.insertMoney(CONDITIONS.LOTTO_PRICE * 2);
     lottoGame.buyLotto();
     lottoGame.lottoWallet[0].numbers = [1, 2, 3, 4, 5, 6];
     lottoGame.lottoWallet[1].numbers = [1, 2, 3, 14, 15, 16];
-    lottoGame.lottoWallet[2].numbers = [1, 2, 3, 4, 5, 7];
-    lottoGame.getWinningNumbers({ win1: 1, win2: 2, win3: 3, win4: 4, win5: 5, win6: 6 }, 7);
+    lottoGame.getWinningNumbers({ win1: 14, win2: 15, win3: 16, win4: 17, win5: 18, win6: 19 }, 20);
     lottoGame.compareLottos();
     lottoGame.getLottoProfit();
-    expect(lottoGame.lottoProfit).toEqual(67666833.33);
+    expect(lottoGame.lottoProfit).toEqual(150);
   });
 
   test('다시 시작을 위해 초기화가 가능하다.', () => {
