@@ -16,6 +16,7 @@ const template = {
   },
   paymentSection: () => {
     return `
+      <h2 hidden>dkan</h2>
       <label for="payment-input">구입할 금액을 입력해주세요.</label>
       <form id="payment-form">
         <input type="number" id="payment-input" />

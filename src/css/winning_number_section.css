@@ -36,10 +36,10 @@
 }
 
 #winning-number-section-reset-button {
-  background-color: rgb(253, 119, 119);
+  background-color: var(--color-app-reset-button);
   margin-bottom: 20px;
 }
 
 #winning-number-section-reset-button:hover {
-  background-color: rgb(253, 203, 203);
+  background-color: var(--color-app-reset-button-hover);
 }

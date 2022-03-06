@@ -1,3 +1,26 @@
+:root {
+  --color-basic-button: #00bcd4;
+  --color-button-hover: #80deea;
+  --color-button-text: #fff;
+  --color-disable-button: #b4b4b4;
+  --color-app-reset-button: rgb(253, 119, 119);
+  --color-app-reset-button-hover: rgb(253, 203, 203);
+
+  --color-basic-text: rgba(8, 5, 5, 0.87);
+  --color-input-border: #b4b4b4;
+  --color-placeholder: #8b8b8b;
+  --color-app-border: rgba(0, 0, 0, 0.12);
+  --color-modal-background: rgba(0, 0, 0, 0.5);
+  --color-statistic-background: white;
+  --color-table-border: #dcdcdc;
+
+  --color-slider: rgba(33, 33, 33, 0.08);
+  --color-slider-before: rgb(250, 248, 248);
+  --color-slider-bar: #80deea;
+  --color-slider-bar-before: #00bcd4;
+  --color-slider-shadow: rgba(0, 0, 0, 0.2);
+}
+
 html {
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
@@ -30,13 +53,13 @@ p {
   margin-bottom: 4px;
   line-height: 24px;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--color-basic-text);
 }
 
 input {
   height: 36px;
 
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--color-input-border);
   box-sizing: border-box;
   border-radius: 4px;
 }
@@ -51,7 +74,7 @@ input:placeholder {
   line-height: 24px;
 
   letter-spacing: 0.5px;
-  color: #8b8b8b;
+  color: var(--color-placeholder);
 }
 
 input::-webkit-outer-spin-button,
@@ -66,9 +89,9 @@ button {
   overflow: visible;
   cursor: pointer;
 
-  background: #00bcd4;
+  background: var(--color-basic-button);
   border-radius: 4px;
-  color: #fff;
+  color: var(--color-button-text);
 
   font-style: normal;
   font-weight: bold;
@@ -82,11 +105,11 @@ button {
 }
 
 button:hover {
-  background: #80deea;
+  background: var(--color-button-hover);
 }
 
 button:disabled {
-  background: #b4b4b4;
+  background: var(--color-disable-button);
 }
 
 ul {
