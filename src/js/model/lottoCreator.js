@@ -25,7 +25,7 @@ export default class LottoCreator {
   createLottoList() {
     const lottoCount = this.#purchaseMoney / LOTTO.COST_UNIT;
 
-    this.#lottoList = Array.from({ length: lottoCount }).map(() => LottoCreator.generateLotto());
+    this.#lottoList = Array.from({ length: lottoCount }, () => LottoCreator.generateLotto());
   }
 
   static generateLotto() {

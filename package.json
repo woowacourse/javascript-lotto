@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test:unit": "jest --watch --no-cache",
+    "test:unit": "jest --watch --no-cache -- unit",
     "test:e2e": " cypress run --browser chrome",
     "test": "npm run test:unit -- unit && npm run test:e2e -- e2e",
     "start": "webpack serve --open",
