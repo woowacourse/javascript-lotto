@@ -1,4 +1,4 @@
-import { $, $$ } from '../utils/dom';
+import { $, $$, focusElement } from '../utils/dom';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { lottoTicket } from '../model/lottoTicket';
 import { isInvalidMoneyInput } from '../validator/validator';
@@ -51,5 +51,6 @@ export default class PurchaseLotto {
     money.userInput = moneyInput;
     lottoTicket.issueLottoTickets(moneyInput);
     this.showLottoPurcahseResult(lottoTicket.getLottoTickets());
+    focusElement($('#winning-number-1'));
   };
 }

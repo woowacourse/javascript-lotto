@@ -22,3 +22,7 @@ export const resetInput = () => {
     element.value = '';
   });
 };
+
+export const focusElement = (selector) => {
+  selector.focus();
+};
