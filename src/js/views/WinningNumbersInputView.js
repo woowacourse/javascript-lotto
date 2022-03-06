@@ -1,5 +1,5 @@
 import View from './View.js';
-import { $, $$, isDuplicated } from '../utils/utils.js';
+import { $, $$ } from '../utils/utils.js';
 import { LOTTO, SELECTOR } from '../constants/constants.js';
 import validateInputWinningNumbers from '../validations/CheckWinningLottos.js';
 

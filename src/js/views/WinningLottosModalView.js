@@ -1,4 +1,6 @@
-import View from './View';
+import View from './View.js';
+import { $, $$ } from '../utils/utils.js';
+import { SELECTOR } from '../constants/constants.js';
 
 const template = {
   showProfitMessage: profitRate => `당신의 총 수익률은 ${profitRate}%입니다.`

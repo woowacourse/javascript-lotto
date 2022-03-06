@@ -59,8 +59,7 @@ export default class CheckWinningLottosController {
   handleRetryButton() {
     this.machine.resetMachine();
     this.modalView.toggleModal();
-    this.modalView.ablePurchase();
-    this.modalView.hideLottoContainers();
+    this.modalView.restartPurchase();
     this.modalView.clearWinningNumbersInput();
     this.modalView.clearMoneyInput();
     this.modalView.resetToggle();
