@@ -66,7 +66,8 @@ export class LottoGame {
     this.winningStatus.forEach((winStatus, idx) => {
       winAmount += winStatus * WINNINGS[`${5 - idx}-place`];
     });
-    this.lottoProfit = (winAmount / (this.lottoWallet.length * CONDITIONS.LOTTO_PRICE)) * 100;
+    const purchased = this.lottoWallet.length * CONDITIONS.LOTTO_PRICE;
+    this.lottoProfit = ((winAmount - purchased) / purchased) * 100;
     this.lottoProfit = Number(this.lottoProfit.toFixed(2));
   }
 
