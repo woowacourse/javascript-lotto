@@ -117,10 +117,7 @@ export default class LottoMachine {
   }
 
   #calculateLottoPrize(lottoResult) {
-    let totalPrize = 0;
-    lottoResult.forEach((count, index) => {
-      totalPrize += LOTTO_PRIZE[index] * count;
-    });
+    const totalPrize = lottoResult.reduce((acc, cur, idx) => acc + LOTTO_PRIZE[idx] * cur);
     const totalCost = this.lottoCount * LOTTO_PRICE;
     const rateOfReturn = parseFloat(((totalPrize / totalCost) * 100 - 100).toFixed(2));
     return rateOfReturn;
