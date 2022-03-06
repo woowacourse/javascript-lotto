@@ -58,18 +58,18 @@ class LottoRoundModel {
   }
 
   getRoundResult(winningNumbers) {
-    if (isValidNumber(winningNumbers)) {
-      if (hasUniqueElement(winningNumbers)) {
-        this.winningResult = [0, 0, 0, 0, 0, 0, 0];
-        this.lottoList.forEach((lotto) => {
-          this.updateLottoRankResult(lotto, winningNumbers);
-        });
-        this.updateLottoEarningRate();
-        return this.winningResult;
-      }
+    if (!isValidNumber(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE);
+    }
+    if (!hasUniqueElement(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER_IS_EXIST);
     }
-    throw new Error(ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE);
+    this.winningResult = [0, 0, 0, 0, 0, 0, 0];
+    this.lottoList.forEach((lotto) => {
+      this.updateLottoRankResult(lotto, winningNumbers);
+    });
+    this.updateLottoEarningRate();
+    return this.winningResult;
   }
 
   updateLottoRankResult(lotto, winningNumbers) {
