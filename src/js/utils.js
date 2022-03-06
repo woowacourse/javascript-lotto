@@ -78,3 +78,7 @@ export const getRank = (lottoNums, winningNumbers) => {
   else if (count === 3) rank = 5;
   return rank;
 };
+
+export const transformToNumber = (str) => {
+  return toInt(str.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'), 0);
+};

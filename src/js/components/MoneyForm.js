@@ -3,7 +3,7 @@ import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import { validateMoney } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
-import { consoleErrorWithConditionalAlert } from '../utils';
+import { consoleErrorWithConditionalAlert, transformToNumber } from '../utils';
 import Store from '../flux/store';
 
 class MoneyForm extends Component {
@@ -23,13 +23,22 @@ class MoneyForm extends Component {
     this.addEvent('submit', 'form', (event) => {
       event.preventDefault();
       const $moneyInput = this.querySelector('input');
-
       try {
-        this.updateMoney($moneyInput.value);
+        this.updateMoney($moneyInput.value.replace(',', ''));
       } catch (e) {
         consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
       }
     });
+    this.addEvent('input', 'input', (event) => {
+      this.handleInput(event);
+    });
+  }
+
+  handleInput(event) {
+    const { target } = event;
+    const onlyNumber = transformToNumber(target.value);
+    const numberWithComma = onlyNumber.toLocaleString('ko-KR');
+    target.value = numberWithComma;
   }
 
   updateMoney(money) {
