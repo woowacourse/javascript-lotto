@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script defer src="bundle.js"></script>
+    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="./src/css/modal.css">
   </head>
   <body>
     <div id="app" class="app">
@@ -41,15 +42,15 @@
         </div>
         <div class="number-container">
           <div class="match-numbers">
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
           </div>
           <div class="bonus-number">
-            <input class="lotto-app-input match-number-input" type="text" length="2" required/>
+            <input class="lotto-app-input match-number-input" type="number" min="1" max="45" length="2" required/>
           </div>
         </div>
         <button class="lotto-app-button result-button" id="confirm-result-button">결과 확인하기</button>
@@ -114,5 +115,7 @@
         </div>
       </div>
     </div>
+
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>
