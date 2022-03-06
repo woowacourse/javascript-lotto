@@ -31,7 +31,7 @@ class ResultModalView {
 
   #toggleModal = (action) => {
     if (action === 'open') {
-      this.body.style.overflowY = 'hidden';
+      this.body.classList.add('stop-scroll');
       this.modal.style.top = `${window.scrollY}px`;
       this.modal.classList.remove('hide');
       return;

@@ -10,3 +10,7 @@
 .show-numbers .lotto-numbers {
   display: block;
 }
+
+.stop-scroll {
+  overflow-y: hidden;
+}
