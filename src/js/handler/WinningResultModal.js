@@ -64,7 +64,7 @@ export default class WinningResultModal {
 
     $('#app').insertAdjacentHTML('afterend', template);
     $('#modal').classList.remove('modal-display-none');
-    deactivateForm(['#show-result']);
+    deactivateForm(['#show-lotto-result-button']);
 
     window.addEventListener('click', (e) => {
       e.target === $('#modal') ? this.closeWinningResultModal() : false;
@@ -76,7 +76,7 @@ export default class WinningResultModal {
   closeWinningResultModal() {
     $('#modal').classList.add('modal-display-none');
     $('#modal').parentElement.removeChild($('#modal'));
-    activateForm(['#show-result']);
+    activateForm(['#show-lotto-result-button']);
   }
 
   initializeElements() {
