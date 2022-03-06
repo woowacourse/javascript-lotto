@@ -1,6 +1,6 @@
 import {
-  isInvalidRangeNumber,
-  isInvalidRangeNumbers,
+  isOverRangeLottoNumber,
+  isOverRangeLottoNumbers,
   isOverlapped,
   isInvalidCount,
   isIncludedWinningNumbers,
@@ -10,7 +10,7 @@ describe('지난 주 당첨 번호는 중복되지 않는 1 ~ 45 사이의 6개�
   const winningNumber = [7, 15, 30, 37, 39, 44];
 
   test('지난주 당첨 번호 숫자들은 1 ~ 45 사이의 숫자여야 한다.', () => {
-    expect(isInvalidRangeNumbers(winningNumber)).toBeFalsy();
+    expect(isOverRangeLottoNumbers(winningNumber)).toBeFalsy();
   });
 
   test('지난주 당첨 번호에는 중복된 숫자가 있으면 안된다.', () => {
@@ -34,6 +34,6 @@ describe('보너스 당첨 번호는 지난주 당첨 번호에 속해있지 않
   });
 
   test('보너스 당첨 번호는 1 ~ 45 사이의 숫자여야 한다.', () => {
-    expect(isInvalidRangeNumber(bonusNumber)).toBeFalsy();
+    expect(isOverRangeLottoNumber(bonusNumber)).toBeFalsy();
   });
 });

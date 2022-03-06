@@ -2,11 +2,11 @@ import { ERROR_MESSAGE, LOTTO_PRICE, LOTTO_RULES } from '../constant/index.js';
 
 export const isInsufficientFare = (fare) => fare < LOTTO_PRICE;
 
-export const isInvalidRangeNumber = (lottoNumber) =>
+export const isOverRangeLottoNumber = (lottoNumber) =>
   lottoNumber < LOTTO_RULES.MIN_RANGE || lottoNumber > LOTTO_RULES.MAX_RANGE;
 
-export const isInvalidRangeNumbers = (lottoNumbers) =>
-  lottoNumbers.some((lottoNumber) => isInvalidRangeNumber(lottoNumber));
+export const isOverRangeLottoNumbers = (lottoNumbers) =>
+  lottoNumbers.some((lottoNumber) => isOverRangeLottoNumber(lottoNumber));
 
 export const isOverlapped = (lottoNumbers) => {
   const lottoNumbersSet = new Set(lottoNumbers);
@@ -26,7 +26,7 @@ export const validator = {
     }
   },
   validateWinningNumbers: (winningNumbers) => {
-    if (isInvalidRangeNumbers(winningNumbers)) {
+    if (isOverRangeLottoNumbers(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_RANGE_WINNING_NUMBERS);
     }
 
@@ -43,7 +43,7 @@ export const validator = {
       throw new Error(ERROR_MESSAGE.INCLUDED_IN_WINNING_NUMBERS);
     }
 
-    if (isInvalidRangeNumber(bonusNumber)) {
+    if (isOverRangeLottoNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.INVALID_RANGE_BONUS_NUMBER);
     }
   },
