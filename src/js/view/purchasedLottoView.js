@@ -27,6 +27,7 @@ class PurchasedLottoView {
     this.totalAmountLabel.remove();
     this.purchasedLottoSection.classList.add('hide');
     this.lottoGrid.className = 'lotto-grid hide-numbers';
+    this.showNumberToggleButton.checked = false;
   }
 
   #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
