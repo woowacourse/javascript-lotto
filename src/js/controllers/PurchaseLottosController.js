@@ -31,8 +31,7 @@ export default class PurchaseLottosController {
       this.machine.lottos = this.machine.generateLottos();
       this.view.renderPurchasedLottosAmountByText(this.machine.lottos);
       this.view.renderPurchasedLottos(this.machine.lottos);
-      this.view.disablePurchase();
-      this.view.showLottoContainers();
+      this.view.stopPurchase();
     } catch (error) {
       alert(error.message);
     }

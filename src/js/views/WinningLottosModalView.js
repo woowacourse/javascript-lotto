@@ -5,12 +5,9 @@ const template = {
 };
 
 export default class WinningLottosView extends View {
-  hideLottoContainers() {
+  restartPurchase() {
     $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = true;
     $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = true;
-  }
-
-  ablePurchase() {
     $(SELECTOR.ID.PURCHASE_MONEY_INPUT).disabled = false;
     $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = false;
   }

@@ -61,12 +61,9 @@ export default class PurchaseLottosView extends View {
       template.purchaseMessageTemplate(lottos);
   }
 
-  disablePurchase() {
+  stopPurchase() {
     $(SELECTOR.ID.PURCHASE_MONEY_INPUT).disabled = true;
     $(SELECTOR.ID.PURCHASE_MONEY_BUTTON).disabled = true;
-  }
-
-  showLottoContainers() {
     $(SELECTOR.ID.LOTTO_RESULT_SECTION).hidden = false;
     $(SELECTOR.ID.WINNING_NUMBER_FORM).hidden = false;
   }
