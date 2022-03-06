@@ -48,7 +48,7 @@ export class Controller {
   #purchaseLotto(e) {
     try {
       e.preventDefault();
-      validator.isInputValid(Number(this.commonView.moneyInput.value));
+      validator.checkMoneyInputValid(Number(this.commonView.moneyInput.value));
       this.lottoGame.insertMoney(Number(this.commonView.moneyInput.value));
       this.lottoGame.buyLotto();
 
