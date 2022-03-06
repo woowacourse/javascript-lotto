@@ -15,10 +15,6 @@
 
 [링크](http://woojeongmin.com/javascript-lotto/)
 
-## 🔎 설계
-
-![javascript lotto modeling](./javascript-lotto-modeling.png)
-
 ## ⚙️ Before Started
 
 #### 개발 환경 가이드
