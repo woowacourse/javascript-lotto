@@ -1,5 +1,14 @@
 import View from '../core/View.js';
-import { $, $all, concatWinningNumbers } from '../utils/utils.js';
+import {
+  $,
+  $all,
+  concatWinningNumbers,
+  removeNaN,
+  isInputOutOfRange,
+  getNextSibling,
+  getPrevSibling,
+  ignoreFirstZero,
+} from '../utils/utils.js';
 import { validate, winningNumbersValidator } from '../utils/validator.js';
 import { DOM_STRING, LOTTO } from '../configs/contants.js';
 
@@ -56,6 +65,30 @@ export default class WinningNumberSectionView extends View {
         결과 확인하기
       </button>
     `;
+  }
+
+  bindOnInputWinningNumberInput() {
+    this.bindEventListener(
+      'input',
+      {
+        attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
+        attributeType: 'class',
+      },
+      ({ target }) => {
+        target.value = removeNaN(target.value);
+        target.value = ignoreFirstZero(target.value);
+        target.value = target.value.substr(0, 2);
+
+        if (isInputOutOfRange(target, LOTTO.NUMBER_RANGE.MAX)) {
+          const nextInput = getNextSibling(target, {
+            attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
+            attributeType: 'class',
+          });
+
+          if (nextInput) nextInput.focus();
+        }
+      }
+    );
   }
 
   bindOnClickShowResultButton(callback) {

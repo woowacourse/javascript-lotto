@@ -1,5 +1,44 @@
 import { LOTTO } from '../configs/contants';
 
+/**
+ * Common Utils
+ */
+
+export const generateNumberArray = (start, end) => {
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+};
+
+export const cloneObject = (obj) => {
+  if (obj === null || typeof obj !== 'object') return obj;
+
+  const clone = Array.isArray(obj) ? [] : {};
+
+  Object.keys(obj).forEach((key) => {
+    clone[key] =
+      typeof obj[key] === 'object' && obj[key] !== null
+        ? cloneObject(obj[key])
+        : (clone[key] = obj[key]);
+  });
+
+  return clone;
+};
+
+export const concatWinningNumbers = (winningNumbers) => [
+  ...winningNumbers.main,
+  winningNumbers.bonus,
+];
+
+export const removeNaN = (str) =>
+  str.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+
+export const ignoreFirstZero = (str) => {
+  return str[0] === '0' ? '' : str;
+};
+
+/**
+ * Math Utils
+ */
+
 export const ascendingOrder = (a, b) => a - b;
 
 export const prizeAmountAscendingOrder = (a, b) =>
@@ -15,9 +54,9 @@ export const getRandomInt = (min, max) => {
 export const calculateRateOfReturn = (currentValue, initialValue) =>
   (currentValue - initialValue) / initialValue;
 
-export const generateNumberArray = (start, end) => {
-  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
-};
+/**
+ * Dom Utils
+ */
 
 export const addPrefix = (selector, type) => {
   let prefix = '';
@@ -44,22 +83,23 @@ export const $all = (selector, type = null) => {
   return document.querySelectorAll(addPrefix(selector, type));
 };
 
-export const cloneObject = (obj) => {
-  if (obj === null || typeof obj !== 'object') return obj;
+export const isInputOutOfRange = (target, max) => {
+  const maxString = max.toString(10);
 
-  const clone = Array.isArray(obj) ? [] : {};
-
-  Object.keys(obj).forEach((key) => {
-    clone[key] =
-      typeof obj[key] === 'object' && obj[key] !== null
-        ? cloneObject(obj[key])
-        : (clone[key] = obj[key]);
-  });
-
-  return clone;
+  return (
+    target.value.length >= maxString.length ||
+    parseInt(target.value[0], 10) > maxString[0]
+  );
 };
 
-export const concatWinningNumbers = (winningNumbers) => [
-  ...winningNumbers.main,
-  winningNumbers.bonus,
-];
+export const getNextSibling = (target, { attributeName, attributeType }) => {
+  const siblings = $all(attributeName, attributeType);
+
+  return siblings[[...siblings].indexOf(target) + 1];
+};
+
+export const getPrevSibling = (target, { attributeName, attributeType }) => {
+  const siblings = $all(attributeName, attributeType);
+
+  return siblings[[...siblings].indexOf(target) - 1];
+};

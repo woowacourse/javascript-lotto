@@ -22,6 +22,7 @@ export default class AppController extends Controller {
       this.purchase.bind(this)
     );
     this.views.ticketSectionView.bindOnClickNumberToggle();
+    this.views.winningNumberSectionView.bindOnInputWinningNumberInput();
     this.views.winningNumberSectionView.bindOnClickShowResultButton(
       this.updateResult.bind(this)
     );
