@@ -50,7 +50,11 @@ input:focus {
 }
 
 .scroll-block {
-  overflow: hidden;
+  overflow: hidden !important;
+}
+
+.display {
+  display: block !important;
 }
 
 main {
@@ -126,10 +130,6 @@ h1 {
   width: 100%;
   margin-bottom: 14px;
   display: none;
-}
-
-.lotto-list__section-display {
-  display: block;
 }
 
 .lotto-list__header {
@@ -244,10 +244,6 @@ h1 {
   width: 100%;
   font-size: 15px;
   display: none;
-}
-
-.picked-numbers-form-display {
-  display: block;
 }
 
 .picked-numbers__description {

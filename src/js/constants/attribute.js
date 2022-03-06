@@ -16,11 +16,10 @@ export const ID = {
 };
 
 export const CLASS = {
-  LOTTO_LIST_SECTION_DISPLAY: 'lotto-list__section-display',
+  DISPLAY: 'display',
   LOTTO_LIST: 'lotto-list',
   LOTTO_LIST_TICKET: 'lotto-list__ticket',
   LOTTO_LIST_NUMBERS: 'lotto-list__numbers',
-  PICKED_NUMBERS_FORM_DISPLAY: 'picked-numbers-form-display',
   PICKED_NUMBER_INPUT: 'picked-number__input',
   RESULT_MODAL_GRID_ITEM: 'result-modal-grid-item',
   UNFOLD: 'unfold',

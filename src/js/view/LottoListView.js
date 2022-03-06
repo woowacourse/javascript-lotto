@@ -1,5 +1,5 @@
 import { ID, CLASS } from '../constants/attribute.js';
-import { $, addClassName, replaceHTML } from '../utils/dom.js';
+import { $, addClassName, removeClassName, replaceHTML } from '../utils/dom.js';
 
 export default class LottoListView {
   constructor() {
@@ -31,11 +31,11 @@ export default class LottoListView {
   }
 
   displayLottoListSection() {
-    addClassName(this.$lottoListSection, CLASS.LOTTO_LIST_SECTION_DISPLAY);
+    addClassName(this.$lottoListSection, CLASS.DISPLAY);
   }
 
   displayNoneLottoListSection() {
-    removeClassName(this.$lottoListSection, CLASS.LOTTO_LIST_SECTION_DISPLAY);
+    removeClassName(this.$lottoListSection, CLASS.DISPLAY);
   }
 
   #showLottoList(lottoList) {

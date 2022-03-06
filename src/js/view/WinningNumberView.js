@@ -87,11 +87,11 @@ export default class WinningNumberView {
   }
 
   displayPickedNumbersForm() {
-    addClassName(this.$pickedNumbersForm, CLASS.PICKED_NUMBERS_FORM_DISPLAY);
+    addClassName(this.$pickedNumbersForm, CLASS.DISPLAY);
   }
 
   displayNonePickedNumbersForm() {
-    removeClassName(this.$pickedNumbersForm, CLASS.PICKED_NUMBERS_FORM_DISPLAY);
+    removeClassName(this.$pickedNumbersForm, CLASS.DISPLAY);
   }
 
   displayResultModal() {
