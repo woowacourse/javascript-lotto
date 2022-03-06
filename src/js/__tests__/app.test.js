@@ -7,7 +7,7 @@ describe('로또 구매 테스트', () => {
   test('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
     const model = new Model();
     const lottoQuantity = 10;
-    model.buyLotto(lottoQuantity);
+    model.buyLotto(lottoQuantity * LOTTO_PRICE);
     expect(model.getLottoList().length).toBe(lottoQuantity);
   });
 
@@ -54,7 +54,7 @@ describe('당첨 결과 확인 테스트', () => {
       .mockReturnValueOnce([13, 14, 15, 16, 17, 18]);
 
     model.setCash(lottoQuantity * LOTTO_PRICE);
-    model.buyLotto(lottoQuantity);
+    model.buyLotto(lottoQuantity * LOTTO_PRICE);
     model.setWinningLottoQuantity(pickedNumber);
 
     const winningLottoQuantity = model.getWinningLottoQuantity();

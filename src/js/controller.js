@@ -28,7 +28,7 @@ export default class Controller {
     try {
       validateCashInput(cash);
       this.#model.setCash(cash);
-      this.#model.buyLotto(cash / LOTTO_PRICE);
+      this.#model.buyLotto(cash);
       this.#lottoListView.showLottoListSection(this.#model.getLottoList());
       this.#winningNumberView.displayPickedNumbersForm();
       this.#winningNumberView.moveFocusOnWinningNumberInput();

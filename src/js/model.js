@@ -1,4 +1,4 @@
-import { LOTTO_RULE, WINNING_PRIZE } from './constants/lotto';
+import { LOTTO_PRICE, LOTTO_RULE, WINNING_PRIZE } from './constants/lotto';
 export default class Model {
   #cash = 0;
   #lottoList = [];
@@ -26,9 +26,9 @@ export default class Model {
     return this.#winningLottoQuantity;
   }
 
-  buyLotto(quantity) {
+  buyLotto(cash) {
     this.#lottoList = [];
-    for (let i = 0; i < quantity; i++) {
+    for (let i = 0; i < cash / LOTTO_PRICE; i++) {
       this.#lottoList.push(this.makeLottoNumbers());
     }
   }
