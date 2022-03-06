@@ -2,30 +2,12 @@ import { ERROR_MESSAGE, LOTTO } from '../constants';
 import { toInt } from '../utils';
 import ValidationResult from './validation-result';
 
-const isEmptyStr = (str) => {
-  return `${str}`.trim() === '';
-};
-
 export const isNumber = (num) => {
   return /^-?[0-9]+$/g.test(num);
 };
 
 export const isPositiveInteger = (num) => {
   return /^[0-9]+$/g.test(num) && toInt(num, 0) !== 0;
-};
-
-export const checkEmptyMoney = (money) => {
-  if (isEmptyStr(money)) {
-    return new ValidationResult(true, ERROR_MESSAGE.EMPTY_MONEY);
-  }
-  return new ValidationResult(false);
-};
-
-export const checkUnderMinMoney = (money) => {
-  if (toInt(money, 10) < 1000) {
-    return new ValidationResult(true, ERROR_MESSAGE.UNDER_MIN_MONEY);
-  }
-  return new ValidationResult(false);
 };
 
 export const checkOverMaxMoney = (money) => {
@@ -43,12 +25,7 @@ export const checkNotDevidedByThousandMoney = (money) => {
 };
 
 export const validateMoney = (money) => {
-  return [
-    checkEmptyMoney(money),
-    checkUnderMinMoney(money),
-    checkOverMaxMoney(money),
-    checkNotDevidedByThousandMoney(money),
-  ];
+  return [checkOverMaxMoney(money), checkNotDevidedByThousandMoney(money)];
 };
 
 export const checkDuplicateOfWinningNumberList = (numbers) => {
