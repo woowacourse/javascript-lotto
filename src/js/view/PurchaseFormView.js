@@ -39,16 +39,17 @@ export default class PurchaseFormView {
     });
 
     this.$purchaseInput.addEventListener('input', e => {
-      if (REGEXP.KOREAN.test(e.target.value)) {
+      const value = e.target.value;
+      if (REGEXP.KOREAN.test(value)) {
         e.target.value = valueAfterKeyDown;
         return;
       }
 
-      if (e.target.value === '') {
+      if (value === '') {
         return;
       }
 
-      e.target.value = removeCommaInNumber(e.target.value).toLocaleString();
+      e.target.value = removeCommaInNumber(value).toLocaleString();
     });
   }
 
