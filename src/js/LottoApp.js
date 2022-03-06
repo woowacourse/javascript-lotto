@@ -2,11 +2,12 @@ import LottoConsumer from './LottoConsumer';
 import LottoSeller from './LottoSeller';
 import createTemplate from './templates';
 
-import { CLASS_NAME, SELECTOR, MONEY } from './constants';
+import { CLASS_NAME, SELECTOR, MONEY, LOTTO } from './constants';
 import {
   getPurchasedLottoCount,
   getValidWinningNumberAndBonusNumber,
   getRateOfReturn,
+  isUniqueWinningNumber,
 } from './utils';
 import {
   getElement,
@@ -21,6 +22,8 @@ import {
   removeChildElements,
   focusInput,
   bindsEventListener,
+  disabledElement,
+  enabledElement,
 } from './dom';
 
 export default class LottoApp {
@@ -180,10 +183,43 @@ export default class LottoApp {
         getElement(`[data-input-id="${Number(target.dataset.inputId) - 1}"]`)
       );
     }
+
+    let count = 0;
+
+    [...this.$winningNumbers].reduce(
+      (previousWinningNumbers, winningNumberElement) => {
+        const currentWinningNumber = winningNumberElement.valueAsNumber;
+
+        if (
+          currentWinningNumber >= LOTTO.MIN_NUMBER &&
+          currentWinningNumber <= LOTTO.MAX_NUMBER &&
+          isUniqueWinningNumber({
+            winningNumberElements: this.$winningNumbers,
+            winningNumberElement,
+            previousWinningNumbers,
+            currentWinningNumber,
+          })
+        ) {
+          count++;
+        }
+
+        return [...previousWinningNumbers, currentWinningNumber];
+      },
+      []
+    );
+
+    if (count === 7) {
+      enabledElement(this.$resultCheckingButton, CLASS_NAME.DISABLED);
+
+      return;
+    }
+
+    disabledElement(this.$resultCheckingButton, CLASS_NAME.DISABLED);
   }
 
   purchasedLottoListSectionBindEvent() {
     this.$lottoListToggleButton = getElement(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON);
+    this.$winningNumbers = getElements(SELECTOR.WINNING_NUMBERS);
 
     bindEventListener(
       this.$lottoListToggleButton,
@@ -193,8 +229,10 @@ export default class LottoApp {
   }
 
   lastWeekWinningNumberSectionBindEvent() {
+    this.$resultCheckingButton = getElement(SELECTOR.RESULT_CHECKING_BUTTON);
+
     bindEventListener(
-      getElement(SELECTOR.RESULT_CHECKING_BUTTON),
+      this.$resultCheckingButton,
       'click',
       this.onSubmitLottoResultButton.bind(this)
     );

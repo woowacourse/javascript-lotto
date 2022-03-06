@@ -6,7 +6,7 @@ const createTemplate = {
       <h2 hidden>구입할 금액</h2>
       <label for="payment-input">구입할 금액을 입력해주세요.</label>
       <form class="payment-form">
-        <input name="payment-input" id="payment-input" type="number" placeholder="금액" min="1000" autofocus />
+        <input name="payment-input" id="payment-input" type="number" placeholder="금액" min="1000" step="1000" required autofocus />
         <button id="payment-button">구입</button>
       </form>
     </section>
@@ -53,37 +53,37 @@ const createTemplate = {
             <ul id="last-week-number-list">
               <li class="last-week-number">
                 <label for="last-week-first-input" hidden>지난주 당첨 첫 번째 번호</label>
-                <input type="number" name="last-week-first-input" class="last-week-number-input" data-input-id="1" min="1" max="45" maxlength="2" />
+                <input type="number" name="last-week-first-input" class="last-week-number-input winning-numbers" data-input-id="1" min="1" max="45" maxlength="2" required />
               </li>
               <li class="last-week-number">
                 <label for="last-week-second-input" hidden>지난주 당첨 두 번째 번호</label>
-                <input type="number" name="last-week-second-input" class="last-week-number-input" data-input-id="2" min="1" max="45" maxlength="2" />
+                <input type="number" name="last-week-second-input" class="last-week-number-input winning-numbers" data-input-id="2" min="1" max="45" maxlength="2" required />
               </li>
               <li class="last-week-number">
                 <label for="last-week-third-input" hidden>지난주 당첨 세 번째 번호</label>
-                <input type="number" name="last-week-third-input" class="last-week-number-input" data-input-id="3" min="1" max="45" maxlength="2" />
+                <input type="number" name="last-week-third-input" class="last-week-number-input winning-numbers" data-input-id="3" min="1" max="45" maxlength="2" required />
               </li>
               <li class="last-week-number">
                 <label for="last-week-forth-input" hidden>지난주 당첨 네 번째 번호</label>
-                <input type="number" name="last-week-forth-input" class="last-week-number-input" data-input-id="4" min="1" max="45" maxlength="2" />
+                <input type="number" name="last-week-forth-input" class="last-week-number-input winning-numbers" data-input-id="4" min="1" max="45" maxlength="2" required />
               </li>
               <li class="last-week-number">
                 <label for="last-week-fifth-input" hidden>지난주 당첨 다섯 번째 번호</label>
-                <input type="number" name="last-week-fifth-input" class="last-week-number-input" data-input-id="5" min="1" max="45" maxlength="2" />
+                <input type="number" name="last-week-fifth-input" class="last-week-number-input winning-numbers" data-input-id="5" min="1" max="45" maxlength="2" required />
               </li>
               <li class="last-week-number">
                 <label for="last-week-sixth-input" hidden>지난주 당첨 여섯 번째 번호</label>
-                <input type="number" name="last-week-sixth-input" class="last-week-number-input" data-input-id="6" min="1" max="45" maxlength="2" />
+                <input type="number" name="last-week-sixth-input" class="last-week-number-input winning-numbers" data-input-id="6" min="1" max="45" maxlength="2" required />
               </li>
             </ul>
           </div>
           <div class="last-week-bonus-number-container">
             <p>보너스 번호</p>
             <label for="last-week-bonus-input" hidden>지난주 당첨 보너스 번째 번호</label>
-            <input type="number" class="last-week-bonus-number-input" data-input-id="7" min="1" max="45" maxlength="2"  />
+            <input type="number" class="last-week-bonus-number-input winning-numbers" data-input-id="7" min="1" max="45" maxlength="2" required />
           </div>
         </div>
-        <button id="result-checking-button">결과 확인하기</button>
+        <button id="result-checking-button" class="disabled" disabled>결과 확인하기</button>
       </form>
     </section>
   `;

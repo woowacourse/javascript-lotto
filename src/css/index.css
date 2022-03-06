@@ -35,10 +35,16 @@ input {
   border: 1px solid #b4b4b4;
 }
 
+input:invalid {
+  border-color: rgb(250, 105, 105);
+  background-color: rgb(254, 234, 234);
+}
+
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+input:valid,
 input:focus {
   outline: 1px solid #00bcd4;
   border: none;
@@ -57,13 +63,26 @@ button {
   display: none;
 }
 
+.background-color-red {
+  background-color: rgb(254, 234, 234);
+}
+
+.background-color-white {
+  background-color: #fff;
+}
+
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button.disabled,
 #payment-section .payment-form #payment-button.disabled {
   background-color: #828282;
   opacity: 0.6;
 
   cursor: default;
 }
-
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button.disabled:hover,
 #payment-section .payment-form #payment-button.disabled:hover {
   background-color: #828282;
   opacity: 0.6;
@@ -137,7 +156,7 @@ h1 {
 
 #lotto-result-section #restart-button,
 #payment-section .payment-form #payment-button,
-#last-week-winning-number-section #result-checking-button {
+#last-week-winning-number-section .winning-number-form #result-checking-button {
   font-weight: 700;
   font-size: 14px;
   color: white;
@@ -150,13 +169,17 @@ h1 {
 
 #lotto-result-section #restart-button:hover,
 #payment-section .payment-form #payment-button:hover,
-#last-week-winning-number-section #result-checking-button:hover {
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button:hover {
   background-color: #80deea;
 }
 
 #lotto-result-section #restart-button:active,
 #payment-section .payment-form #payment-button:active,
-#last-week-winning-number-section #result-checking-button:active {
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button:active {
   transform: translateY(2px);
 }
 
@@ -299,7 +322,10 @@ h1 {
   border-radius: 4px;
 }
 
-#last-week-winning-number-section #result-checking-button {
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button.disabled,
+#last-week-winning-number-section .winning-number-form #result-checking-button {
   width: 100%;
   margin-top: 24px;
   height: 36px;

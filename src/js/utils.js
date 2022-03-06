@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE, LOTTO } from './constants';
+import { changeBackgroundColor } from './dom';
 
 export const isString = (payment) => {
   return typeof payment === 'string';
@@ -117,4 +118,43 @@ export const changeToUpperSnakeCase = (string) => {
       return character.toUpperCase();
     })
     .join('');
+};
+
+export const findDuplicateIndex = (checkWinningNumbers, winningNumber) => {
+  return checkWinningNumbers.findIndex(
+    (checkWinningNumber) => checkWinningNumber === winningNumber
+  );
+};
+
+export const isUniqueWinningNumber = ({
+  winningNumberElements,
+  winningNumberElement,
+  previousWinningNumbers,
+  currentWinningNumber,
+}) => {
+  if (!previousWinningNumbers.includes(currentWinningNumber)) {
+    changeBackgroundColor({
+      element: winningNumberElement,
+      addClassName: 'background-color-white',
+      removeClassName: 'background-color-red',
+    });
+
+    return true;
+  }
+
+  changeBackgroundColor({
+    element:
+      winningNumberElements[
+        findDuplicateIndex(previousWinningNumbers, currentWinningNumber)
+      ],
+    addClassName: 'background-color-red',
+    removeClassName: 'background-color-white',
+  });
+  changeBackgroundColor({
+    element: winningNumberElement,
+    addClassName: 'background-color-red',
+    removeClassName: 'background-color-white',
+  });
+
+  return false;
 };

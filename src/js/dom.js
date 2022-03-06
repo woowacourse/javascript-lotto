@@ -16,6 +16,16 @@ export const removeChildElements = (parentElement, childElements) => {
   });
 };
 
+export const disabledElement = (element, className) => {
+  element.classList.add(className);
+  element.disabled = true;
+};
+
+export const enabledElement = (element, className) => {
+  element.classList.remove(className);
+  element.disabled = false;
+};
+
 export const enabledElements = (elements, className) => {
   elements.forEach((element) => {
     toggleElement(element, className);
@@ -49,4 +59,13 @@ export const bindEventListener = (selector, type, callback) => {
 
 export const bindsEventListener = (parentElement, type, callback) => {
   parentElement.addEventListener(type, callback);
+};
+
+export const changeBackgroundColor = ({
+  element,
+  addClassName,
+  removeClassName,
+}) => {
+  element.classList.add(addClassName);
+  element.classList.remove(removeClassName);
 };

@@ -16,6 +16,7 @@ export const SELECTOR = {
   RESTART_BUTTON: '#restart-button',
   EXIT_BUTTON: '#exit-button',
   WINNING_NUMBER_CONTAINER: '.winning-number-container',
+  WINNING_NUMBERS: '.winning-numbers',
 };
 
 export const CLASS_NAME = {
