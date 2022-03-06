@@ -154,7 +154,7 @@ class WinningNumberForm extends Component {
   handleEnter() {
     const winningNumberList = this.$inputs.map((input) => input.valueAsNumber);
     try {
-      this.showStatisticModal(winningNumberList);
+      this.showStatisticsModal(winningNumberList);
     } catch (e) {
       this.submitLottoNumbers(winningNumberList);
     }
@@ -176,7 +176,7 @@ class WinningNumberForm extends Component {
     );
   }
 
-  showStatisticModal(winningNumberList) {
+  showStatisticsModal(winningNumberList) {
     const hasError = validateWinningNumberList(winningNumberList).some((result) => result.hasError);
     if (hasError) {
       throw new ValidationError(errorMessage);
