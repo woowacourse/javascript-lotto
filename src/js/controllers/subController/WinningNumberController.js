@@ -14,8 +14,9 @@ export default class WinningNumberController {
     this.setEventHandler();
   }
 
-  resetInputs() {
+  resetView() {
     this.winningNumberView.clearInputs();
+    this.winningNumberView.disappearResetButton();
   }
 
   showResetButton() {
