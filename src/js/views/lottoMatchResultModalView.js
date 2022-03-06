@@ -1,7 +1,7 @@
 import { $, on, emit } from '../utils/helper.js';
 import { LOTTO_MATCHING_RESULT_KEY } from '../utils/constants.js';
 
-export default class LottoMatchResultView {
+export default class LottoMatchResultModalView {
   #lottoResultDialog;
 
   #threeMatchedNumber;

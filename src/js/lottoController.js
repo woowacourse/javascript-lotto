@@ -21,7 +21,7 @@ export default class LottoController {
 
   #lottoWinningNumberInputView;
 
-  #lottoMatchResultView;
+  #lottoMatchResultModalView;
 
   constructor(models, views) {
     this.#lottoCreator = models.lottoCreator;
@@ -30,7 +30,7 @@ export default class LottoController {
     this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
     this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
     this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
-    this.#lottoMatchResultView = views.lottoMatchResultView;
+    this.#lottoMatchResultModalView = views.lottoMatchResultModalView;
     this.#submitInitialView();
   }
 
@@ -40,7 +40,7 @@ export default class LottoController {
       '@purchaseMoney',
       this.#submitPurchaseLotto.bind(this)
     );
-    on(this.#lottoMatchResultView.restartButton, '@restart', this.#submitRestart.bind(this));
+    on(this.#lottoMatchResultModalView.restartButton, '@restart', this.#submitRestart.bind(this));
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -108,7 +108,7 @@ export default class LottoController {
         lottoMatchResult
       );
 
-      this.#lottoMatchResultView.render(lottoMatchResult, profit);
+      this.#lottoMatchResultModalView.render(lottoMatchResult, profit);
 
       return;
     }
