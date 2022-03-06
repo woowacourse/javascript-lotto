@@ -1,5 +1,6 @@
 import { ID, CLASS } from '../constants/attribute.js';
 import { WINNING_PRIZE } from '../constants/lotto.js';
+import { REGEXP } from '../constants/regexp.js';
 import { $, $$, addClassName, removeClassName, replaceHTML } from '../utils/dom';
 
 export default class WinningNumberView {
@@ -49,6 +50,16 @@ export default class WinningNumberView {
     this.$pickedNumberInputs.forEach(($input, index) => {
       $input.addEventListener('input', () => {
         this.#moveFocusHandler($input);
+      });
+
+      $input.addEventListener('keydown', e => {
+        if (REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(e.key)) {
+          e.preventDefault();
+          return;
+        }
+        if (e.target.value.length === 2 && REGEXP.NUMBER.test(e.key)) {
+          e.preventDefault();
+        }
       });
 
       $input.addEventListener('keyup', e => {
