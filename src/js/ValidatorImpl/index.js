@@ -1,11 +1,6 @@
 import Validator from '../EventListener/Validator.js';
 import ValidationError from '../ValidationError/index.js';
-import {
-  LOTTO_PRICE,
-  LOTTO_RULES,
-  ERROR_MESSAGE,
-  ORDER_TO_FOCUS_ON_VIEW,
-} from '../constant/index.js';
+import { LOTTO_PRICE, LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 import { isEmpty, isNotNumber, isOutOfRanged } from '../utils/index.js';
 
 const checkFunctions = {
@@ -36,7 +31,7 @@ export default class ValidatorImpl extends Validator {
 
   validateFare(fare) {
     if (this.checkFunctions.isLackFare(fare)) {
-      throw new ValidationError(ERROR_MESSAGE.LACK_OF_FARE, ORDER_TO_FOCUS_ON_VIEW.FARE);
+      throw new ValidationError(ERROR_MESSAGE.LACK_OF_FARE);
     }
   }
 
@@ -49,37 +44,25 @@ export default class ValidatorImpl extends Validator {
 
   checkwinningNumbersIsEmpty(winningNumbers) {
     if (this.checkFunctions.emptyNumbers(winningNumbers)) {
-      throw new ValidationError(
-        ERROR_MESSAGE.EMPTY_OF_WINNING_NUMBER,
-        ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER,
-      );
+      throw new ValidationError(ERROR_MESSAGE.EMPTY_OF_WINNING_NUMBER);
     }
   }
 
   checkwinningNumbersIsNotNumber(winningNumbers) {
     if (this.checkFunctions.isNotNumbers(winningNumbers)) {
-      throw new ValidationError(
-        ERROR_MESSAGE.WINNING_NUMBER_IS_NOT_NUMBER,
-        ORDER_TO_FOCUS_ON_VIEW.NOT_NUMBER,
-      );
+      throw new ValidationError(ERROR_MESSAGE.WINNING_NUMBER_IS_NOT_NUMBER);
     }
   }
 
   checkwinningNumbersOverlapped(winningNumbers) {
     if (this.checkFunctions.overlappedNumber(winningNumbers)) {
-      throw new ValidationError(
-        ERROR_MESSAGE.OVERLAPPED_WINNING_NUMBER,
-        ORDER_TO_FOCUS_ON_VIEW.OVERLAPPED_NUMBER,
-      );
+      throw new ValidationError(ERROR_MESSAGE.OVERLAPPED_WINNING_NUMBER);
     }
   }
 
   checkwinningNumbersOutedOfLottoNumberRange(winningNumbers) {
     if (this.checkFunctions.outedOfLottoNumberRange(winningNumbers)) {
-      throw new ValidationError(
-        ERROR_MESSAGE.OUT_OF_RANGE_WINNING_NUMBER,
-        ORDER_TO_FOCUS_ON_VIEW.OUT_OF_RANGE_NUMBER,
-      );
+      throw new ValidationError(ERROR_MESSAGE.OUT_OF_RANGE_WINNING_NUMBER);
     }
   }
 }

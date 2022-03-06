@@ -7,33 +7,12 @@ import LottosViewImpl from '../View/LottosViewImpl.js';
 import MatchResultViewImpl from '../View/MatchResultViewImpl.js';
 import ValidationError from '../ValidationError/index.js';
 import { isEmpty, isNotNumber, isOutOfRanged } from '../utils/index.js';
-import { LOTTO_RULES, ERROR_MESSAGE, ORDER_TO_FOCUS_ON_VIEW } from '../constant/index.js';
+import { LOTTO_RULES, ERROR_MESSAGE } from '../constant/index.js';
 
 const validator = new ValidatorImpl();
 const lottoCollection = new LottoCollectionImpl();
 const lottosView = new LottosViewImpl();
 const matchResultView = new MatchResultViewImpl();
-
-const findInputFunctions = {
-  [ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER]: ($input) =>
-    $input.find(($numberInput) => isEmpty($numberInput.value)),
-  [ORDER_TO_FOCUS_ON_VIEW.NOT_NUMBER]: ($input) =>
-    $input.find(($numberInput) => isNotNumber($numberInput.value)),
-  [ORDER_TO_FOCUS_ON_VIEW.OVERLAPPED_NUMBER]: ($input) => {
-    const set = new Set();
-
-    return $input.find(($numberInput) => {
-      if (set.has($numberInput.value)) return true;
-
-      set.add($numberInput.value);
-      return false;
-    });
-  },
-  [ORDER_TO_FOCUS_ON_VIEW.OUT_OF_RANGE_NUMBER]: ($input) =>
-    $input.find(($numberInput) =>
-      isOutOfRanged($numberInput.value, LOTTO_RULES.MIN_RANGE, LOTTO_RULES.MAX_RANGE),
-    ),
-};
 
 const lottosViewRenderingObject = (fare) => ({
   lottos: lottoCollection.getLottos(),
@@ -50,11 +29,7 @@ export const trySubmitFareForm = () => {
   matchResultView.show();
 };
 
-export const catchSubmitFareForm = (orderToView) => {
-  if (orderToView === ORDER_TO_FOCUS_ON_VIEW.FARE) {
-    lottosView.focusInput();
-  }
-};
+export const catchSubmitFareForm = () => {};
 
 export const toggleLottosView = () => {
   lottosView.toggleContainer();
@@ -86,12 +61,11 @@ export const writingwinningNumbers = (e) => {
   e.currentTarget.value = e.currentTarget.value.slice(0, LOTTO_RULES.NUMBER_MAX_LENGTH);
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {
-    matchResultView.focusFindedInput(findInputFunctions[ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER]);
   }
 };
 
-export const catchClickConfirmResultButton = (orderToView) => {
-  matchResultView.focusFindedInput(findInputFunctions[orderToView]);
+export const catchClickConfirmResultButton = () => {
+  matchResultView.focusFindedInput();
 };
 
 export const closeModal = () => {
