@@ -17,9 +17,9 @@ class RequestHandler {
   generateRequestManual() {
     const manual = {};
     manual[REQUEST_MESSAGE.INPUT_CASH] = (cash) => this.machine.buyLotto(cash);
-    manual[REQUEST_MESSAGE.INPUT_WINNER_NUMBER] = (winnerNumbers) => {
+    manual[REQUEST_MESSAGE.INPUT_WINNER_NUMBER] = (winnerNumbers) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
       this.machine.getNumberMatches(winnerNumbers);
-    };
     manual[REQUEST_MESSAGE.RESTART_APP] = () => this.machine.resetData();
 
     return manual;
