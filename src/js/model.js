@@ -1,14 +1,34 @@
-import { LOTTO_RULE } from './constants.js';
+import { LOTTO_PRICE, LOTTO_RULE, WINNING_PRIZE } from './constants/lotto';
 export default class Model {
+  #cash = 0;
   #lottoList = [];
+  #winningLottoQuantity = {
+    '3개': 0,
+    '4개': 0,
+    '5개': 0,
+    '5개+보너스볼': 0,
+    '6개': 0,
+  };
+
+  getCash() {
+    return this.#cash;
+  }
+
+  setCash(cash) {
+    this.#cash = cash;
+  }
 
   getLottoList() {
     return this.#lottoList;
   }
 
-  buyLotto(quantity) {
+  getWinningLottoQuantity() {
+    return this.#winningLottoQuantity;
+  }
+
+  buyLotto(cash) {
     this.#lottoList = [];
-    for (let i = 0; i < quantity; i++) {
+    for (let i = 0; i < cash / LOTTO_PRICE; i++) {
       this.#lottoList.push(this.makeLottoNumbers());
     }
   }
@@ -19,14 +39,26 @@ export default class Model {
       LOTTO_RULE.NUMBERS_COUNT,
     );
   }
+
+  setWinningLottoQuantity(pickedNumbers) {
+    Object.keys(this.#winningLottoQuantity).map(key => (this.#winningLottoQuantity[key] = 0));
+
+    this.#lottoList.map(lotto => {
+      this.#winningLottoQuantity[countSameNumber(lotto, pickedNumbers)] += 1;
+    });
+  }
+
+  calculateProfitRatio() {
+    let totalProfit = 0;
+    for (let key in WINNING_PRIZE) {
+      totalProfit += WINNING_PRIZE[key] * this.#winningLottoQuantity[key];
+    }
+    return (totalProfit / this.#cash) * 100;
+  }
 }
 
 function makeAllLottoNumbers(min, max) {
-  const result = [];
-  for (let i = min; i <= max; i++) {
-    result.push(i);
-  }
-  return result;
+  return [...Array(max + 1).keys()].slice(min);
 }
 
 function shuffle(array) {
@@ -35,4 +67,16 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+function countSameNumber(lotto, pickedNumbers) {
+  const winningNumbers = pickedNumbers.slice(0, LOTTO_RULE.NUMBERS_COUNT);
+  const bonusNumber = pickedNumbers.slice(-1)[0];
+
+  const winningCount = winningNumbers.filter(element => lotto.includes(element)).length;
+  if (winningCount === 5 && lotto.includes(bonusNumber)) {
+    return '5개+보너스볼';
+  }
+
+  return `${winningCount}개`;
 }

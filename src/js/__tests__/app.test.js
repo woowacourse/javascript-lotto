@@ -1,12 +1,13 @@
-import { ALERT_MESSAGE, LOTTO_PRICE, LOTTO_RULE } from '../constants';
 import Model from '../model';
-import { validateCashInput } from '../utils/validation';
+import { validateCashInput, validatePickedNumbers } from '../utils/validation';
+import { ALERT_MESSAGE } from '../constants/message';
+import { LOTTO_PRICE, LOTTO_RULE, MAX_PURCHASABLE_CASH } from '../constants/lotto';
 
 describe('로또 구매 테스트', () => {
   test('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
     const model = new Model();
     const lottoQuantity = 10;
-    model.buyLotto(lottoQuantity);
+    model.buyLotto(lottoQuantity * LOTTO_PRICE);
     expect(model.getLottoList().length).toBe(lottoQuantity);
   });
 
@@ -27,7 +28,49 @@ describe('로또 구매 테스트', () => {
   });
 
   test(`로또 구입 금액을 입력했을 때, 금액이 ${LOTTO_PRICE}원으로 나눠떨어지지 않으면 에러를 생성한다.`, () => {
-    const cash = 1500;
+    const cash = LOTTO_PRICE * 1.5;
     expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.NOT_DIVISIBLE);
+  });
+
+  test(`로또 구입 금액을 입력했을 때, 금액이 ${MAX_PURCHASABLE_CASH}을 넘어가면 에러를 생성한다.`, () => {
+    const cash = MAX_PURCHASABLE_CASH + 1;
+    expect(() => validateCashInput(cash)).toThrowError(ALERT_MESSAGE.OVER_MAX_CASH);
+  });
+});
+
+describe('당첨 결과 확인 테스트', () => {
+  test('결과 확인하기 버튼을 누르면, 당첨 갯수와 수익률이 정확히 계산된다', () => {
+    const pickedNumber = [4, 5, 6, 7, 8, 9, 10];
+    const lottoQuantity = 5;
+
+    const model = new Model();
+
+    model.makeLottoNumbers = jest
+      .fn()
+      .mockReturnValueOnce([1, 2, 3, 4, 5, 6])
+      .mockReturnValueOnce([4, 5, 6, 7, 8, 9])
+      .mockReturnValueOnce([4, 5, 6, 7, 8, 10])
+      .mockReturnValueOnce([7, 8, 9, 10, 11, 12])
+      .mockReturnValueOnce([13, 14, 15, 16, 17, 18]);
+
+    model.setCash(lottoQuantity * LOTTO_PRICE);
+    model.buyLotto(lottoQuantity * LOTTO_PRICE);
+    model.setWinningLottoQuantity(pickedNumber);
+
+    const winningLottoQuantity = model.getWinningLottoQuantity();
+
+    expect(winningLottoQuantity['3개']).toBe(2);
+    expect(winningLottoQuantity['4개']).toBe(0);
+    expect(winningLottoQuantity['5개']).toBe(0);
+    expect(winningLottoQuantity['5개+보너스볼']).toBe(1);
+    expect(winningLottoQuantity['6개']).toBe(1);
+    expect(model.calculateProfitRatio()).toBe(40600200);
+  });
+
+  test('결과 확인하기를 눌렀을 때, 당첨번호가 중복되어 있다면 에러를 생성한다.', () => {
+    const pickedNumbers = [1, 2, 2, 3, 4, 5, 6];
+    expect(() => validatePickedNumbers(pickedNumbers)).toThrowError(
+      ALERT_MESSAGE.DUPLICATED_NUMBER,
+    );
   });
 });

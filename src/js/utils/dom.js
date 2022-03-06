@@ -1,11 +1,15 @@
-export const $ = (selector, target = document) => target.getElementById(`${selector}`);
+export const $ = (selector, target = document) => target.getElementById(selector);
+export const $$ = (selector, target = document) => target.querySelectorAll(`.${selector}`);
 
-const removeChildren = parent => {
-  while (parent.firstChild) {
-    parent.firstChild.remove();
-  }
-};
 export const replaceHTML = (element, template) => {
-  removeChildren(element);
+  element.replaceChildren();
   element.insertAdjacentHTML('beforeend', template);
+};
+
+export const addClassName = ($element, className) => {
+  $element.classList.add(className);
+};
+
+export const removeClassName = ($element, className) => {
+  $element.classList.remove(className);
 };

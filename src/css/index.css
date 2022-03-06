@@ -7,6 +7,10 @@
   --color-dimmed: rgba(0, 0, 0, 0.5);
   --color-unchecked-round: #ededed;
   --color-unchecked-slide: rgba(33, 33, 33, 0.08);
+  --color-body: #f9f9f9;
+  --color-main-border: rgba(0, 0, 0, 0.12);
+  --color-grid-border: #dcdcdc;
+  --color-disabled: #ccc;
 }
 
 * {
@@ -19,9 +23,55 @@ li {
   list-style: none;
 }
 
+p,
+label {
+  line-height: 24px;
+}
+
+html {
+  width: 100%;
+  min-height: 100vh;
+}
+
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: var(--color-body);
+  min-height: 100vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input:focus {
+  border-color: blue;
+}
+
+input:disabled {
+  background-color: var(--color-disabled);
+}
+
+button:disabled {
+  background-color: var(--color-disabled);
+}
+
+.scroll-block {
+  overflow: hidden !important;
+}
+
+.display {
+  display: block !important;
+}
+
+main {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-main-border);
+  border-radius: 4px;
+  min-height: 727px;
+  position: relative;
 }
 
 input {
@@ -66,7 +116,6 @@ h1 {
 
 .purchase__description {
   font-size: 15px;
-  line-height: 24px;
 }
 
 .purchase__input-container {
@@ -88,9 +137,7 @@ h1 {
 
 .lotto-list__section {
   width: 100%;
-}
-
-.lotto-list__section-display-none {
+  margin-bottom: 14px;
   display: none;
 }
 
@@ -110,7 +157,6 @@ h1 {
   position: relative;
 }
 
-/* The toggle - the box around the slider */
 .toggle {
   position: absolute;
   display: inline-block;
@@ -118,14 +164,12 @@ h1 {
   right: 34px;
 }
 
-/* Hide default HTML checkbox */
 .toggle .lotto-list__toggle-input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -203,4 +247,122 @@ h1 {
 
 .lotto-lists.unfold .lotto-list__numbers {
   display: inline;
+}
+
+.picked-numbers-form {
+  width: 100%;
+  font-size: 15px;
+  display: none;
+}
+
+.picked-numbers__description {
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.picked-numbers__container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.picked-number__description {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.picked-number__input {
+  width: 35px;
+  height: 35px;
+  margin-left: 8px;
+  text-align: center;
+}
+
+.picked-number__input:first-of-type {
+  margin-left: 0;
+}
+
+.bonus-number__box {
+  text-align: right;
+}
+
+.picked-numbers__check-button {
+  width: 100%;
+  height: 36px;
+}
+
+.result-modal__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dimmed);
+}
+
+.result-modal__background.open {
+  display: flex;
+}
+
+.result-modal__section {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 49px;
+  background-color: var(--color-white);
+  border-radius: 4px;
+}
+
+.result-modal__heading2 {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
+.result-modal__grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.result-modal__grid-item {
+  line-height: 24px;
+  height: 40px;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-grid-border);
+}
+
+.result-modal__grid-item:nth-child(1),
+.result-modal__grid-item:nth-child(2),
+.result-modal__grid-item:nth-child(3) {
+  font-weight: 600;
+  border-top: 1px solid var(--color-grid-border);
+}
+
+.result-modal__profit-ratio-description {
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.result-modal__close {
+  background-color: var(--color-white);
+  color: black;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.result-modal__reset {
+  width: 152px;
+  height: 36px;
 }

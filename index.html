@@ -18,17 +18,17 @@
             class="purchase__input"
             placeholder="금액"
             name="cash"
-            type="number"
-            min="1000"
-            max="100000"
+            type="text"
             required
           />
-          <button class="purchase__submit">구입</button>
+          <button class="purchase__submit" id="purchase-submit">구입</button>
         </div>
       </form>
-      <section id="lotto-list-section" class="lotto-list__section lotto-list__section-display-none">
+      <section id="lotto-list-section" class="lotto-list__section">
         <header class="lotto-list__header">
-          <h4 id="lotto-list-description" class="lotto-list__description"></h4>
+          <h4 class="lotto-list__description">
+            총 <span id="lotto-list-description-quantity"></span>개를 구매하였습니다.
+          </h4>
           <div class="lotto-list__toggle-container">
             <span class="lotto-list__toggle-description">번호 보기</span>
             <span id="toggle" class="toggle">
@@ -39,6 +39,98 @@
         </header>
         <ul id="lotto-lists" class="lotto-lists"></ul>
       </section>
+      <form id="picked-numbers-form" class="picked-numbers-form">
+        <p class="picked-numbers__description">
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+        </p>
+        <div class="picked-numbers__container">
+          <div class="winning-numbers__box">
+            <label for="winning-number" class="picked-number__description">당첨 번호</label>
+            <input
+              id="winning-number1"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+            <input
+              id="winning-number2"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+            <input
+              id="winning-number3"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+            <input
+              id="winning-number4"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+            <input
+              id="winning-number5"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+            <input
+              id="winning-number6"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+          </div>
+          <div class="bonus-number__box">
+            <label for="bonus-number" class="picked-number__description">보너스 번호</label>
+            <input
+              id="bonus-number"
+              class="picked-number__input"
+              type="number"
+              min="1"
+              max="45"
+              name="pickedNumber"
+              required
+            />
+          </div>
+        </div>
+        <button id="picked-numbers-check-button" class="picked-numbers__check-button">
+          결과 확인하기
+        </button>
+      </form>
+      <div class="result-modal__background" id="result-modal-background">
+        <section class="result-modal__section">
+          <header class="result-modal__header">
+            <h2 class="result-modal__heading2">🏆 당첨 통계 🏆</h2>
+          </header>
+          <button class="result-modal__close" id="result-modal-close">X</button>
+          <div class="result-modal__grid-container" id="result-modal-grid-container"></div>
+          <p class="result-modal__profit-ratio-description">
+            당신의 총 수익률은 <span id="result-modal-profit-ratio"></span>%입니다.
+          </p>
+          <button class="result-modal__reset" id="result-modal-reset">다시 시작하기</button>
+        </section>
+      </div>
     </main>
   </body>
 </html>
