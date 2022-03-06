@@ -28,8 +28,14 @@ export default class PurchaseTicketSectionView {
   }
 
   bindEvent() {
+    this.chargeInput.addEventListener('keyup', this.onTypeCharge.bind(this));
     this.chargeSubmitForm.addEventListener('submit', this.onSubmitCharge.bind(this));
     this.ticketListStyleToggleInput.addEventListener('click', this.switchLottoListStyle.bind(this));
+  }
+
+  onTypeCharge(event) {
+    if (Number(event.target.value) === 0)
+      event.target.value = '';
   }
 
   onSubmitCharge(event) {
