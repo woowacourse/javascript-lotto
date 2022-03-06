@@ -40,6 +40,11 @@ body {
   min-height: 100vh;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 input:focus {
   border-color: blue;
 }
@@ -265,6 +270,7 @@ h1 {
   width: 35px;
   height: 35px;
   margin-left: 8px;
+  text-align: center;
 }
 
 .picked-number__input:first-of-type {
