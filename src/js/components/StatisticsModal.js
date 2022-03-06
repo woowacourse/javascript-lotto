@@ -7,6 +7,15 @@ import { intersect } from '../utils';
 import Store from '../flux/store';
 
 class StatisticsModal extends Component {
+  connectedCallback() {
+    super.connectedCallback();
+    // modal close when press esc key
+    document.addEventListener('keyup', (event) => {
+      if (event.key !== 'Escape') return;
+      this.closeModal();
+    });
+  }
+
   // eslint-disable-next-line max-lines-per-function
   template(winningCounts, earningsRate) {
     return `
