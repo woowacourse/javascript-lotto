@@ -17,8 +17,12 @@ export function isNotValidNumber(number) {
   return number < 1 || number > 45;
 }
 
-export function isValidCharge(charge) {
-  return Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE;
+export function isEnoughCharge(charge) {
+  return charge >= NUMBER.LOTTO_PRICE;
+}
+
+export function isDivisibleCharge(charge) {
+  return charge % NUMBER.LOTTO_PRICE === 0;
 }
 
 export function getRandomNumber(array) {

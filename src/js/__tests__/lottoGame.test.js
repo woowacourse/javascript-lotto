@@ -19,10 +19,22 @@ describe('로또 게임 모델 테스트', () => {
   it('금액은 1000이상의 숫자여야한다.', () => {
     const lottoRound = new LottoRound();
     const lessThanLottoPriceCharge = 500;
+
     try {
       lottoRound.exchangeChargeToLottoAmount(lessThanLottoPriceCharge);
     } catch ({ message }) {
-      expect(message).toEqual(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
+      expect(message).toEqual(ERROR_MESSAGE.CHARGE_IS_NOT_ENOUGH);
+    }
+  });
+
+  it('금액은 1000으로 나누어 떨어지는 숫자여야한다.', () => {
+    const lottoRound = new LottoRound();
+    const notDivisibleCharge = 1500;
+
+    try {
+      lottoRound.exchangeChargeToLottoAmount(notDivisibleCharge);
+    } catch ({ message }) {
+      expect(message).toEqual(ERROR_MESSAGE.CHARGE_IS_NOT_DIVISIBLE);
     }
   });
 

@@ -1,7 +1,8 @@
 import Lotto from './Lotto';
 import {
   isValidNumber,
-  isValidCharge,
+  isEnoughCharge,
+  isDivisibleCharge,
   getRandomNumber,
   hasUniqueElement,
 } from '../utils/validator';
@@ -46,10 +47,14 @@ class LottoRoundModel {
   }
 
   exchangeChargeToLottoAmount(charge) {
-    if (isValidCharge(charge)) {
-      return Math.floor(charge / NUMBER.LOTTO_PRICE);
+    if (!isEnoughCharge(charge)) {
+      throw new Error(ERROR_MESSAGE.CHARGE_IS_NOT_ENOUGH);
     }
-    throw new Error(ERROR_MESSAGE.CHARGE_IS_INVALIDATE);
+
+    if (!isDivisibleCharge(charge)) {
+      throw new Error(ERROR_MESSAGE.CHARGE_IS_NOT_DIVISIBLE);
+    }
+    return charge / NUMBER.LOTTO_PRICE;
   }
 
   getRoundResult(winningNumbers) {
