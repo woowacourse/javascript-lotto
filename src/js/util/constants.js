@@ -32,7 +32,22 @@ export const CLASS_NAME = {
 
 export const MONEY = {
   STANDARD: 1000,
-  PRIZE: [5000, 50000, 1500000, 30000000, 2000000000],
+};
+
+export const RANK = {
+  FIRST: 'first',
+  SECOND: 'second',
+  THIRD: 'third',
+  FOURTH: 'fourth',
+  FIFTH: 'fifth',
+};
+
+export const RANK_PRIZE = {
+  [RANK.FIFTH]: 5000,
+  [RANK.FOURTH]: 50000,
+  [RANK.THIRD]: 1500000,
+  [RANK.SECOND]: 30000000,
+  [RANK.FIRST]: 2000000000,
 };
 
 export const LOTTO = {

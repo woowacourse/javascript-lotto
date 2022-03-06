@@ -1,20 +1,12 @@
 import { CLASS, ID, CLASS_NAME } from '../util/constants';
 import { $, $$, toggleClassName, toggleDisabled } from './dom';
-import {
-  getTotalWinningCount,
-  totalWinningMoney,
-  winningRate,
-} from '../util/utils';
+import { getWinningCountResult, getTotalWinningMoney, getWinningRate } from '../util/utils';
 
 const checkInputRange = (numberInput) => {
   if (!numberInput.checkValidity()) {
     $(CLASS.ERROR_TEXT).classList.remove(CLASS_NAME.HIDDEN);
   }
-  if (
-    Array.from($$(CLASS.WINNING_NUMBER_INPUT)).every((element) =>
-      element.checkValidity()
-    )
-  ) {
+  if (Array.from($$(CLASS.WINNING_NUMBER_INPUT)).every((element) => element.checkValidity())) {
     $(CLASS.ERROR_TEXT).classList.add(CLASS_NAME.HIDDEN);
   }
 };
@@ -49,20 +41,14 @@ export const toggleDisablePayment = () => {
 };
 
 export const generateResult = (lottoList, winningNumber, bonusNumber) => {
-  const result = getTotalWinningCount(
-    lottoList.getPurchasedLotto(),
-    winningNumber,
-    bonusNumber
-  );
-  const totalMoney = totalWinningMoney(result);
+  const winningCountResult = getWinningCountResult(lottoList.getPurchasedLotto(), winningNumber, bonusNumber);
 
-  $$(CLASS.WINNING_COUNT).forEach((element, index) => {
-    element.textContent = `${result[index]}개`;
+  const totalMoney = getTotalWinningMoney(winningCountResult);
+
+  $$(CLASS.WINNING_COUNT).forEach((element) => {
+    element.textContent = `${winningCountResult[element.dataset.rank]}개`;
   });
-  $(CLASS.EARNING_WEIGHT).textContent = winningRate(
-    totalMoney,
-    lottoList.count()
-  );
+  $(CLASS.EARNING_WEIGHT).textContent = getWinningRate(totalMoney, lottoList.count());
 };
 
 export const toggleButton = () => {

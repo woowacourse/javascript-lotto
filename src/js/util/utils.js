@@ -1,7 +1,6 @@
-import { LOTTO, MONEY } from './constants';
+import { LOTTO, MONEY, RANK, RANK_PRIZE } from './constants';
 
-export const isPositiveInteger = (payment) =>
-  Number.isInteger(payment) && payment > 0;
+export const isPositiveInteger = (payment) => Number.isInteger(payment) && payment > 0;
 
 export const isRemainder = (payment, price) => payment % price !== 0;
 
@@ -22,43 +21,45 @@ export const createRandomNumberList = () => {
   return randomNumberList;
 };
 
-export const isOverRange = (minimum, maximum, number) =>
-  number < minimum || number > maximum;
+export const isOverRange = (minimum, maximum, number) => number < minimum || number > maximum;
 
-export const winningCount = (lotto, winningLotto) =>
-  lotto.filter((number) => winningLotto.includes(number)).length;
+export const winningCount = (lotto, winningLotto) => lotto.filter((number) => winningLotto.includes(number)).length;
 
-export const isBounusNumber = (lotto, bounusNumber) =>
-  lotto.includes(bounusNumber);
+export const isBounusNumber = (lotto, bounusNumber) => lotto.includes(bounusNumber);
 
-export const isOverlapped = (winningLotto) =>
-  new Set(winningLotto).size !== winningLotto.length;
+export const isOverlapped = (winningLotto) => new Set(winningLotto).size !== winningLotto.length;
 
-export const getTotalWinningCount = (lottoList, winningNumber, bonusNumber) => {
-  const result = [0, 0, 0, 0, 0];
+const getRank = (count, bonusCount) => {
+  const sum = count + bonusCount;
+  if (count === 6) return RANK.FIRST;
+  if (sum === 6) return RANK.SECOND;
+  if (sum === 5) return RANK.THIRD;
+  if (sum === 4) return RANK.FOURTH;
+  if (sum === 3) return RANK.FIFTH;
+};
+
+export const getWinningCountResult = (lottoList, winningNumber, bonusNumber) => {
+  const totalWinningCount = {
+    fifth: 0,
+    fourth: 0,
+    third: 0,
+    second: 0,
+    first: 0,
+  };
+
   lottoList.forEach((lotto) => {
     const count = winningCount(lotto, winningNumber);
     const bonusCount = isBounusNumber(lotto, bonusNumber);
-    if (count === 6) {
-      result[4] += 1;
-    }
-    if (count === 5 && bonusCount === 1) {
-      result[3] += 1;
-    }
-    if (count + bonusCount > 2 && count + bonusCount < 6) {
-      result[count + bonusCount - 3] += 1;
+    if (count + bonusCount > 2) {
+      totalWinningCount[getRank(count, bonusCount)] += 1;
     }
   });
 
-  return result;
+  return totalWinningCount;
 };
 
-export const totalWinningMoney = (result) =>
-  result.reduce((sum, count, index) => sum + count * MONEY.PRIZE[index], 0);
+export const getTotalWinningMoney = (rankCount) =>
+  Object.entries(rankCount).reduce((sum, [key, value]) => sum + value * RANK_PRIZE[key], 0);
 
-export const winningRate = (totalMoney, lottoCount) =>
-  Math.floor(
-    ((totalMoney - lottoCount * MONEY.STANDARD) /
-      (lottoCount * MONEY.STANDARD)) *
-      100
-  );
+export const getWinningRate = (totalMoney, lottoCount) =>
+  Math.floor(((totalMoney - lottoCount * MONEY.STANDARD) / (lottoCount * MONEY.STANDARD)) * 100);

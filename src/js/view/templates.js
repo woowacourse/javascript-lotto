@@ -26,27 +26,27 @@ export const generatePaymentSection = () => `
             <tr>
               <td>3개</td>
               <td>5,000</td>
-              <td class="winning-count">개</td>
+              <td class="winning-count" data-rank='fifth'>개</td>
             </tr>
             <tr>
               <td>4개</td>
               <td>50,000</td>
-              <td class="winning-count">개</td>
+              <td class="winning-count" data-rank='fourth'>개</td>
             </tr>
             <tr>
               <td>5개</td>
               <td>1,500,000</td>
-              <td class="winning-count">개</td>
+              <td class="winning-count" data-rank='third'>개</td>
             </tr>
             <tr>
               <td>5개+보너스볼</td>
               <td>30,000,000</td>
-              <td class="winning-count">개</td>
+              <td class="winning-count" data-rank='second'>개</td>
             </tr>
             <tr>
               <td>6개</td>
               <td>2,000,000,000</td>
-              <td class="winning-count">개</td>
+              <td class="winning-count" data-rank='first'>개</td>
             </tr>
             </tbody>
           </table>
@@ -68,7 +68,9 @@ export const generatePurchasedSection = (lottoList) => `
   <section id="purchased-lotto-list-section">
     <h2 hidden>구입한 로또 목록</h2>
     <div class="lotto-list-container">
-      <p class="purchased-total-count">총 ${lottoList.length}개를 구매하였습니다.</p>
+      <p class="purchased-total-count">총 ${
+        lottoList.length
+      }개를 구매하였습니다.</p>
       <ul id="lotto-list">
         ${lottoList.map((lotto) => generatePurchasedLotto(lotto)).join('')}
       </ul>
