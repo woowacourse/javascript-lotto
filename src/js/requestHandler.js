@@ -12,18 +12,13 @@ class RequestHandler {
     return response;
   };
 
-  requestManual = this.generateRequestManual();
-
-  generateRequestManual() {
-    const manual = {};
-    manual[REQUEST_MESSAGE.INPUT_CASH] = (cash) => this.machine.buyLotto(cash);
-    manual[REQUEST_MESSAGE.INPUT_WINNER_NUMBER] = (winnerNumbers) =>
+  requestManual = {
+    [REQUEST_MESSAGE.INPUT_CASH]: (cash) => this.machine.buyLotto(cash),
+    [REQUEST_MESSAGE.INPUT_WINNER_NUMBER]: (winnerNumbers) =>
       // eslint-disable-next-line implicit-arrow-linebreak
-      this.machine.getNumberMatches(winnerNumbers);
-    manual[REQUEST_MESSAGE.RESTART_APP] = () => this.machine.resetData();
-
-    return manual;
-  }
+      this.machine.getNumberMatches(winnerNumbers),
+    [REQUEST_MESSAGE.RESTART_APP]: () => this.machine.resetData(),
+  };
 }
 
 export default RequestHandler;
