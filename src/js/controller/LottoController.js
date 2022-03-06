@@ -16,7 +16,7 @@ export default class LottoController {
   #WinningNumberInputView = new WinningNumberInputView(
     $(`.${SELECTOR.CLASS.WINNING_NUMBER_SECTION}`)
   );
-  #ResultModalView = new ResultModalView($('.modal'));
+  #ResultModalView = new ResultModalView($(`.${SELECTOR.CLASS.MODAL}`));
   #LottosModel = new LottosModel();
   #WinningLottoCounter = new WinningLottoCounter();
 
@@ -35,9 +35,12 @@ export default class LottoController {
   handleMoneyInputSubmit({ money }) {
     try {
       checkValidMoneyInput(money);
+
       this.#MoneyInputView.disableNewMoneySubmit();
-      this.#LottosModel.chargedMoney = money;
+
+      this.#LottosModel.addMoney(money);
       this.#LottosModel.buy(money);
+
       this.#LottoListView.renderLottoListSection();
       this.#WinningNumberInputView.renderWinningNumbersInput();
       this.#LottoListView.renderLottoListItems(this.#LottosModel.list);
@@ -48,13 +51,15 @@ export default class LottoController {
 
   handleWinningNumberSubmit({ winningNumbers, bonusNumber }) {
     try {
-      checkValidWinningNumberInput(winningNumbers.concat(bonusNumber).filter((number) => number));
       const winningLotto = new WinningLotto().generate(winningNumbers, bonusNumber);
+
       this.#WinningLottoCounter.setWinningLotto(winningLotto);
-      this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottos);
+      this.#WinningLottoCounter.calculateWinningCounts(this.#LottosModel.lottoNumbers);
       this.#ResultModalView.showResultModal();
       this.#ResultModalView.renderHitCount(this.#WinningLottoCounter.winningCounts);
+
       const profitRate = this.#WinningLottoCounter.getProfitRate(this.#LottosModel.chargedMoney);
+
       this.#ResultModalView.renderProfitRage(profitRate);
     } catch (error) {
       alert(error);

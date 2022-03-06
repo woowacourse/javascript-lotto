@@ -1,12 +1,8 @@
 import { checkValidWinningNumberInput } from '../utils/Lotto/validator';
+import Lotto from './Lotto';
 
-export default class WinningLotto {
-  #winningNumbers = [];
+export default class WinningLotto extends Lotto {
   #bonusNumber = null;
-
-  get winningNumbers() {
-    return this.#winningNumbers;
-  }
 
   get bonusNumber() {
     return this.#bonusNumber;
@@ -14,12 +10,14 @@ export default class WinningLotto {
 
   generate(winningNumbers, bonusNumber) {
     try {
-      checkValidWinningNumberInput([...new Set(winningNumbers.concat(bonusNumber))]);
-      this.#winningNumbers = winningNumbers;
+      checkValidWinningNumberInput(winningNumbers, bonusNumber);
+
+      this._lottoNumbers = [...winningNumbers];
       this.#bonusNumber = bonusNumber;
+
       return this;
     } catch (error) {
-      return 'WRONG_WINNING_LOTTO';
+      throw new Error(error);
     }
   }
 }

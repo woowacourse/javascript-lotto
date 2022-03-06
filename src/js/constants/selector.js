@@ -7,6 +7,7 @@ export const SELECTOR = Object.freeze({
     LOTTO_BOUGHT_COUNT: 'lotto-bought-count',
     SHOW_RESULT_BUTTON: 'show-result-button',
   }),
+
   CLASS: Object.freeze({
     NUMBER_TOGGLE: 'lotto-number-toggle',
     LOTTO_MONEY_SECTION: 'lotto-money-section',

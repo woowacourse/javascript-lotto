@@ -1,10 +1,13 @@
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+import { KEYCODE } from '../constants/setting';
+import InputView from './InputView';
 
-export default class MoneyInputView {
+export default class MoneyInputView extends InputView {
   #moneyInputSection;
 
   constructor($element) {
+    super();
     this.#moneyInputSection = $element;
     this.moneyInputHandler();
   }
@@ -20,19 +23,10 @@ export default class MoneyInputView {
       'click',
       (event) => {
         event.preventDefault();
+
         handler({ money: Number($(moneyInputSection, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value) });
       }
     );
-  }
-
-  preventNonDigitInput(event) {
-    const inputKeyCode = event.keyCode;
-    if (event.key === 'Backspace' || event.key === 'Tab') {
-      return;
-    }
-    if (inputKeyCode < 48 || inputKeyCode > 57) {
-      event.preventDefault();
-    }
   }
 
   disableNewMoneySubmit() {

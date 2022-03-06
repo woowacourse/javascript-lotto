@@ -29,16 +29,19 @@ export const checkValidLottoNumberInput = ({ input, pickedNumbers }) => {
 const isValidRangeLottoNumber = (number) =>
   isValidRangeNumber(LOTTO_SETTING.MIN_RANDOM_NUMBER, LOTTO_SETTING.MAX_RANDOM_NUMBER, number);
 
-export const checkValidWinningNumberInput = (numbers) => {
+export const checkValidWinningNumberInput = (winningNumbers, bonusNumber) => {
+  const numbers = [...winningNumbers.concat(bonusNumber).filter((number) => number)];
+
   if (numbers.length !== 7) {
-    throw new Error('빈 입력이 있습니다.');
+    throw new Error(ERROR_MESSAGE.HAS_EMPTY_INPUT);
   }
   if (new Set(numbers).size !== 7) {
-    throw new Error('번호가 중복됐습니다.');
+    throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_NUMBER);
   }
+
   const filters = [isPositiveInteger, isValidRangeLottoNumber];
   const isValidWinningNumber = numbers.every((number) => filters.every((func) => func(number)));
   if (!isValidWinningNumber) {
-    throw new Error('올바른 로또 번호 입력이 아닙니다.');
+    throw new Error(ERROR_MESSAGE.WRONG_LOTTO_NUMBER);
   }
 };

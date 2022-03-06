@@ -9,7 +9,7 @@ export default class LottosModel {
     return this.#chargedMoney;
   }
 
-  set chargedMoney(money) {
+  addMoney(money) {
     this.#chargedMoney += money;
   }
 
@@ -19,11 +19,11 @@ export default class LottosModel {
   }
 
   get list() {
-    return this.#lottos.map((value) => Array.from(value.pickedNumbers).join(', '));
+    return this.#lottos.map((value) => Array.from(value.lottoNumbers).join(', '));
   }
 
-  get lottos() {
-    return this.#lottos.map((lotto) => lotto.pickedNumbers);
+  get lottoNumbers() {
+    return this.#lottos.map((lotto) => lotto.lottoNumbers);
   }
 
   reset() {
