@@ -1,7 +1,7 @@
 export default class LottoCollection {
   createLottos(count) {}
 
-  matchResult(winningNumber) {}
+  matchResult(winningNumbers) {}
 
   getLottos() {}
 

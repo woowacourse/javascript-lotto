@@ -62,8 +62,8 @@ export const toggleLottosView = () => {
   lottosView.toggleContainer();
 };
 
-const matchResultRenderingObject = (winningNumber) => {
-  const matchResult = lottoCollection.matchResult(winningNumber.map(Number));
+const matchResultRenderingObject = (winningNumbers) => {
+  const matchResult = lottoCollection.matchResult(winningNumbers.map(Number));
   const rateOfReturn = new RateOfReturnCalculator(
     lottoCollection.getLottos().length,
     matchResult,
@@ -77,14 +77,14 @@ export const tryClickConfirmResultButton = () => {
     throw new ValidationError(ERROR_MESSAGE.EMPTY_OF_LOTTO);
   }
 
-  const winningNumber = matchResultView.getInputValue();
-  validator.validateWinningNumber(winningNumber);
+  const winningNumbers = matchResultView.getInputValue();
+  validator.validatewinningNumbers(winningNumbers);
 
-  matchResultView.render(matchResultRenderingObject(winningNumber));
+  matchResultView.render(matchResultRenderingObject(winningNumbers));
   matchResultView.onModal();
 };
 
-export const writingWinningNumber = (e) => {
+export const writingwinningNumbers = (e) => {
   e.currentTarget.value = e.currentTarget.value.slice(0, LOTTO_RULES.NUMBER_MAX_LENGTH);
 
   if (e.currentTarget.value.length >= LOTTO_RULES.NUMBER_MAX_LENGTH) {

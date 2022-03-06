@@ -3,5 +3,5 @@ export default class Validator {
 
   validateFare(fare) {}
 
-  validateWinningNumber(winningNumber) {}
+  validatewinningNumbers(winningNumbers) {}
 }

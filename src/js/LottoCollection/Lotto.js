@@ -10,9 +10,9 @@ export default class Lotto {
     );
   }
 
-  match(winningNumber, bonusNumber) {
+  match(winningNumbers, bonusNumber) {
     const isMatchedBonus = this.numbers.includes(bonusNumber);
-    const matchCount = this.numbers.filter((number) => winningNumber.has(number)).length;
+    const matchCount = this.numbers.filter((number) => winningNumbers.has(number)).length;
 
     if (isMatchedBonus && matchCount === MATCH_COUNT_OF_LOTTO_RANKING.THRID)
       return MATCH_COUNT_OF_LOTTO_RANKING.SECOND;

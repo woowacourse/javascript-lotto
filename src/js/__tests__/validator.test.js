@@ -30,44 +30,44 @@ describe('로또 당첨 번호가 유효해야 한다.', () => {
     new ValidatorImpl().checkFunctions;
 
   test('로또 당첨 번호가 값이 비어있으면 결과를 확인할 수 없다.', () => {
-    const winningNumber = [45, '1', '', 3, 4, 5];
+    const winningNumbers = [45, '1', '', 3, 4, 5];
 
-    expect(emptyNumbers(winningNumber)).toBe(true);
+    expect(emptyNumbers(winningNumbers)).toBe(true);
   });
 
   test('로또 당첨 번호가 숫자가 아니면 결과를 확인할 수 없다.', () => {
-    const winningNumber = ['ab', '1', '2', 3, 4, 5];
+    const winningNumbers = ['ab', '1', '2', 3, 4, 5];
 
-    expect(isNotNumbers(winningNumber)).toBe(true);
+    expect(isNotNumbers(winningNumbers)).toBe(true);
   });
 
   test('로또 당첨 번호가 숫자면 결과를 확인할 수 있다.', () => {
-    const winningNumber = ['1', '2', 3, 4, 44, 45];
+    const winningNumbers = ['1', '2', 3, 4, 44, 45];
 
-    expect(isNotNumbers(winningNumber)).toBe(false);
+    expect(isNotNumbers(winningNumbers)).toBe(false);
   });
 
   test('로또 당첨 번호에 중복된 숫자가 있으면 결과를 확인할 수 없다.', () => {
-    const winningNumber = [1, 2, 1, 2, 3, 4];
+    const winningNumbers = [1, 2, 1, 2, 3, 4];
 
-    expect(overlappedNumber(winningNumber)).toBe(true);
+    expect(overlappedNumber(winningNumbers)).toBe(true);
   });
 
   test(`로또 당첨 번호가 ${LOTTO_RULES.MIN_RANGE}이상이고 ${LOTTO_RULES.MAX_RANGE}이하라면 결과를 확인할 수 있다.`, () => {
-    const winningNumber = [1, 2, 45, 43, 32, 21];
+    const winningNumbers = [1, 2, 45, 43, 32, 21];
 
-    expect(outedOfLottoNumberRange(winningNumber)).toBe(false);
+    expect(outedOfLottoNumberRange(winningNumbers)).toBe(false);
   });
 
   test(`로또 당첨 번호가 ${LOTTO_RULES.MIN_RANGE}미만이면 결과를 확인할 수 없다.`, () => {
-    const winningNumber = [-1, 0, -2, -3, -4, -5];
+    const winningNumbers = [-1, 0, -2, -3, -4, -5];
 
-    expect(outedOfLottoNumberRange(winningNumber)).toBe(true);
+    expect(outedOfLottoNumberRange(winningNumbers)).toBe(true);
   });
 
   test(`로또 당첨 번호가 ${LOTTO_RULES.MAX_RANGE}초과라면 결과를 확인할 수 없다.`, () => {
-    const winningNumber = [46, 47, 48, 49, 50, 51];
+    const winningNumbers = [46, 47, 48, 49, 50, 51];
 
-    expect(outedOfLottoNumberRange(winningNumber)).toBe(true);
+    expect(outedOfLottoNumberRange(winningNumbers)).toBe(true);
   });
 });

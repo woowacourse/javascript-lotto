@@ -3,7 +3,7 @@ import {
   trySubmitFareForm,
   catchSubmitFareForm,
   toggleLottosView,
-  writingWinningNumber,
+  writingwinningNumbers,
   tryClickConfirmResultButton,
   catchClickConfirmResultButton,
   closeModal,
@@ -19,7 +19,7 @@ export const onSubmitFareForm = (e) => {
 export const onChangeLottoViewerController = toggleLottosView;
 
 export const onKeyUpWinningNumbers = (e) => {
-  coveringTryCatch(() => writingWinningNumber(e), catchClickConfirmResultButton);
+  coveringTryCatch(() => writingwinningNumbers(e), catchClickConfirmResultButton);
 };
 
 export const onClickConfirmResultButton = () => {

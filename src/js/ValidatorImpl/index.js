@@ -40,15 +40,15 @@ export default class ValidatorImpl extends Validator {
     }
   }
 
-  validateWinningNumber(winningNumber) {
-    this.checkWinningNumberIsEmpty(winningNumber);
-    this.checkWinningNumberIsNotNumber(winningNumber);
-    this.checkWinningNumberOverlapped(winningNumber);
-    this.checkWinningNumberOutedOfLottoNumberRange(winningNumber);
+  validatewinningNumbers(winningNumbers) {
+    this.checkwinningNumbersIsEmpty(winningNumbers);
+    this.checkwinningNumbersIsNotNumber(winningNumbers);
+    this.checkwinningNumbersOverlapped(winningNumbers);
+    this.checkwinningNumbersOutedOfLottoNumberRange(winningNumbers);
   }
 
-  checkWinningNumberIsEmpty(winningNumber) {
-    if (this.checkFunctions.emptyNumbers(winningNumber)) {
+  checkwinningNumbersIsEmpty(winningNumbers) {
+    if (this.checkFunctions.emptyNumbers(winningNumbers)) {
       throw new ValidationError(
         ERROR_MESSAGE.EMPTY_OF_WINNING_NUMBER,
         ORDER_TO_FOCUS_ON_VIEW.EMPTY_NUMBER,
@@ -56,8 +56,8 @@ export default class ValidatorImpl extends Validator {
     }
   }
 
-  checkWinningNumberIsNotNumber(winningNumber) {
-    if (this.checkFunctions.isNotNumbers(winningNumber)) {
+  checkwinningNumbersIsNotNumber(winningNumbers) {
+    if (this.checkFunctions.isNotNumbers(winningNumbers)) {
       throw new ValidationError(
         ERROR_MESSAGE.WINNING_NUMBER_IS_NOT_NUMBER,
         ORDER_TO_FOCUS_ON_VIEW.NOT_NUMBER,
@@ -65,8 +65,8 @@ export default class ValidatorImpl extends Validator {
     }
   }
 
-  checkWinningNumberOverlapped(winningNumber) {
-    if (this.checkFunctions.overlappedNumber(winningNumber)) {
+  checkwinningNumbersOverlapped(winningNumbers) {
+    if (this.checkFunctions.overlappedNumber(winningNumbers)) {
       throw new ValidationError(
         ERROR_MESSAGE.OVERLAPPED_WINNING_NUMBER,
         ORDER_TO_FOCUS_ON_VIEW.OVERLAPPED_NUMBER,
@@ -74,8 +74,8 @@ export default class ValidatorImpl extends Validator {
     }
   }
 
-  checkWinningNumberOutedOfLottoNumberRange(winningNumber) {
-    if (this.checkFunctions.outedOfLottoNumberRange(winningNumber)) {
+  checkwinningNumbersOutedOfLottoNumberRange(winningNumbers) {
+    if (this.checkFunctions.outedOfLottoNumberRange(winningNumbers)) {
       throw new ValidationError(
         ERROR_MESSAGE.OUT_OF_RANGE_WINNING_NUMBER,
         ORDER_TO_FOCUS_ON_VIEW.OUT_OF_RANGE_NUMBER,
