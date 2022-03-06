@@ -16,6 +16,7 @@ export const ERROR_MESSAGE = {
   INTEGER_WINNER_NUMBER: '당첨 번호를 정수로 입력해주세요.',
   RANGE_OF_WINNER_NUMBER: `${LOTTO_NUMBER.MIN} ~ ${LOTTO_NUMBER.MAX} 사이의 숫자를 입력해주세요.`,
   NON_DUPLICATE_WINNER_NUMBERS: '중복된 숫자가 없는 당첨 번호를 입력해주세요.',
+  PURCHASED_TICKET_FIRST: '먼저 로또를 구매해주세요.',
 };
 
 export const SELECTOR = {

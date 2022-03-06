@@ -7,6 +7,10 @@ export function validateCharge(charge) {
   if (charge > MAX_CHARGE_INPUT) throw new ValidationError(ERROR_MESSAGE.MAX_CHARGE_INPUT);
 }
 
+export function validateShowResult(lottos) {
+  if (lottos.length === 0) throw new ValidationError(ERROR_MESSAGE.PURCHASED_TICKET_FIRST);
+}
+
 export function validateWinnerNumbers(winnerNumbers) {
   [...winnerNumbers].forEach(winnerNumber => {
     if (!Number.isInteger(winnerNumber)) throw new ValidationError(ERROR_MESSAGE.INTEGER_WINNER_NUMBER);

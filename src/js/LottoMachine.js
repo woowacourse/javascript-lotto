@@ -1,6 +1,6 @@
 import { ID, LOTTO_NUMBER, LOTTO_PRICE, LOTTO_PRIZE, SELECTOR } from './constants/constants';
 import { $, $$, divider } from './utils/util';
-import { validateCharge, validateWinnerNumbers } from './validation';
+import { validateCharge, validateShowResult, validateWinnerNumbers } from './validation';
 
 import LottoManager from './LottoManager';
 import LottoMachineView from './views/LottoMachineView';
@@ -56,11 +56,12 @@ export default class LottoMachine {
 
   #onSubmitWinnerNumber(event) {
     event.preventDefault();
-    this.winnerNumbers = new Set();
-    $$('input', $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM)).forEach(winnerNumber =>
-      this.winnerNumbers.add(Number(winnerNumber.value))
-    );
     try {
+      validateShowResult(this.lottoManager.lottos);
+      this.winnerNumbers = new Set();
+      $$('input', $(SELECTOR.WINNER_NUMBER_SUBMIT_FORM)).forEach(winnerNumber =>
+        this.winnerNumbers.add(Number(winnerNumber.value))
+      );
       validateWinnerNumbers(this.winnerNumbers);
     } catch (error) {
       alert(error.message);
