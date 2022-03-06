@@ -1,4 +1,4 @@
-import { RULES } from '../constants/index.js';
+import { RULES, REWARD } from '../constants/index.js';
 
 const LOTTO_IMAGE_TEMPLATE = `
   <span class="purchased-lotto-image">🎟️</span>
@@ -38,20 +38,20 @@ const PURCHASED_LOTTO_TEMPLATE = `
   </div>
 `;
 
-const INPUT_ELEMENT = `<input type="number" class="winning-number-input" />`;
+const INPUT_ELEMENT = `<input type="number" class="winning-number-input" min="1" max="45" maxlength="2" />`;
 
 const WINNING_NUMBER_FORM = `
   <form id="winning-number-form">
-    <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+    <label class="winning-number-label">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
     <div id="winning-number-boxes">
       <div id="win-number-box">   
-        <label>당첨 번호</label>
+        <label class="winning-number-label">당첨 번호</label>
         <div class="input-box">
-        ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
+          ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
         </div>
       </div>
       <div id="bonus-number-box">
-        <label>보너스 번호</label>
+        <label class="winning-number-label">보너스 번호</label>
         <div class="input-box">
           ${INPUT_ELEMENT}
         </div>
@@ -61,9 +61,63 @@ const WINNING_NUMBER_FORM = `
   </form>
 `;
 
+const getResultTable = result => `
+  <table>
+    <thead>
+      <tr>
+        <th>일치 개수</th>
+        <th>당첨금</th>
+        <th>당첨 개수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3개</td>
+        <td>${REWARD.FIFTH.toKorean()}</td>
+        <td>${result.filter(rank => rank === 5).length}개</td>
+      </tr>
+      <tr>
+        <td>4개</td>
+        <td>${REWARD.FOURTH.toKorean()}</td>
+        <td>${result.filter(rank => rank === 4).length}개</td>
+      </tr>
+      <tr>
+        <td>5개</td>
+        <td>${REWARD.THIRD.toKorean()}</td>
+        <td>
+          ${result.filter(rank => rank === 3).length}개
+        </td>
+      </tr>
+      <tr>
+        <td>5개+보너스볼</td>
+        <td>${REWARD.SECOND.toKorean()}</td>
+        <td>
+          ${result.filter(rank => rank === 2).length}개
+        </td>
+      </tr>
+      <tr>
+        <td>6개</td>
+        <td>${REWARD.FIRST.toKorean()}</td>
+        <td>${result.filter(rank => rank === 1).length}개</td>
+      </tr>
+    </tbody>
+  </table>
+`;
+
+const getResultTemplate = (result, rewardRate) => `
+  <div>
+    ${getResultTable(result)}
+    <div id="result-percent">
+      당신의 총 수익률은 ${rewardRate.toKorean()}%입니다.
+    </div>
+    <button id="restart-button">다시 시작하기</button>
+  </div>
+`;
+
 export {
   PURCHASED_LOTTO_TEMPLATE,
   LOTTO_IMAGE_TEMPLATE,
   WINNING_NUMBER_FORM,
   getLottoListTemplate,
+  getResultTemplate,
 };

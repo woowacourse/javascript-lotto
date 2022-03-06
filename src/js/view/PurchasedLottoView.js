@@ -6,23 +6,24 @@ import {
 
 export default class PurchasedLottoView {
   constructor() {
-    this.initDom();
+    this.#initDom();
   }
 
-  initDom() {
+  #initDom() {
     this.container = document.getElementById('purchased-lotto-container');
   }
 
-  render(lottoCount, lottos) {
-    this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
-    this.purchasedLottoCount = document.getElementById('purchased-lotto-count');
-    this.purchasedLottoCount.textContent = lottoCount;
+  #addToggleClickEvent() {
+    this.toggle = document.getElementById('on-off-switch');
 
-    this.renderPurchasedLottoList(lottoCount, lottos);
-    this.addToggleClickEvent();
+    this.toggle.addEventListener('click', () => {
+      [this.singlePurchasedLottoList, this.detailPurchasedLottoList].forEach(
+        list => list.classList.toggle('hidden'),
+      );
+    });
   }
 
-  renderPurchasedLottoList(lottoCount, lottos) {
+  #renderPurchasedLottoList(lottoCount, lottos) {
     this.singlePurchasedLottoList = document.getElementById(
       'single-purchased-lotto-list',
     );
@@ -40,13 +41,13 @@ export default class PurchasedLottoView {
     this.detailPurchasedLottoList.insertAdjacentHTML('beforeend', lottoList);
   }
 
-  addToggleClickEvent() {
-    this.toggle = document.getElementById('on-off-switch');
+  render(lottoCount, lottos) {
+    this.container.insertAdjacentHTML('beforeend', PURCHASED_LOTTO_TEMPLATE);
+    this.purchasedLottoCount = document.getElementById('purchased-lotto-count');
+    this.purchasedLottoCount.textContent = lottoCount;
 
-    this.toggle.addEventListener('click', () => {
-      this.singlePurchasedLottoList.classList.toggle('hidden');
-      this.detailPurchasedLottoList.classList.toggle('hidden');
-    });
+    this.#renderPurchasedLottoList(lottoCount, lottos);
+    this.#addToggleClickEvent();
   }
 
   reset() {

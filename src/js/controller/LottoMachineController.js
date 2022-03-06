@@ -1,52 +1,63 @@
-import Lottos from '../model/Lottos.js';
+import Lotto from '../model/Lotto.js';
 
 import PurchaseMoneyView from '../view/purchaseMoneyView.js';
 import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
+import PopupView from '../view/PopupView.js';
 
-import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
-import { validatePurchaseMoney, isEmpty } from '../util/validator.js';
+import { CONFIRM_MESSAGE, RULES, REWARD } from '../constants/index.js';
+import {
+  validatePurchaseMoney,
+  isEmpty,
+  validateWinningNumbers,
+} from '../util/validator.js';
+import { calculateTotalReward, getRanks } from '../util/common.js';
 
 export default class LottoMachineController {
   constructor() {
     this.#init();
-    this.#setEventHandler();
+    this.view.purchaseMoneyView.addSubmitEvent(
+      this.#onSubmitPurchaseMoneyHandler.bind(this),
+    );
   }
 
   #init() {
-    this.model = new Lottos();
+    this.lottos = null;
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
       winningNumberView: new WinningNumberView(),
+      popupView: new PopupView(),
     };
   }
 
-  #setEventHandler() {
-    this.view.purchaseMoneyView.addSubmitEvent(this.#onSubmitHandler.bind(this));
+  #makeLottos(lottoCount) {
+    this.lottos = Array.from({ length: lottoCount }).map(() => new Lotto());
   }
 
   #purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
-    this.model.makeLottos(lottoCount);
+    this.#makeLottos(lottoCount);
 
-    const lottos = this.model.getLottos();
-
-    this.view.purchasedLottoView.render(lottoCount, lottos);
+    this.view.purchasedLottoView.render(lottoCount, this.lottos);
     this.view.winningNumberView.render();
+
+    this.view.winningNumberView.addSubmitEvent(
+      this.#onSubmitWinningNumberHandler.bind(this),
+    );
+    this.view.winningNumberView.addNextInputFocusingEvent();
   }
 
-  #onSubmitHandler(purchaseMoney) {
+  #onSubmitPurchaseMoneyHandler(purchaseMoney) {
     try {
       validatePurchaseMoney(purchaseMoney);
     } catch (error) {
       this.view.purchaseMoneyView.resetInputValue();
-      alert(error);
+      alert(error.message);
       return;
     }
-    const lottos = this.model.getLottos();
 
-    if (isEmpty(lottos)) {
+    if (isEmpty(this.lottos)) {
       this.#purchaseLotto(purchaseMoney);
       return;
     }
@@ -65,8 +76,26 @@ export default class LottoMachineController {
   }
 
   #reset() {
-    this.model.reset();
+    this.lottos = null;
     this.view.purchasedLottoView.reset();
     this.view.winningNumberView.reset();
+  }
+
+  #onSubmitWinningNumberHandler(numbers) {
+    try {
+      validateWinningNumbers(numbers);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
+
+    const results = getRanks(this.lottos, numbers);
+    const totalReward = calculateTotalReward(results);
+    // 수익률 = (총 상금 / 구매 금액)을 퍼센트 환산
+    // 즉, 원금 상환 === 수익률 100%
+    const rewardRate = totalReward / this.lottos.length / 10;
+
+    this.view.popupView.render(results, rewardRate);
+    this.view.popupView.addRestartEvent(this.#reset.bind(this));
   }
 }

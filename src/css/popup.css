@@ -1,0 +1,72 @@
+.popup-back {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: var(--popup-bg-color);
+}
+
+#popup {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: var(--app-bg-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#popup > h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  margin: 30px 0 32px;
+}
+
+#close-button {
+  height: 14px;
+  width: 14px;
+  left: 320px;
+  top: 16px;
+  border-radius: 0;
+  color: var(--close-button-text-color);
+  float: right;
+  border: none;
+  background: var(--app-bg-color);
+  margin: 13px 16px 0 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 16px;
+}
+
+th,
+td {
+  border-top: 2px solid var(--table-line-color);
+  border-bottom: 2px solid var(--table-line-color);
+  padding: 10px;
+}
+
+#result-percent {
+  margin: 16px 0 32px;
+  font-weight: 600;
+}
+
+#restart-button {
+  width: 152px;
+  height: 36px;
+  left: 99px;
+  top: 415px;
+  padding: 6px 6px 6px 8px;
+  background: var(--button-bg-color);
+  border: none;
+  border-radius: 4px;
+  color: var(--button-text-color);
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}

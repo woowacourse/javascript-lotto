@@ -1,9 +1,13 @@
 :root {
   --main-bg-color: #e5e5e5;
   --app-bg-color: #ffffff;
-  --input-color: #b4b4b4;
+  --popup-bg-color: #00000080;
   --button-bg-color: #00bcd4;
+  --input-color: #b4b4b4;
+  --header-text-color: #000000;
   --button-text-color: #ffffff;
+  --close-button-text-color: #323232;
+  --table-line-color: #dcdcdc;
   --toggle-off-bar-color: rgba(0, 0, 0, 0.15);
   --toggle-off-button-color: rgba(33, 33, 33, 0.08);
   --toggle-on-bar-color: #80deea;
