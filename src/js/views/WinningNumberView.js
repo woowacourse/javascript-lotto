@@ -13,8 +13,8 @@ export default class WinningNumberView extends View {
   #onClickResultButton(e) {
     e.preventDefault();
 
-    const winningNumberList = Array.from(this.winningNumberInput).map((element) =>
-      Number(element.value.trim()),
+    const winningNumberList = Array.from(this.winningNumberInput).map((input) =>
+      input.value.trim() === "" ? null : Number(input.value),
     );
     try {
       validateWinningNumbers(winningNumberList);

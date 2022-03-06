@@ -2,28 +2,27 @@ export const shuffleArray = (array) => {
   array.sort(() => Math.random() - 0.5);
 };
 
-export const isValidMinimumAmount = (amount, min) => {
+export const isUnderMinimum = (amount, min) => {
   return amount < min;
 };
 
-export const isValidAmountUnit = (amount, unit) => {
+export const isNotThousandUnit = (amount, unit) => {
   return amount % unit !== 0;
 };
 
-export const isValidTypeNumber = (number) => {
-  // eslint-disable-next-line no-restricted-globals
-  return isNaN(number);
+export const isNotNumber = (number) => {
+  return Number.isNaN(number);
 };
 
-export const isValidEmptyValue = (number) => {
-  return number === 0;
+export const isEmpty = (number) => {
+  return number === null;
 };
 
-export const isValidOverlap = (numbers) => {
+export const isOverlap = (numbers) => {
   return numbers.length !== [...new Set(numbers)].length;
 };
 
-export const isValidNumberRange = (number, min, max) => {
+export const isOutOfRange = (number, min, max) => {
   return number < min || number > max;
 };
 
