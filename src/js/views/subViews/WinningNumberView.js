@@ -37,11 +37,11 @@ export default class WinningNumberView {
     this.$bonusNumberInput.value = '';
   }
 
-  appearResetButton() {
+  showResetButton() {
     this.$resetButton.classList.remove(DOM_STRING.BLIND);
   }
 
-  disappearResetButton() {
+  removeResetButton() {
     this.$resetButton.classList.add(DOM_STRING.BLIND);
   }
 
@@ -55,7 +55,7 @@ export default class WinningNumberView {
   bindOnClickResetButton(callback) {
     this.$resetButton.addEventListener('click', (event) => {
       event.preventDefault();
-      this.disappearResetButton();
+      this.removeResetButton();
       callback();
     });
   }

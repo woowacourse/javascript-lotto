@@ -12,15 +12,15 @@ export default class StatisticView {
       winningStatistic,
       earningRatio
     );
-    this.appearView();
+    this.showView();
     this.afterMounted();
   }
 
-  appearView() {
+  showView() {
     this.$target.classList.remove(DOM_STRING.BLIND);
   }
 
-  disappearView() {
+  removeView() {
     this.$target.classList.add(DOM_STRING.BLIND);
   }
 
@@ -32,7 +32,7 @@ export default class StatisticView {
   bindOnClickResetButton(callback) {
     this.$resetButton.addEventListener('click', (event) => {
       event.preventDefault();
-      this.disappearView();
+      this.removeView();
       callback();
     });
   }
@@ -40,7 +40,7 @@ export default class StatisticView {
   bindOnClickCloseButton(callback) {
     this.$closeButton.addEventListener('click', (event) => {
       event.preventDefault();
-      this.disappearView();
+      this.removeView();
       callback();
     });
   }
