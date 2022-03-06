@@ -18,8 +18,9 @@
     ],
     "max-depth": ["error", 1],
     "no-new": "off",
+    "no-alert": "off",
     "import/extensions": "off",
-    "max-lines-per-function": ["error", 15]
+    "max-lines-per-function": ["error", 25]
   },
   "ignorePatterns": ["*test.js", "template.js"]
 }
