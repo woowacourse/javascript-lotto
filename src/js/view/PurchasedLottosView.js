@@ -24,7 +24,7 @@ const PURCHASED_LOTTO_TEMPLATE = `
       <p>
         총 <span id="purchased-lotto-count"></span>개를 구매하였습니다.
       </p>
-      <div id="purchased-lotto-list" class="switch-off"></div>
+      <div id="purchased-lotto-list" class="switch-default"></div>
     </div>
     <div id="switch-box">
       <p>번호 보기</p>
@@ -55,11 +55,7 @@ export default class PurchasedLottosView {
   }
 
   handleSwitchClick() {
-    const classList = this.purchasedLottoList.classList;
-
-    classList.contains('switch-off')
-      ? classList.replace('switch-off', 'switch-on')
-      : classList.replace('switch-on', 'switch-off');
+    this.purchasedLottoList.classList.toggle('switch-on');
   }
 
   renderPurchasedLottoList(lottos) {

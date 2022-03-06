@@ -101,6 +101,15 @@ form > div {
   margin-right: 8px;
 }
 
+.switch-default {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.switch-default .purchased-lotto-number {
+  display: none;
+}
+
 .switch-on .purchased-lotto-item {
   display: flex;
   align-items: center;
@@ -109,13 +118,8 @@ form > div {
   padding-bottom: 4px;
 }
 
-.switch-off {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.switch-off .purchased-lotto-number {
-  display: none;
+.switch-on .purchased-lotto-number {
+  display: block;
 }
 
 #switch-box {
