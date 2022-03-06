@@ -51,15 +51,7 @@ export const validateMoney = (money) => {
   ];
 };
 
-export const checkEmptyOfWinningNumbers = (numbers) => {
-  const hasError = numbers.some((num) => `${num}`.length === 0);
-  if (hasError) {
-    return new ValidationResult(true, ERROR_MESSAGE.EMPTY_WINNING_NUMBERS);
-  }
-  return new ValidationResult(false);
-};
-
-export const checkDuplicateOfWinningNumbers = (numbers) => {
+export const checkDuplicateOfWinningNumberList = (numbers) => {
   const hasError = new Set(numbers).size !== numbers.length;
   if (hasError) {
     return new ValidationResult(true, ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
@@ -67,7 +59,7 @@ export const checkDuplicateOfWinningNumbers = (numbers) => {
   return new ValidationResult(false);
 };
 
-export const checkInvalidRangeOfWinningNumbers = (numbers) => {
+export const checkInvalidRangeOfWinningNumberList = (numbers) => {
   const hasError = numbers.some(
     (num) => !isPositiveInteger(num) || num > LOTTO.RANGE.MAX || num < LOTTO.RANGE.MIN
   );
@@ -77,14 +69,9 @@ export const checkInvalidRangeOfWinningNumbers = (numbers) => {
   return new ValidationResult(false);
 };
 
-export const validateWinningNumbers = (numbers) => {
-  const results = [
-    checkEmptyOfWinningNumbers(numbers),
-    checkInvalidRangeOfWinningNumbers(numbers),
-    checkDuplicateOfWinningNumbers(numbers),
+export const validateWinningNumberList = (numbers) => {
+  return [
+    checkInvalidRangeOfWinningNumberList(numbers),
+    checkDuplicateOfWinningNumberList(numbers),
   ];
-  for (let i = 0; i < results.length; i += 1) {
-    if (results[i].hasError) return results[i];
-  }
-  return new ValidationResult(false);
 };

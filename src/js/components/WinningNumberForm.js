@@ -12,9 +12,8 @@ import Component from '../abstracts/component';
 import Store from '../flux/store';
 import { consoleErrorWithConditionalAlert, duplicateIndexs, findGroupIndex } from '../utils';
 import {
-  checkDuplicateOfWinningNumbers,
-  checkInvalidRangeOfWinningNumbers,
-  validateWinningNumbers,
+  checkInvalidRangeOfWinningNumberList,
+  validateWinningNumberList,
 } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
@@ -37,7 +36,7 @@ class WinningNumberForm extends Component {
       const duplicateErrorClassName =
         groupIndex !== null ? DUPLICATE_ERROR_CLASS_NAMES[groupIndex] : '';
       const invalidRangeErrorClassName =
-        num !== WINNING_NUM_PLACEHOLDER && checkInvalidRangeOfWinningNumbers([num]).hasError
+        num !== WINNING_NUM_PLACEHOLDER && checkInvalidRangeOfWinningNumberList([num]).hasError
           ? INVALID_RANGE_ERROR_CLASS_NAME
           : '';
       const classNames = [duplicateErrorClassName, invalidRangeErrorClassName].join(' ');
@@ -50,24 +49,20 @@ class WinningNumberForm extends Component {
   }
 
   errorListTemplate({ normal, bonus }) {
-    // placeholder에 대해서 미리 에러를 띄우지 않기 위해서 filter를 걸어준다
+    // 아무것도 입력 안했는데 오류를 뿜으면 안되니까 PLACEHODER는 제거해주고 유효성 검사를 한다.
     const winningNumberList = [...normal, bonus].filter((num) => num !== WINNING_NUM_PLACEHOLDER);
-    const { hasError: hasDuplicateError, errorMessage: duplicateErrorMessage } =
-      checkDuplicateOfWinningNumbers(winningNumberList);
-    const duplicateErrorListItem = hasDuplicateError
-      ? `<li class="duplicate-error-message">${duplicateErrorMessage}</li>`
-      : '';
-    const { hasError: hasRangeError, errorMessage: rangeErrorMessage } =
-      checkInvalidRangeOfWinningNumbers(winningNumberList);
-    const invalidRangeErrorListItem = hasRangeError
-      ? `<li class="invalid-range-error-message">${rangeErrorMessage}</li>`
-      : '';
-    return `<ul class="error-list">${duplicateErrorListItem} ${invalidRangeErrorListItem}</ul>`;
+    const validationResults = validateWinningNumberList(winningNumberList);
+    const errorItems = validationResults
+      .map(({ hasError, errorMessage }) => {
+        return hasError ? `<li class="error-message">${errorMessage}</li>` : '';
+      })
+      .join('\n');
+    return `<ul class="error-list">${errorItems}</ul>`;
   }
 
   buttonTemplate({ normal, bonus }) {
     const winningNumberList = [...normal, bonus];
-    const { hasError } = validateWinningNumbers(winningNumberList);
+    const hasError = validateWinningNumberList(winningNumberList).some((result) => result.hasError);
     const disabled = hasError ? 'disabled' : '';
     return `<div class="btn-wrapper"><button type="button" class="btn btn-cyan w-100" ${disabled}>결과 확인하기</button></div>`;
   }
@@ -183,7 +178,7 @@ class WinningNumberForm extends Component {
   }
 
   showStatisticModal(winningNumberList) {
-    const { hasError, errorMessage } = validateWinningNumbers(winningNumberList);
+    const hasError = validateWinningNumberList(winningNumberList).some((result) => result.hasError);
     if (hasError) {
       throw new ValidationError(errorMessage);
     }

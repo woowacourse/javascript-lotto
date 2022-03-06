@@ -49,9 +49,6 @@ label {
 
 .error-list li {
   margin-bottom: 4px;
-}
-
-money-form .error-message {
   color: red;
 }
 
@@ -185,15 +182,6 @@ winning-number-form winning-number-input.duplicate-error-3 input {
 winning-number-form winning-number-input.invalid-range-error input {
   background-color: orange;
 }
-
-winning-number-form .error-list .duplicate-error-message {
-  color: red;
-}
-
-winning-number-form .error-list .invalid-range-error-message {
-  color: orange;
-}
-
 
 
 statistics-modal .modal-dialog {
