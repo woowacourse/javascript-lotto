@@ -1,4 +1,4 @@
-import { LOTTO, STATISTIC } from '../configs/contants.js';
+import { LOTTO } from '../configs/contants.js';
 
 const template = {
   app: () => {

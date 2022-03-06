@@ -76,10 +76,11 @@ export const SELECTOR = {
   TICKET: '.ticket',
   SHOW_NUMBER_TOGGLE_AREA: '#show-number-toggle-area',
   WINNING_NUMBER_INPUT: '.winning-number-input',
-  BONUS_NUMBER_INPUT: '.bonus-number-input',
+  BONUS_NUMBER_INPUT: '#bonus-number-input',
   SHOW_RESULT_BUTTON: '#show-result-button',
+  WINNING_NUMBER_SECTION_RESET_BUTTON: '#winning-number-section-reset-button',
   STATISTIC_SECTION_WRAP: '#statistic-section-wrap',
   STATISTIC_SECTION: '#statistic-section',
   CLOSE_BUTTON: '#close-button',
-  RESET_BUTTON: '#reset-button',
+  STATISTIC_SECTION_RESET_BUTTON: '#statistic-section-reset-button',
 };

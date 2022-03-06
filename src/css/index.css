@@ -89,7 +89,6 @@ button:disabled {
   background: #b4b4b4;
 }
 
-form {
-  display: flex;
-  justify-content: space-between;
+ul {
+  list-style: none;
 }
