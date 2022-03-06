@@ -28,7 +28,7 @@ export default class LottoResultModalView {
   }
 
   renderTotalProfitRate(totalProfitRate) {
-    this.totalProfitRate.textContent = totalProfitRate;
+    this.totalProfitRate.textContent = totalProfitRate.toFixed(2);
   }
 
   clickRestartButtonHandler() {
