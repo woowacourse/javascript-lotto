@@ -1,10 +1,10 @@
-import { LOTTO, SELECTOR } from "../constants/constants.js";
-import Lotto from "../models/Lotto.js";
-import validateMoney from "../validations/PurchaseLottos.js";
+import { LOTTO, SELECTOR } from '../constants/constants.js';
+import Lotto from '../models/Lotto.js';
+import validateMoney from '../validations/PurchaseLottos.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
-  #winLottos = [0, 0, 0, 0, 0, 0, 0]; // [0개 일치, 1개 일치, ... 5개 일치 , 6개 일치]
+  #winLottos = this.getInitialWinLottos(); // [0개 일치, 1개 일치, ... 5개 일치 , 6개 일치]
   #winLottosWithBonus = 0;
 
   get inputMoney() {
@@ -56,6 +56,10 @@ export default class LottoMachine {
     return profit;
   }
 
+  getInitialWinLottos() {
+    return [0, 0, 0, 0, 0, 0, 0];
+  }
+
   countWinLottos(winningNumbers, bonusNumber) {
     this.#lottos.map(({ numbers }) => {
       const set = new Set([...numbers, ...winningNumbers]);
@@ -72,12 +76,12 @@ export default class LottoMachine {
   resetMachine() {
     this.#inputMoney = 0;
     this.#lottos = [];
-    this.#winLottos = [0, 0, 0, 0, 0, 0, 0];
+    this.#winLottos = this.getInitialWinLottos();
     this.#winLottosWithBonus = 0;
   }
 
   resetWinLottos() {
-    this.#winLottos = [0, 0, 0, 0, 0, 0, 0];
+    this.#winLottos = this.getInitialWinLottos();
     this.#winLottosWithBonus = 0;
   }
 }
