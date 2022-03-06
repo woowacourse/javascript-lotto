@@ -51,6 +51,7 @@ export default class InputWinningNumberView {
     this.winningNumberInputs = document.querySelectorAll(
       '.winning-number-input',
     );
+
     this.winningNumberInputs.forEach((inputElement, index) => {
       event.on(inputElement, 'input', () =>
         this.handleWinningNumberInputFocus(inputElement, index),

@@ -133,6 +133,7 @@ form > div {
   margin-top: 13px;
 }
 
+/* test */
 .switch {
   display: inline-block;
   position: relative;
@@ -187,6 +188,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* test */
 
 #winning-number-container {
   margin-top: 32px;
