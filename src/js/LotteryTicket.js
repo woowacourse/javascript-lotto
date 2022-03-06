@@ -1,5 +1,5 @@
 import { LOTTERY_TICKET_NUMBER } from './constants/constants';
-import { generateIntegerArray } from './utils/util';
+import { generateRandomInRange } from './utils/util';
 
 export default class LotteryTicket {
   #numbers;
@@ -13,6 +13,18 @@ export default class LotteryTicket {
   }
 
   generateNumbersAutomatically() {
-    return generateIntegerArray(LOTTERY_TICKET_NUMBER.MAX).sort(() => Math.random() - 0.5).slice(0, LOTTERY_TICKET_NUMBER.LENGTH);
+    const numbers = [];
+
+    while (numbers.length !== LOTTERY_TICKET_NUMBER.LENGTH) {
+      const randomNumber = generateRandomInRange(
+        LOTTERY_TICKET_NUMBER.MIN,
+        LOTTERY_TICKET_NUMBER.MAX
+      );
+      if (!numbers.find(number => number === randomNumber))
+        numbers.push(randomNumber);
+    }
+
+    return numbers;
   }
+
 }
