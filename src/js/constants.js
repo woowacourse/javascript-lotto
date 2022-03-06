@@ -12,6 +12,7 @@ export const ERROR_MESSAGE = {
   EMPTY_MONEY: '금액을 입력해 주세요!',
   NOT_INTEGER_MONEY: '정수만 입력해 주세요!',
   UNDER_MIN_MONEY: '천원 이상 입력해 주세요!',
+  OVER_MAX_MONEY: '십만원 이하로 입력해 주세요',
   NOT_DIVIDED_BY_THOUSAND: '천 단위로 입력해 주세요!',
 
   EMPTY_WINNING_NUMBERS: '모든 당첨 번호를 입력해 주세요!',
@@ -27,6 +28,7 @@ export const LOTTO = {
   },
   COUNT: 6,
   PRICE: 1000,
+  MAX_PURCHASEABLE_COUNT: 100,
   PRIZE_MONEY: [0, 2000000000, 30000000, 1500000, 50000, 5000],
 };
 

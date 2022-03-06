@@ -28,6 +28,13 @@ export const checkUnderMinMoney = (money) => {
   return new ValidationResult(false);
 };
 
+export const checkOverMaxMoney = (money) => {
+  if (toInt(money, 10) > LOTTO.PRICE * LOTTO.MAX_PURCHASEABLE_COUNT) {
+    return new ValidationResult(true, ERROR_MESSAGE.OVER_MAX_MONEY);
+  }
+  return new ValidationResult(false);
+};
+
 export const checkNotDevidedByThousandMoney = (money) => {
   if (money % 1000) {
     return new ValidationResult(true, ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSAND);
@@ -36,7 +43,12 @@ export const checkNotDevidedByThousandMoney = (money) => {
 };
 
 export const validateMoney = (money) => {
-  return [checkEmptyMoney(money), checkUnderMinMoney(money), checkNotDevidedByThousandMoney(money)];
+  return [
+    checkEmptyMoney(money),
+    checkUnderMinMoney(money),
+    checkOverMaxMoney(money),
+    checkNotDevidedByThousandMoney(money),
+  ];
 };
 
 export const checkEmptyOfWinningNumbers = (numbers) => {
