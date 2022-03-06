@@ -28,10 +28,8 @@ const PURCHASED_LOTTO_TEMPLATE = `
     </div>
     <div id="switch-box">
       <p>번호 보기</p>
-      <label for="on-off-switch" class="switch">
-        <input id="on-off-switch" type="checkbox"/>
-        <span class="slider round"></span> 
-      </label>
+      <input id="on-off-switch" type="checkbox"/>
+      <label for="on-off-switch" class="toggle"></label> 
     </div>
   </div>
 `;
