@@ -40,16 +40,7 @@ export default class LottoController {
       '@purchaseMoney',
       this.#submitPurchaseLotto.bind(this)
     );
-    on(
-      this.#lottoPurchaseResultView.showLottoToggle,
-      '@lottoToggle',
-      this.#submitLottoToggle.bind(this)
-    );
     on(this.#lottoMatchResultView.restartButton, '@restart', this.#submitRestart.bind(this));
-  }
-
-  #submitLottoToggle() {
-    this.#lottoPurchaseResultView.toggleLottoNumbers();
   }
 
   // eslint-disable-next-line max-lines-per-function

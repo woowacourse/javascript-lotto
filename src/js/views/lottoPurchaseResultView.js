@@ -1,5 +1,9 @@
 import { $, $$, emit, on } from '../utils/helper.js';
-import { lottoPurchaseCountTemplate, lottoPurchaseResultTemplate } from '../utils/template.js';
+import {
+  lottoPurchaseCountTemplate,
+  lottoPurchaseResultTemplate,
+  toggleButtonTemplate,
+} from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
   #lottoPurchaseCount;
@@ -10,32 +14,25 @@ export default class lottoPurchaseResultView {
 
   #lottoNumbers;
 
+  #lottoPurchaseResultSection;
+
   constructor() {
     this.#lottoPurchaseCount = $('#lotto-purchase-count');
     this.#lottoList = $('#lotto-list');
-    this.#showLottoToggle = $('#show-lotto-toggle');
-
-    this.#attachEvents();
-  }
-
-  get showLottoToggle() {
-    return this.#showLottoToggle;
-  }
-
-  #attachEvents() {
-    on(this.#showLottoToggle, 'click', this.#handleShowLottoToggle.bind(this));
-  }
-
-  #handleShowLottoToggle() {
-    emit(this.#showLottoToggle, '@lottoToggle');
+    this.#lottoPurchaseResultSection = $('#lotto-purchase-result-section');
   }
 
   render(count, lottoList) {
     this.#lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
+
+    this.#lottoPurchaseResultSection.insertAdjacentHTML('beforeend', toggleButtonTemplate());
+    this.#showLottoToggle = $('#show-lotto-toggle');
+    on(this.#showLottoToggle, 'click', this.#toggleLottoNumbers.bind(this));
+
     this.#lottoList.insertAdjacentHTML('afterbegin', lottoPurchaseResultTemplate(lottoList));
   }
 
-  toggleLottoNumbers() {
+  #toggleLottoNumbers() {
     this.#lottoNumbers = $$('.lotto-numbers');
 
     this.#lottoList.classList.toggle('grid-columns-six');
@@ -48,11 +45,13 @@ export default class lottoPurchaseResultView {
 
     if (this.#showLottoToggle.checked) {
       this.#showLottoToggle.checked = false;
-      this.toggleLottoNumbers();
+      this.#toggleLottoNumbers();
     }
 
     while (this.#lottoList.firstChild) {
       this.#lottoList.removeChild(this.#lottoList.firstChild);
     }
+
+    $('#lotto-toggle-button').remove();
   }
 }

@@ -12,6 +12,22 @@ export const lottoPurchaseResultTemplate = (lottoList) => {
   `;
 };
 
+export const toggleButtonTemplate = () => {
+  return `
+    <div id="lotto-toggle-button" class="flex flex-direction-column">
+      <p>번호보기</p>
+      <label class="switch" for="show-lotto-toggle">
+      <input
+        id="show-lotto-toggle"
+        name="show-lotto-toggle"
+        type="checkbox"
+      />
+      <span class="slider round"></span>
+      </label>
+    </div>
+  `;
+};
+
 export const lottoTemplate = (numbers) => {
   return `
     <li class="flex">

@@ -19,9 +19,8 @@ describe('로또 프로그램, 성공 테스트', () => {
     });
 
     it('로또', () => {
-      cy.get('.lotto-wrap').should('exist');
-      cy.get('#lotto-list').children('.lotto-wrap').should('have.length', 2);
-      cy.get('#lotto-list').children('.lotto-wrap').should('not.have.length', 3);
+      cy.get('#lotto-list').children().should('have.length', 2);
+      cy.get('#lotto-list').children().should('not.have.length', 3);
     });
   });
 
@@ -31,17 +30,21 @@ describe('로또 프로그램, 성공 테스트', () => {
     });
 
     it('구매한 로또 번호 확인', () => {
-      cy.get('.lotto-wrap').each((element) => {
-        expect(element.children('.lotto-numbers')).to.be.visible;
-      });
+      cy.get('#lotto-list')
+        .children()
+        .each((element) => {
+          expect(element.children('.lotto-numbers')).to.be.visible;
+        });
     });
 
     it('구매한 로또 번호 숨기기', () => {
       cy.get('#show-lotto-toggle').uncheck({ force: true });
 
-      cy.get('.lotto-wrap').each((element) => {
-        expect(element.children('.lotto-numbers')).not.to.be.visible;
-      });
+      cy.get('#lotto-list')
+        .children()
+        .each((element) => {
+          expect(element.children('.lotto-numbers')).not.to.be.visible;
+        });
     });
   });
 });
