@@ -16,12 +16,20 @@ export const isNegativeNumber = value => {
   return value < 0;
 };
 
-export const isDuplicated = list => {
-  return list.length !== [...new Set(list)].length;
-};
-
 export const isNotThousandUnit = value => {
   return value % RULES.LOTTO_PRICE !== 0;
+};
+
+export const isIncludeEmpty = list => {
+  return list.some(value => isEmpty(value));
+};
+
+export const isIncludeNotNumber = list => {
+  return list.some(value => isNotNumber(value));
+};
+
+export const isDuplicated = list => {
+  return list.length !== [...new Set(list)].length;
 };
 
 export const convertToNumber = value => {
