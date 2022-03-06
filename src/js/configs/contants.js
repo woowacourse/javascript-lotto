@@ -15,10 +15,6 @@ export const PAYMENT = {
 };
 
 export const STATISTIC = {
-  under: {
-    winnings: 0,
-    numberString: 'under',
-  },
   three: {
     number: 3,
     winnings: 5000,

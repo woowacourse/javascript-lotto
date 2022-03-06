@@ -90,6 +90,9 @@ export default class WinningNumberController {
     const winningStatistic = LottoModel.createWinningStatistic();
 
     countList.forEach((count) => {
+      if (count < STATISTIC.three.number) {
+        return;
+      }
       const countString = this.translateToString(count);
       winningStatistic[countString] += 1;
     });
@@ -98,19 +101,8 @@ export default class WinningNumberController {
   }
 
   translateToString(count) {
-    if (count < STATISTIC.three.number) {
-      return STATISTIC.under.numberString;
-    }
-
     const statisticDataList = Object.values(STATISTIC);
-    const targetData = statisticDataList.find((data) => {
-      const { numberString, number } = data;
-      if (number === count) {
-        return numberString;
-      }
-
-      return false;
-    });
+    const targetData = statisticDataList.find((data) => count === data.number);
 
     return targetData.numberString;
   }

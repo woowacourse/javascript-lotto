@@ -20,7 +20,6 @@ describe('당첨번호와 로또 리스트가 주어지면', () => {
     [6, 23, 16, 42, 34, 9],
   ];
   const winningStatistic = {
-    under: 1,
     three: 1,
     four: 1,
     five: 1,
