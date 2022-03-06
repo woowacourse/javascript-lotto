@@ -15,9 +15,10 @@ import {
   bindEventListener,
   render,
   initInput,
-  disableElement,
-  toggleClassName,
-  removeChildElement,
+  enabledElements,
+  toggleElement,
+  disabledElements,
+  removeChildElements,
   focusInput,
   bindsEventListener,
 } from './dom';
@@ -41,31 +42,28 @@ export default class LottoApp {
   }
 
   onSubmitRestartButton() {
-    disableElement(this.$paymentInput);
-    toggleClassName(this.$paymentInput, CLASS_NAME.DISABLED);
-
-    disableElement(this.$paymentButton);
-    toggleClassName(this.$paymentButton, CLASS_NAME.DISABLED);
+    enabledElements(
+      [this.$paymentInput, this.$paymentButton],
+      CLASS_NAME.DISABLED
+    );
 
     initInput(this.$paymentInput);
 
-    removeChildElement(
-      this.$app,
-      getElement(SELECTOR.LAST_WEEK_WINNING_NUMBER_SECTION)
-    );
-    removeChildElement(
-      this.$app,
-      getElement(SELECTOR.PURCHASED_LOTTO_LIST_SECTION)
-    );
-    removeChildElement(this.$app, this.$lottoResultSection);
-    removeChildElement(this.$app, this.$coverTheBackground);
+    removeChildElements(this.$app, [
+      getElement(SELECTOR.LAST_WEEK_WINNING_NUMBER_SECTION),
+      getElement(SELECTOR.PURCHASED_LOTTO_LIST_SECTION),
+      this.$lottoResultSection,
+      this.$coverTheBackground,
+    ]);
   }
 
   onClickExitButton(e) {
     e.preventDefault();
 
-    removeChildElement(this.$app, this.$lottoResultSection);
-    removeChildElement(this.$app, this.$coverTheBackground);
+    removeChildElements(this.$app, [
+      this.$lottoResultSection,
+      this.$coverTheBackground,
+    ]);
   }
 
   onSubmitLottoResultButton(e) {
@@ -114,19 +112,16 @@ export default class LottoApp {
   }
 
   onClickToggleButton() {
-    toggleClassName(this.$lottoListToggleButton, CLASS_NAME.TOGGLE_SWITCH);
+    toggleElement(this.$lottoListToggleButton, CLASS_NAME.TOGGLE_SWITCH);
 
-    toggleClassName(
-      getElement(SELECTOR.LOTTO_LIST),
-      CLASS_NAME.DIRECTION_COLUMN
-    );
+    toggleElement(getElement(SELECTOR.LOTTO_LIST), CLASS_NAME.DIRECTION_COLUMN);
 
     getElements(SELECTOR.LOTTO).forEach((element) => {
-      toggleClassName(element, CLASS_NAME.DISPLAY_FLEX);
+      toggleElement(element, CLASS_NAME.DISPLAY_FLEX);
     });
 
     getElements(SELECTOR.LOTTO_NUMBER).forEach((element) => {
-      toggleClassName(element, CLASS_NAME.INVISIBLE);
+      toggleElement(element, CLASS_NAME.INVISIBLE);
     });
   }
 
@@ -138,19 +133,19 @@ export default class LottoApp {
         MONEY.STANDARD
       );
 
-      toggleClassName(this.$paymentButton, CLASS_NAME.DISABLED);
-
-      disableElement(this.$paymentButton);
-      disableElement(this.$paymentInput);
+      disabledElements(
+        [this.$paymentButton, this.$paymentInput],
+        CLASS_NAME.DISABLED
+      );
 
       this.lottoConsumer.setLottoList(purchasedLottoCount);
       this.lottoSeller.setPurchasedAmount(purchasedLottoCount);
 
       render(
         this.$app,
-        createTemplate.purchasedSection(this.lottoConsumer.getLottoList())
+        `${createTemplate.purchasedSection(this.lottoConsumer.getLottoList())}
+          ${createTemplate.lastWeekWinningNumberSection()}`
       );
-      render(this.$app, createTemplate.lastWeekWinningNumberSection());
 
       this.purchasedLottoListSectionBindEvent();
       this.lastWeekWinningNumberSectionBindEvent();
