@@ -4,8 +4,9 @@ import { MATCH_RESULT_INDEX, PRIZE_MONEY } from '../constants/constants';
 const CLASS_DISPLAY_NONE = 'display-none';
 
 export default class WinningResultSectionView {
-  constructor() {
-    this.winningResultSection = $('#winning-result-section');
+  constructor(app) {
+    this.app = app;
+    this.winningResultSection = $('#winning-result-section', this.app);
     this.winningNumberForm = $('#winning-number-form', this.winningResultSection);
     this.winningNumberInputs = $$('.winning-number-input', this.winningNumberForm);
     this.winningNumberSubmitButton = $('button', this.winningNumberForm);
@@ -43,12 +44,12 @@ export default class WinningResultSectionView {
     const winningNumberSubmitEvent = new CustomEvent('checkWinningResult', {
       detail: { winningNumberInputValues }
     });
-    window.dispatchEvent(winningNumberSubmitEvent);
+    this.app.dispatchEvent(winningNumberSubmitEvent);
   }
 
   onClickRestartButton() {
     const restartEvent = new CustomEvent('restart', {});
-    window.dispatchEvent(restartEvent);
+    this.app.dispatchEvent(restartEvent);
   }
 
   initialize() {

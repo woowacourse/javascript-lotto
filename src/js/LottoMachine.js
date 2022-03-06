@@ -12,9 +12,9 @@ export default class LottoMachine {
   }
 
   bindEvent() {
-    window.addEventListener('purchaseTicket', this.purchaseLotteryTicket.bind(this));
-    window.addEventListener('checkWinningResult', this.checkWinningResult.bind(this));
-    window.addEventListener('restart', this.restart.bind(this));
+    this.lottoMachineView.app.addEventListener('purchaseTicket', this.purchaseLotteryTicket.bind(this));
+    this.lottoMachineView.app.addEventListener('checkWinningResult', this.checkWinningResult.bind(this));
+    this.lottoMachineView.app.addEventListener('restart', this.restart.bind(this));
   }
   
   purchaseLotteryTicket(event) {

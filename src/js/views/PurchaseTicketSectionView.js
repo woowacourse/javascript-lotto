@@ -6,8 +6,9 @@ import { lottoListTemplate, lottoTotalNumber } from './template';
 const CLASS_DISPLAY_NONE = 'display-none';
 
 export default class PurchaseTicketSectionView {
-  constructor() {
-    this.purchaseTicketSection = $('#purchase-ticket-section');
+  constructor(app) {
+    this.app = app;
+    this.purchaseTicketSection = $('#purchase-ticket-section', this.app);
     this.chargeSubmitForm = $('#charge-submit-form', this.purchaseTicketSection);
     this.chargeInput = $('input', this.chargeSubmitForm);
     this.chargeSubmitButton = $('button', this.chargeSubmitForm);
@@ -44,7 +45,7 @@ export default class PurchaseTicketSectionView {
     const purchaseEvent = new CustomEvent('purchaseTicket', {
       detail: { chargeInputValue }
     });
-    window.dispatchEvent(purchaseEvent);
+    this.app.dispatchEvent(purchaseEvent);
   }
 
   onClickTicketListStyleToggleInput() {
