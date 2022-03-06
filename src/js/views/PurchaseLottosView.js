@@ -1,7 +1,9 @@
 import { $ } from '../utils/utils.js';
 import { SELECTOR } from '../constants/constants.js';
 import View from './View.js';
-import validateMoney from '../validations/PurchaseLottos.js';
+import validateMoney, {
+  isNumberStartWithZero
+} from '../validations/PurchaseLottos.js';
 
 const template = {
   ticketImg: '<div>🎟️</div>',
@@ -27,6 +29,9 @@ export default class PurchaseLottosView extends View {
   }
 
   getInputMoney() {
+    if (isNumberStartWithZero($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value)) {
+      throw new Error('허용되지 않는 숫자 형식입니다.');
+    }
     return Number.parseInt($(SELECTOR.ID.PURCHASE_MONEY_INPUT).value);
   }
 

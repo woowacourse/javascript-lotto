@@ -12,7 +12,14 @@ function isOverLimit(money) {
   return money > LOTTO.INPUT_LIMIT;
 }
 
+export function isNumberStartWithZero(money) {
+  return money.length > 1 && money[0] == 0;
+}
+
 export default function validateMoney(money) {
+  if (isNumberStartWithZero(money)) {
+    throw new Error('허용되지 않은 숫자 형식입니다.');
+  }
   if (!isOverZero(money)) {
     throw new Error('0원보다 큰 금액을 입력해주세요.');
   }
