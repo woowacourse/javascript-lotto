@@ -19,11 +19,17 @@ class LottoGameView {
     this.#winningStatisticModalView = new WinningStatisticModalView();
   }
 
-  renderAfterFareSubmit(lottoList, remainFare) {
+  renderRemainFare(remainFare) {
     this.#fareFormView.renderFare(remainFare);
-    this.#lottoListView.renderLottoList(lottoList);
-    this.#lottoMatchView.renderLottoMatchSection();
     this.#fareFormView.deactivateFareForm();
+  }
+
+  renderLottoList(lottoList) {
+    this.#lottoListView.renderLottoList(lottoList);
+  }
+
+  renderLottoMatchSection() {
+    this.#lottoMatchView.renderLottoMatchSection();
   }
 
   renderWinningStatisticModal(winningCounts, earningsRate) {
