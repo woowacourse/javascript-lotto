@@ -6,17 +6,19 @@ input[type='number']::-webkit-inner-spin-button {
 
 input:focus {
   border: 1px solid #00bcd4;
-  outline: 2px solid #00bcd4;
+  outline: 1px solid #00bcd4;
 }
 
-input[data-invalid-state='true'] {
+.invalid {
   background-color: #ffb0cd;
-  border: 1px solid #ff6464;
-  outline: 2px solid #ff6464;
+  border: 1px solid #ff6464 !important;
+  outline: 1px solid #ff6464 !important;
 }
 
-input[data-invalid-state='false'] {
+input {
   background-color: #ffffff;
+  outline: 1px solid #aaaaaa;
+  border: 1px solid #dddddd;
 }
 
 label {
@@ -58,7 +60,6 @@ body {
 #charge-input {
   flex: 1;
   margin-right: 20px;
-  border: 1px solid #b4b4b4;
   border-radius: 4px;
 }
 

@@ -88,11 +88,11 @@ class LottoRoundView {
   }
 
   setInvalidInputState(target) {
-    target.setAttribute('data-invalid-state', true);
+    target.classList.add('invalid');
   }
 
   setValidInputState(target) {
-    target.setAttribute('data-invalid-state', false);
+    target.classList.remove('invalid');
   }
 
   openResultModal(resultArray) {
