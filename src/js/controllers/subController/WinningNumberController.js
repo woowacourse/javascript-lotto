@@ -60,7 +60,7 @@ export default class WinningNumberController {
   }
 
   createWinningStatistic(lottoNumbersList, winningNumbers, bonus) {
-    const winningStatistic = LottoModel.createWinningStatistic();
+    const winningStatistic = LottoModel.createEmptyWinningStatistic();
 
     lottoNumbersList.forEach((lottoNumbers) => {
       const count = this.countSameNumber(lottoNumbers, winningNumbers, bonus);

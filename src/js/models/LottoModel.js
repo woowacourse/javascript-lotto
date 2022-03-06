@@ -4,7 +4,7 @@ import Lotto from './Lotto/Lotto.js';
 export default class LottoModel {
   state;
 
-  static createWinningStatistic() {
+  static createEmptyWinningStatistic() {
     const statisticList = Object.keys(STATISTIC).map((numberString) => {
       return [numberString, 0];
     });
@@ -24,7 +24,7 @@ export default class LottoModel {
     const initialState = {
       amount: 0,
       lottoList: [],
-      winningStatistic: LottoModel.createWinningStatistic(),
+      winningStatistic: LottoModel.createEmptyWinningStatistic(),
     };
 
     this.setState(initialState);
