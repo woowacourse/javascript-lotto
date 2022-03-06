@@ -2,6 +2,7 @@ import './components/MoneyForm';
 import './components/LottoList';
 import './components/LottoListToggle';
 import './components/LottoItem';
+import './components/WinningNumberInput';
 import './components/WinningNumberForm';
 import './components/StatisticsModal';
 

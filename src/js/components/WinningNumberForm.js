@@ -1,38 +1,79 @@
-import { ACTION, LOTTO, VALIDATION_ERROR_NAME } from '../constants';
+/* eslint-disable max-lines-per-function */
+import {
+  ACTION,
+  DUPLICATE_ERROR_CLASS_NAMES,
+  INVALID_RANGE_ERROR_CLASS_NAME,
+  LOTTO,
+  VALIDATION_ERROR_NAME,
+  WINNING_NUM_PLACEHOLDER,
+} from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
-import { validateWinningNumbers } from '../validation/validators';
-import ValidationError from '../validation/validation-error';
-import { consoleErrorWithConditionalAlert } from '../utils';
 import Store from '../flux/store';
+import { consoleErrorWithConditionalAlert, duplicateIndexs, findGroupIndex } from '../utils';
+import {
+  checkDuplicateOfWinningNumbers,
+  checkInvalidRangeOfWinningNumbers,
+  validateWinningNumbers,
+} from '../validation/validators';
+import ValidationError from '../validation/validation-error';
 
 class WinningNumberForm extends Component {
-  normalInputs(normal) {
-    let normalInputs = [...Array(LOTTO.COUNT).keys()]
-      .map((order) => `<input class="form-control" data-order="${order}" maxlength="2"/>`)
-      .join('');
-    const didSubmitLottoNum = normal.length === LOTTO.COUNT;
-    if (didSubmitLottoNum) {
-      normalInputs = normal
-        .map(
-          (num, order) =>
-            `<input class="form-control" data-order="${order}" value="${num}" maxlength="2"/>`
-        )
-        .join('');
-    }
-    return normalInputs;
+  inputTemplate({ normal, bonus }) {
+    const winningNumbers = [...normal, bonus];
+    const duplicateNumIndexArrList = duplicateIndexs(
+      winningNumbers.filter((num) => num !== WINNING_NUM_PLACEHOLDER)
+    );
+    let hasFocusInput = false;
+    const inputs = winningNumbers.map((num, index) => {
+      const val = num;
+      let isFocus = false;
+      if (!hasFocusInput) {
+        isFocus = num === WINNING_NUM_PLACEHOLDER;
+        hasFocusInput = isFocus;
+      }
+      const focus = isFocus ? 'data-is-focus' : '';
+      const groupIndex = findGroupIndex(duplicateNumIndexArrList, index);
+      const duplicateErrorClassName =
+        groupIndex !== null ? DUPLICATE_ERROR_CLASS_NAMES[groupIndex] : '';
+      const invalidRangeErrorClassName =
+        num !== WINNING_NUM_PLACEHOLDER && checkInvalidRangeOfWinningNumbers([num]).hasError
+          ? INVALID_RANGE_ERROR_CLASS_NAME
+          : '';
+      const classNames = [duplicateErrorClassName, invalidRangeErrorClassName].join(' ');
+      return `<winning-number-input class="${classNames}" data-order="${index}" ${focus} data-value="${val}"></winning-number-input>`;
+    });
+    return {
+      normalInputs: inputs.slice(0, inputs.length - 1).join('\n'),
+      bonusInput: inputs[inputs.length - 1],
+    };
   }
 
-  bonusInput(bonus) {
-    const bonusInput =
-      bonus && bonus > 0
-        ? `<input class="form-control" data-order="${LOTTO.COUNT}" value="${bonus}" maxlength="2"/>`
-        : `<input class="form-control" data-order="${LOTTO.COUNT}" maxlength="2"/>`;
-    return bonusInput;
+  errorListTemplate({ normal, bonus }) {
+    // placeholder에 대해서 미리 에러를 띄우지 않기 위해서 filter를 걸어준다
+    const winningNumberList = [...normal, bonus].filter((num) => num !== WINNING_NUM_PLACEHOLDER);
+    const { hasError: hasDuplicateError, errorMessage: duplicateErrorMessage } =
+      checkDuplicateOfWinningNumbers(winningNumberList);
+    const duplicateErrorListItem = hasDuplicateError
+      ? `<li class="duplicate-error-message">${duplicateErrorMessage}</li>`
+      : '';
+    const { hasError: hasRangeError, errorMessage: rangeErrorMessage } =
+      checkInvalidRangeOfWinningNumbers(winningNumberList);
+    const invalidRangeErrorListItem = hasRangeError
+      ? `<li class="invalid-range-error-message">${rangeErrorMessage}</li>`
+      : '';
+    return `<ul class="error-list">${duplicateErrorListItem} ${invalidRangeErrorListItem}</ul>`;
   }
 
-  // eslint-disable-next-line max-lines-per-function
-  template({ normal, bonus }) {
+  buttonTemplate({ normal, bonus }) {
+    const winningNumberList = [...normal, bonus];
+    const { hasError } = validateWinningNumbers(winningNumberList);
+    const disabled = hasError ? 'disabled' : '';
+    return `<div class="btn-wrapper"><button type="button" class="btn btn-cyan w-100" ${disabled}>결과 확인하기</button></div>`;
+  }
+
+  template(winningNumbers) {
+    const { normalInputs, bonusInput } = this.inputTemplate(winningNumbers);
     return `
       <form>
         <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
@@ -40,63 +81,113 @@ class WinningNumberForm extends Component {
           <fieldset>
             <label>당첨 번호</label>
             <div class="d-flex">
-              ${this.normalInputs(normal)}
+              ${normalInputs}
             </div>
           </fieldset>
           <fieldset>
             <label>보너스 번호</label>
-            ${this.bonusInput(bonus)}
+            ${bonusInput}
           </fieldset>
+          ${this.errorListTemplate(winningNumbers)}
         </div>
-        <button class="btn btn-cyan w-100">결과 확인하기</button>
+        ${this.buttonTemplate(winningNumbers)}
       </form>
     `;
   }
 
-  // eslint-disable-next-line max-lines-per-function
   setEvent() {
-    this.addEvent('submit', 'form', (event) => {
-      event.preventDefault();
-      const winningNumbers = this.$inputs.map((input) => input.value);
-
-      try {
-        this.submitLottoNumbers(winningNumbers);
-      } catch (e) {
-        consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
-      }
+    this.addEvent('change', 'winning-number-form', () => {
+      const winningNumberList = this.$inputs.map((input) => input.valueAsNumber);
+      this.submitLottoNumbers(winningNumberList);
     });
 
-    // eslint-disable-next-line max-lines-per-function
-    this.addEvent('keyup', '.wrapper', ({ target, key }) => {
-      const maxLength = parseInt(target.getAttribute('maxlength'), 10);
-      const currentLength = `${target.value}`.length;
-      const order = parseInt(target.getAttribute('data-order'), 10);
-      if (Number.isNaN(order)) {
-        return;
-      }
-      if (currentLength >= maxLength && order < LOTTO.COUNT) {
-        const nextInput = this.$inputs[order + 1];
-        nextInput.focus();
-      } else if (currentLength === 0 && order > 0 && key === 'Backspace') {
-        const prevInput = this.$inputs[order - 1];
-        prevInput.focus();
-      }
+    this.addEvent('keyup', 'winning-number-form', (event) => {
+      const { path, key } = event;
+      const target = path[1];
+      this.handleKeyupEvent(target, key);
+    });
+
+    this.addEvent('keydown', 'winning-number-form', (event) => {
+      const { path, key } = event;
+      const target = path[1];
+      this.handleKeydownEvent(target, key);
+    });
+
+    this.addEvent('click', 'winning-number-form', (event) => {
+      const { path } = event;
+      const target = path[1];
+      if (target.tagName.toLowerCase() !== 'winning-number-input') return;
+      const { order } = target;
+      const winningNumberList = this.$inputs.map((input) =>
+        input.order === order ? WINNING_NUM_PLACEHOLDER : input.valueAsNumber
+      );
+      this.submitLottoNumbers(winningNumberList);
+    });
+
+    this.addEvent('click', 'winning-number-form', ({ target }) => {
+      if (target.tagName.toLowerCase() !== 'button') return;
+      this.handleEnter(); // 버튼 누른거는 Enter친것과 같은 행위이다
     });
   }
 
-  submitLottoNumbers(winningNumbers) {
-    const { hasError, errorMessage } = validateWinningNumbers(winningNumbers);
+  handleKeyupEvent(target, key) {
+    const { order } = target;
+    if (key === 'Backspace' || key === 'Enter') return;
+    if (target.isFull() && order < LOTTO.COUNT) {
+      const nextInput = this.$inputs[order + 1];
+      nextInput.focus();
+    }
+  }
 
+  handleKeydownEvent(target, key) {
+    const { order, length } = target;
+    if (key !== 'Backspace' && key !== 'Enter') return;
+
+    if (length === 0 && order > 0 && key === 'Backspace') {
+      const winningNumberList = this.$inputs.map((input) => {
+        if (input.order === target.order - 1) return WINNING_NUM_PLACEHOLDER; // 방금 지운 input의 이전 input도 지워준다
+        return input.valueAsNumber;
+      });
+      this.submitLottoNumbers(winningNumberList);
+      return;
+    }
+
+    if (key === 'Enter') {
+      this.handleEnter();
+    }
+  }
+
+  handleEnter() {
+    const winningNumberList = this.$inputs.map((input) => input.valueAsNumber);
+    try {
+      this.showStatisticModal(winningNumberList);
+    } catch (e) {
+      consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
+    }
+  }
+
+  handleMouseEnterOnButton() {
+    const winningNumberList = this.$inputs.map(($input) => $input.valueAsNumber);
+    if (winningNumberList.every((num) => num > 0)) {
+      document.activeElement.blur(); // chnage이벤트가 발생하면서 state가 업데이트된다
+    }
+  }
+
+  submitLottoNumbers(winningNumberList) {
+    Store.instance.dispatch(
+      createAction(ACTION.SET_WINNING_NUMBERS, {
+        normal: winningNumberList.slice(0, winningNumberList.length - 1),
+        bonus: winningNumberList[winningNumberList.length - 1],
+      })
+    );
+  }
+
+  showStatisticModal(winningNumberList) {
+    const { hasError, errorMessage } = validateWinningNumbers(winningNumberList);
     if (hasError) {
       throw new ValidationError(errorMessage);
     }
-
-    Store.instance.dispatch(
-      createAction(ACTION.SET_WINNING_NUMBERS, {
-        normal: winningNumbers.slice(0, winningNumbers.length - 1).map(Number),
-        bonus: Number(winningNumbers[winningNumbers.length - 1]),
-      })
-    );
+    this.submitLottoNumbers(winningNumberList);
     Store.instance.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, true));
   }
 
@@ -105,7 +196,10 @@ class WinningNumberForm extends Component {
     this.innerHTML = '';
     if (money > 0) {
       this.innerHTML = this.template(winningNumbers);
-      this.$inputs = [...this.querySelectorAll('input')];
+      this.$inputs = [...this.querySelectorAll('winning-number-input')];
+      // addEvent가 작동하지 않아서 이렇게 event handler를 property로 직접 넣어준다.
+      this.$btnWrapper = this.querySelector('.btn-wrapper');
+      this.$btnWrapper.onmouseenter = this.handleMouseEnterOnButton.bind(this);
     }
   }
 }

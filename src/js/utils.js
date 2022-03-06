@@ -38,3 +38,31 @@ export const consoleErrorWithConditionalAlert = (error, errorNameForAlert) => {
 export const sum = (arr) => {
   return arr.reduce((acc, cur) => acc + cur, 0);
 };
+
+export const toInt = (str, defaultNum = 0) => {
+  const val = parseInt(str, 10);
+  return !Number.isNaN(val) ? val : defaultNum;
+};
+
+export const duplicateIndexs = (arr) => {
+  const uniqueArr = [...new Set(arr)];
+  return uniqueArr
+    .reduce((duplicateArr, currentUniqueVal) => {
+      const result = arr.reduce((acc, cur, index) => {
+        currentUniqueVal === cur && acc.push(index);
+        return acc;
+      }, []);
+      result.length > 0 && duplicateArr.push(result);
+      return duplicateArr;
+    }, [])
+    .filter((indexes) => indexes.length > 1);
+};
+
+export const findGroupIndex = (twoDemensionalArr, val) => {
+  for (let i = 0; i < twoDemensionalArr.length; i += 1) {
+    if (twoDemensionalArr[i].includes(val)) {
+      return i;
+    }
+  }
+  return null;
+};

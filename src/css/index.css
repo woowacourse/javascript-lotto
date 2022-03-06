@@ -95,6 +95,7 @@ winning-number-form input.form-control {
 
 winning-number-form .wrapper {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
@@ -107,6 +108,37 @@ winning-number-form fieldset:nth-child(2) {
   flex-direction: column;
   align-items: flex-end;
 }
+
+winning-number-form .error-list {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+winning-number-form winning-number-input.duplicate-error-1 input {
+  background-color: #ff000073;
+}
+
+winning-number-form winning-number-input.duplicate-error-2 input {
+  background-color: #ff0000ad;
+}
+
+winning-number-form winning-number-input.duplicate-error-3 input {
+  background-color: #ff0000;
+}
+
+winning-number-form winning-number-input.invalid-range-error input {
+  background-color: orange;
+}
+
+winning-number-form .error-list .duplicate-error-message {
+  color: red;
+}
+
+winning-number-form .error-list .invalid-range-error-message {
+  color: orange;
+}
+
+
 
 statistics-modal .modal-dialog {
   width: 350px;

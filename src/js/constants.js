@@ -14,7 +14,7 @@ export const ERROR_MESSAGE = {
 
   EMPTY_WINNING_NUMBERS: '모든 당첨 번호를 입력해 주세요!',
   NOT_INTEGER_WINNING_NUMBER: '정수만 입력해 주세요!',
-  NOT_IN_VALID_WINNING_NUMBER_RANGE: '모든 값을 1 ~ 45 사이로 입력해 주세요!',
+  INVALID_WINNING_NUMBER_RANGE: '모든 값을 1 ~ 45 사이로 입력해 주세요!',
   DUPLICATE_WINNING_NUMBERS: '서로 다른 당첨 번호를 입력해 주세요!',
 };
 
@@ -28,15 +28,24 @@ export const LOTTO = {
   PRIZE_MONEY: [0, 2000000000, 30000000, 1500000, 50000, 5000],
 };
 
+export const WINNING_NUM_PLACEHOLDER = '';
+
 export const INITIAL_STATE = {
   money: 0,
   lottoList: [],
   lottoListVisibility: false,
   winningNumbers: {
-    normal: [],
-    bonus: null,
+    normal: Array(6).fill(WINNING_NUM_PLACEHOLDER),
+    bonus: WINNING_NUM_PLACEHOLDER,
   },
   statisticsModalVisibility: false,
 };
 
 export const VALIDATION_ERROR_NAME = 'ValidationError';
+
+export const DUPLICATE_ERROR_CLASS_NAMES = [
+  'duplicate-error-1',
+  'duplicate-error-2',
+  'duplicate-error-3',
+];
+export const INVALID_RANGE_ERROR_CLASS_NAME = 'invalid-range-error';

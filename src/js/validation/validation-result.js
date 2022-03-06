@@ -1,5 +1,5 @@
 class ValidationResult {
-  constructor(hasError, errorMessage) {
+  constructor({ hasError, errorMessage }) {
     this.hasError = hasError;
     this.errorMessage = errorMessage;
   }

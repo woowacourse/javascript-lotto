@@ -1,12 +1,17 @@
-import { ERROR_MESSAGE, LOTTO } from '../constants';
+import { ERROR_MESSAGE, ERROR_TYPE, LOTTO } from '../constants';
+import { toInt } from '../utils';
 import ValidationResult from './validation-result';
 
 const isEmptyStr = (str) => {
   return str.trim() === '';
 };
 
-const isNumber = (num) => {
+export const isNumber = (num) => {
   return /^-?[0-9]+$/g.test(num);
+};
+
+export const isPositiveInteger = (num) => {
+  return /^[0-9]+$/g.test(num) && toInt(num, 0) !== 0;
 };
 
 export const validateMoney = (money) => {
@@ -25,21 +30,49 @@ export const validateMoney = (money) => {
   return new ValidationResult(false);
 };
 
-// eslint-disable-next-line max-lines-per-function
+export const checkEmptyOfWinningNumbers = (numbers) => {
+  const hasError = numbers.some((num) => `${num}`.length === 0);
+  if (hasError) {
+    return new ValidationResult({
+      hasError,
+      errorMessage: ERROR_MESSAGE.EMPTY_WINNING_NUMBERS,
+    });
+  }
+  return new ValidationResult({ hasError });
+};
+
+export const checkDuplicateOfWinningNumbers = (numbers) => {
+  const hasError = new Set(numbers).size !== numbers.length;
+  if (hasError) {
+    return new ValidationResult({
+      hasError,
+      errorMessage: ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS,
+    });
+  }
+  return new ValidationResult({ hasError });
+};
+
+export const checkInvalidRangeOfWinningNumbers = (numbers) => {
+  const hasError = numbers.some(
+    (num) => !isPositiveInteger(num) || num > LOTTO.RANGE.MAX || num < LOTTO.RANGE.MIN
+  );
+  if (hasError) {
+    return new ValidationResult({
+      hasError,
+      errorMessage: ERROR_MESSAGE.INVALID_WINNING_NUMBER_RANGE,
+    });
+  }
+  return new ValidationResult({ hasError });
+};
+
 export const validateWinningNumbers = (numbers) => {
-  for (let i = 0; i < numbers.length; i += 1) {
-    if (isEmptyStr(numbers[i])) {
-      return new ValidationResult(true, ERROR_MESSAGE.EMPTY_WINNING_NUMBERS);
-    }
-    if (!isNumber(numbers[i])) {
-      return new ValidationResult(true, ERROR_MESSAGE.NOT_INTEGER_WINNING_NUMBER);
-    }
-    if (numbers[i] < LOTTO.RANGE.MIN || numbers[i] > LOTTO.RANGE.MAX) {
-      return new ValidationResult(true, ERROR_MESSAGE.NOT_IN_VALID_WINNING_NUMBER_RANGE);
-    }
+  const results = [
+    checkEmptyOfWinningNumbers(numbers),
+    checkInvalidRangeOfWinningNumbers(numbers),
+    checkDuplicateOfWinningNumbers(numbers),
+  ];
+  for (let i = 0; i < results.length; i += 1) {
+    if (results[i].hasError) return results[i];
   }
-  if (new Set(numbers).size !== numbers.length) {
-    return new ValidationResult(true, ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
-  }
-  return new ValidationResult(false);
+  return new ValidationResult({ hasError: false });
 };
