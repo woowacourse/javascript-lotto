@@ -32,7 +32,9 @@ export default class ResultModalWindowView extends View {
                     return `
                     <tr>
                       <td>${LOTTO.PRIZE[rank].TITLE}</td>
-                      <td>${LOTTO.PRIZE[rank].AMOUNT}</td>
+                      <td>${LOTTO.PRIZE[rank].AMOUNT.toLocaleString(
+                        'ko-KR'
+                      )}</td>
                       <td>${count}개</td>
                     <tr>
                   `;
