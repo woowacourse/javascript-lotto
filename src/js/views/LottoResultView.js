@@ -79,7 +79,7 @@ class LottoResultView {
   #generateStatisticsTableData(currentKey, price, count) {
     return `<tr><td>${currentKey}</td><td>${changeCurrencyFormat(
       price
-    )}</td><td>${count}</td> </tr>`;
+    )}원</td><td>${count}</td> </tr>`;
   }
 
   #generateProfitRatioText(profitRatio) {
@@ -117,7 +117,7 @@ class LottoResultView {
   <div id="result-container"class="modal-container">
   <span class="modal-cancel-button">❌</span>
      <div id="result-contents">
-     <table  class=".result-container-section">
+     <table  class="result-container-section">
      <caption hidden>결과 테이블입니다.</caption>
      <thead>
       <tr>

@@ -74,7 +74,7 @@ class LottoContainerView {
   <h1 class="header-title">🎱 행운의 로또</h1>
   <section id="charge-input-section" aria-labelledby="charge-input-section-title">
     <h1 id="charge-input-section-title" hidden>금액을 입력하는 섹션입니다.</h1>
-    <p>구입할 금액을 입력해주세요. <b>(입력 가능 최대 금액은 99999원입니다.)</b></p>
+    <p>구입할 금액을 입력해주세요. <b>(입력 가능 최대 금액은 99,999원입니다.)</b></p>
     <form id="charge-input-form">
       <input id="charge-input" type="number" placeholder="금액" min="1000" max="100000" maxlength="5"/>
       <button id="charge-button">구입</button>
