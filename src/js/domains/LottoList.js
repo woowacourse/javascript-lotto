@@ -1,7 +1,11 @@
-import { ERROR_MESSAGE } from '../constants/errorMessage';
+import { ERROR_MESSAGE } from '../constants/message';
 import { NUMBER } from '../constants/number';
 import { RANK_KEYS, RANK_PRIZE } from '../constants/rank';
-import { isValidCharge, isValidWinningNumber } from '../utils/validator';
+import {
+  hasLottoListAndRejectAction,
+  isValidCharge,
+  isValidWinningNumber,
+} from '../utils/validator';
 import Lotto from './Lotto';
 
 class LottoList {
@@ -12,7 +16,7 @@ class LottoList {
   }
 
   createLottoList(chargeInput) {
-    if (this.#lottoList && !confirm('구매하신 로또는 사라집니다. 그래도 구매하시겠습니까?')) {
+    if (hasLottoListAndRejectAction(this.#lottoList)) {
       return;
     }
     /** 정상적이지 않은 로또가 하나라도 존재한다면, 멤버는 빈 값이고 사용자는 금액을 다시 입력하여야 한다. */

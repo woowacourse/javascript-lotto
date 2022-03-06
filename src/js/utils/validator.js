@@ -1,3 +1,4 @@
+import { CONFIRM_MESSAGE } from '../constants/message';
 import { NUMBER } from '../constants/number';
 
 export function isValidLength(lottoNumber) {
@@ -32,4 +33,8 @@ export function isValidWinningNumber(winningAndBonusNumbers) {
     isValidEveryLottoNumber(winningAndBonusNumbers) &&
     winningAndBonusNumbers.length === [...new Set(winningAndBonusNumbers)].length
   );
+}
+
+export function hasLottoListAndRejectAction(lottoList) {
+  return lottoList && !confirm(CONFIRM_MESSAGE.CREATE_LOTTO_LIST);
 }

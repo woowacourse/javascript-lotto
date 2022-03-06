@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/errorMessage';
+import { ERROR_MESSAGE } from '../constants/message';
 import LottoList from '../domains/LottoList';
 
 describe('로또 리스트 도메인 테스트', () => {
