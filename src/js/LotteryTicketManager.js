@@ -18,7 +18,7 @@ export default class LotteryTicketManager {
   purchaseLotteryTicket(charge) {
     const { newTicketCount, remainCharge } = this.calculateForPurchase(charge);
     if ( newTicketCount === 0 ) {
-      alert(`복권은 최대 ${MAX_NUMBER_PURCHASE}장까지 구입 가능합니다. 더 이상 구입할 수 없습니다.`);
+      alert(ERROR_MESSAGE.CAN_NOT_PURCHASE);
     }
     this.generateNewLottos(newTicketCount);
     return { newTicketCount, remainCharge };
