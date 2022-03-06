@@ -56,7 +56,7 @@ export const validator = {
   },
 
   isBonusNumberDuplicated(winningNumbers, bonusNumber) {
-    return winningNumbers.includes(bonusNumber);
+    return winningNumbers.includes(Number(bonusNumber));
   },
 
   isWinningNumbersInRange(winningNumbers) {
