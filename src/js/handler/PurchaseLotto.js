@@ -2,7 +2,7 @@ import { $, $$ } from '../utils/dom';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { lottoTicket } from '../model/lottoTicket';
 import { isInvalidMoneyInput } from '../validator/validator';
-import { deactivateForm } from '../utils/style';
+import { deactivateForm } from '../utils/dom';
 import { money } from '../model/money';
 
 export default class PurchaseLotto {

@@ -3,7 +3,7 @@ import { winningNumber } from '../model/winningNumber';
 import { isInvalidWinningNumbersInput } from '../validator/validator';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { winningStatistics } from '../model/winningStatistics';
-import { activateForm, resetInput } from '../utils/style';
+import { activateForm, resetInput } from '../utils/dom';
 import { lottoTicket } from '../model/lottoTicket';
 
 export default class WinningResultModal {
