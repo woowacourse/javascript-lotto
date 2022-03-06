@@ -41,4 +41,20 @@ export const validator = {
       throw new Error(ERROR_MESSAGE.OUT_OF_PURCHASE_AMOUNT_RANGE);
     }
   },
+  checkWinningNumbers: (winningNumbers) => {
+    const { main, bonus } = winningNumbers;
+    const totalNumbers = [...main, bonus];
+
+    if (!totalNumbers.every((num) => Number.isInteger(num))) {
+      throw new Error(ERROR_MESSAGE.NOT_INTEGER);
+    }
+
+    if (!totalNumbers.every((num) => isValidLottoNumberRange(num))) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_LOTTO_NUMBER_RANGE);
+    }
+
+    if (!isEveryElementsUnique(totalNumbers)) {
+      throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
+    }
+  },
 };

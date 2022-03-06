@@ -53,4 +53,7 @@ export const ERROR_MESSAGE = {
   NOT_A_NUMBER: `입력된 금액이 숫자가 아닙니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상 ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
   NOT_DIVIDED_BY_THOUSAND: `입력된 금액이 ${LOTTO.PRICE}으로 나누어 떨어지지 않습니다. ${LOTTO.PRICE}으로 나누어 떨어지는 금액을 입력해주세요.`,
   OUT_OF_PURCHASE_AMOUNT_RANGE: `입력된 금액이 ${PAYMENT.PURCHASE_AMOUNT.MIN} 사이가 아닙니다. ${PAYMENT.PURCHASE_AMOUNT.MIN} 이상 ${PAYMENT.PURCHASE_AMOUNT.MAX} 이하의 금액을 입력해주세요.`,
+  NOT_INTEGER: '입력된 번호가 정수가 아닙니다. 정수를 입력해주세요.',
+  OUT_OF_LOTTO_NUMBER_RANGE: `유효하지 않은 로또 번호가 있습니다. ${LOTTO.NUMBER_RANGE.MIN}부터 ${LOTTO.NUMBER_RANGE.MAX} 사이의 번호를 입력해주세요.`,
+  DUPLICATED_NUMBER: `중복된 번호가 있습니다. 서로 다른 번호를 입력해주세요.`,
 };

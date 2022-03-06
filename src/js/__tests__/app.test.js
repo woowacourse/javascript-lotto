@@ -155,7 +155,7 @@ describe('Step 2', () => {
 
         expect(() => {
           validator.checkWinningNumbers(winningNumbers);
-        }).toThrowError('입력된 번호가 정수가 아닙니다. 정수를 입력해주세요.');
+        }).toThrowError(ERROR_MESSAGE.NOT_INTEGER);
       });
 
       test('번호들이 1부터 45 사이가 아니면 에러를 throw한다.', () => {
@@ -166,9 +166,7 @@ describe('Step 2', () => {
 
         expect(() => {
           validator.checkWinningNumbers(winningNumbers);
-        }).toThrowError(
-          '유효하지 않은 로또 번호가 있습니다. 1부터 45 사이의 번호를 입력해주세요.'
-        );
+        }).toThrowError(ERROR_MESSAGE.OUT_OF_LOTTO_NUMBER_RANGE);
       });
       test('중복되는 번호가 있으면 에러를 throw한다.', () => {
         const winningNumbers = {
@@ -178,9 +176,7 @@ describe('Step 2', () => {
 
         expect(() => {
           validator.checkWinningNumbers(winningNumbers);
-        }).toThrowError(
-          '중복된 번호가 있습니다. 서로 다른 번호를 입력해주세요.'
-        );
+        }).toThrowError(ERROR_MESSAGE.DUPLICATED_NUMBER);
       });
     });
   });
