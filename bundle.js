@@ -613,7 +613,7 @@ var Lotto = /*#__PURE__*/function () {
       var matchCount = this.numbers.filter(function (number) {
         return winningNumbers.has(number);
       }).length;
-      if (isMatchedBonus && matchCount === _constant_index_js__WEBPACK_IMPORTED_MODULE_1__.MATCH_COUNT_OF_LOTTO_RANKING.THRID) return _constant_index_js__WEBPACK_IMPORTED_MODULE_1__.MATCH_COUNT_OF_LOTTO_RANKING.SECOND;
+      if (isMatchedBonus && matchCount === _constant_index_js__WEBPACK_IMPORTED_MODULE_1__.MATCH_COUNT_OF_LOTTO_RANKING.THIRD) return _constant_index_js__WEBPACK_IMPORTED_MODULE_1__.MATCH_COUNT_OF_LOTTO_RANKING.SECOND;
       return matchCount;
     }
   }]);
@@ -707,12 +707,12 @@ var LottoCollectionImpl = /*#__PURE__*/function (_LottoCollection) {
 
       var winningNumberSet = new Set(winningNumbers.slice(0, _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.LOTTO_RULES.BALL_COUNT));
       var bonusNumber = winningNumbers[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.LOTTO_RULES.BALL_COUNT];
-      var FIFHT = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FIFHT,
+      var FIFTH = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FIFTH,
           FORUTH = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FORUTH,
-          THRID = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.THRID,
+          THIRD = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.THIRD,
           SECOND = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.SECOND,
           FIRST = _constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FIRST;
-      return _ref = {}, _defineProperty(_ref, FIFHT, this.countingMatchedLotto(winningNumberSet, bonusNumber, FIFHT)), _defineProperty(_ref, FORUTH, this.countingMatchedLotto(winningNumberSet, bonusNumber, FORUTH)), _defineProperty(_ref, THRID, this.countingMatchedLotto(winningNumberSet, bonusNumber, THRID)), _defineProperty(_ref, SECOND, this.countingMatchedLotto(winningNumberSet, bonusNumber, SECOND)), _defineProperty(_ref, FIRST, this.countingMatchedLotto(winningNumberSet, bonusNumber, FIRST)), _ref;
+      return _ref = {}, _defineProperty(_ref, FIFTH, this.countingMatchedLotto(winningNumberSet, bonusNumber, FIFTH)), _defineProperty(_ref, FORUTH, this.countingMatchedLotto(winningNumberSet, bonusNumber, FORUTH)), _defineProperty(_ref, THIRD, this.countingMatchedLotto(winningNumberSet, bonusNumber, THIRD)), _defineProperty(_ref, SECOND, this.countingMatchedLotto(winningNumberSet, bonusNumber, SECOND)), _defineProperty(_ref, FIRST, this.countingMatchedLotto(winningNumberSet, bonusNumber, FIRST)), _ref;
     }
   }, {
     key: "countingMatchedLotto",
@@ -1175,9 +1175,9 @@ var MatchResultViewImpl = /*#__PURE__*/function (_MatchResultView) {
   }, {
     key: "renderMatchTable",
     value: function renderMatchTable(matchResult) {
-      this.$winningLottoCounts[0].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FIFHT];
+      this.$winningLottoCounts[0].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FIFTH];
       this.$winningLottoCounts[1].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FORUTH];
-      this.$winningLottoCounts[2].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.THRID];
+      this.$winningLottoCounts[2].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.THIRD];
       this.$winningLottoCounts[3].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.SECOND];
       this.$winningLottoCounts[4].innerText = matchResult[_constant_index_js__WEBPACK_IMPORTED_MODULE_2__.MATCH_COUNT_OF_LOTTO_RANKING.FIRST];
     }
@@ -1329,13 +1329,13 @@ var ERROR_MESSAGE = Object.freeze({
   EMPTY_OF_LOTTO: '로또를 먼저 구매해주세요!'
 });
 var MATCH_COUNT_OF_LOTTO_RANKING = Object.freeze({
-  FIFHT: 3,
+  FIFTH: 3,
   FORUTH: 4,
-  THRID: 5,
+  THIRD: 5,
   SECOND: 7,
   FIRST: 6
 });
-var WINNING_AMOUNT_OF_LOTTO = Object.freeze((_Object$freeze = {}, _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.FIFHT, 5000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.FORUTH, 50000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.THRID, 1500000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.SECOND, 30000000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.FIRST, 2000000000), _Object$freeze));
+var WINNING_AMOUNT_OF_LOTTO = Object.freeze((_Object$freeze = {}, _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.FIFTH, 5000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.FORUTH, 50000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.THIRD, 1500000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.SECOND, 30000000), _defineProperty(_Object$freeze, MATCH_COUNT_OF_LOTTO_RANKING.FIRST, 2000000000), _Object$freeze));
 
 /***/ }),
 
