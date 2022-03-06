@@ -10,9 +10,7 @@ export class Lotto {
   makeLottoNumber() {
     const tempLottoNumbers = new Set();
     while (tempLottoNumbers.size < CONDITIONS.LOTTO_SIZE) {
-      tempLottoNumbers.add(
-        getValues.randomInt(CONDITIONS.LOTTO_NUM_MIN, CONDITIONS.LOTTO_NUM_MAX)
-      );
+      tempLottoNumbers.add(getValues.randomInt(CONDITIONS.LOTTO_NUM_MIN, CONDITIONS.LOTTO_NUM_MAX));
     }
     this.numbers = [...tempLottoNumbers];
   }
