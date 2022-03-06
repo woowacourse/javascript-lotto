@@ -44,7 +44,7 @@ export default class LottoModel {
   getEarningRatio() {
     const sumWinnings = this.getSumWinnings();
 
-    return (sumWinnings / this.state.amount) * 100;
+    return (sumWinnings / this.state.amount) * 100 - 100;
   }
 
   getSumWinnings() {
