@@ -176,6 +176,7 @@ h2 {
   border: 1px solid #b4b4b4;
   box-sizing: border-box;
   margin-right: 8px;
+  text-align: center;
 }
 
 .winning-numbers-container {
