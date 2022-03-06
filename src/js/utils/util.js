@@ -9,9 +9,5 @@ export const divider = (dividend, divisor) => ({
 });
 
 export const matchNumber = (numberArray1, numberArray2) => {
-  let count = 0;
-  numberArray1.forEach(number1 => {
-    numberArray2.forEach(number2 => (count += number1 === number2));
-  });
-  return count;
+  return numberArray1.filter(number => numberArray2.includes(number)).length;
 };
