@@ -1,4 +1,4 @@
-import { RULES } from '../constants/index.js';
+import { ASCII_TABLE, RULES } from '../constants/index.js';
 import { getWinLottoCount } from '../util/common.js';
 
 const INPUT_ELEMENT = '<input type="number" class="winning-number-input" min="1" max="45" step="1" maxlength="2" required/>';
@@ -79,7 +79,7 @@ const MODAL_TEMPLATE = `
 export default class WinningNumberView {
   constructor() {
     this.container = document.getElementById('winning-number-container');
-    this.winLottosNumbers = [];
+    this.winLottoNumbers = [];
   }
 
   #paint() {
@@ -114,7 +114,7 @@ export default class WinningNumberView {
   onKeypressHandler(e) {
     const { keyCode, target: { value } } = e;
 
-    if (keyCode >= 48 && keyCode <= 57) {
+    if (keyCode >= ASCII_TABLE.ZERO && keyCode <= ASCII_TABLE.NINE) {
       e.target.value = value.substring(0, 1);
     }
   }
@@ -132,7 +132,7 @@ export default class WinningNumberView {
       return;
     }
 
-    this.winLottosNumbers[index] = number;
+    this.winLottoNumbers[index] = number;
 
     if (value.length === 2 && e.target.nextElementSibling) {
       e.target.nextElementSibling.focus();
@@ -153,13 +153,13 @@ export default class WinningNumberView {
     e.preventDefault();
     const { detail: { purchasedLottos, purchaseMoney, resetCallback } } = e;
 
-    if (new Set(this.winLottosNumbers).size !== 7) {
+    if (new Set(this.winLottoNumbers).size !== RULES.WIN_LOTTO_NUMBERS) {
       window.alert('중복된 번호는 입력할 수 없습니다.');
       return;
     }
 
-    const winNumbers = this.winLottosNumbers.slice(0, 6);
-    const bonusNumber = this.winLottosNumbers.slice(6).pop();
+    const winNumbers = this.winLottoNumbers.slice(0, 6);
+    const bonusNumber = this.winLottoNumbers.slice(6).pop();
 
     const winLottoCount = getWinLottoCount({
       purchasedLottos,

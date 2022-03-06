@@ -12,7 +12,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'max-depth': [1, 2],
-    'max-lines-per-function': [1, 20],
+    // 'max-lines-per-function': [1, 20],
     'spaced-comment': [2, 'always'],
     'no-new': 'off',
     'no-alert': 'off',
