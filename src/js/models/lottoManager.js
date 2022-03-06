@@ -32,10 +32,6 @@ class LottoManager {
     return Math.floor(fare / LOTTO_PRICE);
   }
 
-  calculateRemainFare(fare) {
-    return fare % LOTTO_PRICE;
-  }
-
   reset() {
     this.#lottos = [];
     this.#fare = 0;

@@ -19,8 +19,7 @@ class LottoGameView {
     this.#winningStatisticModalView = new WinningStatisticModalView();
   }
 
-  renderRemainFare(remainFare) {
-    this.#fareFormView.renderFare(remainFare);
+  deactivateFareForm() {
     this.#fareFormView.deactivateFareForm();
   }
 
