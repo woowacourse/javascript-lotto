@@ -43,7 +43,6 @@ class MoneyForm extends Component {
 
   updateMoney(money) {
     const { hasError, errorMessage } = validateMoney(money);
-
     if (hasError) {
       throw new ValidationError(errorMessage);
     }

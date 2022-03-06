@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, ERROR_TYPE, LOTTO } from '../constants';
+import { ERROR_MESSAGE, LOTTO } from '../constants';
 import { toInt } from '../utils';
 import ValidationResult from './validation-result';
 
@@ -33,23 +33,17 @@ export const validateMoney = (money) => {
 export const checkEmptyOfWinningNumbers = (numbers) => {
   const hasError = numbers.some((num) => `${num}`.length === 0);
   if (hasError) {
-    return new ValidationResult({
-      hasError,
-      errorMessage: ERROR_MESSAGE.EMPTY_WINNING_NUMBERS,
-    });
+    return new ValidationResult(true, ERROR_MESSAGE.EMPTY_WINNING_NUMBERS);
   }
-  return new ValidationResult({ hasError });
+  return new ValidationResult(false);
 };
 
 export const checkDuplicateOfWinningNumbers = (numbers) => {
   const hasError = new Set(numbers).size !== numbers.length;
   if (hasError) {
-    return new ValidationResult({
-      hasError,
-      errorMessage: ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS,
-    });
+    return new ValidationResult(true, ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
   }
-  return new ValidationResult({ hasError });
+  return new ValidationResult(false);
 };
 
 export const checkInvalidRangeOfWinningNumbers = (numbers) => {
@@ -57,12 +51,9 @@ export const checkInvalidRangeOfWinningNumbers = (numbers) => {
     (num) => !isPositiveInteger(num) || num > LOTTO.RANGE.MAX || num < LOTTO.RANGE.MIN
   );
   if (hasError) {
-    return new ValidationResult({
-      hasError,
-      errorMessage: ERROR_MESSAGE.INVALID_WINNING_NUMBER_RANGE,
-    });
+    return new ValidationResult(true, ERROR_MESSAGE.INVALID_WINNING_NUMBER_RANGE);
   }
-  return new ValidationResult({ hasError });
+  return new ValidationResult(false);
 };
 
 export const validateWinningNumbers = (numbers) => {
@@ -74,5 +65,5 @@ export const validateWinningNumbers = (numbers) => {
   for (let i = 0; i < results.length; i += 1) {
     if (results[i].hasError) return results[i];
   }
-  return new ValidationResult({ hasError: false });
+  return new ValidationResult(false);
 };
