@@ -6,7 +6,7 @@ const CLASS_DISPLAY_NONE = 'display-none';
 export default class WinningResultSectionView {
   constructor() {
     this.winningResultSection = $('#winning-result-section');
-    this.winningNumberForm = $('#winning-number-form');
+    this.winningNumberForm = $('#winning-number-form', this.winningResultSection);
     this.winningNumberInputs = $$('.winning-number-input', this.winningNumberForm);
     this.winningNumberSubmitButton = $('button', this.winningNumberForm);
     this.resultModalArea = $('#result-modal-area', this.winningResultSection);
@@ -21,7 +21,7 @@ export default class WinningResultSectionView {
       inputElement.addEventListener('keyup', this.onTypeWinningNumber.bind(this, index));
     })
     this.winningNumberForm.addEventListener('submit', this.onSubmitWinningNumber.bind(this));
-    this.resultModalCloseButton.addEventListener('click', this.closeWinningResultModal.bind(this));
+    this.resultModalCloseButton.addEventListener('click', this.changeResultModalVisibility.bind(this));
     this.restartButton.addEventListener('click', this.onClickRestartButton.bind(this));
   }
 
@@ -41,9 +41,7 @@ export default class WinningResultSectionView {
     const winningNumberInputValues = Array.from(this.winningNumberInputs)
       .map(numberInput => Number(numberInput.value)).filter(number => number !== 0);
     const winningNumberSubmitEvent = new CustomEvent('checkWinningResult', {
-      detail: {
-        winningNumberInputValues
-      }
+      detail: { winningNumberInputValues }
     });
     window.dispatchEvent(winningNumberSubmitEvent);
   }
@@ -55,38 +53,34 @@ export default class WinningResultSectionView {
 
   initialize() {
     this.winningNumberInputs.forEach((inputElement) => { inputElement.value = ''; });
-    this.hideWinningResultSection();
-    this.closeWinningResultModal();
+    this.changeWinningResultSectionVisibility();
+    this.changeResultModalVisibility();
   }
 
   updateOnPurchase(tickets) {
     if (tickets.length !== 0 && !this.isWinningResultSectionVisible())
-      this.showWinningResultSection();
+      this.changeWinningResultSectionVisibility();
   }
 
   updateOnCheckWinningResult(winningResult){
     this.updateWinningResultModal(winningResult);
-    this.openWinningResultModal();
+    this.changeResultModalVisibility();
   }
 
   isWinningResultSectionVisible() {
     return !(this.winningResultSection.classList.contains(CLASS_DISPLAY_NONE));
   }
 
-  showWinningResultSection() {
-    this.winningResultSection.classList.remove(CLASS_DISPLAY_NONE);
+  changeWinningResultSectionVisibility() {
+    return this.winningResultSection.classList.contains(CLASS_DISPLAY_NONE)
+      ? this.winningResultSection.classList.remove(CLASS_DISPLAY_NONE)
+      : this.winningResultSection.classList.add(CLASS_DISPLAY_NONE);
   }
 
-  hideWinningResultSection() {
-    this.winningResultSection.classList.add(CLASS_DISPLAY_NONE);
-  }
-
-  openWinningResultModal() {
-    this.resultModalArea.classList.remove(CLASS_DISPLAY_NONE);
-  }
-
-  closeWinningResultModal() {
-    this.resultModalArea.classList.add(CLASS_DISPLAY_NONE);
+  changeResultModalVisibility() {
+    return this.resultModalArea.classList.contains(CLASS_DISPLAY_NONE)
+      ? this.resultModalArea.classList.remove(CLASS_DISPLAY_NONE)
+      : this.resultModalArea.classList.add(CLASS_DISPLAY_NONE);
   }
 
   updateWinningResultModal({ matchResult, profitRatio }) {
