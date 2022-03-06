@@ -11,7 +11,7 @@ export default class PurchaseLotto {
   }
 
   showResultElements() {
-    $$('.result').forEach((element) => element.classList.remove('d-none'));
+    $$('.result').forEach((element) => element.classList.remove('display-none'));
   }
 
   showLottoTicketsLength(lottoTicketsLength) {
@@ -25,7 +25,7 @@ export default class PurchaseLotto {
       .map(
         (lottoTicket) =>
           `<div class="lotto-img">
-        🎟️<span class="lotto-number-detail d-none">${lottoTicket.join(', ')}</span>
+        🎟️<span class="lotto-number-detail display-none">${lottoTicket.join(', ')}</span>
       </div>`
       )
       .join('');

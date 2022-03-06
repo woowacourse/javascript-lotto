@@ -9,7 +9,7 @@ export default class ShowLottoTicketNumber {
     $('.lotto-grid').classList.toggle('lotto-grid-detail');
 
     $$('.lotto-number-detail').forEach((element) => {
-      element.classList.toggle('d-none');
+      element.classList.toggle('display-none');
     });
   }
 }

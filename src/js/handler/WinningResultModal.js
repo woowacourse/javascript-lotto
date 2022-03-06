@@ -85,7 +85,7 @@ export default class WinningResultModal {
     $('.lotto-grid').replaceChildren();
     $('.cm-toggle').checked = false;
     $('.lotto-grid').classList.remove('lotto-grid-detail');
-    $$('.result').forEach((element) => element.classList.add('d-none'));
+    $$('.result').forEach((element) => element.classList.add('display-none'));
     resetInput();
   }
 
