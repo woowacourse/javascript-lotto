@@ -2,9 +2,9 @@ import { countingDuplicates } from './utils';
 import { MONEY } from './constants';
 
 export default class LottoSeller {
-  #lastWeekLottoList = [];
+  #lastWeekWinningLottoList = [];
 
-  #lastWeekBonusNumber = 0;
+  #lastWeekWinningBonusNumber = 0;
 
   #purchasedAmount = 0;
 
@@ -26,17 +26,17 @@ export default class LottoSeller {
     failed: 0,
   };
 
-  getLastWeekLottoList() {
-    return this.#lastWeekLottoList;
+  getLastWeekWinningLottoList() {
+    return this.#lastWeekWinningLottoList;
   }
 
-  getLastWeekBonusNumber() {
-    return this.#lastWeekBonusNumber;
+  getLastWeekWinningBonusNumber() {
+    return this.#lastWeekWinningBonusNumber;
   }
 
-  setLastWeekLottoNumbers({ winningNumberList, bonusNumber }) {
-    this.#lastWeekLottoList = winningNumberList;
-    this.#lastWeekBonusNumber = bonusNumber;
+  setLastWeekWinningLottoNumbers({ winningNumberList, bonusNumber }) {
+    this.#lastWeekWinningLottoList = winningNumberList;
+    this.#lastWeekWinningBonusNumber = bonusNumber;
   }
 
   getWinningAmount() {

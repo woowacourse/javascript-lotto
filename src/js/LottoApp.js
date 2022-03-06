@@ -29,10 +29,6 @@ export default class LottoApp {
 
     this.$paymentInput = getElement(SELECTOR.PAYMENT_INPUT);
     this.$paymentButton = getElement(SELECTOR.PAYMENT_BUTTON);
-    this.$coverTheBackground = null;
-    this.$lottoResultSection = null;
-    this.$restartButton = null;
-    this.$lottoListToggleButton = null;
 
     this.lottoConsumer = new LottoConsumer();
     this.lottoSeller = new LottoSeller();
@@ -75,25 +71,25 @@ export default class LottoApp {
   onSubmitLottoResultButton(e) {
     try {
       e.preventDefault();
-      const lastWeekNumberList = [
+      const lastWeekWinningNumberList = [
         ...getElements(SELECTOR.LAST_WEEK_NUMBER_INPUT),
       ].map((numberInputElement) => numberInputElement.valueAsNumber);
 
-      const lastWeekBonusNumber = getElement(
+      const lastWeekWinningBonusNumber = getElement(
         SELECTOR.LAST_WEEK_BONUS_NUMBER_INPUT
       ).valueAsNumber;
 
-      this.lottoSeller.setLastWeekLottoNumbers(
+      this.lottoSeller.setLastWeekWinningLottoNumbers(
         getValidWinningNumberAndBonusNumber(
-          lastWeekNumberList,
-          lastWeekBonusNumber
+          lastWeekWinningNumberList,
+          lastWeekWinningBonusNumber
         )
       );
 
       this.lottoSeller.setWinningCount(
         this.lottoConsumer.getLottoList(),
-        this.lottoSeller.getLastWeekLottoList(),
-        this.lottoSeller.getLastWeekBonusNumber()
+        this.lottoSeller.getLastWeekWinningLottoList(),
+        this.lottoSeller.getLastWeekWinningBonusNumber()
       );
 
       render(
@@ -161,13 +157,12 @@ export default class LottoApp {
 
       focusInput(getElement(`[data-input-id="${1}"]`));
     } catch (error) {
-      console.log(error);
       alertMessage(error.message);
       initInput(this.$paymentInput);
     }
   }
 
-  onKeyUpLastWeekNumberInput({ target, key }) {
+  onKeyUpLastWeekWinningNumberInput({ target, key }) {
     if (
       !target.matches(SELECTOR.LAST_WEEK_NUMBER_INPUT) &&
       !target.matches(SELECTOR.LAST_WEEK_BONUS_NUMBER_INPUT)
@@ -212,7 +207,7 @@ export default class LottoApp {
     bindsEventListener(
       getElement(SELECTOR.WINNING_NUMBER_CONTAINER),
       'keyup',
-      this.onKeyUpLastWeekNumberInput.bind(this)
+      this.onKeyUpLastWeekWinningNumberInput.bind(this)
     );
   }
 
