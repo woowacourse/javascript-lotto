@@ -1,13 +1,13 @@
 import { LOTTO_RULES, PRIZE_MONEY } from '../constant/index.js';
 
 class LottoStatisticMachine {
-  #winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
+  #winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(0);
 
-  #bonusNumber = null;
+  #bonusNumber = 0;
 
-  #winningCounts = new Array(5).fill(null);
+  #winningCounts = new Array(5).fill(0);
 
-  #earningsRate = null;
+  #earningsRate = 0;
 
   calculateWinningCounts(lottos, winningNumbers, bonumsNumber) {
     this.#winningNumbers = winningNumbers;
@@ -38,10 +38,10 @@ class LottoStatisticMachine {
   }
 
   reset() {
-    this.#winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(null);
-    this.#bonusNumber = null;
-    this.#winningCounts = new Array(5).fill(null);
-    this.#earningsRate = null;
+    this.#winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(0);
+    this.#bonusNumber = 0;
+    this.#winningCounts = new Array(5).fill(0);
+    this.#earningsRate = 0;
   }
 
   #calculateHitCount(lotto) {
