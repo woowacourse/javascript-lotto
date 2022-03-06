@@ -29,6 +29,7 @@ export default class Controller {
       validateCashInput(cash);
       this.#model.setCash(cash);
       this.#model.buyLotto(cash);
+      this.#purchaseFormView.disableSubmit();
       this.#lottoListView.showLottoListSection(this.#model.getLottoList());
       this.#winningNumberView.displayPickedNumbersForm();
       this.#winningNumberView.moveFocusOnWinningNumberInput();
@@ -57,5 +58,6 @@ export default class Controller {
     this.#lottoListView.displayNoneLottoListSection();
     this.#purchaseFormView.clearInput();
     this.#winningNumberView.clearInputs();
+    this.#purchaseFormView.enableSubmit();
   }
 }

@@ -10,6 +10,7 @@ export default class PurchaseFormView {
   #configureDOM() {
     this.$purchaseForm = $(ID.PURCHASE_FORM);
     this.$purchaseInput = $(ID.PURCHASE_INPUT);
+    this.$purchaseSubmit = $(ID.PURCHASE_SUBMIT);
   }
 
   clearInput() {
@@ -49,6 +50,16 @@ export default class PurchaseFormView {
 
       e.target.value = removeCommaInNumber(e.target.value).toLocaleString();
     });
+  }
+
+  disableSubmit() {
+    this.$purchaseInput.disabled = true;
+    this.$purchaseSubmit.disabled = true;
+  }
+
+  enableSubmit() {
+    this.$purchaseInput.disabled = false;
+    this.$purchaseSubmit.disabled = false;
   }
 }
 

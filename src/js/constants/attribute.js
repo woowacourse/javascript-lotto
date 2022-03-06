@@ -13,6 +13,7 @@ export const ID = {
   RESULT_MODAL_CLOSE: 'result-modal-close',
   RESULT_MODAL_RESET: 'result-modal-reset',
   RESULT_MODAL_PROFIT_RATIO: 'result-modal-profit-ratio',
+  PURCHASE_SUBMIT: 'purchase-submit',
 };
 
 export const CLASS = {

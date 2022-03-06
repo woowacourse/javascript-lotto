@@ -10,6 +10,7 @@
   --color-body: #f9f9f9;
   --color-main-border: rgba(0, 0, 0, 0.12);
   --color-grid-border: #dcdcdc;
+  --color-disabled: #ccc;
 }
 
 * {
@@ -47,6 +48,14 @@ input::-webkit-inner-spin-button {
 
 input:focus {
   border-color: blue;
+}
+
+input:disabled {
+  background-color: var(--color-disabled);
+}
+
+button:disabled {
+  background-color: var(--color-disabled);
 }
 
 .scroll-block {
