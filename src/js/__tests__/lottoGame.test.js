@@ -50,14 +50,21 @@ describe('로또 게임 모델 테스트', () => {
     const lottoRound = new LottoRound();
     const lottoList = [];
     const winningNumbers = [1, 2, 3, 4, 5, 6, 10];
+    const firstGradeCount = 1;
+    const secondGradeCount = 0;
+    const thirdGradeCount = 1;
+    const fourthGradeCount = 1;
+    const fifthGradeCount = 0;
+    const earningRate = 66718233;
+    const notWinningCount = 0;
     const expectResult = [
-      (firstGradeCount = 1),
-      (secondGradeCount = 0),
-      (thirdGradeCount = 1),
-      (fourthGradeCount = 1),
-      (fifthGradeCount = 0),
-      (earningRate = 66718333),
-      (notWinningCount = 0),
+      firstGradeCount,
+      secondGradeCount,
+      thirdGradeCount,
+      fourthGradeCount,
+      fifthGradeCount,
+      earningRate,
+      notWinningCount,
     ];
 
     lottoList.push(Lotto.create([1, 2, 3, 4, 5, 6]));
