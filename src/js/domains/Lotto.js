@@ -25,10 +25,10 @@ class Lotto {
     );
     const isMatchBonus = this.#lottoNumbers.includes(bonusNumber);
 
-    return this.#computeRank(numberMatchCount, isMatchBonus);
+    return this.computeRank(numberMatchCount, isMatchBonus);
   }
 
-  #computeRank(numberMatchCount, isMatchBonus) {
+  computeRank(numberMatchCount, isMatchBonus) {
     if (numberMatchCount === 6) {
       return RANK_KEYS.FIRST;
     }

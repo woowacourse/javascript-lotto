@@ -1,5 +1,8 @@
 import { ERROR_MESSAGE } from '../constants/message';
+import { NUMBER } from '../constants/number';
+import { RANK_KEYS, RANK_PRIZE } from '../constants/rank';
 import LottoList from '../domains/LottoList';
+import { shuffle } from '../utils/gameUtil';
 
 describe('로또 리스트 도메인 테스트', () => {
   it('로또 게임 모델에 금액이 정상적으로 입력되면, 구매할 수 있는 로또의 수를 반환할 수 있어야 한다.', () => {
@@ -54,5 +57,33 @@ describe('로또 리스트 도메인 테스트', () => {
     } catch ({ message }) {
       expect(message === ERROR_MESSAGE.WIN_NUMBER_IS_INVALIDATE).toBe(true);
     }
+  });
+  it('당첨된 등수와 개수에 따라 예상하는 수익률을 구할 수 있다.', () => {
+    const expectedStatistics = {
+      [RANK_KEYS.FIRST]: 0,
+      [RANK_KEYS.SECOND]: 0,
+      [RANK_KEYS.THIRD]: 1,
+      [RANK_KEYS.FORTH]: 1,
+      [RANK_KEYS.FIFTH]: 0,
+      [RANK_KEYS.UNRANK]: 8,
+    };
+
+    const expectedProfitAmount = Object.keys(expectedStatistics).reduce(
+      (prev, current) => prev + RANK_PRIZE[current] * expectedStatistics[current],
+      0
+    );
+    const expectedLottoAmount =
+      Object.values(expectedStatistics).reduce((prev, current) => prev + current) *
+      NUMBER.LOTTO_PRICE;
+
+    const expectedProfitLatio = (expectedProfitAmount / expectedLottoAmount) * 100;
+
+    const lottoList = new LottoList();
+
+    lottoList.createLottoList(10000);
+
+    const profitRatio = lottoList.computeProfitRatio(expectedStatistics);
+
+    expect(profitRatio).toBe(expectedProfitLatio);
   });
 });
