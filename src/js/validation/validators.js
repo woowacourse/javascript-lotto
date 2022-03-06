@@ -2,10 +2,6 @@ import { ERROR_MESSAGE, LOTTO } from '../constants';
 import { toInt } from '../utils';
 import ValidationResult from './validation-result';
 
-export const isNumber = (num) => {
-  return /^-?[0-9]+$/g.test(num);
-};
-
 export const isPositiveInteger = (num) => {
   return /^[0-9]+$/g.test(num) && toInt(num, 0) !== 0;
 };
