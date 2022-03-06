@@ -20,14 +20,6 @@ class LottoResultView {
 
   #restartButton = null;
 
-  #onSubmitResult = null;
-
-  #onClickRestartButton = null;
-
-  #onClickModal = null;
-
-  #onInputOverMaxLength = null;
-
   constructor({ $app }) {
     this.#app = $app;
     this.#initializeTemplate();
@@ -50,15 +42,16 @@ class LottoResultView {
   }
 
   #bindEventHandler() {
-    this.#onSubmitResult = (e) => emitListener(EVENT.SUBMIT_RESULT, e);
-    this.#onClickRestartButton = (e) => emitListener(EVENT.CLICK_RESTART_BUTTON, e);
-    this.#onClickModal = (e) => emitListener(EVENT.CLICK_MODAL, e);
-    this.#onInputOverMaxLength = (e) => emitListener(EVENT.INPUT_OVER_MAX_LENGTH, e);
-
-    this.#winNumberInputForm.addEventListener('submit', this.#onSubmitResult);
-    this.#restartButton.addEventListener('click', this.#onClickRestartButton);
-    this.#winStatistics.addEventListener('click', this.#onClickModal);
-    this.#winNumberInputForm.addEventListener('input', this.#onInputOverMaxLength);
+    this.#winNumberInputForm.addEventListener('submit', (e) =>
+      emitListener(EVENT.SUBMIT_RESULT, e)
+    );
+    this.#restartButton.addEventListener('click', (e) =>
+      emitListener(EVENT.CLICK_RESTART_BUTTON, e)
+    );
+    this.#winStatistics.addEventListener('click', (e) => emitListener(EVENT.CLICK_MODAL, e));
+    this.#winNumberInputForm.addEventListener('input', (e) =>
+      emitListener(EVENT.INPUT_OVER_MAX_LENGTH, e)
+    );
   }
 
   showWinNumberInputSection() {

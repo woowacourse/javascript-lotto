@@ -16,12 +16,6 @@ class LottoContainerView {
 
   #alignConverterContainer = null;
 
-  #onSubmitCharge = null;
-
-  #onChangeAlignState = null;
-
-  #onInputOverMaxLength = null;
-
   constructor({ $app }) {
     this.#app = $app;
     this.#initializeTemplate();
@@ -42,13 +36,11 @@ class LottoContainerView {
   }
 
   #bindEventHandler() {
-    this.#onSubmitCharge = (e) => emitListener(EVENT.SUBMIT_CHARGE, e);
-    this.#onChangeAlignState = (e) => emitListener(EVENT.CHANGE_ALIGN_STATE, e);
-    this.#onInputOverMaxLength = (e) => emitListener(EVENT.INPUT_OVER_MAX_LENGTH, e);
-
-    this.#chargeForm.addEventListener('submit', this.#onSubmitCharge);
-    this.#alignConverter.addEventListener('change', this.#onChangeAlignState);
-    this.#chargeForm.addEventListener('input', this.#onInputOverMaxLength);
+    this.#chargeForm.addEventListener('submit', (e) => emitListener(EVENT.SUBMIT_CHARGE, e));
+    this.#alignConverter.addEventListener('change', (e) =>
+      emitListener(EVENT.CHANGE_ALIGN_STATE, e)
+    );
+    this.#chargeForm.addEventListener('input', (e) => emitListener(EVENT.INPUT_OVER_MAX_LENGTH, e));
   }
 
   renderLottoSection(lottoNumbersArray) {
