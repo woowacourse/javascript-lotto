@@ -4,13 +4,12 @@ import {
   DUPLICATE_ERROR_CLASS_NAMES,
   INVALID_RANGE_ERROR_CLASS_NAME,
   LOTTO,
-  VALIDATION_ERROR_NAME,
   WINNING_NUM_PLACEHOLDER,
 } from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
 import Store from '../flux/store';
-import { consoleErrorWithConditionalAlert, duplicateIndexs, findGroupIndex } from '../utils';
+import { duplicateIndexs, findGroupIndex } from '../utils';
 import {
   checkInvalidRangeOfWinningNumberList,
   validateWinningNumberList,
