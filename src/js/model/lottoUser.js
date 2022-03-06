@@ -12,9 +12,9 @@ export default class LottoUser {
   }
 
   buyLotto(quantity) {
-    for (let i = 0; i < quantity; i += 1) {
+    Array.from({ length: quantity }).forEach(() => {
       this.#buyedLottos = [...this.#buyedLottos, makeLottoNumbers()];
-    }
+    });
   }
 
   setLottoResult(regularNumbers, bonusNumber) {
