@@ -17,27 +17,20 @@ export default class LottoCollectionImpl extends LottoCollection {
   matchResult(winningNumbers) {
     const winningNumberSet = new Set(winningNumbers.slice(0, LOTTO_RULES.BALL_COUNT));
     const bonusNumber = winningNumbers[LOTTO_RULES.BALL_COUNT];
-    const initialValue = {
-      [MATCH_COUNT_OF_LOTTO_RANKING.FIFHT]: 0,
-      [MATCH_COUNT_OF_LOTTO_RANKING.FORUTH]: 0,
-      [MATCH_COUNT_OF_LOTTO_RANKING.THRID]: 0,
-      [MATCH_COUNT_OF_LOTTO_RANKING.SECOND]: 0,
-      [MATCH_COUNT_OF_LOTTO_RANKING.FIRST]: 0,
-    };
+    const { FIFHT, FORUTH, THRID, SECOND, FIRST } = MATCH_COUNT_OF_LOTTO_RANKING;
 
-    return this.reducingMatchResult(winningNumberSet, bonusNumber, initialValue);
+    return {
+      [FIFHT]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FIFHT),
+      [FORUTH]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FORUTH),
+      [THRID]: this.countingMatchedLotto(winningNumberSet, bonusNumber, THRID),
+      [SECOND]: this.countingMatchedLotto(winningNumberSet, bonusNumber, SECOND),
+      [FIRST]: this.countingMatchedLotto(winningNumberSet, bonusNumber, FIRST),
+    };
   }
 
-  reducingMatchResult(winningNumberSet, bonusNumber, initialValue) {
-    return this.lottos.reduce((acc, lotto) => {
-      const matchCount = lotto.match(winningNumberSet, bonusNumber);
-
-      if (matchCount >= MATCH_COUNT_OF_LOTTO_RANKING.FIFHT) {
-        acc[matchCount] += 1;
-      }
-
-      return acc;
-    }, initialValue);
+  countingMatchedLotto(winningNumberSet, bonusNumber, matchCount) {
+    return this.lottos.filter((lotto) => lotto.match(winningNumberSet, bonusNumber) === matchCount)
+      .length;
   }
 
   getLottos() {
