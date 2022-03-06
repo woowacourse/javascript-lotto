@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants/constants';
+import { REQUEST_MESSAGE, SELECTOR } from '../constants/constants';
 import { selectDom } from '../utils/utils';
 import CashInputView from './cashInputView';
 import PurchasedLottoView from './purchasedLottoView';
@@ -62,7 +62,7 @@ class LottoView {
   // 재시작 클릭 시
   #handleRestart = () => {
     this.#resetView();
-    this.sendRequest('RESTART_APP');
+    this.sendRequest(REQUEST_MESSAGE.RESTART_APP);
   };
 
   #resetView = () => {

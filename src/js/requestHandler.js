@@ -1,3 +1,5 @@
+import { REQUEST_MESSAGE } from './constants/constants';
+
 class RequestHandler {
   constructor(view, machine) {
     this.view = view;
@@ -10,11 +12,18 @@ class RequestHandler {
     return response;
   };
 
-  requestManual = {
-    INPUT_CASH: (cash) => this.machine.buyLotto(cash),
-    INPUT_WINNER_NUMBER: (winnerNumbers) => this.machine.getNumberMatches(winnerNumbers),
-    RESTART_APP: () => this.machine.resetData(),
-  };
+  requestManual = this.generateRequestManual();
+
+  generateRequestManual() {
+    const manual = {};
+    manual[REQUEST_MESSAGE.INPUT_CASH] = (cash) => this.machine.buyLotto(cash);
+    manual[REQUEST_MESSAGE.INPUT_WINNER_NUMBER] = (winnerNumbers) => {
+      this.machine.getNumberMatches(winnerNumbers);
+    };
+    manual[REQUEST_MESSAGE.RESTART_APP] = () => this.machine.resetData();
+
+    return manual;
+  }
 }
 
 export default RequestHandler;

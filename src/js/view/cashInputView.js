@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants/constants';
+import { REQUEST_MESSAGE, SELECTOR } from '../constants/constants';
 import { checkInputMaxLength, selectDom } from '../utils/utils';
 
 class CashInputView {
@@ -16,7 +16,7 @@ class CashInputView {
 
   handleCashInput = () => {
     const { value: cashInput } = this.cashInput;
-    const lottoArray = this.sendRequest('INPUT_CASH', cashInput * 1000);
+    const lottoArray = this.sendRequest(REQUEST_MESSAGE.INPUT_CASH, cashInput * 1000);
     return lottoArray;
   };
 

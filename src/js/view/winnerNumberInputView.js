@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants/constants';
+import { REQUEST_MESSAGE, SELECTOR } from '../constants/constants';
 import { checkInputMaxLength, selectDom } from '../utils/utils';
 
 class WinnerNumberInputView {
@@ -32,7 +32,7 @@ class WinnerNumberInputView {
 
     const winnerNumberData = { numbers: [...winnerNumbers], bonus: bonusNumber };
 
-    const matchResult = this.sendRequest('INPUT_WINNER_NUMBER', winnerNumberData);
+    const matchResult = this.sendRequest(REQUEST_MESSAGE.INPUT_WINNER_NUMBER, winnerNumberData);
 
     return matchResult;
   };

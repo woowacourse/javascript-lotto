@@ -48,3 +48,9 @@ export const ERROR_MESSAGE = Object.freeze({
   DUPLICATE_WINNER_INPUT: `${LOTTO_RULES.NUMBER_COUNT}개의 당첨 번호와 보너스 번호 중에 중복된 숫자가 있습니다.`,
   INVALID_NUMBER_WINNER_INPUT: `${LOTTO_RULES.NUMBER_COUNT}개의 당첨 번호와 보너스 번호는 모두 ${LOTTO_RULES.NUMBER_RANGE.MIN}-${LOTTO_RULES.NUMBER_RANGE.MAX} 사이의 자연수여야 합니다.`,
 });
+
+export const REQUEST_MESSAGE = Object.freeze({
+  INPUT_CASH: 'INPUT_CASH',
+  INPUT_WINNER_NUMBER: 'INPUT_WINNER_NUMBER',
+  RESTART_APP: 'RESTART_APP',
+});
