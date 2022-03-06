@@ -47,6 +47,11 @@
   width: 5rem;
 }
 
+.unit {
+  display: flex;
+  align-items: center;
+}
+
 /* 구입한 로또 표시 섹션 */
 .purchased-lotto-container {
   display: flex;
