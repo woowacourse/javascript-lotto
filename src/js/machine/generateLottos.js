@@ -1,14 +1,8 @@
 import { CASH_INPUT_RANGE, ERROR_MESSAGE, LOTTO_RULES } from '../constants/constants';
 import { generateRandomNumberInRange, isNumberInRange } from '../utils/utils';
 
-class LottoPurchaseMachine {
-  buyLotto(cashInput) {
-    const cash = Number(cashInput);
-    this.#validateCashInput(cash);
-    return this.#generateLottos(cash);
-  }
-
-  #validateCashInput(cashInput) {
+const LottoPurchaseMachine = {
+  validateCashInput(cashInput) {
     if (!cashInput) {
       throw new Error(ERROR_MESSAGE.EMPTY_CASH_INPUT);
     }
@@ -17,17 +11,17 @@ class LottoPurchaseMachine {
     ) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_CASH_INPUT);
     }
-    if (this.#hasChangeLeft(cashInput)) {
+    if (this.hasChangeLeft(cashInput)) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT_CASH_INPUT);
     }
-  }
+  },
 
-  #generateLottos(cash) {
+  generateLottos(cash) {
     const amount = cash / LOTTO_RULES.PRICE;
-    return Array.from({ length: amount }, () => this.#generateOneLotto());
-  }
+    return Array.from({ length: amount }, () => this.generateOneLotto());
+  },
 
-  #generateOneLotto() {
+  generateOneLotto() {
     return new Set(
       generateRandomNumberInRange({
         min: LOTTO_RULES.NUMBER_RANGE.MIN,
@@ -35,11 +29,15 @@ class LottoPurchaseMachine {
         count: LOTTO_RULES.NUMBER_COUNT,
       })
     );
-  }
+  },
 
-  #hasChangeLeft(cashInput) {
+  hasChangeLeft(cashInput) {
     return cashInput % LOTTO_RULES.PRICE !== 0;
-  }
-}
+  },
+};
 
-export default LottoPurchaseMachine;
+export default function generateLottos(cashInput) {
+  const cash = Number(cashInput);
+  LottoPurchaseMachine.validateCashInput(cash);
+  return LottoPurchaseMachine.generateLottos(cash);
+}

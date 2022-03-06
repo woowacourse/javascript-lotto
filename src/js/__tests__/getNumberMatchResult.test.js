@@ -5,7 +5,7 @@ describe('당첨 금액 계산 테스트', () => {
   const getMatchResult = (lottoArray, winnerNumbers) => {
     const lottoMachine = new LottoMachine();
     lottoMachine.lottoArray = lottoArray;
-    return lottoMachine.getMatches(winnerNumbers);
+    return lottoMachine.getNumberMatches(winnerNumbers);
   };
 
   test('한 개의 로또와 당첨 번호를 비교해 일치 번호의 갯수를 반환한다.', () => {

@@ -12,7 +12,7 @@ class RequestHandler {
 
   requestManual = {
     INPUT_CASH: (cash) => this.machine.buyLotto(cash),
-    INPUT_WINNER_NUMBER: (winnerNumbers) => this.machine.getMatches(winnerNumbers),
+    INPUT_WINNER_NUMBER: (winnerNumbers) => this.machine.getNumberMatches(winnerNumbers),
     RESTART_APP: () => this.machine.resetData(),
   };
 }
