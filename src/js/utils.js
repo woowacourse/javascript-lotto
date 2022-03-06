@@ -66,3 +66,15 @@ export const findGroupIndex = (twoDemensionalArr, val) => {
   }
   return null;
 };
+
+export const getRank = (lottoNums, winningNumbers) => {
+  const { normal, bonus } = winningNumbers;
+  let rank = 0;
+  const count = intersect(lottoNums, normal).length;
+  if (count === 6) rank = 1;
+  else if (count === 5 && lottoNums.includes(bonus)) rank = 2;
+  else if (count === 5) rank = 3;
+  else if (count === 4) rank = 4;
+  else if (count === 3) rank = 5;
+  return rank;
+};

@@ -49,3 +49,11 @@ export const DUPLICATE_ERROR_CLASS_NAMES = [
   'duplicate-error-3',
 ];
 export const INVALID_RANGE_ERROR_CLASS_NAME = 'invalid-range-error';
+
+export const LOTTO_BALL_COLORS = [
+  ...Array(11).fill('orange'),
+  ...Array(10).fill('blue'),
+  ...Array(10).fill('red'),
+  ...Array(10).fill('gray'),
+  ...Array(5).fill('green'),
+];
