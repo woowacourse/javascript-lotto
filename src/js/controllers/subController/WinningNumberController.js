@@ -49,23 +49,29 @@ export default class WinningNumberController {
   setWinningStatistic(winningNumbers, bonusNumber) {
     const { lottoList } = this.lottoModel.getState();
     const lottoNumbersList = lottoList.map((lotto) => lotto.numbers);
-    const countList = this.createCountList(
+    const winningStatistic = this.createWinningStatistic(
       lottoNumbersList,
       winningNumbers,
       bonusNumber
     );
-    const winningStatistic = this.createStatisticWithCountList(countList);
 
     this.lottoModel.setState({ winningStatistic });
     this.lottoController.afterSetWinningStatistic();
   }
 
-  createCountList(lottoNumbersList, winningNumbers, bonus) {
-    const countList = lottoNumbersList.map((lottoNumbers) =>
-      this.countSameNumber(lottoNumbers, winningNumbers, bonus)
-    );
+  createWinningStatistic(lottoNumbersList, winningNumbers, bonus) {
+    const winningStatistic = LottoModel.createWinningStatistic();
 
-    return countList;
+    lottoNumbersList.forEach((lottoNumbers) => {
+      const count = this.countSameNumber(lottoNumbers, winningNumbers, bonus);
+      if (count < STATISTIC.three.number) {
+        return;
+      }
+      const numberString = this.translateToString(count);
+      winningStatistic[numberString] += 1;
+    });
+
+    return winningStatistic;
   }
 
   countSameNumber(lottoNumbers, winningNumbers, bonus) {
@@ -85,20 +91,6 @@ export default class WinningNumberController {
       count === STATISTIC.five.number &&
       lottoNumbers.find((number) => number === bonus)
     );
-  }
-
-  createStatisticWithCountList(countList) {
-    const winningStatistic = LottoModel.createWinningStatistic();
-
-    countList.forEach((count) => {
-      if (count < STATISTIC.three.number) {
-        return;
-      }
-      const countString = this.translateToString(count);
-      winningStatistic[countString] += 1;
-    });
-
-    return winningStatistic;
   }
 
   translateToString(count) {
