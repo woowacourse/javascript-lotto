@@ -106,3 +106,15 @@ export const getRateOfReturn = (totalWinningAmount, purchasedAmount) => {
     )
   );
 };
+
+export const changeToUpperSnakeCase = (string) => {
+  return string
+    .split('')
+    .map((character) => {
+      if (character === character.toUpperCase()) {
+        return `_${character.toUpperCase()}`;
+      }
+      return character.toUpperCase();
+    })
+    .join('');
+};
