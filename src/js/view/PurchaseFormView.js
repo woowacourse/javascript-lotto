@@ -30,15 +30,18 @@ export default class PurchaseFormView {
         e.preventDefault();
         return;
       }
-    });
 
-    this.$purchaseInput.addEventListener('input', e => {});
-
-    this.$purchaseInput.addEventListener('keyup', ({ target }) => {
-      if (target.value === '') {
+      if (REGEXP.KOREAN.test(e.key)) {
+        tmp = e.target.value;
         return;
       }
-      target.value = removeCommaInNumber(target.value).toLocaleString();
+    });
+
+    this.$purchaseInput.addEventListener('input', e => {
+      if (e.target.value === '') {
+        return;
+      }
+      e.target.value = removeCommaInNumber(e.target.value).toLocaleString();
     });
   }
 }
