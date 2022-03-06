@@ -20,7 +20,7 @@ class LottoRoundModel {
   }
 
   getLottoList() {
-    return this.lottoList.deepCopy();
+    return this.lottoList;
   }
 
   createLottoList(chargeInput) {

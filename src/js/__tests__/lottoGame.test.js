@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 
-import '../utils/customPrototypeMethod';
 import { ERROR_MESSAGE } from '../constants/errorMessage';
 import LottoRound from '../models/LottoRound';
 import Lotto from '../models/Lotto';
@@ -45,15 +44,6 @@ describe('로또 게임 모델 테스트', () => {
     lottoRound.createLottoList(charge);
 
     expect(lottoRound.lottoList.length).toBe(availableLottoAmount);
-  });
-
-  it('lottoList의 getter는 깊게 복사된 값을 반환한다.', () => {
-    const lottoRound = new LottoRound();
-
-    lottoRound.createLottoList(charge);
-
-    const lottoListFromGetterFunc = lottoRound.getLottoList();
-    expect(lottoListFromGetterFunc).toEqual(lottoRound.lottoList);
   });
 
   it('당첨 결과를 이용하여 당첨 통계와 수익률을 반환할 수 있어야 한다.', () => {
