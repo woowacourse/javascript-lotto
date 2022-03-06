@@ -40,19 +40,21 @@ describe('로또 구매 테스트', () => {
 
 describe('당첨 결과 확인 테스트', () => {
   test('결과 확인하기 버튼을 누르면, 당첨 갯수와 수익률이 정확히 계산된다', () => {
-    const lottoList = [
-      [1, 2, 3, 4, 5, 6], // 3개
-      [4, 5, 6, 7, 8, 9], // 6개
-      [4, 5, 6, 7, 8, 10], // 5개+보너스볼
-      [7, 8, 9, 10, 11, 12], // 3개
-      [13, 14, 15, 16, 17, 18], // 0개
-    ];
-
     const pickedNumber = [4, 5, 6, 7, 8, 9, 10];
+    const lottoQuantity = 5;
 
     const model = new Model();
-    model.setLottoList(lottoList);
-    model.setCash(lottoList.length * LOTTO_PRICE);
+
+    model.makeLottoNumbers = jest
+      .fn()
+      .mockReturnValueOnce([1, 2, 3, 4, 5, 6])
+      .mockReturnValueOnce([4, 5, 6, 7, 8, 9])
+      .mockReturnValueOnce([4, 5, 6, 7, 8, 10])
+      .mockReturnValueOnce([7, 8, 9, 10, 11, 12])
+      .mockReturnValueOnce([13, 14, 15, 16, 17, 18]);
+
+    model.setCash(lottoQuantity * LOTTO_PRICE);
+    model.buyLotto(lottoQuantity);
     model.setWinningLottoQuantity(pickedNumber);
 
     const winningLottoQuantity = model.getWinningLottoQuantity();
