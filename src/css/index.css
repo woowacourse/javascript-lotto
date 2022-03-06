@@ -29,7 +29,6 @@ label {
 
 html {
   width: 100%;
-  height: auto;
   min-height: 100vh;
 }
 
@@ -37,7 +36,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto;
   background-color: var(--color-body);
   min-height: 100vh;
 }
