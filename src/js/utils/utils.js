@@ -23,6 +23,25 @@ export const cloneObject = (obj) => {
   return clone;
 };
 
+const isObject = (object) => object != null && typeof object === 'object';
+
+export function isEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+
+  if (keys1.length !== keys2.length) return false;
+
+  return !keys1.some((key) => {
+    const val1 = object1[key];
+    const val2 = object2[key];
+    const areObjects = isObject(val1) && isObject(val2);
+
+    return (
+      (areObjects && !isEqual(val1, val2)) || (!areObjects && val1 !== val2)
+    );
+  });
+}
+
 export const getEmptyCount = (keys) => {
   const count = {};
 

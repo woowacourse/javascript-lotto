@@ -2,6 +2,7 @@ import {
   generateNumberArray,
   getRandomInt,
   ascendingOrder,
+  isEqual,
 } from '../../utils/utils.js';
 import { LOTTO } from '../../configs/contants.js';
 
@@ -28,24 +29,17 @@ export default class Lotto {
   }
 
   countMatchedNumbers(winningNumbers) {
-    let matched = 0;
-    let isBonusNumberMatched = false;
-
-    winningNumbers.main.forEach((num) => {
-      if (this.numbers.includes(num)) matched += 1;
-    });
-
-    if (this.numbers.includes(winningNumbers.bonus))
-      isBonusNumberMatched = true;
+    const { main, bonus } = winningNumbers;
+    const matched = main.filter((num) => this.numbers.includes(num)).length;
+    const isBonusNumberMatched = this.numbers.includes(bonus);
 
     return { matched, isBonusNumberMatched };
   }
 
   matchWinningNumbers(winningNumbers) {
     const matchedCount = this.countMatchedNumbers(winningNumbers);
-    const result = Object.entries(LOTTO.PRIZE).filter(
-      ([_, { CONDITION }]) =>
-        JSON.stringify(CONDITION) === JSON.stringify(matchedCount)
+    const result = Object.entries(LOTTO.PRIZE).filter(([_, { CONDITION }]) =>
+      isEqual(CONDITION, matchedCount)
     )[0];
 
     return (result && result[0]) || null;
