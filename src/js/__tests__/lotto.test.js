@@ -1,6 +1,6 @@
 import LottoModel from "../model/LottoModel.js";
 import { LOTTO_NUMBER } from "../utils/constants.js";
-import { isValidNumberRange } from "../utils/general.js";
+import { isOutOfRange } from "../utils/general.js";
 
 /* eslint-disable no-undef */
 describe("로또 번호 생성 테스트", () => {
@@ -9,7 +9,7 @@ describe("로또 번호 생성 테스트", () => {
     const lottoNumbers = lotto.generateLottoNumber();
     expect(
       lottoNumbers.some((number) =>
-        isValidNumberRange(number, LOTTO_NUMBER.RANGE_MIN, LOTTO_NUMBER.RANGE_MAX),
+        isOutOfRange(number, LOTTO_NUMBER.RANGE_MIN, LOTTO_NUMBER.RANGE_MAX),
       ),
     ).toBeFalsy();
   });
