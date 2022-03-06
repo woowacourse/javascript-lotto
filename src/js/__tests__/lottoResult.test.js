@@ -11,13 +11,21 @@ describe('구매한 로또 번호와 지난주 당첨 번호, 보너스 번호�
     const winningNumbers = [7, 15, 30, 37, 39, 44];
     const bonusNumber = 18;
 
+    const expectedWinningCounts = {
+      '5등': 0,
+      '4등': 1,
+      '3등': 1,
+      '2등': 1,
+      '1등': 1,
+    };
+
     const winningCounts = lottoStatisticMachine.calculateWinningCounts(
       lottos,
       winningNumbers,
       bonusNumber,
     );
 
-    expect(winningCounts).toEqual([0, 1, 1, 1, 1]);
+    expect(winningCounts).toEqual(expectedWinningCounts);
   });
 
   test('구매한 로또에 대한 수익률을 계산할 수 있어야 한다.', () => {

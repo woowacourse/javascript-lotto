@@ -1,19 +1,25 @@
 import { LOTTO_RULES, PRIZE_MONEY } from '../constant/index.js';
 
+const INITIAL_WINNING_COUNTS = {
+  '5등': 0,
+  '4등': 0,
+  '3등': 0,
+  '2등': 0,
+  '1등': 0,
+};
+
 class LottoStatisticMachine {
   #winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(0);
 
   #bonusNumber = 0;
 
-  #winningCounts = new Array(5).fill(0);
+  #winningCounts = INITIAL_WINNING_COUNTS;
 
   #earningsRate = 0;
 
   calculateWinningCounts(lottos, winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
-
-    const winningCounts = new Array(5).fill(0);
 
     lottos.forEach((lotto) => {
       const hitCount = this.#calculateHitCount(lotto);
@@ -22,11 +28,10 @@ class LottoStatisticMachine {
       if (hitCount >= 3) {
         const rank = this.#convertHitCountToRank(hitCount, isHitBonusNumber);
 
-        winningCounts[rank - 1] += 1;
+        this.#winningCounts[rank] += 1;
       }
     });
 
-    this.#winningCounts = winningCounts.reverse();
     return this.#winningCounts;
   }
 
@@ -40,7 +45,7 @@ class LottoStatisticMachine {
   reset() {
     this.#winningNumbers = new Array(LOTTO_RULES.BALL_COUNT).fill(0);
     this.#bonusNumber = 0;
-    this.#winningCounts = new Array(5).fill(0);
+    this.#winningCounts = INITIAL_WINNING_COUNTS;
     this.#earningsRate = 0;
   }
 
@@ -60,26 +65,26 @@ class LottoStatisticMachine {
 
   #convertHitCountToRank(hitCount, isHitBonusNumber) {
     if (hitCount === 3) {
-      return 5;
+      return '5등';
     }
 
     if (hitCount === 4) {
-      return 4;
+      return '4등';
     }
 
     if (hitCount === 5) {
       if (isHitBonusNumber) {
-        return 2;
+        return '2등';
       }
 
-      return 3;
+      return '3등';
     }
 
-    return 1;
+    return '1등';
   }
 
   #calculateEarnings(winningCounts) {
-    return winningCounts.reduce(
+    return Object.values(winningCounts).reduce(
       (earnings, winningCount, index) => earnings + PRIZE_MONEY[index] * winningCount,
       0,
     );

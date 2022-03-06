@@ -11,7 +11,7 @@ const getWinningStatisticModalTemplate = (winningCounts, earningsRate) => {
           <div class="winning-result-item">일치 갯수</div>
           <div class="winning-result-item">당첨금</div>
           <div class="winning-result-item">당첨 갯수</div>
-          ${winningCounts
+          ${Object.values(winningCounts)
             .map(
               (winningCount, index) => `
               <div class="winning-result-item">${WINNING_CRITERIA[index]}</div>
