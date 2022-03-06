@@ -24,7 +24,7 @@ export default class PurchaseFormView {
   }
 
   bindAddCommaInNumber() {
-    let tmp;
+    let valueAfterKeyDown;
     this.$purchaseInput.addEventListener('keydown', e => {
       if (REGEXP.NOT_NUMBER.test(e.key) && e.key.length === 1) {
         e.preventDefault();
@@ -32,15 +32,21 @@ export default class PurchaseFormView {
       }
 
       if (REGEXP.KOREAN.test(e.key)) {
-        tmp = e.target.value;
+        valueAfterKeyDown = e.target.value;
         return;
       }
     });
 
     this.$purchaseInput.addEventListener('input', e => {
+      if (REGEXP.KOREAN.test(e.target.value)) {
+        e.target.value = valueAfterKeyDown;
+        return;
+      }
+
       if (e.target.value === '') {
         return;
       }
+
       e.target.value = removeCommaInNumber(e.target.value).toLocaleString();
     });
   }
