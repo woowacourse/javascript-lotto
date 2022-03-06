@@ -3,7 +3,7 @@ import { winningNumber } from '../model/winningNumber';
 import { isInvalidWinningNumbersInput } from '../validator/validator';
 import { ERROR_MESSAGE } from '../constants/constants';
 import { winningStatistics } from '../model/winningStatistics';
-import { activateForm, resetInput } from '../utils/dom';
+import { deactivateForm, activateForm, resetInput } from '../utils/dom';
 import { lottoTicket } from '../model/lottoTicket';
 
 export default class WinningResultModal {
@@ -64,6 +64,7 @@ export default class WinningResultModal {
 
     $('#app').insertAdjacentHTML('afterend', template);
     $('#modal').classList.remove('modal-display-none');
+    deactivateForm(['#show-result']);
 
     $('.modal-close-button').addEventListener('click', this.closeWinningResultModal);
     $('.modal-restart-button').addEventListener('click', this.restartLottoPurchase.bind(this));
@@ -71,6 +72,7 @@ export default class WinningResultModal {
 
   closeWinningResultModal() {
     $('#modal').classList.add('modal-display-none');
+    activateForm(['#show-result']);
   }
 
   initializeElements() {
