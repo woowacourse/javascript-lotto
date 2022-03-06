@@ -47,8 +47,7 @@ export default class WinningNumberController {
   }
 
   setWinningStatistic(winningNumbers, bonusNumber) {
-    const { lottoList } = this.lottoModel.getState();
-    const lottoNumbersList = lottoList.map((lotto) => lotto.numbers);
+    const lottoNumbersList = this.getLottoNumbersList();
     const winningStatistic = this.createWinningStatistic(
       lottoNumbersList,
       winningNumbers,
@@ -57,6 +56,12 @@ export default class WinningNumberController {
 
     this.lottoModel.setState({ winningStatistic });
     this.lottoController.afterSetWinningStatistic();
+  }
+
+  getLottoNumbersList() {
+    const { lottoList } = this.lottoModel.getState();
+
+    return lottoList.map((lotto) => lotto.numbers);
   }
 
   createWinningStatistic(lottoNumbersList, winningNumbers, bonus) {
