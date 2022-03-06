@@ -36,7 +36,7 @@ class ResultModalView {
       this.modal.classList.remove('hide');
       return;
     }
-    this.body.style.overflowY = 'scroll';
+    this.body.classList.remove('stop-scroll');
     this.modal.classList.add('hide');
   };
 }
