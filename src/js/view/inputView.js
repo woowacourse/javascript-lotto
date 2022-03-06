@@ -3,25 +3,32 @@ import { $, $$ } from '../utils/selector';
 import { checkValidLottoCount, checkValidWinningNumbers } from '../utils/validator';
 import makeTemplate from './template';
 
-const pressKey = {
-  pressBackSpace: ({ key, target }, idx) =>
-    key === 'Backspace' && target.value.length === 0 && idx !== 0,
+const keyValidator = {
+  pressBackSpace: ({ key }) => key === 'Backspace',
 
-  pressNumber: ({ key, target }) => key.match(/[0-9]/) && target.value.length < 2,
+  pressNumber: ({ key }) => key.match(/[0-9]/),
 
   pressPossibleKey: ({ key }) =>
     ['Tab', 'ArrowRight', 'ArrowLeft', 'Backspace'].some((possibleKey) => possibleKey === key),
 
-  pressNumberWhenMaxLength: ({ key, target }, idx) =>
-    key.match(/[0-9]/) && target.value.length === 2 && idx !== LOTTO_NUMBERS.LOTTO_LENGTH,
+  pressNotNumber: ({ target }) => target.value.match(REGEX.NOT_NUMBER),
+};
 
-  pressNotNumber: ({ key }) => key.match(REGEX.NOT_NUMBER),
+const inputValidator = {
+  isMaxLength: ({ target }) => target.value.length === 2,
+
+  isMinLength: ({ target }) => target.value.length === 0,
+
+  isNotMinIndex: (idx) => idx !== 0,
+
+  isNotMaxIndex: (idx) => idx !== LOTTO_NUMBERS.LOTTO_LENGTH,
 };
 
 export default class InputView {
   constructor() {
     this.$app = $('#app');
     this.$result = $('#result');
+    this.$lottoPriceForm = $('#lotto-price-form');
     this.$lottoPriceInput = $('#lotto-price-input');
     this.$lottoPriceInputMessage = $('#lotto-price-input-message');
     this.$lottoPriceButton = $('#lotto-price-button');
@@ -38,9 +45,14 @@ export default class InputView {
     this.$checkResultButton = $('#check-result-button');
     this.$winningNumberInputs = $$('.winning-number-input');
 
-    this.$winningNumberInputs.forEach((DOM, idx) => {
-      DOM.addEventListener('keydown', (e) => this.pressDownWinningNumberInputEventHandler(e, idx)); // 유효하지 않는 입력 막기
-      DOM.addEventListener('keyup', (e) => this.pressUpWinningNumberInputEventHandler(e, idx)); // 자동으로 2칸채우거나 빈칸일 경우 포커스 이동
+    this.$winningNumberInputs.forEach(($winningNumberInput, idx) => {
+      $winningNumberInput.addEventListener('keydown', (e) =>
+        this.pressDownWinningNumberInputEventHandler(e, idx),
+      ); // 유효하지 않는 입력 막기
+      $winningNumberInput.addEventListener('keyup', (e) =>
+        this.pressUpWinningNumberInputEventHandler(e, idx),
+      ); // 자동으로 2칸채우거나 빈칸일 경우 포커스 이동
+      $winningNumberInput.addEventListener('input', this.preventKoreanInputHandler);
     });
   }
 
@@ -50,14 +62,24 @@ export default class InputView {
     this.$app.addEventListener('input', this.detectInputState.bind(this));
   }
 
+  bindLottoPriceFormSubmitEvent(callback) {
+    this.$lottoPriceForm.addEventListener('submit', (e) =>
+      callback(e, this.$lottoPriceInput.valueAsNumber),
+    );
+  }
+
   pressDownWinningNumberInputEventHandler(e, idx) {
-    if (pressKey.pressBackSpace(e, idx)) {
+    if (
+      keyValidator.pressBackSpace(e) &&
+      inputValidator.isNotMinIndex(idx) &&
+      inputValidator.isMinLength(e)
+    ) {
       this.$winningNumberInputs[idx - 1].focus();
       e.preventDefault();
       return;
     }
 
-    if (pressKey.pressNumber(e) || pressKey.pressPossibleKey(e)) {
+    if (keyValidator.pressNumber(e) || keyValidator.pressPossibleKey(e)) {
       return;
     }
 
@@ -65,12 +87,17 @@ export default class InputView {
   }
 
   pressUpWinningNumberInputEventHandler(e, idx) {
-    if (pressKey.pressNumberWhenMaxLength(e, idx)) {
+    if (
+      keyValidator.pressNumber(e) &&
+      inputValidator.isMaxLength(e) &&
+      inputValidator.isNotMaxIndex(idx)
+    ) {
       this.$winningNumberInputs[idx + 1].focus();
     }
+  }
 
-    if (pressKey.pressNotNumber(e)) {
-      e.preventDefault();
+  preventKoreanInputHandler(e) {
+    if (keyValidator.pressNotNumber(e)) {
       e.target.value = e.target.value.replace(REGEX.NOT_NUMBER, '');
     }
   }
@@ -93,18 +120,44 @@ export default class InputView {
       this.$lottoPriceInputMessage.innerText = SUCCESS_MESSAGE.PURCHASE_POSSIBLE;
       this.$lottoPriceInputMessage.classList.add('pass');
       this.$lottoPriceInput.classList.remove('invalid-input');
-      this.$lottoPriceButton.disabled = false;
+      this.openLottoPriceButton();
     } catch (err) {
       this.$lottoPriceInputMessage.innerText = err.message;
       this.$lottoPriceInputMessage.classList.remove('pass');
       this.$lottoPriceInput.classList.add('invalid-input');
-      this.$lottoPriceButton.disabled = true;
+      this.blockLottoPriceButton();
     }
   }
 
+  blockLottoPriceForm() {
+    this.blockLottoPriceButton();
+    this.blockLottoPriceInput();
+  }
+
+  openLottoPriceForm() {
+    this.openLottoPriceButton();
+    this.openLottoPriceInput();
+  }
+
+  blockLottoPriceButton() {
+    this.$lottoPriceButton.disabled = true;
+  }
+
+  blockLottoPriceInput() {
+    this.$lottoPriceInput.disabled = true;
+  }
+
+  openLottoPriceButton() {
+    this.$lottoPriceButton.disabled = false;
+  }
+
+  openLottoPriceInput() {
+    this.$lottoPriceInput.disabled = false;
+  }
+
   detectWinningInputState() {
-    const winnerNumberArray = Array.from(this.$winningNumberInputs).map((DOM) =>
-      Number.parseInt(DOM.value, 10),
+    const winnerNumberArray = Array.from(this.$winningNumberInputs).map(($winningNumberInput) =>
+      Number.parseInt($winningNumberInput.value, 10),
     );
 
     try {

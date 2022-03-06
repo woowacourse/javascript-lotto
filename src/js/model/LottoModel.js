@@ -102,7 +102,7 @@ export default class LottoModel {
     this.#earningRate = Math.floor(
       (Object.entries(this.#winningType).reduce(
         (acc, cur) => acc + winningPriceInfo[cur[0]] * cur[1],
-        0,
+        0 - this.getLottoCount() * LOTTO_NUMBERS.LOTTO_PRICE,
       ) /
         (this.getLottoCount() * LOTTO_NUMBERS.LOTTO_PRICE)) *
         100,
