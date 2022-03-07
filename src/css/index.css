@@ -4,26 +4,44 @@ input[type='number']::-webkit-inner-spin-button {
   margin: 0;
 }
 
+input:focus {
+  border: 1px solid #00bcd4;
+  outline: 1px solid #00bcd4;
+}
+
+.invalid {
+  background-color: #ffb0cd;
+  border: 1px solid #ff6464 !important;
+  outline: 1px solid #ff6464 !important;
+}
+
 input {
-  outline: none;
+  background-color: #ffffff;
+  outline: 1px solid #aaaaaa;
+  border: 1px solid #dddddd;
+}
+
+label {
+  cursor: pointer;
 }
 
 body {
-  width: 98vw;
-  height: 90vh;
-  margin: auto;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
   background-color: rgba(0, 0, 0, 0.07);
   font-family: 'NanumBarunGothic', sans-serif;
-
+  font-size: 1.1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: overlay;
 }
 
 #app {
   width: 25vw;
   min-width: 414px;
-  padding: 50px;
+  padding: 20px;
 
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -42,8 +60,11 @@ body {
 #charge-input {
   flex: 1;
   margin-right: 20px;
-  border: 1px solid #b4b4b4;
   border-radius: 4px;
+}
+
+#charge-button {
+  width: 15%;
 }
 
 button {
@@ -52,15 +73,29 @@ button {
   color: #ffffff;
   border: 0;
   min-height: 36px;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #26daf1;
 }
 
 section {
   margin-bottom: 20px;
 }
 
-#lotto-section {
+#lotto-section[data-visible-state='false'] {
+  display: flex;
+  visibility: hidden;
+  height: 0vh;
+}
+
+#lotto-section[data-visible-state='true'] {
   display: flex;
   flex-direction: row;
+  visibility: visible;
+  transition: height 0.5s;
 }
 
 .lotto-wrapper {
@@ -77,10 +112,12 @@ section {
 
 #lotto-container {
   display: flex;
+  flex-wrap: wrap;
 }
+
 #lotto-container[data-visible-state='false'] {
   flex-direction: row;
-  gap: 10px;
+  gap: 3px;
 }
 
 #lotto-container[data-visible-state='false'] .number {
@@ -97,26 +134,49 @@ section {
   gap: 10px;
 }
 
+#win-number-input-section[data-visible-state='false'] {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
+#win-number-input-section[data-visible-state='true'] {
+  margin-top: 40px;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.win-number-input-notice {
+  margin-bottom: 0;
+}
+
 .win-number-input-wrapper {
   display: flex;
   gap: 10px;
   justify-content: space-between;
 }
 
+.win-number-input-wrapper > div > input {
+  text-align: center;
+}
+
 #result-button {
   width: 100%;
   margin-top: 10px;
+  padding: 13px;
 }
 
 .win-number-input-wrapper input {
   width: 30px;
   height: 30px;
+  font-size: 1.3rem;
 }
 
 .bonus-number-wrapper {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 #align-converter-container {

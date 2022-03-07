@@ -13,8 +13,16 @@ export function isValidNumber(lottoNumbers) {
   );
 }
 
-export function isValidCharge(charge) {
-  return Number.isInteger(charge) && charge >= NUMBER.LOTTO_PRICE;
+export function isNotValidNumber(number) {
+  return number < 1 || number > 45;
+}
+
+export function isEnoughCharge(charge) {
+  return charge >= NUMBER.LOTTO_PRICE;
+}
+
+export function isDivisibleCharge(charge) {
+  return charge % NUMBER.LOTTO_PRICE === 0;
 }
 
 export function getRandomNumber(array) {
@@ -26,4 +34,9 @@ export function getRandomNumber(array) {
   }
 
   return randomNumber;
+}
+
+export function hasUniqueElement(element) {
+  const uniqueSet = new Set(element);
+  return uniqueSet.size === element.length;
 }

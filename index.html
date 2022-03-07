@@ -11,14 +11,14 @@
       <h1 class="header-title">🎱 행운의 로또</h1>
       <section id="charge-input-section" aria-labelledby="charge-input-section-title">
         <h1 id="charge-input-section-title" hidden>금액을 입력하는 섹션입니다.</h1>
-        <p>구입할 금액을 입력해주세요</p>
+        <p>구입할 금액을 입력해주세요.</p>
         <form id="charge-input-form">
           <input id="charge-input" type="number" placeholder="금액" />
           <button id="charge-button">구입</button>
         </form>
       </section>
 
-      <section id="lotto-section" aria-labelledby="lotto-section-title">
+      <section id="lotto-section" aria-labelledby="lotto-section-title" data-visible-state="false">
         <h1 id="lotto-section-title" hidden>구매한 로또를 확인하는 섹션입니다.</h1>
         <div class="lotto-wrapper">
           <span id="purchased-message"></span>
@@ -35,30 +35,79 @@
         </div>
       </section>
 
-      <section id="win-number-input-section" aria-labelledby="win-number-input-title">
+      <section
+        id="win-number-input-section"
+        aria-labelledby="win-number-input-title"
+        data-visible-state="false"
+      >
         <h1 id="win-number-input-title" hidden>당첨 번호 입력 섹션</h1>
-        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <p class="win-number-input-notice">
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+        </p>
         <form id="win-number-input-form">
           <div class="win-number-input-wrapper">
             <div>
               <p>당첨 번호</p>
-              <input id="win-number-1" type="number" />
-              <input id="win-number-2" type="number" />
-              <input id="win-number-3" type="number" />
-              <input id="win-number-4" type="number" />
-              <input id="win-number-5" type="number" />
-              <input id="win-number-6" type="number" />
+              <input id="win-number-1" type="number" min="1" max="45" />
+              <input id="win-number-2" type="number" min="1" max="45" />
+              <input id="win-number-3" type="number" min="1" max="45" />
+              <input id="win-number-4" type="number" min="1" max="45" />
+              <input id="win-number-5" type="number" min="1" max="45" />
+              <input id="win-number-6" type="number" min="1" max="45" />
             </div>
 
             <div class="bonus-number-wrapper">
               <p>보너스 번호</p>
-              <input id="bonus-number" type="number" />
+              <input id="bonus-number" type="number" min="1" max="45" />
             </div>
           </div>
 
           <button id="result-button">결과 확인하기</button>
         </form>
       </section>
+    </div>
+
+    <div id="result-modal-area" data-visible-state="false">
+      <div class="background-area">
+        <div class="modal">
+          <button id="modal-close-button"></button>
+          <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+          <ul class="winning-statistics-table">
+            <li class="table-head">
+              <p>일치 갯수</p>
+              <p>당첨금</p>
+              <p>당첨 갯수</p>
+            </li>
+            <li>
+              <p>3개</p>
+              <p>5,000</p>
+              <p id="fifth-grade-amount">n개</p>
+            </li>
+            <li>
+              <p>4개</p>
+              <p>50,000</p>
+              <p id="fourth-grade-amount">n개</p>
+            </li>
+            <li>
+              <p>5개</p>
+              <p>1,500,000</p>
+              <p id="third-grade-amount">n개</p>
+            </li>
+            <li>
+              <p>5개+보너스볼</p>
+              <p>30,000,000</p>
+              <p id="second-grade-amount">n개</p>
+            </li>
+            <li>
+              <p>6개</p>
+              <p>2,000,000,000</p>
+              <p id="first-grade-amount">n개</p>
+            </li>
+          </ul>
+          <p id="earning-rate-notice">당신의 총 수익률은 %입니다.</p>
+          <button id="replay-button">다시 시작하기</button>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/index.js"></script>
   </body>
