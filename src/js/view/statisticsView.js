@@ -9,11 +9,13 @@ export default class StatisticsView {
     this.$statisticsModalContainer = $(ID.STATISTICS_MODAL_CONTAINER);
     this.$closeButton = $(ID.CLOSE_BUTTON);
     this.$restartButton = $(ID.RESTART_BUTTON);
-    this.$firstPrizeCount = $(ID.FIRST_PRIZE_COUNT);
-    this.$secondPrizeCount = $(ID.SECOND_PRIZE_COUNT);
-    this.$thirdPrizeCount = $(ID.THIRD_PRIZE_COUNT);
-    this.$fourthPrizeCount = $(ID.FOURTH_PRIZE_COUNT);
-    this.$fifthPrizeCount = $(ID.FIFTH_PRIZE_COUNT);
+    this.$prizeCount = {
+      first: $(ID.FIRST_PRIZE_COUNT),
+      second: $(ID.SECOND_PRIZE_COUNT),
+      third: $(ID.THIRD_PRIZE_COUNT),
+      fourth: $(ID.FOURTH_PRIZE_COUNT),
+      fifth: $(ID.FIFTH_PRIZE_COUNT),
+    };
     this.$rateOfReturn = $(ID.RATE_OF_RETURN);
     this.bindEvents();
   }
@@ -55,11 +57,9 @@ export default class StatisticsView {
   }
 
   renderPrizeCount(prizeCount) {
-    this.$firstPrizeCount.textContent = prizeCount.first;
-    this.$secondPrizeCount.textContent = prizeCount.second;
-    this.$thirdPrizeCount.textContent = prizeCount.third;
-    this.$fourthPrizeCount.textContent = prizeCount.fourth;
-    this.$fifthPrizeCount.textContent = prizeCount.fifth;
+    Object.keys(this.$prizeCount).forEach((rankKey) => {
+      this.$prizeCount[rankKey].textContent = prizeCount[rankKey];
+    });
   }
 
   renderRateOfReturn(rateOfReturn) {
