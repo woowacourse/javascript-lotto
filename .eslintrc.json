@@ -23,7 +23,9 @@
         "implicit-arrow-linebreak": "off",
         "no-await-in-loop": "off",
         "import/prefer-default-export": "off",
-        "array-callback-return": "off"
+        "array-callback-return": "off",
+        "operator-linebreak": "off",
+        "function-paren-newline": "off"
     }
   }
   

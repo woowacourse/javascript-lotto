@@ -1,4 +1,4 @@
 import LottoController from './js/controller/LottoController';
-import './css/index.scss';
+import './css/layout.scss';
 
 new LottoController();

@@ -1,44 +1,48 @@
-import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+import { $ } from '../utils/element-manager';
 import { makeLottosCountTemplate, makeLottoTemplate } from '../utils/Lotto/template-manager';
 
 export default class LottoListView {
   #container;
   #lottoNumberToggle;
-  constructor($element) {
-    this.#container = $element;
-    this.#lottoNumberToggle = $($element, `#${SELECTOR.ID.NUMBER_TOGGLE}`);
+  #lottoItemContainer;
+
+  constructor() {
+    this.#container = $(SELECTOR.CLASS.LOTTO_LIST_SECTION);
+
+    this.#lottoNumberToggle = $(this.#container, SELECTOR.ID.NUMBER_TOGGLE);
+    this.#lottoItemContainer = $(this.#container, SELECTOR.CLASS.LOTTO_ITEM_CONTAINER);
+    this.init();
+  }
+
+  init() {
+    this.#lottoItemContainer.innerHTML = '';
+    this.hideContainer();
   }
 
   bindLottoNumberToggle() {
     this.#lottoNumberToggle.addEventListener('click', this.toggleShow.bind(this));
   }
 
-  showLottoList() {
+  showContainer() {
     this.#container.classList.add('show');
   }
 
-  hideLottoList() {
+  hideContainer() {
     this.#container.classList.remove('show');
   }
 
   toggleShow() {
-    const toggle = this.#lottoNumberToggle.dataset;
-    toggle.state = toggle.state === 'on' ? 'off' : 'on';
-
-    const { dataset: itemContainer } = $(
-      this.#container,
-      `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`
-    );
-    itemContainer.list = itemContainer.list === 'open' ? 'close' : 'open';
+    this.#lottoNumberToggle.classList.toggle('on');
+    this.#lottoItemContainer.classList.toggle('list');
   }
 
   renderLottoList(lottos) {
-    $(this.#container, `.${SELECTOR.CLASS.LOTTO_ITEM_CONTAINER}`).innerHTML = lottos
+    this.#lottoItemContainer.innerHTML = lottos
       .map((numbers) => makeLottoTemplate(numbers))
       .join('');
 
-    $(this.#container, `#${SELECTOR.ID.LOTTO_BOUGHT_COUNT}`).textContent = makeLottosCountTemplate(
+    $(this.#container, SELECTOR.ID.LOTTO_BOUGHT_COUNT).textContent = makeLottosCountTemplate(
       lottos.length
     );
   }
