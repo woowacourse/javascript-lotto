@@ -6,9 +6,12 @@ class LottoList extends Component {
     const { money, lottoList, lottoListVisibility } = window.store.getState();
     this.innerHTML = this.template(lottoList, lottoListVisibility);
 
-    if (money > 0) {
-      this.show();
+    if (money === 0) {
+      this.hide();
+
+      return;
     }
+    this.show();
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -16,7 +19,7 @@ class LottoList extends Component {
     const lottoImages = !lottoListVisibility
       ? `<img src="${LottoImage}" alt="lotto"></img>`.repeat(lottoList.length)
       : '';
-    const lists = lottoListVisibility
+    const lottoItems = lottoListVisibility
       ? lottoList
           .map((lottoNums) => `<lotto-item data-lotto-nums="${lottoNums.join(', ')}"></lotto-item>`)
           .join('')
@@ -26,11 +29,11 @@ class LottoList extends Component {
       <div class="lotto-list-container">
         <label class="form-label">총 ${lottoList.length}개를 구매하였습니다.</label>
         <div class="lotto-images">${lottoImages}</div>
-        <ul class="lotto-list">${lists}</ul>
+        <ul class="lotto-list">${lottoItems}</ul>
       </div>
       <div class="toggle-container">
-      <label class="form-label mb-3">번호 보기</label>
-      <lotto-list-toggle class="d-flex justify-content-end"></lotto-list-toggle>
+        <label class="form-label mb-3">번호 보기</label>
+        <lotto-list-toggle class="d-flex justify-content-end"></lotto-list-toggle>
       </div>
     `;
   }

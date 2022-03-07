@@ -44,6 +44,7 @@
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "testEnvironment": "jsdom"
   }
 }

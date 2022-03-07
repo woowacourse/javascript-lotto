@@ -1,21 +1,29 @@
 import ACTION from '../flux/actions';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
-import { validateWinningNumbers } from '../validation/validators';
+import { validateWinningNumber } from '../validation/validators';
 import ValidationError from '../validation/validation-error';
 
 class WinningNumberForm extends Component {
   render() {
-    this.innerHTML = this.template();
-    const { money } = window.store.getState();
+    const { money, winningNumbers, bonusNumber } = window.store.getState();
+    this.innerHTML = this.template(winningNumbers, bonusNumber);
 
-    if (money > 0) {
-      this.show();
+    if (money === 0) {
+      this.hide();
+
+      return;
     }
+    this.show();
   }
 
   // eslint-disable-next-line max-lines-per-function
-  template() {
+  template(winningNumbers, bonusNumber) {
+    const winningNumberInputs = winningNumbers
+      .map((number) => `<input class="form-control" maxlength="2" value="${number}"/>`)
+      .join('');
+    const bonusNumberInputValue = bonusNumber > 0 ? bonusNumber : '';
+
     return `
       <form>
         <label class="form-label">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
@@ -23,17 +31,12 @@ class WinningNumberForm extends Component {
           <fieldset>
             <label class="form-label">당첨 번호</label>
             <div class="d-flex">
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
-              <input class="form-control" maxlength="2"/>
+              ${winningNumberInputs}
             </div>
           </fieldset>
           <fieldset class="bonus-number-container">
             <label class="form-label">보너스 번호</label>
-            <input class="form-control" maxlength="2"/>
+            <input class="form-control" maxlength="2" value="${bonusNumberInputValue}"/>
           </fieldset>
         </div>
         <button class="btn btn-cyan w-100">결과 확인하기</button>
@@ -45,10 +48,10 @@ class WinningNumberForm extends Component {
     this.addEvent('submit', 'form', (event) => {
       event.preventDefault();
       const $winningNumberInputs = [...this.querySelectorAll('input')];
-      const winningNumbers = $winningNumberInputs.map((input) => input.value);
+      const winningNumber = $winningNumberInputs.map((input) => input.value);
 
       try {
-        this.pickLottoNumbers(winningNumbers);
+        this.checkResult(winningNumber);
       } catch (e) {
         console.error(e);
         alert(e.message);
@@ -56,14 +59,15 @@ class WinningNumberForm extends Component {
     });
   }
 
-  pickLottoNumbers(winningNumbers) {
-    const { hasError, errorMessage } = validateWinningNumbers(winningNumbers);
+  checkResult(winningNumber) {
+    const { hasError, errorMessage } = validateWinningNumber(winningNumber);
 
     if (hasError) {
       throw new ValidationError(errorMessage);
     }
 
-    window.store.dispatch(createAction(ACTION.SET_WINNING_NUMBERS, winningNumbers));
+    window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, true));
+    window.store.dispatch(createAction(ACTION.UPDATE_RESULT, winningNumber));
   }
 }
 

@@ -1,19 +1,14 @@
 import Store from './flux/store';
+import initialState from './flux/initialState';
 
 import './components/MoneyForm';
 import './components/LottoList';
 import './components/LottoListToggle';
 import './components/LottoItem';
 import './components/WinningNumberForm';
+import './components/ResultModal';
 
 import '../css/index.css';
-
-const initialState = {
-  money: 0,
-  lottoList: [],
-  lottoListVisibility: false,
-  winningNumbers: [],
-};
 
 window.store = new Store(initialState);
 
@@ -23,5 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <money-form class="mb-7"></money-form>
     <lotto-list class="mb-6" hidden></lotto-list>
     <winning-number-form hidden></winning-number-form>
+    <result-modal hidden></result-modal>
   `;
 });
