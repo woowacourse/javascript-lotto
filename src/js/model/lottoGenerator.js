@@ -12,8 +12,9 @@ class LottoGenerator {
   }
 
   buyLotto(cashInput) {
-    this.#validateCashInput(Number(cashInput));
-    this.#generateLottos(this.#getLottoPurchaseAmount(Number(cashInput)));
+    const cashInputNumber = Number(cashInput);
+    this.#validateCashInput(cashInputNumber);
+    this.#generateLottos(cashInputNumber / LOTTO_PRICE);
   }
 
   #validateCashInput(cashInput) {
@@ -28,10 +29,6 @@ class LottoGenerator {
     if (!this.#isNoChangeLeft(cashInput)) {
       throw new Error(ERROR_MESSAGE.INVALID_CASH_UNIT);
     }
-  }
-
-  #getLottoPurchaseAmount(cashInput) {
-    return cashInput / LOTTO_PRICE;
   }
 
   #generateLottos(purchaseAmount) {

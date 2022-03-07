@@ -13,11 +13,7 @@ class LottoMachineView {
   constructor() {
     this.lottoGenerator = new LottoGenerator();
     this.winningCalculator = new WinningCalculator();
-    this.#initDom();
-    this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
-  }
 
-  #initDom() {
     this.cashInput = selectDom('.cash-input');
     this.cashInputButton = selectDom('.cash-input-button');
 
@@ -42,6 +38,8 @@ class LottoMachineView {
     this.yieldResultText = selectDom('.yield-result-text', this.modal);
     this.modalCloseButton = selectDom('.close-button', this.modal);
     this.restartButton = selectDom('.restart-button', this.modal);
+
+    this.cashInputButton.addEventListener('click', this.#onCashInputButtonClick);
   }
 
   #onCashInputButtonClick = (e) => {

@@ -18,73 +18,46 @@ class WinningCalculator {
   }
 
   initWinningCalcualtor() {
-    this.winnerNumbers = [];
+    this.winningNumbers = [];
     this.bonusNumber = 0;
-    this.totalWinningCount = {
-      0: 0,
-      5000: 0,
-      50000: 0,
-      1500000: 0,
-      2000000000: 0,
-      30000000: 0,
-    };
+    this.totalWinningCount = {};
     this.totalYield = 0;
   }
 
-  calculateWinningResult(winnerNumberInputs, bonusNumberInput, lottos) {
+  calculateWinningResult(winningNumberInputs, bonusNumberInput, lottos) {
     this.initWinningCalcualtor();
 
-    this.#validateWinnerNumbers(
-      convertStringNumberArrayToNumberArray([...winnerNumberInputs, bonusNumberInput])
+    this.#validateWinningNumbers(
+      convertStringNumberArrayToNumberArray([...winningNumberInputs, bonusNumberInput])
     );
 
-    this.winnerNumbers = convertStringNumberArrayToNumberArray(winnerNumberInputs);
+    this.winningNumbers = convertStringNumberArrayToNumberArray(winningNumberInputs);
     this.bonusNumber = Number(bonusNumberInput);
-    this.#updateTotalWinningCount(lottos);
-    this.totalYield = this.#calculateTotalYield(
-      lottos.length * LOTTO_PRICE,
-      this.#calculateTotalWinningAmount(lottos)
+    this.totalYield = Math.round(
+      (this.#calculateTotalWinningResult(lottos) / (lottos.length * LOTTO_PRICE)) * 100 - 100
     );
   }
 
-  #validateWinnerNumbers(winnerNumbers) {
-    if (!isNumberArray(winnerNumbers)) {
-      throw new Error(ERROR_MESSAGE.NOT_A_NUMBER_WINNER_NUMBER_INPUTS);
+  #validateWinningNumbers(winningNumbers) {
+    if (!isNumberArray(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.NOT_A_NUMBER_WINNING_NUMBER_INPUTS);
     }
-    if (!this.#isNumberArrayInLottoRange(winnerNumbers)) {
+    if (!this.#isNumberArrayInLottoRange(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_NUMBERS_RANGE);
     }
-    if (!isAllNumbersUnique(winnerNumbers)) {
+    if (!isAllNumbersUnique(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBERS);
     }
   }
 
-  #updateTotalWinningCount(lottos) {
-    lottos.forEach(
-      (lotto) =>
-        this.totalWinningCount[
-          this.#calculateWinningAmountByLotto(
-            this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
-            Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
-          )
-        ]++
-    );
-  }
+  #calculateTotalWinningResult(lottos) {
+    Object.values(WINNING_AMOUNT).forEach((amount) => (this.totalWinningCount[amount] = 0));
 
-  #calculateTotalYield(cashInput, totalWinningAmount) {
-    return Math.round((totalWinningAmount / cashInput) * 100 - 100);
-  }
-
-  #calculateTotalWinningAmount(lottos) {
-    return lottos.reduce(
-      (acc, lotto) =>
-        acc +
-        this.#calculateWinningAmountByLotto(
-          this.countNumberOfMatchingNumbers(Array.from(lotto.lottoNumberSet), this.winnerNumbers),
-          Array.from(lotto.lottoNumberSet).includes(this.bonusNumber)
-        ),
-      0
-    );
+    return lottos.reduce((acc, { lottoNumberSet }) => {
+      const winningAmount = this.#calculateWinningAmountByLotto(Array.from(lottoNumberSet));
+      this.totalWinningCount[winningAmount]++;
+      return acc + winningAmount;
+    }, 0);
   }
 
   #isNumberArrayInLottoRange(numberArray) {
@@ -93,12 +66,11 @@ class WinningCalculator {
     );
   }
 
-  countNumberOfMatchingNumbers(lottoNumberArray, winnerNumberArray) {
-    return lottoNumberArray.filter((number) => winnerNumberArray.includes(number)).length;
-  }
-
-  #calculateWinningAmountByLotto(matchingNumberCount, isBonusNumberMatched) {
-    if (matchingNumberCount === LOTTO_NUMBER_COUNT - 1 && isBonusNumberMatched) {
+  #calculateWinningAmountByLotto(lottoNumbers) {
+    const matchingNumberCount = lottoNumbers.filter((number) =>
+      this.winningNumbers.includes(number)
+    ).length;
+    if (matchingNumberCount === LOTTO_NUMBER_COUNT - 1 && lottoNumbers.includes(this.bonusNumber)) {
       return WINNING_AMOUNT.BONUS;
     }
     return Object.keys(WINNING_AMOUNT).includes(matchingNumberCount.toString())

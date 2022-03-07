@@ -37,7 +37,7 @@ export const ERROR_MESSAGE = {
   OUT_OF_CASH_RANGE: `${CASH_INPUT_RANGE.MIN}원-${CASH_INPUT_RANGE.MAX}원 사이의 금액을 입력해주세요.`,
   INVALID_CASH_UNIT: `${LOTTO_PRICE}원 단위로 구입이 가능합니다.`,
 
-  NOT_A_NUMBER_WINNER_NUMBER_INPUTS: '당첨 번호와 보너스 번호를 공백 없이 모두 입력해주세요.',
+  NOT_A_NUMBER_WINNING_NUMBER_INPUTS: '당첨 번호와 보너스 번호를 공백 없이 모두 입력해주세요.',
   OUT_OF_NUMBERS_RANGE: `${LOTTO_NUMBER_RANGE.MIN}-${LOTTO_NUMBER_RANGE.MAX} 사이의 번호를 입력해주세요.`,
   NOT_UNIQUE_NUMBERS: '서로 다른 번호를 입력해주세요.',
 };
