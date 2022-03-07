@@ -1,46 +1,71 @@
-const getElement = (selector) => document.querySelector(selector);
+export const getElement = (selector) => document.querySelector(selector);
 
-const getElements = (selector) => document.querySelectorAll(selector);
+export const getElements = (selector) => document.querySelectorAll(selector);
 
-const alertMessage = (message) => alert(message);
-
-const toggleClassName = (element, domString) => {
-  element.classList.toggle(domString);
+export const toggleElement = (element, className) => {
+  element.classList.toggle(className);
 };
 
-const disableElement = (element) => {
+export const disableElement = (element) => {
   element.disabled = !element.disabled;
 };
 
-const initInput = (inputElement) => {
+export const removeChildElements = (parentElement, childElements) => {
+  childElements.forEach((childElement) => {
+    parentElement.removeChild(childElement);
+  });
+};
+
+export const disabledElement = (element, className) => {
+  element.classList.add(className);
+  element.disabled = true;
+};
+
+export const enabledElement = (element, className) => {
+  element.classList.remove(className);
+  element.disabled = false;
+};
+
+export const enabledElements = (elements, className) => {
+  elements.forEach((element) => {
+    toggleElement(element, className);
+    disableElement(element);
+  });
+};
+
+export const disabledElements = (elements, className) => {
+  elements.forEach((element) => {
+    toggleElement(element, className);
+    disableElement(element);
+  });
+};
+
+export const focusInput = (element) => element.focus();
+
+export const initInput = (inputElement) => {
   inputElement.value = '';
   inputElement.focus();
 };
 
-const render = (element, template) => {
+export const alertMessage = (message) => alert(message);
+
+export const render = (element, template) => {
   element.insertAdjacentHTML('beforeend', template);
 };
 
-const bindEventListener = ({ appElement, type, selector, callback }) => {
-  const children = [...getElements(selector)];
-  const isTarget = (target) =>
-    children.includes(target) || target.closest(selector);
-
-  appElement.addEventListener(type, (e) => {
-    if (!isTarget(e.target)) return;
-
-    e.preventDefault();
-    callback(e);
-  });
+export const bindEventListener = (selector, type, callback) => {
+  selector.addEventListener(type, callback);
 };
 
-export {
-  getElement,
-  getElements,
-  alertMessage,
-  bindEventListener,
-  render,
-  initInput,
-  disableElement,
-  toggleClassName,
+export const bindsEventListener = (parentElement, type, callback) => {
+  parentElement.addEventListener(type, callback);
+};
+
+export const changeBackgroundColor = ({
+  element,
+  addClassName,
+  removeClassName,
+}) => {
+  element.classList.add(addClassName);
+  element.classList.remove(removeClassName);
 };

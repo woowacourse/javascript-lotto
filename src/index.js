@@ -1,4 +1,6 @@
-import './css/index';
 import LottoApp from './js/LottoApp';
+import './css/index';
 
-new LottoApp('#app');
+(function main() {
+  new LottoApp('#app');
+})();

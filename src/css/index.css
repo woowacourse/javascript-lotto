@@ -15,7 +15,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   background-color: #e5e5e5;
+  height: 100vh;
 }
 
 /* ****** */
@@ -33,10 +35,16 @@ input {
   border: 1px solid #b4b4b4;
 }
 
+input:invalid {
+  border-color: rgb(250, 105, 105);
+  background-color: rgb(254, 234, 234);
+}
+
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+input:valid,
 input:focus {
   outline: 1px solid #00bcd4;
   border: none;
@@ -55,32 +63,52 @@ button {
   display: none;
 }
 
+.background-color-red {
+  background-color: rgb(254, 234, 234);
+}
+
+.background-color-white {
+  background-color: #fff;
+}
+
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button.disabled,
 #payment-section .payment-form #payment-button.disabled {
   background-color: #828282;
   opacity: 0.6;
+
   cursor: default;
+}
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button.disabled:hover,
+#payment-section .payment-form #payment-button.disabled:hover {
+  background-color: #828282;
+  opacity: 0.6;
 }
 
 #app {
   display: flex;
   flex-direction: column;
 
+  position: relative;
+
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: white;
 
-  margin-top: 10px;
+  height: 727px;
+  width: 414px;
   padding: 52px 16px;
 
-  min-height: 727px;
-  width: 414px;
+  overflow: scroll;
 }
 
 h1 {
   font-size: 34px;
   font-weight: 600;
   line-height: 36px;
-
   text-align: center;
 
   margin-bottom: 16px;
@@ -95,6 +123,7 @@ h1 {
 
 #payment-section label {
   display: block;
+
   margin-bottom: 4px;
 }
 
@@ -106,8 +135,8 @@ h1 {
   flex-grow: 1;
 
   border-radius: 4px;
-  padding: 8px 8px;
 
+  padding: 8px 8px;
   margin-right: 16px;
 }
 
@@ -115,8 +144,9 @@ h1 {
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
-  margin: 0 10px;
   color: #8b8b8b;
+
+  margin: 0 10px;
 }
 
 #payment-section .payment-form #payment-button {
@@ -124,13 +154,37 @@ h1 {
   height: 36px;
 }
 
+#lotto-result-section #restart-button,
 #payment-section .payment-form #payment-button,
-#result-checking-section #result-checking-button {
-  background-color: #00bcd4;
-  color: white;
-  border-radius: 4px;
+#last-week-winning-number-section .winning-number-form #result-checking-button {
   font-weight: 700;
   font-size: 14px;
+  color: white;
+
+  background-color: #00bcd4;
+
+  border-radius: 4px;
+  transition: all 300ms ease-in-out;
+}
+
+#lotto-result-section #restart-button:hover,
+#payment-section .payment-form #payment-button:hover,
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button:hover {
+  background-color: #80deea;
+}
+
+#lotto-result-section #restart-button:active,
+#payment-section .payment-form #payment-button:active,
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button:active {
+  transform: translateY(2px);
+}
+
+#lotto-result-section #restart-button:focus {
+  outline: none;
 }
 
 /* **************************** */
@@ -139,6 +193,7 @@ h1 {
 #purchased-lotto-list-section {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 32px;
 }
 
@@ -149,14 +204,16 @@ h1 {
 #purchased-lotto-list-section .lotto-list-container #lotto-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 320px;
+
   gap: 8px;
+  max-width: 320px;
 }
 
 #purchased-lotto-list-section
   .lotto-list-container
   #lotto-list.direction-column {
   flex-direction: column;
+
   gap: 4px;
 }
 
@@ -195,6 +252,7 @@ h1 {
 #purchased-lotto-list-section #lotto-list-toggle-button {
   width: 34px;
   height: 20px;
+
   background-image: url('../../images/toggle_off.svg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -202,6 +260,18 @@ h1 {
 
 #purchased-lotto-list-section #lotto-list-toggle-button.toggle-switch {
   background-image: url('../../images/toggle_on.svg');
+  transition: all 300ms ease-in-out;
+}
+
+#purchased-lotto-list-section #lotto-list-toggle-button:hover,
+#purchased-lotto-list-section #lotto-list-toggle-button.toggle-switch:hover {
+  opacity: 85%;
+  transform: scale(1.05);
+}
+
+#purchased-lotto-list-section #lotto-list-toggle-button:active,
+#purchased-lotto-list-section #lotto-list-toggle-button.toggle-switch:active {
+  transform: translateY(1px);
 }
 
 /* ******************************** */
@@ -224,6 +294,7 @@ h1 {
   .winning-number-container
   #last-week-number-list {
   display: flex;
+
   gap: 8px;
 }
 
@@ -237,34 +308,129 @@ h1 {
 
 #last-week-winning-number-section
   .winning-number-container
-  #last-week-bonus-number-input,
+  .last-week-bonus-number-input,
 #last-week-winning-number-section
   .winning-number-container
   #last-week-number-list
   .last-week-number-input {
-  width: 34px;
-  height: 36px;
-  border-radius: 4px;
-  padding: 0;
   text-align: center;
-}
 
-/* *********************** */
-/* result-checking-section */
-/* *********************** */
-#result-checking-section {
-  display: flex;
-}
-
-#result-checking-section #result-checking-button {
-  flex-grow: 1;
-  padding: 6px 6px 8px;
-  height: 36px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
   width: 34px;
+  height: 36px;
+  padding: 0;
+
+  border-radius: 4px;
+}
+
+#last-week-winning-number-section
+  .winning-number-form
+  #result-checking-button.disabled,
+#last-week-winning-number-section .winning-number-form #result-checking-button {
+  width: 100%;
+  margin-top: 24px;
+  height: 36px;
+  padding: 6px 6px 8px;
+}
+
+/* ******************** */
+/* lotto-result-section */
+/* ******************** */
+#lotto-result-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 350px;
+  height: 500px;
+
+  padding: 0 16px;
+
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+#lotto-result-section #exit-button {
+  background-image: url('../../images/exit_button.svg');
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 14px;
   height: 14px;
+}
+
+#lotto-result-section table {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+#lotto-result-section table #lotto-result-table-caption {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+
+  margin: 40px 0 32px;
+}
+
+#lotto-result-section table thead {
+  font-weight: 600;
+}
+
+#lotto-result-section table tr {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+#lotto-result-section table th,
+#lotto-result-section table td {
+  text-align: center;
+  padding: 8px 0;
+}
+
+#lotto-result-section table tfoot td {
+  font-weight: 600;
+  padding: 16px 0 0;
+}
+
+#lotto-result-section table tfoot tr {
+  border-bottom: none;
+}
+
+#lotto-result-section #restart-button {
+  display: block;
+
+  line-height: 16px;
+  letter-spacing: 1.25px;
+
+  width: 152px;
+  height: 36px;
+
+  padding: 6px 6px 6px 8px;
+  margin: 32px auto 49px;
+}
+
+/* ******************** */
+/* cover-the-background */
+/* ******************** */
+#cover-the-background {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  height: 727px;
+  width: 414px;
+
+  background-color: rgba(0, 0, 0, 0.5);
 }
