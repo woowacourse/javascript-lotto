@@ -1,9 +1,3 @@
-import { $ } from "./dom.js";
-
-export const ELEMENTS = {
-  PURCHASE_INPUT: $(".purchase-input"),
-};
-
 export const AMOUNT = {
   MINIMUM: 1000,
   UNIT: 1000,
@@ -17,6 +11,19 @@ export const LOTTO_NUMBER = {
 };
 
 export const ERROR_MESSAGES = {
-  MINIMUM_AMOUNT_IS_SMALL: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해주세요.`,
-  NOT_DIVIDED_INTO_THOUSAND: `금액은 ${AMOUNT.UNIT}원 단위로 입력해주세요.`,
+  MINIMUM_AMOUNT_IS_SMALL: `금액은 ${AMOUNT.MINIMUM}원 이상으로 입력해 주세요.`,
+  NOT_DIVIDED_INTO_THOUSAND: `금액은 ${AMOUNT.UNIT}원 단위로 입력해 주세요.`,
+  CAN_NOT_OVERLAP: "당첨 번호는 중복없이 입력해 주세요",
+};
+
+export const SHOW_NUMBERS_CLASS = "show-numbers";
+
+export const BONUS_NUMBER_ID = "bonus-number-input";
+
+export const LOTTO_RANKING_REWARD = {
+  first: 2000000000,
+  second: 30000000,
+  third: 1500000,
+  fourth: 50000,
+  fifth: 5000,
 };

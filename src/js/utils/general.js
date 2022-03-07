@@ -1,13 +1,23 @@
-import { AMOUNT } from "./constants.js";
-
 export const shuffleArray = (array) => {
   array.sort(() => Math.random() - 0.5);
 };
 
-export const isValidMinimumAmount = (amount) => {
-  return amount < AMOUNT.MINIMUM;
+export const isUnderMinimum = (amount, min) => {
+  return amount < min;
 };
 
-export const isValidAmountUnit = (amount) => {
-  return amount % AMOUNT.UNIT !== 0;
+export const isNotThousandUnit = (amount, unit) => {
+  return amount % unit !== 0;
+};
+
+export const isOutOfRange = (number, min, max) => {
+  return number < min || number > max;
+};
+
+export const isOverlap = (numbers) => {
+  return numbers.length !== [...new Set(numbers)].length;
+};
+
+export const calculateProfitRate = (totalProfit, usedMoney) => {
+  return Math.floor((totalProfit / usedMoney) * 100);
 };
