@@ -1,11 +1,9 @@
 import { $ } from './utils/dom.js';
-import {
-  getLottoPrice,
-  checkLottoPrice,
-} from './core/checkLottoPriceInputValue.js';
+import { getLottoPrice } from './modules/checkLottoPriceInputValue.js';
+import { getLastLottoNumbers } from './modules/checkLastLottoNumberInput.js';
 
 import { makeLottoList } from './core/makeLottoList.js';
-import { checkLastLottoNumberValid } from './core/checkLastLottoNumberInput.js';
+
 import toggleLottoResultModal from './component/toggleLottoResultModal.js';
 import { toggleButton } from './component/toggleButton.js';
 
@@ -17,8 +15,8 @@ import {
   renderRateOfReturnResult,
   renderLottoWinningCount,
 } from './views/render.js';
-import CalculateLottoPrize from './core/calculateLottoPrize.js';
-import autoLottoNumberInputPass from './modules/autoLottoNumberInputPass.js';
+import CalculateLottoPrize from './modules/calculateLottoPrize.js';
+import changeLottoNumberInputFocus from './modules/changeLottoNumberInputFocus.js';
 
 export default class App {
   constructor() {
@@ -43,10 +41,6 @@ export default class App {
       'click',
       this.handleCheckResultButtonClick,
     );
-    $('.last-lotto-winning-number-container').addEventListener(
-      'click',
-      autoLottoNumberInputPass,
-    );
     $('.winning-rate-close-button').addEventListener(
       'click',
       toggleLottoResultModal,
@@ -62,8 +56,8 @@ export default class App {
     this.handleDrawLotto();
   }
   handlePriceInputSubmit() {
-    const lottoPrice = checkLottoPrice(getLottoPrice());
-    if (!lottoPrice) {
+    const lottoPrice = getLottoPrice();
+    if (lottoPrice === false) {
       $('.lotto-price-input').value = '';
       return;
     }
@@ -80,6 +74,7 @@ export default class App {
     this.lottoList = makeLottoList(this.lottoPrice);
     renderPurchasedLottoList(this.lottoList.length);
     renderLastLottoNumber();
+    changeLottoNumberInputFocus();
   }
 
   handleToggleButtonClick(e) {
@@ -100,7 +95,7 @@ export default class App {
     if (!e.target.classList.contains('check-result-button')) {
       return;
     }
-    const lastLottoNumbers = checkLastLottoNumberValid();
+    const lastLottoNumbers = getLastLottoNumbers();
     const lottoWinningInputElementList = document.querySelectorAll(
       '.last-lotto-winning-number-input',
     );

@@ -16,8 +16,7 @@ function moveNextInputElement(element, index) {
   }
 }
 
-export default function autoLottoNumberInputPass(e) {
-  e.preventDefault();
+export default function changeLottoNumberInputFocus() {
   const lottoNumberInputElements = document.querySelectorAll(
     '.last-lotto-winning-number-input',
   );
