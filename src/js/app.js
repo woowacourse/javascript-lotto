@@ -1,12 +1,9 @@
 import { $ } from './utils/dom.js';
 import { getLottoPrice } from './modules/checkLottoPriceInputValue.js';
 import { getLastLottoNumbers } from './modules/checkLastLottoNumberInput.js';
-
 import { makeLottoList } from './core/makeLottoList.js';
-
-import toggleLottoResultModal from './component/toggleLottoResultModal.js';
-import { toggleButton } from './component/toggleButton.js';
-
+import toggleLottoResultModal from './modules/toggleLottoResultModal.js';
+import { toggleButton } from './modules/toggleButton.js';
 import {
   renderPurchasedLottoList,
   renderLastLottoNumber,
@@ -17,6 +14,14 @@ import {
 } from './views/render.js';
 import CalculateLottoPrize from './modules/calculateLottoPrize.js';
 import changeLottoNumberInputFocus from './modules/changeLottoNumberInputFocus.js';
+import {
+  disableLottoPriceInput,
+  disableLottoWinningNumberInput,
+} from './views/makeDisableElements.js';
+import {
+  initLottoPriceInputElement,
+  initLottoWinningNumberElement,
+} from './views/makeInitElements.js';
 
 export default class App {
   constructor() {
@@ -58,13 +63,12 @@ export default class App {
   handlePriceInputSubmit() {
     const lottoPrice = getLottoPrice();
     if (lottoPrice === false) {
-      $('.lotto-price-input').value = '';
+      initLottoPriceInputElement();
       return;
     }
     this.lottoPrice = lottoPrice;
     this.lottoPriceValid = true;
-    $('.lotto-price-input').disabled = true;
-    $('.lotto-price-submit-button').disabled = true;
+    disableLottoPriceInput();
   }
 
   handleDrawLotto() {
@@ -100,14 +104,10 @@ export default class App {
       '.last-lotto-winning-number-input',
     );
     if (!lastLottoNumbers) {
-      lottoWinningInputElementList.forEach(input => {
-        input.value = '';
-      });
+      initLottoWinningNumberElement(lottoWinningInputElementList);
       return;
     }
-    lottoWinningInputElementList.forEach(input => {
-      input.disabled = true;
-    });
+    disableLottoWinningNumberInput(lottoWinningInputElementList);
     const lottoPrize = new CalculateLottoPrize(
       this.lottoList,
       lastLottoNumbers,
