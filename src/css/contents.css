@@ -74,23 +74,23 @@
 }
 
 /* 당첨 번호 입력 섹션 */
-.winner-number-section {
+.winning-number-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.winner-number-input-form {
+.winning-number-input-form {
   display: flex;
   justify-content: space-between;
 }
 
-.winner-number-input-container {
+.winning-number-input-container {
   display: flex;
   gap: 8px;
 }
 
-.winner-number-input,
+.winning-number-input,
 .bonus-number-input {
   width: 3rem;
   font-size: 1.5rem;
@@ -101,8 +101,8 @@
 
 /* 숫자 입력란 화살표 숨김 */
 /* Chrome, Safari, Edge, Opera */
-.winner-number-input::-webkit-outer-spin-button,
-.winner-number-input::-webkit-inner-spin-button {
+.winning-number-input::-webkit-outer-spin-button,
+.winning-number-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

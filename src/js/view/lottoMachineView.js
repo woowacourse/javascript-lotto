@@ -28,10 +28,10 @@ class LottoMachineView {
       this.purchasedLottoSection
     );
 
-    this.winnerNumberSection = selectDom('.winner-number-section');
-    this.winnerNumberInputs = this.winnerNumberSection.querySelectorAll('.winner-number-input');
-    this.bonusNumberInput = selectDom('.bonus-number-input', this.winnerNumberSection);
-    this.resultButton = selectDom('.result-button', this.winnerNumberSection);
+    this.winningNumberSection = selectDom('.winning-number-section');
+    this.winningNumberInputs = this.winningNumberSection.querySelectorAll('.winning-number-input');
+    this.bonusNumberInput = selectDom('.bonus-number-input', this.winningNumberSection);
+    this.resultButton = selectDom('.result-button', this.winningNumberSection);
 
     this.modal = selectDom('.modal');
     this.winningCountElements = this.modal.querySelectorAll('.winning-count');
@@ -50,7 +50,7 @@ class LottoMachineView {
       this.#disableCashInputSection();
       this.#renderLottos(this.lottoGenerator.lottos);
 
-      this.winnerNumberSection.addEventListener('keypress', this.#onInputNumberType);
+      this.winningNumberSection.addEventListener('keypress', this.#onInputNumberType);
       this.showNumberToggleButton.addEventListener('click', this.#onShowNumberToggleButtonClick);
       this.resultButton.addEventListener('click', this.#onResultButtonClick);
     } catch (error) {
@@ -64,7 +64,7 @@ class LottoMachineView {
   };
 
   #onInputNumberType = (e) => {
-    if (e.target.className === CLASSNAME.WINNER_NUMBER_INPUT) {
+    if (e.target.className === CLASSNAME.WINNing_NUMBER_INPUT) {
       handleOnInput(e.target, 2);
     }
   };
@@ -73,7 +73,7 @@ class LottoMachineView {
     e.preventDefault();
     try {
       this.winningCalculator.calculateWinningResult(
-        Array.from(this.winnerNumberInputs).map((input) => input.value),
+        Array.from(this.winningNumberInputs).map((input) => input.value),
         this.bonusNumberInput.value,
         this.lottoGenerator.lottos
       );
@@ -84,7 +84,7 @@ class LottoMachineView {
       this.restartButton.addEventListener('click', this.#onRestartButtonClick);
     } catch (error) {
       this.#initBonusNumberInputView();
-      this.winnerNumberInputs[0].focus();
+      this.winningNumberInputs[0].focus();
       alert(error.message);
     }
   };
@@ -102,14 +102,14 @@ class LottoMachineView {
     this.modal.classList.remove('show');
     this.#disableCashInputSection(false);
     this.purchasedLottoSection.classList.add(CLASSNAME.HIDE);
-    this.winnerNumberSection.classList.add(CLASSNAME.HIDE);
+    this.winningNumberSection.classList.add(CLASSNAME.HIDE);
     this.#initBonusNumberInputView();
     this.#initCashInputView();
   };
 
   #initBonusNumberInputView() {
     initInputElement(this.bonusNumberInput);
-    this.winnerNumberInputs.forEach((input) => {
+    this.winningNumberInputs.forEach((input) => {
       initInputElement(input);
     });
   }
@@ -147,7 +147,7 @@ class LottoMachineView {
 
   #renderLottos(lottos) {
     this.purchasedLottoSection.classList.remove(CLASSNAME.HIDE);
-    this.winnerNumberSection.classList.remove(CLASSNAME.HIDE);
+    this.winningNumberSection.classList.remove(CLASSNAME.HIDE);
 
     this.lottoNumberContainer.innerHTML = '';
     this.purchasedLottoCountText.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
