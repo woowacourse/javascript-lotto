@@ -1,3 +1,5 @@
+import { LOTTO_SETTING } from '../constants/setting';
+
 function shuffle(list) {
   list.sort(() => Math.random() - 0.5);
   return list;
@@ -8,8 +10,10 @@ export default class Lotto {
   _lottoNumbers = [];
 
   generate() {
-    const shuffledList = shuffle([...Array(45)].map((_, idx) => idx + 1));
-    this._lottoNumbers = shuffledList.slice(0, 6);
+    const shuffledList = shuffle(
+      [...Array(LOTTO_SETTING.MAX_RANDOM_NUMBER)].map((_, idx) => idx + 1)
+    );
+    this._lottoNumbers = shuffledList.slice(0, LOTTO_SETTING.LOTTO_NUMBER_LENGTH);
 
     return this;
   }
