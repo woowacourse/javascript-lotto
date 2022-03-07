@@ -9,7 +9,7 @@ export default class InputMoneyView {
     this.purchasedMoneyForm = document.getElementById('purchase-money-form');
     this.purchaseMoneyInput = document.getElementById('purchase-money-input');
 
-    //subscribe
+    //이벤트리스너 등록
     event.on(this.purchasedMoneyForm, 'submit', e =>
       this.handlePurchasedMoneyFormSubmit(e),
     );

@@ -11,7 +11,7 @@ export default class LottoResultModalView {
     this.restartButton = document.getElementById('restart-button');
     this.closeButton = document.getElementById('close-button');
 
-    //이벤트 리스너
+    //이벤트리스너 등록
     this.closeButton.addEventListener('click', this.hideModal.bind(this));
     event.on(this.restartButton, 'click', () =>
       this.clickRestartButtonHandler(),

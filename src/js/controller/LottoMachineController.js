@@ -26,7 +26,7 @@ export default class LottoMachineController {
       lottoResultModalView: new LottoResultModalView(),
     };
 
-    //subscribe
+    //이벤트리스너 등록
     event.on(
       this.view.inputMoneyView.purchasedMoneyForm,
       EVENT.SUBMIT_MONEY,
@@ -65,6 +65,7 @@ export default class LottoMachineController {
     this.view.purchasedLottosView.renderPurchasedLottoList(lottos);
     this.view.inputWinningNumberView.renderWinningNumberForm();
 
+    //이벤트리스너 등록
     event.on(
       this.view.inputWinningNumberView.winningNumberForm,
       EVENT.SUBMIT_WINNING_NUMBERS,

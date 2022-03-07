@@ -40,9 +40,6 @@ export const RANKING_ACCORDING_MATCH_COUNT = {
   5: '3등',
   4: '4등',
   3: '5등',
-  // 2: '꽝',
-  // 1: '꽝',
-  // 0: '꽝',
 };
 
 export const EVENT = {
