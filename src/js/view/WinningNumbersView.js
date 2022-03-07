@@ -109,7 +109,6 @@ export default class WinningNumbersView {
 
   #changeInvalidInputsColor() {
     const inputNumberList = this.$$winningNumberInputs.map((input) => input.valueAsNumber);
-    console.log(inputNumberList);
     changeOkInputsColor(inputNumberList, this.$$winningNumberInputs);
     changeDuplicatedInputsColor(inputNumberList, this.$$winningNumberInputs);
     changeOverInputsColor(this.$$winningNumberInputs);

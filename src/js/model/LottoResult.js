@@ -57,6 +57,7 @@ export default class LottoResult {
 
     userLottos.forEach((userLotto, index) => {
       const winningRank = this.#getWinningRank(userLotto);
+      if (winningRank === 'noPrize') return;
       this.#resultList[index] = winningRank;
       this.#winningCounts[winningRank] += 1;
     });
@@ -87,6 +88,7 @@ export default class LottoResult {
       case 6:
         return 'firstPlace';
       default:
+        return 'noPrize';
     }
   }
 
