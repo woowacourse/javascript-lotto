@@ -12,7 +12,9 @@ export default class PurchasedLottoView extends View {
   }
 
   renderPurchasedInfomation(lottoCount) {
-    $(".purchase-infomation").innerText = `총 ${lottoCount}개를 구매하였습니다.`;
+    $(".purchase-infomation").innerText = lottoCount
+      ? `총 ${lottoCount}개를 구매하였습니다.`
+      : "구매한 로또가 없습니다.";
   }
 
   renderLottoIcons(lottoCount) {
