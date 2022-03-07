@@ -13,7 +13,7 @@ import {
   RULES,
 } from '../constants/index.js';
 import { isEmpty } from '../utils/common.js';
-import { event } from '../utils/event.js';
+import { eventManager } from '../utils/event.js';
 
 export default class LottoMachineController {
   constructor() {
@@ -27,12 +27,12 @@ export default class LottoMachineController {
     };
 
     //이벤트리스너 등록
-    event.on(
+    eventManager.on(
       this.view.inputMoneyView.purchasedMoneyForm,
       EVENT.SUBMIT_MONEY,
       ({ detail }) => this.handlePurchaseLotto(detail.purchaseMoney),
     );
-    event.on(
+    eventManager.on(
       this.view.lottoResultModalView.restartButton,
       EVENT.CLICK_RESTART,
       () => this.reset(),
@@ -66,7 +66,7 @@ export default class LottoMachineController {
     this.view.inputWinningNumberView.renderWinningNumberForm();
 
     //이벤트리스너 등록
-    event.on(
+    eventManager.on(
       this.view.inputWinningNumberView.winningNumberForm,
       EVENT.SUBMIT_WINNING_NUMBERS,
       ({ detail }) => {
@@ -96,9 +96,7 @@ export default class LottoMachineController {
       const matchCount = lotto.calculateMatchCount(winNumbers, bonusNumber);
       const ranking = RANKING_ACCORDING_MATCH_COUNT[matchCount];
 
-      if (!ranking) {
-        return;
-      }
+      if (lottoResult[ranking] === undefined) return;
 
       lottoResult[ranking]++;
     });

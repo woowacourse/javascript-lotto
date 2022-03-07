@@ -1,4 +1,4 @@
-import { event } from '../utils/event';
+import { eventManager } from '../utils/event';
 
 //template
 const getLottoListTemplate = lottos => {
@@ -49,7 +49,7 @@ export default class PurchasedLottosView {
     );
 
     const switchButton = document.getElementById('on-off-switch');
-    event.on(switchButton, 'click', this.handleSwitchClick.bind(this));
+    eventManager.on(switchButton, 'click', this.handleSwitchClick.bind(this));
   }
 
   handleSwitchClick() {

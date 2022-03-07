@@ -16,7 +16,7 @@ export const isNegativeNumber = value => {
   return value < 0;
 };
 
-export const isNotThousandUnit = value => {
+export const isNotDividedIntoUnit = value => {
   return value % RULES.LOTTO_PRICE !== 0;
 };
 

@@ -1,7 +1,7 @@
 import { EVENT, RULES } from '../constants/index.js';
 import { convertToNumber } from '../utils/common.js';
 import { validateWinningNumberList } from './validator.js';
-import { event } from '../utils/event.js';
+import { eventManager } from '../utils/event.js';
 
 //template
 const INPUT_ELEMENT = `<input type="text" class="winning-number-input" maxlength='2'/>`;
@@ -35,19 +35,6 @@ export default class InputWinningNumberView {
       'winning-number-container',
     );
     this.modal = document.getElementById('lotto-result-modal');
-
-    this.indexFactory = (() => {
-      let index = 0;
-
-      return {
-        increment() {
-          index++;
-        },
-        get index() {
-          return index;
-        },
-      };
-    })();
   }
 
   renderWinningNumberForm() {
@@ -57,33 +44,32 @@ export default class InputWinningNumberView {
     );
 
     this.winningNumberForm = document.getElementById('winning-number-form');
-    event.on(this.winningNumberForm, 'submit', e =>
+    eventManager.on(this.winningNumberForm, 'submit', e =>
       this.handleWinningNumberFormSubmit(e),
+    );
+
+    eventManager.on(this.winningNumberForm, 'input', e =>
+      this.handleWinningNumberFormInputFocus(e),
     );
 
     this.winningNumberInputs = document.querySelectorAll(
       '.winning-number-input',
     );
-
-    this.winningNumberForm.addEventListener('input', e => {
-      if (e.target.classList.contains('winning-number-input')) {
-        this.handleWinningNumberInputFocus(e);
-      }
-    });
   }
 
-  handleWinningNumberInputFocus(e) {
-    const { target: input } = e;
+  handleWinningNumberFormInputFocus(e) {
+    if (e.target.classList.contains('winning-number-input')) {
+      const { target: input } = e;
 
-    if (input.value.length !== 2) {
-      return;
-    }
+      if (input.value.length !== 2) {
+        return;
+      }
 
-    this.indexFactory.increment();
-    let index = this.indexFactory.index;
+      input.nextElementSibling?.focus();
 
-    if (index < 7) {
-      this.winningNumberInputs[index].focus();
+      if (input.nextElementSibling === null) {
+        this.winningNumberInputs[this.winningNumberInputs.length - 1].focus();
+      }
     }
   }
 
@@ -95,7 +81,7 @@ export default class InputWinningNumberView {
 
     try {
       validateWinningNumberList(winningNumbers);
-      event.emit(this.winningNumberForm, EVENT.SUBMIT_WINNING_NUMBERS, {
+      eventManager.emit(this.winningNumberForm, EVENT.SUBMIT_WINNING_NUMBERS, {
         winningNumbers,
       });
       this.showModal();

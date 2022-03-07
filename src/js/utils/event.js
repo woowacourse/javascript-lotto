@@ -1,4 +1,4 @@
-export const event = {
+export const eventManager = {
   on: (target, eventName, handler) => {
     target.addEventListener(eventName, handler);
   },

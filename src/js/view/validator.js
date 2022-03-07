@@ -4,8 +4,8 @@ import {
   isIncludeEmpty,
   isIncludeNotNumber,
   isNegativeNumber,
+  isNotDividedIntoUnit,
   isNotNumber,
-  isNotThousandUnit,
   isZero,
 } from '../utils/common.js';
 
@@ -20,7 +20,7 @@ const purchaseMoneyValidator = [
     errorMessage: ERROR_MESSAGE.NEGATIVE_PURCHASE_MONEY,
   },
   {
-    func: isNotThousandUnit,
+    func: isNotDividedIntoUnit,
     errorMessage: ERROR_MESSAGE.NOT_PURCHASE_MONEY_UNIT_OF_THOUSAND,
   },
 ];
