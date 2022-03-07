@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/selector.js';
 import { on, emit } from '../utils/event.js';
+import pageScroll from '../utils/pageScroll.js';
 import CUSTOM_EVENT from '../constants/event.js';
 import { ID, CLASS } from '../constants/selector.js';
 
@@ -9,11 +10,15 @@ export default class ResultView {
     this.$resultContainer = $(ID.RESULT_CONTAINER);
     this.$prizeNumberInput = $$(CLASS.PRIZE_NUMBER_INPUT);
     this.$bonusNumberInput = $(ID.BONUS_NUMBER_INPUT);
+    this.$downButton = $(ID.DOWN_BUTTON);
     this.bindEvents();
   }
 
   bindEvents() {
     on(this.$resultForm, 'submit', (e) => this.handleSubmit(e));
+    on(this.$downButton, 'click', () =>
+      pageScroll(0, document.body.scrollHeight),
+    );
   }
 
   handleSubmit(e) {

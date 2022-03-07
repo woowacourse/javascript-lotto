@@ -20,6 +20,7 @@ export const ID = Object.freeze({
   FOURTH_PRIZE_COUNT: '#fourth-prize-count',
   FIFTH_PRIZE_COUNT: '#fifth-prize-count',
   RATE_OF_RETURN: '#rate-of-return',
+  DOWN_BUTTON: '#down-button',
 });
 
 export const CLASS = {

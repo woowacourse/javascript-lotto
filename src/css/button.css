@@ -45,3 +45,13 @@ button:disabled {
   height: 36px;
   margin: 32px 0 0 0;
 }
+
+#down-button {
+  position: fixed;
+  width: 35px;
+  height: 35px;
+  content: url('/images/arrow_down.svg');
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+}
