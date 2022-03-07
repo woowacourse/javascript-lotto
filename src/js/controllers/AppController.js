@@ -60,12 +60,16 @@ export default class AppController extends Controller {
   }
 
   purchase(amount) {
-    this.models.lottoModel.init();
+    this.clearLottoList();
 
     const message = this.autoPickLotto(LottoModel.getLottoCount(amount));
 
     this.views.ticketSectionView.update(message);
     this.views.winningNumberSectionView.update(message);
+  }
+
+  clearLottoList() {
+    this.models.lottoModel.init();
   }
 
   countMatchedTickets(lottoList, winningNumbers) {
