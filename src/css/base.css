@@ -1,9 +1,12 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  word-wrap: keep-all;
+  word-break: keep-all;
   line-height: 1.5;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 body {
@@ -23,6 +26,12 @@ button {
 button:disabled {
   background-color: #b4b4b4;
   cursor: default;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input:disabled {

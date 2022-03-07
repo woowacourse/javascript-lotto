@@ -15,17 +15,19 @@
           로또 1개의 가격은 1000원입니다.
         </label>
         <div class="cash-input-container">
-          <input
-            class="cash-input"
-            type="number"
-            name="cash-input"
-            min="1"
-            max="50"
-            maxlength="2"
-            placeholder="1"
-            required
-          />
-          <input readonly disabled class="unit" placeholder=",000원" />
+          <div class="cash-input-wrapper">
+            <input
+              class="cash-input"
+              type="number"
+              name="cash-input"
+              min="1"
+              max="50"
+              maxlength="2"
+              placeholder="1"
+              required
+            />
+            <span class="unit">,000원</span>
+          </div>
           <button type="button" class="cash-input-button">구입</button>
         </div>
       </section>
