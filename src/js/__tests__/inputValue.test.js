@@ -1,4 +1,4 @@
-import { isValueDivideThousand } from '../core/checkLottoPriceInputValue.js';
+import { isValueDivideThousand } from '../modules/checkLottoPriceInputValue.js';
 import {
   isValueTypeNumber,
   isPositiveNumber,
@@ -15,7 +15,7 @@ import {
   checkLastLottoNumbersPositive,
   checkLastLottoNumbersType,
   checkLastLottoNumbersInRange,
-} from '../core/checkLastLottoNumberInput.js';
+} from '../modules/checkLastLottoNumberInput.js';
 
 describe('사용자가 입력한 로또 금액과 지난 주 당첨 번호 입력값에 대한 테스트', () => {
   test('사용자가 입력한 로또 금액이 Number 타입인지 확인한다', () => {
@@ -38,9 +38,9 @@ describe('사용자가 입력한 로또 금액과 지난 주 당첨 번호 입�
       );
     });
   });
-  test('사용자가 입력한 지난 주 로또 당첨 번호들이 Number 타입인지 확인한다.', () => {
+  test('사용자가 입력한 지난 주 로또 당첨 번호들이 Integer 타입인지 확인한다.', () => {
     const lastLottoNumbers = [
-      [0, 1, 2, 3, 4, 5, 6],
+      [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
       ['', 's', 'a', 'b', 1, 2, 3],
     ];
     lastLottoNumbers.forEach(numbers => {

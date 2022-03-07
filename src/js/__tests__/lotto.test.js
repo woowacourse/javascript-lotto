@@ -1,4 +1,4 @@
-import CalculateLottoPrize from '../core/calculateLottoPrize.js';
+import CalculateLottoPrize from '../modules/calculateLottoPrize.js';
 import Lotto from '../core/lotto.js';
 
 import {
@@ -43,7 +43,7 @@ describe('로또와 관련된 테스트를 진행하는 곳', () => {
       currentLottoNumbers,
       lastLottoNumberList,
     );
-    expect(lottoPrize.computeLottoRateOfReturn()).toBe(500);
+    expect(lottoPrize.getLottoRateOfReturn()).toBe(500);
   });
 
   test('당첨 개수와 각 당첨 내역이 몇등인지 확인 할 수 있다.', () => {
@@ -60,6 +60,6 @@ describe('로또와 관련된 테스트를 진행하는 곳', () => {
       lastLottoNumberList,
     );
     const resultList = [1, 1, 1, 1, 1];
-    expect(lottoPize.computeLottoRankList()).toStrictEqual(resultList);
+    expect(lottoPize.getLottoRankList()).toStrictEqual(resultList);
   });
 });
