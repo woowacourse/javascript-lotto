@@ -1,3 +1,7 @@
-import LottoController from './controller/lottoController';
+import PurchaseLotto from './handler/PurchaseLotto';
+import ShowLottoTicketNumber from './handler/ShowLottoTicketNumber';
+import WinningResultModal from './handler/WinningResultModal';
 
-new LottoController();
+new PurchaseLotto();
+new ShowLottoTicketNumber();
+new WinningResultModal();

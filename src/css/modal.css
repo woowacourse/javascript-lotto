@@ -1,0 +1,104 @@
+#modal.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(133, 126, 126, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(183, 184, 194, 0.37);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#modal .modal-window {
+  display: flex;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 8px 32px 0 rgba(130, 130, 141, 0.37);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 330px;
+  height: 450px;
+  position: relative;
+  top: -100px;
+  padding: 10px;
+}
+
+#modal h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+#modal .modal-close-button:after {
+  display: inline-block;
+  content: '\00d7'; /* This will render the 'X' */
+  cursor: pointer;
+  float: right;
+  font-size: 30px;
+}
+
+#modal .content {
+  margin-top: 20px;
+  padding: 0px 10px;
+  text-shadow: 1px 1px 2px gray;
+  color: white;
+}
+
+#modal .modal-table {
+  text-align: center;
+  border: 1px solid #444444;
+  border-collapse: collapse;
+  border-left: none;
+  border-right: none;
+}
+
+#modal .modal-table tr {
+  border: 1px solid #444444;
+  border-collapse: collapse;
+  border-left: none;
+  border-right: none;
+  border-color: #dcdcdc;
+}
+
+#modal .modal-table th {
+  padding: 10px 6px;
+  font-weight: 900;
+}
+
+#modal .modal-table td {
+  padding: 10px 6px;
+}
+
+#modal .modal-profit-rate-text {
+  text-align: center;
+  font-weight: 900;
+  padding: 20px 0px 15px 0px;
+  font-size: 15px;
+}
+
+#modal .modal-restart-button {
+  display: block;
+  margin: auto;
+  width: 140px;
+  height: 34px;
+  color: #ffffff;
+  background-color: #00bcd4;
+  border-radius: 4px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.modal-display-none {
+  display: none !important;
+}

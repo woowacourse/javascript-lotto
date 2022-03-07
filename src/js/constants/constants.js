@@ -1,5 +1,6 @@
 export const ERROR_MESSAGE = {
-  INVALID_MONEY_INPUT: '금액은 1000의 배수이고 1000원 이상 10000원 이하여야 합니다.',
+  INVALID_MONEY_INPUT: '⚠️ 금액은 1000의 배수이고 1000원 이상 10000원 이하여야 합니다.',
+  INVALID_WINNING_NUMBER_INPUT: '⚠️ 1 ~ 45 사이의 숫자를 중복 없이 입력해주세요.',
 };
 
 export const MONEY_INPUT = {
@@ -10,5 +11,17 @@ export const MONEY_INPUT = {
 export const LOTTO = {
   TICKET_PRICE: 1000,
   DIGIT: 6,
+  MIN_NUMBER: 1,
   MAX_NUMBER: 45,
+  WINNING_NUMBER_LENGTH: 7,
 };
+
+export const LOTTO_REWARD = {
+  MATCH_SIX_NUMBERS: 2000000000,
+  MATCH_FIVE_NUMBERS_AND_BONUS_BALL: 30000000,
+  MATCH_FIVE_NUMBERS: 1500000,
+  MATCH_FOUR_NUMBERS: 50000,
+  MATCH_THREE_NUMBERS: 5000,
+};
+
+export const BACK_SPACE_KEY_CODE = 8;

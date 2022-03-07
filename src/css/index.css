@@ -23,6 +23,14 @@ header h1 {
   text-align: center;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+.button-dimmed {
+  opacity: 0.4;
+}
+
 .money-input-text {
   font-style: normal;
   font-weight: normal;
@@ -168,6 +176,7 @@ h2 {
   border: 1px solid #b4b4b4;
   box-sizing: border-box;
   margin-right: 8px;
+  text-align: center;
 }
 
 .winning-numbers-container {
@@ -176,7 +185,7 @@ h2 {
   margin-top: 8px;
 }
 
-#show-result {
+#show-lotto-result-button {
   width: 382px;
   height: 36px;
   padding: 6px 6px 6px 8px;
@@ -195,6 +204,12 @@ h2 {
   margin-right: 0;
 }
 
-.d-none {
+.display-none {
   display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
