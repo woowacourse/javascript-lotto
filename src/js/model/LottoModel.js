@@ -1,7 +1,7 @@
 import { AMOUNT, BONUS, LOTTO_NUMBER, REWARD } from "../utils/constants.js";
 import { getRandomNumber } from "../utils/general.js";
 
-export default class LottoGameModel {
+export default class LottoModel {
   constructor() {
     this.lottos = [];
     this.profitRate = 0;

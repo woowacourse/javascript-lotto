@@ -1,16 +1,16 @@
-import LottoGameModel from "../model/LottoGameModel.js";
+import LottoModel from "../model/LottoModel.js";
 import { BONUS } from "../utils/constants.js";
 
 describe("로또 앱 기능 테스트", () => {
   test("로또 티켓들을 생성한 개수만큼 로또 배열들이 추가된다.", () => {
-    const lottoGame = new LottoGameModel();
+    const lottoGame = new LottoModel();
     const inputCount = 4;
     lottoGame.generateLottoTickets(inputCount);
     expect(lottoGame.lottos.length).toBe(inputCount);
   });
 
   test("당첨 개수의 금액에 따라 수익률이 계산된다.", () => {
-    const lottoGame = new LottoGameModel();
+    const lottoGame = new LottoModel();
     lottoGame.lottos = [[1, 2, 3, 43, 44, 45]];
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
@@ -19,7 +19,7 @@ describe("로또 앱 기능 테스트", () => {
   });
 
   test("일치 개수에 따라 당첨 개수가 계산된다.", () => {
-    const lottoGame = new LottoGameModel();
+    const lottoGame = new LottoModel();
     lottoGame.lottos = [
       [1, 2, 3, 43, 44, 45],
       [1, 2, 3, 4, 43, 44],

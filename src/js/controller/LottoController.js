@@ -1,4 +1,4 @@
-import LottoGameModel from "../model/LottoGameModel.js";
+import LottoModel from "../model/LottoModel.js";
 import LottoListView from "../views/LottoListView.js";
 import ModalView from "../views/ModalView.js";
 import PurchaseView from "../views/PurchaseView.js";
@@ -17,7 +17,7 @@ export default class LottoController {
     this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
     this.modalContainer = $(SELECTOR.MODAL_CONTAINER);
 
-    this.lottoGameModel = new LottoGameModel();
+    this.lottoModel = new LottoModel();
     this.purchaseView = new PurchaseView();
     this.lottoListView = new LottoListView();
     this.winningNumberView = new WinningNumberView();
@@ -37,7 +37,7 @@ export default class LottoController {
       verifyPurchaseAmount(purchaseAmount);
 
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
-      this.lottoGameModel.generateLottoTickets(lottoCount);
+      this.lottoModel.generateLottoTickets(lottoCount);
       this.winningNumberView.showWinningInput(lottoCount);
       this.lottoListView.enableSwitch();
       this.lottoListView.renderLottoIcons(lottoCount);
@@ -53,10 +53,10 @@ export default class LottoController {
 
     this.lottoNumberList.classList.toggle("show-numbers");
     if (this.lottoNumberList.classList.contains("show-numbers")) {
-      this.lottoListView.renderLottoNumbers(this.lottoGameModel.getLottoList());
+      this.lottoListView.renderLottoNumbers(this.lottoModel.getLottoList());
       return;
     }
-    this.lottoListView.renderLottoIcons(this.lottoGameModel.getLottoCount());
+    this.lottoListView.renderLottoIcons(this.lottoModel.getLottoCount());
   }
 
   #handleResult() {
@@ -65,8 +65,8 @@ export default class LottoController {
 
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
-      this.lottoGameModel.generateResult(winningNumbers, bonusNumber);
-      this.modalView.renderModal(this.lottoGameModel.result, this.lottoGameModel.profitRate);
+      this.lottoModel.generateResult(winningNumbers, bonusNumber);
+      this.modalView.renderModal(this.lottoModel.result, this.lottoModel.profitRate);
     } catch ({ message }) {
       alert(message);
     }
