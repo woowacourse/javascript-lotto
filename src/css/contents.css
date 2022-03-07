@@ -48,8 +48,17 @@
 }
 
 .unit {
-  display: flex;
-  align-items: center;
+  width: 5rem;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+}
+
+.unit::placeholder {
+  color: #000000;
+}
+
+.unit:disabled {
+  background-color: transparent;
 }
 
 /* 구입한 로또 표시 섹션 */
