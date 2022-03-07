@@ -1,17 +1,14 @@
 export const SELECTOR = {
-  // 구매
   PURCHASE_FORM: ".purchase-form",
   PURCHASE_INPUT: ".purchase-input",
   PURCHASE_BUTTON: ".purchase-button",
   PURCHASE_INFOMATION: ".purchase-infomation",
   LOTTO_NUMBER_LIST: ".lotto-number-list",
   SWITCH_INPUT: ".switch-input",
-  // 당첨 번호
   WINNING_CONTAINER: ".winning-container",
   WINNING_NUMBER_INPUT: ".winning-number-input",
   RESULT_BUTTON: ".result-button",
   BONUS_NUMBER_INPUT: ".bonus-number-input",
-  // 모달
   MODAL_CONTAINER: ".modal-container",
   MODAL_TABLE_BODY: ".modal-table-body",
   MODAL_PROFIT: ".modal-profit",
