@@ -18,6 +18,9 @@ export default class PaymentSectionView extends View {
           class="${DOM_STRING.STYLED_INPUT}"
           type="number"
           placeholder="${PAYMENT.PURCHASE_AMOUNT.MIN}"
+          min="${PAYMENT.PURCHASE_AMOUNT.MIN}"
+          max="${PAYMENT.PURCHASE_AMOUNT.MAX}"
+          step="${LOTTO.PRICE}"
           autofocus
         >
         <button
