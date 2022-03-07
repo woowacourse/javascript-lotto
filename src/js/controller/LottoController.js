@@ -24,12 +24,12 @@ export default class LottoController {
   }
 
   bindEvents() {
-    this.purchaseForm.addEventListener("submit", this.#onSubmitPurchase.bind(this));
-    this.switchInput.addEventListener("click", this.#onClickSwitch.bind(this));
-    this.resultButton.addEventListener("click", this.#onClickResult.bind(this));
+    this.purchaseForm.addEventListener("submit", this.#handlePurchase.bind(this));
+    this.switchInput.addEventListener("click", this.#handleSwitch.bind(this));
+    this.resultButton.addEventListener("click", this.#handleResult.bind(this));
   }
 
-  #onSubmitPurchase(e) {
+  #handlePurchase(e) {
     e.preventDefault();
 
     try {
@@ -45,7 +45,7 @@ export default class LottoController {
     }
   }
 
-  #onClickSwitch() {
+  #handleSwitch() {
     this.lottoGameView.resetLottoList();
 
     this.lottoNumberList.classList.toggle("show-numbers");
@@ -56,7 +56,7 @@ export default class LottoController {
     this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
   }
 
-  #onClickResult() {
+  #handleResult() {
     const winningNumbers = Array.from(this.winningNumberInputs).map((input) => input.valueAsNumber);
     const bonusNumber = this.bonusNumberInput.valueAsNumber;
 

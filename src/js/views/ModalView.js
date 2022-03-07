@@ -8,16 +8,16 @@ export default class ModalView {
     this.modalTableBody = $(SELECTOR.MODAL_TABLE_BODY);
     this.modalProfit = $(SELECTOR.MODAL_PROFIT);
 
-    $(SELECTOR.MODAL_CLOSE).addEventListener("click", this.#onClickCloseModal.bind(this));
-    $(SELECTOR.MODAL_RESTART).addEventListener("click", this.#onClickRestart.bind(this));
+    $(SELECTOR.MODAL_CLOSE).addEventListener("click", this.#handleCloseModal.bind(this));
+    $(SELECTOR.MODAL_RESTART).addEventListener("click", this.#handleRestart.bind(this));
   }
 
-  #onClickCloseModal() {
+  #handleCloseModal() {
     this.modalContainer.classList.remove("show-modal");
   }
 
-  #onClickRestart() {
-    this.#onClickCloseModal();
+  #handleRestart() {
+    this.#handleCloseModal();
     this.setClickRestart();
   }
 
