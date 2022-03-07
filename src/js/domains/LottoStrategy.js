@@ -1,17 +1,15 @@
-import { LOTTO } from "../constants/constants";
+import { LOTTO } from '../constants/constants';
 
 export default class LottoStrategy {
   pickNumbers() {
-    const set = new Set();
-    while (set.size < LOTTO.NUMBER_QUANTITY) {
-      set.add(this.#generateRandomNumber());
-    }
-    return [...set];
+    return Array(LOTTO.MAX_NUMBER)
+      .fill()
+      .map((_, idx) => idx + 1)
+      .sort(this.#shuffle)
+      .slice(0, LOTTO.NUMBER_QUANTITY);
   }
 
-  #generateRandomNumber() {
-    return Math.floor(
-      Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) + LOTTO.MIN_NUMBER
-    );
+  #shuffle() {
+    return Math.random() - 0.5;
   }
 }
