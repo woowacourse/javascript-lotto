@@ -123,7 +123,7 @@ body {
 
 .winning-number-input,
 .bonus-number-input {
-  width: 30px;
+  width: 36px;
   height: 36px;
   border-radius: 4px;
   border: 1px solid var(--color-dark-gray);
@@ -135,7 +135,7 @@ body {
   margin-bottom: 36px;
 }
 
-.bonus-number {
+.bonus-number-list {
   display: flex;
   justify-content: flex-end;
 }

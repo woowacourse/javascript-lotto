@@ -42,18 +42,25 @@
             <div>
               <p class="winning-number-title">당첨 번호</p>
               <div class="winning-number-list">
-                <input class="winning-number-input" maxlength="2" />
-                <input class="winning-number-input" maxlength="2" />
-                <input class="winning-number-input" maxlength="2" />
-                <input class="winning-number-input" maxlength="2" />
-                <input class="winning-number-input" maxlength="2" />
-                <input class="winning-number-input" maxlength="2" />
+                <input class="winning-number-input" type="number" min="1" max="45" required />
+                <input class="winning-number-input" type="number" min="1" max="45" required />
+                <input class="winning-number-input" type="number" min="1" max="45" required />
+                <input class="winning-number-input" type="number" min="1" max="45" required />
+                <input class="winning-number-input" type="number" min="1" max="45" required />
+                <input class="winning-number-input" type="number" min="1" max="45" required />
               </div>
             </div>
             <div>
               <p class="bonus-number-title">보너스 번호</p>
-              <div class="bonus-number">
-                <input class="winning-number-input" maxlength="2" />
+              <div class="bonus-number-list">
+                <input
+                  id="bonus-number-input"
+                  class="winning-number-input"
+                  type="number"
+                  min="1"
+                  max="45"
+                  required
+                />
               </div>
             </div>
           </div>
