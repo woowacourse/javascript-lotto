@@ -34,12 +34,17 @@ export default class LottoModel {
     return this.lottoCount;
   }
 
-  generateLottoNumbers() {
-    const lottoNumberSet = new Set();
-    while (lottoNumberSet.size < LOTTO_NUMBERS.LOTTO_LENGTH) {
-      lottoNumberSet.add(getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER));
+  generateLottoNumbers(lottoArray = []) {
+    const randomLottoNumber = getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER);
+
+    if (lottoArray.length === `LOTTO_NUMBERS.LOTTO_LENGTH`) {
+      return lottoArray;
     }
-    return [...lottoNumberSet];
+    if (!lottoArray.includes(randomLottoNumber)) {
+      lottoArray.push(randomLottoNumber);
+    }
+
+    return this.generateLottoNumbers(lottoArray);
   }
 
   setLottos(lottos) {
