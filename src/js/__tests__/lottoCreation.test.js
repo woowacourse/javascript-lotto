@@ -33,27 +33,7 @@ describe('입력한 요금만큼 로또를 생성할 수 있다.', () => {
   });
 });
 
-describe(`중복되지 않는 1 ~ 45 사이의 숫자를 6개 생성한다.`, () => {
-  test(`1 이상의 숫자만 있어야 한다.`, () => {
-    createRandomNumbers(
-      LOTTO_RULES.MIN_RANGE,
-      LOTTO_RULES.MAX_RANGE,
-      LOTTO_RULES.BALL_COUNT,
-    ).forEach((number) => {
-      expect(number).toBeGreaterThanOrEqual(LOTTO_RULES.MIN_RANGE);
-    });
-  });
-
-  test(`45 이하의 숫자만 있어야 한다.`, () => {
-    createRandomNumbers(
-      LOTTO_RULES.MIN_RANGE,
-      LOTTO_RULES.MAX_RANGE,
-      LOTTO_RULES.BALL_COUNT,
-    ).forEach((number) => {
-      expect(number).toBeLessThanOrEqual(LOTTO_RULES.MAX_RANGE);
-    });
-  });
-
+describe(`중복되지 않는 숫자를 6개 생성한다.`, () => {
   test('중복된 숫자가 있으면 안된다', () => {
     expect(
       new Set(
