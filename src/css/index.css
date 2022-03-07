@@ -61,6 +61,22 @@ body {
   font-size: 20px;
   line-height: 36px;
   grid-area: ic;
+  overflow: auto;
+  height: 210px;
+}
+
+#lotto-icons::-webkit-scrollbar {
+  width: 6px;
+}
+
+#lotto-icons::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: rgb(16, 212, 212);
+  border-radius: 10px;
+}
+
+#lotto-icons::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #toggle-label {
