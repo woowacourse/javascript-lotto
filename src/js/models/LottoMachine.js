@@ -1,9 +1,11 @@
-import { LOTTO } from '../constants/constants.js';
+import { LOTTO, SELECTOR } from '../constants/constants.js';
 import Lotto from '../models/Lotto.js';
-import validateMoney from '../validations/LottoMachine.js';
+import validateMoney from '../validations/PurchaseLottos.js';
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
+  #winLottos = this.getInitialWinLottos(); // [0개 일치, 1개 일치, ... 5개 일치 , 6개 일치]
+  #winLottosWithBonus = 0;
 
   get inputMoney() {
     return this.#inputMoney;
@@ -26,9 +28,12 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
-  operateLottoMachine() {
-    this.#lottos = this.generateLottos();
-    this.#inputMoney = 0;
+  get winLottos() {
+    return this.#winLottos;
+  }
+
+  get winLottosWithBonus() {
+    return this.#winLottosWithBonus;
   }
 
   generateLottos() {
@@ -39,5 +44,44 @@ export default class LottoMachine {
         lotto.numbers = lotto.pickNumbers();
         return lotto;
       });
+  }
+
+  getProfit() {
+    let profit = this.#winLottos.reduce(
+      (acc, winLottoCount, index) =>
+        (acc += winLottoCount * LOTTO.WINNING_PRIZE[index]),
+      0
+    );
+    profit += this.#winLottosWithBonus * LOTTO.WINNING_PRIZE_WITH_BONUS;
+    return profit;
+  }
+
+  getInitialWinLottos() {
+    return [0, 0, 0, 0, 0, 0, 0];
+  }
+
+  countWinLottos(winningNumbers, bonusNumber) {
+    this.#lottos.map(({ numbers }) => {
+      const set = new Set([...numbers, ...winningNumbers]);
+      const coincideNumberCount =
+        LOTTO.NUMBER_QUANTITY + LOTTO.NUMBER_QUANTITY - set.size;
+      if (coincideNumberCount === 5 && numbers.includes(bonusNumber)) {
+        this.#winLottosWithBonus += 1;
+        return;
+      }
+      this.#winLottos[coincideNumberCount]++;
+    });
+  }
+
+  resetMachine() {
+    this.#inputMoney = 0;
+    this.#lottos = [];
+    this.#winLottos = this.getInitialWinLottos();
+    this.#winLottosWithBonus = 0;
+  }
+
+  resetWinLottos() {
+    this.#winLottos = this.getInitialWinLottos();
+    this.#winLottosWithBonus = 0;
   }
 }

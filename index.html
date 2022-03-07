@@ -8,6 +8,36 @@
 
   <body>
     <div id="app">
+      <div class="modal">
+        <div class="modal-body">
+          <div class="modal-close-container">
+            <span id="modal-close-button"></span>
+          </div>
+          <h1 class="modal-title">🏆 당첨 통계 🏆</h1>
+          <div class="wrapper">
+            <div>일치 갯수</div>
+            <div>당첨금</div>
+            <div>당첨 갯수</div>
+            <div>3개</div>
+            <div>5,000</div>
+            <div class="coincide-count"></div>
+            <div>4개</div>
+            <div>50,000</div>
+            <div class="coincide-count"></div>
+            <div>5개</div>
+            <div>1,500,000</div>
+            <div class="coincide-count"></div>
+            <div>5개+보너스볼</div>
+            <div>30,000,000</div>
+            <div id="coincide-count-bonus">n개</div>
+            <div>6개</div>
+            <div>2,000,000,000</div>
+            <div class="coincide-count"></div>
+          </div>
+          <span id="show-profit-rate"></span>
+          <button id="modal-retry-button">다시 시작하기</button>
+        </div>
+      </div>
       <header>🎱 행운의 로또</header>
       <form id="purchase-money-form">
         <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
@@ -17,10 +47,12 @@
             type="number"
             placeholder="금액"
             min="1"
-            max="10000000"
+            max="100000"
+            autocomplete="off"
           />
           <button id="purchase-money-button" type="submit">구입</button>
         </div>
+        <span id="purchase-money-input-alert"></span>
       </form>
       <section id="lotto-result-section" hidden>
         <h2 hidden>로또 구매 현황표시</h2>
@@ -45,15 +77,46 @@
         </div>
         <div class="space-between">
           <div>
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
-            <input class="winning-number-input" type="number" />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+            />
           </div>
-          <input class="winning-number-input" type="number" />
+          <input class="winning-number-input" type="number" min="1" max="45" />
         </div>
+        <span id="winning-number-input-alert"></span>
         <button id="check-result-button" type="submit">결과 확인하기</button>
       </form>
     </div>
