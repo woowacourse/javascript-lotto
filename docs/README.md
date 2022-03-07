@@ -40,13 +40,15 @@
   - [x] app.test.js에서 LOTTO_NUMBERS, ALERT_MESSAGE 에 있는 데이터 이용해서 검증하기 
   - [x] input type="number"에 대한 것의 value를 가져오고 싶을 때, valueAsNumber를 사용해보기 (submitLottoPriceHandler)
   - [x] 로또 구매 가능 최대 개수 설정 (100개 추천)
-  - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 
-  - [ ] generateLottos for문 대신 메서드 사용 
+  - [x] generateLottos for문 대신 메서드 사용 
+  - [x] dom 요소 수정(루트부터 탐색)
+  - [ ] app.test.js에서 로또 숫자가 중복된 케이스도 추가 (자동 생성되는 로또 숫자, 사용자가 입력하는 로또 숫자 둘다)
   - [ ] 이벤트 등록의 책임 View로 옮기기 
   - [ ] LottoModel의 while문 수정 (무한루프)
   - [ ] lottoCount 상태로 둘지 고민 
   - [ ] 실제 로또처럼 한번 뽑힌 로또에 대해서는 다시 안뽑히게 작성해보기 (lottoModel의 while문)
   - [ ] model에서, getter와 setter를 통해서만 데이터에 접근하고 싶으면 private 사용해보기 
+  - [ ] alert 창이 뜨는 것에 대한 테스트 
 
 - [ ] 수업 1단계 피드백 
   - [x] 태그 100% 사용(input-min, max, required 속성 사용해보기)
@@ -54,6 +56,9 @@
     - [ ] catch문 error메시지
     - [ ] lotto 최대구매가능개수 설명
     - [ ] lotto 금액 입력 
+    - [ ] 버튼 disable 시키기 
+    - [ ] 당첨번호에 대한 input 태그 2글자까지 입력할 수 있도록 하기
+- [x] 수익율 계산 (-의 경우)
 - [ ] 구조도 개선 
-- [ ] Array.from의 v
-- [ ] 수익율 계산 (-의 경우)
+
+
