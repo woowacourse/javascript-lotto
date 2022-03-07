@@ -20,6 +20,7 @@ export default class PurchaseAmountView extends View {
       this.handlers.get("submit").forEach((func) => func(purchaseAmount));
       this.manageAmountForm(true);
     } catch (error) {
+      this.resetPurchaseValue();
       alert(error);
     }
   };
