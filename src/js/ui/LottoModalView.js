@@ -32,7 +32,8 @@ export class LottoModalView {
   }
   restart() {
     this.closeModal();
-    this.lottoView.restart();
+    const restartEvent = new CustomEvent('restart');
+    this.$container.dispatchEvent(restartEvent);
   }
   closeModal() {
     this.$container.classList.add('hide');

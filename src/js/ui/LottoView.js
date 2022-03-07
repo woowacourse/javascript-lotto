@@ -12,7 +12,7 @@ import { LottoModal, LottoModalView } from './LottoModalView';
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
-    this.lottoModal = new LottoModalView(this);
+    this.lottoModal = new LottoModalView();
     this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
     this.$winningNumberInputArr = document.querySelectorAll(
       DOM.CLASS.WINNING_NUMBER_INPUT
@@ -121,6 +121,10 @@ export default class LottoView {
       const bonusNumber = winningNumbers.pop();
       this.machine.calculateGrade(winningNumbers, bonusNumber);
       this.lottoModal.show(this.machine);
+      this.lottoModal.$container.addEventListener(
+        'restart',
+        this.restart.bind(this)
+      );
     } catch (e) {
       alert(e.message);
     }
