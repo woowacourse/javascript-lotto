@@ -1,5 +1,5 @@
-import generateRandomNumbers from '../utils/random.js';
 import LOTTO from '../constants/lotto.js';
+import random from '../utils/random.js';
 
 export default class Lotto {
   #numbers = [];
@@ -9,7 +9,7 @@ export default class Lotto {
   }
 
   generateLottoNumbers() {
-    this.#numbers = generateRandomNumbers({
+    this.#numbers = random.generateRandomNumbers({
       count: LOTTO.NUMBER_COUNT,
       max: LOTTO.MAX_NUMBER,
       min: LOTTO.MIN_NUMBER,

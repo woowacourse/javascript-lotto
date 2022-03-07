@@ -24,3 +24,34 @@ button:disabled {
   height: 36px;
   margin-left: 8px;
 }
+
+#result-button {
+  width: 382px;
+  height: 36px;
+  grid-column: 1 / 3;
+  grid-row-start: 3;
+}
+
+#close-button {
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  content: url('/images/close.svg');
+}
+
+#restart-button {
+  width: 152px;
+  height: 36px;
+  margin: 32px 0 0 0;
+}
+
+#down-button {
+  position: fixed;
+  width: 35px;
+  height: 35px;
+  content: url('/images/arrow_down.svg');
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+}

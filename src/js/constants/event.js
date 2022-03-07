@@ -1,6 +1,8 @@
 const CUSTOM_EVENT = {
   TOGGLE: '@toggle',
-  SUBMIT: '@submit',
+  PURCHASE: '@purchase',
+  CHECK_RESULT: '@check_result',
+  RESTART: '@restart',
 };
 
 export default CUSTOM_EVENT;

@@ -1,4 +1,4 @@
-import ID from '../constants/selector.js';
+import { ID } from '../constants/selector.js';
 import { on, emit } from '../utils/event.js';
 import { $ } from '../utils/selector.js';
 import CUSTOM_EVENT from '../constants/event.js';
@@ -18,15 +18,26 @@ export default class PurchaseView {
   handleSubmit(e) {
     e.preventDefault();
     const money = this.getMoneyToPurchase();
-    emit(this.$purchaseForm, CUSTOM_EVENT.SUBMIT, { money });
+
+    emit(this.$purchaseForm, CUSTOM_EVENT.PURCHASE, { money });
   }
 
   getMoneyToPurchase() {
     return this.$purchaseInput.valueAsNumber;
   }
 
+  rerenderView() {
+    this.$purchaseInput.value = '';
+    this.activatePurchaseForm();
+  }
+
+  activatePurchaseForm() {
+    this.$purchaseButton.removeAttribute('disabled');
+    this.$purchaseInput.removeAttribute('disabled');
+  }
+
   deactivatePurchaseForm() {
-    this.$purchaseButton.disabled = true;
-    this.$purchaseInput.disabled = true;
+    this.$purchaseButton.setAttribute('disabled', true);
+    this.$purchaseInput.setAttribute('disabled', true);
   }
 }

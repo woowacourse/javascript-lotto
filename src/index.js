@@ -3,5 +3,6 @@ import './css/index.css';
 
 window.addEventListener('DOMContentLoaded', () => {
   const controller = new LottoController();
+
   controller.subscribeViewEvents();
 });

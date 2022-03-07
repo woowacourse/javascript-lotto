@@ -1,7 +1,7 @@
 import ticketTemplate from '../layouts/template.js';
 import { emit, on } from '../utils/event.js';
 import { $, $$ } from '../utils/selector.js';
-import ID from '../constants/selector.js';
+import { ID } from '../constants/selector.js';
 import CUSTOM_EVENT from '../constants/event.js';
 
 export default class IssuedTicketView {
@@ -19,6 +19,7 @@ export default class IssuedTicketView {
 
   handleToggle(e) {
     const { checked } = e.target;
+
     emit(this.$lottoNumberToggle, CUSTOM_EVENT.TOGGLE, { checked });
   }
 
@@ -28,6 +29,17 @@ export default class IssuedTicketView {
 
   showTicketContainer() {
     this.$ticketContainer.classList.replace('hidden', 'show');
+  }
+
+  hideTicketContainer() {
+    this.$ticketContainer.classList.replace('show', 'hidden');
+  }
+
+  rerenderView() {
+    this.$issuedTicketDiv.textContent = '';
+    this.$lottoNumberToggle.checked = false;
+    this.hideTicketDetails();
+    this.hideTicketContainer();
   }
 
   renderTicketCount(count) {

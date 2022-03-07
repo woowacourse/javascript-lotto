@@ -9,14 +9,22 @@
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
+
       <section id="purchase-container">
         <h2 hidden>로또 구매 양식</h2>
         <form id="purchase-form">
           <label for="purchase-input">구입할 금액을 입력해주세요.</label>
-          <input id="purchase-input" type="number" placeholder="금액" />
+          <input
+            id="purchase-input"
+            type="number"
+            placeholder="금액"
+            min="1000"
+            max="10000000"
+          />
           <button id="purchase-button" type="submit">구입</button>
         </form>
       </section>
+
       <section id="ticket-container" class="hidden">
         <h2 hidden>로또 발급 확인</h2>
         <span>총 <span id="ticket-count"></span>개를 구매하였습니다.</span>
@@ -26,6 +34,78 @@
           <input id="lotto-number-toggle" type="checkbox" />
           <span class="slider round"></span>
         </label>
+      </section>
+
+      <section id="result-container" class="hidden">
+        <h2 hidden>로또 결과 입력</h2>
+        <label for="result-form" id="result-form-label"
+          >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
+        >
+        <form id="result-form">
+          <label for="prize-number-div">당첨 번호</label>
+          <label for="bonus-number-input" class="align-right"
+            >보너스 번호</label
+          >
+          <div id="prize-number-div">
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+            <input type="number" min="1" max="45" class="prize-number-input" />
+          </div>
+          <input
+            id="bonus-number-input"
+            class="align-right"
+            type="number"
+            min="1"
+            max="45"
+          />
+          <button id="result-button" type="submit">결과 확인하기</button>
+        </form>
+        <img id="down-button" />
+      </section>
+
+      <section id="statistics-modal-container" class="hidden">
+        <h2 hidden>당첨 통계 모달</h2>
+        <div id="statistics-modal">
+          <img id="close-button" />
+          <h3 id="statistics-header">🏆 당첨 통계 🏆</h3>
+          <table>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td><span id="fifth-prize-count"></span>개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td><span id="fourth-prize-count"></span>개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td><span id="third-prize-count"></span>개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td><span id="second-prize-count"></span>개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td><span id="first-prize-count"></span>개</td>
+            </tr>
+          </table>
+          <p id="rate-of-return-text">
+            당신의 총 수익률은 <span id="rate-of-return"></span>%입니다.
+          </p>
+          <button id="restart-button" type="button">다시 시작하기</button>
+        </div>
       </section>
     </div>
   </body>

@@ -14,7 +14,23 @@ input:focus {
   outline: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 #purchase-input {
   width: 310px;
+  height: 36px;
+}
+
+.prize-number-input,
+#bonus-number-input {
+  width: 34px;
   height: 36px;
 }
