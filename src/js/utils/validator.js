@@ -1,6 +1,6 @@
-const isNumber = (value) => /^[0-9]*$/g.test(value);
+const isNumberString = (value) => /^[0-9]*$/g.test(value);
 
-const isPositiveInteger = (value) => isNumber(value) && value > 0;
+const isPositiveInteger = (value) => isNumberString(value) && value > 0;
 
 const isDivisible = (value, number) => value % number === 0;
 
@@ -24,7 +24,7 @@ const getDuplicateIndex = (list) =>
   }, []);
 
 export {
-  isNumber,
+  isNumberString,
   isPositiveInteger,
   isDivisible,
   isNumberRange,

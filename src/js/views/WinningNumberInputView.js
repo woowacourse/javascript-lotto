@@ -1,6 +1,6 @@
 import { DOM_NAME, SELECTOR } from '../constants/selector';
 import { $, $$ } from '../utils/element-manager';
-import { isNumber } from '../utils/validator';
+import { isNumberString } from '../utils/validator';
 import { onInputAutoFocus, onEnableButton, addEventOnce } from '../utils/custom-event';
 
 export default class WinningNumberInputView {
@@ -48,7 +48,7 @@ export default class WinningNumberInputView {
 
   #isWinningNumberComplete($input) {
     const inputValue = $input.value;
-    return inputValue.length === 2 && isNumber(inputValue);
+    return inputValue.length === 2 && isNumberString(inputValue);
   }
 
   #isWinningNumberListEnter() {
