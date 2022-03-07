@@ -16,21 +16,17 @@ class Lotto {
 
   result(winningNumbers) {
     let countMatchNumber = 0;
-    let isContainBonusNumber = false;
 
     this.lottoNumbers.forEach((number) => {
       if (winningNumbers.includes(number)) {
         countMatchNumber += 1;
-        if (number === winningNumbers[NUMBER.BONUS_NUMBER]) {
-          isContainBonusNumber = true;
-        }
       }
     });
 
-    return this.getLottoRank(countMatchNumber, isContainBonusNumber);
+    return this.getLottoRank(countMatchNumber, winningNumbers[NUMBER.BONUS_NUMBER]);
   }
 
-  getLottoRank(countMatchNumber, isContainBonusNumber) {
+  getLottoRank(countMatchNumber, bonusNumber) {
     switch (countMatchNumber) {
       case 3:
         return NUMBER.FIFTH_GRADE_INDEX;
@@ -39,7 +35,9 @@ class Lotto {
       case 5:
         return NUMBER.THIRD_GRADE_INDEX;
       case 6:
-        if (isContainBonusNumber) return NUMBER.SECOND_GRADE_INDEX;
+        if (this.lottoNumbers.some((number) => number === bonusNumber)) {
+          return NUMBER.SECOND_GRADE_INDEX;
+        }
         return NUMBER.FIRST_GRADE_INDEX;
       default:
         return NUMBER.NOT_WINNING_INDEX;
