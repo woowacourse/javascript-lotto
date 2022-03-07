@@ -3,20 +3,21 @@
 
 :root {
   --color-primary: #00bcd4;
-  --color-light-gray: #b4b4b4;
+  --color-light-gray: #d2d2d2;
   --color-white: #ffffff;
+  --color-black: #00000099;
   --color-table-border: #c8c8c8;
 }
 
 body {
-  background-color: rgb(247, 245, 241);
+  background-color: var(--color-light-gray);
 }
 
 #app {
   display: flex;
   flex-direction: column;
   max-width: 400px;
-  margin: 0 auto;
+  margin: auto;
   padding: 50px;
   border-radius: 10px;
   background-color: var(--color-white);

@@ -12,7 +12,7 @@ export const isUnderAmountUnit = (amount) => {
   return amount % AMOUNT.UNIT !== 0;
 };
 
-export const hasOverRangeWinningNumber = (numbers) => {
+export const hasOverRangeNumber = (numbers) => {
   return numbers.some(
     (number) => number < LOTTO_NUMBER.RANGE_MIN || number > LOTTO_NUMBER.RANGE_MAX,
   );
@@ -35,7 +35,7 @@ export const verifyPurchaseAmount = (amount) => {
 };
 
 export const verifyWinningNumbers = (numbers) => {
-  if (hasOverRangeWinningNumber(numbers)) {
+  if (hasOverRangeNumber(numbers)) {
     throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
   }
   if (hasDuplicatedNumber(numbers)) {
