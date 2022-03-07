@@ -11,7 +11,9 @@ describe('lottoCreator 클래스 내부 메서드(로또 구매) 테스트', () 
     lottoCreator.createLottoList();
 
     const lottoResult = lottoCreator.lottoList;
-    const isCorrectLottoLength = lottoResult.every((result) => result.length === 6);
+    const isCorrectLottoLength = lottoResult.every(
+      (result) => result.length === LOTTO.NUMBER_LENGTH
+    );
 
     expect(lottoResult).toHaveLength(count);
     expect(isCorrectLottoLength).toBe(true);
