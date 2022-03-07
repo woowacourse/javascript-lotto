@@ -12,13 +12,14 @@ input {
 
 /* 키보드로 인풋에 포커스 시 */
 input:focus-visible {
-  outline: 3px solid var(--secondary);
+  border: 3px solid var(--primary);
+  outline: var(--primary);
 }
 
 /* 마우스, 터치로 인풋에 포커스 시 */
-input:focus:not(:focus-visible) {
+/* input:focus:not(:focus-visible) {
   outline: none;
-}
+} */
 
 #purchase-input {
   width: 310px;
@@ -31,14 +32,31 @@ input[type='number']::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.basic-input {
+.winning-numbers-div input {
   width: 34px;
   height: 36px;
   padding: 0;
   text-align: center;
 }
+/* .basic-input {
+} */
 
-.bonus-input {
+#bonus-number {
   right: 0;
   float: right;
+}
+
+.ok-input {
+  background-color: var(--white);
+}
+
+.duplicated-input {
+  border: 3px solid var(--duplicated-number);
+  outline: var(--duplicated-number);
+  /* background-color: var(--invalid-number); */
+}
+
+.over-input {
+  border: 3px solid var(--over-number);
+  outline: var(--over-number);
 }

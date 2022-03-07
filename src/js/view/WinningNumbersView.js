@@ -3,6 +3,7 @@ import ID from '../constants/dom';
 import { emit, on } from '../utils/event';
 import { $, $$ } from '../utils/selector';
 import { changeDuplicatedInputsColor, changeOkInputsColor, changeOverInputsColor } from '../utils/style';
+import LOTTO from '../constants/lotto';
 
 export default class WinningNumbersView {
   constructor() {
@@ -18,13 +19,12 @@ export default class WinningNumbersView {
   #bindEvents() {
     on(this.$winningNumbersForm, 'submit', (e) => this.#handleSubmit(e));
     this.#validateInputs();
-    this.#resetFocusedInput();
     this.#goBackInput();
   }
 
   #goBackInput() {
     this.$$winningNumberInputs.forEach((input) =>
-      input.addEventListener('keydown', (e) => WinningNumbersView.#deleteKeydownHandler(e)),
+      input.addEventListener('keyup', (e) => WinningNumbersView.#deleteKeydownHandler(e)),
     );
   }
 
@@ -38,20 +38,20 @@ export default class WinningNumbersView {
     const { activeElement } = document;
     const eventTarget = e.target;
     if (activeElement.id === 'bonus-number' && activeElement.value.length === 0) {
-      activeElement.value = '';
       $('#last-basic-input').focus();
       return;
     }
     if (eventTarget.previousElementSibling && activeElement.value.length === 0) {
-      eventTarget.value = '';
       eventTarget.previousElementSibling.focus();
     }
   }
 
   #handleSubmit(e) {
     e.preventDefault();
-    const winningNumbers = Array.from({ length: 6 }).map((_, index) => e.target[index].valueAsNumber);
-    const bonusNumber = e.target[6].valueAsNumber;
+    const winningNumbers = Array.from({ length: this.$$winningNumberInputs.length - 1 }).map(
+      (_, index) => e.target[index].valueAsNumber,
+    );
+    const bonusNumber = e.target[this.$$winningNumberInputs.length - 1].valueAsNumber;
     emit(this.$winningNumbersForm, EVENT.SUBMIT_RESULT, {
       winningNumbers,
       bonusNumber,
@@ -68,17 +68,16 @@ export default class WinningNumbersView {
 
   #notifyInvalidInputsHandler(e, index) {
     e.target.value = e.target.value.substr(0, 2);
-    changeOverInputsColor(this.$$winningNumberInputs);
-    if (e.target.valueAsNumber > 45) {
-      return;
-    }
+    this.#changeInvalidInputsColor();
+
     if (e.target.nextElementSibling?.value) {
       return;
     }
-    if (this.#isDuplicatedInputs()) {
-      this.#changeInvalidInputsColor();
+
+    if (!e.target.nextElementSibling && this.$$winningNumberInputs[LOTTO.NUMBER_COUNT].value) {
       return;
     }
+
     this.#moveAutoFocus(e, index);
   }
 
@@ -90,22 +89,13 @@ export default class WinningNumbersView {
 
   #moveAutoFocus(e, index) {
     if (!e.target.nextElementSibling && e.target.value.length >= 2) {
-      this.$$winningNumberInputs[6].focus();
+      this.$$winningNumberInputs[this.$$winningNumberInputs.length - 1].focus();
       return;
     }
 
     if (e.target.value.length >= 2) {
       this.$$winningNumberInputs[index + 1].focus();
     }
-  }
-
-  #resetFocusedInput() {
-    this.$$winningNumberInputs.forEach((input) =>
-      input.addEventListener('focus', () => {
-        input.value = null;
-        this.#changeInvalidInputsColor();
-      }),
-    );
   }
 
   removeInputValue() {
@@ -118,10 +108,8 @@ export default class WinningNumbersView {
   }
 
   #changeInvalidInputsColor() {
-    const inputNumberList = Array.from({ length: 7 });
-    this.$$winningNumberInputs.forEach((input, index) => {
-      inputNumberList[index] = input.valueAsNumber;
-    });
+    const inputNumberList = this.$$winningNumberInputs.map((input) => input.valueAsNumber);
+    console.log(inputNumberList);
     changeOkInputsColor(inputNumberList, this.$$winningNumberInputs);
     changeDuplicatedInputsColor(inputNumberList, this.$$winningNumberInputs);
     changeOverInputsColor(this.$$winningNumberInputs);
