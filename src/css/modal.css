@@ -1,0 +1,57 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 250px);
+
+  width: 500px;
+  padding: 50px 20px;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
+
+.modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  gap: 20px;
+
+  width: 90%;
+  height: fit-content;
+
+  padding: 10px 20px 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.yield-result-text {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.close-button {
+  align-self: flex-end;
+  width: fit-content;
+
+  padding: 0;
+  background-color: transparent;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.close-button:hover {
+  background-color: transparent;
+  color: #5e5e5e;
+}
+
+.close-button:active {
+  color: black;
+}

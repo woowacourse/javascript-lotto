@@ -17,6 +17,12 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #00c6e0;
+}
+button:active {
+  background-color: #008394;
+}
 button:disabled {
   background-color: #b4b4b4;
   cursor: default;
@@ -26,21 +32,13 @@ input:disabled {
   color: #b4b4b4;
 }
 
-/* 숫자 입력란 화살표 숨김 */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 /* Firefox */
 input[type='number'] {
   -moz-appearance: textfield;
 }
 
 input:focus {
-  outline: none;
+  outline: 1px solid #00bcd4;
 }
 
 fieldset {
@@ -49,4 +47,20 @@ fieldset {
 
 legend {
   margin-bottom: 10px;
+}
+
+table {
+  border-width: 1px;
+  border-top: 1px solid #000;
+  border-collapse: collapse;
+}
+
+caption {
+  padding: 0 0 20px;
+}
+
+tr,
+td {
+  padding: 5px;
+  border-top: 1px solid #dcdcdc;
 }

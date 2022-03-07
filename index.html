@@ -13,13 +13,14 @@
       <h2 hidden id="a11y-cash-input-section">구입 금액 입력 섹션</h2>
       <label for="cash-input">구입할 금액을 입력해주세요.</label>
       <div class="cash-input-container">
-        <input class="cash-input" type="number" name="cash-input" placeholder="금액"/>
+        <input class="cash-input" type="number" name="cash-input" placeholder="금액" min="1000" max="50000" step="1000"/>
         <button class="cash-input-button">구입</button>
       </div>
     </section>
     <section class="purchased-lotto-section hide" aria-labeledby="a11y-purchased-lotto-section">
       <h2 hidden id="a11y-purchased-lotto-section">구입한 로또 표시 섹션</h2>
       <div class="lotto-container">
+        <label class="purchased-lotto-count-text">총 {오류}개를 구매하였습니다.</label>
         <div class="lotto-grid hide-numbers">
         </div>
       </div>
@@ -31,18 +32,18 @@
         </label>
       </div>
     </section>
-    <section class="winner-number-section hide" aria-labeledby="a11y-winner-number-section">
-      <h2 hidden id="a11y-winner-number-section">당첨 번호 입력 섹션</h2>
+    <section class="winning-number-section hide" aria-labeledby="a11y-winning-number-section">
+      <h2 hidden id="a11y-winning-number-section">당첨 번호 입력 섹션</h2>
       <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
-      <form class="winner-number-input-form">
-        <fieldset class="winner-number-input-container">
+      <form class="winning-number-input-form">
+        <fieldset class="winning-number-input-container">
           <legend>당첨 번호</legend>
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
-          <input type="number" class="winner-number-input">
+          <input type="number" class="winning-number-input" min="1" max="45">
+          <input type="number" class="winning-number-input" min="1" max="45">
+          <input type="number" class="winning-number-input" min="1" max="45">
+          <input type="number" class="winning-number-input" min="1" max="45">
+          <input type="number" class="winning-number-input" min="1" max="45">
+          <input type="number" class="winning-number-input" min="1" max="45">
         </fieldset>
         <fieldset class="bonus-number-input-container">
           <legend>보너스 번호</legend>
@@ -51,6 +52,48 @@
       </form>
       <button class="result-button">결과 확인하기</button>
     </section>
+
+    <div class="modal">
+      <section class="modal-body">
+        <button class="close-button" type="button">&times;</button>
+        
+        <table class="winning-result-table">
+          <caption><h2>🏆 당첨 통계 🏆</h2></caption>
+          <tr>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td class="winning-count" data-winning-amount="5000">0개</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td class="winning-count" data-winning-amount="50000">0개</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td class="winning-count" data-winning-amount="1500000">0개</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td class="winning-count" data-winning-amount="30000000">0개</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td class="winning-count" data-winning-amount="2000000000">0개</td>
+          </tr>
+        </table>
+        <p class="yield-result-text">당신의 총 수익률은 오류%입니다.</p>
+        <button class="restart-button">다시 시작하기</button>
+      </section>
+    </div>
   </main>
 </body>
 
