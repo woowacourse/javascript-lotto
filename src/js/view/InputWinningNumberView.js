@@ -13,7 +13,7 @@ const WINNING_NUMBER_FORM = `
       <div id="win-number-box">
         <p>당첨 번호</p>
         <div class="input-box">
-        ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
+          ${INPUT_ELEMENT.repeat(RULES.LOTTO_NUMS)}
         </div>
       </div>
       <div id="bonus-number-box">
@@ -35,6 +35,19 @@ export default class InputWinningNumberView {
       'winning-number-container',
     );
     this.modal = document.getElementById('lotto-result-modal');
+
+    this.indexFactory = (() => {
+      let index = 0;
+
+      return {
+        increment() {
+          index++;
+        },
+        get index() {
+          return index;
+        },
+      };
+    })();
   }
 
   renderWinningNumberForm() {
@@ -52,11 +65,26 @@ export default class InputWinningNumberView {
       '.winning-number-input',
     );
 
-    this.winningNumberInputs.forEach((inputElement, index) => {
-      event.on(inputElement, 'input', () =>
-        this.handleWinningNumberInputFocus(inputElement, index),
-      );
+    this.winningNumberForm.addEventListener('input', e => {
+      if (e.target.classList.contains('winning-number-input')) {
+        this.handleWinningNumberInputFocus(e);
+      }
     });
+  }
+
+  handleWinningNumberInputFocus(e) {
+    const { target: input } = e;
+
+    if (input.value.length !== 2) {
+      return;
+    }
+
+    this.indexFactory.increment();
+    let index = this.indexFactory.index;
+
+    if (index < 7) {
+      this.winningNumberInputs[index].focus();
+    }
   }
 
   handleWinningNumberFormSubmit(e) {
@@ -75,14 +103,6 @@ export default class InputWinningNumberView {
       this.resetInputElementsValue();
       alert(error);
     }
-  }
-
-  handleWinningNumberInputFocus(input, index) {
-    if (input.value.length !== 2 || index === RULES.WINNING_LOTTO_NUMS - 1) {
-      return;
-    }
-
-    this.winningNumberInputs[index + 1].focus();
   }
 
   showModal() {
