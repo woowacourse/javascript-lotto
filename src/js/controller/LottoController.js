@@ -1,4 +1,4 @@
-import $ from '../utils/dom';
+import { $, $$ } from '../utils/dom';
 
 import LottoModel from '../model/LottoModel';
 
@@ -21,8 +21,8 @@ export default class LottoController {
 
   initDOMs() {
     this.$lottoPriceForm = $('#lotto-price-form');
-    this.$lottoPriceInput = this.$lottoPriceForm.querySelector('#lotto-price-input');
-    this.$lottoPriceButton = this.$lottoPriceForm.querySelector('#lotto-price-button');
+    this.$lottoPriceInput = $('#lotto-price-input', this.$lottoPriceForm);
+    this.$lottoPriceButton = $('#lotto-price-button', this.$lottoPriceForm);
     this.$popup = $('#popup');
     this.$result = $('#result');
   }
@@ -93,8 +93,8 @@ export default class LottoController {
     if (target.id !== 'check-result-button') return;
 
     const $numbersInput = $('.numbers-input');
-    const $winningNumberInputs = $numbersInput.querySelectorAll('.winning-number-input');
-    const $bonusNumberInput = $numbersInput.querySelector('.bonus-number-input');
+    const $winningNumberInputs = $$('.winning-number-input', $numbersInput);
+    const $bonusNumberInput = $('.bonus-number-input', $numbersInput);
     const winnerNumberArray = Array.from($winningNumberInputs).map(($winnnigNumberInput) => $winnnigNumberInput.valueAsNumber);
     const bonusNumber = $bonusNumberInput.valueAsNumber;
 

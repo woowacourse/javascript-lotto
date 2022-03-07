@@ -1,4 +1,4 @@
-import $ from '../utils/dom';
+import { $, $$ } from '../utils/dom';
 import makeTemplate from './template';
 
 export default class ResultView {
@@ -12,7 +12,7 @@ export default class ResultView {
 
   renderLottos(lottos) {
     const $resultLottos = $('#result-lotto');
-    const $lottos = $resultLottos.querySelectorAll('.lotto');
+    const $lottos = $$('.lotto', $resultLottos);
 
     $lottos.forEach(($lotto, idx) => {
       $lotto.insertAdjacentHTML(
@@ -26,7 +26,7 @@ export default class ResultView {
 
   initLottos() {
     const $resultLottos = $('#result-lotto');
-    const $lottosNumbers = $resultLottos.querySelectorAll('.lotto-numbers');
+    const $lottosNumbers = $$('.lotto-numbers', $resultLottos);
 
     $lottosNumbers.forEach(($lottosNumber) => {
       $lottosNumber.remove();

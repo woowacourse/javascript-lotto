@@ -1,4 +1,4 @@
-import $ from '../utils/dom';
+import { $ } from '../utils/dom';
 import makeTemplate from './template/index';
 
 export default class PopupView {

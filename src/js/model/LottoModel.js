@@ -37,7 +37,7 @@ export default class LottoModel {
   generateLottoNumbers(lottoArray = []) {
     const randomLottoNumber = getRandomNumber(LOTTO_NUMBERS.MIN_LOTTO_NUMBER, LOTTO_NUMBERS.MAX_LOTTO_NUMBER);
 
-    if (lottoArray.length === `LOTTO_NUMBERS.LOTTO_LENGTH`) {
+    if (lottoArray.length === LOTTO_NUMBERS.LOTTO_LENGTH) {
       return lottoArray;
     }
     if (!lottoArray.includes(randomLottoNumber)) {

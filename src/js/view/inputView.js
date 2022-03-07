@@ -1,4 +1,4 @@
-import $ from '../utils/dom';
+import { $ } from '../utils/dom';
 
 import makeTemplate from './template';
 
@@ -6,8 +6,8 @@ export default class InputView {
   constructor() {
     this.$result = $('#result');
     this.$lottoPriceForm = $('#lotto-price-form');
-    this.$lottoPriceInput = this.$lottoPriceForm.querySelector('#lotto-price-input');
-    this.$lottoPriceButton = this.$lottoPriceForm.querySelector('#lotto-price-button');
+    this.$lottoPriceInput = $('#lotto-price-input', this.$lottoPriceForm);
+    this.$lottoPriceButton = $('#lotto-price-button', this.$lottoPriceForm);
   }
 
   disableLottoPriceForm() {
