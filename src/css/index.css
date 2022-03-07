@@ -11,13 +11,17 @@
 
 body {
   background-color: var(--color-light-gray);
+  display: flex;
+  margin: 0;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 #app {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: auto;
+  width: 400px;
   padding: 50px;
   border-radius: 10px;
   background-color: var(--color-white);
@@ -80,6 +84,11 @@ input[type="number"] {
 }
 
 /* lotto-number */
+
+.lotto-number-result {
+  max-height: 400px;
+  overflow: scroll;
+}
 
 .lotto-number-container {
   margin-top: 10px;
