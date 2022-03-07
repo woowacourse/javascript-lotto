@@ -1,16 +1,19 @@
 import View from "./View.js";
 import { $, $$ } from "../utils/dom.js";
 import { validateWinningNumbers } from "../utils/validation.js";
+import { BONUS_NUMBER_ID } from "../utils/constants.js";
 
 export default class WinningNumberView extends View {
   constructor() {
     super();
 
     this.winningNumberInput = $$(".winning-number-input");
-    $(".winning-number-form").addEventListener("submit", this.#onClickResultButton.bind(this));
+    this.winningNumberForm = $(".winning-number-form");
+    this.winningNumberForm.addEventListener("submit", this.#onClickResultButton);
+    this.winningNumberForm.addEventListener("keyup", this.focusInput);
   }
 
-  #onClickResultButton(e) {
+  #onClickResultButton = (e) => {
     e.preventDefault();
 
     const winningNumberList = Array.from(this.winningNumberInput).map((input) =>
@@ -20,9 +23,24 @@ export default class WinningNumberView extends View {
       validateWinningNumbers(winningNumberList);
       this.handlers.get("submit").forEach((func) => func(winningNumberList));
     } catch (error) {
+      this.resetWinningNumbersValue();
       alert(error);
     }
-  }
+  };
+
+  focusInput = ({ target }) => {
+    if (target.tagName !== "INPUT") return;
+    if (target.value.length < 2) return;
+    if (target.id === BONUS_NUMBER_ID) {
+      $(".result-button").focus();
+      return;
+    }
+    if (!target.nextSibling.nextElementSibling) {
+      $("#bonus-number-input").focus();
+      return;
+    }
+    target.nextSibling.nextElementSibling.focus();
+  };
 
   resetWinningNumbersValue() {
     // eslint-disable-next-line no-param-reassign
