@@ -27,12 +27,7 @@ export default class WinningResultModal {
     this.value = this.value.slice(0, this.maxLength);
 
     if (this.value.length !== this.maxLength) return;
-    this.nextElementSibling === null
-      ? (function () {
-          $('#bonus-number').focus();
-          return;
-        })()
-      : this.nextElementSibling.focus();
+    this.nextElementSibling === null ? $('#bonus-number').focus() : this.nextElementSibling.focus();
   }
 
   getUserInputWinningNumbers() {
