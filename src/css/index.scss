@@ -9,10 +9,11 @@ $primary-color: #00bcd4;
 body {
   background-color: #f9f9f9;
   font-family: 'NanumBarunGothic', sans-serif;
+  overflow: hidden;
 }
 
 #app {
-  width: 27.6rem;
+  width: 450px;
   margin: 5.7rem auto;
   padding: 1.05rem;
   background-color: white;
@@ -48,6 +49,24 @@ body {
     &:hover {
       filter: brightness(1.1);
     }
+    &:active {
+      background-color: #5cccee;
+    }
+    &:disabled {
+      background-color: #b4b4b4;
+    }
+    &:disabled:hover {
+      filter: none;
+      cursor: unset;
+    }
+  }
+
+  .show {
+    display: block;
+  }
+
+  .reset-button {
+    padding: 10px 30px;
   }
 }
 
@@ -62,17 +81,9 @@ body {
   margin-top: 0.8rem;
 }
 
-.lotto-list-section {
-  display: none;
-}
-
-.lotto-list-section.show {
-  display: block;
-}
-
 .lotto-list-container {
   display: grid;
-  grid-template-columns: 80% 10%;
+  grid-template-columns: 85% 10%;
   justify-content: space-between;
 }
 
@@ -131,7 +142,13 @@ body {
 
 .lotto-item-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(8, 40px);
+  grid-auto-rows: max-content;
+  width: fit-content;
+  padding-right: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   > .item {
     display: flex;
@@ -155,12 +172,27 @@ body {
       }
     }
   }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary-color;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
 }
 
 .lotto-list-section,
 .winning-number-section {
   margin-top: 2rem;
 }
+
+/*
+WINNING NUMBERS
+*/
 
 .winning-number-container {
   display: flex;
@@ -176,8 +208,14 @@ body {
 }
 
 .winning-number-input {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 33px;
+  height: 33px;
+  text-align: center;
+}
+
+.bonus-number-input {
+  width: 33px;
+  height: 33px;
   text-align: center;
 }
 
@@ -192,4 +230,82 @@ body {
 #show-result-button {
   margin-top: 1.2rem;
   width: 100%;
+}
+
+/*
+WINNING MODAL
+*/
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal_body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  height: 450px;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.winning-result-title {
+  font-size: 21px;
+}
+
+.winning-result-container {
+  display: grid;
+  grid-template-rows: 20% 50% 10% 20%;
+}
+
+.winning-result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.winning-result-table-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.winning-result > section {
+  display: grid;
+  border-bottom: 0.5px solid lightgray;
+}
+.winning-result > section > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 0.5px solid lightgray;
+  padding: 8px 0;
+}
+
+.profit-rate-wrapper {
+  font-weight: bold;
+  font-size: 16px;
+}
+.profit-rate-wrapper,
+.reset-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-modal-button {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: rgb(177, 176, 176);
+  right: 12px;
+  top: 15px;
+  cursor: pointer;
 }

@@ -1,9 +1,4 @@
-import {
-  isAlreadyExistNumber,
-  isDivisible,
-  isPositiveInteger,
-  isValidRangeNumber,
-} from '../validator';
+import { isDivisible, isPositiveInteger, isValidRangeNumber } from '../validator';
 import { LOTTO_SETTING } from '../../constants/setting';
 import { ERROR_MESSAGE } from '../../constants/string';
 
@@ -21,9 +16,6 @@ export const checkValidLottoNumberInput = ({ input, pickedNumbers }) => {
   if (!isPositiveInteger(input)) {
     throw new Error();
   }
-  if (!isPositiveInteger(input)) {
-    throw new Error();
-  }
   if (
     !isValidRangeNumber(LOTTO_SETTING.MIN_RANDOM_NUMBER, LOTTO_SETTING.MAX_RANDOM_NUMBER, input)
   ) {
@@ -31,5 +23,25 @@ export const checkValidLottoNumberInput = ({ input, pickedNumbers }) => {
   }
   if (pickedNumbers.length >= LOTTO_SETTING.LOTTO_NUMBER_LENGTH) {
     throw new Error();
+  }
+};
+
+const isValidRangeLottoNumber = (number) =>
+  isValidRangeNumber(LOTTO_SETTING.MIN_RANDOM_NUMBER, LOTTO_SETTING.MAX_RANDOM_NUMBER, number);
+
+export const checkValidWinningNumberInput = (winningNumbers, bonusNumber) => {
+  const numbers = [...winningNumbers.concat(bonusNumber).filter((number) => number)];
+
+  if (numbers.length !== 7) {
+    throw new Error(ERROR_MESSAGE.HAS_EMPTY_INPUT);
+  }
+  if (new Set(numbers).size !== 7) {
+    throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_NUMBER);
+  }
+
+  const filters = [isPositiveInteger, isValidRangeLottoNumber];
+  const isValidWinningNumber = numbers.every((number) => filters.every((func) => func(number)));
+  if (!isValidWinningNumber) {
+    throw new Error(ERROR_MESSAGE.WRONG_LOTTO_NUMBER);
   }
 };

@@ -1,19 +1,41 @@
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
+import InputView from './InputView';
 
-export default class MoneyInputView {
-  #container;
+export default class MoneyInputView extends InputView {
+  #moneyInputSection;
 
   constructor($element) {
-    this.#container = $element;
+    super();
+    this.#moneyInputSection = $element;
+    this.bindMoneyKeydown();
+  }
+
+  bindMoneyKeydown() {
+    this.#moneyInputSection.addEventListener('keydown', this.preventNonDigitInput.bind(this));
   }
 
   bindMoneyInputSubmit(handler) {
-    const $container = this.#container;
+    const moneyInputSection = this.#moneyInputSection;
 
-    $($container, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).addEventListener('click', (event) => {
-      event.preventDefault();
-      handler({ money: $($container, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value });
-    });
+    $(moneyInputSection, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault();
+
+        handler({ money: Number($(moneyInputSection, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value) });
+      }
+    );
+  }
+
+  disableNewMoneySubmit() {
+    $(this.#moneyInputSection, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).disabled = true;
+    $(this.#moneyInputSection, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).disabled = true;
+  }
+
+  reset() {
+    $(this.#moneyInputSection, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).disabled = false;
+    $(this.#moneyInputSection, `#${SELECTOR.ID.LOTTO_PURCHASE_BUTTON}`).disabled = false;
+    $(this.#moneyInputSection, `#${SELECTOR.ID.LOTTO_MONEY_INPUT}`).value = '';
   }
 }

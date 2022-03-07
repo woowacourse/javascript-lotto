@@ -1,29 +1,23 @@
-import { getRandomNumber } from '../utils/data-manager';
 import { LOTTO_SETTING } from '../constants/setting';
-import { checkValidLottoNumberInput } from '../utils/Lotto/validator';
+
+function shuffle(list) {
+  list.sort(() => Math.random() - 0.5);
+  return list;
+}
 
 export default class Lotto {
-  #pickedNumbers = new Set();
-
-  pushNumberIntoPickedNumbers(number) {
-    try {
-      checkValidLottoNumberInput({ input: number, pickedNumbers: this.#pickedNumbers });
-    } catch (err) {
-      return;
-    }
-    this.#pickedNumbers.add(number);
-  }
+  // _는 protected 입니다.
+  _lottoNumbers = [];
 
   generate() {
-    const { LOTTO_NUMBER_LENGTH, MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } = LOTTO_SETTING;
-    while (this.#pickedNumbers.size !== LOTTO_NUMBER_LENGTH) {
-      this.pushNumberIntoPickedNumbers(getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER));
-    }
+    const { MAX_RANDOM_NUMBER: MAX, MIN_RANDOM_NUMBER: MIN } = LOTTO_SETTING;
+    const shuffledList = shuffle([...Array(MAX - MIN + 1)].map((_, idx) => idx + MIN));
+    this._lottoNumbers = shuffledList.slice(0, LOTTO_SETTING.LOTTO_NUMBER_LENGTH);
 
     return this;
   }
 
-  get pickedNumbers() {
-    return this.#pickedNumbers;
+  get lottoNumbers() {
+    return this._lottoNumbers;
   }
 }
