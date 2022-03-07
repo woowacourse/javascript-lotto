@@ -125,11 +125,11 @@ describe('당첨 번호를 입력하면, 로또에 대한 통계를 확인할 �
     userLottoNumbers,
   ) => {
     userLottoNumbers.forEach((numbers) => {
-      lottoPrize.countPrize(
-        returnSameNumberCount(numbers, lottoPrizeNumbers),
-        numbers,
-        lottoBonusNumber,
-      );
+      lottoPrize.countPrize({
+        sameNumberCount: returnSameNumberCount(numbers, lottoPrizeNumbers),
+        numbers: numbers,
+        bonusNumber: lottoBonusNumber,
+      });
     });
   };
 

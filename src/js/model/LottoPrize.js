@@ -21,7 +21,7 @@ export default class LottoPrize {
     this.isCalculated = true;
   }
 
-  countPrize(sameNumberCount, numbers, bonusNumber) {
+  countPrize({ sameNumberCount, numbers, bonusNumber }) {
     switch (sameNumberCount) {
       case SAME_NUMBER_COUNT.FIRST:
         this.prizeCount.first += 1;

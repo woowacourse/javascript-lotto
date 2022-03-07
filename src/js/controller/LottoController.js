@@ -97,15 +97,22 @@ export default class LottoController {
     }
 
     this.lottoPrizeModel.setIsCalculated();
-    this.lottoBundleModel.lottos.forEach((lotto) => {
-      this.lottoPrizeModel.countPrize(
-        returnSameNumberCount(lotto.numbers, numbers.prizeNumbers),
-        lotto.numbers,
-        numbers.bonusNumber,
-      );
-    });
+    this.calculatePrizeCount(numbers);
     this.lottoPrizeModel.calculateRateOfReturn(
       this.lottoBundleModel.lottos.length * LOTTO.PRICE_PER_TICKET,
     );
+  }
+
+  calculatePrizeCount(numbers) {
+    this.lottoBundleModel.lottos.forEach((lotto) => {
+      this.lottoPrizeModel.countPrize({
+        sameNumberCount: returnSameNumberCount(
+          lotto.numbers,
+          numbers.prizeNumbers,
+        ),
+        numbers: lotto.numbers,
+        bonusNumber: numbers.bonusNumber,
+      });
+    });
   }
 }
