@@ -29,7 +29,9 @@ class WinningCalculator {
 
     this.winningNumbers = convertStringNumberArrayToNumberArray(winningNumberInputs);
     this.bonusNumber = Number(bonusNumberInput);
+
     this.#validateWinningNumbers([...this.winningNumbers, this.bonusNumber]);
+
     this.totalYield = Math.round(
       (this.#calculateTotalWinningResult(lottos) / (lottos.length * LOTTO_PRICE)) * 100 - 100
     );

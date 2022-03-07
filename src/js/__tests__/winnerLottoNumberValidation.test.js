@@ -35,7 +35,7 @@ describe('당첨 번호와 보너스 번호 검증 테스트', () => {
   });
   test('모든 입력 값이 1 ~ 45 사이인지 검증한다.', () => {
     const winnerNumberInputs = ['1', '2', '3', '4', '5', '6'];
-    const bonusNumberInput = '100';
+    const bonusNumberInput = '46';
     expect(() =>
       winningCalculator.calculateWinningResult(
         winnerNumberInputs,
@@ -54,5 +54,17 @@ describe('당첨 번호와 보너스 번호 검증 테스트', () => {
         lottoGenerator.lottos
       )
     ).toThrow(ERROR_MESSAGE.NOT_UNIQUE_NUMBERS);
+  });
+
+  test('올바른 입력 값을 입력하면 오류가 발생하지 않는다.', () => {
+    const winnerNumberInputs = ['1', '2', '3', '4', '5', '6'];
+    const bonusNumberInput = '7';
+    expect(() =>
+      winningCalculator.calculateWinningResult(
+        winnerNumberInputs,
+        bonusNumberInput,
+        lottoGenerator.lottos
+      )
+    ).not.toThrow();
   });
 });
