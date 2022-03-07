@@ -1,5 +1,5 @@
 import LottoMachine from '../domains/LottoMachine.js';
-import { LOTTO } from '../constants/constants.js';
+import { LOTTO, RESULT } from '../constants/constants.js';
 
 class TestStrategy {
   constructor() {}
@@ -23,7 +23,11 @@ describe('로또 기계 단위 테스트', () => {
 
   test('로또 개수에 맞는 개수를 알아야 한다.', () => {
     lottoMachine.calculateGrade([1, 2, 3, 4, 5, 6], 7);
-    lottoMachine.lottos.forEach(({ numbers }) => console.log(numbers));
-    console.log(lottoMachine.lottos);
+    expect(lottoMachine.getNumberOfGrade(RESULT.FOURTH.NAME)).toBe(1);
+  });
+
+  test('올바른 수익률을 계산할 수 있어야 한다..', () => {
+    lottoMachine.calculateGrade([1, 2, 3, 4, 5, 6], 7);
+    expect(lottoMachine.profitRate).toBe('5000.00');
   });
 });
