@@ -12,17 +12,23 @@ export default class LottoController {
   init() {
     this.lottoView.init();
     this.setSubControllers();
+    this.renderSubViews();
   }
 
   setSubControllers() {
-    this.paymentController = new PaymentController();
-    this.ticketController = new TicketController();
-    this.winningNumberController = new WinningNumberController();
-    this.statisticController = new StatisticController();
-    this.paymentController.init(this);
-    this.ticketController.init(this);
-    this.winningNumberController.init(this);
-    this.statisticController.init(this);
+    this.paymentController = new PaymentController(this, this.lottoModel);
+    this.ticketController = new TicketController(this, this.lottoModel);
+    this.winningNumberController = new WinningNumberController(
+      this,
+      this.lottoModel
+    );
+    this.statisticController = new StatisticController(this, this.lottoModel);
+  }
+
+  renderSubViews() {
+    this.paymentController.renderView();
+    this.ticketController.renderView();
+    this.winningNumberController.renderView();
   }
 
   afterPurchaseLottos() {

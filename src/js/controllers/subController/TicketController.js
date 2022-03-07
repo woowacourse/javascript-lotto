@@ -2,8 +2,12 @@ import TicketView from '../../views/subViews/TicketView.js';
 import { SELECTOR } from '../../configs/contants.js';
 
 export default class TicketController {
-  init(controller) {
-    this.lottoModel = controller.lottoModel;
+  constructor(lottoController, lottoModel) {
+    this.lottoController = lottoController;
+    this.lottoModel = lottoModel;
+  }
+
+  renderView() {
     this.ticketView = new TicketView(SELECTOR.TICKET_SECTION);
     this.ticketView.render();
     this.renderTicketListView();

@@ -4,9 +4,12 @@ import validator from '../../utils/validator.js';
 import LottoModel from '../../models/LottoModel.js';
 
 export default class WinningNumberController {
-  init(controller) {
-    this.lottoController = controller;
-    this.lottoModel = controller.lottoModel;
+  constructor(lottoController, lottoModel) {
+    this.lottoController = lottoController;
+    this.lottoModel = lottoModel;
+  }
+
+  renderView() {
     this.winningNumberView = new WinningNumberView(
       SELECTOR.WINNING_NUMBER_SECTION
     );

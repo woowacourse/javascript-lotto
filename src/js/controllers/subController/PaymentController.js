@@ -3,9 +3,12 @@ import { SELECTOR } from '../../configs/contants.js';
 import validator from '../../utils/validator.js';
 
 export default class PaymentController {
-  init(controller) {
-    this.lottoController = controller;
-    this.lottoModel = controller.lottoModel;
+  constructor(lottoController, lottoModel) {
+    this.lottoController = lottoController;
+    this.lottoModel = lottoModel;
+  }
+
+  renderView() {
     this.paymentView = new PaymentView(SELECTOR.PAYMENT_SECTION);
     this.paymentView.render();
     this.setEventHandler();
