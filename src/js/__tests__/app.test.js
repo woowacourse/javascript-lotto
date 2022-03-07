@@ -1,13 +1,13 @@
 import Lotto from '../model/Lotto.js';
 import LottoBundle from '../model/LottoBundle.js';
 import LottoPrize from '../model/LottoPrize.js';
+import random from '../utils/random.js';
 import autoComma from '../utils/autoComma.js';
 import returnSameNumberCount from '../utils/compareArray.js';
 import { moneyValidator, validateMoney } from '../validator/moneyValidator.js';
 import { validatePrizeNumber } from '../validator/prizeNumberValidator.js';
 import LOTTO from '../constants/lotto.js';
 import EXCEPTION from '../constants/exception.js';
-import { PRIZE_NAMES } from '../constants/prize.js';
 
 describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를 발급해야 한다.', () => {
   test(`사용자는 ${autoComma(
@@ -113,20 +113,21 @@ describe('사용자가 유효하지 않은 값을 입력했을 경우, 에러를
 
 describe('당첨 번호를 입력하면, 로또에 대한 통계를 확인할 수 있다.', () => {
   const lottoPrize = new LottoPrize();
+  const lottoBundle = new LottoBundle();
 
   beforeEach(() => {
     lottoPrize.initialize();
+    lottoBundle.initialize();
   });
 
-  const calculateLottoPrizeCount = (
-    lottoPrizeNumbers,
-    lottoBonusNumber,
-    userLottoNumbers,
-  ) => {
-    userLottoNumbers.forEach((numbers) => {
+  const calculateLottoPrizeCount = (lottoPrizeNumbers, lottoBonusNumber) => {
+    lottoBundle.lottos.forEach((lotto) => {
       lottoPrize.countPrize({
-        sameNumberCount: returnSameNumberCount(numbers, lottoPrizeNumbers),
-        numbers: numbers,
+        sameNumberCount: returnSameNumberCount(
+          lotto.numbers,
+          lottoPrizeNumbers,
+        ),
+        numbers: lotto.numbers,
         bonusNumber: lottoBonusNumber,
       });
     });
@@ -135,44 +136,36 @@ describe('당첨 번호를 입력하면, 로또에 대한 통계를 확인할 �
   test('몇 개의 로또가 당첨되었는지 확인할 수 있다.', () => {
     const lottoPrizeNumbers = [1, 2, 3, 4, 5, 6];
     const lottoBonusNumber = 7;
-    const userLottoNumbers = [
-      [1, 2, 3, 4, 5, 6], // first prize
-      [1, 2, 3, 4, 5, 7], // second prize
-      [1, 2, 3, 4, 5, 8], // third prize
-      [1, 2, 3, 4, 8, 9], // fourth prize
-      [1, 2, 3, 8, 9, 10], // fifth prize
-    ];
+    const purchasedLottoCount = 6;
+    const firstPrizeLottoCount = 6;
 
-    calculateLottoPrizeCount(
-      lottoPrizeNumbers,
-      lottoBonusNumber,
-      userLottoNumbers,
-    );
+    random.generateRandomNumbers = jest
+      .fn()
+      .mockReturnValue([1, 2, 3, 4, 5, 6]); // first prize
 
-    PRIZE_NAMES.forEach((prizeName) => {
-      expect(lottoPrize.prizeCount[prizeName]).toBe(1);
-    });
+    lottoBundle.createLottoBundle(purchasedLottoCount);
+    calculateLottoPrizeCount(lottoPrizeNumbers, lottoBonusNumber);
+
+    expect(lottoPrize.prizeCount.first).toBe(firstPrizeLottoCount);
   });
 
   test('로또 당첨금액에 대한 수익률을 계산할 수 있다.', () => {
-    const inputMoney = LOTTO.PRICE_PER_TICKET * 2;
+    const purchasedLottoCount = 2;
+    const inputMoney = LOTTO.PRICE_PER_TICKET * purchasedLottoCount;
     const lottoPrizeNumbers = [1, 2, 3, 4, 5, 6];
     const lottoBonusNumber = 7;
-    const userLottoNumbers = [
-      [1, 2, 3, 4, 8, 9], // fourth prize
-      [1, 2, 3, 8, 9, 10], // fifth prize
-    ];
-    const prizeMoney = 55000;
+    const prizeMoney = 100000;
     const correctRateOfReturn = (
       ((prizeMoney - inputMoney) / inputMoney) *
       100
     ).toFixed(2);
 
-    calculateLottoPrizeCount(
-      lottoPrizeNumbers,
-      lottoBonusNumber,
-      userLottoNumbers,
-    );
+    random.generateRandomNumbers = jest
+      .fn()
+      .mockReturnValue([1, 2, 3, 4, 8, 9]); // fourth prize
+
+    lottoBundle.createLottoBundle(purchasedLottoCount);
+    calculateLottoPrizeCount(lottoPrizeNumbers, lottoBonusNumber);
     lottoPrize.calculateRateOfReturn(inputMoney);
 
     expect(lottoPrize.rateOfReturn).toBe(correctRateOfReturn);

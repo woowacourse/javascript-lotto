@@ -1,14 +1,17 @@
-const getRandomNumber = (max, min) =>
-  Math.floor(Math.random() * (max + 1 - min)) + min;
+const random = {
+  getRandomNumber(max, min) {
+    return Math.floor(Math.random() * (max + 1 - min)) + min;
+  },
 
-const generateRandomNumbers = ({ count, max, min }) => {
-  const randomNumbers = new Set();
+  generateRandomNumbers({ count, max, min }) {
+    const randomNumbers = new Set();
 
-  while (randomNumbers.size < count) {
-    randomNumbers.add(getRandomNumber(max, min));
-  }
+    while (randomNumbers.size < count) {
+      randomNumbers.add(this.getRandomNumber(max, min));
+    }
 
-  return Array.from(randomNumbers);
+    return Array.from(randomNumbers);
+  },
 };
 
-export default generateRandomNumbers;
+export default random;
