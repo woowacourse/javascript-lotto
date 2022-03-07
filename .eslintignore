@@ -5,7 +5,7 @@ cypress.json
 /docs/**
 /cypress/**
 index.html
-/src/js/__tests__/app.test.js
+/src/js/__tests__/**
 webpack.config.js
 /dist/**
 commitlint.config.js

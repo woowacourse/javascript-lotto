@@ -1,70 +1,122 @@
+import LottoVendor from '../model/LottoVendor.js';
+import LottoResult from '../model/LottoResult.js';
+import PurchaseView from '../view/PurchaseView.js';
+import IssuedTicketView from '../view/IssuedTicketView.js';
+import WinningNumbersView from '../view/WinningNumbersView.js';
+import ResultModalView from '../view/ResultModalView.js';
+import { moneyValidator } from '../validator/moneyValidator.js';
 import { on } from '../utils/event.js';
+import insertAutoComma from '../utils/autoComma.js';
 import EVENT from '../constants/event.js';
+import LOTTO from '../constants/lotto.js';
+import EXCEPTION from '../constants/exception.js';
 
-/**
- * @module controller/LottoController
- */
-/**
- * @class module:controller/LottoController.LottoController
- * @classdesc view와 model을 연결하는 controller
- */
 export default class LottoController {
-  constructor(model, purchaseView, issuedTicketView) {
-    this.model = model;
-    this.purchaseView = purchaseView;
-    this.issuedTicketView = issuedTicketView;
+  constructor() {
+    this.lottoVendor = new LottoVendor();
+    this.lottoResult = new LottoResult(this.lottoVendor);
+    this.purchaseView = new PurchaseView();
+    this.issuedTicketView = new IssuedTicketView();
+    this.winningNumbersView = new WinningNumbersView();
+    this.resultModalView = new ResultModalView();
+    this.toggleChecked = false;
     this.#subscribeViewEvents();
   }
 
-  /** @method purchaseLotto
-   * @description 뷰의 엘리먼트에서 발생하는 커스텀 이벤트를 구독하고, 발생이 감지되면 콜백함수를 호출한다.
-   */
   #subscribeViewEvents() {
-    on(this.purchaseView.$purchaseForm, EVENT.SUBMIT, (e) =>
-      this.#purchaseLotto(e.detail.money),
-    );
+    on(this.purchaseView.$purchaseForm, EVENT.SUBMIT_PURCHASE, (e) => this.#purchaseLotto(e.detail.money));
 
-    on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE, (e) =>
+    on(this.issuedTicketView.$lottoNumberToggle, EVENT.TOGGLE_LOTTO_DETAIL, (e) =>
       this.#toggleDetails(e.detail.checked),
     );
+
+    on(this.winningNumbersView.$winningNumbersForm, EVENT.SUBMIT_RESULT, (e) =>
+      this.#requestResult(e.detail.winningNumbers, e.detail.bonusNumber),
+    );
+
+    on(this.resultModalView.$restartButton, EVENT.CLICK_RESTART, () => this.#restart());
+
+    on(this.purchaseView.$purchaseInput, EVENT.PURCHASE_KEYUP, (e) => this.#keyupHandler(e.detail.target));
+
+    on(this.resultModalView.$closeMainButton, '@close-modal', () => this.#closeModal());
   }
 
-  /** @method purchaseLotto
-   * @param {number} money 로또를 구입하기 위해 입력된 금액
-   * @description 입력된 금액에 대해 유효성 검사를 하고, 모델에게 로또 번들을 만들도록 시키고, 뷰에게 렌더링을 하도록 시킨다.
-   */
-  #purchaseLotto(money) {
+  #purchaseLotto(userInputMoney) {
     try {
-      this.model.setMoney(money);
-      this.model.setCount();
-      this.model.setPenny();
-      this.model.createLottoBundle();
-      this.#renderLotto();
+      this.lottoVendor.paidMoney = LottoVendor.settleMoney(userInputMoney);
+      this.lottoVendor.createLottos();
+      const issuedLottos = [...this.lottoVendor.lottos];
+      this.issuedTicketView.showTicketContainer();
+      this.issuedTicketView.renderTicketCount(issuedLottos.length);
+      this.issuedTicketView.renderIssuedTickets(issuedLottos);
+      this.purchaseView.togglePurchasableLottoCountDisplay();
+      this.purchaseView.deactivatePurchaseForm();
+      this.winningNumbersView.toggleWinningNumbersDisplay();
     } catch (error) {
       alert(error.message);
     }
   }
 
-  /** @method renderLotto
-   * @description 구입한 로또의 개수만큼 렌더링할 것을 View에 요청한다.
-   */
-  #renderLotto() {
-    this.issuedTicketView.showTicketContainer();
-    this.issuedTicketView.renderTicketCount();
-    this.issuedTicketView.renderIssuedTickets();
-    this.purchaseView.renderPenny();
-    this.purchaseView.deactivatePurchaseForm();
+  #toggleDetails(checked) {
+    this.toggleChecked = checked;
+    this.issuedTicketView.toggleTicketDetails();
   }
 
-  /** @method toggleDetails
-   * @param {boolean} checked 로또 상세보기 toggle 버튼의 check 여부
-   */
-  #toggleDetails(checked) {
-    if (checked) {
-      this.issuedTicketView.showTicketDetails();
+  #requestResult(winningNumbers, bonusNumber) {
+    try {
+      this.lottoResult = new LottoResult(this.lottoVendor);
+      this.lottoResult.bonusNumber = bonusNumber;
+      this.lottoResult.winningNumbers = winningNumbers;
+      const { winningCounts, lottoYield, winningMoney } = this.lottoResult.getLottoResult();
+      this.issuedTicketView.highlightWinningTickets(this.lottoResult.resultList);
+      this.#renderResultModal(winningCounts, lottoYield, winningMoney);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  #renderResultModal(winningCounts, lottoYield, winningMoney) {
+    this.resultModalView.renderYield(this.lottoVendor.paidMoney, winningMoney, lottoYield);
+    this.resultModalView.renderWinningCounts(winningCounts);
+    this.resultModalView.toggleModalDisplay();
+  }
+
+  #restart() {
+    this.lottoVendor = new LottoVendor();
+    this.lottoResult = new LottoResult(this.lottoVendor);
+    this.purchaseView.removeInputValue();
+    this.purchaseView.activatePurchaseForm();
+    this.purchaseView.togglePurchasableLottoCountDisplay();
+    this.issuedTicketView.hideTicketContainer();
+    this.resultModalView.toggleModalDisplay();
+    this.winningNumbersView.removeInputValue();
+    this.winningNumbersView.toggleWinningNumbersDisplay();
+  }
+
+  #keyupHandler(target) {
+    try {
+      const moneyNumber = parseInt(target.value.replace(/,/g, ''), 10);
+      this.#preventGettingOverLimit(moneyNumber);
+      insertAutoComma(target);
+      this.purchaseView.renderPurchasableLottoCount(Math.floor(moneyNumber / LOTTO.PRICE_PER_TICKET) ?? 0);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  #preventGettingOverLimit(value) {
+    if (moneyValidator.isOverMaximum(value)) {
+      this.purchaseView.stopInputTyping(value);
+      throw new Error(EXCEPTION.INVALID_RANGE.MAXIMUM);
+    }
+  }
+
+  #closeModal() {
+    this.resultModalView.toggleModalDisplay();
+
+    if (this.toggleChecked) {
       return;
     }
-
-    this.issuedTicketView.hideTicketDetails();
+    this.issuedTicketView.$lottoNumberToggle.click();
   }
 }

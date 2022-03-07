@@ -6,4 +6,24 @@ label {
   font-size: 34px;
   margin: 0 8px 0 0;
   vertical-align: middle;
+  float: left;
+}
+
+.bonus-label {
+  text-align: right;
+}
+
+#purchasable-lotto-div {
+  margin: 14px 2px;
+  padding: 2px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--secondary-lighten);
+  border-radius: 5px;
+}
+
+#purchasable-lotto-count {
+  color: var(--primary);
+  font-weight: bolder;
 }

@@ -12,11 +12,13 @@ button {
   flex: none;
   order: 0;
   flex-grow: 0;
+  height: 36px;
+  margin: 4px 0;
 }
 
 button:disabled {
   background: var(--secondary);
-  cursor: not-allowed;
+  cursor: default;
 }
 
 /* 키보드로 버튼에 포커스 시 */
@@ -31,6 +33,14 @@ button:focus:not(:focus-visible) {
 
 #purchase-button {
   width: 56px;
-  height: 36px;
-  margin-left: 8px;
+  float: right;
+}
+
+#result-button {
+  width: 100%;
+}
+
+#restart-button {
+  margin: 0;
+  width: 152px;
 }

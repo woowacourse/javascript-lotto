@@ -5,6 +5,8 @@
 @import './toggle.css';
 @import './input.css';
 @import './display.css';
+@import './modal.css';
+@import './ball.css';
 
 body {
   font-family: Roboto;
@@ -21,4 +23,5 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 52px 0 0 0;
 }

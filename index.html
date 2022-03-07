@@ -13,9 +13,13 @@
         <h2 hidden>로또 구매 양식</h2>
         <form id="purchase-form">
           <label for="purchase-input">구입할 금액을 입력해주세요.</label>
-          <input id="purchase-input" type="number" placeholder="금액" />
+          <input id="purchase-input" type="text" placeholder="금액" autofocus autocomplete="off" />
           <button id="purchase-button" type="submit">구입</button>
+          <input id="purchase-input-reset" type="reset" hidden />
         </form>
+        <div id="purchasable-lotto-div">
+          입력하신 금액으로 <span id="purchasable-lotto-count">0</span>개의 로또를 구입할 수 있습니다.
+        </div>
       </section>
       <section id="ticket-container" class="hidden">
         <h2 hidden>로또 발급 확인</h2>
@@ -27,6 +31,108 @@
           <span class="slider round"></span>
         </label>
       </section>
+      <section id="winning-numbers-container" class="hidden">
+        <h2 hidden>로또 당첨 확인 요청</h2>
+        <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
+        <form id="winning-numbers-form">
+          <div class="winning-numbers-div">
+            <label for="basic-number">당첨 번호</label>
+            <label class="bonus-label" for="bonus-number">보너스 번호</label>
+            <div>
+              <input
+                id="basic-number"
+                class="basic-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+                maxlength="2"
+                step="1"
+              />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" step="1" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" step="1" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" step="1" />
+              <input class="basic-input" type="number" required min="1" max="45" maxlength="2" step="1" />
+              <input
+                id="last-basic-input"
+                class="basic-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+                maxlength="2"
+                step="1"
+              />
+            </div>
+            <div class="bonus-input">
+              <input
+                id="bonus-number"
+                class="basic-input bonus-input"
+                type="number"
+                required
+                min="1"
+                max="45"
+                maxlength="2"
+                step="1"
+              />
+            </div>
+          </div>
+          <button id="result-button" type="submit">결과 확인하기</button>
+          <input id="winning-numbers-reset" type="reset" hidden />
+        </form>
+      </section>
+
+      <!--Modal-->
+      <div id="modal-container" class="modal-background">
+        <h2 hidden>로또 당첨 통계 확인 창</h2>
+        <div class="modal">
+          <div class="x-shape"></div>
+          <h3>🏆 당첨 통계 🏆</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td><span id="three-count"></span>개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td><span id="four-count"></span>개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td><span id="five-count"></span>개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td><span id="five-bonus-count"></span>개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td><span id="six-count"></span>개</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="result-span">
+            당신은 <span id="purchase-money-span"></span>원으로 <br />총 <span id="lotto-profit-span"></span>원의 수익을
+            거두었으며,<br />
+            총 수익률은 <span id="lotto-yield-span"></span>%입니다.
+          </div>
+          <button id="close-modal-button">당첨된 로또 확인하기</button>
+          <button id="restart-button">다시 시작하기</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -1,22 +1,15 @@
-const getRandomNumber = (max, min) =>
-  Math.floor(Math.random() * (max + 1 - min)) + min;
+const getRandomNumber = (max, min) => Math.floor(Math.random() * (max + 1 - min)) + min;
 
-const isExcludedNumber = (numbers, number) => {
-  const numbersSet = new Set(numbers);
-  return !numbersSet.has(number);
+export const isNumbersDuplicated = (numbers) => {
+  return numbers ? numbers.length !== new Set(numbers).size : true;
 };
 
 const generateRandomNumbers = ({ count, max, min }) => {
-  const randomNumbers = [];
-
-  while (randomNumbers.length < count) {
-    const randomNumber = getRandomNumber(max, min);
-    if (isExcludedNumber(randomNumbers, randomNumber)) {
-      randomNumbers.push(randomNumber);
-    }
+  let targetNumbers = null;
+  while (isNumbersDuplicated(targetNumbers)) {
+    targetNumbers = Array.from({ length: count }).map(() => getRandomNumber(max, min));
   }
-
-  return randomNumbers;
+  return targetNumbers;
 };
 
 export default generateRandomNumbers;

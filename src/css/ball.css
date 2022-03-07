@@ -1,0 +1,56 @@
+.ball {
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: red;
+  display: inline-block;
+  color: #fff;
+  margin: 0 2px;
+  vertical-align: middle;
+}
+
+.ball[data-number='yellow'] {
+  background-color: var(--ball-yellow);
+}
+
+.ball[data-number='blue'] {
+  background-color: var(--ball-blue);
+}
+
+.ball[data-number='red'] {
+  background-color: var(--ball-red);
+}
+.ball[data-number='black'] {
+  background-color: var(--ball-black);
+}
+.ball[data-number='green'] {
+  background-color: var(--ball-green);
+}
+
+.ticket-numbers:after {
+  padding: 3px;
+  vertical-align: middle;
+  border-radius: 6px;
+  color: var(--white);
+}
+.ticket-numbers[data-rank='firstPlace']:after {
+  background-color: goldenrod;
+  content: '1등당첨';
+}
+.ticket-numbers[data-rank='secondPlace']:after {
+  background-color: blueviolet;
+  content: '2등당첨';
+}
+.ticket-numbers[data-rank='thirdPlace']:after {
+  background-color: royalblue;
+  content: '3등당첨';
+}
+.ticket-numbers[data-rank='fourthPlace']:after {
+  background-color: saddlebrown;
+  content: '4등당첨';
+}
+.ticket-numbers[data-rank='fifthPlace']:after {
+  background-color: teal;
+  content: '5등당첨';
+}
