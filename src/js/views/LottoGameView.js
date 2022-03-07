@@ -1,5 +1,5 @@
 import { LOTTO_NUMBER, SELECTOR } from "../utils/constants.js";
-import { $, setDisabled, setEnabled } from "../utils/dom.js";
+import { $, setDisabled, setEnabled, setHidden, setShow } from "../utils/dom.js";
 
 export default class LottoGameView {
   constructor() {
@@ -49,11 +49,11 @@ export default class LottoGameView {
   }
 
   #showWinningInput() {
-    this.winningContainer.removeAttribute("hidden");
+    setShow(this.winningContainer);
   }
 
   #hideWinningInput() {
-    this.winningContainer.setAttribute("hidden", true);
+    setHidden(this.winningContainer);
   }
 
   #resetPurchaseInfomation() {
