@@ -50,6 +50,7 @@ describe('로또 구입 금액을 입력하면, 금액에 해당하는 로또를
     const lottoBundle = new LottoBundle();
 
     lottoBundle.createLottoBundle(inputMoney / LOTTO.PRICE_PER_TICKET);
+
     expect(lottoBundle.lottos.length).toBe(lottoCount);
   });
 });
@@ -81,26 +82,22 @@ describe('소비자는 자동 구매를 할 수 있어야 한다.', () => {
 });
 
 describe('사용자가 유효하지 않은 값을 입력했을 경우, 에러를 발생시켜야 한다.', () => {
-  const validateErrorMessage = (invalidMoney, errorMessage) => {
-    try {
-      validateMoney(invalidMoney);
-    } catch (error) {
-      expect(error.message).toBe(errorMessage);
-    }
-  };
-
   test(`사용자가 ${autoComma(
     LOTTO.PRICE_PER_TICKET,
   )}원이하의 금액을 투입했을 경우 에러를 발생시킨다.`, () => {
     const invalidMoney = LOTTO.PRICE_PER_TICKET - LOTTO.PRICE_PER_TICKET / 2;
 
-    validateErrorMessage(invalidMoney, EXCEPTION.INVALID_RANGE.MINIMUM);
+    expect(() => validateMoney(invalidMoney)).toThrowError(
+      EXCEPTION.INVALID_RANGE.MINIMUM,
+    );
   });
 
   test('사용자가 입력할 수 있는 최대 금액을 초과하여 투입했을 경우 에러를 발생시킨다.', () => {
     const invalidMoney = Number.MAX_SAFE_INTEGER;
 
-    validateErrorMessage(invalidMoney, EXCEPTION.INVALID_RANGE.MAXIMUM);
+    expect(() => validateMoney(invalidMoney)).toThrowError(
+      EXCEPTION.INVALID_RANGE.MAXIMUM,
+    );
   });
 
   test(`사용자가 ${autoComma(
@@ -108,7 +105,9 @@ describe('사용자가 유효하지 않은 값을 입력했을 경우, 에러를
   )}원 단위로 금액을 투입하지 않았을 경우 에러를 발생시킨다.`, () => {
     const invalidMoney = LOTTO.PRICE_PER_TICKET + LOTTO.PRICE_PER_TICKET / 2;
 
-    validateErrorMessage(invalidMoney, EXCEPTION.INVALID_UNIT);
+    expect(() => validateMoney(invalidMoney)).toThrowError(
+      EXCEPTION.INVALID_UNIT,
+    );
   });
 });
 
@@ -178,31 +177,21 @@ describe('당첨 번호를 입력하면, 로또에 대한 통계를 확인할 �
 });
 
 describe('당첨 번호를 잘못 입력하면 오류를 발생시킨다.', () => {
-  const validateErrorMessage = (invalidNumbers, errorMessage) => {
-    try {
-      validatePrizeNumber(invalidNumbers);
-    } catch (error) {
-      expect(error.message).toBe(errorMessage);
-    }
-  };
-
   test('사용자가 당첨 번호나 보너스 번호를 전부 입력하지 않은 경우 오류를 발생시킨다.', () => {
     const invalidPrizeNumbers = [1, 2, 3, 4, 5, NaN];
     const invalidBonusNumber = NaN;
 
-    validateErrorMessage(
-      [...invalidPrizeNumbers, invalidBonusNumber],
-      EXCEPTION.BLANK_PRIZE_NUMBER,
-    );
+    expect(() =>
+      validatePrizeNumber([...invalidPrizeNumbers, invalidBonusNumber]),
+    ).toThrowError(EXCEPTION.BLANK_PRIZE_NUMBER);
   });
 
   test('중복되는 당첨 번호와 보너스 번호가 존재할 경우 오류를 발생시킨다.', () => {
     const invalidPrizeNumbers = [1, 2, 3, 4, 5, 5];
     const invalidBonusNumber = 5;
 
-    validateErrorMessage(
-      [...invalidPrizeNumbers, invalidBonusNumber],
-      EXCEPTION.DUPLICATED_NUMBER,
-    );
+    expect(() =>
+      validatePrizeNumber([...invalidPrizeNumbers, invalidBonusNumber]),
+    ).toThrowError(EXCEPTION.DUPLICATED_NUMBER);
   });
 });
