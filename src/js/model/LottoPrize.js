@@ -56,12 +56,12 @@ export default class LottoPrize {
 
   calculateRateOfReturn(inputMoney) {
     const firstValue = inputMoney;
-    const lastValue =
-      this.prizeCount.first * PRIZE_MONEY.FIRST +
-      this.prizeCount.second * PRIZE_MONEY.SECOND +
-      this.prizeCount.third * PRIZE_MONEY.THIRD +
-      this.prizeCount.fourth * PRIZE_MONEY.FOURTH +
-      this.prizeCount.fifth * PRIZE_MONEY.FIFTH;
+    const lastValue = Object.keys(this.prizeCount).reduce(
+      (accumulatedValue, rankKey) =>
+        this.prizeCount[rankKey] * PRIZE_MONEY[rankKey.toUpperCase()] +
+        accumulatedValue,
+      0,
+    );
 
     this.rateOfReturn = ((lastValue - firstValue) / firstValue) * 100;
   }
