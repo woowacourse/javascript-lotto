@@ -33,14 +33,20 @@ export default class LottoMachineController {
     const lottos = this.model.getLottos();
     const { lottoCount, purchasedLottos } = this.purchaseLotto(purchaseMoney);
 
+    const resultEventType = 'submitResult';
+    const resultEvent = new CustomEvent(resultEventType, {
+      detail: { purchasedLottos, purchaseMoney, resetCallback: this.reset.bind(this) },
+      cancelable: true,
+    });
+
     if (isEmptyArray(lottos)) {
       this.view.purchasedLottoView.rendering(lottoCount, purchasedLottos);
-      this.view.winningNumberView.rendering(purchasedLottos, purchaseMoney, this.reset.bind(this));
+      this.view.winningNumberView.rendering({ resultEvent, resultEventType });
       return;
     }
     if (this.tryRePurchase()) {
       this.view.purchasedLottoView.reflow(lottoCount, purchasedLottos);
-      this.view.winningNumberView.reflow(purchasedLottos, purchaseMoney, this.reset.bind(this));
+      this.view.winningNumberView.reflow({ resultEvent, resultEventType });
       return;
     }
 

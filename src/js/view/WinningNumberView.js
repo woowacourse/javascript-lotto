@@ -90,13 +90,11 @@ export default class WinningNumberView {
   }
 
   #addEvent(props) {
-    const { purchasedLottos, purchaseMoney, resetCallback } = props;
+    const { resultEvent, resultEventType } = props;
     const resultBtn = this.container.querySelector('#winning-number-form');
     const winningNumbers = this.container.querySelectorAll('.winning-number-input');
 
-    const resultEvent = new CustomEvent('submitResult', { detail: { purchasedLottos, purchaseMoney, resetCallback }, cancelable: true });
-
-    resultBtn.addEventListener('submitResult', this.onSubmitHandler.bind(this));
+    resultBtn.addEventListener(resultEventType, this.onSubmitHandler.bind(this));
     resultBtn.addEventListener('submit', (e) => {
       e.preventDefault();
       resultBtn.dispatchEvent(resultEvent);
@@ -139,13 +137,13 @@ export default class WinningNumberView {
     }
   }
 
-  rendering(purchasedLottos, purchaseMoney, resetCallback) {
+  rendering(resultEvent, resultEventType) {
     this.#paint();
     this.#render();
-    this.#addEvent({ purchasedLottos, purchaseMoney, resetCallback });
+    this.#addEvent(resultEvent, resultEventType);
   }
 
-  reflow(purchasedLottos, purchaseMoney, resetCallback) {
+  reflow() {
     this.#render();
   }
 
