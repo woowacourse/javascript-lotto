@@ -11,13 +11,16 @@ import {
   renderPurchasedLottoListContentIsActive,
   renderRateOfReturnResult,
   renderLottoWinningCount,
+  removePurchasedLottoList,
+  removeLastLottoNumberContent,
+  removePurchasedLottoListContent,
 } from './views/render.js';
 import CalculateLottoPrize from './modules/calculateLottoPrize.js';
 import changeLottoNumberInputFocus from './modules/changeLottoNumberInputFocus.js';
 import {
-  disableLottoPriceInput,
-  disableLottoWinningNumberInput,
-} from './views/makeDisabledElements.js';
+  toggleDisabledLottoPriceInput,
+  toggleDisabledLottoWinningNumberInput,
+} from './views/toggleDisabledElements.js';
 import {
   initLottoPriceInputElement,
   initLottoWinningNumberElement,
@@ -50,10 +53,10 @@ export default class App {
       'click',
       toggleLottoResultModal,
     );
-    $('.restart-button').addEventListener('click', e => {
-      e.preventDefault();
-      location.reload();
-    });
+    $('.restart-button').addEventListener(
+      'click',
+      this.handleReStartButtonClick,
+    );
   }
   handleLottoFormSubmitEvent(e) {
     e.preventDefault();
@@ -68,7 +71,7 @@ export default class App {
     }
     this.lottoPrice = lottoPrice;
     this.lottoPriceValid = true;
-    disableLottoPriceInput();
+    toggleDisabledLottoPriceInput();
   }
 
   handleDrawLotto() {
@@ -107,7 +110,7 @@ export default class App {
       initLottoWinningNumberElement(lottoWinningInputElementList);
       return;
     }
-    disableLottoWinningNumberInput(lottoWinningInputElementList);
+    toggleDisabledLottoWinningNumberInput(lottoWinningInputElementList);
     const lottoPrize = new CalculateLottoPrize(
       this.lottoList,
       lastLottoNumbers,
@@ -115,6 +118,23 @@ export default class App {
     renderRateOfReturnResult(lottoPrize.getLottoRateOfReturn());
     renderLottoWinningCount(lottoPrize.getLottoRankList());
     toggleLottoResultModal();
+  };
+  handleReStartButtonClick = e => {
+    e.preventDefault();
+    const lottoWinningInputElementList = document.querySelectorAll(
+      '.last-lotto-winning-number-input',
+    );
+    this.lottoPrice = 0;
+    this.lottoPriceValid = false;
+    this.lottoList = [];
+    initLottoPriceInputElement();
+    initLottoWinningNumberElement(lottoWinningInputElementList);
+    toggleDisabledLottoPriceInput();
+    toggleDisabledLottoWinningNumberInput(lottoWinningInputElementList);
+    toggleLottoResultModal();
+    removePurchasedLottoList();
+    removePurchasedLottoListContent();
+    removeLastLottoNumberContent();
   };
 }
 
