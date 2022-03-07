@@ -1,6 +1,5 @@
 import { $ } from '../utils/element-manager';
 import { SELECTOR } from '../constants/selector';
-import { KEYCODE } from '../constants/setting';
 import InputView from './InputView';
 
 export default class MoneyInputView extends InputView {

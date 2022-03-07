@@ -1,9 +1,11 @@
 import { SELECTOR } from '../../constants/selector';
 
 export const makeLottosCountTemplate = (count) => `총 ${count}개를 구매하였습니다.`;
+
 export const makeLottoTemplate = (numbers) => `
   <div class="${SELECTOR.CLASS.LOTTO_ITEM}"><span>🎟️</span> <span class="${SELECTOR.CLASS.LOTTO_ITEM_NUMBER}">${numbers}</span></div>
   `;
+
 export const lottoListSectionTemplate = `
 <h2 hidden>로또 번호 목록</h2>
 <div class="lotto-title">
@@ -18,6 +20,7 @@ export const lottoListSectionTemplate = `
   </div>
 </div>
 `;
+
 export const winningNumberSectionTemplate = `
 <h2 hidden>결과 확인</h2>
         <form id="winning-number-form">
