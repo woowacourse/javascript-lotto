@@ -17,6 +17,7 @@ export default class LottoPurchaseInputView {
 
   cleanLottoPurchaseInput() {
     this.lottoPurchaseInput.value = '';
+    this.purchaseMoneyValidateText.textContent = '';
   }
 
   handlePurchaseLottoInput(event) {
