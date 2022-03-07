@@ -11,7 +11,7 @@ export default class LottoController {
   constructor() {
     this.lottoGameModel = new LottoGame();
     this.lottoGameView = new LottoGameView();
-    this.modalView = new ModalView(this.setClickRestart);
+    this.modalView = new ModalView(this.setClickRestart.bind(this));
 
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
@@ -20,7 +20,6 @@ export default class LottoController {
     this.winningNumberInputs = $$(SELECTOR.WINNING_NUMBER_INPUT);
     this.resultButton = $(SELECTOR.RESULT_BUTTON);
     this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
-    this.purchaseInput.focus();
   }
 
   bindEvents() {
@@ -39,7 +38,6 @@ export default class LottoController {
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
       this.lottoGameModel.generateLottoTickets(lottoCount);
       this.lottoGameView.showGameView(lottoCount);
-      this.lottoGameView.setAutoCursor(this.winningNumberInputs, this.bonusNumberInput);
     } catch ({ message }) {
       alert(message);
     }
@@ -69,9 +67,9 @@ export default class LottoController {
     }
   }
 
-  setClickRestart = () => {
+  setClickRestart() {
     this.lottoGameView.resetGameView();
     this.purchaseInput.focus();
     clearInput(this.purchaseInput, ...this.winningNumberInputs, this.bonusNumberInput);
-  };
+  }
 }

@@ -8,7 +8,10 @@ export default class LottoGameView {
     this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.purchaseButton = $(SELECTOR.PURCHASE_BUTTON);
+    this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
     this.winningContainer = $(SELECTOR.WINNING_CONTAINER);
+
+    this.winningContainer.addEventListener("keyup", this.#setAutoCursor.bind(this));
   }
 
   resetGameView() {
@@ -78,35 +81,18 @@ export default class LottoGameView {
     this.lottoNumberList.replaceChildren();
   }
 
-  setAutoCursor(winningInputs, bonusInput) {
-    winningInputs[0].focus();
+  #setAutoCursor({ target }) {
+    const { nextElementSibling: nextWinningNumberInput } = target;
 
-    winningInputs.forEach((winningInput) => {
-      winningInput.addEventListener("keyup", () => {
-        this.#moveToNextInput(winningInput, bonusInput);
-      });
-    });
-  }
+    if (target.value.length >= LOTTO_NUMBER.DIGIT_MAX) {
+      target.value = target.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
 
-  #preventOverInput(input) {
-    input.value = input.value.substr(0, LOTTO_NUMBER.DIGIT_MAX);
-  }
-
-  #moveToNextInput(winningInput, bonusInput) {
-    const { nextElementSibling } = winningInput;
-
-    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && nextElementSibling) {
-      this.#preventOverInput(winningInput);
-      nextElementSibling.focus();
-    }
-    if (winningInput.value.length >= LOTTO_NUMBER.DIGIT_MAX && !nextElementSibling) {
-      bonusInput.focus();
-    }
-
-    bonusInput.addEventListener("keyup", () => {
-      if (bonusInput.value.length >= LOTTO_NUMBER.DIGIT_MAX) {
-        this.#preventOverInput(bonusInput);
+      if (nextWinningNumberInput) {
+        nextWinningNumberInput.focus();
       }
-    });
+      if (!nextWinningNumberInput) {
+        this.bonusNumberInput.focus();
+      }
+    }
   }
 }
