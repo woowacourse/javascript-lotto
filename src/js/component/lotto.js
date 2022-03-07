@@ -5,18 +5,20 @@ import {
 } from '../constants/constant.js';
 
 export default class Lotto {
-  numbers = [];
+  constructor() {
+    this.numbers = [];
+  }
 
   setLottoNumbers = () => {
     while (this.numbers.length === 0) {
-      const numberList = this.makeRandomNumberList();
-      if (this.isUniqueLottoNumber(numberList)) {
+      const numberList = this.#makeRandomNumberList();
+      if (this.#isUniqueLottoNumber(numberList)) {
         this.numbers = numberList;
       }
     }
   };
 
-  makeRandomNumberList = () => {
+  #makeRandomNumberList() {
     const randomNumberList = [];
     for (let i = 0; i < NUMBER_LIST_LENGTH; i++) {
       randomNumberList.push(
@@ -26,7 +28,7 @@ export default class Lotto {
     return randomNumberList;
   };
 
-  isUniqueLottoNumber = lottoNumbers => {
+  #isUniqueLottoNumber(lottoNumbers) {
     return lottoNumbers.length === new Set(lottoNumbers).size;
   };
 }

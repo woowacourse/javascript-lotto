@@ -17,7 +17,7 @@ export const getWinningCount = (lottoList, winningNumberList) => {
     sameSix: 0,
   };
   winningNumberList.pop();
-
+  
   for (let i = 0; i < lottoList.length; i++) {
     const sameList = lottoList[i].filter(num =>
       winningNumberList.includes(num),

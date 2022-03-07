@@ -17,5 +17,5 @@ export const drawLotto = lottoPrice => {
 };
 
 export const getNumberOfLotto = value => {
-  return value / LOTTO_PRICE;
+  return Math.floor(value / LOTTO_PRICE);
 };

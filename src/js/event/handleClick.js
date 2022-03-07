@@ -1,4 +1,4 @@
-import { DOM, $app, $modal } from '../utils/dom.js';
+import { DOM, $, $app } from '../utils/dom.js';
 
 import { toggleButton } from '../core/toggleButton.js';
 import {
@@ -31,7 +31,7 @@ export const handleClick = function (e) {
 };
 
 const closeModal = () => {
-  $modal.remove();
+  $('#modal').remove();
   DOM.toggleClass($app, 'disabled');
 };
 

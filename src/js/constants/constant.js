@@ -1,10 +1,10 @@
+//로또의 속성 상수
 export const LOTTO_PRICE = 1000;
-
 export const RANDOM_MIN = 1;
 export const RANDOM_MAX = 45;
-
 export const NUMBER_LIST_LENGTH = 6;
 
+//로또의 상금 상수
 export const REWARD_SAME_THREE = 5000;
 export const REWARD_SAME_FOUR = 50000;
 export const REWARD_SAME_FIVE = 1500000;

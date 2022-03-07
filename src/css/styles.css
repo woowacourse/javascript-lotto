@@ -47,9 +47,9 @@ button {
   flex-direction: column;
   height: fit-content;
   width: 414px;
-  padding: 52px 16px 52px 16px;
+  padding: 52px 16px;
   background-color: var(--app-background-color);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--table-border-color);
   border-radius: 5px;
 }
 
