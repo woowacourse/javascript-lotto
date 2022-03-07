@@ -1,14 +1,13 @@
-import { $, replaceHTML } from '../utils/dom.js';
-import { ID_SELECTOR, CLASS_NAME } from '../constants.js';
-import View from '../core/View.js';
+import { $, replaceHTML } from '../utils/dom';
+import { ID_SELECTOR, CLASS_NAME } from '../constants';
+import View from '../core/View';
 
 export default class LottoListView extends View {
   _configureDOM() {
-    this.$lottoListSection = $(ID_SELECTOR.LOTTO_LIST_SECTION);
-    this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS);
-    this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION);
-    this.$toggle = $(ID_SELECTOR.TOGGLE);
-    this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT);
+    this.$lottoLists = $(ID_SELECTOR.LOTTO_LISTS, this.container);
+    this.$lottoListDescription = $(ID_SELECTOR.LOTTO_LIST_DESCRIPTION, this.container);
+    this.$toggle = $(ID_SELECTOR.TOGGLE, this.container);
+    this.$toggleInput = $(ID_SELECTOR.TOGGLE_INPUT, this.container);
   }
 
   _bindEvents() {
@@ -19,30 +18,25 @@ export default class LottoListView extends View {
     });
   }
 
-  showLottoListSection(lottoList) {
-    this.#displayLottoListSection();
-    this.#showDescription(lottoList.length);
-    this.#showLottoList(lottoList);
-  }
-
-  #displayLottoListSection() {
-    this.$lottoListSection.classList.remove(CLASS_NAME.LOTTO_LIST_SECTION_DISPLAY_NONE);
+  renderLottoListSection(lottos) {
+    this.show();
+    this.#showDescription(lottos.length);
+    replaceHTML(this.$lottoLists, this.templateLottoList(lottos));
   }
 
   #showDescription(quantity) {
     this.$lottoListDescription.textContent = `총 ${quantity}개를 구매하였습니다.`;
   }
 
-  #showLottoList(lottoList) {
-    const template = lottoList
+  templateLottoList(lottos) {
+    return lottos
       .map(
         lotto => `
         <li class="${CLASS_NAME.LOTTO_LIST}">
           <span class="${CLASS_NAME.LOTTO_LIST_TICKET}">🎟️</span>
-          <span class="${CLASS_NAME.LOTTO_LIST_NUMBERS}">${[...lotto.values()].join(', ')}</span>
+          <span class="${CLASS_NAME.LOTTO_LIST_NUMBERS}">${lotto.join(', ')}</span>
         </li>`,
       )
       .join('');
-    replaceHTML(this.$lottoLists, template);
   }
 }

@@ -1,16 +1,28 @@
-import { $ } from '../utils/dom.js';
-import { ID_SELECTOR } from '../constants.js';
-import View from '../core/View.js';
+import { ID_SELECTOR } from '../constants';
+import View from '../core/View';
+import { $, enableElement, disableElement, clearInputValue } from '../utils/dom';
 
 export default class PurchaseFormView extends View {
   _configureDOM() {
-    this.$purchaseForm = $(ID_SELECTOR.PURCHASE_FORM);
+    this.$input = this.container.elements.cash;
+    this.$submitButton = $(ID_SELECTOR.PURCHASE_SUBMIT_BUTTON, this.container);
   }
 
   _bindEvents() {
-    this.$purchaseForm.addEventListener('submit', event => {
+    this.container.addEventListener('submit', event => {
       event.preventDefault();
-      this.props.submitCashHandler(event.target.elements.cash.value);
+      this.props.submitCashHandler(this.$input.value);
     });
+  }
+
+  completeSubmit() {
+    disableElement(this.$input);
+    disableElement(this.$submitButton);
+  }
+
+  reset() {
+    enableElement(this.$input);
+    enableElement(this.$submitButton);
+    clearInputValue(this.$input);
   }
 }
