@@ -4,7 +4,6 @@
     position: fixed;
     left: 0;
     top: 0;
-    display: none;
     align-items: center;
     justify-content: center;
     background: rgba( 0, 0, 0, 0.5 );

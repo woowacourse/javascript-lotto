@@ -18,7 +18,8 @@ export class LottoModalView {
     $(
       DOM.ID.LOTTO_RESULT_RATIO
     ).textContent = `당신의 총 수익률은 ${machine.profitRate}%입니다.`;
-    this.$container.style.display = 'flex';
+    this.$container.classList.add('flex');
+    this.$container.classList.remove('hide');
     this.bindEventsToModalBtn();
   }
 
@@ -34,6 +35,7 @@ export class LottoModalView {
     this.lottoView.restart();
   }
   closeModal() {
-    this.$container.style.display = 'none';
+    this.$container.classList.add('hide');
+    this.$container.classList.remove('flex');
   }
 }
