@@ -38,12 +38,10 @@ export default class LottosModel {
 
   set winningNumberList(numberList) {
     const arrayToNumberList = numberList.map((value) => Number(value));
-    const { LOTTO_NUMBER_LENGTH, BONUS_NUMBER_LENGTH } = LOTTO_SETTING;
+    const { LOTTO_NUMBER_LENGTH } = LOTTO_SETTING;
 
     this.#winningNumberList = arrayToNumberList.slice(0, LOTTO_NUMBER_LENGTH);
-    this.#bonusNumber = arrayToNumberList
-      .slice(LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_LENGTH + BONUS_NUMBER_LENGTH)
-      .shift();
+    this.#bonusNumber = arrayToNumberList[arrayToNumberList.length - 1];
   }
 
   #isBonusWinner(lottoNumberList, matchCount) {
@@ -69,7 +67,7 @@ export default class LottosModel {
   }
 
   getWinningCount() {
-    const output = Array.from({ length: LOTTO_SETTING.RACKING_START_NUMBER }, () => 0);
+    const output = Array(LOTTO_SETTING.RACKING_START_NUMBER).fill(0);
     this.#lottos.forEach((lotto) => {
       const rankIndex = this.getWinningRank(lotto.pickedNumber);
       if (rankIndex >= LOTTO_SETTING.RACKING_START_NUMBER) {
