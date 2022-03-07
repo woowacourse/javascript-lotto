@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { $, disableElement, enableElement } from "../utils/dom.js";
+import { $, setElement } from "../utils/dom.js";
 import { validatePurchaseAmount } from "../utils/validation.js";
 
 export default class PurchaseAmountView extends View {
@@ -18,20 +18,15 @@ export default class PurchaseAmountView extends View {
     try {
       validatePurchaseAmount(purchaseAmount);
       this.handlers.get("submit").forEach((func) => func(purchaseAmount));
-      this.#disableForm();
+      this.manageAmountForm(true);
     } catch (error) {
       alert(error);
     }
   }
 
-  #disableForm() {
-    disableElement(this.purchaseInput);
-    disableElement(this.purchaseButton);
-  }
-
-  enableForm() {
-    enableElement(this.purchaseInput);
-    enableElement(this.purchaseButton);
+  manageAmountForm(isDisable) {
+    setElement(this.purchaseInput, isDisable);
+    setElement(this.purchaseButton, isDisable);
   }
 
   resetPurchaseValue() {

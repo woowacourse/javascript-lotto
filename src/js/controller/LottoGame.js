@@ -58,7 +58,7 @@ export default class LottoGame {
     this.lottoResultModel.resetLottoResult();
     this.purchaseAmountView.resetPurchaseValue();
     this.winningNumberView.resetWinningNumbersValue();
-    this.purchaseAmountView.enableForm();
+    this.purchaseAmountView.manageAmountForm(false);
     this.purchasedLottoView.resetPurchasedLotto();
     this.purchasedLottoView.renderPurchasedInfomation(this.lottoModel.getLottoList.length);
   }

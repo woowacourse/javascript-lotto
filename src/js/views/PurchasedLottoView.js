@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { $, disableElement, enableElement } from "../utils/dom.js";
+import { $, setElement } from "../utils/dom.js";
 import { SHOW_NUMBERS_CLASS } from "../utils/constants.js";
 
 export default class PurchasedLottoView extends View {
@@ -43,16 +43,20 @@ export default class PurchasedLottoView extends View {
   }
 
   handlePurchasedLotto(lottoCount) {
-    enableElement(this.switchInput);
+    this.#manageSwitchInput(false);
     this.renderLottoIcons(lottoCount);
     this.renderPurchasedInfomation(lottoCount);
   }
 
   resetPurchasedLotto() {
-    disableElement(this.switchInput);
+    this.#manageSwitchInput(true);
     this.lottoNumberList.classList.remove(SHOW_NUMBERS_CLASS);
     this.switchInput.checked = false;
     this.#resetLottoList();
+  }
+
+  #manageSwitchInput(isDisable) {
+    setElement(this.switchInput, isDisable);
   }
 
   #resetLottoList() {
