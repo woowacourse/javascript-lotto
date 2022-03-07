@@ -1,6 +1,8 @@
 import LottoGame from "../model/LottoGame.js";
-import LottoGameView from "../views/LottoGameView.js";
+import LottoListView from "../views/LottoListView.js";
 import ModalView from "../views/ModalView.js";
+import PurchaseView from "../views/PurchaseView.js";
+import WinningNumberView from "../views/WinningNumberView.js";
 
 import { $, $$ } from "../utils/dom.js";
 import { SELECTOR, AMOUNT } from "../utils/constants.js";
@@ -9,23 +11,23 @@ import { clearInput } from "../utils/general.js";
 
 export default class LottoController {
   constructor() {
-    this.lottoGameModel = new LottoGame();
-    this.lottoGameView = new LottoGameView();
-    this.modalView = new ModalView(this.setClickRestart.bind(this));
-
-    this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
-    this.purchaseForm = $(SELECTOR.PURCHASE_FORM);
     this.winningNumberInputs = $$(SELECTOR.WINNING_NUMBER_INPUT);
-    this.resultButton = $(SELECTOR.RESULT_BUTTON);
     this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
-  }
+    this.modalContainer = $(SELECTOR.MODAL_CONTAINER);
 
-  bindEvents() {
-    this.purchaseForm.addEventListener("submit", this.#handlePurchase.bind(this));
-    this.switchInput.addEventListener("click", this.#handleSwitch.bind(this));
-    this.resultButton.addEventListener("click", this.#handleResult.bind(this));
+    this.lottoGameModel = new LottoGame();
+    this.purchaseView = new PurchaseView();
+    this.lottoListView = new LottoListView();
+    this.winningNumberView = new WinningNumberView();
+    this.modalView = new ModalView();
+
+    this.purchaseView.bindPurchase(this.#handlePurchase.bind(this));
+    this.lottoListView.bindSwitch(this.#handleSwitch.bind(this));
+    this.winningNumberView.bindResult(this.#handleResult.bind(this));
+    this.modalView.bindRestart(this.#handleRestart.bind(this));
+    this.modalView.bindCloseModal(this.#handleCloseModal.bind(this));
   }
 
   #handlePurchase(e) {
@@ -37,21 +39,25 @@ export default class LottoController {
 
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
       this.lottoGameModel.generateLottoTickets(lottoCount);
-      this.lottoGameView.showGameView(lottoCount);
+      this.winningNumberView.showWinningInput(lottoCount);
+      this.lottoListView.enableSwitch();
+      this.lottoListView.renderLottoIcons(lottoCount);
+      this.purchaseView.disablePurchaseForm();
+      this.purchaseView.renderPurchaseInfomation(lottoCount);
     } catch ({ message }) {
       alert(message);
     }
   }
 
   #handleSwitch() {
-    this.lottoGameView.resetLottoList();
+    this.lottoListView.resetLottoList();
 
     this.lottoNumberList.classList.toggle("show-numbers");
     if (this.lottoNumberList.classList.contains("show-numbers")) {
-      this.lottoGameView.renderLottoNumbers(this.lottoGameModel.getLottoList());
+      this.lottoListView.renderLottoNumbers(this.lottoGameModel.getLottoList());
       return;
     }
-    this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
+    this.lottoListView.renderLottoIcons(this.lottoGameModel.getLottoCount());
   }
 
   #handleResult() {
@@ -67,8 +73,18 @@ export default class LottoController {
     }
   }
 
-  setClickRestart() {
-    this.lottoGameView.resetGameView();
+  #handleCloseModal() {
+    this.modalContainer.classList.remove("show-modal");
+  }
+
+  #handleRestart() {
+    this.purchaseView.enablePurchaseForm();
+    this.purchaseView.resetPurchaseInfomation();
+    this.lottoListView.disableSwitch();
+    this.lottoListView.resetLottoList();
+    this.winningNumberView.hideWinningInput();
+    this.modalView.toggleModal();
+
     this.purchaseInput.focus();
     clearInput(this.purchaseInput, ...this.winningNumberInputs, this.bonusNumberInput);
   }

@@ -2,24 +2,23 @@ import { BONUS, REWARD, SELECTOR } from "../utils/constants";
 import { $, $$ } from "../utils/dom";
 
 export default class ModalView {
-  constructor(setClickRestart) {
-    this.setClickRestart = setClickRestart;
+  constructor() {
     this.modalContainer = $(SELECTOR.MODAL_CONTAINER);
     this.modalProfit = $(SELECTOR.MODAL_PROFIT);
     this.winningCounts = $$(SELECTOR.WINNING_COUNT);
     this.winningBonusCount = $(SELECTOR.WINNING_BONUS_COUNT);
-
-    $(SELECTOR.MODAL_CLOSE).addEventListener("click", this.#handleCloseModal.bind(this));
-    $(SELECTOR.MODAL_RESTART).addEventListener("click", this.#handleRestart.bind(this));
   }
 
-  #handleCloseModal() {
-    this.modalContainer.classList.remove("show-modal");
+  bindRestart(handler) {
+    $(SELECTOR.MODAL_RESTART).addEventListener("click", handler);
   }
 
-  #handleRestart() {
-    this.#handleCloseModal();
-    this.setClickRestart();
+  bindCloseModal(handler) {
+    $(SELECTOR.MODAL_CLOSE).addEventListener("click", handler);
+  }
+
+  toggleModal() {
+    this.modalContainer.classList.toggle("show-modal");
   }
 
   renderModal(result, rate) {

@@ -1,2 +1,4 @@
 import "./css/index.css";
-import "./js/app.js";
+import LottoGame from "./js/controller/LottoController.js";
+
+new LottoGame();

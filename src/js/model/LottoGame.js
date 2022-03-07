@@ -22,6 +22,16 @@ export default class LottoGame {
     return this.lottos.length;
   }
 
+  generateLottoTickets(count) {
+    this.lottos = Array.from({ length: count }, () => this.#getLottoNumbers());
+  }
+
+  generateResult(winningNumbers, bonusNumber) {
+    this.#resetResult();
+    this.#calculateMatchCount(winningNumbers, bonusNumber);
+    this.#calculateProfitRate();
+  }
+
   #getTicketAmount() {
     return this.getLottoCount() * AMOUNT.UNIT;
   }
@@ -37,14 +47,9 @@ export default class LottoGame {
     return numbers;
   }
 
-  generateLottoTickets(count) {
-    this.lottos = Array.from({ length: count }, () => this.#getLottoNumbers());
-  }
-
-  generateResult(winningNumbers, bonusNumber) {
-    this.#resetResult();
-    this.#calculateMatchCount(winningNumbers, bonusNumber);
-    this.#calculateProfitRate();
+  #resetResult() {
+    Object.keys(this.result).forEach((key) => (this.result[key] = 0));
+    this.profitRate = 0;
   }
 
   #calculateMatchCount(winningNumbers, bonusNumber) {
@@ -71,10 +76,5 @@ export default class LottoGame {
     this.profitRate = Math.floor(
       ((totalProfit - this.#getTicketAmount()) / this.#getTicketAmount()) * 100,
     );
-  }
-
-  #resetResult() {
-    Object.keys(this.result).forEach((key) => (this.result[key] = 0));
-    this.profitRate = 0;
   }
 }
