@@ -163,7 +163,10 @@ describe('당첨 번호를 입력하면, 로또에 대한 통계를 확인할 �
       [1, 2, 3, 8, 9, 10], // fifth prize
     ];
     const prizeMoney = 55000;
-    const correctRateOfReturn = ((prizeMoney - inputMoney) / inputMoney) * 100;
+    const correctRateOfReturn = (
+      ((prizeMoney - inputMoney) / inputMoney) *
+      100
+    ).toFixed(2);
 
     calculateLottoPrizeCount(
       lottoPrizeNumbers,

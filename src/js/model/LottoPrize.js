@@ -63,6 +63,8 @@ export default class LottoPrize {
       0,
     );
 
-    this.rateOfReturn = ((lastValue - firstValue) / firstValue) * 100;
+    this.rateOfReturn = (((lastValue - firstValue) / firstValue) * 100).toFixed(
+      2,
+    );
   }
 }
