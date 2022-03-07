@@ -33,7 +33,7 @@ export default class LottoController {
     e.preventDefault();
 
     try {
-      const purchaseAmount = Number(this.purchaseInput.value);
+      const purchaseAmount = this.purchaseInput.valueAsNumber;
       verifyPurchaseAmount(purchaseAmount);
 
       const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
@@ -57,10 +57,8 @@ export default class LottoController {
   }
 
   #onClickResult() {
-    const winningNumbers = Array.from(this.winningNumberInputs).map(($input) =>
-      Number($input.value),
-    );
-    const bonusNumber = Number(this.bonusNumberInput.value);
+    const winningNumbers = Array.from(this.winningNumberInputs).map((input) => input.valueAsNumber);
+    const bonusNumber = this.bonusNumberInput.valueAsNumber;
 
     try {
       verifyWinningNumbers([...winningNumbers, bonusNumber]);
