@@ -16,11 +16,11 @@ import '../../css/Lotto.scss';
 
 export default class LottoController {
   #View = {
-    MoneyInput: new MoneyInputView(SELECTOR.CLASS.LOTTO_MONEY_SECTION),
-    LottoList: new LottoListView(SELECTOR.CLASS.LOTTO_LIST_SECTION),
-    WinningNumberInput: new WinningNumberInputView(SELECTOR.CLASS.LOTTO_WINNING_NUMBER_SECTION),
+    MoneyInput: new MoneyInputView(),
+    LottoList: new LottoListView(),
+    WinningNumberInput: new WinningNumberInputView(),
+    LottoResultContent: new LottoResultView(),
     LottoResultModal: new ModalView(SELECTOR.ID.LOTTO_RESULT_MODAL),
-    LottoResultContent: new LottoResultView(SELECTOR.ID.LOTTO_RESULT_MODAL),
   };
 
   #LottosModel = new LottosModel();

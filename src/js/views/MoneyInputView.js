@@ -8,8 +8,8 @@ export default class MoneyInputView {
   #moneyInputErrorMessage;
   #moneyInputSubmit;
 
-  constructor(containerSelector) {
-    this.#container = $(containerSelector);
+  constructor() {
+    this.#container = $(SELECTOR.CLASS.LOTTO_MONEY_SECTION);
 
     this.#defaultElements();
     this.#bindViewEvents();

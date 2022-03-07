@@ -11,8 +11,8 @@ export default class LottoResultView {
   #lottoResultProfitRatio;
   #lottoRetryButton;
 
-  constructor(containerSelector) {
-    this.#container = $(containerSelector);
+  constructor() {
+    this.#container = $(SELECTOR.ID.LOTTO_RESULT_MODAL);
 
     this.#defaultElements();
     this.init();

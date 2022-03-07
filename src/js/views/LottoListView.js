@@ -7,8 +7,8 @@ export default class LottoListView {
   #lottoNumberToggle;
   #lottoItemContainer;
 
-  constructor(containerSelector) {
-    this.#container = $(containerSelector);
+  constructor() {
+    this.#container = $(SELECTOR.CLASS.LOTTO_LIST_SECTION);
 
     this.#lottoNumberToggle = $(this.#container, SELECTOR.ID.NUMBER_TOGGLE);
     this.#lottoItemContainer = $(this.#container, SELECTOR.CLASS.LOTTO_ITEM_CONTAINER);

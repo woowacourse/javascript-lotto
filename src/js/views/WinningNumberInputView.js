@@ -10,8 +10,8 @@ export default class WinningNumberInputView {
   #winningNumberErrorMessage;
   #winningNumberSubmitButton;
 
-  constructor(containerSelector) {
-    this.#container = $(containerSelector);
+  constructor() {
+    this.#container = $(SELECTOR.CLASS.LOTTO_WINNING_NUMBER_SECTION);
 
     this.#defaultElements();
     this.#bindViewEvents();
