@@ -1,0 +1,45 @@
+#winning-number-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#winning-number-fieldset {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+#winning-number-input-label,
+#bonus-number-input-label {
+  display: flex;
+  flex-direction: column;
+}
+
+#bonus-number-input-label {
+  align-items: flex-end;
+}
+
+#winning-number-input-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-number-input,
+#bonus-number-input {
+  width: 34px;
+  text-align: center;
+}
+
+#show-result-button {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#winning-number-section-reset-button {
+  background-color: var(--color-app-reset-button);
+  margin-bottom: 20px;
+}
+
+#winning-number-section-reset-button:hover {
+  background-color: var(--color-app-reset-button-hover);
+}

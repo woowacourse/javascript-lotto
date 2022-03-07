@@ -4,7 +4,7 @@ import { $ } from '../../utils/utils.js';
 
 export default class PaymentView {
   constructor(target) {
-    this.$target = $(target);
+    this.target = target;
   }
 
   render() {
@@ -13,12 +13,18 @@ export default class PaymentView {
   }
 
   mountTemaplate() {
+    this.$target = $(this.target);
     this.$target.innerHTML = template.paymentSection();
   }
 
   afterMounted() {
     this.$paymentInput = $(SELECTOR.PAYMENT_INPUT);
     this.$paymentSubmit = $(SELECTOR.PAYMENT_SUBMIT);
+  }
+
+  clearInput() {
+    this.$paymentInput.value = '';
+    this.$paymentInput.focus();
   }
 
   bindOnClickPaymentSubmit(callback) {

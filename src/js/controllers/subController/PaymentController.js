@@ -1,12 +1,15 @@
 import PaymentView from '../../views/subViews/PaymentView.js';
 import { SELECTOR } from '../../configs/contants.js';
-import { validator } from '../../utils/validator.js';
+import validator from '../../utils/validator.js';
 
 export default class PaymentController {
-  constructor(controller) {
-    this.lottoController = controller;
-    this.lottoModel = controller.lottoModel;
+  constructor(lottoController, lottoModel) {
+    this.lottoController = lottoController;
+    this.lottoModel = lottoModel;
     this.paymentView = new PaymentView(SELECTOR.PAYMENT_SECTION);
+  }
+
+  renderView() {
     this.paymentView.render();
     this.setEventHandler();
   }
@@ -21,13 +24,17 @@ export default class PaymentController {
     try {
       validator.checkPurchaseAmount(amount);
       this.purchaseLottos(amount);
-    } catch (e) {
-      alert(e.message);
+    } catch (error) {
+      alert(error.message);
     }
   }
 
   purchaseLottos(amount) {
-    this.lottoModel.createLottoListWithAmount(amount);
-    this.lottoController.didPurchaseLottos();
+    this.lottoModel.setLottoListWithAmount(amount);
+    this.lottoController.afterPurchaseLottos();
+  }
+
+  resetInput() {
+    this.paymentView.clearInput();
   }
 }

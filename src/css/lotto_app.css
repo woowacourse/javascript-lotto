@@ -1,0 +1,21 @@
+#app {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 52px;
+  width: 414px;
+  min-height: 714px;
+
+  border: 1px solid var(--color-app-border);
+  border-radius: 4px;
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#title {
+  text-align: center;
+  margin-top: 52px;
+}

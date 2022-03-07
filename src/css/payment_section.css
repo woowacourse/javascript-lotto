@@ -1,0 +1,12 @@
+#payment-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#payment-input {
+  width: 310px;
+}
+
+#payment-submit {
+  width: 56px;
+}

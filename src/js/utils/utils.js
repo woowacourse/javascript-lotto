@@ -19,3 +19,4 @@ export const getRandomList = (length, min, max) => {
 };
 
 export const $ = (selector) => document.querySelector(selector);
+export const $$ = (selector) => document.querySelectorAll(selector);
