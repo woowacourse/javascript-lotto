@@ -7,12 +7,12 @@ export default class WinningNumberController {
   constructor(lottoController, lottoModel) {
     this.lottoController = lottoController;
     this.lottoModel = lottoModel;
-  }
-
-  renderView() {
     this.winningNumberView = new WinningNumberView(
       SELECTOR.WINNING_NUMBER_SECTION
     );
+  }
+
+  renderView() {
     this.winningNumberView.render();
     this.setEventHandler();
   }

@@ -6,10 +6,10 @@ export default class PaymentController {
   constructor(lottoController, lottoModel) {
     this.lottoController = lottoController;
     this.lottoModel = lottoModel;
+    this.paymentView = new PaymentView(SELECTOR.PAYMENT_SECTION);
   }
 
   renderView() {
-    this.paymentView = new PaymentView(SELECTOR.PAYMENT_SECTION);
     this.paymentView.render();
     this.setEventHandler();
   }

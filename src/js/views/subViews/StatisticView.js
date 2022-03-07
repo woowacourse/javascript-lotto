@@ -4,10 +4,11 @@ import { DOM_STRING, SELECTOR } from '../../configs/contants.js';
 
 export default class StatisticView {
   constructor(target) {
-    this.$target = $(target);
+    this.target = target;
   }
 
   mountTemplate(winningStatistic, earningRatio) {
+    this.$target = $(this.target);
     this.$target.innerHTML = template.statisticSectionWrap(
       winningStatistic,
       earningRatio

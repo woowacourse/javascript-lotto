@@ -5,10 +5,10 @@ export default class TicketController {
   constructor(lottoController, lottoModel) {
     this.lottoController = lottoController;
     this.lottoModel = lottoModel;
+    this.ticketView = new TicketView(SELECTOR.TICKET_SECTION);
   }
 
   renderView() {
-    this.ticketView = new TicketView(SELECTOR.TICKET_SECTION);
     this.ticketView.render();
     this.renderTicketListView();
     this.setEventHandler();

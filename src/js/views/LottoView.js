@@ -3,7 +3,7 @@ import { $ } from '../utils/utils.js';
 
 export default class LottoView {
   constructor(target) {
-    this.$target = $(target);
+    this.target = target;
   }
 
   init() {
@@ -11,6 +11,7 @@ export default class LottoView {
   }
 
   mountTemplate() {
+    this.$target = $(this.target);
     this.$target.innerHTML = template.app();
   }
 }

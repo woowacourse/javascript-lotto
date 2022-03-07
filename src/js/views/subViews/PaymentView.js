@@ -4,7 +4,7 @@ import { $ } from '../../utils/utils.js';
 
 export default class PaymentView {
   constructor(target) {
-    this.$target = $(target);
+    this.target = target;
   }
 
   render() {
@@ -13,6 +13,7 @@ export default class PaymentView {
   }
 
   mountTemaplate() {
+    this.$target = $(this.target);
     this.$target.innerHTML = template.paymentSection();
   }
 

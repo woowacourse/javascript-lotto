@@ -5,11 +5,10 @@ export default class StatisticController {
   constructor(lottoController, lottoModel) {
     this.lottoController = lottoController;
     this.lottoModel = lottoModel;
+    this.statisticView = new StatisticView(SELECTOR.STATISTIC_SECTION_WRAP);
   }
 
   renderView() {
-    this.statisticView = new StatisticView(SELECTOR.STATISTIC_SECTION_WRAP);
-
     const earningRatio = this.lottoModel.getEarningRatio();
     const { winningStatistic } = this.lottoModel.getState();
 

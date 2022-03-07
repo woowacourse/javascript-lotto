@@ -4,7 +4,7 @@ import { $ } from '../../utils/utils.js';
 
 export default class TicketView {
   constructor(target) {
-    this.$target = $(target);
+    this.target = target;
     this.isShowNumber = false;
   }
 
@@ -15,6 +15,7 @@ export default class TicketView {
   }
 
   mountTemplate() {
+    this.$target = $(this.target);
     this.$target.innerHTML = template.ticketSection();
   }
 
