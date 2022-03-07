@@ -54,9 +54,15 @@ export default class PurchasedLottoView {
     this.addToggleClickEvent();
   }
 
-  // #rePaint() {
-  //   // 토글 default로 변경 시킬 것
-  // }
+  #rePaint() {
+    const single = this.container.querySelector('#single-purchased-lotto-list');
+    const detail = this.container.querySelector('#detail-purchased-lotto-list');
+    const switchElement = this.container.querySelector('#on-off-switch');
+
+    switchElement.checked = false;
+    single.classList.remove('hidden');
+    detail.classList.add('hidden');
+  }
 
   rendering(lottoCount, purchasedLottos) {
     this.#paint();
@@ -68,7 +74,7 @@ export default class PurchasedLottoView {
     this.container.querySelector('#single-purchased-lotto-list').replaceChildren();
     this.container.querySelector('#detail-purchased-lotto-list').replaceChildren();
     this.#render(lottoCount, purchasedLottos);
-    // this.#rePaint();
+    this.#rePaint();
   }
 
   addToggleClickEvent() {
@@ -86,7 +92,6 @@ export default class PurchasedLottoView {
   }
 
   reset() {
-    // this.container.removeChild(this.container.lastElementChild);
     this.container.replaceChildren();
   }
 }
