@@ -18,12 +18,10 @@ export default class StatisticController {
   }
 
   setEventHandlers() {
-    this.statisticView.bindOnClickResetButton(
-      this.didClickResetButton.bind(this)
-    );
-    this.statisticView.bindOnClickCloseButton(
-      this.didClickCloseButton.bind(this)
-    );
+    this.statisticView.bindOnClickButtons({
+      resetCallback: this.didClickResetButton.bind(this),
+      closeCallback: this.didClickCloseButton.bind(this),
+    });
   }
 
   didClickResetButton() {

@@ -24,6 +24,8 @@
     "no-undef": "off",
     "no-return-assign": "off",
     "no-param-reassign": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "default-case": "off",
+    "consistent-return": "off"
   }
 }
