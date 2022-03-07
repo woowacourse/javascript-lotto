@@ -14,12 +14,12 @@
         <div class="charge-input-wrap width-100 height-36px">
           <input
             id="charge-input"
-            class="normal-input width-80 height-100"
+            class="normal-input width-80 height-100 disable"
             type="number"
             placeholder="금액"
             min="1000"
             required />
-          <button id="purchased-button" class="blue-button width-56px height-100">구입</button>
+          <button id="purchased-button" class="blue-button width-56px height-100 disable">구입</button>
         </div>
       </form>
       <section aria-labeledby="purchased-lotto-title" class="purchased-lotto-section margin-bottom-32px grid-div">
@@ -41,7 +41,7 @@
           </label>
         </div>
       </section>
-      <form>
+      <form id="winner-number-submit-form">
         <label id="winner-number-label" class="normal-text margin-bottom-8px">
           지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
         </label>
@@ -99,6 +99,50 @@
         </div>
         <button id="check-result-button" class="blue-button width-100">결과 확인하기</button>
       </form>
+      <dialog id="lotto-result-modal" class="result-modal-wrap display-none">
+        <div id="lotto-result-modal-contents" class="result-modal">
+          <button id="close-result-modal" class="close-button" type="button">&times;</button>
+          <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+          <table class="lotto-result-table width-100">
+            <thead>
+              <tr>
+                <td>일치 갯수</td>
+                <td>당첨금</td>
+                <td>당첨 갯수</td>
+              </tr>
+            </thead>
+            <tbody id="lotto-result-tbody">
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td>0개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td>0개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td>0개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td>0개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td>0개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p id="rate-of-return" class="return-font-style">당신의 총 수익률은 0%입니다.</p>
+          <button id="lotto-restart-button" class="restart-button blue-button" type="button">다시 시작하기</button>
+        </div>
+      </dialog>
     </main>
   </body>
 </html>
