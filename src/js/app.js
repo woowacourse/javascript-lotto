@@ -17,7 +17,7 @@ import changeLottoNumberInputFocus from './modules/changeLottoNumberInputFocus.j
 import {
   disableLottoPriceInput,
   disableLottoWinningNumberInput,
-} from './views/makeDisableElements.js';
+} from './views/makeDisabledElements.js';
 import {
   initLottoPriceInputElement,
   initLottoWinningNumberElement,
