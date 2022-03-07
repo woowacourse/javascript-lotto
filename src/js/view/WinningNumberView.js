@@ -1,5 +1,6 @@
 import { ASCII_TABLE, RULES } from '../constants/index.js';
 import { getWinLottoCount } from '../util/common.js';
+import { validateWinNumber } from '../util/validator.js';
 
 const INPUT_ELEMENT = '<input type="number" class="winning-number-input" min="1" max="45" step="1" maxlength="2" required/>';
 
@@ -119,21 +120,27 @@ export default class WinningNumberView {
 
   onKeyupHandler(e) {
     const { target: { value }, detail: { index } } = e;
-
-    if (value === '') return;
-
     const number = parseInt(value, 10);
 
-    if (number < 1 || number > 45) {
+    try {
+      validateWinNumber(number);
+      this.winLottoNumbers[index] = number;
+
+      this.#tryNextElement({
+        length: value.length,
+        nextElement: e.target.nextElementSibling,
+      });
+    } catch (error) {
       e.target.value = '';
-      window.alert('1이상 45이하의 숫자를 입력해 주세요.');
-      return;
+      alert(error);
     }
+  }
 
-    this.winLottoNumbers[index] = number;
+  #tryNextElement(props) {
+    const { length, nextElement } = props;
 
-    if (value.length === 2 && e.target.nextElementSibling) {
-      e.target.nextElementSibling.focus();
+    if (length === 2 && nextElement) {
+      nextElement.focus();
     }
   }
 

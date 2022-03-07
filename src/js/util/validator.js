@@ -28,4 +28,12 @@ const validatePurchaseMoney = (value) => {
   }
 };
 
-export { isEmptyArray, validatePurchaseMoney };
+const isNegativeWinNumber = (number) => number < RULES.MIN_LOTTO_NUMBER || number > RULES.MAX_LOTTO_NUMBER;
+
+const validateWinNumber = (number) => {
+  if (isNegativeWinNumber(number)) {
+    throw new Error(ERROR_MESSAGE.WIN_NUMBER_RANGE);
+  }
+};
+
+export { isEmptyArray, validatePurchaseMoney, validateWinNumber };
