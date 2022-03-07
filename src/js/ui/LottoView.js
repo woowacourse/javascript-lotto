@@ -7,12 +7,12 @@ import {
 } from './template.js';
 import { DOM } from '../constants/constants.js';
 import { validateArrayNumber } from '../validations/utils.js';
-import { LottoModal } from './LottoModal.js';
+import { LottoModal, LottoModalView } from './LottoModalView';
 
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
-    this.lottoModal = new LottoModal(this);
+    this.lottoModal = new LottoModalView(this);
     this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
     this.$winningNumberInputArr = document.querySelectorAll(
       DOM.CLASS.WINNING_NUMBER_INPUT

@@ -2,7 +2,7 @@ import { DOM } from '../constants/constants';
 import { lottoResultTableTemplate } from './template';
 import $ from './utils';
 
-export class LottoModal {
+export class LottoModalView {
   constructor(view) {
     this.lottoView = view;
     this.$container = $(DOM.ID.LOTTO_MODAL);
