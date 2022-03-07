@@ -3,6 +3,7 @@ import {
   hasOutRangeNumber,
   isDiffArrayLength,
   hasDuplicateItem,
+  getDuplicateIndex,
 } from '../utils/validator';
 
 import { ERROR_MESSAGE } from '../constants/string';
@@ -27,6 +28,11 @@ describe('로또 당첨 번호 유효성 테스트', () => {
   it('당첨 번호는 중복된 숫자들을 가질 수 없다.', () => {
     const userInput = ['1', '1', '3', '4'];
     expect(hasDuplicateItem(userInput)).toBe(true);
+  });
+
+  it('당첨 번호에서 "이후" 중복된 인덱스들을 반환하여준다.', () => {
+    const userInput = ['1', '2', '2', '3', '4', '5', '5', '5'];
+    expect(getDuplicateIndex(userInput)).toEqual([2, 6, 7]);
   });
 });
 
