@@ -45,6 +45,74 @@
           지난 주 당첨 번호를 입력 하는 곳
         </h2>
       </section>
+      <div class="overlay" aria-hidden="true"></div>
+      <section
+        class="winning-rate-content-container"
+        aria-labelledby="winning-rate-container-title"
+      >
+        <div class="winning-rate-title-container">
+          <h2 id="winning-rate-container-title">🏆 당첨 통계 🏆</h2>
+        </div>
+        <button class="winning-rate-close-button">X</button>
+        <div class="winning-rate-table-container">
+          <table class="winning-rate-table">
+            <tr>
+              <td>일치 갯수</td>
+              <td>당첨금</td>
+              <td>당첨 갯수</td>
+            </tr>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td class="winning-count">
+                <span></span>
+                개
+              </td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td class="winning-count">
+                <span></span>
+                개
+              </td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td class="winning-count">
+                <span></span>
+                개
+              </td>
+            </tr>
+            <tr>
+              <td>5개 + 보너스볼</td>
+              <td>30,000,000</td>
+              <td class="winning-count">
+                <span></span>
+                개
+              </td>
+            </tr>
+            <tr class="last-tr">
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td class="winning-count">
+                <span></span>
+                개
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="winning-rate-result">
+          당신의 총 수익율은 &nbsp;
+          <p></p>
+          % 입니다.
+        </div>
+        <div class="restart-button-container">
+          <button class="restart-button">다시 시작하기</button>
+        </div>
+      </section>
     </div>
     <script type="module" src="./src/js/app.js"></script>
   </body>

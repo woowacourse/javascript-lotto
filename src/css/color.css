@@ -9,4 +9,7 @@
   --toggle-circle-color: #f8f8f8;
   --onoff-switch-checked-color: #80deea;
   --toggle-circle-checked-color: #00bcd4;
+  --overlay-background-color: rgba(0, 0, 0, 0.5);
+  --close-button-color: #111;
+  --table-border-color: #dcdcdc;
 }

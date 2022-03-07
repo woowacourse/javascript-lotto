@@ -1,13 +1,30 @@
 import { $ } from './utils/dom.js';
-import { getLottoPrice, checkLottoPrice } from './core/checkInputValue.js';
-import { toggleButton } from './component/toggleButton.js';
+import { getLottoPrice } from './modules/checkLottoPriceInputValue.js';
+import { getLastLottoNumbers } from './modules/checkLastLottoNumberInput.js';
 import { makeLottoList } from './core/makeLottoList.js';
+import toggleLottoResultModal from './modules/toggleLottoResultModal.js';
+import { toggleButton } from './modules/toggleButton.js';
 import {
   renderPurchasedLottoList,
   renderLastLottoNumber,
   renderPurchasedLottoListContent,
   renderPurchasedLottoListContentIsActive,
+  renderRateOfReturnResult,
+  renderLottoWinningCount,
+  removePurchasedLottoList,
+  removeLastLottoNumberContent,
+  removePurchasedLottoListContent,
 } from './views/render.js';
+import CalculateLottoPrize from './modules/calculateLottoPrize.js';
+import changeLottoNumberInputFocus from './modules/changeLottoNumberInputFocus.js';
+import {
+  toggleDisabledLottoPriceInput,
+  toggleDisabledLottoWinningNumberInput,
+} from './views/toggleDisabledElements.js';
+import {
+  initLottoPriceInputElement,
+  initLottoWinningNumberElement,
+} from './views/makeInitElements.js';
 
 export default class App {
   constructor() {
@@ -28,6 +45,18 @@ export default class App {
       'click',
       this.toggleButtonClickEvent,
     );
+    $('.last-lotto-winning-number-container').addEventListener(
+      'click',
+      this.handleCheckResultButtonClick,
+    );
+    $('.winning-rate-close-button').addEventListener(
+      'click',
+      toggleLottoResultModal,
+    );
+    $('.restart-button').addEventListener(
+      'click',
+      this.handleReStartButtonClick,
+    );
   }
   handleLottoFormSubmitEvent(e) {
     e.preventDefault();
@@ -35,15 +64,14 @@ export default class App {
     this.handleDrawLotto();
   }
   handlePriceInputSubmit() {
-    const lottoPrice = checkLottoPrice(getLottoPrice());
-    if (!lottoPrice) {
-      $('.lotto-price-input').value = '';
+    const lottoPrice = getLottoPrice();
+    if (lottoPrice === false) {
+      initLottoPriceInputElement();
       return;
     }
     this.lottoPrice = lottoPrice;
     this.lottoPriceValid = true;
-    $('.lotto-price-input').disabled = true;
-    $('.lotto-price-submit-button').disabled = true;
+    toggleDisabledLottoPriceInput();
   }
 
   handleDrawLotto() {
@@ -53,6 +81,7 @@ export default class App {
     this.lottoList = makeLottoList(this.lottoPrice);
     renderPurchasedLottoList(this.lottoList.length);
     renderLastLottoNumber();
+    changeLottoNumberInputFocus();
   }
 
   handleToggleButtonClick(e) {
@@ -67,6 +96,46 @@ export default class App {
     }
     renderPurchasedLottoListContent(this.lottoList.length);
   }
+
+  handleCheckResultButtonClick = e => {
+    e.preventDefault();
+    if (!e.target.classList.contains('check-result-button')) {
+      return;
+    }
+    const lastLottoNumbers = getLastLottoNumbers();
+    const lottoWinningInputElementList = document.querySelectorAll(
+      '.last-lotto-winning-number-input',
+    );
+    if (!lastLottoNumbers) {
+      initLottoWinningNumberElement(lottoWinningInputElementList);
+      return;
+    }
+    toggleDisabledLottoWinningNumberInput(lottoWinningInputElementList);
+    const lottoPrize = new CalculateLottoPrize(
+      this.lottoList,
+      lastLottoNumbers,
+    );
+    renderRateOfReturnResult(lottoPrize.getLottoRateOfReturn());
+    renderLottoWinningCount(lottoPrize.getLottoRankList());
+    toggleLottoResultModal();
+  };
+  handleReStartButtonClick = e => {
+    e.preventDefault();
+    const lottoWinningInputElementList = document.querySelectorAll(
+      '.last-lotto-winning-number-input',
+    );
+    this.lottoPrice = 0;
+    this.lottoPriceValid = false;
+    this.lottoList = [];
+    initLottoPriceInputElement();
+    initLottoWinningNumberElement(lottoWinningInputElementList);
+    toggleDisabledLottoPriceInput();
+    toggleDisabledLottoWinningNumberInput(lottoWinningInputElementList);
+    toggleLottoResultModal();
+    removePurchasedLottoList();
+    removePurchasedLottoListContent();
+    removeLastLottoNumberContent();
+  };
 }
 
 new App();

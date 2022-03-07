@@ -16,6 +16,7 @@ h1 {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-top: 52px;
 }
 button {
   background: var(--button-color);
@@ -24,12 +25,21 @@ button {
   color: var(--button-font-color);
 }
 
+button:hover {
+  cursor: pointer;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+}
 #app {
+  position: relative;
   display: flex;
   flex-direction: column;
+  min-height: 727px;
   height: fit-content;
   width: 414px;
-  padding: 52px 16px 20px 16px;
+  padding: 0 16px 80px 16px;
   background-color: var(--app-background-color);
 }
 /*lottoPriceInput */
@@ -61,8 +71,12 @@ button {
   height: 36px;
   padding: 6px 6px 6px 8px;
 }
+.lotto-price-submit-button:hover {
+  background-color: var(--button-disabled-color);
+}
 .lotto-price-submit-button:disabled {
   background-color: var(--button-disabled-color);
+  cursor: not-allowed;
 }
 
 /*purchased-lotto-list*/
@@ -159,7 +173,6 @@ button {
 }
 
 /*last-lotto-winnding-number*/
-
 .last-lotto-winning-number-container {
   margin-top: 30px;
 }
@@ -176,6 +189,9 @@ button {
   box-sizing: border-box;
   border-radius: 4px;
 }
+.last-lotto-winning-number-input:disabled {
+  cursor: not-allowed;
+}
 
 .last-lotto-winning-number-main {
   display: flex;
@@ -191,4 +207,112 @@ button {
   width: 100%;
   height: 36px;
   margin-top: 24px;
+}
+.check-result-button:hover {
+  background-color: var(--button-disabled-color);
+}
+
+/*overlay*/
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-background-color);
+}
+.overlay.is-active {
+  display: block;
+}
+/*winning-rate-content*/
+.winning-rate-content-container {
+  position: absolute;
+  top: 114px;
+  left: 50px;
+  width: 350px;
+  height: 500px;
+  border-radius: 4px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--app-background-color);
+  z-index: 100;
+  transform: translate3d(0, 100%, 0);
+  transition: transform 300ms ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.winning-rate-content-container.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  transition: transform 300ms ease-in-out;
+}
+
+.winning-rate-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+}
+#winning-rate-container-title {
+  padding: 0;
+  margin: 0;
+}
+.winning-rate-close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 14px;
+  color: var(--close-button-color);
+  background-color: var(--app-background-color);
+}
+.winning-rate-close-button:hover {
+  color: var(--button-disabled-color);
+}
+/*table 관련*/
+.winning-rate-table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+.winning-rate-table {
+  border-collapse: collapse;
+}
+.winning-rate-table tr:first-child {
+  font-size: 15px;
+  font-weight: 600;
+}
+td {
+  border-top: 1px solid var(--table-border-color);
+  padding: 8px;
+  text-align: center;
+}
+.last-tr td {
+  border-bottom: 1px solid var(--table-border-color);
+}
+/*결과 문구*/
+.winning-rate-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+/*다시시작하기*/
+.restart-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.restart-button {
+  width: 152px;
+  height: 36px;
+}
+
+.restart-button:hover {
+  background-color: var(--button-disabled-color);
 }
