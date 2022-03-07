@@ -23,8 +23,17 @@ export const generateRandomNumberInRange = ({ min, max, count }) => {
   return numberArray.slice(0, count).map((n) => n + min);
 };
 
-export const createElementWithClassName = (tag, className) => {
-  const element = document.createElement(tag);
-  element.className = className;
-  return element;
+export const checkInputMaxLength = (e) => {
+  const { target: input, data } = e;
+  const { value, maxLength } = input;
+  if (data === '.') {
+    input.value = value.slice(0, -1);
+  }
+
+  if (value.length > maxLength) {
+    input.value = value.slice(0, maxLength);
+  }
+  if (value.length === maxLength) {
+    input.nextElementSibling?.focus();
+  }
 };

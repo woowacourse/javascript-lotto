@@ -12,7 +12,7 @@
   border-radius: 4px;
 }
 
-.app-title {
+#app-title {
   text-align: center;
 }
 
@@ -23,22 +23,44 @@
   gap: 10px;
 }
 
+.cash-input,
+.winner-number-input,
+.bonus-number-input {
+  width: 3rem;
+  font-size: 1.5rem;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  text-align: center;
+  padding: 0;
+}
+
 /* 구입 금액 입력 섹션 */
 .cash-input-container {
-  width: 100%;
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.5rem;
+}
+
+.cash-input-wrapper {
+  display: flex;
+  gap: 5px;
+  width: 8rem;
 }
 
 .cash-input {
-  flex: 0.85;
-  padding: 8px;
-  border: 1px solid #b4b4b4;
-  border-radius: 4px;
+  width: 3rem;
+  padding: 0 5px;
+}
+
+.unit {
+  font-size: 1.5rem;
 }
 
 .cash-input-button {
-  flex: 0.15;
+  margin-left: 10px;
+  width: 5rem;
 }
 
 /* 구입한 로또 표시 섹션 */
@@ -52,6 +74,10 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 0 5px;
+}
+
+.lotto-grid .lotto-numbers {
+  display: none;
 }
 
 .lotto {
@@ -82,33 +108,33 @@
   gap: 8px;
 }
 
-.winner-number-input,
-.bonus-number-input {
-  width: 3rem;
-  font-size: 1.5rem;
-  border: 1px solid #b4b4b4;
+.lotto-rules {
+  padding: 20px;
+  background-color: #b4b4b455;
   border-radius: 4px;
-  text-align: center;
+}
+
+.lotto-rules-label {
+  font-weight: 600;
+}
+
+.lotto-rules-list {
+  margin-top: 10px;
+  padding-left: 15px;
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 .bonus-number-input-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bonus-number-input-label {
+  margin-bottom: 10px;
 }
 
 .result-button {
   width: 100%;
-}
-
-/* 스타일 변경 */
-.hide {
-  display: none;
-}
-
-.one-column-grid {
-  grid-template-columns: repeat(1, 1fr);
-}
-
-.hide-numbers .lotto-numbers {
-  display: none;
 }

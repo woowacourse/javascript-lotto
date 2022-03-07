@@ -1,0 +1,16 @@
+/* 스타일 변경 */
+.hide {
+  display: none;
+}
+
+.show-numbers {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.show-numbers .lotto-numbers {
+  display: block;
+}
+
+.stop-scroll {
+  overflow-y: hidden;
+}

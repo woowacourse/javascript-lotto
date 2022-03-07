@@ -1,76 +1,75 @@
-import {
-  CLASSNAMES,
-  DISABLED_PURCHASE_BUTTON_TEXT,
-  LOTTO_IMAGE,
-  SELECTOR,
-} from '../constants/constants';
-import { createElementWithClassName, selectDom } from '../utils/utils';
+import { REQUEST_MESSAGE, SELECTOR } from '../constants/constants';
+import { selectDom } from '../utils/utils';
+import CashInputView from './cashInputView';
+import PurchasedLottoView from './purchasedLottoView';
+import ResultModalView from './resultModalView';
+import WinnerNumberInputView from './winnerNumberInputView';
 
 class LottoView {
   constructor() {
-    this.cashInputSection = selectDom(SELECTOR.CASH_INPUT_SECTION_CLASS);
+    this.cashInputView = new CashInputView();
+    this.purchasedLottoView = new PurchasedLottoView();
+    this.winnerNumberInputView = new WinnerNumberInputView();
+    this.resultModalView = new ResultModalView();
 
-    this.purchasedLottoSection = selectDom(SELECTOR.PURCHASED_LOTTO_SECTION_CLASS);
-    this.showNumberToggleButton = selectDom(SELECTOR.SHOW_NUMBER_TOGGLE_BUTTON_CLASS);
-    this.showNumberToggleButton.addEventListener('click', this.#toggleLottoNumbersShow);
-    this.lottoContainer = selectDom(SELECTOR.LOTTO_CONTAINER_CLASS, this.purchasedLottoSection);
-    this.lottoGrid = selectDom(SELECTOR.LOTTO_GRID_CLASS, this.lottoContainer);
+    this.#attachEventListeners();
 
-    this.winnerNumberSection = selectDom(SELECTOR.WINNER_NUMBER_SECTION_CLASS);
+    this.sendRequest = () => {};
   }
 
-  attachCashInputEventListeners(handler) {
-    this.cashInputSection.addEventListener('click', handler);
+  addRequestHandler(sendRequest) {
+    this.sendRequest = sendRequest;
+    this.cashInputView.addRequestHandler(sendRequest);
+    this.winnerNumberInputView.addRequestHandler(sendRequest);
   }
 
-  #toggleLottoNumbersShow = ({ target: { checked: isVisible } }) => {
-    const { classList: lottoGridClassList } = this.lottoGrid;
-    if (isVisible) {
-      lottoGridClassList.add(CLASSNAMES.ONE_COLUMN_GRID_CLASSNAME);
-      lottoGridClassList.remove(CLASSNAMES.HIDE_NUMBERS_CLASSNAME);
-      return;
+  #attachEventListeners() {
+    selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS).addEventListener('click', this.#handleCashInput);
+    selectDom('.result-button').addEventListener('click', this.#handleWinnerNumberInput);
+    selectDom('.restart-button').addEventListener('click', this.#handleRestart);
+  }
+
+  // 금액 입력 시
+  #handleCashInput = () => {
+    try {
+      const lottoArray = this.cashInputView.handleCashInput();
+      this.#renderLottos(lottoArray);
+    } catch (e) {
+      alert(e.message);
     }
-    lottoGridClassList.remove(CLASSNAMES.ONE_COLUMN_GRID_CLASSNAME);
-    lottoGridClassList.add(CLASSNAMES.HIDE_NUMBERS_CLASSNAME);
   };
 
-  disableCashInput() {
-    const cashInput = selectDom(SELECTOR.CASH_INPUT_CLASS, this.cashInputSection);
-    const cashInputButton = selectDom(SELECTOR.CASH_INPUT_BUTTON_CLASS, this.cashInputSection);
-    cashInput.disabled = true;
-    cashInputButton.disabled = true;
-    cashInputButton.textContent = DISABLED_PURCHASE_BUTTON_TEXT;
+  #renderLottos(lottoArray) {
+    this.cashInputView.disableCashInput();
+    this.purchasedLottoView.renderLottos(lottoArray);
+    this.winnerNumberInputView.render();
   }
 
-  renderLottos(lottos) {
-    this.purchasedLottoSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
-    this.winnerNumberSection.classList.remove(CLASSNAMES.HIDE_CLASSNAME);
+  // 당첨 번호 입력 시
+  #handleWinnerNumberInput = () => {
+    try {
+      const matchResult = this.winnerNumberInputView.handleWinnerNumberInput();
+      this.#renderResultModal(matchResult);
+    } catch (e) {
+      alert(e.message);
+    }
+  };
 
-    this.lottoContainer.prepend(this.#generatePurchasedLabel(lottos.length));
-    this.lottoGrid.append(...this.#generateLottoElementsArray(lottos));
+  #renderResultModal(matchResult) {
+    this.resultModalView.renderResultModal(matchResult);
   }
 
-  #generatePurchasedLabel(length) {
-    const labelElement = document.createElement('label');
-    labelElement.textContent = `총 ${length}개를 구매하였습니다.`;
-    return labelElement;
-  }
+  // 재시작 클릭 시
+  #handleRestart = () => {
+    this.#resetView();
+    this.sendRequest(REQUEST_MESSAGE.RESTART_APP);
+  };
 
-  #generateLottoElementsArray(lottos) {
-    return lottos.map((lotto) => this.#generateLottoElement(lotto));
-  }
-
-  #generateLottoElement(lotto) {
-    const lottoElement = createElementWithClassName('div', CLASSNAMES.LOTTO_CLASSNAME);
-
-    const lottoImage = createElementWithClassName('p', CLASSNAMES.LOTTO_IMAGE_CLASSNAME);
-    lottoImage.textContent = LOTTO_IMAGE;
-
-    const lottoNumbers = createElementWithClassName('p', CLASSNAMES.LOTTO_NUMBERS_CLASSNAME);
-    lottoNumbers.textContent = Array.from(lotto.lottoNumberSet).join(', ');
-
-    lottoElement.append(lottoImage, lottoNumbers);
-    return lottoElement;
-  }
+  #resetView = () => {
+    this.cashInputView.resetView();
+    this.purchasedLottoView.resetView();
+    this.winnerNumberInputView.resetView();
+    this.resultModalView.resetView();
+  };
 }
 export default LottoView;
