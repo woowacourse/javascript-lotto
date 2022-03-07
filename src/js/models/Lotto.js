@@ -10,11 +10,8 @@ export default class Lotto {
   _lottoNumbers = [];
 
   generate() {
-    const shuffledList = shuffle(
-      [...Array(LOTTO_SETTING.MAX_RANDOM_NUMBER)].map(
-        (_, idx) => idx + LOTTO_SETTING.MIN_RANDOM_NUMBER
-      )
-    );
+    const { MAX_RANDOM_NUMBER: MAX, MIN_RANDOM_NUMBER: MIN } = LOTTO_SETTING;
+    const shuffledList = shuffle([...Array(MAX - MIN + 1)].map((_, idx) => idx + MIN));
     this._lottoNumbers = shuffledList.slice(0, LOTTO_SETTING.LOTTO_NUMBER_LENGTH);
 
     return this;
