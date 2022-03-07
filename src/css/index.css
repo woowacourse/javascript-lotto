@@ -24,6 +24,7 @@ button {
   border-radius: 4px;
   color: var(--button-font-color);
 }
+
 button:hover {
   cursor: pointer;
 }
@@ -64,6 +65,7 @@ input[type='number']::-webkit-inner-spin-button {
   border-radius: 4px;
   margin-right: 16px;
 }
+
 .lotto-price-submit-button {
   width: 56px;
   height: 36px;

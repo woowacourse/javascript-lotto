@@ -1,5 +1,6 @@
 import CalculateLottoPrize from '../core/calculateLottoPrize.js';
 import Lotto from '../core/lotto.js';
+
 import {
   calculateGameCount,
   isOverlapLottoNumber,
