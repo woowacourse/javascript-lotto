@@ -79,22 +79,27 @@ export default function reducer(state, { type, payload }) {
 
       return newState;
     }
+
     case ACTION.TOGGLE_LOTTO_LIST:
       newState.lottoListVisibility = payload;
 
       return newState;
+
     case ACTION.TOGGLE_RESULT_MODAL:
       newState.resultModalVisibility = payload;
 
       return newState;
+
     case ACTION.UPDATE_RESULT:
       newState.winningNumbers = payload.slice(0, LOTTO.COUNT);
       newState.bonusNumber = payload[LOTTO.COUNT];
       newState.result = generateResult(payload);
 
       return newState;
+
     case ACTION.RESTART:
       return initialState;
+
     default:
       return state;
   }
