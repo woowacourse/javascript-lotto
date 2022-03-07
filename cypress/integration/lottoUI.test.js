@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, SELECTOR } from '../../src/js/constants';
+import { ERROR_MESSAGE, CLASS, ID } from '../../src/js/util/constants';
 
 describe('조건에 맞는 구입할 금액을 입력한 경우, 성공 케이스', () => {
   const input = 3000;
@@ -9,25 +9,22 @@ describe('조건에 맞는 구입할 금액을 입력한 경우, 성공 케이�
 
   it('구입할 금액을 조건에 맞게 입력 후 구입 버튼을 누르면, 구입한 로또 갯수를 확인할 수 있다.', () => {
     cy.paymentFormSubmit(input);
-    cy.get(SELECTOR.PURCHASED_TOTAL_COUNT).should(
-      'text',
-      '총 3개를 구매하였습니다.'
-    );
+    cy.get(CLASS.PURCHASED_TOTAL_COUNT).should('text', '총 3개를 구매하였습니다.');
   });
 
   it('구입할 금액을 조건에 맞게 입력 후 구입 버튼을 누르면, 지난주 당첨 번호 영역이 보여진다.', () => {
     cy.paymentFormSubmit(input);
-    cy.get(SELECTOR.LAST_WEEK_WINNING_NUMBER_SECTION).should('be.visible');
+    cy.get(ID.WINNING_NUMBER_SECTION).should('be.visible');
   });
 
   it('구입할 금액을 조건에 맞게 입력 후 구입 버튼을 누르면, 결과 확인하기 버튼이 보여진다', () => {
     cy.paymentFormSubmit(input);
-    cy.get(SELECTOR.RESULT_CHECKING_BUTTON).should('be.visible');
+    cy.get(ID.RESULT_CHECKING_BUTTON).should('be.visible');
   });
 
   it('구입할 금액을 조건에 맞게 입력한 후 구입 버튼을 누르면, 구입 버튼이 비활성화 된다.', () => {
     cy.paymentFormSubmit(input);
-    cy.get(SELECTOR.PAYMENT_BUTTON).should('be.disabled');
+    cy.get(ID.PAYMENT_BUTTON).should('be.disabled');
   });
 });
 
@@ -41,11 +38,11 @@ describe('조건에 맞지않는 구입할 금액을 입력한 경우, 실패 �
 
     cy.checkAlertMessage({
       input,
-      inputSelector: SELECTOR.PAYMENT_INPUT,
-      buttonSelector: SELECTOR.PAYMENT_BUTTON,
+      inputSelector: ID.PAYMENT_INPUT,
+      buttonSelector: ID.PAYMENT_BUTTON,
       errorMessage: ERROR_MESSAGE.MONEY_OUT_OF_RANGE,
     });
-    cy.initializeInput(SELECTOR.PAYMENT_INPUT);
+    cy.initializeInput(ID.PAYMENT_INPUT);
   });
 
   it('1000원 단위가 아닌 구입할 금액을 입력하고 구입 버튼을 눌렀을 때 에러메시지를 보여준다.', () => {
@@ -53,31 +50,103 @@ describe('조건에 맞지않는 구입할 금액을 입력한 경우, 실패 �
 
     cy.checkAlertMessage({
       input,
-      inputSelector: SELECTOR.PAYMENT_INPUT,
-      buttonSelector: SELECTOR.PAYMENT_BUTTON,
+      inputSelector: ID.PAYMENT_INPUT,
+      buttonSelector: ID.PAYMENT_BUTTON,
       errorMessage: ERROR_MESSAGE.MONEY_OUT_OF_STANDARD,
     });
-    cy.initializeInput(SELECTOR.PAYMENT_INPUT);
+    cy.initializeInput(ID.PAYMENT_INPUT);
   });
 });
 
 describe('번호 보기 버튼을 활성화/비활성화 한 경우', () => {
   const input = 3000;
 
-  beforeEach(() => {
+  before(() => {
     cy.visit('/index.html');
-    cy.get(SELECTOR.PAYMENT_INPUT).type(input);
-    cy.get(SELECTOR.PAYMENT_BUTTON).click();
+    cy.get(ID.PAYMENT_INPUT).type(input);
+    cy.get(ID.PAYMENT_BUTTON).click();
   });
 
   it('번호 보기 버튼을 활성화하면 사용자가 구매한 로또 번호를 확인할 수 있다.', () => {
-    cy.get(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON).click();
-    cy.get(SELECTOR.LOTTO_NUMBER).should('be.visible');
+    cy.get(ID.LOTTO_LIST_TOGGLE_BUTTON).click();
+    cy.get(CLASS.LOTTO_NUMBER).should('be.visible');
   });
 
   it('번호 보기 버튼을 비활성화하면 사용자가 구매한 로또 번호가 가려진다', () => {
-    cy.get(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON).click();
-    cy.get(SELECTOR.LOTTO_LIST_TOGGLE_BUTTON).click();
-    cy.get(SELECTOR.LOTTO_NUMBER).should('be.not.visible');
+    cy.get(ID.LOTTO_LIST_TOGGLE_BUTTON).click();
+    cy.get(CLASS.LOTTO_NUMBER).should('be.not.visible');
+  });
+});
+
+describe('조건에 맞지 않는 당첨 번호/보너스 번호를 입력한 경우', () => {
+  const input = 3000;
+
+  beforeEach(() => {
+    cy.visit('/index.html');
+    cy.get(ID.PAYMENT_INPUT).type(input);
+    cy.get(ID.PAYMENT_BUTTON).click();
+  });
+
+  it('당첨번호/보너스 번호는 1 ~ 45 사이의 숫자만 입력 가능하다.', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 46, 7];
+
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('.winning-number-input').each(($li, index) => {
+      cy.wrap($li).type(lastWeekNumber[index]);
+    });
+
+    cy.get('#result-checking-button')
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.calledWith(
+          '지난주 당첨 번호또는 보너스 번호를 잘못 입력하셨습니다. 1 ~ 45 사이의 숫자를 입력해주세요'
+        );
+      });
+  });
+
+  it('당첨번호/보너스 번호는 서로 다른 숫자만 입력 가능하다.', () => {
+    const lastWeekNumber = [1, 2, 3, 4, 5, 7, 5];
+
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('.winning-number-input').each(($li, index) => {
+      cy.wrap($li).type(lastWeekNumber[index]);
+    });
+
+    cy.get('#result-checking-button')
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.calledWith(
+          '지난주 당첨 번호와 보너스 번호를 잘못 입력하셨습니다. 서로 다른 숫자를 입력해주세요'
+        );
+      });
+  });
+});
+
+describe('올바른 당첨번호/보너스번호를 입력한 경우', () => {
+  const input = 10000;
+  const lastWeekNumber = [20, 1, 3, 25, 19, 31, 7];
+
+  beforeEach(() => {
+    cy.visit('/index.html');
+    cy.get(ID.PAYMENT_INPUT).type(input);
+    cy.get(ID.PAYMENT_BUTTON).click();
+    cy.get('.winning-number-input').each(($li, index) => {
+      cy.wrap($li).type(lastWeekNumber[index]);
+    });
+    cy.get('#result-checking-button').click();
+  });
+
+  it('올바른 당첨번호/보너스번호를 입력한 경우 모달 창이 보여진다', () => {
+    cy.get(CLASS.MODAL_BACKGROUND).should('be.visible');
+  });
+
+  it('다시 시작하기 버튼을 누르면 초기 화면으로 돌아간다', () => {
+    cy.get(ID.RESTART).click();
+    cy.get(CLASS.MODAL_BACKGROUND).should('not.be.visible');
+    cy.get(ID.PAYMENT_INPUT).should('be.empty');
   });
 });
