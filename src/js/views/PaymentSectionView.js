@@ -6,8 +6,13 @@ import { validate, purchaseAmountValidator } from '../utils/validator.js';
 export default class PaymentSectionView extends View {
   template() {
     return `
-      <label class="${DOM_STRING.HINT}">구입할 금액을 입력해주세요.</label>
-      <form class="${DOM_STRING.INPUT_FORM}">
+      <label
+        class="${DOM_STRING.HINT}"
+        for="${DOM_STRING.PAYMENT_INPUT}"
+      >
+        구입할 금액을 입력해주세요.
+      </label>
+      <form id="${DOM_STRING.PAYMENT_FORM}" class="${DOM_STRING.INPUT_FORM}">
         <input
           id="${DOM_STRING.PAYMENT_INPUT}"
           class="${DOM_STRING.STYLED_INPUT}"
@@ -18,23 +23,28 @@ export default class PaymentSectionView extends View {
           step="${LOTTO.PRICE}"
           autofocus
         >
-        <button id="${DOM_STRING.PAYMENT_SUBMIT}" class="${DOM_STRING.SUBMIT_BUTTON}">구입</button>
+        <button
+          id="${DOM_STRING.PAYMENT_SUBMIT}"
+          class="${DOM_STRING.SUBMIT_BUTTON}"
+          type="submit"
+          form="${DOM_STRING.PAYMENT_FORM}"
+        >구입</button>
       </form>
     `;
   }
 
-  bindOnClickPaymentSubmit(callback) {
+  bindOnSubmitPaymentSubmit(callback) {
     this.bindEventListener(
-      'click',
+      'submit',
       {
-        attributeName: DOM_STRING.PAYMENT_SUBMIT,
+        attributeName: DOM_STRING.PAYMENT_FORM,
         attributeType: 'id',
       },
-      this.handleOnClickpaymentSubmit.bind(this, callback)
+      this.handleOnSubmitpaymentSubmit.bind(this, callback)
     );
   }
 
-  handleOnClickpaymentSubmit(callback) {
+  handleOnSubmitpaymentSubmit(callback) {
     const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
 
     try {

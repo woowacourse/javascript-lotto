@@ -18,12 +18,12 @@ export default class AppController extends Controller {
   }
 
   bindEventHandlers() {
-    this.views.paymentSectionView.bindOnClickPaymentSubmit(
+    this.views.paymentSectionView.bindOnSubmitPaymentSubmit(
       this.purchase.bind(this)
     );
     this.views.ticketSectionView.bindOnClickNumberToggle();
     this.views.winningNumberSectionView.bindOnInputWinningNumberInput();
-    this.views.winningNumberSectionView.bindOnClickShowResultButton(
+    this.views.winningNumberSectionView.bindOnSubmitWinningNumberForm(
       this.updateResult.bind(this)
     );
     this.views.resultModalWindowView.bindOnClickModalOverlay(

@@ -61,6 +61,8 @@ export default class WinningNumberSectionView extends View {
         id="${DOM_STRING.SHOW_RESULT_BUTTON}"
         class="${DOM_STRING.SUBMIT_BUTTON}"
         ${(lottoList.length === 0 && 'disabled') || ''}
+        type="submit"
+        form="${DOM_STRING.WINNING_NUMBER_FORM}"
       >
         결과 확인하기
       </button>
@@ -78,11 +80,11 @@ export default class WinningNumberSectionView extends View {
     );
   }
 
-  bindOnClickShowResultButton(callback) {
+  bindOnSubmitWinningNumberForm(callback) {
     this.bindEventListener(
-      'click',
-      { attributeName: DOM_STRING.SHOW_RESULT_BUTTON, attributeType: 'id' },
-      this.handleOnClickShowResultButton.bind(this, callback)
+      'submit',
+      { attributeName: DOM_STRING.WINNING_NUMBER_FORM, attributeType: 'id' },
+      this.handleOnSubmitWinningNumberForm.bind(this, callback)
     );
   }
 
@@ -103,7 +105,7 @@ export default class WinningNumberSectionView extends View {
     }
   }
 
-  handleOnClickShowResultButton(callback) {
+  handleOnSubmitWinningNumberForm(callback) {
     const winningNumbers = this.getWinningNumbers();
 
     try {

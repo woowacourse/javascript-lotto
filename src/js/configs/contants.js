@@ -9,6 +9,7 @@ export const DOM_STRING = {
   HINT: 'hint',
   STYLED_INPUT: 'styled-input',
   SUBMIT_BUTTON: 'submit-button',
+  PAYMENT_FORM: 'payment-form',
   PAYMENT_INPUT: 'payment-input',
   PAYMENT_SUBMIT: 'payment-submit',
   SWITCH: 'switch',
