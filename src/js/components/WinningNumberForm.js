@@ -110,11 +110,7 @@ class WinningNumberForm extends Component {
       const { path } = event;
       const target = path[1];
       if (target.tagName.toLowerCase() !== 'winning-number-input') return;
-      const { order } = target;
-      const winningNumberList = this.$inputs.map((input) =>
-        input.order === order ? WINNING_NUM_PLACEHOLDER : input.valueAsNumber
-      );
-      this.submitLottoNumbers(winningNumberList);
+      this.handleClickInput(target);
     });
 
     this.addEvent('click', 'winning-number-form', ({ target }) => {
@@ -154,6 +150,14 @@ class WinningNumberForm extends Component {
     } catch (e) {
       this.submitLottoNumbers(winningNumberList);
     }
+  }
+
+  handleClickInput(target) {
+    const { order } = target;
+    const winningNumberList = this.$inputs.map((input) =>
+      input.order === order ? WINNING_NUM_PLACEHOLDER : input.valueAsNumber
+    );
+    this.submitLottoNumbers(winningNumberList);
   }
 
   handleMouseEnterOnButton() {
