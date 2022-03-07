@@ -3,17 +3,23 @@
 import { ACTION, LOTTO } from '../constants';
 import createAction from '../flux/actionCreator';
 import Component from '../abstracts/component';
-import { intersect } from '../utils';
+import { consoleErrorWithConditionalAlert, intersect } from '../utils';
 import Store from '../flux/store';
 
 class StatisticsModal extends Component {
+  constructor() {
+    super();
+    this.handleKeyupEvent = this.handleKeyupEvent.bind(this);
+  }
+
   connectedCallback() {
     super.connectedCallback();
     // modal close when press esc key
-    document.addEventListener('keyup', (event) => {
-      if (event.key !== 'Escape') return;
-      this.closeModal();
-    });
+    document.addEventListener('keyup', this.handleKeyupEvent);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('keyup', this.handleKeyupEvent);
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -100,6 +106,11 @@ class StatisticsModal extends Component {
   closeModal() {
     document.querySelector('body').classList.remove('modal-open');
     Store.instance.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, false));
+  }
+
+  handleKeyupEvent(event) {
+    if (event.key !== 'Escape') return;
+    this.closeModal();
   }
 
   reset() {
