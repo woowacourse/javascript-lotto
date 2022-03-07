@@ -36,12 +36,12 @@ export default class LottoPrize {
         break;
 
       default:
-        this.checkBonusNumber(sameNumberCount, numbers, bonusNumber);
+        this.checkBonusNumberToCount(sameNumberCount, numbers, bonusNumber);
         break;
     }
   }
 
-  checkBonusNumber(sameNumberCount, numbers, bonusNumber) {
+  checkBonusNumberToCount(sameNumberCount, numbers, bonusNumber) {
     if (sameNumberCount !== SAME_NUMBER_COUNT.SECOND_OR_THIRD) {
       return;
     }
