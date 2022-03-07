@@ -11,4 +11,16 @@ export default class LottoNumbers {
   get numbers() {
     return this.#numbers;
   }
+
+  calculateMatchCount(winNumbers, bonusNumber) {
+    const { length: matchCount } = this.#numbers.filter(number =>
+      winNumbers.includes(number),
+    );
+
+    if (matchCount === 5 && this.#numbers.includes(bonusNumber)) {
+      return '5+bonus';
+    }
+
+    return matchCount;
+  }
 }

@@ -16,8 +16,20 @@ export const isNegativeNumber = value => {
   return value < 0;
 };
 
-export const isNotUnitOfThousand = value => {
+export const isNotDividedIntoUnit = value => {
   return value % RULES.LOTTO_PRICE !== 0;
+};
+
+export const isIncludeEmpty = list => {
+  return list.some(value => isEmpty(value));
+};
+
+export const isIncludeNotNumber = list => {
+  return list.some(value => isNotNumber(value));
+};
+
+export const isDuplicated = list => {
+  return list.length !== [...new Set(list)].length;
 };
 
 export const convertToNumber = value => {
@@ -26,20 +38,21 @@ export const convertToNumber = value => {
 
 export const pickLottoNumber = count => {
   //로또번호 1 ~ 45를 소유하고 있는 배열
-  const lottoNumbers = [...Array(RULES.MAX_LOTTO_NUMBER)].map(
+  const lottoNumbers = Array.from(
+    { length: RULES.MAX_LOTTO_NUMBER },
     (_, index) => index + 1,
   );
-  shuffleArray(lottoNumbers);
 
+  const shuffledLottoNumbers = shuffleArray(lottoNumbers);
   const numbers = [];
 
   for (let i = 0; i < count; i++) {
-    numbers.push(lottoNumbers.pop());
+    numbers.push(shuffledLottoNumbers.pop());
   }
 
   return numbers;
 };
 
-function shuffleArray(inputArray) {
-  inputArray.sort(() => Math.random() - 0.5);
-}
+const shuffleArray = inputArray => {
+  return inputArray.slice().sort(() => Math.random() - 0.5);
+};

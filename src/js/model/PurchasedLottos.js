@@ -12,7 +12,7 @@ export default class PurchasedLottos {
   }
 
   purchaseLotto(count) {
-    const newLottos = [...Array(count)].map(() => new LottoNumbers());
+    const newLottos = Array.from({ length: count }, () => new LottoNumbers());
     this.#lottos = newLottos;
 
     return newLottos;

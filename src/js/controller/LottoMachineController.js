@@ -1,30 +1,45 @@
 import PurchasedLottos from '../model/PurchasedLottos.js';
 
-import PurchaseMoneyView from '../view/purchaseMoneyView.js';
-import PurchasedLottoView from '../view/PurchasedLottoView.js';
-import WinningNumberView from '../view/WinningNumberView.js';
+import InputMoneyView from '../view/InputMoneyView.js';
+import PurchasedLottosView from '../view/PurchasedLottosView.js';
+import InputWinningNumberView from '../view/InputWinningNumberView.js';
+import LottoResultModalView from '../view/LottoResultModalView.js';
 
-import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
+import {
+  CONFIRM_MESSAGE,
+  EVENT,
+  LOTTO_RANKING_REWARD,
+  RANKING_ACCORDING_MATCH_COUNT,
+  RULES,
+} from '../constants/index.js';
 import { isEmpty } from '../utils/common.js';
+import { eventManager } from '../utils/event.js';
 
 export default class LottoMachineController {
   constructor() {
     //멤버변수 초기화
     this.model = new PurchasedLottos();
     this.view = {
-      purchaseMoneyView: new PurchaseMoneyView(),
-      purchasedLottoView: new PurchasedLottoView(),
-      winningNumberView: new WinningNumberView(),
+      inputMoneyView: new InputMoneyView(),
+      purchasedLottosView: new PurchasedLottosView(),
+      inputWinningNumberView: new InputWinningNumberView(),
+      lottoResultModalView: new LottoResultModalView(),
     };
 
-    //View handlers 멤버변수에 등록
-    this.view.purchaseMoneyView.addHandler({
-      name: 'purchasedMoneySubmit',
-      handler: this.onSubmitHandler.bind(this),
-    });
+    //이벤트리스너 등록
+    eventManager.on(
+      this.view.inputMoneyView.purchasedMoneyForm,
+      EVENT.SUBMIT_MONEY,
+      ({ detail }) => this.handlePurchaseLotto(detail.purchaseMoney),
+    );
+    eventManager.on(
+      this.view.lottoResultModalView.restartButton,
+      EVENT.CLICK_RESTART,
+      () => this.reset(),
+    );
   }
 
-  onSubmitHandler(purchaseMoney) {
+  handlePurchaseLotto(purchaseMoney) {
     const lottos = this.model.lottos;
 
     if (isEmpty(lottos)) {
@@ -33,29 +48,88 @@ export default class LottoMachineController {
     }
 
     if (this.tryRePurchase()) {
-      this.reset();
+      this.view.purchasedLottosView.resetScreen();
+      this.view.inputWinningNumberView.resetScreen();
       this.purchaseLotto(purchaseMoney);
       return;
     }
 
-    this.view.purchaseMoneyView.resetInputValue();
+    this.view.inputMoneyView.resetInputValue();
   }
 
   purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
     const lottos = this.model.purchaseLotto(lottoCount);
 
-    this.view.purchasedLottoView.render(lottos, lottoCount);
-    this.view.winningNumberView.render();
+    this.view.purchasedLottosView.initializeScreen();
+    this.view.purchasedLottosView.renderPurchasedLottoList(lottos);
+    this.view.inputWinningNumberView.renderWinningNumberForm();
+
+    //이벤트리스너 등록
+    eventManager.on(
+      this.view.inputWinningNumberView.winningNumberForm,
+      EVENT.SUBMIT_WINNING_NUMBERS,
+      ({ detail }) => {
+        this.handlePurchasedLottoResult(detail.winningNumbers);
+      },
+    );
   }
 
   tryRePurchase() {
     return confirm(CONFIRM_MESSAGE.RE_PURCHASE);
   }
 
+  handlePurchasedLottoResult(winningNumbers) {
+    const lottoResult = this.calculatePurchasedLottoResult(winningNumbers);
+    this.view.lottoResultModalView.renderLottoResult(lottoResult);
+
+    const totalProfitRate = this.calculateTotalProfitRate(lottoResult);
+    this.view.lottoResultModalView.renderTotalProfitRate(totalProfitRate);
+  }
+
+  calculatePurchasedLottoResult(winningNumbers) {
+    const winNumbers = winningNumbers.slice(0, 6);
+    const bonusNumber = winningNumbers[winningNumbers.length - 1];
+    const lottoResult = this.generateLottoResultObject();
+
+    this.model.lottos.forEach(lotto => {
+      const matchCount = lotto.calculateMatchCount(winNumbers, bonusNumber);
+      const ranking = RANKING_ACCORDING_MATCH_COUNT[matchCount];
+
+      if (lottoResult[ranking] === undefined) return;
+
+      lottoResult[ranking]++;
+    });
+
+    return lottoResult;
+  }
+
+  generateLottoResultObject() {
+    const lottoResult = [];
+
+    for (let ranking of Object.keys(LOTTO_RANKING_REWARD)) {
+      lottoResult[ranking] = 0;
+    }
+
+    return lottoResult;
+  }
+
+  calculateTotalProfitRate(lottoResult) {
+    const totalProfit = Object.keys(lottoResult).reduce(
+      (total, ranking) =>
+        (total += lottoResult[ranking] * LOTTO_RANKING_REWARD[ranking]),
+      0,
+    );
+    const purchasedLottoCount = this.model.lottos.length;
+    const usedMoney = purchasedLottoCount * RULES.LOTTO_PRICE;
+
+    return (totalProfit / usedMoney) * 100;
+  }
+
   reset() {
     this.model.resetStatus();
-    this.view.purchasedLottoView.resetScreen();
-    this.view.winningNumberView.resetScreen();
+    this.view.inputMoneyView.resetInputValue();
+    this.view.purchasedLottosView.resetScreen();
+    this.view.inputWinningNumberView.resetScreen();
   }
 }
