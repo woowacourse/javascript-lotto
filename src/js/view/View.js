@@ -1,4 +1,5 @@
-import { WINNING_PRICE } from '../constants/constants';
+import { WINNING_PRICE, MAX_MONEY_INPUT_LENGTH, CONDITIONS } from '../constants/constants';
+import { Modal } from './Modal';
 
 export class View {
   constructor() {
@@ -21,6 +22,7 @@ export class View {
     this.bonusNumberInput = document.getElementById('bonus-number');
 
     //나중에 옮길것
+    this.moneyInputLengthLimit();
     this.bindWinningNumberOnkeyup();
   }
 
@@ -43,6 +45,16 @@ export class View {
   showWinningLottoContainer() {
     this.winningLottoContainer.style.visibility = 'visible';
   }
+
+  moneyInputLengthLimit() {
+    this.moneyInput.onkeydown = this.cutMoneyInputByLength;
+  }
+
+  cutMoneyInputByLength = () => {
+    if (this.moneyInput.value.length >= CONDITIONS.MAX_MONEY_INPUT_LENGTH) {
+      this.moneyInput.value = this.moneyInput.value.substr(0, CONDITIONS.MAX_MONEY_INPUT_LENGTH - 1);
+    }
+  };
 
   showPurchasedLottos(lottoWallet) {
     this.lottoIcons = document.getElementById('lotto-icons');

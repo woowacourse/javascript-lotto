@@ -3,6 +3,7 @@ export const CONDITIONS = {
   LOTTO_NUM_MIN: 1,
   LOTTO_NUM_MAX: 45,
   LOTTO_PRICE: 1000,
+  MAX_MONEY_INPUT_LENGTH: 6,
 };
 
 export const ERROR_MESSAGE = {
