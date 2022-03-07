@@ -23,3 +23,5 @@ export const LOTTO_REWARD = {
   MATCH_FOUR_NUMBERS: 50000,
   MATCH_THREE_NUMBERS: 5000,
 };
+
+export const BACK_SPACE_KEY_CODE = 8;

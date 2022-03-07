@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/dom';
 import { winningNumber } from '../model/winningNumber';
 import { isInvalidWinningNumbersInput } from '../validator/validator';
-import { ERROR_MESSAGE } from '../constants/constants';
+import { BACK_SPACE_KEY_CODE, ERROR_MESSAGE } from '../constants/constants';
 import { winningStatistics } from '../model/winningStatistics';
 import { deactivateForm, activateForm, resetInput } from '../utils/dom';
 import { lottoTicket } from '../model/lottoTicket';
@@ -16,7 +16,7 @@ export default class WinningResultModal {
   }
 
   movePreviousInput(e) {
-    if (e.keyCode === 8) {
+    if (e.keyCode === BACK_SPACE_KEY_CODE) {
       if (e.target === $('#winning-number-1')) return;
       if (this.value.length !== 0) return;
       this.previousElementSibling === null ? $('#winning-number-6').focus() : this.previousElementSibling.focus();
