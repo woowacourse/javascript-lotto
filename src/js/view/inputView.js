@@ -16,6 +16,12 @@ export default class InputView {
     this.$lottoPriceButton.classList.add('disable');
   }
 
+  activeLottoPriceForm() {
+    this.$lottoPriceInput.disabled = false;
+    this.$lottoPriceButton.disabled = false;
+    this.$lottoPriceButton.classList.remove('disable');
+  }
+
   renderWinningNumbersInput() {
     this.$result.insertAdjacentHTML('beforeend', makeTemplate.makeWinningNumbersTemplate());
   }

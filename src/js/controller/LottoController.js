@@ -58,6 +58,7 @@ export default class LottoController {
 
   initLottoGame() {
     this.inputView.initLottoPriceInput();
+    this.inputView.activeLottoPriceForm();
     this.resultView.initResult();
     this.lottoModel.initGame();
     this.unbindEvent();
