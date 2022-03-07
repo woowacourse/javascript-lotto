@@ -7,7 +7,7 @@ export default class ModalView {
   #modalContent;
 
   constructor(modalContentSelector) {
-    this.#modalContainer = $(SELECTOR.MODAL_CONTAINER);
+    this.#modalContainer = $(SELECTOR.CLASS.MODAL_CONTAINER);
     this.#modalContent = $(modalContentSelector);
 
     this.#bindEvents();

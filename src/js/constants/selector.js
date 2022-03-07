@@ -1,41 +1,44 @@
 export const SELECTOR = Object.freeze({
-  APP: '#app',
+  ID: Object.freeze({
+    APP: '#app',
+    NUMBER_TOGGLE: '#lotto-number-toggle',
+    LOTTO_PURCHASE_BUTTON: '#lotto-purchase-button',
+    LOTTO_MONEY_INPUT: '#lotto-money-input',
+    LOTTO_BOUGHT_COUNT: '#lotto-bought-count',
+    LOTTO_SHOW_RESULT_BUTTON: '#show-result-button',
+    LOTTO_RESULT_LIST: '#lotto-result-list',
+    LOTTO_PROFIT_RATIO_TEXT: '#lotto-profit-ratio-text',
+    LOTTO_RETRY_BUTTON: '#lotto-retry-button',
+    LOTTO_RESULT_MODAL: '#lotto-result-modal',
+  }),
 
-  ERROR_MESSAGE: '.error-message',
-  MODAL_CONTAINER: '.modal-container',
-  MODAL_CLOSE: '.modal-close',
+  CLASS: Object.freeze({
+    ERROR_MESSAGE: '.error-message',
+    MODAL_CONTAINER: '.modal-container',
+    MODAL_CLOSE: '.modal-close',
 
-  NUMBER_TOGGLE: '#lotto-number-toggle',
-  LOTTO_PURCHASE_BUTTON: '#lotto-purchase-button',
-  LOTTO_MONEY_INPUT: '#lotto-money-input',
-  LOTTO_BOUGHT_COUNT: '#lotto-bought-count',
-  LOTTO_SHOW_RESULT_BUTTON: '#show-result-button',
-  LOTTO_RESULT_LIST: '#lotto-result-list',
-  LOTTO_PROFIT_RATIO_TEXT: '#lotto-profit-ratio-text',
-  LOTTO_RETRY_BUTTON: '#lotto-retry-button',
-  LOTTO_RESULT_MODAL: '#lotto-result-modal',
+    LOTTO_NUMBER_TOGGLE: '.lotto-number-toggle',
+    LOTTO_MONEY_SECTION: '.lotto-money-section',
+    LOTTO_LIST_SECTION: '.lotto-list-section',
+    LOTTO_WINNING_NUMBER_SECTION: '.winning-number-section',
 
-  LOTTO_NUMBER_TOGGLE: '.lotto-number-toggle',
-  LOTTO_MONEY_SECTION: '.lotto-money-section',
-  LOTTO_LIST_SECTION: '.lotto-list-section',
-  LOTTO_WINNING_NUMBER_SECTION: '.winning-number-section',
-
-  LOTTO_ITEM_CONTAINER: '.lotto-item-container',
-  LOTTO_ITEM: '.item',
-  LOTTO_ITEM_NUMBER: '.item-number',
-  LOTTO_WINNING_NUMBER: '.winning-number-input',
+    LOTTO_ITEM_CONTAINER: '.lotto-item-container',
+    LOTTO_ITEM: '.item',
+    LOTTO_ITEM_NUMBER: '.item-number',
+    LOTTO_WINNING_NUMBER: '.winning-number-input',
+  }),
 });
 
-const replaceSelectorToDomName = (origin) => {
-  const output = { ID: {}, CLASS: {} };
+const replaceRemoveSelectorSymbol = (origin) => {
+  const output = {};
   Object.entries(origin).forEach(([key, value]) => {
-    const name = value.substr(1);
-
-    if (value.substr(0, 1) === '#') output.ID[key] = name;
-    else if (value.substr(0, 1) === '.') output.CLASS[key] = name;
+    output[key] = value.substr(1);
   });
 
   return output;
 };
 
-export const DOM_NAME = Object.freeze(replaceSelectorToDomName(SELECTOR));
+export const DOM_NAME = Object.freeze({
+  ID: replaceRemoveSelectorSymbol(SELECTOR.ID),
+  CLASS: replaceRemoveSelectorSymbol(SELECTOR.CLASS),
+});

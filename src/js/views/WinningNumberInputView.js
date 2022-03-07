@@ -20,10 +20,10 @@ export default class WinningNumberInputView {
   }
 
   #defaultElements() {
-    this.#winningNumberInputList = $$(this.#container, SELECTOR.LOTTO_WINNING_NUMBER);
-    this.#winningNumberSubmitButton = $(this.#container, SELECTOR.LOTTO_SHOW_RESULT_BUTTON);
+    this.#winningNumberInputList = $$(this.#container, SELECTOR.CLASS.LOTTO_WINNING_NUMBER);
+    this.#winningNumberSubmitButton = $(this.#container, SELECTOR.ID.LOTTO_SHOW_RESULT_BUTTON);
 
-    this.#winningNumberErrorMessage = $(this.#container, SELECTOR.ERROR_MESSAGE);
+    this.#winningNumberErrorMessage = $(this.#container, SELECTOR.CLASS.ERROR_MESSAGE);
   }
 
   #bindViewEvents() {
@@ -85,7 +85,10 @@ export default class WinningNumberInputView {
     const handleInputChange = ({ target: $target }) => {
       $target.classList.remove('error');
 
-      const inputErrorCount = $$(this.#container, `${SELECTOR.LOTTO_WINNING_NUMBER}.error`).length;
+      const inputErrorCount = $$(
+        this.#container,
+        `${SELECTOR.CLASS.LOTTO_WINNING_NUMBER}.error`
+      ).length;
       if (inputErrorCount > 0) {
         return;
       }

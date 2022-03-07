@@ -19,9 +19,9 @@ export default class LottoResultView {
   }
 
   #defaultElements() {
-    this.#lottoResultList = $(this.#container, SELECTOR.LOTTO_RESULT_LIST);
-    this.#lottoResultProfitRatio = $(this.#container, SELECTOR.LOTTO_PROFIT_RATIO_TEXT);
-    this.#lottoRetryButton = $(this.#container, SELECTOR.LOTTO_RETRY_BUTTON);
+    this.#lottoResultList = $(this.#container, SELECTOR.ID.LOTTO_RESULT_LIST);
+    this.#lottoResultProfitRatio = $(this.#container, SELECTOR.ID.LOTTO_PROFIT_RATIO_TEXT);
+    this.#lottoRetryButton = $(this.#container, SELECTOR.ID.LOTTO_RETRY_BUTTON);
   }
 
   init() {
