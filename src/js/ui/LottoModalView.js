@@ -3,8 +3,7 @@ import { lottoResultTableTemplate } from './template';
 import $ from './utils';
 
 export class LottoModalView {
-  constructor(view) {
-    this.lottoView = view;
+  constructor() {
     this.$container = $(DOM.ID.LOTTO_MODAL);
     this.$lottoTable = $(DOM.ID.LOTTO_RESULT_TABLE);
   }
