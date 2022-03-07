@@ -19,7 +19,9 @@ h1 {
   width: 414px;
   height: 727px;  
   border: 2px solid black;
+  background-color: white;
   padding: 0px 16px;
+  z-index: 2;
 }
 
 label[for="purchase-money"] {
@@ -40,6 +42,37 @@ label[for="purchase-money"] {
   margin-left: 15px;
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+#lotto-purchase-form > button:hover {
+  background: #91c5cc;
+  border-radius: 4px;
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+  color: #FFFFFF;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  margin-left: 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#lotto-purchase-form > button:active {
+  background: #d2d7d8;
+  border-radius: 4px;
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  margin-left: 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 #lotto-purchase-input {
@@ -55,12 +88,20 @@ label[for="purchase-money"] {
   color: #8B8B8B;
 }
 
+#purchase-validate-text {
+  color: red;
+}
+
 #lotto-list {
+  width: 300px;
+  max-height: 300px;
+  overflow: scroll;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .lotto-list-column {
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .lotto-wrap {
@@ -71,7 +112,6 @@ label[for="purchase-money"] {
 .hidden {
   display: none;
 }
-
 
 #lotto-purchase-result {
   width: 100%;
@@ -96,6 +136,7 @@ label[for="purchase-money"] {
 #lotto-toggle-wrap {
   display: flex;
   flex-direction: column;
+  opacity: 0;
 }
 
 .switch {
@@ -157,4 +198,165 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#user-lotto {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  opacity: 0;
+}
+
+#user-lotto-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#user-lotto-form {
+  margin-top: 10px;
+}
+
+.user-lotto-number {
+  width: 30px;
+  height: 32px;
+  border-radius: 3px;
+  float: left;
+  margin-right: 6px;
+}
+
+.user-bonus-number {
+  width: 30px;
+  height: 32px;
+  border-radius: 3px;
+  float: right;
+}
+
+#user-lotto-result-button {
+  width: 382px;
+  height: 36px;
+  background-color: #00BCD4;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#user-lotto-result-button:hover {
+  width: 382px;
+  height: 36px;
+  background: #91c5cc;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#user-lotto-result-button:active {
+  width: 382px;
+  height: 36px;
+  background: #d2d7d8;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#user-lotto-result-modal {
+  width: 350px;
+  height: 500px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 4px;
+  margin-left: -380px;
+  z-index: 1;
+}
+
+#user-lotto-modal-close {
+  background-color: white;
+  border: none;
+  margin-top: 4px;
+  margin-left: 310px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#user-lotto-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 4px 0px 20px 0px;
+}
+
+#user-lotto-result-modal > div {
+  width: 318px;
+  height: 30px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  line-height: 30px;
+}
+
+#user-lotto-result-modal > div > p {
+  width: 100px;
+  text-align: center;
+}
+
+hr {
+  width: 318px;
+}
+
+#user-lotto-winrate {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+#user-lotto-restart {
+  width: 152px;
+  height: 36px;
+  background-color: #00BCD4;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  margin: 30px 0px 0px 100px;
+  cursor: pointer;
+}
+
+#user-lotto-restart:hover {
+  width: 152px;
+  height: 36px;
+  background: #91c5cc;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  margin: 30px 0px 0px 100px;
+  cursor: pointer;
+}
+
+#user-lotto-restart:active {
+  width: 152px;
+  height: 36px;
+  background: #d2d7d8;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+  margin: 30px 0px 0px 100px;
+  cursor: pointer;
 }

@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <title>🎱 행운의 로또</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./src/css/index.css" />
 </head>
 
 <body>
@@ -13,9 +14,10 @@
     <section id="lotto-purchase">
       <form id="lotto-purchase-form">
         <label for="purchase-money">구입할 금액을 입력해주세요.</label>
-        <input id="lotto-purchase-input" name="purchase-money" type="number" placeholder="5개까지 구매할 수 있습니다 (1개: 1000원)" />
+        <input id="lotto-purchase-input" name="purchase-money" type="number" placeholder="100개까지 구매할 수 있습니다 (1개: 1000원)" min="1000" />
         <button type="submit">구입</button>
       </form>
+      <p id="purchase-validate-text"></p>
     </section>
     <section id="lotto-purchase-result">
       <div>
@@ -30,7 +32,68 @@
         </label>
       </div>
     </section>
+    <section id="user-lotto">
+      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+      <div id="user-lotto-text">
+        <p>당첨 번호</p>
+        <p>보너스 번호</p>
+      </div>
+      <form id="user-lotto-form">
+        <input class="user-lotto-number" type="number" min="1" max="45" />
+        <input class="user-lotto-number" type="number" min="1" max="45" />
+        <input class="user-lotto-number" type="number" min="1" max="45" />
+        <input class="user-lotto-number" type="number" min="1" max="45" />
+        <input class="user-lotto-number" type="number" min="1" max="45" />
+        <input class="user-lotto-number" type="number" min="1" max="45" />
+        <input class="user-bonus-number" type="number" min="1" max="45" />
+        <button id="user-lotto-result-button" type="submit">결과 확인하기</button>
+      </form>
+    </section>
   </div>
+    <section id="user-lotto-result-modal">
+      <button id="user-lotto-modal-close">x</button>
+      <h2 id="user-lotto-modal-title">🏆 당첨 통계 🏆</h2>
+      <hr />
+      <div>
+        <p>일치 개수</p>
+        <p>당첨금</p>
+        <p>당첨 갯수</p>
+      </div>
+      <hr />
+      <div>
+        <p>3개</p>
+        <p>5,000</p>
+        <p class="win-lotto-result"></p>
+      </div>
+      <hr />
+      <div>
+        <p>4개</p>
+        <p>50,000</p>
+        <p class="win-lotto-result"></p>
+      </div>
+      <hr />
+      <div>
+        <p>5개</p>
+        <p>1,500,000</p>
+        <p class="win-lotto-result"></p>
+      </div>
+      <hr />
+      <div>
+        <p>5개 + 보너스볼</p>
+        <p>30,000,000</p>
+        <p class="win-lotto-result"></p>
+      </div>
+      <hr />
+      <div>
+        <p>6개</p>
+        <p>2,000,000,000</p>
+        <p class="win-lotto-result"></p>
+      </div>
+      <hr />
+      <h2 id="user-lotto-winrate"></h2>
+      <button id="user-lotto-restart">다시 시작하기</button>
+    </section>
 </body>
+<script type="module" src="./src/js/index.js"></script>
 
 </html>
