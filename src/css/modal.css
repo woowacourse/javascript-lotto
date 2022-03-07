@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
   position: fixed;
   left: 0;
   top: 0;
@@ -22,7 +21,7 @@
 }
 
 .modal-title {
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
@@ -60,7 +59,7 @@
   cursor: pointer;
   width: 150px;
   height: 36px;
-  margin: 20px 0px;
+  margin: 20px 0;
   border: none;
   border-radius: 4px;
   color: var(--color-white);
