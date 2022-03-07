@@ -132,3 +132,19 @@ export const getPrevSibling = (target, { attributeName, attributeType }) => {
 
   return siblings[[...siblings].indexOf(target) - 1];
 };
+
+export const focusNextSibling = (target, attribute, limit) => {
+  if (isInputOutOfRange(target, limit)) {
+    const nextInput = getNextSibling(target, attribute);
+
+    if (nextInput) nextInput.focus();
+  }
+};
+
+export const forceIntegerValue = (target, limit) => {
+  const maxLength = parseInt(limit, 10).toString().length;
+
+  target.value = removeNaN(target.value);
+  target.value = ignoreFirstZero(target.value);
+  target.value = target.value.substr(0, maxLength);
+};

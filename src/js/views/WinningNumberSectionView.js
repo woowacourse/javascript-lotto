@@ -3,11 +3,8 @@ import {
   $,
   $all,
   concatWinningNumbers,
-  removeNaN,
-  isInputOutOfRange,
-  getNextSibling,
-  getPrevSibling,
-  ignoreFirstZero,
+  forceIntegerValue,
+  focusNextSibling,
 } from '../utils/utils.js';
 import { validate, winningNumbersValidator } from '../utils/validator.js';
 import { DOM_STRING, LOTTO } from '../configs/contants.js';
@@ -70,50 +67,36 @@ export default class WinningNumberSectionView extends View {
   }
 
   bindOnInputWinningNumberInput() {
-    this.bindEventListener(
-      'input',
-      {
-        attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
-        attributeType: 'class',
-      },
-      this.handleOnInputWinningNumberInput.bind(this)
-    );
+    const attribute = {
+      attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
+      attributeType: 'class',
+    };
+
+    this.bindEventListener('input', attribute, ({ target }) => {
+      forceIntegerValue(target);
+      focusNextSibling(target, attribute, LOTTO.NUMBER_RANGE.MAX);
+    });
   }
 
   bindOnSubmitWinningNumberForm(callback) {
     this.bindEventListener(
       'submit',
       { attributeName: DOM_STRING.WINNING_NUMBER_FORM, attributeType: 'id' },
-      this.handleOnSubmitWinningNumberForm.bind(this, callback)
+      () => {
+        try {
+          const winningNumbers = this.getWinningNumbers();
+
+          validate(
+            winningNumbers,
+            winningNumbersValidator,
+            concatWinningNumbers
+          );
+          callback(winningNumbers);
+        } catch (e) {
+          alert(e);
+        }
+      }
     );
-  }
-
-  handleOnInputWinningNumberInput(e) {
-    const { target } = e;
-
-    target.value = removeNaN(target.value);
-    target.value = ignoreFirstZero(target.value);
-    target.value = target.value.substr(0, 2);
-
-    if (isInputOutOfRange(target, LOTTO.NUMBER_RANGE.MAX)) {
-      const nextInput = getNextSibling(target, {
-        attributeName: DOM_STRING.WINNING_NUMBER_INPUT,
-        attributeType: 'class',
-      });
-
-      if (nextInput) nextInput.focus();
-    }
-  }
-
-  handleOnSubmitWinningNumberForm(callback) {
-    const winningNumbers = this.getWinningNumbers();
-
-    try {
-      validate(winningNumbers, winningNumbersValidator, concatWinningNumbers);
-      callback(winningNumbers);
-    } catch (e) {
-      alert(e);
-    }
   }
 
   getWinningNumbers() {

@@ -59,14 +59,11 @@ export default class ResultModalWindowView extends View {
     this.bindEventListener(
       'click',
       { attributeName: DOM_STRING.RESTART_BUTTON, attributeType: 'id' },
-      this.handleOnClickModalOverlay.bind(this, callback)
+      () => {
+        this.closeModalWindow();
+        callback();
+      }
     );
-  }
-
-  handleOnClickModalOverlay(callback) {
-    this.closeModalWindow();
-
-    callback();
   }
 
   closeModalWindow() {

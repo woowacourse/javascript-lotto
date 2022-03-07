@@ -56,11 +56,13 @@ export default class TicketSectionView extends View {
     this.bindEventListener(
       'click',
       { attributeName: DOM_STRING.SLIDER, attributeType: 'id' },
-      this.handleOnClickNumberToggle.bind(this)
+      () => {
+        this.toggleIsShowNumber();
+      }
     );
   }
 
-  handleOnClickNumberToggle() {
+  toggleIsShowNumber() {
     const { isShowNumber } = this.state;
     this.update({ isShowNumber: !isShowNumber });
   }

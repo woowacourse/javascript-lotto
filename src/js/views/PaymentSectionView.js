@@ -18,9 +18,6 @@ export default class PaymentSectionView extends View {
           class="${DOM_STRING.STYLED_INPUT}"
           type="number"
           placeholder="${PAYMENT.PURCHASE_AMOUNT.MIN}"
-          min="${PAYMENT.PURCHASE_AMOUNT.MIN}"
-          max="${PAYMENT.PURCHASE_AMOUNT.MAX}"
-          step="${LOTTO.PRICE}"
           autofocus
         >
         <button
@@ -40,18 +37,20 @@ export default class PaymentSectionView extends View {
         attributeName: DOM_STRING.PAYMENT_FORM,
         attributeType: 'id',
       },
-      this.handleOnSubmitpaymentSubmit.bind(this, callback)
+      () => {
+        try {
+          const purchaseAmount = this.getPurchaseAmount();
+
+          validate(purchaseAmount, purchaseAmountValidator);
+          callback(purchaseAmount);
+        } catch (e) {
+          alert(e);
+        }
+      }
     );
   }
 
-  handleOnSubmitpaymentSubmit(callback) {
-    const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
-
-    try {
-      validate(amount, purchaseAmountValidator);
-      callback(amount);
-    } catch (e) {
-      alert(e);
-    }
+  getPurchaseAmount() {
+    return $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
   }
 }
