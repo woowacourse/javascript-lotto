@@ -1,42 +1,57 @@
-import { $, $$, emit, on } from '../utils/helper.js';
+import { $, $$, on } from '../utils/helper.js';
 import {
   lottoPurchaseCountTemplate,
   lottoPurchaseResultTemplate,
+  toggleButtonTemplate,
 } from '../utils/template.js';
 
 export default class lottoPurchaseResultView {
+  #lottoList;
+
+  #lottoNumbers;
+
+  #lottoPurchaseCount;
+
+  #lottoPurchaseResultSection;
+
+  #showLottoToggle;
+
   constructor() {
-    this.lottoPurchaseCount = $('#lotto-purchase-count');
-    this.lottoList = $('#lotto-list');
-    this.showLottoToggle = $('#show-lotto-toggle');
-
-    this.attachEvents();
+    this.#lottoPurchaseCount = $('#lotto-purchase-count');
+    this.#lottoList = $('#lotto-list');
+    this.#lottoPurchaseResultSection = $('#lotto-purchase-result-section');
   }
 
-  attachEvents() {
-    on(this.showLottoToggle, 'click', this.handleShowLottoToggle.bind(this));
+  render(count, lottoList) {
+    this.#lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
+
+    this.#lottoPurchaseResultSection.insertAdjacentHTML('beforeend', toggleButtonTemplate());
+    this.#showLottoToggle = $('#show-lotto-toggle');
+    on(this.#showLottoToggle, 'click', this.#toggleLottoNumbers.bind(this));
+
+    this.#lottoList.insertAdjacentHTML('afterbegin', lottoPurchaseResultTemplate(lottoList));
   }
 
-  handleShowLottoToggle() {
-    emit(this.showLottoToggle, '@lottoToggle', '');
+  #toggleLottoNumbers() {
+    this.#lottoNumbers = $$('.lotto-numbers');
+
+    this.#lottoList.classList.toggle('grid-columns-six');
+    this.#lottoList.classList.toggle('grid-columns-one');
+    this.#lottoNumbers.forEach((element) => element.classList.toggle('hidden'));
   }
 
-  renderLottoPurchaseCount(count) {
-    this.lottoPurchaseCount.textContent = lottoPurchaseCountTemplate(count);
-  }
+  restart() {
+    this.#lottoPurchaseCount.textContent = '아직 구매하신 로또가 없습니다.';
 
-  renderLottoPurchaseResult(lottoList) {
-    this.lottoList.insertAdjacentHTML(
-      'afterbegin',
-      lottoPurchaseResultTemplate(lottoList)
-    );
-  }
+    if (this.#showLottoToggle.checked) {
+      this.#showLottoToggle.checked = false;
+      this.#toggleLottoNumbers();
+    }
 
-  toggleLottoNumbers() {
-    this.lottoNumbers = $$('.lotto-numbers');
+    while (this.#lottoList.firstChild) {
+      this.#lottoList.removeChild(this.#lottoList.firstChild);
+    }
 
-    this.lottoList.classList.toggle('grid-columns-six');
-    this.lottoList.classList.toggle('grid-columns-one');
-    this.lottoNumbers.forEach((element) => element.classList.toggle('hidden'));
+    $('#lotto-toggle-button').remove();
   }
 }

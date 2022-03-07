@@ -1,53 +1,149 @@
 import { on } from './utils/helper.js';
-import { isValidPurchaseMoney } from './utils/validator.js';
+import {
+  isDividedByThousand,
+  isEmptyValue,
+  isPositiveValue,
+  isNotDuplicateNumberExistInArray,
+  isNotIncludeSameNumber,
+  isNumberInRange,
+  isAllNumberInRange,
+} from './utils/validator.js';
 import { LOTTO, ERROR_MESSAGE } from './utils/constants.js';
+import { calcLottoMatchingResult, calcProfit } from './utils/lottoResultCalculator.js';
 
 export default class LottoController {
-  constructor(lottoModel, views) {
-    this.lottoModel = lottoModel;
-    this.lottoPurchaseInputView = views.lottoPurchaseInputView;
-    this.lottoPurchaseResultView = views.lottoPurchaseResultView;
-    this.lottoNumberInputView = views.lottoPurchaseInputView;
+  #lottoCreator;
+
+  #lottoPurchaseInputView;
+
+  #lottoPurchaseResultView;
+
+  #lottoWinningNumberInputView;
+
+  #lottoMatchResultModalView;
+
+  constructor(model, views) {
+    this.#lottoCreator = model.lottoCreator;
+
+    this.#lottoPurchaseInputView = views.lottoPurchaseInputView;
+    this.#lottoPurchaseResultView = views.lottoPurchaseResultView;
+    this.#lottoWinningNumberInputView = views.lottoWinningNumberInputView;
+    this.#lottoMatchResultModalView = views.lottoMatchResultModalView;
+    this.#submitInitialView();
   }
 
-  init() {
-    this.submitView();
-  }
-
-  submitView() {
+  #submitInitialView() {
     on(
-      this.lottoPurchaseInputView.lottoPurchaseForm,
+      this.#lottoPurchaseInputView.lottoPurchaseForm,
       '@purchaseMoney',
-      this.submitPurchaseLotto.bind(this)
+      this.#submitPurchaseLotto.bind(this)
     );
+    on(this.#lottoMatchResultModalView.restartButton, '@restart', this.#submitRestart.bind(this));
+  }
+
+  #submitLottoWinningNumberInputView() {
     on(
-      this.lottoPurchaseResultView.showLottoToggle,
-      '@lottoToggle',
-      this.submitLottoToggle.bind(this)
+      this.#lottoWinningNumberInputView.lottoWinningNumberForm,
+      '@matchResult',
+      this.#submitMatchResult.bind(this)
     );
   }
 
-  submitLottoToggle() {
-    this.lottoPurchaseResultView.toggleLottoNumbers();
-  }
-
-  submitPurchaseLotto(event) {
+  #submitPurchaseLotto(event) {
     const purchaseMoney = event.detail;
 
-    if (!isValidPurchaseMoney(purchaseMoney)) {
-      alert(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
-      this.lottoPurchaseInputView.resetPurchaseMoney();
+    try {
+      LottoController.validatePurchaseMoney(purchaseMoney);
+      this.#lottoCreator.purchaseMoney = purchaseMoney;
+      this.#lottoPurchaseInputView.disableForm();
 
-      return;
+      this.#lottoCreator.createLottoList();
+      this.#lottoPurchaseResultView.render(
+        this.#lottoCreator.purchaseMoney / LOTTO.COST_UNIT,
+        this.#lottoCreator.lottoList
+      );
+
+      this.#lottoWinningNumberInputView.render();
+      this.#submitLottoWinningNumberInputView();
+    } catch (err) {
+      alert(err.message);
+      this.#lottoPurchaseInputView.reset();
+    }
+  }
+
+  #submitRestart() {
+    this.#lottoPurchaseInputView.restart();
+    this.#lottoCreator.restart();
+    this.#lottoPurchaseResultView.restart();
+    this.#lottoWinningNumberInputView.restart();
+  }
+
+  // eslint-disable-next-line max-lines-per-function
+  #submitMatchResult(event) {
+    const { lottoWinningNumbers, lottoWinningBonusNumber } = event.detail;
+
+    try {
+      LottoController.validateLottoWinningNumbers(
+        lottoWinningNumbers,
+        LOTTO.MIN_DIGIT,
+        LOTTO.MAX_DIGIT
+      );
+      LottoController.validateLottoWinningBonusNumber({
+        lottoWinningNumbers,
+        lottoWinningBonusNumber,
+        min: LOTTO.MIN_DIGIT,
+        max: LOTTO.MAX_DIGIT,
+      });
+
+      const lottoMatchResult = calcLottoMatchingResult(
+        lottoWinningNumbers,
+        lottoWinningBonusNumber,
+        this.#lottoCreator.lottoList
+      );
+      const profit = calcProfit(this.#lottoCreator.purchaseMoney, lottoMatchResult);
+
+      this.#lottoMatchResultModalView.render(lottoMatchResult, profit);
+    } catch (err) {
+      alert(err.message);
+      this.#lottoWinningNumberInputView.reset();
+    }
+  }
+
+  static validatePurchaseMoney(purchaseMoney) {
+    if (
+      isDividedByThousand(purchaseMoney) &&
+      !isEmptyValue(purchaseMoney) &&
+      isPositiveValue(purchaseMoney)
+    ) {
+      return true;
     }
 
-    this.lottoPurchaseInputView.disablePurchaseLottoForm();
-    this.lottoPurchaseResultView.renderLottoPurchaseCount(
-      purchaseMoney / LOTTO.COST_UNIT
-    );
-    this.lottoModel.setLottoList(purchaseMoney / LOTTO.COST_UNIT);
-    this.lottoPurchaseResultView.renderLottoPurchaseResult(
-      this.lottoModel.getLottoList()
-    );
+    throw new Error(ERROR_MESSAGE.IS_NOT_VALID_PURCHASE_MONEY);
+  }
+
+  static validateLottoWinningNumbers(lottoWinningNumbers, min, max) {
+    if (
+      isNotDuplicateNumberExistInArray(lottoWinningNumbers) &&
+      isAllNumberInRange(lottoWinningNumbers, min, max)
+    )
+      return true;
+
+    throw new Error(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_WINNING_NUMBERS);
+  }
+
+  static validateLottoWinningBonusNumber({
+    lottoWinningNumbers,
+    lottoWinningBonusNumber,
+    min,
+    max,
+  }) {
+    if (
+      isNumberInRange(lottoWinningBonusNumber, min, max) &&
+      isNotIncludeSameNumber(lottoWinningNumbers, lottoWinningBonusNumber)
+    ) {
+      return true;
+    }
+
+    throw new Error(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_WINNING_BONUS_NUMBER);
   }
 }

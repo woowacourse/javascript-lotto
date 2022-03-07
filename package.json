@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watch --no-cache",
+    "test:unit": "jest --watch --no-cache -- unit",
+    "test:e2e": " cypress run --browser chrome",
+    "test": "npm run test:unit -- unit && npm run test:e2e -- e2e",
     "start": "webpack serve --open",
     "build": "webpack"
   },
@@ -15,6 +17,7 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.6.0",
+    "cypress": "^9.5.1",
     "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.4.0",

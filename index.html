@@ -8,35 +8,71 @@
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
-      <section id="lotto-purchase">
+      <section>
         <form id="lotto-purchase-form">
           <label for="purchase-money">구입할 금액을 입력해주세요.</label>
           <input
             id="lotto-purchase-input"
+            class="mt-8"
             name="purchase-money"
             type="number"
             placeholder="금액"
+            autofocus
           />
-          <button id="lotto-purchase-button" type="submit">구입</button>
+          <button id="lotto-purchase-button" class="base-button" type="submit">구입</button>
         </form>
       </section>
-      <section id="lotto-purchase-result">
+      <section id="lotto-purchase-result-section" class="mt-28">
         <div id="lotto-list-wrap">
           <p id="lotto-purchase-count">아직 구매하신 로또가 없습니다.</p>
-          <div id="lotto-list" class="grid-columns-six"></div>
-        </div>
-        <div id="lotto-toggle-wrap">
-          <p>번호보기</p>
-          <label class="switch" for="show-lotto-toggle">
-            <input
-              id="show-lotto-toggle"
-              name="show-lotto-toggle"
-              type="checkbox"
-            />
-            <span class="slider round"></span>
-          </label>
+          <ul id="lotto-list" class="grid-columns-six mt-8"></ul>
         </div>
       </section>
+      <dialog id="lotto-result-dialog">
+        <form method="dialog" class="flex flex-direction-column align-items-center">
+          <span id="close-tag">❌</span>
+          <p id="lotto-result-title">🏆당첨 통계🏆</p>
+          <table id="lotto-result-table">
+            <thead>
+              <tr>
+                <th class="fw-600">일치 갯수</th>
+                <th class="fw-600">당첨금</th>
+                <th class="fw-600">당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td><span id="three-matched-number"></span>개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td><span id="four-matched-number"></span>개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td><span id="five-matched-number"></span>개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td><span id="five-with-bonus-matched-number"></span>개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td><span id="six-matched-number"></span>개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-16 fw-600">당신의 총 수익률은 <span id="profit-rate"></span>%입니다</p>
+          <button id="restart-button" type="button" class="mt-32 base-button">다시 시작하기</button>
+        </form>
+      </dialog> 
     </div>
+
   </body>
 </html>

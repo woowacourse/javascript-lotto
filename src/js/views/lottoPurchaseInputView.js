@@ -1,31 +1,46 @@
 import { $, on, emit } from '../utils/helper.js';
 
 export default class LottoPurchaseInputView {
+  #lottoPurchase;
+
   constructor() {
-    this.lottoPurchaseForm = $('#lotto-purchase-form');
-    this.lottoPurchaseInput = $('#lotto-purchase-input');
-    this.lottoPurchaseButton = $('#lotto-purchase-button');
+    this.#lottoPurchase = {
+      form: $('#lotto-purchase-form'),
+      input: $('#lotto-purchase-input'),
+      button: $('#lotto-purchase-button'),
+    };
 
-    this.attachEvents();
+    this.#attachEvents();
   }
 
-  attachEvents() {
-    on(this.lottoPurchaseForm, 'submit', this.handlePurchaseLotto.bind(this));
+  get lottoPurchaseForm() {
+    return this.#lottoPurchase.form;
   }
 
-  handlePurchaseLotto(event) {
+  #attachEvents() {
+    on(this.#lottoPurchase.form, 'submit', this.#handlePurchaseLotto.bind(this));
+  }
+
+  #handlePurchaseLotto(event) {
     event.preventDefault();
-    const purchaseMoney = this.lottoPurchaseInput.valueAsNumber;
+    const purchaseMoney = event.target.elements['lotto-purchase-input'].valueAsNumber;
 
-    emit(this.lottoPurchaseForm, '@purchaseMoney', purchaseMoney);
+    emit(this.#lottoPurchase.form, '@purchaseMoney', purchaseMoney);
   }
 
-  resetPurchaseMoney() {
-    this.lottoPurchaseForm.reset();
+  reset() {
+    this.#lottoPurchase.form.reset();
   }
 
-  disablePurchaseLottoForm() {
-    this.lottoPurchaseInput.disabled = true;
-    this.lottoPurchaseButton.disabled = true;
+  disableForm() {
+    this.#lottoPurchase.input.disabled = true;
+    this.#lottoPurchase.button.disabled = true;
+  }
+
+  restart() {
+    this.reset();
+
+    this.#lottoPurchase.input.disabled = false;
+    this.#lottoPurchase.button.disabled = false;
   }
 }
