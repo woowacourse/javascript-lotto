@@ -112,8 +112,8 @@ export default class App {
       this.lottoList,
       lastLottoNumbers,
     );
-    renderRateOfReturnResult(lottoPrize.computeLottoRateOfReturn());
-    renderLottoWinningCount(lottoPrize.computeLottoRankList());
+    renderRateOfReturnResult(lottoPrize.getLottoRateOfReturn());
+    renderLottoWinningCount(lottoPrize.getLottoRankList());
     toggleLottoResultModal();
   };
 }
