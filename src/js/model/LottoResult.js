@@ -64,12 +64,17 @@ export default class LottoResult {
   }
 
   calculateLottoYield() {
-    const winningMoney =
-      this.#winningCounts.fifthPlace * LOTTO.FIFTH_PRIZE +
-      this.#winningCounts.fourthPlace * LOTTO.FOURTH_PRIZE +
-      this.#winningCounts.thirdPlace * LOTTO.THIRD_PRIZE +
-      this.#winningCounts.secondPlace * LOTTO.SECOND_PRIZE +
-      this.#winningCounts.firstPlace * LOTTO.FIRST_PRIZE;
+    const PRIZE_BY_PLACE = {
+      fifthPlace: LOTTO.FIFTH_PRIZE,
+      fourthPlace: LOTTO.FOURTH_PRIZE,
+      thirdPlace: LOTTO.THIRD_PRIZE,
+      secondPlace: LOTTO.SECOND_PRIZE,
+      firstPlace: LOTTO.FIRST_PRIZE,
+    };
+    const winningMoney = Object.entries(this.#winningCounts).reduce((previous, [key, value]) => {
+      return previous + value * PRIZE_BY_PLACE[key];
+    }, 0);
+
     const { paidMoney } = this.lottoVendor;
     this.#winningMoney = winningMoney;
     this.#lottoYield = Math.floor((winningMoney / paidMoney) * 100);
