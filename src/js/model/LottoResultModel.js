@@ -20,12 +20,11 @@ export default class LottoResultModel {
       LOTTO_NUMBER.LENGTH_MAX,
     );
     const matchNumberCount = lotto.filter((number) => exceptBonusNumbers.includes(number)).length;
-    const isMatchBonus = lotto.includes(winningNumbers[winningNumbers.length - 1]);
     if (matchNumberCount === 6) {
       this.#lottoResult.first += 1;
       return;
     }
-    if (matchNumberCount === 5 && isMatchBonus) {
+    if (matchNumberCount === 5 && lotto.includes(winningNumbers[winningNumbers.length - 1])) {
       this.#lottoResult.second += 1;
       return;
     }
