@@ -1,14 +1,14 @@
 import { $ } from '../utils/dom.js';
 import { LOTTO_INFO } from '../constants/constant.js';
 import { NOT_DIVIDE_THOUSAND_ERROR } from '../constants/errorMessage.js';
-import {
-  isValueTypeNumber,
-  isPositiveNumber,
-} from '../modules/checkInputValue.js';
+import { isValueTypeNumber, isPositiveNumber } from './checkInputValue.js';
 
 export const getLottoPrice = () => {
   const lottoPrice = $('.lotto-price-input').value;
-  return lottoPrice;
+  if (checkLottoPrice(lottoPrice)) {
+    return lottoPrice;
+  }
+  return false;
 };
 
 export const checkLottoPrice = userInput => {
@@ -19,9 +19,9 @@ export const checkLottoPrice = userInput => {
       userLottoPriceInputPositive = isPositiveNumber(lottoPrice);
     }
     if (userLottoPriceInputPositive) {
-      isValueDivideThousand(lottoPrice);
+      return isValueDivideThousand(lottoPrice);
     }
-    return lottoPrice;
+    return userLottoPriceInputPositive;
   } catch (err) {
     window.alert('로또 구입 금액에는 ' + err.message);
   }

@@ -5,10 +5,7 @@ import {
   NOT_NUMBER_TYPE_ERROR,
   NOT_POSITIVE_NUMBER_ERROR,
 } from '../constants/errorMessage.js';
-import {
-  isPositiveNumber,
-  isValueTypeNumber,
-} from '../modules/checkInputValue.js';
+import { isPositiveNumber, isValueTypeNumber } from './checkInputValue.js';
 
 export const getLastLottoNumbers = () => {
   const lastLottoNumbers = [];
@@ -17,11 +14,13 @@ export const getLastLottoNumbers = () => {
     .forEach(lastLottoNum => {
       lastLottoNumbers.push(Number(lastLottoNum.value));
     });
-  return lastLottoNumbers;
+  if (checkLastLottoNumberValid(lastLottoNumbers)) {
+    return lastLottoNumbers;
+  }
+  return false;
 };
 
-export const checkLastLottoNumberValid = () => {
-  const lastLottoNumbers = getLastLottoNumbers();
+export const checkLastLottoNumberValid = lastLottoNumbers => {
   try {
     let isLottoNumberInputPositive = false;
     let isLottoNumberInRange = false;
@@ -33,9 +32,9 @@ export const checkLastLottoNumberValid = () => {
       isLottoNumberInRange = checkLastLottoNumbersInRange(lastLottoNumbers);
     }
     if (isLottoNumberInRange) {
-      checkLastLottoNumbersOverlap(lastLottoNumbers);
+      return checkLastLottoNumbersOverlap(lastLottoNumbers);
     }
-    return lastLottoNumbers;
+    return isLottoNumberInRange;
   } catch (err) {
     window.alert('지난 로또 번호 입력창에는 ' + err.message);
   }
@@ -44,9 +43,8 @@ export const checkLastLottoNumberValid = () => {
 export const checkLastLottoNumbersType = lastLottoNumbers => {
   if (
     lastLottoNumbers.filter(num => {
-      if (isValueTypeNumber(num)) return num;
-    }).length !==
-    LOTTO_INFO.LOTTO_NUMBER_COUNT + 1
+      return isValueTypeNumber(num) != true;
+    }).length > 0
   ) {
     throw new Error(NOT_NUMBER_TYPE_ERROR);
   }
@@ -56,9 +54,8 @@ export const checkLastLottoNumbersType = lastLottoNumbers => {
 export const checkLastLottoNumbersPositive = lastLottoNumbers => {
   if (
     lastLottoNumbers.filter(num => {
-      if (isPositiveNumber(num)) return num;
-    }).length !==
-    LOTTO_INFO.LOTTO_NUMBER_COUNT + 1
+      return isPositiveNumber(num) != true;
+    }).length > 0
   ) {
     throw new Error(NOT_POSITIVE_NUMBER_ERROR);
   }
