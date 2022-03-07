@@ -19,16 +19,11 @@ class LottoGameView {
     this.#winningStatisticModalView = new WinningStatisticModalView();
   }
 
-  deactivateFareForm() {
-    this.#fareFormView.deactivateFareForm();
-  }
-
   renderLottoList(lottoList) {
     this.#lottoListView.renderLottoList(lottoList);
-  }
 
-  renderLottoMatchSection() {
-    this.#lottoMatchView.renderLottoMatchSection();
+    this.#deactivateFareForm();
+    this.#renderLottoMatchSection();
   }
 
   renderWinningStatisticModal(winningCounts, earningsRate) {
@@ -49,6 +44,14 @@ class LottoGameView {
     this.#lottoListView.reset();
     this.#lottoMatchView.reset();
     this.#winningStatisticModalView.reset();
+  }
+
+  #deactivateFareForm() {
+    this.#fareFormView.deactivateFareForm();
+  }
+
+  #renderLottoMatchSection() {
+    this.#lottoMatchView.renderLottoMatchSection();
   }
 }
 

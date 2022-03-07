@@ -46,9 +46,7 @@ export const onSubmitFareForm = (e) => {
   const lottoCount = lottoManager.calculateLottoCount(fare);
   const lottoList = lottoManager.createLottos(lottoCount);
 
-  lottoGameView.deactivateFareForm();
   lottoGameView.renderLottoList(lottoList);
-  lottoGameView.renderLottoMatchSection();
   lottoGameView.bindLottoMatchViewEvent(onClickResultButton);
 };
 
