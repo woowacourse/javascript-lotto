@@ -65,7 +65,16 @@ class ResultModal extends Component {
     `;
   }
 
+  // eslint-disable-next-line max-lines-per-function
   setEvent() {
+    this.addEvent('click', 'result-modal', (event) => {
+      event.preventDefault();
+
+      if (event.target !== this) return;
+
+      window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, false));
+    });
+
     this.addEvent('click', '.close', (event) => {
       event.preventDefault();
       window.store.dispatch(createAction(ACTION.TOGGLE_RESULT_MODAL, false));
