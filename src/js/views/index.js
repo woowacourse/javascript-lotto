@@ -45,19 +45,14 @@ class LottoRoundView {
       </div>`;
   }
 
-  // 내부 구현이 너무 길어져서 메서드를 분리
   renderAlignState(visibleState, lottoAmount = 0) {
     if (visibleState) {
-      if (lottoAmount > NUMBER.LOTTO_SECTIONS_DEFALUT_CAPACITY_IN_DETAIL) {
-        this.$lottoSection.style.height = this.#calculateVisibleLottoSectionHeight(lottoAmount);
-        this.$alignConverter.setAttribute('disabled', true);
-        setTimeout(() => {
-          this.$lottoContainer.setAttribute('data-visible-state', visibleState);
-          this.$alignConverter.removeAttribute('disabled');
-        }, NUMBER.ANIMATION_TIME);
-        return;
-      }
-      this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+      this.$lottoSection.style.height = this.#calculateVisibleLottoSectionHeight(lottoAmount);
+      this.$alignConverter.setAttribute('disabled', true);
+      setTimeout(() => {
+        this.$lottoContainer.setAttribute('data-visible-state', visibleState);
+        this.$alignConverter.removeAttribute('disabled');
+      }, NUMBER.ANIMATION_TIME);
       return;
     }
     this.$lottoContainer.setAttribute('data-visible-state', visibleState);
@@ -77,10 +72,10 @@ class LottoRoundView {
       return `${
         linesOfLottoIcon *
           (ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE + ELEMENT_PROPERTY.GAP_OF_LOTTO_ITEM) +
-        ELEMENT_PROPERTY.DEFAULT_HEIGHT_OF_LOTTO_SECTION
+        ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE
       }px`;
     }
-    return `${ELEMENT_PROPERTY.DEFAULT_HEIGHT_OF_LOTTO_SECTION}px`;
+    return `${ELEMENT_PROPERTY.HEIGHT_OF_ONE_LOTTO_ICON_LINE}px`;
   }
 
   renderWinNumberInputSection(visibleState) {
