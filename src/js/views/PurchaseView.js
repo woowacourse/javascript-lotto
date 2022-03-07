@@ -1,5 +1,5 @@
+import { $, setDisabled, setEnabled } from "../utils/dom.js";
 import { SELECTOR } from "../utils/constants.js";
-import { $, setDisabled } from "../utils/dom.js";
 
 export default class PurchaseView {
   constructor() {

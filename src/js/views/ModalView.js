@@ -1,5 +1,5 @@
-import { BONUS, REWARD, SELECTOR } from "../utils/constants";
 import { $, $$ } from "../utils/dom";
+import { BONUS, SELECTOR } from "../utils/constants";
 
 export default class ModalView {
   constructor() {
@@ -7,14 +7,15 @@ export default class ModalView {
     this.modalProfit = $(SELECTOR.MODAL_PROFIT);
     this.winningCounts = $$(SELECTOR.WINNING_COUNT);
     this.winningBonusCount = $(SELECTOR.WINNING_BONUS_COUNT);
+    $(SELECTOR.MODAL_CLOSE).addEventListener("click", this.#handleCloseModal.bind(this));
   }
 
   bindRestart(handler) {
     $(SELECTOR.MODAL_RESTART).addEventListener("click", handler);
   }
 
-  bindCloseModal(handler) {
-    $(SELECTOR.MODAL_CLOSE).addEventListener("click", handler);
+  #handleCloseModal() {
+    this.modalContainer.classList.remove("show-modal");
   }
 
   toggleModal() {

@@ -1,10 +1,11 @@
-import { LOTTO_NUMBER, SELECTOR } from "../utils/constants.js";
 import { $, setHidden, setShow } from "../utils/dom.js";
+import { LOTTO_NUMBER, SELECTOR } from "../utils/constants.js";
 
 export default class WinningNumberView {
   constructor() {
     this.resultButton = $(SELECTOR.RESULT_BUTTON);
     this.winningContainer = $(SELECTOR.WINNING_CONTAINER);
+    this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
     this.winningContainer.addEventListener("keyup", this.#setAutoCursor.bind(this));
   }
 

@@ -1,6 +1,6 @@
 import { AMOUNT, LOTTO_NUMBER } from "../utils/constants.js";
 import {
-  hasOverRangeWinningNumber,
+  hasOverRangeNumber,
   isOverMaximumAmount,
   isUnderAmountUnit,
   isUnderMinimumAmount,
@@ -31,7 +31,7 @@ describe("유효성 함수 테스트", () => {
   test(`당첨번호와 보너스번호는 ${LOTTO_NUMBER.RANGE_MIN}~${LOTTO_NUMBER.RANGE_MAX} 사이의 숫자로 이루어져야 한다.`, () => {
     const numbers1 = [1, 2, 3, 4, 5, 6, 46];
     const numbers2 = [1, 2, 3, 4, 5, 6, 7];
-    expect(hasOverRangeWinningNumber(numbers1)).toBe(true);
-    expect(hasOverRangeWinningNumber(numbers2)).toBe(false);
+    expect(hasOverRangeNumber(numbers1)).toBe(true);
+    expect(hasOverRangeNumber(numbers2)).toBe(false);
   });
 });

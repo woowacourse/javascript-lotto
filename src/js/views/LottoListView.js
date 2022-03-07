@@ -1,6 +1,5 @@
-import { SELECTOR } from "../utils/constants.js";
 import { $ } from "../utils/dom.js";
-
+import { SELECTOR } from "../utils/constants.js";
 import { setEnabled, setDisabled } from "../utils/dom";
 
 export default class LottoListView {

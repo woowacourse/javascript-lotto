@@ -1,4 +1,4 @@
-import LottoGame from "../model/LottoGame.js";
+import LottoGameModel from "../model/LottoGameModel.js";
 import LottoListView from "../views/LottoListView.js";
 import ModalView from "../views/ModalView.js";
 import PurchaseView from "../views/PurchaseView.js";
@@ -17,7 +17,7 @@ export default class LottoController {
     this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
     this.modalContainer = $(SELECTOR.MODAL_CONTAINER);
 
-    this.lottoGameModel = new LottoGame();
+    this.lottoGameModel = new LottoGameModel();
     this.purchaseView = new PurchaseView();
     this.lottoListView = new LottoListView();
     this.winningNumberView = new WinningNumberView();
@@ -27,7 +27,6 @@ export default class LottoController {
     this.lottoListView.bindSwitch(this.#handleSwitch.bind(this));
     this.winningNumberView.bindResult(this.#handleResult.bind(this));
     this.modalView.bindRestart(this.#handleRestart.bind(this));
-    this.modalView.bindCloseModal(this.#handleCloseModal.bind(this));
   }
 
   #handlePurchase(e) {
@@ -71,10 +70,6 @@ export default class LottoController {
     } catch ({ message }) {
       alert(message);
     }
-  }
-
-  #handleCloseModal() {
-    this.modalContainer.classList.remove("show-modal");
   }
 
   #handleRestart() {
