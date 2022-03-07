@@ -58,11 +58,11 @@ export const renderLastLottoNumber = () => {
     <div class="last-lotto-winning-number-main">
       <div class="last-lotto-winning-number-main-container">
         <input type="number" class="last-lotto-winning-number-input" />
-        <input type="number" class="last-lotto-winning-number-input " />
-        <input type="number" class="last-lotto-winning-number-input " />
-        <input type="number" class="last-lotto-winning-number-input " />
-        <input type="number" class="last-lotto-winning-number-input " />
-        <input type="number" class="last-lotto-winning-number-input " />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
+        <input type="number" class="last-lotto-winning-number-input" />
       </div>
       <div class="last-lotto-bonus-number-container">
         <input type="number" class="last-lotto-winning-number-input bonus-input" />
