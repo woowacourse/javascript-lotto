@@ -234,3 +234,13 @@ table tr {
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
   z-index: 100;
 }
+
+.disable {
+  background-color: #b4b4b4;
+  cursor: auto;
+}
+
+
+.disable:hover {
+  background-color: #b4b4b4;
+}

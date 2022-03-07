@@ -5,7 +5,15 @@ import makeTemplate from './template';
 export default class InputView {
   constructor() {
     this.$result = $('#result');
-    this.$lottoPriceInput = $('#lotto-price-input');
+    this.$lottoPriceForm = $('#lotto-price-form');
+    this.$lottoPriceInput = this.$lottoPriceForm.querySelector('#lotto-price-input');
+    this.$lottoPriceButton = this.$lottoPriceForm.querySelector('#lotto-price-button');
+  }
+
+  disableLottoPriceForm() {
+    this.$lottoPriceInput.disabled = true;
+    this.$lottoPriceButton.disabled = true;
+    this.$lottoPriceButton.classList.add('disable');
   }
 
   renderWinningNumbersInput() {

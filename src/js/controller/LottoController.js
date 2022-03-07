@@ -74,6 +74,7 @@ export default class LottoController {
       this.resultView.renderResult(this.lottoModel.getLottoCount());
       this.initAfterRenderResult();
       this.inputView.renderWinningNumbersInput();
+      this.inputView.disableLottoPriceForm();
     } catch (err) {
       alert(err.message);
     }
