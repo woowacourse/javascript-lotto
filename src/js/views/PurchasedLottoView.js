@@ -8,7 +8,7 @@ export default class PurchasedLottoView extends View {
 
     this.lottoNumberList = $(".lotto-number-list");
     this.switchInput = $(".switch-input");
-    this.switchInput.addEventListener("click", this.#onClickSwitch.bind(this));
+    this.switchInput.addEventListener("click", this.#onClickSwitch);
   }
 
   renderPurchasedInfomation(lottoCount) {
@@ -38,9 +38,9 @@ export default class PurchasedLottoView extends View {
     this.renderLottoIcons(lottoList.length);
   }
 
-  #onClickSwitch() {
+  #onClickSwitch = () => {
     this.handlers.get("click").forEach((func) => func());
-  }
+  };
 
   handlePurchasedLotto(lottoCount) {
     this.#manageSwitchInput(false);
