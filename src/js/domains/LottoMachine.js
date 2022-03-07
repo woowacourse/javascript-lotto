@@ -5,14 +5,14 @@ import LottoStrategy from './LottoStrategy.js';
 export default class LottoMachine {
   #inputMoney;
   #lottos;
-  #strategy;
+  #generateNumberStrategy;
   #totalMoney;
 
   constructor() {
     this.#inputMoney = 0;
     this.#lottos = [];
     this.#totalMoney = 0;
-    this.#strategy = new LottoStrategy();
+    this.#generateNumberStrategy = new LottoStrategy();
   }
 
   get inputMoney() {
@@ -52,7 +52,7 @@ export default class LottoMachine {
   }
 
   updateStrategy(strategy) {
-    this.#strategy = strategy;
+    this.#generateNumberStrategy = strategy;
   }
 
   operateLottoMachine() {
@@ -64,7 +64,7 @@ export default class LottoMachine {
   generateLottos() {
     return Array(this.lottoQuantity)
       .fill()
-      .map(() => new Lotto(this.#strategy).generate());
+      .map(() => new Lotto(this.#generateNumberStrategy).generate());
   }
 
   calculateGrade(winningNumbers, bonusNumber) {
