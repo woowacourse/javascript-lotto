@@ -8,10 +8,10 @@ export default class MoneyInputView extends InputView {
   constructor($element) {
     super();
     this.#moneyInputSection = $element;
-    this.moneyInputHandler();
+    this.bindMoneyKeydown();
   }
 
-  moneyInputHandler() {
+  bindMoneyKeydown() {
     this.#moneyInputSection.addEventListener('keydown', this.preventNonDigitInput.bind(this));
   }
 
