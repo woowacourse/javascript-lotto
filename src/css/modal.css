@@ -1,3 +1,6 @@
+.modal-container {
+  display: none;
+}
 .show-modal {
   display: flex;
   align-items: center;

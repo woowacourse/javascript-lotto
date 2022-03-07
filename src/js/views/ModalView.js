@@ -1,12 +1,13 @@
-import { SELECTOR } from "../utils/constants";
-import { $ } from "../utils/dom";
+import { BONUS, REWARD, SELECTOR } from "../utils/constants";
+import { $, $$ } from "../utils/dom";
 
 export default class ModalView {
   constructor(setClickRestart) {
     this.setClickRestart = setClickRestart;
     this.modalContainer = $(SELECTOR.MODAL_CONTAINER);
-    this.modalTableBody = $(SELECTOR.MODAL_TABLE_BODY);
     this.modalProfit = $(SELECTOR.MODAL_PROFIT);
+    this.winningCounts = $$(SELECTOR.WINNING_COUNT);
+    this.winningBonusCount = $(SELECTOR.WINNING_BONUS_COUNT);
 
     $(SELECTOR.MODAL_CLOSE).addEventListener("click", this.#handleCloseModal.bind(this));
     $(SELECTOR.MODAL_RESTART).addEventListener("click", this.#handleRestart.bind(this));
@@ -28,20 +29,10 @@ export default class ModalView {
   }
 
   #renderResult(result) {
-    this.modalTableBody.replaceChildren();
-    this.modalTableBody.insertAdjacentHTML(
-      "beforeend",
-      Object.keys(result)
-        .map(
-          (key) =>
-            `<tr>
-                <td>${key}</td>
-                <td>${result[key][0].toLocaleString()}</td>
-                <td>${result[key][1]}개</td>
-            </tr>`,
-        )
-        .join(""),
-    );
+    this.winningCounts.forEach((winningCount, index) => {
+      winningCount.innerText = `${result[index + 3]}개`;
+    });
+    this.winningBonusCount.innerText = `${result[BONUS]}개`;
   }
 
   #renderProfitRate(rate) {

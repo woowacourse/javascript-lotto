@@ -1,23 +1,16 @@
-import {
-  AMOUNT,
-  BONUS,
-  CONVERT_TO_COUNT_INFO,
-  MATCH_COUNT_INFO,
-  MATCH_NUMBER,
-  WINNER_PRICE,
-} from "../utils/constants.js";
-import Lotto from "./Lotto.js";
+import { AMOUNT, BONUS, LOTTO_NUMBER, REWARD } from "../utils/constants.js";
+import { getRandomNumber } from "../utils/general.js";
 
 export default class LottoGame {
   constructor() {
     this.lottos = [];
     this.profitRate = 0;
     this.result = {
-      [MATCH_COUNT_INFO.THREE]: [WINNER_PRICE.FIFTH, 0],
-      [MATCH_COUNT_INFO.FOUR]: [WINNER_PRICE.FOURTH, 0],
-      [MATCH_COUNT_INFO.FIVE]: [WINNER_PRICE.THIRD, 0],
-      [MATCH_COUNT_INFO.BONUS]: [WINNER_PRICE.SECOND, 0],
-      [MATCH_COUNT_INFO.SIX]: [WINNER_PRICE.FRIST, 0],
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      [BONUS]: 0,
     };
   }
 
@@ -33,12 +26,19 @@ export default class LottoGame {
     return this.getLottoCount() * AMOUNT.UNIT;
   }
 
+  #getLottoNumbers() {
+    const numbers = [];
+    while (numbers.length < LOTTO_NUMBER.LENGTH) {
+      const randomNumber = getRandomNumber(LOTTO_NUMBER.RANGE_MIN, LOTTO_NUMBER.RANGE_MAX);
+      if (!numbers.includes(randomNumber)) {
+        numbers.push(randomNumber);
+      }
+    }
+    return numbers;
+  }
+
   generateLottoTickets(count) {
-    this.lottos = Array.from({ length: count }).map(() => {
-      const lotto = new Lotto();
-      lotto.generateRandomNumber();
-      return lotto.numbers;
-    });
+    this.lottos = Array.from({ length: count }, () => this.#getLottoNumbers());
   }
 
   generateResult(winningNumbers, bonusNumber) {
@@ -50,22 +50,21 @@ export default class LottoGame {
   #calculateMatchCount(winningNumbers, bonusNumber) {
     this.lottos.forEach((lotto) => {
       const matchCount = lotto.filter((number) => winningNumbers.includes(number)).length;
-      if (matchCount < MATCH_NUMBER.THREE) {
+      if (matchCount < 3) {
         return;
       }
-      if (matchCount === MATCH_NUMBER.FIVE && lotto.includes(bonusNumber)) {
-        this.result[CONVERT_TO_COUNT_INFO[BONUS]][1]++;
+      if (matchCount === 5 && lotto.includes(bonusNumber)) {
+        this.result[BONUS]++;
         return;
       }
-      this.result[CONVERT_TO_COUNT_INFO[matchCount]][1]++;
+      this.result[matchCount]++;
     });
   }
 
   #calculateProfitRate() {
     const totalProfit = Object.keys(this.result)
-      .map((v) => {
-        const [price, count] = this.result[v];
-        return price * count;
+      .map((key) => {
+        return this.result[key] * REWARD[key];
       })
       .reduce((a, b) => a + b, 0);
 
@@ -75,7 +74,7 @@ export default class LottoGame {
   }
 
   #resetResult() {
-    Object.values(this.result).forEach((v) => (v[1] = 0));
+    Object.keys(this.result).forEach((key) => (this.result[key] = 0));
     this.profitRate = 0;
   }
 }
