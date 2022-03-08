@@ -2,6 +2,7 @@
 import {
   ACTION,
   DUPLICATE_ERROR_CLASS_NAMES,
+  ERROR_MESSAGE,
   INVALID_RANGE_ERROR_CLASS_NAME,
   LOTTO,
   WINNING_NUM_PLACEHOLDER,
@@ -103,7 +104,8 @@ class WinningNumberForm extends Component {
 
     this.addEvent('keydown', 'winning-number-form', (event) => {
       const { key } = event;
-      this.handleKeydownEvent(key);
+      if (key !== 'Enter') return;
+      this.handleEnter();
     });
 
     this.addEvent('click', 'winning-number-form', (event) => {
@@ -115,7 +117,7 @@ class WinningNumberForm extends Component {
 
     this.addEvent('click', 'winning-number-form', ({ target }) => {
       if (target.tagName.toLowerCase() !== 'button') return;
-      this.handleEnter(); // 버튼 누른거는 Enter친것과 같은 행위이다
+      this.handleEnter();
     });
   }
 
@@ -138,26 +140,22 @@ class WinningNumberForm extends Component {
     }
   }
 
-  handleKeydownEvent(key) {
-    if (key !== 'Enter') return;
-    this.handleEnter();
-  }
-
-  handleEnter() {
-    const winningNumberList = this.$inputs.map((input) => input.valueAsNumber);
-    try {
-      this.showStatisticsModal(winningNumberList);
-    } catch (e) {
-      this.submitLottoNumbers(winningNumberList);
-    }
-  }
-
   handleClickInput(target) {
     const { order } = target;
     const winningNumberList = this.$inputs.map((input) =>
       input.order === order ? WINNING_NUM_PLACEHOLDER : input.valueAsNumber
     );
     this.submitLottoNumbers(winningNumberList);
+  }
+
+  handleEnter() {
+    const winningNumberList = this.$inputs.map((input) => input.valueAsNumber);
+    const hasError = validateWinningNumberList(winningNumberList).some((result) => result.hasError);
+    if (hasError) {
+      this.submitLottoNumbers(winningNumberList);
+      return;
+    }
+    this.showStatisticsModal(winningNumberList);
   }
 
   handleMouseEnterOnButton() {
@@ -176,12 +174,7 @@ class WinningNumberForm extends Component {
     );
   }
 
-  showStatisticsModal(winningNumberList) {
-    const hasError = validateWinningNumberList(winningNumberList).some((result) => result.hasError);
-    if (hasError) {
-      throw new ValidationError(errorMessage);
-    }
-    this.submitLottoNumbers(winningNumberList);
+  showStatisticsModal() {
     Store.instance.dispatch(createAction(ACTION.TOGGLE_STATISTICS_MODAL, true));
   }
 
