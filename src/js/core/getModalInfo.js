@@ -18,34 +18,43 @@ export const getWinningCount = (lottoList, winningNumberList) => {
   };
   winningNumberList.pop();
   
-  for (let i = 0; i < lottoList.length; i++) {
-    const sameList = lottoList[i].filter(num =>
+  lottoList.reduce((acc, curr) => {
+    const sameList = curr.filter(num =>
       winningNumberList.includes(num),
     );
     switch (sameList.length) {
       case 3:
-        winningCount.sameThree += 1;
+        acc.sameThree += 1;
         break;
       case 4:
-        winningCount.sameFour += 1;
+        acc.sameFour += 1;
       case 6:
-        winningCount.sameSix += 1;
+        acc.sameSix += 1;
         break;
       case 5:
         if (sameList.includes(bonusNumber)) {
-          winningCount.sameFiveAndBonus += 1;
+          acc.sameFiveAndBonus += 1;
           break;
         }
-        winningCount.sameFive += 1;
+        acc.sameFive += 1;
         break;
     }
-  }
+
+  return acc
+  }, {
+    sameThree: 0,
+    sameFour: 0,
+    sameFive: 0,
+    sameFiveAndBonus: 0,
+    sameSix: 0,
+  })
+
   return winningCount;
 };
 
 export const getEarningRate = (lottoCount, outputMoney) => {
   const inputMoney = lottoCount * LOTTO_PRICE;
-  const earningRate = parseInt(outputMoney / inputMoney);
+  const earningRate = Math.floor(outputMoney / inputMoney);
   return earningRate;
 };
 

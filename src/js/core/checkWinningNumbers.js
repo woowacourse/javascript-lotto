@@ -14,20 +14,26 @@ export const getWinningNumbers = () => {
 };
 
 export const checkWinningNumberList = winnginNumberList => {
-  if (!isElementsInteger(winnginNumberList)) {
-    window.alert(NOT_INTEGER_ERROR);
-    return;
-  }
-  if (!isElementsValidRange(winnginNumberList)) {
-    window.alert(NOT_VALID_RANGE_ERROR);
-    return;
-  }
-  if (!isElementsUnique(winnginNumberList)) {
-    window.alert(NOT_UNIQUE_NUMBER_ERROR);
+  if (isWinningNumberListError(winnginNumberList)) {
     return;
   }
   return winnginNumberList;
 };
+
+const isWinningNumberListError = winnginNumberList => {
+  if (!isElementsInteger(winnginNumberList)) {
+    window.alert(NOT_INTEGER_ERROR);
+    return true;
+  }
+  if (!isElementsValidRange(winnginNumberList)) {
+    window.alert(NOT_VALID_RANGE_ERROR);
+    return true;
+  }
+  if (!isElementsUnique(winnginNumberList)) {
+    window.alert(NOT_UNIQUE_NUMBER_ERROR);
+    return true;
+  }
+}
 
 const isElementsInteger = numberList => {
   return numberList.every(number => Number.isInteger(number));
