@@ -103,9 +103,15 @@ class WinningNumberForm extends Component {
     });
 
     this.addEvent('keydown', 'winning-number-form', (event) => {
-      const { key } = event;
-      if (key !== 'Enter') return;
-      this.showModalOrSubmitWinningNumbers();
+      const { path, key } = event;
+      const target = path[1];
+      if (target.tagName.toLowerCase() !== 'winning-number-input') return;
+      if (key === 'Backspace') {
+        this.handleBackspace(target);
+      }
+      if (key === 'Enter') {
+        this.showModalOrSubmitWinningNumbers();
+      }
     });
 
     this.addEvent('click', 'winning-number-form', (event) => {
@@ -123,16 +129,7 @@ class WinningNumberForm extends Component {
 
   handleKeyupEvent(target, key) {
     const { order, length } = target;
-    if (key === 'Enter') return;
-
-    if (length === 0 && order > 0 && key === 'Backspace') {
-      const winningNumberList = this.$inputs.map((input) => {
-        if (input.order === target.order - 1) return WINNING_NUM_PLACEHOLDER; // 방금 지운 input의 이전 input도 지워준다
-        return input.valueAsNumber;
-      });
-      this.submitLottoNumbers(winningNumberList);
-      return;
-    }
+    if (key === 'Enter' || key === 'Backspace') return;
 
     if (target.isFull() && order < LOTTO.COUNT) {
       const nextInput = this.$inputs[order + 1];
@@ -145,6 +142,16 @@ class WinningNumberForm extends Component {
     const winningNumberList = this.$inputs.map((input) =>
       input.order === order ? WINNING_NUM_PLACEHOLDER : input.valueAsNumber
     );
+    this.submitLottoNumbers(winningNumberList);
+  }
+
+  handleBackspace(target) {
+    const { length, order } = target;
+    if (length > 0 || order === 0) return;
+    const winningNumberList = this.$inputs.map((input) => {
+      if (input.order === target.order - 1) return WINNING_NUM_PLACEHOLDER; // 방금 지운 input의 이전 input도 지워준다
+      return input.valueAsNumber;
+    });
     this.submitLottoNumbers(winningNumberList);
   }
 
