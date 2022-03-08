@@ -46,7 +46,7 @@ body {
 }
 
 .input-form {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
 }
 
@@ -122,6 +122,7 @@ body {
 
 #payment-submit {
   width: 56px;
+  float: right;
 }
 
 #ticket-section {

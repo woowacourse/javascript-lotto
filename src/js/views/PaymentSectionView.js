@@ -6,13 +6,13 @@ import { validate, purchaseAmountValidator } from '../utils/validator.js';
 export default class PaymentSectionView extends View {
   template() {
     return `
-      <label
-        class="${DOM_STRING.HINT}"
-        for="${DOM_STRING.PAYMENT_INPUT}"
-      >
-        구입할 금액을 입력해주세요.
-      </label>
       <form id="${DOM_STRING.PAYMENT_FORM}" class="${DOM_STRING.INPUT_FORM}">
+        <label
+          class="${DOM_STRING.HINT}"
+          for="${DOM_STRING.PAYMENT_INPUT}"
+        >
+          구입할 금액을 입력해주세요.
+        </label>
         <input
           id="${DOM_STRING.PAYMENT_INPUT}"
           class="${DOM_STRING.STYLED_INPUT}"
