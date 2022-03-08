@@ -184,7 +184,8 @@ class WinningNumberForm extends Component {
     if (lottoList.length > 0) {
       this.innerHTML = this.template(winningNumbers);
       this.$inputs = [...this.querySelectorAll('winning-number-input')];
-      // addEvent가 작동하지 않아서 이렇게 event handler를 property로 직접 넣어준다.
+      // mouseenter는 버블링이 발생하지 않아, delegation패턴을 적용할 수 없기 떄문에 event handler를 property로 직접 넣어준다.
+      // setEvent에 addEventListener로 작성하지 않은 이유는 setEvent함수가 호출되는 시점에서 이 btn-wrapper가 DOM에 없을수도 있기 때문이다.
       this.$btnWrapper = this.querySelector('.btn-wrapper');
       this.$btnWrapper.onmouseenter = this.handleMouseEnterOnButton.bind(this);
     }
