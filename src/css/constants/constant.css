@@ -8,4 +8,6 @@
   --onoff-switch-before-background-color: #f8f8f8;
   --onoff-switch-before-box-shadow-color: rgba(0, 0, 0, 0.14);
   --toggle-button-background-color: #80deea;
+  --app-border-color: rgba(0, 0, 0, 0.12);
+  --table-border-color: #DCDCDC;
 }

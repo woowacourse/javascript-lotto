@@ -1,11 +1,12 @@
-import Lotto from './lotto.js';
+import Lotto from '../component/lotto.js';
+
 import { LOTTO_PRICE } from '../constants/constant.js';
 
 export const drawLotto = lottoPrice => {
   if (lottoPrice === undefined) {
     return;
   }
-  const lottoCount = numberOfLotto(lottoPrice);
+  const lottoCount = getNumberOfLotto(lottoPrice);
   const lottoList = [];
   for (let i = 0; i < lottoCount; i++) {
     const lotto = new Lotto();
@@ -15,6 +16,6 @@ export const drawLotto = lottoPrice => {
   return lottoList;
 };
 
-export const numberOfLotto = value => {
-  return value / LOTTO_PRICE;
+export const getNumberOfLotto = value => {
+  return Math.floor(value / LOTTO_PRICE);
 };

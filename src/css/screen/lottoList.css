@@ -1,27 +1,32 @@
-.purchased-lotto-list-container {
+.bought-lotto-list-container {
   display: flex;
   height: fit-content;
   flex-direction: column;
   width: 414px;
 }
-.purchased-lotto-header {
+.bought-lotto-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
 }
 
-.purchased-lotto-main {
+.bought-lotto-main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.purchased-lotto-list {
+.bought-lotto-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   width: 80%;
 }
-.purchased-lotto-list p {
+
+.bought-lotto-list.is-active {
+  flex-direction: column;
+}
+
+.bought-lotto-list p {
   font-size: 34px;
   margin-right: 4px;
 }
@@ -79,10 +84,6 @@
   -webkit-transform: translateX(18px);
   -ms-transform: translateX(18px);
   transform: translateX(18px);
-}
-
-.purchased-lotto-list.is-active {
-  flex-direction: column;
 }
 
 .lotto-item-container {
