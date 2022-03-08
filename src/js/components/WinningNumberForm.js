@@ -105,7 +105,7 @@ class WinningNumberForm extends Component {
     this.addEvent('keydown', 'winning-number-form', (event) => {
       const { key } = event;
       if (key !== 'Enter') return;
-      this.handleEnter();
+      this.showModalOrSubmitWinningNumbers();
     });
 
     this.addEvent('click', 'winning-number-form', (event) => {
@@ -117,7 +117,7 @@ class WinningNumberForm extends Component {
 
     this.addEvent('click', 'winning-number-form', ({ target }) => {
       if (target.tagName.toLowerCase() !== 'button') return;
-      this.handleEnter();
+      this.showModalOrSubmitWinningNumbers();
     });
   }
 
@@ -148,7 +148,7 @@ class WinningNumberForm extends Component {
     this.submitLottoNumbers(winningNumberList);
   }
 
-  handleEnter() {
+  showModalOrSubmitWinningNumbers() {
     const winningNumberList = this.$inputs.map((input) => input.valueAsNumber);
     const hasError = validateWinningNumberList(winningNumberList).some((result) => result.hasError);
     if (hasError) {
