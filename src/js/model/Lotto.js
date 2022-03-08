@@ -12,6 +12,6 @@ export class Lotto {
     while (tempLottoNumbers.size < CONDITIONS.LOTTO_SIZE) {
       tempLottoNumbers.add(getValues.randomInt(CONDITIONS.LOTTO_NUM_MIN, CONDITIONS.LOTTO_NUM_MAX));
     }
-    this.numbers = [...tempLottoNumbers];
+    this.numbers = [...tempLottoNumbers].sort((a, b) => a - b);
   }
 }

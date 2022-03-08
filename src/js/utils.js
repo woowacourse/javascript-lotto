@@ -1,7 +1,7 @@
-import { ERROR_MESSAGE } from './constants/constants';
+import { ERROR_MESSAGE, CONDITIONS } from './constants/constants';
 
 export const validator = {
-  isInputValid(input) {
+  isMoneyInputValid(input) {
     if (this.isMoneyNull(input)) {
       throw new Error(ERROR_MESSAGE.NULL_INPUT_ERROR);
     }
@@ -31,6 +31,40 @@ export const validator = {
 
   isMoneyNull(input) {
     return input === 0;
+  },
+
+  isWinningNumbersInputValid(winningNumbers, bonusNumber) {
+    if (!this.isWinningNumberNotDuplicated(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_WINNING_NUMBER);
+    }
+    if (this.isBonusNumberDuplicated(winningNumbers, bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATED_BONUS_NUMBER);
+    }
+    if (!this.isWinningNumbersInRange(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.HAS_OUT_OF_RANGE_WINNING_NUMBER);
+    }
+
+    if (!this.isBonusNumbersInRange(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.HAS_OUT_OF_RANGE_BONUS_NUMBER);
+    }
+
+    return true;
+  },
+
+  isWinningNumberNotDuplicated(input) {
+    return new Set(input).size === CONDITIONS.LOTTO_SIZE;
+  },
+
+  isBonusNumberDuplicated(winningNumbers, bonusNumber) {
+    return winningNumbers.includes(Number(bonusNumber));
+  },
+
+  isWinningNumbersInRange(winningNumbers) {
+    return winningNumbers.every((e) => CONDITIONS.LOTTO_NUM_MIN <= e && e <= CONDITIONS.LOTTO_NUM_MAX);
+  },
+
+  isBonusNumbersInRange(bonusNumber) {
+    return CONDITIONS.LOTTO_NUM_MIN <= bonusNumber && bonusNumber <= CONDITIONS.LOTTO_NUM_MAX;
   },
 };
 

@@ -1,9 +1,14 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 #app {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 700px;
   height: 100%;
 }
 
@@ -56,6 +61,22 @@
   font-size: 20px;
   line-height: 36px;
   grid-area: ic;
+  overflow: auto;
+  height: 210px;
+}
+
+#lotto-icons::-webkit-scrollbar {
+  width: 6px;
+}
+
+#lotto-icons::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: rgb(16, 212, 212);
+  border-radius: 10px;
+}
+
+#lotto-icons::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #toggle-label {
@@ -72,7 +93,7 @@
   grid-template-areas:
     'hd hd hd hd hd hd hd hd'
     'hd2 hd2 hd2  hd2  .  .  . hd3'
-    'wn1 wn2 wn3 wn4 wn5 wn6 . wn7'
+    'wn0 wn1 wn2 wn3 wn4 wn5 . bn'
     'cr cr cr cr cr cr cr cr';
 }
 
@@ -115,6 +136,18 @@
   border-radius: 4px;
 }
 
+.bonus-number {
+  height: 35px;
+  width: 35px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+#winning-number0 {
+  grid-area: wn0;
+}
 #winning-number1 {
   grid-area: wn1;
 }
@@ -130,11 +163,8 @@
 #winning-number5 {
   grid-area: wn5;
 }
-#winning-number6 {
-  grid-area: wn6;
-}
-#winning-number7 {
-  grid-area: wn7;
+#bonus-number {
+  grid-area: bn;
 }
 
 #confirm-result-label {
@@ -230,4 +260,54 @@ button {
   letter-spacing: 1.25px;
   text-transform: uppercase;
   color: #ffffff;
+}
+
+#result-modal {
+  width: 300px;
+  padding: 20px 60px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+#lotto-result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#lotto-result-chart-table {
+  border-collapse: collapse;
+  margin: 10px 10px;
+}
+
+thead,
+tbody,
+tr {
+  border-top: gray 1px solid;
+  border-bottom: gray 1px solid;
+}
+
+th,
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#restart-button {
+  background: #00bcd4;
+  border-radius: 4px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.winning-number::-webkit-outer-spin-button,
+.winning-number::-webkit-inner-spin-button,
+.bonus-number::-webkit-outer-spin-button,
+.bonus-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
