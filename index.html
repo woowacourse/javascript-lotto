@@ -7,98 +7,100 @@
   </head>
 
   <body>
-    <div id="app" class="app-style">
+    <main id="app" class="app">
       <h1 class="lotto-title">🎱 행운의 로또</h1>
-      <form id="charge-submit-form" class="margin-bottom-28px">
-        <label for="charge-input" class="normal-text margin-bottom-8px"> 구입할 금액을 입력해주세요. </label>
-        <div class="charge-input-wrap width-100 height-36px">
-          <input
-            id="charge-input"
-            class="normal-input width-80 height-100"
-            type="number"
-            placeholder="금액"
-            min="1000"
-            required />
-          <button class="blue-button width-56px height-100">구입</button>
-        </div>
-      </form>
-      <section class="purchased-lotto-section margin-bottom-32px">
-        <h2 class="visually-hidden">구입한 로또 목록</h2>
-        <div class="width-80">
-          <p id="lotto-total-number" class="normal-text margin-bottom-8px">총 0개를 구매하였습니다.</p>
-          <div>
-            <!-- 토글 off -->
-            <p id="lotto-list-icon" class="lotto-list-icon-style"></p>
-            <!-- 토글 on -->
-            <ul id="lotto-list-number" class="lotto-list-number display-none"></ul>
+      <section id="purchase-ticket-section">
+        <h2 class="visually-hidden">복권 구입하기</h2>
+        <form id="charge-submit-form" class="margin-bottom-28px">
+          <label for="charge-input" class="normal-text margin-bottom-8px"> 구입할 금액을 입력해주세요.<br />(장당 1,000원 / 최대 5장 구입 가능) </label>
+          <div class="charge-input-wrap width-100 height-36px">
+            <input id="charge-input" class="normal-input width-80 height-100" type="number" placeholder="금액" min="1000" max="5000" required />
+            <button class="blue-button width-56px height-100">구입</button>
           </div>
-        </div>
-        <div class="align-end">
-          <label class="normal-text margin-bottom-8px">번호 보기</label>
-          <label class="show-number-toggle">
-            <input id="show-number-toggle-input" type="checkbox" />
-            <span class="slider round"></span>
+        </form>
+        <section class="purchased-lotto-section margin-bottom-32px">
+          <h3 class="visually-hidden">구입한 로또 목록</h3>
+          <div class="width-80">
+            <p id="lotto-total-number" class="normal-text margin-bottom-8px"></p>
+            <div>
+              <!-- 토글 off -->
+              <div id="lotto-list-icon" class="lotto-list-icon-style"></div>
+              <!-- 토글 on -->
+              <ul id="lotto-list-number" class="lotto-list-number display-none"></ul>
+            </div>
+          </div>
+          <div id="show-number-toggle-container" class="text-align-end display-none">
+            <label class="normal-text margin-bottom-8px">번호 보기</label>
+            <label class="show-number-toggle">
+              <input id="show-number-toggle-input" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </section>
+      </section>
+      <section id="winning-result-section" class="display-none">
+        <h2 class="visually-hidden">당첨 결과 확인하기</h2>
+        <form id="winning-number-form">
+          <label id="winning-number-label" class="normal-text margin-bottom-8px">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
           </label>
+          <div class="winning-number-input-wrap margin-bottom-24px">
+            <fieldset>
+              <legend class="normal-text margin-bottom-8px">당첨 번호</legend>
+              <div>
+                <input
+                  class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                  type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+                <input
+                  class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                  type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+                <input
+                  class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                  type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+                <input
+                  class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                  type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+                <input
+                  class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                  type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+                <input
+                  class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                  type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+              </div>
+            </fieldset>
+            <fieldset class="text-align-end">
+              <legend class="normal-text margin-bottom-8px">보너스 번호</legend>
+              <input
+                class="winning-number-input normal-input no-spin-button width-34px height-36px text-align-center"
+                type="number" min="1" max="45" aria-labelledby="winning-number-label" />
+            </fieldset>
+          </div>
+          <button class="blue-button width-100">결과 확인하기</button>
+        </form>
+        <div id="result-modal-area" class="dimmed display-none">
+          <section class="result-modal">
+            <h3 class="modal-title">🏆 당첨 통계 🏆</h3>
+            <table>
+              <caption class="visually-hidden">당첨 번호 일치 갯수</caption>
+              <thead>
+                <tr>
+                  <th>일치 갯수</th><th>당첨금</th><th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="match-result" data-match-count="3"><td>3개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+                <tr class="match-result" data-match-count="4"><td>4개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+                <tr class="match-result" data-match-count="5"><td>5개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+                <tr class="match-result" data-match-count="BONUS"><td>5개+보너스볼</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+                <tr class="match-result" data-match-count="6"><td>6개</td><td class="prize-money"></td><td class="match-count">n개</td></tr>
+              </tbody>
+            </table>
+            <p class="normal-text font-weight-border margin-bottom-32px">당신의 총 수익률은 <span id="profit-ratio"></span>%입니다.</p>
+            <button id="restart-button" class="blue-button width-152px height-36px">다시 시작하기</button>
+            <button id="result-modal-close-button" class="close-button" type="button"></button>
+          </section>
         </div>
       </section>
-      <form>
-        <label id="winner-number-label" class="normal-text margin-bottom-8px">
-          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-        </label>
-        <div class="winner-number-input-wrap margin-bottom-24px">
-          <fieldset>
-            <legend class="normal-text margin-bottom-8px">당첨 번호</legend>
-            <div>
-              <input
-                class="normal-input no-spin-button width-34px height-36px"
-                type="number"
-                min="1"
-                max="45"
-                aria-labelledby="winner-number-label" />
-              <input
-                class="normal-input no-spin-button width-34px height-36px"
-                type="number"
-                min="1"
-                max="45"
-                aria-labelledby="winner-number-label" />
-              <input
-                class="normal-input no-spin-button width-34px height-36px"
-                type="number"
-                min="1"
-                max="45"
-                aria-labelledby="winner-number-label" />
-              <input
-                class="normal-input no-spin-button width-34px height-36px"
-                type="number"
-                min="1"
-                max="45"
-                aria-labelledby="winner-number-label" />
-              <input
-                class="normal-input no-spin-button width-34px height-36px"
-                type="number"
-                min="1"
-                max="45"
-                aria-labelledby="winner-number-label" />
-              <input
-                class="normal-input no-spin-button width-34px height-36px"
-                type="number"
-                min="1"
-                max="45"
-                aria-labelledby="winner-number-label" />
-            </div>
-          </fieldset>
-          <fieldset class="align-end">
-            <legend class="normal-text margin-bottom-8px">보너스 번호</legend>
-            <input
-              class="normal-input no-spin-button width-34px height-36px"
-              type="number"
-              min="1"
-              max="45"
-              aria-labelledby="winner-number-label" />
-          </fieldset>
-        </div>
-        <button id="check-result-button" class="blue-button width-100">결과 확인하기</button>
-      </form>
-    </div>
+    </main>
   </body>
 </html>

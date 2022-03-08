@@ -1,48 +1,57 @@
-import { LOTTO_PRICE, SELECTOR } from './constants/constants';
-import { $, divider } from './utils/util';
-import validateCharge from './validation';
-
-import LottoManager from './LottoManager';
+import LotteryTicketManager from './LotteryTicketManager';
 import LottoMachineView from './views/LottoMachineView';
+
+import { validateCharge, validateWinningNumbers } from './validation';
+import { calculateMatchResult, calculateProfitRatio } from './checkResult';
 
 export default class LottoMachine {
   constructor() {
-    this.lottoManager = new LottoManager();
+    this.lotteryTicketManager = new LotteryTicketManager();
     this.lottoMachineView = new LottoMachineView();
-    this.setEvent();
-    this.initialize();
+    this.bindEvent();
   }
 
-  setEvent() {
-    $(SELECTOR.CHARGE_SUBMIT_FORM).addEventListener('submit', this.onSubmitCharge.bind(this));
-    $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).addEventListener('click', this.reverseLottoStyle.bind(this));
+  bindEvent() {
+    this.lottoMachineView.app.addEventListener('purchaseTicket', this.purchaseLotteryTicket.bind(this));
+    this.lottoMachineView.app.addEventListener('checkWinningResult', this.checkWinningResult.bind(this));
+    this.lottoMachineView.app.addEventListener('restart', this.restart.bind(this));
   }
-
-  initialize() {
-    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
-  }
-
-  onSubmitCharge(event) {
-    event.preventDefault();
-    const chargeInputNumber = Number($(SELECTOR.CHARGE_INPUT).value);
+  
+  purchaseLotteryTicket(event) {
+    const { chargeInputValue } = event.detail;
     try {
-      validateCharge(chargeInputNumber);
+      validateCharge(chargeInputValue);
     } catch (error) {
       alert(error.message);
       return;
     }
-    this.purchase(chargeInputNumber);
+    const { remainCharge } = this.lotteryTicketManager.purchaseLotteryTicket(chargeInputValue);
+    this.lottoMachineView.updateOnPurchase(this.lotteryTicketManager.tickets, remainCharge);
   }
 
-  purchase(chargeInputNumber) {
-    const { quotient: newLottoCount, remainder: remainCharge } = divider(chargeInputNumber, LOTTO_PRICE);
-    this.lottoManager.generateNewLottos(newLottoCount);
-    this.lottoMachineView.updateLottoList(this.lottoManager.lottos);
-    this.lottoMachineView.updateChargeInput(remainCharge);
+  checkWinningResult(event) {
+    const { winningNumberInputValues } = event.detail;
+    try {
+      this.lotteryTicketManager.checkPurchasedTicketExist();
+      validateWinningNumbers(winningNumberInputValues);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
+    const winningResult = this.calculateWinningResult(winningNumberInputValues);
+    this.lottoMachineView.updateOnCheckWinningResult(winningResult);
   }
 
-  reverseLottoStyle() {
-    const style = $(SELECTOR.SHOW_NUMBER_TOGGLE_INPUT).checked ? 'number' : 'icon';
-    this.lottoMachineView.switchLottoListStyle(style);
+  restart() {
+    this.lotteryTicketManager.initialize();
+    this.lottoMachineView.initialize(this.lotteryTicketManager.tickets);
+  }
+
+  calculateWinningResult(winningNumberInputValues) {
+    const winningNumbers = winningNumberInputValues.slice(0, 6);
+    const bonusNumber = winningNumberInputValues[winningNumberInputValues.length - 1];
+    const matchResult = calculateMatchResult(this.lotteryTicketManager.tickets, winningNumbers, bonusNumber);
+    const profitRatio = calculateProfitRatio(this.lotteryTicketManager.tickets.length, matchResult) || 0;
+    return { matchResult, profitRatio }
   }
 }

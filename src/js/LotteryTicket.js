@@ -1,11 +1,11 @@
-import { LOTTO_NUMBER } from './constants/constants';
+import { LOTTERY_TICKET_NUMBER } from './constants/constants';
 import { generateRandomInRange } from './utils/util';
 
-export default class Lotto {
+export default class LotteryTicket {
   #numbers;
 
-  constructor() {
-    this.#numbers = this.generateNumbersAutomatically();
+  constructor(numbers = this.generateNumbersAutomatically()) {
+    this.#numbers = numbers;
   }
 
   get numbers() {
@@ -15,10 +15,10 @@ export default class Lotto {
   generateNumbersAutomatically() {
     const numbers = [];
 
-    while (numbers.length !== LOTTO_NUMBER.LENGTH) {
+    while (numbers.length !== LOTTERY_TICKET_NUMBER.LENGTH) {
       const randomNumber = generateRandomInRange(
-        LOTTO_NUMBER.MIN,
-        LOTTO_NUMBER.MAX
+        LOTTERY_TICKET_NUMBER.MIN,
+        LOTTERY_TICKET_NUMBER.MAX
       );
       if (!numbers.find(number => number === randomNumber))
         numbers.push(randomNumber);
@@ -26,4 +26,5 @@ export default class Lotto {
 
     return numbers;
   }
+
 }

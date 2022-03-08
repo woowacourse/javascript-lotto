@@ -1,36 +1,45 @@
 import { $ } from '../utils/util';
-import { lottoListTemplate, lottoTotalNumber } from './template';
-import { SELECTOR } from '../constants/constants';
+
+import ChargeSubmitFormView from './ChargeSubmitFormView';
+import PurchasedTicketListSectionView from './PurchasedTicketListSectionView';
+import WinningResultModalView from './WinningResultModalView';
+import WinningNumberSubmitFormView from './WinningNumberSubmitFormView';
 
 export default class LottoMachineView {
+  #app;
+
+  #chargeSubmitFormView;
+
+  #purchasedTicketListSectionView;
+
+  #winningNumberSubmitFormView;
+
+  #winningResultModalView;
+
   constructor() {
-    this.showLottoList = {
-      icon: this.showLottoIconList,
-      number: this.showLottoNumberList,
-    };
+    this.#app = $('#app');
+    this.#chargeSubmitFormView = new ChargeSubmitFormView(this.#app);
+    this.#purchasedTicketListSectionView = new PurchasedTicketListSectionView(this.#app);
+    this.#winningNumberSubmitFormView = new WinningNumberSubmitFormView(this.#app);
+    this.#winningResultModalView = new WinningResultModalView(this.#app);
   }
 
-  updateChargeInput(value) {
-    $(SELECTOR.CHARGE_INPUT).value = value;
+  get app() { return this.#app; }
+
+  initialize(lottos) {
+    this.#chargeSubmitFormView.initialize();
+    this.#purchasedTicketListSectionView.initialize(lottos);
+    this.#winningNumberSubmitFormView.initialize();
+    this.#winningResultModalView.initialize();
   }
 
-  switchLottoListStyle(style) {
-    this.showLottoList[style]();
+  updateOnPurchase(tickets, charge) {
+    this.#chargeSubmitFormView.updateOnPurchase(tickets, charge);
+    this.#purchasedTicketListSectionView.updateOnPurchase(tickets);
+    this.#winningNumberSubmitFormView.updateOnPurchase(tickets);
   }
 
-  updateLottoList(lottos) {
-    $(SELECTOR.LOTTO_TOTAL_NUMBER).innerHTML = lottoTotalNumber(lottos.length);
-    $(SELECTOR.LOTTO_LIST_ICON).innerHTML = lottoListTemplate.icon(lottos.length);
-    $(SELECTOR.LOTTO_LIST_NUMBER).innerHTML = lottoListTemplate.number(lottos);
-  }
-
-  showLottoIconList() {
-    $(SELECTOR.LOTTO_LIST_ICON).classList.remove('display-none');
-    $(SELECTOR.LOTTO_LIST_NUMBER).classList.add('display-none');
-  }
-
-  showLottoNumberList() {
-    $(SELECTOR.LOTTO_LIST_ICON).classList.add('display-none');
-    $(SELECTOR.LOTTO_LIST_NUMBER).classList.remove('display-none');
+  updateOnCheckWinningResult(winningResult) {
+    this.#winningResultModalView.updateOnCheckWinningResult(winningResult);
   }
 }
