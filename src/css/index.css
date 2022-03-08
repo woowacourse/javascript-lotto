@@ -7,20 +7,50 @@ body {
   letter-spacing: 0.5px;
 }
 
-h4 {
+#app {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 52px;
+  width: 382px;
+  min-height: 640px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  margin-top: 52px;
+  margin-bottom: 16px;
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
 }
 
-h6 {
+.main-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.subtitle {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.15px;
 }
 
-label {
+.input-form {
+  /* display: flex; */
+  justify-content: space-between;
+}
+
+.hint {
   display: block;
   margin-bottom: 4px;
   line-height: 24px;
@@ -28,15 +58,22 @@ label {
   color: rgba(0, 0, 0, 0.87);
 }
 
-input {
-  height: 36px;
+.winning-number-legend {
+  display: block;
+  margin-bottom: 4px;
+  line-height: 24px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+}
 
+.styled-input {
+  height: 36px;
   border: 1px solid #b4b4b4;
   box-sizing: border-box;
   border-radius: 4px;
 }
 
-input:placeholder {
+.styled-input:placeholder {
   margin: 0px 10px;
 
   font-family: Roboto;
@@ -49,7 +86,7 @@ input:placeholder {
   color: #8b8b8b;
 }
 
-button {
+.submit-button {
   background: inherit;
   border: none;
   box-shadow: none;
@@ -71,39 +108,12 @@ button {
   height: 36px;
 }
 
-button:hover {
+.submit-button:hover {
   background: #80deea;
 }
 
-button:disabled {
+.submit-button:disabled {
   background: #b4b4b4;
-}
-
-form {
-  display: flex;
-  justify-content: space-between;
-}
-
-#app {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  margin-top: 52px;
-  width: 382px;
-  min-height: 727px;
-
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  padding: 0 16px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-#title {
-  text-align: center;
-  margin-top: 52px;
 }
 
 #payment-input {
@@ -112,6 +122,7 @@ form {
 
 #payment-submit {
   width: 56px;
+  float: right;
 }
 
 #ticket-section {
@@ -234,7 +245,7 @@ input:checked + .slider:before {
   flex-direction: column;
 }
 
-#winning-number-fieldset {
+#winning-number-form {
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
@@ -247,14 +258,16 @@ input:checked + .slider:before {
 
 .winning-number-input {
   width: 34px;
+  text-align: center;
 }
 
-#winning-number-form {
-  display: flex;
-  flex-direction: column;
+.winning-number-input::-webkit-outer-spin-button,
+.winning-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-#bonus-number-form {
+#bonus-number-fieldset {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -262,4 +275,60 @@ input:checked + .slider:before {
 
 #show-result-button {
   margin-bottom: 39px;
+}
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal-closed {
+  display: none;
+}
+
+.modal-window {
+  width: 350px;
+  padding: 40px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255);
+}
+
+.modal-content {
+  width: 100%;
+  text-align: center;
+}
+
+#result-table {
+  width: 100%;
+  border-top: 1px solid #dcdcdc;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+#result-table th {
+  border-bottom: 1px solid #dcdcdc;
+  padding: 10px;
+  font-weight: bold;
+}
+
+#result-table td {
+  border-bottom: 1px solid #dcdcdc;
+  padding: 10px;
+}
+
+#restart-button {
+  padding: 0 30px;
 }

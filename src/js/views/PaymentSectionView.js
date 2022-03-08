@@ -1,33 +1,59 @@
 import View from '../core/View.js';
-import { DOM_STRING } from '../configs/contants.js';
+import { DOM_STRING, PAYMENT, LOTTO } from '../configs/contants.js';
 import { $ } from '../utils/utils.js';
-import { validator } from '../utils/validator.js';
+import { validate, purchaseAmountValidator } from '../utils/validator.js';
 
 export default class PaymentSectionView extends View {
   template() {
     return `
-      <label>구입할 금액을 입력해주세요.</label>
-      <form>
-        <input type="number" id="${DOM_STRING.PAYMENT_INPUT}">
-        <button id="${DOM_STRING.PAYMENT_SUBMIT}">구입</button>
+      <form id="${DOM_STRING.PAYMENT_FORM}" class="${DOM_STRING.INPUT_FORM}">
+        <label
+          class="${DOM_STRING.HINT}"
+          for="${DOM_STRING.PAYMENT_INPUT}"
+        >
+          구입할 금액을 입력해주세요.
+        </label>
+        <input
+          id="${DOM_STRING.PAYMENT_INPUT}"
+          class="${DOM_STRING.STYLED_INPUT}"
+          type="number"
+          placeholder="${PAYMENT.PURCHASE_AMOUNT.MIN}"
+          min="${PAYMENT.PURCHASE_AMOUNT.MIN}"
+          max="${PAYMENT.PURCHASE_AMOUNT.MAX}"
+          step="${LOTTO.PRICE}"
+          autofocus
+        >
+        <button
+          id="${DOM_STRING.PAYMENT_SUBMIT}"
+          class="${DOM_STRING.SUBMIT_BUTTON}"
+          type="submit"
+          form="${DOM_STRING.PAYMENT_FORM}"
+        >구입</button>
       </form>
     `;
   }
 
-  bindOnClickPaymentSubmit(callback) {
+  bindOnSubmitPaymentSubmit(callback) {
     this.bindEventListener(
-      'click',
-      { attributeName: DOM_STRING.PAYMENT_SUBMIT, attributeType: 'id' },
+      'submit',
+      {
+        attributeName: DOM_STRING.PAYMENT_FORM,
+        attributeType: 'id',
+      },
       () => {
-        const amount = $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
-
         try {
-          validator.checkPurchaseAmount(amount);
-          callback(amount);
+          const purchaseAmount = this.getPurchaseAmount();
+
+          validate(purchaseAmount, purchaseAmountValidator);
+          callback(purchaseAmount);
         } catch (e) {
           alert(e);
         }
       }
     );
+  }
+
+  getPurchaseAmount() {
+    return $(DOM_STRING.PAYMENT_INPUT, 'id').valueAsNumber;
   }
 }

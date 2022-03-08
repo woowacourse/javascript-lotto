@@ -3,6 +3,7 @@ import LottoModel from './models/LottoModel.js';
 import PaymentSectionView from './views/PaymentSectionView';
 import TicketSectionView from './views/TicketSectionView.js';
 import WinningNumberSectionView from './views/WinningNumberSectionView.js';
+import ResultModalWindowView from './views/ResultModalWindowView.js';
 import { $ } from './utils/utils.js';
 import { DOM_STRING } from './configs/contants.js';
 
@@ -20,6 +21,9 @@ export default class App {
       ),
       winningNumberSectionView: new WinningNumberSectionView(
         $(DOM_STRING.WINNING_NUMBER_SECTION, 'id')
+      ),
+      resultModalWindowView: new ResultModalWindowView(
+        $(DOM_STRING.RESULT_MODAL_WINDOW, 'id')
       ),
     };
 

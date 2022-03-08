@@ -11,7 +11,9 @@ export default class TicketSectionView extends View {
 
     return `
       <div id="${DOM_STRING.TICKET_LIST_WRAP}">
-        <label>총 <span>${lottoList.length}</span>개를 구매하였습니다.</label>
+        <label class="${DOM_STRING.HINT}">
+          총 <span>${lottoList.length}</span>개를 구매하였습니다.
+        </label>
         <ul
           id="${DOM_STRING.TICKET_LIST}"
           class="${
@@ -35,7 +37,9 @@ export default class TicketSectionView extends View {
         </ul>
       </div>
       <div id="${DOM_STRING.SHOW_NUMBER_TOGGLE_AREA}">
-        <label for="${DOM_STRING.SLIDER}">번호 보기</label>
+        <label class="${DOM_STRING.HINT}" for="${
+      DOM_STRING.SLIDER
+    }">번호 보기</label>
         <label class="${DOM_STRING.SWITCH}">
           <input
             id="${DOM_STRING.SLIDER}"
@@ -53,9 +57,13 @@ export default class TicketSectionView extends View {
       'click',
       { attributeName: DOM_STRING.SLIDER, attributeType: 'id' },
       () => {
-        const { isShowNumber } = this.state;
-        this.update({ isShowNumber: !isShowNumber });
+        this.toggleIsShowNumber();
       }
     );
+  }
+
+  toggleIsShowNumber() {
+    const { isShowNumber } = this.state;
+    this.update({ isShowNumber: !isShowNumber });
   }
 }
