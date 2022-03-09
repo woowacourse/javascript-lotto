@@ -8,6 +8,7 @@ h1 {
 }
 
 #app {
+  position: relative;
   width: 414px;
   margin: 0 auto;
 }
@@ -18,11 +19,12 @@ label {
 }
 
 #lotto-price-form {
+  width: 100%;
   margin-top: 40px;
 }
 
 #lotto-price-input {
-  width: 310px;
+  width: 83%;
   height: 36px;
   border-radius: 4px;
   border: 1px solid #b4b4b4;
@@ -38,7 +40,7 @@ label {
 }
 
 .btn {
-  background: #00bcd4;
+  background-color: #00bcd4;
   color: white;
 }
 
@@ -79,7 +81,7 @@ label {
   border-radius: 60px;
   margin-top: 25px;
   margin-left: 25px;
-  background: #8b8b8b;
+  background-color: #8b8b8b;
   cursor: pointer;
 }
 
@@ -92,7 +94,7 @@ label {
   width: 20px;
   height: 20px;
   margin: 5px;
-  background: #ededed;
+  background-color: #ededed;
   border-radius: 100%;
   transition: left 0.3s;
 }
@@ -105,7 +107,7 @@ label {
 }
 
 .toggle-switch input[type='checkbox']:checked + label .toggle-track {
-  background: #80deea;
+  background-color: #80deea;
 }
 
 .toggle-switch input[type='checkbox']:checked + label .toggle-track:before {
@@ -121,6 +123,7 @@ label {
 }
 
 .lotto-numbers {
+  width: 100%;
   font-size: 15px;
   margin-left: 15px;
   line-height: 43px;
@@ -141,7 +144,7 @@ label {
 }
 
 .bonus-number {
-  margin-left: 55px;
+  margin-left: 85px;
   display: flex;
   flex-direction: column;
 }
@@ -161,8 +164,83 @@ label {
 
 #check-result-button {
   margin-top: 25px;
-  width: 382px;
+  width: 100%;
   height: 36px;
   border-radius: 4px;
   border: transparent;
+}
+
+#view-number {
+  margin-left: 10px;
+}
+
+.popup-container {
+  text-align: center;
+  border-radius: 4px;
+  width: 350px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  background-color: #ffffff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+table {
+  width: 320px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+table tr {
+  border-bottom: 1px solid #dcdcdc;
+  height: 40px;
+}
+
+.earning-rate {
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+#restart-button {
+  width: 152px;
+  height: 36px;
+  border: transparent;
+  border-radius: 4px;
+}
+
+#close-popup-button {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 14px;
+}
+
+#popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.blocked {
+  pointer-events: none;
+}
+
+.emphasized {
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
+  z-index: 100;
+}
+
+.disable {
+  background-color: #b4b4b4;
+  cursor: auto;
+}
+
+
+.disable:hover {
+  background-color: #b4b4b4;
 }
