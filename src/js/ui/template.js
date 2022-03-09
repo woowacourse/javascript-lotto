@@ -1,3 +1,5 @@
+import { RESULT } from '../constants/constants';
+
 export const ticketImg = '<div>🎟️</div>';
 
 export function lottoNumberTemplate(lottoNumber) {
@@ -9,4 +11,24 @@ export function lottoNumberTemplate(lottoNumber) {
 
 export function purchaseMessageTemplate({ length }) {
   return `총 ${length}개를 구매하였습니다.`;
+}
+
+export function lottoResultTableTemplate(machine) {
+  return `  <div class="grid table-title"><span>일치 갯수</span><span>당첨금</span><span>당첨 갯수</span></div>
+    <div class="grid"><span>3개</span><span>5,000</span><span>${machine.getNumberOfGrade(
+      RESULT.FIFTH.NAME
+    )}개</span></div>
+    <div class="grid"><span>4개</span><span>50,000</span><span>${machine.getNumberOfGrade(
+      RESULT.FOURTH.NAME
+    )}개</span></div>
+    <div class="grid"><span>5개</span><span>1,500,000</span><span>${machine.getNumberOfGrade(
+      RESULT.THIRD.NAME
+    )}개</span></div>
+    <div class="grid"><span>5개+보너스볼</span><span>30,000,000</span><span>${machine.getNumberOfGrade(
+      RESULT.SECOND.NAME
+    )}개</span></div>
+    <div class="grid"><span>6개</span><span>2,000,000,000</span><span>${machine.getNumberOfGrade(
+      RESULT.FIRST.NAME
+    )}개</span></div>
+ `;
 }

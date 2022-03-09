@@ -1,22 +1,29 @@
-import { LOTTO } from "../constants/constants.js";
+import LottoResultFactory from './LottoResultFactory.js';
 export default class Lotto {
   #numbers = [];
+
+  constructor(strategy) {
+    this.pickStrategy = strategy;
+  }
 
   get numbers() {
     return this.#numbers;
   }
 
-  pickNumbers(strategy = this.#generateRandomNumber) {
-    const set = new Set();
-    while (set.size < LOTTO.NUMBER_QUANTITY) {
-      set.add(strategy());
-    }
-    this.#numbers = [...set];
+  generate() {
+    this.#numbers = this.pickStrategy.pickNumbers();
+    return this;
   }
 
-  #generateRandomNumber() {
-    return Math.floor(
-      Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) + LOTTO.MIN_NUMBER
+  generateGrade(winningNumbers, bonusNumber) {
+    const numberOfMatches = this.#numbers.filter((number) =>
+      winningNumbers.includes(number)
+    ).length;
+
+    const hasBonusNumber = this.#numbers.includes(bonusNumber);
+    this.result = LottoResultFactory.createLottoResult(
+      numberOfMatches,
+      hasBonusNumber
     );
   }
 }

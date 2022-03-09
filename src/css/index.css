@@ -4,10 +4,17 @@ input[type='number']::-webkit-inner-spin-button {
   margin: 0;
 }
 
+html{
+  overflow: auto;
+  height: 100%;
+}
+
 body {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   margin: 0px;
+  height: 100%;
 }
 
 button {
@@ -35,7 +42,7 @@ section {
 #app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 390px;
   padding: 52px 16px;
@@ -87,6 +94,7 @@ label {
   height: 36px;
 }
 
+
 #check-result-button {
   width: 100%;
 }
@@ -119,4 +127,12 @@ input {
 
 #check-result-button {
   margin-top: 24px;
+}
+
+.hide{
+  display: none;
+}
+
+.flex{
+  display: flex;
 }
