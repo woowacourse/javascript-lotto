@@ -1,4 +1,13 @@
+import Store from '../flux/store';
+
 class Component extends HTMLElement {
+  constructor() {
+    if (new.target === Component) {
+      throw new TypeError('Cannot create an instance of an Component class');
+    }
+    super();
+  }
+
   connectedCallback() {
     this.render();
     this.subscribe();
@@ -14,7 +23,14 @@ class Component extends HTMLElement {
   }
 
   subscribe() {
-    window.store.subscribe(this);
+    if (!this.shouldSubscribe()) {
+      return;
+    }
+    Store.instance.subscribe(this);
+  }
+
+  shouldSubscribe() {
+    return true;
   }
 
   setEvent() {}

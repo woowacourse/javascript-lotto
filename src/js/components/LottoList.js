@@ -1,24 +1,23 @@
 import Component from '../abstracts/component';
 import LottoImage from '../../../images/lotto.png';
+import Store from '../flux/store';
+import { WINNING_NUM_PLACEHOLDER } from '../constants';
+import { getRank } from '../utils';
 
 class LottoList extends Component {
-  render() {
-    const { money, lottoList, lottoListVisibility } = window.store.getState();
-    this.innerHTML = this.template(lottoList, lottoListVisibility);
-
-    if (money > 0) {
-      this.show();
-    }
-  }
-
   // eslint-disable-next-line max-lines-per-function
-  template(lottoList, lottoListVisibility) {
+  template({ lottoList, lottoListVisibility, winningNumbers }) {
     const lottoImages = !lottoListVisibility
       ? `<img src="${LottoImage}" alt="lotto"></img>`.repeat(lottoList.length)
       : '';
     const lists = lottoListVisibility
       ? lottoList
-          .map((lottoNums) => `<lotto-item data-lotto-nums="${lottoNums.join(', ')}"></lotto-item>`)
+          .map((lottoNums) => {
+            const rank = winningNumbers ? getRank(lottoNums, winningNumbers) : 0;
+            return `<lotto-item data-rank="${rank}" data-lotto-nums="${lottoNums.join(
+              ','
+            )}"></lotto-item>`;
+          })
           .join('')
       : '';
 
@@ -33,6 +32,21 @@ class LottoList extends Component {
       <lotto-list-toggle class="d-flex justify-content-end"></lotto-list-toggle>
       </div>
     `;
+  }
+
+  render() {
+    const { lottoList, lottoListVisibility, winningNumbers } = Store.instance.getState();
+    this.innerHTML = '';
+    if (lottoList.length > 0) {
+      const isFullfilled =
+        winningNumbers.normal.every((num) => num !== WINNING_NUM_PLACEHOLDER && num > 0) &&
+        winningNumbers.bonus !== WINNING_NUM_PLACEHOLDER;
+      this.innerHTML = this.template({
+        lottoList,
+        lottoListVisibility,
+        winningNumbers: isFullfilled ? winningNumbers : null,
+      });
+    }
   }
 }
 

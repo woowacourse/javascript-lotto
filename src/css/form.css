@@ -41,3 +41,7 @@ fieldset {
   color: var(--gray-900);
   opacity: 1; /* Firefox */
 }
+
+.form-control.error {
+  background-color: red;
+}

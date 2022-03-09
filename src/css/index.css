@@ -6,6 +6,7 @@
 @import './form.css';
 @import './typhography.css';
 @import './switch.css';
+@import './modal.css';
 
 body {
   width: 100%;
@@ -42,8 +43,23 @@ label {
   letter-spacing: 0.5px;
 }
 
+.error-list {
+  font-size: 14px;
+}
+
+.error-list li {
+  margin-bottom: 4px;
+  color: red;
+}
+
 lotto-list {
   display: flex;
+}
+
+lotto-list ul.lotto-list,
+lotto-list .lotto-images {
+  max-height: 400px;
+  overflow-y: scroll;
 }
 
 lotto-list > .lotto-list-container {
@@ -71,6 +87,45 @@ lotto-list lotto-item img {
   margin-right: 8px;
 }
 
+lotto-list lotto-item span.lotto-ball {
+  width: 26px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  border-radius: 17px;
+  margin-right: 6px;
+  color: white;
+  box-shadow: 0 1px 4px -1px #000000d6;
+}
+
+lotto-list lotto-item span.lotto-ball.orange {
+  background-color: #F18E04;
+}
+
+lotto-list lotto-item span.lotto-ball.blue {
+  background-color: #1B5FC7;
+}
+
+lotto-list lotto-item span.lotto-ball.red {
+  background-color: #B93920;
+}
+
+lotto-list lotto-item span.lotto-ball.gray {
+  background-color: #525960;
+}
+
+lotto-list lotto-item span.lotto-ball.green {
+  background-color: #1FA816;
+}
+
+lotto-list lotto-item span.rank {
+  font-size: 16px;
+  padding-top: 4px;
+  margin-left: 10px;
+}
+
 lotto-list-toggle {
 }
 
@@ -94,6 +149,7 @@ winning-number-form input.form-control {
 
 winning-number-form .wrapper {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
@@ -105,4 +161,65 @@ winning-number-form fieldset:nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+winning-number-form .error-list {
+  margin-top: 20px;
+}
+
+winning-number-form winning-number-input.duplicate-error-1 input {
+  background-color: #ff000073;
+}
+
+winning-number-form winning-number-input.duplicate-error-2 input {
+  background-color: #ff0000ad;
+}
+
+winning-number-form winning-number-input.duplicate-error-3 input {
+  background-color: #ff0000;
+}
+
+winning-number-form winning-number-input.invalid-range-error input {
+  background-color: orange;
+}
+
+
+statistics-modal .modal-dialog {
+  width: 350px;
+  height: 500px;
+  margin: 100px auto 0 auto;
+}
+
+statistics-modal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+statistics-modal table th,
+statistics-modal table td {
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+statistics-modal table td {
+  font-weight: 400;
+}
+
+statistics-modal .earnings-rate {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+}
+
+statistics-modal .btn-reset {
+  width: 152px;
 }
