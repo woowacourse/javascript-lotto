@@ -8,6 +8,7 @@ const ERROR_MESSAGE = Object.freeze({
   NOT_NUMBER_TYPE: '구입할 금액은 숫자여야 합니다.',
   NEGATIVE_NUMBER: '구입할 금액으로 음수를 입력할 수 없습니다.',
   NOT_UNIT_OF_THOUSAND: '구입할 금액의 단위는 1,000원 단위 입니다.',
+  WIN_NUMBER_RANGE: '1이상 45이하의 숫자를 입력해 주세요.',
 });
 
 const RULES = Object.freeze({
@@ -15,6 +16,14 @@ const RULES = Object.freeze({
   LOTTO_NUMS: 6,
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
+  WIN_LOTTO_NUMBERS: 7,
 });
 
-export { CONFIRM_MESSAGE, ERROR_MESSAGE, RULES };
+const ASCII_TABLE = {
+  ZERO: 48,
+  NINE: 57,
+};
+
+export {
+  CONFIRM_MESSAGE, ERROR_MESSAGE, RULES, ASCII_TABLE,
+};

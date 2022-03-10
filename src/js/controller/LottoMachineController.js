@@ -5,21 +5,17 @@ import PurchasedLottoView from '../view/PurchasedLottoView.js';
 import WinningNumberView from '../view/WinningNumberView.js';
 
 import { CONFIRM_MESSAGE, RULES } from '../constants/index.js';
-import { validatePurchaseMoney, isEmptyArray } from '../util/validator.js';
+import { isEmptyArray } from '../util/validator.js';
 
 export default class LottoMachineController {
   constructor() {
-    this.init();
-    this.setEventHandler();
-  }
-
-  init() {
     this.model = new Lottos();
     this.view = {
       purchaseMoneyView: new PurchaseMoneyView(),
       purchasedLottoView: new PurchasedLottoView(),
       winningNumberView: new WinningNumberView(),
     };
+    this.setEventHandler();
   }
 
   setEventHandler() {
@@ -28,24 +24,29 @@ export default class LottoMachineController {
 
   purchaseLotto(purchaseMoney) {
     const lottoCount = purchaseMoney / RULES.LOTTO_PRICE;
+    const purchasedLottos = this.model.makeNewLottos(lottoCount);
 
-    const newLottos = this.model.makeNewLottos(lottoCount);
-
-    this.view.purchasedLottoView.render(lottoCount, newLottos);
-    this.view.winningNumberView.render();
+    return { lottoCount, purchasedLottos };
   }
 
   onSubmitHandler(purchaseMoney) {
     const lottos = this.model.getLottos();
+    const { lottoCount, purchasedLottos } = this.purchaseLotto(purchaseMoney);
+
+    const resultEventType = 'submitResult';
+    const resultEvent = new CustomEvent(resultEventType, {
+      detail: { purchasedLottos, purchaseMoney, resetCallback: this.reset.bind(this) },
+      cancelable: true,
+    });
 
     if (isEmptyArray(lottos)) {
-      this.purchaseLotto(purchaseMoney);
+      this.view.purchasedLottoView.rendering(lottoCount, purchasedLottos);
+      this.view.winningNumberView.rendering({ resultEvent, resultEventType });
       return;
     }
-
     if (this.tryRePurchase()) {
-      this.reset();
-      this.purchaseLotto(purchaseMoney);
+      this.view.purchasedLottoView.reflow(lottoCount, purchasedLottos);
+      this.view.winningNumberView.reflow({ resultEvent, resultEventType });
       return;
     }
 
@@ -58,6 +59,7 @@ export default class LottoMachineController {
 
   reset() {
     this.model.reset();
+    this.view.purchaseMoneyView.resetInputValue();
     this.view.purchasedLottoView.reset();
     this.view.winningNumberView.reset();
   }
