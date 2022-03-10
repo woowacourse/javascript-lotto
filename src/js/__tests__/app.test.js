@@ -1,28 +1,42 @@
-import Lotto from "../model/Lotto.js";
-import LottoGame from "../model/LottoGame.js";
-import { isValidAmountUnit, isValidMinimumAmount } from "../utils/validation.js";
+import LottoModel from "../model/LottoModel.js";
+import { BONUS } from "../utils/constants.js";
 
-describe("로또 게임 테스트", () => {
-  test("6개 숫자를 가지는 로또 인스턴스를 생성할 수 있다.", () => {
-    const lotto = new Lotto();
-    lotto.generateRandomNumber();
-    expect(lotto.numbers.length).toBe(6);
+describe("로또 앱 기능 테스트", () => {
+  test("로또 티켓들을 생성한 개수만큼 로또 배열들이 추가된다.", () => {
+    const lottoGame = new LottoModel();
+    const inputCount = 4;
+    lottoGame.generateLottoTickets(inputCount);
+    expect(lottoGame.lottos.length).toBe(inputCount);
   });
 
-  test("구입한 개수 만큼 로또 객체가 만들어 진다.", () => {
-    const lottoCount = 5;
-    const lottoGame = new LottoGame();
-    lottoGame.generateLottoTicket(lottoCount);
-    expect(lottoGame.getLottoCount()).toBe(lottoCount);
+  test("당첨 개수의 금액에 따라 수익률이 계산된다.", () => {
+    const lottoGame = new LottoModel();
+    lottoGame.lottos = [[1, 2, 3, 43, 44, 45]];
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    lottoGame.generateResult(winningNumbers, bonusNumber);
+    expect(lottoGame.profitRate).toBe(400);
   });
 
-  test("구입할 금액은 1000원 이상이여야 한다.", () => {
-    const amount = 500;
-    expect(isValidMinimumAmount(amount)).toBe(false);
-  });
-
-  test("구입할 금액 단위는 1000원 이어야 한다.", () => {
-    const amount = 2200;
-    expect(isValidAmountUnit(amount)).toBe(false);
+  test("일치 개수에 따라 당첨 개수가 계산된다.", () => {
+    const lottoGame = new LottoModel();
+    lottoGame.lottos = [
+      [1, 2, 3, 43, 44, 45],
+      [1, 2, 3, 4, 43, 44],
+      [1, 2, 3, 4, 5, 44],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 45],
+    ];
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 45;
+    const result = {
+      3: 1,
+      4: 1,
+      5: 1,
+      6: 1,
+      [BONUS]: 1,
+    };
+    lottoGame.generateResult(winningNumbers, bonusNumber);
+    expect(lottoGame.result).toEqual(result);
   });
 });

@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="src/css/index.css" />
   </head>
-
   <body>
     <div id="app">
       <section class="title-container">
@@ -16,7 +14,7 @@
         <form class="purchase-form">
           <label>구입할 금액을 입력해주세요.</label>
           <div class="purchase-input-wrapper">
-            <input class="purchase-input" type="number" placeholder="구입 금액" />
+            <input class="purchase-input" type="number" placeholder="구입 금액" autofocus />
             <button class="purchase-button">구입</button>
           </div>
         </form>
@@ -35,30 +33,70 @@
           <ul class="lotto-number-list"></ul>
         </div>
       </section>
-      <section class="winning-container">
+      <section class="winning-container" hidden>
         <h4 class="winning-title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h4>
         <div class="number-input-container">
           <section class="winning-number-wrapper">
             <p class="winning-number-title">당첨 번호</p>
             <div class="winning-number-list">
-              <input class="winning-number-input" />
-              <input class="winning-number-input" />
-              <input class="winning-number-input" />
-              <input class="winning-number-input" />
-              <input class="winning-number-input" />
-              <input class="winning-number-input" />
+              <input class="winning-number-input" type="number" maxlength="2" required />
+              <input class="winning-number-input" type="number" maxlength="2" required />
+              <input class="winning-number-input" type="number" maxlength="2" required />
+              <input class="winning-number-input" type="number" maxlength="2" required />
+              <input class="winning-number-input" type="number" maxlength="2" required />
+              <input class="winning-number-input" type="number" maxlength="2" required />
             </div>
           </section>
           <section class="bonus-number-wrapper">
             <p class="bonus-number-title">보너스 번호</p>
             <div class="bonus-number">
-              <input class="bonus-number-input" />
+              <input class="bonus-number-input" type="number" maxlength="2" required />
             </div>
           </section>
         </div>
         <button class="result-button">결과 확인하기</button>
       </section>
+
+      <section class="modal-container">
+        <div class="modal-inner">
+          <button class="modal-close">❌</button>
+          <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+          <table class="modal-table">
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td class="winning-count"></td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td class="winning-count"></td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td class="winning-count"></td>
+            </tr>
+            <tr>
+              <td>5개 + 보너스볼</td>
+              <td>30,000,000</td>
+              <td class="winning-bonus-count"></td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td class="winning-count"></td>
+            </tr>
+          </table>
+          <p class="modal-profit"></p>
+          <button class="modal-restart">다시 시작하기</button>
+        </div>
+      </section>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>

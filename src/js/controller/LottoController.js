@@ -1,56 +1,86 @@
-import LottoGame from "../model/LottoGame.js";
-import LottoGameView from "../views/LottoGameView.js";
-import { $ } from "../utils/dom.js";
-import { ERROR_MESSAGES, SELECTOR, AMOUNT } from "../utils/constants.js";
-import { isValidMinimumAmount, isValidAmountUnit } from "../utils/validation.js";
+import LottoModel from "../model/LottoModel.js";
+import LottoListView from "../views/LottoListView.js";
+import ModalView from "../views/ModalView.js";
+import PurchaseView from "../views/PurchaseView.js";
+import WinningNumberView from "../views/WinningNumberView.js";
+
+import { $, $$ } from "../utils/dom.js";
+import { SELECTOR, AMOUNT } from "../utils/constants.js";
+import { verifyPurchaseAmount, verifyWinningNumbers } from "../utils/validation.js";
+import { clearInput } from "../utils/general.js";
 
 export default class LottoController {
   constructor() {
-    this.lottoGameModel = new LottoGame();
-    this.lottoGameView = new LottoGameView();
-    this.switchInput = $(SELECTOR.SWITCH_INPUT);
     this.purchaseInput = $(SELECTOR.PURCHASE_INPUT);
     this.lottoNumberList = $(SELECTOR.LOTTO_NUMBER_LIST);
-    this.purchaseForm = $(SELECTOR.PURCHASE_FORM);
+    this.winningNumberInputs = $$(SELECTOR.WINNING_NUMBER_INPUT);
+    this.bonusNumberInput = $(SELECTOR.BONUS_NUMBER_INPUT);
+    this.modalContainer = $(SELECTOR.MODAL_CONTAINER);
+
+    this.lottoModel = new LottoModel();
+    this.purchaseView = new PurchaseView();
+    this.lottoListView = new LottoListView();
+    this.winningNumberView = new WinningNumberView();
+    this.modalView = new ModalView();
+
+    this.purchaseView.bindPurchase(this.#handlePurchase.bind(this));
+    this.lottoListView.bindSwitch(this.#handleSwitch.bind(this));
+    this.winningNumberView.bindResult(this.#handleResult.bind(this));
+    this.modalView.bindRestart(this.#handleRestart.bind(this));
   }
 
-  bindEvents() {
-    this.purchaseForm.addEventListener("submit", this.#onSubmitPurchase.bind(this));
-    this.switchInput.addEventListener("click", this.#onClickSwitch.bind(this));
-  }
-
-  #handleLottoNumber(lottoCount) {
-    this.lottoGameView.disablePurchaseForm();
-    this.lottoGameView.enableSwitch();
-    this.lottoGameView.renderPurchaseInfomation(lottoCount);
-    this.lottoGameView.renderLottoIcons(lottoCount);
-  }
-
-  #onSubmitPurchase(e) {
+  #handlePurchase(e) {
     e.preventDefault();
 
-    const purchaseAmount = Number(this.purchaseInput.value);
-    if (!isValidMinimumAmount(purchaseAmount)) {
-      alert(ERROR_MESSAGES.INVALID_MINIMUM_AMOUNT);
-      return;
+    try {
+      const purchaseAmount = this.purchaseInput.valueAsNumber;
+      verifyPurchaseAmount(purchaseAmount);
+
+      const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
+      this.lottoModel.generateLottoTickets(lottoCount);
+      this.winningNumberView.showWinningInput(lottoCount);
+      this.lottoListView.enableSwitch();
+      this.lottoListView.renderLottoIcons(lottoCount);
+      this.purchaseView.disablePurchaseForm();
+      this.purchaseView.renderPurchaseInfomation(lottoCount);
+    } catch ({ message }) {
+      alert(message);
     }
-    if (!isValidAmountUnit(purchaseAmount)) {
-      alert(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
-      return;
-    }
-    const lottoCount = Math.floor(purchaseAmount / AMOUNT.UNIT);
-    this.lottoGameModel.generateLottoTicket(lottoCount);
-    this.#handleLottoNumber(lottoCount);
   }
 
-  #onClickSwitch() {
-    this.lottoGameView.resetLottoList();
+  #handleSwitch() {
+    this.lottoListView.resetLottoList();
 
     this.lottoNumberList.classList.toggle("show-numbers");
     if (this.lottoNumberList.classList.contains("show-numbers")) {
-      this.lottoGameView.renderLottoNumbers(this.lottoGameModel.getLottoList());
+      this.lottoListView.renderLottoNumbers(this.lottoModel.getLottoList());
       return;
     }
-    this.lottoGameView.renderLottoIcons(this.lottoGameModel.getLottoCount());
+    this.lottoListView.renderLottoIcons(this.lottoModel.getLottoCount());
+  }
+
+  #handleResult() {
+    const winningNumbers = Array.from(this.winningNumberInputs).map((input) => input.valueAsNumber);
+    const bonusNumber = this.bonusNumberInput.valueAsNumber;
+
+    try {
+      verifyWinningNumbers([...winningNumbers, bonusNumber]);
+      this.lottoModel.generateResult(winningNumbers, bonusNumber);
+      this.modalView.renderModal(this.lottoModel.result, this.lottoModel.profitRate);
+    } catch ({ message }) {
+      alert(message);
+    }
+  }
+
+  #handleRestart() {
+    this.purchaseView.enablePurchaseForm();
+    this.purchaseView.resetPurchaseInfomation();
+    this.lottoListView.disableSwitch();
+    this.lottoListView.resetLottoList();
+    this.winningNumberView.hideWinningInput();
+    this.modalView.toggleModal();
+
+    this.purchaseInput.focus();
+    clearInput(this.purchaseInput, ...this.winningNumberInputs, this.bonusNumberInput);
   }
 }
