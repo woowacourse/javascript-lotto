@@ -36,20 +36,66 @@
         <span>당첨 번호</span>
         <span>보너스 번호</span>
       </div>
-      <div class="winning-numbers-container">
-        <div>
-          <input class="winning-numbers" id="winning-number-1" type="number" min="1" max="45">
-          <input class="winning-numbers" id="winning-number-2" type="number" min="1" max="45">
-          <input class="winning-numbers" id="winning-number-3" type="number" min="1" max="45">
-          <input class="winning-numbers" id="winning-number-4" type="number" min="1" max="45">
-          <input class="winning-numbers" id="winning-number-5" type="number" min="1" max="45">
-          <input class="winning-numbers" id="winning-number-6" type="number" min="1" max="45">
+      <form class="winning-numbers-form">
+        <div class="winning-numbers-container">
+          <div>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+            <input class="winning-numbers" type="number" min="1" max="45" required>
+          </div>
+          <div>
+            <input class="winning-numbers" id="bonus-number" type="number" min="1" max="45" maxlength="2" required>
+          </div>
         </div>
-        <div>
-          <input class="winning-numbers" id="bonus-number" type="number">
+        <button id="show-result" type="submit">결과 확인하기</button>
+      </form>
+    </article>
+    <article class="modal-container d-none">
+      <article class="modal">
+        <img src="./closer.svg" class="modal-closer"></img>
+        <h3 class="modal-title">🏆 당첨 통계 🏆</h3>
+        <div class="content-container">
+          <div class="content-row">
+            <h2 class="content-text content-title">일치 갯수</h2>
+            <h2 class="content-text content-title">당첨금</h2>
+            <h2 class="content-text content-title">당첨 갯수</h2>
+          </div>
+          <div class="content-row">
+            <div class="content-text">3개</div>
+            <div class="content-text">5,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">4개</div>
+            <div class="content-text">50,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">5개</div>
+            <div class="content-text">1,500,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">5개+보너스볼</div>
+            <div class="content-text">30,000,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row">
+            <div class="content-text">6개</div>
+            <div class="content-text">2,000,000,000</div>
+            <div class="content-text"><span class="winning-count"><span></div>
+          </div>
+          <div class="content-row result-container">
+            <div class="content-text content-title">당신의 총 수익률은 <span class="earnings-rate"></span>%입니다.</div>
+          </div>
         </div>
-      </div>
-      <button id="show-result" type="submit">결과 확인하기</button>
+        <div class="restart-container">
+          <button class="restart">다시 시작하기</button>
+        </div>
+      </article>
     </article>
   </main>
 </body>

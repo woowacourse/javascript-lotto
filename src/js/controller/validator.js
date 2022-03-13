@@ -1,13 +1,16 @@
-import { MONEY_INPUT } from './constants';
+import { MONEY_INPUT, WINNING_LOTTO_DIGIT } from './constants';
 
-const isThousandMultiple = money => money % MONEY_INPUT.MIN_PRICE === 0;
-const isOverThouand = money => money >= MONEY_INPUT.MIN_PRICE;
-const isUnderMillion = money => money <= MONEY_INPUT.MAX_PRICE;
-const isValidMoneyRange = money => isOverThouand(money) && isUnderMillion(money);
+export const isThousandMultiple = money => money % MONEY_INPUT.MIN_PRICE === 0;
+
+export const isOverThouand = money => money >= MONEY_INPUT.MIN_PRICE;
+
+export const isUnderTenThousand = money => money <= MONEY_INPUT.MAX_PRICE;
+
+export const isValidMoneyRange = money => isOverThouand(money) && isUnderTenThousand(money);
 
 export const isValidMoneyInput = money => {
   return isThousandMultiple(money) && 
-         isOverThouand(money) && 
-         isUnderMillion(money) && 
          isValidMoneyRange(money);
-}
+};
+
+export const isDuplicatedLottos = lottos => new Set([...lottos]).size !== WINNING_LOTTO_DIGIT;
