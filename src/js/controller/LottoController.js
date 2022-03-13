@@ -6,7 +6,6 @@ import {
   PRIZE,
 } from './constants';
 import Lotto from '../model/Lotto';
-import { showWinnerModal } from '../view/modalView';
 
 export default class LottoController {
   constructor() {
@@ -89,7 +88,6 @@ export default class LottoController {
     this.saveMatchedCount();
     const winnerStatistic = this.getWinnerStatistic();
     const earningsRate = this.getEarningsRate(winnerStatistic, moneyInput);
-    showWinnerModal(winnerStatistic, earningsRate);
+    return { winnerStatistic, earningsRate };
   } 
 }
-

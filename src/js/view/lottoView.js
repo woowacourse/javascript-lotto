@@ -1,20 +1,29 @@
 import { $$, $ } from '../utils/dom';
-import { closeModal } from './modalView';
 import { isValidMoneyInput, isDuplicatedLottos } from '../controller/validator';
 import { ERROR_MESSAGE } from '../controller/constants';
-import LottoController from '../controller/LottoController';
 import { maxLengthHandler } from '../utils/maxLengthHandler';
 
 class LottoView {
-  constructor() {
-    this.controller = new LottoController();
-    this.moneyInput = 0;
-    $('.purchase-form').addEventListener('submit', this.purchaseHandler);
-    $('.cm-toggle').addEventListener('click', this.toggleNumberDetail);
-    $('.winning-numbers-form').addEventListener('submit', this.winningLottoHandler);
-    $$('.winning-numbers').forEach(input => input.addEventListener('input', maxLengthHandler));
-    $('.modal-closer').addEventListener('click', closeModal);
-    $('.restart').addEventListener('click', () => this.controller.resetLotto(this));
+  constructor(modalView, controller) {
+    this.controller = controller;
+    this.modalView = modalView;
+    this.moneyInputValue = 0;
+
+    this.purchaseForm = $('.purchase-form');
+    this.winningNumbersForm = $('.winning-numbers-form');
+    this.lottoGrid = $('.lotto-grid');
+    this.purchaseStatusContainer = $('.purchase-status-container', this.result);
+    this.result = $$('.result');
+    this.moneyInput = $('.money-input', this.purchaseForm);
+    this.purchaseButton = $('.purchase-button', this.purchaseForm);
+    this.winningNumbers = $$('.winning-numbers', this.winningNumbersForm);
+    this.cmToggle = $('.cm-toggle', this.result[0]);
+
+    this.purchaseForm.addEventListener('submit', this.purchaseHandler);
+    this.cmToggle.addEventListener('click', this.toggleNumberDetail);
+    this.winningNumbersForm.addEventListener('submit', this.winningLottoHandler);
+    this.winningNumbers.forEach(input => input.addEventListener('input', maxLengthHandler));
+    $('.restart', this.modalView.modalContainer).addEventListener('click', () => this.controller.resetLotto(this));
   }
 
   showLottoImage = (lottos) => {
@@ -22,21 +31,21 @@ class LottoView {
       `<div class="lotto-img">
         🎟️<span class="lotto-number-detail d-none">${lotto.lottoNumbers.join(', ')}</span>
       </div>`).join('');
-    $('.lotto-grid').insertAdjacentHTML('beforeend', template);                        
+      this.lottoGrid.insertAdjacentHTML('beforeend', template);                        
   };
   
   showNumberOfLottos = (length) => {
     const template = `<span class="inform-text">총 ${length}개를 구매하였습니다.</span>`;
-    $('.purchase-status-container').insertAdjacentHTML('afterbegin', template);
+    this.purchaseStatusContainer.insertAdjacentHTML('afterbegin', template);
   };
   
   showResultElements = () => {
-    $$('.result').forEach(element => element.classList.remove('d-none'));
+    this.result.forEach(element => element.classList.remove('d-none'));
   };
   
   deactivateForm = () => {
-    $('.money-input').setAttribute('disabled', true);
-    $('.purchase-button').setAttribute('disabled', true);
+    this.moneyInput.setAttribute('disabled', true);
+    this.purchaseButton.setAttribute('disabled', true);
   };
   
   showResult = (lottos) => {
@@ -48,60 +57,57 @@ class LottoView {
   
   purchaseHandler = e => {
     e.preventDefault();
-    const moneyInput = Number($('.money-input').value);
+    const moneyInput = Number(this.moneyInput.value);
   
     if (!isValidMoneyInput(moneyInput)) {
       alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
       return;
     }
-    this.moneyInput = moneyInput;
-    this.controller.generateLottos(this.moneyInput);
+    this.moneyInputValue = moneyInput;
+    this.controller.generateLottos(this.moneyInputValue);
     this.showResult(this.controller.lottos);
   };
 
   winningLottoHandler = e => {
     e.preventDefault();
-    const winningNumbers = Array.prototype.slice.call($$('.winning-numbers')).map(input => input.value);
+    const winningNumbers = Array.prototype.slice.call(this.winningNumbers).map(input => input.value);
 
     if (isDuplicatedLottos(winningNumbers)) {
       alert(ERROR_MESSAGE.DUPLICATED_WINNING_INPUT);
       return;
     }
-    this.controller.generateResult(winningNumbers, this.moneyInput);
-    
+    const { winnerStatistic, earningsRate } = this.controller.generateResult(winningNumbers, this.moneyInputValue);
+    this.modalView.showWinnerModal(winnerStatistic, earningsRate);
   };
   
   hideResultElements = () => {
-    const lottoGrid = $('.lotto-grid');
-    lottoGrid.innerHTML = '';
-    lottoGrid.classList.remove('lotto-grid-detail');
-    $$('.result').forEach(element => element.classList.add('d-none'));
-    $('.inform-text').remove();
-    $('.cm-toggle').checked = false;
+    this.lottoGrid.innerHTML = '';
+    this.lottoGrid.classList.remove('lotto-grid-detail');
+    this.result.forEach(element => element.classList.add('d-none'));
+    $('.inform-text', this.purchaseStatusContainer).remove();
+    this.cmToggle.checked = false;
   };
   
   activateForm = () => {
-    $('.money-input').removeAttribute('disabled');
-    $('.purchase-button').removeAttribute('disabled');
+    this.moneyInput.removeAttribute('disabled');
+    this.purchaseButton.removeAttribute('disabled');
   };
   
   resetInputValue = () => {
-    $('.money-input').value = '';
-    $$('.winning-numbers').forEach(element => element.value = '');
+    this.moneyInput.value = '';
+    this.winningNumbers.forEach(element => element.value = '');
   };
   
   resetView = () => {
-    closeModal();
+    this.modalView.closeModal();
     this.hideResultElements();
     this.activateForm();
     this.resetInputValue();
   };
   
   toggleNumberDetail = () => {
-    const lottoGrid = $('.lotto-grid');
-  
-    lottoGrid.classList.toggle('lotto-grid-detail');
-    $$('.lotto-number-detail').forEach(element => {
+    this.lottoGrid.classList.toggle('lotto-grid-detail');
+    $$('.lotto-number-detail', this.lottoGrid).forEach(element => {
       element.classList.toggle('d-none');
     });
   };

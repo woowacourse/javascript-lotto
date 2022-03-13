@@ -1,25 +1,35 @@
 import { $, $$ } from '../utils/dom';
 
-export const closeModal = () => {
-  $('.modal-container').classList.add('d-none');
-};
+class ModalView {
+  constructor(controller) {
+    this.controller = controller
+    this.modalContainer = $('.modal-container');
+    this.winningCountList = $$('.winning-count');
+    this.earningsRate = $('.earnings-rate');
 
-const showWinningCount = winnersStatistic => {
-  const winningCountElements = $$('.winning-count');
+    $('.modal-closer', this.modalContainer).addEventListener('click', this.closeModal);
+  }
 
-  winningCountElements.forEach((element, index) => {
-    element.textContent = `${winnersStatistic[index]}개`;
-  });
-};
+  closeModal = () => {
+    this.modalContainer.classList.add('d-none');
+  };
+  
+  showWinningCount = winnersStatistic => {
+    this.winningCountList.forEach((element, index) => {
+      element.textContent = `${winnersStatistic[index]}개`;
+    });
+  };
+  
+  showEarningsRate = earningsRate => {
+    this.earningsRate.textContent = earningsRate;
+  };
+  
+  showWinnerModal = (winnerStatistic, earningsRate) => {
+    this.modalContainer.classList.remove('d-none');
+    this.showWinningCount(winnerStatistic);
+    this.showEarningsRate(earningsRate);
+  };
+}
 
-const showEarningsRate = earningsRate => {
-  const earningsRateElement = $('.earnings-rate');
 
-  earningsRateElement.textContent = earningsRate;
-};
-
-export const showWinnerModal = (winnerStatistic, earningsRate) => {
-  $('.modal-container').classList.remove('d-none');
-  showWinningCount(winnerStatistic);
-  showEarningsRate(earningsRate);
-};
+export default ModalView;
