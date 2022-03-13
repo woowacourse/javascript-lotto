@@ -1,7 +1,6 @@
-import LottoController from '../controller/lottoController';
+import LottoController from '../controller/LottoController';
 import Lotto from '../model/Lotto';
 import { LOTTO_DIGIT } from '../model/constants';
-import { $ } from '../utils/dom';
 
 describe('랜덤 숫자 테스트', () => {
   it('랜덤 숫자는 중복되지 않는 6개의 숫자이다', () => {
@@ -13,65 +12,56 @@ describe('랜덤 숫자 테스트', () => {
 
 describe('결과 확인 테스트', () => {  
   it('나의 로또와 당첨 로또의 숫자가 몇 개 일치하는지 확인할 수 있다', () => {
-    document.addEventListener('DOMContentLoaded', () => {
-      const controller = new LottoController();
-      controller.winningLottos = [4,15,25,36,41,27,33];
-      const fourMatchedLotto = [4,15,25,36,42,43];
-  
-      expect(controller.getHowManyMatched(fourMatchedLotto)).toBe(4);
-    });
+    const controller = new LottoController();
+    controller.winningLottos = [4,15,25,36,41,27,33];
+    const fourMatchedLotto = [4,15,25,36,42,43];
+
+    expect(controller.getHowManyMatched(fourMatchedLotto)).toBe(4);
   });
 
   it('3등에 당첨된 로또의 개수를 구할 수 있어야 한다', () => {
-    document.addEventListener('DOMContentLoaded', () => {
-      const controller = new LottoController();
-      controller.winningLottos = [4,15,25,36,41,27,33];
+    const controller = new LottoController();
+    controller.winningLottos = [4,15,25,36,41,27,33];
 
-      const thirdPlaceLotto = new Lotto();
-      thirdPlaceLotto.lottoNumbers = [4,15,25,36,41,1,2];
-      controller.lottos = thirdPlaceLotto;
-  
-      controller.saveMatchedCount();
-      expect(controller.getWinnerStatistic()).toBe([0,0,1,0,0]);
-    });
+    const thirdPlaceLotto = new Lotto();
+    thirdPlaceLotto.lottoNumbers = [4,15,25,36,41,1,2];
+    controller.lottos = [thirdPlaceLotto];
+
+    controller.saveMatchedCount();
+    expect(controller.getWinnerStatistic()).toStrictEqual([0,0,1,0,0]);
   });
 
   it('1등과 2등에 당첨된 로또의 개수를 구할 수 있어야 한다', () => {
-    document.addEventListener('DOMContentLoaded', () => {
-      const controller = new LottoController();
-      controller.winningLottos = [4,15,25,36,41,27,33];
+    const controller = new LottoController();
+    controller.winningLottos = [4,15,25,36,41,27,33];
 
-      const secondPlaceLotto = new Lotto();
-      secondPlaceLotto.lottoNumbers = [4,15,25,36,41,33];
+    const secondPlaceLotto = new Lotto();
+    secondPlaceLotto.lottoNumbers = [4,15,25,36,41,33];
 
-      const firstPlaceLotto = new Lotto();
-      firstPlaceLotto.lottoNumbers = [4,15,25,36,41,27];
+    const firstPlaceLotto = new Lotto();
+    firstPlaceLotto.lottoNumbers = [4,15,25,36,41,27];
 
-      controller.lottos = [firstPlaceLotto, secondPlaceLotto];
-      controller.saveMatchedCount();
+    controller.lottos = [firstPlaceLotto, secondPlaceLotto];
+    controller.saveMatchedCount();
 
-      expect(controller.getWinnerStatistic()).toBe([0,0,0,1,1]);
-    });
+    expect(controller.getWinnerStatistic()).toStrictEqual([0,0,0,1,1]);
   });
 
   it('수익률을 구할 수 있어야 한다', () => {
-    document.addEventListener('DOMContentLoaded', () => {
-      const controller = new LottoController();
-      controller.winningLottos = [4,15,25,36,41,27,33];
+    const controller = new LottoController();
+    controller.winningLottos = [4,15,25,36,41,27,33];
 
-      const fifthPlaceLotto = new Lotto();
-      fifthPlaceLotto.lottoNumbers = [4,15,25,1,2,3];
+    const fifthPlaceLotto = new Lotto();
+    fifthPlaceLotto.lottoNumbers = [4,15,25,1,2,3];
 
-      const fourthPlaceLotto = new Lotto();
-      fourthPlaceLotto.lottoNumbers = [4,15,25,36,1,2];
+    const fourthPlaceLotto = new Lotto();
+    fourthPlaceLotto.lottoNumbers = [4,15,25,36,1,2];
 
-      controller.lottos = [fifthPlaceLotto, fourthPlaceLotto];
-      controller.saveMatchedCount();
-      
-      $('.money-input').value = 1000;
-      const winnerStatistic = controller.getWinnerStatistic();
+    controller.lottos = [fifthPlaceLotto, fourthPlaceLotto];
+    controller.saveMatchedCount();
+    
+    const winnerStatistic = controller.getWinnerStatistic();
 
-      expect(controller.getEarningsRate(winnerStatistic)).toBe(540);
-    });
+    expect(controller.getEarningsRate(winnerStatistic, 10000)).toBe(450);
   });
 });

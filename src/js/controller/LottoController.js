@@ -1,53 +1,30 @@
-import { $, $$ } from '../utils/dom';
 import {
-  ERROR_MESSAGE,
   LOTTO_PRICE,
   WINNING_RANK_SIZE,
   MATCHED_COUNT,
   LOTTO_INDEX,
   PRIZE,
 } from './constants';
-import { isValidMoneyInput, isDuplicatedLottos } from './validator';
 import Lotto from '../model/Lotto';
-import { showResult, toggleNumberDetail, resetView } from '../view/lottoView';
-import { maxLengthHandler } from '../utils/maxLengthHandler';
-import { showWinnerModal, closeModal } from '../view/modalView';
+import { showWinnerModal } from '../view/modalView';
 
 export default class LottoController {
   constructor() {
     this.lottos = [];
     this.winningLottos = [];
-    $('.purchase-form').addEventListener('submit', this.purchaseHandler);
-    $('.cm-toggle').addEventListener('click', toggleNumberDetail);
-    $('.winning-numbers-form').addEventListener('submit', this.winningLottoHandler);
-    $$('.winning-numbers').forEach(input => input.addEventListener('input', maxLengthHandler));
-    $('.modal-closer').addEventListener('click', closeModal);
-    $('.restart').addEventListener('click', this.resetLotto);
   }
 
-  resetLotto = () => {
+  resetLotto = (view) => {
     this.lottos = [];
     this.winningLottos = [];
-    resetView();
+    view.resetView();
   };
 
-  getLottos = (moneyInput) => {
+  generateLottos = (moneyInput) => {
     const numberOfLottos = parseInt(moneyInput / LOTTO_PRICE);
     for (let i = 0; i < numberOfLottos; i += 1) {
       this.lottos.push(new Lotto());
     }
-  };
-
-  purchaseHandler = e => {
-    e.preventDefault();
-    const moneyInput = Number($('.money-input').value);
-
-    if (!isValidMoneyInput(moneyInput)) {
-      alert(ERROR_MESSAGE.INVALID_MONEY_INPUT);
-      return;
-    }
-    this.getLottos(moneyInput);
-    showResult(this.lottos);
   };
 
   getHowManyMatched = lotto => {
@@ -92,8 +69,8 @@ export default class LottoController {
     return winnerStatistic;
   };
 
-  getEarningsRate = winnerStatistic => {
-    const cost = Number($('.money-input').value);
+  getEarningsRate = (winnerStatistic, moneyInput) => {
+    const cost = +moneyInput;
     const prizes = [
       PRIZE.FIFTH_PLACE,
       PRIZE.FOURTH_PLACE,
@@ -107,18 +84,12 @@ export default class LottoController {
     return Math.round((profit - cost) / cost * 100);
   };
 
-  winningLottoHandler = e => {
-    e.preventDefault();
-    const winningNumbers = Array.prototype.slice.call($$('.winning-numbers')).map(input => input.value);
-
-    if (isDuplicatedLottos(winningNumbers)) {
-      alert(ERROR_MESSAGE.DUPLICATED_WINNING_INPUT);
-      return;
-    }
+  generateResult = (winningNumbers, moneyInput) => {
     this.winningLottos = winningNumbers.map(number => +number);
     this.saveMatchedCount();
     const winnerStatistic = this.getWinnerStatistic();
-    const earningsRate = this.getEarningsRate(winnerStatistic);
+    const earningsRate = this.getEarningsRate(winnerStatistic, moneyInput);
     showWinnerModal(winnerStatistic, earningsRate);
-  };
+  } 
 }
+
