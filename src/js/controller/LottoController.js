@@ -13,9 +13,21 @@ export default class LottoController {
     this.winningLottos = [];
   }
 
+  getLottos = () => this.lottos;
+
+  setLottos = lottos => {
+    this.lottos = lottos;
+  }
+
+  getWinningLottos = () => this.winningLottos;
+
+  setWinningLottos = winningLottos => {
+    this.winningLottos = winningLottos;
+  }
+
   resetLotto = (view) => {
-    this.lottos = [];
-    this.winningLottos = [];
+    this.setLottos([]);
+    this.setWinningLottos([]);
     view.resetView();
   };
 
@@ -42,28 +54,28 @@ export default class LottoController {
     this.lottos.forEach(lotto => {
       const matchedCount = this.getHowManyMatched(lotto.lottoNumbers);
       if (matchedCount >= MATCHED_COUNT.MIN) {
-        lotto.matchedCount = matchedCount;
+        lotto.setMatchedCount(matchedCount);
       }
     });
   };
 
-  isSecondPlace = winner => {
+  #isSecondPlace = winner => {
     return winner.matchedCount === MATCHED_COUNT.FIVE_MATCHED
            && winner.lottoNumbers.find(number => number === this.winningLottos[LOTTO_INDEX.BONUS]);
   };
 
-  isFirstPlace = matchedCount => matchedCount === MATCHED_COUNT.SIX_MATCHED;
+  #isFirstPlace = matchedCount => matchedCount === MATCHED_COUNT.SIX_MATCHED;
 
   getWinnerStatistic = () => {
     const winnerStatistic = new Array(WINNING_RANK_SIZE).fill(0);
     const winners = this.lottos.filter(lotto => lotto.matchedCount >= MATCHED_COUNT.MIN);
 
     winners.forEach(winner => {
-      if (this.isSecondPlace(winner) || this.isFirstPlace(winner.matchedCount)) {
-        winnerStatistic[winner.matchedCount - 2] += 1;
+      if (this.#isSecondPlace(winner) || this.#isFirstPlace(winner.getMatchedCount())) {
+        winnerStatistic[winner.getMatchedCount() - 2] += 1;
         return;
       }
-      winnerStatistic[winner.matchedCount - 3] += 1;
+      winnerStatistic[winner.getMatchedCount() - 3] += 1;
     });
     return winnerStatistic;
   };
@@ -84,7 +96,7 @@ export default class LottoController {
   };
 
   generateResult = (winningNumbers, moneyInput) => {
-    this.winningLottos = winningNumbers.map(number => +number);
+    this.setWinningLottos(winningNumbers.map(number => +number));
     this.saveMatchedCount();
     const winnerStatistic = this.getWinnerStatistic();
     const earningsRate = this.getEarningsRate(winnerStatistic, moneyInput);

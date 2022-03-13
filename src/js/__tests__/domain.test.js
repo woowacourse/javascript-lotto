@@ -13,7 +13,7 @@ describe('랜덤 숫자 테스트', () => {
 describe('결과 확인 테스트', () => {  
   it('나의 로또와 당첨 로또의 숫자가 몇 개 일치하는지 확인할 수 있다', () => {
     const controller = new LottoController();
-    controller.winningLottos = [4,15,25,36,41,27,33];
+    controller.setWinningLottos([4,15,25,36,41,27,33]);
     const fourMatchedLotto = [4,15,25,36,42,43];
 
     expect(controller.getHowManyMatched(fourMatchedLotto)).toBe(4);
@@ -21,11 +21,11 @@ describe('결과 확인 테스트', () => {
 
   it('3등에 당첨된 로또의 개수를 구할 수 있어야 한다', () => {
     const controller = new LottoController();
-    controller.winningLottos = [4,15,25,36,41,27,33];
+    controller.setWinningLottos([4,15,25,36,41,27,33]);
 
     const thirdPlaceLotto = new Lotto();
-    thirdPlaceLotto.lottoNumbers = [4,15,25,36,41,1,2];
-    controller.lottos = [thirdPlaceLotto];
+    thirdPlaceLotto.setLottoNumbers([4,15,25,36,41,1,2]);
+    controller.setLottos([thirdPlaceLotto]);
 
     controller.saveMatchedCount();
     expect(controller.getWinnerStatistic()).toStrictEqual([0,0,1,0,0]);
@@ -33,15 +33,15 @@ describe('결과 확인 테스트', () => {
 
   it('1등과 2등에 당첨된 로또의 개수를 구할 수 있어야 한다', () => {
     const controller = new LottoController();
-    controller.winningLottos = [4,15,25,36,41,27,33];
+    controller.setWinningLottos([4,15,25,36,41,27,33]);
 
     const secondPlaceLotto = new Lotto();
-    secondPlaceLotto.lottoNumbers = [4,15,25,36,41,33];
+    secondPlaceLotto.setLottoNumbers([4,15,25,36,41,33]);
 
     const firstPlaceLotto = new Lotto();
-    firstPlaceLotto.lottoNumbers = [4,15,25,36,41,27];
+    firstPlaceLotto.setLottoNumbers([4,15,25,36,41,27]);
 
-    controller.lottos = [firstPlaceLotto, secondPlaceLotto];
+    controller.setLottos([firstPlaceLotto, secondPlaceLotto]);
     controller.saveMatchedCount();
 
     expect(controller.getWinnerStatistic()).toStrictEqual([0,0,0,1,1]);
@@ -49,15 +49,15 @@ describe('결과 확인 테스트', () => {
 
   it('수익률을 구할 수 있어야 한다', () => {
     const controller = new LottoController();
-    controller.winningLottos = [4,15,25,36,41,27,33];
+    controller.setWinningLottos([4,15,25,36,41,27,33]);
 
     const fifthPlaceLotto = new Lotto();
-    fifthPlaceLotto.lottoNumbers = [4,15,25,1,2,3];
+    fifthPlaceLotto.setLottoNumbers([4,15,25,1,2,3]);
 
     const fourthPlaceLotto = new Lotto();
-    fourthPlaceLotto.lottoNumbers = [4,15,25,36,1,2];
+    fourthPlaceLotto.setLottoNumbers([4,15,25,36,1,2]);
 
-    controller.lottos = [fifthPlaceLotto, fourthPlaceLotto];
+    controller.setLottos([fifthPlaceLotto, fourthPlaceLotto]);
     controller.saveMatchedCount();
     
     const winnerStatistic = controller.getWinnerStatistic();

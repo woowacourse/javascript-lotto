@@ -19,14 +19,14 @@ class LottoView {
     this.winningNumbers = $$('.winning-numbers', this.winningNumbersForm);
     this.cmToggle = $('.cm-toggle', this.result[0]);
 
-    this.purchaseForm.addEventListener('submit', this.purchaseHandler);
-    this.cmToggle.addEventListener('click', this.toggleNumberDetail);
-    this.winningNumbersForm.addEventListener('submit', this.winningLottoHandler);
+    this.purchaseForm.addEventListener('submit', this.#purchaseHandler);
+    this.cmToggle.addEventListener('click', this.#toggleNumberDetail);
+    this.winningNumbersForm.addEventListener('submit', this.#winningLottoHandler);
     this.winningNumbers.forEach(input => input.addEventListener('input', maxLengthHandler));
     $('.restart', this.modalView.modalContainer).addEventListener('click', () => this.controller.resetLotto(this));
   }
 
-  showLottoImage = (lottos) => {
+  #showLottoImage = (lottos) => {
     const template = lottos.map(lotto => 
       `<div class="lotto-img">
         🎟️<span class="lotto-number-detail d-none">${lotto.lottoNumbers.join(', ')}</span>
@@ -34,28 +34,28 @@ class LottoView {
       this.lottoGrid.insertAdjacentHTML('beforeend', template);                        
   };
   
-  showNumberOfLottos = (length) => {
+  #showNumberOfLottos = (length) => {
     const template = `<span class="inform-text">총 ${length}개를 구매하였습니다.</span>`;
     this.purchaseStatusContainer.insertAdjacentHTML('afterbegin', template);
   };
   
-  showResultElements = () => {
+  #showResultElements = () => {
     this.result.forEach(element => element.classList.remove('d-none'));
   };
   
-  deactivateForm = () => {
+  #deactivateForm = () => {
     this.moneyInput.setAttribute('disabled', true);
     this.purchaseButton.setAttribute('disabled', true);
   };
   
-  showResult = (lottos) => {
-    this.deactivateForm();
-    this.showResultElements();
-    this.showNumberOfLottos(lottos.length);
-    this.showLottoImage(lottos);
+  #showResult = (lottos) => {
+    this.#deactivateForm();
+    this.#showResultElements();
+    this.#showNumberOfLottos(lottos.length);
+    this.#showLottoImage(lottos);
   };
   
-  purchaseHandler = e => {
+  #purchaseHandler = e => {
     e.preventDefault();
     const moneyInput = Number(this.moneyInput.value);
   
@@ -65,10 +65,10 @@ class LottoView {
     }
     this.moneyInputValue = moneyInput;
     this.controller.generateLottos(this.moneyInputValue);
-    this.showResult(this.controller.lottos);
+    this.#showResult(this.controller.getLottos());
   };
 
-  winningLottoHandler = e => {
+  #winningLottoHandler = e => {
     e.preventDefault();
     const winningNumbers = Array.prototype.slice.call(this.winningNumbers).map(input => input.value);
 
@@ -80,7 +80,7 @@ class LottoView {
     this.modalView.showWinnerModal(winnerStatistic, earningsRate);
   };
   
-  hideResultElements = () => {
+  #hideResultElements = () => {
     this.lottoGrid.innerHTML = '';
     this.lottoGrid.classList.remove('lotto-grid-detail');
     this.result.forEach(element => element.classList.add('d-none'));
@@ -88,24 +88,24 @@ class LottoView {
     this.cmToggle.checked = false;
   };
   
-  activateForm = () => {
+  #activateForm = () => {
     this.moneyInput.removeAttribute('disabled');
     this.purchaseButton.removeAttribute('disabled');
   };
   
-  resetInputValue = () => {
+  #resetInputValue = () => {
     this.moneyInput.value = '';
     this.winningNumbers.forEach(element => element.value = '');
   };
   
   resetView = () => {
     this.modalView.closeModal();
-    this.hideResultElements();
-    this.activateForm();
-    this.resetInputValue();
+    this.#hideResultElements();
+    this.#activateForm();
+    this.#resetInputValue();
   };
   
-  toggleNumberDetail = () => {
+  #toggleNumberDetail = () => {
     this.lottoGrid.classList.toggle('lotto-grid-detail');
     $$('.lotto-number-detail', this.lottoGrid).forEach(element => {
       element.classList.toggle('d-none');
