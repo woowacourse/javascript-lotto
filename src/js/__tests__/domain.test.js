@@ -4,9 +4,11 @@ import { LOTTO_DIGIT } from '../model/constants';
 
 describe('랜덤 숫자 테스트', () => {
   it('랜덤 숫자는 중복되지 않는 6개의 숫자이다', () => {
-    const lotto = new Lotto();
-
-    expect(new Set([...lotto.lottoNumbers]).size).toBe(LOTTO_DIGIT);
+    for(let i = 0; i < 1000; i += 1) {
+      const lotto = new Lotto();
+  
+      expect(new Set([...lotto.lottoNumbers]).size).toBe(LOTTO_DIGIT);
+    }
   });
 });
 
