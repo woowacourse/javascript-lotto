@@ -4,17 +4,16 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
-  resolve: {
-    extensions: [".js", ".css"],
-  },
   devServer: {
     port: 9000,
   },
-  devtool: "source-map",
+  entry: "./src/step2-index.js",
   output: {
-    filename: "bundle.js",
+    filename: "step2-bundle.js",
     path: path.resolve(__dirname, "dist"),
+  },
+  resolve: {
+    extensions: [".js", ".mjs", ".css"],
   },
   module: {
     rules: [
@@ -42,4 +41,5 @@ module.exports = {
       template: "./index.html",
     }),
   ],
+  devtool: "inline-source-map",
 };
