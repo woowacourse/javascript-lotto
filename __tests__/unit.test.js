@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from '../src/data/constants';
 import Lotto from '../src/domain/Lotto';
 
 test('로또 만들기 ', () => {
@@ -12,7 +13,7 @@ test('로또 번호는 숫자이다', () => {
 
   expect(() => {
     const lotto = new Lotto(numbers);
-  }).toThrow('로또 번호는 숫자여야 합니다.');
+  }).toThrow(ERROR_MESSAGE.LOTTO_NUMBER_TYPE);
 });
 
 test('로또 번호는 1~45 사이의 수이다', () => {
@@ -20,7 +21,7 @@ test('로또 번호는 1~45 사이의 수이다', () => {
 
   expect(() => {
     const lotto = new Lotto(numbers);
-  }).toThrow('로또 번호는 1~45 사이의 숫자여야 합니다.');
+  }).toThrow(ERROR_MESSAGE.LOTTO_NUMBER_RANGE);
 });
 
 test('로또 번호는 중복될 수 없다', () => {
@@ -28,5 +29,5 @@ test('로또 번호는 중복될 수 없다', () => {
 
   expect(() => {
     const lotto = new Lotto(numbers);
-  }).toThrow('로또 번호는 중복될 수 없습니다.');
+  }).toThrow(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE);
 });
