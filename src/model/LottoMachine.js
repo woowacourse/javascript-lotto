@@ -33,6 +33,15 @@ class LottoMachine {
 
     return randomLottoNumbers;
   }
+
+  computeCorrectCounts(winningNumber, lottoNumber) {
+    const correctCounts = lottoNumber.reduce((acc, cur) => {
+      if (winningNumber.includes(cur)) return ++acc;
+      return acc;
+    }, 0);
+
+    return correctCounts;
+  }
 }
 
 export default LottoMachine;
