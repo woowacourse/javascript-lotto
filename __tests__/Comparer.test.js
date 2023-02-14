@@ -26,4 +26,10 @@ describe('로또번호를 비교한다', () => {
     // then
     expect(result).toStrictEqual([true, false, false]);
   });
+
+  test('각 등수에 맞게 당첨된 로또의 수를 구한다.', () => {
+    const ranking = comparer.getRanking();
+
+    expect(ranking).toStrictEqual({ 1: 1, 2: 0, 3: 0, 4: 0, 5: 1 });
+  });
 });
