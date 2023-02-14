@@ -2,6 +2,8 @@ const Lotto = require("./Lotto");
 const Random = require("../util/Random");
 
 const LottoGame = {
+  lottos: [],
+
   LottoNumberGenerator() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < 6) {
@@ -10,9 +12,12 @@ const LottoGame = {
     return Array.from(lottoNumbers);
   },
 
-  makeLottos(lottoCount) {},
+  makeLottos(lottoCount) {
+    Array.from({ length: lottoCount }, () => {
+      const lottoOne = new Lotto(this.LottoNumberGenerator());
+      this.lottos.push(lottoOne);
+    });
+  },
 };
-
-LottoGame.LottoNumberGenerator();
 
 module.exports = LottoGame;
