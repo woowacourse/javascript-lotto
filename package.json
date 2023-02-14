@@ -21,6 +21,7 @@
     "eslint": "^8.34.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-functional": "^5.0.4",
     "eslint-plugin-prettier": "^4.2.1",
     "esm": "^3.2.25",
     "html-webpack-plugin": "^5.5.0",
