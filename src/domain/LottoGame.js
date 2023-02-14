@@ -3,7 +3,9 @@ import { PRIZE } from '../data/Constants';
 class LottoGame {
   constructor() {}
 
-  calculateEarningRate() {}
+  calculateEarningRate(price, totalAmount) {
+    return (totalAmount / price).toFixed(2);
+  }
 
   calculateTotalPrize(ranks) {
     return ranks.reduce(
