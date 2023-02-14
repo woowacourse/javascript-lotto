@@ -20,6 +20,10 @@ class LottoMachine {
 
     return [...lotto];
   }
+
+  arrangeLotto(lotto) {
+    return lotto.sort((a, b) => a - b);
+  }
 }
 
 module.exports = LottoMachine;
