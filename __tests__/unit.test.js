@@ -10,4 +10,11 @@ describe("로또를 뽑는 기능", () => {
     expect(number).toBeGreaterThanOrEqual(min);
     expect(number).toBeLessThanOrEqual(max);
   });
+
+  test("중복되지 않는 숫자 6개를 뽑는 기능 구현", () => {
+    const lottoMachine = new LottoMachine();
+    const lottoNumbers = lottoMachine.makeLottoNumbers();
+
+    expect(new Set(lottoNumbers)).toHaveLength(6);
+  });
 });
