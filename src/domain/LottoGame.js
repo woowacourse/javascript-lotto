@@ -8,7 +8,12 @@ class LottoGame {
 
   initializeWin(winningNumber) {
     this.#win = new Win(winningNumber);
-    console.log(this.#win.winningNumber, 'initializeWin');
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.#win.bonusNumber = bonusNumber;
+
+    console.log(this.#win.bonusNumber);
   }
 
   calculateEarningRate(price, totalAmount) {
