@@ -24,9 +24,12 @@ test.each([[300], [1], [8008]])(
   }
 );
 
-test.each([[-1], [0], [-8000]])('구입 금액은 로또 금액보다 크다.', (budget) => {
-  const lottoSimulator = new LottoSimulator();
-  expect(() => {
-    lottoSimulator.purchaseLottos(budget);
-  }).toThrow(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
-});
+test.each([[-1000], [-2000], [-8000]])(
+  '구입 금액은 로또 금액보다 크다.',
+  (budget) => {
+    const lottoSimulator = new LottoSimulator();
+    expect(() => {
+      lottoSimulator.purchaseLottos(budget);
+    }).toThrow(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
+  }
+);
