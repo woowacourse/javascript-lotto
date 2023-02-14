@@ -14,4 +14,10 @@ describe('Lotto 단일 객체 테스트', () => {
 
     expect(lottoNum.length === 6).toBe(true);
   });
+
+  test('로또 배열에 겹치는 숫자가 없는지 확인', () => {
+    const lottoNum = lotto.lottoNum;
+
+    expect(new Set(lottoNum).size === 6);
+  });
 });
