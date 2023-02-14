@@ -1,7 +1,15 @@
 import { PRIZE } from '../data/Constants';
+import Win from './Win';
 
 class LottoGame {
+  #win;
+
   constructor() {}
+
+  initializeWin(winningNumber) {
+    this.#win = new Win(winningNumber);
+    console.log(this.#win.winningNumber, 'initializeWin');
+  }
 
   calculateEarningRate(price, totalAmount) {
     return (totalAmount / price).toFixed(2);

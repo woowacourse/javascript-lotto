@@ -5,4 +5,8 @@ const inputPurchaseAmount = () => {
   return IO.input(MESSAGE.INPUT_PURCHASE_AMOUNT);
 };
 
-export { inputPurchaseAmount };
+const inputWinningNumber = () => {
+  return IO.input(MESSAGE.INPUT_WINNING_NUMBER);
+};
+
+export { inputPurchaseAmount, inputWinningNumber };
