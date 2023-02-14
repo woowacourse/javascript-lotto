@@ -12,6 +12,10 @@ class ProfitCalculator {
       this.ranking[5] * 5_000
     );
   }
+
+  getProfitRate(money) {
+    return (this.getWinningAmount() * 100) / money;
+  }
 }
 
 module.exports = ProfitCalculator;
