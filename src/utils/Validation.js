@@ -1,15 +1,22 @@
-import { ErrorMessage, StaticValue } from '../constants/Constants';
+import { StaticValue, ErrorMessage } from "../constants/Constants";
 
 const Validation = {
   checkPurchaseAmount(money) {
-    this.checkPurchaseAmountUnit(money);
+    this.checkMoneyMinmumValue(money);
+    this.checkMoneyUnit(money);
   },
 
-  checkPurchaseAmountUnit(money) {
-    if (money % StaticValue.PURCHASE_AMOUNT_UNIT !== 0) {
-      throw new Error(ErrorMessage.PURCHASE_AMOUNT_UNIT);
+  checkMoneyMinmumValue(money) {
+    if (money <= 0) {
+      throw new Error(ErrorMessage.MINMUM_VALUE);
     }
-  }
+  },
+
+  checkMoneyUnit(money) {
+    if (money % StaticValue.PURCHASE_AMOUNT_UNIT !== 0) {
+      throw new Error(ErrorMessage.MONEY_VALUE);
+    }
+  },
 };
 
 export default Validation;

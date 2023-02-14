@@ -7,7 +7,8 @@ const ConsoleMessage = {
 };
 
 const ErrorMessage = {
-  PURCHASE_AMOUNT_UNIT: '[ERROR] 로또 구입 금액은 1000원 단위로 입력해 주세요.'
+  MONEY_VALUE: '[ERROR] 로또 구입 금액은 1000원 단위로 입력해 주세요.',
+  MINMUM_VALUE: '[ERROR] 로또 구입 금액은 1000원 이상이여야 합니다.' 
 }
 
 export { StaticValue, ConsoleMessage, ErrorMessage };
