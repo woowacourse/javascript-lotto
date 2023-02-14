@@ -1,10 +1,13 @@
-import { generateRandomNumber } from "../src/generateRandomNumber";
+import generateRandomNumber from "../src/generateRandomNumber";
 
 describe("로또를 뽑는 기능", () => {
-  test("랜덤한 숫자가 범위 안에 있다.", () => {
-    const number = generateRandomNumber();
+  test("랜덤한 숫자가 1 이상 45 이하이다.", () => {
+    const min = 1;
+    const max = 45;
 
-    expect(number).toBeLessThan(46);
-    expect(number).toBeGreaterThan(0);
+    const number = generateRandomNumber(min, max);
+
+    expect(number).toBeGreaterThanOrEqual(min);
+    expect(number).toBeLessThanOrEqual(max);
   });
 });
