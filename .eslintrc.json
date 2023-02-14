@@ -1,11 +1,21 @@
 {
-  "rules": {},
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "jsx": false
+    }
+  },
+
   "env": {
-    "es6": true,
+    "browser": false,
     "node": true
   },
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+
+  "ignorePatterns": ["node_modules/"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
