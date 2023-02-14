@@ -11,7 +11,16 @@ describe('LottoMahcine 테스트', () => {
 
   test('주어진 값에 따라 로또 생성', () => {
     lottoMachine.buyLotto(5000);
-    
+
     expect(lottoMachine.lottos.length === 5).toBeTruthy();
+  });
+
+  test('단일 로또 정답 개수 테스트', () => {
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const lottoNumber = [1, 2, 3, 4, 32, 45];
+
+    const correctCounts = lottoMachine.computeCorrectCounts(winningNumber, lottoNumber);
+
+    expect(correctCounts === 4).toBeTruthy();
   });
 });
