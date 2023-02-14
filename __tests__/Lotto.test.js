@@ -20,4 +20,10 @@ describe('Lotto 단일 객체 테스트', () => {
 
     expect(new Set(lottoNum).size === 6);
   });
+
+  test('로또 배열이 오름차순으로 정렬되어있는지 확인', () => {
+    const lottoNum = lotto.lottoNum;
+
+    expect(lottoNum === lottoNum.sort((prev, cur) => prev - cur)).toBe(true);
+  });
 });
