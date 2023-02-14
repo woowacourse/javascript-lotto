@@ -4,6 +4,7 @@ class Lotto {
   constructor(lottoNumbers) {
     this.lottoNumbers = lottoNumbers;
     Validation.validateDistinctNumbers(this.lottoNumbers);
+    Validation.validateNumberArray(this.lottoNumbers);
   }
 
   countMatchingNumbers(winningNumbers) {
