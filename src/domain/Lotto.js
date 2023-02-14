@@ -1,6 +1,9 @@
+import Validation from '../Validation.js';
+
 class Lotto {
   constructor(lottoNumbers) {
     this.lottoNumbers = lottoNumbers;
+    Validation.validateDistinctNumbers(this.lottoNumbers);
   }
 
   countMatchingNumbers(winningNumbers) {
