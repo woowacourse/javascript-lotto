@@ -45,3 +45,9 @@ describe('로또 클래스 테스트', () => {
     },
   );
 });
+
+describe('로또 클래스 예외 테스트', () => {
+  test.each([[1, 2, 3, 4, 5, 5]])('로또 번호 6자리는 중복되지 않아야 한다.', (lottoNumbers) => {
+    expect(() => new Lotto(lottoNumbers)).toThrowError();
+  });
+});
