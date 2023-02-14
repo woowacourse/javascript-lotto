@@ -15,12 +15,24 @@ test("로또 번호는 6자리이다.", () => {
 
 test("로또 번호는 서로 중복되지 않는다.", () => {
   expect(() => {
-    Validator.validateLottoNumberDuplicate([1, 2, 3, 4, 5, 5]);
+    Validator.validateLottoNumberDuplicated([1, 2, 3, 4, 5, 5]);
   }).toThrow("[ERROR]");
 });
 
 test("로또 번호는 1~45 사이의 숫자여야 한다.", () => {
   expect(() => {
     Validator.validateLottoNumberRange([100, 2, 3, 4, 5, 6]);
+  }).toThrow("[ERROR]");
+});
+
+test("보너스 번호는 당첨번호와 중복되지 않는다.", () => {
+  expect(() => {
+    Validator.validateBonusNumberDuplicated([1, 2, 3, 4, 5, 6], 2);
+  }).toThrow("[ERROR]");
+});
+
+test("보너스 번호가 1~45 사이의 숫자가 아니라면 예외 처리", () => {
+  expect(() => {
+    Validator.validateBonusNumberRange(50);
   }).toThrow("[ERROR]");
 });
