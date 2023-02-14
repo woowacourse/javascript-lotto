@@ -2,6 +2,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
+    this.validateLotto(numbers);
     this.#numbers = numbers;
   }
 
@@ -10,12 +11,7 @@ class Lotto {
   }
 
   validateLotto(numbers) {
-    if (
-      !numbers.every((num) => {
-        1 < num && num < 45;
-      })
-    )
-      throw new Error();
+    if (numbers.some((num) => 1 > num || num > 45)) throw new Error();
   }
 }
 
