@@ -12,6 +12,7 @@
   "rules": {
     "max-depth": ["error", 1],
     "no-new": "off",
-    "max-lines-per-function": ["error", 10]
+    "max-lines-per-function": ["error", 10],
+    "comma-dangle": "off"
   }
 }
