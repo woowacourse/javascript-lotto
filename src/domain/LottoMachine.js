@@ -1,3 +1,5 @@
+const pickNumberInRange = require('../util/pickNumberInRange');
+
 class LottoMachine {
   constructor(money) {
     this.money = money;
@@ -8,17 +10,13 @@ class LottoMachine {
   }
 
   issueLotto() {
-    const pickNumberInRange = (start, end) => {
-      return Math.floor(Math.random() * (end + 1 - start)) + start;
-    };
-
     const lotto = new Set();
 
     while (lotto.size < 6) {
       lotto.add(pickNumberInRange(1, 45));
     }
 
-    return [...lotto];
+    return this.arrangeLotto([...lotto]);
   }
 
   arrangeLotto(lotto) {
