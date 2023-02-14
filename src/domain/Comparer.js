@@ -1,14 +1,19 @@
 class Comparer {
-  constructor(winningNumber, lottos) {
+  constructor(winningNumber, bonus, lottos) {
     this.winningNumber = winningNumber;
+    this.bonus = bonus;
     this.lottos = lottos;
   }
 
-  countMatches() {
+  countMatchesOfWinningNumber() {
     return this.lottos.map((lotto) => {
       const numbers = new Set([...this.winningNumber, ...lotto]);
       return 12 - numbers.size;
     });
+  }
+
+  checkIncludesBonus() {
+    return this.lottos.map((lotto) => lotto.includes(this.bonus));
   }
 }
 
