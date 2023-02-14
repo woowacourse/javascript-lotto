@@ -13,7 +13,7 @@ test('로또 번호는 숫자이다', () => {
 
   expect(() => {
     const lotto = new Lotto(numbers);
-  }).toThrow(ERROR_MESSAGE.LOTTO_NUMBER_TYPE);
+  }).toThrow(ERROR_MESSAGE.LOTTO_NUMBER_NOT_INTEGER);
 });
 
 test('로또 번호는 1~45 사이의 수이다', () => {
