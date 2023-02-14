@@ -32,7 +32,7 @@ class LottoSimulator {
       throw new Error(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
   }
 
-  // 당첨 번호: [1,2,3,4,5,6] 보너스 넘버:7, 로또 번호: [1,2,3,4,5,6]
+  // 당첨 번호: [1,2,3,4,5,6] 보너스 넘버:7 로또 번호: [1,2,3,4,5,6]
   // {first: 1, second: 2, third: 1, ...}
   calculateResult() {}
 }
