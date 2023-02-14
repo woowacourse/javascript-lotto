@@ -1,11 +1,12 @@
+import { LOTTO } from "../constants";
 import generateRandomNumber from "../generateRandomNumber";
 
 class LottoMachine {
   makeLottoNumbers() {
     const lottoNumbers = [];
 
-    while (lottoNumbers.length < 6) {
-      const number = generateRandomNumber(1, 45);
+    while (lottoNumbers.length < LOTTO.numbersLength) {
+      const number = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
       if (!lottoNumbers.includes(number)) lottoNumbers.push(number);
     }
 
