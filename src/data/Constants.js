@@ -6,4 +6,8 @@ const PRIZE = Object.freeze({
   5: 5000,
 });
 
-export { PRIZE };
+const MESSAGE = Object.freeze({
+  INPUT_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
+});
+
+export { PRIZE, MESSAGE };
