@@ -4,10 +4,7 @@ class Lotto {
   }
 
   countMatchingNumbers(winningNumbers) {
-    const matchingNumbers = winningNumbers.map((number) => {
-      if (this.lottoNumbers.includes(number)) return number;
-    });
-    return matchingNumbers.length;
+    return winningNumbers.filter((number) => this.lottoNumbers.includes(number)).length;
   }
 }
 
