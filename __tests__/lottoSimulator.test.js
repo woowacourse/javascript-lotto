@@ -1,5 +1,5 @@
 import LottoSimulator from '../src/controller/LottoSimulator';
-import { ERROR_MESSAGE } from '../src/data/constants';
+import { ERROR_MESSAGE, LOTTO_STRING } from '../src/data/constants';
 test('로또 가격에 맞게 구매하기 ', () => {
   const lottoSimulator = new LottoSimulator();
   lottoSimulator.purchaseLottos(8000);
@@ -11,7 +11,7 @@ test.each([['a'], ['가'], ['!'], [' ']])('구입 금액은 숫자이다', (budg
   const lottoSimulator = new LottoSimulator();
   expect(() => {
     lottoSimulator.purchaseLottos(budget);
-  }).toThrow(ERROR_MESSAGE.BUDGET_NOT_INTEGER);
+  }).toThrow(ERROR_MESSAGE.NOT_INTEGER(LOTTO_STRING.BUDGET));
 });
 
 test.each([[300], [1], [8008]])(

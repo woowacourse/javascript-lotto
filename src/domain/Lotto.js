@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../data/constants';
+import { ERROR_MESSAGE, LOTTO_STRING } from '../data/constants';
 import Validator from '../utils/Validator';
 
 class Lotto {
@@ -16,12 +16,16 @@ class Lotto {
   validateNumbers(numbers) {
     numbers.forEach((number) => {
       if (!Validator.isInteger(number))
-        throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_TYPE);
+        throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_STRING.LOTTO_NUMBER));
       if (1 > number || 45 < number)
-        throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_RANGE);
+        throw new Error(
+          ERROR_MESSAGE.LOTTO_NUMBER_RANGE(LOTTO_STRING.LOTTO_NUMBER)
+        );
     });
     if (Validator.isDuplicated(numbers))
-      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE);
+      throw new Error(
+        ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_STRING.LOTTO_NUMBER)
+      );
   }
 }
 
