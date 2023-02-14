@@ -7,6 +7,11 @@ class Lotto {
   getLottoNumbers() {
     return this.#lottoNumbers;
   }
+
+  sortLottoNumbers() {
+    this.#lottoNumbers.sort((a, b) => a - b);
+    console.log(this.#lottoNumbers);
+  }
 }
 
 export default Lotto;
