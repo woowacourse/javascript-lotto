@@ -1,7 +1,12 @@
 class Lotto {
-  
-  constructor() {
-    this.lottoNum = [1, 2, 3, 4, 5, 6];
+  #lottoNum = [];
+
+  constructor(lottoNum) {
+    this.#lottoNum = lottoNum;
+  }
+
+  get lottoNum() {
+    return this.#lottoNum;
   }
 }
 
