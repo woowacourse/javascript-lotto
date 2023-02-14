@@ -8,10 +8,14 @@
     "sourceType": "module"
   },
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+<<<<<<< HEAD
   "ignorePatterns": ["__tests__/"],
   "rules": {
     "max-params": ["error", 2],
     "max-depth": ["error", 1],
     "max-lines-per-function": ["error", 12]
   }
+=======
+  "ignorePatterns": ["node_modules/"]
+>>>>>>> a04bbe0 (chore: code format setting)
 }
