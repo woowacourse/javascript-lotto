@@ -3,11 +3,15 @@ class Lotto {
 
   constructor(numbers) {
     this.validateLotto(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.sort(numbers);
   }
 
   get numbers() {
     return this.#numbers;
+  }
+
+  sort(numbers) {
+    return numbers.sort((a, b) => a - b);
   }
 
   validateLotto(numbers) {
