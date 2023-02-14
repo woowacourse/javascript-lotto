@@ -1,5 +1,7 @@
 import Lotto from "../src/domain/Lotto.js";
+import WinningLotto from "../src/domain/WinningLotto.js";
 import Validator from "../src/domain/Validator.js";
+import parseToNumberTypeArray from "../src/utils/parseToNumberTypeArray.js";
 
 test("로또 객체를 생성하면 로또 번호가 저장된다.", () => {
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
@@ -47,4 +49,18 @@ test("구매 금액은 1000 단위여야 한다.", () => {
   expect(() => {
     Validator.validateExactUnit(1000, 1200);
   }).toThrow("[ERROR]");
+});
+
+test("당첨 번호 문자열을 숫자 배열로 파싱한다", () => {
+  const lottoNumbers = parseToNumberTypeArray("11 ,2 , 44,  29  ,3 ,6");
+  expect(lottoNumbers).toEqual([11, 2, 44, 29, 3, 6]);
+});
+
+test("당첨 로또 객체를 생성하면 당첨 로또 번호와 보너스 번호가 저장된다.", () => {
+  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+
+  const winningLottoNumber = winningLotto.getLottoNumber();
+  const bonusNumber = winningLotto.getBonusNumber();
+
+  expect([winningLottoNumber, bonusNumber]).toEqual([[1, 2, 3, 4, 5, 6], 7]);
 });
