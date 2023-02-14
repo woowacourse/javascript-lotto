@@ -36,3 +36,15 @@ test("보너스 번호가 1~45 사이의 숫자가 아니라면 예외 처리", 
     Validator.validateBonusNumberRange(50);
   }).toThrow("[ERROR]");
 });
+
+test("구매 금액은 숫자여야 한다.", () => {
+  expect(() => {
+    Validator.validateNumberType("a");
+  }).toThrow("[ERROR]");
+});
+
+test("구매 금액은 1000 단위여야 한다.", () => {
+  expect(() => {
+    Validator.validateExactUnit(1000, 1200);
+  }).toThrow("[ERROR]");
+});

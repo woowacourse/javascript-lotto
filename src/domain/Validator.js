@@ -29,6 +29,16 @@ const Validator = {
     if (bonusNumber < 1 || bonusNumber > 45)
       throw new Error("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
   },
+
+  validateNumberType(input) {
+    if (Number.isNaN(Number(input)))
+      throw new Error("[ERROR] 입력 값은 숫자여야 합니다.");
+  },
+
+  validateExactUnit(unit, input) {
+    if (input % unit !== 0)
+      throw new Error(`[ERROR] 입력 값은 ${unit} 단위여야 합니다.`);
+  },
 };
 
 export default Validator;
