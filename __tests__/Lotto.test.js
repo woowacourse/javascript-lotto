@@ -27,4 +27,21 @@ describe('로또 클래스 테스트', () => {
       expect(lotto.countMatchingNumbers(winningNumbers)).toBe(matchNumbers);
     },
   );
+
+  test.each([
+    {
+      lottoNumbers: [1, 2, 3, 4, 5, 6],
+      bonusNumber: 5,
+      hasBonusNumber: true,
+    },
+  ])(
+    '로또번호에 보너스 번호가 있는지 확인할 수 있어야 한다.',
+    ({ lottoNumbers, bonusNumber, hasBonusNumber }) => {
+      // when
+      const lotto = new Lotto(lottoNumbers);
+
+      // then
+      expect(lotto.hasBonusNumber(bonusNumber)).toBe(hasBonusNumber);
+    },
+  );
 });
