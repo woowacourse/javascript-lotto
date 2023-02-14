@@ -31,3 +31,10 @@ test('로또 번호는 중복될 수 없다', () => {
     const lotto = new Lotto(numbers);
   }).toThrow(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE);
 });
+
+test('로또 번호는 오름차순 정렬한다', () => {
+  const numbers = [6, 5, 4, 3, 2, 1];
+  const sortedNumbers = [1, 2, 3, 4, 5, 6];
+  const lotto = new Lotto(numbers);
+  expect(lotto.numbers).toEqual(sortedNumbers);
+});
