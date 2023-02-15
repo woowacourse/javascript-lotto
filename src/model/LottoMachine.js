@@ -1,5 +1,5 @@
 import generateRandomNumber from '../utils/generateRandomNumber';
-import values from '../constants/values';
+import { values, correctCountsToMoney } from '../constants/values';
 import Lotto from './Lotto';
 
 class LottoMachine {
@@ -41,6 +41,25 @@ class LottoMachine {
     }, 0);
 
     return correctCounts;
+  }
+
+  checkLotteryWinnings(lottoNumber, targetNumber) {
+    const correctCounts = this.computeCorrectCounts(targetNumber.winningNumber, lottoNumber);
+
+    if (this.isFive(correctCounts)) {
+      return correctCountsToMoney[`${correctCounts}`][
+        `${this.isSecond(targetNumber.bonusNumber, lottoNumber) ? 0 : 1}`
+      ];
+    }
+    return correctCountsToMoney[correctCounts];
+  }
+
+  isFive(correctCounts) {
+    return correctCounts === 5;
+  }
+
+  isSecond(bonusNumber, lottoNumber) {
+    return lottoNumber.includes(bonusNumber);
   }
 }
 
