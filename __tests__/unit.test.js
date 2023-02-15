@@ -41,3 +41,8 @@ test('각 번호는 중복되지 않는 수', () => {
   expect(() => InputValidator.checkDuplicatedNumbers(numbers)).toThrow();
 });
 
+test('입력값이 y 혹은 n 만 가능하다.', () => {
+  const command = 's';
+  expect(() => InputValidator.checkRetryCommand(command)).toThrow();
+});
+
