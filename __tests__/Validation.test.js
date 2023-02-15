@@ -83,3 +83,24 @@ describe('Validation.isValidPurchaseAmount', () => {
     }).toThrow(ERROR_MESSAGE.indivisibleByLottoPrice);
   });
 });
+
+describe('Validation.isValidWinningNumberLength', () => {
+  test(`당첨 번호 배열의 길이가 로또 자릿수(${LOTTO_CONDITION.lottoDigits}자리)와 일치하지 않는 경우 false를 반환한다.`, () => {
+    const winningNumbers = Array.from(
+      { length: LOTTO_CONDITION.lottoDigits - 1 },
+      (_, idx) => idx + 1
+    );
+
+    const result = Validation.isValidWinningNumbersLength(winningNumbers);
+
+    expect(result).toBe(false);
+  });
+
+  test(`당첨 번호 배열의 길이가 로또 자릿수(${LOTTO_CONDITION.lottoDigits}자리)와 일치하는 경우 true를 반환한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits }, (_, idx) => idx + 1);
+
+    const result = Validation.isValidWinningNumbersLength(winningNumbers);
+
+    expect(result).toBe(true);
+  });
+});
