@@ -3,7 +3,7 @@ const { NUMBER } = require("../constants");
 const Random = {
   generateRandomNumbers() {
     const randomNumbers = [];
-    while (randomNumbers.length < NUMBER.COUNT) {
+    while (randomNumbers.length < NUMBER.SIZE) {
       this.generateRandomNumber(randomNumbers);
     }
     return randomNumbers;
