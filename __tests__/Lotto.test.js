@@ -1,5 +1,5 @@
-import { ErrorMessage } from "../src/constants/Constants";
-import Lotto from "../src/domain/Lotto";
+import { ErrorMessage } from "../src/constants/Constants.js";
+import Lotto from "../src/domain/Lotto.js";
 
 describe("사용자 로또 클래스 테스트", () => {
   test("로또 번호 갯수가 6개가 아닐 때 에러가 발생한다.", () => {

@@ -1,5 +1,5 @@
-import { ErrorMessage } from "../src/constants/Constants";
-import Validation from "../src/utils/Validation";
+import { ErrorMessage } from "../src/constants/Constants.js";
+import Validation from "../src/utils/Validation.js";
 
 describe("Validation 테스트", () => {
   describe("구입 금액 입력값 예외 테스트", () => {

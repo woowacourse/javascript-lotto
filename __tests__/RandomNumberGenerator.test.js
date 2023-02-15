@@ -1,4 +1,4 @@
-import generateRandomNumbersInRange from '../src/utils/RandomNumberGenerator'
+import generateRandomNumbersInRange from '../src/utils/RandomNumberGenerator.js'
 
 describe('Random Number Generator 테스트', () =>{
   test('입력 갯수 만큼 중복되지 않는 랜덤 숫자 생성', () => {
