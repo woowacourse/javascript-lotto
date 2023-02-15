@@ -32,22 +32,43 @@ describe('로또를 뽑는 기능', () => {
 });
 
 describe('로또 당첨 기능', () => {
-  const lottoNumbers = [1, 2, 3, 4, 5, 6];
+  const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
   test.each([
-    [[1, 2, 3, 4, 5, 6], 7, 1],
-    [[1, 2, 3, 4, 5, 44], 6, 2],
-    [[1, 2, 3, 4, 5, 44], 45, 3],
-    [[1, 2, 3, 4, 43, 44], 45, 4],
-    [[1, 2, 3, 42, 43, 44], 45, 5],
+    [[1, 2, 3, 4, 5, 6], 6],
+    [[1, 2, 3, 4, 5, 44], 5],
+    [[1, 2, 3, 4, 43, 44], 4],
+    [[1, 2, 3, 42, 43, 44], 3],
+    [[39, 40, 41, 42, 43, 44], 0],
+  ])('당첨 번호가 %p일 때 일치하는 숫자는 %d개이다.', (winningNumbers, expectedMatchCount) => {
+    const matchCount = lotto.calculateMatchCount(winningNumbers);
+
+    expect(matchCount).toBe(expectedMatchCount);
+  });
+
+  test.each([
+    [6, 7, 1],
+    [5, 6, 2],
+    [5, 7, 3],
+    [4, 7, 4],
+    [3, 7, 5],
   ])(
-    '당첨 번호가 %p이고 보너스 번호가 %d일 때 %d등 이다.',
-    (winningNumbers, bonusNumber, expectedRanking) => {
-      const ranking = new Lotto(lottoNumbers).calculateRanking(winningNumbers, bonusNumber);
+    '일치하는 당첨 번호가 %d개이고 보너스 번호가 %d일 때 %d등이다.',
+    (matchCount, bonusNumber, expectedRanking) => {
+      const ranking = lotto.calculateRanking(matchCount, bonusNumber);
 
       expect(ranking).toBe(expectedRanking);
     }
   );
+
+  test('일치하는 당첨 번호가 2개 일 때 함수를 실행하면 에러를 던진다.', () => {
+    const matchCount = 2;
+    const bonusNumber = 1;
+
+    expect(() => {
+      lotto.calculateRanking(matchCount, bonusNumber);
+    }).toThrow();
+  });
 });
 
 describe('계산 기능', () => {
