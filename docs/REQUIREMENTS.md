@@ -42,7 +42,7 @@
      - 보너스 번호를 설정한다. (setBonusNumbers())
      - 당첨 번호 6개를 반환한다. (getWinningNumbers())
      - 보너스 번호를 반환한다. (getBonusNumber())
-     - 당첨 번호에서 중복된 당첨 번호가 있는지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateWinningNumbers())
+     - 당첨 번호에서 중복된 당첨 번호가 있는지, 로또 숫자 범위의 값인지, 정수인지 확인한다. (validateWinningNumbers())
      - 보너스 번호가 당첨 번호와 중복인지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateBonusNumber())
 
 3. Yield
@@ -58,7 +58,7 @@
      - 구매 금액을 가진다. (amount)
    - method
      - 구매금액을 반환한다. (getAmount())
-     - 양수인 정수인지, 구매금액이 1000원 단위인지, 10만원을 넘지 않는지 확인한다. (validateAmount())
+     - 구매금액이 양수인 정수인지, 1000원 단위인지, 10만원을 넘지 않는지 확인한다. (validateAmount())
 
 ## controller
 
