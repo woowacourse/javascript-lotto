@@ -21,14 +21,14 @@ const Validation = {
   },
 
   lottoNumbers(numbers) {
-    this.lottoNumbersIsDuplicated(numbers);
+    this.isDuplicated(numbers);
     numbers.forEach((number) => {
       this.inputIsInteger(number);
       this.numberInRange(number);
     });
   },
 
-  lottoNumbersIsDuplicated(numbers) {
+  isDuplicated(numbers) {
     const numbersSet = new Set(numbers);
     if (numbers.length === numbersSet.size) return;
     throw new Error("duplicated");
@@ -37,6 +37,12 @@ const Validation = {
   numberInRange(number) {
     if (number >= 1 && number <= 45) return;
     throw new Error("not in range");
+  },
+
+  bonusNumber(lottoNumbers, bonusNumber) {
+    this.inputIsInteger(bonusNumber);
+    this.numberInRange(bonusNumber);
+    this.isDuplicated([...lottoNumbers, bonusNumber]);
   },
 
   restartCommand(answer) {
