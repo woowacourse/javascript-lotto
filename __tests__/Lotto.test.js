@@ -54,4 +54,23 @@ describe('로또 클래스 테스트', () => {
 
     expect(profit).toBe(expectedProfit);
   });
+
+  test.each([
+    { lottoNumber: [1, 2, 3, 4, 5, 6], expectedProfit: profitByRank[0] },
+    { lottoNumber: [1, 2, 3, 4, 5, 7], expectedProfit: profitByRank[1] },
+    { lottoNumber: [1, 2, 3, 4, 5, 8], expectedProfit: profitByRank[2] },
+    { lottoNumber: [1, 2, 3, 4, 8, 9], expectedProfit: profitByRank[3] },
+    { lottoNumber: [1, 2, 3, 8, 9, 10], expectedProfit: profitByRank[4] },
+    { lottoNumber: [8, 9, 10, 11, 12, 13], expectedProfit: 0 },
+  ])('등수 입력시 수익을 반환하는 기능', ({ lottoNumber, expectedProfit }) => {
+    const lotto = new Lotto(lottoNumber);
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    lotto.calculateRank(winningNumbers, bonusNumber);
+
+    const profit = calculateProfit(lotto.getRank());
+
+    expect(profit).toBe(expectedProfit);
+  });
 });
