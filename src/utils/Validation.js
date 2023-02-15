@@ -57,7 +57,17 @@ const Validation = {
       if (isNaN(number)) {
         throw new Error(ErrorMessage.LOTTO_VALUE);
       }
-    })
+    });
+  },
+
+  checkBonusNumber(winningNumbers, bonusNumber) {
+    this.checkBonusNumber(winningNumbers, bonusNumber);
+  },
+
+  checkBonusNumberDuplicate(winningNumbers, bonusNumber) {
+    if (winningNumbers.includes(bonusNumber)) {
+      throw new Error(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+    }
   },
 };
 
