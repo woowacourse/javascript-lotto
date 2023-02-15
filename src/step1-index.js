@@ -38,3 +38,16 @@ export const getNumberOfMatchingLottoNumbers = (lottoTicket, winningLottoNumbers
 export const getRateOfReturn = (totalPrize, purchaseAmount) => {
   return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
 };
+
+export const checkPurchaseAmount = (purchaseAmount) => {
+  if (purchaseAmount < 1000 || purchaseAmount % 1000 !== 0) {
+    throw new Error("[ 에러 ] 1,000원 단위로 입력해주세요.");
+  }
+};
+
+export const checkIsInteger = (purchaseAmountString) => {
+  const regex = /[^0-9]/.test(purchaseAmountString);
+  if (regex || purchaseAmountString === "") {
+    throw new Error("[ 에러 ] 1,000원 단위로 입력해주세요.");
+  }
+};
