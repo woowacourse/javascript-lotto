@@ -62,4 +62,4 @@ describe('배열에서 중복된 요소 있는지 확인', () => {
   test('[1, 6, 2, 3, 4, 5]인 경우', () => {
     expect(Validator.hasDuplication([1, 6, 2, 3, 4, 5])).toBeFalsy();
   });
-})
+});
