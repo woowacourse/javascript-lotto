@@ -1,4 +1,11 @@
+const LottoMachine = require('./domain/LottoMachine');
+
+const InputView = require('./view/InputView');
+const OutputView = require('./view/OutputView');
+
 class LottoGame {
+  #lottoMachine;
+
   constructor() {}
 
   validateBonusNumber(winningNumbers, bonusNumber) {
@@ -11,6 +18,25 @@ class LottoGame {
 
   #isDuplicateFor(winningNumbers, bonusNumber) {
     return winningNumbers.includes(bonusNumber);
+  }
+
+  async play() {
+    await this.inputPurchasePrice();
+    this.showPurchasedLottos();
+  }
+
+  async inputPurchasePrice() {
+    try {
+      const purchasePrice = await InputView.readPurchasePrice();
+      this.#lottoMachine = new LottoMachine(parseInt(purchasePrice, 10));
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      this.inputPurchasePrice();
+    }
+  }
+
+  async showPurchasedLottos() {
+    OutputView.printPurchasedLottos(this.#lottoMachine.lottos);
   }
 }
 
