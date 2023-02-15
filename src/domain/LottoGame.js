@@ -5,8 +5,9 @@ class LottoGame {
   #userLottos;
 
   generateUserLottos(purchaseCount) {
-    this.#userLottos = [...Array.from(purchaseCount)].map((each) => {
-      const RANDOM_NUMBER = generateRandomNumbersInRange();
+    this.#userLottos = Array.from({ length: purchaseCount }).map(() => {
+      const RANDOM_NUMBER = generateRandomNumbersInRange(1, 45, 6);
+
       return new Lotto(RANDOM_NUMBER);
     });
   }
