@@ -23,10 +23,14 @@ class LottoMachine {
     Array(lottoCount)
       .fill(0)
       .forEach(() => {
-        this.#lottos.push(
-          shuffle(Array.from({ length: 45 }, (_, idx) => idx + 1)).slice(0, 6)
-        );
+        this.#lottos.push(this.issueLotto());
       });
+  }
+
+  issueLotto() {
+    return shuffle(Array.from({ length: 45 }, (_, idx) => idx + 1))
+      .slice(0, 6)
+      .sort((x, y) => x - y);
   }
 
   get lottos() {
