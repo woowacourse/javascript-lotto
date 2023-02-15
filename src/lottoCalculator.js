@@ -13,6 +13,14 @@ const lottoCalculator = {
 
     return rankings.reduce((acc, ranking) => (acc += rewardMap[ranking]), 0);
   },
+
+  calculateRewardRate(lottePurchaseAmount, ranking) {
+    const reward = lottoCalculator.calculateReward(ranking);
+
+    return `${((reward / lottePurchaseAmount) * 100)
+      .toFixed(1)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%`;
+  },
 };
 
 export default lottoCalculator;
