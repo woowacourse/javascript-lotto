@@ -1,9 +1,12 @@
 class Lotto {
   #lottoNumbers;
   #score;
+  #isContainBonusNumber;
+
   constructor(lottoNumbers) {
     this.#lottoNumbers = lottoNumbers;
     this.#score = 0;
+    this.#isContainBonusNumber = false;
   }
 
   getLottoNumbers() {
@@ -14,6 +17,10 @@ class Lotto {
     return this.#score;
   }
 
+  getIsContainBonusNumber() {
+    return this.#isContainBonusNumber;
+  }
+
   sortLottoNumbers() {
     this.#lottoNumbers.sort((a, b) => a - b);
   }
@@ -22,6 +29,12 @@ class Lotto {
     winningNumbers.forEach((winningNumbers) => {
       this.#lottoNumbers.includes(winningNumbers) && this.addScore();
     });
+  }
+
+  checkBonusNumber(bonusNumber) {
+    if (this.#lottoNumbers.includes(bonusNumber)) {
+      this.#isContainBonusNumber = true;
+    }
   }
 
   addScore() {
