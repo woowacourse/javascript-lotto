@@ -1,4 +1,5 @@
 import LottoGame from './domain/LottoGame.js';
+import validator from './domain/validator.js';
 import view from './view/view.js';
 
 class LottoController {
@@ -10,18 +11,20 @@ class LottoController {
 
   async #inputBudget() {
     try {
-      const value = view.input('구입금액을 입력해 주세요.');
-      Validator.throwErrorIfInvalidWinningLotto(inputValue);
-      this.#lottoGame = new LottoGame(value);
+      const budget = await view.input('> 구입금액을 입력해 주세요.');
+      validator.throwErrorIfInvalidBudget(budget);
+      this.#lottoGame = new LottoGame(budget);
     } catch ({ message }) {
-      view.print(message);
-      return this.#inputWinningLotto.bind(this);
+      view.output(message);
+      return this.#inputBudget();
     }
-    this.#inputLottoValues();
+    this.#printBoughtLottos();
   }
 
   #printBoughtLottos() {
-    // Print Lotto Status here
+    const boughtLottos = this.#lottoGame.getBoughtLottos();
+    view.output(boughtLottos, 'BOUGHT_LOTTOS');
+
     this.#inputLottoValues();
   }
 
@@ -29,46 +32,59 @@ class LottoController {
     const winningLotto = await this.#inputWinningLotto();
     const bonusNumber = await this.#inputBonusNumber();
 
-    this.#printScoreBoard(winningLotto, bonusNumber);
+    this.#printScoreBoard(winningLotto.split(',').map(Number), bonusNumber);
   }
 
-  #inputWinningLotto() {
+  async #inputWinningLotto() {
     try {
-      const value = view.input();
-      Validator.throwErrorIfInvalidWinningLotto(inputValue);
+      const value = await view.input('\n> 당첨 번호를 입력해 주세요. ');
+      validator.throwErrorIfInvalidWinningNumbers(value);
       return value;
     } catch ({ message }) {
-      view.print(message);
-      return this.#inputWinningLotto.bind(this);
+      view.output(message);
+      return this.#inputWinningLotto();
     }
   }
 
-  #inputBonusNumber() {
+  async #inputBonusNumber() {
     try {
-      const value = view.input();
-      Validator.throwErrorIfInvalidBonusNumber(inputValue);
+      const value = await view.input('\n> 보너스 번호를 입력해 주세요. ');
+      validator.throwErrorIfInvalidBonusNumber(value);
       return value;
     } catch ({ message }) {
-      view.print(message);
-      return this.#inputBonusNumber.bind(this);
+      this.handleCatch();
+      view.output(message);
+      return this.#inputBonusNumber();
     }
   }
 
-  #printScoreBoard() {
-    // print
+  #printScoreBoard(winningLotto, bonusNumber) {
+    const winningStatus = this.#lottoGame.getWinningStatus(winningLotto, bonusNumber);
+    view.output(winningStatus, 'WINNING_STATUS');
 
-    this.#printProfiteRate();
+    this.#printProfitRate();
   }
 
-  #printProfiteRate() {
+  #printProfitRate() {
+    const profitRate = this.#lottoGame.getProfitRate();
+    view.output(profitRate, 'PROFIT_RATE');
+
     this.#askRestart();
   }
 
-  #askRestart() {
+  async #askRestart() {
+    const userCommanad = await view.input('\n> 다시 시작하시겠습니까? (y/n) ');
+
+    if (userCommanad === 'y') {
+      return this.startGame();
+    }
+
     this.#exitGame();
   }
 
-  #exitGame() {}
+  #exitGame() {
+    view.close();
+  }
 }
 
 export default LottoController;

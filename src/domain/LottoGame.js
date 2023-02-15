@@ -11,6 +11,10 @@ class LottoGame {
     this.#scoreBoard = new ScoreBoard(lottoCount);
   }
 
+  getBoughtLottos() {
+    return this.#lottos;
+  }
+
   getLottoMatchedResult(lotto, winningLotto, bonusNumber) {
     const matchedCount = this.getMatchedLottoCount(lotto, winningLotto);
     const hasBonusNumber = this.checkBonusNumber(lotto, bonusNumber);
@@ -50,7 +54,7 @@ class LottoGame {
         winningLotto,
         bonusNumber
       );
-      const rank = getRank(matchedCount, hasBonusNumber);
+      const rank = this.getRank(matchedCount, hasBonusNumber);
       this.#scoreBoard.writeBoard(rank);
     });
     return this.#scoreBoard.getBoard();

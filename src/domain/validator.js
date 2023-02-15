@@ -1,4 +1,14 @@
 const validator = {
+  throwErrorIfInvalidBudget(budget) {
+    this.throwErrorIfNotDecimal(budget);
+    this.throwErrorIfNotDivisiable(budget, 1000);
+  },
+
+  throwErrorIfInvalidWinningNumbers(winningNumberFormat) {
+    this.throwErrorIfInvalidWinningLotto(winningNumberFormat);
+    this.throwErrorIfHaveDuplicates(winningNumberFormat);
+  },
+
   throwErrorIfNotDecimal(number) {
     if (!/^[1-9]+\d*/.test(number)) {
       throw new Error('[ERROR] 구입 금액은 정수여야 합니다.');
