@@ -30,6 +30,12 @@ describe("NumberHandler 테스트", () => {
   ])("generateRandomNumber가 1~45사이의 숫자를 반환한다.", (randomNumber) => {
     const rangeNumbers = Array.from({ length: 45 }, (_, index) => index + 1);
 
+    console.log(randomNumber);
     expect(rangeNumbers.includes(randomNumber)).toBeTruthy();
   });
+
+  /**
+   * TODO
+   * - [ ]  메서드) 천의 자리마다 콤마 찍기 - 테스트하기
+   */
 });

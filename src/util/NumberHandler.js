@@ -4,7 +4,7 @@ const NumberHandler = {
   },
 
   generateRandomNumber(minRange, maxRange) {
-    return Math.floor(Math.random() * maxRange - minRange) + minRange;
+    return Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
   },
 };
 
