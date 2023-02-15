@@ -38,9 +38,12 @@
      - 당첨 번호 6개를 가진다. (winningNumbers)
      - 보너스 번호를 가진다. (bonusNumber)
    - method
+     - 당첨 번호 6개를 설정한다. (setWinningNumbers())
+     - 보너스 번호를 설정한다. (setBonusNumbers())
      - 당첨 번호 6개를 반환한다. (getWinningNumbers())
      - 보너스 번호를 반환한다. (getBonusNumber())
-     - 중복된 당첨번호가 있는지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateWinningNumbers()) //throw들
+     - 당첨 번호에서 중복된 당첨 번호가 있는지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateWinningNumbers())
+     - 보너스 번호가 당첨 번호와 중복인지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateBonusNumber())
 
 3. Yield
 
