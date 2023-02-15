@@ -1,4 +1,7 @@
-import { validatePurchaseAmount } from '../src/utils/validator';
+import {
+  validatePurchaseAmount,
+  validateWinningNumbers,
+} from '../src/utils/validator';
 
 describe('유효성 검사에 대한 테스트', () => {
   test.each([
@@ -15,7 +18,17 @@ describe('유효성 검사에 대한 테스트', () => {
   ])('구입 금액 입력에 대한 유효성 검사를 한다.', (input) => {
     expect(() => validatePurchaseAmount(input)).toThrow();
   });
-  // test("당첨 번호 입력에 대한 테스트를 한다.")
+  test.each([
+    [0, 1, 2, 3, 4, 5],
+    [46, 45, 44, 43, 42, 41],
+    [12, 12, 12, 12, 12, 12],
+    [NaN, undefined, 1, 2, 3, 4],
+    ['클린', 1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 4, 5],
+  ])('당첨 번호 입력에 대한 테스트를 한다.', (input) => {
+    expect(() => validateWinningNumbers(input)).toThrow();
+  });
   // test("보너스 번호에 입력에 대한 유효성 검사를 한다.")
   // test("재시작 입력에 대한 유효성 검사를 한다.")
 });
