@@ -37,4 +37,12 @@ describe('로또', () => {
       6: 5,
     });
   });
+
+  test('총 수익률을 계산한다', () => {
+    const lottoList = generateLotto(5);
+
+    const earningRate = LottoStore.calculateEarningRate(lottoList);
+
+    expect(earningRate).toBe((200_000_000).toFixed(1));
+  });
 });

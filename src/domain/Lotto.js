@@ -51,4 +51,24 @@ export const LottoStore = {
 
     return statistics;
   },
+
+  calculateEarningRate(lottoList) {
+    const TOTAL = lottoList.length;
+    const statistics = LottoStore.calculateStatistics(lottoList);
+    const PRIZE = Object.freeze({
+      3: 5_000,
+      4: 50_000,
+      5: 1_500_000,
+      BONUS: 30_000_000,
+      6: 2_000_000_000,
+    });
+
+    /** @todo acc naming */
+    const earning = Object.entries(statistics).reduce(
+      (acc, [award, count]) => (award in PRIZE ? acc + PRIZE[award] * count : acc),
+      0
+    );
+
+    return ((earning / (1000 * TOTAL)) * 100).toFixed(1);
+  },
 };
