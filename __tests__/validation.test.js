@@ -49,7 +49,7 @@ describe("사용자가 입력한 당첨 번호에 대한 유효성 검사", () =
     "당첨 번호 내 중복되는 번호가 있는 경우 오류 발생 %#",
     (testCase) => {
       expect(() => {
-        Validation.lottoNumbersIsDuplicated(testCase);
+        Validation.isDuplicated(testCase);
       }).toThrow();
     }
   );
@@ -58,13 +58,13 @@ describe("사용자가 입력한 당첨 번호에 대한 유효성 검사", () =
     "당첨 번호 내 중복되는 번호가 없는 경우 통과 %#",
     (testCase) => {
       expect(() => {
-        Validation.lottoNumbersIsDuplicated(testCase);
+        Validation.isDuplicated(testCase);
       }).not.toThrow();
     }
   );
 
   test.each([[0], [46], [100]])(
-    "입력된 번호가 범위에 해당하지 않는 경우 에러 발생 %#",
+    "복권번호가 범위에 해당하지 않는 경우 에러 발생 %#",
     (testCase) => {
       expect(() => {
         Validation.numberInRange(testCase);
@@ -73,10 +73,37 @@ describe("사용자가 입력한 당첨 번호에 대한 유효성 검사", () =
   );
 
   test.each([[1], [45], [33]])(
-    "입력된 번호가 범위에 해당하지 않는 경우 에러 발생 %#",
+    "복권번호가 범위에 해당하는 경우 통과%#",
     (testCase) => {
       expect(() => {
         Validation.numberInRange(testCase);
+      }).not.toThrow();
+    }
+  );
+
+  test.each([
+    [[[1, 2, 3, 4, 5, 6], 0]],
+    [[[1, 2, 3, 4, 5, 6], 46]],
+    [[[1, 2, 3, 4, 5, 6], 100]],
+  ])("보너스 번호가 범위에 해당하지 않는 경우 오류 발생 %#", (testCase) => {
+    expect(() => {
+      Validation.bonusNumber(testCase[0], testCase[1]);
+    }).toThrow();
+  });
+  test.each([[[[1, 2, 3, 4, 5, 6], 1]], [[[1, 2, 3, 4, 5, 6], 6]]])(
+    "보너스 번호가 복권번호와 중복되는 경우 오류 발생 %#",
+    (testCase) => {
+      expect(() => {
+        Validation.bonusNumber(testCase[0], testCase[1]);
+      }).toThrow();
+    }
+  );
+
+  test.each([[[[2, 3, 4, 5, 6, 7], 1]], [[[1, 2, 3, 4, 5, 6], 45]]])(
+    "보너스 번호가 범위에 해당하고 복권번호와 중복되지 않는 경우 %#",
+    (testCase) => {
+      expect(() => {
+        Validation.bonusNumber(testCase[0], testCase[1]);
       }).not.toThrow();
     }
   );
