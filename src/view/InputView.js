@@ -15,6 +15,11 @@ const InputView = {
     const bonusNumber = await Console.readLine('보너스 번호를 입력해 주세요.');
     return bonusNumber;
   },
+
+  async readRestartCommand() {
+    const restartCommand = await Console.readLine('> 다시 시작하시겠습니까? (y/n)');
+    return restartCommand;
+  },
 };
 
 module.exports = InputView;
