@@ -22,4 +22,24 @@ const ErrorMessage = {
   BONUS_NUMBER_VALUE: "[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.",
 };
 
-export { StaticValue, ConsoleMessage, ErrorMessage };
+const Rank = Object.freeze({
+  0: 6,
+  1: 6,
+  2: 6,
+  3: 5,
+  4: 4,
+  5: 3,
+  5.5: 2,
+  6: 1,
+});
+
+const Prize = Object.freeze({
+  1: 2_000_000_000,
+  2: 30_000_000,
+  3: 1_500_000,
+  4: 50_000,
+  5: 5000,
+  6: 0,
+});
+
+export { StaticValue, ConsoleMessage, ErrorMessage, Rank, Prize };
