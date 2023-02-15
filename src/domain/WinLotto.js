@@ -1,32 +1,22 @@
 const Lotto = require("./Lotto");
 
-const Price = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 50000 };
+const prize = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 50000 };
 
 class WinLotto extends Lotto {
   #bonusNumber;
 
-  constructor(numbers) {
+  constructor(numbers, bonusNumber) {
     super(numbers);
-  }
-  set bonusNumber(bonusNumber) {
     this.#bonusNumber = bonusNumber;
   }
 
-  //calculateWinLotto(lottos){
-  // const sameNumbers = lottos.map((lotto)=> {
-  //     sameNumber = lotto.numbers.filter(num => super.numbers.includes(num));
-
-  //     return sameNumber.length;
-  // });
-  // }
-  //}
-  calculateWinLotto(lottos) {
+  calculateWinLotto(lottos, rankResult) {
     lottos.forEach((lotto) => {
-      const rank = this.calculateRank(lotto.numbers);
-      RevenueResult[rank] += 1;
+      const rank = this.calculateRank(lotto);
+      rankResult[rank] += 1;
     });
 
-    return;
+    return rankResult;
   }
 
   calculateRank(lotto) {
@@ -39,6 +29,15 @@ class WinLotto extends Lotto {
     if (sameNumbers.length === 4) return 4;
     if (sameNumbers.length === 3) return 5;
     if (sameNumbers.length < 3) return 0;
+  }
+
+  calculateRevenue(rankResult, lottoCount) {
+    const revenue = Object.keys(prize).reduce(
+      (result, current) => result + prize[current] * rankResult[current],
+      0
+    );
+
+    return Math.round(revenue / lottoCount) / 10;
   }
 
   get bonusNumber() {

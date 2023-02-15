@@ -10,7 +10,12 @@ const LottoController = {
     OutputView.printPurchaseLottos(LottoGame.lottos);
     const winningNumbers = await this.readWinningNumbers();
     const bonusNumber = await this.readBonusNumber(winningNumbers);
-  
+
+    const [revenue, rankResult] = LottoGame.makeWinLotto(
+      winningNumbers,
+      bonusNumber
+    );
+    console.log(revenue, rankResult);
   },
 
   async readMoney() {
