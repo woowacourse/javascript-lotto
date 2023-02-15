@@ -142,3 +142,34 @@ describe('Validation.isValidWinningNumberRange', () => {
     expect(result).toBe(true);
   });
 });
+
+describe('Validation.validateWinningNumbers', () => {
+  test(`당첨 번호 배열의 길이가 로또 자릿수(${LOTTO_CONDITION.lottoDigits}자리)와 일치하지 않는 경우 에러가 발생한다.`, () => {
+    const winningNumbers = Array.from(
+      { length: LOTTO_CONDITION.lottoDigits - 1 },
+      (_, idx) => idx + 1
+    );
+
+    expect(() => {
+      Validation.validateWinningNumbers(winningNumbers);
+    }).toThrow(ERROR_MESSAGE.invalidLottoNumberLength);
+  });
+
+  test(`당첨 번호 배열의 각 요소가 숫자가 아닌 경우, 에러가 발생한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits }, (_, idx) =>
+      String(idx + 1)
+    );
+
+    expect(() => {
+      Validation.validateWinningNumbers(winningNumbers);
+    }).toThrow(ERROR_MESSAGE.invalidInputType);
+  });
+
+  test(`당첨 번호 배열의 각 요소가 로또 숫자 범위내의 수(${LOTTO_CONDITION.lottoNumberMinRange}~${LOTTO_CONDITION.lottoNumberMaxRange})가 아닌 경우, 에러가 발생한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits }, (_, idx) => idx);
+
+    expect(() => {
+      Validation.validateWinningNumbers(winningNumbers);
+    }).toThrow(ERROR_MESSAGE.invalidLottoNumberRange);
+  });
+});
