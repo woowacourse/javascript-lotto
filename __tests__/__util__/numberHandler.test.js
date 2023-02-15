@@ -17,6 +17,16 @@ describe("NumberHandler 테스트", () => {
     [NumberHandler.generateRandomNumber(1, 45)],
     [NumberHandler.generateRandomNumber(1, 45)],
     [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
   ])("generateRandomNumber가 1~45사이의 숫자를 반환한다.", (randomNumber) => {
     const rangeNumbers = Array.from({ length: 45 }, (_, index) => index + 1);
 
