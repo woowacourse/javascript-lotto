@@ -1,7 +1,4 @@
 import NumberHandler from "../../src/util/NumberHandler.js";
-/**
-    - [ ]  범위 내의 랜덤 숫자값 리턴하기 - 범위 테스트하기
- */
 
 describe("NumberHandler 테스트", () => {
   test.each([
@@ -12,5 +9,17 @@ describe("NumberHandler 테스트", () => {
     [100, 100],
   ])("소수점 둘째자리에서 반올림한다.", (floatNumber, roundedOffNumber) => {
     expect(NumberHandler.roundOffNumber(floatNumber)).toBe(roundedOffNumber);
+  });
+
+  test.each([
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+    [NumberHandler.generateRandomNumber(1, 45)],
+  ])("generateRandomNumber가 1~45사이의 숫자를 반환한다.", (randomNumber) => {
+    const rangeNumbers = Array.from({ length: 45 }, (_, index) => index + 1);
+
+    expect(rangeNumbers.includes(randomNumber)).toBeTruthy();
   });
 });
