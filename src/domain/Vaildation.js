@@ -28,6 +28,20 @@ const Validation = {
     return purchaseAmount % LOTTO_CONDITION.lottoPrice === 0;
   },
 
+  validateWinningNumbers(winningNumbers) {
+    if (!this.isValidWinningNumbersLength(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.invalidLottoNumberLength);
+    }
+
+    if (!this.hasOnlyNumber(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.invalidInputType);
+    }
+
+    if (!this.isValidWinningNumberRange(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
+    }
+  },
+
   isValidWinningNumbersLength(winningNumbers) {
     return winningNumbers.length === LOTTO_CONDITION.lottoDigits;
   },

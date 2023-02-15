@@ -15,6 +15,8 @@ export default class LottoGameController {
     await this.#createLotto();
     this.#printLottoQuantity();
     this.#printEachLottoNumbers();
+
+    await this.#requestWinningNumbers();
   }
 
   async #createLotto() {
@@ -53,5 +55,18 @@ export default class LottoGameController {
 
   async #requestWinningNumbers() {
     const winningNumbersInput = await InputView.readWinningNumbers();
+    const winningNumbers = winningNumbersInput
+      .split(',')
+      .map((numberInput) => Number(numberInput.trim()));
+
+    try {
+      Validation.validateWinningNumbers(winningNumbers);
+
+      return winningNumbers;
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+
+      return this.#requestWinningNumbers();
+    }
   }
 }
