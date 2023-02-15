@@ -23,12 +23,16 @@ export class Lotto {
 }
 
 export const LottoStore = {
-  purchase(amount) {
-    const TOTAL = amount / PRICE;
+  purchase(total) {
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const DRAWING_NUMBERS = {
+      winningNumbers: [1, 2, 3, 4, 5, 6],
+      bonusNumber: 7,
+    };
 
-    return Array(TOTAL)
+    return Array(total)
       .fill('lotto')
-      .map(() => new Lotto());
+      .map(() => new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS));
   },
 
   draw(lotto) {
