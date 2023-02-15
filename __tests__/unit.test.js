@@ -25,3 +25,8 @@ test('로또 구입 금액은 자연수이다.', () => {
   const a = '1.5';
   expect(() => InputValidator.checkNaturalNumber(a)).toThrow();
 });
+
+test('1000원 단위로 나뉘는지 검사', () => {
+  const money = 14100;
+  expect(() => InputValidator.checkFallApart(money, 1000)).toThrow();
+});
