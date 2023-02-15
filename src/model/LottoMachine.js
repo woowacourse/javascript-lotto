@@ -61,6 +61,15 @@ class LottoMachine {
   isSecond(bonusNumber, lottoNumber) {
     return lottoNumber.includes(bonusNumber);
   }
+
+  lotteryWinningsSum(lottos, targetNumber) {
+    const lotteryWinningsSum = lottos.reduce(
+      (acc, lotto) => acc + this.checkLotteryWinnings(lotto, targetNumber),
+      0,
+    );
+
+    return lotteryWinningsSum;
+  }
 }
 
 export default LottoMachine;
