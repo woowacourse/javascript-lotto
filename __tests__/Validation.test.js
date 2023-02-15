@@ -183,4 +183,12 @@ describe('Validation.validateBounsNumber', () => {
       }).toThrow(ERROR_MESSAGE.invalidInputType);
     }
   );
+
+  test(`보너스 번호 입력이 로또 숫자 범위내의 수(${LOTTO_CONDITION.lottoNumberMinRange}~${LOTTO_CONDITION.lottoNumberMaxRange})가 아닌 경우, 에러가 발생한다.`, () => {
+    const bonusNumber = LOTTO_CONDITION.lottoNumberMaxRange + 1;
+
+    expect(() => {
+      Validation.validateBonusNumber(bonusNumber);
+    }).toThrow(ERROR_MESSAGE.invalidLottoNumberRange);
+  });
 });
