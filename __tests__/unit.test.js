@@ -30,3 +30,9 @@ test('1000원 단위로 나뉘는지 검사', () => {
   const money = 14100;
   expect(() => InputValidator.checkFallApart(money, 1000)).toThrow();
 });
+
+test('로또 번호는 1~45의 자연수', () => {
+  const number = '0';
+  expect(() => InputValidator.checkLottoNumber(number)).toThrow();
+});
+
