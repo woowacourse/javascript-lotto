@@ -23,3 +23,23 @@ describe('숫자가 자연수가 맞는지 확인하는 기능', () => {
     expect(Validator.isSafeNumber('1234')).toBeTruthy();
   });
 });
+
+describe('배열 길이 확인', () => {
+  test('[1, 2, 3, 4, 5, 6]의 길이가 6인지 확인', () => {
+    const answer = Validator.isArrayLengthEqual(
+      [1, 2, 3, 4, 5, 6],
+      6,
+    );
+
+    expect(answer).toBeTruthy();
+  });
+
+  test('[1, 2, 3, 4, 5, 6]의 길이가 7인지 확인', () => {
+    const answer = Validator.isArrayLengthEqual(
+      [1, 2, 3, 4, 5, 6],
+      7,
+    );
+
+    expect(answer).toBeFalsy();
+  });
+});
