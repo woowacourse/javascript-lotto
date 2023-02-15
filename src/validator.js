@@ -12,6 +12,10 @@ const validator = {
   checkLessThanOrEqualMax(input, max) {
     if (input > max) throw new Error();
   },
+
+  checkDivideIntoUnit(input, unit) {
+    if (input % unit !== 0) throw new Error();
+  },
 };
 
 export default validator;
