@@ -1,12 +1,18 @@
+const { MAGIC_NUMBER } = require('../../constant');
 const { pickRandomNumberInRange } = require('../../utils');
 const inputHandler = require('../../view/inputView');
 const outputView = require('../../view/outputView');
 const Money = require('../model/Money');
+const Winning = require('../model/Winning');
 
 class LottoMachine {
   #lottos;
 
   #money;
+
+  #winning;
+
+  #ranks;
 
   readMoney() {
     inputHandler('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
@@ -19,6 +25,13 @@ class LottoMachine {
     );
   }
 
+  readBonusNumber() {
+    inputHandler(
+      '\n> 보너스 번호를 입력해 주세요.',
+      this.#afterReadBonusNumber
+    );
+  }
+
   generateLottos(amount) {
     const lottoCount = amount / 1000;
 
@@ -28,9 +41,9 @@ class LottoMachine {
   }
 
   makeLottoNumbers() {
-    const lottoNumbers = Array.from({ length: 6 }).map(() =>
-      pickRandomNumberInRange(1, 45)
-    );
+    const lottoNumbers = Array.from({ length: 6 })
+      .map(() => pickRandomNumberInRange(1, 45))
+      .sort((first, second) => first - second);
 
     return lottoNumbers;
   }
@@ -49,9 +62,23 @@ class LottoMachine {
 
   #afterReadWinningNumbers = (input) => {
     try {
+      const winningNumbers = input
+        .split(',')
+        .map((winningNumber) => Number(winningNumber));
+      this.#winning = new Winning();
+      this.#winning.setWinningNumbers(winningNumbers);
       this.readBonusNumber();
     } catch {
       this.readWinningNumbers();
+    }
+  };
+
+  #afterReadBonusNumber = (input) => {
+    try {
+      this.#winning.setBonusNumber(Number(input));
+      this.calculateRanks();
+    } catch {
+      this.readBonusNumber();
     }
   };
 
