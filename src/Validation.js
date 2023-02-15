@@ -13,6 +13,14 @@ const Validation = {
       }
     });
   },
+
+  validateNumberRange(lottoNumbers) {
+    lottoNumbers.forEach((lottoNumber) => {
+      if (lottoNumber < 1 || lottoNumber > 45) {
+        throw new Error('로또 번호는 1에서 45 사이의 숫자여야 합니다.');
+      }
+    });
+  },
 };
 
 export default Validation;
