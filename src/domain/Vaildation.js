@@ -58,10 +58,21 @@ const Validation = {
     );
   },
 
-  validateBonusNumber(bonusNumber) {
+  validateBonusNumber(bonusNumber, winningNumbers) {
     if (!this.isNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
+
+    if (!this.isValidBonusNumberRange(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
+    }
+  },
+
+  isValidBonusNumberRange(bonusNumber) {
+    return (
+      LOTTO_CONDITION.lottoNumberMinRange <= bonusNumber &&
+      bonusNumber <= LOTTO_CONDITION.lottoNumberMaxRange
+    );
   },
 };
 
