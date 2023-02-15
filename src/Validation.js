@@ -1,3 +1,5 @@
+const { ERROR, NUMBER, COMMAND } = require("./constants");
+
 const Validation = {
   purchaseAmount(amount) {
     this.inputIsInteger(amount);
@@ -7,17 +9,17 @@ const Validation = {
 
   inputIsInteger(amount) {
     if (Number.isInteger(amount)) return;
-    throw new Error("에러메세지");
+    throw new Error(ERROR.NUMBER);
   },
 
   purchaseAmountIsOverUnit(amount) {
-    if (amount >= 1000) return;
-    throw new Error("under unit");
+    if (amount >= NUMBER.UNIT) return;
+    throw new Error(ERROR.OVER_UNIT);
   },
 
   purchaseAmountDivideUnit(amount) {
-    if (amount % 1000 === 0) return;
-    throw new Error(" unitX");
+    if (amount % NUMBER.UNIT === 0) return;
+    throw new Error(ERROR.DIVIDE);
   },
 
   lottoNumbers(numbers) {
@@ -31,12 +33,12 @@ const Validation = {
   isDuplicated(numbers) {
     const numbersSet = new Set(numbers);
     if (numbers.length === numbersSet.size) return;
-    throw new Error("duplicated");
+    throw new Error(ERROR.DUPLICATED);
   },
 
   numberInRange(number) {
-    if (number >= 1 && number <= 45) return;
-    throw new Error("not in range");
+    if (number >= NUMBER.MIN_RANGE && number <= NUMBER.MAX_RANGE) return;
+    throw new Error(ERROR.RANGE);
   },
 
   bonusNumber(lottoNumbers, bonusNumber) {
@@ -46,8 +48,8 @@ const Validation = {
   },
 
   restartCommand(answer) {
-    if (answer === "y" || answer === "n") return;
-    throw new Error("yn");
+    if (answer === COMMAND.YES || answer === COMMAND.NO) return;
+    throw new Error(ERROR.RESTART);
   },
 };
 

@@ -1,7 +1,7 @@
 const MESSAGE = {
   INPUT_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
-  INPUT_LOTTO_NUMBERS: "당첨 번호를 입력해 주세요.\n",
-  INPUT_BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
+  INPUT_LOTTO_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
+  INPUT_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
 };
 
 const AMOUNT_OF_PURCHASE = (amount) => {
@@ -21,6 +21,7 @@ const NUMBER = {
   UNIT: 1_000,
   MIN_RANGE: 1,
   MAX_RANGE: 45,
+  COUNT: 6,
 };
 
 const COMMAND = {

@@ -1,6 +1,5 @@
 const Lotto = require("./Lotto");
 const Random = require("../utils/Random");
-const Validation = require("../Validation");
 const { NUMBER } = require("../constants");
 
 class LottoGame {
@@ -10,8 +9,8 @@ class LottoGame {
     this.getLotteries();
   }
 
-  generateLotteries(num) {
-    for (let i = 0; i < num; i++) {
+  generateLotteries(count) {
+    for (let i = 0; i < count; i++) {
       const randomNumbers = Random.generateRandomNumbers();
       this.lotteries.push(new Lotto(randomNumbers));
     }
