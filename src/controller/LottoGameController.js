@@ -7,11 +7,11 @@ class LottoGameController {
   #lottoGame = new LottoGame();
 
   async setupGame() {
-    await this.#requestPurchaseAmount();
-    this.#handleUserLottos()
+    await this.#handlePurchaseAmount();
+    this.#handleUserLottos();
   }
 
-  async #requestPurchaseAmount() {
+  async #handlePurchaseAmount() {
     const PURCHASE_AMOUNT = await InputView.readPurchaseAmount();
 
     try {
