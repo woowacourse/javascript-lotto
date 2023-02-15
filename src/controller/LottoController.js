@@ -6,7 +6,12 @@ import {
 } from '../view/InputView';
 import LottoGame from '../domain/LottoGame';
 import IO from '../utils/IO';
-import { outputLottoInfo } from '../view/OutputView';
+import {
+  outputLottoInfo,
+  outputWinningResult,
+  outputWinningStatistics,
+} from '../view/OutputView';
+
 class LottoController {
   #purchaseAmount;
   #game;
@@ -45,6 +50,21 @@ class LottoController {
     const bonusNumber = await inputBonusNumber();
 
     this.#game.setBonusNumber(Number(bonusNumber));
+
+    this.printWinningResult();
+  }
+
+  printWinningResult() {
+    const winCount = {
+      5: 0,
+      4: 0,
+      3: 1,
+      2: 0,
+      1: 0,
+    };
+
+    outputWinningResult(winCount);
+    outputWinningStatistics(62.5);
 
     this.readWhetherToRestart();
   }

@@ -1,4 +1,4 @@
-import { MESSAGE } from '../data/Constants';
+import { MESSAGE, WINNING_RESULT, WINNING_ORDER } from '../data/Constants';
 import IO from '../utils/IO';
 
 const outputLottoInfo = (lottos) => {
@@ -8,4 +8,17 @@ const outputLottoInfo = (lottos) => {
   });
 };
 
-export { outputLottoInfo };
+const outputWinningResult = (winCount) => {
+  IO.output(MESSAGE.OUTPUT_WINNING_STATISTICS);
+  IO.output(MESSAGE.OUTPUT_DIVIDE_LINE);
+
+  for (const order of WINNING_ORDER) {
+    IO.output(WINNING_RESULT[order](winCount[order]));
+  }
+};
+
+const outputWinningStatistics = (earningRate) => {
+  return IO.output(MESSAGE.OUTPUT_EARNING_RATE(earningRate));
+};
+
+export { outputLottoInfo, outputWinningResult, outputWinningStatistics };
