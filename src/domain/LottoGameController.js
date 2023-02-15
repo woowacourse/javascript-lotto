@@ -70,4 +70,8 @@ export default class LottoGameController {
       return this.#requestWinningNumbers();
     }
   }
+
+  async #requestBonusNumber() {
+    const bonusNumber = await InputView.readBonusNumber();
+  }
 }
