@@ -13,7 +13,7 @@ const validator = {
     }
   },
 
-  throwErrorIfWinningLottoInvalid(winningLotto) {
+  throwErrorIfInvalidWinningLotto(winningLotto) {
     const isWinningLottoValid = /^(([1-9]|[1-3]\d|4[0-5]),){5}([1-9]|[1-3]\d|4[0-5])$/;
 
     if (!isWinningLottoValid.test(winningLotto)) {
@@ -27,6 +27,14 @@ const validator = {
 
     if (haveDuplicates) {
       throw new Error('[ERROR] 로또 번호는 중복되는 수가 없어야 합니다');
+    }
+  },
+
+  throwErrorIfInvalidBonusNumber(bonusNumber) {
+    const isValidNumber = /^([1-9]|[1-3]\d|4[0-5])$/;
+
+    if (!isValidNumber.test(bonusNumber)) {
+      throw new Error('[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다');
     }
   },
 };

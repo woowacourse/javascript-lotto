@@ -26,7 +26,7 @@ describe('당첨 번호에 대한 유효성 검사', () => {
     const winningLotto = '1,45,102,63,9,8';
 
     // Then
-    expect(() => validator.throwErrorIfWinningLottoInvalid(winningLotto)).toThrow();
+    expect(() => validator.throwErrorIfInvalidWinningLotto(winningLotto)).toThrow();
   });
 
   test('중복되는 로또 번호가 있다면 에러가 발생한다.', () => {
@@ -36,4 +36,10 @@ describe('당첨 번호에 대한 유효성 검사', () => {
     // Then
     expect(() => validator.throwErrorIfHaveDuplicates(winningLotto)).toThrow();
   });
+});
+
+test('보너스 번호가 1에서 45이하의 정수가 아니라면 에러가 발생한다', () => {
+  const bonusNumber = '100';
+
+  expect(() => validator.throwErrorIfInvalidBonusNumber(bonusNumber)).toThrow();
 });
