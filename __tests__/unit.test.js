@@ -113,4 +113,13 @@ describe('검증하는 기능', () => {
       validator.checkLessThanOrEqualMax(input, max);
     }).toThrow();
   });
+
+  test('입력값이 unit에 나누어 떨어지지 않을 때 에러를 던진다.', () => {
+    const input = '1001';
+    const unit = 1000;
+
+    expect(() => {
+      validator.checkDivideIntoUnit(input, unit);
+    }).toThrow();
+  });
 });
