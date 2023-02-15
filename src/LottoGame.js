@@ -32,6 +32,7 @@ class LottoGame {
     await this.inputWinningNumbers();
     await this.inputBonusNumber();
     this.determineAllLottosRank();
+    this.showWinningStatistics();
   }
 
   async inputPurchasePrice() {
@@ -124,6 +125,16 @@ class LottoGame {
         purchasePrice) *
       100
     ).toFixed(1);
+  }
+
+  showWinningStatistics() {
+    OutputView.printStatistics(
+      this.#winningLottos,
+      this.calculateProfitRate(
+        this.#winningLottos,
+        this.#lottoMachine.lottos.length * 1000
+      )
+    );
   }
 }
 
