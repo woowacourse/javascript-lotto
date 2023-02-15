@@ -19,7 +19,7 @@ describe('로또를 뽑는 기능', () => {
     expect(new Set(lottoNumbers).size).toBe(6);
   });
 
-  test('6개의 숫자가 정렬되어있다.', () => {
+  test('6개의 숫자가 오름차순으로 정렬되어있다.', () => {
     const lottoMachine = new LottoMachine();
     const lottoNumbers = lottoMachine.makeLottoNumbers();
 
