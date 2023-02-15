@@ -1,4 +1,6 @@
+const BonusNumber = require('./domain/BonusNumber');
 const LottoMachine = require('./domain/LottoMachine');
+const WinningNumbers = require('./domain/WinningNumbers');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
@@ -9,6 +11,8 @@ class LottoGame {
   #winningNumbers;
 
   #bonusNumber;
+
+  #winningLottos = [0, 0, 0, 0, 0, 0];
 
   validateBonusNumber(winningNumbers, bonusNumber) {
     if (this.#isDuplicateFor(winningNumbers, bonusNumber)) {
@@ -27,6 +31,7 @@ class LottoGame {
     this.showPurchasedLottos();
     await this.inputWinningNumbers();
     await this.inputBonusNumber();
+    this.determineAllLottosRank();
   }
 
   async inputPurchasePrice() {
@@ -61,6 +66,55 @@ class LottoGame {
       OutputView.printErrorMessage(error.message);
       await this.inputBonusNumber();
     }
+  }
+
+  determineAllLottosRank() {
+    this.#lottoMachine.lottos.forEach((lotto) => {
+      this.#winningLottos[
+        this.determineLottoRank(lotto, {
+          winningNumbers: this.#winningNumbers.winningNumbers,
+          bonusNumber: this.#bonusNumber.bonusNumber,
+        }) - 1
+      ] += 1;
+    });
+  }
+
+  determineLottoRank(lotto, { winningNumbers, bonusNumber }) {
+    if (this.calculateMatchCount(lotto, winningNumbers) === 6) {
+      return 1;
+    }
+
+    if (
+      this.calculateMatchCount(lotto, winningNumbers) === 5 &&
+      this.isBonus(lotto, bonusNumber)
+    ) {
+      return 2;
+    }
+
+    if (
+      this.calculateMatchCount(lotto, winningNumbers) === 5 &&
+      !this.isBonus(lotto, bonusNumber)
+    ) {
+      return 3;
+    }
+
+    if (this.calculateMatchCount(lotto, winningNumbers) === 4) {
+      return 4;
+    }
+
+    if (this.calculateMatchCount(lotto, winningNumbers) === 3) {
+      return 5;
+    }
+
+    return 6;
+  }
+
+  calculateMatchCount(lotto, winningNumbers) {
+    return lotto.filter((number, idx) => number === winningNumbers[idx]).length;
+  }
+
+  isBonus(lotto, bonusNumber) {
+    return lotto.includes(bonusNumber);
   }
 }
 
