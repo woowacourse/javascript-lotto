@@ -33,3 +33,19 @@ test(`구입금액 입력이 로또 1장 가격(${LOTTO_CONDITION.lottoPrice}원
 
   expect(result).toBe(true);
 });
+
+test(`구입금액 입력이 로또 1장 가격(${LOTTO_CONDITION.lottoPrice}원)으로 나누어 떨어지지 않는 경우, false를 반환한다.`, () => {
+  const purchaseAmount = `${LOTTO_CONDITION.lottoPrice + 1}`;
+
+  const result = Validation.isDivisibleByLottoPrice(purchaseAmount);
+
+  expect(result).toBe(false);
+});
+
+test(`구입금액 입력이 로또 1장 가격(${LOTTO_CONDITION.lottoPrice}원)으로 나누어 떨어지는 경우, true를 반환한다.`, () => {
+  const purchaseAmount = `${LOTTO_CONDITION.lottoPrice * 2}`;
+
+  const result = Validation.isDivisibleByLottoPrice(purchaseAmount);
+
+  expect(result).toBe(true);
+});
