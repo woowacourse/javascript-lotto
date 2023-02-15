@@ -1,17 +1,21 @@
 const Random = {
-  randomNumbers: [],
   generateRandomNumbers() {
-    while (this.randomNumbers.length < 6) {
-      const randomNumber = Math.floor(Math.random() * 45) + 1;
-      if (!this.isDuplicated(randomNumber)) {
-        this.randomNumbers.push(randomNumber);
-      }
+    const randomNumbers = [];
+    while (randomNumbers.length < 6) {
+      this.generateRandomNumber(randomNumbers);
     }
-    return this.randomNumbers;
+    return randomNumbers;
   },
 
-  isDuplicated(number) {
-    return this.randomNumbers.includes(number);
+  generateRandomNumber(randomNumbers) {
+    const number = Math.floor(Math.random() * 45) + 1;
+    if (!this.isDuplicated(randomNumbers, number)) {
+      randomNumbers.push(number);
+    }
+  },
+
+  isDuplicated(numbers, number) {
+    return numbers.includes(number);
   },
 };
 
