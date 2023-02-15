@@ -39,6 +39,12 @@ const Validator = {
     if (input % unit !== 0)
       throw new Error(`[ERROR] 입력 값은 ${unit} 단위여야 합니다.`);
   },
+
+  validateRetryCommand(command) {
+    const trimedCommand = command.trim().toLowerCase();
+    if (trimedCommand !== "y" && trimedCommand !== "n")
+      throw new Error("[ERROR] y, n중에 명령어를 입력해야 합니다.");
+  },
 };
 
 export default Validator;
