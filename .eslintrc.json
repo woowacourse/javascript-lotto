@@ -1,7 +1,8 @@
 {
   "rules": {
     "max-depth": ["error", 1],
-    "max-params": ["error", 2]
+    "max-params": ["error", 2],
+    "sourceType": "module"
   },
   "env": {
     "es6": true,
