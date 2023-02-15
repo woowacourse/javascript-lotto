@@ -4,6 +4,13 @@ class Lotto {
     this.lottoMoney = money;
     this.lottoNumber = number;
   }
+
+  randomNumberLotto() {
+    const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 46)
+    );
+    return randomNumber.every((number)=>number>=1 && number<=45)
+  }
+
 }
 
 export default Lotto;
