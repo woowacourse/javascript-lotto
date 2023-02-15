@@ -16,6 +16,9 @@ const WINNING_RESULT = Object.freeze({
 
 const WINNING_ORDER = [5, 4, 3, 2, 1];
 const MINIMUM_LOTTO_UNIT = 1000;
+const LOTTO_LENGTH = 6;
+const MAX_LOTTO_NUMBER = 45;
+const MIN_LOTTO_NUMBER = 1;
 
 const MESSAGE = Object.freeze({
   INPUT_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
@@ -28,4 +31,13 @@ const MESSAGE = Object.freeze({
   OUTPUT_EARNING_RATE: (earningRate) => `총 수익률은 ${earningRate}%입니다.`,
 });
 
-export { PRIZE, MESSAGE, WINNING_RESULT, WINNING_ORDER, MINIMUM_LOTTO_UNIT };
+export {
+  PRIZE,
+  MESSAGE,
+  WINNING_RESULT,
+  WINNING_ORDER,
+  MINIMUM_LOTTO_UNIT,
+  LOTTO_LENGTH,
+  MAX_LOTTO_NUMBER,
+  MIN_LOTTO_NUMBER,
+};
