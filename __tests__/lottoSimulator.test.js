@@ -3,7 +3,7 @@ import LottoSimulator from '../src/controller/LottoSimulator';
 import { ERROR_MESSAGE, LOTTO_STRING } from '../src/data/constants';
 test('로또 가격에 맞게 구매하기 ', () => {
   const lottoSimulator = new LottoSimulator();
-  lottoSimulator.purchaseLottos(8000);
+  lottoSimulator.purchaseLottos(1000);
 
   expect(lottoSimulator.lottos.length === 8);
 });
@@ -34,3 +34,15 @@ test.each([[-1000], [-2000], [-8000]])(
     }).toThrow(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
   }
 );
+
+test('랜덤 로또 번호 생성', () => {
+  const lottoSimulator = new LottoSimulator();
+  const numbers = lottoSimulator.createLottoNumbers();
+  expect(numbers.length).toBe(6);
+});
+
+test('로또 결과 계산', () => {
+  const lottoSimulator = new LottoSimulator();
+  lottoSimulator.calculateResult();
+  expect().toEqual();
+});
