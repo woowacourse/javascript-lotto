@@ -2,10 +2,10 @@ const Validator = {
   purchaseAmount(money) {
     this.number(money);
 
-    if (this.isLessThanMinimum(money)) {
+    if (this.isLessThanMinimum(+money)) {
       throw new Error();
     }
-    if (this.hasChange(money)) {
+    if (this.hasChange(+money)) {
       throw new Error();
     }
   },
@@ -81,7 +81,7 @@ const Validator = {
     if (this.hasBlank(number)) {
       throw new Error();
     }
-    if (!this.isNumber(number)) {
+    if (isNaN(number)) {
       throw new Error();
     }
   },
@@ -92,10 +92,6 @@ const Validator = {
 
   hasBlank(input) {
     return input.includes(' ');
-  },
-
-  isNumber(input) {
-    return isNaN(input);
   },
 };
 
