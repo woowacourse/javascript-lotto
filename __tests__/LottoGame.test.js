@@ -42,3 +42,16 @@ describe('로또 번호에 보너스 번호가 포함되어 있는지 여부를 
     expect(testResult).toEqual({ matchedCount: 4, hasBonusNumber: true });
   });
 });
+
+test.each([
+  [6, false, 1],
+  [5, true, 2],
+  [5, false, 3],
+  [4, true, 4],
+  [3, true, 5],
+  [2, true, 0],
+])('당첨 결과에 따른 올바른 순위를 반환한다.', (matchedCount, hasBonusNumber, rank) => {
+  const lottoGame = new LottoGame();
+
+  expect(lottoGame.getRank(matchedCount, hasBonusNumber)).toBe(rank);
+});
