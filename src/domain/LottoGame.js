@@ -11,6 +11,10 @@ class LottoGame {
       return new Lotto(RANDOM_NUMBER);
     });
   }
+
+  getUserLottos() {
+    return this.#userLottos.map((userLotto) => userLotto.getNumbers());
+  }
 }
 
 export default LottoGame;
