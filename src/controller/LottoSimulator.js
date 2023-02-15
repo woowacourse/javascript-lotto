@@ -1,6 +1,11 @@
 import Lotto from '../domain/Lotto';
 import Validator from '../utils/Validator';
-import { ERROR_MESSAGE, LOTTO_CONSTANT, MATCHES_COUNT_TO_RANKING } from '../data/constants';
+import {
+  ERROR_MESSAGE,
+  LOTTO_CONSTANT,
+  LOTTO_RANKING,
+  MATCHES_COUNT_TO_RANKING,
+} from '../data/constants';
 import { RandomNumberGenerator } from '../utils/RandomNumberGenerator';
 
 class LottoSimulator {
@@ -11,6 +16,10 @@ class LottoSimulator {
   constructor() {
     this.#lottos = [];
     this.#budget = 0;
+  }
+
+  set winningLotto(winningLotto) {
+    this.#winningLotto = winningLotto;
   }
 
   createLottoNumbers() {
@@ -48,11 +57,12 @@ class LottoSimulator {
 
   calculateResult() {
     const result = {};
-    Object.values(MATCHES_COUNT_TO_RANKING).forEach((rank) => (result[rank] = 0));
+    Object.values(LOTTO_RANKING).forEach((rank) => (result[rank] = 0));
     this.#lottos.forEach((lotto) => {
       const rank = this.#winningLotto.calculateRanking(lotto);
       result[rank] += 1;
     });
+    return result;
   }
 }
 

@@ -13,6 +13,7 @@ const LOTTO_RANKING = Object.freeze({
   THIRD: 'third',
   FOURTH: 'fourth',
   FIFTH: 'fifth',
+  FAIL: 'fail',
 });
 
 const MATCHES_COUNT_TO_RANKING = Object.freeze({
