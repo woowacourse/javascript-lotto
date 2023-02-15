@@ -3,7 +3,7 @@ import { REQUEST_MESSAGE } from '../constants/message.js';
 
 const InputView = {
   readPurchaseAmount() {
-    return Console.question(REQUEST_MESSAGE.readPurchaseAmount);
+    return Console.question(REQUEST_MESSAGE.purchaseAmount);
   },
 
   readWinningNumbers() {
