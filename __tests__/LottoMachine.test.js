@@ -33,11 +33,11 @@ describe('LottoMahcine 테스트', () => {
     expect(lotteryWinnings).toBe(30000000);
   });
 
-  test('전체 로또 당청금 총합 확인하는 기능 테스트', () => {
+  describe('로또 총 수익률 계산 기능 테스트', () => {
     const lottos = [
       [1, 10, 20, 30, 40, 45], // 1등 2000000000
       [1, 10, 20, 30, 7, 45], // 2등 30000000
-      [1, 2, 3, 4, 5, 6], // 4등 50000
+      [1, 10, 20, 30, 5, 6], // 4등 50000
       [2, 7, 10, 13, 23, 42], // 꽝
     ];
 
@@ -46,8 +46,19 @@ describe('LottoMahcine 테스트', () => {
       bonusNumber: 7,
     };
 
-    const lotteryWinningsSum = lottoMachine.lotteryWinningsSum(lottos, targetNumber);
+    test('전체 로또 당청금 총합 확인하는 기능 테스트', () => {
+      const lotteryWinningsSum = lottoMachine.lotteryWinningsSum(lottos, targetNumber);
 
-    expect(lotteryWinningsSum).toBe(2030050000);
+      expect(lotteryWinningsSum).toBe(2030050000);
+    });
+
+    test('최종 수익률 계산하는 기능 테스트', () => {
+      const lotteryWinningsSum = lottoMachine.lotteryWinningsSum(lottos, targetNumber);
+
+      const rateOfProfit = lottoMachine.rateOfProfit(lotteryWinningsSum, lottos.length);
+
+      // (2030050000 - 4000) / 4000
+      expect(rateOfProfit).toBe(507511.5);
+    });
   });
 });
