@@ -63,3 +63,17 @@ describe('배열에서 중복된 요소 있는지 확인', () => {
     expect(Validator.hasDuplication([1, 6, 2, 3, 4, 5])).toBeFalsy();
   });
 });
+
+describe('문자열 동일성 테스트', () => {
+  test('x', () => {
+    expect(Validator.isSame('x', 'y')).toBeFalsy();
+  });
+
+  test('y', () => {
+    expect(Validator.isSame('y', 'y')).toBeTruthy();
+  });
+
+  test('Y', () => {
+    expect(Validator.isSame('Y', 'y')).toBeTruthy();
+  });
+});
