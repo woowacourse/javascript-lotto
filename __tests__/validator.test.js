@@ -1,8 +1,8 @@
 import {
   checkPurchaseAmount,
-  checkIsInteger,
-  checkIsDuplicated,
-  checkIsBetween1And45,
+  checkInteger,
+  checkDuplicates,
+  checkBetween1And45,
   checkListLengthIsSix,
 } from "../src/step1-index";
 
@@ -33,8 +33,8 @@ test.each([
   ["500", true],
 ])("입력받은 금액(%i)이 정수가 아닐 경우 에러를 반환한다.", (purchaseAmount, expected) => {
   expected
-    ? expect(() => checkIsInteger(purchaseAmount)).not.toThrow()
-    : expect(() => checkIsInteger(purchaseAmount)).toThrow();
+    ? expect(() => checkInteger(purchaseAmount)).not.toThrow()
+    : expect(() => checkInteger(purchaseAmount)).toThrow();
 });
 
 test.each([
@@ -43,8 +43,8 @@ test.each([
   [[1, 6, 2, 3, 4, 5], true],
 ])("로또 번호(%p)에 중복이 있을 경우 에러를 반환한다.", (winningLottoNumbers, expected) => {
   expected
-    ? expect(() => checkIsDuplicated(winningLottoNumbers)).not.toThrow()
-    : expect(() => checkIsDuplicated(winningLottoNumbers)).toThrow();
+    ? expect(() => checkDuplicates(winningLottoNumbers)).not.toThrow()
+    : expect(() => checkDuplicates(winningLottoNumbers)).toThrow();
 });
 
 test.each([
@@ -55,8 +55,8 @@ test.each([
   "로또 번호(%p) 중 1 ~ 45 사이가 아닌 숫자가 있을 경우 에러를 반환한다.",
   (winningLottoNumbers, expected) => {
     expected
-      ? expect(() => checkIsBetween1And45(winningLottoNumbers)).not.toThrow()
-      : expect(() => checkIsBetween1And45(winningLottoNumbers)).toThrow();
+      ? expect(() => checkBetween1And45(winningLottoNumbers)).not.toThrow()
+      : expect(() => checkBetween1And45(winningLottoNumbers)).toThrow();
   }
 );
 
