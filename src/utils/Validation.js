@@ -61,7 +61,8 @@ const Validation = {
   },
 
   checkBonusNumber(winningNumbers, bonusNumber) {
-    this.checkBonusNumber(winningNumbers, bonusNumber);
+    this.checkBounsNumberRange(bonusNumber);
+    this.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
   },
 
   checkBonusNumberDuplicate(winningNumbers, bonusNumber) {
