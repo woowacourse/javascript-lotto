@@ -15,4 +15,18 @@ describe("Lotto 객체 단위테스트", () => {
 
     expect(lotto.getLottoNumbers()).toEqual([8, 21, 23, 41, 42, 43]);
   });
+
+  test("당첨번호와 각 로또 객체 번호를 비교하는 함수 테스트", () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compareNumbers(winningNumbers);
+
+    expect(lotto.getScore()).toEqual(6);
+  });
+
+  test("각 로또의 점수를 올려주는 함수 테스트", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.addScore();
+    expect(lotto.getScore()).toEqual(1);
+  });
 });
