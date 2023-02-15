@@ -4,6 +4,10 @@ import Console from '../utils/Console.js';
 const InputView = {
   readPurchaseAmount() {
     return Console.question(ConsoleMessage.PURCHASE_AMOUNT);
+  },
+
+  readWinningNumber() {
+    return Console.question(ConsoleMessage.WINNING_NUMBER);
   }
 };
 
