@@ -12,25 +12,25 @@ describe("Validation 테스트", () => {
         );
       });
     });
-  });
 
-  test("값이 천원 단위가 아닌 경우 예외 발생", () => {
-    const PURCHASE_AMOUNT = [100, 2200, 3330, 4444];
+    test("값이 천원 단위가 아닌 경우 예외 발생", () => {
+      const PURCHASE_AMOUNT = [100, 2200, 3330, 4444];
 
-    PURCHASE_AMOUNT.forEach((amount) => {
-      expect(() => Validation.checkPurchaseAmount(amount)).toThrow(
-        ErrorMessage.MONEY_VALUE
-      );
+      PURCHASE_AMOUNT.forEach((amount) => {
+        expect(() => Validation.checkPurchaseAmount(amount)).toThrow(
+          ErrorMessage.MONEY_VALUE
+        );
+      });
     });
-  });
 
-  test("값이 숫자가 아닌 문자를 포함하는 경우 예외 발생", () => {
-    const PURCHASE_AMOUNT = ["A1", "2B", " ", "", "ABC", "1 2 3"];
+    test("값이 숫자가 아닌 문자를 포함하는 경우 예외 발생", () => {
+      const PURCHASE_AMOUNT = ["A1", "2B", " ", "", "ABC", "1 2 3"];
 
-    PURCHASE_AMOUNT.forEach((amount) => {
-      expect(() => Validation.checkMoneyInputType(amount)).toThrow(
-        ErrorMessage.MONEY_INPUT_TYPE
-      );
+      PURCHASE_AMOUNT.forEach((amount) => {
+        expect(() => Validation.checkMoneyInputType(amount)).toThrow(
+          ErrorMessage.MONEY_INPUT_TYPE
+        );
+      });
     });
   });
 
@@ -91,6 +91,29 @@ describe("Validation 테스트", () => {
         expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(
           ErrorMessage.LOTTO_DUPLICATE
         );
+      });
+    });
+  });
+
+  describe("보너스 번호 테스트", () => {
+    test("보너스 번호가 로또 번호와 중복되면 에러가 발생한다.", () => {
+      const WINNING_NUMBERS = [1, 2, 3, 4, 5, 6];
+      const BONUS_NUMBER = [1, 4, 6];
+
+      BONUS_NUMBER.forEach((bonusNumber) => {
+        expect(() =>
+          Validation.checkBonusNumber(WINNING_NUMBERS, bonusNumber)
+        ).toThrow();
+      });
+    });
+
+    test("보너스 번호가 1~45 사이의 숫자가 아니면 에러가 발생한다.", () => {
+      const BONUS_NUMBER = [100, 0, -11, "A1", "E", "9fd", "", " "];
+
+      BONUS_NUMBER.forEach((bonusNumber) => {
+        expect(() => {
+          Validation.checkBonusNumber(bonusNumber);
+        }).toThrow(ErrorMessage.BONUS_NUMBER_VALUE);
       });
     });
   });
