@@ -23,7 +23,33 @@ const Validation = {
     if (StaticValue.REGEX_NON_DIGIT.test(money)) {
       throw new Error(ErrorMessage.MONEY_INPUT_TYPE);
     }
-  }
+  },
+
+  checkLottoNumber(lotto) {
+    this.checkLottoNumberLength(lotto);
+    this.checkLottoNumberRange(lotto);
+    this.checkLottoDuplicate(lotto);
+  },
+
+  checkLottoNumberLength(lotto) {
+    if (lotto.length !== 6) {
+      throw new Error(ErrorMessage.LOTTO_LENGTH);
+    }
+  },
+
+  checkLottoNumberRange(lotto) {
+    lotto.forEach((number) => {
+      if (number < 1 || number > 45) {
+        throw new Error(ErrorMessage.LOTTO_RANGE);
+      }
+    });
+  },
+
+  checkLottoDuplicate(lotto) {
+    if (lotto.length !== new Set(lotto).size) {
+      throw new Error(ErrorMessage.LOTTO_DUPLICATE);
+    }
+  },
 };
 
 export default Validation;
