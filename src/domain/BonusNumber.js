@@ -15,6 +15,10 @@ class BonusNumber {
   #isValidBonusNumber(bonusNumber) {
     return bonusNumber >= 1 && bonusNumber <= 45;
   }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
+  }
 }
 
 module.exports = BonusNumber;

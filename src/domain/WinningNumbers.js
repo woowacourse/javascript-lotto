@@ -3,7 +3,9 @@ class WinningNumbers {
 
   constructor(winningNumbers) {
     this.#validateWinningNumbers(winningNumbers);
-    this.#winningNumbers = winningNumbers.split(',');
+    this.#winningNumbers = winningNumbers
+      .split(',')
+      .map((number) => parseInt(number, 10));
   }
 
   #validateWinningNumbers(winningNumbers) {
@@ -25,6 +27,10 @@ class WinningNumbers {
         .filter((number) => this.#isLottoNumber(parseInt(number, 10)))
         .length === 6
     );
+  }
+
+  get winningNumbers() {
+    return this.#winningNumbers;
   }
 }
 
