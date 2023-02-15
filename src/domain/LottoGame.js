@@ -1,13 +1,24 @@
-import { PRIZE } from '../data/Constants';
+import { PRIZE, MINIMUM_LOTTO_UNIT } from '../data/Constants';
 import Win from './Win';
 
 class LottoGame {
   #win;
+  #lottos;
 
   constructor() {}
 
+  initializeLottos(price) {
+    const lottoCount = price / MINIMUM_LOTTO_UNIT;
+
+    this.#lottos = Array.from({ length: lottoCount }, () => new Lotto());
+  }
+
   initializeWin(winningNumber) {
     this.#win = new Win(winningNumber);
+  }
+
+  get lottos() {
+    this.#lottos;
   }
 
   setBonusNumber(bonusNumber) {

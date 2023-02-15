@@ -28,6 +28,9 @@ class LottoController {
   async readPurchaseAmount() {
     const purchaseAmount = await inputPurchaseAmount();
     this.#purchaseAmount = purchaseAmount;
+
+    this.#game.initializeLottos(purchaseAmount);
+
     this.printLottoInfo();
   }
 
