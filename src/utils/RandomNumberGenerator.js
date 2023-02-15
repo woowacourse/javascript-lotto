@@ -1,4 +1,7 @@
-const { lottoNumberRange } = require('../constants/constants');
+const {
+  lottoNumberRange,
+  LOTTO_NUMBER_COUNT,
+} = require('../constants/constants');
 
 const randomNumberGenerator = {
   generateRandomNumber() {
@@ -13,7 +16,7 @@ const randomNumberGenerator = {
   generateLottoNumbers() {
     const lottoNumbers = [];
 
-    while (lottoNumbers.length < 6) {
+    while (lottoNumbers.length < LOTTO_NUMBER_COUNT) {
       const randomNumber = this.generateRandomNumber();
       this.fillLottoNumbers(lottoNumbers, randomNumber);
     }

@@ -1,6 +1,7 @@
 const PRICE_UNIT = 1_000;
 const BLANK_REGEXP = /\s/;
 const EMPTY_STRING = '';
+const LOTTO_NUMBER_COUNT = 6;
 
 const lottoNumberRange = Object.freeze({
   MIN_LOTTO_NUMBER: 1,
@@ -30,4 +31,5 @@ module.exports = {
   lottoNumberRange,
   profit,
   profitByRank,
+  LOTTO_NUMBER_COUNT,
 };
