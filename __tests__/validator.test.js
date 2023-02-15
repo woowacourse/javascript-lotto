@@ -43,3 +43,13 @@ describe('배열 길이 확인', () => {
     expect(answer).toBeFalsy();
   });
 });
+
+describe('숫자가 특정 범위 안인지 확인', () => {
+  test.each([1, 45])('1~45 범위 안인 경우', (value) => {
+    expect(Validator.isNumberInRange(value, 1, 46)).toBeTruthy();
+  });
+
+  test.each([0, 46])('1~45 범위 밖인 경우', (value) => {
+    expect(Validator.isNumberInRange(value, 1, 46)).toBeFalsy();
+  });
+});
