@@ -57,6 +57,12 @@ const Validation = {
         winningNumber <= LOTTO_CONDITION.lottoNumberMaxRange
     );
   },
+
+  validateBonusNumber(bonusNumber) {
+    if (!this.isNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.invalidInputType);
+    }
+  },
 };
 
 export default Validation;
