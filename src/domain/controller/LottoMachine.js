@@ -97,6 +97,10 @@ class LottoMachine {
       const rank = this.getRank(matchedCount, this.isBonus(lotto));
     });
   }
+
+  isBonus(lotto) {
+    return lotto.includes(this.#winning.getBonusNumber());
+  }
 }
 
 module.exports = LottoMachine;
