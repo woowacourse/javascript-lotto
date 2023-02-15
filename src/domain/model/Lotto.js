@@ -1,5 +1,6 @@
-// TODO: 수익률 계산 기능 추가, 상수화
+const { calculateProfit } = require('../../utils');
 
+// TODO: 수익률 계산 기능 추가, 상수화
 class Lotto {
   #numbers;
   #rank;
@@ -17,12 +18,21 @@ class Lotto {
     return this.#rank;
   }
 
+  getProfit() {
+    return this.#profit;
+  }
+
   calculateRank(winningNumbers, bonusNumber) {
     const correctNumberCount = this.#numbers.filter((number) =>
       this.#isNumberIncluded(winningNumbers, number)
     ).length;
 
     this.#setRank(correctNumberCount, bonusNumber);
+    this.#setProfit(this.#rank);
+  }
+
+  #isNumberIncluded(winningNumbers, lottoNumber) {
+    return winningNumbers.includes(lottoNumber);
   }
 
   #setRank(correctNumberCount, bonusNumber) {
@@ -32,12 +42,12 @@ class Lotto {
     if (correctNumberCount === 3) this.#rank = 5;
   }
 
-  #isNumberIncluded(winningNumbers, lottoNumber) {
-    return winningNumbers.includes(lottoNumber);
-  }
-
   #setRankTwoOrThree(bonusNumber) {
     this.#rank = this.#numbers.includes(bonusNumber) ? 2 : 3;
+  }
+
+  #setProfit(rank) {
+    this.#profit = calculateProfit(rank);
   }
 }
 
