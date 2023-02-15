@@ -1,5 +1,7 @@
 import { PRIZE, MINIMUM_LOTTO_UNIT } from '../data/Constants';
+import { convertAscending } from '../utils/Utils';
 import Win from './Win';
+import Lotto from './Lotto';
 
 class LottoGame {
   #win;
@@ -17,8 +19,8 @@ class LottoGame {
     this.#win = new Win(winningNumber);
   }
 
-  get lottos() {
-    this.#lottos;
+  getOrderedLottos() {
+    return this.#lottos.map((lotto) => convertAscending(lotto.lottoNumber));
   }
 
   setBonusNumber(bonusNumber) {

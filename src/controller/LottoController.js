@@ -35,10 +35,11 @@ class LottoController {
   }
 
   printLottoInfo() {
-    outputLottoInfo([
-      [1, 2, 3, 4, 5, 6],
-      [50, 29, 19, 39, 50, 20],
-    ]);
+    // 로또 출력하면 됨.
+    const orderedLottos = this.#game.getOrderedLottos();
+
+    outputLottoInfo(orderedLottos);
+
     this.readWinningNumber();
   }
 

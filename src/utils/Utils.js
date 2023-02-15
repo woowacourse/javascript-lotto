@@ -6,7 +6,8 @@ const generateRandomNumber = (start, end) => {
 
 const checkDuplicateNumberInArray = (array, [start, end]) => {
   const randomNumber = generateRandomNumber(start, end);
-  if (array.includes(randomNumber)) return checkDuplicateNumberInArray(array);
+  if (array.includes(randomNumber))
+    return checkDuplicateNumberInArray(array, [start, end]);
 
   return randomNumber;
 };
