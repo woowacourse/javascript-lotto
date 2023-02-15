@@ -8,7 +8,7 @@ const values = Object.freeze({
 const correctCountsToMoney = deepFreeze({
   6: 2000000000,
   5: [30000000, 1500000],
-  4: 1500000,
+  4: 50000,
   3: 5000,
   2: 0,
   1: 0,
