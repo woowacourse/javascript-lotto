@@ -4,6 +4,14 @@ const validator = {
       throw new Error();
     }
   },
+
+  checkGreaterThanMin(input, min) {
+    if (input < min) throw new Error();
+  },
+
+  checkLessThanMax(input, max) {
+    if (input > max) throw new Error();
+  },
 };
 
 export default validator;
