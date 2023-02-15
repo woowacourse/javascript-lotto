@@ -173,3 +173,14 @@ describe('Validation.validateWinningNumbers', () => {
     }).toThrow(ERROR_MESSAGE.invalidLottoNumberRange);
   });
 });
+
+describe('Validation.validateBounsNumber', () => {
+  test.each(['seven', '칠', '&7&'])(
+    '보너스 번호 입력이 숫자가 아닌 경우, 에러가 발생한다.',
+    (bonusNumber) => {
+      expect(() => {
+        Validation.validateBonusNumber(bonusNumber);
+      }).toThrow(ERROR_MESSAGE.invalidInputType);
+    }
+  );
+});
