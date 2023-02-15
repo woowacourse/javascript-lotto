@@ -10,6 +10,23 @@ class LottoMachine {
   readMoney() {
     inputHandler('구입금액을 입력해 주세요.', this.#afterReadMoney);
   }
+
+  makeLottoNumbers() {
+    const lottoNumbers = Array.from({ length: 6 }).map(() =>
+      pickRandomNumberInRange(1, 45)
+    );
+
+    return lottoNumbers;
+  }
+
+  #afterReadMoney = (input) => {
+    try {
+      this.#money = new Money(input);
+      this.generateLottos(this.#money.getAmount());
+    } catch {
+      this.readMoney();
+    }
+  };
 }
 
 module.exports = LottoMachine;
