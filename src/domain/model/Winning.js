@@ -37,6 +37,20 @@ class Winning {
       throw new Error('[ERROR]');
     }
   }
+
+  #validateBonusNumber(bonusNumber) {
+    if (!utilFn.isNumber(bonusNumber)) {
+      throw new Error('[ERROR]');
+    }
+
+    if (!utilFn.isNumberInLottoRange(bonusNumber)) {
+      throw new Error('[ERROR]');
+    }
+
+    if (!utilFn.isUniqueArray([...this.#winningNumbers, bonusNumber])) {
+      throw new Error('[ERROR]');
+    }
+  }
 }
 
 module.exports = Winning;
