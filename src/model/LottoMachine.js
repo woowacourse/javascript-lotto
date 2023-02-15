@@ -70,6 +70,13 @@ class LottoMachine {
 
     return lotteryWinningsSum;
   }
+
+  rateOfProfit(lotteryWinningsSum, lottosLength) {
+    const { LOTTO_PRICE } = values;
+    const spentMoney = lottosLength * LOTTO_PRICE;
+
+    return (lotteryWinningsSum - spentMoney) / spentMoney;
+  }
 }
 
 export default LottoMachine;
