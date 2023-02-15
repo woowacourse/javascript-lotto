@@ -22,6 +22,10 @@ const Validator = {
   hasDuplication(array) {
     return array.length !== new Set(array).size;
   },
+
+  isSame(string, target) {
+    return string.toLowerCase() === target.toLowerCase();
+  },
 };
 
 export default Validator;
