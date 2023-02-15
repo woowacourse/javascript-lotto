@@ -20,6 +20,10 @@ class LottoGame {
   setWinningNumbers(numbers) {
     this.#gameLottos.winningNumbers = [...numbers];
   }
+
+  setBonusNumber(number) {
+    this.#gameLottos.bonusNumber = number;
+  }
 }
 
 export default LottoGame;
