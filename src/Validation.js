@@ -30,6 +30,11 @@ const Validation = {
     });
   },
 
+  lottoNumberSize(numbers) {
+    if (numbers.length === NUMBER.SIZE) return;
+    throw new Error(ERROR.SIZE);
+  },
+
   isDuplicated(numbers) {
     const numbersSet = new Set(numbers);
     if (numbers.length === numbersSet.size) return;

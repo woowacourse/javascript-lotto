@@ -11,6 +11,7 @@ const AMOUNT_OF_PURCHASE = (amount) => {
 const ERROR = {
   NUMBER: "[ERROR] 숫자를 입력해주세요.",
   OVER_UNIT: "[ERROR] 천 원 이상 입력해주세요.",
+  SIZE: "[ERROR] 6개를 입력해주세요.",
   RANGE: "[ERROR] 1부터 45 사이의 값을 입력하세요.",
   DUPLICATED: "[ERROR] 중복된 숫자가 있습니다.",
   DIVIDE: "[ERROR] 로또 1매 가격으로 나누어 떨어지는 금액을 입력하세요.",
@@ -21,7 +22,7 @@ const NUMBER = {
   UNIT: 1_000,
   MIN_RANGE: 1,
   MAX_RANGE: 45,
-  COUNT: 6,
+  SIZE: 6,
 };
 
 const COMMAND = {
