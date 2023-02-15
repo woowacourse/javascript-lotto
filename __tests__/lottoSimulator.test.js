@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import LottoSimulator from '../src/controller/LottoSimulator';
 import { ERROR_MESSAGE, LOTTO_STRING } from '../src/data/constants';
 test('로또 가격에 맞게 구매하기 ', () => {
