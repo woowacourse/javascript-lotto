@@ -1,5 +1,12 @@
-const PRICE_UNIT = 1000;
+const PRICE_UNIT = 1_000;
 const BLANK_REGEXP = /\s/;
 const EMPTY_STRING = '';
 
-module.exports = { PRICE_UNIT, BLANK_REGEXP, EMPTY_STRING };
+const PROFIT = Object.freeze({
+  FIRST_RANK: 2_000_000_000,
+  SECOND_RANK: 30_000_000,
+  THIRD_RANK: 1_500_000,
+  FOURTH_RANK: 50_000,
+  FIFTH_RANK: 5_000,
+});
+module.exports = { PRICE_UNIT, BLANK_REGEXP, EMPTY_STRING, PROFIT };
