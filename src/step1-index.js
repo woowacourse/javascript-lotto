@@ -26,3 +26,11 @@ export const makeLottoTickets = (numberOfTickets) => {
 export const getAscendingSortedNumbers = (numbers) => {
   return numbers.sort((a, b) => a - b);
 };
+
+export const getNumberOfMatchingLottoNumbers = (lottoTicket, winningLottoNumbers) => {
+  return (
+    lottoTicket.length +
+    winningLottoNumbers.length -
+    new Set([...lottoTicket, ...winningLottoNumbers]).size
+  );
+};
