@@ -20,6 +20,15 @@ const RANK_BY_COUNT = {
   6: RANK_1,
 };
 
+const EARNING_BY_RANK = {
+  [RANK_NONE]: 0,
+  [RANK_5]: 5_000,
+  [RANK_4]: 50_000,
+  [RANK_3]: 1_500_000,
+  [RANK_2]: 30_000_000,
+  [RANK_1]: 2_000_000_000,
+};
+
 class LottoGame {
   #lottos;
 
@@ -67,6 +76,14 @@ class LottoGame {
 
   static calculateTheChange(money) {
     return money % LOTTO_PRICE;
+  }
+
+  getEarningRate() {
+    const earningSum = Object.entries(this.#rankingBoard)
+      .reduce((acc, [rank, count]) => acc + (EARNING_BY_RANK[rank] * count), 0);
+
+    const purchaseMoney = this.#lottos.length * LOTTO_PRICE;
+    return (earningSum / purchaseMoney) * 100;
   }
 }
 
