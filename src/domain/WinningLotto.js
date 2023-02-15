@@ -8,6 +8,14 @@ class WinningLotto {
     Validation.validateNumberRange(bonusNumber);
     Validation.validateBonusNumberDistinct(lottoNumbers, bonusNumber);
   }
+
+  getLottoNumbers() {
+    return this.lotto.getLottoNumbers();
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
+  }
 }
 
 export default WinningLotto;

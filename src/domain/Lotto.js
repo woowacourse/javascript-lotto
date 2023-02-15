@@ -8,6 +8,10 @@ class Lotto {
     Validation.validateNumbersRange(this.lottoNumbers);
   }
 
+  getLottoNumbers() {
+    return this.lottoNumbers;
+  }
+
   countMatchingNumbers(winningNumbers) {
     return winningNumbers.filter((number) => this.lottoNumbers.includes(number)).length;
   }
