@@ -25,11 +25,11 @@ describe('LottoMahcine 테스트', () => {
   });
 
   test('단일 로또 당첨금액이 얼만지 확인하는 기능 테스트', () => {
-    const lottoNumber = [1, 2, 3, 4, 5, 6];
-    const targetNumber = { winningNumber: [1, 2, 3, 4, 5, 7], bonusNumber: 7 };
-    
+    const lottoNumber = [1, 2, 3, 4, 5, 7];
+    const targetNumber = { winningNumber: [1, 2, 3, 4, 5, 8], bonusNumber: 7 };
+
     const lotteryWinnings = lottoMachine.checkLotteryWinnings(lottoNumber, targetNumber);
-    
+
     expect(lotteryWinnings).toBe(30000000);
   });
 });
