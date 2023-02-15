@@ -8,6 +8,10 @@ const Validation = {
   isHigherThanLottoPrice(purchaseAmount) {
     return purchaseAmount >= LOTTO_CONDITION.lottoPrice;
   },
+
+  isDivisibleByLottoPrice(purchaseAmount) {
+    return purchaseAmount % LOTTO_CONDITION.lottoPrice === 0;
+  },
 };
 
 export default Validation;
