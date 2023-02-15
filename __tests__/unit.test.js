@@ -96,30 +96,30 @@ describe('검증하는 기능', () => {
     }
   );
 
-  test('입력값이 min 미만일 때 에러를 던진다.', () => {
-    const input = '0';
+  test('숫자가 min 미만일 때 에러를 던진다.', () => {
+    const number = 0;
     const min = 1;
 
     expect(() => {
-      validator.checkGreaterThanOrEqualMin(input, min);
+      validator.checkGreaterThanOrEqualMin(number, min);
     }).toThrow();
   });
 
-  test('입력값이 max 초과일 때 에러를 던진다.', () => {
-    const input = '46';
+  test('숫자가 max 초과일 때 에러를 던진다.', () => {
+    const number = 46;
     const max = 45;
 
     expect(() => {
-      validator.checkLessThanOrEqualMax(input, max);
+      validator.checkLessThanOrEqualMax(number, max);
     }).toThrow();
   });
 
-  test('입력값이 unit에 나누어 떨어지지 않을 때 에러를 던진다.', () => {
-    const input = '1001';
+  test('숫자가 unit에 나누어 떨어지지 않을 때 에러를 던진다.', () => {
+    const number = 1001;
     const unit = 1000;
 
     expect(() => {
-      validator.checkDivideIntoUnit(input, unit);
+      validator.checkDivideIntoUnit(number, unit);
     }).toThrow();
   });
 });
