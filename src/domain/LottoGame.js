@@ -1,5 +1,5 @@
-import Lotto from "./Lotto";
-import generateRandomNumbersInRange from "../utils/RandomNumberGenerator";
+import Lotto from "./Lotto.js";
+import generateRandomNumbersInRange from "../utils/RandomNumberGenerator.js";
 
 class LottoGame {
   #userLottos;

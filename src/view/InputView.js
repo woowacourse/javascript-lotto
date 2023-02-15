@@ -1,5 +1,5 @@
-import { ConsoleMessage } from '../constants/Constants';
-import Console from '../utils/Console';
+import { ConsoleMessage } from '../constants/Constants.js';
+import Console from '../utils/Console.js';
 
 const InputView = {
   readPurchaseAmount() {

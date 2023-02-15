@@ -1,4 +1,4 @@
-import { StaticValue, ErrorMessage } from "../constants/Constants";
+import { StaticValue, ErrorMessage } from "../constants/Constants.js";
 
 const Validation = {
   checkPurchaseAmount(money) {
