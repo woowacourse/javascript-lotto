@@ -1,4 +1,4 @@
-import LottoGame from '../src/domain/LottoGame';
+import LottoGame from '../src/domain/LottoGame.js';
 
 describe('거스름돈 계산하기', () => {
   test('구입 금액 8700인 경우', () => {

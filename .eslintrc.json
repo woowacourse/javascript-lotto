@@ -14,6 +14,7 @@
     "rules": {
         "linebreak-style": ["warn", "windows"],
         "no-console": "off",
-        "no-param-reassign": ["warn", { "props": false }]
+        "no-param-reassign": ["warn", { "props": false }],
+        "import/extensions": ["error", "always"]
     }
 }

@@ -1,4 +1,4 @@
-import Lotto from '../src/domain/Lotto';
+import Lotto from '../src/domain/Lotto.js';
 
 const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 

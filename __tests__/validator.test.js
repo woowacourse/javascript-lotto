@@ -1,4 +1,4 @@
-import Validator from '../src/util/Validator';
+import Validator from '../src/util/Validator.js';
 
 describe('숫자가 자연수가 맞는지 확인하는 기능', () => {
   test.each(['1004', '1', '+3000'])('%s은(는) true를 반환한다', (input) => {
