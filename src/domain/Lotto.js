@@ -16,6 +16,13 @@ class Lotto {
     return [...this.#numbers];
   }
 
+  getMatchStatus({ winningNumbers, bonusNumber }) {
+    const MATCH_COUNT = this.getMatchCount(winningNumbers);
+    const BONUS_MATCH = this.hasBonusNumber(bonusNumber);
+
+    return { MATCH_COUNT, BONUS_MATCH };
+  }
+
   getMatchCount(winningNumbers) {
     return this.#numbers.filter((number) => winningNumbers.includes(number))
       .length;
