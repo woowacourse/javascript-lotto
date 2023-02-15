@@ -8,7 +8,13 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  getRank(luckyNumbers, bonusNumber) {}
+  getRank(luckyNumbers, bonusNumber) {
+    const matchCount = NumberHandler.getMatchCount(this.#numbers, luckyNumbers);
+
+    if (matchCount === 5 && this.hasBonusNumber(bonusNumber)) return 2;
+
+    return RANKING_TABLE[matchCount];
+  }
 
   hasBonusNumber(bonusNumber) {
     return this.#numbers.includes(bonusNumber);
