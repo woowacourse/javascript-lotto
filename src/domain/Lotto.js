@@ -11,6 +11,10 @@ class Lotto {
     return ((LOTTO_SIZE * 2)
       - new Set([...this.#numbers, ...winningNumbers]).size);
   }
+
+  includes(bonusNumber) {
+    return this.#numbers.has(bonusNumber);
+  }
 }
 
 export default Lotto;
