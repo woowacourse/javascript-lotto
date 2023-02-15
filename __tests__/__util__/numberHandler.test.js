@@ -1,10 +1,22 @@
 import NumberHandler from "../../src/util/NumberHandler.js";
 
 describe("NumberHandler 테스트", () => {
-  test("번호 6개가 일치하는 경우 6을 리턴한다.", () => {
-    const numbers = [1, 2, 3, 4, 5, 6];
-    const targetNumbers = [1, 2, 3, 4, 5, 6];
+  const targetNumbers = [1, 2, 3, 4, 5, 6];
 
-    expect(NumberHandler.getMatchCount(numbers, targetNumbers)).toBe(6);
-  });
+  test.each([
+    [[1, 2, 3, 4, 5, 6], 6],
+    [[1, 2, 3, 4, 5, 7], 5],
+    [[1, 2, 3, 4, 8, 7], 4],
+    [[1, 2, 3, 9, 8, 7], 3],
+    [[1, 2, 10, 9, 8, 7], 2],
+    [[1, 11, 10, 9, 8, 7], 1],
+    [[12, 11, 10, 9, 8, 7], 0],
+  ])(
+    "getMatchCount 테스트) 두 배열의 동일한 숫자 개수를 리턴한다. ",
+    (lottoNumbers, matchCount) => {
+      expect(NumberHandler.getMatchCount(lottoNumbers, targetNumbers)).toBe(
+        matchCount
+      );
+    }
+  );
 });
