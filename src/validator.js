@@ -15,8 +15,8 @@ const validator = {
     if (number % unit !== 0) throw new Error();
   },
 
-  checkDuplication(numbers) {
-    if (new Set(numbers).size !== numbers.length) throw new Error();
+  checkDuplication(array) {
+    if (new Set(array).size !== array.length) throw new Error();
   },
 };
 
