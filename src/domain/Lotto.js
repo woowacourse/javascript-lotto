@@ -12,13 +12,16 @@ class Lotto {
   makeLotto() {
     const number = this.countLotto(this.lottoMoney);
     this.lottoNumber = Array.from({ length: number }, () => this.randomNumberLotto());
+  }
 
+  sortedNumber(number) {
+    return number.sort((a, b)=>a-b)
   }
 
   randomNumberLotto() {
     const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 46)
     );
-    if (this.compareSameNumberInLotto(randomNumber)) return randomNumber;
+    if (this.compareSameNumberInLotto(randomNumber)) return this.sortedNumber(randomNumber);
     this.randomNumberLotto();
   }
 
