@@ -10,7 +10,7 @@ class LottoMachine {
       if (!lottoNumbers.includes(number)) lottoNumbers.push(number);
     }
 
-    return lottoNumbers;
+    return lottoNumbers.sort((a, b) => a - b);
   }
 }
 
