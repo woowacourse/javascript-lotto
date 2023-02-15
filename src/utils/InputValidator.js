@@ -1,6 +1,7 @@
 const InputValidator = {
   checkNaturalNumber(input) {
-    const regExp = /^[0-9]$/g;
+    const regExp = /^[0-9]+$/g;
+    console.log(input.match(regExp));
     if (!input.match(regExp)) {
       throw new Error('입력값이 자연수가 아닙니다.');
     }
