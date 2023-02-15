@@ -45,7 +45,7 @@
      - 당첨 번호에서 중복된 당첨 번호가 있는지, 로또 숫자 범위의 값인지, 정수인지 확인한다. (validateWinningNumbers())
      - 보너스 번호가 당첨 번호와 중복인지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateBonusNumber())
 
-3. Yield
+3. Benefit
 
    - field
      - 수익률을 가진다. (rate)
@@ -54,6 +54,7 @@
      - 수익률을 계산한다. calculateRate()
 
 4. Money
+
    - field
      - 구매 금액을 가진다. (amount)
    - method
@@ -87,7 +88,7 @@
 
 1. InputView
 
-   - 필요한 값을 입력받는다. inputHandler())
+   - 필요한 값을 입력받는다. (inputHandler())
 
 2. OutputView
    - 구매한 로또의 장수를 출력한다. (printLottoCount())
@@ -106,10 +107,11 @@
 2. index.js
 
    - 범위 내의 무작위 숫자를 생성한다. (pickRandomNumberInRange())
-   - 정수인지. (isInteger())
+
    - 숫자인지. (isNumber())
-   - 범위 내의 숫자인지. (isNumberInRange())
+   - 로또 범위 내의 숫자인지. (isNumberInLottoRange())
    - 배열에 중복된 숫자가 없는지. (isUniqueArray())
+
    - 사용자가 잘못된 입력을 했을 때, 에러문을 출력하고 입력을 다시 받는다. (errorHandler())
 
 ## constant
