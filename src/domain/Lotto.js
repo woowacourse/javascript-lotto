@@ -2,7 +2,6 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validateLotto(numbers);
     this.#numbers = this.sort(numbers);
   }
 
@@ -12,10 +11,6 @@ class Lotto {
 
   sort(numbers) {
     return numbers.sort((a, b) => a - b);
-  }
-
-  validateLotto(numbers) {
-    if (numbers.some((num) => 1 > num || num > 45)) throw new Error();
   }
 }
 

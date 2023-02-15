@@ -1,17 +1,15 @@
 const Lotto = require("./Lotto");
 
+const Price = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 50000 };
+
 class WinLotto extends Lotto {
   #bonusNumber;
 
-  constructor(numbers, bonusNumber) {
+  constructor(numbers) {
     super(numbers);
-    this.validateBonusNumber(bonusNumber);
-    this.#bonusNumber = bonusNumber;
   }
-
-  validateBonusNumber(bonusNumber) {
-    if (1 > bonusNumber || bonusNumber > 45) throw new Error();
-    if (super.numbers.includes(bonusNumber)) throw new Error();
+  set bonusNumber(bonusNumber) {
+    this.#bonusNumber = bonusNumber;
   }
 
   //calculateWinLotto(lottos){
@@ -22,8 +20,16 @@ class WinLotto extends Lotto {
   // });
   // }
   //}
+  calculateWinLotto(lottos) {
+    lottos.forEach((lotto) => {
+      const rank = this.calculateRank(lotto.numbers);
+      RevenueResult[rank] += 1;
+    });
 
-  calculateWinLotto(lotto) {
+    return;
+  }
+
+  calculateRank(lotto) {
     const sameNumbers = lotto.numbers.filter((num) =>
       super.numbers.includes(num)
     );
@@ -39,7 +45,5 @@ class WinLotto extends Lotto {
     return this.#bonusNumber;
   }
 }
-
-[];
 
 module.exports = WinLotto;
