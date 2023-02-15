@@ -27,6 +27,10 @@ const Validation = {
   isDivisibleByLottoPrice(purchaseAmount) {
     return purchaseAmount % LOTTO_CONDITION.lottoPrice === 0;
   },
+
+  isValidWinningNumbersLength(winningNumbers) {
+    return winningNumbers.length === LOTTO_CONDITION.lottoDigits;
+  },
 };
 
 export default Validation;
