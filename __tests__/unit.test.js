@@ -130,4 +130,13 @@ describe('검증하는 기능', () => {
       validator.checkDuplication(array);
     }).toThrow();
   });
+
+  test('배열의 길이가 length가 아니면 에러를 던진다.', () => {
+    const array = [1, 2, 3, 4, 5];
+    const length = 6;
+
+    expect(() => {
+      validator.checkArrayLength(array, length);
+    }).toThrow();
+  });
 });
