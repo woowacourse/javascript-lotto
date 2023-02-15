@@ -7,7 +7,12 @@ class LottoGameController {
   #lottoGame = new LottoGame();
 
   async setupGame() {
+    await this.#requestPurchaseAmount();
+  }
+
+  async #requestPurchaseAmount() {
     const PURCHASE_AMOUNT = await InputView.readPurchaseAmount();
+
     try {
       Validation.checkPurchaseAmount(PURCHASE_AMOUNT);
       this.#lottoGame.generateUserLottos(PURCHASE_AMOUNT / 1000);
@@ -17,4 +22,5 @@ class LottoGameController {
     }
   }
 }
+
 export default LottoGameController;
