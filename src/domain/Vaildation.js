@@ -31,6 +31,10 @@ const Validation = {
   isValidWinningNumbersLength(winningNumbers) {
     return winningNumbers.length === LOTTO_CONDITION.lottoDigits;
   },
+
+  hasOnlyNumber(winningNumbers) {
+    return winningNumbers.every((winningNumber) => Number.isInteger(winningNumber));
+  },
 };
 
 export default Validation;
