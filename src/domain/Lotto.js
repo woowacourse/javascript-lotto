@@ -5,7 +5,7 @@ class Lotto {
     this.lottoNumbers = lottoNumbers;
     Validation.validateDistinctNumbers(this.lottoNumbers);
     Validation.validateNumberArray(this.lottoNumbers);
-    Validation.validateNumberRange(this.lottoNumbers);
+    Validation.validateNumbersRange(this.lottoNumbers);
   }
 
   countMatchingNumbers(winningNumbers) {
