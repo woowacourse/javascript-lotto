@@ -40,7 +40,7 @@ const Validation = {
   checkLottoNumberRange(lotto) {
     lotto.forEach((number) => {
       if (number < 1 || number > 45) {
-        throw new Error(ErrorMessage.LOTTO_RANGE);
+        throw new Error(ErrorMessage.LOTTO_VALUE);
       }
     });
   },

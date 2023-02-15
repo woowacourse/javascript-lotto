@@ -33,7 +33,7 @@ describe("사용자 로또 클래스 테스트", () => {
     ];
 
     NUMBERS.forEach((numbers) => {
-      expect(() => new Lotto(numbers)).toThrow(ErrorMessage.LOTTO_RANGE);
+      expect(() => new Lotto(numbers)).toThrow(ErrorMessage.LOTTO_VALUE);
     });
   });
 
