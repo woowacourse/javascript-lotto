@@ -1,4 +1,5 @@
 import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 import Validation from './Vaildation.js';
 
 export default class LottoGameController {
@@ -8,6 +9,15 @@ export default class LottoGameController {
 
   async #requestPurchaseAmount() {
     const purchaseAmount = await InputView.readPurchaseAmount();
-    Validation.isValidPurchaseAmount(purchaseAmount);
+
+    try {
+      Validation.isValidPurchaseAmount(purchaseAmount);
+
+      return Number(purchaseAmount);
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+
+      return this.#requestPurchaseAmount();
+    }
   }
 }
