@@ -57,7 +57,7 @@ export const checkDuplicates = (winningLottoNumbers) => {
   }
 };
 
-export const checkBetween1And45 = (winningLottoNumbers) => {
+export const checkLottoNumbersBetween1And45 = (winningLottoNumbers) => {
   if (!winningLottoNumbers.every((number) => number >= 1 && number <= 45)) {
     throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해 주세요.");
   }
@@ -66,5 +66,17 @@ export const checkBetween1And45 = (winningLottoNumbers) => {
 export const checkListLengthIsSix = (winningLottoNumbers) => {
   if (winningLottoNumbers.length !== 6) {
     throw new Error("[ 에러 ] 6개의 로또 번호를 입력해 주세요.");
+  }
+};
+
+export const checkBonusNumberDuplicate = (bonusNumber, winningLottoNumbers) => {
+  if (winningLottoNumbers.includes(bonusNumber)) {
+    throw new Error("[ 에러 ] 로또 번호와 중복되지 않게 보너스 번호를 입력해 주세요.");
+  }
+};
+
+export const checkBonusNumberBetween1And45 = (bonusNumber) => {
+  if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
+    throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해 주세요.");
   }
 };

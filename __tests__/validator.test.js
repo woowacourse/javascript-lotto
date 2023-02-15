@@ -2,8 +2,10 @@ import {
   checkPurchaseAmount,
   checkInteger,
   checkDuplicates,
-  checkBetween1And45,
+  checkBonusNumberBetween1And45,
   checkListLengthIsSix,
+  checkBonusNumberDuplicate,
+  checkLottoNumbersBetween1And45,
 } from "../src/step1-index";
 
 test.each([
@@ -55,8 +57,8 @@ test.each([
   "로또 번호(%p) 중 1 ~ 45 사이가 아닌 숫자가 있을 경우 에러를 반환한다.",
   (winningLottoNumbers, expected) => {
     expected
-      ? expect(() => checkBetween1And45(winningLottoNumbers)).not.toThrow()
-      : expect(() => checkBetween1And45(winningLottoNumbers)).toThrow();
+      ? expect(() => checkLottoNumbersBetween1And45(winningLottoNumbers)).not.toThrow()
+      : expect(() => checkLottoNumbersBetween1And45(winningLottoNumbers)).toThrow();
   }
 );
 
@@ -68,4 +70,27 @@ test.each([
   expected
     ? expect(() => checkListLengthIsSix(winningLottoNumbers)).not.toThrow()
     : expect(() => checkListLengthIsSix(winningLottoNumbers)).toThrow();
+});
+
+test.each([
+  [6, [1, 2, 3, 4, 5, 6], false],
+  [7, [1, 2, 3, 4, 5, 6], true],
+])(
+  "보너스 번호(%i)가 로또 당첨 번호(%p)와 중복되면 에러를 반환한다.",
+  (bonusNumber, winningLottoNumbers, expected) => {
+    expected
+      ? expect(() => checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers)).not.toThrow()
+      : expect(() => checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers)).toThrow();
+  }
+);
+
+test.each([
+  [0, false],
+  [46, false],
+  [1, true],
+  [45, true],
+])("보너스 번호(%i)가 1 ~ 45 사이가 아닌 경우 에러를 반환한다.", (bonusNumber, expected) => {
+  expected
+    ? expect(() => checkBonusNumberBetween1And45(bonusNumber)).not.toThrow()
+    : expect(() => checkBonusNumberBetween1And45(bonusNumber)).toThrow();
 });
