@@ -1,5 +1,5 @@
 const LottoMachine = {
-  generateLotto: (price) => {},
+  generateLotto: price => {},
 };
 
 export default LottoMachine;

@@ -1,5 +1,5 @@
-import ArrayHandler from "../util/ArrayHandler.js";
-import RANKING_TABLE from "../constant/rankingTable.js";
+import ArrayHandler from '../util/ArrayHandler.js';
+import RANKING_TABLE from '../constant/rankingTable.js';
 
 class Lotto {
   #numbers;
