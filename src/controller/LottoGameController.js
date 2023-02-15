@@ -1,7 +1,6 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import LottoMachine from '../domain/LottoMachine.js';
-
+import LottoGame from '../domain/LottoGame.js';
 const LottoGameController = {
   data: {
     price: 0,
@@ -15,7 +14,7 @@ const LottoGameController = {
 
   async init() {
     this.data.price = await InputView.readLottoPrice();
-    console.log(LottoMachine.generateLottos(this.data.price));
+    const lottoGame = new LottoGame(this.data.price);
   },
 };
 
