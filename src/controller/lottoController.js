@@ -59,7 +59,7 @@ const LottoController = {
       if (!this.validateBonusNumber(winLotto, bonusNumber)) throw new Error();
       return bonusNumber;
     } catch (e) {
-      return this.readBonusNumber();
+      return this.readBonusNumber(winLotto);
     }
   },
 
