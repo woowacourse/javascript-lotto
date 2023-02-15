@@ -11,6 +11,7 @@ class LottoGameController {
     await this.#handlePurchaseAmount();
     this.#handleUserLottos();
     await this.#handleWinningNumbers();
+    await this.#handleBonusNumber()
   }
 
   async #handlePurchaseAmount() {
@@ -34,13 +35,25 @@ class LottoGameController {
 
   async #handleWinningNumbers() {
     const WINNING_NUMBERS_INPUT = await InputView.readWinningNumbers();
-    const WINNING_NUMBERS = WINNING_NUMBERS_INPUT.split(',').map(Number);
+    const WINNING_NUMBERS = WINNING_NUMBERS_INPUT.split(",").map(Number);
 
     try {
       Validation.checkLottoNumber(WINNING_NUMBERS);
       this.#lottoGame.setWinningNumbers(WINNING_NUMBERS);
     } catch (error) {
-      this.#rerequestInput(error.message, this.#handleWinningNumbers)
+      this.#rerequestInput(error.message, this.#handleWinningNumbers);
+    }
+  }
+
+  async #handleBonusNumber() {
+    const BONUS_NUMBER_INPUT = await InputView.readBonusNumber();
+    const BONUS_NUMBER = Number(BONUS_NUMBER_INPUT);
+
+    try {
+      Validation.checkBonusNumber(BONUS_NUMBER);
+      this.#lottoGame.setBonusNumber(BONUS_NUMBER);
+    } catch (error) {
+      this.#rerequestInput(error.message, this.#handleBonusNumber)
     }
   }
 
