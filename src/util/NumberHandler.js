@@ -1,7 +1,3 @@
-const NumberHandler = {
-  getMatchCount(numbers, targetNumbers) {
-    return numbers.filter((number) => targetNumbers.includes(number)).length;
-  },
-};
+const NumberHandler = {};
 
 export default NumberHandler;

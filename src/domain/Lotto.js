@@ -1,4 +1,4 @@
-import NumberHandler from "../util/NumberHandler.js";
+import ArrayHandler from "../util/ArrayHandler.js";
 import RANKING_TABLE from "../constant/rankingTable.js";
 
 class Lotto {
@@ -9,7 +9,7 @@ class Lotto {
   }
 
   getRank(luckyNumbers, bonusNumber) {
-    const matchCount = NumberHandler.getMatchCount(this.#numbers, luckyNumbers);
+    const matchCount = ArrayHandler.getMatchCount(this.#numbers, luckyNumbers);
 
     if (matchCount === 5 && this.hasBonusNumber(bonusNumber)) return 2;
 
