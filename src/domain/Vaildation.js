@@ -2,7 +2,7 @@ import { LOTTO_CONDITION } from '../constants/condition.js';
 import { ERROR_MESSAGE } from '../constants/message.js';
 
 const Validation = {
-  isValidPurchaseAmount(purchaseAmount) {
+  validatePurchaseAmount(purchaseAmount) {
     if (!this.isNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }

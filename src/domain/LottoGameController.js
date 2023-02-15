@@ -34,7 +34,7 @@ export default class LottoGameController {
     const purchaseAmount = await InputView.readPurchaseAmount();
 
     try {
-      Validation.isValidPurchaseAmount(purchaseAmount);
+      Validation.validatePurchaseAmount(purchaseAmount);
 
       return Number(purchaseAmount);
     } catch ({ message }) {
