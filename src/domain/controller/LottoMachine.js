@@ -54,6 +54,12 @@ class LottoMachine {
       this.readWinningNumbers();
     }
   };
+
+  showLottos() {
+    this.#lottos.forEach((lotto) => {
+      outputView.printLotto(lotto);
+    });
+  }
 }
 
 module.exports = LottoMachine;
