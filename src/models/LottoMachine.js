@@ -12,6 +12,18 @@ class LottoMachine {
 
     return lottoNumbers.sort((a, b) => a - b);
   }
+
+  calculateReward(rankings) {
+    const rewardMap = {
+      1: 2000000000,
+      2: 30000000,
+      3: 1500000,
+      4: 50000,
+      5: 5000,
+    };
+
+    return rankings.reduce((acc, cur) => (acc += cur === 0 ? 0 : rewardMap[cur]), 0);
+  }
 }
 
 export default LottoMachine;
