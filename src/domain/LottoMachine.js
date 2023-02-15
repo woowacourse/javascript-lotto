@@ -1,4 +1,4 @@
-class LottoGame {
+class LottoMachine {
   #lottos = [];
 
   validatePurchasePrice(purchasePrice) {
@@ -26,4 +26,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+module.exports = LottoMachine;
