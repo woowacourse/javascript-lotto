@@ -15,4 +15,4 @@ const correctCountsToMoney = deepFreeze({
   0: 0,
 });
 
-export default { values, correctCountsToMoney };
+export { values, correctCountsToMoney };
