@@ -30,7 +30,7 @@ class WinningLotto extends Lotto {
     if (sameElementCount === 5) return 3;
     if (sameElementCount === 4) return 4;
     if (sameElementCount === 3) return 5;
-    return -1;
+    return 0;
   }
 
   #validateBonusNumber(lottoNumber, bonusNumber) {

@@ -18,6 +18,14 @@ class LottoGame {
     this.#winningLotto = new WinningLotto(lottoNumber, bonusNumber);
   }
 
+  getWinningMoney() {
+    const prize = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    return this.#lottos.reduce((money, lotto) => {
+      const rank = this.#winningLotto.calculateRank(lotto);
+      return money + prize[rank];
+    }, 0);
+  }
+
   #validateMoneyInput(money) {
     Validator.validateNumberType(money);
     Validator.validateExactUnit(money, 1000);
