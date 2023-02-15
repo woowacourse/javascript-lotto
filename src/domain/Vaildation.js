@@ -35,6 +35,14 @@ const Validation = {
   hasOnlyNumber(winningNumbers) {
     return winningNumbers.every((winningNumber) => Number.isInteger(winningNumber));
   },
+
+  isValidWinningNumberRange(winningNumbers) {
+    return winningNumbers.every(
+      (winningNumber) =>
+        LOTTO_CONDITION.lottoNumberMinRange <= winningNumber &&
+        winningNumber <= LOTTO_CONDITION.lottoNumberMaxRange
+    );
+  },
 };
 
 export default Validation;
