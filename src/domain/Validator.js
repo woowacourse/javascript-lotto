@@ -5,7 +5,7 @@ const Validator = {
   },
 
   validateLottoNumberDuplicated(lottoNumber) {
-    if (lottoNumber.length !== [...new Set(lottoNumber)])
+    if (lottoNumber.length !== new Set(lottoNumber).size)
       throw new Error(
         "[ERROR] 로또 번호는 서로 중복되지 않는 값이어야 합니다."
       );

@@ -14,6 +14,15 @@ test("로또 객체를 생성하면 로또 번호가 저장된다.", () => {
   expect(lotto.getLottoNumber()).toEqual([1, 2, 3, 4, 5, 6]);
 });
 
+test("당첨 로또 객체를 생성하면 당첨 로또 번호와 보너스 번호가 저장된다.", () => {
+  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+
+  const winningLottoNumber = winningLotto.getLottoNumber();
+  const bonusNumber = winningLotto.getBonusNumber();
+
+  expect([winningLottoNumber, bonusNumber]).toEqual([[1, 2, 3, 4, 5, 6], 7]);
+});
+
 test("로또 번호는 6자리이다.", () => {
   expect(() => {
     Validator.validateLottoNumberLength([1, 2, 3, 4, 5, 6, 7]);
@@ -65,15 +74,6 @@ test("입력한 명령어가 지정된 명령어 리스트에 포함되어있어
 test("당첨 번호 문자열을 숫자 배열로 파싱한다", () => {
   const lottoNumbers = parseToNumberTypeArray("11 ,2 , 44,  29  ,3 ,6");
   expect(lottoNumbers).toEqual([11, 2, 44, 29, 3, 6]);
-});
-
-test("당첨 로또 객체를 생성하면 당첨 로또 번호와 보너스 번호가 저장된다.", () => {
-  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-
-  const winningLottoNumber = winningLotto.getLottoNumber();
-  const bonusNumber = winningLotto.getBonusNumber();
-
-  expect([winningLottoNumber, bonusNumber]).toEqual([[1, 2, 3, 4, 5, 6], 7]);
 });
 
 test("길이 값을 넣으면 중복되지 않은 숫자 배열을 반환한다.", () => {

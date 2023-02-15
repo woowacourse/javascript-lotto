@@ -1,13 +1,21 @@
-class Lotto{
-    #lottoNumber;
-    
-    constructor(lottoNumber){
-        this.#lottoNumber = [...lottoNumber];
-    }
+import Validator from "./Validator.js";
 
-    getLottoNumber(){
-        return [...this.#lottoNumber];
-    }
+class Lotto {
+  #lottoNumber;
+
+  constructor(lottoNumber) {
+    this.#validateLottoNumber(lottoNumber);
+    this.#lottoNumber = [...lottoNumber];
+  }
+
+  getLottoNumber() {
+    return [...this.#lottoNumber];
+  }
+
+  #validateLottoNumber(lottoNumber) {
+    Validator.validateLottoNumberDuplicated(lottoNumber);
+    Validator.validateLottoNumberRange(lottoNumber);
+  }
 }
 
 export default Lotto;

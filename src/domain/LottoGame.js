@@ -1,16 +1,21 @@
 import Validator from "./Validator.js";
 import Lotto from "./Lotto.js";
 import getRandomNumberArray from "../utils/getRandomNumberArray.js";
-import functionPipe from "../utils/functionPipe.js";
+import WinningLotto from "./WinningLotto.js";
 
 class LottoGame {
   #lottos = [];
+  #winningLotto;
 
   purchaseLottos(money) {
     this.#validateMoneyInput(money);
     const lottoAmount = this.#getLottoAmount(money);
     const lottos = this.#getLottos(lottoAmount);
     this.#lottos = lottos;
+  }
+
+  generateWinningLotto(lottoNumber, bonusNumber) {
+    this.#winningLotto = new WinningLotto(lottoNumber, bonusNumber);
   }
 
   #validateMoneyInput(money) {
