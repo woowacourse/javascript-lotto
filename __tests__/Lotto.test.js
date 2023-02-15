@@ -79,20 +79,11 @@ describe("사용자 로또 클래스 테스트", () => {
       [1, 2, 3, 4, 5, 6],
     ];
 
-    const RANK = [
-      { MATCH_COUNT: 0, BONUS_MATCH: false },
-      { MATCH_COUNT: 1, BONUS_MATCH: false },
-      { MATCH_COUNT: 2, BONUS_MATCH: false },
-      { MATCH_COUNT: 3, BONUS_MATCH: false },
-      { MATCH_COUNT: 4, BONUS_MATCH: false },
-      { MATCH_COUNT: 5, BONUS_MATCH: false },
-      { MATCH_COUNT: 5, BONUS_MATCH: true },
-      { MATCH_COUNT: 6, BONUS_MATCH: false },
-    ];
+    const MATCH_NUMBER = [0,1,2,3,4,5,5.5,6];
 
     USER_LOTTOS.forEach((userLotto, index) => {
       const lotto = new Lotto(userLotto);
-      expect(lotto.getMatchState(GAME_LOTTO)).toEqual(RANK[index]);
+      expect(lotto.getMatchState(GAME_LOTTO)).toBe(MATCH_NUMBER[index]);
     });
   });
 });
