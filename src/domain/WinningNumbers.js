@@ -14,10 +14,17 @@ class WinningNumbers {
         '[ERROR] 로또 당첨 번호는 1 ~ 45 범위 내에서만 가능합니다.'
       );
     }
+    if (this.#isDuplicateFor(winningNumbers)) {
+      throw new Error('[ERROR] 당첨 번호가 중복이 되면 안됩니다. ');
+    }
   }
 
   #isLottoNumber(number) {
     return number >= 1 && number <= 45;
+  }
+
+  #isDuplicateFor(winningNumbers) {
+    return new Set(winningNumbers.split(',')).size !== 6;
   }
 
   #isLottoNumbersLength(winningNumbers) {
