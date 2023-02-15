@@ -11,7 +11,7 @@ const OutputView = {
     console.log(result);
   },
 
-  printRevenueResult(rankResult) {
+  printRankResult(rankResult) {
     console.log("당첨 통계");
     console.log("-------------------");
     console.log(`3개 일치 (5,000원) -${rankResult[5]}개`);
@@ -21,6 +21,10 @@ const OutputView = {
       `5개 일치, 보너스 볼 일치 (30,000,000원) -  -${rankResult[2]}개`
     );
     console.log(`6개 일치 (2,000,000,000원) -  -${rankResult[1]}개`);
+  },
+
+  printRevenue(revenue) {
+    console.log(`총 수익률은 ${revenue}%입니다.`);
   },
 };
 

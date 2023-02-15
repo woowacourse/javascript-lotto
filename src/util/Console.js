@@ -11,6 +11,10 @@ const Console = {
       rl.question(inputMessage, (answer) => resolve(answer));
     });
   },
+
+  close() {
+    rl.close();
+  },
 };
 
 module.exports = Console;
