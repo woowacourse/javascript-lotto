@@ -50,4 +50,8 @@ export default class LottoGameController {
     const eachLottoNumbers = this.#lottoGame.getEachLottoNumbers();
     OutputView.printEachLottoNumbers(eachLottoNumbers);
   }
+
+  async #requestWinningNumbers() {
+    const winningNumbersInput = await InputView.readWinningNumbers();
+  }
 }
