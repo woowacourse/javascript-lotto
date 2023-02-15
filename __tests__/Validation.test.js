@@ -24,25 +24,74 @@ describe("Validation 테스트", () => {
     });
   });
 
-  test('값이 숫자가 아닌 문자를 포함하는 경우 예외 발생', () => {
-    const PURCHASE_AMOUNT = ['A1', '2B', ' ', '', 'ABC', '1 2 3'];
+  test("값이 숫자가 아닌 문자를 포함하는 경우 예외 발생", () => {
+    const PURCHASE_AMOUNT = ["A1", "2B", " ", "", "ABC", "1 2 3"];
 
     PURCHASE_AMOUNT.forEach((amount) => {
       expect(() => Validation.checkMoneyInputType(amount)).toThrow(
         ErrorMessage.MONEY_INPUT_TYPE
-      )
-    })
+      );
+    });
   });
 
-  describe('당첨 번호 입력값 예외 테스트', () => { 
-    test('숫자가 아닌 문자를 입력한 경우 예외 발생', () => {
-      const INPUTS = ['1,2,3,4,1A,5', '5,6,7,A1,8,9', '1,,2,4,5,6', '1, ,2,3,4,5'];
+  describe("당첨 번호 입력값 예외 테스트", () => {
+    test("숫자가 아닌 문자를 입력한 경우 예외 발생", () => {
+      const INPUTS = [
+        "1,2,3,4,1A,5",
+        "5,6,7,A1,8,9",
+        "1,,2,4,5,6",
+        "1, ,2,3,4,5",
+      ];
 
       INPUTS.forEach((input) => {
-        const NUMBERS = input.split(',').map(Number);
+        const NUMBERS = input.split(",").map(Number);
 
-        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
-      })
+        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(
+          ErrorMessage.LOTTO_VALUE
+        );
+      });
     });
-   })
+
+    test("로또 번호 갯수가 6개가 아닐 때 에러가 발생한다.", () => {
+      const INPUTS = [
+        "1,2,3,4,5",
+        "5,6,7",
+        "1",
+        "1,4,5",
+        "1,2,3,4,5,6,7,8,9,10",
+      ];
+
+      INPUTS.forEach((input) => {
+        const NUMBERS = input.split(",").map(Number);
+
+        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(
+          ErrorMessage.LOTTO_LENGTH
+        );
+      });
+    });
+
+    test("로또 번호들이 1~45 사이의 숫자가 아니면 에러가 발생한다.", () => {
+      const INPUTS = ["1,2,3,4,5,90", "100,101,102,103,104,105"];
+
+      INPUTS.forEach((input) => {
+        const NUMBERS = input.split(",").map(Number);
+
+        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(
+          ErrorMessage.LOTTO_VALUE
+        );
+      });
+    });
+
+    test("로또 번호가 중복되면 에러가 발생한다.", () => {
+      const INPUTS = ["1,2,3,4,5,5", "33,33,33,1,2,3"];
+
+      INPUTS.forEach((input) => {
+        const NUMBERS = input.split(",").map(Number);
+
+        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(
+          ErrorMessage.LOTTO_DUPLICATE
+        );
+      });
+    });
+  });
 });
