@@ -39,4 +39,16 @@ export const LottoStore = {
 
     return awards.length === 5 && numbers.includes(bonusNumber) ? 'BONUS' : String(awards.length);
   },
+
+  calculateStatistics(lottoList) {
+    const statistics = {};
+
+    lottoList.forEach((lotto) => {
+      const result = LottoStore.draw(lotto);
+
+      statistics[result] ? (statistics[result] += 1) : (statistics[result] = 1);
+    });
+
+    return statistics;
+  },
 };

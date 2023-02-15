@@ -27,4 +27,14 @@ describe('로또', () => {
 
     expect(result).toBe('6');
   });
+
+  test('당첨 통계를 계산한다', () => {
+    const lottoList = generateLotto(5);
+
+    const statistics = LottoStore.calculateStatistics(lottoList);
+
+    expect(statistics).toEqual({
+      6: 5,
+    });
+  });
 });
