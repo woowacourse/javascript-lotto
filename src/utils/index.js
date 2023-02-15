@@ -7,4 +7,10 @@ const inputValidator = {
   },
 };
 
-module.exports = inputValidator;
+const pickRandomNumberInRange = (start, end) => {
+  return (
+    Math.floor(Math.random() * (end + 1 - Math.ceil(start))) + Math.ceil(start)
+  );
+};
+
+module.exports = { pickRandomNumberInRange, inputValidator };
