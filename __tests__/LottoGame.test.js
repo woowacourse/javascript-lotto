@@ -55,3 +55,5 @@ test.each([
 
   expect(lottoGame.getRank(matchedCount, hasBonusNumber)).toBe(rank);
 });
+
+describe('당첨 결과 반환 테스트', () => {});
