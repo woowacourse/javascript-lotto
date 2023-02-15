@@ -2,6 +2,7 @@ import Lotto from "../src/domain/Lotto.js";
 import WinningLotto from "../src/domain/WinningLotto.js";
 import Validator from "../src/domain/Validator.js";
 import parseToNumberTypeArray from "../src/utils/parseToNumberTypeArray.js";
+import getRandomNumberArray from "../src/utils/getRandomNumberArray.js";
 
 test("로또 객체를 생성하면 로또 번호가 저장된다.", () => {
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
@@ -63,4 +64,15 @@ test("당첨 로또 객체를 생성하면 당첨 로또 번호와 보너스 번
   const bonusNumber = winningLotto.getBonusNumber();
 
   expect([winningLottoNumber, bonusNumber]).toEqual([[1, 2, 3, 4, 5, 6], 7]);
+});
+
+test("길이 값을 넣으면 중복되지 않은 숫자 배열을 반환한다.", () => {
+  const randomNumberArray = getRandomNumberArray(6);
+
+  const arrayLength = randomNumberArray.length;
+  const isArrayValueDuplicated =
+    randomNumberArray.length === [...new Set(randomNumberArray)].length;
+
+  expect(arrayLength).toBe(6);
+  expect(isArrayValueDuplicated).toBeTruthy();
 });
