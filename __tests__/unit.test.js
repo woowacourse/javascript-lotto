@@ -1,4 +1,5 @@
 import generateRandomNumber from '../src/generateRandomNumber';
+import Lotto from '../src/models/Lotto';
 import LottoMachine from '../src/models/LottoMachine';
 
 describe('로또를 뽑는 기능', () => {
@@ -41,7 +42,7 @@ describe('로또 당첨 기능', () => {
     [[1, 2, 3, 42, 43, 44], 45, 5],
   ])(
     '당첨 번호가 %p이고 보너스 번호가 %d일 때 %d등 이다.',
-    ([winningNumbers, bonusNumber, expectedRanking]) => {
+    (winningNumbers, bonusNumber, expectedRanking) => {
       const ranking = new Lotto(lottoNumbers).calculateRanking(winningNumbers, bonusNumber);
 
       expect(ranking).toBe(expectedRanking);
