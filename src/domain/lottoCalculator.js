@@ -1,6 +1,3 @@
-import { LOTTO } from './constants';
-import generateRandomNumber from './generateRandomNumber';
-
 const lottoCalculator = {
   calculateReward(rankings) {
     const rewardMap = {
