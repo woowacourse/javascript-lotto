@@ -1,6 +1,6 @@
 const { profitByRank } = require('../src/constants/constants');
 const Lotto = require('../src/domain/model/Lotto');
-const { calculateRank } = require('../src/utils');
+const { calculateRank, calculateProfit } = require('../src/utils');
 
 describe('로또 클래스 테스트', () => {
   test.each([
@@ -50,6 +50,8 @@ describe('로또 클래스 테스트', () => {
 
     lotto.calculateRank(winningNumbers, bonusNumber);
 
-    expect(lotto.getProfit()).toBe(expectedProfit);
+    const profit = calculateProfit(lotto.getRank());
+
+    expect(profit).toBe(expectedProfit);
   });
 });
