@@ -104,3 +104,24 @@ describe('Validation.isValidWinningNumberLength', () => {
     expect(result).toBe(true);
   });
 });
+
+describe('Validation.HasOnlyNumber', () => {
+  test(`당첨 번호 배열의 각 요소가 숫자가 아닌 경우, false를 반환한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits - 1 }, () => '1');
+
+    const result = Validation.hasOnlyNumber(winningNumbers);
+
+    expect(result).toBe(false);
+  });
+
+  test(`당첨 번호 배열의 각 요소가 숫자인 경우, true를 반환한다.`, () => {
+    const winningNumbers = Array.from(
+      { length: LOTTO_CONDITION.lottoDigits - 1 },
+      (_, idx) => idx + 1
+    );
+
+    const result = Validation.hasOnlyNumber(winningNumbers);
+
+    expect(result).toBe(true);
+  });
+});
