@@ -14,6 +14,10 @@ const validator = {
   checkDivideIntoUnit(number, unit) {
     if (number % unit !== 0) throw new Error();
   },
+
+  checkDuplication(numbers) {
+    if (new Set(numbers).size !== numbers.length) throw new Error();
+  },
 };
 
 export default validator;
