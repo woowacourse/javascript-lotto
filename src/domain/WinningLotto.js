@@ -46,7 +46,7 @@ class WinningLotto extends Lotto {
   }
 
   isBonusNumberMatched(lotto) {
-    return lotto.numbers.includes(this.#bonusNumber);
+    return lotto.includes(this.#bonusNumber);
   }
 }
 

@@ -5,8 +5,9 @@ import Lotto from '../src/domain/Lotto';
 test('로또 만들기 ', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
   const lotto = new Lotto(numbers);
-
-  expect(lotto.numbers).toBe(numbers);
+  numbers.forEach((number) => {
+    expect(lotto.includes(number)).toBe(true);
+  });
 });
 
 test('로또 번호는 숫자이다', () => {

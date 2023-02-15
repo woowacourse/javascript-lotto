@@ -3,9 +3,9 @@ import LottoSimulator from '../src/controller/LottoSimulator';
 import { ERROR_MESSAGE, LOTTO_CONSTANT } from '../src/data/constants';
 test('로또 가격에 맞게 구매하기 ', () => {
   const lottoSimulator = new LottoSimulator();
-  lottoSimulator.purchaseLottos(1000);
+  lottoSimulator.purchaseLottos(8000);
 
-  expect(lottoSimulator.lottos.length === 8);
+  expect(lottoSimulator.getLottoCount() === 8);
 });
 
 test.each([['a'], ['가'], ['!'], [' ']])('구입 금액은 숫자이다', (budget) => {
@@ -44,5 +44,5 @@ test('랜덤 로또 번호 생성', () => {
 test('로또 결과 계산', () => {
   const lottoSimulator = new LottoSimulator();
   lottoSimulator.calculateResult();
-  expect().toEqual();
+  expect().toEqual({ first: 0, second: 0, third: 0, fourth: 0, fifth: 0 });
 });

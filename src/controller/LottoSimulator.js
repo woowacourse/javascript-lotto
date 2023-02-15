@@ -17,10 +17,6 @@ class LottoSimulator {
     this.#budget = 0;
   }
 
-  get lottos() {
-    return this.#lottos;
-  }
-
   createLottoNumbers() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < LOTTO_CONSTANT.LENGTH) {
@@ -40,6 +36,10 @@ class LottoSimulator {
     Array.from({ length: lottoCount }).forEach(() => {
       this.#lottos.push(new Lotto(this.createLottoNumbers()));
     });
+  }
+
+  getLottoCount() {
+    return this.#lottos.length;
   }
 
   validateBudget(budget) {

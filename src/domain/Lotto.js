@@ -9,10 +9,6 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
-  get numbers() {
-    return this.#numbers;
-  }
-
   validateNumbers(numbers) {
     numbers.forEach((number) => {
       if (!Validator.isInteger(number))
@@ -29,6 +25,10 @@ class Lotto {
       throw new Error(
         ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_CONSTANT.LOTTO_NUMBER)
       );
+  }
+
+  includes(number) {
+    return this.#numbers.includes(number);
   }
 }
 
