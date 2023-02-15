@@ -10,6 +10,7 @@ class LottoGameController {
   async setupGame() {
     await this.#handlePurchaseAmount();
     this.#handleUserLottos();
+    await this.#handleWinningNumbers();
   }
 
   async #handlePurchaseAmount() {
@@ -29,6 +30,18 @@ class LottoGameController {
     const USER_LOTTOS = this.#lottoGame.getUserLottos();
 
     USER_LOTTOS.forEach(OutputView.printUserLottos);
+  }
+
+  async #handleWinningNumbers() {
+    const WINNING_NUMBERS_INPUT = await InputView.readWinningNumbers();
+    const WINNING_NUMBERS = WINNING_NUMBERS_INPUT.split(',').map(Number);
+
+    try {
+      Validation.checkLottoNumber(WINNING_NUMBERS);
+      this.#lottoGame.setWinningNumbers(WINNING_NUMBERS);
+    } catch (error) {
+      this.#rerequestInput(error.message, this.#handleWinningNumbers)
+    }
   }
 
   #rerequestInput(errorMessage, itself) {

@@ -6,7 +6,7 @@ const InputView = {
     return Console.question(ConsoleMessage.PURCHASE_AMOUNT);
   },
 
-  readWinningNumber() {
+  readWinningNumbers() {
     return Console.question(ConsoleMessage.WINNING_NUMBER);
   }
 };
