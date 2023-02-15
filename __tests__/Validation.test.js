@@ -33,4 +33,16 @@ describe("Validation 테스트", () => {
       )
     })
   });
+
+  describe('당첨 번호 입력값 예외 테스트', () => { 
+    test('숫자가 아닌 문자를 입력한 경우 예외 발생', () => {
+      const INPUTS = ['1,2,3,4,1A,5', '5,6,7,A1,8,9', '1,,2,4,5,6', '1, ,2,3,4,5'];
+
+      INPUTS.forEach((input) => {
+        const NUMBERS = input.split(',').map(Number);
+
+        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
+      })
+    });
+   })
 });
