@@ -22,15 +22,21 @@ class Lottos {
 
   compareLottosScore() {
     this.#lottos.forEach((lotto) => {
-      lotto.getScore() === 5
-        ? (lotto.getIsContainBonusNumber()
-          ? this.addScoreBoard("5 bonus")
-          : this.addScoreBoard("5"))
-        : this.addScoreBoard(lotto.getScore());
+      this.determineAddScore(lotto);
     });
   }
 
+  determineAddScore(lotto) {
+    lotto.getScore() === 5
+      ? this.determineBonusOrNot(lotto)
+      : this.addScoreBoard(lotto.getScore());
+  }
 
+  determineBonusOrNot(lotto) {
+    lotto.getIsContainBonusNumber()
+      ? this.addScoreBoard("5 bonus")
+      : this.addScoreBoard("5");
+  }
 
   addScoreBoard(score) {
     this.#lottoRanking[score] += 1;
