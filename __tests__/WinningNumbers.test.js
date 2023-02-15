@@ -1,9 +1,17 @@
 const WinningNumbers = require('../src/domain/WinningNumbers');
 
-test('당첨 번호에 숫자, 쉼표(,) 이외의 문자가 포함된 경우 예외 처리한다.', () => {
+test('당첨번호를 쉼표로 구분했을 때 6개가 아닌 경우 예외처리한다.', () => {
   const winningNumbersInput = '1.2.3.4.5.6';
 
   expect(() => {
-    WinningNumbers.validateWinningNumbers(winningNumbersInput);
+    new WinningNumbers(winningNumbersInput);
   }).toThrow();
+});
+
+test('당첨번호를 쉼표로 구분했을 때 6개안 경우 정상 동작한다.', () => {
+  const winningNumbersInput = '1,2,3,4,5,6';
+
+  expect(() => {
+    new WinningNumbers(winningNumbersInput);
+  }).not.toThrow();
 });
