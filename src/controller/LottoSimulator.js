@@ -1,7 +1,10 @@
 import Lotto from '../domain/Lotto';
 import Validator from '../utils/Validator';
-import { ERROR_MESSAGE, LOTTO_STRING } from '../data/constants';
-import { toOrdinalNumber } from '../data/Converter';
+import {
+  ERROR_MESSAGE,
+  LOTTO_CONSTANT,
+  MATCHES_COUNT_TO_RANKING,
+} from '../data/constants';
 import { RandomNumberGenerator } from '../utils/RandomNumberGenerator';
 
 class LottoSimulator {
@@ -20,18 +23,20 @@ class LottoSimulator {
 
   createLottoNumbers() {
     const lottoNumbers = new Set();
-    while (lottoNumbers.size < 6) {
-      lottoNumbers.add(RandomNumberGenerator.generateNumberInRange(1, 45));
+    while (lottoNumbers.size < LOTTO_CONSTANT.LENGTH) {
+      lottoNumbers.add(
+        RandomNumberGenerator.generateNumberInRange(
+          LOTTO_CONSTANT.MIN_NUMBER,
+          LOTTO_CONSTANT.MAX_NUMBER
+        )
+      );
     }
-    // const randomNumbers = new Array(6).map(() =>
-    //   RandomNumberGenerator.generateNumberInRange(1, 45)
-    // );
     return Array.from(lottoNumbers);
   }
 
   purchaseLottos(budget) {
     this.validateBudget(budget);
-    const lottoCount = budget / 1000;
+    const lottoCount = budget / LOTTO_CONSTANT.PRICE;
     Array.from({ length: lottoCount }).forEach(() => {
       this.#lottos.push(new Lotto(this.createLottoNumbers()));
     });
@@ -39,16 +44,16 @@ class LottoSimulator {
 
   validateBudget(budget) {
     if (!Validator.isInteger(budget))
-      throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_STRING.BUDGET));
-    if (!budget || budget % 1000 !== 0)
+      throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_CONSTANT.BUDGET));
+    if (!budget || budget % LOTTO_CONSTANT.PRICE !== 0)
       throw new Error(ERROR_MESSAGE.BUDGET_NOT_DIVISIBLE_BY_LOTTO_PRICE);
-    if (budget < 1000)
+    if (budget < LOTTO_CONSTANT.PRICE)
       throw new Error(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
   }
 
   calculateResult() {
     const result = {};
-    Object.values(toOrdinalNumber).forEach((rank) => {
+    Object.values(MATCHES_COUNT_TO_RANKING).forEach((rank) => {
       result[rank] = 0;
     });
     this.lottos.forEach((lotto) => {
@@ -59,7 +64,3 @@ class LottoSimulator {
 }
 
 export default LottoSimulator;
-
-// (3개일치 -> 몇개, 4개 일치 -> 몇개... 5개일치 -> 몇개, 5개+보너스 -> 몇개, 6개 일치 -> 몇개)
-// 5개 구매 => [THIRD, THIRD, SECOND, FIRST, FAIL] => Object = { FIRST: 1 SECOND: 0 THIRD: 0 }
-// [FIRST,SECOND,THIRD, ]

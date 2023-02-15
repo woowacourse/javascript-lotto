@@ -36,16 +36,16 @@ describe('일치된 번호에 해당하는 순위를 계산한다', () => {
 
   test('2등 일치 계산', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
-    expect(winningLotto.calculateRanking(lotto)).toBe('SECOND');
+    expect(winningLotto.calculateRanking(lotto)).toBe('second');
   });
 
   test('4등 일치 계산', () => {
     const lotto = new Lotto([1, 2, 3, 4, 9, 10]);
-    expect(winningLotto.calculateRanking(lotto)).toBe('FOURTH');
+    expect(winningLotto.calculateRanking(lotto)).toBe('fourth');
   });
 
   test('꽝 계산', () => {
     const lotto = new Lotto([1, 2, 7, 8, 9, 10]);
-    expect(winningLotto.calculateRanking(lotto)).toBe('FAIL');
+    expect(winningLotto.calculateRanking(lotto)).toBe('fail');
   });
 });
