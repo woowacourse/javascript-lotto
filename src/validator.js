@@ -18,6 +18,10 @@ const validator = {
   checkDuplication(array) {
     if (new Set(array).size !== array.length) throw new Error();
   },
+
+  checkArrayLength(array, length) {
+    if (array.length !== length) throw new Error();
+  },
 };
 
 export default validator;
