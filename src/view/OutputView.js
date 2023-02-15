@@ -1,11 +1,11 @@
-const Outputview = {
+const OutputView = {
   printUserLottos(lotto) {
-    this.print(`[${lotto.join(", ")}]`);
+    console.log(`[${lotto.join(", ")}]`);
   },
 
-  print(message){
-    console.log(message)
-  }
+  print(message) {
+    console.log(message);
+  },
 };
 
-export default Outputview;
+export default OutputView;
