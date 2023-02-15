@@ -63,6 +63,10 @@ class Lottos {
         this.#lottoRanking[score] * this.#benefitBoard[score];
     }
   }
+
+  getBenefitRate(money) {
+    return Math.round((this.#totalBenefit / money) * 100) / 100;
+  }
 }
 
 export default Lottos;
