@@ -29,4 +29,12 @@ describe("Lotto 객체 단위테스트", () => {
     lotto.addScore();
     expect(lotto.getScore()).toEqual(1);
   });
+
+  test("보너스 번호가 있는지 확인하는 함수 테스트", () => {
+    const bonusNumber = 8;
+    const lotto = new Lotto([8, 21, 23, 41, 42, 43]);
+    lotto.checkBonusNumber(bonusNumber);
+
+    expect(lotto.getIsContainBonusNumber()).toBeTruthy();
+  });
 });
