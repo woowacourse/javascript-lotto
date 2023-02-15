@@ -80,3 +80,9 @@ export const checkBonusNumberBetween1And45 = (bonusNumber) => {
     throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해 주세요.");
   }
 };
+
+export const checkYOrN = (yOrN) => {
+  if (!["y", "Y", "n", "N"].includes(yOrN)) {
+    throw new Error("[ 에러 ] 대, 소문자 Y/y 또는 N/n을 입력해 주세요.");
+  }
+};

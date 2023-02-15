@@ -6,6 +6,7 @@ import {
   checkListLengthIsSix,
   checkBonusNumberDuplicate,
   checkLottoNumbersBetween1And45,
+  checkYOrN,
 } from "../src/step1-index";
 
 test.each([
@@ -93,4 +94,20 @@ test.each([
   expected
     ? expect(() => checkBonusNumberBetween1And45(bonusNumber)).not.toThrow()
     : expect(() => checkBonusNumberBetween1And45(bonusNumber)).toThrow();
+});
+
+test.each([
+  ["T", false],
+  ["YY", false],
+  ["NN", false],
+  ["", false],
+  ["^^", false],
+  ["1", false],
+  [" ", false],
+  ["Y", true],
+  ["N", true],
+  ["y", true],
+  ["n", true],
+])("문자(%s)가 대, 소문자 Y/y 또는 N/n 아닌 경우 에러를 반환한다.", (yOrN, expected) => {
+  expected ? expect(() => checkYOrN(yOrN)).not.toThrow() : expect(() => checkYOrN(yOrN)).toThrow();
 });
