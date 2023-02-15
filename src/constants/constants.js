@@ -2,6 +2,11 @@ const PRICE_UNIT = 1_000;
 const BLANK_REGEXP = /\s/;
 const EMPTY_STRING = '';
 
+const lottoNumberRange = Object.freeze({
+  MIN_LOTTO_NUMBER: 1,
+  MAX_LOTTO_NUMBER: 45,
+});
+
 const profit = Object.freeze({
   FIRST_RANK: 2_000_000_000,
   SECOND_RANK: 30_000_000,
@@ -22,6 +27,7 @@ module.exports = {
   PRICE_UNIT,
   BLANK_REGEXP,
   EMPTY_STRING,
+  lottoNumberRange,
   profit,
   profitByRank,
 };
