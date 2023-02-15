@@ -21,6 +21,11 @@ const InputValidator = {
       throw new Error('중복된 숫자가 존재합니다.');
     }
   },
+  checkRetryCommand(input) {
+    if (!(input === 'y' || input === 'n')) {
+      throw new Error('입력값이 y 혹은 n이어야 합니다.');
+    }
+  }
 };
 
 export default InputValidator;
