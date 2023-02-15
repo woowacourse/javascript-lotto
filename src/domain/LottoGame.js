@@ -4,7 +4,8 @@ const WinLotto = require("../domain/WinLotto");
 
 const LottoGame = {
   lottos: [],
-  RevenueResult: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+  rankResult: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+
   LottoNumberGenerator() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < 6) {
@@ -20,9 +21,15 @@ const LottoGame = {
     });
   },
 
-  makeWinLotto() {
-    WinLotto;
+  makeWinLotto(winningNumbers, bonusNumber) {
+    const winlotto = new WinLotto(winningNumbers, bonusNumber);
+    this.rankResult = winlotto.calculateWinLotto(this.lottos, this.rankResult);
+
+    const revenue = winlotto.calculateRevenue(rankResult, lottos.length);
+    return [revenue, rankResult];
   },
 };
 
 module.exports = LottoGame;
+
+console.log((10000 / 3).toFixed(2));
