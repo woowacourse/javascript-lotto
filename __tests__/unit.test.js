@@ -49,3 +49,18 @@ describe('로또 당첨 기능', () => {
     }
   );
 });
+
+describe('계산 기능', () => {
+  test.each([
+    [[1], 2000000000],
+    [[2], 30000000],
+    [[3], 1500000],
+    [[4], 50000],
+    [[5], 5000],
+    [[3, 5, 5], 1510000],
+  ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
+    const reward = new LottoMachine().calculateReward(rankings);
+
+    expect(reward).toBe(expectedReward);
+  });
+});
