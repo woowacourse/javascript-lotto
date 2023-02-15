@@ -1,8 +1,9 @@
+const utilFn = require('../../utils');
+
 class Winning {
   #winningNumbers;
-  #bonusNumber;
 
-  constructor() {}
+  #bonusNumber;
 
   getWinningNumbers() {
     return this.#winningNumbers;
@@ -13,12 +14,29 @@ class Winning {
   }
 
   setWinningNumbers(winningNumbers) {
-    this.#winningNumbers = this.validateWinningNumbers(winningNumbers);
+    this.#validateWinningNumbers(winningNumbers);
+    this.#winningNumbers = winningNumbers;
   }
 
   setBonusNumber(bonusNumber) {
-    this.#bonusNumber = this.validateBonusNumber(bonusNumber);
+    this.#validateBonusNumber(bonusNumber);
+    this.#bonusNumber = bonusNumber;
+  }
+
+  #validateWinningNumbers(winningNumbers) {
+    winningNumbers.forEach((winningNumber) => {
+      if (!utilFn.isNumber(winningNumber)) {
+        throw new Error('[ERROR]');
+      }
+
+      if (!utilFn.isNumberInLottoRange(winningNumber)) {
+        throw new Error('[ERROR]');
+      }
+    });
+    if (!utilFn.isUniqueArray(winningNumbers)) {
+      throw new Error('[ERROR]');
+    }
   }
 }
 
-export default Winning;
+module.exports = Winning;
