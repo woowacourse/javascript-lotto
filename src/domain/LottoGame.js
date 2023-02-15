@@ -15,6 +15,7 @@ const LottoGame = {
   },
 
   makeLottos(lottoCount) {
+    this.lottos = [];
     Array.from({ length: lottoCount }, () => {
       const lottoOne = new Lotto(this.LottoNumberGenerator());
       this.lottos.push(lottoOne);

@@ -15,7 +15,20 @@ const LottoController = {
       winningNumbers,
       bonusNumber
     );
-    console.log(revenue, rankResult);
+    OutputView.printRankResult(rankResult);
+    OutputView.printRevenue(revenue);
+    this.restart();
+  },
+
+  async restart() {
+    try {
+      const command = await InputView.readCommandRestart();
+      if (command != "y" && command != "n") throw new Error();
+      if (command === "y") this.playLotto();
+      return command === "y" ? this.playLotto() : InputView.close();
+    } catch (e) {
+      return this.restart();
+    }
   },
 
   async readMoney() {

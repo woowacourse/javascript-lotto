@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto");
 
-const prize = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 50000 };
+const prize = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
 
 class WinLotto extends Lotto {
   #bonusNumber;
@@ -37,7 +37,7 @@ class WinLotto extends Lotto {
       0
     );
 
-    return Math.round(revenue / lottoCount) / 10, revenue;
+    return (revenue / (lottoCount * 10)).toFixed(1);
   }
 
   get bonusNumber() {
