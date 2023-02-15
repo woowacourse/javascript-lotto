@@ -124,3 +124,21 @@ describe('Validation.hasOnlyNumber', () => {
     expect(result).toBe(true);
   });
 });
+
+describe('Validation.isValidWinningNumberRange', () => {
+  test(`당첨 번호 배열의 각 요소가 로또 숫자 범위내의 수(${LOTTO_CONDITION.lottoNumberMinRange}~${LOTTO_CONDITION.lottoNumberMaxRange})가 아닌 경우, false를 반환한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits }, (_, idx) => idx);
+
+    const result = Validation.isValidWinningNumberRange(winningNumbers);
+
+    expect(result).toBe(false);
+  });
+
+  test(`당첨 번호 배열의 각 요소가 로또 숫자 범위내의 수(${LOTTO_CONDITION.lottoNumberMinRange}~${LOTTO_CONDITION.lottoNumberMaxRange})인 경우, true를 반환한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits }, (_, idx) => idx + 1);
+
+    const result = Validation.isValidWinningNumberRange(winningNumbers);
+
+    expect(result).toBe(true);
+  });
+});
