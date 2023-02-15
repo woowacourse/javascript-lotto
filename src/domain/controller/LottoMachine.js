@@ -101,6 +101,17 @@ class LottoMachine {
   isBonus(lotto) {
     return lotto.includes(this.#winning.getBonusNumber());
   }
+
+  getRank(matchedCount, isBonus) {
+    if (matchedCount < 3) return 6;
+    const findRankIndex = MAGIC_NUMBER.rankInformations.findIndex(
+      (rankInformation) =>
+        rankInformation.isBonus === isBonus &&
+        rankInformation.matchedCount === matchedCount
+    );
+
+    return MAGIC_NUMBER.rankInformations[findRankIndex].rank;
+  }
 }
 
 module.exports = LottoMachine;
