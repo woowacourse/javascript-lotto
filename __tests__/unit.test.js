@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 import Lotto from "../src/domain/Lotto";
-import LottoController from "../src/domain/LottoController";
 import InputValidator from "../src/utils/InputValidator";
 test('숫자 6개를 받아 로또를 발행한다.', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
