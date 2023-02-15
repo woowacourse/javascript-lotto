@@ -92,7 +92,7 @@ describe("사용자 로또 클래스 테스트", () => {
 
     USER_LOTTOS.forEach((userLotto, index) => {
       const lotto = new Lotto(userLotto);
-      expect(lotto.getMatchStatus(GAME_LOTTO)).toEqual(RANK[index]);
+      expect(lotto.getMatchState(GAME_LOTTO)).toEqual(RANK[index]);
     });
   });
 });

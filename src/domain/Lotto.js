@@ -16,7 +16,7 @@ class Lotto {
     return [...this.#numbers];
   }
 
-  getMatchStatus({ winningNumbers, bonusNumber }) {
+  getMatchState({ winningNumbers, bonusNumber }) {
     const MATCH_COUNT = this.getMatchCount(winningNumbers);
     const BONUS_MATCH = this.hasBonusNumber(bonusNumber);
 
