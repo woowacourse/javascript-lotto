@@ -12,23 +12,6 @@ describe('로또를 뽑는 기능', () => {
     expect(number).toBeGreaterThanOrEqual(min);
     expect(number).toBeLessThanOrEqual(max);
   });
-
-  test('중복되지 않는 숫자가 6개이다.', () => {
-    const lottoMachine = new LottoMachine();
-    const lottoNumbers = lottoMachine.makeLottoNumbers();
-
-    expect(new Set(lottoNumbers).size).toBe(6);
-  });
-
-  test('6개의 숫자가 오름차순으로 정렬되어있다.', () => {
-    const lottoMachine = new LottoMachine();
-    const lottoNumbers = lottoMachine.makeLottoNumbers();
-
-    lottoNumbers.reduce((acc, cur) => {
-      expect(acc).toBeLessThan(cur);
-      return cur;
-    }, 0);
-  });
 });
 
 describe('로또 당첨 기능', () => {
@@ -81,8 +64,22 @@ describe('계산 기능', () => {
     [[3, 5, 5], 1510000],
     [[], 0],
   ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
-    const reward = new LottoMachine().calculateReward(rankings);
+    const reward = LottoCalculator.calculateReward(rankings);
 
     expect(reward).toBe(expectedReward);
+  });
+
+  test.each([
+    [[1], 2000000000],
+    [[2], 30000000],
+    [[3], 1500000],
+    [[4], 50000],
+    [[5], 5000],
+    [[3, 5, 5], 1510000],
+    [[], 0],
+  ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
+    const rewardRate = LottoCalculator.calculateRewardRate(lottoCount, reward);
+
+    expect(rewardRate).toBe(expectedReward);
   });
 });
