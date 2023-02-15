@@ -6,7 +6,9 @@ const OutputView = require('./view/OutputView');
 class LottoGame {
   #lottoMachine;
 
-  constructor() {}
+  #winningNumbers;
+
+  #bonusNumber;
 
   validateBonusNumber(winningNumbers, bonusNumber) {
     if (this.#isDuplicateFor(winningNumbers, bonusNumber)) {
@@ -23,6 +25,8 @@ class LottoGame {
   async play() {
     await this.inputPurchasePrice();
     this.showPurchasedLottos();
+    await this.inputWinningNumbers();
+    await this.inputBonusNumber();
   }
 
   async inputPurchasePrice() {
@@ -31,12 +35,32 @@ class LottoGame {
       this.#lottoMachine = new LottoMachine(parseInt(purchasePrice, 10));
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      this.inputPurchasePrice();
+      await this.inputPurchasePrice();
     }
   }
 
   async showPurchasedLottos() {
     OutputView.printPurchasedLottos(this.#lottoMachine.lottos);
+  }
+
+  async inputWinningNumbers() {
+    try {
+      const winningNumbers = await InputView.readWinningNumbers();
+      this.#winningNumbers = new WinningNumbers(winningNumbers);
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      await this.inputWinningNumbers();
+    }
+  }
+
+  async inputBonusNumber() {
+    try {
+      const bonusNumber = await InputView.readBonusNumber();
+      this.#bonusNumber = new BonusNumber(bonusNumber);
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      await this.inputBonusNumber();
+    }
   }
 }
 
