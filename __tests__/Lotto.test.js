@@ -51,7 +51,7 @@ describe('로또 클래스 예외 테스트', () => {
     expect(() => new Lotto(lottoNumbers)).toThrowError();
   });
 
-  test.each([[[1, 2, 3, 4, 5, 'a']]])(
+  test.each([[[1, 2, 3, 4, 5, 'a']], [[8, 9, 10, 42, 43, '1a']], [[1.1, 10, 11, 12, 13, 14]]])(
     '로또 번호 6자리는 모두 정수로 이루어져야 한다.',
     (lottoNumbers) => {
       expect(() => new Lotto(lottoNumbers)).toThrowError();
