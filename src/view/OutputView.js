@@ -20,6 +20,8 @@ const OutputView = {
 총 수익률은 62.5%입니다.
 `);
   },
-
+  printNewLine() {
+    Console.print('');
+  }
 };
 export default OutputView;
