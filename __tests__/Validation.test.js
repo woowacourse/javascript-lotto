@@ -1,5 +1,6 @@
 import Validation from '../src/domain/Vaildation.js';
 import { LOTTO_CONDITION } from '../src/constants/condition.js';
+import { ERROR_MESSAGE } from '../src/constants/message.js';
 
 describe('Validation.isNumber', () => {
   test.each(['abc', '8천원', '8$'])(
@@ -53,5 +54,32 @@ describe('Validation.isDivisibleByLottoPrice', () => {
     const result = Validation.isDivisibleByLottoPrice(purchaseAmount);
 
     expect(result).toBe(true);
+  });
+});
+
+describe('Validation.isValidPurchaseAmount', () => {
+  test.each(['abc', '8천원', '8$'])(
+    '구입금액 입력이 숫자가 아닌 경우, 에러가 발생한다.',
+    (purchaseAmount) => {
+      expect(() => {
+        Validation.isValidPurchaseAmount(purchaseAmount);
+      }).toThrow(ERROR_MESSAGE.invalidInputType);
+    }
+  );
+
+  test(`구입금액 입력이 로또 1장 가격(${LOTTO_CONDITION.lottoPrice}원) 미만인 경우, 에러가 발생한다.`, () => {
+    const purchaseAmount = `${LOTTO_CONDITION.lottoPrice - 1}`;
+
+    expect(() => {
+      Validation.isValidPurchaseAmount(purchaseAmount);
+    }).toThrow(ERROR_MESSAGE.lowerThanLottoPrice);
+  });
+
+  test(`구입금액 입력이 로또 1장 가격(${LOTTO_CONDITION.lottoPrice}원)으로 나누어 떨어지지 않는 경우, 에러가 발생한다.`, () => {
+    const purchaseAmount = `${LOTTO_CONDITION.lottoPrice + 1}`;
+
+    expect(() => {
+      Validation.isValidPurchaseAmount(purchaseAmount);
+    }).toThrow(ERROR_MESSAGE.indivisibleByLottoPrice);
   });
 });
