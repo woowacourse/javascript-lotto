@@ -33,6 +33,7 @@ class LottoGame {
     await this.inputBonusNumber();
     this.determineAllLottosRank();
     this.showWinningStatistics();
+    await this.inputRestart();
   }
 
   async inputPurchasePrice() {
@@ -135,6 +136,43 @@ class LottoGame {
         this.#lottoMachine.lottos.length * 1000
       )
     );
+  }
+
+  async inputRestart() {
+    try {
+      const command = await InputView.readRestart();
+      this.validateCommand(command);
+      await this.executeCommand(command.toLowerCase());
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      await this.inputRestart();
+    }
+  }
+
+  validateCommand(command) {
+    if (!this.isValidCommand(command)) {
+      throw new Error(
+        '[ERROR] 올바른 명령어가 아닙니다. 재시작(y) / 종료(n)을 입력해 주세요.'
+      );
+    }
+  }
+
+  isValidCommand(command) {
+    return ['y', 'n'].includes(command.toLowerCase());
+  }
+
+  async executeCommand(command) {
+    if (command === 'y') {
+      await this.restart();
+    }
+
+    if (command === 'n') {
+      OutputView.quit();
+    }
+  }
+
+  async restart() {
+    await this.play();
   }
 }
 
