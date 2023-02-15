@@ -36,3 +36,8 @@ test('로또 번호는 1~45의 자연수', () => {
   expect(() => InputValidator.checkLottoNumber(number)).toThrow();
 });
 
+test('각 번호는 중복되지 않는 수', () => {
+  const numbers = [1, 2, 3, 4, 5, 5];
+  expect(() => InputValidator.checkDuplicatedNumbers(numbers)).toThrow();
+});
+
