@@ -38,4 +38,19 @@ describe("NumberHandler 테스트", () => {
    * TODO
    * - [ ]  메서드) 천의 자리마다 콤마 찍기 - 테스트하기
    */
+
+  test.each([
+    [1, "1"],
+    [10, "10"],
+    [100, "100"],
+    [1000, "1,000"],
+    [10000, "10,000"],
+    [100000, "100,000"],
+    [1000000, "1,000,000"],
+  ])("천의 자리마다 콤마를 찍어 문자열로 반환한다.", (number, string) => {
+    const numberString = NumberHandler.addComma(number);
+
+    expect(numberString).toBe(string);
+    expect(typeof numberString).toBe("string");
+  });
 });
