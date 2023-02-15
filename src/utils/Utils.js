@@ -21,4 +21,16 @@ const deduplicateArray = (length, range = [0, 0]) => {
 
   return array;
 };
-export { convertAscending, generateRandomNumber, deduplicateArray };
+
+const arrayToObjectThatValueZero = (array) => {
+  return array.reduce((acc, cur) => {
+    acc[cur] = 0;
+    return acc;
+  }, {});
+};
+export {
+  convertAscending,
+  generateRandomNumber,
+  deduplicateArray,
+  arrayToObjectThatValueZero,
+};

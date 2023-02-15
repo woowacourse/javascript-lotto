@@ -1,5 +1,10 @@
-import { PRIZE, MINIMUM_LOTTO_UNIT, MATCH_RANK } from '../data/Constants';
-import { convertAscending } from '../utils/Utils';
+import {
+  PRIZE,
+  MINIMUM_LOTTO_UNIT,
+  MATCH_RANK,
+  WINNING_ORDER,
+} from '../data/Constants';
+import { convertAscending, arrayToObjectThatValueZero } from '../utils/Utils';
 import Win from './Win';
 import Lotto from './Lotto';
 
@@ -47,15 +52,32 @@ class LottoGame {
     return matchCount;
   }
 
-  calculateEarningRate(price, totalAmount) {
-    return (totalAmount / price).toFixed(2);
+  getLottosWinRank() {
+    return this.#lottos.map((lotto) => lotto.winRank);
   }
 
-  calculateTotalPrize(ranks) {
+  getLottosWinCount() {
+    const initialObject = arrayToObjectThatValueZero(WINNING_ORDER);
+    return this.getLottosWinRank().reduce((acc, cur) => {
+      if (cur === null) return acc;
+
+      acc[cur] += 1;
+      return acc;
+    }, initialObject);
+  }
+
+  calculateTotalPrize(ranks = this.getLottosWinRank()) {
     return ranks.reduce(
       (acc, cur) => (PRIZE[cur] !== undefined ? (acc += PRIZE[cur]) : acc),
       0
     );
+  }
+
+  calculateEarningRate(
+    price = this.#lottos.length * MINIMUM_LOTTO_UNIT,
+    totalAmount = this.calculateTotalPrize()
+  ) {
+    return ((totalAmount / price) * 100).toFixed(1);
   }
 }
 

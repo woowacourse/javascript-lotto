@@ -11,9 +11,7 @@ import {
   outputWinningResult,
   outputWinningStatistics,
 } from '../view/OutputView';
-
 class LottoController {
-  #purchaseAmount;
   #game;
 
   constructor() {
@@ -27,8 +25,6 @@ class LottoController {
 
   async readPurchaseAmount() {
     const purchaseAmount = await inputPurchaseAmount();
-    this.#purchaseAmount = purchaseAmount;
-
     this.#game.initializeLottos(purchaseAmount);
 
     this.printLottoInfo();
@@ -44,14 +40,13 @@ class LottoController {
 
   async readWinningNumber() {
     const winningNumber = await inputWinningNumber();
-
     this.#game.initializeWin(winningNumber.split(',').map(Number));
+
     this.readBonusNumber();
   }
 
   async readBonusNumber() {
     const bonusNumber = await inputBonusNumber();
-
     this.#game.setBonusNumber(Number(bonusNumber));
 
     this.printWinningResult();
@@ -59,16 +54,17 @@ class LottoController {
 
   printWinningResult() {
     this.#game.setLottoRank();
-    const winCount = {
-      5: 0,
-      4: 0,
-      3: 1,
-      2: 0,
-      1: 0,
-    };
+    const winCount = this.#game.getLottosWinCount();
 
     outputWinningResult(winCount);
-    outputWinningStatistics(62.5);
+
+    this.printEarningRate();
+  }
+
+  printEarningRate() {
+    const rate = this.#game.calculateEarningRate();
+
+    outputWinningStatistics(rate);
 
     this.readWhetherToRestart();
   }
