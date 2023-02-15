@@ -18,8 +18,7 @@ class LottoGameController {
       Validation.checkPurchaseAmount(PURCHASE_AMOUNT);
       this.#lottoGame.generateUserLottos(PURCHASE_AMOUNT / 1000);
     } catch (error) {
-      OutputView.print(error.message);
-      return this.setupGame();
+      this.#rerequestInput(error.message, this.#handlePurchaseAmount);
     }
   }
 
@@ -27,6 +26,11 @@ class LottoGameController {
     const USER_LOTTOS = this.#lottoGame.getUserLottos();
 
     USER_LOTTOS.forEach(OutputView.printUserLottos);
+  }
+
+  #rerequestInput(errorMessage, itself) {
+    OutputView.print(errorMessage);
+    return itself();
   }
 }
 
