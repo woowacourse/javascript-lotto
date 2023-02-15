@@ -1,6 +1,6 @@
 import generateRandomNumber from '../src/generateRandomNumber';
+import lottoCalculator from '../src/LottoCalculator';
 import Lotto from '../src/models/Lotto';
-import LottoMachine from '../src/models/LottoMachine';
 
 describe('로또를 뽑는 기능', () => {
   test('랜덤한 숫자가 1 이상 45 이하이다.', () => {
@@ -64,22 +64,23 @@ describe('계산 기능', () => {
     [[3, 5, 5], 1510000],
     [[], 0],
   ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
-    const reward = LottoCalculator.calculateReward(rankings);
+    const reward = lottoCalculator.calculateReward(rankings);
 
     expect(reward).toBe(expectedReward);
   });
 
   test.each([
-    [[1], 2000000000],
-    [[2], 30000000],
-    [[3], 1500000],
-    [[4], 50000],
-    [[5], 5000],
-    [[3, 5, 5], 1510000],
-    [[], 0],
-  ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
-    const rewardRate = LottoCalculator.calculateRewardRate(lottoCount, reward);
+    [8000, [5], '62.5%'],
+    [10000, [1, 5, 5], '20,000,100.0%'],
+    [1000, [1], '200,000,000.0%'],
+    [200000, [], '0.0%'],
+    [50000, [4, 5], '110.0%'],
+  ])(
+    '구입금액이 %d이고, 순위가 각각 %p등일 때 수익률은 %f이다.',
+    (lottePurchaseAmount, rankings, expectedRewardRate) => {
+      const rewardRate = lottoCalculator.calculateRewardRate(lottePurchaseAmount, rankings);
 
-    expect(rewardRate).toBe(expectedReward);
-  });
+      expect(rewardRate).toBe(expectedRewardRate);
+    }
+  );
 });
