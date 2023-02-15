@@ -1,10 +1,11 @@
 class Lotto {
-  // lotteries ;
-  constructor() {
-    this.numbers = [];
+  constructor(numbers) {
+    this.numbers = numbers.sort((a, b) => a - b);
   }
 
-  generateLotto() {}
+  getLottoString() {
+    return this.numbers.join(", ");
+  }
 }
 
 module.exports = Lotto;
