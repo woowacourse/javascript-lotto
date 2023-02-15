@@ -1,5 +1,6 @@
 const { pickRandomNumberInRange } = require('../../utils');
 const inputHandler = require('../../view/inputView');
+const outputView = require('../../view/outputView');
 const Money = require('../model/Money');
 
 class LottoMachine {
@@ -8,7 +9,14 @@ class LottoMachine {
   #money;
 
   readMoney() {
-    inputHandler('구입금액을 입력해 주세요.', this.#afterReadMoney);
+    inputHandler('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
+  }
+
+  readWinningNumbers() {
+    inputHandler(
+      '\n> 당첨 번호를 입력해 주세요.',
+      this.#afterReadWinningNumbers
+    );
   }
 
   generateLottos(amount) {
@@ -30,9 +38,20 @@ class LottoMachine {
   #afterReadMoney = (input) => {
     try {
       this.#money = new Money(input);
+      outputView.printLottoCount(this.#money.getAmount());
       this.generateLottos(this.#money.getAmount());
+      this.showLottos();
+      this.readWinningNumbers();
     } catch {
       this.readMoney();
+    }
+  };
+
+  #afterReadWinningNumbers = (input) => {
+    try {
+      this.readBonusNumber();
+    } catch {
+      this.readWinningNumbers();
     }
   };
 }
