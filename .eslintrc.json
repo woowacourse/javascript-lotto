@@ -15,6 +15,7 @@
         "linebreak-style": ["warn", "windows"],
         "no-console": "off",
         "no-param-reassign": ["warn", { "props": false }],
-        "import/extensions": ["error", "always"]
+        "import/extensions": ["error", "always"],
+        "class-methods-use-this": "off"
     }
 }
