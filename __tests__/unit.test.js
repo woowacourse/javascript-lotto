@@ -101,7 +101,7 @@ describe('검증하는 기능', () => {
     const min = 1;
 
     expect(() => {
-      validator.checkGreaterThanMin(input, min);
+      validator.checkGreaterThanOrEqualMin(input, min);
     }).toThrow();
   });
 
@@ -110,7 +110,7 @@ describe('검증하는 기능', () => {
     const max = 45;
 
     expect(() => {
-      validator.checkLessThanMax(input, max);
+      validator.checkLessThanOrEqualMax(input, max);
     }).toThrow();
   });
 });
