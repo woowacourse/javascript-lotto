@@ -39,6 +39,17 @@ const MESSAGE = Object.freeze({
   OUTPUT_EARNING_RATE: (earningRate) => `총 수익률은 ${earningRate}%입니다.`,
 });
 
+const ERROR_MESSAGE = Object.freeze({
+  NOT_NUMBER: '숫자를 입력해주세요.',
+  NOT_DIVIDE_MINIMUM_LOTTO_UNIT: `${MINIMUM_LOTTO_UNIT.toLocaleString(
+    'ko-KR'
+  )}단위의 값을 입력해주세요.`,
+  NOT_POSITIVE_NUMBER: '양수를 입력해주세요.',
+  DUPLICATE_NUMBER: '중복되는 숫자는 입력할 수 없습니다.',
+  OVER_RANGE: `${MIN_LOTTO_NUMBER} ~ ${MAX_LOTTO_NUMBER} 사이의 값을 입력해주세요.`,
+  NOT_MATCH_LENGTH: `길이는 ${LOTTO_LENGTH} 이여야 합니다.`,
+});
+
 export {
   PRIZE,
   MESSAGE,
@@ -49,4 +60,5 @@ export {
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
   MATCH_RANK,
+  ERROR_MESSAGE,
 };

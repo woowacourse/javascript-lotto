@@ -11,6 +11,7 @@ import {
   outputWinningResult,
   outputWinningStatistics,
 } from '../view/OutputView';
+import { isValidateValue, validatePurchaseAmount } from '../utils/validator';
 class LottoController {
   #game;
 
@@ -25,6 +26,12 @@ class LottoController {
 
   async readPurchaseAmount() {
     const purchaseAmount = await inputPurchaseAmount();
+    const isValidate = isValidateValue(() =>
+      validatePurchaseAmount(Number(purchaseAmount))
+    );
+
+    if (!isValidate) return this.readPurchaseAmount();
+
     this.#game.initializeLottos(purchaseAmount);
 
     this.printLottoInfo();
