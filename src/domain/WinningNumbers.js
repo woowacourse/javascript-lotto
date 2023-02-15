@@ -20,7 +20,9 @@ class WinningNumbers {
 
   #isLottoNumbersLength(winningNumbers) {
     return (
-      winningNumbers.split(',').filter((number) => this.#isLottoNumber(number))
+      winningNumbers
+        .split(',')
+        .filter((number) => this.#isLottoNumber(parseInt(number, 10)))
         .length === 6
     );
   }
