@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 import Lotto from "../src/domain/Lotto";
+import LottoController from "../src/domain/LottoController";
 import InputValidator from "../src/utils/InputValidator";
 test('숫자 6개를 받아 로또를 발행한다.', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
@@ -46,3 +47,11 @@ test('입력값이 y 혹은 n 만 가능하다.', () => {
   expect(() => InputValidator.checkRetryCommand(command)).toThrow();
 });
 
+test('로또 결과 계산', () => {
+  // { match: 5, bonus: true };
+  const numbers = [1, 2, 3, 4, 5, 6];
+  const lotto = new Lotto(numbers);
+  const winningNumber = [1, 2, 3, 4, 5, 7];
+  const bonusNumber = 6;
+  expect(lotto.matcher(winningNumber, bonusNumber)).toEqual({ match: 5, bonus: true });
+});
