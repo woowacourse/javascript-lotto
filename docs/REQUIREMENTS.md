@@ -76,7 +76,6 @@
      - 랜덤으로 6개의 숫자를 생성한다. (makeLottoNumbers())
      - 로또 당첨 번호를 입력 받는다. (readWinningNumbers())
      - 로또 보너스 번호를 입력 받는다. (readBonusNumber())
-     - 구매한 로또 장수를 보여준다. (showLottoCount())
      - 로또 번호들을 보여준다. (showLottos())
      - 로또 번호는 오름차순으로 정렬한다. (sortLottoNumbers)
      - 사용자에게 게임을 더 진행할 지 입력을 받는다. (readRetryOption())
@@ -86,11 +85,11 @@
 
 ## View
 
-1. InputView
+1. inputView
 
    - 필요한 값을 입력받는다. (inputHandler())
 
-2. OutputView
+2. outputView
    - 구매한 로또의 장수를 출력한다. (printLottoCount())
    - 로또의 번호를 출력한다. (printLotto())
    - 로또 당첨 결과를 출력한다. (printResult())
