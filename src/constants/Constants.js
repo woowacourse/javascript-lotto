@@ -17,6 +17,9 @@ const ErrorMessage = {
   LOTTO_VALUE: "[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.",
   LOTTO_LENGTH: "[ERROR] 로또 당첨 번호 6개를 입력해주세요.",
   LOTTO_DUPLICATE: "[ERROR] 로또 번호는 중복되지 않게 입력해주세요.",
+  BONUS_NUMBER_DUPLICATE:
+    "[ERROR] 보너스 번호는 로또 번호와 중복되지 않게 입력해주세요.",
+  BONUS_NUMBER_VALUE: "[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.",
 };
 
 export { StaticValue, ConsoleMessage, ErrorMessage };

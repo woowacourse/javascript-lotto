@@ -40,7 +40,7 @@ const Validation = {
 
   checkLottoNumberRange(lotto) {
     lotto.forEach((number) => {
-      if (number < 1 || number > 45) {
+      if (!this.isNumberInRange(number)) {
         throw new Error(ErrorMessage.LOTTO_VALUE);
       }
     });
@@ -68,6 +68,16 @@ const Validation = {
     if (winningNumbers.includes(bonusNumber)) {
       throw new Error(ErrorMessage.BONUS_NUMBER_DUPLICATE);
     }
+  },
+
+  checkBounsNumberRange(bonusNumber) {
+    if (!this.isNumberInRange(bonusNumber)) {
+      throw new Error(ErrorMessage.BONUS_NUMBER_VALUE);
+    }
+  },
+
+  isNumberInRange(number) {
+    return number >= 1 && number <= 45;
   },
 };
 
