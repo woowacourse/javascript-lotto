@@ -57,4 +57,14 @@ describe('로또 클래스 예외 테스트', () => {
       expect(() => new Lotto(lottoNumbers)).toThrowError();
     },
   );
+
+  test.each([
+    [
+      [0, 1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5, -6],
+      [41, 42, 43, 44, 45, 46],
+    ],
+  ])('로또 번호는 1에서 45 사이의 숫자가 아닌 경우 예외를 던져야 한다.', (lottoNumbers) => {
+    expect(() => new Lotto(lottoNumbers)).toThrowError();
+  });
 });
