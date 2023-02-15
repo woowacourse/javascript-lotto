@@ -52,3 +52,11 @@ test('당첨된 로또 개수를 통해 총 수익률을 구한다.', () => {
     '687.5'
   );
 });
+
+test('재시작 또는 종료 명령어가 아닌 경우 예외 처리한다.', () => {
+  const input = 't';
+
+  expect(() => {
+    new LottoGame().validateCommand(input);
+  }).toThrow();
+});
