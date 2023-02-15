@@ -116,6 +116,15 @@ class LottoGame {
   isBonus(lotto, bonusNumber) {
     return lotto.includes(bonusNumber);
   }
+
+  calculateProfitRate(winningLottos, purchasePrice) {
+    const list = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0];
+    return (
+      (winningLottos.reduce((acc, cur, idx) => acc + list[idx] * cur, 0) /
+        purchasePrice) *
+      100
+    ).toFixed(1);
+  }
 }
 
 module.exports = LottoGame;
