@@ -87,10 +87,10 @@ describe('계산 기능', () => {
 
 describe('검증하는 기능', () => {
   test.each([[' '], ['a'], [' 1'], ['1 '], ['1.0'], ['01']])(
-    '입력값%s라면 에러를 던진다.',
+    '입력값이 %s일 때 에러를 던진다.',
     (input) => {
       expect(() => {
-        Validator.checkDigit(input);
+        validator.checkDigit(input);
       }).toThrow();
     }
   );
