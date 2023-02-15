@@ -16,7 +16,11 @@ const InputValidator = {
       throw new Error('입력값이 1~45범위의 숫자가 아닙니다.');
     }
   },
-
+  checkDuplicatedNumbers(numbers) {
+    if (new Set(numbers).size !== numbers.length) {
+      throw new Error('중복된 숫자가 존재합니다.');
+    }
+  },
 };
 
 export default InputValidator;
