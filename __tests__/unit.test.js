@@ -1,8 +1,8 @@
-import generateRandomNumber from "../src/generateRandomNumber";
-import LottoMachine from "../src/models/LottoMachine";
+import generateRandomNumber from '../src/generateRandomNumber';
+import LottoMachine from '../src/models/LottoMachine';
 
-describe("로또를 뽑는 기능", () => {
-  test("랜덤한 숫자가 1 이상 45 이하이다.", () => {
+describe('로또를 뽑는 기능', () => {
+  test('랜덤한 숫자가 1 이상 45 이하이다.', () => {
     const min = 1;
     const max = 45;
 
@@ -12,7 +12,7 @@ describe("로또를 뽑는 기능", () => {
     expect(number).toBeLessThanOrEqual(max);
   });
 
-  test("중복되지 않는 숫자가 6개이다.", () => {
+  test('중복되지 않는 숫자가 6개이다.', () => {
     const lottoMachine = new LottoMachine();
     const lottoNumbers = lottoMachine.makeLottoNumbers();
 

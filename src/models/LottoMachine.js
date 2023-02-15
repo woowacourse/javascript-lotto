@@ -1,5 +1,5 @@
-import { LOTTO } from "../constants";
-import generateRandomNumber from "../generateRandomNumber";
+import { LOTTO } from '../constants';
+import generateRandomNumber from '../generateRandomNumber';
 
 class LottoMachine {
   makeLottoNumbers() {
