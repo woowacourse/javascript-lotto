@@ -1,6 +1,7 @@
 import generateRandomNumber from '../src/generateRandomNumber';
 import lottoCalculator from '../src/LottoCalculator';
 import Lotto from '../src/models/Lotto';
+import validator from '../src/validator';
 
 describe('로또를 뽑는 기능', () => {
   test('랜덤한 숫자가 1 이상 45 이하이다.', () => {
@@ -86,7 +87,7 @@ describe('계산 기능', () => {
 });
 
 describe('검증하는 기능', () => {
-  test.each([[' '], ['a'], [' 1'], ['1 '], ['1.0'], ['01']])(
+  test.each([[' '], ['a'], ['-1'], [' 1'], ['1 '], ['1.0'], ['01']])(
     '입력값이 %s일 때 에러를 던진다.',
     (input) => {
       expect(() => {
@@ -94,4 +95,22 @@ describe('검증하는 기능', () => {
       }).toThrow();
     }
   );
+
+  test('입력값이 min 미만일 때 에러를 던진다.', () => {
+    const input = '0';
+    const min = 1;
+
+    expect(() => {
+      validator.checkGreaterThanMin(input, min);
+    }).toThrow();
+  });
+
+  test('입력값이 max 초과일 때 에러를 던진다.', () => {
+    const input = '46';
+    const max = 45;
+
+    expect(() => {
+      validator.checkLessThanMax(input, max);
+    }).toThrow();
+  });
 });
