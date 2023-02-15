@@ -13,12 +13,18 @@ class Lotto {
       MIN_LOTTO_NUMBER,
       MAX_LOTTO_NUMBER,
     ]);
-
-    this.#winRank = null;
   }
 
   get lottoNumber() {
     return this.#lottoNumber;
+  }
+
+  get winRank() {
+    return this.#winRank;
+  }
+
+  setRank(rank) {
+    this.#winRank = rank;
   }
 }
 

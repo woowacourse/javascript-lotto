@@ -1,4 +1,4 @@
-import { PRIZE, MINIMUM_LOTTO_UNIT } from '../data/Constants';
+import { PRIZE, MINIMUM_LOTTO_UNIT, MATCH_RANK } from '../data/Constants';
 import { convertAscending } from '../utils/Utils';
 import Win from './Win';
 import Lotto from './Lotto';
@@ -25,8 +25,26 @@ class LottoGame {
 
   setBonusNumber(bonusNumber) {
     this.#win.bonusNumber = bonusNumber;
+  }
 
-    console.log(this.#win.bonusNumber);
+  setLottoRank() {
+    this.#lottos.forEach((lotto) => {
+      const correctResult = this.checkWinningNumbers(lotto);
+      lotto.setRank(MATCH_RANK[correctResult] ?? null);
+    });
+  }
+
+  checkWinningNumbers(lotto) {
+    const lottoNumber = lotto.lottoNumber;
+    const matchCount = this.#win.winningNumber.reduce((acc, cur) => {
+      return lottoNumber.includes(cur) ? acc + 1 : acc;
+    }, 0);
+
+    if (matchCount === 5) {
+      return lottoNumber.includes(this.#win.bonusNumber) ? 'bonus' : matchCount;
+    }
+
+    return matchCount;
   }
 
   calculateEarningRate(price, totalAmount) {

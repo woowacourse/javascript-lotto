@@ -35,7 +35,6 @@ class LottoController {
   }
 
   printLottoInfo() {
-    // 로또 출력하면 됨.
     const orderedLottos = this.#game.getOrderedLottos();
 
     outputLottoInfo(orderedLottos);
@@ -59,6 +58,7 @@ class LottoController {
   }
 
   printWinningResult() {
+    this.#game.setLottoRank();
     const winCount = {
       5: 0,
       4: 0,
