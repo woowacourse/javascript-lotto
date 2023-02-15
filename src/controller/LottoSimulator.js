@@ -5,6 +5,7 @@ import {
   LOTTO_CONSTANT,
   LOTTO_RANKING,
   MATCHES_COUNT_TO_RANKING,
+  WINNING_PRIZE,
 } from '../data/constants';
 import { RandomNumberGenerator } from '../utils/RandomNumberGenerator';
 
@@ -22,6 +23,10 @@ class LottoSimulator {
     this.#winningLotto = winningLotto;
   }
 
+  set budget(budget) {
+    this.#budget = budget;
+  }
+
   createLottoNumbers() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < LOTTO_CONSTANT.LENGTH) {
@@ -37,6 +42,7 @@ class LottoSimulator {
 
   purchaseLottos(budget) {
     this.validateBudget(budget);
+    this.#budget = budget;
     const lottoCount = budget / LOTTO_CONSTANT.PRICE;
     Array.from({ length: lottoCount }).forEach(() => {
       this.#lottos.push(new Lotto(this.createLottoNumbers()));
@@ -55,14 +61,26 @@ class LottoSimulator {
     if (budget < LOTTO_CONSTANT.PRICE) throw new Error(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
   }
 
-  calculateResult() {
-    const result = {};
-    Object.values(LOTTO_RANKING).forEach((rank) => (result[rank] = 0));
+  calculateWinningResult() {
+    const winningResult = {};
+    // {first:0, second:0, ...}
+    Object.values(LOTTO_RANKING).forEach((rank) => (winningResult[rank] = 0));
     this.#lottos.forEach((lotto) => {
       const rank = this.#winningLotto.calculateRanking(lotto);
-      result[rank] += 1;
+      winningResult[rank] += 1;
     });
-    return result;
+    return winningResult;
+  }
+
+  calculateYieldRate() {
+    const winningResult = this.calculateWinningResult();
+
+    const totalPrize = Object.keys(winningResult).reduce(
+      (sum, rank) => sum + WINNING_PRIZE[rank] * winningResult[rank],
+      0
+    );
+
+    return ((totalPrize / this.#budget) * 100).toFixed(1);
   }
 }
 

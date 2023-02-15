@@ -33,6 +33,15 @@ const RANKING_TO_MATCHES_COUNT = Object.freeze({
   fifth: 3,
 });
 
+const WINNING_PRIZE = {
+  first: 2_000_000_000,
+  second: 30_000_000,
+  third: 1_500_000,
+  fourth: 50_000,
+  fifth: 5_000,
+  fail: 0,
+};
+
 const ERROR_MESSAGE = Object.freeze({
   NOT_INTEGER: (subject) => `${subject}는 숫자여야 합니다`,
   LOTTO_NUMBER_RANGE: (subject) => `${subject}는 1~45 사이의 숫자여야 합니다.`,
@@ -46,5 +55,6 @@ export {
   LOTTO_RANKING,
   MATCHES_COUNT_TO_RANKING,
   RANKING_TO_MATCHES_COUNT,
+  WINNING_PRIZE,
   ERROR_MESSAGE,
 };

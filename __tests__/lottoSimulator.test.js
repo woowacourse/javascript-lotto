@@ -52,7 +52,7 @@ test('로또 결과 계산', () => {
   lottoSimulator.winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
   mockRandoms([8, 21, 23, 41, 42, 43, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 7]);
   lottoSimulator.purchaseLottos(3000);
-  expect(lottoSimulator.calculateResult()).toEqual({
+  expect(lottoSimulator.calculateWinningResult()).toEqual({
     first: 1,
     second: 1,
     third: 0,
@@ -60,4 +60,15 @@ test('로또 결과 계산', () => {
     fifth: 0,
     fail: 1,
   });
+});
+
+test('수익률 계산', () => {
+  const lottoSimulator = new LottoSimulator();
+  lottoSimulator.winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+  mockRandoms([
+    8, 21, 23, 41, 42, 43, 3, 5, 11, 16, 32, 38, 7, 11, 16, 35, 36, 44, 1, 8, 11, 31, 41, 42, 13,
+    14, 16, 38, 42, 45, 7, 11, 30, 40, 42, 43, 2, 13, 22, 32, 38, 45, 1, 3, 5, 14, 22, 45,
+  ]);
+  lottoSimulator.purchaseLottos(8000);
+  expect(lottoSimulator.calculateYieldRate()).toBe('62.5');
 });
