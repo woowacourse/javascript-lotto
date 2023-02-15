@@ -10,6 +10,10 @@ const NumberHandler = {
   addComma(number) {
     return number.toLocaleString('en-US');
   },
+
+  getQuotient(target, divider) {
+    return parseInt(target / divider, 10);
+  },
 };
 
 export default NumberHandler;
