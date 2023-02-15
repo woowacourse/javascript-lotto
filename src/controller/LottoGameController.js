@@ -1,3 +1,4 @@
+import { ConsoleMessage } from "../constants/Constants.js";
 import LottoGame from "../domain/LottoGame.js";
 import Validation from "../utils/Validation.js";
 import InputView from "../view/InputView.js";
@@ -16,7 +17,9 @@ class LottoGameController {
 
     try {
       Validation.checkPurchaseAmount(PURCHASE_AMOUNT);
-      this.#lottoGame.generateUserLottos(PURCHASE_AMOUNT / 1000);
+      const PURCHASE_COUNT = Number(PURCHASE_AMOUNT) / 1000;
+      this.#lottoGame.generateUserLottos(PURCHASE_COUNT);
+      OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
     } catch (error) {
       this.#rerequestInput(error.message, this.#handlePurchaseAmount);
     }
