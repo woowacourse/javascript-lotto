@@ -6,6 +6,11 @@ class Lotto {
   getLottoString() {
     return this.numbers.join(", ");
   }
+
+  matchNumbers(lottoNumbers) {
+    const mergedNumbers = new Set([...this.numbers, ...lottoNumbers]);
+    return mergedNumbers.size;
+  }
 }
 
 module.exports = Lotto;
