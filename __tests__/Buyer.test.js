@@ -17,7 +17,7 @@ describe('Buyer 클래스 테스트', () => {
 
 describe('Buyer 클래스 예외 테스트', () => {
   test.each([8800, 0, 100])(
-    '로또 구매 금액과 맞아 떨어지 않을 경우 예외를 발생시킨다.',
+    '로또 구매 금액과 맞아 떨어지 않을 경우 예외를 발생시킨다. (%p)',
     (money) => {
       const buyer = new Buyer(money);
 
