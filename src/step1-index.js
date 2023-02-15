@@ -41,31 +41,30 @@ export const getRateOfReturn = (totalPrize, purchaseAmount) => {
 
 export const checkPurchaseAmount = (purchaseAmount) => {
   if (purchaseAmount < 1000 || purchaseAmount % 1000 !== 0) {
-    throw new Error("[ 에러 ] 1,000원 단위로 입력해주세요.");
+    throw new Error("[ 에러 ] 1,000원 단위로 입력해 주세요.");
   }
 };
 
-export const checkIsInteger = (purchaseAmountString) => {
-  const regex = /[^0-9]/.test(purchaseAmountString);
-  if (regex || purchaseAmountString === "") {
-    throw new Error("[ 에러 ] 정수를 입력해주세요.");
+export const checkInteger = (purchaseAmountString) => {
+  if (/[^0-9]/.test(purchaseAmountString) || purchaseAmountString === "") {
+    throw new Error("[ 에러 ] 정수를 입력해 주세요.");
   }
 };
 
-export const checkIsDuplicated = (winningLottoNumbers) => {
+export const checkDuplicates = (winningLottoNumbers) => {
   if (new Set(winningLottoNumbers).size !== winningLottoNumbers.length) {
-    throw new Error("[ 에러 ] 번호 중복 없이 입력해주세요.");
+    throw new Error("[ 에러 ] 번호 중복 없이 입력해 주세요.");
   }
 };
 
-export const checkIsBetween1And45 = (winningLottoNumbers) => {
+export const checkBetween1And45 = (winningLottoNumbers) => {
   if (!winningLottoNumbers.every((number) => number >= 1 && number <= 45)) {
-    throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해주세요.");
+    throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해 주세요.");
   }
 };
 
 export const checkListLengthIsSix = (winningLottoNumbers) => {
   if (winningLottoNumbers.length !== 6) {
-    throw new Error("[ 에러 ] 6개의 로또 번호를 입력해주세요.");
+    throw new Error("[ 에러 ] 6개의 로또 번호를 입력해 주세요.");
   }
 };
