@@ -12,7 +12,7 @@ describe('Lotto 클래스 입니다.', () => {
     ],
   ])('로또 배열을 정렬한다.', (numbers, expected) => {
     const lotto = new Lotto(numbers);
-    expect(lotto.numbers).toEqual(expected);
+    expect(lotto.getNumbers()).toEqual(expected);
   });
 
   test('보너스 번호를 가지고 있으면 true를 반환한다.', () => {
@@ -33,6 +33,6 @@ describe('Lotto 클래스 입니다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const winLotto = new Lotto([4, 5, 6, 9, 10, 11]);
 
-    expect(lotto.findMatchCount(winLotto)).toBe(3);
+    expect(lotto.countMatch(winLotto)).toBe(3);
   });
 });
