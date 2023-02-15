@@ -117,3 +117,15 @@ test("구매 금액 만큼의 로또를 생성한다.", () => {
 
   expect(lottos.length).toBe(8);
 });
+
+test("구입한 로또 번호가 당첨 번호와 3개 일치할 경우 5등 당첨, 5개 일치 및 보너스 번호 일치시 2등 당첨", () => {
+  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+  const purchasedLotto1 = new Lotto([4, 5, 6, 7, 8, 9]);
+  const purchasedLotto2 = new Lotto([1, 2, 3, 4, 5, 7]);
+
+  const rank1 = winningLotto.calculateRank(purchasedLotto1);
+  const rank2 = winningLotto.calculateRank(purchasedLotto2);
+
+  expect(rank1).toBe(5);
+  expect(rank2).toBe(2);
+});
