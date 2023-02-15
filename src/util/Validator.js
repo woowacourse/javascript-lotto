@@ -18,6 +18,10 @@ const Validator = {
   isNumberInRange(value, min, max) {
     return value >= min && value < max;
   },
+
+  hasDuplication(array) {
+    return array.length !== new Set(array).size;
+  },
 };
 
 export default Validator;
