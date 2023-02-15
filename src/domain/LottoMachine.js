@@ -1,5 +1,12 @@
+const { shuffle } = require('../utils/shuffle');
+
 class LottoMachine {
   #lottos = [];
+
+  constructor(purchasePrice) {
+    this.validatePurchasePrice(purchasePrice);
+    this.issueLottos(purchasePrice);
+  }
 
   validatePurchasePrice(purchasePrice) {
     if (!this.isValidPurchasePrice(purchasePrice)) {
@@ -13,11 +20,12 @@ class LottoMachine {
 
   issueLottos(purchasePrice) {
     const lottoCount = purchasePrice / 1000;
-
     Array(lottoCount)
       .fill(0)
       .forEach(() => {
-        this.#lottos.push([1, 2, 3, 4, 5, 6]);
+        this.#lottos.push(
+          shuffle(Array.from({ length: 45 }, (_, idx) => idx + 1)).slice(0, 6)
+        );
       });
   }
 
