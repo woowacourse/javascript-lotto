@@ -3,3 +3,5 @@ const pickRandomNumber = (maxRange) => {
 
   return randomNumber;
 };
+
+export default pickRandomNumber;
