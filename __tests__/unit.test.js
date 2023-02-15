@@ -29,3 +29,22 @@ describe('로또를 뽑는 기능', () => {
     }, 0);
   });
 });
+
+describe('로또 당첨 기능', () => {
+  const lottoNumbers = [1, 2, 3, 4, 5, 6];
+
+  test.each([
+    [[1, 2, 3, 4, 5, 6], 7, 1],
+    [[1, 2, 3, 4, 5, 44], 6, 2],
+    [[1, 2, 3, 4, 5, 44], 45, 3],
+    [[1, 2, 3, 4, 43, 44], 45, 4],
+    [[1, 2, 3, 42, 43, 44], 45, 5],
+  ])(
+    '당첨 번호가 %p이고 보너스 번호가 %d일 때 %d등 이다.',
+    ([winningNumbers, bonusNumber, expectedRanking]) => {
+      const ranking = new Lotto(lottoNumbers).calculateRanking(winningNumbers, bonusNumber);
+
+      expect(ranking).toBe(expectedRanking);
+    }
+  );
+});
