@@ -22,7 +22,7 @@ class LottoMachine {
       5: 5000,
     };
 
-    return rankings.reduce((acc, ranking) => (acc += ranking === 0 ? 0 : rewardMap[ranking]), 0);
+    return rankings.reduce((acc, ranking) => (acc += rewardMap[ranking]), 0);
   }
 }
 

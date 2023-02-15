@@ -79,6 +79,7 @@ describe('계산 기능', () => {
     [[4], 50000],
     [[5], 5000],
     [[3, 5, 5], 1510000],
+    [[], 0],
   ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
     const reward = new LottoMachine().calculateReward(rankings);
 
