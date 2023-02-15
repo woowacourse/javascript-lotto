@@ -3,6 +3,7 @@ import deepFreeze from '../utils/deepFreeze';
 const values = Object.freeze({
   LOWER_BOUND: 1,
   UPPER_BOUND: 45,
+  LOTTO_PRICE: 1000,
 });
 
 const correctCountsToMoney = deepFreeze({
