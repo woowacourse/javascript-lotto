@@ -1,4 +1,4 @@
-import LottoGame from '../src/domain/LottoGame';
+import LottoGame from '../src/domain/LottoGame.js';
 
 test('로또 번호가 일치하는 개수만큼을 정확히 반환하여야 한다.', () => {
   const lotto = [3, 11, 14, 20, 33, 45];
@@ -16,7 +16,7 @@ describe('로또 번호에 보너스 번호가 포함되어 있는지 여부를 
     const bonusNumber = 3;
 
     const lottoGame = new LottoGame();
-    const testResult = lottoGame.hasBonusNumber(lotto, bonusNumber);
+    const testResult = lottoGame.checkBonusNumber(lotto, bonusNumber);
 
     expect(testResult).toBe(true);
   });
@@ -26,17 +26,19 @@ describe('로또 번호에 보너스 번호가 포함되어 있는지 여부를 
     const bonusNumber = 8;
 
     const lottoGame = new LottoGame();
-    const testResult = lottoGame.hasBonusNumber(lotto, bonusNumber);
+    const testResult = lottoGame.checkBonusNumber(lotto, bonusNumber);
 
     expect(testResult).toBe(false);
   });
+
+  test('일치하는 로또 숫자의 개수와 보너스 번호의 포함 여부를 반환하는 기능', () => {
+    const lotto = [1, 2, 3, 4, 5, 6];
+    const winningLotto = [3, 4, 5, 6, 7, 8];
+    const bonusNumber = 3;
+
+    const lottoGame = new LottoGame();
+    const testResult = lottoGame.getLottoMatchedResult(lotto, winningLotto, bonusNumber);
+
+    expect(testResult).toEqual({ matchedCount: 4, hasBonusNumber: true });
+  });
 });
-
-// fn(arr, bonusNumber)
-
-// fn() {
-//     asdasd(); 일치하는 일반 로또 개수 반환
-//     zxc(); 보너스 로또와 일치하는지 반환
-// }
-
-// LottoGame
