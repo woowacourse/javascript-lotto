@@ -25,11 +25,12 @@ const LottoGame = {
     const winlotto = new WinLotto(winningNumbers, bonusNumber);
     this.rankResult = winlotto.calculateWinLotto(this.lottos, this.rankResult);
 
-    const revenue = winlotto.calculateRevenue(rankResult, lottos.length);
-    return [revenue, rankResult];
+    const revenue = winlotto.calculateRevenue(
+      this.rankResult,
+      this.lottos.length
+    );
+    return [revenue, this.rankResult];
   },
 };
 
 module.exports = LottoGame;
-
-console.log((10000 / 3).toFixed(2));
