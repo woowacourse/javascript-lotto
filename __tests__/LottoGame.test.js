@@ -43,3 +43,12 @@ test('로또 번호와 보너스 번호의 일치 여부를 판단한다.', () =
 
   expect(new LottoGame().isBonus(lotto, bonusNumber)).toBe(true);
 });
+
+test('당첨된 로또 개수를 통해 총 수익률을 구한다.', () => {
+  const winningLotts = [0, 0, 0, 1, 1, 0];
+  const purchasePrice = 8000;
+
+  expect(new LottoGame().calculateProfitRate(winningLotts, purchasePrice)).toBe(
+    '687.5'
+  );
+});
