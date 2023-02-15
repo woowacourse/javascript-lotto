@@ -37,7 +37,7 @@ class WinLotto extends Lotto {
       0
     );
 
-    return Math.round(revenue / lottoCount) / 10;
+    return Math.round(revenue / lottoCount) / 10, revenue;
   }
 
   get bonusNumber() {
