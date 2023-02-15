@@ -22,3 +22,7 @@ export const makeLottoTickets = (numberOfTickets) => {
 
   return lottoTickets;
 };
+
+export const getAscendingSortedNumbers = (numbers) => {
+  return numbers.sort((a, b) => a - b);
+};
