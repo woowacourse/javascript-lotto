@@ -6,6 +6,7 @@ import {
 } from '../view/InputView';
 import LottoGame from '../domain/LottoGame';
 import IO from '../utils/IO';
+import { outputLottoInfo } from '../view/OutputView';
 class LottoController {
   #purchaseAmount;
   #game;
@@ -22,6 +23,14 @@ class LottoController {
   async readPurchaseAmount() {
     const purchaseAmount = await inputPurchaseAmount();
     this.#purchaseAmount = purchaseAmount;
+    this.printLottoInfo();
+  }
+
+  printLottoInfo() {
+    outputLottoInfo([
+      [1, 2, 3, 4, 5, 6],
+      [50, 29, 19, 39, 50, 20],
+    ]);
     this.readWinningNumber();
   }
 
