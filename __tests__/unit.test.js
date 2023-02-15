@@ -1,5 +1,6 @@
 import Lotto from "../src/domain/Lotto.js";
 import WinningLotto from "../src/domain/WinningLotto.js";
+import LottoGame from "../src/domain/LottoGame.js";
 import Validator from "../src/domain/Validator.js";
 import parseToNumberTypeArray from "../src/utils/parseToNumberTypeArray.js";
 import getRandomNumberArray from "../src/utils/getRandomNumberArray.js";
@@ -51,7 +52,7 @@ test("구매 금액은 숫자여야 한다.", () => {
 
 test("구매 금액은 1000 단위여야 한다.", () => {
   expect(() => {
-    Validator.validateExactUnit(1000, 1200);
+    Validator.validateExactUnit(1200, 1000);
   }).toThrow("[ERROR]");
 });
 
@@ -106,4 +107,13 @@ test("구매 금액과 상금을 비교해서 수익률을 계산한다.", () =>
   const profitRate = getProfitRate(purchaseMoney, prizeMoney);
 
   expect(profitRate.toFixed(1)).toBe("62.5");
+});
+
+test("구매 금액 만큼의 로또를 생성한다.", () => {
+  const lottoGame = new LottoGame();
+
+  lottoGame.purchaseLottos(8000);
+  const lottos = lottoGame.getLottos();
+
+  expect(lottos.length).toBe(8);
 });

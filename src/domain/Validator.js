@@ -35,7 +35,7 @@ const Validator = {
       throw new Error("[ERROR] 입력 값은 숫자여야 합니다.");
   },
 
-  validateExactUnit(unit, input) {
+  validateExactUnit(input, unit) {
     if (input % unit !== 0)
       throw new Error(`[ERROR] 입력 값은 ${unit} 단위여야 합니다.`);
   },
