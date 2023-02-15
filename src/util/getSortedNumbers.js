@@ -1,7 +1,7 @@
 const getSortedNumbers = (numbers, orderType) => {
   const copiedNumbers = numbers.slice();
 
-  if (orderType === "ASC") {
+  if (orderType === 'ASC') {
     const sortedNumbers = copiedNumbers.sort((a, b) => a - b);
     return sortedNumbers;
   }
