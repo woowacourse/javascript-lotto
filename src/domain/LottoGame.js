@@ -3,6 +3,7 @@ import generateRandomNumbersInRange from "../utils/RandomNumberGenerator.js";
 
 class LottoGame {
   #userLottos;
+  #gameLottos = {};
 
   generateUserLottos(purchaseCount) {
     this.#userLottos = Array.from({ length: purchaseCount }).map(() => {
@@ -14,6 +15,10 @@ class LottoGame {
 
   getUserLottos() {
     return this.#userLottos.map((userLotto) => userLotto.getNumbers());
+  }
+
+  setWinningNumbers(numbers) {
+    this.#gameLottos.winningNumbers = [...numbers];
   }
 }
 
