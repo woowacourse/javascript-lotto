@@ -4,7 +4,6 @@ import {
   LOTTO_RANKING,
   MATCHES_COUNT_TO_RANKING,
 } from '../data/constants';
-import Validator from '../utils/Validator';
 import Lotto from './Lotto';
 
 class WinningLotto extends Lotto {
@@ -17,36 +16,25 @@ class WinningLotto extends Lotto {
   }
 
   validateBonusNumber(bonusNumber) {
-    if (!Validator.isInteger(bonusNumber))
-      throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_CONSTANT.BONUS_NUMBER));
-    if (
-      LOTTO_CONSTANT.MIN_NUMBER > bonusNumber ||
-      LOTTO_CONSTANT.MAX_NUMBER < bonusNumber
-    )
-      throw new Error(
-        ERROR_MESSAGE.LOTTO_NUMBER_RANGE(LOTTO_CONSTANT.BONUS_NUMBER)
-      );
-    if (this.numbers.includes(bonusNumber))
-      throw new Error(
-        ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_CONSTANT.BONUS_NUMBER)
-      );
+    this.validateEachNumber(bonusNumber);
+
+    if (this.includes(bonusNumber))
+      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_CONSTANT.LOTTO_NUMBER));
   }
 
   calculateRanking(lotto) {
-    const matchesCount = lotto.numbers.filter((number) =>
-      this.numbers.includes(number)
-    ).length;
+    const matchesCount = this._numbers.filter((number) => lotto.includes(number)).length;
 
-    if (
-      MATCHES_COUNT_TO_RANKING[matchesCount] === LOTTO_RANKING.THIRD &&
-      this.isBonusNumberMatched(lotto)
-    )
-      return LOTTO_RANKING.SECOND;
+    if (this.isSecondRanking(lotto, matchesCount)) return LOTTO_RANKING.SECOND;
+
     return MATCHES_COUNT_TO_RANKING[matchesCount];
   }
 
-  isBonusNumberMatched(lotto) {
-    return lotto.includes(this.#bonusNumber);
+  isSecondRanking(lotto, matchesCount) {
+    return (
+      MATCHES_COUNT_TO_RANKING[matchesCount] === LOTTO_RANKING.THIRD &&
+      lotto.includes(this.#bonusNumber)
+    );
   }
 }
 

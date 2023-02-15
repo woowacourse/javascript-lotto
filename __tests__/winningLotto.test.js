@@ -2,25 +2,19 @@
 import Lotto from '../src/domain/Lotto';
 import WinningLotto from '../src/domain/WinningLotto';
 
-test.each([['a'], ['가'], ['!'], [' ']])(
-  '보너스 번호는 숫자이다',
-  (bonusNumber) => {
-    expect(() => {
-      const numbers = [1, 2, 3, 4, 5, 6];
-      new WinningLotto(numbers, bonusNumber);
-    }).toThrow();
-  }
-);
+test.each([['a'], ['가'], ['!'], [' ']])('보너스 번호는 숫자이다', (bonusNumber) => {
+  expect(() => {
+    const numbers = [1, 2, 3, 4, 5, 6];
+    new WinningLotto(numbers, bonusNumber);
+  }).toThrow();
+});
 
-test.each([[0], [46], [-3]])(
-  '보너스 번호는 1~45 사이의 수이다',
-  (bonusNumber) => {
-    expect(() => {
-      const numbers = [1, 2, 3, 4, 5, 6];
-      new WinningLotto(numbers, bonusNumber);
-    }).toThrow();
-  }
-);
+test.each([[0], [46], [-3]])('보너스 번호는 1~45 사이의 수이다', (bonusNumber) => {
+  expect(() => {
+    const numbers = [1, 2, 3, 4, 5, 6];
+    new WinningLotto(numbers, bonusNumber);
+  }).toThrow();
+});
 
 test.each([[1], [2], [3]])('보너스 번호는 중복될 수 없다', (bonusNumber) => {
   expect(() => {
