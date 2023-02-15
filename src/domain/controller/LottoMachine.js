@@ -87,6 +87,16 @@ class LottoMachine {
       outputView.printLotto(lotto);
     });
   }
+
+  calculateRanks() {
+    const winningNumbers = this.#winning.getWinningNumbers();
+    this.#lottos.forEach((lotto) => {
+      const matchedCount = lotto.filter((number) =>
+        winningNumbers.includes(number)
+      ).length;
+      const rank = this.getRank(matchedCount, this.isBonus(lotto));
+    });
+  }
 }
 
 module.exports = LottoMachine;
