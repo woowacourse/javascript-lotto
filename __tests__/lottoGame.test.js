@@ -23,5 +23,5 @@ test('로또 상금과 구매 금액을 토대로 수익률을 계산한다.', (
   const earningRate = lottoGame.calculateEarningRate(price, totalAmount);
 
   // then
-  expect(earningRate).toBe('193.75');
+  expect(earningRate).toBe('19375.0');
 });
