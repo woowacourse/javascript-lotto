@@ -16,4 +16,8 @@ export default class Component {
   template() {
     return '';
   }
+
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+  }
 }

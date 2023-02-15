@@ -1,30 +1,20 @@
+import Component from './Component.js';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';
 
-const result = {};
-function initState(initialValue = {}) {
-  result.state = initialValue;
-  const setState = (newState) => {
-    result.state = { ...result.state, ...newState };
-  };
-
-  result.setState = setState;
-
-  return result;
-}
-class App {
-  #state = initState({
-    total: null,
-  });
-
+class App extends Component {
   async play() {
-    await this.render(new Amount(this.#state.setState));
-    await this.render(new LottoList(this.#state.state.total));
+    await this.render(new Amount({ setter: this.setState.bind(this) }));
+    await this.render(new LottoList({ total: this.state.total }));
   }
 
   async render(component) {
     await component.read();
     component.render();
+  }
+
+  setUp() {
+    this.state = { total: null };
   }
 }
 
