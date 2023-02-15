@@ -34,3 +34,7 @@ export const getNumberOfMatchingLottoNumbers = (lottoTicket, winningLottoNumbers
     new Set([...lottoTicket, ...winningLottoNumbers]).size
   );
 };
+
+export const getRateOfReturn = (totalPrize, purchaseAmount) => {
+  return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
+};
