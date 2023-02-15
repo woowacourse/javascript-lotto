@@ -11,7 +11,11 @@ import {
   outputWinningResult,
   outputWinningStatistics,
 } from '../view/OutputView';
-import { isValidateValue, validatePurchaseAmount } from '../utils/validator';
+import {
+  isValidateValue,
+  validatePurchaseAmount,
+  validateWinningNumbers,
+} from '../utils/validator';
 class LottoController {
   #game;
 
@@ -25,13 +29,13 @@ class LottoController {
   }
 
   async readPurchaseAmount() {
-    const purchaseAmount = await inputPurchaseAmount();
+    const inputAmount = await inputPurchaseAmount();
+    const purchaseAmount = Number(inputAmount);
     const isValidate = isValidateValue(() =>
-      validatePurchaseAmount(Number(purchaseAmount))
+      validatePurchaseAmount(purchaseAmount)
     );
 
     if (!isValidate) return this.readPurchaseAmount();
-
     this.#game.initializeLottos(purchaseAmount);
 
     this.printLottoInfo();
@@ -46,8 +50,15 @@ class LottoController {
   }
 
   async readWinningNumber() {
-    const winningNumber = await inputWinningNumber();
-    this.#game.initializeWin(winningNumber.split(',').map(Number));
+    const inputNumbers = await inputWinningNumber();
+    const winningNumber = inputNumbers.split(',').map(Number);
+    const isValidate = isValidateValue(() =>
+      validateWinningNumbers(winningNumber)
+    );
+
+    if (!isValidate) return this.readWinningNumber();
+
+    this.#game.initializeWin(winningNumber);
 
     this.readBonusNumber();
   }
