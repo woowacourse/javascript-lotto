@@ -3,6 +3,8 @@ import WinningLotto from "../src/domain/WinningLotto.js";
 import Validator from "../src/domain/Validator.js";
 import parseToNumberTypeArray from "../src/utils/parseToNumberTypeArray.js";
 import getRandomNumberArray from "../src/utils/getRandomNumberArray.js";
+import getSameElementCount from "../src/utils/getSameElementCount.js";
+import isExistData from "../src/utils/isExistData.js";
 
 test("로또 객체를 생성하면 로또 번호가 저장된다.", () => {
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
@@ -75,4 +77,17 @@ test("길이 값을 넣으면 중복되지 않은 숫자 배열을 반환한다.
 
   expect(arrayLength).toBe(6);
   expect(isArrayValueDuplicated).toBeTruthy();
+});
+
+test("두 배열의 숫자들을 비교하여 같은 숫자의 수를 반환한다.", () => {
+  const sameNumberLength = getSameElementCount(
+    [1, 2, 3, 4, 5, 6],
+    [4, 5, 6, 7, 8, 9]
+  );
+  expect(sameNumberLength).toBe(3);
+});
+
+test("첫 인자로 들어온 수가 두 번쨰 인자 배열에 존재하는 값인지 확인한다", () => {
+  const isInclude = isExistData(6, [1, 2, 3, 4, 5, 6]);
+  expect(isInclude).toBeTruthy();
 });
