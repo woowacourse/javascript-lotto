@@ -19,10 +19,10 @@ class WinningLotto extends Lotto {
       throw new Error(
         ERROR_MESSAGE.LOTTO_NUMBER_RANGE(LOTTO_STRING.BONUS_NUMBER)
       );
-    // if (Validator.isDuplicated(bonusNumber))
-    //   throw new Error(
-    //     ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_STRING.BONUS_NUMBER)
-    //   );
+    if (this.numbers.includes(bonusNumber))
+      throw new Error(
+        ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_STRING.BONUS_NUMBER)
+      );
   }
 
   calculateRanking(lotto) {
@@ -30,7 +30,7 @@ class WinningLotto extends Lotto {
       this.numbers.includes(number)
     );
 
-    if (matchedNumber.length === 5 && lotto.numbers.includes(this.bonusNumber))
+    if (matchedNumber.length === 5 && lotto.numbers.includes(this.#bonusNumber))
       return 'SECOND';
     return toOrdinalNumber[matchedNumber.length];
   }
