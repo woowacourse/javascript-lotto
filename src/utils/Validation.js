@@ -29,6 +29,7 @@ const Validation = {
     this.checkLottoNumberLength(lotto);
     this.checkLottoNumberRange(lotto);
     this.checkLottoDuplicate(lotto);
+    this.checkLottoNumbersType(lotto);
   },
 
   checkLottoNumberLength(lotto) {
@@ -49,6 +50,14 @@ const Validation = {
     if (lotto.length !== new Set(lotto).size) {
       throw new Error(ErrorMessage.LOTTO_DUPLICATE);
     }
+  },
+
+  checkLottoNumbersType(lotto) {
+    lotto.forEach((number) => {
+      if (isNaN(number)) {
+        throw new Error(ErrorMessage.LOTTO_VALUE);
+      }
+    })
   },
 };
 
