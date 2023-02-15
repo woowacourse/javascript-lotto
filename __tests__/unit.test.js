@@ -122,4 +122,12 @@ describe('검증하는 기능', () => {
       validator.checkDivideIntoUnit(number, unit);
     }).toThrow();
   });
+
+  test('숫자 배열에 중복이 있을 때 에러를 던진다', () => {
+    const numbers = [1, 1, 2, 3, 4, 5];
+
+    expect(() => {
+      validator.checkDuplication(numbers);
+    }).toThrow();
+  });
 });
