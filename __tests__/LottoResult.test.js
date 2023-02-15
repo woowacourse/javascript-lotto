@@ -24,4 +24,19 @@ describe('LottoResult 클래스에 대한 테스트', () => {
       expect(rewardMoney).toBe(expectedRewardMoney);
     },
   );
+
+  test('사용자는 구매한 로또에 대해 당첨 로또가 각 몇장인지 계산할 수 있다.', () => {
+    const lottos = [
+      [1, 2, 3, 40, 41, 42],
+      [1, 2, 3, 4, 41, 42],
+      [1, 2, 3, 4, 5, 7],
+    ].map((lotto) => new Lotto(lotto));
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    const lottoResult = new LottoResult(winningNumbers, bonusNumber);
+    const rewardCounts = lottoResult.countRewards(lottos);
+
+    expect(rewardCounts).toBe([0, 1, 0, 1, 1]);
+  });
 });
