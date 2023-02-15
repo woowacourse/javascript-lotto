@@ -41,11 +41,16 @@ class LottoMachine {
   }
 
   makeLottoNumbers() {
-    const lottoNumbers = Array.from({ length: 6 })
-      .map(() => pickRandomNumberInRange(1, 45))
-      .sort((first, second) => first - second);
+    const lottoNumbers = [];
 
-    return lottoNumbers;
+    while (lottoNumbers.length < 6) {
+      const randomNumber = pickRandomNumberInRange(1, 45);
+      if (!lottoNumbers.includes(randomNumber)) {
+        lottoNumbers.push(randomNumber);
+      }
+    }
+
+    return lottoNumbers.sort((first, second) => first - second);
   }
 
   #afterReadMoney = (input) => {
@@ -55,7 +60,8 @@ class LottoMachine {
       this.generateLottos(this.#money.getAmount());
       this.showLottos();
       this.readWinningNumbers();
-    } catch {
+    } catch (error) {
+      console.log(error.msg);
       this.readMoney();
     }
   };
@@ -68,7 +74,8 @@ class LottoMachine {
       this.#winning = new Winning();
       this.#winning.setWinningNumbers(winningNumbers);
       this.readBonusNumber();
-    } catch {
+    } catch (error) {
+      console.log(error.msg);
       this.readWinningNumbers();
     }
   };
@@ -77,7 +84,8 @@ class LottoMachine {
     try {
       this.#winning.setBonusNumber(Number(input));
       this.calculateRanks();
-    } catch {
+    } catch (error) {
+      console.log(error.msg);
       this.readBonusNumber();
     }
   };
@@ -90,12 +98,19 @@ class LottoMachine {
 
   calculateRanks() {
     const winningNumbers = this.#winning.getWinningNumbers();
+    const ranks = [0, 0, 0, 0, 0];
+
     this.#lottos.forEach((lotto) => {
       const matchedCount = lotto.filter((number) =>
         winningNumbers.includes(number)
       ).length;
+
       const rank = this.getRank(matchedCount, this.isBonus(lotto));
+      if (rank < 6) {
+        ranks[rank] += 1;
+      }
     });
+    this.#ranks = ranks;
   }
 
   isBonus(lotto) {
@@ -104,13 +119,13 @@ class LottoMachine {
 
   getRank(matchedCount, isBonus) {
     if (matchedCount < 3) return 6;
-    const findRankIndex = MAGIC_NUMBER.rankInformations.findIndex(
+    const rank = MAGIC_NUMBER.rankInformations.findIndex(
       (rankInformation) =>
         rankInformation.isBonus === isBonus &&
         rankInformation.matchedCount === matchedCount
     );
 
-    return MAGIC_NUMBER.rankInformations[findRankIndex].rank;
+    return rank;
   }
 }
 
