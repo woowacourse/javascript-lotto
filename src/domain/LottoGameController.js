@@ -14,6 +14,7 @@ export default class LottoGameController {
   async play() {
     await this.#createLotto();
     this.#printLottoQuantity();
+    this.#printEachLottoNumbers();
   }
 
   async #createLotto() {
@@ -43,5 +44,10 @@ export default class LottoGameController {
   #printLottoQuantity() {
     const lottoQuantity = this.#lottoGame.getLottoQuantity();
     OutputView.printLottoQuantity(lottoQuantity);
+  }
+
+  #printEachLottoNumbers() {
+    const eachLottoNumbers = this.#lottoGame.getEachLottoNumbers();
+    OutputView.printEachLottoNumbers(eachLottoNumbers);
   }
 }
