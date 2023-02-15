@@ -8,7 +8,7 @@ const Validation = {
 
   validateNumberArray(lottoNumbers) {
     lottoNumbers.forEach((lottoNumber) => {
-      if (!/\d/.test(lottoNumber)) {
+      if (!/^\d+$/g.test(lottoNumber)) {
         throw new Error('로또 번호는 정수여야 합니다.');
       }
     });
