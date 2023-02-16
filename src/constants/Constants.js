@@ -4,15 +4,26 @@ const StaticValue = Object.freeze({
   MATCH_FIVE_AND_BONUS: 5.5,
 });
 
+const MatchCount = Object.freeze({
+  6: "SIX",
+  5.5: "FIVE_AND_BONUS",
+  5: "FIVE",
+  4: "FOUR",
+  3: "THREE",
+  2: "TWO",
+  1: "ONE",
+  0: "ZERO",
+});
+
 const Rank = Object.freeze({
-  0: 6,
-  1: 6,
-  2: 6,
-  3: 5,
-  4: 4,
-  5: 3,
-  5.5: 2,
-  6: 1,
+  SIX: 1,
+  FIVE_AND_BONUS: 2,
+  FIVE: 3,
+  FOUR: 4,
+  THREE: 5,
+  TWO: 6,
+  ONE: 6,
+  ZERO: 6,
 });
 
 const Prize = Object.freeze({
@@ -43,4 +54,4 @@ const ErrorMessage = Object.freeze({
   BONUS_NUMBER_VALUE: "[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.",
 });
 
-export { StaticValue, Rank, Prize, ConsoleMessage, ErrorMessage };
+export { StaticValue, MatchCount, Rank, Prize, ConsoleMessage, ErrorMessage };
