@@ -27,7 +27,7 @@ test('makeLotto메서드 1회 실행 시 1개의 로또가 생성되어야 한�
   expect(lottoQuantity).toBe(processCount);
 });
 
-test('getEachCompareResult메서드 실행 시', () => {
+test('getEachCompareResult메서드 실행 시 각 로또의 당첨번호와 보너스번호 일치 여부를 객체 배열로 반환한다.', () => {
   const lottoGame = new LottoGame();
   const lottoNumbersList = [
     [1, 2, 3, 4, 5, 6],
@@ -49,7 +49,7 @@ test('getEachCompareResult메서드 실행 시', () => {
   expect(eachCompareResult).toEqual(expected);
 });
 
-test('getStatistics메서드', () => {
+test('getStatistics메서드는 각 등수별 당첨 횟수 통계를 객체로 반환한다.', () => {
   const lottoGame = new LottoGame();
 
   const eachCompareResult = [
@@ -70,7 +70,7 @@ test('getStatistics메서드', () => {
   expect(statistics).toEqual(expected);
 });
 
-test('getTotalPrizeMoney메서드', () => {
+test('getTotalPrizeMoney메서드는 총 상금을 반환한다.', () => {
   const lottoGame = new LottoGame();
 
   const statistics = {
