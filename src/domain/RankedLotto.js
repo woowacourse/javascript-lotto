@@ -27,26 +27,26 @@ class RankedLotto {
       .forEach(number => {
         switch (number) {
           case 7:
-            this.result[1]++;
+            this.result[3]++;
             break;
           case 6:
-            this.result[0]++;
+            this.result[4]++;
             break;
           case 5:
             this.result[2]++;
             break;
           case 4:
-            this.result[3]++;
+            this.result[1]++;
             break;
           case 3:
-            this.result[4]++;
+            this.result[0]++;
             break;
         }
       });
   }
 
   earningsRate(lottoMoney) {
-    const ConstantMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+    const ConstantMoney = [5000, 50000,1500000, 30000000 ,2000000000];
     Array.from({ length: this.result.length }, (v, index) => {
       this.profit += this.result[index] * ConstantMoney[index];
     });
