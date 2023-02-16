@@ -64,7 +64,7 @@ const consoleMessage = Object.freeze({
     } (${profit[indexToRankKeyConverter[rank - 1]]
       .toString()
       .replace(regex.PRICE_FORMAT, ',')}원) - ${correctCount}개`,
-  showProfitRate: (profitRate) => `총 수익률은 ${profitRate}입니다.`,
+  showProfitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
   ASK_RESTART_COMMAND: '> 다시 시작하시겠습니까? (y/n)',
 });
 
