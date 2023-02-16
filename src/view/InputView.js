@@ -6,10 +6,16 @@ const InputView = {
   },
 
   readLottoWinningNumber(callback) {
-    Console.read('당첨 번호를 입력해 주세요.', callback);
+    Console.read('\n당첨 번호를 입력해 주세요.', callback);
   },
 
   readLottoBonusNumber(callback) {
-    Console.read('보너스 번호를 입력해 주세요.', callback);
+    Console.read('\n보너스 번호를 입력해 주세요.', callback);
+  },
+
+  readRestartCommand(callback) {
+    Console.read('다시 시작하시겠습니까? (y/n)', callback);
   },
 };
+
+module.exports = InputView;
