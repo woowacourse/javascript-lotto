@@ -1,4 +1,4 @@
-import { PRICE, PRIZE } from '../constants/values';
+import { INITIAL_EARNING, PRICE, PRIZE } from '../constants/values';
 
 export class Lotto {
   #numbers = [];
@@ -38,9 +38,7 @@ export const LottoStore = {
   draw(lotto) {
     const numbers = lotto.getNumbers();
     const { winningNumbers, bonusNumber } = lotto.getDrawingNumbers();
-    const awards = [];
-
-    winningNumbers.forEach((number) => numbers.includes(number) && awards.push(number));
+    const awards = winningNumbers.filter((number) => numbers.includes(number));
 
     return awards.length === 5 && numbers.includes(bonusNumber) ? 'BONUS' : String(awards.length);
   },
@@ -62,8 +60,8 @@ export const LottoStore = {
     const statistics = LottoStore.calculateStatistics(lottoList);
 
     const earning = Object.entries(statistics).reduce(
-      (acc, [award, count]) => (award in PRIZE ? acc + PRIZE[award] * count : acc),
-      0
+      (acc, [rank, count]) => (rank in PRIZE ? acc + PRIZE[rank] * count : acc),
+      INITIAL_EARNING
     );
 
     return ((earning / (PRICE * TOTAL)) * 100).toFixed(1);

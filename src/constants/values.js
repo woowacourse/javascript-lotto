@@ -1,3 +1,4 @@
+export const INITIAL_EARNING = 0;
 export const PRICE = 1000;
 export const PRIZE = Object.freeze({
   3: 5_000,

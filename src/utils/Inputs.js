@@ -7,6 +7,18 @@ const Inputs = {
 
     return amount;
   },
+
+  async readWinningNumbers() {
+    const winningNumbers = (await Console.readLine(QUERY.WINNING_NUMBERS)).split(',');
+
+    return winningNumbers;
+  },
+
+  async readBonusNumber() {
+    const bonusNumber = await Console.readLine(QUERY.BONUS_NUMBERS);
+
+    return bonusNumber;
+  },
 };
 
 export default Inputs;

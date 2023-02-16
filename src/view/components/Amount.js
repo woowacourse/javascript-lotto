@@ -4,18 +4,20 @@ import Inputs from '../../utils/Inputs.js';
 import { PRICE } from '../../constants/values.js';
 
 export default class Amount extends Component {
-  #amount;
+  #total;
 
   setUp({ setter }) {
     this.setter = setter;
   }
 
   async read() {
-    this.#amount = await Inputs.readAmount();
-    this.setter({ total: this.#amount / PRICE });
+    const amount = await Inputs.readAmount();
+
+    this.#total = amount / PRICE;
+    this.setter({ total: this.#total });
   }
 
   template() {
-    return generateMessages.countMessage(this.#amount / PRICE);
+    return generateMessages.countMessage(this.#total);
   }
 }
