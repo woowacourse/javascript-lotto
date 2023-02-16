@@ -18,8 +18,8 @@ class Lotto {
   }
 
   getMatchState({ winningNumbers, bonusNumber }) {
-    const MATCH_COUNT = this.getMatchCount(winningNumbers);
-    const BONUS_MATCH = this.hasBonusNumber(bonusNumber);
+    const MATCH_COUNT = this.#getMatchCount(winningNumbers);
+    const BONUS_MATCH = this.#hasBonusNumber(bonusNumber);
 
     if (MATCH_COUNT === StaticValue.MATCH_FIVE && BONUS_MATCH) {
       return StaticValue.MATCH_FIVE_AND_BONUS;
@@ -28,11 +28,11 @@ class Lotto {
     return MATCH_COUNT;
   }
 
-  getMatchCount(winningNumbers) {
+  #getMatchCount(winningNumbers) {
     return this.#numbers.filter((number) => winningNumbers.includes(number)).length;
   }
 
-  hasBonusNumber(bonusNumber) {
+  #hasBonusNumber(bonusNumber) {
     return this.#numbers.includes(bonusNumber);
   }
 }
