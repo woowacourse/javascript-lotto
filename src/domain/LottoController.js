@@ -61,7 +61,18 @@ class LottoController {
     OutputView.printNewLine();
 
     const matchResult = this.judgeResult(lottos, winningNumber, bonusNumber);
-    OutputView.printResult(matchResult);
+    const benefit = this.calculateBenefit(money, matchResult);
+
+    OutputView.printResult(matchResult, benefit);
+  }
+
+  calculateBenefit(money, rank) {
+    const PRIZE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    const income = rank.reduce((acc, number, index) => {
+      acc += number * PRIZE[index];
+      return acc;
+    }, 0);
+    return income / money * 100;
   }
 
   judgeResult(lottos, winningNumber, bonusNumber) {
@@ -74,4 +85,3 @@ class LottoController {
 }
 
 export default LottoController;
-
