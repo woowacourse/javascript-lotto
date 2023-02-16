@@ -191,4 +191,13 @@ describe('Validation.validateBounsNumber', () => {
       Validation.validateBonusNumber(bonusNumber);
     }).toThrow(ERROR_MESSAGE.invalidLottoNumberRange);
   });
+
+  test(`보너스 번호 입력이 당첨번호와 중복인 경우, 에러가 발생한다.`, () => {
+    const winningNumbers = Array.from({ length: LOTTO_CONDITION.lottoDigits }, (_, idx) => idx + 1);
+    const bonusNumber = winningNumbers[0];
+
+    expect(() => {
+      Validation.validateBonusNumber(bonusNumber, winningNumbers);
+    }).toThrow(ERROR_MESSAGE.duplicateLottoNumber);
+  });
 });
