@@ -11,6 +11,10 @@ class Lotto {
     const mergedNumbers = new Set([...this.numbers, ...lottoNumbers]);
     return mergedNumbers.size;
   }
+
+  matchBonus(bonus) {
+    return this.numbers.includes(bonus);
+  }
 }
 
 module.exports = Lotto;
