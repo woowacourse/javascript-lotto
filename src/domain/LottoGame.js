@@ -6,12 +6,12 @@ const LOTTO_SIZE = 6;
 const LOTTO_MIN_NUMBER = 1;
 const LOTTO_MAX_NUMBER = 45;
 
-const RANK_NONE = 0;
-const RANK_5 = 5;
-const RANK_4 = 4;
-const RANK_3 = 3;
-const RANK_2 = 2;
-const RANK_1 = 1;
+const RANK_NONE = 'none';
+const RANK_1 = 'first';
+const RANK_2 = 'second';
+const RANK_3 = 'third';
+const RANK_4 = 'fourth';
+const RANK_5 = 'fifth';
 
 const RANK_BY_COUNT = {
   3: RANK_5,
@@ -20,7 +20,7 @@ const RANK_BY_COUNT = {
   6: RANK_1,
 };
 
-const EARNING_BY_RANK = {
+const PRIZE_BY_RANK = {
   [RANK_NONE]: 0,
   [RANK_5]: 5_000,
   [RANK_4]: 50_000,
@@ -80,7 +80,7 @@ class LottoGame {
 
   getEarningRate() {
     const earningSum = Object.entries(this.#rankingBoard)
-      .reduce((acc, [rank, count]) => acc + (EARNING_BY_RANK[rank] * count), 0);
+      .reduce((acc, [rank, count]) => acc + (PRIZE_BY_RANK[rank] * count), 0);
 
     const purchaseMoney = this.#lottos.length * LOTTO_PRICE;
     return (earningSum / purchaseMoney) * 100;
