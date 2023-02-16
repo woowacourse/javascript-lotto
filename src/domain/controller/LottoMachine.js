@@ -15,9 +15,14 @@ const Winning = require('../model/Winning');
 class LottoMachine {
   #lottos;
 
-  #money;
+  #machineInput;
 
-  #winning;
+  constructor() {
+    this.#machineInput = {
+      money: null,
+      winning: null,
+    };
+  }
 
   play() {
     this.readMoney();
@@ -50,9 +55,9 @@ class LottoMachine {
 
   #afterReadMoney = (input) => {
     try {
-      this.#money = new Money(input);
-      outputView.printLottoCount(this.#money.getAmount());
-      this.generateLottos(this.#money.getAmount());
+      this.#machineInput.money = new Money(input);
+      outputView.printLottoCount(this.#machineInput.money.getAmount());
+      this.generateLottos(this.#machineInput.money.getAmount());
       this.showLottos();
       this.readWinningNumbers();
     } catch (error) {
@@ -66,8 +71,8 @@ class LottoMachine {
       const winningNumbers = input
         .split(MAGIC_LITERAL.comma)
         .map((winningNumber) => Number(winningNumber));
-      this.#winning = new Winning();
-      this.#winning.setWinningNumbers(winningNumbers);
+      this.#machineInput.winning = new Winning();
+      this.#machineInput.winning.setWinningNumbers(winningNumbers);
       this.readBonusNumber();
     } catch (error) {
       console.log(error.message);
@@ -77,10 +82,10 @@ class LottoMachine {
 
   #afterReadBonusNumber = (input) => {
     try {
-      this.#winning.setBonusNumber(Number(input));
+      this.#machineInput.winning.setBonusNumber(Number(input));
       const ranks = this.calculateRanks();
       const benefit = new Benefit();
-      benefit.calculateRate(this.#money.getAmount(), ranks);
+      benefit.calculateRate(this.#machineInput.money.getAmount(), ranks);
       this.showResult(benefit, ranks);
       this.readRetryOption();
     } catch (error) {
@@ -129,7 +134,7 @@ class LottoMachine {
   }
 
   calculateRanks() {
-    const winningNumbers = this.#winning.getWinningNumbers();
+    const winningNumbers = this.#machineInput.winning.getWinningNumbers();
     const ranks = [0, 0, 0, 0, 0];
 
     this.#lottos.forEach((lotto) => {
@@ -157,7 +162,7 @@ class LottoMachine {
   }
 
   isBonus(lotto) {
-    return lotto.includes(this.#winning.getBonusNumber());
+    return lotto.includes(this.#machineInput.winning.getBonusNumber());
   }
 
   showLottos() {
