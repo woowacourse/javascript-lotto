@@ -1,3 +1,4 @@
+/*eslint-disable */
 const Lottos = require('../src/domain/model/Lottos');
 
 describe('Lottos 테스트', () => {
