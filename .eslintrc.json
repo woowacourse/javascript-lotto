@@ -7,7 +7,12 @@
     "max-lines-per-function": ["error", 15],
     "max-params": ["error", 2],
     "eol-last": ["error", "always"],
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "class-methods-use-this": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "function-paren-newline": "off",
+    "arrow-body-style": "off"
   },
   "env": {
     "es6": true,
