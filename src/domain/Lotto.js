@@ -15,7 +15,9 @@ export default class Lotto {
     return LOTTO_CONDITION.lottoDigits * 2 - duplicateCheck.size;
   }
 
-  hasBonusNumber(bonusNumber) {}
+  hasBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
 
   getNumbers() {
     return this.#numbers;
