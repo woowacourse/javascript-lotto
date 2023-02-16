@@ -1,4 +1,4 @@
-import { regex } from '../constants/values';
+import { values, regex } from '../constants/values';
 
 const ValidatorUtils = {
   isPositiveInteger(number) {
@@ -8,6 +8,14 @@ const ValidatorUtils = {
   isThousandsOfWon(number) {
     return !(number % values.LOTTO_PRICE);
   },
+
+  isInRange(number) {
+    return number >= values.LOWER_BOUND && number <= values.UPPER_BOUND;
+  },
+
+  hasNoBlank(splitedWinningNumber) {
+    return !(splitedWinningNumber.includes(' '));
+  }
 };
 
 export default ValidatorUtils;
