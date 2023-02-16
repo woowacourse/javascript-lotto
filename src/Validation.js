@@ -23,6 +23,7 @@ const Validation = {
   },
 
   lottoNumbers(numbers) {
+    this.lottoNumberSize(numbers);
     this.isDuplicated(numbers);
     numbers.forEach((number) => {
       this.inputIsInteger(number);
