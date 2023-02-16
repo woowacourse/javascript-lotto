@@ -13,6 +13,7 @@ const ERROR_MESSAGE = Object.freeze({
   indivisibleByLottoPrice: '[ERROR] 입력값이 로또 가격으로 나누어 떨어지지 않습니다.',
   invalidLottoNumberLength: `[ERROR] 로또 번호는 ${LOTTO_CONDITION.lottoDigits}개여야 합니다.`,
   invalidLottoNumberRange: `[ERROR] 로또 번호의 범위는 ${LOTTO_CONDITION.lottoNumberMinRange} ~ ${LOTTO_CONDITION.lottoNumberMaxRange} 이여야 합니다.`,
+  duplicateLottoNumber: '[ERROR] 로또 번호와 중복된 숫자입니다.',
 });
 
 export { REQUEST_MESSAGE, ERROR_MESSAGE };
