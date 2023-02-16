@@ -23,6 +23,7 @@ describe('로또 클래스 테스트', () => {
     { input: [1, 2, 3, 4, 5, 8], expectedRank: 3 },
     { input: [1, 2, 3, 4, 8, 9], expectedRank: 4 },
     { input: [1, 2, 3, 8, 9, 10], expectedRank: 5 },
+    { input: [8, 9, 10, 11, 12, 13], expectedRank: undefined },
   ])(
     '당첨 번호와 보너스 번호를 넘겨주었을 때, 로또 번호와 비교하여 등수를 계산 기능',
     ({ input, expectedRank }) => {
