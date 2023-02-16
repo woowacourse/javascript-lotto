@@ -85,6 +85,10 @@ class LottoGame {
     const purchaseMoney = this.#lottos.length * LOTTO_PRICE;
     return (earningSum / purchaseMoney) * 100;
   }
+
+  getLottos() {
+    return this.#lottos.map((lotto) => lotto.getLottos());
+  }
 }
 
 export default LottoGame;
