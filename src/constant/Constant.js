@@ -1,6 +1,6 @@
 const MESSAGES = {
   readMoneyText: "> 구입금액을 입력해 주세요. ",
-  readWinningNumbersText: "\n> 당첨 번호를 입력해 주세요. ",
+  readWinNumbersText: "\n> 당첨 번호를 입력해 주세요. ",
   readBonusNumberText: "\n> 보너스 번호를 입력해 주세요. ",
   readCommandRestartText: "\n> 다시 시작하시겠습니까? (y/n) ",
 
@@ -49,7 +49,7 @@ const RANK_BY_CORRECTCOUNT = {
   0: RANK.LOSER,
 };
 
-const LOTTO_INFO = {
+const LOTTO = {
   MAX: 45,
   MIN: 1,
   SIZE: 6,
@@ -62,6 +62,6 @@ module.exports = {
   ERRORMESSAGES,
   RANK,
   RANK_BY_CORRECTCOUNT,
-  LOTTO_INFO,
+  LOTTO,
   PRIZE,
 };
