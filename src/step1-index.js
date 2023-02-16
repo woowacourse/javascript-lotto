@@ -5,26 +5,6 @@
 
 import { LottoGame } from "./domain/LottoGame";
 
-export const randomNumberBetween = (min = 1, max = 45) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-export const makeLottoTicket = () => {
-  const lottoTicket = new Set();
-
-  while (6 > lottoTicket.size) {
-    lottoTicket.add(randomNumberBetween());
-  }
-
-  return [...lottoTicket];
-};
-
-export const makeLottoTickets = (numberOfTickets) => {
-  const lottoTickets = Array.from({ length: numberOfTickets }, makeLottoTicket);
-
-  return lottoTickets;
-};
-
 export const getAscendingSortedNumbers = (numbers) => {
   return numbers.sort((a, b) => a - b);
 };
