@@ -1,4 +1,3 @@
-const { OUTPUT_MESSAGE_METHOD } = require('./constant/Message');
 const Comparer = require('./domain/Comparer');
 const LottoMachine = require('./domain/LottoMachine');
 const ProfitCalculator = require('./domain/ProfitCaculator');
@@ -15,10 +14,7 @@ class LottoController {
   #bonusNumber;
 
   async start() {
-    console.log(OUTPUT_MESSAGE_METHOD.RANK('SECOND', 1));
-    console.log(OUTPUT_MESSAGE_METHOD.RANK('THIRD', 2));
     const purchaseAmount = await this.inputPurchaseAmount();
-    this.issueLottos(purchaseAmount);
 
     await this.inputWinningNumber();
     await this.inputBonusNumber();
@@ -36,10 +32,11 @@ class LottoController {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
       Validator.purchaseAmount(purchaseAmount);
+      this.issueLottos(+purchaseAmount);
       return +purchaseAmount;
     } catch (error) {
-      console.log(error.message);
-      this.inputPurchaseAmount();
+      OutputView.printErrorMessage(error.message);
+      return this.inputPurchaseAmount();
     }
   }
 
@@ -59,8 +56,8 @@ class LottoController {
       Validator.winningNumber(winningNumber);
       this.#winningNumber = winningNumber.split(',').map(Number);
     } catch (error) {
-      console.log(error.message);
-      this.inputWinningNumber();
+      OutputView.printErrorMessage(error.message);
+      return this.inputWinningNumber();
     }
   }
 
@@ -70,8 +67,8 @@ class LottoController {
       Validator.bonusNumber(bonusNumber, this.#winningNumber);
       this.#bonusNumber = +bonusNumber;
     } catch (error) {
-      console.log(error.message);
-      this.inputBonusNumber();
+      OutputView.printErrorMessage(error.message);
+      return this.inputBonusNumber();
     }
   }
 
@@ -81,8 +78,8 @@ class LottoController {
       Validator.restartCommand(restartCommand);
       this.processRestartCommand(restartCommand);
     } catch (error) {
-      console.log(error.message);
-      this.inputRestartCommand();
+      OutputView.printErrorMessage(error.message);
+      return this.inputRestartCommand();
     }
   }
 

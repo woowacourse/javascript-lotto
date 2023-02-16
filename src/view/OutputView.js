@@ -22,6 +22,10 @@ const OutputView = {
   printProfitRate(profitRate) {
     Console.print(OUTPUT_MESSAGE_METHOD.PROFIT_RATE(profitRate));
   },
+
+  printErrorMessage(errorMessage) {
+    Console.print(errorMessage);
+  },
 };
 
 module.exports = OutputView;
