@@ -11,7 +11,6 @@ class App {
   constructor() {
     this.winningLotto = [];
     this.bonusNumber = 0;
-    this.lottoArray = [];
     this.lottos = []
   }
 
@@ -35,16 +34,18 @@ class App {
   }
 
   createLotto(lottoAmount) {
+    const createdLottos = []
     for (let i = 0; i < lottoAmount; i++) {
       const randomNumbers = Random.getCorrectRandomNumbers();
       const lotto = new Lotto(randomNumbers);
-      this.lottoArray.push(lotto);
+      createdLottos.push(lotto);
     }
+    this.lottos = new Lottos(createdLottos)
   }
 
   printLottos(lottoAmount) {
     OutputView.printLottoAmount(lottoAmount);
-    OutputView.printLottos(this.lottoArray);
+    OutputView.printLottos(this.lottos.getLottos());
   }
 
   validateBuyMoney(buyMoney) {
@@ -122,7 +123,7 @@ class App {
   }
 
   compareLottos() {
-    this.lottos = new Lottos(this.lottoArray);
+    // this.lottos = new Lottos(this.lottoArray);
     this.lottos.getLottos().forEach((lotto) => {
       lotto.compareNumbers(this.winningLotto);
       lotto.checkBonusNumber(this.bonusNumber);
