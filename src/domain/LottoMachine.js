@@ -69,7 +69,7 @@ class LottoMachine {
   getProfitRate(prizes) {
     const totalWinMoney = prizes.reduce((acc, cur) => acc + LottoMachine.WIN_MONEY[cur], 0);
 
-    return totalWinMoney / (this.#lottos.length * LottoMachine.LOTTO_COST);
+    return (totalWinMoney / (this.#lottos.length * LottoMachine.LOTTO_COST)) * 100;
   }
 }
 
