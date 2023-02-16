@@ -55,10 +55,6 @@ class LottoGame {
     }
   }
 
-  initLottoStatistics(winningNumbers, bonusNumber) {
-    this.#lottoStatistics = new LottoStatistics(winningNumbers, bonusNumber);
-  }
-
   showLottoStatistics() {
     const winningLottos = this.#lottoStatistics.determineAllLottosRank(
       this.#lottoMachine.lottos
