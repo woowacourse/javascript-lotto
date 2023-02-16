@@ -44,7 +44,7 @@ class LottoController {
   }
 
   printWinStatistics() {
-    OutputView.printWinStatistics(this.#lottoMachine.calcStatstics());
+    OutputView.printWinStatistics(this.#lottoMachine.getStatstics());
   }
 }
 

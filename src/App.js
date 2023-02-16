@@ -1,5 +1,4 @@
 import LottoController from './LottoController';
-import Console from './view/console/Console';
 import InputView from './view/console/InputView';
 
 class App {
@@ -14,7 +13,7 @@ class App {
   }
 
   async play() {
-    await this.#lottoController.readBuyMoney();
+    await this.#lottoController.readMoney();
     this.#lottoController.printBuyLottos();
     await this.#lottoController.readWinNumbers();
     await this.#lottoController.readBonusNumber();
@@ -32,7 +31,7 @@ class App {
       this.play();
     }
     if (command === App.EXIT_COMMAND) {
-      Console.close();
+      InputView.close();
     }
   }
 }

@@ -17,7 +17,7 @@ class LottoMachine {
     this.#lottos = this.generateLottos(money);
   }
 
-  calcLottoAmount(money) {
+  getLottoAmount(money) {
     const lottoAmount = money / LottoMachine.LOTTO_COST;
 
     if (!isPositiveInteger(lottoAmount)) throw new Error(LottoMachine.ERROR_VALID_MONEY);
@@ -26,7 +26,7 @@ class LottoMachine {
   }
 
   generateLottos(money) {
-    const amount = this.calcLottoAmount(money);
+    const amount = this.getLottoAmount(money);
     return Array.from({ length: amount }, () => {
       return new Lotto(RandomGenerator.pickRandomNumbers());
     });
@@ -55,10 +55,10 @@ class LottoMachine {
     });
   }
 
-  calcStatstics() {
+  getStatstics() {
     const prizes = this.getPrizes();
     this.addWinCount(prizes);
-    const profitRate = this.calcProfitRate(prizes);
+    const profitRate = this.getProfitRate(prizes);
     return {
       winCount: this.#winCount,
       profitRate,
@@ -66,7 +66,7 @@ class LottoMachine {
     };
   }
 
-  calcProfitRate(prizes) {
+  getProfitRate(prizes) {
     const totalWinMoney = prizes.reduce((acc, cur) => acc + LottoMachine.WIN_MONEY[cur], 0);
 
     return totalWinMoney / (this.#lottos.length * LottoMachine.LOTTO_COST);
