@@ -1,3 +1,11 @@
+const { RANK, LOTTO_PRIZE } = require('./constants/index');
+
+const LOTTO_RANK = {
+  6: RANK.FIRST,
+  4: RANK.FOURTH,
+  3: RANK.FIFTH,
+};
+
 class LottoStatistics {
   #winningNumbers;
 
@@ -32,39 +40,29 @@ class LottoStatistics {
   }
 
   determineLottoRank(lotto) {
-    if (lotto.calculateMatchCount(this.#winningNumbers.winningNumbers) === 6) {
-      return 1;
+    const matchCount = lotto.calculateMatchCount(
+      this.#winningNumbers.winningNumbers
+    );
+
+    return this.getLottoRank(lotto, matchCount);
+  }
+
+  getLottoRank(lotto, matchCount) {
+    if (matchCount === 5) {
+      return lotto.isBonus(this.#bonusNumber.bonusNumber)
+        ? RANK.SECOND
+        : RANK.THIRD;
     }
 
-    if (
-      lotto.calculateMatchCount(this.#winningNumbers.winningNumbers) === 5 &&
-      lotto.isBonus(this.#bonusNumber.bonusNumber)
-    ) {
-      return 2;
-    }
-
-    if (
-      lotto.calculateMatchCount(this.#winningNumbers.winningNumbers) === 5 &&
-      !lotto.isBonus(this.#bonusNumber.bonusNumber)
-    ) {
-      return 3;
-    }
-
-    if (lotto.calculateMatchCount(this.#winningNumbers.winningNumbers) === 4) {
-      return 4;
-    }
-
-    if (lotto.calculateMatchCount(this.#winningNumbers.winningNumbers) === 3) {
-      return 5;
-    }
-
-    return 6;
+    return LOTTO_RANK[matchCount] ?? 6;
   }
 
   calculateProfitRate(winningLottos, purchasePrice) {
-    const list = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0];
     return (
-      (winningLottos.reduce((acc, cur, idx) => acc + list[idx] * cur, 0) /
+      (winningLottos.reduce(
+        (acc, cur, idx) => acc + LOTTO_PRIZE[idx].MONEY * cur,
+        0
+      ) /
         purchasePrice) *
       100
     ).toFixed(1);
