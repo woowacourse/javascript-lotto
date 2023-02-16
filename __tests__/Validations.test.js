@@ -35,3 +35,11 @@ describe("당첨번호 Validations 단위 테스트", () => {
     expect(Validations.isCorrectRange(winningNumber)).toBeFalsy();
   });
 });
+
+describe("보너스 번호 Validations 단위 테스트", () => {
+  test("보너스 번호가 중복된 숫자인지 판별하는 함수 테스트", () => {
+    const winningLotto = [1,2,3,4,5,6];
+    const bonusNumber = 1;
+    expect(Validations.hasBonusNumber(bonusNumber, winningLotto)).toBeTruthy();
+  });
+});
