@@ -29,4 +29,36 @@ const ERRORMESSAGES = {
   isWrongCommandText: "[ERROR] 재시작 명령어는 y혹은 n으로만 입력하세요.\n",
 };
 
-module.exports = { MESSAGES, ERRORMESSAGES };
+const RANK = {
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
+  LOSER: 0,
+};
+
+const RANK_BY_CORRECTCOUNT = {
+  6: RANK.FIRST,
+  BONUS: RANK.SECOND,
+  5: RANK.THIRD,
+  4: RANK.FOURTH,
+  3: RANK.FIFTH,
+};
+
+const LOTTO_INFO = {
+  MAX: 45,
+  MIN: 1,
+  SIZE: 6,
+};
+
+const PRIZE = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
+
+module.exports = {
+  MESSAGES,
+  ERRORMESSAGES,
+  RANK,
+  RANK_BY_CORRECTCOUNT,
+  LOTTO_INFO,
+  PRIZE,
+};
