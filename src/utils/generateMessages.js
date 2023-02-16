@@ -29,7 +29,7 @@ const generateMessages = Object.freeze({
 
   statisticsMessage(statistics) {
     return AWARDS_ORDER.map((awards) =>
-      getMessagesByStatistics(awards, statistics[Number(awards)] || 0)
+      getMessagesByStatistics(awards, statistics[awards] || 0)
     ).join('\n');
   },
 

@@ -10,7 +10,10 @@ class App extends Component {
   async play() {
     await this.render(new Amount({ setter: this.setState.bind(this) }));
     await this.render(new LottoList({ lottoList: this.state.lottoList }));
-    await this.render(new WinNumbers({ setter: this.setState.bind(this) }));
+    await this.render(
+      new WinNumbers({ lottoList: this.state.lottoList, setter: this.setState.bind(this) })
+    );
+
     await this.render(new Statistics({ lottoList: this.state.lottoList }));
     await this.render(new Retry({ setter: this.setState.bind(this) }));
 

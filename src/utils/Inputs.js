@@ -9,7 +9,7 @@ const Inputs = {
   },
 
   async readWinningNumbers() {
-    const winningNumbers = (await Console.readLine(QUERY.WINNING_NUMBERS)).split(',');
+    const winningNumbers = (await Console.readLine(QUERY.WINNING_NUMBERS)).split(',').map(Number);
 
     return winningNumbers;
   },
@@ -17,7 +17,7 @@ const Inputs = {
   async readBonusNumber() {
     const bonusNumber = await Console.readLine(QUERY.BONUS_NUMBERS);
 
-    return bonusNumber;
+    return Number(bonusNumber);
   },
 
   async readRetry() {

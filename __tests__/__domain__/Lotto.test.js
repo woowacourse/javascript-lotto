@@ -12,7 +12,7 @@ const DRAWING_NUMBERS = {
 const generateLotto = (count) =>
   Array(count)
     .fill()
-    .map(() => new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS));
+    .map(() => new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS).setDrawingNumbers(DRAWING_NUMBERS));
 
 describe('로또', () => {
   test('구입 금액만큼 로또를 구매한다', () => {
@@ -26,7 +26,7 @@ describe('로또', () => {
 
     const result = LottoStore.draw(lotto);
 
-    expect(result).toBe('6');
+    expect(result).toBe(6);
   });
 
   test('당첨 통계를 계산한다', () => {

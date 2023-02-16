@@ -9,9 +9,8 @@ export class Lotto {
     bonusNumber: null,
   };
 
-  constructor(numbers, drawingNumbers) {
+  constructor(numbers) {
     this.#numbers = numbers.sort((a, b) => a - b);
-    this.#drawingNumbers = drawingNumbers;
   }
 
   getNumbers() {
@@ -21,21 +20,22 @@ export class Lotto {
   getDrawingNumbers() {
     return this.#drawingNumbers;
   }
+
+  setDrawingNumbers(drawingNumbers) {
+    this.#drawingNumbers = drawingNumbers;
+
+    return this;
+  }
 }
 
 export const LottoStore = {
   purchase(total) {
-    const DRAWING_NUMBERS = {
-      winningNumbers: [1, 2, 3, 4, 5, 6],
-      bonusNumber: 7,
-    };
-
     return Array(total)
       .fill('lotto')
       .map(() => {
-        const LOTTO_NUMBERS = randomGenerator(LOTTO_COUNT);
+        const lottoNumbers = randomGenerator(LOTTO_COUNT);
 
-        return new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS);
+        return new Lotto(lottoNumbers);
       });
   },
 
@@ -44,7 +44,7 @@ export const LottoStore = {
     const { winningNumbers, bonusNumber } = lotto.getDrawingNumbers();
     const awards = winningNumbers.filter((number) => numbers.includes(number));
 
-    return awards.length === 5 && numbers.includes(bonusNumber) ? 'BONUS' : String(awards.length);
+    return awards.length === 5 && numbers.includes(bonusNumber) ? 'BONUS' : awards.length;
   },
 
   calculateStatistics(lottoList) {
