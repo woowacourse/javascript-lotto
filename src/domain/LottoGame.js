@@ -70,9 +70,9 @@ export default class LottoGame {
 }
 
 const statisticsDummy = {
-  firstPrize: 0,
-  secondPrize: 0,
-  thirdPrize: 0,
-  fourthPrize: 0,
   fifthPrize: 0,
+  fourthPrize: 0,
+  thirdPrize: 0,
+  secondPrize: 0,
+  firstPrize: 0,
 };
