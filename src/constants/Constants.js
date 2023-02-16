@@ -52,6 +52,7 @@ const ConsoleMessage = Object.freeze({
     ];
   },
   profitRateResult: (profitRate) => `총 수익률은 ${profitRate} %입니다.`,
+  RESTART: "다시 시작하시겠습니까? (y/n) ",
 });
 
 const ErrorMessage = Object.freeze({
@@ -64,6 +65,7 @@ const ErrorMessage = Object.freeze({
   BONUS_NUMBER_DUPLICATE:
     "[ERROR] 보너스 번호는 로또 번호와 중복되지 않게 입력해주세요.",
   BONUS_NUMBER_VALUE: "[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.",
+  RESTART: "[ERROR] y 또는 n을 입력해주세요.",
 });
 
 export { StaticValue, MatchCount, Rank, Prize, ConsoleMessage, ErrorMessage };

@@ -80,6 +80,12 @@ const Validation = {
   isNumberInRange(number) {
     return number >= 1 && number <= 45;
   },
+
+  checkRestart(reply) {
+    if (reply !== "n" || reply !== "y") {
+      throw new Error(ErrorMessage.RESTART);
+    }
+  },
 };
 
 export default Validation;
