@@ -54,6 +54,12 @@ export default class LottoGame {
     }, 0);
   }
 
+  getYieldRatio(totalPrizeMoney) {
+    const purchaseAmount = this.#lottos.length * LOTTO_CONDITION.lottoPrice;
+
+    return (totalPrizeMoney / purchaseAmount) * 100;
+  }
+
   getLottoQuantity() {
     return this.#lottos.length;
   }
