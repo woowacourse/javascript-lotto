@@ -30,3 +30,17 @@ describe('맞춘 개수와 보너스 번호 여부로 등수를 가져온다.', 
     expect(lottoGame.getLottoRank(matchedNumberCount, hasBonusNumber)).toBe(0);
   });
 });
+
+describe('당첨된 등수의 개수만큼 총 상금을 구한다.', () => {
+  const lottoGame = new LottoGame(1000);
+
+  test('3등이 1장, 5등이 2장 당첨될 경우 151만원을 반환한다.', () => {
+    const lottoRanksCount = [0, 0, 0, 1, 0, 2];
+    expect(lottoGame.calculateTotalPrize(lottoRanksCount)).toBe(1510000);
+  });
+
+  test('아무것도 당첨되지 않으면 0원을 반환한다.', () => {
+    const lottoRanksCount = [0, 0, 0, 0, 0, 0];
+    expect(lottoGame.calculateTotalPrize(lottoRanksCount)).toEqual(0);
+  });
+});
