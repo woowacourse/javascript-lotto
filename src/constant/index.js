@@ -10,6 +10,8 @@ const MAGIC_NUMBER = {
 
 const MAGIC_LITERAL = {
   separator: ', ',
+  retry: 'y',
+  quit: 'n',
 };
 
 const ERROR_MESSAGE = {
@@ -21,6 +23,7 @@ const ERROR_MESSAGE = {
     '[ERROR] 당첨 번호는 중복되지 않는 값들로 입력해 주세요.',
   uniqueBonusNumber: '[ERROR] 당첨 번호와 중복되지 않는 값으로 입력해 주세요.',
   winningNumberCount: `[ERROR] 당첨 번호는 ${MAGIC_NUMBER.winningNumberCount}개로 입력해 주세요.`,
+  retryOption: `[ERROR] 재시작 옵션은 ${MAGIC_LITERAL.retry} 혹은 ${MAGIC_LITERAL.quit}으로 입력해 주세요.`,
 };
 
 const RANK_INFORMATIONS = [
