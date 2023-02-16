@@ -1,22 +1,14 @@
 const Validator = {
-  isPositiveInteger(value) {
-    if (Number(value) === 0) {
-      return false;
-    }
-
-    return /^\+?\d+$/.test(value);
-  },
-
-  isSafeNumber(value) {
-    return Number.isSafeInteger(Number(value));
+  isBase10(value) {
+    return !!parseInt(value, 10);
   },
 
   isArrayLengthEqual(array, size) {
     return array.length === size;
   },
 
-  isNumberInRange(value, min, max) {
-    return value >= min && value < max;
+  isNumberInRange(min, max) {
+    return (value) => (Number(value) >= min && Number(value) < max);
   },
 
   hasDuplication(array) {
