@@ -1,8 +1,8 @@
 const ProfitCalculator = require('../src/domain/ProfitCaculator');
 
-describe('', () => {
+describe('ProfitCalculator 메서드 테스트', () => {
   //given
-  const ranking = { 1: 1, 2: 0, 3: 0, 4: 0, 5: 2 };
+  const ranking = { FIFTH: 2, FOURTH: 0, THIRD: 0, SECOND: 0, FIRST: 1 };
   const profitCalculator = new ProfitCalculator(ranking);
 
   test('전체 당첨 금액의 합을 구한다.', () => {

@@ -30,6 +30,6 @@ describe('로또번호를 비교한다', () => {
   test('각 등수에 맞게 당첨된 로또의 수를 구한다.', () => {
     const ranking = comparer.getRanking();
 
-    expect(ranking).toStrictEqual({ 1: 1, 2: 0, 3: 0, 4: 0, 5: 1 });
+    expect(ranking).toStrictEqual({ FIFTH: 1, FOURTH: 0, THIRD: 0, SECOND: 0, FIRST: 1 });
   });
 });
