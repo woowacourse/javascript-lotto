@@ -4,9 +4,8 @@ import { stdin as input, stdout as output } from 'node:process';
 const rl = readline.createInterface({ input, output });
 
 const Console = {
-  async read(query) {
-    const answer = await rl.question(`> ${query}`);
-    return answer;
+  read(query) {
+    return rl.question(`> ${query}`);
   },
 
   print(text) {
