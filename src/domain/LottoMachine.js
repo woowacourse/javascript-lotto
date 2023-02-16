@@ -17,7 +17,7 @@ class LottoMachine {
   }
 
   isValidPurchasePrice(purchasePrice) {
-    return purchasePrice % 1000 === 0;
+    return purchasePrice >= 1000 && purchasePrice % 1000 === 0;
   }
 
   issueLottos(purchasePrice) {
