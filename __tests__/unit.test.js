@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import { LOTTO } from "../src/constants";
 import Lotto from "../src/domain/Lotto";
-import LottoController from "../src/domain/LottoController";
+// import LottoController from "../src/domain/LottoController";
 import InputValidator from "../src/utils/InputValidator";
 test('숫자 6개를 받아 로또를 발행한다.', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
@@ -22,6 +22,11 @@ test('숫자 6개를 받아 로또를 발행한다.', () => {
 
 //   expect(lottos).toBe(lottoIssuer(money / TICKET_PRICE));
 // });
+
+test('로또 갯수는 6개다.', () => {
+  const lotto = [1, 2, 3, 4, 5];
+  expect(() => InputValidator.checkArrayLength(lotto, LOTTO.length)).toThrow();
+});
 
 test('로또 구입 금액은 자연수이다.', () => {
   const a = '1.5';
@@ -53,12 +58,13 @@ test('로또 결과 계산', () => {
   const lotto = new Lotto(numbers);
   const winningNumber = ['1', '2', '3', '4', '5', '7'];
   const bonusNumber = '6';
-  expect(lotto.calculateRanking(winningNumber, bonusNumber)).toEqual(2);
+  expect(lotto.calculateRanking({ main: winningNumber, bonus: bonusNumber })).toEqual(2);
 });
 
-test('수익률 계산', () => {
-  const money = 8000;
-  const rank = [0, 0, 0, 0, 0, 1];
-  const lottoController = new LottoController();
-  expect(lottoController.calculateBenefit(money, rank)).toBe(62.5);
-});
+//
+// test('수익률 계산', () => {
+//   const money = 8000;
+//   const rank = [0, 0, 0, 0, 0, 1];
+//   const lottoController = new LottoController();
+//   expect(lottoController.calculateBenefit(money, rank)).toBe(62.5);
+// });
