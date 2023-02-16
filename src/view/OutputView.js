@@ -32,7 +32,9 @@ const OutputView = {
     },
 
     printTotalBenefit(lottos) {
-        Console.print(`총 수익률은 ${lottos.getBenefitRate(lottos.getLottos().length * 1000)}% 입니다.`)
+        // Console.print(`총 수익률은 ${lottos.getBenefitRate(lottos.getLottos().length * 1000)}% 입니다.`)
+        Console.print(`총 수익률은 ${lottos}% 입니다.`)
+      
     }
 };
 

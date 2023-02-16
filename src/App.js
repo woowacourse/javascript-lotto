@@ -7,11 +7,10 @@ import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js";
 
 class App {
-
   constructor() {
     this.winningLotto = [];
     this.bonusNumber = 0;
-    this.lottos = []
+    this.lottos = [];
   }
 
   async play() {
@@ -26,7 +25,6 @@ class App {
     try {
       this.validateBuyMoney(buyMoney);
       this.createLotto(parseInt(buyMoney / 1000));
-      this.printLottos(buyMoney / 1000);
     } catch (e) {
       Console.print(e);
       await this.getBuyMoney();
@@ -34,13 +32,13 @@ class App {
   }
 
   createLotto(lottoAmount) {
-    const createdLottos = []
+    const createdLottos = [];
     for (let i = 0; i < lottoAmount; i++) {
-      const randomNumbers = Random.getCorrectRandomNumbers();
-      const lotto = new Lotto(randomNumbers);
+      const lotto = new Lotto(Random.getCorrectRandomNumbers());
       createdLottos.push(lotto);
     }
-    this.lottos = new Lottos(createdLottos)
+    this.lottos = new Lottos(createdLottos);
+    this.printLottos(lottoAmount);
   }
 
   printLottos(lottoAmount) {
@@ -74,10 +72,10 @@ class App {
   }
 
   convertStringToNumber(strings) {
-    const numberArr = strings.map((str) => {
-      return Number(str);
+    const numbers = strings.map((string) => {
+      return Number(string);
     });
-    return numberArr;
+    return numbers;
   }
 
   validateWinningNumbers() {
@@ -123,7 +121,6 @@ class App {
   }
 
   compareLottos() {
-    // this.lottos = new Lottos(this.lottoArray);
     this.lottos.getLottos().forEach((lotto) => {
       lotto.compareNumbers(this.winningLotto);
       lotto.checkBonusNumber(this.bonusNumber);
@@ -135,8 +132,7 @@ class App {
   printResult() {
     OutputView.printResultMessage();
     OutputView.printLottoResults(this.lottos);
-    this.lottos.calculateBenefit();
-    OutputView.printTotalBenefit(this.lottos);
+    OutputView.printTotalBenefit(this.lottos.getBenefitRate());
   }
 
   async getRetryInput() {
@@ -154,9 +150,8 @@ class App {
 
   retryLottoGame(retryInput) {
     if (retryInput === "y" || retryInput === "y") {
-      this.resetGame()
+      this.resetGame();
       this.play();
-
     }
     if (retryInput === "n" || retryInput === "N") {
       Console.close();
@@ -164,8 +159,8 @@ class App {
   }
 
   resetGame() {
-    this.lottos.resetLottos()
-    this.lottoArray = []
+    this.lottos.resetLottos();
+    this.lottoArray = [];
   }
 
   validateRetryInput(retryInput) {
