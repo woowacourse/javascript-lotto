@@ -19,6 +19,16 @@ const messages = deepFreeze({
     HAS_BLANK: '[ERROR] 공백을 제외하고 입력해주세요',
     IN_RANGE: '[ERROR] 1에서 45까지의 숫자를 입력해주세요.',
   },
+
+  STATISTICS_MESSAGE: {
+    OPENING: '\n당첨 통계\n---',
+    FIFTH: '3개 일치 (5,000원) - ',
+    FOURTH: '4개 일치 (50,000원) - ',
+    THIRD: '5개 일치 (1,500,000원) - ',
+    SECOND: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+    FIRST: '6개 일치 (2,000,000,000원) - ',
+  },
+  
 });
 
 export default messages;
