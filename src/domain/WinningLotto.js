@@ -11,14 +11,14 @@ class WinningLotto extends Lotto {
 
   constructor(numbers, bonusNumber) {
     super(numbers);
-    this.validateBonusNumber(bonusNumber);
+    this.validateBonusNumber(numbers, bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
 
-  validateBonusNumber(bonusNumber) {
+  validateBonusNumber(numbers, bonusNumber) {
     this.validateEachNumber(bonusNumber);
 
-    if (this.includes(bonusNumber))
+    if (numbers.includes(bonusNumber))
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_CONSTANT.LOTTO_NUMBER));
   }
 

@@ -13,9 +13,9 @@ class Lotto {
     numbers.forEach((number) => {
       this.validateEachNumber(number);
     });
-
     if (Validator.isDuplicated(numbers))
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_CONSTANT.LOTTO_NUMBER));
+    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.LOTTO_LENGTH_LIMIT);
   }
 
   validateEachNumber(number) {

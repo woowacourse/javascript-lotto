@@ -45,8 +45,8 @@ const WINNING_PRIZE = {
 const PRINT_MESSAGE = Object.freeze({
   INPUT_BUDGET: '구입금액을 입력해 주세요.',
   PURCHASE_COUNT: (count) => `${count}개를 구매했습니다.`,
-  INPUT_WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
-  INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
+  INPUT_WINNING_NUMBER: '당첨 번호를 입력해 주세요. ',
+  INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요. ',
   WINNING_STATISTICS: '당첨 통계',
   LINE: '--------------------',
   YIELD_RATE: (yieldRate) => `총 수익률은 ${yieldRate}%입니다.`,
@@ -57,6 +57,7 @@ const ERROR_MESSAGE = Object.freeze({
   NOT_INTEGER: (subject) => `${subject}은(는) 숫자여야 합니다`,
   LOTTO_NUMBER_RANGE: (subject) => `${subject}은(는) 1~45 사이의 숫자여야 합니다.`,
   LOTTO_NUMBER_DUPLICATE: (subject) => `${subject}은(는) 중복될 수 없습니다.`,
+  LOTTO_LENGTH_LIMIT: '로또는 6개의 수로 이루어져있습니다.',
   BUDGET_NOT_DIVISIBLE_BY_LOTTO_PRICE: '구입 금액은 로또 가격으로 나뉘어 떨어져야 합니다.',
   BUDGET_LESS_THAN_LOTTO_PRICE: '구입 금액은 로또 가격보다 커야 합니다',
 });

@@ -4,6 +4,7 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import { LottoUtils } from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
+import WinningLotto from '../domain/WinningLotto.js';
 
 class LottoSimulator {
   #lottos;
@@ -40,18 +41,27 @@ class LottoSimulator {
     }
   }
 
+  validateBudget(budget) {
+    if (!Validator.isInteger(budget))
+      throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_CONSTANT.BUDGET));
+    if (!budget || budget % LOTTO_CONSTANT.PRICE !== 0)
+      throw new Error(ERROR_MESSAGE.BUDGET_NOT_DIVISIBLE_BY_LOTTO_PRICE);
+    if (budget < LOTTO_CONSTANT.PRICE) throw new Error(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
+  }
+
   purchaseLottos(budget) {
     const lottoCount = budget / LOTTO_CONSTANT.PRICE;
     OutputView.printPurchaseCount(lottoCount);
 
     Array.from({ length: lottoCount }).forEach(() => {
       const lottoNumbers = LottoUtils.createNumbers();
-      this.printNumbers(lottoNumbers);
+      this.printLottoNumbers(lottoNumbers);
       this.#lottos.push(new Lotto(lottoNumbers));
     });
+    this.inputWinningNumber();
   }
 
-  printNumbers(lottoNumbers) {
+  printLottoNumbers(lottoNumbers) {
     OutputView.printLottoNumbers(lottoNumbers);
   }
 
@@ -59,12 +69,25 @@ class LottoSimulator {
     return this.#lottos.length;
   }
 
-  validateBudget(budget) {
-    if (!Validator.isInteger(budget))
-      throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_CONSTANT.BUDGET));
-    if (!budget || budget % LOTTO_CONSTANT.PRICE !== 0)
-      throw new Error(ERROR_MESSAGE.BUDGET_NOT_DIVISIBLE_BY_LOTTO_PRICE);
-    if (budget < LOTTO_CONSTANT.PRICE) throw new Error(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
+  inputWinningNumber() {
+    InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
+      this.inputBonusNumber(winningNumber);
+    });
+  }
+
+  inputBonusNumber(winningNumber) {
+    InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      this.judgeValidWinningNumber(winningNumber.split(',').map(Number), parseInt(bonusNumber));
+    });
+  }
+
+  judgeValidWinningNumber(winningNumber, bonusNumber) {
+    try {
+      this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
+    } catch (err) {
+      OutputView.printErrorMessage(err);
+      this.inputWinningNumber();
+    }
   }
 
   calculateWinningResult() {
