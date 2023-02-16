@@ -4,7 +4,7 @@ const OutputView = {
   printPurchasedLottos(lottos) {
     Console.print(`${lottos.length}개를 구매했습니다.\n`);
     lottos.forEach((lotto) => {
-      Console.print(`[${lotto.join(', ')}]`);
+      Console.print(`[${lotto.numbers.join(', ')}]`);
     });
   },
 
