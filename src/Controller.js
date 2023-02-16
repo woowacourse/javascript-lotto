@@ -13,11 +13,8 @@ class Controller {
     this.inputPurchaseAmount();
   }
 
-  inputPurchaseAmount() {
-    InputView.readPurchaseAmount(this.purchaseAmountHandler.bind(this));
-  }
-
-  purchaseAmountHandler(amount) {
+  async inputPurchaseAmount() {
+    const amount = await InputView.readPurchaseAmount();
     try {
       Validation.purchaseAmount(+amount);
       this.#lottoGame = new LottoGame(+amount);
@@ -29,11 +26,8 @@ class Controller {
     }
   }
 
-  inputLottoNumbers() {
-    InputView.readLottoNumbers(this.lottoNumbersHandler.bind(this));
-  }
-
-  lottoNumbersHandler(lottoNumbers) {
+  async inputLottoNumbers() {
+    const lottoNumbers = await InputView.readLottoNumbers();
     try {
       this.convertLotto(lottoNumbers);
       Validation.lottoNumbers(this.#lottoNumbers);
@@ -50,11 +44,8 @@ class Controller {
       .map((number) => +number.trim());
   }
 
-  inputBonusNumber() {
-    InputView.readBonusNumber(this.bonusNumberHandler.bind(this));
-  }
-
-  bonusNumberHandler(bonusNumber) {
+  async inputBonusNumber() {
+    const bonusNumber = await InputView.readBonusNumber();
     try {
       Validation.bonusNumber(this.#lottoNumbers, +bonusNumber);
       this.#bonusNumber = +bonusNumber;
@@ -74,11 +65,8 @@ class Controller {
     this.inputRestartCommand();
   }
 
-  inputRestartCommand() {
-    InputView.readRestartCommand(this.restartCommandHandler.bind(this));
-  }
-
-  restartCommandHandler(command) {
+  async inputRestartCommand() {
+    const command = await InputView.readRestartCommand();
     try {
       Validation.restartCommand(command);
       this.checkRestartCommand(command);

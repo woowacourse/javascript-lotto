@@ -2,20 +2,24 @@ const Console = require("../utils/Console");
 const { MESSAGE } = require("../constants");
 
 const InputView = {
-  readPurchaseAmount(callback) {
-    Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, callback);
+  async readPurchaseAmount() {
+    const input = await Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT);
+    return input;
   },
 
-  readLottoNumbers(callback) {
-    Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, callback);
+  async readLottoNumbers() {
+    const input = await Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS);
+    return input;
   },
 
-  readBonusNumber(callback) {
-    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, callback);
+  async readBonusNumber() {
+    const input = await Console.readLine(MESSAGE.INPUT_BONUS_NUMBER);
+    return input;
   },
 
-  readRestartCommand(callback) {
-    Console.readLine(MESSAGE.INPUT_RESTART_COMMAND, callback);
+  async readRestartCommand() {
+    const input = await Console.readLine(MESSAGE.INPUT_RESTART_COMMAND);
+    return input.toLowerCase();
   },
 };
 
