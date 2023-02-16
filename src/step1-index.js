@@ -5,10 +5,6 @@
 
 import { LottoGame } from "./domain/LottoGame";
 
-export const getAscendingSortedNumbers = (numbers) => {
-  return numbers.sort((a, b) => a - b);
-};
-
 export const getNumberOfMatchingLottoNumbers = (lottoTicket, winningLottoNumbers) => {
   return (
     lottoTicket.length +

@@ -1,4 +1,4 @@
-import { getAscendingSortedNumbers } from "../step1-index";
+import { getAscendingSortedNumbers } from "../util/sort";
 
 export const outputView = {
   print(message) {
@@ -10,6 +10,6 @@ export const outputView = {
   },
 
   printLottoTickets(lottoTickets) {
-    lottoTickets.map((ticket) => this.print(getAscendingSortedNumbers(ticket)));
+    lottoTickets.forEach((ticket) => this.print(getAscendingSortedNumbers(ticket)));
   },
 };

@@ -29,7 +29,7 @@ export const validator = {
     }
   },
 
-  checkBonusNumberDuplicate(bonusNumber, nningLottoNumbers) {
+  checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers) {
     if (winningLottoNumbers.includes(bonusNumber)) {
       throw new Error("[ 에러 ] 로또 번호와 중복되지 않게 보너스 번호를 입력해 주세요.");
     }
@@ -51,4 +51,14 @@ export const validator = {
 export const validatePurchaseAmount = (purchaseAmountString) => {
   validator.checkInteger(purchaseAmountString);
   validator.checkPurchaseAmount(Number(purchaseAmountString));
+};
+
+export const validateWinningLottoNumbers = (winningLottoNumbers) => {
+  winningLottoNumbers.forEach((winningLottoNumber) => validator.checkInteger(winningLottoNumber));
+
+  winningLottoNumbers = winningLottoNumbers.map((number) => Number(number));
+
+  validator.checkDuplicates(winningLottoNumbers);
+  validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
+  validator.checkListLengthIsSix(winningLottoNumbers);
 };
