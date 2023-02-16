@@ -1,7 +1,8 @@
-import Lotto from "./Lotto.js";
-import generateRandomNumbersInRange from "../utils/RandomNumberGenerator.js";
-import LottoCalculator from "./LottoCalculator.js";
-import { MatchCount, StaticValue } from "../constants/Constants.js";
+/* eslint-disable lines-between-class-members */
+import Lotto from './Lotto.js';
+import generateRandomNumbersInRange from '../utils/RandomNumberGenerator.js';
+import LottoCalculator from './LottoCalculator.js';
+import { MatchCount, StaticValue } from '../constants/Constants.js';
 
 class LottoGame {
   #userLottos;
@@ -12,7 +13,7 @@ class LottoGame {
       const RANDOM_NUMBER = generateRandomNumbersInRange(
         StaticValue.LOTTO_LOWER_INCLUSIVE,
         StaticValue.LOTTO_UPPER_INCLUSIVE,
-        StaticValue.LOTTO_LENGTH
+        StaticValue.LOTTO_LENGTH,
       );
 
       return new Lotto(RANDOM_NUMBER);
@@ -29,8 +30,7 @@ class LottoGame {
 
   getResult() {
     const MATCH_STATES = this.#userLottos.map(
-      (userLotto) =>
-        MatchCount[userLotto.getMatchState({ ...this.#gameLottos })]
+      (userLotto) => MatchCount[userLotto.getMatchState({ ...this.#gameLottos })],
     );
 
     const calculator = new LottoCalculator(MATCH_STATES);

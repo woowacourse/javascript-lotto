@@ -1,4 +1,4 @@
-import { StaticValue, ErrorMessage } from "../constants/Constants.js";
+import { StaticValue, ErrorMessage } from '../constants/Constants.js';
 
 const Validation = {
   checkPurchaseAmount(money) {
@@ -78,7 +78,9 @@ const Validation = {
   },
 
   isNumberInRange(number) {
-    return number >= StaticValue.LOTTO_LOWER_INCLUSIVE && number <= StaticValue.LOTTO_UPPER_INCLUSIVE;
+    return (
+      number >= StaticValue.LOTTO_LOWER_INCLUSIVE && number <= StaticValue.LOTTO_UPPER_INCLUSIVE
+    );
   },
 
   checkRestart(reply) {

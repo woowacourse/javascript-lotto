@@ -1,4 +1,4 @@
-import { Prize, Rank, StaticValue } from "../constants/Constants.js";
+import { Prize, Rank, StaticValue } from '../constants/Constants.js';
 
 class LottoCalculator {
   constructor(matchStates) {
@@ -14,7 +14,7 @@ class LottoCalculator {
   }
 
   calculateRank() {
-    return this.matchStates.reduce((ranks, currentState) => {
+    this.matchStates.reduce((ranks, currentState) => {
       const CURRENT_RANK = Rank[currentState];
       ranks[CURRENT_RANK] += 1;
 
@@ -24,9 +24,8 @@ class LottoCalculator {
 
   calculateProfitRate() {
     return (
-      (this.#calculateProfit() /
-        (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT)) *
-      100
+      (this.#calculateProfit() / (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT))
+      * 100
     ).toFixed(1);
   }
 

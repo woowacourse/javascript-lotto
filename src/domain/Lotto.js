@@ -1,5 +1,5 @@
-import { StaticValue } from "../constants/Constants.js";
-import Validation from "../utils/Validation.js";
+import { StaticValue } from '../constants/Constants.js';
+import Validation from '../utils/Validation.js';
 
 class Lotto {
   #numbers;
@@ -29,8 +29,7 @@ class Lotto {
   }
 
   getMatchCount(winningNumbers) {
-    return this.#numbers.filter((number) => winningNumbers.includes(number))
-      .length;
+    return this.#numbers.filter((number) => winningNumbers.includes(number)).length;
   }
 
   hasBonusNumber(bonusNumber) {

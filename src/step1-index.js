@@ -1,4 +1,4 @@
-import LottoGameController from "./controller/LottoGameController.js";
+import LottoGameController from './controller/LottoGameController.js';
 
 class App {
   #lottoGameController = new LottoGameController();

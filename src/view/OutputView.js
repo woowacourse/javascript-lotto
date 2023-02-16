@@ -1,5 +1,5 @@
-import { ConsoleMessage, StaticValue } from "../constants/Constants.js";
-import Console from "../utils/Console.js";
+import { ConsoleMessage, StaticValue } from '../constants/Constants.js';
+import Console from '../utils/Console';
 
 const OutputView = {
   printUserLottos(lotto) {

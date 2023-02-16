@@ -1,7 +1,7 @@
-import { ErrorMessage, StaticValue } from "../src/constants/Constants.js";
-import Lotto from "../src/domain/Lotto.js";
+import { ErrorMessage, StaticValue } from '../src/constants/Constants.js';
+import Lotto from '../src/domain/Lotto.js';
 
-describe("사용자 로또 클래스 테스트", () => {
+describe('사용자 로또 클래스 테스트', () => {
   test(`로또 번호 갯수가 ${StaticValue.LOTTO_LENGTH}개가 아닐 때 에러가 발생한다.`, () => {
     const NUMBERS = [
       [1, 2, 3, 4, 5],
@@ -13,7 +13,7 @@ describe("사용자 로또 클래스 테스트", () => {
     });
   });
 
-  test("외부에서 로또 번호를 넘겨주면 클래스에 로또 번호가 저장된다.", () => {
+  test('외부에서 로또 번호를 넘겨주면 클래스에 로또 번호가 저장된다.', () => {
     const NUMBERS = [
       [1, 2, 3, 4, 5, 6],
       [7, 8, 9, 10, 11, 12],
@@ -37,7 +37,7 @@ describe("사용자 로또 클래스 테스트", () => {
     });
   });
 
-  test("로또 번호가 중복되면 에러가 발생한다.", () => {
+  test('로또 번호가 중복되면 에러가 발생한다.', () => {
     const NUMBERS = [
       [1, 1, 2, 3, 4, 5],
       [5, 2, 2, 6, 9, 9],
@@ -48,7 +48,7 @@ describe("사용자 로또 클래스 테스트", () => {
     });
   });
 
-  test("사용자 로또 번호는 정렬되어 있다.", () => {
+  test('사용자 로또 번호는 정렬되어 있다.', () => {
     const NUMBERS = [
       [14, 2, 6, 31, 8, 45],
       [21, 7, 43, 38, 1, 2],
@@ -65,7 +65,7 @@ describe("사용자 로또 클래스 테스트", () => {
     });
   });
 
-  test("사용자 로또 번호와 당첨번호를 비교해서 결과 객체를 반환한다.", () => {
+  test('사용자 로또 번호와 당첨번호를 비교해서 결과 객체를 반환한다.', () => {
     const GAME_LOTTO = { winningNumbers: [1, 2, 3, 4, 5, 6], bonusNumber: 7 };
 
     const USER_LOTTOS = [
@@ -83,6 +83,7 @@ describe("사용자 로또 클래스 테스트", () => {
 
     USER_LOTTOS.forEach((userLotto, index) => {
       const lotto = new Lotto(userLotto);
+      
       expect(lotto.getMatchState(GAME_LOTTO)).toBe(MATCH_NUMBER[index]);
     });
   });

@@ -1,9 +1,9 @@
-import { ConsoleMessage, StaticValue } from "../constants/Constants.js";
-import LottoGame from "../domain/LottoGame.js";
-import Console from "../utils/Console.js";
-import Validation from "../utils/Validation.js";
-import InputView from "../view/InputView.js";
-import OutputView from "../view/OutputView.js";
+import { ConsoleMessage, StaticValue } from '../constants/Constants.js';
+import LottoGame from '../domain/LottoGame.js';
+import Console from '../utils/Console.js';
+import Validation from '../utils/Validation.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
@@ -36,9 +36,7 @@ class LottoGameController {
 
   #handleWinningNumbers() {
     InputView.readWinningNumbers((input) => {
-      const WINNING_NUMBERS = input
-        .split(StaticValue.INPUT_SEPARATOR)
-        .map(Number);
+      const WINNING_NUMBERS = input.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
       try {
         Validation.checkLottoNumber(WINNING_NUMBERS);
@@ -59,16 +57,14 @@ class LottoGameController {
         this.#handleGameResult();
         this.#handleRestart();
       } catch (error) {
-        this.#handleError(error.message, () =>
-          this.#handleBonusNumber(winningNumbers)
-        );
+        this.#handleError(error.message, () => this.#handleBonusNumber(winningNumbers));
       }
     });
   }
 
   #handleGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-    OutputView.print("");
+    OutputView.print('');
     OutputView.print(ConsoleMessage.RESULT);
     OutputView.printRanks(RANKS);
     OutputView.printProfitRate(PROFIT_RATE);
@@ -96,7 +92,7 @@ class LottoGameController {
     Console.close();
   }
 
-  #handleError(errorMessage, self) {
+  static #handleError(errorMessage, self) {
     OutputView.print(errorMessage);
     self();
   }
