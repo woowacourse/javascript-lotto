@@ -19,6 +19,12 @@ const Inputs = {
 
     return bonusNumber;
   },
+
+  async readRetry() {
+    const retry = await Console.readLine(QUERY.RETRY);
+
+    return retry;
+  },
 };
 
 export default Inputs;
