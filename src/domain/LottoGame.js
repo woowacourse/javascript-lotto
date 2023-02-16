@@ -46,14 +46,14 @@ export class LottoGame {
 
   async readWinningLottoNumbers() {
     const winningLottoNumbers = (
-      await inputView.readline("당첨 번호를 콤마(,)로 구분해서 입력해 주세요.")
+      await inputView.readline("\n당첨 번호를 콤마(,)로 구분해서 입력해 주세요.")
     ).split(",");
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
     this.#winningLotto.winningNumbers = winningLottoNumbers.map((number) => Number(number));
   }
 
   async readBonusNumber() {
-    const bonusNumber = await inputView.readline("보너스 번호를 입력해 주세요.");
+    const bonusNumber = await inputView.readline("\n보너스 번호를 입력해 주세요.");
     if (!validateBonusNumber(bonusNumber, this.#winningLotto.winningNumbers))
       return this.readBonusNumber(this.#winningLotto.winningNumbers);
     this.#winningLotto.bonusNumber = Number(bonusNumber);
