@@ -25,13 +25,14 @@ class LottoGame {
 
   getResult() {
     const MATCH_STATES = this.#userLottos.map(
-      (userLotto) => MatchCount[userLotto.getMatchState()]
+      (userLotto) =>
+        MatchCount[userLotto.getMatchState({ ...this.#gameLottos })]
     );
 
     const calculator = new LottoCalculator(MATCH_STATES);
 
     const RANKS = calculator.calculateRank();
-    const PROFIT_RATE = calculator.calculateProfitRate(RANKS);
+    const PROFIT_RATE = calculator.calculateProfitRate();
 
     return { RANKS, PROFIT_RATE };
   }
