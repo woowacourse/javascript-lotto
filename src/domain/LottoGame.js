@@ -5,6 +5,7 @@ const { NUMBER } = require("../constants");
 class LottoGame {
   constructor(amount) {
     this.lotteries = [];
+    this.rank = new Array(NUMBER.RANK).fill(0);
     this.generateLotteries(amount / NUMBER.UNIT);
     this.getLotteries();
   }
@@ -18,6 +19,13 @@ class LottoGame {
 
   getLotteries() {
     return this.lotteries.map((lottery) => lottery.getLottoString());
+  }
+
+  matchLotteries(lottoNumbers, bonusNumber) {
+    const lottoResult = this.lotteries.map((lotto) => {
+      return [lotto.matchNumbers(lottoNumbers), lotto.matchBonus(bonusNumber)];
+    });
+    return lottoResult;
   }
 }
 
