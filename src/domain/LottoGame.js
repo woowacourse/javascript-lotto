@@ -27,7 +27,7 @@ class LottoGame {
     return this.#lottos.length;
   }
 
-  LottoNumberGenerator() {
+  #LottoNumberGenerator() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < 6) {
       lottoNumbers.add(Random.RandomMinMax(1, 45));
@@ -38,20 +38,13 @@ class LottoGame {
   makeLottos(money) {
     const lottoCount = parseInt(money / 1000);
     Array.from({ length: lottoCount }, () => {
-      const lottoOne = new Lotto(this.LottoNumberGenerator());
+      const lottoOne = new Lotto(this.#LottoNumberGenerator());
       this.lottos.push(lottoOne);
     });
   }
 
   makeWinLotto(winningNumbers, bonusNumber) {
     this.#winLottos = new WinLotto(winningNumbers, bonusNumber);
-  }
-
-  calculateRankResult() {
-    this.#lottos.forEach((lotto) => {
-      const rank = this.#calculateRank(lotto);
-      this.#rankResult[rank] += 1;
-    });
   }
 
   #calculateRank(lotto) {
@@ -64,6 +57,13 @@ class LottoGame {
     if (sameNumbers.length === 4) return 4;
     if (sameNumbers.length === 3) return 5;
     if (sameNumbers.length < 3) return 0;
+  }
+
+  calculateRankResult() {
+    this.#lottos.forEach((lotto) => {
+      const rank = this.#calculateRank(lotto);
+      this.#rankResult[rank] += 1;
+    });
   }
 
   returnRevenueRate() {

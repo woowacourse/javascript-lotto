@@ -1,4 +1,5 @@
 const LottoGame = require("../domain/LottoGame");
+const Validation = require("../domain/Validation");
 const InputView = require("../view/inputView");
 const OutputView = require("../view/outputView");
 
@@ -37,10 +38,10 @@ const LottoController = {
   async restart() {
     try {
       const command = await InputView.readCommandRestart();
-      if (command != "y" && command != "n") throw new Error();
-      if (command === "y") this.playLotto();
+      Validation.validateRestartCommand(command);
       return command === "y" ? this.playLotto() : InputView.close();
     } catch (e) {
+      OutputView.printErrorMessage(e.message);
       return this.restart();
     }
   },
@@ -48,9 +49,10 @@ const LottoController = {
   async readMoney() {
     try {
       const money = await InputView.readMoney();
-      if (!this.validateMoney(money)) throw new Error();
+      Validation.validateMoney(money);
       return money;
     } catch (e) {
+      OutputView.printErrorMessage(e.message);
       return this.readMoney();
     }
   },
@@ -59,9 +61,10 @@ const LottoController = {
     try {
       const input = await InputView.readWinningNumbers();
       const winningNumbers = input.split(",").map((num) => parseInt(num));
-      if (!this.validateWinningNumber(winningNumbers)) throw new Error();
+      Validation.validateWinningNumber(winningNumbers);
       return winningNumbers;
     } catch (e) {
+      OutputView.printErrorMessage(e.message);
       return this.readWinningNumbers();
     }
   },
@@ -70,9 +73,10 @@ const LottoController = {
     try {
       const input = await InputView.readBonusNumber();
       const bonusNumber = parseInt(input);
-      if (!this.validateBonusNumber(winLotto, bonusNumber)) throw new Error();
+      Validation.validateBonusNumber(winLotto, bonusNumber);
       return bonusNumber;
     } catch (e) {
+      OutputView.printErrorMessage(e.message);
       return this.readBonusNumber(winLotto);
     }
   },
