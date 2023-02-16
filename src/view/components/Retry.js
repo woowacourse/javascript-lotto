@@ -12,6 +12,4 @@ export default class Retry extends Component {
     if (retry === 'y') this.setter({ retry: true });
     if (retry === 'n') this.setter({ retry: false });
   }
-
-  template() {}
 }
