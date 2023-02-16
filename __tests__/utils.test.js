@@ -1,6 +1,7 @@
 import {
   convertAscending,
   arrayToObjectThatValueZero,
+  isNumberInRange,
 } from '../src/utils/Utils';
 
 describe('유틸 함수 테스트', () => {
@@ -28,5 +29,14 @@ describe('유틸 함수 테스트', () => {
       5: 0,
       6: 0,
     });
+  });
+
+  test('숫자가 범위 안에 있는지 확인하는 테스트', () => {
+    const number = 3;
+    const range = [1, 45];
+
+    const isInRange = isNumberInRange(number, range);
+
+    expect(isInRange).toBeTruthy();
   });
 });
