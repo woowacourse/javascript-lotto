@@ -68,6 +68,8 @@ class LottoGame {
       const rank = this.convertCountToRank(intersectCount, hasBonus);
       this.#rankingBoard[rank] += 1;
     });
+
+    return this;
   }
 
   getRankingBoard() {
@@ -87,7 +89,7 @@ class LottoGame {
   }
 
   getLottos() {
-    return this.#lottos.map((lotto) => lotto.getLottos());
+    return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 }
 
