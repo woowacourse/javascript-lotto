@@ -1,4 +1,10 @@
-const RANKING = {
+export const LOTTO = {
+  min: 1,
+  max: 45,
+  length: 6,
+};
+
+export const RANKING = {
   lost: null,
   fifth: 5,
   fourth: 4,
@@ -6,6 +12,3 @@ const RANKING = {
   second: 2,
   first: 1,
 };
-
-
-export default RANKING;
