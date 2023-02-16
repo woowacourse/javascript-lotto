@@ -57,14 +57,15 @@ const PRINT_MESSAGE = Object.freeze({
       'en'
     )}원) - ${winningCount}개`,
   YIELD_RATE: (yieldRate) => `총 수익률은 ${yieldRate}%입니다.`,
-  INPUT_RETRY: '다시 시작하시겠습니까? (y/n) ',
+  INPUT_RETRY: `다시 시작하시겠습니까? (${LOTTO_CONSTANT.COMMAND_RETRY}/${LOTTO_CONSTANT.COMMAND_QUIT}) `,
 });
 
 const ERROR_MESSAGE = Object.freeze({
   NOT_INTEGER: (subject) => `${subject}은(는) 숫자여야 합니다`,
-  LOTTO_NUMBER_RANGE: (subject) => `${subject}은(는) 1~45 사이의 숫자여야 합니다.`,
+  LOTTO_NUMBER_RANGE: (subject) =>
+    `${subject}은(는) ${LOTTO_CONSTANT.MIN_NUMBER}~${LOTTO_CONSTANT.MAX_NUMBER} 사이의 숫자여야 합니다.`,
   LOTTO_NUMBER_DUPLICATE: (subject) => `${subject}은(는) 중복될 수 없습니다.`,
-  LOTTO_LENGTH_LIMIT: '로또는 6개의 수로 이루어져있습니다.',
+  LOTTO_LENGTH_LIMIT: `로또는 ${LOTTO_CONSTANT.LENGTH}개의 수로 이루어져있습니다.`,
   BUDGET_NOT_DIVISIBLE_BY_LOTTO_PRICE: '구입 금액은 로또 가격으로 나뉘어 떨어져야 합니다.',
   BUDGET_LESS_THAN_LOTTO_PRICE: '구입 금액은 로또 가격보다 커야 합니다',
   RETRY_COMMAND: `${LOTTO_CONSTANT.COMMAND_RETRY}나 ${LOTTO_CONSTANT.COMMAND_QUIT}만 입력 가능합니다.`,
