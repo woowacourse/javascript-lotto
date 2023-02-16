@@ -1,3 +1,4 @@
+const { LOTTO } = require('../constant/Setting');
 const pickNumberInRange = require('../util/pickNumberInRange');
 
 class LottoMachine {
@@ -6,14 +7,14 @@ class LottoMachine {
   }
 
   getQuantity() {
-    return this.money / 1_000;
+    return this.money / LOTTO.UNIT;
   }
 
   issueLotto() {
     const lotto = new Set();
 
-    while (lotto.size < 6) {
-      lotto.add(pickNumberInRange(1, 45));
+    while (lotto.size < LOTTO.LENGTH) {
+      lotto.add(pickNumberInRange(LOTTO.MIN_NUMBER_RANGE, LOTTO.MAX_NUMBER_RANGE));
     }
 
     return this.arrangeLotto([...lotto]);

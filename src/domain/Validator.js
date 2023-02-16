@@ -1,4 +1,5 @@
-const { ERROR_MESSAGE } = require('../constant/Message');
+const { ERROR_MESSAGE } = require('../constant/message');
+const { COMMAND, LOTTO } = require('../constant/setting');
 
 const Validator = {
   purchaseAmount(money) {
@@ -13,11 +14,11 @@ const Validator = {
   },
 
   isLessThanMinimum(money) {
-    return money < 1_000;
+    return money < LOTTO.UNIT;
   },
 
   hasChange(money) {
-    return money % 1_000 !== 0;
+    return money % LOTTO.UNIT !== 0;
   },
 
   winningNumber(numbers) {
@@ -61,11 +62,11 @@ const Validator = {
   },
 
   isValidRestartCommand(command) {
-    return command === 'y' || command === 'n';
+    return command === COMMAND.YES || command === COMMAND.NO;
   },
 
   isOutOfRange(number) {
-    return number < 1 || number > 45;
+    return number < LOTTO.MIN_NUMBER_RANGE || number > LOTTO.MAX_NUMBER_RANGE;
   },
 
   hasDuplicatedNumber(numbers) {
@@ -73,7 +74,7 @@ const Validator = {
   },
 
   isValidLength(numbers) {
-    return numbers.length === 6;
+    return numbers.length === LOTTO.LENGTH;
   },
 
   number(number) {

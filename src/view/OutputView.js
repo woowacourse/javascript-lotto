@@ -2,6 +2,10 @@ const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } = require('../constant/Message')
 const Console = require('../util/Console');
 
 const OutputView = {
+  printEmptyLine() {
+    Console.print('');
+  },
+
   printPurchaseQuantity(quantity) {
     Console.print(`${quantity}개를 구매했습니다.`);
   },

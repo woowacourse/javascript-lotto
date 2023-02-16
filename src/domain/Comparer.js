@@ -10,7 +10,7 @@ class Comparer {
   countMatchesOfWinningNumber() {
     return this.lottos.map((lotto) => {
       const numbers = new Set([...this.winningNumber, ...lotto]);
-      return 12 - numbers.size;
+      return this.winningNumber.length + lotto.length - numbers.size;
     });
   }
 

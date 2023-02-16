@@ -15,15 +15,19 @@ class LottoController {
 
   async start() {
     const purchaseAmount = await this.inputPurchaseAmount();
+    OutputView.printEmptyLine();
 
     await this.inputWinningNumber();
+    OutputView.printEmptyLine();
     await this.inputBonusNumber();
+    OutputView.printEmptyLine();
 
     const ranking = new Comparer(this.#winningNumber, this.#bonusNumber, this.#lottos).getRanking();
     const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
 
     OutputView.printRanking(ranking);
     OutputView.printProfitRate(profitRate);
+    OutputView.printEmptyLine();
 
     this.inputRestartCommand();
   }

@@ -6,4 +6,16 @@ const RANK = {
   FIRST: { name: 'FIRST', matchCount: 6, rewards: 2_000_000_000 },
 };
 
-module.exports = { RANK };
+const LOTTO = {
+  UNIT: 1_000,
+  MIN_NUMBER_RANGE: 1,
+  MAX_NUMBER_RANGE: 45,
+  LENGTH: 6,
+};
+
+const COMMAND = {
+  YES: 'y',
+  NO: 'n',
+};
+
+module.exports = { RANK, LOTTO, COMMAND };
