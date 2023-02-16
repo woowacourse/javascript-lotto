@@ -29,7 +29,6 @@ class App {
       this.validateBuyMoney(buyMoney);
       this.createLotto(parseInt(buyMoney / 1000));
       this.printLottos(buyMoney / 1000);
-
     } catch (e) {
       Console.print(e);
       await this.getBuyMoney();
@@ -67,7 +66,7 @@ class App {
     const winningNumbers = await InputView.inputWinningNumbers(
       "당첨 번호를 입력해 주세요."
     );
-    this.#winningLotto = this.convertStringToNumber(winningNumbers.split(","))
+    this.#winningLotto = this.convertStringToNumber(winningNumbers.split(","));
     // this.#winningLotto = winningNumbers.split(",");
     try {
       this.validateWinningNumbers();
@@ -79,9 +78,9 @@ class App {
 
   convertStringToNumber(strings) {
     const numberArr = strings.map((str) => {
-      return Number(str)
-    })
-    return numberArr
+      return Number(str);
+    });
+    return numberArr;
   }
 
   validateWinningNumbers() {
@@ -110,7 +109,7 @@ class App {
     try {
       this.validateBonusNumber();
       this.checkEachNumber(this.#bonusNumber);
-      this.compareLottos()
+      this.compareLottos();
       // this.printResult()
     } catch (e) {
       Console.print(e);
@@ -127,21 +126,48 @@ class App {
   compareLottos() {
     const lottos = new Lottos(this.#lottoArray);
     lottos.getLottos().forEach((lotto) => {
-      lotto.compareNumbers(this.#winningLotto)
-      lotto.checkBonusNumber(this.#bonusNumber)
-    })
-    lottos.compareLottosScore()
-    this.printResult(lottos)
+      lotto.compareNumbers(this.#winningLotto);
+      lotto.checkBonusNumber(this.#bonusNumber);
+    });
+    lottos.compareLottosScore();
+    this.printResult(lottos);
   }
 
   printResult(lottos) {
     Console.print("당첨통계");
     Console.print("--------------------");
-    Console.print(`3개 일치 (${lottos.getBenefitBoard()[3]}원) - ${lottos.getLottoRanking()[3]}개`);
-    Console.print(`4개 일치 (${lottos.getBenefitBoard()[4]}원) - ${lottos.getLottoRanking()[4]}개`);
-    Console.print(`5개 일치 (${lottos.getBenefitBoard()[5]}원) - ${lottos.getLottoRanking()[5]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치  (${lottos.getBenefitBoard()["5 bonus"]}원) - ${lottos.getLottoRanking()["5 bonus"]}개`);
-    Console.print(`6개 일치 (${lottos.getBenefitBoard()[6]}원) - ${lottos.getLottoRanking()[6]}개`);
+    Console.print(
+      `3개 일치 (${lottos.getBenefitBoard()[3]}원) - ${
+        lottos.getLottoRanking()[3]
+      }개`
+    );
+    Console.print(
+      `4개 일치 (${lottos.getBenefitBoard()[4]}원) - ${
+        lottos.getLottoRanking()[4]
+      }개`
+    );
+    Console.print(
+      `5개 일치 (${lottos.getBenefitBoard()[5]}원) - ${
+        lottos.getLottoRanking()[5]
+      }개`
+    );
+    Console.print(
+      `5개 일치, 보너스 볼 일치  (${lottos.getBenefitBoard()["5 bonus"]}원) - ${
+        lottos.getLottoRanking()["5 bonus"]
+      }개`
+    );
+    Console.print(
+      `6개 일치 (${lottos.getBenefitBoard()[6]}원) - ${
+        lottos.getLottoRanking()[6]
+      }개`
+    );
+
+    lottos.calculateBenefit();
+    Console.print(
+      `총 수익률은 ${lottos.getBenefitRate(
+        lottos.getLottos().length * 1000
+      )}% 입니다.`
+    );
   }
 
   async getRetryInput() {

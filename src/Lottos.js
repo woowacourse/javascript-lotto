@@ -36,7 +36,7 @@ class Lottos {
   }
 
   getBenefitBoard() {
-    return this.#benefitBoard
+    return this.#benefitBoard;
   }
 
   compareLottosScore() {
@@ -46,6 +46,12 @@ class Lottos {
   }
 
   determineAddScore(lotto) {
+    if (
+      lotto.getScore() === 0 ||
+      lotto.getScore() === 1 ||
+      lotto.getScore() === 2
+    )
+      return;
     lotto.getScore() === 5
       ? this.determineBonusOrNot(lotto)
       : this.addScoreBoard(lotto.getScore());
