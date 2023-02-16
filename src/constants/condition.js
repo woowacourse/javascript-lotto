@@ -13,4 +13,12 @@ const PRIZE_MATCH_COUNT = Object.freeze({
   fifthPrize: 3,
 });
 
-export { LOTTO_CONDITION, PRIZE_MATCH_COUNT };
+const LOTTO_PRIZE_MONEY = Object.freeze({
+  firstPrize: 2000000000,
+  secondPrize: 30000000,
+  thirdPrize: 1500000,
+  fourthPrize: 50000,
+  fifthPrize: 5000,
+});
+
+export { LOTTO_CONDITION, PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY };
