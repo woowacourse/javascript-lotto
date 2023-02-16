@@ -1,6 +1,5 @@
 import BonusNumberReward from './BonusReward';
 import Reward from './Reward';
-import WinningLotto from './WinningLotto';
 
 class LottoResult {
   static NEED_BONUS_NUMBER = (hasBonusNumber) => hasBonusNumber;
@@ -15,16 +14,14 @@ class LottoResult {
     new Reward(3, 5_000),
   ];
 
-  constructor(winningNumbers, bonusNumber) {
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+  constructor(winningLotto) {
+    this.winningLotto = winningLotto;
   }
 
   findReward(lotto) {
     return (
       LottoResult.REWARDS.find((reward) => {
-        const winningLotto = new WinningLotto(this.winningNumbers, this.bonusNumber);
-        return reward.canReceive(lotto, winningLotto);
+        return reward.canReceive(lotto, this.winningLotto);
       }) ?? null
     );
   }

@@ -1,5 +1,6 @@
 import Lotto from '../src/domain/Lotto';
 import LottoResult from '../src/domain/LottoResult';
+import WinningLotto from '../src/domain/WinningLotto';
 
 describe('LottoResult 클래스에 대한 테스트', () => {
   test.each([
@@ -14,11 +15,10 @@ describe('LottoResult 클래스에 대한 테스트', () => {
     (lottoNumbers, expectedRewardMoney) => {
       // given
       const lotto = new Lotto(lottoNumbers);
-      const winningNumbers = [1, 2, 3, 4, 5, 6];
-      const bonusNumber = 7;
+      const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
 
       // when
-      const lottoResult = new LottoResult(winningNumbers, bonusNumber);
+      const lottoResult = new LottoResult(winningLotto);
       const reward = lottoResult.findReward(lotto);
       const rewardMoney = reward?.getMoney() ?? 0;
 
@@ -34,10 +34,9 @@ describe('LottoResult 클래스에 대한 테스트', () => {
       [1, 2, 3, 4, 5, 7], // 5개 + 보너스
       [8, 9, 10, 11, 12, 13], // 아예 없음
     ].map((lotto) => new Lotto(lotto));
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 7;
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
 
-    const lottoResult = new LottoResult(winningNumbers, bonusNumber);
+    const lottoResult = new LottoResult(winningLotto);
     const rewardCounts = lottoResult.countRewards(lottos);
 
     expect(rewardCounts.map(([, count]) => count)).toEqual([0, 1, 0, 1, 1]);

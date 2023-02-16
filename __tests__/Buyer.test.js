@@ -2,6 +2,7 @@ import Buyer from '../src/domain/Buyer';
 import Lotto from '../src/domain/Lotto';
 import LottoFactory from '../src/domain/LottoFactory';
 import LottoResult from '../src/domain/LottoResult';
+import WinningLotto from '../src/domain/WinningLotto';
 
 const mockLottoFactory = (lottos) => {
   const remainLottos = [...lottos];
@@ -38,7 +39,8 @@ describe('Buyer 클래스 테스트', () => {
       new Lotto([7, 8, 9, 10, 11, 12]), // 0개
       new Lotto([30, 31, 32, 33, 34, 35]), // 0개
     ]);
-    const lottoResult = new LottoResult([1, 2, 3, 4, 5, 6], 7);
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+    const lottoResult = new LottoResult(winningLotto);
 
     // when
     buyer.buyLottos(lottoFactory);
