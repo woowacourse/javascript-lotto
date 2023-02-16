@@ -1,4 +1,4 @@
-const outputView = {
+export const outputView = {
   print(message) {
     console.log(message);
   },

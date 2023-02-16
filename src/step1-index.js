@@ -3,6 +3,8 @@
  * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
+import { LottoGame } from "./domain/LottoGame";
+
 export const randomNumberBetween = (min = 1, max = 45) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -38,3 +40,6 @@ export const getNumberOfMatchingLottoNumbers = (lottoTicket, winningLottoNumbers
 export const getRateOfReturn = (totalPrize, purchaseAmount) => {
   return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
 };
+
+const lottoGame = new LottoGame();
+lottoGame.play();
