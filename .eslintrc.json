@@ -1,7 +1,7 @@
 {
   "rules": {
     "max-lines-per-function": ["error", 10],
-    "max-depth": ["error", 2],
+    "max-depth": ["error", 1],
     "semi": [2, "always"],
     "eol-last": ["error", "always"],
     "prefer-const": "error",
