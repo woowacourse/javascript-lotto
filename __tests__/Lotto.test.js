@@ -19,10 +19,12 @@ describe('사용자 로또 클래스 테스트', () => {
       [7, 8, 9, 10, 11, 12],
     ];
 
-    NUMBERS.forEach((numbers) => {
+    const EXPECTED = ['[1, 2, 3, 4, 5, 6]', '[7, 8, 9, 10, 11, 12]'];
+
+    NUMBERS.forEach((numbers, index) => {
       const lotto = new Lotto(numbers);
 
-      expect(lotto.getNumbers()).toEqual(numbers);
+      expect(lotto.getNumbers()).toBe(EXPECTED[index]);
     });
   });
 
@@ -53,15 +55,12 @@ describe('사용자 로또 클래스 테스트', () => {
       [14, 2, 6, 31, 8, 45],
       [21, 7, 43, 38, 1, 2],
     ];
-    const EXPECTED = [
-      [2, 6, 8, 14, 31, 45],
-      [1, 2, 7, 21, 38, 43],
-    ];
+    const EXPECTED = ['[2, 6, 8, 14, 31, 45]', '[1, 2, 7, 21, 38, 43]'];
 
     NUMBERS.forEach((numbers, index) => {
       const lotto = new Lotto(numbers);
 
-      expect(lotto.getNumbers()).toEqual(EXPECTED[index]);
+      expect(lotto.getNumbers()).toBe(EXPECTED[index]);
     });
   });
 
