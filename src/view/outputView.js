@@ -25,6 +25,10 @@ const outputView = {
     Console.print(result);
   },
 
+  printBenefit(rate) {
+    Console.print(`총 수익률은 ${rate.toLocaleString()}%입니다.`);
+  },
+
   getResultLine(rank, rankCount) {
     if (rank === MAGIC_NUMBER.secondRankIndex) {
       return `${
