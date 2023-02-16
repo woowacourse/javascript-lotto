@@ -2,13 +2,13 @@ const { RANK } = require('./setting');
 
 const INPUT_MESSAGE = {
   PURCHASE_AMOUNT: '> 구입금액을 입력해 주세요.',
-  WINNUNG_NUMBER: '> 당첨 번호를 입력해 주세요.',
+  WINNING_NUMBER: '> 당첨 번호를 입력해 주세요.',
   BONUS_NUMBER: '> 보너스 번호를 입력해 주세요.',
   RESTART_COMMAND: '> 다시 시작하시겠습니까? (y/n)',
 };
 
 const OUTPUT_MESSAGE = {
-  WINNING_STASTICS_HEADER: '당첨 통계\n' + '--------------------',
+  WINNING_STATISTICSS_HEADER: '당첨 통계\n' + '--------------------',
 };
 
 const OUTPUT_MESSAGE_METHOD = {
