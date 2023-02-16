@@ -1,7 +1,11 @@
+const exception = require('../../utils/exception');
+
 class BonusNumber {
   #number;
 
-  constructor(input) {
+  constructor(winningNumbers, input) {
+    exception.checkBonusNumber(winningNumbers, input);
+
     this.#number = Number(input);
   }
 

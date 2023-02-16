@@ -12,6 +12,16 @@ const exception = {
 
     throw new Error(errorMessage.WINNING_NUMBERS_ERROR);
   },
+  checkBonusNumber(winningNumbers, input) {
+    if (validator.isBonusNumberValid(winningNumbers, input)) return;
+
+    throw new Error(errorMessage.BONUS_NUMBER_ERROR);
+  },
+  checkRestartCommand(input) {
+    if (validator.isRestartCommandValid(input)) return;
+
+    throw new Error(errorMessage.RESTART_COMMAND_ERROR);
+  },
 };
 
 module.exports = exception;
