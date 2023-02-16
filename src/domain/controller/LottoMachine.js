@@ -111,11 +111,11 @@ class LottoMachine {
     const lottoCount = amount / MAGIC_NUMBER.moneyUnit;
 
     this.#lottos = Array.from({ length: lottoCount }).map(() =>
-      this.#composeLottoNumbers().sort((first, second) => first - second)
+      this.#getComposedLottoNumbers().sort((first, second) => first - second)
     );
   }
 
-  #composeLottoNumbers() {
+  #getComposedLottoNumbers() {
     const lottoNumbers = new Set();
 
     while (lottoNumbers.size < MAGIC_NUMBER.lottoNumberCount) {
@@ -133,13 +133,13 @@ class LottoMachine {
     const RANK_TEMPLATE = [0, 0, 0, 0, 0];
 
     const ranks = this.#lottos.reduce((accumulator, lotto) => {
-      return this.#increaseRank(lotto, accumulator);
+      return this.#getIncreasedRanks(lotto, accumulator);
     }, RANK_TEMPLATE);
 
     return ranks;
   }
 
-  #increaseRank(lotto, ranks) {
+  #getIncreasedRanks(lotto, ranks) {
     const updatedRanks = ranks;
     const matchedCount = this.#getMatchedCount(lotto);
     const rankIndex = this.#getRankIndex(matchedCount, this.#isBonus(lotto));
