@@ -3,6 +3,7 @@ import LottoResult from '../src/domain/LottoResult';
 
 describe('LottoResult 클래스에 대한 테스트', () => {
   test.each([
+    [[8, 9, 10, 11, 12, 13], 0],
     [[1, 2, 3, 40, 41, 42], 5000],
     [[1, 2, 3, 4, 7, 41], 50000],
     [[1, 2, 3, 4, 5, 41], 1_500_000],
