@@ -7,7 +7,12 @@ export default class Lotto {
     this.#numbers = lottoNumbers;
   }
 
-  getCompareResult(winningNumbers, bonusNumber) {}
+  getCompareResult(winningNumbers, bonusNumber) {
+    const matchCount = this.getMatchCount(winningNumbers);
+    const hasBonusNumber = this.hasBonusNumber(bonusNumber);
+
+    return { matchCount, hasBonusNumber };
+  }
 
   getMatchCount(winningNumbers) {
     const duplicateCheck = new Set([...winningNumbers, ...this.#numbers]);
