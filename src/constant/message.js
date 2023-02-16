@@ -1,5 +1,8 @@
 const MESSAGE = {
   BUY_LOTTO: quantity => `${quantity}개를 구매했습니다.`,
+  MATCH_RESULT: (matchLetter, amountOfRank) =>
+    `${matchLetter}${amountOfRank}개`,
+  PROFIT: profit => `총 수익률은 ${profit}%입니다.`,
   STATISTICS: '당첨 통계',
   DIVISION_LINE: '--------------------',
   MATCH_TABLE: [

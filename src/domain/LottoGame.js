@@ -4,7 +4,7 @@ import NumberHandler from '../util/numberHandler.js';
 
 class LottoGame {
   #lottos = [];
-  #amountOfRank = Array.from({ length: 6 }).fill(0);
+  #amountOfRanks = Array.from({ length: 6 }).fill(0);
   #winningNumbers = { luckyNumbers: [], bonusNumber: 0 };
 
   constructor(price) {
@@ -22,15 +22,15 @@ class LottoGame {
 
   execute() {
     this.#lottos.forEach(lotto => {
-      this.#amountOfRank[lotto.getRank(this.#winningNumbers)] += 1;
+      this.#amountOfRanks[lotto.getRank(this.#winningNumbers)] += 1;
     });
 
-    return [...this.#amountOfRank];
+    return [...this.#amountOfRanks];
   }
 
   calculateTotalPrizeMoney() {
     return LOTTO.PRIZE_MONEY.reduce((acc, curr, currIdx) => {
-      return acc + curr * this.#amountOfRank[currIdx];
+      return acc + curr * this.#amountOfRanks[currIdx];
     }, 0);
   }
 
