@@ -71,3 +71,7 @@ export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {
   validator.checkBonusNumberBetween1And45(bonusNumber);
   validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
 };
+
+export const validateRestartOrQuitCommend = (restartOrQuit) => {
+  validator.checkYOrN(restartOrQuit);
+};

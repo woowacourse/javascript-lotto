@@ -1,9 +1,12 @@
 import { randomNumberBetween } from "../util/randomNumberMaker";
 import { inputView } from "../view/inputView";
 import { outputView } from "../view/outputView";
+import { close } from "../util/console";
+
 import {
   validateBonusNumber,
   validatePurchaseAmount,
+  validateRestartOrQuitCommend,
   validateWinningLottoNumbers,
 } from "./validator";
 
@@ -29,6 +32,9 @@ export class LottoGame {
     outputView.printRateOfReturn(
       this.getRateOfReturn(this.getTotalPrize(placesOfLottoTickets), purchaseAmount)
     );
+
+    const restartOrQuit = await this.readRestartOrQuitCommend();
+    this.shouldRestart(restartOrQuit) ? this.play() : close();
   }
 
   async readPurchaseAmount() {
@@ -99,6 +105,16 @@ export class LottoGame {
 
   getRateOfReturn(totalPrize, purchaseAmount) {
     return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
+  }
+
+  async readRestartOrQuitCommend() {
+    const restartOrQuitCommend = await inputView.readline("다시 시작하시겠습니까? (y/n)");
+    validateRestartOrQuitCommend(restartOrQuitCommend);
+    return restartOrQuitCommend;
+  }
+
+  shouldRestart(restartOrQuitCommend) {
+    return ["y", "Y"].includes(restartOrQuitCommend) ? true : false;
   }
 
   makeLottoTickets(numberOfTickets) {

@@ -1,13 +1,10 @@
-import {
-  makeLottoTicket,
-  makeLottoTickets,
-  getAscendingSortedNumbers,
-  getNumberOfMatchingLottoNumbers,
-  getRateOfReturn,
-} from "../src/step1-index";
+import { LottoGame } from "../src/domain/LottoGame";
+import { getAscendingSortedNumbers } from "../src/util/sort";
+
+const lottoGame = new LottoGame();
 
 test("1 ~ 45 사이의 난수를 중복되지 않게 6개 생성한다.", () => {
-  const lottoTicket = makeLottoTicket();
+  const lottoTicket = lottoGame.makeLottoTicket();
 
   expect(new Set(lottoTicket).size).toBe(6);
 });
@@ -15,7 +12,7 @@ test("1 ~ 45 사이의 난수를 중복되지 않게 6개 생성한다.", () => 
 test("로또 구입 금액 / 1000 만큼 로또를 발행한다.", () => {
   const numberOfTickets = 5;
 
-  const lottoTickets = makeLottoTickets(numberOfTickets);
+  const lottoTickets = lottoGame.makeLottoTickets(numberOfTickets);
 
   expect(lottoTickets.length).toBe(numberOfTickets);
 });
@@ -33,7 +30,9 @@ test.each([
 ])(
   "사용자가 구매한 로또 번호(%p)와 당첨 번호(%p)를 비교해서 같은 번호의 개수(%i)를 반환한다.",
   (lottoTicket, winningLottoNumbers, expected) => {
-    expect(getNumberOfMatchingLottoNumbers(lottoTicket, winningLottoNumbers)).toBe(expected);
+    expect(lottoGame.getNumberOfMatchingLottoNumbers(lottoTicket, winningLottoNumbers)).toBe(
+      expected
+    );
   }
 );
 
@@ -45,6 +44,6 @@ test.each([
 ])(
   "로또 수익률을 반환한다 (총 당첨금: %i, 총 로또 구입 금액: %i, 수익률: %i).",
   (totalPrize, purchaseAmount, expected) => {
-    expect(getRateOfReturn(totalPrize, purchaseAmount)).toBe(expected);
+    expect(lottoGame.getRateOfReturn(totalPrize, purchaseAmount)).toBe(expected);
   }
 );

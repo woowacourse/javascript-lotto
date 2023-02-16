@@ -5,9 +5,5 @@
 
 import { LottoGame } from "./domain/LottoGame";
 
-export const getRateOfReturn = (totalPrize, purchaseAmount) => {
-  return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
-};
-
 const lottoGame = new LottoGame();
 lottoGame.play();

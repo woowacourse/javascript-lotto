@@ -1,13 +1,14 @@
-import {
+import { validator } from "../src/domain/validator";
+const {
   checkPurchaseAmount,
   checkInteger,
   checkDuplicates,
-  checkBonusNumberBetween1And45,
+  checkLottoNumbersBetween1And45,
   checkListLengthIsSix,
   checkBonusNumberDuplicate,
-  checkLottoNumbersBetween1And45,
+  checkBonusNumberBetween1And45,
   checkYOrN,
-} from "../src/step1-index";
+} = validator;
 
 test.each([
   [1000, true],
