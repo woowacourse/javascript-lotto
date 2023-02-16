@@ -23,7 +23,7 @@ class LottoController {
   async readWinNumbers() {
     try {
       const winNumbers = await InputView.readWinNumbers();
-      this.#lottoMachine.setWinningLotto(winNumbers);
+      this.#lottoMachine.generateWinningLotto(winNumbers);
     } catch (error) {
       console.log(error.message);
       await this.readWinNumbers();

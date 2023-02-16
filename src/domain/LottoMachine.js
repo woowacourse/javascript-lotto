@@ -21,10 +21,6 @@ class LottoMachine {
     this.#lottos = this.generateLottos(money);
   }
 
-  getPrizes() {
-    return this.#lottos.map((lotto) => this.#winningLotto.judgePrize(lotto));
-  }
-
   calcLottoAmount(money) {
     const lottoAmount = money / LottoMachine.LOTTO_COST;
     if (!isPositiveInteger(lottoAmount)) throw new Error('유효하지 않은 금액입니다.');
@@ -38,7 +34,7 @@ class LottoMachine {
     });
   }
 
-  setWinningLotto(lottoNumbers) {
+  generateWinningLotto(lottoNumbers) {
     const lotto = new Lotto(lottoNumbers);
     this.#winningLotto = new WinningLotto(lotto);
   }
@@ -51,15 +47,20 @@ class LottoMachine {
     return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 
-  makeHitPrize() {
-    this.getPrizes().forEach((prize) => {
+  getPrizes() {
+    return this.#lottos.map((lotto) => this.#winningLotto.getWinRank(lotto));
+  }
+
+  addWinCount(prizes) {
+    prizes.forEach((prize) => {
       this.#winCount[prize] += 1;
     });
   }
 
   calcStatstics() {
-    this.makeHitPrize();
-    const profitRate = this.calcProfitRate();
+    const prizes = this.getPrizes();
+    this.addWinCount(prizes);
+    const profitRate = this.calcProfitRate(prizes);
     return {
       winCount: this.#winCount,
       profitRate,
@@ -67,11 +68,8 @@ class LottoMachine {
     };
   }
 
-  calcProfitRate() {
-    const totalWinMoney = this.getPrizes().reduce(
-      (acc, cur) => acc + LottoMachine.WIN_PRIZE_MONEY[cur],
-      0,
-    );
+  calcProfitRate(prizes) {
+    const totalWinMoney = prizes.reduce((acc, cur) => acc + LottoMachine.WIN_PRIZE_MONEY[cur], 0);
     return totalWinMoney / (this.#lottos.length * LottoMachine.LOTTO_COST);
   }
 }
