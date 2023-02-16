@@ -6,7 +6,7 @@ import generateRandomNumber from './utils/generateRandomNumber';
 import Interface from './view/Interface';
 import outputView from './view/outputView';
 
-class LottoGame {
+class LottoConsoleGame {
   #io;
   #lottos;
 
@@ -120,4 +120,4 @@ class LottoGame {
   }
 }
 
-export default LottoGame;
+export default LottoConsoleGame;
