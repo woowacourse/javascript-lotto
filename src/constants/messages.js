@@ -7,6 +7,10 @@ const messages = deepFreeze({
     BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요.',
     RESTART: '\n> 다시 시작하시겠습니까? (y/n)',
   },
+  ERROR: {
+    POSITIVE_INTEGER: '[ERROR] 숫자를 입력해주세요.',
+    THOUSANDS_WON: '[ERROR] 1000원 단위의 금액을 입력해주세요.',
+  },
 });
 
 export default messages;
