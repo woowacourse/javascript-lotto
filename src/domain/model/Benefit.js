@@ -14,7 +14,7 @@ class Benefit {
       0
     );
 
-    this.#rate = (total / money) * MAGIC_NUMBER.percent;
+    this.#rate = Number(((total / money) * MAGIC_NUMBER.percent).toFixed(1));
   }
 }
 
