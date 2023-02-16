@@ -2,7 +2,7 @@ const { BLANK_REGEXP, EMPTY_STRING } = require('../../constants/constants');
 
 const validator = {
   isNumber(input) {
-    return isNaN(input) ? false : true;
+    return !Number.isNaN(input);
   },
 
   isBlankIncluded(input) {
@@ -10,7 +10,7 @@ const validator = {
   },
 
   isEmpty(input) {
-    return input === EMPTY_STRING ? true : false;
+    return input === EMPTY_STRING;
   },
 
   isSmallerOrEqualThanZero(input) {
