@@ -105,6 +105,10 @@ class LottoMachine {
     lottoMachine.readMoney();
   }
 
+  quit() {
+    Console.quit();
+  }
+
   generateLottos(amount) {
     const lottoCount = amount / 1000;
 
