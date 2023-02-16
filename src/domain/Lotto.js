@@ -1,4 +1,4 @@
-import Validation from '../Validation.js';
+import Validation from '../Validation';
 
 class Lotto {
   constructor(lottoNumbers) {
