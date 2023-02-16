@@ -30,6 +30,10 @@ export default class LottoGame {
     return [...numbers].sort((numA, numB) => numA - numB);
   }
 
+  getEachCompareResult(winningNumbers, bonusNumber) {
+    return this.#lottos.map((lotto) => lotto.getCompareResult(winningNumbers, bonusNumber));
+  }
+
   getLottoQuantity() {
     return this.#lottos.length;
   }
