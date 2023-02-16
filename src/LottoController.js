@@ -3,15 +3,18 @@ import InputView from './view/console/InputView';
 import OutputView from './view/console/OutputView';
 
 class LottoController {
+  static RESTART_COMMAND = 'y';
+  static EXIT_COMMAND = 'n';
+
   #lottoMachine;
 
-  async readBuyMoney() {
+  async readMoney() {
     try {
-      const money = await InputView.readBuyMoney();
+      const money = await InputView.readMoney();
       this.#lottoMachine = new LottoMachine(money);
     } catch (error) {
-      console.error(error.message);
-      await this.readBuyMoney();
+      OutputView.printError(error);
+      await this.readMoney();
     }
   }
 
@@ -25,7 +28,7 @@ class LottoController {
       const winNumbers = await InputView.readWinNumbers();
       this.#lottoMachine.generateWinningLotto(winNumbers);
     } catch (error) {
-      console.log(error.message);
+      OutputView.printError(error);
       await this.readWinNumbers();
     }
   }
@@ -35,7 +38,7 @@ class LottoController {
       const bonusNumber = await InputView.readBonusNumber();
       this.#lottoMachine.setBonusNumber(bonusNumber);
     } catch (error) {
-      console.error(error.message);
+      OutputView.printError(error);
       await this.readBonusNumber();
     }
   }

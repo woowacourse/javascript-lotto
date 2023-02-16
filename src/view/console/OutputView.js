@@ -1,6 +1,7 @@
 import Console from './Console';
 
 const OutputView = {
+  ERROR_PREFIX: '[ERROR]',
   WIN_TITLE: '당첨 통계\n--------------------',
   WIN_CONDITION: {
     1: '6개 일치',
@@ -41,6 +42,7 @@ const OutputView = {
     return `${winCount[rank]}개`;
   },
 
+  // to-do : 메서드 분리
   printWinStatistics({ winCount, winPrizeMoney, profitRate }) {
     this.printWinTitle();
     const rankLength = 5;
@@ -56,6 +58,10 @@ const OutputView = {
 
   printProfitRate(profitRate) {
     Console.print(this.generateProfitRateMessage(profitRate));
+  },
+
+  printError(error) {
+    Console.print(`${OutputView.ERROR_PREFIX} ${error.message}`);
   },
 
   printEmptyLine() {
