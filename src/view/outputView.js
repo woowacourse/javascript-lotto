@@ -20,4 +20,10 @@ export const outputView = {
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${placesOfLottoTickets.SECOND_PLACE}개
 6개 일치 (2,000,000,000원) - ${placesOfLottoTickets.FIRST_PLACE}개`);
   },
+
+  printRateOfReturn(rateOfReturn) {
+    rateOfReturn = rateOfReturn.toLocaleString();
+
+    this.print(`총 수익률은 ${rateOfReturn}% 입니다.`);
+  },
 };

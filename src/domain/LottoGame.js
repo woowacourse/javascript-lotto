@@ -23,7 +23,12 @@ export class LottoGame {
       winningLottoNumbers,
       bonusNumber
     );
+
     outputView.printPlacesOfLottoTickets(placesOfLottoTickets);
+
+    outputView.printRateOfReturn(
+      this.getRateOfReturn(this.getTotalPrize(placesOfLottoTickets), purchaseAmount)
+    );
   }
 
   async readPurchaseAmount() {
@@ -90,6 +95,10 @@ export class LottoGame {
       placesOfLottoTickets.SECOND_PLACE * 30000000 +
       placesOfLottoTickets.FIRST_PLACE * 2000000000
     );
+  }
+
+  getRateOfReturn(totalPrize, purchaseAmount) {
+    return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
   }
 
   makeLottoTickets(numberOfTickets) {
