@@ -8,7 +8,7 @@ const INPUT_MESSAGE = {
 };
 
 const OUTPUT_MESSAGE = {
-  WINNING_STATISTICSS_HEADER: '당첨 통계\n' + '--------------------',
+  WINNING_STATISTICS_HEADER: '당첨 통계\n' + '--------------------',
 };
 
 const OUTPUT_MESSAGE_METHOD = {
