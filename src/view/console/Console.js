@@ -5,7 +5,7 @@ const rl = readline.createInterface({ input, output });
 
 const Console = {
   read(query) {
-    return rl.question(`> ${query}`);
+    return rl.question(`> ${query} `);
   },
 
   print(text) {

@@ -20,7 +20,9 @@ class LottoController {
 
   printBuyLottos() {
     const lottoNumbers = this.#lottoMachine.getLottoNumbers();
+    OutputView.printEmptyLine();
     OutputView.printBuyLottos(lottoNumbers);
+    OutputView.printEmptyLine();
   }
 
   async readWinNumbers() {
@@ -44,7 +46,9 @@ class LottoController {
   }
 
   printWinStatistics() {
+    OutputView.printEmptyLine();
     OutputView.printWinStatistics(this.#lottoMachine.getStatstics());
+    OutputView.printEmptyLine();
   }
 }
 
