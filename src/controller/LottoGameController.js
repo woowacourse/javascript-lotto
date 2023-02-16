@@ -13,7 +13,7 @@ class LottoGameController {
   }
 
   #handlePurchaseAmount() {
-    InputView.readPurchaseAmount((input) => {
+    InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT, (input) => {
       try {
         Validation.checkPurchaseAmount(input);
         const PURCHASE_COUNT = Number(input) / StaticValue.PURCHASE_AMOUNT_UNIT;
@@ -35,7 +35,7 @@ class LottoGameController {
   }
 
   #handleWinningNumbers() {
-    InputView.readWinningNumbers((input) => {
+    InputView.readUserInput(ConsoleMessage.WINNING_NUMBER, (input) => {
       const WINNING_NUMBERS = input.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
       try {
@@ -48,7 +48,7 @@ class LottoGameController {
   }
 
   #handleBonusNumber(winningNumbers) {
-    InputView.readBonusNumber((input) => {
+    InputView.readUserInput(ConsoleMessage.BONUS_NUMBER, (input) => {
       const BONUS_NUMBER = Number(input);
       try {
         Validation.checkBonusNumber(winningNumbers, BONUS_NUMBER);
@@ -67,7 +67,7 @@ class LottoGameController {
   }
 
   #handleRestart() {
-    InputView.readRestart((input) => {
+    InputView.readUserInput(ConsoleMessage.RESTART, (input) => {
       const REPLY = input.toLowerCase().trim();
 
       try {
