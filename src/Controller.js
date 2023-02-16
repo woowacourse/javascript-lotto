@@ -65,7 +65,11 @@ class Controller {
   }
 
   generateLottoGameResult() {
-    this.#lottoGame.matchLotteries(this.#lottoNumbers, this.#bonusNumber);
+    const lottoResult = this.#lottoGame.calculateRankResult(
+      this.#lottoNumbers,
+      this.#bonusNumber
+    );
+    OutputView.printResult(lottoResult);
   }
 }
 

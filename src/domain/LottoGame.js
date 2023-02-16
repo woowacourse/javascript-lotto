@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto");
 const Random = require("../utils/Random");
-const { NUMBER } = require("../constants");
+const { NUMBER, PRIZE } = require("../constants");
 
 class LottoGame {
   constructor(amount) {
@@ -26,6 +26,33 @@ class LottoGame {
       return [lotto.matchNumbers(lottoNumbers), lotto.matchBonus(bonusNumber)];
     });
     return lottoResult;
+  }
+
+  calculateRankResult(lottoNumbers, bonusNumber) {
+    const matchResult = this.matchLotteries(lottoNumbers, bonusNumber);
+    const rankResult = new Array(NUMBER.RANK).fill(0);
+
+    matchResult.map((lotto) => {
+      rankResult[this.calculateRank(lotto[0], lotto[1])] += 1;
+    });
+
+    return this.calculateProfit(rankResult);
+  }
+
+  calculateRank(matchNumber, bonusNumber) {
+    if (matchNumber > 9) return;
+    if (matchNumber === 6) return 10 - matchNumber;
+    if (matchNumber === 7 && bonusNumber) return 10 - matchNumber;
+    return 9 - matchNumber;
+  }
+
+  calculateProfit(rankResult) {
+    let prize = 0;
+    for (let i = 0; i < rankResult.length; i++) {
+      prize += PRIZE[i] * rankResult[i];
+    }
+    const profit = ((prize / (this.lotteries.length * 1000)) * 100).toFixed(1);
+    return [...rankResult, profit];
   }
 }
 
