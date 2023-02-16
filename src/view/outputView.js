@@ -1,6 +1,8 @@
+const { MESSAGES } = require("../constant/Constant");
+
 const OutputView = {
   printLottoCount(lottoCount) {
-    console.log(`${lottoCount}개를 구매했습니다.`);
+    console.log(lottoCount + MESSAGES.printLottoCountText);
   },
 
   printPurchaseLottos(lottos) {
@@ -12,19 +14,20 @@ const OutputView = {
   },
 
   printRankResult(rankResult) {
-    console.log("당첨 통계");
-    console.log("-------------------");
-    console.log(`3개 일치 (5,000원) -${rankResult[5]}개`);
-    console.log(`4개 일치 (50,000원)) -${rankResult[4]}개`);
-    console.log(`5개 일치 (1,500,000원) -${rankResult[3]}개`);
-    console.log(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) -  -${rankResult[2]}개`
-    );
-    console.log(`6개 일치 (2,000,000,000원) -  -${rankResult[1]}개`);
+    console.log(MESSAGES.printRankResultText);
+    console.log(MESSAGES.printFifthText + rankResult[5] + MESSAGES.piecesText);
+    console.log(MESSAGES.printFourthText + rankResult[4] + MESSAGES.piecesText);
+    console.log(MESSAGES.printThridText + rankResult[3] + MESSAGES.piecesText);
+    console.log(MESSAGES.printSecondText + rankResult[2] + MESSAGES.piecesText);
+    console.log(MESSAGES.printFirstText + rankResult[1] + MESSAGES.piecesText);
   },
 
   printRevenue(revenue) {
-    console.log(`총 수익률은 ${revenue}%입니다.`);
+    console.log(MESSAGES.printRevenueText + revenue + MESSAGES.printFinalText);
+  },
+
+  printErrorMessage(errorMessage) {
+    console.log(errorMessage);
   },
 };
 
