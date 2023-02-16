@@ -1,6 +1,6 @@
 import Lotto from './Lotto.js';
 import pickNumberInRange from '../utils/pickNumberInRange.js';
-import { LOTTO_CONDITION } from '../constants/condition.js';
+import { LOTTO_CONDITION, PRIZE_MATCH_COUNT } from '../constants/condition.js';
 
 export default class LottoGame {
   #lottos;
@@ -34,6 +34,20 @@ export default class LottoGame {
     return this.#lottos.map((lotto) => lotto.getCompareResult(winningNumbers, bonusNumber));
   }
 
+  getStatistics(eachCompareResult) {
+    return eachCompareResult.reduce(this.#categorizeResult, { ...statisticsDummy });
+  }
+
+  #categorizeResult(statistics, { matchCount, hasBonusNumber }) {
+    if (matchCount === PRIZE_MATCH_COUNT.firstPrize) statistics.firstPrize += 1;
+    if (matchCount === PRIZE_MATCH_COUNT.secondPrize && hasBonusNumber) statistics.secondPrize += 1;
+    if (matchCount === PRIZE_MATCH_COUNT.thirdPrize && !hasBonusNumber) statistics.thirdPrize += 1;
+    if (matchCount === PRIZE_MATCH_COUNT.fourthPrize) statistics.fourthPrize += 1;
+    if (matchCount === PRIZE_MATCH_COUNT.fifthPrize) statistics.fifthPrize += 1;
+
+    return statistics;
+  }
+
   getLottoQuantity() {
     return this.#lottos.length;
   }
@@ -42,3 +56,11 @@ export default class LottoGame {
     return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 }
+
+const statisticsDummy = {
+  firstPrize: 0,
+  secondPrize: 0,
+  thirdPrize: 0,
+  fourthPrize: 0,
+  fifthPrize: 0,
+};

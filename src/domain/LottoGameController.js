@@ -36,6 +36,7 @@ export default class LottoGameController {
     const bonusNumber = await this.#requestBonusNumber(winningNumbers);
 
     const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
+    const statistics = this.#lottoGame.getStatistics(eachCompareResult);
   }
 
   async #requestPurchaseAmount() {
@@ -83,6 +84,4 @@ export default class LottoGameController {
       return this.#requestBonusNumber(winningNumbers);
     }
   }
-
-  s;
 }
