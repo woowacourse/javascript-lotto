@@ -26,3 +26,25 @@ test('makeLotto메서드 1회 실행 시 1개의 로또가 생성되어야 한�
 
   expect(lottoQuantity).toBe(processCount);
 });
+
+test('getEachCompareResult메서드 실행 시', () => {
+  const lottoGame = new LottoGame();
+  const lottoNumbersList = [
+    [1, 2, 3, 4, 5, 6],
+    [7, 8, 9, 10, 11, 12],
+  ];
+
+  lottoNumbersList.forEach((lottoNumbers) => lottoGame.makeLotto(lottoNumbers));
+
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 7;
+
+  const eachCompareResult = lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
+
+  const expected = [
+    { matchCount: 6, hasBonusNumber: false },
+    { matchCount: 0, hasBonusNumber: true },
+  ];
+
+  expect(eachCompareResult).toEqual(expected);
+});
