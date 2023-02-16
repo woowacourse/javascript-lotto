@@ -2,8 +2,15 @@ const BonusNumber = require('../src/domain/BonusNumber');
 const WinningNumbers = require('../src/domain/WinningNumbers');
 const LottoGame = require('../src/LottoGame');
 
-test('재시작 또는 종료 명령어가 아닌 경우 예외 처리한다.', () => {
-  const input = 't';
+describe('LottoGame 클래스 테스트', () => {
+  test.each([['n'], ['y'], ['N'], ['Y']])(
+    '재시작/종료 명령어 입력 시 정상 동작.',
+    (input) => {
+      expect(() => {
+        new LottoGame().validateCommand(input);
+      }).not.toThrow();
+    }
+  );
 
   expect(() => {
     new LottoGame().validateCommand(input);
