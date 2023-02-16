@@ -1,4 +1,4 @@
-const LOTTO_SIZE = 6;
+import { LOTTO_RULE } from '../constant/constants.js';
 
 class Lotto {
   #numbers;
@@ -8,7 +8,7 @@ class Lotto {
   }
 
   countIntersect(winningNumbers) {
-    return ((LOTTO_SIZE * 2)
+    return ((LOTTO_RULE.size * 2)
       - new Set([...this.#numbers, ...winningNumbers]).size);
   }
 

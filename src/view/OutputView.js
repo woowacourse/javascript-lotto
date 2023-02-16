@@ -29,7 +29,7 @@ const OutputView = {
 
   close() {
     Console.close();
-  }
+  },
 };
 
 export default OutputView;
