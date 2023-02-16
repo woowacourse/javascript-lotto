@@ -27,3 +27,15 @@ test('모든 로또의 당첨 결과를 배열로 반환한다.', () => {
 
   expect(result).toEqual([1, 1, 0, 0, 0, 0]);
 });
+
+test('총 수익률을 계산한다.', () => {
+  const statistics = new LottoStatistics(
+    new WinningNumbers('1,2,3,4,5,6'),
+    new BonusNumber('7')
+  );
+  const winningLottos = statistics.determineAllLottosRank([
+    new Lotto([1, 2, 3, 40, 41, 42]),
+  ]);
+
+  expect(statistics.calculateProfitRate(winningLottos, 8000)).toBe('62.5');
+});
