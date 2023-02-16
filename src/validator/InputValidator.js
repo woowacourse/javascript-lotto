@@ -22,7 +22,7 @@ const InputValidator = {
     this.validateWithCondition(ValidatorUtils.hasNoBlank(winningNumber.split('')), messages.ERROR.HAS_BLANK);
   },
 
-  validateBonusNumber(number) {
+  validateBonusNumberInput(number) {
     this.validateWithCondition(ValidatorUtils.isPositiveInteger(+number), messages.ERROR.POSITIVE_INTEGER);
     this.validateWithCondition(ValidatorUtils.isInRange(+number), messages.ERROR.IN_RANGE);
   }
