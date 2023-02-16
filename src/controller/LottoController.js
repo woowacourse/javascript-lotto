@@ -8,6 +8,11 @@ import { values } from '../constants/values';
 class LottoController {
   #LottoMachine;
 
+  async start() {
+    await this.handleMoneyInput();
+    await this.handleWinningNumber();
+  }
+
   processLottoMachine(moneyInput) {
     this.#LottoMachine = new LottoMachine();
     this.#LottoMachine.buyLotto(+moneyInput);
@@ -24,6 +29,17 @@ class LottoController {
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleMoneyInput();
+    }
+  }
+
+  async handleWinningNumber() {
+    const winningNumber = await InputView.readWinningNumber();
+
+    try {
+      InputValidator.validateWinningNumberInput(winningNumber);
+    } catch (error) {
+      OutputView.printMessage(error.message);
+      await this.handleWinningNumber();
     }
   }
 }
