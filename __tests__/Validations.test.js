@@ -43,3 +43,11 @@ describe("보너스 번호 Validations 단위 테스트", () => {
     expect(Validations.hasBonusNumber(bonusNumber, winningLotto)).toBeTruthy();
   });
 });
+
+describe("재시작 입력 Validations 단위 테스트", () => {
+  test("재시작 여부 입력이 y/n이 아닌지 판별하는 함수 테스트", () => {
+    const retryInput = "A"
+    expect(Validations.isCorrectRetryInput(retryInput)).toBeFalsy();
+  });
+});
+
