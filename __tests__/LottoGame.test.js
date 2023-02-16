@@ -48,3 +48,24 @@ test('getEachCompareResult메서드 실행 시', () => {
 
   expect(eachCompareResult).toEqual(expected);
 });
+
+test('getStatistics메서드', () => {
+  const lottoGame = new LottoGame();
+
+  const eachCompareResult = [
+    { matchCount: 6, hasBonusNumber: false },
+    { matchCount: 0, hasBonusNumber: true },
+  ];
+
+  const statistics = lottoGame.getStatistics(eachCompareResult);
+
+  const expected = {
+    firstPrize: 1,
+    secondPrize: 0,
+    thirdPrize: 0,
+    fourthPrize: 0,
+    fifthPrize: 0,
+  };
+
+  expect(statistics).toEqual(expected);
+});
