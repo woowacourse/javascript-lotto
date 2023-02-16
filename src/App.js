@@ -43,6 +43,12 @@ class App {
       "당첨 번호를 입력해 주세요."
     );
     this.#winningLotto = winningNumbers.split(",");
+    try {
+      this.validateWinningNumbers();
+    } catch (e) {
+      Console.print(e);
+      this.getWinningNumbers();
+    }
   }
 
   validateWinningNumbers() {
@@ -68,6 +74,13 @@ class App {
       "보너스 번호를 입력해 주세요."
     );
     this.#bonusNumber = Number(bonusNumber);
+    try {
+      this.validateBonusNumber()
+      this.checkEachNumber(this.#bonusNumber)
+    } catch(e) {
+      Console.print(e)
+      this.getBonusNumber()
+    }
   }
 
   validateBonusNumber() {
