@@ -2,6 +2,8 @@ import Lotto from '../domain/Lotto';
 import Validator from '../utils/Validator';
 import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING, WINNING_PRIZE } from '../data/constants';
 import { RandomNumberGenerator } from '../utils/RandomNumberGenerator';
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
 
 class LottoSimulator {
   #lottos;
@@ -19,6 +21,25 @@ class LottoSimulator {
 
   set budget(budget) {
     this.#budget = budget;
+  }
+
+  inputBudget() {
+    InputView.readUserInput(
+      ('구입금액을 입력해 주세요.',
+      (budget) => {
+        this.judgeValidBudget(budget);
+      })
+    );
+  }
+
+  judgeValidBudget(budget) {
+    try {
+      this.validateBudget(budget);
+      this.budget = budget;
+    } catch (err) {
+      OutputView.printErrorMessage(err);
+      this.inputBudget();
+    }
   }
 
   createLottoNumbers() {
