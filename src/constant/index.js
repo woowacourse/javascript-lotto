@@ -8,6 +8,7 @@ const MAGIC_NUMBER = {
   winningNumberCount: 6,
   lottoNumberCount: 6,
   losing: 1234,
+  failFindIndex: -1,
 };
 
 const MAGIC_LITERAL = {
