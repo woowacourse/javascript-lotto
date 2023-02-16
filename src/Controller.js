@@ -17,13 +17,17 @@ class Controller {
     const amount = await InputView.readPurchaseAmount();
     try {
       Validation.purchaseAmount(+amount);
-      this.#lottoGame = new LottoGame(+amount);
-      OutputView.printLotteries(this.#lottoGame.getLotteries());
-      this.inputLottoNumbers();
+      this.makeLottoGame(+amount);
     } catch (error) {
       OutputView.printError(error);
       this.inputPurchaseAmount();
     }
+  }
+
+  makeLottoGame(amount) {
+    this.#lottoGame = new LottoGame(amount);
+    OutputView.printLotteries(this.#lottoGame.getLotteries());
+    this.inputLottoNumbers();
   }
 
   async inputLottoNumbers() {
