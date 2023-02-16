@@ -11,10 +11,10 @@ class LottoGame {
   }
 
   generateLotteries(count) {
-    for (let i = 0; i < count; i++) {
+    Array.from({ length: count }, () => {
       const randomNumbers = Random.generateRandomNumbers();
       this.lotteries.push(new Lotto(randomNumbers));
-    }
+    });
   }
 
   getLotteries() {
@@ -48,9 +48,9 @@ class LottoGame {
 
   calculateProfit(rankResult) {
     let prize = 0;
-    for (let i = 0; i < rankResult.length; i++) {
-      prize += PRIZE[i] * rankResult[i];
-    }
+    rankResult.forEach((_, idx) => {
+      prize += PRIZE[idx] * rankResult[idx];
+    });
     const profit = ((prize / (this.lotteries.length * 1000)) * 100).toFixed(1);
     return [...rankResult, profit];
   }
