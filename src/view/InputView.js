@@ -35,7 +35,7 @@ const InputView = {
   async readBonusNumber() {
     return Console.repeatWhile(async () => {
       const bonusNumber = await Console.readLine('보너스 번호를 입력해 주세요.');
-      Validation.validateBonusNumber(bonusNumber);
+      Validation.validateLottoNumber(bonusNumber);
       return Number(bonusNumber);
     });
   },
