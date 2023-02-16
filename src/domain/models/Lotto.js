@@ -5,6 +5,10 @@ class Lotto {
     this.#numbers = lottoNumbers;
   }
 
+  getNumbers() {
+    return this.#numbers;
+  }
+
   calculateMatchCount(winningNumbers) {
     return this.#numbers.reduce((acc, cur) => (acc += winningNumbers.includes(cur)), 0);
   }

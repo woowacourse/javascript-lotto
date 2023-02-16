@@ -16,6 +16,22 @@ class LottoGame {
 
   async play() {
     const purchaseAmount = await this.readPurchaseAmount();
+    const buyCount = purchaseAmount / 1000;
+    while (this.#lottos.length < buyCount) {
+      this.#lottos.push(this.buyLotto());
+    }
+
+    outputView.printLottos(this.#lottos.map((lotto) => lotto.getNumbers()));
+  }
+
+  buyLotto() {
+    const randomNumbers = [];
+    while (randomNumbers.length < 6) {
+      const randomNumber = generateRandomNumber(1, 45);
+      if (!randomNumbers.includes(randomNumber)) randomNumbers.push(randomNumber);
+    }
+
+    return new Lotto(randomNumbers.sort((a, b) => a - b));
   }
 
   async readPurchaseAmount() {
