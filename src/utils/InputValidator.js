@@ -27,6 +27,12 @@ const InputValidator = {
     if (!(input === COMMAND.restart || input === COMMAND.quit)) {
       throw new Error(`입력값이 ${COMMAND.restart} 혹은 ${COMMAND.quit}이어야 합니다.`);
     }
+  },
+  checkArrayLength(arr, length) {
+    if (arr.length !== length) {
+      throw new Error(`입력 값이 ${length}개 여야 하는데 ${arr.length}개만 입력되었습니다.`);
+    }
+
   }
 };
 

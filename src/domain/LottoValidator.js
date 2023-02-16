@@ -7,6 +7,7 @@ const LottoValidator = {
     InputValidator.checkFallApart(money, LOTTO.price);
   },
   checkWinningNumber(winningNumber) {
+    InputValidator.checkArrayLength(winningNumber.split(','), LOTTO.length);
     winningNumber.split(',').forEach((number) => {
       InputValidator.checkLottoNumber(number);
     });
