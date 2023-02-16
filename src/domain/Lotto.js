@@ -1,5 +1,12 @@
-import { INITIAL_EARNING, LOTTO_COUNT, PRICE, PRIZE } from '../constants/values';
-import randomGenerator from '../utils/Random';
+import {
+  THIRD_PLACE,
+  INITIAL_EARNING,
+  LOTTO_COUNT,
+  PRICE,
+  PRIZE,
+  SECOND_PLACE,
+} from '../constants/values.js';
+import randomGenerator from '../utils/Random.js';
 
 export class Lotto {
   #numbers = [];
@@ -31,12 +38,8 @@ export class Lotto {
 export const LottoStore = {
   purchase(total) {
     return Array(total)
-      .fill('lotto')
-      .map(() => {
-        const lottoNumbers = randomGenerator(LOTTO_COUNT);
-
-        return new Lotto(lottoNumbers);
-      });
+      .fill()
+      .map(() => new Lotto(randomGenerator(LOTTO_COUNT)));
   },
 
   draw(lotto) {
@@ -44,7 +47,9 @@ export const LottoStore = {
     const { winningNumbers, bonusNumber } = lotto.getDrawingNumbers();
     const awards = winningNumbers.filter((number) => numbers.includes(number));
 
-    return awards.length === 5 && numbers.includes(bonusNumber) ? 'BONUS' : awards.length;
+    return awards.length === THIRD_PLACE && numbers.includes(bonusNumber)
+      ? SECOND_PLACE
+      : awards.length;
   },
 
   calculateStatistics(lottoList) {

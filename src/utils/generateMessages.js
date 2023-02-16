@@ -1,20 +1,29 @@
-import { AWARDS_ORDER } from '../constants/values';
+import {
+  NUMBER_MERGER,
+  LOTTO_MERGER,
+  AWARDS_ORDER,
+  FIFTH_PLACE,
+  FIRST_PLACE,
+  FOURTH_PLACE,
+  SECOND_PLACE,
+  THIRD_PLACE,
+} from '../constants/values';
 
 function getMessagesByStatistics(awards, count) {
   switch (awards) {
-    case 3:
+    case FIFTH_PLACE:
       return `3개 일치 (5,000원) - ${count}개`;
 
-    case 4:
+    case FOURTH_PLACE:
       return `4개 일치 (50,000원) - ${count}개`;
 
-    case 5:
+    case THIRD_PLACE:
       return `5개 일치 (1,500,000원) - ${count}개`;
 
-    case 'BONUS':
+    case SECOND_PLACE:
       return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`;
 
-    case 6:
+    case FIRST_PLACE:
       return `6개 일치 (2,000,000,000원) - ${count}개`;
 
     default:
@@ -25,6 +34,12 @@ function getMessagesByStatistics(awards, count) {
 const generateMessages = Object.freeze({
   countMessage(count) {
     return `${count}개 구매했습니다.`;
+  },
+
+  lottoList(lottoList) {
+    return lottoList
+      .map((lotto) => `[${lotto.getNumbers().join(NUMBER_MERGER)}]`)
+      .join(LOTTO_MERGER);
   },
 
   statisticsMessage(statistics) {

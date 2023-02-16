@@ -1,6 +1,6 @@
 import checkUnit from './amount.js';
 import Console from '../utils/Console.js';
-import { UNIT } from '../constants/values.js';
+import { SPLITTER, UNIT } from '../constants/values.js';
 import {
   checkBonusNumberFormat,
   checkWinningNumberRange,
@@ -37,7 +37,7 @@ const Inputs = {
   },
 
   checkWinningNumbers(numbers) {
-    const winningNumbers = numbers.split(',').map(Number);
+    const winningNumbers = numbers.split(SPLITTER).map(Number);
 
     checkWinningNumbersFormat(numbers);
     checkWinningNumbersRange(winningNumbers);

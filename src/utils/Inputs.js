@@ -1,4 +1,4 @@
-import { QUERY } from '../constants/message.js';
+import QUERY from '../constants/query.js';
 import Validator from '../validator/index.js';
 import Console from './Console.js';
 

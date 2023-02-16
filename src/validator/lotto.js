@@ -1,3 +1,4 @@
+import { ONLY_NUMBER, ONLY_NUMBERS_WITH_COMMA } from '../constants/regExp.js';
 import { LOTTO_MAX_NUMBER, LOTTO_MIN_NUMBER } from '../constants/values.js';
 import { CustomError, ERROR_CODE } from '../utils/Error.js';
 
@@ -18,9 +19,7 @@ export function checkWinningNumbersRange(numbers) {
 }
 
 export function checkWinningNumbersFormat(winningNumber) {
-  const regexp = /^\d+([,]\d+)*$/;
-
-  if (!regexp.test(winningNumber)) {
+  if (!ONLY_NUMBERS_WITH_COMMA.test(winningNumber)) {
     throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, winningNumber);
   }
 
@@ -28,9 +27,7 @@ export function checkWinningNumbersFormat(winningNumber) {
 }
 
 export function checkBonusNumberFormat(bonusNumber) {
-  const regexp = /^-?\d+$/;
-
-  if (!regexp.test(bonusNumber) && checkWinningNumberRange(bonusNumber)) {
+  if (!ONLY_NUMBER.test(bonusNumber) && checkWinningNumberRange(bonusNumber)) {
     throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, bonusNumber);
   }
 }
