@@ -1,3 +1,5 @@
+import { MESSAGE, REGEX, COMMAND } from '../constants/index.js';
+
 const validator = {
   throwErrorIfInvalidBudget(budget) {
     this.throwErrorIfNotDecimal(budget);
@@ -10,8 +12,8 @@ const validator = {
   },
 
   throwErrorIfNotDecimal(number) {
-    if (!/^[1-9]+\d*$/.test(number)) {
-      throw new Error('[ERROR] 구입 금액은 정수여야 합니다.');
+    if (!REGEX.DECIMAL.test(number)) {
+      throw new Error(MESSAGE.ERROR_DECIMAL);
     }
   },
 
@@ -24,10 +26,8 @@ const validator = {
   },
 
   throwErrorIfInvalidWinningLotto(winningLotto) {
-    const isWinningLottoValid = /^(([1-9]|[1-3]\d|4[0-5]),){5}([1-9]|[1-3]\d|4[0-5])$/;
-
-    if (!isWinningLottoValid.test(winningLotto)) {
-      throw new Error('[ERROR] 로또는 콤마(,)로 구분되는 6개의 1 이상 45 이하의 정수여야 합니다.');
+    if (!REGEX.WINNING_LOTTO_FORMAT.test(winningLotto)) {
+      throw new Error(MESSAGE.ERROR_INVALID_LOTTO_FORMAT);
     }
   },
 
@@ -36,23 +36,21 @@ const validator = {
     const haveDuplicates = numbers.length !== new Set(numbers).size;
 
     if (haveDuplicates) {
-      throw new Error('[ERROR] 로또 번호는 중복되는 수가 없어야 합니다');
+      throw new Error(MESSAGE.ERROR_LOTTO_DUPLICATES);
     }
   },
 
   throwErrorIfInvalidBonusNumber(bonusNumber) {
-    const isValidNumber = /^([1-9]|[1-3]\d|4[0-5])$/;
-
-    if (!isValidNumber.test(bonusNumber)) {
-      throw new Error('[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다');
+    if (!REGEX.BONUS_NUMBER.test(bonusNumber)) {
+      throw new Error(MESSAGE.ERROR_BONUS_NUMBER);
     }
   },
 
   throwErrorIfInvalidUserCommand(userCommand) {
-    const isValidUserCommand = 'y' === userCommand || 'n' === userCommand;
+    const isValidUserCommand = COMMAND.RESTART === userCommand || COMMAND.EXIT === userCommand;
 
     if (!isValidUserCommand) {
-      throw new Error('[ERROR] 재시작 여부는 y 또는 n이어야 합니다.');
+      throw new Error(MESSAGE.ERROR_INVALID_RETRY_COMMAND);
     }
   },
 };

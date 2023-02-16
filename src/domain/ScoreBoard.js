@@ -1,3 +1,5 @@
+import { GAME_VALUE } from '../constants/index.js';
+
 const RANK_FORMAT = {
   1: 'first',
   2: 'second',
@@ -5,8 +7,6 @@ const RANK_FORMAT = {
   4: 'fourth',
   5: 'fifth',
 };
-
-const PRIZE = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
 
 class ScoreBoard {
   #board;
@@ -38,7 +38,7 @@ class ScoreBoard {
 
   #getTotalPrize() {
     const totalPrize = Object.values(this.#board).reduce((totalPrize, winCount, index) => {
-      return totalPrize + winCount * PRIZE[index];
+      return totalPrize + winCount * GAME_VALUE.PRIZE[index];
     }, 0);
 
     return totalPrize;
@@ -46,7 +46,7 @@ class ScoreBoard {
 
   getProfitRate() {
     const totalPrize = this.#getTotalPrize();
-    const profitRate = (totalPrize / (this.#lottoCount * 1000)) * 100;
+    const profitRate = (totalPrize / (this.#lottoCount * GAME_VALUE.LOTTO_PRICE)) * 100;
 
     return profitRate;
   }

@@ -1,6 +1,7 @@
 import LottoGame from './domain/LottoGame.js';
 import validator from './domain/validator.js';
 import view from './view/view.js';
+import { FORMATTING_TYPE, MESSAGE } from './constants/index.js';
 
 class LottoController {
   #lottoGame;
@@ -16,7 +17,7 @@ class LottoController {
 
   async #inputBudget() {
     try {
-      const budget = await view.input('> 구입금액을 입력해 주세요.');
+      const budget = await view.input(MESSAGE.ASK_BUDGET);
       validator.throwErrorIfInvalidBudget(budget);
       this.#lottoGame = new LottoGame(budget);
     } catch ({ message }) {
@@ -28,7 +29,7 @@ class LottoController {
 
   #printBoughtLottos() {
     const boughtLottos = this.#lottoGame.getBoughtLottos();
-    view.output(boughtLottos, 'BOUGHT_LOTTOS');
+    view.output(boughtLottos, FORMATTING_TYPE.BOUGHT_LOTTOS);
 
     this.#inputLottoValues();
   }
@@ -42,7 +43,7 @@ class LottoController {
 
   async #inputWinningLotto() {
     try {
-      const value = await view.input('\n> 당첨 번호를 입력해 주세요. ');
+      const value = await view.input(MESSAGE.ASK_WINNING_LOTTO);
       validator.throwErrorIfInvalidWinningNumbers(value);
       return value;
     } catch ({ message }) {
@@ -53,7 +54,7 @@ class LottoController {
 
   async #inputBonusNumber() {
     try {
-      const value = await view.input('\n> 보너스 번호를 입력해 주세요. ');
+      const value = await view.input(MESSAGE.ASK_BONUS_NUMBER);
       validator.throwErrorIfInvalidBonusNumber(value);
       return value;
     } catch ({ message }) {
@@ -64,20 +65,20 @@ class LottoController {
 
   #printScoreBoard(winningLotto, bonusNumber) {
     const winningStatus = this.#lottoGame.getWinningStatus(winningLotto, bonusNumber);
-    view.output(winningStatus, 'WINNING_STATUS');
+    view.output(winningStatus, FORMATTING_TYPE.WINNING_STATUS);
 
     this.#printProfitRate();
   }
 
   #printProfitRate() {
     const profitRate = this.#lottoGame.getProfitRate();
-    view.output(profitRate, 'PROFIT_RATE');
+    view.output(profitRate, FORMATTING_TYPE.PROFIT_RATE);
 
     this.#askRestart();
   }
 
   async #askRestart() {
-    const userCommand = await view.input('\n> 다시 시작하시겠습니까? (y/n) ');
+    const userCommand = await view.input(MESSAGE.ASK_RESTART);
     this.#commandHandler[userCommand]();
   }
 
