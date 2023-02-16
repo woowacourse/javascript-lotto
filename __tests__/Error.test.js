@@ -50,15 +50,6 @@ describe("당첨로또 Error처리 테스트", () => {
       app.checkEachNumber(eachNumber);
     }).toThrowError("당첨번호는 양의 정수여야 합니다.");
   });
-
-  //   test("보너스번호가 당첨번호와 중복될 경우 Error처리 테스트", () => {
-  //     const winningLotto = ["1", "2", "3", "4", "5", "9"];
-  //     const bonusNumber = 1;
-  //     const app = new App();
-  //     expect(() => {
-  //       app.validateBonusNumber();
-  //     }).toThrowError("보너스 번호는 당첨번호와 중복되지 않아야합니다.");
-  //   });
 });
 
 describe("재시작 여부 입력 Error처리 테스트", () => {
