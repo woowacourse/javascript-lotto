@@ -23,10 +23,6 @@ import IO from '../utils/IO';
 class LottoController {
   #game;
 
-  constructor() {
-    this.init();
-  }
-
   init() {
     this.#game = new LottoGame();
     this.readPurchaseAmount();
