@@ -41,4 +41,16 @@ describe('Validator 테스트', () => {
   ])('입력된 구입 금액이 1000원 단위인지 판별하기.', ({ input, expected }) => {
     expect(Validator.isValidUnit(input)).toBe(expected);
   });
+
+  test.each([
+    { input: '', expected: false },
+    { input: '1, 2, 3, 4, 5, 6', expected: false },
+    { input: '1,2,3,4,5', expected: false },
+    { input: '1,1,2,3,4,5', expected: false },
+    { input: '0,1,2,3,4,5', expected: false },
+    { input: '1,2,3,4,5,46', expected: false },
+    { input: '1,2,3,4,5,6', expected: true },
+  ])('당첨 번호 입력값이 유효한지 판별하기', ({ input, expected }) => {
+    expect(Validator.isWinningNumberValid(input)).toBe(expected);
+  });
 });
