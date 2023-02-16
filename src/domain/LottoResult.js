@@ -2,10 +2,6 @@ import BonusNumberReward from './BonusReward';
 import Reward from './Reward';
 
 class LottoResult {
-  static NEED_BONUS_NUMBER = (hasBonusNumber) => hasBonusNumber;
-
-  static NO_NEED_BONUS_NUMBER = () => true;
-
   static REWARDS = [
     new Reward(6, 2_000_000_000),
     new BonusNumberReward(5, 30_000_000),
