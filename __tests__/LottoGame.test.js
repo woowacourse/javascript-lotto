@@ -44,3 +44,19 @@ describe('당첨된 등수의 개수만큼 총 상금을 구한다.', () => {
     expect(lottoGame.calculateTotalPrize(lottoRanksCount)).toEqual(0);
   });
 });
+
+describe('로또 게임의 수익률을 계산한다.', () => {
+  const lottoGame = new LottoGame(1000);
+
+  test('구매금 1000원으로 10만원의 수익을 냈을 때 수익률은 10000%이다. ', () => {
+    const totalPrize = 100000;
+
+    expect(lottoGame.calculateProfitRate(totalPrize)).toEqual(10000.0);
+  });
+
+  test('구매금 1000원으로 수익을 내지 못했을 때 수익률은 0%이다. ', () => {
+    const totalPrize = 0;
+
+    expect(lottoGame.calculateProfitRate(totalPrize)).toEqual(0.0);
+  });
+});
