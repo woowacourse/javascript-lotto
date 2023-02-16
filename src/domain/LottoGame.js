@@ -34,20 +34,18 @@ class LottoGame {
 
   setLottoRank() {
     this.#lottos.forEach((lotto) => {
-      const correctResult = this.checkWinningNumbers(lotto);
+      const correctResult = this.checkWinningNumbers(lotto.lottoNumber);
       lotto.setRank(MATCH_RANK[correctResult] ?? null);
     });
   }
 
-  checkWinningNumbers(lotto) {
-    const lottoNumber = lotto.lottoNumber;
-
+  checkWinningNumbers(lottoNumber) {
     const matchCount = this.#win.winningNumber.reduce(
       (acc, cur) => (lottoNumber.includes(cur) ? acc + 1 : acc),
       0
     );
     if (matchCount === 5)
-      lottoNumber.includes(this.#win.bonusNumber) ? 'bonus' : matchCount;
+      return lottoNumber.includes(this.#win.bonusNumber) ? 'bonus' : matchCount;
 
     return matchCount;
   }
