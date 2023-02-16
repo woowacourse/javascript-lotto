@@ -32,6 +32,17 @@ const generateMessages = Object.freeze({
       getMessagesByStatistics(awards, statistics[Number(awards)] || 0)
     ).join('\n');
   },
+
+  earningRateMessage(earningRate) {
+    return `총 수익률은 ${earningRate}%입니다.`;
+  },
+
+  result({ statistics, earningRate }) {
+    return [
+      generateMessages.statisticsMessage(statistics),
+      generateMessages.earningRateMessage(earningRate),
+    ].join('\n');
+  },
 });
 
 export default generateMessages;

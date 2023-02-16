@@ -9,7 +9,8 @@ export default class Statistics extends Component {
 
   template() {
     const statistics = LottoStore.calculateStatistics(this.lottoList);
+    const earningRate = LottoStore.calculateEarningRate(this.lottoList);
 
-    return generateMessages.statisticsMessage(statistics);
+    return generateMessages.result({ statistics, earningRate });
   }
 }

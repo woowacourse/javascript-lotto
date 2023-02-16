@@ -20,4 +20,3 @@ const Console = {
 };
 
 export default Console;
-// module.exports = Console;
