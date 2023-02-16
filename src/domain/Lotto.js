@@ -3,8 +3,6 @@ import RANKING_TABLE from '../constant/rankingTable.js';
 
 class Lotto {
   #numbers;
-  #luckyNumbers;
-  #bonusNumber;
 
   constructor(numbers) {
     this.#numbers = numbers;
