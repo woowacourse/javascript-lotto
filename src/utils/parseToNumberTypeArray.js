@@ -1,5 +1,5 @@
 const parseToNumberTypeArray = (input) => {
-  const resultData = input.split(",").map((data) => Number(data));
+  const resultData = input.split(',').map((data) => Number(data));
   return resultData;
 };
 

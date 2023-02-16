@@ -1,7 +1,7 @@
-import Validator from "./Validator.js";
-import Lotto from "./Lotto.js";
-import getRandomNumberArray from "../utils/getRandomNumberArray.js";
-import WinningLotto from "./WinningLotto.js";
+import Validator from './Validator.js';
+import Lotto from './Lotto.js';
+import getRandomNumberArray from '../utils/getRandomNumberArray.js';
+import WinningLotto from './WinningLotto.js';
 
 class LottoGame {
   #lottos = [];
@@ -18,11 +18,29 @@ class LottoGame {
     this.#winningLotto = new WinningLotto(lottoNumber, bonusNumber);
   }
 
-  getWinningMoney() {
+  getProfitRateOfPrize() {
+    const purchaseMoney = this.#lottos.length * 1000;
+    const winningMoney = this.#getWinningMoney();
+
+    return getProfitRate(purchaseMoney, winningMoney);
+  }
+
+  getWinningRankResult() {
+    return this.#lottos.reduce(
+      (winningRankResult, lotto) => {
+        const rank = this.#winningLotto.calculateRank(lotto);
+        winningRankResult[rank] += 1;
+      },
+      [0, 0, 0, 0, 0, 0]
+    );
+  }
+
+  #getWinningMoney() {
     const prize = [0, 2000000000, 30000000, 1500000, 50000, 5000];
-    return this.#lottos.reduce((money, lotto) => {
-      const rank = this.#winningLotto.calculateRank(lotto);
-      return money + prize[rank];
+    const winningRankResult = this.getWinningRankResult();
+
+    return prize.reduce((winnigMoney, prizeByRank, index) => {
+      winnigMoney += prizeByRank * winningRankResult[index];
     }, 0);
   }
 
@@ -36,10 +54,7 @@ class LottoGame {
   }
 
   #getLottos(lottoAmount) {
-    return Array.from(
-      { length: lottoAmount },
-      () => new Lotto(getRandomNumberArray(6))
-    );
+    return Array.from({ length: lottoAmount }, () => new Lotto(getRandomNumberArray(6)));
   }
 
   getLottos() {

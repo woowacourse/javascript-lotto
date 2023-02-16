@@ -1,7 +1,7 @@
-import Lotto from "./Lotto.js";
-import Validator from "./Validator.js";
-import getSameElementCount from "../utils/getSameElementCount.js";
-import isExistData from "../utils/isExistData.js";
+import Lotto from './Lotto.js';
+import Validator from './Validator.js';
+import getSameElementCount from '../utils/getSameElementCount.js';
+import isExistData from '../utils/isExistData.js';
 
 class WinningLotto extends Lotto {
   #bonusNumber;
@@ -17,16 +17,9 @@ class WinningLotto extends Lotto {
   }
 
   calculateRank(lotto) {
-    const sameElementCount = getSameElementCount(
-      this.getLottoNumber(),
-      lotto.getLottoNumber()
-    );
+    const sameElementCount = getSameElementCount(this.getLottoNumber(), lotto.getLottoNumber());
     if (sameElementCount === 6) return 1;
-    if (
-      sameElementCount === 5 &&
-      isExistData(this.#bonusNumber, lotto.getLottoNumber())
-    )
-      return 2;
+    if (sameElementCount === 5 && isExistData(this.#bonusNumber, lotto.getLottoNumber())) return 2;
     if (sameElementCount === 5) return 3;
     if (sameElementCount === 4) return 4;
     if (sameElementCount === 3) return 5;
