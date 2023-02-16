@@ -82,7 +82,7 @@ const Validation = {
   },
 
   checkRestart(reply) {
-    if (reply !== "n" || reply !== "y") {
+    if (reply !== "n" && reply !== "y") {
       throw new Error(ErrorMessage.RESTART);
     }
   },
