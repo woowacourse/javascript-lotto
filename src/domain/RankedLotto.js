@@ -1,5 +1,5 @@
 import Lotto from './Lotto.js';
-
+import {NUMBER} from '../utils/constant.js'
 class RankedLotto {
   constructor() {
     this.profit = 0;
@@ -20,19 +20,19 @@ class RankedLotto {
       .sort((a, b) => b - a)
       .forEach(number => {
         switch (number) {
-          case 7:
+          case NUMBER.RANK_SECOND:
             result[3]++;
             break;
-          case 6:
+          case NUMBER.RANK_FIRST:
             result[4]++;
             break;
-          case 5:
+          case NUMBER.RANK_THIRD:
             result[2]++;
             break;
-          case 4:
+          case NUMBER.RANK_FOURTH:
             result[1]++;
             break;
-          case 3:
+          case NUMBER.RANK_FIFTH:
             result[0]++;
             break;
         }
