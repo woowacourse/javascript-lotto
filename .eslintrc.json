@@ -10,9 +10,13 @@
   },
   "ignorePatterns": ["__tests__/"],
   "rules": {
+    "class-methods-use-this": "off",
+    "no-console": "off",
     "max-depth": ["error", 1],
     "no-new": "off",
     "max-lines-per-function": ["error", 10],
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "consistent-return": "off",
+    "import/no-unresolved": "off"
   }
 }
