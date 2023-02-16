@@ -1,4 +1,4 @@
-const { MAGIC_NUMBER } = require('../../constant');
+const { RANK_INFORMATIONS, MAGIC_NUMBER } = require('../../constant');
 
 class Benefit {
   #rate;
@@ -8,14 +8,13 @@ class Benefit {
   }
 
   calculateRate(money, ranks) {
-    const rewards = Object.values(MAGIC_NUMBER.reward);
-
     const total = ranks.reduce(
-      (accumulator, rank, index) => accumulator + rank * rewards[index],
+      (accumulator, rank, index) =>
+        accumulator + rank * RANK_INFORMATIONS[index].reward,
       0
     );
 
-    this.#rate = (total / money) * 100;
+    this.#rate = (total / money) * MAGIC_NUMBER.percent;
   }
 }
 
