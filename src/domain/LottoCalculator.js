@@ -13,6 +13,20 @@ class LottoCalculator {
       return ranks;
     }, {});
   }
+
+  calculateProfitRate(ranks) {
+    return (
+      (this.#calculateProfit(ranks) /
+        (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT)) *
+      100
+    ).toFixed(1);
+  }
+
+  #calculateProfit(ranks) {
+    return Object.entries(ranks).reduce((totalProfit, [rank, count]) => {
+      return totalProfit + Prize[rank] * count;
+    }, 0);
+  }
 }
 
 export default LottoCalculator;
