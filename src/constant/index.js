@@ -6,12 +6,15 @@ const MAGIC_NUMBER = {
   lottoStart: 1,
   lottoEnd: 45,
   winningNumberCount: 6,
+  lottoNumberCount: 6,
+  losing: 1234,
 };
 
 const MAGIC_LITERAL = {
   separator: ', ',
   retry: 'y',
   quit: 'n',
+  comma: ',',
 };
 
 const ERROR_MESSAGE = {
