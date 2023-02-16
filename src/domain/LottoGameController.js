@@ -19,13 +19,15 @@ export default class LottoGameController {
     const purchaseAmount = await this.#requestPurchaseAmount();
     const lottoQuantity = purchaseAmount / LOTTO_CONDITION.lottoPrice;
 
-    Array.from({ length: lottoQuantity }, () => {
+    const eachLottoNumbers = Array.from({ length: lottoQuantity }, () => {
       const lottoNumbers = this.#lottoGame.generateLottoNumbers(LOTTO_CONDITION.lottoDigits);
       this.#lottoGame.makeLotto(lottoNumbers);
+
+      return lottoNumbers;
     });
 
-    this.#printLottoQuantity();
-    this.#printEachLottoNumbers();
+    OutputView.printLottoQuantity(lottoQuantity);
+    OutputView.printEachLottoNumbers(eachLottoNumbers);
   }
 
   async #requestPurchaseAmount() {
@@ -40,16 +42,6 @@ export default class LottoGameController {
 
       return this.#requestPurchaseAmount();
     }
-  }
-
-  #printLottoQuantity() {
-    const lottoQuantity = this.#lottoGame.getLottoQuantity();
-    OutputView.printLottoQuantity(lottoQuantity);
-  }
-
-  #printEachLottoNumbers() {
-    const eachLottoNumbers = this.#lottoGame.getEachLottoNumbers();
-    OutputView.printEachLottoNumbers(eachLottoNumbers);
   }
 
   async #requestWinningNumbers() {
