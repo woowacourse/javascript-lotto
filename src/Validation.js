@@ -1,9 +1,40 @@
 const Validation = {
   REGEX_NUMERIC: /^\d+$/,
 
-  validateMoney(number) {
-    if (!Validation.REGEX_NUMERIC.test(number) || number < 0) {
+  isNumeric(number) {
+    return Validation.REGEX_NUMERIC.test(number);
+  },
+
+  isInRange(number) {
+    return number >= 1 && number <= 45;
+  },
+
+  validateMoney(money) {
+    if (!Validation.isNumeric(money) || money < 0) {
       throw new Error('로또 구매 금액은 0 이상의 정수를 입력해야 한다.');
+    }
+    if (money % 1000 !== 0 || money / 1000 <= 0) {
+      throw new Error('1000원 단위로 금액을 주어야 합니다.');
+    }
+  },
+
+  validateLottoNumbers(lottoNumbers) {
+    Validation.validateIsArray(lottoNumbers);
+    Validation.validateArrayLength(lottoNumbers);
+    Validation.validateDistinctNumbers(lottoNumbers);
+    Validation.validateNumberArray(lottoNumbers);
+    Validation.validateNumbersRange(lottoNumbers);
+  },
+
+  validateIsArray(lottoNumbers) {
+    if (!Array.isArray(lottoNumbers)) {
+      throw new Error('배열이 들어와야 합니다.');
+    }
+  },
+
+  validateArrayLength(lottoNumbers) {
+    if (lottoNumbers.length !== 6) {
+      throw new Error('로또 번호는 6자리여야 합니다.');
     }
   },
 
@@ -16,7 +47,7 @@ const Validation = {
 
   validateNumberArray(lottoNumbers) {
     lottoNumbers.forEach((lottoNumber) => {
-      if (!Validation.REGEX_NUMERIC.test(lottoNumber)) {
+      if (!Validation.isNumeric(lottoNumber)) {
         throw new Error('로또 번호는 정수여야 합니다.');
       }
     });
@@ -27,8 +58,14 @@ const Validation = {
   },
 
   validateNumberRange(lottoNumber) {
-    if (lottoNumber < 1 || lottoNumber > 45) {
+    if (!this.isInRange(lottoNumber)) {
       throw new Error('로또 번호는 1에서 45 사이의 숫자여야 합니다.');
+    }
+  },
+
+  validateBonusNumber(bonusNumber) {
+    if (!Validation.isNumeric(bonusNumber)) {
+      throw new Error('보너스 번호는 정수여야 합니다.');
     }
   },
 
