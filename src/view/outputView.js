@@ -24,6 +24,10 @@ const outputView = {
 
     console.log(`총 수익률은 ${rewardRate}입니다.`);
   },
+
+  printErrorMessage(error) {
+    console.log(error.message);
+  },
 };
 
 export default outputView;
