@@ -1,3 +1,4 @@
+import { StaticValue } from "../constants/Constants.js";
 import Validation from "../utils/Validation.js";
 
 class Lotto {
@@ -21,7 +22,7 @@ class Lotto {
     const BONUS_MATCH = this.hasBonusNumber(bonusNumber);
 
     if (MATCH_COUNT === 5 && BONUS_MATCH) {
-      return 5.5;
+      return StaticValue.MATCH_FIVE_AND_BONUS;
     }
 
     return MATCH_COUNT;

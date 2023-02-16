@@ -1,6 +1,7 @@
 const StaticValue = Object.freeze({
   PURCHASE_AMOUNT_UNIT: 1000,
   REGEX_NON_DIGIT: /\D|^$/,
+  MATCH_FIVE_AND_BONUS: 5.5,
 });
 
 const Rank = Object.freeze({
