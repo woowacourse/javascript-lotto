@@ -63,7 +63,7 @@ describe('Validator 테스트', () => {
     { input: '1,2,3,4,5,46', expected: false },
     { input: '1,2,3,4,5,6', expected: true },
   ])('당첨 번호 입력값이 유효한지 판별하기.', ({ input, expected }) => {
-    expect(Validator.isWinningNumberValid(input)).toBe(expected);
+    expect(Validator.isWinningNumbersValid(input)).toBe(expected);
   });
 
   test.each([

@@ -9,7 +9,7 @@ describe('기능 테스트', () => {
     const purchasePrice = '8000';
 
     //when
-    const lottoCount = lottoGameController.calcalateLottoCount(purchasePrice);
+    const lottoCount = lottoGameController.calculateLottoCount(purchasePrice);
 
     //then
     expect(lottoCount).toBe(8);
