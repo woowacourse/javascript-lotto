@@ -1,3 +1,5 @@
+import formatNumber from '../utils/NumberFormatter.js';
+
 const StaticValue = Object.freeze({
   PURCHASE_AMOUNT_UNIT: 1000,
   REGEX_NON_DIGIT: /\D|^$/,
@@ -52,14 +54,14 @@ const ConsoleMessage = Object.freeze({
 --------------------`,
   rankResult: (ranks) => {
     return [
-      `3개 일치 (5,000원) - ${ranks[5]}개`,
-      `4개 일치 (50,000원) - ${ranks[4]}개`,
-      `5개 일치 (1,500,000원) - ${ranks[3] || 0}개`,
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranks[2]}개`,
-      `6개 일치 (2,000,000,000원) - ${ranks[1]}개`,
+      `3개 일치 (${formatNumber(Prize[5])}원) - ${ranks[5]}개`,
+      `4개 일치 (5${formatNumber(Prize[4])}원) - ${ranks[4]}개`,
+      `5개 일치 (${formatNumber(Prize[3])}원) - ${ranks[3] || 0}개`,
+      `5개 일치, 보너스 볼 일치 (${formatNumber(Prize[2])}원) - ${ranks[2]}개`,
+      `6개 일치 (${formatNumber(Prize[1])}원) - ${ranks[1]}개`,
     ];
   },
-  profitRateResult: (profitRate) => `총 수익률은 ${profitRate} %입니다.`,
+  profitRateResult: (profitRate) => `총 수익률은 ${formatNumber(profitRate)}% 입니다.`,
   RESTART: `다시 시작하시겠습니까? (${StaticValue.RESTART_CONTROL}/${StaticValue.QUIT_CONTROL}) `,
 });
 
@@ -78,7 +80,8 @@ const ErrorMessage = Object.freeze({
 export {
   StaticValue,
   MatchCount,
-  Rank, Prize,
+  Rank,
+  Prize,
   ConsoleMessage,
   ErrorMessage,
 };
