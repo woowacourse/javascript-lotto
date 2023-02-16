@@ -13,7 +13,7 @@ const InputView = {
 
     return luckyNumbers
       .split(',')
-      .map(luckyNumber => parseInt(luckyNumber, 10));
+      .map(luckyNumber => parseInt(luckyNumber.trim(), 10));
   },
 
   async readBonusNumber() {
