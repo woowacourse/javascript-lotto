@@ -12,8 +12,8 @@ class Lotto {
     return mergedNumbers.size;
   }
 
-  matchBonus(bonus) {
-    return this.numbers.includes(bonus);
+  matchBonus(bonusNumber) {
+    return this.numbers.includes(bonusNumber);
   }
 }
 

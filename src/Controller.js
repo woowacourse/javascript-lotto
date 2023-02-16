@@ -5,6 +5,8 @@ const Validation = require("./Validation");
 
 class Controller {
   #lottoNumbers;
+  #bonusNumber;
+  #lottoGame;
 
   constructor() {
     this.inputPurchaseAmount();
@@ -17,8 +19,8 @@ class Controller {
   purchaseAmountHandler(amount) {
     try {
       Validation.purchaseAmount(+amount);
-      const lottoGame = new LottoGame(+amount);
-      OutputView.printLotteries(lottoGame.getLotteries());
+      this.#lottoGame = new LottoGame(+amount);
+      OutputView.printLotteries(this.#lottoGame.getLotteries());
       this.inputLottoNumbers();
     } catch (error) {
       OutputView.printError(error);
@@ -54,10 +56,16 @@ class Controller {
   bonusNumberHandler(bonusNumber) {
     try {
       Validation.bonusNumber(this.#lottoNumbers, +bonusNumber);
+      this.#bonusNumber = +bonusNumber;
+      this.generateLottoGameResult();
     } catch (error) {
       OutputView.printError(error);
       this.inputBonusNumber();
     }
+  }
+
+  generateLottoGameResult() {
+    this.#lottoGame.matchLotteries(this.#lottoNumbers, this.#bonusNumber);
   }
 }
 
