@@ -1,5 +1,6 @@
 import { ConsoleMessage } from "../constants/Constants.js";
 import LottoGame from "../domain/LottoGame.js";
+import Console from '../utils/Console.js';
 import Validation from "../utils/Validation.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -56,6 +57,7 @@ class LottoGameController {
         Validation.checkBonusNumber(winningNumbers, BONUS_NUMBER);
         this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
         this.#handleGameResult();
+        this.#handleRestart();
       } catch (error) {
         OutputView.print(error.message);
         this.#handleBonusNumber(winningNumbers);
@@ -77,11 +79,21 @@ class LottoGameController {
 
       try {
         Validation.checkRestart(REPLY);
+        this.#handleRestartReply(REPLY);
       } catch (error) {
         OutputView.print(error.message);
         this.#handleRestart();
       }
     });
+  }
+
+  #handleRestartReply(reply) {
+    if (reply === "y") {
+      this.startGame();
+      return;
+    }
+
+    Console.close();
   }
 }
 
