@@ -22,6 +22,10 @@ const validator = {
   checkArrayLength(array, length) {
     if (array.length !== length) throw new Error();
   },
+
+  checkIncludes(value, array) {
+    if (!array.includes(value)) throw new Error();
+  },
 };
 
 export default validator;
