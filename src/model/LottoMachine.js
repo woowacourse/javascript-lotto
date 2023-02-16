@@ -1,9 +1,13 @@
 import generateRandomNumber from '../utils/generateRandomNumber';
-import { values, correctCountsToMoney } from '../constants/values';
+import { values, correctCountsToMoney, prize } from '../constants/values';
 import Lotto from './Lotto';
 
 class LottoMachine {
   #lottos;
+  #statistics = {
+    ranks: new Array(6).fill(0),
+    rateOfProfit: null,
+  };
 
   constructor() {
     this.init();
@@ -35,6 +39,28 @@ class LottoMachine {
     return randomLottoNumbers.sort((prev, next) => prev - next);
   }
 
+  calculateStatistics(winningNumber, bonusNumber) {
+    const targetNumber = {
+      winningNumber,
+      bonusNumber,
+    };
+
+    const totalRanks = this.calculateRanks(targetNumber);
+    totalRanks.forEach(rank => {
+      this.#statistics.ranks[rank - 1]++;
+    });
+
+    this.#statistics.rateOfProfit = this.rateOfProfit(this.calcaulateTotalSum(totalRanks), totalRanks.length);
+
+    return this.#statistics;
+  }
+
+  calcaulateTotalSum = ranks => ranks.reduce((acc, curr) => acc + prize[curr - 1], 0);
+
+  calculateRanks(targetNumber) {
+    return this.#lottos.map(lotto => this.checkLotteryWinnings(lotto.lottoNum, targetNumber));
+  }
+
   computeCorrectCounts(winningNumber, lottoNumber) {
     const correctCounts = lottoNumber.reduce((acc, cur) => {
       if (winningNumber.includes(cur)) return ++acc;
@@ -50,9 +76,9 @@ class LottoMachine {
     if (this.isFive(correctCounts)) {
       return correctCountsToMoney[`${correctCounts}`][
         `${this.isSecond(targetNumber.bonusNumber, lottoNumber) ? 0 : 1}`
-      ];
+      ].rank;
     }
-    return correctCountsToMoney[correctCounts];
+    return correctCountsToMoney[correctCounts].rank;
   }
 
   isFive(correctCounts) {
@@ -76,7 +102,7 @@ class LottoMachine {
     const { LOTTO_PRICE } = values;
     const spentMoney = lottosLength * LOTTO_PRICE;
 
-    return (lotteryWinningsSum - spentMoney) / spentMoney;
+    return ((lotteryWinningsSum - spentMoney) / spentMoney) * 100;
   }
 }
 
