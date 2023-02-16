@@ -6,6 +6,7 @@ import Lottos from "./domain/Lottos.js";
 import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js"
 import Error from "./constants/Error.js"
+import View from "./constants/View.js"
 
 class App {
   constructor() {
@@ -22,7 +23,7 @@ class App {
   }
 
   async getBuyMoney() {
-    const buyMoney = await InputView.inputMoney("구입금액을 입력해 주세요.");
+    const buyMoney = await InputView.inputMoney(View.INPUT_MONEY);
     try {
       this.validateBuyMoney(buyMoney);
       this.createLotto(parseInt(buyMoney / 1000));
@@ -61,7 +62,7 @@ class App {
 
   async getWinningNumbers() {
     const winningNumbers = await InputView.inputWinningNumbers(
-      "당첨 번호를 입력해 주세요."
+      View.INPUT_WINNING_LOTTO
     );
     this.winningLotto = this.convertStringToNumber(winningNumbers.split(","));
     try {
@@ -81,7 +82,7 @@ class App {
 
   validateWinningNumbers() {
     if (!Validations.isCorrectLength(this.winningLotto)) {
-      throw new Error("6개의 숫자를 입력해주세요.");
+      throw new Error(Error.INPUT_SIX_NUMBERS);
     }
     for (let i = 0; i < this.winningLotto.length; i++) {
       this.checkEachNumber(this.winningLotto[i]);
@@ -102,7 +103,7 @@ class App {
 
   async getBonusNumber() {
     const bonusNumber = await InputView.inputBonusNumber(
-      "보너스 번호를 입력해 주세요."
+      View.INPUT_BONUS_NUMBER
     );
     this.bonusNumber = Number(bonusNumber);
     try {
@@ -138,7 +139,7 @@ class App {
 
   async getRetryInput() {
     const retryInput = await InputView.inputRetry(
-      "다시 시작하시겠습니까? (y/n)."
+      View.INPUT_RETYR
     );
     try {
       this.validateRetryInput(retryInput);

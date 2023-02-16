@@ -1,4 +1,5 @@
 import Console from "../util/Console";
+import View from "../constants/View.js"
 
 const moneyBoard = {
     "3개 일치": '5,000',
@@ -10,7 +11,7 @@ const moneyBoard = {
 
 const OutputView = {
   printLottoAmount(lottoAmount) {
-    Console.print(`${lottoAmount}개를 구매했습니다.`);
+    Console.print(`${lottoAmount}${View.PRINT_LOTTO_AMOUNT}`);
   },
 
   printLottos(lottos) {
@@ -21,8 +22,8 @@ const OutputView = {
   },
 
   printResultMessage() {
-      Console.print("당첨통계");
-      Console.print("-".repeat(20))
+      Console.print(View.PRINT_RESULT_TITLE);
+      Console.print(View.DEVISION_BAR.repeat(20))
     },
   
     printLottoResults(lottos) {
@@ -32,8 +33,7 @@ const OutputView = {
     },
 
     printTotalBenefit(lottos) {
-        // Console.print(`총 수익률은 ${lottos.getBenefitRate(lottos.getLottos().length * 1000)}% 입니다.`)
-        Console.print(`총 수익률은 ${lottos}% 입니다.`)
+        Console.print(`${View.PRINT_BENEFIT_RATE_START} ${lottos}${View.PRINT_BENEFIT_RATE_END}`)
       
     }
 };
