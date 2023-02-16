@@ -3,21 +3,35 @@ const InputView = require("../view/inputView");
 const OutputView = require("../view/outputView");
 
 const LottoController = {
+  /** @type {LottoGame} */
+  lottoGame: undefined,
+
   async playLotto() {
-    const lottoCount = parseInt((await this.readMoney()) / 1000);
-    OutputView.printLottoCount(lottoCount);
-    LottoGame.makeLottos(lottoCount);
-    OutputView.printPurchaseLottos(LottoGame.lottos);
+    this.lottoGame = new LottoGame();
+    await this.purchaseLotto();
+    await this.LotteryTicket();
+    await this.restart();
+  },
+
+  async purchaseLotto() {
+    const money = await this.readMoney();
+
+    this.lottoGame.makeLottos(money);
+
+    OutputView.printLottoCount(this.lottoGame.lottoCount);
+    OutputView.printPurchaseLottos(this.lottoGame.lottos);
+  },
+
+  async LotteryTicket() {
     const winningNumbers = await this.readWinningNumbers();
     const bonusNumber = await this.readBonusNumber(winningNumbers);
 
-    const [revenue, rankResult] = LottoGame.makeWinLotto(
-      winningNumbers,
-      bonusNumber
-    );
-    OutputView.printRankResult(rankResult);
+    this.lottoGame.makeWinLotto(winningNumbers, bonusNumber);
+    this.lottoGame.calculateRankResult();
+    const revenue = this.lottoGame.returnRevenueRate();
+
+    OutputView.printRankResult(this.lottoGame.rankResult);
     OutputView.printRevenue(revenue);
-    this.restart();
   },
 
   async restart() {
@@ -61,23 +75,6 @@ const LottoController = {
     } catch (e) {
       return this.readBonusNumber(winLotto);
     }
-  },
-
-  validateMoney(money) {
-    return money > 0 && money % 1000 === 0;
-  },
-
-  validateWinningNumber(winningNumbers) {
-    if (winningNumbers.some((num) => 1 > num || num > 45 || isNaN(num)))
-      return false;
-    if (winningNumbers.length != 6) return false;
-    return true;
-  },
-
-  validateBonusNumber(winLotto, bonusNumber) {
-    if (1 > bonusNumber || bonusNumber > 45 || isNaN(bonusNumber)) return false;
-    if (winLotto.includes(bonusNumber)) return false;
-    return true;
   },
 };
 

@@ -10,12 +10,21 @@ class LottoGame {
   #rankResult;
   #winLottos;
 
-  constructor(rankResult) {
+  constructor() {
+    this.#lottos = [];
     this.#rankResult = { ...RANK_RESULT };
   }
 
   get rankResult() {
     return this.#rankResult;
+  }
+
+  get lottos() {
+    return this.#lottos;
+  }
+
+  get lottoCount() {
+    return this.#lottos.length;
   }
 
   LottoNumberGenerator() {
@@ -26,7 +35,8 @@ class LottoGame {
     return Array.from(lottoNumbers);
   }
 
-  makeLottos(lottoCount) {
+  makeLottos(money) {
+    const lottoCount = parseInt(money / 1000);
     Array.from({ length: lottoCount }, () => {
       const lottoOne = new Lotto(this.LottoNumberGenerator());
       this.lottos.push(lottoOne);
@@ -34,24 +44,17 @@ class LottoGame {
   }
 
   makeWinLotto(winningNumbers, bonusNumber) {
-    const winlotto = new WinLotto(winningNumbers, bonusNumber);
+    this.#winLottos = new WinLotto(winningNumbers, bonusNumber);
   }
 
-  calculateRevenueRate() {
-    this.calculateWinLotto();
-    const revenue = this.calculateRevenueRate();
-
-    return revenue;
-  }
-
-  calculateWinLotto() {
+  calculateRankResult() {
     this.#lottos.forEach((lotto) => {
-      const rank = this.calculateRank(lotto);
+      const rank = this.#calculateRank(lotto);
       this.#rankResult[rank] += 1;
     });
   }
 
-  calculateRank(lotto) {
+  #calculateRank(lotto) {
     const winNumbers = this.#winLottos.numbers;
     const sameNumbers = lotto.numbers.filter((num) => winNumbers.includes(num));
 
@@ -63,7 +66,7 @@ class LottoGame {
     if (sameNumbers.length < 3) return 0;
   }
 
-  calculateRevenueRate() {
+  returnRevenueRate() {
     const revenue = Object.keys(PRIZE).reduce(
       (result, current) => result + PRIZE[current] * this.#rankResult[current],
       0
