@@ -84,7 +84,7 @@ class LottoMachine {
   #afterReadBonusNumber = (input) => {
     try {
       this.#machineInput.winning.setBonusNumber(Number(input));
-      const ranks = this.#calculateRanks();
+      const ranks = this.#getCollectedRanks();
       const benefit = new Benefit();
       benefit.calculateRate(this.#machineInput.money.getAmount(), ranks);
       this.#showResult(benefit, ranks);
@@ -132,18 +132,24 @@ class LottoMachine {
     return [...lottoNumbers];
   }
 
-  #calculateRanks() {
-    const ranks = RANK_TEMPLATE;
+  #getCollectedRanks() {
+    const ranks = this.#lottos.reduce((accumulator, lotto) => {
+      return this.#increaseRank(lotto, accumulator);
+    }, RANK_TEMPLATE);
 
-    this.#lottos.forEach((lotto) => {
-      const matchedCount = this.#getMatchedCount(lotto);
-      const rank = this.#getRank(matchedCount, this.#isBonus(lotto));
-
-      if (rank !== MAGIC_NUMBER.losing) {
-        ranks[rank] += 1;
-      }
-    });
     return ranks;
+  }
+
+  #increaseRank(lotto, ranks) {
+    const updatedRanks = ranks;
+    const matchedCount = this.#getMatchedCount(lotto);
+    const rankIndex = this.#getRankIndex(matchedCount, this.#isBonus(lotto));
+
+    if (rankIndex !== MAGIC_NUMBER.losing) {
+      updatedRanks[rankIndex] += 1;
+    }
+
+    return updatedRanks;
   }
 
   #getMatchedCount(lotto) {
@@ -152,15 +158,15 @@ class LottoMachine {
     return lotto.filter((number) => winningNumbers.includes(number)).length;
   }
 
-  #getRank(matchedCount, isBonus) {
-    const rank = RANK_INFORMATIONS.findIndex(
+  #getRankIndex(matchedCount, isBonus) {
+    const rankIndex = RANK_INFORMATIONS.findIndex(
       (rankInformation) =>
         rankInformation.isBonus === isBonus &&
         rankInformation.matchedCount === matchedCount
     );
-    if (rank === MAGIC_NUMBER.failFindIndex) return MAGIC_NUMBER.losing;
+    if (rankIndex === MAGIC_NUMBER.failFindIndex) return MAGIC_NUMBER.losing;
 
-    return rank;
+    return rankIndex;
   }
 
   #isBonus(lotto) {
