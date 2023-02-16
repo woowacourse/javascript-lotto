@@ -55,11 +55,20 @@ class LottoGameController {
       try {
         Validation.checkBonusNumber(winningNumbers, BONUS_NUMBER);
         this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
+        this.#handleGameResult();
       } catch (error) {
         OutputView.print(error.message);
         this.#handleBonusNumber(winningNumbers);
       }
     });
+  }
+
+  #handleGameResult() {
+    const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
+    OutputView.print('');
+    OutputView.print(ConsoleMessage.RESULT);
+    OutputView.printRanks(RANKS);
+    OutputView.printProfitRate(PROFIT_RATE);
   }
 }
 
