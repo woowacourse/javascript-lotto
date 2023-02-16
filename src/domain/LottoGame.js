@@ -7,8 +7,8 @@ class LottoGame {
   #lottos;
   #scoreBoard;
 
-  constructor(money) {
-    const lottoCount = money / GAME_VALUE.LOTTO_PRICE;
+  constructor(budget) {
+    const lottoCount = budget / GAME_VALUE.LOTTO_PRICE;
     this.#lottos = Array.from({ length: lottoCount }, () => pickLotto());
     this.#scoreBoard = new ScoreBoard(lottoCount);
   }
