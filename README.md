@@ -20,8 +20,7 @@ npm run start-step1
 
 ### 실행 결과
 
-<img width="477" alt="스크린샷 2023-02-16 오후 4 44 54" src="https://user-images.githubusercontent.com/78203399/219300294-72016035-f2f8-4c8c-b8d2-5acfb513d434.png">
-
+<img width="504" alt="스크린샷 2023-02-16 오후 5 05 28" src="https://user-images.githubusercontent.com/78203399/219304614-ed7664a8-ec81-4087-98ae-fa71ee8537c9.png">
 
 ### 디렉터리 구조
 ```
