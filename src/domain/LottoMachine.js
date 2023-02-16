@@ -5,13 +5,20 @@ import WinningLotto from './WinningLotto';
 
 class LottoMachine {
   static LOTTO_COST = 1000;
-
+  static WIN_PRIZE_MONEY = { 0: 0, 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
   #lottos;
   #winningLotto;
+  #winCount = {
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+  };
 
   constructor(money) {
     this.#lottos = this.generateLottos(money);
-    this.#winningLotto = new WinningLotto();
   }
 
   getPrizes() {
@@ -33,7 +40,7 @@ class LottoMachine {
 
   setWinningLotto(lottoNumbers) {
     const lotto = new Lotto(lottoNumbers);
-    this.#winningLotto.setWinningLotto(lotto);
+    this.#winningLotto = new WinningLotto(lotto);
   }
 
   setBonusNumber(bonusNumber) {
@@ -42,6 +49,30 @@ class LottoMachine {
 
   getLottoNumbers() {
     return this.#lottos.map((lotto) => lotto.getNumbers());
+  }
+
+  makeHitPrize() {
+    this.getPrizes().forEach((prize) => {
+      this.#winCount[prize] += 1;
+    });
+  }
+
+  calcStatstics() {
+    this.makeHitPrize();
+    const profitRate = this.calcProfitRate();
+    return {
+      winCount: this.#winCount,
+      profitRate,
+      winPrizeMoney: LottoMachine.WIN_PRIZE_MONEY,
+    };
+  }
+
+  calcProfitRate() {
+    const totalWinMoney = this.getPrizes().reduce(
+      (acc, cur) => acc + LottoMachine.WIN_PRIZE_MONEY[cur],
+      0,
+    );
+    return totalWinMoney / (this.#lottos.length * LottoMachine.LOTTO_COST);
   }
 }
 

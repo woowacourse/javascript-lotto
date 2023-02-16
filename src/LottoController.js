@@ -41,8 +41,7 @@ class LottoController {
   }
 
   printWinStatistics() {
-    const prizes = this.#lottoMachine.getPrizes();
-    OutputView.printWinStatistics(prizes);
+    OutputView.printWinStatistics(this.#lottoMachine.calcStatstics());
   }
 }
 

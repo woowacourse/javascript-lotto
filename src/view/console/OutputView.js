@@ -24,32 +24,16 @@ const OutputView = {
     Console.print('--------------------');
   },
 
-  printWinStatistics(prizes) {
-    const winCount = {
-      0: 0,
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-    };
-    prizes.forEach((prize) => (winCount[prize] += 1));
-    // to-do: 변수명, Array.from을 의존성을 버리고, 외부에서 등수별로 조합할 수 있도록
+  printWinStatistics({ winCount, winPrizeMoney, profitRate }) {
     const results = Array.from({ length: 5 }, (_, i) => {
-      return `${winCount[i + 1]} ${this.winCondition[i + 1]} ${this.winMoney[i + 1]}`;
+      return `${winCount[i + 1]} ${this.winCondition[i + 1]} ${winPrizeMoney[i + 1]}`;
     });
 
     results.forEach((result) => Console.print(result));
+    this.printProfitRate(profitRate);
   },
 
-  printProfitRate(winStatistics) {
-    const { buyMoney } = winStatistics;
-    const totalWinMoney = Array.from(
-      { length: 5 },
-      (_, i) => this.winCount[i + 1] * this.winMoney[i + 1],
-    ).reduce((total, current) => total + current, 0);
-    const profitRate = (totalWinMoney / buyMoney) * 100;
-
+  printProfitRate(profitRate) {
     Console.print(profitRate.toFixed(2));
   },
 
