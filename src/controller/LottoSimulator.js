@@ -5,6 +5,7 @@ import OutputView from '../view/OutputView.js';
 import { LottoUtils } from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
+import Console from '../utils/Console.js';
 
 class LottoSimulator {
   #lottos;
@@ -84,7 +85,7 @@ class LottoSimulator {
   judgeValidWinningNumber(winningNumber, bonusNumber) {
     try {
       this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
-      this.printStatistics();
+      this.printStatisticsResult();
     } catch (err) {
       OutputView.printErrorMessage(err);
       this.inputWinningNumber();
@@ -102,17 +103,44 @@ class LottoSimulator {
     return winningResult;
   }
 
-  printStatistics() {
+  printStatisticsResult() {
     OutputView.printWinningStatistics(this.calculateWinningResult());
     OutputView.printYieldRate(
       LottoUtils.calculateYieldRate(this.calculateWinningResult(), this.#budget)
     );
+    this.inputRetryCommand();
   }
 
-  reset() {
+  inputRetryCommand() {
+    InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY, (command) => {
+      this.judgeValidRetryCommand(command);
+    });
+  }
+
+  judgeValidRetryCommand(command) {
+    try {
+      this.validateRetryCommand(command);
+      if (command === 'y') this.retry();
+      if (command === 'n') this.quit();
+    } catch (err) {
+      OutputView.printErrorMessage(err);
+      this.inputRetryCommand();
+    }
+  }
+
+  validateRetryCommand(command) {
+    if (command !== 'y' && command !== 'n') throw new Error(ERROR_MESSAGE.RETRY_COMMAND);
+  }
+
+  retry() {
     this.#lottos = [];
     this.winningLotto = null;
     this.budget = 0;
+    this.inputBudget();
+  }
+
+  quit() {
+    Console.close();
   }
 }
 
