@@ -1,4 +1,4 @@
-import { LOTTO, RANKING_THRESHOLD, GAME_COMMAND } from './constants';
+import { LOTTO, RANKING_THRESHOLD, GAME_COMMAND, MESSAGE } from './constants';
 import lottoGameCalculator from './domain/lottoGameCalculator';
 import lottoGameValidator from './domain/lottoGameValidator';
 import Lotto from './domain/models/Lotto';
@@ -78,7 +78,7 @@ class LottoConsoleGame {
   }
 
   async readPurchaseAmount() {
-    const pruchaseAmount = await this.#io.read('\n> 구입금액을 입력해 주세요.');
+    const pruchaseAmount = await this.#io.read(MESSAGE.requestPruchaseAmount);
     try {
       lottoGameValidator.checkPruchaseAmount(pruchaseAmount);
       return Number(pruchaseAmount);
@@ -89,7 +89,7 @@ class LottoConsoleGame {
   }
 
   async readWinningNumbers() {
-    const winningNumbers = await this.#io.read('\n> 당첨 번호를 입력해 주세요. ');
+    const winningNumbers = await this.#io.read(MESSAGE.requestWinningNumbers);
     try {
       lottoGameValidator.checkWinningNumbers(winningNumbers);
       return winningNumbers.split(',').map(Number);
@@ -100,7 +100,7 @@ class LottoConsoleGame {
   }
 
   async readBonusNumber(winningNumbers) {
-    const bonusNumber = await this.#io.read('\n> 보너스 번호를 입력해 주세요. ');
+    const bonusNumber = await this.#io.read(MESSAGE.requestBonusNumber);
     try {
       lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
       return Number(bonusNumber);
@@ -111,7 +111,7 @@ class LottoConsoleGame {
   }
 
   async readGameCommand() {
-    const gameCommand = await this.#io.read('\n> 다시 시작하시겠습니까? (y/n) ');
+    const gameCommand = await this.#io.read(MESSAGE.requestGameCommand);
     try {
       lottoGameValidator.checkGameCommand(gameCommand);
       return gameCommand;
