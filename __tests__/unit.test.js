@@ -48,9 +48,9 @@ test('입력값이 y 혹은 n 만 가능하다.', () => {
 
 test('로또 결과 계산', () => {
   // { match: 5, bonus: true };
-  const numbers = [1, 2, 3, 4, 5, 6];
+  const numbers = ['1', '2', '3', '4', '5', '6'];
   const lotto = new Lotto(numbers);
-  const winningNumber = [1, 2, 3, 4, 5, 7];
-  const bonusNumber = 6;
-  expect(lotto.matcher(winningNumber, bonusNumber)).toEqual({ match: 5, bonus: true });
+  const winningNumber = ['1', '2', '3', '4', '5', '7'];
+  const bonusNumber = '6';
+  expect(lotto.matcher(winningNumber, bonusNumber)).toEqual(2);
 });
