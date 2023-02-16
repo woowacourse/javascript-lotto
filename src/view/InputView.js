@@ -20,9 +20,8 @@ const InputView = {
       return parseInt(lottoPrice, 10);
     } catch (error) {
       Console.print(error.message);
+      return await this.readLottoPrice();
     }
-
-    await this.readLottoPrice();
   },
 
   async readLuckyNumbers() {
@@ -48,9 +47,8 @@ const InputView = {
       return luckyNumbers;
     } catch (error) {
       Console.print(error.message);
+      return await this.readLuckyNumbers();
     }
-
-    await this.readLuckyNumbers();
   },
 
   async readBonusNumber(luckyNumbers) {
@@ -70,16 +68,23 @@ const InputView = {
       return parseInt(bonusNumber, 10);
     } catch (error) {
       Console.print(error.message);
+      return await this.readBonusNumber(luckyNumbers);
     }
-
-    await this.readBonusNumber(luckyNumbers);
   },
 
   async readRetry() {
-    const isRetry =
-      (await Console.readline(QUERY.RETRY)) === 'y' ? true : false;
+    const retryCommand = await Console.readline(QUERY.RETRY);
 
-    return isRetry;
+    try {
+      if (!validator.isValidCommand(retryCommand)) {
+        throw new Error(`${ERROR.HEAD} 게임 재시작 입력 오류`);
+      }
+
+      return retryCommand === 'y';
+    } catch (error) {
+      Console.print(error.message);
+      return this.readRetry();
+    }
   },
 };
 

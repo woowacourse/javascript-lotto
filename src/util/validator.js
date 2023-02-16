@@ -38,6 +38,10 @@ const validator = {
   isOverlap(targetNumbers, number) {
     return targetNumbers.includes(number);
   },
+
+  isValidCommand(command) {
+    return command === 'y' || command === 'n';
+  },
 };
 
 export default validator;
