@@ -82,6 +82,16 @@ export class LottoGame {
     return placesOfLottoTickets;
   }
 
+  getTotalPrize(placesOfLottoTickets) {
+    return (
+      placesOfLottoTickets.FIFTH_PLACE * 5000 +
+      placesOfLottoTickets.FOURTH_PLACE * 50000 +
+      placesOfLottoTickets.THIRD_PLACE * 1500000 +
+      placesOfLottoTickets.SECOND_PLACE * 30000000 +
+      placesOfLottoTickets.FIRST_PLACE * 2000000000
+    );
+  }
+
   makeLottoTickets(numberOfTickets) {
     const lottoTickets = Array.from({ length: numberOfTickets }, this.makeLottoTicket);
 
