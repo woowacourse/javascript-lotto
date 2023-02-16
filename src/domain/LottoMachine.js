@@ -2,12 +2,14 @@ const { LOTTO } = require('../constant/Setting');
 const pickNumberInRange = require('../util/pickNumberInRange');
 
 class LottoMachine {
+  #money;
+
   constructor(money) {
-    this.money = money;
+    this.#money = money;
   }
 
   getQuantity() {
-    return this.money / LOTTO.UNIT;
+    return this.#money / LOTTO.UNIT;
   }
 
   issueLotto() {

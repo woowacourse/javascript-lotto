@@ -1,3 +1,4 @@
+const { COMMAND } = require('./constant/setting');
 const Comparer = require('./domain/Comparer');
 const LottoMachine = require('./domain/LottoMachine');
 const ProfitCalculator = require('./domain/ProfitCaculator');
@@ -22,13 +23,7 @@ class LottoController {
     await this.inputBonusNumber();
     OutputView.printEmptyLine();
 
-    const ranking = new Comparer(this.#winningNumber, this.#bonusNumber, this.#lottos).getRanking();
-    const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
-
-    OutputView.printRanking(ranking);
-    OutputView.printProfitRate(profitRate);
-    OutputView.printEmptyLine();
-
+    this.printResult(purchaseAmount);
     this.inputRestartCommand();
   }
 
@@ -44,7 +39,6 @@ class LottoController {
     }
   }
 
-  // 발행하는 과정
   issueLottos(purchaseAmount) {
     const lottoMachine = new LottoMachine(purchaseAmount);
     OutputView.printPurchaseQuantity(lottoMachine.getQuantity());
@@ -76,6 +70,15 @@ class LottoController {
     }
   }
 
+  printResult(purchaseAmount) {
+    const ranking = new Comparer(this.#winningNumber, this.#bonusNumber, this.#lottos).getRanking();
+    const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
+
+    OutputView.printRanking(ranking);
+    OutputView.printProfitRate(profitRate);
+    OutputView.printEmptyLine();
+  }
+
   async inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
@@ -87,12 +90,11 @@ class LottoController {
     }
   }
 
-  // 재입력 커맨드 동작
   processRestartCommand(restartCommand) {
-    if (restartCommand === 'y') {
+    if (restartCommand === COMMAND.YES) {
       this.start();
     }
-    if (restartCommand === 'n') {
+    if (restartCommand === COMMAND.NO) {
       Console.close();
     }
   }

@@ -1,21 +1,35 @@
 const { RANK } = require('../constant/setting');
 
 class Comparer {
+  static #INIT_RANKING = {
+    [RANK.FIFTH.name]: 0,
+    [RANK.FOURTH.name]: 0,
+    [RANK.THIRD.name]: 0,
+    [RANK.SECOND.name]: 0,
+    [RANK.FIRST.name]: 0,
+  };
+
+  #winningNumber;
+
+  #bonus;
+
+  #lottos;
+
   constructor(winningNumber, bonus, lottos) {
-    this.winningNumber = winningNumber;
-    this.bonus = bonus;
-    this.lottos = lottos;
+    this.#winningNumber = winningNumber;
+    this.#bonus = bonus;
+    this.#lottos = lottos;
   }
 
   countMatchesOfWinningNumber() {
-    return this.lottos.map((lotto) => {
-      const numbers = new Set([...this.winningNumber, ...lotto]);
-      return this.winningNumber.length + lotto.length - numbers.size;
+    return this.#lottos.map((lotto) => {
+      const numbers = new Set([...this.#winningNumber, ...lotto]);
+      return this.#winningNumber.length + lotto.length - numbers.size;
     });
   }
 
   checkIncludesBonus() {
-    return this.lottos.map((lotto) => lotto.includes(this.bonus));
+    return this.#lottos.map((lotto) => lotto.includes(this.#bonus));
   }
 
   getRanking() {
@@ -27,13 +41,7 @@ class Comparer {
         if (rank) acc[rank] += 1;
         return acc;
       },
-      {
-        [RANK.FIFTH.name]: 0,
-        [RANK.FOURTH.name]: 0,
-        [RANK.THIRD.name]: 0,
-        [RANK.SECOND.name]: 0,
-        [RANK.FIRST.name]: 0,
-      },
+      { ...Comparer.#INIT_RANKING },
     );
   }
 

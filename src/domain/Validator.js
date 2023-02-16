@@ -23,20 +23,21 @@ const Validator = {
 
   winningNumber(numbers) {
     const winningNumbers = numbers.split(',');
-
-    winningNumbers.forEach((number) => {
-      this.number(number);
-
-      if (this.isOutOfRange(number)) {
-        throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
-      }
-    });
+    winningNumbers.forEach((number) => this.winningNumberElement(number));
 
     if (!this.isValidLength(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER_LENGTH);
     }
     if (this.hasDuplicatedNumber(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
+    }
+  },
+
+  winningNumberElement(number) {
+    this.number(number);
+
+    if (this.isOutOfRange(number)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
     }
   },
 
