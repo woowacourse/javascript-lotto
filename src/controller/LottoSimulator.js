@@ -66,10 +66,6 @@ class LottoSimulator {
     OutputView.printLottoNumbers(lottoNumbers);
   }
 
-  getLottoCount() {
-    return this.#lottos.length;
-  }
-
   inputWinningNumber() {
     InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.inputBonusNumber(winningNumber);
