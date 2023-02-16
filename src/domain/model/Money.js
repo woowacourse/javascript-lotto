@@ -1,10 +1,11 @@
-const utilFn = require('../../utils');
+const { MAGIC_NUMBER } = require('../../constant');
+const { inputValidator } = require('../../utils');
 
 class Money {
   #amount;
 
   constructor(amount) {
-    this.#validateAmount(amount);
+    this.#validateAmount(Number(amount));
     this.#amount = amount;
   }
 
@@ -13,14 +14,13 @@ class Money {
   }
 
   #validateAmount(amount) {
-    if (amount > 100000 || amount < 1000) {
+    if (amount > MAGIC_NUMBER.moneyLimit || amount < MAGIC_NUMBER.moneyUnit) {
       throw new Error('[ERROR]');
     }
-    if (!utilFn.isNumber(amount)) {
+    if (!inputValidator.isNumber(amount)) {
       throw new Error('[ERROR]');
     }
-
-    if (amount % 1000 !== 0) {
+    if (amount % MAGIC_NUMBER.moneyUnit !== 0) {
       throw new Error('[ERROR]');
     }
   }
