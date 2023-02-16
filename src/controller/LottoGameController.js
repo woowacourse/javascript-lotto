@@ -17,17 +17,16 @@ class LottoGameController {
       try {
         Validation.checkPurchaseAmount(input);
         const PURCHASE_COUNT = Number(input) / StaticValue.PURCHASE_AMOUNT_UNIT;
-        this.#lottoGame.generateUserLottos(PURCHASE_COUNT);
         OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
-        this.#handleUserLottos();
+        this.#handleUserLottos(PURCHASE_COUNT);
       } catch (error) {
-        console.log(input);
         this.#handleError(error.message, this.#handlePurchaseAmount.bind(this));
       }
     });
   }
 
-  #handleUserLottos() {
+  #handleUserLottos(purchaseCount) {
+    this.#lottoGame.generateUserLottos(purchaseCount);
     const USER_LOTTOS = this.#lottoGame.getUserLottos();
 
     USER_LOTTOS.forEach(OutputView.printUserLottos);
