@@ -91,14 +91,18 @@ class LottoMachine {
 
   #afterReadRetryOption = (input) => {
     try {
-      if (input === MAGIC_LITERAL.retry) return this.retry();
-      if (input === MAGIC_LITERAL.quit) return this.quit();
-      throw new Error(ERROR_MESSAGE.retryOption);
+      this.#checkRetryOption(input);
     } catch (error) {
       console.log(error.message);
       this.readRetryOption();
     }
   };
+
+  #checkRetryOption(input) {
+    if (input === MAGIC_LITERAL.retry) return this.retry();
+    if (input === MAGIC_LITERAL.quit) return this.quit();
+    throw new Error(ERROR_MESSAGE.retryOption);
+  }
 
   generateLottos(amount) {
     const lottoCount = amount / MAGIC_NUMBER.moneyUnit;
