@@ -1,11 +1,10 @@
 /* eslint-disable no-restricted-globals */
 const {
-  BLANK_REGEXP,
   EMPTY_STRING,
   PRICE_UNIT,
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
-  RESTART_COMMAND_REGEXP,
+  regex,
 } = require('../../constants/constants');
 
 const validator = {
@@ -49,7 +48,7 @@ const validator = {
   },
 
   isBlankIncluded(input) {
-    return BLANK_REGEXP.test(input);
+    return regex.BLANK.test(input);
   },
 
   isEmpty(input) {
@@ -80,7 +79,7 @@ const validator = {
   },
 
   isRestartCommandValid(input) {
-    return RESTART_COMMAND_REGEXP.test(input) && input.length === 1;
+    return regex.RESTART_COMMAND.test(input) && input.length === 1;
   },
 };
 
