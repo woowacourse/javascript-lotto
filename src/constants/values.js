@@ -16,4 +16,8 @@ const correctCountsToMoney = deepFreeze({
   0: 0,
 });
 
-export { values, correctCountsToMoney };
+const regex = Object.freeze({
+  POSITIVE_INTEGER: /^[1-9]\d*$/,
+});
+
+export { values, correctCountsToMoney, regex };
