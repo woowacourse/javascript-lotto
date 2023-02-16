@@ -37,6 +37,7 @@ export default class LottoGameController {
 
     const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
     const statistics = this.#lottoGame.getStatistics(eachCompareResult);
+    const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);
   }
 
   async #requestPurchaseAmount() {

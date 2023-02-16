@@ -1,6 +1,6 @@
 import Lotto from './Lotto.js';
 import pickNumberInRange from '../utils/pickNumberInRange.js';
-import { LOTTO_CONDITION, PRIZE_MATCH_COUNT } from '../constants/condition.js';
+import { LOTTO_CONDITION, PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY } from '../constants/condition.js';
 
 export default class LottoGame {
   #lottos;
@@ -46,6 +46,12 @@ export default class LottoGame {
     if (matchCount === PRIZE_MATCH_COUNT.fifthPrize) statistics.fifthPrize += 1;
 
     return statistics;
+  }
+
+  getTotalPrizeMoney(statistics) {
+    return Object.entries(statistics).reduce((acc, [prize, count]) => {
+      return acc + LOTTO_PRIZE_MONEY[prize] * count;
+    }, 0);
   }
 
   getLottoQuantity() {
