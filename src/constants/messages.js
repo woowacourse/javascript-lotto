@@ -15,6 +15,8 @@ const messages = deepFreeze({
   ERROR: {
     POSITIVE_INTEGER: '[ERROR] 숫자를 입력해주세요.',
     THOUSANDS_WON: '[ERROR] 1000원 단위의 금액을 입력해주세요.',
+    VALID_SIX_NUMBER: '[ERROR] ,로 이루어진 여섯개의 1부터 45까지의 숫자를 입력해주세요',
+    HAS_BLANK: '[ERROR] 공백을 제외하고 입력해주세요',
   },
 });
 
