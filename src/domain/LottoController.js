@@ -38,7 +38,7 @@ class LottoController {
     try {
       const bonusNumber = await InputView.readBonusNumber();
       InputValidator.checkLottoNumber(bonusNumber);
-      InputValidator.checkDuplicatedNumbers(winningNumber.split(',').concat(bonusNumber));
+      InputValidator.checkDuplicatedNumbers(winningNumber.join('').concat(bonusNumber).split(','));
       return bonusNumber;
     } catch (error) {
       OutputView.printError(error);
@@ -61,21 +61,17 @@ class LottoController {
     OutputView.printNewLine();
 
     const matchResult = this.judgeResult(lottos, winningNumber, bonusNumber);
-
     OutputView.printResult(matchResult);
   }
 
   judgeResult(lottos, winningNumber, bonusNumber) {
     return lottos.reduce((acc, lotto, index) => {
-      const matchResult = lotto.matcher(winningNumber, bonusNumber);
-      if (matchResult.match === 5) {
-        matchResult.bonus ? ++acc[6] : ++acc[4];
-      } else {
-        acc[matchResult.match] += 1;
-      }
-      console.log(acc);
+      const result = lotto.matcher(winningNumber, bonusNumber);
+      acc[result] += 1;
       return acc;
-    }, [0, 0, 0, 0, 0, 0, 0, 0]); // index 6이 2등
+    }, [0, 0, 0, 0, 0, 0]); // index 6이 2등
   }
 }
+
 export default LottoController;
+
