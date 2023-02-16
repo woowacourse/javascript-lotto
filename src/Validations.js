@@ -16,7 +16,7 @@ const Validations = {
   },
 
   hasBonusNumber(bonusNumber, winningLotto) {
-    return winningLotto.includes(String(bonusNumber))
+    return winningLotto.includes(bonusNumber)
   },
 
   isCorrectRetryInput(retryInput) {
