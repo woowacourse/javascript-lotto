@@ -1,6 +1,6 @@
 import { ConsoleMessage, StaticValue } from "../constants/Constants.js";
 import LottoGame from "../domain/LottoGame.js";
-import Console from '../utils/Console.js';
+import Console from "../utils/Console.js";
 import Validation from "../utils/Validation.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -21,8 +21,8 @@ class LottoGameController {
         OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
         this.#handleUserLottos();
       } catch (error) {
-        OutputView.print(error.message);
-        this.#handlePurchaseAmount();
+        console.log(input);
+        this.#handleError(error.message, this.#handlePurchaseAmount.bind(this));
       }
     });
   }
@@ -37,14 +37,15 @@ class LottoGameController {
 
   #handleWinningNumbers() {
     InputView.readWinningNumbers((input) => {
-      const WINNING_NUMBERS = input.split(StaticValue.INPUT_SEPARATOR).map(Number);
+      const WINNING_NUMBERS = input
+        .split(StaticValue.INPUT_SEPARATOR)
+        .map(Number);
 
       try {
         Validation.checkLottoNumber(WINNING_NUMBERS);
         this.#handleBonusNumber(WINNING_NUMBERS);
       } catch (error) {
-        OutputView.print(error.message);
-        this.#handleWinningNumbers();
+        this.#handleError(error.message, this.#handleWinningNumbers.bind(this));
       }
     });
   }
@@ -59,8 +60,9 @@ class LottoGameController {
         this.#handleGameResult();
         this.#handleRestart();
       } catch (error) {
-        OutputView.print(error.message);
-        this.#handleBonusNumber(winningNumbers);
+        this.#handleError(error.message, () =>
+          this.#handleBonusNumber(winningNumbers)
+        );
       }
     });
   }
@@ -81,8 +83,7 @@ class LottoGameController {
         Validation.checkRestart(REPLY);
         this.#handleRestartReply(REPLY);
       } catch (error) {
-        OutputView.print(error.message);
-        this.#handleRestart();
+        this.#handleError(error.message, this.#handleRestart);
       }
     });
   }
@@ -94,6 +95,11 @@ class LottoGameController {
     }
 
     Console.close();
+  }
+
+  #handleError(errorMessage, self) {
+    OutputView.print(errorMessage);
+    self();
   }
 }
 
