@@ -4,7 +4,8 @@ import InputView from "./view/InputView.js";
 import Lotto from "./domain/Lotto.js";
 import Lottos from "./domain/Lottos.js";
 import Random from "./util/Random.js";
-import OutputView from "./view/OutputView.js";
+import OutputView from "./view/OutputView.js"
+import Error from "./constants/Error.js"
 
 class App {
   constructor() {
@@ -48,13 +49,13 @@ class App {
 
   validateBuyMoney(buyMoney) {
     if (!Validations.isNumber(buyMoney)) {
-      throw new Error("숫자만 입력할 수 있습니다.");
+      throw new Error(Error.INPUT_NUMBER);
     }
     if (!Validations.isDevidedByThousand(buyMoney)) {
-      throw new Error("1000원 단위로 입력해주세요.");
+      throw new Error(Error.INPUT_NUMBER_DEVIDED_BY_THOUSAND);
     }
     if (!Validations.isPositiveInteger(buyMoney)) {
-      throw new Error("구매 금액은 양의 정수여야 합니다.");
+      throw new Error(Error.INPUT_POSITIVE_INTEGER_MONEY);
     }
   }
 
@@ -89,13 +90,13 @@ class App {
 
   checkEachNumber(eachNumber) {
     if (!Validations.isNumber(eachNumber)) {
-      throw new Error("숫자만 입력할 수 있습니다.");
+      throw new Error(Error.INPUT_NUMBER);
     }
     if (!Validations.isCorrectRange(eachNumber)) {
-      throw new Error("당첨번호는 1~45까지의 범위입니다.");
+      throw new Error(Error.INPUT_CORRECT_RANGE_NUMBER);
     }
     if (!Validations.isPositiveInteger(eachNumber)) {
-      throw new Error("당첨번호는 양의 정수여야 합니다.");
+      throw new Error(Error.INPUT_POSITIVE_INTEGER_LOTTO);
     }
   }
 
@@ -116,7 +117,7 @@ class App {
 
   validateBonusNumber() {
     if (Validations.hasBonusNumber(this.bonusNumber, this.winningLotto)) {
-      throw new Error("보너스 번호는 당첨번호와 중복되지 않아야합니다.");
+      throw new Error(Error.INPUT_NOT_DUPLICATED_NUMBER);
     }
   }
 
@@ -165,7 +166,7 @@ class App {
 
   validateRetryInput(retryInput) {
     if (!Validations.isCorrectRetryInput(retryInput)) {
-      throw new Error("재시작은 y, 종료는 n을 입력해주세요.");
+      throw new Error(Error.INPUT_CORRECT_RETRY);
     }
   }
 }
