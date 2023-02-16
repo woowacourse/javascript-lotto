@@ -17,6 +17,11 @@ const Validations = {
 
   hasBonusNumber(bonusNumber, winningLotto) {
     return winningLotto.includes(bonusNumber)
+  },
+
+  isCorrectRetryInput(retryInput) {
+//core 에 있는지 없는지 검사하는걸로 바꾸기
+    return retryInput === "y" || retryInput === "Y" || retryInput === "n" || retryInput === "N"
   }
 };
 

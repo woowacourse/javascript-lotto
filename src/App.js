@@ -88,6 +88,25 @@ class App {
       throw new Error("보너스 번호는 당첨번호와 중복되지 않아야합니다.");
     }
   }
+
+  async getRetryInput() {
+    const retryInput = await InputView.inputRetry(
+      "다시 시작하시겠습니까? (y/n)."
+    );
+    try {
+      this.validateRetryInput(retryInput)
+    } catch(e) {
+      Console.print(e)
+      this.getRetryInput()
+    }
+  }
+  
+  validateRetryInput(retryInput) {
+    if(!Validations.isCorrectRetryInput(retryInput)) {
+      throw new Error("재시작은 y, 종료는 n을 입력해주세요.")
+    }
+  }
+
 }
 
 export default App;
