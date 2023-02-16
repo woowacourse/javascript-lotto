@@ -24,10 +24,10 @@ const OutputView = {
 
   printWinningLottos(winningLottos) {
     [...winningLottos].reverse().forEach((_, idx) => {
-      const { CONDITION, MONEY } = LOTTO_PRIZE[idx];
+      const { CONDITION, MONEY } = LOTTO_PRIZE[winningLottos.length - idx - 1];
       Console.print(
         `${CONDITION} (${MONEY.toLocaleString('en-US')}원) - ${
-          winningLottos[idx]
+          winningLottos[winningLottos.length - idx - 1]
         }개`
       );
     });
