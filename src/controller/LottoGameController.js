@@ -2,7 +2,7 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/LottoGame.js';
 const LottoGameController = {
-  data: {
+  props: {
     price: 0,
     luckyNumbers: [],
     bonusNumber: 0,
@@ -13,8 +13,10 @@ const LottoGameController = {
   },
 
   async init() {
-    this.data.price = await InputView.readLottoPrice();
-    const lottoGame = new LottoGame(this.data.price);
+    this.props.price = await InputView.readLottoPrice();
+    const lottoGame = new LottoGame(this.props.price);
+    // TODO 로또 출력
+    this.props.luckyNumbers = await InputView.readLuckyNumbers();
   },
 };
 

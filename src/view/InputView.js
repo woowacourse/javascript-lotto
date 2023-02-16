@@ -3,7 +3,15 @@ import QUERY from '../constant/query.js';
 
 const InputView = {
   async readLottoPrice() {
-    return await parseInt(Console.readline(QUERY.LOTTO_PRICE), 10);
+    const lottoPrice = await Console.readline(QUERY.LOTTO_PRICE);
+
+    return parseInt(lottoPrice, 10);
+  },
+
+  async readLuckyNumbers() {
+    const luckyNumbers = await Console.readline(QUERY.LUCKY_NUMBERS);
+
+    return luckyNumbers;
   },
 };
 
