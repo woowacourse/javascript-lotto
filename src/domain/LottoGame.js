@@ -53,6 +53,10 @@ class LottoGame {
       0
     );
   }
+
+  calculateProfitRate(totalPrize) {
+    return Converter.toFixedNumber((totalPrize / this.#userBudget) * 100, 1);
+  }
 }
 
 module.exports = LottoGame;
