@@ -2,6 +2,7 @@ import {
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
+  validateRestartInput,
 } from '../src/utils/validator';
 
 describe('유효성 검사에 대한 테스트', () => {
@@ -38,5 +39,10 @@ describe('유효성 검사에 대한 테스트', () => {
       expect(() => validateBonusNumber(input, winningNumber)).toThrow();
     }
   );
-  // test("재시작 입력에 대한 유효성 검사를 한다.")
+  test.each([123, undefined, null, NaN, [], '가나다라', 'Y', 'YES', 'N', 'NO'])(
+    '재시작 입력에 대한 유효성 검사를 한다.',
+    (input) => {
+      expect(() => validateRestartInput(input)).toThrow();
+    }
+  );
 });
