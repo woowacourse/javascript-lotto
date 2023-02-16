@@ -10,7 +10,7 @@ class Lotto {
   }
 
   #validateNumbers(numbers) {
-    Validation.checkLottoNumber(numbers);
+    Validation.checkLottoNumbers(numbers);
   }
 
   getNumbers() {

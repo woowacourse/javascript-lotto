@@ -25,20 +25,20 @@ const Validation = {
     }
   },
 
-  checkLottoNumber(lotto) {
-    this.checkLottoNumberLength(lotto);
-    this.checkLottoNumberRange(lotto);
-    this.checkLottoDuplicate(lotto);
+  checkLottoNumbers(lotto) {
+    this.checkLottoNumbersLength(lotto);
+    this.checkLottoNumbersRange(lotto);
+    this.checkLottoNumbersDuplicate(lotto);
     this.checkLottoNumbersType(lotto);
   },
 
-  checkLottoNumberLength(lotto) {
+  checkLottoNumbersLength(lotto) {
     if (lotto.length !== StaticValue.LOTTO_LENGTH) {
       throw new Error(ErrorMessage.LOTTO_LENGTH);
     }
   },
 
-  checkLottoNumberRange(lotto) {
+  checkLottoNumbersRange(lotto) {
     lotto.forEach((number) => {
       if (!this.isNumberInRange(number)) {
         throw new Error(ErrorMessage.LOTTO_VALUE);
@@ -46,7 +46,7 @@ const Validation = {
     });
   },
 
-  checkLottoDuplicate(lotto) {
+  checkLottoNumbersDuplicate(lotto) {
     if (lotto.length !== new Set(lotto).size) {
       throw new Error(ErrorMessage.LOTTO_DUPLICATE);
     }

@@ -39,7 +39,7 @@ class LottoGameController {
       const WINNING_NUMBERS = input.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
       try {
-        Validation.checkLottoNumber(WINNING_NUMBERS);
+        Validation.checkLottoNumbers(WINNING_NUMBERS);
         this.#handleBonusNumber(WINNING_NUMBERS);
       } catch (error) {
         this.#handleError(error.message, this.#handleWinningNumbers.bind(this));

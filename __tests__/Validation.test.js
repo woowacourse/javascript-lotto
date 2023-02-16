@@ -35,7 +35,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
+        expect(() => Validation.checkLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
       });
     });
 
@@ -45,7 +45,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(ErrorMessage.LOTTO_LENGTH);
+        expect(() => Validation.checkLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_LENGTH);
       });
     });
 
@@ -55,7 +55,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
+        expect(() => Validation.checkLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
       });
     });
 
@@ -65,7 +65,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.checkLottoNumber(NUMBERS)).toThrow(ErrorMessage.LOTTO_DUPLICATE);
+        expect(() => Validation.checkLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_DUPLICATE);
       });
     });
   });
