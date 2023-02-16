@@ -18,6 +18,13 @@ const outputView = {
     Console.print('당첨 통계\n--------------------\n');
   },
 
+  printResult(ranks) {
+    const result = ranks.reduce((accumulator, rankCount, rankIndex) => {
+      return `${this.getResultLine(rankIndex, rankCount)}\n` + accumulator;
+    }, '');
+    Console.print(result);
+  },
+
   getResultLine(rank, rankCount) {
     if (rank === MAGIC_NUMBER.secondRankIndex) {
       return `${
