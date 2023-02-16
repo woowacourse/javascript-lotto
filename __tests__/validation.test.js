@@ -1,4 +1,5 @@
 import {
+  validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
 } from '../src/utils/validator';
@@ -29,6 +30,13 @@ describe('유효성 검사에 대한 테스트', () => {
   ])('당첨 번호 입력에 대한 테스트를 한다.', (input) => {
     expect(() => validateWinningNumbers(input)).toThrow();
   });
-  // test("보너스 번호에 입력에 대한 유효성 검사를 한다.")
+  test.each(['에디', NaN, '$*&*!@#^', 0, 46, 3])(
+    '보너스 번호에 입력에 대한 유효성 검사를 한다.',
+    (input) => {
+      const winningNumber = [3, 34, 14, 20, 44, 1];
+
+      expect(() => validateBonusNumber(input, winningNumber)).toThrow();
+    }
+  );
   // test("재시작 입력에 대한 유효성 검사를 한다.")
 });
