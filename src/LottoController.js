@@ -1,14 +1,11 @@
 import Buyer from './domain/Buyer';
 import LottoResult from './domain/LottoResult';
-import WinningLotto from './domain/WinningLotto';
-import Validation from './Validation';
 import InputView from './view/InputView';
 import OutputView from './view/OutputView';
 
 class LottoController {
   async proceedBuyLottos() {
     const money = await InputView.readMoney();
-    Validation.validateMoney(money);
     this.buyer = new Buyer(money);
     this.buyer.buyLottos();
 
@@ -16,9 +13,7 @@ class LottoController {
   }
 
   async proceedWinningLotto() {
-    const winningNumbers = await InputView.readWinningNumbers();
-    const bonusNumber = await InputView.readBonusNumber();
-    this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    this.winningLotto = await InputView.readWinningLotto();
   }
 
   proceedLottoResult() {
@@ -32,7 +27,6 @@ class LottoController {
 
   async proceedRestartCommand() {
     const restartCommand = await InputView.readRestartCommand();
-    Validation.validateRestartCommand(restartCommand);
 
     if (restartCommand === 'y') {
       return true;
