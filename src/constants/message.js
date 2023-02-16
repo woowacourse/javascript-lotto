@@ -14,6 +14,7 @@ const ERROR_MESSAGE = Object.freeze({
   invalidLottoNumberLength: `[ERROR] 로또 번호는 ${LOTTO_CONDITION.lottoDigits}개여야 합니다.`,
   invalidLottoNumberRange: `[ERROR] 로또 번호의 범위는 ${LOTTO_CONDITION.lottoNumberMinRange} ~ ${LOTTO_CONDITION.lottoNumberMaxRange} 이여야 합니다.`,
   duplicateLottoNumber: '[ERROR] 로또 번호와 중복된 숫자입니다.',
+  invalidRestartCommand: '[ERROR] 재시작 커맨드는 Y 또는 N 입니다.',
 });
 
 export { REQUEST_MESSAGE, ERROR_MESSAGE };

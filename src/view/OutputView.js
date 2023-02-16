@@ -35,6 +35,10 @@ const OutputView = {
 
     console.log(templates.join('\n'));
   },
+
+  printYieldRatio(yieldRatio) {
+    console.log(`총 수익률은 ${yieldRatio.toLocaleString(new Intl.NumberFormat('KRW'))}% 입니다.`);
+  },
 };
 
 export default OutputView;

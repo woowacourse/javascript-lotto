@@ -2,7 +2,8 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Validation from './Vaildation.js';
 import LottoGame from './LottoGame.js';
-import { LOTTO_CONDITION } from '../constants/condition.js';
+import Console from '../utils/Console.js';
+import { LOTTO_CONDITION, RESTART_COMMAND } from '../constants/condition.js';
 
 export default class LottoGameController {
   #lottoGame;
@@ -14,6 +15,7 @@ export default class LottoGameController {
   async play() {
     await this.#createLotto();
     await this.#compareLotto();
+    await this.#processRestart();
   }
 
   async #createLotto() {
@@ -41,6 +43,18 @@ export default class LottoGameController {
     const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
 
     OutputView.printStatistics(statistics);
+    OutputView.printYieldRatio(yieldRatio);
+  }
+
+  async #processRestart() {
+    const command = await this.#requestRestartCommand();
+
+    if (command === RESTART_COMMAND.quit) {
+      Console.close();
+      return;
+    }
+
+    this.play();
   }
 
   async #requestPurchaseAmount() {
@@ -86,6 +100,20 @@ export default class LottoGameController {
       OutputView.printErrorMessage(message);
 
       return this.#requestBonusNumber(winningNumbers);
+    }
+  }
+
+  async #requestRestartCommand() {
+    const command = await InputView.readRestartCommand();
+
+    try {
+      Validation.validateRestartCommand(command);
+
+      return command;
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+
+      return this.#requestRestartCommand();
     }
   }
 }
