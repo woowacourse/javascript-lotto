@@ -3,14 +3,13 @@ const Money = require('../model/Money');
 const Winning = require('../model/Winning');
 const inputHandler = require('../../view/inputView');
 const outputView = require('../../view/outputView');
-const { pickRandomNumberInRange } = require('../../utils');
+const { pickRandomNumberInRange, errorHandler } = require('../../utils');
 const Console = require('../../utils/Console');
 const {
   MAGIC_NUMBER,
   RANK_INFORMATIONS,
   MAGIC_LITERAL,
   ERROR_MESSAGE,
-  RANK_TEMPLATE,
 } = require('../../constant');
 
 class LottoMachine {
@@ -57,13 +56,14 @@ class LottoMachine {
   #afterReadMoney = (input) => {
     try {
       this.#machineInput.money = new Money(input);
-      outputView.printLottoCount(this.#machineInput.money.getAmount());
+      outputView.printLottoCount(
+        this.#machineInput.money.getAmount() / MAGIC_NUMBER.moneyUnit
+      );
       this.#generateLottos(this.#machineInput.money.getAmount());
       this.#showLottos();
       this.readWinningNumbers();
     } catch (error) {
-      console.log(error.message);
-      this.readMoney();
+      errorHandler(error, () => this.readMoney());
     }
   };
 
@@ -76,8 +76,7 @@ class LottoMachine {
       this.#machineInput.winning.setWinningNumbers(winningNumbers);
       this.readBonusNumber();
     } catch (error) {
-      console.log(error.message);
-      this.readWinningNumbers();
+      errorHandler(error, () => this.readWinningNumbers());
     }
   };
 
@@ -90,8 +89,7 @@ class LottoMachine {
       this.#showResult(benefit, ranks);
       this.readRetryOption();
     } catch (error) {
-      console.log(error.message);
-      this.readBonusNumber();
+      errorHandler(error, () => this.readBonusNumber());
     }
   };
 
@@ -99,8 +97,7 @@ class LottoMachine {
     try {
       this.#checkRetryOption(input);
     } catch (error) {
-      console.log(error.message);
-      this.readRetryOption();
+      errorHandler(error, () => this.readRetryOption());
     }
   };
 
@@ -133,6 +130,8 @@ class LottoMachine {
   }
 
   #getCollectedRanks() {
+    const RANK_TEMPLATE = [0, 0, 0, 0, 0];
+
     const ranks = this.#lottos.reduce((accumulator, lotto) => {
       return this.#increaseRank(lotto, accumulator);
     }, RANK_TEMPLATE);
