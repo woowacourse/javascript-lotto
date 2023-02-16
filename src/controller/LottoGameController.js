@@ -15,7 +15,7 @@ class LottoGameController {
   #handlePurchaseAmount() {
     InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT, (input) => {
       try {
-        Validation.checkPurchaseAmount(input);
+        Validation.testPurchaseAmount(input);
         const PURCHASE_COUNT = Number(input) / StaticValue.PURCHASE_AMOUNT_UNIT;
         OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
         this.#handleUserLottos(PURCHASE_COUNT);
@@ -39,7 +39,7 @@ class LottoGameController {
       const WINNING_NUMBERS = input.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
       try {
-        Validation.checkLottoNumbers(WINNING_NUMBERS);
+        Validation.testLottoNumbers(WINNING_NUMBERS);
         this.#handleBonusNumber(WINNING_NUMBERS);
       } catch (error) {
         this.#handleError(error.message, this.#handleWinningNumbers.bind(this));
@@ -51,7 +51,7 @@ class LottoGameController {
     InputView.readUserInput(ConsoleMessage.BONUS_NUMBER, (input) => {
       const BONUS_NUMBER = Number(input);
       try {
-        Validation.checkBonusNumber(winningNumbers, BONUS_NUMBER);
+        Validation.testBonusNumber(winningNumbers, BONUS_NUMBER);
         this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
         this.#handleGameResult();
       } catch (error) {
@@ -71,7 +71,7 @@ class LottoGameController {
       const REPLY = input.toLowerCase().trim();
 
       try {
-        Validation.checkRestart(REPLY);
+        Validation.testRestart(REPLY);
         this.#handleRestartReply(REPLY);
       } catch (error) {
         this.#handleError(error.message, this.#handleRestart);
