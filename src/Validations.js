@@ -1,6 +1,6 @@
 const Validations = {
-  isBuyMoneyNumber(buyMoney) {
-    return isNaN(buyMoney) ? false : true;
+  isNumber(input) {
+    return isNaN(input) ? false : true;
   },
 
   isDevidedByThousand(buyMoney) {
