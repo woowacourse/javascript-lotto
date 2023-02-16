@@ -1,7 +1,8 @@
+import { COMMAND, LOTTO } from "../constants";
+
 const InputValidator = {
   checkNaturalNumber(input) {
     const regExp = /^[0-9]+$/g;
-    console.log(input.match(regExp));
     if (!input.match(regExp)) {
       throw new Error('입력값이 자연수가 아닙니다.');
     }
@@ -13,8 +14,8 @@ const InputValidator = {
   },
   checkLottoNumber(number) {
     this.checkNaturalNumber(number);
-    if (number < 1 || number > 45) {
-      throw new Error('입력값이 1~45범위의 숫자가 아닙니다.');
+    if (number < LOTTO.min || number > LOTTO.max) {
+      throw new Error(`입력값이 ${LOTTO.min}~${LOTTO.max}범위의 숫자가 아닙니다.`);
     }
   },
   checkDuplicatedNumbers(numbers) {
@@ -23,8 +24,8 @@ const InputValidator = {
     }
   },
   checkRetryCommand(input) {
-    if (!(input === 'y' || input === 'n')) {
-      throw new Error('입력값이 y 혹은 n이어야 합니다.');
+    if (!(input === COMMAND.restart || input === COMMAND.quit)) {
+      throw new Error(`입력값이 ${COMMAND.restart} 혹은 ${COMMAND.quit}이어야 합니다.`);
     }
   }
 };

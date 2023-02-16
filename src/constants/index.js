@@ -12,3 +12,8 @@ export const RANKING = {
   second: 2,
   first: 1,
 };
+
+export const COMMAND = {
+  restart: 'y',
+  quit: 'n',
+};
