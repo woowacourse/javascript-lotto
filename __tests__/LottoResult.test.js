@@ -19,7 +19,8 @@ describe('LottoResult 클래스에 대한 테스트', () => {
 
       // when
       const lottoResult = new LottoResult(winningNumbers, bonusNumber);
-      const rewardMoney = lottoResult.exchangeLottoIntoMoney(lotto);
+      const reward = lottoResult.findReward(lotto);
+      const rewardMoney = reward?.getMoney() ?? 0;
 
       // then
       expect(rewardMoney).toBe(expectedRewardMoney);
