@@ -1,6 +1,6 @@
 const ArrayHandler = {
   getMatchCount(numbers, targetNumbers) {
-    return numbers.filter((number) => targetNumbers.includes(number)).length;
+    return numbers.filter(number => targetNumbers.includes(number)).length;
   },
 
   sortAscendingOrder(numbers) {

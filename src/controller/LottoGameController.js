@@ -15,7 +15,7 @@ const LottoGameController = {
   async init() {
     this.props.price = await InputView.readLottoPrice();
     const lottoGame = new LottoGame(this.props.price);
-    // TODO 로또 출력
+    OutputView.printLottoNumbersList(lottoGame.getLottoNumbersList());
     this.props.luckyNumbers = await InputView.readLuckyNumbers();
     this.props.bonusNumber = await InputView.readBonusNumber();
   },
