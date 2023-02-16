@@ -22,7 +22,10 @@ const outputView = {
 6개 일치 (2,000,000,000원) - ${winnings[4]}개`
     );
   },
+
+  printEarningsRate(profit) {
+    Console.print(`총 수익률은 ${profit}%입니다.`);
+  },
 };
 
-outputView.printWinningHistory([1, 0, 0, 0, 0]);
 export default outputView;
