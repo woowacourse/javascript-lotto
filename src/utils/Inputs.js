@@ -1,11 +1,14 @@
 import { QUERY } from '../constants/message.js';
+import Validator from '../validator/index.js';
 import Console from './Console.js';
 
 const Inputs = {
-  async readAmount() {
+  async readAmount({ onError } = { onError: null }) {
     const amount = await Console.readLine(QUERY.AMOUNT);
 
-    return amount;
+    return await Validator.Inputs.amount(amount, {
+      onError: onError ?? this.readAmount,
+    });
   },
 
   async readWinningNumbers() {
