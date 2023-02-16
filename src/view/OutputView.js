@@ -26,6 +26,10 @@ const OutputView = {
       );
     });
   },
+
+  printYieldRate(yieldRate) {
+    Console.print(PRINT_MESSAGE.YIELD_RATE(yieldRate));
+  },
 };
 
 export default OutputView;

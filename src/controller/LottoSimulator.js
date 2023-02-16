@@ -91,10 +91,6 @@ class LottoSimulator {
     }
   }
 
-  printStatistics() {
-    OutputView.printWinningStatistics(this.calculateWinningResult());
-  }
-
   calculateWinningResult() {
     const winningResult = {};
 
@@ -104,6 +100,13 @@ class LottoSimulator {
       if (rank in winningResult) winningResult[rank] += 1;
     });
     return winningResult;
+  }
+
+  printStatistics() {
+    OutputView.printWinningStatistics(this.calculateWinningResult());
+    OutputView.printYieldRate(
+      LottoUtils.calculateYieldRate(this.calculateWinningResult(), this.#budget)
+    );
   }
 
   reset() {
