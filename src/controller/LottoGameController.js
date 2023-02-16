@@ -5,6 +5,7 @@ const WinningNumbers = require('../domain/model/WinningNumbers');
 const exception = require('../utils/exception');
 const Console = require('../view/Console');
 const inputView = require('../view/inputView');
+const outputView = require('../view/outputView');
 
 class LottoGameController {
   #lottos;
@@ -21,13 +22,21 @@ class LottoGameController {
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {
       try {
-        const lottoCount = this.calcalateLottoCount(purchasePriceInput);
+        const lottoCount = this.calculateLottoCount(purchasePriceInput);
         this.#lottos = new Lottos(lottoCount);
+        this.showPurchasedLottos();
       } catch (error) {
         Console.print(error.message);
         this.inputPurchasePrice();
       }
     });
+  }
+
+  showPurchasedLottos() {
+    outputView.printLottoCount(this.#lottos.getLottos().length);
+    outputView.printLottoNumbers(this.#lottos.getLottos());
+
+    this.inputWinningNumbers();
   }
 
   inputWinningNumbers() {
@@ -49,11 +58,24 @@ class LottoGameController {
           this.#numbers.winningNumbers.getNumbers(),
           bonusNumberinput
         );
+        this.showResult();
       } catch (error) {
         Console.print(error.message);
         this.inputBonusNumber();
       }
     });
+  }
+
+  showResult() {
+    this.#lottos.calculateAllRanks(
+      this.#numbers.winningNumbers.getNumbers(),
+      this.#numbers.bonusNumber.getNumber()
+    );
+
+    outputView.printStatistics(this.#lottos.getAllRanks());
+    outputView.printProfitRate(this.#lottos.getProfitRate());
+
+    this.inputRestartCommand();
   }
 
   inputRestartCommand() {
@@ -77,7 +99,7 @@ class LottoGameController {
     this.playGame();
   }
 
-  calcalateLottoCount(priceInput) {
+  calculateLottoCount(priceInput) {
     exception.checkPurchasePrice(priceInput);
 
     const price = Number(priceInput);
@@ -88,4 +110,4 @@ class LottoGameController {
 
 module.exports = LottoGameController;
 
-new LottoGameController().inputWinningNumbers();
+new LottoGameController().playGame();
