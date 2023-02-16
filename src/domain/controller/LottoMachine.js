@@ -89,6 +89,25 @@ class LottoMachine {
     }
   };
 
+  #afterReadRetryOption = (input) => {
+    try {
+      if (input === MAGIC_LITERAL.retry) return this.retry();
+      if (input === MAGIC_LITERAL.quit) return this.quit();
+      throw new Error(ERROR_MESSAGE.retryOption);
+    } catch (error) {
+      console.log(error.message);
+      this.readRetryOption();
+    }
+  };
+
+  generateLottos(amount) {
+    const lottoCount = amount / 1000;
+
+    this.#lottos = Array.from({ length: lottoCount }).map(() =>
+      this.makeLottoNumbers()
+    );
+  }
+
   makeLottoNumbers() {
     const lottoNumbers = [];
 
