@@ -5,14 +5,6 @@
 
 import { LottoGame } from "./domain/LottoGame";
 
-export const getNumberOfMatchingLottoNumbers = (lottoTicket, winningLottoNumbers) => {
-  return (
-    lottoTicket.length +
-    winningLottoNumbers.length -
-    new Set([...lottoTicket, ...winningLottoNumbers]).size
-  );
-};
-
 export const getRateOfReturn = (totalPrize, purchaseAmount) => {
   return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
 };

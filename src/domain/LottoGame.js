@@ -10,12 +10,20 @@ import {
 export class LottoGame {
   async play() {
     const purchaseAmount = await this.readPurchaseAmount();
+
     const numberOfPurchasedLottoTickets = purchaseAmount / 1000;
     const lottoTickets = this.makeLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printLottoTickets(lottoTickets);
+
     const winningLottoNumbers = await this.readWinningLottoNumbers();
     const bonusNumber = await this.readBonusNumber(winningLottoNumbers);
+    const placesOfLottoTickets = this.getPlacesOfLottoTickets(
+      lottoTickets,
+      winningLottoNumbers,
+      bonusNumber
+    );
+    outputView.printPlacesOfLottoTickets(placesOfLottoTickets);
   }
 
   async readPurchaseAmount() {
@@ -38,6 +46,42 @@ export class LottoGame {
     return Number(bonusNumber);
   }
 
+  getPlacesOfLottoTickets(lottoTickets, winningLottoNumbers, bonusNumber) {
+    const placesOfLottoTickets = {
+      FIFTH_PLACE: 0,
+      FOURTH_PLACE: 0,
+      THIRD_PLACE: 0,
+      SECOND_PLACE: 0,
+      FIRST_PLACE: 0,
+    };
+
+    lottoTickets.forEach((lottoTicket) => {
+      const numberOfMatchingLottoNumbers = this.getNumberOfMatchingLottoNumbers(
+        lottoTicket,
+        winningLottoNumbers
+      );
+
+      switch (numberOfMatchingLottoNumbers) {
+        case 6:
+          placesOfLottoTickets.FIRST_PLACE += 1;
+          break;
+        case 5:
+          lottoTicket.includes(bonusNumber)
+            ? (placesOfLottoTickets.SECOND_PLACE += 1)
+            : (placesOfLottoTickets.THIRD_PLACE += 1);
+          break;
+        case 4:
+          placesOfLottoTickets.FOURTH_PLACE += 1;
+          break;
+        case 3:
+          placesOfLottoTickets.FOURTH_PLACE += 1;
+          break;
+      }
+    });
+
+    return placesOfLottoTickets;
+  }
+
   makeLottoTickets(numberOfTickets) {
     const lottoTickets = Array.from({ length: numberOfTickets }, this.makeLottoTicket);
 
@@ -52,5 +96,13 @@ export class LottoGame {
     }
 
     return [...lottoTicket];
+  }
+
+  getNumberOfMatchingLottoNumbers(lottoTicket, winningLottoNumbers) {
+    return (
+      lottoTicket.length +
+      winningLottoNumbers.length -
+      new Set([...lottoTicket, ...winningLottoNumbers]).size
+    );
   }
 }
