@@ -7,10 +7,6 @@ import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
 
 class LottoController {
-  #winningNumber;
-
-  #bonusNumber;
-
   async #handleRead(read, validation) {
     try {
       const value = await read();
@@ -29,18 +25,21 @@ class LottoController {
       OutputView.printLotto(lotto.getNumbers());
     });
     OutputView.printNewLine();
+
     return lottos;
   }
 
   async #determineWinningNumber() {
-    this.#winningNumber = (await this.#handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
+    const main = (await this.#handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
     OutputView.printNewLine();
-    this.#bonusNumber = await this.#handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
+    const bonus = await this.#handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
+
+    return { main, bonus };
   }
 
-  #showResult(lottos, money) {
-    const matchResult = this.#judgeResult(lottos);
-    const benefit = this.#calculateBenefit(money, matchResult);
+  #showResult(lottos, winningNumber) {
+    const matchResult = this.#judgeResult(lottos, winningNumber);
+    const benefit = this.#calculateBenefit(lottos.length * 1000, matchResult);
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
   }
@@ -48,8 +47,8 @@ class LottoController {
   async play() {
     const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
     const lottos = this.#purchase(money);
-    await this.#determineWinningNumber();
-    this.#showResult(lottos, money);
+    const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
+    this.#showResult(lottos, winningNumber);
     const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
 
     return command === COMMAND.restart ? this.play() : Console.close();
@@ -61,13 +60,15 @@ class LottoController {
       acc += number * LOTTO.prize[index];
       return acc;
     }, 0);
+
     return income / money * 100;
   }
 
-  #judgeResult(lottos) {
+  #judgeResult(lottos, winningNumber) {
     const rankingCount = Array(LOTTO.prize.length).fill(0);
+
     return lottos.reduce((acc, lotto) => {
-      const ranking = lotto.calculateRanking(this.#winningNumber, this.#bonusNumber);
+      const ranking = lotto.calculateRanking(winningNumber);
       acc[ranking - 1] += 1;
       return acc;
     }, rankingCount);

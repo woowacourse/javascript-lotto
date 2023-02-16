@@ -15,8 +15,8 @@ const LottoValidator = {
   checkBonusNumber(bonusNumber) {
     InputValidator.checkLottoNumber(bonusNumber);
   },
-  checkLottoDuplicate({ winningNumber, bonusNumber }) {
-    InputValidator.checkDuplicatedNumbers(winningNumber.concat(bonusNumber));
+  checkLottoDuplicate({ main, bonus }) {
+    InputValidator.checkDuplicatedNumbers(main.concat(bonus));
   },
   checkReadRetryCommand(command) {
     InputValidator.checkReadRetryCommand(command);
