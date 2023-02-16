@@ -66,4 +66,16 @@ describe('validator 테스트', () => {
       validator.checkArrayLength(array, length);
     }).toThrow();
   });
+
+  test.each([
+    ['y ', ['y', 'n']],
+    [' y', ['y', 'n']],
+    ['yy', ['y', 'n']],
+    ['nn', ['y', 'n']],
+    ['yn', ['y', 'n']],
+  ])('%s가 %p에 없으면 에러를 던진다.', (value, array) => {
+    expect(() => {
+      validator.checkIncludes(value, array);
+    }).toThrow();
+  });
 });
