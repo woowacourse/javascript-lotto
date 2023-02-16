@@ -14,7 +14,7 @@ class LottoCalculator {
   }
 
   calculateRank() {
-    this.matchStates.reduce((ranks, currentState) => {
+    return this.matchStates.reduce((ranks, currentState) => {
       const CURRENT_RANK = Rank[currentState];
       ranks[CURRENT_RANK] += 1;
 
