@@ -12,7 +12,13 @@ const InputView = {
     const winningNumber = await Console.readLine(messages.INPUT.WINNING_NUMBER);
 
     return winningNumber;
-  }
+  },
+
+  async readBonusNumber() {
+    const bonusNumber = await Console.readLine(messages.INPUT.BONUS_NUMBER);
+
+    return bonusNumber;
+  },
 };
 
 export default InputView;
