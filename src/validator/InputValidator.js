@@ -17,6 +17,15 @@ const InputValidator = {
       throw new Error(messages.ERROR.THOUSANDS_WON);
     }
   },
+
+  validateWinningNumberInput(winningNumber) {
+    winningNumber.split(',').forEach(number => {
+      this.validateWithCondition(ValidatorUtils.isPositiveInteger(+number), messages.ERROR.VALID_SIX_NUMBER);
+      this.validateWithCondition(ValidatorUtils.isInRange(+number), messages.ERROR.VALID_SIX_NUMBER);
+    });
+
+    this.validateWithCondition(ValidatorUtils.hasNoBlank(winningNumber.split('')), messages.ERROR.HAS_BLANK);
+  },
 };
 
 export default InputValidator;
