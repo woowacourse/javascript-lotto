@@ -7,11 +7,9 @@ const Console = {
   async read(content) {
     return await rl.question(content);
   },
-
   print(outputLog) {
     console.log(outputLog);
   },
-
   close() {
     rl.close();
   },
