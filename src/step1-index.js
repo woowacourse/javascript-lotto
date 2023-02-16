@@ -1,13 +1,15 @@
 import Component from './Component.js';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';
+import Statistics from './view/components/Statistics.js';
 import WinNumbers from './view/components/WinNumbers.js';
 
 class App extends Component {
   async play() {
     await this.render(new Amount({ setter: this.setState.bind(this) }));
-    await this.render(new LottoList({ total: this.state.total }));
+    await this.render(new LottoList({ lottoList: this.state.lottoList }));
     await this.render(new WinNumbers({ setter: this.setState.bind(this) }));
+    await this.render(new Statistics({ lottoList: this.state.lottoList }));
   }
 
   async render(component) {
@@ -16,7 +18,7 @@ class App extends Component {
   }
 
   setUp() {
-    this.state = { total: null };
+    this.state = { total: null, lottoList: [] };
   }
 }
 

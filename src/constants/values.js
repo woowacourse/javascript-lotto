@@ -1,3 +1,4 @@
+export const AWARDS_ORDER = [3, 4, 5, 'BONUS', 6];
 export const INITIAL_EARNING = 0;
 export const PRICE = 1000;
 export const PRIZE = Object.freeze({
