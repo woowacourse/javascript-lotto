@@ -1,4 +1,4 @@
-import { ConsoleMessage, StaticValue } from '../constants/Constants.js';
+import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
 import Console from '../utils/Console.js';
 
 const OutputView = {

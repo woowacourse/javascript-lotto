@@ -1,4 +1,4 @@
-import { ErrorMessage, StaticValue } from '../src/constants/Constants.js';
+import { StaticValue, ErrorMessage } from '../src/constants/Constants.js';
 import Lotto from '../src/domain/Lotto.js';
 
 describe('사용자 로또 클래스 테스트', () => {
@@ -83,7 +83,7 @@ describe('사용자 로또 클래스 테스트', () => {
 
     USER_LOTTOS.forEach((userLotto, index) => {
       const lotto = new Lotto(userLotto);
-      
+
       expect(lotto.getMatchState(GAME_LOTTO)).toBe(MATCH_NUMBER[index]);
     });
   });

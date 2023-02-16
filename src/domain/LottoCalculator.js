@@ -1,4 +1,4 @@
-import { Prize, Rank, StaticValue } from '../constants/Constants.js';
+import { StaticValue, Rank, Prize } from '../constants/Constants.js';
 
 class LottoCalculator {
   constructor(matchStates) {

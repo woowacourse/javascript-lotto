@@ -1,8 +1,8 @@
 /* eslint-disable lines-between-class-members */
+import { StaticValue, MatchCount } from '../constants/Constants.js';
 import Lotto from './Lotto.js';
-import generateRandomNumbersInRange from '../utils/RandomNumberGenerator.js';
 import LottoCalculator from './LottoCalculator.js';
-import { MatchCount, StaticValue } from '../constants/Constants.js';
+import generateRandomNumbersInRange from '../utils/RandomNumberGenerator.js';
 
 class LottoGame {
   #userLottos;

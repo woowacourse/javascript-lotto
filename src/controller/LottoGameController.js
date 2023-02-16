@@ -1,9 +1,9 @@
-import { ConsoleMessage, StaticValue } from '../constants/Constants.js';
+import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Console from '../utils/Console.js';
-import Validation from '../utils/Validation.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
+import Validation from '../utils/Validation.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();

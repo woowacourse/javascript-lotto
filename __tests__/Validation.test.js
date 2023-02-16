@@ -1,4 +1,4 @@
-import { ErrorMessage, StaticValue } from '../src/constants/Constants.js';
+import { StaticValue, ErrorMessage } from '../src/constants/Constants.js';
 import Validation from '../src/utils/Validation.js';
 
 describe('Validation 테스트', () => {
