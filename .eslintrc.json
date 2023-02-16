@@ -1,11 +1,19 @@
 {
-  "rules": {},
+  "rules": {
+    "max-lines-per-function": ["error", 10],
+    "max-depth": ["error", 1],
+    "semi": [2, "always"],
+    "eol-last": ["error", "always"],
+    "prefer-const": "error",
+    "max-params": ["error", 2]
+  },
   "env": {
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["eslint:recommended"]
 }
