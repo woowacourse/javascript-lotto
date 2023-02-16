@@ -5,6 +5,7 @@ import Lotto from "./Lotto.js";
 import Lottos from "./Lottos.js";
 import Random from "./Random.js";
 import OutputView from "./OutputView.js";
+import { Messages, Error } from "./Config.js";
 
 class App {
   #winningLotto;
@@ -25,7 +26,7 @@ class App {
   }
 
   async getBuyMoney() {
-    const buyMoney = await InputView.inputMoney("구입금액을 입력해 주세요.");
+    const buyMoney = await InputView.inputMoney(Messages.INPUT_MONEY);
     try {
       this.validateBuyMoney(buyMoney);
       this.createLotto(parseInt(buyMoney / 1000));
@@ -50,13 +51,13 @@ class App {
 
   validateBuyMoney(buyMoney) {
     if (!Validations.isNumber(buyMoney)) {
-      throw new Error("숫자만 입력할 수 있습니다.");
+      throw new Error(Error.NUMBER_TYPE);
     }
     if (!Validations.isDevidedByThousand(buyMoney)) {
-      throw new Error("1000원 단위로 입력해주세요.");
+      throw new Error(Error.MONEY_UNIT);
     }
     if (!Validations.isPositiveInteger(buyMoney)) {
-      throw new Error("구매 금액은 양의 정수여야 합니다.");
+      throw new Error(Error.POSITIVE_INTEGER);
     }
   }
 
@@ -152,7 +153,8 @@ class App {
 
   retryLottoGame(retryInput) {
     if (retryInput === "y" || retryInput === "Y") {
-      this.play();
+      const app = new App();
+      app.play();
     }
     if (retryInput === "n" || retryInput === "N") {
       Console.close();
