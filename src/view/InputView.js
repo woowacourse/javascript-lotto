@@ -11,7 +11,9 @@ const InputView = {
   async readLuckyNumbers() {
     const luckyNumbers = await Console.readline(QUERY.LUCKY_NUMBERS);
 
-    return luckyNumbers;
+    return luckyNumbers
+      .split(',')
+      .map(luckyNumber => parseInt(luckyNumber, 10));
   },
 
   async readBonusNumber() {
