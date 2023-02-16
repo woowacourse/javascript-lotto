@@ -21,7 +21,16 @@ const Validations = {
 
   isCorrectRetryInput(retryInput) {
     return retryInput === "y" || retryInput === "Y" || retryInput === "n" || retryInput === "N"
+  },
+
+  isCorrectLength(lottoNumbers) {
+    return lottoNumbers.length === 6
+  },
+
+  isDuplicatedNumbers(randomNumbers) {
+    return new Set(randomNumbers).size === randomNumbers.length
   }
+
 };
 
 export default Validations;

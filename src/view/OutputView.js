@@ -1,4 +1,4 @@
-import Console from "../Console";
+import Console from "../util/Console";
 
 const moneyBoard = {
     "3개 일치": '5,000',
@@ -26,7 +26,7 @@ const OutputView = {
     },
   
     printLottoResults(lottos) {
-        for (const score in lottos.getLottoRanking()) {
+      for (const score in lottos.getLottoRanking()) {
             Console.print(`${score} (${moneyBoard[score]}원) - ${lottos.getLottoRanking()[score]}개`)
         }
     },

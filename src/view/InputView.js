@@ -1,4 +1,4 @@
-import Console from "../Console.js";
+import Console from "../util/Console.js";
 
 const InputView = {
   async inputMoney(query) {
