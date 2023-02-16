@@ -1,4 +1,3 @@
-import Lotto from '../domain/Lotto.js';
 import { RandomNumberGenerator } from '../utils/RandomNumberGenerator.js';
 import { LOTTO_CONSTANT, WINNING_PRIZE } from '../data/constants.js';
 
