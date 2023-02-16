@@ -38,10 +38,10 @@
      - 당첨 번호 6개를 가진다. (winningNumbers)
      - 보너스 번호를 가진다. (bonusNumber)
    - method
-     - 당첨 번호 6개를 설정한다. (setWinningNumbers())
-     - 보너스 번호를 설정한다. (setBonusNumbers())
      - 당첨 번호 6개를 반환한다. (getWinningNumbers())
      - 보너스 번호를 반환한다. (getBonusNumber())
+     - 당첨 번호 6개를 설정한다. (setWinningNumbers())
+     - 보너스 번호를 설정한다. (setBonusNumbers())
      - 당첨 번호에서 중복된 당첨 번호가 있는지, 로또 숫자 범위의 값인지, 정수인지 확인한다. (validateWinningNumbers())
      - 보너스 번호가 당첨 번호와 중복인지, 로또 숫자 범위의 값인지, 양수인 정수인지 확인한다. (validateBonusNumber())
 
@@ -50,8 +50,8 @@
    - field
      - 수익률을 가진다. (rate)
    - method
-     - 수익률을 반환한다. getRate()
-     - 수익률을 계산한다. calculateRate()
+     - 수익률을 반환한다. (getRate())
+     - 수익률을 계산한다. (calculateRate())
 
 4. Money
 
@@ -68,8 +68,7 @@
    - field
 
      - lottos
-     - money
-     - winning
+     - machineInput
 
    - method
 
@@ -78,14 +77,21 @@
      - 로또 당첨 번호를 입력 받는다. (readWinningNumbers())
      - 로또 보너스 번호를 입력 받는다. (readBonusNumber())
      - 사용자에게 게임을 더 진행할 지 입력을 받는다. (readRetryOption())
+
+     - 재시작하는 경우를 확인한다. (checkRetryOption())
      - 구매 금액만큼 로또들을 생성한다. (generateLottos())
-     - 랜덤으로 6개의 숫자를 생성한다. (makeLottoNumbers())
+     - 보너스 번호가 맞는지 반환한다. (isBonus())
+
+     - 중복되지 않는 로또 번호 6개를 구성한 뒤 반환한다. (getComposedLottoNumbers())
+     - 당첨된 로또들의 등수를 수집한 뒤 반환한다. (getCollectedRanks())
+     - 당첨된 로또의 등수를 증가시킨다. (getIncreasedRanks())
+     - 로또와 당첨 번호 사이의 일치하는 수를 반환한다. (getMatchedCount())
+     - 당첨된 로또의 등수를 반환한다. (getRankIndex())
+
      - 로또 번호들을 보여준다. (showLottos())
      - 당첨 통계를 보여준다. (showResult())
      - 구매한 로또들에서 당첨된 로또의 등수가 몇개인지 계산한다. (calculateRanks())
-     - 보너스 번호가 맞는지 확인한다. (isBonus())
-     - 로또가 몇등인지 반환한다. (getRank())
-     - 재시작하는 경우를 확인한다. (checkRetryOption())
+
      - 재시작하였을 경우 구매 금액부터 다시 입력을 받는다. (retry())
      - 게임 종료의 경우 프로그램을 종료한다. (quit())
 
@@ -96,6 +102,7 @@
    - 필요한 값을 입력받는다. (inputHandler())
 
 2. outputView
+
    - 구매한 로또의 장수를 출력한다. (printLottoCount())
    - 로또의 번호를 출력한다. (printLotto())
    - 당첨 통계 제목을 출력한다. (printResultTitle())
@@ -124,7 +131,7 @@
 ## constant
 
 1. index.js
-   - 정규식 (REG_EXP)
    - 에러문구 (ERROR_MESSAGE)
    - 매직넘버 (MAGIC_NUMBER)
    - 매직리터럴 (MAGIC_LITERAL)
+   - 로또게임정보 (RANK_INFORMATIONS)
