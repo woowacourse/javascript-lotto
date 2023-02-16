@@ -70,7 +70,7 @@ test('getStatistics메서드', () => {
   expect(statistics).toEqual(expected);
 });
 
-test('getStatistics메서드', () => {
+test('getTotalPrizeMoney메서드', () => {
   const lottoGame = new LottoGame();
 
   const statistics = {
@@ -86,4 +86,18 @@ test('getStatistics메서드', () => {
   const expected = LOTTO_PRIZE_MONEY.fifthPrize + LOTTO_PRIZE_MONEY.fourthPrize;
 
   expect(totalPrizeMoney).toBe(expected);
+});
+
+test('getYieldRatio메서드는 수익률을 반환한다.', () => {
+  const lottoGame = new LottoGame();
+  const lottoNumbers = [1, 2, 3, 4, 5, 6];
+  lottoGame.makeLotto(lottoNumbers);
+
+  const totalPrizeMoney = 5000;
+
+  const yieldRatio = lottoGame.getYieldRatio(totalPrizeMoney);
+
+  const expected = 500;
+
+  expect(yieldRatio).toBe(expected);
 });
