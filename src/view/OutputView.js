@@ -19,6 +19,11 @@ const OutputView = {
   printProfitRate(profitRate) {
     Console.print(`총 수익률은 ${(profitRate * 100).toFixed(2)}%입니다.`);
   },
+
+  printExit() {
+    Console.print('게임이 종료되었습니다.');
+    Console.close();
+  },
 };
 
 export default OutputView;
