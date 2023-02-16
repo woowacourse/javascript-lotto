@@ -12,7 +12,12 @@ describe('LottoGame 클래스 테스트', () => {
     }
   );
 
-  expect(() => {
-    new LottoGame().validateCommand(input);
-  }).toThrow();
+  test.each([['t'], ['1'], [''], ['t    ']])(
+    '재시작 또는 종료 명령어가 아닌 경우 예외 처리',
+    (input) => {
+      expect(() => {
+        new LottoGame().validateCommand(input);
+      }).toThrow();
+    }
+  );
 });
