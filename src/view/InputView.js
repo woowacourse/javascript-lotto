@@ -1,8 +1,8 @@
 import Console from '../utils/Console.js';
 
 const InputView = {
-  readUserInput(question, callback) {
-    return Console.question(question, (input) => callback(input));
+  readUserInput(question) {
+    return Console.question(question);
   },
 };
 
