@@ -17,6 +17,7 @@
     "max-lines-per-function": ["error", 10],
     "comma-dangle": "off",
     "consistent-return": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "operator-linebreak": "off"
   }
 }
