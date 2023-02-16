@@ -38,7 +38,7 @@ class App {
 
   createLotto(lottoAmount) {
     for (let i = 0; i < lottoAmount; i++) {
-      const randomNumbers = this.getCorrectRandomNumbers()
+      const randomNumbers = this.getCorrectRandomNumbers();
       const lotto = new Lotto(randomNumbers);
       this.#lottoArray.push(lotto);
     }
@@ -46,16 +46,16 @@ class App {
 
   getCorrectRandomNumbers() {
     while (true) {
-      const randomNumbers = Random.getnerateRandomNumbers()
+      const randomNumbers = Random.getnerateRandomNumbers();
       if (Validations.isDuplicatedNumbers(randomNumbers)) {
-        return randomNumbers
+        return randomNumbers;
       }
     }
   }
 
   printLottos(lottoAmount) {
-    OutputView.printLottoAmount(lottoAmount)
-    OutputView.printLottos(this.#lottoArray)
+    OutputView.printLottoAmount(lottoAmount);
+    OutputView.printLottos(this.#lottoArray);
   }
 
   validateBuyMoney(buyMoney) {
@@ -91,6 +91,9 @@ class App {
   }
 
   validateWinningNumbers() {
+    if (!Validations.isCorrectLength(this.#winningLotto)) {
+      throw new Error("6개의 숫자를 입력해주세요.")
+    }
     for (let i = 0; i < this.#winningLotto.length; i++) {
       this.checkEachNumber(this.#winningLotto[i]);
     }
@@ -140,10 +143,10 @@ class App {
   }
 
   printResult(lottos) {
-    OutputView.printResultMessage()
-    OutputView.printLottoResults(lottos)
+    OutputView.printResultMessage();
+    OutputView.printLottoResults(lottos);
     lottos.calculateBenefit();
-    OutputView.printTotalBenefit(lottos)
+    OutputView.printTotalBenefit(lottos);
   }
 
   async getRetryInput() {

@@ -34,6 +34,12 @@ describe("당첨번호와 보너스번호 Validations 단위 테스트", () => {
 
     expect(Validations.isCorrectRange(input)).toBeFalsy();
   });
+
+  test("당첨로또의 길이를 판별하는 함수 테스트", () => {
+    const lottoNumbers = ["1","2","3"]
+
+    expect(Validations.isCorrectLength(lottoNumbers)).toBeFalsy();
+  });
 });
 
 describe("보너스 번호 Validations 단위 테스트", () => {
