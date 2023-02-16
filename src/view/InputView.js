@@ -8,7 +8,7 @@ const InputView = {
   },
 
   async readWinningNumber() {
-    const winningNumber = await Console.readLine(INPUT_MESSAGE.WINNUNG_NUMBER);
+    const winningNumber = await Console.readLine(INPUT_MESSAGE.WINNING_NUMBER);
     return winningNumber;
   },
 
