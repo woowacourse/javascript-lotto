@@ -6,7 +6,7 @@ import LottoResult from '../src/domain/LottoResult';
 const mockLottoFactory = (lottos) => {
   const remainLottos = [...lottos];
 
-  return new (class extends LottoFactory() {
+  return new (class extends LottoFactory {
     createRandomLotto() {
       return remainLottos.shift();
     }
