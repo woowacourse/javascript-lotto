@@ -11,12 +11,10 @@ const lottoGameCalculator = {
     return rankings.reduce((acc, ranking) => (acc += rewardMap[ranking]), 0);
   },
 
-  calculateRewardRate(lottePurchaseAmount, rankings) {
+  calculateRewardRate(purchaseAmount, rankings) {
     const reward = lottoGameCalculator.calculateReward(rankings);
 
-    return `${((reward / lottePurchaseAmount) * 100)
-      .toFixed(1)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%`;
+    return `${((reward / purchaseAmount) * 100).toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%`;
   },
 };
 

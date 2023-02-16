@@ -1,4 +1,4 @@
-import lottoCalculator from './domain/lottoGameCalculator.js';
+import lottoGameCalculator from './domain/lottoGameCalculator.js';
 import lottoGameValidator from './domain/lottoGameValidator.js';
 import Lotto from './domain/models/Lotto.js';
 import generateRandomNumber from './utils/generateRandomNumber.js';
@@ -25,8 +25,13 @@ class LottoGame {
     outputView.printNewLine();
     const winningNumbers = await this.readWinningNumbers();
     outputView.printNewLine();
-    const bonusNumber = await this.readBonusNumber();
+    const bonusNumber = await this.readBonusNumber(winningNumbers);
     outputView.printNewLine();
+    const rankings = this.makeRankings(winningNumbers, bonusNumber);
+    outputView.printStatistics(
+      rankings,
+      lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings)
+    );
   }
 
   buyLotto() {
@@ -37,6 +42,16 @@ class LottoGame {
     }
 
     return new Lotto(randomNumbers.sort((a, b) => a - b));
+  }
+
+  makeRankings(winningNumbers, bonusNumber) {
+    const rankings = [];
+    this.#lottos.forEach((lotto) => {
+      const matchCount = lotto.calculateMatchCount(winningNumbers);
+      if (matchCount >= 3) rankings.push(lotto.calculateRanking(matchCount, bonusNumber));
+    });
+
+    return rankings;
   }
 
   async readPurchaseAmount() {
@@ -61,14 +76,14 @@ class LottoGame {
     }
   }
 
-  async readBonusNumber() {
+  async readBonusNumber(winningNumbers) {
     const bonusNumber = await this.#io.read('> 보너스 번호를 입력해 주세요. ');
     try {
-      lottoGameValidator.checkBonusNumber(bonusNumber);
+      lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
       return Number(bonusNumber);
     } catch (error) {
       outputView.printErrorMessage(error);
-      return this.readBonusNumber();
+      return this.readBonusNumber(winningNumbers);
     }
   }
 }
