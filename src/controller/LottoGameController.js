@@ -24,8 +24,7 @@ const LottoGameController = {
   },
 
   execute() {
-    this.instance.lottoGame.execute();
-    this.instance.lottoGame.calculateAmountOfRank();
+    OutputView.printStatistics(this.instance.lottoGame.execute());
     this.instance.lottoGame.calculateProfit();
   },
 };

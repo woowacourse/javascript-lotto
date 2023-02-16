@@ -1,4 +1,6 @@
 import LottoMachine from '../domain/LottoMachine.js';
+import LOTTO from '../constant/lotto.js';
+import NumberHandler from '../util/numberHandler.js';
 
 class LottoGame {
   #lottos = [];
@@ -26,7 +28,20 @@ class LottoGame {
     return [...this.#amountOfRank];
   }
 
-  calculateProfit() {}
+  calculateTotalPrizeMoney() {
+    return LOTTO.PRIZE_MONEY.reduce((acc, curr, currIdx) => {
+      return acc + curr * this.#amountOfRank[currIdx];
+    }, 0);
+  }
+
+  calculateProfit() {
+    const totalPrizeMoney = this.calculateTotalPrizeMoney();
+    const totalBuyMoney = this.#lottos.length * LOTTO.PRICE;
+
+    return NumberHandler.roundOffNumber(
+      (totalPrizeMoney / totalBuyMoney) * 100
+    );
+  }
 }
 
 export default LottoGame;

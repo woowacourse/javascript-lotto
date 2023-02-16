@@ -9,6 +9,15 @@ const OutputView = {
     );
     Console.print('');
   },
+
+  printStatistics(amountOfRank) {
+    Console.print();
+    Console.print(MESSAGE.STATISTICS);
+    Console.print(MESSAGE.DIVISION_LINE);
+    MESSAGE.MATCH_TABLE.forEach((v, i) =>
+      Console.print(`${v}${amountOfRank[amountOfRank.length - i - 1]}개`)
+    );
+  },
 };
 
 export default OutputView;
