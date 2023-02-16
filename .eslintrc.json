@@ -21,7 +21,10 @@
     "functional/no-let": "error",
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
-    "max-lines-per-function": ["error", 10]
+    "max-lines-per-function": ["error", 10],
+
+    // 임의 규칙
+    "class-methods-use-this": "off"
   },
   "overrides": [
     {
