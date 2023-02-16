@@ -18,7 +18,7 @@ class Money {
       throw new Error(ERROR_MESSAGE.moneyRange);
     }
     if (!inputValidator.isNumber(amount)) {
-      throw new Error(ERROR_MESSAGE.moneyNumber);
+      throw new Error(ERROR_MESSAGE.number);
     }
     if (amount % MAGIC_NUMBER.moneyUnit !== 0) {
       throw new Error(ERROR_MESSAGE.moneyUnit);
