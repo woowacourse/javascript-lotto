@@ -6,6 +6,7 @@ import OutputView from '../view/OutputView.js';
 import Lotto from './Lotto.js';
 import lottoGenerator from './LottoGenerator.js';
 import InputValidator from '../utils/InputValidator.js';
+import Console from '../utils/Console.js';
 class LottoController {
 
   async handleReadMoney() {
@@ -16,7 +17,7 @@ class LottoController {
       return money;
     } catch (error) {
       OutputView.printError(error);
-      this.handleReadMoney();
+      return this.handleReadMoney();
     }
   }
 
@@ -30,7 +31,7 @@ class LottoController {
       return winningNumber;
     } catch (error) {
       OutputView.printError(error);
-      this.handleReadWinningNumber();
+      return this.handleReadWinningNumber();
     }
   }
 
@@ -42,7 +43,18 @@ class LottoController {
       return bonusNumber;
     } catch (error) {
       OutputView.printError(error);
-      this.handleReadBonusNumber();
+      return this.handleReadBonusNumber();
+    }
+  }
+
+  async handleRetryCommand() {
+    try {
+      const command = await InputView.readRetryCommand();
+      InputValidator.checkRetryCommand(command);
+      return command;
+    } catch (error) {
+      OutputView.printError(error);
+      return this.handleRetryCommand();
     }
   }
 
@@ -64,7 +76,11 @@ class LottoController {
     const benefit = this.calculateBenefit(money, matchResult);
 
     OutputView.printResult(matchResult, benefit);
+    const command = await this.handleRetryCommand();
+    return command === 'y' ? this.play() : Console.close();
   }
+
+
 
   calculateBenefit(money, rank) {
     const PRIZE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
