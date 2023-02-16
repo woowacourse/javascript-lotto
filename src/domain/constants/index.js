@@ -1,3 +1,5 @@
+const ALL_LOTTO_NUMBERS = Array.from({ length: 45 }, (_, idx) => idx + 1);
+
 const RANK = {
   FIRST: 1,
   SECOND: 2,
@@ -35,6 +37,7 @@ const LOTTO_PRIZE = [
 ];
 
 module.exports = {
+  ALL_LOTTO_NUMBERS,
   RANK,
   LOTTO_PRIZE,
 };
