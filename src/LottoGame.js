@@ -1,10 +1,33 @@
-// makeLottoNumbers() {
-//   const lottoNumbers = [];
+import lottoCalculator from './domain/lottoGameCalculator.js';
+import lottoGameValidator from './domain/lottoGameValidator.js';
+import Lotto from './domain/models/Lotto.js';
+import generateRandomNumber from './utils/generateRandomNumber.js';
+import Interface from './view/Interface.js';
+import outputView from './view/outputView.js';
 
-//   while (lottoNumbers.length < LOTTO.numbersLength) {
-//     const number = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
-//     if (!lottoNumbers.includes(number)) lottoNumbers.push(number);
-//   }
+class LottoGame {
+  #lottos;
+  #io;
 
-//   return lottoNumbers.sort((a, b) => a - b);
-// },
+  constructor() {
+    this.#lottos = [];
+    this.#io = new Interface();
+  }
+
+  async play() {
+    const purchaseAmount = await this.readPurchaseAmount();
+  }
+
+  async readPurchaseAmount() {
+    const pruchaseAmount = await this.#io.read('> 구입금액을 입력해 주세요.');
+    try {
+      lottoGameValidator.checkPruchaseAmount(pruchaseAmount);
+      return Number(pruchaseAmount);
+    } catch (error) {
+      outputView.printErrorMessage(error);
+      return this.readPurchaseAmount();
+    }
+  }
+}
+
+export default LottoGame;
