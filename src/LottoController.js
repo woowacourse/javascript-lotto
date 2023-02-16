@@ -1,3 +1,4 @@
+const { OUTPUT_MESSAGE_METHOD } = require('./constant/Message');
 const Comparer = require('./domain/Comparer');
 const LottoMachine = require('./domain/LottoMachine');
 const ProfitCalculator = require('./domain/ProfitCaculator');
@@ -14,6 +15,8 @@ class LottoController {
   #bonusNumber;
 
   async start() {
+    console.log(OUTPUT_MESSAGE_METHOD.RANK('SECOND', 1));
+    console.log(OUTPUT_MESSAGE_METHOD.RANK('THIRD', 2));
     const purchaseAmount = await this.inputPurchaseAmount();
     this.issueLottos(purchaseAmount);
 

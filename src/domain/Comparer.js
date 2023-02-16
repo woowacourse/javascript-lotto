@@ -1,3 +1,5 @@
+const { RANK } = require('../constant/setting');
+
 class Comparer {
   constructor(winningNumber, bonus, lottos) {
     this.winningNumber = winningNumber;
@@ -25,18 +27,24 @@ class Comparer {
         if (rank) acc[rank] += 1;
         return acc;
       },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+      {
+        [RANK.FIFTH.name]: 0,
+        [RANK.FOURTH.name]: 0,
+        [RANK.THIRD.name]: 0,
+        [RANK.SECOND.name]: 0,
+        [RANK.FIRST.name]: 0,
+      },
     );
   }
 
   getRank(matchCount, hasBonus) {
-    if (matchCount === 5 && hasBonus) return 2;
+    if (matchCount === RANK.SECOND.matchCount && hasBonus) return RANK.SECOND.name;
     return (
       {
-        3: 5,
-        4: 4,
-        5: 3,
-        6: 1,
+        [RANK.FIFTH.matchCount]: RANK.FIFTH.name,
+        [RANK.FOURTH.matchCount]: RANK.FOURTH.name,
+        [RANK.THIRD.matchCount]: RANK.THIRD.name,
+        [RANK.FIRST.matchCount]: RANK.FIRST.name,
       }[matchCount] ?? undefined
     );
   }

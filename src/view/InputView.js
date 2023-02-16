@@ -1,23 +1,24 @@
 const Console = require('../util/Console');
+const { INPUT_MESSAGE } = require('../constant/message');
 
 const InputView = {
   async readPurchaseAmount() {
-    const purchaseAmount = await Console.readLine('구입금액을 입력해 주세요.');
+    const purchaseAmount = await Console.readLine(INPUT_MESSAGE.PURCHASE_AMOUNT);
     return purchaseAmount;
   },
 
   async readWinningNumber() {
-    const winningNumber = await Console.readLine('당첨 번호를 입력해 주세요.');
+    const winningNumber = await Console.readLine(INPUT_MESSAGE.WINNUNG_NUMBER);
     return winningNumber;
   },
 
   async readBonusNumber() {
-    const bonusNumber = await Console.readLine('보너스 번호를 입력해 주세요.');
+    const bonusNumber = await Console.readLine(INPUT_MESSAGE.BONUS_NUMBER);
     return bonusNumber;
   },
 
   async readRestartCommand() {
-    const restartCommand = await Console.readLine('> 다시 시작하시겠습니까? (y/n)');
+    const restartCommand = await Console.readLine(INPUT_MESSAGE.RESTART_COMMAND);
     return restartCommand;
   },
 };
