@@ -1,9 +1,9 @@
-import Console from "./Console.js";
+import Console from "./util/Console.js";
 import Validations from "./Validations.js";
 import InputView from "./view/InputView.js";
-import Lotto from "./Lotto.js";
-import Lottos from "./Lottos.js";
-import Random from "./Random.js";
+import Lotto from "./domain/Lotto.js";
+import Lottos from "./domain/Lottos.js";
+import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js";
 
 class App {
@@ -38,18 +38,23 @@ class App {
 
   createLotto(lottoAmount) {
     for (let i = 0; i < lottoAmount; i++) {
-      const lotto = new Lotto(Random.getnerateRandomNumbers());
+      const randomNumbers = this.getCorrectRandomNumbers()
+      const lotto = new Lotto(randomNumbers);
       this.#lottoArray.push(lotto);
     }
   }
 
+  getCorrectRandomNumbers() {
+    while (true) {
+      const randomNumbers = Random.getnerateRandomNumbers()
+      if (Validations.isDuplicatedNumbers(randomNumbers)) {
+        return randomNumbers
+      }
+    }
+  }
+
   printLottos(lottoAmount) {
-    // Console.print(`${lottoAmount}개를 구매했습니다.`);
     OutputView.printLottoAmount(lottoAmount)
-    // this.#lottoArray.forEach((lotto) => {
-    //   lotto.sortLottoNumbers();
-    //   Console.print(lotto.getLottoNumbers());
-    // });
     OutputView.printLottos(this.#lottoArray)
   }
 
@@ -70,7 +75,6 @@ class App {
       "당첨 번호를 입력해 주세요."
     );
     this.#winningLotto = this.convertStringToNumber(winningNumbers.split(","));
-    // this.#winningLotto = winningNumbers.split(",");
     try {
       this.validateWinningNumbers();
     } catch (e) {
@@ -113,7 +117,6 @@ class App {
       this.validateBonusNumber();
       this.checkEachNumber(this.#bonusNumber);
       this.compareLottos();
-      // this.printResult()
     } catch (e) {
       Console.print(e);
       await this.getBonusNumber();
@@ -137,43 +140,9 @@ class App {
   }
 
   printResult(lottos) {
-    // Console.print("당첨통계");
-    // Console.print("--------------------");
     OutputView.printResultMessage()
-    
-    // Console.print(
-    //   `3개 일치 (${lottos.getBenefitBoard()[3]}원) - ${
-    //     lottos.getLottoRanking()[3]
-    //   }개`
-    // );
-    // Console.print(
-    //   `4개 일치 (${lottos.getBenefitBoard()[4]}원) - ${
-    //     lottos.getLottoRanking()[4]
-    //   }개`
-    // );
-    // Console.print(
-    //   `5개 일치 (${lottos.getBenefitBoard()[5]}원) - ${
-    //     lottos.getLottoRanking()[5]
-    //   }개`
-    // );
-    // Console.print(
-    //   `5개 일치, 보너스 볼 일치  (${lottos.getBenefitBoard()["5 bonus"]}원) - ${
-    //     lottos.getLottoRanking()["5 bonus"]
-    //   }개`
-    // );
-    // Console.print(
-    //   `6개 일치 (${lottos.getBenefitBoard()[6]}원) - ${
-    //     lottos.getLottoRanking()[6]
-    //   }개`
-    // );
     OutputView.printLottoResults(lottos)
-
     lottos.calculateBenefit();
-    // Console.print(
-    //   `총 수익률은 ${lottos.getBenefitRate(
-    //     lottos.getLottos().length * 1000
-    //   )}% 입니다.`
-    // );
     OutputView.printTotalBenefit(lottos)
   }
 
