@@ -7,6 +7,17 @@ import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
 
 class LottoController {
+
+  async play() {
+    const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
+    const lottos = this.#purchase(money);
+    const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
+    this.#showResult(lottos, winningNumber);
+    const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
+
+    return command === COMMAND.restart ? this.play() : Console.close();
+  }
+
   async #handleRead(read, validation) {
     try {
       const value = await read();
@@ -44,15 +55,6 @@ class LottoController {
     OutputView.printBenefit(benefit);
   }
 
-  async play() {
-    const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
-    const lottos = this.#purchase(money);
-    const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
-    this.#showResult(lottos, winningNumber);
-    const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
-
-    return command === COMMAND.restart ? this.play() : Console.close();
-  }
 
   #calculateBenefit(money, rank) {
     // eslint-disable-next-line max-params
