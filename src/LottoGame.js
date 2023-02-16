@@ -8,10 +8,6 @@ const OutputView = require('./view/OutputView');
 class LottoGame {
   #lottoMachine;
 
-  #winningNumbers;
-
-  #bonusNumber;
-
   #winningLottos = [0, 0, 0, 0, 0, 0];
 
   validateBonusNumber(winningNumbers, bonusNumber) {
@@ -68,47 +64,6 @@ class LottoGame {
       OutputView.printErrorMessage(error.message);
       await this.inputBonusNumber();
     }
-  }
-
-  determineAllLottosRank() {
-    this.#lottoMachine.lottos.forEach((lotto) => {
-      this.#winningLottos[
-        this.determineLottoRank(lotto, {
-          winningNumbers: this.#winningNumbers.winningNumbers,
-          bonusNumber: this.#bonusNumber.bonusNumber,
-        }) - 1
-      ] += 1;
-    });
-  }
-
-  determineLottoRank(lotto, { winningNumbers, bonusNumber }) {
-    if (this.calculateMatchCount(lotto, winningNumbers) === 6) {
-      return 1;
-    }
-
-    if (
-      this.calculateMatchCount(lotto, winningNumbers) === 5 &&
-      this.isBonus(lotto, bonusNumber)
-    ) {
-      return 2;
-    }
-
-    if (
-      this.calculateMatchCount(lotto, winningNumbers) === 5 &&
-      !this.isBonus(lotto, bonusNumber)
-    ) {
-      return 3;
-    }
-
-    if (this.calculateMatchCount(lotto, winningNumbers) === 4) {
-      return 4;
-    }
-
-    if (this.calculateMatchCount(lotto, winningNumbers) === 3) {
-      return 5;
-    }
-
-    return 6;
   }
 
   calculateProfitRate(winningLottos, purchasePrice) {
