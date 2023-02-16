@@ -1,6 +1,7 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/LottoGame.js';
+import Console from '../util/Console.js';
 
 const LottoGameController = {
   instance: {
@@ -24,11 +25,19 @@ const LottoGameController = {
     this.execute();
   },
 
-  execute() {
+  async execute() {
     OutputView.printStatistics(
       this.instance.lottoGame.execute(),
       this.instance.lottoGame.calculateProfit()
     );
+
+    if (await InputView.readRetry()) this.start();
+
+    this.exit();
+  },
+
+  exit() {
+    Console.close();
   },
 };
 

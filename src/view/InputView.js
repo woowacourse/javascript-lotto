@@ -21,6 +21,13 @@ const InputView = {
 
     return parseInt(bonusNumber, 10);
   },
+
+  async readRetry() {
+    const isRetry =
+      (await Console.readline(QUERY.RETRY)) === 'y' ? true : false;
+
+    return isRetry;
+  },
 };
 
 export default InputView;
