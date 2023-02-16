@@ -15,7 +15,7 @@ const outputView = {
   },
 
   printStatistics(rankings, rewardRate) {
-    console.log('당첨 통계');
+    console.log('\n당첨 통계');
     console.log('--------------------');
     [5, 4, 3, 2, 1].forEach((rankingForOutput) => {
       const rankingCount = rankings.filter((ranking) => ranking === rankingForOutput).length;
@@ -27,10 +27,6 @@ const outputView = {
 
   printErrorMessage(error) {
     console.log(error.message);
-  },
-
-  printNewLine() {
-    console.log();
   },
 };
 

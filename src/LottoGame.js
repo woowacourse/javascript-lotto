@@ -6,32 +6,30 @@ import Interface from './view/Interface.js';
 import outputView from './view/outputView.js';
 
 class LottoGame {
-  #lottos;
   #io;
+  #lottos;
 
   constructor() {
-    this.#lottos = [];
     this.#io = new Interface();
+    this.#lottos = [];
   }
 
   async play() {
-    const purchaseAmount = await this.readPurchaseAmount();
-    const buyCount = purchaseAmount / 1000;
-    while (this.#lottos.length < buyCount) {
+    const pruchaseAmount = await this.readPurchaseAmount();
+    this.buyLottos(pruchaseAmount);
+    this.printLottos();
+
+    const winningNumbers = await this.readWinningNumbers();
+    const bonusNumber = await this.readBonusNumber(winningNumbers);
+    this.printStatistics(pruchaseAmount, this.makeRankings(winningNumbers, bonusNumber));
+
+    this.decideReplay(await this.readGameCommand());
+  }
+
+  buyLottos(purchaseAmount) {
+    while (this.#lottos.length < purchaseAmount / 1000) {
       this.#lottos.push(this.buyLotto());
     }
-
-    outputView.printLottos(this.#lottos.map((lotto) => lotto.getNumbers()));
-    outputView.printNewLine();
-    const winningNumbers = await this.readWinningNumbers();
-    outputView.printNewLine();
-    const bonusNumber = await this.readBonusNumber(winningNumbers);
-    outputView.printNewLine();
-    const rankings = this.makeRankings(winningNumbers, bonusNumber);
-    outputView.printStatistics(
-      rankings,
-      lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings)
-    );
   }
 
   buyLotto() {
@@ -54,8 +52,28 @@ class LottoGame {
     return rankings;
   }
 
+  printLottos() {
+    outputView.printLottos(this.#lottos.map((lotto) => lotto.getNumbers()));
+  }
+
+  printStatistics(purchaseAmount, rankings) {
+    outputView.printStatistics(
+      rankings,
+      lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings)
+    );
+  }
+
+  decideReplay(gameCommand) {
+    if (gameCommand === 'y') {
+      this.#lottos = [];
+      this.play();
+    } else {
+      this.#io.close();
+    }
+  }
+
   async readPurchaseAmount() {
-    const pruchaseAmount = await this.#io.read('> 구입금액을 입력해 주세요.');
+    const pruchaseAmount = await this.#io.read('\n> 구입금액을 입력해 주세요.');
     try {
       lottoGameValidator.checkPruchaseAmount(pruchaseAmount);
       return Number(pruchaseAmount);
@@ -66,7 +84,7 @@ class LottoGame {
   }
 
   async readWinningNumbers() {
-    const winningNumbers = await this.#io.read('> 당첨 번호를 입력해 주세요. ');
+    const winningNumbers = await this.#io.read('\n> 당첨 번호를 입력해 주세요. ');
     try {
       lottoGameValidator.checkWinningNumbers(winningNumbers);
       return winningNumbers.split(',').map(Number);
@@ -77,13 +95,24 @@ class LottoGame {
   }
 
   async readBonusNumber(winningNumbers) {
-    const bonusNumber = await this.#io.read('> 보너스 번호를 입력해 주세요. ');
+    const bonusNumber = await this.#io.read('\n> 보너스 번호를 입력해 주세요. ');
     try {
       lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
       return Number(bonusNumber);
     } catch (error) {
       outputView.printErrorMessage(error);
       return this.readBonusNumber(winningNumbers);
+    }
+  }
+
+  async readGameCommand() {
+    const gameCommand = await this.#io.read('\n> 다시 시작하시겠습니까? (y/n) ');
+    try {
+      lottoGameValidator.checkGameCommand(gameCommand);
+      return gameCommand;
+    } catch (error) {
+      outputView.printErrorMessage(error);
+      return this.readGameCommand();
     }
   }
 }
