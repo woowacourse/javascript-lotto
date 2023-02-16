@@ -24,7 +24,8 @@ class LottoConsoleGame {
     const bonusNumber = await this.readBonusNumber(winningNumbers);
     this.printStatistics(pruchaseAmount, this.makeRankings(winningNumbers, bonusNumber));
 
-    this.decideReplay(await this.readGameCommand());
+    const gameCommand = await this.readGameCommand();
+    this.decideReplay(gameCommand);
   }
 
   buyLottos(purchaseAmount) {
@@ -40,30 +41,31 @@ class LottoConsoleGame {
       if (!randomNumbers.includes(randomNumber)) randomNumbers.push(randomNumber);
     }
 
-    return new Lotto(randomNumbers.sort((a, b) => a - b));
+    randomNumbers.sort((a, b) => a - b);
+
+    return new Lotto(randomNumbers);
   }
 
   makeRankings(winningNumbers, bonusNumber) {
     const rankings = [];
     this.#lottos.forEach((lotto) => {
       const matchCount = lotto.calculateMatchCount(winningNumbers);
-      if (matchCount >= RANKING_THRESHOLD) {
-        rankings.push(lotto.calculateRanking(matchCount, bonusNumber));
-      }
+      if (matchCount < RANKING_THRESHOLD) return;
+      const ranking = lotto.calculateRanking(matchCount, bonusNumber);
+      rankings.push(ranking);
     });
 
     return rankings;
   }
 
   printLottos() {
-    outputView.printLottos(this.#lottos.map((lotto) => lotto.getNumbers()));
+    const lottosNumbers = this.#lottos.map((lotto) => lotto.getNumbers());
+    outputView.printLottos(lottosNumbers);
   }
 
   printStatistics(purchaseAmount, rankings) {
-    outputView.printStatistics(
-      rankings,
-      lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings)
-    );
+    const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
+    outputView.printStatistics(rankings, rewardRate);
   }
 
   decideReplay(gameCommand) {
