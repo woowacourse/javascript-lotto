@@ -25,3 +25,14 @@ test('로또 상금과 구매 금액을 토대로 수익률을 계산한다.', (
   // then
   expect(earningRate).toBe('19375.0');
 });
+
+test('로또 맞은 개수 확인 테스트', () => {
+  const lottoGame = new LottoGame();
+  const number = [1, 2, 3, 4, 5, 6];
+  lottoGame.initializeWin([1, 2, 3, 4, 5, 8]);
+  lottoGame.setBonusNumber(6);
+
+  const matchCount = lottoGame.checkWinningNumbers(number);
+
+  expect(matchCount).toBe('bonus');
+});
