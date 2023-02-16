@@ -4,6 +4,7 @@ import InputView from "./view/InputView.js";
 import Lotto from "./Lotto.js";
 import Lottos from "./Lottos.js";
 import Random from "./Random.js";
+import OutputView from "./OutputView.js";
 
 class App {
   #winningLotto;
@@ -43,11 +44,8 @@ class App {
   }
 
   printLottos(lottoAmount) {
-    Console.print(`${lottoAmount}개를 구매했습니다.`);
-    this.#lottoArray.forEach((lotto) => {
-      lotto.sortLottoNumbers();
-      Console.print(lotto.getLottoNumbers());
-    });
+    OutputView.printLottoAmount(lottoAmount);
+    OutputView.printLottos(this.#lottoArray);
   }
 
   validateBuyMoney(buyMoney) {
@@ -67,7 +65,6 @@ class App {
       "당첨 번호를 입력해 주세요."
     );
     this.#winningLotto = this.convertStringToNumber(winningNumbers.split(","));
-    // this.#winningLotto = winningNumbers.split(",");
     try {
       this.validateWinningNumbers();
     } catch (e) {
@@ -110,7 +107,6 @@ class App {
       this.validateBonusNumber();
       this.checkEachNumber(this.#bonusNumber);
       this.compareLottos();
-      // this.printResult()
     } catch (e) {
       Console.print(e);
       await this.getBonusNumber();
@@ -134,40 +130,11 @@ class App {
   }
 
   printResult(lottos) {
-    Console.print("당첨통계");
-    Console.print("--------------------");
-    Console.print(
-      `3개 일치 (${lottos.getBenefitBoard()[3]}원) - ${
-        lottos.getLottoRanking()[3]
-      }개`
-    );
-    Console.print(
-      `4개 일치 (${lottos.getBenefitBoard()[4]}원) - ${
-        lottos.getLottoRanking()[4]
-      }개`
-    );
-    Console.print(
-      `5개 일치 (${lottos.getBenefitBoard()[5]}원) - ${
-        lottos.getLottoRanking()[5]
-      }개`
-    );
-    Console.print(
-      `5개 일치, 보너스 볼 일치  (${lottos.getBenefitBoard()["5 bonus"]}원) - ${
-        lottos.getLottoRanking()["5 bonus"]
-      }개`
-    );
-    Console.print(
-      `6개 일치 (${lottos.getBenefitBoard()[6]}원) - ${
-        lottos.getLottoRanking()[6]
-      }개`
-    );
+    OutputView.printResultMessage();
+    OutputView.printLottoResults(lottos);
 
     lottos.calculateBenefit();
-    Console.print(
-      `총 수익률은 ${lottos.getBenefitRate(
-        lottos.getLottos().length * 1000
-      )}% 입니다.`
-    );
+    OutputView.printTotalBenefit(lottos);
   }
 
   async getRetryInput() {
@@ -184,10 +151,10 @@ class App {
   }
 
   retryLottoGame(retryInput) {
-    if (retryInput === "y" || "y") {
+    if (retryInput === "y" || retryInput === "Y") {
       this.play();
     }
-    if (retryInput === "n" || "N") {
+    if (retryInput === "n" || retryInput === "N") {
       Console.close();
     }
   }

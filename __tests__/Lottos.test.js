@@ -9,11 +9,11 @@ describe("Lotto 객체 단위테스트", () => {
     lottos.addScoreBoard("3");
 
     expect(lottos.getLottoRanking()).toEqual({
-      3: 1,
-      4: 0,
-      5: 0,
-      "5 bonus": 0,
-      6: 0,
+      "3개 일치": 0,
+      "4개 일치": 0,
+      "5개 일치": 0,
+      "5개 일치, 보너스 볼 일치": 0,
+      "6개 일치": 0,
     });
   });
 
@@ -28,11 +28,11 @@ describe("Lotto 객체 단위테스트", () => {
     lottos.compareLottosScore();
 
     expect(lottos.getLottoRanking()).toEqual({
-      3: 0,
-      4: 0,
-      5: 0,
-      "5 bonus": 1,
-      6: 0,
+      "3개 일치": 0,
+      "4개 일치": 0,
+      "5개 일치": 0,
+      "5개 일치, 보너스 볼 일치": 1,
+      "6개 일치": 0,
     });
   });
 
@@ -49,7 +49,7 @@ describe("Lotto 객체 단위테스트", () => {
 
     lottos.calculateBenefit();
 
-    expect(lottos.getTotalBenefit()).toBe(2001550000);
+    expect(lottos.getTotalBenefit()).toBe(2063050000);
   });
 
   test("총 수익률을 계산하는 함수 테스트", () => {
@@ -66,6 +66,6 @@ describe("Lotto 객체 단위테스트", () => {
     lottos.compareLottosScore();
     lottos.calculateBenefit();
 
-    expect(lottos.getBenefitRate(1000)).toBe(2001550);
+    expect(lottos.getBenefitRate(1000)).toBe(2063050);
   });
 });
