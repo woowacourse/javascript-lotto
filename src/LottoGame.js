@@ -1,10 +1,10 @@
-import { LOTTO, RANKING_THRESHOLD, GAME_COMMAND } from './constants/index.js';
-import lottoGameCalculator from './domain/lottoGameCalculator.js';
-import lottoGameValidator from './domain/lottoGameValidator.js';
-import Lotto from './domain/models/Lotto.js';
-import generateRandomNumber from './utils/generateRandomNumber.js';
-import Interface from './view/Interface.js';
-import outputView from './view/outputView.js';
+import { LOTTO, RANKING_THRESHOLD, GAME_COMMAND } from './constants';
+import lottoGameCalculator from './domain/lottoGameCalculator';
+import lottoGameValidator from './domain/lottoGameValidator';
+import Lotto from './domain/models/Lotto';
+import generateRandomNumber from './utils/generateRandomNumber';
+import Interface from './view/Interface';
+import outputView from './view/outputView';
 
 class LottoGame {
   #io;
@@ -47,8 +47,9 @@ class LottoGame {
     const rankings = [];
     this.#lottos.forEach((lotto) => {
       const matchCount = lotto.calculateMatchCount(winningNumbers);
-      if (matchCount >= RANKING_THRESHOLD)
+      if (matchCount >= RANKING_THRESHOLD) {
         rankings.push(lotto.calculateRanking(matchCount, bonusNumber));
+      }
     });
 
     return rankings;
