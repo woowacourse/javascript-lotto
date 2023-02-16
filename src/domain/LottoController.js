@@ -1,6 +1,5 @@
 /* eslint-disable max-params */
 /* eslint-disable no-unused-vars */
-/* eslint-disable max-lines-per-function */
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Lotto from './Lotto.js';
@@ -12,7 +11,7 @@ class LottoController {
   #winningNumber;
   #bonusNumber;
 
-  async handleRead(read, validation) {
+  async #handleRead(read, validation) {
     try {
       const value = await read();
       validation(value);
@@ -23,31 +22,41 @@ class LottoController {
     }
   }
 
-  async play() {
-    const money = await this.handleRead(InputView.readMoney, LottoValidator.checkMoney);
-
+  #purchase(money) {
     OutputView.printPurchaseResult(money / 1000);
     const lottos = Array.from({ length: money / 1000 }, () => new Lotto(lottoGenerator()));
     lottos.forEach((lotto) => {
       OutputView.printLotto(lotto.getNumbers());
     });
     OutputView.printNewLine();
+    return lottos;
+  }
 
-    this.#winningNumber = (await this.handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
+  async #determineWinningNumber() {
+    this.#winningNumber = (await this.#handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
     OutputView.printNewLine();
-    this.#bonusNumber = await this.handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
+    this.#bonusNumber = await this.#handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
+  }
 
-    const matchResult = this.judgeResult(lottos);
-    const benefit = this.calculateBenefit(money, matchResult);
-
+  #showResult(lottos, money) {
+    const matchResult = this.#judgeResult(lottos);
+    const benefit = this.#calculateBenefit(money, matchResult);
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
+  }
 
-    const command = await this.handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
+
+  async play() {
+    const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
+    const lottos = this.#purchase(money);
+    await this.#determineWinningNumber();
+    this.#showResult(lottos, money);
+    const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
+
     return command === 'y' ? this.play() : Console.close();
   }
 
-  calculateBenefit(money, rank) {
+  #calculateBenefit(money, rank) {
     const PRIZE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
     const income = rank.reduce((acc, number, index) => {
       acc += number * PRIZE[index];
@@ -56,12 +65,12 @@ class LottoController {
     return income / money * 100;
   }
 
-  judgeResult(lottos) {
+  #judgeResult(lottos) {
     return lottos.reduce((acc, lotto, index) => {
       const ranking = lotto.calculateRanking(this.#winningNumber, this.#bonusNumber);
       acc[ranking] += 1;
       return acc;
-    }, [0, 0, 0, 0, 0, 0]); // index 6이 2등
+    }, [0, 0, 0, 0, 0, 0]);
   }
 }
 

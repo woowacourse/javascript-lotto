@@ -16,17 +16,18 @@ const OutputView = {
 4개 일치 (50,000원) - ${rankingResult[4]}개
 5개 일치 (1,500,000원) - ${rankingResult[3]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankingResult[2]}개
-6개 일치 (2,000,000,000원) - ${rankingResult[1]}개
-`);
+6개 일치 (2,000,000,000원) - ${rankingResult[1]}개`);
   },
   printBenefit(benefit) {
     Console.print(`총 수익률은 ${benefit}%입니다.`);
+    this.printNewLine();
   },
   printNewLine() {
     Console.print('');
   },
   printError(error) {
     Console.print(error.message);
+    this.printNewLine();
   }
 };
 export default OutputView;
