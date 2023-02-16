@@ -50,12 +50,10 @@ class LottoGameController {
   #handleBonusNumber(winningNumbers) {
     InputView.readBonusNumber((input) => {
       const BONUS_NUMBER = Number(input);
-
       try {
         Validation.checkBonusNumber(winningNumbers, BONUS_NUMBER);
         this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
         this.#handleGameResult();
-        this.#handleRestart();
       } catch (error) {
         this.#handleError(error.message, () => this.#handleBonusNumber(winningNumbers));
       }
@@ -64,10 +62,8 @@ class LottoGameController {
 
   #handleGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-    OutputView.print('');
-    OutputView.print(ConsoleMessage.RESULT);
-    OutputView.printRanks(RANKS);
-    OutputView.printProfitRate(PROFIT_RATE);
+    OutputView.printResult(RANKS, PROFIT_RATE);
+    this.#handleRestart();
   }
 
   #handleRestart() {
@@ -92,7 +88,7 @@ class LottoGameController {
     Console.close();
   }
 
-  static #handleError(errorMessage, self) {
+  #handleError(errorMessage, self) {
     OutputView.print(errorMessage);
     self();
   }

@@ -15,6 +15,14 @@ const OutputView = {
     console.log(ConsoleMessage.profitRateResult(profitRate));
   },
 
+  printResult(ranks, profitRate) {
+    console.log('');
+    console.log(ConsoleMessage.RESULT);
+    OutputView.printRanks(ranks);
+    OutputView.printProfitRate(profitRate);
+    console.log('');
+  },
+
   print(message) {
     console.log(message);
   },
