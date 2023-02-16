@@ -13,6 +13,7 @@ export default class LottoGameController {
 
   async play() {
     await this.#createLotto();
+    await this.#compareLotto();
   }
 
   async #createLotto() {
@@ -28,6 +29,13 @@ export default class LottoGameController {
 
     OutputView.printLottoQuantity(lottoQuantity);
     OutputView.printEachLottoNumbers(eachLottoNumbers);
+  }
+
+  async #compareLotto() {
+    const winningNumbers = await this.#requestWinningNumbers();
+    const bonusNumber = await this.#requestBonusNumber(winningNumbers);
+
+    const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
   }
 
   async #requestPurchaseAmount() {
@@ -75,4 +83,6 @@ export default class LottoGameController {
       return this.#requestBonusNumber(winningNumbers);
     }
   }
+
+  s;
 }
