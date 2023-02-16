@@ -17,7 +17,7 @@ const OutputView = {
   },
 
   printRanking(ranking) {
-    Console.print(OUTPUT_MESSAGE.WINNING_STATISTICSS_HEADER);
+    Console.print(OUTPUT_MESSAGE.WINNING_STATISTICS_HEADER);
     Object.entries(ranking).forEach(([rank, count]) => {
       Console.print(OUTPUT_MESSAGE_METHOD.RANK(rank, count));
     });
