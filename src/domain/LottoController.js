@@ -1,10 +1,7 @@
-/* eslint-disable max-params */
-/* eslint-disable no-unused-vars */
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Lotto from './Lotto.js';
 import lottoGenerator from './LottoGenerator.js';
-import InputValidator from '../utils/InputValidator.js';
 import Console from '../utils/Console.js';
 import LottoValidator from './LottoValidator.js';
 class LottoController {
@@ -45,7 +42,6 @@ class LottoController {
     OutputView.printBenefit(benefit);
   }
 
-
   async play() {
     const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
     const lottos = this.#purchase(money);
@@ -58,6 +54,7 @@ class LottoController {
 
   #calculateBenefit(money, rank) {
     const PRIZE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    // eslint-disable-next-line max-params
     const income = rank.reduce((acc, number, index) => {
       acc += number * PRIZE[index];
       return acc;
@@ -66,7 +63,7 @@ class LottoController {
   }
 
   #judgeResult(lottos) {
-    return lottos.reduce((acc, lotto, index) => {
+    return lottos.reduce((acc, lotto) => {
       const ranking = lotto.calculateRanking(this.#winningNumber, this.#bonusNumber);
       acc[ranking] += 1;
       return acc;
