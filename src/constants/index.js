@@ -1,7 +1,6 @@
 const GAME_VALUE = Object.freeze({
   LOTTO_PRICE: 1_000,
   LOTTO_SIZE: 6,
-
   MAX_LOTTO_NUMBER: 45,
   PRIZE: [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000],
 });
@@ -16,7 +15,7 @@ const MESSAGE = Object.freeze({
   ASK_BUDGET: '> 구입금액을 입력해 주세요.',
   ASK_WINNING_LOTTO: '\n> 당첨 번호를 입력해 주세요. ',
   ASK_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
-  ASK_RESTART: '\n> 다시 시작하시겠습니까? (y/n) ',
+  ASK_RETRY: '\n> 다시 시작하시겠습니까? (y/n) ',
 
   ERROR_DECIMAL: '[ERROR] 구입 금액은 정수여야 합니다.',
   ERROR_INVALID_LOTTO_FORMAT:
@@ -41,7 +40,7 @@ const RANK = {
 };
 
 const COMMAND = Object.freeze({
-  RESTART: 'y',
+  RETRY: 'y',
   EXIT: 'n',
 });
 

@@ -3,14 +3,14 @@ import validator from './domain/validator.js';
 
 import view from './view/view.js';
 
-import { FORMATTING_TYPE, MESSAGE } from './constants/index.js';
+import { FORMATTING_TYPE, MESSAGE, COMMAND } from './constants/index.js';
 
 class LottoController {
   #lottoGame;
 
   #commandHandler = Object.freeze({
-    y: this.startGame.bind(this),
-    n: this.#exitGame.bind(this),
+    [COMMAND.RETRY]: this.startGame.bind(this),
+    [COMMAND.EXIT]: this.#exitGame.bind(this),
   });
 
   startGame() {
@@ -22,11 +22,10 @@ class LottoController {
       const budget = await view.input(MESSAGE.ASK_BUDGET);
       validator.throwErrorIfInvalidBudget(budget);
       this.#lottoGame = new LottoGame(budget);
+      this.#printBoughtLottos();
     } catch ({ message }) {
-      view.output(message);
-      return this.#inputBudget();
+      this.handleCatchedError(message, this.#inputBudget.bind(this));
     }
-    this.#printBoughtLottos();
   }
 
   #printBoughtLottos() {
@@ -37,39 +36,36 @@ class LottoController {
   }
 
   async #inputLottoValues() {
-    const winningLotto = await this.#inputWinningLotto();
+    const winningNumber = await this.#inputWinningNumber();
     const bonusNumber = await this.#inputBonusNumber();
 
-    const formattedWinningLotto = winningLotto.split(',').map(Number);
-    const formattedBonusNumber = Number(bonusNumber);
+    const winningNumberToNumberArray = winningNumber.split(',').map(Number);
 
-    this.#printScoreBoard(formattedWinningLotto, formattedBonusNumber);
+    this.#printScoreBoard(winningNumberToNumberArray, Number(bonusNumber));
   }
 
-  async #inputWinningLotto() {
+  async #inputWinningNumber() {
     try {
-      const value = await view.input(MESSAGE.ASK_WINNING_LOTTO);
-      validator.throwErrorIfInvalidWinningNumbers(value);
-      return value;
+      const winningNumber = await view.input(MESSAGE.ASK_WINNING_LOTTO);
+      validator.throwErrorIfInvalidWinningNumbers(winningNumber);
+      return winningNumber;
     } catch ({ message }) {
-      view.output(message);
-      return this.#inputWinningLotto();
+      this.handleCatchedError(message, this.#inputWinningNumber.bind(this));
     }
   }
 
   async #inputBonusNumber() {
     try {
-      const value = await view.input(MESSAGE.ASK_BONUS_NUMBER);
-      validator.throwErrorIfInvalidBonusNumber(value);
-      return value;
+      const bonusNumber = await view.input(MESSAGE.ASK_BONUS_NUMBER);
+      validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      return bonusNumber;
     } catch ({ message }) {
-      view.output(message);
-      return this.#inputBonusNumber();
+      this.handleCatchedError(message, this.#inputBonusNumber.bind(this));
     }
   }
 
-  #printScoreBoard(winningLotto, bonusNumber) {
-    const winningStatus = this.#lottoGame.getWinningStatus(winningLotto, bonusNumber);
+  #printScoreBoard(winningNumber, bonusNumber) {
+    const winningStatus = this.#lottoGame.getWinningStatus(winningNumber, bonusNumber);
     view.output(winningStatus, FORMATTING_TYPE.WINNING_STATUS);
 
     this.#printProfitRate();
@@ -79,16 +75,26 @@ class LottoController {
     const profitRate = this.#lottoGame.getProfitRate();
     view.output(profitRate, FORMATTING_TYPE.PROFIT_RATE);
 
-    this.#askRestart();
+    this.#askRetry();
   }
 
-  async #askRestart() {
-    const userCommand = await view.input(MESSAGE.ASK_RESTART);
-    this.#commandHandler[userCommand]();
+  async #askRetry() {
+    try {
+      const retryCommand = await view.input(MESSAGE.ASK_RETRY);
+      validator.throwErrorIfInvalidRetryCommand(retryCommand);
+      this.#commandHandler[retryCommand]();
+    } catch ({ message }) {
+      this.handleCatchedError(message, this.#askRetry.bind(this));
+    }
   }
 
   #exitGame() {
     view.close();
+  }
+
+  handleCatchedError(message, callback) {
+    view.output(message);
+    callback();
   }
 }
 

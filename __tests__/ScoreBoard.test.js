@@ -8,7 +8,7 @@ describe('로또 당첨 내역을 반환하는 기능 테스트', () => {
     ranks.forEach((rank) => scoreBoard.writeBoard(rank));
     const testResult = scoreBoard.getBoard();
 
-    expect(testResult).toEqual({ first: 1, second: 1, third: 2, fourth: 1, fifth: 4 });
+    expect(testResult).toEqual([0, 1, 1, 2, 1, 4]);
   });
 
   test('총 로또 당첨 금액을 반환하는 기능 테스트', () => {

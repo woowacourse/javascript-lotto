@@ -46,8 +46,8 @@ const validator = {
     }
   },
 
-  throwErrorIfInvalidUserCommand(userCommand) {
-    const isValidUserCommand = COMMAND.RESTART === userCommand || COMMAND.EXIT === userCommand;
+  throwErrorIfInvalidRetryCommand(retryCommand) {
+    const isValidUserCommand = COMMAND.RETRY === retryCommand || COMMAND.EXIT === retryCommand;
 
     if (!isValidUserCommand) {
       throw new Error(MESSAGE.ERROR_INVALID_RETRY_COMMAND);
