@@ -84,10 +84,15 @@ class LottoSimulator {
   judgeValidWinningNumber(winningNumber, bonusNumber) {
     try {
       this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
+      this.printStatistics();
     } catch (err) {
       OutputView.printErrorMessage(err);
       this.inputWinningNumber();
     }
+  }
+
+  printStatistics() {
+    OutputView.printWinningStatistics(this.calculateWinningResult());
   }
 
   calculateWinningResult() {
@@ -96,7 +101,7 @@ class LottoSimulator {
     Object.values(LOTTO_RANKING).forEach((rank) => (winningResult[rank] = 0));
     this.#lottos.forEach((lotto) => {
       const rank = this.#winningLotto.calculateRanking(lotto);
-      winningResult[rank] += 1;
+      if (rank in winningResult) winningResult[rank] += 1;
     });
     return winningResult;
   }

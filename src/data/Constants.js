@@ -13,7 +13,7 @@ const LOTTO_RANKING = Object.freeze({
   THIRD: 'third',
   FOURTH: 'fourth',
   FIFTH: 'fifth',
-  FAIL: 'fail',
+  // FAIL: 'fail',
 });
 
 const MATCHES_COUNT_TO_RANKING = Object.freeze({
@@ -21,13 +21,11 @@ const MATCHES_COUNT_TO_RANKING = Object.freeze({
   5: 'third',
   4: 'fourth',
   3: 'fifth',
-  2: 'fail',
-  1: 'fail',
-  0: 'fail',
 });
 
 const RANKING_TO_MATCHES_COUNT = Object.freeze({
   first: 6,
+  second: 5,
   third: 5,
   fourth: 4,
   fifth: 3,
@@ -49,6 +47,14 @@ const PRINT_MESSAGE = Object.freeze({
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요. ',
   WINNING_STATISTICS: '당첨 통계',
   LINE: '--------------------',
+  STATISTICS_RANKING: (winningCount, rank) =>
+    `${RANKING_TO_MATCHES_COUNT[rank]}개 일치 (${WINNING_PRIZE[rank].toLocaleString(
+      'en'
+    )}원) - ${winningCount}개`,
+  STATISTICS_RANKING_SECOND: (winningCount, rank) =>
+    `${RANKING_TO_MATCHES_COUNT[rank]}개 일치, 보너스 볼 일치 (${WINNING_PRIZE[rank].toLocaleString(
+      'en'
+    )}원) - ${winningCount}개`,
   YIELD_RATE: (yieldRate) => `총 수익률은 ${yieldRate}%입니다.`,
   INPUT_RETRY: '다시 시작하시겠습니까? (y/n) ',
 });
