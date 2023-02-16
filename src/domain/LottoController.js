@@ -12,60 +12,20 @@ class LottoController {
   #winningNumber;
   #bonusNumber;
 
-  /**
-   * 나중에 통합 고려하기 시작
-   */
-  async handleReadMoney() {
+  async handleRead(read, validation) {
     try {
-      const money = await InputView.readMoney();
-      LottoValidator.checkMoney(money);
-      return money;
+      const value = await read();
+      validation(value);
+      return value;
     } catch (error) {
       OutputView.printError(error);
-      return this.handleReadMoney();
+      return this.handleRead(read, validation);
     }
   }
-
-  async handleReadWinningNumber() {
-    try {
-      const winningNumber = await InputView.readWinningNumber();
-      LottoValidator.checkWinningNumber(winningNumber.split(','));
-      return winningNumber;
-    } catch (error) {
-      OutputView.printError(error);
-      return this.handleReadWinningNumber();
-    }
-  }
-
-  async handleReadBonusNumber() {
-    try {
-      const bonusNumber = await InputView.readBonusNumber();
-      LottoValidator.checkBonusNumber(this.#winningNumber, bonusNumber);
-      return bonusNumber;
-    } catch (error) {
-      OutputView.printError(error);
-      return this.handleReadBonusNumber();
-    }
-  }
-
-  async handleReadRetryCommand() {
-    try {
-      const command = await InputView.readRetryCommand();
-      LottoValidator.checkReadRetryCommand(command);
-      return command;
-    } catch (error) {
-      OutputView.printError(error);
-      return this.handleReadRetryCommand();
-    }
-  }
-
-  /**
- * 나중에 통합 고려하기 끝
- */
-
 
   async play() {
-    const money = await this.handleReadMoney();
+    const money = await this.handleRead(InputView.readMoney, LottoValidator.checkMoney);
+
     OutputView.printPurchaseResult(money / 1000);
     const lottos = Array.from({ length: money / 1000 }, () => new Lotto(lottoGenerator()));
     lottos.forEach((lotto) => {
@@ -73,17 +33,17 @@ class LottoController {
     });
     OutputView.printNewLine();
 
-    this.#winningNumber = (await this.handleReadWinningNumber()).split(',');
+    this.#winningNumber = (await this.handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
     OutputView.printNewLine();
-    this.#bonusNumber = await this.handleReadBonusNumber();
-    OutputView.printNewLine();
+    this.#bonusNumber = await this.handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
 
     const matchResult = this.judgeResult(lottos);
     const benefit = this.calculateBenefit(money, matchResult);
 
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
-    const command = await this.handleReadRetryCommand();
+
+    const command = await this.handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
     return command === 'y' ? this.play() : Console.close();
   }
 

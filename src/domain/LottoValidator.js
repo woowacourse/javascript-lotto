@@ -6,17 +6,20 @@ const LottoValidator = {
     InputValidator.checkFallApart(money, 1000);
   },
   checkWinningNumber(winningNumber) {
-    winningNumber.forEach((number) => {
+    winningNumber.split(',').forEach((number) => {
       InputValidator.checkLottoNumber(number);
     });
-    InputValidator.checkDuplicatedNumbers(winningNumber);
+    InputValidator.checkDuplicatedNumbers(winningNumber.split(','));
   },
-  checkBonusNumber(winningNumber, bonusNumber) {
+  checkBonusNumber(bonusNumber) {
     InputValidator.checkLottoNumber(bonusNumber);
+  },
+  checkLottoDuplicate({ winningNumber, bonusNumber }) {
     InputValidator.checkDuplicatedNumbers(winningNumber.concat(bonusNumber));
   },
   checkReadRetryCommand(command) {
     InputValidator.checkReadRetryCommand(command);
   },
 };
+
 export default LottoValidator;
