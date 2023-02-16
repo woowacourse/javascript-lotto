@@ -1,9 +1,9 @@
-import { MESSAGE, REGEX, COMMAND } from '../constants/index.js';
+import { MESSAGE, REGEX, COMMAND, GAME_VALUE } from '../constants/index.js';
 
 const validator = {
   throwErrorIfInvalidBudget(budget) {
     this.throwErrorIfNotDecimal(budget);
-    this.throwErrorIfNotDivisiable(budget, 1000);
+    this.throwErrorIfNotDivisiable(budget, GAME_VALUE.LOTTO_PRICE);
   },
 
   throwErrorIfInvalidWinningNumbers(winningNumberFormat) {

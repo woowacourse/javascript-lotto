@@ -1,4 +1,3 @@
-// const readline = require('readline');
 import * as readline from 'readline';
 
 const readlineInterface = readline.createInterface({

@@ -1,26 +1,19 @@
 import pickLotto from '../domain/pickLotto.js';
 import ScoreBoard from './ScoreBoard.js';
+import { GAME_VALUE } from '../constants/index.js';
 
 class LottoGame {
   #lottos;
   #scoreBoard;
 
   constructor(money) {
-    const lottoCount = money / 1_000;
+    const lottoCount = money / GAME_VALUE.LOTTO_PRICE;
     this.#lottos = Array.from({ length: lottoCount }, () => pickLotto());
     this.#scoreBoard = new ScoreBoard(lottoCount);
   }
 
   getBoughtLottos() {
     return this.#lottos;
-  }
-
-  getLottoMatchedResult(lotto, winningLotto, bonusNumber) {
-    const matchedCount = this.getMatchedLottoCount(lotto, winningLotto);
-    const hasBonusNumber = this.checkBonusNumber(lotto, bonusNumber);
-    const lottoMatchedResult = { matchedCount, hasBonusNumber };
-
-    return lottoMatchedResult;
   }
 
   getMatchedLottoCount(lotto, winningLotto) {
@@ -49,14 +42,12 @@ class LottoGame {
 
   getWinningStatus(winningLotto, bonusNumber) {
     this.#lottos.forEach((lotto) => {
-      const { matchedCount, hasBonusNumber } = this.getLottoMatchedResult(
-        lotto,
-        winningLotto,
-        bonusNumber
-      );
+      const matchedCount = this.getMatchedLottoCount(lotto, winningLotto);
+      const hasBonusNumber = this.checkBonusNumber(lotto, bonusNumber);
       const rank = this.getRank(matchedCount, hasBonusNumber);
       this.#scoreBoard.writeBoard(rank);
     });
+
     return this.#scoreBoard.getBoard();
   }
 

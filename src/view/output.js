@@ -1,4 +1,4 @@
-import { FORMATTING_TYPE } from '../constants/index.js';
+import { FORMATTING_TYPE, GAME_VALUE } from '../constants/index.js';
 
 const output = (data, formattingType = '') => {
   if (formattingType === '') {
@@ -15,11 +15,11 @@ const output = (data, formattingType = '') => {
 
   if (formattingType === FORMATTING_TYPE.WINNING_STATUS) {
     console.log(`\n당첨 통계\n${'-'.repeat(20)}`);
-    console.log(`3개 일치 (5,000원) - ${data.fifth}개
-4개 일치 (50,000원) - ${data.fourth}개
-5개 일치 (1,500,000원) - ${data.third}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${data.second}개
-6개 일치 (2,000,000,000원) - ${data.first}개`);
+    console.log(`3개 일치 (${GAME_VALUE.PRIZE[4].toLocaleString()}원) - ${data.fifth}개
+4개 일치 (${GAME_VALUE.PRIZE[3].toLocaleString()}원) - ${data.fourth}개
+5개 일치 (${GAME_VALUE.PRIZE[2].toLocaleString()}원) - ${data.third}개
+5개 일치, 보너스 볼 일치 (${GAME_VALUE.PRIZE[1].toLocaleString()}원) - ${data.second}개
+6개 일치 (${GAME_VALUE.PRIZE[0].toLocaleString()}원) - ${data.first}개`);
   }
 
   if (formattingType === FORMATTING_TYPE.PROFIT_RATE) {
