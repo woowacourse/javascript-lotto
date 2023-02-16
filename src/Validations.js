@@ -11,9 +11,13 @@ const Validations = {
     return input > 0 && input % 1 === 0;
   },
 
-  isCorrectRange(winningNumber) {
-    return 0 < winningNumber && winningNumber < 45 ? true : false;
+  isCorrectRange(input) {
+    return 0 < input && input < 45 ? true : false;
   },
+
+  hasBonusNumber(bonusNumber, winningLotto) {
+    return winningLotto.includes(bonusNumber)
+  }
 };
 
 export default Validations;
