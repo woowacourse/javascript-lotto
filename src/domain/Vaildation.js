@@ -66,6 +66,10 @@ const Validation = {
     if (!this.isValidBonusNumberRange(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
     }
+
+    if (!this.isUniqueBonusNumber(bonusNumber, winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.duplicateLottoNumber);
+    }
   },
 
   isValidBonusNumberRange(bonusNumber) {
@@ -73,6 +77,13 @@ const Validation = {
       LOTTO_CONDITION.lottoNumberMinRange <= bonusNumber &&
       bonusNumber <= LOTTO_CONDITION.lottoNumberMaxRange
     );
+  },
+
+  isUniqueBonusNumber(bonusNumber, winningNumbers) {
+    const combine = [bonusNumber, ...winningNumbers];
+    const duplicateCheck = new Set(combine);
+
+    return combine.length === duplicateCheck.size;
   },
 };
 
