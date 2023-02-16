@@ -4,14 +4,17 @@ import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoMachine from '../model/LottoMachine';
 import { values } from '../constants/values';
+import Console from '../utils/console';
 
 class LottoController {
   #LottoMachine;
 
   async start() {
     await this.handleMoneyInput();
-    await this.handleWinningNumber();
-    await this.handleBonusNumber();
+    const winningNumber = await this.handleWinningNumber();
+    const bonusNumber = await this.handleBonusNumber();
+    const statistics = this.#LottoMachine.calculateStatistics(winningNumber, bonusNumber);
+    this.printStatistics(statistics);
   }
 
   processLottoMachine(moneyInput) {
@@ -42,6 +45,8 @@ class LottoController {
       OutputView.printMessage(error.message);
       await this.handleWinningNumber();
     }
+
+    return winningNumber;
   }
 
   async handleBonusNumber() {
@@ -53,6 +58,11 @@ class LottoController {
       OutputView.printMessage(error.message);
       await this.handleBonusNumber();
     }
+    return bonusNumber;
+  }
+
+  printStatistics(statistics) {
+    OutputView.printStatistics(statistics);
   }
 }
 
