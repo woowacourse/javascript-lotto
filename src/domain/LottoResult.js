@@ -20,14 +20,15 @@ class LottoResult {
     this.bonusNumber = bonusNumber;
   }
 
-  exchangeLottoIntoMoney(lotto) {
-    const givenReward = LottoResult.REWARDS.find((reward) => {
-      const winningLotto = new WinningLotto(this.winningNumbers, this.bonusNumber);
-      return reward.canReceive(lotto, winningLotto);
-    });
-    if (!givenReward) return 0;
-    return givenReward.getMoney();
+  findReward(lotto) {
+    return (
+      LottoResult.REWARDS.find((reward) => {
+        const winningLotto = new WinningLotto(this.winningNumbers, this.bonusNumber);
+        return reward.canReceive(lotto, winningLotto);
+      }) ?? null
+    );
   }
+
 }
 
 export default LottoResult;
