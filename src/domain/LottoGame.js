@@ -12,8 +12,8 @@ const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
 class LottoGame {
   #lottos;
-  #rankResult;
   #winLottos;
+  #rankResult;
 
   constructor() {
     this.#lottos = [];
@@ -52,9 +52,8 @@ class LottoGame {
     this.#winLottos = new WinLotto(winningNumbers, bonusNumber);
   }
 
-  #calculateRank(lotto) {
+  calculateRank(numbers) {
     const winNumbers = this.#winLottos.numbers;
-    const numbers = lotto.numbers;
 
     const sameNumbers = numbers.filter((num) => winNumbers.includes(num));
     const correctCount = sameNumbers.length;
@@ -66,7 +65,7 @@ class LottoGame {
 
   calculateRankResult() {
     this.#lottos.forEach((lotto) => {
-      const rank = this.#calculateRank(lotto);
+      const rank = this.calculateRank(lotto.numbers);
       this.#rankResult[rank]++;
     });
   }
