@@ -43,6 +43,18 @@ describe('Validator 테스트', () => {
   });
 
   test.each([
+    { input: ' ', expected: false },
+    { input: '-1000', expected: false },
+    { input: '0', expected: false },
+    { input: '700', expected: false },
+    { input: '1200', expected: false },
+    { input: 'k', expected: false },
+    { input: '3000', expected: true },
+  ])('구입 금액 입력값이 유효한지 판별하기.', ({ input, expected }) => {
+    expect(Validator.isPurchasePriceValid(input)).toBe(expected);
+  });
+
+  test.each([
     { input: '', expected: false },
     { input: '1, 2, 3, 4, 5, 6', expected: false },
     { input: '1,2,3,4,5', expected: false },
@@ -50,7 +62,7 @@ describe('Validator 테스트', () => {
     { input: '0,1,2,3,4,5', expected: false },
     { input: '1,2,3,4,5,46', expected: false },
     { input: '1,2,3,4,5,6', expected: true },
-  ])('당첨 번호 입력값이 유효한지 판별하기', ({ input, expected }) => {
+  ])('당첨 번호 입력값이 유효한지 판별하기.', ({ input, expected }) => {
     expect(Validator.isWinningNumberValid(input)).toBe(expected);
   });
 
@@ -61,8 +73,18 @@ describe('Validator 테스트', () => {
     { input: '46', expected: false },
     { input: '6', expected: false },
     { input: '7', expected: true },
-  ])('보너스 번호 입력값이 유효한지 판별하기', ({ input, expected }) => {
+  ])('보너스 번호 입력값이 유효한지 판별하기.', ({ input, expected }) => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     expect(Validator.isBonusNumberValid(winningNumbers, input)).toBe(expected);
+  });
+
+  test.each([
+    { input: '', expected: false },
+    { input: 'yk', expected: false },
+    { input: 'y ', expected: false },
+    { input: 'y', expected: true },
+    { input: 'n', expected: true },
+  ])('다시 시작 명령어 입력값이 유효한지 판별하기.', ({ input, expected }) => {
+    expect(Validator.isRestartCommandValid(input)).toBe(expected);
   });
 });

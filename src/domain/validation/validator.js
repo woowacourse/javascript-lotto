@@ -5,9 +5,19 @@ const {
   PRICE_UNIT,
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
+  RESTART_COMMAND_REGEXP,
 } = require('../../constants/constants');
 
 const validator = {
+  isPurchasePriceValid(input) {
+    return (
+      !this.isEmptyOrBlankIncluded(input) &&
+      this.isNumber(input) &&
+      this.isValidUnit(input) &&
+      !this.isSmallerOrEqualThanZero(input)
+    );
+  },
+
   isWinningNumberValid(input) {
     const winningNumbers = input.split(',').map(Number);
     return (
@@ -47,11 +57,11 @@ const validator = {
   },
 
   isSmallerOrEqualThanZero(input) {
-    return input <= 0;
+    return Number(input) <= 0;
   },
 
   isValidUnit(input) {
-    return input % PRICE_UNIT === 0;
+    return Number(input) % PRICE_UNIT === 0;
   },
 
   isWinningNumberCountValid(input) {
@@ -60,13 +70,17 @@ const validator = {
 
   isNumberRangeValid(number) {
     return (
-      number <= lottoNumberRange.MAX_LOTTO_NUMBER &&
-      number >= lottoNumberRange.MIN_LOTTO_NUMBER
+      Number(number) <= lottoNumberRange.MAX_LOTTO_NUMBER &&
+      Number(number) >= lottoNumberRange.MIN_LOTTO_NUMBER
     );
   },
 
   isNumberDuplicated(numbers) {
     return new Set(numbers).size !== numbers.length;
+  },
+
+  isRestartCommandValid(input) {
+    return RESTART_COMMAND_REGEXP.test(input) && input.length === 1;
   },
 };
 
