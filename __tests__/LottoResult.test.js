@@ -28,9 +28,10 @@ describe('LottoResult 클래스에 대한 테스트', () => {
 
   test('사용자는 구매한 로또에 대해 당첨 로또가 각 몇장인지 계산할 수 있다.', () => {
     const lottos = [
-      [1, 2, 3, 40, 41, 42],
-      [1, 2, 3, 4, 41, 42],
-      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 40, 41, 42], // 3개 일치
+      [1, 2, 3, 4, 41, 42], // 4개 일치
+      [1, 2, 3, 4, 5, 7], // 5개 + 보너스
+      [8, 9, 10, 11, 12, 13], // 아예 없음
     ].map((lotto) => new Lotto(lotto));
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
@@ -38,6 +39,6 @@ describe('LottoResult 클래스에 대한 테스트', () => {
     const lottoResult = new LottoResult(winningNumbers, bonusNumber);
     const rewardCounts = lottoResult.countRewards(lottos);
 
-    expect(rewardCounts).toBe([0, 1, 0, 1, 1]);
+    expect(rewardCounts.map(([, count]) => count)).toEqual([0, 1, 0, 1, 1]);
   });
 });
