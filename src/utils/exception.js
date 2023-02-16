@@ -7,6 +7,11 @@ const exception = {
 
     throw new Error(errorMessage.PURCHASE_PRICE_ERROR);
   },
+  checkWinningNumbers(input) {
+    if (validator.isWinningNumbersValid(input)) return;
+
+    throw new Error(errorMessage.WINNING_NUMBERS_ERROR);
+  },
 };
 
 module.exports = exception;

@@ -17,7 +17,7 @@ const validator = {
     );
   },
 
-  isWinningNumberValid(input) {
+  isWinningNumbersValid(input) {
     const winningNumbers = input.split(',').map(Number);
     return (
       !this.isEmptyOrBlankIncluded(input) &&

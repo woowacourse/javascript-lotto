@@ -1,5 +1,6 @@
 const { PRICE_UNIT } = require('../constants/constants');
 const Lottos = require('../domain/model/Lottos');
+const WinningNumbers = require('../domain/model/WinningNumbers');
 const exception = require('../utils/exception');
 const Console = require('../view/Console');
 const inputView = require('../view/inputView');
@@ -16,11 +17,21 @@ class LottoGameController {
     inputView.readPurchasePrice((purchasePriceInput) => {
       try {
         const lottoCount = this.calcalateLottoCount(purchasePriceInput);
-
         this.#lottos = new Lottos(lottoCount);
       } catch (error) {
         Console.print(error.message);
         this.inputPurchasePrice();
+      }
+    });
+  }
+
+  inputWinningNumbers() {
+    inputView.readWinningNumbers((winningNumbersInput) => {
+      try {
+        this.#numbers.winningNumbers = new WinningNumbers(winningNumbersInput);
+      } catch (error) {
+        Console.print(error.message);
+        this.inputWinningNumbers();
       }
     });
   }
@@ -36,4 +47,4 @@ class LottoGameController {
 
 module.exports = LottoGameController;
 
-new LottoGameController().inputPurchasePrice();
+new LottoGameController().inputWinningNumbers();
