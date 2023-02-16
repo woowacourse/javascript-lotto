@@ -1,11 +1,17 @@
+const {
+  RANK_INFORMATIONS,
+  MAGIC_NUMBER,
+  MAGIC_LITERAL,
+} = require('../constant');
 const Console = require('../utils/Console');
 
 const outputView = {
   printLottoCount(count) {
     Console.print(`${count}개를 구매했습니다.`);
   },
+
   printLotto(lotto) {
-    Console.print(`[${lotto.join(', ')}]`);
+    Console.print(`[${lotto.join(MAGIC_LITERAL.separator)}]`);
   },
 };
 
