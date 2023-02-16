@@ -38,6 +38,10 @@ const lottoGameValidator = {
     lottoGameValidator.checkLottoNumber(number);
     validator.checkDuplication([...winningNumbers, number]);
   },
+
+  checkGameCommand(input) {
+    validator.checkIncludes(input, ['y', 'n']);
+  },
 };
 
 export default lottoGameValidator;
