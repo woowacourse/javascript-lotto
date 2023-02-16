@@ -7,11 +7,9 @@ const InputView = {
     return money;
   },
 
-  async readWinningNumbers() {
-    const winningNumbers = await Console.readline(
-      MESSAGES.readWinningNumbersText
-    );
-    return winningNumbers;
+  async readWinNumbers() {
+    const winNumbers = await Console.readline(MESSAGES.readWinNumbersText);
+    return winNumbers;
   },
 
   async readBonusNumber() {

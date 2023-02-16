@@ -24,14 +24,14 @@ const LottoController = {
   },
 
   async LotteryTicket() {
-    const winningNumbers = await this.readWinningNumbers();
-    const bonusNumber = await this.readBonusNumber(winningNumbers);
+    const winNumbers = await this.readWinNumbers();
+    const bonusNumber = await this.readBonusNumber(winNumbers);
 
-    this.lottoGame.makeWinLotto(winningNumbers, bonusNumber);
-    this.lottoGame.calculateRankResult();
-    const revenue = this.lottoGame.returnRevenueRate();
+    this.lottoGame.makeWinLotto(winNumbers, bonusNumber);
+    const rankResult = this.lottoGame.calculateRankResult();
+    const revenue = this.lottoGame.calculateRevenueRate(rankResult);
 
-    OutputView.printRankResult(this.lottoGame.rankResult);
+    OutputView.printRankResult(rankResult);
     OutputView.printRevenue(revenue);
   },
 
@@ -57,15 +57,15 @@ const LottoController = {
     }
   },
 
-  async readWinningNumbers() {
+  async readWinNumbers() {
     try {
-      const input = await InputView.readWinningNumbers();
-      const winningNumbers = input.split(",").map((num) => parseInt(num));
-      Validation.validateWinningNumber(winningNumbers);
-      return winningNumbers;
+      const input = await InputView.readWinNumbers();
+      const winNumbers = input.split(",").map((num) => parseInt(num));
+      Validation.validateWinNumber(winNumbers);
+      return winNumbers;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.readWinningNumbers();
+      return this.readWinNumbers();
     }
   },
 

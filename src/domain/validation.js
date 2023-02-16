@@ -1,4 +1,4 @@
-const { ERRORMESSAGES } = require("../constant/Constant");
+const { ERRORMESSAGES, LOTTO } = require("../constant/Constant");
 
 const Validation = {
   validateMoney(money) {
@@ -6,18 +6,24 @@ const Validation = {
       throw Error(ERRORMESSAGES.isWrongMoneyText);
   },
 
-  validateWinningNumber(winningNumbers) {
-    if (winningNumbers.some((num) => 1 > num || num > 45 || isNaN(num)))
+  validateWinNumber(winNumbers) {
+    if (
+      winNumbers.some((num) => LOTTO.MIN > num || num > LOTTO.MAX || isNaN(num))
+    )
       throw new Error(ERRORMESSAGES.isOverRangeNumberText);
-    if (winningNumbers.length != 6)
+    if (winNumbers.length != 6)
       throw new Error(ERRORMESSAGES.isWrongLottoNumberText);
 
-    const winSet = new Set(winningNumbers);
+    const winSet = new Set(winNumbers);
     if (winSet.size != 6) throw new Error(ERRORMESSAGES.isSameLottoNumberText);
   },
 
   validateBonusNumber(winLotto, bonusNumber) {
-    if (1 > bonusNumber || bonusNumber > 45 || isNaN(bonusNumber))
+    if (
+      LOTTO.MIN > bonusNumber ||
+      bonusNumber > LOTTO.MAX ||
+      isNaN(bonusNumber)
+    )
       throw new Error(ERRORMESSAGES.isOverRangeBounsText);
     if (winLotto.includes(bonusNumber))
       throw new Error(ERRORMESSAGES.isSameBonusNumberText);

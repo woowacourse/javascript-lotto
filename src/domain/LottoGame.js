@@ -5,7 +5,7 @@ const {
   PRIZE,
   RANK,
   RANK_BY_CORRECTCOUNT,
-  LOTTO_INFO,
+  LOTTO,
 } = require("../constant/Constant");
 
 const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
@@ -13,15 +13,9 @@ const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 class LottoGame {
   #lottos;
   #winLottos;
-  #rankResult;
 
   constructor() {
     this.#lottos = [];
-    this.#rankResult = { ...RANK_RESULT };
-  }
-
-  get rankResult() {
-    return this.#rankResult;
   }
 
   get lottos() {
@@ -34,8 +28,8 @@ class LottoGame {
 
   #LottoNumberGenerator() {
     const lottoNumbers = new Set();
-    while (lottoNumbers.size < LOTTO_INFO.SIZE) {
-      lottoNumbers.add(Random.RandomMinMax(LOTTO_INFO.MIN, LOTTO_INFO.MAX));
+    while (lottoNumbers.size < LOTTO.SIZE) {
+      lottoNumbers.add(Random.RandomMinMax(LOTTO.MIN, LOTTO.MAX));
     }
     return Array.from(lottoNumbers);
   }
@@ -48,8 +42,8 @@ class LottoGame {
     });
   }
 
-  makeWinLotto(winningNumbers, bonusNumber) {
-    this.#winLottos = new WinLotto(winningNumbers, bonusNumber);
+  makeWinLotto(winNumbers, bonusNumber) {
+    this.#winLottos = new WinLotto(winNumbers, bonusNumber);
   }
 
   calculateRank(numbers) {
@@ -64,15 +58,19 @@ class LottoGame {
   }
 
   calculateRankResult() {
+    const rankResult = { ...RANK_RESULT };
+
     this.#lottos.forEach((lotto) => {
       const rank = this.calculateRank(lotto.numbers);
-      this.#rankResult[rank]++;
+      rankResult[rank]++;
     });
+
+    return rankResult;
   }
 
-  returnRevenueRate() {
+  calculateRevenueRate(rankResult) {
     const revenue = Object.keys(PRIZE).reduce(
-      (result, rank) => result + PRIZE[rank] * this.#rankResult[rank],
+      (result, rank) => result + PRIZE[rank] * rankResult[rank],
       0
     );
 
