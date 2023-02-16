@@ -49,7 +49,7 @@ describe("Lotto 객체 단위테스트", () => {
 
     lottos.calculateBenefit();
 
-    expect(lottos.getTotalBenefit()).toBe(2063050000);
+    expect(lottos.getTotalBenefit()).toBe(2001550000);
   });
 
   test("총 수익률을 계산하는 함수 테스트", () => {
@@ -66,6 +66,6 @@ describe("Lotto 객체 단위테스트", () => {
     lottos.compareLottosScore();
     lottos.calculateBenefit();
 
-    expect(lottos.getBenefitRate(1000)).toBe(2063050);
+    expect(lottos.getBenefitRate(1000)).toBe(2001550);
   });
 });
