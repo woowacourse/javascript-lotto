@@ -20,6 +20,7 @@ class Buyer {
       (money, [reward, count]) => money + reward.getMoney() * count,
       0,
     );
+    return receivedRewards;
   }
 
   getProfitRate() {
