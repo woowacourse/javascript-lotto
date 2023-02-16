@@ -24,7 +24,7 @@ describe('사용자 로또 클래스 테스트', () => {
     NUMBERS.forEach((numbers, index) => {
       const lotto = new Lotto(numbers);
 
-      expect(lotto.getNumbers()).toBe(EXPECTED[index]);
+      expect(lotto.getStringifiedNumbers()).toBe(EXPECTED[index]);
     });
   });
 
@@ -60,7 +60,7 @@ describe('사용자 로또 클래스 테스트', () => {
     NUMBERS.forEach((numbers, index) => {
       const lotto = new Lotto(numbers);
 
-      expect(lotto.getNumbers()).toBe(EXPECTED[index]);
+      expect(lotto.getStringifiedNumbers()).toBe(EXPECTED[index]);
     });
   });
 
