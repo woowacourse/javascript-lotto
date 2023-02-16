@@ -39,7 +39,7 @@ export class LottoGame {
 
   async readPurchaseAmount() {
     const purchaseAmountString = await inputView.readline("로또 구입 금액을 입력해 주세요.");
-    validatePurchaseAmount(purchaseAmountString);
+    if (!validatePurchaseAmount(purchaseAmountString)) return this.readPurchaseAmount();
     return Number(purchaseAmountString);
   }
 
@@ -47,13 +47,14 @@ export class LottoGame {
     const winningLottoNumbers = (
       await inputView.readline("당첨 번호를 콤마(,)로 구분해서 입력해 주세요.")
     ).split(",");
-    validateWinningLottoNumbers(winningLottoNumbers);
+    if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
     return winningLottoNumbers.map((number) => Number(number));
   }
 
   async readBonusNumber(winningLottoNumbers) {
     const bonusNumber = await inputView.readline("보너스 번호를 입력해 주세요.");
-    validateBonusNumber(bonusNumber, winningLottoNumbers);
+    if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
+      return this.readBonusNumber(winningLottoNumbers);
     return Number(bonusNumber);
   }
 
@@ -109,7 +110,7 @@ export class LottoGame {
 
   async readRestartOrQuitCommend() {
     const restartOrQuitCommend = await inputView.readline("다시 시작하시겠습니까? (y/n)");
-    validateRestartOrQuitCommend(restartOrQuitCommend);
+    if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
     return restartOrQuitCommend;
   }
 

@@ -1,3 +1,5 @@
+import { outputView } from "../view/outputView";
+
 export const validator = {
   checkPurchaseAmount(purchaseAmount) {
     if (purchaseAmount < 1000 || purchaseAmount % 1000 !== 0) {
@@ -49,29 +51,55 @@ export const validator = {
 };
 
 export const validatePurchaseAmount = (purchaseAmountString) => {
-  validator.checkInteger(purchaseAmountString);
-  validator.checkPurchaseAmount(Number(purchaseAmountString));
+  try {
+    validator.checkInteger(purchaseAmountString);
+    validator.checkPurchaseAmount(Number(purchaseAmountString));
+  } catch (error) {
+    outputView.print(error.message);
+    return false;
+  }
+  return true;
 };
 
-export const validateWinningLottoNumbers = (winningLottoNumbers) => {
-  winningLottoNumbers.forEach((winningLottoNumber) => validator.checkInteger(winningLottoNumber));
+export const validateWinningLottoNumbers = (winningLottoNumberStrings) => {
+  try {
+    winningLottoNumberStrings.forEach((winningLottoNumber) =>
+      validator.checkInteger(winningLottoNumber)
+    );
 
-  winningLottoNumbers = winningLottoNumbers.map((number) => Number(number));
+    const winningLottoNumbers = winningLottoNumberStrings.map((number) => Number(number));
 
-  validator.checkDuplicates(winningLottoNumbers);
-  validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
-  validator.checkListLengthIsSix(winningLottoNumbers);
+    validator.checkDuplicates(winningLottoNumbers);
+    validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
+    validator.checkListLengthIsSix(winningLottoNumbers);
+  } catch (error) {
+    outputView.print(error.message);
+    return false;
+  }
+  return true;
 };
 
-export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {
-  validator.checkInteger(bonusNumber);
+export const validateBonusNumber = (bonusNumberString, winningLottoNumbers) => {
+  try {
+    validator.checkInteger(bonusNumberString);
 
-  bonusNumber = Number(bonusNumber);
+    const bonusNumber = Number(bonusNumberString);
 
-  validator.checkBonusNumberBetween1And45(bonusNumber);
-  validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
+    validator.checkBonusNumberBetween1And45(bonusNumber);
+    validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
+  } catch (error) {
+    outputView.print(error.message);
+    return false;
+  }
+  return true;
 };
 
 export const validateRestartOrQuitCommend = (restartOrQuit) => {
-  validator.checkYOrN(restartOrQuit);
+  try {
+    validator.checkYOrN(restartOrQuit);
+  } catch (error) {
+    outputView.print(error.message);
+    return false;
+  }
+  return true;
 };
