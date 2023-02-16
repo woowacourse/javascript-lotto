@@ -27,10 +27,12 @@ const Inputs = {
     });
   },
 
-  async readRetry() {
-    const retry = await Console.readLine(QUERY.RETRY);
+  async readRetry({ onError } = { onError: null }) {
+    const command = await Console.readLine(QUERY.RETRY);
 
-    return retry;
+    return await Validator.Inputs.retry(command, {
+      onError: onError ?? this.readRetry,
+    });
   },
 };
 

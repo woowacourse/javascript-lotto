@@ -7,6 +7,7 @@ import {
   checkWinningNumbersFormat,
   checkWinningNumbersRange,
 } from './lotto.js';
+import checkRetryFormat from './retry.js';
 
 const Inputs = {
   async amount(amount, { onError: errorCallback }) {
@@ -61,6 +62,22 @@ const Inputs = {
     checkWinningNumberRange(bonusNumber);
 
     return bonusNumber;
+  },
+
+  async retry(command, { onError: errorCallback }) {
+    try {
+      return this.checkRetry(command);
+    } catch (error) {
+      Console.print(error.message);
+
+      return await errorCallback({ onError: errorCallback });
+    }
+  },
+
+  checkRetry(command) {
+    checkRetryFormat(command);
+
+    return command;
   },
 };
 
