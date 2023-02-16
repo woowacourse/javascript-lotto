@@ -1,4 +1,5 @@
 import Component from '../../Component.js';
+import generateMessages from '../../utils/generateMessages.js';
 
 export default class LottoList extends Component {
   setUp({ lottoList }) {
@@ -6,6 +7,6 @@ export default class LottoList extends Component {
   }
 
   template() {
-    return this.lottoList.map((lotto) => `[ ${lotto.getNumbers().join(', ')} ]`).join('\n');
+    return generateMessages.lottoList(this.lottoList);
   }
 }
