@@ -2,10 +2,8 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/LottoGame.js';
 const LottoGameController = {
-  props: {
-    price: 0,
-    luckyNumbers: [],
-    bonusNumber: 0,
+  instance: {
+    lottoGame: null,
   },
 
   async start() {
@@ -13,11 +11,22 @@ const LottoGameController = {
   },
 
   async init() {
-    this.props.price = await InputView.readLottoPrice();
-    const lottoGame = new LottoGame(this.props.price);
-    OutputView.printLottoNumbersList(lottoGame.getLottoNumbersList());
-    this.props.luckyNumbers = await InputView.readLuckyNumbers();
-    this.props.bonusNumber = await InputView.readBonusNumber();
+    this.instance.lottoGame = new LottoGame(await InputView.readLottoPrice());
+    OutputView.printLottoNumbersList(
+      this.instance.lottoGame.getLottoNumbersList()
+    );
+    this.instance.lottoGame.initWinningNumbers(
+      await InputView.readLuckyNumbers(),
+      await InputView.readBonusNumber()
+    );
+
+    this.execute();
+  },
+
+  execute() {
+    this.instance.lottoGame.execute();
+    this.instance.lottoGame.calculateAmountOfRank();
+    this.instance.lottoGame.calculateProfit();
   },
 };
 
