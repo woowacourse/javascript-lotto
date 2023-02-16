@@ -33,7 +33,7 @@ const Validation = {
   },
 
   checkLottoNumberLength(lotto) {
-    if (lotto.length !== 6) {
+    if (lotto.length !== StaticValue.LOTTO_LENGTH) {
       throw new Error(ErrorMessage.LOTTO_LENGTH);
     }
   },
@@ -78,11 +78,11 @@ const Validation = {
   },
 
   isNumberInRange(number) {
-    return number >= 1 && number <= 45;
+    return number >= StaticValue.LOTTO_LOWER_INCLUSIVE && number <= StaticValue.LOTTO_UPPER_INCLUSIVE;
   },
 
   checkRestart(reply) {
-    if (reply !== "n" && reply !== "y") {
+    if (reply !== StaticValue.RESTART_CONTROL && reply !== StaticValue.QUIT_CONTROL) {
       throw new Error(ErrorMessage.RESTART);
     }
   },

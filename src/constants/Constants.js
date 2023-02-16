@@ -2,6 +2,14 @@ const StaticValue = Object.freeze({
   PURCHASE_AMOUNT_UNIT: 1000,
   REGEX_NON_DIGIT: /\D|^$/,
   MATCH_FIVE_AND_BONUS: 5.5,
+  RESTART_CONTROL: "y",
+  QUIT_CONTROL: "n",
+  LOTTO_LOWER_INCLUSIVE: 1,
+  LOTTO_UPPER_INCLUSIVE: 45,
+  LOTTO_LENGTH: 6,
+  MATCH_FIVE: 5,
+  INPUT_SEPARATOR: ",",
+  PRINT_SEPARATOR: ", ",
 });
 
 const MatchCount = Object.freeze({

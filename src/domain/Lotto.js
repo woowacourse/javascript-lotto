@@ -21,7 +21,7 @@ class Lotto {
     const MATCH_COUNT = this.getMatchCount(winningNumbers);
     const BONUS_MATCH = this.hasBonusNumber(bonusNumber);
 
-    if (MATCH_COUNT === 5 && BONUS_MATCH) {
+    if (MATCH_COUNT === StaticValue.MATCH_FIVE && BONUS_MATCH) {
       return StaticValue.MATCH_FIVE_AND_BONUS;
     }
 

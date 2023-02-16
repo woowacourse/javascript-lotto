@@ -1,9 +1,9 @@
-import { ConsoleMessage } from "../constants/Constants.js";
+import { ConsoleMessage, StaticValue } from "../constants/Constants.js";
 import Console from "../utils/Console.js";
 
 const OutputView = {
   printUserLottos(lotto) {
-    console.log(`[${lotto.join(", ")}]`);
+    console.log(`[${lotto.join(StaticValue.PRINT_SEPARATOR)}]`);
   },
 
   printRanks(ranks) {

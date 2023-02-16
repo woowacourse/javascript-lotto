@@ -1,4 +1,4 @@
-import { ConsoleMessage } from "../constants/Constants.js";
+import { ConsoleMessage, StaticValue } from "../constants/Constants.js";
 import LottoGame from "../domain/LottoGame.js";
 import Console from '../utils/Console.js';
 import Validation from "../utils/Validation.js";
@@ -16,7 +16,7 @@ class LottoGameController {
     InputView.readPurchaseAmount((input) => {
       try {
         Validation.checkPurchaseAmount(input);
-        const PURCHASE_COUNT = Number(input) / 1000;
+        const PURCHASE_COUNT = Number(input) / StaticValue.PURCHASE_AMOUNT_UNIT;
         this.#lottoGame.generateUserLottos(PURCHASE_COUNT);
         OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
         this.#handleUserLottos();
@@ -37,7 +37,7 @@ class LottoGameController {
 
   #handleWinningNumbers() {
     InputView.readWinningNumbers((input) => {
-      const WINNING_NUMBERS = input.split(",").map(Number);
+      const WINNING_NUMBERS = input.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
       try {
         Validation.checkLottoNumber(WINNING_NUMBERS);
@@ -88,7 +88,7 @@ class LottoGameController {
   }
 
   #handleRestartReply(reply) {
-    if (reply === "y") {
+    if (reply === StaticValue.RESTART_CONTROL) {
       this.startGame();
       return;
     }
