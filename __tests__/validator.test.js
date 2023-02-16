@@ -43,3 +43,9 @@ test('보너스 번호가 1에서 45이하의 정수가 아니라면 에러가 �
 
   expect(() => validator.throwErrorIfInvalidBonusNumber(bonusNumber)).toThrow();
 });
+
+test('유저의 재시작 커맨드가 y와 n 중 어느 것도 아닐 경우 에러가 발생한다.', () => {
+  const userCommand = '#';
+
+  expect(() => validator.throwErrorIfInvalidUserCommand(userCommand)).toThrow();
+});

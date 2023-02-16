@@ -5,6 +5,11 @@ import view from './view/view.js';
 class LottoController {
   #lottoGame;
 
+  #commandHandler = Object.freeze({
+    y: this.startGame.bind(this),
+    n: this.#exitGame.bind(this),
+  });
+
   startGame() {
     this.#inputBudget();
   }
@@ -52,7 +57,6 @@ class LottoController {
       validator.throwErrorIfInvalidBonusNumber(value);
       return value;
     } catch ({ message }) {
-      this.handleCatch();
       view.output(message);
       return this.#inputBonusNumber();
     }
@@ -73,13 +77,8 @@ class LottoController {
   }
 
   async #askRestart() {
-    const userCommanad = await view.input('\n> 다시 시작하시겠습니까? (y/n) ');
-
-    if (userCommanad === 'y') {
-      return this.startGame();
-    }
-
-    this.#exitGame();
+    const userCommand = await view.input('\n> 다시 시작하시겠습니까? (y/n) ');
+    this.#commandHandler[userCommand]();
   }
 
   #exitGame() {

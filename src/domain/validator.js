@@ -10,7 +10,7 @@ const validator = {
   },
 
   throwErrorIfNotDecimal(number) {
-    if (!/^[1-9]+\d*/.test(number)) {
+    if (!/^[1-9]+\d*$/.test(number)) {
       throw new Error('[ERROR] 구입 금액은 정수여야 합니다.');
     }
   },
@@ -45,6 +45,14 @@ const validator = {
 
     if (!isValidNumber.test(bonusNumber)) {
       throw new Error('[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다');
+    }
+  },
+
+  throwErrorIfInvalidUserCommand(userCommand) {
+    const isValidUserCommand = 'y' === userCommand || 'n' === userCommand;
+
+    if (!isValidUserCommand) {
+      throw new Error('[ERROR] 재시작 여부는 y 또는 n이어야 합니다.');
     }
   },
 };
