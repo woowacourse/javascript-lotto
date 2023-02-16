@@ -1,4 +1,12 @@
 const Validation = {
+  REGEX_NUMERIC: /^\d+$/,
+
+  validateMoney(number) {
+    if (!Validation.REGEX_NUMERIC.test(number) || number < 0) {
+      throw new Error('로또 구매 금액은 0 이상의 정수를 입력해야 한다.');
+    }
+  },
+
   validateDistinctNumbers(lottoNumbers) {
     const lottoSet = new Set(lottoNumbers);
     if (lottoNumbers.length !== lottoSet.size) {
@@ -8,7 +16,7 @@ const Validation = {
 
   validateNumberArray(lottoNumbers) {
     lottoNumbers.forEach((lottoNumber) => {
-      if (!/^\d+$/g.test(lottoNumber)) {
+      if (!Validation.REGEX_NUMERIC.test(lottoNumber)) {
         throw new Error('로또 번호는 정수여야 합니다.');
       }
     });
