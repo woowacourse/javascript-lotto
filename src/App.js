@@ -45,6 +45,24 @@ class App {
     this.#winningLotto = winningNumbers.split(",");
   }
 
+  validateWinningNumbers() {
+    for (let i = 0; i < this.#winningLotto.length; i++) {
+      this.checkEachNumber(this.#winningLotto[i]);
+    }
+  }
+
+  checkEachNumber(eachNumber) {
+    if (!Validations.isNumber(eachNumber)) {
+      throw new Error("숫자만 입력할 수 있습니다.");
+    }
+    if (!Validations.isCorrectRange(eachNumber)) {
+      throw new Error("당첨번호는 1~45까지의 범위입니다.");
+    }
+    if (!Validations.isPositiveInteger(eachNumber)) {
+      throw new Error("당첨번호는 양의 정수여야 합니다.")
+    }
+  }
+
   async getBonusNumber() {
     const bonusNumber = await InputView.inputBonusNumber(
       "보너스 번호를 입력해 주세요."
