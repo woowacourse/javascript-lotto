@@ -59,7 +59,7 @@ class App {
       throw new Error("당첨번호는 1~45까지의 범위입니다.");
     }
     if (!Validations.isPositiveInteger(eachNumber)) {
-      throw new Error("당첨번호는 양의 정수여야 합니다.")
+      throw new Error("당첨번호는 양의 정수여야 합니다.");
     }
   }
 
@@ -68,6 +68,12 @@ class App {
       "보너스 번호를 입력해 주세요."
     );
     this.#bonusNumber = Number(bonusNumber);
+  }
+
+  validateBonusNumber() {
+    if (!Validations.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
+      throw new Error("보너스 번호는 당첨번호와 중복되지 않아야합니다.");
+    }
   }
 }
 
