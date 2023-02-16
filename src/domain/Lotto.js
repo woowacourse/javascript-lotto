@@ -1,12 +1,14 @@
 class Lotto {
+  static ERROR_INVALID = '잘못된 입력입니다.';
+  static ERROR_DUPLICATE = '중복된 입력입니다.';
   #numbers = [];
 
   constructor(numbers) {
     if (!this.isValidLottoNumbers(numbers)) {
-      throw new Error('[ERROR]: 잘못된 입력입니다.');
+      throw new Error(Lotto.ERROR_INVALID);
     }
     if (this.isDuplicateNumbers(numbers)) {
-      throw new Error('[ERROR]: 중복된 입력입니다.');
+      throw new Error(Lotto.ERROR_DUPLICATE);
     }
 
     this.#numbers = numbers.sort((a, b) => a - b);
