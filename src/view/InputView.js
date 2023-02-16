@@ -13,6 +13,12 @@ const InputView = {
 
     return luckyNumbers;
   },
+
+  async readBonusNumber() {
+    const bonusNumber = await Console.readline(QUERY.BONUS_NUMBER);
+
+    return parseInt(bonusNumber, 10);
+  },
 };
 
 export default InputView;
