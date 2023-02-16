@@ -109,5 +109,3 @@ class LottoGameController {
 }
 
 module.exports = LottoGameController;
-
-new LottoGameController().playGame();
