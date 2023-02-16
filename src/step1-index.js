@@ -4,13 +4,8 @@
  */
 import LottoController from './controller/LottoController';
 class App {
-  #controller;
-
-  constructor() {
-    this.#controller = new LottoController();
-  }
   play() {
-    this.#controller.readPurchaseAmount();
+    new LottoController();
   }
 }
 
