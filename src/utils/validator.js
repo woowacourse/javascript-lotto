@@ -1,6 +1,8 @@
 const validator = {
   checkDigit(string) {
-    if (!/^[1-9][0-9]*$/.test(string)) throw new Error('정수여야 합니다. (01, 1.0, +1 불가능)');
+    if (string !== '0' && !/^[1-9][0-9]*$/.test(string)) {
+      throw new Error('정수여야 합니다. (01, 1.0, +1 불가능)');
+    }
   },
 
   checkGreaterThanOrEqualMin(number, min) {
