@@ -13,8 +13,6 @@ export default class LottoGameController {
 
   async play() {
     await this.#createLotto();
-
-    await this.#requestWinningNumbers();
   }
 
   async #createLotto() {
@@ -71,7 +69,18 @@ export default class LottoGameController {
     }
   }
 
-  async #requestBonusNumber() {
-    const bonusNumber = await InputView.readBonusNumber();
+  async #requestBonusNumber(winningNumbers) {
+    const bonusNumberInput = await InputView.readBonusNumber();
+    const bonusNumber = Number(bonusNumberInput);
+
+    try {
+      Validation.validateWinningNumbers(bonusNumber, winningNumbers);
+
+      return bonusNumber;
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+
+      return this.#requestBonusNumber(winningNumbers);
+    }
   }
 }
