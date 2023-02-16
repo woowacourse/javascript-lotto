@@ -1,6 +1,8 @@
 const Validator = {
-  isBase10(value) {
-    return !!parseInt(value, 10);
+  isPositiveInteger(value) {
+    return (!!parseInt(value, 10))
+      && Number.isInteger(Number(value))
+      && Number(value) > 0;
   },
 
   isArrayLengthEqual(array, size) {
