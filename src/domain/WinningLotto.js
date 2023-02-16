@@ -2,7 +2,7 @@ import Lotto from './Lotto';
 import LottoRank from './LottoRank';
 
 class WinningLotto {
-  static ERROR_INVALID = '잘못된 입력입니다.';
+  static ERROR_BONUS_NUMBER = `보너스 번호는 ${Lotto.MIN_NUMBER}와 ${Lotto.MAX_NUMBER}사이의 번호 하나를 입력해주세요.`;
   static ERROR_DUPLICATE = '보너스 번호는 당첨 번호와 중복될 수 없습니다.';
 
   #lotto;
@@ -13,16 +13,18 @@ class WinningLotto {
   }
 
   setBonusNumber(bonusNumber) {
-    if (!Lotto.isValidLottoNumber(bonusNumber)) {
-      throw new Error(WinningLotto.ERROR_INVALID);
-    }
-    if (this.isDuplicateBonus(bonusNumber)) {
-      throw new Error(WinningLotto.ERROR_DUPLICATE);
-    }
+    this.#validateBonusNumber(bonusNumber);
+
     this.#bonusNumber = bonusNumber;
   }
 
-  isDuplicateBonus(bonusNumber) {
+  #validateBonusNumber(number) {
+    if (!Lotto.isLottoNumber(number)) throw new Error(WinningLotto.ERROR_BONUS_NUMBER);
+
+    if (this.#isDuplicate(number)) throw new Error(WinningLotto.ERROR_DUPLICATE);
+  }
+
+  #isDuplicate(bonusNumber) {
     return this.#lotto.hasBonus(bonusNumber);
   }
 
