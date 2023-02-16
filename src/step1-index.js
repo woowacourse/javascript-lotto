@@ -13,10 +13,8 @@ class App extends Component {
     await this.render(
       new WinNumbers({ lottoList: this.state.lottoList, setter: this.setState.bind(this) })
     );
-
     await this.render(new Statistics({ lottoList: this.state.lottoList }));
     await this.render(new Retry({ setter: this.setState.bind(this) }));
-
     await this.checkRetry(this.state.retry);
 
     this.exit();
@@ -41,6 +39,4 @@ class App extends Component {
 }
 
 const app = new App();
-(async () => {
-  await app.play();
-})();
+app.play();
