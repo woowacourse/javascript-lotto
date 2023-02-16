@@ -21,3 +21,29 @@ npm run start-step1
 ### 실행 결과
 
 <img width="477" alt="스크린샷 2023-02-16 오후 4 44 54" src="https://user-images.githubusercontent.com/78203399/219300294-72016035-f2f8-4c8c-b8d2-5acfb513d434.png">
+
+
+### 디렉터리 구조
+```
+.
+├── LottoGame.js
+│
+├── domain
+│   ├── BonusNumber.js
+│   ├── Lotto.js
+│   ├── LottoMachine.js
+│   ├── LottoStatistics.js
+│   ├── WinningNumbers.js
+│   └── constants
+│       └── index.js
+│
+├── step1-index.js
+│
+├── utils
+│   ├── Console.js
+│   └── shuffle.js
+│
+└── view
+    ├── InputView.js
+    └── OutputView.js
+```
