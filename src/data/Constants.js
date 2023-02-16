@@ -27,6 +27,7 @@ const MINIMUM_LOTTO_UNIT = 1000;
 const LOTTO_LENGTH = 6;
 const MAX_LOTTO_NUMBER = 45;
 const MIN_LOTTO_NUMBER = 1;
+const LOTTO_RANGE = [MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER];
 
 const MESSAGE = Object.freeze({
   INPUT_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
@@ -48,6 +49,7 @@ const ERROR_MESSAGE = Object.freeze({
   DUPLICATE_NUMBER: '중복되는 숫자는 입력할 수 없습니다.',
   OVER_RANGE: `${MIN_LOTTO_NUMBER} ~ ${MAX_LOTTO_NUMBER} 사이의 값을 입력해주세요.`,
   NOT_MATCH_LENGTH: `길이는 ${LOTTO_LENGTH} 이여야 합니다.`,
+  DUPLICATE_WINNING_NUMBER: '당첨 번호와 중복되는 숫자는 입력할 수 없습니다.',
 });
 
 export {
@@ -61,4 +63,5 @@ export {
   MIN_LOTTO_NUMBER,
   MATCH_RANK,
   ERROR_MESSAGE,
+  LOTTO_RANGE,
 };

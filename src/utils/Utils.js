@@ -28,9 +28,16 @@ const arrayToObjectThatValueZero = (array) => {
     return acc;
   }, {});
 };
+
+const isNumberInRange = (number, range) => {
+  const [start, end] = range;
+  return number <= end && number >= start;
+};
+
 export {
   convertAscending,
   generateRandomNumber,
   deduplicateArray,
   arrayToObjectThatValueZero,
+  isNumberInRange,
 };

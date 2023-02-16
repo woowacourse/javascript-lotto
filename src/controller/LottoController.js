@@ -4,8 +4,6 @@ import {
   inputBonusNumber,
   inputWhetherToRestart,
 } from '../view/InputView';
-import LottoGame from '../domain/LottoGame';
-import IO from '../utils/IO';
 import {
   outputLottoInfo,
   outputWinningResult,
@@ -13,9 +11,14 @@ import {
 } from '../view/OutputView';
 import {
   isValidateValue,
+  validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
 } from '../utils/validator';
+import { MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../data/Constants';
+import LottoGame from '../domain/LottoGame';
+import IO from '../utils/IO';
+
 class LottoController {
   #game;
 
@@ -57,15 +60,20 @@ class LottoController {
     );
 
     if (!isValidate) return this.readWinningNumber();
-
     this.#game.initializeWin(winningNumber);
 
-    this.readBonusNumber();
+    this.readBonusNumber(winningNumber);
   }
 
-  async readBonusNumber() {
-    const bonusNumber = await inputBonusNumber();
-    this.#game.setBonusNumber(Number(bonusNumber));
+  async readBonusNumber(winningNumber) {
+    const inputBonusNumber = await inputBonusNumber();
+    const bonusNumber = Number(inputBonusNumber);
+    const isValidate = isValidateValue(() =>
+      validateBonusNumber(bonusNumber, winningNumber)
+    );
+
+    if (!isValidate) return this.readBonusNumber(winningNumber);
+    this.#game.setBonusNumber(bonusNumber);
 
     this.printWinningResult();
   }

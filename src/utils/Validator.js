@@ -1,11 +1,11 @@
 import {
   ERROR_MESSAGE,
-  MAX_LOTTO_NUMBER,
   MINIMUM_LOTTO_UNIT,
-  MIN_LOTTO_NUMBER,
   LOTTO_LENGTH,
+  LOTTO_RANGE,
 } from '../data/Constants';
 import IO from './IO';
+import { isNumberInRange } from './Utils';
 
 const {
   NOT_NUMBER,
@@ -14,6 +14,7 @@ const {
   OVER_RANGE,
   DUPLICATE_NUMBER,
   NOT_MATCH_LENGTH,
+  DUPLICATE_WINNING_NUMBER,
 } = ERROR_MESSAGE;
 
 const validator = {
@@ -33,13 +34,14 @@ const validator = {
     }
   },
 
-  checkOverRange: (numbers) => {
-    if (
-      !numbers.every(
-        (number) => number <= MAX_LOTTO_NUMBER && number >= MIN_LOTTO_NUMBER
-      )
-    )
+  checkOverRange: (number, range) => {
+    if (!isNumberInRange(number, range)) {
       throw new Error(OVER_RANGE);
+    }
+  },
+
+  checkOverRangeInArray: (numbers, range) => {
+    numbers.forEach((number) => validator.checkOverRange(number, range));
   },
 
   checkDuplicateNumbers: (numbers) => {
@@ -57,6 +59,12 @@ const validator = {
   checkMatchLottoLength: (numbers) => {
     if (numbers.length !== LOTTO_LENGTH) {
       throw new Error(NOT_MATCH_LENGTH);
+    }
+  },
+
+  checkDuplicateWInningNumber: (number, winningNumber) => {
+    if (winningNumber.includes(number)) {
+      throw new Error(DUPLICATE_WINNING_NUMBER);
     }
   },
 };
@@ -80,9 +88,20 @@ const validatePurchaseAmount = (amount) => {
 
 const validateWinningNumbers = (numbers) => {
   validator.checkIsNumberArray(numbers);
-  validator.checkOverRange(numbers);
+  validator.checkOverRangeInArray(numbers, LOTTO_RANGE);
   validator.checkDuplicateNumbers(numbers);
   validator.checkMatchLottoLength(numbers);
 };
 
-export { isValidateValue, validatePurchaseAmount, validateWinningNumbers };
+const validateBonusNumber = (number, winningNumber) => {
+  validator.checkNumber(number);
+  validator.checkOverRange(number, LOTTO_RANGE);
+  validator.checkDuplicateWInningNumber(number, winningNumber);
+};
+
+export {
+  isValidateValue,
+  validatePurchaseAmount,
+  validateWinningNumbers,
+  validateBonusNumber,
+};
