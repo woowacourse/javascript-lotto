@@ -11,16 +11,20 @@ const Inputs = {
     });
   },
 
-  async readWinningNumbers() {
-    const winningNumbers = (await Console.readLine(QUERY.WINNING_NUMBERS)).split(',').map(Number);
+  async readWinningNumbers({ onError } = { onError: null }) {
+    const winningNumbers = await Console.readLine(QUERY.WINNING_NUMBERS);
 
-    return winningNumbers;
+    return await Validator.Inputs.winningNumbers(winningNumbers, {
+      onError: onError ?? this.readWinningNumbers,
+    });
   },
 
-  async readBonusNumber() {
+  async readBonusNumber({ onError } = { onError: null }) {
     const bonusNumber = await Console.readLine(QUERY.BONUS_NUMBERS);
 
-    return Number(bonusNumber);
+    return await Validator.Inputs.bonusNumber(bonusNumber, {
+      onError: onError ?? this.readBonusNumber,
+    });
   },
 
   async readRetry() {
