@@ -23,6 +23,10 @@ class LottoMachine {
 
   #benefit;
 
+  play() {
+    this.readMoney();
+  }
+
   readMoney() {
     inputHandler('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
   }
@@ -102,7 +106,7 @@ class LottoMachine {
 
   retry() {
     const lottoMachine = new LottoMachine();
-    lottoMachine.readMoney();
+    lottoMachine.play();
   }
 
   quit() {
