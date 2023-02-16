@@ -35,6 +35,10 @@ class Lottos {
     return this.#totalBenefit;
   }
 
+  getBenefitBoard() {
+    return this.#benefitBoard
+  }
+
   compareLottosScore() {
     this.#lottos.forEach((lotto) => {
       this.determineAddScore(lotto);
