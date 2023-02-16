@@ -1,5 +1,5 @@
-import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
+import * as readline from 'node:readline/promises';
 
 const rl = readline.createInterface({
   input,
@@ -8,7 +8,7 @@ const rl = readline.createInterface({
 
 const Console = {
   readLine(query) {
-    return rl.question(query);
+    return rl.question(`> ${query}`);
   },
   print(message) {
     console.log(message);
