@@ -7,6 +7,12 @@ const InputView = {
 
     return moneyInput;
   },
+
+  async readWinningNumber() {
+    const winningNumber = await Console.readLine(messages.INPUT.WINNING_NUMBER);
+
+    return winningNumber;
+  }
 };
 
 export default InputView;
