@@ -1,36 +1,38 @@
+import { ERROR, COMMAND, LOTTO_NUMBER } from '../utils/constants.js';
+
 const Validator = {
   validateLottoNumberLength(lottoNumber) {
-    if (lottoNumber.length !== 6) throw new Error('[ERROR] 로또 번호는 6자리로 입력해야 합니다.');
+    if (lottoNumber.length !== LOTTO_NUMBER.LENGTH) throw new Error(ERROR.LOTTO_NUMBER_LENGTH);
   },
 
   validateLottoNumberDuplicated(lottoNumber) {
-    if (lottoNumber.length !== new Set(lottoNumber).size) throw new Error('[ERROR] 로또 번호는 서로 중복되지 않는 값이어야 합니다.');
+    if (lottoNumber.length !== new Set(lottoNumber).size) throw new Error(ERROR.LOTTO_NUMBER_DUPLICATED);
   },
 
   validateLottoNumberRange(lottoNumber) {
     lottoNumber.forEach((number) => {
-      if (number < 1 || number > 45) throw new Error('[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.');
+      if (number < LOTTO_NUMBER.MIN || number > LOTTO_NUMBER.MAX) throw new Error(ERROR.LOTTO_NUMBER_RANGE);
     });
   },
 
   validateBonusNumberDuplicated(lottoNumber, bonusNumber) {
-    if (lottoNumber.includes(Number(bonusNumber))) throw new Error('[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.');
+    if (lottoNumber.includes(Number(bonusNumber))) throw new Error(ERROR.BONUS_NUMBER_DUPLICATED);
   },
 
   validateBonusNumberRange(bonusNumber) {
-    if (bonusNumber < 1 || bonusNumber > 45) throw new Error('[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.');
+    if (bonusNumber < LOTTO_NUMBER.MIN || bonusNumber > LOTTO_NUMBER.MAX) throw new Error(ERROR.BONUS_NUMBER_RANGE);
   },
 
   validateNumberType(input) {
-    if (Number.isNaN(Number(input))) throw new Error('[ERROR] 입력 값은 숫자여야 합니다.');
+    if (Number.isNaN(Number(input))) throw new Error(ERROR.NUMBER_TYPE);
   },
 
   validateExactUnit(input, unit) {
-    if (input % unit !== 0) throw new Error(`[ERROR] 입력 값은 ${unit} 단위여야 합니다.`);
+    if (input % unit !== 0) throw new Error(ERROR.EXACT_UNIT(unit));
   },
 
   validateRetryCommand(command) {
-    if (command !== 'y' && command !== 'n') throw new Error('[ERROR] y, n중에 명령어를 입력해야 합니다.');
+    if (command !== COMMAND.RETRY && command !== COMMAND.CLOSE) throw new Error(ERROR.RETRY_COMMAND);
   },
 };
 

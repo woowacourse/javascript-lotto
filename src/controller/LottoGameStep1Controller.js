@@ -2,6 +2,7 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/LottoGame.js';
 import parseToNumberTypeArray from '../utils/parseToNumberTypeArray.js';
+import { LOTTO_PRICE } from '../utils/constants.js';
 
 class LottoGameStep1Controller {
   #lottoGame;
@@ -22,7 +23,7 @@ class LottoGameStep1Controller {
     try {
       const purchaseMoney = await InputView.readPurchaseMoney();
       this.#lottoGame.purchaseLottos(purchaseMoney);
-      const purchasedLottoCount = purchaseMoney / 1000;
+      const purchasedLottoCount = purchaseMoney / LOTTO_PRICE;
       OutputView.printPurchasedLottoCount(purchasedLottoCount);
 
       const purchasedLottos = this.#lottoGame.getLottos();

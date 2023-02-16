@@ -1,9 +1,10 @@
 import readLine from '../utils/readLine.js';
+import { MESSAGE } from '../utils/constants.js';
 
 const InputView = {
   readPurchaseMoney() {
     return new Promise((resolve) => {
-      readLine.question('구입 금액을 입력 해 주세요.', (userInput) => {
+      readLine.question(MESSAGE.REQUEST_PURCHASE_MONEY, (userInput) => {
         resolve(userInput);
       });
     });
@@ -11,7 +12,7 @@ const InputView = {
 
   readWinningLottoNumbers() {
     return new Promise((resolve) => {
-      readLine.question('\n당첨 번호를 입력해 주세요.', (userInput) => {
+      readLine.question(MESSAGE.REQUEST_LOTTO_NUMBERS, (userInput) => {
         resolve(userInput);
       });
     });
@@ -19,7 +20,7 @@ const InputView = {
 
   readBonusLottoNumber() {
     return new Promise((resolve) => {
-      readLine.question('보너스 번호를 입력해 주세요.', (userInput) => {
+      readLine.question(MESSAGE.REQUEST_BONUSE_NUMBER, (userInput) => {
         resolve(userInput);
       });
     });
@@ -27,7 +28,7 @@ const InputView = {
 
   readRetryCommand() {
     return new Promise((resolve) => {
-      readLine.question('\n다시 시작하시겠습니까? (y/n)', (userInput) => {
+      readLine.question(MESSAGE.REQUEST_RETRY_COMMAND, (userInput) => {
         resolve(userInput);
       });
     });

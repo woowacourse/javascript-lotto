@@ -3,6 +3,7 @@ import Lotto from './Lotto.js';
 import getRandomNumberArray from '../utils/getRandomNumberArray.js';
 import WinningLotto from './WinningLotto.js';
 import getProfitRate from '../utils/getProfitRate.js';
+import { COMMAND, LOTTO_PRICE, PRIZE } from '../utils/constants.js';
 
 class LottoGame {
   #lottos = [];
@@ -20,7 +21,7 @@ class LottoGame {
   }
 
   getProfitRateOfPrize() {
-    const purchaseMoney = this.#lottos.length * 1000;
+    const purchaseMoney = this.#lottos.length * LOTTO_PRICE;
     const winningMoney = this.#getWinningMoney();
 
     return getProfitRate(purchaseMoney, winningMoney);
@@ -39,12 +40,12 @@ class LottoGame {
     const trimedCommand = retryCommand.trim().toLowerCase();
     Validator.validateRetryCommand(trimedCommand);
 
-    if (trimedCommand === 'y') return true;
+    if (trimedCommand === COMMAND.RETRY) return true;
     return false;
   }
 
   #getWinningMoney() {
-    const prize = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    const prize = [PRIZE.NONE, PRIZE.FIRST, PRIZE.SECOND, PRIZE.THIRD, PRIZE.FORTH, PRIZE.FIFTH];
     const winningRankResult = this.getWinningRankResult();
 
     return prize.reduce((winnigMoney, prizeByRank, index) => {
@@ -55,11 +56,11 @@ class LottoGame {
 
   #validateMoneyInput(money) {
     Validator.validateNumberType(money);
-    Validator.validateExactUnit(money, 1000);
+    Validator.validateExactUnit(money, LOTTO_PRICE);
   }
 
   #getLottoAmount(money) {
-    return money / 1000;
+    return money / LOTTO_PRICE;
   }
 
   #getLottos(lottoAmount) {
