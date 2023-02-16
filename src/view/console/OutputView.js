@@ -58,10 +58,6 @@ const OutputView = {
     Console.print(this.generateProfitRateMessage(profitRate));
   },
 
-  printEmptyLine() {
-    Console.print('');
-  },
-
   printErrorMsg(message) {
     console.error(`[ERROR]:${error.message}`);
   },
