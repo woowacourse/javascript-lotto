@@ -74,25 +74,25 @@ export class LottoGame {
         this.#winningLotto.winningNumbers
       );
 
-      switch (numberOfMatchingLottoNumbers) {
-        case 6:
-          placesOfLottoTickets.FIRST_PLACE += 1;
-          break;
-        case 5:
-          lottoTicket.includes(this.#winningLotto.bonusNumber)
-            ? (placesOfLottoTickets.SECOND_PLACE += 1)
-            : (placesOfLottoTickets.THIRD_PLACE += 1);
-          break;
-        case 4:
-          placesOfLottoTickets.FOURTH_PLACE += 1;
-          break;
-        case 3:
-          placesOfLottoTickets.FOURTH_PLACE += 1;
-          break;
-      }
+      placesOfLottoTickets[this.getPlace(numberOfMatchingLottoNumbers, lottoTicket)] += 1;
     });
 
     return placesOfLottoTickets;
+  }
+
+  getPlace(numberOfMatchingLottoNumbers, lottoTicket) {
+    switch (numberOfMatchingLottoNumbers) {
+      case 6:
+        return "FIRST_PLACE";
+      case 5:
+        return lottoTicket.includes(this.#winningLotto.bonusNumber)
+          ? "SECOND_PLACE"
+          : "THIRD_PLACE";
+      case 4:
+        return "FOURTH_PLACE";
+      case 3:
+        return "FIFTH_PLACE";
+    }
   }
 
   getTotalPrize(placesOfLottoTickets) {
