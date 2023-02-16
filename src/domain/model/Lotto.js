@@ -1,7 +1,6 @@
-const { calculateProfit } = require('../../utils');
-
 class Lotto {
   #numbers;
+
   #rank;
 
   constructor(lottoNumbers) {
