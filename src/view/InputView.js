@@ -19,6 +19,12 @@ const InputView = {
       callback(input)
     );
   },
+
+  readRestart(callback) {
+    return Console.question(ConsoleMessage.RESTART, (input) => {
+      callback(input);
+    });
+  },
 };
 
 export default InputView;
