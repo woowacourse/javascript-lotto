@@ -1,3 +1,7 @@
+import Core from "../constants/Core.js";
+import Lotto from "../constants/Lotto.js";
+import Score from "../constants/Score.js";
+
 class Lottos {
   #lottos;
   #lottoRanking;
@@ -5,20 +9,8 @@ class Lottos {
 
   constructor(lottos) {
     this.#lottos = lottos;
-    this.#lottoRanking = {
-      "3개 일치": 0,
-      "4개 일치": 0,
-      "5개 일치": 0,
-      "5개 일치, 보너스 볼 일치": 0,
-      "6개 일치": 0,
-    };
-    this.#benefitBoard = {
-      "3개 일치": 5000,
-      "4개 일치": 50000,
-      "5개 일치": 1500000,
-      "5개 일치, 보너스 볼 일치": 30000000,
-      "6개 일치": 2000000000,
-    };
+    this.#lottoRanking = Core.rankingBoard;
+    this.#benefitBoard = Core.benefitBoard;
   }
 
   getLottos() {
@@ -40,12 +32,9 @@ class Lottos {
   }
 
   determineAddScore(lotto) {
-    if (
-      lotto.getScore() === 0 ||
-      lotto.getScore() === 1 ||
-      lotto.getScore() === 2
-    )
+    if (this.checkIsFailScore(lotto)) {
       return;
+    }
     lotto.getScore() === 5
       ? this.determineBonusOrNot(lotto)
       : this.addScoreBoard(lotto.getScore());
@@ -53,26 +42,34 @@ class Lottos {
 
   determineBonusOrNot(lotto) {
     lotto.getIsContainBonusNumber()
-      ? this.addScoreBoard("5개 일치, 보너스 볼 일치")
-      : this.addScoreBoard("5개 일치");
+      ? this.addScoreBoard(Score.FIVE_BONUS)
+      : this.addScoreBoard(Score.FIVE);
+  }
+
+  checkIsFailScore(lotto) {
+    return (
+      lotto.getScore() === Score.ZERO ||
+      lotto.getScore() === Score.ONE ||
+      lotto.getScore() === Score.TWO
+    );
   }
 
   addScoreBoard(score) {
     switch (score) {
-      case 3:
-        this.#lottoRanking["3개 일치"] += 1;
+      case Score.THREE:
+        this.#lottoRanking[Score.THREE] += 1;
         break;
-      case 4:
-        this.#lottoRanking["4개 일치"] += 1;
+      case Score.FOUR:
+        this.#lottoRanking[Score.FOUR] += 1;
         break;
-      case "5개 일치":
-        this.#lottoRanking["5개 일치"] += 1;
+      case Score.FIVE:
+        this.#lottoRanking[Score.FIVE] += 1;
         break;
-      case "5개 일치, 보너스 볼 일치":
-        this.#lottoRanking["5개 일치, 보너스 볼 일치"] += 1;
+      case Score.FIVE_BONUS:
+        this.#lottoRanking[Score.FIVE_BONUS] += 1;
         break;
-      case 6:
-        this.#lottoRanking["6개 일치"] += 1;
+      case Score.SIX:
+        this.#lottoRanking[Score.SIX] += 1;
     }
   }
 
@@ -86,20 +83,15 @@ class Lottos {
 
   getBenefitRate() {
     return (
-      Math.round((this.getTotalBenefit() / this.#lottos.length) * 1000 * 100) /
-      100
+      Math.round(
+        (this.getTotalBenefit() / this.#lottos.length) * Lotto.LOTTO_PRICE * 100
+      ) / 100
     );
   }
 
   resetLottos() {
     this.#lottos = [];
-    this.#lottoRanking = {
-      "3개 일치": 0,
-      "4개 일치": 0,
-      "5개 일치": 0,
-      "5개 일치, 보너스 볼 일치": 0,
-      "6개 일치": 0,
-    };
+    this.#lottoRanking = Core.rankingBoard;
   }
 }
 

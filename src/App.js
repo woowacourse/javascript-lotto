@@ -4,9 +4,10 @@ import InputView from "./view/InputView.js";
 import Lotto from "./domain/Lotto.js";
 import Lottos from "./domain/Lottos.js";
 import Random from "./util/Random.js";
-import OutputView from "./view/OutputView.js"
-import Error from "./constants/Error.js"
-import View from "./constants/View.js"
+import OutputView from "./view/OutputView.js";
+import Error from "./constants/Error.js";
+import View from "./constants/View.js";
+import Constant from "./constants/Lotto.js";
 
 class App {
   constructor() {
@@ -138,9 +139,7 @@ class App {
   }
 
   async getRetryInput() {
-    const retryInput = await InputView.inputRetry(
-      View.INPUT_RETYR
-    );
+    const retryInput = await InputView.inputRetry(View.INPUT_RETYR);
     try {
       this.validateRetryInput(retryInput);
       this.retryLottoGame(retryInput);
@@ -151,11 +150,17 @@ class App {
   }
 
   retryLottoGame(retryInput) {
-    if (retryInput === "y" || retryInput === "y") {
+    if (
+      retryInput === Constant.RETRY_DOWNER ||
+      retryInput === Constant.RETRY_UPPER
+    ) {
       this.resetGame();
       this.play();
     }
-    if (retryInput === "n" || retryInput === "N") {
+    if (
+      retryInput === Constant.QUIT_DOWNER ||
+      retryInput === Constant.QUIT_UPPER
+    ) {
       Console.close();
     }
   }

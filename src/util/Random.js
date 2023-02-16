@@ -1,4 +1,4 @@
-import Validations from "../Validations"
+import Validations from "../Validations";
 
 const Random = {
   getnerateRandomNumbers() {
@@ -16,7 +16,7 @@ const Random = {
         return randomNumbers;
       }
     }
-  }
+  },
 };
 
-export default Random
+export default Random;

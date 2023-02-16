@@ -20,7 +20,6 @@ const InputView = {
     const retryInput = await Console.read(query);
     return retryInput;
   },
-
 };
 
 export default InputView;
