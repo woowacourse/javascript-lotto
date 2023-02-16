@@ -1,11 +1,17 @@
 const Random = {
   getnerateRandomNumbers() {
     const randomNumbers = [];
-    for (let i = 0; i < 6; i++) {
-      randomNumbers.push(Math.floor(Math.random() * 45) + 1);
+    while (randomNumbers.length < 6) {
+      Random.makeRandomNumbers(randomNumbers);
     }
     return randomNumbers;
-  }
-};
+  },
 
-export default Random
+  makeRandomNumbers(randomNumbers) {
+    const number = parseInt(Math.random() * 45 + 1);
+    if (randomNumbers.indexOf(number) < 0) {
+      randomNumbers.push(number);
+    }
+  },
+};
+export default Random;
