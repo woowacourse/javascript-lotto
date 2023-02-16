@@ -15,20 +15,21 @@ class LottoResult {
   }
 
   findReward(lotto) {
-    return (
+    const foundReward =
       LottoResult.REWARDS.find((reward) => {
         return reward.canReceive(lotto, this.winningLotto);
-      }) ?? null
-    );
+      }) ?? null;
+    return foundReward;
   }
 
   countRewards(lottos) {
     const givenRewards = lottos.map((lotto) => this.findReward(lotto));
 
-    return LottoResult.REWARDS.map((reward) => [
+    const receivedRewardCounts = LottoResult.REWARDS.map((reward) => [
       reward,
       givenRewards.reduce((count, givenReward) => (givenReward === reward ? count + 1 : count), 0),
     ]);
+    return receivedRewardCounts;
   }
 }
 
