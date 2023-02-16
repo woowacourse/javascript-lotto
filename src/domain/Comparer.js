@@ -9,27 +9,21 @@ class Comparer {
     [RANK.FIRST.name]: 0,
   };
 
-  #winningNumber;
-
-  #bonus;
+  #winningLotto;
 
   #lottos;
 
-  constructor(winningNumber, bonus, lottos) {
-    this.#winningNumber = winningNumber;
-    this.#bonus = bonus;
+  constructor(winningLotto, lottos) {
+    this.#winningLotto = winningLotto;
     this.#lottos = lottos;
   }
 
   countMatchesOfWinningNumber() {
-    return this.#lottos.map((lotto) => {
-      const numbers = new Set([...this.#winningNumber, ...lotto]);
-      return this.#winningNumber.length + lotto.length - numbers.size;
-    });
+    return this.#lottos.map((lotto) => this.#winningLotto.matchCount(lotto));
   }
 
   checkIncludesBonus() {
-    return this.#lottos.map((lotto) => lotto.includes(this.#bonus));
+    return this.#lottos.map((lotto) => this.#winningLotto.hasBonusNumber(lotto));
   }
 
   getRanking() {
