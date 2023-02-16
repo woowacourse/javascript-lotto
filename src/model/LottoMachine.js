@@ -27,11 +27,12 @@ class LottoMachine {
     const { LOWER_BOUND, UPPER_BOUND } = values;
     const randomLottoNumbers = [];
 
-    for (let i = 0; i < 6; i++) {
-      randomLottoNumbers.push(generateRandomNumber(LOWER_BOUND, UPPER_BOUND));
+    while (randomLottoNumbers.length !== values.LOTTO_LENGTH) {
+      const randomNumber = generateRandomNumber(LOWER_BOUND, UPPER_BOUND);
+      if (!randomLottoNumbers.includes(randomNumber)) randomLottoNumbers.push(randomNumber);
     }
 
-    return randomLottoNumbers;
+    return randomLottoNumbers.sort((prev, next) => prev - next);
   }
 
   computeCorrectCounts(winningNumber, lottoNumber) {
