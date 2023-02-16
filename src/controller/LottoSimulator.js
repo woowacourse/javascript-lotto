@@ -1,8 +1,9 @@
 import Validator from '../utils/Validator.js';
-import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING } from '../data/constants.js';
+import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import { LottoUtils } from '../domain/LottoUtils.js';
+import Lotto from '../domain/Lotto.js';
 
 class LottoSimulator {
   #lottos;
@@ -23,19 +24,16 @@ class LottoSimulator {
   }
 
   inputBudget() {
-    InputView.readUserInput(
-      ('구입금액을 입력해 주세요.',
-      (budget) => {
-        this.judgeValidBudget(budget);
-      })
-    );
+    InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET, (budget) => {
+      this.judgeValidBudget(parseInt(budget));
+    });
   }
 
   judgeValidBudget(budget) {
     try {
       this.validateBudget(budget);
       this.budget = budget;
-      //  next step
+      this.purchaseLottos(budget);
     } catch (err) {
       OutputView.printErrorMessage(err);
       this.inputBudget();
@@ -43,13 +41,18 @@ class LottoSimulator {
   }
 
   purchaseLottos(budget) {
-    const purchasedLottos = LottoUtils.createLottos(budget);
-    this.#lottos = purchasedLottos;
-    this.printLottos(purchasedLottos);
+    const lottoCount = budget / LOTTO_CONSTANT.PRICE;
+    OutputView.printPurchaseCount(lottoCount);
+
+    Array.from({ length: lottoCount }).forEach(() => {
+      const lottoNumbers = LottoUtils.createNumbers();
+      this.printNumbers(lottoNumbers);
+      this.#lottos.push(new Lotto(lottoNumbers));
+    });
   }
 
-  printLottos(purchasedLottos) {
-    OutputView.printPurchaseResult(purchasedLottos);
+  printNumbers(lottoNumbers) {
+    OutputView.printLottoNumbers(lottoNumbers);
   }
 
   getLottoCount() {

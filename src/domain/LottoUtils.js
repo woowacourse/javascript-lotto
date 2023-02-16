@@ -16,11 +16,6 @@ const LottoUtils = {
     return Array.from(lottoNumbers);
   },
 
-  createLottos(budget) {
-    const lottoCount = budget / LOTTO_CONSTANT.PRICE;
-    return Array.from({ length: lottoCount }).map(() => new Lotto(this.createNumbers()));
-  },
-
   calculateYieldRate(winningResult) {
     const totalPrize = Object.keys(winningResult).reduce(
       (sum, rank) => sum + WINNING_PRIZE[rank] * winningResult[rank],
