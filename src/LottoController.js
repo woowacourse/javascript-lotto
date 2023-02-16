@@ -38,7 +38,10 @@ class LottoController {
     const winningLotto = await this.#inputWinningLotto();
     const bonusNumber = await this.#inputBonusNumber();
 
-    this.#printScoreBoard(winningLotto.split(',').map(Number), bonusNumber);
+    const formattedWinningLotto = winningLotto.split(',').map(Number);
+    const formattedBonusNumber = Number(bonusNumber);
+
+    this.#printScoreBoard(formattedWinningLotto, formattedBonusNumber);
   }
 
   async #inputWinningLotto() {
