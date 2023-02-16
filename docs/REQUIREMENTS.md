@@ -69,8 +69,6 @@
 
      - lottos
      - money
-     - benefit
-     - ranks
      - winning
 
    - method
@@ -80,7 +78,6 @@
      - 로또 당첨 번호를 입력 받는다. (readWinningNumbers())
      - 로또 보너스 번호를 입력 받는다. (readBonusNumber())
      - 사용자에게 게임을 더 진행할 지 입력을 받는다. (readRetryOption())
-
      - 구매 금액만큼 로또들을 생성한다. (generateLottos())
      - 랜덤으로 6개의 숫자를 생성한다. (makeLottoNumbers())
      - 로또 번호들을 보여준다. (showLottos())
@@ -88,7 +85,7 @@
      - 구매한 로또들에서 당첨된 로또의 등수가 몇개인지 계산한다. (calculateRanks())
      - 보너스 번호가 맞는지 확인한다. (isBonus())
      - 로또가 몇등인지 반환한다. (getRank())
-
+     - 재시작하는 경우를 확인한다. (checkRetryOption())
      - 재시작하였을 경우 구매 금액부터 다시 입력을 받는다. (retry())
      - 게임 종료의 경우 프로그램을 종료한다. (quit())
 
