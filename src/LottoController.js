@@ -32,17 +32,25 @@ class LottoController {
     const boughtLottos = this.#lottoGame.getBoughtLottos();
     view.output(boughtLottos, FORMATTING_TYPE.BOUGHT_LOTTOS);
 
-    this.#inputWinningNumber();
+    this.#inputLottoValues();
+  }
+
+  async #inputLottoValues() {
+    const winningNumber = await this.#inputWinningNumber();
+    const bonusNumber = await this.#inputBonusNumber();
+
+    const winningNumberToNumberArray = winningNumber.split(',').map(Number);
+
+    this.#printScoreBoard(winningNumberToNumberArray, Number(bonusNumber));
   }
 
   async #inputWinningNumber() {
     try {
       const winningNumber = await view.input(MESSAGE.ASK_WINNING_LOTTO);
       validator.throwErrorIfInvalidWinningNumbers(winningNumber);
-      const winningNumberToNumberArray = winningNumber.split(',').map(Number);
-      this.#inputBonusNumber(winningNumberToNumberArray);
+      return winningNumber;
     } catch ({ message }) {
-      this.handleCatchedError(message, this.#inputWinningNumber.bind(this));
+      return this.handleCatchedError(message, this.#inputWinningNumber.bind(this));
     }
   }
 
@@ -50,9 +58,9 @@ class LottoController {
     try {
       const bonusNumber = await view.input(MESSAGE.ASK_BONUS_NUMBER);
       validator.throwErrorIfInvalidBonusNumber(bonusNumber);
-      this.#printScoreBoard(winningNumber, Number(bonusNumber));
+      return bonusNumber;
     } catch ({ message }) {
-      this.handleCatchedError(message, this.#inputBonusNumber.bind(this, winningNumber));
+      return this.handleCatchedError(message, this.#inputBonusNumber.bind(this, winningNumber));
     }
   }
 
