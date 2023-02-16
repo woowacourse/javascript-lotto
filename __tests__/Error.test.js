@@ -60,3 +60,15 @@ describe("당첨로또 Error처리 테스트", () => {
         }).toThrowError("보너스 번호는 당첨번호와 중복되지 않아야합니다.");
       });
   });
+
+  describe("재시작 여부 입력 Error처리 테스트", () => {
+    test("재시작 여부 입력이 정해진 형식이 아닐 경우 Error처리 테스트", () => {
+      const retryInput = 'a'
+      const app = new App();
+      expect(() => {
+        app.validateRetryInput(retryInput);
+      }).toThrowError("재시작은 y, 종료는 n을 입력해주세요.");
+    });
+  
+  });
+
