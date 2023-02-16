@@ -2,6 +2,8 @@ const Lotto = require('./Lotto');
 
 const { shuffle } = require('../utils/shuffle');
 
+const { ALL_LOTTO_NUMBERS } = require('./constants/index');
+
 class LottoMachine {
   #lottos = [];
 
@@ -31,7 +33,7 @@ class LottoMachine {
 
   issueLotto() {
     return new Lotto(
-      shuffle(Array.from({ length: 45 }, (_, idx) => idx + 1))
+      shuffle(ALL_LOTTO_NUMBERS)
         .slice(0, 6)
         .sort((x, y) => x - y)
     );
