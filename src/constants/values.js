@@ -1,3 +1,6 @@
+export const LOTTO_COUNT = 6;
+export const LOTTO_MIN_NUMBER = 1;
+export const LOTTO_MAX_NUMBER = 45;
 export const AWARDS_ORDER = [3, 4, 5, 'BONUS', 6];
 export const INITIAL_EARNING = 0;
 export const PRICE = 1000;

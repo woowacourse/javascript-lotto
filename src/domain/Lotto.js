@@ -1,4 +1,5 @@
-import { INITIAL_EARNING, PRICE, PRIZE } from '../constants/values';
+import { INITIAL_EARNING, LOTTO_COUNT, PRICE, PRIZE } from '../constants/values';
+import randomGenerator from '../utils/Random';
 
 export class Lotto {
   #numbers = [];
@@ -9,7 +10,7 @@ export class Lotto {
   };
 
   constructor(numbers, drawingNumbers) {
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
     this.#drawingNumbers = drawingNumbers;
   }
 
@@ -24,7 +25,6 @@ export class Lotto {
 
 export const LottoStore = {
   purchase(total) {
-    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
     const DRAWING_NUMBERS = {
       winningNumbers: [1, 2, 3, 4, 5, 6],
       bonusNumber: 7,
@@ -32,7 +32,11 @@ export const LottoStore = {
 
     return Array(total)
       .fill('lotto')
-      .map(() => new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS));
+      .map(() => {
+        const LOTTO_NUMBERS = randomGenerator(LOTTO_COUNT);
+
+        return new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS);
+      });
   },
 
   draw(lotto) {
