@@ -15,7 +15,7 @@ const LOTTO_PRIZE = [
     MONEY: 2_000_000_000,
   },
   {
-    CONDITION: '5개 일치',
+    CONDITION: '5개 일치, 보너스 볼 일치',
     MONEY: 30_000_000,
   },
   {
