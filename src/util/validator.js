@@ -34,6 +34,10 @@ const validator = {
 
     return numbers.length === numbersSet.size;
   },
+
+  isOverlap(targetNumbers, number) {
+    return targetNumbers.includes(number);
+  },
 };
 
 export default validator;

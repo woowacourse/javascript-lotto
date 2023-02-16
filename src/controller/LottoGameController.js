@@ -17,10 +17,11 @@ const LottoGameController = {
     OutputView.printLottoNumbersList(
       this.instance.lottoGame.getLottoNumbersList()
     );
-    this.instance.lottoGame.initWinningNumbers(
-      await InputView.readLuckyNumbers(),
-      await InputView.readBonusNumber()
-    );
+
+    const luckyNumbers = await InputView.readLuckyNumbers();
+    const bonusNumber = await InputView.readBonusNumber([...luckyNumbers]);
+
+    this.instance.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
 
     this.execute();
   },
@@ -31,9 +32,12 @@ const LottoGameController = {
       this.instance.lottoGame.calculateProfit()
     );
 
-    if (!(await InputView.readRetry())) this.exit();
+    if (await InputView.readRetry()) {
+      this.start();
+      return;
+    }
 
-    this.start();
+    this.exit();
   },
 
   exit() {

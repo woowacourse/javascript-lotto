@@ -25,13 +25,6 @@ const InputView = {
     await this.readLottoPrice();
   },
 
-  /**
-	 * 
-	 *- [ ]  예외) 숫자,숫자 형식이 아닌 경우
-    - [ ]  예외) 1 ~ 45 사이의 숫자가 아닌 경우
-    - [ ]  예외) 6개의 숫자가 아닌 경우
-    - [ ]  예외) 중복인 경우
-	 */
   async readLuckyNumbers() {
     const luckyNumbersString = await Console.readline(QUERY.LUCKY_NUMBERS);
 
@@ -60,10 +53,26 @@ const InputView = {
     await this.readLuckyNumbers();
   },
 
-  async readBonusNumber() {
+  async readBonusNumber(luckyNumbers) {
     const bonusNumber = await Console.readline(QUERY.BONUS_NUMBER);
+    try {
+      if (
+        !(
+          validator.isValidRangeNumber(parseInt(bonusNumber, 10), {
+            min: 1,
+            max: 45,
+          }) && !validator.isOverlap(luckyNumbers, parseInt(bonusNumber, 10))
+        )
+      ) {
+        throw new Error(`${ERROR.HEAD} 보너스 번호 에러`);
+      }
 
-    return parseInt(bonusNumber, 10);
+      return parseInt(bonusNumber, 10);
+    } catch (error) {
+      Console.print(error.message);
+    }
+
+    await this.readBonusNumber(luckyNumbers);
   },
 
   async readRetry() {
