@@ -1,3 +1,5 @@
+import { RANKING } from '../constants/index.js';
+
 class Lotto {
   constructor(numbers) {
     this.numbers = numbers;
@@ -7,12 +9,12 @@ class Lotto {
     return this.numbers;
   }
 
-  // 개명 필요
-  matcher(winningNumber, bonusNumber) {
+  calculateRanking(winningNumber, bonusNumber) {
+    const { lost, first, second, third, fourth, fifth } = RANKING;
     const bonus = this.numbers.includes(bonusNumber);
-    const match = this.numbers.filter((number) => winningNumber.includes(number)).length;
-    const lottoResult = [null, null, null, 5, 4, bonus ? 2 : 3, 1];
-    return lottoResult[match];
+    const matchCount = this.numbers.filter((number) => winningNumber.includes(number)).length;
+    const ranking = [lost, lost, lost, fifth, fourth, bonus ? second : third, first];
+    return ranking[matchCount]; // 맞춘 갯수에 따른 등수를 반환
   }
 }
 

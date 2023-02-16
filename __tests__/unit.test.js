@@ -52,7 +52,7 @@ test('로또 결과 계산', () => {
   const lotto = new Lotto(numbers);
   const winningNumber = ['1', '2', '3', '4', '5', '7'];
   const bonusNumber = '6';
-  expect(lotto.matcher(winningNumber, bonusNumber)).toEqual(2);
+  expect(lotto.calculateRanking(winningNumber, bonusNumber)).toEqual(2);
 });
 
 test('수익률 계산', () => {

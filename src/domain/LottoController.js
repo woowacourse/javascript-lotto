@@ -93,8 +93,8 @@ class LottoController {
 
   judgeResult(lottos, winningNumber, bonusNumber) {
     return lottos.reduce((acc, lotto, index) => {
-      const result = lotto.matcher(winningNumber, bonusNumber);
-      acc[result] += 1;
+      const ranking = lotto.calculateRanking(winningNumber, bonusNumber);
+      acc[ranking] += 1;
       return acc;
     }, [0, 0, 0, 0, 0, 0]); // index 6이 2등
   }
