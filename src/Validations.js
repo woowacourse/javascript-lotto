@@ -12,7 +12,7 @@ const Validations = {
   },
 
   isCorrectRange(input) {
-    return 0 < input && input < 45 ? true : false;
+    return 0 < input && input < 46 ? true : false;
   },
 
   hasBonusNumber(bonusNumber, winningLotto) {
