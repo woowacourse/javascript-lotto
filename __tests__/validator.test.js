@@ -16,11 +16,11 @@ describe('숫자가 자연수가 맞는지 확인하는 기능', () => {
   });
 
   test('Number 자료형 범위 초과', () => {
-    expect(Validator.isSafeNumber('123456789011121314')).toBeFalsy();
+    expect(Validator.isNumberInRange(1000, Number.MAX_SAFE_INTEGER)('123456789011121314')).toBeFalsy();
   });
 
   test('Number 자료형 범위 안', () => {
-    expect(Validator.isSafeNumber('1234')).toBeTruthy();
+    expect(Validator.isNumberInRange(1000, Number.MAX_SAFE_INTEGER)('1234')).toBeTruthy();
   });
 });
 
@@ -46,11 +46,11 @@ describe('배열 길이 확인', () => {
 
 describe('숫자가 특정 범위 안인지 확인', () => {
   test.each([1, 45])('1~45 범위 안인 경우', (value) => {
-    expect(Validator.isNumberInRange(value, 1, 46)).toBeTruthy();
+    expect(Validator.isNumberInRange(1, 46)(value)).toBeTruthy();
   });
 
   test.each([0, 46])('1~45 범위 밖인 경우', (value) => {
-    expect(Validator.isNumberInRange(value, 1, 46)).toBeFalsy();
+    expect(Validator.isNumberInRange(1, 46)(value)).toBeFalsy();
   });
 });
 
