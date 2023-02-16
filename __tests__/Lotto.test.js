@@ -35,4 +35,24 @@ describe('Lotto 클래스 입니다.', () => {
 
     expect(lotto.countMatch(winLotto)).toBe(3);
   });
+
+  test.each([Lotto.MIN_NUMBER - 1, Lotto.MAX_NUMBER + 1, 'string', null, undefined, {}])(
+    `로또 번호가 ${Lotto.MIN_NUMBER}에서 ${Lotto.MAX_NUMBER} 사이의 정수가 아니면 false를 반환합니다.`,
+    (number) => {
+      expect(Lotto.isLottoNumber(number)).toBe(false);
+    },
+  );
+
+  test.each([5, 7])(
+    `구매할 로또 번호 갯수가 ${Lotto.SIZE}개가 아니면 false를 반환합니다.`,
+    (size) => {
+      expect(Lotto.isValidSize(size)).toBe(false);
+    },
+  );
+
+  test('중복된 번호가 있으면 true를 반환합니다.', () => {
+    const numbers = [4, 45, 4, 32, 1, 6];
+
+    expect(Lotto.hasDuplicate(numbers)).toBe(true);
+  });
 });
