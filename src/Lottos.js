@@ -67,10 +67,13 @@ class Lottos {
     switch (score) {
       case 3:
         this.#lottoRanking["3개 일치"] += 1;
+        break;
       case 4:
         this.#lottoRanking["4개 일치"] += 1;
+        break;
       case "5개 일치":
         this.#lottoRanking["5개 일치"] += 1;
+        break;
       case "5개 일치, 보너스 볼 일치":
         this.#lottoRanking["5개 일치, 보너스 볼 일치"] += 1;
         break;
