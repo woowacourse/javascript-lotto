@@ -1,14 +1,18 @@
+import Reward from './Reward';
+import BonusNumberReward from './BonusReward';
+import WinningLotto from './WinningLotto';
+
 class LottoResult {
   static NEED_BONUS_NUMBER = (hasBonusNumber) => hasBonusNumber;
 
   static NO_NEED_BONUS_NUMBER = () => true;
 
   static REWARDS = [
-    [6, LottoResult.NO_NEED_BONUS_NUMBER, 2_000_000_000],
-    [5, LottoResult.NEED_BONUS_NUMBER, 30_000_000],
-    [5, LottoResult.NO_NEED_BONUS_NUMBER, 1_500_000],
-    [4, LottoResult.NO_NEED_BONUS_NUMBER, 50_000],
-    [3, LottoResult.NO_NEED_BONUS_NUMBER, 5_000],
+    new Reward(6, 2_000_000_000),
+    new BonusNumberReward(5, 30_000_000),
+    new Reward(5, 1_500_000),
+    new Reward(4, 50_000),
+    new Reward(3, 5_000),
   ];
 
   constructor(winningNumbers, bonusNumber) {
@@ -17,14 +21,12 @@ class LottoResult {
   }
 
   exchangeLottoIntoMoney(lotto) {
-    const matchingNumbers = lotto.countMatchingNumbers(this.winningNumbers);
-    const hasBonusNumber = lotto.hasBonusNumber(this.bonusNumber);
-    const reward = LottoResult.REWARDS.find(([_matchingNumbers, _bonusNumberCondition]) => {
-      return matchingNumbers === _matchingNumbers && _bonusNumberCondition(hasBonusNumber);
+    const givenReward = LottoResult.REWARDS.find((reward) => {
+      const winningLotto = new WinningLotto(this.winningNumbers, this.bonusNumber);
+      return reward.canReceive(lotto, winningLotto);
     });
-    if (!reward) return 0;
-    const [, , rewardMoney] = reward;
-    return rewardMoney;
+    if (!givenReward) return 0;
+    return givenReward.getMoney();
   }
 }
 
