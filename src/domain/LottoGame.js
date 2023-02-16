@@ -11,24 +11,25 @@ import {
 } from "./validator";
 
 export class LottoGame {
+  #winningLotto = {
+    winningNumbers: [],
+    bonusNumber: 0,
+  };
+  #lottoTickets = [];
+
   async play() {
     const purchaseAmount = await this.readPurchaseAmount();
 
     const numberOfPurchasedLottoTickets = purchaseAmount / 1000;
-    const lottoTickets = this.makeLottoTickets(numberOfPurchasedLottoTickets);
+    this.makeLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
-    outputView.printLottoTickets(lottoTickets);
+    outputView.printLottoTickets(this.#lottoTickets);
 
-    const winningLottoNumbers = await this.readWinningLottoNumbers();
-    const bonusNumber = await this.readBonusNumber(winningLottoNumbers);
-    const placesOfLottoTickets = this.getPlacesOfLottoTickets(
-      lottoTickets,
-      winningLottoNumbers,
-      bonusNumber
-    );
+    await this.readWinningLottoNumbers();
+    await this.readBonusNumber();
 
+    const placesOfLottoTickets = this.getPlacesOfLottoTickets();
     outputView.printPlacesOfLottoTickets(placesOfLottoTickets);
-
     outputView.printRateOfReturn(
       this.getRateOfReturn(this.getTotalPrize(placesOfLottoTickets), purchaseAmount)
     );
@@ -48,17 +49,17 @@ export class LottoGame {
       await inputView.readline("당첨 번호를 콤마(,)로 구분해서 입력해 주세요.")
     ).split(",");
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
-    return winningLottoNumbers.map((number) => Number(number));
+    this.#winningLotto.winningNumbers = winningLottoNumbers.map((number) => Number(number));
   }
 
-  async readBonusNumber(winningLottoNumbers) {
+  async readBonusNumber() {
     const bonusNumber = await inputView.readline("보너스 번호를 입력해 주세요.");
-    if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
-      return this.readBonusNumber(winningLottoNumbers);
-    return Number(bonusNumber);
+    if (!validateBonusNumber(bonusNumber, this.#winningLotto.winningNumbers))
+      return this.readBonusNumber(this.#winningLotto.winningNumbers);
+    this.#winningLotto.bonusNumber = Number(bonusNumber);
   }
 
-  getPlacesOfLottoTickets(lottoTickets, winningLottoNumbers, bonusNumber) {
+  getPlacesOfLottoTickets() {
     const placesOfLottoTickets = {
       FIFTH_PLACE: 0,
       FOURTH_PLACE: 0,
@@ -67,10 +68,10 @@ export class LottoGame {
       FIRST_PLACE: 0,
     };
 
-    lottoTickets.forEach((lottoTicket) => {
+    this.#lottoTickets.forEach((lottoTicket) => {
       const numberOfMatchingLottoNumbers = this.getNumberOfMatchingLottoNumbers(
         lottoTicket,
-        winningLottoNumbers
+        this.#winningLotto.winningNumbers
       );
 
       switch (numberOfMatchingLottoNumbers) {
@@ -78,7 +79,7 @@ export class LottoGame {
           placesOfLottoTickets.FIRST_PLACE += 1;
           break;
         case 5:
-          lottoTicket.includes(bonusNumber)
+          lottoTicket.includes(this.#winningLotto.bonusNumber)
             ? (placesOfLottoTickets.SECOND_PLACE += 1)
             : (placesOfLottoTickets.THIRD_PLACE += 1);
           break;
@@ -119,9 +120,7 @@ export class LottoGame {
   }
 
   makeLottoTickets(numberOfTickets) {
-    const lottoTickets = Array.from({ length: numberOfTickets }, this.makeLottoTicket);
-
-    return lottoTickets;
+    this.#lottoTickets = Array.from({ length: numberOfTickets }, this.makeLottoTicket);
   }
 
   makeLottoTicket() {
