@@ -16,9 +16,9 @@ const InputView = {
     return Number(bonusNumber);
   },
 
-  async readRestartConfirm() {
-    const restartConfirm = await Console.readLine('다시 시작하시겠습니까? (y/n) ');
-    return restartConfirm;
+  async readRestartCommand() {
+    const restartCommand = await Console.readLine('다시 시작하시겠습니까? (y/n) ');
+    return restartCommand;
   },
 };
 
