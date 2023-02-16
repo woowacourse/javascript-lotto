@@ -74,7 +74,7 @@ export default class LottoGameController {
     const bonusNumber = Number(bonusNumberInput);
 
     try {
-      Validation.validateWinningNumbers(bonusNumber, winningNumbers);
+      Validation.validateBonusNumber(bonusNumber, winningNumbers);
 
       return bonusNumber;
     } catch ({ message }) {
