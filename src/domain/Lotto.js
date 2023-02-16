@@ -3,9 +3,7 @@ import Validation from '../Validation';
 class Lotto {
   constructor(lottoNumbers) {
     this.lottoNumbers = lottoNumbers.sort((a, b) => a - b);
-    Validation.validateDistinctNumbers(this.lottoNumbers);
-    Validation.validateNumberArray(this.lottoNumbers);
-    Validation.validateNumbersRange(this.lottoNumbers);
+    Validation.validateLottoNumbers(this.lottoNumbers);
   }
 
   getLottoNumbers() {
