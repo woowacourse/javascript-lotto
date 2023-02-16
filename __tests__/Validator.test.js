@@ -53,4 +53,16 @@ describe('Validator 테스트', () => {
   ])('당첨 번호 입력값이 유효한지 판별하기', ({ input, expected }) => {
     expect(Validator.isWinningNumberValid(input)).toBe(expected);
   });
+
+  test.each([
+    { input: '', expected: false },
+    { input: 'k', expected: false },
+    { input: '0', expected: false },
+    { input: '46', expected: false },
+    { input: '6', expected: false },
+    { input: '7', expected: true },
+  ])('보너스 번호 입력값이 유효한지 판별하기', ({ input, expected }) => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    expect(Validator.isBonusNumberValid(winningNumbers, input)).toBe(expected);
+  });
 });

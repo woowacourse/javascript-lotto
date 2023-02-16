@@ -10,12 +10,23 @@ const {
 const validator = {
   isWinningNumberValid(input) {
     const winningNumbers = input.split(',').map(Number);
-
     return (
       !this.isEmptyOrBlankIncluded(input) &&
+      winningNumbers.every(this.isNumber) &&
       this.isWinningNumberCountValid(input) &&
       !this.isNumberDuplicated(winningNumbers) &&
       winningNumbers.every(this.isNumberRangeValid)
+    );
+  },
+
+  isBonusNumberValid(winningNumbers, input) {
+    const bonusNumber = Number(input);
+
+    return (
+      !this.isEmptyOrBlankIncluded(bonusNumber) &&
+      this.isNumber(bonusNumber) &&
+      this.isNumberRangeValid(bonusNumber) &&
+      !this.isNumberDuplicated([...winningNumbers, bonusNumber])
     );
   },
 
