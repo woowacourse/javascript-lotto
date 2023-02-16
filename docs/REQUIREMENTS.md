@@ -1,26 +1,25 @@
 # 로또 게임
 
-## view
+## 기능 목록
+
+### view
 
 - [x] 사용자에게 입력을 받는 기능
 - [x] 출력하는 기능
 - [x] 콘솔을 종료하는 기능
 
-## controller
-
-## utils
+### utils
 
 - [x] 정렬된 배열을 반환하는 기능
-- [ ] 정수를 세자리 단위로 끊는다 (toLocaleString)
 - [x] 랜덤 숫자를 반환하는 기능
 
-## domain
+### domain
 
-### pickLotto
+#### pickLotto
 
 - [x] 로또 한장을 발행하는 기능
 
-### validator
+#### validator
 
 - [x] 유효성 검사
   - [x] 금액에 대한 유효성 검사
@@ -34,9 +33,7 @@
   - [x] 재시작 커맨드에 대한 유효성 검사
     - [x] 재시작 커맨드가 y 또는 n 인지 검사
 
-### LottoGame
-
-#### 프로퍼티: lottos, scoreBoard
+#### LottoGame
 
 - [x] 로또 지정된 횟수만큼 발행하는 기능
 - [x] 당첨 내역을 반환하는 기능

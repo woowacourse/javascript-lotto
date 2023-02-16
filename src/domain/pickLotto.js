@@ -9,7 +9,7 @@ const pickLotto = () => {
     lotto.add(pickRandomNumber(GAME_VALUE.MAX_LOTTO_NUMBER));
   }
 
-  const sortedLotto = getSortedNumbers([...lotto], 'ASC');
+  const sortedLotto = getSortedNumbers([...lotto]);
   return sortedLotto;
 };
 
