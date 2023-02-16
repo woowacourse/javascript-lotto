@@ -1,9 +1,10 @@
+import { LOTTO } from "../constants/index.js";
 import InputValidator from "../utils/InputValidator.js";
 
 const LottoValidator = {
   checkMoney(money) {
     InputValidator.checkNaturalNumber(money);
-    InputValidator.checkFallApart(money, 1000);
+    InputValidator.checkFallApart(money, LOTTO.price);
   },
   checkWinningNumber(winningNumber) {
     winningNumber.split(',').forEach((number) => {

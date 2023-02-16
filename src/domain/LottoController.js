@@ -4,8 +4,11 @@ import Lotto from './Lotto.js';
 import lottoGenerator from './LottoGenerator.js';
 import Console from '../utils/Console.js';
 import LottoValidator from './LottoValidator.js';
+import { LOTTO, COMMAND } from '../constants/index.js';
+
 class LottoController {
   #winningNumber;
+
   #bonusNumber;
 
   async #handleRead(read, validation) {
@@ -15,13 +18,13 @@ class LottoController {
       return value;
     } catch (error) {
       OutputView.printError(error);
-      return this.handleRead(read, validation);
+      return this.#handleRead(read, validation);
     }
   }
 
   #purchase(money) {
-    OutputView.printPurchaseResult(money / 1000);
-    const lottos = Array.from({ length: money / 1000 }, () => new Lotto(lottoGenerator()));
+    OutputView.printPurchaseResult(money / LOTTO.price);
+    const lottos = Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator()));
     lottos.forEach((lotto) => {
       OutputView.printLotto(lotto.getNumbers());
     });
@@ -49,25 +52,25 @@ class LottoController {
     this.#showResult(lottos, money);
     const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
 
-    return command === 'y' ? this.play() : Console.close();
+    return command === COMMAND.restart ? this.play() : Console.close();
   }
 
   #calculateBenefit(money, rank) {
-    const PRIZE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
     // eslint-disable-next-line max-params
     const income = rank.reduce((acc, number, index) => {
-      acc += number * PRIZE[index];
+      acc += number * LOTTO.prize[index];
       return acc;
     }, 0);
     return income / money * 100;
   }
 
   #judgeResult(lottos) {
+    const rankingCount = Array(LOTTO.prize.length).fill(0);
     return lottos.reduce((acc, lotto) => {
       const ranking = lotto.calculateRanking(this.#winningNumber, this.#bonusNumber);
-      acc[ranking] += 1;
+      acc[ranking - 1] += 1;
       return acc;
-    }, [0, 0, 0, 0, 0, 0]);
+    }, rankingCount);
   }
 }
 
