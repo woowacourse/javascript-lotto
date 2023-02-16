@@ -31,9 +31,9 @@ const LottoGameController = {
       this.instance.lottoGame.calculateProfit()
     );
 
-    if (await InputView.readRetry()) this.start();
+    if (!(await InputView.readRetry())) this.exit();
 
-    this.exit();
+    this.start();
   },
 
   exit() {
