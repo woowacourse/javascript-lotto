@@ -78,15 +78,15 @@ const validator = {
   },
 };
 
-const isValidateValue = (validator) => {
+const errorChecker = (validator) => {
   try {
     validator();
   } catch (error) {
     IO.output(error);
-    return false;
+    return true;
   }
 
-  return true;
+  return false;
 };
 
 const validatePurchaseAmount = (amount) => {
@@ -113,7 +113,7 @@ const validateRestartInput = (input) => {
 };
 
 export {
-  isValidateValue,
+  errorChecker,
   validatePurchaseAmount,
   validateWinningNumbers,
   validateBonusNumber,

@@ -4,6 +4,7 @@ import {
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
 } from '../data/Constants';
+
 class Lotto {
   #lottoNumber;
   #winRank;

@@ -41,13 +41,13 @@ class LottoGame {
 
   checkWinningNumbers(lotto) {
     const lottoNumber = lotto.lottoNumber;
-    const matchCount = this.#win.winningNumber.reduce((acc, cur) => {
-      return lottoNumber.includes(cur) ? acc + 1 : acc;
-    }, 0);
 
-    if (matchCount === 5) {
-      return lottoNumber.includes(this.#win.bonusNumber) ? 'bonus' : matchCount;
-    }
+    const matchCount = this.#win.winningNumber.reduce(
+      (acc, cur) => (lottoNumber.includes(cur) ? acc + 1 : acc),
+      0
+    );
+    if (matchCount === 5)
+      lottoNumber.includes(this.#win.bonusNumber) ? 'bonus' : matchCount;
 
     return matchCount;
   }

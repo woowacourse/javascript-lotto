@@ -10,7 +10,7 @@ import {
   outputWinningStatistics,
 } from '../view/OutputView';
 import {
-  isValidateValue,
+  errorChecker,
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
@@ -35,13 +35,15 @@ class LottoController {
   async readPurchaseAmount() {
     const inputAmount = await inputPurchaseAmount();
     const purchaseAmount = Number(inputAmount);
-    const isValidate = isValidateValue(() =>
-      validatePurchaseAmount(purchaseAmount)
-    );
 
-    if (!isValidate) return this.readPurchaseAmount();
+    const hasError = errorChecker(() => validateBonusNumber(purchaseAmount));
+    if (hasError) return this.readPurchaseAmount();
+
+    this.setLottos(purchaseAmount);
+  }
+
+  setLottos(purchaseAmount) {
     this.#game.initializeLottos(purchaseAmount);
-
     this.printLottoInfo();
   }
 
@@ -56,26 +58,32 @@ class LottoController {
   async readWinningNumber() {
     const inputNumbers = await inputWinningNumber();
     const winningNumber = inputNumbers.split(',').map(Number);
-    const isValidate = isValidateValue(() =>
-      validateWinningNumbers(winningNumber)
-    );
 
-    if (!isValidate) return this.readWinningNumber();
-    this.#game.initializeWin(winningNumber);
+    const hasError = errorChecker(() => validatePurchaseAmount(winningNumber));
+    if (hasError) return this.readWinningNumber();
 
-    this.readBonusNumber(winningNumber);
+    this.setWinNumber(winningNumber);
   }
 
-  async readBonusNumber(winningNumber) {
+  setWinNumber(winNumber) {
+    this.#game.initializeWin(winNumber);
+    this.readBonusNumber(winNumber);
+  }
+
+  async readBonusNumber(winNumber) {
     const inputNumber = await inputBonusNumber();
     const bonusNumber = Number(inputNumber);
-    const isValidate = isValidateValue(() =>
-      validateBonusNumber(bonusNumber, winningNumber)
+
+    const hasError = errorChecker(() =>
+      validateWinningNumbers(bonusNumber, winNumber)
     );
+    if (hasError) return this.readBonusNumber();
 
-    if (!isValidate) return this.readBonusNumber(winningNumber);
+    this.setBonusNumber(bonusNumber);
+  }
+
+  setBonusNumber(bonusNumber) {
     this.#game.setBonusNumber(bonusNumber);
-
     this.printWinningResult();
   }
 
@@ -99,13 +107,10 @@ class LottoController {
   async readWhetherToRestart() {
     const isRestart = await inputWhetherToRestart();
 
-    const isValidate = isValidateValue(() => validateRestartInput(isRestart));
-    if (!isValidate) return this.readWhetherToRestart();
-    if (isRestart === NO) {
-      IO.close();
-      return;
-    }
+    const hasError = errorChecker(() => validateRestartInput(isRestart));
+    if (hasError) this.readWhetherToRestart();
 
+    if (isRestart === NO) return IO.close();
     this.init();
   }
 }
