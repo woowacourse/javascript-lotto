@@ -14,8 +14,9 @@ import {
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
+  validateRestartInput,
 } from '../utils/validator';
-import { MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../data/Constants';
+import { NO } from '../data/Constants';
 import LottoGame from '../domain/LottoGame';
 import IO from '../utils/IO';
 
@@ -66,8 +67,8 @@ class LottoController {
   }
 
   async readBonusNumber(winningNumber) {
-    const inputBonusNumber = await inputBonusNumber();
-    const bonusNumber = Number(inputBonusNumber);
+    const inputNumber = await inputBonusNumber();
+    const bonusNumber = Number(inputNumber);
     const isValidate = isValidateValue(() =>
       validateBonusNumber(bonusNumber, winningNumber)
     );
@@ -98,8 +99,9 @@ class LottoController {
   async readWhetherToRestart() {
     const isRestart = await inputWhetherToRestart();
 
-    // validation
-    if (isRestart === 'n') {
+    const isValidate = isValidateValue(() => validateRestartInput(isRestart));
+    if (!isValidate) return this.readWhetherToRestart();
+    if (isRestart === NO) {
       IO.close();
       return;
     }

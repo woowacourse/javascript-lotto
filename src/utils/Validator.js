@@ -3,6 +3,8 @@ import {
   MINIMUM_LOTTO_UNIT,
   LOTTO_LENGTH,
   LOTTO_RANGE,
+  YES,
+  NO,
 } from '../data/Constants';
 import IO from './IO';
 import { isNumberInRange } from './Utils';
@@ -15,6 +17,7 @@ const {
   DUPLICATE_NUMBER,
   NOT_MATCH_LENGTH,
   DUPLICATE_WINNING_NUMBER,
+  NOT_INPUT_YES_OR_NO,
 } = ERROR_MESSAGE;
 
 const validator = {
@@ -67,6 +70,12 @@ const validator = {
       throw new Error(DUPLICATE_WINNING_NUMBER);
     }
   },
+
+  checkInputYesOrNo: (input) => {
+    if (input !== YES && input !== NO) {
+      throw new Error(NOT_INPUT_YES_OR_NO);
+    }
+  },
 };
 
 const isValidateValue = (validator) => {
@@ -99,9 +108,14 @@ const validateBonusNumber = (number, winningNumber) => {
   validator.checkDuplicateWInningNumber(number, winningNumber);
 };
 
+const validateRestartInput = (input) => {
+  validator.checkInputYesOrNo(input);
+};
+
 export {
   isValidateValue,
   validatePurchaseAmount,
   validateWinningNumbers,
   validateBonusNumber,
+  validateRestartInput,
 };

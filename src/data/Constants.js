@@ -28,12 +28,14 @@ const LOTTO_LENGTH = 6;
 const MAX_LOTTO_NUMBER = 45;
 const MIN_LOTTO_NUMBER = 1;
 const LOTTO_RANGE = [MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER];
+const YES = 'y';
+const NO = 'n';
 
 const MESSAGE = Object.freeze({
   INPUT_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
   INPUT_WINNING_NUMBER: '당첨 번호를 입력해 주세요. ',
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요. ',
-  INPUT_WHETHER_TO_RESTART: '> 다시 시작하시겠습니까? (y/n)',
+  INPUT_WHETHER_TO_RESTART: `> 다시 시작하시겠습니까? (${YES}/${NO})`,
   OUTPUT_LOTTO_COUNT: '개를 구매했습니다.',
   OUTPUT_WINNING_STATISTICS: '당첨 통계',
   OUTPUT_DIVIDE_LINE: '--------------------',
@@ -50,6 +52,7 @@ const ERROR_MESSAGE = Object.freeze({
   OVER_RANGE: `${MIN_LOTTO_NUMBER} ~ ${MAX_LOTTO_NUMBER} 사이의 값을 입력해주세요.`,
   NOT_MATCH_LENGTH: `길이는 ${LOTTO_LENGTH} 이여야 합니다.`,
   DUPLICATE_WINNING_NUMBER: '당첨 번호와 중복되는 숫자는 입력할 수 없습니다.',
+  NOT_INPUT_YES_OR_NO: `${YES} 또는 ${NO}만 입력하실 수 있습니다.`,
 });
 
 export {
@@ -64,4 +67,6 @@ export {
   MATCH_RANK,
   ERROR_MESSAGE,
   LOTTO_RANGE,
+  YES,
+  NO,
 };
