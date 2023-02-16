@@ -15,11 +15,15 @@ const inputView = {
 
   readBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요. ', input => {
-      Console.print(input);
+      return input
     });
   },
-};
 
-inputView.readBonusNumber();
+  readRestartOrFinish(){
+    Console.readLine('> 다시 시작하시겠습니까? (y/n) ', input => {
+        return input
+      });
+  }
+};
 
 export default inputView;
