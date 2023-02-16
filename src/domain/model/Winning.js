@@ -1,4 +1,5 @@
-const utilFn = require('../../utils');
+const { ERROR_MESSAGE, MAGIC_NUMBER } = require('../../constant');
+const { inputValidator } = require('../../utils');
 
 class Winning {
   #winningNumbers;
@@ -25,30 +26,32 @@ class Winning {
 
   #validateWinningNumbers(winningNumbers) {
     winningNumbers.forEach((winningNumber) => {
-      if (!utilFn.isNumber(winningNumber)) {
-        throw new Error('[ERROR]');
+      if (!inputValidator.isNumber(winningNumber)) {
+        throw new Error(ERROR_MESSAGE.number);
       }
-
-      if (!utilFn.isNumberInLottoRange(winningNumber)) {
-        throw new Error('[ERROR]');
+      if (!inputValidator.isNumberInLottoRange(winningNumber)) {
+        throw new Error(ERROR_MESSAGE.lottoRange);
       }
     });
-    if (!utilFn.isUniqueArray(winningNumbers)) {
-      throw new Error('[ERROR]');
+    if (!inputValidator.isUniqueArray(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.uniqueWinningNumber);
+    }
+    if (winningNumbers.length !== MAGIC_NUMBER.winningNumberCount) {
+      throw new Error(ERROR_MESSAGE.winningNumberCount);
     }
   }
 
   #validateBonusNumber(bonusNumber) {
-    if (!utilFn.isNumber(bonusNumber)) {
-      throw new Error('[ERROR]');
+    if (!inputValidator.isNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.number);
     }
 
-    if (!utilFn.isNumberInLottoRange(bonusNumber)) {
-      throw new Error('[ERROR]');
+    if (!inputValidator.isNumberInLottoRange(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.lottoRange);
     }
 
-    if (!utilFn.isUniqueArray([...this.#winningNumbers, bonusNumber])) {
-      throw new Error('[ERROR]');
+    if (!inputValidator.isUniqueArray([...this.#winningNumbers, bonusNumber])) {
+      throw new Error(ERROR_MESSAGE.uniqueBonusNumber);
     }
   }
 }
