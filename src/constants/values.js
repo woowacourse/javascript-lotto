@@ -8,17 +8,22 @@ const values = Object.freeze({
 });
 
 const correctCountsToMoney = deepFreeze({
-  6: 2000000000,
-  5: [30000000, 1500000],
-  4: 50000,
-  3: 5000,
-  2: 0,
-  1: 0,
-  0: 0,
+  6: { rank: 1, prize: 2000000000 },
+  5: [
+    { rank: 2, prize: 30000000 },
+    { rank: 3, prize: 1500000 },
+  ],
+  4: { rank: 4, prize: 50000 },
+  3: { rank: 5, prize: 5000 },
+  2: { rank: 6, prize: 0 },
+  1: { rank: 6, prize: 0 },
+  0: { rank: 6, prize: 0 },
 });
+
+const prize = [2000000000, 30000000, 1500000, 50000, 5000, 0];
 
 const regex = Object.freeze({
   POSITIVE_INTEGER: /^[1-9]\d*$/,
 });
 
-export { values, correctCountsToMoney, regex };
+export { values, correctCountsToMoney, regex, prize };
