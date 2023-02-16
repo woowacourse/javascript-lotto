@@ -22,6 +22,8 @@ class LottoGame {
     }
 
     outputView.printLottos(this.#lottos.map((lotto) => lotto.getNumbers()));
+    outputView.printNewLine();
+    const winningNumbers = this.readWinningNumbers();
   }
 
   buyLotto() {
@@ -42,6 +44,17 @@ class LottoGame {
     } catch (error) {
       outputView.printErrorMessage(error);
       return this.readPurchaseAmount();
+    }
+  }
+
+  async readWinningNumbers() {
+    const winningNumbers = await this.#io.read('> 당첨 번호를 입력해 주세요. ');
+    try {
+      lottoGameValidator.checkWinningNumbers(winningNumbers);
+      return winningNumbers.split(',').map(Number);
+    } catch (error) {
+      outputView.printErrorMessage(error);
+      return this.readWinningNumbers();
     }
   }
 }

@@ -28,6 +28,10 @@ const outputView = {
   printErrorMessage(error) {
     console.log(error.message);
   },
+
+  printNewLine() {
+    console.log();
+  },
 };
 
 export default outputView;
