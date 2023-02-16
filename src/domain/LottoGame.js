@@ -1,9 +1,14 @@
 const Lotto = require("./Lotto");
-const Random = require("../util/Random");
 const WinLotto = require("../domain/WinLotto");
+const Random = require("../util/Random");
+const {
+  PRIZE,
+  RANK,
+  RANK_BY_CORRECTCOUNT,
+  LOTTO_INFO,
+} = require("../constant/Constant");
 
 const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-const PRIZE = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
 
 class LottoGame {
   #lottos;
@@ -29,8 +34,8 @@ class LottoGame {
 
   #LottoNumberGenerator() {
     const lottoNumbers = new Set();
-    while (lottoNumbers.size < 6) {
-      lottoNumbers.add(Random.RandomMinMax(1, 45));
+    while (lottoNumbers.size < LOTTO_INFO.SIZE) {
+      lottoNumbers.add(Random.RandomMinMax(LOTTO_INFO.MIN, LOTTO_INFO.MAX));
     }
     return Array.from(lottoNumbers);
   }
@@ -49,26 +54,26 @@ class LottoGame {
 
   #calculateRank(lotto) {
     const winNumbers = this.#winLottos.numbers;
-    const sameNumbers = lotto.numbers.filter((num) => winNumbers.includes(num));
+    const numbers = lotto.numbers;
 
-    if (sameNumbers.length === 6) return 1;
-    if (sameNumbers.length === 5)
-      return lotto.numbers.includes(this.#winLottos.bonusNumber) ? 2 : 3;
-    if (sameNumbers.length === 4) return 4;
-    if (sameNumbers.length === 3) return 5;
-    if (sameNumbers.length < 3) return 0;
+    const sameNumbers = numbers.filter((num) => winNumbers.includes(num));
+    const correctCount = sameNumbers.length;
+    if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber))
+      return RANK.SECOND;
+
+    return RANK_BY_CORRECTCOUNT[correctCount];
   }
 
   calculateRankResult() {
     this.#lottos.forEach((lotto) => {
       const rank = this.#calculateRank(lotto);
-      this.#rankResult[rank] += 1;
+      this.#rankResult[rank]++;
     });
   }
 
   returnRevenueRate() {
     const revenue = Object.keys(PRIZE).reduce(
-      (result, current) => result + PRIZE[current] * this.#rankResult[current],
+      (result, rank) => result + PRIZE[rank] * this.#rankResult[rank],
       0
     );
 
