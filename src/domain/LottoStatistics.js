@@ -8,6 +8,16 @@ class LottoStatistics {
     this.#bonusNumber = bonusNumber;
   }
 
+  determineAllLottosRank(lottos) {
+    return lottos.reduce(
+      (acc, lotto) => {
+        acc[this.determineLottoRank(lotto) - 1] += 1;
+        return acc;
+      },
+      [0, 0, 0, 0, 0, 0]
+    );
+  }
+
   determineLottoRank(lotto) {
     if (lotto.calculateMatchCount(this.#winningNumbers.winningNumbers) === 6) {
       return 1;
