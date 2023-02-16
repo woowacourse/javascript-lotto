@@ -7,8 +7,8 @@ const Validations = {
     return buyMoney % 1000 === 0;
   },
 
-  isPositiveInteger(buyMoney) {
-    return buyMoney > 0;
+  isPositiveInteger(input) {
+    return input > 0 && input % 1 === 0;
   },
 
   isCorrectRange(winningNumber) {
