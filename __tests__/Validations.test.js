@@ -51,3 +51,10 @@ describe("재시작 입력 Validations 단위 테스트", () => {
   });
 });
 
+describe("랜덤생성 된 로또의 중복 Validations 테스트", () => {
+  test("랜덤생성 된 로또에 중복 된 숫자가 있으면 false를 반환", () => {
+    const randomNumbers = ["1","1","2","3","4","5"]
+    expect(Validations.isDuplicatedNumbers(randomNumbers)).toBeFalsy();
+  });
+});
+
