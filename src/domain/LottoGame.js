@@ -44,6 +44,15 @@ class LottoGame {
     if (rank === undefined) return 0;
     return rank;
   }
+
+  calculateTotalPrize(lottoRanksCount) {
+    const prizeMoneys = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+
+    return lottoRanksCount.reduce(
+      (totalPrize, rankCount, rank) => totalPrize + rankCount * prizeMoneys[rank],
+      0
+    );
+  }
 }
 
 module.exports = LottoGame;
