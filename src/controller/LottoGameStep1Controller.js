@@ -2,7 +2,6 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/LottoGame.js';
 import parseToNumberTypeArray from '../utils/parseToNumberTypeArray.js';
-import { LOTTO_PRICE } from '../utils/constants.js';
 
 class LottoGameStep1Controller {
   #lottoGame;
@@ -13,6 +12,8 @@ class LottoGameStep1Controller {
 
   async play() {
     await this.purchaseLottos();
+    this.printPurChasedLottoCount();
+    this.printPurchasedLottos();
     await this.generateWinningLottoNumbers();
     this.printWinningRankResult();
     this.printProfitRate();
@@ -23,15 +24,20 @@ class LottoGameStep1Controller {
     try {
       const purchaseMoney = await InputView.readPurchaseMoney();
       this.#lottoGame.purchaseLottos(purchaseMoney);
-      const purchasedLottoCount = purchaseMoney / LOTTO_PRICE;
-      OutputView.printPurchasedLottoCount(purchasedLottoCount);
-
-      const purchasedLottos = this.#lottoGame.getLottos();
-      OutputView.printPurChasedLottoList(purchasedLottos);
     } catch (error) {
       OutputView.printErrorMessage(error);
       return this.purchaseLottos();
     }
+  }
+
+  printPurChasedLottoCount() {
+    const purchasedLottoCount = this.#lottoGame.getLottos().length;
+    OutputView.printPurchasedLottoCount(purchasedLottoCount);
+  }
+
+  printPurchasedLottos() {
+    const purchasedLottos = this.#lottoGame.getLottos();
+    OutputView.printPurChasedLottoList(purchasedLottos);
   }
 
   async generateWinningLottoNumbers() {
@@ -60,15 +66,16 @@ class LottoGameStep1Controller {
     try {
       const retryCommand = await InputView.readRetryCommand();
       const isRetry = this.#lottoGame.determineRetry(retryCommand);
-      if (isRetry) {
-        this.#lottoGame = new LottoGame();
-        return this.play();
-      }
-      OutputView.closeConsole();
+      isRetry ? this.retry() : OutputView.closeConsole();
     } catch (error) {
       OutputView.printErrorMessage(error);
       return this.requestRetryCommand();
     }
+  }
+
+  retry() {
+    this.#lottoGame = new LottoGame();
+    this.play();
   }
 }
 

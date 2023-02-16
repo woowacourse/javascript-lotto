@@ -1,9 +1,8 @@
 import Validator from './Validator.js';
 import Lotto from './Lotto.js';
-import getRandomNumberArray from '../utils/getRandomNumberArray.js';
 import WinningLotto from './WinningLotto.js';
 import getProfitRate from '../utils/getProfitRate.js';
-import { COMMAND, LOTTO_PRICE, PRIZE } from '../utils/constants.js';
+import { COMMAND, LOTTO_PRICE, PRIZE, LOTTO_NUMBER } from '../utils/constants.js';
 
 class LottoGame {
   #lottos = [];
@@ -64,7 +63,17 @@ class LottoGame {
   }
 
   #getLottos(lottoAmount) {
-    return Array.from({ length: lottoAmount }, () => new Lotto(getRandomNumberArray(6)));
+    return Array.from({ length: lottoAmount }, () => new Lotto(this.#getLottoNumber()));
+  }
+
+  #getLottoNumber() {
+    const set = new Set();
+    while (set.size < LOTTO_NUMBER.LENGTH) {
+      const randomNumber = Math.floor(Math.random() * LOTTO_NUMBER.MAX) + LOTTO_NUMBER.MIN;
+      set.add(randomNumber);
+    }
+
+    return [...set].sort((a, b) => a - b);
   }
 
   getLottos() {
