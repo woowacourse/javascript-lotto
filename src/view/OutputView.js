@@ -17,6 +17,25 @@ const OutputView = {
       Console.print(`[${ticket.join(', ')}]`);
     });
   },
+
+  printResultTitle() {
+    Console.print('');
+    Console.print('당첨 통계');
+    Console.print('--------------------');
+  },
+
+  printLottoRanksResult(lottoRanksCount) {
+    lottoRanksCount
+      .slice(1, lottoRanksCount.length)
+      .reverse()
+      .forEach((lottoRankCount, index) => {
+        Console.print(labels[index] + lottoRankCount + '개');
+      });
+  },
+
+  printProfitRate(profitRate) {
+    Console.print(`총 수익률은 ${profitRate}% 입니다.\n`);
+  },
 };
 
 module.exports = OutputView;
