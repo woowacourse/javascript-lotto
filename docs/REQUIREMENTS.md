@@ -63,13 +63,19 @@
 ```
 domain/
   Lotto
+  WinningLotto
   LottoFactory
+  Reward
+  BonusReward
+  LottoResult
+  Buyer
+utils/
+  Console
+  Random
 view/
   InputView
   OutputView
-constants/
-  Messages
-validators/
-  Validator
+Validation
 LottoController
+App
 ```
