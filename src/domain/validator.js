@@ -42,7 +42,7 @@ const validator = {
 
   throwErrorIfInvalidBonusNumber(bonusNumber) {
     if (!REGEX.BONUS_NUMBER.test(bonusNumber)) {
-      throw new Error(MESSAGE.ERROR_BONUS_NUMBER);
+      throw new Error(MESSAGE.ERROR_INVALID_BONUS_NUMBER);
     }
   },
 

@@ -17,8 +17,8 @@ class LottoGame {
     return this.#lottos;
   }
 
-  getMatchedLottoCount(lotto, winningLotto) {
-    const matchedCount = winningLotto.filter((lottoNumber) => lotto.includes(lottoNumber)).length;
+  getMatchedLottoCount(lotto, winningNumber) {
+    const matchedCount = winningNumber.filter((number) => lotto.includes(number)).length;
 
     return matchedCount;
   }
@@ -41,9 +41,9 @@ class LottoGame {
     return 0;
   }
 
-  getWinningStatus(winningLotto, bonusNumber) {
+  getWinningStatus(winningNumber, bonusNumber) {
     this.#lottos.forEach((lotto) => {
-      const matchedCount = this.getMatchedLottoCount(lotto, winningLotto);
+      const matchedCount = this.getMatchedLottoCount(lotto, winningNumber);
       const hasBonusNumber = this.checkBonusNumber(lotto, bonusNumber);
       const rank = this.getRank(matchedCount, hasBonusNumber);
       this.#scoreBoard.writeBoard(rank);
