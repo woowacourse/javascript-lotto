@@ -14,7 +14,7 @@ const Validator = {
   },
 
   validateBonusNumberDuplicated(lottoNumber, bonusNumber) {
-    if (lottoNumber.includes(bonusNumber)) throw new Error('[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.');
+    if (lottoNumber.includes(Number(bonusNumber))) throw new Error('[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.');
   },
 
   validateBonusNumberRange(bonusNumber) {
@@ -30,8 +30,7 @@ const Validator = {
   },
 
   validateRetryCommand(command) {
-    const trimedCommand = command.trim().toLowerCase();
-    if (trimedCommand !== 'y' && trimedCommand !== 'n') throw new Error('[ERROR] y, n중에 명령어를 입력해야 합니다.');
+    if (command !== 'y' && command !== 'n') throw new Error('[ERROR] y, n중에 명령어를 입력해야 합니다.');
   },
 };
 

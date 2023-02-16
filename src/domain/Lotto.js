@@ -13,6 +13,7 @@ class Lotto {
   }
 
   #validateLottoNumber(lottoNumber) {
+    Validator.validateLottoNumberLength(lottoNumber);
     Validator.validateLottoNumberDuplicated(lottoNumber);
     Validator.validateLottoNumberRange(lottoNumber);
   }

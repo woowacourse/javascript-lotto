@@ -2,6 +2,7 @@ import Validator from './Validator.js';
 import Lotto from './Lotto.js';
 import getRandomNumberArray from '../utils/getRandomNumberArray.js';
 import WinningLotto from './WinningLotto.js';
+import getProfitRate from '../utils/getProfitRate.js';
 
 class LottoGame {
   #lottos = [];
@@ -26,13 +27,20 @@ class LottoGame {
   }
 
   getWinningRankResult() {
-    return this.#lottos.reduce(
-      (winningRankResult, lotto) => {
-        const rank = this.#winningLotto.calculateRank(lotto);
-        winningRankResult[rank] += 1;
-      },
-      [0, 0, 0, 0, 0, 0]
-    );
+    const initRank = [0, 0, 0, 0, 0, 0];
+    return this.#lottos.reduce((winningRankResult, lotto) => {
+      const rank = this.#winningLotto.calculateRank(lotto);
+      winningRankResult[rank] += 1;
+      return winningRankResult.slice();
+    }, initRank);
+  }
+
+  determineRetry(retryCommand) {
+    const trimedCommand = retryCommand.trim().toLowerCase();
+    Validator.validateRetryCommand(trimedCommand);
+
+    if (trimedCommand === 'y') return true;
+    return false;
   }
 
   #getWinningMoney() {
@@ -41,6 +49,7 @@ class LottoGame {
 
     return prize.reduce((winnigMoney, prizeByRank, index) => {
       winnigMoney += prizeByRank * winningRankResult[index];
+      return winnigMoney;
     }, 0);
   }
 
