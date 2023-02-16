@@ -117,4 +117,16 @@ describe("Validation 테스트", () => {
       });
     });
   });
+
+  describe("게임 재시작 여부 테스트", () => {
+    test("y, n이 아닌 문자(대문자 제외)를 입력한 경우 에러가 발생한다.", () => {
+      const REPLIES = ["d", 5, "wer", ""];
+
+      REPLIES.forEach((reply) => {
+        expect(() => {
+          Validation.checkRestart(reply);
+        }).toThrow(ErrorMessage.RESTART);
+      });
+    });
+  });
 });
