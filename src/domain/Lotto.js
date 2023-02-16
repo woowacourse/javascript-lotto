@@ -1,17 +1,25 @@
 class Lotto {
-  constructor(money, number) {
-    if (money % 1000) throw new Error('로또는 1000원 단위로 입력을 해주셔야 됩니다.');
-    this.lottoMoney = money;
-    this.lottoNumber = number;
+  lottoNumber;
+
+  constructor() {
+    this.lottoNumber = [];
   }
 
   countLotto(money) {
     return Number(money) / 1000;
   }
 
-  makeLotto() {
-    const number = this.countLotto(this.lottoMoney);
-    this.lottoNumber = Array.from({ length: number }, () => this.randomNumberLotto());
+  get lottoNumber(){
+    return this.lottoNumber;
+  }
+
+  setLottoNumber(number){
+    this.lottoNumber=number
+  }
+
+  makeLotto(money) {
+    const number = this.countLotto(money);
+    this.setLottoNumber(Array.from({ length: number }, () => this.randomNumberLotto()));
   }
 
   sortedNumber(number) {
@@ -19,9 +27,9 @@ class Lotto {
   }
 
   randomNumberLotto() {
-    const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 46));
+    const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 45 + 1));
     if (this.checkRepeatedNumber(randomNumber)) return this.sortedNumber(randomNumber);
-    this.randomNumberLotto();
+    return this.randomNumberLotto();
   }
 
   checkRepeatedNumber(randomNumber) {
@@ -31,8 +39,8 @@ class Lotto {
   compareNumber(winningNumber, bonusNumber) {
     const ranks = [];
     this.lottoNumber.forEach(numbers => {
-      const matchedNumber = numbers.filter(number => winningNumber.includes(number)).length;
-      if (matchedNumber === 5) return ranks.push(this.bouseNumberChecked(numbers, bonusNumber));
+      const matchedNumber = numbers.filter(number => winningNumber.includes(String(number))).length;
+      if (matchedNumber === 5) return ranks.push(this.bouseNumberChecked(numbers, Number(bonusNumber)));
       if (matchedNumber >= 3) ranks.push(matchedNumber);
     });
     return ranks;

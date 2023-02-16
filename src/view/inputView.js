@@ -1,29 +1,23 @@
 import Console from '../utils/Console.js';
 
 const inputView = {
-  readMoney() {
-    Console.readLine('구입금액을 입력해 주세요.', input => {
-      return input;
-    });
+  async readMoney() {
+    const money = await Console.readLine('구입금액을 입력해 주세요.');
+    return money;
   },
 
-  readWinningNumber() {
-    Console.readLine('당첨 번호를 입력해 주세요. ', input => {
-      return input;
-    });
+  async readWinningNumber() {
+    return await Console.readLine('\n> 당첨 번호를 입력해 주세요. ');
   },
 
-  readBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요. ', input => {
-      return input
-    });
+  async readBonusNumber() {
+    return await Console.readLine('\n> 보너스 번호를 입력해 주세요. ');
   },
 
-  readRestartOrFinish(){
-    Console.readLine('> 다시 시작하시겠습니까? (y/n) ', input => {
-        return input
-      });
-  }
+  async readRestartOrFinish() {
+    if(await Console.readLine('\n> 다시 시작하시겠습니까? (y/n) ')==='y') return 1;
+    Console.close()
+  },
 };
 
 export default inputView;

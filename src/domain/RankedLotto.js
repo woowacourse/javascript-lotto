@@ -1,56 +1,56 @@
-import Lotto from './Lotto';
+import Lotto from './Lotto.js';
 
 class RankedLotto {
-  constructor(winningNumber, bonusNumber) {
-    this.winningNumber = winningNumber;
-    this.bonusNumber = bonusNumber;
-    this.result = [0, 0, 0, 0, 0];
+  constructor() {
     this.profit = 0;
+    this.lotto = new Lotto();
   }
-  statisticalChart() {
-    const lottoMoney = '1000';
-    const lottoNumber = [
-      [8, 21, 23, 41, 42, 43],
-      [3, 5, 11, 16, 32, 38],
-      [7, 11, 16, 35, 36, 44],
-      [1, 8, 11, 31, 41, 42],
-      [13, 14, 16, 38, 42, 45],
-      [7, 11, 30, 40, 42, 43],
-      [2, 13, 22, 32, 38, 45],
-      [1, 3, 5, 14, 22, 45],
-    ];
-    const lotto = new Lotto(lottoMoney, lottoNumber);
+  ranking(winningNumber, bonusNumber) {
+    const ranks = this.lotto.compareNumber(winningNumber, bonusNumber);
+    return ranks
+  }
 
-    const ranks = lotto.compareNumber(this.winningNumber, this.bonusNumber);
+  setNumber(a){
+    this.lotto.setLottoNumber(a)
+  }
+
+  getResult(ranks) {
+    const result = [0, 0, 0, 0, 0];
     ranks
       .sort((a, b) => b - a)
       .forEach(number => {
         switch (number) {
           case 7:
-            this.result[3]++;
+            result[3]++;
             break;
           case 6:
-            this.result[4]++;
+            result[4]++;
             break;
           case 5:
-            this.result[2]++;
+            result[2]++;
             break;
           case 4:
-            this.result[1]++;
+            result[1]++;
             break;
           case 3:
-            this.result[0]++;
+            result[0]++;
             break;
         }
       });
+    return result;
   }
 
-  earningsRate(lottoMoney) {
-    const ConstantMoney = [5000, 50000,1500000, 30000000 ,2000000000];
-    Array.from({ length: this.result.length }, (v, index) => {
-      this.profit += this.result[index] * ConstantMoney[index];
+  earningsRate(lottoMoney, result) {
+    const ConstantMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+    Array.from({ length:result.length }, (v, index) => {
+      this.profit += result[index] * ConstantMoney[index];
     });
     this.profit = (this.profit / lottoMoney) * 100;
   }
+
+  get getProfit(){
+    return this.profit
+  }
+
 }
 export default RankedLotto;

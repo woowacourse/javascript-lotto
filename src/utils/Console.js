@@ -1,3 +1,5 @@
+import { rejects } from 'node:assert';
+import { resolve } from 'node:path';
 import * as readline from 'node:readline';
 
 const rl = readline.createInterface({
@@ -6,8 +8,10 @@ const rl = readline.createInterface({
 });
 
 class Console {
-  static readLine(query, callback) {
-    rl.question(query, callback)
+  static readLine(query) {
+    return new Promise((resolve)=>{
+      rl.question(query, (answer)=> resolve(answer))
+    })
   }
   
   static print(input){
