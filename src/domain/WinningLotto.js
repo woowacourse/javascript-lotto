@@ -3,8 +3,8 @@ import {
   LOTTO_CONSTANT,
   LOTTO_RANKING,
   MATCHES_COUNT_TO_RANKING,
-} from '../data/constants';
-import Lotto from './Lotto';
+} from '../data/constants.js';
+import Lotto from './Lotto.js';
 
 class WinningLotto extends Lotto {
   #bonusNumber;

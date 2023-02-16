@@ -1,7 +1,8 @@
-import Validator from '../utils/Validator';
-import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING } from '../data/constants';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
+import Validator from '../utils/Validator.js';
+import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING } from '../data/constants.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
+import { LottoUtils } from '../domain/LottoUtils.js';
 
 class LottoSimulator {
   #lottos;
@@ -34,11 +35,21 @@ class LottoSimulator {
     try {
       this.validateBudget(budget);
       this.budget = budget;
-      // next
+      //  next step
     } catch (err) {
       OutputView.printErrorMessage(err);
       this.inputBudget();
     }
+  }
+
+  purchaseLottos(budget) {
+    const purchasedLottos = LottoUtils.createLottos(budget);
+    this.#lottos = purchasedLottos;
+    this.printLottos(purchasedLottos);
+  }
+
+  printLottos(purchasedLottos) {
+    OutputView.printPurchaseResult(purchasedLottos);
   }
 
   getLottoCount() {

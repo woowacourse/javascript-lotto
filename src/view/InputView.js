@@ -1,4 +1,4 @@
-import Console from '../utils/Console';
+import Console from '../utils/Console.js';
 
 const InputView = {
   readUserInput(message, callback) {

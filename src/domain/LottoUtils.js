@@ -1,6 +1,6 @@
-import Lotto from '../domain/Lotto';
-import { RandomNumberGenerator } from '../utils/RandomNumberGenerator';
-import { LOTTO_CONSTANT, WINNING_PRIZE } from '../data/constants';
+import Lotto from '../domain/Lotto.js';
+import { RandomNumberGenerator } from '../utils/RandomNumberGenerator.js';
+import { LOTTO_CONSTANT, WINNING_PRIZE } from '../data/constants.js';
 
 const LottoUtils = {
   createNumbers() {
@@ -27,7 +27,7 @@ const LottoUtils = {
       0
     );
 
-    return ((totalPrize / this.#budget) * 100).toFixed(1);
+    return ((totalPrize / this.budget) * 100).toFixed(1);
   },
 };
 
