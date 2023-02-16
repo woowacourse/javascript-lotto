@@ -1,3 +1,4 @@
+import { LOTTO, RANKING_THRESHOLD, GAME_COMMAND } from './constants/index.js';
 import lottoGameCalculator from './domain/lottoGameCalculator.js';
 import lottoGameValidator from './domain/lottoGameValidator.js';
 import Lotto from './domain/models/Lotto.js';
@@ -27,15 +28,15 @@ class LottoGame {
   }
 
   buyLottos(purchaseAmount) {
-    while (this.#lottos.length < purchaseAmount / 1000) {
+    while (this.#lottos.length < purchaseAmount / LOTTO.price) {
       this.#lottos.push(this.buyLotto());
     }
   }
 
   buyLotto() {
     const randomNumbers = [];
-    while (randomNumbers.length < 6) {
-      const randomNumber = generateRandomNumber(1, 45);
+    while (randomNumbers.length < LOTTO.numbersLength) {
+      const randomNumber = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
       if (!randomNumbers.includes(randomNumber)) randomNumbers.push(randomNumber);
     }
 
@@ -46,7 +47,8 @@ class LottoGame {
     const rankings = [];
     this.#lottos.forEach((lotto) => {
       const matchCount = lotto.calculateMatchCount(winningNumbers);
-      if (matchCount >= 3) rankings.push(lotto.calculateRanking(matchCount, bonusNumber));
+      if (matchCount >= RANKING_THRESHOLD)
+        rankings.push(lotto.calculateRanking(matchCount, bonusNumber));
     });
 
     return rankings;
@@ -64,7 +66,7 @@ class LottoGame {
   }
 
   decideReplay(gameCommand) {
-    if (gameCommand === 'y') {
+    if (gameCommand === GAME_COMMAND.yes) {
       this.#lottos = [];
       this.play();
     } else {

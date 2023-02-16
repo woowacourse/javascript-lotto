@@ -1,16 +1,17 @@
 import validator from '../utils/validator';
+import { LOTTO, GAME_COMMAND } from '../constants';
 
 const lottoGameValidator = {
   checkPruchaseAmount(input) {
     validator.checkDigit(input);
     const number = Number(input);
-    validator.checkGreaterThanOrEqualMin(number, 1000);
-    validator.checkDivideIntoUnit(number, 1000);
+    validator.checkGreaterThanOrEqualMin(number, LOTTO.price);
+    validator.checkDivideIntoUnit(number, LOTTO.price);
   },
 
   checkLottoNumber(number) {
-    validator.checkGreaterThanOrEqualMin(number, 1);
-    validator.checkLessThanOrEqualMax(number, 45);
+    validator.checkGreaterThanOrEqualMin(number, LOTTO.minNumber);
+    validator.checkLessThanOrEqualMax(number, LOTTO.maxNumber);
   },
 
   checkLottoNumbers(numbers) {
@@ -18,7 +19,7 @@ const lottoGameValidator = {
       lottoGameValidator.checkLottoNumber(number);
     });
 
-    validator.checkArrayLength(numbers, 6);
+    validator.checkArrayLength(numbers, LOTTO.numbersLength);
     validator.checkDuplication(numbers);
   },
 
@@ -40,7 +41,7 @@ const lottoGameValidator = {
   },
 
   checkGameCommand(input) {
-    validator.checkIncludes(input, ['y', 'n']);
+    validator.checkIncludes(input, [GAME_COMMAND.yes, GAME_COMMAND.no]);
   },
 };
 

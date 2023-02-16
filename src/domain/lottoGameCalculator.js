@@ -1,14 +1,8 @@
+import { RANKINGS_REWARD } from '../constants';
+
 const lottoGameCalculator = {
   calculateReward(rankings) {
-    const rewardMap = {
-      1: 2000000000,
-      2: 30000000,
-      3: 1500000,
-      4: 50000,
-      5: 5000,
-    };
-
-    return rankings.reduce((acc, ranking) => (acc += rewardMap[ranking]), 0);
+    return rankings.reduce((acc, ranking) => (acc += RANKINGS_REWARD[ranking]), 0);
   },
 
   calculateRewardRate(purchaseAmount, rankings) {
