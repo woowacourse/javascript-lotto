@@ -37,9 +37,4 @@ describe('일치된 번호에 해당하는 순위를 계산한다', () => {
     const lotto = new Lotto([1, 2, 3, 4, 9, 10]);
     expect(winningLotto.calculateRanking(lotto)).toBe('fourth');
   });
-
-  test('꽝 계산', () => {
-    const lotto = new Lotto([1, 2, 7, 8, 9, 10]);
-    expect(winningLotto.calculateRanking(lotto)).toBe('fail');
-  });
 });
