@@ -1,4 +1,4 @@
-import { LOTTO_CONDITION } from '../constants/condition';
+import { LOTTO_CONDITION } from '../constants/condition.js';
 
 export default class Lotto {
   #numbers;
