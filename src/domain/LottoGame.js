@@ -17,6 +17,7 @@ import {
   PLACES,
   PRIZE,
   MATCHING_NUMBERS,
+  LOTTO_NUMBER_LENGTH,
 } from "../constants";
 const { PURCHASE_AMOUNT, LOTTO_NUMBER, BONUS_NUMBER, RESTART_OR_QUIT } = INPUT_MESSAGE;
 const { LOWER_CASE, UPPER_CASE } = RESTART_COMMEND;
@@ -136,7 +137,7 @@ export class LottoGame {
   makeLottoTicket() {
     const lottoTicket = new Set();
 
-    while (6 > lottoTicket.size) {
+    while (LOTTO_NUMBER_LENGTH > lottoTicket.size) {
       lottoTicket.add(randomNumberBetween());
     }
 
