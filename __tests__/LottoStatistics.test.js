@@ -3,6 +3,24 @@ const LottoStatistics = require('../src/domain/LottoStatistics');
 const WinningNumbers = require('../src/domain/WinningNumbers');
 const BonusNumber = require('../src/domain/BonusNumber');
 
+test('보너스 번호와 당첨 번호에 중복이 존재하지 않으면 정상 동작', () => {
+  expect(() => {
+    new LottoStatistics(
+      new WinningNumbers('1,2,3,4,5,6'),
+      new BonusNumber('7')
+    );
+  }).not.toThrow();
+});
+
+test('보너스 번호와 당첨 번호에 중복이 존재하면 예외처리', () => {
+  expect(() => {
+    new LottoStatistics(
+      new WinningNumbers('1,2,3,4,5,6'),
+      new BonusNumber('6')
+    );
+  }).toThrow();
+});
+
 test('각 로또의 등수를 결정한다.', () => {
   const statistics = new LottoStatistics(
     new WinningNumbers('1,2,3,4,5,6'),
