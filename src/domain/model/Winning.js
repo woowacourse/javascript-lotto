@@ -26,12 +26,7 @@ class Winning {
 
   #validateWinningNumbers(winningNumbers) {
     winningNumbers.forEach((winningNumber) => {
-      if (!inputValidator.isNumber(winningNumber)) {
-        throw new Error(ERROR_MESSAGE.number);
-      }
-      if (!inputValidator.isNumberInLottoRange(winningNumber)) {
-        throw new Error(ERROR_MESSAGE.lottoRange);
-      }
+      this.#validateNumber(winningNumber);
     });
     if (!inputValidator.isUniqueArray(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.uniqueWinningNumber);
@@ -42,16 +37,20 @@ class Winning {
   }
 
   #validateBonusNumber(bonusNumber) {
-    if (!inputValidator.isNumber(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.number);
-    }
-
-    if (!inputValidator.isNumberInLottoRange(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.lottoRange);
-    }
+    this.#validateNumber(bonusNumber);
 
     if (!inputValidator.isUniqueArray([...this.#winningNumbers, bonusNumber])) {
       throw new Error(ERROR_MESSAGE.uniqueBonusNumber);
+    }
+  }
+
+  #validateNumber(number) {
+    if (!inputValidator.isNumber(number)) {
+      throw new Error(ERROR_MESSAGE.number);
+    }
+
+    if (!inputValidator.isNumberInLottoRange(number)) {
+      throw new Error(ERROR_MESSAGE.lottoRange);
     }
   }
 }
