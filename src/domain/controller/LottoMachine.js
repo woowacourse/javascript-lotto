@@ -19,8 +19,6 @@ class LottoMachine {
 
   #winning;
 
-  #ranks;
-
   play() {
     this.readMoney();
   }
@@ -80,10 +78,10 @@ class LottoMachine {
   #afterReadBonusNumber = (input) => {
     try {
       this.#winning.setBonusNumber(Number(input));
-      this.calculateRanks();
+      const ranks = this.calculateRanks();
       const benefit = new Benefit();
-      benefit.calculateRate(this.#money.getAmount(), this.#ranks);
-      this.showResult(benefit);
+      benefit.calculateRate(this.#money.getAmount(), ranks);
+      this.showResult(benefit, ranks);
       this.readRetryOption();
     } catch (error) {
       console.log(error.message);
@@ -140,7 +138,7 @@ class LottoMachine {
         ranks[rank] += 1;
       }
     });
-    this.#ranks = ranks;
+    return ranks;
   }
 
   getRank(matchedCount, isBonus) {
@@ -164,9 +162,9 @@ class LottoMachine {
     });
   }
 
-  showResult(benefit) {
+  showResult(benefit, ranks) {
     outputView.printResultTitle();
-    outputView.printResult(this.#ranks);
+    outputView.printResult(ranks);
     outputView.printBenefit(benefit.getRate());
   }
 
