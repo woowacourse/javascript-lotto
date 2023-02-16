@@ -28,11 +28,11 @@ describe("구매금액 Validations 단위 테스트", () => {
   });
 });
 
-describe("당첨번호 Validations 단위 테스트", () => {
-  test("당첨번호가 1~45의 범위인지 판별하는 함수 테스트", () => {
-    const winningNumber = 0;
+describe("당첨번호와 보너스번호 Validations 단위 테스트", () => {
+  test("당첨번호와 보너스번호가 1~45의 범위인지 판별하는 함수 테스트", () => {
+    const input = 0;
 
-    expect(Validations.isCorrectRange(winningNumber)).toBeFalsy();
+    expect(Validations.isCorrectRange(input)).toBeFalsy();
   });
 });
 
