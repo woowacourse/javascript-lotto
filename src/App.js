@@ -7,14 +7,12 @@ import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js";
 
 class App {
-  #winningLotto;
-  #bonusNumber;
-  #lottoArray;
 
   constructor() {
-    this.#winningLotto = [];
-    this.#bonusNumber = 0;
-    this.#lottoArray = [];
+    this.winningLotto = [];
+    this.bonusNumber = 0;
+    this.lottoArray = [];
+    this.lottos = []
   }
 
   async play() {
@@ -38,24 +36,15 @@ class App {
 
   createLotto(lottoAmount) {
     for (let i = 0; i < lottoAmount; i++) {
-      const randomNumbers = this.getCorrectRandomNumbers();
+      const randomNumbers = Random.getCorrectRandomNumbers();
       const lotto = new Lotto(randomNumbers);
-      this.#lottoArray.push(lotto);
-    }
-  }
-
-  getCorrectRandomNumbers() {
-    while (true) {
-      const randomNumbers = Random.getnerateRandomNumbers();
-      if (Validations.isDuplicatedNumbers(randomNumbers)) {
-        return randomNumbers;
-      }
+      this.lottoArray.push(lotto);
     }
   }
 
   printLottos(lottoAmount) {
     OutputView.printLottoAmount(lottoAmount);
-    OutputView.printLottos(this.#lottoArray);
+    OutputView.printLottos(this.lottoArray);
   }
 
   validateBuyMoney(buyMoney) {
@@ -74,7 +63,7 @@ class App {
     const winningNumbers = await InputView.inputWinningNumbers(
       "당첨 번호를 입력해 주세요."
     );
-    this.#winningLotto = this.convertStringToNumber(winningNumbers.split(","));
+    this.winningLotto = this.convertStringToNumber(winningNumbers.split(","));
     try {
       this.validateWinningNumbers();
     } catch (e) {
@@ -91,11 +80,11 @@ class App {
   }
 
   validateWinningNumbers() {
-    if (!Validations.isCorrectLength(this.#winningLotto)) {
-      throw new Error("6개의 숫자를 입력해주세요.")
+    if (!Validations.isCorrectLength(this.winningLotto)) {
+      throw new Error("6개의 숫자를 입력해주세요.");
     }
-    for (let i = 0; i < this.#winningLotto.length; i++) {
-      this.checkEachNumber(this.#winningLotto[i]);
+    for (let i = 0; i < this.winningLotto.length; i++) {
+      this.checkEachNumber(this.winningLotto[i]);
     }
   }
 
@@ -115,10 +104,10 @@ class App {
     const bonusNumber = await InputView.inputBonusNumber(
       "보너스 번호를 입력해 주세요."
     );
-    this.#bonusNumber = Number(bonusNumber);
+    this.bonusNumber = Number(bonusNumber);
     try {
       this.validateBonusNumber();
-      this.checkEachNumber(this.#bonusNumber);
+      this.checkEachNumber(this.bonusNumber);
       this.compareLottos();
     } catch (e) {
       Console.print(e);
@@ -127,26 +116,26 @@ class App {
   }
 
   validateBonusNumber() {
-    if (Validations.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
+    if (Validations.hasBonusNumber(this.bonusNumber, this.winningLotto)) {
       throw new Error("보너스 번호는 당첨번호와 중복되지 않아야합니다.");
     }
   }
 
   compareLottos() {
-    const lottos = new Lottos(this.#lottoArray);
-    lottos.getLottos().forEach((lotto) => {
-      lotto.compareNumbers(this.#winningLotto);
-      lotto.checkBonusNumber(this.#bonusNumber);
+    this.lottos = new Lottos(this.lottoArray);
+    this.lottos.getLottos().forEach((lotto) => {
+      lotto.compareNumbers(this.winningLotto);
+      lotto.checkBonusNumber(this.bonusNumber);
     });
-    lottos.compareLottosScore();
-    this.printResult(lottos);
+    this.lottos.compareLottosScore();
+    this.printResult();
   }
 
-  printResult(lottos) {
+  printResult() {
     OutputView.printResultMessage();
-    OutputView.printLottoResults(lottos);
-    lottos.calculateBenefit();
-    OutputView.printTotalBenefit(lottos);
+    OutputView.printLottoResults(this.lottos);
+    this.lottos.calculateBenefit();
+    OutputView.printTotalBenefit(this.lottos);
   }
 
   async getRetryInput() {
@@ -163,12 +152,19 @@ class App {
   }
 
   retryLottoGame(retryInput) {
-    if (retryInput === "y" || "y") {
+    if (retryInput === "y" || retryInput === "y") {
+      this.resetGame()
       this.play();
+
     }
-    if (retryInput === "n" || "N") {
+    if (retryInput === "n" || retryInput === "N") {
       Console.close();
     }
+  }
+
+  resetGame() {
+    this.lottos.resetLottos()
+    this.lottoArray = []
   }
 
   validateRetryInput(retryInput) {
