@@ -1,4 +1,4 @@
-const lottoCalculator = {
+const lottoGameCalculator = {
   calculateReward(rankings) {
     const rewardMap = {
       1: 2000000000,
@@ -11,8 +11,8 @@ const lottoCalculator = {
     return rankings.reduce((acc, ranking) => (acc += rewardMap[ranking]), 0);
   },
 
-  calculateRewardRate(lottePurchaseAmount, ranking) {
-    const reward = lottoCalculator.calculateReward(ranking);
+  calculateRewardRate(lottePurchaseAmount, rankings) {
+    const reward = lottoGameCalculator.calculateReward(rankings);
 
     return `${((reward / lottePurchaseAmount) * 100)
       .toFixed(1)
@@ -20,4 +20,4 @@ const lottoCalculator = {
   },
 };
 
-export default lottoCalculator;
+export default lottoGameCalculator;

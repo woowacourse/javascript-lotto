@@ -1,4 +1,4 @@
-import lottoCalculator from '../src/domain/lottoCalculator';
+import lottoGameCalculator from '../src/domain/lottoGameCalculator';
 import Lotto from '../src/domain/models/Lotto';
 
 describe('Lotto 모델 테스트', () => {
@@ -41,7 +41,7 @@ describe('Lotto 모델 테스트', () => {
   });
 });
 
-describe('lottoCalculator 테스트', () => {
+describe('lottoGameCalculator 테스트', () => {
   test.each([
     [[1], 2000000000],
     [[2], 30000000],
@@ -51,7 +51,7 @@ describe('lottoCalculator 테스트', () => {
     [[3, 5, 5], 1510000],
     [[], 0],
   ])('순위가 각각 %p등일 때, 총 상금은 %d원이다.', (rankings, expectedReward) => {
-    const reward = lottoCalculator.calculateReward(rankings);
+    const reward = lottoGameCalculator.calculateReward(rankings);
 
     expect(reward).toBe(expectedReward);
   });
@@ -65,7 +65,7 @@ describe('lottoCalculator 테스트', () => {
   ])(
     '구입금액이 %d이고, 순위가 각각 %p등일 때 수익률은 %f이다.',
     (lottePurchaseAmount, rankings, expectedRewardRate) => {
-      const rewardRate = lottoCalculator.calculateRewardRate(lottePurchaseAmount, rankings);
+      const rewardRate = lottoGameCalculator.calculateRewardRate(lottePurchaseAmount, rankings);
 
       expect(rewardRate).toBe(expectedRewardRate);
     }
