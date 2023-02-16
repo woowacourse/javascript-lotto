@@ -6,18 +6,18 @@ class Lottos {
   constructor(lottos) {
     this.#lottos = lottos;
     this.#lottoRanking = {
-      3: 0,
-      4: 0,
-      5: 0,
-      "5 bonus": 0,
-      6: 0,
+      "3개 일치": 0,
+      "4개 일치": 0,
+      "5개 일치": 0,
+      "5개 일치, 보너스 볼 일치": 0,
+      "6개 일치": 0,
     };
     this.#benefitBoard = {
-      3: 5000,
-      4: 50000,
-      5: 1500000,
-      "5 bonus": 30000000,
-      6: 2000000000,
+      "3개 일치": 5000,
+      "4개 일치": 50000,
+      "5개 일치": 1500000,
+      "5개 일치, 보너스 볼 일치": 30000000,
+      "6개 일치": 2000000000,
     };
 
     this.#totalBenefit = 0;
@@ -59,8 +59,8 @@ class Lottos {
 
   determineBonusOrNot(lotto) {
     lotto.getIsContainBonusNumber()
-      ? this.addScoreBoard("5 bonus")
-      : this.addScoreBoard("5");
+      ? this.addScoreBoard("5개 일치, 보너스 볼 일치")
+      : this.addScoreBoard("5개 일치");
   }
 
   addScoreBoard(score) {
