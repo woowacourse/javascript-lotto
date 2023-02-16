@@ -15,10 +15,8 @@ const InputView = {
   },
 
   async readWinNumbers() {
-    // to-do: 중간에 띄어쓰기 된 입력값 허용하고 있는데 허용하지 않을지
     const winNumbers = await Console.read(InputView.READ_WIN_NUMBERS);
-    const whiteSpaceRegexp = /\s/g;
-    return winNumbers.replace(whiteSpaceRegexp, '').split(',').map(Number);
+    return winNumbers.split(',').map(Number);
   },
 
   async readBonusNumber() {
