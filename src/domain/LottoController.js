@@ -7,13 +7,16 @@ import Lotto from './Lotto.js';
 import lottoGenerator from './LottoGenerator.js';
 import InputValidator from '../utils/InputValidator.js';
 import Console from '../utils/Console.js';
+import LottoValidator from './LottoValidator.js';
 class LottoController {
 
+  /**
+   * 나중에 통합 고려하기 시작
+   */
   async handleReadMoney() {
     try {
       const money = await InputView.readMoney();
-      InputValidator.checkNaturalNumber(money);
-      InputValidator.checkFallApart(money, 1000);
+      LottoValidator.checkMoney(money);
       return money;
     } catch (error) {
       OutputView.printError(error);
@@ -24,10 +27,7 @@ class LottoController {
   async handleReadWinningNumber() {
     try {
       const winningNumber = await InputView.readWinningNumber();
-      winningNumber.split(',').forEach((number) => {
-        InputValidator.checkLottoNumber(number);
-      });
-      InputValidator.checkDuplicatedNumbers(winningNumber.split(','));
+      LottoValidator.checkWinningNumber(winningNumber.split(','));
       return winningNumber;
     } catch (error) {
       OutputView.printError(error);
@@ -38,8 +38,7 @@ class LottoController {
   async handleReadBonusNumber(winningNumber) {
     try {
       const bonusNumber = await InputView.readBonusNumber();
-      InputValidator.checkLottoNumber(bonusNumber);
-      InputValidator.checkDuplicatedNumbers(winningNumber.join('').concat(bonusNumber).split(','));
+      LottoValidator.checkBonusNumber(winningNumber, bonusNumber);
       return bonusNumber;
     } catch (error) {
       OutputView.printError(error);
@@ -47,16 +46,21 @@ class LottoController {
     }
   }
 
-  async handleRetryCommand() {
+  async handleReadRetryCommand() {
     try {
       const command = await InputView.readRetryCommand();
-      InputValidator.checkRetryCommand(command);
+      LottoValidator.checkReadRetryCommand(command);
       return command;
     } catch (error) {
       OutputView.printError(error);
-      return this.handleRetryCommand();
+      return this.handleReadRetryCommand();
     }
   }
+
+  /**
+ * 나중에 통합 고려하기 끝
+ */
+
 
   async play() {
     const money = await this.handleReadMoney();
@@ -77,7 +81,7 @@ class LottoController {
 
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
-    const command = await this.handleRetryCommand();
+    const command = await this.handleReadRetryCommand();
     return command === 'y' ? this.play() : Console.close();
   }
 
