@@ -2,6 +2,9 @@ const MESSAGE = {
   INPUT_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
   INPUT_LOTTO_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
   INPUT_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
+  INPUT_RESTART_COMMAND: "\n다시 시작하시겠습니까? (y/n)\n",
+  RESTART: "\n게임을 다시 시작합니다.\n",
+  QUIT: "\n게임을 종료합니다.\n",
 };
 
 const AMOUNT_OF_PURCHASE = (amount) => {
@@ -27,8 +30,8 @@ const NUMBER = {
 };
 
 const COMMAND = {
-  YES: "y",
-  NO: "n",
+  RESTART: "y",
+  QUIT: "n",
 };
 
 const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];

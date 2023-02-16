@@ -54,7 +54,7 @@ const Validation = {
   },
 
   restartCommand(answer) {
-    if (answer === COMMAND.YES || answer === COMMAND.NO) return;
+    if (answer === COMMAND.RESTART || answer === COMMAND.QUIT) return;
     throw new Error(ERROR.RESTART);
   },
 };

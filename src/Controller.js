@@ -2,6 +2,7 @@ const InputView = require("./view/InputView");
 const OutputView = require("./view/OutputView");
 const LottoGame = require("./domain/LottoGame");
 const Validation = require("./Validation");
+const { COMMAND } = require("./constants");
 
 class Controller {
   #lottoNumbers;
@@ -70,6 +71,29 @@ class Controller {
       this.#bonusNumber
     );
     OutputView.printResult(lottoResult);
+    this.inputRestartCommand();
+  }
+
+  inputRestartCommand() {
+    InputView.readRestartCommand(this.restartCommandHandler.bind(this));
+  }
+
+  restartCommandHandler(command) {
+    try {
+      Validation.restartCommand(command);
+      this.checkRestartCommand(command);
+    } catch (error) {
+      OutputView.printError(error);
+      this.inputRestartCommand();
+    }
+  }
+
+  checkRestartCommand(command) {
+    if (command === COMMAND.RESTART) {
+      OutputView.printRestart();
+      this.inputPurchaseAmount();
+    }
+    if (command === COMMAND.QUIT) OutputView.printQuit();
   }
 }
 

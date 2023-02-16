@@ -13,6 +13,10 @@ const InputView = {
   readBonusNumber(callback) {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, callback);
   },
+
+  readRestartCommand(callback) {
+    Console.readLine(MESSAGE.INPUT_RESTART_COMMAND, callback);
+  },
 };
 
 module.exports = InputView;
