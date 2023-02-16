@@ -1,16 +1,17 @@
+const Benefit = require('../model/Benefit');
+const Money = require('../model/Money');
+const Winning = require('../model/Winning');
+const inputHandler = require('../../view/inputView');
+const outputView = require('../../view/outputView');
+const { pickRandomNumberInRange } = require('../../utils');
+const Console = require('../../utils/Console');
 const {
   MAGIC_NUMBER,
   RANK_INFORMATIONS,
   MAGIC_LITERAL,
   ERROR_MESSAGE,
+  RANK_TEMPLATE,
 } = require('../../constant');
-const { pickRandomNumberInRange } = require('../../utils');
-const Console = require('../../utils/Console');
-const inputHandler = require('../../view/inputView');
-const outputView = require('../../view/outputView');
-const Benefit = require('../model/Benefit');
-const Money = require('../model/Money');
-const Winning = require('../model/Winning');
 
 class LottoMachine {
   #lottos;
@@ -113,41 +114,41 @@ class LottoMachine {
     const lottoCount = amount / MAGIC_NUMBER.moneyUnit;
 
     this.#lottos = Array.from({ length: lottoCount }).map(() =>
-      this.makeLottoNumbers()
+      this.composeLottoNumbers()
     );
   }
 
-  makeLottoNumbers() {
-    const lottoNumbers = [];
+  composeLottoNumbers() {
+    const lottoNumbers = new Set();
 
-    while (lottoNumbers.length < MAGIC_NUMBER.lottoNumberCount) {
+    while (lottoNumbers.size < MAGIC_NUMBER.lottoNumberCount) {
       const randomNumber = pickRandomNumberInRange(
         MAGIC_NUMBER.lottoStart,
         MAGIC_NUMBER.lottoEnd
       );
-      if (!lottoNumbers.includes(randomNumber)) {
-        lottoNumbers.push(randomNumber);
-      }
+      lottoNumbers.add(randomNumber);
     }
-
-    return lottoNumbers.sort((first, second) => first - second);
+    return [...lottoNumbers].sort((first, second) => first - second);
   }
 
   calculateRanks() {
-    const winningNumbers = this.#machineInput.winning.getWinningNumbers();
-    const ranks = [0, 0, 0, 0, 0];
+    const ranks = RANK_TEMPLATE;
 
     this.#lottos.forEach((lotto) => {
-      const matchedCount = lotto.filter((number) =>
-        winningNumbers.includes(number)
-      ).length;
-
+      const matchedCount = this.getMatchedCount(lotto);
       const rank = this.getRank(matchedCount, this.isBonus(lotto));
+
       if (rank !== MAGIC_NUMBER.losing) {
         ranks[rank] += 1;
       }
     });
     return ranks;
+  }
+
+  getMatchedCount(lotto) {
+    const winningNumbers = this.#machineInput.winning.getWinningNumbers();
+
+    return lotto.filter((number) => winningNumbers.includes(number)).length;
   }
 
   getRank(matchedCount, isBonus) {

@@ -1,5 +1,5 @@
-const { MAGIC_NUMBER, ERROR_MESSAGE } = require('../../constant');
 const { inputValidator } = require('../../utils');
+const { ERROR_MESSAGE, MAGIC_NUMBER } = require('../../constant');
 
 class Money {
   #amount;

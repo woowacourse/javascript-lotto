@@ -1,5 +1,5 @@
-const { ERROR_MESSAGE, MAGIC_NUMBER } = require('../../constant');
 const { inputValidator } = require('../../utils');
+const { ERROR_MESSAGE, MAGIC_NUMBER } = require('../../constant');
 
 class Winning {
   #winningNumbers;

@@ -1,9 +1,9 @@
+const Console = require('../utils/Console');
 const {
-  RANK_INFORMATIONS,
   MAGIC_NUMBER,
   MAGIC_LITERAL,
+  RANK_INFORMATIONS,
 } = require('../constant');
-const Console = require('../utils/Console');
 
 const outputView = {
   printLottoCount(count) {

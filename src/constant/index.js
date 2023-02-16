@@ -30,16 +30,44 @@ const ERROR_MESSAGE = {
 };
 
 const RANK_INFORMATIONS = [
-  { rank: 1, reward: 2_000_000_000, matchedCount: 6, isBonus: false },
-  { rank: 2, reward: 30_000_000, matchedCount: 5, isBonus: true },
-  { rank: 3, reward: 1_500_000, matchedCount: 5, isBonus: false },
-  { rank: 4, reward: 50_000, matchedCount: 4, isBonus: false },
-  { rank: 5, reward: 5_000, matchedCount: 3, isBonus: false },
+  {
+    rank: 1,
+    reward: 2_000_000_000,
+    matchedCount: 6,
+    isBonus: false,
+  },
+  {
+    rank: 2,
+    reward: 30_000_000,
+    matchedCount: 5,
+    isBonus: true,
+  },
+  {
+    rank: 3,
+    reward: 1_500_000,
+    matchedCount: 5,
+    isBonus: false,
+  },
+  {
+    rank: 4,
+    reward: 50_000,
+    matchedCount: 4,
+    isBonus: false,
+  },
+  {
+    rank: 5,
+    reward: 5_000,
+    matchedCount: 3,
+    isBonus: false,
+  },
 ];
+
+const RANK_TEMPLATE = [0, 0, 0, 0, 0];
 
 module.exports = {
   ERROR_MESSAGE,
   MAGIC_NUMBER,
   MAGIC_LITERAL,
   RANK_INFORMATIONS,
+  RANK_TEMPLATE,
 };
