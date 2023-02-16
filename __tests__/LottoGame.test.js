@@ -1,5 +1,5 @@
 import LottoGame from '../src/domain/LottoGame.js';
-import { LOTTO_CONDITION } from '../src/constants/condition.js';
+import { LOTTO_CONDITION, LOTTO_PRIZE_MONEY } from '../src/constants/condition.js';
 
 test(`generateLottoNumbers 메서드는 로또 자릿수(${LOTTO_CONDITION.lottoDigits}) 만큼의 길이를 가진 배열을 반환해야한다.`, () => {
   const lottoGame = new LottoGame();
@@ -68,4 +68,22 @@ test('getStatistics메서드', () => {
   };
 
   expect(statistics).toEqual(expected);
+});
+
+test('getStatistics메서드', () => {
+  const lottoGame = new LottoGame();
+
+  const statistics = {
+    firstPrize: 0,
+    secondPrize: 0,
+    thirdPrize: 0,
+    fourthPrize: 1,
+    fifthPrize: 1,
+  };
+
+  const totalPrizeMoney = lottoGame.getTotalPrizeMoney(statistics);
+
+  const expected = LOTTO_PRIZE_MONEY.fifthPrize + LOTTO_PRIZE_MONEY.fourthPrize;
+
+  expect(totalPrizeMoney).toBe(expected);
 });
