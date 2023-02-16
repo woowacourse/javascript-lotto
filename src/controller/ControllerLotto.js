@@ -58,8 +58,4 @@ class ControllerLotto {
     }
 }
 
-const controllerLotto = new ControllerLotto()
-
-controllerLotto.playLotto()
-
 export default ControllerLotto
