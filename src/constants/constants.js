@@ -1,5 +1,6 @@
 const PRICE_UNIT = 1_000;
 const BLANK_REGEXP = /\s/;
+const RESTART_COMMAND_REGEXP = /y|n/;
 const EMPTY_STRING = '';
 const LOTTO_NUMBER_COUNT = 6;
 
@@ -27,6 +28,7 @@ const profitByRank = Object.freeze([
 module.exports = {
   PRICE_UNIT,
   BLANK_REGEXP,
+  RESTART_COMMAND_REGEXP,
   EMPTY_STRING,
   lottoNumberRange,
   profit,
