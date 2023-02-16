@@ -37,6 +37,13 @@ const Validation = {
       throw new Error('로또 번호와 보너스 번호는 중복될 수 없습니다.');
     }
   },
+
+  validateRestartCommand(command) {
+    const commands = ['y', 'n'];
+    if (!commands.includes(command)) {
+      throw new Error('재시작 명령어는 y또는 n으로 입력해야 합니다.');
+    }
+  },
 };
 
 export default Validation;
