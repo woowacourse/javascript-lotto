@@ -24,7 +24,7 @@ class LottoController {
     try {
       InputValidator.validateMoneyInput(moneyInput);
       OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
-      processLottoMachine();
+      this.processLottoMachine(moneyInput);
       OutputView.printLottos(this.#LottoMachine.lottos);
     } catch (error) {
       OutputView.printMessage(error.message);
