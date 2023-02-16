@@ -2,6 +2,7 @@
   "name": "javascript-lotto",
   "version": "1.0.0",
   "description": "우아한테크코스 웹 프론트엔드 레벨1 로또 미션",
+  "type":"module",
   "license": "MIT",
   "scripts": {
     "test": "jest --watch --no-cache",
