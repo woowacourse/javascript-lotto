@@ -32,7 +32,7 @@ const lottoGameValidator = {
     lottoGameValidator.checkLottoNumbers(numbers);
   },
 
-  checkBonusNumbers(input, winningNumbers) {
+  checkBonusNumber(input, winningNumbers) {
     validator.checkDigit(input);
     const number = Number(input);
     lottoGameValidator.checkLottoNumber(number);
