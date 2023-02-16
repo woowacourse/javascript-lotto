@@ -60,26 +60,25 @@ const ConsoleMessage = Object.freeze({
     ];
   },
   profitRateResult: (profitRate) => `총 수익률은 ${profitRate} %입니다.`,
-  RESTART: '다시 시작하시겠습니까? (y/n) ',
+  RESTART: `다시 시작하시겠습니까? (${StaticValue.RESTART_CONTROL}/${StaticValue.QUIT_CONTROL}) `,
 });
 
 const ErrorMessage = Object.freeze({
-  MONEY_VALUE: '[ERROR] 로또 구입 금액은 1000원 단위로 입력해 주세요.',
-  MINMUM_VALUE: '[ERROR] 로또 구입 금액은 1000원 이상이여야 합니다.',
+  MONEY_VALUE: `[ERROR] 로또 구입 금액은 ${StaticValue.PURCHASE_AMOUNT_UNIT}원 단위로 입력해 주세요.`,
+  MINMUM_VALUE: `[ERROR] 로또 구입 금액은 ${StaticValue.PURCHASE_AMOUNT_UNIT}원 이상이여야 합니다.`,
   MONEY_INPUT_TYPE: '[ERROR] 로또 구입 금액은 숫자만 입력해 주세요.',
-  LOTTO_VALUE: '[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.',
-  LOTTO_LENGTH: '[ERROR] 로또 당첨 번호 6개를 입력해주세요.',
+  LOTTO_VALUE: `[ERROR] 로또 번호는 ${StaticValue.LOTTO_LOWER_INCLUSIVE}~${StaticValue.LOTTO_UPPER_INCLUSIVE} 사이의 숫자를 입력해주세요.`,
+  LOTTO_LENGTH: `[ERROR] 로또 당첨 번호 ${StaticValue.LOTTO_LENGTH}개를 입력해주세요.`,
   LOTTO_DUPLICATE: '[ERROR] 로또 번호는 중복되지 않게 입력해주세요.',
   BONUS_NUMBER_DUPLICATE: '[ERROR] 보너스 번호는 로또 번호와 중복되지 않게 입력해주세요.',
-  BONUS_NUMBER_VALUE: '[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.',
-  RESTART: '[ERROR] y 또는 n을 입력해주세요.',
+  BONUS_NUMBER_VALUE: `[ERROR] 보너스 번호는 ${StaticValue.LOTTO_LOWER_INCLUSIVE}~${StaticValue.LOTTO_UPPER_INCLUSIVE} 사이의 숫자를 입력해주세요.`,
+  RESTART: `[ERROR] ${StaticValue.RESTART_CONTROL} 또는 ${StaticValue.QUIT_CONTROL}을 입력해주세요.`,
 });
 
 export {
   StaticValue,
   MatchCount,
-  Rank,
-  Prize,
+  Rank, Prize,
   ConsoleMessage,
   ErrorMessage,
 };
