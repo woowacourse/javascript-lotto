@@ -32,7 +32,7 @@ class LottoGameController {
     this.#lottoGame.generateUserLottos(purchaseCount);
     const USER_LOTTOS = this.#lottoGame.getUserLottos();
 
-    USER_LOTTOS.forEach(OutputView.printUserLottos);
+    USER_LOTTOS.forEach(OutputView.print);
   }
 
   #handleWinningNumbers = async () => {

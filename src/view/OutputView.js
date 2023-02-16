@@ -1,11 +1,7 @@
-import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
+import { ConsoleMessage } from '../constants/Constants.js';
 import Console from '../utils/Console.js';
 
 const OutputView = {
-  printUserLottos(lotto) {
-    console.log(`[${lotto.join(StaticValue.PRINT_SEPARATOR)}]`);
-  },
-
   printRanks(ranks) {
     const RANK_MESSAGES = ConsoleMessage.rankResult(ranks);
     RANK_MESSAGES.forEach((message) => console.log(message));
