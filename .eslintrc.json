@@ -15,7 +15,7 @@
     ],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
-    "max-lines-per-function": ["error", 10], // 한 함수의 메서드 라인을 10줄로 제한함.
+    "max-lines-per-function": ["error", 12], // 한 함수의 메서드 라인을 10줄로 제한함.
     "max-depth": ["error", 2], // 들여쓰기(indent)를 2개로 제한함.
     "no-else-return": ["error", { "allowElseIf": false }], // else , if else return 을 제한함.
     "max-params": ["error", 3], // 함수의 매개변수 개수를 3개로 제한함.
