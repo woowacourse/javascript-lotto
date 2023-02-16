@@ -65,10 +65,23 @@ class LottoGameController {
 
   #handleGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-    OutputView.print('');
+    OutputView.print("");
     OutputView.print(ConsoleMessage.RESULT);
     OutputView.printRanks(RANKS);
     OutputView.printProfitRate(PROFIT_RATE);
+  }
+
+  #handleRestart() {
+    InputView.readRestart((input) => {
+      const REPLY = input.toLowerCase().trim();
+
+      try {
+        Validation.checkRestart(REPLY);
+      } catch (error) {
+        OutputView.print(error.message);
+        this.#handleRestart();
+      }
+    });
   }
 }
 
