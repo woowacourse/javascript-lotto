@@ -17,19 +17,17 @@ const LottoMachine = {
   },
 
   generateLottoNumbers() {
-    const lottoNumbers = [];
+    const lottoNumbers = new Set();
 
-    while (lottoNumbers.length < 6) {
+    while (lottoNumbers.size < 6) {
       const lottoNumber = NumberHandler.generateRandomNumber(
         LOTTO.MIN_RANGE,
         LOTTO.MAX_RANGE
       );
-      if (!lottoNumbers.includes(lottoNumber)) {
-        lottoNumbers.push(lottoNumber);
-      }
+      lottoNumbers.add(lottoNumber);
     }
 
-    return ArrayHandler.sortAscendingOrder(lottoNumbers);
+    return ArrayHandler.sortAscendingOrder([...lottoNumbers]);
   },
 };
 
