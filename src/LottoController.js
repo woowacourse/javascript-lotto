@@ -10,7 +10,7 @@ class LottoController {
       const money = await InputView.readBuyMoney();
       this.#lottoMachine = new LottoMachine(money);
     } catch (error) {
-      console.error(error.message);
+      OutputView.printErrorMsg(error.message);
       await this.readBuyMoney();
     }
   }
@@ -25,7 +25,7 @@ class LottoController {
       const winNumbers = await InputView.readWinNumbers();
       this.#lottoMachine.generateWinningLotto(winNumbers);
     } catch (error) {
-      console.log(error.message);
+      OutputView.printErrorMsg(error.message);
       await this.readWinNumbers();
     }
   }
@@ -35,7 +35,7 @@ class LottoController {
       const bonusNumber = await InputView.readBonusNumber();
       this.#lottoMachine.setBonusNumber(bonusNumber);
     } catch (error) {
-      console.error(error.message);
+      OutputView.printErrorMsg(error.message);
       await this.readBonusNumber();
     }
   }

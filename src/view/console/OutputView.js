@@ -61,6 +61,10 @@ const OutputView = {
   printEmptyLine() {
     Console.print('');
   },
+
+  printErrorMsg(message) {
+    console.error(`[ERROR]:${error.message}`);
+  },
 };
 
 export default OutputView;

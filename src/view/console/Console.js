@@ -13,6 +13,10 @@ const Console = {
     console.log(text);
   },
 
+  printError(message) {
+    console.error(message);
+  },
+
   close() {
     rl.close();
   },
