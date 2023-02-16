@@ -32,9 +32,17 @@ const REGEX = Object.freeze({
   BONUS_NUMBER: /^([1-9]|[1-3]\d|4[0-5])$/,
 });
 
+const RANK = {
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
+};
+
 const COMMAND = Object.freeze({
   RESTART: 'y',
   EXIT: 'n',
 });
 
-export { FORMATTING_TYPE, MESSAGE, REGEX, COMMAND, GAME_VALUE };
+export { FORMATTING_TYPE, MESSAGE, REGEX, COMMAND, GAME_VALUE, RANK };

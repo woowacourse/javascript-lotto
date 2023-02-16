@@ -1,35 +1,18 @@
-import { GAME_VALUE } from '../constants/index.js';
-
-const RANK_FORMAT = {
-  1: 'first',
-  2: 'second',
-  3: 'third',
-  4: 'fourth',
-  5: 'fifth',
-};
+import { GAME_VALUE, RANK } from '../constants/index.js';
 
 class ScoreBoard {
   #board;
   #lottoCount;
 
   constructor(lottoCount) {
-    this.#board = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0,
-      fifth: 0,
-    };
+    this.#board = Array.from({ length: Object.keys(RANK).length + 1 }, () => 0);
     this.#lottoCount = lottoCount;
   }
 
   writeBoard(rank) {
-    if (rank === 0) {
-      return;
-    }
+    if (rank === 0) return;
 
-    const convertedRank = RANK_FORMAT[rank];
-    this.#board[convertedRank] += 1;
+    this.#board[rank] += 1;
   }
 
   getBoard() {
@@ -37,7 +20,7 @@ class ScoreBoard {
   }
 
   #getTotalPrize() {
-    const totalPrize = Object.values(this.#board).reduce((totalPrize, winCount, index) => {
+    const totalPrize = this.#board.slice(1).reduce((totalPrize, winCount, index) => {
       return totalPrize + winCount * GAME_VALUE.PRIZE[index];
     }, 0);
 

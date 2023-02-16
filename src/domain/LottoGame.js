@@ -1,6 +1,7 @@
-import pickLotto from '../domain/pickLotto.js';
+import pickLotto from './pickLotto.js';
 import ScoreBoard from './ScoreBoard.js';
-import { GAME_VALUE } from '../constants/index.js';
+
+import { GAME_VALUE, RANK } from '../constants/index.js';
 
 class LottoGame {
   #lottos;
@@ -31,11 +32,11 @@ class LottoGame {
   }
 
   getRank(matchedCount, hasBonusNumber) {
-    if (matchedCount === 6) return 1;
-    if (matchedCount === 5 && hasBonusNumber) return 2;
-    if (matchedCount === 5) return 3;
-    if (matchedCount === 4) return 4;
-    if (matchedCount === 3) return 5;
+    if (matchedCount === 6) return RANK.FIRST;
+    if (matchedCount === 5 && hasBonusNumber) return RANK.SECOND;
+    if (matchedCount === 5) return RANK.THIRD;
+    if (matchedCount === 4) return RANK.FOURTH;
+    if (matchedCount === 3) return RANK.FIFTH;
 
     return 0;
   }
