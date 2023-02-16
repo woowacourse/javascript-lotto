@@ -20,7 +20,7 @@ const outputView = {
 
   printResult(ranks) {
     const result = ranks.reduce((accumulator, rankCount, rankIndex) => {
-      return `${this.getResultLine(rankIndex, rankCount)}\n` + accumulator;
+      return `${this.getResultLine(rankIndex, rankCount)}\n${accumulator}`;
     }, '');
     Console.print(result);
   },
