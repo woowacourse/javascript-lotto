@@ -63,7 +63,7 @@ class LottoController {
     OutputView.printPurchaseResult(money / 1000);
     const lottos = Array.from({ length: money / 1000 }, () => new Lotto(lottoGenerator()));
     lottos.forEach((lotto) => {
-      OutputView.printLotto(lotto);
+      OutputView.printLotto(lotto.getNumbers());
     });
     OutputView.printNewLine();
 
@@ -75,12 +75,11 @@ class LottoController {
     const matchResult = this.judgeResult(lottos, winningNumber, bonusNumber);
     const benefit = this.calculateBenefit(money, matchResult);
 
-    OutputView.printResult(matchResult, benefit);
+    OutputView.printResult(matchResult);
+    OutputView.printBenefit(benefit);
     const command = await this.handleRetryCommand();
     return command === 'y' ? this.play() : Console.close();
   }
-
-
 
   calculateBenefit(money, rank) {
     const PRIZE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
