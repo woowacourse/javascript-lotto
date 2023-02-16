@@ -1,51 +1,71 @@
+import {
+  ERROR_MESSAGE,
+  RESTART_COMMEND,
+  LOTTO_NUMBER_RANGE,
+  LOTTO_PRICE,
+  LOTTO_NUMBER_LENGTH,
+  REGEX_FINDING_NOT_NUMBER,
+} from "../constants";
 import { outputView } from "../view/outputView";
+
+const {
+  NOT_MULTIPLES_OF_THOUSAND,
+  NOT_INTEGER,
+  NOT_BETWEEN_ONE_AND_FORTYFIVE,
+  DUPLICATED_LOTTO_NUMBER,
+  NOT_SIX,
+  DUPLICATED_BONUS_NUMBER,
+  NOT_Y_NOR_N,
+} = ERROR_MESSAGE;
+const { LOWER_CASE_Y, UPPER_CASE_Y, LOWER_CASE_N, UPPER_CASE_N } = RESTART_COMMEND;
+const { MIN, MAX } = LOTTO_NUMBER_RANGE;
 
 export const validator = {
   checkPurchaseAmount(purchaseAmount) {
-    if (purchaseAmount < 1000 || purchaseAmount % 1000 !== 0) {
-      throw new Error("[ 에러 ] 1,000원 단위로 입력해 주세요.");
+    if (purchaseAmount < LOTTO_PRICE || purchaseAmount % LOTTO_PRICE !== 0) {
+      throw new Error(NOT_MULTIPLES_OF_THOUSAND);
     }
   },
 
   checkInteger(purchaseAmountString) {
-    if (/[^0-9]/.test(purchaseAmountString) || purchaseAmountString === "") {
-      throw new Error("[ 에러 ] 정수를 입력해 주세요.");
+    if (REGEX_FINDING_NOT_NUMBER.test(purchaseAmountString) || purchaseAmountString === "") {
+      throw new Error(NOT_INTEGER);
     }
   },
 
   checkDuplicates(winningLottoNumbers) {
     if (new Set(winningLottoNumbers).size !== winningLottoNumbers.length) {
-      throw new Error("[ 에러 ] 번호 중복 없이 입력해 주세요.");
+      throw new Error(DUPLICATED_LOTTO_NUMBER);
     }
   },
 
   checkLottoNumbersBetween1And45(winningLottoNumbers) {
-    if (!winningLottoNumbers.every((number) => number >= 1 && number <= 45)) {
-      throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해 주세요.");
+    if (!winningLottoNumbers.every((number) => number >= MIN && number <= MAX)) {
+      throw new Error(NOT_BETWEEN_ONE_AND_FORTYFIVE);
     }
   },
 
   checkListLengthIsSix(winningLottoNumbers) {
-    if (winningLottoNumbers.length !== 6) {
-      throw new Error("[ 에러 ] 6개의 로또 번호를 입력해 주세요.");
+    if (winningLottoNumbers.length !== LOTTO_NUMBER_LENGTH) {
+      throw new Error(NOT_SIX);
     }
   },
 
   checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers) {
     if (winningLottoNumbers.includes(bonusNumber)) {
-      throw new Error("[ 에러 ] 로또 번호와 중복되지 않게 보너스 번호를 입력해 주세요.");
+      throw new Error(DUPLICATED_BONUS_NUMBER);
     }
   },
 
   checkBonusNumberBetween1And45(bonusNumber) {
-    if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
-      throw new Error("[ 에러 ] 1 ~ 45 사이의 숫자를 입력해 주세요.");
+    if (!(bonusNumber >= MIN && bonusNumber <= MAX)) {
+      throw new Error(NOT_BETWEEN_ONE_AND_FORTYFIVE);
     }
   },
 
   checkYOrN(yOrN) {
-    if (!["y", "Y", "n", "N"].includes(yOrN)) {
-      throw new Error("[ 에러 ] 대, 소문자 Y/y 또는 N/n을 입력해 주세요.");
+    if (![LOWER_CASE_Y, UPPER_CASE_Y, LOWER_CASE_N, UPPER_CASE_N].includes(yOrN)) {
+      throw new Error(NOT_Y_NOR_N);
     }
   },
 };

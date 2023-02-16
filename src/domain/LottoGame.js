@@ -9,6 +9,20 @@ import {
   validateRestartOrQuitCommend,
   validateWinningLottoNumbers,
 } from "./validator";
+import {
+  INPUT_MESSAGE,
+  LOTTO_PRICE,
+  COMMA,
+  RESTART_COMMEND,
+  PLACES,
+  PRIZE,
+  MATCHING_NUMBERS,
+} from "../constants";
+const { PURCHASE_AMOUNT, LOTTO_NUMBER, BONUS_NUMBER, RESTART_OR_QUIT } = INPUT_MESSAGE;
+const { LOWER_CASE, UPPER_CASE } = RESTART_COMMEND;
+const { FIRST, SECOND, THIRD, FOURTH, FIFTH } = PLACES;
+const { FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE } = PRIZE;
+const { THREE_NUMBERS, FOUR_NUMBERS, FIVE_NUMBERS, SIX_NUMBERS } = MATCHING_NUMBERS;
 
 export class LottoGame {
   #winningLotto = {
@@ -20,7 +34,7 @@ export class LottoGame {
   async play() {
     const purchaseAmount = await this.readPurchaseAmount();
 
-    const numberOfPurchasedLottoTickets = purchaseAmount / 1000;
+    const numberOfPurchasedLottoTickets = purchaseAmount / LOTTO_PRICE;
     this.makeLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printLottoTickets(this.#lottoTickets);
@@ -39,21 +53,19 @@ export class LottoGame {
   }
 
   async readPurchaseAmount() {
-    const purchaseAmountString = await inputView.readline("로또 구입 금액을 입력해 주세요.");
+    const purchaseAmountString = await inputView.readline(PURCHASE_AMOUNT);
     if (!validatePurchaseAmount(purchaseAmountString)) return this.readPurchaseAmount();
     return Number(purchaseAmountString);
   }
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbers = (
-      await inputView.readline("\n당첨 번호를 콤마(,)로 구분해서 입력해 주세요.")
-    ).split(",");
+    const winningLottoNumbers = (await inputView.readline(LOTTO_NUMBER)).split(COMMA);
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
     this.#winningLotto.winningNumbers = winningLottoNumbers.map((number) => Number(number));
   }
 
   async readBonusNumber() {
-    const bonusNumber = await inputView.readline("\n보너스 번호를 입력해 주세요.");
+    const bonusNumber = await inputView.readline(BONUS_NUMBER);
     if (!validateBonusNumber(bonusNumber, this.#winningLotto.winningNumbers))
       return this.readBonusNumber(this.#winningLotto.winningNumbers);
     this.#winningLotto.bonusNumber = Number(bonusNumber);
@@ -82,26 +94,24 @@ export class LottoGame {
 
   getPlace(numberOfMatchingLottoNumbers, lottoTicket) {
     switch (numberOfMatchingLottoNumbers) {
-      case 6:
-        return "FIRST_PLACE";
-      case 5:
-        return lottoTicket.includes(this.#winningLotto.bonusNumber)
-          ? "SECOND_PLACE"
-          : "THIRD_PLACE";
-      case 4:
-        return "FOURTH_PLACE";
-      case 3:
-        return "FIFTH_PLACE";
+      case SIX_NUMBERS:
+        return FIRST;
+      case FIVE_NUMBERS:
+        return lottoTicket.includes(this.#winningLotto.bonusNumber) ? SECOND : THIRD;
+      case FOUR_NUMBERS:
+        return FOURTH;
+      case THREE_NUMBERS:
+        return FIFTH;
     }
   }
 
   getTotalPrize(placesOfLottoTickets) {
     return (
-      placesOfLottoTickets.FIFTH_PLACE * 5000 +
-      placesOfLottoTickets.FOURTH_PLACE * 50000 +
-      placesOfLottoTickets.THIRD_PLACE * 1500000 +
-      placesOfLottoTickets.SECOND_PLACE * 30000000 +
-      placesOfLottoTickets.FIRST_PLACE * 2000000000
+      placesOfLottoTickets.FIFTH_PLACE * FIFTH_PRIZE +
+      placesOfLottoTickets.FOURTH_PLACE * FOURTH_PRIZE +
+      placesOfLottoTickets.THIRD_PLACE * THIRD_PRIZE +
+      placesOfLottoTickets.SECOND_PLACE * SECOND_PRIZE +
+      placesOfLottoTickets.FIRST_PLACE * FIRST_PRIZE
     );
   }
 
@@ -110,13 +120,13 @@ export class LottoGame {
   }
 
   async readRestartOrQuitCommend() {
-    const restartOrQuitCommend = await inputView.readline("다시 시작하시겠습니까? (y/n)");
+    const restartOrQuitCommend = await inputView.readline(RESTART_OR_QUIT);
     if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
     return restartOrQuitCommend;
   }
 
   shouldRestart(restartOrQuitCommend) {
-    return ["y", "Y"].includes(restartOrQuitCommend) ? true : false;
+    return [LOWER_CASE, UPPER_CASE].includes(restartOrQuitCommend) ? true : false;
   }
 
   makeLottoTickets(numberOfTickets) {
