@@ -9,6 +9,8 @@ import InputValidator from '../utils/InputValidator.js';
 import Console from '../utils/Console.js';
 import LottoValidator from './LottoValidator.js';
 class LottoController {
+  #winningNumber;
+  #bonusNumber;
 
   /**
    * 나중에 통합 고려하기 시작
@@ -35,10 +37,10 @@ class LottoController {
     }
   }
 
-  async handleReadBonusNumber(winningNumber) {
+  async handleReadBonusNumber() {
     try {
       const bonusNumber = await InputView.readBonusNumber();
-      LottoValidator.checkBonusNumber(winningNumber, bonusNumber);
+      LottoValidator.checkBonusNumber(this.#winningNumber, bonusNumber);
       return bonusNumber;
     } catch (error) {
       OutputView.printError(error);
@@ -71,12 +73,12 @@ class LottoController {
     });
     OutputView.printNewLine();
 
-    const winningNumber = (await this.handleReadWinningNumber()).split(',');
+    this.#winningNumber = (await this.handleReadWinningNumber()).split(',');
     OutputView.printNewLine();
-    const bonusNumber = await this.handleReadBonusNumber(winningNumber);
+    this.#bonusNumber = await this.handleReadBonusNumber();
     OutputView.printNewLine();
 
-    const matchResult = this.judgeResult(lottos, winningNumber, bonusNumber);
+    const matchResult = this.judgeResult(lottos);
     const benefit = this.calculateBenefit(money, matchResult);
 
     OutputView.printResult(matchResult);
@@ -94,9 +96,9 @@ class LottoController {
     return income / money * 100;
   }
 
-  judgeResult(lottos, winningNumber, bonusNumber) {
+  judgeResult(lottos) {
     return lottos.reduce((acc, lotto, index) => {
-      const ranking = lotto.calculateRanking(winningNumber, bonusNumber);
+      const ranking = lotto.calculateRanking(this.#winningNumber, this.#bonusNumber);
       acc[ranking] += 1;
       return acc;
     }, [0, 0, 0, 0, 0, 0]); // index 6이 2등
