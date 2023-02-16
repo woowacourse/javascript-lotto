@@ -59,7 +59,7 @@ const OutputView = {
   },
 
   printErrorMsg(message) {
-    console.error(`[ERROR]:${error.message}`);
+    console.error(`[ERROR]:${message}`);
   },
 };
 
