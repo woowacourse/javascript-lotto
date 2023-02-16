@@ -1,9 +1,9 @@
 class BonusNumber {
-  #bonusNumber = 0;
+  #number = 0;
 
   constructor(bonusNumberInput, winningNumbers) {
     this.validate(parseInt(bonusNumberInput, 10), winningNumbers);
-    this.#bonusNumber = parseInt(bonusNumberInput, 10);
+    this.#number = parseInt(bonusNumberInput, 10);
   }
 
   validate(bonusNumber, winningNumbers) {
@@ -22,11 +22,11 @@ class BonusNumber {
   }
 
   isDuplicateFor(bonusNumber, winningNumbers) {
-    return winningNumbers.winningNumbers.includes(bonusNumber);
+    return winningNumbers.numbers.includes(bonusNumber);
   }
 
-  get bonusNumber() {
-    return this.#bonusNumber;
+  get number() {
+    return this.#number;
   }
 }
 

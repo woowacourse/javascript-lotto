@@ -12,7 +12,7 @@ class LottoStatistics {
   #bonusNumber;
 
   constructor(winningNumbers, bonusNumber) {
-    this.validate(winningNumbers.winningNumbers, bonusNumber.bonusNumber);
+    this.validate(winningNumbers.numbers, bonusNumber.number);
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
   }
@@ -40,18 +40,14 @@ class LottoStatistics {
   }
 
   determineLottoRank(lotto) {
-    const matchCount = lotto.calculateMatchCount(
-      this.#winningNumbers.winningNumbers
-    );
+    const matchCount = lotto.calculateMatchCount(this.#winningNumbers.numbers);
 
     return this.getLottoRank(lotto, matchCount);
   }
 
   getLottoRank(lotto, matchCount) {
     if (matchCount === 5) {
-      return lotto.isBonus(this.#bonusNumber.bonusNumber)
-        ? RANK.SECOND
-        : RANK.THIRD;
+      return lotto.isBonus(this.#bonusNumber.number) ? RANK.SECOND : RANK.THIRD;
     }
 
     return LOTTO_RANK[matchCount] ?? 6;

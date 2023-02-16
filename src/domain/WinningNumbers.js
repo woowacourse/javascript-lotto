@@ -1,9 +1,9 @@
 class WinningNumbers {
-  #winningNumbers;
+  #numbers;
 
   constructor(winningNumbers) {
     this.validateWinningNumbers(winningNumbers);
-    this.#winningNumbers = winningNumbers
+    this.#numbers = winningNumbers
       .split(',')
       .map((number) => parseInt(number, 10));
   }
@@ -36,8 +36,8 @@ class WinningNumbers {
     );
   }
 
-  get winningNumbers() {
-    return this.#winningNumbers;
+  get numbers() {
+    return this.#numbers;
   }
 }
 
