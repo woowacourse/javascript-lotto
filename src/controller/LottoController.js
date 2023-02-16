@@ -11,6 +11,7 @@ class LottoController {
   async start() {
     await this.handleMoneyInput();
     await this.handleWinningNumber();
+    await this.handleBonusNumber();
   }
 
   processLottoMachine(moneyInput) {
@@ -40,6 +41,17 @@ class LottoController {
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleWinningNumber();
+    }
+  }
+
+  async handleBonusNumber() {
+    const bonusNumber = await InputView.readBonusNumber();
+
+    try {
+      InputValidator.validateBonusNumberInput(bonusNumber);
+    } catch (error) {
+      OutputView.printMessage(error.message);
+      await this.handleBonusNumber();
     }
   }
 }
