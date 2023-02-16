@@ -1,7 +1,11 @@
 import { randomNumberBetween } from "../util/randomNumberMaker";
 import { inputView } from "../view/inputView";
 import { outputView } from "../view/outputView";
-import { validatePurchaseAmount, validateWinningLottoNumbers } from "./validator";
+import {
+  validateBonusNumber,
+  validatePurchaseAmount,
+  validateWinningLottoNumbers,
+} from "./validator";
 
 export class LottoGame {
   async play() {
@@ -11,6 +15,7 @@ export class LottoGame {
     outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printLottoTickets(lottoTickets);
     const winningLottoNumbers = await this.readWinningLottoNumbers();
+    const bonusNumber = await this.readBonusNumber(winningLottoNumbers);
   }
 
   async readPurchaseAmount() {
@@ -25,6 +30,12 @@ export class LottoGame {
     ).split(",");
     validateWinningLottoNumbers(winningLottoNumbers);
     return winningLottoNumbers.map((number) => Number(number));
+  }
+
+  async readBonusNumber(winningLottoNumbers) {
+    const bonusNumber = await inputView.readline("보너스 번호를 입력해 주세요.");
+    validateBonusNumber(bonusNumber, winningLottoNumbers);
+    return Number(bonusNumber);
   }
 
   makeLottoTickets(numberOfTickets) {

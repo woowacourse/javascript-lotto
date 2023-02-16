@@ -62,3 +62,12 @@ export const validateWinningLottoNumbers = (winningLottoNumbers) => {
   validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
   validator.checkListLengthIsSix(winningLottoNumbers);
 };
+
+export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {
+  validator.checkInteger(bonusNumber);
+
+  bonusNumber = Number(bonusNumber);
+
+  validator.checkBonusNumberBetween1And45(bonusNumber);
+  validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
+};
