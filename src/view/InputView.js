@@ -15,6 +15,12 @@ const InputView = {
     const bonusNumber = await Console.read(query);
     return bonusNumber;
   },
+
+  async inputRetry(query) {
+    const retryInput = await Console.read(query);
+    return retryInput;
+  },
+
 };
 
 export default InputView;
