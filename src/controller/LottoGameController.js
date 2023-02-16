@@ -20,7 +20,6 @@ const LottoGameController = {
 
     const luckyNumbers = await InputView.readLuckyNumbers();
     const bonusNumber = await InputView.readBonusNumber([...luckyNumbers]);
-
     this.instance.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
 
     this.execute();

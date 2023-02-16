@@ -1,7 +1,7 @@
-import LOTTO from '../../src/constant/lotto.js';
-import NumberHandler from '../util/numberHandler.js';
 import Lotto from './Lotto.js';
+import NumberHandler from '../util/numberHandler.js';
 import ArrayHandler from '../util/ArrayHandler.js';
+import LOTTO from '../../src/constant/lotto.js';
 
 const LottoMachine = {
   generateLotto() {
@@ -17,15 +17,15 @@ const LottoMachine = {
   generateLottoNumbers() {
     const lottoNumbers = new Set();
 
-    while (lottoNumbers.size < 6) {
-      const lottoNumber = NumberHandler.generateRandomNumber(
-        LOTTO.MIN_RANGE,
-        LOTTO.MAX_RANGE
-      );
-      lottoNumbers.add(lottoNumber);
+    while (lottoNumbers.size < LOTTO.LENGTH) {
+      lottoNumbers.add(this.generateLottoNumber());
     }
 
     return ArrayHandler.sortAscendingOrder([...lottoNumbers]);
+  },
+
+  generateLottoNumber() {
+    return NumberHandler.generateRandomNumber(LOTTO.MIN_RANGE, LOTTO.MAX_RANGE);
   },
 };
 
