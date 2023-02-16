@@ -14,7 +14,7 @@ class Lotto {
     Validation.testLottoNumbers(numbers);
   }
 
-  getNumbers() {
+  getStringifiedNumbers() {
     return Convertor.stringifyLotto(this.#numbers);
   }
 

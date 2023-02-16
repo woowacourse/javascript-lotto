@@ -21,7 +21,7 @@ class LottoGame {
   }
 
   getUserLottos() {
-    return this.#userLottos.map((userLotto) => userLotto.getNumbers());
+    return this.#userLottos.map((userLotto) => userLotto.getStringifiedNumbers());
   }
 
   setGameLottos(winningNumbers, bonusNumber) {
