@@ -75,10 +75,4 @@ const ErrorMessage = Object.freeze({
   RESTART: `[ERROR] ${StaticValue.RESTART_CONTROL} 또는 ${StaticValue.QUIT_CONTROL}을 입력해주세요.`,
 });
 
-export {
-  StaticValue,
-  MatchCount,
-  Rank, Prize,
-  ConsoleMessage,
-  ErrorMessage,
-};
+export { StaticValue, MatchCount, Rank, Prize, ConsoleMessage, ErrorMessage };

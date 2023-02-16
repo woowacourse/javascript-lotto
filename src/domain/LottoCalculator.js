@@ -24,8 +24,8 @@ class LottoCalculator {
 
   calculateProfitRate() {
     return (
-      (this.#calculateProfit() / (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT))
-      * 100
+      (this.#calculateProfit() / (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT)) *
+      100
     ).toFixed(1);
   }
 
