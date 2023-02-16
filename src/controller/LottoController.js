@@ -36,7 +36,7 @@ class LottoController {
     const inputAmount = await inputPurchaseAmount();
     const purchaseAmount = Number(inputAmount);
 
-    const hasError = errorChecker(() => validateBonusNumber(purchaseAmount));
+    const hasError = errorChecker(() => validatePurchaseAmount(purchaseAmount));
     if (hasError) return this.readPurchaseAmount();
 
     this.setLottos(purchaseAmount);
@@ -59,7 +59,7 @@ class LottoController {
     const inputNumbers = await inputWinningNumber();
     const winningNumber = inputNumbers.split(',').map(Number);
 
-    const hasError = errorChecker(() => validatePurchaseAmount(winningNumber));
+    const hasError = errorChecker(() => validateWinningNumbers(winningNumber));
     if (hasError) return this.readWinningNumber();
 
     this.setWinNumber(winningNumber);
@@ -75,7 +75,7 @@ class LottoController {
     const bonusNumber = Number(inputNumber);
 
     const hasError = errorChecker(() =>
-      validateWinningNumbers(bonusNumber, winNumber)
+      validateBonusNumber(bonusNumber, winNumber)
     );
     if (hasError) return this.readBonusNumber();
 
