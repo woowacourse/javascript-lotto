@@ -11,9 +11,7 @@ const LottoMachine = {
   generateLottos(price) {
     const lottoQuantity = NumberHandler.getQuotient(price, LOTTO.PRICE);
 
-    return Array.from({ length: lottoQuantity }).map(() =>
-      this.generateLotto()
-    );
+    return Array.from({ length: lottoQuantity }, () => this.generateLotto());
   },
 
   generateLottoNumbers() {
