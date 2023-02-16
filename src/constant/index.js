@@ -21,7 +21,7 @@ const MAGIC_LITERAL = {
 const ERROR_MESSAGE = {
   moneyRange: `[ERROR] 구매 금액을 ${MAGIC_NUMBER.moneyUnit.toLocaleString()}원 이상 ${MAGIC_NUMBER.moneyLimit.toLocaleString()}원 이하로 입력해 주세요.`,
   moneyUnit: `[ERROR] 구매 금액을 ${MAGIC_NUMBER.moneyUnit.toLocaleString()}원 단위로 입력해 주세요.`,
-  number: '[ERROR] 숫자만 입력해 주세요.',
+  number: '[ERROR] 자연수만 입력해 주세요.',
   lottoRange: `[ERROR] 로또 번호는 ${MAGIC_NUMBER.lottoStart}부터 ${MAGIC_NUMBER.lottoEnd}로 입력해 주세요.`,
   uniqueWinningNumber:
     '[ERROR] 당첨 번호는 중복되지 않는 값들로 입력해 주세요.',
@@ -63,12 +63,9 @@ const RANK_INFORMATIONS = [
   },
 ];
 
-const RANK_TEMPLATE = [0, 0, 0, 0, 0];
-
 module.exports = {
   ERROR_MESSAGE,
   MAGIC_NUMBER,
   MAGIC_LITERAL,
   RANK_INFORMATIONS,
-  RANK_TEMPLATE,
 };
