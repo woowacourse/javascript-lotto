@@ -27,7 +27,7 @@ class App {
   }
 
   validateBuyMoney(buyMoney) {
-    if (!Validations.isBuyMoneyNumber(buyMoney)) {
+    if (!Validations.isNumber(buyMoney)) {
       throw new Error("숫자만 입력할 수 있습니다.");
     }
     if (!Validations.isDevidedByThousand(buyMoney)) {
