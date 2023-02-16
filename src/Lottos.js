@@ -1,3 +1,5 @@
+import { Settings } from "./Config";
+
 class Lottos {
   #lottos;
   #lottoRanking;
@@ -6,11 +8,11 @@ class Lottos {
   constructor(lottos) {
     this.#lottos = lottos;
     this.#lottoRanking = {
-      "3개 일치": 0,
-      "4개 일치": 0,
-      "5개 일치": 0,
-      "5개 일치, 보너스 볼 일치": 0,
-      "6개 일치": 0,
+      "3개 일치": Settings.SCORE_DEFUALT,
+      "4개 일치": Settings.SCORE_DEFUALT,
+      "5개 일치": Settings.SCORE_DEFUALT,
+      "5개 일치, 보너스 볼 일치": Settings.SCORE_DEFUALT,
+      "6개 일치": Settings.SCORE_DEFUALT,
     };
     this.#benefitBoard = {
       "3개 일치": 5000,
