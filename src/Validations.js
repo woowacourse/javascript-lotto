@@ -10,6 +10,10 @@ const Validations = {
   isPositiveInteger(buyMoney) {
     return buyMoney > 0;
   },
+
+  isCorrectRange(winningNumber) {
+    return 0 < winningNumber && winningNumber < 45 ? true : false;
+  },
 };
 
 export default Validations;
