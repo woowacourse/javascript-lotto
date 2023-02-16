@@ -34,3 +34,16 @@ describe('lotto.hasBonusNumber 메서드', () => {
     expect(hasBonusNumber).toBe(false);
   });
 });
+
+test('getCompareResult', () => {
+  const lottoNumbers = [1, 2, 3, 4, 5, 6];
+  const lotto = new Lotto(lottoNumbers);
+
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 7;
+  const compareResult = lotto.getCompareResult(winningNumbers, bonusNumber);
+
+  const expected = { matchCount: 6, hasBonusNumber: false };
+
+  expect(compareResult).toEqual(expected);
+});
