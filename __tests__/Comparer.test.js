@@ -1,15 +1,15 @@
 const Comparer = require('../src/domain/Comparer');
+const WinningLotto = require('../src/domain/WinningLotto');
 
 describe('로또번호를 비교한다', () => {
   // given
-  const winningNumber = [1, 2, 3, 4, 5, 6];
-  const bonus = 7;
+  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
   const lottos = [
     [1, 2, 3, 7, 8, 10],
     [1, 2, 3, 4, 5, 6],
     [9, 10, 11, 12, 13, 14],
   ];
-  const comparer = new Comparer(winningNumber, bonus, lottos);
+  const comparer = new Comparer(winningLotto, lottos);
 
   test('당첨 번호와 일치하는 번호의 갯수를 구한다.', () => {
     // when
