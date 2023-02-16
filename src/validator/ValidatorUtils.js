@@ -6,7 +6,7 @@ const ValidatorUtils = {
   },
 
   isThousandsOfWon(number) {
-    return !(number % 1000);
+    return !(number % values.LOTTO_PRICE);
   },
 };
 
