@@ -3,7 +3,7 @@ const Validations = {
     return isNaN(input) ? false : true;
   },
 
-  isDevidedByThousand(buyMoney) {
+  isDividedByThousand(buyMoney) {
     return buyMoney % 1000 === 0;
   },
 
