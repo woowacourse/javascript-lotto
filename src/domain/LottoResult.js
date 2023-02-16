@@ -1,5 +1,5 @@
-import Reward from './Reward';
 import BonusNumberReward from './BonusReward';
+import Reward from './Reward';
 import WinningLotto from './WinningLotto';
 
 class LottoResult {
@@ -29,6 +29,14 @@ class LottoResult {
     );
   }
 
+  countRewards(lottos) {
+    const givenRewards = lottos.map((lotto) => this.findReward(lotto));
+
+    return LottoResult.REWARDS.map((reward) => [
+      reward,
+      givenRewards.reduce((count, givenReward) => (givenReward === reward ? count + 1 : count), 0),
+    ]);
+  }
 }
 
 export default LottoResult;
