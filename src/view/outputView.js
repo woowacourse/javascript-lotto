@@ -1,5 +1,5 @@
 const Console = require('../utils/Console');
-const { MESSAGE } = require('../utils/constant');
+const { MESSAGE, NUMBER } = require('../utils/constant');
 
 const outputView = {
   printCountLotto(number) {
@@ -15,11 +15,11 @@ const outputView = {
   printWinningHistory(winnings) {
     Console.print(
       `${MESSAGE.WINNING_STATICS}
-${MESSAGE.THREE_MATCHED}${winnings[0]}${MESSAGE.THE_NUMBER_OF}
-${MESSAGE.FOUR_MATCHED}${winnings[1]}${MESSAGE.THE_NUMBER_OF}
-${MESSAGE.FIVE_MATCHED}${winnings[2]}${MESSAGE.THE_NUMBER_OF}
-${MESSAGE.FIVE_WITH_BONUS_MATCHED}${winnings[3]}${MESSAGE.THE_NUMBER_OF}
-${MESSAGE.SIX_MATCHED}${winnings[4]}${MESSAGE.THE_NUMBER_OF}`
+${MESSAGE.THREE_MATCHED}${winnings[NUMBER.FIFTH]}${MESSAGE.THE_NUMBER_OF}
+${MESSAGE.FOUR_MATCHED}${winnings[NUMBER.FOURTH]}${MESSAGE.THE_NUMBER_OF}
+${MESSAGE.FIVE_MATCHED}${winnings[NUMBER.THIRD]}${MESSAGE.THE_NUMBER_OF}
+${MESSAGE.FIVE_WITH_BONUS_MATCHED}${winnings[NUMBER.SECOND]}${MESSAGE.THE_NUMBER_OF}
+${MESSAGE.SIX_MATCHED}${winnings[NUMBER.FIRST]}${MESSAGE.THE_NUMBER_OF}`
     );
   },
 
