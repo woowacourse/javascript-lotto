@@ -2,7 +2,7 @@ import Validator from '../utils/Validator.js';
 import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import { LottoUtils } from '../domain/LottoUtils.js';
+import LottoUtils from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
 import Console from '../utils/Console.js';

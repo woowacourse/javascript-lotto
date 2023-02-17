@@ -1,4 +1,4 @@
-import { RandomNumberGenerator } from '../utils/RandomNumberGenerator.js';
+import RandomNumberGenerator from '../utils/RandomNumberGenerator.js';
 import { LOTTO_CONSTANT, WINNING_PRIZE } from '../data/constants.js';
 
 const LottoUtils = {
@@ -24,4 +24,4 @@ const LottoUtils = {
   },
 };
 
-export { LottoUtils };
+export default LottoUtils;
