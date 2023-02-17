@@ -20,7 +20,7 @@ const inputView = {
 
   async readRestartOrFinish() {
     if ((await Console.readLine(MESSAGE.RESTART_OR_FINISH)) === 'y') return true;
-    Console.close();
+    if ((await Console.readLine(MESSAGE.RESTART_OR_FINISH)) === 'n') return Console.close();
   },
 };
 
