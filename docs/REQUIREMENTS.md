@@ -23,15 +23,15 @@
 - [x] 1. 복권번호 input을 lotto 객체 안으로 넣어서 확인
 - [x] 2. 보너스 번호 input을 lotto 객체 안으로 넣어서 확인
 - [x] 3. lotto와 Bonus 객체에서 계산한 결과를 Controller가 lottoResult에게 전달
-- [ ] 4. lottoResult에서 등수 계산, 상금 계산, 수익률 계산. -lottoResult:객체
+- [x] 4. lottoResult에서 등수 계산, 상금 계산, 수익률 계산. -lottoResult:객체
 
 8. output = 결과 출력
-- [ ] 등수 별 인원 출력
-- [ ] 당첨금 출력
-- [ ] 수익률 출력
+- [x] 등수 별 인원 출력
+- [x] 당첨금 출력
+- [x] 수익률 출력
 
 9. input = 다시 하기
-- [ ] validation : y/n가 아닌 경우. 대소문자 관계 없이 y/n 가능하도록
+- [x] validation : y/n가 아닌 경우. 대소문자 관계 없이 y/n 가능하도록
 
 
 Validation.lottoNumbers(numbers) 리팩토링 
