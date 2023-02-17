@@ -8,6 +8,7 @@ const StaticValue = Object.freeze({
   LOTTO_UPPER_INCLUSIVE: 45,
   LOTTO_LENGTH: 6,
   MATCH_FIVE: 5,
+  TOTAL_ARRAY_LENGTH: 12,
   INPUT_SEPARATOR: ',',
   PRINT_SEPARATOR: ', ',
 });

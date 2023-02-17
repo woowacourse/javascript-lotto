@@ -30,7 +30,7 @@ class Lotto {
   }
 
   #getMatchCount(winningNumbers) {
-    return 12 - new Set([...winningNumbers, ...this.#numbers]).size;
+    return StaticValue.TOTAL_ARRAY_LENGTH - new Set([...winningNumbers, ...this.#numbers]).size;
   }
 
   #hasBonusNumber(bonusNumber) {
