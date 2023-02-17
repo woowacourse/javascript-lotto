@@ -4,12 +4,12 @@
  */
 
 const ControllerLotto = require('../src/controller/ControllerLotto');
-class Step1 {
+class LottoGame {
   play() {
     const controllerLotto = new ControllerLotto();
     controllerLotto.playLotto();
   }
 }
 
-const step1 = new Step1();
-step1.play();
+const lottoGame = new LottoGame();
+lottoGame.play();
