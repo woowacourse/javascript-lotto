@@ -1,7 +1,8 @@
 const { ERROR } = require('../utils/constant');
+const { NUMBER } = require('../utils/constant');
 
 const thousandValidate = money => {
-  const isValidation = Number(money) % 1000 !== 0;
+  const isValidation = Number(money) % NUMBER.PURCHASE_AMOUNT !== 0;
   if (!isValidation) console.log(ERROR.INPUT_MONEY_THOUSAND);
   return isValidation;
 };
@@ -13,7 +14,7 @@ const integerValidate = money => {
 };
 
 const maximumMoneyValidate = money => {
-  const isValidation = money > 100000;
+  const isValidation = money > NUMBER.MAXIMUM_PURCHASE_AMOUNT;
   if (!isValidation) console.log(ERROR.INPUT_MONEY_LIMIT);
   return isValidation;
 };

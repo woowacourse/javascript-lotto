@@ -1,3 +1,5 @@
+const { NUMBER } = require('../utils/constant');
+
 class Lotto {
   lottoNumber;
 
@@ -6,7 +8,7 @@ class Lotto {
   }
 
   countLotto(money) {
-    return Number(money) / 1000;
+    return Number(money) / NUMBER.PURCHASE_AMOUNT;
   }
 
   get lottoNumber() {
@@ -27,13 +29,15 @@ class Lotto {
   }
 
   randomNumberLotto() {
-    const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 45 + 1));
+    const randomNumber = Array.from({ length: NUMBER.LOTTO_NUMBER_LENGTH }, () =>
+      Math.floor(Math.random() * NUMBER.LOTTO_NUMBER_RANGE + NUMBER.LOTTO_NUMBER_START_ONE)
+    );
     if (this.checkRepeatedNumber(randomNumber)) return this.sortedNumber(randomNumber);
     return this.randomNumberLotto();
   }
 
   checkRepeatedNumber(randomNumber) {
-    return [...new Set(randomNumber)].length === 6;
+    return [...new Set(randomNumber)].length === NUMBER.LOTTO_NUMBER_LENGTH;
   }
 
   compareNumber(winningNumber, bonusNumber) {
@@ -46,8 +50,8 @@ class Lotto {
     return ranks;
   }
   bouseNumberChecked(numbers, bonusNumber) {
-    if (numbers.includes(bonusNumber)) return 7;
-    return 5;
+    if (numbers.includes(bonusNumber)) return NUMBER.RANK_SECOND;
+    return NUMBER.RANK_THIRD;
   }
 }
 
