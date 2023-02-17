@@ -1,5 +1,5 @@
 import { LOTTO } from "../constants/index.js";
-import InputValidator from "../utils/InputValidator.js";
+import InputValidator from "./InputValidator.js";
 
 const LottoValidator = {
   checkMoney(money) {

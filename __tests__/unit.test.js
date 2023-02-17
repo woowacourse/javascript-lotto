@@ -3,7 +3,7 @@
 import { LOTTO } from "../src/constants";
 import Lotto from "../src/domain/Lotto";
 import LottoController from "../src/domain/LottoController";
-import InputValidator from "../src/utils/InputValidator";
+import InputValidator from "../src/domain/InputValidator";
 test('숫자 6개를 받아 로또를 발행한다.', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
   const lotto = new Lotto(numbers);
