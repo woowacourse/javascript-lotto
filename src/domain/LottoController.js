@@ -50,13 +50,13 @@ class LottoController {
 
   #showResult(lottos, winningNumber) {
     const matchResult = this.#judgeResult(lottos, winningNumber);
-    const benefit = this.#calculateBenefit(lottos.length * 1000, matchResult);
+    const benefit = this.calculateBenefit(lottos.length * 1000, matchResult);
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
   }
 
 
-  #calculateBenefit(money, rank) {
+  calculateBenefit(money, rank) {
     // eslint-disable-next-line max-params
     const income = rank.reduce((acc, number, index) => {
       acc += number * LOTTO.prize[index];

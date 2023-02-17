@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import { LOTTO } from "../src/constants";
 import Lotto from "../src/domain/Lotto";
-// import LottoController from "../src/domain/LottoController";
+import LottoController from "../src/domain/LottoController";
 import InputValidator from "../src/utils/InputValidator";
 test('숫자 6개를 받아 로또를 발행한다.', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
@@ -48,10 +48,10 @@ test('로또 결과 계산', () => {
   expect(lotto.calculateRanking({ main: winningNumber, bonus: bonusNumber })).toEqual(2);
 });
 
-//
-// test('수익률 계산', () => {
-//   const money = 8000;
-//   const rank = [0, 0, 0, 0, 0, 1];
-//   const lottoController = new LottoController();
-//   expect(lottoController.calculateBenefit(money, rank)).toBe(62.5);
-// });
+
+test('수익률 계산', () => {
+  const money = 8000;
+  const rank = [0, 0, 0, 0, 1];
+  const lottoController = new LottoController();
+  expect(lottoController.calculateBenefit(money, rank)).toBe(62.5);
+});
