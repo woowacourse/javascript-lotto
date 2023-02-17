@@ -25,7 +25,7 @@ const ERROR_MESSAGE = {
   LESS_THAN_MINIMUM: `[ERROR] 구입 금액은 ${LOTTO.UNIT}원 이상이어야 합니다.`,
   HAS_CHANGE: `[ERROR] 구입 금액은 ${LOTTO.UNIT}원 단위이어야 합니다.`,
   OUT_OF_RANGE: `[ERROR] 1~45사이의 숫자이어야 합니다.`,
-  INVALID_WINNING_NUMBER_LENGTH: `[ERROR] 당첨 번호는 6개의 숫자로 이루어져야 합니다.`,
+  INVALID_WINNING_NUMBER_LENGTH: `[ERROR] 당첨 번호는 ${LOTTO.LENGTH}개의 숫자로 이루어져야 합니다.`,
   DUPLICATED_NUMBER: `[ERROR] 중복된 번호입니다.`,
   INVALID_RESTART_COMMAND: `[ERROR] 재시작 명령어는 ${COMMAND.YES}또는 ${COMMAND.NO}이어야 합니다.`,
   NULL: `[ERROR] 빈값을 입력할 수 없습니다.`,
