@@ -30,7 +30,7 @@ class Lotto {
   }
 
   #getMatchCount(winningNumbers) {
-    return this.#numbers.filter((number) => winningNumbers.includes(number)).length;
+    return 12 - new Set([...winningNumbers, ...this.#numbers]).size;
   }
 
   #hasBonusNumber(bonusNumber) {
