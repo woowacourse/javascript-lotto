@@ -6,14 +6,13 @@ export const LOTTO = {
   prize: [2000000000, 30000000, 1500000, 50000, 5000],
 };
 
-export const RANKING = {
-  lost: null,
-  fifth: 5,
-  fourth: 4,
-  third: 3,
-  second: 2,
-  first: 1,
-};
+export const LOST = null;
+export const FIFTH = 5;
+export const FOURTH = 4;
+export const THIRD = 3;
+export const SECOND = 2;
+export const FIRST = 1;
+
 
 export const COMMAND = {
   restart: 'y',

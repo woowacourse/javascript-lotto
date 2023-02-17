@@ -1,4 +1,4 @@
-import { RANKING } from '../constants/index.js';
+import { FIFTH, FIRST, FOURTH, LOST, SECOND, THIRD } from '../constants/index.js';
 
 class Lotto {
   constructor(numbers) {
@@ -10,10 +10,9 @@ class Lotto {
   }
 
   calculateRanking({ main, bonus }) {
-    const { lost, first, second, third, fourth, fifth } = RANKING;
     const isBonusNumberMatch = this.numbers.includes(bonus);
     const matchCount = this.numbers.filter((number) => main.includes(number)).length;
-    const ranking = [lost, lost, lost, fifth, fourth, isBonusNumberMatch ? second : third, first];
+    const ranking = [LOST, LOST, LOST, FIFTH, FOURTH, isBonusNumberMatch ? SECOND : THIRD, FIRST];
     return ranking[matchCount]; // 맞춘 갯수에 따른 등수를 반환
   }
 }
