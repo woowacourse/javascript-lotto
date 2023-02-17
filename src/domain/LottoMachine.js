@@ -1,6 +1,6 @@
 const { NUMBER } = require('../utils/constant');
 
-class Lotto {
+class LottoMachine {
   lottoNumber;
 
   constructor() {
@@ -40,19 +40,19 @@ class Lotto {
     return [...new Set(randomNumber)].length === NUMBER.LOTTO_NUMBER_LENGTH;
   }
 
-  compareNumber(winningNumber, bonusNumber) {
+  compareNumber(winningNumber, bonus) {
     const ranks = [];
     this.lottoNumber.forEach(numbers => {
       const matchedNumber = numbers.filter(number => winningNumber.includes(String(number))).length;
-      if (matchedNumber === 5) return ranks.push(this.bouseNumberChecked(numbers, Number(bonusNumber)));
+      if (matchedNumber === 5) return ranks.push(this.bouseNumberChecked(numbers, Number(bonus)));
       if (matchedNumber >= 3) ranks.push(matchedNumber);
     });
     return ranks;
   }
-  bouseNumberChecked(numbers, bonusNumber) {
-    if (numbers.includes(bonusNumber)) return NUMBER.RANK_SECOND;
+  bouseNumberChecked(numbers, bonus) {
+    if (numbers.includes(bonus)) return NUMBER.RANK_SECOND;
     return NUMBER.RANK_THIRD;
   }
 }
 
-module.exports = Lotto;
+module.exports = LottoMachine;

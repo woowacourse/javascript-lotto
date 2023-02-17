@@ -1,4 +1,4 @@
-const Lotto = require('./Lotto');
+const Lotto = require('./LottoMachine');
 const { NUMBER } = require('../utils/constant');
 
 class RankedLotto {

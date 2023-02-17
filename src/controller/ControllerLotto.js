@@ -1,5 +1,5 @@
 const inputView = require('../view/inputView');
-const Lotto = require('../domain/Lotto');
+const Lotto = require('../domain/LottoMachine');
 const outputView = require('../view/outputView');
 const RankedLotto = require('../domain/RankedLotto');
 
