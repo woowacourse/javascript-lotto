@@ -26,7 +26,7 @@ class Comparer {
     return this.#lottos.map((lotto) => this.#winningLotto.hasBonusNumber(lotto));
   }
 
-  getRanking() {
+  getStatistics() {
     const matchCount = this.countMatchesOfWinningNumber();
     const bonus = this.checkIncludesBonus();
     return matchCount.reduce(

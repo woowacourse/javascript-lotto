@@ -1,4 +1,4 @@
-const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } = require('../constant/Message');
+const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } = require('../constant/message');
 const Console = require('../util/Console');
 
 const OutputView = {
@@ -16,7 +16,7 @@ const OutputView = {
     });
   },
 
-  printRanking(ranking) {
+  printStatistics(ranking) {
     Console.print(OUTPUT_MESSAGE.WINNING_STATISTICS_HEADER);
     Object.entries(ranking).forEach(([rank, count]) => {
       Console.print(OUTPUT_MESSAGE_METHOD.RANK(rank, count));
