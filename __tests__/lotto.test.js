@@ -10,6 +10,24 @@ test('로또 만들기 ', () => {
   });
 });
 
+test.each([[[1, 2, 3, 4, 5, 6]], [[11, 12, 31, 41, 44, 45]]])(
+  '로또 번호에 대한 전체 성공 case',
+  (numbers) => {
+    const errorMessage = [
+      ERROR_MESSAGE.NOT_INTEGER(LOTTO_CONSTANT.LOTTO_NUMBER),
+      ERROR_MESSAGE.LOTTO_NUMBER_RANGE(LOTTO_CONSTANT.LOTTO_NUMBER),
+      LOTTO_CONSTANT.LOTTO_NUMBER,
+      ERROR_MESSAGE.LOTTO_LENGTH_LIMIT,
+    ];
+
+    errorMessage.forEach((message) => {
+      expect(() => {
+        new Lotto(numbers);
+      }).not.toThrow(message);
+    });
+  }
+);
+
 test.each([[[1, '가', 3, 4, 5, 6]], [[1, '', 3, 4, 5, 6]]])('로또 번호는 숫자이다', (numbers) => {
   expect(() => {
     new Lotto(numbers);
