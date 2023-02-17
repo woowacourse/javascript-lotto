@@ -15,8 +15,8 @@ class Lotto {
     return this.lottoNumber;
   }
 
-  setLottoNumber(number) {
-    this.lottoNumber = number;
+  setLottoNumber(figure) {
+    this.lottoNumber = figure;
   }
 
   makeLotto(money) {
