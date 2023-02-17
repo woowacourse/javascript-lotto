@@ -1,4 +1,4 @@
-import LottoGameController from './domain/LottoGameController.js';
+import LottoGameController from './LottoGameController.js';
 
 export default class App {
   #lottoGameController;
