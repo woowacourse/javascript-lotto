@@ -1,17 +1,12 @@
 const Console = require('../utils/Console');
-const { MESSAGE } = require('../utils/constant');
-const {
-  thousandValidate,
-  integerValidate,
-  maximumMoneyValidate,
-  winningIncludeBonusNumber,
-  restartValidate,
-} = require('../utils/validation');
+const { MESSAGE, ERROR } = require('../utils/constant');
+const { thousandValidate, maximumMoneyValidate } = require('../utils/validation');
 
 const inputView = {
   async readMoney() {
     const money = await Console.readLine(MESSAGE.INPUT_MONEY);
-    if (thousandValidate(money) && integerValidate(money) && maximumMoneyValidate(money)) return this.readMoney();
+    if (thousandValidate(money)) throw new Error(ERROR.INPUT_MONEY_THOUSAND);
+    if (maximumMoneyValidate(money)) throw new Error(ERROR.INPUT_MONEY_LIMIT);
     return money;
   },
 

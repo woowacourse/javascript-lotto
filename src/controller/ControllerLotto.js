@@ -37,9 +37,11 @@ class ControllerLotto {
   showPurchasedLotto(lottos) {
     outputView.printLottoNumber(lottos);
   }
+
   inputWinningNumbers() {
     return inputView.readWinningNumber();
   }
+
   inputBonusNumber() {
     return inputView.readBonusNumber();
   }

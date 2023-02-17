@@ -18,10 +18,7 @@ const NUMBER = {
 
 const ERROR = {
   INPUT_MONEY_THOUSAND: `[ERROR] 구매 금액은 ${NUMBER.PURCHASE_AMOUNT}원 단위로 받아야 합니다. `,
-  INPUT_MONEY_INTEGER: '[ERROR] 구매 금액은 정수로 받아야 합니다.',
   INPUT_MONEY_LIMIT: `[ERROR] 구매 금액은 최대 ${NUMBER.MAXIMUM_PURCHASE_AMOUNT}원이어야 합니다.`,
-  BONUS_WINNING_NUMBER_DUPLICATION: '[ERROR] 보너스 번호는 당첨 번호와 중복이 되어서는 안됩니다.',
-  RESTART_OR_FINISH: '[ERROR] 입력값은 y또는 n값만 사용 가능합니다.',
 };
 
 const MESSAGE = {
