@@ -32,8 +32,8 @@ class LottoController {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
       Validator.purchaseAmount(purchaseAmount);
-      this.issueLottos(+purchaseAmount);
-      return +purchaseAmount;
+      this.issueLottos(Number(purchaseAmount));
+      return Number(purchaseAmount);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputPurchaseAmount();
@@ -72,10 +72,10 @@ class LottoController {
   }
 
   printResult(purchaseAmount) {
-    const ranking = new Comparer(this.#winningLotto, this.#lottos).getRanking();
+    const ranking = new Comparer(this.#winningLotto, this.#lottos).getStatistics();
     const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
 
-    OutputView.printRanking(ranking);
+    OutputView.printStatistics(ranking);
     OutputView.printProfitRate(profitRate);
     OutputView.printEmptyLine();
   }
