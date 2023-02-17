@@ -19,14 +19,14 @@ describe('Lotto 클래스 입니다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusBall = 5;
 
-    expect(lotto.hasBonus(bonusBall)).toBe(true);
+    expect(lotto.hasBonus(bonusBall)).toBeTruthy();
   });
 
   test('보너스 번호를 가지고 있지 않으면 false를 반환한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusBall = 10;
 
-    expect(lotto.hasBonus(bonusBall)).toBe(false);
+    expect(lotto.hasBonus(bonusBall)).toBeFalsy();
   });
 
   test('로또 번호가 당첨 번호와 비교해 일치하는 갯수를 반환한다.', () => {
