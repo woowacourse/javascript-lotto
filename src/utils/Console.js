@@ -1,6 +1,4 @@
-import { rejects } from 'node:assert';
-import { resolve } from 'node:path';
-import * as readline from 'node:readline';
+const readline = require('readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -9,18 +7,18 @@ const rl = readline.createInterface({
 
 class Console {
   static readLine(query) {
-    return new Promise((resolve)=>{
-      rl.question(query, (answer)=> resolve(answer))
-    })
-  }
-  
-  static print(input){
-    console.log(input)
+    return new Promise(resolve => {
+      rl.question(query, answer => resolve(answer));
+    });
   }
 
-  static close(){
-    rl.close()
+  static print(input) {
+    console.log(input);
+  }
+
+  static close() {
+    rl.close();
   }
 }
 
-export default Console;
+module.exports = Console;

@@ -9,12 +9,12 @@ class Lotto {
     return Number(money) / 1000;
   }
 
-  get lottoNumber(){
+  get lottoNumber() {
     return this.lottoNumber;
   }
 
-  setLottoNumber(number){
-    this.lottoNumber=number
+  setLottoNumber(number) {
+    this.lottoNumber = number;
   }
 
   makeLotto(money) {
@@ -51,4 +51,4 @@ class Lotto {
   }
 }
 
-export default Lotto;
+module.exports = Lotto;

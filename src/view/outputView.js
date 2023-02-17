@@ -1,5 +1,5 @@
-import Console from '../utils/Console.js';
-import { MESSAGE } from '../utils/constant.js';
+const Console = require('../utils/Console');
+const { MESSAGE } = require('../utils/constant');
 
 const outputView = {
   printCountLotto(number) {
@@ -28,4 +28,4 @@ ${MESSAGE.SIX_MATCHED}${winnings[4]}${MESSAGE.THE_NUMBER_OF}`
   },
 };
 
-export default outputView;
+module.exports = outputView;

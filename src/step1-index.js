@@ -3,12 +3,12 @@
  * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import ControllerLotto from "../src/controller/ControllerLotto.js"
+const ControllerLotto = require('../src/controller/ControllerLotto');
 class Step1 {
-    play() {
-        const controllerLotto = new ControllerLotto();
-        controllerLotto.playLotto();
-    }
+  play() {
+    const controllerLotto = new ControllerLotto();
+    controllerLotto.playLotto();
+  }
 }
 
 const step1 = new Step1();

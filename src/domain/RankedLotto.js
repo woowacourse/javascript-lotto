@@ -1,5 +1,6 @@
-import Lotto from './Lotto.js';
-import {NUMBER} from '../utils/constant.js'
+const Lotto = require('./Lotto');
+const { NUMBER } = require('../utils/constant');
+
 class RankedLotto {
   constructor() {
     this.profit = 0;
@@ -7,11 +8,11 @@ class RankedLotto {
   }
   ranking(winningNumber, bonusNumber) {
     const ranks = this.lotto.compareNumber(winningNumber, bonusNumber);
-    return ranks
+    return ranks;
   }
 
-  setNumber(a){
-    this.lotto.setLottoNumber(a)
+  setNumber(a) {
+    this.lotto.setLottoNumber(a);
   }
 
   getResult(ranks) {
@@ -42,15 +43,14 @@ class RankedLotto {
 
   earningsRate(lottoMoney, result) {
     const ConstantMoney = [5000, 50000, 1500000, 30000000, 2000000000];
-    Array.from({ length:result.length }, (v, index) => {
+    Array.from({ length: result.length }, (v, index) => {
       this.profit += result[index] * ConstantMoney[index];
     });
     this.profit = (this.profit / lottoMoney) * 100;
   }
 
-  get getProfit(){
-    return this.profit
+  get getProfit() {
+    return this.profit;
   }
-
 }
-export default RankedLotto;
+module.exports = RankedLotto;
