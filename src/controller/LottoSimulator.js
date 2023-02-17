@@ -90,8 +90,9 @@ class LottoSimulator {
 
   calculateWinningResult() {
     const winningResult = {};
-
-    Object.values(LOTTO_RANKING).forEach((rank) => (winningResult[rank] = 0));
+    Object.values(LOTTO_RANKING).forEach((rank) => {
+      winningResult[rank] = 0;
+    });
     this.#lottos.forEach((lotto) => {
       const rank = this.#winningLotto.calculateRanking(lotto);
       if (rank in winningResult) winningResult[rank] += 1;
