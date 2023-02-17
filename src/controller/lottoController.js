@@ -44,7 +44,7 @@ const LottoController = {
       return command === "y" ? this.playLotto() : InputView.close();
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.restart();
+      await this.restart();
     }
   },
 
@@ -55,7 +55,7 @@ const LottoController = {
       return money;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.readMoney();
+      await this.readMoney();
     }
   },
 
@@ -67,7 +67,7 @@ const LottoController = {
       return winNumbers;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.readWinNumbers();
+      await this.readWinNumbers();
     }
   },
 
@@ -79,7 +79,7 @@ const LottoController = {
       return bonusNumber;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.readBonusNumber(winLotto);
+      await this.readBonusNumber(winLotto);
     }
   },
 };
