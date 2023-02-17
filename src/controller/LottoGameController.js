@@ -1,4 +1,4 @@
-import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
+import { StaticValue, RequestMessage, ResultMessage } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Console from '../utils/Console.js';
 import InputView from '../view/InputView.js';
@@ -16,12 +16,12 @@ class LottoGameController {
   }
 
   #handlePurchaseAmount = async () => {
-    const MONEY = await InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT);
+    const MONEY = await InputView.readUserInput(RequestMessage.PURCHASE_AMOUNT);
     const PURCHASE_COUNT = Number(MONEY) / StaticValue.PURCHASE_AMOUNT_UNIT;
 
     try {
       Validation.testPurchaseAmount(MONEY);
-      OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
+      OutputView.print(ResultMessage.purchaseCount(PURCHASE_COUNT));
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch (error) {
       await this.#handleError(error.message, this.#handlePurchaseAmount);
@@ -36,7 +36,7 @@ class LottoGameController {
   }
 
   #handleWinningNumbers = async () => {
-    const WINNING_NUMBER_INPUT = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
+    const WINNING_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.WINNING_NUMBER);
     const WINNING_NUMBERS = WINNING_NUMBER_INPUT.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
     try {
@@ -48,7 +48,7 @@ class LottoGameController {
   };
 
   #handleBonusNumber = async (winningNumbers) => {
-    const BONUS_NUMBER_INPUT = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
+    const BONUS_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.BONUS_NUMBER);
     const BONUS_NUMBER = Number(BONUS_NUMBER_INPUT);
 
     try {
@@ -65,7 +65,7 @@ class LottoGameController {
   }
 
   #handleRestart = async () => {
-    const REPLY_INPUT = await InputView.readUserInput(ConsoleMessage.RESTART);
+    const REPLY_INPUT = await InputView.readUserInput(RequestMessage.RESTART);
     const REPLY = REPLY_INPUT.toLowerCase().trim();
 
     try {
