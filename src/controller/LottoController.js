@@ -4,6 +4,7 @@ import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoMachine from '../model/LottoMachine';
 import { values } from '../constants/values';
+import Console from '../utils/console';
 
 class LottoController {
   #LottoMachine;
@@ -14,6 +15,7 @@ class LottoController {
     const bonusNumber = await this.handleBonusNumber();
     const statistics = this.#LottoMachine.calculateStatistics(winningNumber, bonusNumber);
     this.printStatistics(statistics);
+    await this.handleRestart();
   }
 
   processLottoMachine(moneyInput) {
@@ -62,6 +64,13 @@ class LottoController {
 
   printStatistics(statistics) {
     OutputView.printStatistics(statistics);
+  }
+
+  async handleRestart() {
+    if (await InputView.readAboutRestart()) {
+      await this.start();
+    }
+    return Console.close();
   }
 }
 
