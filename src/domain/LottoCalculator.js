@@ -30,9 +30,10 @@ class LottoCalculator {
   }
 
   #calculateProfit() {
-    return Object.entries(this.ranks).reduce((totalProfit, [rank, count]) => {
-      return totalProfit + Prize[rank] * count;
-    }, 0);
+    return Object.entries(this.ranks).reduce(
+      (totalProfit, [rank, count]) => totalProfit + Prize[rank] * count,
+      0
+    );
   }
 }
 
