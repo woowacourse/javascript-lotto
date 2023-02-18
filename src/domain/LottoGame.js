@@ -47,10 +47,10 @@ class LottoGame {
   }
 
   calculateProfit(rankResult) {
-    let prize = 0;
-    rankResult.forEach((_, idx) => {
-      prize += PRIZE[idx] * rankResult[idx];
-    });
+    const prize = rankResult.reduce(
+      (sum, curRank, idx) => sum + PRIZE[idx] * curRank,
+      0
+    );
     const profit = ((prize / (this.lotteries.length * 1000)) * 100).toFixed(1);
     return [...rankResult, profit];
   }
