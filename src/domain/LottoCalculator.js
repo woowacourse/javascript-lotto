@@ -1,15 +1,6 @@
-import { StaticValue, Rank, Prize } from '../constants/Constants.js';
+import { StaticValue, Rank, InitialRank, Prize } from '../constants/Constants.js';
 
 class LottoCalculator {
-  #ranks = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0,
-  };
-
   constructor(matchStates) {
     this.matchStates = matchStates;
   }
@@ -20,7 +11,7 @@ class LottoCalculator {
       ranks[CURRENT_RANK] += 1;
 
       return ranks;
-    }, { ...this.#ranks });
+    }, { ...InitialRank });
   }
 
   calculateProfitRate(ranks) {

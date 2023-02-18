@@ -25,6 +25,15 @@ const MatchCount = Object.freeze({
   0: 'ZERO',
 });
 
+const InitialRank = Object.freeze({
+  1: 0,
+  2: 0,
+  3: 0,
+  4: 0,
+  5: 0,
+  6: 0,
+});
+
 const Rank = Object.freeze({
   SIX: 1,
   FIVE_AND_BONUS: 2,
@@ -80,6 +89,7 @@ const ErrorMessage = Object.freeze({
 export {
   StaticValue,
   MatchCount,
+  InitialRank,
   Rank,
   Prize,
   ConsoleMessage,
