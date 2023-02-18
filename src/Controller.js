@@ -61,7 +61,7 @@ class Controller {
   }
 
   generateLottoGameResult() {
-    const lottoResult = this.#lottoGame.calculateRankResult(
+    const lottoResult = this.#lottoGame.getRankResult(
       this.#lottoNumbers,
       this.#bonusNumber
     );

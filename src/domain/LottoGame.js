@@ -1,13 +1,13 @@
 const Lotto = require("./Lotto");
 const Random = require("../utils/Random");
 const { NUMBER, PRIZE } = require("../constants");
+const Calculation = require("../utils/calculation");
 
 class LottoGame {
   constructor(amount) {
     this.lotteries = [];
     this.rank = new Array(NUMBER.RANK).fill(0);
     this.generateLotteries(amount / NUMBER.UNIT);
-    this.getLotteries();
   }
 
   generateLotteries(count) {
@@ -21,38 +21,27 @@ class LottoGame {
     return this.lotteries.map((lottery) => lottery.getLottoString());
   }
 
-  matchLotteries(lottoNumbers, bonusNumber) {
-    const lottoResult = this.lotteries.map((lotto) => {
-      return [lotto.matchNumbers(lottoNumbers), lotto.matchBonus(bonusNumber)];
-    });
-    return lottoResult;
-  }
-
-  calculateRankResult(lottoNumbers, bonusNumber) {
-    const matchResult = this.matchLotteries(lottoNumbers, bonusNumber);
+  getRankResult(lottoNumbers, bonusNumber) {
     const rankResult = new Array(NUMBER.RANK).fill(0);
-
-    matchResult.map((lotto) => {
-      rankResult[this.calculateRank(lotto[0], lotto[1])] += 1;
+    this.lotteries.forEach((lotto) => {
+      rankResult[
+        this.getRank(
+          lotto.matchNumbers(lottoNumbers),
+          lotto.matchBonus(bonusNumber)
+        )
+      ]++;
     });
-
-    return this.calculateProfit(rankResult);
+    return [
+      ...rankResult,
+      Calculation.getProfit(rankResult, this.lotteries.length),
+    ];
   }
 
-  calculateRank(matchNumber, bonusNumber) {
+  getRank(matchNumber, bonusNumber) {
     if (matchNumber > 9) return;
-    if (matchNumber === 6) return 10 - matchNumber;
-    if (matchNumber === 7 && bonusNumber) return 10 - matchNumber;
+    if (matchNumber === 6 || (matchNumber === 7 && bonusNumber))
+      return 10 - matchNumber;
     return 9 - matchNumber;
-  }
-
-  calculateProfit(rankResult) {
-    let prize = 0;
-    rankResult.forEach((_, idx) => {
-      prize += PRIZE[idx] * rankResult[idx];
-    });
-    const profit = ((prize / (this.lotteries.length * 1000)) * 100).toFixed(1);
-    return [...rankResult, profit];
   }
 }
 
