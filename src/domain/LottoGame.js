@@ -7,7 +7,11 @@ import {
   MAX_LOTTO_NUMBER,
   CONVERT_RANK_TO_STRING,
 } from '../data/Constants';
-import { arrayToObjectThatValueZero, deduplicateArray } from '../utils/Utils';
+import {
+  arrayToObjectThatValueZero,
+  deduplicateArray,
+  divideBByARate,
+} from '../utils/Utils';
 import GameBoard from './GameBoard';
 import Lotto from './Lotto';
 
@@ -53,6 +57,18 @@ class LottoGame {
 
   calculateTotalPrize(ranks) {
     return ranks.reduce((acc, cur) => (acc += PRIZE[cur]), 0);
+  }
+
+  getLottoAmounts() {
+    return this.#lottos.length * MINIMUM_LOTTO_UNIT;
+  }
+
+  getEarningRate() {
+    const ranks = this.getLottosRank();
+    const earningPrize = this.calculateTotalPrize(ranks);
+    const purchaseLottoAmount = this.getLottoAmounts();
+
+    return divideBByARate(purchaseLottoAmount, earningPrize);
   }
 }
 
