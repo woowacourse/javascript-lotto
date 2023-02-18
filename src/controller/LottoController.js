@@ -4,7 +4,6 @@ import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoMachine from '../model/LottoMachine';
 import { values } from '../constants/values';
-import Console from '../utils/console';
 
 class LottoController {
   #LottoMachine;
