@@ -1,20 +1,21 @@
 import { isPositiveInteger } from '../validation';
+import {
+  LOTTO_NUMBER_SIZE,
+  LOTTO_NUMBER_RANGE_MIN,
+  LOTTO_NUMBER_RANGE_MAX,
+} from '../util/constants';
 
 class Lotto {
   static ERROR_INVALID = '잘못된 입력입니다.';
   static ERROR_DUPLICATE = '중복된 입력입니다.';
-  static LOTTO_SIZE = 6;
-  static MIN_NUMBER = 1;
-  static MAX_NUMBER = 45;
 
   static isValidLottoNumber(number) {
     if (!isPositiveInteger(number)) return false;
-
-    return number >= Lotto.MIN_NUMBER && number <= Lotto.MAX_NUMBER;
+    return number >= LOTTO_NUMBER_RANGE_MIN && number <= LOTTO_NUMBER_RANGE_MAX;
   }
 
   static isDuplicateNumbers(numbers) {
-    return new Set(numbers).size !== Lotto.LOTTO_SIZE || numbers.length !== Lotto.LOTTO_SIZE;
+    return new Set(numbers).size !== LOTTO_NUMBER_SIZE || numbers.length !== LOTTO_NUMBER_SIZE;
   }
 
   static isValidLottoNumbers(numbers) {
