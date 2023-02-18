@@ -13,7 +13,7 @@ const output = (data, formattingType = '') => {
 
   if (formattingType === FORMATTING_TYPE.WINNING_STATUS) {
     console.log(`\n당첨 통계\n${'-'.repeat(20)}`);
-    console.log(`3개 일치 (${GAME_VALUE.PRIZE[4].toLocaleString()}원) - ${data[RANK.FIFTH]}개
+    return console.log(`3개 일치 (${GAME_VALUE.PRIZE[4].toLocaleString()}원) - ${data[RANK.FIFTH]}개
 4개 일치 (${GAME_VALUE.PRIZE[3].toLocaleString()}원) - ${data[RANK.FOURTH]}개
 5개 일치 (${GAME_VALUE.PRIZE[2].toLocaleString()}원) - ${data[RANK.THIRD]}개
 5개 일치, 보너스 볼 일치 (${GAME_VALUE.PRIZE[1].toLocaleString()}원) - ${data[RANK.SECOND]}개
@@ -22,7 +22,7 @@ const output = (data, formattingType = '') => {
 
   if (formattingType === FORMATTING_TYPE.PROFIT_RATE) {
     const formattedRate = data.toLocaleString();
-    console.log(`총 수익률은 ${formattedRate}%입니다.`);
+    return console.log(`총 수익률은 ${formattedRate}%입니다.`);
   }
 };
 
