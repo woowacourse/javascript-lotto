@@ -8,10 +8,6 @@ const App = {
     lottoGame: null,
   },
 
-  async start() {
-    await this.init();
-  },
-
   async init() {
     this.instance.lottoGame = new LottoGame(await InputView.readLottoPrice());
     OutputView.printLottoNumbersList(
@@ -44,4 +40,4 @@ const App = {
   },
 };
 
-App.start();
+App.init();

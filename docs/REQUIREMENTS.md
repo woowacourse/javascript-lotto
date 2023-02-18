@@ -62,7 +62,7 @@
 - [ ]  사용자의 입력을 바로 인수(Argument)로 넘겨주지 않는다.
 - [ ]  spreading하는 이유를 찾아보자.
 - [ ]  init, execute 보다 좀 더 직관적인 네이밍을 고민해본다. init 단계부터 이 앱은 실행 중이니, 현재의 네이밍은 조금 포괄적으로 느껴진다.
-- [ ]  쓸데 없는 async, await 제거한다.
+- [x]  쓸데 없는 async, await 제거한다.
 - [ ]  LOTTO.LENGTH 이름을 수정한다.
 - [ ]  MATCH_TABLE 내의 값에서 중복을 제거한다.
 - [ ]  RANKING_TABLE 해쉬의 key, value를 네이밍을 통해 명시한다.
