@@ -9,33 +9,45 @@ class LottoGameController {
   #lottoGame = new LottoGame();
 
   async startGame() {
-    await this.#handlePurchaseAmount();
-    await this.#handleWinningNumbers();
-    this.#handleGameResult();
-    await this.#handleRestart();
+    await this.#setUserLottos();
+    await this.#setWinningLotto();
+    this.#showGameResult();
+    await this.#askGameRestart();
   }
 
-  #handlePurchaseAmount = async () => {
+  async #setUserLottos() {
+    const PURCHASE_COUNT = await this.#getPurchaseCount();
+    this.#purchaseUserLottos(PURCHASE_COUNT);
+  }
+
+  #getPurchaseCount = async () => {
     const MONEY = await InputView.readUserInput(RequestMessage.PURCHASE_AMOUNT);
     const PURCHASE_COUNT = Number(MONEY) / GameControlStaticValue.PURCHASE_AMOUNT_UNIT;
 
     try {
       Validation.testPurchaseAmount(MONEY);
       OutputView.print(ResultMessage.purchaseCount(PURCHASE_COUNT));
-      this.#handleUserLottos(PURCHASE_COUNT);
+      return PURCHASE_COUNT;
     } catch (error) {
-      await this.#handleError(error.message, this.#handlePurchaseAmount);
+      return this.#handleError(error.message, this.#getPurchaseCount);
     }
   };
 
-  #handleUserLottos(purchaseCount) {
+  #purchaseUserLottos(purchaseCount) {
     this.#lottoGame.generateUserLottos(purchaseCount);
     const USER_LOTTOS = this.#lottoGame.getUserLottos();
 
     USER_LOTTOS.forEach(OutputView.print);
   }
 
-  #handleWinningNumbers = async () => {
+  async #setWinningLotto() {
+    const WINNING_NUMBERS = await this.#getWinningNumbers();
+    const BONUS_NUMBER = await this.#getBonusNumber(WINNING_NUMBERS);
+
+    this.#lottoGame.setGameLottos(WINNING_NUMBERS, BONUS_NUMBER);
+  }
+
+  #getWinningNumbers = async () => {
     const WINNING_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.WINNING_NUMBER);
     const WINNING_NUMBERS = WINNING_NUMBER_INPUT.split(GameControlStaticValue.INPUT_SEPARATOR).map(
       Number,
@@ -43,47 +55,51 @@ class LottoGameController {
 
     try {
       Validation.testLottoNumbers(WINNING_NUMBERS);
-      await this.#handleBonusNumber(WINNING_NUMBERS);
+      return WINNING_NUMBERS;
     } catch (error) {
-      await this.#handleError(error.message, this.#handleWinningNumbers);
+      return this.#handleError(error.message, this.#getWinningNumbers);
     }
   };
 
-  #handleBonusNumber = async (winningNumbers) => {
+  #getBonusNumber = async (winningNumbers) => {
     const BONUS_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.BONUS_NUMBER);
     const BONUS_NUMBER = Number(BONUS_NUMBER_INPUT);
 
     try {
       Validation.testBonusNumber(winningNumbers, BONUS_NUMBER);
-      this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
+      return BONUS_NUMBER;
     } catch (error) {
-      await this.#handleError(error.message, () => this.#handleBonusNumber(winningNumbers));
+      return this.#handleError(error.message, () => this.#getBonusNumber(winningNumbers));
     }
   };
 
-  #handleGameResult() {
+  #showGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
     OutputView.printResult(RANKS, PROFIT_RATE);
   }
 
-  #handleRestart = async () => {
+  #askGameRestart = async () => {
     const REPLY_INPUT = await InputView.readUserInput(RequestMessage.RESTART);
     const REPLY = REPLY_INPUT.toLowerCase().trim();
 
     try {
       Validation.testRestart(REPLY);
-      this.#handleRestartReply(REPLY);
+      this.#restartOrEndGame(REPLY);
     } catch (error) {
-      await this.#handleError(error.message, this.#handleRestart);
+      await this.#handleError(error.message, this.#askGameRestart);
     }
   };
 
-  #handleRestartReply(reply) {
+  #restartOrEndGame(reply) {
     if (reply === GameControlStaticValue.RESTART_BUTTON) {
       this.startGame();
       return;
     }
 
+    this.#endGame();
+  }
+
+  #endGame() {
     Console.close();
   }
 
