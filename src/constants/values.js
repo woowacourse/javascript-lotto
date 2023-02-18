@@ -5,6 +5,7 @@ const values = Object.freeze({
   UPPER_BOUND: 45,
   LOTTO_PRICE: 1000,
   LOTTO_LENGTH: 6,
+  YES: 'y',
 });
 
 const correctCountsToMoney = deepFreeze({
