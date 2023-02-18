@@ -1,5 +1,6 @@
 import { isValidRestartCommand } from '../../validation';
 import Console from './Console';
+import OutputView from './OutputView';
 
 const InputView = {
   BUY_MONEY_QUERY: '구입금액을 입력해 주세요.',
@@ -27,8 +28,12 @@ const InputView = {
 
   async readRestartCommand() {
     const command = await Console.read(InputView.RESTART_QUERY);
-    if (!isValidRestartCommand(command)) {
-      return new Error(this.INVALID_COMMAND_ERROR);
+    try {
+      if (!isValidRestartCommand(command)) {
+        throw new Error(this.INVALID_COMMAND_ERROR);
+      }
+    } catch (error) {
+      OutputView.printErrorMsg(error.message);
     }
     return command;
   },
