@@ -102,9 +102,9 @@ class LottoGameController {
     Console.close();
   }
 
-  #handleError(errorMessage, self) {
+  #handleError(errorMessage, callback) {
     OutputView.print(errorMessage);
-    return self();
+    return callback();
   }
 }
 
