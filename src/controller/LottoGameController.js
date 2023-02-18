@@ -24,7 +24,7 @@ class LottoGameController {
       OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch (error) {
-      await this.#handleError(error.message, this.#handlePurchaseAmount.bind(this));
+      await this.#handleError(error.message, () => this.#handlePurchaseAmount());
     }
 
     return PURCHASE_COUNT;
@@ -45,7 +45,7 @@ class LottoGameController {
       Validation.testLottoNumbers(WINNING_NUMBERS);
       await this.#handleBonusNumber(WINNING_NUMBERS);
     } catch (error) {
-      await this.#handleError(error.message, this.#handleWinningNumbers.bind(this));
+      await this.#handleError(error.message, () => this.#handleWinningNumbers());
     }
   }
 
@@ -74,7 +74,7 @@ class LottoGameController {
       Validation.testRestart(RESPONSE);
       this.#handleRestartReply(RESPONSE);
     } catch (error) {
-      await this.#handleError(error.message, this.#handleRestart);
+      await this.#handleError(error.message, () => this.#handleRestart());
     }
   }
 
