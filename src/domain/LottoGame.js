@@ -36,7 +36,7 @@ class LottoGame {
     const calculator = new LottoCalculator(MATCH_STATES);
 
     const RANKS = calculator.calculateRank();
-    const PROFIT_RATE = calculator.calculateProfitRate();
+    const PROFIT_RATE = calculator.calculateProfitRate(RANKS);
 
     return { RANKS, PROFIT_RATE };
   }

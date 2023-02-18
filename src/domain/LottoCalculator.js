@@ -1,16 +1,17 @@
 import { StaticValue, Rank, Prize } from '../constants/Constants.js';
 
 class LottoCalculator {
+  #ranks = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0,
+  };
+
   constructor(matchStates) {
     this.matchStates = matchStates;
-    this.ranks = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 0,
-    };
   }
 
   calculateRank() {
@@ -19,18 +20,18 @@ class LottoCalculator {
       ranks[CURRENT_RANK] += 1;
 
       return ranks;
-    }, this.ranks);
+    }, { ...this.#ranks });
   }
 
-  calculateProfitRate() {
+  calculateProfitRate(ranks) {
     return (
-      (this.#calculateProfit() / (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT))
+      (this.#calculateProfit(ranks) / (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT))
       * 100
     ).toFixed(1);
   }
 
-  #calculateProfit() {
-    return Object.entries(this.ranks).reduce(
+  #calculateProfit(ranks) {
+    return Object.entries(ranks).reduce(
       (totalProfit, [rank, count]) => totalProfit + Prize[rank] * count,
       0
     );
