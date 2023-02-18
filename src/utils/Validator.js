@@ -20,7 +20,7 @@ const {
   NOT_INTEGER,
 } = ERROR_MESSAGE;
 
-const validator = {
+export const validator = {
   checkNumber: (input) => {
     if (Number.isNaN(input)) {
       throw new Error(NOT_NUMBER);
