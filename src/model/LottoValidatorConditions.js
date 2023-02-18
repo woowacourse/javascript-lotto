@@ -1,16 +1,16 @@
-import { values, regex } from '../constants/values';
+import { VALUES, REGEX } from '../constants/values';
 
 const LottoValidatorConditions = {
   isPositiveInteger(number) {
-    return regex.POSITIVE_INTEGER.test(number);
+    return REGEX.POSITIVE_INTEGER.test(number);
   },
 
   isDividedByPrice(number) {
-    return !(number % values.LOTTO_PRICE);
+    return !(number % VALUES.LOTTO_PRICE);
   },
 
   isInRange(number) {
-    return number >= values.LOWER_BOUND && number <= values.UPPER_BOUND;
+    return number >= VALUES.LOWER_BOUND && number <= VALUES.UPPER_BOUND;
   },
 
   hasNoBlank(splitedWinningNumber) {
@@ -18,7 +18,7 @@ const LottoValidatorConditions = {
   },
 
   isYorN(restartOrNot) {
-    return restartOrNot === values.YES || restartOrNot === values.NO;
+    return restartOrNot === VALUES.YES || restartOrNot === VALUES.NO;
   },
 
   isNotOverlap(winningNumber) {
@@ -26,7 +26,7 @@ const LottoValidatorConditions = {
   },
 
   isSixLength(winningNumber) {
-    return winningNumber.length === values.LOTTO_LENGTH;
+    return winningNumber.length === VALUES.LOTTO_LENGTH;
   },
 
   isBonusNumInWinningNum(winningNumber, number) {

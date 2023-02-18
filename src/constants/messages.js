@@ -1,6 +1,6 @@
 import deepFreeze from '../utils/deepFreeze';
 
-const messages = deepFreeze({
+const MESSAGE = deepFreeze({
   INPUT: {
     MONEY: '> 구입금액을 입력해 주세요.',
     WINNING_NUMBER: '\n> 당첨 번호를 입력해 주세요.',
@@ -21,7 +21,7 @@ const messages = deepFreeze({
     Y_OR_N: '[ERROR] y 또는 n만 입력해주세요',
     NOT_SIX_LENGTH: '[ERROR] 6개의 숫자를 입력해주세요',
     OVERLAP: '[ERROR] 중복되는 숫자가 있습니다',
-    OVERLAP_WINNING_NUM: '[ERROR] 당첨번호에 이미 있는 숫자입니다'
+    OVERLAP_WINNING_NUM: '[ERROR] 당첨번호에 이미 있는 숫자입니다',
   },
 
   STATISTICS_MESSAGE: {
@@ -34,4 +34,4 @@ const messages = deepFreeze({
   },
 });
 
-export default messages;
+export default MESSAGE;

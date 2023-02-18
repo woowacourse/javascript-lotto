@@ -1,4 +1,4 @@
-import { matchCountsToRank } from '../constants/values';
+import { MATCH_COUNT_TO_RANK } from '../constants/values';
 
 class WinningLotto {
   #winningNumber;
@@ -29,9 +29,9 @@ class WinningLotto {
     const matchCounts = this.computeMatchCounts(this.#winningNumber, lottoNumber);
 
     if (this.isFiveMatchCount(matchCounts)) {
-      return matchCountsToRank[5][`${this.isSecondRank(this.#bonusNumber, lottoNumber) ? 0 : 1}`].rank;
+      return MATCH_COUNT_TO_RANK[5][`${this.isSecondRank(this.#bonusNumber, lottoNumber) ? 0 : 1}`].rank;
     }
-    return matchCountsToRank[matchCounts].rank;
+    return MATCH_COUNT_TO_RANK[matchCounts].rank;
   }
 
   get winningNumber() {
@@ -40,7 +40,7 @@ class WinningLotto {
 
   set bonusNumber(bonusNumber) {
     this.#bonusNumber = +bonusNumber;
-  } 
+  }
 }
 
 export default WinningLotto;

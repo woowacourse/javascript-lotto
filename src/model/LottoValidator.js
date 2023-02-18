@@ -1,4 +1,4 @@
-import messages from '../constants/messages';
+import MESSAGE from '../constants/messages';
 import LottoValidatorConditions from './LottoValidatorConditions';
 
 const LottoValidator = {
@@ -9,34 +9,55 @@ const LottoValidator = {
   },
 
   validateMoneyInput(number) {
-    this.validateWithCondition(LottoValidatorConditions.isPositiveInteger(+number), messages.ERROR.POSITIVE_INTEGER);
-    this.validateWithCondition(LottoValidatorConditions.isDividedByPrice(+number), messages.ERROR.THOUSANDS_WON);
+    this.validateWithCondition(
+      LottoValidatorConditions.isPositiveInteger(+number),
+      MESSAGE.ERROR.POSITIVE_INTEGER,
+    );
+    this.validateWithCondition(
+      LottoValidatorConditions.isDividedByPrice(+number),
+      MESSAGE.ERROR.THOUSANDS_WON,
+    );
   },
 
   validateWinningNumberInput(winningNumber) {
     const splitWinningNumber = winningNumber.split(',');
 
     splitWinningNumber.forEach(number => {
-      this.validateWithCondition(LottoValidatorConditions.isPositiveInteger(+number), messages.ERROR.VALID_SIX_NUMBER);
-      this.validateWithCondition(LottoValidatorConditions.isInRange(+number), messages.ERROR.VALID_SIX_NUMBER);
+      this.validateWithCondition(
+        LottoValidatorConditions.isPositiveInteger(+number),
+        MESSAGE.ERROR.VALID_SIX_NUMBER,
+      );
+      this.validateWithCondition(LottoValidatorConditions.isInRange(+number), MESSAGE.ERROR.VALID_SIX_NUMBER);
     });
 
-    this.validateWithCondition(LottoValidatorConditions.hasNoBlank(winningNumber.split('')), messages.ERROR.HAS_BLANK);
-    this.validateWithCondition(LottoValidatorConditions.isSixLength(splitWinningNumber), messages.ERROR.NOT_SIX_LENGTH);
-    this.validateWithCondition(LottoValidatorConditions.isNotOverlap(splitWinningNumber), messages.ERROR.OVERLAP);
+    this.validateWithCondition(
+      LottoValidatorConditions.hasNoBlank(winningNumber.split('')),
+      MESSAGE.ERROR.HAS_BLANK,
+    );
+    this.validateWithCondition(
+      LottoValidatorConditions.isSixLength(splitWinningNumber),
+      MESSAGE.ERROR.NOT_SIX_LENGTH,
+    );
+    this.validateWithCondition(
+      LottoValidatorConditions.isNotOverlap(splitWinningNumber),
+      MESSAGE.ERROR.OVERLAP,
+    );
   },
 
   validateBonusNumberInput(winningNumber, number) {
-    this.validateWithCondition(LottoValidatorConditions.isPositiveInteger(+number), messages.ERROR.POSITIVE_INTEGER);
-    this.validateWithCondition(LottoValidatorConditions.isInRange(+number), messages.ERROR.IN_RANGE);
+    this.validateWithCondition(
+      LottoValidatorConditions.isPositiveInteger(+number),
+      MESSAGE.ERROR.POSITIVE_INTEGER,
+    );
+    this.validateWithCondition(LottoValidatorConditions.isInRange(+number), MESSAGE.ERROR.IN_RANGE);
     this.validateWithCondition(
       LottoValidatorConditions.isBonusNumInWinningNum(winningNumber, number),
-      messages.ERROR.OVERLAP_WINNING_NUM,
+      MESSAGE.ERROR.OVERLAP_WINNING_NUM,
     );
   },
 
   validateRestart(restartOrNot) {
-    this.validateWithCondition(LottoValidatorConditions.isYorN(restartOrNot), messages.ERROR.Y_OR_N);
+    this.validateWithCondition(LottoValidatorConditions.isYorN(restartOrNot), MESSAGE.ERROR.Y_OR_N);
   },
 };
 

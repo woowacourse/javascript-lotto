@@ -1,7 +1,7 @@
 import generateRandomNumber from '../utils/generateRandomNumber';
 import Lotto from './Lotto';
 import WinningLotto from './WinningLotto';
-import { values, prize } from '../constants/values';
+import { VALUES, PRIZE } from '../constants/values';
 
 class LottoMachine {
   #lottos = [];
@@ -22,10 +22,10 @@ class LottoMachine {
   }
 
   generateLottoNumber() {
-    const { LOWER_BOUND, UPPER_BOUND } = values;
+    const { LOWER_BOUND, UPPER_BOUND } = VALUES;
     const randomLottoNumbers = [];
 
-    while (randomLottoNumbers.length !== values.LOTTO_LENGTH) {
+    while (randomLottoNumbers.length !== VALUES.LOTTO_LENGTH) {
       const randomNumber = generateRandomNumber(LOWER_BOUND, UPPER_BOUND);
       if (!randomLottoNumbers.includes(randomNumber)) randomLottoNumbers.push(randomNumber);
     }
@@ -42,11 +42,11 @@ class LottoMachine {
   }
 
   calculateTotalSum(ranks) {
-    return ranks.reduce((acc, curr) => acc + prize[curr - 1], 0);
+    return ranks.reduce((acc, curr) => acc + PRIZE[curr - 1], 0);
   }
 
   rateOfProfit(lotteryWinningsSum, lottosLength) {
-    const { LOTTO_PRICE } = values;
+    const { LOTTO_PRICE } = VALUES;
     const spentMoney = lottosLength * LOTTO_PRICE;
 
     return ((lotteryWinningsSum / spentMoney) * 100).toFixed(1);

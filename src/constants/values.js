@@ -1,6 +1,6 @@
 import deepFreeze from '../utils/deepFreeze';
 
-const values = Object.freeze({
+const VALUES = Object.freeze({
   LOWER_BOUND: 1,
   UPPER_BOUND: 45,
   LOTTO_PRICE: 1000,
@@ -9,7 +9,7 @@ const values = Object.freeze({
   NO: 'n',
 });
 
-const matchCountsToRank = deepFreeze({
+const MATCH_COUNT_TO_RANK = deepFreeze({
   6: { rank: 1 },
   5: [{ rank: 2 }, { rank: 3 }],
   4: { rank: 4 },
@@ -19,10 +19,10 @@ const matchCountsToRank = deepFreeze({
   0: { rank: 6 },
 });
 
-const prize = Object.freeze([2000000000, 30000000, 1500000, 50000, 5000, 0]);
+const PRIZE = Object.freeze([2000000000, 30000000, 1500000, 50000, 5000, 0]);
 
-const regex = Object.freeze({
+const REGEX = Object.freeze({
   POSITIVE_INTEGER: /^[1-9]\d*$/,
 });
 
-export { values, matchCountsToRank, regex, prize };
+export { VALUES, MATCH_COUNT_TO_RANK, REGEX, PRIZE };

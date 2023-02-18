@@ -1,9 +1,9 @@
-import messages from '../constants/messages';
+import MESSAGE from '../constants/messages';
 import LottoValidator from '../model/LottoValidator';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoMachine from '../model/LottoMachine';
-import { values } from '../constants/values';
+import { VALUES } from '../constants/values';
 import Console from '../utils/console';
 
 class LottoController {
@@ -11,7 +11,7 @@ class LottoController {
 
   handleLottoMachine(moneyInput) {
     LottoValidator.validateMoneyInput(moneyInput);
-    OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
+    OutputView.printMessage(moneyInput / VALUES.LOTTO_PRICE + MESSAGE.OUTPUT.LOTTO_COUNT);
     this.initLottoMachine(moneyInput);
     OutputView.printLottos(this.#LottoMachine.lottos);
   }
@@ -69,7 +69,7 @@ class LottoController {
       await this.handleRestart();
     }
 
-    if (restartOrNot === values.YES) {
+    if (restartOrNot === VALUES.YES) {
       return this.startManage();
     }
 

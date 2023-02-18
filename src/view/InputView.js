@@ -1,27 +1,27 @@
 import Console from '../utils/console';
-import messages from '../constants/messages';
+import MESSAGE from '../constants/messages';
 
 const InputView = {
   async readInputMoney() {
-    const moneyInput = await Console.readLine(messages.INPUT.MONEY);
+    const moneyInput = await Console.readLine(MESSAGE.INPUT.MONEY);
 
     return moneyInput;
   },
 
   async readWinningNumber() {
-    const winningNumber = await Console.readLine(messages.INPUT.WINNING_NUMBER);
+    const winningNumber = await Console.readLine(MESSAGE.INPUT.WINNING_NUMBER);
 
     return winningNumber;
   },
 
   async readBonusNumber() {
-    const bonusNumber = await Console.readLine(messages.INPUT.BONUS_NUMBER);
+    const bonusNumber = await Console.readLine(MESSAGE.INPUT.BONUS_NUMBER);
 
     return bonusNumber;
   },
 
   async readAboutRestart() {
-    const restartOrNot = await Console.readLine(messages.INPUT.RESTART);
+    const restartOrNot = await Console.readLine(MESSAGE.INPUT.RESTART);
 
     return restartOrNot;
   },
