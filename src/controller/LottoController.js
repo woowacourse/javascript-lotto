@@ -9,7 +9,7 @@ import Console from '../utils/console';
 class LottoController {
   #LottoMachine;
 
-  async start() {
+  async startManage() {
     await this.handleMoneyInput();
     const winningNumber = await this.handleWinningNumber();
     const bonusNumber = await this.handleBonusNumber();
@@ -68,7 +68,7 @@ class LottoController {
 
   async handleRestart() {
     const restartOrNot = await InputView.readAboutRestart();
-    
+
     try {
       InputValidator.validateRestart(restartOrNot);
     } catch (error) {
@@ -77,9 +77,9 @@ class LottoController {
     }
 
     if (restartOrNot === values.YES) {
-      return this.start();
+      return this.startManage();
     }
-    
+
     return Console.close();
   }
 }

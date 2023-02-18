@@ -7,4 +7,4 @@ import LottoController from './controller/LottoController';
 
 const lotto = new LottoController();
 
-lotto.start();
+lotto.startManage();
