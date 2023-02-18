@@ -20,7 +20,7 @@ class LottoController {
   async #inputBudget() {
     try {
       const budget = await view.input(MESSAGE.ASK_BUDGET);
-      validator.throwErrorIfInvalidBudget(budget);
+      validator.validateBudget(budget);
       this.#lottoGame = new LottoGame(budget);
       this.#printBoughtLottos();
     } catch ({ message }) {
@@ -47,7 +47,7 @@ class LottoController {
   async #inputWinningNumber() {
     try {
       const winningNumber = await view.input(MESSAGE.ASK_WINNING_LOTTO);
-      validator.throwErrorIfInvalidWinningNumbers(winningNumber);
+      validator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch ({ message }) {
       return this.handleCaughtError(message, this.#inputWinningNumber.bind(this));
@@ -57,7 +57,7 @@ class LottoController {
   async #inputBonusNumber(winningNumber) {
     try {
       const bonusNumber = await view.input(MESSAGE.ASK_BONUS_NUMBER);
-      validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      validator.validateBonusNumber(bonusNumber);
       return bonusNumber;
     } catch ({ message }) {
       return this.handleCaughtError(message, this.#inputBonusNumber.bind(this, winningNumber));
@@ -81,7 +81,7 @@ class LottoController {
   async #askRetry() {
     try {
       const retryCommand = await view.input(MESSAGE.ASK_RETRY);
-      validator.throwErrorIfInvalidRetryCommand(retryCommand);
+      validator.validateRetryCommand(retryCommand);
       this.#commandHandler[retryCommand]();
     } catch ({ message }) {
       this.handleCaughtError(message, this.#askRetry.bind(this));
