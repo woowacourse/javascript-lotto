@@ -48,9 +48,7 @@ class LottoController {
   }
 
   printLottoInfo() {
-    const orderedLottos = this.#game.getOrderedLottos();
-
-    outputLottoInfo(orderedLottos);
+    outputLottoInfo(this.#game.getLottoNumbers());
 
     this.readWinningNumber();
   }

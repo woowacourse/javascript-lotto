@@ -1,31 +1,14 @@
-import { deduplicateArray } from '../utils/Utils';
-import {
-  LOTTO_LENGTH,
-  MAX_LOTTO_NUMBER,
-  MIN_LOTTO_NUMBER,
-} from '../data/Constants';
+import { convertAscending } from '../utils/Utils';
 
 class Lotto {
   #lottoNumber;
-  #winRank;
 
-  constructor() {
-    this.#lottoNumber = deduplicateArray(LOTTO_LENGTH, [
-      MIN_LOTTO_NUMBER,
-      MAX_LOTTO_NUMBER,
-    ]);
+  constructor(lottoNumber) {
+    this.#lottoNumber = convertAscending(lottoNumber);
   }
 
   get lottoNumber() {
     return this.#lottoNumber;
-  }
-
-  get winRank() {
-    return this.#winRank;
-  }
-
-  setRank(rank) {
-    this.#winRank = rank;
   }
 }
 

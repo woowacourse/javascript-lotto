@@ -3,8 +3,11 @@ import {
   MINIMUM_LOTTO_UNIT,
   MATCH_RANK,
   WINNING_ORDER,
+  LOTTO_LENGTH,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
 } from '../data/Constants';
-import { convertAscending, arrayToObjectThatValueZero } from '../utils/Utils';
+import { arrayToObjectThatValueZero, deduplicateArray } from '../utils/Utils';
 import Win from './Win';
 import Lotto from './Lotto';
 
@@ -12,24 +15,29 @@ class LottoGame {
   #win;
   #lottos;
 
-  constructor() {}
-
-  initializeLottos(price) {
+  purchaseLottos(price) {
     const lottoCount = price / MINIMUM_LOTTO_UNIT;
 
-    this.#lottos = Array.from({ length: lottoCount }, () => new Lotto());
+    this.#lottos = Array.from(
+      { length: lottoCount },
+      () => new Lotto(this.issueLotteryNumber())
+    );
+  }
+
+  issueLotteryNumber() {
+    return deduplicateArray(LOTTO_LENGTH, [MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER]);
   }
 
   initializeWin(winningNumber) {
     this.#win = new Win(winningNumber);
   }
 
-  getOrderedLottos() {
-    return this.#lottos.map((lotto) => convertAscending(lotto.lottoNumber));
-  }
-
   setBonusNumber(bonusNumber) {
     this.#win.bonusNumber = bonusNumber;
+  }
+
+  getLottoNumbers() {
+    return this.#lottos.map((lotto) => lotto.lottoNumber);
   }
 
   setLottoRank() {
