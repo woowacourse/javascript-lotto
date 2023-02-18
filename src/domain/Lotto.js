@@ -8,8 +8,7 @@ class Lotto {
   }
 
   countIntersect(winningNumbers) {
-    return ((LOTTO_RULE.size * 2)
-      - new Set([...this.#numbers, ...winningNumbers]).size);
+    return LOTTO_RULE.size * 2 - new Set([...this.#numbers, ...winningNumbers]).size;
   }
 
   includes(bonusNumber) {
