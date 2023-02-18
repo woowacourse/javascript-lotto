@@ -83,14 +83,22 @@ class LottoController {
   }
 
   async readWhetherToRestart() {
-    const isRestart = await inputWhetherToRestart();
+    const continueAnswer = await inputWhetherToRestart();
 
     const hasError = this.enterErrorChecker(() =>
-      validateRestartInput(isRestart)
+      validateRestartInput(continueAnswer)
     );
     if (hasError) this.readWhetherToRestart();
 
-    if (isRestart === NO) return IO.close();
+    this.end(continueAnswer);
+  }
+
+  end(continueAnswer) {
+    if (continueAnswer === NO) {
+      IO.close();
+      return;
+    }
+
     this.reStart();
   }
 
