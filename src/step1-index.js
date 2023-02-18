@@ -1,9 +1,12 @@
 import LottoGameController from './controllers/LottoGameController.js';
 
-const App = {
-  play() {
-    LottoGameController.start();
-  },
-};
+class App {
+  #lottoGameController = new LottoGameController();
 
-App.play();
+  play() {
+    this.#lottoGameController.start();
+  }
+}
+
+const app = new App();
+app.play();
