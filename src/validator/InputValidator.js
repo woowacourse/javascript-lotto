@@ -15,7 +15,7 @@ const InputValidator = {
 
   validateWinningNumberInput(winningNumber) {
     const splitWinningNumber = winningNumber.split(',');
-    
+
     splitWinningNumber.forEach(number => {
       this.validateWithCondition(ValidatorUtils.isPositiveInteger(+number), messages.ERROR.VALID_SIX_NUMBER);
       this.validateWithCondition(ValidatorUtils.isInRange(+number), messages.ERROR.VALID_SIX_NUMBER);
@@ -26,9 +26,13 @@ const InputValidator = {
     this.validateWithCondition(ValidatorUtils.isNotOverlap(splitWinningNumber), messages.ERROR.OVERLAP);
   },
 
-  validateBonusNumberInput(number) {
+  validateBonusNumberInput(winningNumber, number) {
     this.validateWithCondition(ValidatorUtils.isPositiveInteger(+number), messages.ERROR.POSITIVE_INTEGER);
     this.validateWithCondition(ValidatorUtils.isInRange(+number), messages.ERROR.IN_RANGE);
+    this.validateWithCondition(
+      ValidatorUtils.isBonusNumInWinningNum(winningNumber, number),
+      messages.ERROR.OVERLAP_WINNING_NUM,
+    );
   },
 
   validateRestart(restartOrNot) {

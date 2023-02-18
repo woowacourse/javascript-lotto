@@ -28,6 +28,10 @@ const ValidatorUtils = {
   isSixLength(winningNumber) {
     return winningNumber.length === values.LOTTO_LENGTH;
   },
+
+  isBonusNumInWinningNum(winningNumber, number) {
+    return !winningNumber.includes(+number);
+  }
 };
 
 export default ValidatorUtils;
