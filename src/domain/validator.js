@@ -8,7 +8,7 @@ const validator = {
 
   throwErrorIfInvalidWinningNumbers(winningNumberFormat) {
     this.throwErrorIfInvalidWinningLotto(winningNumberFormat);
-    this.throwErrorIfHaveDuplicates(winningNumberFormat);
+    this.throwErrorIfIncludesDuplicate(winningNumberFormat);
   },
 
   throwErrorIfNotDecimal(number) {
@@ -21,7 +21,7 @@ const validator = {
     const isDivisiableByDivisor = Boolean(number % divisor) === false;
 
     if (!isDivisiableByDivisor) {
-      throw new Error(`[ERROR] 구입 금액은 ${divisor}원 단위여야 합니다`);
+      throw new Error(MESSAGE.ERROR_BUDGET_NOT_DIVISIBLE(divisor));
     }
   },
 
@@ -42,7 +42,7 @@ const validator = {
 
   throwErrorIfInvalidBonusNumber(bonusNumber) {
     if (!REGEX.BONUS_NUMBER.test(bonusNumber)) {
-      throw new Error(MESSAGE.ERROR_BONUS_NUMBER);
+      throw new Error(MESSAGE.ERROR_INVALID_BONUS_NUMBER);
     }
   },
 
