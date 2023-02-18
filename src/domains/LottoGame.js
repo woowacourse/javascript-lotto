@@ -1,5 +1,6 @@
 import lottoMachine from './lottoMachine.js';
 import LOTTO from '../constants/lotto.js';
+import LOTTO_GAME from '../constants/lottoGame.js';
 import numberHandler from '../utils/numberHandler.js';
 
 class LottoGame {
@@ -41,6 +42,10 @@ class LottoGame {
     return numberHandler.roundOffNumber(
       (totalPrizeMoney / totalBuyMoney) * 100
     );
+  }
+
+  isRetry(retryCommand) {
+    return retryCommand === LOTTO_GAME.RETRY;
   }
 }
 

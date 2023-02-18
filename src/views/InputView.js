@@ -83,7 +83,7 @@ const inputView = {
         throw new Error(`${ERROR.HEAD} 게임 재시작 입력 오류`);
       }
 
-      return retryCommand === 'y';
+      return retryCommand;
     } catch (error) {
       Console.print(error.message);
       return this.readRetry();

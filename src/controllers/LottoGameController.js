@@ -28,7 +28,8 @@ class LottoGameController {
       this.#lottoGame.calculateProfit()
     );
 
-    if (await inputView.readRetry()) {
+    const retryCommand = await inputView.readRetry();
+    if (this.#lottoGame.isRetry(retryCommand)) {
       this.start();
       return;
     }
