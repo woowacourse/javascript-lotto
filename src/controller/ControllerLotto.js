@@ -4,13 +4,11 @@ const outputView = require('../view/outputView');
 const RankedLotto = require('../domain/RankedLotto');
 
 class ControllerLotto {
-  #money;
-
   async playLotto() {
-    this.#money = await this.inputLottoMoney();
+    this.money = await this.inputLottoMoney();
     const lotto = new Lotto();
-    this.showLottoCount(lotto.countLotto(this.#money));
-    lotto.makeLotto(this.#money);
+    this.showLottoCount(lotto.countLotto(this.money));
+    lotto.makeLotto(this.money);
     this.showPurchasedLotto(lotto.lottoNumber);
     this.playStatisticalChart(lotto.lottoNumber);
   }
@@ -21,7 +19,7 @@ class ControllerLotto {
     const ranks = rankedLotto.ranking((await this.inputWinningNumbers()).split(','), await this.inputBonusNumber());
     const result = rankedLotto.getResult(ranks);
     this.showWinningHistory(result);
-    rankedLotto.earningsRate(this.#money, result);
+    rankedLotto.earningsRate(this.money, result);
     this.showEarningsRate(rankedLotto.getProfit);
     this.restart();
   }
