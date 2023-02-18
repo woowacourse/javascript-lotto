@@ -37,4 +37,12 @@ const COMMAND = Object.freeze({
   EXIT: 'n',
 });
 
-export { FORMATTING_TYPE, MESSAGE, REGEX, COMMAND, GAME_VALUE };
+const RANK_FORMAT = {
+  1: 'first',
+  2: 'second',
+  3: 'third',
+  4: 'fourth',
+  5: 'fifth',
+};
+
+export { FORMATTING_TYPE, MESSAGE, REGEX, COMMAND, GAME_VALUE, RANK_FORMAT };

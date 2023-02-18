@@ -1,12 +1,4 @@
-import { GAME_VALUE } from '../constants/index.js';
-
-const RANK_FORMAT = {
-  1: 'first',
-  2: 'second',
-  3: 'third',
-  4: 'fourth',
-  5: 'fifth',
-};
+import { GAME_VALUE, RANK_FORMAT } from '../constants/index.js';
 
 class ScoreBoard {
   #board;
