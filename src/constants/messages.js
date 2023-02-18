@@ -19,6 +19,8 @@ const messages = deepFreeze({
     HAS_BLANK: '[ERROR] 공백을 제외하고 입력해주세요',
     IN_RANGE: '[ERROR] 1에서 45까지의 숫자를 입력해주세요.',
     Y_OR_N: '[ERROR] y 또는 n만 입력해주세요',
+    NOT_SIX_LENGTH: '[ERROR] 6개의 숫자를 입력해주세요',
+    OVERLAP: '[ERROR] 중복되는 숫자가 있습니다',
   },
 
   STATISTICS_MESSAGE: {
