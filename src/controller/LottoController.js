@@ -9,16 +9,14 @@ import Console from '../utils/console';
 class LottoController {
   #LottoMachine;
 
-  async startManage() {
-    await this.handleMoneyInput();
-    const winningNumber = await this.handleWinningNumber();
-    const bonusNumber = await this.handleBonusNumber();
-    const statistics = this.#LottoMachine.calculateStatistics(winningNumber, bonusNumber);
-    this.printStatistics(statistics);
-    await this.handleRestart();
+  handleLottoMachine(moneyInput) {
+    InputValidator.validateMoneyInput(moneyInput);
+    OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
+    this.initLottoMachine(moneyInput);
+    OutputView.printLottos(this.#LottoMachine.lottos);
   }
 
-  processLottoMachine(moneyInput) {
+  initLottoMachine(moneyInput) {
     this.#LottoMachine = new LottoMachine();
     this.#LottoMachine.buyLotto(+moneyInput);
   }
@@ -27,14 +25,12 @@ class LottoController {
     const moneyInput = await InputView.readInputMoney();
 
     try {
-      InputValidator.validateMoneyInput(moneyInput);
-      OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
-      this.processLottoMachine(moneyInput);
-      OutputView.printLottos(this.#LottoMachine.lottos);
+      this.handleLottoMachine(moneyInput);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleMoneyInput();
     }
+
   }
 
   async handleWinningNumber() {
@@ -62,6 +58,12 @@ class LottoController {
     return bonusNumber;
   }
 
+  handleWinningLotto(winningNumber, bonusNumber) {
+    this.#LottoMachine.initWinningLotto(winningNumber, bonusNumber);
+
+    return this.#LottoMachine.calculateStatistics();
+  }
+
   printStatistics(statistics) {
     OutputView.printStatistics(statistics);
   }
@@ -81,6 +83,18 @@ class LottoController {
     }
 
     return Console.close();
+  }
+
+  async startManage() {
+    await this.handleMoneyInput();
+
+    const winningNumber = await this.handleWinningNumber();
+    const bonusNumber = await this.handleBonusNumber();
+    const statistics = this.handleWinningLotto(winningNumber, bonusNumber);
+
+    this.printStatistics(statistics);
+
+    await this.handleRestart();
   }
 }
 
