@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import LottoGame from '../src/domain/LottoGame.js';
 
 test('로또 번호가 일치하는 개수만큼을 정확히 반환하여야 한다.', () => {
@@ -16,7 +18,7 @@ describe('로또 번호에 보너스 번호가 포함되어 있는지 여부를 
     const bonusNumber = 3;
 
     const lottoGame = new LottoGame();
-    const testResult = lottoGame.checkBonusNumber(lotto, bonusNumber);
+    const testResult = lottoGame.hasBonusNumber(lotto, bonusNumber);
 
     expect(testResult).toBe(true);
   });
@@ -26,7 +28,7 @@ describe('로또 번호에 보너스 번호가 포함되어 있는지 여부를 
     const bonusNumber = 8;
 
     const lottoGame = new LottoGame();
-    const testResult = lottoGame.checkBonusNumber(lotto, bonusNumber);
+    const testResult = lottoGame.hasBonusNumber(lotto, bonusNumber);
 
     expect(testResult).toBe(false);
   });

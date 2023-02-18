@@ -22,12 +22,8 @@ class LottoGame {
     return matchedCount;
   }
 
-  checkBonusNumber(lotto, bonusNumber) {
-    if (lotto.includes(bonusNumber)) {
-      return true;
-    }
-
-    return false;
+  hasBonusNumber(lotto, bonusNumber) {
+    return lotto.includes(bonusNumber);
   }
 
   getRank(matchedCount, hasBonusNumber) {
@@ -43,7 +39,7 @@ class LottoGame {
   getWinningStatus(winningLotto, bonusNumber) {
     this.#lottos.forEach((lotto) => {
       const matchedCount = this.getMatchedLottoCount(lotto, winningLotto);
-      const hasBonusNumber = this.checkBonusNumber(lotto, bonusNumber);
+      const hasBonusNumber = this.hasBonusNumber(lotto, bonusNumber);
       const rank = this.getRank(matchedCount, hasBonusNumber);
       this.#scoreBoard.writeBoard(rank);
     });
