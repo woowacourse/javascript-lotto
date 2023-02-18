@@ -1,18 +1,17 @@
 import {
   PRIZE,
   MINIMUM_LOTTO_UNIT,
-  MATCH_RANK,
   WINNING_ORDER,
   LOTTO_LENGTH,
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
 } from '../data/Constants';
 import { arrayToObjectThatValueZero, deduplicateArray } from '../utils/Utils';
-import Win from './Win';
+import GameBoard from './GameBoard';
 import Lotto from './Lotto';
 
 class LottoGame {
-  #win;
+  #gameBoard;
   #lottos;
 
   purchaseLottos(price) {
@@ -28,55 +27,29 @@ class LottoGame {
     return deduplicateArray(LOTTO_LENGTH, [MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER]);
   }
 
-  initializeWin(winningNumber) {
-    this.#win = new Win(winningNumber);
-  }
-
-  setBonusNumber(bonusNumber) {
-    this.#win.bonusNumber = bonusNumber;
-  }
-
   getLottoNumbers() {
     return this.#lottos.map((lotto) => lotto.lottoNumber);
   }
 
-  setLottoRank() {
-    this.#lottos.forEach((lotto) => {
-      const correctResult = this.checkWinningNumbers(lotto.lottoNumber);
-      lotto.setRank(MATCH_RANK[correctResult] ?? null);
-    });
+  registerGameBoard(winningNumber, bonusNumber) {
+    this.#gameBoard = new GameBoard(winningNumber, bonusNumber);
   }
 
-  checkWinningNumbers(lottoNumber) {
-    const matchCount = this.#win.winningNumber.reduce(
-      (acc, cur) => (lottoNumber.includes(cur) ? acc + 1 : acc),
-      0
-    );
-    if (matchCount === 5)
-      return lottoNumber.includes(this.#win.bonusNumber) ? 'bonus' : matchCount;
-
-    return matchCount;
-  }
-
-  getLottosWinRank() {
-    return this.#lottos.map((lotto) => lotto.winRank);
+  getLottosRank() {
+    return this.#lottos.map((lotto) => this.#gameBoard.getLotteResult(lotto));
   }
 
   getLottosWinCount() {
-    const initialObject = arrayToObjectThatValueZero(WINNING_ORDER);
-    return this.getLottosWinRank().reduce((acc, cur) => {
-      if (cur === null) return acc;
+    const initialLottoResults = arrayToObjectThatValueZero(WINNING_ORDER);
+    const lottosRankResult = this.getLottosRank();
 
-      acc[cur] += 1;
-      return acc;
-    }, initialObject);
+    lottosRankResult.forEach((rank) => (initialLottoResults[rank] += 1));
+
+    return initialLottoResults;
   }
 
-  calculateTotalPrize(ranks = this.getLottosWinRank()) {
-    return ranks.reduce(
-      (acc, cur) => (PRIZE[cur] !== undefined ? (acc += PRIZE[cur]) : acc),
-      0
-    );
+  calculateTotalPrize(ranks = this.getLottosRank()) {
+    return ranks.reduce((acc, cur) => (acc += PRIZE[cur]), 0);
   }
 
   calculateEarningRate(
