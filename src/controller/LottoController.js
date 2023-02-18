@@ -1,5 +1,5 @@
 import messages from '../constants/messages';
-import InputValidator from '../validator/InputValidator';
+import LottoValidator from '../model/LottoValidator';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoMachine from '../model/LottoMachine';
@@ -10,7 +10,7 @@ class LottoController {
   #LottoMachine;
 
   handleLottoMachine(moneyInput) {
-    InputValidator.validateMoneyInput(moneyInput);
+    LottoValidator.validateMoneyInput(moneyInput);
     OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
     this.initLottoMachine(moneyInput);
     OutputView.printLottos(this.#LottoMachine.lottos);
@@ -35,7 +35,7 @@ class LottoController {
   async handleWinningNumber() {
     const winningNumber = await InputView.readWinningNumber();
     try {
-      InputValidator.validateWinningNumberInput(winningNumber);
+      LottoValidator.validateWinningNumberInput(winningNumber);
       this.#LottoMachine.initWinningLotto(winningNumber);
     } catch (error) {
       OutputView.printMessage(error.message);
@@ -47,7 +47,7 @@ class LottoController {
     const bonusNumber = await InputView.readBonusNumber();
 
     try {
-      InputValidator.validateBonusNumberInput(this.#LottoMachine.winningLotto.winningNumber, bonusNumber);
+      LottoValidator.validateBonusNumberInput(this.#LottoMachine.winningLotto.winningNumber, bonusNumber);
       this.#LottoMachine.winningLotto.bonusNumber = bonusNumber;
     } catch (error) {
       OutputView.printMessage(error.message);
@@ -63,7 +63,7 @@ class LottoController {
     const restartOrNot = await InputView.readAboutRestart();
 
     try {
-      InputValidator.validateRestart(restartOrNot);
+      LottoValidator.validateRestart(restartOrNot);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleRestart();

@@ -1,11 +1,11 @@
 import { values, regex } from '../constants/values';
 
-const ValidatorUtils = {
+const LottoValidatorConditions = {
   isPositiveInteger(number) {
     return regex.POSITIVE_INTEGER.test(number);
   },
 
-  isThousandsOfWon(number) {
+  isDividedByPrice(number) {
     return !(number % values.LOTTO_PRICE);
   },
 
@@ -31,7 +31,7 @@ const ValidatorUtils = {
 
   isBonusNumInWinningNum(winningNumber, number) {
     return !winningNumber.includes(+number);
-  }
+  },
 };
 
-export default ValidatorUtils;
+export default LottoValidatorConditions;
