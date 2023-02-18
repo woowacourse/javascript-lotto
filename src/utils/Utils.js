@@ -34,10 +34,15 @@ const isNumberInRange = (number, range) => {
   return number <= end && number >= start;
 };
 
+const divideBByARate = (a, b) => {
+  return ((b / a) * 100).toFixed(1);
+};
+
 export {
   convertAscending,
   generateRandomNumber,
   deduplicateArray,
   arrayToObjectThatValueZero,
   isNumberInRange,
+  divideBByARate,
 };

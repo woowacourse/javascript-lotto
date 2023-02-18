@@ -5,9 +5,9 @@ import {
   inputWhetherToRestart,
 } from '../view/InputView';
 import {
-  outputLottoInfo,
-  outputWinningResult,
-  outputWinningStatistics,
+  printLottoInfo,
+  printWinningResult,
+  printWinningStatistics,
 } from '../view/OutputView';
 import {
   errorChecker,
@@ -24,92 +24,75 @@ class LottoController {
   #game;
 
   constructor() {
-    this.init();
-  }
-
-  init() {
     this.#game = new LottoGame();
-    this.readPurchaseAmount();
   }
-
-  async readPurchaseAmount() {
+  async start() {
+    await this.enterPurchaseAmount();
+    await this.enterWinningNumber();
+    this.printWinningResult();
+    await this.readWhetherToRestart();
+  }
+  async enterPurchaseAmount() {
     const inputAmount = await inputPurchaseAmount();
     const purchaseAmount = Number(inputAmount);
 
     const hasError = errorChecker(() => validatePurchaseAmount(purchaseAmount));
-    if (hasError) return this.readPurchaseAmount();
+    if (hasError) return this.enterPurchaseAmount();
 
-    this.setLottos(purchaseAmount);
+    this.purchaseLottos(purchaseAmount);
   }
 
-  setLottos(purchaseAmount) {
-    this.#game.initializeLottos(purchaseAmount);
-    this.printLottoInfo();
+  purchaseLottos(purchaseAmount) {
+    // 로또를 발행함
+    this.#game.purchaseLottos(purchaseAmount);
+    printLottoInfo(this.#game.getLottoNumbers());
   }
 
-  printLottoInfo() {
-    outputLottoInfo(this.#game.getLottoNumbers());
-
-    this.readWinningNumber();
-  }
-
-  async readWinningNumber() {
+  async enterWinningNumber() {
     const inputNumbers = await inputWinningNumber();
     const winningNumber = inputNumbers.split(',').map(Number);
 
     const hasError = errorChecker(() => validateWinningNumbers(winningNumber));
-    if (hasError) return this.readWinningNumber();
+    if (hasError) return this.enterWinningNumber();
 
-    this.setWinNumber(winningNumber);
+    await this.enterBonusNumber(winningNumber);
   }
 
-  setWinNumber(winNumber) {
-    this.#game.initializeWin(winNumber);
-    this.readBonusNumber(winNumber);
-  }
-
-  async readBonusNumber(winNumber) {
+  async enterBonusNumber(winNumber) {
     const inputNumber = await inputBonusNumber();
     const bonusNumber = Number(inputNumber);
 
     const hasError = errorChecker(() =>
       validateBonusNumber(bonusNumber, winNumber)
     );
-    if (hasError) return this.readBonusNumber();
+    if (hasError) return this.enterBonusNumber(winNumber);
 
-    this.setBonusNumber(bonusNumber);
-  }
-
-  setBonusNumber(bonusNumber) {
-    this.#game.setBonusNumber(bonusNumber);
-    this.printWinningResult();
+    this.#game.registerGameBoard(winNumber, bonusNumber);
   }
 
   printWinningResult() {
-    this.#game.setLottoRank();
+    // 게임 결과를 출력함
     const winCount = this.#game.getLottosWinCount();
+    printWinningResult(winCount);
 
-    outputWinningResult(winCount);
-
-    this.printEarningRate();
-  }
-
-  printEarningRate() {
-    const rate = this.#game.calculateEarningRate();
-
-    outputWinningStatistics(rate);
-
-    this.readWhetherToRestart();
+    const rate = this.#game.getEarningRate();
+    printWinningStatistics(rate);
   }
 
   async readWhetherToRestart() {
+    // 재시작 여부를
     const isRestart = await inputWhetherToRestart();
 
     const hasError = errorChecker(() => validateRestartInput(isRestart));
     if (hasError) this.readWhetherToRestart();
 
     if (isRestart === NO) return IO.close();
-    this.init();
+    this.reStart();
+  }
+
+  reStart() {
+    this.#game = new LottoGame();
+    this.start();
   }
 }
 

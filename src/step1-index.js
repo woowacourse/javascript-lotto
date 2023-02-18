@@ -5,7 +5,7 @@
 import LottoController from './controller/LottoController';
 class App {
   play() {
-    new LottoController();
+    new LottoController().start();
   }
 }
 
