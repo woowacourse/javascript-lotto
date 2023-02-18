@@ -17,6 +17,7 @@ const {
   NOT_MATCH_LENGTH,
   DUPLICATE_WINNING_NUMBER,
   NOT_INPUT_YES_OR_NO,
+  NOT_INTEGER,
 } = ERROR_MESSAGE;
 
 const validator = {
@@ -30,6 +31,12 @@ const validator = {
       throw new Error(NOT_POSITIVE_NUMBER);
     }
   },
+  checkInteger: (input) => {
+    if (!Number.isInteger(input)) {
+      throw new Error(NOT_INTEGER);
+    }
+  },
+
   checkDivideLottoUnit: (input) => {
     if (input % MINIMUM_LOTTO_UNIT !== 0) {
       throw new Error(NOT_DIVIDE_MINIMUM_LOTTO_UNIT);
@@ -52,6 +59,10 @@ const validator = {
     if (numbers.length !== set.size) {
       throw new Error(DUPLICATE_NUMBER);
     }
+  },
+
+  checkIsIntegerArray: (numbers) => {
+    numbers.forEach((number) => validator.checkInteger(number));
   },
 
   checkIsNumberArray: (numbers) => {
@@ -85,6 +96,7 @@ export const validatePurchaseAmount = (amount) => {
 
 export const validateWinningNumbers = (numbers) => {
   validator.checkIsNumberArray(numbers);
+  validator.checkIsIntegerArray(numbers);
   validator.checkOverRangeInArray(numbers, LOTTO_RANGE);
   validator.checkDuplicateNumbers(numbers);
   validator.checkMatchLottoLength(numbers);
@@ -92,6 +104,7 @@ export const validateWinningNumbers = (numbers) => {
 
 export const validateBonusNumber = (number, winningNumber) => {
   validator.checkNumber(number);
+  validator.checkInteger(number);
   validator.checkOverRange(number, LOTTO_RANGE);
   validator.checkDuplicateWInningNumber(number, winningNumber);
 };
