@@ -48,7 +48,7 @@ class LottoGameController {
     }
   }
 
-  #handleBonusNumber = async (winningNumbers) => {
+  async #handleBonusNumber(winningNumbers) {
     const BONUS_NUMBER_INPUT = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
     const BONUS_NUMBER = Number(BONUS_NUMBER_INPUT);
 
@@ -58,7 +58,7 @@ class LottoGameController {
     } catch (error) {
       await this.#handleError(error.message, () => this.#handleBonusNumber(winningNumbers));
     }
-  };
+  }
 
   #handleGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
