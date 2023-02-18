@@ -1,16 +1,17 @@
 import { GameControlStaticValue, Rank, Prize } from '../constants/Constants.js';
 
 class LottoCalculator {
+  #ranks = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0,
+  };
+
   constructor(matchStates) {
     this.matchStates = matchStates;
-    this.ranks = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 0,
-    };
   }
 
   calculateRank() {
@@ -19,7 +20,7 @@ class LottoCalculator {
       ranks[CURRENT_RANK] += 1;
 
       return ranks;
-    }, this.ranks);
+    }, this.#ranks);
   }
 
   calculateProfitRate() {
@@ -31,7 +32,7 @@ class LottoCalculator {
   }
 
   #calculateProfit() {
-    return Object.entries(this.ranks).reduce((totalProfit, [rank, count]) => {
+    return Object.entries(this.#ranks).reduce((totalProfit, [rank, count]) => {
       return totalProfit + Prize[rank] * count;
     }, 0);
   }
