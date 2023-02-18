@@ -20,6 +20,14 @@ const ValidatorUtils = {
   isYorN(restartOrNot) {
     return restartOrNot === values.YES || restartOrNot === values.NO;
   },
+
+  isNotOverlap(winningNumber) {
+    return new Set(winningNumber).size === winningNumber.length;
+  },
+
+  isSixLength(winningNumber) {
+    return winningNumber.length === values.LOTTO_LENGTH;
+  },
 };
 
 export default ValidatorUtils;
