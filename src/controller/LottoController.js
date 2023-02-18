@@ -10,7 +10,6 @@ import {
   printWinningStatistics,
 } from '../view/OutputView';
 import {
-  errorChecker,
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
@@ -26,24 +25,27 @@ class LottoController {
   constructor() {
     this.#game = new LottoGame();
   }
+
   async start() {
     await this.enterPurchaseAmount();
     await this.enterWinningNumber();
     this.printWinningResult();
     await this.readWhetherToRestart();
   }
+
   async enterPurchaseAmount() {
     const inputAmount = await inputPurchaseAmount();
     const purchaseAmount = Number(inputAmount);
 
-    const hasError = errorChecker(() => validatePurchaseAmount(purchaseAmount));
+    const hasError = this.enterErrorChecker(() =>
+      validatePurchaseAmount(purchaseAmount)
+    );
     if (hasError) return this.enterPurchaseAmount();
 
     this.purchaseLottos(purchaseAmount);
   }
 
   purchaseLottos(purchaseAmount) {
-    // 로또를 발행함
     this.#game.purchaseLottos(purchaseAmount);
     printLottoInfo(this.#game.getLottoNumbers());
   }
@@ -52,7 +54,9 @@ class LottoController {
     const inputNumbers = await inputWinningNumber();
     const winningNumber = inputNumbers.split(',').map(Number);
 
-    const hasError = errorChecker(() => validateWinningNumbers(winningNumber));
+    const hasError = this.enterErrorChecker(() =>
+      validateWinningNumbers(winningNumber)
+    );
     if (hasError) return this.enterWinningNumber();
 
     await this.enterBonusNumber(winningNumber);
@@ -62,7 +66,7 @@ class LottoController {
     const inputNumber = await inputBonusNumber();
     const bonusNumber = Number(inputNumber);
 
-    const hasError = errorChecker(() =>
+    const hasError = this.enterErrorChecker(() =>
       validateBonusNumber(bonusNumber, winNumber)
     );
     if (hasError) return this.enterBonusNumber(winNumber);
@@ -71,7 +75,6 @@ class LottoController {
   }
 
   printWinningResult() {
-    // 게임 결과를 출력함
     const winCount = this.#game.getLottosWinCount();
     printWinningResult(winCount);
 
@@ -80,10 +83,11 @@ class LottoController {
   }
 
   async readWhetherToRestart() {
-    // 재시작 여부를
     const isRestart = await inputWhetherToRestart();
 
-    const hasError = errorChecker(() => validateRestartInput(isRestart));
+    const hasError = this.enterErrorChecker(() =>
+      validateRestartInput(isRestart)
+    );
     if (hasError) this.readWhetherToRestart();
 
     if (isRestart === NO) return IO.close();
@@ -93,6 +97,17 @@ class LottoController {
   reStart() {
     this.#game = new LottoGame();
     this.start();
+  }
+
+  enterErrorChecker(validator) {
+    try {
+      validator();
+    } catch (error) {
+      IO.output(error);
+      return true;
+    }
+
+    return false;
   }
 }
 
