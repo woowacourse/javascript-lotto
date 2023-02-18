@@ -1,16 +1,16 @@
 const inputView = require('../view/inputView');
-const Lotto = require('../domain/LottoMachine');
+const LottoMachine = require('../domain/LottoMachine');
 const outputView = require('../view/outputView');
 const RankedLotto = require('../domain/RankedLotto');
 
 class ControllerLotto {
   async playLotto() {
     this.money = await this.inputLottoMoney();
-    const lotto = new Lotto();
-    this.showLottoCount(lotto.countLotto(this.money));
-    lotto.makeLotto(this.money);
-    this.showPurchasedLotto(lotto.lottoNumber);
-    this.playStatisticalChart(lotto.lottoNumber);
+    const lottoMachine = new LottoMachine();
+    this.showLottoCount(lottoMachine.countLotto(this.money));
+    lottoMachine.makeLotto(this.money);
+    this.showPurchasedLotto(lottoMachine.lottoNumber);
+    this.playStatisticalChart(lottoMachine.lottoNumber);
   }
 
   async playStatisticalChart(lotto) {
