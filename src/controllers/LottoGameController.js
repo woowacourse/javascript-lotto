@@ -11,21 +11,21 @@ class LottoGameController {
   }
 
   async init() {
-    this.lottoGame = new LottoGame(await inputView.readLottoPrice());
-    outputView.printLottoNumbersList(this.lottoGame.getLottoNumbersList());
+    this.#lottoGame = new LottoGame(await inputView.readLottoPrice());
+    outputView.printLottoNumbersList(this.#lottoGame.getLottoNumbersList());
 
     const luckyNumbers = await inputView.readLuckyNumbers();
     const bonusNumber = await inputView.readBonusNumber([...luckyNumbers]);
 
-    this.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
+    this.#lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
 
     this.execute();
   }
 
   async execute() {
     outputView.printStatistics(
-      this.lottoGame.execute(),
-      this.lottoGame.calculateProfit()
+      this.#lottoGame.execute(),
+      this.#lottoGame.calculateProfit()
     );
 
     if (await inputView.readRetry()) {
