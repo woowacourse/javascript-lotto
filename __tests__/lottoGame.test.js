@@ -15,19 +15,30 @@ describe("구매 금액 입력 시 복권 생성", () => {
   });
 });
 
-describe("복권이 당첨번호, 보너스번호와 몇 개 일치하는지 테스트", () => {
+describe("복권과 당첨번호, 보너스번호를 비교해 등수와 수익률을 반환", () => {
   const lottoGame = new LottoGame(1);
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
   lottoGame.lotteries = [lotto];
-  test("복권과 당첨번호이 일치하는 개수가 3개인 경우 9 반환 및 보너스번호가 일치하면 true", () => {
-    expect(lottoGame.matchLotteries([1, 2, 3, 7, 8, 9], 6)).toEqual([
-      [9, true],
+
+  test("복권과 당첨번호이 일치하는 개수가 3개인 경우의 등수와 수익률 반환", () => {
+    expect(lottoGame.getRankResult([1, 2, 3, 7, 8, 9], 6)).toEqual([
+      1,
+      0,
+      0,
+      0,
+      0,
+      "500.0",
     ]);
   });
 
-  test("복권과 당첨번호이 일치하는 개수가 5개인 경우 7 반환 및 보너스 번호가 불일치하면 false", () => {
-    expect(lottoGame.matchLotteries([1, 2, 3, 4, 5, 45], 10)).toEqual([
-      [7, false],
+  test("복권과 당첨번호이 일치하는 개수가 5개이고 보너스 번호가 불일치하는 경우의 등수와 수익률 반환", () => {
+    expect(lottoGame.getRankResult([1, 2, 3, 4, 5, 45], 10)).toEqual([
+      0,
+      0,
+      1,
+      0,
+      0,
+      "150000.0",
     ]);
   });
 });
