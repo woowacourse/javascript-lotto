@@ -4,6 +4,7 @@
  */
 
 import LottoController from './LottoController.js';
+
 class App {
   #lottoController;
 
