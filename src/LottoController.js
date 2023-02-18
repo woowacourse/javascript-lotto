@@ -24,7 +24,7 @@ class LottoController {
       this.#lottoGame = new LottoGame(budget);
       this.#printBoughtLottos();
     } catch ({ message }) {
-      this.handleCatchedError(message, this.#inputBudget.bind(this));
+      this.handleCaughtError(message, this.#inputBudget.bind(this));
     }
   }
 
@@ -50,7 +50,7 @@ class LottoController {
       validator.throwErrorIfInvalidWinningNumbers(winningNumber);
       return winningNumber;
     } catch ({ message }) {
-      return this.handleCatchedError(message, this.#inputWinningNumber.bind(this));
+      return this.handleCaughtError(message, this.#inputWinningNumber.bind(this));
     }
   }
 
@@ -60,7 +60,7 @@ class LottoController {
       validator.throwErrorIfInvalidBonusNumber(bonusNumber);
       return bonusNumber;
     } catch ({ message }) {
-      return this.handleCatchedError(message, this.#inputBonusNumber.bind(this, winningNumber));
+      return this.handleCaughtError(message, this.#inputBonusNumber.bind(this, winningNumber));
     }
   }
 
@@ -84,7 +84,7 @@ class LottoController {
       validator.throwErrorIfInvalidRetryCommand(retryCommand);
       this.#commandHandler[retryCommand]();
     } catch ({ message }) {
-      this.handleCatchedError(message, this.#askRetry.bind(this));
+      this.handleCaughtError(message, this.#askRetry.bind(this));
     }
   }
 
@@ -92,7 +92,7 @@ class LottoController {
     view.close();
   }
 
-  handleCatchedError(message, callback) {
+  handleCaughtError(message, callback) {
     view.output(message);
     return callback();
   }
