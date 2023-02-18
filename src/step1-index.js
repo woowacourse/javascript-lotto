@@ -1,11 +1,10 @@
 const Controller = require("./Controller");
 
-class App {
-  constructor() {}
+class LottoConsoleGame {
   play() {
     new Controller();
   }
 }
 
-const app = new App();
-app.play();
+const lottoConsoleGame = new LottoConsoleGame();
+lottoConsoleGame.play();
