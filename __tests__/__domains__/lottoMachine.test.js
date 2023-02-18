@@ -1,10 +1,10 @@
-import LottoMachine from '../../src/domains/LottoMachine.js';
+import lottoMachine from '../../src/domains/lottoMachine.js';
 
-describe('LottoMachine 테스트', () => {
+describe('lottoMachine 테스트', () => {
   test.each([
-    [LottoMachine.generateLottoNumbers()],
-    [LottoMachine.generateLottoNumbers()],
-    [LottoMachine.generateLottoNumbers()],
+    [lottoMachine.generateLottoNumbers()],
+    [lottoMachine.generateLottoNumbers()],
+    [lottoMachine.generateLottoNumbers()],
   ])(
     'generateLottoNumbers가 6개의 오름차순으로 정렬된 숫자를 반환한다.',
     lottoNumbers => {

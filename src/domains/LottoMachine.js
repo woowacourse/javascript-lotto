@@ -1,9 +1,9 @@
-import LOTTO from '../../src/constants/lotto.js';
+import LOTTO from '../constants/lotto.js';
 import numberHandler from '../utils/numberHandler.js';
 import Lotto from './Lotto.js';
 import arrayHandler from '../utils/arrayHandler.js';
 
-const LottoMachine = {
+const lottoMachine = {
   generateLotto() {
     return new Lotto(this.generateLottoNumbers());
   },
@@ -29,4 +29,4 @@ const LottoMachine = {
   },
 };
 
-export default LottoMachine;
+export default lottoMachine;
