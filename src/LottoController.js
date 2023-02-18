@@ -17,6 +17,7 @@ class LottoController {
 
   async start() {
     const purchaseAmount = await this.inputPurchaseAmount();
+    this.issueLottos(purchaseAmount);
     OutputView.printEmptyLine();
     const winningNumber = await this.inputWinningNumber();
     OutputView.printEmptyLine();
@@ -25,15 +26,16 @@ class LottoController {
 
     this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
     this.printResult(purchaseAmount);
-    this.inputRestartCommand();
+
+    const restartCommand = await this.inputRestartCommand();
+    this.processRestartCommand(restartCommand);
   }
 
   async inputPurchaseAmount() {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
       Validator.purchaseAmount(purchaseAmount);
-      this.issueLottos(+purchaseAmount);
-      return +purchaseAmount;
+      return Number(purchaseAmount);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputPurchaseAmount();
@@ -64,7 +66,7 @@ class LottoController {
     try {
       const bonusNumber = await InputView.readBonusNumber();
       Validator.bonusNumber(bonusNumber, winningNumber);
-      return +bonusNumber;
+      return Number(bonusNumber);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputBonusNumber(winningNumber);
@@ -84,7 +86,7 @@ class LottoController {
     try {
       const restartCommand = await InputView.readRestartCommand();
       Validator.restartCommand(restartCommand);
-      this.processRestartCommand(restartCommand);
+      return restartCommand;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputRestartCommand();
