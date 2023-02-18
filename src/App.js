@@ -5,7 +5,7 @@ import Lotto from "./Lotto.js";
 import Lottos from "./Lottos.js";
 import Random from "./Random.js";
 import OutputView from "./OutputView.js";
-import { Messages, Settings, Error } from "./Config.js";
+import { MESSAGES, SETTINGS, ERROR } from "./Config.js";
 
 class App {
   #winningLotto;
@@ -26,11 +26,11 @@ class App {
   }
 
   async getBuyMoney() {
-    const buyMoney = await InputView.inputMoney(Messages.INPUT_MONEY);
+    const buyMoney = await InputView.inputMoney(MESSAGES.INPUT_MONEY);
     try {
       this.validateBuyMoney(buyMoney);
-      this.createLotto(parseInt(buyMoney / Settings.DIVIDE_MONEY_VALUE));
-      this.printLottos(buyMoney / Settings.DIVIDE_MONEY_VALUE);
+      this.createLotto(parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE));
+      this.printLottos(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE);
     } catch (e) {
       Console.print(e);
       await this.getBuyMoney();
@@ -51,19 +51,19 @@ class App {
 
   validateBuyMoney(buyMoney) {
     if (!Validations.isNumber(buyMoney)) {
-      throw new Error(Error.NUMBER_TYPE);
+      throw new ERROR(ERROR.NUMBER_TYPE);
     }
     if (!Validations.isDividedByThousand(buyMoney)) {
-      throw new Error(Error.MONEY_UNIT);
+      throw new ERROR(ERROR.MONEY_UNIT);
     }
     if (!Validations.isPositiveInteger(buyMoney)) {
-      throw new Error(Error.POSITIVE_INTEGER);
+      throw new ERROR(ERROR.POSITIVE_INTEGER);
     }
   }
 
   async getWinningNumbers() {
     const winningNumbers = await InputView.inputWinningNumbers(
-      Messages.INPUT_WINNING_NUMBERS
+      MESSAGES.INPUT_WINNING_NUMBERS
     );
     this.#winningLotto = this.convertStringToNumber(winningNumbers.split(","));
     try {
@@ -89,19 +89,19 @@ class App {
 
   checkEachNumber(eachNumber) {
     if (!Validations.isNumber(eachNumber)) {
-      throw new Error(Error.NUMBER_TYPE);
+      throw new ERROR(ERROR.NUMBER_TYPE);
     }
     if (!Validations.isCorrectRange(eachNumber)) {
-      throw new Error(Error.CORRECT_NUMBER_RANGE);
+      throw new ERROR(ERROR.CORRECT_NUMBER_RANGE);
     }
     if (!Validations.isPositiveInteger(eachNumber)) {
-      throw new Error(Error.POSITIVE_INTEGER);
+      throw new ERROR(ERROR.POSITIVE_INTEGER);
     }
   }
 
   async getBonusNumber() {
     const bonusNumber = await InputView.inputBonusNumber(
-      Messages.INPUT_BONUSNUMBER
+      MESSAGES.INPUT_BONUSNUMBER
     );
     this.#bonusNumber = Number(bonusNumber);
     try {
@@ -116,7 +116,7 @@ class App {
 
   validateBonusNumber() {
     if (Validations.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
-      throw new Error(Error.HAS_BONUS_NUMBER);
+      throw new ERROR(ERROR.HAS_BONUS_NUMBER);
     }
   }
 
@@ -139,7 +139,7 @@ class App {
   }
 
   async getRetryInput() {
-    const retryInput = await InputView.inputRetry(Messages.INPUT_RETRY);
+    const retryInput = await InputView.inputRetry(MESSAGES.INPUT_RETRY);
     try {
       this.validateRetryInput(retryInput);
       this.retryLottoGame(retryInput);
@@ -150,24 +150,18 @@ class App {
   }
 
   retryLottoGame(retryInput) {
-    if (
-      retryInput === Settings.RETRY_INPUT ||
-      retryInput === Settings.RETRY_INPUT_CAPITAL
-    ) {
+    if (retryInput.toLowerCase() === SETTINGS.RETRY_INPUT) {
       const app = new App();
       app.play();
     }
-    if (
-      retryInput === Settings.CLOSE_INPUT ||
-      retryInput === Settings.CLOSE_INPUT_CAPITAL
-    ) {
+    if (retryInput.toLowerCase() === SETTINGS.CLOSE_INPUT) {
       Console.close();
     }
   }
 
   validateRetryInput(retryInput) {
     if (!Validations.isCorrectRetryInput(retryInput)) {
-      throw new Error(Error.CORRECT_RETRY_INPUT);
+      throw new ERROR(ERROR.CORRECT_RETRY_INPUT);
     }
   }
 }
