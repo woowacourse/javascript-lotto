@@ -1,11 +1,21 @@
 {
-  "rules": {},
+  "rules": {
+    "arrow-body-style": "off",
+    "import/extensions": "off",
+    "class-methods-use-this": "off",
+    "no-param-reassign": "off",
+    "no-restricted-globals": "off",
+    "no-console": "off",
+    "no-undef": "off"
+  },
   "env": {
+    "browser": true,
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb", "eslint:recommended", "prettier"]
 }
