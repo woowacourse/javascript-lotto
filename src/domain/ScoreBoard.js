@@ -29,9 +29,10 @@ class ScoreBoard {
   }
 
   #getTotalPrize() {
-    const totalPrize = Object.values(this.#board).reduce((totalPrize, winCount, index) => {
-      return totalPrize + winCount * GAME_VALUE.PRIZE[index];
-    }, 0);
+    const totalPrize = Object.values(this.#board).reduce(
+      (totalPrize, winCount, index) => totalPrize + winCount * GAME_VALUE.PRIZE[index],
+      0
+    );
 
     return totalPrize;
   }
