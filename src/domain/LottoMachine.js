@@ -19,11 +19,7 @@ class LottoMachine {
       lotto.add(pickNumberInRange(LOTTO.MIN_NUMBER_RANGE, LOTTO.MAX_NUMBER_RANGE));
     }
 
-    return this.arrangeLotto([...lotto]);
-  }
-
-  arrangeLotto(lotto) {
-    return lotto.sort((a, b) => a - b);
+    return [...lotto].sort((prev, cur) => prev - cur);
   }
 }
 
