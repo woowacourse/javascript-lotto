@@ -22,7 +22,8 @@ class LottoGameController {
       OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch (error) {
-      await this.#handleError(error.message, () => this.#handlePurchaseAmount());
+      OutputView.print(error.message);
+      return this.#handlePurchaseAmount();
     }
   }
 
@@ -40,7 +41,8 @@ class LottoGameController {
       Validation.verifyLottoNumbers(WINNING_NUMBERS);
       await this.#handleBonusNumber(WINNING_NUMBERS);
     } catch (error) {
-      await this.#handleError(error.message, () => this.#handleWinningNumbers());
+      OutputView.print(error.message);
+      return this.#handleWinningNumbers();
     }
   }
 
@@ -51,7 +53,8 @@ class LottoGameController {
       Validation.verifyBonusNumber(winningNumbers, BONUS_NUMBER);
       this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
     } catch (error) {
-      await this.#handleError(error.message, () => this.#handleBonusNumber(winningNumbers));
+      OutputView.print(error.message);
+      return this.#handleBonusNumber(winningNumbers);
     }
   }
 
@@ -60,14 +63,15 @@ class LottoGameController {
     OutputView.printResult(RANKS, PROFIT_RATE);
   }
 
-  async #handleRestart() { 
+  async #handleRestart() {
     try {
       const restartInput = await InputView.readUserInput(ConsoleMessage.RESTART);
       const RESPONSE = restartInput.toLowerCase().trim();
       Validation.verifyRestart(RESPONSE);
       this.#handleRestartReply(RESPONSE);
     } catch (error) {
-      await this.#handleError(error.message, () => this.#handleRestart());
+      OutputView.print(error.message);
+      return this.#handleRestart();
     }
   }
 
@@ -78,12 +82,6 @@ class LottoGameController {
     }
 
     OutputView.close();
-  }
-
-  async #handleError(errorMessage, callback) {
-    OutputView.print(errorMessage);
-
-    return callback();
   }
 }
 
