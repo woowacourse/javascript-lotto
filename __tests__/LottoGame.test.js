@@ -6,6 +6,6 @@ describe('LottoGame 클래스 테스트', () => {
     const PURCHASE_COUNT = 5;
     lottoGame.generateUserLottos(PURCHASE_COUNT);
 
-    expect(lottoGame.getUserLottos().length).toBe(PURCHASE_COUNT);
+    expect(lottoGame.getUserLottoList().length).toBe(PURCHASE_COUNT);
   });
 });

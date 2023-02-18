@@ -31,9 +31,9 @@ class LottoGameController {
 
   #handleUserLottos(purchaseCount) {
     this.#lottoGame.generateUserLottos(purchaseCount);
-    const USER_LOTTOS = this.#lottoGame.getUserLottos();
+    const USER_LOTTO_LIST = this.#lottoGame.getUserLottoList();
 
-    USER_LOTTOS.forEach(OutputView.printUserLottos);
+    USER_LOTTO_LIST.forEach(OutputView.printUserLottos);
   }
 
   async #handleWinningNumbers() {

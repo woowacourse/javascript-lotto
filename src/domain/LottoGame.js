@@ -5,11 +5,11 @@ import LottoCalculator from './LottoCalculator.js';
 import generateRandomNumbersInRange from '../utils/RandomNumberGenerator.js';
 
 class LottoGame {
-  #userLottos;
+  #userLottoList;
   #gameLottos;
 
   generateUserLottos(purchaseCount) {
-    this.#userLottos = Array.from({ length: purchaseCount }).map(() => {
+    this.#userLottoList = Array.from({ length: purchaseCount }).map(() => {
       const RANDOM_NUMBER = generateRandomNumbersInRange(
         StaticValue.LOTTO_LOWER_INCLUSIVE,
         StaticValue.LOTTO_UPPER_INCLUSIVE,
@@ -20,8 +20,8 @@ class LottoGame {
     });
   }
 
-  getUserLottos() {
-    return this.#userLottos.map((userLotto) => userLotto.getNumbers());
+  getUserLottoList() {
+    return this.#userLottoList.map((userLotto) => userLotto.getNumbers());
   }
 
   setGameLottos(winningNumbers, bonusNumber) {
@@ -29,7 +29,7 @@ class LottoGame {
   }
 
   getResult() {
-    const MATCH_STATES = this.#userLottos.map(
+    const MATCH_STATES = this.#userLottoList.map(
       (userLotto) => MatchCount[userLotto.getMatchState({ ...this.#gameLottos })],
     );
 
