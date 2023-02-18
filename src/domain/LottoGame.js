@@ -20,7 +20,7 @@ import {
   LOTTO_NUMBER_LENGTH,
 } from "../constants";
 const { PURCHASE_AMOUNT, LOTTO_NUMBER, BONUS_NUMBER, RESTART_OR_QUIT } = INPUT_MESSAGE;
-const { LOWER_CASE, UPPER_CASE } = RESTART_COMMEND;
+const { LOWER_CASE_Y, UPPER_CASE_Y } = RESTART_COMMEND;
 const { FIRST, SECOND, THIRD, FOURTH, FIFTH } = PLACES;
 const { FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE } = PRIZE;
 const { THREE_NUMBERS, FOUR_NUMBERS, FIVE_NUMBERS, SIX_NUMBERS } = MATCHING_NUMBERS;
@@ -62,7 +62,7 @@ export class LottoGame {
   async readWinningLottoNumbers() {
     const winningLottoNumbers = (await inputView.readline(LOTTO_NUMBER)).split(COMMA);
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
-    this.#winningLotto.winningNumbers = winningLottoNumbers.map((number) => Number(number));
+    this.#winningLotto.winningNumbers = winningLottoNumbers.map(Number);
   }
 
   async readBonusNumber() {
@@ -127,7 +127,7 @@ export class LottoGame {
   }
 
   shouldRestart(restartOrQuitCommend) {
-    return [LOWER_CASE, UPPER_CASE].includes(restartOrQuitCommend) ? true : false;
+    return [LOWER_CASE_Y, UPPER_CASE_Y].includes(restartOrQuitCommend);
   }
 
   makeLottoTickets(numberOfTickets) {
