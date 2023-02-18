@@ -1,0 +1,51 @@
+const NUMBER = {
+  RANK_SECOND: 7,
+  RANK_FIRST: 6,
+  RANK_THIRD: 5,
+  RANK_FOURTH: 4,
+  RANK_FIFTH: 3,
+  LOTTO_NUMBER_LENGTH: 6,
+  LOTTO_NUMBER_RANGE: 45,
+  LOTTO_NUMBER_START_ONE: 1,
+  PURCHASE_AMOUNT: 1000,
+  MAXIMUM_PURCHASE_AMOUNT: 100000,
+  FIFTH_PRIZE_MONEY: 5000,
+  FOURTH_PRIZE_MONEY: 50000,
+  THIRD_PRIZE_MONEY: 1500000,
+  SECOND_PRIZE_MONEY: 30000000,
+  FIRST_PRIZE_MONEY: 2000000000,
+  FIFTH: 0,
+  FOURTH: 1,
+  THIRD: 2,
+  SECOND: 3,
+  FIRST: 4,
+};
+
+const ERROR = {
+  INPUT_MONEY_THOUSAND: `[ERROR] 구매 금액은 ${NUMBER.PURCHASE_AMOUNT}원 단위로 받아야 합니다. `,
+  INPUT_MONEY_LIMIT: `[ERROR] 구매 금액은 최대 ${NUMBER.MAXIMUM_PURCHASE_AMOUNT}원이어야 합니다.`,
+};
+
+const MESSAGE = {
+  INPUT_MONEY: '구입금액을 입력해 주세요.',
+  INPUT_WINNING_NUMBER: '\n> 당첨 번호를 입력해 주세요. ',
+  INPUT_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
+  RESTART_OR_FINISH: '\n> 다시 시작하시겠습니까? (y/n) ',
+  PURCHASE_LOTTO: '개를 구매하셨습니다.',
+  PURCHASE_LOTTO: '개를 구매했습니다.',
+  WINNING_STATICS: '당첨 통계\n--------------------',
+  THREE_MATCHED: `3개 일치 (${NUMBER.FIFTH_PRIZE_MONEY}원) - `,
+  FOUR_MATCHED: `4개 일치 (${NUMBER.FOURTH_PRIZE_MONEY}원) - `,
+  FIVE_MATCHED: `5개 일치 (${NUMBER.THIRD_PRIZE_MONEY}원) - `,
+  FIVE_WITH_BONUS_MATCHED: `5개 일치, 보너스 볼 일치 (${NUMBER.SECOND_PRIZE_MONEY}원) - `,
+  SIX_MATCHED: `6개 일치 (${NUMBER.FIRST_PRIZE_MONEY}원) - `,
+  TOTAL_PROFIT: '총 수익률은 ',
+  PROFIC_PERCENT: '%입니다.',
+  THE_NUMBER_OF: '개',
+};
+
+module.exports = {
+  ERROR,
+  MESSAGE,
+  NUMBER,
+};
