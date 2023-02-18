@@ -15,11 +15,11 @@ class LottoGameController {
   }
 
   async #handlePurchaseAmount() {
-    const PURCHASE_AMOUNT = await InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT);
-    const PURCHASE_COUNT = Number(PURCHASE_AMOUNT) / StaticValue.PURCHASE_AMOUNT_UNIT;
+    const purchaseAmountInput = await InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT);
+    const PURCHASE_COUNT = Number(purchaseAmountInput) / StaticValue.PURCHASE_AMOUNT_UNIT;
 
     try {
-      Validation.testPurchaseAmount(PURCHASE_AMOUNT);
+      Validation.testPurchaseAmount(purchaseAmountInput);
       OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch (error) {
@@ -37,8 +37,8 @@ class LottoGameController {
   }
 
   async #handleWinningNumbers() {
-    const WINNING_NUMBERS_INPUT = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
-    const WINNING_NUMBERS = WINNING_NUMBERS_INPUT.split(StaticValue.INPUT_SEPARATOR).map(Number);
+    const winningNumbersInput = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
+    const WINNING_NUMBERS = winningNumbersInput.split(StaticValue.INPUT_SEPARATOR).map(Number);
 
     try {
       Validation.testLottoNumbers(WINNING_NUMBERS);
@@ -49,8 +49,8 @@ class LottoGameController {
   }
 
   async #handleBonusNumber(winningNumbers) {
-    const BONUS_NUMBER_INPUT = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
-    const BONUS_NUMBER = Number(BONUS_NUMBER_INPUT);
+    const bonusNumberInput = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
+    const BONUS_NUMBER = Number(bonusNumberInput);
 
     try {
       Validation.testBonusNumber(winningNumbers, BONUS_NUMBER);
@@ -66,8 +66,8 @@ class LottoGameController {
   }
 
   async #handleRestart() {
-    const INPUT = await InputView.readUserInput(ConsoleMessage.RESTART);
-    const RESPONSE = INPUT.toLowerCase().trim();
+    const restartInput = await InputView.readUserInput(ConsoleMessage.RESTART);
+    const RESPONSE = restartInput.toLowerCase().trim();
 
     try {
       Validation.testRestart(RESPONSE);
