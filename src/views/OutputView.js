@@ -2,7 +2,7 @@ import MESSAGE from '../constants/message.js';
 import Console from '../utils/Console.js';
 import NumberHandler from '../utils/numberHandler.js';
 
-const OutputView = {
+const outputView = {
   printLottoNumbersList(lottoNumbers) {
     Console.print(`${MESSAGE.BUY_LOTTO(lottoNumbers.length)}`);
     lottoNumbers.forEach(lottoNumber =>
@@ -39,4 +39,4 @@ const OutputView = {
   },
 };
 
-export default OutputView;
+export default outputView;

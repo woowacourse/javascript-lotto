@@ -4,7 +4,7 @@ import validator from '../utils/validator.js';
 import LOTTO from '../constants/lotto.js';
 import ERROR from '../constants/error.js';
 
-const InputView = {
+const inputView = {
   async readLottoPrice() {
     const lottoPrice = await Console.readline(QUERY.LOTTO_PRICE);
 
@@ -88,4 +88,4 @@ const InputView = {
   },
 };
 
-export default InputView;
+export default inputView;

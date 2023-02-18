@@ -1,5 +1,5 @@
-import InputView from '../views/InputView.js';
-import OutputView from '../views/OutputView.js';
+import inputView from '../views/inputView.js';
+import outputView from '../views/outputView.js';
 import LottoGame from '../domains/LottoGame.js';
 import Console from '../utils/Console.js';
 
@@ -13,13 +13,13 @@ const LottoGameController = {
   },
 
   async init() {
-    this.instance.lottoGame = new LottoGame(await InputView.readLottoPrice());
-    OutputView.printLottoNumbersList(
+    this.instance.lottoGame = new LottoGame(await inputView.readLottoPrice());
+    outputView.printLottoNumbersList(
       this.instance.lottoGame.getLottoNumbersList()
     );
 
-    const luckyNumbers = await InputView.readLuckyNumbers();
-    const bonusNumber = await InputView.readBonusNumber([...luckyNumbers]);
+    const luckyNumbers = await inputView.readLuckyNumbers();
+    const bonusNumber = await inputView.readBonusNumber([...luckyNumbers]);
 
     this.instance.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
 
@@ -27,12 +27,12 @@ const LottoGameController = {
   },
 
   async execute() {
-    OutputView.printStatistics(
+    outputView.printStatistics(
       this.instance.lottoGame.execute(),
       this.instance.lottoGame.calculateProfit()
     );
 
-    if (await InputView.readRetry()) {
+    if (await inputView.readRetry()) {
       this.start();
       return;
     }
