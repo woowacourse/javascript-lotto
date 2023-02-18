@@ -1,23 +1,21 @@
 {
-	"plugins": [
-		"prettier"
-	],
+  "plugins": ["prettier"],
   "rules": {
     "max-depth": ["error", 1],
     "max-lines-per-function": ["error", 10],
     "max-params": ["error", 2],
     "no-console": "off",
-		"prettier/prettier": "error",
-		"quotes": ["error", "single"]
+    "prettier/prettier": "error",
+    "quotes": ["error", "single"]
   },
-	"parserOptions": {
-		"parser": "babel-eslint",
-      "sourceType": "module",
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module",
     "allowImportExportEverywhere": true,
-		"ecmaVersion": "latest"
-	},
+    "ecmaVersion": "latest"
+  },
   "env": {
-		"browser": true,
+    "browser": true,
     "commonjs": true,
     "es6": true,
     "node": true
