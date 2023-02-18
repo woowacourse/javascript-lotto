@@ -1,15 +1,12 @@
 import getSortedNumbers from '../util/getSortedNumbers.js';
-import pickRandomNumber from '../util/pickRandomNumber.js';
+import { ORDER_TYPE } from '../util/constants.js';
 
-import { GAME_VALUE } from '../constants/index.js';
+const pickLotto = (maxNumber, lottoLength) => {
+  const lotto = Array.from({ length: maxNumber }, (_, index) => index + 1);
+  lotto.sort(() => Math.random() - 0.5);
 
-const pickLotto = () => {
-  const lotto = new Set();
-  while (lotto.size < GAME_VALUE.LOTTO_SIZE) {
-    lotto.add(pickRandomNumber(GAME_VALUE.MAX_LOTTO_NUMBER));
-  }
+  const sortedLotto = getSortedNumbers(lotto.slice(0, lottoLength), ORDER_TYPE.INCREASING);
 
-  const sortedLotto = getSortedNumbers([...lotto]);
   return sortedLotto;
 };
 

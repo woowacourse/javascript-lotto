@@ -1,6 +1,6 @@
-const SORT_TYPE = Object.freeze({
+const ORDER_TYPE = Object.freeze({
   INCREASING: 'ASC',
   DECREASING: 'DESC',
 });
 
-export { SORT_TYPE };
+export { ORDER_TYPE };

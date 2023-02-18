@@ -31,13 +31,13 @@ const REGEX = Object.freeze({
   BONUS_NUMBER: /^([1-9]|[1-3]\d|4[0-5])$/,
 });
 
-const RANK = {
+const RANK = Object.freeze({
   FIRST: 1,
   SECOND: 2,
   THIRD: 3,
   FOURTH: 4,
   FIFTH: 5,
-};
+});
 
 const COMMAND = Object.freeze({
   RETRY: 'y',

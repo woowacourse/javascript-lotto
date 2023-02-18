@@ -9,7 +9,9 @@ class LottoGame {
 
   constructor(budget) {
     const lottoCount = budget / GAME_VALUE.LOTTO_PRICE;
-    this.#lottos = Array.from({ length: lottoCount }, () => pickLotto());
+    this.#lottos = Array.from({ length: lottoCount }, () => {
+      return pickLotto(GAME_VALUE.MAX_LOTTO_NUMBER, GAME_VALUE.LOTTO_SIZE);
+    });
     this.#scoreBoard = new ScoreBoard(lottoCount);
   }
 
@@ -24,11 +26,7 @@ class LottoGame {
   }
 
   checkBonusNumber(lotto, bonusNumber) {
-    if (lotto.includes(bonusNumber)) {
-      return true;
-    }
-
-    return false;
+    return lotto.includes(bonusNumber);
   }
 
   getRank(matchedCount, hasBonusNumber) {
