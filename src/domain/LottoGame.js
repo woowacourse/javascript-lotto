@@ -5,6 +5,7 @@ import {
   LOTTO_LENGTH,
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
+  CONVERT_RANK_TO_STRING,
 } from '../data/Constants';
 import { arrayToObjectThatValueZero, deduplicateArray } from '../utils/Utils';
 import GameBoard from './GameBoard';
@@ -36,7 +37,9 @@ class LottoGame {
   }
 
   getLottosRank() {
-    return this.#lottos.map((lotto) => this.#gameBoard.getLotteResult(lotto));
+    return this.#lottos.map(
+      (lotto) => CONVERT_RANK_TO_STRING[this.#gameBoard.getLotteResult(lotto)]
+    );
   }
 
   getLottosWinCount() {
@@ -48,15 +51,8 @@ class LottoGame {
     return initialLottoResults;
   }
 
-  calculateTotalPrize(ranks = this.getLottosRank()) {
+  calculateTotalPrize(ranks) {
     return ranks.reduce((acc, cur) => (acc += PRIZE[cur]), 0);
-  }
-
-  calculateEarningRate(
-    price = this.#lottos.length * MINIMUM_LOTTO_UNIT,
-    totalAmount = this.calculateTotalPrize()
-  ) {
-    return ((totalAmount / price) * 100).toFixed(1);
   }
 }
 
