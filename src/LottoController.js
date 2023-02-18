@@ -46,9 +46,9 @@ class LottoController {
 
   async #inputWinningLotto() {
     try {
-      const value = await view.input(MESSAGE.ASK_WINNING_LOTTO);
-      validator.throwErrorIfInvalidWinningNumbers(value);
-      return value;
+      const winningLotto = await view.input(MESSAGE.ASK_WINNING_LOTTO);
+      validator.throwErrorIfInvalidWinningNumbers(winningLotto);
+      return winningLotto;
     } catch ({ message }) {
       view.output(message);
       return this.#inputWinningLotto();
@@ -57,9 +57,9 @@ class LottoController {
 
   async #inputBonusNumber() {
     try {
-      const value = await view.input(MESSAGE.ASK_BONUS_NUMBER);
-      validator.throwErrorIfInvalidBonusNumber(value);
-      return value;
+      const bonusNumber = await view.input(MESSAGE.ASK_BONUS_NUMBER);
+      validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      return bonusNumber;
     } catch ({ message }) {
       view.output(message);
       return this.#inputBonusNumber();
