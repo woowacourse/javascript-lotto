@@ -31,7 +31,7 @@ const validator = {
     }
   },
 
-  throwErrorIfHaveDuplicates(winningLotto) {
+  throwErrorIfIncludesDuplicate(winningLotto) {
     const numbers = winningLotto.split(',');
     const haveDuplicates = numbers.length !== new Set(numbers).size;
 
