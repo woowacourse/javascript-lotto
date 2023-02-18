@@ -30,18 +30,14 @@ class LottoGame {
   }
 
   calculateTotalPrizeMoney() {
-    return LOTTO.PRIZE_MONEY.reduce((acc, curr, currIdx) => {
-      return acc + curr * this.#amountOfRanks[currIdx];
-    }, 0);
+    return LOTTO.PRIZE_MONEY.reduce((acc, curr, idx) => acc + curr * this.#amountOfRanks[idx], 0);
   }
 
   calculateProfit() {
     const totalPrizeMoney = this.calculateTotalPrizeMoney();
     const totalBuyMoney = this.#lottos.length * LOTTO.PRICE;
 
-    return numberHandler.roundOffNumber(
-      (totalPrizeMoney / totalBuyMoney) * 100
-    );
+    return numberHandler.roundOffNumber((totalPrizeMoney / totalBuyMoney) * 100);
   }
 
   isRetry(retryCommand) {
