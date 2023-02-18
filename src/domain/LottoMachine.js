@@ -31,7 +31,7 @@ class LottoMachine {
   generateLottos(money) {
     const amount = this.calcLottoAmount(money);
     return Array.from({ length: amount }, () => {
-      return new Lotto(RandomGenerator.pickRandomNumbers());
+      return new Lotto(RandomGenerator.pickRandomNumbers(45, 6));
     });
   }
 
