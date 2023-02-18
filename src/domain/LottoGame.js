@@ -116,7 +116,7 @@ export class LottoGame {
   }
 
   shouldRestart(restartOrQuitCommend) {
-    return ["y", "Y"].includes(restartOrQuitCommend) ? true : false;
+    return ["y", "Y"].includes(restartOrQuitCommend);
   }
 
   makeLottoTickets(numberOfTickets) {
