@@ -4,12 +4,12 @@ const { stdin: input, stdout: output } = require('process');
 const rl = readline.createInterface({ input, output });
 
 const Console = {
-  readLine(string) {
-    return new Promise((resolve) => rl.question(string, (input) => resolve(input)));
+  readLine(query) {
+    return new Promise((resolve) => rl.question(query, resolve));
   },
 
-  print(string) {
-    console.log(string);
+  print(message) {
+    console.log(message);
   },
 
   close() {
