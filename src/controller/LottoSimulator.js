@@ -25,20 +25,22 @@ class LottoSimulator {
     this.#budget = budget;
   }
 
-  inputBudget() {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET, (budget) => {
-      this.judgeValidBudget(parseInt(budget));
-    });
+  async play() {
+    await this.budgetProcess();
+    await this.winningNumberProcess();
+    await this.retryCommandProcess();
   }
 
-  judgeValidBudget(budget) {
+  async budgetProcess() {
+    const budget = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET);
+
     try {
-      this.validateBudget(budget);
+      this.validateBudget(+budget);
       this.budget = budget;
       this.purchaseLottos(budget);
     } catch (err) {
       OutputView.printErrorMessage(err);
-      this.inputBudget();
+      await this.budgetProcess();
     }
   }
 
@@ -59,32 +61,22 @@ class LottoSimulator {
       this.printLottoNumbers(lottoNumbers);
       this.#lottos.push(new Lotto(lottoNumbers));
     });
-    this.inputWinningNumber();
   }
 
   printLottoNumbers(lottoNumbers) {
     OutputView.printLottoNumbers(lottoNumbers);
   }
 
-  inputWinningNumber() {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
-      this.inputBonusNumber(winningNumber);
-    });
-  }
+  async winningNumberProcess() {
+    const winningNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER);
+    const bonusNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER);
 
-  inputBonusNumber(winningNumber) {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.judgeValidWinningNumber(winningNumber.split(',').map(Number), parseInt(bonusNumber));
-    });
-  }
-
-  judgeValidWinningNumber(winningNumber, bonusNumber) {
     try {
-      this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
+      this.#winningLotto = new WinningLotto(winningNumber.split(',').map(Number), +bonusNumber);
       this.printStatisticsResult();
     } catch (err) {
       OutputView.printErrorMessage(err);
-      this.inputWinningNumber();
+      await this.winningNumberProcess();
     }
   }
 
@@ -105,23 +97,18 @@ class LottoSimulator {
     OutputView.printYieldRate(
       LottoUtils.calculateYieldRate(this.calculateWinningResult(), this.#budget)
     );
-    this.inputRetryCommand();
   }
 
-  inputRetryCommand() {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY, (command) => {
-      this.judgeValidRetryCommand(command);
-    });
-  }
+  async retryCommandProcess() {
+    const command = await InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY);
 
-  judgeValidRetryCommand(command) {
     try {
       this.validateRetryCommand(command);
       if (command === 'y') this.retry();
       if (command === 'n') this.quit();
     } catch (err) {
       OutputView.printErrorMessage(err);
-      this.inputRetryCommand();
+      await this.retryCommandProcess();
     }
   }
 
@@ -133,7 +120,7 @@ class LottoSimulator {
     this.#lottos = [];
     this.winningLotto = null;
     this.budget = 0;
-    this.inputBudget();
+    this.play();
   }
 
   quit() {

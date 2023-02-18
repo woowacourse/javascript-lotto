@@ -1,10 +1,9 @@
 import Console from '../utils/Console.js';
 
 const InputView = {
-  readUserInput(message, callback) {
-    Console.read(message, (input) => {
-      callback(input);
-    });
+  async readUserInput(message) {
+    const input = await Console.read(message);
+    return input;
   },
 };
 
