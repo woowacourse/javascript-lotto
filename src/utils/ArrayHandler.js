@@ -1,4 +1,4 @@
-const ArrayHandler = {
+const arrayHandler = {
   getMatchCount(numbers, targetNumbers) {
     return numbers.filter(number => targetNumbers.includes(number)).length;
   },
@@ -8,4 +8,4 @@ const ArrayHandler = {
   },
 };
 
-export default ArrayHandler;
+export default arrayHandler;

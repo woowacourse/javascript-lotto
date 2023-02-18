@@ -1,4 +1,4 @@
-import ArrayHandler from '../utils/ArrayHandler.js';
+import arrayHandler from '../utils/arrayHandler.js';
 import RANKING_TABLE from '../constants/rankingTable.js';
 import RANK from '../constants/rank.js';
 
@@ -10,7 +10,7 @@ class Lotto {
   }
 
   getRank({ luckyNumbers, bonusNumber }) {
-    const matchCount = ArrayHandler.getMatchCount(this.#numbers, luckyNumbers);
+    const matchCount = arrayHandler.getMatchCount(this.#numbers, luckyNumbers);
     const isSecondRank = matchCount === 5 && this.hasBonusNumber(bonusNumber);
 
     return isSecondRank ? RANK.SECOND : RANKING_TABLE[matchCount];
