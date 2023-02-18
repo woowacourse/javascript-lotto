@@ -17,5 +17,5 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": ["airbnb"]
+  "extends": ["airbnb", "eslint:recommended"]
 }
