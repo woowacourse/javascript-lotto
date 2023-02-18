@@ -9,23 +9,20 @@ const values = Object.freeze({
   NO: 'n',
 });
 
-const correctCountsToMoney = deepFreeze({
-  6: { rank: 1, prize: 2000000000 },
-  5: [
-    { rank: 2, prize: 30000000 },
-    { rank: 3, prize: 1500000 },
-  ],
-  4: { rank: 4, prize: 50000 },
-  3: { rank: 5, prize: 5000 },
-  2: { rank: 6, prize: 0 },
-  1: { rank: 6, prize: 0 },
-  0: { rank: 6, prize: 0 },
+const matchCountsToRank = deepFreeze({
+  6: { rank: 1 },
+  5: [{ rank: 2 }, { rank: 3 }],
+  4: { rank: 4 },
+  3: { rank: 5 },
+  2: { rank: 6 },
+  1: { rank: 6 },
+  0: { rank: 6 },
 });
 
-const prize = [2000000000, 30000000, 1500000, 50000, 5000, 0];
+const prize = Object.freeze([2000000000, 30000000, 1500000, 50000, 5000, 0]);
 
 const regex = Object.freeze({
   POSITIVE_INTEGER: /^[1-9]\d*$/,
 });
 
-export { values, correctCountsToMoney, regex, prize };
+export { values, matchCountsToRank, regex, prize };
