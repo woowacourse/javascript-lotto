@@ -40,21 +40,19 @@ export class LottoGame {
   }
 
   async readPurchaseAmount() {
-    const purchaseAmountString = await inputView.readline(MESSAGE.INPUT.lottoPurchaseAmount);
+    const purchaseAmountString = await inputView.readLottoPurchaseAmount();
     if (!validatePurchaseAmount(purchaseAmountString)) return this.readPurchaseAmount();
     return Number(purchaseAmountString);
   }
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbers = (await inputView.readline(MESSAGE.INPUT.winningLottoNumbers)).split(
-      ","
-    );
+    const winningLottoNumbers = (await inputView.readWinningLottoNumbers()).split(",");
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
-    this.#winningLotto.winningNumbers = winningLottoNumbers.map((number) => Number(number));
+    this.#winningLotto.winningNumbers = winningLottoNumbers.map(Number);
   }
 
   async readBonusNumber() {
-    const bonusNumber = await inputView.readline(MESSAGE.INPUT.bonusNumber);
+    const bonusNumber = await inputView.readBonusNumber();
     if (!validateBonusNumber(bonusNumber, this.#winningLotto.winningNumbers))
       return this.readBonusNumber(this.#winningLotto.winningNumbers);
     this.#winningLotto.bonusNumber = Number(bonusNumber);
@@ -112,7 +110,7 @@ export class LottoGame {
   }
 
   async readRestartOrQuitCommend() {
-    const restartOrQuitCommend = await inputView.readline(MESSAGE.INPUT.restartOrQuit);
+    const restartOrQuitCommend = await inputView.readRestartOrQuit();
     if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
     return restartOrQuitCommend;
   }
