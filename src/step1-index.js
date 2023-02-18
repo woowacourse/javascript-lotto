@@ -9,7 +9,9 @@ const App = {
   },
 
   async init() {
-    this.instance.lottoGame = new LottoGame(await InputView.readLottoPrice());
+    const lottoPrice = await InputView.readLottoPrice();
+
+    this.instance.lottoGame = new LottoGame(lottoPrice);
     OutputView.printLottoNumbersList(
       this.instance.lottoGame.getLottoNumbersList()
     );
@@ -27,12 +29,16 @@ const App = {
       this.instance.lottoGame.calculateProfit()
     );
 
-    if (await InputView.readRetry()) {
-      this.start();
+    if (await this.isRetry()) {
+      this.init();
       return;
     }
 
     this.exit();
+  },
+
+  async isRetry() {
+    return await InputView.readRetry();
   },
 
   exit() {
