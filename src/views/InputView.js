@@ -1,8 +1,8 @@
-import Console from '../util/Console.js';
-import QUERY from '../constant/query.js';
-import validator from '../util/validator.js';
-import LOTTO from '../constant/lotto.js';
-import ERROR from '../constant/error.js';
+import Console from '../utils/Console.js';
+import QUERY from '../constants/query.js';
+import validator from '../utils/validator.js';
+import LOTTO from '../constants/lotto.js';
+import ERROR from '../constants/error.js';
 
 const InputView = {
   async readLottoPrice() {

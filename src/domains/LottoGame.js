@@ -1,6 +1,6 @@
-import LottoMachine from '../domain/LottoMachine.js';
-import LOTTO from '../constant/lotto.js';
-import NumberHandler from '../util/numberHandler.js';
+import LottoMachine from '../domains/LottoMachine.js';
+import LOTTO from '../constants/lotto.js';
+import NumberHandler from '../utils/numberHandler.js';
 
 class LottoGame {
   #lottos = [];

@@ -1,13 +1,13 @@
-import ArrayHandler from "../../src/util/ArrayHandler.js";
+import ArrayHandler from '../../src/utils/ArrayHandler.js';
 
-describe("ArrayHandler테스트", () => {
+describe('ArrayHandler테스트', () => {
   test.each([
     [
       [5, 4, 3, 2, 1],
       [5, 4, 3, 1, 2],
       [1, 2, 3, 4, 5],
     ],
-  ])("배열 오름차순 정렬 테스트", (numbers) => {
+  ])('배열 오름차순 정렬 테스트', numbers => {
     const ascendingOrderSortedNumbers = [1, 2, 3, 4, 5];
 
     expect(ArrayHandler.sortAscendingOrder(numbers)).toEqual(
@@ -24,7 +24,7 @@ describe("ArrayHandler테스트", () => {
     [[1, 11, 10, 9, 8, 7], 1],
     [[12, 11, 10, 9, 8, 7], 0],
   ])(
-    "getMatchCount 테스트) 두 배열의 동일한 숫자 개수를 리턴한다. ",
+    'getMatchCount 테스트) 두 배열의 동일한 숫자 개수를 리턴한다. ',
     (lottoNumbers, matchCount) => {
       const targetNumbers = [1, 2, 3, 4, 5, 6];
 

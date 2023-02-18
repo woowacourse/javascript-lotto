@@ -1,4 +1,4 @@
-import LottoMachine from '../../src/domain/LottoMachine.js';
+import LottoMachine from '../../src/domains/LottoMachine.js';
 
 describe('LottoMachine 테스트', () => {
   test.each([

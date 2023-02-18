@@ -1,4 +1,4 @@
-import Lotto from '../../src/domain/Lotto.js';
+import Lotto from '../../src/domains/Lotto.js';
 
 describe('로또 테스트', () => {
   const luckyNumbers = [1, 2, 3, 12, 20, 43];

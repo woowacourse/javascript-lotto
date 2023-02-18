@@ -1,4 +1,4 @@
-import validator from '../../src/util/validator.js';
+import validator from '../../src/utils/validator.js';
 
 describe('validator테스트', () => {
   test.each([['123'], ['abc'], ['']])(

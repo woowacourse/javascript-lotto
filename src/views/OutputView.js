@@ -1,6 +1,6 @@
-import MESSAGE from '../constant/message.js';
-import Console from '../util/Console.js';
-import NumberHandler from '../util/numberHandler.js';
+import MESSAGE from '../constants/message.js';
+import Console from '../utils/Console.js';
+import NumberHandler from '../utils/numberHandler.js';
 
 const OutputView = {
   printLottoNumbersList(lottoNumbers) {

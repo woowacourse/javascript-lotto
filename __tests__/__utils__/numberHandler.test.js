@@ -1,4 +1,4 @@
-import NumberHandler from '../../src/util/NumberHandler.js';
+import NumberHandler from '../../src/utils/NumberHandler.js';
 
 describe('NumberHandler 테스트', () => {
   test.each([

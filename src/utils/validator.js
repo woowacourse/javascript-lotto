@@ -1,4 +1,4 @@
-import REGEXP from '../constant/regexp.js';
+import REGEXP from '../constants/regexp.js';
 
 const validator = {
   isFirstLetterNotZero(input) {

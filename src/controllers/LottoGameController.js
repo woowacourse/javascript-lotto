@@ -1,7 +1,7 @@
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
-import LottoGame from '../domain/LottoGame.js';
-import Console from '../util/Console.js';
+import InputView from '../views/InputView.js';
+import OutputView from '../views/OutputView.js';
+import LottoGame from '../domains/LottoGame.js';
+import Console from '../utils/Console.js';
 
 const LottoGameController = {
   instance: {
