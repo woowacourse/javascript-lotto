@@ -15,18 +15,15 @@ class LottoGameController {
   }
 
   async #handlePurchaseAmount() {
-    const purchaseAmountInput = await InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT);
-    const PURCHASE_COUNT = Number(purchaseAmountInput) / StaticValue.PURCHASE_AMOUNT_UNIT;
-
     try {
+      const purchaseAmountInput = await InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT);
+      const PURCHASE_COUNT = Number(purchaseAmountInput) / StaticValue.PURCHASE_AMOUNT_UNIT;
       Validation.testPurchaseAmount(purchaseAmountInput);
       OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch (error) {
       await this.#handleError(error.message, () => this.#handlePurchaseAmount());
     }
-
-    return PURCHASE_COUNT;
   }
 
   #handleUserLottos(purchaseCount) {
@@ -37,10 +34,9 @@ class LottoGameController {
   }
 
   async #handleWinningNumbers() {
-    const winningNumbersInput = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
-    const WINNING_NUMBERS = winningNumbersInput.split(StaticValue.INPUT_SEPARATOR).map(Number);
-
     try {
+      const winningNumbersInput = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
+      const WINNING_NUMBERS = winningNumbersInput.split(StaticValue.INPUT_SEPARATOR).map(Number);
       Validation.testLottoNumbers(WINNING_NUMBERS);
       await this.#handleBonusNumber(WINNING_NUMBERS);
     } catch (error) {
@@ -49,10 +45,9 @@ class LottoGameController {
   }
 
   async #handleBonusNumber(winningNumbers) {
-    const bonusNumberInput = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
-    const BONUS_NUMBER = Number(bonusNumberInput);
-
     try {
+      const bonusNumberInput = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
+      const BONUS_NUMBER = Number(bonusNumberInput);
       Validation.testBonusNumber(winningNumbers, BONUS_NUMBER);
       this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
     } catch (error) {
@@ -65,11 +60,10 @@ class LottoGameController {
     OutputView.printResult(RANKS, PROFIT_RATE);
   }
 
-  async #handleRestart() {
-    const restartInput = await InputView.readUserInput(ConsoleMessage.RESTART);
-    const RESPONSE = restartInput.toLowerCase().trim();
-
+  async #handleRestart() { 
     try {
+      const restartInput = await InputView.readUserInput(ConsoleMessage.RESTART);
+      const RESPONSE = restartInput.toLowerCase().trim();
       Validation.testRestart(RESPONSE);
       this.#handleRestartReply(RESPONSE);
     } catch (error) {
