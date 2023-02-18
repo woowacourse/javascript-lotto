@@ -1,7 +1,6 @@
 import inputView from '../views/inputView.js';
 import outputView from '../views/outputView.js';
 import LottoGame from '../domains/LottoGame.js';
-import Console from '../utils/Console.js';
 
 class LottoGameController {
   #lottoGame;
@@ -47,7 +46,7 @@ class LottoGameController {
   }
 
   endGame() {
-    Console.close();
+    outputView.printGameEnd();
   }
 }
 
