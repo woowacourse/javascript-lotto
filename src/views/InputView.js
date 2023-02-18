@@ -5,19 +5,19 @@ import parseNumbers from '../utils/parseNumbers.js';
 import lottoGameValidator from '../domains/lottoGameValidator.js';
 
 const inputView = {
-  async readLottoPrice() {
-    const lottoPriceText = await Console.readline(QUERY.LOTTO_PRICE);
-    const lottoPrice = parseInt(lottoPriceText, 10);
+  async readLottosPrice() {
+    const LottosPriceText = await Console.readline(QUERY.LOTTO_PRICE);
+    const LottosPrice = parseInt(LottosPriceText, 10);
 
     try {
-      if (!lottoGameValidator.isValidLottoPrice(lottoPriceText)) {
+      if (!lottoGameValidator.isValidLottosPrice(LottosPriceText)) {
         throw new Error(`${ERROR.HEAD}구입금액`);
       }
 
-      return lottoPrice;
+      return LottosPrice;
     } catch (error) {
       Console.print(error.message);
-      return await this.readLottoPrice();
+      return await this.readLottosPrice();
     }
   },
 
