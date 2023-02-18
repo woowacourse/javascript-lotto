@@ -10,9 +10,9 @@ class LottoController {
 
   async play() {
     const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
-    const lottos = this.#purchase(money);
-    const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
-    this.#showResult(lottos, winningNumber);
+    this.lottos = this.#purchase(money);
+    this.winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
+    this.#showResult();
     const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
 
     return command === COMMAND.restart ? this.play() : Console.close();
@@ -48,29 +48,29 @@ class LottoController {
     return { main, bonus };
   }
 
-  #showResult(lottos, winningNumber) {
-    const matchResult = this.#judgeResult(lottos, winningNumber);
-    const benefit = this.calculateBenefit(lottos.length * 1000, matchResult);
+  #showResult() {
+    const matchResult = this.#judgeResult();
+    const benefit = this.calculateBenefit(this.lottos.length * 1000, matchResult);
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
   }
 
 
-  calculateBenefit(money, rank) {
+  calculateBenefit(total, rank) {
     // eslint-disable-next-line max-params
     const income = rank.reduce((acc, number, index) => {
       acc += number * LOTTO.prize[index];
       return acc;
     }, 0);
 
-    return income / money * 100;
+    return income / total * 100;
   }
 
-  #judgeResult(lottos, winningNumber) {
+  #judgeResult() {
     const rankingCount = Array(LOTTO.prize.length).fill(0);
 
-    return lottos.reduce((acc, lotto) => {
-      const ranking = lotto.calculateRanking(winningNumber);
+    return this.lottos.reduce((acc, lotto) => {
+      const ranking = lotto.calculateRanking(this.winningNumber);
       acc[ranking - 1] += 1;
       return acc;
     }, rankingCount);
