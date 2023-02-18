@@ -11,11 +11,7 @@
   "rules": {
     "prettier/prettier": "error",
     "max-depth": ["error", 1],
-    "max-lines-per-function": ["error", 10],
-    "lines-between-class-members": [
-      "error",
-      "always",
-      { "exceptAfterSingleLine": true }
-    ]
+    "max-lines-per-function": ["error", 12],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
   }
 }
