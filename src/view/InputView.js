@@ -22,13 +22,9 @@ const InputView = {
   },
 
   async readAboutRestart() {
-    const restart = await Console.readLine(messages.INPUT.RESTART);
+    const restartOrNot = await Console.readLine(messages.INPUT.RESTART);
 
-    if (restart === values.YES) {
-      return true;
-    }
-
-    return false;
+    return restartOrNot;
   },
 };
 

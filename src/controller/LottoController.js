@@ -67,9 +67,19 @@ class LottoController {
   }
 
   async handleRestart() {
-    if (await InputView.readAboutRestart()) {
-      await this.start();
+    const restartOrNot = await InputView.readAboutRestart();
+    
+    try {
+      InputValidator.validateRestart(restartOrNot);
+    } catch (error) {
+      OutputView.printMessage(error.message);
+      await this.handleRestart();
     }
+
+    if (restartOrNot === values.YES) {
+      return this.start();
+    }
+    
     return Console.close();
   }
 }
