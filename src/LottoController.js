@@ -1,6 +1,6 @@
 import LottoGame from './domain/LottoGame.js';
 import validator from './domain/validator.js';
-import view from './view/view.js';
+import view from './view/index.js';
 import { FORMATTING_TYPE, MESSAGE } from './constants/index.js';
 
 class LottoController {
