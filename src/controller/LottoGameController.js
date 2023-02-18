@@ -1,6 +1,5 @@
 import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
-import Console from '../utils/Console.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Validation from '../utils/Validation.js';
@@ -84,7 +83,7 @@ class LottoGameController {
       return;
     }
 
-    Console.close();
+    OutputView.close();
   }
 
   async #handleError(errorMessage, callback) {
