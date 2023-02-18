@@ -16,7 +16,7 @@ class LottoMachine {
   }
 
   buyLotto(money) {
-    for (let i = 0; i < Math.floor(money / 1000); i++) {
+    for (let i = 0; i < Math.floor(money / VALUES.LOTTO_PRICE); i++) {
       this.#lottos.push(new Lotto(this.generateLottoNumber()));
     }
   }
