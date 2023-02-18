@@ -2,7 +2,8 @@ import { randomNumberBetween } from "../util/randomNumberMaker";
 import { inputView } from "../view/inputView";
 import { outputView } from "../view/outputView";
 import { close } from "../util/console";
-
+import { LOTTO_PRICE, PLACE, PRIZE_MONEY } from "../domain/constants";
+import { MESSAGE } from "./message";
 import {
   validateBonusNumber,
   validatePurchaseAmount,
@@ -20,7 +21,7 @@ export class LottoGame {
   async play() {
     const purchaseAmount = await this.readPurchaseAmount();
 
-    const numberOfPurchasedLottoTickets = purchaseAmount / 1000;
+    const numberOfPurchasedLottoTickets = purchaseAmount / LOTTO_PRICE;
     this.makeLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
     outputView.printLottoTickets(this.#lottoTickets);
@@ -39,21 +40,21 @@ export class LottoGame {
   }
 
   async readPurchaseAmount() {
-    const purchaseAmountString = await inputView.readline("로또 구입 금액을 입력해 주세요.");
+    const purchaseAmountString = await inputView.readline(MESSAGE.INPUT.lottoPurchaseAmount);
     if (!validatePurchaseAmount(purchaseAmountString)) return this.readPurchaseAmount();
     return Number(purchaseAmountString);
   }
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbers = (
-      await inputView.readline("\n당첨 번호를 콤마(,)로 구분해서 입력해 주세요.")
-    ).split(",");
+    const winningLottoNumbers = (await inputView.readline(MESSAGE.INPUT.winningLottoNumbers)).split(
+      ","
+    );
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
     this.#winningLotto.winningNumbers = winningLottoNumbers.map((number) => Number(number));
   }
 
   async readBonusNumber() {
-    const bonusNumber = await inputView.readline("\n보너스 번호를 입력해 주세요.");
+    const bonusNumber = await inputView.readline(MESSAGE.INPUT.bonusNumber);
     if (!validateBonusNumber(bonusNumber, this.#winningLotto.winningNumbers))
       return this.readBonusNumber(this.#winningLotto.winningNumbers);
     this.#winningLotto.bonusNumber = Number(bonusNumber);
@@ -61,11 +62,12 @@ export class LottoGame {
 
   getPlacesOfLottoTickets() {
     const placesOfLottoTickets = {
-      FIFTH_PLACE: 0,
-      FOURTH_PLACE: 0,
-      THIRD_PLACE: 0,
-      SECOND_PLACE: 0,
-      FIRST_PLACE: 0,
+      [PLACE.first]: 0,
+      [PLACE.second]: 0,
+      [PLACE.third]: 0,
+      [PLACE.fourth]: 0,
+      [PLACE.fifth]: 0,
+      [PLACE.last]: 0,
     };
 
     this.#lottoTickets.forEach((lottoTicket) => {
@@ -83,25 +85,25 @@ export class LottoGame {
   getPlace(numberOfMatchingLottoNumbers, lottoTicket) {
     switch (numberOfMatchingLottoNumbers) {
       case 6:
-        return "FIRST_PLACE";
+        return PLACE.first;
       case 5:
-        return lottoTicket.includes(this.#winningLotto.bonusNumber)
-          ? "SECOND_PLACE"
-          : "THIRD_PLACE";
+        return lottoTicket.includes(this.#winningLotto.bonusNumber) ? PLACE.second : PLACE.third;
       case 4:
-        return "FOURTH_PLACE";
+        return PLACE.fourth;
       case 3:
-        return "FIFTH_PLACE";
+        return PLACE.fifth;
+      default:
+        return PLACE.last;
     }
   }
 
   getTotalPrize(placesOfLottoTickets) {
     return (
-      placesOfLottoTickets.FIFTH_PLACE * 5000 +
-      placesOfLottoTickets.FOURTH_PLACE * 50000 +
-      placesOfLottoTickets.THIRD_PLACE * 1500000 +
-      placesOfLottoTickets.SECOND_PLACE * 30000000 +
-      placesOfLottoTickets.FIRST_PLACE * 2000000000
+      placesOfLottoTickets[PLACE.fifth] * PRIZE_MONEY.fifth +
+      placesOfLottoTickets[PLACE.fourth] * PRIZE_MONEY.fourth +
+      placesOfLottoTickets[PLACE.third] * PRIZE_MONEY.third +
+      placesOfLottoTickets[PLACE.second] * PRIZE_MONEY.second +
+      placesOfLottoTickets[PLACE.first] * PRIZE_MONEY.first
     );
   }
 
@@ -110,7 +112,7 @@ export class LottoGame {
   }
 
   async readRestartOrQuitCommend() {
-    const restartOrQuitCommend = await inputView.readline("다시 시작하시겠습니까? (y/n)");
+    const restartOrQuitCommend = await inputView.readline(MESSAGE.INPUT.restartOrQuit);
     if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
     return restartOrQuitCommend;
   }
