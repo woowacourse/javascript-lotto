@@ -21,20 +21,14 @@ class LottoGame {
     return this.lotteries.map((lottery) => lottery.getLottoString());
   }
 
-  getRankResult(lottoNumbers, bonusNumber) {
-    const rankResult = new Array(NUMBER.RANK).fill(0);
+  getRankResult(lottoNum, bonus) {
+    const rank = new Array(NUMBER.RANK).fill(0);
     this.lotteries.forEach((lotto) => {
-      rankResult[
-        this.getRank(
-          lotto.matchNumbers(lottoNumbers),
-          lotto.matchBonus(bonusNumber)
-        )
+      rank[
+        this.getRank(lotto.matchNumbers(lottoNum), lotto.matchBonus(bonus))
       ]++;
     });
-    return [
-      ...rankResult,
-      Calculation.getProfit(rankResult, this.lotteries.length),
-    ];
+    return [...rank, Calculation.getProfit(rank, this.lotteries.length)];
   }
 
   getRank(matchNumber, bonusNumber) {
