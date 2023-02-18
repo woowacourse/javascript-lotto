@@ -1,8 +1,8 @@
-import Console from '../utils/Console.js';
 import QUERY from '../constants/query.js';
-import validator from '../utils/validator.js';
-import LOTTO from '../constants/lotto.js';
 import ERROR from '../constants/error.js';
+import Console from '../utils/Console.js';
+import parseNumbers from '../utils/parseNumbers.js';
+import lottoGameValidator from '../domains/lottoGameValidator.js';
 
 const inputView = {
   async readLottoPrice() {
@@ -10,11 +10,7 @@ const inputView = {
     const lottoPrice = parseInt(lottoPriceText, 10);
 
     try {
-      if (
-        !validator.isFirstLetterNotZero(lottoPriceText) ||
-        !validator.isNumericString(lottoPriceText) ||
-        !validator.canDivide(lottoPrice, LOTTO.PRICE)
-      ) {
+      if (!lottoGameValidator.isValidLottoPrice(lottoPriceText)) {
         throw new Error(`${ERROR.HEAD}구입금액`);
       }
 
@@ -27,21 +23,10 @@ const inputView = {
 
   async readLuckyNumbers() {
     const luckyNumbersText = await Console.readline(QUERY.LUCKY_NUMBERS);
+    const luckyNumbers = parseNumbers(luckyNumbersText, ',');
 
     try {
-      if (!validator.isValidFormat(luckyNumbersText)) {
-        throw new Error(`${ERROR.HEAD} 당첨번호 형식에러`);
-      }
-      const luckyNumbers = luckyNumbersText
-        .split(',')
-        .map(luckyNumber => parseInt(luckyNumber.trim(), 10));
-      if (
-        !(
-          validator.isValidRangeNumbers(luckyNumbers, { min: 1, max: 45 }) &&
-          validator.isValidSize(luckyNumbers, 6) &&
-          validator.isUnique(luckyNumbers)
-        )
-      ) {
+      if (!lottoGameValidator.isValidLuckyNumbers(luckyNumbersText)) {
         throw new Error(`${ERROR.HEAD} 당첨번호 에러`);
       }
 
@@ -57,14 +42,7 @@ const inputView = {
     const bonusNumber = parseInt(bonusNumberText, 10);
 
     try {
-      if (
-        !(
-          validator.isValidRangeNumber(bonusNumber, {
-            min: 1,
-            max: 45,
-          }) && !validator.isOverlap(luckyNumbers, bonusNumber)
-        )
-      ) {
+      if (!lottoGameValidator.isValidBonusNumber(bonusNumberText, luckyNumbers)) {
         throw new Error(`${ERROR.HEAD} 보너스 번호 에러`);
       }
 
@@ -79,7 +57,7 @@ const inputView = {
     const retryCommand = await Console.readline(QUERY.RETRY);
 
     try {
-      if (!validator.isValidCommand(retryCommand)) {
+      if (!lottoGameValidator.isValidRetryCommand(retryCommand)) {
         throw new Error(`${ERROR.HEAD} 게임 재시작 입력 오류`);
       }
 

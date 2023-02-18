@@ -13,10 +13,6 @@ const validator = {
     return target % divider === 0;
   },
 
-  isValidFormat(string) {
-    return REGEXP.NUMBER_COMMA_SPACE.test(string);
-  },
-
   isValidRangeNumbers(numbers, { min, max }) {
     return numbers.every(number => this.isValidRangeNumber(number, { min, max }));
   },
@@ -35,12 +31,8 @@ const validator = {
     return numbers.length === numbersSet.size;
   },
 
-  isOverlap(targetNumbers, number) {
+  isOverlap(number, targetNumbers) {
     return targetNumbers.includes(number);
-  },
-
-  isValidCommand(command) {
-    return command === 'y' || command === 'n';
   },
 };
 
