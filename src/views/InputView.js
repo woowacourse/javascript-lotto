@@ -6,18 +6,19 @@ import ERROR from '../constants/error.js';
 
 const inputView = {
   async readLottoPrice() {
-    const lottoPrice = await Console.readline(QUERY.LOTTO_PRICE);
+    const lottoPriceText = await Console.readline(QUERY.LOTTO_PRICE);
+    const lottoPrice = parseInt(lottoPriceText, 10);
 
     try {
       if (
-        !validator.isFirstLetterNotZero(lottoPrice) ||
-        !validator.isNumericString(lottoPrice) ||
-        !validator.canDivide(parseInt(lottoPrice, 10), LOTTO.PRICE)
+        !validator.isFirstLetterNotZero(lottoPriceText) ||
+        !validator.isNumericString(lottoPriceText) ||
+        !validator.canDivide(lottoPrice, LOTTO.PRICE)
       ) {
-        throw new Error(`${ERROR.HEAD}당첨금액`);
+        throw new Error(`${ERROR.HEAD}구입금액`);
       }
 
-      return parseInt(lottoPrice, 10);
+      return lottoPrice;
     } catch (error) {
       Console.print(error.message);
       return await this.readLottoPrice();
@@ -25,13 +26,13 @@ const inputView = {
   },
 
   async readLuckyNumbers() {
-    const luckyNumbersString = await Console.readline(QUERY.LUCKY_NUMBERS);
+    const luckyNumbersText = await Console.readline(QUERY.LUCKY_NUMBERS);
 
     try {
-      if (!validator.isValidFormat(luckyNumbersString)) {
+      if (!validator.isValidFormat(luckyNumbersText)) {
         throw new Error(`${ERROR.HEAD} 당첨번호 형식에러`);
       }
-      const luckyNumbers = luckyNumbersString
+      const luckyNumbers = luckyNumbersText
         .split(',')
         .map(luckyNumber => parseInt(luckyNumber.trim(), 10));
       if (
@@ -52,20 +53,22 @@ const inputView = {
   },
 
   async readBonusNumber(luckyNumbers) {
-    const bonusNumber = await Console.readline(QUERY.BONUS_NUMBER);
+    const bonusNumberText = await Console.readline(QUERY.BONUS_NUMBER);
+    const bonusNumber = parseInt(bonusNumberText, 10);
+
     try {
       if (
         !(
-          validator.isValidRangeNumber(parseInt(bonusNumber, 10), {
+          validator.isValidRangeNumber(bonusNumber, {
             min: 1,
             max: 45,
-          }) && !validator.isOverlap(luckyNumbers, parseInt(bonusNumber, 10))
+          }) && !validator.isOverlap(luckyNumbers, bonusNumber)
         )
       ) {
         throw new Error(`${ERROR.HEAD} 보너스 번호 에러`);
       }
 
-      return parseInt(bonusNumber, 10);
+      return bonusNumber;
     } catch (error) {
       Console.print(error.message);
       return await this.readBonusNumber(luckyNumbers);
