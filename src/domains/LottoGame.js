@@ -21,7 +21,7 @@ class LottoGame {
     this.#winningNumbers.bonusNumber = bonusNumber;
   }
 
-  execute() {
+  getAmountOfRanks() {
     this.#lottos.forEach(lotto => {
       this.#amountOfRanks[lotto.getRank(this.#winningNumbers)] += 1;
     });

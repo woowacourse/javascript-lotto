@@ -14,7 +14,8 @@ class LottoGameController {
     const lottosPrice = await inputView.readLottosPrice();
     this.#lottoGame = new LottoGame(lottosPrice);
 
-    outputView.printLottoNumbersList(this.#lottoGame.getLottoNumbersList());
+    const lottoNumbersList = this.#lottoGame.getLottoNumbersList();
+    outputView.printLottoNumbersList(lottoNumbersList);
 
     const luckyNumbers = await inputView.readLuckyNumbers();
     const bonusNumber = await inputView.readBonusNumber(luckyNumbers);
@@ -24,7 +25,9 @@ class LottoGameController {
   }
 
   async execute() {
-    outputView.printStatistics(this.#lottoGame.execute(), this.#lottoGame.calculateProfit());
+    const amountOfRanks = this.#lottoGame.getAmountOfRanks();
+    const profit = this.#lottoGame.calculateProfit();
+    outputView.printStatistics(amountOfRanks, profit);
 
     const retryCommand = await inputView.readRetry();
     if (this.#lottoGame.isRetry(retryCommand)) {
