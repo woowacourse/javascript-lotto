@@ -25,7 +25,7 @@ const messages = deepFreeze({
   },
 
   STATISTICS_MESSAGE: {
-    OPENING: '\n당첨 통계\n---',
+    OPENING: '\n당첨 통계\n--------------------',
     FIFTH: '3개 일치 (5,000원) - ',
     FOURTH: '4개 일치 (50,000원) - ',
     THIRD: '5개 일치 (1,500,000원) - ',
