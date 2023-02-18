@@ -7,7 +7,7 @@ describe('Validation 테스트', () => {
       const PURCHASE_AMOUNT = [0, -1000, -1561];
 
       PURCHASE_AMOUNT.forEach((amount) => {
-        expect(() => Validation.testPurchaseAmount(amount)).toThrow(ErrorMessage.MINMUM_VALUE);
+        expect(() => Validation.verifyPurchaseAmount(amount)).toThrow(ErrorMessage.MINMUM_VALUE);
       });
     });
 
@@ -15,7 +15,7 @@ describe('Validation 테스트', () => {
       const PURCHASE_AMOUNT = [100, 2200, 3330, 4444];
 
       PURCHASE_AMOUNT.forEach((amount) => {
-        expect(() => Validation.testPurchaseAmount(amount)).toThrow(ErrorMessage.MONEY_VALUE);
+        expect(() => Validation.verifyPurchaseAmount(amount)).toThrow(ErrorMessage.MONEY_VALUE);
       });
     });
 
@@ -35,7 +35,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.testLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
+        expect(() => Validation.verifyLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
       });
     });
 
@@ -45,7 +45,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.testLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_LENGTH);
+        expect(() => Validation.verifyLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_LENGTH);
       });
     });
 
@@ -55,7 +55,7 @@ describe('Validation 테스트', () => {
       INPUTS.forEach((input) => {
         const NUMBERS = input.split(',').map(Number);
 
-        expect(() => Validation.testLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
+        expect(() => Validation.verifyLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_VALUE);
       });
     });
 
@@ -63,7 +63,7 @@ describe('Validation 테스트', () => {
       const INPUT = '1,2,3,4,5,5';
       const NUMBERS = INPUT.split(',').map(Number);
 
-      expect(() => Validation.testLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_DUPLICATE);
+      expect(() => Validation.verifyLottoNumbers(NUMBERS)).toThrow(ErrorMessage.LOTTO_DUPLICATE);
     });
   });
 
@@ -73,7 +73,7 @@ describe('Validation 테스트', () => {
       const BONUS_NUMBER = [1, 4, 6];
 
       BONUS_NUMBER.forEach((bonusNumber) => {
-        expect(() => Validation.testBonusNumber(WINNING_NUMBERS, bonusNumber)).toThrow();
+        expect(() => Validation.verifyBonusNumber(WINNING_NUMBERS, bonusNumber)).toThrow();
       });
     });
 
@@ -82,7 +82,7 @@ describe('Validation 테스트', () => {
 
       BONUS_NUMBER.forEach((bonusNumber) => {
         expect(() => {
-          Validation.testBonusNumber(bonusNumber);
+          Validation.verifyBonusNumber(bonusNumber);
         }).toThrow(ErrorMessage.BONUS_NUMBER_VALUE);
       });
     });
@@ -94,7 +94,7 @@ describe('Validation 테스트', () => {
 
       REPLIES.forEach((reply) => {
         expect(() => {
-          Validation.testRestart(reply);
+          Validation.verifyRestart(reply);
         }).toThrow(ErrorMessage.RESTART);
       });
     });

@@ -1,7 +1,7 @@
 import { StaticValue, ErrorMessage } from '../constants/Constants.js';
 
 const Validation = {
-  testPurchaseAmount(money) {
+  verifyPurchaseAmount(money) {
     this.checkMoneyMinmumValue(money);
     this.checkMoneyUnit(money);
     this.checkMoneyInputType(money);
@@ -25,7 +25,7 @@ const Validation = {
     }
   },
 
-  testLottoNumbers(lotto) {
+  verifyLottoNumbers(lotto) {
     this.checkLottoNumbersLength(lotto);
     this.checkLottoNumbersRange(lotto);
     this.checkLottoNumbersDuplicate(lotto);
@@ -60,7 +60,7 @@ const Validation = {
     });
   },
 
-  testBonusNumber(winningNumbers, bonusNumber) {
+  verifyBonusNumber(winningNumbers, bonusNumber) {
     this.checkBounsNumberRange(bonusNumber);
     this.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
   },
@@ -83,7 +83,7 @@ const Validation = {
     );
   },
 
-  testRestart(reply) {
+  verifyRestart(reply) {
     if (reply !== StaticValue.RESTART_CONTROL && reply !== StaticValue.QUIT_CONTROL) {
       throw new Error(ErrorMessage.RESTART);
     }
