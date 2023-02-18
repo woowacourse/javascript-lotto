@@ -10,7 +10,10 @@ class Lotto {
   static ERROR_DUPLICATE = '중복된 입력입니다.';
 
   static isValidLottoNumber(number) {
-    if (!isPositiveInteger(number)) return false;
+    return isPositiveInteger(number) || this.isValidLottoNumberRange(number);
+  }
+
+  static isValidLottoNumberRange(number) {
     return number >= LOTTO_NUMBER_RANGE_MIN && number <= LOTTO_NUMBER_RANGE_MAX;
   }
 
