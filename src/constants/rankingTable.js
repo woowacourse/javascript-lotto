@@ -1,11 +1,13 @@
+import RANK from './rank';
+
 const RANKING_TABLE = {
-  6: 1,
-  5: 3,
-  4: 4,
-  3: 5,
-  2: 0,
-  1: 0,
-  0: 0,
+  0: RANK.NOTHING,
+  1: RANK.NOTHING,
+  2: RANK.NOTHING,
+  3: RANK.FIFTH,
+  4: RANK.FOURTH,
+  5: RANK.THIRD,
+  6: RANK.FIRST,
 };
 
 export default RANKING_TABLE;
