@@ -1,4 +1,4 @@
-import pickLotto from '../domain/pickLotto.js';
+import pickLotto from './pickLotto.js';
 import ScoreBoard from './ScoreBoard.js';
 import { GAME_VALUE } from '../constants/index.js';
 
