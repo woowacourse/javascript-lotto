@@ -21,6 +21,7 @@ const messages = deepFreeze({
     Y_OR_N: '[ERROR] y 또는 n만 입력해주세요',
     NOT_SIX_LENGTH: '[ERROR] 6개의 숫자를 입력해주세요',
     OVERLAP: '[ERROR] 중복되는 숫자가 있습니다',
+    OVERLAP_WINNING_NUM: '[ERROR] 당첨번호에 이미 있는 숫자입니다'
   },
 
   STATISTICS_MESSAGE: {
