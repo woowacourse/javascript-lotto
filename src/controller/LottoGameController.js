@@ -87,10 +87,10 @@ class LottoGameController {
     Console.close();
   }
 
-  #handleError(errorMessage, self) {
+  async #handleError(errorMessage, callback) {
     OutputView.print(errorMessage);
 
-    return self();
+    return callback();
   }
 }
 
