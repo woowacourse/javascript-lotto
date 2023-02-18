@@ -3,7 +3,7 @@ import Console from './view/console/Console';
 import InputView from './view/console/InputView';
 
 class App {
-  // 고민해볼 것 : 해당 커맨드를 웹 에서는 어떻게 사용할지?, 위치가 컨트롤러로 가야할 지?
+  // TODO: 해당 커맨드를 웹 에서는 어떻게 사용할지?, 위치가 컨트롤러로 가야할 지?
   static RESTART_COMMAND = 'y';
   static EXIT_COMMAND = 'n';
 

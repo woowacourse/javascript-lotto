@@ -14,7 +14,7 @@ const InputView = {
   },
 
   async readWinNumbers() {
-    // to-do: 중간에 띄어쓰기 된 입력값 허용하고 있는데 허용하지 않을지
+    // TODO: 중간에 띄어쓰기 된 입력값 허용하고 있는데 허용하지 않을지
     const winNumbers = await Console.read(InputView.WIN_NUMBERS_QUERY);
     const whiteSpaceRegexp = /\s/g;
     return winNumbers.replace(whiteSpaceRegexp, '').split(',').map(Number);
