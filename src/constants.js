@@ -6,10 +6,10 @@ const MESSAGE = {
   RESTART: "\n게임을 다시 시작합니다.\n",
   QUIT: "\n게임을 종료합니다.\n",
 };
+Object.freeze(MESSAGE);
 
-const AMOUNT_OF_PURCHASE = (amount) => {
-  return `${amount}개를 구매했습니다.`;
-};
+const AMOUNT_OF_PURCHASE = (amount) => `${amount}개를 구매했습니다.`;
+Object.freeze(AMOUNT_OF_PURCHASE);
 
 const ERROR = {
   NUMBER: "[ERROR] 숫자를 입력해주세요.",
@@ -20,6 +20,7 @@ const ERROR = {
   DIVIDE: "[ERROR] 로또 1매 가격으로 나누어 떨어지는 금액을 입력하세요.",
   RESTART: "[ERROR] y 혹은 n으로 입력해주세요.",
 };
+Object.freeze(ERROR);
 
 const NUMBER = {
   UNIT: 1_000,
@@ -28,13 +29,16 @@ const NUMBER = {
   SIZE: 6,
   RANK: 5,
 };
+Object.freeze(NUMBER);
 
 const COMMAND = {
   RESTART: "y",
   QUIT: "n",
 };
+Object.freeze(COMMAND);
 
 const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
+Object.freeze(PRIZE);
 
 module.exports = {
   NUMBER,
