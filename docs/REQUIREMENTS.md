@@ -53,14 +53,32 @@
 
 - LottoStatistics.결과값\_가져오기() 의 반환값은 { first, second, ... , earningRate}
 
-### 하나의 객체는 하나의 역할
+## 하나의 객체는 하나의 역할 (리뷰어 피드백)
 
 - Lotto의 역할 : 개별 로또 등수를 결정하는 데에 필요한 정보를 반환한다. (일치 개수, 보너스 여부)
 - LottoStatistics의 역할: 당첨 개수와 수익률을 반환한다.
 
-### 그 외
+## 조합을 통해 winningLotto 생성하기 (공통 피드백)
+
+## ⭐️ 변화에 취약한 flag를 사용한 로직을 없애기
+
+js`
+const LOTTO_PRIZE = {
+rankNone: 'none',
+rank1: 'first',
+rank2: 'second',
+rank3: 'third',
+rank4: 'fourth',
+rank5: 'fifth',
+};`
+
+## 그 외
 
 - 잔돈 계산하는 로직을 굳이 LottoGame의 static으로 표현하지 않고 따로 함수로 분리해도 될 것 같다.
 - result 객체를 추가하여 OutputView가 했던 결과 메세지를 생성하는 역할을 result 객체가 하도록 한다.
 - y, n과 같이 매직넘버 표현이 덜 된 영역을 찾고 상수로 표현한다.
 - 할 수 있다면! 등수(first, second, third)에 대해 flag를 사용하지 않고 해결할 수 있는 방도를 생각해본다.
+
+```
+
+```

@@ -26,9 +26,7 @@ class App {
   }
 
   printGameResult(winningNumbers, bonusNumber) {
-    const rankingBoard = this.#lottoGame
-      .updateRankingBoard(winningNumbers, bonusNumber)
-      .getRankingBoard();
+    const rankingBoard = this.#lottoGame.updateRankingBoard(winningNumbers, bonusNumber).getRankingBoard();
 
     const earningRate = this.#lottoGame.getEarningRate();
 
@@ -55,5 +53,22 @@ class App {
     }
   }
 }
+
+
+class First {};
+class Second {};
+class Third {};
+class Fourth {};
+class None {};
+
+const getRank({count, bonus}) {
+  if (count === 6) return new First();
+  if (count === 5 && bonus) return new Second();
+  if (count === 5) return new Third();
+
+  return new None();
+}
+
+
 
 export default App;

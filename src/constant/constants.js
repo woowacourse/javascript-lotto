@@ -6,15 +6,6 @@ const LOTTO_RULE = {
   separator: ',',
 };
 
-const LOTTO_PRIZE = {
-  rankNone: 'none',
-  rank1: 'first',
-  rank2: 'second',
-  rank3: 'third',
-  rank4: 'fourth',
-  rank5: 'fifth',
-};
-
 const RANK_BY_COUNT = {
   3: LOTTO_PRIZE.rank5,
   4: LOTTO_PRIZE.rank4,
@@ -31,9 +22,4 @@ const PRIZE_BY_RANK = {
   [LOTTO_PRIZE.rank1]: 2_000_000_000,
 };
 
-export {
-  LOTTO_RULE,
-  LOTTO_PRIZE,
-  RANK_BY_COUNT,
-  PRIZE_BY_RANK,
-};
+export { LOTTO_RULE, LOTTO_PRIZE, RANK_BY_COUNT, PRIZE_BY_RANK };
