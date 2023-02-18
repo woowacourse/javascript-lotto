@@ -18,7 +18,7 @@ const validator = {
   },
 
   isValidRangeNumbers(numbers, { min, max }) {
-    return numbers.every(number => number >= min && number <= max);
+    return numbers.every(number => this.isValidRangeNumber(number, { min, max }));
   },
 
   isValidRangeNumber(number, { min, max }) {
