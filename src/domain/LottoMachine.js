@@ -1,4 +1,5 @@
 import RandomGenerator from '../RandomGenerator';
+import { LOTTO_NUMBER_RANGE_MAX, LOTTO_NUMBER_SIZE } from '../util/constants';
 import { isPositiveInteger } from '../validation';
 import Lotto from './Lotto';
 import WinningLotto from './WinningLotto';
@@ -31,7 +32,9 @@ class LottoMachine {
   generateLottos(money) {
     const amount = this.calcLottoAmount(money);
     return Array.from({ length: amount }, () => {
-      return new Lotto(RandomGenerator.pickRandomNumbers(45, 6));
+      return new Lotto(
+        RandomGenerator.pickRandomNumbers(LOTTO_NUMBER_RANGE_MAX, LOTTO_NUMBER_SIZE),
+      );
     });
   }
 
