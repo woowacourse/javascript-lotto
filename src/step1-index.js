@@ -4,7 +4,7 @@ class App {
   #lottoGameController = new LottoGameController();
 
   play() {
-    this.#lottoGameController.start();
+    this.#lottoGameController.startGame();
   }
 }
 

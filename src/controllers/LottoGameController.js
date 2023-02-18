@@ -6,39 +6,47 @@ import Console from '../utils/Console.js';
 class LottoGameController {
   #lottoGame;
 
-  async start() {
-    await this.init();
+  startGame() {
+    this.readLottosPrice();
   }
 
-  async init() {
+  async readLottosPrice() {
     const lottosPrice = await inputView.readLottosPrice();
+
     this.#lottoGame = new LottoGame(lottosPrice);
+    this.printLottoNumbersList();
+  }
 
+  printLottoNumbersList() {
     const lottoNumbersList = this.#lottoGame.getLottoNumbersList();
-    outputView.printLottoNumbersList(lottoNumbersList);
 
+    outputView.printLottoNumbersList(lottoNumbersList);
+    this.readWinningNumbers();
+  }
+
+  async readWinningNumbers() {
     const luckyNumbers = await inputView.readLuckyNumbers();
     const bonusNumber = await inputView.readBonusNumber(luckyNumbers);
     this.#lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
 
-    this.execute();
+    this.printStatistics();
   }
 
-  async execute() {
+  printStatistics() {
     const amountOfRanks = this.#lottoGame.getAmountOfRanks();
     const profit = this.#lottoGame.calculateProfit();
+
     outputView.printStatistics(amountOfRanks, profit);
-
-    const retryCommand = await inputView.readRetry();
-    if (this.#lottoGame.isRetry(retryCommand)) {
-      this.start();
-      return;
-    }
-
-    this.exit();
+    this.readRetryCommand();
   }
 
-  exit() {
+  async readRetryCommand() {
+    const retryCommand = await inputView.readRetry();
+
+    this.#lottoGame.isRetry(retryCommand) ? this.startGame() : this.endGame();
+  }
+
+  endGame() {
     Console.close();
   }
 }
