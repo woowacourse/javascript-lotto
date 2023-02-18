@@ -1,4 +1,4 @@
-import { StaticValue, Rank, Prize } from '../constants/Constants.js';
+import { GameControlStaticValue, Rank, Prize } from '../constants/Constants.js';
 
 class LottoCalculator {
   constructor(matchStates) {
@@ -24,8 +24,9 @@ class LottoCalculator {
 
   calculateProfitRate() {
     return (
-      (this.#calculateProfit() / (this.matchStates.length * StaticValue.PURCHASE_AMOUNT_UNIT)) *
-      100
+      (this.#calculateProfit() /
+        (this.matchStates.length * GameControlStaticValue.PURCHASE_AMOUNT_UNIT)) *
+      GameControlStaticValue.PERCENTAGE_DIVIDER
     ).toFixed(1);
   }
 

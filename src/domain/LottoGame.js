@@ -1,4 +1,4 @@
-import { StaticValue, MatchCount } from '../constants/Constants.js';
+import { RandomNumberStaticValue, MatchCount } from '../constants/Constants.js';
 import Lotto from './Lotto.js';
 import LottoCalculator from './LottoCalculator.js';
 import generateRandomNumbersInRange from '../utils/RandomNumberGenerator.js';
@@ -11,9 +11,9 @@ class LottoGame {
   generateUserLottos(purchaseCount) {
     this.#userLottos = Array.from({ length: purchaseCount }).map(() => {
       const RANDOM_NUMBER = generateRandomNumbersInRange(
-        StaticValue.LOTTO_LOWER_INCLUSIVE,
-        StaticValue.LOTTO_UPPER_INCLUSIVE,
-        StaticValue.LOTTO_LENGTH,
+        RandomNumberStaticValue.LOWER_INCLUSIVE,
+        RandomNumberStaticValue.UPPER_INCLUSIVE,
+        RandomNumberStaticValue.LENGTH,
       );
 
       return new Lotto(RANDOM_NUMBER);

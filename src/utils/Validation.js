@@ -1,4 +1,9 @@
-import { StaticValue, ErrorMessage } from '../constants/Constants.js';
+import {
+  GameControlStaticValue,
+  Regex,
+  RandomNumberStaticValue,
+  ErrorMessage,
+} from '../constants/Constants.js';
 
 const Validation = {
   testPurchaseAmount(money) {
@@ -14,13 +19,13 @@ const Validation = {
   },
 
   checkMoneyUnit(money) {
-    if (money % StaticValue.PURCHASE_AMOUNT_UNIT !== 0) {
+    if (money % GameControlStaticValue.PURCHASE_AMOUNT_UNIT !== 0) {
       throw new Error(ErrorMessage.MONEY_VALUE);
     }
   },
 
   checkMoneyInputType(money) {
-    if (StaticValue.REGEX_NON_DIGIT.test(money)) {
+    if (Regex.NON_DIGIT.test(money)) {
       throw new Error(ErrorMessage.MONEY_INPUT_TYPE);
     }
   },
@@ -33,7 +38,7 @@ const Validation = {
   },
 
   checkLottoNumbersLength(lotto) {
-    if (lotto.length !== StaticValue.LOTTO_LENGTH) {
+    if (lotto.length !== RandomNumberStaticValue.LENGTH) {
       throw new Error(ErrorMessage.LOTTO_LENGTH);
     }
   },
@@ -79,12 +84,16 @@ const Validation = {
 
   isNumberInRange(number) {
     return (
-      number >= StaticValue.LOTTO_LOWER_INCLUSIVE && number <= StaticValue.LOTTO_UPPER_INCLUSIVE
+      number >= RandomNumberStaticValue.LOWER_INCLUSIVE &&
+      number <= RandomNumberStaticValue.UPPER_INCLUSIVE
     );
   },
 
   testRestart(reply) {
-    if (reply !== StaticValue.RESTART_CONTROL && reply !== StaticValue.QUIT_CONTROL) {
+    if (
+      reply !== GameControlStaticValue.RESTART_BUTTON &&
+      reply !== GameControlStaticValue.QUIT_BUTTON
+    ) {
       throw new Error(ErrorMessage.RESTART);
     }
   },

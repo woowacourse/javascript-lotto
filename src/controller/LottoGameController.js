@@ -1,4 +1,4 @@
-import { StaticValue, RequestMessage, ResultMessage } from '../constants/Constants.js';
+import { GameControlStaticValue, RequestMessage, ResultMessage } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Console from '../utils/Console.js';
 import InputView from '../view/InputView.js';
@@ -17,7 +17,7 @@ class LottoGameController {
 
   #handlePurchaseAmount = async () => {
     const MONEY = await InputView.readUserInput(RequestMessage.PURCHASE_AMOUNT);
-    const PURCHASE_COUNT = Number(MONEY) / StaticValue.PURCHASE_AMOUNT_UNIT;
+    const PURCHASE_COUNT = Number(MONEY) / GameControlStaticValue.PURCHASE_AMOUNT_UNIT;
 
     try {
       Validation.testPurchaseAmount(MONEY);
@@ -37,7 +37,9 @@ class LottoGameController {
 
   #handleWinningNumbers = async () => {
     const WINNING_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.WINNING_NUMBER);
-    const WINNING_NUMBERS = WINNING_NUMBER_INPUT.split(StaticValue.INPUT_SEPARATOR).map(Number);
+    const WINNING_NUMBERS = WINNING_NUMBER_INPUT.split(GameControlStaticValue.INPUT_SEPARATOR).map(
+      Number,
+    );
 
     try {
       Validation.testLottoNumbers(WINNING_NUMBERS);
@@ -77,7 +79,7 @@ class LottoGameController {
   };
 
   #handleRestartReply(reply) {
-    if (reply === StaticValue.RESTART_CONTROL) {
+    if (reply === GameControlStaticValue.RESTART_BUTTON) {
       this.startGame();
       return;
     }

@@ -1,4 +1,8 @@
-import { StaticValue, ErrorMessage } from '../src/constants/Constants.js';
+import {
+  RandomNumberStaticValue,
+  GameControlStaticValue,
+  ErrorMessage,
+} from '../src/constants/Constants.js';
 import Validation from '../src/utils/Validation.js';
 
 describe('Validation 테스트', () => {
@@ -39,7 +43,7 @@ describe('Validation 테스트', () => {
       });
     });
 
-    test(`로또 번호 갯수가 ${StaticValue.LOTTO_LENGTH}개가 아닐 때 에러가 발생한다.`, () => {
+    test(`로또 번호 갯수가 ${RandomNumberStaticValue.LENGTH}개가 아닐 때 에러가 발생한다.`, () => {
       const INPUTS = ['1,2,3,4,5', '5,6,7', '1', '1,4,5', '1,2,3,4,5,6,7,8,9,10'];
 
       INPUTS.forEach((input) => {
@@ -49,7 +53,7 @@ describe('Validation 테스트', () => {
       });
     });
 
-    test(`로또 번호들이 ${StaticValue.LOTTO_LOWER_INCLUSIVE}~${StaticValue.LOTTO_UPPER_INCLUSIVE} 사이의 숫자가 아니면 에러가 발생한다.`, () => {
+    test(`로또 번호들이 ${RandomNumberStaticValue.LOWER_INCLUSIVE}~${RandomNumberStaticValue.UPPER_INCLUSIVE} 사이의 숫자가 아니면 에러가 발생한다.`, () => {
       const INPUTS = ['1,2,3,4,5,90', '100,101,102,103,104,105'];
 
       INPUTS.forEach((input) => {
@@ -80,7 +84,7 @@ describe('Validation 테스트', () => {
       });
     });
 
-    test(`보너스 번호가 ${StaticValue.LOTTO_LOWER_INCLUSIVE}~${StaticValue.LOTTO_UPPER_INCLUSIVE} 사이의 숫자가 아니면 에러가 발생한다.`, () => {
+    test(`보너스 번호가 ${RandomNumberStaticValue.LOWER_INCLUSIVE}~${RandomNumberStaticValue.UPPER_INCLUSIVE} 사이의 숫자가 아니면 에러가 발생한다.`, () => {
       const BONUS_NUMBER = [100, 0, -11, 'A1', 'E', '9fd', '', ' '];
 
       BONUS_NUMBER.forEach((bonusNumber) => {
@@ -92,7 +96,7 @@ describe('Validation 테스트', () => {
   });
 
   describe('게임 재시작 여부 테스트', () => {
-    test(`${StaticValue.RESTART_CONTROL}, ${StaticValue.QUIT_CONTROL}이 아닌 문자(대문자 제외)를 입력한 경우 에러가 발생한다.`, () => {
+    test(`${GameControlStaticValue.RESTART_BUTTON}, ${GameControlStaticValue.QUIT_BUTTON}이 아닌 문자(대문자 제외)를 입력한 경우 에러가 발생한다.`, () => {
       const REPLIES = ['d', 5, 'wer', ''];
 
       REPLIES.forEach((reply) => {

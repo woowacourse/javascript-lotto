@@ -1,4 +1,4 @@
-import { StaticValue } from '../constants/Constants.js';
+import { LottoStaticValue } from '../constants/Constants.js';
 import Convertor from '../utils/Convertor.js';
 import Validation from '../utils/Validation.js';
 
@@ -22,15 +22,17 @@ class Lotto {
     const MATCH_COUNT = this.#getMatchCount(winningNumbers);
     const BONUS_MATCH = this.#hasBonusNumber(bonusNumber);
 
-    if (MATCH_COUNT === StaticValue.MATCH_FIVE && BONUS_MATCH) {
-      return StaticValue.MATCH_FIVE_AND_BONUS;
+    if (MATCH_COUNT === LottoStaticValue.MATCH_FIVE && BONUS_MATCH) {
+      return LottoStaticValue.MATCH_FIVE_AND_BONUS;
     }
 
     return MATCH_COUNT;
   }
 
   #getMatchCount(winningNumbers) {
-    return StaticValue.TOTAL_ARRAY_LENGTH - new Set([...winningNumbers, ...this.#numbers]).size;
+    return (
+      LottoStaticValue.TOTAL_ARRAY_LENGTH - new Set([...winningNumbers, ...this.#numbers]).size
+    );
   }
 
   #hasBonusNumber(bonusNumber) {

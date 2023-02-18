@@ -1,8 +1,8 @@
-import { StaticValue, ErrorMessage } from '../src/constants/Constants.js';
+import { RandomNumberStaticValue, ErrorMessage } from '../src/constants/Constants.js';
 import Lotto from '../src/domain/Lotto.js';
 
 describe('사용자 로또 클래스 테스트', () => {
-  test(`로또 번호 갯수가 ${StaticValue.LOTTO_LENGTH}개가 아닐 때 에러가 발생한다.`, () => {
+  test(`로또 번호 갯수가 ${RandomNumberStaticValue.LENGTH}개가 아닐 때 에러가 발생한다.`, () => {
     const NUMBERS = [
       [1, 2, 3, 4, 5],
       [1, 2, 3, 4, 5, 6, 7],
@@ -28,7 +28,7 @@ describe('사용자 로또 클래스 테스트', () => {
     });
   });
 
-  test(`로또 번호들이 ${StaticValue.LOTTO_LOWER_INCLUSIVE}~${StaticValue.LOTTO_UPPER_INCLUSIVE} 사이의 숫자가 아니면 에러가 발생한다.`, () => {
+  test(`로또 번호들이 ${RandomNumberStaticValue.LOWER_INCLUSIVE}~${RandomNumberStaticValue.UPPER_INCLUSIVE} 사이의 숫자가 아니면 에러가 발생한다.`, () => {
     const NUMBERS = [
       [1, 2, 65, 4, 5, 6],
       [100, 110, 120, 130, 140, 150],

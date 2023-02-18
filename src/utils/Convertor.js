@@ -1,8 +1,8 @@
-import { StaticValue } from '../constants/Constants.js';
+import { GameControlStaticValue } from '../constants/Constants.js';
 
 const Convertor = {
   stringifyLotto(lotto) {
-    return `[${lotto.join(StaticValue.PRINT_SEPARATOR)}]`;
+    return `[${lotto.join(GameControlStaticValue.PRINT_SEPARATOR)}]`;
   },
 };
 
