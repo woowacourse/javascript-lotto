@@ -25,7 +25,11 @@ const InputValidator = {
   validateBonusNumberInput(number) {
     this.validateWithCondition(ValidatorUtils.isPositiveInteger(+number), messages.ERROR.POSITIVE_INTEGER);
     this.validateWithCondition(ValidatorUtils.isInRange(+number), messages.ERROR.IN_RANGE);
-  }
+  },
+
+  validateRestart(restartOrNot) {
+    this.validateWithCondition(ValidatorUtils.isYorN(restartOrNot), messages.ERROR.Y_OR_N);
+  },
 };
 
 export default InputValidator;

@@ -14,8 +14,12 @@ const ValidatorUtils = {
   },
 
   hasNoBlank(splitedWinningNumber) {
-    return !(splitedWinningNumber.includes(' '));
-  }
+    return !splitedWinningNumber.includes(' ');
+  },
+
+  isYorN(restartOrNot) {
+    return restartOrNot === values.YES || restartOrNot === values.NO;
+  },
 };
 
 export default ValidatorUtils;
