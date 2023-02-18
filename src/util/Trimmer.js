@@ -9,7 +9,6 @@ const Trimmer = {
 
   trimTemplate(message) {
     return message
-      .replace(/^\n|\n$/g, '')
       .split('\n')
       .map((line) => line.trim())
       .join('\n');
