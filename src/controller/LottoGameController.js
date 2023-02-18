@@ -34,8 +34,7 @@ class LottoGameController {
   };
 
   #purchaseUserLottos(purchaseCount) {
-    this.#lottoGame.generateUserLottos(purchaseCount);
-    const USER_LOTTOS = this.#lottoGame.getUserLottos();
+    const USER_LOTTOS = this.#lottoGame.generateUserLottos(purchaseCount);
 
     USER_LOTTOS.forEach(OutputView.print);
   }
