@@ -1,4 +1,4 @@
-const { LOTTO } = require('../constant/Setting');
+const { LOTTO } = require('../constant/setting');
 const pickNumberInRange = require('../util/pickNumberInRange');
 
 class LottoMachine {
