@@ -9,16 +9,15 @@ import Console from '../utils/console';
 class LottoController {
   #LottoMachine;
 
-  handleLottoMachine(moneyInput) {
-    LottoValidator.validateMoneyInput(moneyInput);
-    OutputView.printMessage(moneyInput / VALUES.LOTTO_PRICE + MESSAGE.OUTPUT.LOTTO_COUNT);
-    this.initLottoMachine(moneyInput);
-    OutputView.printLottos(this.#LottoMachine.lottos);
-  }
+  async startManage() {
+    await this.handleMoneyInput();
+    await this.handleWinningNumber();
+    await this.handleBonusNumber();
 
-  initLottoMachine(moneyInput) {
-    this.#LottoMachine = new LottoMachine();
-    this.#LottoMachine.buyLotto(+moneyInput);
+    const statistics = this.#LottoMachine.calculateStatistics();
+    this.printStatistics(statistics);
+
+    await this.handleRestart();
   }
 
   async handleMoneyInput() {
@@ -76,15 +75,16 @@ class LottoController {
     return Console.close();
   }
 
-  async startManage() {
-    await this.handleMoneyInput();
-    await this.handleWinningNumber();
-    await this.handleBonusNumber();
+  handleLottoMachine(moneyInput) {
+    LottoValidator.validateMoneyInput(moneyInput);
+    OutputView.printMessage(moneyInput / VALUES.LOTTO_PRICE + MESSAGE.OUTPUT.LOTTO_COUNT);
+    this.initLottoMachine(moneyInput);
+    OutputView.printLottos(this.#LottoMachine.lottos);
+  }
 
-    const statistics = this.#LottoMachine.calculateStatistics();
-    this.printStatistics(statistics);
-
-    await this.handleRestart();
+  initLottoMachine(moneyInput) {
+    this.#LottoMachine = new LottoMachine();
+    this.#LottoMachine.buyLotto(+moneyInput);
   }
 }
 
