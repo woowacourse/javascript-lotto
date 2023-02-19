@@ -1,3 +1,4 @@
+import Messages from '../constant/Messages';
 import Lotto from '../domain/lotto/Lotto';
 import LottoResult from '../domain/LottoResult';
 import Reward from '../domain/reward/Reward';
@@ -8,9 +9,9 @@ const OutputView = {
    * @param {Lotto[]} lottos
    */
   printLottos(lottos) {
-    Console.print(`${lottos.length}개를 구매했습니다.`);
+    Console.printf(Messages.PRINT_BOUGHT_LOTTOS_COUNT, lottos.length);
     lottos.forEach((lotto) => {
-      Console.print(`[${lotto.getLottoNumbers().join(', ')}]`);
+      Console.printf(Messages.PRINT_BOUGHT_LOTTO, lotto.getLottoNumbers().join(', '));
     });
   },
 
@@ -19,11 +20,16 @@ const OutputView = {
    * @param {Reward} rewards
    */
   printLottoResult(lottoResult, rewards) {
-    Console.print(`당첨 통계`);
-    Console.print('★-★-★-★-★-★');
+    Console.print(Messages.PRINT_LOTTO_RESULT_TITLE);
+    Console.print(Messages.PRINT_LOTTO_RESULT_SUBTITLE);
     lottoResult.getRewards().forEach((reward) => {
       const count = rewards.filter((_reward) => _reward === reward).length;
-      Console.print(`${reward.toString()} - ${count}개`);
+      Console.printf(
+        Messages.PRINT_LOTTO_RESULT_REWARD,
+        reward.getName(),
+        reward.getMoney().toLocaleString(),
+        count,
+      );
     });
   },
 
@@ -31,11 +37,11 @@ const OutputView = {
    * @param {number} profitRate
    */
   printProfitRate(profitRate) {
-    Console.print(`총 수익률은 ${(profitRate * 100).toFixed(2)}%입니다.`);
+    Console.printf(Messages.PRINT_PROFIT_RATE, (profitRate * 100).toFixed(2));
   },
 
   printExit() {
-    Console.print('게임이 종료되었습니다.');
+    Console.print(Messages.PRINT_EXIT);
     Console.close();
   },
 };

@@ -1,3 +1,4 @@
+import Messages from '../../constant/Messages';
 import Lotto from '../lotto/Lotto';
 import WinningLotto from '../WinningLotto';
 import Reward from './Reward';
@@ -16,7 +17,7 @@ class BonusNumberReward extends Reward {
   }
 
   getName() {
-    return `${this.getMatchCount()}개 일치, 보너스 볼 일치`;
+    return Messages.format(Messages.BONUS_NUMBER_REWARD_NAME, this.getMatchCount());
   }
 }
 

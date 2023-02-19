@@ -1,5 +1,6 @@
 import { stdin as input, stdout as output } from 'node:process';
 import * as readline from 'node:readline/promises';
+import Messages from '../constant/Messages';
 
 const rl = readline.createInterface({
   input,
@@ -9,10 +10,20 @@ const rl = readline.createInterface({
 const Console = {
   /**
    * @param {string} query
+   * @param {...any} args
    * @returns {Promise<string>}
    */
-  readLine(query) {
-    return rl.question(`> ${query}`);
+  readLine(query, ...args) {
+    return rl.question(`> ${Messages.format(query, ...args)}`);
+  },
+
+  /**
+   *
+   * @param {string} message
+   * @param {...any} args
+   */
+  printf(message, ...args) {
+    Console.print(Messages.format(message, ...args));
   },
 
   /**

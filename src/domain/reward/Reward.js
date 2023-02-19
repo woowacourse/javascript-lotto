@@ -1,3 +1,4 @@
+import Messages from '../../constant/Messages';
 import Lotto from '../lotto/Lotto';
 import WinningLotto from '../WinningLotto';
 
@@ -35,11 +36,7 @@ class Reward {
   }
 
   getName() {
-    return `${this.#matchCount}개 일치`;
-  }
-
-  toString() {
-    return `${this.getName()} (${this.#money.toLocaleString()}원)`;
+    return Messages.format(Messages.REWARD_NAME, this.#matchCount);
   }
 }
 

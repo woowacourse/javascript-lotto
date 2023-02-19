@@ -1,4 +1,6 @@
+import Messages from './constant/Messages';
 import RestartCommand from './constant/RestartCommand';
+import LottoError from './errors/LottoError';
 
 const Validation = {
   REGEX_NUMERIC: /^\d+$/,
@@ -9,19 +11,19 @@ const Validation = {
 
   validateMoney(money) {
     if (!Validation.isNumeric(money) || money < 0) {
-      throw new Error('로또 구매 금액은 0 이상의 정수를 입력해야 합니다.');
+      throw new LottoError(Messages.ERROR_MONEY_SHOULD_POSITIVE_INTEGER);
     }
     if (money % 1000 !== 0 || money / 1000 <= 0) {
-      throw new Error('1000원 단위로 금액을 주어야 합니다.');
+      throw new LottoError(Messages.ERROR_MONEY_AMOUNT_SHOULD_MULTIPLE_OF);
     }
   },
 
   validateLottoNumber(lottoNumber) {
     if (!Validation.isNumeric(lottoNumber)) {
-      throw new Error('로또 번호는 숫자로 이루어져 있어야 합니다.');
+      throw new Error(Messages.ERROR_LOTTO_NUMBER_SHOULD_NUMERIC);
     }
     if (lottoNumber < 1 || 45 < lottoNumber) {
-      throw new Error('로또 번호는 1에서 45 사이의 숫자여야 합니다.');
+      throw new Error(Messages.ERROR_LOTTO_NUMBER_SHOULD_BETWEEN);
     }
   },
 
@@ -35,32 +37,32 @@ const Validation = {
 
   validateIsArray(lottoNumbers) {
     if (!Array.isArray(lottoNumbers)) {
-      throw new Error('로또 번호는 배열 타입이어야 합니다.');
+      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_ARRAY);
     }
   },
 
   validateArrayLength(lottoNumbers) {
     if (lottoNumbers.length !== 6) {
-      throw new Error('로또 번호는 6자리여야 합니다.');
+      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_LENGTH_OF);
     }
   },
 
   validateUniqueNumbers(lottoNumbers) {
     const lottoSet = new Set(lottoNumbers);
     if (lottoNumbers.length !== lottoSet.size) {
-      throw new Error('로또 번호는 중복될 수 없습니다.');
+      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_UNIQUE);
     }
   },
 
   validateBonusNumberDistinct(lottoNumbers, bonusNumber) {
     if (lottoNumbers.includes(bonusNumber)) {
-      throw new Error('로또 번호와 보너스 번호는 중복될 수 없습니다.');
+      throw new Error(Messages.ERROR_BONUS_NUMBER_SHOULD_UNIQUE);
     }
   },
 
   validateRestartCommand(command) {
     if (!Object.values(RestartCommand).includes(command)) {
-      throw new Error('재시작 명령어는 y또는 n으로 입력해야 합니다.');
+      throw new Error(Messages.ERROR_RESTART_COMMAND_SHOULD_BE);
     }
   },
 };
