@@ -8,7 +8,7 @@ const Random = {
   },
 
   makeRandomNumbers(randomNumbers) {
-    const number = parseInt(Math.random() * 45 + 1);
+    const number = parseInt(Math.random() * 45 + 1, 10);
     if (randomNumbers.indexOf(number) < 0) {
       randomNumbers.push(number);
     }
