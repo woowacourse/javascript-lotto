@@ -13,14 +13,14 @@ class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
     const lottos = await this.createLotto(parseInt(buyMoney / 1000));
-    OutputView.printLottos(lottos.getLottos());
+    OutputView.printBuyLottos(lottos.getLottos());
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
     this.compareLottos(lottos, winningLotto, bonusNumber);
     const retryInput = await this.getRetryInput(lottos);
     this.retryLottoGame(retryInput, lottos);
   }
-
+  
   async getBuyMoney() {
     const buyMoney = await InputView.inputMoney(View.INPUT_MONEY);
     try {
@@ -31,12 +31,12 @@ class App {
     }
     return buyMoney;
   }
-
+  
   async createLotto(lottoAmount) {
     const lottos = Array.from(
       { length: lottoAmount },
       () => new Lotto(Random.getCorrectRandomNumbers())
-    );
+      );
     return new Lottos(lottos);
   }
 

@@ -35,7 +35,7 @@ const OutputView = {
     );
   },
 
-  printLottos(lottos) {
+  printBuyLottos(lottos) {
     this.printLottoAmount(lottos.length);
     this.printLottos(lottos);
   },
