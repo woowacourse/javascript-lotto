@@ -50,7 +50,7 @@ class LottoGameController {
 
     try {
       InputValidator.checkWinningNumbers(winningNumbers);
-      return winningNumbers.split(',').map(Number);
+      return winningNumbers.split(',').map((winningNumber) => Number(winningNumber.trim()));
     } catch (error) {
       Console.print(error.message);
       return this.#getLottoWinningNumbers();

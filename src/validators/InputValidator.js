@@ -11,7 +11,9 @@ const InputValidator = {
   },
 
   checkWinningNumbers(winningNumber) {
-    if (!Validation.isValidInputType(winningNumber, /^[0-9]+(,[0-9]+)+$/)) {
+    const validInputType = /^[0-9]+(,[0-9]+)+$/;
+
+    if (!Validation.isValidInputType(winningNumber.replace(/\s/g, ''), validInputType)) {
       throw new Error('[ERROR] 당첨 번호는 콤마(,) 기준으로 입력해야합니다.');
     }
   },
