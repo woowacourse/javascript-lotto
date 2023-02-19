@@ -7,29 +7,15 @@ const LOTTO_RANK = {
 };
 
 class LottoStatistics {
-  #winningNumbers;
+  #correctLotto;
 
-  #bonusNumber;
+  #lottos;
 
-  constructor(winningNumbers, bonusNumber) {
-    this.validate(winningNumbers.numbers, bonusNumber.number);
-    this.#winningNumbers = winningNumbers;
-    this.#bonusNumber = bonusNumber;
+  constructor(correctLotto) {
+    this.#correctLotto = correctLotto;
   }
 
-  validate(winningNumbers, bonusNumber) {
-    if (this.isDuplicateFor(winningNumbers, bonusNumber)) {
-      throw new Error(
-        '[ERROR] 당첨 번호와 보너스 번호에 중복이 존재할 수 없습니다.'
-      );
-    }
-  }
-
-  isDuplicateFor(winningNumbers, bonusNumber) {
-    return winningNumbers.includes(bonusNumber);
-  }
-
-  determineAllLottosRank(lottos) {
+  getAllLottosRank(lottos) {
     return lottos.reduce(
       (acc, lotto) => {
         acc[this.determineLottoRank(lotto) - 1] += 1;
@@ -40,20 +26,24 @@ class LottoStatistics {
   }
 
   determineLottoRank(lotto) {
-    const matchCount = lotto.calculateMatchCount(this.#winningNumbers.numbers);
+    const matchCount = lotto.calculateMatchCount(
+      this.#correctLotto.winningNumbers
+    );
 
     return this.getLottoRank(lotto, matchCount);
   }
 
   getLottoRank(lotto, matchCount) {
     if (matchCount === 5) {
-      return lotto.isBonus(this.#bonusNumber.number) ? RANK.SECOND : RANK.THIRD;
+      return lotto.isBonus(this.#correctLotto.bonusNumber)
+        ? RANK.SECOND
+        : RANK.THIRD;
     }
 
     return LOTTO_RANK[matchCount] ?? 6;
   }
 
-  calculateProfitRate(winningLottos, purchasePrice) {
+  getProfitRate(winningLottos, purchasePrice) {
     return (
       (winningLottos.reduce(
         (acc, cur, idx) => acc + LOTTO_PRIZE[idx].MONEY * cur,
