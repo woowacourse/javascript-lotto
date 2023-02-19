@@ -7,13 +7,19 @@ const OutputView = {
   },
 
   printPurchaseQuantity(quantity) {
-    Console.print(`${quantity}개를 구매했습니다.`);
+    Console.print(OUTPUT_MESSAGE_METHOD.PURCHASE_QUANTITY(quantity));
   },
 
-  printLottos(lottos) {
+  printPurchaserLottos(lottos) {
     lottos.forEach((lotto) => {
       Console.print(lotto);
     });
+  },
+
+  printPurchaseStatus(quantity, lottos) {
+    OutputView.printPurchaseQuantity(quantity);
+    OutputView.printPurchaserLottos(lottos);
+    OutputView.printEmptyLine();
   },
 
   printRanking(ranking) {
@@ -25,6 +31,12 @@ const OutputView = {
 
   printProfitRate(profitRate) {
     Console.print(OUTPUT_MESSAGE_METHOD.PROFIT_RATE(profitRate));
+  },
+
+  printStatistics(ranking, profitRate) {
+    OutputView.printRanking(ranking);
+    OutputView.printProfitRate(profitRate);
+    OutputView.printEmptyLine();
   },
 
   printErrorMessage(errorMessage) {

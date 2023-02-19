@@ -18,21 +18,23 @@ const OutputView = require('./view/OutputView');
 const convertToNumeric = require('./util/convertToNumeric');
 
 class LottoController {
-  #lottos;
-
-  #winningLotto;
-
   async start() {
     const purchaseAmount = await this.inputPurchaseAmount();
-    this.issueLottos(purchaseAmount);
-    OutputView.printEmptyLine();
+
+    const lottoMachine = new LottoMachine(purchaseAmount);
+    const lottoQuantity = lottoMachine.getQuantity();
+    const lottos = Array.from({ length: lottoQuantity }, () => lottoMachine.issueLotto());
+    OutputView.printPurchaseStatus(lottoQuantity, lottos);
+
     const winningNumber = await this.inputWinningNumber();
     OutputView.printEmptyLine();
     const bonusNumber = await this.inputBonusNumber(winningNumber);
     OutputView.printEmptyLine();
 
-    this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
-    this.printResult(purchaseAmount);
+    const winningLotto = new WinningLotto(winningNumber, bonusNumber);
+    const ranking = new Comparer(winningLotto, lottos).getRanking();
+    const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
+    OutputView.printStatistics(ranking, profitRate);
 
     const restartCommand = await this.inputRestartCommand();
     this.processRestartCommand(restartCommand);
@@ -47,15 +49,6 @@ class LottoController {
       OutputView.printErrorMessage(error.message);
       return this.inputPurchaseAmount();
     }
-  }
-
-  issueLottos(purchaseAmount) {
-    const lottoMachine = new LottoMachine(purchaseAmount);
-    OutputView.printPurchaseQuantity(lottoMachine.getQuantity());
-    this.#lottos = Array.from({ length: lottoMachine.getQuantity() }, () =>
-      lottoMachine.issueLotto(),
-    );
-    OutputView.printLottos(this.#lottos);
   }
 
   async inputWinningNumber() {
@@ -86,15 +79,6 @@ class LottoController {
       OutputView.printErrorMessage(error.message);
       return this.inputBonusNumber(winningNumber);
     }
-  }
-
-  printResult(purchaseAmount) {
-    const ranking = new Comparer(this.#winningLotto, this.#lottos).getRanking();
-    const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
-
-    OutputView.printRanking(ranking);
-    OutputView.printProfitRate(profitRate);
-    OutputView.printEmptyLine();
   }
 
   async inputRestartCommand() {
