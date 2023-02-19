@@ -38,10 +38,10 @@ const OutputView = {
     this.printLottos(lottos);
   },
 
-  printResult(lottoAmount, lottoRanking) {
+  printResult(lottoAmount, lottoScore) {
     this.printResultMessage();
-    this.printLottoResults(lottoRanking);
-    this.printTotalBenefit(lottoScore.getBenefitRate(lottoAmount));
+    this.printLottoResults(lottoScore.lottoRanking);
+    this.printTotalBenefit(lottoScore.getLottoBenefitRate(lottoAmount));
   },
 };
 
