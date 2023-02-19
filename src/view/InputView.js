@@ -19,6 +19,12 @@ const InputView = {
 
     return bonusNumber;
   },
+
+  async readRestartInput() {
+    const restartInput = await Console.readLine(messages.INPUT.RESTART);
+
+    return restartInput;
+  },
 };
 
 export default InputView;
