@@ -1,10 +1,9 @@
 import messages from '../constants/messages';
-import InputValidator from '../validator/InputValidator';
+import inputValidator from '../validator/InputValidator';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoMachine from '../model/LottoMachine';
 import { values } from '../constants/values';
-import Console from '../utils/console';
 
 class LottoController {
   #LottoMachine;
@@ -26,7 +25,7 @@ class LottoController {
     const moneyInput = await InputView.readInputMoney();
 
     try {
-      InputValidator.validateMoneyInput(moneyInput);
+      inputValidator.validateMoneyInput(moneyInput);
       OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
       this.processLottoMachine(moneyInput);
       OutputView.printLottos(this.#LottoMachine.lottos);
@@ -40,7 +39,7 @@ class LottoController {
     const winningNumber = await InputView.readWinningNumber();
 
     try {
-      InputValidator.validateWinningNumberInput(winningNumber);
+      inputValidator.validateWinningNumberInput(winningNumber);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleWinningNumber();
@@ -53,7 +52,7 @@ class LottoController {
     const bonusNumber = await InputView.readBonusNumber();
 
     try {
-      InputValidator.validateBonusNumberInput(bonusNumber);
+      inputValidator.validateBonusNumberInput(bonusNumber);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleBonusNumber();
