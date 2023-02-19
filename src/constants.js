@@ -20,4 +20,5 @@ export const ERROR = {
 export const MIN_LOTTO_NUMBER = 1;
 export const MAX_LOTTO_NUMBER = 45;
 export const MONEY_UNIT = 1000;
-export const LOTTO_NUMBERS_LENGTH = 6;
+export const RESTART_COMMAND = 'y';
+export const END_COMMAND = 'n';

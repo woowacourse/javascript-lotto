@@ -6,6 +6,7 @@ import InputView from './view/InputView';
 import OutputView from './view/OutputView';
 import Validation from './Validation';
 import Console from '../src/utils/Console';
+import { RESTART_COMMAND } from './constants';
 
 class LottoController {
   async proceedBuyLottos() {
@@ -44,7 +45,7 @@ class LottoController {
     return Console.repeatWhile(async () => {
       const restartCommand = await InputView.readRestartCommand();
       Validation.validateRestartCommand(restartCommand);
-      if (restartCommand === 'y') {
+      if (restartCommand === RESTART_COMMAND) {
         return true;
       }
       OutputView.printExit();

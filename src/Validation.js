@@ -1,4 +1,12 @@
-import { ERROR, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MONEY_UNIT } from './constants';
+import {
+  ERROR,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+  MONEY_UNIT,
+  RESTART_COMMAND,
+  END_COMMAND,
+  LOTTO_DIGITS
+} from './constants';
 
 const Validation = {
   REGEX_NUMERIC: /^\d+$/,
@@ -63,7 +71,7 @@ const Validation = {
   },
 
   validateRestartCommand(command) {
-    const commands = ['y', 'n'];
+    const commands = [RESTART_COMMAND, END_COMMAND];
     if (!commands.includes(command)) {
       throw new Error(ERROR.INVALID_COMMAND);
     }
