@@ -10,14 +10,16 @@ class LottoResult {
     new Reward(3, 5_000),
   ];
 
+  #winningLotto;
+
   constructor(winningLotto) {
-    this.winningLotto = winningLotto;
+    this.#winningLotto = winningLotto;
   }
 
   findReward(lotto) {
     const foundReward =
       LottoResult.REWARDS.find((reward) => {
-        return reward.canReceive(lotto, this.winningLotto);
+        return reward.canReceive(lotto, this.#winningLotto);
       }) ?? null;
     return foundReward;
   }

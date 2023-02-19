@@ -2,23 +2,27 @@ import LottoFactory from './LottoFactory';
 import Validation from '../Validation';
 
 class Buyer {
+  #money;
+  #gainedMoney;
+  #lottos;
+
   constructor(money) {
     Validation.validateMoney(money);
-    this.money = money;
-    this.gainedMoney = 0;
+    this.#money = money;
+    this.#gainedMoney = 0;
   }
 
   buyLottos(lottoFactory = new LottoFactory()) {
-    this.lottos = lottoFactory.sellLottos(this.money);
+    this.#lottos = lottoFactory.sellLottos(this.#money);
   }
 
   getLottos() {
-    return this.lottos;
+    return this.#lottos;
   }
 
   receiveRewards(lottoResult) {
-    const receivedRewards = lottoResult.countRewards(this.lottos);
-    this.gainedMoney = receivedRewards.reduce(
+    const receivedRewards = lottoResult.countRewards(this.#lottos);
+    this.#gainedMoney = receivedRewards.reduce(
       (money, { reward, count }) => money + reward.getMoney() * count,
       0,
     );
@@ -26,7 +30,7 @@ class Buyer {
   }
 
   getProfitRate() {
-    return this.gainedMoney / this.money;
+    return this.#gainedMoney / this.#money;
   }
 }
 

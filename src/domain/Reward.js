@@ -1,20 +1,23 @@
 class Reward {
+  #matchingNumbers;
+  #money;
+
   constructor(matchingNumbers, money) {
-    this.matchingNumbers = matchingNumbers;
-    this.money = money;
+    this.#matchingNumbers = matchingNumbers;
+    this.#money = money;
   }
 
   getMatchingNumber() {
-    return this.matchingNumbers;
+    return this.#matchingNumbers;
   }
 
   getMoney() {
-    return this.money;
+    return this.#money;
   }
 
   canReceive(lotto, winningLotto) {
     const winningNumbers = winningLotto.getLottoNumbers();
-    return lotto.countMatchingNumbers(winningNumbers) === this.matchingNumbers;
+    return lotto.countMatchingNumbers(winningNumbers) === this.#matchingNumbers;
   }
 }
 

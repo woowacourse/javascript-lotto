@@ -1,19 +1,22 @@
 import Validation from '../Validation';
 
 class WinningLotto {
+  #lotto;
+  #bonusNumber;
+
   constructor(lotto, bonusNumber) {
-    this.lotto = lotto;
+    this.#lotto = lotto;
     Validation.validateLottoNumber(bonusNumber);
     Validation.validateBonusNumberDistinct(this.getLottoNumbers(), bonusNumber);
-    this.bonusNumber = bonusNumber;
+    this.#bonusNumber = bonusNumber;
   }
 
   getLottoNumbers() {
-    return this.lotto.getLottoNumbers();
+    return this.#lotto.getLottoNumbers();
   }
 
   getBonusNumber() {
-    return this.bonusNumber;
+    return this.#bonusNumber;
   }
 }
 
