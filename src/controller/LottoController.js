@@ -14,8 +14,7 @@ class LottoController {
     await this.handleWinningNumber();
     await this.handleBonusNumber();
 
-    const statistics = this.#LottoMachine.calculateStatistics();
-    this.printStatistics(statistics);
+    this.printStatistics();
 
     await this.handleRestart();
   }
@@ -54,8 +53,8 @@ class LottoController {
     }
   }
 
-  printStatistics(statistics) {
-    OutputView.printStatistics(statistics);
+  printStatistics() {
+    OutputView.printStatistics(this.#LottoMachine.calculateStatistics());
   }
 
   async handleRestart() {
