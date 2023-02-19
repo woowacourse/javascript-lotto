@@ -11,7 +11,7 @@ const Validation = {
 
   validateMoney(money) {
     if (!Validation.isNumeric(money) || money < 0) {
-      throw new Error('로또 구매 금액은 0 이상의 정수를 입력해야 한다.');
+      throw new Error('로또 구매 금액은 0 이상의 정수를 입력해야 합니다.');
     }
     if (money % 1000 !== 0 || money / 1000 <= 0) {
       throw new Error('1000원 단위로 금액을 주어야 합니다.');
@@ -37,7 +37,7 @@ const Validation = {
 
   validateIsArray(lottoNumbers) {
     if (!Array.isArray(lottoNumbers)) {
-      throw new Error('배열이 들어와야 합니다.');
+      throw new Error('로또 번호는 배열 타입이어야 합니다.');
     }
   },
 
