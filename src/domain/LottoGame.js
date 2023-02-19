@@ -1,7 +1,6 @@
 import Validator from './Validator.js';
 import Lotto from './Lotto.js';
 import WinningLotto from './WinningLotto.js';
-import getProfitRate from '../utils/getProfitRate.js';
 import { COMMAND, LOTTO_PRICE, PRIZE, LOTTO_NUMBER } from '../utils/constants.js';
 
 class LottoGame {
@@ -23,7 +22,7 @@ class LottoGame {
     const purchaseMoney = this.#lottos.length * LOTTO_PRICE;
     const winningMoney = this.#getWinningMoney();
 
-    return getProfitRate(purchaseMoney, winningMoney);
+    return (winningMoney / purchaseMoney) * 100;
   }
 
   getWinningRankResult() {
