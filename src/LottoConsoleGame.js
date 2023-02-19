@@ -2,7 +2,6 @@ import { LOTTO, RANKING_THRESHOLD, GAME_COMMAND } from './constants';
 import lottoGameCalculator from './domain/lottoGameCalculator';
 import lottoGameValidator from './domain/lottoGameValidator';
 import Lotto from './domain/models/Lotto';
-import generateRandomNumber from './utils/generateRandomNumber';
 import Interface from './view/Interface';
 import outputView from './view/outputView';
 
@@ -34,13 +33,12 @@ class LottoConsoleGame {
   }
 
   buyLotto() {
-    const randomNumbers = [];
-    while (randomNumbers.length < LOTTO.numbersLength) {
-      const randomNumber = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
-      if (!randomNumbers.includes(randomNumber)) randomNumbers.push(randomNumber);
-    }
+    const randomNumbers = Array.from({ length: LOTTO.maxNumber }, (_, i) => i + LOTTO.minNumber)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, LOTTO.numbersLength)
+      .sort((a, b) => a - b);
 
-    return new Lotto(randomNumbers.sort((a, b) => a - b));
+    return new Lotto(randomNumbers);
   }
 
   makeRankings(winningNumbers, bonusNumber) {
