@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="resultRestart">
-      <button class="checkResult">결과 확인하기</button>
+      <button class="result">결과 확인하기</button>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body> -->
@@ -52,5 +52,39 @@
     <div id="app">
       <h1>🏆 당첨 통계 🏆</h1>
     </div>
+    <table class="resultTable">
+      <tr class="explainRow">
+        <th class="matchAmount">일치 개수</th>
+        <th class="reward">당첨금</th>
+        <th class="winAmount"> 당첨 개수</th>
+      </tr>
+      <tr class="Row">
+        <td>3개</td>
+        <td>5,000</td>
+        <td><span class="fifth">0</span>개</td>
+      </tr>
+      <tr class="Row">
+        <td>4개</td>
+        <td>50,000</td>
+        <td><span class="fourth">0</span>개</td>
+      </tr>
+      <tr class="Row">
+        <td>5개</td>
+        <td>1,500,000</td>
+        <td><span class="third">0</span>개</td>
+      </tr>
+      <tr class="Row">
+        <td>5개+보너스볼</td>
+        <td>30,000,000</td>
+        <td><span class="second">0</span>개</td>
+      </tr>
+      <tr class="Row">
+        <td>6개</td>
+        <td>2,000,000,000</td>
+        <td><span class="first">0</span>개</td>
+      </tr>
+    </table>
+    <div class="explainRate"><p>당신의 총 수익률은 <span class="rate">0</span>%입니다.</p></div>
+    <div class="resultRestart"><button class="restart">다시 시작하기</button></div>
   </div>
 </html>
