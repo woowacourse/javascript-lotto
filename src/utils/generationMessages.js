@@ -43,9 +43,9 @@ const generationMessages = Object.freeze({
   },
 
   statisticsMessage(statistics) {
-    return AWARDS_ORDER.map((awards) =>
-      getMessagesByStatistics(awards, statistics[awards] || 0)
-    ).join('\n');
+    return AWARDS_ORDER.map((award) => getMessagesByStatistics(award, statistics[award] || 0)).join(
+      '\n'
+    );
   },
 
   earningRateMessage(earningRate) {
