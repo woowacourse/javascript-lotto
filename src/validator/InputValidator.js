@@ -32,7 +32,6 @@ const inputValidator = {
         },
       ]);
     });
-
     this.validateWithCondition([
       { condition: validatorUtils.hasNoBlank(winningNumberSplit), errorMessage: messages.ERROR.HAS_BLANK },
     ]);
