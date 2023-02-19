@@ -19,8 +19,8 @@ class ControllerLotto {
   }
 
   async playStatisticalChart() {
-    const winningNumber = await (this.inputWinningNumbers())
-    const bonusNumber = await this.inputBonusNumber()
+    const winningNumber = await this.inputWinningNumbers();
+    const bonusNumber = await this.inputBonusNumber();
     const result = this.#lottoMachine.getWinningStatus(winningNumber.split(','), bonusNumber);
     this.showWinningHistory(result);
     const profit = this.#lottoMachine.getProfitRate(this.#money, result);

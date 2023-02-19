@@ -55,14 +55,15 @@ class LottoMachine {
     });
     return ranks;
   }
+
   bouseNumberChecked(numbers, bonusNumber) {
     if (numbers.includes(bonusNumber)) return 7;
     return 5;
   }
 
-  getProfitRate(money, result){
-    this.#lottoResult.earningsRate(money, result)
-    return this.#lottoResult.getProfit
+  getProfitRate(money, result) {
+    this.#lottoResult.earningsRate(money, result);
+    return this.#lottoResult.getProfit;
   }
 }
 

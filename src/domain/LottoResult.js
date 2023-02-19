@@ -10,25 +10,17 @@ class RankedLotto {
     ranks
       .sort((a, b) => b - a)
       .forEach(number => {
-        switch (number) {
-          case NUMBER.RANK_SECOND:
-            result[3]++;
-            break;
-          case NUMBER.RANK_FIRST:
-            result[4]++;
-            break;
-          case NUMBER.RANK_THIRD:
-            result[2]++;
-            break;
-          case NUMBER.RANK_FOURTH:
-            result[1]++;
-            break;
-          case NUMBER.RANK_FIFTH:
-            result[0]++;
-            break;
-        }
+        result[this.getRank(number)]++;
       });
     return result;
+  }
+
+  getRank(number) {
+    if (number === NUMBER.RANK_SECOND) return 1;
+    if (number === NUMBER.RANK_FIRST) return 0;
+    if (number === NUMBER.RANK_THIRD) return 2;
+    if (number === NUMBER.RANK_FOURTH) return 3;
+    if (number === NUMBER.RANK_FIFTH) return 4;
   }
 
   earningsRate(lottoMoney, result) {
