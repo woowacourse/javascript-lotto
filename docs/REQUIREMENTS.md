@@ -66,13 +66,14 @@
         - [X] button = checkResult
 
     2. 당첨통계
-        - [ ] header
+        - [X] 검은 뒷배경 만들기
+        - [X] header
             - h1
-        - [ ] winning table
+        - [X] winning table
             - 가로줄
-        - [ ] p = 수익률
+        - [X] p = 수익률
             - border
-        - [ ] button = restart
+        - [X] button = restart
 
     3. js 연결
         - [ ] 구입 버튼 누르면 amount input 입력하기
