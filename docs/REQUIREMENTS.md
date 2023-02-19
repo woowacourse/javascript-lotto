@@ -53,18 +53,17 @@
 2. css 만들기
 
     1. 내 당첨번호 확인
-        - [ ] header  
-            - h1
-        - [ ] label + inputAmount 
-            - display: table
-        - [ ] label + printLotto
+        - [X] header= text-align
+        - [X] p + inputAmount
+            - input/button: 비율
+        - [X] label + printLotto
             - display:flex / overflow: scroll
             - img: 크기 맞추기 
-        - [ ] p = input설명
-        - [ ] label + inputLotto
+        - [X] p = input설명
+        - [X] label + inputLotto
             - 6자리 / 1자리= display: flex
             - 1자리.. = 왼쪽 정렬
-        - [ ] button = checkResult
+        - [X] button = checkResult
 
     2. 당첨통계
         - [ ] header
