@@ -1,28 +1,22 @@
 class BonusNumber {
   #number = 0;
 
-  constructor(bonusNumberInput, winningNumbers) {
-    this.validate(parseInt(bonusNumberInput, 10), winningNumbers);
-    this.#number = parseInt(bonusNumberInput, 10);
+  constructor(bonusNumber) {
+    this.#number = bonusNumber;
+
+    this.validateBonusLotto();
   }
 
-  validate(bonusNumber, winningNumbers) {
-    if (!this.isValidBonusNumber(bonusNumber)) {
+  validateBonusLotto() {
+    if (!this.isValidBonusNumber()) {
       throw new Error('[ERROR] 보너스 번호는 1 ~ 45 이내의 숫자여야 합니다.');
     }
-    if (this.isDuplicateFor(bonusNumber, winningNumbers)) {
-      throw new Error(
-        '[ERROR] 보너스 번호와 당첨번호가 중복이 되어서는 안됩니다.'
-      );
-    }
   }
 
-  isValidBonusNumber(bonusNumber) {
-    return bonusNumber >= 1 && bonusNumber <= 45;
-  }
+  isValidBonusNumber() {
+    this.#number = Number(this.#number);
 
-  isDuplicateFor(bonusNumber, winningNumbers) {
-    return winningNumbers.numbers.includes(bonusNumber);
+    return this.#number >= 1 && this.#number <= 45;
   }
 
   get number() {
