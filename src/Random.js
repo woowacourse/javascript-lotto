@@ -1,14 +1,19 @@
+import { SETTINGS } from "./Config";
+
 const Random = {
   getnerateRandomNumbers() {
     const randomNumbers = [];
-    while (randomNumbers.length < 6) {
+    while (randomNumbers.length < SETTINGS.RANDOM_NUMBER_LENGTH) {
       Random.makeRandomNumbers(randomNumbers);
     }
     return randomNumbers;
   },
 
   makeRandomNumbers(randomNumbers) {
-    const number = parseInt(Math.random() * 45 + 1, 10);
+    const number = parseInt(
+      Math.random() * SETTINGS.LOTTO_RANDOM_NUMBER_RANGE + 1,
+      10
+    );
     if (randomNumbers.indexOf(number) < 0) {
       return randomNumbers.push(number);
     }
