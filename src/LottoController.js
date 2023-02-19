@@ -33,7 +33,7 @@ class LottoController {
   proceedLottoResult() {
     const lottoResult = new LottoResult(this.#winningLotto);
     const receivedRewards = this.#buyer.receiveRewards(lottoResult);
-    const profitRate = this.#buyer.getProfitRate();
+    const profitRate = this.#buyer.getProfitRate(lottoResult);
 
     OutputView.printLottoResult(receivedRewards);
     OutputView.printProfitRate(profitRate);

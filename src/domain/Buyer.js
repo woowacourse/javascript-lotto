@@ -3,13 +3,11 @@ import Validation from '../Validation';
 
 class Buyer {
   #money;
-  #gainedMoney;
   #lottos;
 
   constructor(money) {
     Validation.validateMoney(money);
     this.#money = money;
-    this.#gainedMoney = 0;
   }
 
   buyLottos(lottoFactory = new LottoFactory()) {
@@ -22,15 +20,15 @@ class Buyer {
 
   receiveRewards(lottoResult) {
     const receivedRewards = lottoResult.countRewards(this.#lottos);
-    this.#gainedMoney = receivedRewards.reduce(
-      (money, { reward, count }) => money + reward.getMoney() * count,
-      0,
-    );
     return receivedRewards;
   }
 
-  getProfitRate() {
-    return this.#gainedMoney / this.#money;
+  getProfitRate(lottoResult) {
+    const gainedMoney = this.receiveRewards(lottoResult).reduce(
+      (money, { reward, count }) => money + reward.getMoney() * count,
+      0,
+    );
+    return gainedMoney / this.#money;
   }
 }
 

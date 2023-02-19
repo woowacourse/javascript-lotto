@@ -45,7 +45,7 @@ describe('Buyer 클래스 테스트', () => {
     // when
     buyer.buyLottos(lottoFactory);
     buyer.receiveRewards(lottoResult);
-    const profitRate = buyer.getProfitRate();
+    const profitRate = buyer.getProfitRate(lottoResult);
 
     // then
     expect(profitRate).toBe(6001);
