@@ -10,10 +10,11 @@ const Random = {
   },
 
   generateRandomNumbers() {
-    const shuffledNumbers = this.makeTargetNumbers().sort(() => Math.random() - 0.5)
-    return shuffledNumbers.slice(0,6)
-  }
-
+    const shuffledNumbers = this.makeTargetNumbers().sort(
+      () => Math.random() - 0.5
+    );
+    return shuffledNumbers.slice(0, 6);
+  },
 };
 
 export default Random;

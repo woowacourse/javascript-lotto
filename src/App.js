@@ -1,4 +1,4 @@
-import LOTTO_GAME from "./constants/LottoGame"
+import LOTTO_GAME from "./constants/LottoGame";
 import VIEW from "./constants/View";
 import Console from "./util/Console";
 import InputView from "./view/InputView";
@@ -13,7 +13,9 @@ import Utils from "./util/Utils";
 class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
-    const lottos = await this.createLotto(parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE));
+    const lottos = await this.createLotto(
+      parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE)
+    );
     OutputView.printBuyLottos(lottos.lottos);
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
@@ -73,7 +75,7 @@ class App {
   compareLottos(lottos, winningLotto, bonusNumber) {
     lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
     const lottoScore = new LottoScore(lottos.lottos);
-    lottoScore.compareLottosScore(lottos.lottos);
+    lottoScore.compareLottosScore();
     OutputView.printResult(lottos.lottos.length, lottoScore);
   }
 
@@ -85,7 +87,7 @@ class App {
       Console.print(e);
       return await this.getRetryInput();
     }
-    return retryInput
+    return retryInput;
   }
 
   async retryLottoGame(retryInput, lottos) {

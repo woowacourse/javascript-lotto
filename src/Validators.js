@@ -2,7 +2,7 @@ import Lotto from "./constants/LottoGame";
 
 const Validators = {
   isNumber(input) {
-    return (/[0-9]/g.test(input))
+    return /[0-9]/g.test(input);
   },
 
   isString(input) {
@@ -34,7 +34,7 @@ const Validators = {
 
   isCorrectLength(lottoNumbers) {
     return lottoNumbers.length === Lotto.MAX_LENGTH;
-  }
+  },
 };
 
 export default Validators;
