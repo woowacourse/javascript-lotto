@@ -7,7 +7,7 @@ const {
   checkListLengthIsSix,
   checkBonusNumberDuplicate,
   checkBonusNumberBetween1And45,
-  checkYOrN,
+  checkRestartOrQuitCommend,
 } = validator;
 
 const throwErrorIfInvalid = (values, validator) => {
@@ -148,13 +148,13 @@ test("보너스 번호가 1 ~ 45 사이일 경우 에러 메시지를 출력하�
 });
 
 test("입력받은 문자가 대, 소문자 Y/y 또는 N/n이 아닌 경우 에러 메시지를 출력한다.", () => {
-  const response = ["T", "YY", "NN", "^^", 1, " ", ""];
+  const commend = ["T", "YY", "NN", "^^", 1, " ", ""];
 
-  throwErrorIfInvalid(response, checkYOrN);
+  throwErrorIfInvalid(commend, checkRestartOrQuitCommend);
 });
 
 test("입력받은 문자가 대, 소문자 Y/y 또는 N/n일 경우 에러 메시지를 출력하지 않는다.", () => {
-  const response = ["Y", "y", "N", "n"];
+  const commend = ["Y", "y", "N", "n"];
 
-  throwNoErrorIfValid(response, checkYOrN);
+  throwNoErrorIfValid(commend, checkRestartOrQuitCommend);
 });

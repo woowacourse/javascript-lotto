@@ -1,24 +1,12 @@
-import { OUTPUT_MESSAGE } from "../constants";
-import { getAscendingSortedNumbers } from "../util/sort";
-const {
-  NUMBER_OF_PURCHASED_TICKETS,
-  MATCHING_THREE_NUMBERS,
-  MATCHING_FOUR_NUMBERS,
-  MATCHING_FIVE_NUMBERS,
-  MATCHING_FIVE_NUMBERS_AND_BONUS_NUMBER,
-  MATCHING_SIX_NUMBERS,
-  RATE_OF_RETURN,
-  LINE,
-  STATISTICS,
-} = OUTPUT_MESSAGE;
+import { getAscendingSortedNumbers } from "../util";
 
 export const outputView = {
   print(message) {
     console.log(message);
   },
 
-  printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets) {
-    this.print(`${NUMBER_OF_PURCHASED_TICKETS(numberOfPurchasedLottoTickets)}`);
+  printNumberOfPurchasedLottoTickets(purchaseCount) {
+    this.print(`${purchaseCount}개를 구매했습니다.`);
   },
 
   printLottoTickets(lottoTickets) {
@@ -26,18 +14,16 @@ export const outputView = {
   },
 
   printPlacesOfLottoTickets(placesOfLottoTickets) {
-    this.print(`${STATISTICS}
-${LINE}`);
-    this.print(MATCHING_THREE_NUMBERS(placesOfLottoTickets.FIFTH_PLACE));
-    this.print(MATCHING_FOUR_NUMBERS(placesOfLottoTickets.FOURTH_PLACE));
-    this.print(MATCHING_FIVE_NUMBERS(placesOfLottoTickets.THIRD_PLACE));
-    this.print(MATCHING_FIVE_NUMBERS_AND_BONUS_NUMBER(placesOfLottoTickets.SECOND_PLACE));
-    this.print(MATCHING_SIX_NUMBERS(placesOfLottoTickets.FIRST_PLACE));
+    this.print(`\n당첨 통계
+
+3개 일치 (5,000원) - ${placesOfLottoTickets.FIFTH_PLACE}개
+4개 일치 (50,000원) - ${placesOfLottoTickets.FOURTH_PLACE}개
+5개 일치 (1,500,000원) - ${placesOfLottoTickets.THIRD_PLACE}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${placesOfLottoTickets.SECOND_PLACE}개
+6개 일치 (2,000,000,000원) - ${placesOfLottoTickets.FIRST_PLACE}개`);
   },
 
   printRateOfReturn(rateOfReturn) {
-    rateOfReturn = rateOfReturn.toLocaleString();
-
-    this.print(`${RATE_OF_RETURN(rateOfReturn)}`);
+    this.print(`총 수익률은 ${rateOfReturn.toLocaleString()}% 입니다.\n`);
   },
 };
