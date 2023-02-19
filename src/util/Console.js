@@ -5,7 +5,7 @@ const readLine = readline.createInterface({ input, output });
 
 const Console = {
   read(query) {
-    readLine.question(query);
+    return readLine.question(query);
   },
 
   print(message) {
@@ -17,4 +17,4 @@ const Console = {
   },
 };
 
-module.exports = Console;
+export default Console;

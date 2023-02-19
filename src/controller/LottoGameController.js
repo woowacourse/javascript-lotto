@@ -1,10 +1,9 @@
-const InputView = require('../view/InputView');
-const OutputView = require('../view/OutputView');
-const LottoGame = require('../domain/LottoGame');
-const Console = require('../util/Console');
-const InputValidator = require('../validators/InputValidator');
-const LottoTicket = require('../domain/LottoTicket');
-const { GAME_COMMAND } = require('../constants');
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
+import LottoGame from '../domain/LottoGame';
+import Console from '../util/Console';
+import InputValidator from '../validators/InputValidator';
+import { GAME_COMMAND } from '../constants';
 
 class LottoGameController {
   async play() {
@@ -16,7 +15,7 @@ class LottoGameController {
     const winningNumbers = await this.#getLottoWinningNumbers();
     const bonusNumber = await this.#getLottoBonusNumber();
 
-    this.#printLottoGameResult();
+    this.#printLottoGameResult(winningNumbers, bonusNumber);
 
     const restartCommand = await this.#getRestartCommand();
 
@@ -70,8 +69,8 @@ class LottoGameController {
     }
   }
 
-  #printLottoGameResult() {
-    const lottoRanksCount = this.lottoGame.countLottoRanks(this.winningNumber, bonusNumber);
+  #printLottoGameResult(winningNumbers, bonusNumber) {
+    const lottoRanksCount = this.lottoGame.countLottoRanks(winningNumbers, bonusNumber);
 
     OutputView.printResultTitle();
     OutputView.printLottoRanksResult(lottoRanksCount);
@@ -93,9 +92,9 @@ class LottoGameController {
   }
 
   #handleRestartProcess(restartCommand) {
-    if (command === GAME_COMMAND.NO) return Console.close();
+    if (restartCommand === GAME_COMMAND.NO) return Console.close();
     this.play();
   }
 }
 
-module.exports = LottoGameController;
+export default LottoGameController;

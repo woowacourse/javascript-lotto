@@ -1,4 +1,4 @@
-const LottoValidator = require('../validators/LottoValidator');
+import LottoValidator from '../validators/LottoValidator';
 
 class LottoTicket {
   #numbers;
@@ -21,4 +21,4 @@ class LottoTicket {
   }
 }
 
-module.exports = LottoTicket;
+export default LottoTicket;

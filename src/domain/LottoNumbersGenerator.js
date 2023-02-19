@@ -1,4 +1,4 @@
-const Random = require('../util/Random');
+import Random from '../util/Random';
 
 const generateLottoNumbers = () => {
   const lottoNumbers = [];
@@ -8,4 +8,4 @@ const generateLottoNumbers = () => {
   return [...new Set(lottoNumbers)];
 };
 
-module.exports = generateLottoNumbers;
+export default generateLottoNumbers;

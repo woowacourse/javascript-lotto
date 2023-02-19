@@ -1,4 +1,4 @@
-const Console = require('../util/Console');
+import Console from '../util/Console';
 
 const InputView = {
   readUserBudget() {
@@ -18,4 +18,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

@@ -1,5 +1,5 @@
-const Validation = require('../util/Validation');
-const LottoValidator = require('./LottoValidator');
+import Validation from '../util/Validation';
+import LottoValidator from './LottoValidator';
 
 const InputValidator = {
   checkUserBudget(userBudget) {
@@ -10,7 +10,7 @@ const InputValidator = {
       throw new Error('[ERROR] 구입 금액은 1000원 단위로만 입력가능합니다.');
   },
 
-  checkWinningNumber(winningNumber) {
+  checkWinningNumbers(winningNumber) {
     if (!Validation.isValidInputType(winningNumber, /^[0-9]+(,[0-9]+)+$/)) {
       throw new Error('[ERROR] 당첨 번호는 콤마(,) 기준으로 입력해야합니다.');
     }
@@ -28,4 +28,4 @@ const InputValidator = {
   },
 };
 
-module.exports = InputValidator;
+export default InputValidator;
