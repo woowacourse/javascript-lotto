@@ -1,6 +1,7 @@
 import LottoController from './LottoController';
 
 class App {
+  /** @type {LottoController} */
   #lottoController;
 
   constructor() {
