@@ -30,8 +30,8 @@ class LottoScore {
 
   determineBonusOrNot(lotto) {
     lotto.isContainBonusNumber
-      ? this.addScoreBoard(Score.FIVE_BONUS)
-      : this.addScoreBoard(Score.FIVE);
+      ? this.addScoreBoard(Score.SECOND)
+      : this.addScoreBoard(Score.THIRD);
   }
 
   checkIsFailScore(lotto) {
@@ -44,20 +44,20 @@ class LottoScore {
 
   addScoreBoard(score) {
     switch (score) {
-      case Score.THREE:
-        this.#lottoRanking[Score.THREE] += 1;
+      case Score.FIFTH:
+        this.#lottoRanking[Score.FIFTH] += 1;
         break;
-      case Score.FOUR:
-        this.#lottoRanking[Score.FOUR] += 1;
+      case Score.FOURTH:
+        this.#lottoRanking[Score.FOURTH] += 1;
         break;
-      case Score.FIVE:
-        this.#lottoRanking[Score.FIVE] += 1;
+      case Score.THIRD:
+        this.#lottoRanking[Score.THIRD] += 1;
         break;
-      case Score.FIVE_BONUS:
-        this.#lottoRanking[Score.FIVE_BONUS] += 1;
+      case Score.SECOND:
+        this.#lottoRanking[Score.SECOND] += 1;
         break;
-      case Score.SIX:
-        this.#lottoRanking[Score.SIX] += 1;
+      case Score.FIRST:
+        this.#lottoRanking[Score.FIRST] += 1;
     }
   }
 
