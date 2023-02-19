@@ -2,7 +2,6 @@ const { COMMAND } = require('./constant/setting');
 
 const Comparer = require('./domain/Comparer');
 const LottoMachine = require('./domain/LottoMachine');
-const ProfitCalculator = require('./domain/ProfitCaculator');
 const WinningLotto = require('./domain/WinningLotto');
 const {
   validatePurchaseAmount,
@@ -16,25 +15,19 @@ const Console = require('./util/Console');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 const convertToNumeric = require('./util/convertToNumeric');
+const calculateProfitRate = require('./domain/calculateProfitRate');
 
 class LottoController {
+  #lottoMachine;
+
+  #lottos;
+
   async start() {
     const purchaseAmount = await this.inputPurchaseAmount();
+    this.#processLottoIssue(purchaseAmount);
 
-    const lottoMachine = new LottoMachine(purchaseAmount);
-    const lottoQuantity = lottoMachine.getQuantity();
-    const lottos = Array.from({ length: lottoQuantity }, () => lottoMachine.issueLotto());
-    OutputView.printPurchaseStatus(lottoQuantity, lottos);
-
-    const winningNumber = await this.inputWinningNumber();
-    OutputView.printEmptyLine();
-    const bonusNumber = await this.inputBonusNumber(winningNumber);
-    OutputView.printEmptyLine();
-
-    const winningLotto = new WinningLotto(winningNumber, bonusNumber);
-    const ranking = new Comparer(winningLotto, lottos).getRanking();
-    const profitRate = new ProfitCalculator(ranking).getProfitRate(purchaseAmount);
-    OutputView.printStatistics(ranking, profitRate);
+    const winningLotto = await this.#makeWinningLotto();
+    this.#processLottoComparison(winningLotto);
 
     const restartCommand = await this.inputRestartCommand();
     this.processRestartCommand(restartCommand);
@@ -49,6 +42,13 @@ class LottoController {
       OutputView.printErrorMessage(error.message);
       return this.inputPurchaseAmount();
     }
+  }
+
+  #processLottoIssue(purchaseAmount) {
+    this.#lottoMachine = new LottoMachine(purchaseAmount);
+    this.#lottos = this.#lottoMachine.issueLottos();
+
+    OutputView.printPurchaseStatus(this.#lottoMachine.getQuantity(), this.#lottos);
   }
 
   async inputWinningNumber() {
@@ -79,6 +79,23 @@ class LottoController {
       OutputView.printErrorMessage(error.message);
       return this.inputBonusNumber(winningNumber);
     }
+  }
+
+  async #makeWinningLotto() {
+    const winningNumber = await this.inputWinningNumber();
+    OutputView.printEmptyLine();
+    const bonusNumber = await this.inputBonusNumber(winningNumber);
+    OutputView.printEmptyLine();
+
+    return new WinningLotto(winningNumber, bonusNumber);
+  }
+
+  #processLottoComparison(winningLotto) {
+    const lottoComparer = new Comparer(winningLotto, this.#lottos);
+    const ranking = lottoComparer.getRanking();
+    const profitRate = calculateProfitRate(ranking, this.#lottoMachine.getQuantity());
+
+    OutputView.printStatistics(ranking, profitRate);
   }
 
   async inputRestartCommand() {
