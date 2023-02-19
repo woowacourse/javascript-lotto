@@ -1,9 +1,30 @@
 import LOTTO from '../constants/lotto.js';
+import ERROR from '../constants/error.js';
 import LOTTO_GAME from '../constants/lottoGame.js';
 import validator from '../utils/validator.js';
 import parseNumbers from '../utils/parseNumbers.js';
 
 const lottoGameValidator = {
+  throwErrorIfInvalidBuyMoney(buyMoneyText) {
+    if (this.isValidBuyMoney(buyMoneyText)) return;
+    throw new Error(ERROR.BUY_MONEY);
+  },
+
+  throwErrorIfInvalidLuckyNumbers(luckyNumbersText) {
+    if (this.isValidLuckyNumbers(luckyNumbersText)) return;
+    throw new Error(ERROR.LUCKY_NUMBERS);
+  },
+
+  throwErrorIfInvalidBonusNumber(bonusNumberText, luckyNumbers) {
+    if (this.isValidBonusNumber(bonusNumberText, luckyNumbers)) return;
+    throw new Error(ERROR.BONUS_NUMBER);
+  },
+
+  throwErrorIfInvalidRetryCommand(retryCommand) {
+    if (this.isValidRetryCommand(retryCommand)) return;
+    throw new Error(ERROR.RETRY_COMMAND);
+  },
+
   isValidBuyMoney(buyMoneyText) {
     const buyMoney = parseInt(buyMoneyText, 10);
 
