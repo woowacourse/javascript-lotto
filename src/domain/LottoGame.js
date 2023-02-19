@@ -1,7 +1,7 @@
 const Lotto = require("./Lotto");
 const WinLotto = require("../domain/WinLotto");
 const Random = require("../util/Random");
-const { PRIZE, RANK, LOTTO } = require("../constant/Constant");
+const { PRIZE_AMOUNT, RANK, LOTTO } = require("../constant/Constant");
 
 const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 class LottoGame {
@@ -51,19 +51,21 @@ class LottoGame {
   }
 
   calculateRankResult(lottos, winLotto) {
-    const rankResult = { ...RANK_RESULT };
-
-    lottos.forEach((lotto) => {
-      const rank = this.calculateRank(lotto, winLotto);
-      rankResult[rank]++;
-    });
+    const rankResult = lottos.reduce(
+      (rankResult, lotto) => {
+        const rank = this.calculateRank(lotto, winLotto);
+        rankResult[rank]++;
+        return rankResult;
+      },
+      { ...RANK_RESULT }
+    );
 
     return rankResult;
   }
 
   calculateRevenueRate(rankResult, lottoCount) {
-    const revenue = Object.keys(PRIZE).reduce(
-      (result, rank) => result + PRIZE[rank] * rankResult[rank],
+    const revenue = Object.keys(PRIZE_AMOUNT).reduce(
+      (result, index) => result + PRIZE_AMOUNT[index] * rankResult[index],
       0
     );
 

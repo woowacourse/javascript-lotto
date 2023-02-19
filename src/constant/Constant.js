@@ -35,12 +35,18 @@ const LOTTO = {
   SIZE: 6,
 };
 
-const PRIZE = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
+const PRIZE_AMOUNT = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+};
 
 module.exports = {
   MESSAGES,
   ERRORMESSAGES,
   RANK,
   LOTTO,
-  PRIZE,
+  PRIZE_AMOUNT,
 };

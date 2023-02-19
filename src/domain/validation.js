@@ -15,17 +15,17 @@ const Validation = {
       throw new Error(ERRORMESSAGES.isWrongLottoNumberText);
 
     const winSet = new Set(winNumbers);
-    if (winSet.size != 6) throw new Error(ERRORMESSAGES.isSameLottoNumberText);
+    if (winSet.size != LOTTO.SIZE)
+      throw new Error(ERRORMESSAGES.isSameLottoNumberText);
   },
 
-  validateBonusNumber(winLotto, bonusNumber) {
-    if (
-      LOTTO.MIN > bonusNumber ||
-      bonusNumber > LOTTO.MAX ||
-      isNaN(bonusNumber)
-    )
+  validateBonusNumber(numbers, bonusNumber) {
+    const number = parseInt(bonusNumber);
+
+    if (LOTTO.MIN > number || number > LOTTO.MAX || isNaN(number))
       throw new Error(ERRORMESSAGES.isOverRangeBounsText);
-    if (winLotto.includes(bonusNumber))
+
+    if (numbers.includes(number))
       throw new Error(ERRORMESSAGES.isSameBonusNumberText);
   },
 
