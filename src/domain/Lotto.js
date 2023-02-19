@@ -9,16 +9,30 @@ class Lotto {
     this.#isContainBonusNumber = false;
   }
 
-  getLottoNumbers() {
-    return this.#lottoNumbers;
+  // getLottoNumbers() {
+  //   return this.#lottoNumbers;
+  // }
+
+  get lottoNumbers() {
+    return [...this.#lottoNumbers];
   }
 
-  getScore() {
-    return this.#score;
+  // getScore() {
+  //   return this.#score;
+  // }
+
+  get score() {
+    const tempScore = this.#score
+    return tempScore
   }
 
-  getIsContainBonusNumber() {
-    return this.#isContainBonusNumber;
+  // getIsContainBonusNumber() {
+  //   return this.#isContainBonusNumber;
+  // }
+
+  get isContainBonusNumber() {
+    const tempIsContainBonusNumber = this.#isContainBonusNumber
+    return tempIsContainBonusNumber
   }
 
   sortLottoNumbers() {

@@ -23,22 +23,22 @@ class LottoScore {
   }
 
   determineAddScore(lotto) {
-    !this.checkIsFailScore(lotto) && lotto.getScore() === 5
+    !this.checkIsFailScore(lotto) && lotto.score === 5
       ? this.determineBonusOrNot(lotto)
-      : this.addScoreBoard(lotto.getScore());
+      : this.addScoreBoard(lotto.score);
   }
 
   determineBonusOrNot(lotto) {
-    lotto.getIsContainBonusNumber()
+    lotto.isContainBonusNumber
       ? this.addScoreBoard(Score.FIVE_BONUS)
       : this.addScoreBoard(Score.FIVE);
   }
 
   checkIsFailScore(lotto) {
     return (
-      lotto.getScore() === Score.ZERO ||
-      lotto.getScore() === Score.ONE ||
-      lotto.getScore() === Score.TWO
+      lotto.score === Score.ZERO ||
+      lotto.score === Score.ONE ||
+      lotto.score === Score.TWO
     );
   }
 

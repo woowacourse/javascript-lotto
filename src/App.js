@@ -14,7 +14,7 @@ class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
     const lottos = await this.createLotto(parseInt(buyMoney / Constants.LOTTO_PRICE));
-    OutputView.printBuyLottos(lottos.getLottos());
+    OutputView.printBuyLottos(lottos.lottos);
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
     this.compareLottos(lottos, winningLotto, bonusNumber);
@@ -30,7 +30,7 @@ class App {
       Console.print(e);
       return await this.getBuyMoney();
     }
-    return buyMoney;
+    return Number(buyMoney);
   }
 
   async createLotto(lottoAmount) {
@@ -72,9 +72,9 @@ class App {
 
   compareLottos(lottos, winningLotto, bonusNumber) {
     lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
-    const lottoScore = new LottoScore(lottos.getLottos());
-    lottoScore.compareLottosScore(lottos.getLottos());
-    OutputView.printResult(lottos.getLottos().length, lottoScore);
+    const lottoScore = new LottoScore(lottos.lottos);
+    lottoScore.compareLottosScore(lottos.lottos);
+    OutputView.printResult(lottos.lottos.length, lottoScore);
   }
 
   async getRetryInput() {
