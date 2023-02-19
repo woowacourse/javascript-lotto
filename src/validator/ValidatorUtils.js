@@ -17,7 +17,7 @@ const validatorUtils = {
     return !splitedWinningNumber.includes(' ');
   },
 
-  yOrYes(restartInput) {
+  yOrN(restartInput) {
     return regex.Y_OR_N.test(restartInput);
   },
 };
