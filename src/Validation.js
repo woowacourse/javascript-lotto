@@ -59,7 +59,7 @@ const Validation = {
     }
   },
 
-  validateBonusNumberDistinct(lottoNumbers, bonusNumber) {
+  validateBonusNumberUnique(lottoNumbers, bonusNumber) {
     if (lottoNumbers.includes(bonusNumber)) {
       throw new LottoError(Messages.ERROR_BONUS_NUMBER_SHOULD_UNIQUE);
     }
