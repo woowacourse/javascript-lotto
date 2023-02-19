@@ -39,10 +39,9 @@
 
     1.  내 당첨번호 확인
         - [x] header
-        - [x] label + inputAmount 
-        - [x] label + printLotto
-        - [ ] p = input설명
-        - [ ] label + inputLotto
+        - [x] p + inputAmount 
+        - [x] p + printLotto
+        - [x] p(input설명) + inputLotto
         - [ ] button = checkResult
 
     2. 당첨통계
