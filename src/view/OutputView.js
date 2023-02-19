@@ -1,17 +1,14 @@
 import { ResultMessage } from '../constants/Constants.js';
 import Console from '../utils/Console.js';
+import ConvertMessage from '../utils/Convertor.js';
 
 const OutputView = {
   printRanks(ranks) {
-    [5, 4, 3, 2, 1].forEach((rank) => {
-      const messageKey = `rank${rank}`;
-      const message = ResultMessage[messageKey](ranks[rank]);
-      console.log(message);
-    });
+    console.log(ConvertMessage.lottoRank(ranks));
   },
 
   printProfitRate(profitRate) {
-    console.log(ResultMessage.profitRateResult(profitRate));
+    console.log(ConvertMessage.profitRateResult(profitRate));
   },
 
   printResult(ranks, profitRate) {

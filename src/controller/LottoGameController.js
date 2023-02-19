@@ -1,9 +1,10 @@
-import { GameControlStaticValue, RequestMessage, ResultMessage } from '../constants/Constants.js';
+import { GameControlStaticValue, RequestMessage } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Console from '../utils/Console.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Validation from '../utils/Validation.js';
+import ConvertMessage from '../utils/Convertor.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
@@ -26,7 +27,7 @@ class LottoGameController {
 
     try {
       Validation.testPurchaseAmount(MONEY);
-      OutputView.print(ResultMessage.purchaseCount(PURCHASE_COUNT));
+      OutputView.print(ConvertMessage.purchaseCount(PURCHASE_COUNT));
       return PURCHASE_COUNT;
     } catch (error) {
       return this.#handleError(error.message, this.#getPurchaseCount);

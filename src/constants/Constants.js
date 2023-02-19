@@ -62,14 +62,7 @@ const RequestMessage = Object.freeze({
 });
 
 const ResultMessage = Object.freeze({
-  purchaseCount: (count) => `${count}개를 구매했습니다.`,
   RESULT: '당첨 통계\n--------------------',
-  rank1: (number) => `6개 일치 (2,000,000,000원) - ${number}개`,
-  rank2: (number) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${number}개`,
-  rank3: (number) => `5개 일치 (1,500,000원) - ${number}개`,
-  rank4: (number) => `4개 일치 (50,000원) - ${number}개`,
-  rank5: (number) => `3개 일치 (5,000원) - ${number}개`,
-  profitRateResult: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
 });
 
 const ErrorMessage = Object.freeze({

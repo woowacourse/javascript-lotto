@@ -1,5 +1,5 @@
 import { LottoStaticValue } from '../constants/Constants.js';
-import Convertor from '../utils/Convertor.js';
+import ConvertMessage from '../utils/Convertor.js';
 import Validation from '../utils/Validation.js';
 
 class Lotto {
@@ -11,7 +11,7 @@ class Lotto {
   }
 
   getStringifiedNumbers() {
-    return Convertor.stringifyLotto(this.#numbers);
+    return ConvertMessage.stringifyLotto(this.#numbers);
   }
 
   getMatchState({ winningNumbers, bonusNumber }) {
