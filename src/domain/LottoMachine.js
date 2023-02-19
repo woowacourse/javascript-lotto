@@ -1,8 +1,12 @@
-class Lotto {
+const LottoResult = require('./LottoResult');
+
+class LottoMachine {
   lottoNumber;
+  #lottoResult;
 
   constructor() {
     this.lottoNumber = [];
+    this.#lottoResult = new LottoResult();
   }
 
   countLotto(money) {
@@ -36,6 +40,12 @@ class Lotto {
     return [...new Set(randomNumber)].length === 6;
   }
 
+  getWinningStatus(winningNumber, bonusNumber) {
+    const ranks = this.compareNumber(winningNumber, bonusNumber);
+    const result = this.#lottoResult.getResult(ranks);
+    return result;
+  }
+
   compareNumber(winningNumber, bonusNumber) {
     const ranks = [];
     this.lottoNumber.forEach(numbers => {
@@ -49,6 +59,11 @@ class Lotto {
     if (numbers.includes(bonusNumber)) return 7;
     return 5;
   }
+
+  getProfitRate(money, result){
+    this.#lottoResult.earningsRate(money, result)
+    return this.#lottoResult.getProfit
+  }
 }
 
-module.exports = Lotto;
+module.exports = LottoMachine;

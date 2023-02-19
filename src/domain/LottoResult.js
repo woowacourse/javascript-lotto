@@ -1,18 +1,8 @@
-const Lotto = require('./Lotto.js');
 const { NUMBER } = require('../utils/constant.js');
 
 class RankedLotto {
   constructor() {
     this.profit = 0;
-    this.lotto = new Lotto();
-  }
-  ranking(winningNumber, bonusNumber) {
-    const ranks = this.lotto.compareNumber(winningNumber, bonusNumber);
-    return ranks;
-  }
-
-  setNumber(a) {
-    this.lotto.setLottoNumber(a);
   }
 
   getResult(ranks) {

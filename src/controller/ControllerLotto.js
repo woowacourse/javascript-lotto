@@ -1,28 +1,30 @@
 const inputView = require('../view/inputView.js');
-const Lotto = require('../domain/Lotto.js');
+const LottoMachine = require('../domain/LottoMachine.js');
 const outputView = require('../view/outputView.js');
-const RankedLotto = require('../domain/RankedLotto.js');
 
 class ControllerLotto {
   #money;
+  #lottoMachine;
+
+  constructor() {
+    this.#lottoMachine = new LottoMachine();
+  }
 
   async playLotto() {
     this.#money = await this.inputLottoMoney();
-    const lotto = new Lotto();
-    this.showLottoCount(lotto.countLotto(this.#money));
-    lotto.makeLotto(this.#money);
-    this.showPurchasedLotto(lotto.lottoNumber);
-    this.playStatisticalChart(lotto.lottoNumber);
+    this.showLottoCount(this.#lottoMachine.countLotto(this.#money));
+    this.#lottoMachine.makeLotto(this.#money);
+    this.showPurchasedLotto(this.#lottoMachine.lottoNumber);
+    this.playStatisticalChart(this.#lottoMachine.lottoNumber);
   }
 
-  async playStatisticalChart(lotto) {
-    const rankedLotto = new RankedLotto();
-    rankedLotto.setNumber(lotto);
-    const ranks = rankedLotto.ranking((await this.inputWinningNumbers()).split(','), await this.inputBonusNumber());
-    const result = rankedLotto.getResult(ranks);
+  async playStatisticalChart() {
+    const winningNumber = await (this.inputWinningNumbers())
+    const bonusNumber = await this.inputBonusNumber()
+    const result = this.#lottoMachine.getWinningStatus(winningNumber.split(','), bonusNumber);
     this.showWinningHistory(result);
-    rankedLotto.earningsRate(this.#money, result);
-    this.showEarningsRate(rankedLotto.getProfit);
+    const profit = this.#lottoMachine.getProfitRate(this.#money, result);
+    this.showEarningsRate(profit);
     this.restart();
   }
 
