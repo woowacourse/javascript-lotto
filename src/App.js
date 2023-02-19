@@ -71,9 +71,9 @@ class App {
 
   compareLottos(lottos, winningLotto, bonusNumber) {
     lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
-    const lottoScore = new LottoScore();
+    const lottoScore = new LottoScore(lottos.getLottos());
     lottoScore.compareLottosScore(lottos.getLottos());
-    OutputView.printResult(lottos.getLottos().length, lottoScore.lottoRanking);
+    OutputView.printResult(lottos.getLottos().length, lottoScore);
   }
 
   async getRetryInput() {
