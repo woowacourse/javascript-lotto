@@ -1,5 +1,5 @@
 import Validation from '../Validation';
-import Lotto from './Lotto';
+import Lotto from './lotto/Lotto';
 
 class WinningLotto {
   constructor(lottoNumbers, bonusNumber) {

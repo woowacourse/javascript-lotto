@@ -1,5 +1,5 @@
-import BonusNumberReward from './BonusReward';
-import Reward from './Reward';
+import BonusNumberReward from './rewards/BonusReward';
+import Reward from './rewards/Reward';
 
 class LottoResult {
   static REWARDS = [
@@ -24,10 +24,11 @@ class LottoResult {
 
   countRewards(lottos) {
     const givenRewards = lottos.map((lotto) => this.findReward(lotto));
-
     const receivedRewardCounts = LottoResult.REWARDS.map((reward) => [
       reward,
-      givenRewards.reduce((count, givenReward) => (givenReward === reward ? count + 1 : count), 0),
+      givenRewards.reduce((count, givenReward) => {
+        return givenReward === reward ? count + 1 : count;
+      }, 0),
     ]);
     return receivedRewardCounts;
   }
