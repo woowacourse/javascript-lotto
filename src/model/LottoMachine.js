@@ -49,7 +49,7 @@ class LottoMachine {
     return ranks.reduce((acc, curr) => acc + PRIZE[curr - 1], 0);
   }
 
-  rateOfProfit(lotteryWinningsSum, lottosLength) {
+  calculateRateOfProfit(lotteryWinningsSum, lottosLength) {
     const { LOTTO_PRICE } = VALUES;
     const spentMoney = lottosLength * LOTTO_PRICE;
 
@@ -67,7 +67,7 @@ class LottoMachine {
       statistics.countOfRanks[rank - 1] += 1;
     });
 
-    statistics.rateOfProfit = this.rateOfProfit(this.calculateTotalSum(totalRanks), totalRanks.length);
+    statistics.rateOfProfit = this.calculateRateOfProfit(this.calculateTotalSum(totalRanks), totalRanks.length);
 
     return statistics;
   }
