@@ -13,8 +13,7 @@ class Reward {
   }
 
   canReceive(lotto, winningLotto) {
-    const winningNumbers = winningLotto.getLottoNumbers();
-    return lotto.countMatchingNumbers(winningNumbers) === this.matchingNumbers;
+    return winningLotto.countMatchingNumbers(lotto) === this.matchingNumbers;
   }
 
   getTitle() {
