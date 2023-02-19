@@ -1,6 +1,6 @@
 import { values, regex } from '../constants/values';
 
-const ValidatorUtils = {
+const validatorUtils = {
   isPositiveInteger(number) {
     return regex.POSITIVE_INTEGER.test(number);
   },
@@ -14,8 +14,12 @@ const ValidatorUtils = {
   },
 
   hasNoBlank(splitedWinningNumber) {
-    return !(splitedWinningNumber.includes(' '));
-  }
+    return !splitedWinningNumber.includes(' ');
+  },
+
+  yOrYes(restartInput) {
+    return regex.Y_OR_N.test(restartInput);
+  },
 };
 
-export default ValidatorUtils;
+export default validatorUtils;
