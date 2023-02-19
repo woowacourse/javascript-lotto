@@ -19,10 +19,9 @@ class LottoSimulator {
     this.#winningLotto = winningLotto;
   }
 
-  inputBudget() {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET, (budget) => {
-      this.judgeValidBudget(parseInt(budget));
-    });
+  async inputBudget() {
+    const budget = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET);
+    this.judgeValidBudget(parseInt(budget));
   }
 
   judgeValidBudget(budget) {
@@ -59,16 +58,14 @@ class LottoSimulator {
     OutputView.printLottoNumbers(lottoNumbers);
   }
 
-  inputWinningNumber() {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
-      this.inputBonusNumber(winningNumber);
-    });
+  async inputWinningNumber() {
+    const winningNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER);
+    this.inputBonusNumber(winningNumber);
   }
 
-  inputBonusNumber(winningNumber) {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.judgeValidWinningNumber(winningNumber.split(',').map(Number), parseInt(bonusNumber));
-    });
+  async inputBonusNumber(winningNumber) {
+    const bonusNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER);
+    this.judgeValidWinningNumber(winningNumber.split(',').map(Number), parseInt(bonusNumber));
   }
 
   judgeValidWinningNumber(winningNumber, bonusNumber) {
@@ -100,10 +97,9 @@ class LottoSimulator {
     this.inputRetryCommand();
   }
 
-  inputRetryCommand() {
-    InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY, (command) => {
-      this.judgeValidRetryCommand(command);
-    });
+  async inputRetryCommand() {
+    const command = await InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY);
+    this.judgeValidRetryCommand(command);
   }
 
   judgeValidRetryCommand(command) {
