@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import { ERROR_MESSAGE } from '../src/data/constants';
 import Lotto from '../src/domain/Lotto';
 import WinningLotto from '../src/domain/WinningLotto';
 
