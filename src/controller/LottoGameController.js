@@ -56,11 +56,8 @@ class LottoGameController {
   }
 
   #onSubmitRestartCommand(command) {
-    if (command === GAME_COMMAND.YES) {
-      this.play();
-      return;
-    }
-    Console.close();
+    if (command === GAME_COMMAND.NO) return Console.close();
+    this.play();
   }
 }
 
