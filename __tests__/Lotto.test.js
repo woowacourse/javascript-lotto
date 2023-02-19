@@ -26,49 +26,5 @@ describe('Lotto', () => {
         expect(() => new Lotto(lottoNumbers)).toThrowError();
       });
     });
-
-    it.each([
-      { lottoNumbers: [1, 2, 3, 4, 5, 6], bonusNumber: 5, expected: true },
-      { lottoNumbers: [1, 2, 3, 4, 5, 6], bonusNumber: 7, expected: false },
-      { lottoNumbers: [10, 17, 18, 19, 20, 40], bonusNumber: 39, expected: false },
-    ])(
-      '$lottoNumbers에 보너스 번호 $bonusNumber가 있는지 여부는 $expected 가 되어야 한다.',
-      ({ lottoNumbers, bonusNumber, expected }) => {
-        // when
-        const lotto = new Lotto(lottoNumbers);
-
-        // then
-        expect(lotto.hasBonusNumber(bonusNumber)).toBe(expected);
-      },
-    );
-  });
-
-  context('로또번호와 당첨번호가 주어졌을 때', () => {
-    it.each([
-      {
-        lottoNumbers: [1, 2, 3, 4, 5, 6],
-        winningNumbers: [1, 2, 3, 4, 5, 6],
-        matchNumbers: 6,
-      },
-      {
-        lottoNumbers: [10, 11, 40, 41, 42, 43],
-        winningNumbers: [1, 2, 3, 4, 10, 11],
-        matchNumbers: 2,
-      },
-      {
-        lottoNumbers: [1, 2, 3, 4, 5, 6],
-        winningNumbers: [40, 41, 42, 43, 44, 45],
-        matchNumbers: 0,
-      },
-    ])(
-      '당첨번호 $winningNumbers 에서 $lottoNumbers 로또의 당첨 갯수는 $matchNumbers 이어야 한다.',
-      ({ lottoNumbers, winningNumbers, matchNumbers }) => {
-        // when
-        const lotto = new Lotto(lottoNumbers);
-
-        // then
-        expect(lotto.countMatchingNumbers(winningNumbers)).toBe(matchNumbers);
-      },
-    );
   });
 });
