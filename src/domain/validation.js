@@ -1,21 +1,22 @@
-const { ERRORMESSAGES, LOTTO } = require("../constant/Constant");
+const { ERROR_MESSAGES, LOTTO } = require("../constant/Constant");
 
 const Validation = {
   validateMoney(money) {
     if (money <= 0 || money % 1000 != 0)
-      throw Error(ERRORMESSAGES.isWrongMoneyText);
+      throw Error(ERROR_MESSAGES.isWrongMoneyText);
   },
 
   validateWinNumber(winNumbers) {
     if (
       winNumbers.some((num) => LOTTO.MIN > num || num > LOTTO.MAX || isNaN(num))
     )
-      throw new Error(ERRORMESSAGES.isOverRangeNumberText);
+      throw new Error(ERROR_MESSAGES.isOverRangeNumberText);
     if (winNumbers.length != 6)
-      throw new Error(ERRORMESSAGES.isWrongLottoNumberText);
+      throw new Error(ERROR_MESSAGES.isWrongLottoNumberText);
 
     const winSet = new Set(winNumbers);
-    if (winSet.size != 6) throw new Error(ERRORMESSAGES.isSameLottoNumberText);
+    if (winSet.size != LOTTO.NUM_SIZE)
+      throw new Error(ERROR_MESSAGES.isSameLottoNumberText);
   },
 
   validateBonusNumber(winLotto, bonusNumber) {
@@ -24,14 +25,14 @@ const Validation = {
       bonusNumber > LOTTO.MAX ||
       isNaN(bonusNumber)
     )
-      throw new Error(ERRORMESSAGES.isOverRangeBounsText);
+      throw new Error(ERROR_MESSAGES.isOverRangeBounsText);
     if (winLotto.includes(bonusNumber))
-      throw new Error(ERRORMESSAGES.isSameBonusNumberText);
+      throw new Error(ERROR_MESSAGES.isSameBonusNumberText);
   },
 
   validateRestartCommand(command) {
     if (command != "y" && command != "n")
-      throw new Error(ERRORMESSAGES.isWrongCommandText);
+      throw new Error(ERROR_MESSAGES.isWrongCommandText);
   },
 };
 
