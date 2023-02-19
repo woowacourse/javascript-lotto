@@ -31,14 +31,14 @@ class LottoMachine {
 
   generateLottoNumber() {
     const { LOWER_BOUND, UPPER_BOUND } = values;
-    const randomLottoNumbers = [];
+    const randomLottoNumbers = new Set();
 
-    while (randomLottoNumbers.length !== values.LOTTO_LENGTH) {
+    while (randomLottoNumbers.size < values.LOTTO_LENGTH) {
       const randomNumber = generateRandomNumber(LOWER_BOUND, UPPER_BOUND);
-      if (!randomLottoNumbers.includes(randomNumber)) randomLottoNumbers.push(randomNumber);
+      randomLottoNumbers.add(randomNumber);
     }
 
-    return randomLottoNumbers.sort((prev, next) => prev - next);
+    return [...randomLottoNumbers].sort((prev, next) => prev - next);
   }
 
   calculateStatistics(winningNumber, bonusNumber) {
@@ -73,16 +73,12 @@ class LottoMachine {
   checkLotteryWinnings(lottoNumber, targetNumber) {
     const correctCounts = this.computeCorrectCounts(targetNumber.winningNumber, lottoNumber);
 
-    if (this.isFive(correctCounts)) {
+    if (correctCounts === 5) {
       return correctCountsToMoney[`${correctCounts}`][
         `${this.isSecond(targetNumber.bonusNumber, lottoNumber) ? 0 : 1}`
       ].rank;
     }
     return correctCountsToMoney[correctCounts].rank;
-  }
-
-  isFive(correctCounts) {
-    return correctCounts === 5;
   }
 
   isSecond(bonusNumber, lottoNumber) {
