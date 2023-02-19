@@ -1,37 +1,37 @@
 import { VALUES, REGEX } from '../constants/values';
 
-const LottoValidatorConditions = {
-  isPositiveInteger(number) {
+class LottoValidatorConditions {
+  static isPositiveInteger(number) {
     return REGEX.POSITIVE_INTEGER.test(number);
-  },
+  }
 
-  isDividedByPrice(number) {
+  static isDividedByPrice(number) {
     return !(number % VALUES.LOTTO_PRICE);
-  },
+  }
 
-  isInRange(number) {
+  static isInRange(number) {
     return number >= VALUES.LOWER_BOUND && number <= VALUES.UPPER_BOUND;
-  },
+  }
 
-  hasNoBlank(splitedWinningNumber) {
+  static hasNoBlank(splitedWinningNumber) {
     return !splitedWinningNumber.includes(' ');
-  },
+  }
 
-  isYorN(restartOrNot) {
+  static isYorN(restartOrNot) {
     return restartOrNot === VALUES.YES || restartOrNot === VALUES.NO;
-  },
+  }
 
-  isNotOverlap(winningNumber) {
+  static isNotOverlap(winningNumber) {
     return new Set(winningNumber).size === winningNumber.length;
-  },
+  }
 
-  isSixLength(winningNumber) {
+  static isSixLength(winningNumber) {
     return winningNumber.length === VALUES.LOTTO_LENGTH;
-  },
+  }
 
-  isBonusNumInWinningNum(winningNumber, number) {
+  static isBonusNumInWinningNum(winningNumber, number) {
     return !winningNumber.includes(+number);
-  },
-};
+  }
+}
 
 export default LottoValidatorConditions;
