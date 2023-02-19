@@ -15,10 +15,6 @@ class LottoMachine {
     return this.#lottos;
   }
 
-  get winningLotto() {
-    return this.#winnnigLotto;
-  }
-
   buyLotto(money) {
     for (let i = 0; i < Math.floor(money / VALUES.LOTTO_PRICE); i++) {
       this.#lottos.push(new Lotto(this.generateLottoNumber()));
@@ -37,8 +33,8 @@ class LottoMachine {
     return randomLottoNumbers.sort((prev, next) => prev - next);
   }
 
-  initWinningLotto(winningNumber) {
-    this.#winnnigLotto = new WinningLotto(winningNumber);
+  initWinningLotto(winningNumber, bonusNumber) {
+    this.#winnnigLotto = new WinningLotto(winningNumber, bonusNumber);
   }
 
   calculateRanks() {
