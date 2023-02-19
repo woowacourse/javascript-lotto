@@ -1,5 +1,5 @@
 import Component from '../../Component.js';
-import generateMessages from '../../utils/generateMessages.js';
+import generationMessages from '../../utils/generationMessages.js';
 import Inputs from '../../utils/Inputs.js';
 import { PRICE } from '../../constants/values.js';
 import { LottoStore } from '../../domain/Lotto.js';
@@ -22,6 +22,6 @@ export default class Amount extends Component {
   }
 
   template() {
-    return generateMessages.countMessage(this.#total);
+    return generationMessages.countMessage(this.#total);
   }
 }

@@ -1,5 +1,5 @@
 import Component from '../../Component.js';
-import generateMessages from '../../utils/generateMessages.js';
+import generationMessages from '../../utils/generationMessages.js';
 
 export default class LottoList extends Component {
   setUp({ lottoList }) {
@@ -7,6 +7,6 @@ export default class LottoList extends Component {
   }
 
   template() {
-    return generateMessages.lottoList(this.lottoList);
+    return generationMessages.lottoList(this.lottoList);
   }
 }

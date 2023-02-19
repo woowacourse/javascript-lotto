@@ -31,7 +31,7 @@ function getMessagesByStatistics(awards, count) {
   }
 }
 
-const generateMessages = Object.freeze({
+const generationMessages = Object.freeze({
   countMessage(count) {
     return `${count}개 구매했습니다.`;
   },
@@ -54,10 +54,10 @@ const generateMessages = Object.freeze({
 
   result({ statistics, earningRate }) {
     return [
-      generateMessages.statisticsMessage(statistics),
-      generateMessages.earningRateMessage(earningRate),
+      generationMessages.statisticsMessage(statistics),
+      generationMessages.earningRateMessage(earningRate),
     ].join('\n');
   },
 });
 
-export default generateMessages;
+export default generationMessages;
