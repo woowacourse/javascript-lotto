@@ -68,7 +68,7 @@
 
 ## 1단계 - 리펙터링
 
-- [ ] refactor: 매직넘버 상수화
+- [x] refactor: 매직넘버 상수화
   - Lotto - calculateRanking
   - outputView - statisticsMessage
   - outputView - printStatistics

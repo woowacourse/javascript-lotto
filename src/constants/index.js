@@ -1,3 +1,5 @@
+import toNumberFormatOfKor from '../utils/toNumberFormatOfKor';
+
 export const LOTTO = {
   price: 1000,
   minNumber: 1,
@@ -29,6 +31,14 @@ export const RANKING_THRESHOLD = 3;
 export const GAME_COMMAND = {
   yes: 'y',
   no: 'n',
+};
+
+export const STATISTICS_MESSAGE = {
+  5: `3개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[5])}원)`,
+  4: `4개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[4])}원)`,
+  3: `5개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[3])}원)`,
+  2: `5개 일치, 보너스 볼 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[2])}원)`,
+  1: `6개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[1])}원)`,
 };
 
 export const MESSAGE = {
