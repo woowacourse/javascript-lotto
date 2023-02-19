@@ -24,7 +24,7 @@ const OutputView = {
   },
 
   printRanks(amountOfRanks) {
-    Console.print(MESSAGE.GET_TABLE(amountOfRanks));
+    Console.print(MESSAGE.GET_TABLE([...amountOfRanks]));
   },
 
   printProfit(profit) {
