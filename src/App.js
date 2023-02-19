@@ -10,43 +10,39 @@ import View from "./constants/View.js";
 import Constant from "./constants/Lotto.js";
 
 class App {
-  constructor() {
-    this.winningLotto = [];
-    this.bonusNumber = 0;
-    this.lottos = [];
-  }
 
   async play() {
-    await this.getBuyMoney();
-    await this.getWinningNumbers();
-    await this.getBonusNumber();
-    await this.getRetryInput();
+    const buyMoney = await this.getBuyMoney();
+    const lottos = await this.createLotto(parseInt(buyMoney / 1000));
+    this.printLottos(lottos.getLottos())
+    const winningLotto = await this.getWinningLotto();
+    const bonusNumber = await this.getBonusNumber(winningLotto);
+    this.compareLottos(lottos, winningLotto, bonusNumber)
+    this.printResult(lottos)
+    const retryInput = await this.getRetryInput(lottos);
+    this.retryLottoGame(retryInput,lottos)
   }
 
   async getBuyMoney() {
     const buyMoney = await InputView.inputMoney(View.INPUT_MONEY);
     try {
       this.validateBuyMoney(buyMoney);
-      this.createLotto(parseInt(buyMoney / 1000));
     } catch (e) {
       Console.print(e);
       await this.getBuyMoney();
     }
+    return buyMoney
   }
 
-  createLotto(lottoAmount) {
-    const createdLottos = [];
-    for (let i = 0; i < lottoAmount; i++) {
-      const lotto = new Lotto(Random.getCorrectRandomNumbers());
-      createdLottos.push(lotto);
-    }
-    this.lottos = new Lottos(createdLottos);
-    this.printLottos(lottoAmount);
+  async createLotto(lottoAmount) {
+    const lottos = Array.from({ length: lottoAmount }, () => new Lotto(Random.getCorrectRandomNumbers()))
+    console.log(lottos)
+    return new Lottos(lottos)
   }
 
-  printLottos(lottoAmount) {
-    OutputView.printLottoAmount(lottoAmount);
-    OutputView.printLottos(this.lottos.getLottos());
+  printLottos(lottos) {
+    OutputView.printLottoAmount(lottos.length);
+    OutputView.printLottos(lottos);
   }
 
   validateBuyMoney(buyMoney) {
@@ -61,17 +57,18 @@ class App {
     }
   }
 
-  async getWinningNumbers() {
+  async getWinningLotto() {
     const winningNumbers = await InputView.inputWinningNumbers(
       View.INPUT_WINNING_LOTTO
     );
-    this.winningLotto = this.convertStringToNumber(winningNumbers.split(","));
+    const winningLotto = this.convertStringToNumber(winningNumbers.split(","));
     try {
-      this.validateWinningNumbers();
+      this.validateWinningNumbers(winningLotto);
     } catch (e) {
       Console.print(e);
-      await this.getWinningNumbers();
+      await this.getWinningLotto();
     }
+    return winningLotto
   }
 
   convertStringToNumber(strings) {
@@ -81,12 +78,12 @@ class App {
     return numbers;
   }
 
-  validateWinningNumbers() {
-    if (!Validations.isCorrectLength(this.winningLotto)) {
+  validateWinningNumbers(winningLotto) {
+    if (!Validations.isCorrectLength(winningLotto)) {
       throw new Error(Error.INPUT_SIX_NUMBERS);
     }
-    for (let i = 0; i < this.winningLotto.length; i++) {
-      this.checkEachNumber(this.winningLotto[i]);
+    for (let i = 0; i < winningLotto.length; i++) {
+      this.checkEachNumber(winningLotto[i]);
     }
   }
 
@@ -102,59 +99,57 @@ class App {
     }
   }
 
-  async getBonusNumber() {
-    const bonusNumber = await InputView.inputBonusNumber(
+  async getBonusNumber(winningLotto) {
+    const bonusInput = await InputView.inputBonusNumber(
       View.INPUT_BONUS_NUMBER
     );
-    this.bonusNumber = Number(bonusNumber);
+    const bonusNumber = Number(bonusInput);
     try {
-      this.validateBonusNumber();
-      this.checkEachNumber(this.bonusNumber);
-      this.compareLottos();
+      this.validateBonusNumber(bonusNumber,winningLotto);
+      this.checkEachNumber(bonusNumber);
     } catch (e) {
       Console.print(e);
       await this.getBonusNumber();
     }
+    return bonusNumber
   }
 
-  validateBonusNumber() {
-    if (Validations.hasBonusNumber(this.bonusNumber, this.winningLotto)) {
+  validateBonusNumber(bonusNumber,winningLotto) {
+    if (Validations.hasBonusNumber(bonusNumber, winningLotto)) {
       throw new Error(Error.INPUT_NOT_DUPLICATED_NUMBER);
     }
   }
 
-  compareLottos() {
-    this.lottos.getLottos().forEach((lotto) => {
-      lotto.compareNumbers(this.winningLotto);
-      lotto.checkBonusNumber(this.bonusNumber);
+  compareLottos(lottos,winningLotto,bonusNumber) {
+    lottos.getLottos().forEach((lotto) => {
+      lotto.compareNumbers(winningLotto);
+      lotto.checkBonusNumber(bonusNumber);
     });
-    this.lottos.compareLottosScore();
-    this.printResult();
+    lottos.compareLottosScore();
   }
 
-  printResult() {
+  printResult(lottos) {
     OutputView.printResultMessage();
-    OutputView.printLottoResults(this.lottos);
-    OutputView.printTotalBenefit(this.lottos.getBenefitRate());
+    OutputView.printLottoResults(lottos);
+    OutputView.printTotalBenefit(lottos.getBenefitRate());
   }
 
   async getRetryInput() {
     const retryInput = await InputView.inputRetry(View.INPUT_RETYR);
     try {
       this.validateRetryInput(retryInput);
-      this.retryLottoGame(retryInput);
     } catch (e) {
       Console.print(e);
       await this.getRetryInput();
     }
   }
 
-  retryLottoGame(retryInput) {
+  retryLottoGame(retryInput,lottos) {
     if (
       retryInput === Constant.RETRY_DOWNER ||
       retryInput === Constant.RETRY_UPPER
     ) {
-      this.resetGame();
+      this.resetGame(lottos);
       this.play();
     }
     if (
@@ -165,9 +160,8 @@ class App {
     }
   }
 
-  resetGame() {
-    this.lottos.resetLottos();
-    this.lottoArray = [];
+  resetGame(lottos) {
+    lottos.resetLottos();
   }
 
   validateRetryInput(retryInput) {
