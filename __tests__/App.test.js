@@ -1,5 +1,5 @@
-import Lottos from "../src/Lottos";
-import Lotto from "../src/Lotto";
+import Lottos from "../src/domain/Lottos";
+import Lotto from "../src/domain/Lotto";
 describe("로또 생성 테스트", () => {
   test("구입한 개수만큼 로또를 생성하는 기능 테스트", () => {
     const lottoAmount = 3;
@@ -10,7 +10,7 @@ describe("로또 생성 테스트", () => {
 
     const lottos = new Lottos([lotto1, lotto2, lotto3])
 
-    expect(lottos.getLottos().length).toEqual(
+    expect(lottos.lottos.length).toEqual(
       lottoAmount
     );
   });

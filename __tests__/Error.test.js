@@ -1,4 +1,4 @@
-import App from "../src/App.js";
+import App from "../src/App";
 
 
 describe("구입금액 Error처리 테스트", () => {
