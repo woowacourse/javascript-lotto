@@ -18,10 +18,17 @@ class Lotto {
   calculateRanking(matchCount, bonusNumber) {
     if (matchCount < RANKING_THRESHOLD) throw new Error('3 이상의 수를 입력해야 합니다.');
 
-    if (matchCount === RANKING_STANDARD.first) return RANKING.first;
-    if (matchCount === RANKING_STANDARD.second && this.#numbers.includes(bonusNumber))
-      return RANKING.second;
+    if (this.isFristRanking(matchCount)) return RANKING.first;
+    if (this.isSecondRanking(matchCount, bonusNumber)) return RANKING.second;
     return RANKING_STANDARD.benchmark - matchCount;
+  }
+
+  isFristRanking(matchCount) {
+    return matchCount === RANKING_STANDARD.first;
+  }
+
+  isSecondRanking(matchCount, bonusNumber) {
+    return matchCount === RANKING_STANDARD.second && this.#numbers.includes(bonusNumber);
   }
 }
 

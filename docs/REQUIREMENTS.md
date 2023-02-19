@@ -72,7 +72,7 @@
   - Lotto - calculateRanking
   - outputView - statisticsMessage
   - outputView - printStatistics
-- [ ] refactor: 함수 분리
+- [x] refactor: 함수 분리
   - lottoGameCalculator - calculateRewardRate
   - Lotto - calculateRanking
 - [ ] refactor: 재귀 호출의 성능 최적화
