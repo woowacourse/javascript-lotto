@@ -58,9 +58,9 @@ describe('유효성 검사 테스트', () => {
       }).toThrow(MESSAGE.ERROR.IN_RANGE);
     });
 
-    test.each([['1']])('당첨번호와 보너스번호가 중복된다면 예외처리한다.', input => {
+    test.each([[1]])('당첨번호와 보너스번호가 중복된다면 예외처리한다.', input => {
       expect(() => {
-        LottoValidator.validateBonusNumberInput([1, 2, 3, 4, 5, 6], input);
+        LottoValidator.validateBonusNumberInput('1,2,3,4,5,6', input);
       }).toThrow(MESSAGE.ERROR.OVERLAP_WINNING_NUM);
     });
   });
