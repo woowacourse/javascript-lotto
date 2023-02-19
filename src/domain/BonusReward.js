@@ -1,10 +1,13 @@
 import Reward from './Reward';
 
 class BonusNumberReward extends Reward {
+  constructor(matchingNumbers, money) {
+    super(matchingNumbers, money);
+  }
+
   canReceive(lotto, winningLotto) {
     const hasBonusNumber = lotto.hasBonusNumber(winningLotto.getBonusNumber());
-    const matchingNumbers = lotto.countMatchingNumbers(winningLotto.getLottoNumbers());
-    return hasBonusNumber && this.matchingNumbers === matchingNumbers;
+    return hasBonusNumber && super.canReceive(lotto, winningLotto);
   }
 }
 
