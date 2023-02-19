@@ -6,7 +6,6 @@ class WinningNumbers {
   #bonusNumber;
 
   constructor(winningNumbersInput, bonusNumberInput) {
-    console.log(winningNumbersInput, bonusNumberInput);
     exception.handleWinningNumbers(winningNumbersInput);
     const winningNumbers = winningNumbersInput.split(',').map(Number);
 

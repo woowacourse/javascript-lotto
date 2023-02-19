@@ -1,5 +1,4 @@
 const { PRICE_UNIT, restartCommand } = require('../constants/constants');
-const BonusNumber = require('../domain/model/BonusNumber');
 const Lottos = require('../domain/model/Lottos');
 const WinningNumbers = require('../domain/model/WinningNumbers');
 const exception = require('../utils/exception');
