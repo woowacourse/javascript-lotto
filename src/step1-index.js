@@ -1,4 +1,4 @@
-import Component from './Component.js';
+import Component from './view/components/Component.js';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';
 import WinNumbers from './view/components/WinNumbers.js';

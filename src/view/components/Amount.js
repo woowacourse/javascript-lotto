@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import generationMessages from '../../utils/generationMessages.js';
 import Inputs from '../../utils/Inputs.js';
 import { PRICE } from '../../constants/values.js';

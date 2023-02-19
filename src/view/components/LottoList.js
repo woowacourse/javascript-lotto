@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import generationMessages from '../../utils/generationMessages.js';
 
 export default class LottoList extends Component {

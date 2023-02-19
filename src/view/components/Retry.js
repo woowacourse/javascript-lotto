@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import Inputs from '../../utils/Inputs.js';
 import { EXIT, RETRY } from '../../constants/values.js';
 
