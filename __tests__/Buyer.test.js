@@ -2,6 +2,7 @@ import Buyer from '../src/domain/Buyer';
 import Lotto from '../src/domain/lotto/Lotto';
 import LottoFactory from '../src/domain/lotto/LottoFactory';
 import LottoResult from '../src/domain/LottoResult';
+import Seller from '../src/domain/Seller';
 import WinningLotto from '../src/domain/WinningLotto';
 
 const mockLottoFactory = (lottos) => {
@@ -20,10 +21,11 @@ describe('Buyer', () => {
       { money: 8000, amount: 8 },
       { money: 1000, amount: 1 },
     ])(
-      '$money원을 가지고 있을 때 $amount개의 로또를 구매할 수 있어야 한다.',
+      '$money원을 가지고 있을 때 Seller로 부터 $amount개의 로또를 구매할 수 있어야 한다.',
       ({ money, amount }) => {
         const buyer = new Buyer(money);
-        buyer.buyLottos();
+        const seller = new Seller();
+        buyer.buyLottos(seller);
 
         expect(buyer.getLottos()).toHaveLength(amount);
       },
