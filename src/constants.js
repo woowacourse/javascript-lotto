@@ -46,6 +46,14 @@ const COMMAND = {
   QUIT: "n",
 };
 
+const MATCH = {
+  ALL: 6,
+  FIVE: 7,
+  UNDER_THREE: 9,
+  INDEX_FIRST_SECOND: (matchNumber) => 10 - matchNumber,
+  MATCH_INDEX: (matchNumber) => 9 - matchNumber,
+};
+
 const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
 
 module.exports = {
@@ -59,4 +67,5 @@ module.exports = {
   COMMAND,
   PRIZE,
   RESULT,
+  MATCH,
 };

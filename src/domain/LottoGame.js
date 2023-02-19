@@ -1,6 +1,13 @@
 const Lotto = require("./Lotto");
 const Random = require("../utils/Random");
-const { UNIT, RANK, PRIZE, LOTTO_SIZE, LOTTO_RANGE } = require("../constants");
+const {
+  UNIT,
+  RANK,
+  PRIZE,
+  LOTTO_SIZE,
+  LOTTO_RANGE,
+  MATCH,
+} = require("../constants");
 
 class LottoGame {
   constructor(amount) {
@@ -53,10 +60,13 @@ class LottoGame {
   }
 
   calculateRank(matchNumber, bonusNumber) {
-    if (matchNumber > 9) return;
-    if (matchNumber === 6) return 10 - matchNumber;
-    if (matchNumber === 7 && bonusNumber) return 10 - matchNumber;
-    return 9 - matchNumber;
+    if (matchNumber > MATCH.UNDER_THREE) return;
+    if (
+      matchNumber === MATCH.ALL ||
+      (matchNumber === MATCH.FIVE && bonusNumber)
+    )
+      return MATCH.INDEX_FIRST_SECOND(matchNumber);
+    return MATCH.MATCH_INDEX(matchNumber);
   }
 
   calculateProfit(rankResult) {
