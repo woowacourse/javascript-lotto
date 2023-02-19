@@ -1,9 +1,20 @@
 const Lotto = require("./Lotto");
 const WinLotto = require("../domain/WinLotto");
 const Random = require("../util/Random");
-const { PRIZE, RANK_BY_CORRECT_COUNT, LOTTO } = require("../constant/Constant");
+const {
+  PRIZE,
+  RANK,
+  RANK_BY_CORRECT_COUNT,
+  LOTTO,
+} = require("../constant/Constant");
 
-const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+const RANK_RESULT = {
+  [RANK.FIRST]: 0,
+  [RANK.SECOND]: 0,
+  [RANK.THIRD]: 0,
+  [RANK.FOURTH]: 0,
+  [RANK.FIFTH]: 0,
+};
 
 class LottoGame {
   #lottos;
