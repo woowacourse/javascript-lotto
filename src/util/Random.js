@@ -1,4 +1,4 @@
-import LOTTO_GAME from "../constants/LottoGame.js";
+import LOTTO_GAME from "../constants/LottoGame";
 
 const Random = {
   makeTargetNumbers() {

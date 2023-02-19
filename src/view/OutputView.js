@@ -1,5 +1,5 @@
-import VIEW from "../constants/View.js";
-import LOTTO_BOARD from "../constants/LottoBoard.js";
+import VIEW from "../constants/View";
+import LOTTO_BOARD from "../constants/LottoBoard";
 import Console from "../util/Console";
 
 const OutputView = {

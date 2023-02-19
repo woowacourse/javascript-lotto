@@ -1,19 +1,19 @@
-import LOTTO_GAME from "./constants/Lotto.js"
-import VIEW from "./constants/View.js";
-import Console from "./util/Console.js";
-import InputView from "./view/InputView.js";
-import Lotto from "./domain/Lotto.js";
-import Lottos from "./domain/Lottos.js";
-import Random from "./util/Random.js";
-import OutputView from "./view/OutputView.js";
-import LottoScore from "./domain/LottoScore.js";
-import InputCheck from "./InputCheck.js";
-import Utils from "./util/Utils.js";
+import LOTTO_GAME from "./constants/LottoGame"
+import VIEW from "./constants/View";
+import Console from "./util/Console";
+import InputView from "./view/InputView";
+import Lotto from "./domain/Lotto";
+import Lottos from "./domain/Lottos";
+import Random from "./util/Random";
+import OutputView from "./view/OutputView";
+import LottoScore from "./domain/LottoScore";
+import InputCheck from "./InputCheck";
+import Utils from "./util/Utils";
 
 class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
-    const lottos = await this.createLotto(parseInt(buyMoney / Constants.LOTTO_PRICE));
+    const lottos = await this.createLotto(parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE));
     OutputView.printBuyLottos(lottos.lottos);
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);

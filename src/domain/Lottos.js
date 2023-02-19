@@ -6,7 +6,7 @@ class Lottos {
   }
 
   get lottos() {
-    return [...this.#lottos]
+    return [...this.#lottos];
   }
 
   resetLottos() {
@@ -15,9 +15,9 @@ class Lottos {
 
   compareLottosWithWinningLotto(winningLotto, bonusNumber) {
     this.#lottos.forEach((lotto) => {
-      lotto.compareNumbers(winningLotto)
-      lotto.checkBonusNumber(bonusNumber)
-    })
+      lotto.compareNumbers(winningLotto);
+      lotto.checkBonusNumber(bonusNumber);
+    });
   }
 }
 

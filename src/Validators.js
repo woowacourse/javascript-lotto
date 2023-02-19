@@ -1,4 +1,4 @@
-import Lotto from "./constants/Lotto";
+import Lotto from "./constants/LottoGame";
 
 const Validators = {
   isNumber(input) {

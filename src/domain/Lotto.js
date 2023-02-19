@@ -14,13 +14,13 @@ class Lotto {
   }
 
   get score() {
-    const tempScore = this.#score
-    return tempScore
+    const tempScore = this.#score;
+    return tempScore;
   }
 
   get isContainBonusNumber() {
-    const tempIsContainBonusNumber = this.#isContainBonusNumber
-    return tempIsContainBonusNumber
+    const tempIsContainBonusNumber = this.#isContainBonusNumber;
+    return tempIsContainBonusNumber;
   }
 
   sortLottoNumbers() {
