@@ -21,7 +21,6 @@ class App {
   async playGame() {
     await this.lottoController.proceedBuyLottos();
     await this.lottoController.proceedWinningLotto();
-    await this.lottoController.proceedBonusNumber();
     this.lottoController.proceedLottoResult();
   }
 }

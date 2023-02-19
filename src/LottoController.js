@@ -9,33 +9,31 @@ import Console from '../src/utils/Console';
 import { RESTART_COMMAND } from './constants';
 
 class LottoController {
+  #buyer;
+  #winningLotto;
+
   async proceedBuyLottos() {
     return Console.repeatWhile(async () => {
       const money = await InputView.readMoney();
-      this.buyer = new Buyer(money);
-      this.buyer.buyLottos();
+      this.#buyer = new Buyer(money);
+      this.#buyer.buyLottos();
 
-      OutputView.printLottos(this.buyer.getLottos());
+      OutputView.printLottos(this.#buyer.getLottos());
     });
   }
 
   async proceedWinningLotto() {
     return Console.repeatWhile(async () => {
-      this.winningNumbers = new Lotto(await InputView.readLottoNumbers());
-    });
-  }
-
-  async proceedBonusNumber() {
-    return Console.repeatWhile(async () => {
+      const winningNumbers = new Lotto(await InputView.readLottoNumbers());
       const bonusNumber = await InputView.readBonusNumber();
-      this.winningLotto = new WinningLotto(this.winningNumbers, bonusNumber);
+      this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     });
   }
 
   proceedLottoResult() {
-    const lottoResult = new LottoResult(this.winningLotto);
-    const receivedRewards = this.buyer.receiveRewards(lottoResult);
-    const profitRate = this.buyer.getProfitRate();
+    const lottoResult = new LottoResult(this.#winningLotto);
+    const receivedRewards = this.#buyer.receiveRewards(lottoResult);
+    const profitRate = this.#buyer.getProfitRate();
 
     OutputView.printLottoResult(receivedRewards);
     OutputView.printProfitRate(profitRate);
