@@ -1,8 +1,8 @@
 const Validation = {
   REGEX_NUMERIC: /^\d+$/,
 
-  isNumeric(number) {
-    return Validation.REGEX_NUMERIC.test(number);
+  isNumeric(text) {
+    return Validation.REGEX_NUMERIC.test(text);
   },
 
   isInRange(number) {
