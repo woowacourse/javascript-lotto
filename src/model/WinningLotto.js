@@ -9,10 +9,7 @@ class WinningLotto {
   }
 
   computeMatchCounts(winningNumber, lottoNumber) {
-    const matchCounts = lottoNumber.reduce((acc, cur) => {
-      if (winningNumber.includes(cur)) return ++acc;
-      return acc;
-    }, 0);
+    const matchCounts = lottoNumber.reduce((acc, cur) => (winningNumber.includes(cur) ? acc + 1 : acc), 0);
 
     return matchCounts;
   }
