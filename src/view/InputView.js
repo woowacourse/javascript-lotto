@@ -7,7 +7,7 @@ const InputView = {
     return Number(money);
   },
 
-  async readWinningNumbers() {
+  async readLottoNumbers() {
     const readLottoNumbers = await Console.readLine(MESSAGES.GET_WINNING_NUMBERS);
     const lottoNumbers = readLottoNumbers
       .split(',')

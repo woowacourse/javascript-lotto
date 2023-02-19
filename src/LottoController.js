@@ -21,7 +21,7 @@ class LottoController {
 
   async proceedWinningLotto() {
     return Console.repeatWhile(async () => {
-      this.winningNumbers = new Lotto(await InputView.readWinningNumbers());
+      this.winningNumbers = new Lotto(await InputView.readLottoNumbers());
     });
   }
 
