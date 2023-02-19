@@ -1,5 +1,5 @@
 import LottoMachine from './LottoMachine.js';
-import numberHandler from '../util/numberHandler.js';
+import NumberHandler from '../util/NumberHandler.js';
 import LOTTO from '../constant/lotto.js';
 import { RANK, RANKING_TABLE } from '../constant/rank.js';
 
@@ -16,9 +16,8 @@ class LottoGame {
     return this.#lottos.map(lotto => lotto.getNumbers());
   }
 
-  initWinningNumbers(luckyNumbers, bonusNumber) {
-    this.#winningNumbers.luckyNumbers = luckyNumbers;
-    this.#winningNumbers.bonusNumber = bonusNumber;
+  initWinningNumbers({ luckyNumbers, bonusNumber }) {
+    this.#winningNumbers = { luckyNumbers, bonusNumber };
   }
 
   drawLotto() {
@@ -51,7 +50,7 @@ class LottoGame {
     const totalPrizeMoney = this.#calculateTotalPrizeMoney();
     const totalBuyMoney = this.#lottos.length * LOTTO.PRICE;
 
-    return numberHandler.roundOff((totalPrizeMoney / totalBuyMoney) * 100);
+    return NumberHandler.roundOff((totalPrizeMoney / totalBuyMoney) * 100);
   }
 
   #calculateTotalPrizeMoney() {

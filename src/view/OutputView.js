@@ -24,18 +24,12 @@ const OutputView = {
   },
 
   printRanks(amountOfRanks) {
-    MESSAGE.MATCH_TABLE.forEach((matchLetter, i) =>
-      Console.print(
-        MESSAGE.MATCH_RESULT(
-          matchLetter,
-          amountOfRanks[amountOfRanks.length - i - 1]
-        )
-      )
-    );
+    Console.print(MESSAGE.GET_TABLE(amountOfRanks));
   },
 
   printProfit(profit) {
-    Console.print(MESSAGE.PROFIT(stringHandler.addComma(profit)));
+    Console.print(MESSAGE.GET_PROFIT(stringHandler.addComma(profit)));
+    Console.print('');
   },
 };
 

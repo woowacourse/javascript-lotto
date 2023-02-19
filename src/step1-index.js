@@ -31,12 +31,13 @@ const App = {
     const luckyNumbers = await InputView.readLuckyNumbers();
     const bonusNumber = await InputView.readBonusNumber(luckyNumbers);
 
-    this.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
+    this.lottoGame.initWinningNumbers({ luckyNumbers, bonusNumber });
   },
 
   async calculateLotto() {
     const amountOfRanks = this.lottoGame.drawLotto();
     const profit = this.lottoGame.calculateProfit();
+
     OutputView.printStatistics(amountOfRanks, profit);
   },
 

@@ -1,6 +1,6 @@
-import arrayHandler from '../../src/util/arrayHandler.js';
+import ArrayHandler from '../../src/util/ArrayHandler.js';
 
-describe('arrayHandler테스트', () => {
+describe('ArrayHandler테스트', () => {
   test.each([
     [
       [5, 4, 3, 2, 1],
@@ -10,7 +10,7 @@ describe('arrayHandler테스트', () => {
   ])('배열 오름차순 정렬 테스트', numbers => {
     const ascendingOrderSortedNumbers = [1, 2, 3, 4, 5];
 
-    expect(arrayHandler.sortAscendingOrder(numbers)).toEqual(
+    expect(ArrayHandler.sortAscendingOrder(numbers)).toEqual(
       ascendingOrderSortedNumbers
     );
   });
@@ -28,7 +28,7 @@ describe('arrayHandler테스트', () => {
   //   (lottoNumbers, matchCount) => {
   //     const targetNumbers = [1, 2, 3, 4, 5, 6];
 
-  //     expect(arrayHandler.getMatchCount(lottoNumbers, targetNumbers)).toBe(
+  //     expect(ArrayHandler.getMatchCount(lottoNumbers, targetNumbers)).toBe(
   //       matchCount
   //     );
   //   }
