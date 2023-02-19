@@ -51,8 +51,9 @@ class LottoGame {
 
     const sameNumbers = numbers.filter((num) => winNumbers.includes(num));
     const correctCount = sameNumbers.length;
-    if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber))
+    if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber)) {
       return RANK.SECOND;
+    }
 
     return RANK_BY_CORRECT_COUNT[correctCount];
   }

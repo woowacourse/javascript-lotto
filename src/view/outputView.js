@@ -2,7 +2,7 @@ const { MESSAGES } = require("../constant/Constant");
 
 const OutputView = {
   printLottoCount(lottoCount) {
-    console.log(lottoCount + MESSAGES.printLottoCountText);
+    console.log(lottoCount + MESSAGES.printLottoCount);
   },
 
   printPurchaseLottos(lottos) {
@@ -14,16 +14,16 @@ const OutputView = {
   },
 
   printRankResult(rankResult) {
-    console.log(MESSAGES.printRankResultText);
-    console.log(MESSAGES.printFifthText + rankResult[5] + MESSAGES.piecesText);
-    console.log(MESSAGES.printFourthText + rankResult[4] + MESSAGES.piecesText);
-    console.log(MESSAGES.printThridText + rankResult[3] + MESSAGES.piecesText);
-    console.log(MESSAGES.printSecondText + rankResult[2] + MESSAGES.piecesText);
-    console.log(MESSAGES.printFirstText + rankResult[1] + MESSAGES.piecesText);
+    console.log(MESSAGES.printRankResult);
+    console.log(MESSAGES.printFifth + rankResult[5] + MESSAGES.pieces);
+    console.log(MESSAGES.printFourth + rankResult[4] + MESSAGES.pieces);
+    console.log(MESSAGES.printThrid + rankResult[3] + MESSAGES.pieces);
+    console.log(MESSAGES.printSecond + rankResult[2] + MESSAGES.pieces);
+    console.log(MESSAGES.printFirst + rankResult[1] + MESSAGES.pieces);
   },
 
   printRevenue(revenue) {
-    console.log(MESSAGES.printRevenueText + revenue + MESSAGES.printFinalText);
+    console.log(MESSAGES.printRevenue + revenue + MESSAGES.printFinal);
   },
 
   printErrorMessage(errorMessage) {
