@@ -5,59 +5,44 @@ import Lotto from "./domain/Lotto.js";
 import Lottos from "./domain/Lottos.js";
 import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js";
-import Error from "./constants/Error.js";
 import View from "./constants/View.js";
 import LottoScore from "./domain/LottoScore.js";
+import InputCheck from "./InputCheck.js";
 
 class App {
-
   async play() {
     const buyMoney = await this.getBuyMoney();
     const lottos = await this.createLotto(parseInt(buyMoney / 1000));
-
-    this.printLottos(lottos.getLottos())
-
+    this.printLottos(lottos.getLottos());
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
-
-    this.compareLottos(lottos, winningLotto, bonusNumber)
-
+    this.compareLottos(lottos, winningLotto, bonusNumber);
     const retryInput = await this.getRetryInput(lottos);
-
-    this.retryLottoGame(retryInput,lottos)
+    this.retryLottoGame(retryInput, lottos);
   }
 
   async getBuyMoney() {
     const buyMoney = await InputView.inputMoney(View.INPUT_MONEY);
     try {
-      this.validateBuyMoney(buyMoney);
+      InputCheck.validateBuyMoney(buyMoney);
     } catch (e) {
       Console.print(e);
-      await this.getBuyMoney();
+      return await this.getBuyMoney();
     }
-    return buyMoney
+    return buyMoney;
   }
 
   async createLotto(lottoAmount) {
-    const lottos = Array.from({ length: lottoAmount }, () => new Lotto(Random.getCorrectRandomNumbers()))
-    return new Lottos(lottos)
+    const lottos = Array.from(
+      { length: lottoAmount },
+      () => new Lotto(Random.getCorrectRandomNumbers())
+    );
+    return new Lottos(lottos);
   }
 
   printLottos(lottos) {
     OutputView.printLottoAmount(lottos.length);
     OutputView.printLottos(lottos);
-  }
-
-  validateBuyMoney(buyMoney) {
-    if (!Validations.isNumber(buyMoney)) {
-      throw new Error(Error.INPUT_NUMBER);
-    }
-    if (!Validations.isDevidedByThousand(buyMoney)) {
-      throw new Error(Error.INPUT_NUMBER_DEVIDED_BY_THOUSAND);
-    }
-    if (!Validations.isPositiveInteger(buyMoney)) {
-      throw new Error(Error.INPUT_POSITIVE_INTEGER_MONEY);
-    }
   }
 
   async getWinningLotto() {
@@ -66,12 +51,12 @@ class App {
     );
     const winningLotto = this.convertStringToNumber(winningNumbers.split(","));
     try {
-      this.validateWinningNumbers(winningLotto);
+      InputCheck.validateWinningNumbers(winningLotto);
     } catch (e) {
       Console.print(e);
-      await this.getWinningLotto();
+      return await this.getWinningLotto();
     }
-    return winningLotto
+    return winningLotto;
   }
 
   convertStringToNumber(strings) {
@@ -81,59 +66,34 @@ class App {
     return numbers;
   }
 
-  validateWinningNumbers(winningLotto) {
-    if (!Validations.isCorrectLength(winningLotto)) {
-      throw new Error(Error.INPUT_SIX_NUMBERS);
-    }
-    for (let i = 0; i < winningLotto.length; i++) {
-      this.checkEachNumber(winningLotto[i]);
-    }
-  }
-
-  checkEachNumber(eachNumber) {
-    if (!Validations.isNumber(eachNumber)) {
-      throw new Error(Error.INPUT_NUMBER);
-    }
-    if (!Validations.isCorrectRange(eachNumber)) {
-      throw new Error(Error.INPUT_CORRECT_RANGE_NUMBER);
-    }
-    if (!Validations.isPositiveInteger(eachNumber)) {
-      throw new Error(Error.INPUT_POSITIVE_INTEGER_LOTTO);
-    }
-  }
-
   async getBonusNumber(winningLotto) {
     const bonusInput = await InputView.inputBonusNumber(
       View.INPUT_BONUS_NUMBER
     );
     const bonusNumber = Number(bonusInput);
     try {
-      this.validateBonusNumber(bonusNumber,winningLotto);
-      this.checkEachNumber(bonusNumber);
+      InputCheck.validateBonusNumber(bonusNumber, winningLotto);
+      InputCheck.checkEachNumber(bonusNumber);
     } catch (e) {
       Console.print(e);
-      await this.getBonusNumber();
+      return await this.getBonusNumber();
     }
-    return bonusNumber
+    return bonusNumber;
   }
 
-  validateBonusNumber(bonusNumber,winningLotto) {
-    if (Validations.hasBonusNumber(bonusNumber, winningLotto)) {
-      throw new Error(Error.INPUT_NOT_DUPLICATED_NUMBER);
-    }
+  compareLottos(lottos, winningLotto, bonusNumber) {
+    lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
+    const lottoScore = new LottoScore();
+    lottoScore.compareLottosScore(lottos.getLottos());
+    this.printResult(lottos, lottoScore);
   }
 
-  compareLottos(lottos,winningLotto,bonusNumber) {
-    lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber)
-    const lottoScore = new LottoScore()
-    lottoScore.compareLottosScore(lottos.getLottos())
-    this.printResult(lottos,lottoScore)
-  }
-  
-  printResult(lottos,lottoScore) {
+  printResult(lottos, lottoScore) {
     OutputView.printResultMessage();
     OutputView.printLottoResults(lottoScore);
-    OutputView.printTotalBenefit(lottoScore.getBenefitRate(lottos.getLottos().length));
+    OutputView.printTotalBenefit(
+      lottoScore.getBenefitRate(lottos.getLottos().length)
+    );
   }
 
   async getRetryInput() {
@@ -142,18 +102,18 @@ class App {
       this.validateRetryInput(retryInput);
     } catch (e) {
       Console.print(e);
-      await this.getRetryInput();
+      return await this.getRetryInput();
     }
   }
 
-  async retryLottoGame(retryInput,lottos) {
+  async retryLottoGame(retryInput, lottos) {
     // if (
     //   retryInput === Constant.RETRY_DOWNER ||
     //   retryInput === Constant.RETRY_UPPER
     // ) {
-      // this.resetGame(lottos);
-      lottos.resetLottos()
-      this.play();
+    // this.resetGame(lottos);
+    lottos.resetLottos();
+    this.play();
     // }
     // if (
     //   retryInput === Constant.QUIT_DOWNER ||
@@ -163,11 +123,11 @@ class App {
     // }
   }
 
-  validateRetryInput(retryInput) {
-    if (!Validations.isCorrectRetryInput(retryInput)) {
-      throw new Error(Error.INPUT_CORRECT_RETRY);
-    }
-  }
+  // validateRetryInput(retryInput) {
+  //   if (!Validations.isCorrectRetryInput(retryInput)) {
+  //     throw new Error(Error.INPUT_CORRECT_RETRY);
+  //   }
+  // }
 }
 
 export default App;
