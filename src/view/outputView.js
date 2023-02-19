@@ -6,16 +6,16 @@ export const outputView = {
     console.log(message);
   },
 
-  printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets) {
-    this.print(MESSAGE.OUTPUT.numberOfPurchasedMessage(numberOfPurchasedLottoTickets));
+  printNumberOfPurchasedLottos(numberOfPurchasedLottos) {
+    this.print(MESSAGE.OUTPUT.numberOfPurchasedMessage(numberOfPurchasedLottos));
   },
 
-  printLottoTickets(lottoTickets) {
-    lottoTickets.forEach((ticket) => this.print(getAscendingSortedNumbers(ticket)));
+  printLottos(lottos) {
+    lottos.forEach((lotto) => this.print(getAscendingSortedNumbers(lotto.numbers)));
   },
 
-  printPlacesOfLottoTickets(placesOfLottoTickets) {
-    this.print(MESSAGE.OUTPUT.statistics(placesOfLottoTickets));
+  printPlacesOfLottos(placesOfLottos) {
+    this.print(MESSAGE.OUTPUT.statistics(placesOfLottos));
   },
 
   printRateOfReturn(rateOfReturn) {

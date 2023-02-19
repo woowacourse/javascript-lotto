@@ -3,69 +3,76 @@ import { inputView } from "../view/inputView";
 import { outputView } from "../view/outputView";
 import { close } from "../util/console";
 import { LOTTO_PRICE, PLACE, PRIZE_MONEY } from "../domain/constants";
-import { MESSAGE } from "./message";
 import {
   validateBonusNumber,
   validatePurchaseAmount,
   validateRestartOrQuitCommend,
   validateWinningLottoNumbers,
 } from "./validator";
+import { Lotto } from "./Lotto";
+import { WinningLotto } from "./WinningLotto";
 
 export class LottoGame {
-  #winningLotto = {
-    winningNumbers: [],
-    bonusNumber: 0,
-  };
-  #lottoTickets = [];
+  #winningLotto;
+  #lottos = [];
 
   async play() {
-    const purchaseAmount = await this.readPurchaseAmount();
-
-    const numberOfPurchasedLottoTickets = purchaseAmount / LOTTO_PRICE;
-    this.makeLottoTickets(numberOfPurchasedLottoTickets);
-    outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
-    outputView.printLottoTickets(this.#lottoTickets);
-
-    await this.readWinningLottoNumbers();
-    await this.readBonusNumber();
-
-    const placesOfLottoTickets = this.getPlacesOfLottoTickets();
-    outputView.printPlacesOfLottoTickets(placesOfLottoTickets);
+    // 구입 금액 입력
+    const purchaseAmount = Number(await this.#readPurchaseAmount());
+    // 로또 생성
+    const numberOfPurchasedLottos = purchaseAmount / LOTTO_PRICE;
+    this.#setLottos(numberOfPurchasedLottos);
+    // 생성한 로또 출력
+    outputView.printNumberOfPurchasedLottos(numberOfPurchasedLottos);
+    outputView.printLottos(this.#lottos);
+    // 당첨, 보너스 번호 set
+    await this.#setWinningLotto();
+    // 당첨 통계 출력
+    const placesOfLottos = this.#getPlacesOfLottos();
+    outputView.printPlacesOfLottos(placesOfLottos);
     outputView.printRateOfReturn(
-      this.getRateOfReturn(this.getTotalPrize(placesOfLottoTickets), purchaseAmount)
+      this.#getRateOfReturn(this.#getTotalPrize(placesOfLottos), purchaseAmount)
     );
-
-    const restartOrQuit = await this.readRestartOrQuitCommend();
-    this.shouldRestart(restartOrQuit) ? this.play() : close();
+    // 게임 재시작 여부 결정
+    const restartOrQuit = await this.#readRestartOrQuitCommend();
+    this.#shouldRestart(restartOrQuit) ? this.play() : close();
   }
 
-  async readPurchaseAmount() {
-    const purchaseAmountString = await inputView.readLottoPurchaseAmount();
-    if (!validatePurchaseAmount(purchaseAmountString)) return this.readPurchaseAmount();
-    return Number(purchaseAmountString);
+  // readPurchaseAmount()
+  async #readPurchaseAmount() {
+    const purchaseAmount = await inputView.readLottoPurchaseAmount();
+    if (!validatePurchaseAmount(purchaseAmount)) return this.#readPurchaseAmount();
+    return purchaseAmount;
   }
 
-  async readWinningLottoNumbers() {
-    const winningLottoNumbers = (await inputView.readWinningLottoNumbers()).split(",");
-    if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
-    this.#winningLotto.winningNumbers = winningLottoNumbers.map(Number);
+  // setWinningLotto()
+  async #readWinningLottoNumbers() {
+    const winningLottoNumbers = await inputView.readWinningLottoNumbers();
+    if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.#readWinningLottoNumbers();
+    return winningLottoNumbers;
   }
 
-  async readBonusNumber() {
+  async #readBonusNumber(winningLottoNumbers) {
     const bonusNumber = await inputView.readBonusNumber();
-    if (!validateBonusNumber(bonusNumber, this.#winningLotto.winningNumbers))
-      return this.readBonusNumber(this.#winningLotto.winningNumbers);
-    this.#winningLotto.bonusNumber = Number(bonusNumber);
+    if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
+      return this.#readBonusNumber(winningLottoNumbers);
+    return bonusNumber;
   }
 
-  getPlacesOfLottoTickets() {
-    return this.#lottoTickets.reduce(
-      (acc, lottoTicket) => {
-        const numberOfMatchingLottoNumbers = this.getNumberOfMatchingLottoNumbers(
-          lottoTicket,
+  async #setWinningLotto() {
+    const winningLottoNumbers = (await this.#readWinningLottoNumbers()).split(",").map(Number);
+    const bonusNumber = Number(await this.#readBonusNumber(winningLottoNumbers));
+    this.#winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
+  }
+
+  #getPlacesOfLottos() {
+    return this.#lottos.reduce(
+      (acc, lotto) => {
+        const numberOfMatchingLottoNumbers = this.#getNumberOfMatchingLottoNumbers(
+          lotto.numbers,
           this.#winningLotto.winningNumbers
         );
-        acc[this.getPlace(numberOfMatchingLottoNumbers, lottoTicket)] += 1;
+        acc[this.#getPlace(numberOfMatchingLottoNumbers, lotto)] += 1;
         return acc;
       },
       {
@@ -79,12 +86,13 @@ export class LottoGame {
     );
   }
 
-  getPlace(numberOfMatchingLottoNumbers, lottoTicket) {
+  #getPlace(numberOfMatchingLottoNumbers, lotto) {
     switch (numberOfMatchingLottoNumbers) {
       case 6:
         return PLACE.first;
       case 5:
-        return lottoTicket.includes(this.#winningLotto.bonusNumber) ? PLACE.second : PLACE.third;
+        console.log(lotto.numbers, this.#winningLotto.bonusNumber);
+        return lotto.numbers.includes(this.#winningLotto.bonusNumber) ? PLACE.second : PLACE.third;
       case 4:
         return PLACE.fourth;
       case 3:
@@ -94,49 +102,48 @@ export class LottoGame {
     }
   }
 
-  getTotalPrize(placesOfLottoTickets) {
+  #getTotalPrize(placesOfLottos) {
     return (
-      placesOfLottoTickets[PLACE.fifth] * PRIZE_MONEY.fifth +
-      placesOfLottoTickets[PLACE.fourth] * PRIZE_MONEY.fourth +
-      placesOfLottoTickets[PLACE.third] * PRIZE_MONEY.third +
-      placesOfLottoTickets[PLACE.second] * PRIZE_MONEY.second +
-      placesOfLottoTickets[PLACE.first] * PRIZE_MONEY.first
+      placesOfLottos[PLACE.fifth] * PRIZE_MONEY.fifth +
+      placesOfLottos[PLACE.fourth] * PRIZE_MONEY.fourth +
+      placesOfLottos[PLACE.third] * PRIZE_MONEY.third +
+      placesOfLottos[PLACE.second] * PRIZE_MONEY.second +
+      placesOfLottos[PLACE.first] * PRIZE_MONEY.first
     );
   }
 
-  getRateOfReturn(totalPrize, purchaseAmount) {
+  #getRateOfReturn(totalPrize, purchaseAmount) {
     return Number(((totalPrize / purchaseAmount) * 100).toFixed(1));
   }
 
-  async readRestartOrQuitCommend() {
+  async #readRestartOrQuitCommend() {
     const restartOrQuitCommend = await inputView.readRestartOrQuit();
-    if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
+    if (!validateRestartOrQuitCommend(restartOrQuitCommend))
+      return this.#readRestartOrQuitCommend();
     return restartOrQuitCommend;
   }
 
-  shouldRestart(restartOrQuitCommend) {
+  #shouldRestart(restartOrQuitCommend) {
     return ["y", "Y"].includes(restartOrQuitCommend);
   }
 
-  makeLottoTickets(numberOfTickets) {
-    this.#lottoTickets = Array.from({ length: numberOfTickets }, this.makeLottoTicket);
+  #setLottos(numberOfTickets) {
+    this.#lottos = Array.from({ length: numberOfTickets }, this.#makeLottoTicket);
   }
 
-  makeLottoTicket() {
-    const lottoTicket = new Set();
-
-    while (6 > lottoTicket.size) {
-      lottoTicket.add(randomNumberBetween());
+  #makeLottoTicket() {
+    const lotto = new Set();
+    while (6 > lotto.size) {
+      lotto.add(randomNumberBetween());
     }
-
-    return [...lottoTicket];
+    return new Lotto([...lotto]);
   }
 
-  getNumberOfMatchingLottoNumbers(lottoTicket, winningLottoNumbers) {
+  #getNumberOfMatchingLottoNumbers(lottoNumbers, winningLottoNumbers) {
     return (
-      lottoTicket.length +
+      lottoNumbers.length +
       winningLottoNumbers.length -
-      new Set([...lottoTicket, ...winningLottoNumbers]).size
+      new Set([...lottoNumbers, ...winningLottoNumbers]).size
     );
   }
 }

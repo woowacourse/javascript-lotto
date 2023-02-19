@@ -62,17 +62,17 @@ export const validatePurchaseAmount = (purchaseAmountString) => {
   return true;
 };
 
-export const validateWinningLottoNumbers = (winningLottoNumberStrings) => {
+export const validateWinningLottoNumbers = (winningLottoNumbers) => {
   try {
-    winningLottoNumberStrings.forEach((winningLottoNumber) =>
-      validator.checkInteger(winningLottoNumber)
-    );
+    winningLottoNumbers
+      .split(",")
+      .forEach((winningLottoNumber) => validator.checkInteger(winningLottoNumber));
 
-    const winningLottoNumbers = winningLottoNumberStrings.map((number) => Number(number));
+    const mappedWinningLottoNumbers = winningLottoNumbers.split(",").map(Number);
 
-    validator.checkDuplicates(winningLottoNumbers);
-    validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
-    validator.checkListLengthIsSix(winningLottoNumbers);
+    validator.checkDuplicates(mappedWinningLottoNumbers);
+    validator.checkLottoNumbersBetween1And45(mappedWinningLottoNumbers);
+    validator.checkListLengthIsSix(mappedWinningLottoNumbers);
   } catch (error) {
     outputView.print(error.message);
     return false;
@@ -80,14 +80,14 @@ export const validateWinningLottoNumbers = (winningLottoNumberStrings) => {
   return true;
 };
 
-export const validateBonusNumber = (bonusNumberString, winningLottoNumbers) => {
+export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {
   try {
-    validator.checkInteger(bonusNumberString);
+    validator.checkInteger(bonusNumber);
 
-    const bonusNumber = Number(bonusNumberString);
+    const convertedbonusNumber = Number(bonusNumber);
 
-    validator.checkBonusNumberBetween1And45(bonusNumber);
-    validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
+    validator.checkBonusNumberBetween1And45(convertedbonusNumber);
+    validator.checkBonusNumberDuplicate(convertedbonusNumber, winningLottoNumbers);
   } catch (error) {
     outputView.print(error.message);
     return false;
