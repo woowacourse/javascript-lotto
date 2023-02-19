@@ -1,5 +1,5 @@
 import messages from '../constants/messages';
-import ValidatorUtils from './ValidatorUtils';
+import validatorUtils from './ValidatorUtils';
 
 const inputValidator = {
   validateWithCondition(conditions) {
@@ -12,8 +12,8 @@ const inputValidator = {
 
   validateMoneyInput(number) {
     this.validateWithCondition([
-      { condition: ValidatorUtils.isPositiveInteger(+number), errorMessage: messages.ERROR.POSITIVE_INTEGER },
-      { condition: ValidatorUtils.isThousandsOfWon(+number), errorMessage: messages.ERROR.THOUSANDS_WON },
+      { condition: validatorUtils.isPositiveInteger(+number), errorMessage: messages.ERROR.POSITIVE_INTEGER },
+      { condition: validatorUtils.isThousandsOfWon(+number), errorMessage: messages.ERROR.THOUSANDS_WON },
     ]);
   },
 
@@ -23,25 +23,31 @@ const inputValidator = {
     winningNumberSplit.forEach(number => {
       this.validateWithCondition([
         {
-          condition: ValidatorUtils.isPositiveInteger(+number),
+          condition: validatorUtils.isPositiveInteger(+number),
           errorMessage: messages.ERROR.VALID_SIX_NUMBER,
         },
         {
-          condition: ValidatorUtils.isInRange(+number),
+          condition: validatorUtils.isInRange(+number),
           errorMessage: messages.ERROR.VALID_SIX_NUMBER,
         },
       ]);
     });
 
     this.validateWithCondition([
-      { condition: ValidatorUtils.hasNoBlank(winningNumberSplit), errorMessage: messages.ERROR.HAS_BLANK },
+      { condition: validatorUtils.hasNoBlank(winningNumberSplit), errorMessage: messages.ERROR.HAS_BLANK },
     ]);
   },
 
   validateBonusNumberInput(number) {
     this.validateWithCondition([
-      { condition: ValidatorUtils.isPositiveInteger(+number), errorMessage: messages.ERROR.POSITIVE_INTEGER },
-      { condition: ValidatorUtils.isInRange(+number), errorMessage: messages.ERROR.IN_RANGE },
+      { condition: validatorUtils.isPositiveInteger(+number), errorMessage: messages.ERROR.POSITIVE_INTEGER },
+      { condition: validatorUtils.isInRange(+number), errorMessage: messages.ERROR.IN_RANGE },
+    ]);
+  },
+
+  validateRestartInput(restartInput) {
+    this.validateWithCondition([
+      { condition: validatorUtils.yOrN(restartInput), errorMessage: messages.ERROR.Y_OR_N },
     ]);
   },
 };
