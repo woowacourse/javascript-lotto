@@ -2,7 +2,7 @@ import Lotto from "./constants/Lotto";
 
 const Validators = {
   isNumber(input) {
-    return isNaN(input) ? false : true;
+    return typeof input === "number";
   },
 
   isString(input) {
@@ -28,7 +28,7 @@ const Validators = {
   },
 
   isCorrectRetryInput(retryInput) {
-    console.log(retryInput === Lotto.RETRY_DOWNER)
+    console.log(retryInput === Lotto.RETRY_DOWNER);
     return (
       retryInput === Lotto.RETRY_DOWNER || retryInput === Lotto.QUIT_DOWNER
     );
