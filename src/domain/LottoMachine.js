@@ -2,24 +2,28 @@ const { LOTTO } = require('../constant/setting');
 const pickNumberInRange = require('../util/pickNumberInRange');
 
 class LottoMachine {
-  #money;
+  #purchaseAmount;
 
-  constructor(money) {
-    this.#money = money;
+  constructor(purchaseAmount) {
+    this.#purchaseAmount = purchaseAmount;
   }
 
   getQuantity() {
-    return this.#money / LOTTO.UNIT;
+    return this.#purchaseAmount / LOTTO.UNIT;
   }
 
-  issueLotto() {
+  issueLottos() {
+    return Array.from({ length: this.getQuantity() }, () => this.#issueLotto());
+  }
+
+  #issueLotto() {
     const lotto = new Set();
 
     while (lotto.size < LOTTO.LENGTH) {
       lotto.add(pickNumberInRange(LOTTO.MIN_NUMBER_RANGE, LOTTO.MAX_NUMBER_RANGE));
     }
 
-    return [...lotto].sort((prev, cur) => prev - cur);
+    return [...lotto].sort((first, second) => first - second);
   }
 }
 
