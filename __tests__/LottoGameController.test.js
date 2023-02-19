@@ -1,7 +1,5 @@
-const Validator = require('../src/domain/validation/validator');
-
-describe('기능 테스트', () => {
-  test('구입 금액에 따라 로또 개수 반환하기', () => {
+describe('로또 게임을 진행하는 Controller의 기능 테스트', () => {
+  test('구입 금액에 따라 로또 개수 반환하는 기능 테스트', () => {
     //given
     const LottoGameController = require('../src/controller/LottoGameController');
     const lottoGameController = new LottoGameController();

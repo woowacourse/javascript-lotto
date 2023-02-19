@@ -1,8 +1,8 @@
 const { profitByRank } = require('../src/constants/constants');
 const Lotto = require('../src/domain/model/Lotto');
-const { calculateRank, calculateProfit } = require('../src/utils');
+const { calculateProfit } = require('../src/utils');
 
-describe('로또 클래스 테스트', () => {
+describe('Lotto 클래스 테스트', () => {
   test.each([
     [8, 21, 23, 41, 42, 43],
     [3, 5, 11, 16, 32, 38],

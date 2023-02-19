@@ -11,7 +11,7 @@ describe('Lottos 테스트', () => {
     const bonusNumber = 7;
 
     lottos.calculateAllRanks(winningNumbers, bonusNumber);
-    //console.log(lottos.#calculateProfitRate(), lottos.getAllRanks());
+
     // then
     expect(lottos.getLottos().length).toEqual(lottoCount);
   });

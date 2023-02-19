@@ -1,6 +1,6 @@
 const Validator = require('../src/domain/validation/validator');
 
-describe('Validator 테스트', () => {
+describe('Validator 테스트(구입 금액, 당첨 번호, 보너스 번호, 다시 시작 명령어 입력값에 대한 유효성 검사 기능 테스트)', () => {
   test.each([
     { input: '우테코', expected: false },
     { input: '1000', expected: true },
