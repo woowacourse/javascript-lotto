@@ -24,12 +24,11 @@ const lottoGameValidator = {
   },
 
   checkWinningNumbers(input) {
-    const array = input.split(',');
-    array.forEach((value) => {
+    const numbers = input.split(',').map((value) => {
       validator.checkDigit(value);
+      return Number(value);
     });
 
-    const numbers = array.map(Number);
     lottoGameValidator.checkLottoNumbers(numbers);
   },
 
