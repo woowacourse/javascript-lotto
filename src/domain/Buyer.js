@@ -1,4 +1,4 @@
-import LottoFactory from './LottoFactory';
+import LottoFactory from './lotto/LottoFactory';
 
 class Buyer {
   constructor(money) {

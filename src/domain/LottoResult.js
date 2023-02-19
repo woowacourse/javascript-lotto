@@ -1,5 +1,5 @@
-import BonusNumberReward from './rewards/BonusReward';
-import Reward from './rewards/Reward';
+import BonusNumberReward from './reward/BonusReward';
+import Reward from './reward/Reward';
 
 class LottoResult {
   static REWARDS = [

@@ -1,6 +1,6 @@
 import Buyer from '../src/domain/Buyer';
-import Lotto from '../src/domain/Lotto';
-import LottoFactory from '../src/domain/LottoFactory';
+import Lotto from '../src/domain/lotto/Lotto';
+import LottoFactory from '../src/domain/lotto/LottoFactory';
 import LottoResult from '../src/domain/LottoResult';
 import WinningLotto from '../src/domain/WinningLotto';
 

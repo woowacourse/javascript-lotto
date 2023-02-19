@@ -1,5 +1,5 @@
-import Lotto from '../src/domain/Lotto';
-import Reward from '../src/domain/Reward';
+import Lotto from '../src/domain/lotto/Lotto';
+import Reward from '../src/domain/reward/Reward';
 import WinningLotto from '../src/domain/WinningLotto';
 
 describe('Reward', () => {

@@ -1,4 +1,4 @@
-import Lotto from '../src/domain/Lotto';
+import Lotto from '../src/domain/lotto/Lotto';
 
 describe('Lotto', () => {
   context('로또번호가 주어졌을 때', () => {

@@ -1,4 +1,4 @@
-import Lotto from '../src/domain/Lotto';
+import Lotto from '../src/domain/lotto/Lotto';
 import WinningLotto from '../src/domain/WinningLotto';
 
 describe('WinningLotto', () => {

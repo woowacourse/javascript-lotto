@@ -1,4 +1,4 @@
-import Lotto from '../src/domain/Lotto';
+import Lotto from '../src/domain/lotto/Lotto';
 import LottoResult from '../src/domain/LottoResult';
 import WinningLotto from '../src/domain/WinningLotto';
 
