@@ -6,22 +6,22 @@ import parseNumbers from '../utils/parseNumbers.js';
 
 const lottoGameValidator = {
   throwErrorIfInvalidBuyMoney(buyMoneyText) {
-    if (this.isValidBuyMoney(buyMoneyText)) return;
+    if (this.isValidBuyMoney(buyMoneyText)) return true;
     throw new Error(ERROR.BUY_MONEY);
   },
 
   throwErrorIfInvalidLuckyNumbers(luckyNumbersText) {
-    if (this.isValidLuckyNumbers(luckyNumbersText)) return;
+    if (this.isValidLuckyNumbers(luckyNumbersText)) return true;
     throw new Error(ERROR.LUCKY_NUMBERS);
   },
 
   throwErrorIfInvalidBonusNumber(bonusNumberText, luckyNumbers) {
-    if (this.isValidBonusNumber(bonusNumberText, luckyNumbers)) return;
+    if (this.isValidBonusNumber(bonusNumberText, luckyNumbers)) return true;
     throw new Error(ERROR.BONUS_NUMBER);
   },
 
   throwErrorIfInvalidRetryCommand(retryCommand) {
-    if (this.isValidRetryCommand(retryCommand)) return;
+    if (this.isValidRetryCommand(retryCommand)) return true;
     throw new Error(ERROR.RETRY_COMMAND);
   },
 
