@@ -4,37 +4,40 @@ const InputView = require("../view/inputView");
 const OutputView = require("../view/outputView");
 
 const LottoController = {
+  lottoGame: undefined,
+
   async playLotto() {
-    const lottoGame = new LottoGame();
-    const lottoGameHasTickets = await this.purchaseLotto(lottoGame);
-    await this.LotteryTicket(lottoGameHasTickets);
+    this.lottoGame = new LottoGame();
+
+    const lottos = await this.purchaseLotto();
+    await this.LotteryTicket(lottos);
 
     this.restart();
   },
 
-  async purchaseLotto(lottoGame) {
+  async purchaseLotto() {
     const money = await this.readMoney();
 
-    lottoGame.makeLottos(money);
+    const lottos = this.lottoGame.makeLottos(money);
+    const lottoCount = lottos.length;
 
-    OutputView.printLottoCount(lottoGame.lottoCount);
-    OutputView.printPurchaseLottos(lottoGame.lottos);
+    OutputView.printLottoCount(lottoCount);
+    OutputView.printPurchaseLottos(lottos);
 
-    return lottoGame;
+    return lottos;
   },
 
-  async LotteryTicket(lottoGame) {
+  async LotteryTicket(lottos) {
     const winNumbers = await this.readWinNumbers();
     const bonusNumber = await this.readBonusNumber(winNumbers);
 
-    lottoGame.makeWinLotto(winNumbers, bonusNumber);
-    const rankResult = lottoGame.calculateRankResult();
-    const revenue = lottoGame.calculateRevenueRate(rankResult);
+    const lottoCount = lottos.length;
+    const winLotto = this.lottoGame.makeWinLotto(winNumbers, bonusNumber);
+    const rankResult = this.lottoGame.calculateRankResult(lottos, winLotto);
+    const revenue = this.lottoGame.calculateRevenueRate(rankResult, lottoCount);
 
     OutputView.printRankResult(rankResult);
-    OutputView.printRevenue(revenue);
-
-    return lottoGame;
+    OutputView.printRevenue(revenue, lottoCount);
   },
 
   async restart() {

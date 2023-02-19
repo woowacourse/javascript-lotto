@@ -11,6 +11,10 @@ class WinLotto extends Lotto {
   get bonusNumber() {
     return this.#bonusNumber;
   }
+
+  get numbers() {
+    return super.numbers;
+  }
 }
 
 module.exports = WinLotto;
