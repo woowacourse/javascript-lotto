@@ -6,53 +6,60 @@ const LottoStatistics = require('./domain/LottoStatistics');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 
+const { errorCheckFor } = require('./utils/errorCheckFor');
+
 class LottoGame {
+  #winningNumbers;
+
   #lottoMachine;
 
   #lottoStatistics;
 
-  async play() {
-    await this.inputPurchasePrice();
-    this.showPurchasedLottos();
-    const winningNumbers = await this.inputWinningNumbers();
-    const bonusNumber = await this.inputBonusNumber(winningNumbers);
-    this.#lottoStatistics = new LottoStatistics(winningNumbers, bonusNumber);
-    this.showLottoStatistics();
-    await this.inputRestart();
-  }
+  async successPayForLottoEvent() {
+    const purchasePrice = await InputView.readPurchasePrice();
+    this.#lottoMachine = new LottoMachine(parseInt(purchasePrice, 10));
 
-  async inputPurchasePrice() {
-    try {
-      const purchasePrice = await InputView.readPurchasePrice();
-      this.#lottoMachine = new LottoMachine(parseInt(purchasePrice, 10));
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      await this.inputPurchasePrice();
-    }
-  }
-
-  async showPurchasedLottos() {
     OutputView.printPurchasedLottos(this.#lottoMachine.lottos);
+
+    await this.inputWinningNumbers();
+  }
+
+  async payForLotto() {
+    await errorCheckFor(
+      () => this.successPayForLottoEvent(),
+      () => this.payForLotto()
+    );
+  }
+
+  async successInputWinningNumbersEvent() {
+    const winningNumbers = await InputView.readWinningNumbers();
+    this.#winningNumbers = new WinningNumbers(winningNumbers);
+
+    await this.inputBonusNumber(this.#winningNumbers);
   }
 
   async inputWinningNumbers() {
-    try {
-      const winningNumbers = await InputView.readWinningNumbers();
-      return new WinningNumbers(winningNumbers);
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      await this.inputWinningNumbers();
-    }
+    await errorCheckFor(
+      () => this.successInputWinningNumbersEvent(),
+      () => this.inputWinningNumbers()
+    );
+  }
+
+  async successInputBonusEvent(winningNumbers) {
+    this.#lottoStatistics = new LottoStatistics(
+      this.#winningNumbers,
+      new BonusNumber(await InputView.readBonusNumber(), winningNumbers)
+    );
+
+    this.showLottoStatistics();
+    await this.inputRestartQuitCommand();
   }
 
   async inputBonusNumber(winningNumbers) {
-    try {
-      const bonusNumber = await InputView.readBonusNumber();
-      return new BonusNumber(bonusNumber, winningNumbers);
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      await this.inputWinningNumbers();
-    }
+    await errorCheckFor(
+      () => this.successInputBonusEvent(winningNumbers),
+      () => this.inputBonusNumber(winningNumbers)
+    );
   }
 
   showLottoStatistics() {
@@ -66,15 +73,17 @@ class LottoGame {
     OutputView.printStatistics(winningLottos, profitRate);
   }
 
-  async inputRestart() {
-    try {
-      const command = await InputView.readRestart();
-      this.validateCommand(command);
-      await this.executeCommand(command.toLowerCase());
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      await this.inputRestart();
-    }
+  async successInputRestartQuitCommand() {
+    const command = (await InputView.readRestart()).toLowerCase();
+    this.validateCommand(command);
+    await this.executeCommand(command);
+  }
+
+  async inputRestartQuitCommand() {
+    await errorCheckFor(
+      () => this.successInputRestartQuitCommand(),
+      () => this.inputRestartQuitCommand()
+    );
   }
 
   validateCommand(command) {
@@ -100,7 +109,7 @@ class LottoGame {
   }
 
   async restart() {
-    await this.play();
+    await this.payForLotto();
   }
 }
 
