@@ -36,7 +36,6 @@ const InputCheck = {
   },
 
   validateBonusNumber(bonusNumber, winningLotto) {
-    console.log(winningLotto);
     if (Validators.hasBonusNumber(bonusNumber, winningLotto)) {
       throw new Error(Error.INPUT_NOT_DUPLICATED_NUMBER);
     }
