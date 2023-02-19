@@ -10,7 +10,9 @@ export default class Component {
   setUp() {}
 
   render() {
-    Console.print(this.template());
+    const template = this.template();
+
+    template && Console.print(template);
   }
 
   template() {
