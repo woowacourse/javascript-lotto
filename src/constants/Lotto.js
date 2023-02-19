@@ -8,9 +8,7 @@ const Lotto = {
   ONE: 1,
 
   RETRY_DOWNER: "y",
-  RETRY_UPPER: "Y",
   QUIT_DOWNER: "n",
-  QUIT_UPPER: "N",
 };
 
 export default Lotto;
