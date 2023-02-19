@@ -1,8 +1,8 @@
-import Buyer from '../src/domain/Buyer';
 import Lotto from '../src/domain/lotto/Lotto';
 import LottoFactory from '../src/domain/lotto/LottoFactory';
 import LottoResult from '../src/domain/LottoResult';
-import Seller from '../src/domain/Seller';
+import Buyer from '../src/domain/subject/Buyer';
+import Seller from '../src/domain/subject/Seller';
 import WinningLotto from '../src/domain/WinningLotto';
 
 const mockLottoFactory = (lottos) => {

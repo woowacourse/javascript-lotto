@@ -1,4 +1,4 @@
-import LottoFactory from './lotto/LottoFactory';
+import LottoFactory from '../lotto/LottoFactory';
 
 class Seller {
   /** @type {LottoFactory} */

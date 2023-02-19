@@ -1,4 +1,4 @@
-import LottoResult from './LottoResult';
+import LottoResult from '../LottoResult';
 import Seller from './Seller';
 
 class Buyer {

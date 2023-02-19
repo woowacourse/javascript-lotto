@@ -1,4 +1,4 @@
-import Seller from '../src/domain/Seller';
+import Seller from '../src/domain/subject/Seller';
 
 describe('Seller', () => {
   context('Seller에게 돈을 주었을 때', () => {
