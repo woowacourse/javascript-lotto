@@ -32,8 +32,8 @@ describe('Buyer', () => {
     );
   });
 
-  context('Buyer가 로또를 가지고 있을 때', () => {
-    it('보상 금액에 대해 수익률을 계산할 수 있어야 한다.', () => {
+  context('Buyer가 로또로 보상 금액을 받았을 때', () => {
+    it('수익률을 계산할 수 있어야 한다.', () => {
       // given
       const money = 5000;
       const buyer = new Buyer(money);
@@ -44,11 +44,12 @@ describe('Buyer', () => {
         new Lotto([7, 8, 9, 10, 11, 12]), // 0개
         new Lotto([30, 31, 32, 33, 34, 35]), // 0개
       ]);
+      const seller = new Seller(lottoFactory);
       const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
       const lottoResult = new LottoResult(winningLotto);
 
       // when
-      buyer.buyLottos(lottoFactory);
+      buyer.buyLottos(seller);
       buyer.receiveRewards(lottoResult);
       const profitRate = buyer.getProfitRate();
 
