@@ -22,7 +22,9 @@ class LottoMachine {
   }
 
   buyLotto(money) {
-    for (let i = 0; i < Math.floor(money / 1000); i++) {
+    const targetLottoLength = Math.floor(money / 1000);
+
+    while (this.#lottos.length < targetLottoLength) {
       this.#lottos.push(new Lotto(this.generateLottoNumber()));
     }
   }
@@ -62,12 +64,10 @@ class LottoMachine {
   }
 
   computeCorrectCounts(winningNumber, lottoNumber) {
-    const correctCounts = lottoNumber.reduce((acc, cur) => {
+    return lottoNumber.reduce((acc, cur) => {
       if (winningNumber.includes(cur)) return ++acc;
       return acc;
     }, 0);
-
-    return correctCounts;
   }
 
   checkLotteryWinnings(lottoNumber, targetNumber) {
@@ -90,12 +90,7 @@ class LottoMachine {
   }
 
   lotteryWinningsSum(lottos, targetNumber) {
-    const lotteryWinningsSum = lottos.reduce(
-      (acc, lotto) => acc + this.checkLotteryWinnings(lotto, targetNumber),
-      0,
-    );
-
-    return lotteryWinningsSum;
+    return lottos.reduce((acc, lotto) => acc + this.checkLotteryWinnings(lotto, targetNumber), 0);
   }
 
   rateOfProfit(lotteryWinningsSum, lottosLength) {
