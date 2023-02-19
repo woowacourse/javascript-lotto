@@ -5,7 +5,7 @@ const isSpace = (character) => character === ' ';
 
 const validateNumericString = (numericString) => {
   if (isEmptyString(numericString)) {
-    throw new Error(ERROR_MESSAGE.NULL);
+    throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
   }
 
   const characters = numericString.split('');

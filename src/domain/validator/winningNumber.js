@@ -6,7 +6,7 @@ const hasDuplicatedNumber = (lottoNumbers) => lottoNumbers.length !== new Set(lo
 
 const validateWinningNumber = (winningNumber) => {
   if (!isValidLength(winningNumber)) {
-    throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER_LENGTH);
+    throw new Error(ERROR_MESSAGE.INVALID_LOTTO_SIZE);
   }
   if (hasDuplicatedNumber(winningNumber)) {
     throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);

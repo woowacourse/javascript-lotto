@@ -7,7 +7,7 @@ const validateBonusNumber = (bonusNumber, winningNumber) => {
   validateLottoNumber(bonusNumber);
 
   if (isIncludeWinningNumber(bonusNumber, winningNumber)) {
-    throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
+    throw new Error(ERROR_MESSAGE.INCLUDES_WINNING_NUMBER);
   }
 };
 

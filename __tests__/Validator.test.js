@@ -61,7 +61,7 @@ describe('당첨 번호 유효성 검사 테스트', () => {
     //then
     expect(() => {
       validateWinningNumber(winningNumber);
-    }).toThrow(ERROR_MESSAGE.INVALID_WINNING_NUMBER_LENGTH);
+    }).toThrow(ERROR_MESSAGE.INVALID_LOTTO_SIZE);
   });
 
   test('중복된 숫자가 있는 경우 예외가 발생한다.', () => {
@@ -105,7 +105,7 @@ describe('보너스 번호 입력 유효성 검사 테스트', () => {
     //then
     expect(() => {
       validateBonusNumber(bonusNumber, winningNumber);
-    }).toThrow(ERROR_MESSAGE.DUPLICATED_NUMBER);
+    }).toThrow(ERROR_MESSAGE.INCLUDES_WINNING_NUMBER);
   });
 
   test('1~45사이의 당첨 번호와 중복되지 않은 숫자인 경우 정상적으로 동작한다.', () => {
