@@ -1,3 +1,5 @@
+import { RANKING_THRESHOLD } from '../../constants';
+
 class Lotto {
   #numbers;
 
@@ -14,7 +16,9 @@ class Lotto {
   }
 
   calculateRanking(matchCount, bonusNumber) {
-    if (matchCount < 3) throw new Error('3 이상의 수를 입력해야 합니다.');
+    if (matchCount < RANKING_THRESHOLD) {
+      throw new Error(`${RANKING_THRESHOLD} 이상의 수를 입력해야 합니다.`);
+    }
 
     if (matchCount === 6) return 1;
     if (matchCount === 5 && this.#numbers.includes(bonusNumber)) return 2;
