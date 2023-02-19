@@ -81,11 +81,9 @@ describe('당첨 번호 입력 유효성 검사 테스트', () => {
 });
 
 describe('보너스 번호 입력 유효성 검사 테스트', () => {
-  //given
-  const winningNumber = [1, 3, 4, 5, 10, 13];
-
   test('1~45 사이의 수가 아닌 경우 예외가 발생한다.', () => {
     //given
+    const winningNumber = [1, 3, 4, 5, 10, 13];
     const bonusNumber = '55';
 
     //then
@@ -96,6 +94,7 @@ describe('보너스 번호 입력 유효성 검사 테스트', () => {
 
   test('당첨 번호와 중복된 경우 예외가 발생한다', () => {
     //given
+    const winningNumber = [1, 3, 4, 5, 10, 13];
     const bonusNumber = '5';
 
     //then
