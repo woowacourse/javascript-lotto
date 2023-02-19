@@ -35,7 +35,7 @@ describe('lotto.hasBonusNumber 메서드', () => {
   });
 });
 
-test('getCompareResult', () => {
+test('getCompareResult메서드는 일치하는 번호의 개수와 보너스번호 포함여부를 담은 객체를 반환한다.', () => {
   const lottoNumbers = [1, 2, 3, 4, 5, 6];
   const lotto = new Lotto(lottoNumbers);
 

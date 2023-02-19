@@ -1,7 +1,7 @@
 import LottoGame from '../src/domain/LottoGame.js';
 import { LOTTO_CONDITION, LOTTO_PRIZE_MONEY } from '../src/constants/condition.js';
 
-test(`generateLottoNumbers 메서드는 로또 자릿수(${LOTTO_CONDITION.lottoDigits}) 만큼의 길이를 가진 배열을 반환해야한다.`, () => {
+test(`generateLottoNumbers 메서드는 로또 자릿수(${LOTTO_CONDITION.lottoDigits}) 만큼의 길이를 가진 배열을 반환한다.`, () => {
   const lottoGame = new LottoGame();
   const lottoDigits = LOTTO_CONDITION.lottoDigits;
 
@@ -10,7 +10,7 @@ test(`generateLottoNumbers 메서드는 로또 자릿수(${LOTTO_CONDITION.lotto
   expect(lottoNumbers).toHaveLength(lottoDigits);
 });
 
-test('makeLotto메서드 1회 실행 시 1개의 로또가 생성되어야 한다.', () => {
+test('makeLotto메서드는 1회 실행에 1개의 로또를 생성한다.', () => {
   const lottoGame = new LottoGame();
 
   const lottoNumbersList = [
@@ -27,7 +27,7 @@ test('makeLotto메서드 1회 실행 시 1개의 로또가 생성되어야 한�
   expect(lottoQuantity).toBe(processCount);
 });
 
-test('getEachCompareResult메서드 실행 시 각 로또의 당첨번호와 보너스번호 일치 여부를 객체 배열로 반환한다.', () => {
+test('getEachCompareResult메서드는 각 로또의 당첨번호와 보너스번호 일치 여부를 객체 배열로 반환한다.', () => {
   const lottoGame = new LottoGame();
   const lottoNumbersList = [
     [1, 2, 3, 4, 5, 6],
