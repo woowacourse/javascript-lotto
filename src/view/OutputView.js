@@ -20,9 +20,8 @@ const OutputView = {
   },
 
   printResultTitle() {
-    Console.print('');
-    Console.print('당첨 통계');
-    Console.print('--------------------');
+    Console.print('\n당첨 통계');
+    Console.print(`${'-'.repeat(20)}`);
   },
 
   printLottoRanksResult(lottoRanksCount) {
@@ -30,7 +29,7 @@ const OutputView = {
       .slice(1, lottoRanksCount.length)
       .reverse()
       .forEach((lottoRankCount, index) => {
-        Console.print(labels[index] + lottoRankCount + '개');
+        Console.print(`${labels[index]}${lottoRankCount}개`);
       });
   },
 
