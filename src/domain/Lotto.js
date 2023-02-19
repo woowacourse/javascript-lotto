@@ -15,7 +15,7 @@ class Lotto {
     });
     if (Validator.isDuplicated(numbers))
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATE(LOTTO_CONSTANT.LOTTO_NUMBER));
-    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.LOTTO_LENGTH_LIMIT);
+    if (numbers.length !== LOTTO_CONSTANT.LENGTH) throw new Error(ERROR_MESSAGE.LOTTO_LENGTH_LIMIT);
   }
 
   validateEachNumber(number) {
