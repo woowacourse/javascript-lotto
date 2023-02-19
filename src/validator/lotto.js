@@ -10,8 +10,6 @@ export function checkWinningNumberRange(number) {
       number,
     });
   }
-
-  return true;
 }
 
 export function checkWinningNumbersRange(numbers) {
@@ -22,8 +20,6 @@ export function checkWinningNumbersFormat(winningNumber) {
   if (!ONLY_NUMBERS_WITH_COMMA.test(winningNumber)) {
     throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, winningNumber);
   }
-
-  return true;
 }
 
 export function checkBonusNumberFormat(bonusNumber) {
