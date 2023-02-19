@@ -100,9 +100,8 @@ class LottoGameController {
   }
 
   restart() {
-    this.#numbers.winningNumbers = undefined;
-    this.#numbers.bonusNumber = undefined;
-    this.#lottos = undefined;
+    this.#numbers = { winningNumbers: null, bonusNumber: null };
+    this.#lottos = null;
 
     this.playGame();
   }
