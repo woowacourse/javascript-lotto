@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto");
 const Random = require("../utils/Random");
-const { UNIT, RANK, PRIZE } = require("../constants");
+const { UNIT, RANK, PRIZE, LOTTO_SIZE, LOTTO_RANGE } = require("../constants");
 
 class LottoGame {
   constructor(amount) {
@@ -12,9 +12,22 @@ class LottoGame {
 
   generateLotteries(count) {
     Array.from({ length: count }, () => {
-      const randomNumbers = Random.generateRandomNumbers();
+      const randomNumbers = [];
+      while (randomNumbers.length < LOTTO_SIZE) {
+        const randomNumber = this.setRandomNumber();
+        this.checkDuplicated(randomNumbers, randomNumber);
+      }
       this.lotteries.push(new Lotto(randomNumbers));
     });
+  }
+
+  checkDuplicated(randomNumbers, randomNumber) {
+    if (!Random.isDuplicated(randomNumbers, randomNumber))
+      randomNumbers.push(randomNumber);
+  }
+
+  setRandomNumber() {
+    return Random.generateRandomNumber(LOTTO_RANGE.MIN, LOTTO_RANGE.MAX);
   }
 
   getLotteries() {
