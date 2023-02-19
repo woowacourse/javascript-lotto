@@ -13,6 +13,17 @@ export const RANKINGS_REWARD = {
   5: 5000,
 };
 
+export const RANKING = {
+  first: 1,
+  second: 2,
+};
+
+export const RANKING_STANDARD = {
+  first: 6,
+  second: 5,
+  benchmark: 8,
+};
+
 export const RANKING_THRESHOLD = 3;
 
 export const GAME_COMMAND = {
