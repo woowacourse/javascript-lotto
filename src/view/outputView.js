@@ -1,5 +1,5 @@
 import { MESSAGE } from "../domain/message";
-import { getAscendingSortedNumbers } from "../util/sort";
+import { getAscendingSortedNumbers } from "../utils";
 
 export const outputView = {
   print(message) {

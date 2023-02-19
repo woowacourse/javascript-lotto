@@ -1,5 +1,5 @@
 import { MESSAGE } from "../domain/message";
-import { rl } from "../util/console";
+import { rl } from "../utils";
 
 export const inputView = {
   readline(message) {
