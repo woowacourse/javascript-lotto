@@ -120,7 +120,7 @@ button:active {
 }
 
 #purchase-form {
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
 }
 
 #purchase-form div {
@@ -134,7 +134,7 @@ button:active {
 }
 
 .error-message {
-  margin-top: var(--spacing-3);
+  margin-top: var(--spacing-2);
   height: 17.5px;
   font-size: var(--caption-font-size);
   color: var(--dark-red);
@@ -144,6 +144,29 @@ button:active {
 .error-input:focus {
   border: 1px solid #e59797 !important;
   box-shadow: 0 0 0 3px rgba(253, 131, 131, 0.5) !important;
+}
+
+#user-lotto-purchase {
+  height: 18px;
+}
+
+.user-lotto-container {
+  height: 284px;
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+  overflow-y: scroll;
+}
+
+.user-lotto {
+  display: flex;
+  gap: var(--spacing-2);
+  align-items: center;
+}
+
+.lotto-icon {
+  font-size: var(--title-font-size);
 }
 
 footer {

@@ -1,4 +1,4 @@
-import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
+import { StaticValue } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
 import LottoGameView from '../view/LottoGameView.js';
@@ -18,25 +18,22 @@ class LottoGameController {
   #handlePurchaseSubmit(purchaseAmount) {
     try {
       Validation.verifyPurchaseAmount(purchaseAmount);
-      this.#lottoGameView.purchaseInput.classList.remove('error-input');
-      this.#lottoGameView.hideErrorMessage('purchase');
+      const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
+      this.#handleUserLottos(PURCHASE_COUNT);
     } catch ({ message }) {
       this.#lottoGameView.purchaseInput.classList.add('error-input');
       this.#lottoGameView.showErrorMessage('purchase', message);
       this.#lottoGameView.purchaseInput.value = '';
       this.#lottoGameView.purchaseInput.focus();
     }
-    
-    const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
-    // this.#handleUserLottos(PURCHASE_COUNT);
   }
 
-  // #handleUserLottos(purchaseCount) {
-  //   this.#lottoGame.generateUserLottos(purchaseCount);
-  //   const USER_LOTTO_LIST = this.#lottoGame.getUserLottoList();
+  #handleUserLottos(purchaseCount) {
+    this.#lottoGame.generateUserLottos(purchaseCount);
+    const USER_LOTTO_LIST = this.#lottoGame.getUserLottoList();
 
-  //   USER_LOTTO_LIST.forEach(OutputView.printUserLottos);
-  // }
+    this.#lottoGameView.showUserLottos(purchaseCount, USER_LOTTO_LIST);
+  }
 
   // async #handleWinningNumbers() {
   //   try {
