@@ -1,6 +1,6 @@
 import Console from "../util/Console";
 import View from "../constants/View.js";
-import Core from "../constants/Core.js";
+import LOTTO_BOARD from "../constants/LottoBoard.js";
 
 const OutputView = {
   printLottoAmount(lottoAmount) {
@@ -22,7 +22,7 @@ const OutputView = {
   printLottoResults(lottoRanking) {
     for (const score in lottoRanking) {
       Console.print(
-        `${score} (${Core.moneyBoard[score]}원) - ${lottoRanking[score]}개`
+        `${score} (${LOTTO_BOARD.moneyBoard[score]}원) - ${lottoRanking[score]}개`
       );
     }
   },

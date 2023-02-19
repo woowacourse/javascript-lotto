@@ -1,4 +1,4 @@
-const Core = {
+const LOTTO_BOARD = {
   moneyBoard: {
     "3개 일치": "5,000",
     "4개 일치": "50,000",
@@ -24,4 +24,4 @@ const Core = {
   },
 };
 
-export default Core;
+export default LOTTO_BOARD;

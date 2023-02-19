@@ -1,4 +1,4 @@
-import Core from "../constants/Core";
+import LOTTO_BOARD from "../constants/LottoBoard";
 import Score from "../constants/Score.js";
 import Lotto from "../constants/Lotto";
 import Utils from "../util/Utils";
@@ -8,7 +8,7 @@ class LottoScore {
 
   constructor(lottos) {
     this.lottos = lottos;
-    this.#lottoRanking = { ...Core.rankingBoard };
+    this.#lottoRanking = { ...LOTTO_BOARD.rankingBoard };
     this.totalBenefit = 0;
   }
 
@@ -63,7 +63,7 @@ class LottoScore {
 
   calculateTotalBenefit() {
     for (const score in this.#lottoRanking) {
-      this.totalBenefit += this.#lottoRanking[score] * Core.benefitBoard[score];
+      this.totalBenefit += this.#lottoRanking[score] * LOTTO_BOARD.benefitBoard[score];
     }
   }
 
