@@ -1,5 +1,5 @@
-body {
-    width: 70%;
+.mainPase {
+    width: 40%;
     height: 727px;
     margin: 5% auto;
     border-radius: 4px;
@@ -33,16 +33,24 @@ input {
     width: 82%;
 }
 
+.purchase {
+    width: 13%;
+}
+
 button {
     background-color: #4E5BA6;
     border-radius: 4px;
     border: 0px;
     color:#FFFFFF;
-    
 }
 
-.purchase {
-    width: 13%;
+button:hover {
+    cursor:pointer
+}
+
+.randomLottoList {
+    height: 300px ;
+    overflow:scroll;
 }
 
 .lottoImg{
@@ -55,10 +63,6 @@ button {
     align-items: center;
 }
 
-.randomLottoList {
-    height: 300px ;
-    overflow:scroll;
-}
 .userLotto {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -74,11 +78,52 @@ button {
     float: right;
 }
 
-.result {
+.result, .restart {
     width:100%;
-    height: 40px;
+    height: 50px;
 }
 
-body > div {
+.mainPase > div {
     margin-top: 4%;
 }
+
+.black{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 130%;
+    width: 100%;
+}
+
+.resultPase {
+    position:relative;
+    background-color: #FFFFFF;
+    margin: 0% auto;
+    width: 90%;
+    height: 480px;
+    border-radius: 4px;
+    bottom: 87%;
+    padding: 5%;
+    text-align: center;
+}
+
+table {
+    margin: 0% auto;
+    width: 90%;
+    height: 50%;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 10px;
+  }
+
+.explainRate {
+    font-size: larger;
+    font-weight: bold;
+    margin: 5% 0 10% 0;
+}
+
