@@ -24,6 +24,7 @@ const prize = [2000000000, 30000000, 1500000, 50000, 5000, 0];
 
 const regex = Object.freeze({
   POSITIVE_INTEGER: /^[1-9]\d*$/,
+  Y_OR_N: /^[yn]{1}$/,
 });
 
 export { values, correctCountsToMoney, regex, prize };
