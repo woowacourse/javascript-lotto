@@ -3,30 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="./index.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
 
-  <!-- <body class="mainPase">
+  <body class="mainPase">
     <div id="app">
       <h1>🎱 내 번호 당첨 확인 🎱</h1>
     </div>
+    <p class="topInput">구입할 금액을 입력해주세요.</p>
     <div class="purchaseAmount">
-        <p class="instruct">구입할 금액을 입력해주세요.</p>
         <input class="inputAmount">
         <button class="purchase">구입</button>
     </div>
     <div class="randomLotto">
         <p class="explain">총 <span class="randomLottoAmount">0</span>개를 구입했습니다.</p>
         <div class="randomLottoList">
-          <div>🎟<span class="randomLottoNumbers">dddd</span></div>
-          예시
+          <div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">1, 2, 3, 4, 5, 6</span></div>
+          <div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">1, 2, 3, 4, 5, 6</span></div>
+
         </div>
     </div>
+    
     <div class="userLotto">
-      <p class="instruct">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <div class="lottoNumber">
-        <p class="explain">당첨 번호</p>
+        <p class="topInput">당첨 번호</p>
         <div class="inputLottoNumber">
           <input class="eachInputLottoNumber">
           <input class="eachInputLottoNumber">
@@ -37,9 +40,9 @@
         </div>
       </div>
       <div class="bonusNumber">
-        <p class="explain">보너스 번호</p>
+        <p class="topInput">보너스 번호</p>
         <div class="inputBonusNumber">
-          <input class="eachInputBonusNumber">
+          <input class="inputBonusNumber">
         </div>
       </div>
     </div>
@@ -47,8 +50,8 @@
       <button class="result">결과 확인하기</button>
     </div>
     <script type="module" src="./src/js/index.js"></script>
-  </body> -->
-  <div class="resultPase">
+  </body>
+  <!-- <div class="resultPase">
     <div id="app">
       <h1>🏆 당첨 통계 🏆</h1>
     </div>
@@ -86,5 +89,5 @@
     </table>
     <div class="explainRate"><p>당신의 총 수익률은 <span class="rate">0</span>%입니다.</p></div>
     <div class="resultRestart"><button class="restart">다시 시작하기</button></div>
-  </div>
+  </div> -->
 </html>
