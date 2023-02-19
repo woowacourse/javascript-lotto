@@ -1,14 +1,14 @@
-import * as readline from 'node:readline';
+import * as readline from 'readline';
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-const Console = {
+const rlConsole = {
   readLine(inputMessage) {
     return new Promise(resolve => {
-      rl.question(inputMessage, input => resolve(input));
+      rl.question(inputMessage, resolve);
     });
   },
 
@@ -21,4 +21,4 @@ const Console = {
   },
 };
 
-export default Console;
+export default rlConsole;
