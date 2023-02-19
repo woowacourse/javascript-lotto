@@ -19,7 +19,7 @@ class LottoMachine {
   #issueLotto() {
     const lotto = new Set();
 
-    while (lotto.size < LOTTO.LENGTH) {
+    while (lotto.size < LOTTO.SIZE) {
       lotto.add(pickNumberInRange(LOTTO.MIN_NUMBER_RANGE, LOTTO.MAX_NUMBER_RANGE));
     }
 
