@@ -23,7 +23,7 @@ export function checkWinningNumbersFormat(winningNumber) {
 }
 
 export function checkBonusNumberFormat(bonusNumber) {
-  if (!ONLY_NUMBER.test(bonusNumber) && checkWinningNumberRange(bonusNumber)) {
+  if (!ONLY_NUMBER.test(bonusNumber) || checkWinningNumberRange(bonusNumber)) {
     throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, bonusNumber);
   }
 }
