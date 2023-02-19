@@ -42,10 +42,10 @@
         - [x] p + inputAmount 
         - [x] p + printLotto
         - [x] p(input설명) + inputLotto
-        - [ ] button = checkResult
+        - [X] button = checkResult
 
     2. 당첨통계
-        - [ ] header
+        - [X] header
         - [ ] winning table
         - [ ] p = 수익률
         - [ ] button = restart
