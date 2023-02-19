@@ -18,9 +18,7 @@ const Validators = {
   },
 
   isCorrectRange(input) {
-    return Lotto.MIN_NUMBER <= input && input <= Lotto.MAX_NUMBER
-      ? true
-      : false;
+    return Lotto.MIN_NUMBER <= input && input <= Lotto.MAX_NUMBER;
   },
 
   hasBonusNumber(bonusNumber, winningLotto) {
