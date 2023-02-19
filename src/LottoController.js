@@ -23,42 +23,43 @@ class LottoController {
   #lottos;
 
   async start() {
-    const purchaseAmount = await this.inputPurchaseAmount();
+    const purchaseAmount = await this.#inputPurchaseAmount();
     this.#processLottoIssue(purchaseAmount);
 
     const winningLotto = await this.#makeWinningLotto();
     this.#processLottoComparison(winningLotto);
 
-    const restartCommand = await this.inputRestartCommand();
-    this.processRestartCommand(restartCommand);
+    const restartCommand = await this.#inputRestartCommand();
+    this.#processRestartCommand(restartCommand);
   }
 
-  async inputPurchaseAmount() {
+  async #inputPurchaseAmount() {
     try {
       const purchaseAmount = convertToNumeric(await InputView.readPurchaseAmount());
       validatePurchaseAmount(purchaseAmount);
       return purchaseAmount;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      return this.inputPurchaseAmount();
+      return this.#inputPurchaseAmount();
     }
   }
 
   #processLottoIssue(purchaseAmount) {
     this.#lottoMachine = new LottoMachine(purchaseAmount);
     this.#lottos = this.#lottoMachine.issueLottos();
+    console.log(this.#lottoMachine);
 
     OutputView.printPurchaseStatus(this.#lottoMachine.getQuantity(), this.#lottos);
   }
 
-  async inputWinningNumber() {
+  async #inputWinningNumber() {
     try {
       const winningNumber = this.#convertToWinningNumber(await InputView.readWinningNumber());
       validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      return this.inputWinningNumber();
+      return this.#inputWinningNumber();
     }
   }
 
@@ -70,21 +71,21 @@ class LottoController {
     });
   }
 
-  async inputBonusNumber(winningNumber) {
+  async #inputBonusNumber(winningNumber) {
     try {
       const bonusNumber = convertToNumeric(await InputView.readBonusNumber());
       validateBonusNumber(bonusNumber, winningNumber);
       return bonusNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      return this.inputBonusNumber(winningNumber);
+      return this.#inputBonusNumber(winningNumber);
     }
   }
 
   async #makeWinningLotto() {
-    const winningNumber = await this.inputWinningNumber();
+    const winningNumber = await this.#inputWinningNumber();
     OutputView.printEmptyLine();
-    const bonusNumber = await this.inputBonusNumber(winningNumber);
+    const bonusNumber = await this.#inputBonusNumber(winningNumber);
     OutputView.printEmptyLine();
 
     return new WinningLotto(winningNumber, bonusNumber);
@@ -98,18 +99,18 @@ class LottoController {
     OutputView.printStatistics(ranking, profitRate);
   }
 
-  async inputRestartCommand() {
+  async #inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
       validateRestartCommand(restartCommand);
       return restartCommand;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      return this.inputRestartCommand();
+      return this.#inputRestartCommand();
     }
   }
 
-  processRestartCommand(restartCommand) {
+  #processRestartCommand(restartCommand) {
     if (restartCommand === COMMAND.YES) {
       this.start();
     }
