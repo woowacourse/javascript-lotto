@@ -11,11 +11,15 @@ const LOTTO = {
   MIN_NUMBER_RANGE: 1,
   MAX_NUMBER_RANGE: 45,
   LENGTH: 6,
+  INDEX_STARTING_SLICING: 0,
+  INDEX_ENDING_SLICING: 6,
 };
+
+const AVAILABLE_NUMBERS = Array.from({ length: LOTTO.MAX_NUMBER_RANGE }, (v, i) => i + 1);
 
 const COMMAND = {
   YES: 'y',
   NO: 'n',
 };
 
-module.exports = { RANK, LOTTO, COMMAND };
+module.exports = { RANK, LOTTO, COMMAND, AVAILABLE_NUMBERS };

@@ -1,5 +1,5 @@
-const { LOTTO } = require('../constant/setting');
-const pickNumberInRange = require('../util/pickNumberInRange');
+const { LOTTO, AVAILABLE_NUMBERS } = require('../constant/setting');
+const shuffle = require('../util/shuffle');
 
 class LottoMachine {
   #money;
@@ -13,13 +13,12 @@ class LottoMachine {
   }
 
   issueLotto() {
-    const lotto = new Set();
+    const lotto = shuffle(AVAILABLE_NUMBERS)
+      .slice(LOTTO.INDEX_STARTING_SLICING, LOTTO.INDEX_ENDING_SLICING)
+      .sort((a, b) => a - b);
 
-    while (lotto.size < LOTTO.LENGTH) {
-      lotto.add(pickNumberInRange(LOTTO.MIN_NUMBER_RANGE, LOTTO.MAX_NUMBER_RANGE));
-    }
-
-    return [...lotto].sort((a, b) => a - b);
+    console.log(lotto);
+    return lotto;
   }
 }
 
