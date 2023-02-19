@@ -24,11 +24,14 @@ class RankedLotto {
   }
 
   earningsRate(lottoMoney, result) {
-    const ConstantMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+    const ConstantMoney = [
+      NUMBER.FIFTH_PRIZE_MONEY, NUMBER.FOUR_PRIZE_MONEY,NUMBER.THIRD_PRIZE_MONEY,
+      NUMBER.SECOND_PRIZE_MONEY,NUMBER.FIRST_PRIZE_MONEY,
+    ];
     Array.from({ length: result.length }, (v, index) => {
       this.profit += result[index] * ConstantMoney[index];
     });
-    this.profit = (this.profit / lottoMoney) * 100;
+    this.profit = (this.profit / lottoMoney) * NUMBER.PERCENT;
   }
 
   get getProfit() {

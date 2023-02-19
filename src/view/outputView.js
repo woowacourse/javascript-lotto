@@ -24,7 +24,7 @@ ${MESSAGE.SIX_MATCHED}${winnings[0]}${MESSAGE.THE_NUMBER_OF}`
   },
 
   printEarningsRate(profit) {
-    Console.print(`총 수익률은 ${profit}%입니다.`);
+    Console.print(`${MESSAGE.TOTAL_PROFIT}${profit}${MESSAGE.PROFIT_PERCENT}`);
   },
 };
 

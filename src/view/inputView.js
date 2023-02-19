@@ -1,5 +1,5 @@
 const Console = require('../utils/Console.js');
-const { MESSAGE } = require('../utils/constant.js');
+const { MESSAGE, RESPONSE } = require('../utils/constant.js');
 const {
   moneyValidate,
   restartValidate,
@@ -29,7 +29,7 @@ const inputView = {
   async readRestartOrFinish() {
     const response = await Console.readLine(MESSAGE.RESTART_OR_FINISH)
     if(restartValidate(response)) return this.readRestartOrFinish();
-    if (response === 'y') return true
+    if (response === RESPONSE.YES) return true
     Console.close();
   },
 };

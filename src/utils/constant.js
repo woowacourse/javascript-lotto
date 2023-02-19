@@ -23,7 +23,7 @@ const MESSAGE = {
   FIVE_WITH_BONUS_MATCHED: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
   SIX_MATCHED: '6개 일치 (2,000,000,000원) - ',
   TOTAL_PROFIT: '총 수익률은 ',
-  PROFIC_PERCENT: '%입니다.',
+  PROFIT_PERCENT: '%입니다.',
   THE_NUMBER_OF: '개',
 };
 
@@ -33,10 +33,26 @@ const NUMBER = {
   RANK_THIRD: 5,
   RANK_FOURTH: 4,
   RANK_FIFTH: 3,
+  THOUSAND: 1000,
+  MAX_LENGHT: 6,
+  FIRST_PRIZE_MONEY: 200000000,
+  SECOND_PRIZE_MONEY: 30000000,
+  THIRD_PRIZE_MONEY: 1500000,
+  FOUR_PRIZE_MONEY: 50000,
+  FIFTH_PRIZE_MONEY: 5000,
+  PERCENT: 100,
+  MAX_NUMBER: 45,
+  MIN_NUMBER: 1
 };
+
+const RESPONSE = {
+  YES : 'y',
+  NO: 'n'
+}
 
 module.exports = {
   ERROR,
   MESSAGE,
   NUMBER,
+  RESPONSE
 };

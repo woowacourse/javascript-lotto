@@ -1,4 +1,4 @@
-const { ERROR } = require('../utils/constant.js');
+const { ERROR, NUMBER, RESPONSE } = require('../utils/constant.js');
 
 const thousandValidate = money => {
   return Number(money) % 1000 !== 0;
@@ -30,11 +30,11 @@ const moneyValidate = money => {
 };
 
 const winningNumberCount = (numbers)=>{
-  return (numbers.split(',').length === 6)
+  return (numbers.split(',').length === NUMBER.MAX_LENGHT)
 }
 
 const winningNumberRange = (numbers)=>{
-  return numbers.split(',').every(number => number >= 1 && number <= 45);
+  return numbers.split(',').every(number => number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER);
 }
 
 const winningNumberValidate = numbers => {
@@ -49,7 +49,7 @@ const winningNumberValidate = numbers => {
 };
 
 const bonusNumberValidate = number => {
-  if(!(number >= 1 && number <= 45)){
+  if(!(number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER)){
     console.log(ERROR.BONUS_NUMBER_RANGE);
     return true;
   }
@@ -62,7 +62,7 @@ const winningIncludeBonusNumber = (numbers, bonus) => {
 };
 
 const restartValidate = response => {
-  if (response !== 'y' && response !== 'n') {
+  if (response !== RESPONSE.YES && response !== RESPONSE.NO) {
     console.log(ERROR.RESTART_OR_FINISH);
     return true;
   }

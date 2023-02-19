@@ -1,4 +1,5 @@
 const LottoResult = require('./LottoResult');
+const { NUMBER } = require('../utils/constant')
 
 class LottoMachine {
   lottoNumber;
@@ -10,7 +11,7 @@ class LottoMachine {
   }
 
   countLotto(money) {
-    return Number(money) / 1000;
+    return Number(money) / NUMBER.THOUSAND;
   }
 
   get lottoNumber() {
@@ -31,13 +32,13 @@ class LottoMachine {
   }
 
   randomNumberLotto() {
-    const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 45 + 1));
+    const randomNumber = Array.from({ length: NUMBER.MAX_LENGHT }, () => Math.floor(Math.random() * 45 + 1));
     if (this.checkRepeatedNumber(randomNumber)) return this.ascendingSortedNumber(randomNumber);
     return this.randomNumberLotto();
   }
 
   checkRepeatedNumber(randomNumber) {
-    return [...new Set(randomNumber)].length === 6;
+    return [...new Set(randomNumber)].length === NUMBER.MAX_LENGHT;
   }
 
   getWinningStatus(winningNumber, bonusNumber) {
@@ -50,15 +51,15 @@ class LottoMachine {
     const ranks = [];
     this.lottoNumber.forEach(numbers => {
       const matchedNumber = numbers.filter(number => winningNumber.includes(String(number))).length;
-      if (matchedNumber === 5) return ranks.push(this.bouseNumberChecked(numbers, Number(bonusNumber)));
-      if (matchedNumber >= 3) ranks.push(matchedNumber);
+      if (matchedNumber === NUMBER.RANK_THIRD) return ranks.push(this.bouseNumberChecked(numbers, Number(bonusNumber)));
+      if (matchedNumber >= NUMBER.RANK_FIFTH) ranks.push(matchedNumber);
     });
     return ranks;
   }
 
   bouseNumberChecked(numbers, bonusNumber) {
-    if (numbers.includes(bonusNumber)) return 7;
-    return 5;
+    if (numbers.includes(bonusNumber)) return NUMBER.RANK_SECOND;
+    return NUMBER.RANK_THIRD;
   }
 
   getProfitRate(money, result) {
