@@ -1,4 +1,4 @@
-const { PRICE_UNIT } = require('../constants/constants');
+const { PRICE_UNIT, restartCommand } = require('../constants/constants');
 const BonusNumber = require('../domain/model/BonusNumber');
 const Lottos = require('../domain/model/Lottos');
 const WinningNumbers = require('../domain/model/WinningNumbers');
@@ -30,6 +30,14 @@ class LottoGameController {
         this.inputPurchasePrice();
       }
     });
+  }
+
+  calculateLottoCount(priceInput) {
+    exception.handlePurchasePrice(priceInput);
+
+    const price = Number(priceInput);
+
+    return Math.floor(price / PRICE_UNIT);
   }
 
   showPurchasedLottos() {
@@ -81,9 +89,9 @@ class LottoGameController {
   inputRestartCommand() {
     inputView.readRestartCommand((restartCommandInput) => {
       try {
-        exception.checkRestartCommand(restartCommandInput);
-        if (restartCommandInput === 'y') return this.restart();
-        return Console.close();
+        exception.handleRestartCommand(restartCommandInput);
+        if (restartCommandInput === restartCommand.YES) return this.restart();
+        Console.close();
       } catch (error) {
         Console.print(error.message);
         this.inputRestartCommand();
@@ -97,14 +105,6 @@ class LottoGameController {
     this.#lottos = undefined;
 
     this.playGame();
-  }
-
-  calculateLottoCount(priceInput) {
-    exception.checkPurchasePrice(priceInput);
-
-    const price = Number(priceInput);
-
-    return Math.floor(price / PRICE_UNIT);
   }
 }
 

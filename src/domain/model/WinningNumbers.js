@@ -4,7 +4,7 @@ class WinningNumbers {
   #numbers;
 
   constructor(input) {
-    exception.checkWinningNumbers(input);
+    exception.handleWinningNumbers(input);
     const winningNumbers = input.split(',').map(Number);
 
     this.#numbers = winningNumbers;

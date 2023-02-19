@@ -87,4 +87,5 @@ module.exports = {
   PRICE_UNIT,
   RL,
   regex,
+  restartCommand,
 };

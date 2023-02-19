@@ -4,7 +4,7 @@ class BonusNumber {
   #number;
 
   constructor(winningNumbers, input) {
-    exception.checkBonusNumber(winningNumbers, input);
+    exception.handleBonusNumber(winningNumbers, input);
 
     this.#number = Number(input);
   }
