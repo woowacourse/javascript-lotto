@@ -4,8 +4,9 @@ class WinningLotto {
   #winningNumber;
   #bonusNumber;
 
-  constructor(winningNumber) {
+  constructor(winningNumber, bonusNumber) {
     this.#winningNumber = winningNumber.split(',').map(Number);
+    this.#bonusNumber = bonusNumber;
   }
 
   computeMatchCounts(winningNumber, lottoNumber) {
@@ -29,14 +30,6 @@ class WinningLotto {
       return MATCH_COUNT_TO_RANK[5][`${this.isSecondRank(this.#bonusNumber, lottoNumber) ? 0 : 1}`].rank;
     }
     return MATCH_COUNT_TO_RANK[matchCounts].rank;
-  }
-
-  get winningNumber() {
-    return this.#winningNumber;
-  }
-
-  set bonusNumber(bonusNumber) {
-    this.#bonusNumber = +bonusNumber;
   }
 }
 
