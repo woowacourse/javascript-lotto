@@ -34,8 +34,12 @@ class Reward {
     return winningLotto.getMatchCount(lotto) === this.#matchCount;
   }
 
-  getTitle() {
-    return `${this.#matchCount}개 (${this.#money.toLocaleString()}원)`;
+  getName() {
+    return `${this.#matchCount}개 일치`;
+  }
+
+  toString() {
+    return `${this.getName()} (${this.#money.toLocaleString()}원)`;
   }
 }
 

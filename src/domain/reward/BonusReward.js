@@ -14,6 +14,10 @@ class BonusNumberReward extends Reward {
       winningLotto.getMatchCount(lotto) === this.getMatchCount()
     );
   }
+
+  getName() {
+    return `${this.getMatchCount()}개 일치, 보너스 볼 일치`;
+  }
 }
 
 export default BonusNumberReward;

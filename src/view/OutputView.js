@@ -23,7 +23,7 @@ const OutputView = {
     Console.print('★-★-★-★-★-★');
     lottoResult.getRewards().forEach((reward) => {
       const count = rewards.filter((_reward) => _reward === reward).length;
-      Console.print(`${reward.getTitle()} - ${count}개`);
+      Console.print(`${reward.toString()} - ${count}개`);
     });
   },
 
