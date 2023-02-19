@@ -13,7 +13,7 @@ import Constants from "./constants/Lotto.js"
 class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
-    const lottos = await this.createLotto(parseInt(buyMoney / 1000));
+    const lottos = await this.createLotto(parseInt(buyMoney / Constants.LOTTO_PRICE));
     OutputView.printBuyLottos(lottos.getLottos());
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
