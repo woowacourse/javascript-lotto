@@ -1,21 +1,21 @@
 import Error from "./constants/Error";
-import Validations from "./Validations";
+import Validators from "./Validators";
 
 const InputCheck = {
   validateBuyMoney(buyMoney) {
-    if (!Validations.isNumber(buyMoney)) {
+    if (!Validators.isNumber(buyMoney)) {
       throw new Error(Error.INPUT_NUMBER);
     }
-    if (!Validations.isDevidedByThousand(buyMoney)) {
+    if (!Validators.isDevidedByThousand(buyMoney)) {
       throw new Error(Error.INPUT_NUMBER_DEVIDED_BY_THOUSAND);
     }
-    if (!Validations.isPositiveInteger(buyMoney)) {
+    if (!Validators.isPositiveInteger(buyMoney)) {
       throw new Error(Error.INPUT_POSITIVE_INTEGER_MONEY);
     }
   },
 
   validateWinningNumbers(winningLotto) {
-    if (!Validations.isCorrectLength(winningLotto)) {
+    if (!Validators.isCorrectLength(winningLotto)) {
       throw new Error(Error.INPUT_SIX_NUMBERS);
     }
     for (let i = 0; i < winningLotto.length; i++) {
@@ -24,29 +24,29 @@ const InputCheck = {
   },
 
   checkEachNumber(eachNumber) {
-    if (!Validations.isNumber(eachNumber)) {
+    if (!Validators.isNumber(eachNumber)) {
       throw new Error(Error.INPUT_NUMBER);
     }
-    if (!Validations.isCorrectRange(eachNumber)) {
+    if (!Validators.isCorrectRange(eachNumber)) {
       throw new Error(Error.INPUT_CORRECT_RANGE_NUMBER);
     }
-    if (!Validations.isPositiveInteger(eachNumber)) {
+    if (!Validators.isPositiveInteger(eachNumber)) {
       throw new Error(Error.INPUT_POSITIVE_INTEGER_LOTTO);
     }
   },
 
   validateBonusNumber(bonusNumber, winningLotto) {
     console.log(winningLotto);
-    if (Validations.hasBonusNumber(bonusNumber, winningLotto)) {
+    if (Validators.hasBonusNumber(bonusNumber, winningLotto)) {
       throw new Error(Error.INPUT_NOT_DUPLICATED_NUMBER);
     }
   },
 
   validateRetryInput(retryInput) {
-    if (!Validations.isString(retryInput)) {
+    if (!Validators.isString(retryInput)) {
       throw new Error("문자열을 입력해주세요.");
     }
-    if (!Validations.isCorrectRetryInput(retryInput)) {
+    if (!Validators.isCorrectRetryInput(retryInput)) {
       throw new Error(Error.INPUT_CORRECT_RETRY);
     }
   },

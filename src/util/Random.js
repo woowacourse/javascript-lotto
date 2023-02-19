@@ -1,4 +1,4 @@
-import Validations from "../Validations";
+import Validators from "../Validators";
 
 const Random = {
   getnerateRandomNumbers() {
@@ -12,7 +12,7 @@ const Random = {
   getCorrectRandomNumbers() {
     while (true) {
       const randomNumbers = Random.getnerateRandomNumbers();
-      if (Validations.isDuplicatedNumbers(randomNumbers)) {
+      if (Validators.isDuplicatedNumbers(randomNumbers)) {
         return randomNumbers;
       }
     }

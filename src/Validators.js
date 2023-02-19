@@ -1,6 +1,6 @@
 import Lotto from "./constants/Lotto";
 
-const Validations = {
+const Validators = {
   isNumber(input) {
     return isNaN(input) ? false : true;
   },
@@ -43,4 +43,4 @@ const Validations = {
   },
 };
 
-export default Validations;
+export default Validators;
