@@ -31,7 +31,10 @@ class LottoGame {
   }
 
   calculateTotalPrizeMoney() {
-    return LOTTO.PRIZE_MONEY.reduce((acc, curr, idx) => acc + curr * this.#amountOfRanks[idx], 0);
+    return LOTTO_GAME.PRIZE_MONEY.reduce(
+      (acc, cur, idx) => acc + cur * this.#amountOfRanks[idx],
+      0
+    );
   }
 
   calculateProfit() {
