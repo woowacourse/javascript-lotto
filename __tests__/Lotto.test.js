@@ -8,21 +8,28 @@ describe('Lotto 클래스 테스트', () => {
     expect(lotto.getLottoNumber()).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
-  test('로또 번호는 6자리이다.', () => {
+  test('로또 번호 배열은 중복되지 않는 6자리여야 하고, 각 숫자는 1~45 사이의 숫자여야 한다.', () => {
     expect(() => {
-      Validator.validateLottoNumberLength([1, 2, 3, 4, 5, 6, 7]);
+      new Lotto([1, 2, 3, 4, 5, 6]);
+      return true;
+    }).toBeTruthy();
+  });
+
+  test('로또 번호는 6자리가 아닐 경우 에러', () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow('[ERROR]');
   });
 
-  test('로또 번호는 서로 중복되지 않는다.', () => {
+  test('로또 번호 중 중복되는 숫자가 있을 경우 에러', () => {
     expect(() => {
-      Validator.validateLottoNumberDuplicated([1, 2, 3, 4, 5, 5]);
+      new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
   });
 
-  test('로또 번호는 1~45 사이의 숫자여야 한다.', () => {
+  test('로또 번호 중 1~45 사이의 숫자가 아닐 경우 에러', () => {
     expect(() => {
-      Validator.validateLottoNumberRange([100, 2, 3, 4, 5, 6]);
+      Validator.validateLottoNumberRange([46, 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR]');
   });
 });
