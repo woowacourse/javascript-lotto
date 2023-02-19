@@ -1,4 +1,5 @@
 import Lotto from '../domain/lotto/Lotto';
+import LottoResult from '../domain/LottoResult';
 import Reward from '../domain/reward/Reward';
 import Console from '../utils/Console';
 
@@ -14,12 +15,13 @@ const OutputView = {
   },
 
   /**
-   * @param {[Reward, number][]} receivedRewards
+   * @param {Reward} rewards
    */
-  printLottoResult(receivedRewards) {
+  printLottoResult(rewards) {
     Console.print(`당첨 통계`);
     Console.print('★-★-★-★-★-★');
-    receivedRewards.forEach(([reward, count]) => {
+    LottoResult.REWARDS.forEach((reward) => {
+      const count = rewards.filter((_reward) => _reward === reward).length;
       Console.print(`${reward.getTitle()} - ${count}개`);
     });
   },

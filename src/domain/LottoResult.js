@@ -34,21 +34,6 @@ class LottoResult {
       }) ?? null;
     return foundReward;
   }
-
-  /**
-   * @param {Lotto[]} lottos
-   * @returns {[Reward, number][]}
-   */
-  countRewards(lottos) {
-    const givenRewards = lottos.map((lotto) => this.findReward(lotto));
-    const receivedRewardCounts = LottoResult.REWARDS.map((reward) => [
-      reward,
-      givenRewards.reduce((count, givenReward) => {
-        return givenReward === reward ? count + 1 : count;
-      }, 0),
-    ]);
-    return receivedRewardCounts;
-  }
 }
 
 export default LottoResult;

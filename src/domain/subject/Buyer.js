@@ -1,12 +1,13 @@
 import LottoResult from '../LottoResult';
+import Reward from '../reward/Reward';
 import Seller from './Seller';
 
 class Buyer {
   /** @type {number} */
   #money;
 
-  /** @type {number} */
-  #gainedMoney = 0;
+  /** @type {Reward[]} */
+  #rewards = [];
 
   /** @type {Lotto[]} */
   #lottos = [];
@@ -33,16 +34,22 @@ class Buyer {
    * @param {LottoResult} lottoResult
    */
   receiveRewards(lottoResult) {
-    const receivedRewards = lottoResult.countRewards(this.#lottos);
-    this.#gainedMoney = receivedRewards.reduce(
-      (money, [reward, count]) => money + reward.getMoney() * count,
-      0,
-    );
-    return receivedRewards;
+    this.#rewards = [
+      ...this.#rewards,
+      ...this.#lottos
+        .map((lotto) => lottoResult.findReward(lotto))
+        .filter((lotto) => lotto !== null),
+    ];
+    this.#lottos = [];
+  }
+
+  getRewards() {
+    return this.#rewards;
   }
 
   getProfitRate() {
-    return this.#gainedMoney / this.#money;
+    const sumGainedMoneyFn = (gainedMoney, reward) => gainedMoney + reward.getMoney();
+    return this.#rewards.reduce(sumGainedMoneyFn, 0) / this.#money;
   }
 }
 
