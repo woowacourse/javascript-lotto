@@ -59,25 +59,24 @@ export class LottoGame {
   }
 
   getPlacesOfLottoTickets() {
-    const placesOfLottoTickets = {
-      [PLACE.first]: 0,
-      [PLACE.second]: 0,
-      [PLACE.third]: 0,
-      [PLACE.fourth]: 0,
-      [PLACE.fifth]: 0,
-      [PLACE.last]: 0,
-    };
-
-    this.#lottoTickets.forEach((lottoTicket) => {
-      const numberOfMatchingLottoNumbers = this.getNumberOfMatchingLottoNumbers(
-        lottoTicket,
-        this.#winningLotto.winningNumbers
-      );
-
-      placesOfLottoTickets[this.getPlace(numberOfMatchingLottoNumbers, lottoTicket)] += 1;
-    });
-
-    return placesOfLottoTickets;
+    return this.#lottoTickets.reduce(
+      (acc, lottoTicket) => {
+        const numberOfMatchingLottoNumbers = this.getNumberOfMatchingLottoNumbers(
+          lottoTicket,
+          this.#winningLotto.winningNumbers
+        );
+        acc[this.getPlace(numberOfMatchingLottoNumbers, lottoTicket)] += 1;
+        return acc;
+      },
+      {
+        [PLACE.first]: 0,
+        [PLACE.second]: 0,
+        [PLACE.third]: 0,
+        [PLACE.fourth]: 0,
+        [PLACE.fifth]: 0,
+        [PLACE.last]: 0,
+      }
+    );
   }
 
   getPlace(numberOfMatchingLottoNumbers, lottoTicket) {
