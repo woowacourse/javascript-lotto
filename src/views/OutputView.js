@@ -28,7 +28,7 @@ const outputView = {
   },
 
   printProfit(profit) {
-    Console.print(MESSAGE.PROFIT(numberHandler.addComma(profit)));
+    Console.print(MESSAGE.PROFIT(numberHandler.addCommaEveryThousandPlace(profit)));
   },
 
   printGameEnd() {

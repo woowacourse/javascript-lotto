@@ -39,7 +39,7 @@ describe('numberHandler 테스트', () => {
     [100000, '100,000'],
     [1000000, '1,000,000'],
   ])('천의 자리마다 콤마를 찍어 문자열로 반환한다.', (number, string) => {
-    const numberString = numberHandler.addComma(number);
+    const numberString = numberHandler.addCommaEveryThousandPlace(number);
 
     expect(numberString).toBe(string);
     expect(typeof numberString).toBe('string');

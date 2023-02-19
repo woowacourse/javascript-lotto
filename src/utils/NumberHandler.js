@@ -11,7 +11,7 @@ const numberHandler = {
     return Math.round(number * 10) / 10;
   },
 
-  addComma(number) {
+  addCommaEveryThousandPlace(number) {
     return number.toLocaleString('en-US');
   },
 };
