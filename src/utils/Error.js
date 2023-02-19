@@ -15,12 +15,12 @@ const ERROR_MESSAGE = Object.freeze({
 const isValidErrorCode = (code) => code in ERROR_CODE;
 
 const errorMessageGenerator = (code, payload) =>
-  !isValidErrorCode(code) ? ERROR_MESSAGE.INVALID_ERROR_CODE() : ERROR_MESSAGE[code](payload);
+  isValidErrorCode(code) ? ERROR_MESSAGE[code](payload) : ERROR_MESSAGE.INVALID_ERROR_CODE();
 
 const errorOptionsGenerator = (code, value) =>
-  !isValidErrorCode(code)
-    ? { cause: { code: ERROR_CODE.INVALID_ERROR_CODE, value: code } }
-    : { cause: { code, value } };
+  isValidErrorCode(code)
+    ? { cause: { code, value } }
+    : { cause: { code: ERROR_CODE.INVALID_ERROR_CODE, value: code } };
 
 const createErrorParams = ({ code, payload = null }, value) => {
   const message = errorMessageGenerator(code, payload);
