@@ -19,11 +19,11 @@ const InputCheck = {
       throw new Error(Error.INPUT_SIX_NUMBERS);
     }
     for (let i = 0; i < winningLotto.length; i++) {
-      this.checkEachNumber(winningLotto[i]);
+      this.checkNumber(winningLotto[i]);
     }
   },
 
-  checkEachNumber(eachNumber) {
+  checkNumber(eachNumber) {
     if (!Validators.isNumber(eachNumber)) {
       throw new Error(Error.INPUT_NUMBER);
     }
