@@ -1,4 +1,3 @@
-/*eslint-disable */
 const Validator = require('../src/domain/validation/validator');
 
 describe('Validator 테스트', () => {

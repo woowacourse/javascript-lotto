@@ -1,4 +1,3 @@
-/*eslint-disable */
 const { profitByRank } = require('../src/constants/constants');
 const Lotto = require('../src/domain/model/Lotto');
 const { calculateRank, calculateProfit } = require('../src/utils');
