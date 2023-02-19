@@ -23,8 +23,8 @@ const InputView = {
 
   async readLotto() {
     return Console.repeatWhile(async () => {
-      const readWinningNumbers = await Console.readLine('당첨 번호를 입력해 주세요. ');
-      const lottoNumbers = readWinningNumbers
+      const readLottoNumbers = await Console.readLine('당첨 번호를 입력해 주세요. ');
+      const lottoNumbers = readLottoNumbers
         .split(',')
         .map((number) => number.trim())
         .map(Number);
