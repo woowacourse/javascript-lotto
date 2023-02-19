@@ -44,15 +44,11 @@ class LottoConsoleGame {
   }
 
   makeRankings(winningNumbers, bonusNumber) {
-    const rankings = [];
-    this.#lottos.forEach((lotto) => {
-      const matchCount = lotto.calculateMatchCount(winningNumbers);
-      if (matchCount >= RANKING_THRESHOLD) {
-        rankings.push(lotto.calculateRanking(matchCount, bonusNumber));
-      }
-    });
-
-    return rankings;
+    return this.#lottos
+      .filter((lotto) => lotto.calculateMatchCount(winningNumbers) >= RANKING_THRESHOLD)
+      .map((lotto) =>
+        lotto.calculateRanking(lotto.calculateMatchCount(winningNumbers), bonusNumber)
+      );
   }
 
   printLottos() {
