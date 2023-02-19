@@ -56,21 +56,48 @@
 ## 하나의 객체는 하나의 역할 (리뷰어 피드백)
 
 - Lotto의 역할 : 개별 로또 등수를 결정하는 데에 필요한 정보를 반환한다. (일치 개수, 보너스 여부)
+  - ❌ lotto 인스턴스 모두 다른 로또와 비교하는 기능을 갖을 필요가 없다. winningLotto 하나에서 다 하면 된다.
 - LottoStatistics의 역할: 당첨 개수와 수익률을 반환한다.
 
 ## 조합을 통해 winningLotto 생성하기 (공통 피드백)
 
 ## ⭐️ 변화에 취약한 flag를 사용한 로직을 없애기
 
-js`
+- constants.js
+
+```
 const LOTTO_PRIZE = {
-rankNone: 'none',
-rank1: 'first',
-rank2: 'second',
-rank3: 'third',
-rank4: 'fourth',
-rank5: 'fifth',
-};`
+  rankNone: 'none',
+  rank1: 'first',
+  rank2: 'second',
+  rank3: 'third',
+  rank4: 'fourth',
+  rank5: 'fifth',
+};
+```
+
+- Outputview.js
+
+```
+ printResult({ first, second, third, fourth, fifth }, earningRate)
+```
+
+- LottoGame.js
+
+```
+#rankingBoard = {
+    [LOTTO_PRIZE.rankNone]: 0,
+    [LOTTO_PRIZE.rank5]: 0,
+    [LOTTO_PRIZE.rank4]: 0,
+    [LOTTO_PRIZE.rank3]: 0,
+    [LOTTO_PRIZE.rank2]: 0,
+    [LOTTO_PRIZE.rank1]: 0,
+  }
+```
+
+> 현재 문제: 만약 4개일치 + 보너스를 4등으로 변경하고 그 아래 등수는 하나씩 밀리게 된다면? LOTTO_PRIZE를 사용하는 모든 곳에서 기능이 제대로 동작하지 않는다. 하나의 변경사항에 여러 기능이 무너지는 것이다.
+
+그런데 아직 해결방법을 모르겠다... 분기 로직을 key-value 값으로 가지고 있는 것이 아니라 분기를 일일이 해주는 것이 더 좋은 방법 같다.
 
 ## 그 외
 

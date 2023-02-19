@@ -1,69 +1,60 @@
-import Random from '../util/Random.js';
-import Lotto from './Lotto.js';
+import Lotto from './lotto/Lotto.js';
+import generateRandomNumbersIn from '../util/RandomGenerator.js';
 import {
-  LOTTO_RULE,
-  LOTTO_PRIZE,
-  RANK_BY_COUNT,
-  PRIZE_BY_RANK,
-} from '../constant/constants.js';
+  PRICE_DEFAULT,
+  MAX_NUMBER_DEFAULT,
+  MIN_NUMBER_DEFAULT,
+  COUNT_DEFAULT,
+} from './constant/constants.js';
+import Statistics from './Statistics.js';
+import WinningLotto from './lotto/WinningLotto.js';
 
 class LottoGame {
+  SETTINGS;
+
+  #RANDOM_GENERATOR;
+
   #lottos;
 
-  #rankingBoard = {
-    [LOTTO_PRIZE.rankNone]: 0,
-    [LOTTO_PRIZE.rank5]: 0,
-    [LOTTO_PRIZE.rank4]: 0,
-    [LOTTO_PRIZE.rank3]: 0,
-    [LOTTO_PRIZE.rank2]: 0,
-    [LOTTO_PRIZE.rank1]: 0,
-  };
+  #statistics;
 
-  constructor(money) {
-    const count = Math.floor(money / LOTTO_RULE.price);
-    this.#lottos = Array.from({ length: count }, () => {
-      const randomNumbers = Random.generateUniqueNumbersInRange(
-        LOTTO_RULE.size,
-        LOTTO_RULE.minNumber,
-        LOTTO_RULE.maxNumber,
-      );
-
-      return new Lotto(randomNumbers);
+  constructor({
+    minNumber = MIN_NUMBER_DEFAULT,
+    maxNumber = MAX_NUMBER_DEFAULT,
+    count = COUNT_DEFAULT,
+    price = PRICE_DEFAULT,
+  } = {}) {
+    this.SETTINGS = Object.freeze({
+      minNumber,
+      maxNumber,
+      count,
+      price,
     });
+    this.#RANDOM_GENERATOR = generateRandomNumbersIn(minNumber, maxNumber)(count);
   }
 
-  convertCountToRank(intersectCount, hasBonus) {
-    const rank = RANK_BY_COUNT[intersectCount];
-    if (!rank) return LOTTO_PRIZE.rankNone;
-    if (rank === LOTTO_PRIZE.rank3 && hasBonus) return LOTTO_PRIZE.rank2;
-    return rank;
-  }
-
-  updateRankingBoard(winningNumbers, bonusNumber) {
-    this.#lottos.forEach((lotto) => {
-      const intersectCount = lotto.countIntersect(winningNumbers);
-      const hasBonus = lotto.includes(bonusNumber);
-      const rank = this.convertCountToRank(intersectCount, hasBonus);
-      this.#rankingBoard[rank] += 1;
-    });
+  issueLottos(money) {
+    const count = money / this.SETTINGS.price;
+    this.#lottos = Array.from(
+      { length: count },
+      () => new Lotto(this.#RANDOM_GENERATOR(), this.SETTINGS)
+    );
 
     return this;
   }
 
-  getRankingBoard() {
-    return { ...this.#rankingBoard };
+  setWinningLotto(winningNumbers, bonusNumber) {
+    this.#statistics = new Statistics(
+      new WinningLotto(new Lotto(winningNumbers, this.SETTINGS), bonusNumber)
+    );
+    return this;
   }
 
-  static calculateTheChange(money) {
-    return money % LOTTO_RULE.price;
-  }
-
-  getEarningRate() {
-    const earningSum = Object.entries(this.#rankingBoard)
-      .reduce((acc, [rank, count]) => acc + (PRIZE_BY_RANK[rank] * count), 0);
-
-    const purchaseMoney = this.#lottos.length * LOTTO_RULE.price;
-    return (earningSum / purchaseMoney) * 100;
+  getGameResult() {
+    return this.#statistics
+      .setCountByWinningPlace(this.getLottos())
+      .setLottoYield(this.SETTINGS.price, this.#lottos.length)
+      .getStatisticsResult();
   }
 
   getLottos() {
@@ -72,3 +63,13 @@ class LottoGame {
 }
 
 export default LottoGame;
+
+// TODO: 테스트로 옮기기
+// const lottoGame = new LottoGame();
+// const result = lottoGame
+//   .issueLottos(20_000)
+//   .setWinningLotto([11, 12, 13, 14, 5, 6], 7)
+//   .getGameResult();
+
+// result.first.getCount();
+// console.log('>>> result:', result);
