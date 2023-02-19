@@ -7,87 +7,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
-  <body class="mainPase">
-    <div id="app">
-      <h1>🎱 내 번호 당첨 확인 🎱</h1>
-    </div>
-    <p class="topInput">구입할 금액을 입력해주세요.</p>
-    <div class="purchaseAmount">
-        <input class="inputAmount">
-        <button class="purchase">구입</button>
-    </div>
-    <div class="randomLotto">
-        <p class="explain">총 <span class="randomLottoAmount">0</span>개를 구입했습니다.</p>
-        <div class="randomLottoList">
-          <div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">1, 2, 3, 4, 5, 6</span></div>
-          <div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">1, 2, 3, 4, 5, 6</span></div>
-
+  <body>
+    <!-- <div class="black"></div> -->
+    <div class="mainPase">
+      <div id="app">
+        <h1>🎱 내 번호 당첨 확인 🎱</h1>
+      </div>
+      <p class="topInput">구입할 금액을 입력해주세요.</p>
+      <div class="purchaseAmount">
+          <input class="inputAmount">
+          <button class="purchase">구입</button>
+      </div>
+      <div class="randomLotto">
+          <p class="explain">총 <span class="randomLottoAmount">0</span>개를 구입했습니다.</p>
+          <div class="randomLottoList">
+            <div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">1, 2, 3, 4, 5, 6</span></div>
+            <div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">1, 2, 3, 4, 5, 6</span></div>
+          </div>
+      </div>
+      <div class="userLotto">
+        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <div class="lottoNumber">
+          <p class="topInput">당첨 번호</p>
+          <div class="inputLottoNumber">
+            <input class="eachInputLottoNumber">
+            <input class="eachInputLottoNumber">
+            <input class="eachInputLottoNumber">
+            <input class="eachInputLottoNumber">
+            <input class="eachInputLottoNumber">
+            <input class="eachInputLottoNumber">
+          </div>
         </div>
-    </div>
-    
-    <div class="userLotto">
-      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <div class="lottoNumber">
-        <p class="topInput">당첨 번호</p>
-        <div class="inputLottoNumber">
-          <input class="eachInputLottoNumber">
-          <input class="eachInputLottoNumber">
-          <input class="eachInputLottoNumber">
-          <input class="eachInputLottoNumber">
-          <input class="eachInputLottoNumber">
-          <input class="eachInputLottoNumber">
+        <div class="bonusNumber">
+          <p class="topInput">보너스 번호</p>
+          <div class="inputBonusNumber">
+            <input class="inputBonusNumber">
+          </div>
         </div>
       </div>
-      <div class="bonusNumber">
-        <p class="topInput">보너스 번호</p>
-        <div class="inputBonusNumber">
-          <input class="inputBonusNumber">
-        </div>
+      <div class="resultRestart">
+        <button class="result">결과 확인하기</button>
       </div>
-    </div>
-    <div class="resultRestart">
-      <button class="result">결과 확인하기</button>
-    </div>
+      <!-- <div class="resultPase">
+        <div id="app">
+          <h1>🏆 당첨 통계 🏆</h1>
+        </div>
+        <table class="resultTable">
+          <tr class="explainRow">
+            <th class="matchAmount">일치 개수</th>
+            <th class="reward">당첨금</th>
+            <th class="winAmount"> 당첨 개수</th>
+          </tr>
+          <tr class="row">
+            <td>3개</td>
+            <td>5,000</td>
+            <td><span class="fifth">0</span>개</td>
+          </tr>
+          <tr class="row">
+            <td>4개</td>
+            <td>50,000</td>
+            <td><span class="fourth">0</span>개</td>
+          </tr>
+          <tr class="row">
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td><span class="third">0</span>개</td>
+          </tr>
+          <tr class="row">
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td><span class="second">0</span>개</td>
+          </tr>
+          <tr class="row">
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td><span class="first">0</span>개</td>
+          </tr>
+        </table>
+        <div class="explainRate"><p>당신의 총 수익률은 <span class="rate">0</span>%입니다.</p></div>
+        <div class="resultRestart"><button class="restart">다시 시작하기</button></div>
+      </div>
+    </div> -->
     <script type="module" src="./src/js/index.js"></script>
   </body>
-  <!-- <div class="resultPase">
-    <div id="app">
-      <h1>🏆 당첨 통계 🏆</h1>
-    </div>
-    <table class="resultTable">
-      <tr class="explainRow">
-        <th class="matchAmount">일치 개수</th>
-        <th class="reward">당첨금</th>
-        <th class="winAmount"> 당첨 개수</th>
-      </tr>
-      <tr class="Row">
-        <td>3개</td>
-        <td>5,000</td>
-        <td><span class="fifth">0</span>개</td>
-      </tr>
-      <tr class="Row">
-        <td>4개</td>
-        <td>50,000</td>
-        <td><span class="fourth">0</span>개</td>
-      </tr>
-      <tr class="Row">
-        <td>5개</td>
-        <td>1,500,000</td>
-        <td><span class="third">0</span>개</td>
-      </tr>
-      <tr class="Row">
-        <td>5개+보너스볼</td>
-        <td>30,000,000</td>
-        <td><span class="second">0</span>개</td>
-      </tr>
-      <tr class="Row">
-        <td>6개</td>
-        <td>2,000,000,000</td>
-        <td><span class="first">0</span>개</td>
-      </tr>
-    </table>
-    <div class="explainRate"><p>당신의 총 수익률은 <span class="rate">0</span>%입니다.</p></div>
-    <div class="resultRestart"><button class="restart">다시 시작하기</button></div>
-  </div> -->
 </html>
