@@ -1,0 +1,36 @@
+:root {
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+  --subtitle-font-size: 20px;
+  --subtitle-font-weight: 600;
+  --body-font-size: 15px;
+  --caption-font-size: 14px;
+  --caption-font-weight: bold;
+
+  --white: #ffffff;
+  --gray-1: #fcfcfd;
+  --gray-2: #b4b4b4;
+  --gray-3: #8b8b8b;
+  --black: #000000;
+  --backdrop-bg-color: rgba(0, 0, 0, 0.5);
+  --divider-border-color: #d4d4d4;
+
+  --primary-blue: #4e5ba6;
+  --dark-blue-1: #313d87;
+  --dark-blue-2: #414d94;
+  --dark-red: #b31919;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 32px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: var(--body-font-size);
+  box-sizing: border-box;
+}
+
