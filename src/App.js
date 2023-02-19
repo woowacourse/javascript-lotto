@@ -1,8 +1,10 @@
 import LottoController from './LottoController';
 
 class App {
+  #lottoController;
+
   constructor() {
-    this.lottoController = new LottoController();
+    this.#lottoController = new LottoController();
   }
 
   async play() {
@@ -11,7 +13,7 @@ class App {
 
   async repeatGame() {
     await this.playGame();
-    const restart = await this.lottoController.proceedRestartCommand();
+    const restart = await this.#lottoController.proceedRestartCommand();
     if (!restart) {
       return;
     }
@@ -19,9 +21,9 @@ class App {
   }
 
   async playGame() {
-    await this.lottoController.proceedBuyLottos();
-    await this.lottoController.proceedWinningLotto();
-    this.lottoController.proceedLottoResult();
+    await this.#lottoController.proceedBuyLottos();
+    await this.#lottoController.proceedWinningLotto();
+    this.#lottoController.proceedLottoResult();
   }
 }
 
