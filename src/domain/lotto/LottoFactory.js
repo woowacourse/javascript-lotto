@@ -10,17 +10,6 @@ class LottoFactory {
     const lottoNumbers = shuffle(allLottoNumbers).slice(0, 6);
     return new Lotto(lottoNumbers);
   }
-
-  /**
-   * @param {number} money
-   * @returns {Lotto[]}
-   */
-  sellLottos(money) {
-    const amount = money / 1000;
-    return Array(amount)
-      .fill()
-      .map(() => this.createRandomLotto());
-  }
 }
 
 export default LottoFactory;
