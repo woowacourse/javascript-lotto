@@ -9,6 +9,7 @@ class LottoScore {
   constructor(lottos) {
     this.lottos = lottos;
     this.#lottoRanking = { ...Core.rankingBoard };
+    this.totalBenefit = 0;
   }
 
   get lottoRanking() {
@@ -60,17 +61,16 @@ class LottoScore {
     }
   }
 
-  getTotalBenefit() {
-    let totalBenefit = 0;
+  calculateTotalBenefit() {
     for (const score in this.#lottoRanking) {
-      totalBenefit += this.#lottoRanking[score] * Core.benefitBoard[score];
+      this.totalBenefit += this.#lottoRanking[score] * Core.benefitBoard[score];
     }
-    return totalBenefit;
   }
 
   getLottoBenefitRate(lottoAmount) {
+    this.calculateTotalBenefit();
     return Utils.getBenefitRate(
-      this.getTotalBenefit(),
+      this.totalBenefit,
       lottoAmount * Lotto.LOTTO_PRICE
     );
   }
