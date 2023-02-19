@@ -32,7 +32,7 @@ const Validation = {
     if (!Validation.isNumeric(lottoNumber)) {
       throw new Error(ERROR.LOTTO_NOT_A_NUMBER);
     }
-    if (!Validation.isInRange(lottoNumber)) {
+    if (!Validation.isLottoNumbersInRange(lottoNumber)) {
       throw new Error(ERROR.INVALID_LOTTO_RANGE);
     }
   },
