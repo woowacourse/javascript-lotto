@@ -1,10 +1,14 @@
 const Utils = {
-    convertStringToNumber(strings) {
-        const numbers = strings.map((string) => {
-          return Number(string);
-        });
-        return numbers;
-      }
-}
+  convertStringToNumber(strings) {
+    const numbers = strings.map((string) => {
+      return Number(string);
+    });
+    return numbers;
+  },
 
-export default Utils
+  getBenefitRate(totalBenefit, buyMoney) {
+    return Math.round((totalBenefit / buyMoney) * 100) / 100;
+  },
+};
+
+export default Utils;
