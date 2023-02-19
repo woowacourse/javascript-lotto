@@ -2,6 +2,7 @@ const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
 const InputView = require("../view/inputView");
 const OutputView = require("../view/outputView");
+const { MESSAGES } = require("../constant/Constant");
 
 const LottoController = {
   /** @type {LottoGame} */
@@ -10,7 +11,7 @@ const LottoController = {
   async playLotto() {
     this.lottoGame = new LottoGame();
     await this.purchaseLotto();
-    await this.LotteryTicket();
+    await this.lotteryTicket();
     await this.restart();
   },
 
@@ -23,7 +24,7 @@ const LottoController = {
     OutputView.printPurchaseLottos(this.lottoGame.lottos);
   },
 
-  async LotteryTicket() {
+  async lotteryTicket() {
     const winNumbers = await this.readWinNumbers();
     const bonusNumber = await this.readBonusNumber(winNumbers);
 
@@ -37,7 +38,9 @@ const LottoController = {
 
   async restart() {
     try {
-      const command = await InputView.readCommandRestart();
+      const command = await InputView.readInput(
+        MESSAGES.readCommandRestartText
+      );
       Validation.validateRestartCommand(command);
       return command === "y" ? this.playLotto() : InputView.close();
     } catch (e) {
@@ -48,7 +51,7 @@ const LottoController = {
 
   async readMoney() {
     try {
-      const money = await InputView.readMoney();
+      const money = await InputView.readInput(MESSAGES.readMoneyText);
       Validation.validateMoney(money);
       return money;
     } catch (e) {
@@ -59,7 +62,7 @@ const LottoController = {
 
   async readWinNumbers() {
     try {
-      const input = await InputView.readWinNumbers();
+      const input = await InputView.readInput(MESSAGES.readWinNumbersText);
       const winNumbers = input.split(",").map((num) => parseInt(num));
       Validation.validateWinNumber(winNumbers);
       return winNumbers;
@@ -71,7 +74,7 @@ const LottoController = {
 
   async readBonusNumber(winLotto) {
     try {
-      const input = await InputView.readBonusNumber();
+      const input = await InputView.readInput(MESSAGES.readBonusNumberText);
       const bonusNumber = parseInt(input);
       Validation.validateBonusNumber(winLotto, bonusNumber);
       return bonusNumber;

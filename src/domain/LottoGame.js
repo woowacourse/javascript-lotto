@@ -4,7 +4,7 @@ const Random = require("../util/Random");
 const {
   PRIZE,
   RANK,
-  RANK_BY_CORRECTCOUNT,
+  RANK_BY_CORRECT_COUNT,
   LOTTO,
 } = require("../constant/Constant");
 
@@ -28,7 +28,7 @@ class LottoGame {
 
   #LottoNumberGenerator() {
     const lottoNumbers = new Set();
-    while (lottoNumbers.size < LOTTO.SIZE) {
+    while (lottoNumbers.size < LOTTO.NUM_SIZE) {
       lottoNumbers.add(Random.RandomMinMax(LOTTO.MIN, LOTTO.MAX));
     }
     return Array.from(lottoNumbers);
@@ -54,7 +54,7 @@ class LottoGame {
     if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber))
       return RANK.SECOND;
 
-    return RANK_BY_CORRECTCOUNT[correctCount];
+    return RANK_BY_CORRECT_COUNT[correctCount];
   }
 
   calculateRankResult() {

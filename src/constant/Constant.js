@@ -16,7 +16,7 @@ const MESSAGES = {
   printFinalText: "%입니다.",
 };
 
-const ERRORMESSAGES = {
+const ERROR_MESSAGES = {
   isWrongMoneyText: "[ERROR] 구입 금액은 1000원 단위로 입력하세요.\n",
 
   isOverRangeNumberText: "[ERROR] 당첨 번호는 1부터 45까지로 입력하세요.\n",
@@ -38,7 +38,7 @@ const RANK = {
   LOSER: 0,
 };
 
-const RANK_BY_CORRECTCOUNT = {
+const RANK_BY_CORRECT_COUNT = {
   6: RANK.FIRST,
   BONUS: RANK.SECOND,
   5: RANK.THIRD,
@@ -52,16 +52,22 @@ const RANK_BY_CORRECTCOUNT = {
 const LOTTO = {
   MAX: 45,
   MIN: 1,
-  SIZE: 6,
+  NUM_SIZE: 6,
 };
 
-const PRIZE = { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
+const PRIZE = {
+  [RANK.FIRST]: 2000000000,
+  [RANK.SECOND]: 30000000,
+  [RANK.THIRD]: 1500000,
+  [RANK.FOURTH]: 50000,
+  [RANK.FIFTH]: 5000,
+};
 
 module.exports = {
   MESSAGES,
-  ERRORMESSAGES,
+  ERROR_MESSAGES,
   RANK,
-  RANK_BY_CORRECTCOUNT,
+  RANK_BY_CORRECTCOUNT: RANK_BY_CORRECT_COUNT,
   LOTTO,
   PRIZE,
 };
