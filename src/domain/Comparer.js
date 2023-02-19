@@ -10,20 +10,10 @@ class Comparer {
     this.#lottos = lottos;
   }
 
-  countMatchesOfWinningNumber() {
-    return this.#lottos.map((lotto) => this.#winningLotto.matchCount(lotto));
-  }
-
-  checkIncludesBonus() {
-    return this.#lottos.map((lotto) => this.#winningLotto.hasBonusNumber(lotto));
-  }
-
   getRanking() {
-    const matchCount = this.countMatchesOfWinningNumber();
-    const bonus = this.checkIncludesBonus();
-    return matchCount.reduce(
-      (acc, cur, index) => {
-        const rank = this.getRank(cur, bonus[index]);
+    return this.#lottos.reduce(
+      (acc, lotto) => {
+        const rank = this.#getRank(lotto);
 
         if (rank) {
           acc[rank] += 1;
@@ -35,12 +25,19 @@ class Comparer {
     );
   }
 
-  getRank(matchCount, hasBonus) {
-    if (matchCount === RANK.SECOND.MATCH_COUNT && hasBonus) {
+  #getRank(lotto) {
+    if (this.#isSecondRank(lotto)) {
       return RANK.SECOND.NAME;
     }
 
-    return RANK_MATCH[matchCount];
+    return RANK_MATCH[this.#winningLotto.matchCount(lotto)];
+  }
+
+  #isSecondRank(lotto) {
+    return (
+      this.#winningLotto.matchCount(lotto) === RANK.SECOND.MATCH_COUNT &&
+      this.#winningLotto.hasBonusNumber(lotto)
+    );
   }
 }
 
