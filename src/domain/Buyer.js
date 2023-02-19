@@ -1,5 +1,5 @@
-import LottoFactory from './lotto/LottoFactory';
 import LottoResult from './LottoResult';
+import Seller from './Seller';
 
 class Buyer {
   /** @type {number} */
@@ -19,10 +19,10 @@ class Buyer {
   }
 
   /**
-   * @param {LottoFactory} lottoFactory
+   * @param {Seller} seller
    */
-  buyLottos(lottoFactory = new LottoFactory()) {
-    this.#lottos = lottoFactory.sellLottos(this.#money);
+  buyLottos(seller) {
+    this.#lottos = [...this.#lottos, ...seller.sellLottos(this.#money)];
   }
 
   getLottos() {

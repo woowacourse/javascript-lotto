@@ -1,5 +1,6 @@
 import Buyer from './domain/Buyer';
 import LottoResult from './domain/LottoResult';
+import Seller from './domain/Seller';
 import InputView from './view/InputView';
 import OutputView from './view/OutputView';
 
@@ -7,7 +8,8 @@ class LottoController {
   async proceedBuyLottos() {
     const money = await InputView.readMoney();
     this.buyer = new Buyer(money);
-    this.buyer.buyLottos();
+    this.seller = new Seller();
+    this.buyer.buyLottos(this.seller);
 
     OutputView.printLottos(this.buyer.getLottos());
   }
