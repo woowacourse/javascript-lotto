@@ -21,10 +21,10 @@ const Validation = {
 
   validateLottoNumber(lottoNumber) {
     if (!Validation.isNumeric(lottoNumber)) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBER_SHOULD_NUMERIC);
+      throw new LottoError(Messages.ERROR_LOTTO_NUMBER_SHOULD_NUMERIC);
     }
     if (lottoNumber < Lotto.NUMBER_LOWER_BOUND || Lotto.NUMBER_UPPER_BOUND < lottoNumber) {
-      throw new Error(
+      throw new LottoError(
         Messages.ERROR_LOTTO_NUMBER_SHOULD_BETWEEN,
         Lotto.NUMBER_LOWER_BOUND,
         Lotto.NUMBER_UPPER_BOUND,
@@ -42,32 +42,32 @@ const Validation = {
 
   validateIsArray(lottoNumbers) {
     if (!Array.isArray(lottoNumbers)) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_ARRAY);
+      throw new LottoError(Messages.ERROR_LOTTO_NUMBERS_SHOULD_ARRAY);
     }
   },
 
   validateArrayLength(lottoNumbers) {
     if (lottoNumbers.length !== Lotto.LENGTH) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_LENGTH_OF, Lotto.LENGTH);
+      throw new LottoError(Messages.ERROR_LOTTO_NUMBERS_SHOULD_LENGTH_OF, Lotto.LENGTH);
     }
   },
 
   validateUniqueNumbers(lottoNumbers) {
     const lottoSet = new Set(lottoNumbers);
     if (lottoNumbers.length !== lottoSet.size) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_UNIQUE);
+      throw new LottoError(Messages.ERROR_LOTTO_NUMBERS_SHOULD_UNIQUE);
     }
   },
 
   validateBonusNumberDistinct(lottoNumbers, bonusNumber) {
     if (lottoNumbers.includes(bonusNumber)) {
-      throw new Error(Messages.ERROR_BONUS_NUMBER_SHOULD_UNIQUE);
+      throw new LottoError(Messages.ERROR_BONUS_NUMBER_SHOULD_UNIQUE);
     }
   },
 
   validateRestartCommand(command) {
     if (!Object.values(RestartCommand).includes(command)) {
-      throw new Error(Messages.ERROR_RESTART_COMMAND_SHOULD_BE);
+      throw new LottoError(Messages.ERROR_RESTART_COMMAND_SHOULD_BE);
     }
   },
 };
