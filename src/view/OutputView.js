@@ -11,8 +11,10 @@ const OutputView = {
   printLottoResult(receivedRewards) {
     Console.print(`당첨 통계`);
     Console.print('★-★-★-★-★-★');
-    receivedRewards.forEach(([reward, count]) => {
-      Console.print(`${reward.getTitle()} - ${count}개`);
+    receivedRewards.forEach(({ reward, count }) => {
+      Console.print(
+        `${reward.getMatchingNumber()}개 ${reward.getMoney().toLocaleString()}원 - ${count}개`,
+      );
     });
   },
 

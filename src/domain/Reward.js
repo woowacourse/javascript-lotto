@@ -16,10 +16,6 @@ class Reward {
     const winningNumbers = winningLotto.getLottoNumbers();
     return lotto.countMatchingNumbers(winningNumbers) === this.matchingNumbers;
   }
-
-  getTitle() {
-    return `${this.matchingNumbers}개 (${this.money.toLocaleString()}원)`;
-  }
 }
 
 export default Reward;
