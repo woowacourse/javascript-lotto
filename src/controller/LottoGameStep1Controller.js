@@ -2,6 +2,7 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/LottoGame.js';
 import parseToNumberTypeArray from '../utils/parseToNumberTypeArray.js';
+import { SPLIT_STR } from '../utils/constants.js';
 
 class LottoGameStep1Controller {
   #lottoGame;
@@ -43,8 +44,8 @@ class LottoGameStep1Controller {
   async generateWinningLottoNumbers() {
     try {
       const winningLottoString = await InputView.readWinningLottoNumbers();
-      const winningLottoNumber = parseToNumberTypeArray(winningLottoString);
-      const bonusNumber = await InputView.readBonusLottoNumber();
+      const winningLottoNumber = parseToNumberTypeArray(winningLottoString, SPLIT_STR);
+      const bonusNumber = Number(await InputView.readBonusLottoNumber());
       this.#lottoGame.generateWinningLotto(winningLottoNumber, bonusNumber);
     } catch (error) {
       OutputView.printErrorMessage(error);

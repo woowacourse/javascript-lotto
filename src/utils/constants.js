@@ -22,7 +22,7 @@ export const MESSAGE = Object.freeze({
   PURCHASED_LOTTO_COUNT: (count) => `${count}개를 구매했습니다.`,
   PURCHASED_LOTTO: (lotto) => `[${lotto.getLottoNumber().join(', ')}]`,
   WINNING_RANK_RESULT: (rankResult) =>
-    `\n당첨 통계\n--------------------\n3개 일치 (5,000원) - ${rankResult[5]}\n4개 일치 (50,000원) - ${rankResult[4]}\n5개 일치 (1,500,000원) - ${rankResult[3]}\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankResult[2]}\n6개 일치 (2,000,000,000원) - ${rankResult[1]}`,
+    `\n당첨 통계\n--------------------\n3개 일치 (5,000원) - ${rankResult[5000]}개\n4개 일치 (50,000원) - ${rankResult[50000]}개\n5개 일치 (1,500,000원) - ${rankResult[1500000]}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankResult[30000000]}개\n6개 일치 (2,000,000,000원) - ${rankResult[2000000000]}개`,
   PROFIT_RATE: (parsedRate) => `총 수익률은 ${parsedRate}%입니다.`,
 });
 
@@ -36,6 +36,8 @@ export const PRIZE = Object.freeze({
 });
 
 export const LOTTO_PRICE = 1000;
+
+export const SPLIT_STR = ',';
 
 export const LOTTO_NUMBER = Object.freeze({
   MIN: 1,

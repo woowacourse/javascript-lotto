@@ -1,7 +1,6 @@
 const getSameElementCount = (arr1, arr2) => {
   const set = new Set(arr1);
-  const sameElementList = arr2.filter((data) => set.has(data));
-  return sameElementList.length;
+  return arr2.reduce((acc, data) => (set.has(data) ? acc + 1 : acc), 0);
 };
 
 export default getSameElementCount;

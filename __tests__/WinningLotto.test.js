@@ -24,7 +24,7 @@ describe('WinningLotto 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('구입한 로또 번호가 당첨 번호와 3개 일치할 경우 5등 당첨, 5개 일치 및 보너스 번호 일치시 2등 당첨', () => {
+  test('구입한 로또 번호가 당첨 여부 확인 테스트(3개 정답 -> 5등, 4개 정답 -> 4등, 5개 정답 -> 3등, 보너스 번호 포함 6개 정답 -> 2등, 6개 정답 -> 1등)', () => {
     const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
     const purchasedLotto1 = new Lotto([4, 5, 6, 7, 8, 9]);
     const purchasedLotto2 = new Lotto([1, 2, 3, 4, 5, 7]);

@@ -27,28 +27,27 @@ class LottoGame {
   }
 
   getWinningRankResult() {
-    const initRank = [0, 0, 0, 0, 0, 0];
+    const initRank = [PRIZE.NONE, PRIZE.FIRST, PRIZE.SECOND, PRIZE.THIRD, PRIZE.FORTH, PRIZE.FIFTH];
+    const rankResult = { [PRIZE.NONE]: 0, [PRIZE.FIRST]: 0, [PRIZE.SECOND]: 0, [PRIZE.THIRD]: 0, [PRIZE.FORTH]: 0, [PRIZE.FIFTH]: 0 };
     return this.#lottos.reduce((winningRankResult, lotto) => {
       const rank = this.#winningLotto.calculateRank(lotto);
-      winningRankResult[rank] += 1;
-      return winningRankResult.slice();
-    }, initRank);
+      winningRankResult[initRank[rank]] += 1;
+      return winningRankResult;
+    }, rankResult);
   }
 
   determineRetry(retryCommand) {
     const trimedCommand = retryCommand.trim().toLowerCase();
     Validator.validateRetryCommand(trimedCommand);
 
-    if (trimedCommand === COMMAND.RETRY) return true;
-    return false;
+    return trimedCommand === COMMAND.RETRY;
   }
 
   #getWinningMoney() {
     const prize = [PRIZE.NONE, PRIZE.FIRST, PRIZE.SECOND, PRIZE.THIRD, PRIZE.FORTH, PRIZE.FIFTH];
     const winningRankResult = this.getWinningRankResult();
-
-    return prize.reduce((winnigMoney, prizeByRank, index) => {
-      winnigMoney += prizeByRank * winningRankResult[index];
+    return prize.reduce((winnigMoney, prizeByRank) => {
+      winnigMoney += winningRankResult[prizeByRank] * prizeByRank;
       return winnigMoney;
     }, 0);
   }

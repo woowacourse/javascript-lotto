@@ -16,7 +16,7 @@ const Validator = {
   },
 
   validateBonusNumberDuplicated(lottoNumber, bonusNumber) {
-    if (lottoNumber.includes(Number(bonusNumber))) throw new Error(ERROR.BONUS_NUMBER_DUPLICATED);
+    if (lottoNumber.includes(bonusNumber)) throw new Error(ERROR.BONUS_NUMBER_DUPLICATED);
   },
 
   validateBonusNumberRange(bonusNumber) {
