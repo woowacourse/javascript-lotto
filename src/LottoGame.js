@@ -2,6 +2,7 @@ const LottoMachine = require('./domain/LottoMachine');
 const WinningNumbers = require('./domain/WinningNumbers');
 const BonusNumber = require('./domain/BonusNumber');
 const LottoStatistics = require('./domain/LottoStatistics');
+const CorrectLotto = require('./domain/CorrectLotto');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
@@ -15,17 +16,24 @@ class LottoGame {
 
   #lottoStatistics;
 
+  #correctLotto;
+
+  getLottoGameBeans() {
+    this.#lottoMachine = new LottoMachine();
+    this.#correctLotto = new CorrectLotto();
+  }
+
   async successPayForLottoEvent() {
-    const purchasePrice = await InputView.readPurchasePrice();
-    this.#lottoMachine = new LottoMachine(parseInt(purchasePrice, 10));
+    this.getLottoGameBeans();
+    this.#lottoMachine.purchase(await InputView.readPurchasePrice());
 
     OutputView.printPurchasedLottos(this.#lottoMachine.lottos);
 
-    await this.inputWinningNumbers();
+    this.inputWinningNumbers();
   }
 
-  async payForLotto() {
-    await errorCheckFor(
+  payForLotto() {
+    errorCheckFor(
       () => this.successPayForLottoEvent(),
       () => this.payForLotto()
     );
@@ -35,11 +43,11 @@ class LottoGame {
     const winningNumbers = await InputView.readWinningNumbers();
     this.#winningNumbers = new WinningNumbers(winningNumbers);
 
-    await this.inputBonusNumber(this.#winningNumbers);
+    this.inputBonusNumber(this.#winningNumbers);
   }
 
-  async inputWinningNumbers() {
-    await errorCheckFor(
+  inputWinningNumbers() {
+    errorCheckFor(
       () => this.successInputWinningNumbersEvent(),
       () => this.inputWinningNumbers()
     );
@@ -52,11 +60,11 @@ class LottoGame {
     );
 
     this.showLottoStatistics();
-    await this.inputRestartQuitCommand();
+    this.inputRestartQuitCommand();
   }
 
-  async inputBonusNumber(winningNumbers) {
-    await errorCheckFor(
+  inputBonusNumber(winningNumbers) {
+    errorCheckFor(
       () => this.successInputBonusEvent(winningNumbers),
       () => this.inputBonusNumber(winningNumbers)
     );
@@ -76,11 +84,11 @@ class LottoGame {
   async successInputRestartQuitCommand() {
     const command = (await InputView.readRestart()).toLowerCase();
     this.validateCommand(command);
-    await this.executeCommand(command);
+    this.executeCommand(command);
   }
 
-  async inputRestartQuitCommand() {
-    await errorCheckFor(
+  inputRestartQuitCommand() {
+    errorCheckFor(
       () => this.successInputRestartQuitCommand(),
       () => this.inputRestartQuitCommand()
     );
@@ -98,9 +106,9 @@ class LottoGame {
     return ['y', 'n'].includes(command.toLowerCase());
   }
 
-  async executeCommand(command) {
+  executeCommand(command) {
     if (command === 'y') {
-      await this.restart();
+      this.restart();
     }
 
     if (command === 'n') {
@@ -108,8 +116,8 @@ class LottoGame {
     }
   }
 
-  async restart() {
-    await this.payForLotto();
+  restart() {
+    this.payForLotto();
   }
 }
 
