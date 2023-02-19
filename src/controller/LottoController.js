@@ -11,8 +11,7 @@ class LottoController {
 
   async startManage() {
     await this.handleMoneyInput();
-    await this.handleWinningNumber();
-    await this.handleBonusNumber();
+    await this.handleWinningLotto();
 
     this.printStatistics();
 
@@ -33,26 +32,27 @@ class LottoController {
     }
   }
 
-  async handleWinningNumber() {
+  async handleWinningLotto() {
     const winningNumber = await InputView.readWinningNumber();
+
     try {
       LottoValidator.validateWinningNumberInput(winningNumber);
-      this.#LottoMachine.initWinningLotto(winningNumber);
+      await this.handleBonusNumber(winningNumber);
     } catch (error) {
       OutputView.printMessage(error.message);
-      await this.handleWinningNumber();
+      await this.handleWinningLotto();
     }
   }
 
-  async handleBonusNumber() {
+  async handleBonusNumber(winningNumber) {
     const bonusNumber = await InputView.readBonusNumber();
 
     try {
-      LottoValidator.validateBonusNumberInput(this.#LottoMachine.winningLotto.winningNumber, bonusNumber);
-      this.#LottoMachine.winningLotto.bonusNumber = bonusNumber;
+      LottoValidator.validateBonusNumberInput(winningNumber, bonusNumber);
+      this.#LottoMachine.initWinningLotto(winningNumber, bonusNumber);
     } catch (error) {
       OutputView.printMessage(error.message);
-      await this.handleBonusNumber();
+      await this.handleBonusNumber(winningNumber);
     }
   }
 
