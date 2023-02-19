@@ -62,7 +62,7 @@ class App {
     const bonusNumber = Number(bonusInput);
     try {
       InputCheck.validateBonusNumber(bonusNumber, winningLotto);
-      InputCheck.checkEachNumber(bonusNumber);
+      InputCheck.checkNumber(bonusNumber);
     } catch (e) {
       Console.print(e);
       return await this.getBonusNumber();

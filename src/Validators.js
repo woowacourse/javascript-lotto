@@ -10,11 +10,11 @@ const Validators = {
   },
 
   isDevidedByThousand(buyMoney) {
-    return buyMoney % Lotto.LOTTO_PRICE === Lotto.ZERO;
+    return buyMoney % Lotto.LOTTO_PRICE === 0;
   },
 
   isPositiveInteger(input) {
-    return input > Lotto.ZERO && input % 1 === Lotto.ZERO;
+    return input > 0 && input % 1 === 0;
   },
 
   isCorrectRange(input) {
