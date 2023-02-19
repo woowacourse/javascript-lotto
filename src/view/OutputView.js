@@ -1,12 +1,5 @@
+import { LOTTO_RANK } from '../constants';
 import Console from '../util/Console';
-
-const labels = [
-  '3개 일치 (5,000원) - ',
-  '4개 일치 (50,000원) - ',
-  '5개 일치 (1,500,000원) - ',
-  '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  '6개 일치 (2,000,000,000원) - ',
-];
 
 const OutputView = {
   printLottoTicketCount(ticketCount) {
@@ -25,8 +18,14 @@ const OutputView = {
   },
 
   printLottoRanksResult(lottoRanksResult) {
-    Object.entries(lottoRanksResult).forEach(([rankName, rankCount], index) => {
-      Console.print(`${labels[index]}${rankCount}개`);
+    Object.entries(lottoRanksResult).forEach(([rank, rankCount]) => {
+      const rankName = rank.toUpperCase();
+
+      Console.print(
+        `${LOTTO_RANK[rankName].MATCHED_NUMBER_COUNT}개 일치${
+          rankName === 'SECOND' ? ', 보너스 볼 일치' : ''
+        } (${LOTTO_RANK[rankName].PRIZE.toLocaleString('ko-KR')}원) - ${rankCount}개`
+      );
     });
   },
 
