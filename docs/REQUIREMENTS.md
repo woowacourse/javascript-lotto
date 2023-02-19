@@ -1,4 +1,4 @@
-# 기능구현목록 #
+# 1단계 기능구현목록 #
 
 1. input = 복권 구입 금액 받기
 - [x] validation : 1000원단위로 들어오기/ 숫자/ 공백
@@ -32,3 +32,53 @@
 
 9. input = 다시 하기
 - [x] validation : y/n가 아닌 경우. 대소문자 관계 없이 y/n 가능하도록
+
+
+# 2단계 구현 목록 #
+1. html 만들기
+
+    1.  내 당첨번호 확인
+        - [ ] header
+        - [ ] label + (inputAmount = img + p)
+        - [ ] label + printLotto
+        - [ ] p = input설명
+        - [ ] label + inputLotto
+        - [ ] button = checkResult
+
+    2. 당첨통계
+        - [ ] header
+        - [ ] winning table
+        - [ ] p = 수익률
+        - [ ] button = restart
+
+2. css 만들기
+
+    1. 내 당첨번호 확인
+        - [ ] header  
+            - h1
+        - [ ] label + inputAmount 
+            - display: table
+        - [ ] label + printLotto
+            - display:flex / overflow: scroll
+            - img: 크기 맞추기 
+        - [ ] p = input설명
+        - [ ] label + inputLotto
+            - 6자리 / 1자리= display: flex
+            - 1자리.. = 왼쪽 정렬
+        - [ ] button = checkResult
+
+    2. 당첨통계
+        - [ ] header
+            - h1
+        - [ ] winning table
+            - 가로줄
+        - [ ] p = 수익률
+            - border
+        - [ ] button = restart
+
+    3. js 연결
+        - [ ] 구입 버튼 누르면 amount input 입력하기
+        - [ ] print lotto 연결하기
+        - [ ] 결과 확인 누르면 당첨번호/보너스 번호 input으로 입력하기
+        - [ ] 결과 표에 띄우기 + 수익률 띄우기
+        - [ ] 다시 시작하기 버튼으로 restart처리하기 
