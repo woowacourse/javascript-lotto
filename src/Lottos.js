@@ -1,4 +1,4 @@
-import { Settings } from "./Config";
+import { MATCH, SCORE } from "./Config";
 
 class Lottos {
   #lottos;
@@ -7,21 +7,8 @@ class Lottos {
   #totalBenefit;
   constructor(lottos) {
     this.#lottos = lottos;
-    this.#lottoRanking = {
-      "3개 일치": Settings.SCORE_DEFUALT,
-      "4개 일치": Settings.SCORE_DEFUALT,
-      "5개 일치": Settings.SCORE_DEFUALT,
-      "5개 일치, 보너스 볼 일치": Settings.SCORE_DEFUALT,
-      "6개 일치": Settings.SCORE_DEFUALT,
-    };
-    this.#benefitBoard = {
-      "3개 일치": 5000,
-      "4개 일치": 50000,
-      "5개 일치": 1500000,
-      "5개 일치, 보너스 볼 일치": 30000000,
-      "6개 일치": 2000000000,
-    };
-
+    this.#lottoRanking = {...MATCH.LOTTO_RANKIG};
+    this.#benefitBoard = {...MATCH.BENEFIT_BOARD};
     this.#totalBenefit = 0;
   }
 
@@ -49,38 +36,38 @@ class Lottos {
 
   determineAddScore(lotto) {
     if (
-      lotto.getScore() === 0 ||
-      lotto.getScore() === 1 ||
-      lotto.getScore() === 2
+      lotto.getScore() === SCORE.ZERO ||
+      lotto.getScore() === SCORE.ONE ||
+      lotto.getScore() === SCORE.TWO
     )
       return;
-    lotto.getScore() === 5
+    lotto.getScore() === 5  
       ? this.determineBonusOrNot(lotto)
       : this.addScoreBoard(lotto.getScore());
   }
 
   determineBonusOrNot(lotto) {
     lotto.getIsContainBonusNumber()
-      ? this.addScoreBoard("5개 일치, 보너스 볼 일치")
-      : this.addScoreBoard("5개 일치");
+      ? this.addScoreBoard(SCORE.FIVE_BONUS)
+      : this.addScoreBoard(SCORE.FIVE);
   }
 
   addScoreBoard(score) {
     switch (score) {
       case 3:
-        this.#lottoRanking["3개 일치"] += 1;
+        this.#lottoRanking[SCORE.THREE] += 1;
         break;
       case 4:
-        this.#lottoRanking["4개 일치"] += 1;
+        this.#lottoRanking[SCORE.FOUR] += 1;
         break;
       case "5개 일치":
-        this.#lottoRanking["5개 일치"] += 1;
+        this.#lottoRanking[SCORE.FIVE] += 1;
         break;
       case "5개 일치, 보너스 볼 일치":
-        this.#lottoRanking["5개 일치, 보너스 볼 일치"] += 1;
+        this.#lottoRanking[SCORE.FIVE_BONUS] += 1;
         break;
       case 6:
-        this.#lottoRanking["6개 일치"] += 1;
+        this.#lottoRanking[SCORE.SIX] += 1;
     }
   }
 
