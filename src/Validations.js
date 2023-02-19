@@ -5,6 +5,10 @@ const Validations = {
     return isNaN(input) ? false : true;
   },
 
+  isString(input) {
+    return typeof input === "string";
+  },
+
   isDevidedByThousand(buyMoney) {
     return buyMoney % Lotto.LOTTO_PRICE === Lotto.ZERO;
   },
@@ -24,11 +28,9 @@ const Validations = {
   },
 
   isCorrectRetryInput(retryInput) {
+    console.log(retryInput === Lotto.RETRY_DOWNER)
     return (
-      retryInput === Lotto.RETRY_DOWNER ||
-      retryInput === Lotto.RETRY_UPPER ||
-      retryInput === Lotto.QUIT_DOWNER ||
-      retryInput === Lotto.QUIT_UPPER
+      retryInput === Lotto.RETRY_DOWNER || retryInput === Lotto.QUIT_DOWNER
     );
   },
 

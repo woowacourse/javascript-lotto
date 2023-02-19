@@ -8,6 +8,7 @@ import View from "./constants/View.js";
 import LottoScore from "./domain/LottoScore.js";
 import InputCheck from "./InputCheck.js";
 import Utils from "./util/Utils.js";
+import Constants from "./constants/Lotto.js"
 
 class App {
   async play() {
@@ -17,7 +18,7 @@ class App {
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
     this.compareLottos(lottos, winningLotto, bonusNumber);
-    const retryInput = await this.getRetryInput(lottos);
+    const retryInput = await this.getRetryInput();
     this.retryLottoGame(retryInput, lottos);
   }
 
@@ -79,35 +80,23 @@ class App {
   async getRetryInput() {
     const retryInput = await InputView.inputRetry(View.INPUT_RETYR);
     try {
-      this.validateRetryInput(retryInput);
+      InputCheck.validateRetryInput(retryInput);
     } catch (e) {
       Console.print(e);
       return await this.getRetryInput();
     }
+    return retryInput
   }
 
   async retryLottoGame(retryInput, lottos) {
-    // if (
-    //   retryInput === Constant.RETRY_DOWNER ||
-    //   retryInput === Constant.RETRY_UPPER
-    // ) {
-    // this.resetGame(lottos);
-    lottos.resetLottos();
-    this.play();
-    // }
-    // if (
-    //   retryInput === Constant.QUIT_DOWNER ||
-    //   retryInput === Constant.QUIT_UPPER
-    // ) {
-    //   Console.close();
-    // }
+    if (retryInput === Constants.RETRY_DOWNER) {
+      lottos.resetLottos();
+      await this.play();
+    }
+    if (retryInput === Constants.QUIT_DOWNER) {
+      Console.close();
+    }
   }
-
-  // validateRetryInput(retryInput) {
-  //   if (!Validations.isCorrectRetryInput(retryInput)) {
-  //     throw new Error(Error.INPUT_CORRECT_RETRY);
-  //   }
-  // }
 }
 
 export default App;
