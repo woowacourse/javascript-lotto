@@ -67,7 +67,6 @@ class LottoGame {
       0
     );
 
-    console.log(revenue);
     return (revenue / (lottoCount * 10)).toFixed(1);
   }
 }

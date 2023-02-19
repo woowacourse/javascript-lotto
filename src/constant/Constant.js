@@ -5,15 +5,6 @@ const MESSAGES = {
   readCommandRestartText: "\n> 다시 시작하시겠습니까? (y/n) ",
 
   printLottoCountText: "개를 구매했습니다.",
-  printRankResultText: "\n당첨 통계\n-------------------",
-  piecesText: "개",
-  printFifthText: "3개 일치 (5,000원) - ",
-  printFourthText: "4개 일치 (50,000원)) - ",
-  printThridText: "5개 일치 (1,500,000원) - ",
-  printSecondText: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-  printFirstText: "6개 일치 (2,000,000,000원) - ",
-  printRevenueText: "총 수익률은 ",
-  printFinalText: "%입니다.",
 };
 
 const ERRORMESSAGES = {
@@ -38,17 +29,6 @@ const RANK = {
   LOSER: 0,
 };
 
-const RANK_BY_CORRECTCOUNT = {
-  6: RANK.FIRST,
-  BONUS: RANK.SECOND,
-  5: RANK.THIRD,
-  4: RANK.FOURTH,
-  3: RANK.FIFTH,
-  2: RANK.LOSER,
-  1: RANK.LOSER,
-  0: RANK.LOSER,
-};
-
 const LOTTO = {
   MAX: 45,
   MIN: 1,
@@ -61,7 +41,6 @@ module.exports = {
   MESSAGES,
   ERRORMESSAGES,
   RANK,
-  RANK_BY_CORRECTCOUNT,
   LOTTO,
   PRIZE,
 };
