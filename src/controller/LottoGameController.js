@@ -7,55 +7,92 @@ const LottoTicket = require('../domain/LottoTicket');
 const { GAME_COMMAND } = require('../constants');
 
 class LottoGameController {
-  play() {
-    InputView.readUserBudget(this.#onSubmitUserBudget.bind(this));
+  async play() {
+    const userBudget = await this.#getUserBudget();
+
+    this.#issueLottoTickets(userBudget);
+    this.#printLottoTickets();
+
+    const winningNumbers = await this.#getLottoWinningNumbers();
+    const bonusNumber = await this.#getLottoBonusNumber();
+
+    this.#printLottoGameResult();
+
+    const restartCommand = await this.#getRestartCommand();
+
+    this.#handleRestartProcess(restartCommand);
   }
 
-  #onSubmitUserBudget(userBudget) {
+  async #getUserBudget() {
+    const userBudget = await InputView.readUserBudget();
+
     try {
       InputValidator.checkUserBudget(userBudget);
-      this.lottoGame = new LottoGame(Number(userBudget));
-      const lottoTickets = this.lottoGame.getLottoTickets();
-      OutputView.printLottoTicketCount(lottoTickets.length);
-      OutputView.printLottoTickets(lottoTickets);
-      InputView.readLottoWinningNumbers(this.#onSubmitLottoWinningNumber.bind(this));
+      return Number(userBudget);
     } catch (error) {
       Console.print(error.message);
-      this.play();
+      this.#getUserBudget();
     }
   }
 
-  #onSubmitLottoWinningNumber(winningNumber) {
+  #issueLottoTickets(userBudget) {
+    this.lottoGame = new LottoGame(userBudget);
+  }
+
+  #printLottoTickets() {
+    const lottoTickets = this.lottoGame.getLottoTickets();
+
+    OutputView.printLottoTicketCount(lottoTickets.length);
+    OutputView.printLottoTickets(lottoTickets);
+  }
+
+  async #getLottoWinningNumbers() {
+    const winningNumbers = await InputView.readLottoWinningNumbers();
+
     try {
-      InputValidator.checkWinningNumber(winningNumber);
-      this.winningNumber = new LottoTicket(winningNumber.split(',').map(Number));
-      InputView.readLottoBonusNumber(this.#onSubmitLottoBonusNumber.bind(this));
+      InputValidator.checkWinningNumbers(winningNumbers);
+      return winningNumbers.split(',').map(Number);
     } catch (error) {
       Console.print(error.message);
-      InputView.readLottoWinningNumbers(this.#onSubmitLottoWinningNumber.bind(this));
+      this.#getLottoWinningNumbers();
     }
   }
 
-  #onSubmitLottoBonusNumber(bonusNumber) {
+  async #getLottoBonusNumber() {
+    const bonusNumber = await InputView.readLottoBonusNumber();
+
     try {
-      InputValidator.checkBonusNumber(this.winningNumber.getNumbers(), bonusNumber);
-      const lottoRanksCount = this.lottoGame.countLottoRanks(
-        this.winningNumber.getNumbers(),
-        bonusNumber
-      );
-      OutputView.printResultTitle();
-      OutputView.printLottoRanksResult(lottoRanksCount);
-      OutputView.printProfitRate(
-        this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize(lottoRanksCount))
-      );
-      InputView.readRestartCommand(this.#onSubmitRestartCommand.bind(this));
+      InputValidator.checkBonusNumber(bonusNumber);
+      return Number(bonusNumber);
     } catch (error) {
       Console.print(error.message);
-      InputView.readLottoBonusNumber(this.#onSubmitLottoBonusNumber.bind(this));
+      this.#getLottoBonusNumber();
     }
   }
 
-  #onSubmitRestartCommand(command) {
+  #printLottoGameResult() {
+    const lottoRanksCount = this.lottoGame.countLottoRanks(this.winningNumber, bonusNumber);
+
+    OutputView.printResultTitle();
+    OutputView.printLottoRanksResult(lottoRanksCount);
+    OutputView.printProfitRate(
+      this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize(lottoRanksCount))
+    );
+  }
+
+  async #getRestartCommand() {
+    const restartCommand = await InputView.readRestartCommand();
+
+    try {
+      // TODO: restartCommand validation 추가
+      return restartCommand;
+    } catch (error) {
+      Console.print(error.message);
+      this.#getRestartCommand();
+    }
+  }
+
+  #handleRestartProcess(restartCommand) {
     if (command === GAME_COMMAND.NO) return Console.close();
     this.play();
   }
