@@ -7,12 +7,10 @@ describe('arrayHandler테스트', () => {
       [5, 4, 3, 1, 2],
       [1, 2, 3, 4, 5],
     ],
-  ])('배열 오름차순 정렬 테스트', numbers => {
+  ])('입력 배열을 오름차순 정렬하여 반환한다.', numbers => {
     const ascendingOrderSortedNumbers = [1, 2, 3, 4, 5];
 
-    expect(arrayHandler.sortAscendingOrder(numbers)).toEqual(
-      ascendingOrderSortedNumbers
-    );
+    expect(arrayHandler.sortAscendingOrder(numbers)).toEqual(ascendingOrderSortedNumbers);
   });
 
   test.each([
@@ -23,14 +21,9 @@ describe('arrayHandler테스트', () => {
     [[1, 2, 10, 9, 8, 7], 2],
     [[1, 11, 10, 9, 8, 7], 1],
     [[12, 11, 10, 9, 8, 7], 0],
-  ])(
-    'getMatchCount 테스트) 두 배열의 동일한 숫자 개수를 리턴한다. ',
-    (lottoNumbers, matchCount) => {
-      const targetNumbers = [1, 2, 3, 4, 5, 6];
+  ])('두 배열의 일치하는 숫자 개수를 반환한다. ', (numbers, matchCount) => {
+    const targetNumbers = [1, 2, 3, 4, 5, 6];
 
-      expect(arrayHandler.getMatchCount(lottoNumbers, targetNumbers)).toBe(
-        matchCount
-      );
-    }
-  );
+    expect(arrayHandler.getMatchCount(numbers, targetNumbers)).toBe(matchCount);
+  });
 });
