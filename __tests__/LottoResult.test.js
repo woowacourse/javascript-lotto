@@ -15,7 +15,7 @@ describe('LottoResult 클래스에 대한 테스트', () => {
     (lottoNumbers, expectedRewardMoney) => {
       // given
       const lotto = new Lotto(lottoNumbers);
-      const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+      const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
 
       // when
       const lottoResult = new LottoResult(winningLotto);
@@ -34,7 +34,7 @@ describe('LottoResult 클래스에 대한 테스트', () => {
       [1, 2, 3, 4, 5, 7], // 5개 + 보너스
       [8, 9, 10, 11, 12, 13], // 아예 없음
     ].map((lotto) => new Lotto(lotto));
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+    const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
 
     const lottoResult = new LottoResult(winningLotto);
     const rewardCounts = lottoResult.countRewards(lottos);

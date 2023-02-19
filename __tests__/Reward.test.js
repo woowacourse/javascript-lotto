@@ -8,7 +8,7 @@ describe('Reward 클래스에 대한 테스트 작성', () => {
     const lotto = new Lotto([1, 2, 3, 4, 7, 45]);
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
 
     const matchingNumbers = 4;
     const money = 30_000;
