@@ -2,7 +2,7 @@ import Lotto from "./constants/Lotto";
 
 const Validators = {
   isNumber(input) {
-    return typeof input === "number";
+    return (/[0-9]/g.test(input))
   },
 
   isString(input) {
