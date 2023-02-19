@@ -15,10 +15,6 @@ class LottoSimulator {
     this.#lottos = [];
   }
 
-  set winningLotto(winningLotto) {
-    this.#winningLotto = winningLotto;
-  }
-
   async inputBudget() {
     const budget = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET);
     this.judgeValidBudget(parseInt(budget));
@@ -47,15 +43,22 @@ class LottoSimulator {
     OutputView.printPurchaseCount(lottoCount);
 
     Array.from({ length: lottoCount }).forEach(() => {
-      const lottoNumbers = LottoUtils.createLottoNumbers();
-      this.printLottoNumbers(lottoNumbers);
-      this.#lottos.push(new Lotto(lottoNumbers));
+      this.#lottos.push(new Lotto(LottoUtils.createLottoNumbers()));
     });
-    this.inputWinningNumber();
+
+    this.printLottoNumbers();
   }
 
-  printLottoNumbers(lottoNumbers) {
-    OutputView.printLottoNumbers(lottoNumbers);
+  printPurchaseCount() {
+    OutputView.printPurchaseCount(this.#lottos.length * LOTTO_CONSTANT.PRICE);
+    this.printLottoNumbers();
+  }
+
+  printLottoNumbers() {
+    this.#lottos.forEach((lotto) => {
+      OutputView.printLottoNumbers(lotto._numbers);
+    })
+    this.inputWinningNumber();
   }
 
   async inputWinningNumber() {

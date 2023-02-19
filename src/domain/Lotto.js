@@ -9,6 +9,10 @@ class Lotto {
     this._numbers = numbers;
   }
 
+  get _numbers() {
+    return this._numbers;
+  }
+
   validateNumbers(numbers) {
     numbers.forEach((number) => {
       this.validateEachNumber(number);
