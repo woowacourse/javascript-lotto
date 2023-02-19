@@ -20,7 +20,7 @@ class App {
     const retryInput = await this.getRetryInput(lottos);
     this.retryLottoGame(retryInput, lottos);
   }
-  
+
   async getBuyMoney() {
     const buyMoney = await InputView.inputMoney(View.INPUT_MONEY);
     try {
@@ -31,12 +31,12 @@ class App {
     }
     return buyMoney;
   }
-  
+
   async createLotto(lottoAmount) {
     const lottos = Array.from(
       { length: lottoAmount },
       () => new Lotto(Random.getCorrectRandomNumbers())
-      );
+    );
     return new Lottos(lottos);
   }
 
@@ -73,7 +73,7 @@ class App {
     lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
     const lottoScore = new LottoScore();
     lottoScore.compareLottosScore(lottos.getLottos());
-    OutputView.printResult(lottos, lottoScore);
+    OutputView.printResult(lottos.getLottos().length, lottoScore.lottoRanking);
   }
 
   async getRetryInput() {

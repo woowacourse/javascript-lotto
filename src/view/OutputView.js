@@ -19,12 +19,10 @@ const OutputView = {
     Console.print(View.DEVISION_BAR.repeat(20));
   },
 
-  printLottoResults(lottoScore) {
-    for (const score in lottoScore.lottoRanking) {
+  printLottoResults(lottoRanking) {
+    for (const score in lottoRanking) {
       Console.print(
-        `${score} (${Core.moneyBoard[score]}원) - ${
-          lottoScore.lottoRanking[score]
-        }개`
+        `${score} (${Core.moneyBoard[score]}원) - ${lottoRanking[score]}개`
       );
     }
   },
@@ -40,13 +38,11 @@ const OutputView = {
     this.printLottos(lottos);
   },
 
-  printResult(lottos, lottoScore) {
+  printResult(lottoAmount, lottoRanking) {
     this.printResultMessage();
-    this.printLottoResults(lottoScore);
-    this.printTotalBenefit(
-      lottoScore.getBenefitRate(lottos.getLottos().length)
-    );
-  }
+    this.printLottoResults(lottoRanking);
+    this.printTotalBenefit(lottoScore.getBenefitRate(lottoAmount));
+  },
 };
 
 export default OutputView;
