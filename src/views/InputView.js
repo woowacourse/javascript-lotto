@@ -17,7 +17,7 @@ const inputView = {
       return buyMoney;
     } catch (error) {
       Console.print(error.message);
-      return await this.readBuyMoney();
+      return this.readBuyMoney();
     }
   },
 
@@ -33,7 +33,7 @@ const inputView = {
       return luckyNumbers;
     } catch (error) {
       Console.print(error.message);
-      return await this.readLuckyNumbers();
+      return this.readLuckyNumbers();
     }
   },
 
@@ -49,7 +49,7 @@ const inputView = {
       return bonusNumber;
     } catch (error) {
       Console.print(error.message);
-      return await this.readBonusNumber(luckyNumbers);
+      return this.readBonusNumber(luckyNumbers);
     }
   },
 
