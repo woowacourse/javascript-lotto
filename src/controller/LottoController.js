@@ -76,18 +76,6 @@ class LottoController {
 
     return Console.close();
   }
-
-  handleLottoMachine(moneyInput) {
-    LottoValidator.validateMoneyInput(moneyInput);
-    OutputView.printMessage(moneyInput / VALUES.LOTTO_PRICE + MESSAGE.OUTPUT.LOTTO_COUNT);
-    this.initLottoMachine(moneyInput);
-    OutputView.printLottos(this.#LottoMachine.lottos);
-  }
-
-  initLottoMachine(moneyInput) {
-    this.#LottoMachine = new LottoMachine();
-    this.#LottoMachine.buyLotto(+moneyInput);
-  }
 }
 
 export default LottoController;
