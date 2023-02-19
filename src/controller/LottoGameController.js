@@ -10,10 +10,7 @@ const outputView = require('../view/outputView');
 class LottoGameController {
   #lottos;
 
-  #numbers = {
-    winningNumbers: undefined,
-    bonusNumber: undefined,
-  };
+  #winningNumbers;
 
   playGame() {
     this.inputPurchasePrice();
@@ -50,8 +47,7 @@ class LottoGameController {
   inputWinningNumbers() {
     inputView.readWinningNumbers((winningNumbersInput) => {
       try {
-        this.#numbers.winningNumbers = new WinningNumbers(winningNumbersInput);
-        this.inputBonusNumber();
+        this.inputBonusNumber(winningNumbersInput);
       } catch (error) {
         Console.print(error.message);
         this.inputWinningNumbers();
@@ -59,13 +55,14 @@ class LottoGameController {
     });
   }
 
-  inputBonusNumber() {
+  inputBonusNumber(winningNumbersInput) {
     inputView.readBonusNumber((bonusNumberinput) => {
       try {
-        this.#numbers.bonusNumber = new BonusNumber(
-          this.#numbers.winningNumbers.getNumbers(),
+        this.#winningNumbers = new WinningNumbers(
+          winningNumbersInput,
           bonusNumberinput
         );
+
         this.showResult();
       } catch (error) {
         Console.print(error.message);
@@ -76,8 +73,8 @@ class LottoGameController {
 
   showResult() {
     this.#lottos.calculateAllRanks(
-      this.#numbers.winningNumbers.getNumbers(),
-      this.#numbers.bonusNumber.getNumber()
+      this.#winningNumbers.getWinningNumbers(),
+      this.#winningNumbers.getBonusNumber()
     );
 
     outputView.printStatistics(this.#lottos.getAllRanks());
@@ -100,7 +97,7 @@ class LottoGameController {
   }
 
   restart() {
-    this.#numbers = { winningNumbers: null, bonusNumber: null };
+    this.#winningNumbers = null;
     this.#lottos = null;
 
     this.playGame();

@@ -1,17 +1,27 @@
 const exception = require('../../utils/exception');
 
 class WinningNumbers {
-  #numbers;
+  #winningNumbers;
 
-  constructor(input) {
-    exception.handleWinningNumbers(input);
-    const winningNumbers = input.split(',').map(Number);
+  #bonusNumber;
 
-    this.#numbers = winningNumbers;
+  constructor(winningNumbersInput, bonusNumberInput) {
+    console.log(winningNumbersInput, bonusNumberInput);
+    exception.handleWinningNumbers(winningNumbersInput);
+    const winningNumbers = winningNumbersInput.split(',').map(Number);
+
+    this.#winningNumbers = winningNumbers;
+
+    exception.handleBonusNumber(winningNumbers, bonusNumberInput);
+    this.#bonusNumber = Number(bonusNumberInput);
   }
 
-  getNumbers() {
-    return this.#numbers;
+  getWinningNumbers() {
+    return this.#winningNumbers;
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
   }
 }
 
