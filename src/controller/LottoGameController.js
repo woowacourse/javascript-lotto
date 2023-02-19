@@ -4,6 +4,7 @@ import LottoGame from '../domain/LottoGame';
 import Console from '../util/Console';
 import InputValidator from '../validators/InputValidator';
 import { GAME_COMMAND } from '../constants';
+import LottoValidator from '../validators/LottoValidator';
 
 class LottoGameController {
   async play() {
@@ -61,7 +62,7 @@ class LottoGameController {
     const bonusNumber = await InputView.readLottoBonusNumber();
 
     try {
-      InputValidator.checkBonusNumber(winningNumbers, bonusNumber);
+      LottoValidator.checkBonusNumber(winningNumbers, bonusNumber);
       return Number(bonusNumber);
     } catch (error) {
       Console.print(error.message);
