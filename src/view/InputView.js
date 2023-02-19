@@ -1,4 +1,4 @@
-import Lotto from '../domain/Lotto';
+import Lotto from '../domain/lotto/Lotto';
 import WinningLotto from '../domain/WinningLotto';
 import Console from '../utils/Console';
 import Validation from '../Validation';
