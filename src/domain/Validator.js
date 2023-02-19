@@ -6,13 +6,17 @@ const Validator = {
   },
 
   validateLottoNumberDuplicated(lottoNumber) {
-    if (lottoNumber.length !== new Set(lottoNumber).size) throw new Error(ERROR.LOTTO_NUMBER_DUPLICATED);
+    if (lottoNumber.length !== new Set(lottoNumber).size)
+      throw new Error(ERROR.LOTTO_NUMBER_DUPLICATED);
   },
 
   validateLottoNumberRange(lottoNumber) {
-    lottoNumber.forEach((number) => {
-      if (number < LOTTO_NUMBER.MIN || number > LOTTO_NUMBER.MAX) throw new Error(ERROR.LOTTO_NUMBER_RANGE);
-    });
+    const isExistInvalidRange = lottoNumber.some(
+      (number) => number < LOTTO_NUMBER.MIN || number > LOTTO_NUMBER.MAX
+    );
+    if (isExistInvalidRange) {
+      throw new Error(ERROR.LOTTO_NUMBER_RANGE);
+    }
   },
 
   validateBonusNumberDuplicated(lottoNumber, bonusNumber) {
@@ -20,7 +24,8 @@ const Validator = {
   },
 
   validateBonusNumberRange(bonusNumber) {
-    if (bonusNumber < LOTTO_NUMBER.MIN || bonusNumber > LOTTO_NUMBER.MAX) throw new Error(ERROR.BONUS_NUMBER_RANGE);
+    if (bonusNumber < LOTTO_NUMBER.MIN || bonusNumber > LOTTO_NUMBER.MAX)
+      throw new Error(ERROR.BONUS_NUMBER_RANGE);
   },
 
   validateNumberType(input) {
@@ -32,7 +37,8 @@ const Validator = {
   },
 
   validateRetryCommand(command) {
-    if (command !== COMMAND.RETRY && command !== COMMAND.CLOSE) throw new Error(ERROR.RETRY_COMMAND);
+    if (command !== COMMAND.RETRY && command !== COMMAND.CLOSE)
+      throw new Error(ERROR.RETRY_COMMAND);
   },
 };
 
