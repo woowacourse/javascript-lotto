@@ -46,9 +46,9 @@
 
     2. 당첨통계
         - [X] header
-        - [ ] winning table
-        - [ ] p = 수익률
-        - [ ] button = restart
+        - [X] winning table
+        - [X] p = 수익률
+        - [X] button = restart
 
 2. css 만들기
 
