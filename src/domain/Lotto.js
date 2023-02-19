@@ -6,7 +6,7 @@ export class Lotto {
 
   #drawingNumbers = {
     winningNumbers: [],
-    bonusNumber: null,
+    bonusNumber: 0,
   };
 
   constructor(numbers) {
