@@ -7,6 +7,10 @@ import Retry from './view/components/Retry.js';
 import Console from './utils/Console.js';
 
 class App extends Component {
+  setUp() {
+    this.state = { total: null, lottoList: [], retry: false };
+  }
+
   async play() {
     await this.render(new Amount({ setter: this.setState.bind(this) }));
     await this.render(new LottoList({ lottoList: this.state.lottoList }));
@@ -25,16 +29,17 @@ class App extends Component {
     component.render();
   }
 
-  setUp() {
-    this.state = { total: null, lottoList: [], retry: false };
+  async checkRetry(willRetry) {
+    if (willRetry) await this.replay();
+  }
+
+  async replay() {
+    this.setUp();
+    await this.play();
   }
 
   exit() {
     Console.close();
-  }
-
-  async checkRetry(willRetry) {
-    if (willRetry) await new App().play();
   }
 }
 
