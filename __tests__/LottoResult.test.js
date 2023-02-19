@@ -39,6 +39,6 @@ describe('LottoResult 클래스에 대한 테스트', () => {
     const lottoResult = new LottoResult(winningLotto);
     const rewardCounts = lottoResult.countRewards(lottos);
 
-    expect(rewardCounts.map(([, count]) => count)).toEqual([0, 1, 0, 1, 1]);
+    expect(rewardCounts.map(({ count }) => count)).toEqual([0, 1, 0, 1, 1]);
   });
 });

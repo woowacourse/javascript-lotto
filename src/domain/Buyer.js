@@ -17,7 +17,7 @@ class Buyer {
   receiveRewards(lottoResult) {
     const receivedRewards = lottoResult.countRewards(this.lottos);
     this.gainedMoney = receivedRewards.reduce(
-      (money, [reward, count]) => money + reward.getMoney() * count,
+      (money, { reward, count }) => money + reward.getMoney() * count,
       0,
     );
     return receivedRewards;
