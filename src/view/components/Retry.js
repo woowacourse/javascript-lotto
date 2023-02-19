@@ -1,6 +1,6 @@
 import Component from '../../Component.js';
 import Inputs from '../../utils/Inputs.js';
-import { EXIT, RETRY } from '../../constants/values.js';
+import { GAME } from '../../constants/values.js';
 
 export default class Retry extends Component {
   setUp({ setter }) {
@@ -10,7 +10,7 @@ export default class Retry extends Component {
   async read() {
     const retry = await Inputs.readRetry();
 
-    if (retry === RETRY) this.setter({ retry: true });
-    if (retry === EXIT) this.setter({ retry: false });
+    if (retry === GAME.RETRY) this.setter({ retry: true });
+    if (retry === GAME.EXIT) this.setter({ retry: false });
   }
 }

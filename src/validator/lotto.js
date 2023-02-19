@@ -1,12 +1,12 @@
 import { ONLY_NUMBER, ONLY_NUMBERS_WITH_COMMA } from '../constants/regExp.js';
-import { LOTTO_MAX_NUMBER, LOTTO_MIN_NUMBER } from '../constants/values.js';
+import { LOTTO } from '../constants/values.js';
 import { CustomError, ERROR_CODE } from '../utils/Error.js';
 
 export function checkWinningNumberRange(number) {
-  if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+  if (number < LOTTO.LOTTO_MIN_NUMBER || number > LOTTO.LOTTO_MAX_NUMBER) {
     throw new CustomError({
       code: ERROR_CODE.INVALID_NUMBER_RANGE,
-      payload: { min: LOTTO_MIN_NUMBER, max: LOTTO_MAX_NUMBER },
+      payload: { min: LOTTO.LOTTO_MIN_NUMBER, max: LOTTO.LOTTO_MAX_NUMBER },
       number,
     });
   }
