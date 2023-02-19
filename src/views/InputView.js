@@ -5,8 +5,8 @@ import lottoGameValidator from '../domains/lottoGameValidator.js';
 
 const inputView = {
   async readBuyMoney() {
-    const buyMoneyText = await Console.readline(QUERY.LOTTO_PRICE);
     try {
+      const buyMoneyText = await Console.readline(QUERY.LOTTO_PRICE);
       lottoGameValidator.throwErrorIfInvalidBuyMoney(buyMoneyText);
       return parseInt(buyMoneyText, 10);
     } catch (error) {
@@ -16,8 +16,8 @@ const inputView = {
   },
 
   async readLuckyNumbers() {
-    const luckyNumbersText = await Console.readline(QUERY.LUCKY_NUMBERS);
     try {
+      const luckyNumbersText = await Console.readline(QUERY.LUCKY_NUMBERS);
       lottoGameValidator.throwErrorIfInvalidLuckyNumbers(luckyNumbersText);
       return parseNumbers(luckyNumbersText, ',');
     } catch (error) {
@@ -27,8 +27,8 @@ const inputView = {
   },
 
   async readBonusNumber(luckyNumbers) {
-    const bonusNumberText = await Console.readline(QUERY.BONUS_NUMBER);
     try {
+      const bonusNumberText = await Console.readline(QUERY.BONUS_NUMBER);
       lottoGameValidator.throwErrorIfInvalidBonusNumber(bonusNumberText, luckyNumbers);
       return parseInt(bonusNumberText, 10);
     } catch (error) {
@@ -38,8 +38,8 @@ const inputView = {
   },
 
   async readRetry() {
-    const retryCommand = await Console.readline(QUERY.RETRY);
     try {
+      const retryCommand = await Console.readline(QUERY.RETRY);
       lottoGameValidator.throwErrorIfInvalidRetryCommand(retryCommand);
       return retryCommand;
     } catch (error) {
