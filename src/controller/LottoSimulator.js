@@ -10,19 +10,13 @@ import Console from '../utils/Console.js';
 class LottoSimulator {
   #lottos;
   #winningLotto;
-  #budget;
 
   constructor() {
     this.#lottos = [];
-    this.#budget = 0;
   }
 
   set winningLotto(winningLotto) {
     this.#winningLotto = winningLotto;
-  }
-
-  set budget(budget) {
-    this.#budget = budget;
   }
 
   inputBudget() {
@@ -34,7 +28,6 @@ class LottoSimulator {
   judgeValidBudget(budget) {
     try {
       this.validateBudget(budget);
-      this.budget = budget;
       this.purchaseLottos(budget);
     } catch (err) {
       OutputView.printErrorMessage(err);
@@ -102,7 +95,7 @@ class LottoSimulator {
   printStatisticsResult() {
     OutputView.printWinningStatistics(this.calculateWinningResult());
     OutputView.printYieldRate(
-      LottoUtils.calculateYieldRate(this.calculateWinningResult(), this.#budget)
+      LottoUtils.calculateYieldRate(this.calculateWinningResult(), this.#lottos.length)
     );
     this.inputRetryCommand();
   }
@@ -131,7 +124,6 @@ class LottoSimulator {
   retry() {
     this.#lottos = [];
     this.winningLotto = null;
-    this.budget = 0;
     this.inputBudget();
   }
 

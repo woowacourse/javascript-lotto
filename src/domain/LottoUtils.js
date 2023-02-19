@@ -15,12 +15,12 @@ const LottoUtils = {
     return Array.from(lottoNumbers);
   },
 
-  calculateYieldRate(winningResult, budget) {
+  calculateYieldRate(winningResult, lottoCount) {
     const totalPrize = Object.keys(winningResult).reduce(
       (sum, rank) => sum + WINNING_PRIZE[rank] * winningResult[rank],
       0
     );
-    return ((totalPrize / budget) * 100).toFixed(1);
+    return ((totalPrize / (LOTTO_CONSTANT.PRICE * lottoCount)) * 100).toFixed(1);
   },
 };
 
