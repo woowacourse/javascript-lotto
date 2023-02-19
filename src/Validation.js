@@ -20,12 +20,12 @@ const Validation = {
 
   purchaseAmountIsOverUnit(amount) {
     if (amount >= UNIT) return;
-    throw new Error(ERROR.OVER_UNIT);
+    throw new Error(ERROR.OVER_UNIT(UNIT));
   },
 
   purchaseAmountDivideUnit(amount) {
     if (amount % UNIT === 0) return;
-    throw new Error(ERROR.DIVIDE);
+    throw new Error(ERROR.DIVIDE(UNIT));
   },
 
   lottoNumbers(numbers) {
@@ -39,7 +39,7 @@ const Validation = {
 
   lottoNumberSize(numbers) {
     if (numbers.length === LOTTO_SIZE) return;
-    throw new Error(ERROR.SIZE);
+    throw new Error(ERROR.SIZE(LOTTO_SIZE));
   },
 
   isDuplicated(numbers) {
@@ -50,7 +50,7 @@ const Validation = {
 
   numberInRange(number) {
     if (number >= LOTTO_RANGE.MIN && number <= LOTTO_RANGE.MAX) return;
-    throw new Error(ERROR.RANGE);
+    throw new Error(ERROR.RANGE(LOTTO_RANGE.MIN, LOTTO_RANGE.MAX));
   },
 
   bonusNumber(lottoNumbers, bonusNumber) {
