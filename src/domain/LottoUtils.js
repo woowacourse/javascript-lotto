@@ -1,18 +1,11 @@
-import RandomNumberGenerator from '../utils/RandomNumberGenerator.js';
 import { LOTTO_CONSTANT, WINNING_PRIZE } from '../data/constants.js';
 
 const LottoUtils = {
-  createNumbers() {
-    const lottoNumbers = new Set();
-    while (lottoNumbers.size < LOTTO_CONSTANT.LENGTH) {
-      lottoNumbers.add(
-        RandomNumberGenerator.generateNumberInRange(
-          LOTTO_CONSTANT.MIN_NUMBER,
-          LOTTO_CONSTANT.MAX_NUMBER
-        )
-      );
-    }
-    return Array.from(lottoNumbers);
+  createLottoNumbers() {
+    const lottoNumbers = new Array(LOTTO_CONSTANT.MAX_NUMBER).fill().map((_, index) => index + 1);
+    lottoNumbers.sort(() => Math.random() - 0.5);
+  
+    return lottoNumbers.slice(0, LOTTO_CONSTANT.LENGTH);
   },
 
   calculateYieldRate(winningResult, lottoCount) {

@@ -48,7 +48,7 @@ class LottoSimulator {
     OutputView.printPurchaseCount(lottoCount);
 
     Array.from({ length: lottoCount }).forEach(() => {
-      const lottoNumbers = LottoUtils.createNumbers();
+      const lottoNumbers = LottoUtils.createLottoNumbers();
       this.printLottoNumbers(lottoNumbers);
       this.#lottos.push(new Lotto(lottoNumbers));
     });
