@@ -1,12 +1,11 @@
 import Validation from '../Validation';
-import Lotto from './Lotto';
 
 class WinningLotto {
-  constructor(lottoNumbers, bonusNumber) {
-    this.lotto = new Lotto(lottoNumbers);
+  constructor(lotto, bonusNumber) {
+    this.lotto = lotto;
+    Validation.validateLottoNumber(bonusNumber);
+    Validation.validateBonusNumberDistinct(this.getLottoNumbers(), bonusNumber);
     this.bonusNumber = bonusNumber;
-
-    Validation.validateBonusNumberDistinct(lottoNumbers, bonusNumber);
   }
 
   getLottoNumbers() {

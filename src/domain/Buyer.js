@@ -1,7 +1,9 @@
 import LottoFactory from './LottoFactory';
+import Validation from '../Validation';
 
 class Buyer {
   constructor(money) {
+    Validation.validateMoney(money);
     this.money = money;
     this.gainedMoney = 0;
   }

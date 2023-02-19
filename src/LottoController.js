@@ -1,19 +1,34 @@
 import Buyer from './domain/Buyer';
 import LottoResult from './domain/LottoResult';
+import WinningLotto from './domain/WinningLotto';
+import Lotto from './domain/Lotto';
 import InputView from './view/InputView';
 import OutputView from './view/OutputView';
+import Validation from './Validation';
+import Console from '../src/utils/Console';
 
 class LottoController {
   async proceedBuyLottos() {
-    const money = await InputView.readMoney();
-    this.buyer = new Buyer(money);
-    this.buyer.buyLottos();
+    return Console.repeatWhile(async () => {
+      const money = await InputView.readMoney();
+      this.buyer = new Buyer(money);
+      this.buyer.buyLottos();
 
-    OutputView.printLottos(this.buyer.getLottos());
+      OutputView.printLottos(this.buyer.getLottos());
+    });
   }
 
   async proceedWinningLotto() {
-    this.winningLotto = await InputView.readWinningLotto();
+    return Console.repeatWhile(async () => {
+      this.winningNumbers = new Lotto(await InputView.readWinningNumbers());
+    });
+  }
+
+  async proceedBonusNumber() {
+    return Console.repeatWhile(async () => {
+      const bonusNumber = await InputView.readBonusNumber();
+      this.winningLotto = new WinningLotto(this.winningNumbers, bonusNumber);
+    });
   }
 
   proceedLottoResult() {
@@ -26,13 +41,15 @@ class LottoController {
   }
 
   async proceedRestartCommand() {
-    const restartCommand = await InputView.readRestartCommand();
-
-    if (restartCommand === 'y') {
-      return true;
-    }
-    OutputView.printExit();
-    return false;
+    return Console.repeatWhile(async () => {
+      const restartCommand = await InputView.readRestartCommand();
+      Validation.validateRestartCommand(restartCommand);
+      if (restartCommand === 'y') {
+        return true;
+      }
+      OutputView.printExit();
+      return false;
+    });
   }
 }
 
