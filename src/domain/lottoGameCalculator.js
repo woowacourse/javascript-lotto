@@ -1,3 +1,4 @@
+import toNumberFormatOfKor from '../utils/toNumberFormatOfKor';
 import { RANKINGS_REWARD } from '../constants';
 
 const lottoGameCalculator = {
@@ -8,7 +9,7 @@ const lottoGameCalculator = {
   calculateRewardRate(purchaseAmount, rankings) {
     const reward = lottoGameCalculator.calculateReward(rankings);
 
-    return `${((reward / purchaseAmount) * 100).toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%`;
+    return `${toNumberFormatOfKor((reward / purchaseAmount) * 100, 1)}%`;
   },
 };
 
