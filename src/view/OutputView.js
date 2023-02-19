@@ -34,6 +34,19 @@ const OutputView = {
       `${View.PRINT_BENEFIT_RATE_START} ${lottos}${View.PRINT_BENEFIT_RATE_END}`
     );
   },
+
+  printLottos(lottos) {
+    this.printLottoAmount(lottos.length);
+    this.printLottos(lottos);
+  },
+
+  printResult(lottos, lottoScore) {
+    this.printResultMessage();
+    this.printLottoResults(lottoScore);
+    this.printTotalBenefit(
+      lottoScore.getBenefitRate(lottos.getLottos().length)
+    );
+  }
 };
 
 export default OutputView;

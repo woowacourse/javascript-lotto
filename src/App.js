@@ -1,5 +1,4 @@
 import Console from "./util/Console.js";
-import Validations from "./Validations.js";
 import InputView from "./view/InputView.js";
 import Lotto from "./domain/Lotto.js";
 import Lottos from "./domain/Lottos.js";
@@ -8,12 +7,13 @@ import OutputView from "./view/OutputView.js";
 import View from "./constants/View.js";
 import LottoScore from "./domain/LottoScore.js";
 import InputCheck from "./InputCheck.js";
+import Utils from "./util/Utils.js";
 
 class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
     const lottos = await this.createLotto(parseInt(buyMoney / 1000));
-    this.printLottos(lottos.getLottos());
+    OutputView.printLottos(lottos.getLottos());
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
     this.compareLottos(lottos, winningLotto, bonusNumber);
@@ -40,16 +40,11 @@ class App {
     return new Lottos(lottos);
   }
 
-  printLottos(lottos) {
-    OutputView.printLottoAmount(lottos.length);
-    OutputView.printLottos(lottos);
-  }
-
   async getWinningLotto() {
     const winningNumbers = await InputView.inputWinningNumbers(
       View.INPUT_WINNING_LOTTO
     );
-    const winningLotto = this.convertStringToNumber(winningNumbers.split(","));
+    const winningLotto = Utils.convertStringToNumber(winningNumbers.split(","));
     try {
       InputCheck.validateWinningNumbers(winningLotto);
     } catch (e) {
@@ -57,13 +52,6 @@ class App {
       return await this.getWinningLotto();
     }
     return winningLotto;
-  }
-
-  convertStringToNumber(strings) {
-    const numbers = strings.map((string) => {
-      return Number(string);
-    });
-    return numbers;
   }
 
   async getBonusNumber(winningLotto) {
@@ -85,15 +73,7 @@ class App {
     lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
     const lottoScore = new LottoScore();
     lottoScore.compareLottosScore(lottos.getLottos());
-    this.printResult(lottos, lottoScore);
-  }
-
-  printResult(lottos, lottoScore) {
-    OutputView.printResultMessage();
-    OutputView.printLottoResults(lottoScore);
-    OutputView.printTotalBenefit(
-      lottoScore.getBenefitRate(lottos.getLottos().length)
-    );
+    OutputView.printResult(lottos, lottoScore);
   }
 
   async getRetryInput() {
