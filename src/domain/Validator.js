@@ -1,4 +1,4 @@
-import { ERROR, COMMAND, LOTTO_NUMBER } from '../utils/constants.js';
+import { ERROR, COMMAND, LOTTO_NUMBER, ERROR_METHOD } from '../utils/constants.js';
 
 const Validator = {
   validateLottoNumberLength(lottoNumber) {
@@ -33,7 +33,7 @@ const Validator = {
   },
 
   validateExactUnit(input, unit) {
-    if (input % unit !== 0) throw new Error(ERROR.EXACT_UNIT(unit));
+    if (input % unit !== 0) throw new Error(ERROR_METHOD.EXACT_UNIT(unit));
   },
 
   validateRetryCommand(command) {

@@ -6,6 +6,9 @@ export const ERROR = Object.freeze({
   BONUS_NUMBER_RANGE: '[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.',
   NUMBER_TYPE: '[ERROR] 입력 값은 숫자여야 합니다.',
   RETRY_COMMAND: '[ERROR] y, n중에 명령어를 입력해야 합니다.',
+});
+
+export const ERROR_METHOD = Object.freeze({
   EXACT_UNIT: (unit) => `[ERROR] 입력 값은 ${unit} 단위여야 합니다.`,
 });
 
@@ -19,6 +22,9 @@ export const MESSAGE = Object.freeze({
   REQUEST_LOTTO_NUMBERS: '\n당첨 번호를 입력해 주세요.',
   REQUEST_BONUSE_NUMBER: '보너스 번호를 입력해 주세요.',
   REQUEST_RETRY_COMMAND: '\n다시 시작하시겠습니까? (y/n)',
+});
+
+export const MESSAGE_METHOD = Object.freeze({
   PURCHASED_LOTTO_COUNT: (count) => `${count}개를 구매했습니다.`,
   PURCHASED_LOTTO: (lotto) => `[${lotto.getLottoNumber().join(', ')}]`,
   WINNING_RANK_RESULT: (rankResult) =>
