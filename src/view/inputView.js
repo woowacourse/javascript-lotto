@@ -1,30 +1,35 @@
 const Console = require('../utils/Console.js');
 const { MESSAGE } = require('../utils/constant.js');
 const {
-  thousandValidate,
-  integerValidate,
-  maximumMoneyValidate,
-  winningIncludeBonusNumber,
+  moneyValidate,
   restartValidate,
+  winningNumberValidate,
+  bonusNumberValidate
 } = require('../utils/validation.js');
 
 const inputView = {
   async readMoney() {
     const money = await Console.readLine(MESSAGE.INPUT_MONEY);
-    if (thousandValidate(money) && integerValidate(money) && maximumMoneyValidate(money)) return this.readMoney();
+    if (moneyValidate(money)) return this.readMoney();
     return money;
   },
 
   async readWinningNumber() {
-    return await Console.readLine(MESSAGE.INPUT_WINNING_NUMBER);
+    const winning = await Console.readLine(MESSAGE.INPUT_WINNING_NUMBER);
+    if(winningNumberValidate(winning)) return this.readWinningNumber();
+    return winning
   },
 
   async readBonusNumber() {
-    return await Console.readLine(MESSAGE.INPUT_BONUS_NUMBER);
+    const bonus = await Console.readLine(MESSAGE.INPUT_BONUS_NUMBER)
+    if(bonusNumberValidate(bonus)) return this.readBonusNumber();
+    return bonus
   },
 
   async readRestartOrFinish() {
-    if ((await Console.readLine(MESSAGE.RESTART_OR_FINISH)) === 'y') return 1;
+    const response = await Console.readLine(MESSAGE.RESTART_OR_FINISH)
+    if(restartValidate(response)) return this.readRestartOrFinish();
+    if (response === 'y') return true
     Console.close();
   },
 };

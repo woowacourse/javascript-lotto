@@ -1,39 +1,78 @@
 const { ERROR } = require('../utils/constant.js');
 
 const thousandValidate = money => {
-  const isValidation = Number(money) % 1000 !== 0;
-  if (!isValidation) console.log(ERROR.INPUT_MONEY_THOUSAND);
-  return isValidation;
+  return Number(money) % 1000 !== 0;
 };
 
 const integerValidate = money => {
-  const isValidation = !(isNaN(money) || money <= 0);
-  if (!isValidation) console.log(ERROR.INPUT_MONEY_INTEGER);
-  return isValidation;
+  return isNaN(money) || money <= 0;
 };
 
 const maximumMoneyValidate = money => {
-  const isValidation = money > 100000;
-  if (!isValidation) console.log(ERROR.INPUT_MONEY_LIMIT);
-  return isValidation;
+  return money > 100000;
 };
+
+const moneyValidate = money => {
+  if (integerValidate(money)) {
+    console.log(ERROR.INPUT_MONEY_INTEGER);
+    return true;
+  }
+
+  if (maximumMoneyValidate(money)) {
+    console.log(ERROR.INPUT_MONEY_LIMIT);
+    return true;
+  }
+
+  if (thousandValidate(money)) {
+    console.log(ERROR.INPUT_MONEY_THOUSAND);
+    return true;
+  }
+};
+
+const winningNumberCount = (numbers)=>{
+  return (numbers.split(',').length === 6)
+}
+
+const winningNumberRange = (numbers)=>{
+  return numbers.split(',').every(number => number >= 1 && number <= 45);
+}
+
+const winningNumberValidate = numbers => {
+  if(!winningNumberRange(numbers)){
+    console.log(ERROR.WINNING_NUMBER_RANGE);
+    return true;
+  }
+  if(!winningNumberCount(numbers)){
+    console.log(ERROR.WINNING_NUMBER_COUNT);
+    return true;
+  }
+};
+
+const bonusNumberValidate = number => {
+  if(!(number >= 1 && number <= 45)){
+    console.log(ERROR.BONUS_NUMBER_RANGE);
+    return true;
+  }
+}
 
 const winningIncludeBonusNumber = (numbers, bonus) => {
   const isValidation = numbers.includes(bonus);
-  if (!isValidation) console.log(ERROR.BONUS_WINNING_NUMBER_DUPLICATION);
+  if (isValidation) console.log(ERROR.BONUS_WINNING_NUMBER_DUPLICATION);
   return isValidation;
 };
 
-const restartValidate = input => {
-  const isValidation = input !== 'y' || input !== 'n';
-  if (!isValidation) console.log(ERROR.RESTART_OR_FINISH);
-  return isValidation;
+const restartValidate = response => {
+  if (response !== 'y' && response !== 'n') {
+    console.log(ERROR.RESTART_OR_FINISH);
+    return true;
+  }
+  return false;
 };
 
 module.exports = {
-  thousandValidate,
-  integerValidate,
-  maximumMoneyValidate,
+  moneyValidate,
   winningIncludeBonusNumber,
   restartValidate,
+  winningNumberValidate,
+  bonusNumberValidate
 };
