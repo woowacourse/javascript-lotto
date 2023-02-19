@@ -30,7 +30,7 @@ class LottoValidatorConditions {
   }
 
   static isBonusNumInWinningNum(winningNumber, number) {
-    return !winningNumber.includes(+number);
+    return !winningNumber.split(',').map(Number).includes(number);
   }
 }
 
