@@ -6,13 +6,13 @@ class LottoGameController {
   #lottoGame;
 
   startGame() {
-    this.readLottosPrice();
+    this.readBuyMoney();
   }
 
-  async readLottosPrice() {
-    const lottosPrice = await inputView.readLottosPrice();
+  async readBuyMoney() {
+    const buyMoney = await inputView.readBuyMoney();
 
-    this.#lottoGame = new LottoGame(lottosPrice);
+    this.#lottoGame = new LottoGame(buyMoney);
     this.printLottoNumbersList();
   }
 

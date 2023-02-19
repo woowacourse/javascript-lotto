@@ -1,27 +1,24 @@
 import LOTTO from '../constants/lotto.js';
-import numberHandler from '../utils/numberHandler.js';
 import Lotto from './Lotto.js';
 import arrayHandler from '../utils/arrayHandler.js';
+import numberHandler from '../utils/numberHandler.js';
 
 const lottoMachine = {
-  generateLotto() {
-    return new Lotto(this.generateLottoNumbers());
-  },
-
-  generateLottos(price) {
-    const lottoQuantity = numberHandler.getQuotient(price, LOTTO.PRICE);
+  generateLottos(buyMoney) {
+    const lottoQuantity = numberHandler.getQuotient(buyMoney, LOTTO.PRICE);
 
     return Array.from({ length: lottoQuantity }, () => this.generateLotto());
+  },
+
+  generateLotto() {
+    return new Lotto(this.generateLottoNumbers());
   },
 
   generateLottoNumbers() {
     const lottoNumbers = new Set();
 
-    while (lottoNumbers.size < 6) {
-      const lottoNumber = numberHandler.generateRandomNumber(
-        LOTTO.MIN_RANGE,
-        LOTTO.MAX_RANGE
-      );
+    while (lottoNumbers.size < LOTTO.NUMBERS_LENGTH) {
+      const lottoNumber = numberHandler.generateRandomNumber(LOTTO.MIN_RANGE, LOTTO.MAX_RANGE);
       lottoNumbers.add(lottoNumber);
     }
 

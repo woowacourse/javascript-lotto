@@ -1,7 +1,7 @@
-import lottoMachine from './lottoMachine.js';
 import LOTTO from '../constants/lotto.js';
 import LOTTO_GAME from '../constants/lottoGame.js';
 import RANK from '../constants/rank.js';
+import lottoMachine from './lottoMachine.js';
 import numberHandler from '../utils/numberHandler.js';
 
 class LottoGame {
@@ -9,8 +9,8 @@ class LottoGame {
   #amountOfRanks = Array.from({ length: RANK.SIZE }).fill(0);
   #winningNumbers = { luckyNumbers: [], bonusNumber: 0 };
 
-  constructor(price) {
-    this.#lottos = lottoMachine.generateLottos(price);
+  constructor(buyMoney) {
+    this.#lottos = lottoMachine.generateLottos(buyMoney);
   }
 
   getLottoNumbersList() {

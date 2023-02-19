@@ -4,13 +4,13 @@ import validator from '../utils/validator.js';
 import parseNumbers from '../utils/parseNumbers.js';
 
 const lottoGameValidator = {
-  isValidLottosPrice(lottosPriceText) {
-    const lottosPrice = parseInt(lottosPriceText, 10);
+  isValidBuyMoney(buyMoneyText) {
+    const buyMoney = parseInt(buyMoneyText, 10);
 
     return (
-      validator.isFirstLetterNotZero(lottosPriceText) &&
-      validator.isNumericString(lottosPriceText) &&
-      validator.canDivide(lottosPrice, LOTTO.PRICE)
+      validator.isFirstLetterNotZero(buyMoneyText) &&
+      validator.isNumericString(buyMoneyText) &&
+      validator.canDivide(buyMoney, LOTTO.PRICE)
     );
   },
 
