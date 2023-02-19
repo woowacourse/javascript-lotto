@@ -59,9 +59,8 @@ class LottoGame {
     }, 0);
   }
 
-  calculateProfitRate() {
+  calculateProfitRate(totalPrize) {
     const userBudget = LOTTO.PRICE * this.#lottoTickets.length;
-    const totalPrize = this.calculateTotalPrize();
 
     return Converter.toFixedNumber((totalPrize / userBudget) * 100, 1);
   }

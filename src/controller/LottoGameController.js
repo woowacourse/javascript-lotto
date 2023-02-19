@@ -72,10 +72,11 @@ class LottoGameController {
 
   #printLottoGameResult(winningNumbers, bonusNumber) {
     const lottoRanksResult = this.lottoGame.getLottoRankResult(winningNumbers, bonusNumber);
+    const profitRate = this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize());
 
     OutputView.printResultTitle();
     OutputView.printLottoRanksResult(lottoRanksResult);
-    OutputView.printProfitRate(this.lottoGame.calculateProfitRate());
+    OutputView.printProfitRate(profitRate);
   }
 
   async #getRestartCommand() {
