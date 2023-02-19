@@ -36,8 +36,8 @@ export class Lotto {
 }
 
 export const LottoStore = {
-  purchase(total) {
-    return Array(total)
+  purchase(lottoCount) {
+    return Array(lottoCount)
       .fill()
       .map(() => new Lotto(randomGenerator(LOTTO_COUNT)));
   },

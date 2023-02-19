@@ -5,7 +5,7 @@ import { PRICE } from '../../constants/values.js';
 import { LottoStore } from '../../domain/Lotto.js';
 
 export default class Amount extends Component {
-  #total;
+  #lottoCount;
 
   #lottoList;
 
@@ -16,12 +16,12 @@ export default class Amount extends Component {
   async read() {
     const amount = await Inputs.readAmount();
 
-    this.#total = amount / PRICE;
-    this.#lottoList = LottoStore.purchase(this.#total);
-    this.setter({ total: this.#total, lottoList: this.#lottoList });
+    this.#lottoCount = amount / PRICE;
+    this.#lottoList = LottoStore.purchase(this.#lottoCount);
+    this.setter({ total: this.#lottoCount, lottoList: this.#lottoList });
   }
 
   template() {
-    return generationMessages.countMessage(this.#total);
+    return generationMessages.countMessage(this.#lottoCount);
   }
 }
