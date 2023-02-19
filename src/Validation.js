@@ -5,7 +5,7 @@ import {
   MONEY_UNIT,
   RESTART_COMMAND,
   END_COMMAND,
-  LOTTO_DIGITS
+  LOTTO_DIGITS,
 } from './constants';
 
 const Validation = {
@@ -52,7 +52,7 @@ const Validation = {
   },
 
   validateArrayLength(lottoNumbers) {
-    if (lottoNumbers.length !== 6) {
+    if (lottoNumbers.length !== LOTTO_DIGITS) {
       throw new Error(ERROR.INVALID_LOTTO_DIGITS);
     }
   },
