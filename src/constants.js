@@ -21,13 +21,14 @@ const ERROR = {
   RESTART: "[ERROR] y 혹은 n으로 입력해주세요.",
 };
 
-const NUMBER = {
-  UNIT: 1_000,
-  MIN_RANGE: 1,
-  MAX_RANGE: 45,
-  SIZE: 6,
-  RANK: 5,
+const UNIT = 1_000;
+const LOTTO_RANGE = {
+  MIN: 1,
+  MAX: 45,
 };
+
+const RANK = 5;
+const LOTTO_SIZE = 6;
 
 const COMMAND = {
   RESTART: "y",
@@ -37,7 +38,10 @@ const COMMAND = {
 const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
 
 module.exports = {
-  NUMBER,
+  RANK,
+  LOTTO_RANGE,
+  LOTTO_SIZE,
+  UNIT,
   MESSAGE,
   ERROR,
   AMOUNT_OF_PURCHASE,

@@ -1,4 +1,10 @@
-const { ERROR, NUMBER, COMMAND } = require("./constants");
+const {
+  ERROR,
+  UNIT,
+  LOTTO_SIZE,
+  COMMAND,
+  LOTTO_RANGE,
+} = require("./constants");
 
 const Validation = {
   purchaseAmount(amount) {
@@ -13,12 +19,12 @@ const Validation = {
   },
 
   purchaseAmountIsOverUnit(amount) {
-    if (amount >= NUMBER.UNIT) return;
+    if (amount >= UNIT) return;
     throw new Error(ERROR.OVER_UNIT);
   },
 
   purchaseAmountDivideUnit(amount) {
-    if (amount % NUMBER.UNIT === 0) return;
+    if (amount % UNIT === 0) return;
     throw new Error(ERROR.DIVIDE);
   },
 
@@ -32,7 +38,7 @@ const Validation = {
   },
 
   lottoNumberSize(numbers) {
-    if (numbers.length === NUMBER.SIZE) return;
+    if (numbers.length === LOTTO_SIZE) return;
     throw new Error(ERROR.SIZE);
   },
 
@@ -43,7 +49,7 @@ const Validation = {
   },
 
   numberInRange(number) {
-    if (number >= NUMBER.MIN_RANGE && number <= NUMBER.MAX_RANGE) return;
+    if (number >= LOTTO_RANGE.MIN && number <= LOTTO_RANGE.MAX) return;
     throw new Error(ERROR.RANGE);
   },
 
