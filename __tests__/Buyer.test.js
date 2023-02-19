@@ -15,7 +15,7 @@ const mockLottoFactory = (lottos) => {
 };
 
 describe('Buyer 클래스 테스트', () => {
-  test('사용자는 로또를 구매할 수 있다.', () => {
+  test('사용자는 1000원 단위의 돈을 지불하면 가격에 맞는 개수만큼 로또를 구매할 수 있다.', () => {
     // given
     const money = 8000;
     const amount = 8;
