@@ -9,7 +9,32 @@
 
   <body>
     <div id="app">
-      <h2>🎱 행운의 로또</h2>
+      <header>
+        <h2>🎱 행운의 로또</h2>
+      </header>
+      <main>
+        <div class="game-container">
+          <h2>🎱 내 번호 당첨 확인 🎱</h2>
+          <form action="submit" id="purchase-form">
+            <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+            <div>
+              <input
+                type="text"
+                name="purchase-amount"
+                id="purchase-input"
+                placeholder="금액은 1000원 단위로 입력해주세요."
+                autocomplete="off"
+                required
+              />
+              <button type="submit" id="purchase-button">구입</button>
+            </div>
+            <p class="error-message" id="purchase-error"></p>
+          </form>
+        </div>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

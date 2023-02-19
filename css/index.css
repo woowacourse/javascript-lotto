@@ -34,3 +34,127 @@
   box-sizing: border-box;
 }
 
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  background: var(--primary-blue);
+}
+
+h2 {
+  padding: var(--spacing-3);
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+}
+
+header h2 {
+  padding: var(--spacing-3);
+  padding-left: 100px;
+  color: var(--white);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  position: relative;
+  width: 420px;
+  padding: var(--spacing-3);
+  border: 1px solid var(--divider-border-color);
+  border-radius: var(--spacing-1);
+}
+
+.game-container h2 {
+  margin-bottom: var(--spacing-4);
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+}
+
+input[type='text'] {
+  padding: var(--spacing-2);
+  border: 1px solid var(--gray-2);
+  border-radius: var(--spacing-1);
+  outline: 0;
+}
+
+input[type='text']::placeholder {
+  color: var(--gray-3);
+  opacity: 1;
+}
+
+input[type='text']:focus {
+  border: 1px solid #97cee5;
+  box-shadow: 0 0 0 3px rgba(131, 192, 253, 0.5);
+}
+
+button {
+  padding: var(--spacing-2);
+  background: var(--primary-blue);
+  color: var(--white);
+  border: 1px solid var(--primary-blue);
+  border-radius: var(--spacing-1);
+  outline: 0;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--dark-blue-2);
+  border-color: var(--dark-blue-1);
+}
+
+button:active {
+  background: var(--dark-blue-1);
+}
+
+#purchase-form {
+  margin-bottom: var(--spacing-4);
+}
+
+#purchase-form div {
+  width: 100%;
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+#purchase-input {
+  flex-grow: 1;
+}
+
+.error-message {
+  margin-top: var(--spacing-3);
+  height: 17.5px;
+  font-size: var(--caption-font-size);
+  color: var(--dark-red);
+  opacity: 0;
+}
+
+.error-input:focus {
+  border: 1px solid #e59797 !important;
+  box-shadow: 0 0 0 3px rgba(253, 131, 131, 0.5) !important;
+}
+
+footer {
+  bottom: 0;
+  border-top: 1px solid var(--divider-border-color);
+}
+
+footer p {
+  padding: var(--spacing-4);
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  color: var(--primary-blue);
+  text-align: center;
+}
