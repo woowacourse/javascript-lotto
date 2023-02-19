@@ -10,24 +10,24 @@ const LottoValidator = {
 
   validateMoneyInput(number) {
     this.validateWithCondition(
-      LottoValidatorConditions.isPositiveInteger(+number),
+      LottoValidatorConditions.isPositiveInteger(number),
       MESSAGE.ERROR.POSITIVE_INTEGER,
     );
     this.validateWithCondition(
-      LottoValidatorConditions.isDividedByPrice(+number),
+      LottoValidatorConditions.isDividedByPrice(number),
       MESSAGE.ERROR.THOUSANDS_WON,
     );
   },
 
   validateWinningNumberInput(winningNumber) {
-    const splitWinningNumber = winningNumber.split(',');
+    const splitedWinningNumber = winningNumber.split(',');
 
-    splitWinningNumber.forEach(number => {
+    splitedWinningNumber.map(Number).forEach(number => {
       this.validateWithCondition(
-        LottoValidatorConditions.isPositiveInteger(+number),
+        LottoValidatorConditions.isPositiveInteger(number),
         MESSAGE.ERROR.VALID_SIX_NUMBER,
       );
-      this.validateWithCondition(LottoValidatorConditions.isInRange(+number), MESSAGE.ERROR.VALID_SIX_NUMBER);
+      this.validateWithCondition(LottoValidatorConditions.isInRange(number), MESSAGE.ERROR.VALID_SIX_NUMBER);
     });
 
     this.validateWithCondition(
@@ -35,21 +35,21 @@ const LottoValidator = {
       MESSAGE.ERROR.HAS_BLANK,
     );
     this.validateWithCondition(
-      LottoValidatorConditions.isSixLength(splitWinningNumber),
+      LottoValidatorConditions.isSixLength(splitedWinningNumber),
       MESSAGE.ERROR.NOT_SIX_LENGTH,
     );
     this.validateWithCondition(
-      LottoValidatorConditions.isNotOverlap(splitWinningNumber),
+      LottoValidatorConditions.isNotOverlap(splitedWinningNumber),
       MESSAGE.ERROR.OVERLAP,
     );
   },
 
   validateBonusNumberInput(winningNumber, number) {
     this.validateWithCondition(
-      LottoValidatorConditions.isPositiveInteger(+number),
+      LottoValidatorConditions.isPositiveInteger(number),
       MESSAGE.ERROR.POSITIVE_INTEGER,
     );
-    this.validateWithCondition(LottoValidatorConditions.isInRange(+number), MESSAGE.ERROR.IN_RANGE);
+    this.validateWithCondition(LottoValidatorConditions.isInRange(number), MESSAGE.ERROR.IN_RANGE);
     this.validateWithCondition(
       LottoValidatorConditions.isBonusNumInWinningNum(winningNumber, number),
       MESSAGE.ERROR.OVERLAP_WINNING_NUM,

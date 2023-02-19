@@ -5,7 +5,7 @@ const InputView = {
   async readInputMoney() {
     const moneyInput = await Console.readLine(MESSAGE.INPUT.MONEY);
 
-    return moneyInput;
+    return +moneyInput;
   },
 
   async readWinningNumber() {
@@ -17,7 +17,7 @@ const InputView = {
   async readBonusNumber() {
     const bonusNumber = await Console.readLine(MESSAGE.INPUT.BONUS_NUMBER);
 
-    return bonusNumber;
+    return +bonusNumber;
   },
 
   async readAboutRestart() {
