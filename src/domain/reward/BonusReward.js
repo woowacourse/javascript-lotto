@@ -8,7 +8,7 @@ class BonusNumberReward extends Reward {
    * @param {WinningLotto} winningLotto
    * @returns {boolean}
    */
-  canReceive(lotto, winningLotto) {
+  isQualified(lotto, winningLotto) {
     return (
       winningLotto.hasBonusNumber(lotto) &&
       winningLotto.getMatchCount(lotto) === this.getMatchCount()

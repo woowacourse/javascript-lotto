@@ -15,9 +15,9 @@ describe('Reward', () => {
     const reward = new Reward(matchCount, money);
 
     // when
-    const canReceiveReward = reward.canReceive(lotto, winningLotto);
+    const qualified = reward.isQualified(lotto, winningLotto);
 
     // then
-    expect(canReceiveReward).toBeTruthy();
+    expect(qualified).toBeTruthy();
   });
 });

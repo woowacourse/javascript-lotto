@@ -30,7 +30,7 @@ class LottoResult {
   findReward(lotto) {
     const foundReward =
       LottoResult.REWARDS.find((reward) => {
-        return reward.canReceive(lotto, this.#winningLotto);
+        return reward.isQualified(lotto, this.#winningLotto);
       }) ?? null;
     return foundReward;
   }

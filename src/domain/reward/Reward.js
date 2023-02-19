@@ -30,7 +30,7 @@ class Reward {
    * @param {WinningLotto} winningLotto
    * @returns {boolean}
    */
-  canReceive(lotto, winningLotto) {
+  isQualified(lotto, winningLotto) {
     return winningLotto.getMatchCount(lotto) === this.#matchCount;
   }
 
