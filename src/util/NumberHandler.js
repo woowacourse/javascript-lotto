@@ -1,4 +1,4 @@
-const NumberHandler = {
+const numberHandler = {
   generateRandomNumber(minRange, maxRange) {
     return Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
   },
@@ -12,4 +12,4 @@ const NumberHandler = {
   },
 };
 
-export default NumberHandler;
+export default numberHandler;

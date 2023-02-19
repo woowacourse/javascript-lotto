@@ -10,7 +10,9 @@ describe('validator테스트', () => {
   test.each([['0'], ['010'], ['01000']])(
     '입력 문자열이 0으로 시작하는 경우 false를 반환한다.',
     input => {
-      expect(validator.isFirstLetterNotZero(input)).toBeFalsy();
+      expect(() => validator.isFirstLetterNotZero(input)).toThrowError(
+        '[ERROR]'
+      );
     }
   );
 
@@ -24,7 +26,7 @@ describe('validator테스트', () => {
   test.each([['abc'], ['abc123'], ['123abc']])(
     '입력 문자열에 숫자가 아닌 문자가 있을 경우 false를 반환한다.',
     input => {
-      expect(validator.isNumericString(input)).toBeFalsy();
+      expect(() => validator.isNumericString(input)).toThrowError();
     }
   );
 
@@ -43,7 +45,7 @@ describe('validator테스트', () => {
   ])(
     'target이 나누어 떨어지지 않는 경우 false를 리턴한다.',
     (target, divider) => {
-      expect(validator.canDivide(target, divider)).toBeFalsy();
+      expect(() => validator.canDivide(target, divider)).toThrowError();
     }
   );
 });

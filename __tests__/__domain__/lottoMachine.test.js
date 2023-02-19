@@ -1,22 +1,17 @@
 import LottoMachine from '../../src/domain/LottoMachine.js';
+import SORT from '../../src/constant/sort.js';
 
 describe('LottoMachine 테스트', () => {
-  test.each([
-    [LottoMachine.generateLottoNumbers()],
-    [LottoMachine.generateLottoNumbers()],
-    [LottoMachine.generateLottoNumbers()],
-  ])(
-    'generateLottoNumbers가 6개의 오름차순으로 정렬된 숫자를 반환한다.',
-    lottoNumbers => {
-      const length = 6;
-      const sortedLottoNumbers = lottoNumbers.sort((a, b) => a - b);
-      const lottoNumberType = 'number';
+  test('generateLottoNumbers가 6개의 오름차순으로 정렬된 숫자를 반환한다.', () => {
+    const lottos = LottoMachine.generateLottos(10000);
+    const length = 6;
+
+    lottos.forEach(lotto => {
+      const lottoNumbers = lotto.getNumbers();
 
       expect(lottoNumbers.length).toBe(length);
-      lottoNumbers.forEach(lottoNumber =>
-        expect(typeof lottoNumber).toBe(lottoNumberType)
-      );
-      expect(lottoNumbers).toEqual(sortedLottoNumbers);
-    }
-  );
+      expect(Array.isArray(lottoNumbers)).toBeTruthy();
+      expect(lottoNumbers).toEqual(lottoNumbers.sort(SORT.ascendingOrder));
+    });
+  });
 });

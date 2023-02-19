@@ -5,18 +5,12 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const Console = {
-  print(message) {
-    console.log(message);
-  },
-
-  async readline(query) {
-    return await rl.question(query);
-  },
-
-  close() {
-    rl.close();
-  },
-};
+const Console = (function () {
+  return {
+    print: message => console.log(message),
+    readline: query => rl.question(query),
+    close: () => rl.close(),
+  };
+})();
 
 export default Console;

@@ -1,13 +1,13 @@
-const RANK = {
+const RANK = Object.freeze({
   FIRST: 1,
   SECOND: 2,
   THIRD: 3,
   FOURTH: 4,
   FIFTH: 5,
   INVALID_RANK: 0,
-};
+});
 
-const RANKING_TABLE = [
+const RANKING_TABLE = Object.freeze([
   RANK.INVALID_RANK,
   RANK.INVALID_RANK,
   RANK.INVALID_RANK,
@@ -15,6 +15,6 @@ const RANKING_TABLE = [
   RANK.FOURTH,
   RANK.THIRD,
   RANK.FIRST,
-];
+]);
 
 export { RANK, RANKING_TABLE };
