@@ -42,17 +42,17 @@ const NUMBER = {
   FIFTH_PRIZE_MONEY: 5000,
   PERCENT: 100,
   MAX_NUMBER: 45,
-  MIN_NUMBER: 1
+  MIN_NUMBER: 1,
 };
 
 const RESPONSE = {
-  YES : 'y',
-  NO: 'n'
-}
+  YES: 'y',
+  NO: 'n',
+};
 
 module.exports = {
   ERROR,
   MESSAGE,
   NUMBER,
-  RESPONSE
+  RESPONSE,
 };

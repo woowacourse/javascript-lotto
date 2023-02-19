@@ -32,7 +32,7 @@ class LottoMachine {
   }
 
   randomNumberLotto() {
-    const randomNumber = Array.from({ length: NUMBER.MAX_LENGHT }, () => Math.floor(Math.random() * 45 + 1));
+    const randomNumber = Array.from({ length: NUMBER.MAX_LENGHT }, () => Math.floor(Math.random() * NUMBER.MAX_NUMBER + NUMBER.MIN_NUMBER));
     if (this.checkRepeatedNumber(randomNumber)) return this.ascendingSortedNumber(randomNumber);
     return this.randomNumberLotto();
   }

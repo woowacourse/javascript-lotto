@@ -1,7 +1,7 @@
 const inputView = require('../view/inputView.js');
 const LottoMachine = require('../domain/LottoMachine.js');
 const outputView = require('../view/outputView.js');
-const { winningIncludeBonusNumber } = require('../utils/validation.js')
+const { winningIncludeBonusNumber } = require('../utils/validation.js');
 class ControllerLotto {
   #money;
   #lottoMachine;
@@ -21,7 +21,7 @@ class ControllerLotto {
   async playStatisticalChart() {
     const winningNumber = await this.inputWinningNumbers();
     const bonusNumber = await this.inputBonusNumber();
-    if(winningIncludeBonusNumber(winningNumber, bonusNumber)) return this.playStatisticalChart();
+    if (winningIncludeBonusNumber(winningNumber, bonusNumber)) return this.playStatisticalChart();
     const result = this.#lottoMachine.getWinningStatus(winningNumber.split(','), bonusNumber);
     this.showWinningHistory(result);
     const profit = this.#lottoMachine.getProfitRate(this.#money, result);

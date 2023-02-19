@@ -29,31 +29,31 @@ const moneyValidate = money => {
   }
 };
 
-const winningNumberCount = (numbers)=>{
-  return (numbers.split(',').length === NUMBER.MAX_LENGHT)
-}
+const winningNumberCount = numbers => {
+  return numbers.split(',').length === NUMBER.MAX_LENGHT;
+};
 
-const winningNumberRange = (numbers)=>{
+const winningNumberRange = numbers => {
   return numbers.split(',').every(number => number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER);
-}
+};
 
 const winningNumberValidate = numbers => {
-  if(!winningNumberRange(numbers)){
+  if (!winningNumberRange(numbers)) {
     console.log(ERROR.WINNING_NUMBER_RANGE);
     return true;
   }
-  if(!winningNumberCount(numbers)){
+  if (!winningNumberCount(numbers)) {
     console.log(ERROR.WINNING_NUMBER_COUNT);
     return true;
   }
 };
 
 const bonusNumberValidate = number => {
-  if(!(number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER)){
+  if (!(number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER)) {
     console.log(ERROR.BONUS_NUMBER_RANGE);
     return true;
   }
-}
+};
 
 const winningIncludeBonusNumber = (numbers, bonus) => {
   const isValidation = numbers.includes(bonus);
@@ -74,5 +74,5 @@ module.exports = {
   winningIncludeBonusNumber,
   restartValidate,
   winningNumberValidate,
-  bonusNumberValidate
+  bonusNumberValidate,
 };

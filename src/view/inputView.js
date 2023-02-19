@@ -4,7 +4,7 @@ const {
   moneyValidate,
   restartValidate,
   winningNumberValidate,
-  bonusNumberValidate
+  bonusNumberValidate,
 } = require('../utils/validation.js');
 
 const inputView = {
@@ -16,20 +16,20 @@ const inputView = {
 
   async readWinningNumber() {
     const winning = await Console.readLine(MESSAGE.INPUT_WINNING_NUMBER);
-    if(winningNumberValidate(winning)) return this.readWinningNumber();
-    return winning
+    if (winningNumberValidate(winning)) return this.readWinningNumber();
+    return winning;
   },
 
   async readBonusNumber() {
-    const bonus = await Console.readLine(MESSAGE.INPUT_BONUS_NUMBER)
-    if(bonusNumberValidate(bonus)) return this.readBonusNumber();
-    return bonus
+    const bonus = await Console.readLine(MESSAGE.INPUT_BONUS_NUMBER);
+    if (bonusNumberValidate(bonus)) return this.readBonusNumber();
+    return bonus;
   },
 
   async readRestartOrFinish() {
-    const response = await Console.readLine(MESSAGE.RESTART_OR_FINISH)
-    if(restartValidate(response)) return this.readRestartOrFinish();
-    if (response === RESPONSE.YES) return true
+    const response = await Console.readLine(MESSAGE.RESTART_OR_FINISH);
+    if (restartValidate(response)) return this.readRestartOrFinish();
+    if (response === RESPONSE.YES) return true;
     Console.close();
   },
 };
