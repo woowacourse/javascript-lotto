@@ -1,11 +1,17 @@
 {
-  "rules": {},
   "env": {
-    "es6": true,
-    "node": true
+    "browser": true,
+    "es2021": true
   },
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "rules": {
+    "prettier/prettier": "error",
+    "max-depth": ["error", 1],
+    "max-lines-per-function": ["error", 12],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+  }
 }
