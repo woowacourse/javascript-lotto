@@ -32,14 +32,14 @@ const RANKING_TO_MATCHES_COUNT = Object.freeze({
   fifth: 3,
 });
 
-const WINNING_PRIZE = {
+const WINNING_PRIZE = Object.freeze({
   first: 2_000_000_000,
   second: 30_000_000,
   third: 1_500_000,
   fourth: 50_000,
   fifth: 5_000,
   fail: 0,
-};
+});
 
 const PRINT_MESSAGE = Object.freeze({
   INPUT_BUDGET: '구입금액을 입력해 주세요.',

@@ -1,4 +1,4 @@
-import { LottoUtils } from '../src/domain/LottoUtils';
+import LottoUtils from '../src/domain/LottoUtils';
 
 test('수익률 계산', () => {
   const winningResult = { first: 0, second: 0, third: 1, fourth: 1, fifth: 0 };
