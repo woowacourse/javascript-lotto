@@ -1,7 +1,7 @@
 const { ERROR_MESSAGE } = require('../../constant/message');
 const { LOTTO } = require('../../constant/setting');
 
-const isValidLength = (lottoNumbers) => lottoNumbers.length === LOTTO.LENGTH;
+const isValidLength = (lottoNumbers) => lottoNumbers.length === LOTTO.SIZE;
 const hasDuplicatedNumber = (lottoNumbers) => lottoNumbers.length !== new Set(lottoNumbers).size;
 
 const validateWinningNumber = (winningNumber) => {

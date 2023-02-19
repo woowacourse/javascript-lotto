@@ -20,7 +20,7 @@ const LOTTO = {
   UNIT: 1_000,
   MIN_NUMBER_RANGE: 1,
   MAX_NUMBER_RANGE: 45,
-  LENGTH: 6,
+  SIZE: 6,
 };
 
 const COMMAND = {

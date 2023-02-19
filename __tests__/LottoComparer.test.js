@@ -1,4 +1,4 @@
-const Comparer = require('../src/domain/Comparer');
+const LottoComparer = require('../src/domain/LottoComparer');
 const WinningLotto = require('../src/domain/WinningLotto');
 
 test('각 등수에 맞게 당첨된 로또의 수를 구한다.', () => {
@@ -11,7 +11,7 @@ test('각 등수에 맞게 당첨된 로또의 수를 구한다.', () => {
   ];
 
   // when
-  const comparer = new Comparer(winningLotto, lottos);
+  const comparer = new LottoComparer(winningLotto, lottos);
   const ranking = comparer.getRanking();
 
   // then

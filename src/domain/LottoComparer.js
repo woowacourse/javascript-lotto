@@ -1,6 +1,6 @@
 const { RANK, INIT_RANKING, RANK_MATCH } = require('../constant/setting');
 
-class Comparer {
+class LottoComparer {
   #winningLotto;
 
   #lottos;
@@ -41,4 +41,4 @@ class Comparer {
   }
 }
 
-module.exports = Comparer;
+module.exports = LottoComparer;

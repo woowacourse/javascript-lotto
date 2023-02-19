@@ -1,6 +1,6 @@
 const { COMMAND } = require('./constant/setting');
 
-const Comparer = require('./domain/Comparer');
+const LottoComparer = require('./domain/LottoComparer');
 const LottoMachine = require('./domain/LottoMachine');
 const WinningLotto = require('./domain/WinningLotto');
 const {
@@ -91,7 +91,7 @@ class LottoController {
   }
 
   #processLottoComparison(winningLotto) {
-    const lottoComparer = new Comparer(winningLotto, this.#lottos);
+    const lottoComparer = new LottoComparer(winningLotto, this.#lottos);
     const ranking = lottoComparer.getRanking();
     const profitRate = calculateProfitRate(ranking, this.#lottoMachine.getQuantity());
 
