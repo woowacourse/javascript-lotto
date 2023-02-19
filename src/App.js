@@ -13,15 +13,13 @@ import Utils from "./util/Utils";
 class App {
   async play() {
     const buyMoney = await this.getBuyMoney();
-    const lottos = await this.createLotto(
-      parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE)
-    );
-    OutputView.printBuyLottos(lottos.lottos);
+    const lottos = await this.createLotto(parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE));
+    const lottoScore = new LottoScore(lottos.lottos)
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
-    this.compareLottos(lottos, winningLotto, bonusNumber);
+    this.compareLottos(lottos, winningLotto, bonusNumber,lottoScore);
     const retryInput = await this.getRetryInput();
-    this.retryLottoGame(retryInput, lottos);
+    this.retryLottoGame(retryInput, lottos, lottoScore);
   }
 
   async getBuyMoney() {
@@ -40,6 +38,7 @@ class App {
       { length: lottoAmount },
       () => new Lotto(Random.generateRandomNumbers())
     );
+    OutputView.printBuyLottos(lottos.lottos);
     return new Lottos(lottos);
   }
 
@@ -67,14 +66,13 @@ class App {
       InputCheck.checkNumber(bonusNumber);
     } catch (e) {
       Console.print(e);
-      return await this.getBonusNumber();
+      return await this.getBonusNumber(winningLotto);
     }
     return bonusNumber;
   }
 
-  compareLottos(lottos, winningLotto, bonusNumber) {
+  compareLottos(lottos, winningLotto, bonusNumber,lottoScore) {
     lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
-    const lottoScore = new LottoScore(lottos.lottos);
     lottoScore.compareLottosScore();
     OutputView.printResult(lottos.lottos.length, lottoScore);
   }
@@ -90,9 +88,10 @@ class App {
     return retryInput;
   }
 
-  async retryLottoGame(retryInput, lottos) {
+  async retryLottoGame(retryInput, lottos,lottoScore) {
     if (retryInput === LOTTO_GAME.RETRY_DOWNER) {
       lottos.resetLottos();
+      lottoScore.resetLottoScore()
       await this.play();
     }
     if (retryInput === LOTTO_GAME.QUIT_DOWNER) {
