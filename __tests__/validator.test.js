@@ -10,105 +10,151 @@ const {
   checkYOrN,
 } = validator;
 
-test.each([
-  [1000, true],
-  [5000, true],
-  [50000, true],
-  [3001, false],
-  [0, false],
-  [-5000, false],
-])(
-  "입력받은 금액(%i)이 1,000원 이상이고 1,000원 단위가 아닌 경우 에러를 반환한다.",
-  (purchaseAmount, expected) => {
-    expected
-      ? expect(() => checkPurchaseAmount(purchaseAmount)).not.toThrow()
-      : expect(() => checkPurchaseAmount(purchaseAmount)).toThrow();
-  }
-);
+const throwErrorIfInvalid = (values, validator) => {
+  values.forEach((value) => {
+    expect(() => {
+      validator(value);
+    }).toThrow("[ 에러 ]");
+  });
+};
 
-test.each([
-  ["천원", false],
-  ["5000.0", false],
-  [" ", false],
-  ["^^", false],
-  ["5,000", false],
-  ["", false],
-  ["2e3", false],
-  ["500", true],
-])("입력받은 금액(%i)이 정수가 아닐 경우 에러를 반환한다.", (purchaseAmount, expected) => {
-  expected
-    ? expect(() => checkInteger(purchaseAmount)).not.toThrow()
-    : expect(() => checkInteger(purchaseAmount)).toThrow();
+const throwNoErrorIfValid = (values, validator) => {
+  values.forEach((value) => {
+    expect(() => {
+      validator(value);
+    }).not.toThrow("[ 에러 ]");
+  });
+};
+
+test("입력받은 금액이 1,000원 미만이거나 1,000원 단위가 아닌 경우 에러 메시지를 출력한다.", () => {
+  const purchaseAmountList = [
+    "1001",
+    1001,
+    -1000,
+    0,
+    10,
+    100,
+    99999,
+    0.2,
+    "0.1",
+    "-2000",
+    "천원",
+    "^^",
+    "",
+    " ",
+  ];
+
+  throwErrorIfInvalid(purchaseAmountList, checkPurchaseAmount);
 });
 
-test.each([
-  [[1, 1, 2, 3, 4, 5], false],
-  [[1, 2, 3, 4, 5, 2], false],
-  [[1, 6, 2, 3, 4, 5], true],
-])("로또 번호(%p)에 중복이 있을 경우 에러를 반환한다.", (winningLottoNumbers, expected) => {
-  expected
-    ? expect(() => checkDuplicates(winningLottoNumbers)).not.toThrow()
-    : expect(() => checkDuplicates(winningLottoNumbers)).toThrow();
+test("입력받은 금액이 1,000원 이상이고 1,000원 단위일 경우 에러 메시지를 출력하지 않는다.", () => {
+  const purchaseAmountList = [1000, 5000, 50000, 1500000, 25000];
+
+  throwNoErrorIfValid(purchaseAmountList, checkPurchaseAmount);
 });
 
-test.each([
-  [[1, 1, 2, 3, 4, 46], false],
-  [[0, 2, 3, 4, 5, 2], false],
-  [[1, 6, 2, 3, 4, 5], true],
-])(
-  "로또 번호(%p) 중 1 ~ 45 사이가 아닌 숫자가 있을 경우 에러를 반환한다.",
-  (winningLottoNumbers, expected) => {
-    expected
-      ? expect(() => checkLottoNumbersBetween1And45(winningLottoNumbers)).not.toThrow()
-      : expect(() => checkLottoNumbersBetween1And45(winningLottoNumbers)).toThrow();
-  }
-);
+test("입력받은 금액이 정수가 아닐 경우 에러 메시지를 출력한다.", () => {
+  const notIntegerList = ["천원", "5000.0", " ", "^^", "5,000", "", "2e3", -500];
 
-test.each([
-  [[1, 2, 3, 4, 5], false],
-  [[1, 2, 3, 4, 5, 20, 30], false],
-  [[1, 6, 2, 3, 4, 5], true],
-])("로또 번호(%p)가 6개가 아닐 경우 에러를 반환한다.", (winningLottoNumbers, expected) => {
-  expected
-    ? expect(() => checkListLengthIsSix(winningLottoNumbers)).not.toThrow()
-    : expect(() => checkListLengthIsSix(winningLottoNumbers)).toThrow();
+  throwErrorIfInvalid(notIntegerList, checkInteger);
 });
 
-test.each([
-  [6, [1, 2, 3, 4, 5, 6], false],
-  [7, [1, 2, 3, 4, 5, 6], true],
-])(
-  "보너스 번호(%i)가 로또 당첨 번호(%p)와 중복되면 에러를 반환한다.",
-  (bonusNumber, winningLottoNumbers, expected) => {
-    expected
-      ? expect(() => checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers)).not.toThrow()
-      : expect(() => checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers)).toThrow();
-  }
-);
+test("입력받은 금액이 정수일 경우 에러 메시지를 출력하지 않는다.", () => {
+  const integerList = [1000, 5000, 50000, 1500000, 25000, 100, 1];
 
-test.each([
-  [0, false],
-  [46, false],
-  [1, true],
-  [45, true],
-])("보너스 번호(%i)가 1 ~ 45 사이가 아닌 경우 에러를 반환한다.", (bonusNumber, expected) => {
-  expected
-    ? expect(() => checkBonusNumberBetween1And45(bonusNumber)).not.toThrow()
-    : expect(() => checkBonusNumberBetween1And45(bonusNumber)).toThrow();
+  throwNoErrorIfValid(integerList, checkInteger);
 });
 
-test.each([
-  ["T", false],
-  ["YY", false],
-  ["NN", false],
-  ["", false],
-  ["^^", false],
-  ["1", false],
-  [" ", false],
-  ["Y", true],
-  ["N", true],
-  ["y", true],
-  ["n", true],
-])("문자(%s)가 대, 소문자 Y/y 또는 N/n 아닌 경우 에러를 반환한다.", (yOrN, expected) => {
-  expected ? expect(() => checkYOrN(yOrN)).not.toThrow() : expect(() => checkYOrN(yOrN)).toThrow();
+test("로또 당첨 번호에 중복이 있을 경우 에러 메시지를 출력한다.", () => {
+  const winningLottoNumbers = [
+    [1, 1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 2],
+  ];
+
+  throwErrorIfInvalid(winningLottoNumbers, checkDuplicates);
+});
+
+test("로또 당첨 번호에 중복이 없을 경우 에러 메시지를 출력하지 않는다.", () => {
+  const winningLottoNumbers = [
+    [1, 6, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6],
+  ];
+
+  throwNoErrorIfValid(winningLottoNumbers, checkDuplicates);
+});
+
+test("로또 당첨 번호중 1 ~ 45 사이가 아닌 숫자가 있을 경우 에러 메시지를 출력한다.", () => {
+  const winningLottoNumbers = [
+    [0, 1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 46],
+  ];
+
+  throwErrorIfInvalid(winningLottoNumbers, checkLottoNumbersBetween1And45);
+});
+
+test("로또 당첨 번호 중 1 ~ 45 사이가 아닌 숫자가 없을 경우 에러 메시지를 출력하지 않는다.", () => {
+  const winningLottoNumbers = [
+    [1, 6, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6],
+  ];
+
+  throwNoErrorIfValid(winningLottoNumbers, checkLottoNumbersBetween1And45);
+});
+
+test("로또 당첨 번호가 6개가 아닐 경우 에러 메시지를 출력한다.", () => {
+  const winningLottoNumbers = [
+    [1, 2],
+    [1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  ];
+
+  throwErrorIfInvalid(winningLottoNumbers, checkListLengthIsSix);
+});
+
+test("로또 당첨 번호가 6개일 경우 에러 메시지를 출력하지 않는다.", () => {
+  const winningLottoNumbers = [
+    [1, 6, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6],
+  ];
+
+  throwNoErrorIfValid(winningLottoNumbers, checkListLengthIsSix);
+});
+
+test("보너스 번호가 로또 당첨 번호와 중복될 경우 에러 메시지를 출력한다.", () => {
+  const bonusNumber = 6;
+  const winningLottoNumbers = [1, 2, 3, 4, 5, 6];
+
+  expect(() => checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers)).toThrow("[ 에러 ]");
+});
+
+test("보너스 번호가 로또 당첨 번호와 중복되지 않을 경우 에러 메시지를 출력하지 않는다.", () => {
+  const bonusNumber = 7;
+  const winningLottoNumbers = [1, 2, 3, 4, 5, 6];
+
+  expect(() => checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers)).not.toThrow("[ 에러 ]");
+});
+
+test("보너스 번호가 1 ~ 45 사이가 아닌 경우 에러 메시지를 출력한다.", () => {
+  const bonusNumberList = [0, 46];
+
+  throwErrorIfInvalid(bonusNumberList, checkBonusNumberBetween1And45);
+});
+
+test("보너스 번호가 1 ~ 45 사이일 경우 에러 메시지를 출력하지 않는다.", () => {
+  const bonusNumberList = [1, 45];
+
+  throwNoErrorIfValid(bonusNumberList, checkBonusNumberBetween1And45);
+});
+
+test("입력받은 문자가 대, 소문자 Y/y 또는 N/n이 아닌 경우 에러 메시지를 출력한다.", () => {
+  const response = ["T", "YY", "NN", "^^", 1, " ", ""];
+
+  throwErrorIfInvalid(response, checkYOrN);
+});
+
+test("입력받은 문자가 대, 소문자 Y/y 또는 N/n일 경우 에러 메시지를 출력하지 않는다.", () => {
+  const response = ["Y", "y", "N", "n"];
+
+  throwNoErrorIfValid(response, checkYOrN);
 });
