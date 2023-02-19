@@ -1,7 +1,7 @@
 const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
-const InputView = require("../view/inputView");
-const OutputView = require("../view/outputView");
+const InputView = require("../view/InputView");
+const OutputView = require("../view/OutputView");
 const { MESSAGES } = require("../constant/Constant");
 
 const LottoController = {
@@ -18,7 +18,7 @@ const LottoController = {
   async purchaseLotto() {
     const money = await this.readMoney();
 
-    this.lottoGame.makeLottos(money);
+    this.lottoGame.lottos = money;
 
     OutputView.printLottoCount(this.lottoGame.lottoCount);
     OutputView.printPurchaseLottos(this.lottoGame.lottos);
@@ -40,10 +40,10 @@ const LottoController = {
     try {
       const command = await InputView.readInput(MESSAGES.readCommandRestart);
       Validation.validateRestartCommand(command);
-      return command === "y" ? this.playLotto() : InputView.close();
+      command === "y" ? await this.playLotto() : InputView.close();
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.restart();
+      await this.restart();
     }
   },
 
@@ -51,6 +51,7 @@ const LottoController = {
     try {
       const money = await InputView.readInput(MESSAGES.readMoney);
       Validation.validateMoney(money);
+      console.log(money);
       return money;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
@@ -73,12 +74,12 @@ const LottoController = {
   async readBonusNumber(winLotto) {
     try {
       const input = await InputView.readInput(MESSAGES.readBonusNumber);
-      const bonusNumber = parseInt(input);
+      const bonusNumber = parseInt(input, 10);
       Validation.validateBonusNumber(winLotto, bonusNumber);
       return bonusNumber;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
-      return this.readBonusNumber(winLotto);
+      await this.readBonusNumber(winLotto);
     }
   },
 };

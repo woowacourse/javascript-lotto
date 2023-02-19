@@ -1,12 +1,7 @@
 const Lotto = require("./Lotto");
 const WinLotto = require("../domain/WinLotto");
 const Random = require("../util/Random");
-const {
-  PRIZE,
-  RANK,
-  RANK_BY_CORRECT_COUNT,
-  LOTTO,
-} = require("../constant/Constant");
+const { PRIZE, RANK_BY_CORRECT_COUNT, LOTTO } = require("../constant/Constant");
 
 const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
@@ -26,20 +21,20 @@ class LottoGame {
     return this.#lottos.length;
   }
 
-  #LottoNumberGenerator() {
-    const lottoNumbers = new Set();
-    while (lottoNumbers.size < LOTTO.NUM_SIZE) {
-      lottoNumbers.add(Random.RandomMinMax(LOTTO.MIN, LOTTO.MAX));
-    }
-    return Array.from(lottoNumbers);
-  }
-
   set lottos(money) {
     const lottoCount = parseInt(money / 1000, 10);
     Array.from({ length: lottoCount }, () => {
       const lottoOne = new Lotto(this.#LottoNumberGenerator());
       this.#lottos.push(lottoOne);
     });
+  }
+
+  #LottoNumberGenerator() {
+    const lottoNumbers = new Set();
+    while (lottoNumbers.size < LOTTO.NUM_SIZE) {
+      lottoNumbers.add(Random.RandomMinMax(LOTTO.MIN, LOTTO.MAX));
+    }
+    return Array.from(lottoNumbers);
   }
 
   makeWinLotto(winNumbers, bonusNumber) {
@@ -52,7 +47,7 @@ class LottoGame {
     const sameNumbers = numbers.filter((num) => winNumbers.includes(num));
     const correctCount = sameNumbers.length;
     if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber)) {
-      return RANK.SECOND;
+      return RANK_BY_CORRECT_COUNT["BONUS"];
     }
 
     return RANK_BY_CORRECT_COUNT[correctCount];
