@@ -1,7 +1,7 @@
-import inputView from '../view/inputView.js';
-import Lotto from '../domain/Lotto.js';
-import outputView from '../view/outputView.js';
-import RankedLotto from '../domain/RankedLotto.js';
+const inputView = require('../view/inputView.js');
+const Lotto = require('../domain/Lotto.js');
+const outputView = require('../view/outputView.js');
+const RankedLotto = require('../domain/RankedLotto.js');
 
 class ControllerLotto {
   #money;
@@ -57,4 +57,4 @@ class ControllerLotto {
   }
 }
 
-export default ControllerLotto;
+module.exports = ControllerLotto;

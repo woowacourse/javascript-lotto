@@ -1,4 +1,4 @@
-export const ERROR = {
+const ERROR = {
   INPUT_MONEY_THOUSAND: '[ERROR] 구매 금액은 1,000원 단위로 받아야 합니다. ',
   INPUT_MONEY_INTEGER: '[ERROR] 구매 금액은 정수로 받아야 합니다.',
   INPUT_MONEY_LIMIT: '[ERROR] 구매 금액은 최대 100,000원이어야 합니다.',
@@ -6,7 +6,7 @@ export const ERROR = {
   RESTART_OR_FINISH: '[ERROR] 입력값은 y또는 n값만 사용 가능합니다.',
 };
 
-export const MESSAGE = {
+const MESSAGE = {
   INPUT_MONEY: '구입금액을 입력해 주세요.',
   INPUT_WINNING_NUMBER: '\n> 당첨 번호를 입력해 주세요. ',
   INPUT_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
@@ -24,10 +24,16 @@ export const MESSAGE = {
   THE_NUMBER_OF: '개',
 };
 
-export const NUMBER = {
+const NUMBER = {
   RANK_SECOND: 7,
   RANK_FIRST: 6,
   RANK_THIRD: 5,
   RANK_FOURTH: 4,
   RANK_FIFTH: 3,
+};
+
+module.exports = {
+  ERROR,
+  MESSAGE,
+  NUMBER,
 };

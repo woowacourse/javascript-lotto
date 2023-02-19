@@ -1,12 +1,12 @@
-import Console from '../utils/Console.js';
-import { MESSAGE } from '../utils/constant.js';
-import {
+const Console = require('../utils/Console.js');
+const { MESSAGE } = require('../utils/constant.js');
+const {
   thousandValidate,
   integerValidate,
   maximumMoneyValidate,
   winningIncludeBonusNumber,
   restartValidate,
-} from '../utils/validation.js';
+} = require('../utils/validation.js');
 
 const inputView = {
   async readMoney() {
@@ -29,4 +29,4 @@ const inputView = {
   },
 };
 
-export default inputView;
+module.exports = inputView;
