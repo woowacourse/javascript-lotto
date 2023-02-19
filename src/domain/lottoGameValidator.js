@@ -2,7 +2,7 @@ import validator from '../utils/validator';
 import { LOTTO, GAME_COMMAND } from '../constants';
 
 const lottoGameValidator = {
-  checkPruchaseAmount(input) {
+  checkPurchaseAmount(input) {
     validator.checkDigit(input);
     const number = Number(input);
     validator.checkGreaterThanOrEqualMin(number, LOTTO.price);
