@@ -7,8 +7,9 @@ const lottoGameCalculator = {
 
   calculateRewardRate(purchaseAmount, rankings) {
     const reward = lottoGameCalculator.calculateReward(rankings);
+    const rewardRate = (reward / purchaseAmount) * 100;
 
-    return `${((reward / purchaseAmount) * 100).toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%`;
+    return `${Number(rewardRate.toFixed(1)).toLocaleString()}%`;
   },
 };
 
