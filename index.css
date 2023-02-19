@@ -1,0 +1,84 @@
+body {
+    width: 70%;
+    height: 727px;
+    margin: 5% auto;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 1px solid  rgba(0, 0, 0, 0.12);
+    padding: 4%;
+}
+
+h1 {
+    text-align: center;
+}
+
+p{
+    position: relative;
+    top: 10px; 
+ }
+
+input {
+    height: 27px;
+    width: 27px;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 4px;
+}
+
+.purchaseAmount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputAmount {
+    width: 82%;
+}
+
+button {
+    background-color: #4E5BA6;
+    border-radius: 4px;
+    border: 0px;
+    color:#FFFFFF;
+    
+}
+
+.purchase {
+    width: 13%;
+}
+
+.lottoImg{
+    font-size: xx-large;
+    margin-right: 3%;
+}
+
+.randomLottoList > div {
+    display: flex;
+    align-items: center;
+}
+
+.randomLottoList {
+    height: 300px ;
+    overflow:scroll;
+}
+.userLotto {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 30%;
+}
+
+.userLotto > p {
+    grid-column: 1/3;
+}
+
+.bonusNumber {
+    text-align: right;
+    float: right;
+}
+
+.result {
+    width:100%;
+    height: 40px;
+}
+
+body > div {
+    margin-top: 4%;
+}
