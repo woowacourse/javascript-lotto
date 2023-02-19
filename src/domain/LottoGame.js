@@ -34,11 +34,11 @@ class LottoGame {
     return Array.from(lottoNumbers);
   }
 
-  makeLottos(money) {
+  set lottos(money) {
     const lottoCount = parseInt(money / 1000, 10);
     Array.from({ length: lottoCount }, () => {
       const lottoOne = new Lotto(this.#LottoNumberGenerator());
-      this.lottos.push(lottoOne);
+      this.#lottos.push(lottoOne);
     });
   }
 
