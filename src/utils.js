@@ -9,8 +9,9 @@ export const close = () => {
 };
 
 export const getIntersectionLengthOf = (...arrays) => {
-  const unionOfArrays = arrays.flat();
-  return unionOfArrays.length - new Set([...unionOfArrays]).size;
+  return arrays.reduce((acc, cur) => {
+    return acc.filter((x) => cur.includes(x));
+  }).length;
 };
 
 export const randomNumberBetween = (min = 1, max = 45) => {
