@@ -34,7 +34,7 @@ describe('Lotto 클래스 테스트', () => {
   const bonusNumber = 7;
 
   test.each(INPUT_LOTTO_NUMBERS)(
-    '당첨 번호를 넘겨주었을 때, 해당 값을 필드로 갖는 인스턴스를 생성해야 한다.',
+    '주어진 당첨 번호로 해당 값을 필드로 갖는 Lotto 인스턴스를 생성해야 한다.',
     (lottoNumbers) => {
       const lotto = new Lotto(lottoNumbers);
 
@@ -43,7 +43,7 @@ describe('Lotto 클래스 테스트', () => {
   );
 
   test.each(INPUT_LOTTO_NUMBERS_PER_RANK)(
-    '당첨 번호와 보너스 번호를 넘겨주었을 때, 로또 번호와 비교하여 등수를 계산하여 반환해야 한다.',
+    '주어진 당첨 번호와 보너스 번호로 로또 번호와 비교하여 등수를 계산하여 반환해야 한다.',
     ({ lottoNumbers, expectedRank }) => {
       const lotto = new Lotto(lottoNumbers);
 
@@ -54,7 +54,7 @@ describe('Lotto 클래스 테스트', () => {
   );
 
   test.each(INPUT_LOTTO_NUMBERS_PER_PROFIT)(
-    '당첨 번호와 보너스 번호를 넘겨주었을 때, 로또 번호와 비교하여 수익을 계산하여 반환해야 한다.',
+    '주어진 당첨 번호와 보너스 번호로 로또 번호와 비교하여 수익을 계산하여 반환해야 한다.',
     ({ lottoNumbers, expectedProfit }) => {
       const lotto = new Lotto(lottoNumbers);
 
