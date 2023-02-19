@@ -16,6 +16,16 @@ class WinningLotto {
   getBonusNumber() {
     return this.bonusNumber;
   }
+
+  countMatchingNumbers(lotto) {
+    const countFn = (count, lottoNumber) =>
+      lotto.getLottoNumbers().includes(lottoNumber) ? count + 1 : count;
+    return this.getLottoNumbers().reduce(countFn, 0);
+  }
+
+  hasBonusNumber(lotto) {
+    return lotto.getLottoNumbers().includes(this.bonusNumber);
+  }
 }
 
 export default WinningLotto;
