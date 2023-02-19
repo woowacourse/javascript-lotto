@@ -18,7 +18,9 @@ const inputValidator = {
   },
 
   validateWinningNumberInput(winningNumber) {
-    winningNumber.split(',').forEach(number => {
+    const winningNumberSplit = winningNumber.split(',');
+
+    winningNumberSplit.forEach(number => {
       this.validateWithCondition([
         {
           condition: ValidatorUtils.isPositiveInteger(+number),
@@ -30,6 +32,10 @@ const inputValidator = {
         },
       ]);
     });
+
+    this.validateWithCondition([
+      { condition: ValidatorUtils.hasNoBlank(winningNumberSplit), errorMessage: messages.ERROR.HAS_BLANK },
+    ]);
   },
 
   validateBonusNumberInput(number) {
