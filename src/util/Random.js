@@ -1,9 +1,9 @@
-import Lotto from "../constants/Lotto";
+import LOTTO_GAME from "../constants/LottoGame.js";
 
 const Random = {
   makeTargetNumbers() {
     const targetNumbers = [];
-    for (let i = Lotto.MIN_NUMBER; i <= Lotto.MAX_NUMBER; i++) {
+    for (let i = LOTTO_GAME.MIN_NUMBER; i <= LOTTO_GAME.MAX_NUMBER; i++) {
       targetNumbers.push(i);
     }
     return targetNumbers;

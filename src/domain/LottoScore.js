@@ -1,7 +1,7 @@
-import LOTTO_BOARD from "../constants/LottoBoard";
-import Score from "../constants/Score.js";
-import Lotto from "../constants/Lotto";
-import Utils from "../util/Utils";
+import LOTTO_BOARD from "../constants/LottoBoard.js";
+import MATCHING from "../constants/Matching.js";
+import LOTTO_GAME from "../constants/LottoGame.js";
+import Utils from "../util/Utils.js";
 
 class LottoScore {
   #lottoRanking;
@@ -30,34 +30,34 @@ class LottoScore {
 
   determineBonusOrNot(lotto) {
     lotto.isContainBonusNumber
-      ? this.addScoreBoard(Score.SECOND)
-      : this.addScoreBoard(Score.THIRD);
+      ? this.addScoreBoard(MATCHING.SECOND)
+      : this.addScoreBoard(MATCHING.THIRD);
   }
 
   checkIsFailScore(lotto) {
     return (
-      lotto.score === Score.ZERO ||
-      lotto.score === Score.ONE ||
-      lotto.score === Score.TWO
+      lotto.score === MATCHING.ZERO ||
+      lotto.score === MATCHING.ONE ||
+      lotto.score === MATCHING.TWO
     );
   }
 
   addScoreBoard(score) {
     switch (score) {
-      case Score.FIFTH:
-        this.#lottoRanking[Score.FIFTH] += 1;
+      case MATCHING.FIFTH:
+        this.#lottoRanking[MATCHING.FIFTH] += 1;
         break;
-      case Score.FOURTH:
-        this.#lottoRanking[Score.FOURTH] += 1;
+      case MATCHING.FOURTH:
+        this.#lottoRanking[MATCHING.FOURTH] += 1;
         break;
-      case Score.THIRD:
-        this.#lottoRanking[Score.THIRD] += 1;
+      case MATCHING.THIRD:
+        this.#lottoRanking[MATCHING.THIRD] += 1;
         break;
-      case Score.SECOND:
-        this.#lottoRanking[Score.SECOND] += 1;
+      case MATCHING.SECOND:
+        this.#lottoRanking[MATCHING.SECOND] += 1;
         break;
-      case Score.FIRST:
-        this.#lottoRanking[Score.FIRST] += 1;
+      case MATCHING.FIRST:
+        this.#lottoRanking[MATCHING.FIRST] += 1;
     }
   }
 
@@ -71,7 +71,7 @@ class LottoScore {
     this.calculateTotalBenefit();
     return Utils.getBenefitRate(
       this.totalBenefit,
-      lottoAmount * Lotto.LOTTO_PRICE
+      lottoAmount * LOTTO_GAME.LOTTO_PRICE
     );
   }
 }

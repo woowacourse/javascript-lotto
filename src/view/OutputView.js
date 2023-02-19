@@ -1,10 +1,10 @@
-import Console from "../util/Console";
-import View from "../constants/View.js";
+import VIEW from "../constants/View.js";
 import LOTTO_BOARD from "../constants/LottoBoard.js";
+import Console from "../util/Console";
 
 const OutputView = {
   printLottoAmount(lottoAmount) {
-    Console.print(`${lottoAmount}${View.PRINT_LOTTO_AMOUNT}`);
+    Console.print(`${lottoAmount}${VIEW.PRINT_LOTTO_AMOUNT}`);
   },
 
   printLottos(lottos) {
@@ -15,8 +15,8 @@ const OutputView = {
   },
 
   printResultMessage() {
-    Console.print(View.PRINT_RESULT_TITLE);
-    Console.print(View.DEVISION_BAR.repeat(20));
+    Console.print(VIEW.PRINT_RESULT_TITLE);
+    Console.print(VIEW.DEVISION_BAR.repeat(20));
   },
 
   printLottoResults(lottoRanking) {
@@ -29,7 +29,7 @@ const OutputView = {
 
   printTotalBenefit(lottos) {
     Console.print(
-      `${View.PRINT_BENEFIT_RATE_START} ${lottos}${View.PRINT_BENEFIT_RATE_END}`
+      `${VIEW.PRINT_BENEFIT_RATE_START} ${lottos}${VIEW.PRINT_BENEFIT_RATE_END}`
     );
   },
 

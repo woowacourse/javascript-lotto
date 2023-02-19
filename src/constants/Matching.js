@@ -1,4 +1,4 @@
-const Score = {
+const MATCHING = {
   ZERO: 0,
   ONE: 1,
   TWO: 2,
@@ -9,4 +9,4 @@ const Score = {
   FOURTH: "4개 일치",
   FIFTH: "3개 일치"
 };
-export default Score;
+export default MATCHING;

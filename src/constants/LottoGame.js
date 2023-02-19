@@ -1,4 +1,4 @@
-const Lotto = {
+const LOTTO_GAME = {
   MAX_NUMBER: 45,
   MIN_NUMBER: 1,
   MAX_LENGTH: 6,
@@ -9,4 +9,4 @@ const Lotto = {
   QUIT_DOWNER: "n",
 };
 
-export default Lotto;
+export default LOTTO_GAME;

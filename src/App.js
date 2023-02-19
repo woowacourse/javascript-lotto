@@ -1,14 +1,14 @@
+import LOTTO_GAME from "./constants/Lotto.js"
+import VIEW from "./constants/View.js";
 import Console from "./util/Console.js";
 import InputView from "./view/InputView.js";
 import Lotto from "./domain/Lotto.js";
 import Lottos from "./domain/Lottos.js";
 import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js";
-import View from "./constants/View.js";
 import LottoScore from "./domain/LottoScore.js";
 import InputCheck from "./InputCheck.js";
 import Utils from "./util/Utils.js";
-import Constants from "./constants/Lotto.js"
 
 class App {
   async play() {
@@ -23,7 +23,7 @@ class App {
   }
 
   async getBuyMoney() {
-    const buyMoney = await InputView.inputMoney(View.INPUT_MONEY);
+    const buyMoney = await InputView.inputMoney(VIEW.INPUT_MONEY);
     try {
       InputCheck.validateBuyMoney(buyMoney);
     } catch (e) {
@@ -43,7 +43,7 @@ class App {
 
   async getWinningLotto() {
     const winningNumbers = await InputView.inputWinningNumbers(
-      View.INPUT_WINNING_LOTTO
+      VIEW.INPUT_WINNING_LOTTO
     );
     const winningLotto = Utils.convertStringToNumber(winningNumbers.split(","));
     try {
@@ -57,7 +57,7 @@ class App {
 
   async getBonusNumber(winningLotto) {
     const bonusInput = await InputView.inputBonusNumber(
-      View.INPUT_BONUS_NUMBER
+      VIEW.INPUT_BONUS_NUMBER
     );
     const bonusNumber = Number(bonusInput);
     try {
@@ -78,7 +78,7 @@ class App {
   }
 
   async getRetryInput() {
-    const retryInput = await InputView.inputRetry(View.INPUT_RETYR);
+    const retryInput = await InputView.inputRetry(VIEW.INPUT_RETYR);
     try {
       InputCheck.validateRetryInput(retryInput);
     } catch (e) {
@@ -89,11 +89,11 @@ class App {
   }
 
   async retryLottoGame(retryInput, lottos) {
-    if (retryInput === Constants.RETRY_DOWNER) {
+    if (retryInput === LOTTO_GAME.RETRY_DOWNER) {
       lottos.resetLottos();
       await this.play();
     }
-    if (retryInput === Constants.QUIT_DOWNER) {
+    if (retryInput === LOTTO_GAME.QUIT_DOWNER) {
       Console.close();
     }
   }
