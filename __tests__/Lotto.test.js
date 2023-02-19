@@ -3,13 +3,38 @@ const Lotto = require('../src/domain/model/Lotto');
 const { calculateProfit } = require('../src/utils');
 
 describe('Lotto 클래스 테스트', () => {
-  test.each([
+  const INPUT_LOTTO_NUMBERS = [
     [8, 21, 23, 41, 42, 43],
     [3, 5, 11, 16, 32, 38],
     [7, 11, 16, 35, 36, 44],
     [1, 8, 11, 31, 41, 42],
-  ])(
-    '당첨 번호를 넘겨주었을 때, 해당 값을 필드로 갖는 인스턴스를 생성 기능',
+  ];
+
+  const INPUT_LOTTO_NUMBERS_PER_RANK = [
+    [
+      { lottoNumbers: [1, 2, 3, 4, 5, 6], expectedRank: 1 },
+      { lottoNumbers: [1, 2, 3, 4, 5, 7], expectedRank: 2 },
+      { lottoNumbers: [1, 2, 3, 4, 5, 8], expectedRank: 3 },
+      { lottoNumbers: [1, 2, 3, 4, 8, 9], expectedRank: 4 },
+      { lottoNumbers: [1, 2, 3, 8, 9, 10], expectedRank: 5 },
+      { lottoNumbers: [8, 9, 10, 11, 12, 13], expectedRank: undefined },
+    ],
+  ];
+
+  const INPUT_LOTTO_NUMBERS_PER_PROFIT = [
+    { lottoNumbers: [1, 2, 3, 4, 5, 6], expectedProfit: profitByRank[0] },
+    { lottoNumbers: [1, 2, 3, 4, 5, 7], expectedProfit: profitByRank[1] },
+    { lottoNumbers: [1, 2, 3, 4, 5, 8], expectedProfit: profitByRank[2] },
+    { lottoNumbers: [1, 2, 3, 4, 8, 9], expectedProfit: profitByRank[3] },
+    { lottoNumbers: [1, 2, 3, 8, 9, 10], expectedProfit: profitByRank[4] },
+    { lottoNumbers: [8, 9, 10, 11, 12, 13], expectedProfit: 0 },
+  ];
+
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 7;
+
+  test.each(INPUT_LOTTO_NUMBERS)(
+    '당첨 번호를 넘겨주었을 때, 해당 값을 필드로 갖는 인스턴스를 생성해야 한다.',
     (lottoNumbers) => {
       const lotto = new Lotto(lottoNumbers);
 
@@ -17,19 +42,10 @@ describe('Lotto 클래스 테스트', () => {
     }
   );
 
-  test.each([
-    { input: [1, 2, 3, 4, 5, 6], expectedRank: 1 },
-    { input: [1, 2, 3, 4, 5, 7], expectedRank: 2 },
-    { input: [1, 2, 3, 4, 5, 8], expectedRank: 3 },
-    { input: [1, 2, 3, 4, 8, 9], expectedRank: 4 },
-    { input: [1, 2, 3, 8, 9, 10], expectedRank: 5 },
-    { input: [8, 9, 10, 11, 12, 13], expectedRank: undefined },
-  ])(
-    '당첨 번호와 보너스 번호를 넘겨주었을 때, 로또 번호와 비교하여 등수를 계산 기능',
-    ({ input, expectedRank }) => {
-      const lotto = new Lotto(input);
-      const winningNumbers = [1, 2, 3, 4, 5, 6];
-      const bonusNumber = 7;
+  test.each(INPUT_LOTTO_NUMBERS_PER_RANK)(
+    '당첨 번호와 보너스 번호를 넘겨주었을 때, 로또 번호와 비교하여 등수를 계산하여 반환해야 한다.',
+    ({ lottoNumbers, expectedRank }) => {
+      const lotto = new Lotto(lottoNumbers);
 
       lotto.calculateRank(winningNumbers, bonusNumber);
 
@@ -37,41 +53,16 @@ describe('Lotto 클래스 테스트', () => {
     }
   );
 
-  test.each([
-    { lottoNumber: [1, 2, 3, 4, 5, 6], expectedProfit: profitByRank[0] },
-    { lottoNumber: [1, 2, 3, 4, 5, 7], expectedProfit: profitByRank[1] },
-    { lottoNumber: [1, 2, 3, 4, 5, 8], expectedProfit: profitByRank[2] },
-    { lottoNumber: [1, 2, 3, 4, 8, 9], expectedProfit: profitByRank[3] },
-    { lottoNumber: [1, 2, 3, 8, 9, 10], expectedProfit: profitByRank[4] },
-    { lottoNumber: [8, 9, 10, 11, 12, 13], expectedProfit: 0 },
-  ])('등수 입력시 수익을 반환하는 기능', ({ lottoNumber, expectedProfit }) => {
-    const lotto = new Lotto(lottoNumber);
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 7;
+  test.each(INPUT_LOTTO_NUMBERS_PER_PROFIT)(
+    '당첨 번호와 보너스 번호를 넘겨주었을 때, 로또 번호와 비교하여 수익을 계산하여 반환해야 한다.',
+    ({ lottoNumbers, expectedProfit }) => {
+      const lotto = new Lotto(lottoNumbers);
 
-    lotto.calculateRank(winningNumbers, bonusNumber);
+      lotto.calculateRank(winningNumbers, bonusNumber);
 
-    const profit = calculateProfit(lotto.getRank());
+      const profit = calculateProfit(lotto.getRank());
 
-    expect(profit).toBe(expectedProfit);
-  });
-
-  test.each([
-    { lottoNumber: [1, 2, 3, 4, 5, 6], expectedProfit: profitByRank[0] },
-    { lottoNumber: [1, 2, 3, 4, 5, 7], expectedProfit: profitByRank[1] },
-    { lottoNumber: [1, 2, 3, 4, 5, 8], expectedProfit: profitByRank[2] },
-    { lottoNumber: [1, 2, 3, 4, 8, 9], expectedProfit: profitByRank[3] },
-    { lottoNumber: [1, 2, 3, 8, 9, 10], expectedProfit: profitByRank[4] },
-    { lottoNumber: [8, 9, 10, 11, 12, 13], expectedProfit: 0 },
-  ])('등수 입력시 수익을 반환하는 기능', ({ lottoNumber, expectedProfit }) => {
-    const lotto = new Lotto(lottoNumber);
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 7;
-
-    lotto.calculateRank(winningNumbers, bonusNumber);
-
-    const profit = calculateProfit(lotto.getRank());
-
-    expect(profit).toBe(expectedProfit);
-  });
+      expect(profit).toBe(expectedProfit);
+    }
+  );
 });
