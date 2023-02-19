@@ -5,25 +5,32 @@ const { shuffle } = require('../utils/shuffle');
 const { ALL_LOTTO_NUMBERS } = require('./constants/index');
 
 class LottoMachine {
+  #purchasePrice;
+
   #lottos = [];
 
-  constructor(purchasePrice) {
-    this.validatePurchasePrice(purchasePrice);
-    this.issueLottos(purchasePrice);
+  purchase(purchasePrice) {
+    this.#purchasePrice = purchasePrice;
+
+    this.validatePurchasePrice();
+    this.issueLottos();
   }
 
-  validatePurchasePrice(purchasePrice) {
-    if (!this.isValidPurchasePrice(purchasePrice)) {
+  validatePurchasePrice() {
+    if (!this.isValidPurchasePrice()) {
       throw Error('[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.');
     }
   }
 
-  isValidPurchasePrice(purchasePrice) {
-    return purchasePrice >= 1000 && purchasePrice % 1000 === 0;
+  isValidPurchasePrice() {
+    this.#purchasePrice = Number(this.#purchasePrice);
+
+    return this.#purchasePrice >= 1000 && this.#purchasePrice % 1000 === 0;
   }
 
-  issueLottos(purchasePrice) {
-    const lottoCount = purchasePrice / 1000;
+  issueLottos() {
+    const lottoCount = this.#purchasePrice / 1000;
+
     Array(lottoCount)
       .fill(0)
       .forEach(() => {
@@ -41,6 +48,10 @@ class LottoMachine {
 
   get lottos() {
     return this.#lottos;
+  }
+
+  get lottosCount() {
+    return this.#purchasePrice / 1000;
   }
 }
 
