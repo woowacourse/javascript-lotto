@@ -50,8 +50,8 @@ class LottoMachine {
     return this.#lottos;
   }
 
-  get lottosCount() {
-    return this.#purchasePrice / 1000;
+  get price() {
+    return this.#purchasePrice;
   }
 }
 

@@ -21,7 +21,7 @@ describe('LottoMachine 클래스 테스트', () => {
       const lottoMachine = new LottoMachine();
       lottoMachine.purchase(input);
 
-      expect(lottoMachine.lottosCount).toEqual(expected);
+      expect(lottoMachine.lottos).toHaveLength(expected);
     }
   );
 });
