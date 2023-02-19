@@ -33,12 +33,12 @@ class LottoConsoleGame {
   }
 
   buyLotto() {
-    const randomNumbers = Array.from({ length: LOTTO.maxNumber }, (_, i) => i + LOTTO.minNumber)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, LOTTO.numbersLength)
-      .sort((a, b) => a - b);
-
-    return new Lotto(randomNumbers);
+    return new Lotto(
+      Array.from({ length: LOTTO.maxNumber - LOTTO.minNumber + 1 }, (_, i) => i + LOTTO.minNumber)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, LOTTO.numbersLength)
+        .sort((a, b) => a - b)
+    );
   }
 
   makeRankings(winningNumbers, bonusNumber) {
