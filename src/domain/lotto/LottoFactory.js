@@ -1,4 +1,4 @@
-import { shuffle } from '../utils/Random';
+import { shuffle } from '../../utils/Random';
 import Lotto from './Lotto';
 
 class LottoFactory {
