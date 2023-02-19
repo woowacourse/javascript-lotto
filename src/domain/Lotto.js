@@ -1,5 +1,3 @@
-import { LOTTO_CONDITION } from '../constants/condition.js';
-
 export default class Lotto {
   #numbers;
 
@@ -15,9 +13,7 @@ export default class Lotto {
   }
 
   getMatchCount(winningNumbers) {
-    const duplicateCheck = new Set([...winningNumbers, ...this.#numbers]);
-
-    return LOTTO_CONDITION.lottoDigits * 2 - duplicateCheck.size;
+    return this.#numbers.filter((number) => winningNumbers.includes(number)).length;
   }
 
   hasBonusNumber(bonusNumber) {
