@@ -82,8 +82,8 @@ class LottoGameController {
     const restartCommand = await InputView.readRestartCommand();
 
     try {
-      // TODO: restartCommand validation 추가
-      return restartCommand;
+      InputValidator.checkGameCommand(restartCommand.toLowerCase());
+      return restartCommand.toLowerCase();
     } catch (error) {
       Console.print(error.message);
       return this.#getRestartCommand();
