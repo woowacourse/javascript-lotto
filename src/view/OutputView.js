@@ -19,11 +19,11 @@ const OutputView = {
     Console.print(View.DEVISION_BAR.repeat(20));
   },
 
-  printLottoResults(lottos) {
-    for (const score in lottos.getLottoRanking()) {
+  printLottoResults(lottoScore) {
+    for (const score in lottoScore.lottoRanking) {
       Console.print(
         `${score} (${Core.moneyBoard[score]}원) - ${
-          lottos.getLottoRanking()[score]
+          lottoScore.lottoRanking[score]
         }개`
       );
     }

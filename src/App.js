@@ -7,19 +7,23 @@ import Random from "./util/Random.js";
 import OutputView from "./view/OutputView.js";
 import Error from "./constants/Error.js";
 import View from "./constants/View.js";
-import Constant from "./constants/Lotto.js";
+import LottoScore from "./domain/LottoScore.js";
 
 class App {
 
   async play() {
     const buyMoney = await this.getBuyMoney();
     const lottos = await this.createLotto(parseInt(buyMoney / 1000));
+
     this.printLottos(lottos.getLottos())
+
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
+
     this.compareLottos(lottos, winningLotto, bonusNumber)
-    this.printResult(lottos)
+
     const retryInput = await this.getRetryInput(lottos);
+
     this.retryLottoGame(retryInput,lottos)
   }
 
@@ -36,7 +40,6 @@ class App {
 
   async createLotto(lottoAmount) {
     const lottos = Array.from({ length: lottoAmount }, () => new Lotto(Random.getCorrectRandomNumbers()))
-    console.log(lottos)
     return new Lottos(lottos)
   }
 
@@ -121,17 +124,16 @@ class App {
   }
 
   compareLottos(lottos,winningLotto,bonusNumber) {
-    lottos.getLottos().forEach((lotto) => {
-      lotto.compareNumbers(winningLotto);
-      lotto.checkBonusNumber(bonusNumber);
-    });
-    lottos.compareLottosScore();
+    lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber)
+    const lottoScore = new LottoScore()
+    lottoScore.compareLottosScore(lottos.getLottos())
+    this.printResult(lottos,lottoScore)
   }
-
-  printResult(lottos) {
+  
+  printResult(lottos,lottoScore) {
     OutputView.printResultMessage();
-    OutputView.printLottoResults(lottos);
-    OutputView.printTotalBenefit(lottos.getBenefitRate());
+    OutputView.printLottoResults(lottoScore);
+    OutputView.printTotalBenefit(lottoScore.getBenefitRate(lottos.getLottos().length));
   }
 
   async getRetryInput() {
@@ -144,24 +146,21 @@ class App {
     }
   }
 
-  retryLottoGame(retryInput,lottos) {
-    if (
-      retryInput === Constant.RETRY_DOWNER ||
-      retryInput === Constant.RETRY_UPPER
-    ) {
-      this.resetGame(lottos);
+  async retryLottoGame(retryInput,lottos) {
+    // if (
+    //   retryInput === Constant.RETRY_DOWNER ||
+    //   retryInput === Constant.RETRY_UPPER
+    // ) {
+      // this.resetGame(lottos);
+      lottos.resetLottos()
       this.play();
-    }
-    if (
-      retryInput === Constant.QUIT_DOWNER ||
-      retryInput === Constant.QUIT_UPPER
-    ) {
-      Console.close();
-    }
-  }
-
-  resetGame(lottos) {
-    lottos.resetLottos();
+    // }
+    // if (
+    //   retryInput === Constant.QUIT_DOWNER ||
+    //   retryInput === Constant.QUIT_UPPER
+    // ) {
+    //   Console.close();
+    // }
   }
 
   validateRetryInput(retryInput) {
