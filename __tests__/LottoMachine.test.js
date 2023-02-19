@@ -23,7 +23,7 @@ describe('LottoMahcine 테스트', () => {
     const lotteryWinningsSum = 5000;
     const lottosCount = 8;
 
-    const rateOfProfit = lottoMachine.rateOfProfit(lotteryWinningsSum, lottosCount);
+    const rateOfProfit = lottoMachine.calculateRateOfProfit(lotteryWinningsSum, lottosCount);
 
     expect(rateOfProfit).toBe('62.5');
   });
