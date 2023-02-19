@@ -7,6 +7,10 @@ class LottoMachine {
   #lottos = [];
   #winnnigLotto;
 
+  constructor(money) {
+    this.buyLotto(money);
+  }
+
   get lottos() {
     return this.#lottos;
   }

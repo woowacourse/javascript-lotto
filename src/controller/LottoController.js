@@ -23,7 +23,10 @@ class LottoController {
     const moneyInput = await InputView.readInputMoney();
 
     try {
-      this.handleLottoMachine(moneyInput);
+      LottoValidator.validateMoneyInput(moneyInput);
+      this.#LottoMachine = new LottoMachine(moneyInput);
+      OutputView.printMessage(moneyInput / VALUES.LOTTO_PRICE + MESSAGE.OUTPUT.LOTTO_COUNT);
+      OutputView.printLottos(this.#LottoMachine.lottos);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleMoneyInput();
