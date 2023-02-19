@@ -9,7 +9,7 @@ class ProfitCalculator {
 
   getWinningAmount() {
     return Object.entries(this.#ranking).reduce(
-      (acc, [rank, count]) => acc + RANK[rank].rewards * count,
+      (acc, [rank, count]) => acc + RANK[rank].REWARDS * count,
       0,
     );
   }

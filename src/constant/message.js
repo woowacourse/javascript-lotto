@@ -14,9 +14,9 @@ const OUTPUT_MESSAGE = {
 const OUTPUT_MESSAGE_METHOD = {
   PURCHASE_QUANTITY: (quantity) => `${quantity}개를 구매했습니다.`,
   RANK: (rank, count) =>
-    `${RANK[rank].matchCount}개 일치${rank === 'SECOND' ? ', 보너스 볼 일치' : ''} (${RANK[
+    `${RANK[rank].MATCH_COUNT}개 일치${rank === RANK.SECOND.NAME ? ', 보너스 볼 일치' : ''} (${RANK[
       rank
-    ].rewards.toLocaleString()}원) - ${count}개`,
+    ].REWARDS.toLocaleString()}원) - ${count}개`,
   PROFIT_RATE: (rate) =>
     `총 수익률은 ${rate.toLocaleString(undefined, { minimumFractionDigits: 1 })}%입니다.`,
 };
