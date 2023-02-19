@@ -19,9 +19,10 @@ class LottoGameController {
     try {
       Validation.verifyPurchaseAmount(purchaseAmount);
       this.#lottoGameView.purchaseInput.classList.remove('error-input');
+      this.#lottoGameView.hideErrorMessage('purchase');
     } catch ({ message }) {
-      console.log(message);
       this.#lottoGameView.purchaseInput.classList.add('error-input');
+      this.#lottoGameView.showErrorMessage('purchase', message);
       this.#lottoGameView.purchaseInput.value = '';
       this.#lottoGameView.purchaseInput.focus();
     }
