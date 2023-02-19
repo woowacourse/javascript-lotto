@@ -7,10 +7,6 @@ const Validation = {
     return Validation.REGEX_NUMERIC.test(text);
   },
 
-  isInRange(number) {
-    return number >= 1 && number <= 45;
-  },
-
   validateMoney(money) {
     if (!Validation.isNumeric(money) || money < 0) {
       throw new Error('로또 구매 금액은 0 이상의 정수를 입력해야 합니다.');
@@ -24,7 +20,7 @@ const Validation = {
     if (!Validation.isNumeric(lottoNumber)) {
       throw new Error('로또 번호는 숫자로 이루어져 있어야 합니다.');
     }
-    if (!Validation.isInRange(lottoNumber)) {
+    if (lottoNumber < 1 || 45 < lottoNumber) {
       throw new Error('로또 번호는 1에서 45 사이의 숫자여야 합니다.');
     }
   },
