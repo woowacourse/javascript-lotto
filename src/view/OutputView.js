@@ -11,7 +11,7 @@ const OutputView = {
   },
 
   printLottoNumbers(lottoNumbers) {
-    Console.print(`[${lottoNumbers.sort((a, b) => a - b).join(', ')}]`);
+    Console.print(`[${[...lottoNumbers].sort((a, b) => a - b).join(', ')}]`);
   },
 
   printWinningStatistics(winningResult) {
