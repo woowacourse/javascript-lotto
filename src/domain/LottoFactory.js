@@ -1,15 +1,16 @@
-import { shuffle } from '../utils/Random';
 import Lotto from './Lotto';
+import { shuffle } from '../utils/Random';
+import { MAX_LOTTO_NUMBER, LOTTO_NUMBERS_LENGTH, MONEY_UNIT } from '../constants';
 
 class LottoFactory {
   createRandomLotto() {
-    const allLottoNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-    const lottoNumbers = shuffle(allLottoNumbers).slice(0, 6);
+    const allLottoNumbers = Array.from({ length: MAX_LOTTO_NUMBER }, (_, i) => i + 1);
+    const lottoNumbers = shuffle(allLottoNumbers).slice(0, LOTTO_NUMBERS_LENGTH);
     return new Lotto(lottoNumbers);
   }
 
   sellLottos(money) {
-    const amount = money / 1000;
+    const amount = money / MONEY_UNIT;
     return Array(amount)
       .fill()
       .map(() => this.createRandomLotto());

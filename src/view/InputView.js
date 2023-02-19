@@ -2,11 +2,12 @@ import Lotto from '../domain/Lotto';
 import WinningLotto from '../domain/WinningLotto';
 import Console from '../utils/Console';
 import Validation from '../Validation';
+import { MESSAGES } from '../constants';
 
 const InputView = {
   async readMoney() {
     return Console.repeatWhile(async () => {
-      const money = await Console.readLine('구입금액을 입력해 주세요.');
+      const money = await Console.readLine(MESSAGES.GET_MONEY_INPUT);
       Validation.validateMoney(money);
       return Number(money);
     });
@@ -23,7 +24,7 @@ const InputView = {
 
   async readLotto() {
     return Console.repeatWhile(async () => {
-      const readLottoNumbers = await Console.readLine('당첨 번호를 입력해 주세요. ');
+      const readLottoNumbers = await Console.readLine(MESSAGES.GET_WINNING_NUMBERS);
       const lottoNumbers = readLottoNumbers
         .split(',')
         .map((number) => number.trim())
@@ -34,7 +35,7 @@ const InputView = {
 
   async readBonusNumber() {
     return Console.repeatWhile(async () => {
-      const bonusNumber = await Console.readLine('보너스 번호를 입력해 주세요.');
+      const bonusNumber = await Console.readLine(MESSAGES.GET_BONUS_NUMBER);
       Validation.validateLottoNumber(bonusNumber);
       return Number(bonusNumber);
     });
@@ -42,7 +43,7 @@ const InputView = {
 
   async readRestartCommand() {
     return Console.repeatWhile(async () => {
-      const restartCommand = await Console.readLine('다시 시작하시겠습니까? (y/n) ');
+      const restartCommand = await Console.readLine(MESSAGES.GET_RESTART_COMMAND);
       Validation.validateRestartCommand(restartCommand);
       return restartCommand;
     });
