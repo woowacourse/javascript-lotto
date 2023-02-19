@@ -7,10 +7,17 @@ const rl = readline.createInterface({
 });
 
 const Console = {
+  /**
+   * @param {string} query
+   * @returns {Promise<string>}
+   */
   readLine(query) {
     return rl.question(`> ${query}`);
   },
 
+  /**
+   * @param {string} message
+   */
   print(message) {
     console.log(message);
   },
