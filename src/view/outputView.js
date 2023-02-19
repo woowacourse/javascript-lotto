@@ -1,5 +1,5 @@
 const outputView = {
-  statisticsMessage: {
+  RANKING_DESCRIPTION: {
     5: '3개 일치 (5,000원)',
     4: '4개 일치 (50,000원)',
     3: '5개 일치 (1,500,000원)',
@@ -17,9 +17,9 @@ const outputView = {
   printStatistics(rankings, rewardRate) {
     console.log('\n당첨 통계');
     console.log('--------------------');
-    [5, 4, 3, 2, 1].forEach((rankingForOutput) => {
+    Object.keys(outputView.RANKING_DESCRIPTION).forEach((rankingForOutput) => {
       const rankingCount = rankings.filter((ranking) => ranking === rankingForOutput).length;
-      console.log(`${outputView.statisticsMessage[rankingForOutput]} - ${rankingCount}개`);
+      console.log(`${outputView.RANKING_DESCRIPTION[rankingForOutput]} - ${rankingCount}개`);
     });
 
     console.log(`총 수익률은 ${rewardRate}입니다.`);
