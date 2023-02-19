@@ -1,7 +1,5 @@
 import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
 import Validation from '../utils/Validation.js';
 
 class LottoGameController {
