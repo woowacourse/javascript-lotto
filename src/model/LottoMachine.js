@@ -75,14 +75,10 @@ class LottoMachine {
 
     if (correctCounts === 5) {
       return correctCountsToMoney[`${correctCounts}`][
-        `${this.isSecond(targetNumber.bonusNumber, lottoNumber) ? 0 : 1}`
+        `${lottoNumber.includes(targetNumber.bonusNumber) ? 0 : 1}`
       ].rank;
     }
     return correctCountsToMoney[correctCounts].rank;
-  }
-
-  isSecond(bonusNumber, lottoNumber) {
-    return lottoNumber.includes(bonusNumber);
   }
 
   lotteryWinningsSum(lottos, targetNumber) {
