@@ -23,7 +23,7 @@ describe("당첨 등수 계산 테스트", () => {
       const lottoGame = new LottoGame();
       lottoGame.makeWinLotto([1, 2, 3, 4, 5, 6], 7);
       const rank = lottoGame.calculateRank(numbers);
-      expect(rank).toEqual(answer);
+      expect(rank).toStrictEqual(answer);
     }
   );
 });
