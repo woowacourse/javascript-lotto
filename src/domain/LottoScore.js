@@ -1,7 +1,7 @@
-import LOTTO_BOARD from "../constants/LottoBoard.js";
-import MATCHING from "../constants/Matching.js";
-import LOTTO_GAME from "../constants/LottoGame.js";
-import Utils from "../util/Utils.js";
+import LOTTO_BOARD from "../constants/LottoBoard";
+import MATCHING from "../constants/Matching";
+import LOTTO_GAME from "../constants/LottoGame";
+import Utils from "../util/Utils";
 
 class LottoScore {
   #lottoRanking;
@@ -44,26 +44,22 @@ class LottoScore {
 
   addScoreBoard(score) {
     switch (score) {
-      case MATCHING.FIFTH:
-        this.#lottoRanking[MATCHING.FIFTH] += 1;
-        break;
-      case MATCHING.FOURTH:
-        this.#lottoRanking[MATCHING.FOURTH] += 1;
-        break;
-      case MATCHING.THIRD:
-        this.#lottoRanking[MATCHING.THIRD] += 1;
+      case MATCHING.FIFTH ||
+        MATCHING.FOURTH ||
+        MATCHING.THIRD ||
+        MATCHING.FIRST:
+        this.#lottoRanking[score] += 1;
         break;
       case MATCHING.SECOND:
         this.#lottoRanking[MATCHING.SECOND] += 1;
         break;
-      case MATCHING.FIRST:
-        this.#lottoRanking[MATCHING.FIRST] += 1;
     }
   }
 
   calculateTotalBenefit() {
     for (const score in this.#lottoRanking) {
-      this.totalBenefit += this.#lottoRanking[score] * LOTTO_BOARD.benefitBoard[score];
+      this.totalBenefit +=
+        this.#lottoRanking[score] * LOTTO_BOARD.benefitBoard[score];
     }
   }
 
