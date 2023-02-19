@@ -10,23 +10,17 @@ const OutputView = require('./view/OutputView');
 const { errorCheckFor } = require('./utils/errorCheckFor');
 
 class LottoGame {
-  #winningNumbers;
-
   #lottoMachine;
-
-  #lottoStatistics;
 
   #correctLotto;
 
-  getLottoGameBeans() {
+  constructor() {
     this.#lottoMachine = new LottoMachine();
     this.#correctLotto = new CorrectLotto();
   }
 
   async successPayForLottoEvent() {
-    this.getLottoGameBeans();
     this.#lottoMachine.purchase(await InputView.readPurchasePrice());
-
     OutputView.printPurchasedLottos(this.#lottoMachine.lottos);
 
     this.inputWinningNumbers();
@@ -40,10 +34,11 @@ class LottoGame {
   }
 
   async successInputWinningNumbersEvent() {
-    const winningNumbers = await InputView.readWinningNumbers();
-    this.#winningNumbers = new WinningNumbers(winningNumbers);
+    this.#correctLotto.setWinningNumbers(
+      new WinningNumbers(await InputView.readWinningNumbers())
+    );
 
-    this.inputBonusNumber(this.#winningNumbers);
+    this.inputBonusNumber();
   }
 
   inputWinningNumbers() {
@@ -53,36 +48,36 @@ class LottoGame {
     );
   }
 
-  async successInputBonusEvent(winningNumbers) {
-    this.#lottoStatistics = new LottoStatistics(
-      this.#winningNumbers,
-      new BonusNumber(await InputView.readBonusNumber(), winningNumbers)
-    );
+  async successInputBonusEvent() {
+    const bonus = new BonusNumber(await InputView.readBonusNumber());
+
+    this.#correctLotto.setBonusNumber(bonus);
+    this.#correctLotto.validateLottos();
 
     this.showLottoStatistics();
     this.inputRestartQuitCommand();
   }
 
-  inputBonusNumber(winningNumbers) {
+  inputBonusNumber() {
     errorCheckFor(
-      () => this.successInputBonusEvent(winningNumbers),
-      () => this.inputBonusNumber(winningNumbers)
+      () => this.successInputBonusEvent(),
+      () => this.inputBonusNumber()
     );
   }
 
   showLottoStatistics() {
-    const winningLottos = this.#lottoStatistics.determineAllLottosRank(
-      this.#lottoMachine.lottos
-    );
-    const profitRate = this.#lottoStatistics.calculateProfitRate(
-      winningLottos,
-      this.#lottoMachine.lottos.length * 1000
-    );
-    OutputView.printStatistics(winningLottos, profitRate);
+    const { lottos, price } = this.#lottoMachine;
+    const statics = new LottoStatistics(this.#correctLotto);
+
+    const winningResult = statics.getAllLottosRank(lottos);
+    const profitRate = statics.getProfitRate(winningResult, price);
+
+    OutputView.printStatistics(winningResult, profitRate);
   }
 
   async successInputRestartQuitCommand() {
     const command = (await InputView.readRestart()).toLowerCase();
+
     this.validateCommand(command);
     this.executeCommand(command);
   }
