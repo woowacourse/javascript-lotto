@@ -1,0 +1,16 @@
+/* Rectangle 35 */
+
+.header {
+  box-sizing: border-box;
+  position: absolute;
+  width: 1440px;
+  height: 64px;
+  left: 0px;
+  top: 0px;
+}
+
+/* lotto-primary */
+.lotto-primary {
+  background: #4E5BA6;
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
