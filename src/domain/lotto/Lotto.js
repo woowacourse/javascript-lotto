@@ -2,7 +2,7 @@ import Validation from '../../Validation';
 
 class Lotto {
   constructor(lottoNumbers) {
-    Validation.validateLottoNumbers(this.lottoNumbers);
+    Validation.validateLottoNumbers(lottoNumbers);
     this.lottoNumbers = lottoNumbers.sort((a, b) => a - b);
   }
 
