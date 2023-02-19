@@ -10,13 +10,13 @@ import {
 import checkRetryFormat from './retry.js';
 
 const Inputs = {
-  async amount(amount, { onError: errorCallback }) {
+  amount(amount, { onError: errorCallback }) {
     try {
       return this.checkAmount(amount);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback({ onError: errorCallback });
+      return errorCallback({ onError: errorCallback });
     }
   },
 
@@ -26,13 +26,13 @@ const Inputs = {
     return Number(amount);
   },
 
-  async winningNumbers(winningNumbers, { onError: errorCallback }) {
+  winningNumbers(winningNumbers, { onError: errorCallback }) {
     try {
       return this.checkWinningNumbers(winningNumbers);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback({ onError: errorCallback });
+      return errorCallback({ onError: errorCallback });
     }
   },
 
@@ -45,13 +45,13 @@ const Inputs = {
     return winningNumbers;
   },
 
-  async bonusNumber(bonusNumber, { onError: errorCallback }) {
+  bonusNumber(bonusNumber, { onError: errorCallback }) {
     try {
       return this.checkBonusNumber(bonusNumber);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback({ onError: errorCallback });
+      return errorCallback({ onError: errorCallback });
     }
   },
 
@@ -64,13 +64,13 @@ const Inputs = {
     return bonusNumber;
   },
 
-  async retry(command, { onError: errorCallback }) {
+  retry(command, { onError: errorCallback }) {
     try {
       return this.checkRetry(command);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback({ onError: errorCallback });
+      return errorCallback({ onError: errorCallback });
     }
   },
 
