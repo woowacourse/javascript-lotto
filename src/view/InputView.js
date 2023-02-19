@@ -56,7 +56,7 @@ const InputView = {
 
   /**
    *
-   * @returns {Promise<'y' | 'n'>}
+   * @returns {Promise<string>}
    */
   async readRestartCommand() {
     return Console.repeatWhile(async () => {

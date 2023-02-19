@@ -1,5 +1,6 @@
 import Messages from './constant/Messages';
 import RestartCommand from './constant/RestartCommand';
+import Lotto from './domain/lotto/Lotto';
 import LottoError from './errors/LottoError';
 
 const Validation = {
@@ -13,8 +14,8 @@ const Validation = {
     if (!Validation.isNumeric(money) || money < 0) {
       throw new LottoError(Messages.ERROR_MONEY_SHOULD_POSITIVE_INTEGER);
     }
-    if (money % 1000 !== 0 || money / 1000 <= 0) {
-      throw new LottoError(Messages.ERROR_MONEY_AMOUNT_SHOULD_MULTIPLE_OF);
+    if (money % Lotto.PRICE !== 0 || money / Lotto.PRICE <= 0) {
+      throw new LottoError(Messages.ERROR_MONEY_AMOUNT_SHOULD_MULTIPLE_OF, Lotto.PRICE);
     }
   },
 
@@ -22,8 +23,12 @@ const Validation = {
     if (!Validation.isNumeric(lottoNumber)) {
       throw new Error(Messages.ERROR_LOTTO_NUMBER_SHOULD_NUMERIC);
     }
-    if (lottoNumber < 1 || 45 < lottoNumber) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBER_SHOULD_BETWEEN);
+    if (lottoNumber < Lotto.NUMBER_LOWER_BOUND || Lotto.NUMBER_UPPER_BOUND < lottoNumber) {
+      throw new Error(
+        Messages.ERROR_LOTTO_NUMBER_SHOULD_BETWEEN,
+        Lotto.NUMBER_LOWER_BOUND,
+        Lotto.NUMBER_UPPER_BOUND,
+      );
     }
   },
 
@@ -42,8 +47,8 @@ const Validation = {
   },
 
   validateArrayLength(lottoNumbers) {
-    if (lottoNumbers.length !== 6) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_LENGTH_OF);
+    if (lottoNumbers.length !== Lotto.LENGTH) {
+      throw new Error(Messages.ERROR_LOTTO_NUMBERS_SHOULD_LENGTH_OF, Lotto.LENGTH);
     }
   },
 

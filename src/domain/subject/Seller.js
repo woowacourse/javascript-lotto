@@ -1,3 +1,4 @@
+import Lotto from '../lotto/Lotto';
 import LottoFactory from '../lotto/LottoFactory';
 
 class Seller {
@@ -16,7 +17,7 @@ class Seller {
    * @returns {Lotto[]}
    */
   sellLottos(money) {
-    const amount = money / 1000;
+    const amount = money / Lotto.PRICE;
     return Array(amount)
       .fill()
       .map(() => this.#lottoFactory.createRandomLotto());
