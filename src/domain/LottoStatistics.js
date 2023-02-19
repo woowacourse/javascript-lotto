@@ -9,8 +9,6 @@ const LOTTO_RANK = {
 class LottoStatistics {
   #correctLotto;
 
-  #lottos;
-
   constructor(correctLotto) {
     this.#correctLotto = correctLotto;
   }
