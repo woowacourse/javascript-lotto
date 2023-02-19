@@ -1,12 +1,12 @@
 import QUERY from '../constants/query.js';
-import Validator from '../validator/index.js';
+import ValidationInputs from '../validator/ValidationInputs';
 import Console from './Console.js';
 
 const Inputs = {
   async readAmount({ onError } = { onError: null }) {
     const amount = await Console.readLine(QUERY.AMOUNT);
 
-    return await Validator.Inputs.amount(amount, {
+    return await ValidationInputs.amount(amount, {
       onError: onError ?? this.readAmount,
     });
   },
@@ -14,7 +14,7 @@ const Inputs = {
   async readWinningNumbers({ onError } = { onError: null }) {
     const winningNumbers = await Console.readLine(QUERY.WINNING_NUMBERS);
 
-    return await Validator.Inputs.winningNumbers(winningNumbers, {
+    return await ValidationInputs.winningNumbers(winningNumbers, {
       onError: onError ?? this.readWinningNumbers,
     });
   },
@@ -22,7 +22,7 @@ const Inputs = {
   async readBonusNumber({ onError } = { onError: null }) {
     const bonusNumber = await Console.readLine(QUERY.BONUS_NUMBERS);
 
-    return await Validator.Inputs.bonusNumber(bonusNumber, {
+    return await ValidationInputs.bonusNumber(bonusNumber, {
       onError: onError ?? this.readBonusNumber,
     });
   },
@@ -30,7 +30,7 @@ const Inputs = {
   async readRetry({ onError } = { onError: null }) {
     const command = await Console.readLine(QUERY.RETRY);
 
-    return await Validator.Inputs.retry(command, {
+    return await ValidationInputs.retry(command, {
       onError: onError ?? this.readRetry,
     });
   },

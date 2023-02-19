@@ -9,7 +9,7 @@ import {
 } from './lotto.js';
 import checkRetryFormat from './retry.js';
 
-const Inputs = {
+const ValidationInputs = {
   async amount(amount, { onError: errorCallback }) {
     try {
       return this.checkAmount(amount);
@@ -81,4 +81,4 @@ const Inputs = {
   },
 };
 
-export default Inputs;
+export default ValidationInputs;
