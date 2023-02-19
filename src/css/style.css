@@ -9,6 +9,7 @@
   --lotto-greyscale-3: #b4b4b4;
   --lotto-greyscale-4: #8b8b8b;
   --lotto-greyscale-5: #000000;
+  --lotto-greyscale-5-transparent: #0000001f;
 }
 
 * {
@@ -53,6 +54,16 @@ p {
 .app-body {
   width: 100%;
   height: 880px;
+}
+
+.app-screen {
+  width: 414px;
+  height: 727px;
+  margin: 84px auto 69px auto;
+  padding: 52px 16px 32px 16px;
+
+  border: 1px solid var(--lotto-greyscale-5-transparent);
+  border-radius: 4px;
 }
 
 .app-footer {
