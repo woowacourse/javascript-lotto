@@ -1,6 +1,25 @@
 import numberHandler from '../../src/utils/numberHandler.js';
 
 describe('numberHandler 테스트', () => {
+  test.each(Array.from({ length: 10 }, () => [numberHandler.generateRandomNumber(1, 45)]))(
+    '1~45사이의 랜덤한 숫자를 반환한다.',
+    randomNumber => {
+      const rangeNumbers = Array.from({ length: 45 }, (_, index) => index + 1);
+
+      expect(rangeNumbers.includes(randomNumber)).toBeTruthy();
+    }
+  );
+
+  test.each([
+    [5000, 1000, 5],
+    [3500, 500, 7],
+    [10, 1, 10],
+    [10, 3, 3],
+    [10, 7, 1],
+  ])('특정 단위로 나누어진 몫을 정수로 반환한다.', (target, divider, quotient) => {
+    expect(numberHandler.getQuotient(target, divider)).toBe(quotient);
+  });
+
   test.each([
     [1.123, 1.1],
     [1.56, 1.6],
@@ -10,15 +29,6 @@ describe('numberHandler 테스트', () => {
   ])('소수점 둘째자리에서 반올림한 값을 반환한다.', (floatNumber, roundedOffNumber) => {
     expect(numberHandler.roundOffNumber(floatNumber)).toBe(roundedOffNumber);
   });
-
-  test.each(Array.from({ length: 10 }, () => [numberHandler.generateRandomNumber(1, 45)]))(
-    '1~45사이의 랜덤한 숫자를 반환한다.',
-    randomNumber => {
-      const rangeNumbers = Array.from({ length: 45 }, (_, index) => index + 1);
-
-      expect(rangeNumbers.includes(randomNumber)).toBeTruthy();
-    }
-  );
 
   test.each([
     [1, '1'],
