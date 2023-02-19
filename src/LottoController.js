@@ -1,3 +1,4 @@
+import RestartCommand from './constant/RestartCommand';
 import LottoResult from './domain/LottoResult';
 import Buyer from './domain/subject/Buyer';
 import Seller from './domain/subject/Seller';
@@ -40,7 +41,7 @@ class LottoController {
   async proceedRestartCommand() {
     const restartCommand = await InputView.readRestartCommand();
 
-    if (restartCommand === 'y') {
+    if (restartCommand === RestartCommand.YES) {
       return true;
     }
     OutputView.printExit();

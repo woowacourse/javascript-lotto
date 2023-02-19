@@ -1,3 +1,5 @@
+import RestartCommand from './constant/RestartCommand';
+
 const Validation = {
   REGEX_NUMERIC: /^\d+$/,
 
@@ -61,8 +63,7 @@ const Validation = {
   },
 
   validateRestartCommand(command) {
-    const commands = ['y', 'n'];
-    if (!commands.includes(command)) {
+    if (!Object.values(RestartCommand).includes(command)) {
       throw new Error('재시작 명령어는 y또는 n으로 입력해야 합니다.');
     }
   },
