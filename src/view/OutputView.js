@@ -24,13 +24,10 @@ const OutputView = {
     Console.print(`${'-'.repeat(20)}`);
   },
 
-  printLottoRanksResult(lottoRanksCount) {
-    lottoRanksCount
-      .slice(1, lottoRanksCount.length)
-      .reverse()
-      .forEach((lottoRankCount, index) => {
-        Console.print(`${labels[index]}${lottoRankCount}개`);
-      });
+  printLottoRanksResult(lottoRanksResult) {
+    Object.entries(lottoRanksResult).forEach(([rankName, rankCount], index) => {
+      Console.print(`${labels[index]}${rankCount}개`);
+    });
   },
 
   printProfitRate(profitRate) {

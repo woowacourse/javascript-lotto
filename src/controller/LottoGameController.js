@@ -13,7 +13,7 @@ class LottoGameController {
     this.#printLottoTickets();
 
     const winningNumbers = await this.#getLottoWinningNumbers();
-    const bonusNumber = await this.#getLottoBonusNumber();
+    const bonusNumber = await this.#getLottoBonusNumber(winningNumbers);
 
     this.#printLottoGameResult(winningNumbers, bonusNumber);
 
@@ -30,7 +30,7 @@ class LottoGameController {
       return Number(userBudget);
     } catch (error) {
       Console.print(error.message);
-      this.#getUserBudget();
+      return this.#getUserBudget();
     }
   }
 
@@ -53,30 +53,28 @@ class LottoGameController {
       return winningNumbers.split(',').map(Number);
     } catch (error) {
       Console.print(error.message);
-      this.#getLottoWinningNumbers();
+      return this.#getLottoWinningNumbers();
     }
   }
 
-  async #getLottoBonusNumber() {
+  async #getLottoBonusNumber(winningNumbers) {
     const bonusNumber = await InputView.readLottoBonusNumber();
 
     try {
-      InputValidator.checkBonusNumber(bonusNumber);
+      InputValidator.checkBonusNumber(winningNumbers, bonusNumber);
       return Number(bonusNumber);
     } catch (error) {
       Console.print(error.message);
-      this.#getLottoBonusNumber();
+      return this.#getLottoBonusNumber();
     }
   }
 
   #printLottoGameResult(winningNumbers, bonusNumber) {
-    const lottoRanksCount = this.lottoGame.countLottoRanks(winningNumbers, bonusNumber);
+    const lottoRanksResult = this.lottoGame.getLottoRankResult(winningNumbers, bonusNumber);
 
     OutputView.printResultTitle();
-    OutputView.printLottoRanksResult(lottoRanksCount);
-    OutputView.printProfitRate(
-      this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize(lottoRanksCount))
-    );
+    OutputView.printLottoRanksResult(lottoRanksResult);
+    OutputView.printProfitRate(this.lottoGame.calculateProfitRate());
   }
 
   async #getRestartCommand() {
@@ -87,7 +85,7 @@ class LottoGameController {
       return restartCommand;
     } catch (error) {
       Console.print(error.message);
-      this.#getRestartCommand();
+      return this.#getRestartCommand();
     }
   }
 
