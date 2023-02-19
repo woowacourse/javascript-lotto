@@ -15,12 +15,13 @@ const OutputView = {
   },
 
   /**
+   * @param {LottoResult} lottoResult
    * @param {Reward} rewards
    */
-  printLottoResult(rewards) {
+  printLottoResult(lottoResult, rewards) {
     Console.print(`당첨 통계`);
     Console.print('★-★-★-★-★-★');
-    LottoResult.REWARDS.forEach((reward) => {
+    lottoResult.getRewards().forEach((reward) => {
       const count = rewards.filter((_reward) => _reward === reward).length;
       Console.print(`${reward.getTitle()} - ${count}개`);
     });

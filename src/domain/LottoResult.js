@@ -5,7 +5,7 @@ import WinningLotto from './WinningLotto';
 
 class LottoResult {
   /** @type {Reward[]} */
-  static REWARDS = [
+  static DEFAULT_REWARDS = [
     new Reward(6, 2_000_000_000),
     new BonusNumberReward(5, 30_000_000),
     new Reward(5, 1_500_000),
@@ -16,11 +16,20 @@ class LottoResult {
   /** @type {WinningLotto} */
   #winningLotto;
 
+  /** @type {Reward[]} */
+  #rewards;
+
   /**
    * @param {WinningLotto} winningLotto
+   * @param {Reward[]} rewards
    */
-  constructor(winningLotto) {
+  constructor(winningLotto, rewards = LottoResult.DEFAULT_REWARDS) {
     this.#winningLotto = winningLotto;
+    this.#rewards = rewards;
+  }
+
+  getRewards() {
+    return this.#rewards;
   }
 
   /**
@@ -29,7 +38,7 @@ class LottoResult {
    */
   findReward(lotto) {
     const foundReward =
-      LottoResult.REWARDS.find((reward) => {
+      this.#rewards.find((reward) => {
         return reward.isQualified(lotto, this.#winningLotto);
       }) ?? null;
     return foundReward;
