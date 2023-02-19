@@ -26,13 +26,13 @@ class LottoMachine {
     this.setLottoNumber(Array.from({ length: number }, () => this.randomNumberLotto()));
   }
 
-  sortedNumber(number) {
+  ascendingSortedNumber(number) {
     return number.sort((a, b) => a - b);
   }
 
   randomNumberLotto() {
     const randomNumber = Array.from({ length: 6 }, () => Math.floor(Math.random() * 45 + 1));
-    if (this.checkRepeatedNumber(randomNumber)) return this.sortedNumber(randomNumber);
+    if (this.checkRepeatedNumber(randomNumber)) return this.ascendingSortedNumber(randomNumber);
     return this.randomNumberLotto();
   }
 

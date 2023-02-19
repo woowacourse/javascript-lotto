@@ -2,7 +2,7 @@ const Console = require('../utils/Console.js');
 const { MESSAGE } = require('../utils/constant.js');
 
 const outputView = {
-  printCountLotto(number) {
+  printLottoCount(number) {
     Console.print(`${number}${MESSAGE.PURCHASE_LOTTO}`);
   },
 

@@ -33,7 +33,7 @@ class ControllerLotto {
   }
 
   showLottoCount(count) {
-    outputView.printCountLotto(count);
+    outputView.printLottoCount(count);
   }
 
   showPurchasedLotto(lottos) {
