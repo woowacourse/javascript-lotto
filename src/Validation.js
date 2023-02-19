@@ -30,7 +30,7 @@ const Validation = {
   validateLottoNumbers(lottoNumbers) {
     Validation.validateIsArray(lottoNumbers);
     Validation.validateArrayLength(lottoNumbers);
-    Validation.validateDistinctNumbers(lottoNumbers);
+    Validation.validateUniqueNumbers(lottoNumbers);
 
     lottoNumbers.forEach(Validation.validateLottoNumber);
   },
@@ -47,7 +47,7 @@ const Validation = {
     }
   },
 
-  validateDistinctNumbers(lottoNumbers) {
+  validateUniqueNumbers(lottoNumbers) {
     const lottoSet = new Set(lottoNumbers);
     if (lottoNumbers.length !== lottoSet.size) {
       throw new Error('로또 번호는 중복될 수 없습니다.');
