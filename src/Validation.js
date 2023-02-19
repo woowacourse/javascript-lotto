@@ -15,7 +15,7 @@ const Validation = {
     return Validation.REGEX_NUMERIC.test(number);
   },
 
-  isInRange(number) {
+  isLottoNumbersInRange(number) {
     return number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER;
   },
 
