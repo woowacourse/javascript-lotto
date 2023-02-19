@@ -1,5 +1,4 @@
-import Validator from '../utils/Validator.js';
-import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
+import { LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoUtils from '../domain/LottoUtils.js';
@@ -15,69 +14,42 @@ class LottoSimulator {
     this.#lottos = [];
   }
 
-  async inputBudget() {
-    const budget = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET);
-    this.judgeValidBudget(parseInt(budget));
+  async play() {
+    await this.purchaseLottos();
+    this.printPurchaseResult();
+    await this.inputWinningLotto();
+    this.printStatistics();
+    await this.requestRetryCommand();
   }
 
-  judgeValidBudget(budget) {
+  async purchaseLottos() {
     try {
-      this.validateBudget(budget);
-      this.purchaseLottos(budget);
+      const budget = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BUDGET);
+      LottoUtils.validateBudget(+budget);
+      Array.from({ length: budget / LOTTO_CONSTANT.PRICE }).forEach(() => {
+        this.#lottos.push(new Lotto(LottoUtils.createLottoNumbers()));
+      });
     } catch (err) {
       OutputView.printErrorMessage(err);
-      this.inputBudget();
+      return this.purchaseLottos();
     }
   }
 
-  validateBudget(budget) {
-    if (!Validator.isInteger(budget))
-      throw new Error(ERROR_MESSAGE.NOT_INTEGER(LOTTO_CONSTANT.BUDGET));
-    if (!budget || budget % LOTTO_CONSTANT.PRICE !== 0)
-      throw new Error(ERROR_MESSAGE.BUDGET_NOT_DIVISIBLE_BY_LOTTO_PRICE);
-    if (budget < LOTTO_CONSTANT.PRICE) throw new Error(ERROR_MESSAGE.BUDGET_LESS_THAN_LOTTO_PRICE);
-  }
-
-  purchaseLottos(budget) {
-    const lottoCount = budget / LOTTO_CONSTANT.PRICE;
-    OutputView.printPurchaseCount(lottoCount);
-
-    Array.from({ length: lottoCount }).forEach(() => {
-      this.#lottos.push(new Lotto(LottoUtils.createLottoNumbers()));
-    });
-
-    this.printLottoNumbers();
-  }
-
-  printPurchaseCount() {
-    OutputView.printPurchaseCount(this.#lottos.length * LOTTO_CONSTANT.PRICE);
-    this.printLottoNumbers();
-  }
-
-  printLottoNumbers() {
+  printPurchaseResult() {
+    OutputView.printPurchaseCount(this.#lottos.length);
     this.#lottos.forEach((lotto) => {
       OutputView.printLottoNumbers(lotto._numbers);
-    })
-    this.inputWinningNumber();
+    });
   }
 
-  async inputWinningNumber() {
-    const winningNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER);
-    this.inputBonusNumber(winningNumber);
-  }
-
-  async inputBonusNumber(winningNumber) {
-    const bonusNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER);
-    this.judgeValidWinningNumber(winningNumber.split(',').map(Number), parseInt(bonusNumber));
-  }
-
-  judgeValidWinningNumber(winningNumber, bonusNumber) {
+  async inputWinningLotto() {
     try {
-      this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
-      this.printStatisticsResult();
+      const winningNumbers = await InputView.readUserInput(PRINT_MESSAGE.INPUT_WINNING_NUMBER);
+      const bonusNumber = await InputView.readUserInput(PRINT_MESSAGE.INPUT_BONUS_NUMBER);
+      this.#winningLotto = new WinningLotto(winningNumbers.split(',').map(Number), +bonusNumber);
     } catch (err) {
       OutputView.printErrorMessage(err);
-      this.inputWinningNumber();
+      return this.inputWinningLotto();
     }
   }
 
@@ -92,38 +64,27 @@ class LottoSimulator {
     return winningResult;
   }
 
-  printStatisticsResult() {
-    OutputView.printWinningStatistics(this.calculateWinningResult());
-    OutputView.printYieldRate(
-      LottoUtils.calculateYieldRate(this.calculateWinningResult(), this.#lottos.length)
-    );
-    this.inputRetryCommand();
+  printStatistics() {
+    const winningResult = this.calculateWinningResult();
+    OutputView.printWinningStatistics(winningResult);
+    OutputView.printYieldRate(LottoUtils.calculateYieldRate(winningResult, this.#lottos.length));
   }
 
-  async inputRetryCommand() {
-    const command = await InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY);
-    this.judgeValidRetryCommand(command);
-  }
-
-  judgeValidRetryCommand(command) {
+  async requestRetryCommand() {
     try {
-      this.validateRetryCommand(command);
-      if (command === 'y') this.retry();
-      if (command === 'n') this.quit();
+      const command = await InputView.readUserInput(PRINT_MESSAGE.INPUT_RETRY);
+      LottoUtils.validateRetryCommand(command);
+      command === LOTTO_CONSTANT.COMMAND_RETRY ? this.retry() : this.quit();
     } catch (err) {
       OutputView.printErrorMessage(err);
-      this.inputRetryCommand();
+      return this.requestRetryCommand();
     }
-  }
-
-  validateRetryCommand(command) {
-    if (command !== 'y' && command !== 'n') throw new Error(ERROR_MESSAGE.RETRY_COMMAND);
   }
 
   retry() {
     this.#lottos = [];
     this.winningLotto = null;
-    this.inputBudget();
+    this.play();
   }
 
   quit() {
