@@ -5,7 +5,7 @@ describe('LottoMahcine 테스트', () => {
   const winningLotto = new WinningLotto(winningNumber);
 
   test('단일 로또 번호들과 당첨 번호가 몇 개 일치하는지 구하기', () => {
-    const matchCount = winningLotto.computeMatchCounts(winningLotto.winningNumber, [1, 2, 3, 4, 5, 6]);
+    const matchCount = winningLotto.computeMatchCounts(winningNumber, [1, 2, 3, 4, 5, 6]);
 
     expect(matchCount).toBe(6);
   });
