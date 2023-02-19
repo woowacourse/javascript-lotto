@@ -1,4 +1,5 @@
 const Console = require('../util/Console');
+
 const labels = [
   '3개 일치 (5,000원) - ',
   '4개 일치 (50,000원) - ',

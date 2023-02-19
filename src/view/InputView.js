@@ -5,7 +5,7 @@ const InputView = {
     Console.read('구입금액을 입력해 주세요.', callback);
   },
 
-  readLottoWinningNumber(callback) {
+  readLottoWinningNumbers(callback) {
     Console.read('\n당첨 번호를 입력해 주세요.', callback);
   },
 

@@ -17,7 +17,7 @@ class LottoGameController {
       const lottoTickets = this.lottoGame.getLottoTickets();
       OutputView.printLottoTicketCount(lottoTickets.length);
       OutputView.printLottoTickets(lottoTickets);
-      InputView.readLottoWinningNumber(this.#onSubmitLottoWinningNumber.bind(this));
+      InputView.readLottoWinningNumbers(this.#onSubmitLottoWinningNumber.bind(this));
     } catch (error) {
       Console.print(error.message);
       this.play();
@@ -31,7 +31,7 @@ class LottoGameController {
       InputView.readLottoBonusNumber(this.#onSubmitLottoBonusNumber.bind(this));
     } catch (error) {
       Console.print(error.message);
-      InputView.readLottoWinningNumber(this.#onSubmitLottoWinningNumber.bind(this));
+      InputView.readLottoWinningNumbers(this.#onSubmitLottoWinningNumber.bind(this));
     }
   }
 
