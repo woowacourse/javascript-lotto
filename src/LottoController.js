@@ -4,11 +4,18 @@ const Comparer = require('./domain/Comparer');
 const LottoMachine = require('./domain/LottoMachine');
 const ProfitCalculator = require('./domain/ProfitCaculator');
 const WinningLotto = require('./domain/WinningLotto');
+const {
+  validatePurchaseAmount,
+  validateLottoNumber,
+  validateWinningNumber,
+  validateBonusNumber,
+  validateRestartCommand,
+} = require('./domain/validator');
 
 const Console = require('./util/Console');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
-const Validator = require('./domain/Validator');
+const convertToNumeric = require('./util/convertToNumeric');
 
 class LottoController {
   #lottos;
@@ -33,9 +40,9 @@ class LottoController {
 
   async inputPurchaseAmount() {
     try {
-      const purchaseAmount = await InputView.readPurchaseAmount();
-      Validator.purchaseAmount(purchaseAmount);
-      return Number(purchaseAmount);
+      const purchaseAmount = convertToNumeric(await InputView.readPurchaseAmount());
+      validatePurchaseAmount(purchaseAmount);
+      return purchaseAmount;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputPurchaseAmount();
@@ -53,20 +60,28 @@ class LottoController {
 
   async inputWinningNumber() {
     try {
-      const winningNumber = await InputView.readWinningNumber();
-      Validator.winningNumber(winningNumber);
-      return winningNumber.split(',').map(Number);
+      const winningNumber = this.#convertToWinningNumber(await InputView.readWinningNumber());
+      validateWinningNumber(winningNumber);
+      return winningNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputWinningNumber();
     }
   }
 
+  #convertToWinningNumber(winningNumberInput) {
+    return winningNumberInput.split(',').map((lottoNumberInput) => {
+      const lottoNumber = convertToNumeric(lottoNumberInput);
+      validateLottoNumber(lottoNumber);
+      return lottoNumber;
+    });
+  }
+
   async inputBonusNumber(winningNumber) {
     try {
-      const bonusNumber = await InputView.readBonusNumber();
-      Validator.bonusNumber(bonusNumber, winningNumber);
-      return Number(bonusNumber);
+      const bonusNumber = convertToNumeric(await InputView.readBonusNumber());
+      validateBonusNumber(bonusNumber, winningNumber);
+      return bonusNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.inputBonusNumber(winningNumber);
@@ -85,7 +100,7 @@ class LottoController {
   async inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
-      Validator.restartCommand(restartCommand);
+      validateRestartCommand(restartCommand);
       return restartCommand;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
