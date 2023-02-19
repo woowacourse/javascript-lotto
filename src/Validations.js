@@ -12,16 +12,23 @@ const Validations = {
   },
 
   isCorrectRange(input) {
-    return 0 < input && input < 46 ? true : false;
+    return 0 < input && input < 46;
   },
 
+  //중복허용 X 추가
+
   hasBonusNumber(bonusNumber, winningLotto) {
-    return winningLotto.includes(bonusNumber)
+    return winningLotto.includes(bonusNumber);
   },
 
   isCorrectRetryInput(retryInput) {
-    return retryInput === "y" || retryInput === "Y" || retryInput === "n" || retryInput === "N"
-  }
+    return (
+      retryInput === "y" ||
+      retryInput === "Y" ||
+      retryInput === "n" ||
+      retryInput === "N"
+    );
+  },
 };
 
 export default Validations;
