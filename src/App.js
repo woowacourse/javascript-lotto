@@ -75,10 +75,9 @@ class App {
   }
 
   convertStringToNumber(strings) {
-    const numberArr = strings.map((str) => {
+    return strings.map((str) => {
       return Number(str);
     });
-    return numberArr;
   }
 
   validateWinningNumbers() {
