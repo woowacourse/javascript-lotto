@@ -10,9 +10,9 @@ describe('Reward', () => {
     const bonusNumber = 7;
     const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-    const matchingNumbers = 4;
+    const matchCount = 4;
     const money = 30_000;
-    const reward = new Reward(matchingNumbers, money);
+    const reward = new Reward(matchCount, money);
 
     // when
     const canReceiveReward = reward.canReceive(lotto, winningLotto);

@@ -11,7 +11,7 @@ class BonusNumberReward extends Reward {
   canReceive(lotto, winningLotto) {
     return (
       winningLotto.hasBonusNumber(lotto) &&
-      winningLotto.countMatchingNumbers(lotto) === this.getMatchingNumber()
+      winningLotto.getMatchCount(lotto) === this.getMatchCount()
     );
   }
 }

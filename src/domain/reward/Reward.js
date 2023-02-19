@@ -3,22 +3,22 @@ import WinningLotto from '../WinningLotto';
 
 class Reward {
   /** @type {number} */
-  #matchingNumbers;
+  #matchCount;
 
   /** @type {number} */
   #money;
 
   /**
-   * @param {number} matchingNumbers
+   * @param {number} matchCount
    * @param {number} money
    */
-  constructor(matchingNumbers, money) {
-    this.#matchingNumbers = matchingNumbers;
+  constructor(matchCount, money) {
+    this.#matchCount = matchCount;
     this.#money = money;
   }
 
-  getMatchingNumber() {
-    return this.#matchingNumbers;
+  getMatchCount() {
+    return this.#matchCount;
   }
 
   getMoney() {
@@ -31,11 +31,11 @@ class Reward {
    * @returns {boolean}
    */
   canReceive(lotto, winningLotto) {
-    return winningLotto.countMatchingNumbers(lotto) === this.#matchingNumbers;
+    return winningLotto.getMatchCount(lotto) === this.#matchCount;
   }
 
   getTitle() {
-    return `${this.#matchingNumbers}개 (${this.#money.toLocaleString()}원)`;
+    return `${this.#matchCount}개 (${this.#money.toLocaleString()}원)`;
   }
 }
 
