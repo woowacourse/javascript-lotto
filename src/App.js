@@ -36,7 +36,7 @@ class App {
   async createLotto(lottoAmount) {
     const lottos = Array.from(
       { length: lottoAmount },
-      () => new Lotto(Random.getCorrectRandomNumbers())
+      () => new Lotto(Random.generateRandomNumbers())
     );
     return new Lottos(lottos);
   }

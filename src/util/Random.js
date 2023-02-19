@@ -1,22 +1,19 @@
-import Validators from "../Validators";
+import Lotto from "../constants/Lotto";
 
 const Random = {
-  generateRandomNumbers() {
-    const randomNumbers = [];
-    for (let i = 0; i < 6; i++) {
-      randomNumbers.push(Math.floor(Math.random() * 45) + 1);
+  makeTargetNumbers() {
+    const targetNumbers = [];
+    for (let i = Lotto.MIN_NUMBER; i <= Lotto.MAX_NUMBER; i++) {
+      targetNumbers.push(i);
     }
-    return randomNumbers;
+    return targetNumbers;
   },
 
-  getCorrectRandomNumbers() {
-    while (true) {
-      const randomNumbers = Random.generateRandomNumbers();
-      if (Validators.isDuplicatedNumbers(randomNumbers)) {
-        return randomNumbers;
-      }
-    }
-  },
+  generateRandomNumbers() {
+    const shuffledNumbers = this.makeTargetNumbers().sort(() => Math.random() - 0.5)
+    return shuffledNumbers.slice(0,6)
+  }
+
 };
 
 export default Random;
