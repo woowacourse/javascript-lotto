@@ -1,4 +1,5 @@
 import NumberHandler from '../../src/util/NumberHandler.js';
+import stringHandler from '../../src/util/stringHandler.js';
 
 describe('NumberHandler 테스트', () => {
   test.each([
@@ -8,7 +9,7 @@ describe('NumberHandler 테스트', () => {
     [100.05, 100.1],
     [100, 100],
   ])('소수점 둘째자리에서 반올림한다.', (floatNumber, roundedOffNumber) => {
-    expect(NumberHandler.roundOffNumber(floatNumber)).toBe(roundedOffNumber);
+    expect(NumberHandler.roundOff(floatNumber)).toBe(roundedOffNumber);
   });
 
   test.each([
@@ -47,7 +48,7 @@ describe('NumberHandler 테스트', () => {
     [100000, '100,000'],
     [1000000, '1,000,000'],
   ])('천의 자리마다 콤마를 찍어 문자열로 반환한다.', (number, string) => {
-    const numberString = NumberHandler.addComma(number);
+    const numberString = stringHandler.addComma(number);
 
     expect(numberString).toBe(string);
     expect(typeof numberString).toBe('string');

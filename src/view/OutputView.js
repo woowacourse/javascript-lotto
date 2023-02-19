@@ -1,6 +1,6 @@
 import MESSAGE from '../constant/message.js';
 import Console from '../util/Console.js';
-import NumberHandler from '../util/numberHandler.js';
+import stringHandler from '../util/stringHandler.js';
 
 const OutputView = {
   printLottos(lottoNumbers) {
@@ -35,7 +35,7 @@ const OutputView = {
   },
 
   printProfit(profit) {
-    Console.print(MESSAGE.PROFIT(NumberHandler.addComma(profit)));
+    Console.print(MESSAGE.PROFIT(stringHandler.addComma(profit)));
   },
 };
 

@@ -38,9 +38,7 @@ class LottoGame {
     const totalPrizeMoney = this.calculateTotalPrizeMoney();
     const totalBuyMoney = this.#lottos.length * LOTTO.PRICE;
 
-    return NumberHandler.roundOffNumber(
-      (totalPrizeMoney / totalBuyMoney) * 100
-    );
+    return NumberHandler.roundOff((totalPrizeMoney / totalBuyMoney) * 100);
   }
 }
 

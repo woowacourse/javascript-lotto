@@ -4,6 +4,17 @@ const RANK = {
   THIRD: 3,
   FOURTH: 4,
   FIFTH: 5,
+  INVALID_RANK: 0,
 };
 
-export default RANK;
+const RANKING_TABLE = [
+  RANK.INVALID_RANK,
+  RANK.INVALID_RANK,
+  RANK.INVALID_RANK,
+  RANK.FIFTH,
+  RANK.FOURTH,
+  RANK.THIRD,
+  RANK.FIRST,
+];
+
+export { RANK, RANKING_TABLE };

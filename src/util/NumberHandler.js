@@ -7,12 +7,8 @@ const NumberHandler = {
     return parseInt(target / divider, 10);
   },
 
-  roundOffNumber(number) {
-    return Math.round(number * 10) / 10;
-  },
-
-  addComma(number) {
-    return number.toLocaleString('en-US');
+  roundOff(value) {
+    return Math.round(value * 10) / 10;
   },
 };
 

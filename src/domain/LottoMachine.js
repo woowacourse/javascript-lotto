@@ -17,7 +17,7 @@ const LottoMachine = {
   generateLottoNumbers() {
     const lottoNumbers = new Set();
 
-    while (lottoNumbers.size < LOTTO.LENGTH) {
+    while (lottoNumbers.size < LOTTO.NUMBERS_LENGTH) {
       lottoNumbers.add(this.generateLottoNumber());
     }
 
