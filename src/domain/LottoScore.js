@@ -81,6 +81,11 @@ class LottoScore {
       lottoAmount * LOTTO_GAME.LOTTO_PRICE
     );
   }
+
+  resetLottoScore() {
+    this.#lottoRanking = { ...LOTTO_BOARD.rankingBoard };
+    this.#totalBenefit = 0;
+  }
 }
 
 export default LottoScore;
