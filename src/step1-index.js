@@ -33,8 +33,8 @@ class App extends Component {
     Console.close();
   }
 
-  async checkRetry(retry) {
-    if (retry) await new App().play();
+  async checkRetry(willRetry) {
+    if (willRetry) await new App().play();
   }
 }
 
