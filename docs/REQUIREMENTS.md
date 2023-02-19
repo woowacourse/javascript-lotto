@@ -38,9 +38,9 @@
 1. html 만들기
 
     1.  내 당첨번호 확인
-        - [ ] header
-        - [ ] label + (inputAmount = img + p)
-        - [ ] label + printLotto
+        - [x] header
+        - [x] label + inputAmount 
+        - [x] label + printLotto
         - [ ] p = input설명
         - [ ] label + inputLotto
         - [ ] button = checkResult
