@@ -35,15 +35,23 @@ export default class LottoGame {
   }
 
   getStatistics(eachCompareResult) {
-    return eachCompareResult.reduce(this.#categorizeResult, { ...statisticsDummy });
-  }
+    const statistics = {
+      fifthPrize: 0,
+      fourthPrize: 0,
+      thirdPrize: 0,
+      secondPrize: 0,
+      firstPrize: 0,
+    };
 
-  #categorizeResult(statistics, { matchCount, hasBonusNumber }) {
-    if (matchCount === PRIZE_MATCH_COUNT.firstPrize) statistics.firstPrize += 1;
-    if (matchCount === PRIZE_MATCH_COUNT.secondPrize && hasBonusNumber) statistics.secondPrize += 1;
-    if (matchCount === PRIZE_MATCH_COUNT.thirdPrize && !hasBonusNumber) statistics.thirdPrize += 1;
-    if (matchCount === PRIZE_MATCH_COUNT.fourthPrize) statistics.fourthPrize += 1;
-    if (matchCount === PRIZE_MATCH_COUNT.fifthPrize) statistics.fifthPrize += 1;
+    eachCompareResult.forEach(({ matchCount, hasBonusNumber }) => {
+      if (matchCount === PRIZE_MATCH_COUNT.firstPrize) statistics.firstPrize += 1;
+      if (matchCount === PRIZE_MATCH_COUNT.secondPrize && hasBonusNumber)
+        statistics.secondPrize += 1;
+      if (matchCount === PRIZE_MATCH_COUNT.thirdPrize && !hasBonusNumber)
+        statistics.thirdPrize += 1;
+      if (matchCount === PRIZE_MATCH_COUNT.fourthPrize) statistics.fourthPrize += 1;
+      if (matchCount === PRIZE_MATCH_COUNT.fifthPrize) statistics.fifthPrize += 1;
+    });
 
     return statistics;
   }
@@ -68,11 +76,3 @@ export default class LottoGame {
     return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 }
-
-const statisticsDummy = {
-  fifthPrize: 0,
-  fourthPrize: 0,
-  thirdPrize: 0,
-  secondPrize: 0,
-  firstPrize: 0,
-};
