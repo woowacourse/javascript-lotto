@@ -4,6 +4,7 @@ const LottoGame = require('../domain/LottoGame');
 const Console = require('../util/Console');
 const InputValidator = require('../validators/InputValidator');
 const LottoTicket = require('../domain/LottoTicket');
+const { GAME_COMMAND } = require('../constants');
 
 class LottoGameController {
   play() {
@@ -47,15 +48,15 @@ class LottoGameController {
       OutputView.printProfitRate(
         this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize(lottoRanksCount))
       );
-      InputView.readRestartCommand(this.#onSubimtRestartCommand.bind(this));
+      InputView.readRestartCommand(this.#onSubmitRestartCommand.bind(this));
     } catch (error) {
       Console.print(error.message);
       InputView.readLottoBonusNumber(this.#onSubmitLottoBonusNumber.bind(this));
     }
   }
 
-  #onSubimtRestartCommand(command) {
-    if (command === 'y') {
+  #onSubmitRestartCommand(command) {
+    if (command === GAME_COMMAND.YES) {
       this.play();
       return;
     }

@@ -1,6 +1,7 @@
 const generateLottoNumbers = require('./LottoNumbersGenerator');
 const LottoTicket = require('./LottoTicket');
 const Converter = require('../util/Converter');
+const { LOTTO } = require('../constants');
 
 const Rank = {
   6: 1,
@@ -16,7 +17,7 @@ class LottoGame {
   constructor(userBudget) {
     this.#userBudget = userBudget;
     this.#lottoTickets = Array.from(
-      { length: userBudget / 1000 },
+      { length: userBudget / LOTTO.PRICE },
       () => new LottoTicket(Converter.sortAscending(generateLottoNumbers()))
     );
   }
@@ -27,6 +28,7 @@ class LottoGame {
 
   countLottoRanks(winningNumbers, bonusNumber) {
     const lottoRanksCount = [0, 0, 0, 0, 0, 0];
+
     this.#lottoTickets.forEach((lottoTicket) => {
       lottoRanksCount[
         this.getLottoRank(
@@ -35,6 +37,7 @@ class LottoGame {
         )
       ] += 1;
     });
+
     return lottoRanksCount;
   }
 
