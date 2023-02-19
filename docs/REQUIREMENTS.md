@@ -66,6 +66,20 @@
 - 재시작 입력 검증
   - [x] 입력값이 특정 문자인지 검증
 
+## 1단계 - 리펙터링
+
+- [ ] refactor: 매직넘버 상수화
+  - Lotto - calculateRanking
+  - outputView - statisticsMessage
+  - outputView - printStatistics
+- [ ] refactor: 함수 분리
+  - lottoGameCalculator - calculateRewardRate
+  - Lotto - calculateRanking
+- [ ] refactor: 재귀 호출의 성능 최적화
+  - LottoConsoleGame
+- [ ] refactor: 코드의 가독성 향상
+  - LottoConsoleGame
+
 ---
 
 # 페어프로그래밍 회고
