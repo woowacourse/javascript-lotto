@@ -1,8 +1,7 @@
-const { COMMAND } = require('./constant/setting');
-
 const LottoComparer = require('./domain/LottoComparer');
 const LottoMachine = require('./domain/LottoMachine');
 const WinningLotto = require('./domain/WinningLotto');
+const calculateProfitRate = require('./domain/calculateProfitRate');
 const {
   validatePurchaseAmount,
   validateLottoNumber,
@@ -11,11 +10,12 @@ const {
   validateRestartCommand,
 } = require('./domain/validator');
 
-const Console = require('./util/Console');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
+
+const { COMMAND } = require('./constant/setting');
+const Console = require('./util/Console');
 const convertToNumeric = require('./util/convertToNumeric');
-const calculateProfitRate = require('./domain/calculateProfitRate');
 
 class LottoController {
   #lottoMachine;
