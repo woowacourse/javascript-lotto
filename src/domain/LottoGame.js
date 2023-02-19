@@ -11,7 +11,7 @@ class LottoGame {
     this.#lottos = LottoMachine.generateLottos(price);
   }
 
-  getLottoNumbersList() {
+  getLottos() {
     return this.#lottos.map(lotto => lotto.getNumbers());
   }
 
@@ -20,7 +20,7 @@ class LottoGame {
     this.#winningNumbers.bonusNumber = bonusNumber;
   }
 
-  execute() {
+  drawLotto() {
     this.#lottos.forEach(lotto => {
       this.#amountOfRanks[lotto.getRank(this.#winningNumbers)] += 1;
     });
