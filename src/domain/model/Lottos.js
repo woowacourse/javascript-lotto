@@ -1,5 +1,4 @@
 const { PROFIT_PER_RANK, PRICE_UNIT } = require('../../constants/constants');
-const { getProfitPerRank } = require('../../utils');
 const RandomNumberGenerator = require('../../utils/RandomNumberGenerator');
 const Lotto = require('./Lotto');
 
