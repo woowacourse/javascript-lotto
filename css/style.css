@@ -5,16 +5,21 @@
 }
 
 #app {
+  font-family: 'Roboto';
   display: flex;
   justify-content: center;
-  font-family: 'Roboto';
+  align-items: center;
   background-color: #f5f5f5;
+  padding-top: 148px;
+  padding-bottom: 149px;
+  height: 100vh;
 }
 
 header {
   background-color: #4e5ba6;
   color: #ffffff;
   position: absolute;
+  top: 0;
   width: 100vw;
 }
 
@@ -54,9 +59,7 @@ input {
 
 .lottoGame {
   width: 414px;
-  height: 727px;
-  margin-top: 148px;
-  margin-bottom: 148px;
+  max-height: 727px;
 
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -92,4 +95,21 @@ input {
 
 .purchaseLotto div button {
   width: 56px;
+}
+
+.issueLotto {
+  padding-left: 16px;
+  margin-top: 28px;
+}
+
+.lottos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.lotto {
+  font-size: 15px;
 }
