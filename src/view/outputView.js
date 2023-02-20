@@ -17,10 +17,12 @@ const outputView = {
   printStatistics(rankings, rewardRate) {
     console.log('\n당첨 통계');
     console.log('--------------------');
-    Object.keys(outputView.RANKING_DESCRIPTION).forEach((outputRanking) => {
-      const outputRankingCount = rankings.filter((ranking) => ranking == outputRanking).length;
-      console.log(`${outputView.RANKING_DESCRIPTION[outputRanking]} - ${outputRankingCount}개`);
-    });
+    Object.keys(outputView.RANKING_DESCRIPTION)
+      .reverse()
+      .forEach((outputRanking) => {
+        const outputRankingCount = rankings.filter((ranking) => ranking == outputRanking).length;
+        console.log(`${outputView.RANKING_DESCRIPTION[outputRanking]} - ${outputRankingCount}개`);
+      });
 
     console.log(`총 수익률은 ${rewardRate}입니다.`);
   },
