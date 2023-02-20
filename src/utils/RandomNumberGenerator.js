@@ -4,33 +4,22 @@ const {
 } = require("../constants/constants");
 
 const randomNumberGenerator = {
-  generateRandomNumber() {
-    return Math.floor(
-      Math.random() *
-        (lottoNumberRange.MAX_LOTTO_NUMBER -
-          lottoNumberRange.MIN_LOTTO_NUMBER) +
-        lottoNumberRange.MIN_LOTTO_NUMBER
-    );
+  generateMinToMaxNumbers() {
+    const lottoNumbers = new Array(
+      lottoNumberRange.MAX_LOTTO_NUMBER - lottoNumberRange.MIN_LOTTO_NUMBER + 1
+    )
+      .fill(0)
+      .map((_, index) => index + lottoNumberRange.MIN_LOTTO_NUMBER);
+
+    return lottoNumbers;
   },
 
   generateLottoNumbers() {
-    const lottoNumbers = [];
+    const lottoNumbers = this.generateMinToMaxNumbers();
 
-    while (lottoNumbers.length < LOTTO_NUMBER_COUNT) {
-      const randomNumber = this.generateRandomNumber();
-      this.fillLottoNumbers(lottoNumbers, randomNumber);
-    }
+    lottoNumbers.sort(() => Math.random() - 0.5);
 
-    return lottoNumbers.sort((a, b) => a - b);
-  },
-
-  fillLottoNumbers(lottoNumbers, randomNumber) {
-    if (!this.isNumberDuplicated(lottoNumbers, randomNumber))
-      lottoNumbers.push(randomNumber);
-  },
-
-  isNumberDuplicated(lottoNumbers, randomNumber) {
-    return lottoNumbers.includes(randomNumber);
+    return lottoNumbers.slice(0, LOTTO_NUMBER_COUNT).sort((a, b) => a - b);
   },
 };
 
