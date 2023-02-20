@@ -26,7 +26,7 @@ class Winning {
 
   #validateWinningNumbers(winningNumbers) {
     winningNumbers.forEach((winningNumber) => {
-      this.#validateNumber(winningNumber);
+      this.#validateRangeAndIsNumber(winningNumber);
     });
     if (!inputValidator.isUniqueArray(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.uniqueWinningNumber);
@@ -37,14 +37,14 @@ class Winning {
   }
 
   #validateBonusNumber(bonusNumber) {
-    this.#validateNumber(bonusNumber);
+    this.#validateRangeAndIsNumber(bonusNumber);
 
     if (!inputValidator.isUniqueArray([...this.#winningNumbers, bonusNumber])) {
       throw new Error(ERROR_MESSAGE.uniqueBonusNumber);
     }
   }
 
-  #validateNumber(number) {
+  #validateRangeAndIsNumber(number) {
     if (!inputValidator.isNumber(number)) {
       throw new Error(ERROR_MESSAGE.number);
     }
