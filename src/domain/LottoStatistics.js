@@ -46,11 +46,15 @@ class LottoStatistics {
   }
 
   getLottoRank(lotto, matchCount) {
-    if (matchCount === 5) {
+    if (this.needsMatchBonus(matchCount)) {
       return lotto.isBonus(this.#bonusNumber.number) ? RANK.SECOND : RANK.THIRD;
     }
 
     return LOTTO_RANK[matchCount] ?? RANK.NONE;
+  }
+
+  needsMatchBonus(matchCount) {
+    return matchCount === 5;
   }
 
   calculateProfitRate(winningLottos, purchasePrice) {
