@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./reset.css" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./src/css/reset.css" />
+    <link rel="stylesheet" href="./src/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
       <section class="lotto">
         <div class="lotto__container">
           <h1 class="title text__center">🎱 내 번호 당첨 확인 🎱</h1>
-          <form class="budget__form" action="">
+          <form class="budget__form">
             <label class="budget__label" for="budget__input">구입할 금액을 입력해주세요.</label>
             <input type="text" id="budget__input" placeholder="금액" />
             <button type="button" class="budget__button">구입</button>
@@ -50,7 +50,7 @@
           </div>
           <div class="winning__container">
             <p class="sub__title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <form action="">
+            <form>
               <div class="winning__box">
                 <div class="winning__input">
                   <label for="winning__number">당첨 번호</label>
@@ -66,7 +66,7 @@
                   <input type="text" id="bonus__number" />
                 </div>
               </div>
-              <input type="submit" class="submit__button" value="결과 확인하기" />
+              <button type="button" class="result__button">결과 확인하기</button>
             </form>
           </div>
         </div>
@@ -126,11 +126,12 @@
               </tbody>
             </table>
             <p class="yield__title">당신의 총 수익률은 %입니다.</p>
-            <button type="submit" class="submit__button">다시 시작하기</button>
+            <button type="button" class="reset__button">다시 시작하기</button>
           </div>
         </div>
       </section>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <script src="./src/view/LottoView.js" />
+    <!-- <script type="module" src="./src/js/index.js"></script> -->
   </body>
 </html>
