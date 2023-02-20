@@ -50,9 +50,8 @@ class Lottos {
   #calculateProfitRate() {
     const profit = this.#calculateProfit();
     const purchasedPrice = this.#lottos.length * PRICE_UNIT;
-    const profitRate = (profit / purchasedPrice).toFixed(1);
 
-    return profitRate;
+    return (profit / purchasedPrice).toFixed(1);
   }
 
   #calculateProfit() {
