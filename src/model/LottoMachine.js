@@ -1,13 +1,10 @@
 import generateRandomNumber from '../utils/generateRandomNumber';
-import { values, correctCountsToMoney, prize } from '../constants/values';
+import { values, correctCountsToMoney } from '../constants/values';
 import Lotto from './Lotto';
+import LottoResultCalculator from './LottoResultCalculator';
 
 class LottoMachine {
   #lottos;
-  #statistics = {
-    ranks: new Array(6).fill(0),
-    rateOfProfit: null,
-  };
 
   constructor() {
     this.init();
@@ -49,16 +46,9 @@ class LottoMachine {
     };
 
     const totalRanks = this.calculateRanks(targetNumber);
-    totalRanks.forEach(rank => {
-      this.#statistics.ranks[rank - 1]++;
-    });
 
-    this.#statistics.rateOfProfit = this.rateOfProfit(this.calcaulateTotalSum(totalRanks), totalRanks.length);
-
-    return this.#statistics;
+    return new LottoResultCalculator().calculateStatistics(totalRanks);
   }
-
-  calcaulateTotalSum = ranks => ranks.reduce((acc, curr) => acc + prize[curr - 1], 0);
 
   calculateRanks(targetNumber) {
     return this.#lottos.map(lotto => this.checkLotteryWinnings(lotto.lottoNum, targetNumber));
@@ -84,13 +74,6 @@ class LottoMachine {
 
   lotteryWinningsSum(lottos, targetNumber) {
     return lottos.reduce((acc, lotto) => acc + this.checkLotteryWinnings(lotto, targetNumber), 0);
-  }
-
-  rateOfProfit(lotteryWinningsSum, lottosLength) {
-    const { LOTTO_PRICE } = values;
-    const spentMoney = lottosLength * LOTTO_PRICE;
-
-    return ((lotteryWinningsSum - spentMoney) / spentMoney) * 100;
   }
 }
 
