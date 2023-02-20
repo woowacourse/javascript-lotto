@@ -10,9 +10,9 @@ class LottoGameView {
   #initDom() {
     this.purchaseForm = $('#purchase-form');
     this.purchaseInput = $('#purchase-input');
+    this.startContainer = $('.start-container');
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
-    this.startContainer = $('.start-container');
     this.winningNumbersForm = $('#winning-numbers-form');
     this.winningNumbersInput = $('.input--number');
     this.bonusNumberInput = $('input[name="bonus-number"]');
