@@ -2,7 +2,11 @@ const Lotto = require('./Lotto');
 
 const { shuffle } = require('../utils/shuffle');
 
-const { ALL_LOTTO_NUMBERS } = require('./constants/index');
+const {
+  ALL_LOTTO_NUMBERS,
+  LOTTO_UNIT_PRICE,
+  LOTTO_NUMBERS_COUNT,
+} = require('./constants/index');
 
 class LottoMachine {
   #lottos = [];
@@ -14,12 +18,17 @@ class LottoMachine {
 
   validatePurchasePrice(purchasePrice) {
     if (!this.isValidPurchasePrice(purchasePrice)) {
-      throw Error('[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.');
+      throw Error(
+        `[ERROR] 구입 금액은 ${LOTTO_UNIT_PRICE}으로 나누어 떨어져야 합니다.`
+      );
     }
   }
 
   isValidPurchasePrice(purchasePrice) {
-    return purchasePrice >= 1000 && purchasePrice % 1000 === 0;
+    return (
+      purchasePrice >= LOTTO_UNIT_PRICE &&
+      purchasePrice % LOTTO_UNIT_PRICE === 0
+    );
   }
 
   issueLottos(purchasePrice) {
@@ -34,7 +43,7 @@ class LottoMachine {
   issueLotto() {
     return new Lotto(
       shuffle(ALL_LOTTO_NUMBERS)
-        .slice(0, 6)
+        .slice(0, LOTTO_NUMBERS_COUNT)
         .sort((x, y) => x - y)
     );
   }

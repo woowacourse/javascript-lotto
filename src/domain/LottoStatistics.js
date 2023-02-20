@@ -50,7 +50,7 @@ class LottoStatistics {
       return lotto.isBonus(this.#bonusNumber.number) ? RANK.SECOND : RANK.THIRD;
     }
 
-    return LOTTO_RANK[matchCount] ?? 6;
+    return LOTTO_RANK[matchCount] ?? RANK.NONE;
   }
 
   calculateProfitRate(winningLottos, purchasePrice) {

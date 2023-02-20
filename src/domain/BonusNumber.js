@@ -1,3 +1,5 @@
+const { MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER } = require('./constants');
+
 class BonusNumber {
   #number = 0;
 
@@ -8,7 +10,9 @@ class BonusNumber {
 
   validate(bonusNumber, winningNumbers) {
     if (!this.isValidBonusNumber(bonusNumber)) {
-      throw new Error('[ERROR] 보너스 번호는 1 ~ 45 이내의 숫자여야 합니다.');
+      throw new Error(
+        `[ERROR] 보너스 번호는 ${MIN_LOTTO_NUMBER} 이상 ${MAX_LOTTO_NUMBER} 이하의 숫자여야 합니다.`
+      );
     }
     if (this.isDuplicateFor(bonusNumber, winningNumbers)) {
       throw new Error(
@@ -18,7 +22,7 @@ class BonusNumber {
   }
 
   isValidBonusNumber(bonusNumber) {
-    return bonusNumber >= 1 && bonusNumber <= 45;
+    return bonusNumber >= MIN_LOTTO_NUMBER && bonusNumber <= MAX_LOTTO_NUMBER;
   }
 
   isDuplicateFor(bonusNumber, winningNumbers) {

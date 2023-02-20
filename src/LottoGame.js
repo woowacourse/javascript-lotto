@@ -2,6 +2,11 @@ const LottoMachine = require('./domain/LottoMachine');
 const WinningNumbers = require('./domain/WinningNumbers');
 const BonusNumber = require('./domain/BonusNumber');
 const LottoStatistics = require('./domain/LottoStatistics');
+const {
+  RESTART_COMMAND,
+  QUIT_COMMAND,
+  LOTTO_UNIT_PRICE,
+} = require('./domain/constants');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
@@ -61,7 +66,7 @@ class LottoGame {
     );
     const profitRate = this.#lottoStatistics.calculateProfitRate(
       winningLottos,
-      this.#lottoMachine.lottos.length * 1000
+      this.#lottoMachine.lottos.length * LOTTO_UNIT_PRICE
     );
     OutputView.printStatistics(winningLottos, profitRate);
   }
@@ -78,25 +83,23 @@ class LottoGame {
   }
 
   validateCommand(command) {
-    if (!this.isValidCommand(command)) {
+    if (!this.isValidCommand(command.toLowerCase())) {
       throw new Error(
-        '[ERROR] 올바른 명령어가 아닙니다. 재시작(y) / 종료(n)을 입력해 주세요.'
+        `[ERROR] 올바른 명령어가 아닙니다. 재시작(${RESTART_COMMAND}) / 종료(${QUIT_COMMAND})을 입력해 주세요.`
       );
     }
   }
 
-  isValidCommand(command) {
-    return ['y', 'n'].includes(command.toLowerCase());
+  isValidCommand(lowerCasedCommand) {
+    return [RESTART_COMMAND, QUIT_COMMAND].includes(lowerCasedCommand);
   }
 
-  async executeCommand(command) {
-    if (command === 'y') {
+  async executeCommand(lowerCasedCommand) {
+    if (lowerCasedCommand === RESTART_COMMAND) {
       await this.restart();
     }
 
-    if (command === 'n') {
-      OutputView.quit();
-    }
+    OutputView.quit();
   }
 
   async restart() {

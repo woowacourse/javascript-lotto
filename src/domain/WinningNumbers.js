@@ -1,3 +1,9 @@
+const {
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+  LOTTO_NUMBERS_COUNT,
+} = require('./constants');
+
 class WinningNumbers {
   #numbers;
 
@@ -8,10 +14,10 @@ class WinningNumbers {
       .map((number) => parseInt(number, 10));
   }
 
-  validateWinningNumbers(winningNumbers) {
-    if (!this.isLottoNumbersLength(winningNumbers)) {
+  validate(numbers) {
+    if (!this.isValidWinningNumbers(numbers)) {
       throw new Error(
-        '[ERROR] 로또 당첨 번호는 1 ~ 45 범위 내에서만 가능합니다.'
+        `[ERROR] 당첨 번호는 ${MIN_LOTTO_NUMBER} 이상 ${MAX_LOTTO_NUMBER} 이하의 숫자 6개여야 합니다.`
       );
     }
     if (this.isDuplicateFor(winningNumbers)) {
@@ -19,12 +25,15 @@ class WinningNumbers {
     }
   }
 
-  isLottoNumber(number) {
-    return number >= 1 && number <= 45;
+  isValidWinningNumbers(numbers) {
+    return (
+      numbers.filter((number) => this.isValidWinningNumber(number)).length ===
+      LOTTO_NUMBERS_COUNT
+    );
   }
 
-  isDuplicateFor(winningNumbers) {
-    return new Set(winningNumbers.split(',')).size !== 6;
+  isValidWinningNumber(number) {
+    return number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER;
   }
 
   isLottoNumbersLength(winningNumbers) {

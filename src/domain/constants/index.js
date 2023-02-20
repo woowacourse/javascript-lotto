@@ -1,4 +1,12 @@
-const ALL_LOTTO_NUMBERS = Array.from({ length: 45 }, (_, idx) => idx + 1);
+const MIN_LOTTO_NUMBER = 1;
+const MAX_LOTTO_NUMBER = 45;
+const LOTTO_NUMBERS_COUNT = 6;
+const ALL_LOTTO_NUMBERS = Array.from(
+  { length: MAX_LOTTO_NUMBER },
+  (_, idx) => idx + 1
+);
+
+const LOTTO_UNIT_PRICE = 1000;
 
 const RANK = {
   FIRST: 1,
@@ -36,8 +44,17 @@ const LOTTO_PRIZE = [
   },
 ];
 
+const RESTART_COMMAND = 'y';
+const QUIT_COMMAND = 'n';
+
 module.exports = {
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+  LOTTO_NUMBERS_COUNT,
   ALL_LOTTO_NUMBERS,
+  LOTTO_UNIT_PRICE,
   RANK,
   LOTTO_PRIZE,
+  RESTART_COMMAND,
+  QUIT_COMMAND,
 };
