@@ -1,43 +1,25 @@
 import Console from './Console';
+import INPUT from '../../constants/input';
 
 const InputView = {
-  COMMAND: { y: 'RESTART', n: 'EXIT' },
-
-  READ_MONEY: '구입금액을 입력해 주세요.',
-  READ_WIN_NUMBERS: '당첨 번호를 입력해 주세요.',
-  READ_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
-  READ_RESTART_COMMAND: '다시 시작 하겠습니까? (y/n)',
-  ERROR_VALID_COMMAND: `재시작은 y/ 종료는 n을 입력해주세요.`,
-
-  async readMoney() {
-    const money = await Console.read(InputView.READ_MONEY);
+  async readPurchaseAmount() {
+    const money = await Console.read(INPUT.PURCHASE_AMOUNT);
     return Number(money);
   },
 
   async readWinNumbers() {
-    const winNumbers = await Console.read(InputView.READ_WIN_NUMBERS);
+    const winNumbers = await Console.read(INPUT.WIN_NUMBERS);
     return winNumbers.split(',').map(Number);
   },
 
   async readBonusNumber() {
-    const bonusNumber = await Console.read(InputView.READ_BONUS_NUMBER);
+    const bonusNumber = await Console.read(INPUT.BONUS_NUMBER);
     return Number(bonusNumber);
   },
 
   async readRestartCommand() {
-    const command = await Console.read(InputView.READ_RESTART_COMMAND);
-
-    InputView.validateCommand(command);
-
+    const command = await Console.read(INPUT.RESTART_COMMAND);
     return command;
-  },
-
-  validateCommand(command) {
-    if (!InputView.isValidCommand(command)) throw new Error(InputView.ERROR_VALID_COMMAND);
-  },
-
-  isValidCommand(command) {
-    return Object.hasOwnProperty.call(InputView.COMMAND, command);
   },
 
   close() {
