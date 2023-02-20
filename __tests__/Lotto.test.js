@@ -1,4 +1,4 @@
-import Lotto from "../src/Lotto";
+import Lotto from "../src/domain/Lotto.js";
 
 describe("Lotto 객체 단위테스트", () => {
   test("로또 갯수만큼 로또 객체를 생성하는 테스트", () => {
