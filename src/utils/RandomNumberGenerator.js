@@ -3,7 +3,9 @@ const {
   LOTTO_NUMBER_COUNT,
 } = require('../constants/constants');
 
-const randomNumberGenerator = {
+class RandomNumberGenerator {
+  #lottoNumbers = [];
+
   generateRandomNumber() {
     return Math.floor(
       Math.random() *
@@ -11,31 +13,30 @@ const randomNumberGenerator = {
           LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER) +
         LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
     );
-  },
+  }
 
   generateLottoNumbers() {
-    const lottoNumbers = [];
+    this.#lottoNumbers = Array.from({ length: LOTTO_NUMBER_COUNT }).map(() => {
+      return this.fillLottoNumbers();
+    });
 
-    while (lottoNumbers.length < LOTTO_NUMBER_COUNT) {
-      const randomNumber = this.generateRandomNumber();
-      this.fillLottoNumbers(lottoNumbers, randomNumber);
-    }
+    return this.sortLottoNumbers(this.#lottoNumbers);
+  }
 
-    return this.sortLottoNumbers(lottoNumbers);
-  },
+  fillLottoNumbers() {
+    const randomNumber = this.generateRandomNumber();
+    if (!this.isNumberDuplicate(randomNumber)) return randomNumber;
 
-  fillLottoNumbers(lottoNumbers, randomNumber) {
-    if (!this.isNumberDuplicate(lottoNumbers, randomNumber))
-      lottoNumbers.push(randomNumber);
-  },
+    return this.fillLottoNumbers();
+  }
 
-  isNumberDuplicate(lottoNumbers, randomNumber) {
-    return lottoNumbers.includes(randomNumber);
-  },
+  isNumberDuplicate(randomNumber) {
+    return this.#lottoNumbers.includes(randomNumber);
+  }
 
-  sortLottoNumbers(lottoNumbers) {
-    return lottoNumbers.sort((a, b) => a - b);
-  },
-};
+  sortLottoNumbers() {
+    return this.#lottoNumbers.sort((a, b) => a - b);
+  }
+}
 
-module.exports = { randomNumberGenerator };
+module.exports = RandomNumberGenerator;
