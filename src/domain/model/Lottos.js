@@ -56,7 +56,9 @@ class Lottos {
 
   #calculateProfit() {
     return this.#ranks.reduce((profit, rankCount, index) => {
-      return profit + rankCount * profitByRank[index];
+      const currentRankProfit = rankCount * profitByRank[index];
+
+      return profit + currentRankProfit;
     }, 0);
   }
 }
