@@ -34,7 +34,12 @@ class App extends Component {
   }
 
   async checkRetry(retry) {
-    if (retry) await new App().play();
+    if (retry) await this.rePlay();
+  }
+
+  async rePlay() {
+    this.setUp();
+    await this.play();
   }
 }
 
