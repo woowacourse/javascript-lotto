@@ -17,6 +17,23 @@ class PurchaseView {
   #renderLottoCount(lottoCount) {
     $('#purchasedLottoCount').innerText = `총 ${lottoCount}개를 구매했습니다.`;
   }
+
+  #renderPurchasedLottoList(lottos) {
+    lottos.forEach((currentLotto) => {
+      $('#purchasedLottoList').insertAdjacentHTML(
+        'beforeend',
+        this.#getLottoInformationComponent(currentLotto)
+      );
+    });
+  }
+
+  #getLottoInformationComponent(currentLotto) {
+    return `
+      <div class="purchased-lotto">
+        <img class="lotto-icon" src="/src/images/lotto_icon.png" />
+        <div class="lotto-numbers">${currentLotto.join(', ')}</div>
+      </div>`;
+  }
 }
 
 export default PurchaseView;
