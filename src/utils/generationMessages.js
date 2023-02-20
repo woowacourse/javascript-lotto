@@ -44,7 +44,7 @@ const generationMessages = Object.freeze({
 
   statisticsMessage(statistics) {
     return AWARDS_ORDER.map((award) => getMessagesByStatistics(award, statistics[award] || 0)).join(
-      '\n'
+      LOTTO_MERGER
     );
   },
 
@@ -56,7 +56,7 @@ const generationMessages = Object.freeze({
     return [
       generationMessages.statisticsMessage(statistics),
       generationMessages.earningRateMessage(earningRate),
-    ].join('\n');
+    ].join(LOTTO_MERGER);
   },
 });
 
