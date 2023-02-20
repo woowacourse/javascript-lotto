@@ -34,7 +34,15 @@ describe("당첨번호와 보너스번호 Validations 단위 테스트", () => {
 
     expect(Validations.isCorrectRange(input)).toBeFalsy();
   });
+
+  test("당첨번호에 중복인 숫자가 있는지 확인하는 함수 테스트", () => {
+    const winningLotto = [1,1,2,3,4,5];
+
+    expect(Validations.isDuplicatedNumber(winningLotto)).toBeFalsy();
+  });
 });
+
+
 
 describe("보너스 번호 Validations 단위 테스트", () => {
   test("보너스 번호가 중복된 숫자인지 판별하는 함수 테스트", () => {
