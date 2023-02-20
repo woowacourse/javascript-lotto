@@ -1,0 +1,160 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--size-body);
+}
+
+:root {
+  /* color */
+  --color-primary: #4e5ba6;
+  --color-white: #ffffff;
+  --color-dark-white: #fcfcfd;
+  --color-grey: #b4b4b4;
+  --color-dark-grey: #8b8b8b;
+  --color-black: #000000;
+
+  /* font size */
+  --size-emoji: 34px;
+  --size-tile: 24px;
+  --size-subtitle: 20px;
+  --size-body: 15px;
+  --size-placeholer: 15px;
+  --size-caption: 14px;
+
+  /* bold */
+  --bold-extra: 700;
+  --bold-semi: 600;
+  --bold-bold: 500;
+  --bold-regular: 400;
+
+  /* Border-radius */
+  --borer-radius-regular: 5px;
+}
+
+/* etc */
+.text__center {
+  text-align: center;
+}
+
+/* navbar */
+.navbar {
+  width: 100%;
+  height: 64px;
+  display: table;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.title {
+  font-size: var(--size-tile);
+  font-weight: var(--bold-extra);
+}
+
+.navbar__title {
+  padding-left: 5rem;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* lotto */
+.lotto {
+  margin: 5rem 0;
+}
+
+.lotto__container {
+  width: 400px;
+  height: 600px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  border: 1px solid var(--color-grey);
+  border-radius: var(--borer-radius-regular);
+}
+
+.budget__form {
+  margin: 2rem 0;
+}
+
+.budget__label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#budget__input {
+  width: 20rem;
+  height: 2rem;
+  padding-left: 0.5rem;
+  border: 1px solid var(--color-grey);
+  border-radius: var(--borer-radius-regular);
+}
+
+.budget__button {
+  width: 3.3rem;
+  height: 2.3rem;
+  margin-left: 0.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--bold-bold);
+  border-radius: var(--borer-radius-regular);
+}
+
+/* ticket */
+.tickets__container {
+  margin: 1.3rem 0;
+  height: 250px;
+  overflow-y: auto;
+}
+
+.ticket {
+  margin: 0.7rem 0;
+}
+
+.ticket__emoji {
+  margin-right: 0.5rem;
+  font-size: var(--size-emoji);
+}
+
+.ticket__number {
+  display: inline-block;
+  text-align: center;
+  transform: translateY(-0.5rem);
+}
+
+/* winning */
+.sub__title {
+  margin-bottom: 1.3rem;
+}
+
+.winning__box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning__input > label,
+.bonus__input > label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#winning__number,
+#bonus__number {
+  width: 1.5rem;
+  height: 1.8rem;
+  border: 1px solid var(--color-grey);
+  border-radius: var(--borer-radius-regular);
+}
+
+#bonus__number {
+  float: right;
+}
+
+.winning__submit {
+  display: block;
+  width: 100%;
+  height: 36px;
+  margin-top: 2rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--size-caption);
+  font-weight: var(--bold-bold);
+  border: none;
+  border-radius: var(--borer-radius-regular);
+}

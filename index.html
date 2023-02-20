@@ -4,12 +4,73 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <title>행운의 로또</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <nav class="navbar">
+        <h1 class="title navbar__title">🎱 행운의 로또</h1>
+      </nav>
+      <section class="lotto">
+        <div class="lotto__container">
+          <h1 class="title text__center">🎱 내 번호 당첨 확인 🎱</h1>
+          <form class="budget__form" action="">
+            <label class="budget__label" for="budget__input">구입할 금액을 입력해주세요.</label>
+            <input type="text" id="budget__input" placeholder="금액" />
+            <button type="button" class="budget__button">구입</button>
+          </form>
+          <p>총 5개를 구매하였습니다.</p>
+          <div class="tickets__container">
+            <p class="ticket">
+              <span class="ticket__emoji">🎟</span>
+              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
+            </p>
+            <p class="ticket">
+              <span class="ticket__emoji">🎟</span>
+              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
+            </p>
+            <p class="ticket">
+              <span class="ticket__emoji">🎟</span>
+              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
+            </p>
+            <p class="ticket">
+              <span class="ticket__emoji">🎟</span>
+              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
+            </p>
+            <p class="ticket">
+              <span class="ticket__emoji">🎟</span>
+              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
+            </p>
+          </div>
+          <div class="winning__container">
+            <p class="sub__title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <form action="">
+              <div class="winning__box">
+                <div class="winning__input">
+                  <label for="winning__number">당첨 번호</label>
+                  <input type="text" id="winning__number" />
+                  <input type="text" id="winning__number" />
+                  <input type="text" id="winning__number" />
+                  <input type="text" id="winning__number" />
+                  <input type="text" id="winning__number" />
+                  <input type="text" id="winning__number" />
+                </div>
+                <div class="bonus__input">
+                  <label for="bonus__number">보너스 번호</label>
+                  <input type="text" id="bonus__number" />
+                </div>
+              </div>
+              <input type="submit" class="winning__submit" value="결과 확인하기" />
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
