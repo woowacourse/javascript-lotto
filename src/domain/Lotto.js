@@ -1,0 +1,22 @@
+class Lotto {
+  #numbers;
+
+  constructor(numbers) {
+    this.#numbers = numbers;
+  }
+
+  calculateMatchCount(winningNumbers) {
+    return this.#numbers.filter((number, idx) => number === winningNumbers[idx])
+      .length;
+  }
+
+  matchBonus(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
+
+  get numbers() {
+    return this.#numbers;
+  }
+}
+
+module.exports = Lotto;
