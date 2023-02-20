@@ -21,7 +21,7 @@ const OutputView = {
   generateProfitRateMessage(profitRate) {
     return `총 수익률은 ${profitRate.toFixed(2)}%입니다.`;
   },
-  // to-do : 메서드명 나중에 변경하기
+  // TODO: 메서드명 나중에 변경하기
   printBuyLottos(lottos) {
     Console.print(this.generateBuyAmountMessage(lottos.length));
     lottos.forEach((lotto) => {
