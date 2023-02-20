@@ -1,10 +1,10 @@
-import Console from "../utils/Console.js";
+import Console from "./utils/Console.js";
 import Validator from "../Validator.js";
-import InputView from "../view/InputView.js";
-import Lotto from "./Lotto.js";
-import Lottos from "./Lottos.js";
-import Random from "../utils/Random.js";
-import OutputView from "../view/OutputView.js";
+import InputView from "./view/InputView.js";
+import Lotto from "./domain/Lotto.js";
+import Lottos from "./domain/Lottos.js";
+import Random from "./utils/Random.js";
+import OutputView from "./view/OutputView.js";
 import { MESSAGES, SETTINGS, ERROR } from "../Config.js";
 
 class App {
