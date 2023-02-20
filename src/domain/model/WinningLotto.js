@@ -1,4 +1,4 @@
-import { BONUS, PRIZE } from '../constants/rank';
+import { BONUS, PRIZE } from '../../constants/rank';
 
 class WinningLotto {
   #lotto;

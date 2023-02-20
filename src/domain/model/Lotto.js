@@ -1,4 +1,4 @@
-import LottoFactory from './LottoFactory';
+import LottoFactory from '../LottoFactory';
 
 class Lotto {
   #numbers = [];
