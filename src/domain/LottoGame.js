@@ -1,12 +1,7 @@
 const Lotto = require("./Lotto");
 const WinLotto = require("../domain/WinLotto");
 const Random = require("../util/Random");
-const {
-  PRIZE,
-  RANK,
-  RANK_BY_CORRECT_COUNT,
-  LOTTO,
-} = require("../constant/Constant");
+const { PRIZE, RANK, LOTTO } = require("../constant/Constant");
 
 const RANK_RESULT = {
   [RANK.FIRST]: 0,
@@ -54,14 +49,15 @@ class LottoGame {
 
   calculateRank(numbers) {
     const winNumbers = this.#winLottos.numbers;
-
+    const bonusNumber = this.#winLottos.bonusNumber;
     const sameNumbers = numbers.filter((num) => winNumbers.includes(num));
     const correctCount = sameNumbers.length;
-    if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber)) {
-      return RANK_BY_CORRECT_COUNT["BONUS"];
-    }
-
-    return RANK_BY_CORRECT_COUNT[correctCount];
+    if (correctCount === 6) return RANK.FIRST;
+    if (correctCount === 5 && numbers.includes(bonusNumber)) return RANK.SECOND;
+    if (correctCount === 5) return RANK.THIRD;
+    if (correctCount === 4) return RANK.FOURTH;
+    if (correctCount === 3) return RANK.FIFTH;
+    return RANK.LOSER;
   }
 
   calculateRankResult() {
