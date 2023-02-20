@@ -8,8 +8,7 @@ class Lottos {
   #ranks = new Array(PROFIT_PER_RANK.length).fill(0);
 
   constructor(lottoCount) {
-    const emptyLottos = Array.from({ length: lottoCount }, () => []);
-    const lottos = emptyLottos.map(() =>
+    const lottos = Array.from({ length: lottoCount }).map(() =>
       randomNumberGenerator.generateLottoNumbers()
     );
 
@@ -48,17 +47,15 @@ class Lottos {
   #calculateProfitRate() {
     const profit = this.#calculateProfit();
     const purchasedPrice = this.#lottos.length * PRICE_UNIT;
-    const profitRate = (profit / purchasedPrice).toFixed(1);
 
-    return profitRate;
+    return (profit / purchasedPrice).toFixed(1);
   }
 
   #calculateProfit() {
-    const initialValue = 0;
-
-    return this.#ranks.reduce((profit, rankCount, index) => {
-      return profit + rankCount * PROFIT_PER_RANK[index];
-    }, initialValue);
+    return this.#ranks.reduce(
+      (profit, rankCount, index) => profit + rankCount * PROFIT_PER_RANK[index],
+      0
+    );
   }
 }
 module.exports = Lottos;
