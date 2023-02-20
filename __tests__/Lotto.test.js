@@ -16,6 +16,6 @@ describe('Lotto 클래스 테스트', () => {
   test('보너스 번호가 로또 번호에 존재하는지 판단한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
-    expect(lotto.isBonus(6)).toBe(true);
+    expect(lotto.matchBonus(6)).toBe(true);
   });
 });

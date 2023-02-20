@@ -10,7 +10,7 @@ class Lotto {
       .length;
   }
 
-  isBonus(bonusNumber) {
+  matchBonus(bonusNumber) {
     return this.#numbers.includes(bonusNumber);
   }
 

@@ -33,7 +33,7 @@ class LottoStatistics {
 
   getLottoRank(lotto, matchCount) {
     if (matchCount === 5) {
-      return lotto.isBonus(this.#correctLotto.bonusNumber)
+      return lotto.matchBonus(this.#correctLotto.bonusNumber)
         ? RANK.SECOND
         : RANK.THIRD;
     }
