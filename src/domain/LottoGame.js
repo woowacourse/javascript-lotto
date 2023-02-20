@@ -1,4 +1,4 @@
-import Lotto from "./domain/Lotto.js";
+import Lotto from "./Lotto.js";
 import Random from "../utils/Random.js";
 import { NUMBER } from "../constants.js";
 import Calculation from "../utils/Calculation.js";
