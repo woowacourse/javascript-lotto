@@ -34,12 +34,13 @@ class App {
   }
 
   async createLotto(lottoAmount) {
-    const lottos = Array.from(
+    const createdLotto = Array.from(
       { length: lottoAmount },
       () => new Lotto(Random.generateRandomNumbers())
     );
-    OutputView.printBuyLottos(lottos.lottos);
-    return new Lottos(lottos);
+    const lottos = new Lottos(createdLotto)
+    OutputView.printBuyLottos(lottos);
+    return lottos;
   }
 
   async getWinningLotto() {

@@ -26,7 +26,6 @@ const Validators = {
   },
 
   isCorrectRetryInput(retryInput) {
-    console.log(retryInput === Lotto.RETRY_DOWNER);
     return (
       retryInput === Lotto.RETRY_DOWNER || retryInput === Lotto.QUIT_DOWNER
     );

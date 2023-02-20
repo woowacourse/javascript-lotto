@@ -8,7 +8,7 @@ const OutputView = {
   },
 
   printLottos(lottos) {
-    lottos.forEach((lotto) => {
+    lottos.lottos.forEach((lotto) => {
       lotto.sortLottoNumbers();
       Console.print(lotto.lottoNumbers);
     });
@@ -34,7 +34,7 @@ const OutputView = {
   },
 
   printBuyLottos(lottos) {
-    this.printLottoAmount(lottos.length);
+    this.printLottoAmount(lottos.lottos.length);
     this.printLottos(lottos);
   },
 
