@@ -6,10 +6,10 @@ describe("Lotto 객체 단위테스트", () => {
     const lotto1 = new Lotto([8, 21, 23, 41, 42, 43]);
 
     const lottos = new Lottos([lotto1]);
-    lottos.addScoreBoard("3");
+    lottos.addScoreBoard(3);
 
     expect(lottos.getLottoRanking()).toEqual({
-      "3개 일치": 0,
+      "3개 일치": 1,
       "4개 일치": 0,
       "5개 일치": 0,
       "5개 일치, 보너스 볼 일치": 0,

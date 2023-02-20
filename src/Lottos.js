@@ -1,4 +1,4 @@
-import { MATCH, SCORE } from "./Config";
+import { ERROR, MATCH, SCORE } from "./Config";
 
 class Lottos {
   #lottos;
@@ -63,6 +63,9 @@ class Lottos {
         break;
       case 6:
         this.#lottoRanking[SCORE.SIX] += 1;
+        break;
+      default:
+        throw new Error(ERROR.DEFAULT_ERROR);
     }
   }
 
