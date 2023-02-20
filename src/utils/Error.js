@@ -3,13 +3,15 @@ export const ERROR_CODE = Object.freeze({
   INVALID_NUMBER_RANGE: 'INVALID_NUMBER_RANGE',
   INVALID_FORMAT: 'INVALID_FORMAT',
   INVALID_ERROR_CODE: 'INVALID_ERROR_CODE',
+  CANNOT_CREATE_INSTANCE: 'CANNOT_CREATE_INSTANCE',
 });
 
 const ERROR_MESSAGE = Object.freeze({
   INVALID_AMOUNT_UNIT: ({ unit }) => `[ERROR] ${unit}원 단위의 금액만 입력해 주세요.`,
   INVALID_NUMBER_RANGE: ({ min, max }) => `[ERROR] ${min}이상 ${max}이하의 숫자만 입력해 주세요.`,
-  INVALID_FORMAT: () => `[ERROR] 잘못된 입력 형식입니다.`,
+  INVALID_FORMAT: () => '[ERROR] 잘못된 입력 형식입니다.',
   INVALID_ERROR_CODE: () => '[ERROR] 잘못된 에러코드 입니다.',
+  CANNOT_CREATE_INSTANCE: () => '[ERROR] 추상 클래스로 인스턴스를 생성할 수 없습니다.',
 });
 
 const isValidErrorCode = (code) => code in ERROR_CODE;
