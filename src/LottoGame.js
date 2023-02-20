@@ -17,28 +17,35 @@ class LottoGame {
   #lottoStatistics;
 
   async play() {
-    await this.inputPurchasePrice();
-    this.showPurchasedLottos();
-    const winningNumbers = await this.inputWinningNumbers();
-    const bonusNumber = await this.inputBonusNumber(winningNumbers);
-    this.#lottoStatistics = new LottoStatistics(winningNumbers, bonusNumber);
-    this.showLottoStatistics();
-    await this.inputRestart();
+    await this.initLottoMachine();
+    this.showPurchasedLottos(this.#lottoMachine.lottos);
+    await this.initLottoStatistics();
+    this.showLottoStatistics(this.#lottoStatistics, this.#lottoMachine.lottos);
     await this.inputCommand();
   }
 
-  async inputPurchasePrice() {
+  async initLottoMachine() {
     try {
       const purchasePrice = await InputView.readPurchasePrice();
       this.#lottoMachine = new LottoMachine(parseInt(purchasePrice, 10));
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      await this.inputPurchasePrice();
+      await this.initLottoMachine();
     }
   }
 
-  async showPurchasedLottos() {
-    OutputView.printPurchasedLottos(this.#lottoMachine.lottos);
+  showPurchasedLottos(lottos) {
+    OutputView.printPurchasedLottos(lottos);
+  }
+
+  async initLottoStatistics() {
+    const winningNumbers = await this.inputWinningNumbers();
+    const bonusNumber = await this.inputBonusNumber(winningNumbers.numbers);
+
+    this.#lottoStatistics = new LottoStatistics(
+      winningNumbers.numbers,
+      bonusNumber.number
+    );
   }
 
   async inputWinningNumbers() {
