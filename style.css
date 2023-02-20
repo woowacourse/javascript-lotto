@@ -1,0 +1,80 @@
+:root {
+  /* color */
+  --color-primary: #4e5ba6;
+  --color-greyscale-1: #ffffff;
+  --color-greyscale-2: #fcfcfd;
+  --color-greyscale-3: #b4b4b4;
+  --color-greyscale-4: #8b8b8b;
+  --color-greyscale-5: #000000;
+
+  /* size */
+  --size-button: 50px;
+  --border-radius: 5px;
+  --base-space: 6px;
+  --size-font: 15px;
+  --size-thumbnail: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  background-color: var(--color-primary);
+  /* box-shadow: 0px 5px var(--color-greyscale-3); */
+}
+
+.header .title {
+  color: var(--color-greyscale-1);
+  font-size: 24px;
+  margin-left: 130px;
+}
+
+/* main */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.main .game {
+}
+
+.main .modal-statistics {
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border: 1px solid var(--color-primary);
+}
+
+.footer .copyright {
+  font-size: 14;
+  font-weight: bold;
+  color: var(--color-primary);
+}
