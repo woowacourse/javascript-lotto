@@ -20,6 +20,8 @@ class LottoGameView {
     this.profitRate = $('#profit-rate');
 
     this.addPurchaseInputEvent();
+    this.addWinningNumbersInputEvent();
+    this.addBonusNNumbersInputEvent();
   }
 
   addPurchaseSubmitEvent(callback) {
@@ -64,6 +66,22 @@ class LottoGameView {
 
       callback(winningNumbers, bonusNumber);
     });
+  }
+
+  addWinningNumbersInputEvent() {
+    this.winningNumbersInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        input.classList.remove('error-input');
+        this.hideErrorMessage('game-numbers');
+      });
+    });
+  }
+
+  addBonusNNumbersInputEvent() {
+    this.bonusNumberInput.addEventListener('input', (event) => {
+      event.target.classList.remove('error-input');
+      this.hideErrorMessage('game-numbers');
+    })
   }
 
   showErrorMessage(element, message) {
