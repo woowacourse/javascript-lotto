@@ -31,39 +31,39 @@ class App {
     this.controller = new Controller();
     purchase.addEventListener("click", () => {
       const error = this.pushPurchase(inputAmount.value);
-      inputAmount.value = "";
       if (error) return alert(error);
     });
   }
 
   pushPurchase(amount) {
+    inputAmount.value = "";
     const randomLotteries = this.controller.inputPurchaseAmount(amount);
     if (typeof randomLotteries === "string") return randomLotteries;
-    console.log(randomLotteries);
+    document.querySelector(
+      ".randomLottoAmount"
+    ).textContent = `${randomLotteries.length}`;
+    this.showRandomLottoList(randomLotteries);
+  }
+
+  showRandomLottoList(randomLotteries) {
     randomLotteries.forEach((numbers) => {
       randomLottoList.appendChild(this.makeEachRandomLotto(numbers));
     });
     inputAmountNext.style.display = "block";
   }
 
-  showRandomLottoList(numbers) {
-    this.makeEachRandomLotto(numbers);
-  }
-
   makeEachRandomLotto(numbers) {
     const rowElem = document.createElement("div");
-
-    const lottoImgElem = document.createElement("span");
-    lottoImgElem.classList.add("lottoImg");
-    lottoImgElem.textContent = "🎟";
-
-    const randomLottoNumbersElem = document.createElement("span");
-    randomLottoNumbersElem.classList.add("randomLottoNumbers");
-    randomLottoNumbersElem.textContent = numbers;
-
-    rowElem.appendChild(lottoImgElem);
-    rowElem.appendChild(randomLottoNumbersElem);
+    rowElem.appendChild(this.makeSpanElement("lottoImg", "🎟"));
+    rowElem.appendChild(this.makeSpanElement("randomLottoNumbers", numbers));
     return rowElem;
+  }
+
+  makeSpanElement(className, text) {
+    const elem = document.createElement("span");
+    elem.classList.add(className);
+    elem.textContent = text;
+    return elem;
   }
 }
 
