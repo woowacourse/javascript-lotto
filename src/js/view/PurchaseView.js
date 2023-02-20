@@ -14,6 +14,12 @@ class PurchaseView {
     $('#purchasedLottoList').innerHTML = '';
   }
 
+  render(lottos) {
+    this.clear();
+    this.#renderLottoCount(lottos.length);
+    this.#renderPurchasedLottoList(lottos);
+  }
+
   #renderLottoCount(lottoCount) {
     $('#purchasedLottoCount').innerText = `총 ${lottoCount}개를 구매했습니다.`;
   }
