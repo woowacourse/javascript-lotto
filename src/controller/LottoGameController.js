@@ -47,14 +47,14 @@ class LottoGameController {
       OutputView.printProfitRate(
         this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize(lottoRanksCount))
       );
-      InputView.readRestartCommand(this.#onSubimtRestartCommand.bind(this));
+      InputView.readRestartCommand(this.#onSubmitRestartCommand.bind(this));
     } catch (error) {
       Console.print(error.message);
       InputView.readLottoBonusNumber(this.#onSubmitLottoBonusNumber.bind(this));
     }
   }
 
-  #onSubimtRestartCommand(command) {
+  #onSubmitRestartCommand(command) {
     if (command === 'y') {
       this.play();
       return;
