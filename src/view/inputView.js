@@ -1,33 +1,36 @@
-const { consoleMessage } = require('../constants/constants');
-const Console = require('./Console');
+const { consoleMessage } = require("../constants/constants");
+const Console = require("./Console");
 
 const inputView = {
-  readPurchasePrice(callback) {
+  readPurchasePrice(createLottos) {
     Console.readLine(
       consoleMessage.ASK_PURCHASE_PRICE,
       (purchasePriceInput) => {
-        return callback(purchasePriceInput);
+        return createLottos(purchasePriceInput);
       }
     );
   },
-  readWinningNumbers(callback) {
+
+  readWinningNumbers(createWinningNumbers) {
     Console.readLine(
       consoleMessage.ASK_WINNING_NUMBERS,
       (winningNumbersInput) => {
-        return callback(winningNumbersInput);
+        return createWinningNumbers(winningNumbersInput);
       }
     );
   },
-  readBonusNumber(callback) {
+
+  readBonusNumber(createBonusNumber) {
     Console.readLine(consoleMessage.ASK_BONUS_NUMBER, (bonusNumberInput) => {
-      return callback(bonusNumberInput);
+      return createBonusNumber(bonusNumberInput);
     });
   },
-  readRestartCommand(callback) {
+
+  readRestartCommand(determineRestart) {
     Console.readLine(
       consoleMessage.ASK_RESTART_COMMAND,
       (restartCommandInput) => {
-        return callback(restartCommandInput);
+        return determineRestart(restartCommandInput);
       }
     );
   },
