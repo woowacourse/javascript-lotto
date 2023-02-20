@@ -7,12 +7,13 @@ export const LOTTO = {
 };
 
 export const RANKING = {
-  lost: null,
-  fifth: 5,
-  fourth: 4,
-  third: 3,
-  second: 2,
-  first: 1,
+  0: null,
+  1: null,
+  2: null,
+  3: 5,
+  4: 4,
+  5: (hasBonus) => (hasBonus ? 2 : 3),
+  6: 1,
 };
 
 export const COMMAND = {
