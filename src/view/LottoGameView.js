@@ -89,8 +89,6 @@ class LottoGameView {
   showRanks(ranks) {
     document.querySelectorAll('.match-count').forEach((element) => {
       element.textContent = `${ranks[element.dataset.index]}개`;
-
-      console.log(element.dataset.index);
     });
   }
 
