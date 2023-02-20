@@ -35,15 +35,19 @@ class LottoConsoleGame {
   }
 
   buyLotto() {
+    const randomNumbers = this.getRandomNumbers();
+
+    return new Lotto(randomNumbers);
+  }
+
+  getRandomNumbers() {
     const randomNumbers = [];
     while (randomNumbers.length < LOTTO.numbersLength) {
       const randomNumber = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
       if (!randomNumbers.includes(randomNumber)) randomNumbers.push(randomNumber);
     }
 
-    randomNumbers.sort((a, b) => a - b);
-
-    return new Lotto(randomNumbers);
+    return randomNumbers.sort((a, b) => a - b);
   }
 
   makeRankings(winningNumbers, bonusNumber) {
