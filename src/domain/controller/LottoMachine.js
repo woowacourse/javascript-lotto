@@ -22,7 +22,7 @@ class LottoMachine {
   constructor() {
     this.#machineInput = {
       money: null,
-      winning: null,
+      winning: new Winning(),
     };
   }
 
@@ -74,7 +74,6 @@ class LottoMachine {
       const winningNumbers = input
         .split(LOTTO_LITERAL.comma)
         .map((winningNumber) => Number(winningNumber));
-      this.#machineInput.winning = new Winning();
       this.#machineInput.winning.setWinningNumbers(winningNumbers);
       this.readBonusNumber();
     } catch (error) {
