@@ -1,10 +1,12 @@
-const { LOTTO_NUMBER } = require('../constant');
 const Console = require('./Console');
 
 const inputValidator = {
   isNumber: (number) => Number.isInteger(number),
-  isNumberInLottoRange: (number) =>
-    number <= LOTTO_NUMBER.lottoEnd && number >= LOTTO_NUMBER.lottoStart,
+  isNumberInLottoRange: (number) => {
+    const LOTTO_START = 1;
+    const LOTTO_END = 45;
+    return number <= LOTTO_END && number >= LOTTO_START;
+  },
   isUniqueArray: (array) => {
     const set = new Set(array);
     return set.size === array.length;
