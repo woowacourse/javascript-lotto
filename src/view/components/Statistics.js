@@ -1,5 +1,5 @@
 import Component from './Component.js';
-import { LottoStore } from '../../domain/Lotto.js';
+import LottoMachine from '../../domain/LottoMachine.js';
 import generationMessage from '../../utils/generationMessages.js';
 
 export default class Statistics extends Component {
@@ -8,8 +8,8 @@ export default class Statistics extends Component {
   }
 
   template() {
-    const statistics = LottoStore.calculateStatistics(this.lottoList);
-    const earningRate = LottoStore.calculateEarningRate(this.lottoList);
+    const statistics = LottoMachine.calculateStatistics(this.lottoList);
+    const earningRate = LottoMachine.calculateEarningRate(this.lottoList);
 
     return generationMessage.result({ statistics, earningRate });
   }

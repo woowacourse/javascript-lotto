@@ -2,7 +2,7 @@ import Component from './Component.js';
 import generationMessages from '../../utils/generationMessages.js';
 import Inputs from '../../utils/Inputs.js';
 import { PRICE } from '../../constants/values.js';
-import { LottoStore } from '../../domain/Lotto.js';
+import LottoMachine from '../../domain/LottoMachine.js';
 
 export default class Amount extends Component {
   #lottoCount;
@@ -17,7 +17,7 @@ export default class Amount extends Component {
     const amount = await Inputs.readAmount();
 
     this.#lottoCount = amount / PRICE;
-    this.#lottoList = LottoStore.purchase(this.#lottoCount);
+    this.#lottoList = LottoMachine.purchase(this.#lottoCount);
     this.setter({ total: this.#lottoCount, lottoList: this.#lottoList });
   }
 
