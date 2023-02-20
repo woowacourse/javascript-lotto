@@ -14,7 +14,8 @@ class LottoGameView {
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
     this.winningNumbersForm = $('.winning-numbers-container');
-    this.winningNumbersInput = $('.input--number')
+    this.winningNumbersInput = $('.input--number');
+    this.bonusNumberInput = $('input[name="bonus-number"]');
 
     this.addPurchaseInputEvent();
   }
@@ -41,12 +42,12 @@ class LottoGameView {
 
   showUserLottoPurchaseCount(count) {
     this.userLottoPurchaseCount.textContent = ConsoleMessage.purchaseCount(count);
-  } 
+  }
 
   showUserLottoList(lottoList) {
     lottoList.forEach((numbers) => {
       this.userLottoContainer.insertAdjacentHTML('beforeend', generateUserLottoNumbers(numbers));
-    })
+    });
   }
 
   showWinningNumbersForm() {
@@ -57,8 +58,12 @@ class LottoGameView {
   addWinningNumbersSubmitEvent(callback) {
     this.winningNumbersForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      const input = [...document.querySelectorAll('.input--number[name="winning-number"]')].map((element) => Number(element.value)); 
-      callback(input);
+      const winningNumbers = [...document.querySelectorAll('input[name="winning-number"]')].map(
+        (element) => Number(element.value)
+      );
+      const bonusNumber = document.querySelector('input[name="bonus-number"]').value;
+
+      callback(winningNumbers, bonusNumber);
     });
   }
 
