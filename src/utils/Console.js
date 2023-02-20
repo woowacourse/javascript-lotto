@@ -6,17 +6,10 @@ const rl = readline.createInterface({
 });
 
 const Console = {
-  readLine(question, callback) {
-    rl.question(question, callback);
-  },
-
-  print(data) {
-    console.log(data);
-  },
-
-  quit() {
-    rl.close();
-  },
+  readLine: (message) =>
+    new Promise((resolve) => rl.question(message, (input) => resolve(input))),
+  print: (data) => console.log(data),
+  quit: () => rl.close(),
 };
 
 module.exports = Console;

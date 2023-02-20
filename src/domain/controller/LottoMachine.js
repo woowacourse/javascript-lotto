@@ -26,81 +26,66 @@ class LottoMachine {
     };
   }
 
-  play() {
-    this.readMoney();
+  async play() {
+    await this.readMoney();
+    await this.readWinningNumbers();
+    await this.readBonusNumber();
+    await this.readRetryOption();
   }
 
-  readMoney() {
-    Console.readLine('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
-  }
-
-  readWinningNumbers() {
-    Console.readLine(
-      '\n> 당첨 번호를 입력해 주세요.',
-      this.#afterReadWinningNumbers
-    );
-  }
-
-  readBonusNumber() {
-    Console.readLine(
-      '\n> 보너스 번호를 입력해 주세요.',
-      this.#afterReadBonusNumber
-    );
-  }
-
-  readRetryOption() {
-    Console.readLine(
-      `\n> 다시 시작하시겠습니까? (${COMMAND_LITERAL.retry}/${COMMAND_LITERAL.quit})`,
-      this.#afterReadRetryOption
-    );
-  }
-
-  #afterReadMoney = (input) => {
+  async readMoney() {
     try {
-      this.#machineInput.money = new Money(input);
+      const userMoney = await Console.readLine('> 구입금액을 입력해 주세요.');
+      this.#machineInput.money = new Money(userMoney);
       outputView.printLottoCount(
         this.#machineInput.money.getAmount() / LOTTO_NUMBER.moneyUnit
       );
       this.#generateLottos(this.#machineInput.money.getAmount());
       this.#showLottos();
-      this.readWinningNumbers();
     } catch (error) {
       printErrorAndRetry(error, () => this.readMoney());
     }
-  };
+  }
 
-  #afterReadWinningNumbers = (input) => {
+  async readWinningNumbers() {
     try {
-      const winningNumbers = input
+      const userWinningNumbers = await Console.readLine(
+        '\n> 당첨 번호를 입력해 주세요.'
+      );
+      const winningNumbers = userWinningNumbers
         .split(LOTTO_LITERAL.comma)
         .map((winningNumber) => Number(winningNumber));
       this.#machineInput.winning.setWinningNumbers(winningNumbers);
-      this.readBonusNumber();
     } catch (error) {
       printErrorAndRetry(error, () => this.readWinningNumbers());
     }
-  };
+  }
 
-  #afterReadBonusNumber = (input) => {
+  async readBonusNumber() {
     try {
-      this.#machineInput.winning.setBonusNumber(Number(input));
+      const userBonusNumber = await Console.readLine(
+        '\n> 보너스 번호를 입력해 주세요.'
+      );
+      this.#machineInput.winning.setBonusNumber(Number(userBonusNumber));
       const ranks = this.#getCollectedRanks();
       const benefit = new Benefit();
       benefit.calculateRate(this.#machineInput.money.getAmount(), ranks);
       this.#showResult(benefit, ranks);
-      this.readRetryOption();
     } catch (error) {
       printErrorAndRetry(error, () => this.readBonusNumber());
     }
-  };
+  }
 
-  #afterReadRetryOption = (input) => {
+  async readRetryOption() {
     try {
-      this.#checkRetryOption(input);
+      const userCommand = await Console.readLine(
+        `\n> 다시 시작하시겠습니까? (${COMMAND_LITERAL.retry}/${COMMAND_LITERAL.quit})`
+      );
+      this.#checkRetryOption(userCommand);
     } catch (error) {
       printErrorAndRetry(error, () => this.readRetryOption());
     }
-  };
+  }
 
   #checkRetryOption(input) {
     if (input === COMMAND_LITERAL.retry) return this.#retry();
