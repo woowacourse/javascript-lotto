@@ -1,8 +1,9 @@
 // const InputView = require("./view/InputView");
 // const OutputView = require("./view/OutputView");
-const LottoGame = require("./domain/LottoGame");
-const Validation = require("./Validation");
-const { COMMAND } = require("./constants");
+
+import LottoGame from "./domain/LottoGame.js";
+import Validation from "./Validation.js";
+import { COMMAND } from "./constants.js";
 
 class Controller {
   #lottoGame;
@@ -56,9 +57,7 @@ class Controller {
   // }
 
   convertLotto(lottoNumbers) {
-    this.#lottoNumbers = lottoNumbers
-      .split(",")
-      .map((number) => +number.trim());
+    this.lottoNumbers = lottoNumbers.split(",").map((number) => +number.trim());
   }
 
   // async inputBonusNumber() {
@@ -75,8 +74,8 @@ class Controller {
 
   generateLottoGameResult() {
     const lottoResult = this.#lottoGame.getRankResult(
-      this.#lottoNumbers,
-      this.#bonusNumber
+      this.lottoNumbers,
+      this.bonusNumber
     );
     OutputView.printResult(lottoResult);
     this.inputRestartCommand();
@@ -102,4 +101,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+export default Controller;
