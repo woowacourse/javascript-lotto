@@ -1,4 +1,4 @@
-const { NUMBER, PRIZE } = require("../constants");
+import { NUMBER, PRIZE } from "../constants.js";
 
 const Calculation = {
   //rank = [0,0,0,0,0]
@@ -17,4 +17,4 @@ const Calculation = {
   },
 };
 
-module.exports = Calculation;
+export default Calculation;

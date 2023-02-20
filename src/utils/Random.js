@@ -1,4 +1,4 @@
-const { NUMBER } = require("../constants");
+import { NUMBER } from "../constants.js";
 
 const Random = {
   generateRandomNumbers() {
@@ -23,4 +23,4 @@ const Random = {
   },
 };
 
-module.exports = Random;
+export default Random;

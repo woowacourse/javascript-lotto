@@ -1,4 +1,4 @@
-const { ERROR, NUMBER, COMMAND } = require("./constants");
+import { ERROR, NUMBER, COMMAND } from "./constants.js";
 
 const Validation = {
   purchaseAmount(amount) {
@@ -59,4 +59,4 @@ const Validation = {
   },
 };
 
-module.exports = Validation;
+export default Validation;

@@ -1,7 +1,7 @@
-const Lotto = require("./Lotto");
-const Random = require("../utils/Random");
-const { NUMBER, PRIZE } = require("../constants");
-const Calculation = require("../utils/calculation");
+import Lotto from "./domain/Lotto.js";
+import Random from "../utils/Random.js";
+import { NUMBER } from "../constants.js";
+import Calculation from "../utils/Calculation.js";
 
 class LottoGame {
   constructor(amount) {
@@ -39,4 +39,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+export default LottoGame;
