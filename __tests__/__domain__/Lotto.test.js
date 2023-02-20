@@ -16,7 +16,7 @@ const generateLotto = ({ lottoCount, lottoNumbers, drawingNumbers }) =>
     .map(() => new Lotto(lottoNumbers).setDrawingNumbers(drawingNumbers));
 
 describe('LottoMachine 클래스', () => {
-  test('구입 금액만큼 로또를 구매한다', () => {
+  test('purchase : 구입 금액만큼 로또 인스턴스를 생성하여 배열로 담아 반환한다.', () => {
     const lottoList = LottoMachine.purchase(LOTTO_COUNT);
 
     expect(lottoList.length).toBe(LOTTO_COUNT);
@@ -51,7 +51,7 @@ describe('LottoMachine 클래스', () => {
       winningPlace: 5,
     },
   ])(
-    '로또 번호와 당첨 번호를 비교하여 당첨 결과를 확인한다',
+    'draw : 로또 번호와 당첨 번호, 보너스 번호를 받아 비교하여 당첨 결과를 반환한다.',
     ({ lottoCount, lottoNumbers, drawingNumbers, winningPlace }) => {
       const [lotto] = generateLotto({ lottoCount, lottoNumbers, drawingNumbers });
 
@@ -61,7 +61,7 @@ describe('LottoMachine 클래스', () => {
     }
   );
 
-  test('당첨 통계를 계산한다', () => {
+  test('calculateStatistics : 로또 리스트를 받아 당첨 통계를 계산한다.', () => {
     const lottoList = generateLotto({
       lottoCount: LOTTO_COUNT,
       lottoNumbers: LOTTO_NUMBERS,
@@ -75,7 +75,7 @@ describe('LottoMachine 클래스', () => {
     });
   });
 
-  test('총 수익률을 계산한다', () => {
+  test('calculateEarningRate : 로또 리스트를 받아 총 수익률을 계산한다.', () => {
     const lottoList = generateLotto({
       lottoCount: LOTTO_COUNT,
       lottoNumbers: LOTTO_NUMBERS,
