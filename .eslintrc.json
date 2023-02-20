@@ -1,11 +1,38 @@
 {
-  "rules": {},
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "plugins": [
+    "functional"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base/legacy",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    // 프로그래밍 요구 사항
+    "functional/no-let": "error",
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2],
+    "max-lines-per-function": ["error", 10],
+
+    // 임의 규칙
+    "class-methods-use-this": "off"
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.js"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "no-new": "off"
+      }
+    }
+  ]
 }
