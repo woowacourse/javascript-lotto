@@ -51,7 +51,9 @@ class LottoGameController {
   inputWinningNumbers() {
     inputView.readWinningNumbers((winningNumbersInput) => {
       try {
-        this.inputBonusNumber(winningNumbersInput);
+        exception.handleWinningNumbers(winningNumbersInput);
+        this.#winningNumbers = winningNumbersInput.split(',').map(Number);
+        this.inputBonusNumber();
       } catch (error) {
         Console.print(error.message);
         this.inputWinningNumbers();
@@ -59,12 +61,13 @@ class LottoGameController {
     });
   }
 
-  inputBonusNumber(winningNumbersInput) {
-    inputView.readBonusNumber((bonusNumberinput) => {
+  inputBonusNumber() {
+    inputView.readBonusNumber((bonusNumberInput) => {
       try {
+        exception.handleBonusNumber(this.#winningNumbers, bonusNumberInput);
         this.#winningNumbers = new WinningNumbers(
-          winningNumbersInput,
-          bonusNumberinput
+          this.#winningNumbers,
+          bonusNumberInput
         );
 
         this.showResult();

@@ -1,18 +1,12 @@
-const exception = require('../../utils/exception');
-
 class WinningNumbers {
   #winningNumbers;
 
   #bonusNumber;
 
-  constructor(winningNumbersInput, bonusNumberInput) {
-    exception.handleWinningNumbers(winningNumbersInput);
-    const winningNumbers = winningNumbersInput.split(',').map(Number);
-
+  constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
 
-    exception.handleBonusNumber(winningNumbers, bonusNumberInput);
-    this.#bonusNumber = Number(bonusNumberInput);
+    this.#bonusNumber = Number(bonusNumber);
   }
 
   getWinningNumbers() {
