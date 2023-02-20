@@ -2,7 +2,6 @@ const Benefit = require('../model/Benefit');
 const Money = require('../model/Money');
 const Winning = require('../model/Winning');
 const Lotto = require('../model/Lotto');
-const inputHandler = require('../../view/inputView');
 const outputView = require('../../view/outputView');
 const { pickRandomNumberInRange, printErrorAndRetry } = require('../../utils');
 const Console = require('../../utils/Console');
@@ -32,25 +31,25 @@ class LottoMachine {
   }
 
   readMoney() {
-    inputHandler('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
+    Console.readLine('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
   }
 
   readWinningNumbers() {
-    inputHandler(
+    Console.readLine(
       '\n> 당첨 번호를 입력해 주세요.',
       this.#afterReadWinningNumbers
     );
   }
 
   readBonusNumber() {
-    inputHandler(
+    Console.readLine(
       '\n> 보너스 번호를 입력해 주세요.',
       this.#afterReadBonusNumber
     );
   }
 
   readRetryOption() {
-    inputHandler(
+    Console.readLine(
       `\n> 다시 시작하시겠습니까? (${COMMAND_LITERAL.retry}/${COMMAND_LITERAL.quit})`,
       this.#afterReadRetryOption
     );
