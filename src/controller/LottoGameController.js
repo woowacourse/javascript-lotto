@@ -15,7 +15,6 @@ class LottoGameController {
   #bindPurchaseEvent() {
     this.#lottoGameView.addPurchaseSubmitEvent(this.#handlePurchaseSubmit.bind(this));
   }
-  
 
   #handlePurchaseSubmit(purchaseAmount) {
     try {
@@ -23,10 +22,8 @@ class LottoGameController {
       const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch ({ message }) {
-      this.#lottoGameView.purchaseInput.classList.add('error-input');
       this.#lottoGameView.showErrorMessage('purchase', message);
-      this.#lottoGameView.purchaseInput.value = '';
-      this.#lottoGameView.purchaseInput.focus();
+      this.#handleReinputError(this.#lottoGameView.purchaseInput);
     }
   }
 
@@ -46,10 +43,9 @@ class LottoGameController {
       Validation.verifyLottoNumbers(winningNumbers);
       this.#handleBonusNumber(winningNumbers, bonusNumber);
     } catch ({ message }) {
-      this.#lottoGameView.winningNumbersInput.classList.add('error-input');
       this.#lottoGameView.showErrorMessage('game-numbers', message);
+      this.#handleReinputError(this.#lottoGameView.winningNumbersInput);
       this.#lottoGameView.winningNumbersForm.reset();
-      this.#lottoGameView.winningNumbersInput.focus();
     }
   }
 
@@ -60,10 +56,8 @@ class LottoGameController {
       this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
       this.#handleGameResult();
     } catch ({ message }) {
-      this.#lottoGameView.bonusNumberInput.classList.add('error-input');
       this.#lottoGameView.showErrorMessage('game-numbers', message);
-      this.#lottoGameView.bonusNumberInput.value = '';
-      this.#lottoGameView.bonusNumberInput.focus();
+      this.#handleReinputError(this.#lottoGameView.bonusNumberInput);
     }
   }
 
@@ -94,6 +88,12 @@ class LottoGameController {
 
   //   OutputView.close();
   // }
+
+  #handleReinputError(element) {
+    element.classList.add('error-input');
+    element.value = '';
+    element.focus();
+  }
 }
 
 export default LottoGameController;
