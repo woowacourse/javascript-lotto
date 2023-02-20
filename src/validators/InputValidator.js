@@ -1,5 +1,5 @@
-const Validation = require('../util/Validation');
-const LottoValidator = require('./LottoValidator');
+import Validation from '../util/Validation';
+import LottoValidator from './LottoValidator';
 
 const InputValidator = {
   checkUserBudget(userBudget) {
@@ -25,4 +25,4 @@ const InputValidator = {
   },
 };
 
-module.exports = InputValidator;
+export default InputValidator;

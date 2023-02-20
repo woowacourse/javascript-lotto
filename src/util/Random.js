@@ -4,4 +4,4 @@ const Random = {
   },
 };
 
-module.exports = Random;
+export default Random;

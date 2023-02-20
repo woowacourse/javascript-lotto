@@ -1,4 +1,4 @@
-const LottoGameController = require('./controller/LottoGameController');
+import LottoGameController from './controller/LottoGameController';
 
 class App {
   start() {
@@ -6,4 +6,4 @@ class App {
   }
 }
 
-module.exports = App;
+export default App;

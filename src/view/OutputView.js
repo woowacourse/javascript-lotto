@@ -1,4 +1,5 @@
-const Console = require('../util/Console');
+import Console from '../util/Console';
+
 const labels = [
   '3개 일치 (5,000원) - ',
   '4개 일치 (50,000원) - ',
@@ -38,4 +39,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

@@ -1,6 +1,6 @@
-const generateLottoNumbers = require('./LottoNumbersGenerator');
-const LottoTicket = require('./LottoTicket');
-const Converter = require('../util/Converter');
+import generateLottoNumbers from './LottoNumbersGenerator';
+import LottoTicket from './LottoTicket';
+import Converter from '../util/Converter';
 
 const Rank = {
   6: 1,
@@ -59,4 +59,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+export default LottoGame;

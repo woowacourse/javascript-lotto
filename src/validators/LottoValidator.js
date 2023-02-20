@@ -1,4 +1,4 @@
-const Validation = require('../util/Validation');
+import Validation from '../util/Validation';
 
 const LottoValidator = {
   checkLottoNumbers(lottoNumbers) {
@@ -19,4 +19,4 @@ const LottoValidator = {
   },
 };
 
-module.exports = LottoValidator;
+export default LottoValidator;

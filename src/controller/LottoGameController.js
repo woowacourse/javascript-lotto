@@ -1,9 +1,9 @@
-const InputView = require('../view/InputView');
-const OutputView = require('../view/OutputView');
-const LottoGame = require('../domain/LottoGame');
-const Console = require('../util/Console');
-const InputValidator = require('../validators/InputValidator');
-const LottoTicket = require('../domain/LottoTicket');
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
+import LottoGame from '../domain/LottoGame';
+import Console from '../util/Console';
+import InputValidator from '../validators/InputValidator';
+import LottoTicket from '../domain/LottoTicket';
 
 class LottoGameController {
   play() {
@@ -63,4 +63,4 @@ class LottoGameController {
   }
 }
 
-module.exports = LottoGameController;
+export default LottoGameController;

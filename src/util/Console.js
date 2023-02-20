@@ -1,4 +1,4 @@
-const readline = require('readline');
+import readline from 'readline';
 
 const readLine = readline.createInterface({
   input: process.stdin,
@@ -19,4 +19,4 @@ const Console = {
   },
 };
 
-module.exports = Console;
+export default Console;
