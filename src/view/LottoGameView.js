@@ -17,6 +17,7 @@ class LottoGameView {
     this.winningNumbersForm = $('#winning-numbers-form');
     this.winningNumbersInput = $('.input--number');
     this.bonusNumberInput = $('input[name="bonus-number"]');
+    this.resultModal = $('.result-container');
 
     this.addPurchaseInputEvent();
   }
@@ -78,6 +79,10 @@ class LottoGameView {
     const domElement = $(`#${element}-error`);
     domElement.textContent = '';
     domElement.style.opacity = 0;
+  }
+
+  showResultModal() {
+    this.resultModal.style.display = 'flex';
   }
 }
 

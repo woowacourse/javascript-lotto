@@ -58,6 +58,7 @@ class LottoGameController {
       const BONUS_NUMBER = Number(bonusNumber);
       Validation.verifyBonusNumber(winningNumbers, BONUS_NUMBER);
       this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
+      this.#handleGameResult();
     } catch ({ message }) {
       this.#lottoGameView.bonusNumberInput.classList.add('error-input');
       this.#lottoGameView.showErrorMessage('game-numbers', message);
@@ -66,10 +67,10 @@ class LottoGameController {
     }
   }
 
-  // #handleGameResult() {
-  //   const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-  //   OutputView.printResult(RANKS, PROFIT_RATE);
-  // }
+  #handleGameResult() {
+    const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
+    this.#lottoGameView.showResultModal();
+  }
 
   // async #handleRestart() {
   //   try {
