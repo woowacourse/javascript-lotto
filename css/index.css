@@ -83,21 +83,28 @@ label {
   margin-bottom: var(--spacing-2);
 }
 
-input[type='text'] {
+input[type='number'] {
   padding: var(--spacing-2);
   border: 1px solid var(--gray-2);
   border-radius: var(--spacing-1);
   outline: 0;
+  -moz-appearance: textfield;
 }
 
-input[type='text']::placeholder {
+input[type='number']::placeholder {
   color: var(--gray-3);
   opacity: 1;
 }
 
-input[type='text']:focus {
+input[type='number']:focus {
   border: 1px solid #97cee5;
   box-shadow: 0 0 0 3px rgba(131, 192, 253, 0.5);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 button {
