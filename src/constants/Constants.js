@@ -70,7 +70,7 @@ const ConsoleMessage = Object.freeze({
       `6개 일치 (${formatNumber(Prize[1])}원) - ${ranks[1]}개`,
     ];
   },
-  profitRateResult: (profitRate) => `총 수익률은 ${formatNumber(profitRate)}% 입니다.`,
+  profitRateResult: (profitRate) => `당신의 총 수익률은 ${formatNumber(profitRate)}% 입니다.`,
   RESTART: `다시 시작하시겠습니까? (${StaticValue.RESTART_CONTROL}/${StaticValue.QUIT_CONTROL}) `,
 });
 

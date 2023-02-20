@@ -86,6 +86,14 @@ class LottoGameView {
     this.resultModal.style.display = 'flex';
   }
 
+  showRanks(ranks) {
+    document.querySelectorAll('.match-count').forEach((element) => {
+      element.textContent = `${ranks[element.dataset.index]}개`;
+
+      console.log(element.dataset.index);
+    });
+  }
+
   showProfitRate(profitRate) {
     this.profitRate.textContent = ConsoleMessage.profitRateResult(profitRate);
   }
