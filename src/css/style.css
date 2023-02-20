@@ -9,7 +9,9 @@
   --lotto-greyscale-3: #b4b4b4;
   --lotto-greyscale-4: #8b8b8b;
   --lotto-greyscale-5: #000000;
+  --lotto-primary-transparent: #4e5ba6cc;
   --lotto-greyscale-5-transparent: #0000001f;
+  --lotto-orange: #ed7d31;
 }
 
 * {
@@ -100,6 +102,11 @@ input:focus {
 .app-input {
   background-color: var(--lotto-greyscale-1);
   border: 1px solid var(--lotto-greyscale-5-transparent);
+  transition: 0.2s;
+}
+
+.app-input:focus {
+  border-color: var(--lotto-greyscale-3);
 }
 
 .app-button {
@@ -111,13 +118,18 @@ input:focus {
   font-weight: 700;
   cursor: pointer;
   border: none;
+  transition: 0.2s;
+}
+
+.app-button:hover {
+  background-color: var(--lotto-primary-transparent);
 }
 
 .budget-input-menu {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-bottom: 28px;
+  margin-bottom: 3px;
 }
 
 .budget-input-form {
@@ -132,6 +144,23 @@ input:focus {
 
 .buy-button {
   width: 56px;
+}
+
+.error-message-area {
+  display: flex;
+  height: 25px;
+  gap: 3px;
+}
+
+.error-icon {
+  width: 17.5px;
+  height: 15px;
+}
+
+.error-message {
+  font-size: 14px;
+  font-weight: 15px;
+  color: var(--lotto-orange);
 }
 
 .purchased-lotto-menu {
