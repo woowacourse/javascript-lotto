@@ -20,6 +20,18 @@ class PurchaseView {
     this.#renderPurchasedLottoList(lottos);
   }
 
+  #setListener() {
+    console.log({ buyButton: $('#buyButton') });
+    $('#buyButton').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const budget = getFormData($('#budgetInputForm')).budget;
+      const trimmedBudget = Number(budget);
+
+      this.#submitBudget(trimmedBudget);
+    });
+  }
+
   #renderLottoCount(lottoCount) {
     $('#purchasedLottoCount').innerText = `총 ${lottoCount}개를 구매했습니다.`;
   }
