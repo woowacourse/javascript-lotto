@@ -31,3 +31,53 @@
   - [x] GameBoard: 게임 결과를 저장하는 객체. 게임 번호, 보너스 번호, 당첨 여부, 등수 등등을 반환한다.
 - [x] 다른 파일에서 view와 domain의 의존성 제거하기 오직 controller에서만 묶어서 사용하도록 작성
 - [x] 역할, 책임, 분리에 맞춰 메서드명 재작성
+
+---
+
+# 2차 기능 요구사항
+
+**모듈화에 대해 고민한다. - 도메인과 UI 관심사의 분리**
+
+- 1단계에서 구현한 도메인 로직을 수정하지 않고, UI만 변경한다.
+
+**일관성 있고 의도가 드러나는 마크업을 작성하기 위해 노력한다.**
+
+- 목적에 맞는 HTML 태그를 사용한다.
+- CSS 속성 선언 순서의 일관성을 고려한다.
+
+  **CSS 속성 순서**
+
+  ````
+  display --객체의 노출여부/표현방식--
+  list-style
+  position --위치/좌표--
+  float
+  clear
+  width / height --크기/여백--
+  padding / margin
+  border / background --윤곽/배경--
+  color / font --글자/정렬--
+  text-decoration
+  text-align / vertical-align
+  white-space
+  other text
+  content --내용--```
+  ````
+
+**CSS 문법 사용에 익숙해진다.**
+
+- CSS 속성은 가능하면 축약형(shorthand)을 사용한다.
+- flexbox를 활용해 레이아웃을 구성한다.
+
+## View
+
+- [ ] 헤더 생성
+- [ ] 푸터 생성
+- [ ] 메인 콘텐츠 생성
+- [ ] Modal창 구현
+
+## 기능
+
+- [ ] "구입" 입력시 당첨번호 입력 template 구현
+- [ ] 올바른 당첨번호 입력시 "결과 확인하기" 가능
+- [ ] "다시 시작하기" 클릭시에 새로운 게임 생성
