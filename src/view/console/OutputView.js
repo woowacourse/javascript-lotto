@@ -23,7 +23,7 @@ const OutputView = {
   },
 
   printError(error) {
-    Console.print(`${OUTPUT.ERROR_PREFIX} ${error.messages}`);
+    Console.print(`${OUTPUT.ERROR_PREFIX} ${error.message}`);
   },
 };
 
