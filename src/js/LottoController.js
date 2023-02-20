@@ -13,6 +13,17 @@ class LottoController {
     this.#purchaseView.render(this.#lottoGame.getBoughtLottos());
     this.#showErrorIfInvalidBudget(budget);
   }
+
+  #showErrorIfInvalidBudget(budget) {
+    const budgetErrorView = new ErrorView($('#buyErrorArea'), $('#budgetInput'));
+
+    try {
+      validator.throwErrorIfInvalidBudget(budget);
+      budgetErrorView.hideErrorMessage();
+    } catch ({ message }) {
+      budgetErrorView.renderErrorMessage(message);
+    }
+  }
 }
 
 export default LottoController;
