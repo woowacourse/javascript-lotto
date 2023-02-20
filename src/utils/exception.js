@@ -17,11 +17,6 @@ const exception = {
 
     throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ERROR);
   },
-  handleRestartCommand(input) {
-    if (validator.isRestartCommandValid(input)) return;
-
-    throw new Error(ERROR_MESSAGE.RESTART_COMMAND_ERROR);
-  },
 };
 
 module.exports = exception;

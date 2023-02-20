@@ -1,8 +1,13 @@
-const { PRICE_UNIT, RESTART_COMMAND } = require('../constants/constants');
+const {
+  PRICE_UNIT,
+  RESTART_COMMAND,
+  ERROR_MESSAGE,
+} = require('../constants/constants');
 const Lottos = require('../domain/model/Lottos');
 const WinningNumbers = require('../domain/model/WinningNumbers');
 const exception = require('../utils/exception');
 const Console = require('../view/Console');
+const validator = require('../domain/validation/validator');
 const inputView = require('../view/inputView');
 const outputView = require('../view/outputView');
 
@@ -84,14 +89,13 @@ class LottoGameController {
 
   inputRestartCommand() {
     inputView.readRestartCommand((restartCommandInput) => {
-      try {
-        exception.handleRestartCommand(restartCommandInput);
-        if (restartCommandInput === RESTART_COMMAND.YES) return this.restart();
-        Console.close();
-      } catch (error) {
-        Console.print(error.message);
-        this.inputRestartCommand();
-      }
+      if (validator.isRestartCommandValid(restartCommandInput))
+        return restartCommandInput === RESTART_COMMAND.YES
+          ? this.restart()
+          : Console.close();
+
+      Console.print(ERROR_MESSAGE.RESTART_COMMAND_ERROR);
+      this.inputRestartCommand();
     });
   }
 
