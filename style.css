@@ -1,0 +1,12 @@
+:root {
+  --title-font: 24px/36 800 'Roboto';
+  --subtitle-font: 20px/24 600 'Roboto';
+  --body-font: 15px/24 400 'Roboto';
+  --caption-font:14px/24 700 'Roboto';
+  --primary-color:#4E5BA6;
+  --greyscale-1-color:#ffffff;
+  --greyscale-2-color:#FCFCFD;
+  --greyscale-3-color:#B4B4B4;
+  --greyscale-4-color:#8B8B8B;
+  --greyscale-5-color:#000000;
+}
