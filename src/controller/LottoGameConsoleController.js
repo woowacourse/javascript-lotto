@@ -2,7 +2,7 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoGame from '../domain/feature/LottoGame.js';
 
-class LottoGameStep1Controller {
+class LottoGameConsoleController {
   #lottoGame;
 
   constructor() {
@@ -78,4 +78,4 @@ class LottoGameStep1Controller {
   }
 }
 
-export default LottoGameStep1Controller;
+export default LottoGameConsoleController;
