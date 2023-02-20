@@ -13,12 +13,14 @@ class LottoController {
     this.#LottoMachine = new LottoMachine();
   }
   async start() {
-    await this.handleMoneyInput();
+    const moneyInput = await this.handleMoneyInput();
+    this.processMoneyInput(moneyInput);
     const winningNumber = await this.handleWinningNumber();
     const bonusNumber = await this.handleBonusNumber();
     const statistics = this.#LottoMachine.calculateStatistics(winningNumber, bonusNumber);
     this.printStatistics(statistics);
-    await this.handleRestart();
+    const restartInput = await this.handleRestart();
+    this.processRestartInput(restartInput);
   }
 
   async handleMoneyInput() {
@@ -26,13 +28,18 @@ class LottoController {
 
     try {
       inputValidator.validateMoneyInput(moneyInput);
-      OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.output.lottoCount);
-      this.#LottoMachine.buyLotto(+moneyInput);
-      OutputView.printLottos(this.#LottoMachine.lottos);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleMoneyInput();
     }
+
+    return moneyInput;
+  }
+
+  processMoneyInput(moneyInput) {
+    OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.output.lottoCount);
+    this.#LottoMachine.buyLotto(+moneyInput);
+    OutputView.printLottos(this.#LottoMachine.lottos);
   }
 
   async handleWinningNumber() {
@@ -77,11 +84,16 @@ class LottoController {
 
     try {
       inputValidator.validateRestartInput(restartInput);
-      this.restartOrFinishLotto(restartInput);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.handleRestart();
     }
+
+    return restartInput;
+  }
+
+  processRestartInput(restartInput) {
+    this.restartOrFinishLotto(restartInput);
   }
 }
 
