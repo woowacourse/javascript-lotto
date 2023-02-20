@@ -1,7 +1,7 @@
 const {
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
-} = require('../constants/constants');
+} = require("../constants/constants");
 
 const randomNumberGenerator = {
   generateRandomNumber() {
@@ -25,11 +25,11 @@ const randomNumberGenerator = {
   },
 
   fillLottoNumbers(lottoNumbers, randomNumber) {
-    if (!this.isNumberDuplicate(lottoNumbers, randomNumber))
+    if (!this.isNumberDuplicated(lottoNumbers, randomNumber))
       lottoNumbers.push(randomNumber);
   },
 
-  isNumberDuplicate(lottoNumbers, randomNumber) {
+  isNumberDuplicated(lottoNumbers, randomNumber) {
     return lottoNumbers.includes(randomNumber);
   },
 
