@@ -12,6 +12,10 @@ class ErrorView {
     this.#focusElement.select();
   }
 
+  hideErrorMessage() {
+    this.#errorAreaElement.innerHTML = '';
+  }
+
   #getErrorElement(message) {
     return `
       <img class="error-icon" class="error-icon" src="./src/images/error_icon.png" />
