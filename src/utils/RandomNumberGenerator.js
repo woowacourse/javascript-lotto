@@ -21,7 +21,7 @@ const randomNumberGenerator = {
       this.fillLottoNumbers(lottoNumbers, randomNumber);
     }
 
-    return this.sortLottoNumbers(lottoNumbers);
+    return lottoNumbers.sort((a, b) => a - b);
   },
 
   fillLottoNumbers(lottoNumbers, randomNumber) {
@@ -31,10 +31,6 @@ const randomNumberGenerator = {
 
   isNumberDuplicated(lottoNumbers, randomNumber) {
     return lottoNumbers.includes(randomNumber);
-  },
-
-  sortLottoNumbers(lottoNumbers) {
-    return lottoNumbers.sort((a, b) => a - b);
   },
 };
 
