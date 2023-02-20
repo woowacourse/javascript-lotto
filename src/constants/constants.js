@@ -15,6 +15,14 @@ const lottoNumberRange = Object.freeze({
   MAX_LOTTO_NUMBER: 45,
 });
 
+const ranks = Object.freeze({
+  FIRST_RANK: 1,
+  SECOND_RANK: 2,
+  THIRD_RANK: 3,
+  FOURTH_RANK: 4,
+  FIFTH_RANK: 5,
+});
+
 const profit = Object.freeze({
   FIRST_RANK: 2_000_000_000,
   SECOND_RANK: 30_000_000,
@@ -82,6 +90,7 @@ module.exports = {
   regex,
   EMPTY_STRING,
   lottoNumberRange,
+  ranks,
   profit,
   profitByRank,
   LOTTO_NUMBER_COUNT,
