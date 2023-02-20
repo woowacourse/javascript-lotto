@@ -22,6 +22,7 @@ class LottoMachine {
   }
 
   buyLotto(money) {
+    this.#lottos = [];
     const targetLottoLength = Math.floor(money / 1000);
 
     while (this.#lottos.length < targetLottoLength) {
