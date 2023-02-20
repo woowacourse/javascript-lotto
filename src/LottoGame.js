@@ -68,14 +68,13 @@ class LottoGame {
     }
   }
 
-  showLottoStatistics() {
-    const winningLottos = this.#lottoStatistics.determineAllLottosRank(
-      this.#lottoMachine.lottos
-    );
-    const profitRate = this.#lottoStatistics.calculateProfitRate(
+  showLottoStatistics(lottoStatistics, lottos) {
+    const winningLottos = lottoStatistics.determineAllLottosRank(lottos);
+    const profitRate = lottoStatistics.calculateProfitRate(
       winningLottos,
-      this.#lottoMachine.lottos.length * LOTTO_UNIT_PRICE
+      lottos.length * LOTTO_UNIT_PRICE
     );
+
     OutputView.printStatistics(winningLottos, profitRate);
   }
 
