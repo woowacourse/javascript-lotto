@@ -1,6 +1,6 @@
-import RandomGenerator from '../RandomGenerator';
 import { isPositiveInteger } from '../validation';
 import Lotto from './Lotto';
+import LottoFactory from './LottoFactory';
 import WinningLotto from './WinningLotto';
 
 class LottoMachine {
@@ -28,7 +28,7 @@ class LottoMachine {
   generateLottos(money) {
     const amount = this.getLottoAmount(money);
     return Array.from({ length: amount }, () => {
-      return new Lotto(RandomGenerator.pickRandomNumbers());
+      return new Lotto(LottoFactory.generateNumbers());
     });
   }
 
