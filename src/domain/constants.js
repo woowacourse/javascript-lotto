@@ -1,11 +1,11 @@
 export const LOTTO_PRICE = 1000;
 
 export const PRIZE_MONEY = Object.freeze({
-  first: 2000000000,
-  second: 30000000,
-  third: 1500000,
-  fourth: 50000,
-  fifth: 5000,
+  first: 2_000_000_000,
+  second: 30_000_000,
+  third: 1_500_000,
+  fourth: 50_000,
+  fifth: 5_000,
 });
 
 export const PLACE = {
