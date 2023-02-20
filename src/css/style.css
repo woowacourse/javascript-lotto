@@ -100,7 +100,6 @@ input:focus {
 .app-input {
   background-color: var(--lotto-greyscale-1);
   border: 1px solid var(--lotto-greyscale-5-transparent);
-  padding: 8px 0 8px 8px;
 }
 
 .app-button {
@@ -114,17 +113,85 @@ input:focus {
   border: none;
 }
 
-.budget-input-box {
+.budget-input-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.budget-input-form {
   display: flex;
   gap: 16px;
 }
 
 .budget-input {
   width: 310px;
+  padding: 8px 0 8px 8px;
 }
 
 .buy-button {
   width: 56px;
+}
+
+.purchased-lotto-menu {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.purchased-lotto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.purchased-lotto {
+  display: flex;
+  gap: 8px;
+}
+
+.lotto-icon {
+  width: 34px;
+  height: 36px;
+}
+
+.lotto-numbers {
+  margin-top: 6px;
+  height: 24px;
+}
+
+.winning-lotto-input-form {
+  margin-top: 12px;
+}
+
+.winning-lotto-bonus-number-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-numbers-input {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 27px 0;
+}
+
+.winning-number-input,
+.bonus-number-input {
+  width: 34px;
+  height: 36px;
+  text-align: center;
+}
+
+.bonus-number-input {
+  margin-left: auto;
+}
+
+.result-button {
+  width: 100%;
 }
 
 .app-footer {

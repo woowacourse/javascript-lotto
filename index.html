@@ -17,10 +17,55 @@
       <div class="app-body">
         <div class="app-screen">
           <h2 class="app-screen-title">🎱 내 번호 당첨 확인 🎱</h2>
-          <span class="app-information-text">구입할 금액을 입력해주세요.</span>
-          <div class="budget-input-box">
-            <input type="number" class="app-input budget-input" placeholder="금액" />
-            <input type="button" class="app-button buy-button" value="구입" />
+
+          <div class="budget-input-menu">
+            <span class="app-information-text">구입할 금액을 입력해주세요.</span>
+            <form class="budget-input-form">
+              <input type="number" class="app-input budget-input" placeholder="금액" />
+              <input type="submit" class="app-button buy-button" value="구입" />
+            </form>
+          </div>
+
+          <div class="purchased-lotto-menu">
+            <span class="app-information-text">총 7개를 구매하였습니다.</span>
+            <div class="purchased-lotto-list">
+              <div class="purchased-lotto">
+                <img class="lotto-icon" src="/src/images/lotto_icon.png" />
+                <div class="lotto-numbers">24, 35, 10, 9, 45, 33</div>
+              </div>
+              <div class="purchased-lotto">
+                <img class="lotto-icon" src="/src/images/lotto_icon.png" />
+                <div class="lotto-numbers">24, 35, 10, 9, 45, 33</div>
+              </div>
+              <div class="purchased-lotto">
+                <img class="lotto-icon" src="/src/images/lotto_icon.png" />
+                <div class="lotto-numbers">24, 35, 10, 9, 45, 33</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="winning-lotto-input-menu">
+            <span class="app-information-text">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </span>
+            <form class="winning-lotto-input-form">
+              <div class="winning-lotto-bonus-number-text">
+                <span class="app-information-text">당첨 번호</span>
+                <span class="app-information-text">보너스 번호</span>
+              </div>
+
+              <div class="winning-numbers-input">
+                <input class="winning-number-input app-input" type="number" />
+                <input class="winning-number-input app-input" type="number" />
+                <input class="winning-number-input app-input" type="number" />
+                <input class="winning-number-input app-input" type="number" />
+                <input class="winning-number-input app-input" type="number" />
+                <input class="winning-number-input app-input" type="number" />
+                <input class="bonus-number-input app-input" type="number" />
+              </div>
+
+              <input type="submit" class="app-button result-button" value="결과 확인하기" />
+            </form>
           </div>
         </div>
       </div>
