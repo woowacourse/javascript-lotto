@@ -1,5 +1,5 @@
-import WinningLotto from '../src/domain/WinningLotto';
-import Lotto from '../src/domain/Lotto';
+import WinningLotto from '../src/domain/object/WinningLotto';
+import Lotto from '../src/domain/object/Lotto';
 import Validator from '../src/domain/Validator';
 
 describe('WinningLotto 클래스 테스트', () => {

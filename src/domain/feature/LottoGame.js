@@ -1,7 +1,7 @@
-import Validator from './Validator.js';
-import Lotto from './Lotto.js';
-import WinningLotto from './WinningLotto.js';
-import { COMMAND, LOTTO_PRICE, PRIZE, LOTTO_NUMBER } from '../utils/constants.js';
+import Validator from '../Validator.js';
+import Lotto from '../object/Lotto.js';
+import WinningLotto from '../object/WinningLotto.js';
+import { COMMAND, LOTTO_PRICE, PRIZE, LOTTO_NUMBER } from '../../utils/constants.js';
 
 class LottoGame {
   #lottos = [];

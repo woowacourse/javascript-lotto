@@ -1,6 +1,6 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import LottoGame from '../domain/LottoGame.js';
+import LottoGame from '../domain/feature/LottoGame.js';
 
 class LottoGameStep1Controller {
   #lottoGame;

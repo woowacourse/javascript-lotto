@@ -1,4 +1,4 @@
-import LottoGame from '../src/domain/LottoGame';
+import LottoGame from '../src/domain/feature/LottoGame';
 import Validator from '../src/domain/Validator';
 
 describe('LottoGame 클래스 테스트', () => {
