@@ -25,9 +25,9 @@ class RandomNumberGenerator {
 
   fillLottoNumbers() {
     const randomNumber = this.generateRandomNumber();
-    if (!this.isNumberDuplicate(randomNumber)) return randomNumber;
+    if (this.isNumberDuplicate(randomNumber)) this.fillLottoNumbers();
 
-    return this.fillLottoNumbers();
+    return randomNumber;
   }
 
   isNumberDuplicate(randomNumber) {
