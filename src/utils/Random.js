@@ -1,4 +1,4 @@
-import { SETTINGS } from "./Config";
+import { SETTINGS } from "../constants/Config";
 
 const Random = {
   getnerateRandomNumbers() {

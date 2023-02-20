@@ -1,4 +1,4 @@
-const Validations = {
+const Validator = {
   isNumber(input) {
     return isNaN(input) ? false : true;
   },
@@ -25,13 +25,8 @@ const Validations = {
   },
 
   isCorrectRetryInput(retryInput) {
-    return (
-      retryInput === "y" ||
-      retryInput === "Y" ||
-      retryInput === "n" ||
-      retryInput === "N"
-    );
+    return retryInput === "y" || retryInput === "n";
   },
 };
 
-export default Validations;
+export default Validator;

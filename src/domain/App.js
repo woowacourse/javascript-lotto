@@ -1,11 +1,11 @@
-import Console from "./Console.js";
-import Validations from "./Validations.js";
-import InputView from "./view/InputView.js";
+import Console from "../utils/Console.js";
+import Validator from "../Validator.js";
+import InputView from "../view/InputView.js";
 import Lotto from "./Lotto.js";
 import Lottos from "./Lottos.js";
-import Random from "./Random.js";
-import OutputView from "./OutputView.js";
-import { MESSAGES, SETTINGS, ERROR } from "./Config.js";
+import Random from "../utils/Random.js";
+import OutputView from "../view/OutputView.js";
+import { MESSAGES, SETTINGS, ERROR } from "../Config.js";
 
 class App {
   #winningLotto;
@@ -50,13 +50,13 @@ class App {
   }
 
   validateBuyMoney(buyMoney) {
-    if (!Validations.isNumber(buyMoney)) {
+    if (!Validator.isNumber(buyMoney)) {
       throw new ERROR(ERROR.NUMBER_TYPE);
     }
-    if (!Validations.isDividedByThousand(buyMoney)) {
+    if (!Validator.isDividedByThousand(buyMoney)) {
       throw new ERROR(ERROR.MONEY_UNIT);
     }
-    if (!Validations.isPositiveInteger(buyMoney)) {
+    if (!Validator.isPositiveInteger(buyMoney)) {
       throw new ERROR(ERROR.POSITIVE_INTEGER);
     }
   }
@@ -81,7 +81,7 @@ class App {
   }
 
   validateWinningNumbers() {
-    if (!Validations.isDuplicatedNumber(this.#winningLotto)) {
+    if (!Validator.isDuplicatedNumber(this.#winningLotto)) {
       throw new ERROR(ERROR.DUPLICATED_NUMBER);
     }
     for (let i = 0; i < this.#winningLotto.length; i++) {
@@ -90,13 +90,13 @@ class App {
   }
 
   checkEachNumber(eachNumber) {
-    if (!Validations.isNumber(eachNumber)) {
+    if (!Validator.isNumber(eachNumber)) {
       throw new ERROR(ERROR.NUMBER_TYPE);
     }
-    if (!Validations.isCorrectRange(eachNumber)) {
+    if (!Validator.isCorrectRange(eachNumber)) {
       throw new ERROR(ERROR.CORRECT_NUMBER_RANGE);
     }
-    if (!Validations.isPositiveInteger(eachNumber)) {
+    if (!Validator.isPositiveInteger(eachNumber)) {
       throw new ERROR(ERROR.POSITIVE_INTEGER);
     }
   }
@@ -105,8 +105,8 @@ class App {
     const bonusNumber = await InputView.inputBonusNumber(
       MESSAGES.INPUT_BONUSNUMBER
     );
-    this.#bonusNumber = Number(bonusNumber);
     try {
+      this.#bonusNumber = Number(bonusNumber);
       this.validateBonusNumber();
       this.checkEachNumber(this.#bonusNumber);
       this.compareLottos();
@@ -117,17 +117,19 @@ class App {
   }
 
   validateBonusNumber() {
-    if (Validations.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
+    if (Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
       throw new ERROR(ERROR.HAS_BONUS_NUMBER);
     }
   }
 
   compareLottos() {
     const lottos = new Lottos(this.#lottoArray);
+
     lottos.getLottos().forEach((lotto) => {
       lotto.compareNumbers(this.#winningLotto);
       lotto.checkBonusNumber(this.#bonusNumber);
     });
+
     lottos.compareLottosScore();
     this.printResult(lottos);
   }
@@ -162,7 +164,7 @@ class App {
   }
 
   validateRetryInput(retryInput) {
-    if (!Validations.isCorrectRetryInput(retryInput)) {
+    if (!Validator.isCorrectRetryInput(retryInput)) {
       throw new ERROR(ERROR.CORRECT_RETRY_INPUT);
     }
   }

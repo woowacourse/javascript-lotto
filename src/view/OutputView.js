@@ -1,12 +1,5 @@
-import Console from "./Console.js";
-
-const moneyBoard = {
-  "3개 일치": "5,000",
-  "4개 일치": "50,000",
-  "5개 일치": "1,500,000",
-  "5개 일치, 보너스 볼 일치": "30,000,000",
-  "6개 일치": "2,000,000,000",
-};
+import { MATCH, MESSAGES, SETTINGS } from "../constants/Config.js";
+import Console from "../utils/Console.js";
 
 const OutputView = {
   printLottoAmount(lottoAmount) {
@@ -21,14 +14,16 @@ const OutputView = {
   },
 
   printResultMessage() {
-    Console.print("당첨통계");
-    Console.print("-".repeat(20));
+    Console.print(MESSAGES.PRINT_RESULT);
+    Console.print(
+      MESSAGES.PRINT_DIVISION.repeat(SETTINGS.REPEAT_PRINT_DIVISION)
+    );
   },
 
   printLottoResults(lottos) {
     for (const score in lottos.getLottoRanking()) {
       Console.print(
-        `${score} (${moneyBoard[score]}원) - ${
+        `${score} (${MATCH.MONEY_BOARD[score]}${SETTINGS.MONEY_UNIT}) - ${
           lottos.getLottoRanking()[score]
         }개`
       );
@@ -38,7 +33,7 @@ const OutputView = {
   printTotalBenefit(lottos) {
     Console.print(
       `총 수익률은 ${lottos.getBenefitRate(
-        lottos.getLottos().length * 1000
+        lottos.getLottos().length * SETTINGS.DIVIDE_MONEY_VALUE
       )}% 입니다.`
     );
   },

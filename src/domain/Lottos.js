@@ -1,4 +1,4 @@
-import { ERROR, MATCH, SCORE } from "./Config";
+import { ERROR, MATCH, SCORE } from "../Config";
 
 class Lottos {
   #lottos;
@@ -37,6 +37,7 @@ class Lottos {
   determineAddScore(lotto) {
     const failScore = [SCORE.ZERO, SCORE.ONE, SCORE.TWO];
     const score = lotto.getScore();
+
     if (failScore.includes(score)) return;
     score === 5 ? this.determineBonusOrNot(lotto) : this.addScoreBoard(score);
   }
