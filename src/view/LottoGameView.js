@@ -1,5 +1,5 @@
 import { ConsoleMessage } from '../constants/Constants.js';
-import { $ } from '../utils/DomSelector.js';
+import { $, $$ } from '../utils/DomSelector.js';
 import { generateUserLottoNumbers } from '../utils/Template.js';
 
 class LottoGameView {
@@ -14,7 +14,7 @@ class LottoGameView {
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
     this.winningNumbersForm = $('#winning-numbers-form');
-    this.winningNumbersInput = $('.input--number');
+    this.winningNumbersInputs = $$('input[name="winning-number"]');
     this.bonusNumberInput = $('input[name="bonus-number"]');
     this.resultModal = $('.result-container');
     this.profitRate = $('#profit-rate');
@@ -56,13 +56,11 @@ class LottoGameView {
     });
   }
 
-  addWinningNumbersSubmitEvent(callback) {
+  addGameNumbersSubmitEvent(callback) {
     this.winningNumbersForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      const winningNumbers = [...document.querySelectorAll('input[name="winning-number"]')].map(
-        (element) => Number(element.value)
-      );
-      const bonusNumber = document.querySelector('input[name="bonus-number"]').value;
+      const winningNumbers = [...this.winningNumbersInputs].map((element) => Number(element.value));
+      const bonusNumber = Number(this.bonusNumberInput.value);
 
       callback(winningNumbers, bonusNumber);
     });

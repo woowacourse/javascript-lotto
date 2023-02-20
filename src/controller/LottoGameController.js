@@ -12,11 +12,11 @@ class LottoGameController {
   }
 
   #bindEvents() {
-    this.#lottoGameView.addPurchaseSubmitEvent(this.#handlePurchaseSubmit.bind(this));
-    this.#lottoGameView.addWinningNumbersSubmitEvent(this.#handleWinningNumbers.bind(this));
+    this.#lottoGameView.addPurchaseSubmitEvent(this.#handlePurchase.bind(this));
+    this.#lottoGameView.addGameNumbersSubmitEvent(this.#handleWinningNumbers.bind(this));
   }
 
-  #handlePurchaseSubmit(purchaseAmount) {
+  #handlePurchase(purchaseAmount) {
     try {
       Validation.verifyPurchaseAmount(purchaseAmount);
       const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
@@ -41,16 +41,15 @@ class LottoGameController {
       this.#handleBonusNumber(winningNumbers, bonusNumber);
     } catch ({ message }) {
       this.#lottoGameView.showErrorMessage('game-numbers', message);
-      this.#handleReinputError(this.#lottoGameView.winningNumbersInput);
+      this.#handleReinputError(this.#lottoGameView.winningNumbersInputs[0]);
       this.#lottoGameView.winningNumbersForm.reset();
     }
   }
 
   #handleBonusNumber(winningNumbers, bonusNumber) {
     try {
-      const BONUS_NUMBER = Number(bonusNumber);
-      Validation.verifyBonusNumber(winningNumbers, BONUS_NUMBER);
-      this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
+      Validation.verifyBonusNumber(winningNumbers, bonusNumber);
+      this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#handleGameResult();
     } catch ({ message }) {
       this.#lottoGameView.showErrorMessage('game-numbers', message);
