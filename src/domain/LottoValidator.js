@@ -7,11 +7,12 @@ const LottoValidator = {
     InputValidator.checkFallApart(money, LOTTO.price);
   },
   checkWinningNumber(winningNumber) {
-    InputValidator.checkArrayLength(winningNumber.split(','), LOTTO.length);
-    winningNumber.split(',').forEach((number) => {
+    const numbers = winningNumber.split(',');
+    InputValidator.checkArrayLength(numbers, LOTTO.length);
+    numbers.forEach((number) => {
       LottoValidator.checkLottoNumber(number);
     });
-    InputValidator.checkDuplicatedNumbers(winningNumber.split(','));
+    InputValidator.checkDuplicatedNumbers(numbers);
   },
   checkLottoNumber(number) {
     InputValidator.checkNaturalNumber(number);
