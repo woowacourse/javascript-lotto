@@ -10,7 +10,7 @@ class LottoController {
 
   #commandHandler = Object.freeze({
     [COMMAND.RETRY]: this.startGame.bind(this),
-    [COMMAND.EXIT]: this.#exitGame.bind(this),
+    [COMMAND.EXIT]: this.#exitGame,
   });
 
   startGame() {
@@ -83,7 +83,8 @@ class LottoController {
       const retryCommand = await view.input(MESSAGE.ASK_RETRY);
       validator.validateRetryCommand(retryCommand);
       this.#commandHandler[retryCommand]();
-    } catch ({ message }) {
+    } catch (message) {
+      console.log(message);
       this.handleCaughtError(message, this.#askRetry.bind(this));
     }
   }
