@@ -13,7 +13,7 @@ class LottoGameView {
     this.userLottos = $('.user-lottos');
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
-    this.winningNumbersContainer = $('.winning-numbers-container');
+    this.startContainer = $('.start-container');
     this.winningNumbersForm = $('#winning-numbers-form');
     this.winningNumbersInput = $('.input--number');
     this.bonusNumberInput = $('input[name="bonus-number"]');
@@ -40,7 +40,12 @@ class LottoGameView {
   showUserLottos(purchaseCount, userLottoList) {
     this.showUserLottoPurchaseCount(purchaseCount);
     this.showUserLottoList(userLottoList);
-    this.showWinningNumbersForm();
+    this.showStartContainer();
+  }
+
+  showStartContainer() {
+    this.startContainer.style.opacity = 1;
+    this.startContainer.style.pointerEvents = 'all';
   }
 
   showUserLottoPurchaseCount(count) {
@@ -51,11 +56,6 @@ class LottoGameView {
     lottoList.forEach((numbers) => {
       this.userLottoContainer.insertAdjacentHTML('beforeend', generateUserLottoNumbers(numbers));
     });
-  }
-
-  showWinningNumbersForm() {
-    this.winningNumbersContainer.style.opacity = 1;
-    this.winningNumbersContainer.style.pointerEvents = 'all';
   }
 
   addWinningNumbersSubmitEvent(callback) {

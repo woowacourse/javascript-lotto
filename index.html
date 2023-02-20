@@ -14,98 +14,98 @@
       </header>
       <main>
         <div class="game-container">
-          <h2>🎱 내 번호 당첨 확인 🎱</h2>
-          <form action="submit" id="purchase-form">
-            <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
-            <div>
-              <input
-                type="number"
-                name="purchase-amount"
-                id="purchase-input"
-                placeholder="금액은 1000원 단위로 입력해주세요."
-                autocomplete="off"
-                required
-              />
-              <button type="submit" id="purchase-button">구입</button>
-            </div>
-            <p class="error-message" id="purchase-error"></p>
-          </form>
-          <div class="user-lottos">
-            <p id="user-lotto-purchase"></p>
-            <div class="user-lotto-container"></div>
-          </div>
-          <div class="winning-numbers-container">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <p class="winning-numbers-sub-info">
-              1~45 사이의 중복되지 않는 숫자들을 입력해 주세요.
-            </p>
-            <form action="submit" id="winning-numbers-form">
+          <div class="setup-container">
+            <h2>🎱 내 번호 당첨 확인 🎱</h2>
+            <form action="submit" id="purchase-form">
+              <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
               <div>
-                <fieldset id="winning-numbers-field">
-                  <legend>당첨 번호</legend>
-                  <input
-                    type="number"
-                    name="winning-number"
-                    class="input--number"
-                    data-index="1"
-                    autocomplete="off"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="winning-number"
-                    class="input--number"
-                    data-index="2"
-                    autocomplete="off"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="winning-number"
-                    class="input--number"
-                    data-index="3"
-                    autocomplete="off"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="winning-number"
-                    class="input--number"
-                    data-index="4"
-                    autocomplete="off"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="winning-number"
-                    class="input--number"
-                    data-index="5"
-                    autocomplete="off"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="winning-number"
-                    class="input--number"
-                    data-index="6"
-                    autocomplete="off"
-                    required
-                  />
-                </fieldset>
-                <fieldset id="bonus-number-field">
-                  <legend>보너스 번호</legend>
-                  <input
-                    type="number"
-                    name="bonus-number"
-                    class="input--number"
-                    autocomplete="off"
-                    required
-                  />
-                </fieldset>
+                <input
+                  type="number"
+                  name="purchase-amount"
+                  id="purchase-input"
+                  placeholder="금액은 1000원 단위로 입력해주세요."
+                  autocomplete="off"
+                  required
+                />
+                <button type="submit" id="purchase-button">구입</button>
               </div>
-              <p class="error-message" id="game-numbers-error">1~45 사이의 숫자를 입력해 주세요.</p>
-              <button type="submit">결과 확인하기</button>
+              <p class="error-message" id="purchase-error"></p>
             </form>
+          </div>
+          <div class="start-container">
+            <div class="user-lottos">
+              <p id="user-lotto-purchase"></p>
+              <div class="user-lotto-container"></div>
+            </div>
+            <div class="winning-numbers-container">
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <p class="winning-numbers-sub-info">
+                1~45 사이의 중복되지 않는 숫자들을 입력해 주세요.
+              </p>
+              <form action="submit" id="winning-numbers-form">
+                <div>
+                  <fieldset id="winning-numbers-field">
+                    <legend>당첨 번호</legend>
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                  </fieldset>
+                  <fieldset id="bonus-number-field">
+                    <legend>보너스 번호</legend>
+                    <input
+                      type="number"
+                      name="bonus-number"
+                      class="input--number"
+                      autocomplete="off"
+                      required
+                    />
+                  </fieldset>
+                </div>
+                <p class="error-message" id="game-numbers-error">
+                  1~45 사이의 숫자를 입력해 주세요.
+                </p>
+                <button type="submit">결과 확인하기</button>
+              </form>
+            </div>
           </div>
         </div>
       </main>

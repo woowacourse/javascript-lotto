@@ -157,6 +157,11 @@ button:active {
   height: 18px;
 }
 
+.start-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .user-lotto-container {
   height: 284px;
   display: flex;
@@ -178,8 +183,6 @@ button:active {
 
 .winning-numbers-container {
   bottom: var(--spacing-3);
-  opacity: 0;
-  pointer-events: none;
 }
 
 .winning-numbers-sub-info {
