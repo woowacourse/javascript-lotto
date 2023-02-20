@@ -26,7 +26,7 @@ class LottoController {
 
     try {
       inputValidator.validateMoneyInput(moneyInput);
-      OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.OUTPUT.LOTTO_COUNT);
+      OutputView.printMessage(moneyInput / values.LOTTO_PRICE + messages.output.lottoCount);
       this.#LottoMachine.buyLotto(+moneyInput);
       OutputView.printLottos(this.#LottoMachine.lottos);
     } catch (error) {
@@ -69,7 +69,7 @@ class LottoController {
       return this.start();
     }
 
-    rlConsole.close();
+    return rlConsole.close();
   }
 
   async handleRestart() {

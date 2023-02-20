@@ -12,8 +12,8 @@ const inputValidator = {
 
   validateMoneyInput(number) {
     this.validateWithCondition([
-      { condition: validatorUtils.isPositiveInteger(+number), errorMessage: messages.ERROR.POSITIVE_INTEGER },
-      { condition: validatorUtils.isThousandsOfWon(+number), errorMessage: messages.ERROR.THOUSANDS_WON },
+      { condition: validatorUtils.isPositiveInteger(+number), errorMessage: messages.error.positiveInteger },
+      { condition: validatorUtils.isThousandsOfWon(+number), errorMessage: messages.error.thousandsWon },
     ]);
   },
 
@@ -24,29 +24,29 @@ const inputValidator = {
       this.validateWithCondition([
         {
           condition: validatorUtils.isPositiveInteger(+number),
-          errorMessage: messages.ERROR.VALID_SIX_NUMBER,
+          errorMessage: messages.error.validSixNumbers,
         },
         {
           condition: validatorUtils.isInRange(+number),
-          errorMessage: messages.ERROR.VALID_SIX_NUMBER,
+          errorMessage: messages.error.validSixNumbers,
         },
       ]);
     });
     this.validateWithCondition([
-      { condition: validatorUtils.hasNoBlank(winningNumberSplit), errorMessage: messages.ERROR.HAS_BLANK },
+      { condition: validatorUtils.hasNoBlank(winningNumberSplit), errorMessage: messages.error.hasBlank },
     ]);
   },
 
   validateBonusNumberInput(number) {
     this.validateWithCondition([
-      { condition: validatorUtils.isPositiveInteger(+number), errorMessage: messages.ERROR.POSITIVE_INTEGER },
-      { condition: validatorUtils.isInRange(+number), errorMessage: messages.ERROR.IN_RANGE },
+      { condition: validatorUtils.isPositiveInteger(+number), errorMessage: messages.error.POSITIVE_INTEGER },
+      { condition: validatorUtils.isInRange(+number), errorMessage: messages.error.inRange },
     ]);
   },
 
   validateRestartInput(restartInput) {
     this.validateWithCondition([
-      { condition: validatorUtils.yOrN(restartInput), errorMessage: messages.ERROR.Y_OR_N },
+      { condition: validatorUtils.yOrN(restartInput), errorMessage: messages.error.yOrN },
     ]);
   },
 };
