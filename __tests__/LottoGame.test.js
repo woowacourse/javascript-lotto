@@ -1,5 +1,3 @@
-const BonusNumber = require('../src/domain/BonusNumber');
-const WinningNumbers = require('../src/domain/WinningNumbers');
 const LottoGame = require('../src/LottoGame');
 
 describe('LottoGame 클래스 테스트', () => {
