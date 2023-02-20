@@ -10,13 +10,13 @@ import {
 import checkRetryFormat from './retry.js';
 
 const ValidationInputs = {
-  async amount(amount, errorCallback) {
+  amount(amount, errorCallback) {
     try {
       return this.checkAmount(amount);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback(errorCallback);
+      return errorCallback(errorCallback);
     }
   },
 
@@ -26,13 +26,13 @@ const ValidationInputs = {
     return Number(amount);
   },
 
-  async winningNumbers(winningNumbers, errorCallback) {
+  winningNumbers(winningNumbers, errorCallback) {
     try {
       return this.checkWinningNumbers(winningNumbers);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback(errorCallback);
+      return errorCallback(errorCallback);
     }
   },
 
@@ -45,13 +45,13 @@ const ValidationInputs = {
     return winningNumbers;
   },
 
-  async bonusNumber(bonusNumber, errorCallback) {
+  bonusNumber(bonusNumber, errorCallback) {
     try {
       return this.checkBonusNumber(bonusNumber);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback(errorCallback);
+      return errorCallback(errorCallback);
     }
   },
 
@@ -64,13 +64,13 @@ const ValidationInputs = {
     return bonusNumber;
   },
 
-  async retry(command, errorCallback) {
+  retry(command, errorCallback) {
     try {
       return this.checkRetry(command);
     } catch (error) {
       Console.print(error.message);
 
-      return await errorCallback(errorCallback);
+      return errorCallback(errorCallback);
     }
   },
 
