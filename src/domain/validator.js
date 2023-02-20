@@ -6,7 +6,6 @@ import {
   LOTTO_NUMBER_LENGTH,
   REGEX_FINDING_NOT_NUMBER,
 } from "../constants";
-import { outputView } from "../view/outputView";
 
 const {
   NOT_MULTIPLES_OF_THOUSAND,
@@ -19,6 +18,36 @@ const {
 } = ERROR_MESSAGE;
 const { RESTART, QUIT } = RESPONSE_AFTER_GAME_ENDS;
 const { MIN, MAX } = LOTTO_NUMBER_RANGE;
+
+export const validatePurchaseAmount = (purchaseAmount) => {
+  validator.checkInteger(purchaseAmount);
+  validator.checkPurchaseAmount(Number(purchaseAmount));
+};
+
+export const validateWinningLottoNumbers = (winningLottoNumberStrings) => {
+  winningLottoNumberStrings.forEach((winningLottoNumber) =>
+    validator.checkInteger(winningLottoNumber)
+  );
+
+  const winningLottoNumbers = winningLottoNumberStrings.map((number) => Number(number));
+
+  validator.checkDuplicates(winningLottoNumbers);
+  validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
+  validator.checkListLengthIsSix(winningLottoNumbers);
+};
+
+export const validateBonusNumber = (bonusNumberString, winningLottoNumbers) => {
+  validator.checkInteger(bonusNumberString);
+
+  const bonusNumber = Number(bonusNumberString);
+
+  validator.checkBonusNumberBetween1And45(bonusNumber);
+  validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
+};
+
+export const validateRestartOrQuitCommend = (commend) => {
+  validator.checkRestartOrQuitCommend(commend);
+};
 
 export const validator = {
   checkPurchaseAmount(purchaseAmount) {
@@ -68,65 +97,4 @@ export const validator = {
       throw new Error(NOT_Y_NOR_N);
     }
   },
-};
-
-export const validatePurchaseAmount = (purchaseAmount) => {
-  try {
-    validator.checkInteger(purchaseAmount);
-    validator.checkPurchaseAmount(Number(purchaseAmount));
-
-    return true;
-  } catch (error) {
-    outputView.print(error.message);
-
-    return false;
-  }
-};
-
-export const validateWinningLottoNumbers = (winningLottoNumberStrings) => {
-  try {
-    winningLottoNumberStrings.forEach((winningLottoNumber) =>
-      validator.checkInteger(winningLottoNumber)
-    );
-
-    const winningLottoNumbers = winningLottoNumberStrings.map((number) => Number(number));
-
-    validator.checkDuplicates(winningLottoNumbers);
-    validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
-    validator.checkListLengthIsSix(winningLottoNumbers);
-
-    return true;
-  } catch (error) {
-    outputView.print(error.message);
-
-    return false;
-  }
-};
-
-export const validateBonusNumber = (bonusNumberString, winningLottoNumbers) => {
-  try {
-    validator.checkInteger(bonusNumberString);
-
-    const bonusNumber = Number(bonusNumberString);
-
-    validator.checkBonusNumberBetween1And45(bonusNumber);
-    validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
-
-    return true;
-  } catch (error) {
-    outputView.print(error.message);
-
-    return false;
-  }
-};
-
-export const validateRestartOrQuitCommend = (commend) => {
-  try {
-    validator.checkRestartOrQuitCommend(commend);
-
-    return true;
-  } catch (error) {
-    outputView.print(error.message);
-    return false;
-  }
 };
