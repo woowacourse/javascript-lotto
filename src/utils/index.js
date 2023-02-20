@@ -21,9 +21,9 @@ const errorHandler = (error, again) => {
 };
 
 const addCommaToNumber = (number) => {
-  // const minimumFractionDigits
-  return number.toLocaleString('en-US', {
-    minimumFractionDigits: 1,
+  const COUNTRY = 'en-US';
+  return number.toLocaleString(COUNTRY, {
+    minimumFractionDigits: 0,
     maximumFractionDigits: 1,
   });
 };

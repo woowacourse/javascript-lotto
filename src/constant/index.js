@@ -1,3 +1,5 @@
+const { addCommaToNumber } = require('../utils');
+
 const LOTTO_NUMBER = Object.freeze({
   winningNumberCount: 6,
   lottoNumberCount: 6,
@@ -25,8 +27,14 @@ const LOTTO_LITERAL = Object.freeze({
 });
 
 const ERROR_MESSAGE = {
-  moneyRange: `[ERROR] 구매 금액을 ${LOTTO_NUMBER.moneyUnit.toLocaleString()}원 이상 ${LOTTO_NUMBER.moneyLimit.toLocaleString()}원 이하로 입력해 주세요.`,
-  moneyUnit: `[ERROR] 구매 금액을 ${LOTTO_NUMBER.moneyUnit.toLocaleString()}원 단위로 입력해 주세요.`,
+  moneyRange: `[ERROR] 구매 금액을 ${addCommaToNumber(
+    LOTTO_NUMBER.moneyUnit
+  )}원 이상 ${addCommaToNumber(
+    LOTTO_NUMBER.moneyLimit
+  )}원 이하로 입력해 주세요.`,
+  moneyUnit: `[ERROR] 구매 금액을 ${addCommaToNumber(
+    LOTTO_NUMBER.moneyUnit
+  )}원 단위로 입력해 주세요.`,
   number: '[ERROR] 자연수만 입력해 주세요.',
   lottoRange: `[ERROR] 로또 번호는 ${LOTTO_NUMBER.lottoStart}부터 ${LOTTO_NUMBER.lottoEnd}로 입력해 주세요.`,
   uniqueWinningNumber:
