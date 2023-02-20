@@ -23,10 +23,7 @@ const deduplicateArray = (length, range = [0, 0]) => {
 };
 
 const arrayToObjectThatValueZero = (array) => {
-  return array.reduce((acc, cur) => {
-    acc[cur] = 0;
-    return acc;
-  }, {});
+  return Object.fromEntries(array.map((key) => [key, 0]));
 };
 
 const isNumberInRange = (number, range) => {
