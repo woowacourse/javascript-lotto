@@ -2,7 +2,16 @@ import LottoGame from '../src/domain/LottoGame';
 
 test('당첨된 로또 상금을 계산한다.', () => {
   // given
-  const ranks = [3, 4, 0, 0, 0, 0, 0, 0];
+  const ranks = [
+    'THIRD',
+    'FOURTH',
+    'NONE',
+    'NONE',
+    'NONE',
+    'NONE',
+    'NONE',
+    'NONE',
+  ];
   const lottoGame = new LottoGame();
 
   // when
@@ -15,7 +24,16 @@ test('당첨된 로또 상금을 계산한다.', () => {
 test('로또 상금과 구매 금액을 토대로 수익률을 계산한다.', () => {
   // given
   const price = 8000;
-  const ranks = [3, 4, 0, 0, 0, 0, 0, 0];
+  const ranks = [
+    'THIRD',
+    'FOURTH',
+    'NONE',
+    'NONE',
+    'NONE',
+    'NONE',
+    'NONE',
+    'NONE',
+  ];
   const lottoGame = new LottoGame();
   const totalAmount = lottoGame.calculateTotalPrize(ranks);
 
@@ -32,7 +50,7 @@ test('로또 맞은 개수 확인 테스트', () => {
   lottoGame.initializeWin([1, 2, 3, 4, 5, 8]);
   lottoGame.setBonusNumber(6);
 
-  const matchCount = lottoGame.checkWinningNumbers(number);
+  const matchCount = lottoGame.checkMatchCount(number);
 
-  expect(matchCount).toBe('bonus');
+  expect(matchCount).toBe(5);
 });

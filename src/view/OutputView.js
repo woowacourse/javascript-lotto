@@ -12,9 +12,10 @@ const outputWinningResult = (winCount) => {
   IO.output(MESSAGE.OUTPUT_WINNING_STATISTICS);
   IO.output(MESSAGE.OUTPUT_DIVIDE_LINE);
 
-  for (const order of WINNING_ORDER) {
+  WINNING_ORDER.forEach((order) => {
+    if (order === 'NONE') return;
     IO.output(WINNING_RESULT[order](winCount[order]));
-  }
+  });
 };
 
 const outputWinningStatistics = (earningRate) => {

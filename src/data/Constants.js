@@ -1,28 +1,39 @@
 const PRIZE = Object.freeze({
-  1: 2000000000,
-  2: 30000000,
-  3: 1500000,
-  4: 50000,
-  5: 5000,
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+  NONE: 0,
 });
 
 const WINNING_RESULT = Object.freeze({
-  5: (count) => `3개 일치 (5,000원) - ${count}개`,
-  4: (count) => `4개 일치 (50,000원) - ${count}개`,
-  3: (count) => `5개 일치 (1,500,000원) - ${count}개`,
-  2: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
-  1: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+  FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
+  FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
+  THIRD: (count) => `5개 일치 (1,500,000원) - ${count}개`,
+  SECOND: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+});
+
+const CONVERT_RANK_TO_STRING = Object.freeze({
+  1: 'FIRST',
+  2: 'SECOND',
+  3: 'THIRD',
+  4: 'FOURTH',
+  5: 'FIFTH',
+  0: 'NONE',
 });
 
 const MATCH_RANK = Object.freeze({
-  3: 5,
-  4: 4,
-  5: 3,
-  bonus: 2,
-  6: 1,
+  FIFTH: 5,
+  FOURTH: 4,
+  THIRD: 3,
+  SECOND: 2,
+  FIRST: 1,
+  NONE: 0,
 });
 
-const WINNING_ORDER = [5, 4, 3, 2, 1];
+const WINNING_ORDER = Object.keys(MATCH_RANK);
 const MINIMUM_LOTTO_UNIT = 1000;
 const LOTTO_LENGTH = 6;
 const MAX_LOTTO_NUMBER = 45;
@@ -64,6 +75,7 @@ export {
   LOTTO_LENGTH,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
+  CONVERT_RANK_TO_STRING,
   MATCH_RANK,
   ERROR_MESSAGE,
   LOTTO_RANGE,
