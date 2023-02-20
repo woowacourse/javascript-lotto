@@ -1,4 +1,4 @@
-import { COMMAND, LOTTO } from "../constants/index.js";
+import { COMMAND, LOTTO } from '../constants/index.js';
 
 const InputValidator = {
   checkNaturalNumber(input) {
@@ -10,12 +10,6 @@ const InputValidator = {
   checkFallApart(input, unit) {
     if (input % unit !== 0) {
       throw new Error(`입력 값이 ${unit}원 단위가 아닙니다.`);
-    }
-  },
-  checkLottoNumber(number) {
-    this.checkNaturalNumber(number);
-    if (number < LOTTO.min || number > LOTTO.max) {
-      throw new Error(`입력값이 ${LOTTO.min}~${LOTTO.max}범위의 숫자가 아닙니다.`);
     }
   },
   checkDuplicatedNumbers(numbers) {
@@ -32,8 +26,7 @@ const InputValidator = {
     if (arr.length !== length) {
       throw new Error(`입력 값이 ${length}개 여야 하는데 ${arr.length}개만 입력되었습니다.`);
     }
-
-  }
+  },
 };
 
 export default InputValidator;
