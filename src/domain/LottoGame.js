@@ -13,8 +13,6 @@ class LottoGame {
   #win;
   #lottos;
 
-  constructor() {}
-
   initializeLottos(price) {
     const lottoCount = price / MINIMUM_LOTTO_UNIT;
 
