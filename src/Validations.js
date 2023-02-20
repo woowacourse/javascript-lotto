@@ -16,7 +16,8 @@ const Validations = {
   },
 
   isDuplicatedNumber(winningLotto) {
-    return winningLotto.length === new Set(winningLotto).length
+    const duplicatedNumber = [...new Set(winningLotto)];
+    return winningLotto.length === duplicatedNumber.length;
   },
 
   hasBonusNumber(bonusNumber, winningLotto) {
