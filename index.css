@@ -100,10 +100,11 @@ button:hover {
     position:relative;
     background-color: #FFFFFF;
     margin: 0% auto;
-    width: 90%;
+    width: 30%;
     height: 480px;
     border-radius: 4px;
-    bottom: 87%;
+    border: 0;
+    top: 28%;
     padding: 5%;
     text-align: center;
 }
