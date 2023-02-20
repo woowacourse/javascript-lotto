@@ -6,11 +6,8 @@ const inputValidator = {
   isUniqueArray: (array) => new Set(array).size === array.length,
 };
 
-const pickRandomNumberInRange = (start, end) => {
-  return (
-    Math.floor(Math.random() * (end + 1 - Math.ceil(start))) + Math.ceil(start)
-  );
-};
+const pickRandomNumberInRange = (start, end) =>
+  Math.floor(Math.random() * (end + 1 - Math.ceil(start))) + Math.ceil(start);
 
 const errorHandler = (error, afterError) => {
   Console.print(error.message);
