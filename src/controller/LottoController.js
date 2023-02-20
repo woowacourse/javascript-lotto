@@ -106,7 +106,10 @@ class LottoController {
     const hasError = errorChecker(() => validateRestartInput(isRestart));
     if (hasError) this.readWhetherToRestart();
 
-    if (isRestart === NO) return IO.close();
+    if (isRestart === NO) {
+      IO.close();
+      return;
+    }
     this.init();
   }
 }
