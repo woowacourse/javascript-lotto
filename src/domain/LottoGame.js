@@ -1,15 +1,16 @@
+import { LOTTO_PRICE, PLACE, PRIZE_MONEY } from "../domain/constants";
+import { close, randomNumberBetween } from "../utils";
 import { inputView } from "../view/inputView";
 import { outputView } from "../view/outputView";
-import { LOTTO_PRICE, PLACE, PRIZE_MONEY } from "../domain/constants";
+import { Lotto } from "./Lotto";
+import { WinningLotto } from "./WinningLotto";
 import {
   validateBonusNumber,
   validatePurchaseAmount,
   validateRestartOrQuitCommend,
   validateWinningLottoNumbers,
 } from "./validator";
-import { Lotto } from "./Lotto";
-import { WinningLotto } from "./WinningLotto";
-import { close, randomNumberBetween } from "../utils";
+
 export class LottoGame {
   #winningLotto;
   #lottos = [];

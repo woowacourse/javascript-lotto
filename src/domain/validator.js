@@ -1,6 +1,7 @@
 import { outputView } from "../view/outputView";
 import { LOTTO_PRICE } from "./constants";
 import { MESSAGE } from "./message";
+
 export const validator = {
   checkPurchaseAmount(purchaseAmount) {
     if (purchaseAmount < LOTTO_PRICE || purchaseAmount % LOTTO_PRICE !== 0) {
