@@ -7,10 +7,8 @@ import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
 
 class LottoController {
-
   async play() {
-    const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
-    const lottos = this.#purchase(money);
+    const lottos = this.#purchase();
     const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
     this.#showResult(lottos, winningNumber);
     const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
@@ -29,14 +27,14 @@ class LottoController {
     }
   }
 
-  #purchase(money) {
+  async #purchase() {
+    const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
     OutputView.printPurchaseResult(money / LOTTO.price);
     const lottos = Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator()));
     lottos.forEach((lotto) => {
       OutputView.printLotto(lotto.getNumbers());
     });
     OutputView.printNewLine();
-
     return lottos;
   }
 
@@ -44,7 +42,6 @@ class LottoController {
     const main = (await this.#handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
     OutputView.printNewLine();
     const bonus = await this.#handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
-
     return { main, bonus };
   }
 
@@ -55,15 +52,13 @@ class LottoController {
     OutputView.printBenefit(benefit);
   }
 
-
   #calculateBenefit(money, rank) {
     // eslint-disable-next-line max-params
     const income = rank.reduce((acc, number, index) => {
       acc += number * LOTTO.prize[index];
       return acc;
     }, 0);
-
-    return income / money * 100;
+    return (income / money) * 100;
   }
 
   #judgeResult(lottos, winningNumber) {
