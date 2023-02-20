@@ -35,9 +35,15 @@ class LottoGame {
   }
 
   setLottos(money) {
-    if (money < this.SETTINGS.price) throw new Error('[ERROR]12');
+    if (money < this.SETTINGS.price) {
+      throw new Error(
+        `\n[ERROR] 로또 가격은 ${this.SETTINGS.price}원 입니다. 최소 ${this.SETTINGS.price}워 이상 금액을 입력해주세요.\n`
+      );
+    }
 
-    if (money > Number.MAX_SAFE_INTEGER) throw new Error('[ERROR]10');
+    if (money > Number.MAX_SAFE_INTEGER) {
+      throw new Error('\n[ERROR] 너무 큰 금액은 입력할 수 없습니다.\n');
+    }
 
     const count = money / this.SETTINGS.price;
 

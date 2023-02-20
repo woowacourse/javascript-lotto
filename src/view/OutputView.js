@@ -4,7 +4,7 @@ import { BOUNDARY_LEFT, BOUNDARY_RIGHT } from '../util/constants/constants.js';
 const OutputView = {
   printLottos(lottos) {
     Console.print(this.getLottoMessage(lottos));
-    Console.print(`${lottos.length}를 구매했습니다.`);
+    Console.print(`${lottos.length}개를 구매했습니다.\n`);
   },
 
   printResult(resultBoard) {

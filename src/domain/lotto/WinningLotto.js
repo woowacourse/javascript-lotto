@@ -5,7 +5,7 @@ export default class WinningLotto {
 
   constructor(winningLotto, bonusNumber) {
     if (winningLotto.includes(bonusNumber)) {
-      throw new Error('[ERROR] 보너스 번호는 당첨번호와 겹치지않게 작성해주세요.');
+      throw new Error('\n[ERROR] 보너스 번호는 당첨번호와 겹치지 않게 작성해주세요.\n');
     }
 
     this.#winningLotto = winningLotto;

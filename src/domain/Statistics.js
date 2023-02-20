@@ -34,10 +34,15 @@ export default class Statistics {
   }
 
   setLottoYield(lottoPrice, lottoCount) {
-    this.#board.lottoYield =
-      (this.#getTotalWinnings() / this.#getTotalPurchased(lottoPrice, lottoCount)) * 100;
-
+    this.#board.lottoYield = this.calculateYield(
+      this.#getTotalWinnings(),
+      this.#getTotalPurchased(lottoPrice, lottoCount)
+    );
     return this;
+  }
+
+  calculateYield(totalWinning, totalPurchased) {
+    return (totalWinning / totalPurchased) * 100;
   }
 
   #getTotalWinnings() {
