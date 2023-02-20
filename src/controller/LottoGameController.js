@@ -9,11 +9,13 @@ class LottoGameController {
 
   startGame() {
     this.#bindPurchaseEvent();
+    this.#bindWinningNumbersEvent();
   }
 
   #bindPurchaseEvent() {
     this.#lottoGameView.addPurchaseSubmitEvent(this.#handlePurchaseSubmit.bind(this));
   }
+  
 
   #handlePurchaseSubmit(purchaseAmount) {
     try {
@@ -35,17 +37,20 @@ class LottoGameController {
     this.#lottoGameView.showUserLottos(purchaseCount, USER_LOTTO_LIST);
   }
 
-  // async #handleWinningNumbers() {
-  //   try {
-  //     const winningNumbersInput = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
-  //     const WINNING_NUMBERS = winningNumbersInput.split(StaticValue.INPUT_SEPARATOR).map(Number);
-  //     Validation.verifyLottoNumbers(WINNING_NUMBERS);
-  //     await this.#handleBonusNumber(WINNING_NUMBERS);
-  //   } catch (error) {
-  //     OutputView.print(error.message);
-  //     return this.#handleWinningNumbers();
-  //   }
-  // }
+  #bindWinningNumbersEvent() {
+    this.#lottoGameView.addWinningNumbersSubmitEvent(this.#handleWinningNumbers.bind(this));
+  }
+
+  #handleWinningNumbers(winningNumbers) {
+    try {
+      Validation.verifyLottoNumbers(winningNumbers);
+    } catch ({ message }) {
+      this.#lottoGameView.winningNumbersInput.classList.add('error-input');
+      this.#lottoGameView.showErrorMessage('game-numbers', message);
+      this.#lottoGameView.winningNumbersInput.value = '';
+      this.#lottoGameView.winningNumbersInput.focus();
+    }
+  }
 
   // async #handleBonusNumber(winningNumbers) {
   //   try {

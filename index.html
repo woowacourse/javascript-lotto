@@ -42,19 +42,19 @@
               <div>
                 <fieldset id="winning-numbers-field">
                   <legend>당첨 번호</legend>
-                  <input type="text" class="input--number" data-index="1" required />
-                  <input type="text" class="input--number" data-index="2" required />
-                  <input type="text" class="input--number" data-index="3" required />
-                  <input type="text" class="input--number" data-index="4" required />
-                  <input type="text" class="input--number" data-index="5" required />
-                  <input type="text" class="input--number" data-index="6" required />
+                  <input type="text" class="input--number" name="winning-number" data-index="1" required />
+                  <input type="text" class="input--number" name="winning-number" data-index="2" required />
+                  <input type="text" class="input--number" name="winning-number" data-index="3" required />
+                  <input type="text" class="input--number" name="winning-number" data-index="4" required />
+                  <input type="text" class="input--number" name="winning-number" data-index="5" required />
+                  <input type="text" class="input--number" name="winning-number" data-index="6" required />
                 </fieldset>
                 <fieldset id="bonus-number-field">
                   <legend>보너스 번호</legend>
-                  <input type="text" class="input--number" required/>
+                  <input type="text" class="input--number" name="bonus-number" required/>
                 </fieldset>
               </div>
-              <p class="error-message">1~45 사이의 숫자를 입력해 주세요.</p>
+              <p class="error-message" id="game-numbers-error">1~45 사이의 숫자를 입력해 주세요.</p>
               <button type="submit">결과 확인하기</button>
             </form>
           </div>

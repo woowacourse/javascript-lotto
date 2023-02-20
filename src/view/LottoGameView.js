@@ -14,6 +14,7 @@ class LottoGameView {
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
     this.winningNumbersForm = $('.winning-numbers-container');
+    this.winningNumbersInput = $('.input--number')
 
     this.addPurchaseInputEvent();
   }
@@ -51,6 +52,14 @@ class LottoGameView {
   showWinningNumbersForm() {
     this.winningNumbersForm.style.opacity = 1;
     this.winningNumbersForm.style.pointerEvents = 'all';
+  }
+
+  addWinningNumbersSubmitEvent(callback) {
+    this.winningNumbersForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = [...document.querySelectorAll('.input--number[name="winning-number"]')].map((element) => Number(element.value)); 
+      callback(input);
+    });
   }
 
   showErrorMessage(element, message) {
