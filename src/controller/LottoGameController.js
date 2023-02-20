@@ -1,7 +1,6 @@
 const { PRICE_UNIT } = require('../constants/constants');
-const BonusNumber = require('../domain/model/BonusNumber');
 const Lottos = require('../domain/model/Lottos');
-const WinningNumbers = require('../domain/model/WinningNumbers');
+const WinningLotto = require('../domain/model/WinningLotto');
 const exception = require('../utils/exception');
 const Console = require('../view/Console');
 const inputView = require('../view/inputView');
@@ -10,10 +9,7 @@ const outputView = require('../view/outputView');
 class LottoGameController {
   #lottos;
 
-  #numbers = {
-    winningNumbers: undefined,
-    bonusNumber: undefined,
-  };
+  #winningLotto;
 
   playGame() {
     this.inputPurchasePrice();
@@ -42,8 +38,8 @@ class LottoGameController {
   inputWinningNumbers() {
     inputView.readWinningNumbers((winningNumbersInput) => {
       try {
-        this.#numbers.winningNumbers = new WinningNumbers(winningNumbersInput);
-        this.inputBonusNumber();
+        exception.checkWinningNumbers(winningNumbersInput);
+        this.inputBonusNumber(winningNumbersInput.split(',').map(Number));
       } catch (error) {
         Console.print(error.message);
         this.inputWinningNumbers();
@@ -51,13 +47,10 @@ class LottoGameController {
     });
   }
 
-  inputBonusNumber() {
+  inputBonusNumber(winningNumbers) {
     inputView.readBonusNumber((bonusNumberinput) => {
       try {
-        this.#numbers.bonusNumber = new BonusNumber(
-          this.#numbers.winningNumbers.getNumbers(),
-          bonusNumberinput
-        );
+        this.#winningLotto = new WinningLotto(winningNumbers, bonusNumberinput);
         this.showResult();
       } catch (error) {
         Console.print(error.message);
@@ -68,8 +61,8 @@ class LottoGameController {
 
   showResult() {
     this.#lottos.calculateAllRanks(
-      this.#numbers.winningNumbers.getNumbers(),
-      this.#numbers.bonusNumber.getNumber()
+      this.#winningLotto.getWinningNumbers(),
+      this.#winningLotto.getBonusNumber()
     );
 
     outputView.printStatistics(this.#lottos.getAllRanks());
@@ -92,9 +85,8 @@ class LottoGameController {
   }
 
   restart() {
-    this.#numbers.winningNumbers = undefined;
-    this.#numbers.bonusNumber = undefined;
     this.#lottos = undefined;
+    this.#winningLotto = undefined;
 
     this.playGame();
   }
