@@ -2,7 +2,6 @@ import { generateRandomNumber } from "../util/randomNumberMaker";
 import { inputView } from "../view/inputView";
 import { outputView } from "../view/outputView";
 import { close } from "../util/console";
-
 import {
   validateBonusNumber,
   validatePurchaseAmount,
@@ -12,15 +11,14 @@ import {
 import {
   INPUT_MESSAGE,
   LOTTO_PRICE,
-  PLACES,
   PRIZE,
   LOTTO_NUMBER_LENGTH,
   RESPONSE_AFTER_GAME_ENDS,
+  DELIMITER,
+  MATCHING_COUNT_AND_PLACES,
 } from "../constants";
 const { PURCHASE_AMOUNT, LOTTO_NUMBER, BONUS_NUMBER, RESTART_OR_QUIT } = INPUT_MESSAGE;
 const { RESTART } = RESPONSE_AFTER_GAME_ENDS;
-const { FIRST, SECOND, THIRD, FOURTH, FIFTH } = PLACES;
-const { FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE } = PRIZE;
 
 export class LottoGame {
   #winningLotto = {
@@ -32,16 +30,16 @@ export class LottoGame {
   async play() {
     const purchaseAmount = await this.readPurchaseAmount();
 
-    const numberOfPurchasedLottoTickets = purchaseAmount / LOTTO_PRICE;
-    this.makeLottoTickets(numberOfPurchasedLottoTickets);
-    outputView.printNumberOfPurchasedLottoTickets(numberOfPurchasedLottoTickets);
+    const purchasedLottoTicketCount = purchaseAmount / LOTTO_PRICE;
+    this.makeLottoTickets(purchasedLottoTicketCount);
+    outputView.printPurchasedLottoTicketCount(purchasedLottoTicketCount);
     outputView.printLottoTickets(this.#lottoTickets);
 
     await this.readWinningLottoNumbers();
     await this.readBonusNumber();
 
     const placesOfLottoTickets = this.getPlacesOfLottoTickets();
-    outputView.printPlacesOfLottoTickets(placesOfLottoTickets);
+    outputView.printWinningLottoCount(placesOfLottoTickets);
     outputView.printRateOfReturn(
       this.getRateOfReturn(this.getTotalPrize(placesOfLottoTickets), purchaseAmount)
     );
@@ -59,12 +57,13 @@ export class LottoGame {
   }
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbers = (await inputView.readline(LOTTO_NUMBER)).split(COMMA);
+    const winningLottoNumbers = (await inputView.readline(LOTTO_NUMBER)).split(DELIMITER);
 
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
 
     this.#winningLotto.winningNumbers = winningLottoNumbers.map(Number);
   }
+
   async readBonusNumber() {
     const bonusNumber = await inputView.readline(BONUS_NUMBER);
 
@@ -76,47 +75,31 @@ export class LottoGame {
   }
 
   getPlacesOfLottoTickets() {
-    const placesOfLottoTickets = {
-      FIFTH_PLACE: 0,
-      FOURTH_PLACE: 0,
-      THIRD_PLACE: 0,
-      SECOND_PLACE: 0,
-      FIRST_PLACE: 0,
-    };
+    const placesOfLottoTickets = [];
 
     this.#lottoTickets.forEach((lottoTicket) => {
-      const numberOfMatchingLottoNumbers = this.getNumberOfMatchingLottoNumbers(
+      const matchingLottoNumbersCount = this.getMatchingWinningNumbersCount(
         lottoTicket,
         this.#winningLotto.winningNumbers
       );
-
-      placesOfLottoTickets[this.getPlace(numberOfMatchingLottoNumbers, lottoTicket)] += 1;
+      placesOfLottoTickets.push(this.getPlace(matchingLottoNumbersCount, lottoTicket));
     });
 
-    return placesOfLottoTickets;
+    return placesOfLottoTickets.filter((place) => place !== undefined);
   }
 
-  getPlace(numberOfMatchingLottoNumbers, lottoTicket) {
-    switch (numberOfMatchingLottoNumbers) {
-      case 6:
-        return FIRST;
-      case 5:
-        return lottoTicket.includes(this.#winningLotto.bonusNumber) ? SECOND : THIRD;
-      case 4:
-        return FOURTH;
-      case 3:
-        return FIFTH;
+  getPlace(matchingLottoNumbersCount, lottoTicket) {
+    if (matchingLottoNumbersCount === 5) {
+      return lottoTicket.includes(this.#winningLotto.bonusNumber)
+        ? 2
+        : MATCHING_COUNT_AND_PLACES[matchingLottoNumbersCount];
     }
+
+    return MATCHING_COUNT_AND_PLACES[matchingLottoNumbersCount];
   }
 
   getTotalPrize(placesOfLottoTickets) {
-    return (
-      placesOfLottoTickets.FIFTH_PLACE * FIFTH_PRIZE +
-      placesOfLottoTickets.FOURTH_PLACE * FOURTH_PRIZE +
-      placesOfLottoTickets.THIRD_PLACE * THIRD_PRIZE +
-      placesOfLottoTickets.SECOND_PLACE * SECOND_PRIZE +
-      placesOfLottoTickets.FIRST_PLACE * FIRST_PRIZE
-    );
+    return placesOfLottoTickets.map((place) => PRIZE[place]).reduce((acc, cur) => acc + cur, 0);
   }
 
   getRateOfReturn(totalPrize, purchaseAmount) {
@@ -135,8 +118,8 @@ export class LottoGame {
     return [RESTART].includes(restartOrQuitCommend);
   }
 
-  makeLottoTickets(numberOfTickets) {
-    this.#lottoTickets = Array.from({ length: numberOfTickets }, this.makeLottoTicket);
+  makeLottoTickets(ticketCount) {
+    this.#lottoTickets = Array.from({ length: ticketCount }, this.makeLottoTicket);
   }
 
   makeLottoTicket() {
@@ -149,7 +132,7 @@ export class LottoGame {
     return [...lottoTicket];
   }
 
-  getNumberOfMatchingLottoNumbers(lottoTicket, winningLottoNumbers) {
+  getMatchingWinningNumbersCount(lottoTicket, winningLottoNumbers) {
     return (
       lottoTicket.length +
       winningLottoNumbers.length -

@@ -26,20 +26,19 @@ export const INPUT_MESSAGE = Object.freeze({
   RESTART_OR_QUIT: `\n다시 시작하시겠습니까? (y/n) `,
 });
 
-export const PLACES = Object.freeze({
-  FIRST: "FIRST_PLACE",
-  SECOND: "SECOND_PLACE",
-  THIRD: "THIRD_PLACE",
-  FOURTH: "FOURTH_PLACE",
-  FIFTH: "FIFTH_PLACE",
+export const MATCHING_COUNT_AND_PLACES = Object.freeze({
+  6: 1,
+  5: 3,
+  4: 4,
+  3: 5,
 });
 
 export const PRIZE = Object.freeze({
-  FIRST_PRIZE: 2000000000,
-  SECOND_PRIZE: 30000000,
-  THIRD_PRIZE: 1500000,
-  FOURTH_PRIZE: 50000,
-  FIFTH_PRIZE: 5000,
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
 });
 
 export const RESPONSE_AFTER_GAME_ENDS = Object.freeze({

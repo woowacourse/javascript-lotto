@@ -1,5 +1,5 @@
 import { LottoGame } from "../src/domain/LottoGame";
-import { getAscendingSortedNumbers } from "../src/util/sort";
+import { getAscendingSortedNumbers } from "../src/util";
 
 const lottoGame = new LottoGame();
 
@@ -22,7 +22,7 @@ test.each([
 ])(
   "사용자가 구매한 로또 번호(%p)와 당첨 번호(%p)를 비교해서 같은 번호의 개수(%i)를 반환한다.",
   (lottoTicket, winningLottoNumbers, expected) => {
-    expect(lottoGame.getNumberOfMatchingLottoNumbers(lottoTicket, winningLottoNumbers)).toBe(
+    expect(lottoGame.getMatchingWinningNumbersCount(lottoTicket, winningLottoNumbers)).toBe(
       expected
     );
   }
