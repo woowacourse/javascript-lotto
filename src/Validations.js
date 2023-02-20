@@ -15,7 +15,9 @@ const Validations = {
     return 0 < input && input < 46;
   },
 
-  //중복허용 X 추가
+  isDuplicatedNumber(winningLotto) {
+    return winningLotto.length === new Set(winningLotto).length
+  },
 
   hasBonusNumber(bonusNumber, winningLotto) {
     return winningLotto.includes(bonusNumber);
