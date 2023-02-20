@@ -20,7 +20,7 @@ class WinningNumbers {
         `[ERROR] 당첨 번호는 ${MIN_LOTTO_NUMBER} 이상 ${MAX_LOTTO_NUMBER} 이하의 숫자 6개여야 합니다.`
       );
     }
-    if (this.isDuplicateFor(winningNumbers)) {
+    if (this.hasDuplicateNumber(numbers)) {
       throw new Error('[ERROR] 당첨 번호가 중복이 되면 안됩니다. ');
     }
   }
@@ -36,13 +36,8 @@ class WinningNumbers {
     return number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER;
   }
 
-  isLottoNumbersLength(winningNumbers) {
-    return (
-      winningNumbers
-        .split(',')
-        .filter((number) => this.isLottoNumber(parseInt(number, 10))).length ===
-      6
-    );
+  hasDuplicateNumber(numbers) {
+    return new Set(numbers).size !== numbers.length;
   }
 
   get numbers() {
