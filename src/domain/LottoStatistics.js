@@ -13,7 +13,7 @@ class LottoStatistics {
   #bonusNumber;
 
   constructor(winningNumbers, bonusNumber) {
-    this.validate(winningNumbers.numbers, bonusNumber.number);
+    this.validate(winningNumbers, bonusNumber);
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
   }
@@ -41,7 +41,7 @@ class LottoStatistics {
   }
 
   determineLottoRank(lotto) {
-    const matchCount = lotto.calculateMatchCount(this.#winningNumbers.numbers);
+    const matchCount = lotto.calculateMatchCount(this.#winningNumbers);
 
     return this.getLottoRank(lotto, matchCount);
   }

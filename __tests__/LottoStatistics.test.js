@@ -15,8 +15,14 @@ describe('LottoStatistics 클래스 테스트', () => {
     '각 로또의 등수를 결정한다.',
     (winningNumbersInput, bonusNumberInput, expected) => {
       const winningNumbers = new WinningNumbers(winningNumbersInput);
-      const bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers);
-      const statistics = new LottoStatistics(winningNumbers, bonusNumber);
+      const bonusNumber = new BonusNumber(
+        bonusNumberInput,
+        winningNumbers.numbers
+      );
+      const statistics = new LottoStatistics(
+        winningNumbers.numbers,
+        bonusNumber.number
+      );
 
       const rank = statistics.determineLottoRank(new Lotto([1, 2, 3, 4, 5, 6]));
 
@@ -26,9 +32,12 @@ describe('LottoStatistics 클래스 테스트', () => {
 
   test('모든 로또의 당첨 결과를 배열로 반환한다.', () => {
     const winningNumbers = new WinningNumbers('1,2,3,4,5,6');
-    const bonusNumber = new BonusNumber('7', winningNumbers);
+    const bonusNumber = new BonusNumber('7', winningNumbers.numbers);
 
-    const statistics = new LottoStatistics(winningNumbers, bonusNumber);
+    const statistics = new LottoStatistics(
+      winningNumbers.numbers,
+      bonusNumber.number
+    );
 
     const result = statistics.determineAllLottosRank([
       new Lotto([1, 2, 3, 4, 5, 6]),
@@ -44,9 +53,12 @@ describe('LottoStatistics 클래스 테스트', () => {
 
   test('총 수익률을 계산한다.', () => {
     const winningNumbers = new WinningNumbers('1,2,3,4,5,6');
-    const bonusNumber = new BonusNumber('7', winningNumbers);
+    const bonusNumber = new BonusNumber('7', winningNumbers.numbers);
 
-    const statistics = new LottoStatistics(winningNumbers, bonusNumber);
+    const statistics = new LottoStatistics(
+      winningNumbers.numbers,
+      bonusNumber.number
+    );
 
     const winningLottos = statistics.determineAllLottosRank([
       new Lotto([1, 2, 3, 40, 41, 42]),
