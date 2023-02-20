@@ -16,3 +16,18 @@ header h1 {
   margin-top: 14px;
   margin-bottom: 14px;
 }
+
+footer {
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  width: 100vw;
+  bottom: 0;
+  padding: 32px;
+  position: absolute;
+  text-align: center;
+
+  color: #4e5ba6;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+}
