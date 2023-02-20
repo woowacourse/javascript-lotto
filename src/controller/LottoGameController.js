@@ -67,7 +67,7 @@ class LottoGameController {
         exception.handleBonusNumber(this.#winningNumbers, bonusNumberInput);
         this.#winningNumbers = new WinningNumbers(
           this.#winningNumbers,
-          bonusNumberInput
+          Number(bonusNumberInput)
         );
 
         this.showResult();

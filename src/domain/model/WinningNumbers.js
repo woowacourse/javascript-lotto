@@ -6,7 +6,7 @@ class WinningNumbers {
   constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
 
-    this.#bonusNumber = Number(bonusNumber);
+    this.#bonusNumber = bonusNumber;
   }
 
   getWinningNumbers() {
