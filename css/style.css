@@ -113,3 +113,21 @@ input {
 .lotto {
   font-size: 15px;
 }
+
+.inputNumbersLayout {
+  margin-top: 32px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.inputNumbers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.inputNumber {
+  width: 34px;
+  height: 36px;
+}
+.bonusNumber input {
+  float: right;
+}
