@@ -81,6 +81,9 @@ class App {
   }
 
   validateWinningNumbers() {
+    if (!Validations.isDuplicatedNumber(this.#winningLotto)) {
+      throw new ERROR(ERROR.DUPLICATED_NUMBER);
+    }
     for (let i = 0; i < this.#winningLotto.length; i++) {
       this.checkEachNumber(this.#winningLotto[i]);
     }
