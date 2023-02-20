@@ -6,6 +6,11 @@ const InputView = {
     return input;
   },
 
+  async readInputNewLine(message) {
+    const input = await Console.readline("\n" + message);
+    return input;
+  },
+
   close() {
     Console.close();
   },

@@ -14,7 +14,7 @@ const OutputView = {
   },
 
   printRankResult(rankResult) {
-    console.log(MESSAGES.printRankResult);
+    console.log("\n" + MESSAGES.printRankResult + "\n" + MESSAGES.printHyphen);
     console.log(MESSAGES.printFifth + rankResult[5] + MESSAGES.pieces);
     console.log(MESSAGES.printFourth + rankResult[4] + MESSAGES.pieces);
     console.log(MESSAGES.printThrid + rankResult[3] + MESSAGES.pieces);
@@ -27,7 +27,7 @@ const OutputView = {
   },
 
   printErrorMessage(errorMessage) {
-    console.log(errorMessage);
+    console.log(errorMessage + "\n");
   },
 };
 

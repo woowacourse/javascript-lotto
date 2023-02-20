@@ -38,8 +38,10 @@ const LottoController = {
 
   async restart() {
     try {
-      const command = await InputView.readInput(MESSAGES.readCommandRestart);
-      Validation.validateRestartCommand(command);
+      const command = await InputView.readInputNewLine(
+        MESSAGES.readCommandRestart
+      );
+      Validation.isWrongRestartCommand(command);
       command === "y" ? await this.playLotto() : InputView.close();
     } catch (e) {
       OutputView.printErrorMessage(e.message);
@@ -50,7 +52,7 @@ const LottoController = {
   async readMoney() {
     try {
       const money = await InputView.readInput(MESSAGES.readMoney);
-      Validation.validateMoney(money);
+      Validation.isWrongMoney(money);
       console.log(money);
       return money;
     } catch (e) {
@@ -61,9 +63,9 @@ const LottoController = {
 
   async readWinNumbers() {
     try {
-      const input = await InputView.readInput(MESSAGES.readWinNumbers);
+      const input = await InputView.readInputNewLine(MESSAGES.readWinNumbers);
       const winNumbers = input.split(",").map((num) => parseInt(num));
-      Validation.validateWinNumber(winNumbers);
+      Validation.isWrongWinNumber(winNumbers);
       return winNumbers;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
@@ -73,9 +75,9 @@ const LottoController = {
 
   async readBonusNumber(winLotto) {
     try {
-      const input = await InputView.readInput(MESSAGES.readBonusNumber);
+      const input = await InputView.readInputNewLine(MESSAGES.readBonusNumber);
       const bonusNumber = parseInt(input, 10);
-      Validation.validateBonusNumber(winLotto, bonusNumber);
+      Validation.isWrongBonusNumber(winLotto, bonusNumber);
       return bonusNumber;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
