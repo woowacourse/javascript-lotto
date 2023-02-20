@@ -10,7 +10,7 @@ export default class Component {
   setUp() {}
 
   render() {
-    Console.print(this.template());
+    this.template() && Console.print(this.template());
   }
 
   template() {
