@@ -1,5 +1,5 @@
 import App from './App';
-import ConsoleController from './ConsoleController';
+import ConsoleController from './controller/ConsoleController';
 
 /**
  * step 1의 시작점이 되는 파일입니다.

@@ -1,8 +1,8 @@
-import COMMAND from './constants/command';
-import LOTTO from './constants/lotto';
-import LottoService from './domain/LottoService';
-import InputView from './view/console/InputView';
-import OutputView from './view/console/OutputView';
+import COMMAND from '../constants/command';
+import LOTTO from '../constants/lotto';
+import LottoService from '../domain/LottoService';
+import InputView from '../view/console/InputView';
+import OutputView from '../view/console/OutputView';
 
 class ConsoleController {
   #lottoService;
