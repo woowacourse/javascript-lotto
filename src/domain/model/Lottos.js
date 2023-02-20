@@ -1,4 +1,5 @@
 const { PROFIT_PER_RANK, PRICE_UNIT } = require('../../constants/constants');
+const { getProfitPerRank } = require('../../utils');
 const RandomNumberGenerator = require('../../utils/RandomNumberGenerator');
 const Lotto = require('./Lotto');
 
@@ -53,9 +54,14 @@ class Lottos {
 
   #calculateProfit() {
     return this.#ranks.reduce(
-      (profit, rankCount, index) => profit + rankCount * PROFIT_PER_RANK[index],
+      (profit, rankCount, index) =>
+        profit + rankCount * this.#getProfitPerRank(index),
       0
     );
+  }
+
+  #getProfitPerRank(rank) {
+    return rank === undefined ? 0 : PROFIT_PER_RANK[rank];
   }
 }
 module.exports = Lottos;
