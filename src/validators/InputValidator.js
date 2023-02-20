@@ -1,5 +1,6 @@
 import Validator from './Validator.js';
 import LOTTO from '../constant/lotto.js';
+import inputUtils from '../util/inputUtils.js';
 
 const InputValidator = (function () {
   return {
@@ -11,9 +12,7 @@ const InputValidator = (function () {
     },
 
     isValidLuckyNumbers: luckyNumbersString => {
-      const luckyNumbers = luckyNumbersString
-        .split(',')
-        .map(luckyNumber => parseInt(luckyNumber.trim(), 10));
+      const luckyNumbers = inputUtils.formatLuckyNumbers(luckyNumbersString);
 
       Validator.isValidLuckyNumbersFormat(luckyNumbersString);
       Validator.isValidRangeNumbers(luckyNumbers, {
