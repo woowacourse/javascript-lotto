@@ -8,7 +8,7 @@ import { LOTTO, COMMAND } from '../constants/index.js';
 
 class LottoController {
   async play() {
-    const lottos = this.#purchase();
+    const lottos = await this.#purchase();
     const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
     this.#showResult(lottos, winningNumber);
     const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
@@ -39,7 +39,8 @@ class LottoController {
   }
 
   async #determineWinningNumber() {
-    const main = (await this.#handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber)).split(',');
+    const winningNumber = await this.#handleRead(InputView.readWinningNumber, LottoValidator.checkWinningNumber);
+    const main = winningNumber.split(',');
     OutputView.printNewLine();
     const bonus = await this.#handleRead(InputView.readBonusNumber, LottoValidator.checkBonusNumber);
     return { main, bonus };
@@ -63,7 +64,6 @@ class LottoController {
 
   #judgeResult(lottos, winningNumber) {
     const rankingCount = Array(LOTTO.prize.length).fill(0);
-
     return lottos.reduce((acc, lotto) => {
       const ranking = lotto.calculateRanking(winningNumber);
       acc[ranking - 1] += 1;
