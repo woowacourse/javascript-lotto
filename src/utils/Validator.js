@@ -6,7 +6,6 @@ import {
   YES,
   NO,
 } from '../data/Constants';
-import IO from './IO';
 import { isNumberInRange } from './Utils';
 
 const {
@@ -76,17 +75,6 @@ const validator = {
       throw new Error(NOT_INPUT_YES_OR_NO);
     }
   },
-};
-
-export const errorChecker = (validator) => {
-  try {
-    validator();
-  } catch (error) {
-    IO.output(error);
-    return true;
-  }
-
-  return false;
 };
 
 export const validatePurchaseAmount = (amount) => {
