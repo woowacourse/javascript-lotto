@@ -2,7 +2,7 @@ const Lotto = require('./Lotto');
 
 const { shuffle } = require('../utils/shuffle');
 
-const { ALL_LOTTO_NUMBERS } = require('./constants/index');
+const { ALL_LOTTO_NUMBERS, LOTTO } = require('./constants/index');
 
 class LottoMachine {
   #purchasePrice;
@@ -25,11 +25,14 @@ class LottoMachine {
   isValidPurchasePrice() {
     this.#purchasePrice = Number(this.#purchasePrice);
 
-    return this.#purchasePrice >= 1000 && this.#purchasePrice % 1000 === 0;
+    return (
+      this.#purchasePrice >= LOTTO.unitAmount &&
+      this.#purchasePrice % LOTTO.unitAmount === 0
+    );
   }
 
   issueLottos() {
-    const lottoCount = this.#purchasePrice / 1000;
+    const lottoCount = this.#purchasePrice / LOTTO.unitAmount;
 
     Array(lottoCount)
       .fill(0)

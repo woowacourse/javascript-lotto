@@ -36,8 +36,16 @@ const LOTTO_PRIZE = [
   },
 ];
 
+const LOTTO = Object.freeze({
+  min: 1,
+  max: 45,
+  count: 6,
+  unitAmount: 1000,
+});
+
 module.exports = {
   ALL_LOTTO_NUMBERS,
   RANK,
   LOTTO_PRIZE,
+  LOTTO,
 };

@@ -1,3 +1,5 @@
+const { LOTTO } = require('./constants');
+
 class BonusNumber {
   #number = 0;
 
@@ -16,7 +18,7 @@ class BonusNumber {
   isValidBonusNumber() {
     this.#number = Number(this.#number);
 
-    return this.#number >= 1 && this.#number <= 45;
+    return this.#number >= LOTTO.min && this.#number <= LOTTO.max;
   }
 
   get number() {

@@ -1,3 +1,5 @@
+const { LOTTO } = require('./constants');
+
 class WinningNumbers {
   #numbers;
 
@@ -30,7 +32,8 @@ class WinningNumbers {
     this.#numbers = winningNumbers.split(',').map((number) => Number(number));
 
     return (
-      this.#numbers.filter((number) => this.isLottoNumber(number)).length === 6
+      this.#numbers.filter((number) => this.isLottoNumber(number)).length ===
+      LOTTO.count
     );
   }
 

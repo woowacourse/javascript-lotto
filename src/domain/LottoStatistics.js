@@ -1,4 +1,4 @@
-const { RANK, LOTTO_PRIZE } = require('./constants/index');
+const { RANK, LOTTO_PRIZE, LOTTO } = require('./constants/index');
 
 const LOTTO_RANK = {
   6: RANK.FIRST,
@@ -38,7 +38,7 @@ class LottoStatistics {
         : RANK.THIRD;
     }
 
-    return LOTTO_RANK[matchCount] ?? 6;
+    return LOTTO_RANK[matchCount] ?? LOTTO.count;
   }
 
   getProfitRate(winningLottos, purchasePrice) {
