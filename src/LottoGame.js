@@ -24,6 +24,7 @@ class LottoGame {
     this.#lottoStatistics = new LottoStatistics(winningNumbers, bonusNumber);
     this.showLottoStatistics();
     await this.inputRestart();
+    await this.inputCommand();
   }
 
   async inputPurchasePrice() {
@@ -71,14 +72,14 @@ class LottoGame {
     OutputView.printStatistics(winningLottos, profitRate);
   }
 
-  async inputRestart() {
+  async inputCommand() {
     try {
-      const command = await InputView.readRestart();
+      const command = await InputView.readCommand();
       this.validateCommand(command);
       await this.executeCommand(command.toLowerCase());
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      await this.inputRestart();
+      await this.inputCommand();
     }
   }
 
