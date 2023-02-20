@@ -18,7 +18,7 @@ const OutputView = {
     Console.print('--------------------');
     this.printWinningLottos(winningLottos.slice(0, 5));
     Console.print(
-      `총 수익률은 ${Number(profitRate).toLocaleString('en-US')}%입니다.\n`
+      `총 수익률은 ${Number(profitRate).toLocaleString('ko-KR')}%입니다.\n`
     );
   },
 
@@ -26,7 +26,7 @@ const OutputView = {
     [...winningLottos].reverse().forEach((_, idx) => {
       const { CONDITION, MONEY } = LOTTO_PRIZE[winningLottos.length - idx - 1];
       Console.print(
-        `${CONDITION} (${MONEY.toLocaleString('en-US')}원) - ${
+        `${CONDITION} (${MONEY.toLocaleString('ko-KR')}원) - ${
           winningLottos[winningLottos.length - idx - 1]
         }개`
       );
