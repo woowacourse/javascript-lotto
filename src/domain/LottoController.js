@@ -9,7 +9,7 @@ import { LOTTO, COMMAND } from '../constants/index.js';
 class LottoController {
   async play() {
     const lottos = await this.#purchase();
-    const winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
+    const winningNumber = await this.#handleRead(() => this.#determineWinningNumber(), LottoValidator.checkLottoDuplicate);
     this.#showResult(lottos, winningNumber);
     this.#reStartMenu();
   }
