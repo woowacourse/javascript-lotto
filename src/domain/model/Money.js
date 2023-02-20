@@ -5,7 +5,7 @@ class Money {
   #amount;
 
   constructor(amount) {
-    this.#validateAmount(Number(amount));
+    this.#validateAmount(amount);
     this.#amount = amount;
   }
 
@@ -14,11 +14,11 @@ class Money {
   }
 
   #validateAmount(amount) {
-    if (amount > MAGIC_NUMBER.moneyLimit || amount < MAGIC_NUMBER.moneyUnit) {
-      throw new Error(ERROR_MESSAGE.moneyRange);
-    }
     if (!inputValidator.isNumber(amount)) {
       throw new Error(ERROR_MESSAGE.number);
+    }
+    if (amount > MAGIC_NUMBER.moneyLimit || amount < MAGIC_NUMBER.moneyUnit) {
+      throw new Error(ERROR_MESSAGE.moneyRange);
     }
     if (amount % MAGIC_NUMBER.moneyUnit !== 0) {
       throw new Error(ERROR_MESSAGE.moneyUnit);
