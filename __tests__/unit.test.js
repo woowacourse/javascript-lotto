@@ -1,27 +1,12 @@
-/* eslint-disable max-lines-per-function */
-/* eslint-disable no-undef */
-import { LOTTO } from "../src/constants";
-import Lotto from "../src/domain/Lotto";
-// import LottoController from "../src/domain/LottoController";
-import InputValidator from "../src/utils/InputValidator";
+import { LOTTO } from '../src/constants';
+import Lotto from '../src/domain/Lotto';
+import InputValidator from '../src/utils/InputValidator';
+
 test('숫자 6개를 받아 로또를 발행한다.', () => {
   const numbers = [1, 2, 3, 4, 5, 6];
   const lotto = new Lotto(numbers);
   expect(lotto.numbers).toEqual([1, 2, 3, 4, 5, 6]);
 });
-
-// test('구입 금액에 해당하는 만큼 로또를 발행', () => {
-//   const money = 3000;
-//   const TICKET_PRICE = 1000;
-//   const lottoNumbers = [
-//     [1, 2, 3, 4, 5, 6],
-//     [8, 9, 10, 11, 12, 13],
-//     [14, 15, 16, 17, 18, 19],
-//   ];
-//   const lottos = lottoNumbers.map((numbers) => new Lotto(numbers));
-
-//   expect(lottos).toBe(lottoIssuer(money / TICKET_PRICE));
-// });
 
 test('로또 갯수는 6개다.', () => {
   const lotto = [1, 2, 3, 4, 5];
@@ -60,11 +45,3 @@ test('로또 결과 계산', () => {
   const bonusNumber = '6';
   expect(lotto.calculateRanking({ main: winningNumber, bonus: bonusNumber })).toEqual(2);
 });
-
-//
-// test('수익률 계산', () => {
-//   const money = 8000;
-//   const rank = [0, 0, 0, 0, 0, 1];
-//   const lottoController = new LottoController();
-//   expect(lottoController.calculateBenefit(money, rank)).toBe(62.5);
-// });
