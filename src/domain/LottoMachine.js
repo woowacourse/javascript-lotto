@@ -17,7 +17,6 @@ class LottoMachine {
       .slice(LOTTO.INDEX_STARTING_SLICING, LOTTO.INDEX_ENDING_SLICING)
       .sort((a, b) => a - b);
 
-    console.log(lotto);
     return lotto;
   }
 }

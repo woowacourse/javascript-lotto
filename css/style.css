@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #4e5ba6;
+  color: #ffffff;
+  position: absolute;
+  width: 100vw;
+}
+
+header h1 {
+  margin-left: 130px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
