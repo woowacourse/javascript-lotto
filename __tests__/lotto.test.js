@@ -1,7 +1,7 @@
 import { LOTTO_LENGTH } from '../src/data/Constants';
 import Lotto from '../src/domain/Lotto';
 
-test('로또 객체 생성', () => {
+test('중복 숫자가 없는 로또가 잘 생성되는지 테스트', () => {
   // given
   const price = 8000;
 
