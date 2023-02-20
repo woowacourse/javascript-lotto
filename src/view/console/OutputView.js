@@ -18,6 +18,10 @@ const OutputView = {
     Console.print(OUTPUT.STATSTICS(statstics));
   },
 
+  printProfitRate(profitRate) {
+    Console.print(OUTPUT.PROFIT_RATE(profitRate));
+  },
+
   printError(error) {
     Console.print(`${OUTPUT.ERROR_PREFIX} ${error.messages}`);
   },

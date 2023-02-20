@@ -32,7 +32,9 @@ class ConsoleController {
   }
 
   printStatstics() {
-    this.#lottoService.getStatstics().forEach(([, stat]) => OutputView.printStatstics(stat));
+    const statstics = this.#lottoService.getStatstics();
+    statstics.forEach((stat) => OutputView.printStatstics(stat));
+    OutputView.printProfitRate(this.#lottoService.getProfitRate(statstics));
   }
 
   async restartCommand() {

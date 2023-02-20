@@ -1,3 +1,4 @@
+import LOTTO from '../constants/lotto';
 import { RANK, PRIZE } from '../constants/rank';
 import Lotto from './model/Lotto';
 import WinningLotto from './model/WinningLotto';
@@ -24,8 +25,17 @@ class LottoService {
       const match = this.#winningLotto.countMatch(lotto);
       if (match >= PRIZE.FIFTH) prizes[match].count += 1;
     });
+    return Object.entries(prizes)
+      .sort(([rankA], [rankB]) => rankA - rankB)
+      .map(([, stat]) => stat);
+  }
 
-    return Object.entries(prizes).sort(([rankA], [rankB]) => rankA - rankB);
+  getProfitRate(statstics) {
+    const totalReward = statstics.reduce((sum, { reward, count }) => sum + reward * count, 0);
+    const principal = this.#lottos.length * LOTTO.COST;
+    const profit = totalReward - principal;
+
+    return (profit / principal) * 100;
   }
 }
 
