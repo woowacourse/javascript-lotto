@@ -131,3 +131,14 @@ input {
 .bonusNumber input {
   float: right;
 }
+.checkResult {
+  width: 100%;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-top: 27px;
+  margin-bottom: 32px;
+}
+.checkResult button {
+  width: 100%;
+  height: 36px;
+}
