@@ -95,13 +95,13 @@ class LottoMachine {
 
   #afterReadRetryOption = (input) => {
     try {
-      this.#checkRetryOption(input);
+      this.#checkRetryOrQuit(input);
     } catch (error) {
       errorHandler(error, () => this.readRetryOption());
     }
   };
 
-  #checkRetryOption(input) {
+  #checkRetryOrQuit(input) {
     if (input === MAGIC_LITERAL.retry) return this.#retry();
     if (input === MAGIC_LITERAL.quit) return this.#quit();
     throw new Error(ERROR_MESSAGE.retryOption);
@@ -140,15 +140,10 @@ class LottoMachine {
   }
 
   #getIncreasedRanks(lotto, ranks) {
-    const updatedRanks = ranks;
     const matchedCount = this.#getMatchedCount(lotto);
     const rankIndex = this.#getRankIndex(matchedCount, this.#isBonus(lotto));
 
-    if (rankIndex !== MAGIC_NUMBER.losing) {
-      updatedRanks[rankIndex] += 1;
-    }
-
-    return updatedRanks;
+    return rankIndex !== MAGIC_NUMBER.losing ? (ranks[rankIndex] += 1) : ranks;
   }
 
   #getMatchedCount(lotto) {
