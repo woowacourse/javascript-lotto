@@ -1,4 +1,4 @@
-.mainPase {
+.mainPage {
     width: 40%;
     height: 727px;
     margin: 5% auto;
@@ -83,7 +83,7 @@ button:hover {
     height: 50px;
 }
 
-.mainPase > div {
+.mainPage > div {
     margin-top: 4%;
 }
 
@@ -96,7 +96,7 @@ button:hover {
     width: 100%;
 }
 
-.resultPase {
+.resultPage {
     position:relative;
     background-color: #FFFFFF;
     margin: 0% auto;
