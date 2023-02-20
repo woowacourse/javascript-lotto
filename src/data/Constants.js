@@ -1,4 +1,4 @@
-const PRIZE = Object.freeze({
+export const PRIZE = Object.freeze({
   FIRST: 2000000000,
   SECOND: 30000000,
   THIRD: 1500000,
@@ -7,7 +7,7 @@ const PRIZE = Object.freeze({
   NONE: 0,
 });
 
-const WINNING_RESULT = Object.freeze({
+export const WINNING_RESULT = Object.freeze({
   FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
   FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
   THIRD: (count) => `5개 일치 (1,500,000원) - ${count}개`,
@@ -15,7 +15,7 @@ const WINNING_RESULT = Object.freeze({
   FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
 });
 
-const CONVERT_RANK_TO_STRING = Object.freeze({
+export const CONVERT_RANK_TO_STRING = Object.freeze({
   1: 'FIRST',
   2: 'SECOND',
   3: 'THIRD',
@@ -24,7 +24,7 @@ const CONVERT_RANK_TO_STRING = Object.freeze({
   0: 'NONE',
 });
 
-const MATCH_RANK = Object.freeze({
+export const MATCH_RANK = Object.freeze({
   FIFTH: 5,
   FOURTH: 4,
   THIRD: 3,
@@ -33,16 +33,16 @@ const MATCH_RANK = Object.freeze({
   NONE: 0,
 });
 
-const WINNING_ORDER = Object.keys(MATCH_RANK);
-const MINIMUM_LOTTO_UNIT = 1000;
-const LOTTO_LENGTH = 6;
-const MAX_LOTTO_NUMBER = 45;
-const MIN_LOTTO_NUMBER = 1;
-const LOTTO_RANGE = [MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER];
-const YES = 'y';
-const NO = 'n';
+export const WINNING_ORDER = Object.keys(MATCH_RANK);
+export const MINIMUM_LOTTO_UNIT = 1000;
+export const LOTTO_LENGTH = 6;
+export const MAX_LOTTO_NUMBER = 45;
+export const MIN_LOTTO_NUMBER = 1;
+export const LOTTO_RANGE = [MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER];
+export const YES = 'y';
+export const NO = 'n';
 
-const MESSAGE = Object.freeze({
+export const MESSAGE = Object.freeze({
   INPUT_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
   INPUT_WINNING_NUMBER: '당첨 번호를 입력해 주세요. ',
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요. ',
@@ -53,7 +53,7 @@ const MESSAGE = Object.freeze({
   OUTPUT_EARNING_RATE: (earningRate) => `총 수익률은 ${earningRate}%입니다.`,
 });
 
-const ERROR_MESSAGE = Object.freeze({
+export const ERROR_MESSAGE = Object.freeze({
   NOT_NUMBER: '숫자를 입력해주세요.',
   NOT_DIVIDE_MINIMUM_LOTTO_UNIT: `${MINIMUM_LOTTO_UNIT.toLocaleString(
     'ko-KR'
@@ -65,20 +65,3 @@ const ERROR_MESSAGE = Object.freeze({
   DUPLICATE_WINNING_NUMBER: '당첨 번호와 중복되는 숫자는 입력할 수 없습니다.',
   NOT_INPUT_YES_OR_NO: `${YES} 또는 ${NO}만 입력하실 수 있습니다.`,
 });
-
-export {
-  PRIZE,
-  MESSAGE,
-  WINNING_RESULT,
-  WINNING_ORDER,
-  MINIMUM_LOTTO_UNIT,
-  LOTTO_LENGTH,
-  MAX_LOTTO_NUMBER,
-  MIN_LOTTO_NUMBER,
-  CONVERT_RANK_TO_STRING,
-  MATCH_RANK,
-  ERROR_MESSAGE,
-  LOTTO_RANGE,
-  YES,
-  NO,
-};

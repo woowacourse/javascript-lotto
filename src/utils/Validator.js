@@ -78,7 +78,7 @@ const validator = {
   },
 };
 
-const errorChecker = (validator) => {
+export const errorChecker = (validator) => {
   try {
     validator();
   } catch (error) {
@@ -89,33 +89,25 @@ const errorChecker = (validator) => {
   return false;
 };
 
-const validatePurchaseAmount = (amount) => {
+export const validatePurchaseAmount = (amount) => {
   validator.checkNumber(amount);
   validator.checkPositiveNumber(amount);
   validator.checkDivideLottoUnit(amount);
 };
 
-const validateWinningNumbers = (numbers) => {
+export const validateWinningNumbers = (numbers) => {
   validator.checkIsNumberArray(numbers);
   validator.checkOverRangeInArray(numbers, LOTTO_RANGE);
   validator.checkDuplicateNumbers(numbers);
   validator.checkMatchLottoLength(numbers);
 };
 
-const validateBonusNumber = (number, winningNumber) => {
+export const validateBonusNumber = (number, winningNumber) => {
   validator.checkNumber(number);
   validator.checkOverRange(number, LOTTO_RANGE);
   validator.checkDuplicateWInningNumber(number, winningNumber);
 };
 
-const validateRestartInput = (input) => {
+export const validateRestartInput = (input) => {
   validator.checkInputYesOrNo(input);
-};
-
-export {
-  errorChecker,
-  validatePurchaseAmount,
-  validateWinningNumbers,
-  validateBonusNumber,
-  validateRestartInput,
 };
