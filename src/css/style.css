@@ -38,3 +38,32 @@
   color: #FFFFFF;
 
 }
+
+.main-content {
+  /* main contents */
+
+
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  left: 513px;
+  top: 148px;
+
+}
+
+.game-box {
+  /* Rectangle 26 */
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  left: 0px;
+  top: 0px;
+
+  /* lotto-greyscale-1 */
+
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
