@@ -17,3 +17,11 @@ export const winNumberMessage = `
 export const bonusNumberMessage = `
 <p class="body">보너스 번호</p>
 `;
+
+export const numberInput = (name) => `
+  <input
+    class="number-input"
+    type="number"
+    name=${name}
+    required
+  />`;

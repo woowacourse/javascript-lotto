@@ -1,4 +1,4 @@
-import { lottoGameSection } from './view/components/lottoGame';
+import enterGameBoard from './view/components/enterGameBoard';
 
 class App {
   #$app;
@@ -6,11 +6,14 @@ class App {
 
   constructor($app) {
     this.#$app = $app;
+
+    this.paintLottoResult();
   }
 
-  lottoViewSetting = () => {
-    this.#$app.appendChild(lottoGameSection());
-  };
+  paintLottoResult() {
+    const $lottoSection = document.querySelector('.lotto-section');
+    $lottoSection.appendChild(enterGameBoard());
+  }
 }
 
 export default App;
