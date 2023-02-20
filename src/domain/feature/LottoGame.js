@@ -38,8 +38,7 @@ class LottoGame {
     const trimedCommand = retryCommand.trim().toLowerCase();
     Validator.validateRetryCommand(trimedCommand);
 
-    if (trimedCommand === COMMAND.RETRY) return true;
-    return false;
+    return trimedCommand === COMMAND.RETRY;
   }
 
   #getWinningMoney() {
