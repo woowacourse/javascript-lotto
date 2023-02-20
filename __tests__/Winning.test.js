@@ -1,3 +1,4 @@
+const { ERROR_MESSAGE } = require('../src/constant');
 const Winning = require('../src/domain/model/Winning');
 
 const getWinning = (winningNumbers, bonusNumber) => {
@@ -27,14 +28,26 @@ describe('Winning class 기능 테스트', () => {
 
 describe('Winning class 유효성 테스트', () => {
   test.each([
-    [[1, 1, 2, 3, 4, 5], 6],
-    [[1, 2, 3, 4, 5, 6], 6],
+    [[1, 2, 2, 3, 4, 5], 6],
+    [[1, 2, 3, 4, 5, 5], 6],
   ])(
     '당첨번호와 보너스 번호에 중복된 숫자가 있을 경우 에러를 발생시킨다.',
     (winningNumbers, bonusNumber) => {
       expect(() => {
         getWinning(winningNumbers, bonusNumber);
-      }).toThrow('[ERROR]');
+      }).toThrow(ERROR_MESSAGE.uniqueWinningNumber);
+    }
+  );
+
+  test.each([
+    [[1, 2, 3, 4, 5, 6], 6],
+    [[1, 2, 3, 4, 5, 6], 1],
+  ])(
+    '당첨번호와 보너스 번호에 중복된 숫자가 있을 경우 에러를 발생시킨다.',
+    (winningNumbers, bonusNumber) => {
+      expect(() => {
+        getWinning(winningNumbers, bonusNumber);
+      }).toThrow(ERROR_MESSAGE.uniqueBonusNumber);
     }
   );
 
@@ -47,7 +60,7 @@ describe('Winning class 유효성 테스트', () => {
     (winningNumbers, bonusNumber) => {
       expect(() => {
         getWinning(winningNumbers, bonusNumber);
-      }).toThrow('[ERROR]');
+      }).toThrow(ERROR_MESSAGE.lottoRange);
     }
   );
 
@@ -63,7 +76,7 @@ describe('Winning class 유효성 테스트', () => {
     (winningNumbers, bonusNumber) => {
       expect(() => {
         getWinning(winningNumbers, bonusNumber);
-      }).toThrow('[ERROR]');
+      }).toThrow(ERROR_MESSAGE.number);
     }
   );
 });

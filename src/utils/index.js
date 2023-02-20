@@ -1,7 +1,7 @@
 const Console = require('./Console');
 
 const inputValidator = {
-  isNumber: (number) => Number.isInteger(number) || Number.isNaN(number),
+  isNumber: (number) => Number.isInteger(number),
   isNumberInLottoRange: (number) => number <= 45 && number >= 1,
   isUniqueArray: (array) => {
     const set = new Set(array);
@@ -20,4 +20,17 @@ const errorHandler = (error, again) => {
   again();
 };
 
-module.exports = { pickRandomNumberInRange, inputValidator, errorHandler };
+const addCommaToNumber = (number) => {
+  // const minimumFractionDigits
+  return number.toLocaleString('en-US', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+};
+
+module.exports = {
+  addCommaToNumber,
+  pickRandomNumberInRange,
+  inputValidator,
+  errorHandler,
+};
