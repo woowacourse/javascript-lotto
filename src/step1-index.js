@@ -5,25 +5,23 @@ import Console from './util/Console.js';
 import COMMAND from './constant/command.js';
 
 const App = (function () {
-  const instance = {};
-
   const purchaseLottos = async () => {
     const lottoPrice = await InputView.readLottoPrice();
+    LottoGame.init(lottoPrice);
 
-    instance.lottoGame = new LottoGame(lottoPrice);
-    OutputView.printLottos(instance.lottoGame.getLottos());
+    OutputView.printLottos(LottoGame.getLottos());
   };
 
   const registerWinningNumbers = async () => {
     const luckyNumbers = await InputView.readLuckyNumbers();
     const bonusNumber = await InputView.readBonusNumber(luckyNumbers);
 
-    instance.lottoGame.initWinningNumbers({ luckyNumbers, bonusNumber });
+    LottoGame.initWinningNumbers({ luckyNumbers, bonusNumber });
   };
 
   const calculateLotto = () => {
-    const amountOfRanks = instance.lottoGame.drawLotto();
-    const profit = instance.lottoGame.calculateProfit();
+    const amountOfRanks = LottoGame.drawLotto();
+    const profit = LottoGame.calculateProfit();
 
     OutputView.printStatistics(amountOfRanks, profit);
   };
