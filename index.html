@@ -66,8 +66,67 @@
                   <input type="text" id="bonus__number" />
                 </div>
               </div>
-              <input type="submit" class="winning__submit" value="결과 확인하기" />
+              <input type="submit" class="submit__button" value="결과 확인하기" />
             </form>
+          </div>
+        </div>
+      </section>
+      <section class="modal">
+        <div class="modal__container">
+          <button class="close__button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+              />
+            </svg>
+          </button>
+          <h1 class="title modal__title">🏆 당첨 통계 🏆</h1>
+          <div class="statistics">
+            <table>
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3개</td>
+                  <td>5,000</td>
+                  <td>n개</td>
+                </tr>
+                <tr>
+                  <td>4개</td>
+                  <td>50,000</td>
+                  <td>n개</td>
+                </tr>
+                <tr>
+                  <td>5개</td>
+                  <td>1,500,000</td>
+                  <td>n개</td>
+                </tr>
+                <tr>
+                  <td>5개+보너스볼</td>
+                  <td>30,000,000</td>
+                  <td>n개</td>
+                </tr>
+                <tr>
+                  <td>6개</td>
+                  <td>2,000,000,000</td>
+                  <td>n개</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="yield__title">당신의 총 수익률은 %입니다.</p>
+            <button type="submit" class="submit__button">다시 시작하기</button>
           </div>
         </div>
       </section>
