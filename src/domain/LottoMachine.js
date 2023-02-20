@@ -13,7 +13,7 @@ class LottoMachine {
 
   constructor(purchasePrice) {
     this.validatePurchasePrice(purchasePrice);
-    this.issueLottos(purchasePrice);
+    this.#lottos = this.issueLottos(purchasePrice);
   }
 
   validatePurchasePrice(purchasePrice) {
@@ -32,12 +32,9 @@ class LottoMachine {
   }
 
   issueLottos(purchasePrice) {
-    const lottoCount = purchasePrice / 1000;
-    Array(lottoCount)
-      .fill(0)
-      .forEach(() => {
-        this.#lottos.push(this.issueLotto());
-      });
+    const lottoCount = purchasePrice / LOTTO_UNIT_PRICE;
+
+    return new Array(lottoCount).fill().map(() => this.issueLotto());
   }
 
   issueLotto() {
