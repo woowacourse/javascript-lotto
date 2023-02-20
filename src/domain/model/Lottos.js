@@ -5,7 +5,7 @@ const Lotto = require('./Lotto');
 class Lottos {
   #lottos;
 
-  #ranks;
+  #ranks = new Array(profitByRank.length).fill(0);
 
   constructor(lottoCount) {
     const emptyLottos = Array.from({ length: lottoCount }, () => []);
@@ -14,7 +14,6 @@ class Lottos {
     );
 
     this.#lottos = lottos.map((lottoNumber) => new Lotto(lottoNumber));
-    this.#ranks = new Array(profitByRank.length).fill(0);
   }
 
   getLottos() {
