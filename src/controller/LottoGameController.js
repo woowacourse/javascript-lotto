@@ -8,12 +8,12 @@ class LottoGameController {
   #lottoGameView = new LottoGameView();
 
   startGame() {
-    this.#bindPurchaseEvent();
-    this.#bindWinningNumbersEvent();
+    this.#bindEvents();
   }
 
-  #bindPurchaseEvent() {
+  #bindEvents() {
     this.#lottoGameView.addPurchaseSubmitEvent(this.#handlePurchaseSubmit.bind(this));
+    this.#lottoGameView.addWinningNumbersSubmitEvent(this.#handleWinningNumbers.bind(this));
   }
 
   #handlePurchaseSubmit(purchaseAmount) {
@@ -32,10 +32,6 @@ class LottoGameController {
     const USER_LOTTO_LIST = this.#lottoGame.getUserLottoList();
 
     this.#lottoGameView.showUserLottos(purchaseCount, USER_LOTTO_LIST);
-  }
-
-  #bindWinningNumbersEvent() {
-    this.#lottoGameView.addWinningNumbersSubmitEvent(this.#handleWinningNumbers.bind(this));
   }
 
   #handleWinningNumbers(winningNumbers, bonusNumber) {
