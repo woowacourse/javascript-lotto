@@ -6,10 +6,12 @@ const outputView = require('../../view/outputView');
 const { pickRandomNumberInRange, errorHandler } = require('../../utils');
 const Console = require('../../utils/Console');
 const {
-  MAGIC_NUMBER,
   RANK_INFORMATIONS,
-  MAGIC_LITERAL,
   ERROR_MESSAGE,
+  COMMAND_LITERAL,
+  LOTTO_NUMBER,
+  LOTTO_LITERAL,
+  CALCULATION_NUMBER,
 } = require('../../constant');
 
 class LottoMachine {
@@ -48,7 +50,7 @@ class LottoMachine {
 
   readRetryOption() {
     inputHandler(
-      `\n> 다시 시작하시겠습니까? (${MAGIC_LITERAL.retry}/${MAGIC_LITERAL.quit})`,
+      `\n> 다시 시작하시겠습니까? (${COMMAND_LITERAL.retry}/${COMMAND_LITERAL.quit})`,
       this.#afterReadRetryOption
     );
   }
@@ -57,7 +59,7 @@ class LottoMachine {
     try {
       this.#machineInput.money = new Money(input);
       outputView.printLottoCount(
-        this.#machineInput.money.getAmount() / MAGIC_NUMBER.moneyUnit
+        this.#machineInput.money.getAmount() / LOTTO_NUMBER.moneyUnit
       );
       this.#generateLottos(this.#machineInput.money.getAmount());
       this.#showLottos();
@@ -70,7 +72,7 @@ class LottoMachine {
   #afterReadWinningNumbers = (input) => {
     try {
       const winningNumbers = input
-        .split(MAGIC_LITERAL.comma)
+        .split(LOTTO_LITERAL.comma)
         .map((winningNumber) => Number(winningNumber));
       this.#machineInput.winning = new Winning();
       this.#machineInput.winning.setWinningNumbers(winningNumbers);
@@ -102,13 +104,13 @@ class LottoMachine {
   };
 
   #checkRetryOption(input) {
-    if (input === MAGIC_LITERAL.retry) return this.#retry();
-    if (input === MAGIC_LITERAL.quit) return this.#quit();
+    if (input === COMMAND_LITERAL.retry) return this.#retry();
+    if (input === COMMAND_LITERAL.quit) return this.#quit();
     throw new Error(ERROR_MESSAGE.retryOption);
   }
 
   #generateLottos(amount) {
-    const lottoCount = amount / MAGIC_NUMBER.moneyUnit;
+    const lottoCount = amount / LOTTO_NUMBER.moneyUnit;
 
     this.#lottos = Array.from({ length: lottoCount }).map(() =>
       this.#getComposedLottoNumbers().sort((first, second) => first - second)
@@ -118,10 +120,10 @@ class LottoMachine {
   #getComposedLottoNumbers() {
     const lottoNumbers = new Set();
 
-    while (lottoNumbers.size < MAGIC_NUMBER.lottoNumberCount) {
+    while (lottoNumbers.size < LOTTO_NUMBER.lottoNumberCount) {
       const randomNumber = pickRandomNumberInRange(
-        MAGIC_NUMBER.lottoStart,
-        MAGIC_NUMBER.lottoEnd
+        LOTTO_NUMBER.lottoStart,
+        LOTTO_NUMBER.lottoEnd
       );
       lottoNumbers.add(randomNumber);
     }
@@ -144,7 +146,7 @@ class LottoMachine {
     const matchedCount = this.#getMatchedCount(lotto);
     const rankIndex = this.#getRankIndex(matchedCount, this.#isBonus(lotto));
 
-    if (rankIndex !== MAGIC_NUMBER.losing) {
+    if (rankIndex !== CALCULATION_NUMBER.losing) {
       updatedRanks[rankIndex] += 1;
     }
 
@@ -163,7 +165,8 @@ class LottoMachine {
         rankInformation.isBonus === isBonus &&
         rankInformation.matchedCount === matchedCount
     );
-    if (rankIndex === MAGIC_NUMBER.failFindIndex) return MAGIC_NUMBER.losing;
+    if (rankIndex === CALCULATION_NUMBER.failFindIndex)
+      return CALCULATION_NUMBER.losing;
 
     return rankIndex;
   }

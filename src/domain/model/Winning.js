@@ -1,5 +1,5 @@
 const { inputValidator } = require('../../utils');
-const { ERROR_MESSAGE, MAGIC_NUMBER } = require('../../constant');
+const { ERROR_MESSAGE, LOTTO_NUMBER } = require('../../constant');
 
 class Winning {
   #winningNumbers;
@@ -31,7 +31,7 @@ class Winning {
     if (!inputValidator.isUniqueArray(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.uniqueWinningNumber);
     }
-    if (winningNumbers.length !== MAGIC_NUMBER.winningNumberCount) {
+    if (winningNumbers.length !== LOTTO_NUMBER.winningNumberCount) {
       throw new Error(ERROR_MESSAGE.winningNumberCount);
     }
   }

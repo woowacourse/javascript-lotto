@@ -1,4 +1,4 @@
-const { RANK_INFORMATIONS, MAGIC_NUMBER } = require('../../constant');
+const { RANK_INFORMATIONS, CALCULATION_NUMBER } = require('../../constant');
 
 class Benefit {
   #rate;
@@ -14,7 +14,9 @@ class Benefit {
       0
     );
 
-    this.#rate = Number(((total / money) * MAGIC_NUMBER.percent).toFixed(1));
+    this.#rate = Number(
+      ((total / money) * CALCULATION_NUMBER.percent).toFixed(1)
+    );
   }
 }
 

@@ -1,8 +1,8 @@
 const Console = require('../utils/Console');
 const {
-  MAGIC_NUMBER,
-  MAGIC_LITERAL,
   RANK_INFORMATIONS,
+  LOTTO_NUMBER,
+  LOTTO_LITERAL,
 } = require('../constant');
 
 const outputView = {
@@ -11,7 +11,7 @@ const outputView = {
   },
 
   printLotto(lotto) {
-    Console.print(`[${lotto.join(MAGIC_LITERAL.separator)}]`);
+    Console.print(`[${lotto.join(LOTTO_LITERAL.separator)}]`);
   },
 
   printResultTitle() {
@@ -30,7 +30,7 @@ const outputView = {
   },
 
   getResultLine(rank, rankCount) {
-    if (rank === MAGIC_NUMBER.secondRankIndex) {
+    if (rank === LOTTO_NUMBER.secondRankIndex) {
       return `${
         RANK_INFORMATIONS[rank].matchedCount
       }개 일치, 보너스 볼 일치 (${RANK_INFORMATIONS[

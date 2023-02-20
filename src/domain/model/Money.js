@@ -1,5 +1,5 @@
 const { inputValidator } = require('../../utils');
-const { ERROR_MESSAGE, MAGIC_NUMBER } = require('../../constant');
+const { ERROR_MESSAGE, LOTTO_NUMBER } = require('../../constant');
 
 class Money {
   #amount;
@@ -14,13 +14,13 @@ class Money {
   }
 
   #validateAmount(amount) {
-    if (amount > MAGIC_NUMBER.moneyLimit || amount < MAGIC_NUMBER.moneyUnit) {
+    if (amount > LOTTO_NUMBER.moneyLimit || amount < LOTTO_NUMBER.moneyUnit) {
       throw new Error(ERROR_MESSAGE.moneyRange);
     }
     if (!inputValidator.isNumber(amount)) {
       throw new Error(ERROR_MESSAGE.number);
     }
-    if (amount % MAGIC_NUMBER.moneyUnit !== 0) {
+    if (amount % LOTTO_NUMBER.moneyUnit !== 0) {
       throw new Error(ERROR_MESSAGE.moneyUnit);
     }
   }

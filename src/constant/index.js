@@ -1,33 +1,39 @@
-const MAGIC_NUMBER = {
-  secondRankIndex: 1,
-  percent: 100,
-  moneyUnit: 1_000,
-  moneyLimit: 100_000,
-  lottoStart: 1,
-  lottoEnd: 45,
+const LOTTO_NUMBER = Object.freeze({
   winningNumberCount: 6,
   lottoNumberCount: 6,
+  lottoStart: 1,
+  lottoEnd: 45,
+  secondRankIndex: 1,
+  moneyUnit: 1_000,
+  moneyLimit: 100_000,
+});
+
+const CALCULATION_NUMBER = Object.freeze({
+  percent: 100,
   losing: 1234,
   failFindIndex: -1,
-};
+});
 
-const MAGIC_LITERAL = {
-  separator: ', ',
+const COMMAND_LITERAL = Object.freeze({
   retry: 'y',
   quit: 'n',
+});
+
+const LOTTO_LITERAL = Object.freeze({
+  separator: ', ',
   comma: ',',
-};
+});
 
 const ERROR_MESSAGE = {
-  moneyRange: `[ERROR] 구매 금액을 ${MAGIC_NUMBER.moneyUnit.toLocaleString()}원 이상 ${MAGIC_NUMBER.moneyLimit.toLocaleString()}원 이하로 입력해 주세요.`,
-  moneyUnit: `[ERROR] 구매 금액을 ${MAGIC_NUMBER.moneyUnit.toLocaleString()}원 단위로 입력해 주세요.`,
+  moneyRange: `[ERROR] 구매 금액을 ${LOTTO_NUMBER.moneyUnit.toLocaleString()}원 이상 ${LOTTO_NUMBER.moneyLimit.toLocaleString()}원 이하로 입력해 주세요.`,
+  moneyUnit: `[ERROR] 구매 금액을 ${LOTTO_NUMBER.moneyUnit.toLocaleString()}원 단위로 입력해 주세요.`,
   number: '[ERROR] 자연수만 입력해 주세요.',
-  lottoRange: `[ERROR] 로또 번호는 ${MAGIC_NUMBER.lottoStart}부터 ${MAGIC_NUMBER.lottoEnd}로 입력해 주세요.`,
+  lottoRange: `[ERROR] 로또 번호는 ${LOTTO_NUMBER.lottoStart}부터 ${LOTTO_NUMBER.lottoEnd}로 입력해 주세요.`,
   uniqueWinningNumber:
     '[ERROR] 당첨 번호는 중복되지 않는 값들로 입력해 주세요.',
   uniqueBonusNumber: '[ERROR] 당첨 번호와 중복되지 않는 값으로 입력해 주세요.',
-  winningNumberCount: `[ERROR] 당첨 번호는 ${MAGIC_NUMBER.winningNumberCount}개로 입력해 주세요.`,
-  retryOption: `[ERROR] 재시작 옵션은 ${MAGIC_LITERAL.retry} 혹은 ${MAGIC_LITERAL.quit}으로 입력해 주세요.`,
+  winningNumberCount: `[ERROR] 당첨 번호는 ${LOTTO_NUMBER.winningNumberCount}개로 입력해 주세요.`,
+  retryOption: `[ERROR] 재시작 옵션은 ${COMMAND_LITERAL.retry} 혹은 ${COMMAND_LITERAL.quit}으로 입력해 주세요.`,
 };
 
 const RANK_INFORMATIONS = [
@@ -64,8 +70,10 @@ const RANK_INFORMATIONS = [
 ];
 
 module.exports = {
+  CALCULATION_NUMBER,
+  COMMAND_LITERAL,
   ERROR_MESSAGE,
-  MAGIC_NUMBER,
-  MAGIC_LITERAL,
+  LOTTO_LITERAL,
+  LOTTO_NUMBER,
   RANK_INFORMATIONS,
 };
