@@ -7,11 +7,10 @@ const {
 class WinningNumbers {
   #numbers;
 
-  constructor(winningNumbers) {
-    this.validateWinningNumbers(winningNumbers);
-    this.#numbers = winningNumbers
-      .split(',')
-      .map((number) => parseInt(number, 10));
+  constructor(winningNumbersInput) {
+    const numbers = winningNumbersInput.split(',').map(Number);
+    this.validate(numbers);
+    this.#numbers = numbers;
   }
 
   validate(numbers) {
