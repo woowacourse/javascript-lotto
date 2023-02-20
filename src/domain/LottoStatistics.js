@@ -2,6 +2,7 @@ const { RANK, LOTTO_PRIZE, LOTTO } = require('./constants/index');
 
 const LOTTO_RANK = {
   6: RANK.FIRST,
+  5: (isMatchedBonus) => (isMatchedBonus ? RANK.SECOND : RANK.THIRD),
   4: RANK.FOURTH,
   3: RANK.FIFTH,
 };
@@ -33,9 +34,7 @@ class LottoStatistics {
 
   getLottoRank(lotto, matchCount) {
     if (matchCount === 5) {
-      return lotto.matchBonus(this.#correctLotto.bonusNumber)
-        ? RANK.SECOND
-        : RANK.THIRD;
+      return LOTTO_RANK[5](lotto.matchBonus(this.#correctLotto.bonusNumber));
     }
 
     return LOTTO_RANK[matchCount] ?? LOTTO.count;
