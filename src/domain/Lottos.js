@@ -1,4 +1,4 @@
-import { ERROR, MATCH, SCORE } from "../Config";
+import { ERROR, MATCH, SCORE } from "../constants/Config.js";
 
 class Lottos {
   #lottos;
