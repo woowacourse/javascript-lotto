@@ -23,9 +23,16 @@ import IO from '../utils/IO';
 class LottoController {
   #game;
 
-  init() {
+  async init() {
     this.#game = new LottoGame();
-    this.readPurchaseAmount();
+    await this.start();
+  }
+
+  async start() {
+    await this.readPurchaseAmount();
+    await this.readWinningNumber();
+    this.printWinningResult();
+    await this.readWhetherToRestart();
   }
 
   async readPurchaseAmount() {
@@ -47,8 +54,6 @@ class LottoController {
     const orderedLottos = this.#game.getOrderedLottos();
 
     outputLottoInfo(orderedLottos);
-
-    this.readWinningNumber();
   }
 
   async readWinningNumber() {
@@ -58,12 +63,12 @@ class LottoController {
     const hasError = errorChecker(() => validateWinningNumbers(winningNumber));
     if (hasError) return this.readWinningNumber();
 
-    this.setWinNumber(winningNumber);
+    await this.setWinNumber(winningNumber);
   }
 
-  setWinNumber(winNumber) {
+  async setWinNumber(winNumber) {
     this.#game.initializeWin(winNumber);
-    this.readBonusNumber(winNumber);
+    await this.readBonusNumber(winNumber);
   }
 
   async readBonusNumber(winNumber) {
@@ -80,7 +85,6 @@ class LottoController {
 
   setBonusNumber(bonusNumber) {
     this.#game.setBonusNumber(bonusNumber);
-    this.printWinningResult();
   }
 
   printWinningResult() {
@@ -96,8 +100,6 @@ class LottoController {
     const rate = this.#game.calculateEarningRate();
 
     outputWinningStatistics(rate);
-
-    this.readWhetherToRestart();
   }
 
   async readWhetherToRestart() {
