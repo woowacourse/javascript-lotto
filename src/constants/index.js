@@ -7,17 +7,20 @@ export const LOTTO = {
   numbersLength: 6,
 };
 
-export const RANKINGS_REWARD = {
-  1: 2000000000,
-  2: 30000000,
-  3: 1500000,
-  4: 50000,
-  5: 5000,
-};
-
 export const RANKING = {
   first: 1,
   second: 2,
+  third: 3,
+  fourth: 4,
+  fifth: 5,
+};
+
+export const RANKINGS_REWARD = {
+  [RANKING.first]: 2000000000,
+  [RANKING.second]: 30000000,
+  [RANKING.third]: 1500000,
+  [RANKING.fourth]: 50000,
+  [RANKING.fifth]: 5000,
 };
 
 export const RANKING_STANDARD = {
@@ -34,11 +37,11 @@ export const GAME_COMMAND = {
 };
 
 export const STATISTICS_MESSAGE = {
-  5: `3개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[5])}원)`,
-  4: `4개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[4])}원)`,
-  3: `5개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[3])}원)`,
-  2: `5개 일치, 보너스 볼 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[2])}원)`,
-  1: `6개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[1])}원)`,
+  [RANKING.fifth]: `3개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[5])}원)`,
+  [RANKING.fourth]: `4개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[4])}원)`,
+  [RANKING.third]: `5개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[3])}원)`,
+  [RANKING.second]: `5개 일치, 보너스 볼 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[2])}원)`,
+  [RANKING.first]: `6개 일치 (${toNumberFormatOfKor(RANKINGS_REWARD[1])}원)`,
 };
 
 export const MESSAGE = {
