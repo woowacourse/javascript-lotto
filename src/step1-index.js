@@ -7,6 +7,8 @@ import Retry from './view/components/Retry.js';
 import Console from './utils/Console.js';
 
 class App extends Component {
+  state;
+
   async play() {
     await this.render(new Amount({ setter: this.setState.bind(this) }));
     await this.render(new LottoList({ lottoList: this.state.lottoList }));
