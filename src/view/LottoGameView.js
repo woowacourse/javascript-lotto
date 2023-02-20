@@ -10,7 +10,6 @@ class LottoGameView {
   #initDom() {
     this.purchaseForm = $('#purchase-form');
     this.purchaseInput = $('#purchase-input');
-    this.userLottos = $('.user-lottos');
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
     this.startContainer = $('.start-container');
@@ -37,15 +36,14 @@ class LottoGameView {
     });
   }
 
-  showUserLottos(purchaseCount, userLottoList) {
-    this.showUserLottoPurchaseCount(purchaseCount);
-    this.showUserLottoList(userLottoList);
-    this.showStartContainer();
-  }
-
   showStartContainer() {
     this.startContainer.style.opacity = 1;
     this.startContainer.style.pointerEvents = 'all';
+  }
+
+  showUserLottos(purchaseCount, userLottoList) {
+    this.showUserLottoPurchaseCount(purchaseCount);
+    this.showUserLottoList(userLottoList);
   }
 
   showUserLottoPurchaseCount(count) {

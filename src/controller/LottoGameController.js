@@ -31,6 +31,7 @@ class LottoGameController {
     this.#lottoGame.generateUserLottos(purchaseCount);
     const USER_LOTTO_LIST = this.#lottoGame.getUserLottoList();
 
+    this.#lottoGameView.showStartContainer();
     this.#lottoGameView.showUserLottos(purchaseCount, USER_LOTTO_LIST);
   }
 
