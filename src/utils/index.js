@@ -12,9 +12,9 @@ const pickRandomNumberInRange = (start, end) => {
   );
 };
 
-const errorHandler = (error, again) => {
+const errorHandler = (error, afterError) => {
   Console.print(error.message);
-  again();
+  afterError();
 };
 
 module.exports = { pickRandomNumberInRange, inputValidator, errorHandler };
