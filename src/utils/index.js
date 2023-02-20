@@ -3,10 +3,7 @@ const Console = require('./Console');
 const inputValidator = {
   isNumber: (number) => Number.isInteger(number) || Number.isNaN(number),
   isNumberInLottoRange: (number) => number <= 45 && number >= 1,
-  isUniqueArray: (array) => {
-    const set = new Set(array);
-    return set.size === array.length;
-  },
+  isUniqueArray: (array) => new Set(array).size === array.length,
 };
 
 const pickRandomNumberInRange = (start, end) => {
