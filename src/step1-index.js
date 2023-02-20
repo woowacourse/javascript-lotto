@@ -4,50 +4,52 @@ import LottoGame from './domain/LottoGame.js';
 import Console from './util/Console.js';
 import COMMAND from './constant/command.js';
 
-const App = {
-  lottoGame: null,
+const App = (function () {
+  const instance = {};
 
-  async beginLotto() {
-    await this.purchaseLottos();
-    await this.registerWinningNumbers();
-    await this.calculateLotto();
-
-    if (await this.isRetry()) {
-      this.beginLotto();
-      return;
-    }
-
-    this.endLotto();
-  },
-
-  async purchaseLottos() {
+  const purchaseLottos = async () => {
     const lottoPrice = await InputView.readLottoPrice();
 
-    this.lottoGame = new LottoGame(lottoPrice);
-    OutputView.printLottos(this.lottoGame.getLottos());
-  },
+    instance.lottoGame = new LottoGame(lottoPrice);
+    OutputView.printLottos(instance.lottoGame.getLottos());
+  };
 
-  async registerWinningNumbers() {
+  const registerWinningNumbers = async () => {
     const luckyNumbers = await InputView.readLuckyNumbers();
     const bonusNumber = await InputView.readBonusNumber(luckyNumbers);
 
-    this.lottoGame.initWinningNumbers({ luckyNumbers, bonusNumber });
-  },
+    instance.lottoGame.initWinningNumbers({ luckyNumbers, bonusNumber });
+  };
 
-  async calculateLotto() {
-    const amountOfRanks = this.lottoGame.drawLotto();
-    const profit = this.lottoGame.calculateProfit();
+  const calculateLotto = () => {
+    const amountOfRanks = instance.lottoGame.drawLotto();
+    const profit = instance.lottoGame.calculateProfit();
 
     OutputView.printStatistics(amountOfRanks, profit);
-  },
+  };
 
-  async isRetry() {
+  const isRetry = async () => {
     return (await InputView.readRetryCommand()) === COMMAND.RETRY;
-  },
+  };
 
-  endLotto() {
+  const endLotto = () => {
     Console.close();
-  },
-};
+  };
+
+  return {
+    async beginLotto() {
+      await purchaseLottos();
+      await registerWinningNumbers();
+      calculateLotto();
+
+      if (await isRetry()) {
+        this.beginLotto();
+        return;
+      }
+
+      endLotto();
+    },
+  };
+})();
 
 App.beginLotto();
