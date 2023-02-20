@@ -1,3 +1,4 @@
+import { rl } from "../util/console";
 import { errorCatcher } from "../domain/errorCatcher";
 import {
   validateBonusNumber,
@@ -5,8 +6,8 @@ import {
   validateRestartOrQuitCommend,
   validateWinningLottoNumbers,
 } from "../domain/validator";
-import { rl } from "../util/console";
-import { DELIMITER, INPUT_MESSAGE } from "../constants";
+import { INPUT_MESSAGE } from "../constants";
+import { splitAndTrimString } from "../util";
 const { PURCHASE_AMOUNT, LOTTO_NUMBER, BONUS_NUMBER, RESTART_OR_QUIT } = INPUT_MESSAGE;
 
 export const inputView = {
@@ -24,13 +25,14 @@ export const readPurchaseAmount = async () => {
 };
 
 export const readWinningLottoNumbers = async () => {
-  const winningLottoNumbers = (await inputView.readline(LOTTO_NUMBER)).split(DELIMITER);
+  const winningLottoNumbers = await inputView.readline(LOTTO_NUMBER);
+  const trimmedWinningLottoNumbers = splitAndTrimString(winningLottoNumbers);
 
-  if (!errorCatcher(() => validateWinningLottoNumbers(winningLottoNumbers))) {
+  if (!errorCatcher(() => validateWinningLottoNumbers(trimmedWinningLottoNumbers))) {
     return readWinningLottoNumbers();
   }
 
-  return winningLottoNumbers.map(Number);
+  return trimmedWinningLottoNumbers.map(Number);
 };
 
 export const readBonusNumber = async (winningLottoNumbers) => {
