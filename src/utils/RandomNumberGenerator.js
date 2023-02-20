@@ -3,40 +3,13 @@ const {
   LOTTO_NUMBER_COUNT,
 } = require('../constants/constants');
 
-class RandomNumberGenerator {
-  #lottoNumbers = [];
+const generateRandomLotto = () => {
+  const lottoNumbers = new Array(LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER)
+    .fill()
+    .map((_, index) => index + 1);
+  lottoNumbers.sort(() => Math.random() - 0.5);
 
-  generateRandomNumber() {
-    return Math.floor(
-      Math.random() *
-        (LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER -
-          LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER) +
-        LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
-    );
-  }
+  return lottoNumbers.slice(0, LOTTO_NUMBER_COUNT).sort((a, b) => a - b);
+};
 
-  generateLottoNumbers() {
-    this.#lottoNumbers = Array.from({ length: LOTTO_NUMBER_COUNT }).map(() => {
-      return this.fillLottoNumbers();
-    });
-
-    return this.sortLottoNumbers(this.#lottoNumbers);
-  }
-
-  fillLottoNumbers() {
-    const randomNumber = this.generateRandomNumber();
-    if (this.isNumberDuplicate(randomNumber)) this.fillLottoNumbers();
-
-    return randomNumber;
-  }
-
-  isNumberDuplicate(randomNumber) {
-    return this.#lottoNumbers.includes(randomNumber);
-  }
-
-  sortLottoNumbers() {
-    return this.#lottoNumbers.sort((a, b) => a - b);
-  }
-}
-
-module.exports = RandomNumberGenerator;
+module.exports = { generateRandomLotto };

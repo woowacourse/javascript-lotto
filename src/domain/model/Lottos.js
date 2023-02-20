@@ -1,5 +1,5 @@
 const { PROFIT_PER_RANK, PRICE_UNIT } = require('../../constants/constants');
-const RandomNumberGenerator = require('../../utils/RandomNumberGenerator');
+const { generateRandomLotto } = require('../../utils/RandomNumberGenerator');
 const Lotto = require('./Lotto');
 
 class Lottos {
@@ -8,9 +8,9 @@ class Lottos {
   #ranks = new Array(PROFIT_PER_RANK.length).fill(0);
 
   constructor(lottoCount) {
-    const lottos = Array.from({ length: lottoCount }).map(() =>
-      new RandomNumberGenerator().generateLottoNumbers()
-    );
+    const lottos = Array.from({ length: lottoCount }).map(() => {
+      return generateRandomLotto();
+    });
 
     this.#lottos = lottos.map((lottoNumber) => new Lotto(lottoNumber));
   }
