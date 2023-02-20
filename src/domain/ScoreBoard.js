@@ -16,7 +16,7 @@ class ScoreBoard {
   }
 
   getBoard() {
-    return this.#board;
+    return [...this.#board];
   }
 
   #getTotalPrize() {
