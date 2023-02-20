@@ -3,7 +3,7 @@ const Money = require('../model/Money');
 const Winning = require('../model/Winning');
 const inputHandler = require('../../view/inputView');
 const outputView = require('../../view/outputView');
-const { pickRandomNumberInRange, errorHandler } = require('../../utils');
+const { pickRandomNumberInRange, printErrorAndRetry } = require('../../utils');
 const Console = require('../../utils/Console');
 const {
   RANK_INFORMATIONS,
@@ -65,7 +65,7 @@ class LottoMachine {
       this.#showLottos();
       this.readWinningNumbers();
     } catch (error) {
-      errorHandler(error, () => this.readMoney());
+      printErrorAndRetry(error, () => this.readMoney());
     }
   };
 
@@ -78,7 +78,7 @@ class LottoMachine {
       this.#machineInput.winning.setWinningNumbers(winningNumbers);
       this.readBonusNumber();
     } catch (error) {
-      errorHandler(error, () => this.readWinningNumbers());
+      printErrorAndRetry(error, () => this.readWinningNumbers());
     }
   };
 
@@ -91,7 +91,7 @@ class LottoMachine {
       this.#showResult(benefit, ranks);
       this.readRetryOption();
     } catch (error) {
-      errorHandler(error, () => this.readBonusNumber());
+      printErrorAndRetry(error, () => this.readBonusNumber());
     }
   };
 
@@ -99,7 +99,7 @@ class LottoMachine {
     try {
       this.#checkRetryOption(input);
     } catch (error) {
-      errorHandler(error, () => this.readRetryOption());
+      printErrorAndRetry(error, () => this.readRetryOption());
     }
   };
 

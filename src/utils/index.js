@@ -15,9 +15,9 @@ const pickRandomNumberInRange = (start, end) => {
   );
 };
 
-const errorHandler = (error, again) => {
+const printErrorAndRetry = (error, retry) => {
   Console.print(error.message);
-  again();
+  retry();
 };
 
 const addCommaToNumber = (number) => {
@@ -32,5 +32,5 @@ module.exports = {
   addCommaToNumber,
   pickRandomNumberInRange,
   inputValidator,
-  errorHandler,
+  printErrorAndRetry,
 };
