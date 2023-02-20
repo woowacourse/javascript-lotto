@@ -1,6 +1,7 @@
 const Benefit = require('../model/Benefit');
 const Money = require('../model/Money');
 const Winning = require('../model/Winning');
+const Lotto = require('../model/Lotto');
 const inputHandler = require('../../view/inputView');
 const outputView = require('../../view/outputView');
 const { pickRandomNumberInRange, printErrorAndRetry } = require('../../utils');
@@ -111,8 +112,13 @@ class LottoMachine {
   #generateLottos(amount) {
     const lottoCount = amount / LOTTO_NUMBER.moneyUnit;
 
-    this.#lottos = Array.from({ length: lottoCount }).map(() =>
-      this.#getComposedLottoNumbers().sort((first, second) => first - second)
+    this.#lottos = Array.from({ length: lottoCount }).map(
+      () =>
+        new Lotto(
+          this.#getComposedLottoNumbers().sort(
+            (first, second) => first - second
+          )
+        )
     );
   }
 
@@ -134,7 +140,7 @@ class LottoMachine {
     const RANK_TEMPLATE = [0, 0, 0, 0, 0];
 
     const ranks = this.#lottos.reduce((accumulator, lotto) => {
-      return this.#getIncreasedRanks(lotto, accumulator);
+      return this.#getIncreasedRanks(lotto.getLottoNumbers(), accumulator);
     }, RANK_TEMPLATE);
 
     return ranks;
@@ -176,7 +182,7 @@ class LottoMachine {
 
   #showLottos() {
     this.#lottos.forEach((lotto) => {
-      outputView.printLotto(lotto);
+      outputView.printLotto(lotto.getLottoNumbers());
     });
   }
 
