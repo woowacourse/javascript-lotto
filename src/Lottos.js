@@ -7,8 +7,8 @@ class Lottos {
   #totalBenefit;
   constructor(lottos) {
     this.#lottos = lottos;
-    this.#lottoRanking = {...MATCH.LOTTO_RANKIG};
-    this.#benefitBoard = {...MATCH.BENEFIT_BOARD};
+    this.#lottoRanking = { ...MATCH.LOTTO_RANKIG };
+    this.#benefitBoard = { ...MATCH.BENEFIT_BOARD };
     this.#totalBenefit = 0;
   }
 
@@ -35,15 +35,10 @@ class Lottos {
   }
 
   determineAddScore(lotto) {
-    if (
-      lotto.getScore() === SCORE.ZERO ||
-      lotto.getScore() === SCORE.ONE ||
-      lotto.getScore() === SCORE.TWO
-    )
-      return;
-    lotto.getScore() === 5  
-      ? this.determineBonusOrNot(lotto)
-      : this.addScoreBoard(lotto.getScore());
+    const failScore = [SCORE.ZERO, SCORE.ONE, SCORE.TWO];
+    const score = lotto.getScore();
+    if (failScore.includes(score)) return;
+    score === 5 ? this.determineBonusOrNot(lotto) : this.addScoreBoard(score);
   }
 
   determineBonusOrNot(lotto) {
