@@ -8,11 +8,10 @@ class Lottos {
   #ranks;
 
   constructor(lottoCount) {
-    const lottos = [];
-
-    while (lottos.length < lottoCount) {
-      lottos.push(randomNumberGenerator.generateLottoNumbers());
-    }
+    const emptyLottos = Array.from({ length: lottoCount }, () => []);
+    const lottos = emptyLottos.map(() =>
+      randomNumberGenerator.generateLottoNumbers()
+    );
 
     this.#lottos = lottos.map((lottoNumber) => new Lotto(lottoNumber));
     this.#ranks = new Array(profitByRank.length).fill(0);
