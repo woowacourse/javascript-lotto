@@ -56,7 +56,7 @@ class LottoGame {
       return new BonusNumber(bonusNumber, winningNumbers);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
-      await this.inputWinningNumbers();
+      await this.inputBonusNumber();
     }
   }
 
