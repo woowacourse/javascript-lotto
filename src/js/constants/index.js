@@ -34,13 +34,12 @@ const MESSAGE = Object.freeze({
     ),
   PROFIT_RATE_RESULT: (formattedRate) => `총 수익률은 ${formattedRate}%입니다.`,
 
-  ERROR_DECIMAL: '[ERROR] 구입 금액은 정수여야 합니다.',
-  ERROR_INVALID_LOTTO_FORMAT:
-    '[ERROR] 로또는 콤마(,)로 구분되는 6개의 1 이상 45 이하의 정수여야 합니다.',
-  ERROR_LOTTO_DUPLICATES: '[ERROR] 로또 번호는 중복되는 수가 없어야 합니다',
-  ERROR_INVALID_BONUS_NUMBER: '[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다',
-  ERROR_INVALID_RETRY_COMMAND: '[ERROR] 재시작 여부는 y 또는 n이어야 합니다.',
-  ERROR_BUDGET_NOT_DIVISIBLE: (divisor) => `[ERROR] 구입 금액은 ${divisor}원 단위여야 합니다`,
+  ERROR_DECIMAL: '구입 금액은 정수여야 합니다.',
+  ERROR_INVALID_LOTTO_FORMAT: '로또는 콤마(,)로 구분되는 6개의 1 이상 45 이하의 정수여야 합니다.',
+  ERROR_LOTTO_DUPLICATES: '로또 번호는 중복되는 수가 없어야 합니다',
+  ERROR_INVALID_BONUS_NUMBER: '보너스 번호는 1이상 45이하의 정수여야 합니다',
+  ERROR_INVALID_RETRY_COMMAND: '재시작 여부는 y 또는 n이어야 합니다.',
+  ERROR_BUDGET_NOT_DIVISIBLE: (divisor) => `구입 금액은 ${divisor}원 단위여야 합니다`,
 });
 
 const REGEX = Object.freeze({
