@@ -4,12 +4,9 @@ class Lotto {
   #numbers = [];
 
   constructor(numbers = LottoFactory.generateNumbers()) {
-    this.validateNumbers(numbers);
-
     this.#numbers = [...numbers].sort((a, b) => a - b);
   }
 
-  // TODO: validation
   getNumbers() {
     return [...this.#numbers];
   }
@@ -19,7 +16,7 @@ class Lotto {
   }
 
   countMatch(lotto) {
-    return this.#numbers.filter(lotto.#numbers.includes).length;
+    return this.#numbers.filter((number) => lotto.#numbers.includes(number)).length;
   }
 }
 
