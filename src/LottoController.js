@@ -5,25 +5,32 @@ import OutputView from './view/console/OutputView';
 class LottoController {
   #lottoMachine;
 
+  handleBuyMoney(money) {
+    this.#lottoMachine = new LottoMachine(money);
+  }
+
+  handleWinNumbers(winNumbers) {
+    this.#lottoMachine.generateWinningLotto(winNumbers);
+  }
+
+  handleBonusNumber(bonusNumber) {
+    this.#lottoMachine.setBonusNumber(bonusNumber);
+  }
+
   async readBuyMoney() {
     try {
       const money = await InputView.readBuyMoney();
-      this.#lottoMachine = new LottoMachine(money);
+      this.handleBuyMoney(money);
     } catch (error) {
       OutputView.printErrorMsg(error.message);
       await this.readBuyMoney();
     }
   }
 
-  printBuyLottos() {
-    const lottoNumbers = this.#lottoMachine.getLottoNumbers();
-    OutputView.printBuyLottos(lottoNumbers);
-  }
-
   async readWinNumbers() {
     try {
       const winNumbers = await InputView.readWinNumbers();
-      this.#lottoMachine.generateWinningLotto(winNumbers);
+      this.handleWinNumbers(winNumbers);
     } catch (error) {
       OutputView.printErrorMsg(error.message);
       await this.readWinNumbers();
@@ -33,11 +40,16 @@ class LottoController {
   async readBonusNumber() {
     try {
       const bonusNumber = await InputView.readBonusNumber();
-      this.#lottoMachine.setBonusNumber(bonusNumber);
+      this.handleBonusNumber(bonusNumber);
     } catch (error) {
       OutputView.printErrorMsg(error.message);
       await this.readBonusNumber();
     }
+  }
+
+  printBuyLottos() {
+    const lottoNumbers = this.#lottoMachine.getLottoNumbers();
+    OutputView.printBuyLottos(lottoNumbers);
   }
 
   printWinStatistics() {
