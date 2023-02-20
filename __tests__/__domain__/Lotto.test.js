@@ -1,4 +1,5 @@
-import { Lotto, LottoStore } from '../../src/domain/Lotto.js';
+import Lotto from '../../src/domain/Lotto.js';
+import LottoMachine from '../../src/domain/LottoMachine.js';
 
 const AMOUNT = 8000;
 const PRICE = 1000;
@@ -16,7 +17,7 @@ const generateLotto = (lottoCount) =>
 
 describe('로또', () => {
   test('구입 금액만큼 로또를 구매한다', () => {
-    const lottoList = LottoStore.purchase(TOTAL);
+    const lottoList = LottoMachine.purchase(TOTAL);
 
     expect(lottoList.length).toBe(TOTAL);
   });
@@ -24,7 +25,7 @@ describe('로또', () => {
   test('로또 번호와 당첨 번호를 비교하여 당첨 결과를 확인한다', () => {
     const [lotto] = generateLotto(1);
 
-    const result = LottoStore.draw(lotto);
+    const result = LottoMachine.draw(lotto);
 
     expect(result).toBe(6);
   });
@@ -32,7 +33,7 @@ describe('로또', () => {
   test('당첨 통계를 계산한다', () => {
     const lottoList = generateLotto(5);
 
-    const statistics = LottoStore.calculateStatistics(lottoList);
+    const statistics = LottoMachine.calculateStatistics(lottoList);
 
     expect(statistics).toEqual({
       6: 5,
@@ -42,7 +43,7 @@ describe('로또', () => {
   test('총 수익률을 계산한다', () => {
     const lottoList = generateLotto(5);
 
-    const earningRate = LottoStore.calculateEarningRate(lottoList);
+    const earningRate = LottoMachine.calculateEarningRate(lottoList);
 
     expect(earningRate).toBe((200_000_000).toFixed(1));
   });
