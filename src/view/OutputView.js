@@ -1,30 +1,37 @@
 import Console from '../util/Console.js';
+import { BOUNDARY_LEFT, BOUNDARY_RIGHT } from '../util/constants/constants.js';
 
 const OutputView = {
-  printTheChange(change) {
-    if (change) Console.print(`거스름돈은 ${change}원이에요!!`);
-  },
-
   printLottos(lottos) {
-    lottos.forEach((numbers) => {
-      Console.print(`[${numbers.join(', ')}]`);
-    });
+    Console.print(this.getLottoMessage(lottos));
+    Console.print(`${lottos.length}를 구매했습니다.`);
   },
 
-  printResult({ first, second, third, fourth, fifth }, earningRate) {
-    const formattedRate = this.formatEarningRate(earningRate);
-    Console.print(`당첨 통계
+  printResult(resultBoard) {
+    Console.print(this.getResultMessage(resultBoard));
+  },
+
+  print(message) {
+    Console.print(message);
+  },
+
+  getLottoMessage(lottos) {
+    return lottos.reduce(
+      (message, lottoNumbers) =>
+        `${message}${BOUNDARY_LEFT}${[...lottoNumbers].join(', ')}${BOUNDARY_RIGHT}\n`,
+      ''
+    );
+  },
+
+  getResultMessage({ first, second, third, fourth, fifth, lottoYield }) {
+    return `당첨 통계
 --------------------
-3개 일치 (5,000원) - ${fifth}개
-4개 일치 (50,000원) - ${fourth}개
-5개 일치 (1,500,000원) - ${third}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${second}개
-6개 일치 (2,000,000,000원) - ${first}개
-총 수익률은 ${formattedRate}%입니다.`);
-  },
-
-  formatEarningRate(earningRate) {
-    return earningRate.toFixed(1);
+3개 일치 (${fifth.getPrize().toLocaleString('ko-kr')}원) - ${fifth.getCount()}개
+4개 일치 (${fourth.getPrize().toLocaleString('ko-kr')}원) - ${fourth.getCount()}개
+5개 일치 (${third.getPrize().toLocaleString('ko-kr')}원) - ${third.getCount()}개
+5개 일치, 보너스 볼 일치 (${second.getPrize().toLocaleString('ko-kr')}원) - ${second.getCount()}개
+6개 일치 (${first.getPrize().toLocaleString('ko-kr')}원) - ${first.getCount()}개
+총 수익률은 ${lottoYield.toFixed(1).toLocaleString('ko-kr')}%입니다.`;
   },
 
   close() {

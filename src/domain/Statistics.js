@@ -11,7 +11,7 @@ export default class Statistics {
       first: this.#generateRank(2_000_000_000),
       second: this.#generateRank(30_000_000),
       third: this.#generateRank(1_500_000),
-      forth: this.#generateRank(50_000),
+      fourth: this.#generateRank(50_000),
       fifth: this.#generateRank(5_000),
     };
   }
@@ -19,13 +19,13 @@ export default class Statistics {
   setCountByWinningPlace(lottos) {
     lottos.forEach((lotto) => {
       const { count, hasBonus } = this.#getWinningChecks(lotto);
+
       if (count === 6) return this.#board.first.countOnce();
       if (count === 5 && hasBonus) return this.#board.second.countOnce();
       if (count === 5) return this.#board.third.countOnce();
-      if (count === 4) return this.#board.forth.countOnce();
+      if (count === 4) return this.#board.fourth.countOnce();
       if (count === 3) return this.#board.fifth.countOnce();
     });
-
     return this;
   }
 

@@ -1,57 +1,78 @@
 import InputView from './view/InputView.js';
 import LottoGame from './domain/LottoGame.js';
-import Console from './util/Console.js';
 import OutputView from './view/OutputView.js';
+import { COMMAND_YES } from './util/constants/constants.js';
 
 class App {
   #lottoGame;
 
+  #inputView;
+
+  #outputView;
+
+  constructor() {
+    this.#lottoGame = new LottoGame();
+    this.#inputView = InputView;
+    this.#outputView = OutputView;
+  }
+
   async play() {
-    const money = await this.readUserInput(InputView.readMoney);
-    this.#lottoGame = new LottoGame(money);
-    this.printBuyResult(money);
+    this.setUpGame();
+    await this.issueLottos();
+    await this.applyWinningLotto();
+    this.showResult();
 
-    const { winningNumbers, bonusNumber } = await this.readWinningLotto();
-    this.printGameResult(winningNumbers, bonusNumber);
-
-    await this.retry();
+    await this.retryByCommand();
   }
 
-  async retry() {
-    const retry = await this.readUserInput(InputView.readRetry);
-
-    if (retry === 'y') await this.play();
-
-    OutputView.close();
+  setUpGame() {
+    this.#lottoGame = new LottoGame();
   }
 
-  printGameResult(winningNumbers, bonusNumber) {
-    const rankingBoard = this.#lottoGame.updateRankingBoard(winningNumbers, bonusNumber).getRankingBoard();
-
-    const earningRate = this.#lottoGame.getEarningRate();
-
-    OutputView.printResult(rankingBoard, earningRate);
-  }
-
-  async readWinningLotto() {
-    const winningNumbers = await this.readUserInput(InputView.readWinningNumbers);
-    const bonusNumber = await this.readUserInput(InputView.readBonusNumber, winningNumbers);
-    return { winningNumbers, bonusNumber };
-  }
-
-  printBuyResult(money) {
-    OutputView.printTheChange(LottoGame.calculateTheChange(money));
-    OutputView.printLottos(this.#lottoGame.getLottos());
-  }
-
-  async readUserInput(inputFunction, functionParameter) {
+  async issueLottos() {
     try {
-      return await inputFunction(functionParameter);
-    } catch (e) {
-      Console.print(e.message);
-      return this.readUserInput(inputFunction, functionParameter);
+      const money = await this.#inputView.readMoney();
+      const lottos = this.#lottoGame.setLottos(money).getLottos();
+
+      return this.#outputView.printLottos(lottos);
+    } catch (error) {
+      this.#outputView.print(error.message);
+      return this.issueLottos();
+    }
+  }
+
+  async applyWinningLotto() {
+    try {
+      const winningNumbers = await this.#inputView.readWinningNumbers();
+      const bonusNumber = await this.#inputView.readBonusNumber();
+
+      return this.#lottoGame.setWinningLotto(winningNumbers, bonusNumber);
+    } catch (error) {
+      this.#outputView.print(error.message);
+      return this.applyWinningLotto();
+    }
+  }
+
+  showResult() {
+    const statisticsResult = this.#lottoGame.getGameResult();
+    this.#outputView.printResult(statisticsResult);
+  }
+
+  async retryByCommand() {
+    try {
+      const command = await this.#inputView.readRetry();
+      if (command === COMMAND_YES) {
+        return this.play();
+      }
+
+      return OutputView.close();
+    } catch (error) {
+      this.#outputView.print(error.message);
+      return this.retryByCommand();
     }
   }
 }
 
+const app = new App();
+await app.play();
 export default App;

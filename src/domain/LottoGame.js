@@ -1,13 +1,14 @@
 import Lotto from './lotto/Lotto.js';
 import generateRandomNumbersIn from '../util/RandomGenerator.js';
+
+import Statistics from './Statistics.js';
+import WinningLotto from './lotto/WinningLotto.js';
 import {
   PRICE_DEFAULT,
   MAX_NUMBER_DEFAULT,
   MIN_NUMBER_DEFAULT,
   COUNT_DEFAULT,
-} from './constant/constants.js';
-import Statistics from './Statistics.js';
-import WinningLotto from './lotto/WinningLotto.js';
+} from '../util/constants/constants.js';
 
 class LottoGame {
   SETTINGS;
@@ -33,8 +34,13 @@ class LottoGame {
     this.#RANDOM_GENERATOR = generateRandomNumbersIn(minNumber, maxNumber)(count);
   }
 
-  issueLottos(money) {
+  setLottos(money) {
+    if (money < this.SETTINGS.price) throw new Error('[ERROR]12');
+
+    if (money > Number.MAX_SAFE_INTEGER) throw new Error('[ERROR]10');
+
     const count = money / this.SETTINGS.price;
+
     this.#lottos = Array.from(
       { length: count },
       () => new Lotto(this.#RANDOM_GENERATOR(), this.SETTINGS)
@@ -44,9 +50,10 @@ class LottoGame {
   }
 
   setWinningLotto(winningNumbers, bonusNumber) {
-    this.#statistics = new Statistics(
-      new WinningLotto(new Lotto(winningNumbers, this.SETTINGS), bonusNumber)
-    );
+    const winningLotto = new WinningLotto(new Lotto(winningNumbers, this.SETTINGS), bonusNumber);
+
+    this.#statistics = new Statistics(winningLotto);
+
     return this;
   }
 
@@ -63,13 +70,3 @@ class LottoGame {
 }
 
 export default LottoGame;
-
-// TODO: 테스트로 옮기기
-// const lottoGame = new LottoGame();
-// const result = lottoGame
-//   .issueLottos(20_000)
-//   .setWinningLotto([11, 12, 13, 14, 5, 6], 7)
-//   .getGameResult();
-
-// result.first.getCount();
-// console.log('>>> result:', result);

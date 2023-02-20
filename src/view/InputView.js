@@ -1,72 +1,43 @@
 import Console from '../util/Console.js';
-import Validator from '../util/Validator.js';
-import MESSAGE from '../constant/messages.js';
-import { LOTTO_RULE } from '../constant/constants.js';
+import { COMMAND_NO, COMMAND_YES, SEPARATOR } from '../util/constants/constants.js';
+import { INPUT_MESSAGE } from '../util/constants/messages.js';
 
 const InputView = {
   async readMoney() {
-    const input = await Console.question(MESSAGE.inputMoney);
+    const input = await Console.question(INPUT_MESSAGE.money);
+    const numberInput = input.replace(/ /g, '');
 
-    if (!Validator.isPositiveInteger(input)) throw new Error(MESSAGE.errorPositiveInteger);
+    if (!/^\d+$/.test(numberInput)) throw new Error('[ERROR]10');
 
-    if (!Validator.isNumberInRange(1000, Number.MAX_SAFE_INTEGER)(input)) {
-      throw new Error(MESSAGE.errorMoneyRange);
-    }
-
-    return Number(input);
+    return Number(numberInput);
   },
 
   async readWinningNumbers() {
-    const input = await Console.question(MESSAGE.inputWinningNumbers);
-    const winningNumbers = input.split(LOTTO_RULE.separator).map((number) => number.trim());
+    const input = await Console.question(INPUT_MESSAGE.winningNumbers);
+    const numbersInput = input.replace(/ /g, '');
 
-    if (winningNumbers.includes('')) {
-      throw new Error(MESSAGE.errorContent);
-    }
+    if (!new RegExp(`^[\\d|${SEPARATOR}]+$`).test(numbersInput)) throw new Error('[ERROR]11');
 
-    if (!winningNumbers.every(Validator.isPositiveInteger)) {
-      throw new Error(MESSAGE.errorPositiveInteger);
-    }
-
-    if (!Validator.isArrayLengthEqual(winningNumbers, LOTTO_RULE.size)) {
-      throw new Error(MESSAGE.errorLottoCount);
-    }
-
-    if (Validator.hasDuplication(winningNumbers.map(Number))) {
-      throw new Error(MESSAGE.errorLottoDuplicated);
-    }
-
-    if (!winningNumbers.every(
-      Validator.isNumberInRange(LOTTO_RULE.minNumber, LOTTO_RULE.maxNumber + 1),
-    )) {
-      throw new Error(MESSAGE.errorLottoInRange);
-    }
-
-    return winningNumbers.map(Number);
+    return numbersInput.split(SEPARATOR).map(Number);
   },
 
-  async readBonusNumber(winningNumbers) {
-    const input = await Console.question(MESSAGE.inputBonusNumber);
+  async readBonusNumber() {
+    const input = await Console.question(INPUT_MESSAGE.bonusNumber);
+    const numberInput = input.replace(/ /g, '');
 
-    if (!Validator.isPositiveInteger(input)) throw new Error(MESSAGE.errorPositiveInteger);
-
-    if (!Validator.isNumberInRange(LOTTO_RULE.minNumber, LOTTO_RULE.maxNumber + 1)(input)) {
-      throw new Error(MESSAGE.errorLottoInRange);
-    }
-
-    if (winningNumbers.includes(Number(input))) {
-      throw new Error(MESSAGE.errorLottoDuplicated);
-    }
+    if (!/^\d+$/.test(numberInput)) throw new Error('1');
 
     return Number(input);
   },
 
   async readRetry() {
-    const input = await Console.question(MESSAGE.inputRetry);
-    if (!Validator.isSame(input.trim(), 'y') && !Validator.isSame(input.trim(), 'n')) {
-      throw new Error(MESSAGE.errorRetry);
-    }
-    return input.trim().toLowerCase();
+    const input = await Console.question(INPUT_MESSAGE.retry);
+    const commandInput = input.replace(/ /g, '').toLowerCase();
+
+    if (commandInput !== COMMAND_NO && commandInput !== COMMAND_YES) throw new Error('[ERROR]');
+
+    console.log('>>> commandInput :', commandInput);
+    return commandInput;
   },
 };
 
