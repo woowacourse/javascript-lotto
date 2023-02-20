@@ -1,5 +1,5 @@
 import Console from '../util/Console.js';
-import { BOUNDARY_LEFT, BOUNDARY_RIGHT } from '../util/constants/constants.js';
+import { BOUNDARY_LEFT, BOUNDARY_RIGHT, SEPARATOR } from '../util/constants/constants.js';
 
 const OutputView = {
   printLottos(lottos) {
@@ -18,13 +18,13 @@ const OutputView = {
   getLottoMessage(lottos) {
     return lottos.reduce(
       (message, lottoNumbers) =>
-        `${message}${BOUNDARY_LEFT}${[...lottoNumbers].join(', ')}${BOUNDARY_RIGHT}\n`,
+        `${message}${BOUNDARY_LEFT}${[...lottoNumbers].join(`${SEPARATOR} `)}${BOUNDARY_RIGHT}\n`,
       ''
     );
   },
 
   getResultMessage({ first, second, third, fourth, fifth, lottoYield }) {
-    return `당첨 통계
+    return `\n당첨 통계
 --------------------
 3개 일치 (${fifth.getPrize().toLocaleString('ko-kr')}원) - ${fifth.getCount()}개
 4개 일치 (${fourth.getPrize().toLocaleString('ko-kr')}원) - ${fourth.getCount()}개
