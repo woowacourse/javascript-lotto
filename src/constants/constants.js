@@ -1,7 +1,7 @@
 const readline = require('readline');
 
 const PRICE_UNIT = 1_000;
-const regex = Object.freeze({
+const REGEX = Object.freeze({
   BLANK: /\s/,
   RESTART_COMMAND: /y|n/,
   PRICE_FORMAT: /\B(?=(\d{3})+(?!\d))/g,
@@ -10,12 +10,12 @@ const regex = Object.freeze({
 const EMPTY_STRING = '';
 const LOTTO_NUMBER_COUNT = 6;
 
-const lottoNumberRange = Object.freeze({
+const LOTTO_NUMBER_RANGE = Object.freeze({
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
 });
 
-const profit = Object.freeze({
+const PROFIT = Object.freeze({
   FIRST_RANK: 2_000_000_000,
   SECOND_RANK: 30_000_000,
   THIRD_RANK: 1_500_000,
@@ -23,15 +23,23 @@ const profit = Object.freeze({
   FIFTH_RANK: 5_000,
 });
 
-const profitByRank = Object.freeze([
-  profit.FIRST_RANK,
-  profit.SECOND_RANK,
-  profit.THIRD_RANK,
-  profit.FOURTH_RANK,
-  profit.FIFTH_RANK,
+const PROFIT_PER_RANK = Object.freeze([
+  PROFIT.FIRST_RANK,
+  PROFIT.SECOND_RANK,
+  PROFIT.THIRD_RANK,
+  PROFIT.FOURTH_RANK,
+  PROFIT.FIFTH_RANK,
 ]);
 
-const correctCountPerRank = Object.freeze({
+const RANK = Object.freeze({
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
+});
+
+const CORRECT_COUNT_PER_RANK = Object.freeze({
   FIRST_RANK: 6,
   SECOND_RANK: 5,
   THIRD_RANK: 5,
@@ -39,7 +47,7 @@ const correctCountPerRank = Object.freeze({
   FIFTH_RANK: 3,
 });
 
-const indexToRankKeyConverter = Object.freeze([
+const INDEX_TO_KEY_CONVERTER = Object.freeze([
   'FIRST_RANK',
   'SECOND_RANK',
   'THIRD_RANK',
@@ -47,7 +55,7 @@ const indexToRankKeyConverter = Object.freeze([
   'FIFTH_RANK',
 ]);
 
-const restartCommand = Object.freeze({
+const RESTART_COMMAND = Object.freeze({
   YES: 'y',
   NO: 'n',
 });
@@ -57,7 +65,7 @@ const RL = readline.createInterface({
   output: process.stdout,
 });
 
-const consoleMessage = Object.freeze({
+const CONSOLE_MESSAGE = Object.freeze({
   ASK_PURCHASE_PRICE: '> 구입금액을 입력해 주세요.',
   showLottoCount: (lottoCount) => `${lottoCount}개를 구매했습니다.`,
   ASK_WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
@@ -67,25 +75,26 @@ const consoleMessage = Object.freeze({
   ASK_RESTART_COMMAND: '> 다시 시작하시겠습니까? (y/n)',
 });
 
-const errorMessage = Object.freeze({
+const ERROR_MESSAGE = Object.freeze({
   PURCHASE_PRICE_ERROR: `구매 금액은 ${PRICE_UNIT}원 단위로 입력해주세요`,
-  WINNING_NUMBERS_ERROR: `당첨 번호는 ${lottoNumberRange.MIN_LOTTO_NUMBER}부터 ${lottoNumberRange.MAX_LOTTO_NUMBER}까지 ${LOTTO_NUMBER_COUNT}개의 숫자로 중복없이 입력해주세요.`,
-  BONUS_NUMBER_ERROR: `보너스 번호는 ${lottoNumberRange.MIN_LOTTO_NUMBER}부터 ${lottoNumberRange.MAX_LOTTO_NUMBER}까지의 숫자로 당첨 번호와 중복없이 입력해주세요.`,
-  RESTART_COMMAND_ERROR: `${restartCommand.YES} 또는 ${restartCommand.NO}으로만 입력해주세요.`,
+  WINNING_NUMBERS_ERROR: `당첨 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지 ${LOTTO_NUMBER_COUNT}개의 숫자로 중복없이 입력해주세요.`,
+  BONUS_NUMBER_ERROR: `보너스 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지의 숫자로 당첨 번호와 중복없이 입력해주세요.`,
+  RESTART_COMMAND_ERROR: `${RESTART_COMMAND.YES} 또는 ${RESTART_COMMAND.NO}으로만 입력해주세요.`,
 });
 
 module.exports = {
-  correctCountPerRank,
-  consoleMessage,
+  CORRECT_COUNT_PER_RANK,
+  CONSOLE_MESSAGE,
   EMPTY_STRING,
-  errorMessage,
-  indexToRankKeyConverter,
+  ERROR_MESSAGE,
+  INDEX_TO_KEY_CONVERTER,
   LOTTO_NUMBER_COUNT,
-  lottoNumberRange,
-  profit,
-  profitByRank,
+  LOTTO_NUMBER_RANGE,
+  PROFIT,
+  PROFIT_PER_RANK,
   PRICE_UNIT,
   RL,
-  regex,
-  restartCommand,
+  RANK,
+  REGEX,
+  RESTART_COMMAND,
 };

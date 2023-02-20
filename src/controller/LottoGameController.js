@@ -1,4 +1,4 @@
-const { PRICE_UNIT, restartCommand } = require('../constants/constants');
+const { PRICE_UNIT, RESTART_COMMAND } = require('../constants/constants');
 const Lottos = require('../domain/model/Lottos');
 const WinningNumbers = require('../domain/model/WinningNumbers');
 const exception = require('../utils/exception');
@@ -86,7 +86,7 @@ class LottoGameController {
     inputView.readRestartCommand((restartCommandInput) => {
       try {
         exception.handleRestartCommand(restartCommandInput);
-        if (restartCommandInput === restartCommand.YES) return this.restart();
+        if (restartCommandInput === RESTART_COMMAND.YES) return this.restart();
         Console.close();
       } catch (error) {
         Console.print(error.message);

@@ -1,10 +1,10 @@
-const { consoleMessage, profitByRank } = require('../constants/constants');
+const { CONSOLE_MESSAGE, PROFIT_PER_RANK } = require('../constants/constants');
 const Console = require('./Console');
 const { showStatistics } = require('../utils/index');
 
 const outputView = {
   printLottoCount(lottoCount) {
-    Console.print(consoleMessage.showLottoCount(lottoCount));
+    Console.print(CONSOLE_MESSAGE.showLottoCount(lottoCount));
   },
 
   printLottoNumbers(lottos) {
@@ -15,20 +15,20 @@ const outputView = {
   },
 
   printStatistics(ranks) {
-    Console.print(consoleMessage.RESULT_HEADER);
+    Console.print(CONSOLE_MESSAGE.RESULT_HEADER);
 
     ranks.forEach((lottoCount, index, origin) => {
       Console.print(
         showStatistics(
-          profitByRank.length - index,
-          origin[profitByRank.length - index - 1]
+          PROFIT_PER_RANK.length - index,
+          origin[PROFIT_PER_RANK.length - index - 1]
         )
       );
     });
   },
 
   printProfitRate(profitRate) {
-    Console.print(consoleMessage.showProfitRate(profitRate));
+    Console.print(CONSOLE_MESSAGE.showProfitRate(profitRate));
   },
 };
 module.exports = outputView;

@@ -1,10 +1,10 @@
-const { consoleMessage } = require('../constants/constants');
+const { CONSOLE_MESSAGE } = require('../constants/constants');
 const Console = require('./Console');
 
 const inputView = {
   readPurchasePrice(callback) {
     Console.readLine(
-      consoleMessage.ASK_PURCHASE_PRICE,
+      CONSOLE_MESSAGE.ASK_PURCHASE_PRICE,
       (purchasePriceInput) => {
         return callback(purchasePriceInput);
       }
@@ -12,20 +12,20 @@ const inputView = {
   },
   readWinningNumbers(callback) {
     Console.readLine(
-      consoleMessage.ASK_WINNING_NUMBERS,
+      CONSOLE_MESSAGE.ASK_WINNING_NUMBERS,
       (winningNumbersInput) => {
         return callback(winningNumbersInput);
       }
     );
   },
   readBonusNumber(callback) {
-    Console.readLine(consoleMessage.ASK_BONUS_NUMBER, (bonusNumberInput) => {
+    Console.readLine(CONSOLE_MESSAGE.ASK_BONUS_NUMBER, (bonusNumberInput) => {
       return callback(bonusNumberInput);
     });
   },
   readRestartCommand(callback) {
     Console.readLine(
-      consoleMessage.ASK_RESTART_COMMAND,
+      CONSOLE_MESSAGE.ASK_RESTART_COMMAND,
       (restartCommandInput) => {
         return callback(restartCommandInput);
       }

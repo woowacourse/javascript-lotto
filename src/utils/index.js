@@ -1,9 +1,9 @@
 const {
-  correctCountPerRank,
-  indexToRankKeyConverter,
-  profit,
-  profitByRank,
-  regex,
+  CORRECT_COUNT_PER_RANK,
+  INDEX_TO_KEY_CONVERTER,
+  PROFIT,
+  PROFIT_PER_RANK,
+  REGEX,
 } = require('../constants/constants');
 
 const calculateProfit = (rank) => {
@@ -11,15 +11,15 @@ const calculateProfit = (rank) => {
 
   const rankIndex = rank - 1;
 
-  return profitByRank[rankIndex];
+  return PROFIT_PER_RANK[rankIndex];
 };
 
 const showStatistics = (rank, correctCount) => {
-  return `${correctCountPerRank[indexToRankKeyConverter[rank - 1]]}개 일치${
+  return `${CORRECT_COUNT_PER_RANK[INDEX_TO_KEY_CONVERTER[rank - 1]]}개 일치${
     rank === 2 ? ', 보너스 볼 일치' : ''
-  } (${profit[indexToRankKeyConverter[rank - 1]]
+  } (${PROFIT[INDEX_TO_KEY_CONVERTER[rank - 1]]
     .toString()
-    .replace(regex.PRICE_FORMAT, ',')}원) - ${correctCount}개`;
+    .replace(REGEX.PRICE_FORMAT, ',')}원) - ${correctCount}개`;
 };
 
 module.exports = { calculateProfit, showStatistics };

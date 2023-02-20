@@ -1,11 +1,11 @@
-const { profitByRank, PRICE_UNIT } = require('../../constants/constants');
+const { PROFIT_PER_RANK, PRICE_UNIT } = require('../../constants/constants');
 const { randomNumberGenerator } = require('../../utils/RandomNumberGenerator');
 const Lotto = require('./Lotto');
 
 class Lottos {
   #lottos;
 
-  #ranks = new Array(profitByRank.length).fill(0);
+  #ranks = new Array(PROFIT_PER_RANK.length).fill(0);
 
   constructor(lottoCount) {
     const emptyLottos = Array.from({ length: lottoCount }, () => []);
@@ -57,7 +57,7 @@ class Lottos {
     const initialValue = 0;
 
     return this.#ranks.reduce((profit, rankCount, index) => {
-      return profit + rankCount * profitByRank[index];
+      return profit + rankCount * PROFIT_PER_RANK[index];
     }, initialValue);
   }
 }

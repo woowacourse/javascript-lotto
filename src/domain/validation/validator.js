@@ -2,9 +2,9 @@
 const {
   EMPTY_STRING,
   PRICE_UNIT,
-  lottoNumberRange,
+  LOTTO_NUMBER_RANGE,
   LOTTO_NUMBER_COUNT,
-  regex,
+  REGEX,
 } = require('../../constants/constants');
 
 const validator = {
@@ -48,7 +48,7 @@ const validator = {
   },
 
   isBlankIncluded(input) {
-    return regex.BLANK.test(input);
+    return REGEX.BLANK.test(input);
   },
 
   isEmpty(input) {
@@ -69,8 +69,8 @@ const validator = {
 
   isNumberRangeValid(number) {
     return (
-      Number(number) <= lottoNumberRange.MAX_LOTTO_NUMBER &&
-      Number(number) >= lottoNumberRange.MIN_LOTTO_NUMBER
+      Number(number) <= LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER &&
+      Number(number) >= LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
     );
   },
 
@@ -79,7 +79,7 @@ const validator = {
   },
 
   isRestartCommandValid(input) {
-    return regex.RESTART_COMMAND.test(input) && input.length === 1;
+    return REGEX.RESTART_COMMAND.test(input) && input.length === 1;
   },
 };
 

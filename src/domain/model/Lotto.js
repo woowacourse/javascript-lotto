@@ -1,4 +1,4 @@
-const { correctCountPerRank } = require('../../constants/constants');
+const { CORRECT_COUNT_PER_RANK, RANK } = require('../../constants/constants');
 
 class Lotto {
   #numbers;
@@ -30,15 +30,18 @@ class Lotto {
   }
 
   #setRank(correctNumberCount, bonusNumber) {
-    if (correctNumberCount === correctCountPerRank.SECOND_RANK)
+    if (correctNumberCount === CORRECT_COUNT_PER_RANK.SECOND_RANK)
       return this.#setRankTwoOrThree(bonusNumber);
-    if (correctNumberCount === correctCountPerRank.FIRST_RANK) this.#rank = 1;
-    if (correctNumberCount === correctCountPerRank.FOURTH_RANK) this.#rank = 4;
-    if (correctNumberCount === correctCountPerRank.FIFTH_RANK) this.#rank = 5;
+    if (correctNumberCount === CORRECT_COUNT_PER_RANK.FIRST_RANK)
+      this.#rank = 1;
+    if (correctNumberCount === CORRECT_COUNT_PER_RANK.FOURTH_RANK)
+      this.#rank = 4;
+    if (correctNumberCount === CORRECT_COUNT_PER_RANK.FIFTH_RANK)
+      this.#rank = 5;
   }
 
   #setRankTwoOrThree(bonusNumber) {
-    this.#rank = this.#numbers.includes(bonusNumber) ? 2 : 3;
+    this.#rank = this.#numbers.includes(bonusNumber) ? RANK.SECOND : RANK.THIRD;
   }
 }
 

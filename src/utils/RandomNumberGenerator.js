@@ -1,5 +1,5 @@
 const {
-  lottoNumberRange,
+  LOTTO_NUMBER_RANGE,
   LOTTO_NUMBER_COUNT,
 } = require('../constants/constants');
 
@@ -7,9 +7,9 @@ const randomNumberGenerator = {
   generateRandomNumber() {
     return Math.floor(
       Math.random() *
-        (lottoNumberRange.MAX_LOTTO_NUMBER -
-          lottoNumberRange.MIN_LOTTO_NUMBER) +
-        lottoNumberRange.MIN_LOTTO_NUMBER
+        (LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER -
+          LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER) +
+        LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
     );
   },
 
