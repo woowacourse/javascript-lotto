@@ -1,13 +1,12 @@
 const Lotto = require('./Lotto');
 
 const { shuffle } = require('../utils/shuffle');
-
 const { ALL_LOTTO_NUMBERS, LOTTO } = require('./constants/index');
 
 class LottoMachine {
   #purchasePrice;
 
-  #lottos = [];
+  #lottos;
 
   purchase(purchasePrice) {
     this.#purchasePrice = purchasePrice;
@@ -34,11 +33,9 @@ class LottoMachine {
   issueLottos() {
     const lottoCount = this.#purchasePrice / LOTTO.unitAmount;
 
-    Array(lottoCount)
+    this.#lottos = Array(lottoCount)
       .fill(0)
-      .forEach(() => {
-        this.#lottos.push(this.issueLotto());
-      });
+      .map(() => this.issueLotto());
   }
 
   issueLotto() {
