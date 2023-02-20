@@ -59,6 +59,11 @@
     - [x] 로또 하나의 HTML을 반환하는 기능
 - [x] `구입` 버튼의 클릭을 감지할 수 있는 기능(리스너)
 
+### ErrorView
+
+- [x] 에러 메시지를 표시하는 기능
+  - [x] 에러 메시지의 HTML을 반환하는 기능
+
 ## controller
 
 ### LottoController
