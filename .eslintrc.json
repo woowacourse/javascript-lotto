@@ -1,11 +1,23 @@
 {
-  "rules": {},
   "env": {
-    "es6": true,
+    "browser": true,
+    "es2021": true,
     "node": true
   },
+  "extends": "airbnb-base",
+  "overrides": [],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "rules": {
+    "linebreak-style": ["warn"],
+    "no-console": "off",
+    "no-param-reassign": ["warn", { "props": false }],
+    "import/extensions": ["warn", "always"],
+    "class-methods-use-this": "off",
+    "max-params": ["warn", 2],
+    "max-depth": ["warn", 1],
+    "max-lines-per-function": ["warn", 12]
+  }
 }
