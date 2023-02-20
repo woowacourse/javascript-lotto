@@ -1,10 +1,20 @@
+:root {
+    --color-primary: #4E5BA6;
+    --color-gray-scale-1: #FFFFFF;
+    --color-gray-scale-2: #FCFDFD;
+    --color-gray-scale-3: #B4B4B4;
+    --color-gray-scale-4: #8B8B8B;
+    --color-gray-scale-5: #000000;
+    --color-border: rgba(0, 0, 0, 0.12);
+}
+
 body, h3, p {
     margin: 0;
 }
 
 header {
-    background: #4E5BA6;
-    color: #ffffff;
+    background: var(--color-primary);
+    color: var(--color-gray-scale-1);
     font-size: 24px;
     font-weight: bolder;
     padding: 14px 30px;
@@ -19,15 +29,15 @@ main {
 
 button {
     border: 0;
-    color: #ffffff;
-    background: #4E5BA6;
+    color: var(--color-gray-scale-1);
+    background: var(--color-primary);
     border-radius: 4px;
 }
 
 #app {
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     margin: 40px 0;
     width: 414px;
@@ -56,11 +66,15 @@ button {
     align-items: center;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.12);
+    background: var(--color-border);
+}
+
+.modal-close-btn {
+    cursor: pointer;
 }
 
 .win-result-container {
-    background: white;
+    background: var(--color-gray-scale-1);
     height: 400px;
     width: 300px;
 }
@@ -70,8 +84,8 @@ footer {
     flex: 1;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    color: #4E5BA6;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-primary);
     font-size: 14px;
     font-weight: bold;
     padding: 14px 0;
