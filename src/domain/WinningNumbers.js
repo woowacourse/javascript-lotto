@@ -7,13 +7,15 @@ const {
 class WinningNumbers {
   #numbers;
 
+  #bonusNumber;
+
   constructor(winningNumbersInput) {
     const numbers = winningNumbersInput.split(',').map(Number);
-    this.validate(numbers);
+    this.validateWinningNumbers(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
+  validateWinningNumbers(numbers) {
     if (!this.isValidWinningNumbers(numbers)) {
       throw new Error(
         `[ERROR] 당첨 번호는 ${MIN_LOTTO_NUMBER} 이상 ${MAX_LOTTO_NUMBER} 이하의 숫자 6개여야 합니다.`
@@ -39,8 +41,34 @@ class WinningNumbers {
     return new Set(numbers).size !== numbers.length;
   }
 
+  initBonusNumber(bonusNumberInput) {
+    const bonusNumber = Number(bonusNumberInput);
+
+    this.validateBonusNumber(bonusNumber);
+    this.#bonusNumber = bonusNumber;
+  }
+
+  validateBonusNumber(bonusNumber) {
+    if (!this.isValidWinningNumber(bonusNumber)) {
+      throw new Error(
+        `[ERROR] 보너스 번호는 ${MIN_LOTTO_NUMBER} 이상 ${MAX_LOTTO_NUMBER} 이하의 숫자여야 합니다.`
+      );
+    }
+    if (this.isDuplicateFor(this.#numbers, bonusNumber)) {
+      throw new Error('[ERROR] 당첨 번호가 중복이 되면 안됩니다. ');
+    }
+  }
+
+  isDuplicateFor(winningNumbers, bonusNumber) {
+    return winningNumbers.includes(bonusNumber);
+  }
+
   get numbers() {
     return this.#numbers;
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
   }
 }
 

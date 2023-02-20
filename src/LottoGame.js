@@ -1,6 +1,5 @@
 const LottoMachine = require('./domain/LottoMachine');
 const WinningNumbers = require('./domain/WinningNumbers');
-const BonusNumber = require('./domain/BonusNumber');
 const LottoStatistics = require('./domain/LottoStatistics');
 const {
   RESTART_COMMAND,
@@ -13,6 +12,8 @@ const OutputView = require('./view/OutputView');
 
 class LottoGame {
   #lottoMachine;
+
+  #winningNumbers;
 
   #lottoStatistics;
 
@@ -39,29 +40,29 @@ class LottoGame {
   }
 
   async initLottoStatistics() {
-    const winningNumbers = await this.inputWinningNumbers();
-    const bonusNumber = await this.inputBonusNumber(winningNumbers.numbers);
+    await this.inputWinningNumbers();
+    await this.inputBonusNumber();
 
     this.#lottoStatistics = new LottoStatistics(
-      winningNumbers.numbers,
-      bonusNumber.number
+      this.#winningNumbers.numbers,
+      this.#winningNumbers.bonusNumber
     );
   }
 
   async inputWinningNumbers() {
     try {
-      const winningNumbers = await InputView.readWinningNumbers();
-      return new WinningNumbers(winningNumbers);
+      const winningNumbersInput = await InputView.readWinningNumbers();
+      this.#winningNumbers = new WinningNumbers(winningNumbersInput);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       await this.inputWinningNumbers();
     }
   }
 
-  async inputBonusNumber(winningNumbers) {
+  async inputBonusNumber() {
     try {
-      const bonusNumber = await InputView.readBonusNumber();
-      return new BonusNumber(bonusNumber, winningNumbers);
+      const bonusNumberInput = await InputView.readBonusNumber();
+      this.#winningNumbers.initBonusNumber(bonusNumberInput);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       await this.inputBonusNumber();
