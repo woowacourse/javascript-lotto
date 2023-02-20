@@ -48,7 +48,7 @@ class LottoGameController {
     } catch ({ message }) {
       this.#lottoGameView.winningNumbersInput.classList.add('error-input');
       this.#lottoGameView.showErrorMessage('game-numbers', message);
-      this.#lottoGameView.winningNumbersInput.value = '';
+      this.#lottoGameView.winningNumbersForm.reset();
       this.#lottoGameView.winningNumbersInput.focus();
     }
   }

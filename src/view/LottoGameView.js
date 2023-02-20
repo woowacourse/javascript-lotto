@@ -13,7 +13,8 @@ class LottoGameView {
     this.userLottos = $('.user-lottos');
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
-    this.winningNumbersForm = $('.winning-numbers-container');
+    this.winningNumbersContainer = $('.winning-numbers-container');
+    this.winningNumbersForm = $('#winning-numbers-form');
     this.winningNumbersInput = $('.input--number');
     this.bonusNumberInput = $('input[name="bonus-number"]');
 
@@ -51,8 +52,8 @@ class LottoGameView {
   }
 
   showWinningNumbersForm() {
-    this.winningNumbersForm.style.opacity = 1;
-    this.winningNumbersForm.style.pointerEvents = 'all';
+    this.winningNumbersContainer.style.opacity = 1;
+    this.winningNumbersContainer.style.pointerEvents = 'all';
   }
 
   addWinningNumbersSubmitEvent(callback) {
