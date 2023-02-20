@@ -9,22 +9,6 @@ class Lotto {
   static ERROR_INVALID = '잘못된 입력입니다.';
   static ERROR_DUPLICATE = '중복된 입력입니다.';
 
-  static isValidLottoNumber(number) {
-    return isPositiveInteger(number) || this.isValidLottoNumberRange(number);
-  }
-
-  static isValidLottoNumberRange(number) {
-    return number >= LOTTO_NUMBER_RANGE_MIN && number <= LOTTO_NUMBER_RANGE_MAX;
-  }
-
-  static isDuplicateNumbers(numbers) {
-    return new Set(numbers).size !== LOTTO_NUMBER_SIZE || numbers.length !== LOTTO_NUMBER_SIZE;
-  }
-
-  static isValidLottoNumbers(numbers) {
-    return numbers.every(Lotto.isValidLottoNumber);
-  }
-
   #numbers = [];
 
   constructor(numbers) {
@@ -36,6 +20,22 @@ class Lotto {
     }
 
     this.#numbers = numbers.sort((a, b) => a - b);
+  }
+
+  static isValidLottoNumberRange(number) {
+    return number >= LOTTO_NUMBER_RANGE_MIN && number <= LOTTO_NUMBER_RANGE_MAX;
+  }
+
+  static isValidLottoNumber(number) {
+    return isPositiveInteger(number) && Lotto.isValidLottoNumberRange(number);
+  }
+
+  static isDuplicateNumbers(numbers) {
+    return new Set(numbers).size !== LOTTO_NUMBER_SIZE || numbers.length !== LOTTO_NUMBER_SIZE;
+  }
+
+  static isValidLottoNumbers(numbers) {
+    return numbers.every(Lotto.isValidLottoNumber);
   }
 
   getNumbers() {
