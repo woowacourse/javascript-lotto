@@ -5,7 +5,7 @@ const {
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
   regex,
-} = require("../../constants/constants");
+} = require('../../constants/constants');
 
 const validator = {
   purchasePrice(input) {
@@ -18,7 +18,7 @@ const validator = {
   },
 
   winningNumbers(input) {
-    const winningNumbers = input.split(",").map(Number);
+    const winningNumbers = input.split(',').map(Number);
     return (
       !this.isEmptyOrBlankIncluded(input) &&
       winningNumbers.every(this.isNumber) &&
@@ -64,7 +64,7 @@ const validator = {
   },
 
   checkWinningNumberCount(input) {
-    return input.split(",").length === LOTTO_NUMBER_COUNT;
+    return input.split(',').length === LOTTO_NUMBER_COUNT;
   },
 
   checkNumberRange(number) {

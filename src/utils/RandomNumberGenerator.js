@@ -1,7 +1,7 @@
 const {
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
-} = require("../constants/constants");
+} = require('../constants/constants');
 
 const randomNumberGenerator = {
   generateMinToMaxNumbers() {

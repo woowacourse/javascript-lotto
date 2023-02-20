@@ -3,22 +3,22 @@ const validator = require('../domain/validation/validator');
 
 const exception = {
   checkPurchasePrice(input) {
-    if (validator.isPurchasePriceValid(input)) return;
+    if (validator.purchasePrice(input)) return;
 
     throw new Error(errorMessage.PURCHASE_PRICE_ERROR);
   },
   checkWinningNumbers(input) {
-    if (validator.isWinningNumbersValid(input)) return;
+    if (validator.winningNumbers(input)) return;
 
     throw new Error(errorMessage.WINNING_NUMBERS_ERROR);
   },
   checkBonusNumber(winningNumbers, input) {
-    if (validator.isBonusNumberValid(winningNumbers, input)) return;
+    if (validator.bonusNumber(winningNumbers, input)) return;
 
     throw new Error(errorMessage.BONUS_NUMBER_ERROR);
   },
   checkRestartCommand(input) {
-    if (validator.isRestartCommandValid(input)) return;
+    if (validator.checkRestartCommand(input)) return;
 
     throw new Error(errorMessage.RESTART_COMMAND_ERROR);
   },

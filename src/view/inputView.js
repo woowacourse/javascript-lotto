@@ -1,5 +1,5 @@
-const { consoleMessage } = require("../constants/constants");
-const Console = require("./Console");
+const { consoleMessage } = require('../constants/constants');
+const Console = require('./Console');
 
 const inputView = {
   readPurchasePrice(createLottos) {
