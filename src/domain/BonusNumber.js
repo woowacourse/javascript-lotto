@@ -26,7 +26,7 @@ class BonusNumber {
   }
 
   isDuplicateFor(bonusNumber, winningNumbers) {
-    return winningNumbers.numbers.includes(bonusNumber);
+    return winningNumbers.includes(bonusNumber);
   }
 
   get number() {
