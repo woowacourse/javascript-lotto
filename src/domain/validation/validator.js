@@ -5,36 +5,36 @@ const {
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
   regex,
-} = require('../../constants/constants');
+} = require("../../constants/constants");
 
 const validator = {
-  isPurchasePriceValid(input) {
+  purchasePrice(input) {
     return (
       !this.isEmptyOrBlankIncluded(input) &&
       this.isNumber(input) &&
-      this.isValidUnit(input) &&
+      this.checkUnit(input) &&
       !this.isSmallerOrEqualThanZero(input)
     );
   },
 
-  isWinningNumbersValid(input) {
-    const winningNumbers = input.split(',').map(Number);
+  winningNumbers(input) {
+    const winningNumbers = input.split(",").map(Number);
     return (
       !this.isEmptyOrBlankIncluded(input) &&
       winningNumbers.every(this.isNumber) &&
-      this.isWinningNumberCountValid(input) &&
+      this.checkWinningNumberCount(input) &&
       !this.isNumberDuplicated(winningNumbers) &&
-      winningNumbers.every(this.isNumberRangeValid)
+      winningNumbers.every(this.checkNumberRange)
     );
   },
 
-  isBonusNumberValid(winningNumbers, input) {
+  bonusNumber(winningNumbers, input) {
     const bonusNumber = Number(input);
 
     return (
       !this.isEmptyOrBlankIncluded(bonusNumber) &&
       this.isNumber(bonusNumber) &&
-      this.isNumberRangeValid(bonusNumber) &&
+      this.checkNumberRange(bonusNumber) &&
       !this.isNumberDuplicated([...winningNumbers, bonusNumber])
     );
   },
@@ -59,15 +59,15 @@ const validator = {
     return Number(input) <= 0;
   },
 
-  isValidUnit(input) {
+  checkUnit(input) {
     return Number(input) % PRICE_UNIT === 0;
   },
 
-  isWinningNumberCountValid(input) {
-    return input.split(',').length === LOTTO_NUMBER_COUNT;
+  checkWinningNumberCount(input) {
+    return input.split(",").length === LOTTO_NUMBER_COUNT;
   },
 
-  isNumberRangeValid(number) {
+  checkNumberRange(number) {
     return (
       Number(number) <= lottoNumberRange.MAX_LOTTO_NUMBER &&
       Number(number) >= lottoNumberRange.MIN_LOTTO_NUMBER
@@ -78,7 +78,7 @@ const validator = {
     return new Set(numbers).size !== numbers.length;
   },
 
-  isRestartCommandValid(input) {
+  checkRestartCommand(input) {
     return regex.RESTART_COMMAND.test(input) && input.length === 1;
   },
 };
