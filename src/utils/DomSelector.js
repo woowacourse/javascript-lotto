@@ -2,4 +2,8 @@ function $(selector) {
   return document.querySelector(selector);
 }
 
-export default $;
+function $$(selector) {
+  return document.querySelectorAll(selector);
+}
+
+export { $, $$ };

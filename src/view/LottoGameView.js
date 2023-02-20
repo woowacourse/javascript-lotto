@@ -1,5 +1,5 @@
 import { ConsoleMessage } from '../constants/Constants.js';
-import $ from '../utils/DomSelector.js';
+import { $ } from '../utils/DomSelector.js';
 import { generateUserLottoNumbers } from '../utils/Template.js';
 
 class LottoGameView {
