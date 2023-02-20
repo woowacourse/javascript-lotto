@@ -18,6 +18,7 @@ class LottoGameView {
     this.winningNumbersInput = $('.input--number');
     this.bonusNumberInput = $('input[name="bonus-number"]');
     this.resultModal = $('.result-container');
+    this.profitRate = $('#profit-rate');
 
     this.addPurchaseInputEvent();
   }
@@ -83,6 +84,10 @@ class LottoGameView {
 
   showResultModal() {
     this.resultModal.style.display = 'flex';
+  }
+
+  showProfitRate(profitRate) {
+    this.profitRate.textContent = ConsoleMessage.profitRateResult(profitRate);
   }
 }
 

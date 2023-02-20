@@ -70,6 +70,7 @@ class LottoGameController {
   #handleGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
     this.#lottoGameView.showResultModal();
+    this.#lottoGameView.showProfitRate(PROFIT_RATE);
   }
 
   // async #handleRestart() {
