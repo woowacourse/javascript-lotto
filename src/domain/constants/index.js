@@ -8,14 +8,14 @@ const ALL_LOTTO_NUMBERS = Array.from(
 
 const LOTTO_UNIT_PRICE = 1000;
 
-const RANK = {
+const RANK = Object.freeze({
   FIRST: 1,
   SECOND: 2,
   THIRD: 3,
   FOURTH: 4,
   FIFTH: 5,
   NONE: 6,
-};
+});
 
 const LOTTO_PRIZE = [
   {
