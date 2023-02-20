@@ -1,5 +1,4 @@
 import {
-  inputView,
   readBonusNumber,
   readPurchaseAmount,
   readRestartOrQuitCommend,
@@ -7,17 +6,10 @@ import {
 } from "../view/inputView";
 import { outputView } from "../view/outputView";
 import { close } from "../util/console";
-import {
-  INPUT_MESSAGE,
-  LOTTO_PRICE,
-  RESPONSE_AFTER_GAME_ENDS,
-  DELIMITER,
-  MATCHING_COUNT_AND_PLACES,
-} from "../constants";
+import { LOTTO_PRICE, RESPONSE_AFTER_GAME_ENDS, MATCHING_COUNT_AND_PLACES } from "../constants";
 import { getRateOfReturn, getTotalPrize } from "./calculator";
 import { makeLottoTickets } from "./lottoMachine";
 const { RESTART } = RESPONSE_AFTER_GAME_ENDS;
-const { PURCHASE_AMOUNT, LOTTO_NUMBER, BONUS_NUMBER, RESTART_OR_QUIT } = INPUT_MESSAGE;
 
 export class LottoGame {
   #winningLotto = {
