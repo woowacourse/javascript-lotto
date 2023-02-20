@@ -9,10 +9,10 @@ const DRAWING_NUMBERS = {
   bonusNumber: 7,
 };
 
-const generateLotto = (count) =>
-  Array(count)
+const generateLotto = (lottoCount) =>
+  Array(lottoCount)
     .fill()
-    .map(() => new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS).setDrawingNumbers(DRAWING_NUMBERS));
+    .map(() => new Lotto(LOTTO_NUMBERS).setDrawingNumbers(DRAWING_NUMBERS));
 
 describe('로또', () => {
   test('구입 금액만큼 로또를 구매한다', () => {
