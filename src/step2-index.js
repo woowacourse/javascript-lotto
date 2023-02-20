@@ -31,6 +31,7 @@ class App {
     this.controller = new Controller();
     purchase.addEventListener("click", () => {
       const error = this.pushPurchase(inputAmount.value);
+      inputAmount.value = "";
       if (error) return alert(error);
     });
   }
@@ -38,24 +39,27 @@ class App {
   pushPurchase(amount) {
     const randomLotteries = this.controller.inputPurchaseAmount(amount);
     if (typeof randomLotteries === "string") return randomLotteries;
-    const randomLottoListChild = randomLotteries.map((numbers) =>
-      this.makeEachRandomLotto(numbers)
-    );
-    randomLottoListChild.forEach((child) => {
-      randomLottoList.appendChild(child);
+    console.log(randomLotteries);
+    randomLotteries.forEach((numbers) => {
+      randomLottoList.appendChild(this.makeEachRandomLotto(numbers));
     });
+    inputAmountNext.style.display = "block";
+  }
+
+  showRandomLottoList(numbers) {
+    this.makeEachRandomLotto(numbers);
   }
 
   makeEachRandomLotto(numbers) {
     const rowElem = document.createElement("div");
 
     const lottoImgElem = document.createElement("span");
-    lottoImgElem.classList.add = "lottoImg";
-    lottoImgElem.value = "🎟";
+    lottoImgElem.classList.add("lottoImg");
+    lottoImgElem.textContent = "🎟";
 
     const randomLottoNumbersElem = document.createElement("span");
-    randomLottoNumbersElem.classList.add = "randomLottoNumbers";
-    randomLottoNumbersElem.value = numbers;
+    randomLottoNumbersElem.classList.add("randomLottoNumbers");
+    randomLottoNumbersElem.textContent = numbers;
 
     rowElem.appendChild(lottoImgElem);
     rowElem.appendChild(randomLottoNumbersElem);
