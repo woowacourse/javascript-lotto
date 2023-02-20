@@ -4,7 +4,7 @@ import LottoGame from '../domain/LottoGame';
 import Console from '../util/Console';
 import InputValidator from '../validators/InputValidator';
 import LottoTicket from '../domain/LottoTicket';
-
+import { GAME_COMMAND } from '../constants/constants';
 class LottoGameController {
   play() {
     InputView.readUserBudget(this.#onSubmitUserBudget.bind(this));
@@ -55,7 +55,7 @@ class LottoGameController {
   }
 
   #onSubmitRestartCommand(command) {
-    if (command === 'y') {
+    if (command === GAME_COMMAND.YES) {
       this.play();
       return;
     }

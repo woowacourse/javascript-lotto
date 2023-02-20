@@ -1,12 +1,13 @@
 import generateLottoNumbers from './LottoNumbersGenerator';
 import LottoTicket from './LottoTicket';
 import Converter from '../util/Converter';
+import { LOTTO, LOTTO_RANK } from '../constants/constants';
 
 const Rank = {
-  6: 1,
-  5: 3,
-  4: 4,
-  3: 5,
+  [LOTTO_RANK.FIRST.MATCHED_NUMBERS]: 1,
+  [LOTTO_RANK.THIRD.MATCHED_NUMBERS]: 3,
+  [LOTTO_RANK.FOURTH.MATCHED_NUMBERS]: 4,
+  [LOTTO_RANK.FIFTH.MATCHED_NUMBERS]: 5,
 };
 
 class LottoGame {
@@ -16,7 +17,7 @@ class LottoGame {
   constructor(userBudget) {
     this.#userBudget = userBudget;
     this.#lottoTickets = Array.from(
-      { length: userBudget / 1000 },
+      { length: userBudget / LOTTO.PRICE },
       () => new LottoTicket(Converter.sortAscending(generateLottoNumbers()))
     );
   }
