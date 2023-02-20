@@ -3,7 +3,7 @@ export const pusrchaseCountMessage = (count) => `
 `;
 
 export const eachLottoNumbers = (numbers) => `
-  <p>🎟️${numbers.join(', ')}</p>
+  <p class="body">🎟️${numbers.join(', ')}</p>
 `;
 
 export const enterWinNumberMessage = `
