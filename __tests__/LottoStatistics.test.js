@@ -3,8 +3,6 @@ const LottoStatistics = require('../src/domain/LottoStatistics');
 const WinningNumbers = require('../src/domain/WinningNumbers');
 const BonusNumber = require('../src/domain/BonusNumber');
 
-const LottoMachine = require('../src/domain/LottoMachine');
-
 describe('LottoStatistics 클래스 테스트', () => {
   test.each([
     ['1,2,3,4,5,6', '7', 1],
