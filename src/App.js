@@ -5,7 +5,7 @@ import Lotto from "./domain/Lotto.js";
 import Lottos from "./domain/Lottos.js";
 import Random from "./utils/Random.js";
 import OutputView from "./view/OutputView.js";
-import { MESSAGES, SETTINGS, ERROR } from "../src/constants/Config.js";
+import { MESSAGES, SETTINGS, ERROR_MESSAGE } from "../src/constants/Config.js";
 
 class App {
   #winningLotto;
@@ -51,13 +51,13 @@ class App {
 
   validateBuyMoney(buyMoney) {
     if (!Validator.isNumber(buyMoney)) {
-      throw new ERROR(ERROR.NUMBER_TYPE);
+      throw new Error(ERROR_MESSAGE.NUMBER_TYPE);
     }
     if (!Validator.isDividedByThousand(buyMoney)) {
-      throw new ERROR(ERROR.MONEY_UNIT);
+      throw new Error(ERROR_MESSAGE.MONEY_UNIT);
     }
     if (!Validator.isPositiveInteger(buyMoney)) {
-      throw new ERROR(ERROR.POSITIVE_INTEGER);
+      throw new Error(ERROR_MESSAGE.POSITIVE_INTEGER);
     }
   }
 
@@ -82,7 +82,10 @@ class App {
 
   validateWinningNumbers() {
     if (!Validator.isDuplicatedNumber(this.#winningLotto)) {
-      throw new ERROR(ERROR.DUPLICATED_NUMBER);
+      throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
+    }
+    if (Validator.isCorrectLength(this.#winningLotto)) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_LENGTH);
     }
     for (let i = 0; i < this.#winningLotto.length; i++) {
       this.checkEachNumber(this.#winningLotto[i]);
@@ -91,13 +94,13 @@ class App {
 
   checkEachNumber(eachNumber) {
     if (!Validator.isNumber(eachNumber)) {
-      throw new ERROR(ERROR.NUMBER_TYPE);
+      throw new Error(ERROR_MESSAGE.NUMBER_TYPE);
     }
     if (!Validator.isCorrectRange(eachNumber)) {
-      throw new ERROR(ERROR.CORRECT_NUMBER_RANGE);
+      throw new Error(ERROR_MESSAGE.CORRECT_NUMBER_RANGE);
     }
     if (!Validator.isPositiveInteger(eachNumber)) {
-      throw new ERROR(ERROR.POSITIVE_INTEGER);
+      throw new Error(ERROR_MESSAGE.POSITIVE_INTEGER);
     }
   }
 
@@ -118,7 +121,7 @@ class App {
 
   validateBonusNumber() {
     if (Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
-      throw new ERROR(ERROR.HAS_BONUS_NUMBER);
+      throw new Error(ERROR_MESSAGE.HAS_BONUS_NUMBER);
     }
   }
 
@@ -165,7 +168,7 @@ class App {
 
   validateRetryInput(retryInput) {
     if (!Validator.isCorrectRetryInput(retryInput)) {
-      throw new ERROR(ERROR.CORRECT_RETRY_INPUT);
+      throw new Error(ERROR_MESSAGE.CORRECT_RETRY_INPUT);
     }
   }
 }

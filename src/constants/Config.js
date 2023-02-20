@@ -19,7 +19,7 @@ const SETTINGS = {
   MONEY_UNIT: "원",
 };
 
-const ERROR = {
+const ERROR_MESSAGE = {
   NUMBER_TYPE: "숫자만 입력할 수 있습니다.",
   MONEY_UNIT: "1000원 단위로 입력해주세요.",
   POSITIVE_INTEGER: "입력값은 양의 정수여야 합니다.",
@@ -68,4 +68,4 @@ const MATCH = {
   },
 };
 
-export { MESSAGES, SETTINGS, ERROR, SCORE, MATCH };
+export { MESSAGES, SETTINGS, ERROR_MESSAGE, SCORE, MATCH };

@@ -1,3 +1,5 @@
+import { SETTINGS } from "../constants/Config.js";
+
 const Validator = {
   isNumber(input) {
     return isNaN(input) ? false : true;
@@ -18,6 +20,10 @@ const Validator = {
   isDuplicatedNumber(winningLotto) {
     const duplicatedNumber = [...new Set(winningLotto)];
     return winningLotto.length === duplicatedNumber.length;
+  },
+
+  isCorrectLength(winningLotto) {
+    return winningLotto.length !== SETTINGS.MAX_WINNING_NUMBER_LENGTH;
   },
 
   hasBonusNumber(bonusNumber, winningLotto) {

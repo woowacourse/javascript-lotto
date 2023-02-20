@@ -1,4 +1,4 @@
-import { ERROR, MATCH, SCORE } from "../constants/Config.js";
+import { ERROR_MESSAGE, MATCH, SCORE } from "../constants/Config.js";
 
 class Lottos {
   #lottos;
@@ -66,7 +66,7 @@ class Lottos {
         this.#lottoRanking[SCORE.SIX] += 1;
         break;
       default:
-        throw new Error(ERROR.DEFAULT_ERROR);
+        throw new Error(ERROR_MESSAGE.DEFAULT_ERROR);
     }
   }
 
