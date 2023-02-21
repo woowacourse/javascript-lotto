@@ -28,12 +28,12 @@ class App {
     this.controller = new Controller();
     purchase.addEventListener("click", () => {
       const error = this.pushPurchase(inputAmount.value);
+      inputAmount.value = "";
       if (error) return alert(error);
     });
   }
 
   pushPurchase(amount) {
-    inputAmount.value = "";
     const randomLotteries = this.controller.inputPurchaseAmount(amount);
     if (typeof randomLotteries === "string") return randomLotteries;
     this.showRandomLottoAmount(randomLotteries);
@@ -79,6 +79,14 @@ class App {
     const result = this.controller.inputLottoBonus(lotto, +bonus);
     if (typeof result === "string") return result;
     dialog.showModal();
+    this.showResult(result);
+  }
+
+  showResult(result) {
+    count.forEach((rank, index) => (rank.textContent = result[index]));
+    document.querySelector(".rate").textContent = `${
+      result[result.length - 1]
+    }`;
   }
 }
 
