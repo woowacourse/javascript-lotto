@@ -305,3 +305,20 @@ footer p {
   color: var(--primary-blue);
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  header, footer {
+    display: none;
+  }
+
+  main {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .game-container {
+    width: 100vw;
+    border: none;
+    border-radius: 0;
+  }
+}
