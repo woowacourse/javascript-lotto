@@ -8,8 +8,8 @@ const eachInputLottoNumber = document.querySelectorAll(".eachInputLottoNumber");
 const eachInputBonusNumber = document.querySelector(".eachInputBonusNumber");
 
 const purchase = document.querySelector(".purchase");
-const result = document.querySelector(".result");
 const restart = document.querySelector(".restart");
+const result = document.querySelector(".result");
 
 const count = document.querySelectorAll(".count");
 const randomLottoList = document.querySelector(".randomLottoList");
@@ -18,10 +18,7 @@ const black = document.querySelector(".black");
 const inputAmountNext = document.querySelector(".inputAmountNext");
 const dialog = document.querySelector("dialog");
 
-// dialog.showModal();
-
-// black.style.display = "block";
-// resultPage.style.display = "block";
+//
 
 import Controller from "./Controller.js";
 
@@ -39,17 +36,26 @@ class App {
     inputAmount.value = "";
     const randomLotteries = this.controller.inputPurchaseAmount(amount);
     if (typeof randomLotteries === "string") return randomLotteries;
-    document.querySelector(
-      ".randomLottoAmount"
-    ).textContent = `${randomLotteries.length}`;
+    this.showRandomLottoAmount(randomLotteries);
     this.showRandomLottoList(randomLotteries);
+    result.addEventListener("click", () => {
+      const error = this.checkLottoBonus();
+      if (error) return alert(error);
+    });
   }
 
   showRandomLottoList(randomLotteries) {
+    randomLottoList.innerHTML = "";
     randomLotteries.forEach((numbers) => {
       randomLottoList.appendChild(this.makeEachRandomLotto(numbers));
     });
     inputAmountNext.style.display = "block";
+  }
+
+  showRandomLottoAmount(randomLotteries) {
+    document.querySelector(
+      ".randomLottoAmount"
+    ).textContent = `${randomLotteries.length}`;
   }
 
   makeEachRandomLotto(numbers) {
@@ -64,6 +70,15 @@ class App {
     elem.classList.add(className);
     elem.textContent = text;
     return elem;
+  }
+  //위는 프린트 로또 아래는 로또 번호 불러오기
+  checkLottoBonus() {
+    const lotto = [];
+    const bonus = eachInputBonusNumber.value;
+    eachInputLottoNumber.forEach((numberElem) => lotto.push(+numberElem.value));
+    const result = this.controller.inputLottoBonus(lotto, +bonus);
+    if (typeof result === "string") return result;
+    dialog.showModal();
   }
 }
 

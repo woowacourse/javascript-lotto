@@ -6,43 +6,38 @@ import Validation from "./Validation.js";
 import { COMMAND } from "./constants.js";
 
 class Controller {
-  #lottoGame;
+  lottoGame;
 
   constructor() {}
 
   inputPurchaseAmount(amount) {
     try {
       Validation.purchaseAmount(+amount);
-      this.makeLottoGame(+amount);
+      return this.makeLottoGame(+amount);
     } catch (error) {
       return error.message;
     }
   }
 
-  /*
-  return = ["string", "string"...]
-  */
   makeLottoGame(amount) {
-    this.#lottoGame = new LottoGame(amount);
-    return this.#lottoGame.getLotteries();
+    this.lottoGame = new LottoGame(amount);
+    return this.lottoGame.getLotteries();
   }
 
-  // async inputPurchaseAmount() {
-  //   const amount = await InputView.readPurchaseAmount();
-  //   try {
-  //     Validation.purchaseAmount(+amount);
-  //     this.makeLottoGame(+amount);
-  //   } catch (error) {
-  //     OutputView.printError(error);
-  //     this.inputPurchaseAmount();
-  //   }
-  // }
+  inputLottoBonus(lotto, bonus) {
+    try {
+      Validation.lottoNumbers(lotto);
+      Validation.bonusNumber(lotto, bonus);
+      return this.generateLottoGameResult(lotto, bonus);
+    } catch (error) {
+      return error.message;
+    }
+  }
 
-  // makeLottoGame(amount) {
-  //   this.#lottoGame = new LottoGame(amount);
-  //   OutputView.printLotteries(this.#lottoGame.getLotteries());
-  //   this.inputLottoNumbers();
-  // }
+  //lottoResult = [0,0,0,0,0,0] = 5등~1등, 수익률
+  generateLottoGameResult(lotto, bonus) {
+    return this.lottoGame.getRankResult(lotto, bonus);
+  }
 
   // async inputLottoNumbers() {
   //   const lottoNumbers = await InputView.readLottoNumbers();
@@ -56,10 +51,6 @@ class Controller {
   //   }
   // }
 
-  convertLotto(lottoNumbers) {
-    this.lottoNumbers = lottoNumbers.split(",").map((number) => +number.trim());
-  }
-
   // async inputBonusNumber() {
   //   const bonusNumber = await InputView.readBonusNumber();
   //   try {
@@ -71,15 +62,6 @@ class Controller {
   //     this.inputBonusNumber();
   //   }
   // }
-
-  generateLottoGameResult() {
-    const lottoResult = this.#lottoGame.getRankResult(
-      this.lottoNumbers,
-      this.bonusNumber
-    );
-    OutputView.printResult(lottoResult);
-    this.inputRestartCommand();
-  }
 
   // async inputRestartCommand() {
   //   const command = await InputView.readRestartCommand();
