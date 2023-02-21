@@ -5,16 +5,16 @@ const {
   LOTTO_NUMBER_RANGE,
   LOTTO_NUMBER_COUNT,
   REGEX,
+  ERROR_MESSAGE,
 } = require('../../constants/constants');
 
 const validator = {
-  isPurchasePriceValid(input) {
-    return (
-      !this.isEmptyOrBlankIncluded(input) &&
-      this.isNumber(input) &&
-      this.isValidUnit(input) &&
-      !this.isSmallerOrEqualThanZero(input)
-    );
+  purchasePrice(input) {
+    validator.isEmpty(input);
+    validator.isBlankIncluded(input);
+    validator.isNumber(input);
+    validator.isValidUnit(input);
+    validator.isSmallerOrEqualThanZero(input);
   },
 
   isWinningNumbersValid(input) {
@@ -39,29 +39,24 @@ const validator = {
     );
   },
 
-  isEmptyOrBlankIncluded(input) {
-    return this.isBlankIncluded(input) || this.isEmpty(input);
-  },
-
-  isNumber(input) {
-    const regex = REGEX.NUMBER;
-    return regex.test(input);
-  },
-
   isBlankIncluded(input) {
-    return REGEX.BLANK.test(input);
+    if (REGEX.BLANK.test(input)) throw new Error(ERROR_MESSAGE.BLANK);
   },
 
   isEmpty(input) {
-    return input === EMPTY_STRING;
+    if (input === EMPTY_STRING) throw new Error(ERROR_MESSAGE.EMPTY);
   },
 
-  isSmallerOrEqualThanZero(input) {
-    return Number(input) <= 0;
+  isNumber(input) {
+    if (!REGEX.NUMBER.test(input)) throw new Error(ERROR_MESSAGE.NUMBER);
   },
 
   isValidUnit(input) {
-    return Number(input) % PRICE_UNIT === 0;
+    if (Number(input) % PRICE_UNIT !== 0) throw new Error(ERROR_MESSAGE.UNIT);
+  },
+
+  isSmallerOrEqualThanZero(input) {
+    if (Number(input) <= 0) throw new Error(ERROR_MESSAGE.PRICE_RANGE);
   },
 
   isWinningNumberCountValid(input) {

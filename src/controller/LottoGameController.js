@@ -5,7 +5,6 @@ const {
 } = require('../constants/constants');
 const Lottos = require('../domain/model/Lottos');
 const WinningNumbers = require('../domain/model/WinningNumbers');
-const exception = require('../utils/exception');
 const Console = require('../view/Console');
 const validator = require('../domain/validation/validator');
 const inputView = require('../view/inputView');
@@ -22,15 +21,10 @@ class LottoGameController {
 
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {
-      try {
-        exception.handlePurchasePrice(purchasePriceInput);
-        const lottoCount = this.calculateLottoCount(purchasePriceInput);
-        this.#lottos = new Lottos(lottoCount);
-        this.showPurchasedLottos();
-      } catch (error) {
-        Console.print(error.message);
-        this.inputPurchasePrice();
-      }
+      const lottoCount = this.calculateLottoCount(purchasePriceInput);
+      this.#lottos = new Lottos(lottoCount);
+
+      this.showPurchasedLottos();
     });
   }
 
@@ -48,7 +42,6 @@ class LottoGameController {
   inputWinningNumbers() {
     inputView.readWinningNumbers((winningNumbersInput) => {
       try {
-        exception.handleWinningNumbers(winningNumbersInput);
         this.#winningNumbers = winningNumbersInput.split(',').map(Number);
         this.inputBonusNumber();
       } catch (error) {
@@ -61,7 +54,6 @@ class LottoGameController {
   inputBonusNumber() {
     inputView.readBonusNumber((bonusNumberInput) => {
       try {
-        exception.handleBonusNumber(this.#winningNumbers, bonusNumberInput);
         this.#winningNumbers = new WinningNumbers(
           this.#winningNumbers,
           Number(bonusNumberInput)

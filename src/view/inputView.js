@@ -1,12 +1,19 @@
 const { CONSOLE_MESSAGE } = require('../constants/constants');
 const Console = require('./Console');
+const exceptionHandler = require('../utils/exceptionHandler');
+const validator = require('../domain/validation/validator');
 
 const inputView = {
   readPurchasePrice(callback) {
     Console.readLine(
       CONSOLE_MESSAGE.ASK_PURCHASE_PRICE,
       (purchasePriceInput) => {
-        return callback(purchasePriceInput);
+        const isNormal = exceptionHandler(
+          validator.purchasePrice,
+          purchasePriceInput
+        );
+        if (isNormal) return callback(purchasePriceInput);
+        return inputView.readPurchasePrice(callback);
       }
     );
   },

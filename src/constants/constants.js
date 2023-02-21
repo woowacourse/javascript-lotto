@@ -77,6 +77,11 @@ const CONSOLE_MESSAGE = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
+  BLANK: '공백 없이 입력해주세요.',
+  EMPTY: '아무것도 입력하지 않았습니다.',
+  NUMBER: '숫자만 입력해주세요.',
+  UNIT: `구매 금액은 ${PRICE_UNIT}원 단위로 입력해주세요`,
+  PRICE_RANGE: `구매 금액은 ${PRICE_UNIT}원 이상으로 입력해주세요.`,
   PURCHASE_PRICE_ERROR: `구매 금액은 ${PRICE_UNIT}원 단위로 입력해주세요`,
   WINNING_NUMBERS_ERROR: `당첨 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지 ${LOTTO_NUMBER_COUNT}개의 숫자로 중복없이 입력해주세요.`,
   BONUS_NUMBER_ERROR: `보너스 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지의 숫자로 당첨 번호와 중복없이 입력해주세요.`,
