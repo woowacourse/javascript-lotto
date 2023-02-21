@@ -14,8 +14,20 @@ import { closeModal, showModal } from '../view/modal';
 
 export default function LottoUIController($app) {
   this.state = {
-    lottoGame: null,
+    lottoGame: new LottoGame(),
     $root: null,
+  };
+
+  this.play = () => {
+    gameSetting();
+    console.log(this.state);
+    addPurchaseButton();
+  };
+
+  const gameSetting = () => {
+    this.state.lottoGame = new LottoGame();
+    clearConatiner(this.state.$root);
+    this.state.$root.appendChild(initialEnterInput());
   };
 
   const init = () => {
@@ -25,120 +37,119 @@ export default function LottoUIController($app) {
     $app.appendChild($lottoSection);
 
     this.state.$root = $lottoSection;
-    this.state.lottoGame = new LottoGame();
+  };
 
-    gameSetting();
+  const numberContainerAddChange = (listener) => {
+    const $container = document.querySelector('.number-container');
 
+    $container.addEventListener('keyup', listener);
+  };
+
+  const isPassNumbers = (bonusNumber, winningNumbers) => {
+    const { lottoGame } = this.state;
+
+    lottoGame.registerGameBoard(winningNumbers, bonusNumber);
+
+    const winCount = lottoGame.getLottosWinCount();
+    const rate = lottoGame.getEarningRate();
+
+    const $modalContent = document.querySelector('.modal-content');
+    clearConatiner($modalContent);
+    $modalContent.appendChild(lottoResultBoard(winCount, rate));
+
+    showModal();
+    addRestartEvent();
+  };
+
+  const addRestartEvent = () => {
+    const $retry = document.getElementById('retry');
+    const $closeButton = document.querySelector('.modal-close-button');
+
+    $closeButton.addEventListener('click', closeModal);
+    $retry.addEventListener('click', restart);
+  };
+
+  const addPurchaseButton = () => {
     const $purchaseButton = document.getElementById('purchaseButton');
 
-    $purchaseButton.addEventListener('click', () => {
-      const $purchaseInput = document.getElementById('purchaseInput');
-      const purchaseAmount = Number($purchaseInput.value);
+    $purchaseButton.addEventListener('click', purchaseAmountListener);
+  };
 
-      const { state, message } = inputErrorChecker(() =>
-        validatePurchaseAmount(purchaseAmount)
-      );
-      if (state) {
-        alert(message);
-        $purchaseInput.value = '';
-        return;
-      }
+  const addCheckResultButton = () => {
+    const $button = document.getElementById('checkResult');
+    numberContainerAddChange((e) => keyUpEventListener(e, $button));
 
-      this.state.lottoGame.purchaseLottos(purchaseAmount);
-      const lottos = this.state.lottoGame.getLottoNumbers();
+    $button.addEventListener('click', checkResultListener);
+  };
 
-      paintLottoStatus(lottos);
-      paintEnterWinningNumber();
+  const purchaseAmountListener = () => {
+    const $purchaseInput = document.getElementById('purchaseInput');
+    const purchaseAmount = Number($purchaseInput.value);
 
-      const $button = document.getElementById('checkResult');
-      numberContainerAddChange((e) => keyUpEventListener(e, $button));
+    const { state, message } = inputErrorChecker(() =>
+      validatePurchaseAmount(purchaseAmount)
+    );
 
-      $button.addEventListener('click', checkResultListener);
-    });
-
-    function numberContainerAddChange(listener) {
-      const $container = document.querySelector('.number-container');
-
-      $container.addEventListener('keyup', listener);
+    if (state) {
+      alert(message);
+      $purchaseInput.value = '';
+      return;
     }
 
-    function checkResultListener() {
-      const $winNumbers = document.querySelectorAll('input[name="winNumber"]');
-      const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
-        Number(value)
-      );
-      const bonusNumber = Number(
-        document.querySelector('input[name="bonusNumber"]').value
-      );
+    this.state.lottoGame.purchaseLottos(purchaseAmount);
+    const lottos = this.state.lottoGame.getLottoNumbers();
 
-      const { state: winState, message: winMessage } = inputErrorChecker(() =>
-        validateWinningNumbers([...winningNumbers])
-      );
+    paintLottoStatus(lottos);
+    paintEnterWinningNumber();
+    addCheckResultButton();
+  };
 
-      const { state: bonusState, message: bonusMessage } = inputErrorChecker(
-        () => validateBonusNumber(bonusNumber, winningNumbers)
-      );
+  const checkResultListener = () => {
+    const $winNumbers = document.querySelectorAll('input[name="winNumber"]');
+    const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
+      Number(value)
+    );
+    const bonusNumber = Number(
+      document.querySelector('input[name="bonusNumber"]').value
+    );
 
-      if (!bonusState && !winState) {
-        isPassNumbers(bonusNumber, winningNumbers);
-        return;
-      }
+    const { state: winState, message: winMessage } = inputErrorChecker(() =>
+      validateWinningNumbers([...winningNumbers])
+    );
 
-      if (winState) {
-        alert(winMessage);
-        return;
-      }
+    const { state: bonusState, message: bonusMessage } = inputErrorChecker(() =>
+      validateBonusNumber(bonusNumber, winningNumbers)
+    );
 
-      if (bonusState) {
-        alert(bonusMessage);
-        return;
-      }
+    if (!bonusState && !winState) {
+      isPassNumbers(bonusNumber, winningNumbers);
+      return;
     }
 
-    const isPassNumbers = (bonusNumber, winningNumbers) => {
-      const { lottoGame } = this.state;
+    if (winState) {
+      alert(winMessage);
+      return;
+    }
 
-      lottoGame.registerGameBoard(winningNumbers, bonusNumber);
-
-      const winCount = lottoGame.getLottosWinCount();
-      const rate = lottoGame.getEarningRate();
-
-      const $modalContent = document.querySelector('.modal-content');
-      clearConatiner($modalContent);
-      $modalContent.appendChild(lottoResultBoard(winCount, rate));
-
-      showModal();
-      addRestartEventListener();
-    };
-
-    const inputErrorChecker = (validator) => {
-      try {
-        validator();
-      } catch (error) {
-        return { state: true, message: error };
-      }
-
-      return { state: false, message: '' };
-    };
-
-    const addRestartEventListener = () => {
-      const $retry = document.getElementById('retry');
-      const $closeButton = document.querySelector('.modal-close-button');
-
-      $closeButton.addEventListener('click', closeModal);
-      $retry.addEventListener('click', restart);
-    };
+    if (bonusState) {
+      alert(bonusMessage);
+      return;
+    }
   };
 
   const restart = () => {
-    gameSetting();
     closeModal();
+    this.play();
   };
 
-  const gameSetting = () => {
-    this.state.lottoGame = new LottoGame();
-    clearConatiner(this.state.$root);
-    this.state.$root.appendChild(initialEnterInput());
+  const inputErrorChecker = (validator) => {
+    try {
+      validator();
+    } catch (error) {
+      return { state: true, message: error };
+    }
+
+    return { state: false, message: '' };
   };
 
   init();
