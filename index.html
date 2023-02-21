@@ -5,7 +5,6 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-
   <body>
     <div id="app">
       <header>
@@ -14,17 +13,19 @@
       <div class="lottoGame">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
         <div>
-          <div class="purchaseLotto">
+          <form class="purchaseLotto">
             <p>구입할 금액을 입력해 주세요.</p>
             <div>
-              <input placeholder="금액" />
-              <button>구입</button>
+              <input class="money-input" placeholder="금액" />
+              <button class="purchase-button" type="submit">구입</button>
             </div>
-          </div>
+          </form>
 
           <div class="issueLotto">
             <p>총 7개를 구매하였습니다.</p>
             <div class="lottos">
+              <div class="lotto">🎟️12, 28, 22, 37, 19, 23</div>
+              <div class="lotto">🎟️12, 28, 22, 37, 19, 23</div>
               <div class="lotto">🎟️12, 28, 22, 37, 19, 23</div>
               <div class="lotto">🎟️12, 28, 22, 37, 19, 23</div>
               <div class="lotto">🎟️12, 28, 22, 37, 19, 23</div>
@@ -60,6 +61,5 @@
       </div>
       <footer>Copyright 2023. woowacourse</footer>
     </div>
-    <script type="module" src="./src/js/step2-index.js"></script>
   </body>
 </html>

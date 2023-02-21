@@ -1,14 +1,12 @@
-import { COMMAND } from '../constant/setting';
-
-import Comparer from '../domain/Comparer';
-import LottoMachine from '../domain/LottoMachine';
-import ProfitCalculator from '../domain/ProfitCaculator';
-import WinningLotto from '../domain/WinningLotto';
-
-import Console from '../util/Console';
-import InputView from '../view/consoleView/InputView';
-import OutputView from '../view/consoleView/OutputView';
-import Validator from '../domain/Validator';
+import { COMMAND } from '../../constant/setting';
+import Comparer from '../../domain/Comparer';
+import LottoMachine from '../../domain/LottoMachine';
+import ProfitCalculator from '../../domain/ProfitCaculator';
+import WinningLotto from '../../domain/WinningLotto';
+import Console from '../../util/Console';
+import InputView from '../../view/consoleView/InputView';
+import OutputView from '../../view/consoleView/OutputView';
+import Validator from '../../domain/Validator';
 
 class LottoController {
   #lottos;
