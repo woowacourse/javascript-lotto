@@ -1,4 +1,4 @@
-import { values, regex } from '../constants/values';
+import { values, regex } from '@lotto/constants/values';
 
 const validatorUtils = {
   isPositiveInteger(number) {

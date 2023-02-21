@@ -1,7 +1,7 @@
-import generateRandomNumber from '../utils/generateRandomNumber';
-import { values, correctCountsToMoney } from '../constants/values';
-import Lotto from './Lotto';
-import LottoResultCalculator from './LottoResultCalculator';
+import generateRandomNumber from '@lotto/utils/generateRandomNumber';
+import { values, correctCountsToMoney } from '@lotto/constants/values';
+import Lotto from '@lotto//model/Lotto';
+import LottoResultCalculator from '@lotto//model/LottoResultCalculator';
 
 class LottoMachine {
   #lottos;

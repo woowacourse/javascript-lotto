@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import LottoMachine from '../src/model/LottoMachine';
+import LottoMachine from '../src/js/model/LottoMachine';
 
 describe('LottoMahcine 테스트', () => {
   let lottoMachine;

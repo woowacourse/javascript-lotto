@@ -1,4 +1,4 @@
-import deepFreeze from '../utils/deepFreeze';
+import deepFreeze from '@lotto/utils/deepFreeze';
 
 const messages = deepFreeze({
   input: {

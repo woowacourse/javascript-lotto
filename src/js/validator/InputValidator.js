@@ -1,5 +1,5 @@
-import messages from '../constants/messages';
-import validatorUtils from './ValidatorUtils';
+import messages from '@lotto/constants/messages';
+import validatorUtils from '@lotto//validator/ValidatorUtils';
 
 const inputValidator = {
   validateWithCondition(conditions) {
