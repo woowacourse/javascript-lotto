@@ -15,19 +15,19 @@ describe('Lotto 클래스 테스트', () => {
     }).toBeTruthy();
   });
 
-  test('로또 번호는 6자리가 아닐 경우 에러', () => {
+  test('로또 번호는 6자리가 아닐 경우 에러가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow('[ERROR]');
   });
 
-  test('로또 번호 중 중복되는 숫자가 있을 경우 에러', () => {
+  test('로또 번호 중 중복되는 숫자가 있을 경우 에러가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
   });
 
-  test('로또 번호 중 1~45 사이의 숫자가 아닐 경우 에러', () => {
+  test('로또 번호 중 1~45 사이의 숫자가 아닐 경우 에러가 발생한다.', () => {
     expect(() => {
       Validator.validateLottoNumberRange([46, 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR]');
