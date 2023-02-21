@@ -1,25 +1,26 @@
-import Console from './utils/Console.js';
-
 export default class Component {
-  constructor(props) {
-    this.setUp(props);
+  constructor($target, props) {
+    this.$target = $target;
+    this.props = props;
+    this.setUp();
+    this.render();
   }
-
-  read() {}
 
   setUp() {}
 
   render() {
-    const template = this.template();
-
-    template && Console.print(template);
+    this.$target.innerHTML = this.template();
+    this.mounted();
   }
 
   template() {
     return '';
   }
 
+  mounted() {}
+
   setState(newState) {
     this.state = { ...this.state, ...newState };
+    this.render();
   }
 }
