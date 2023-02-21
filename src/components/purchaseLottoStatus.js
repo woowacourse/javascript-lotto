@@ -3,7 +3,7 @@ import {
   eachLottoNumbers,
 } from '../view/templates/lottoGame';
 
-export default function purchaseLottoStatus(lottos) {
+function purchaseLottoStatus(lottos) {
   const board = document.createElement('div');
   const purchastCount = pusrchaseCountMessage(lottos.length);
 
@@ -13,4 +13,10 @@ export default function purchaseLottoStatus(lottos) {
   }
 
   return board;
+}
+
+export default function paintLottoStatus(lottos) {
+  const $lottoSection = document.querySelector('.lotto-section');
+  const $board = purchaseLottoStatus(lottos);
+  $lottoSection.appendChild($board);
 }
