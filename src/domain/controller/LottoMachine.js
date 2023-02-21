@@ -3,7 +3,7 @@ const Money = require('../model/Money');
 const Winning = require('../model/Winning');
 const Lotto = require('../model/Lotto');
 const outputView = require('../../view/outputView');
-const { pickRandomNumberInRange, printErrorAndRetry } = require('../../utils');
+const { pickRandomNumberInRange } = require('../../utils');
 const Console = require('../../utils/Console');
 const {
   RANK_INFORMATIONS,
@@ -15,8 +15,6 @@ const {
 } = require('../../constant');
 
 class LottoMachine {
-  #money;
-
   #winning;
 
   constructor() {
@@ -24,22 +22,22 @@ class LottoMachine {
   }
 
   async play() {
-    await this.readMoney();
-    const lottos = await this.quickPicksLottos();
+    const money = await this.readMoney();
+    const lottos = await this.quickPicksLottos(money);
     await this.readWinningNumbers();
-    await this.readBonusNumber(lottos);
+    await this.readBonusNumber(money, lottos);
     await this.readRetryOption();
   }
 
   async readMoney() {
     try {
       const userMoney = await Console.readLine('> 구입금액을 입력해 주세요.');
-      this.#money = new Money(userMoney);
-      outputView.printLottoCount(
-        this.#money.getAmount() / LOTTO_NUMBER.moneyUnit
-      );
+      const money = new Money(userMoney);
+      outputView.printLottoCount(money.getAmount() / LOTTO_NUMBER.moneyUnit);
+      return money;
     } catch (error) {
-      return await printErrorAndRetry(error, () => this.readMoney());
+      Console.print(error.message);
+      return await this.readMoney();
     }
   }
 
@@ -53,11 +51,12 @@ class LottoMachine {
         .map((winningNumber) => Number(winningNumber));
       this.#winning.setWinningNumbers(winningNumbers);
     } catch (error) {
-      await printErrorAndRetry(error, () => this.readWinningNumbers());
+      Console.print(error.message);
+      return await this.readWinningNumbers();
     }
   }
 
-  async readBonusNumber(lottos) {
+  async readBonusNumber(money, lottos) {
     try {
       const userBonusNumber = await Console.readLine(
         '\n> 보너스 번호를 입력해 주세요.'
@@ -65,10 +64,11 @@ class LottoMachine {
       this.#winning.setBonusNumber(Number(userBonusNumber));
       const ranks = this.#getCollectedRanks(lottos);
       const benefit = new Benefit();
-      benefit.calculateRate(this.#money.getAmount(), ranks);
+      benefit.calculateRate(money.getAmount(), ranks);
       this.#showResult(benefit, ranks);
     } catch (error) {
-      await printErrorAndRetry(error, () => this.readBonusNumber(lottos));
+      Console.print(error.message);
+      return await this.readBonusNumber(money, lottos);
     }
   }
 
@@ -79,12 +79,13 @@ class LottoMachine {
       );
       this.#checkRetryOption(userCommand);
     } catch (error) {
-      await printErrorAndRetry(error, () => this.readRetryOption());
+      Console.print(error.message);
+      return await this.readRetryOption();
     }
   }
 
-  async quickPicksLottos() {
-    const lottos = this.#generateLottos(this.#money.getAmount());
+  async quickPicksLottos(money) {
+    const lottos = this.#generateLottos(money.getAmount());
     this.#showLottos(lottos);
 
     return lottos;
