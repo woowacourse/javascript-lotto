@@ -16,7 +16,7 @@ class Output {
     lottos.forEach((lotto) => {
       const lottoEl = document.createElement('li');
       lottoEl.className = QuerySelector.lotto;
-      lottoEl.innerText = `🎟️ ${lotto}`;
+      lottoEl.innerText = Convertor.lottoWithIcon(lotto);
       lottosEl.appendChild(lottoEl);
     });
 

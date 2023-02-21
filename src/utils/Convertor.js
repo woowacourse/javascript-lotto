@@ -2,7 +2,11 @@ import { GameControlStaticValue } from '../constants/Constants.js';
 
 const CovertMessage = {
   stringifyLotto(lotto) {
-    return `${lotto.join(GameControlStaticValue.PRINT_SEPARATOR)}`;
+    return `[${lotto.join(GameControlStaticValue.PRINT_SEPARATOR)}]`;
+  },
+
+  lottoWithIcon(lotto) {
+    return `🎟️ ${lotto.slice(1, -1)}`;
   },
 
   purchaseCount(num) {

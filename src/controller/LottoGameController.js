@@ -1,7 +1,6 @@
-import { GameControlStaticValue, RequestMessage } from '../constants/Constants.js';
+import { GameControlStaticValue } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
-import ConvertMessage from '../utils/Convertor.js';
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
 
