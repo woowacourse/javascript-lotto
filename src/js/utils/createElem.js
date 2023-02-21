@@ -4,3 +4,5 @@ const createElem = (tagName, className) => {
 
   return elem;
 };
+
+export default createElem;
