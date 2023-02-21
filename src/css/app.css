@@ -12,6 +12,14 @@ header {
   font-family: var(--fontFamilyPrimary);
 }
 
+.check-winning-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 85vh;
+}
+
 footer {
   display: flex;
   align-items: center;
