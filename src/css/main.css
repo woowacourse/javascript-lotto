@@ -35,7 +35,7 @@ main {
   text-align: center;
 }
 
-.purchase-money-form label {
+.purchase-amount-form label {
   align-self: stretch;
 
   font-size: var(--text-body-size);
@@ -44,12 +44,12 @@ main {
   letter-spacing: var(--text-body-letter-spacing);
 }
 
-.purchase-money-input-wrap {
+.purchase-amount-input-wrap {
   display: flex;
   flex-direction: row;
 }
 
-.purchase-money-input {
+.purchase-amount-input {
   width: 310px;
   height: 36px;
 
@@ -59,7 +59,7 @@ main {
   border-radius: var(--border-radius);
 }
 
-.purchase-money-input::placeholder {
+.purchase-amount-input::placeholder {
   color: var(--color-grayscale4);
 
   font-size: var(--text-placeholder-size);
@@ -68,7 +68,7 @@ main {
   letter-spacing: var(--text-placeholder-letter-spacing);
 }
 
-.purchase-money-submit-button {
+.purchase-amount-submit-button {
   width: 56px;
   height: 36px;
 
