@@ -11,18 +11,18 @@ class App extends Component {
   }
 
   setUp() {
-    this.state = { amount: 0 };
+    this.state = { amount: 0, lottoList: [] };
   }
 
   mounted() {
     const {
-      state: { amount },
-      setAmount,
+      state: { lottoList },
+      setLottoList,
     } = this;
 
     new Header(component('header'));
-    new Amount(component('amount'), { setAmount: setAmount.bind(this) });
-    new LottoList(component('lottoList'), { amount });
+    new Amount(component('amount'), { setLottoList: setLottoList.bind(this) });
+    new LottoList(component('lottoList'), { lottoList });
     new WinNumbers(component('winNumbers'));
   }
 
@@ -37,6 +37,10 @@ class App extends Component {
 
   setAmount(amount) {
     this.setState({ amount });
+  }
+
+  setLottoList(lottoList) {
+    this.setState({ lottoList });
   }
 }
 
