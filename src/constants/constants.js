@@ -1,20 +1,31 @@
 const readline = require('readline');
 
-const PRICE_UNIT = 1_000;
-const REGEX = Object.freeze({
-  BLANK: /\s/,
-  RESTART_COMMAND: /y|n/,
-  PRICE_FORMAT: /\B(?=(\d{3})+(?!\d))/g,
-  NUMBER: /^[0-9]+$/,
+const CORRECT_COUNT_PER_RANK = Object.freeze({
+  FIRST_RANK: 6,
+  SECOND_RANK: 5,
+  THIRD_RANK: 5,
+  FOURTH_RANK: 4,
+  FIFTH_RANK: 3,
 });
 
 const EMPTY_STRING = '';
+
+const INDEX_TO_KEY_CONVERTER = Object.freeze([
+  'FIRST_RANK',
+  'SECOND_RANK',
+  'THIRD_RANK',
+  'FOURTH_RANK',
+  'FIFTH_RANK',
+]);
+
 const LOTTO_NUMBER_COUNT = 6;
 
 const LOTTO_NUMBER_RANGE = Object.freeze({
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
 });
+
+const PRICE_UNIT = 1_000;
 
 const PROFIT = Object.freeze({
   FIRST_RANK: 2_000_000_000,
@@ -40,21 +51,12 @@ const RANK = Object.freeze({
   FIFTH: 5,
 });
 
-const CORRECT_COUNT_PER_RANK = Object.freeze({
-  FIRST_RANK: 6,
-  SECOND_RANK: 5,
-  THIRD_RANK: 5,
-  FOURTH_RANK: 4,
-  FIFTH_RANK: 3,
+const REGEX = Object.freeze({
+  BLANK: /\s/,
+  RESTART_COMMAND: /y|n/,
+  PRICE_FORMAT: /\B(?=(\d{3})+(?!\d))/g,
+  NUMBER: /^[0-9]+$/,
 });
-
-const INDEX_TO_KEY_CONVERTER = Object.freeze([
-  'FIRST_RANK',
-  'SECOND_RANK',
-  'THIRD_RANK',
-  'FOURTH_RANK',
-  'FIFTH_RANK',
-]);
 
 const RESTART_COMMAND = Object.freeze({
   YES: 'y',

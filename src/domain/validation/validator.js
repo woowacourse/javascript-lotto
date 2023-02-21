@@ -1,10 +1,10 @@
 const {
   EMPTY_STRING,
-  PRICE_UNIT,
+  ERROR_MESSAGE,
   LOTTO_NUMBER_RANGE,
   LOTTO_NUMBER_COUNT,
+  PRICE_UNIT,
   REGEX,
-  ERROR_MESSAGE,
 } = require('../../constants/constants');
 
 const validator = {
