@@ -1,5 +1,6 @@
 import { $ } from '../util/querySelector.js';
 import getFormData from '../util/getFormData.js';
+import lottoIcon from '../../images/lotto_icon.png';
 
 class PurchaseView {
   #submitBudget;
@@ -48,7 +49,7 @@ class PurchaseView {
   #getLottoInformationComponent(currentLotto) {
     return `
       <div class="purchased-lotto">
-        <img class="lotto-icon" src="/src/images/lotto_icon.png" />
+        <img class="lotto-icon" src="${lottoIcon}" />
         <div class="lotto-numbers">${currentLotto.join(', ')}</div>
       </div>`;
   }

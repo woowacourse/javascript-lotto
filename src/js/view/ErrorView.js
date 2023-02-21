@@ -1,3 +1,5 @@
+import errorIcon from '../../images/error_icon.png';
+
 class ErrorView {
   #errorAreaElement;
   #focusElement;
@@ -18,7 +20,7 @@ class ErrorView {
 
   #getErrorElement(message) {
     return `
-      <img class="error-icon" class="error-icon" src="./src/images/error_icon.png" />
+      <img class="error-icon" class="error-icon" src="${errorIcon}" />
       <span class="error-message">${message}</span>
     `;
   }
