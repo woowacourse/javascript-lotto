@@ -220,6 +220,7 @@ li {
 }
 
 #modal-container {
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -231,6 +232,9 @@ li {
 
   background-color: #ffffff;
 
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
   transform: translate(-50%, -50%);
 }
 
@@ -249,4 +253,29 @@ li {
   font-weight: 800;
 
   cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 8px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  font: 600 15px/24px 'Roboto';
+}
+
+td {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: center;
+
+  font: 400 15px/24px 'Roboto';
+}
+
+#profit-message {
+  font: 600 15px/24px 'Roboto';
 }
