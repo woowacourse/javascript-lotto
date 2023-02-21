@@ -1,28 +1,9 @@
 /* eslint-disable no-undef */
 import LottoMachine from './domain/LottoMachine';
+import { renderLottoListTitle } from './view/web/render';
 
 let lottoMachine;
 const resultBtn = document.querySelector('.result-btn');
-
-const paymentsContainer = document.querySelector('.payments-container');
-const renderLottoListTitle = (amount) => {
-  const title = document.createElement('p');
-  title.innerText = `총 ${amount}개를 구매했습니다.`;
-  paymentsContainer.appendChild(title);
-};
-
-const lottosContainer = document.querySelector('.lottos-container');
-const renderLottoList = (lottoNumbers) => {
-  renderLottoListTitle(lottoNumbers.length);
-  lottoNumbers.forEach((lottoNumber) => {
-    const lottoElement = document.createElement('div');
-    const lottoNumberElement = document.createElement('p');
-    const lottoText = `🎫 ${lottoNumber.join(', ')}`;
-    lottoNumberElement.innerText = lottoText;
-    lottoElement.appendChild(lottoNumberElement);
-    lottosContainer.appendChild(lottoElement);
-  });
-};
 
 const buyBtn = document.querySelector('.buy-btn');
 const paymentsInput = document.querySelector('.payments-input');
@@ -32,6 +13,7 @@ buyBtn.addEventListener('click', () => {
   // TODO: 유효성 검사
   lottoMachine = new LottoMachine(buyMoney);
   const lottoNumbers = lottoMachine.getLottoNumbers();
+  renderLottoListTitle(lottoNumbers.length);
   renderLottoList(lottoNumbers);
   buyBtn.disabled = true;
   resultBtn.disabled = false;
@@ -43,11 +25,11 @@ const winningNumberInputs = winningNumberInputContainer.querySelectorAll('.winni
 const bonusNumberInput = document.querySelector('.bonus-number-input');
 const modal = document.querySelector('.modal');
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
-const resultTable = modal.querySelector('table');
-const resultTableBody = modal.querySelector('tbody');
 
 // TODO: 네이밍 수정
-const setResult = ({ winCount, profitRate }) => {
+const renderResultTable = ({ winCount, profitRate }) => {
+  const resultTable = modal.querySelector('table');
+  const resultTableBody = modal.querySelector('tbody');
   const tableRows = resultTableBody.querySelectorAll('tr');
   // TODO: 쓰레기 고치기
   for (let i = 0; i < 5; i++) {
@@ -69,7 +51,7 @@ resultBtn.addEventListener('click', () => {
   const bonusNumber = +bonusNumberInput.value;
   lottoMachine.setBonusNumber(bonusNumber);
   modal.style.visibility = 'visible';
-  setResult(lottoMachine.calcStatstics());
+  renderResultTable(lottoMachine.calcStatstics());
 });
 
 modalCloseBtn.addEventListener('click', () => {
