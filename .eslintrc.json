@@ -1,5 +1,4 @@
 {
-  "rules": {},
   "env": {
     "es6": true,
     "node": true
@@ -7,5 +6,20 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+
+  "plugins": ["jest"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "class-methods-use-this": "off",
+    "import/extensions": "off",
+    "no-unused-expressions": "off",
+    "no-return-await": "off"
+  }
 }
