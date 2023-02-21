@@ -1,10 +1,10 @@
 import LottoGame from '../domain/lottoGame/LottoGame';
 import { $, $$ } from './dom';
 class App {
-  #lottoGame;
+  #lottoGame = new LottoGame();
+  #modalToggle = false;
 
   init() {
-    this.#lottoGame = new LottoGame();
     this.bindEventListener();
   }
 
@@ -22,8 +22,6 @@ class App {
     $moneyInput.value = '';
   };
 
-  getLottoListTemplate = () => {};
-
   showLottoList = () => {
     const $lottoListContainer = $('#lotto-list-container');
     const lottos = this.#lottoGame.getLottos();
@@ -40,10 +38,6 @@ class App {
       .join('')}</ul>`;
     $lottoListContainer.innerHTML = lottoListTemplate;
   };
-
-  bindEventListener() {
-    $('#purchase-button').addEventListener('click', this.handleClickPurchaseButton);
-  }
 
   showWinningLottoInput = () => {
     const $winningLottoContainer = $('#winning-lotto-container');
@@ -71,11 +65,26 @@ class App {
   showResultButton = () => {
     const $gameContainer = $('#game-container');
     const $resultButton = $('#resultButton');
-    const resultButtonTemplate = `<button id='resultButton'>결과 확인하기</button>`;
+    const resultButtonTemplate = `<button id='result-button' class='my-button'>결과 확인하기</button>`;
 
     if ($resultButton) $resultButton.remove();
     $gameContainer.insertAdjacentHTML('beforeend', resultButtonTemplate);
+    $('#result-button').addEventListener('click', this.showModal);
   };
+
+  showModal = () => {
+    $('#modal-background').style.display = 'block';
+  };
+
+  closeModal = () => {
+    $('#modal-background').style.display = 'none';
+  };
+
+  bindEventListener() {
+    $('#purchase-button').addEventListener('click', this.handleClickPurchaseButton);
+
+    $('#modal-close-button').addEventListener('click', this.closeModal);
+  }
 }
 
 const app = new App();
