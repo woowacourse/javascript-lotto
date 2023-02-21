@@ -1,14 +1,35 @@
-const resultBtn = document.querySelector('.result__button');
-const modal = document.querySelector('.modal');
-const closeBtn = document.querySelector('.close__button');
+class LottoView {
+  constructor($element) {
+    this.$element = $element;
+    this.bindInputPriceEvent();
+  }
 
-const onModalShow = () => {
-  modal.classList.add('open');
-};
+  readEvent(event, eventHandler) {
+    this.$element.addEventListener(event, eventHandler);
+  }
 
-const onModalClose = () => {
-  modal.classList.remove('open');
-};
+  createCustomEvent(event, data) {
+    const newEvent = new CustomEvent(event, { detail: data });
+    this.$element.dispatchEvent(newEvent);
+  }
 
-resultBtn.addEventListener('click', onModalShow);
-closeBtn.addEventListener('click', onModalClose);
+  reset() {
+    this.$element.reset();
+    this.$element.focus();
+  }
+
+  printErrorMessage($element, message) {
+    $element.innerText = `[ERROR] ${message}`;
+  }
+
+  bindInputPriceEvent() {
+    this.$element.addEventListener('submit', (e) => this.inputPriceHandler(e));
+  }
+
+  inputPriceHandler(e) {
+    e.preventDefault();
+    this.createCustomEvent('inputPrice', e.target.elements.budget.value);
+  }
+}
+
+export default LottoView;

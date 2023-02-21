@@ -11,6 +11,7 @@
   --color-grey: #b4b4b4;
   --color-dark-grey: #8b8b8b;
   --color-black: #000000;
+  --color-red: #ff0000;
 
   /* font size */
   --size-emoji: 34px;
@@ -74,7 +75,7 @@
 }
 
 .budget__form {
-  margin: 2rem 0;
+  margin: 2rem 0 0 0;
 }
 
 .budget__label {
@@ -98,6 +99,11 @@
   color: var(--color-white);
   font-weight: var(--bold-bold);
   border-radius: var(--borer-radius-regular);
+}
+
+.error {
+  margin: 0.5rem 0 2rem 0;
+  color: var(--color-red);
 }
 
 /* ticket */
