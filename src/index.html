@@ -16,48 +16,23 @@
           <div class="lotto-purchase-input">
             <div class="input-info"><p>구입할 금액을 입력해주세요.</p></div>
             <div>
-              <input type="number" placeholder="금액" />
               <input
-                type="button"
-                onclick="inputPurchaseAmount()"
-                value="구입"
+                type="number"
+                placeholder="금액"
+                id="input-purchase-amount"
               />
+              <input type="button" value="구입" id="input-purchase-btn" />
             </div>
           </div>
           <div class="after-purchase">
             <div class="lotto-purchase-result">
-              <div class="input-info"><p>총 7개를 구입했습니다.</p></div>
+              <div class="input-info">
+                <p>
+                  총 <span id="lotto-purchase-count">0</span>개를 구입했습니다.
+                </p>
+              </div>
               <div>
-                <ul class="lotto-list">
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                  <li>
-                    <div>🎟️</div>
-                    <p>12, 19, 22, 23, 28, 37</p>
-                  </li>
-                </ul>
+                <ul class="lotto-list"></ul>
               </div>
             </div>
             <div class="lotto-winning-input">
@@ -68,6 +43,7 @@
                 <div class="input-winNumber">
                   <p>당첨 번호</p>
                   <div>
+                    <input type="number" name="" maxlength="1" />
                     <input type="number" name="" maxlength="1" />
                     <input type="number" name="" maxlength="1" />
                     <input type="number" name="" maxlength="1" />

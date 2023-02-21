@@ -153,6 +153,11 @@ main {
   color: var(--lotto-greyscale-4);
 }
 
+.after-purchase {
+  width: 100%;
+  display: none;
+}
+
 .lotto-purchase-result {
   margin-top: 28px;
   margin-bottom: 24px;
