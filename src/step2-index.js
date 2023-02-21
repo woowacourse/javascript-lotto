@@ -8,9 +8,15 @@ class App extends Component {
     super(qs('#app'));
   }
 
+  setUp() {
+    this.state = { amount: 0 };
+  }
+
   mounted() {
+    const { setAmount } = this;
+
     new Header(component('header'));
-    new Amount(component('amount'));
+    new Amount(component('amount'), { setAmount: setAmount.bind(this) });
   }
 
   template() {
@@ -18,6 +24,10 @@ class App extends Component {
       <header data-component='header'></header> 
       <section data-component='amount' />
     `;
+  }
+
+  setAmount(amount) {
+    this.setState({ amount });
   }
 }
 
