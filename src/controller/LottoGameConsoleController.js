@@ -42,7 +42,7 @@ class LottoGameConsoleController {
   async generateWinningLottoNumbers() {
     try {
       const winningLottoString = await InputView.readWinningLottoNumbers();
-      const winningLottoNumber = winningLottoString.split(',').map((number) => Number(number));
+      const winningLottoNumber = winningLottoString.split(',').map(Number);
       const bonusNumber = await InputView.readBonusLottoNumber();
       this.#lottoGame.generateWinningLotto(winningLottoNumber, bonusNumber);
     } catch (error) {
