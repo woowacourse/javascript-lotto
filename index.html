@@ -16,29 +16,31 @@
           <section id="money-input-section">
             <p class="lotto-body">구입할 금액을 입력해주세요.</p>
             <form id="money-input-form">
-              <input placeholder="금액" id="money-input" />
+              <input placeholder="금액" id="money-input" type="number" />
               <button id="buy-button">구입</button>
             </form>
           </section>
           <section id="purchased-lotto-section"></section>
           <section id="winning-lotto-section">
-            <p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="number-wrapper">
-              <div class="winning-numbers">
-                <p>당첨 번호</p>
-                <input class="number-input" />
-                <input class="number-input" />
-                <input class="number-input" />
-                <input class="number-input" />
-                <input class="number-input" />
-                <input class="number-input" />
+            <form id="winning-lotto-form">
+              <p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <div class="number-wrapper">
+                <div class="winning-numbers">
+                  <p>당첨 번호</p>
+                  <input class="number-input" type="number" />
+                  <input class="number-input" />
+                  <input class="number-input" />
+                  <input class="number-input" />
+                  <input class="number-input" />
+                  <input class="number-input" />
+                </div>
+                <div class="bonus-number">
+                  <p>보너스 번호</p>
+                  <input class="number-input" />
+                </div>
               </div>
-              <div class="bonus-number">
-                <p>보너스 번호</p>
-                <input class="number-input" />
-              </div>
-            </div>
-            <button id="result-button">결과 확인하기</button>
+              <button id="result-button">결과 확인하기</button>
+            </form>
           </section>
         </div>
       </main>

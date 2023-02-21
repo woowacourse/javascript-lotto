@@ -78,7 +78,7 @@ body {
   height: 400px;
 }
 
-#winning-lotto-section {
+#winning-lotto-form {
   display: flex;
   flex-direction: column;
 }
