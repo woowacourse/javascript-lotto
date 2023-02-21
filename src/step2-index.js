@@ -4,6 +4,7 @@
  */
 
 import "../index.css";
+import Controller from "./Controller.js";
 
 const inputAmount = document.querySelector(".inputAmount");
 const eachInputLottoNumber = document.querySelectorAll(".eachInputLottoNumber");
@@ -15,35 +16,49 @@ const result = document.querySelector(".result");
 
 const count = document.querySelectorAll(".count");
 const randomLottoList = document.querySelector(".randomLottoList");
-const resultPage = document.querySelector(".resultPage");
-const black = document.querySelector(".black");
 const inputAmountNext = document.querySelector(".inputAmountNext");
 const dialog = document.querySelector("dialog");
-
-//
-
-import Controller from "./Controller.js";
 
 class App {
   constructor() {}
   play() {
     this.controller = new Controller();
-    purchase.addEventListener("click", () => {
-      const error = this.pushPurchase(inputAmount.value);
-      inputAmount.value = "";
-      if (error) return alert(error);
-    });
+    this.addEvent();
   }
 
-  pushPurchase(amount) {
-    const randomLotteries = this.controller.inputPurchaseAmount(amount);
+  addEvent() {
+    purchase.addEventListener("click", this.handleAmountError.bind(this));
+    inputAmount.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") this.handleAmountError();
+    });
+    result.addEventListener("click", this.handleLottoBonusError.bind(this));
+    restart.addEventListener("click", this.clickRestart.bind(this));
+  }
+
+  handleAmountError() {
+    console.log("d");
+    const error = this.checkAmount(inputAmount.value);
+    this.resetInputElement(inputAmount);
+    if (error) return alert(error);
+  }
+
+  resetInputElement(element) {
+    element.value = "";
+  }
+
+  //randomLotteries가 문자인 경우 에러메세지
+  checkAmount(amount) {
+    const randomLotteries = this.controller.amountTurnLotteries(amount);
     if (typeof randomLotteries === "string") return randomLotteries;
+
     this.showRandomLottoAmount(randomLotteries);
     this.showRandomLottoList(randomLotteries);
-    result.addEventListener("click", () => {
-      const error = this.pushResult();
-      if (error) return alert(error);
-    });
+  }
+
+  showRandomLottoAmount(randomLotteries) {
+    document.querySelector(
+      ".randomLottoAmount"
+    ).textContent = `${randomLotteries.length}`;
   }
 
   showRandomLottoList(randomLotteries) {
@@ -52,12 +67,6 @@ class App {
       randomLottoList.appendChild(this.makeEachRandomLotto(numbers));
     });
     inputAmountNext.style.display = "block";
-  }
-
-  showRandomLottoAmount(randomLotteries) {
-    document.querySelector(
-      ".randomLottoAmount"
-    ).textContent = `${randomLotteries.length}`;
   }
 
   makeEachRandomLotto(numbers) {
@@ -73,25 +82,29 @@ class App {
     elem.textContent = text;
     return elem;
   }
-  //위는 프린트 로또 아래는 로또 번호 불러오기
-  pushResult() {
+
+  handleLottoBonusError() {
+    const error = this.clickResult();
+    if (error) return alert(error);
+  }
+
+  clickResult() {
     const result = this.checkLottoBonus();
     if (typeof result === "string") return result;
     dialog.showModal();
     this.showResult(result);
-    restart.addEventListener("click", () => {
-      this.pushRestart();
-    });
   }
 
   checkLottoBonus() {
     const lotto = [];
     const bonus = eachInputBonusNumber.value;
-    eachInputBonusNumber.value = "";
+    this.resetInputElement(eachInputBonusNumber);
     eachInputLottoNumber.forEach((numberElem) => {
       lotto.push(+numberElem.value);
-      numberElem.value = "";
+      this.resetInputElement(numberElem);
     });
+
+    console.log(lotto);
     return this.controller.inputLottoBonus(lotto, +bonus);
   }
 
@@ -102,9 +115,9 @@ class App {
     }`;
   }
 
-  pushRestart() {
+  clickRestart() {
     dialog.close();
-    result.removeEventListener("click");
+    inputAmountNext.style.display = "none";
   }
 }
 
