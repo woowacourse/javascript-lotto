@@ -1,19 +1,17 @@
+/* eslint-disable no-undef */
 import LottoMachine from './domain/LottoMachine';
 
-/* eslint-disable no-undef */
 let lottoMachine;
-const moneyInput = document.querySelector('.money-input');
-const buyBtn = document.querySelector('.buy-btn');
-const lottosContainer = document.querySelector('.lottos-container');
-const moneyContainer = document.querySelector('.money-container');
 const resultBtn = document.querySelector('.result-btn');
 
+const paymentsContainer = document.querySelector('.payments-container');
 const renderLottoListTitle = (amount) => {
   const title = document.createElement('p');
   title.innerText = `총 ${amount}개를 구매했습니다.`;
-  moneyContainer.appendChild(title);
+  paymentsContainer.appendChild(title);
 };
 
+const lottosContainer = document.querySelector('.lottos-container');
 const renderLottoList = (lottoNumbers) => {
   renderLottoListTitle(lottoNumbers.length);
   lottoNumbers.forEach((lottoNumber) => {
@@ -26,14 +24,18 @@ const renderLottoList = (lottoNumbers) => {
   });
 };
 
+const buyBtn = document.querySelector('.buy-btn');
+const paymentsInput = document.querySelector('.payments-input');
+const winningLottoContainer = document.querySelector('.winning-lotto-container');
 buyBtn.addEventListener('click', () => {
-  const buyMoney = moneyInput.value;
+  const buyMoney = paymentsInput.value;
   // TODO: 유효성 검사
   lottoMachine = new LottoMachine(buyMoney);
   const lottoNumbers = lottoMachine.getLottoNumbers();
   renderLottoList(lottoNumbers);
   buyBtn.disabled = true;
   resultBtn.disabled = false;
+  winningLottoContainer.style.visibility = 'visible';
 });
 
 const winningNumberInputContainer = document.querySelector('.winning-numbers');
@@ -59,6 +61,7 @@ const setResult = ({ winCount, profitRate }) => {
 };
 
 resultBtn.addEventListener('click', () => {
+  resultBtn.disabled = true;
   // TODO: 유효성 검사 (로또 당첨, 보너스 번호)
   const winningNumbers = Array.from(winningNumberInputs, (_) => +_.value);
   lottoMachine.generateWinningLotto(winningNumbers);
@@ -71,4 +74,10 @@ resultBtn.addEventListener('click', () => {
 
 modalCloseBtn.addEventListener('click', () => {
   modal.style.visibility = 'hidden';
+});
+
+const modalRestartBtn = document.querySelector('.modal-restart-btn');
+
+modalRestartBtn.addEventListener('click', () => {
+  window.location.reload();
 });
