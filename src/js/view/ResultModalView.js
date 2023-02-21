@@ -12,6 +12,10 @@ class ResultModalView {
   show() {
     $('#resultModal').classList.remove('hidden');
   }
+
+  hide() {
+    $('#resultModal').classList.add('hidden');
+  }
 }
 
 export default ResultModalView;
