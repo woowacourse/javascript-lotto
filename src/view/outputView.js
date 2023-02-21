@@ -1,31 +1,25 @@
-const { consoleMessage, profitByRank } = require('../constants/constants');
-const Console = require('./Console');
+const { message } = require('../constants/constants');
+
+const purchaseResultContainer = document.getElementById('resultContainer');
+const purchaseResultHeader = document.getElementById('purchaseResultHeader');
+const purchasedLottosContainer = document.getElementById(
+  'purchasedLottosContainer'
+);
+const winningInputContainer = document.getElementById('winningInputContainer');
 
 const outputView = {
-  printLottoCount(lottoCount) {
-    Console.print(consoleMessage.showLottoCount(lottoCount));
-  },
-  printLottoNumbers(lottos) {
-    lottos.forEach((lotto) => {
-      Console.print(`[${lotto.getNumbers().join(', ')}]`);
-    });
-    Console.print('');
-  },
-  printStatistics(ranks) {
-    Console.print(consoleMessage.RESULT_HEADER);
+  renderPurchasedLottos(lottos) {
+    purchaseResultContainer.classList = '';
+    purchaseResultHeader.innerHTML = message.showLottoCount(lottos.length);
 
-    ranks.forEach((lottoCount, index, origin) => {
-      Console.print(
-        consoleMessage.showStatistics(
-          profitByRank.length - index,
-          origin[profitByRank.length - index - 1]
-        )
-      );
-    });
+    purchasedLottosContainer.innerHTML = `${lottos
+      .map((lotto) => `<li>🎟️ <span>${lotto.getNumbers()}</li></span>`)
+      .join('')}`;
   },
 
-  printProfitRate(profitRate) {
-    Console.print(consoleMessage.showProfitRate(profitRate));
+  renderWinningNumbersInput() {
+    winningInputContainer.classList = '';
   },
 };
+
 module.exports = outputView;

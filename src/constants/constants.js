@@ -1,5 +1,3 @@
-const readline = require('readline');
-
 const PRICE_UNIT = 1_000;
 const regex = Object.freeze({
   BLANK: /\s/,
@@ -55,12 +53,7 @@ const indexToRankKeyConverter = Object.freeze([
   'FIFTH_RANK',
 ]);
 
-const RL = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const consoleMessage = Object.freeze({
+const message = Object.freeze({
   ASK_PURCHASE_PRICE: '> 구입금액을 입력해 주세요.',
   showLottoCount: (lottoCount) => `${lottoCount}개를 구매했습니다.`,
   ASK_WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
@@ -95,7 +88,6 @@ module.exports = {
   profitByRank,
   LOTTO_NUMBER_COUNT,
   correctCountPerRank,
-  RL,
-  consoleMessage,
+  message,
   errorMessage,
 };
