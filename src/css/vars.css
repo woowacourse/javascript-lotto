@@ -1,0 +1,19 @@
+:root {
+    /*color*/
+    --lotto-primary: #4E5BA6;
+    --lotto-greyScale-1: #FFFFFF;
+    --lotto-greyScale-2: #FCFCFD;
+    --lotto-greyScale-3: #B4B4B4;
+    --lotto-greyScale-4: #8B8B8B;
+    --lotto-greyScale-5: #000000;
+
+    /*
+    typo
+    weight, size, height order
+    */
+    --title: 800 24px 36px;
+    --subtitle: 600 20px 24px;
+    --body: 400 15px 24px;
+    --placeholder: 400 15px 24px;
+    --caption: 700 14px 24px;
+}
