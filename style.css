@@ -148,18 +148,27 @@ body {
   margin-top: 12px;
 }
 
+.input-winningLottos {
+  display: flex;
+  gap: 8px;
+}
+
 .input-winningLotto {
   width: 34px;
   height: 36px;
-
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
-  margin-right: 8px;
   margin-top: 8px;
 }
 
 .winningNumber label {
   display: block;
+}
+
+.bonusNumber {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .bonusNumber label {
