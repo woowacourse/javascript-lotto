@@ -1,6 +1,7 @@
 import Component from './Component.js';
-import Header from './view/components/Header.js';
 import { qs, component } from './utils/domHelper';
+import Header from './view/components/Header.js';
+import Amount from './view/components/Amount.js';
 
 class App extends Component {
   constructor() {
@@ -9,10 +10,14 @@ class App extends Component {
 
   mounted() {
     new Header(component('header'));
+    new Amount(component('amount'));
   }
 
   template() {
-    return `<header data-component='header' />`;
+    return `
+      <header data-component='header'></header> 
+      <section data-component='amount' />
+    `;
   }
 }
 
