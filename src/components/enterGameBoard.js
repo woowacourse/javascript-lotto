@@ -1,13 +1,10 @@
 import { LOTTO_LENGTH } from '../data/Constants';
-import { clearConatiner } from '../utils/Utils';
-import { showModal } from '../view/modal';
 import {
   enterWinNumberMessage,
   winNumberMessage,
   bonusNumberMessage,
   numberInput,
 } from '../view/templates/lottoGame';
-import lottoResultBoard from './lottoResult';
 
 function numberTitleContainer() {
   const $container = document.createElement('div');
@@ -31,7 +28,7 @@ function winningNumberContainer() {
 
 function numberEnterContainer() {
   const $container = document.createElement('div');
-  $container.className = 'flex-justify-between';
+  $container.className = 'flex-justify-between number-container';
 
   const $winNumberContainer = winningNumberContainer();
   const $bonusNumberInput = numberInput('bonusNumber');
@@ -41,47 +38,30 @@ function numberEnterContainer() {
   return $container;
 }
 
-function checkResultButton(callback) {
+function checkResultButton() {
   const $button = document.createElement('button');
+
   $button.id = 'checkResult';
   $button.className = 'caption large-button';
   $button.type = 'button';
   $button.textContent = '결과 확인하기';
-  $button.addEventListener('click', callback);
+  $button.disabled = true;
 
   return $button;
 }
 
-function enterGameBoard(callback) {
+function enterGameBoard() {
   const enterBoard = document.createElement('div');
 
   enterBoard.innerHTML = enterWinNumberMessage;
   enterBoard.appendChild(numberTitleContainer());
   enterBoard.appendChild(numberEnterContainer());
-  enterBoard.appendChild(checkResultButton(callback));
+  enterBoard.appendChild(checkResultButton());
 
   return enterBoard;
 }
 
-const showResultButton = () => {
-  showModal();
-  const $modalContent = document.querySelector('.modal-content');
-  clearConatiner($modalContent);
-  $modalContent.appendChild(
-    lottoResultBoard(
-      {
-        FIFTH: 0,
-        FOURTH: 0,
-        THIRD: 0,
-        SECOND: 0,
-        FIRST: 0,
-      },
-      0.0
-    )
-  );
-};
-
 export default function paintEnterWinningNumber() {
   const $lottoSection = document.querySelector('.lotto-section');
-  $lottoSection.appendChild(enterGameBoard(showResultButton));
+  $lottoSection.appendChild(enterGameBoard());
 }
