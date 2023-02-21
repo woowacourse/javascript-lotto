@@ -32,13 +32,27 @@ main {
   align-items: center;
 }
 
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 8rem;
+
+  border-top: 0.1rem solid rgba(78, 91, 166, 0.2);
+  color: #4e5ba6;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+}
+
 button {
   cursor: pointer;
 }
 
 .lotto {
   padding: 4rem 1.6rem 3.2rem;
-  margin-top: 8.4rem;
+  margin: 8.4rem 0 6.9rem;
 
   border: 0.1rem solid rgba(0, 0, 0, 0.12);
   border-radius: 0.4rem;
