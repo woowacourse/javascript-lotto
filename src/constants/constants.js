@@ -5,6 +5,7 @@ const REGEX = Object.freeze({
   BLANK: /\s/,
   RESTART_COMMAND: /y|n/,
   PRICE_FORMAT: /\B(?=(\d{3})+(?!\d))/g,
+  NUMBER: /^[0-9]+$/,
 });
 
 const EMPTY_STRING = '';

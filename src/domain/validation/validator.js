@@ -44,7 +44,8 @@ const validator = {
   },
 
   isNumber(input) {
-    return !isNaN(input);
+    const regex = REGEX.NUMBER;
+    return regex.test(input);
   },
 
   isBlankIncluded(input) {
