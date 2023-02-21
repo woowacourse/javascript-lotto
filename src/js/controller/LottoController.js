@@ -6,8 +6,8 @@ const ProfitCalculator = require('../domain/ProfitCaculator');
 const WinningLotto = require('../domain/WinningLotto');
 
 const Console = require('../util/Console');
-const InputView = require('../view/InputView');
-const OutputView = require('../view/OutputView');
+const InputView = require('../view/consoleView/InputView');
+const OutputView = require('../view/consoleView/OutputView');
 const Validator = require('../domain/Validator');
 
 class LottoController {

@@ -1,5 +1,5 @@
-const Console = require('../util/Console');
-const { INPUT_MESSAGE } = require('../constant/message');
+const Console = require('../../util/Console');
+const { INPUT_MESSAGE } = require('../../constant/message');
 
 const InputView = {
   async readPurchaseAmount() {
