@@ -24,8 +24,13 @@ class LottoMachine {
   async play() {
     const money = await this.readMoney();
     const lottos = await this.quickPicksLottos(money);
-    await this.readWinningNumbers();
-    await this.readBonusNumber(money, lottos);
+    const winning = new Winning();
+    const winningNumbers = await this.readWinningNumbers();
+    winning.setWinningNumbers(winningNumbers);
+    const bonusNumber = await this.readBonusNumber(winning);
+    winning.setBonusNumber(bonusNumber);
+    const ranks = await this.getLottoRanks(winning, lottos);
+    await this.calculateBenefit(money, ranks);
     await this.readRetryOption();
   }
 
@@ -49,26 +54,26 @@ class LottoMachine {
       const winningNumbers = userWinningNumbers
         .split(LOTTO_LITERAL.comma)
         .map((winningNumber) => Number(winningNumber));
-      this.#winning.setWinningNumbers(winningNumbers);
+      const winning = new Winning();
+      winning.setWinningNumbers(winningNumbers);
+      return winningNumbers;
     } catch (error) {
       Console.print(error.message);
       return await this.readWinningNumbers();
     }
   }
 
-  async readBonusNumber(money, lottos) {
+  async readBonusNumber(winning) {
     try {
       const userBonusNumber = await Console.readLine(
         '\n> 보너스 번호를 입력해 주세요.'
       );
-      this.#winning.setBonusNumber(Number(userBonusNumber));
-      const ranks = this.#getCollectedRanks(lottos);
-      const benefit = new Benefit();
-      benefit.calculateRate(money.getAmount(), ranks);
-      this.#showResult(benefit, ranks);
+      const bonusNumber = Number(userBonusNumber);
+      winning.setBonusNumber(bonusNumber);
+      return bonusNumber;
     } catch (error) {
       Console.print(error.message);
-      return await this.readBonusNumber(money, lottos);
+      return await this.readBonusNumber(winning);
     }
   }
 
@@ -85,10 +90,16 @@ class LottoMachine {
   }
 
   async quickPicksLottos(money) {
-    const lottos = this.#generateLottos(money.getAmount());
+    const lottos = LottoMachine.generateLottos(money.getAmount());
     this.#showLottos(lottos);
 
     return lottos;
+  }
+
+  async calculateBenefit(money, ranks) {
+    const benefit = new Benefit();
+    benefit.calculateRate(money.getAmount(), ranks);
+    this.#showResult(benefit, ranks);
   }
 
   #checkRetryOption(input) {
@@ -97,15 +108,20 @@ class LottoMachine {
     throw new Error(ERROR_MESSAGE.retryOption);
   }
 
-  #generateLottos(amount) {
+  static generateLottos(amount) {
     const lottoCount = amount / LOTTO_NUMBER.moneyUnit;
 
     return Array.from({ length: lottoCount }).map(
-      () => new Lotto(this.#getComposedLottoNumbers())
+      () => new Lotto(LottoMachine.getComposedLottoNumbers())
     );
   }
 
-  #getComposedLottoNumbers() {
+  async getLottoRanks(winning, lottos) {
+    const ranks = LottoMachine.getCollectedRanks(winning, lottos);
+    return ranks;
+  }
+
+  static getComposedLottoNumbers() {
     const lottoNumbers = new Set();
 
     while (lottoNumbers.size < LOTTO_NUMBER.lottoNumberCount) {
@@ -119,20 +135,28 @@ class LottoMachine {
     return [...lottoNumbers].sort((first, second) => first - second);
   }
 
-  #getCollectedRanks(lottos) {
+  static getCollectedRanks(winning, lottos) {
     const RANK_TEMPLATE = [0, 0, 0, 0, 0];
 
     const ranks = lottos.reduce((accumulator, lotto) => {
-      return this.#getIncreasedRanks(lotto.getLottoNumbers(), accumulator);
+      const currentRanks = accumulator;
+      const matchedCount = LottoMachine.getMatchedCount(
+        winning,
+        lotto.getLottoNumbers()
+      );
+      const rankIndex = LottoMachine.getRankIndex(
+        matchedCount,
+        LottoMachine.isBonus(winning, lotto.getLottoNumbers())
+      );
+
+      return LottoMachine.getUpdatedRanks(currentRanks, rankIndex);
     }, RANK_TEMPLATE);
 
     return ranks;
   }
 
-  #getIncreasedRanks(lotto, ranks) {
+  static getUpdatedRanks(ranks, rankIndex) {
     const updatedRanks = ranks;
-    const matchedCount = this.#getMatchedCount(lotto);
-    const rankIndex = this.#getRankIndex(matchedCount, this.#isBonus(lotto));
 
     if (rankIndex !== CALCULATION_NUMBER.losing) {
       updatedRanks[rankIndex] += 1;
@@ -141,13 +165,13 @@ class LottoMachine {
     return updatedRanks;
   }
 
-  #getMatchedCount(lotto) {
-    const winningNumbers = this.#winning.getWinningNumbers();
+  static getMatchedCount(winning, lotto) {
+    const winningNumbers = winning.getWinningNumbers();
 
     return lotto.filter((number) => winningNumbers.includes(number)).length;
   }
 
-  #getRankIndex(matchedCount, isBonus) {
+  static getRankIndex(matchedCount, isBonus) {
     const rankIndex = RANK_INFORMATIONS.findIndex(
       (rankInformation) =>
         rankInformation.isBonus === isBonus &&
@@ -159,8 +183,8 @@ class LottoMachine {
     return rankIndex;
   }
 
-  #isBonus(lotto) {
-    return lotto.includes(this.#winning.getBonusNumber());
+  static isBonus(winning, lotto) {
+    return lotto.includes(winning.getBonusNumber());
   }
 
   #showLottos(lottos) {
