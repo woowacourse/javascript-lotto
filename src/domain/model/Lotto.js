@@ -1,4 +1,7 @@
-const { CORRECT_COUNT_PER_RANK, RANK } = require('../../constants/constants');
+const {
+  CORRECT_COUNT_PER_RANK,
+  RANK,
+} = require('../../js/constants/constants');
 
 class Lotto {
   #numbers;

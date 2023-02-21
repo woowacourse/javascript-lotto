@@ -1,4 +1,8 @@
-const { CONSOLE_MESSAGE, PROFIT_PER_RANK } = require('../constants/constants');
+/*
+const {
+  CONSOLE_MESSAGE,
+  PROFIT_PER_RANK,
+} = require('../js/constants/constants');
 const Console = require('./Console');
 const { showStatistics } = require('../utils/index');
 
@@ -32,3 +36,4 @@ const outputView = {
   },
 };
 module.exports = outputView;
+*/

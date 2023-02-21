@@ -3,7 +3,7 @@ const {
   INDEX_TO_KEY_CONVERTER,
   PROFIT,
   REGEX,
-} = require('../constants/constants');
+} = require('../js/constants/constants');
 
 const showStatistics = (rank, correctCount) => {
   return `${CORRECT_COUNT_PER_RANK[INDEX_TO_KEY_CONVERTER[rank - 1]]}개 일치${

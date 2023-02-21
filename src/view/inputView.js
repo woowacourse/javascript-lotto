@@ -1,4 +1,5 @@
-const { CONSOLE_MESSAGE } = require('../constants/constants');
+/*
+const { CONSOLE_MESSAGE } = require('../js/constants/constants');
 const Console = require('./Console');
 const exceptionHandler = require('../utils/exceptionHandler');
 const validator = require('../domain/validation/validator');
@@ -45,3 +46,4 @@ const inputView = {
   },
 };
 module.exports = inputView;
+*/
