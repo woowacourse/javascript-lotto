@@ -38,6 +38,10 @@ const divideBByARate = (a, b) => {
   return ((b / a) * 100).toFixed(1);
 };
 
+const clearConatiner = ($container) => {
+  while ($container.firstChild) $container.removeChild($container.firstChild);
+};
+
 export {
   convertAscending,
   generateRandomNumber,
@@ -45,4 +49,5 @@ export {
   arrayToObjectThatValueZero,
   isNumberInRange,
   divideBByARate,
+  clearConatiner,
 };
