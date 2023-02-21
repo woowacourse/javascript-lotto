@@ -12,6 +12,10 @@ class WinningLottoInputView {
   show() {
     $('#winningLottoInputMenu').classList.remove('hidden');
   }
+
+  hide() {
+    $('#winningLottoInputMenu').classList.add('hidden');
+  }
 }
 
 export default WinningLottoInputView;
