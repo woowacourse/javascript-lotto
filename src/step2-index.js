@@ -1,4 +1,5 @@
 import LottoGameController from './controller/LottoGameController.js';
+import "../css/index.css";
 
 class App {
   #lottoGameController = new LottoGameController();
