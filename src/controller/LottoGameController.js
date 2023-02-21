@@ -49,6 +49,7 @@ class LottoGameController {
   inputBonusNumber() {
     inputView.readBonusNumber((bonusNumberInput) => {
       try {
+        validator.bonusNumber(this.#winningNumbers, bonusNumberInput);
         this.#winningNumbers = new WinningNumbers(
           this.#winningNumbers,
           Number(bonusNumberInput)

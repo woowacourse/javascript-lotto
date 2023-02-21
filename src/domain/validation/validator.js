@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 const {
   EMPTY_STRING,
   PRICE_UNIT,
@@ -23,19 +22,16 @@ const validator = {
     validator.isBlankIncluded(input);
     winningNumbers.map(validator.isNumber);
     winningNumbers.map(validator.isNumberRangeValid);
-    validator.isNumbersCountValid(input.length);
-    validator.isNumberDuplicated(input);
+    validator.isNumbersCountValid(winningNumbers.length);
+    validator.isNumberDuplicated(winningNumbers);
   },
 
-  isBonusNumberValid(winningNumbers, input) {
-    const bonusNumber = Number(input);
-
-    return (
-      !this.isEmptyOrBlankIncluded(bonusNumber) &&
-      this.isNumber(bonusNumber) &&
-      this.isNumberRangeValid(bonusNumber) &&
-      !this.isNumberDuplicated([...winningNumbers, bonusNumber])
-    );
+  bonusNumber(winningNumbers, input) {
+    validator.isEmpty(input);
+    validator.isBlankIncluded(input);
+    validator.isNumber(input);
+    validator.isNumberRangeValid(input);
+    validator.isNumberDuplicated([...winningNumbers, Number(input)]);
   },
 
   isBlankIncluded(input) {
@@ -65,8 +61,8 @@ const validator = {
 
   isNumberRangeValid(number) {
     if (
-      Number(number) <= LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER &&
-      Number(number) >= LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
+      number > LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER ||
+      number < LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
     )
       throw new Error(ERROR_MESSAGE.LOTTO_RANGE);
   },
