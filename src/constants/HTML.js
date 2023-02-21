@@ -5,7 +5,7 @@ const QuerySelector = Object.freeze({
   LOTTO_LIST_FIELD: '.user_lotto_field',
   LOTTO_LIST: 'user_lotto_list',
   LOTTO: 'user_lotto',
-  LOTTO_INPUT_FIELD: 'winning_number_input_field',
+  LOTTO_INPUT_FIELD: '.winning_lotto_input_field',
 });
 
 const Tag = Object.freeze({

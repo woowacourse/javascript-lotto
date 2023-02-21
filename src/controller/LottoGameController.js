@@ -39,6 +39,7 @@ class LottoGameController {
     const USER_LOTTOS = this.#lottoGame.generateUserLottos(purchaseCount);
 
     this.#output.renderLottosField(purchaseCount, USER_LOTTOS);
+    this.#output.renderLottoInputField();
   }
 
   // async #setWinningLotto() {
