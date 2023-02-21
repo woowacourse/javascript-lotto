@@ -1,11 +1,32 @@
 {
-  "rules": {},
+  "plugins": ["prettier"],
+  "rules": {
+    "no-console": "off",
+    "max-depth": ["error", 1],
+    "no-new": "off",
+    "max-lines-per-function": ["error", 15],
+    "max-params": ["error", 2],
+    "eol-last": ["error", "always"],
+    "comma-dangle": "off",
+    "class-methods-use-this": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "function-paren-newline": "off",
+    "arrow-body-style": "off"
+  },
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "ignorePatterns": ["__tests__/"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "airbnb-base"
+  ]
 }
