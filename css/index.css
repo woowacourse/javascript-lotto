@@ -12,7 +12,6 @@
   --gray-2: #b4b4b4;
   --gray-3: #8b8b8b;
   --black: #000000;
-  --backdrop-bg-color: rgba(0, 0, 0, 0.5);
   --divider-border-color: #d4d4d4;
 
   --primary-blue: #4e5ba6;
@@ -219,24 +218,22 @@ legend {
   margin: var(--spacing-3) 0;
 }
 
-.result-container {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--backdrop-bg-color);
-  cursor: pointer;
-}
-
 .result-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
   width: calc(420px - var(--spacing-3) * 2);
   padding: var(--spacing-3);
   background-color: var(--white);
   border: 1px solid var(--gray-2);
   border-radius: var(--spacing-1);
   cursor: default;
+  transform: translate(-50%, -50%);
+}
+
+.result-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .result-modal .close-icon {
@@ -262,7 +259,14 @@ th {
   font-weight: var(--subtitle-font-weight);
 }
 
+.close-icon-container {
+  position: relative;
+}
+
 .close-icon {
+  position: absolute;
+  right: 0;
+  display: inline-block;
   font-size: var(--subtitle-font-size);
   color: var(--gray-3);
   transition: all .1s ease-in;

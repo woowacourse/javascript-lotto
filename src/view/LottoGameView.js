@@ -16,7 +16,7 @@ class LottoGameView {
     this.gameNumbersForm = $('#game-numbers-form');
     this.winningNumbersInputs = $$('input[name="winning-number"]');
     this.bonusNumberInput = $('input[name="bonus-number"]');
-    this.resultModal = $('.result-container');
+    this.resultModal = $('.result-modal');
     this.profitRate = $('#profit-rate');
     this.closeIcon = $('.close-icon');
     this.restartButton = $('#restart-button');
@@ -83,7 +83,7 @@ class LottoGameView {
   }
 
   showResultModal() {
-    this.resultModal.style.display = 'flex';
+    this.resultModal.showModal();
   }
 
   showRanks(ranks) {
@@ -106,7 +106,7 @@ class LottoGameView {
 
   closeResultModal(event) {
     if (event.target === event.currentTarget) {
-      this.resultModal.style.display = 'none';
+      this.resultModal.close();
     }
   }
 
@@ -115,6 +115,7 @@ class LottoGameView {
   }
 
   restartGame(event) {
+    this.resultModal.close();
     event.stopPropagation();
     this.resetForm(this.purchaseForm);
     this.resetForm(this.gameNumbersForm);
