@@ -68,6 +68,14 @@ class LottoController {
     const profitRate = this.#lottoGame.getProfitRate();
     this.#resultModalView.displayResult(winningStatus, profitRate);
   }
+
+  handleRestart() {
+    this.#lottoGame = new LottoGame();
+    this.#purchaseView.clear();
+    this.#winningLottoInputView.hide();
+    this.#resultModalView.hide();
+    InputCleaner.clearAllInputs();
+  }
 }
 
 export default LottoController;
