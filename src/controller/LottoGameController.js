@@ -13,17 +13,8 @@ class LottoGameController {
 
   startGame() {
     this.#input.purchaseLottos(this.#getPurchaseCount);
-    this.#input.seeResult(() => {});
-    // await this.#setUserLottos();
-    // await this.#setWinningLotto();
-    // this.#showGameResult();
-    // await this.#askGameRestart();
+    this.#input.seeResult(this.#setWinningLotto);
   }
-
-  // async #setUserLottos() {
-  //   const PURCHASE_COUNT = await this.#getPurchaseCount();
-  //   this.#purchaseUserLottos(PURCHASE_COUNT);
-  // }
 
   #getPurchaseCount = (money) => {
     const PURCHASE_COUNT = Number(money) / GameControlStaticValue.PURCHASE_AMOUNT_UNIT;
@@ -43,46 +34,23 @@ class LottoGameController {
     this.#output.renderLottoInputField();
   }
 
-  // async #setWinningLotto() {
-  //   const WINNING_NUMBERS = await this.#getWinningNumbers();
-  //   const BONUS_NUMBER = await this.#getBonusNumber(WINNING_NUMBERS);
-
-  //   this.#lottoGame.setGameLottos(WINNING_NUMBERS, BONUS_NUMBER);
-  // }
-
-  // #getWinningNumbers = async () => {
-  //   const WINNING_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.WINNING_NUMBER);
-  //   const WINNING_NUMBERS = WINNING_NUMBER_INPUT.split(GameControlStaticValue.INPUT_SEPARATOR).map(
-  //     Number,
-  //   );
-
-  //   try {
-  //     Validation.testLottoNumbers(WINNING_NUMBERS);
-  //     return WINNING_NUMBERS;
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
-
-  // #getBonusNumber = async (winningNumbers) => {
-  //   const BONUS_NUMBER_INPUT = await InputView.readUserInput(RequestMessage.BONUS_NUMBER);
-  //   const BONUS_NUMBER = Number(BONUS_NUMBER_INPUT);
-
-  //   try {
-  //     Validation.testBonusNumber(winningNumbers, BONUS_NUMBER);
-  //     return BONUS_NUMBER;
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
+  #setWinningLotto = (winningNumbers, bonusNumber) => {
+    try {
+      Validation.testLottoNumbers(winningNumbers);
+      Validation.testBonusNumber(winningNumbers, bonusNumber);
+      this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   // #showGameResult() {
   //   const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
   //   OutputView.printResult(RANKS, PROFIT_RATE);
   // }
 
-  // #askGameRestart = async () => {
-  //   const REPLY_INPUT = await InputView.readUserInput(RequestMessage.RESTART);
+  // #askGameRestart = () => {
+  //   const REPLY_INPUT = InputView.readUserInput(RequestMessage.RESTART);
   //   const REPLY = REPLY_INPUT.toLowerCase().trim();
 
   //   try {

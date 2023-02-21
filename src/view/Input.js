@@ -18,12 +18,14 @@ class Input {
   seeResult = (callback) => {
     this.resultBtn.addEventListener('click', () => {
       const winningNumbers = [];
+
       this.winningNumberInputs.forEach((input) => {
         winningNumbers.push(Number(input.value));
       });
+
       const BonusNumber = Number(this.bonusNumberInput.value);
-      console.log(winningNumbers, BonusNumber);
-      callback();
+
+      callback(winningNumbers, BonusNumber);
     });
   };
 }
