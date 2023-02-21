@@ -67,7 +67,7 @@
 
 ### InputCleaner
 
-- [ ] 모든 입력창을 비우는 기능
+- [x] 모든 입력창을 비우는 기능
 
 ### ResultModalView
 
