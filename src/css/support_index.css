@@ -1,0 +1,34 @@
+#header-title {
+  margin-left: 130px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #ffffff;
+}
+
+#main-contents {
+  padding: 0 16px;
+  width: 414px;
+  height: 727px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin: 65px auto;
+  overflow: scroll;
+}
+
+#main-contents-header {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  margin: 52px 85px 0 85px;
+}
+
+#footer-label {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #4e5ba6;
+}

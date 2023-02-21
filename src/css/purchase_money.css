@@ -1,0 +1,35 @@
+#purchase-money-container {
+  margin-top: 28px;
+}
+
+#purchase-money-form {
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+}
+
+#purchase-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#purchase-money-input {
+  width: 330px;
+  height: 32px;
+  border: 1px solid #8b8b8b;
+  border-radius: 4px;
+  padding-left: 7px;
+}
+
+#purchase-money-button {
+  width: 56px;
+  height: 36px;
+  font-size: 14px;
+  background: #4e5ba6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
