@@ -2,6 +2,7 @@
 @import url('../css/root.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
+@import url('../css/modal.css');
 @import url('../css/header.css');
 @import url('../css/main.css');
 @import url('../css/footer.css');
@@ -13,4 +14,8 @@ body {
 
 #app {
   height: 100vh;
+}
+
+.hide {
+  display: none;
 }

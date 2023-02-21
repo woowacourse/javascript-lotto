@@ -1,0 +1,148 @@
+.result-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #00000080;
+}
+
+.modal-content-container {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  height: 500px;
+  width: 350px;
+
+  background-color: #ffffff;
+
+  padding: 16px 32px;
+  border-radius: var(--border-radius);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  border: none;
+
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.modal-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 10%;
+}
+
+.modal-title {
+  font-size: var(--text-subtitle-size);
+  font-weight: var(--text-subtitle-weight);
+  line-height: var(--text-subtitle-line-height);
+  text-align: center;
+}
+
+.modal-statistics-container {
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.match-count-container,
+.prize-money-container,
+.prize-count-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.match-count-container div,
+.prize-money-container div,
+.prize-count-container div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 40px;
+
+  border-top: 1px solid #0000001f;
+
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}
+
+.match-count-container div:first-child,
+.prize-money-container div:first-child,
+.prize-count-container div:first-child {
+  font-weight: 700;
+}
+
+.match-count-container div:last-child,
+.prize-money-container div:last-child,
+.prize-count-container div:last-child {
+  border-bottom: 1px solid #0000001f;
+}
+
+.match-count-container {
+  flex: 1 1 33%;
+}
+
+.prize-money-container {
+  flex: 1 1 40%;
+}
+
+.prize-count-container {
+  flex: 1 1 27%;
+}
+
+.modal-yield-ratio-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-yield-ratio {
+  font-size: var(--text-body-size);
+  font-weight: 700;
+  line-height: var(--text-body-line-height);
+}
+
+.restart-button {
+  width: 100%;
+  height: 36px;
+
+  background-color: var(--color-primary);
+  color: var(--color-grayscale1);
+
+  border: none;
+  border-radius: var(--border-radius);
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+
+  cursor: pointer;
+}
