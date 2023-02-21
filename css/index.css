@@ -88,6 +88,7 @@ input[type='text'] {
   border: 1px solid var(--gray-2);
   border-radius: var(--spacing-1);
   outline: 0;
+  transition: all .1s ease-in;
 }
 
 input[type='text']::placeholder {
@@ -108,6 +109,7 @@ button {
   border-radius: var(--spacing-1);
   outline: 0;
   cursor: pointer;
+  transition: all .1s ease-in-out;
 }
 
 button:hover {
@@ -263,6 +265,7 @@ th {
 .close-icon {
   font-size: var(--subtitle-font-size);
   color: var(--gray-3);
+  transition: all .1s ease-in;
 }
 
 .close-icon:hover {
