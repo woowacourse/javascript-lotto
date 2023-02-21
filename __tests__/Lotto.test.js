@@ -32,6 +32,7 @@ describe('Lotto 클래스 입니다.', () => {
   ])('로또 번호가 중복되었는지와 길이(갯수)가 유효한지 검사한다.', (numbers) => {
     expect(Lotto.isDuplicateNumbers(numbers)).toBeTruthy();
   });
+
   test('보너스 번호를 가지고 있으면 true를 반환한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusBall = 5;

@@ -6,10 +6,16 @@
     --color-gray-scale-4: #8B8B8B;
     --color-gray-scale-5: #000000;
     --color-border: rgba(0, 0, 0, 0.12);
+    --button-height: 36px;
 }
 
 body, h3, p {
     margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
 }
 
 header {
@@ -32,6 +38,7 @@ button {
     color: var(--color-gray-scale-1);
     background: var(--color-primary);
     border-radius: 4px;
+    cursor: pointer;
 }
 
 #app {
@@ -41,12 +48,31 @@ button {
     border-radius: 10px;
     margin: 40px 0;
     width: 414px;
-    height: 500px;
+    height: 727px;
+    padding: 0 16px;
 }
 
 .lotto-subtitle {
     font-size: 24px;
     font-weight: 700;
+}
+.payments-container {
+
+}
+
+.payments-input {
+    width: 310px;
+    height: 28px;
+}
+
+.buy-btn {
+    width: 56px;
+    height: var(--button-height);
+}
+
+.buy-btn:disabled {
+    background-color: var(--color-gray-scale-4);
+    cursor:not-allowed;
 }
 
 .lottos-container {
@@ -58,14 +84,34 @@ button {
     width: 34px;
 }
 
+.winning-lotto-container {
+    visibility: hidden;
+}
+.winning-lotto-title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.winning-numbers-input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.winning-number-input, .bonus-number-input {
+    height: var(--button-height);
+    width: 34px;
+    font-size: 15px;
+}
+
 .modal {
+    visibility: hidden;
     position: absolute;
     display: flex;
     flex: 1;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     background: var(--color-border);
 }
 
@@ -75,8 +121,8 @@ button {
 
 .win-result-container {
     background: var(--color-gray-scale-1);
-    height: 400px;
-    width: 300px;
+    height: 500px;
+    width: 400px;
 }
 
 footer {
@@ -89,4 +135,14 @@ footer {
     font-size: 14px;
     font-weight: bold;
     padding: 14px 0;
+}
+
+.result-btn {
+    height: var(--button-height);
+    width: 382px;
+    margin: 0 auto;
+}
+.result-btn:disabled {
+    background-color: var(--color-gray-scale-4);
+    cursor:not-allowed;
 }
