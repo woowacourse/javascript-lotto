@@ -15,8 +15,6 @@ const {
 } = require('../../constant');
 
 class LottoMachine {
-  #lottos;
-
   #machineInput;
 
   constructor() {
@@ -28,8 +26,10 @@ class LottoMachine {
 
   async play() {
     await this.readMoney();
+    const lottos = await this.quickPicksLottos();
+    // console.log('로또임 ', lottos);
     await this.readWinningNumbers();
-    await this.readBonusNumber();
+    await this.readBonusNumber(lottos);
     await this.readRetryOption();
   }
 
@@ -40,10 +40,8 @@ class LottoMachine {
       outputView.printLottoCount(
         this.#machineInput.money.getAmount() / LOTTO_NUMBER.moneyUnit
       );
-      this.#generateLottos(this.#machineInput.money.getAmount());
-      this.#showLottos();
     } catch (error) {
-      printErrorAndRetry(error, () => this.readMoney());
+      await printErrorAndRetry(error, () => this.readMoney());
     }
   }
 
@@ -57,22 +55,22 @@ class LottoMachine {
         .map((winningNumber) => Number(winningNumber));
       this.#machineInput.winning.setWinningNumbers(winningNumbers);
     } catch (error) {
-      printErrorAndRetry(error, () => this.readWinningNumbers());
+      await printErrorAndRetry(error, () => this.readWinningNumbers());
     }
   }
 
-  async readBonusNumber() {
+  async readBonusNumber(lottos) {
     try {
       const userBonusNumber = await Console.readLine(
         '\n> 보너스 번호를 입력해 주세요.'
       );
       this.#machineInput.winning.setBonusNumber(Number(userBonusNumber));
-      const ranks = this.#getCollectedRanks();
+      const ranks = this.#getCollectedRanks(lottos);
       const benefit = new Benefit();
       benefit.calculateRate(this.#machineInput.money.getAmount(), ranks);
       this.#showResult(benefit, ranks);
     } catch (error) {
-      printErrorAndRetry(error, () => this.readBonusNumber());
+      await printErrorAndRetry(error, () => this.readBonusNumber(lottos));
     }
   }
 
@@ -83,8 +81,15 @@ class LottoMachine {
       );
       this.#checkRetryOption(userCommand);
     } catch (error) {
-      printErrorAndRetry(error, () => this.readRetryOption());
+      await printErrorAndRetry(error, () => this.readRetryOption());
     }
+  }
+
+  async quickPicksLottos() {
+    const lottos = this.#generateLottos(this.#machineInput.money.getAmount());
+    this.#showLottos(lottos);
+
+    return lottos;
   }
 
   #checkRetryOption(input) {
@@ -96,7 +101,7 @@ class LottoMachine {
   #generateLottos(amount) {
     const lottoCount = amount / LOTTO_NUMBER.moneyUnit;
 
-    this.#lottos = Array.from({ length: lottoCount }).map(
+    return Array.from({ length: lottoCount }).map(
       () =>
         new Lotto(
           this.#getComposedLottoNumbers().sort(
@@ -120,10 +125,10 @@ class LottoMachine {
     return [...lottoNumbers];
   }
 
-  #getCollectedRanks() {
+  #getCollectedRanks(lottos) {
     const RANK_TEMPLATE = [0, 0, 0, 0, 0];
-
-    const ranks = this.#lottos.reduce((accumulator, lotto) => {
+    console.log(lottos);
+    const ranks = lottos.reduce((accumulator, lotto) => {
       return this.#getIncreasedRanks(lotto.getLottoNumbers(), accumulator);
     }, RANK_TEMPLATE);
 
@@ -164,8 +169,8 @@ class LottoMachine {
     return lotto.includes(this.#machineInput.winning.getBonusNumber());
   }
 
-  #showLottos() {
-    this.#lottos.forEach((lotto) => {
+  #showLottos(lottos) {
+    lottos.forEach((lotto) => {
       outputView.printLotto(lotto.getLottoNumbers());
     });
   }

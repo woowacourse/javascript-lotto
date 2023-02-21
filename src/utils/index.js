@@ -19,9 +19,9 @@ const pickRandomNumberInRange = (start, end) => {
   );
 };
 
-const printErrorAndRetry = (error, retry) => {
+const printErrorAndRetry = async (error, retry) => {
   Console.print(error.message);
-  retry();
+  await retry();
 };
 
 const addCommaToNumber = (number) => {
