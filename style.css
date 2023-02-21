@@ -22,6 +22,8 @@
 html,
 body {
   height: 100%;
+  font-family: "Roboto";
+  font-style: normal;
 }
 
 body {
@@ -46,8 +48,10 @@ body {
 
 .header .title {
   color: var(--color-greyscale-1);
-  font-size: 24px;
   margin-left: 130px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
 }
 
 /* main */
@@ -59,9 +63,132 @@ body {
 }
 
 .main .game {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  padding: 16px;
+  /* width: 414px;
+  height: 727px; */
+}
+
+.game-title {
+  margin-top: 52px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.div-purchase {
+  display: flex;
+  flex-direction: column;
+  margin-top: 28px;
+}
+
+.div-purchaseAmount {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.input-purchaseAmount {
+  width: 310px;
+  height: 36px;
+}
+
+.button-purchase {
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  border-radius: 4px;
+  height: 36px;
+  width: 56px;
+}
+
+/* div-lottos*/
+.div-lottos {
+  display: flex;
+  flex-direction: column;
+  margin-top: 27px;
+}
+
+.lottos {
+  display: flex;
+  flex-direction: column;
+}
+
+.lotto {
+  display: flex;
+  align-items: center;
+}
+
+.emoji-lotto {
+  height: 34px;
+  width: 36px;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.lottoNumber {
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.winningLotto {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.div-inputs-winningLotto {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.input-winningLotto {
+  width: 34px;
+  height: 36px;
+
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  margin-right: 8px;
+  margin-top: 8px;
+}
+
+.winningNumber label {
+  display: block;
+}
+
+.bonusNumber label {
+  display: block;
 }
 
 .main .modal-statistics {
+}
+
+.button-result {
+  width: 382px;
+  height: 36px;
+  left: 16px;
+  top: 659px;
+
+  margin-top: 27px;
+
+  /* lotto-primary */
+
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  border-radius: 4px;
+
+  /* font */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 /* footer */

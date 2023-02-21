@@ -13,8 +13,8 @@
       <header class="header"><h1 class="title">🎱 행운의 로또</h1></header>
       <main class="main">
         <div class="game">
-          <div class="game-title">🎱 내 번호 당첨 확인 🎱</div>
-          <div class="purchase">
+          <span class="game-title">🎱 내 번호 당첨 확인 🎱</span>
+          <div class="div-purchase">
             <label for="purchaseAmount">구입할 금액을 입력해 주세요.</label>
             <div class="div-purchaseAmount">
               <input
@@ -27,47 +27,62 @@
               <button class="button-purchase">구입</button>
             </div>
           </div>
-          <div>
-            <span class="message-purchaseAmount">총 7개를 구매하였습니다.</span>
-          </div>
-          <div class="lottos">
-            <div class="lotto">
-              <span>🎟️</span><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+          <div class="div-lottos">
+            <div>
+              <span class="message-purchaseAmount">총 7개를 구매하였습니다.</span>
             </div>
-            <div class="lotto">
-              <span>🎟️</span><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-            </div>
-            <div class="lotto">
-              <span>🎟️</span><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-            </div>
-            <div class="lotto">
-              <span>🎟️</span><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-            </div>
-            <div class="lotto">
-              <span>🎟️</span><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-            </div>
-            <div class="lotto">
-              <span>🎟️</span><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+            <div class="lottos">
+              <div class="lotto">
+                <span class="emoji-lotto">🎟️</span
+                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lotto">
+                <span class="emoji-lotto">🎟️</span
+                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lotto">
+                <span class="emoji-lotto">🎟️</span
+                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lotto">
+                <span class="emoji-lotto">🎟️</span
+                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lotto">
+                <span class="emoji-lotto">🎟️</span
+                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lotto">
+                <span class="emoji-lotto">🎟️</span
+                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
+              </div>
             </div>
           </div>
           <div class="winningLotto">
-            <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
-            <div class="winningNumber">
-              <label for="winningNumber">당첨 번호</label>
-              <input type="number" name="winningNumber" /><input
-                type="number"
-                name="winningNumber"
-              /><input type="number" name="winningNumber" /><input
-                type="number"
-                name="winningNumber"
-              /><input type="number" name="winningNumber" /><input
-                type="number"
-                name="winningNumber"
-              />
-            </div>
-            <div class="bonusNumber">
-              <label for="bonusNumber">보너스 번호</label>
-              <input type="number" name="bonusNumber" />
+            <span class="message-winningLotto"
+              >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
+            >
+            <div class="div-inputs-winningLotto">
+              <div class="winningNumber">
+                <label for="winningNumber">당첨 번호</label>
+                <input class="input-winningLotto" type="text" name="winningNumber" /><input
+                  class="input-winningLotto"
+                  type="text"
+                  name="winningNumber"
+                /><input class="input-winningLotto" type="text" name="winningNumber" /><input
+                  class="input-winningLotto"
+                  type="text"
+                  name="winningNumber"
+                /><input class="input-winningLotto" type="text" name="winningNumber" /><input
+                  class="input-winningLotto"
+                  type="text"
+                  name="winningNumber"
+                />
+              </div>
+              <div class="bonusNumber">
+                <label for="bonusNumber">보너스 번호</label>
+                <input class="input-winningLotto" type="number" name="bonusNumber" />
+              </div>
             </div>
           </div>
           <button class="button-result">결과 학인하기</button>
