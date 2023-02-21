@@ -18,6 +18,8 @@ footer {
   justify-content: center;
 
   height: 80px;
+
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
 
 .copyright {
