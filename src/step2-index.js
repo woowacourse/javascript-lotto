@@ -86,4 +86,12 @@ document.getElementById('modal-close-btn').addEventListener(
   false
 );
 
+document.getElementById('restart-btn').addEventListener(
+  'click',
+  () => {
+    location.reload();
+  },
+  false
+);
+
 export const inputPurchaseAmount = () => {};
