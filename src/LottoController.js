@@ -22,6 +22,7 @@ class LottoController {
       this.lottos = this.buyer.getLottos();
       const purchasedLottoView = new PurchasedLottoView(this.lottos, money);
       purchasedLottoView.render();
+      this.winningLottoInputView.render();
     } catch (error) {
       alert(error.message);
     }
