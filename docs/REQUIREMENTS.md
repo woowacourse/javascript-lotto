@@ -76,8 +76,8 @@
         - [X] button = restart
 
     3. js 연결
-        - [ ] 구입 버튼 누르면 amount input 입력하기
-        - [ ] print lotto 연결하기
-        - [ ] 결과 확인 누르면 당첨번호/보너스 번호 input으로 입력하기
-        - [ ] 결과 표에 띄우기 + 수익률 띄우기
-        - [ ] 다시 시작하기 버튼으로 restart처리하기 
+        - [X] 구입 버튼 누르면 amount input 입력하기
+        - [X] print lotto 연결하기
+        - [X] 결과 확인 누르면 당첨번호/보너스 번호 input으로 입력하기
+        - [X] 결과 표에 띄우기 + 수익률 띄우기
+        - [X] 다시 시작하기 버튼으로 restart처리하기 
