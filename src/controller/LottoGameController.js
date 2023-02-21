@@ -13,6 +13,9 @@ class LottoGameController {
 
   startGame() {
     this.#input.purchaseLottos(this.#getPurchaseCount);
+    this.#input.seeResult(() => {
+      console.log('hi');
+    });
     // await this.#setUserLottos();
     // await this.#setWinningLotto();
     // this.#showGameResult();

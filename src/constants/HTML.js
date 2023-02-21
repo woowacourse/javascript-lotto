@@ -6,6 +6,9 @@ const QuerySelector = Object.freeze({
   LOTTO_LIST: 'user_lotto_list',
   LOTTO: 'user_lotto',
   LOTTO_INPUT_FIELD: '.winning_lotto_input_field',
+  WINNING_NUMBER: '.winning_number_input',
+  BONUS_NUMBER: '.bonus_number_input',
+  RESULT_BUTTON: '.result_button',
 });
 
 const Tag = Object.freeze({
