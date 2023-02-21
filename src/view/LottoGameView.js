@@ -55,7 +55,7 @@ class LottoGameView {
   }
 
   showUserLottoList(lottoList) {
-    this.userLottoContainer.innerHTML = '';
+    this.resetInnerHTML(this.userLottoContainer);
 
     lottoList.forEach((numbers) => {
       this.userLottoContainer.insertAdjacentHTML('beforeend', generateUserLottoNumbers(numbers));
@@ -152,6 +152,10 @@ class LottoGameView {
   resetForm(element) {
     element.reset();
     element.focus();
+  }
+
+  resetInnerHTML(element) {
+    element.innerHTML = '';
   }
 }
 
