@@ -1,6 +1,6 @@
-import Lotto from './Lotto';
 import LottoRank from './LottoRank';
 import { ERROR_INVALID, ERROR_BONUS_DUPLICATE } from '../util/constants';
+import { isValidLottoNumber } from '../validation';
 
 class WinningLotto {
   #lotto;
@@ -11,7 +11,7 @@ class WinningLotto {
   }
 
   setBonusNumber(bonusNumber) {
-    if (!Lotto.isValidLottoNumber(bonusNumber)) {
+    if (!isValidLottoNumber(bonusNumber)) {
       throw new Error(ERROR_INVALID);
     }
     if (this.isDuplicateBonus(bonusNumber)) {

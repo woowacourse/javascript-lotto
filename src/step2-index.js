@@ -37,7 +37,6 @@ const bonusNumberInput = document.querySelector('.bonus-number-input');
 const modal = document.querySelector('.modal');
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
 
-// TODO: 네이밍 수정
 const renderResultTable = ({ winCount, profitRate }) => {
   const resultTable = modal.querySelector('table');
   const resultTableBody = modal.querySelector('tbody');
@@ -54,13 +53,17 @@ const renderResultTable = ({ winCount, profitRate }) => {
 };
 
 resultBtn.addEventListener('click', () => {
+  try {
+    const winningNumbers = Array.from(winningNumberInputs, (_) => +_.value);
+    lottoMachine.generateWinningLotto(winningNumbers);
+    const bonusNumber = +bonusNumberInput.value;
+    lottoMachine.setBonusNumber(bonusNumber);
+  } catch (error) {
+    window.alert(error.message);
+    return;
+  }
+
   resultBtn.disabled = true;
-  // TODO: 유효성 검사 (로또 당첨, 보너스 번호)
-  const winningNumbers = Array.from(winningNumberInputs, (_) => +_.value);
-  lottoMachine.generateWinningLotto(winningNumbers);
-  // TODO: 유효성 검사 (로또 당첨, 보너스 번호)
-  const bonusNumber = +bonusNumberInput.value;
-  lottoMachine.setBonusNumber(bonusNumber);
   modal.style.visibility = 'visible';
   renderResultTable(lottoMachine.calcStatstics());
 });
