@@ -105,8 +105,9 @@ class LottoGameView {
   }
 
   closeResultModal(event) {
-    event.stopPropagation();
-    this.resultModal.style.display = 'none';
+    if (event.target === event.currentTarget) {
+      this.resultModal.style.display = 'none';
+    }
   }
 
   addRestartButtonClickEvent() {
