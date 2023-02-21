@@ -63,27 +63,6 @@ class LottoGameController {
     this.#lottoGameView.showProfitRate(PROFIT_RATE);
     this.#lottoGameView.showRanks(RANKS);
   }
-
-  // async #handleRestart() {
-  //   try {
-  //     const restartInput = await InputView.readUserInput(ConsoleMessage.RESTART);
-  //     const RESPONSE = restartInput.toLowerCase().trim();
-  //     Validation.verifyRestart(RESPONSE);
-  //     this.#handleRestartReply(RESPONSE);
-  //   } catch (error) {
-  //     OutputView.print(error.message);
-  //     return this.#handleRestart();
-  //   }
-  // }
-
-  // #handleRestartReply(reply) {
-  //   if (reply === StaticValue.RESTART_CONTROL) {
-  //     this.startGame();
-  //     return;
-  //   }
-
-  //   OutputView.close();
-  // }
 }
 
 export default LottoGameController;
