@@ -36,6 +36,21 @@ class ResultModalView {
   #displayRateResult(rate) {
     $('#rateResult').innerText = `당신의 총 수익률은 ${rate.toLocaleString()} %입니다.`;
   }
+
+  #setListeners() {
+    $('#modalBackground').addEventListener('click', () => {
+      this.hide();
+    });
+
+    $('#modalCloseButton').addEventListener('click', () => {
+      this.hide();
+    });
+
+    $('#restartButton').addEventListener('click', () => {
+      this.hide();
+      this.#submitRestart();
+    });
+  }
 }
 
 export default ResultModalView;
