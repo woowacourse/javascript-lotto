@@ -42,6 +42,12 @@ class LottoController {
   #parseBonusNumber(lottoFormData) {
     return Number(lottoFormData['bonus-number']);
   }
+
+  #showLottoGameResult(winningLotto, bonusNumber) {
+    const winningStatus = this.#lottoGame.getWinningStatus(winningLotto, bonusNumber);
+    const profitRate = this.#lottoGame.getProfitRate();
+    this.#resultModalView.displayResult(winningStatus, profitRate);
+  }
 }
 
 export default LottoController;
