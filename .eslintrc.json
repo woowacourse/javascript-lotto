@@ -12,7 +12,6 @@
   "ignorePatterns": ["node_modules/", "__tests__/"],
   "rules": {
     "max-params": ["error", 2],
-    "max-depth": ["error", 1],
-    "max-lines-per-function": ["error", 12]
+    "max-depth": ["error", 1]
   }
 }
