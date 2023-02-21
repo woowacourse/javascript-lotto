@@ -1,0 +1,41 @@
+/* margin 너비 설정 */
+.mgTop_1_rem {
+  margin-top: 1rem;
+}
+
+.mgLeft_1_rem {
+  margin-left: 1rem;
+}
+
+.mgRight_1_rem {
+  margin-right: 1rem;
+}
+
+.mgBottom_1_rem {
+  margin-bottom: 1rem;
+}
+
+.mg_1_rem {
+  margin: 1rem;
+}
+
+/* padding 너비 설정 */
+.pdTop_1_rem {
+  padding-top: 1rem;
+}
+
+.pdLeft_1_rem {
+  padding-left: 1rem;
+}
+
+.pdRight_1_rem {
+  padding-right: 1rem;
+}
+
+.pdBottom_1_rem {
+  padding-bottom: 1rem;
+}
+
+.pd_1_rem {
+  padding: 1rem;
+}
