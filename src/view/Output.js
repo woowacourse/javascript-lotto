@@ -9,12 +9,23 @@ class Output {
     const purchaseMessageEl = document.createElement('div');
     const purchaseMessage = Convertor.purchaseCount(purchaseCount);
     purchaseMessageEl.innerText = purchaseMessage;
-    return purchaseMessageEl;
+
+    const lottosEl = document.createElement('ul');
+    lottos.forEach((lotto) => {
+      const lottoEl = document.createElement('li');
+      lottoEl.innerText = `🎟️ ${lotto}`;
+      lottosEl.appendChild(lottoEl);
+    });
+
+    return { purchaseMessageEl, lottosEl };
   };
 
   renderLottosField = (purchaseCount, lottos) => {
-    const elements = this.createLottosField(purchaseCount, lottos);
-    this.lottosField.append(elements);
+    this.lottosField.innerText = '';
+
+    const { purchaseMessageEl, lottosEl } = this.createLottosField(purchaseCount, lottos);
+    this.lottosField.append(purchaseMessageEl);
+    this.lottosField.append(lottosEl);
   };
 }
 
