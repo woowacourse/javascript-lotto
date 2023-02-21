@@ -1,42 +1,21 @@
-import { isPositiveInteger } from '../validation';
-import {
-  LOTTO_NUMBER_SIZE,
-  LOTTO_NUMBER_RANGE_MIN,
-  LOTTO_NUMBER_RANGE_MAX,
-} from '../util/constants';
+import { isValidLottoNumbers, isDuplicateNumbers } from '../validation';
 
 class Lotto {
-  static ERROR_INVALID = '잘못된 입력입니다.';
-  static ERROR_DUPLICATE = '중복된 입력입니다.';
-
   #numbers = [];
 
   constructor(numbers) {
-    if (!Lotto.isValidLottoNumbers(numbers)) {
+    if (!isValidLottoNumbers(numbers)) {
       throw new Error(Lotto.ERROR_INVALID);
     }
-    if (Lotto.isDuplicateNumbers(numbers)) {
+    if (isDuplicateNumbers(numbers)) {
       throw new Error(Lotto.ERROR_DUPLICATE);
     }
 
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
-  static isValidLottoNumberRange(number) {
-    return number >= LOTTO_NUMBER_RANGE_MIN && number <= LOTTO_NUMBER_RANGE_MAX;
-  }
-
-  static isValidLottoNumber(number) {
-    return isPositiveInteger(number) && Lotto.isValidLottoNumberRange(number);
-  }
-
-  static isDuplicateNumbers(numbers) {
-    return new Set(numbers).size !== LOTTO_NUMBER_SIZE || numbers.length !== LOTTO_NUMBER_SIZE;
-  }
-
-  static isValidLottoNumbers(numbers) {
-    return numbers.every(Lotto.isValidLottoNumber);
-  }
+  static ERROR_INVALID = '잘못된 입력입니다.';
+  static ERROR_DUPLICATE = '중복된 입력입니다.';
 
   getNumbers() {
     return this.#numbers;
