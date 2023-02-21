@@ -31,9 +31,15 @@ const PRIZE_BY_RANK = {
   [LOTTO_PRIZE.rank1]: 2_000_000_000,
 };
 
+const COMMANDS = {
+  RETRY: 'y',
+  QUIT: 'n',
+};
+
 export {
   LOTTO_RULE,
   LOTTO_PRIZE,
   RANK_BY_COUNT,
   PRIZE_BY_RANK,
+  COMMANDS,
 };
