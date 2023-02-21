@@ -1,11 +1,11 @@
-const { ERROR_MESSAGE } = require('../src/constant/message');
-const {
+import { ERROR_MESSAGE } from '../src/constant/message';
+import {
   validatePurchaseAmount,
   validateLottoNumber,
   validateWinningNumber,
   validateBonusNumber,
   validateRestartCommand,
-} = require('../src/domain/validator');
+} from '../src/domain/validator';
 
 describe('구입 금액 유효성 검사 테스트', () => {
   test('구입 금액이 1,000원 미만인 경우 예외가 발생한다.', () => {

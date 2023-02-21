@@ -1,5 +1,5 @@
-const Console = require('../util/Console');
-const { INPUT_MESSAGE } = require('../constant/message');
+import Console from '../util/Console';
+import { INPUT_MESSAGE } from '../constant/message';
 
 const InputView = {
   readPurchaseAmount() {
@@ -19,4 +19,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

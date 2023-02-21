@@ -1,4 +1,4 @@
-const { RANK, INIT_RANKING, RANK_MATCH } = require('../constant/setting');
+import { RANK, INIT_RANKING, RANK_MATCH } from '../constant/setting';
 
 class LottoComparer {
   #winningLotto;
@@ -41,4 +41,4 @@ class LottoComparer {
   }
 }
 
-module.exports = LottoComparer;
+export default LottoComparer;

@@ -1,4 +1,4 @@
-const calculateProfitRate = require('../src/domain/calculateProfitRate');
+import calculateProfitRate from '../src/domain/calculateProfitRate';
 
 test('전체 당첨 금액과 구입 갯수로 수익률을 계산한다.', () => {
   // given

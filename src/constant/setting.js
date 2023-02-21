@@ -28,4 +28,4 @@ const COMMAND = {
   NO: 'n',
 };
 
-module.exports = { RANK, RANK_MATCH, INIT_RANKING, LOTTO, COMMAND };
+export { RANK, RANK_MATCH, INIT_RANKING, LOTTO, COMMAND };

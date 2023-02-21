@@ -1,5 +1,5 @@
-const { ERROR_MESSAGE } = require('../../constant/message');
-const { COMMAND } = require('../../constant/setting');
+import { ERROR_MESSAGE } from '../../constant/message';
+import { COMMAND } from '../../constant/setting';
 
 const isValidRestartCommand = (command) => command === COMMAND.YES || command === COMMAND.NO;
 
@@ -9,4 +9,4 @@ const validateRestartCommand = (command) => {
   }
 };
 
-module.exports = validateRestartCommand;
+export default validateRestartCommand;

@@ -1,21 +1,15 @@
-const LottoComparer = require('./domain/LottoComparer');
-const LottoMachine = require('./domain/LottoMachine');
-const WinningLotto = require('./domain/WinningLotto');
-const calculateProfitRate = require('./domain/calculateProfitRate');
-const {
-  validatePurchaseAmount,
-  validateLottoNumber,
-  validateWinningNumber,
-  validateBonusNumber,
-  validateRestartCommand,
-} = require('./domain/validator');
+import LottoComparer from './domain/LottoComparer';
+import LottoMachine from './domain/LottoMachine';
+import WinningLotto from './domain/WinningLotto';
+import calculateProfitRate from './domain/calculateProfitRate';
+import * as LottoGameValidator from './domain/validator';
 
-const InputView = require('./view/InputView');
-const OutputView = require('./view/OutputView');
+import InputView from './view/InputView';
+import OutputView from './view/OutputView';
 
-const { COMMAND } = require('./constant/setting');
-const Console = require('./util/Console');
-const convertToNumeric = require('./util/convertToNumeric');
+import { COMMAND } from './constant/setting';
+import Console from './util/Console';
+import convertToNumeric from './util/convertToNumeric';
 
 class LottoController {
   #lottoMachine;
@@ -36,7 +30,7 @@ class LottoController {
   async #inputPurchaseAmount() {
     try {
       const purchaseAmount = convertToNumeric(await InputView.readPurchaseAmount());
-      validatePurchaseAmount(purchaseAmount);
+      LottoGameValidator.validatePurchaseAmount(purchaseAmount);
       return purchaseAmount;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -47,7 +41,6 @@ class LottoController {
   #processLottoIssue(purchaseAmount) {
     this.#lottoMachine = new LottoMachine(purchaseAmount);
     this.#lottos = this.#lottoMachine.issueLottos();
-    console.log(this.#lottoMachine);
 
     OutputView.printPurchaseStatus(this.#lottoMachine.getQuantity(), this.#lottos);
   }
@@ -55,7 +48,7 @@ class LottoController {
   async #inputWinningNumber() {
     try {
       const winningNumber = this.#convertToWinningNumber(await InputView.readWinningNumber());
-      validateWinningNumber(winningNumber);
+      LottoGameValidator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -66,7 +59,7 @@ class LottoController {
   #convertToWinningNumber(winningNumberInput) {
     return winningNumberInput.split(',').map((lottoNumberInput) => {
       const lottoNumber = convertToNumeric(lottoNumberInput);
-      validateLottoNumber(lottoNumber);
+      LottoGameValidator.validateLottoNumber(lottoNumber);
       return lottoNumber;
     });
   }
@@ -74,7 +67,7 @@ class LottoController {
   async #inputBonusNumber(winningNumber) {
     try {
       const bonusNumber = convertToNumeric(await InputView.readBonusNumber());
-      validateBonusNumber(bonusNumber, winningNumber);
+      LottoGameValidator.validateBonusNumber(bonusNumber, winningNumber);
       return bonusNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -102,7 +95,7 @@ class LottoController {
   async #inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
-      validateRestartCommand(restartCommand);
+      LottoGameValidator.validateRestartCommand(restartCommand);
       return restartCommand;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -120,4 +113,4 @@ class LottoController {
   }
 }
 
-module.exports = LottoController;
+export default LottoController;

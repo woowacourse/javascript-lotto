@@ -1,5 +1,5 @@
-const { ERROR_MESSAGE } = require('../../constant/message');
-const { LOTTO } = require('../../constant/setting');
+import { ERROR_MESSAGE } from '../../constant/message';
+import { LOTTO } from '../../constant/setting';
 
 const isLessThanMinimum = (purchaseAmount) => purchaseAmount < LOTTO.UNIT;
 const hasChange = (purchaseAmount) => purchaseAmount % LOTTO.UNIT !== 0;
@@ -13,4 +13,4 @@ const validatePurchaseAmount = (purchaseAmount) => {
   }
 };
 
-module.exports = validatePurchaseAmount;
+export default validatePurchaseAmount;
