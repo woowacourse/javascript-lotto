@@ -1,14 +1,14 @@
-const { COMMAND } = require('./constant/setting');
+const { COMMAND } = require('../constant/setting');
 
-const Comparer = require('./domain/Comparer');
-const LottoMachine = require('./domain/LottoMachine');
-const ProfitCalculator = require('./domain/ProfitCaculator');
-const WinningLotto = require('./domain/WinningLotto');
+const Comparer = require('../domain/Comparer');
+const LottoMachine = require('../domain/LottoMachine');
+const ProfitCalculator = require('../domain/ProfitCaculator');
+const WinningLotto = require('../domain/WinningLotto');
 
-const Console = require('./util/Console');
-const InputView = require('./view/InputView');
-const OutputView = require('./view/OutputView');
-const Validator = require('./domain/Validator');
+const Console = require('../util/Console');
+const InputView = require('../view/InputView');
+const OutputView = require('../view/OutputView');
+const Validator = require('../domain/Validator');
 
 class LottoController {
   #lottos;

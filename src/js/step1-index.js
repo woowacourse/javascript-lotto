@@ -1,4 +1,4 @@
-const LottoController = require('./LottoController');
+const LottoController = require('./controller/LottoController');
 
 /**
  * step 1의 시작점이 되는 파일입니다.

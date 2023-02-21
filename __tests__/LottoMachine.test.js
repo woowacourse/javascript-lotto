@@ -1,4 +1,4 @@
-const LottoMachine = require('../src/domain/LottoMachine');
+const LottoMachine = require('../src/js/domain/LottoMachine');
 
 test('구매 금액에 해당하는 만큼 로또를 발행한다.', () => {
   // given

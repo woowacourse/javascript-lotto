@@ -1,4 +1,4 @@
-const ProfitCalculator = require('../src/domain/ProfitCaculator');
+const ProfitCalculator = require('../src/js/domain/ProfitCaculator');
 
 describe('ProfitCalculator 메서드 테스트', () => {
   test('전체 당첨 금액의 합을 구한다.', () => {

@@ -1,4 +1,4 @@
-const WinningLotto = require('../src/domain/WinningLotto');
+const WinningLotto = require('../src/js/domain/WinningLotto');
 
 describe('WinningLotto 메서드 테스트', () => {
   test.each([
