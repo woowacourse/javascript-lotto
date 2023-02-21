@@ -1,7 +1,9 @@
+import { QuerySelector } from '../constants/HTML.js';
+
 class Input {
   constructor() {
-    this.moneyInputEl = document.querySelector('.money_input');
-    this.purchaseBtn = document.querySelector('.purchase_button');
+    this.moneyInputEl = document.querySelector(QuerySelector.MONEY_INPUT);
+    this.purchaseBtn = document.querySelector(QuerySelector.PURCHASE_BUTTON);
   }
 
   purchaseLottos = (callback) => {

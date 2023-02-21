@@ -1,21 +1,21 @@
-import QuerySelector from '../constants/QuerySelector.js';
+import { QuerySelector, Tag } from '../constants/HTML.js';
 import Convertor from '../utils/Convertor.js';
 
 class Output {
   constructor() {
-    this.lottosField = document.querySelector(QuerySelector.lottoListField);
+    this.lottosField = document.querySelector(QuerySelector.LOTTO_LIST_FIELD);
   }
 
   createLottosField = (purchaseCount, lottos) => {
-    const purchaseMessageEl = document.createElement('div');
-    purchaseMessageEl.className = QuerySelector.purchase_message;
+    const purchaseMessageEl = document.createElement(Tag.DIV);
+    purchaseMessageEl.className = QuerySelector.PURCHASE_MESSAGE;
     purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
 
-    const lottosEl = document.createElement('ul');
-    lottosEl.className = QuerySelector.lottoList;
+    const lottosEl = document.createElement(Tag.UL);
+    lottosEl.className = QuerySelector.LOTTO_LIST;
     lottos.forEach((lotto) => {
-      const lottoEl = document.createElement('li');
-      lottoEl.className = QuerySelector.lotto;
+      const lottoEl = document.createElement(Tag.LI);
+      lottoEl.className = QuerySelector.LOTTO;
       lottoEl.innerText = Convertor.lottoWithIcon(lotto);
       lottosEl.appendChild(lottoEl);
     });
