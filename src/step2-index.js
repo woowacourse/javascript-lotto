@@ -13,6 +13,8 @@ const lottoListWrap = document.getElementsByClassName('lotto-list')[0];
 const purchaseLottoCount = document.getElementById('lotto-purchase-count');
 
 const winNumberElement = document.getElementsByClassName('winNumber');
+
+const modal = document.getElementsByClassName('result-modal-background')[0];
 const controller = new LottoWebController();
 
 const setLottos = () => {
@@ -45,6 +47,8 @@ const result = () => {
   );
   const bonusNumber = document.getElementById('bonusNumber').value;
   controller.setWinNumber(winNumber, bonusNumber);
+
+  modal.style.display = 'block';
 };
 
 document
@@ -54,5 +58,13 @@ document
 document
   .getElementById('check-result-btn')
   .addEventListener('click', () => result(), false);
+
+document.getElementById('modal-close-btn').addEventListener(
+  'click',
+  () => {
+    modal.style.display = 'none';
+  },
+  false
+);
 
 export const inputPurchaseAmount = () => {};
