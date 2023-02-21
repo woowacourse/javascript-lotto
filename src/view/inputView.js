@@ -21,7 +21,12 @@ const inputView = {
     Console.readLine(
       CONSOLE_MESSAGE.ASK_WINNING_NUMBERS,
       (winningNumbersInput) => {
-        return callback(winningNumbersInput);
+        const isNormal = exceptionHandler(
+          validator.winningNumbers,
+          winningNumbersInput
+        );
+        if (isNormal) return callback(winningNumbersInput);
+        return inputView.readWinningNumbers(callback);
       }
     );
   },

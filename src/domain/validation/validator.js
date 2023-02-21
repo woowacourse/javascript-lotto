@@ -17,15 +17,14 @@ const validator = {
     validator.isSmallerOrEqualThanZero(input);
   },
 
-  isWinningNumbersValid(input) {
+  winningNumbers(input) {
     const winningNumbers = input.split(',').map(Number);
-    return (
-      !this.isEmptyOrBlankIncluded(input) &&
-      winningNumbers.every(this.isNumber) &&
-      this.isWinningNumberCountValid(input) &&
-      !this.isNumberDuplicated(winningNumbers) &&
-      winningNumbers.every(this.isNumberRangeValid)
-    );
+    validator.isEmpty(input);
+    validator.isBlankIncluded(input);
+    winningNumbers.map(validator.isNumber);
+    winningNumbers.map(validator.isNumberRangeValid);
+    validator.isNumbersCountValid(input.length);
+    validator.isNumberDuplicated(input);
   },
 
   isBonusNumberValid(winningNumbers, input) {
@@ -59,19 +58,22 @@ const validator = {
     if (Number(input) <= 0) throw new Error(ERROR_MESSAGE.PRICE_RANGE);
   },
 
-  isWinningNumberCountValid(input) {
-    return input.split(',').length === LOTTO_NUMBER_COUNT;
+  isNumbersCountValid(inputLength) {
+    if (inputLength !== LOTTO_NUMBER_COUNT)
+      throw new Error(ERROR_MESSAGE.COUNT);
   },
 
   isNumberRangeValid(number) {
-    return (
+    if (
       Number(number) <= LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER &&
       Number(number) >= LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
-    );
+    )
+      throw new Error(ERROR_MESSAGE.LOTTO_RANGE);
   },
 
   isNumberDuplicated(numbers) {
-    return new Set(numbers).size !== numbers.length;
+    if (new Set(numbers).size !== numbers.length)
+      throw new Error(ERROR_MESSAGE.DUPLICATE);
   },
 
   isRestartCommandValid(input) {

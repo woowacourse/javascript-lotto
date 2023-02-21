@@ -41,13 +41,8 @@ class LottoGameController {
 
   inputWinningNumbers() {
     inputView.readWinningNumbers((winningNumbersInput) => {
-      try {
-        this.#winningNumbers = winningNumbersInput.split(',').map(Number);
-        this.inputBonusNumber();
-      } catch (error) {
-        Console.print(error.message);
-        this.inputWinningNumbers();
-      }
+      this.#winningNumbers = winningNumbersInput.split(',').map(Number);
+      this.inputBonusNumber();
     });
   }
 
