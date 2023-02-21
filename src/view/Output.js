@@ -1,18 +1,21 @@
+import QuerySelector from '../constants/QuerySelector.js';
 import Convertor from '../utils/Convertor.js';
 
 class Output {
   constructor() {
-    this.lottosField = document.querySelector('.user_lotto_field');
+    this.lottosField = document.querySelector(QuerySelector.lottoListField);
   }
 
   createLottosField = (purchaseCount, lottos) => {
     const purchaseMessageEl = document.createElement('div');
-    const purchaseMessage = Convertor.purchaseCount(purchaseCount);
-    purchaseMessageEl.innerText = purchaseMessage;
+    purchaseMessageEl.className = QuerySelector.purchase_message;
+    purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
 
     const lottosEl = document.createElement('ul');
+    lottosEl.className = QuerySelector.lottoList;
     lottos.forEach((lotto) => {
       const lottoEl = document.createElement('li');
+      lottoEl.className = QuerySelector.lotto;
       lottoEl.innerText = `🎟️ ${lotto}`;
       lottosEl.appendChild(lottoEl);
     });
