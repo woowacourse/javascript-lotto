@@ -1,12 +1,12 @@
 import {
   pusrchaseCountMessage,
   eachLottoNumbers,
-} from '../templates/lottoGame';
+} from '../view/templates/lottoGame';
 
 export default function purchaseLottoStatus(lottos) {
   const board = document.createElement('div');
   const purchastCount = pusrchaseCountMessage(lottos.length);
-  board.className = 'purchase-lotto-status-container';
+  board.className = 'width-hudread-32px';
 
   board.innerHTML = purchastCount;
   for (const lotto of lottos) {
