@@ -1,5 +1,5 @@
 export const resultEndContent = (earningRate) => `
-  <p class="subtitle">당신의 총 수익률은 ${earningRate}%입니다.</p>
+  <p class="subtitle">당신의 총 수익률은<br/> ${earningRate}%입니다.</p>
   <button id="retry" type="button" class="caption large-button ">다시 시작하기</button>
 `;
 
