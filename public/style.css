@@ -141,7 +141,6 @@ button {
 
 .result-table {
     width: 319px;
-    margin: 0 0 20px 0;
     text-align: center;
     border-collapse: collapse;
     border-top: 1px solid var(--color-border);
@@ -156,7 +155,7 @@ button {
 
 .modal-close-btn {
     cursor: pointer;
-    margin-left: 12px 0 0 360px;
+    margin: 12px 0 0 360px;
     background-color: var(--color-gray-scale-1);
     color: var(--color-gray-scale-5);
     font-size: 24px;
@@ -170,7 +169,6 @@ button {
 }
 
 .modal-restart-btn {
-    margin: 15px 0 0 0;
     width: 318px;
     height: var(--button-height);
 }
