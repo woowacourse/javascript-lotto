@@ -38,7 +38,6 @@ td {
 
 .lotto-container {
   width: 100vw;
-  height: 100vh;
   /* Center Container */
   display: flex;
   align-items: center;
@@ -50,6 +49,7 @@ td {
   flex-direction: column;
   height: 600px;
   padding: 52px 16px 32px;
+  margin-top: 30px;
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 10px;
 }
@@ -122,24 +122,41 @@ td {
 }
 
 .modal-container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 0;
 }
 
-.modal-wrapper {
-  display: none;
+.modal {
+  display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 150px;
+  position: relative;
+  top: 0;
   height: 500px;
   padding: 52px 16px 32px;
   border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 10px;
+  background-color: var(--lotto-greyscale-1);
+}
+
+.hidden {
+  display: none;
 }
 
 #profit-message {
   font-weight: 700;
   font-size: 15px;
   text-align: center;
+}
+
+#close-button {
+  width: 16px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
 }

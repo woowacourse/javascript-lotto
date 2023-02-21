@@ -1,6 +1,7 @@
 import Buyer from './domain/Buyer';
 import Lotto from './domain/Lotto';
 import WinningLotto from './domain/WinningLotto';
+import LottoResultModal from './view/LottoResultModal';
 import MoneyInputView from './view/MoneyInputView';
 import PurchasedLottoView from './view/PurchasedLottoView';
 import WinningLottoInputView from './view/WinningLottoInputView';
@@ -9,6 +10,7 @@ class LottoController {
   constructor() {
     this.moneyInputView = new MoneyInputView();
     this.winningLottoInputView = new WinningLottoInputView();
+    this.lottoResultModal = new LottoResultModal();
 
     this.moneyInputView.addSubmitHandler(this.moneyInputHandler.bind(this));
     this.winningLottoInputView.addSubmitHandler(this.winningLottoInputHandler.bind(this));
@@ -32,6 +34,7 @@ class LottoController {
     try {
       const winningNumbers = new Lotto(winningNumbersInput);
       const winningLotto = new WinningLotto(winningNumbers, bonusNumberInput);
+      this.lottoResultModal.render();
     } catch (error) {
       alert(error.message);
     }
