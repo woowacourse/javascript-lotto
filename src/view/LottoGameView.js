@@ -18,10 +18,13 @@ class LottoGameView {
     this.bonusNumberInput = $('input[name="bonus-number"]');
     this.resultModal = $('.result-container');
     this.profitRate = $('#profit-rate');
+    this.closeIcon = $('.close-icon');
 
     this.addPurchaseInputEvent();
     this.addWinningNumbersInputEvent();
     this.addBonusNNumbersInputEvent();
+    this.addCloseClickEvent();
+    this.addModalBackdropClickEvent();
   }
 
   addPurchaseSubmitEvent(callback) {
@@ -110,6 +113,19 @@ class LottoGameView {
 
   showProfitRate(profitRate) {
     this.profitRate.textContent = ConsoleMessage.profitRateResult(profitRate);
+  }
+
+  addCloseClickEvent() {
+    this.closeIcon.addEventListener('click', this.closeResultModal.bind(this));
+  }  
+
+  addModalBackdropClickEvent() {
+    this.resultModal.addEventListener('click', this.closeResultModal.bind(this));
+  }
+
+  closeResultModal(event) {
+    event.stopPropagation();
+    this.resultModal.style.display = 'none';
   }
 }
 
