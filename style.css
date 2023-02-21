@@ -4,11 +4,11 @@
   --body-font: 400 15px 'Roboto';
   --caption-font: 700 14px 'Roboto';
   --primary-color:#4E5BA6;
-  --greyscale-1-color:#ffffff;
-  --greyscale-2-color:#FCFCFD;
-  --greyscale-3-color:#B4B4B4;
-  --greyscale-4-color:#8B8B8B;
-  --greyscale-5-color:#000000;
+  --white:#ffffff;
+  --light-gray:#FCFCFD;
+  --gray:#B4B4B4;
+  --dark-gray:#8B8B8B;
+  --black:#000000;
 }
 
 body{
@@ -30,7 +30,7 @@ header{
 
 .header_message{
  font:var(--title-font);
-  color:var(--greyscale-1-color)
+  color:var(--white)
 }
 
 .content{
@@ -66,7 +66,7 @@ header{
   box-sizing:border-box;
   width: 310px;
   height: 36px;
-  border: 1px solid var(--greyscale-3-color);
+  border: 1px solid var(--gray);
   border-radius: 4px;
   font: var(--body-font);
   margin-right: px;
@@ -81,7 +81,7 @@ header{
 button{
   font:var(--caption-font);
   background-color: var(--primary-color);
-  color:var(--greyscale-1-color);
+  color:var(--white);
   border-radius: 4px;
   border:none;
   cursor: pointer;
@@ -101,7 +101,7 @@ li{
 .bonus_number_input{
   width: 34px;
   height: 36px;
-  border: 1px solid var(--greyscale-3-color);
+  border: 1px solid var(--gray);
   border-radius: 4px;
   margin-top: 12px;
 }
@@ -136,4 +136,33 @@ input::-webkit-inner-spin-button {
   margin-top: 12px;
   width: 100%;
   height: 36px;
+}
+
+.result_modal{
+  width: 350px;
+  height: 500px;
+  background-color: var(--white);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  border: #000000 solid 1px;
+}
+
+.modal_close_button{
+  color:var(--black);
+  background-color: transparent;
+}
+
+.result_title{
+  font:var(--title-font);
+}
+
+.restart_button{
+  width: 90%;
+  height: 36px;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
 }
