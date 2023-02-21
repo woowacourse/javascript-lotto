@@ -5,11 +5,82 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./src/css/index.css" />
   </head>
-
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+      <main>
+        <div id="game-container">
+          <h1>🎱 내 번호 당첨 확인 🎱</h1>
+          <div id="money-input-container">
+            <div class="game-message">구입할 금액을 입력해주세요.</div>
+            <form id="purchase-form">
+              <input id="money-input" type="text" placeholder="금액" />
+              <button>구입</button>
+            </form>
+          </div>
+          <div id="lotto-list-container">
+            <div class="game-message">총 7개를 구매하셨습니다.</div>
+            <ul id="lotto-list">
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+              <li>
+                <span class="ticket-emoji">🎟️</span
+                ><span class="lotto-number">12, 28, 22, 37, 19, 23</span>
+              </li>
+            </ul>
+          </div>
+          <div id="winning-lotto-container">
+            <div class="game-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+            <div id="number-input-container">
+              <div id="lotto-number-container" class="number-container">
+                <div class="game-message">당첨 번호</div>
+                <div id="lotto-number-input-list">
+                  <input id="first-number" class="lotto-number-input" type="text" />
+                  <input id="second-number" class="lotto-number-input" type="text" />
+                  <input id="third-number" class="lotto-number-input" type="text" />
+                  <input id="fourth-number" class="lotto-number-input" type="text" />
+                  <input id="fifth-number" class="lotto-number-input" type="text" />
+                  <input id="sixth-number" class="lotto-number-input" type="text" />
+                </div>
+              </div>
+              <div id="bonus-number-container" class="number-container">
+                <div class="game-message">보너스 번호</div>
+                <input id="bonus-number" class="lotto-number-input" type="text" />
+              </div>
+            </div>
+          </div>
+          <button>결과 확인하기</button>
+        </div>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
