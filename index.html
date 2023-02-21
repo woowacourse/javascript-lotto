@@ -54,27 +54,63 @@
                   type="number"
                   name="number-1"
                   id="firstNumberInput"
+                  required
                 />
-                <input class="winning-number-input app-input" type="number" name="number-2" />
-                <input class="winning-number-input app-input" type="number" name="number-3" />
-                <input class="winning-number-input app-input" type="number" name="number-4" />
-                <input class="winning-number-input app-input" type="number" name="number-5" />
-                <input class="winning-number-input app-input" type="number" name="number-6" />
-                <input class="bonus-number-input app-input" type="number" name="bonus-number" />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-2"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-3"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-4"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-5"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-6"
+                  required
+                />
+                <input
+                  class="bonus-number-input app-input"
+                  type="number"
+                  name="bonus-number"
+                  required
+                />
               </div>
 
               <div class="error-message-area" id="winningNumbersErrorArea"></div>
-              <input type="submit" class="app-button result-button" value="결과 확인하기" />
+              <input
+                type="submit"
+                class="app-button result-button"
+                id="resultButton"
+                value="결과 확인하기"
+              />
             </form>
           </div>
         </div>
       </div>
 
       <div class="result-modal hidden" id="resultModal">
-        <div class="modal-background"></div>
+        <div class="modal-background" id="modalBackground"></div>
         <div class="modal-menu">
           <span class="modal-title"> 🏆 당첨 통계 🏆 </span>
-          <div class="modal-close">
+          <div class="modal-close" id="modalCloseButton">
             <span class="modal-close-frag"></span>
             <span class="modal-close-frag"></span>
           </div>
@@ -111,7 +147,12 @@
           <span class="app-information-text modal-rate" id="rateResult">
             당신의 총 수익률은 ? %입니다.
           </span>
-          <input type="button" class="app-button restart-button" value="다시 시작하기" />
+          <input
+            type="button"
+            class="app-button restart-button"
+            id="restartButton"
+            value="다시 시작하기"
+          />
         </div>
       </div>
     </div>
