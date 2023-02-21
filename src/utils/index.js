@@ -1,5 +1,3 @@
-const Console = require('./Console');
-
 const inputValidator = {
   isNumber: (number) => Number.isInteger(number),
   isNumberInLottoRange: (number) => {
@@ -19,11 +17,6 @@ const pickRandomNumberInRange = (start, end) => {
   );
 };
 
-const printErrorAndRetry = async (error, retry) => {
-  Console.print(error.message);
-  await retry();
-};
-
 const addCommaToNumber = (number) => {
   const COUNTRY = 'en-US';
   return number.toLocaleString(COUNTRY, {
@@ -36,5 +29,4 @@ module.exports = {
   addCommaToNumber,
   pickRandomNumberInRange,
   inputValidator,
-  printErrorAndRetry,
 };
