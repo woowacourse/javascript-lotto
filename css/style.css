@@ -1,0 +1,191 @@
+@import "reset.css";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 6.4rem;
+
+  background-color: #4e5ba6;
+}
+
+h1 {
+  margin-left: 13rem;
+
+  color: white;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 3.6rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.lotto {
+  padding: 4rem 1.6rem 3.2rem;
+  margin-top: 8.4rem;
+
+  border: 0.1rem solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.4rem;
+}
+
+.lotto__title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lotto__title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 3.6rem;
+}
+
+.lotto__buy-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lotto__buy-comment {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+
+.lotto__input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lotto__input-box {
+  width: 31rem;
+  height: 3.6rem;
+  margin-right: 1.6rem;
+
+  border: 0.1rem solid #b4b4b4;
+  border-radius: 0.4rem;
+}
+
+.lotto__buy-button {
+  width: 5.6rem;
+  height: 3.6rem;
+
+  border-radius: 0.4rem;
+  background-color: #4e5ba6;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+}
+
+.lotto__lotto-numbers {
+  margin-top: 2.8rem;
+}
+
+.lotto__buy-comment {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+
+.lotto__numbers-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-top: 1.2rem;
+}
+
+.lotto__each-lotto {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 0.4rem;
+
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.5px;
+}
+
+.lotto__lotto-icon {
+  margin-right: 0.8rem;
+}
+
+.lotto__winning-lotto {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+
+.lotto__winning-lotto-comment {
+}
+
+.lotto__winning-lotto-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 1.2rem;
+}
+
+.lotto__winning-lotto-input-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  width: 24.4rem;
+}
+
+.lotto__numbers-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto__winning-lotto-input {
+  width: 3.6rem;
+  height: 3.6rem;
+
+  border: 0.1rem solid #b4b4b4;
+  border-radius: 0.4rem;
+}
+
+.lotto__bonus-lotto-input {
+  width: 3.6rem;
+  height: 3.6rem;
+
+  border: 0.1rem solid #b4b4b4;
+  border-radius: 0.4rem;
+}
+
+.lotto__result-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 38.2rem;
+  height: 3.6rem;
+  margin-top: 2.7rem;
+
+  border-radius: 0.4rem;
+  background-color: #4e5ba6;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+}

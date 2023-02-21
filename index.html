@@ -4,12 +4,84 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+      <main>
+        <section class="lotto">
+          <div class="lotto__title-wrapper">
+            <h2 class="lotto__title">🎱 내 번호 당첨 확인 🎱</h2>
+          </div>
+          <article class="lotto__buy-section">
+            <h3 class="lotto__buy-comment">구입할 금액을 입력해주세요.</h3>
+
+            <div class="lotto__input-wrapper">
+              <input class="lotto__input-box" />
+              <button class="lotto__buy-button">구입</button>
+            </div>
+          </article>
+          <article class="lotto__lotto-numbers">
+            <strong class="lotto__buy-comment">총 7개를 구매하였습니다.</strong>
+            <ul class="lotto__numbers-list">
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+              <li class="lotto__each-lotto">
+                <div class="lotto__lotto-icon">🎟</div>
+                <div class="lotto__numbers">12,19,22,38,43,21</div>
+              </li>
+            </ul>
+          </article>
+          <article class="lotto__winning-lotto">
+            <h3 class="lotto__winning-lotto-comment">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </h3>
+            <div class="lotto__winning-lotto-title-wrapper">
+              <h4 class="lotto__winning-lotto-title--winning">당첨 번호</h4>
+              <h4 class="lotto__winning-lotto-title--bonus">보너스 번호</h4>
+            </div>
+            <div class="lotto__numbers-input-wrapper">
+              <div class="lotto__winning-lotto-input-wrapper">
+                <input class="lotto__winning-lotto-input" />
+                <input class="lotto__winning-lotto-input" />
+                <input class="lotto__winning-lotto-input" />
+                <input class="lotto__winning-lotto-input" />
+                <input class="lotto__winning-lotto-input" />
+                <input class="lotto__winning-lotto-input" />
+              </div>
+              <input class="lotto__bonus-lotto-input" />
+            </div>
+          </article>
+          <button class="lotto__result-button">결과 확인하기</button>
+        </section>
+      </main>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
