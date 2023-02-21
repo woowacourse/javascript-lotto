@@ -23,5 +23,7 @@ export const numberInput = (name) => `
     class="number-input"
     type="number"
     name=${name}
+    min="1"
+    max="45"
     required
   />`;
