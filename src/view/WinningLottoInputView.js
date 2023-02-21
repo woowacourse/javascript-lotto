@@ -14,34 +14,31 @@ class WinningLottoInputView {
       .join('');
   }
 
+  renderNumberInputElement(type) {
+    const wrapperElement = document.createElement('div');
+    wrapperElement.className = type;
+    this.wrapper.appendChild(wrapperElement);
+
+    wrapperElement.insertAdjacentHTML(
+      'afterbegin',
+      type === 'bonus-number' ? `<p>보너스 번호</p>` : `<p>당첨 번호</p>`,
+    );
+    wrapperElement.insertAdjacentHTML(
+      'beforeend',
+      this.createNumberInputs(type === 'bonus-number' ? 1 : LOTTO_DIGITS),
+    );
+  }
+
   render() {
     this.form.insertAdjacentHTML(
       'afterbegin',
       `<p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>`,
     );
 
-    this.renderWinningNumbersInput();
-    this.renderBonusNumberInput();
+    this.renderNumberInputElement('winning-numbers');
+    this.renderNumberInputElement('bonus-number');
 
     this.form.insertAdjacentHTML('beforeend', `<button id="result-button">결과 확인하기</button>`);
-  }
-
-  renderWinningNumbersInput() {
-    const winningNumbersWrapper = document.createElement('div');
-    winningNumbersWrapper.className = 'winning-numbers';
-    this.wrapper.appendChild(winningNumbersWrapper);
-
-    winningNumbersWrapper.insertAdjacentHTML('afterbegin', `<p>당첨 번호</p>`);
-    winningNumbersWrapper.insertAdjacentHTML('beforeend', this.createNumberInputs(LOTTO_DIGITS));
-  }
-
-  renderBonusNumberInput() {
-    const bonusNumberWrapper = document.createElement('div');
-    bonusNumberWrapper.className = 'bonus-number';
-    this.wrapper.appendChild(bonusNumberWrapper);
-
-    bonusNumberWrapper.insertAdjacentHTML('afterbegin', `<p>보너스 번호</p>`);
-    bonusNumberWrapper.insertAdjacentHTML('beforeend', this.createNumberInputs(1));
   }
 
   addSubmitHandler(winningLottoInputHandler) {
