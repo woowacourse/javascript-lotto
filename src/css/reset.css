@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+ul {
+  list-style: none;
+}
+
+fieldset {
+  border: 0;
+}
