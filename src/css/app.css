@@ -1,0 +1,29 @@
+header {
+  display: flex;
+  align-items: center;
+
+  height: 64px;
+
+  padding-left: 130px;
+
+  background-color: var(--colorPrimary);
+
+  color: var(--grayScale100);
+  font-family: var(--fontFamilyPrimary);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 80px;
+}
+
+.copyright {
+  color: var(--colorPrimary);
+  font-size: var(--fontSizeCaption);
+  font-weight: var(--fontWeightCaption);
+
+  letter-spacing: 1px;
+}
