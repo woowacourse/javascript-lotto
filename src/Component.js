@@ -1,10 +1,15 @@
+import { qsAll } from './utils/domHelper';
+
 export default class Component {
-  constructor($target, props) {
+  constructor($target, props = {}) {
     this.$target = $target;
-    this.props = props;
+    this.props = { ...props };
     this.setUp();
+    this.setEvent();
     this.render();
   }
+
+  setEvent() {}
 
   setUp() {}
 
@@ -18,6 +23,17 @@ export default class Component {
   }
 
   mounted() {}
+
+  addEvent(eventType, selector, callback, $target = this.$target) {
+    const children = [...qsAll(selector, this.$target)];
+    const isTarget = (target) => children.includes(target) || target.closest(selector);
+
+    $target.addEventListener(eventType, (event) => {
+      if (isTarget(event.target)) callback(event);
+    });
+
+    return this;
+  }
 
   setState(newState) {
     this.state = { ...this.state, ...newState };
