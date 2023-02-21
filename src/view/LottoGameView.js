@@ -115,10 +115,10 @@ class LottoGameView {
 
   restartGame(event) {
     event.stopPropagation();
-    this.purchaseForm.reset();
+    this.resetForm(this.purchaseForm);
+    this.resetForm(this.gameNumbersForm);
     this.startContainer.style.opacity = 0;
     this.startContainer.style.pointerEvents = 'none';
-    this.gameNumbersForm.reset();
     this.resultModal.style.display = 'none';
   }
 
@@ -151,7 +151,6 @@ class LottoGameView {
 
   resetForm(element) {
     element.reset();
-    element.focus();
   }
 
   resetInnerHTML(element) {
