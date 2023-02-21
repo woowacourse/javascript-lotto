@@ -8,27 +8,27 @@ export default class WinNumbers extends Component {
       <form class='winNumbers-form'>
         <div>
           <label>당첨 번호</label>
-          ${this.getNumberInput(6)}
+          ${this.getNumberInput('winNumber', 6)}
         <div>
         <div>
           <label>보너스 번호</label>
-          ${this.getNumberInput()}
+          ${this.getNumberInput('bonusNumber')}
         <div>
         <button type='submit'>결과 확인하기</button>
       </form>
     `;
   }
 
-  getNumberInput(number = 1) {
+  getNumberInput(type, number = 1) {
     return Array(number)
       .fill()
       .map(
         (_, i) =>
           createEl('input', {
-            class: `winNumber-input-${i}`,
+            class: `${type}-input-${i}`,
             style: { width: '30px' },
             attributes: {
-              name: `winNumber-input-${i}`,
+              name: `${type}-input-${i}`,
               type: 'number',
               min: 1,
               max: 45,
