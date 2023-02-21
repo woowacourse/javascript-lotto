@@ -3,11 +3,14 @@ import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
 import ConvertMessage from '../utils/Convertor.js';
 import Input from '../view/Input.js';
+import Output from '../view/Output.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
 
   #input = new Input();
+
+  #output = new Output();
 
   startGame() {
     this.#input.purchaseLottos(this.#getPurchaseCount);
@@ -36,7 +39,7 @@ class LottoGameController {
   #purchaseUserLottos(purchaseCount) {
     const USER_LOTTOS = this.#lottoGame.generateUserLottos(purchaseCount);
 
-    console.log(USER_LOTTOS);
+    this.#output.renderLottosField(purchaseCount, USER_LOTTOS);
   }
 
   // async #setWinningLotto() {
