@@ -1,21 +1,19 @@
 import { isValidLottoNumbers, isDuplicateNumbers } from '../validation';
+import { ERROR_INVALID, ERROR_DUPLICATE } from '../util/constants';
 
 class Lotto {
   #numbers = [];
 
   constructor(numbers) {
     if (!isValidLottoNumbers(numbers)) {
-      throw new Error(Lotto.ERROR_INVALID);
+      throw new Error(ERROR_INVALID);
     }
     if (isDuplicateNumbers(numbers)) {
-      throw new Error(Lotto.ERROR_DUPLICATE);
+      throw new Error(ERROR_DUPLICATE);
     }
 
     this.#numbers = numbers.sort((a, b) => a - b);
   }
-
-  static ERROR_INVALID = '잘못된 입력입니다.';
-  static ERROR_DUPLICATE = '중복된 입력입니다.';
 
   getNumbers() {
     return this.#numbers;
