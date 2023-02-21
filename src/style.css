@@ -153,6 +153,7 @@ li span {
   background-color: #4e5ba6;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
 }
 
 .hidden {

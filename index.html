@@ -39,7 +39,7 @@
           <ul id="purchasedLottosContainer"></ul>
         </div>
 
-        <form id="winningInputContainer" class="hidden">
+        <form id="winningInputForm" class="hidden">
           <span> 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요. </span>
           <div
             style="
@@ -53,15 +53,17 @@
             <span>보너스 번호</span>
           </div>
           <div style="display: flex; justify-content: space-between">
-            <div style="display: flex; gap: 8px">
-              <input class="winningInput" type="number" max="45" min="1" />
-              <input class="winningInput" type="number" max="45" min="1" />
-              <input class="winningInput" type="number" max="45" min="1" />
-              <input class="winningInput" type="number" max="45" min="1" />
-              <input class="winningInput" type="number" max="45" min="1" />
-              <input class="winningInput" type="number" max="45" min="1" />
-            </div>
-            <input class="winningInput" type="number" max="45" min="1" />
+            <div
+              id="winningInputContainer"
+              style="display: flex; gap: 8px"
+            ></div>
+            <input
+              class="winningInput"
+              type="number"
+              max="45"
+              min="1"
+              required
+            />
           </div>
           <input type="submit" id="winningSubmitButton" value="제출" />
         </form>
