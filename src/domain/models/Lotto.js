@@ -1,9 +1,11 @@
 import { RANKING_THRESHOLD } from '../../constants';
+import lottoGameValidator from '../lottoGameValidator';
 
 class Lotto {
   #numbers;
 
   constructor(lottoNumbers) {
+    lottoGameValidator.checkLottoNumbers(lottoNumbers);
     this.#numbers = lottoNumbers;
   }
 
