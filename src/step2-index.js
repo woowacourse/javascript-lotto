@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import LottoMachine from './domain/LottoMachine';
-import { renderLottoListTitle } from './view/web/render';
+import { renderLottoListTitle, renderLottoList } from './view/web/render';
 
 let lottoMachine;
 const resultBtn = document.querySelector('.result-btn');
@@ -8,13 +8,24 @@ const resultBtn = document.querySelector('.result-btn');
 const buyBtn = document.querySelector('.buy-btn');
 const paymentsInput = document.querySelector('.payments-input');
 const winningLottoContainer = document.querySelector('.winning-lotto-container');
+
+const handlePayments = (payments) => {
+  lottoMachine = new LottoMachine(payments);
+};
+
 buyBtn.addEventListener('click', () => {
-  const buyMoney = paymentsInput.value;
-  // TODO: 유효성 검사
-  lottoMachine = new LottoMachine(buyMoney);
+  try {
+    const payments = paymentsInput.value;
+    handlePayments(payments);
+  } catch (error) {
+    window.alert(error.message);
+    paymentsInput.value = '';
+    return;
+  }
   const lottoNumbers = lottoMachine.getLottoNumbers();
   renderLottoListTitle(lottoNumbers.length);
   renderLottoList(lottoNumbers);
+
   buyBtn.disabled = true;
   resultBtn.disabled = false;
   winningLottoContainer.style.visibility = 'visible';
