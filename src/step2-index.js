@@ -11,12 +11,22 @@ import { MINIMUM_LOTTO_UNIT } from './data/Constants';
 const afterPurchaseShow = document.getElementsByClassName('after-purchase')[0];
 const lottoListWrap = document.getElementsByClassName('lotto-list')[0];
 const purchaseLottoCount = document.getElementById('lotto-purchase-count');
+
+const winNumberElement = document.getElementsByClassName('winNumber');
 const controller = new LottoWebController();
 
-const setLottos = (lottoList) => {
+const setLottos = () => {
   while (lottoListWrap.firstChild) {
     lottoListWrap.removeChild(lottoListWrap.firstChild);
   }
+
+  const inputAmount = document.getElementById('input-purchase-amount').value;
+  afterPurchaseShow.style.display = 'block';
+  controller.setLottos(inputAmount);
+  purchaseLottoCount.innerText = inputAmount / MINIMUM_LOTTO_UNIT;
+
+  const lottoList = controller.printLottoInfo();
+
   lottoList.map((lottoInfo) => {
     const lottoElement = document.createElement('li');
     const lottoEmoji = document.createElement('div');
@@ -29,16 +39,20 @@ const setLottos = (lottoList) => {
   });
 };
 
-document.getElementById('input-purchase-btn').addEventListener(
-  'click',
-  () => {
-    const inputAmount = document.getElementById('input-purchase-amount').value;
-    afterPurchaseShow.style.display = 'block';
-    controller.setLottos(inputAmount);
-    purchaseLottoCount.innerText = inputAmount / MINIMUM_LOTTO_UNIT;
-    setLottos(controller.printLottoInfo());
-  },
-  false
-);
+const result = () => {
+  const winNumber = Array.from(winNumberElement).map(
+    (element) => element.value
+  );
+  const bonusNumber = document.getElementById('bonusNumber').value;
+  controller.setWinNumber(winNumber, bonusNumber);
+};
+
+document
+  .getElementById('input-purchase-btn')
+  .addEventListener('click', () => setLottos(), false);
+
+document
+  .getElementById('check-result-btn')
+  .addEventListener('click', () => result(), false);
 
 export const inputPurchaseAmount = () => {};

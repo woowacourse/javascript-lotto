@@ -28,7 +28,7 @@ class LottoWebController {
   }
 
   setWinNumber(winNumber, bonusNumber) {
-    const winningNumber = winNumber.split(',').map(Number);
+    const winningNumber = winNumber.map(Number);
 
     const hasError = this.errorChecker(() =>
       validateWinningNumbers(winningNumber)
