@@ -10,7 +10,7 @@ class Controller {
 
   constructor() {}
 
-  inputPurchaseAmount(amount) {
+  amountTurnLotteries(amount) {
     try {
       Validation.purchaseAmount(+amount);
       return this.makeLottoGame(+amount);
@@ -37,49 +37,6 @@ class Controller {
   //lottoResult = [0,0,0,0,0,0] = 5등~1등, 수익률
   generateLottoGameResult(lotto, bonus) {
     return this.lottoGame.getRankResult(lotto, bonus);
-  }
-
-  // async inputLottoNumbers() {
-  //   const lottoNumbers = await InputView.readLottoNumbers();
-  //   try {
-  //     this.convertLotto(lottoNumbers);
-  //     Validation.lottoNumbers(this.#lottoNumbers);
-  //     this.inputBonusNumber();
-  //   } catch (error) {
-  //     OutputView.printError(error);
-  //     this.inputLottoNumbers();
-  //   }
-  // }
-
-  // async inputBonusNumber() {
-  //   const bonusNumber = await InputView.readBonusNumber();
-  //   try {
-  //     Validation.bonusNumber(this.#lottoNumbers, +bonusNumber);
-  //     this.#bonusNumber = +bonusNumber;
-  //     this.generateLottoGameResult();
-  //   } catch (error) {
-  //     OutputView.printError(error);
-  //     this.inputBonusNumber();
-  //   }
-  // }
-
-  // async inputRestartCommand() {
-  //   const command = await InputView.readRestartCommand();
-  //   try {
-  //     Validation.restartCommand(command);
-  //     this.checkRestartCommand(command);
-  //   } catch (error) {
-  //     OutputView.printError(error);
-  //     this.inputRestartCommand();
-  //   }
-  // }
-
-  checkRestartCommand(command) {
-    if (command === COMMAND.RESTART) {
-      OutputView.printRestart();
-      this.inputPurchaseAmount();
-    }
-    if (command === COMMAND.QUIT) OutputView.printQuit();
   }
 }
 
