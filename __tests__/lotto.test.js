@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { ERROR_MESSAGE, LOTTO_CONSTANT } from '../src/data/constants';
-import Lotto from '../src/domain/Lotto';
+import { ERROR_MESSAGE, LOTTO_CONSTANT } from '../src/js/data/constants';
+import Lotto from '../src/js/domain/Lotto';
 
 test('로또 만들기 ', () => {
   const numbers = [1, 2, 3, 4, 5, 6];

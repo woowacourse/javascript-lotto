@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE, LOTTO_CONSTANT } from '../src/data/constants';
-import LottoUtils from '../src/domain/LottoUtils';
+import { ERROR_MESSAGE, LOTTO_CONSTANT } from '../src/js/data/constants';
+import LottoUtils from '../src/js/domain/LottoUtils';
 
 describe('기능 테스트', () => {
   const isValidLotto = (numbers) => {
