@@ -38,7 +38,10 @@ class WinningLottoInputView {
     this.renderNumberInputElement('winning-numbers');
     this.renderNumberInputElement('bonus-number');
 
-    this.form.insertAdjacentHTML('beforeend', `<button id="result-button">결과 확인하기</button>`);
+    this.form.insertAdjacentHTML(
+      'beforeend',
+      `<button class="result-button">결과 확인하기</button>`,
+    );
   }
 
   addSubmitHandler(winningLottoInputHandler) {
