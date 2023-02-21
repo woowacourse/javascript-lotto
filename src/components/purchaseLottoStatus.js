@@ -6,7 +6,6 @@ import {
 export default function purchaseLottoStatus(lottos) {
   const board = document.createElement('div');
   const purchastCount = pusrchaseCountMessage(lottos.length);
-  board.className = 'width-hudread-32px';
 
   board.innerHTML = purchastCount;
   for (const lotto of lottos) {

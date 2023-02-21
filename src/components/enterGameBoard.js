@@ -40,6 +40,7 @@ function numberEnterContainer() {
 
 function checkResultButton(callback) {
   const $button = document.createElement('button');
+  $button.id = 'checkResult';
   $button.className = 'caption large-button';
   $button.type = 'button';
   $button.textContent = '결과 확인하기';
@@ -50,7 +51,6 @@ function checkResultButton(callback) {
 
 export default function enterGameBoard(callback) {
   const enterBoard = document.createElement('div');
-  enterBoard.className = 'width-hudread-32px';
 
   enterBoard.innerHTML = enterWinNumberMessage;
   enterBoard.appendChild(numberTitleContainer());
