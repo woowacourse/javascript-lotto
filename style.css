@@ -159,6 +159,7 @@ body {
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
   margin-top: 8px;
+  text-align: center;
 }
 
 .winningNumber label {
