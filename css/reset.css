@@ -100,6 +100,12 @@ nav,
 section {
   display: block;
 }
+
+html,
+body {
+  height: 100%;
+}
+
 input {
   border: none;
   background: transparent;
@@ -111,18 +117,22 @@ button {
   padding: 0;
   margin: 0;
 }
+
 body {
   line-height: 1;
 }
+
 li,
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
