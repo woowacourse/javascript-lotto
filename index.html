@@ -9,7 +9,124 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1 class="title">🎱 행운의 로또</h1>
+      </header>
+      <contents>
+        <div id="set-lotto" class="contents">
+          <h2 class="subtitle">🎱 내 번호 당첨 확인 🎱</h2>
+          <div id="input-money">
+            <p class="text-body">구입할 금액을 입력해 주세요</p>
+            <input type="number" placeholder="금액" />
+            <button class="submit">
+              <div>구입</div>
+            </button>
+          </div>
+          <div id="show-lotto">
+            <p>총 0개를 구매했습니다.</p>
+            <ul>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+              <li>
+                <span class="icon-lotto">🎟️</span>
+                <span class="lotto-numbers">0,0,0,0,0,0</span>
+              </li>
+            </ul>
+          </div>
+          <div id="input-winlotto">
+            <p id="input-winlotto-label">
+              지난주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </p>
+            <div id="input-winnumbers-box">
+              <p class="body-text">당첨 번호</p>
+              <div id="input-number-set">
+                <input type="number" max="45" min="1" class="input-number" />
+                <input type="number" max="45" min="1" class="input-number" />
+                <input type="number" max="45" min="1" class="input-number" />
+                <input type="number" max="45" min="1" class="input-number" />
+                <input type="number" max="45" min="1" class="input-number" />
+                <input type="number" max="45" min="1" class="input-number" />
+              </div>
+            </div>
+            <div id="input-bonusnumber-box">
+              <p class="body-text">보너스 번호</p>
+              <div>
+                <input type="number" max="45" min="1" class="input-number" />
+              </div>
+            </div>
+          </div>
+          <button id="submit-winlotto">
+            <div>
+              <p>결과 확인하기</p>
+            </div>
+          </button>
+        </div>
+
+        <div id="result" class="contents">
+          <h2 class="subtitle">당첨 통계</h2>
+          <table id="result-table">
+            <thead class="caption">
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td>n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="caption">당신의 총 수입률은 %입니다.</p>
+          <button id="restart">다시 시작하기</button>
+        </div>
+      </contents>
+      <footer>copyright</footer>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
