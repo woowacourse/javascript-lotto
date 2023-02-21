@@ -23,6 +23,7 @@ class LottoGameController {
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {
       try {
+        exception.handlePurchasePrice(purchasePriceInput);
         const lottoCount = this.calculateLottoCount(purchasePriceInput);
         this.#lottos = new Lottos(lottoCount);
         this.showPurchasedLottos();
@@ -34,11 +35,7 @@ class LottoGameController {
   }
 
   calculateLottoCount(priceInput) {
-    exception.handlePurchasePrice(priceInput);
-
-    const price = Number(priceInput);
-
-    return Math.floor(price / PRICE_UNIT);
+    return Math.floor(Number(priceInput) / PRICE_UNIT);
   }
 
   showPurchasedLottos() {
