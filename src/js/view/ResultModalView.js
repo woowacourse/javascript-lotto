@@ -16,6 +16,20 @@ class ResultModalView {
   hide() {
     $('#resultModal').classList.add('hidden');
   }
+
+  #displayPrizeResult(gameData) {
+    ['fifth', 'fourth', 'third', 'second', 'first'].forEach((rank, index) => {
+      const currentIndex = 4 - index;
+      $(`#${rank}PrizeMoney`).innerText = (
+        gameData[rank] * GAME_VALUE.PRIZE[currentIndex]
+      ).toLocaleString();
+      $(`#${rank}PrizeCount`).innerText = gameData[rank];
+    });
+  }
+
+  #displayRateResult(rate) {
+    $('#rateResult').innerText = `당신의 총 수익률은 ${rate.toLocaleString()} %입니다.`;
+  }
 }
 
 export default ResultModalView;
