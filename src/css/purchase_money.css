@@ -16,8 +16,8 @@
 }
 
 #purchase-money-input {
-  width: 330px;
-  height: 32px;
+  width: 310px;
+  height: 36px;
   border: 1px solid #8b8b8b;
   border-radius: 4px;
   padding-left: 7px;
@@ -32,4 +32,5 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 700;
 }

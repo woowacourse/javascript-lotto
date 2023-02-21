@@ -1,7 +1,12 @@
 @import './purchase_lotto.css';
 @import './purchase_money.css';
 @import './support_index.css';
+@import './winning_number.css';
 @import './reset.css';
+
+* {
+  box-sizing:border-box;
+}
 
 html,
 body {
