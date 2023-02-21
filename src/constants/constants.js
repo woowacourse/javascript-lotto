@@ -71,10 +71,8 @@ const message = Object.freeze({
 
 const errorMessage = Object.freeze({
   PURCHASE_PRICE_ERROR: '구매 금액은 1000원 단위로 입력해주세요',
-  WINNING_NUMBERS_ERROR:
-    '당첨 번호는 1부터 45까지 6개의 숫자로 중복없이 입력해주세요.',
-  BONUS_NUMBER_ERROR:
-    '보너스 번호는 1부터 45까지의 숫자로 당첨 번호와 중복없이 입력해주세요.',
+  NUMBER_DUPLICATED_ERROR:
+    '당첨 번호와 보너스 번호를 모두 중복되지 않게 입력해주세요.',
   RESTART_COMMAND_ERROR: 'y 또는 n으로만 입력해주세요.',
 });
 

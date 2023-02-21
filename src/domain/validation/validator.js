@@ -17,26 +17,14 @@ const validator = {
     );
   },
 
-  winningNumbers(input) {
-    const winningNumbers = input.split(',').map(Number);
-    return (
-      !this.isEmptyOrBlankIncluded(input) &&
-      winningNumbers.every(this.isNumber) &&
-      this.checkWinningNumberCount(input) &&
-      !this.isNumberDuplicated(winningNumbers) &&
-      winningNumbers.every(this.checkNumberRange)
-    );
+  winningNumbers(winningNumbers) {
+    return !this.hasDuplicate(winningNumbers);
   },
 
   bonusNumber(winningNumbers, input) {
     const bonusNumber = Number(input);
 
-    return (
-      !this.isEmptyOrBlankIncluded(bonusNumber) &&
-      this.isNumber(bonusNumber) &&
-      this.checkNumberRange(bonusNumber) &&
-      !this.isNumberDuplicated([...winningNumbers, bonusNumber])
-    );
+    return !this.hasDuplicate([...winningNumbers, bonusNumber]);
   },
 
   isEmptyOrBlankIncluded(input) {
@@ -74,7 +62,7 @@ const validator = {
     );
   },
 
-  isNumberDuplicated(numbers) {
+  hasDuplicate(numbers) {
     return new Set(numbers).size !== numbers.length;
   },
 

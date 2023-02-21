@@ -1,11 +1,12 @@
-const { message } = require('../constants/constants');
+const { message, LOTTO_NUMBER_COUNT } = require('../constants/constants');
 
 const purchaseResultContainer = document.getElementById('resultContainer');
 const purchaseResultHeader = document.getElementById('purchaseResultHeader');
 const purchasedLottosContainer = document.getElementById(
   'purchasedLottosContainer'
 );
-const winningInputContainer = document.getElementById('winningInputContainer');
+const winningInputForm = document.getElementById('winningInputForm');
+const winningInputFlexBox = document.getElementById('winningInputContainer');
 
 const outputView = {
   renderPurchasedLottos(lottos) {
@@ -18,7 +19,16 @@ const outputView = {
   },
 
   renderWinningNumbersInput() {
-    winningInputContainer.classList = '';
+    winningInputForm.classList = '';
+    winningInputFlexBox.innerHTML = `
+      <input
+        class="winningInput"
+        type="number"
+        max="45"
+        min="1"
+        required
+      />
+    `.repeat(LOTTO_NUMBER_COUNT);
   },
 };
 
