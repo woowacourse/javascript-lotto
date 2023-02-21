@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
 import LottoMachine from './domain/LottoMachine';
 import { renderLottoListTitle, renderLottoList } from './view/web/render';
+import '../public/style.css';
 
 let lottoMachine;
 const resultBtn = document.querySelector('.result-btn');
 
-const buyBtn = document.querySelector('.buy-btn');
+const buyBtn = document.querySelector('.payments-btn');
 const paymentsInput = document.querySelector('.payments-input');
 const winningLottoContainer = document.querySelector('.winning-lotto-container');
 
@@ -45,11 +46,12 @@ const renderResultTable = ({ winCount, profitRate }) => {
   for (let i = 0; i < 5; i++) {
     const td = document.createElement('td');
     td.innerText = `${winCount[i + 1]}개`;
-    tableRows[i].appendChild(td);
+    tableRows[5 - (i + 1)].appendChild(td);
   }
   const resultProfitRate = document.createElement('p');
-  resultProfitRate.innerText = `당신의 총 수익률은${profitRate.toFixed(2)}% 입니다.`;
-  resultTable.appendChild(resultProfitRate);
+  resultProfitRate.innerText = `당신의 총 수익률은 ${profitRate.toFixed(2)}% 입니다.`;
+  resultProfitRate.className = 'profit-rate';
+  resultTable.after(resultProfitRate);
 };
 
 resultBtn.addEventListener('click', () => {
