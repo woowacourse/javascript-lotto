@@ -1,0 +1,54 @@
+#winning-number-container {
+  margin-top: 24px;
+}
+
+#winning-number-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#winning-number-winning {
+  margin-top: 20px;
+}
+
+#winning-number-winning-input {
+  display: flex;
+}
+
+.winning-number-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+#winning-number-bouns {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bonus-number-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+#winning-number-button {
+  width: 382px;
+  height: 36px;
+  background: #4e5ba6;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  margin-top: 30px;
+  border: none;
+  padding: 6px;
+}
