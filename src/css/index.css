@@ -110,14 +110,9 @@ header {
   font-style: normal;
   font-weight:400;
   font-size: 15px;
-
-  /* 히든 속성 */
-  /* visibility: hidden; */
 }
 
 #win_contents {
-  /* 히든 속성 */
-  visibility: hidden;
   position: relative;
   width: 390px;
   height: 150px;
@@ -162,4 +157,7 @@ header {
   font-style: normal;
   font-weight:700;
   font-size: 14px;
+}
+.hidden {
+  display: none;
 }
