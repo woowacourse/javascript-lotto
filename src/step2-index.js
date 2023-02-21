@@ -3,6 +3,7 @@ import { qs, component } from './utils/domHelper';
 import Header from './view/components/Header.js';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';
+import WinNumbers from './view/components/WinNumbers.js';
 
 class App extends Component {
   constructor() {
@@ -22,6 +23,7 @@ class App extends Component {
     new Header(component('header'));
     new Amount(component('amount'), { setAmount: setAmount.bind(this) });
     new LottoList(component('lottoList'), { amount });
+    new WinNumbers(component('winNumbers'));
   }
 
   template() {
@@ -29,6 +31,7 @@ class App extends Component {
       <header data-component='header'></header> 
       <section data-component='amount'></section>
       <section data-component='lottoList'></section>
+      <section data-component='winNumbers'></section>
     `;
   }
 
