@@ -9,11 +9,11 @@ class LottoGameView {
 
   #initDom() {
     this.purchaseForm = $('#purchase-form');
-    this.purchaseInput = $('#purchase-input');
+    this.purchaseInput = $('.purchase-input');
     this.startContainer = $('.start-container');
     this.userLottoPurchaseCount = $('#user-lotto-purchase');
     this.userLottoContainer = $('.user-lotto-container');
-    this.winningNumbersForm = $('#winning-numbers-form');
+    this.gameNumbersForm = $('#game-numbers-form');
     this.winningNumbersInputs = $$('input[name="winning-number"]');
     this.bonusNumberInput = $('input[name="bonus-number"]');
     this.resultModal = $('.result-container');
@@ -37,10 +37,7 @@ class LottoGameView {
   }
 
   addPurchaseInputEvent() {
-    this.purchaseInput.addEventListener('input', () => {
-      this.purchaseInput.classList.remove('error-input');
-      this.hideErrorMessage('purchase');
-    });
+    this.purchaseInput.addEventListener('input', this.hideError.bind(this));
   }
 
   showStartContainer() {
@@ -66,7 +63,7 @@ class LottoGameView {
   }
 
   addGameNumbersSubmitEvent(callback) {
-    this.winningNumbersForm.addEventListener('submit', (event) => {
+    this.gameNumbersForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const winningNumbers = [...this.winningNumbersInputs].map((element) => Number(element.value));
       const bonusNumber = Number(this.bonusNumberInput.value);
@@ -77,30 +74,12 @@ class LottoGameView {
 
   addWinningNumbersInputEvent() {
     this.winningNumbersInputs.forEach((input) => {
-      input.addEventListener('input', () => {
-        input.classList.remove('error-input');
-        this.hideErrorMessage('game-numbers');
-      });
+      input.addEventListener('input', this.hideError.bind(this));
     });
   }
 
   addBonusNNumbersInputEvent() {
-    this.bonusNumberInput.addEventListener('input', (event) => {
-      event.target.classList.remove('error-input');
-      this.hideErrorMessage('game-numbers');
-    });
-  }
-
-  showErrorMessage(element, message) {
-    const domElement = $(`#${element}-error`);
-    domElement.textContent = message;
-    domElement.style.opacity = 1;
-  }
-
-  hideErrorMessage(element) {
-    const domElement = $(`#${element}-error`);
-    domElement.textContent = '';
-    domElement.style.opacity = 0;
+    this.bonusNumberInput.addEventListener('input', this.hideError.bind(this));
   }
 
   showResultModal() {
@@ -139,8 +118,40 @@ class LottoGameView {
     this.purchaseForm.reset();
     this.startContainer.style.opacity = 0;
     this.startContainer.style.pointerEvents = 'none';
-    this.winningNumbersForm.reset();
+    this.gameNumbersForm.reset();
     this.resultModal.style.display = 'none';
+  }
+
+  showError(element, message) {
+    element.classList.add('error-input');
+    this.showErrorMessage(element.classList[0], message);
+  }
+
+  hideError(event) {
+    event.target.classList.remove('error-input');
+    this.hideErrorMessage(event.target.classList[0]);
+  }
+
+  showErrorMessage(name, message) {
+    const domElement = $(`#${name}-error`);
+    domElement.textContent = message;
+    domElement.style.opacity = 1;
+  }
+
+  hideErrorMessage(name) {
+    const domElement = $(`#${name}-error`);
+    domElement.textContent = '';
+    domElement.style.opacity = 0;
+  }
+
+  resetInput(element) {
+    element.value = '';
+    element.focus();
+  }
+
+  resetForm(element) {
+    element.reset();
+    element.focus();
   }
 }
 

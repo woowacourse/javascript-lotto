@@ -22,8 +22,8 @@ class LottoGameController {
       const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch ({ message }) {
-      this.#lottoGameView.showErrorMessage('purchase', message);
-      this.#handleReinputError(this.#lottoGameView.purchaseInput);
+      this.#lottoGameView.showError(this.#lottoGameView.purchaseInput, message);
+      this.#lottoGameView.resetInput(this.#lottoGameView.purchaseInput);
     }
   }
 
@@ -40,9 +40,9 @@ class LottoGameController {
       Validation.verifyLottoNumbers(winningNumbers);
       this.#handleBonusNumber(winningNumbers, bonusNumber);
     } catch ({ message }) {
-      this.#lottoGameView.showErrorMessage('game-numbers', message);
-      this.#handleReinputError(this.#lottoGameView.winningNumbersInputs[0]);
-      this.#lottoGameView.winningNumbersForm.reset();
+      this.#lottoGameView.showError(this.#lottoGameView.winningNumbersInputs[0], message);
+      this.#lottoGameView.resetInput(this.#lottoGameView.winningNumbersInputs[0]);
+      this.#lottoGameView.resetForm(this.#lottoGameView.gameNumbersForm);
     }
   }
 
@@ -52,8 +52,8 @@ class LottoGameController {
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#handleGameResult();
     } catch ({ message }) {
-      this.#lottoGameView.showErrorMessage('game-numbers', message);
-      this.#handleReinputError(this.#lottoGameView.bonusNumberInput);
+      this.#lottoGameView.showError(this.#lottoGameView.bonusNumberInput, message);
+      this.#lottoGameView.resetInput(this.#lottoGameView.bonusNumberInput);
     }
   }
 
@@ -84,12 +84,6 @@ class LottoGameController {
 
   //   OutputView.close();
   // }
-
-  #handleReinputError(element) {
-    element.classList.add('error-input');
-    element.value = '';
-    element.focus();
-  }
 }
 
 export default LottoGameController;
