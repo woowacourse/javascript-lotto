@@ -1,0 +1,16 @@
+@import url('../css/reset.css');
+@import url('../css/root.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@import url('../css/header.css');
+@import url('../css/main.css');
+@import url('../css/footer.css');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color-grayscale2);
+}
+
+#app {
+  height: 100vh;
+}

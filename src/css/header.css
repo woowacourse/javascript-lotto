@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  width: 100%;
+  min-height: 64px;
+
+  background-color: var(--color-primary);
+}
+
+header nav {
+  margin: 0 10vw;
+}
+
+header nav a {
+  color: var(--color-grayscale1);
+
+  font-size: var(--text-title-size);
+  font-weight: var(--text-title-weight);
+  line-height: var(--text-title-line-height);
+  text-decoration: none;
+}
