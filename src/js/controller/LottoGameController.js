@@ -31,6 +31,10 @@ export default class LottoGameController {
     console.log(lottoCount);
   }
 
+  calculateLottoCount(priceInput) {
+    return Math.floor(Number(priceInput) / PRICE_UNIT);
+  }
+
   /*
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {
@@ -39,10 +43,6 @@ export default class LottoGameController {
 
       this.showPurchasedLottos();
     });
-  }
-*/
-  calculateLottoCount(priceInput) {
-    return Math.floor(Number(priceInput) / PRICE_UNIT);
   }
 
   showPurchasedLottos() {
@@ -106,6 +106,7 @@ export default class LottoGameController {
 
     this.playGame();
   }
+  */
 }
 
 module.exports = LottoGameController;
