@@ -1,14 +1,18 @@
-import { ERROR_MESSAGE, LOTTO_CONSTANT } from '../data/constants.js';
-import { $, $error } from '../utils/Dom.js';
 import Validator from '../utils/Validator.js';
+import { ERROR_MESSAGE, LOTTO_CONSTANT, PRINT_MESSAGE } from '../data/constants.js';
 import LottoView from '../view/LottoView.js';
+import LottoUtils from '../domain/LottoUtils.js';
+import Lotto from '../domain/Lotto.js';
+import { $budgetForm, $error, $ticketsList, $totalBudget } from '../utils/Dom.js';
 
 class LottoDomSimulator {
+  #lottos;
   #budget;
 
   constructor() {
+    this.#lottos = [];
     this.#budget = 0;
-    this.lottoView = new LottoView($('.budget__form'));
+    this.lottoView = new LottoView($budgetForm);
   }
 
   set budget(budget) {
@@ -29,7 +33,8 @@ class LottoDomSimulator {
       this.budget = budget;
       this.purchaseLottos(budget);
     } catch (err) {
-      this.lottoView.printErrorMessage($error, err);
+      // 여기 [ERROR] 상수화 시키기
+      this.lottoView.print($error, `[ERROR] ${err}`);
     }
     this.lottoView.reset();
   }
@@ -44,6 +49,17 @@ class LottoDomSimulator {
 
   purchaseLottos(budget) {
     const lottoCount = budget / LOTTO_CONSTANT.PRICE;
+    this.lottoView.print($totalBudget, PRINT_MESSAGE.PURCHASE_COUNT(lottoCount));
+
+    Array.from({ length: lottoCount }).forEach(() => {
+      const lottoNumbers = LottoUtils.createNumbers();
+      this.printLottoNumbers(lottoNumbers);
+      this.#lottos.push(new Lotto(lottoNumbers));
+    });
+  }
+
+  printLottoNumbers(lottoNumbers) {
+    this.lottoView.test($ticketsList, `[${lottoNumbers.sort((a, b) => a - b).join(', ')}]`);
   }
 }
 

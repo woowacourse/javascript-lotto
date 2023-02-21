@@ -18,8 +18,15 @@ class LottoView {
     this.$element.focus();
   }
 
-  printErrorMessage($element, message) {
-    $element.innerText = `[ERROR] ${message}`;
+  print($element, content) {
+    $element.innerText = content;
+  }
+
+  test($element, content) {
+    $element.insertAdjacentHTML(
+      'beforeend',
+      `<li class="ticket"><span class="ticket__emoji">🎟</span><span class="ticket__number">${content}</span></li>`
+    );
   }
 
   bindInputPriceEvent() {
