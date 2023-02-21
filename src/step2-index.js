@@ -3,6 +3,8 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
+import "../index.css";
+
 const inputAmount = document.querySelector(".inputAmount");
 const eachInputLottoNumber = document.querySelectorAll(".eachInputLottoNumber");
 const eachInputBonusNumber = document.querySelector(".eachInputBonusNumber");
@@ -39,7 +41,7 @@ class App {
     this.showRandomLottoAmount(randomLotteries);
     this.showRandomLottoList(randomLotteries);
     result.addEventListener("click", () => {
-      const error = this.checkLottoBonus();
+      const error = this.pushResult();
       if (error) return alert(error);
     });
   }
@@ -72,14 +74,25 @@ class App {
     return elem;
   }
   //위는 프린트 로또 아래는 로또 번호 불러오기
-  checkLottoBonus() {
-    const lotto = [];
-    const bonus = eachInputBonusNumber.value;
-    eachInputLottoNumber.forEach((numberElem) => lotto.push(+numberElem.value));
-    const result = this.controller.inputLottoBonus(lotto, +bonus);
+  pushResult() {
+    const result = this.checkLottoBonus();
     if (typeof result === "string") return result;
     dialog.showModal();
     this.showResult(result);
+    restart.addEventListener("click", () => {
+      this.pushRestart();
+    });
+  }
+
+  checkLottoBonus() {
+    const lotto = [];
+    const bonus = eachInputBonusNumber.value;
+    eachInputBonusNumber.value = "";
+    eachInputLottoNumber.forEach((numberElem) => {
+      lotto.push(+numberElem.value);
+      numberElem.value = "";
+    });
+    return this.controller.inputLottoBonus(lotto, +bonus);
   }
 
   showResult(result) {
@@ -87,6 +100,11 @@ class App {
     document.querySelector(".rate").textContent = `${
       result[result.length - 1]
     }`;
+  }
+
+  pushRestart() {
+    dialog.close();
+    result.removeEventListener("click");
   }
 }
 
