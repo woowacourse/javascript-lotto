@@ -1,16 +1,80 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
   </head>
-
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div class="header">
+      <div class="title">🎱 행운의 로또</div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <div class="main">
+      <div class="mainTitle">🎱 내 당첨번호 확인 🎱</div>
+      <div class="lottoInput">
+        <div class="lottoInputTitle">구입할 금액을 입력해주세요.</div>
+        <form>
+          <input placeholder="금액" />
+          <button>구입</button>
+        </form>
+      </div>
+
+      <div class="lottoIssueView">
+        <div class="lottoIssueViewTitle">총 7개를 구매하였습니다.</div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+        <div class="ticket">
+          <div class="ticketPicture">🎟️</div>
+          12, 12, 12, 12, 12, 12
+        </div>
+      </div>
+
+      <div>
+        <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+        <div class="numberTitle">
+          <div>당첨 번호</div>
+          <div>보너스 번호</div>
+        </div>
+        <div class="numberInput">
+          <div class="winningNumber">
+            <input class="number" />
+            <input class="number" />
+            <input class="number" />
+            <input class="number" />
+            <input class="number" />
+            <input class="number" />
+          </div>
+          <div class="bonusNumber">
+            <input class="number" />
+          </div>
+        </div>
+      </div>
+      <button class="resultButton">결과 확인하기</button>
+    </div>
+    <div class="footer">Copyright 2023. woowacourse</div>
   </body>
 </html>
