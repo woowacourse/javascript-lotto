@@ -6,6 +6,32 @@
     background-color: #FFFFFF;
     border: 1px solid  rgba(0, 0, 0, 0.12);
     padding: 4%;
+    display: flex;
+    flex-direction: column
+}
+
+header {
+    background-color: #4E5BA6;
+    height: 80px;
+    display: flex;
+    padding-left: 10%;
+}
+
+header > p {
+    font-size: larger;
+    color: #FFFFFF;
+}
+
+footer {
+    border-top: 0.5px solid  rgba(0, 0, 0, 0.2);
+    height: 80px;
+    display: flex;
+}
+
+footer > p {
+    margin: 0px auto;
+    color:#4E5BA6;
+    top: 35%;
 }
 
 h1 {
@@ -63,13 +89,14 @@ button:hover {
     align-items: center;
 }
 
-.userLotto {
+
+.inputLottoBonus {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 30%;
 }
 
-.userLotto > p {
+.inputLottoBonus > p {
     grid-column: 1/3;
 }
 
@@ -78,22 +105,13 @@ button:hover {
     float: right;
 }
 
+.eachInputLottoNumber, .eachInputBonusNumber {
+    text-align: center;
+}ㄴㄴ
+
 .result, .restart {
     width:100%;
     height: 50px;
-}
-
-.mainPage > div {
-    margin-top: 4%;
-}
-
-.black{
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    height: 130%;
-    width: 100%;
 }
 
 .resultPage {
