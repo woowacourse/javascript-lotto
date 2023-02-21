@@ -1,4 +1,5 @@
 import paintEnterWinningNumber from '../components/enterGameBoard';
+import initialEnterInput from '../components/initialEnterInput';
 import lottoResultBoard from '../components/lottoResult';
 import paintLottoStatus from '../components/purchaseLottoStatus';
 import LottoGame from '../domain/LottoGame';
@@ -11,13 +12,23 @@ import {
 } from '../utils/validator';
 import { closeModal, showModal } from '../view/modal';
 
-export default function LottoUIController() {
+export default function LottoUIController($app) {
   this.state = {
     lottoGame: null,
+    $root: null,
   };
 
   const init = () => {
+    const $lottoSection = document.createElement('div');
+    $lottoSection.className = 'lotto-section';
+
+    $app.appendChild($lottoSection);
+
+    this.state.$root = $lottoSection;
     this.state.lottoGame = new LottoGame();
+
+    gameSetting();
+
     const $purchaseButton = document.getElementById('purchaseButton');
 
     $purchaseButton.addEventListener('click', () => {
@@ -69,7 +80,7 @@ export default function LottoUIController() {
       );
 
       if (!bonusState && !winState) {
-        isPassNumbers();
+        isPassNumbers(bonusNumber, winningNumbers);
         return;
       }
 
@@ -84,29 +95,20 @@ export default function LottoUIController() {
       }
     }
 
-    const isPassNumbers = () => {
-      showModal();
+    const isPassNumbers = (bonusNumber, winningNumbers) => {
+      const { lottoGame } = this.state;
+
+      lottoGame.registerGameBoard(winningNumbers, bonusNumber);
+
+      const winCount = lottoGame.getLottosWinCount();
+      const rate = lottoGame.getEarningRate();
+
       const $modalContent = document.querySelector('.modal-content');
       clearConatiner($modalContent);
+      $modalContent.appendChild(lottoResultBoard(winCount, rate));
 
-      $modalContent.appendChild(
-        lottoResultBoard(
-          {
-            FIFTH: 0,
-            FOURTH: 0,
-            THIRD: 0,
-            SECOND: 0,
-            FIRST: 0,
-          },
-          0.0
-        )
-      );
-
-      const $closeButton = document.querySelector('.modal-close-button');
-
-      $closeButton.addEventListener('click', () => {
-        closeModal();
-      });
+      showModal();
+      addRestartEventListener();
     };
 
     const inputErrorChecker = (validator) => {
@@ -118,6 +120,25 @@ export default function LottoUIController() {
 
       return { state: false, message: '' };
     };
+
+    const addRestartEventListener = () => {
+      const $retry = document.getElementById('retry');
+      const $closeButton = document.querySelector('.modal-close-button');
+
+      $closeButton.addEventListener('click', closeModal);
+      $retry.addEventListener('click', restart);
+    };
+  };
+
+  const restart = () => {
+    gameSetting();
+    closeModal();
+  };
+
+  const gameSetting = () => {
+    this.state.lottoGame = new LottoGame();
+    clearConatiner(this.state.$root);
+    this.state.$root.appendChild(initialEnterInput());
   };
 
   init();
