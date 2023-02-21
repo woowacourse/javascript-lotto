@@ -13,6 +13,7 @@ class LottoGameController {
 
   startGame() {
     this.#input.purchaseLottos(this.#getPurchaseCount);
+    this.#input.seeResult(() => {});
     // await this.#setUserLottos();
     // await this.#setWinningLotto();
     // this.#showGameResult();
