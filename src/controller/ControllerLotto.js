@@ -2,6 +2,7 @@ const inputView = require('../view/inputView.js');
 const LottoMachine = require('../domain/LottoMachine.js');
 const outputView = require('../view/outputView.js');
 const { winningIncludeBonusNumber } = require('../utils/validation.js');
+const Console = require('../utils/Console.js');
 class ControllerLotto {
   #money;
   #lottoMachine;
@@ -57,6 +58,7 @@ class ControllerLotto {
 
   async askRestartOrFinish() {
     if (await inputView.readRestartOrFinish()) this.playLotto();
+    Console.close();
   }
 }
 

@@ -30,7 +30,6 @@ const inputView = {
     const response = await Console.readLine(MESSAGE.RESTART_OR_FINISH);
     if (restartValidate(response)) return this.readRestartOrFinish();
     if (response === RESPONSE.YES) return true;
-    Console.close();
   },
 };
 
