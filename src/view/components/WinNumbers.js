@@ -2,6 +2,10 @@ import Component from '../../Component.js';
 import { createEl } from '../../utils/domHelper.js';
 
 export default class WinNumbers extends Component {
+  setEvent() {
+    this.addEvent('submit', '.winNumbers-form', this.handleSubmitForm.bind(this));
+  }
+
   template() {
     return `
       <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
@@ -36,5 +40,19 @@ export default class WinNumbers extends Component {
           }).outerHTML
       )
       .join('');
+  }
+
+  handleSubmitForm(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const fields = Object.fromEntries(formData);
+    const drawingNumbers = { winNumbers: [], bonusNumber: 0 };
+
+    Object.entries(fields).forEach(([name, value]) => {
+      if (name.includes('winNumber')) drawingNumbers.winNumbers.push(Number(value));
+      if (name.includes('bonusNumber')) drawingNumbers.bonusNumber = Number(value);
+    });
+
+    this.props.updateDrawingNumbers(drawingNumbers);
   }
 }
