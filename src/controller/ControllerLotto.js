@@ -26,7 +26,7 @@ class ControllerLotto {
     this.showWinningHistory(result);
     const profit = this.#lottoMachine.getProfitRate(this.#money, result);
     this.showEarningsRate(profit);
-    this.restart();
+    this.askRestartOrFinish();
   }
 
   inputLottoMoney() {
@@ -55,7 +55,7 @@ class ControllerLotto {
     outputView.printEarningsRate(rate);
   }
 
-  async restart() {
+  async askRestartOrFinish() {
     if (await inputView.readRestartOrFinish()) this.playLotto();
   }
 }

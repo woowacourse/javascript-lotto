@@ -29,7 +29,7 @@ const moneyValidate = money => {
   }
 };
 
-const winningNumberCount = numbers => {
+const winningNumberCountValidate = numbers => {
   return numbers.split(',').length === NUMBER.MAX_LENGHT;
 };
 
@@ -42,7 +42,7 @@ const winningNumberValidate = numbers => {
     console.log(ERROR.WINNING_NUMBER_RANGE);
     return true;
   }
-  if (!winningNumberCount(numbers)) {
+  if (!winningNumberCountValidate(numbers)) {
     console.log(ERROR.WINNING_NUMBER_COUNT);
     return true;
   }

@@ -1,5 +1,5 @@
 const LottoResult = require('./LottoResult');
-const { NUMBER } = require('../utils/constant')
+const { NUMBER } = require('../utils/constant');
 
 class LottoMachine {
   lottoNumber;
@@ -18,8 +18,8 @@ class LottoMachine {
     return this.lottoNumber;
   }
 
-  setLottoNumber(number) {
-    this.lottoNumber = number;
+  setLottoNumber(lottoList) {
+    this.lottoNumber = lottoList;
   }
 
   makeLotto(money) {
@@ -32,12 +32,14 @@ class LottoMachine {
   }
 
   randomNumberLotto() {
-    const randomNumber = Array.from({ length: NUMBER.MAX_LENGHT }, () => Math.floor(Math.random() * NUMBER.MAX_NUMBER + NUMBER.MIN_NUMBER));
-    if (this.checkRepeatedNumber(randomNumber)) return this.ascendingSortedNumber(randomNumber);
+    const randomNumber = Array.from({ length: NUMBER.MAX_LENGHT }, () =>
+      Math.floor(Math.random() * NUMBER.MAX_NUMBER + NUMBER.MIN_NUMBER)
+    );
+    if (this.isRepeatable(randomNumber)) return this.ascendingSortedNumber(randomNumber);
     return this.randomNumberLotto();
   }
 
-  checkRepeatedNumber(randomNumber) {
+  isRepeatable(randomNumber) {
     return [...new Set(randomNumber)].length === NUMBER.MAX_LENGHT;
   }
 
