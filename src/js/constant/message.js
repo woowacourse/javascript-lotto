@@ -1,4 +1,4 @@
-const { RANK, LOTTO, COMMAND } = require('./setting');
+import { RANK, LOTTO, COMMAND } from './setting';
 
 const INPUT_MESSAGE = {
   PURCHASE_AMOUNT: '> 구입금액을 입력해 주세요.',
@@ -33,4 +33,4 @@ const ERROR_MESSAGE = {
   NOT_A_NUMBER: `[ERROR] 입력한 값이 숫자가 아닙니다.`,
 };
 
-module.exports = { INPUT_MESSAGE, OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD, ERROR_MESSAGE };
+export { INPUT_MESSAGE, OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD, ERROR_MESSAGE };

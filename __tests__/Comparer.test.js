@@ -1,5 +1,5 @@
-const Comparer = require('../src/js/domain/Comparer');
-const WinningLotto = require('../src/js/domain/WinningLotto');
+import Comparer from '../src/js/domain/Comparer';
+import WinningLotto from '../src/js/domain/WinningLotto';
 
 describe('로또번호를 비교한다', () => {
   test('당첨 번호와 일치하는 번호의 갯수를 구한다.', () => {

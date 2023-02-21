@@ -1,14 +1,14 @@
-const { COMMAND } = require('../constant/setting');
+import { COMMAND } from '../constant/setting';
 
-const Comparer = require('../domain/Comparer');
-const LottoMachine = require('../domain/LottoMachine');
-const ProfitCalculator = require('../domain/ProfitCaculator');
-const WinningLotto = require('../domain/WinningLotto');
+import Comparer from '../domain/Comparer';
+import LottoMachine from '../domain/LottoMachine';
+import ProfitCalculator from '../domain/ProfitCaculator';
+import WinningLotto from '../domain/WinningLotto';
 
-const Console = require('../util/Console');
-const InputView = require('../view/consoleView/InputView');
-const OutputView = require('../view/consoleView/OutputView');
-const Validator = require('../domain/Validator');
+import Console from '../util/Console';
+import InputView from '../view/consoleView/InputView';
+import OutputView from '../view/consoleView/OutputView';
+import Validator from '../domain/Validator';
 
 class LottoController {
   #lottos;
@@ -101,4 +101,4 @@ class LottoController {
   }
 }
 
-module.exports = LottoController;
+export default LottoController;

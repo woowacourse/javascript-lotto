@@ -1,4 +1,4 @@
-const { RANK } = require('../constant/setting');
+import { RANK } from '../constant/setting';
 
 class Comparer {
   static #INIT_RANKING = {
@@ -52,4 +52,4 @@ class Comparer {
   }
 }
 
-module.exports = Comparer;
+export default Comparer;

@@ -1,14 +1,14 @@
-const { ERROR_MESSAGE } = require('../constant/message');
-const { COMMAND, LOTTO } = require('../constant/setting');
+import { ERROR_MESSAGE } from '../constant/message';
+import { COMMAND, LOTTO } from '../constant/setting';
 
 const Validator = {
   purchaseAmount(money) {
-    this.number(money);
+    Validator.number(money);
 
-    if (this.isLessThanMinimum(+money)) {
+    if (Validator.isLessThanMinimum(+money)) {
       throw new Error(ERROR_MESSAGE.LESS_THAN_MINIMUM);
     }
-    if (this.hasChange(+money)) {
+    if (Validator.hasChange(+money)) {
       throw new Error(ERROR_MESSAGE.HAS_CHANGE);
     }
   },
@@ -23,31 +23,31 @@ const Validator = {
 
   winningNumber(numbers) {
     const winningNumbers = numbers.split(',');
-    winningNumbers.forEach((number) => this.winningNumberElement(number));
+    winningNumbers.forEach((number) => Validator.winningNumberElement(number));
 
-    if (!this.isValidLength(winningNumbers)) {
+    if (!Validator.isValidLength(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER_LENGTH);
     }
-    if (this.hasDuplicatedNumber(winningNumbers)) {
+    if (Validator.hasDuplicatedNumber(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
     }
   },
 
   winningNumberElement(number) {
-    this.number(number);
+    Validator.number(number);
 
-    if (this.isOutOfRange(number)) {
+    if (Validator.isOutOfRange(number)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
     }
   },
 
   bonusNumber(bonusNumber, winningNumber) {
-    this.number(bonusNumber);
+    Validator.number(bonusNumber);
 
-    if (this.isOutOfRange(+bonusNumber)) {
+    if (Validator.isOutOfRange(+bonusNumber)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
     }
-    if (this.isDuplicatedNumber(+bonusNumber, winningNumber)) {
+    if (Validator.isDuplicatedNumber(+bonusNumber, winningNumber)) {
       throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
     }
   },
@@ -57,7 +57,7 @@ const Validator = {
   },
 
   restartCommand(command) {
-    if (!this.isValidRestartCommand(command)) {
+    if (!Validator.isValidRestartCommand(command)) {
       throw new Error(ERROR_MESSAGE.INVALID_RESTART_COMMAND);
     }
   },
@@ -79,10 +79,10 @@ const Validator = {
   },
 
   number(number) {
-    if (this.isNull(number)) {
+    if (Validator.isNull(number)) {
       throw new Error(ERROR_MESSAGE.NULL);
     }
-    if (this.hasBlank(number)) {
+    if (Validator.hasBlank(number)) {
       throw new Error(ERROR_MESSAGE.HAS_BLANK);
     }
     if (isNaN(number)) {
@@ -99,4 +99,4 @@ const Validator = {
   },
 };
 
-module.exports = Validator;
+export default Validator;

@@ -22,4 +22,4 @@ const COMMAND = {
   NO: 'n',
 };
 
-module.exports = { RANK, LOTTO, COMMAND, AVAILABLE_NUMBERS };
+export { RANK, LOTTO, COMMAND, AVAILABLE_NUMBERS };
