@@ -29,6 +29,26 @@ class LottoController {
     }
   }
 
+  handleWinningLotto(lottoFormData) {
+    const winningLottoErrorView = new ErrorView(
+      $('#winningNumbersErrorArea'),
+      $('#firstNumberInput')
+    );
+
+    const winningLotto = this.#parseWinningLotto(lottoFormData);
+    const bonusNumber = this.#parseBonusNumber(lottoFormData);
+    console.log({ l: winningLotto, b: bonusNumber });
+
+    try {
+      validator.throwErrorIfInvalidWinningLotto(winningLotto);
+      validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      winningLottoErrorView.hideErrorMessage();
+      this.#showLottoGameResult(winningLotto, bonusNumber);
+    } catch ({ message }) {
+      winningLottoErrorView.renderErrorMessage(message);
+    }
+  }
+
   #parseWinningLotto(lottoFormData) {
     const winningLottos = [];
 
