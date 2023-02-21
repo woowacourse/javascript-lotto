@@ -5,12 +5,55 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="./src/css/style.css"></link>
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
+    
+      <div id="app">
+        <header>
+          <div id="head_title">🎱 행운의 로또</div>
+        </header>
+        <main>
+          <div id="main_contents">
+            <div id="title">🎱 내 번호 당첨 확인 🎱</div>
+            <form id="money_form" method="post">
+              구입할 금액을 입력해주세요
+              <input id = "input_money" type="text" name="money" value="금액">
+              <input id ="btn_money" type="submit" value="구입">
+            </form>
+            <div id="buy_contents">
+              <div id = "buy_count_text">총 개를 구매했습니다</div>
+              <div id = "buy_lottos"></div>
+            </div>
+            <div id="win_contents">
+              <form id = "winNum_form" method="post">
+                지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+                <p></p>
+                <div class="container">
+                  <span>당첨 번호</span>
+                  <span>보너스 번호</span>
+                </div>
+                <p></p>
+                <div class="container">
+                  <span>
+                    <input class = "input_number" type="number" name="winNum" min="1" max="45">
+                    <input class = "input_number" type="number" name="winNum" min="1" max="45">
+                    <input class = "input_number" type="number" name="winNum" min="1" max="45">
+                    <input class = "input_number" type="number" name="winNum" min="1" max="45">
+                    <input class = "input_number" type="number" name="winNum" min="1" max="45">
+                    <input class = "input_number" type="number" name="winNum" min="1" max="45">
+                  </span>
+                  <span>
+                    <input class = "input_number" type="number" name="bonusNum" min="1" max="45">
+                  </span>
+                </div>
+                <input id ="btn_win_lotto" type="submit" value="결과 확인하기">
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
