@@ -7,15 +7,6 @@ import "../index.css";
 import Controller from "./Controller.js";
 
 const inputAmount = document.querySelector(".inputAmount");
-const eachInputLottoNumber = document.querySelectorAll(".eachInputLottoNumber");
-const eachInputBonusNumber = document.querySelector(".eachInputBonusNumber");
-
-const purchase = document.querySelector(".purchase");
-const restart = document.querySelector(".restart");
-const result = document.querySelector(".result");
-
-const count = document.querySelectorAll(".count");
-const randomLottoList = document.querySelector(".randomLottoList");
 const inputAmountNext = document.querySelector(".inputAmountNext");
 const dialog = document.querySelector("dialog");
 
@@ -27,6 +18,10 @@ class App {
   }
 
   addEvent() {
+    const purchase = document.querySelector(".purchase");
+    const restart = document.querySelector(".restart");
+    const result = document.querySelector(".result");
+
     purchase.addEventListener("click", this.handleAmountError.bind(this));
     inputAmount.addEventListener("keypress", (event) => {
       if (event.key === "Enter") this.handleAmountError();
@@ -36,7 +31,6 @@ class App {
   }
 
   handleAmountError() {
-    console.log("d");
     const error = this.checkAmount(inputAmount.value);
     this.resetInputElement(inputAmount);
     if (error) return alert(error);
@@ -62,10 +56,13 @@ class App {
   }
 
   showRandomLottoList(randomLotteries) {
+    const randomLottoList = document.querySelector(".randomLottoList");
     randomLottoList.innerHTML = "";
+
     randomLotteries.forEach((numbers) => {
       randomLottoList.appendChild(this.makeEachRandomLotto(numbers));
     });
+
     inputAmountNext.style.display = "block";
   }
 
@@ -91,25 +88,35 @@ class App {
   clickResult() {
     const result = this.checkLottoBonus();
     if (typeof result === "string") return result;
+
     dialog.showModal();
     this.showResult(result);
   }
 
   checkLottoBonus() {
+    const eachInputLottoNumber = document.querySelectorAll(
+      ".eachInputLottoNumber"
+    );
+    const eachInputBonusNumber = document.querySelector(
+      ".eachInputBonusNumber"
+    );
+
     const lotto = [];
-    const bonus = eachInputBonusNumber.value;
-    this.resetInputElement(eachInputBonusNumber);
     eachInputLottoNumber.forEach((numberElem) => {
       lotto.push(+numberElem.value);
       this.resetInputElement(numberElem);
     });
 
-    console.log(lotto);
+    const bonus = eachInputBonusNumber.value;
+    this.resetInputElement(eachInputBonusNumber);
+
     return this.controller.inputLottoBonus(lotto, +bonus);
   }
 
   showResult(result) {
-    count.forEach((rank, index) => (rank.textContent = result[index]));
+    const winnerCount = document.querySelectorAll(".winnerCount");
+
+    winnerCount.forEach((rank, index) => (rank.textContent = result[index]));
     document.querySelector(".rate").textContent = `${
       result[result.length - 1]
     }`;
