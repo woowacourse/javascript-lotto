@@ -7,6 +7,7 @@
 import './static/css/style.css';
 import LottoWebController from './controller/LottoWebController';
 import { MINIMUM_LOTTO_UNIT } from './data/Constants';
+import { WINNING_ORDER } from './data/Constants';
 
 const afterPurchaseShow = document.getElementsByClassName('after-purchase')[0];
 const lottoListWrap = document.getElementsByClassName('lotto-list')[0];
@@ -15,6 +16,10 @@ const purchaseLottoCount = document.getElementById('lotto-purchase-count');
 const winNumberElement = document.getElementsByClassName('winNumber');
 
 const modal = document.getElementsByClassName('result-modal-background')[0];
+
+const ranks = document.getElementsByClassName('rank');
+
+const earnRateElement = document.getElementById('earnRate');
 const controller = new LottoWebController();
 
 const setLottos = () => {
@@ -49,6 +54,20 @@ const result = () => {
   controller.setWinNumber(winNumber, bonusNumber);
 
   modal.style.display = 'block';
+
+  matchWinRank();
+  earnRateElement.innerText = controller.printEarningRate();
+};
+
+const matchWinRank = () => {
+  const rank = controller.printWinningResult();
+  WINNING_ORDER.forEach((order) => {
+    if (order === 'FIFTH') ranks[0].innerText = rank[order];
+    else if (order === 'FOURTH') ranks[1].innerText = rank[order];
+    else if (order === 'THIRD') ranks[2].innerText = rank[order];
+    else if (order === 'SECOND') ranks[3].innerText = rank[order];
+    else if (order === 'FIRST') ranks[4].innerText = rank[order];
+  });
 };
 
 document
