@@ -112,7 +112,7 @@ header {
   font-size: 15px;
 
   /* 히든 속성 */
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 #win_contents {
