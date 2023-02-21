@@ -3,6 +3,18 @@
   margin-top: 1rem;
 }
 
+.mgTop_2_rem {
+  margin-top: 2rem;
+}
+
+.mgTop_3_rem {
+  margin-top: 3rem;
+}
+
+.mgTop_5_rem {
+  margin-top: 5rem;
+}
+
 .mgLeft_1_rem {
   margin-left: 1rem;
 }
@@ -17,6 +29,10 @@
 
 .mgBottom_1_rem {
   margin-bottom: 1rem;
+}
+
+.mgBottom_5_rem {
+  margin-bottom: 5rem;
 }
 
 .mg_1_rem {
