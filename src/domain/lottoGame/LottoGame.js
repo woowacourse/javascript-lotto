@@ -52,6 +52,7 @@ class LottoGame {
   }
 
   #validateMoneyInput(money) {
+    Validator.validateIsEmpty(money);
     Validator.validateNumberType(money);
     Validator.validateExactUnit(money, LOTTO_PRICE);
   }

@@ -16,10 +16,10 @@ class App {
       this.showLottoList();
       this.showWinningLottoInput();
       this.showResultButton();
-      $moneyInput.value = '';
     } catch (error) {
       alert(error.message);
     }
+    $moneyInput.value = '';
   };
 
   getLottoListTemplate = () => {};
