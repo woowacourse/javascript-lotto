@@ -1,0 +1,16 @@
+:root {
+  --fontSizeTitle: 24px;
+  --fontSizeSubtitle: 20px;
+  --fontSizeBody: 15px;
+  --fontSizePlaceholder: 15px;
+  --fontSizeCaption: 14px;
+
+  --fontWeightTitle: 800;
+  --fontWeightSubtitle: 600;
+  --fontWeightCaption: 700;
+
+  --fontColorPrimary: rgba(0, 0, 0, 0.87);
+  --fontColorPlaceholder: #8b8b8b;
+
+  --fontFamilyPrimary: 'Roboto';
+}
