@@ -12,6 +12,7 @@ export const renderLottoList = (lottoNumbers) => {
     const lottoElement = document.createElement('div');
     const lottoNumberElement = document.createElement('p');
     const lottoText = `🎫 ${lottoNumber.join(', ')}`;
+    lottoElement.className = 'lotto-numbers';
     lottoNumberElement.innerText = lottoText;
     lottoElement.appendChild(lottoNumberElement);
     lottosContainer.appendChild(lottoElement);
