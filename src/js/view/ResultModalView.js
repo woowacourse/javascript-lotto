@@ -9,6 +9,12 @@ class ResultModalView {
     this.#setListeners();
   }
 
+  displayResult(gameData, rate) {
+    this.show();
+    this.#displayPrizeResult(gameData);
+    this.#displayRateResult(rate);
+  }
+
   show() {
     $('#resultModal').classList.remove('hidden');
   }
