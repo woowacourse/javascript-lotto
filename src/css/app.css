@@ -66,6 +66,12 @@ footer {
   background-color: var(--grayScale400);
 }
 
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .copyright {
   color: var(--colorPrimary);
   font-size: var(--fontSizeCaption);
