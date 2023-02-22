@@ -1,6 +1,8 @@
 import { $ } from '../dom/dom';
 
 const renderStatistics = (rankings, rewardRate) => {
+  $('#winning-statistics').classList.remove('hidden');
+
   const array = [
     [5, '3개', '5,000'],
     [4, '4개', '50,000'],
@@ -9,6 +11,7 @@ const renderStatistics = (rankings, rewardRate) => {
     [1, '6개', '2,000,000,000'],
   ];
   $('#winning-statistics').innerHTML = `
+  <div id="winning-statistics-layout">
     <div>🏆 당첨 통계 🏆</div>
     <table>
         <th>일치 갯수</th>
@@ -29,6 +32,7 @@ const renderStatistics = (rankings, rewardRate) => {
     </table>
     <div>당신의 총 수익률은 ${rewardRate}입니다.</div>
     <button>다시 시작하기</button>
+  </div>
   `;
 };
 

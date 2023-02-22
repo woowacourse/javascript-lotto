@@ -4,6 +4,7 @@
 @import url(./purchaseAmountForm.css);
 @import url(./purchaseLotto.css);
 @import url(./winningForm.css);
+@import url(./statistics.css);
 
 #app {
   min-height: 100vh;
