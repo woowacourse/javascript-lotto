@@ -47,6 +47,14 @@ class LottoWebGame {
       .map((lotto) => `<p>${lotto.getNumbers().join(', ')}</p>`)
       .join('');
   };
+
+  makeRankings = (winningNumbers, bonusNumber) => {
+    return this.#lottos
+      .filter((lotto) => lotto.calculateMatchCount(winningNumbers) >= RANKING_THRESHOLD)
+      .map((lotto) =>
+        lotto.calculateRanking(lotto.calculateMatchCount(winningNumbers), bonusNumber)
+      );
+  };
 }
 
 export default LottoWebGame;
