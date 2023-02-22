@@ -17,6 +17,12 @@ td {
   text-align: center;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 :root {
   --lotto-primary: #4e5ba6;
   --lotto-greyscale-1: #ffffff;
@@ -118,6 +124,8 @@ td {
 .number-input {
   width: 34px;
   height: 36px;
+  margin-right: 8px;
+  text-align: center;
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 4px;
 }
