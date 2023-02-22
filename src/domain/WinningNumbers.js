@@ -1,8 +1,8 @@
-const {
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
+import {
   LOTTO_NUMBERS_COUNT,
-} = require('./constants');
+  MAX_LOTTO_NUMBER,
+  MIN_LOTTO_NUMBER,
+} from './constants';
 
 class WinningNumbers {
   #numbers;
@@ -72,4 +72,4 @@ class WinningNumbers {
   }
 }
 
-module.exports = WinningNumbers;
+export default WinningNumbers;

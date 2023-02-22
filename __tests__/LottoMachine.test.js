@@ -1,4 +1,4 @@
-const LottoMachine = require('../src/domain/LottoMachine');
+import LottoMachine from '../src/domain/LottoMachine';
 
 describe('LottoMachine 클래스 테스트', () => {
   test.each([[0], [8001], ['']])(

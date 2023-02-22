@@ -1,4 +1,4 @@
-const WinningNumbers = require('../src/domain/WinningNumbers');
+import WinningNumbers from '../src/domain/WinningNumbers';
 
 describe('WinningNumbers 클래스 테스트', () => {
   test.each([
