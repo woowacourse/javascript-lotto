@@ -1,13 +1,8 @@
-import { LOTTO, REGEXP } from '../constants/lottoConstants.js';
-import { CustomError, ERROR_CODE } from '../utils/Error.js';
+import { LOTTO, REGEXP, ERROR } from '../constants/constants.js';
 
 export function checkWinningNumberRange(number) {
   if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER) {
-    throw new CustomError({
-      code: ERROR_CODE.INVALID_NUMBER_RANGE,
-      payload: { min: LOTTO.MIN_NUMBER, max: LOTTO.MAX_NUMBER },
-      number,
-    });
+    throw new Error(ERROR.INVALID_NUMBER_RANGE(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
   }
 }
 
@@ -17,12 +12,12 @@ export function checkWinningNumbersRange(numbers) {
 
 export function checkWinningNumbersFormat(winningNumber) {
   if (!REGEXP.ONLY_NUMBERS_WITH_COMMA.test(winningNumber)) {
-    throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, winningNumber);
+    throw new Error(ERROR.INVALID_FORMAT);
   }
 }
 
 export function checkBonusNumberFormat(bonusNumber) {
   if (!REGEXP.ONLY_NUMBER.test(bonusNumber) || checkWinningNumberRange(bonusNumber)) {
-    throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, bonusNumber);
+    throw new Error(ERROR.INVALID_FORMAT);
   }
 }

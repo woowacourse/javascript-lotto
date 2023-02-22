@@ -1,7 +1,7 @@
-import { CustomError, ERROR_CODE } from '../utils/Error.js';
+import { ERROR } from '../constants/constants.js';
 
 export default function checkUnit(amount, unit) {
   if (amount % unit !== 0) {
-    throw new CustomError({ code: ERROR_CODE.INVALID_AMOUNT_UNIT, payload: { unit } }, amount);
+    throw new Error(ERROR.INVALID_AMOUNT_UNIT(unit));
   }
 }
