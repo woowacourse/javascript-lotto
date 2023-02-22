@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import LottoMachine from './domain/LottoMachine';
 import { renderLottosContainer, renderResultTable } from './view/web/render';
+import getNumberValue from './util/getNumberValue';
 import '../public/style.css';
 import WebController from './WebController';
 
@@ -10,18 +10,16 @@ const modal = document.querySelector('.modal');
 
 const webController = new WebController();
 
-const getIntegerValue = (numberInput) => {
-  return Number(numberInput.value);
-};
-
 const handlePayments = () => {
   const paymentsInput = document.querySelector('.payments-input');
-  const payments = getIntegerValue(paymentsInput);
+  const payments = getNumberValue(paymentsInput);
+
   webController.receivePaymentsInput(payments);
 };
 
 const changeCSSByPaymentsBtnClick = () => {
   const winningLottoContainer = document.querySelector('.winning-lotto-container');
+
   paymentsBtn.disabled = true;
   resultBtn.disabled = false;
   winningLottoContainer.style.visibility = 'visible';
@@ -36,10 +34,10 @@ const handleWinningLottos = () => {
   const winningNumberInputs = document.querySelectorAll('.winning-number-input');
   const bonusNumberInput = document.querySelector('.bonus-number-input');
 
-  const winningNumbers = Array.from(winningNumberInputs, getIntegerValue);
+  const winningNumbers = Array.from(winningNumberInputs, getNumberValue);
   webController.receiveWinningLottoNumbersInput(winningNumbers);
 
-  const bonusNumber = getIntegerValue(bonusNumberInput);
+  const bonusNumber = getNumberValue(bonusNumberInput);
   webController.receiveBonusNumberInput(bonusNumber);
 };
 
