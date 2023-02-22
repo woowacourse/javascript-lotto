@@ -14,23 +14,12 @@
           <h2 class="title game-title">🎱 내 번호 당첨 확인 🎱</h2>
           <div class="lotto-game-section purchase-amount-section">
             <label for="purchase-amount-input">구입 금액을 입력해주세요.</label>
-            <div class="purchase-amount-form">
+            <form class="purchase-amount-form">
               <input type="text" id="purchase-amount-input" placeholder="금액" />
               <button type="submit" class="button caption">구입</button>
-            </div>
+            </form>
           </div>
-          <div class="lotto-game-section">
-            <p>총 7개를 구매하였습니다.</p>
-            <ul class="lotto-list">
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-              <li class="lotto-item">1, 2, 3, 5, 6, 7</li>
-            </ul>
-          </div>
+          <div class="lotto-game-section" id="purchase-lotto-list-section"></div>
           <div class="lotto-game-section">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div class="winning-numbers-form">
