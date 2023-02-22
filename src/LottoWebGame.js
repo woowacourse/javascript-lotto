@@ -12,6 +12,7 @@ class LottoWebGame {
   bindEvents = () => {
     $('#buy-button').addEventListener('click', this.handleBuyButton);
     $('#result-button').addEventListener('click', this.handleResultButton);
+    $('#replay-button').addEventListener('click', this.handleReplayButton);
   };
 
   handleBuyButton = () => {
@@ -39,6 +40,17 @@ class LottoWebGame {
     } catch (e) {
       alert(e.message);
     }
+  };
+
+  handleReplayButton = () => {
+    this.#lottos = [];
+    $('.hidden-area').classList.remove('show');
+    $('#purchase-amount').value = '';
+    $$('.winning-numbers > input').forEach((input) => {
+      input.value = '';
+    });
+    $('.bonus-number > input').value = '';
+    this.toggleResultModal();
   };
 
   initLottos = (purchaseAmount) => {
