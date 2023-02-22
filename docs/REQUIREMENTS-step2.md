@@ -38,7 +38,15 @@
 
   - [ ] 당첨 횟수 통계 출력
 
-    - 해당하는 DOM(.prize-count-xxx)의 각 요소에 당첨 횟수를 표시한다.
+    - 해당하는 DOM(.modal-statistics-container)에 통계자료를 출력한다.
+
+    ```
+    <div class="statistics-container">
+      <div>n개</div>
+      <div>5000</div>
+      <div>n개</div>
+    </div>
+    ```
 
   - [ ] 수익률 출력
 
