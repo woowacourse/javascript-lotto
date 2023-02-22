@@ -9,8 +9,10 @@ class LottoPurchaseForm {
       id="lotto-purchase-input"
       type="number"
       min="1000"
+      max="10000"
       step="1000"
       placeholder="금액 (1,000 단위)"
+      autofocus
       required
       />
       <button type="submit" class="lotto-purchase-button">구입</button>
