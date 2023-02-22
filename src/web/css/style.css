@@ -14,30 +14,27 @@ body {
 	font-family : 'Roboto', 'sans-serif';
 }
 
-#header-container {
+#header {
 	display: flex;
 	align-items: center;
-	box-sizing: border-box;
 	width: 100vw;
 	height: 64px;
 	background-color: #4E5BA6;
 	border-bottom: 1px solid rgba(78, 91, 166, 0.2);
-}
-
-#top-navigation-wrap {
-	width: 150px;
 	text-align: center;
-	margin-left: 130px;
 }
 
 #header-button {
 	border: none;
 	background: transparent;
 	cursor: pointer;
-	text-align: center;
+	width: 147px;
+	height: 36px;
+	font-style: normal;
 	font-size: 24px;
-	font-weight: 700;
 	line-height: 36px;
+	font-weight: 700;
+	margin-left: 100px;
 	color: white;
 }
 
@@ -49,8 +46,8 @@ body {
 
 #app-container {
 	background-color: white;
-	width: 360px;
-	height: 600px;
+	width: 400px;
+	height: 630px;
 	border: 1px solid #E0E0E0;
 }
 
@@ -64,10 +61,18 @@ body {
 	margin: 40px 0 22px 0;
 }
 
+#app-title-container > span {
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: 600;
+}
+
 #app-main-container {
-	font-size: 14px;
-	font-weight: 350;
-	letter-spacing: 1px;
+	font-size: 15px;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	letter-spacing: 0.5px;
 }
 
 #price-container {
@@ -82,6 +87,7 @@ body {
 #price-form {
 	display: flex;
 	justify-content: space-between;
+	font-size: 14px;
 }
 
 #price-input {
@@ -105,7 +111,8 @@ body {
 #lottos-container {
 	display: flex;
 	flex-direction: column;
-	height: 300px;
+	height: 280px;
+	margin-bottom: 30px;
 }
 
 #lottos-amount {
@@ -128,6 +135,24 @@ body {
 #lotto-emoji {
 	font-size: 30px;
 	margin-right: 10px;
+}
+
+#winning-numbers-labels {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#winning-numbers-forms {
+	display: flex;
+	justify-content: space-between;
+}
+
+#winning-numbers-forms input {
+	width: 34px;
+	height: 36px;
+	border: 1px solid #B4B4B4;
+	border-radius: 4px;
 }
 
 #footer {

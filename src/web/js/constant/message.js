@@ -1,5 +1,7 @@
 const MESSAGE = Object.freeze({
   BUY_LOTTO: quantity => `${quantity}개를 구매했습니다.`,
+  LUCKY_NUMBERS: '당첨 번호',
+  BONUS_NUMBER: '보너스 번호',
   GET_PROFIT: profit => `총 수익률은 ${profit}%입니다.`,
   STATISTICS: '당첨 통계',
   DIVISION_LINE: '--------------------',

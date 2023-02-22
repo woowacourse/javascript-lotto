@@ -1,7 +1,6 @@
 import InputChecker from './validators/InputChecker.js';
 import LottoGame from './domains/LottoGame.js';
-import MESSAGE from './constant/message.js';
-import { RENDER_TICKET } from './util/renderer.js';
+import tagGenerator from './util/tagRenderer.js';
 
 const $ = selector => document.querySelector(selector);
 
@@ -12,13 +11,12 @@ const App = {
 
   render: {
     lottos: lottos => {
-      $('#lottos-container').innerHTML = `
-			<div id="lottos-amount">
-				<span>${MESSAGE.BUY_LOTTO(lottos.length)}</span>
-			</div>
-			<div id="lottos">
-				${RENDER_TICKET(lottos)}
-			</div>`;
+      $('#lottos-container').innerHTML = tagGenerator.generateLottos(lottos);
+    },
+
+    winningNumbers: () => {
+      $('#winning-numbers').innerHTML =
+        tagGenerator.generateWinningNumberTags();
     },
   },
 
@@ -40,10 +38,10 @@ const App = {
     if (!price) {
       return;
     }
-
     LottoGame.init(price);
 
     this.render.lottos(LottoGame.getLottos());
+    this.render.winningNumbers();
   },
 };
 

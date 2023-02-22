@@ -12,17 +12,13 @@
 	<body>
 		<div id="app-root" class="document">
 			<header id="header">
-				<div id="header-container">
-					<div id="top-navigation-wrap">
-						<input id="header-button" type="button" value="🎱행운의 로또" />
-					</div>
-				</div>
+				<input id="header-button" type="button" value="🎱 행운의 로또" />
 			</header>
 			<main id="page-main">
 				<div id="app-container">
 					<div id="app-contents">
 						<div id="app-title-container">
-							<h2>🎱 내 번호 당첨 확인 🎱</h2>
+							<span>🎱 내 번호 당첨 확인 🎱</span>
 						</div>
 						<div id="app-main-container">
 							<div id="price-container">
@@ -36,15 +32,17 @@
 							</div>
 							<div id="lottos-container">
 							</div>
-							<div class="numbers-containert"></div>
-							<div class="result-container"></div>
+							<div id="winning-numbers">
+							</div>
 						</div>
+						<div id="result-container"></div>
 					</div>
 				</div>
-			</main>
-			<footer id="footer">
-				<span>Copyright 2023. woowacourse</span>
-			</footer>
+		</div>
+		</main>
+		<footer id="footer">
+			<span>Copyright 2023. woowacourse</span>
+		</footer>
 		</div>
 		<script type="module" defer src="../js/step2-index.js"></script>
 	</body>
