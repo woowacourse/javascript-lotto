@@ -2,7 +2,7 @@ import LottoController from './LottoController';
 import InputView from './view/web/InputView';
 import OutputView from './view/web/OutputView';
 
-import './view/web/component';
+import './view/web';
 
 const lottoController = new LottoController({
   inputView: InputView,
