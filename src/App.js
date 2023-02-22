@@ -28,8 +28,7 @@ class App {
 
   async playGame() {
     await this.#lottoController.proceedBuyLottos();
-    await this.#lottoController.proceedWinningLotto();
-    this.#lottoController.proceedLottoResult();
+    await this.#lottoController.proceedLottoResult();
   }
 }
 

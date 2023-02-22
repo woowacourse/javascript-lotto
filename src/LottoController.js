@@ -2,7 +2,6 @@ import RestartCommand from './constant/RestartCommand';
 import LottoResult from './domain/LottoResult';
 import Buyer from './domain/subject/Buyer';
 import Seller from './domain/subject/Seller';
-import WinningLotto from './domain/WinningLotto';
 
 class LottoController {
   #inputView;
@@ -13,9 +12,6 @@ class LottoController {
 
   /** @type {Seller} */
   #seller;
-
-  /** @type {WinningLotto} */
-  #winningLotto;
 
   constructor({ inputView, outputView }) {
     this.#inputView = inputView;
@@ -31,11 +27,8 @@ class LottoController {
     this.#outputView.printLottos(this.#buyer.getLottos());
   }
 
-  async proceedWinningLotto() {
-    this.#winningLotto = await this.#inputView.readWinningLotto();
-  }
-
-  proceedLottoResult() {
+  async proceedLottoResult() {
+    const winningLotto = await this.#inputView.readWinningLotto();
     const lottoResult = new LottoResult(winningLotto);
     this.#buyer.receiveRewards(lottoResult);
     const profitRate = this.#buyer.getProfitRate();
