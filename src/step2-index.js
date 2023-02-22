@@ -1,6 +1,28 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import '../reset.css';
+import '../style.css';
+
+import validator from './domain/validator';
 
 const budgetForm = document.querySelector('.budget_form');
+const budgetError = document.querySelector('.budget_error');
+
+const step2 = document.querySelector('#step2');
+
+const displayBudgetError = (message) => {
+  budgetError.innerText = message;
+  budgetError.style.visibility = 'visible';
+};
+
+const onSubmitBudgetForm = (event) => {
+  event.preventDefault();
+  const budget = event.target[0].value;
+  try {
+    validator.validateBudget(budget);
+  } catch ({ message }) {
+    return displayBudgetError(message);
+  }
+  budgetError.innerText = '';
+  step2.style.visibility = 'visible';
+};
+
+budgetForm.addEventListener('submit', onSubmitBudgetForm);
