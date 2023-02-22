@@ -4,7 +4,7 @@ const LottoGame = require("../domain/LottoGame");
 const moneyForm = document.getElementById("money_form");
 const win_contents = document.getElementById("win_contents");
 
-const Controller = {
+const ViewController = {
   /** @type {LottoGame} */
   lottoGame: undefined,
   play() {
@@ -22,4 +22,4 @@ const Controller = {
   },
 };
 
-module.exports = Controller;
+module.exports = ViewController;
