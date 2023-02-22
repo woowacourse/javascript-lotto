@@ -57,7 +57,10 @@ class LottoResultModal {
   }
 
   renderProfit() {
-    this.modal.insertAdjacentHTML(
+    this.resultWrapper = document.createElement('div');
+    this.resultWrapper.id = 'result-wrapper';
+    this.modal.appendChild(this.resultWrapper);
+    this.resultWrapper.insertAdjacentHTML(
       'beforeend',
       `<p id="profit-message">당신의 총 수익률은 ${this.profitRate}%입니다.</p>
       <button class="result-button">다시 시작하기</button>
@@ -67,6 +70,8 @@ class LottoResultModal {
 
   closeButtonHandler() {
     this.toggleModal();
+    this.table.remove();
+    this.resultWrapper.remove();
   }
 }
 

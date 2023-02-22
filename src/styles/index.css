@@ -146,6 +146,11 @@ td {
   display: none;
 }
 
+#result-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 #profit-message {
   font-weight: 700;
   font-size: 15px;
