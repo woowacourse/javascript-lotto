@@ -1,0 +1,251 @@
+header {
+  background-color: #4e5ba6;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+body {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  /* position: relative; */
+}
+
+h1 {
+  margin-left: 130px;
+}
+
+footer {
+  bottom: 0;
+  display: flex;
+  height: 80px;
+  border-top: 1px solid #4e5ba633;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  width: 382px;
+  height: 36px;
+  margin: auto auto 28px auto;
+}
+
+.ticket {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.app-box {
+  width: 414px;
+  height: 727px;
+
+  /* top: 200px; */
+  /* left: 236px; */
+  margin: 84px auto 84px auto;
+  border: solid 1px #0000001f;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+section {
+  margin: 1rem;
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+#ticket-list {
+  height: 300px;
+  overflow: scroll;
+}
+
+#copyright {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #4e5ba6;
+
+  line-height: 1rem;
+  text-align: center;
+}
+
+#number-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+#number-message {
+  display: flex;
+  justify-content: space-between;
+}
+#winning-numbers > input,
+#bonus-number > input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin: 0px 1px 1px 1px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+button,
+dialog {
+  all: unset;
+  box-sizing: border-box;
+
+  padding: 3px;
+  font: 700 Roboto 1.5rem;
+  height: 2rem;
+  background-color: #4e5ba6;
+  color: white;
+  letter-spacing: 0.1px;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+#money::placeholder {
+  font: 700 Roboto 2rem;
+}
+
+#money {
+  box-sizing: border-box;
+  height: 1.5rem;
+  padding: 3px;
+  height: 2rem;
+  flex-grow: 1;
+  margin-right: 10px;
+  padding: 0.5rem;
+}
+
+#money-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#result-button {
+  margin: 2rem auto 1rem auto;
+  text-align: center;
+  width: 382px;
+}
+.ticket {
+  display: flex;
+  align-items: center;
+}
+
+.ticket > span {
+  font-size: 1.5rem;
+  margin-right: 0.4rem;
+}
+
+/* modal */
+
+body {
+  overflow: hidden;
+}
+
+#result-modal {
+  width: 500px;
+  height: 700px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: white;
+  border-radius: 4px;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+#result-title {
+  margin: 40px 0;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+#result-table {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#result-head {
+  font-weight: bold;
+  border-top: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.result-row {
+  font-size: 1.2rem;
+  width: 100%;
+  height: 50px;
+
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.result-row > div {
+  width: 130px;
+  margin: 0px;
+}
+
+#result-earning {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#retry-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#retry-button {
+  margin: 30px;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  z-index: 3;
+}
+
+.close-button {
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+}
