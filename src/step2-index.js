@@ -2,7 +2,7 @@
 import './css/style.css';
 import './css/layout.css';
 import './css/modal.css';
-import Common from './utils/common';
+import Render from './utils/Render';
 import Header from './view/containers/Header';
 import GameBox from './view/containers/GameBox';
 
@@ -11,5 +11,5 @@ import GameBox from './view/containers/GameBox';
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 console.log('step2-index.js');
-Common.initContainer("header", () => Header(), () => { });
-Common.initContainer("game-box", () => GameBox(), () => { });
+Render.initContainer("header", () => Header(), () => { });
+Render.initContainer("game-box", () => GameBox(), () => { });
