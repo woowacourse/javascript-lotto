@@ -34,6 +34,10 @@ const Validators = {
   isCorrectLength(lottoNumbers) {
     return lottoNumbers.length === Lotto.MAX_LENGTH;
   },
+
+  isDuplicatedNumbers(lottoNumbers) {
+    return new Set(lottoNumbers).size !== lottoNumbers.length;
+  },
 };
 
 export default Validators;

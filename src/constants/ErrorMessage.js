@@ -9,6 +9,7 @@ const ERROR_MESSAGE = {
   INPUT_SIX_NUMBERS: "6개의 숫자를 입력해주세요.",
   INPUT_NOT_DUPLICATED_NUMBER:
     "보너스 번호는 당첨번호와 중복되지 않아야합니다.",
+  INPUT_NOT_DUPLICATED_EACH_NUMBER: "모두 다른 6개의 숫자를 입력해주세요.",
 };
 
 export default ERROR_MESSAGE;
