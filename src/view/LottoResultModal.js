@@ -25,36 +25,35 @@ class LottoResultModal {
     this.renderProfit();
   }
 
-  renderTable() {
-    this.modal.appendChild(this.table);
-    this.table.insertAdjacentHTML(
-      'afterbegin',
-      `<thead>
+  createResultTable() {
+    const tableHeader = `<thead>
     <tr>
       <th>일치 개수</th>
       <th>당첨금</th>
       <th>당첨 개수</th>
     </tr>
-  </thead>`,
-    );
+  </thead>`;
+    const tableBody = `<tbody>
+  ${this.receivedRewards
+    .reverse()
+    .map(
+      ({ reward, count }) => `
+  <tr>
+    <td>${reward.getMatchingNumber()}개 ${reward instanceof BonusNumberReward ? `+보너스볼` : ''}
+    </td>
+    <td>${reward.getMoney().toLocaleString()}</td>
+    <td>${count}개</td>
+  </tr>
+  `,
+    )
+    .join('')}
+    </tbody>`;
+    return tableHeader + tableBody;
+  }
 
-    const resultTable = `<tbody>
-    ${this.receivedRewards
-      .reverse()
-      .map(
-        ({ reward, count }) => `
-    <tr>
-      <td>${reward.getMatchingNumber()}개 ${reward instanceof BonusNumberReward ? `+보너스볼` : ''}
-      </td>
-      <td>${reward.getMoney().toLocaleString()}</td>
-      <td>${count}개</td>
-    </tr>
-    `,
-      )
-      .join('')}
-      </tbody>`;
-
-    this.table.insertAdjacentHTML('beforeend', resultTable);
+  renderTable() {
+    this.modal.appendChild(this.table);
+    this.table.insertAdjacentHTML('beforeend', this.createResultTable(this.receivedRewards));
   }
 
   renderProfit() {
