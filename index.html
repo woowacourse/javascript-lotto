@@ -4,12 +4,122 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
-
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div id="app" class="bg-gray-100">
+      <header><h1 class="text-title text-white">🎱 행운의 로또</h1></header>
+      <div class="lotto bg-white">
+        <section>
+          <h2 class="text-title">🎱 내 번호 당첨 확인 🎱</h2>
+          <form class="moneyForm">
+            <h6 class="text-body">구입할 금액을 입력해주세요.</h6>
+            <div class="buyContainer">
+              <input
+                class="moneyAmount text-placeholder text-body"
+                placeholder="금액"
+                type="number"
+              />
+              <button class="text-caption bg-blue text-white" value="구입">
+                구입
+              </button>
+            </div>
+          </form>
+          <div>
+            <span class="lottoCount text-body">총 7개를 구매하였습니다.</span>
+            <div class="lottoNumberConatiner">
+              <div class="lottoNumber">
+                <span class="imoticion">🎟️</span>
+                <span class="text-body">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lottoNumber">
+                <span class="imoticion">🎟️</span>
+                <span class="text-body">12, 28, 22, 37, 19, 23</span>
+              </div>
+              <div class="lottoNumber">
+                <span class="imoticion">🎟️</span>
+                <span class="text-body">12, 28, 22, 37, 19, 23</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div>
+            <h5 class="text-body">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </h5>
+            <div class="winning">
+              <div class="winningNumbers">
+                <span>당첨 번호</span>
+                <div>
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                </div>
+              </div>
+              <div class="winningNumbers">
+                <span>보너스 번호</span>
+                <input type="number" />
+              </div>
+            </div>
+          </div>
+          <button
+            class="text-caption checkResult bg-blue text-white"
+            value="결과 확인하기"
+          >
+            결과 확인하기
+          </button>
+        </section>
+        <section class="winningModal">
+          <div class="winningScreen">
+            <span class="close">X</span>
+            <h3 class="text-subtitle resultTitle">🏆 당첨 통계 🏆</h3>
+            <div class="lottoTable text-body">
+              <div class="table text-subject">
+                <span>일치 갯수</span>
+                <span>당첨금</span>
+                <span>당첨 갯수</span>
+              </div>
+              <div class="table">
+                <span>3개</span>
+                <span>5,000</span>
+                <span>n개</span>
+              </div>
+              <div class="table">
+                <span>4개</span>
+                <span>50,000</span>
+                <span>n개</span>
+              </div>
+              <div class="table">
+                <span>5개</span>
+                <span>1,500,000</span>
+                <span>n개</span>
+              </div>
+              <div class="table">
+                <span>5개+보너스볼</span>
+                <span>30,000,000</span>
+                <span>n개</span>
+              </div>
+              <div class="table">
+                <span>6개</span>
+                <span>2,000,000,000</span>
+                <span>n개</span>
+              </div>
+            </div>
+            <span class="benefitRate text-subject"
+              >당신의 총 수익률은 %입니다.</span
+            >
+            <button class="retryButton text-caption bg-blue text-white">
+              다시 시작하기
+            </button>
+          </div>
+        </section>
+      </div>
+      <footer class="text-caption text-blue">
+        Copyright 2023. woowacourse
+      </footer>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
