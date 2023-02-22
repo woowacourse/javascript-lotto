@@ -5,6 +5,7 @@ import './css/modal.css';
 import Render from './utils/Render';
 import Header from './view/containers/Header';
 import GameBox from './view/containers/GameBox';
+import gameBoxEvent from './view/containers/GameBox/gameBoxEvent';
 
 /**
  * step 2의 시작점이 되는 파일입니다.
@@ -12,4 +13,4 @@ import GameBox from './view/containers/GameBox';
  */
 console.log('step2-index.js');
 Render.initContainer("header", () => Header(), () => { });
-Render.initContainer("game-box", () => GameBox(), () => { });
+Render.initContainer("game-box", () => GameBox(), () => gameBoxEvent());
