@@ -22,9 +22,7 @@ class LottoGameView {
   addPurchaseSubmitEvent(callback) {
     this.purchaseForm.addEventListener('submit', (event) => {
       event.preventDefault();
-    
       callback(this.purchaseInput.value);
-      this.addPurchaseInputEvent();
     });
   }
 
@@ -63,8 +61,6 @@ class LottoGameView {
       const bonusNumber = Number(this.bonusNumberInput.value);
 
       callback(winningNumbers, bonusNumber);
-      this.addWinningNumbersInputEvent();
-      this.addBonusNumberInputEvent();
     });
   }
 

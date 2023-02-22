@@ -29,6 +29,7 @@ class LottoGameController {
       ViewUtils.resetInput(this.#gameView.purchaseInput);
       ViewUtils.focusElement(this.#gameView.purchaseInput);
       ViewUtils.showError(this.#gameView.purchaseInput, message);
+      this.#gameView.addPurchaseInputEvent();
     }
   }
 
@@ -48,7 +49,7 @@ class LottoGameController {
       ViewUtils.resetForm(this.#gameView.gameNumbersForm);
       ViewUtils.focusElement(this.#gameView.winningNumbersInputs[0]);
       ViewUtils.showError(this.#gameView.winningNumbersInputs[0], message);
-
+      this.#gameView.addWinningNumbersInputEvent();
     }
   }
 
@@ -61,6 +62,7 @@ class LottoGameController {
       ViewUtils.resetInput(this.#gameView.bonusNumberInput);
       ViewUtils.focusElement(this.#gameView.bonusNumberInput);
       ViewUtils.showError(this.#gameView.bonusNumberInput, message);
+      this.#gameView.addBonusNumberInputEvent();
     }
   }
 
