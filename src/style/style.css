@@ -88,3 +88,31 @@ main > section {
 
   margin-left: 1.6rem;
 }
+
+.lotto-store__lotto-list {
+  margin-top: 2.8rem;
+}
+
+.lotto-list__lotto-amount {
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+}
+
+lotto-list__lotto-list {
+  margin-top: 1rem;
+}
+
+.lotto-list__lotto {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+
+  margin-top: 1rem;
+}
+
+.lotto-list__lotto > span {
+  font-size: 3rem;
+  margin-right: 1rem;
+}

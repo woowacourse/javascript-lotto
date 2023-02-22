@@ -51,7 +51,7 @@ class App extends Component {
       <main class='lotto-store'>
         <section class='lotto-store__title'>🎱 내 번호 당첨 확인 🎱</section>
         <section class='lotto-store__amount' data-component='amount'></section>
-        <section data-component='lottoList'></section>
+        <section class='lotto-store__lotto-list' data-component='lottoList'></section>
         <section data-component='winNumbers'></section>
         <div data-component='statistics-modal'></div>
       </main>
