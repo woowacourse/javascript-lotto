@@ -16,13 +16,13 @@ class Input {
   }
 
   purchaseLottos = (callback) => {
-    this.purchaseBtn.addEventListener('click', () => {
+    this.purchaseBtn.addEventListener(Event.CLICK, () => {
       callback(this.moneyInputEl.value);
     });
   };
 
   seeResult = (callback) => {
-    this.resultBtn.addEventListener('click', () => {
+    this.resultBtn.addEventListener(Event.CLICK, () => {
       this.resultModal.showModal();
 
       const winningNumbers = [];
@@ -37,7 +37,7 @@ class Input {
   };
 
   closeModal = () => {
-    this.modalCloseBtn.addEventListener('click', () => {
+    this.modalCloseBtn.addEventListener(Event.CLICK, () => {
       this.resultModal.close();
     });
   };

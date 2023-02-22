@@ -12,6 +12,7 @@ const QuerySelector = Object.freeze({
   RESULT_MODAL: '.result_modal',
   MODAL_CLOSE_BUTTON: '.modal_close_button',
   PROFIT_MESSAGE: '.result_profit_message',
+  RESTART_BUTTON: '.restart_button',
 });
 
 const Tag = Object.freeze({
@@ -20,4 +21,8 @@ const Tag = Object.freeze({
   LI: 'li',
 });
 
-export { QuerySelector, Tag };
+const Event = Object.freeze({
+  CLICK: 'click',
+});
+
+export { QuerySelector, Tag, Event };
