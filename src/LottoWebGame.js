@@ -101,17 +101,21 @@ const LottoWebGame = function () {
   };
 
   const clickRestart = ({ target }) => {
-    if (!target.matches('button')) return;
+    if (target.matches('button')) {
+      this.lottos = [];
+      $purchaseInput.value = '';
+      render.restart();
+    }
 
-    this.lottos = [];
-    $purchaseInput.value = '';
-    render.restart();
+    if (target.matches('#winning-statistics-out-button')) {
+      render.outStatistics();
+    }
   };
 
   const initAddEventListener = () => {
     $('#purchase-amount-form').addEventListener('submit', submitPurchaseAmount);
     $('#winning-lotto-from').addEventListener('submit', submitWinningLotto);
-    $('#winning-statistics').addEventListener('click', clickRestart);
+    $('.winning-statistics').addEventListener('click', clickRestart);
   };
 };
 

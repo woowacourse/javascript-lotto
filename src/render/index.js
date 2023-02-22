@@ -1,3 +1,4 @@
+import { $ } from '../dom/dom';
 import renderPurchasedLotto from './renderPurcahsedLotto';
 import renderStatistics from './renderStatistics';
 import renderWinningForm from './renderWinningForm';
@@ -13,6 +14,8 @@ const render = {
   statistics: (rankings, rewardRate) => renderStatistics(rankings, rewardRate),
 
   restart: () => renderRestart(),
+
+  outStatistics: () => $('.winning-statistics').classList.add('hidden'),
 };
 
 export default render;
