@@ -1,7 +1,7 @@
 import Component from './Component.js';
 import generationMessages from '../../utils/generationMessages.js';
 import Inputs from '../../utils/Inputs.js';
-import { LOTTO } from '../../constants/lottoConstants.js';
+import { LOTTO } from '../../constants/constants.js';
 import LottoMachine from '../../domain/LottoMachine.js';
 
 export default class Amount extends Component {

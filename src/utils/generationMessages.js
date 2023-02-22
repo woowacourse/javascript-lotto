@@ -1,4 +1,4 @@
-import { LOTTO, AWARDS_ORDER, FORMAT } from '../constants/lottoConstants.js';
+import { LOTTO, AWARDS_ORDER, FORMAT } from '../constants/constants.js';
 
 function getMessagesByStatistics(awards, count) {
   switch (awards) {

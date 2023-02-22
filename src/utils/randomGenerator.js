@@ -1,4 +1,4 @@
-import { LOTTO } from '../constants/lottoConstants.js';
+import { LOTTO } from '../constants/constants.js';
 
 function randomGenerator(count) {
   const numbers = [];

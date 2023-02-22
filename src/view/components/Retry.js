@@ -1,6 +1,6 @@
 import Component from './Component.js';
 import Inputs from '../../utils/Inputs.js';
-import { GAME } from '../../constants/lottoConstants.js';
+import { GAME } from '../../constants/constants.js';
 
 export default class Retry extends Component {
   setUp({ setter }) {

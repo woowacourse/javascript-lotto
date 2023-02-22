@@ -1,6 +1,6 @@
 import checkUnit from './amount.js';
 import Console from '../utils/Console.js';
-import { FORMAT, LOTTO } from '../constants/lottoConstants.js';
+import { FORMAT, LOTTO } from '../constants/constants.js';
 import {
   checkBonusNumberFormat,
   checkWinningNumberRange,
