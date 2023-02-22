@@ -63,7 +63,7 @@ const RESTART_COMMAND = Object.freeze({
 
 const CONSOLE_MESSAGE = Object.freeze({
   ASK_PURCHASE_PRICE: '> 구입금액을 입력해 주세요.',
-  showLottoCount: (lottoCount) => `${lottoCount}개를 구매했습니다.`,
+  showLottoCount: (lottoCount) => `총 ${lottoCount}개를 구매했습니다.`,
   ASK_WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
   ASK_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
   RESULT_HEADER: '\n당첨 통계\n--------------------',
