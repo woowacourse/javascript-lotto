@@ -1,7 +1,7 @@
 import LottoPurchaseForm from './LottoPurchaseForm';
+import WinningNumbersSubmitForm from './WinningNumbersSubmitForm';
 
 import { $ } from '../../utils/dom';
-import WinningNumbersSubmitForm from './WinningNumbersSubmitForm';
 
 class CheckWinningSection {
   #template = /* html */ `
