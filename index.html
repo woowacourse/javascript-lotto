@@ -13,45 +13,45 @@
 
       <div class="lottoGame">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
-        <div>
-          <form class="purchaseLotto">
-            <p>구입할 금액을 입력해 주세요.</p>
-            <div>
-              <input class="money-input" placeholder="금액" />
-              <button class="purchase-button" type="submit">구입</button>
-            </div>
-          </form>
 
-          <div class="issueLotto">
-            <p>총 <span class="purchaseQuantity">7</span>개를 구매하였습니다.</p>
-            <div class="lottos">
-              <div class="lotto">🎟️12, 28, 22, 37, 19, 23</div>
-            </div>
+        <form class="purchaseLotto">
+          <p>구입할 금액을 입력해 주세요.</p>
+          <div>
+            <input class="money-input" placeholder="금액" />
+            <button class="purchase-button" type="submit">구입</button>
           </div>
+        </form>
 
+        <div class="issueLotto">
+          <p>총 <span class="purchaseQuantity">7</span>개를 구매하였습니다.</p>
+
+          <div class="lottos">
+            <div class="lotto">🎟️ 12, 28, 22, 37, 19, 23</div>
+          </div>
+        </div>
+
+        <div class="inputNumbersLayout">
           <form>
-            <div class="inputNumbersLayout">
-              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-              <div class="inputNumbers">
+            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div class="inputNumbers">
+              <div>
+                <p>당첨 번호</p>
                 <div>
-                  <p>당첨 번호</p>
-                  <div>
-                    <input class="inputNumber winningNumber-input" type="number" />
-                    <input class="inputNumber winningNumber-input" type="number" />
-                    <input class="inputNumber winningNumber-input" type="number" />
-                    <input class="inputNumber winningNumber-input" type="number" />
-                    <input class="inputNumber winningNumber-input" type="number" />
-                    <input class="inputNumber winningNumber-input" type="number" />
-                  </div>
-                </div>
-                <div class="bonusNumber">
-                  <p>보너스 번호</p>
-                  <input class="inputNumber bonusNumber-input" type="number" />
+                  <input class="inputNumber winningNumber-input" />
+                  <input class="inputNumber winningNumber-input" />
+                  <input class="inputNumber winningNumber-input" />
+                  <input class="inputNumber winningNumber-input" />
+                  <input class="inputNumber winningNumber-input" />
+                  <input class="inputNumber winningNumber-input" />
                 </div>
               </div>
-              <div class="checkResult">
-                <button class="printResult-button" type="submit">결과 확인하기</button>
+              <div class="bonusNumber">
+                <p>보너스 번호</p>
+                <input class="inputNumber bonusNumber-input" />
               </div>
+            </div>
+            <div class="checkResult">
+              <button class="printResult-button" type="submit">결과 확인하기</button>
             </div>
           </form>
         </div>

@@ -54,7 +54,7 @@ printResultButton.onclick = async (e) => {
     console.log(winningNumbers);
     Validator.winningNumber([...winningNumbers].join(','));
     Validator.bonusNumber(bonusNumber.value, winningNumbers);
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
   } catch (error) {
     alert(error.message);
   }

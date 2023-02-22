@@ -59,24 +59,25 @@ input {
 
 .lottoGame {
   width: 414px;
+  height: 727px;
   max-height: 727px;
-
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .lottoGame h2 {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 52px;
+  margin-top: 36px;
 }
 
 .purchaseLotto {
   margin-top: 28px;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .purchaseLotto div {
@@ -99,11 +100,15 @@ input {
 
 .issueLotto {
   display: none;
-  padding-left: 16px;
   margin-top: 28px;
+  margin-bottom: 24px;
+  max-height: 300px;
+  overflow: scroll;
 }
 
 .lottos {
+  width: 100%;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,9 +122,8 @@ input {
 
 .inputNumbersLayout {
   display: none;
-  margin-top: 32px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-bottom: 16px;
+  margin-top: auto;
 }
 .inputNumbers {
   display: flex;
@@ -127,6 +131,7 @@ input {
   margin-top: 12px;
 }
 .inputNumber {
+  margin-top: 8px;
   width: 34px;
   height: 36px;
 }
@@ -134,11 +139,10 @@ input {
   float: right;
 }
 .checkResult {
+  align-self: flex-end;
   width: 100%;
-  padding-right: 16px;
-  padding-left: 16px;
   margin-top: 27px;
-  margin-bottom: 32px;
+  bottom: 16px;
 }
 .checkResult button {
   width: 100%;
@@ -149,7 +153,7 @@ input {
   position: fixed;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
