@@ -26,7 +26,7 @@
 
   background-color: #ffffff;
 
-  padding: 16px 32px;
+  padding: 32px 16px;
   border-radius: var(--border-radius);
 }
 
@@ -61,59 +61,48 @@
 .modal-statistics-container {
   min-width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.match-count-container,
-.prize-money-container,
-.prize-count-container {
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100%;
-}
-
-.match-count-container div,
-.prize-money-container div,
-.prize-count-container div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 40px;
-
-  border-top: 1px solid #0000001f;
 
   font-size: var(--text-body-size);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
 }
 
-.match-count-container div:first-child,
-.prize-money-container div:first-child,
-.prize-count-container div:first-child {
-  font-weight: 700;
-}
-
-.match-count-container div:last-child,
-.prize-money-container div:last-child,
-.prize-count-container div:last-child {
+.modal-statistics-container :last-child.statistics-container {
   border-bottom: 1px solid #0000001f;
 }
 
-.match-count-container {
-  flex: 1 1 33%;
+.statistics-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+
+  border-top: 1px solid #0000001f;
 }
 
-.prize-money-container {
-  flex: 1 1 40%;
+.statistics-container .title {
+  font-weight: 700;
 }
 
-.prize-count-container {
-  flex: 1 1 27%;
+.statistics-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.statistics-container div:nth-child(1) {
+  width: 35%;
+}
+
+.statistics-container div:nth-child(2) {
+  width: 40%;
+}
+
+.statistics-container div:nth-child(3) {
+  width: 25%;
 }
 
 .modal-yield-ratio-wrap {
