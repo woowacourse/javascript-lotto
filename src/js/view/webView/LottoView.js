@@ -1,7 +1,6 @@
-import { LottoController } from '../../controller/webController/LottoController';
 import LottoMachine from '../../domain/LottoMachine';
 import Validator from '../../domain/Validator';
-import { $ } from '../../util/dom';
+import { $, $$ } from '../../util/dom';
 
 const purchaseButton = $('.purchase-button');
 const moneyInput = $('.money-input');
@@ -11,8 +10,13 @@ const lottos = $('.lottos');
 
 const purchaseQuantity = $('.purchaseQuantity');
 
+const printResultButton = $('.printResult-button');
+const winningNumber = $$('.winningNumber-input');
+const bonusNumber = $('.bonusNumber-input');
+
 purchaseButton.onclick = async (e) => {
   e.preventDefault();
+  lottos.innerHTML = ``;
   try {
     Validator.purchaseAmount(moneyInput.value);
     showLotto(moneyInput.value);
@@ -36,4 +40,18 @@ const showLotto = async (money) => {
   lottosArray.forEach((lotto) => {
     lottos.innerHTML += `<div class="lotto">🎟️ ${lotto.join(', ')}</div>`;
   });
+};
+
+printResultButton.onclick = async (e) => {
+  e.preventDefault();
+
+  const winningNumbers = new Array(6).fill().map((v, i) => Number(winningNumber[i].value));
+
+  try {
+    console.log(winningNumbers);
+    Validator.winningNumber([...winningNumbers].join(','));
+    Validator.bonusNumber(bonusNumber.value, winningNumbers);
+  } catch (error) {
+    alert(error.message);
+  }
 };

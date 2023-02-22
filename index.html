@@ -28,30 +28,32 @@
             </div>
           </div>
 
-          <div class="inputNumbersLayout">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="inputNumbers">
-              <div>
-                <p>당첨 번호</p>
+          <form>
+            <div class="inputNumbersLayout">
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <div class="inputNumbers">
                 <div>
-                  <input class="inputNumber" />
-                  <input class="inputNumber" />
-                  <input class="inputNumber" />
-                  <input class="inputNumber" />
-                  <input class="inputNumber" />
-                  <input class="inputNumber" />
+                  <p>당첨 번호</p>
+                  <div>
+                    <input class="inputNumber winningNumber-input" type="number" />
+                    <input class="inputNumber winningNumber-input" type="number" />
+                    <input class="inputNumber winningNumber-input" type="number" />
+                    <input class="inputNumber winningNumber-input" type="number" />
+                    <input class="inputNumber winningNumber-input" type="number" />
+                    <input class="inputNumber winningNumber-input" type="number" />
+                  </div>
+                </div>
+                <div class="bonusNumber">
+                  <p>보너스 번호</p>
+                  <input class="inputNumber bonusNumber-input" type="number" />
                 </div>
               </div>
-              <div class="bonusNumber">
-                <p>보너스 번호</p>
-                <input class="inputNumber" />
-              </div>
             </div>
-          </div>
 
-          <div class="checkResult">
-            <button>결과 확인하기</button>
-          </div>
+            <div class="checkResult">
+              <button class="printResult-button" type="submit">결과 확인하기</button>
+            </div>
+          </form>
         </div>
       </div>
       <footer>Copyright 2023. woowacourse</footer>
