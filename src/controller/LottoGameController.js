@@ -4,6 +4,7 @@ import Validation from '../utils/Validation.js';
 import Input from '../browserView/Input.js';
 import Output from '../browserView/Output.js';
 import MoneyInput from '../browserView/MoneyInput.js';
+import LottoList from '../browserView/LottoList.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
@@ -25,15 +26,16 @@ class LottoGameController {
       Validation.testPurchaseAmount(money);
       this.#purchaseUserLottos(PURCHASE_COUNT);
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
   #purchaseUserLottos(purchaseCount) {
     const USER_LOTTOS = this.#lottoGame.generateUserLottos(purchaseCount);
 
-    this.#output.renderLottosField(purchaseCount, USER_LOTTOS);
-    this.#output.renderLottoInputField();
+    const lottoList = new LottoList();
+    lottoList.create(purchaseCount, USER_LOTTOS);
+    lottoList.render();
   }
 
   #setWinningLotto = (winningNumbers, bonusNumber) => {
@@ -43,7 +45,7 @@ class LottoGameController {
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#showGameResult();
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
