@@ -43,6 +43,11 @@ const OutputView = {
 
   printWinStatistics({ winCount, winPrizeMoney, profitRate }) {
     this.printWinTitle();
+    this.printPrizeByRank();
+    this.printProfitRate(profitRate);
+  },
+
+  printPrizeByRank() {
     const rankLength = 5;
     const results = Array.from({ length: rankLength }, (_, i) => {
       return `${this.WIN_CONDITION[rankLength - i]} ${this.generateWinPrizeMoneyMessage(
@@ -51,8 +56,7 @@ const OutputView = {
       )} - ${this.generateWinCountMessage(winCount, rankLength - i)}`;
     });
     results.forEach((result) => Console.print(result));
-    this.printProfitRate(profitRate);
-  },
+  }
 
   printProfitRate(profitRate) {
     Console.print(this.generateProfitRateMessage(profitRate));
