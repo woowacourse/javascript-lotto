@@ -163,6 +163,7 @@ button:active {
   margin-bottom: var(--spacing-4);
   flex-direction: column;
   overflow-y: scroll;
+  list-style: none;
 }
 
 .user-lotto {
