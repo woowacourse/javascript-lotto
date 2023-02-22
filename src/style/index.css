@@ -139,7 +139,6 @@ footer {
 }
 
 .winningModal {
-  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -153,7 +152,7 @@ footer {
   z-index: 1;
 }
 
-.close {
+.closeButton {
   position: absolute;
   top: 16px;
   align-self: end;

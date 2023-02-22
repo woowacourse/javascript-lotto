@@ -1,4 +1,5 @@
 const Money = require('./domain/model/Money');
+const Winning = require('./domain/model/Winning');
 const lottoUtils = require('./utils/lotto');
 
 /**
@@ -9,11 +10,25 @@ require('./style/index.css');
 
 const moneyForm = document.querySelector('.moneyForm');
 const moneyAmount = document.querySelector('.moneyAmount');
+
 const lottoInfoContainer = document.querySelector('.lottoInfoContainer');
 const lottoNumberConatiner = document.querySelector('.lottoNumberConatiner');
 const lottoCount = document.querySelector('.lottoCount');
 const inputNumberContainer = document.querySelector('.inputNumberContainer');
 
+const winning1 = document.querySelector('.winning1');
+const winning2 = document.querySelector('.winning2');
+const winning3 = document.querySelector('.winning3');
+const winning4 = document.querySelector('.winning4');
+const winning5 = document.querySelector('.winning5');
+const winning6 = document.querySelector('.winning6');
+
+const bonus = document.querySelector('.bonus');
+
+const winningModal = document.querySelector('.winningModal');
+const closeButton = document.querySelector('.closeButton');
+
+winningModal.classList.add('hiddenElement');
 lottoInfoContainer.classList.add('hiddenElement');
 inputNumberContainer.classList.add('hiddenElement');
 
@@ -41,7 +56,30 @@ moneyForm.addEventListener('submit', (event) => {
 
 inputNumberContainer.addEventListener('submit', (event) => {
   event.preventDefault();
+
+  const winningNumbers = [
+    winning1.value,
+    winning2.value,
+    winning3.value,
+    winning4.value,
+    winning5.value,
+    winning6.value,
+  ].map((lottoNumber) => Number(lottoNumber));
+
+  const bonusNumber = Number(bonus.value);
+
+  const winning = new Winning();
+  winning.setWinningNumbers(winningNumbers);
+  winning.setBonusNumber(bonusNumber);
+
+  winningModal.classList.remove('hiddenElement');
+
+  console.log(winning.getWinningNumbers(), winning.getBonusNumber());
 });
+
+// closeButton.addEventListener('click', () => {
+//   winningModal.classList.add('hiddenElement');
+// });
 
 const getLottoCount = (count) => {
   lottoCount.innerText = `총 ${count}개를 구매하였습니다.`;
