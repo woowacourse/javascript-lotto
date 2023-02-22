@@ -6,6 +6,7 @@ const winContents = document.getElementById("win_contents");
 const winNumForm = document.getElementById("winNum_form");
 const modal = document.getElementById("modal");
 const btnClose = document.getElementById("btn_close");
+const btnRestart = document.getElementById("btn_restart");
 
 const ViewController = {
   /** @type {LottoGame} */
@@ -21,6 +22,9 @@ const ViewController = {
     });
     btnClose.addEventListener("click", () => {
       modal.style.display = "none";
+    });
+    btnRestart.addEventListener("click", () => {
+      window.location.reload();
     });
   },
 
