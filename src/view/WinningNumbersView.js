@@ -46,19 +46,6 @@ export default class WinningNumbersView {
     });
   }
 
-  renderPurchaseResult(lottoCount, lottos) {
-    const msg = CONSOLE_MESSAGE.showLottoCount(lottoCount);
-    const msgDiv = document.getElementById('price-result');
-    msgDiv.innerHTML = `<span>${msg}</span>`;
-    lottos.forEach((lotto) => {
-      const lottosDiv = document.getElementById('lottos');
-      const lottoDiv = document.createElement('div');
-      lottoDiv.innerHTML = `<span>[${lotto.getNumbers().join(', ')}]</span>`;
-      lottosDiv.appendChild(lottoDiv);
-      // console.log(`[${lotto.getNumbers().join(', ')}]`);
-    });
-  }
-
   resetInputValue() {
     this.number1.value = '';
     this.number2.value = '';
