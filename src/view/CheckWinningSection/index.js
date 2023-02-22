@@ -6,6 +6,8 @@ class CheckWinningSection {
   #template = /* html */ `
   <div class="container">
     <h2>🎱 내 번호 당첨 확인 🎱</h2>
+    <div class="lotto-purchase-form-container"></div>
+    <div class="winning-numbers-submit-form-container"></div>
   </div>
   `;
 
@@ -30,11 +32,13 @@ class CheckWinningSection {
     this.$target = $target;
     this.render();
 
-    this.#lottoPurchaseForm = new LottoPurchaseForm($('.container'));
+    this.#lottoPurchaseForm = new LottoPurchaseForm(
+      $('.lotto-purchase-form-container')
+    );
   }
 
   render() {
-    this.$target.innerHTML = this.#template;
+    this.$target.insertAdjacentHTML('afterbegin', this.#template);
   }
 }
 
