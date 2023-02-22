@@ -1,0 +1,419 @@
+@import 'reset.css';
+
+/* header 부분 */
+header {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 64px;
+  left: 0px;
+  top: 0px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+header h1 {
+  position: absolute;
+  width: 147px;
+  height: 36px;
+  left: 130px;
+  top: 14px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: flex-end;
+
+  /* lotto-greyscale-1 */
+
+  color: #ffffff;
+}
+
+/* content 부분 */
+section {
+  height: 880px;
+  width: 100%;
+  position: absolute;
+}
+
+#content {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  /* lotto-greyscale-1 */
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+section #content h2 {
+  position: absolute;
+  width: 382px;
+  height: 24px;
+  left: 16px;
+  top: 52px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  /* identical to box height, or 100% */
+
+  text-align: center;
+  letter-spacing: 0.15px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#input {
+  position: absolute;
+  width: 382px;
+  height: 64px;
+}
+
+#inputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  position: absolute;
+  width: 310px;
+  height: 64px;
+  left: 16px;
+  top: 104px;
+}
+
+#label {
+  width: 310px;
+  height: 24px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#readMoney {
+  position: absolute;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#money {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 8px 0px;
+  gap: 10px;
+
+  width: 310px;
+  height: 36px;
+
+  /* lotto-greyscale-3 */
+
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#buy {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 56px;
+  height: 36px;
+  left: 342px;
+  top: 132px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#buy span {
+  width: 28px;
+  height: 16px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  /* lotto-greyscale-1 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#buyText {
+  position: absolute;
+  left: 16px;
+  right: 46.77%;
+  top: 196px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#lottos {
+  position: absolute;
+  width: 238px;
+  left: 16px;
+  top: 228px;
+}
+
+#lottos ul li {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+  margin: 0 0 15px 0;
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#winningLotto {
+  position: absolute;
+  width: 382px;
+  height: 104px;
+  left: 16px;
+  top: 528px;
+}
+
+#winningLotto p {
+  position: absolute;
+  left: 15px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#winningNumber {
+  position: absolute;
+  width: 244px;
+  height: 68px;
+  top: 30px;
+}
+
+#winningNumber p {
+  position: absolute;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+.inputNumber {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 15px;
+}
+
+.inputNumber input {
+  width: 30px;
+  height: 31px;
+  border-radius: 4px;
+  margin-right: 5px;
+  border: 1px solid #b4b4b4;
+}
+
+#bonusNumber {
+  position: absolute;
+  width: 100px;
+  height: 68px;
+  left: 290px;
+  top: 30px;
+}
+
+#bonusNumber p {
+  position: absolute;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  text-align: right;
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#bonusNumber input {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  width: 30px;
+  height: 31px;
+  border-radius: 4px;
+  margin-right: 5px;
+  border: 1px solid #b4b4b4;
+}
+
+#result {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 382px;
+  height: 36px;
+  top: 120px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#result span {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  /* lotto-greyscale-1 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* footer 부분 */
+footer {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 944px;
+
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+footer p {
+  position: absolute;
+  height: 16px;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  /* top: calc(50% - 16px / 2 + 472px); */
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  text-align: center;
+  letter-spacing: 1.25px;
+
+  /* lotto-primary */
+
+  color: #4e5ba6;
+}
