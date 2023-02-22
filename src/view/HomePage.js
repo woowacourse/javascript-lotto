@@ -27,7 +27,7 @@ class HomePage {
   }
 
   render() {
-    this.$target.innerHTML = this.#template;
+    this.$target.insertAdjacentHTML('afterbegin', this.#template);
   }
 }
 
