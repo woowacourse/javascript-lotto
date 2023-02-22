@@ -67,7 +67,6 @@ class Validator {
 
   #throwErrorIfBonusNumberDuplicates(winningLotto, bonusNumber) {
     const listedWinningLotto = winningLotto.split(',').map(Number);
-    console.log({ winningLotto: listedWinningLotto, bonusNumber: bonusNumber });
 
     if (listedWinningLotto.includes(bonusNumber)) {
       throw new Error(ERROR.BONUS_NUMBER_DUPLICATES[this.#missionStep]);
