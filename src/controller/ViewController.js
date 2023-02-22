@@ -63,6 +63,9 @@ const ViewController = {
   },
 
   purchaseLotto(event, lottoGame) {
+    const btnMoney = document.getElementById("btn_money");
+    btnMoney.disabled = "true";
+
     try {
       event.preventDefault();
       const money = document.getElementById("input_money").value;
