@@ -4,14 +4,17 @@ import CheckWinningSection from '../view/CheckWinningSection/index';
 
 import { $ } from '../utils/dom';
 
-class LottoPurchaseController {
+class LottoGameController {
   #checkWinningSection;
 
   #lottoMachine;
 
   constructor($target) {
     $target.addEventListener('purchaseLotto', (e) =>
-      this.handlePurchaseLotto(e.detail)
+      this.handleLottoPurchase(e.detail)
+    );
+    $target.addEventListener('checkResult', (e) =>
+      this.handleResultCheck(e.detail)
     );
 
     this.#checkWinningSection = new CheckWinningSection(
@@ -20,11 +23,15 @@ class LottoPurchaseController {
     this.#checkWinningSection.render();
   }
 
-  handlePurchaseLotto(purchasePrice) {
+  handleLottoPurchase(purchasePrice) {
     this.#lottoMachine = new LottoMachine(purchasePrice);
     this.#checkWinningSection.renderLottos(this.#lottoMachine.lottos);
     this.#checkWinningSection.renderWinningNumbersForm();
   }
+
+  handleResultCheck(numbers) {
+    console.log(numbers);
+  }
 }
 
-export default LottoPurchaseController;
+export default LottoGameController;

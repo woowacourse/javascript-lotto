@@ -1,9 +1,9 @@
 import HomePage from './view/HomePage';
 
-import LottoPurchaseController from './controller/LottoPurchaseController';
+import LottoGameController from './controller/LottoGameController';
 
 class App {
-  #lottoPurchaseController;
+  #lottoGameController;
 
   $target;
 
@@ -12,7 +12,7 @@ class App {
 
     new HomePage(this.$target).render();
 
-    this.#lottoPurchaseController = new LottoPurchaseController(this.$target);
+    this.#lottoGameController = new LottoGameController(this.$target);
   }
 }
 
