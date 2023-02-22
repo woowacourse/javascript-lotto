@@ -98,6 +98,7 @@ input {
 }
 
 .issueLotto {
+  display: none;
   padding-left: 16px;
   margin-top: 28px;
 }
@@ -115,6 +116,7 @@ input {
 }
 
 .inputNumbersLayout {
+  display: none;
   margin-top: 32px;
   margin-left: 16px;
   margin-right: 16px;

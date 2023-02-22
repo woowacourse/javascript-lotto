@@ -5,7 +5,7 @@ export class LottoController {
     try {
       Validator.purchaseAmount(money);
     } catch (error) {
-      alert('error.message');
+      alert(error.message);
     }
   }
 }
