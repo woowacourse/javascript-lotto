@@ -47,11 +47,18 @@ class LottoGameController {
   }
 
   async #getLottoWinningNumbers() {
-    const winningNumbers = await InputView.readLottoWinningNumbers();
+    const winningNumbersString = await InputView.readLottoWinningNumbers();
 
     try {
-      InputValidator.checkWinningNumbers(winningNumbers);
-      return winningNumbers.split(',').map((winningNumber) => Number(winningNumber.trim()));
+      InputValidator.checkWinningNumbers(winningNumbersString);
+
+      const winningNumbers = winningNumbersString
+        .split(',')
+        .map((winningNumber) => Number(winningNumber.trim()));
+
+      LottoValidator.checkLottoNumbers(winningNumbers);
+
+      return winningNumbers;
     } catch (error) {
       Console.print(error.message);
       return this.#getLottoWinningNumbers();
@@ -66,7 +73,7 @@ class LottoGameController {
       return Number(bonusNumber);
     } catch (error) {
       Console.print(error.message);
-      return this.#getLottoBonusNumber();
+      return this.#getLottoBonusNumber(winningNumbers);
     }
   }
 
