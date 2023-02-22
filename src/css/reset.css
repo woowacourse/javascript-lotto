@@ -46,3 +46,14 @@ table {
 button:hover {
     cursor: pointer;
 }
+
+input[type="number"] {
+    -moz-appearance: textfield !important; /* Firefox */
+    appearance: textfield !important; /* Other browsers */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
