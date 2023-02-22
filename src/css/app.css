@@ -12,14 +12,6 @@ header {
   font-family: var(--fontFamilyPrimary);
 }
 
-.check-winning-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 85vh;
-}
-
 footer {
   display: flex;
   align-items: center;
@@ -28,6 +20,46 @@ footer {
   height: 80px;
 
   border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.check-winning-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 85vh;
+}
+
+.lotto-purchase-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.purchase-input-container {
+  display: flex;
+
+  gap: 16px;
+}
+
+#lotto-purchase-input {
+  width: 310px;
+  height: 36px;
+
+  padding-left: 8px;
+
+  border: 1px solid var(--grayScale300);
+  border-radius: 4px;
+}
+
+.lotto-purchase-button {
+  width: 56px;
+  height: 36px;
+
+  background-color: var(--colorPrimary);
+  color: var(--grayScale100);
+
+  border: 0;
+  border-radius: 4px;
 }
 
 .copyright {
