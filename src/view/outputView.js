@@ -7,6 +7,7 @@ const {
   indexToRankKeyConverter,
 } = require('../constants/constants');
 
+const priceInput = document.getElementById('priceInput');
 const purchaseResultContainer = document.getElementById('resultContainer');
 const purchaseResultHeader = document.getElementById('purchaseResultHeader');
 const purchasedLottosContainer = document.getElementById(
@@ -14,6 +15,7 @@ const purchasedLottosContainer = document.getElementById(
 );
 const winningInputForm = document.getElementById('winningInputForm');
 const winningInputFlexBox = document.getElementById('winningInputContainer');
+const winningInputs = document.getElementsByClassName('winningInput');
 const statisticsContainer = document.getElementById('statisticsContainer');
 const resultModalContainer = document.getElementById('resultModalContainer');
 const profitRateViewer = document.getElementById('profitRate');
@@ -30,6 +32,7 @@ const outputView = {
 
   renderWinningNumbersInput() {
     winningInputForm.classList = '';
+
     winningInputFlexBox.innerHTML = `
       <input
         class="winningInput"
@@ -71,6 +74,19 @@ const outputView = {
 
   closeModal() {
     resultModalContainer.style.display = 'none';
+  },
+
+  restart() {
+    purchaseResultContainer.classList = 'hidden';
+    winningInputForm.classList = 'hidden';
+    priceInput.value = '';
+
+    Array.from(winningInputs).forEach((input) => {
+      // eslint-disable-next-line no-param-reassign
+      input.value = '';
+    });
+
+    this.closeModal();
   },
 };
 

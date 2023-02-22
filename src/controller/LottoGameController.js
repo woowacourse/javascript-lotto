@@ -14,7 +14,7 @@ class LottoGameController {
     inputView.setPurchasePriceInputHandler(this.handlePurchasePriceInput);
     inputView.setWinningNumbersInputHandler(this.handleWinningNumbersInput);
     inputView.setCloseModalHandler(LottoGameController.handleCloseModal);
-    inputView.setRestartHandler();
+    inputView.setRestartHandler(LottoGameController.handleRestart);
   }
 
   handlePurchasePriceInput = (input) => {
@@ -56,6 +56,10 @@ class LottoGameController {
 
   static handleCloseModal = () => {
     outputView.closeModal();
+  };
+
+  static handleRestart = () => {
+    outputView.restart();
   };
 
   static calculateLottoCount(priceInput) {
