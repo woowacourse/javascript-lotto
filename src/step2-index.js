@@ -4,6 +4,7 @@
  */
 
 import LottoWebGame from './LottoWebGame';
+import './style';
 
 const lottoWebGame = new LottoWebGame();
 

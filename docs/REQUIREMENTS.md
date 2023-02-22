@@ -135,7 +135,7 @@
 
 ## CSS
 
-- [ ] feat: css reset 적용
+- [x] feat: css reset 적용
 - [ ] feat: 초기 화면
 - [ ] feat: 로또 번호 렌더링 화면
 - [ ] feat: 당첨 번호 보너스 번호 입력 폼 렌더링 화면
