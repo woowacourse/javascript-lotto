@@ -1,0 +1,83 @@
+@import url(./main.css);
+@import url(./modal.css);
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+
+  height: 36px;
+  background: #4e5ba6;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: #f5f5f5;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  background: #4e5ba6;
+  color: white;
+}
+
+header p {
+  margin: 0;
+  margin-left: 130px;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+footer p {
+  font-weight: 700;
+  font-size: 14px;
+  color: #4e5ba6;
+}

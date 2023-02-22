@@ -1,0 +1,70 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal .box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  height: 500px;
+  padding: 32px 16px;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.modal #out {
+  position: absolute;
+  top: 3.2%;
+  bottom: 94%;
+  left: 91.43%;
+  right: 4.57%;
+  cursor: pointer;
+
+  font-size: 20px;
+}
+
+.modal .box h1 {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.modal .box table {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 15px;
+}
+
+.modal .box th,
+.modal .box td {
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.modal .box td {
+  font-weight: 400;
+}
+
+.modal .box p {
+  font-weight: 600;
+  font-size: 15px;
+}

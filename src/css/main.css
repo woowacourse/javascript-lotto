@@ -1,0 +1,102 @@
+main .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 414px;
+  height: 727px;
+  background: #ffffff;
+  padding: 32px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+main .box h1 {
+  margin-bottom: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+main .box section p {
+  margin: 8px 0;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.buy {
+  margin-bottom: 26px;
+}
+
+.buy .input-area {
+  display: flex;
+  justify-content: space-between;
+  height: 36px;
+}
+
+.buy .input-area input {
+  width: 80%;
+  margin: 0;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.buy .input-area button {
+  width: 15%;
+}
+
+.hidden-area {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.hidden-area.show {
+  visibility: visible;
+}
+
+#lotto-numbers-area {
+  overflow: scroll;
+  height: 320px;
+}
+
+#lotto-numbers-area p {
+  height: 34px;
+  margin: 0;
+  margin-bottom: 8px;
+  vertical-align: middle;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+#lotto-numbers-area p::before {
+  content: '🎟️';
+  vertical-align: middle;
+  margin-right: 8px;
+  font-weight: 600;
+  font-size: 34px;
+}
+
+.lotto-input .input-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto-input .input-area input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.winning-numbers input {
+  margin-right: 6px;
+}
+
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
