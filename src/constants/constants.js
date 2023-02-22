@@ -57,10 +57,10 @@ export const ERROR = Object.freeze({
   /**
    * @param {number} unit - 로또 구입 금액
    */
-  INVALID_AMOUNT_UNIT: ({ unit }) => `[ERROR] ${unit}원 단위의 금액만 입력해 주세요.`,
+  INVALID_AMOUNT_UNIT: (unit) => `[ERROR] ${unit}원 단위의 금액만 입력해 주세요.`,
   /**
    * @param {number} min - 로또 최소 번호
    * @param {number} max - 로또 최대 번호
    */
-  INVALID_NUMBER_RANGE: ({ min, max }) => `[ERROR] ${min}이상 ${max}이하의 숫자만 입력해 주세요.`,
+  INVALID_NUMBER_RANGE: (min, max) => `[ERROR] ${min}이상 ${max}이하의 숫자만 입력해 주세요.`,
 });
