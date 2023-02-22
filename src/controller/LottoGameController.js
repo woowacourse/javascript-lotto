@@ -15,6 +15,7 @@ class LottoGameController {
     this.#input.purchaseLottos(this.#getPurchaseCount);
     this.#input.seeResult(this.#setWinningLotto);
     this.#input.closeModal();
+    this.#input.restart(this.#output.resetOutput);
   }
 
   #getPurchaseCount = (money) => {

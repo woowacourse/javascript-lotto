@@ -33,6 +33,7 @@ class Output {
 
     this.lottosField.append(purchaseMessageEl);
     this.lottosField.append(lottosEl);
+    document.querySelector('.content').classList.add('height_auto');
   };
 
   renderLottoInputField() {
@@ -55,6 +56,12 @@ class Output {
       document.querySelector(`.rank_${each}`).innerText = Convertor.resultNumber(ranks[each]);
     });
   }
+
+  resetOutput = () => {
+    this.lottosField.innerText = '';
+    document.querySelector('.content').classList.remove('height_auto');
+    this.lottoInputField.classList.remove('show');
+  };
 }
 
 export default Output;

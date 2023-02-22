@@ -1,4 +1,4 @@
-import { QuerySelector } from '../constants/HTML.js';
+import { Event, QuerySelector } from '../constants/HTML.js';
 
 class Input {
   constructor() {
@@ -13,6 +13,7 @@ class Input {
     this.resultBtn = document.querySelector(QuerySelector.RESULT_BUTTON);
     this.resultModal = document.querySelector(QuerySelector.RESULT_MODAL);
     this.modalCloseBtn = document.querySelector(QuerySelector.MODAL_CLOSE_BUTTON);
+    this.restartBtn = document.querySelector(QuerySelector.RESTART_BUTTON);
   }
 
   purchaseLottos = (callback) => {
@@ -40,6 +41,23 @@ class Input {
     this.modalCloseBtn.addEventListener(Event.CLICK, () => {
       this.resultModal.close();
     });
+  };
+
+  restart = (resetOutput) => {
+    console.log(this.restartBtn);
+    this.restartBtn.addEventListener(Event.CLICK, () => {
+      this.resultModal.close();
+      this.resetInputs(resetOutput);
+    });
+  };
+
+  resetInputs = (resetOutput) => {
+    this.moneyInputEl.value = '';
+    this.winningNumberInputs.forEach((input) => {
+      input.value = '';
+    });
+    this.bonusNumberInput = '';
+    resetOutput();
   };
 }
 
