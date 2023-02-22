@@ -15,7 +15,7 @@
     ],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
-    "max-lines-per-function": ["error", 16],
+    "max-lines-per-function": ["error", 30],
     "max-depth": ["error", 2],
     "no-else-return": ["error", { "allowElseIf": false }],
     "max-params": ["error", 3],
