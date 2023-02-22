@@ -19,4 +19,4 @@ class Lotto {
   }
 }
 
-module.exports = Lotto;
+export default Lotto;

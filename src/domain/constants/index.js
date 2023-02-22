@@ -47,7 +47,7 @@ const LOTTO_PRIZE = [
 const RESTART_COMMAND = 'y';
 const QUIT_COMMAND = 'n';
 
-module.exports = {
+export {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   LOTTO_NUMBERS_COUNT,
