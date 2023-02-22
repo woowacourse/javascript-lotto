@@ -1,0 +1,63 @@
+<style>
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--main-secondary-text-color);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.9375rem;
+    font-weight: 400;
+  }
+
+  input::placeholder {
+    color: #8B8B8B;
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  lt-text-input {
+    width: 2.4rem;
+    text-align: center;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  fieldset>legend {
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  fieldset#bonusNumber {
+    justify-content: flex-end;
+  }
+
+</style>
+
+<div>
+  <fieldset id="winningNumbers">
+    <legend>당첨 번호</legend>
+    <lt-text-input></lt-text-input>
+    <lt-text-input></lt-text-input>
+    <lt-text-input></lt-text-input>
+    <lt-text-input></lt-text-input>
+    <lt-text-input></lt-text-input>
+    <lt-text-input></lt-text-input>
+  </fieldset>
+
+  <fieldset id="bonusNumber">
+    <legend>보너스 번호</legend>
+    <lt-text-input></lt-text-input>
+  </fieldset>
+</div>
