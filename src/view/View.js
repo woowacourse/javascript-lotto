@@ -5,6 +5,10 @@ export default class View {
     $('.purchase-amount-submit-button').addEventListener('click', callback);
   }
 
+  onClickWinningLottoSubmitButton(callback) {
+    $('.winning-lotto-submit-button').addEventListener('click', callback);
+  }
+
   printLottoQuantity(quantity) {
     $('.lotto-quantity').innerText = `총 ${quantity}개를 구매하였습니다.`;
   }

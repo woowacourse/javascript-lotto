@@ -2,7 +2,7 @@ import LottoGame from '../domain/LottoGame.js';
 import View from '../view/view.js';
 import Validation from '../domain/Validation.js';
 import { LOTTO_CONDITION } from '../constants/condition.js';
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 
 export default class LottoGameController {
   #lottoGame;
@@ -15,6 +15,7 @@ export default class LottoGameController {
 
   play() {
     this.#view.onClickPurchaseAmountSubmitButton((e) => this.#createLotto(e));
+    this.#view.onClickWinningLottoSubmitButton((e) => this.#compareLotto(e));
   }
 
   #createLotto(e) {
@@ -40,6 +41,16 @@ export default class LottoGameController {
     this.#view.showElements('.winning-lotto-form');
   }
 
+  #compareLotto(e) {
+    e.preventDefault();
+
+    const winningNumbers = this.#validateWinningNumbers();
+
+    if (!winningNumbers) {
+      return;
+    }
+  }
+
   #validatePurchaseAmount() {
     const $purchaseAmount = $('.purchase-amount-input').value;
 
@@ -47,6 +58,23 @@ export default class LottoGameController {
       Validation.validatePurchaseAmount($purchaseAmount);
 
       return Number($purchaseAmount);
+    } catch ({ message }) {
+      this.#view.showAlert(message);
+
+      return;
+    }
+  }
+
+  #validateWinningNumbers() {
+    const winningNumberInputNodeList = $$('.winning-number-input');
+    const winningNumbers = Array.from(winningNumberInputNodeList, (node) => {
+      return Number(node.value.trim());
+    });
+
+    try {
+      Validation.validateWinningNumbers(winningNumbers);
+
+      return winningNumbers;
     } catch ({ message }) {
       this.#view.showAlert(message);
 
