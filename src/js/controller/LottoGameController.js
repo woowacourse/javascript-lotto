@@ -1,40 +1,41 @@
+// const Lottos = require('../../domain/model/Lottos');
+// const WinningNumbers = require('../../domain/model/WinningNumbers');
+// const validator = require('../../domain/validation/validator');
+// const inputView = require('../../view/inputView');
+// const outputView = require('../../view/outputView');
+import PurchasePriceView from '../../view/PurchasePriceView';
+
 const {
   PRICE_UNIT,
   RESTART_COMMAND,
   ERROR_MESSAGE,
+  CONSOLE_MESSAGE,
 } = require('../constants/constants');
-const Lottos = require('../../domain/model/Lottos');
-const WinningNumbers = require('../../domain/model/WinningNumbers');
-const validator = require('../../domain/validation/validator');
-// const inputView = require('../../view/inputView');
-// const outputView = require('../../view/outputView');
-const PurchasePriceView = require('../../view/PurchasePriceView');
 
 export default class LottoGameController {
-  #lottos;
-
-  #winningNumbers;
-
   constructor() {
     this.view = {
       purchasePriceView: new PurchasePriceView(),
     };
+    this.setEventHandler();
   }
 
-  playGame() {
-    // this.inputPurchasePrice();
-    this.inputPurchasePrice();
+  setEventHandler() {
+    this.view.purchasePriceView.addSubmitEvent(this.onSubmitHandler.bind(this));
   }
 
-  inputPurchasePrice(purchasePriceInput) {
+  onSubmitHandler(purchasePriceInput) {
+    // const lottos = this.model.getLottos();
+    // const { lottoCount, purchasedLottos } = this.purchaseLotto(purchasePrice);
     const lottoCount = this.calculateLottoCount(purchasePriceInput);
-    console.log(lottoCount);
+    this.view.purchasePriceView.printLottoCount(lottoCount);
+
+    this.view.purchasePriceView.resetInputValue();
   }
 
   calculateLottoCount(priceInput) {
     return Math.floor(Number(priceInput) / PRICE_UNIT);
   }
-
   /*
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {
@@ -108,5 +109,3 @@ export default class LottoGameController {
   }
   */
 }
-
-module.exports = LottoGameController;

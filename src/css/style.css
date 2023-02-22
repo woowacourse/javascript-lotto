@@ -1,0 +1,28 @@
+header {
+  background: #4e5ba6;
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+  color: white;
+}
+
+label {
+  width: 310px;
+  height: 24px;
+  font-weight: bold;
+}
+
+button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 56px;
+  height: 36px;
+  left: 342px;
+  top: 132px;
+
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  color: white;
+}
