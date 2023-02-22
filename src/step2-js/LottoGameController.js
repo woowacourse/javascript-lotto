@@ -52,12 +52,12 @@ export default class LottoGameController {
   }
 
   #validatePurchaseAmount() {
-    const $purchaseAmount = $('.purchase-amount-input').value;
+    const purchaseAmount = $('.purchase-amount-input').value;
 
     try {
-      Validation.validatePurchaseAmount($purchaseAmount);
+      Validation.validatePurchaseAmount(purchaseAmount);
 
-      return Number($purchaseAmount);
+      return Number(purchaseAmount);
     } catch ({ message }) {
       this.#view.showAlert(message);
 
@@ -66,8 +66,8 @@ export default class LottoGameController {
   }
 
   #validateWinningNumbers() {
-    const winningNumberInputNodeList = $$('.winning-number-input');
-    const winningNumbers = Array.from(winningNumberInputNodeList, (node) => {
+    const $$winningNumberInputNodeList = $$('.winning-number-input');
+    const winningNumbers = Array.from($$winningNumberInputNodeList, (node) => {
       return Number(node.value.trim());
     });
 
