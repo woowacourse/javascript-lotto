@@ -57,6 +57,8 @@ input {
 
 .inputAmount {
     width: 82%;
+    padding-left: 2%;
+    color: gray;
 }
 
 .purchase {
