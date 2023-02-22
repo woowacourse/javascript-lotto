@@ -42,18 +42,12 @@
             <div class="winning-number-wrapper">
               <div class="lotto-container">
                 <p class="winning-number-title">당첨 번호</p>
-                <div>        
-                  <input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>
-                  <input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>
-                  <input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>
-                  <input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>
-                  <input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>
-                  <input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>
+                <div class="lottery-container"> 
                 </div>
               </div>
               <div class="bonus-container">
                 <p class="bonus-title">보너스 번호</p>
-                <input type="number" class="bonus-input" min="1" max="45">
+                <input type="number" class="bonus-input" min="1" max="45" required>
               </div>
             </div>
             <button class="result-btn">
@@ -63,6 +57,19 @@
         </section>
       </span>
     </div>
+    <section class="modal">
+      <div class="modal-window">
+        <div class="modal-close">
+          <button class="modal-close-button">X</button>
+        </div>
+        <h1>🏆 당첨 통계 🏆</h1>
+        <table class="modal-table">
+        </table>
+        <p class="profit"></p>
+        <button class="restart-btn">다시 시작하기</button>
+      </div>
+    </section>
+
     </main>
     <hr>
     <footer>
