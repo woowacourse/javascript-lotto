@@ -70,7 +70,19 @@ function enterGameBoard() {
   return $enterBoard;
 }
 
-export default function paintEnterWinningNumber($root, eventHandler) {
+export function paintEnterWinningNumber($root, eventHandler) {
   $root.appendChild(enterGameBoard());
   addEnterGameBoardEventListener($root, eventHandler);
+}
+
+export function getWinNumberAndBonusNumber() {
+  const $winNumbers = document.querySelectorAll('input[name="winNumber"]');
+  const $bonusNumber = document.querySelector('input[name="bonusNumber"]');
+
+  const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
+    Number(value)
+  );
+  const bonusNumber = Number($bonusNumber.value);
+
+  return { winningNumbers, bonusNumber };
 }

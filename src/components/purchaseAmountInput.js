@@ -45,7 +45,14 @@ function purchaseEnterInput() {
   return $container;
 }
 
-export default function paintPurchaseEnterInput($root, eventHandler) {
+export function paintPurchaseEnterInput($root, eventHandler) {
   $root.appendChild(purchaseEnterInput());
   addPurchaseEnterEventListener($root, eventHandler);
+}
+
+export function getPurchaseAmount() {
+  const $purchaseInput = document.getElementById('purchaseInput');
+  const purchaseAmount = Number($purchaseInput.value);
+
+  return purchaseAmount;
 }
