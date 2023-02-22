@@ -50,6 +50,7 @@ class LottoController {
     this.purchasedLottoView.reset();
     this.winningLottoInputView.reset();
     this.moneyInputView.toggleButton();
+    this.moneyInputView.clearInput();
   };
 }
 

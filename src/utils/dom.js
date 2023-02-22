@@ -4,5 +4,4 @@ export const resetElement = (element) => {
 
 export const toggleDisableAttribute = (element) => {
   element.disabled = !element.disabled;
-  element.id = element.id === 'disabled' ? '' : 'disabled';
 };
