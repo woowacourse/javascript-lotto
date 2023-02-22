@@ -28,7 +28,7 @@ class Section {
 
         <div>보너스 번호</div>
       </div>
-      <div class="get-all-lotto-numbers">
+      <form class="get-all-lotto-numbers">
         <div class="my-lotto-numbers">
           <input type="number" min="1" max="45" />
           <input type="number" min="1" max="45" />
@@ -38,8 +38,9 @@ class Section {
           <input type="number" min="1" max="45" />
         </div>
         <input type="number" min="1" max="45" class="my-bonus-number" />
-      </div>
+      </form>
       <button type="submit" class="get-result">결과 확인하기</button>
+      
     </div>
 
     <div class="section-split"></div>`;
@@ -53,17 +54,21 @@ class Section {
   }
 
   purchaseLotto(e) {
-    e.preventDefault();
-    const inputMoney = Number(document.querySelector('.input-money').value);
-    this.#lottoGame.purchaseLottos(inputMoney);
+    try {
+      e.preventDefault();
+      const inputMoney = Number(document.querySelector('.input-money').value);
+      this.#lottoGame.purchaseLottos(inputMoney);
 
-    const resultList = this.#lottoGame.getLottos().map((lotto) => {
-      return `<li>🎟️ ${lotto.getLottoNumber().join(', ')}</li>`;
-    });
+      const resultList = this.#lottoGame.getLottos().map((lotto) => {
+        return `<li>🎟️ ${lotto.getLottoNumber().join(', ')}</li>`;
+      });
 
-    const purchaseLottoAmount = document.querySelector('.purchased-lotto-amount');
-    purchaseLottoAmount.innerText = `총 ${resultList.length}개를 구매했습니다.`;
-    document.querySelector('.buy-lotto-list').innerHTML = resultList.join(' ');
+      const purchaseLottoAmount = document.querySelector('.purchased-lotto-amount');
+      purchaseLottoAmount.innerText = `총 ${resultList.length}개를 구매했습니다.`;
+      document.querySelector('.buy-lotto-list').innerHTML = resultList.join(' ');
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   gameResult(e) {
@@ -76,7 +81,7 @@ class Section {
       const modal = new this.#Modal(this.#lottoGame.getWinningRankResult(), this.#lottoGame.getProfitRateOfPrize());
       modal.render(app);
     } catch (error) {
-      console.error(error);
+      alert(error.message);
     }
   }
 }

@@ -46,7 +46,7 @@ class ResultModal {
           <td>${this.#winningRankResult[2000000000]}개</td>
         </tr>
       </table>
-      <p>당신의 총 수익률은 ${this.#profitRateOfPrize}%입니다.</p>
+      <p>당신의 총 수익률은 ${this.#profitRateOfPrize.toFixed(1)}%입니다.</p>
       <button>다시 시작하기</button>
     </div>
     `;
@@ -61,7 +61,6 @@ class ResultModal {
   closeResultModal(e) {
     e.preventDefault();
     const modal = document.querySelector('.modal-view');
-
     modal.className = 'modal-none';
   }
 }
