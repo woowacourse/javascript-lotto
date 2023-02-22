@@ -58,6 +58,7 @@ export default class LottoGameController {
 
     this.#view.printStatistics(statistics);
     this.#view.printYieldRatio(yieldRatio);
+    this.#view.showElements('.result-modal');
   }
 
   #validatePurchaseAmount() {
