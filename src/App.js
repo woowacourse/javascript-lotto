@@ -1,6 +1,6 @@
 import LottoController from './LottoController';
-import InputView from './view/web/InputView';
-import OutputView from './view/web/OutputView';
+import InputView from './view/console/InputView';
+import OutputView from './view/console/OutputView';
 
 class App {
   /** @type {LottoController} */
