@@ -1,4 +1,4 @@
-import { outputView } from "../view/outputView";
+import { view } from "../view-console/view";
 import { LOTTO_PRICE } from "./constants";
 import { MESSAGE } from "./message";
 
@@ -57,7 +57,7 @@ export const validatePurchaseAmount = (purchaseAmountString) => {
     validator.checkInteger(purchaseAmountString);
     validator.checkPurchaseAmount(Number(purchaseAmountString));
   } catch (error) {
-    outputView.print(error.message);
+    view.print(error.message);
     return false;
   }
   return true;
@@ -75,7 +75,7 @@ export const validateWinningLottoNumbers = (winningLottoNumbers) => {
     validator.checkLottoNumbersBetween1And45(mappedWinningLottoNumbers);
     validator.checkListLengthIsSix(mappedWinningLottoNumbers);
   } catch (error) {
-    outputView.print(error.message);
+    view.print(error.message);
     return false;
   }
   return true;
@@ -90,7 +90,7 @@ export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {
     validator.checkBonusNumberBetween1And45(convertedbonusNumber);
     validator.checkBonusNumberDuplicate(convertedbonusNumber, winningLottoNumbers);
   } catch (error) {
-    outputView.print(error.message);
+    view.print(error.message);
     return false;
   }
   return true;
@@ -100,7 +100,7 @@ export const validateRestartOrQuitCommend = (restartOrQuit) => {
   try {
     validator.checkYOrN(restartOrQuit);
   } catch (error) {
-    outputView.print(error.message);
+    view.print(error.message);
     return false;
   }
   return true;

@@ -1,7 +1,8 @@
 import { MESSAGE } from "../domain/message";
-import { getAscendingSortedNumbers } from "../utils";
+import { getAscendingSortedNumbers, rl } from "../utils";
 
-export const outputView = {
+export const view = {
+  // OutputView
   print(message) {
     console.log(message);
   },
@@ -22,5 +23,26 @@ export const outputView = {
     rateOfReturn = rateOfReturn.toLocaleString();
 
     this.print(MESSAGE.OUTPUT.rateOfReturnMessage(rateOfReturn));
+  },
+
+  // inputView
+  readline(message) {
+    return rl.question(message);
+  },
+
+  readLottoPurchaseAmount() {
+    return this.readline(MESSAGE.INPUT.lottoPurchaseAmount);
+  },
+
+  readWinningLottoNumbers() {
+    return this.readline(MESSAGE.INPUT.winningLottoNumbers);
+  },
+
+  readBonusNumber() {
+    return this.readline(MESSAGE.INPUT.bonusNumber);
+  },
+
+  readRestartOrQuit() {
+    return this.readline(MESSAGE.INPUT.restartOrQuit);
   },
 };

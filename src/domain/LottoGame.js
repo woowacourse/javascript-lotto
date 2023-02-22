@@ -1,7 +1,5 @@
 import { LOTTO_PRICE, PLACE, PRIZE_MONEY } from "../domain/constants";
 import { close, randomNumberBetween } from "../utils";
-import { inputView } from "../view/inputView";
-import { outputView } from "../view/outputView";
 import { Lotto } from "./Lotto";
 import { WinningLotto } from "./WinningLotto";
 import {
@@ -15,6 +13,10 @@ export class LottoGame {
   #winningLotto;
   #lottos = [];
 
+  constructor(view) {
+    this.view = view;
+  }
+
   async play() {
     // 구입 금액 입력
     const purchaseAmount = Number(await this.#readPurchaseAmount());
@@ -22,14 +24,14 @@ export class LottoGame {
     const numberOfPurchasedLottos = purchaseAmount / LOTTO_PRICE;
     this.#setLottos(numberOfPurchasedLottos);
     // 생성한 로또 출력
-    outputView.printNumberOfPurchasedLottos(numberOfPurchasedLottos);
-    outputView.printLottos(this.#lottos);
+    this.view.printNumberOfPurchasedLottos(numberOfPurchasedLottos);
+    this.view.printLottos(this.#lottos);
     // 당첨, 보너스 번호 set
     await this.#setWinningLotto();
     // 당첨 통계 출력
     const placesOfLottos = this.#getPlacesOfLottos();
-    outputView.printPlacesOfLottos(placesOfLottos);
-    outputView.printRateOfReturn(
+    this.view.printPlacesOfLottos(placesOfLottos);
+    this.view.printRateOfReturn(
       this.#getRateOfReturn(this.#getTotalPrize(placesOfLottos), purchaseAmount)
     );
     // 게임 재시작 여부 결정
@@ -39,7 +41,7 @@ export class LottoGame {
 
   // 구입 금액 입력
   async #readPurchaseAmount() {
-    const purchaseAmount = await inputView.readLottoPurchaseAmount();
+    const purchaseAmount = await this.view.readLottoPurchaseAmount();
     if (!validatePurchaseAmount(purchaseAmount)) return this.#readPurchaseAmount();
     return purchaseAmount;
   }
@@ -59,13 +61,13 @@ export class LottoGame {
 
   // 당첨, 보너스 번호 set
   async #readWinningLottoNumbers() {
-    const winningLottoNumbers = await inputView.readWinningLottoNumbers();
+    const winningLottoNumbers = await this.view.readWinningLottoNumbers();
     if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.#readWinningLottoNumbers();
     return winningLottoNumbers;
   }
 
   async #readBonusNumber(winningLottoNumbers) {
-    const bonusNumber = await inputView.readBonusNumber();
+    const bonusNumber = await this.view.readBonusNumber();
     if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
       return this.#readBonusNumber(winningLottoNumbers);
     return bonusNumber;
@@ -111,7 +113,7 @@ export class LottoGame {
 
   // 게임 재시작 여부 결정
   async #readRestartOrQuitCommend() {
-    const restartOrQuitCommend = await inputView.readRestartOrQuit();
+    const restartOrQuitCommend = await this.view.readRestartOrQuit();
     if (!validateRestartOrQuitCommend(restartOrQuitCommend))
       return this.#readRestartOrQuitCommend();
     return restartOrQuitCommend;
