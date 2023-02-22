@@ -32,14 +32,14 @@ class LottoPurchaseForm {
   handleSubmit(e) {
     e.preventDefault();
 
-    const [inputEl] = e.target;
+    const [inputEl, buttonEl] = e.target;
 
     dispatchCustomEvent($('#app'), {
       eventType: 'purchaseLotto',
       data: inputEl.valueAsNumber,
     });
-    $('#lotto-purchase-input').disabled = true;
-    $('.lotto-purchase-button').disabled = true;
+    inputEl.disabled = true;
+    buttonEl.disabled = true;
   }
 }
 
