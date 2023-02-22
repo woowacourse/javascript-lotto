@@ -7,6 +7,7 @@ const LOTTO_CONSTANT = Object.freeze({
   BUDGET: '구입 금액',
   COMMAND_RETRY: 'y',
   COMMAND_QUIT: 'n',
+  ERROR: '[ERROR]',
 });
 
 const LOTTO_RANKING = Object.freeze({

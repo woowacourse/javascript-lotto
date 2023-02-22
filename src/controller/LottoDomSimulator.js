@@ -10,6 +10,7 @@ import {
   $totalBudget,
   $winningForm,
   $winningError,
+  $retry,
 } from '../utils/Dom.js';
 import BudgetView from '../view/BudgetView.js';
 import WinningView from '../view/WinningView.js';
@@ -25,7 +26,7 @@ class LottoDomSimulator {
     this.#budget = 0;
     this.budgetView = new BudgetView($budgetForm);
     this.winningView = new WinningView($winningForm);
-    this.resultView = new ResultView();
+    this.resultView = new ResultView($retry);
   }
 
   set budget(budget) {
@@ -51,8 +52,7 @@ class LottoDomSimulator {
       this.budget = budget;
       this.purchaseLottos(budget);
     } catch (err) {
-      // 여기 [ERROR] 상수화 시키기
-      this.budgetView.print($budgetError, `[ERROR] ${err}`);
+      this.budgetView.print($budgetError, `${LOTTO_CONSTANT.ERROR} ${err}`);
     }
     this.budgetView.reset();
   }
@@ -88,7 +88,7 @@ class LottoDomSimulator {
       this.#winningLotto = new WinningLotto(winningNumber, +bonusNumber);
       this.bindModalResult();
     } catch (err) {
-      this.winningView.print($winningError, `[ERROR] ${err}`);
+      this.winningView.print($winningError, `${LOTTO_CONSTANT.ERROR} ${err}`);
       this.winningNumberProcess();
     }
   }
@@ -107,6 +107,13 @@ class LottoDomSimulator {
 
   bindModalResult() {
     this.resultView.openResultModal(this.calculateWinningResult(), this.#budget);
+  }
+
+  retry() {
+    this.#lottos = [];
+    this.winningLotto = null;
+    this.budget = 0;
+    this.play();
   }
 }
 
