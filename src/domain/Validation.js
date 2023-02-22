@@ -37,6 +37,10 @@ const Validation = {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
 
+    if (this.hasDuplicatedValue(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.duplicateLottoNumber);
+    }
+
     if (!this.isValidWinningNumberRange(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
     }
@@ -48,6 +52,10 @@ const Validation = {
 
   hasOnlyNumber(winningNumbers) {
     return winningNumbers.every((winningNumber) => Number.isInteger(winningNumber));
+  },
+
+  hasDuplicatedValue(array) {
+    return array.length !== new Set(array).size;
   },
 
   isValidWinningNumberRange(winningNumbers) {
