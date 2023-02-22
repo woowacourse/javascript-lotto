@@ -1,8 +1,9 @@
+import Lotto from './domain/models/Lotto';
+import lottoGameValidator from './domain/lottoGameValidator';
+import generateRandomNumber from './utils/generateRandomNumber';
 import { LOTTO } from './constants';
 import { $ } from './dom/dom';
-import lottoGameValidator from './domain/lottoGameValidator';
-import Lotto from './domain/models/Lotto';
-import generateRandomNumber from './utils/generateRandomNumber';
+import render from './render';
 
 const $purchaseInput = $('#purchase-amount-form input[type=text]');
 
@@ -10,6 +11,11 @@ const LottoWebGame = function () {
   this.lottos = [];
   this.init = () => {
     initAddEventListener();
+  };
+
+  const renderPurchasedLotto = () => {
+    const lottosNumbers = this.lottos.map((lotto) => lotto.getNumbers());
+    render.purchasedLotto(lottosNumbers);
   };
 
   const buyLottos = (purchaseAmount) => {
@@ -32,13 +38,14 @@ const LottoWebGame = function () {
     return lottoNumbers.sort((a, b) => a - b);
   };
 
-  const submitPurchaseAmount = (event) => {
+  const submitPurchaseAmount = async (event) => {
     event.preventDefault();
 
     const purchaseAmount = $purchaseInput.value;
     try {
       lottoGameValidator.checkPruchaseAmount(purchaseAmount);
       buyLottos(purchaseAmount);
+      renderPurchasedLotto();
     } catch (error) {
       window.alert(error);
       $purchaseInput.value = '';
