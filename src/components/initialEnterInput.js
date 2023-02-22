@@ -1,8 +1,4 @@
-import {
-  addClickEventListener,
-  addKeyUpEventListener,
-  keyUpEventListener,
-} from '../utils/eventListener';
+import { keyUpEventListener } from '../utils/eventListener';
 import {
   gameTitle,
   inputContent,
@@ -34,10 +30,10 @@ function addPurchaseEnterEventListener($root, eventHandler) {
 
   const $purchaseButton = $root.querySelector('#purchaseButton');
 
-  addKeyUpEventListener($container, (e) =>
+  $container.addEventListener('keyup', (e) =>
     keyUpEventListener(e, $purchaseButton)
   );
-  addClickEventListener($purchaseButton, eventHandler);
+  $purchaseButton.addEventListener('click', eventHandler);
 }
 
 function initialEnterInput() {

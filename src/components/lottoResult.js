@@ -1,4 +1,3 @@
-import { addClickEventListener } from '../utils/eventListener';
 import {
   resultEndContent,
   resultTitle,
@@ -38,14 +37,16 @@ function endContainer(earningRate) {
   return $container;
 }
 
-function addLottoResultEventListener($root, retryCallback) {
-  addClickEventListener($root.querySelector('#retry'), retryCallback);
-  addClickEventListener($root.querySelector('.modal-close-button'), closeModal);
+function addLottoResultEventListener($root, retryHandler) {
+  $root.querySelector('#retry').addEventListener('click', retryHandler);
+  $root
+    .querySelector('.modal-close-button')
+    .addEventListener('click', closeModal);
 }
 
 export default function lottoResultBoard(
   { winCount, earningRate },
-  retryCallback
+  retryHandler
 ) {
   const $board = document.createElement('div');
 
@@ -54,7 +55,7 @@ export default function lottoResultBoard(
   $board.appendChild(tableContainer(winCount));
   $board.appendChild(endContainer(earningRate));
 
-  addLottoResultEventListener($board, retryCallback);
+  addLottoResultEventListener($board, retryHandler);
 
   return $board;
 }

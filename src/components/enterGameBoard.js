@@ -1,8 +1,5 @@
 import { LOTTO_LENGTH } from '../data/Constants';
-import {
-  addKeyUpEventListener,
-  keyUpEventListener,
-} from '../utils/eventListener';
+import { keyUpEventListener } from '../utils/eventListener';
 import {
   enterWinNumberMessage,
   winNumberMessage,
@@ -57,8 +54,8 @@ function checkResultButton() {
 function addEnterGameBoardEventListener($root, eventHandler) {
   const $container = $root.querySelector('.number-container');
   const $button = $root.querySelector('#checkResult');
-  addKeyUpEventListener($container, (e) => keyUpEventListener(e, $button));
 
+  $container.addEventListener('keyup', (e) => keyUpEventListener(e, $button));
   $button.addEventListener('click', eventHandler);
 }
 
