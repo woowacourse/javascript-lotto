@@ -50,10 +50,16 @@ class LtComponent extends HTMLElement {
    *
    *   예를 들어,
    *   ```html
-   *   <lt-text-input placeholder="입력해주세요" />
+   *   <my-text message="반가워요 👋" />
    *   ```
-   *   위의 엘리먼트는 HTML string의 `{placeholder}` 를 `입력해주세요` 로
-   *   대체하여 렌더링한다.
+   *   위의 엘리먼트의 HTML string이 아래와 같을 때,
+   *   ```html
+   *   <div style="color: blue">{placeholder}</div>
+   *   ```
+   *   이는 아래처럼 렌더링된다.
+   *   ```
+   *   <div style="color: blue">반가워요 👋<div/>
+   *   ```
    *
    * - HTML string 내의 DOM 중 `id` 가 설정되어 있는 엘리먼트를 프로퍼티에 등록해준다.
    *
