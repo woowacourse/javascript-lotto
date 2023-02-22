@@ -5,12 +5,13 @@ import lottoGenerator from './LottoGenerator.js';
 import Console from '../utils/Console.js';
 import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
+import { generateLottos } from './generateLottos.js';
 
 class LottoController {
 
   async play() {
     const money = await this.#handleRead(InputView.readMoney, LottoValidator.checkMoney);
-    this.lottos = this.#purchase(money);
+    this.lottos = this.purchase(money);
     this.winningNumber = await this.#handleRead(this.#determineWinningNumber.bind(this), LottoValidator.checkLottoDuplicate);
     this.#showResult();
     const command = await this.#handleRead(InputView.readRetryCommand, LottoValidator.checkReadRetryCommand);
@@ -29,9 +30,9 @@ class LottoController {
     }
   }
 
-  #purchase(money) {
+  purchase(money) {
     OutputView.printPurchaseResult(money / LOTTO.price);
-    const lottos = Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator()));
+    const lottos = generateLottos(money);
     lottos.forEach((lotto) => {
       OutputView.printLotto(lotto.getNumbers());
     });
