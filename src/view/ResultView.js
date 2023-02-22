@@ -1,5 +1,13 @@
 import LottoUtils from '../domain/LottoUtils.js';
-import { $$winningCounts, $closeButton, $modal, $yield, close, open } from '../utils/Dom.js';
+import {
+  $$winningCounts,
+  $closeButton,
+  $modal,
+  $winningContainer,
+  $yield,
+  close,
+  open,
+} from '../utils/Dom.js';
 import LottoView from './LottoView.js';
 
 class ResultView extends LottoView {
@@ -42,6 +50,7 @@ class ResultView extends LottoView {
   retryHandler() {
     this.createCustomEvent('retryCommand');
     close($modal);
+    close($winningContainer);
   }
 
   closeModal() {
