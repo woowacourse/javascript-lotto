@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap');
+
+body {
+	margin: 0;
+}
+
+.document {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100vw;
+	height: 100vh;
+	background-color: #FCFCFD;
+	font-family : 'Roboto', 'sans-serif';
+}
+
+.header .container {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100vw;
+	height: 64px;
+	background-color: #4E5BA6;
+	border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.top-navigation-wrap {
+	width: 150px;
+	text-align: center;
+	margin-left: 130px;
+}
+
+.header .container input {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 36px;
+	color: white;
+}
+
+.page-main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page-main .app-container {
+	background-color: white;
+	width: 360px;
+	height: 600px;
+	border: 1px solid #E0E0E0;
+}
+
+.page-main .app-container .app-contents {
+	margin: 10px;
+}
+
+.page-main .app-container .app-contents .title-container {
+	text-align: center;
+	margin: 40px 0 22px 0;
+}
+
+.page-main .app-container .app-contents .main-container {
+	font-size: 14px;
+	font-weight: 350;
+	letter-spacing: 1px;
+}
+
+.page-main .app-container .app-contents .price-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.page-main .app-container .app-contents .price-container label {
+	margin: 0 0 5px 0;
+}
+
+.page-main .app-container .app-contents .price-container #price-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.page-main .app-container .app-contents .price-container #price-form #price-input {
+	width: 100%;
+	border: 1px solid #B4B4B4;
+	border-radius: 4px;
+	text-indent: 5px;
+}
+
+.page-main .app-container .app-contents .price-container #price-form #price-button {
+	width: 50px;
+	height: 30px;
+	background-color: #4E5BA6;
+	color: white;
+	border: 1px solid;
+	border-radius: 4px;
+	margin: 0 0 0 10px;
+	cursor: pointer
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #4E5BA6;
+	height: 80px;
+	border-top: 1px solid rgba(78, 91, 166, 0.2);
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 1.25px;
+}
