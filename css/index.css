@@ -135,8 +135,8 @@ button:active {
 }
 
 .error-message {
-  margin-top: var(--spacing-2);
   height: 17.5px;
+  margin-top: var(--spacing-2);
   font-size: var(--caption-font-size);
   color: var(--dark-red);
   opacity: 0;
@@ -159,16 +159,16 @@ button:active {
 .user-lotto-container {
   height: 284px;
   display: flex;
-  flex-direction: column;
   margin-top: var(--spacing-2);
   margin-bottom: var(--spacing-4);
+  flex-direction: column;
   overflow-y: scroll;
 }
 
 .user-lotto {
   display: flex;
-  gap: var(--spacing-2);
   align-items: center;
+  gap: var(--spacing-2);
 }
 
 .lotto-icon {
@@ -187,8 +187,8 @@ button:active {
 
 #game-numbers-form div {
   display: flex;
-  justify-content: space-between;
   margin-top: var(--spacing-3);
+  justify-content: space-between;
 }
 
 fieldset {
@@ -224,7 +224,7 @@ legend {
   left: 50%;
   width: calc(420px - var(--spacing-3) * 2);
   padding: var(--spacing-3);
-  background-color: var(--white);
+  background: var(--white);
   border: 1px solid var(--gray-2);
   border-radius: var(--spacing-1);
   cursor: default;
