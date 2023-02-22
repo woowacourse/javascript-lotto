@@ -18,6 +18,7 @@ class LottoWebGame {
     try {
       lottoGameValidator.checkPurchaseAmount(input);
       this.initLottos(Number(input));
+      this.renderLottos();
     } catch (e) {
       alert(e.message);
     }
@@ -37,6 +38,13 @@ class LottoWebGame {
       .sort((a, b) => a - b);
 
     return new Lotto(randomNumbers);
+  };
+
+  renderLottos = () => {
+    $('#buy-count').innerHTML = `총 ${this.#lottos.length}개를 구매하였습니다.`;
+    $('#lotto-numbers-area').innerHTML = this.#lottos
+      .map((lotto) => `<p>${lotto.getNumbers().join(', ')}</p>`)
+      .join('');
   };
 }
 
