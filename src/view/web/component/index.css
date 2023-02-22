@@ -53,3 +53,33 @@ footer {
   text-align: center;
   border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
+
+h1 {
+  font-size: var(--typography-title-font-size);
+  font-weight: var(--typography-title-font-weight);
+}
+
+h2 {
+  font-size: var(--typography-subtitle-font-size);
+  font-weight: var(--typography-subtitle-font-weight);
+}
+
+body, p {
+  font-size: var(--typography-body-font-size);
+  font-weight: var(--typography-body-font-weight);
+}
+
+caption {
+  font-size: var(--typography-caption-font-size);
+  font-weight: var(--typography-caption-font-weight);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--main-color);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
