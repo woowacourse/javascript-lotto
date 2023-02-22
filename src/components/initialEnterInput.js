@@ -1,4 +1,9 @@
 import {
+  addClickEventListener,
+  addKeyUpEventListener,
+  keyUpEventListener,
+} from '../utils/eventListener';
+import {
   gameTitle,
   inputContent,
   inputMessage,
@@ -24,11 +29,27 @@ function purchaseAmountContainer() {
   return $container;
 }
 
-export default function initialEnterInput() {
+function addPurchaseEnterEventListener($root, eventHandler) {
+  const $container = $root.querySelector('.purchase-amount-container');
+
+  const $purchaseButton = $root.querySelector('#purchaseButton');
+
+  addKeyUpEventListener($container, (e) =>
+    keyUpEventListener(e, $purchaseButton)
+  );
+  addClickEventListener($purchaseButton, eventHandler);
+}
+
+function initialEnterInput() {
   const $container = document.createElement('div');
 
   $container.innerHTML = gameTitle;
   $container.appendChild(purchaseAmountContainer());
 
   return $container;
+}
+
+export default function paintInitialEnterInput($root, eventHandler) {
+  $root.appendChild(initialEnterInput());
+  addPurchaseEnterEventListener($root, eventHandler);
 }
