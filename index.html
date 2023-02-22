@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/css/reset.css" />
-    <link rel="stylesheet" href="./src/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
@@ -22,35 +20,17 @@
           <h1 class="title text__center">🎱 내 번호 당첨 확인 🎱</h1>
           <form class="budget__form">
             <label class="budget__label" for="budget__input">구입할 금액을 입력해주세요.</label>
-            <input type="text" id="budget__input" placeholder="금액" />
-            <button type="button" class="budget__button">구입</button>
+            <input type="text" id="budget__input" name="budget" placeholder="금액" />
+            <button type="submit" class="budget__button">구입</button>
           </form>
-          <p>총 5개를 구매하였습니다.</p>
+          <p class="budget__error"></p>
+          <p class="total__budget"></p>
           <div class="tickets__container">
-            <p class="ticket">
-              <span class="ticket__emoji">🎟</span>
-              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
-            </p>
-            <p class="ticket">
-              <span class="ticket__emoji">🎟</span>
-              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
-            </p>
-            <p class="ticket">
-              <span class="ticket__emoji">🎟</span>
-              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
-            </p>
-            <p class="ticket">
-              <span class="ticket__emoji">🎟</span>
-              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
-            </p>
-            <p class="ticket">
-              <span class="ticket__emoji">🎟</span>
-              <span class="ticket__number">12, 28, 22, 37, 19, 23</span>
-            </p>
+            <ul class="tickets__list"></ul>
           </div>
           <div class="winning__container">
             <p class="sub__title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <form>
+            <form class="winning__form">
               <div class="winning__box">
                 <div class="winning__input">
                   <label for="winning__number">당첨 번호</label>
@@ -63,11 +43,12 @@
                 </div>
                 <div class="bonus__input">
                   <label for="bonus__number">보너스 번호</label>
-                  <input type="text" id="bonus__number" />
+                  <input type="text" id="winning__number" />
                 </div>
               </div>
-              <button type="button" class="result__button">결과 확인하기</button>
+              <button type="submit" class="result__button">결과 확인하기</button>
             </form>
+            <p class="winning__error"></p>
           </div>
         </div>
       </section>
@@ -101,27 +82,27 @@
                 <tr>
                   <td>3개</td>
                   <td>5,000</td>
-                  <td>n개</td>
+                  <td><span class="winning__count"></span>개</td>
                 </tr>
                 <tr>
                   <td>4개</td>
                   <td>50,000</td>
-                  <td>n개</td>
+                  <td><span class="winning__count"></span>개</td>
                 </tr>
                 <tr>
                   <td>5개</td>
                   <td>1,500,000</td>
-                  <td>n개</td>
+                  <td><span class="winning__count"></span>개</td>
                 </tr>
                 <tr>
                   <td>5개+보너스볼</td>
                   <td>30,000,000</td>
-                  <td>n개</td>
+                  <td><span class="winning__count"></span>개</td>
                 </tr>
                 <tr>
                   <td>6개</td>
                   <td>2,000,000,000</td>
-                  <td>n개</td>
+                  <td><span class="winning__count"></span>개</td>
                 </tr>
               </tbody>
             </table>
@@ -131,7 +112,5 @@
         </div>
       </section>
     </div>
-    <script src="./src/view/LottoView.js" />
-    <!-- <script type="module" src="./src/js/index.js"></script> -->
   </body>
 </html>
