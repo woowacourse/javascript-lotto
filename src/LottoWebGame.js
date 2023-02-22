@@ -19,6 +19,7 @@ class LottoWebGame {
       lottoGameValidator.checkPurchaseAmount(input);
       this.initLottos(Number(input));
       this.renderLottos();
+      $('.hidden-area').classList.add('show');
     } catch (e) {
       alert(e.message);
     }
