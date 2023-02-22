@@ -1,4 +1,4 @@
-const { LOTTO } = require('./constants');
+import { LOTTO } from './constants';
 
 class WinningNumbers {
   #numbers;
@@ -42,4 +42,4 @@ class WinningNumbers {
   }
 }
 
-module.exports = WinningNumbers;
+export default WinningNumbers;

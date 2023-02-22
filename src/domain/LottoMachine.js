@@ -1,7 +1,7 @@
-const Lotto = require('./Lotto');
+import Lotto from './Lotto';
 
-const { shuffle } = require('../utils/shuffle');
-const { ALL_LOTTO_NUMBERS, LOTTO } = require('./constants/index');
+import shuffle from '../utils/shuffle';
+import { ALL_LOTTO_NUMBERS, LOTTO } from './constants/index';
 
 class LottoMachine {
   #purchasePrice;
@@ -55,4 +55,4 @@ class LottoMachine {
   }
 }
 
-module.exports = LottoMachine;
+export default LottoMachine;

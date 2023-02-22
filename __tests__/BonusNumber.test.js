@@ -1,4 +1,4 @@
-const BonusNumber = require('../src/domain/BonusNumber');
+import BonusNumber from '../src/domain/BonusNumber';
 
 describe('BonusNumber 클래스 테스트', () => {
   test.each([['1'], ['23'], ['45']])(

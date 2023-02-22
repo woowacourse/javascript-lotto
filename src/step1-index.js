@@ -1,4 +1,4 @@
-const LottoGame = require('./LottoGame');
+import LottoGame from './LottoGame';
 
 /**
  * step 1의 시작점이 되는 파일입니다.

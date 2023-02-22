@@ -1,8 +1,8 @@
-const Lotto = require('../src/domain/Lotto');
-const LottoStatistics = require('../src/domain/LottoStatistics');
-const WinningNumbers = require('../src/domain/WinningNumbers');
-const BonusNumber = require('../src/domain/BonusNumber');
-const CorrectLotto = require('../src/domain/CorrectLotto');
+import Lotto from '../src/domain/Lotto';
+import LottoStatistics from '../src/domain/LottoStatistics';
+import WinningNumbers from '../src/domain/WinningNumbers';
+import BonusNumber from '../src/domain/BonusNumber';
+import CorrectLotto from '../src/domain/CorrectLotto';
 
 describe('LottoStatistics 클래스 테스트', () => {
   test('로또 당첨결과가 모두 일치할 때 1등인지 확인한다.', () => {

@@ -1,5 +1,6 @@
-const Console = require('../utils/Console');
-const { LOTTO_PRIZE } = require('../domain/constants/index');
+import Console from '../utils/Console';
+
+import { LOTTO_PRIZE } from '../domain/constants/index';
 
 const OutputView = {
   printPurchasedLottos(lottos) {
@@ -38,4 +39,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

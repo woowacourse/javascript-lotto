@@ -1,4 +1,4 @@
-const Console = require('../utils/Console');
+import Console from '../utils/Console';
 
 const InputView = {
   readPurchasePrice() {
@@ -15,4 +15,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

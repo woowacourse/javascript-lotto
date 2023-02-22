@@ -32,4 +32,4 @@ class CorrectLotto {
   }
 }
 
-module.exports = CorrectLotto;
+export default CorrectLotto;
