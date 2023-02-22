@@ -4,7 +4,7 @@ body {
 	margin: 0;
 }
 
-.document {
+#app-root {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -14,7 +14,7 @@ body {
 	font-family : 'Roboto', 'sans-serif';
 }
 
-.header .container {
+#header-container {
 	display: flex;
 	align-items: center;
 	box-sizing: border-box;
@@ -24,13 +24,13 @@ body {
 	border-bottom: 1px solid rgba(78, 91, 166, 0.2);
 }
 
-.top-navigation-wrap {
+#top-navigation-wrap {
 	width: 150px;
 	text-align: center;
 	margin-left: 130px;
 }
 
-.header .container input {
+#header-button {
 	border: none;
 	background: transparent;
 	cursor: pointer;
@@ -41,56 +41,57 @@ body {
 	color: white;
 }
 
-.page-main {
+#page-main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.page-main .app-container {
+#app-container {
 	background-color: white;
 	width: 360px;
 	height: 600px;
 	border: 1px solid #E0E0E0;
 }
 
-.page-main .app-container .app-contents {
+#app-contents {
+	height: 100%;
 	margin: 10px;
 }
 
-.page-main .app-container .app-contents .title-container {
+#app-title-container {
 	text-align: center;
 	margin: 40px 0 22px 0;
 }
 
-.page-main .app-container .app-contents .main-container {
+#app-main-container {
 	font-size: 14px;
 	font-weight: 350;
 	letter-spacing: 1px;
 }
 
-.page-main .app-container .app-contents .price-container {
+#price-container {
 	display: flex;
 	flex-direction: column;
 }
 
-.page-main .app-container .app-contents .price-container label {
+#price-container > label {
 	margin: 0 0 5px 0;
 }
 
-.page-main .app-container .app-contents .price-container #price-form {
+#price-form {
 	display: flex;
 	justify-content: space-between;
 }
 
-.page-main .app-container .app-contents .price-container #price-form #price-input {
+#price-input {
 	width: 100%;
 	border: 1px solid #B4B4B4;
 	border-radius: 4px;
 	text-indent: 5px;
 }
 
-.page-main .app-container .app-contents .price-container #price-form #price-button {
+#price-button {
 	width: 50px;
 	height: 30px;
 	background-color: #4E5BA6;
@@ -101,7 +102,34 @@ body {
 	cursor: pointer
 }
 
-.footer {
+#lottos-container {
+	display: flex;
+	flex-direction: column;
+	height: 300px;
+}
+
+#lottos-amount {
+	margin-top: 30px;
+}
+
+#lottos {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow-y: auto;
+}
+
+#lottos #ticket {
+	display: flex;
+	align-items: center;
+}
+
+#lotto-emoji {
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+#footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
