@@ -45,8 +45,8 @@ export default class WinNumbers extends Component {
     const drawingNumbers = { winNumbers: [], bonusNumber: 0 };
 
     Object.entries(fields).forEach(([name, value]) => {
-      if (name.includes('winNumber')) drawingNumbers.winNumbers.push(Number(value));
-      if (name.includes('bonusNumber')) drawingNumbers.bonusNumber = Number(value);
+      if (name.includes('win-number')) drawingNumbers.winNumbers.push(Number(value));
+      if (name.includes('bonus-number')) drawingNumbers.bonusNumber = Number(value);
     });
 
     this.props.updateDrawingNumbers(drawingNumbers);
