@@ -62,6 +62,10 @@ footer {
   border-radius: 4px;
 }
 
+.lotto-purchase-button:disabled {
+  background-color: var(--grayScale400);
+}
+
 .copyright {
   color: var(--colorPrimary);
   font-size: var(--fontSizeCaption);
