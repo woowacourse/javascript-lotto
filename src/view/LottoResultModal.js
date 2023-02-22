@@ -8,9 +8,9 @@ class LottoResultModal {
     this.modal = document.getElementsByClassName('modal')[0];
     this.modalContainer = document.getElementsByClassName('modal-container')[0];
     this.closeButton = document.getElementById('close-button');
-    this.closeButton.addEventListener('click', this.closeButtonHandler.bind(this));
+    this.closeButton.addEventListener('click', this.closeButtonHandler.bind(this), { once: true });
 
-    this.table = document.getElementById('result-table');
+    this.table = document.createElement('table');
   }
 
   toggleModal() {
@@ -25,6 +25,7 @@ class LottoResultModal {
   }
 
   renderTable() {
+    this.modal.appendChild(this.table);
     this.table.insertAdjacentHTML(
       'afterbegin',
       `<thead>
