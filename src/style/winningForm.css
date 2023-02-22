@@ -1,0 +1,62 @@
+#winning-lotto-from {
+  margin: 0px 16px 32px;
+}
+
+#winning-lotto-from-title {
+  font: 400 15px/24px 'Roboto';
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+#winning-lotto-from-layout {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 37px;
+}
+
+#winning-numbers-inputs {
+  display: flex;
+}
+
+#winning-lotto-from input {
+  width: 34px;
+  height: 36px;
+}
+
+.winning-form-input-title {
+  font: 400 15px/24px 'Roboto';
+  margin-bottom: 8px;
+}
+
+.bonusNumber-input div {
+  text-align: right;
+}
+
+#winning-numbers-inputs input {
+  margin-right: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#bonusNumber-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#bonusNumber-input input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#winning-lotto-from input[type='submit'] {
+  width: 100%;
+  background: #4e5ba6;
+  border-radius: 4px;
+  color: #ffffff;
+  font: 700 14px/16px 'Roboto';
+  letter-spacing: 1.25px;
+  cursor: pointer;
+}
