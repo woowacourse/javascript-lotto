@@ -67,6 +67,7 @@ main {
 .game-container {
   position: relative;
   width: 420px;
+  height: 781px;
   padding: var(--spacing-3);
   border: 1px solid var(--divider-border-color);
   border-radius: var(--spacing-1);
@@ -147,13 +148,8 @@ button:active {
   box-shadow: 0 0 0 3px rgba(253, 131, 131, 0.5) !important;
 }
 
-#user-lotto-purchase {
-  height: 18px;
-}
-
 .start-container {
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .user-lotto-container {
@@ -318,7 +314,6 @@ footer p {
 
   main {
     width: 100vw;
-    height: 100vh;
   }
 
   .game-container {
