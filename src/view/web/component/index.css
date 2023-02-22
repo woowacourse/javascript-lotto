@@ -24,6 +24,17 @@ body {
   flex-direction: column;
 }
 
+body > main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body > *:last-child {
+  margin-top: auto;
+}
+
 header {
   padding: 0.875rem;
   background: var(--main-color);
@@ -82,4 +93,15 @@ button {
   color: white;
   font-size: 0.875rem;
   font-weight: 700;
+}
+
+.frame {
+  padding: 2rem 1rem;
+  margin: 2rem;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
 }

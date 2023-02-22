@@ -1,0 +1,13 @@
+dialog {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+dialog > form {
+  margin: 0;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}

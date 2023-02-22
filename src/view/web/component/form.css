@@ -1,0 +1,42 @@
+form#lotto-form {
+  width: 420px;
+}
+
+form#lotto-result-form {
+  width: 350px;
+}
+
+form > *:not(:first-child) {
+  margin-top: 2rem;
+}
+
+form > lt-typography {
+  text-align: center;
+}
+
+form > fieldset {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  border: none;
+}
+
+form > fieldset > legend {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+form > fieldset > lt-money-input,
+form > fieldset > lt-winning-lotto-input {
+  flex: 1;
+}
+
+form > fieldset > lt-lotto {
+  width: 100%;
+}
+
+[data-focus] ~ * {
+  display: none;
+}
+
