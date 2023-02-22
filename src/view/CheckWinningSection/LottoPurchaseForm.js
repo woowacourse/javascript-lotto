@@ -39,6 +39,8 @@ class LottoPurchaseForm {
       eventType: 'purchaseLotto',
       data: inputEl.valueAsNumber,
     });
+    $('#lotto-purchase-input').disabled = true;
+    $('.lotto-purchase-button').disabled = true;
   }
 }
 
