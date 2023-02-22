@@ -1,7 +1,11 @@
+import LottoMachine from './domain/LottoMachine';
+
 import HomePage from './view/HomePage';
 
 class LottoGame {
   #homePage;
+
+  #lottoMachine;
 
   $target;
 
@@ -14,7 +18,8 @@ class LottoGame {
   }
 
   handlePurchaseLotto(purchasePrice) {
-    console.log(purchasePrice);
+    this.#lottoMachine = new LottoMachine(purchasePrice);
+    console.log(this.#lottoMachine.lottos);
   }
 }
 
