@@ -15,42 +15,15 @@
       <div class="mainTitle">🎱 내 당첨번호 확인 🎱</div>
       <div class="lottoInput">
         <div class="lottoInputTitle">구입할 금액을 입력해주세요.</div>
-        <form>
-          <input placeholder="금액" />
+        <form class="purchaseForm">
+          <input class="inputPurchaseAmount" placeholder="금액" />
           <button>구입</button>
         </form>
       </div>
 
       <div class="lottoIssueView">
         <div class="lottoIssueViewTitle">총 7개를 구매하였습니다.</div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
-        <div class="ticket">
-          <div class="ticketPicture">🎟️</div>
-          12, 12, 12, 12, 12, 12
-        </div>
+        <div class="ticketView"></div>
       </div>
 
       <div>
@@ -72,9 +45,48 @@
             <input class="number" />
           </div>
         </div>
+        <button class="resultButton">결과 확인하기</button>
       </div>
-      <button class="resultButton">결과 확인하기</button>
     </div>
+
+    <div class="modal">
+      <div class="exitModal">X</div>
+      <div class="resultTitle">🏆 당첨 통계 🏆</div>
+      <table class="resultTable">
+        <th>일치 갯수</th>
+        <th>당첨금</th>
+        <th>당첨 갯수</th>
+        <tr>
+          <td>3개</td>
+          <td>5,000</td>
+          <td>n개</td>
+        </tr>
+        <tr>
+          <td>4개</td>
+          <td>50,000</td>
+          <td>n개</td>
+        </tr>
+        <tr>
+          <td>5개</td>
+          <td>1,500,000</td>
+          <td>n개</td>
+        </tr>
+        <tr>
+          <td>5개+보너스볼</td>
+          <td>30,000,000</td>
+          <td>n개</td>
+        </tr>
+        <tr>
+          <td>6개</td>
+          <td>2,000,000,000</td>
+          <td>n개</td>
+        </tr>
+      </table>
+      <div class="resultExplain">당신의 총 수익률은 %입니다.</div>
+      <button class="restartButton">다시 시작하기</button>
+    </div>
+    <div class="modalBackground"></div>
+
     <div class="footer">Copyright 2023. woowacourse</div>
   </body>
 </html>
