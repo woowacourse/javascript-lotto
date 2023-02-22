@@ -9,7 +9,7 @@ class LtTextInput extends LtFormControl {
   #text = '';
 
   static get observedAttributes() {
-    return ['placeholder'];
+    return ['type', 'min', 'max', 'step', 'placeholder'];
   }
 
   setErrorMessage(message) {

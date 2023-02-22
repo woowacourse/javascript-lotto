@@ -1,4 +1,15 @@
 <style>
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input {
+    -moz-appearance: textfield;
+    appearance: none;
+  }
+
   input {
     box-sizing: border-box;
     width: 100%;
@@ -38,5 +49,5 @@
 </style>
 
 <div>
-  <input id="input" placeholder="{placeholder}" autocomplete="off">
+  <input id="input" type="{type}" min="{min}" max="{max}" step="{step}" placeholder="{placeholder}" autocomplete="off">
 </div>
