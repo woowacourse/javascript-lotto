@@ -49,26 +49,6 @@ class LottoGameController {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
     this.#output.renderResultModal(RANKS, PROFIT_RATE);
   }
-
-  // #askGameRestart = () => {
-  //   const REPLY_INPUT = InputView.readUserInput(RequestMessage.RESTART);
-  //   const REPLY = REPLY_INPUT.toLowerCase().trim();
-
-  //   try {
-  //     Validation.testRestart(REPLY);
-  //     this.#restartOrEndGame(REPLY);
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
-
-  // #restartOrEndGame(reply) {
-  //   if (reply === GameControlStaticValue.RESTART_BUTTON) {
-  //     this.startGame();
-  //     return;
-  //   }
-
-  // }
 }
 
 export default LottoGameController;
