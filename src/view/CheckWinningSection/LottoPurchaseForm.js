@@ -30,6 +30,16 @@ class LottoPurchaseForm {
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const [inputEl] = e.target;
+
+    dispatchCustomEvent($('#app'), {
+      eventType: 'purchaseLotto',
+      data: inputEl.valueAsNumber,
+    });
+  }
 }
 
 export default LottoPurchaseForm;

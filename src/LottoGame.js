@@ -8,8 +8,13 @@ class LottoGame {
   constructor($target) {
     this.$target = $target;
     this.#homePage = new HomePage(this.$target);
+    this.$target.addEventListener('purchaseLotto', (e) =>
+      this.handlePurchaseLotto(e.detail)
+    );
   }
 
+  handlePurchaseLotto(purchasePrice) {
+    console.log(purchasePrice);
   }
 }
 
