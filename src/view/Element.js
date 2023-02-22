@@ -6,6 +6,7 @@ const Element = {
     const lottoList = Utils.$(".lotto__numbers-list");
     const buyLottoTemplate = Utils.$("#lotto-tem");
     const buyLottoClone = document.importNode(buyLottoTemplate.content, true);
+
     buyLottoClone.querySelector(".lotto__lotto-icon").innerText = "🎟";
     buyLottoClone.querySelector(".lotto__numbers").innerText =
       lotto.lottoNumbers;
@@ -24,6 +25,7 @@ const Element = {
   createResultContainer() {
     const resultBg = document.createElement("section");
     const resultContainer = document.createElement("div");
+
     resultBg.classList.add("result-background");
     resultContainer.classList.add("result-container");
     Utils.$("#app").appendChild(resultBg);
@@ -33,12 +35,14 @@ const Element = {
   createResultTitle() {
     const titleTemplate = Utils.$("#result-title");
     const titleClone = document.importNode(titleTemplate.content, true);
+
     document.querySelector(".result-container").appendChild(titleClone);
   },
 
   createResultContents(lottoRanking, matchingCount) {
     const contentsTemplate = Utils.$("#result");
     const contentsClone = document.importNode(contentsTemplate.content, true);
+
     contentsClone.querySelector(".result__matching-count").innerText =
       matchingCount;
     contentsClone.querySelector(".result__price").innerText =
@@ -51,7 +55,12 @@ const Element = {
   createRetryButton() {
     const retryTemplate = document.querySelector("#result-footer");
     const retryClone = document.importNode(retryTemplate.content, true);
+
     document.querySelector(".result-container").appendChild(retryClone);
+  },
+
+  createInnerText(element, text) {
+    element.innerText = text;
   },
 };
 
