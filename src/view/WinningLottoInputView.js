@@ -12,7 +12,7 @@ class WinningLottoInputView {
 
   createNumberInputs(length) {
     return Array.from({ length: length })
-      .map(() => `<input class="number-input" type="number" />`)
+      .map(() => `<input class="number-input" type="number" min="1" max="45"/>`)
       .join('');
   }
 

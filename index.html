@@ -15,8 +15,9 @@
           <span class="lotto-title">🎱 내 번호 당첨 확인 🎱</span>
           <section id="money-input-section">
             <p class="lotto-body">구입할 금액을 입력해주세요.</p>
+            <span id="info-message">로또는 최대 10만원까지 구매 가능합니다.</span>
             <form id="money-input-form">
-              <input placeholder="금액" id="money-input" type="number" />
+              <input placeholder="금액" id="money-input" type="number" max="100000" />
               <button class="buy-button">구입</button>
             </form>
           </section>

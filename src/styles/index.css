@@ -17,9 +17,6 @@ td {
   text-align: center;
 }
 
-button {
-}
-
 :root {
   --lotto-primary: #4e5ba6;
   --lotto-greyscale-1: #ffffff;
@@ -66,9 +63,6 @@ button {
   color: var(--lotto-greyscale-5);
 }
 
-#money-input-section {
-}
-
 .lotto-body {
   font-weight: 400;
   font-size: 15px;
@@ -81,6 +75,13 @@ button {
   font-weight: 400;
   font-size: 15px;
   color: var(--lotto-greyscale-5);
+}
+
+#info-message {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--lotto-greyscale-4);
 }
 
 .buy-button {
