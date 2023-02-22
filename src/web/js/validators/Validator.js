@@ -1,6 +1,6 @@
-import REGEXP from '../constant/regexp.js';
-import ERROR from '../constant/error.js';
-import COMMAND from '../constant/command.js';
+import REGEXP from '../constants/regexp.js';
+import ERROR from '../constants/error.js';
+import COMMAND from '../constants/command.js';
 
 const Validator = (function () {
   return {

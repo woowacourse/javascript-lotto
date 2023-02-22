@@ -1,6 +1,6 @@
 import InputChecker from './validators/InputChecker.js';
 import LottoGame from './domains/LottoGame.js';
-import tagGenerator from './util/tagRenderer.js';
+import tagGenerator from './utils/tagGenerators.js';
 
 const $ = selector => document.querySelector(selector);
 

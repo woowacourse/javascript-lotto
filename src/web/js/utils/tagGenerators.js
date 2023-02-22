@@ -1,8 +1,8 @@
-import TAGS from '../constant/tags.js';
-import QUERY from '../constant/query.js';
-import MESSAGE from '../constant/message.js';
+import TAGS from '../constants/tags.js';
+import QUERY from '../constants/query.js';
+import MESSAGE from '../constants/message.js';
 
-const tagGenerator = {
+const tagGenerators = {
   generateLottos: lottos => {
     return `
 		<div id="lottos-amount">
@@ -39,4 +39,4 @@ const tagGenerator = {
   },
 };
 
-export default tagGenerator;
+export default tagGenerators;

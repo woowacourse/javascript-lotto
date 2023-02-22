@@ -7,7 +7,7 @@ body {
 #app-root {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content:space-between;
 	width: 100vw;
 	height: 100vh;
 	background-color: #FCFCFD;
@@ -38,7 +38,7 @@ body {
 	color: white;
 }
 
-#page-main {
+main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -47,7 +47,7 @@ body {
 #app-container {
 	background-color: white;
 	width: 400px;
-	height: 630px;
+	height: 600px;
 	border: 1px solid #E0E0E0;
 }
 

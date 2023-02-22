@@ -1,7 +1,7 @@
 import LottoMachine from './LottoMachine.js';
-import NumberHandler from '../util/NumberHandler.js';
-import LOTTO from '../constant/lotto.js';
-import { RANK, RANKING_TABLE } from '../constant/rank.js';
+import NumberHandler from '../utils/NumberHandler.js';
+import LOTTO from '../constants/lotto.js';
+import { RANK, RANKING_TABLE } from '../constants/rank.js';
 
 const LottoGame = (function () {
   const props = {

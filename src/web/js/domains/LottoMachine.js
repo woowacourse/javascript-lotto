@@ -1,7 +1,7 @@
 import Lotto from './Lotto.js';
-import NumberHandler from '../util/NumberHandler.js';
-import LOTTO from '../constant/lotto.js';
-import SORT from '../constant/sort.js';
+import NumberHandler from '../utils/NumberHandler.js';
+import LOTTO from '../constants/lotto.js';
+import SORT from '../constants/sort.js';
 
 const LottoMachine = (function () {
   const generateLottoNumbers = () => {

@@ -1,6 +1,6 @@
 import Validator from './Validator.js';
-import LOTTO from '../constant/lotto.js';
-import inputUtils from '../util/inputUtils.js';
+import LOTTO from '../constants/lotto.js';
+import inputUtils from '../utils/inputUtils.js';
 
 const InputValidator = (function () {
   return {
