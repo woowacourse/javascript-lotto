@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
     <div id="app">
       <header>
@@ -36,37 +35,81 @@
               </li>
             </div>
           </div>
-          <div id="input-winlotto">
-            <p id="input-winlotto-label">
-              지난주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-            </p>
-            <div id="input-winnumbers-box">
-              <p class="body-text">당첨 번호</p>
-              <div id="input-number-set">
-                <input type="number" max="45" min="1" class="input-number" />
-                <input type="number" max="45" min="1" class="input-number" />
-                <input type="number" max="45" min="1" class="input-number" />
-                <input type="number" max="45" min="1" class="input-number" />
-                <input type="number" max="45" min="1" class="input-number" />
-                <input type="number" max="45" min="1" class="input-number" />
+          <form id="input-winnumber-form">
+            <div id="input-winlotto">
+              <p id="input-winlotto-label">
+                지난주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+              </p>
+              <div id="input-winnumbers-box">
+                <p class="body-text">당첨 번호</p>
+                <div id="input-number-set">
+                  <input
+                    name="num1"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                  <input
+                    name="num2"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                  <input
+                    name="num3"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                  <input
+                    name="num4"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                  <input
+                    name="num5"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                  <input
+                    name="num6"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                </div>
+              </div>
+              <div id="input-bonusnumber-box">
+                <p class="body-text">보너스 번호</p>
+                <div>
+                  <input
+                    name="bonus"
+                    type="number"
+                    max="45"
+                    min="1"
+                    class="input-number"
+                  />
+                </div>
               </div>
             </div>
-            <div id="input-bonusnumber-box">
-              <p class="body-text">보너스 번호</p>
-              <div>
-                <input type="number" max="45" min="1" class="input-number" />
-              </div>
+            <div id="submit-winlotto">
+              <button type="submit" id="submit-winlotto-button">
+                <p>결과 확인하기</p>
+              </button>
             </div>
-          </div>
-          <div id="submit-winlotto">
-            <button id="submit-winlotto-button">
-              <p>결과 확인하기</p>
-            </button>
-          </div>
+          </form>
         </div>
-
         <div id="result" class="contents">
-          <h2 class="subtitle">당첨 통계</h2>
+          <button id="exit-result">X</button>
+          <h2 class="subtitle">🏆 당첨 통계 🏆</h2>
           <table id="result-table">
             <thead class="caption">
               <tr>
@@ -79,32 +122,36 @@
               <tr>
                 <td>3개</td>
                 <td>5,000</td>
-                <td>n개</td>
+                <td id="result-rank5">n개</td>
               </tr>
               <tr>
                 <td>4개</td>
                 <td>50,000</td>
-                <td></td>
+                <td id="result-rank4">n개</td>
               </tr>
               <tr>
                 <td>5개</td>
                 <td>1,500,000</td>
-                <td>n개</td>
+                <td id="result-rank3">n개</td>
               </tr>
               <tr>
                 <td>5개+보너스볼</td>
                 <td>30,000,000</td>
-                <td>n개</td>
+                <td id="result-rank2">n개</td>
               </tr>
               <tr>
                 <td>6개</td>
                 <td>2,000,000,000</td>
-                <td>n개</td>
+                <td id="result-rank1">n개</td>
               </tr>
             </tbody>
           </table>
-          <p class="caption">당신의 총 수입률은 %입니다.</p>
-          <button id="restart">다시 시작하기</button>
+          <div id="result-revenue">
+            <p>당신의 총 수입률은 %입니다.</p>
+          </div>
+          <button id="restart">
+            <p>다시 시작하기</p>
+          </button>
         </div>
       </contents>
       <footer>copyright</footer>

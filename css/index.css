@@ -173,7 +173,7 @@ header h1 {
   position: absolute;
   height: 290px;
   width: 382px;
-  top: 215px;
+  top: 220px;
   left: 16px;
   overflow: auto;
 }
@@ -227,8 +227,6 @@ header h1 {
   color: #ffffff;
   width: 30px;
   height: 16px;
-
-  /* Inside auto layout */
 
   flex: none;
   order: 0;
@@ -356,7 +354,7 @@ header h1 {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 12px;
   /* identical to box height, or 114% */
 
@@ -376,8 +374,8 @@ header h1 {
   box-sizing: border-box;
 
   position: absolute;
-  width: 414px;
-  height: 727px;
+  width: 350px;
+  height: 500px;
   left: 513px;
   top: 1500px;
 
@@ -386,4 +384,118 @@ header h1 {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+}
+
+#result .subtitle {
+  width: 318px;
+  top: 41px;
+}
+
+#exit-result {
+  position: absolute;
+  left: 91.43%;
+  top: 3.2%;
+}
+
+#result table {
+  position: absolute;
+  width: 318px;
+  left: 16px;
+  top: 100px;
+
+  text-align: center;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+#result thead {
+  font-weight: 600;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  height: 30px;
+}
+
+#result tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#result-revenue {
+  position: relative;
+  top: 386px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+#restart {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#restart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#restart p {
+  width: 106px;
+  height: 16px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  /* lotto-greyscale-1 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }

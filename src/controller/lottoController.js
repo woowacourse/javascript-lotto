@@ -1,3 +1,4 @@
+const { RANK } = require("../constant/Constant");
 const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
 
@@ -6,6 +7,7 @@ const $$ = (selector) => document.querySelectorAll(selector);
 
 class LottoController {
   #lottoGame;
+  #lottos;
   #view;
 
   constructor() {
@@ -14,13 +16,14 @@ class LottoController {
     $("#submit-winlotto").style.visibility = "hidden";
 
     const lottoGame = new LottoGame();
+    let lottos;
 
     $("#input-money-form").onsubmit = function (event) {
       event.preventDefault();
 
       const money = this.money.value;
 
-      const lottos = lottoGame.makeLottos(money);
+      lottos = lottoGame.makeLottos(money);
 
       $(
         "#show-lotto-label"
@@ -39,6 +42,35 @@ class LottoController {
         $("#lottos").appendChild(lottoFrame);
       });
     };
+
+    $("#input-winnumber-form").onsubmit = function (event) {
+      event.preventDefault();
+
+      const numbers_string = [
+        this.num1.value,
+        this.num2.value,
+        this.num3.value,
+        this.num4.value,
+        this.num5.value,
+        this.num6.value,
+      ];
+      const numbers = numbers_string.map((num) => parseInt(num));
+      const bonusNumber = parseInt(this.bonus.value);
+      const winLotto = lottoGame.makeWinLotto(numbers, bonusNumber);
+
+      const rankResult = lottoGame.calculateRankResult(lottos, winLotto);
+      const revenue = lottoGame.calculateRevenueRate(rankResult, lottos.length);
+
+      [1, 2, 3, 4, 5].forEach((rank) => {
+        $(`#result-rank${rank}`).innerText = `${rankResult[rank]}개`;
+      });
+
+      $("#result-revenue").innerText = `당신의 총 수입률은 ${revenue}%입니다`;
+    };
+
+    $("#restart").addEventListener("click", () => {
+      location.reload();
+    });
   }
 
   async playLotto() {
@@ -51,7 +83,7 @@ class LottoController {
   }
 
   async purchaseLotto(money) {
-    const lottos = this.#lottoGame.makeLottos(money);
+    const lottos = this.#lottoGame.make(money);
     const lottoCount = lottos.length;
 
     this.#view.printLottoCount(lottoCount);
