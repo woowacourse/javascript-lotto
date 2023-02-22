@@ -1,19 +1,12 @@
-import {
-  THIRD_PLACE,
-  INITIAL_EARNING,
-  LOTTO_COUNT,
-  PRICE,
-  PRIZE,
-  SECOND_PLACE,
-} from '../constants/values.js';
-import randomGenerator from '../utils/Random.js';
+import { LOTTO, GAME, PRIZE } from '../constants/lottoConstants.js';
+import randomGenerator from '../utils/randomGenerator.js';
 import Lotto from './Lotto.js';
 
 const LottoMachine = {
   purchase(lottoCount) {
     return Array(lottoCount)
       .fill()
-      .map(() => new Lotto(randomGenerator(LOTTO_COUNT)));
+      .map(() => new Lotto(randomGenerator(LOTTO.COUNT)));
   },
 
   draw(lotto) {
@@ -21,8 +14,8 @@ const LottoMachine = {
     const { winningNumbers, bonusNumber } = lotto.getDrawingNumbers();
     const awards = winningNumbers.filter((number) => numbers.includes(number));
 
-    return awards.length === THIRD_PLACE && numbers.includes(bonusNumber)
-      ? SECOND_PLACE
+    return awards.length === LOTTO.THIRD_PLACE && numbers.includes(bonusNumber)
+      ? LOTTO.SECOND_PLACE
       : awards.length;
   },
 
@@ -39,15 +32,15 @@ const LottoMachine = {
   },
 
   calculateEarningRate(lottoList) {
-    const TOTAL = lottoList.length;
+    const lottoCount = lottoList.length;
     const statistics = LottoMachine.calculateStatistics(lottoList);
 
     const earning = Object.entries(statistics).reduce(
       (acc, [rank, count]) => (rank in PRIZE ? acc + PRIZE[rank] * count : acc),
-      INITIAL_EARNING
+      GAME.INITIAL_EARNING
     );
 
-    return ((earning / (PRICE * TOTAL)) * 100).toFixed(1);
+    return ((earning / (LOTTO.PRICE * lottoCount)) * 100).toFixed(1);
   },
 };
 

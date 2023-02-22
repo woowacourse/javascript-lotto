@@ -1,6 +1,6 @@
 import checkUnit from './amount.js';
 import Console from '../utils/Console.js';
-import { SPLITTER, UNIT } from '../constants/values.js';
+import { FORMAT, LOTTO } from '../constants/lottoConstants.js';
 import {
   checkBonusNumberFormat,
   checkWinningNumberRange,
@@ -21,7 +21,7 @@ const ValidationInputs = {
   },
 
   checkAmount(amount) {
-    checkUnit(amount, UNIT);
+    checkUnit(amount, LOTTO.PRICE);
 
     return Number(amount);
   },
@@ -37,7 +37,7 @@ const ValidationInputs = {
   },
 
   checkWinningNumbers(numbers) {
-    const winningNumbers = numbers.split(SPLITTER).map(Number);
+    const winningNumbers = numbers.split(FORMAT.SPLITTER).map(Number);
 
     checkWinningNumbersFormat(numbers);
     checkWinningNumbersRange(winningNumbers);

@@ -1,4 +1,4 @@
-import QUERY from '../constants/query.js';
+import { QUERY } from '../constants/lottoConstants.js';
 import ValidationInputs from '../validator/ValidationInputs';
 import Console from './Console.js';
 

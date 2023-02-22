@@ -1,7 +1,7 @@
 import Component from './Component.js';
 import generationMessages from '../../utils/generationMessages.js';
 import Inputs from '../../utils/Inputs.js';
-import { PRICE } from '../../constants/values.js';
+import { LOTTO } from '../../constants/lottoConstants.js';
 import LottoMachine from '../../domain/LottoMachine.js';
 
 export default class Amount extends Component {
@@ -16,7 +16,7 @@ export default class Amount extends Component {
   async read() {
     const amount = await Inputs.readAmount();
 
-    this.#lottoCount = amount / PRICE;
+    this.#lottoCount = amount / LOTTO.PRICE;
     this.#lottoList = LottoMachine.purchase(this.#lottoCount);
     this.setter({ total: this.#lottoCount, lottoList: this.#lottoList });
   }
