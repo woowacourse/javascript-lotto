@@ -4,6 +4,7 @@ import paintInitialEnterInput from '../components/initialEnterInput';
 import lottoResultBoard from '../components/lottoResult';
 import paintModal, { closeModal } from '../components/modal';
 import paintLottoStatus from '../components/purchaseLottoStatus';
+import { STEP } from '../data/Constants';
 import LottoGame from '../domain/LottoGame';
 import { inputErrorChecker } from '../utils/errorChecker';
 import { clearConatiner } from '../utils/Utils';
@@ -17,6 +18,7 @@ export default function LottoUIController($app) {
   this.state = {
     lottoGame: new LottoGame(),
     $root: null,
+    step: STEP.INIT,
   };
 
   const init = () => {
@@ -56,7 +58,7 @@ export default function LottoUIController($app) {
   };
 
   const purchaseAmountHandler = () => {
-    const { $root, lottoGame } = this.state;
+    const { $root, lottoGame, step } = this.state;
 
     const $purchaseInput = document.getElementById('purchaseInput');
     const purchaseAmount = Number($purchaseInput.value);
@@ -70,6 +72,14 @@ export default function LottoUIController($app) {
       showErrorMessage($root, message, $root.querySelector('button'));
       return;
     }
+
+    if (step !== STEP.INIT) {
+      $root.removeChild($root.lastChild);
+      $root.removeChild($root.lastChild);
+      this.state.step = STEP.INIT;
+    }
+
+    this.state.step = STEP.ENTER;
 
     lottoGame.purchaseLottos(purchaseAmount);
     const lottos = lottoGame.getLottoNumbers();
@@ -95,15 +105,16 @@ export default function LottoUIController($app) {
       validateBonusNumber(bonusNumber, winningNumbers)
     );
 
-    if (!bonusState && !winState) {
-      calculateResult(bonusNumber, winningNumbers);
+    if (bonusState || winState) {
+      const message = winState ? winMessage : bonusMessage;
+      const $root = document.querySelector('.number-container');
+      const $trigger = document.querySelector('#checkResult');
+
+      showErrorMessage($root, message, $trigger);
       return;
     }
 
-    const message = winState ? winMessage : bonusMessage;
-    const $root = document.querySelector('.number-container');
-    const $trigger = document.querySelector('#checkResult');
-    showErrorMessage($root, message, $trigger);
+    calculateResult(bonusNumber, winningNumbers);
   };
 
   const restart = () => {
