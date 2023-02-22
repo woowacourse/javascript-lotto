@@ -1,17 +1,12 @@
 import Validation from '../../../../Validation';
-import { default as LtFormControl, default as LtTextInput } from '../LtFormControl';
-import template from './index.html';
+import LtTextInput from '../LtTextInput';
 
-class LtMoneyInput extends LtFormControl {
-  /** @type {LtTextInput} */
+class LtMoneyInput extends LtTextInput {
+  /** @type {HTMLInputElement} */
   $input;
 
   /** @type {number | null} */
   #value = null;
-
-  static get observedAttributes() {
-    return ['placeholder'];
-  }
 
   get value() {
     return this.#value;
@@ -38,7 +33,7 @@ class LtMoneyInput extends LtFormControl {
 
   setValidation(message) {
     super.setValidation(message);
-    this.$input.errorMessage = message;
+    this.errorMessage = message;
   }
 
   formResetCallback() {
@@ -46,14 +41,10 @@ class LtMoneyInput extends LtFormControl {
     this.setValidation(null);
   }
 
-  getRenderContent() {
-    return template;
-  }
-
   render() {
     super.render();
 
-    this.$input.value = this.#value;
+    this.$input.value = this.value;
     this.$input.addEventListener('change', (event) => {
       this.#validate(event.target.value);
     });
