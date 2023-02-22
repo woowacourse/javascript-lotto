@@ -22,12 +22,11 @@ class LottoPurchaseForm {
 
   constructor($target) {
     this.$target = $target;
-    this.render();
-    this.$target.addEventListener('submit', (e) => this.handleSubmit(e));
   }
 
   render() {
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
+    this.$target.addEventListener('submit', (e) => this.handleSubmit(e));
   }
 
   handleSubmit(e) {
