@@ -2,12 +2,13 @@
 import LottoMachine from './domain/LottoMachine';
 import { renderLottosContainer, renderResultTable } from './view/web/render';
 import '../public/style.css';
+import WebController from './WebController';
 
 const resultBtn = document.querySelector('.result-btn');
 const paymentsBtn = document.querySelector('.payments-btn');
 const modal = document.querySelector('.modal');
 
-let lottoMachine;
+const webController = new WebController();
 
 const getIntegerValue = (numberInput) => {
   return Number(numberInput.value);
@@ -16,7 +17,7 @@ const getIntegerValue = (numberInput) => {
 const handlePayments = () => {
   const paymentsInput = document.querySelector('.payments-input');
   const payments = getIntegerValue(paymentsInput);
-  lottoMachine = new LottoMachine(payments);
+  webController.receivePaymentsInput(payments);
 };
 
 const changeCSSByPaymentsBtnClick = () => {
@@ -36,10 +37,10 @@ const handleWinningLottos = () => {
   const bonusNumberInput = document.querySelector('.bonus-number-input');
 
   const winningNumbers = Array.from(winningNumberInputs, getIntegerValue);
-  lottoMachine.generateWinningLotto(winningNumbers);
+  webController.receiveWinningLottoNumbersInput(winningNumbers);
 
   const bonusNumber = getIntegerValue(bonusNumberInput);
-  lottoMachine.setBonusNumber(bonusNumber);
+  webController.receiveBonusNumberInput(bonusNumber);
 };
 
 const changeCSSByResultBtnClick = () => {
@@ -56,7 +57,7 @@ paymentsBtn.addEventListener('click', () => {
     return;
   }
 
-  renderLottosContainer(lottoMachine.getLottoNumbers());
+  renderLottosContainer(webController.sendLottoNumbers());
   changeCSSByPaymentsBtnClick();
 });
 
@@ -68,7 +69,7 @@ resultBtn.addEventListener('click', () => {
     return;
   }
   changeCSSByResultBtnClick();
-  renderResultTable(lottoMachine.calcStatstics());
+  renderResultTable(webController.sendStatstics());
 });
 
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
