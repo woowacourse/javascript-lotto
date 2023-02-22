@@ -66,10 +66,16 @@ class LottoController {
       });
 
       $("#result-revenue").innerText = `당신의 총 수입률은 ${revenue}%입니다`;
+
+      $("#result").style.display = "block";
     };
 
     $("#restart").addEventListener("click", () => {
       location.reload();
+    });
+
+    $("#result-exit").addEventListener("click", () => {
+      $("#result").style.display = "none";
     });
   }
 

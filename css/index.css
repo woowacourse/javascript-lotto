@@ -124,7 +124,7 @@ header h1 {
 
   /* Auto layout */
 
-  width: 310px;
+  width: 320px;
   height: 32px;
 
   /* lotto-greyscale-3 */
@@ -152,7 +152,7 @@ header h1 {
   position: absolute;
   width: 52px;
   height: 32px;
-  left: 320px;
+  left: 332px;
   bottom: 0;
 
   /* lotto-primary */
@@ -370,14 +370,26 @@ header h1 {
 
 #result {
   position: absolute;
+  top: 0;
+  left: 0;
 
+  width: 100%;
+  height: 100%;
+
+  display: none;
+  /* display: none; */
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#result-body {
   box-sizing: border-box;
 
   position: absolute;
   width: 350px;
   height: 500px;
-  left: 513px;
-  top: 1500px;
+  left: 545px;
+  top: 250px;
 
   /* lotto-greyscale-1 */
 
@@ -391,7 +403,7 @@ header h1 {
   top: 41px;
 }
 
-#exit-result {
+#result-exit {
   position: absolute;
   left: 91.43%;
   top: 3.2%;
@@ -420,7 +432,7 @@ header h1 {
 
 #result-revenue {
   position: relative;
-  top: 386px;
+  top: 380px;
 
   font-family: "Roboto";
   font-style: normal;
