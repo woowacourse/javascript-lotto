@@ -42,7 +42,6 @@ const OutputView = {
 
   printExit() {
     Console.print(Messages.PRINT_EXIT);
-    Console.close();
   },
 };
 

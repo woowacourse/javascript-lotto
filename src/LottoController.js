@@ -2,6 +2,7 @@ import RestartCommand from './constant/RestartCommand';
 import LottoResult from './domain/LottoResult';
 import Buyer from './domain/subject/Buyer';
 import Seller from './domain/subject/Seller';
+import LottoError from './errors/LottoError';
 
 class LottoController {
   #inputView;
@@ -13,12 +14,29 @@ class LottoController {
   /** @type {Seller} */
   #seller;
 
+  /** @type {boolean} 컨트롤러가 계속 사용될 수 있는지 여부. 재시작 제어를 위해 사용한다. */
+  #finished = false;
+
   constructor({ inputView, outputView }) {
     this.#inputView = inputView;
     this.#outputView = outputView;
   }
 
+  isFinished() {
+    return this.#finished;
+  }
+
+  finish() {
+    this.#finished = true;
+  }
+
+  #throwIfFinished() {
+    if (this.#finished) throw new LottoError('사용이 종료된 컨트롤러입니다.');
+  }
+
   async proceedBuyLottos() {
+    this.#throwIfFinished();
+
     const money = await this.#inputView.readMoney();
     this.#buyer = new Buyer(money);
     this.#seller = new Seller();
@@ -28,6 +46,8 @@ class LottoController {
   }
 
   async proceedLottoResult() {
+    this.#throwIfFinished();
+
     const winningLotto = await this.#inputView.readWinningLotto();
     const lottoResult = new LottoResult(winningLotto);
     this.#buyer.receiveRewards(lottoResult);
@@ -38,13 +58,14 @@ class LottoController {
   }
 
   async proceedRestart() {
-    const restartCommand = await this.#inputView.readRestartCommand();
+    this.#throwIfFinished();
 
+    const restartCommand = await this.#inputView.readRestartCommand();
     if (restartCommand === RestartCommand.YES) {
-      return true;
+      return;
     }
     this.#outputView.printExit();
-    return false;
+    this.finish();
   }
 }
 

@@ -1,4 +1,5 @@
 import LottoController from './LottoController';
+import Console from './utils/Console';
 import InputView from './view/console/InputView';
 import OutputView from './view/console/OutputView';
 
@@ -14,21 +15,13 @@ class App {
   }
 
   async play() {
-    this.repeatGame();
-  }
+    do {
+      await this.#lottoController.proceedBuyLottos();
+      await this.#lottoController.proceedLottoResult();
+      await this.#lottoController.proceedRestart();
+    } while (!this.#lottoController.isFinished());
 
-  async repeatGame() {
-    await this.playGame();
-    const restart = await this.#lottoController.proceedRestartCommand();
-    if (!restart) {
-      return;
-    }
-    this.repeatGame();
-  }
-
-  async playGame() {
-    await this.#lottoController.proceedBuyLottos();
-    await this.#lottoController.proceedLottoResult();
+    Console.close();
   }
 }
 
