@@ -6,6 +6,7 @@ import validator from './domain/validator';
 import LottoGame from './domain/LottoGame';
 
 const budgetForm = document.querySelector('.budget_form');
+const budgetInput = document.querySelector('.budget_input');
 const budgetError = document.querySelector('.budget_error');
 
 const step2 = document.querySelector('#step2');
@@ -19,8 +20,23 @@ const bonusNumberInput = document.querySelector('.bonus_number');
 const numberError = document.querySelector('.number_error');
 
 const modal = document.querySelector('#modal');
+const winningCounts = document.querySelectorAll('.winning_count');
+const profitRateDiv = document.querySelector('.profit_rate');
+const modalCloseBtn = document.querySelector('.modal_close');
+const modalBackground = document.querySelector('.modal_background');
+
+const retryBtn = document.querySelector('.retry_btn');
 
 let lottoGame;
+
+const displayModal = (winningNumbers, bonusNumber) => {
+  const winningStatus = [...lottoGame.getWinningStatus(winningNumbers, bonusNumber)].reverse();
+  const profitRate = lottoGame.getProfitRate().toFixed(2);
+  [...winningCounts].forEach((winningCount, index) => {
+    winningCount.innerText = winningStatus[index];
+  });
+  profitRateDiv.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+};
 
 const displayBudgetError = (message) => {
   budgetError.innerText = message;
@@ -70,8 +86,33 @@ const onSubmitLottoNumberForm = (event) => {
   } catch ({ message }) {
     return displayNumberError(message);
   }
+
+  displayModal(winningNumbers, bonusNumber);
   modal.style.visibility = 'visible';
+};
+
+const onClickModalCloseBtn = () => {
+  modal.style.visibility = 'hidden';
+};
+
+const onClickModalBackGround = () => {
+  modal.style.visibility = 'hidden';
+};
+
+const onClickRetryBtn = () => {
+  budgetInput.value = '';
+  modal.style.visibility = 'hidden';
+  step2.style.visibility = 'hidden';
+  [...winningNumberInput].forEach((input) => {
+    input.value = '';
+  });
+  bonusNumberInput.value = '';
 };
 
 budgetForm.addEventListener('submit', onSubmitBudgetForm);
 lottoNumberForm.addEventListener('submit', onSubmitLottoNumberForm);
+
+modalCloseBtn.addEventListener('click', onClickModalCloseBtn);
+modalBackground.addEventListener('click', onClickModalBackGround);
+
+retryBtn.addEventListener('click', onClickRetryBtn);
