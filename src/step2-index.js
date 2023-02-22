@@ -4,6 +4,7 @@ import Header from './view/components/Header.js';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';
 import WinNumbers from './view/components/WinNumbers.js';
+import StatisticsModal from './view/components/StatisticsModal.js';
 
 class App extends Component {
   constructor() {
@@ -18,12 +19,16 @@ class App extends Component {
     const {
       state: { lottoList },
       setLottoList,
+      updateDrawingNumbers,
     } = this;
 
     new Header(component('header'));
     new Amount(component('amount'), { setLottoList: setLottoList.bind(this) });
     new LottoList(component('lottoList'), { lottoList });
-    new WinNumbers(component('winNumbers'));
+    new WinNumbers(component('winNumbers'), {
+      updateDrawingNumbers: updateDrawingNumbers.bind(this),
+    });
+    new StatisticsModal(component('statistics-modal'), { lottoList });
   }
 
   template() {
@@ -32,6 +37,7 @@ class App extends Component {
       <section data-component='amount'></section>
       <section data-component='lottoList'></section>
       <section data-component='winNumbers'></section>
+      <div data-component='statistics-modal'></div>
     `;
   }
 
@@ -41,6 +47,16 @@ class App extends Component {
 
   setLottoList(lottoList) {
     this.setState({ lottoList });
+  }
+
+  updateDrawingNumbers(drawingNumbers) {
+    const lottoList = this.state.lottoList.map((lotto) => {
+      lotto.setDrawingNumbers(drawingNumbers);
+
+      return lotto;
+    });
+
+    this.setLottoList(lottoList);
   }
 }
 
