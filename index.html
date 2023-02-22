@@ -4,13 +4,73 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
-    <div id="app">
+    <header>
       <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
+    </header>
+
+    <main>
+      <section class="app">
+        <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
+
+        <form>
+          <label for="money">구입할 금액을 입력해주세요.</label>
+          <div>
+            <input type="text" class="money-input" name="money" placeholder="금액">
+            <button type="button" class="input buy">구입</button>
+          </div>
+          <div class="alert money">
+            <p></p>
+            <button type="button" class="close">&times</button>
+          </div>
+        </form>
+
+        <section class="lotto-list hidden-first">
+          <p class="lotto-count"></p>
+          <div></div>
+        </section>
+
+        <form class="hidden-first">
+          <p>당첨 번호 6개와 보너스 번호 1개를 입력하세요.</p>
+          <div class="input-winning-numbers-labels">
+            <label for="winning-numbers">당첨 번호</label>
+            <label for="bonus-number">보너스 번호</label>
+          </div>
+          <div class="input-boxes">
+            <div class="winning-number-input-boxes">
+              <input type="text" class="single-number-input" name="winning-numbers" required>
+              <input type="text" class="single-number-input" name="winning-numbers" required>
+              <input type="text" class="single-number-input" name="winning-numbers" required>
+              <input type="text" class="single-number-input" name="winning-numbers" required>
+              <input type="text" class="single-number-input" name="winning-numbers" required>
+              <input type="text" class="single-number-input" name="winning-numbers" required>
+            </div>
+            <div class="bonus-number-input-box">
+              <input type="text" class="single-number-input" name="bonus-number" required>
+            </div>
+          </div>
+          <button type="button" class="input show-results">결과 확인하기</button>
+          <div class="alert winning-numbers">
+            <p></p>
+            <button type="button" class="close">&times</button>
+          </div>
+        </form>
+      </section>
+
+      <div class="modal-background">
+        <section class="modal-box">
+          <button type="button" class="close">&times;</button>
+          <div class="modal-message">
+
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>Copyright 2023. woowacourse</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,249 @@
+/*
+순서
+1. display
+2. position
+3. size/margin/padding/...
+4. 꾸미기
+*/
+
+:root {
+  --lotto-primary-color: 78, 91, 166;
+  --app-border-color: #B4B4B4;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  display: flex;
+
+  top: 0;
+
+  height: 64px;
+  width: 100%;
+
+  background-color: rgb(var(--lotto-primary-color));
+}
+
+header h1 {
+  margin: auto auto auto 9%;
+
+  text-align: center;
+  color: white;
+}
+
+main {
+  display: flex;
+}
+
+footer {
+  display: flex;
+
+  bottom: 0px;
+
+  height: 80px;
+  width: 100%;
+
+  border-top: 1px solid rgba(var(--lotto-primary-color), 0.2);
+}
+
+footer p {
+  margin: auto;
+
+  text-align: center;
+  color: rgb(var(--lotto-primary-color));
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-content: space-evenly;
+
+  margin: 7% auto 7% auto;
+  padding: 5%;
+  width: 414px;
+  
+  border: 1px solid var(--app-border-color);
+  border-radius: 4px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+form div {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.input-money {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-winning-numbers-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-number-input {
+  width: 35px;
+  height: 35px;
+}
+
+.input-boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  box-sizing: border-box;
+  border: 1px solid var(--app-border-color);
+  border-radius: 4px;
+}
+
+.money-input {
+  width: 310px;
+  height: 36px;
+}
+
+.buy {
+  width: 56px;
+  height: 36px;
+}
+
+.show-results,
+.restart-game {
+  height: 36px;
+}
+
+button.input,
+button.restart-game {
+  border: 1px solid rgb(var(--lotto-primary-color));
+  border-radius: 4px;
+  background-color: rgb(var(--lotto-primary-color));
+  color: white;
+}
+
+.title {
+  text-align: center;
+}
+
+.modal-background{
+  display: none;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 30%;
+
+  background-color: white;
+  border-radius: 4px;
+}
+
+button.close {
+  font-size: xx-large;
+  border: none;
+}
+
+.modal-background button.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 4px;
+
+  color: black;
+  background-color: white;
+}
+
+.alert {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background-color: red;
+}
+
+.alert p {
+  color: white;
+}
+
+.alert button.close {
+  color: white;
+  background-color: red;
+}
+
+.hidden-first {
+  display: none;
+}
+
+.lotto-list {
+  flex-direction: column;
+}
+
+table, td, th {
+  align-self: center;
+
+  border-collapse: collapse;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+td {
+  text-align: center;
+}
+
+td, th {
+  padding: 1em;
+}
+
+.lotto-list div {
+  flex-direction: column;
+
+  height: 200px;
+  overflow: auto;
+}
+
+.lotto {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.modal-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 5%;
+}
+
+.modal-message h1,
+.modal-message h3 {
+  align-self: center;
+}
