@@ -11,7 +11,7 @@ export default class StatisticsModal extends Component {
   setEvent() {
     this.addEvent(
       'submit',
-      '.lotto-store__statistics-dialog-form',
+      '.lotto-store__statistics-dialog-retry-form',
       this.handleSubmitForm.bind(this)
     );
   }
@@ -19,8 +19,10 @@ export default class StatisticsModal extends Component {
   template() {
     return `
       <dialog class='lotto-store__statistics-dialog'>
-        <div class='lotto-store__statistics-dialog-contents'>
-          <button class='lotto-store__dialog-close-btn'>X</button>
+      <div class='lotto-store__statistics-dialog-contents'>
+          <form class='lotto-store__statistics-dialog-close-form' method='dialog'>
+            <button class='lotto-store__dialog-close-btn'>X</button>
+          </form>
           <h2 class='lotto-store__statistics-title'>🏆 당첨 통계 🏆</h2>
           <div class='lotto-store__statistics-table'>
             <div class='lotto-store__statistics-label'>
@@ -33,7 +35,7 @@ export default class StatisticsModal extends Component {
           <div class='lotto-store__earning-rate'>당신의 총 수익률은 ${
             this.earningRate
           }%입니다.</div>
-          <form class='lotto-store__statistics-dialog-form'' method="dialog">
+          <form class='lotto-store__statistics-dialog-retry-form' method="dialog">
             <button class='lotto-store__retry-btn'>다시 시작하기</button>
           </form>
         </div>

@@ -11,6 +11,10 @@ html {
   font-size: 62.5%;
 }
 
+button {
+  cursor: pointer;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -210,6 +214,23 @@ lotto-list__lotto-list {
   width: 100%;
 }
 
+.lotto-store__statistics-dialog-close-form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lotto-store__dialog-close-btn {
+  width: 3rem;
+
+  font-size: 2rem;
+
+  border: none;
+
+  background-color: transparent;
+
+  padding: 0;
+}
+
 .lotto-store__statistics-title {
   text-align: center;
   font-size: 2rem;
@@ -262,17 +283,4 @@ lotto-list__lotto-list {
   background-color: var(--primary);
 
   padding: 1rem 0;
-}
-
-.lotto-store__dialog-close-btn {
-  width: 3rem;
-
-  font-size: 2rem;
-
-  border: none;
-
-  background-color: transparent;
-
-  padding: 0;
-  margin-left: auto;
 }
