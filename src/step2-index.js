@@ -39,6 +39,8 @@ const firstCount = document.querySelector('.firstCount');
 
 const benefitRate = document.querySelector('.benefitRate');
 
+const retryButton = document.querySelector('.retryButton');
+
 winningModal.classList.add('hiddenElement');
 lottoInfoContainer.classList.add('hiddenElement');
 inputNumberContainer.classList.add('hiddenElement');
@@ -57,9 +59,7 @@ const addEvents = {
 
         getLottoCount(money.getAmount() / 1000);
 
-        while (lottoNumberConatiner.firstChild) {
-          lottoNumberConatiner.removeChild(lottoNumberConatiner.firstChild);
-        }
+        removeLottos();
 
         lottos.forEach((item) => getLottoNumbers(item.getLottoNumbers()));
 
@@ -90,17 +90,6 @@ const addEvents = {
 
       winningModal.classList.remove('hiddenElement');
 
-      const keys = Object.keys(lottoNumberConatiner.children);
-
-      //   const lottos = keys.map(
-      //     (item) =>
-      //       new Lotto(
-      //         lottoNumberConatiner.children[item].children[1].innerText
-      //           .split(',')
-      //           .map((lottoNumber) => Number(lottoNumber))
-      //       )
-      //   );
-
       const ranks = getCollectedRanks(winning, lottos);
 
       getRankResult(ranks);
@@ -114,6 +103,16 @@ addEvents.inputMoney();
 
 closeButton.addEventListener('click', () => {
   winningModal.classList.add('hiddenElement');
+});
+
+retryButton.addEventListener('click', () => {
+  winningModal.classList.add('hiddenElement');
+  lottoInfoContainer.classList.add('hiddenElement');
+  inputNumberContainer.classList.add('hiddenElement');
+
+  removeLottos();
+  resetLottoInputs();
+  moneyAmount.focus();
 });
 
 const getLottoCount = (count) => {
@@ -143,6 +142,24 @@ const getRankResult = (ranks) => {
   thirdCount.innerText = `${ranks[2]}개`;
   secondCount.innerText = `${ranks[1]}개`;
   firstCount.innerText = `${ranks[0]}개`;
+};
+
+const removeLottos = () => {
+  while (lottoNumberConatiner.firstChild) {
+    lottoNumberConatiner.removeChild(lottoNumberConatiner.firstChild);
+  }
+};
+
+const resetLottoInputs = () => {
+  winning1.value = '';
+  winning2.value = '';
+  winning3.value = '';
+  winning4.value = '';
+  winning5.value = '';
+  winning6.value = '';
+  bonus.value = '';
+
+  moneyAmount.value = '';
 };
 
 const getBenefitRate = (money, ranks) => {
