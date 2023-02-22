@@ -1,5 +1,6 @@
 const LottoView = require("../view/LottoView");
 const LottoGame = require("../domain/LottoGame");
+const Validation = require("../domain/Validation");
 
 const moneyForm = document.getElementById("money_form");
 const winContents = document.getElementById("win_contents");
@@ -32,33 +33,51 @@ const ViewController = {
     event.preventDefault();
 
     const winNum = document.getElementsByName("winNum[]");
-    const bonusNum = document.getElementsByName("bonusNum")[0].value;
+    const bonusNum = document.getElementsByName("bonusNum")[0];
     const winNumbers = new Array();
 
     winNum.forEach((winNum) => {
       const num = parseInt(winNum.value, 10);
       winNumbers.push(num);
     });
-    const bonusNumber = parseInt(bonusNum, 10);
+    const bonusNumber = parseInt(bonusNum.value, 10);
 
-    lottoGame.makeWinLotto(winNumbers, bonusNumber);
-    const rankResult = lottoGame.calculateRankResult();
-    const revenue = lottoGame.calculateRevenueRate(rankResult);
+    try {
+      Validation.isWrongWinNumber(winNumbers);
+      Validation.isWrongBonusNumber(winNumbers, bonusNumber);
 
-    modal.style.display = "block";
-    LottoView.printRankResult(rankResult, revenue);
+      lottoGame.makeWinLotto(winNumbers, bonusNumber);
+      const rankResult = lottoGame.calculateRankResult();
+      const revenue = lottoGame.calculateRevenueRate(rankResult);
+
+      modal.style.display = "block";
+      LottoView.printRankResult(rankResult, revenue);
+    } catch (e) {
+      bonusNum.value = null;
+      winNum.forEach((winNum) => {
+        winNum.value = null;
+      });
+      LottoView.alertErrorMessage(e.message);
+      winNumForm.preventDefault();
+    }
   },
 
   purchaseLotto(event, lottoGame) {
-    event.preventDefault();
+    try {
+      event.preventDefault();
+      const money = document.getElementById("input_money").value;
+      Validation.isWrongMoney(money);
 
-    const money = document.getElementById("input_money").value;
-    lottoGame.lottos = money;
+      lottoGame.lottos = money;
 
-    LottoView.printLottoConunt(lottoGame.lottoCount);
-    LottoView.printLottos(lottoGame.lottos);
+      LottoView.printLottoConunt(lottoGame.lottoCount);
+      LottoView.printLottos(lottoGame.lottos);
 
-    winContents.classList.remove("hidden");
+      winContents.classList.remove("hidden");
+    } catch (e) {
+      LottoView.alertErrorMessage(e.message);
+      window.location.reload();
+    }
   },
 };
 

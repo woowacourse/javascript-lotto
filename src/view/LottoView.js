@@ -39,7 +39,11 @@ const LottoView = {
 
     const revenueText = document.getElementById("revenue_text");
     revenueText.innerText = `당신의 총 수익률은 ${revenue}% 입니다.`;
-  }
+  },
+
+  alertErrorMessage(message) {
+    alert(message);
+  },
 };
 
 module.exports = LottoView;

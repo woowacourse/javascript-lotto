@@ -53,7 +53,6 @@ const LottoController = {
     try {
       const money = await InputView.readInput(MESSAGES.readMoney);
       Validation.isWrongMoney(money);
-      console.log(money);
       return money;
     } catch (e) {
       OutputView.printErrorMessage(e.message);
