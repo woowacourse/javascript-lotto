@@ -2,6 +2,7 @@
 import { generateLottos } from "../../../domain/generateLottos";
 import LottoValidator from "../../../domain/LottoValidator";
 import Render from "../../../utils/Render";
+import InputWinningNumberBox from "../InputWinningNumberBox";
 import PurchaseResults from "../PurchaseResults";
 
 const gameBoxEvent = () => {
@@ -14,6 +15,7 @@ const gameBoxEvent = () => {
       store['lottos'] = generateLottos((input.value));
       input.value = '';
       Render.container("purchase-result", () => PurchaseResults(), () => { });
+      Render.container("input-winning-number", () => InputWinningNumberBox(), () => { });
     } catch (error) {
       alert(error.message);
     }
