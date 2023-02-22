@@ -3,29 +3,35 @@ import VIEW from "./constants/View";
 import Console from "./util/Console";
 import InputView from "./view/InputView";
 import Lotto from "./domain/Lotto";
-import Lottos from "./domain/Lottos";
 import Random from "./util/Random";
 import OutputView from "./view/OutputView";
 import LottoScore from "./domain/LottoScore";
 import InputCheck from "./InputCheck";
 import Utils from "./util/Utils";
+import LottoMachine from "./domain/LottoMachine";
 
 class App {
+  #lottos;
+
+  constructor() {
+    this.lottoMachine = new LottoMachine();
+  }
+
   async play() {
     const buyMoney = await this.getBuyMoney();
-    const lottos = await this.createLotto(parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE));
-    const lottoScore = new LottoScore(lottos.lottos)
+    await this.createLotto(parseInt(buyMoney / LOTTO_GAME.LOTTO_PRICE));
+    const lottoScore = new LottoScore(this.#lottos);
     const winningLotto = await this.getWinningLotto();
     const bonusNumber = await this.getBonusNumber(winningLotto);
-    this.compareLottos(lottos, winningLotto, bonusNumber,lottoScore);
+    this.compareLottos(winningLotto, bonusNumber, lottoScore);
     const retryInput = await this.getRetryInput();
-    this.retryLottoGame(retryInput, lottos, lottoScore);
+    this.retryLottoGame(retryInput, lottoScore);
   }
 
   async getBuyMoney() {
     const buyMoney = await InputView.inputMoney(VIEW.INPUT_MONEY);
     try {
-      InputCheck.validateBuyMoney(buyMoney);
+      InputCheck.validateBuyMoney(buyMoney, false);
     } catch (e) {
       Console.print(e);
       return await this.getBuyMoney();
@@ -38,9 +44,8 @@ class App {
       { length: lottoAmount },
       () => new Lotto(Random.generateRandomNumbers())
     );
-    const lottos = new Lottos(createdLotto)
-    OutputView.printBuyLottos(lottos);
-    return lottos;
+    this.#lottos = [...createdLotto];
+    OutputView.printBuyLottos(this.#lottos);
   }
 
   async getWinningLotto() {
@@ -49,7 +54,7 @@ class App {
     );
     const winningLotto = Utils.convertStringToNumber(winningNumbers.split(","));
     try {
-      InputCheck.validateWinningNumbers(winningLotto);
+      InputCheck.validateWinningNumbers(winningLotto, false);
     } catch (e) {
       Console.print(e);
       return await this.getWinningLotto();
@@ -63,8 +68,8 @@ class App {
     );
     const bonusNumber = Number(bonusInput);
     try {
-      InputCheck.validateBonusNumber(bonusNumber, winningLotto);
-      InputCheck.checkNumber(bonusNumber);
+      InputCheck.validateBonusNumber(bonusNumber, winningLotto, false);
+      InputCheck.checkNumber(bonusNumber, false);
     } catch (e) {
       Console.print(e);
       return await this.getBonusNumber(winningLotto);
@@ -72,16 +77,16 @@ class App {
     return bonusNumber;
   }
 
-  compareLottos(lottos, winningLotto, bonusNumber,lottoScore) {
-    lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
+  compareLottos(winningLotto, bonusNumber, lottoScore) {
+    this.lottoMachine.compareLottos(this.#lottos, winningLotto, bonusNumber);
     lottoScore.compareLottosScore();
-    OutputView.printResult(lottos.lottos.length, lottoScore);
+    OutputView.printResult(this.#lottos.length, lottoScore);
   }
 
   async getRetryInput() {
     const retryInput = await InputView.inputRetry(VIEW.INPUT_RETYR);
     try {
-      InputCheck.validateRetryInput(retryInput);
+      InputCheck.validateRetryInput(retryInput, false);
     } catch (e) {
       Console.print(e);
       return await this.getRetryInput();
@@ -89,10 +94,10 @@ class App {
     return retryInput;
   }
 
-  async retryLottoGame(retryInput, lottos,lottoScore) {
+  async retryLottoGame(retryInput, lottoScore) {
     if (retryInput === LOTTO_GAME.RETRY_DOWNER) {
-      lottos.resetLottos();
-      lottoScore.resetLottoScore()
+      this.#lottos = [];
+      lottoScore.resetLottoScore();
       await this.play();
     }
     if (retryInput === LOTTO_GAME.QUIT_DOWNER) {
