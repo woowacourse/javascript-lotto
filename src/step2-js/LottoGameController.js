@@ -55,6 +55,8 @@ export default class LottoGameController {
     const statistics = this.#lottoGame.getStatistics(eachCompareResult);
     const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);
     const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
+
+    this.#view.printStatistics(statistics);
   }
 
   #validatePurchaseAmount() {
