@@ -2,6 +2,8 @@
 
 ## 프로젝트 구조
 
+![flowchart](https://user-images.githubusercontent.com/87642422/220621070-70127e9d-b31c-4745-9eb5-7477b5d770cf.png)
+
 ```
 📦src
  ┣ 📂css
