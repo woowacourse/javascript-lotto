@@ -3,6 +3,11 @@
     "[javascript]": {
         "editor.formatOnSave": true
     },
+    "[html]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
