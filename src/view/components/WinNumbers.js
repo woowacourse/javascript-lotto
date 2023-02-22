@@ -54,5 +54,6 @@ export default class WinNumbers extends Component {
     });
 
     this.props.updateDrawingNumbers(drawingNumbers);
+    this.props.openModal();
   }
 }

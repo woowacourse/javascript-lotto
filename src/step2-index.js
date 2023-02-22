@@ -11,13 +11,23 @@ class App extends Component {
     super(qs('#app'));
   }
 
+  getInitialState() {
+    return { amount: 0, lottoList: [] };
+  }
+
   setUp() {
-    this.state = { amount: 0, lottoList: [] };
+    this.state = this.getInitialState();
+  }
+
+  initState() {
+    this.setState(this.getInitialState());
   }
 
   mounted() {
     const {
       state: { lottoList },
+      initState,
+      openModal,
       setLottoList,
       updateDrawingNumbers,
     } = this;
@@ -27,8 +37,12 @@ class App extends Component {
     new LottoList(component('lottoList'), { lottoList });
     new WinNumbers(component('winNumbers'), {
       updateDrawingNumbers: updateDrawingNumbers.bind(this),
+      openModal: openModal.bind(this),
     });
-    new StatisticsModal(component('statistics-modal'), { lottoList });
+    new StatisticsModal(component('statistics-modal'), {
+      lottoList,
+      initState: initState.bind(this),
+    });
   }
 
   template() {
@@ -57,6 +71,10 @@ class App extends Component {
     });
 
     this.setLottoList(lottoList);
+  }
+
+  openModal() {
+    qs('.statistics-modal__dialog').showModal();
   }
 }
 

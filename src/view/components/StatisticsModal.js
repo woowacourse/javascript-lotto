@@ -8,17 +8,25 @@ export default class StatisticsModal extends Component {
     this.earningRate = LottoStore.calculateEarningRate(this.props.lottoList) || 0;
   }
 
+  setEvent() {
+    this.addEvent('submit', '.statistics-modal__dialog__form', this.handleSubmitForm.bind(this));
+  }
+
   template() {
     return `
-      <dialog open>
+      <dialog class='statistics-modal__dialog'>
         <h2>🏆 당첨 통계 🏆</h2>
         <ul>${this.getStatisticsTemplate()}</ul>
         <div>당신의 총 수익률은 ${this.earningRate}%입니다.</div>
-        <form method="dialog">
+        <form class='statistics-modal__dialog__form' method="dialog">
           <button>다시 시작하기</button>
         </form>
       </dialog>
     `;
+  }
+
+  handleSubmitForm() {
+    this.props.initState();
   }
 
   getStatisticsTemplate() {
