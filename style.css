@@ -7,6 +7,10 @@
   --lotto-greyscale-5: #000000;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #app {
   height: 100vh;
 }
@@ -186,7 +190,7 @@ main h2 {
 
 .lotto_number_form {
   position: absolute;
-  width: 414px;
+  width: 382px;
   bottom: 32px;
 }
 
@@ -210,11 +214,8 @@ main h2 {
 }
 
 .result_btn {
-  padding: 6px 6px 6px 8px;
-
   width: 100%;
   height: 36px;
-  padding-bottom: 32px;
   border: none;
   border-radius: 4px;
   background: var(--lotto-primary);
@@ -223,12 +224,10 @@ main h2 {
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
-  line-height: 28px;
-
   letter-spacing: 1.25px;
-  text-transform: uppercase;
 
   color: var(--lotto-greyscale-1);
+  cursor: pointer;
 }
 
 footer {

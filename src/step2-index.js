@@ -1,5 +1,6 @@
 import '../reset.css';
 import '../style.css';
+import '../modal.css';
 
 import validator from './domain/validator';
 import LottoGame from './domain/LottoGame';
@@ -15,12 +16,20 @@ const lottoListBox = document.querySelector('.lotto_list_box');
 const lottoNumberForm = document.querySelector('.lotto_number_form');
 const winningNumberInput = document.querySelectorAll('.winning_number');
 const bonusNumberInput = document.querySelector('.bonus_number');
+const numberError = document.querySelector('.number_error');
+
+const modal = document.querySelector('#modal');
 
 let lottoGame;
 
 const displayBudgetError = (message) => {
   budgetError.innerText = message;
   budgetError.style.visibility = 'visible';
+};
+
+const displayNumberError = (message) => {
+  numberError.innerText = message;
+  numberError.style.visibility = 'visible';
 };
 
 const displayBoughtLottos = (lottos) => {
@@ -52,8 +61,16 @@ const onSubmitBudgetForm = (event) => {
 
 const onSubmitLottoNumberForm = (event) => {
   event.preventDefault();
-  const winningNumbers = [...winningNumberInput].map((input) => input.value);
+  const winningNumbers = [...winningNumberInput].map((input) => Number(input.value));
   const bonusNumber = bonusNumberInput.value;
+  try {
+    validator.validateWinningNumber(winningNumbers.join(','));
+    validator.validateBonusNumber(bonusNumber);
+    numberError.style.visibility = 'hidden';
+  } catch ({ message }) {
+    return displayNumberError(message);
+  }
+  modal.style.visibility = 'visible';
 };
 
 budgetForm.addEventListener('submit', onSubmitBudgetForm);
