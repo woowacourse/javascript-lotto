@@ -1,7 +1,3 @@
-import CheckWinningSection from './CheckWinningSection/index';
-
-import { $ } from '../utils/dom';
-
 class HomePage {
   #template = /* html */ `
   <header>
@@ -13,17 +9,10 @@ class HomePage {
   </footer>
   `;
 
-  #checkWinningSection;
-
   $target;
 
   constructor($target) {
     this.$target = $target;
-    this.render();
-
-    this.#checkWinningSection = new CheckWinningSection(
-      $('.check-winning-section')
-    );
   }
 
   render() {
