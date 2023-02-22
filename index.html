@@ -15,9 +15,13 @@
             <h6 class="text-body">구입할 금액을 입력해주세요.</h6>
             <div class="buyContainer">
               <input
+                required
                 class="moneyAmount text-placeholder text-body"
                 placeholder="금액"
+                step="1000"
                 type="number"
+                minlength="3"
+                maxlength="6"
                 min="1000"
                 max="100000"
               />
@@ -31,7 +35,7 @@
             <div class="lottoNumberConatiner"></div>
           </div>
         </section>
-        <section class="inputNumberContainer">
+        <form class="inputNumberContainer">
           <div>
             <h5 class="text-body">
               지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
@@ -40,17 +44,53 @@
               <div class="winningNumbers">
                 <span>당첨 번호</span>
                 <div>
-                  <input type="number" />
-                  <input type="number" />
-                  <input type="number" />
-                  <input type="number" />
-                  <input type="number" />
-                  <input type="number" />
+                  <input
+                    required
+                    min="1"
+                    max="45"
+                    maxlength="2"
+                    type="number"
+                  />
+                  <input
+                    required
+                    min="1"
+                    max="45"
+                    maxlength="2"
+                    type="number"
+                  />
+                  <input
+                    required
+                    min="1"
+                    max="45"
+                    maxlength="2"
+                    type="number"
+                  />
+                  <input
+                    required
+                    min="1"
+                    max="45"
+                    maxlength="2"
+                    type="number"
+                  />
+                  <input
+                    required
+                    min="1"
+                    max="45"
+                    maxlength="2"
+                    type="number"
+                  />
+                  <input
+                    required
+                    min="1"
+                    max="45"
+                    maxlength="2"
+                    type="number"
+                  />
                 </div>
               </div>
               <div class="winningNumbers">
                 <span>보너스 번호</span>
-                <input type="number" />
+                <input required min="1" max="45" maxlength="2" type="number" />
               </div>
             </div>
           </div>
@@ -60,7 +100,7 @@
           >
             결과 확인하기
           </button>
-        </section>
+        </form>
         <section class="winningModal">
           <div class="winningScreen">
             <span class="close">X</span>

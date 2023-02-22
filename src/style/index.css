@@ -54,7 +54,7 @@ header h1 {
   flex-direction: column;
   align-items: baseline;
   overflow-y: auto;
-  height: 400px;
+  height: 350px;
 }
 
 .lottoNumber {
@@ -205,6 +205,16 @@ footer {
   border-radius: 4px;
 }
 
+.inputNumberContainer input {
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.inputNumberContainer input::-webkit-outer-spin-button,
+.inputNumberContainer input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .text-title {
   font: 800 24px system-ui, -apple-system;
   line-height: 36px;
@@ -263,4 +273,9 @@ footer {
 
 .bg-blue {
   background: #4e5ba6;
+}
+
+.hiddenElement {
+  visibility: hidden;
+  display: none;
 }
