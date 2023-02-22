@@ -4,6 +4,8 @@ const LottoGame = require("../domain/LottoGame");
 const moneyForm = document.getElementById("money_form");
 const winContents = document.getElementById("win_contents");
 const winNumForm = document.getElementById("winNum_form");
+const modal = document.getElementById("modal");
+const btnClose = document.getElementById("btn_close");
 
 const ViewController = {
   /** @type {LottoGame} */
@@ -16,6 +18,9 @@ const ViewController = {
     });
     winNumForm.addEventListener("submit", (event) => {
       this.lotteryTicket(event, this.lottoGame);
+    });
+    btnClose.addEventListener("click", () => {
+      modal.style.display = "none";
     });
   },
 
@@ -36,8 +41,8 @@ const ViewController = {
     const rankResult = lottoGame.calculateRankResult();
     const revenue = lottoGame.calculateRevenueRate(rankResult);
 
-    console.log(rankResult);
-    console.log(revenue);
+    modal.style.display = "block";
+    LottoView.printRankResult(rankResult, revenue);
   },
 
   purchaseLotto(event, lottoGame) {
