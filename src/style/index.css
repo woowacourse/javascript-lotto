@@ -1,10 +1,10 @@
 @import './reset.css';
 
 #app {
-  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
 }
 
 header {
@@ -21,8 +21,8 @@ header h1 {
 }
 
 .lotto h2 {
-  text-align: center;
   margin-bottom: 28px;
+  text-align: center;
 }
 
 .lotto h6 {
@@ -38,23 +38,22 @@ header h1 {
 
 .buyContainer input {
   width: 310px;
-  border-radius: 4px;
   padding: 8px;
+  border-radius: 4px;
 }
 
 .buyContainer button {
   width: 56px;
-  cursor: pointer;
   border-radius: 4px;
 }
 
 .lottoNumberConatiner {
-  margin-top: 12px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
   overflow-y: auto;
   height: 350px;
+  margin-top: 12px;
 }
 
 .lottoNumber {
@@ -77,14 +76,14 @@ header h1 {
 .winning input {
   width: 34px;
   height: 36px;
-  border-radius: 4px;
-  border: 1px solid #b4b4b4;
   margin-right: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
 }
 
 .winning input:last-child {
-  margin-right: 0px;
   align-self: end;
+  margin-right: 0px;
 }
 
 .winningNumbers {
@@ -102,11 +101,11 @@ header h1 {
 }
 
 .checkResult {
-  text-align: center;
   width: 100%;
+  margin-top: 27px;
   padding: 10px 0;
   border-radius: 4px;
-  margin-top: 27px;
+  text-align: center;
 }
 
 .lotto {
@@ -115,9 +114,9 @@ header h1 {
   justify-content: space-between;
   width: 414px;
   height: 727px;
+  padding: 52px 16px 32px 16px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-  padding: 52px 16px 32px 16px;
 }
 
 footer {
@@ -125,56 +124,56 @@ footer {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  border-top: 1px solid rgba(78, 91, 166, 0.2);
   height: 80px;
   margin-top: 30px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
 
 .imoticion {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 34px;
   margin-right: 8px;
+  font-size: 34px;
 }
 
 .winningModal {
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
   margin: auto;
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .closeButton {
+  align-self: end;
   position: absolute;
   top: 16px;
-  align-self: end;
   cursor: pointer;
 }
 
 .winningScreen {
-  position: relative;
-  width: 350px;
-  border-radius: 4px;
-  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  width: 350px;
   padding: 41px 16px 32px 16px;
+  border-radius: 4px;
+  background: white;
 }
 
 .lottoTable {
-  margin-top: 32px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 32px;
 }
 
 .table {
@@ -215,39 +214,44 @@ footer {
 }
 
 .text-title {
+  color: rgba(0, 0, 0, 0.87);
   font: 800 24px system-ui, -apple-system;
   line-height: 36px;
 }
 
 .text-subtitle {
+  color: rgba(0, 0, 0, 0.87);
   font: 600 20px system-ui, -apple-system;
   letter-spacing: 0.15px;
   line-height: 24px;
 }
 
 .text-subject {
+  color: rgba(0, 0, 0, 0.87);
   font: 600 15px system-ui, -apple-system;
   letter-spacing: 0.5px;
   line-height: 24px;
 }
 
 .text-body {
+  color: rgba(0, 0, 0, 0.87);
   font: 400 15px system-ui, -apple-system;
-  line-height: 24px;
   letter-spacing: 0.5px;
+  line-height: 24px;
 }
 
 .text-placeholder::placeholder {
+  color: #8b8b8b;
   font: 400 15px system-ui, -apple-system;
   letter-spacing: 0.5px;
   line-height: 24px;
-  color: #8b8b8b;
 }
 
 .text-caption {
+  color: rgba(0, 0, 0, 0.87);
   font: 700 14px system-ui, -apple-system;
-  line-height: 16px;
   letter-spacing: 1.25px;
+  line-height: 16px;
 }
 
 .text-black {
@@ -275,12 +279,12 @@ footer {
 }
 
 .hiddenElement {
-  visibility: hidden;
   display: none;
+  visibility: hidden;
 }
 
 .errorMessage {
   margin: 8px 0;
-  text-align: center;
   color: red;
+  text-align: center;
 }
