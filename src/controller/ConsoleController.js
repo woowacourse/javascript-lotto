@@ -1,12 +1,12 @@
-import Console from "./utils/Console.js";
-import Validator from "../src/utils/Validator.js";
-import { InputView, OutputView } from "./view/ConsoleView.js";
-import Lotto from "./domain/Lotto.js";
-import Lottos from "./domain/Lottos.js";
-import Random from "./utils/Random.js";
-import { MESSAGES, SETTINGS, ERROR_MESSAGE } from "../src/constants/Config.js";
+import Console from "../utils/Console.js";
+import Validator from "../utils/Validator.js";
+import { InputView, OutputView } from "../view/ConsoleView.js";
+import Lotto from "../domain/Lotto.js";
+import Lottos from "../domain/Lottos.js";
+import Random from "../utils/Random.js";
+import { MESSAGES, SETTINGS, ERROR_MESSAGE } from "../constants/Config.js";
 
-class App {
+class ConsoleController {
   #winningLotto;
   #bonusNumber;
   #lottoArray;
@@ -157,8 +157,8 @@ class App {
 
   retryLottoGame(retryInput) {
     if (retryInput.toLowerCase() === SETTINGS.RETRY_INPUT) {
-      const app = new App();
-      app.play();
+      const consoleController = new ConsoleController();
+      consoleController.play();
     }
     if (retryInput.toLowerCase() === SETTINGS.CLOSE_INPUT) {
       Console.close();
@@ -172,4 +172,4 @@ class App {
   }
 }
 
-export default App;
+export default ConsoleController;
