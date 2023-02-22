@@ -9,7 +9,19 @@ class LottoWebGame {
     this.bindEvents();
   }
 
-  bindEvents = () => {};
+  bindEvents = () => {
+    $('#buy-button').addEventListener('click', this.handleBuyButton);
+  };
+
+  handleBuyButton = () => {
+    const input = $('#purchase-amount').value;
+    try {
+      lottoGameValidator.checkPurchaseAmount(input);
+      this.initLottos(Number(input));
+    } catch (e) {
+      alert(e.message);
+    }
+  };
 
   initLottos = (purchaseAmount) => {
     this.#lottos = Array.from({ length: purchaseAmount / LOTTO.price }, this.drawLotto);
