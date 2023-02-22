@@ -18,25 +18,39 @@ export class LottoGame {
   }
 
   async play() {
-    // 구입 금액 입력
-    const purchaseAmount = Number(await this.#readPurchaseAmount());
-    // 로또 생성
-    const numberOfPurchasedLottos = purchaseAmount / LOTTO_PRICE;
-    this.#setLottos(numberOfPurchasedLottos);
-    // 생성한 로또 출력
-    this.view.printNumberOfPurchasedLottos(numberOfPurchasedLottos);
-    this.view.printLottos(this.#lottos);
-    // 당첨, 보너스 번호 set
-    await this.#setWinningLotto();
-    // 당첨 통계 출력
+    await this.lottoPurchase();
+    await this.showLottos();
+    await this.setWinningLotto();
+    this.showStatistics();
+    await this.restart();
+  }
+
+  showStatistics() {
     const placesOfLottos = this.#getPlacesOfLottos();
     this.view.printPlacesOfLottos(placesOfLottos);
     this.view.printRateOfReturn(
       this.#getRateOfReturn(this.#getTotalPrize(placesOfLottos), purchaseAmount)
     );
+  }
+
+  async restart() {
     // 게임 재시작 여부 결정
     const restartOrQuit = await this.#readRestartOrQuitCommend();
     this.#shouldRestart(restartOrQuit) ? this.play() : close();
+  }
+
+  async lottoPurchase() {
+    // 구입 금액 입력
+    const purchaseAmount = Number(await this.#readPurchaseAmount());
+    // 로또 생성
+    const numberOfPurchasedLottos = purchaseAmount / LOTTO_PRICE;
+    this.#setLottos(numberOfPurchasedLottos);
+  }
+
+  async showLottos() {
+    // 생성한 로또 출력
+    this.view.printNumberOfPurchasedLottos(numberOfPurchasedLottos);
+    this.view.printLottos(this.#lottos);
   }
 
   // 구입 금액 입력
@@ -73,7 +87,8 @@ export class LottoGame {
     return bonusNumber;
   }
 
-  async #setWinningLotto() {
+  async setWinningLotto() {
+    // 당첨, 보너스 번호 set
     const winningLottoNumbers = (await this.#readWinningLottoNumbers()).split(",").map(Number);
     const bonusNumber = Number(await this.#readBonusNumber(winningLottoNumbers));
     this.#winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
