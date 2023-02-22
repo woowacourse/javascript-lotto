@@ -26,10 +26,9 @@ class Validator {
     }
   }
 
-  throwErrorIfInvalidBonusNumber(bonusNumber) {
-    if (!REGEX.BONUS_NUMBER.test(bonusNumber)) {
-      throw new Error(ERROR.INVALID_BONUS_NUMBER[this.#missionStep]);
-    }
+  throwErrorIfInvalidBonusNumber(winningLotto, bonusNumber) {
+    this.#throwErrorIfInvalidBonusNumberFormat(bonusNumber);
+    this.#throwErrorIfBonusNumberDuplicates(winningLotto, bonusNumber);
   }
 
   #throwErrorIfNotDecimal(number) {
@@ -56,6 +55,20 @@ class Validator {
   #throwErrorIfInvalidWinningLottoFormat(winningLotto) {
     if (!REGEX.WINNING_LOTTO_FORMAT.test(winningLotto)) {
       throw new Error(ERROR.INVALID_LOTTO_FORMAT[this.#missionStep]);
+    }
+  }
+
+  #throwErrorIfInvalidBonusNumberFormat(bonusNumber) {
+    if (!REGEX.BONUS_NUMBER.test(bonusNumber)) {
+      throw new Error(ERROR.INVALID_BONUS_NUMBER_FORMAT[this.#missionStep]);
+    }
+  }
+
+  #throwErrorIfBonusNumberDuplicates(winningLotto, bonusNumber) {
+    const listedWinningLotto = winningLotto.split(',').map(Number);
+
+    if (listedWinningLotto.includes(bonusNumber)) {
+      throw new Error(ERROR.BONUS_NUMBER_DUPLICATES[this.#missionStep]);
     }
   }
 

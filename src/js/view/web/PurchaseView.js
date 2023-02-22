@@ -22,7 +22,6 @@ class PurchaseView {
   }
 
   #setListener() {
-    console.log({ buyButton: $('#buyButton') });
     $('#buyButton').addEventListener('click', (event) => {
       event.preventDefault();
 

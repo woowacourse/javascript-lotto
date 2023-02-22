@@ -60,9 +60,13 @@ const ERROR = Object.freeze({
     [PROJECT_MODE.CONSOLE]: '[ERROR] 로또 번호는 중복되는 수가 없어야 합니다',
     [PROJECT_MODE.WEB]: '중복되는 로또 번호가 없도록 입력해 주세요!',
   },
-  INVALID_BONUS_NUMBER: {
+  INVALID_BONUS_NUMBER_FORMAT: {
     [PROJECT_MODE.CONSOLE]: '[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다',
     [PROJECT_MODE.WEB]: '보너스 번호는 1 이상 45 이하의 정수로 입력해 주세요!',
+  },
+  BONUS_NUMBER_DUPLICATES: {
+    [PROJECT_MODE.CONSOLE]: '[ERROR] 보너스 번호는 일반 로또 번호와 중복되어서는 안 됩니다.',
+    [PROJECT_MODE.WEB]: '보너스 번호와 일반 로또 번호가 중복되지 않도록 입력해 주세요!',
   },
   INVALID_RETRY_COMMAND: '[ERROR] 재시작 여부는 y 또는 n이어야 합니다.',
   BUDGET_NOT_DIVISIBLE: {

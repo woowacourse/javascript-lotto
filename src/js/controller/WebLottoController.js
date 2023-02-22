@@ -17,10 +17,6 @@ class WebLottoController {
   );
   #resultModalView = new ResultModalView(() => this.handleRestart());
 
-  constructor() {
-    console.log('Web Controller loaded');
-  }
-
   handleBudget(budget) {
     const budgetErrorView = new ErrorView($('#buyErrorArea'), $('#budgetInput'));
 
@@ -47,12 +43,12 @@ class WebLottoController {
 
     try {
       this.#validator.throwErrorIfInvalidWinningLotto(stringifiedWinningLotto);
-      this.#validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      this.#validator.throwErrorIfInvalidBonusNumber(stringifiedWinningLotto, bonusNumber);
       winningLottoErrorView.hideErrorMessage();
-      console.log({ winningLotto: winningLotto, stringified: stringifiedWinningLotto });
       this.#showLottoGameResult(winningLotto, bonusNumber);
     } catch ({ message }) {
       winningLottoErrorView.renderErrorMessage(message);
+      InputCleaner.clearWinningLottoInputs();
     }
   }
 
