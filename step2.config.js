@@ -7,7 +7,7 @@ module.exports = {
   devServer: {
     port: 9000,
   },
-  entry: './src/web/step2-index.js',
+  entry: './src/web/js/step2-index.js',
   output: {
     filename: 'step2-bundle.js',
     path: path.resolve(__dirname, 'dist'),

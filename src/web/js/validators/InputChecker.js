@@ -1,4 +1,4 @@
-import InputValidator from '../../console/validators/InputValidator.js';
+import InputValidator from './InputValidator.js';
 
 const InputChecker = (function () {
   return {
