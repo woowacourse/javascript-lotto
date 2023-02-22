@@ -14,23 +14,14 @@ const lottoNumberConatiner = document.querySelector('.lottoNumberConatiner');
 const lottoCount = document.querySelector('.lottoCount');
 const inputNumberContainer = document.querySelector('.inputNumberContainer');
 
-const winning1 = document.querySelector('.winning1');
-const winning2 = document.querySelector('.winning2');
-const winning3 = document.querySelector('.winning3');
-const winning4 = document.querySelector('.winning4');
-const winning5 = document.querySelector('.winning5');
-const winning6 = document.querySelector('.winning6');
+const winningNumberInputs = document.querySelectorAll('.winningNumber');
 
 const bonus = document.querySelector('.bonus');
 
 const winningModal = document.querySelector('.winningModal');
 const closeButton = document.querySelector('.closeButton');
 
-const fifthCount = document.querySelector('.fifthCount');
-const fourthCount = document.querySelector('.fourthCount');
-const thirdCount = document.querySelector('.thirdCount');
-const secondCount = document.querySelector('.secondCount');
-const firstCount = document.querySelector('.firstCount');
+const rankCounts = document.querySelectorAll('.rankCount');
 
 const benefitRate = document.querySelector('.benefitRate');
 
@@ -75,14 +66,9 @@ const addEvents = {
     inputNumberContainer.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      const winningNumbers = [
-        winning1.value,
-        winning2.value,
-        winning3.value,
-        winning4.value,
-        winning5.value,
-        winning6.value,
-      ].map((lottoNumber) => Number(lottoNumber));
+      const winningNumbers = [...winningNumberInputs].map((item) =>
+        Number(item.value)
+      );
 
       const bonusNumber = Number(bonus.value);
 
@@ -145,11 +131,9 @@ const getLottoNumbers = (lottoNumbers) => {
 };
 
 const getRankResult = (ranks) => {
-  fifthCount.innerText = `${ranks[4]}개`;
-  fourthCount.innerText = `${ranks[3]}개`;
-  thirdCount.innerText = `${ranks[2]}개`;
-  secondCount.innerText = `${ranks[1]}개`;
-  firstCount.innerText = `${ranks[0]}개`;
+  rankCounts.forEach(
+    (rankCount, index) => (rankCount.innerText = `${ranks[4 - index]}개`)
+  );
 };
 
 const removeLottos = () => {
@@ -159,14 +143,8 @@ const removeLottos = () => {
 };
 
 const resetLottoInputs = () => {
-  winning1.value = '';
-  winning2.value = '';
-  winning3.value = '';
-  winning4.value = '';
-  winning5.value = '';
-  winning6.value = '';
+  winningNumberInputs.forEach((winningInput) => (winningInput.value = ''));
   bonus.value = '';
-
   moneyAmount.value = '';
 };
 
