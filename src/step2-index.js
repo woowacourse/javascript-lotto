@@ -6,6 +6,8 @@ const Winning = require('./domain/model/Winning');
 const { getCollectedRanks, generateLottos } = require('./utils/lotto');
 const { LOTTO_NUMBER, LOTTO_LITERAL } = require('./constant');
 
+const app = document.querySelector('#app');
+
 const moneyForm = document.querySelector('.moneyForm');
 const moneyAmount = document.querySelector('.moneyAmount');
 
@@ -30,6 +32,7 @@ const lottoNumbersError = document.querySelector('.lottoNumbersError');
 
 const EMPTY = '';
 const HIDDEN = 'hiddenElement';
+const STOP_SCROLL = 'stopScroll';
 
 const addEvents = {
   inputMoney: () => {
@@ -70,6 +73,7 @@ const addEvents = {
         winning.setWinningNumbers(winningNumbers);
         winning.setBonusNumber(bonusNumber);
 
+        app.classList.add(STOP_SCROLL);
         winningModal.classList.remove(HIDDEN);
 
         const ranks = getCollectedRanks(winning, lottos);
@@ -83,6 +87,7 @@ const addEvents = {
   },
   closeModal: () => {
     closeButton.addEventListener('click', () => {
+      app.classList.remove(STOP_SCROLL);
       winningModal.classList.add(HIDDEN);
     });
   },
@@ -92,6 +97,7 @@ const addEvents = {
       lottoInfoContainer.classList.add(HIDDEN);
       inputNumberContainer.classList.add(HIDDEN);
 
+      app.classList.remove(STOP_SCROLL);
       removeLottos();
       resetLottoInputs();
       moneyAmount.focus();
