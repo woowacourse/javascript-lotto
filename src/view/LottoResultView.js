@@ -52,7 +52,7 @@ class LottoResultView {
     });
   }
 
-  restart() {
+  reset() {
     this.resultModal.close();
   }
 }

@@ -74,8 +74,8 @@ class LottoGameController {
   }
 
   #handleRestart() {
-    this.#gameView.restart();
-    this.#resultView.restart();
+    this.#gameView.reset();
+    this.#resultView.reset();
   }
 }
 

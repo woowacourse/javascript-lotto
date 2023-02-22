@@ -78,7 +78,7 @@ class LottoGameView {
     }, { once: true });
   }
 
-  restart() {
+  reset() {
     ViewUtils.resetForm(this.purchaseForm);
     ViewUtils.resetForm(this.gameNumbersForm);
     this.startContainer.style.opacity = 0;
