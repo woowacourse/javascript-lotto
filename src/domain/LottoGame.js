@@ -10,26 +10,39 @@ import {
 class LottoGame {
   #lottos;
 
-  #rankingBoard = {
-    [LOTTO_PRIZE.rankNone]: 0,
-    [LOTTO_PRIZE.rank5]: 0,
-    [LOTTO_PRIZE.rank4]: 0,
-    [LOTTO_PRIZE.rank3]: 0,
-    [LOTTO_PRIZE.rank2]: 0,
-    [LOTTO_PRIZE.rank1]: 0,
-  };
+  #rankingBoard;
 
-  constructor(money) {
+  constructor(money = 0) {
+    this.reset();
+    this.buyLottos(money);
+  }
+
+  reset() {
+    this.#lottos = [];
+    this.#rankingBoard = {
+      [LOTTO_PRIZE.rankNone]: 0,
+      [LOTTO_PRIZE.rank5]: 0,
+      [LOTTO_PRIZE.rank4]: 0,
+      [LOTTO_PRIZE.rank3]: 0,
+      [LOTTO_PRIZE.rank2]: 0,
+      [LOTTO_PRIZE.rank1]: 0,
+    };
+  }
+
+  buyLottos(money) {
     const count = Math.floor(money / LOTTO_RULE.price);
-    this.#lottos = Array.from({ length: count }, () => {
-      const randomNumbers = Random.generateUniqueNumbersInRange(
-        LOTTO_RULE.size,
-        LOTTO_RULE.minNumber,
-        LOTTO_RULE.maxNumber,
-      );
+    Array.from(
+      { length: count },
+      () => {
+        const randomNumbers = Random.generateUniqueNumbersInRange(
+          LOTTO_RULE.size,
+          LOTTO_RULE.minNumber,
+          LOTTO_RULE.maxNumber,
+        );
 
-      return new Lotto(randomNumbers);
-    });
+        return new Lotto(randomNumbers);
+      },
+    ).forEach((lotto) => this.#lottos.push(lotto));
   }
 
   convertCountToRank(intersectCount, hasBonus) {
@@ -40,6 +53,10 @@ class LottoGame {
   }
 
   updateRankingBoard(winningNumbers, bonusNumber) {
+    if (Object.values(this.#rankingBoard).reduce((prev, value) => prev + value, 0) > 0) {
+      return this;
+    }
+
     this.#lottos.forEach((lotto) => {
       const intersectCount = lotto.countIntersect(winningNumbers);
       const hasBonus = lotto.includes(bonusNumber);
