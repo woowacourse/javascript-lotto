@@ -10,7 +10,7 @@ label {
   font-weight: bold;
 }
 
-button {
+#price-btn {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -25,4 +25,50 @@ button {
   background-color: #4e5ba6;
   border-radius: 4px;
   color: white;
+}
+
+#winning-lotto {
+  position: absolute;
+  width: 382px;
+  height: 104px;
+  left: 16px;
+  top: 400px;
+}
+
+#winning-numbers {
+  position: absolute;
+  width: 244px;
+  height: 68px;
+  left: 16px;
+  top: 170px;
+}
+
+#bonus-number {
+  position: absolute;
+  width: 76px;
+  height: 68px;
+  left: 322px;
+  top: 170px;
+}
+
+#lotto-btn {
+  /* button */
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 382px;
+  height: 36px;
+  left: 16px;
+  top: 350px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
 }

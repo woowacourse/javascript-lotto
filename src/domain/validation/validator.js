@@ -17,13 +17,12 @@ const validator = {
   },
 
   winningNumbers(input) {
-    const winningNumbers = input.split(',').map(Number);
-    validator.isEmpty(input);
-    validator.isBlankIncluded(input);
-    winningNumbers.map(validator.isNumber);
-    winningNumbers.map(validator.isNumberRangeValid);
-    validator.isNumbersCountValid(winningNumbers.length);
-    validator.isNumberDuplicated(winningNumbers);
+    // const winningNumbers = input.map(Number);
+    input.map(validator.isEmpty);
+    input.map(validator.isNumber);
+    input.map(validator.isNumberRangeValid);
+    validator.isNumbersCountValid(input.length);
+    validator.isNumberDuplicated(input);
   },
 
   bonusNumber(winningNumbers, input) {

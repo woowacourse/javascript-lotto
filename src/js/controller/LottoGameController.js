@@ -1,9 +1,11 @@
-// const Lottos = require('../../domain/model/Lottos');
-// const WinningNumbers = require('../../domain/model/WinningNumbers');
+import Lottos from '../../domain/model/Lottos';
+import WinningNumbers from '../../domain/model/WinningNumbers';
+import { bonusNumber, winningNumbers } from '../../domain/validation/validator';
 // const validator = require('../../domain/validation/validator');
 // const inputView = require('../../view/inputView');
 // const outputView = require('../../view/outputView');
 import PurchasePriceView from '../../view/PurchasePriceView';
+import WinningNumbersView from '../../view/WinningNumbersView';
 
 const {
   PRICE_UNIT,
@@ -14,28 +16,57 @@ const {
 
 export default class LottoGameController {
   constructor() {
+    this.model = {
+      lottos: undefined,
+      winningNumbers: undefined,
+    };
     this.view = {
       purchasePriceView: new PurchasePriceView(),
+      winningNumbersView: new WinningNumbersView(),
     };
     this.setEventHandler();
   }
 
   setEventHandler() {
-    this.view.purchasePriceView.addSubmitEvent(this.onSubmitHandler.bind(this));
+    this.view.purchasePriceView.addSubmitEvent(
+      this.onPriceSubmitHandler.bind(this)
+    );
   }
 
-  onSubmitHandler(purchasePriceInput) {
+  onPriceSubmitHandler(purchasePriceInput) {
     // const lottos = this.model.getLottos();
     // const { lottoCount, purchasedLottos } = this.purchaseLotto(purchasePrice);
     const lottoCount = this.calculateLottoCount(purchasePriceInput);
-    this.view.purchasePriceView.printLottoCount(lottoCount);
+
+    this.model.lottos = new Lottos(lottoCount);
+    const lottos = this.model.lottos.getLottos();
+    this.view.purchasePriceView.renderPurchaseResult(lottoCount, lottos);
 
     this.view.purchasePriceView.resetInputValue();
+
+    this.view.winningNumbersView.render();
+    this.setEvent2Handler();
   }
 
   calculateLottoCount(priceInput) {
     return Math.floor(Number(priceInput) / PRICE_UNIT);
   }
+
+  setEvent2Handler() {
+    this.view.winningNumbersView.addSubmitEvent(
+      this.onWinningNumbersSubmitHandler.bind(this)
+    );
+  }
+
+  onWinningNumbersSubmitHandler(winningNumbersInput, bonusNumberInput) {
+    // console.log(winningNumbersInput, bonusNumberInput);
+    this.model.winningNumbers = new WinningNumbers(
+      winningNumbersInput,
+      bonusNumberInput
+    );
+    console.log(this.model.winningNumbers);
+  }
+
   /*
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {
