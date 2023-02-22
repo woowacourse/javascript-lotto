@@ -15,7 +15,7 @@ class LottoPurchaseForm {
       autofocus
       required
       />
-      <button type="submit" class="lotto-purchase-button">구입</button>
+      <button type="submit" class="lotto-purchase-button typo-button">구입</button>
     </div>
   </form>
   `;
