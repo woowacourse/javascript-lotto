@@ -45,8 +45,9 @@ export default class LottoGameController {
     e.preventDefault();
 
     const winningNumbers = this.#validateWinningNumbers();
+    const bonusNumber = this.#validateBonusNumbers(winningNumbers);
 
-    if (!winningNumbers) {
+    if (!winningNumbers || !bonusNumber) {
       return;
     }
   }
@@ -75,6 +76,21 @@ export default class LottoGameController {
       Validation.validateWinningNumbers(winningNumbers);
 
       return winningNumbers;
+    } catch ({ message }) {
+      this.#view.showAlert(message);
+
+      return;
+    }
+  }
+
+  #validateBonusNumbers(winningNumbers) {
+    const bonusNumberInput = $('.bonus-number-input').value;
+    const bonusNumber = Number(bonusNumberInput);
+
+    try {
+      Validation.validateBonusNumber(bonusNumber, winningNumbers);
+
+      return bonusNumber;
     } catch ({ message }) {
       this.#view.showAlert(message);
 
