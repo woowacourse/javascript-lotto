@@ -22,22 +22,26 @@
               <input type="number" class="money-input" placeholder="금액">
               <button type="submit" class="buy-btn">구입</button>
             </form>
-            <p>총 7개를 구매했습니다.</p>
-            <ul class="lotto-box">
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
-              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+            <div class="main-container">
+              <p>총 7개를 구매했습니다.</p>
+              <ul class="lotto-box">
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+                <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
 
-            </ul>
+              </ul>
               <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
 
               <div class="number-inputs">
-                <!--              <p>당첨 번호</p>-->
+                <div class="target-number-box">
+                  <p>당첨 번호</p>
+                  <p>보너스 번호</p>
+                </div>
                 <input type="number" class="square-input">
                 <input type="number" class="square-input">
                 <input type="number" class="square-input">
@@ -45,12 +49,12 @@
                 <input type="number" class="square-input">
                 <input type="number" class="square-input">
 
-                <!--              <p>보너스 번호</p>-->
                 <input type="number" class="square-input last-input">
               </div>
 
               <button type='' class="result-btn" onclick="document.getElementById('myModal').style.display='block'">결과 확인하기</button>
-          </div>
+            </div>
+            </div>
         </section>
       </main>
       <footer>
