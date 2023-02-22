@@ -1,26 +1,17 @@
 const Benefit = require('../model/Benefit');
 const Money = require('../model/Money');
 const Winning = require('../model/Winning');
-const Lotto = require('../model/Lotto');
 const outputView = require('../../view/outputView');
-const { pickRandomNumberInRange } = require('../../utils');
 const Console = require('../../utils/Console');
+const lottoUtils = require('../../utils/lotto');
 const {
-  RANK_INFORMATIONS,
   ERROR_MESSAGE,
   COMMAND_LITERAL,
   LOTTO_NUMBER,
   LOTTO_LITERAL,
-  CALCULATION_NUMBER,
 } = require('../../constant');
 
 class LottoMachine {
-  #winning;
-
-  constructor() {
-    this.#winning = new Winning();
-  }
-
   async play() {
     const money = await this.readMoney();
     const lottos = await this.quickPicksLottos(money);
@@ -90,7 +81,7 @@ class LottoMachine {
   }
 
   async quickPicksLottos(money) {
-    const lottos = LottoMachine.generateLottos(money.getAmount());
+    const lottos = lottoUtils.generateLottos(money.getAmount());
     this.#showLottos(lottos);
 
     return lottos;
@@ -102,89 +93,15 @@ class LottoMachine {
     this.#showResult(benefit, ranks);
   }
 
+  async getLottoRanks(winning, lottos) {
+    const ranks = lottoUtils.getCollectedRanks(winning, lottos);
+    return ranks;
+  }
+
   #checkRetryOption(input) {
     if (input === COMMAND_LITERAL.retry) return this.#retry();
     if (input === COMMAND_LITERAL.quit) return this.#quit();
     throw new Error(ERROR_MESSAGE.retryOption);
-  }
-
-  static generateLottos(amount) {
-    const lottoCount = amount / LOTTO_NUMBER.moneyUnit;
-
-    return Array.from({ length: lottoCount }).map(
-      () => new Lotto(LottoMachine.getComposedLottoNumbers())
-    );
-  }
-
-  async getLottoRanks(winning, lottos) {
-    const ranks = LottoMachine.getCollectedRanks(winning, lottos);
-    return ranks;
-  }
-
-  static getComposedLottoNumbers() {
-    const lottoNumbers = new Set();
-
-    while (lottoNumbers.size < LOTTO_NUMBER.lottoNumberCount) {
-      const randomNumber = pickRandomNumberInRange(
-        LOTTO_NUMBER.lottoStart,
-        LOTTO_NUMBER.lottoEnd
-      );
-      lottoNumbers.add(randomNumber);
-    }
-
-    return [...lottoNumbers].sort((first, second) => first - second);
-  }
-
-  static getCollectedRanks(winning, lottos) {
-    const RANK_TEMPLATE = [0, 0, 0, 0, 0];
-
-    const ranks = lottos.reduce((accumulator, lotto) => {
-      const currentRanks = accumulator;
-      const matchedCount = LottoMachine.getMatchedCount(
-        winning,
-        lotto.getLottoNumbers()
-      );
-      const rankIndex = LottoMachine.getRankIndex(
-        matchedCount,
-        LottoMachine.isBonus(winning, lotto.getLottoNumbers())
-      );
-
-      return LottoMachine.getUpdatedRanks(currentRanks, rankIndex);
-    }, RANK_TEMPLATE);
-
-    return ranks;
-  }
-
-  static getUpdatedRanks(ranks, rankIndex) {
-    const updatedRanks = ranks;
-
-    if (rankIndex !== CALCULATION_NUMBER.losing) {
-      updatedRanks[rankIndex] += 1;
-    }
-
-    return updatedRanks;
-  }
-
-  static getMatchedCount(winning, lotto) {
-    const winningNumbers = winning.getWinningNumbers();
-
-    return lotto.filter((number) => winningNumbers.includes(number)).length;
-  }
-
-  static getRankIndex(matchedCount, isBonus) {
-    const rankIndex = RANK_INFORMATIONS.findIndex(
-      (rankInformation) =>
-        rankInformation.isBonus === isBonus &&
-        rankInformation.matchedCount === matchedCount
-    );
-    if (rankIndex === CALCULATION_NUMBER.failFindIndex)
-      return CALCULATION_NUMBER.losing;
-
-    return rankIndex;
-  }
-
-  static isBonus(winning, lotto) {
-    return lotto.includes(winning.getBonusNumber());
   }
 
   #showLottos(lottos) {

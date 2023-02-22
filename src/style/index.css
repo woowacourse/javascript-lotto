@@ -203,6 +203,10 @@ footer {
   border-radius: 4px;
 }
 
+.inputNumberContainer {
+  visibility: hidden;
+}
+
 .text-title {
   font: 800 24px system-ui, -apple-system;
   line-height: 36px;
