@@ -35,6 +35,7 @@ class LottoWebGame {
       lottoGameValidator.checkLottoNumbers(winningNumbers);
       lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
       this.renderResultModal(this.makeRankings(winningNumbers, Number(bonusNumber)));
+      this.toggleResultModal();
     } catch (e) {
       alert(e.message);
     }
@@ -80,6 +81,10 @@ class LottoWebGame {
       .map((lotto) =>
         lotto.calculateRanking(lotto.calculateMatchCount(winningNumbers), bonusNumber)
       );
+  };
+
+  toggleResultModal = () => {
+    $('#result-modal').classList.toggle('show');
   };
 }
 
