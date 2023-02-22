@@ -21,11 +21,11 @@ const Validation = {
 
   validateBonusNumber(numbers, bonusNumber) {
     const number = parseInt(bonusNumber);
-
     if (LOTTO.MIN > number || number > LOTTO.MAX || isNaN(number))
       throw new Error(ERRORMESSAGES.isOverRangeBounsText);
 
-    if (numbers.includes(number))
+    const numbersInt = numbers.map((num) => parseInt(num));
+    if (numbersInt.includes(number))
       throw new Error(ERRORMESSAGES.isSameBonusNumberText);
   },
 

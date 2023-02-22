@@ -6,15 +6,11 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
 class LottoController {
-  #lottoGame;
-  #lottos;
-  #view;
-
   constructor() {
+    view.hiddenInputWinLotto();
     $("#show-lotto").style.visibility = "hidden";
     $("#input-winlotto").style.visibility = "hidden";
     $("#submit-winlotto").style.visibility = "hidden";
-
     const lottoGame = new LottoGame();
     let lottos;
 
@@ -24,6 +20,14 @@ class LottoController {
       const money = this.money.value;
 
       lottos = lottoGame.makeLottos(money);
+      if (!LottoController.validateMoney(money)) {
+        $("#input-money-form input").value = null;
+        $("#show-lotto").style.visibility = "hidden";
+        $("#input-winlotto").style.visibility = "hidden";
+        $("#submit-winlotto").style.visibility = "hidden";
+
+        return;
+      }
 
       $(
         "#show-lotto-label"
@@ -46,7 +50,7 @@ class LottoController {
     $("#input-winnumber-form").onsubmit = function (event) {
       event.preventDefault();
 
-      const numbers_string = [
+      const numbersString = [
         this.num1.value,
         this.num2.value,
         this.num3.value,
@@ -54,8 +58,27 @@ class LottoController {
         this.num5.value,
         this.num6.value,
       ];
-      const numbers = numbers_string.map((num) => parseInt(num));
-      const bonusNumber = parseInt(this.bonus.value);
+      const bonusNumberStirng = this.bonus.value;
+      if (!LottoController.validateWinNumbers(numbersString)) {
+        $$("#input-winnumbers-box input").forEach((element) => {
+          element.value = null;
+        });
+
+        return;
+      }
+      if (
+        !LottoController.validateWinBonusNumber(
+          numbersString,
+          bonusNumberStirng
+        )
+      ) {
+        $("#input-bonusnumber-box input").value = null;
+
+        return;
+      }
+
+      const bonusNumber = parseInt(bonusNumberStirng);
+      const numbers = numbersString.map((num) => parseInt(num));
       const winLotto = lottoGame.makeWinLotto(numbers, bonusNumber);
 
       const rankResult = lottoGame.calculateRankResult(lottos, winLotto);
@@ -79,77 +102,33 @@ class LottoController {
     });
   }
 
-  async playLotto() {
-    this.#lottoGame = new LottoGame();
-
-    const bonusNumber = await this.readBonusNumber(winNumbers);
-    // await this.drawLotto(lottos, winLotto);
-
-    // this.restart();
-  }
-
-  async purchaseLotto(money) {
-    const lottos = this.#lottoGame.make(money);
-    const lottoCount = lottos.length;
-
-    this.#view.printLottoCount(lottoCount);
-    this.#view.printPurchaseLottos(lottos);
-
-    return lottos;
-  }
-
-  async drawLotto(lottos, winLotto) {
-    const lottoCnt = lottos.length;
-    const rankResult = this.#lottoGame.calculateRankResult(lottos, winLotto);
-    const revenue = this.#lottoGame.calculateRevenueRate(rankResult, lottoCnt);
-
-    this.#view.printRankResult(rankResult);
-    this.#view.printRevenue(revenue, lottoCnt);
-  }
-
-  async restart() {
+  static validateMoney(money) {
     try {
-      const command = await this.#view.readCommandRestart();
-      Validation.validateRestartCommand(command);
-      return command === "y" ? this.playLotto() : this.#view.close();
-    } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      this.restart();
-    }
-  }
-
-  async readMoney() {
-    try {
-      const money = await this.#view.readMoney();
       Validation.validateMoney(money);
-      return parseInt(money);
+      return true;
     } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      return this.readMoney();
+      alert(e.message);
+      return false;
     }
   }
 
-  async readWinNumbers() {
+  static validateWinNumbers(numbers) {
     try {
-      const input = await this.#view.readWinNumbers();
-      Validation.validateWinNumber(input.split(","));
-      const winNumbers = input.split(",").map((num) => parseInt(num));
-      return winNumbers;
+      Validation.validateWinNumber(numbers);
+      return true;
     } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      return this.readWinNumbers();
+      alert(e.message);
+      return false;
     }
   }
 
-  async readBonusNumber(numbers) {
+  static validateWinBonusNumber(numbers, bonusNumber) {
     try {
-      const input = await this.#view.readBonusNumber();
-      Validation.validateBonusNumber(numbers, input);
-      const bonusNumber = parseInt(input);
-      return bonusNumber;
+      Validation.validateBonusNumber(numbers, bonusNumber);
+      return true;
     } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      await this.readBonusNumber(numbers);
+      alert(e.message);
+      return false;
     }
   }
 }
