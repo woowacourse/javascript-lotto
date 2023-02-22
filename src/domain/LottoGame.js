@@ -54,7 +54,14 @@ class LottoGame {
 
   updateRankingBoard(winningNumbers, bonusNumber) {
     if (Object.values(this.#rankingBoard).reduce((prev, value) => prev + value, 0) > 0) {
-      return this;
+      this.#rankingBoard = {
+        [LOTTO_PRIZE.rankNone]: 0,
+        [LOTTO_PRIZE.rank5]: 0,
+        [LOTTO_PRIZE.rank4]: 0,
+        [LOTTO_PRIZE.rank3]: 0,
+        [LOTTO_PRIZE.rank2]: 0,
+        [LOTTO_PRIZE.rank1]: 0,
+      };
     }
 
     this.#lottos.forEach((lotto) => {
