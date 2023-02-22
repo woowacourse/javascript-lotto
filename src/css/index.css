@@ -102,14 +102,19 @@ header {
 #buy_contents {
   position: absolute;
   width: 310px;
-  height: 276px;
+  height: 320px;
   top: 180px;
-  left: 16px;;
+  left: 16px;
 
   font-family: 'Roboto';
   font-style: normal;
   font-weight:400;
   font-size: 15px;
+}
+
+#buy_lottos {
+  height: 290px;
+  overflow: auto;
 }
 
 #win_contents {

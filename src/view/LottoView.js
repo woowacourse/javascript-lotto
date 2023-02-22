@@ -14,6 +14,7 @@ const LottoView = {
 
   printLottos(lottos) {
     const inputLocation = document.getElementById("buy_lottos");
+    inputLocation.innerHTML = "";
     lottos.forEach((lotto) => {
       const lottoDiv = document.createElement("p");
       lottoDiv.innerText = `🎟️ ${lotto.numbers.join(", ")}`;
