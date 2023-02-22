@@ -1,4 +1,4 @@
-import { ConsoleMessage } from '../constants/Constants.js';
+import { Message } from '../constants/Constants.js';
 import { $, $$ } from '../utils/DomSelector.js';
 import { generateUserLottoNumbers } from '../utils/Template.js';
 import ViewUtils from '../utils/ViewUtils.js';
@@ -45,7 +45,7 @@ class LottoGameView {
   }
 
   showUserLottoPurchaseCount(count) {
-    this.userLottoPurchaseCount.textContent = ConsoleMessage.purchaseCount(count);
+    this.userLottoPurchaseCount.textContent = Message.purchaseCount(count);
   }
 
   showUserLottoList(lottoList) {

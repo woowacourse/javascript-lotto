@@ -1,4 +1,4 @@
-import { ConsoleMessage } from '../constants/Constants.js';
+import { Message } from '../constants/Constants.js';
 import { $, $$ } from '../utils/DomSelector.js';
 
 class LottoResultView {
@@ -23,12 +23,12 @@ class LottoResultView {
 
   showRanks(ranks) {
     this.matchCounts.forEach((element) => {
-      element.textContent = `${ranks[element.dataset.index]}개`;
+      element.textContent = Message.matchCount(ranks[element.dataset.index]);
     });
   }
 
   showProfitRate(profitRate) {
-    this.profitRate.textContent = ConsoleMessage.profitRateResult(profitRate);
+    this.profitRate.textContent = Message.profitRateResult(profitRate);
   }
 
   addCloseClickEvent() {
