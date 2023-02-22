@@ -22,7 +22,20 @@
     color: red;
   }
 
+  :host {
+    position: relative;
+  }
+
+  :host:after {
+    content: attr(data-error-message);
+    position: absolute;
+    left: 4px;
+    font-size: var(--typography-caption-font-size);
+    color: red;
+  }
+
 </style>
 
-<input id="input" placeholder="{placeholder}" autocomplete="off">
-<p>{error-message}</p>
+<div>
+  <input id="input" placeholder="{placeholder}" autocomplete="off">
+</div>

@@ -6,14 +6,14 @@ class LtTextInput extends LtFormControl {
   $input;
 
   /** @type {string} */
-  #value;
+  #value = '';
 
   static get observedAttributes() {
-    return ['placeholder', 'error-message'];
+    return ['placeholder'];
   }
 
   set errorMessage(message) {
-    this.setAttribute('error-message', message || '');
+    this.dataset.errorMessage = message || '';
   }
 
   get value() {
