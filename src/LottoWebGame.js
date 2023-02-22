@@ -1,5 +1,8 @@
 import Lotto from './domain/models/Lotto';
-import { LOTTO } from './constants';
+import lottoGameCalculator from './domain/lottoGameCalculator';
+import { $, $$ } from './utils/dom';
+import { LOTTO, RANKING_THRESHOLD } from './constants';
+import lottoGameValidator from './domain/lottoGameValidator';
 
 class LottoWebGame {
   #lottos;
@@ -13,6 +16,10 @@ class LottoWebGame {
     $('#buy-button').addEventListener('click', this.handleBuyButton);
     $('#result-button').addEventListener('click', this.handleResultButton);
     $('#replay-button').addEventListener('click', this.handleReplayButton);
+    $('#out').addEventListener('click', this.toggleResultModal);
+    $$('.lotto-input input').forEach(($input) => {
+      $input.addEventListener('input', this.handleInputMaxLength);
+    });
   };
 
   handleBuyButton = () => {
@@ -97,6 +104,10 @@ class LottoWebGame {
 
   toggleResultModal = () => {
     $('#result-modal').classList.toggle('show');
+  };
+
+  handleInputMaxLength = (e) => {
+    e.target.value = e.target.value.slice(0, 2);
   };
 }
 
