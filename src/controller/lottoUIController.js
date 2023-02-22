@@ -50,6 +50,17 @@ export default function LottoUIController($app) {
     clearConatiner(this.state.$root);
   };
 
+  const paintGameBoard = (purchaseAmount) => {
+    const { $root, lottoGame } = this.state;
+    this.state.step = STEP.ENTER;
+
+    lottoGame.purchaseLottos(purchaseAmount);
+    const lottos = lottoGame.getLottoNumbers();
+
+    paintLottoStatus($root, lottos);
+    paintEnterWinningNumber($root, checkResultHandler);
+  };
+
   const paintResultView = ({ winCount, earningRate }) => {
     const $content = lottoResultBoard({ winCount, earningRate }, restart);
 
@@ -68,7 +79,7 @@ export default function LottoUIController($app) {
   };
 
   const purchaseAmountHandler = () => {
-    const { $root, lottoGame, step } = this.state;
+    const { $root, step } = this.state;
 
     const purchaseAmount = getPurchaseAmount();
 
@@ -82,19 +93,9 @@ export default function LottoUIController($app) {
       return;
     }
 
-    if (step !== STEP.INIT) {
-      $root.removeChild($root.lastChild);
-      $root.removeChild($root.lastChild);
-      this.state.step = STEP.INIT;
-    }
+    if (step !== STEP.INIT) clearGameBoard($root);
 
-    this.state.step = STEP.ENTER;
-
-    lottoGame.purchaseLottos(purchaseAmount);
-    const lottos = lottoGame.getLottoNumbers();
-
-    paintLottoStatus($root, lottos);
-    paintEnterWinningNumber($root, checkResultHandler);
+    paintGameBoard(purchaseAmount);
   };
 
   const checkResultHandler = () => {
@@ -116,6 +117,12 @@ export default function LottoUIController($app) {
     }
 
     calculateResult(bonusNumber, winningNumbers);
+  };
+
+  const clearGameBoard = ($root) => {
+    $root.removeChild($root.lastChild);
+    $root.removeChild($root.lastChild);
+    this.state.step = STEP.INIT;
   };
 
   const restart = () => {
