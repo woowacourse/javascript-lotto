@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/step1-index.js',
+  entry: './src/console/step1-index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'step1-bundle.js',
