@@ -23,7 +23,7 @@ class LottoGameView {
     this.purchaseForm.addEventListener('submit', (event) => {
       event.preventDefault();
     
-      callback(event.target['purchase-amount'].value);
+      callback(this.purchaseInput.value);
       this.addPurchaseInputEvent();
     });
   }
