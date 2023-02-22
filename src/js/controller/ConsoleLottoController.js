@@ -36,7 +36,7 @@ class ConsoleLottoController {
 
   async #inputLottoValues() {
     const winningLotto = await this.#inputWinningLotto();
-    const bonusNumber = await this.#inputBonusNumber();
+    const bonusNumber = await this.#inputBonusNumber(winningLotto);
 
     const formattedWinningLotto = winningLotto.split(',').map(Number);
     const formattedBonusNumber = Number(bonusNumber);
@@ -51,18 +51,18 @@ class ConsoleLottoController {
       return winningLotto;
     } catch ({ message }) {
       view.output(message);
-      return this.#inputWinningLotto(winningLotto);
+      return this.#inputWinningLotto();
     }
   }
 
   async #inputBonusNumber(winningLotto) {
     try {
       const bonusNumber = await view.input(QUESTION.BONUS_NUMBER);
-      this.#validator.throwErrorIfInvalidBonusNumber(winningLotto, bonusNumber);
+      this.#validator.throwErrorIfInvalidBonusNumber(winningLotto, Number(bonusNumber));
       return bonusNumber;
     } catch ({ message }) {
       view.output(message);
-      return this.#inputBonusNumber();
+      return this.#inputBonusNumber(winningLotto);
     }
   }
 
