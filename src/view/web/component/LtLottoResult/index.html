@@ -1,0 +1,36 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    text-align: center;
+    font-size: var(--typography-body-font-size);
+    font-weight: var(--typography-body-font-weight);
+  }
+
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>일치 갯수</th>
+      <th>당첨금</th>
+      <th>당첨 갯수</th>
+    </tr>
+  </thead>
+  <tbody id="lottoResultRewards">
+  </tbody>
+</table>
+
+<template id="lottoResultRewardTemplate">
+  <tr>
+    <td class="match-count"></td>
+    <td class="reward-money"></td>
+    <td class="count"></td>
+  </tr>
+</template>
