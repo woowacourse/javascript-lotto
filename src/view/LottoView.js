@@ -1,7 +1,11 @@
+import { $$winningNumbers } from '../utils/Dom.js';
+
 class LottoView {
   constructor($element) {
     this.$element = $element;
-    this.bindInputPriceEvent();
+    this.winningNumbers = [];
+
+    // this.bindInputWinningNumberEvent();
   }
 
   readEvent(event, eventHandler) {
@@ -22,20 +26,19 @@ class LottoView {
     $element.innerText = content;
   }
 
-  test($element, content) {
-    $element.insertAdjacentHTML(
-      'beforeend',
-      `<li class="ticket"><span class="ticket__emoji">🎟</span><span class="ticket__number">${content}</span></li>`
-    );
+  bindInputWinningNumberEvent() {
+    this.$element.addEventListener('change', (e) => this.inputWinningNumberHandler(e));
   }
 
-  bindInputPriceEvent() {
-    this.$element.addEventListener('submit', (e) => this.inputPriceHandler(e));
-  }
-
-  inputPriceHandler(e) {
+  inputWinningNumberHandler(e) {
     e.preventDefault();
-    this.createCustomEvent('inputPrice', e.target.elements.budget.value);
+    console.log($$winningNumbers);
+
+    // console.log(e.target.elements.winningNumber.value);
+    // this.createCustomEvent('inputWinningNumber', e.target);
+
+    // this.winningNumbers[this.$element.dataset.num] = Number(this.$element.value);
+    // console.log(this.$element.dataset);
   }
 }
 
