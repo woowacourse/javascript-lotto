@@ -1,5 +1,14 @@
 import RandomGenerator from '../RandomGenerator';
-import { LOTTO_NUMBER_RANGE_MAX, LOTTO_NUMBER_SIZE } from '../util/constants';
+import {
+  LOTTO_NUMBER_RANGE_MAX,
+  LOTTO_NUMBER_SIZE,
+  MISS,
+  FIRST,
+  SECOND,
+  THIRD,
+  FOURTH,
+  FIFTH,
+} from '../util/constants';
 import { isPositiveInteger } from '../validation';
 import Lotto from './Lotto';
 import WinningLotto from './WinningLotto';
@@ -11,12 +20,12 @@ class LottoMachine {
   #lottos;
   #winningLotto;
   #winCount = {
-    0: 0,
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
+    [MISS]: 0,
+    [FIRST]: 0,
+    [SECOND]: 0,
+    [THIRD]: 0,
+    [FOURTH]: 0,
+    [FIFTH]: 0,
   };
 
   constructor(money) {
