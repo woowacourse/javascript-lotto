@@ -1,4 +1,5 @@
 import paintEnterWinningNumber from '../components/enterGameBoard';
+import showErrorMessage from '../components/errorMessage';
 import paintInitialEnterInput from '../components/initialEnterInput';
 import lottoResultBoard from '../components/lottoResult';
 import paintModal, { closeModal } from '../components/modal';
@@ -65,8 +66,8 @@ export default function LottoUIController($app) {
     );
 
     if (state) {
-      alert(message);
-      $purchaseInput.value = '';
+      const $root = document.querySelector('.purchase-enter-container');
+      showErrorMessage($root, message, $root.querySelector('button'));
       return;
     }
 
@@ -99,17 +100,10 @@ export default function LottoUIController($app) {
       return;
     }
 
-    alert(winState ? winMessage : bonusMessage);
-
-    // if (winState) {
-    //   alert(winMessage);
-    //   return;
-    // }
-
-    // if (bonusState) {
-    //   alert(bonusMessage);
-    //   return;
-    // }
+    const message = winState ? winMessage : bonusMessage;
+    const $root = document.querySelector('.number-container');
+    const $trigger = document.querySelector('#checkResult');
+    showErrorMessage($root, message, $trigger);
   };
 
   const restart = () => {

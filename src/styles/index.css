@@ -268,3 +268,7 @@ button:disabled:hover {
 .result-end-container > .subtitle {
   margin: 32px 0;
 }
+
+.warning-span {
+  color: red;
+}
