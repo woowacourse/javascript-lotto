@@ -8,6 +8,7 @@ function purchaseLottoStatus(lottos) {
   const purchastCount = pusrchaseCountMessage(lottos.length);
 
   const $ticketContainer = document.createElement('div');
+  $ticketContainer.className = 'lotto-ticket-container ';
 
   $board.innerHTML = purchastCount;
   for (const lotto of lottos) {
