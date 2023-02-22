@@ -1,4 +1,4 @@
-const LOTTO_BOARD = {
+const LOTTO_SCORE = {
   moneyBoard: {
     "3개 일치": "5,000",
     "4개 일치": "50,000",
@@ -24,4 +24,4 @@ const LOTTO_BOARD = {
   },
 };
 
-export default LOTTO_BOARD;
+export default LOTTO_SCORE;

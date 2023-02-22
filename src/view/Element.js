@@ -1,5 +1,5 @@
 import Utils from "../util/Utils";
-import LOTTO_BOARD from "../constants/LottoBoard";
+import LOTTO_SCORE from "../constants/LottoBoard";
 
 const Element = {
   createBuyLottos(lotto) {
@@ -46,7 +46,7 @@ const Element = {
     contentsClone.querySelector(".result__matching-count").innerText =
       matchingCount;
     contentsClone.querySelector(".result__price").innerText =
-      LOTTO_BOARD.moneyBoard[matchingCount];
+      LOTTO_SCORE.moneyBoard[matchingCount];
     contentsClone.querySelector(".result__matching-lotto-count").innerText =
       lottoRanking[matchingCount];
     document.querySelector(".result-container").appendChild(contentsClone);
