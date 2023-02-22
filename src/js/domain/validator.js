@@ -47,6 +47,7 @@ class Validator {
 
   #throwErrorIfInsufficientNumberCount(winningLotto) {
     const lottoNumberCount = (winningLotto.match(REGEX.LOTTO_NUMBER_COUNT) || []).length;
+
     if (lottoNumberCount < GAME_VALUE.LOTTO_SIZE) {
       throw new Error(ERROR.INSUFFICIENT_LOTTO_NUMBER_COUNT[this.#missionStep]);
     }
@@ -66,6 +67,7 @@ class Validator {
 
   #throwErrorIfBonusNumberDuplicates(winningLotto, bonusNumber) {
     const listedWinningLotto = winningLotto.split(',').map(Number);
+    console.log({ winningLotto: listedWinningLotto, bonusNumber: bonusNumber });
 
     if (listedWinningLotto.includes(bonusNumber)) {
       throw new Error(ERROR.BONUS_NUMBER_DUPLICATES[this.#missionStep]);
