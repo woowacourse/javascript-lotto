@@ -10,6 +10,23 @@
     <header>
       <h1>🎱 행운의 로또</h1>
     </header>
+    <div id="resultModalContainer">
+      <div id="resultModal">
+        <span id="modalCloseButton">❌</span>
+        <h2 style="font-size: 20px; margin-bottom: 32px">🏆 당첨 통계 🏆</h2>
+        <div
+          class="statisticsRow"
+          style="border: none; border-top: 2px solid #b4b4b4"
+        >
+          <span class="statisticsColumn">일치 갯수</span>
+          <span class="statisticsColumn">당첨금</span>
+          <span class="statisticsColumn">당첨 갯수</span>
+        </div>
+        <div id="statisticsContainer"></div>
+        <h2 id="profitRate"></h2>
+        <button id="restartButton">다시 시작하기</button>
+      </div>
+    </div>
     <div id="app">
       <div id="gameContainer">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
@@ -65,7 +82,7 @@
               required
             />
           </div>
-          <input type="submit" id="winningSubmitButton" value="제출" />
+          <input type="submit" id="showResultButton" value="결과 확인하기" />
         </form>
       </div>
     </div>

@@ -45,6 +45,14 @@ const correctCountPerRank = Object.freeze({
   FIFTH_RANK: 3,
 });
 
+const correctCountPerRankForRender = Object.freeze({
+  FIRST_RANK: '6개',
+  SECOND_RANK: '5개 + 보너스볼',
+  THIRD_RANK: '5개',
+  FOURTH_RANK: '4개',
+  FIFTH_RANK: '3개',
+});
+
 const indexToRankKeyConverter = Object.freeze([
   'FIRST_RANK',
   'SECOND_RANK',
@@ -86,6 +94,8 @@ module.exports = {
   profitByRank,
   LOTTO_NUMBER_COUNT,
   correctCountPerRank,
+  correctCountPerRankForRender,
   message,
   errorMessage,
+  indexToRankKeyConverter,
 };

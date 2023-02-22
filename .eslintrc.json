@@ -13,7 +13,6 @@
       "error",
       { "singleQuote": true, "endOfLine": "auto" }
     ],
-    "indent": ["error", 2],
     "quotes": ["error", "single"],
     "max-depth": ["error", 2],
     "no-else-return": ["error", { "allowElseIf": false }],

@@ -1,4 +1,11 @@
-const { message, LOTTO_NUMBER_COUNT } = require('../constants/constants');
+const {
+  message,
+  LOTTO_NUMBER_COUNT,
+  profitByRank,
+  correctCountPerRankForRender,
+  regex,
+  indexToRankKeyConverter,
+} = require('../constants/constants');
 
 const purchaseResultContainer = document.getElementById('resultContainer');
 const purchaseResultHeader = document.getElementById('purchaseResultHeader');
@@ -7,6 +14,9 @@ const purchasedLottosContainer = document.getElementById(
 );
 const winningInputForm = document.getElementById('winningInputForm');
 const winningInputFlexBox = document.getElementById('winningInputContainer');
+const statisticsContainer = document.getElementById('statisticsContainer');
+const resultModalContainer = document.getElementById('resultModalContainer');
+const profitRateViewer = document.getElementById('profitRate');
 
 const outputView = {
   renderPurchasedLottos(lottos) {
@@ -29,6 +39,38 @@ const outputView = {
         required
       />
     `.repeat(LOTTO_NUMBER_COUNT);
+  },
+
+  renderStatistics(rankCounts, profitRate) {
+    resultModalContainer.style.display = 'flex';
+
+    statisticsContainer.innerHTML = `
+      ${rankCounts
+        .map(
+          (rankCount, index) => `
+            <div class="statisticsRow">
+              <span class="statisticsColumn">${
+                correctCountPerRankForRender[
+                  indexToRankKeyConverter[profitByRank.length - index - 1]
+                ]
+              }</span>
+              <span class="statisticsColumn">${profitByRank[
+                profitByRank.length - index - 1
+              ]
+                .toString()
+                .replace(regex.PRICE_FORMAT, ',')}원</span>
+              <span class="statisticsColumn">${rankCount}</span>
+            </div>
+          `
+        )
+        .join('')}
+    `;
+
+    profitRateViewer.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  },
+
+  closeModal() {
+    resultModalContainer.style.display = 'none';
   },
 };
 

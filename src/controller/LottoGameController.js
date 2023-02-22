@@ -13,6 +13,8 @@ class LottoGameController {
   constructor() {
     inputView.setPurchasePriceInputHandler(this.handlePurchasePriceInput);
     inputView.setWinningNumbersInputHandler(this.handleWinningNumbersInput);
+    inputView.setCloseModalHandler(LottoGameController.handleCloseModal);
+    inputView.setRestartHandler();
   }
 
   handlePurchasePriceInput = (input) => {
@@ -30,6 +32,11 @@ class LottoGameController {
   handleWinningNumbersInput = (winningNumbers, bonusNumber) => {
     try {
       this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+      this.#lottos.calculateAllRanks(
+        this.#winningLotto.getWinningNumbers(),
+        this.#winningLotto.getBonusNumber()
+      );
+      this.showResult();
     } catch (error) {
       alert(error.message);
     }
@@ -39,6 +46,17 @@ class LottoGameController {
     outputView.renderPurchasedLottos(this.#lottos.getLottos());
     outputView.renderWinningNumbersInput();
   }
+
+  showResult() {
+    outputView.renderStatistics(
+      [...this.#lottos.getAllRanks()].reverse(),
+      this.#lottos.getProfitRate()
+    );
+  }
+
+  static handleCloseModal = () => {
+    outputView.closeModal();
+  };
 
   static calculateLottoCount(priceInput) {
     exception.checkPurchasePrice(priceInput);

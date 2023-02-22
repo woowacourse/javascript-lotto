@@ -19,19 +19,17 @@ class Lotto {
 
   calculateRank(winningNumbers, bonusNumber) {
     const correctNumberCount = this.#numbers.filter((number) =>
-      this.#isNumberIncluded(winningNumbers, number)
+      Lotto.isNumberIncluded(winningNumbers, number)
     ).length;
 
     this.#setRank(correctNumberCount, bonusNumber);
   }
 
-  #isNumberIncluded(winningNumbers, lottoNumber) {
-    return winningNumbers.includes(lottoNumber);
-  }
-
   #setRank(correctNumberCount, bonusNumber) {
-    if (correctNumberCount === correctCountPerRank.SECOND_RANK)
-      return this.#setRankTwoOrThree(bonusNumber);
+    if (correctNumberCount === correctCountPerRank.SECOND_RANK) {
+      this.#setRankTwoOrThree(bonusNumber);
+      return;
+    }
     if (correctNumberCount === correctCountPerRank.FIRST_RANK)
       this.#rank = ranks.FIRST_RANK;
     if (correctNumberCount === correctCountPerRank.FOURTH_RANK)
@@ -44,6 +42,10 @@ class Lotto {
     this.#rank = this.#numbers.includes(bonusNumber)
       ? ranks.SECOND_RANK
       : ranks.THIRD_RANK;
+  }
+
+  static isNumberIncluded(winningNumbers, lottoNumber) {
+    return winningNumbers.includes(lottoNumber);
   }
 }
 
