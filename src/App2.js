@@ -2,59 +2,30 @@ import Lotto from "./domain/Lotto";
 import Lottos from "./domain/Lottos";
 import Random from "./util/Random";
 import LottoScore from "./domain/LottoScore";
-import LOTTO_BOARD from "./constants/LottoBoard";
+import Utils from "./util/Utils";
+import EventHandler from "./view/EventHadler";
+import Element from "./view/Element";
 
 class App2 {
   #lottos;
-  constructor() {}
+  constructor() {
+    this.buyResultSection = Utils.$(".lotto__buy-result");
+    this.winningLottosInputs = Utils.$$(".lotto__winning-lotto-input");
+    this.bonusInput = Utils.$(".lotto__bonus-lotto-input");
+    this.resultButton = Utils.$(".lotto__result-button");
+    this.winningLotto = [];
+    this.bonusNumber = 0;
+  }
   play() {
-    const buyResultSection = document.querySelector(".lotto__buy-result");
-    const buyMoneyInput = document.querySelector(".lotto__input-box");
-      const buyButton = document.querySelector(".lotto__buy-button");
-      const winningLottosInput = document.querySelectorAll(".lotto__winning-lotto-input");
-      const resultButton = document.querySelector(".lotto__result-button")
-
-    buyButton.addEventListener("click", () => {
-      buyResultSection.classList.remove("hidden");
-      this.createLotto(parseInt(buyMoneyInput.value / 1000));
-      this.#lottos.lottos.forEach((lottoObj) => {
-        this.showLottos(lottoObj);
-      });
-    });
-      
-      const winningLotto = [];
-      let bonusNumber
-      resultButton.addEventListener("click", () => {
-        winningLottosInput.forEach(winningNumber => {
-            winningLotto.push(Number(winningNumber.value))
-          });
-          console.log(winningLotto)
-
-          bonusNumber = Number(document.querySelector(".lotto__bonus-lotto-input").value)
-          console.log(bonusNumber)
-          const lottoScore = new LottoScore(this.#lottos.lottos)
-          
-          this.compareLottos(winningLotto, bonusNumber, lottoScore)
-          this.showResultTitle()
-          for (const key in lottoScore.lottoRanking) {
-             this.showResult(key, lottoScore)
-          }
-          this.showResultFooter()
-      })
-
-
-
-
-
+    this.startLottoGame();
   }
 
-  showLottos(lottoObj) {
-    const lottoList = document.querySelector(".lotto__numbers-list");
-    const templet = document.querySelector("#lotto-tem");
-    const clone = document.importNode(templet.content, true);
-    clone.querySelector(".lotto__lotto-icon").innerText = "🎟";
-    clone.querySelector(".lotto__numbers").innerText = lottoObj.lottoNumbers;
-    lottoList.appendChild(clone);
+  startLottoGame() {
+    EventHandler.handleEvent(this.buyButton, "click", () => {
+      this.createLotto(parseInt(this.buyMoneyInput.value / 1000));
+      this.showLottos();
+      this.progressLottoGame();
+    });
   }
 
   createLotto(lottoAmount) {
@@ -64,36 +35,45 @@ class App2 {
     );
     this.#lottos = new Lottos(createdLotto);
   }
-    
-  compareLottos(winningLotto, bonusNumber,lottoScore) {
-    this.#lottos.compareLottosWithWinningLotto(winningLotto, bonusNumber);
-      lottoScore.compareLottosScore();
-      console.log(lottoScore.lottoRanking)
+
+  showLottos() {
+    this.buyResultSection.classList.remove("hidden");
+    this.#lottos.lottos.forEach((lotto) => {
+      Element.createBuyLottos(lotto);
+    });
   }
-    
-    showResult(key, lottoScore) {
-        const templet = document.querySelector("#result");
-        const clone = document.importNode(templet.content, true);
-        
-        clone.querySelector(".result__matching-count").innerText = key
-        clone.querySelector(".result__price").innerText = LOTTO_BOARD.moneyBoard[key];
-        clone.querySelector(".result__matching-lotto-count").innerText = lottoScore.lottoRanking[key];
-        document.querySelector("#app").appendChild(clone)
-    }
-    
-    showResultTitle() {
-        const templet2 = document.querySelector("#result-title")
-        const clone2 = document.importNode(templet2.content, true);
-        document.querySelector("#app").appendChild(clone2)
-        
-    }
-    
-    showResultFooter() {
-        const templet3 = document.querySelector("#result-footer")
-        const clone3 = document.importNode(templet3.content, true);
-        document.querySelector("#app").appendChild(clone3)
-        
-    }
+
+  progressLottoGame() {
+    EventHandler.handleEvent(this.resultButton, "click", () => {
+      this.getWinningLotto();
+      this.getBonusNumber();
+      this.getLottoGameResult();
+    });
+  }
+
+  getWinningLotto() {
+    this.winningLottosInputs.forEach((winningNumber) => {
+      this.winningLotto.push(Number(winningNumber.value));
+    });
+  }
+
+  getBonusNumber() {
+    this.bonusNumber = Number(this.bonusInput.value);
+  }
+
+  getLottoGameResult() {
+    const lottoScore = new LottoScore(this.#lottos.lottos);
+    this.compareLottos(lottoScore);
+    Element.createResults(lottoScore.lottoRanking);
+  }
+
+  compareLottos(lottoScore) {
+    this.#lottos.compareLottosWithWinningLotto(
+      this.winningLotto,
+      this.bonusNumber
+    );
+    lottoScore.compareLottosScore();
+  }
 }
 
 export default App2;
