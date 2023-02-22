@@ -61,8 +61,7 @@ header {
   font-style: normal;
   font-weight:700;
   font-size: 20px;
-  /* left: 72px;
-  top: 52px; */
+  
   top: 7%;
   left: 50%;
   transform: translate(-50%, -50%);

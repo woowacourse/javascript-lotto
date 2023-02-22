@@ -5,7 +5,6 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <link type="text/css" rel="stylesheet" href="./src/css/style.css"></link> -->
   </head>
 
   <body>
@@ -53,8 +52,60 @@
               </form>
             </div>
           </div>
+          <div id="modal">
+            <div id="modal_body">
+              <div id="btn_close">✖️</div>
+              <div id="result_title">🏆당첨 통계🏆</div>
+              <table id="result_contents">
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+                <tr>
+                  <td>3개</td>
+                  <td>5,000</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>4개</td>
+                  <td>50,000</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5개</td>
+                  <td>1,500,000</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5개+보너스볼</td>
+                  <td>30,000,000</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>6개</td>
+                  <td>2,000,000,000</td>
+                  <td></td>
+                </tr>
+              </table>
+              <p id="revenue_text">당신의 총 수익률응 어쩌고 입니다.</p>
+              <button id="btn_restart">다시 시작하기</button>
+            </div>
+          </div> 
         </main>
       </div>
+     
+
+    <script>
+      const modal = document.getElementById("modal");
+      const btnOpenPopup = document.querySelector('.btn-open-popup');
+      const btnClose = document.getElementById("btn_close");
+
+      btnClose.addEventListener("click", () => {
+        modal.style.display = "none";
+      })
+      btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
+      });
+    </script>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

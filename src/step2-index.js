@@ -1,4 +1,5 @@
 require("./css/index.css");
+require("./css/modal.css");
 const ViewController = require("./controller/ViewController");
 /**
  * step 2의 시작점이 되는 파일입니다.
