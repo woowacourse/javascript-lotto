@@ -48,9 +48,9 @@ class App extends Component {
   template() {
     return `
       <header>Header</header>
-      <main>
-        <section>🎱 내 번호 당첨 확인 🎱</section>
-        <section data-component='amount'></section>
+      <main class='lotto-store'>
+        <section class='lotto-store__title'>🎱 내 번호 당첨 확인 🎱</section>
+        <section class='lotto-store__amount' data-component='amount'></section>
         <section data-component='lottoList'></section>
         <section data-component='winNumbers'></section>
         <div data-component='statistics-modal'></div>

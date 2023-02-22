@@ -26,12 +26,65 @@ footer {
 }
 
 main {
-  width: 41.4rem;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
+
+  width: 41.4rem;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
 
   padding: 1.6rem;
   margin: 3rem auto;
+}
+
+main > section {
+  width: 100%;
+}
+
+.lotto-store__title {
+  width: 100%;
+
+  text-align: center;
+  font-size: 2.4rem;
+}
+
+.lotto-store__amount {
+  margin-top: 2.8rem;
+}
+
+.lotto-store__amount-label {
+  font-size: 1.5rem;
+}
+.lotto-store__amount-form {
+  display: flex;
+  margin-top: 0.5rem;
+}
+.lotto-store__amount-input {
+  height: 3rem;
+
+  flex-grow: 1;
+
+  outline: none;
+  border: 1px solid var(--grey-scale-3);
+  border-radius: 0.4rem;
+
+  padding: 0 0.5rem;
+
+  box-sizing: border-box;
+}
+
+.lotto-store__purchase-btn {
+  flex-shrink: 0;
+
+  width: 5rem;
+
+  border: none;
+  border-radius: 0.4rem;
+
+  color: var(--grey-scale-1);
+  background-color: var(--primary);
+
+  margin-left: 1.6rem;
 }
