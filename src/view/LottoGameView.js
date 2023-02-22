@@ -1,6 +1,7 @@
 import { ConsoleMessage } from '../constants/Constants.js';
 import { $, $$ } from '../utils/DomSelector.js';
 import { generateUserLottoNumbers } from '../utils/Template.js';
+import ViewUtils from '../utils/ViewUtils.js';
 
 class LottoGameView {
   constructor() {
@@ -30,7 +31,9 @@ class LottoGameView {
   }
 
   addPurchaseInputEvent() {
-    this.purchaseInput.addEventListener('input', this.hideError.bind(this));
+    this.purchaseInput.addEventListener('input', (event) => {
+      ViewUtils.hideError(event);
+    });
   }
 
   showStartContainer() {
@@ -48,7 +51,7 @@ class LottoGameView {
   }
 
   showUserLottoList(lottoList) {
-    this.resetInnerHTML(this.userLottoContainer);
+    ViewUtils.resetInnerHTML(this.userLottoContainer);
 
     lottoList.forEach((numbers) => {
       this.userLottoContainer.insertAdjacentHTML('beforeend', generateUserLottoNumbers(numbers));
@@ -67,54 +70,23 @@ class LottoGameView {
 
   addWinningNumbersInputEvent() {
     this.winningNumbersInputs.forEach((input) => {
-      input.addEventListener('input', this.hideError.bind(this));
+      input.addEventListener('input', (event) => {
+        ViewUtils.hideError(event);
+      });
     });
   }
 
   addBonusNNumbersInputEvent() {
-    this.bonusNumberInput.addEventListener('input', this.hideError.bind(this));
+    this.bonusNumberInput.addEventListener('input', (event) => {
+      ViewUtils.hideError(event);
+    });
   }
 
   restart() {
-    this.resetForm(this.purchaseForm);
-    this.resetForm(this.gameNumbersForm);
+    ViewUtils.resetForm(this.purchaseForm);
+    ViewUtils.resetForm(this.gameNumbersForm);
     this.startContainer.style.opacity = 0;
     this.startContainer.style.pointerEvents = 'none';
-  }
-
-  showError(element, message) {
-    element.classList.add('error-input');
-    this.showErrorMessage(element.classList[0], message);
-  }
-
-  hideError(event) {
-    event.target.classList.remove('error-input');
-    this.hideErrorMessage(event.target.classList[0]);
-  }
-
-  showErrorMessage(name, message) {
-    const domElement = $(`#${name}-error`);
-    domElement.textContent = message;
-    domElement.style.opacity = 1;
-  }
-
-  hideErrorMessage(name) {
-    const domElement = $(`#${name}-error`);
-    domElement.textContent = '';
-    domElement.style.opacity = 0;
-  }
-
-  resetInput(element) {
-    element.value = '';
-    element.focus();
-  }
-
-  resetForm(element) {
-    element.reset();
-  }
-
-  resetInnerHTML(element) {
-    element.innerHTML = '';
   }
 }
 
