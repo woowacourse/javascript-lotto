@@ -1,9 +1,10 @@
 import Lotto from './domain/models/Lotto';
 import lottoGameValidator from './domain/lottoGameValidator';
 import generateRandomNumber from './utils/generateRandomNumber';
-import { LOTTO } from './constants';
+import { LOTTO, RANKING_THRESHOLD } from './constants';
 import { $, $$ } from './dom/dom';
 import render from './render';
+import lottoGameCalculator from './domain/lottoGameCalculator';
 
 const $purchaseInput = $('#purchase-amount-form input[type=text]');
 
@@ -16,6 +17,26 @@ const LottoWebGame = function () {
   const renderPurchasedLotto = () => {
     const lottosNumbers = this.lottos.map((lotto) => lotto.getNumbers());
     render.purchasedLotto(lottosNumbers);
+  };
+
+  const renderStatistics = (winningNumbers, bonusNumber) => {
+    const purchaseAmount = this.lottos.length * LOTTO.price;
+    const rankings = makeRankings(winningNumbers, bonusNumber);
+    const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
+
+    console.log(rankings, rewardRate);
+  };
+
+  const makeRankings = (winningNumbers, bonusNumber) => {
+    const rankings = [];
+    this.lottos.forEach((lotto) => {
+      const matchCount = lotto.calculateMatchCount(winningNumbers);
+      if (matchCount < RANKING_THRESHOLD) return;
+      const ranking = lotto.calculateRanking(matchCount, bonusNumber);
+      rankings.push(ranking);
+    });
+
+    return rankings;
   };
 
   const buyLottos = (purchaseAmount) => {
@@ -53,24 +74,25 @@ const LottoWebGame = function () {
     }
   };
 
-  const getWinningLotto = () => {
+  const getWinningNumbers = () => {
     return Array.from($$('#winning-lotto-from input[name="winning-number"]')).map((input) =>
       Number(input.value)
     );
   };
 
   const getBonusNumber = () => {
-    return $('#winning-lotto-from input[name=bonus-number]').value;
+    return Number($('#winning-lotto-from input[name=bonus-number]').value);
   };
 
   const submitWinningLotto = (event) => {
     event.preventDefault();
 
-    const winningLotto = getWinningLotto();
+    const winningNumbers = getWinningNumbers();
     const bonusNumber = getBonusNumber();
     try {
-      lottoGameValidator.checkWinningNumbers(winningLotto.join(','));
-      lottoGameValidator.checkBonusNumber(bonusNumber, winningLotto);
+      lottoGameValidator.checkWinningNumbers(String(winningNumbers));
+      lottoGameValidator.checkBonusNumber(Number(bonusNumber), winningNumbers);
+      renderStatistics(winningNumbers, bonusNumber);
     } catch (error) {
       window.alert(error);
     }
