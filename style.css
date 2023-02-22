@@ -105,6 +105,10 @@ body {
   width: 56px;
 }
 
+#after-purchase {
+  visibility: hidden;
+}
+
 /* div-lottos*/
 #div-lottos {
   display: flex;
