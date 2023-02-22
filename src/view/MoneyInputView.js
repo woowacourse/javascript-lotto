@@ -1,6 +1,7 @@
 class MoneyInputView {
   constructor() {
     this.form = document.getElementById('money-input-form');
+    this.button = document.querySelector('.buy-button');
     this.input = document.getElementById('money-input');
   }
 
@@ -9,6 +10,8 @@ class MoneyInputView {
       e.preventDefault();
       const money = Number(this.input.value);
       submitHandler(money);
+      this.button.disabled = true;
+      this.button.id = 'disabled';
     });
   }
 }
