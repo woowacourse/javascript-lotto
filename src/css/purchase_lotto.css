@@ -2,7 +2,7 @@
   margin-top: 24px;
 }
 
-#purchased-lotto-box > div {
+#purchase-lotto-box > div {
   margin-bottom: 14px;
 }
 
@@ -10,11 +10,10 @@
   display: flex;
   align-items: center;
   min-height: 36px;
-  padding-bottom: 4px;
 }
 
 .purchase-lotto-image {
-  font-size: 34px;
+  font-size: 36px;
 }
 
 .purchase-lotto-number {
