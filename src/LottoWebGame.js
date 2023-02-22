@@ -61,7 +61,7 @@ const LottoWebGame = function () {
     return lottoNumbers.sort((a, b) => a - b);
   };
 
-  const submitPurchaseAmount = async (event) => {
+  const submitPurchaseAmount = (event) => {
     event.preventDefault();
 
     const purchaseAmount = $purchaseInput.value;

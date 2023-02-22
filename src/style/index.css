@@ -2,6 +2,7 @@
 @import url(./header.css);
 @import url(./footer.css);
 @import url(./purchaseAmountForm.css);
+@import url(./purchaseLotto.css);
 
 #app {
   min-height: 100vh;
