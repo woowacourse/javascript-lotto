@@ -1,18 +1,25 @@
 /* eslint-disable no-undef */
 import LottoMachine from './domain/LottoMachine';
-import { renderLottoListTitle, renderLottoList } from './view/web/render';
+import { renderLottosContainer, renderResultTable } from './view/web/render';
 import '../public/style.css';
 
-let lottoMachine;
 const resultBtn = document.querySelector('.result-btn');
-
 const paymentsBtn = document.querySelector('.payments-btn');
-const paymentsInput = document.querySelector('.payments-input');
-const handlePayments = (payments) => {
+const modal = document.querySelector('.modal');
+
+let lottoMachine;
+
+const getIntegerValue = (numberInput) => {
+  return Number(numberInput.value);
+};
+
+const handlePayments = () => {
+  const paymentsInput = document.querySelector('.payments-input');
+  const payments = getIntegerValue(paymentsInput);
   lottoMachine = new LottoMachine(payments);
 };
-// TODO: 이름 변경하기, 잘 분리한 걸까 ?
-const afterClickHandler = () => {
+
+const changeCSSByPaymentsBtnClick = () => {
   const winningLottoContainer = document.querySelector('.winning-lotto-container');
   paymentsBtn.disabled = true;
   resultBtn.disabled = false;
@@ -20,61 +27,38 @@ const afterClickHandler = () => {
 };
 
 const resetPaymentsInput = () => {
+  const paymentsInput = document.querySelector('.payments-input');
   paymentsInput.value = '';
+};
+
+const handleWinningLottos = () => {
+  const winningNumberInputs = document.querySelectorAll('.winning-number-input');
+  const bonusNumberInput = document.querySelector('.bonus-number-input');
+
+  const winningNumbers = Array.from(winningNumberInputs, getIntegerValue);
+  lottoMachine.generateWinningLotto(winningNumbers);
+
+  const bonusNumber = getIntegerValue(bonusNumberInput);
+  lottoMachine.setBonusNumber(bonusNumber);
+};
+
+const changeCSSByResultBtnClick = () => {
+  resultBtn.disabled = true;
+  modal.style.visibility = 'visible';
 };
 
 paymentsBtn.addEventListener('click', () => {
   try {
-    const payments = paymentsInput.value;
-    handlePayments(payments);
+    handlePayments();
   } catch (error) {
     window.alert(error.message);
     resetPaymentsInput();
     return;
   }
-  const lottoNumbers = lottoMachine.getLottoNumbers();
-  renderLottoListTitle(lottoNumbers.length);
-  renderLottoList(lottoNumbers);
-  afterClickHandler();
+
+  renderLottosContainer(lottoMachine.getLottoNumbers());
+  changeCSSByPaymentsBtnClick();
 });
-
-const winningNumberInputContainer = document.querySelector('.winning-numbers');
-const modal = document.querySelector('.modal');
-
-const renderHitLottoCount = (winCount) => {
-  const resultTableBody = modal.querySelector('tbody');
-  const tableRows = resultTableBody.querySelectorAll('tr');
-  // TODO: 쓰레기 고치기
-  for (let i = 0; i < 5; i++) {
-    const td = document.createElement('td');
-    const rank = i + 1;
-    const tableOrder = 5 - (i + 1);
-    td.innerText = `${winCount[rank]}개`;
-    tableRows[tableOrder].appendChild(td);
-  }
-};
-
-const renderProfitRate = (profitRate) => {
-  const resultTable = modal.querySelector('table');
-  const resultProfitRate = document.createElement('p');
-  resultProfitRate.innerText = `당신의 총 수익률은 ${profitRate.toFixed(2)}% 입니다.`;
-  resultProfitRate.className = 'profit-rate';
-  resultTable.after(resultProfitRate);
-};
-
-const renderResultTable = ({ winCount, profitRate }) => {
-  renderHitLottoCount(winCount);
-  renderProfitRate(profitRate);
-};
-
-const handleWinningLottos = () => {
-  const winningNumberInputs = winningNumberInputContainer.querySelectorAll('.winning-number-input');
-  const bonusNumberInput = document.querySelector('.bonus-number-input');
-  const winningNumbers = Array.from(winningNumberInputs, (_) => +_.value);
-  lottoMachine.generateWinningLotto(winningNumbers);
-  const bonusNumber = +bonusNumberInput.value;
-  lottoMachine.setBonusNumber(bonusNumber);
-};
 
 resultBtn.addEventListener('click', () => {
   try {
@@ -83,14 +67,11 @@ resultBtn.addEventListener('click', () => {
     window.alert(error.message);
     return;
   }
-
-  resultBtn.disabled = true;
-  modal.style.visibility = 'visible';
+  changeCSSByResultBtnClick();
   renderResultTable(lottoMachine.calcStatstics());
 });
 
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
-
 modalCloseBtn.addEventListener('click', () => {
   modal.style.visibility = 'hidden';
 });
