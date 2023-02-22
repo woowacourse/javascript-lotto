@@ -26,8 +26,9 @@ class LottoGameController {
       const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch ({ message }) {
-      ViewUtils.showError(this.#gameView.purchaseInput, message);
       ViewUtils.resetInput(this.#gameView.purchaseInput);
+      ViewUtils.focusElement(this.#gameView.purchaseInput);
+      ViewUtils.showError(this.#gameView.purchaseInput, message);
     }
   }
 
@@ -44,9 +45,10 @@ class LottoGameController {
       Validation.verifyLottoNumbers(winningNumbers);
       this.#handleBonusNumber(winningNumbers, bonusNumber);
     } catch ({ message }) {
-      ViewUtils.showError(this.#gameView.winningNumbersInputs[0], message);
-      ViewUtils.resetInput(this.#gameView.winningNumbersInputs[0]);
       ViewUtils.resetForm(this.#gameView.gameNumbersForm);
+      ViewUtils.focusElement(this.#gameView.winningNumbersInputs[0]);
+      ViewUtils.showError(this.#gameView.winningNumbersInputs[0], message);
+
     }
   }
 
@@ -57,6 +59,7 @@ class LottoGameController {
       this.#handleGameResult();
     } catch ({ message }) {
       ViewUtils.showError(this.#gameView.bonusNumberInput, message);
+      ViewUtils.focusElement(this.#gameView.bonusNumberInput);
       ViewUtils.resetInput(this.#gameView.bonusNumberInput);
     }
   }

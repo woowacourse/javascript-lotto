@@ -25,11 +25,14 @@ const ViewUtils = {
 
   resetInput(element) {
     element.value = '';
-    element.focus();
   },
 
   resetForm(element) {
     element.reset();
+  },
+
+  focusElement(element) {
+    element.focus();
   },
 
   resetInnerHTML(element) {
