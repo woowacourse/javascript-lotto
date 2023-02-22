@@ -1,0 +1,64 @@
+<style>
+  :host {
+    display: block;
+    width: 100%;
+  }
+
+  section {
+    font-size: var(--typography-caption-font-size);
+    color: var(--main-secondary-text-color);
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  p {
+    font-size: var(--typography-body-font-size);
+    font-weight: var(--typography-body-font-weight);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  ul::before {
+    content: attr(data-count) '장을 구매하셨습니다.';
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  li>img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #lottoList:empty {
+    display: none;
+  }
+
+  #lottoList:not(:empty)~section {
+    display: none;
+  }
+
+</style>
+
+<ul id="lottoList"></ul>
+
+<section>{placeholder}</section>
+
+<template id="lottoTemplate">
+  <li>
+    <img src="/assets/icon/lotto.png">
+    <lt-typography variant="body" class="numbers"></lt-typography>
+  </li>
+</template>
