@@ -20,7 +20,6 @@ export default class LottoGameController {
   #createLotto(e) {
     e.preventDefault();
     const purchaseAmount = this.#validatePurchaseAmount();
-
     const lottoQuantity = purchaseAmount / LOTTO_CONDITION.lottoPrice;
 
     const eachLottoNumbers = Array.from({ length: lottoQuantity }, () => {
@@ -29,6 +28,8 @@ export default class LottoGameController {
 
       return lottoNumbers;
     });
+
+    this.#view.printLottoQuantity(lottoQuantity);
   }
 
   #validatePurchaseAmount() {
