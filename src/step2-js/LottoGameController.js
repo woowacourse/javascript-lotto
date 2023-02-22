@@ -50,6 +50,11 @@ export default class LottoGameController {
     if (!winningNumbers || !bonusNumber) {
       return;
     }
+
+    const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
+    const statistics = this.#lottoGame.getStatistics(eachCompareResult);
+    const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);
+    const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
   }
 
   #validatePurchaseAmount() {
