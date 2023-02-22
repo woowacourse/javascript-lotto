@@ -6,7 +6,11 @@ import paintModal, { closeModal } from '../components/modal';
 import paintLottoStatus from '../components/purchaseLottoStatus';
 import { STEP } from '../data/Constants';
 import LottoGame from '../domain/LottoGame';
-import { inputErrorChecker } from '../utils/errorChecker';
+import {
+  inputErrorChecker,
+  printLottoResultErrorHandler,
+  purchaseLottoErrorHandler,
+} from '../utils/errorChecker';
 import { clearConatiner } from '../utils/Utils';
 import {
   validateBonusNumber,
@@ -68,8 +72,8 @@ export default function LottoUIController($app) {
     );
 
     if (state) {
-      const $root = document.querySelector('.purchase-enter-container');
-      showErrorMessage($root, message, $root.querySelector('button'));
+      const { $errorContainer, $trigger } = purchaseLottoErrorHandler();
+      showErrorMessage($errorContainer, message, $trigger);
       return;
     }
 
@@ -107,10 +111,8 @@ export default function LottoUIController($app) {
 
     if (bonusState || winState) {
       const message = winState ? winMessage : bonusMessage;
-      const $root = document.querySelector('.number-container');
-      const $trigger = document.querySelector('#checkResult');
-
-      showErrorMessage($root, message, $trigger);
+      const { $errorContainer, $trigger } = printLottoResultErrorHandler();
+      showErrorMessage($errorContainer, message, $trigger);
       return;
     }
 
