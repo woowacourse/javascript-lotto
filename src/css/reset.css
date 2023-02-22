@@ -14,9 +14,10 @@ time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    box-sizing: border-box;
+    flex-direction: column;
 }
 
 article, aside, details, figcaption, figure,
@@ -40,4 +41,8 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+button:hover {
+    cursor: pointer;
 }
