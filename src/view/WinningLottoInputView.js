@@ -40,7 +40,7 @@ class WinningLottoInputView {
 
     this.form.insertAdjacentHTML(
       'beforeend',
-      `<button class="result-button">결과 확인하기</button>`,
+      `<button class="primary-button">결과 확인하기</button>`,
     );
   }
 
