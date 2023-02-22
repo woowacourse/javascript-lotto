@@ -1,11 +1,12 @@
 import LottoPurchaseForm from './LottoPurchaseForm';
 
 import { $ } from '../../utils/dom';
+import WinningNumbersSubmitForm from './WinningNumbersSubmitForm';
 
 class CheckWinningSection {
   #template = /* html */ `
   <div class="container">
-    <h2>🎱 내 번호 당첨 확인 🎱</h2>
+    <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
     <div class="lotto-purchase-form-container"></div>
     <ul class="lotto-list"></ul>
     <div class="winning-numbers-submit-form-container"></div>
@@ -36,6 +37,12 @@ class CheckWinningSection {
     return lottos
       .map((lotto) => `<li>🎟️ ${lotto.numbers.join(', ')}<li>`)
       .join('');
+  }
+
+  renderWinningNumbersForm() {
+    new WinningNumbersSubmitForm(
+      $('.winning-numbers-submit-form-container')
+    ).render();
   }
 }
 

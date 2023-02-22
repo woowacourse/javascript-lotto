@@ -10,8 +10,7 @@ class LottoPurchaseController {
   #lottoMachine;
 
   constructor($target) {
-    this.$target = $target;
-    this.$target.addEventListener('purchaseLotto', (e) =>
+    $target.addEventListener('purchaseLotto', (e) =>
       this.handlePurchaseLotto(e.detail)
     );
 
@@ -24,6 +23,7 @@ class LottoPurchaseController {
   handlePurchaseLotto(purchasePrice) {
     this.#lottoMachine = new LottoMachine(purchasePrice);
     this.#checkWinningSection.renderLottos(this.#lottoMachine.lottos);
+    this.#checkWinningSection.renderWinningNumbersForm();
   }
 }
 
