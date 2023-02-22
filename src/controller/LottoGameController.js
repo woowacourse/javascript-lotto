@@ -3,6 +3,7 @@ import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
 import Input from '../browserView/Input.js';
 import Output from '../browserView/Output.js';
+import MoneyInput from '../browserView/MoneyInput.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
@@ -11,11 +12,10 @@ class LottoGameController {
 
   #output = new Output();
 
+  #moneyInput = new MoneyInput();
+
   startGame() {
-    this.#input.purchaseLottos(this.#getPurchaseCount);
-    this.#input.seeResult(this.#setWinningLotto);
-    this.#input.closeModal();
-    this.#input.restart(this.#output.resetOutput);
+    this.#moneyInput.activate(this.#getPurchaseCount);
   }
 
   #getPurchaseCount = (money) => {
