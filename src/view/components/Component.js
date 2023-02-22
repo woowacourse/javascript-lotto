@@ -1,12 +1,12 @@
 import Console from '../../utils/Console.js';
-import { CustomError, ERROR_CODE } from '../../utils/Error.js';
+import { ERROR } from '../../constants/constants.js';
 
 export default class Component {
   state;
 
   constructor(props) {
     if (this.constructor === Component) {
-      throw new CustomError({ code: ERROR_CODE.CANNOT_CREATE_INSTANCE });
+      throw new Error(ERROR.CANNOT_CREATE_INSTANCE);
     }
 
     this.setUp(props);
