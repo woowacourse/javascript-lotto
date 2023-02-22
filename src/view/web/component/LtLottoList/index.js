@@ -16,11 +16,11 @@ class LtLottoList extends LtFormControl {
     return ['placeholder'];
   }
 
-  get lottos() {
+  getLottos() {
     return this.#lottos;
   }
 
-  set lottos(lottos) {
+  setLottos(lottos) {
     this.#lottos = lottos;
     this.render();
   }
@@ -31,7 +31,7 @@ class LtLottoList extends LtFormControl {
   }
 
   formResetCallback() {
-    this.lottos = [];
+    this.setLottos([]);
   }
 
   getRenderContent() {

@@ -17,39 +17,39 @@ class LtWinningLottoInput extends LtFormControl {
   $bonusNumberInput;
 
   /** @type {WinningLotto | null} */
-  #value = null;
+  #winningLotto = null;
 
   static get observedAttributes() {
     return ['placeholder'];
   }
 
-  get value() {
-    return this.#value;
+  getWinningLotto() {
+    return this.#winningLotto;
   }
 
-  set value(value) {
-    if (!(value instanceof WinningLotto)) {
-      this.#value = null;
+  setWinningLotto(winningLotto) {
+    if (!(winningLotto instanceof WinningLotto)) {
+      this.#winningLotto = null;
       this.$winningNumberInputs.forEach(($input) => {
-        $input.value = null;
+        $input.setText(null);
       });
-      this.$bonusNumberInput.value = null;
+      this.$bonusNumberInput.setText(null);
       return;
     }
-    this.#value = value;
+    this.#winningLotto = winningLotto;
 
-    value.getLottoNumbers().forEach((lottoNumber, index) => {
-      this.$winningNumberInputs[index].value = lottoNumber;
+    winningLotto.getLottoNumbers().forEach((lottoNumber, index) => {
+      this.$winningNumberInputs[index].setText(lottoNumber);
     });
-    this.$bonusNumberInput.value = value.getBonusNumber();
+    this.$bonusNumberInput.setText(winningLotto.getBonusNumber());
   }
 
   #validate() {
-    const lottoNumbers = this.$winningNumberInputs.map(($input) => Number($input.value));
-    const bonusNumber = Number(this.$bonusNumber.value);
+    const lottoNumbers = this.$winningNumberInputs.map(($input) => Number($input.getText()));
+    const bonusNumber = Number(this.$bonusNumberInput.getText());
 
     try {
-      this.#value = new WinningLotto(lottoNumbers, bonusNumber);
+      this.#winningLotto = new WinningLotto(lottoNumbers, bonusNumber);
     } catch (error) {
       this.setValidation(error.message);
       return;
@@ -59,12 +59,13 @@ class LtWinningLottoInput extends LtFormControl {
 
   setValidation(message) {
     super.setValidation(message);
+    /** @type {LtTextInput} */
     const $firstInput = this.shadowRoot.querySelector('lt-text-input');
-    $firstInput.errorMessage = message;
+    $firstInput.setErrorMessage(message);
   }
 
   formResetCallback() {
-    this.value = null;
+    this.setWinningLotto(null);
     this.setValidation(null);
   }
 

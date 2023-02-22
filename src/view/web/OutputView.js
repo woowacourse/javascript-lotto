@@ -13,7 +13,7 @@ const OutputView = {
     /** @type {LtLottoList} */
     const $boughtLottos = document.getElementById('bought-lottos');
 
-    $boughtLottos.lottos = lottos;
+    $boughtLottos.setLottos(lottos);
     OutputView.focusNextAnchor();
   },
 
@@ -27,8 +27,8 @@ const OutputView = {
     /** @type {LtLottoResult} */
     const $lottoResult = document.getElementById('lotto-result');
 
-    $lottoResult.lottoResult = lottoResult;
-    $lottoResult.rewards = rewards;
+    $lottoResult.setLottoResult(lottoResult);
+    $lottoResult.setRewards(rewards);
 
     $lottoResultDialog.showModal();
     OutputView.focusNextAnchor();

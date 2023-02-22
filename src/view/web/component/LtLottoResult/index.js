@@ -20,20 +20,20 @@ class LtLottoResult extends LtComponent {
   /** @type {Reward[]} */
   #rewards = [];
 
-  get lottoResult() {
+  getLottoResult() {
     return this.#lottoResult;
   }
 
-  set lottoResult(lottoResult) {
+  setLottoResult(lottoResult) {
     this.#lottoResult = lottoResult;
     this.render();
   }
 
-  get rewards() {
+  getRewards() {
     return this.#rewards;
   }
 
-  set rewards(rewards) {
+  setRewards(rewards) {
     this.#rewards = rewards;
     this.render();
   }

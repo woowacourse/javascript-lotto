@@ -11,7 +11,7 @@ const InputView = {
     /** @type {LtMoneyInput} */
     const $money = document.getElementById('money');
 
-    const money = $money.value;
+    const money = $money.getMoney();
     if (money === null) throw new LottoError('로또 번호를 입력해주세요!');
 
     return money;
@@ -24,7 +24,7 @@ const InputView = {
     /** @type {LtWinningLottoInput} */
     const $winningLotto = document.getElementById('winning-lotto');
 
-    const winningLotto = $winningLotto.value;
+    const winningLotto = $winningLotto.getWinningLotto();
     if (!(winningLotto instanceof WinningLotto)) throw new LottoError('당첨 번호를 입력해주세요!');
 
     return winningLotto;

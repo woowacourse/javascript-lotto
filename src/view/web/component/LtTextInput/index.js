@@ -6,28 +6,28 @@ class LtTextInput extends LtFormControl {
   $input;
 
   /** @type {string} */
-  #value = '';
+  #text = '';
 
   static get observedAttributes() {
     return ['placeholder'];
   }
 
-  set errorMessage(message) {
+  setErrorMessage(message) {
     this.dataset.errorMessage = message || '';
   }
 
-  get value() {
-    return this.#value;
+  getText() {
+    return this.#text;
   }
 
-  set value(value) {
-    this.$input.value = value;
-    this.#validate(value);
+  setText(text) {
+    this.$input.value = text;
+    this.#validate(text);
   }
 
-  #validate(value) {
-    this.#value = value ?? '';
-    this.dispatchEvent(new CustomEvent('change'));
+  #validate(text) {
+    this.#text = text ?? '';
+    this.dispatchEvent(new Event('change'));
   }
 
   getRenderContent() {
@@ -37,7 +37,7 @@ class LtTextInput extends LtFormControl {
   render() {
     super.render();
 
-    this.$input.value = this.value;
+    this.$input.value = this.#text;
     this.$input.addEventListener('change', (event) => {
       this.#validate(event.target.value);
     });

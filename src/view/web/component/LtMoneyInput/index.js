@@ -1,52 +1,58 @@
 import Validation from '../../../../Validation';
+import LtFormControl from '../LtFormControl';
 import LtTextInput from '../LtTextInput';
+import template from './index.html';
 
-class LtMoneyInput extends LtTextInput {
-  /** @type {HTMLInputElement} */
+class LtMoneyInput extends LtFormControl {
+  /** @type {LtTextInput} */
   $input;
 
   /** @type {number | null} */
-  #value = null;
+  #money = null;
 
-  get value() {
-    return this.#value;
+  getMoney() {
+    return this.#money;
   }
 
-  set value(value) {
-    this.$input.value = value;
-    this.#validate(value);
+  setMoney(text) {
+    this.$input.setText(text);
+    this.#validate(text);
   }
 
-  #validate(value) {
-    this.#value = null;
-    const money = Number(value);
+  #validate(text) {
+    this.#money = null;
+    const money = Number(text);
     try {
-      Validation.validateMoney(value);
+      Validation.validateMoney(text);
     } catch (error) {
       this.setValidation(error.message);
       return;
     }
     this.setValidation(null);
-    this.#value = money;
+    this.#money = money;
     this.dispatchEvent(new CustomEvent('change'));
   }
 
   setValidation(message) {
     super.setValidation(message);
-    this.errorMessage = message;
+    this.$input.setErrorMessage(message);
   }
 
   formResetCallback() {
-    this.value = null;
+    this.setMoney(null);
     this.setValidation(null);
+  }
+
+  getRenderContent() {
+    return template;
   }
 
   render() {
     super.render();
 
-    this.$input.value = this.value;
+    this.$input.text = this.#money;
     this.$input.addEventListener('change', (event) => {
-      this.#validate(event.target.value);
+      this.#validate(event.target.getText());
     });
   }
 }
