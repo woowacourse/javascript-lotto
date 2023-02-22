@@ -51,7 +51,7 @@ class Lottos {
     const profit = this.#calculateProfit();
     const purchasedPrice = this.#lottos.length * PRICE_UNIT;
 
-    return (profit / purchasedPrice).toFixed(1);
+    return ((profit / purchasedPrice) * 100).toFixed(1);
   }
 
   #calculateProfit() {

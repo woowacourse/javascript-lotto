@@ -15,7 +15,6 @@ const purchasedLottosContainer = document.getElementById(
 );
 const winningInputForm = document.getElementById('winningInputForm');
 const winningInputFlexBox = document.getElementById('winningInputContainer');
-const winningInputs = document.getElementsByClassName('winningInput');
 const statisticsContainer = document.getElementById('statisticsContainer');
 const resultModalContainer = document.getElementById('resultModalContainer');
 const profitRateViewer = document.getElementById('profitRate');
@@ -31,7 +30,9 @@ const outputView = {
   },
 
   renderWinningNumbersInput() {
+    const bonusNumberInput = this.createBonusNumberInput();
     winningInputForm.classList = '';
+    winningInputFlexBox.nextSibling.remove();
 
     winningInputFlexBox.innerHTML = `
       <input
@@ -42,6 +43,8 @@ const outputView = {
         required
       />
     `.repeat(LOTTO_NUMBER_COUNT);
+
+    winningInputFlexBox.after(bonusNumberInput);
   },
 
   renderStatistics(rankCounts, profitRate) {
@@ -81,12 +84,18 @@ const outputView = {
     winningInputForm.classList = 'hidden';
     priceInput.value = '';
 
-    Array.from(winningInputs).forEach((input) => {
-      // eslint-disable-next-line no-param-reassign
-      input.value = '';
-    });
-
     this.closeModal();
+  },
+
+  createBonusNumberInput() {
+    const bonusNumberInput = document.createElement('input');
+    bonusNumberInput.required = true;
+    bonusNumberInput.classList = 'winningInput';
+    bonusNumberInput.max = '45';
+    bonusNumberInput.min = '1';
+    bonusNumberInput.type = 'number';
+
+    return bonusNumberInput;
   },
 };
 

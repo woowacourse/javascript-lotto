@@ -31,11 +31,13 @@ class LottoGameController {
 
   handleWinningNumbersInput = (winningNumbers, bonusNumber) => {
     try {
-      this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-      this.#lottos.calculateAllRanks(
-        this.#winningLotto.getWinningNumbers(),
-        this.#winningLotto.getBonusNumber()
-      );
+      if (this.#winningLotto === undefined) {
+        this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        this.#lottos.calculateAllRanks(
+          this.#winningLotto.getWinningNumbers(),
+          this.#winningLotto.getBonusNumber()
+        );
+      }
       this.showResult();
     } catch (error) {
       alert(error.message);

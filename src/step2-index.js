@@ -1,4 +1,4 @@
-const LottoGameController = require('./controller/LottoGameController.js');
-const styleSheet = require('./style.css');
+const LottoGameController = require('./controller/LottoGameController');
+require('./style.css');
 
 new LottoGameController();
