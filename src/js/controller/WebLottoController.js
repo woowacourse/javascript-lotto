@@ -1,25 +1,31 @@
-import { $ } from './util/querySelector.js';
-import PurchaseView from './view/PurchaseView.js';
-import WinningLottoInputView from './view/WinningLottoInputView.js';
-import ResultModalView from './view/ResultModalView.js';
-import InputCleaner from './view/InputCleaner.js';
-import ErrorView from './view/ErrorView.js';
-import LottoGame from './domain/LottoGame.js';
-import validator from './domain/validator.js';
+import { $ } from '../util/querySelector.js';
+import { PROJECT_MODE } from '../constants/index.js';
+import PurchaseView from '../view/PurchaseView.js';
+import WinningLottoInputView from '../view/WinningLottoInputView.js';
+import ResultModalView from '../view/ResultModalView.js';
+import InputCleaner from '../view/InputCleaner.js';
+import ErrorView from '../view/ErrorView.js';
+import LottoGame from '../domain/LottoGame.js';
+import Validator from '../domain/Validator.js';
 
-class LottoController {
+class WebLottoController {
   #lottoGame;
+  #validator = new Validator(PROJECT_MODE.WEB);
   #purchaseView = new PurchaseView((budget) => this.handleBudget(budget));
   #winningLottoInputView = new WinningLottoInputView((winningLotto) =>
     this.handleWinningLotto(winningLotto)
   );
   #resultModalView = new ResultModalView(() => this.handleRestart());
 
+  constructor() {
+    console.log('Web Controller loaded');
+  }
+
   handleBudget(budget) {
     const budgetErrorView = new ErrorView($('#buyErrorArea'), $('#budgetInput'));
 
     try {
-      validator.throwErrorIfInvalidBudget(budget);
+      this.#validator.throwErrorIfInvalidBudget(budget);
       budgetErrorView.hideErrorMessage();
       this.#lottoGame = new LottoGame(budget);
       this.#purchaseView.render(this.#lottoGame.getBoughtLottos());
@@ -35,28 +41,33 @@ class LottoController {
       $('#firstNumberInput')
     );
 
-    const winningLotto = this.#parseWinningLotto(lottoFormData);
+    const stringifiedWinningLotto = this.#stringifyWinningLotto(lottoFormData);
+    const winningLotto = this.#parseWinningLotto(stringifiedWinningLotto);
     const bonusNumber = this.#parseBonusNumber(lottoFormData);
-    console.log({ l: winningLotto, b: bonusNumber });
 
     try {
-      validator.throwErrorIfInvalidWinningLotto(winningLotto);
-      validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      this.#validator.throwErrorIfInvalidWinningLotto(stringifiedWinningLotto);
+      this.#validator.throwErrorIfInvalidBonusNumber(bonusNumber);
       winningLottoErrorView.hideErrorMessage();
+      console.log({ winningLotto: winningLotto, stringified: stringifiedWinningLotto });
       this.#showLottoGameResult(winningLotto, bonusNumber);
     } catch ({ message }) {
       winningLottoErrorView.renderErrorMessage(message);
     }
   }
 
-  #parseWinningLotto(lottoFormData) {
+  #stringifyWinningLotto(lottoFormData) {
     const winningLottos = [];
 
     Array.from({ length: 6 }).forEach((_, index) => {
       winningLottos.push(Number(lottoFormData[`number-${index + 1}`]));
     });
 
-    return winningLottos;
+    return winningLottos.join(',');
+  }
+
+  #parseWinningLotto(stringifiedWinningLotto) {
+    return stringifiedWinningLotto.split(',').map(Number);
   }
 
   #parseBonusNumber(lottoFormData) {
@@ -66,6 +77,7 @@ class LottoController {
   #showLottoGameResult(winningLotto, bonusNumber) {
     const winningStatus = this.#lottoGame.getWinningStatus(winningLotto, bonusNumber);
     const profitRate = this.#lottoGame.getProfitRate();
+
     this.#resultModalView.displayResult(winningStatus, profitRate);
   }
 
@@ -78,4 +90,4 @@ class LottoController {
   }
 }
 
-export default LottoController;
+export default WebLottoController;

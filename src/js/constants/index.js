@@ -37,34 +37,34 @@ const MESSAGE = Object.freeze({
   PROFIT_RATE_RESULT: (formattedRate) => `총 수익률은 ${formattedRate}%입니다.`,
 });
 
+const PROJECT_MODE = Object.freeze({
+  CONSOLE: 'console',
+  WEB: 'web',
+});
+
 const ERROR = Object.freeze({
-  ERROR_DECIMAL: {
+  NOT_DECIMAL: {
     [PROJECT_MODE.CONSOLE]: '[ERROR] 구입 금액은 정수여야 합니다.',
     [PROJECT_MODE.WEB]: '구입 금액은 정수로 입력해 주세요!',
   },
-  ERROR_INVALID_LOTTO_FORMAT: {
+  INVALID_LOTTO_FORMAT: {
     [PROJECT_MODE.CONSOLE]:
       '[ERROR] 로또는 콤마(,)로 구분되는 6개의 1 이상 45 이하의 정수여야 합니다.',
     [PROJECT_MODE.WEB]: '당첨 로또 번호를 모두 입력해 주세요!',
   },
-  ERROR_LOTTO_DUPLICATES: {
+  LOTTO_DUPLICATES: {
     [PROJECT_MODE.CONSOLE]: '[ERROR] 로또 번호는 중복되는 수가 없어야 합니다',
     [PROJECT_MODE.WEB]: '중복되는 로또 번호가 없도록 입력해 주세요!',
   },
-  ERROR_INVALID_BONUS_NUMBER: {
+  INVALID_BONUS_NUMBER: {
     [PROJECT_MODE.CONSOLE]: '[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다',
     [PROJECT_MODE.WEB]: '보너스 번호는 1 이상 45 이하의 정수로 입력해 주세요!',
   },
-  ERROR_INVALID_RETRY_COMMAND: '[ERROR] 재시작 여부는 y 또는 n이어야 합니다.',
-  ERROR_BUDGET_NOT_DIVISIBLE: {
+  INVALID_RETRY_COMMAND: '[ERROR] 재시작 여부는 y 또는 n이어야 합니다.',
+  BUDGET_NOT_DIVISIBLE: {
     [PROJECT_MODE.CONSOLE]: (divisor) => `[ERROR] 구입 금액은 ${divisor}원 단위여야 합니다`,
     [PROJECT_MODE.WEB]: (divisor) => `구입 금액은 ${divisor}원 단위로 입력해 주세요!`,
   },
-});
-
-const PROJECT_MODE = Object.freeze({
-  CONSOLE: 'console',
-  WEB: 'web',
 });
 
 const REGEX = Object.freeze({
