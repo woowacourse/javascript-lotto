@@ -1,14 +1,14 @@
 import LottoUtils from '../domain/LottoUtils.js';
-import { $$winningCounts, $modal, $yield, open } from '../utils/Dom.js';
+import { $$winningCounts, $closeButton, $modal, $yield, close, open } from '../utils/Dom.js';
 import LottoView from './LottoView.js';
 
 class ResultView extends LottoView {
   constructor($element) {
     super($element);
     this.ranks = [];
+    this.bindRetryEvent();
+    this.closeModal();
   }
-
-  // bindModalEvent() {}
 
   openResultModal(winningResult, budget) {
     open($modal);
@@ -33,6 +33,20 @@ class ResultView extends LottoView {
 
   printYieldRate(winningResult, budget) {
     $yield.textContent = LottoUtils.calculateYieldRate(winningResult, budget);
+  }
+
+  bindRetryEvent() {
+    this.$element.addEventListener('click', (e) => this.retryHandler(e));
+  }
+
+  retryHandler(e) {
+    e.preventDefault();
+    this.createCustomEvent('retryCommand');
+    close($modal);
+  }
+
+  closeModal() {
+    $closeButton.addEventListener('click', () => close($modal));
   }
 }
 

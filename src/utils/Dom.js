@@ -19,3 +19,4 @@ export const $closeButton = $('.close__button');
 
 export const $$winningCounts = $$('.winning__count');
 export const $yield = $('.yield');
+export const $retry = $('.reset__button');

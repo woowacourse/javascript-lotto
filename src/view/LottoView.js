@@ -12,13 +12,17 @@ class LottoView {
     this.$element.dispatchEvent(newEvent);
   }
 
-  reset() {
+  print($element, content) {
+    $element.innerText = content;
+  }
+
+  resetInput() {
     this.$element.reset();
     this.$element.focus();
   }
 
-  print($element, content) {
-    $element.innerText = content;
+  resetPrint($element) {
+    $element.innerText = '';
   }
 }
 

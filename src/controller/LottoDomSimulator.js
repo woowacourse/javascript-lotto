@@ -44,6 +44,7 @@ class LottoDomSimulator {
   bindEvent() {
     this.budgetView.readEvent('inputPrice', (e) => this.budgetProcess(e.detail));
     this.winningView.readEvent('inputWinningNumber', (e) => this.winningNumberProcess(e.detail));
+    this.resultView.readEvent('retryCommand', () => this.retryProcess());
   }
 
   budgetProcess(budget) {
@@ -53,8 +54,8 @@ class LottoDomSimulator {
       this.purchaseLottos(budget);
     } catch (err) {
       this.budgetView.print($budgetError, `${LOTTO_CONSTANT.ERROR} ${err}`);
+      this.budgetView.resetInput();
     }
-    this.budgetView.reset();
   }
 
   validateBudget(budget) {
@@ -90,6 +91,7 @@ class LottoDomSimulator {
     } catch (err) {
       this.winningView.print($winningError, `${LOTTO_CONSTANT.ERROR} ${err}`);
       this.winningNumberProcess();
+      this.winningView.resetInput();
     }
   }
 
@@ -109,11 +111,14 @@ class LottoDomSimulator {
     this.resultView.openResultModal(this.calculateWinningResult(), this.#budget);
   }
 
-  retry() {
+  retryProcess() {
     this.#lottos = [];
     this.winningLotto = null;
     this.budget = 0;
-    this.play();
+    this.budgetView.resetPrint($totalBudget);
+    this.budgetView.resetPrint($ticketsList);
+    this.budgetView.resetInput();
+    this.winningView.resetInput();
   }
 }
 
