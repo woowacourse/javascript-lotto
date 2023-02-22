@@ -41,6 +41,8 @@ const benefitRate = document.querySelector('.benefitRate');
 
 const retryButton = document.querySelector('.retryButton');
 
+const footer = document.querySelector('footer');
+
 winningModal.classList.add('hiddenElement');
 lottoInfoContainer.classList.add('hiddenElement');
 inputNumberContainer.classList.add('hiddenElement');
@@ -169,3 +171,9 @@ const getBenefitRate = (money, ranks) => {
 
   benefitRate.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
 };
+
+const getCopyrightCurrentYear = () => {
+  footer.innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
+};
+
+getCopyrightCurrentYear();
