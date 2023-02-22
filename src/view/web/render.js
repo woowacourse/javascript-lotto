@@ -36,6 +36,7 @@ const renderHitLottoCount = (winCount) => {
     const td = document.createElement('td');
     const rank = i + 1;
     const tableOrder = 5 - (i + 1);
+
     td.innerText = `${winCount[rank]}개`;
     tableRows[tableOrder].appendChild(td);
   }
