@@ -1,11 +1,16 @@
 import LottoController from './LottoController';
+import InputView from './view/web/InputView';
+import OutputView from './view/web/OutputView';
 
 class App {
   /** @type {LottoController} */
   #lottoController;
 
   constructor() {
-    this.#lottoController = new LottoController();
+    this.#lottoController = new LottoController({
+      inputView: InputView,
+      outputView: OutputView,
+    });
   }
 
   async play() {

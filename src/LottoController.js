@@ -3,10 +3,11 @@ import LottoResult from './domain/LottoResult';
 import Buyer from './domain/subject/Buyer';
 import Seller from './domain/subject/Seller';
 import WinningLotto from './domain/WinningLotto';
-import InputView from './view/InputView';
-import OutputView from './view/OutputView';
 
 class LottoController {
+  #inputView;
+  #outputView;
+
   /** @type {Buyer} */
   #buyer;
 
@@ -16,35 +17,40 @@ class LottoController {
   /** @type {WinningLotto} */
   #winningLotto;
 
+  constructor({ inputView, outputView }) {
+    this.#inputView = inputView;
+    this.#outputView = outputView;
+  }
+
   async proceedBuyLottos() {
-    const money = await InputView.readMoney();
+    const money = await this.#inputView.readMoney();
     this.#buyer = new Buyer(money);
     this.#seller = new Seller();
     this.#buyer.buyLottos(this.#seller);
 
-    OutputView.printLottos(this.#buyer.getLottos());
+    this.#outputView.printLottos(this.#buyer.getLottos());
   }
 
   async proceedWinningLotto() {
-    this.#winningLotto = await InputView.readWinningLotto();
+    this.#winningLotto = await this.#inputView.readWinningLotto();
   }
 
   proceedLottoResult() {
-    const lottoResult = new LottoResult(this.#winningLotto);
+    const lottoResult = new LottoResult(winningLotto);
     this.#buyer.receiveRewards(lottoResult);
     const profitRate = this.#buyer.getProfitRate();
 
-    OutputView.printLottoResult(lottoResult, this.#buyer.getRewards());
-    OutputView.printProfitRate(profitRate);
+    this.#outputView.printLottoResult(lottoResult, this.#buyer.getRewards());
+    this.#outputView.printProfitRate(profitRate);
   }
 
-  async proceedRestartCommand() {
-    const restartCommand = await InputView.readRestartCommand();
+  async proceedRestart() {
+    const restartCommand = await this.#inputView.readRestartCommand();
 
     if (restartCommand === RestartCommand.YES) {
       return true;
     }
-    OutputView.printExit();
+    this.#outputView.printExit();
     return false;
   }
 }
