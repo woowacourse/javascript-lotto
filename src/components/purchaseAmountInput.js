@@ -36,7 +36,7 @@ function addPurchaseEnterEventListener($root, eventHandler) {
   $purchaseButton.addEventListener('click', eventHandler);
 }
 
-function initialEnterInput() {
+function purchaseEnterInput() {
   const $container = document.createElement('div');
 
   $container.innerHTML = gameTitle;
@@ -45,7 +45,7 @@ function initialEnterInput() {
   return $container;
 }
 
-export default function paintInitialEnterInput($root, eventHandler) {
-  $root.appendChild(initialEnterInput());
+export default function paintPurchaseEnterInput($root, eventHandler) {
+  $root.appendChild(purchaseEnterInput());
   addPurchaseEnterEventListener($root, eventHandler);
 }

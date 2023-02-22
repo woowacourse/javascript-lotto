@@ -1,6 +1,6 @@
 import paintEnterWinningNumber from '../components/enterGameBoard';
 import showErrorMessage from '../components/errorMessage';
-import paintInitialEnterInput from '../components/initialEnterInput';
+import paintPurchaseAmountInput from '../components/purchaseAmountInput';
 import lottoResultBoard from '../components/lottoResult';
 import paintModal, { closeModal } from '../components/modal';
 import paintLottoStatus from '../components/purchaseLottoStatus';
@@ -36,7 +36,7 @@ export default function LottoUIController($app) {
 
   this.play = () => {
     gameSetting();
-    paintInitialEnterInput(this.state.$root, purchaseAmountHandler);
+    paintPurchaseAmountInput(this.state.$root, purchaseAmountHandler);
   };
 
   const gameSetting = () => {
@@ -94,12 +94,12 @@ export default function LottoUIController($app) {
 
   const checkResultHandler = () => {
     const $winNumbers = document.querySelectorAll('input[name="winNumber"]');
+    const $bonusNumber = document.querySelector('input[name="bonusNumber"]');
+
     const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
       Number(value)
     );
-    const bonusNumber = Number(
-      document.querySelector('input[name="bonusNumber"]').value
-    );
+    const bonusNumber = Number($bonusNumber.value);
 
     const { state: winState, message: winMessage } = inputErrorChecker(() =>
       validateWinningNumbers(winningNumbers)
