@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1 id="title">🎱 행운의 로또</h1>
+      </header>
+      <main>
+        <h2 id="main-title">🎱 내 번호 당첨 확인 🎱</h2>
+        <form id="purchase-amount-form">
+          <div>구입할 금액을 입력해주세요.</div>
+          <input type="text" placeholder="금액" />
+          <input type="submit" value="구입" />
+        </form>
+        <div id="purchase-lotto"></div>
+        <form id="winning-lotto-from"></form>
+      </main>
+      <footer>
+        <div>Copyright 2023. woowacourse</div>
+      </footer>
+      <div id="winning-statistics"></div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
