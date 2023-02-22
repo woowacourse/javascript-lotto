@@ -2,6 +2,10 @@ import { QuerySelector } from '../constants/HTML.js';
 
 class Input {
   constructor() {
+    this.initElements();
+  }
+
+  initElements() {
     this.moneyInputEl = document.querySelector(QuerySelector.MONEY_INPUT);
     this.purchaseBtn = document.querySelector(QuerySelector.PURCHASE_BUTTON);
     this.winningNumberInputs = document.querySelectorAll(QuerySelector.WINNING_NUMBER);

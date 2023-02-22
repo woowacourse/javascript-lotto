@@ -7,7 +7,7 @@ class Output {
     this.lottoInputField = document.querySelector(QuerySelector.LOTTO_INPUT_FIELD);
   }
 
-  createLottosField = (purchaseCount, lottos) => {
+  #createLottosField = (purchaseCount, lottos) => {
     const purchaseMessageEl = document.createElement(Tag.DIV);
     purchaseMessageEl.className = QuerySelector.PURCHASE_MESSAGE;
     purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
@@ -28,7 +28,7 @@ class Output {
   renderLottosField = (purchaseCount, lottos) => {
     this.lottosField.innerText = '';
 
-    const { purchaseMessageEl, lottosEl } = this.createLottosField(purchaseCount, lottos);
+    const { purchaseMessageEl, lottosEl } = this.#createLottosField(purchaseCount, lottos);
 
     this.lottosField.append(purchaseMessageEl);
     this.lottosField.append(lottosEl);
@@ -37,6 +37,8 @@ class Output {
   renderLottoInputField() {
     this.lottoInputField.classList.add('show');
   }
+
+  renderResultModal() {}
 }
 
 export default Output;

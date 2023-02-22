@@ -1,8 +1,8 @@
 import { GameControlStaticValue } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
-import Input from '../view/Input.js';
-import Output from '../view/Output.js';
+import Input from '../browserView/Input.js';
+import Output from '../browserView/Output.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
