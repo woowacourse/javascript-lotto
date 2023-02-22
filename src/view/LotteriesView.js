@@ -6,7 +6,7 @@ class LotteriesView {
   }
 
   showNumberOfLotteries(lotteries) {
-    console.log(this.numberOfLotto);
+    this.lotteriesList.style.display = "flex";
     this.numberOfLotto.innerText = `${lotteries.length}개 구매하였습니다.`;
   }
 
