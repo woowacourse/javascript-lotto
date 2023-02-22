@@ -1,11 +1,8 @@
-/* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 
-const modal = () => {
+const modalEvent = () => {
   const modal = document.getElementById("game-modal");
-
   const btn = document.getElementById("game-modal-open-button");
-
   const span = document.getElementsByClassName("game-modal-open-button")[0];
 
   btn.onclick = function () {
@@ -23,4 +20,4 @@ const modal = () => {
   };
 };
 
-export default modal;
+export default modalEvent;
