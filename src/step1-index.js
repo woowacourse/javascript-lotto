@@ -1,16 +1,4 @@
-import LottoController from './LottoController.js';
+import ConsoleLottoController from './js/controller/ConsoleLottoController.js';
 
-class App {
-  #lottoController;
-
-  constructor() {
-    this.#lottoController = new LottoController();
-  }
-
-  play() {
-    this.#lottoController.startGame();
-  }
-}
-
-const app = new App();
-app.play();
+const lottoApp = new ConsoleLottoController();
+lottoApp.startGame();
