@@ -23,3 +23,12 @@ git pull origin step1
 npm install
 npm run start-step1
 ```
+
+### step2 실행
+
+```
+git checkout -b step2
+git pull origin step2
+npm install
+npm run start-step2
+```
