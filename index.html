@@ -5,12 +5,111 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="src/css/reset.css" />
+    <link rel="stylesheet" href="src/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css"
+    />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <div class="width1440">
+          <h1 class="lotto-title">🎱행운의 로또</h1>
+        </div>
+      </header>
+
+      <main>
+        <section class="main-contents lotto-body">
+          <h2 class="content-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+          <form id="purchase-amount" name="purchase-amount">
+            <label for="purchase-amount"> 구입할 금액을 입력해주세요. </label>
+            <div id="purchase-amount-input">
+              <input type="number" name="purchase-amount" placeholder="금액" min="1000" required />
+              <button type="submit" class="lotto-button">구입</button>
+            </div>
+          </form>
+
+          <article id="purchased-lotto-tickets">
+            <h2 id="lotto-ticket-count">총 <span>0</span>개를 구매하였습니다.</h2>
+            <div class="lotto-tickets"></div>
+          </article>
+
+          <form id="winning-lotto">
+            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div id="number-input-label">
+              <label for="winning-number"> 당첨 번호 </label>
+              <label for="bonus-number"> 보너스 번호 </label>
+            </div>
+            <div class="number-input-box">
+              <div id="winning-numbers">
+                <input name="winning-number" type="number" max="45" required />
+                <input name="winning-number" type="number" max="45" required />
+                <input name="winning-number" type="number" max="45" required />
+                <input name="winning-number" type="number" max="45" required />
+                <input name="winning-number" type="number" max="45" required />
+                <input name="winning-number" type="number" max="45" required />
+              </div>
+              <input name="bonus-number" type="number" max="45" required />
+            </div>
+
+            <button type="submit" class="lotto-button">결과 확인하기</button>
+          </form>
+        </section>
+
+        <div class="modal hidden">
+          <div class="modal-window">
+            <i class="bi bi-x close-button"></i>
+            <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
+            <div class="lotto-result lotto-body">
+              <table>
+                <tr>
+                  <th>일치 개수</th>
+                  <th>당첨금</th>
+                  <th>당첨 개수</th>
+                </tr>
+                <tr>
+                  <td>3개</td>
+                  <td>5,000</td>
+                  <td><span class="fifth">n</span>개</td>
+                </tr>
+                <tr>
+                  <td>4개</td>
+                  <td>50,000</td>
+                  <td><span class="fourth">n</span>개</td>
+                </tr>
+                <tr>
+                  <td>5개</td>
+                  <td>1,500,000</td>
+                  <td><span class="third">n</span>개</td>
+                </tr>
+                <tr>
+                  <td>5개+보너스볼</td>
+                  <td>30,000,000</td>
+                  <td><span class="second">n</span>개</td>
+                </tr>
+                <tr>
+                  <td>6개</td>
+                  <td>2,000,000,000</td>
+                  <td><span class="first">n</span>개</td>
+                </tr>
+              </table>
+              <p class="rate-of-return">당신의 총 수익률은 <span></span>%입니다.</p>
+            </div>
+            <button type="button" class="lotto-button">다시 시작하기</button>
+          </div>
+          <div class="modal-background"></div>
+        </div>
+      </main>
+
+      <footer>
+        <p id="copyright">Copyright 2023. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+
+    <script src="/src/step2-index.js"></script>
   </body>
 </html>
