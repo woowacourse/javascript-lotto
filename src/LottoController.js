@@ -5,8 +5,8 @@ import OutputView from './view/console/OutputView';
 class LottoController {
   #lottoMachine;
 
-  handleBuyMoney(money) {
-    this.#lottoMachine = new LottoMachine(money);
+  handlePayments(payments) {
+    this.#lottoMachine = new LottoMachine(payments);
   }
 
   handleWinNumbers(winNumbers) {
@@ -17,13 +17,13 @@ class LottoController {
     this.#lottoMachine.setBonusNumber(bonusNumber);
   }
 
-  async readBuyMoney() {
+  async readPayments() {
     try {
-      const money = await InputView.readBuyMoney();
-      this.handleBuyMoney(money);
+      const money = await InputView.readPayments();
+      this.handlePayments(money);
     } catch (error) {
       OutputView.printErrorMsg(error.message);
-      await this.readBuyMoney();
+      await this.readPayments();
     }
   }
 

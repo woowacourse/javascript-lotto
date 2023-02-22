@@ -11,7 +11,7 @@ class App {
   }
 
   async play() {
-    await this.#lottoController.readBuyMoney();
+    await this.#lottoController.readPayments();
     this.#lottoController.printBuyLottos();
     await this.#lottoController.readWinNumbers();
     await this.#lottoController.readBonusNumber();

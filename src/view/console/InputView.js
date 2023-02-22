@@ -9,9 +9,9 @@ const InputView = {
   RESTART_QUERY: '다시 시작 하겠습니까? (y/n)',
   INVALID_COMMAND_ERROR: '잘못된 명령어입니다.',
 
-  async readBuyMoney() {
-    const buyMoney = await Console.read(InputView.BUY_MONEY_QUERY);
-    return Number(buyMoney);
+  async readPayments() {
+    const payments = await Console.read(InputView.BUY_MONEY_QUERY);
+    return Number(payments);
   },
 
   async readWinNumbers() {
