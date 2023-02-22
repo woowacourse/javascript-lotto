@@ -5,6 +5,6 @@ const Common = {
     const element = document.getElementById(id);
     element.innerHTML = Container();
     invoke();
-  }
+  },
 };
 export default Common;

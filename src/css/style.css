@@ -1,69 +1,7 @@
-/* Rectangle 35 */
-
-.header {
-  box-sizing: border-box;
-  position: absolute;
-  width: 1440px;
-  height: 64px;
-  left: 0px;
-  top: 0px;
-}
-
-/* lotto-primary */
 .lotto-primary {
   background: #4E5BA6;
   border-bottom: 1px solid rgba(78, 91, 166, 0.2);
 }
-
-.title {
-  /* 🎱 행운의 로또 */
-  position: absolute;
-  width: 147px;
-  height: 36px;
-  left: 130px;
-  top: 14px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 36px;
-
-  /* identical to box height, or 150% */
-  display: flex;
-  align-items: flex-end;
-
-  /* lotto-greyscale-1 */
-
+.lotto-greyscale-1{
   color: #FFFFFF;
-
-}
-
-.main-content {
-  /* main contents */
-
-
-  position: absolute;
-  width: 414px;
-  height: 727px;
-  left: 513px;
-  top: 148px;
-
-}
-
-.game-box {
-  /* Rectangle 26 */
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 414px;
-  height: 727px;
-  left: 0px;
-  top: 0px;
-
-  /* lotto-greyscale-1 */
-
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
 }
