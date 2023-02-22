@@ -3,7 +3,6 @@
 
 import LottoGame from "./domain/LottoGame.js";
 import Validation from "./Validation.js";
-import { COMMAND } from "./constants.js";
 
 class Controller {
   lottoGame;
@@ -15,7 +14,7 @@ class Controller {
       Validation.purchaseAmount(+amount);
       return this.makeLottoGame(+amount);
     } catch (error) {
-      return error.message;
+      alert(error.message);
     }
   }
 
@@ -30,7 +29,7 @@ class Controller {
       Validation.bonusNumber(lotto, bonus);
       return this.generateLottoGameResult(lotto, bonus);
     } catch (error) {
-      return error.message;
+      alert(error.message);
     }
   }
 

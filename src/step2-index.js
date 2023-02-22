@@ -22,31 +22,27 @@ class App {
     const restart = document.querySelector(".restart");
     const result = document.querySelector(".result");
 
-    purchase.addEventListener("click", this.handleAmountError.bind(this));
+    purchase.addEventListener("click", this.checkAmount.bind(this));
     inputAmount.addEventListener("keypress", (event) => {
-      if (event.key === "Enter") this.handleAmountError();
+      if (event.key === "Enter") this.checkAmount();
     });
-    result.addEventListener("click", this.handleLottoBonusError.bind(this));
+    result.addEventListener("click", this.clickResult.bind(this));
     restart.addEventListener("click", this.clickRestart.bind(this));
   }
 
-  handleAmountError() {
-    const error = this.checkAmount(inputAmount.value);
+  checkAmount(amount) {
+    const randomLotteries = this.controller.amountTurnLotteries(
+      inputAmount.value
+    );
     this.resetInputElement(inputAmount);
-    if (error) return alert(error);
+    if (!randomLotteries) return;
+
+    this.showRandomLottoAmount(randomLotteries);
+    this.showRandomLottoList(randomLotteries);
   }
 
   resetInputElement(element) {
     element.value = "";
-  }
-
-  //randomLotteries가 문자인 경우 에러메세지
-  checkAmount(amount) {
-    const randomLotteries = this.controller.amountTurnLotteries(amount);
-    if (typeof randomLotteries === "string") return randomLotteries;
-
-    this.showRandomLottoAmount(randomLotteries);
-    this.showRandomLottoList(randomLotteries);
   }
 
   showRandomLottoAmount(randomLotteries) {
@@ -80,14 +76,9 @@ class App {
     return elem;
   }
 
-  handleLottoBonusError() {
-    const error = this.clickResult();
-    if (error) return alert(error);
-  }
-
   clickResult() {
     const result = this.checkLottoBonus();
-    if (typeof result === "string") return result;
+    if (!result) return;
 
     dialog.showModal();
     this.showResult(result);
