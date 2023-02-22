@@ -69,7 +69,7 @@ export default class View {
 
   disableElements(...elements) {
     elements.forEach((element) => {
-      $(element).disabled = true;
+      element.disabled = true;
     });
   }
 

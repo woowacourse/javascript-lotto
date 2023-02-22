@@ -37,7 +37,7 @@ export default class LottoGameController {
 
     this.#view.printLottoQuantity(lottoQuantity);
     this.#view.printEachLottoNumbers(eachLottoNumbers);
-    this.#view.disableElements('.purchase-amount-input', '.purchase-amount-submit-button');
+    this.#view.disableElements($('.purchase-amount-input'), $('.purchase-amount-submit-button'));
     this.#view.showElements('.winning-lotto-form');
   }
 
@@ -58,6 +58,7 @@ export default class LottoGameController {
 
     this.#view.printStatistics(statistics);
     this.#view.printYieldRatio(yieldRatio);
+    this.#view.disableElements(...$$('.winning-number-input'), $('.bonus-number-input'));
     this.#view.showElements('.result-modal');
   }
 
