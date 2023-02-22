@@ -51,14 +51,14 @@ class ConsoleLottoController {
       return winningLotto;
     } catch ({ message }) {
       view.output(message);
-      return this.#inputWinningLotto();
+      return this.#inputWinningLotto(winningLotto);
     }
   }
 
-  async #inputBonusNumber() {
+  async #inputBonusNumber(winningLotto) {
     try {
       const bonusNumber = await view.input(QUESTION.BONUS_NUMBER);
-      this.#validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      this.#validator.throwErrorIfInvalidBonusNumber(winningLotto, bonusNumber);
       return bonusNumber;
     } catch ({ message }) {
       view.output(message);
