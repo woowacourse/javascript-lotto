@@ -1,8 +1,6 @@
 const Utils = {
   convertStringToNumber(strings) {
-    const numbers = strings.map((string) => {
-      return Number(string);
-    });
+    const numbers = strings.map(Number);
     return numbers;
   },
 
@@ -15,12 +13,12 @@ const Utils = {
   },
 
   $(className) {
-    return document.querySelector(className)
+    return document.querySelector(className);
   },
 
   $$(className) {
-   return document.querySelectorAll(className)
- }
+    return document.querySelectorAll(className);
+  },
 };
 
 export default Utils;
