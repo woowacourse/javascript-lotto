@@ -5,3 +5,8 @@
 .lotto-greyscale-1{
   color: #FFFFFF;
 }
+.border{
+  border: solid;
+  border-color: gray;
+  border-width: 1px;
+}
