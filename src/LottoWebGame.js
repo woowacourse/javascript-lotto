@@ -11,6 +11,7 @@ class LottoWebGame {
 
   bindEvents = () => {
     $('#buy-button').addEventListener('click', this.handleBuyButton);
+    $('#result-button').addEventListener('click', this.handleResultButton);
   };
 
   handleBuyButton = () => {
