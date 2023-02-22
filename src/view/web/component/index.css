@@ -1,0 +1,25 @@
+:root {
+  --main-color: #4E5BA6;
+  --main-text-color: rgba(0, 0, 0, 0.87);
+  --main-secondary-text-color: #8B8B8B;
+
+  --typography-title-font-size: 1.5rem;
+  --typography-title-font-weight: 800;
+  --typography-subtitle-font-size: 1.25rem;
+  --typography-subtitle-font-weight: 600;
+  --typography-body-font-size: 0.9375rem;
+  --typography-body-font-weight: 400;
+  --typography-caption-font-size: 0.875rem;
+  --typography-caption-font-weight: 700;
+
+  --container-max-width: 960px;
+}
+
+body {
+  font-family: 'Roboto';
+  color: var(--main-text-color);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
