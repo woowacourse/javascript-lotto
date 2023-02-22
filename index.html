@@ -23,7 +23,7 @@
       <fieldset>
         <legend>구입할 금액을 입력해주세요.</legend>
 
-        <lt-money-input id="money" name="money" placeholder="금액"></lt-money-input>
+        <lt-money-input id="money" name="money" placeholder="금액" required></lt-money-input>
         <button type="button" onclick="lottoController.proceedBuyLottos()">확인</button>
       </fieldset>
 
@@ -34,7 +34,7 @@
       <fieldset>
         <legend>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</legend>
 
-        <lt-winning-lotto-input id="winning-lotto" name="winning-lotto"></lt-winning-lotto-input>
+        <lt-winning-lotto-input id="winning-lotto" name="winning-lotto" required></lt-winning-lotto-input>
       </fieldset>
 
       <button data-focus-anchor type="submit">결과 확인하기</button>
