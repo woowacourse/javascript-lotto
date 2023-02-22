@@ -50,13 +50,13 @@ class App extends Component {
 
   template() {
     return `
-      <header>Header</header>
+      <header>🎱 행운의 로또</header>
       <main class='lotto-store'>
         <section class='lotto-store__title'>🎱 내 번호 당첨 확인 🎱</section>
         <section class='lotto-store__amount' data-component='amount'></section>
         ${this.getAfterPurchaseTemplate()}
       </main>
-      <footer>Footer</footer>
+      <footer>Copyright 2023. woowacourse</footer>
     `;
   }
 

@@ -32,7 +32,24 @@ input::-webkit-inner-spin-button {
 header,
 footer {
   height: 4rem;
+  line-height: 4rem;
+}
+
+header {
+  font-size: 2rem;
+
+  color: var(--grey-scale-1);
   background-color: var(--primary);
+
+  padding-left: 5rem;
+}
+
+footer {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary);
+
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
 
 main {
