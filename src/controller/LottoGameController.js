@@ -1,15 +1,12 @@
 import { GameControlStaticValue } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
-import Input from '../browserView/Input.js';
 import Output from '../browserView/Output.js';
 import MoneyInput from '../browserView/MoneyInput.js';
 import LottoList from '../browserView/LottoList.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
-
-  #input = new Input();
 
   #output = new Output();
 
@@ -34,8 +31,7 @@ class LottoGameController {
     const USER_LOTTOS = this.#lottoGame.generateUserLottos(purchaseCount);
 
     const lottoList = new LottoList();
-    lottoList.create(purchaseCount, USER_LOTTOS);
-    lottoList.render();
+    lottoList.render(purchaseCount, USER_LOTTOS);
   }
 
   #setWinningLotto = (winningNumbers, bonusNumber) => {

@@ -7,28 +7,35 @@ class LottoList {
     this.lottoListField = $(QuerySelector.LOTTO_LIST_FIELD);
   }
 
-  create = (purchaseCount, lottos) => {
-    console.log(purchaseCount, lottos);
-    this.purchaseMessageEl = makeNode(Tag.DIV);
-    this.purchaseMessageEl.className = QuerySelector.PURCHASE_MESSAGE;
-    this.purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
+  #createPurchaseMessageEl = (purchaseCount) => {
+    const purchaseMessageEl = makeNode(Tag.DIV);
+    purchaseMessageEl.className = QuerySelector.PURCHASE_MESSAGE;
+    purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
 
-    this.lottoListEl = makeNode(Tag.UL);
-    this.lottoListEl.className = QuerySelector.LOTTO_LIST;
+    return purchaseMessageEl;
+  };
 
+  #createLottoListEl = (lottos) => {
+    const lottoListEl = makeNode(Tag.UL);
+    lottoListEl.className = QuerySelector.LOTTO_LIST;
     lottos.forEach((lotto) => {
       const lottoEl = makeNode(Tag.LI);
       lottoEl.className = QuerySelector.LOTTO;
       lottoEl.innerText = Convertor.lottoWithIcon(lotto);
-      this.lottoListEl.appendChild(lottoEl);
+      lottoListEl.appendChild(lottoEl);
     });
+
+    return lottoListEl;
   };
 
-  render = () => {
+  render = (purchaseCount, lottos) => {
+    const purchaseMessageEl = this.#createPurchaseMessageEl(purchaseCount);
+    const lottoListEl = this.#createLottoListEl(lottos);
+
     this.lottoListField.innerText = '';
 
-    this.lottoListField.appendChild(this.purchaseMessageEl);
-    this.lottoListField.appendChild(this.lottoListEl);
+    this.lottoListField.appendChild(purchaseMessageEl);
+    this.lottoListField.appendChild(lottoListEl);
 
     $('.content').classList.add('height_auto');
   };
