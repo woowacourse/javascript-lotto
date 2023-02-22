@@ -53,47 +53,45 @@
     <footer>
       <div>Copyright 2023. woowacourse</div>
     </footer>
-    <div class="result_modal">
-      <div class="inner">
-        <button class="modal_close_button">X</button>
+    <dialog class="result_modal">
+      <button value='cancle' class="modal_close_button">X</button>
 
-        <div class="result_title">🏆 당첨 통계 🏆</div>
-        <table class="result_table">
-          <tr>
-            <th class="table_header">일치 갯수</th>
-            <th class="table_header">당첨금</th>
-            <th class="table_header">당첨 갯수</th>
-          </tr>
-          <tr>
-            <td>3개</td>
-            <td>5,000</td>
-            <td class="match_3_number">n개</td>
-          </tr>
-          <tr>
-            <td>4개</td>
-            <td>5,000</td>
-            <td class="match_4_number">n개</td>
-          </tr>
-          <tr>
-            <td>5개</td>
-            <td>5,000</td>
-            <td class="match_5_number">n개</td>
-          </tr>
-          <tr>
-            <td>5개+보너스볼</td>
-            <td>5,000</td>
-            <td class="match_5_and_bonus_number">n개</td>
-          </tr>
-          <tr>
-            <td>6개</td>
-            <td>5,000</td>
-            <td class="match_6_number">n개</td>
-          </tr>
-        </table>
-        <div class="result_profit_message">당신의 총 수익률은 1000%입니다.</div>
-        <button class="restart_button">다시 시작하기</button>
-      </div>
-    </div>
+      <div class="result_title">🏆 당첨 통계 🏆</div>
+      <table class="result_table">
+        <tr>
+          <th class="table_header">일치 갯수</th>
+          <th class="table_header">당첨금</th>
+          <th class="table_header">당첨 갯수</th>
+        </tr>
+        <tr>
+          <td>3개</td>
+          <td>5,000</td>
+          <td class="match_3_number"></td>
+        </tr>
+        <tr>
+          <td>4개</td>
+          <td>50,000</td>
+          <td class="match_4_number"></td>
+        </tr>
+        <tr>
+          <td>5개</td>
+          <td>1,500,000</td>
+          <td class="match_5_number"></td>
+        </tr>
+        <tr>
+          <td>5개+보너스볼</td>
+          <td>30,000,000</td>
+          <td class="match_5_and_bonus_number"></td>
+        </tr>
+        <tr>
+          <td>6개</td>
+          <td>2,000,000,000</td>
+          <td class="match_6_number"></td>
+        </tr>
+      </table>
+      <div class="result_profit_message">당신의 총 수익률은 n%입니다.</div>
+      <button class="restart_button">다시 시작하기</button>
+    </dialog>
   </div>
   <script type="module" src="/src/step2-index.js"></script>
 </body>
