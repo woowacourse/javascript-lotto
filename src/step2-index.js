@@ -13,8 +13,8 @@ const lottoCount = document.querySelector('.lotto_count');
 const lottoListBox = document.querySelector('.lotto_list_box');
 
 const lottoNumberForm = document.querySelector('.lotto_number_form');
-const winningNumbers = document.querySelectorAll('.winning_number');
-const bonusNumber = document.querySelector('.bonus_number');
+const winningNumberInput = document.querySelectorAll('.winning_number');
+const bonusNumberInput = document.querySelector('.bonus_number');
 
 let lottoGame;
 
@@ -50,4 +50,11 @@ const onSubmitBudgetForm = (event) => {
   displayBoughtLottos(lottoGame.getBoughtLottos());
 };
 
+const onSubmitLottoNumberForm = (event) => {
+  event.preventDefault();
+  const winningNumbers = [...winningNumberInput].map((input) => input.value);
+  const bonusNumber = bonusNumberInput.value;
+};
+
 budgetForm.addEventListener('submit', onSubmitBudgetForm);
+lottoNumberForm.addEventListener('submit', onSubmitLottoNumberForm);
