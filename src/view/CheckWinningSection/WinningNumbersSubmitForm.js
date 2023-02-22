@@ -1,4 +1,4 @@
-import { $ } from '../../utils/dom';
+import { $, dispatchCustomEvent } from '../../utils/dom';
 
 class WinningNumbersSubmitForm {
   #template = /* html */ `
@@ -91,12 +91,31 @@ class WinningNumbersSubmitForm {
   }
 
   handleSubmit(e) {
-    console.log(e);
     e.preventDefault();
 
     const numbers = Array.from(e.target)
       .slice(this.FIRST_INPUT_INDEX, this.LAST_INPUT_INDEX)
       .map((inputEl) => inputEl.valueAsNumber);
+
+    try {
+      this.validate(numbers);
+      dispatchCustomEvent($('#app'), {
+        eventType: 'checkResult',
+        data: numbers,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  validate(numbers) {
+    if (this.hasDuplicateNumber(numbers)) {
+      throw new Error('[ERROR] 당첨 번호에 중복이 존재하면 안됩니다.');
+    }
+  }
+
+  hasDuplicateNumber(numbers) {
+    return numbers.length !== new Set(numbers).size;
   }
 }
 
