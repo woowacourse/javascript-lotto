@@ -13,3 +13,9 @@ export const $winningForm = $('.winning__form');
 export const $$winningNumbers = $$('#winning__number');
 export const $bonusNumber = $('#bonus__number');
 export const $winningError = $('.winning__error');
+
+export const $modal = $('.modal');
+export const $closeButton = $('.close__button');
+
+export const $$winningCounts = $$('.winning__count');
+export const $yield = $('.yield');

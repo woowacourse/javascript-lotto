@@ -1,7 +1,8 @@
 import Validator from '../utils/Validator.js';
-import { ERROR_MESSAGE, LOTTO_CONSTANT, PRINT_MESSAGE } from '../data/constants.js';
+import { ERROR_MESSAGE, LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
 import LottoUtils from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
+import WinningLotto from '../domain/WinningLotto.js';
 import {
   $budgetForm,
   $budgetError,
@@ -12,7 +13,7 @@ import {
 } from '../utils/Dom.js';
 import BudgetView from '../view/BudgetView.js';
 import WinningView from '../view/WinningView.js';
-import WinningLotto from '../domain/WinningLotto.js';
+import ResultView from '../view/ResultView.js';
 
 class LottoDomSimulator {
   #lottos;
@@ -24,6 +25,7 @@ class LottoDomSimulator {
     this.#budget = 0;
     this.budgetView = new BudgetView($budgetForm);
     this.winningView = new WinningView($winningForm);
+    this.resultView = new ResultView();
   }
 
   set budget(budget) {
@@ -35,10 +37,10 @@ class LottoDomSimulator {
   }
 
   play() {
-    this.bindProcess();
+    this.bindEvent();
   }
 
-  bindProcess() {
+  bindEvent() {
     this.budgetView.readEvent('inputPrice', (e) => this.budgetProcess(e.detail));
     this.winningView.readEvent('inputWinningNumber', (e) => this.winningNumberProcess(e.detail));
   }
@@ -84,7 +86,7 @@ class LottoDomSimulator {
 
     try {
       this.#winningLotto = new WinningLotto(winningNumber, +bonusNumber);
-      this.printStatisticsResult();
+      this.bindModalResult();
     } catch (err) {
       this.winningView.print($winningError, `[ERROR] ${err}`);
       this.winningNumberProcess();
@@ -103,8 +105,8 @@ class LottoDomSimulator {
     return winningResult;
   }
 
-  printStatisticsResult() {
-    console.log('hi');
+  bindModalResult() {
+    this.resultView.openResultModal(this.calculateWinningResult(), this.#budget);
   }
 }
 

@@ -145,15 +145,14 @@
   margin-bottom: 0.5rem;
 }
 
-#winning__number,
-#bonus__number {
+#winning__number {
   width: 1.5rem;
   height: 1.8rem;
   border: 1px solid var(--color-grey);
   border-radius: var(--borer-radius-regular);
 }
 
-#bonus__number {
+.bonus__number {
   float: right;
 }
 
