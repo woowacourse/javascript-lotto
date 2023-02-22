@@ -1,21 +1,22 @@
 import Lotto from "./domain/Lotto";
-import Lottos from "./domain/Lottos";
 import Random from "./util/Random";
 import LottoScore from "./domain/LottoScore";
 import Utils from "./util/Utils";
 import EventHandler from "./view/EventHadler";
 import Element from "./view/Element";
+import LottoMachine from "./domain/LottoMachine";
 
 class App2 {
-    #lottos;
-    
+  #lottos;
+
   constructor() {
     this.buyResultSection = Utils.$(".lotto__buy-result");
     this.buyMoneyInput = Utils.$(".lotto__input-box");
     this.winningLotto = [];
     this.bonusNumber = 0;
+    this.lottoMachine = new LottoMachine();
   }
-    
+
   play() {
     this.startLottoGame();
   }
@@ -36,13 +37,19 @@ class App2 {
       () => new Lotto(Random.generateRandomNumbers())
     );
 
-    this.#lottos = new Lottos(createdLotto);
+    this.#lottos = [...createdLotto];
   }
 
   showLottos() {
+    const buyAmount = Utils.$(".lotto__buy-amount-comment");
+
     this.buyResultSection.classList.remove("hidden");
-    this.#lottos.lottos.forEach((lotto) => {
+    this.#lottos.forEach((lotto) => {
       Element.createBuyLottos(lotto);
+      Element.createInnerText(
+        buyAmount,
+        `총 ${this.#lottos.length}개를 구매하셨습니다.`
+      );
     });
   }
 
@@ -73,7 +80,7 @@ class App2 {
   }
 
   getLottoGameResult() {
-    const lottoScore = new LottoScore(this.#lottos.lottos);
+    const lottoScore = new LottoScore(this.#lottos);
 
     this.compareLottos(lottoScore);
     Element.createResults(lottoScore.lottoRanking);
@@ -82,7 +89,8 @@ class App2 {
   }
 
   compareLottos(lottoScore) {
-    this.#lottos.compareLottosWithWinningLotto(
+    this.lottoMachine.compareLottos(
+      this.#lottos,
       this.winningLotto,
       this.bonusNumber
     );
@@ -93,7 +101,7 @@ class App2 {
     const retryButton = Utils.$(".result__retry-button");
 
     EventHandler.handleEvent(retryButton, "click", () => {
-      this.#lottos.resetLottos();
+      this.#lottos = [];
       lottoScore.resetLottoScore();
       this.resetView();
     });
