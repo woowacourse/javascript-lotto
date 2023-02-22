@@ -1,3 +1,5 @@
+import { toggleDisableAttribute } from '../utils/dom';
+
 class MoneyInputView {
   constructor() {
     this.form = document.getElementById('money-input-form');
@@ -10,9 +12,12 @@ class MoneyInputView {
       e.preventDefault();
       const money = Number(this.input.value);
       submitHandler(money);
-      this.button.disabled = true;
-      this.button.id = 'disabled';
+      this.toggleButton();
     });
+  }
+
+  toggleButton() {
+    toggleDisableAttribute(this.button);
   }
 }
 
