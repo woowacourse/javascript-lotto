@@ -9,6 +9,10 @@ const CovertMessage = {
     return `🎟️ ${lotto.slice(1, -1)}`;
   },
 
+  resultNumber(number) {
+    return `${number}개`;
+  },
+
   purchaseCount(num) {
     return `${num}개를 구매했습니다.`;
   },

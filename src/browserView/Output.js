@@ -40,12 +40,20 @@ class Output {
   }
 
   renderResultModal(ranks, profitRate) {
+    this.paintRankNumber(ranks);
     this.paintProfitRate(profitRate);
   }
 
   paintProfitRate(profitRate) {
     const profitMessage = Convertor.profitRateResult(profitRate);
     document.querySelector(QuerySelector.PROFIT_MESSAGE).innerText = profitMessage;
+  }
+
+  paintRankNumber(ranks) {
+    const rank = [1, 2, 3, 4, 5];
+    rank.forEach((each) => {
+      document.querySelector(`.rank_${each}`).innerText = Convertor.resultNumber(ranks[each]);
+    });
   }
 }
 
