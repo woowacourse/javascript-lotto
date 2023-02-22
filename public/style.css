@@ -7,6 +7,10 @@
     --color-gray-scale-5: #000000;
     --color-border: rgba(0, 0, 0, 0.12);
     --button-height: 36px;
+    --extra-bold: 800;
+    --bold: 700;
+    --semi-bold: 600;
+    --medium: 500;
 }
 
 body, h3, p {
@@ -21,8 +25,7 @@ body {
 header {
     background: var(--color-primary);
     color: var(--color-gray-scale-1);
-    font-size: 24px;
-    font-weight: bolder;
+    font: var(--extra-bold) 24px system-ui;
     padding: 14px 30px;
 }
 
@@ -33,9 +36,9 @@ th, td {
 
 main {
     display: flex;
-    flex: 1;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 
 button {
@@ -49,8 +52,8 @@ button {
 #app {
     display: flex;
     flex-direction: column;
-    height: 727px;
     width: 414px;
+    height: 727px;
     padding: 0 16px;
     border: 1px solid var(--color-border);
     border-radius: 10px;
@@ -59,17 +62,16 @@ button {
 
 .lotto-subtitle {
     margin: 36px 0;
-    font-size: 24px;
-    font-weight: 700;
+    font: var(--bold) 24px system-ui;
     text-align: center;
 }
 
 .payments-input {
-    margin: 10px 0;
-    height: 30px;
     width: 310px;
+    height: 30px;
     border: 1px solid var(--color-border);
     border-radius: 4px;
+    margin: 10px 0;
 }
 
 .payments-btn {
@@ -115,7 +117,7 @@ button {
 .winning-number-input, .bonus-number-input {
     height: var(--button-height);
     width: 34px;
-    font-size: 15px;
+    font: var(--medium) 15px system-ui;
     text-align: center;
     border: 1px solid var(--color-border);
     border-radius: 4px;
@@ -149,23 +151,22 @@ button {
 
 .profit-rate {
     margin: 37px 0;
-    font-size: 16px;
-    font-weight: 600;
+    font: var(--semi-bold) 16px system-ui;
 }
 
 .modal-close-btn {
-    cursor: pointer;
     margin: 12px 0 0 360px;
-    background-color: var(--color-gray-scale-1);
+    background: var(--color-gray-scale-1);
     color: var(--color-gray-scale-5);
-    font-size: 24px;
+    font: var(--medium) 24px system-ui;
+    cursor: pointer;
 }
 
 .win-result-container {
     background: var(--color-gray-scale-1);
     border-radius: 10px;
-    height: 500px;
     width: 400px;
+    height: 500px;
 }
 
 .modal-restart-btn {
@@ -175,19 +176,18 @@ button {
 
 footer {
     display: flex;
-    flex: 1;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex: 1;
     border-top: 1px solid var(--color-border);
     color: var(--color-primary);
-    font-size: 14px;
-    font-weight: bold;
+    font: bold 14px system-ui;
     padding: 14px 0;
 }
 
 .result-btn {
-    height: var(--button-height);
     width: 414px;
+    height: var(--button-height);
     margin: 50px 0 0 0;
 }
 .result-btn:disabled {
