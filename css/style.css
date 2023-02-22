@@ -113,7 +113,8 @@ button {
   margin-top: 2.8rem;
 }
 
-.lotto__buy-comment {
+.lotto__buy-comment,
+.lotto__buy-amount-comment {
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 2.4rem;
@@ -136,7 +137,7 @@ button {
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 2.4rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1rem;
 }
 
 .lotto__lotto-icon {
