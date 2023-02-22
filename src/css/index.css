@@ -1,4 +1,5 @@
 @import './reset.css';
+@import './app.css';
 @import './palette.css';
 @import './typo.css';
-@import './app.css';
+@import './utils.css';
