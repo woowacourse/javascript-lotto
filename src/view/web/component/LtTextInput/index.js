@@ -12,7 +12,7 @@ class LtTextInput extends LtFormControl {
     return ['type', 'min', 'max', 'step', 'placeholder'];
   }
 
-  setErrorMessage(message) {
+  setErrorMessage(message = null) {
     this.dataset.errorMessage = message || '';
   }
 
