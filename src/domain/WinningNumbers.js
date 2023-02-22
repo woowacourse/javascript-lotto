@@ -9,8 +9,7 @@ class WinningNumbers {
 
   #bonusNumber;
 
-  constructor(winningNumbersInput) {
-    const numbers = winningNumbersInput.split(',').map(Number);
+  constructor(numbers) {
     this.validateWinningNumbers(numbers);
     this.#numbers = numbers;
   }
@@ -41,9 +40,7 @@ class WinningNumbers {
     return new Set(numbers).size !== numbers.length;
   }
 
-  initBonusNumber(bonusNumberInput) {
-    const bonusNumber = Number(bonusNumberInput);
-
+  initBonusNumber(bonusNumber) {
     this.validateBonusNumber(bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
