@@ -20,6 +20,10 @@ export default class LottoGameController {
   #createLotto(e) {
     e.preventDefault();
     const purchaseAmount = this.#validatePurchaseAmount();
+    if (!purchaseAmount) {
+      return;
+    }
+
     const lottoQuantity = purchaseAmount / LOTTO_CONDITION.lottoPrice;
 
     const eachLottoNumbers = Array.from({ length: lottoQuantity }, () => {
