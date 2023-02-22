@@ -5,6 +5,9 @@ body {
 }
 
 .document {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	width: 100vw;
 	height: 100vh;
 	font-family : 'Roboto', 'sans-serif';
@@ -23,7 +26,7 @@ body {
 .top-navigation-wrap {
 	width: 150px;
 	text-align: center;
-	margin-left: 50px;
+	margin-left: 130px;
 }
 
 .header .container input {
@@ -38,10 +41,14 @@ body {
 }
 
 .footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: #4E5BA6;
+	height: 80px;
+	border-top: 1px solid rgba(78, 91, 166, 0.2);
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 16px;
-	text-align: center;
 	letter-spacing: 1.25px;
 }
