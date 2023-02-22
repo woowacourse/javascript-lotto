@@ -54,7 +54,7 @@ const ERROR = Object.freeze({
   INVALID_LOTTO_FORMAT: {
     [PROJECT_MODE.CONSOLE]:
       '[ERROR] 로또는 콤마(,)로 구분되는 6개의 1 이상 45 이하의 정수여야 합니다.',
-    [PROJECT_MODE.WEB]: '당첨 로또 번호를 모두 입력해 주세요!',
+    [PROJECT_MODE.WEB]: '로또의 숫자가 1 이상 45 이하의 정수가 되도록 입력해 주세요!',
   },
   LOTTO_DUPLICATES: {
     [PROJECT_MODE.CONSOLE]: '[ERROR] 로또 번호는 중복되는 수가 없어야 합니다',
