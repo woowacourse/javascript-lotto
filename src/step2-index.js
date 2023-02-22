@@ -1,15 +1,10 @@
+require('./style/index.css');
+
 const Benefit = require('./domain/model/Benefit');
-const Lotto = require('./domain/model/Lotto');
 const Money = require('./domain/model/Money');
 const Winning = require('./domain/model/Winning');
 const { getCollectedRanks } = require('./utils/lotto');
 const lottoUtils = require('./utils/lotto');
-
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
-require('./style/index.css');
 
 const moneyForm = document.querySelector('.moneyForm');
 const moneyAmount = document.querySelector('.moneyAmount');
@@ -43,6 +38,9 @@ const retryButton = document.querySelector('.retryButton');
 
 const footer = document.querySelector('footer');
 
+const moneyError = document.querySelector('.moneyError');
+const lottoNumbersError = document.querySelector('.lottoNumbersError');
+
 winningModal.classList.add('hiddenElement');
 lottoInfoContainer.classList.add('hiddenElement');
 inputNumberContainer.classList.add('hiddenElement');
@@ -53,6 +51,7 @@ const addEvents = {
       event.preventDefault();
 
       try {
+        moneyError.innerHTML = '';
         const money = new Money(moneyAmount.value);
         const lottos = lottoUtils.generateLottos(money.getAmount());
 
@@ -67,7 +66,8 @@ const addEvents = {
 
         addEvents.inputNumber(money, lottos);
       } catch (error) {
-        console.log(error.message);
+        const div = getErrorMessage(error.message);
+        moneyError.appendChild(div);
       }
     });
   },
@@ -86,17 +86,23 @@ const addEvents = {
 
       const bonusNumber = Number(bonus.value);
 
-      const winning = new Winning();
-      winning.setWinningNumbers(winningNumbers);
-      winning.setBonusNumber(bonusNumber);
+      try {
+        lottoNumbersError.innerHTML = '';
+        const winning = new Winning();
+        winning.setWinningNumbers(winningNumbers);
+        winning.setBonusNumber(bonusNumber);
 
-      winningModal.classList.remove('hiddenElement');
+        winningModal.classList.remove('hiddenElement');
 
-      const ranks = getCollectedRanks(winning, lottos);
+        const ranks = getCollectedRanks(winning, lottos);
 
-      getRankResult(ranks);
+        getRankResult(ranks);
 
-      getBenefitRate(money.getAmount(), ranks);
+        getBenefitRate(money.getAmount(), ranks);
+      } catch (error) {
+        const div = getErrorMessage(error.message);
+        lottoNumbersError.appendChild(div);
+      }
     });
   },
 };
@@ -174,6 +180,13 @@ const getBenefitRate = (money, ranks) => {
 
 const getCopyrightCurrentYear = () => {
   footer.innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
+};
+
+const getErrorMessage = (errorMessage) => {
+  const div = document.createElement('div');
+  div.classList.add('errorMessage');
+  div.innerText = errorMessage;
+  return div;
 };
 
 getCopyrightCurrentYear();

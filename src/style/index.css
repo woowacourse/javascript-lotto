@@ -278,3 +278,9 @@ footer {
   visibility: hidden;
   display: none;
 }
+
+.errorMessage {
+  margin: 8px 0;
+  text-align: center;
+  color: red;
+}
