@@ -185,3 +185,12 @@ input::-webkit-inner-spin-button {
   background: none;
   border: none;
 }
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  color: var(--lotto-primary);
+}
