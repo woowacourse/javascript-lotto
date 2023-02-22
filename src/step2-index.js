@@ -7,4 +7,6 @@ export default class App {
   }
 }
 
-new App();
+(() => {
+  return new App();
+})();
