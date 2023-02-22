@@ -186,3 +186,93 @@ lotto-list__lotto-list {
   padding: 1rem 0;
   margin-top: 2rem;
 }
+
+.lotto-store__statistics-dialog {
+  width: 31.4rem;
+  height: 60vh;
+
+  border: none;
+  border-radius: 0.4rem;
+
+  padding: 1.6rem;
+}
+
+.lotto-store__statistics-dialog-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.lotto-store__statistics-dialog-contents > * {
+  width: 100%;
+}
+
+.lotto-store__statistics-title {
+  text-align: center;
+  font-size: 2rem;
+
+  margin-top: 1rem;
+}
+
+.lotto-store__statistics-table {
+  margin-top: 3rem;
+}
+
+.lotto-store__statistics-label,
+.lotto-store__statistic {
+  display: flex;
+  justify-content: space-between;
+
+  height: 3rem;
+  line-height: 3rem;
+
+  font-size: 1.3rem;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  padding: 0 1rem;
+}
+
+.lotto-store__statistics-label {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.lotto-store__earning-rate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-grow: 1;
+
+  font-size: 1.5rem;
+}
+
+.lotto-store__retry-btn {
+  flex-shrink: 0;
+
+  width: 100%;
+
+  border: none;
+  border-radius: 0.4rem;
+
+  color: var(--grey-scale-1);
+  background-color: var(--primary);
+
+  padding: 1rem 0;
+}
+
+.lotto-store__dialog-close-btn {
+  width: 3rem;
+
+  font-size: 2rem;
+
+  border: none;
+
+  background-color: transparent;
+
+  padding: 0;
+  margin-left: auto;
+}

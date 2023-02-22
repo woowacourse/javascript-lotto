@@ -9,18 +9,34 @@ export default class StatisticsModal extends Component {
   }
 
   setEvent() {
-    this.addEvent('submit', '.statistics-modal__dialog__form', this.handleSubmitForm.bind(this));
+    this.addEvent(
+      'submit',
+      '.lotto-store__statistics-dialog-form',
+      this.handleSubmitForm.bind(this)
+    );
   }
 
   template() {
     return `
-      <dialog class='statistics-modal__dialog'>
-        <h2>🏆 당첨 통계 🏆</h2>
-        <ul>${this.getStatisticsTemplate()}</ul>
-        <div>당신의 총 수익률은 ${this.earningRate}%입니다.</div>
-        <form class='statistics-modal__dialog__form' method="dialog">
-          <button>다시 시작하기</button>
-        </form>
+      <dialog class='lotto-store__statistics-dialog'>
+        <div class='lotto-store__statistics-dialog-contents'>
+          <button class='lotto-store__dialog-close-btn'>X</button>
+          <h2 class='lotto-store__statistics-title'>🏆 당첨 통계 🏆</h2>
+          <div class='lotto-store__statistics-table'>
+            <div class='lotto-store__statistics-label'>
+              <span class='lotto-store__awards-label'>일치 갯수</span>
+              <span class='lotto-store__prize-label'>당첨금</span>
+              <span class='lotto-store__count-label'>당첨 갯수</span>
+            </div>
+            <ul class='lotto-store__statistics'>${this.getStatisticsTemplate()}</ul>
+          </div>
+          <div class='lotto-store__earning-rate'>당신의 총 수익률은 ${
+            this.earningRate
+          }%입니다.</div>
+          <form class='lotto-store__statistics-dialog-form'' method="dialog">
+            <button class='lotto-store__retry-btn'>다시 시작하기</button>
+          </form>
+        </div>
       </dialog>
     `;
   }
@@ -35,10 +51,10 @@ export default class StatisticsModal extends Component {
     return parsedStatistics
       .map(
         ({ awards, prize, count }) => `
-          <li>
-            <span>${awards}개</span>
-            <span>${prize.toLocaleString()}</span>
-            <span>${count}개</span>
+          <li class='lotto-store__statistic'>
+            <span class='lotto-store__awards'>${awards}개</span>
+            <span class='lotto-store__prize'>${prize.toLocaleString()}</span>
+            <span class='lotto-store__count'>${count}개</span>
           </li>`
       )
       .join('');

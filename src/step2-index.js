@@ -41,7 +41,7 @@ class App extends Component {
         updateDrawingNumbers: updateDrawingNumbers.bind(this),
         openModal: openModal.bind(this),
       });
-      new StatisticsModal(component('statistics-modal'), {
+      new StatisticsModal(component('statisticsModal'), {
         lottoList,
         initState: initState.bind(this),
       });
@@ -75,7 +75,7 @@ class App extends Component {
   }
 
   openModal() {
-    qs('.statistics-modal__dialog').showModal();
+    qs('.lotto-store__statistics-dialog').showModal();
   }
 
   getAfterPurchaseTemplate() {
@@ -83,7 +83,7 @@ class App extends Component {
       return `
         <section class='lotto-store__lotto-list' data-component='lottoList'></section>
         <section class='lotto-store__win-numbers' data-component='winNumbers'></section>
-        <div data-component='statistics-modal'></div>
+        <div class='lotto-store__statistics-modal' data-component='statisticsModal'></div>
       `;
     }
 
