@@ -10,6 +10,12 @@ export default class View {
     $('.winning-lotto-submit-button').addEventListener('click', callback);
   }
 
+  onClickModalCloseButton() {
+    $('.modal-close-button').addEventListener('click', () => {
+      this.hideElements('.result-modal');
+    });
+  }
+
   printLottoQuantity(quantity) {
     $('.lotto-quantity').innerText = `총 ${quantity}개를 구매하였습니다.`;
   }
@@ -76,6 +82,12 @@ export default class View {
   showElements(...elements) {
     elements.forEach((element) => {
       $(element).classList.remove('hide');
+    });
+  }
+
+  hideElements(...elements) {
+    elements.forEach((element) => {
+      $(element).classList.add('hide');
     });
   }
 
