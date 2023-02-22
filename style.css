@@ -206,10 +206,13 @@ table td {
 }
 
 footer {
-  height: 80px;
+  color: var(--primary-color);
+  font: var(--caption-font);
+  height: 56px;
   width: 100%;
-  border-top: solid 1px var(--black);
+  border-top: solid 1px var(--gray);
   position: absolute;
   text-align: center;
   bottom: 0;
+  padding-top: 24px;
 }
