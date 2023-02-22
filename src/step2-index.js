@@ -5,5 +5,6 @@
 import LottoGame from './LottoGame';
 
 import './css/index.css';
+import { $ } from './utils/dom';
 
-new LottoGame().play();
+new LottoGame($('#app'));

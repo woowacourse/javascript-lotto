@@ -1,16 +1,15 @@
 import HomePage from './view/HomePage';
 
-import { $ } from './utils/dom';
-
 class LottoGame {
   #homePage;
 
-  constructor() {
-    this.#homePage = new HomePage($('#app'));
+  $target;
+
+  constructor($target) {
+    this.$target = $target;
+    this.#homePage = new HomePage(this.$target);
   }
 
-  play() {
-    this.#homePage.render();
   }
 }
 
