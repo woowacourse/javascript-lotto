@@ -1,0 +1,28 @@
+<style>
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--main-secondary-text-color);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    text-align: inherit;
+  }
+
+  input::placeholder {
+    color: #8B8B8B;
+  }
+
+  p {
+    position: absolute;
+    margin: 0;
+    margin-left: 0.2rem;
+    font-size: var(--typography-caption-font-size);
+    color: red;
+  }
+
+</style>
+
+<input id="input" placeholder="{placeholder}" autocomplete="off">
+<p>{error-message}</p>
