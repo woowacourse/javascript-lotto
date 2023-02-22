@@ -17,6 +17,7 @@ class LottoGame {
 
   getBoughtLottos() {
     return this.#lottos;
+    // return JSON.parse(JSON.stringify(this.#lottos));
   }
 
   getMatchedLottoCount(lotto, winningNumber) {
