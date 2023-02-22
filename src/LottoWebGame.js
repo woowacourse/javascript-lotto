@@ -71,7 +71,9 @@ const LottoWebGame = function () {
     try {
       lottoGameValidator.checkWinningNumbers(winningLotto.join(','));
       lottoGameValidator.checkBonusNumber(bonusNumber, winningLotto);
-    } catch (error) {}
+    } catch (error) {
+      window.alert(error);
+    }
   };
 
   const initAddEventListener = () => {
