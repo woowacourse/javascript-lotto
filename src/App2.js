@@ -7,21 +7,23 @@ import EventHandler from "./view/EventHadler";
 import Element from "./view/Element";
 
 class App2 {
-  #lottos;
+    #lottos;
+    
   constructor() {
     this.buyResultSection = Utils.$(".lotto__buy-result");
-    this.winningLottosInputs = Utils.$$(".lotto__winning-lotto-input");
-    this.bonusInput = Utils.$(".lotto__bonus-lotto-input");
-    this.resultButton = Utils.$(".lotto__result-button");
+    this.buyMoneyInput = Utils.$(".lotto__input-box");
     this.winningLotto = [];
     this.bonusNumber = 0;
   }
+    
   play() {
     this.startLottoGame();
   }
 
   startLottoGame() {
-    EventHandler.handleEvent(this.buyButton, "click", () => {
+    const buyButton = Utils.$(".lotto__buy-button");
+
+    EventHandler.handleEvent(buyButton, "click", () => {
       this.createLotto(parseInt(this.buyMoneyInput.value / 1000));
       this.showLottos();
       this.progressLottoGame();
@@ -33,6 +35,7 @@ class App2 {
       { length: lottoAmount },
       () => new Lotto(Random.generateRandomNumbers())
     );
+
     this.#lottos = new Lottos(createdLotto);
   }
 
@@ -44,27 +47,38 @@ class App2 {
   }
 
   progressLottoGame() {
-    EventHandler.handleEvent(this.resultButton, "click", () => {
+    const resultButton = Utils.$(".lotto__result-button");
+
+    EventHandler.handleEvent(resultButton, "click", () => {
+      const lottoScore = this.getLottoGameResult();
+
       this.getWinningLotto();
       this.getBonusNumber();
-      this.getLottoGameResult();
+      this.retryLottoGame(lottoScore);
     });
   }
 
   getWinningLotto() {
-    this.winningLottosInputs.forEach((winningNumber) => {
+    const winningLottosInputs = Utils.$$(".lotto__winning-lotto-input");
+
+    winningLottosInputs.forEach((winningNumber) => {
       this.winningLotto.push(Number(winningNumber.value));
     });
   }
 
   getBonusNumber() {
-    this.bonusNumber = Number(this.bonusInput.value);
+    const bonusInput = Utils.$(".lotto__bonus-lotto-input");
+
+    this.bonusNumber = Number(bonusInput.value);
   }
 
   getLottoGameResult() {
     const lottoScore = new LottoScore(this.#lottos.lottos);
+
     this.compareLottos(lottoScore);
     Element.createResults(lottoScore.lottoRanking);
+
+    return lottoScore;
   }
 
   compareLottos(lottoScore) {
@@ -73,6 +87,24 @@ class App2 {
       this.bonusNumber
     );
     lottoScore.compareLottosScore();
+  }
+
+  retryLottoGame(lottoScore) {
+    const retryButton = Utils.$(".result__retry-button");
+
+    EventHandler.handleEvent(retryButton, "click", () => {
+      this.#lottos.resetLottos();
+      lottoScore.resetLottoScore();
+      this.resetView();
+    });
+  }
+
+  resetView() {
+    const resultModal = Utils.$(".result-background");
+
+    this.buyResultSection.classList.add("hidden");
+    resultModal.classList.add("hidden");
+    this.buyMoneyInput.value = "";
   }
 }
 
