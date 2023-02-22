@@ -46,6 +46,7 @@ const LottoWebGame = function () {
       lottoGameValidator.checkPruchaseAmount(purchaseAmount);
       buyLottos(purchaseAmount);
       renderPurchasedLotto();
+      render.winningForm();
     } catch (error) {
       window.alert(error);
       $purchaseInput.value = '';
