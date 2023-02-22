@@ -36,7 +36,8 @@
   text-align: center;
 }
 
-.modal.open {
+.modal.open,
+.winning__container.open {
   display: block;
 }
 
@@ -130,6 +131,10 @@
 }
 
 /* winning */
+.winning__container {
+  display: none;
+}
+
 .sub__title {
   margin-bottom: 1.3rem;
 }

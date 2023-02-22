@@ -1,3 +1,4 @@
+import { $winningContainer, open } from '../utils/Dom.js';
 import LottoView from './LottoView.js';
 
 class BudgetView extends LottoView {
@@ -13,6 +14,7 @@ class BudgetView extends LottoView {
   inputPriceHandler(e) {
     e.preventDefault();
     this.createCustomEvent('inputPrice', e.target.elements.budget.value);
+    open($winningContainer);
   }
 
   printLotto($element, content) {

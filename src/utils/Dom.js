@@ -9,6 +9,7 @@ export const $budgetError = $('.budget__error');
 export const $totalBudget = $('.total__budget');
 export const $ticketsList = $('.tickets__list');
 
+export const $winningContainer = $('.winning__container');
 export const $winningForm = $('.winning__form');
 export const $$winningNumbers = $$('#winning__number');
 export const $bonusNumber = $('#bonus__number');
