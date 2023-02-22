@@ -12,12 +12,12 @@ class LottoController {
     this.moneyInputView = new MoneyInputView();
     this.winningLottoInputView = new WinningLottoInputView();
 
-    this.moneyInputView.addSubmitHandler(this.moneyInputHandler.bind(this));
-    this.winningLottoInputView.addSubmitHandler(this.winningLottoInputHandler.bind(this));
+    this.moneyInputView.addSubmitHandler(this.moneyInputHandler);
+    this.winningLottoInputView.addSubmitHandler(this.winningLottoInputHandler);
     this.lottos = [];
   }
 
-  moneyInputHandler(money) {
+  moneyInputHandler = (money) => {
     try {
       this.buyer = new Buyer(money);
       this.buyer.buyLottos();
@@ -28,9 +28,9 @@ class LottoController {
     } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
-  winningLottoInputHandler(winningNumbersInput, bonusNumberInput) {
+  winningLottoInputHandler = (winningNumbersInput, bonusNumberInput) => {
     try {
       const winningNumbers = new Lotto(winningNumbersInput);
       const winningLotto = new WinningLotto(winningNumbers, bonusNumberInput);
@@ -40,11 +40,11 @@ class LottoController {
 
       this.lottoResultModal = new LottoResultModal(receivedRewards, profitRate);
       this.lottoResultModal.render();
-      this.lottoResultModal.addRestartButtonHandler(this.resetHandler.bind(this));
+      this.lottoResultModal.addRestartButtonHandler(this.resetHandler);
     } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
   resetHandler = () => {
     this.purchasedLottoView.reset();
