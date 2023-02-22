@@ -42,10 +42,6 @@ header {
   margin: 84px auto;
 }
 
-.height_auto {
-  height: auto;
-}
-
 .lottoGame {
   display: flex;
   flex-direction: column;
@@ -105,10 +101,6 @@ li {
   display: none;
 }
 
-.show {
-  display: block;
-}
-
 .winning_number_input,
 .bonus_number_input {
   width: 34px;
@@ -156,7 +148,6 @@ input::-webkit-inner-spin-button {
   height: 500px;
   background-color: var(--white);
   border-radius: 4px;
-  display: flex;
   flex-direction: column;
   border: #000000 solid 1px;
 }
@@ -211,8 +202,15 @@ footer {
   height: 56px;
   width: 100%;
   border-top: solid 1px var(--gray);
-  position: absolute;
   text-align: center;
   bottom: 0;
   padding-top: 24px;
+}
+
+.show {
+  display: block;
+}
+
+.height_auto {
+  height: auto;
 }
