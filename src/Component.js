@@ -25,7 +25,7 @@ export default class Component {
   mounted() {}
 
   addEvent(eventType, selector, callback, $target = this.$target) {
-    const children = [...qsAll(selector, this.$target)];
+    const children = [...qsAll(selector, $target)];
     const isTarget = (target) => children.includes(target) || target.closest(selector);
 
     $target.addEventListener(eventType, (event) => {
