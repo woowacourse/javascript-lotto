@@ -1,5 +1,51 @@
 # 🎱 로또 게임 요구사항 🎱
 
+## 프로젝트 구조
+
+```
+📦src
+ ┣ 📂css
+ ┃ ┗ 📜style.css
+ ┣ 📂images
+ ┃ ┣ 📜error_icon.png
+ ┃ ┗ 📜lotto_icon.png
+ ┣ 📂js
+ ┃ ┣ 📂constants
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂controller
+ ┃ ┃ ┣ 📜ConsoleLottoController.js
+ ┃ ┃ ┗ 📜WebLottoController.js
+ ┃ ┣ 📂domain
+ ┃ ┃ ┣ 📂web
+ ┃ ┃ ┣ 📜LottoGame.js
+ ┃ ┃ ┣ 📜pickLotto.js
+ ┃ ┃ ┣ 📜ScoreBoard.js
+ ┃ ┃ ┗ 📜Validator.js
+ ┃ ┣ 📂util
+ ┃ ┃ ┣ 📂console
+ ┃ ┃ ┃ ┣ 📜readlineInterface.js
+ ┃ ┃ ┃ ┗ 📜Trimmer.js
+ ┃ ┃ ┣ 📂web
+ ┃ ┃ ┃ ┣ 📜getFormData.js
+ ┃ ┃ ┃ ┗ 📜querySelector.js
+ ┃ ┃ ┣ 📜getSortedNumbers.js
+ ┃ ┃ ┗ 📜pickRandomNumber.js
+ ┃ ┗ 📂view
+ ┃ ┃ ┣ 📂console
+ ┃ ┃ ┃ ┣ 📜close.js
+ ┃ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┃ ┣ 📜input.js
+ ┃ ┃ ┃ ┗ 📜output.js
+ ┃ ┃ ┗ 📂web
+ ┃ ┃ ┃ ┣ 📜ErrorView.js
+ ┃ ┃ ┃ ┣ 📜InputCleaner.js
+ ┃ ┃ ┃ ┣ 📜PurchaseView.js
+ ┃ ┃ ┃ ┣ 📜ResultModalView.js
+ ┃ ┃ ┃ ┗ 📜WinningLottoInputView.js
+ ┣ 📜step1-index.js
+ ┗ 📜step2-index.js
+```
+
 ## 1단계 - 콘솔 기반 로또 게임
 
 ### view
