@@ -57,6 +57,7 @@ export default class LottoGameController {
     const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
 
     this.#view.printStatistics(statistics);
+    this.#view.printYieldRatio(yieldRatio);
   }
 
   #validatePurchaseAmount() {

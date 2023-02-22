@@ -60,6 +60,13 @@ export default class View {
     $target.appendChild($fragment);
   }
 
+  printYieldRatio(yieldRatio) {
+    const yieldRatioText =
+      '당신의 총 수익률은 ' + `${yieldRatio.toLocaleString(new Intl.NumberFormat('KRW'))}%입니다.`;
+
+    $('.modal-yield-ratio').innerText = yieldRatioText;
+  }
+
   disableElements(...elements) {
     elements.forEach((element) => {
       $(element).disabled = true;
