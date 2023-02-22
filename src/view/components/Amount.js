@@ -4,7 +4,7 @@ import { LottoStore } from '../../domain/Lotto.js';
 
 export default class Amount extends Component {
   setEvent() {
-    this.addEvent('submit', '.lotto-store__amount__amount-form', this.handleSubmitForm.bind(this));
+    this.addEvent('submit', '.lotto-store__amount-form', this.handleSubmitForm.bind(this));
   }
 
   template() {
