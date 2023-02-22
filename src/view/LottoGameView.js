@@ -17,23 +17,21 @@ class LottoGameView {
     this.gameNumbersForm = $('#game-numbers-form');
     this.winningNumbersInputs = $$('input[name="winning-number"]');
     this.bonusNumberInput = $('input[name="bonus-number"]');
-
-    this.addPurchaseInputEvent();
-    this.addWinningNumbersInputEvent();
-    this.addBonusNumberInputEvent();
   }
 
   addPurchaseSubmitEvent(callback) {
     this.purchaseForm.addEventListener('submit', (event) => {
       event.preventDefault();
+    
       callback(event.target['purchase-amount'].value);
+      this.addPurchaseInputEvent();
     });
   }
 
   addPurchaseInputEvent() {
     this.purchaseInput.addEventListener('input', (event) => {
       ViewUtils.hideError(event);
-    });
+    }, { once: true });
   }
 
   showStartContainer() {
@@ -65,6 +63,8 @@ class LottoGameView {
       const bonusNumber = Number(this.bonusNumberInput.value);
 
       callback(winningNumbers, bonusNumber);
+      this.addWinningNumbersInputEvent();
+      this.addBonusNumberInputEvent();
     });
   }
 
@@ -72,14 +72,14 @@ class LottoGameView {
     this.winningNumbersInputs.forEach((input) => {
       input.addEventListener('input', (event) => {
         ViewUtils.hideError(event);
-      });
+      }, { once: true });
     });
   }
 
   addBonusNumberInputEvent() {
     this.bonusNumberInput.addEventListener('input', (event) => {
       ViewUtils.hideError(event);
-    });
+    }, { once: true });
   }
 
   restart() {
