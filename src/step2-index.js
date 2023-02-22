@@ -82,7 +82,7 @@ class App extends Component {
     if (this.state.lottoList.length !== 0) {
       return `
         <section class='lotto-store__lotto-list' data-component='lottoList'></section>
-        <section data-component='winNumbers'></section>
+        <section class='lotto-store__win-numbers' data-component='winNumbers'></section>
         <div data-component='statistics-modal'></div>
       `;
     }

@@ -32,6 +32,7 @@ main {
   flex-grow: 1;
 
   width: 41.4rem;
+  height: 70vh;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
 
@@ -91,6 +92,9 @@ main > section {
 
 .lotto-store__lotto-list {
   margin-top: 2.8rem;
+
+  overflow-y: scroll;
+  flex-grow: 1;
 }
 
 .lotto-list__lotto-amount {
@@ -115,4 +119,70 @@ lotto-list__lotto-list {
 .lotto-list__lotto > span {
   font-size: 3rem;
   margin-right: 1rem;
+}
+
+.lotto-store__win-numbers {
+  margin-top: 3rem;
+}
+
+.lotto-store__win-numbers-desc {
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+}
+
+.lotto-store__win-numbers-form {
+  margin-top: 2rem;
+}
+
+.lotto-store__drawing-numbers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto-store__win-numbers-input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lotto-store__bonus-number-input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.lotto-store__win-numbers-label,
+.lotto-store__bonus-number-label {
+  font-size: 1.5rem;
+}
+
+.lotto-store__win-numbers-list {
+  display: flex;
+}
+
+.lotto-store__win-numbers-form input {
+  width: 2.5rem;
+  aspect-ratio: 1 / 1.1;
+
+  border: 1px solid var(--grey-scale-3);
+  border-radius: 4px;
+
+  margin-top: 0.5rem;
+}
+
+.lotto-store__win-numbers-form input:first-child {
+  margin-right: 0.5rem;
+}
+
+.lotto-store__draw-btn {
+  width: 100%;
+
+  border: none;
+  border-radius: 0.4rem;
+
+  color: var(--grey-scale-1);
+  background-color: var(--primary);
+
+  padding: 1rem 0;
+  margin-top: 2rem;
 }
