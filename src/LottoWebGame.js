@@ -40,6 +40,8 @@ const LottoWebGame = function () {
   };
 
   const buyLottos = (purchaseAmount) => {
+    this.lottos = [];
+
     new Array(purchaseAmount / LOTTO.price).fill().forEach(() => {
       this.lottos.push(publishLotto());
     });
