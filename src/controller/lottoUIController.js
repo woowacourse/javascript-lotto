@@ -1,33 +1,21 @@
 import paintEnterWinningNumber from '../components/enterGameBoard';
-import initialEnterInput from '../components/initialEnterInput';
+import paintInitialEnterInput from '../components/initialEnterInput';
 import lottoResultBoard from '../components/lottoResult';
+import paintModal, { closeModal } from '../components/modal';
 import paintLottoStatus from '../components/purchaseLottoStatus';
 import LottoGame from '../domain/LottoGame';
-import { keyUpEventListener } from '../utils/eventListener';
+import { inputErrorChecker } from '../utils/errorChecker';
 import { clearConatiner } from '../utils/Utils';
 import {
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
 } from '../utils/validator';
-import { closeModal, showModal } from '../view/modal';
 
 export default function LottoUIController($app) {
   this.state = {
     lottoGame: new LottoGame(),
     $root: null,
-  };
-
-  this.play = () => {
-    gameSetting();
-    console.log(this.state);
-    addPurchaseButton();
-  };
-
-  const gameSetting = () => {
-    this.state.lottoGame = new LottoGame();
-    clearConatiner(this.state.$root);
-    this.state.$root.appendChild(initialEnterInput());
   };
 
   const init = () => {
@@ -39,50 +27,36 @@ export default function LottoUIController($app) {
     this.state.$root = $lottoSection;
   };
 
-  const numberContainerAddChange = (listener) => {
-    const $container = document.querySelector('.number-container');
-
-    $container.addEventListener('keyup', listener);
+  this.play = () => {
+    gameSetting();
+    paintInitialEnterInput(this.state.$root, purchaseAmountHandler);
   };
 
-  const isPassNumbers = (bonusNumber, winningNumbers) => {
+  const gameSetting = () => {
+    this.state.lottoGame = new LottoGame();
+    clearConatiner(this.state.$root);
+  };
+
+  const paintResultView = ({ winCount, earningRate }) => {
+    const $content = lottoResultBoard({ winCount, earningRate }, restart);
+
+    paintModal($content);
+  };
+
+  const calculateResult = (bonusNumber, winningNumbers) => {
     const { lottoGame } = this.state;
 
     lottoGame.registerGameBoard(winningNumbers, bonusNumber);
 
     const winCount = lottoGame.getLottosWinCount();
-    const rate = lottoGame.getEarningRate();
+    const earningRate = lottoGame.getEarningRate();
 
-    const $modalContent = document.querySelector('.modal-content');
-    clearConatiner($modalContent);
-    $modalContent.appendChild(lottoResultBoard(winCount, rate));
-
-    showModal();
-    addRestartEvent();
+    paintResultView({ winCount, earningRate });
   };
 
-  const addRestartEvent = () => {
-    const $retry = document.getElementById('retry');
-    const $closeButton = document.querySelector('.modal-close-button');
+  const purchaseAmountHandler = () => {
+    const { $root, lottoGame } = this.state;
 
-    $closeButton.addEventListener('click', closeModal);
-    $retry.addEventListener('click', restart);
-  };
-
-  const addPurchaseButton = () => {
-    const $purchaseButton = document.getElementById('purchaseButton');
-
-    $purchaseButton.addEventListener('click', purchaseAmountListener);
-  };
-
-  const addCheckResultButton = () => {
-    const $button = document.getElementById('checkResult');
-    numberContainerAddChange((e) => keyUpEventListener(e, $button));
-
-    $button.addEventListener('click', checkResultListener);
-  };
-
-  const purchaseAmountListener = () => {
     const $purchaseInput = document.getElementById('purchaseInput');
     const purchaseAmount = Number($purchaseInput.value);
 
@@ -96,15 +70,14 @@ export default function LottoUIController($app) {
       return;
     }
 
-    this.state.lottoGame.purchaseLottos(purchaseAmount);
-    const lottos = this.state.lottoGame.getLottoNumbers();
+    lottoGame.purchaseLottos(purchaseAmount);
+    const lottos = lottoGame.getLottoNumbers();
 
-    paintLottoStatus(lottos);
-    paintEnterWinningNumber();
-    addCheckResultButton();
+    paintLottoStatus($root, lottos);
+    paintEnterWinningNumber($root, checkResultHandler);
   };
 
-  const checkResultListener = () => {
+  const checkResultHandler = () => {
     const $winNumbers = document.querySelectorAll('input[name="winNumber"]');
     const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
       Number(value)
@@ -114,7 +87,7 @@ export default function LottoUIController($app) {
     );
 
     const { state: winState, message: winMessage } = inputErrorChecker(() =>
-      validateWinningNumbers([...winningNumbers])
+      validateWinningNumbers(winningNumbers)
     );
 
     const { state: bonusState, message: bonusMessage } = inputErrorChecker(() =>
@@ -122,34 +95,26 @@ export default function LottoUIController($app) {
     );
 
     if (!bonusState && !winState) {
-      isPassNumbers(bonusNumber, winningNumbers);
+      calculateResult(bonusNumber, winningNumbers);
       return;
     }
 
-    if (winState) {
-      alert(winMessage);
-      return;
-    }
+    alert(winState ? winMessage : bonusMessage);
 
-    if (bonusState) {
-      alert(bonusMessage);
-      return;
-    }
+    // if (winState) {
+    //   alert(winMessage);
+    //   return;
+    // }
+
+    // if (bonusState) {
+    //   alert(bonusMessage);
+    //   return;
+    // }
   };
 
   const restart = () => {
     closeModal();
     this.play();
-  };
-
-  const inputErrorChecker = (validator) => {
-    try {
-      validator();
-    } catch (error) {
-      return { state: true, message: error };
-    }
-
-    return { state: false, message: '' };
   };
 
   init();
