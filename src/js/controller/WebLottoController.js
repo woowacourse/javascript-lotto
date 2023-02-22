@@ -1,5 +1,5 @@
 import { $ } from '../util/web/querySelector.js';
-import { PROJECT_MODE } from '../constants/index.js';
+import { PROJECT_MODE, GAME_VALUE } from '../constants/index.js';
 import PurchaseView from '../view/web/PurchaseView.js';
 import WinningLottoInputView from '../view/web/WinningLottoInputView.js';
 import ResultModalView from '../view/web/ResultModalView.js';
@@ -59,8 +59,11 @@ class WebLottoController {
   #stringifyWinningLotto(lottoFormData) {
     const winningLottos = [];
 
-    Array.from({ length: 6 }).forEach((_, index) => {
-      winningLottos.push(Number(lottoFormData[`number-${index + 1}`]));
+    Array.from({ length: GAME_VALUE.LOTTO_SIZE }).forEach((_, index) => {
+      const currentElementID = `number-${index + 1}`;
+      winningLottos.push(
+        lottoFormData[currentElementID] === '' ? '' : Number(lottoFormData[currentElementID])
+      );
     });
 
     return winningLottos.join(',');

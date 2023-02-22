@@ -5,7 +5,6 @@ class Validator {
 
   constructor(missionStep) {
     this.#missionStep = missionStep;
-    console.log('OK Created', this.#missionStep);
   }
 
   throwErrorIfInvalidBudget(budget) {
@@ -14,6 +13,7 @@ class Validator {
   }
 
   throwErrorIfInvalidWinningLotto(winningNumberFormat) {
+    this.#throwErrorIfInsufficientNumberCount(winningNumberFormat);
     this.#throwErrorIfInvalidWinningLottoFormat(winningNumberFormat);
     this.#throwErrorIfIncludesDuplicate(winningNumberFormat);
   }
@@ -46,6 +46,13 @@ class Validator {
     }
   }
 
+  #throwErrorIfInsufficientNumberCount(winningLotto) {
+    const lottoNumberCount = (winningLotto.match(REGEX.LOTTO_NUMBER_COUNT) || []).length;
+    if (lottoNumberCount < GAME_VALUE.LOTTO_SIZE) {
+      throw new Error(ERROR.INSUFFICIENT_LOTTO_NUMBER_COUNT[this.#missionStep]);
+    }
+  }
+
   #throwErrorIfInvalidWinningLottoFormat(winningLotto) {
     if (!REGEX.WINNING_LOTTO_FORMAT.test(winningLotto)) {
       throw new Error(ERROR.INVALID_LOTTO_FORMAT[this.#missionStep]);
@@ -53,9 +60,7 @@ class Validator {
   }
 
   #throwErrorIfIncludesDuplicate(winningLotto) {
-    console.log({ status: winningLotto });
     const numbers = winningLotto.split(',');
-
     const haveDuplicates = numbers.length !== new Set(numbers).size;
 
     if (haveDuplicates) {

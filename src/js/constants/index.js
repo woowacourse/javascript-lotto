@@ -47,6 +47,10 @@ const ERROR = Object.freeze({
     [PROJECT_MODE.CONSOLE]: '[ERROR] 구입 금액은 정수여야 합니다.',
     [PROJECT_MODE.WEB]: '구입 금액은 정수로 입력해 주세요!',
   },
+  INSUFFICIENT_LOTTO_NUMBER_COUNT: {
+    [PROJECT_MODE.CONSOLE]: `[ERROR] 로또 번호 ${GAME_VALUE.LOTTO_SIZE}개를 모두 입력해 주세요.`,
+    [PROJECT_MODE.WEB]: `로또 번호 ${GAME_VALUE.LOTTO_SIZE}개를 모두 입력해 주세요!`,
+  },
   INVALID_LOTTO_FORMAT: {
     [PROJECT_MODE.CONSOLE]:
       '[ERROR] 로또는 콤마(,)로 구분되는 6개의 1 이상 45 이하의 정수여야 합니다.',
@@ -70,6 +74,7 @@ const ERROR = Object.freeze({
 const REGEX = Object.freeze({
   DECIMAL: /^[1-9]+\d*$/,
   WINNING_LOTTO_FORMAT: /^(([1-9]|[1-3]\d|4[0-5]),){5}([1-9]|[1-3]\d|4[0-5])$/,
+  LOTTO_NUMBER_COUNT: /\d+/g,
   BONUS_NUMBER: /^([1-9]|[1-3]\d|4[0-5])$/,
 });
 
