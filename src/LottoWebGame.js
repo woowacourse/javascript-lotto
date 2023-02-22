@@ -2,7 +2,7 @@ import Lotto from './domain/models/Lotto';
 import lottoGameValidator from './domain/lottoGameValidator';
 import generateRandomNumber from './utils/generateRandomNumber';
 import { LOTTO } from './constants';
-import { $ } from './dom/dom';
+import { $, $$ } from './dom/dom';
 import render from './render';
 
 const $purchaseInput = $('#purchase-amount-form input[type=text]');
@@ -53,8 +53,30 @@ const LottoWebGame = function () {
     }
   };
 
+  const getWinningLotto = () => {
+    return Array.from($$('#winning-lotto-from input[name="winning-number"]')).map((input) =>
+      Number(input.value)
+    );
+  };
+
+  const getBonusNumber = () => {
+    return $('#winning-lotto-from input[name=bonus-number]').value;
+  };
+
+  const submitWinningLotto = (event) => {
+    event.preventDefault();
+
+    const winningLotto = getWinningLotto();
+    const bonusNumber = getBonusNumber();
+    try {
+      lottoGameValidator.checkWinningNumbers(winningLotto.join(','));
+      lottoGameValidator.checkBonusNumber(bonusNumber, winningLotto);
+    } catch (error) {}
+  };
+
   const initAddEventListener = () => {
     $('#purchase-amount-form').addEventListener('submit', submitPurchaseAmount);
+    $('#winning-lotto-from').addEventListener('submit', submitWinningLotto);
   };
 };
 
