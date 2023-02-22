@@ -20,7 +20,7 @@ class LottoGameView {
 
     this.addPurchaseInputEvent();
     this.addWinningNumbersInputEvent();
-    this.addBonusNNumbersInputEvent();
+    this.addBonusNumberInputEvent();
   }
 
   addPurchaseSubmitEvent(callback) {
@@ -76,7 +76,7 @@ class LottoGameView {
     });
   }
 
-  addBonusNNumbersInputEvent() {
+  addBonusNumberInputEvent() {
     this.bonusNumberInput.addEventListener('input', (event) => {
       ViewUtils.hideError(event);
     });
