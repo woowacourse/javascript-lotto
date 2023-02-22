@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/constants.js';
+import { ERROR } from '../constant/constants.js';
 
 export default function checkUnit(amount, unit) {
   if (amount % unit !== 0) {

@@ -1,4 +1,4 @@
-import { LOTTO, GAME, PRIZE } from '../constants/constants.js';
+import { LOTTO, GAME, PRIZE } from '../constant/constants.js';
 import randomGenerator from '../utils/randomGenerator.js';
 import Lotto from './Lotto.js';
 

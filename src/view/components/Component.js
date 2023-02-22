@@ -1,5 +1,5 @@
 import Console from '../../utils/Console.js';
-import { ERROR } from '../../constants/constants.js';
+import { ERROR } from '../../constant/constants.js';
 
 export default class Component {
   state;
