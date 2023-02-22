@@ -1,6 +1,6 @@
 import { Message } from '../constants/Constants.js';
 import { $, $$ } from '../utils/DomSelector.js';
-import { generateUserLottoNumbers } from '../utils/Template.js';
+import generateUserLottoNumbersElement from '../utils/Template.js';
 import ViewUtils from '../utils/ViewUtils.js';
 
 class LottoGameView {
@@ -50,7 +50,10 @@ class LottoGameView {
     ViewUtils.resetInnerHTML(this.userLottoContainer);
 
     lottoList.forEach((numbers) => {
-      this.userLottoContainer.insertAdjacentHTML('beforeend', generateUserLottoNumbers(numbers));
+      this.userLottoContainer.insertAdjacentHTML(
+        'beforeend',
+        generateUserLottoNumbersElement(numbers)
+      );
     });
   }
 
