@@ -63,15 +63,25 @@ class LottoResultModal {
     this.resultWrapper.insertAdjacentHTML(
       'beforeend',
       `<p id="profit-message">당신의 총 수익률은 ${this.profitRate}%입니다.</p>
-      <button class="result-button">다시 시작하기</button>
+      <button class="primary-button" id="restart">다시 시작하기</button>
       `,
     );
+    this.restartButton = document.getElementById('restart');
+    this.restartButton.addEventListener('click', this.restartButtonHandler.bind(this));
   }
 
   closeButtonHandler() {
     this.toggleModal();
     this.table.remove();
     this.resultWrapper.remove();
+  }
+
+  restartButtonHandler() {
+    this.toggleModal();
+    this.purchasedLottoSection = document.getElementById('purchased-lotto-section');
+    this.winningLottoSection = document.getElementById('winning-lotto-section');
+    this.purchasedLottoSection.innerHTML = '';
+    this.winningLottoSection.innerHTML = '';
   }
 }
 
