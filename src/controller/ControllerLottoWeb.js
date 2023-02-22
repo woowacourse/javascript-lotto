@@ -1,7 +1,7 @@
 const LottoMachine = require('../domain/LottoMachine.js');
 
 class ControllerLottoWeb {
-    
+
     constructor(){
         const buyText = document.getElementById("buyText")
         buyText.style.visibility = "hidden";
@@ -18,7 +18,16 @@ class ControllerLottoWeb {
         const buyText = document.getElementById("buyText")
         buyText.textContent = `총 ${lottoNumber}개를 구매했습니다.`
         buyText.style.visibility = "visible";
-        
+        this.lottoMachine.makeLotto(money);
+        console.log(this.lottoMachine.lottoNumber);
+        const lottoList = document.getElementById('lottoList')
+        this.lottoMachine.lottoNumber.forEach((list)=>{
+            const li = document.createElement('li')
+            li.textContent = "🎟️"+list.toString()
+            lottoList.append(li)
+        })
+        const purchase = document.getElementById("purchase")
+        purchase.style.visibility = "visible";
     }
 
 }
