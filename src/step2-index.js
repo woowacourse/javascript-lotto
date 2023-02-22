@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import './css/style.css';
 import './css/modal.css';
-import modalEvent from './view/components/GameModal/modalEvent';
-import GameModal from './view/components/GameModal';
+import modalEvent from './view/containers/GameModal/modalEvent';
+import GameModal from './view/containers/GameModal';
 
 /**
  * step 2의 시작점이 되는 파일입니다.
