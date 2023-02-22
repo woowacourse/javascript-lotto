@@ -17,9 +17,6 @@ import Lotto from './Lotto';
 import WinningLotto from './WinningLotto';
 
 class LottoMachine {
-  static LOTTO_COST = 1000;
-  static WIN_PRIZE_MONEY = { 0: 0, 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000 };
-  static ERROR_INVALID_AMOUNT = '유효하지 않은 금액입니다.';
   #lottos;
   #winningLotto;
   #winCount = {
