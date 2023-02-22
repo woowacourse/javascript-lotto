@@ -48,6 +48,17 @@ class LottoWebGame {
       .join('');
   };
 
+  renderResultModal = (rankings) => {
+    [1, 2, 3, 4, 5].forEach((ranking) => {
+      const rankingCount = rankings.reduce((acc, cur) => (acc += cur === ranking), 0);
+      $(`#ranking-${ranking}`).innerHTML = `${rankingCount}개`;
+    });
+
+    const purchaseAmount = this.#lottos.length * LOTTO.price;
+    const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
+    $('#reward-rate').innerHTML = `당신의 총 수익률은 ${rewardRate}입니다.`;
+  };
+
   makeRankings = (winningNumbers, bonusNumber) => {
     return this.#lottos
       .filter((lotto) => lotto.calculateMatchCount(winningNumbers) >= RANKING_THRESHOLD)
