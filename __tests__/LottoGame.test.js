@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import LottoGame from '../src/domain/LottoGame.js';
+import LottoGame from '../src/js/domain/LottoGame.js';
 
 describe('로또 번호 일치하는 개수 테스트', () => {
   test('로또 번호가 일치하는 개수만큼을 정확히 반환하여야 한다.', () => {
@@ -15,7 +15,7 @@ describe('로또 번호 일치하는 개수 테스트', () => {
 });
 
 describe('로또 보너스 번호 포함 여부 테스트', () => {
-  test('보너스 번호가 포함되어 있으면, true를 반환한다.', () => {
+  test('보너스 번호가 포함되어 있으면, true를 반환해야 한다.', () => {
     const lotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 3;
 
@@ -25,7 +25,7 @@ describe('로또 보너스 번호 포함 여부 테스트', () => {
     expect(testResult).toBe(true);
   });
 
-  test('보너스 번호가 포함되어 있지 않으면, false를 반환한다.', () => {
+  test('보너스 번호가 포함되어 있지 않으면, false를 반환해야 한다.', () => {
     const lotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 8;
 
