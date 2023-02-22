@@ -6,9 +6,9 @@ const ViewUtils = {
     this.showErrorMessage(element.classList[0], message);
   },
 
-  hideError(event) {
-    event.target.classList.remove('error-input');
-    this.hideErrorMessage(event.target.classList[0]);
+  hideError(element) {
+    element.classList.remove('error-input');
+    this.hideErrorMessage(element.classList[0]);
   },
 
   showErrorMessage(name, message) {

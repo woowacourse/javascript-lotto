@@ -30,7 +30,7 @@ class LottoGameView {
 
   addPurchaseInputEvent() {
     this.purchaseInput.addEventListener('input', (event) => {
-      ViewUtils.hideError(event);
+      ViewUtils.hideError(event.target);
     }, { once: true });
   }
 
@@ -70,15 +70,15 @@ class LottoGameView {
 
   addWinningNumbersInputEvent() {
     this.winningNumbersInputs.forEach((input) => {
-      input.addEventListener('input', (event) => {
-        ViewUtils.hideError(event);
+      input.addEventListener('input', () => {
+        ViewUtils.hideError(this.winningNumbersInputs[0]);
       }, { once: true });
     });
   }
 
   addBonusNumberInputEvent() {
     this.bonusNumberInput.addEventListener('input', (event) => {
-      ViewUtils.hideError(event);
+      ViewUtils.hideError(event.target);
     }, { once: true });
   }
 
