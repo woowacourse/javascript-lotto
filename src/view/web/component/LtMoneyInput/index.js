@@ -25,22 +25,22 @@ class LtMoneyInput extends LtFormControl {
     try {
       Validation.validateMoney(text);
     } catch (error) {
-      this.setValidation(error.message);
+      this.setValidation(false, error.message);
       return;
     }
-    this.setValidation(null);
+    this.setValidation(true);
     this.#money = money;
     this.dispatchEvent(new CustomEvent('change'));
   }
 
-  setValidation(message) {
-    super.setValidation(message);
+  setValidation(valid, message) {
+    super.setValidation(valid, message);
     this.$input.setErrorMessage(message);
   }
 
   formResetCallback() {
     this.setMoney(null);
-    this.setValidation(null);
+    this.setValidation(false);
   }
 
   getRenderContent() {

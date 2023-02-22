@@ -34,12 +34,8 @@ class LtFormControl extends LtComponent {
    *
    * @param {string | null} message
    */
-  setValidation(message) {
-    if (!message) {
-      this.#internals.setValidity({ customError: false }, undefined);
-      return;
-    }
-    this.#internals.setValidity({ customError: true }, message);
+  setValidation(valid, message) {
+    this.#internals.setValidity({ customError: !valid }, message || ' ');
   }
 
   /**
