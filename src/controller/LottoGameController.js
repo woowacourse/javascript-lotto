@@ -39,15 +39,16 @@ class LottoGameController {
       Validation.testLottoNumbers(winningNumbers);
       Validation.testBonusNumber(winningNumbers, bonusNumber);
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
+      this.#showGameResult();
     } catch (error) {
       alert(error.message);
     }
   };
 
-  // #showGameResult() {
-  //   const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-  //   OutputView.printResult(RANKS, PROFIT_RATE);
-  // }
+  #showGameResult() {
+    const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
+    this.#output.renderResultModal(RANKS, PROFIT_RATE);
+  }
 
   // #askGameRestart = () => {
   //   const REPLY_INPUT = InputView.readUserInput(RequestMessage.RESTART);
@@ -67,11 +68,6 @@ class LottoGameController {
   //     return;
   //   }
 
-  //   this.#endGame();
-  // }
-
-  // #endGame() {
-  //   Console.close();
   // }
 }
 

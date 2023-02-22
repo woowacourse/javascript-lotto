@@ -5,6 +5,7 @@ class Output {
   constructor() {
     this.lottosField = document.querySelector(QuerySelector.LOTTO_LIST_FIELD);
     this.lottoInputField = document.querySelector(QuerySelector.LOTTO_INPUT_FIELD);
+    this.resultModal = document.querySelector(QuerySelector.RESULT_MODAL);
   }
 
   #createLottosField = (purchaseCount, lottos) => {
@@ -38,7 +39,14 @@ class Output {
     this.lottoInputField.classList.add('show');
   }
 
-  renderResultModal() {}
+  renderResultModal(ranks, profitRate) {
+    this.paintProfitRate(profitRate);
+  }
+
+  paintProfitRate(profitRate) {
+    const profitMessage = Convertor.profitRateResult(profitRate);
+    document.querySelector(QuerySelector.PROFIT_MESSAGE).innerText = profitMessage;
+  }
 }
 
 export default Output;

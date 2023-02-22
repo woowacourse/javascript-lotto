@@ -9,6 +9,10 @@ const QuerySelector = Object.freeze({
   WINNING_NUMBER: '.winning_number_input',
   BONUS_NUMBER: '.bonus_number_input',
   RESULT_BUTTON: '.result_button',
+  RESULT_MODAL: '.result_modal',
+  MATCH_NUMBER: '.match_number',
+  MODAL_CLOSE_BUTTON: '.modal_close_button',
+  PROFIT_MESSAGE: '.result_profit_message',
 });
 
 const Tag = Object.freeze({
