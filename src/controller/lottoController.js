@@ -1,26 +1,53 @@
 const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
 
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
+
 class LottoController {
   #lottoGame;
   #view;
 
-  constructor(inputView, outputView) {
-    this.#view = { ...inputView, ...outputView };
+  constructor() {
+    $("#show-lotto").style.visibility = "hidden";
+    $("#input-winlotto").style.visibility = "hidden";
+    $("#submit-winlotto").style.visibility = "hidden";
+
+    const lottoGame = new LottoGame();
+
+    $("#input-money-form").onsubmit = function (event) {
+      event.preventDefault();
+
+      const money = this.money.value;
+
+      const lottos = lottoGame.makeLottos(money);
+
+      $(
+        "#show-lotto-label"
+      ).innerText = `총 ${lottos.length}개를 구매했습니다.`;
+      $("#show-lotto").style.visibility = "visible";
+      $("#input-winlotto").style.visibility = "visible";
+      $("#submit-winlotto").style.visibility = "visible";
+
+      $("#lottos").replaceChildren();
+      lottos.forEach((lotto) => {
+        const lottoFrame = $("#lotto-default").cloneNode(true);
+        lottoFrame.style.display = "block";
+        lottoFrame.querySelector(
+          ".lotto-numbers"
+        ).innerText = `[${lotto.numbers.join(", ")}]`;
+        $("#lottos").appendChild(lottoFrame);
+      });
+    };
   }
 
   async playLotto() {
     this.#lottoGame = new LottoGame();
 
-    const money = await this.readMoney();
-    const lottos = await this.purchaseLotto(money);
-
-    const winNumbers = await this.readWinNumbers();
     const bonusNumber = await this.readBonusNumber(winNumbers);
-    const winLotto = this.#lottoGame.makeWinLotto(winNumbers, bonusNumber);
-    await this.drawLotto(lottos, winLotto);
+    // await this.drawLotto(lottos, winLotto);
 
-    this.restart();
+    // this.restart();
   }
 
   async purchaseLotto(money) {

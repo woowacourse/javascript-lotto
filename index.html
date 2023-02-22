@@ -17,43 +17,24 @@
           <h2 class="subtitle">🎱 내 번호 당첨 확인 🎱</h2>
           <div id="input-money">
             <p class="text-body">구입할 금액을 입력해 주세요</p>
-            <input type="number" placeholder="금액" />
-            <button class="submit">
-              <div>구입</div>
-            </button>
+            <form id="input-money-form">
+              <input type="number" name="money" placeholder="금액" />
+              <button type="submit" id="input-money-submit">
+                <div>구입</div>
+              </button>
+            </form>
           </div>
           <div id="show-lotto">
-            <p>총 0개를 구매했습니다.</p>
-            <ul>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
+            <p id="show-lotto-label">총 0개를 구매했습니다.</p>
+            <div id="show-lotto-contents">
+              <ul id="lottos"></ul>
+              <li id="lotto-default" style="display: none">
+                <div>
+                  <span class="icon-lotto">🎟️</span>
+                  <span class="lotto-numbers">0,0,0,0,0,0</span>
+                </div>
               </li>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
-              </li>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
-              </li>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
-              </li>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
-              </li>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
-              </li>
-              <li>
-                <span class="icon-lotto">🎟️</span>
-                <span class="lotto-numbers">0,0,0,0,0,0</span>
-              </li>
-            </ul>
+            </div>
           </div>
           <div id="input-winlotto">
             <p id="input-winlotto-label">
@@ -77,11 +58,11 @@
               </div>
             </div>
           </div>
-          <button id="submit-winlotto">
-            <div>
+          <div id="submit-winlotto">
+            <button id="submit-winlotto-button">
               <p>결과 확인하기</p>
-            </div>
-          </button>
+            </button>
+          </div>
         </div>
 
         <div id="result" class="contents">
