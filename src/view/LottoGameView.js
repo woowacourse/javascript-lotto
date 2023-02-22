@@ -16,17 +16,10 @@ class LottoGameView {
     this.gameNumbersForm = $('#game-numbers-form');
     this.winningNumbersInputs = $$('input[name="winning-number"]');
     this.bonusNumberInput = $('input[name="bonus-number"]');
-    this.resultModal = $('.result-modal');
-    this.profitRate = $('#profit-rate');
-    this.closeIcon = $('.close-icon');
-    this.restartButton = $('#restart-button');
 
     this.addPurchaseInputEvent();
     this.addWinningNumbersInputEvent();
     this.addBonusNNumbersInputEvent();
-    this.addCloseClickEvent();
-    this.addModalBackdropClickEvent();
-    this.addRestartButtonClickEvent();
   }
 
   addPurchaseSubmitEvent(callback) {
@@ -82,46 +75,11 @@ class LottoGameView {
     this.bonusNumberInput.addEventListener('input', this.hideError.bind(this));
   }
 
-  showResultModal() {
-    this.resultModal.showModal();
-  }
-
-  showRanks(ranks) {
-    document.querySelectorAll('.match-count').forEach((element) => {
-      element.textContent = `${ranks[element.dataset.index]}개`;
-    });
-  }
-
-  showProfitRate(profitRate) {
-    this.profitRate.textContent = ConsoleMessage.profitRateResult(profitRate);
-  }
-
-  addCloseClickEvent() {
-    this.closeIcon.addEventListener('click', this.closeResultModal.bind(this));
-  }
-
-  addModalBackdropClickEvent() {
-    this.resultModal.addEventListener('click', this.closeResultModal.bind(this));
-  }
-
-  closeResultModal(event) {
-    if (event.target === event.currentTarget) {
-      this.resultModal.close();
-    }
-  }
-
-  addRestartButtonClickEvent() {
-    this.restartButton.addEventListener('click', this.restartGame.bind(this));
-  }
-
-  restartGame(event) {
-    this.resultModal.close();
-    event.stopPropagation();
+  restart() {
     this.resetForm(this.purchaseForm);
     this.resetForm(this.gameNumbersForm);
     this.startContainer.style.opacity = 0;
     this.startContainer.style.pointerEvents = 'none';
-    this.resultModal.style.display = 'none';
   }
 
   showError(element, message) {
