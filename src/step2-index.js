@@ -12,8 +12,10 @@ const moneyAmount = document.querySelector('.moneyAmount');
 const lottoInfoContainer = document.querySelector('.lottoInfoContainer');
 const lottoNumberConatiner = document.querySelector('.lottoNumberConatiner');
 const lottoCount = document.querySelector('.lottoCount');
+const inputNumberContainer = document.querySelector('.inputNumberContainer');
 
 lottoInfoContainer.hidden = true;
+inputNumberContainer.hidden = true;
 
 moneyForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -22,6 +24,7 @@ moneyForm.addEventListener('submit', (event) => {
     const money = new Money(moneyAmount.value);
     const lottos = lottoUtils.generateLottos(money.getAmount());
     lottoInfoContainer.hidden = false;
+    inputNumberContainer.hidden = false;
     getLottoCount(money.getAmount() / 1000);
 
     while (lottoNumberConatiner.firstChild) {
