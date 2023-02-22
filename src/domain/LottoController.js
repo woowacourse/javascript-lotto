@@ -1,7 +1,5 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import Lotto from './Lotto.js';
-import lottoGenerator from './LottoGenerator.js';
 import Console from '../utils/Console.js';
 import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
