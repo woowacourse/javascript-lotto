@@ -1,4 +1,10 @@
 import { MESSAGE } from "../domain/message";
+import {
+  validateBonusNumber,
+  validatePurchaseAmount,
+  validateRestartOrQuitCommend,
+  validateWinningLottoNumbers,
+} from "../domain/validator";
 import { getAscendingSortedNumbers, rl } from "../utils";
 
 export const view = {
@@ -30,16 +36,23 @@ export const view = {
     return rl.question(message);
   },
 
-  readLottoPurchaseAmount() {
-    return this.readline(MESSAGE.INPUT.lottoPurchaseAmount);
+  async readPurchaseAmount() {
+    const purchaseAmount = await this.readline(MESSAGE.INPUT.lottoPurchaseAmount);
+    if (!validatePurchaseAmount(purchaseAmount)) return this.readPurchaseAmount();
+    return purchaseAmount;
   },
 
-  readWinningLottoNumbers() {
-    return this.readline(MESSAGE.INPUT.winningLottoNumbers);
+  async readWinningLottoNumbers() {
+    const winningLottoNumbers = await this.readline(MESSAGE.INPUT.winningLottoNumbers);
+    if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
+    return winningLottoNumbers;
   },
 
-  readBonusNumber() {
-    return this.readline(MESSAGE.INPUT.bonusNumber);
+  async readBonusNumber(winningLottoNumbers) {
+    const bonusNumber = await this.readline(MESSAGE.INPUT.bonusNumber);
+    if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
+      return this.readBonusNumber(winningLottoNumbers);
+    return bonusNumber;
   },
 
   readRestartOrQuit() {
