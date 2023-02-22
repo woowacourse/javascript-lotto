@@ -22,8 +22,8 @@ class LottoController {
       this.buyer = new Buyer(money);
       this.buyer.buyLottos();
       this.lottos = this.buyer.getLottos();
-      const purchasedLottoView = new PurchasedLottoView(this.lottos, money);
-      purchasedLottoView.render();
+      this.purchasedLottoView = new PurchasedLottoView(this.lottos, money);
+      this.purchasedLottoView.render();
       this.winningLottoInputView.render();
     } catch (error) {
       alert(error.message);
@@ -40,10 +40,17 @@ class LottoController {
 
       this.lottoResultModal = new LottoResultModal(receivedRewards, profitRate);
       this.lottoResultModal.render();
+      this.lottoResultModal.addRestartButtonHandler(this.resetHandler.bind(this));
     } catch (error) {
       alert(error.message);
     }
   }
+
+  resetHandler = () => {
+    this.purchasedLottoView.reset();
+    this.winningLottoInputView.reset();
+    this.moneyInputView.toggleButton();
+  };
 }
 
 export default LottoController;

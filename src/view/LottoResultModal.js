@@ -1,4 +1,5 @@
 import BonusNumberReward from '../domain/BonusReward';
+import { resetElement } from '../utils/dom';
 
 class LottoResultModal {
   constructor(receivedRewards, profitRate) {
@@ -67,21 +68,19 @@ class LottoResultModal {
       `,
     );
     this.restartButton = document.getElementById('restart');
-    this.restartButton.addEventListener('click', this.restartButtonHandler.bind(this));
   }
 
   closeButtonHandler() {
     this.toggleModal();
-    this.table.remove();
-    this.resultWrapper.remove();
+    resetElement(this.table);
+    resetElement(this.resultWrapper);
   }
 
-  restartButtonHandler() {
-    this.toggleModal();
-    this.purchasedLottoSection = document.getElementById('purchased-lotto-section');
-    this.winningLottoSection = document.getElementById('winning-lotto-section');
-    this.purchasedLottoSection.innerHTML = '';
-    this.winningLottoSection.innerHTML = '';
+  addRestartButtonHandler(restartButtonHandler) {
+    this.restartButton.addEventListener('click', (e) => {
+      this.toggleModal();
+      restartButtonHandler();
+    });
   }
 }
 

@@ -1,7 +1,9 @@
 import { LOTTO_DIGITS } from '../constants';
+import { resetElement } from '../utils/dom';
 
 class WinningLottoInputView {
   constructor() {
+    this.winningLottoSection = document.getElementById('winning-lotto-section');
     this.form = document.getElementById('winning-lotto-form');
     this.wrapper = document.createElement('div');
     this.wrapper.className = 'number-wrapper';
@@ -54,6 +56,10 @@ class WinningLottoInputView {
 
       winningLottoInputHandler(winningNumbers, bonusNumber);
     });
+  }
+
+  reset() {
+    resetElement(this.winningLottoSection);
   }
 }
 

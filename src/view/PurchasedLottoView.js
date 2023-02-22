@@ -1,3 +1,5 @@
+import { resetElement } from '../utils/dom';
+
 class PurchasedLottoView {
   constructor(lottos, money) {
     this.lottos = lottos;
@@ -16,6 +18,10 @@ class PurchasedLottoView {
         .map((lotto) => `<p class="lotto-body">🎟️ ${lotto.getLottoNumbers().join(', ')}</p>`)
         .join('')}`,
     );
+  }
+
+  reset() {
+    resetElement(this.purchasedLottoSection);
   }
 }
 
