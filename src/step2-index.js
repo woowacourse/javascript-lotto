@@ -1,5 +1,8 @@
+const Benefit = require('./domain/model/Benefit');
+const Lotto = require('./domain/model/Lotto');
 const Money = require('./domain/model/Money');
 const Winning = require('./domain/model/Winning');
+const { getCollectedRanks } = require('./utils/lotto');
 const lottoUtils = require('./utils/lotto');
 
 /**
@@ -28,54 +31,86 @@ const bonus = document.querySelector('.bonus');
 const winningModal = document.querySelector('.winningModal');
 const closeButton = document.querySelector('.closeButton');
 
+const fifthCount = document.querySelector('.fifthCount');
+const fourthCount = document.querySelector('.fourthCount');
+const thirdCount = document.querySelector('.thirdCount');
+const secondCount = document.querySelector('.secondCount');
+const firstCount = document.querySelector('.firstCount');
+
+const benefitRate = document.querySelector('.benefitRate');
+
 winningModal.classList.add('hiddenElement');
 lottoInfoContainer.classList.add('hiddenElement');
 inputNumberContainer.classList.add('hiddenElement');
 
-moneyForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+const addEvents = {
+  inputMoney: () => {
+    moneyForm.addEventListener('submit', (event) => {
+      event.preventDefault();
 
-  try {
-    const money = new Money(moneyAmount.value);
-    const lottos = lottoUtils.generateLottos(money.getAmount());
+      try {
+        const money = new Money(moneyAmount.value);
+        const lottos = lottoUtils.generateLottos(money.getAmount());
 
-    lottoInfoContainer.classList.remove('hiddenElement');
-    inputNumberContainer.classList.remove('hiddenElement');
+        lottoInfoContainer.classList.remove('hiddenElement');
+        inputNumberContainer.classList.remove('hiddenElement');
 
-    getLottoCount(money.getAmount() / 1000);
+        getLottoCount(money.getAmount() / 1000);
 
-    while (lottoNumberConatiner.firstChild) {
-      lottoNumberConatiner.removeChild(lottoNumberConatiner.firstChild);
-    }
+        while (lottoNumberConatiner.firstChild) {
+          lottoNumberConatiner.removeChild(lottoNumberConatiner.firstChild);
+        }
 
-    lottos.forEach((item) => getLottoNumbers(item.getLottoNumbers()));
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+        lottos.forEach((item) => getLottoNumbers(item.getLottoNumbers()));
 
-inputNumberContainer.addEventListener('submit', (event) => {
-  event.preventDefault();
+        addEvents.inputNumber(money, lottos);
+      } catch (error) {
+        console.log(error.message);
+      }
+    });
+  },
+  inputNumber: (money, lottos) => {
+    inputNumberContainer.addEventListener('submit', (event) => {
+      event.preventDefault();
 
-  const winningNumbers = [
-    winning1.value,
-    winning2.value,
-    winning3.value,
-    winning4.value,
-    winning5.value,
-    winning6.value,
-  ].map((lottoNumber) => Number(lottoNumber));
+      const winningNumbers = [
+        winning1.value,
+        winning2.value,
+        winning3.value,
+        winning4.value,
+        winning5.value,
+        winning6.value,
+      ].map((lottoNumber) => Number(lottoNumber));
 
-  const bonusNumber = Number(bonus.value);
+      const bonusNumber = Number(bonus.value);
 
-  const winning = new Winning();
-  winning.setWinningNumbers(winningNumbers);
-  winning.setBonusNumber(bonusNumber);
+      const winning = new Winning();
+      winning.setWinningNumbers(winningNumbers);
+      winning.setBonusNumber(bonusNumber);
 
-  winningModal.classList.remove('hiddenElement');
+      winningModal.classList.remove('hiddenElement');
 
-  console.log(winning.getWinningNumbers(), winning.getBonusNumber());
-});
+      const keys = Object.keys(lottoNumberConatiner.children);
+
+      //   const lottos = keys.map(
+      //     (item) =>
+      //       new Lotto(
+      //         lottoNumberConatiner.children[item].children[1].innerText
+      //           .split(',')
+      //           .map((lottoNumber) => Number(lottoNumber))
+      //       )
+      //   );
+
+      const ranks = getCollectedRanks(winning, lottos);
+
+      getRankResult(ranks);
+
+      getBenefitRate(money.getAmount(), ranks);
+    });
+  },
+};
+
+addEvents.inputMoney();
 
 closeButton.addEventListener('click', () => {
   winningModal.classList.add('hiddenElement');
@@ -100,4 +135,20 @@ const getLottoNumbers = (lottoNumbers) => {
   div.appendChild(numbers);
 
   lottoNumberConatiner.appendChild(div);
+};
+
+const getRankResult = (ranks) => {
+  fifthCount.innerText = `${ranks[4]}개`;
+  fourthCount.innerText = `${ranks[3]}개`;
+  thirdCount.innerText = `${ranks[2]}개`;
+  secondCount.innerText = `${ranks[1]}개`;
+  firstCount.innerText = `${ranks[0]}개`;
+};
+
+const getBenefitRate = (money, ranks) => {
+  const benefit = new Benefit();
+  benefit.calculateRate(money, ranks);
+  const rate = benefit.getRate();
+
+  benefitRate.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
 };
