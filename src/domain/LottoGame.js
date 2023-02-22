@@ -1,5 +1,5 @@
 import { LOTTO_PRICE, PLACE, PRIZE_MONEY } from "../domain/constants";
-import { close, randomNumberBetween } from "../utils";
+import { randomNumberBetween } from "../utils";
 import { Lotto } from "./Lotto";
 import { WinningLotto } from "./WinningLotto";
 

@@ -86,13 +86,13 @@ body {
   margin-top: 28px;
 }
 
-.div-purchaseAmount {
+#div-purchaseAmount {
   display: flex;
   justify-content: space-between;
   margin-top: 4px;
 }
 
-.input-purchaseAmount {
+#input-purchaseAmount {
   width: 310px;
   height: 36px;
 }
@@ -106,7 +106,7 @@ body {
 }
 
 /* div-lottos*/
-.div-lottos {
+#div-lottos {
   display: flex;
   flex-direction: column;
   margin-top: 27px;

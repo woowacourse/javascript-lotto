@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
     <div id="app">
       <header class="header"><h1 class="title">🎱 행운의 로또</h1></header>
@@ -15,47 +14,22 @@
           <span class="game-title">🎱 내 번호 당첨 확인 🎱</span>
           <div class="div-purchase">
             <label for="purchaseAmount">구입할 금액을 입력해 주세요.</label>
-            <div class="div-purchaseAmount">
+            <form id="div-purchaseAmount">
               <input
-                class="input-purchaseAmount"
+                id="input-purchaseAmount"
                 type="text"
                 name="purchaseAmount"
                 placeholder="금액"
                 autofocus
               />
-              <button class="button-purchase">구입</button>
-            </div>
+              <input type="submit" value="구입" class="button-purchase" />
+            </form>
           </div>
-          <div class="div-lottos">
+          <div id="div-lottos">
             <div>
               <span class="message-purchaseAmount">총 7개를 구매하였습니다.</span>
             </div>
-            <div class="lottos">
-              <div class="lotto">
-                <span class="emoji-lotto">🎟️</span
-                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-              </div>
-              <div class="lotto">
-                <span class="emoji-lotto">🎟️</span
-                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-              </div>
-              <div class="lotto">
-                <span class="emoji-lotto">🎟️</span
-                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-              </div>
-              <div class="lotto">
-                <span class="emoji-lotto">🎟️</span
-                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-              </div>
-              <div class="lotto">
-                <span class="emoji-lotto">🎟️</span
-                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-              </div>
-              <div class="lotto">
-                <span class="emoji-lotto">🎟️</span
-                ><span class="lottoNumber">12, 28, 22, 37, 19, 23</span>
-              </div>
-            </div>
+            <div class="lottos"></div>
           </div>
           <div class="winningLotto">
             <span class="message-winningLotto"
@@ -110,6 +84,5 @@
       </main>
       <footer class="footer"><span class="copyright">Copyright 2023. woowacourse</span></footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
