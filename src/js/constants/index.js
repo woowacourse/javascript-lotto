@@ -1,4 +1,4 @@
-import Trimmer from '../util/Trimmer.js';
+import Trimmer from '../util/console/Trimmer.js';
 
 const GAME_VALUE = Object.freeze({
   LOTTO_PRICE: 1_000,

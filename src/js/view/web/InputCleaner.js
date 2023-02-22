@@ -1,4 +1,4 @@
-import { $, $$ } from '../util/querySelector.js';
+import { $, $$ } from '../../util/web/querySelector.js';
 
 const InputCleaner = {
   inputs: [$('#budgetInput'), ...$$('.winning-number-input'), $('.bonus-number-input')],

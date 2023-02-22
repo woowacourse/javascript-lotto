@@ -1,6 +1,6 @@
-import { $ } from '../util/querySelector.js';
-import getFormData from '../util/getFormData.js';
-import lottoIcon from '../../images/lotto_icon.png';
+import { $ } from '../../util/web/querySelector.js';
+import getFormData from '../../util/web/getFormData.js';
+import lottoIcon from '../../../images/lotto_icon.png';
 
 class PurchaseView {
   #submitBudget;

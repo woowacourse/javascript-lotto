@@ -1,4 +1,4 @@
-import errorIcon from '../../images/error_icon.png';
+import errorIcon from '../../../images/error_icon.png';
 
 class ErrorView {
   #errorAreaElement;

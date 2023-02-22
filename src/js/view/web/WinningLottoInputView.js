@@ -1,5 +1,5 @@
-import { $ } from '../util/querySelector.js';
-import getFormData from '../util/getFormData.js';
+import { $ } from '../../util/web/querySelector.js';
+import getFormData from '../../util/web/getFormData.js';
 
 class WinningLottoInputView {
   #submitWinningLotto;

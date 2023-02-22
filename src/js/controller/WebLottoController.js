@@ -1,10 +1,10 @@
-import { $ } from '../util/querySelector.js';
+import { $ } from '../util/web/querySelector.js';
 import { PROJECT_MODE } from '../constants/index.js';
-import PurchaseView from '../view/PurchaseView.js';
-import WinningLottoInputView from '../view/WinningLottoInputView.js';
-import ResultModalView from '../view/ResultModalView.js';
-import InputCleaner from '../view/InputCleaner.js';
-import ErrorView from '../view/ErrorView.js';
+import PurchaseView from '../view/web/PurchaseView.js';
+import WinningLottoInputView from '../view/web/WinningLottoInputView.js';
+import ResultModalView from '../view/web/ResultModalView.js';
+import InputCleaner from '../view/web/InputCleaner.js';
+import ErrorView from '../view/web/ErrorView.js';
 import LottoGame from '../domain/LottoGame.js';
 import Validator from '../domain/Validator.js';
 

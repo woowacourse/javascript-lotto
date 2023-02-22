@@ -1,5 +1,5 @@
-import { $ } from '../util/querySelector.js';
-import { GAME_VALUE } from '../constants/index.js';
+import { $ } from '../../util/web/querySelector.js';
+import { GAME_VALUE } from '../../constants/index.js';
 
 class ResultModalView {
   #submitRestart;
