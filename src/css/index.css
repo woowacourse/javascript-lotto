@@ -1,0 +1,11 @@
+@import url('./setting.css');
+@import url('./reset.css');
+@import url('./header.css');
+@import url('./footer.css');
+@import url('./style.css');
+
+#app {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

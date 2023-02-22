@@ -1,0 +1,8 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  color: var(--lotto-primary);
+  border-top: 1px solid var(--border-primary);
+}
