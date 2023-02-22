@@ -1,3 +1,5 @@
+import './style/reset.css';
+import './style/style.css';
 import Component from './Component.js';
 import { qs, component } from './utils/domHelper';
 import Header from './view/components/Header.js';
@@ -47,11 +49,15 @@ class App extends Component {
 
   template() {
     return `
-      <header data-component='header'></header> 
-      <section data-component='amount'></section>
-      <section data-component='lottoList'></section>
-      <section data-component='winNumbers'></section>
-      <div data-component='statistics-modal'></div>
+      <header>Header</header>
+      <main>
+        <section data-component='header'></section> 
+        <section data-component='amount'></section>
+        <section data-component='lottoList'></section>
+        <section data-component='winNumbers'></section>
+        <div data-component='statistics-modal'></div>
+      </main>
+      <footer>Feader</footer>
     `;
   }
 

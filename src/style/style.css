@@ -1,0 +1,37 @@
+:root {
+  --primary: #4e5ba6;
+  --grey-scale-1: #ffffff;
+  --grey-scale-2: #fcfcfd;
+  --grey-scale-3: #b4b4b4;
+  --grey-scale-4: #8b8b8b;
+  --grey-scale-5: #000000;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+header,
+footer {
+  height: 4rem;
+  background-color: var(--primary);
+}
+
+main {
+  width: 41.4rem;
+
+  flex-grow: 1;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  padding: 1.6rem;
+  margin: 3rem auto;
+}
