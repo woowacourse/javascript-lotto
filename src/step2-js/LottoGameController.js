@@ -34,6 +34,7 @@ export default class LottoGameController {
     });
 
     this.#view.printLottoQuantity(lottoQuantity);
+    this.#view.printEachLottoNumbers(eachLottoNumbers);
   }
 
   #validatePurchaseAmount() {
