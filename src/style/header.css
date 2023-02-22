@@ -1,0 +1,12 @@
+header {
+  height: 64px;
+  background-color: #4e5ba6;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  margin-left: 130px;
+  font: 800 24px/36px 'Roboto';
+  color: #ffffff;
+}

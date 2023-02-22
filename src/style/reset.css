@@ -125,3 +125,6 @@ table {
 * {
   box-sizing: border-box;
 }
+input[type='submit'] {
+  border: none;
+}

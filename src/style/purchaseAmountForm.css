@@ -1,0 +1,38 @@
+#purchase-amount-form {
+  padding: 28px 16px 0px;
+}
+
+#purchase-amount-form div {
+  font: 400 15px/24px 'Roboto';
+  letter-spacing: 0.5px;
+}
+
+#purchase-amount-inputs {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#purchase-amount-inputs input[type='text'] {
+  padding: 8px 8px;
+  width: 310px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#purchase-amount-inputs input[type='text']::placeholder {
+  font: 400 15px/24px 'Roboto';
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #8b8b8b;
+}
+
+#purchase-amount-inputs input[type='submit'] {
+  padding: 6px 6px 6px 8px;
+  width: 56px;
+  height: 36px;
+  background: #4e5ba6;
+  border-radius: 4px;
+  color: #ffffff;
+}
