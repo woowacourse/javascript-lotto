@@ -9,44 +9,47 @@
   <body>
     <div id="app">
       <header>
-        <nav class="topnav">
-          <h1>🎱 행운의 로또</h1>
+        <nav class="top-nav">
+          <h1 class="nav-title">🎱 행운의 로또</h1>
         </nav>
       </header>
       <main>
         <section>
           <div class="box">
-            <h2>🎱내 번호 당첨 확인🎱</h2>
+            <h2 class="box-title">🎱내 번호 당첨 확인 🎱</h2>
             <p>구입할 금액을 입력해주세요.</p>
-            <form action=".">
-              <input type="number" name="" id="">
-              <button type="submit">구입</button>
+            <form action="." class="buy-form">
+              <input type="number" class="money-input" placeholder="금액">
+              <button type="submit" class="buy-btn">구입</button>
             </form>
             <p>총 7개를 구매했습니다.</p>
-            <ul>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
-              <li>🎟️12, 28, 22, 37, 19, 23</li>
+            <ul class="lotto-box">
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+              <li class="lotto-container">🎟️12, 28, 22, 37, 19, 23</li>
+
             </ul>
-            <form action=".">
-              <p>당첨 번호</p>
-              <input type="number" name="" id="">
-              <input type="number" name="" id="">
-              <input type="number" name="" id="">
-              <input type="number" name="" id="">
-              <input type="number" name="" id="">
-              <input type="number" name="" id="">
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
 
-              <p>보너스 번호</p>
-              <input type="number" name="" id="">
+              <div class="number-inputs">
+                <!--              <p>당첨 번호</p>-->
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
 
-              <button type="submit">결과 확인하기</button>
-            </form>
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+                <!--              <p>보너스 번호</p>-->
+                <input type="number" class="square-input last-input">
+              </div>
+
+              <button type='' class="result-btn" onclick="document.getElementById('myModal').style.display='block'">결과 확인하기</button>
           </div>
         </section>
       </main>
@@ -59,7 +62,7 @@
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-        <h3>🏆당첨 통계🏆</h3>
+        <h2 class="result-header">🏆당첨 통계🏆</h2>
         <table>
           <th>일치 갯수</th>
           <th>당첨금</th>
@@ -74,9 +77,24 @@
             <td>5,000</td>
             <td>n개</td>
           </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>n개</td>
+          </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>n개</td>
+          </tr>
         </table>
-        <p>당신의 총 수익률은 %입니다.</p>
-        <button>다시 시작하기</button>
+        <p class="rop-text">당신의 총 수익률은 %입니다.</p>
+        <button class="retry-btn">다시 시작하기</button>
       </div>
     </div>
 
