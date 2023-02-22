@@ -15,8 +15,7 @@ function purchaseLottoStatus(lottos) {
   return board;
 }
 
-export default function paintLottoStatus(lottos) {
-  const $lottoSection = document.querySelector('.lotto-section');
+export default function paintLottoStatus($root, lottos) {
   const $board = purchaseLottoStatus(lottos);
-  $lottoSection.appendChild($board);
+  $root.appendChild($board);
 }
