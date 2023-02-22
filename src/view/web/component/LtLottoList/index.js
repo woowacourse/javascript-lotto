@@ -25,11 +25,6 @@ class LtLottoList extends LtFormControl {
     this.render();
   }
 
-  setValidation(message) {
-    super.setValidation(message);
-    this.$input.errorMessage = message;
-  }
-
   formResetCallback() {
     this.setLottos([]);
   }
