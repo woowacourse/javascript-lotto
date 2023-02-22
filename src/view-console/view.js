@@ -5,8 +5,17 @@ import {
   validateRestartOrQuitCommend,
   validateWinningLottoNumbers,
 } from "../domain/validator";
-import { getAscendingSortedNumbers, rl } from "../utils";
+import { getAscendingSortedNumbers } from "../utils";
+import readlinePromises from "node:readline/promises";
 
+const rl = readlinePromises.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+export const close = () => {
+  rl.close();
+};
 export const view = {
   // OutputView
   print(message) {
@@ -55,7 +64,13 @@ export const view = {
     return bonusNumber;
   },
 
-  readRestartOrQuit() {
-    return this.readline(MESSAGE.INPUT.restartOrQuit);
+  async readRestartOrQuit() {
+    const restartOrQuitCommend = await this.readline(MESSAGE.INPUT.restartOrQuit);
+    if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
+    return restartOrQuitCommend;
+  },
+
+  close() {
+    rl.close();
   },
 };

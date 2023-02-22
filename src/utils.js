@@ -1,14 +1,3 @@
-import readlinePromises from "node:readline/promises";
-
-export const rl = readlinePromises.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-export const close = () => {
-  rl.close();
-};
-
 export const getIntersectionLengthOf = (...arrays) => {
   return arrays.reduce((acc, cur) => {
     return acc.filter((x) => cur.includes(x));
