@@ -4,7 +4,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#numbers = new Set(numbers);
+    this.#numbers = new Set(numbers.sort((a, b) => a - b));
   }
 
   countIntersect(winningNumbers) {
@@ -17,7 +17,7 @@ class Lotto {
   }
 
   getNumbers() {
-    return [...this.#numbers].sort((a, b) => a - b);
+    return [...this.#numbers];
   }
 }
 
