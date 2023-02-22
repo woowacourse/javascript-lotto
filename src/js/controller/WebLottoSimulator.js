@@ -38,9 +38,14 @@ class WebLottoSimulator {
         winningNumbers.slice(0, LOTTO_CONSTANT.LENGTH),
         winningNumbers[LOTTO_CONSTANT.LENGTH]
       );
+      this.showResult();
     } catch (err) {
       alert(err);
     }
+  };
+
+  showResult = () => {
+    OutputView.showResult();
   };
 }
 

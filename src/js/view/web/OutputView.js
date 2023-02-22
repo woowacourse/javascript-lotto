@@ -1,6 +1,8 @@
 const $lottoList = document.getElementById('purchased-lotto-list');
 const $lottoCount = document.getElementById('purchased-lotto-count');
 const $winningLottoSection = document.getElementById('winning-lotto-section');
+const $resultModalSection = document.getElementById('result-modal-section');
+const $modalBackground = document.getElementsByClassName('modal-background')[0];
 
 const LottoListView = {
   showLottoList(lottos) {
@@ -12,6 +14,11 @@ const LottoListView = {
       )}</li>`;
     });
     $winningLottoSection.style.display = 'block';
+  },
+
+  showResult() {
+    $modalBackground.style.display = 'flex';
+    $resultModalSection.style.display = 'flex';
   },
 };
 
