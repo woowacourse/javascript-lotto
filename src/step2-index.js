@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   getInitialState() {
-    return { amount: 0, lottoList: [] };
+    return { lottoList: [] };
   }
 
   setUp() {
@@ -34,15 +34,18 @@ class App extends Component {
     } = this;
 
     new Amount(component('amount'), { setLottoList: setLottoList.bind(this) });
-    new LottoList(component('lottoList'), { lottoList });
-    new WinNumbers(component('winNumbers'), {
-      updateDrawingNumbers: updateDrawingNumbers.bind(this),
-      openModal: openModal.bind(this),
-    });
-    new StatisticsModal(component('statistics-modal'), {
-      lottoList,
-      initState: initState.bind(this),
-    });
+
+    if (lottoList.length !== 0) {
+      new LottoList(component('lottoList'), { lottoList });
+      new WinNumbers(component('winNumbers'), {
+        updateDrawingNumbers: updateDrawingNumbers.bind(this),
+        openModal: openModal.bind(this),
+      });
+      new StatisticsModal(component('statistics-modal'), {
+        lottoList,
+        initState: initState.bind(this),
+      });
+    }
   }
 
   template() {
@@ -51,16 +54,10 @@ class App extends Component {
       <main class='lotto-store'>
         <section class='lotto-store__title'>🎱 내 번호 당첨 확인 🎱</section>
         <section class='lotto-store__amount' data-component='amount'></section>
-        <section class='lotto-store__lotto-list' data-component='lottoList'></section>
-        <section data-component='winNumbers'></section>
-        <div data-component='statistics-modal'></div>
+        ${this.getAfterPurchaseTemplate()}
       </main>
       <footer>Footer</footer>
     `;
-  }
-
-  setAmount(amount) {
-    this.setState({ amount });
   }
 
   setLottoList(lottoList) {
@@ -79,6 +76,18 @@ class App extends Component {
 
   openModal() {
     qs('.statistics-modal__dialog').showModal();
+  }
+
+  getAfterPurchaseTemplate() {
+    if (this.state.lottoList.length !== 0) {
+      return `
+        <section class='lotto-store__lotto-list' data-component='lottoList'></section>
+        <section data-component='winNumbers'></section>
+        <div data-component='statistics-modal'></div>
+      `;
+    }
+
+    return ``;
   }
 }
 
