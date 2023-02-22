@@ -4,23 +4,25 @@
  */
 import './public/css/reset.css';
 import './public/css/index.css';
+import LottoGame from './domain/LottoGame';
+import ResultModal from './view/ResultModal';
 
-const App = document.querySelector('#app');
+const app = document.querySelector('#app');
 
-// const header = document.createElement('header');
-// header.innerHTML = `<header><h1>🎱 행운의 로또</h1></header>`;
-// App.appendChild(header);
-
+const lottoGame = new LottoGame();
+// 구입 금액 가져오기
 const purchaseButton = document.querySelector('.purchase-button');
 
 purchaseButton.addEventListener('click', (e) => {
   e.preventDefault();
 
-  const check = Number(document.querySelector('.input-money').value);
+  const inputMoney = Number(document.querySelector('.input-money').value);
   const unorderList = document.querySelector('.buy-lotto-list');
 
-  const resultList = Array.from({ length: check / 1000 }, () => 0).map(() => {
-    return `<li>🎟️ 1, 2, 3, 4, 5, 6</li>`;
+  lottoGame.purchaseLottos(inputMoney);
+
+  const resultList = lottoGame.getLottos().map((lotto) => {
+    return `<li>🎟️ ${lotto.getLottoNumber().join(', ')}</li>`;
   });
 
   const purchaseLottoAmount = document.querySelector('.purchased-lotto-amount');
@@ -28,26 +30,31 @@ purchaseButton.addEventListener('click', (e) => {
   unorderList.innerHTML = resultList.join(' ');
 });
 
+// 당첨 번호 가져오기
+
 const getResultButton = document.querySelector('.get-result');
 
+function ResultModalControll(ranks, profit) {
+  const modal = new ResultModal(ranks, profit);
+  modal.render(app);
+
+  //   const modal = document.querySelector('.modal-none');
+  //   modal.className = 'modal-view';
+}
+
 getResultButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  const modal = document.querySelector('.modal-none');
+  try {
+    e.preventDefault();
+    const winningLottoNumberElement = document.querySelector('.my-lotto-numbers').children;
+    const winningLottoNumber = [...winningLottoNumberElement].map((v) => {
+      return Number(v.value);
+    });
+    const bonusNumbers = Number(document.querySelector('.my-bonus-number').value);
+    lottoGame.generateWinningLotto(winningLottoNumber, bonusNumbers);
+    ResultModalControll(lottoGame.getWinningRankResult(), lottoGame.getProfitRateOfPrize());
 
-  modal.className = 'modal-view';
-
-  const getLottoNumbers = document.querySelector('.my-lotto-numbers').children;
-
-  [...getLottoNumbers].forEach((v) => {
-    console.log(v.value);
-  });
-  const getBonusNumbers = document.querySelector('.my-bonus-number').value;
-  console.log(getBonusNumbers);
-});
-
-document.querySelector('.close-modal').addEventListener('click', (e) => {
-  e.preventDefault();
-  const modal = document.querySelector('.modal-view');
-
-  modal.className = 'modal-none';
+    // modalControll();
+  } catch (error) {
+    console.error(error);
+  }
 });
