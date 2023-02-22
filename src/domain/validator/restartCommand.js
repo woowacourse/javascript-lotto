@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../../constant/message';
+import { ERROR_MESSAGE } from '../../constant/console/message';
 import { COMMAND } from '../../constant/setting';
 
 const isValidRestartCommand = (command) => command === COMMAND.YES || command === COMMAND.NO;

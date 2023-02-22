@@ -1,4 +1,4 @@
-import { LOTTO, RANK, COMMAND } from './setting';
+import { LOTTO, RANK, COMMAND } from '../setting';
 
 const INPUT_MESSAGE = {
   PURCHASE_AMOUNT: '> 구입금액을 입력해 주세요.',
@@ -26,7 +26,7 @@ const ERROR_MESSAGE = {
   LESS_THAN_MINIMUM: `구입 금액은 ${LOTTO.UNIT.toLocaleString()}원 이상이어야 합니다.`,
   HAS_CHANGE: `구입 금액은 ${LOTTO.UNIT.toLocaleString()}원 단위이어야 합니다.`,
   OUT_OF_RANGE: `${LOTTO.MIN_NUMBER_RANGE}~${LOTTO.MAX_NUMBER_RANGE}사이의 숫자이어야 합니다.`,
-  INVALID_LOTTO_SIZE: `당첨 번호는 ${LOTTO.LENGTH}개의 숫자로 이루어져야 합니다.`,
+  INVALID_LOTTO_SIZE: `당첨 번호는 ${LOTTO.SIZE}개의 숫자로 이루어져야 합니다.`,
   DUPLICATED_NUMBER: '중복된 번호가 포함되어 있습니다.',
   INCLUDES_WINNING_NUMBER: '당첨 번호와 중복된 번호입니다.',
   INVALID_RESTART_COMMAND: `재시작 명령어는 ${COMMAND.YES}또는 ${COMMAND.NO}이어야 합니다.`,

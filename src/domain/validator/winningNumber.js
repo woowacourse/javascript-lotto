@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../../constant/message';
+import { ERROR_MESSAGE } from '../../constant/console/message';
 import { LOTTO } from '../../constant/setting';
 
 const isValidLength = (lottoNumbers) => lottoNumbers.length === LOTTO.SIZE;

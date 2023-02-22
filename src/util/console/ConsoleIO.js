@@ -3,7 +3,7 @@ import { stdin as input, stdout as output } from 'process';
 
 const rl = createInterface({ input, output });
 
-const Console = {
+const ConsoleIO = {
   readLine(query) {
     return new Promise((resolve) => rl.question(query, resolve));
   },
@@ -17,4 +17,4 @@ const Console = {
   },
 };
 
-export default Console;
+export default ConsoleIO;

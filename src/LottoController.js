@@ -4,11 +4,11 @@ import WinningLotto from './domain/WinningLotto';
 import calculateProfitRate from './domain/calculateProfitRate';
 import * as LottoGameValidator from './domain/validator';
 
-import InputView from './view/InputView';
-import OutputView from './view/OutputView';
+import InputView from './view/console/InputView';
+import OutputView from './view/console/OutputView';
 
 import { COMMAND } from './constant/setting';
-import Console from './util/Console';
+import ConsoleIO from './util/console/ConsoleIO';
 import convertToNumeric from './util/convertToNumeric';
 
 class LottoController {
@@ -108,7 +108,7 @@ class LottoController {
       this.start();
     }
     if (restartCommand === COMMAND.NO) {
-      Console.close();
+      ConsoleIO.close();
     }
   }
 }
