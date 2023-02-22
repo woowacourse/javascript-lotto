@@ -14,6 +14,9 @@ const printResultButton = $('.printResult-button');
 const winningNumber = $$('.winningNumber-input');
 const bonusNumber = $('.bonusNumber-input');
 
+const modal = $('.modal');
+const restartButton = $('.restart-button');
+
 purchaseButton.onclick = async (e) => {
   e.preventDefault();
   lottos.innerHTML = ``;
@@ -51,7 +54,15 @@ printResultButton.onclick = async (e) => {
     console.log(winningNumbers);
     Validator.winningNumber([...winningNumbers].join(','));
     Validator.bonusNumber(bonusNumber.value, winningNumbers);
+    modal.style.display = 'block';
   } catch (error) {
     alert(error.message);
   }
+};
+
+restartButton.onclick = async (e) => {
+  e.preventDefault();
+  modal.style.display = 'none';
+  issueLotto.style.display = 'none';
+  inputNumbersLayout.style.display = 'none';
 };

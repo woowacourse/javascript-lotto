@@ -10,6 +10,7 @@
       <header>
         <h1>🎱 행운의 로또</h1>
       </header>
+
       <div class="lottoGame">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
         <div>
@@ -48,14 +49,60 @@
                   <input class="inputNumber bonusNumber-input" type="number" />
                 </div>
               </div>
-            </div>
-
-            <div class="checkResult">
-              <button class="printResult-button" type="submit">결과 확인하기</button>
+              <div class="checkResult">
+                <button class="printResult-button" type="submit">결과 확인하기</button>
+              </div>
             </div>
           </form>
         </div>
       </div>
+
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-box">
+          <h2>🏆 당첨 통계 🏆</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>3개</th>
+                <th>5,000</th>
+                <th>n개</th>
+              </tr>
+              <tr>
+                <th>4개</th>
+                <th>50,000</th>
+                <th>n개</th>
+              </tr>
+              <tr>
+                <th>5개</th>
+                <th>1,500,000</th>
+                <th>n개</th>
+              </tr>
+              <tr>
+                <th>5개+보너스볼</th>
+                <th>30,000,000</th>
+                <th>n개</th>
+              </tr>
+              <tr>
+                <th>6개</th>
+                <th>2,000,000,000</th>
+                <th>n개</th>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>당신의 총 수익률은 %입니다.</h3>
+          <button class="restart-button" type="reset">다시 시작하기</button>
+        </div>
+      </div>
+
       <footer>Copyright 2023. woowacourse</footer>
     </div>
   </body>
