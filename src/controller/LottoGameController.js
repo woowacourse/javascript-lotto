@@ -58,9 +58,9 @@ class LottoGameController {
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#handleGameResult();
     } catch ({ message }) {
-      ViewUtils.showError(this.#gameView.bonusNumberInput, message);
-      ViewUtils.focusElement(this.#gameView.bonusNumberInput);
       ViewUtils.resetInput(this.#gameView.bonusNumberInput);
+      ViewUtils.focusElement(this.#gameView.bonusNumberInput);
+      ViewUtils.showError(this.#gameView.bonusNumberInput, message);
     }
   }
 
