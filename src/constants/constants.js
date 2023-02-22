@@ -54,6 +54,7 @@ export const FORMAT = Object.freeze({
 export const ERROR = Object.freeze({
   INVALID_FORMAT: '[ERROR] 잘못된 입력 형식입니다.',
   CANNOT_CREATE_INSTANCE: '[ERROR] 추상 클래스로 인스턴스를 생성할 수 없습니다.',
+  NEED_QUERY: '[ERROR] 질의문은 필수로 넘겨줘야 합니다.',
   /**
    * @param {number} unit - 로또 구입 금액
    */
