@@ -5,7 +5,6 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./src/css/index.css" />
   </head>
 
   <body>
@@ -17,18 +16,14 @@
       <section class="number-check-section">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
         <label for="budget-input">구입할 금액을 입력해주세요.</label>
-        <form class="budget-input-form">
+        <form id="budget-input-form">
           <input id="budget-input" type="number" placeholder="금액" step="1000" />
           <button id="purchase-button">구입</button>
         </form>
 
         <section class="purchased-lotto-section">
-          <h2 hidden>구매 로또 리스트</h2>
-          <div class="purchased-lotto-list">
-            <span id="lotto-title"></span>
-            <span id="purchased-lotto-icon"></span>
-            <span id="purchased-lotto-numbers"></span>
-          </div>
+          <p id="purchased-lotto-count">총 n개를 구매하였습니다.</p>
+          <ul id="purchased-lotto-list"></ul>
         </section>
 
         <section class="winning-lotto-section">

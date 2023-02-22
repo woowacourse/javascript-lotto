@@ -1,6 +1,6 @@
 import { LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
-import InputView from '../view/InputView'
-import OutputView from '../view/OutputView.js';
+import InputView from '../view/console/InputView.js'; 
+import OutputView from '../view/console/OutputView.js';
 import LottoUtils from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
