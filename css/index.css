@@ -311,7 +311,7 @@ footer p {
   text-align: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px), (max-height: 781px) {
   header, footer {
     display: none;
   }
@@ -322,7 +322,7 @@ footer p {
   }
 
   .game-container {
-    width: 100vw;
+    max-width: 420px;
     border: none;
     border-radius: 0;
   }
