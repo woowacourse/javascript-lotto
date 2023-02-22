@@ -77,9 +77,9 @@ inputNumberContainer.addEventListener('submit', (event) => {
   console.log(winning.getWinningNumbers(), winning.getBonusNumber());
 });
 
-// closeButton.addEventListener('click', () => {
-//   winningModal.classList.add('hiddenElement');
-// });
+closeButton.addEventListener('click', () => {
+  winningModal.classList.add('hiddenElement');
+});
 
 const getLottoCount = (count) => {
   lottoCount.innerText = `총 ${count}개를 구매하였습니다.`;
