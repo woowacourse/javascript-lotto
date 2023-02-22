@@ -26,6 +26,12 @@ export default class View {
     $target.appendChild($fragment);
   }
 
+  disableElements(...elements) {
+    elements.forEach((element) => {
+      $(element).disabled = true;
+    });
+  }
+
   showAlert(message) {
     alert(message);
   }

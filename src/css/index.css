@@ -16,6 +16,11 @@ body {
   height: 100vh;
 }
 
+*:disabled {
+  filter: brightness(0.7);
+  cursor: initial;
+}
+
 .hide {
   display: none;
 }
