@@ -1,5 +1,6 @@
-// import { validator } from '../domain/validation/validator';
 import { CONSOLE_MESSAGE } from '../js/constants/constants';
+// import { exceptionHandler } from '../js/utils/index';
+import validator from '../domain/validation/validator';
 
 export default class PurchasePriceView {
   constructor() {
@@ -13,19 +14,26 @@ export default class PurchasePriceView {
       const purchasePriceInput = this.input.value;
 
       try {
-        // validator.purchasePrice(purchasePriceInput);
+        validator.purchasePrice(purchasePriceInput);
         submitHandler(purchasePriceInput);
       } catch (error) {
         this.resetInputValue();
-        console.log(error);
+        alert(error);
       }
     });
   }
 
-  printLottoCount(lottoCount) {
+  renderPurchaseResult(lottoCount, lottos) {
     const msg = CONSOLE_MESSAGE.showLottoCount(lottoCount);
     const msgDiv = document.getElementById('price-result');
     msgDiv.innerHTML = `<span>${msg}</span>`;
+    lottos.forEach((lotto) => {
+      const lottosDiv = document.getElementById('lottos');
+      const lottoDiv = document.createElement('div');
+      lottoDiv.innerHTML = `<span>[${lotto.getNumbers().join(', ')}]</span>`;
+      lottosDiv.appendChild(lottoDiv);
+      // console.log(`[${lotto.getNumbers().join(', ')}]`);
+    });
   }
 
   resetInputValue() {
