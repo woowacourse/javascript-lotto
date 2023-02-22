@@ -1,4 +1,4 @@
-import { LOTTO, REGEXP, ERROR } from '../constant/constants.js';
+import { LOTTO, REGEXP, ERROR } from '../constant/constants.js';
 
 export function checkWinningNumberRange(number) {
   if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER) {
