@@ -100,9 +100,18 @@ const LottoWebGame = function () {
     }
   };
 
+  const clickRestart = ({ target }) => {
+    if (!target.matches('button')) return;
+
+    this.lottos = [];
+    $purchaseInput.value = '';
+    render.restart();
+  };
+
   const initAddEventListener = () => {
     $('#purchase-amount-form').addEventListener('submit', submitPurchaseAmount);
     $('#winning-lotto-from').addEventListener('submit', submitWinningLotto);
+    $('#winning-statistics').addEventListener('click', clickRestart);
   };
 };
 
