@@ -1,5 +1,9 @@
 import { LOTTO_LENGTH } from '../data/Constants';
 import {
+  addKeyUpEventListener,
+  keyUpEventListener,
+} from '../utils/eventListener';
+import {
   enterWinNumberMessage,
   winNumberMessage,
   bonusNumberMessage,
@@ -50,18 +54,26 @@ function checkResultButton() {
   return $button;
 }
 
-function enterGameBoard() {
-  const enterBoard = document.createElement('div');
+function addEnterGameBoardEventListener($root, eventHandler) {
+  const $container = $root.querySelector('.number-container');
+  const $button = $root.querySelector('#checkResult');
+  addKeyUpEventListener($container, (e) => keyUpEventListener(e, $button));
 
-  enterBoard.innerHTML = enterWinNumberMessage;
-  enterBoard.appendChild(numberTitleContainer());
-  enterBoard.appendChild(numberEnterContainer());
-  enterBoard.appendChild(checkResultButton());
-
-  return enterBoard;
+  $button.addEventListener('click', eventHandler);
 }
 
-export default function paintEnterWinningNumber() {
-  const $lottoSection = document.querySelector('.lotto-section');
-  $lottoSection.appendChild(enterGameBoard());
+function enterGameBoard() {
+  const $enterBoard = document.createElement('div');
+
+  $enterBoard.innerHTML = enterWinNumberMessage;
+  $enterBoard.appendChild(numberTitleContainer());
+  $enterBoard.appendChild(numberEnterContainer());
+  $enterBoard.appendChild(checkResultButton());
+
+  return $enterBoard;
+}
+
+export default function paintEnterWinningNumber($root, eventHandler) {
+  $root.appendChild(enterGameBoard());
+  addEnterGameBoardEventListener($root, eventHandler);
 }
