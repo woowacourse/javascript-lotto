@@ -52,7 +52,6 @@ const InputView = {
 
     $lottoForm.querySelector('[data-focus]').removeAttribute('data-focus');
     $firstAnchor.setAttribute('data-focus', '');
-    console.log($firstAnchor);
   },
 };
 

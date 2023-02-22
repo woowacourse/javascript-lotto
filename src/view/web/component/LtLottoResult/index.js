@@ -58,7 +58,6 @@ class LtLottoResult extends LtComponent {
           [reward.getMoney().toLocaleString(), '.reward-money'],
           [count, '.count'],
         ].forEach(([content, targetId]) => {
-          console.log($lottoResultReward.querySelector(targetId));
           $lottoResultReward.querySelector(targetId).innerText = content;
         });
         return $lottoResultReward;
