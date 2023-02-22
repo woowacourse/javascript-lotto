@@ -1,5 +1,6 @@
 const $lottoList = document.getElementById('purchased-lotto-list');
 const $lottoCount = document.getElementById('purchased-lotto-count');
+const $winningLottoSection = document.getElementById('winning-lotto-section');
 
 const LottoListView = {
   showLottoList(lottos) {
@@ -10,6 +11,7 @@ const LottoListView = {
         ', '
       )}</li>`;
     });
+    $winningLottoSection.style.display = 'block';
   },
 };
 

@@ -101,11 +101,16 @@ ul {
   letter-spacing: 0.5px;
 }
 
-.winning-lotto-section {
+#winning-lotto-section {
+  display: none;
   margin-top: auto;
 }
 
 #bonus-number-input {
+  float: right;
+}
+
+#bonus-number-title {
   float: right;
 }
 
@@ -123,6 +128,5 @@ ul {
   top: 596px;
   border-radius: 4px;
   border: 1px solid var(--color-greyscale3);
-  margin-top: 16px;
   margin-bottom: 16px;
 }

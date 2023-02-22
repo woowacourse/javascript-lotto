@@ -15,37 +15,29 @@
 
       <section class="number-check-section">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
-        <label for="budget-input">구입할 금액을 입력해주세요.</label>
+        <p>구입할 금액을 입력해주세요.</p>
         <form id="budget-input-form">
           <input id="budget-input" type="number" placeholder="금액" step="1000" />
           <button id="purchase-button">구입</button>
         </form>
 
         <section class="purchased-lotto-section">
-          <p id="purchased-lotto-count">총 n개를 구매하였습니다.</p>
+          <p id="purchased-lotto-count"></p>
           <ul id="purchased-lotto-list"></ul>
         </section>
 
-        <section class="winning-lotto-section">
-          <h2 hidden>당첨 번호 입력</h2>
-          <form id="winning-lotto-form">
-            <label for="winning-lotto">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
-            <div class="winning-number-input-container">
-              <div class="lotto-title">
-                <span id="winning-number">당첨 번호</span>
-                <span id="bonus-number">보너스 번호</span>
-              </div>
-              <form class="winning-lotto-input-form">
-                <input class="winning-number-input" min="1" max="45" type="number" />
-                <input class="winning-number-input" min="1" max="45" type="number" />
-                <input class="winning-number-input" min="1" max="45" type="number" />
-                <input class="winning-number-input" min="1" max="45" type="number" />
-                <input class="winning-number-input" min="1" max="45" type="number" />
-                <input class="winning-number-input" min="1" max="45" type="number" />
-                <input class="winning-number-input" id="bonus-number-input" min="1" max="45" type="number" />
-              </form>
-              <button id="show-result-button">결과 확인하기</button>
-            </div>
+        <section id="winning-lotto-section">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <p><span>당첨 번호</span><span id="bonus-number-title">보너스 번호</span></p>
+          <form id="winning-number-input-form">
+            <input class="winning-number-input" min="1" max="45" type="number" />
+            <input class="winning-number-input" min="1" max="45" type="number" />
+            <input class="winning-number-input" min="1" max="45" type="number" />
+            <input class="winning-number-input" min="1" max="45" type="number" />
+            <input class="winning-number-input" min="1" max="45" type="number" />
+            <input class="winning-number-input" min="1" max="45" type="number" />
+            <input class="winning-number-input" id="bonus-number-input" min="1" max="45" type="number" />
+            <button id="show-result-button">결과 확인하기</button>
           </form>
         </section>
       </section>
@@ -54,6 +46,5 @@
         <p id="copyright">Copyright 2023. woowacourse</p>
       </section>
     </div>
-    <!-- <script type="module" src="./src/js/index.js"></script> -->
   </body>
 </html>

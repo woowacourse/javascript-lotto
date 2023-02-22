@@ -12,14 +12,12 @@ class WebLottoSimulator {
   constructor() {
     this.#lottos = [];
     InputView.setBudgetInputHandler(this.purchaseLottos);
+    InputView.setWinningNumberInputHandler(this.inputWinningLotto);
   }
 
   purchaseLottos = (budget) => {
     try {
       LottoUtils.validateBudget(+budget);
-      // Array.from({ length: budget / LOTTO_CONSTANT.PRICE }).forEach(() => {
-      //   this.#lottos.push(new Lotto(LottoUtils.createLottoNumbers()));
-      // });
       this.#lottos = Array.from({ length: budget / LOTTO_CONSTANT.PRICE }).map(
         () => new Lotto(LottoUtils.createLottoNumbers())
       );
@@ -30,9 +28,20 @@ class WebLottoSimulator {
     }
   };
 
-  showPurchasedLottos() {
+  showPurchasedLottos = () => {
     OutputView.showLottoList(this.#lottos);
-  }
+  };
+
+  inputWinningLotto = (winningNumbers) => {
+    try {
+      this.#winningLotto = new WinningLotto(
+        winningNumbers.slice(0, LOTTO_CONSTANT.LENGTH),
+        winningNumbers[LOTTO_CONSTANT.LENGTH]
+      );
+    } catch (err) {
+      alert(err);
+    }
+  };
 }
 
 export default WebLottoSimulator;
