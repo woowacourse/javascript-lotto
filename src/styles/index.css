@@ -142,6 +142,11 @@ button:disabled:hover {
   border-radius: 4px;
 }
 
+.lotto-ticket-container {
+  max-height: 288px;
+  overflow: auto;
+}
+
 .lotto-ticket {
   display: flex;
   align-items: center;

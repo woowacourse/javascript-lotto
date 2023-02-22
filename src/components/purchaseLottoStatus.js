@@ -4,15 +4,19 @@ import {
 } from '../view/templates/lottoGame';
 
 function purchaseLottoStatus(lottos) {
-  const board = document.createElement('div');
+  const $board = document.createElement('div');
   const purchastCount = pusrchaseCountMessage(lottos.length);
 
-  board.innerHTML = purchastCount;
+  const $ticketContainer = document.createElement('div');
+
+  $board.innerHTML = purchastCount;
   for (const lotto of lottos) {
-    board.innerHTML += eachLottoNumbers(lotto);
+    $ticketContainer.innerHTML += eachLottoNumbers(lotto);
   }
 
-  return board;
+  $board.appendChild($ticketContainer);
+
+  return $board;
 }
 
 export default function paintLottoStatus($root, lottos) {
