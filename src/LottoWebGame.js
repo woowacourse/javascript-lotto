@@ -24,7 +24,7 @@ const LottoWebGame = function () {
     const rankings = makeRankings(winningNumbers, bonusNumber);
     const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
 
-    console.log(rankings, rewardRate);
+    render.statistics(rankings, rewardRate);
   };
 
   const makeRankings = (winningNumbers, bonusNumber) => {
