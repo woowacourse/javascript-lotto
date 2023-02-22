@@ -74,14 +74,54 @@
               </div>
               <div class="bonusNumber">
                 <label for="bonusNumber">보너스 번호</label>
-                <input class="input-winningLotto" type="text" name="bonusNumber" maxlength="2" />
+                <input class="input-bonusNumber" type="text" name="bonusNumber" maxlength="2" />
               </div>
             </div>
           </div>
-          <button class="button-result">결과 학인하기</button>
+          <button id="button-result">결과 학인하기</button>
         </div>
-        <div class="modal-statistics"></div>
       </main>
+
+      <dialog id="modal-statistics">
+        <h3 id="result-title">🏆 당첨 통계 🏆</h3>
+        <table>
+          <thead>
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td class="place-number">n개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td class="place-number">n개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td class="place-number">n개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td class="place-number">n개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td class="place-number">n개</td>
+            </tr>
+          </tbody>
+        </table>
+        <p id="rate-of-return">당신의 총 수익률은 %입니다.</p>
+        <button id="restart-button">다시 시작하기</button>
+      </dialog>
+
       <footer class="footer"><span class="copyright">Copyright 2023. woowacourse</span></footer>
     </div>
   </body>

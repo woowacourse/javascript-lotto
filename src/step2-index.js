@@ -9,10 +9,23 @@ import { view } from "./view-web/view";
 const lottoGame = new LottoGame(view);
 
 const $purchaseAmountForm = document.getElementById("div-purchaseAmount");
+const $resultButton = document.getElementById("button-result");
+
+const $purchaseAmountInput = document.getElementById("input-purchaseAmount");
 
 $purchaseAmountForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const $purchaseAmountInput = document.getElementById("input-purchaseAmount");
   lottoGame.lottoPurchase($purchaseAmountInput.value);
   lottoGame.showLottos();
+});
+
+$resultButton.addEventListener("click", (e) => {
+  const $statisticsModal = document.getElementById("modal-statistics");
+  const winningLottoNumbers = [...document.querySelectorAll(".input-winningLotto")].map((input) =>
+    Number(input.value)
+  );
+  const bonusNumber = Number(document.querySelector(".input-bonusNumber").value);
+  lottoGame.setWinningLotto(winningLottoNumbers, bonusNumber);
+  lottoGame.showStatistics($purchaseAmountInput.value);
+  $statisticsModal.showModal();
 });

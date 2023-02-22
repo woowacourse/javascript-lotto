@@ -153,7 +153,8 @@ body {
   gap: 8px;
 }
 
-.input-winningLotto {
+.input-winningLotto,
+.input-bonusNumber {
   width: 34px;
   height: 36px;
   border: 1px solid var(--color-greyscale-3);
@@ -179,7 +180,7 @@ body {
 .main .modal-statistics {
 }
 
-.button-result {
+#button-result {
   width: 382px;
   height: 36px;
   left: 16px;

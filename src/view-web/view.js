@@ -1,3 +1,4 @@
+import { PLACE } from "../domain/constants";
 import { MESSAGE } from "../domain/message";
 import {
   validateBonusNumber,
@@ -9,6 +10,8 @@ import { getAscendingSortedNumbers } from "../utils";
 
 const $purchaseAmountMessageSpan = document.querySelector(".message-purchaseAmount");
 const $lottos = document.querySelector(".lottos");
+const $placeNumbers = document.querySelectorAll(".place-number");
+const $rateOfReturn = document.getElementById("rate-of-return");
 
 export const view = {
   // rendering
@@ -31,15 +34,16 @@ export const view = {
     $lottos.innerHTML = lottoTags;
   },
 
-  // printPlacesOfLottos(placesOfLottos) {
-  //   this.print(MESSAGE.OUTPUT.statistics(placesOfLottos));
-  // },
+  printPlacesOfLottos(placesOfLottos) {
+    const keys = [PLACE.fifth, PLACE.fourth, PLACE.third, PLACE.second, PLACE.first];
+    [...$placeNumbers].forEach(
+      (place, index) => (place.textContent = `${placesOfLottos[keys[index]]}개`)
+    );
+  },
 
-  // printRateOfReturn(rateOfReturn) {
-  //   rateOfReturn = rateOfReturn.toLocaleString();
-
-  //   this.print(MESSAGE.OUTPUT.rateOfReturnMessage(rateOfReturn));
-  // },
+  printRateOfReturn(rateOfReturn) {
+    $rateOfReturn.textContent = MESSAGE.OUTPUT.rateOfReturnMessage(rateOfReturn.toLocaleString());
+  },
 
   // // inputView
   // async readPurchaseAmount() {
