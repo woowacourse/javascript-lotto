@@ -1,0 +1,106 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+:root {
+  --color-primary: #4e5ba6;
+  --color-greyscale1: #ffffff;
+  --color-greyscale2: #fcfcfd;
+  --color-greyscale3: #b4b4b4;
+  --color-greyscale4: #8b8b8b;
+  --color-greyscale5: #000000;
+}
+
+#app {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  width: 1440px;
+  height: 64px;
+  padding-left: 130px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background-color: var(--color-primary);
+}
+
+h1 {
+  color: var(--color-greyscale1);
+}
+h2 {
+  margin-top: 40px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.number-check-section {
+  display: flex;
+  flex-flow: column;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  height: 727px;
+  width: 414px;
+  left: 0px;
+  top: 0px;
+  border-radius: 4px;
+  margin: 148px 513px 148px 513px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.copyright-section {
+  bottom: 0;
+  width: 1440px;
+  height: 64px;
+  padding: auto;
+  text-align: center;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  color: var(--color-primary);
+}
+
+#budget-input {
+  width: 300px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+button {
+  color: var(--color-greyscale1);
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+#purchase-button {
+  width: 56px;
+  height: 36px;
+}
+
+.winning-lotto-section {
+  margin-top: auto;
+}
+
+#bonus-number-input {
+  float: right;
+}
+
+#show-result-button {
+  width: 382px;
+  height: 36px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.winning-number-input {
+  height: 36px;
+  width: 34px;
+  left: 16px;
+  top: 596px;
+  border-radius: 4px;
+  border: 1px solid var(--color-greyscale3);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
