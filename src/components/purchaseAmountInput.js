@@ -45,7 +45,7 @@ function purchaseEnterInput() {
   return $container;
 }
 
-export function paintPurchaseEnterInput($root, eventHandler) {
+export function paintPurchaseAmountInput($root, eventHandler) {
   $root.appendChild(purchaseEnterInput());
   addPurchaseEnterEventListener($root, eventHandler);
 }
