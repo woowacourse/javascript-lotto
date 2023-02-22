@@ -32,6 +32,12 @@ export default class View {
     });
   }
 
+  showElements(...elements) {
+    elements.forEach((element) => {
+      $(element).classList.remove('hide');
+    });
+  }
+
   showAlert(message) {
     alert(message);
   }

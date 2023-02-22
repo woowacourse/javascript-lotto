@@ -19,6 +19,7 @@ export default class LottoGameController {
 
   #createLotto(e) {
     e.preventDefault();
+
     const purchaseAmount = this.#validatePurchaseAmount();
     if (!purchaseAmount) {
       return;
@@ -36,15 +37,16 @@ export default class LottoGameController {
     this.#view.printLottoQuantity(lottoQuantity);
     this.#view.printEachLottoNumbers(eachLottoNumbers);
     this.#view.disableElements('.purchase-amount-input', '.purchase-amount-submit-button');
+    this.#view.showElements('.winning-lotto-form');
   }
 
   #validatePurchaseAmount() {
-    const purchaseAmount = $('.purchase-amount-input').value;
+    const $purchaseAmount = $('.purchase-amount-input').value;
 
     try {
-      Validation.validatePurchaseAmount(purchaseAmount);
+      Validation.validatePurchaseAmount($purchaseAmount);
 
-      return Number(purchaseAmount);
+      return Number($purchaseAmount);
     } catch ({ message }) {
       this.#view.showAlert(message);
 
