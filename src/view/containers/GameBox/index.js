@@ -8,6 +8,7 @@ const GameBox = () => {
     <input class="width-100" id="money-input"/>
     <button class="width-100" id="purchase-button">구입</button>
   </div>
+  <div id="purchase-result"></div>
 </div>
 `;
 };
