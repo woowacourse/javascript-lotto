@@ -25,6 +25,20 @@ class LottoWebGame {
     }
   };
 
+  handleResultButton = () => {
+    const winningNumbers = Array.from($$('.winning-numbers > input')).map(($input) =>
+      Number($input.value)
+    );
+    const bonusNumber = $('.bonus-number > input').value;
+    try {
+      lottoGameValidator.checkLottoNumbers(winningNumbers);
+      lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
+      this.renderResultModal(this.makeRankings(winningNumbers, Number(bonusNumber)));
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
   initLottos = (purchaseAmount) => {
     this.#lottos = Array.from({ length: purchaseAmount / LOTTO.price }, this.drawLotto);
   };
