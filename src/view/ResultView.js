@@ -27,20 +27,19 @@ class ResultView extends LottoView {
 
   printWinningCount(winningResult) {
     $$winningCounts.forEach((winningCount, index) => {
-      winningCount.textContent = this.createRankList(winningResult)[index];
+      this.print(winningCount, this.createRankList(winningResult)[index]);
     });
   }
 
   printYieldRate(winningResult, budget) {
-    $yield.textContent = LottoUtils.calculateYieldRate(winningResult, budget);
+    this.print($yield, LottoUtils.calculateYieldRate(winningResult, budget));
   }
 
   bindRetryEvent() {
     this.$element.addEventListener('click', (e) => this.retryHandler(e));
   }
 
-  retryHandler(e) {
-    e.preventDefault();
+  retryHandler() {
     this.createCustomEvent('retryCommand');
     close($modal);
   }
