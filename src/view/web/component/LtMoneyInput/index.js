@@ -55,6 +55,14 @@ class LtMoneyInput extends LtFormControl {
       this.#validate(event.target.getText());
     });
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    if (this.hasAttribute('required') && this.#money === null) {
+      this.setValidation(false);
+    }
+  }
 }
 
 export default LtMoneyInput;

@@ -85,6 +85,14 @@ class LtWinningLottoInput extends LtFormControl {
       });
     });
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    if (this.hasAttribute('required') && this.#winningLotto === null) {
+      this.setValidation(false);
+    }
+  }
 }
 
 export default LtWinningLottoInput;
