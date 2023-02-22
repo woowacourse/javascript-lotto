@@ -13,7 +13,7 @@ const gameBoxEvent = () => {
       LottoValidator.checkMoney(input.value);
       store['lottos'] = generateLottos((input.value));
       input.value = '';
-      Render.initContainer("purchase-result", () => PurchaseResults(), () => { });
+      Render.container("purchase-result", () => PurchaseResults(), () => { });
     } catch (error) {
       alert(error.message);
     }

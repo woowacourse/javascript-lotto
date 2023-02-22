@@ -12,5 +12,5 @@ import gameBoxEvent from './view/containers/GameBox/gameBoxEvent';
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 console.log('step2-index.js');
-Render.initContainer("header", () => Header(), () => { });
-Render.initContainer("game-box", () => GameBox(), () => gameBoxEvent());
+Render.container("header", () => Header(), () => { });
+Render.container("game-box", () => GameBox(), () => gameBoxEvent());
