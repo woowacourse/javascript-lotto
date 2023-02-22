@@ -1,5 +1,7 @@
 import InputChecker from './validators/InputChecker.js';
 import LottoGame from './domains/LottoGame.js';
+import MESSAGE from './constant/message.js';
+import { RENDER_TICKET } from './util/renderer.js';
 
 const $ = selector => document.querySelector(selector);
 
@@ -9,20 +11,13 @@ const App = {
   },
 
   render: {
-    lottos: function (lottos) {
-      const innerNumbers = lottos.map(numbers => {
-        return `<div id="ticket">
-				<span id="lotto-emoji">🎟️</span>
-				<div id="lotto-numbers">${numbers.join(', ')}</div>
-			</div>`;
-      });
-
+    lottos: lottos => {
       $('#lottos-container').innerHTML = `
 			<div id="lottos-amount">
-				<span>총 ${lottos.length}개를 구매하였습니다.</span>
+				<span>${MESSAGE.BUY_LOTTO(lottos.length)}</span>
 			</div>
 			<div id="lottos">
-				${innerNumbers.join('')}
+				${RENDER_TICKET(lottos)}
 			</div>`;
     },
   },

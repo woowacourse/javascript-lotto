@@ -115,6 +115,7 @@ body {
 #lottos {
 	display: flex;
 	flex-direction: column;
+	margin-top: 10px;
 	height: 100%;
 	overflow-y: auto;
 }
