@@ -11,6 +11,10 @@ class LottoWebGame {
 
   bindEvents = () => {};
 
+  initLottos = (purchaseAmount) => {
+    this.#lottos = Array.from({ length: purchaseAmount / LOTTO.price }, this.drawLotto);
+  };
+
   drawLotto = () => {
     const randomNumbers = Array.from(
       { length: LOTTO.maxNumber - LOTTO.minNumber + 1 },
