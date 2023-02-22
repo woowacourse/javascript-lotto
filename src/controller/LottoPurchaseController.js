@@ -21,6 +21,10 @@ class LottoPurchaseController {
     this.#checkWinningSection.render();
   }
 
+  handlePurchaseLotto(purchasePrice) {
+    this.#lottoMachine = new LottoMachine(purchasePrice);
+    this.#checkWinningSection.renderLottos(this.#lottoMachine.lottos);
+  }
 }
 
 export default LottoPurchaseController;
