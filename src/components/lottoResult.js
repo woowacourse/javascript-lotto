@@ -1,8 +1,10 @@
+import { addClickEventListener } from '../utils/eventListener';
 import {
   resultEndContent,
   resultTitle,
   tableContent,
 } from '../view/templates/lottoResult';
+import { closeModal } from './modal';
 
 function closeButtonContainer() {
   const $container = document.createElement('div');
@@ -36,13 +38,23 @@ function endContainer(earningRate) {
   return $container;
 }
 
-export default function lottoResultBoard(winCount, earningRate) {
+function addLottoResultEventListener($root, retryCallback) {
+  addClickEventListener($root.querySelector('#retry'), retryCallback);
+  addClickEventListener($root.querySelector('.modal-close-button'), closeModal);
+}
+
+export default function lottoResultBoard(
+  { winCount, earningRate },
+  retryCallback
+) {
   const $board = document.createElement('div');
 
   $board.appendChild(closeButtonContainer());
   $board.innerHTML += resultTitle;
   $board.appendChild(tableContainer(winCount));
   $board.appendChild(endContainer(earningRate));
+
+  addLottoResultEventListener($board, retryCallback);
 
   return $board;
 }
