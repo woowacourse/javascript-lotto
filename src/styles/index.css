@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html,
 body {
   margin: 0;
@@ -33,12 +35,19 @@ button[disabled] {
 }
 
 :root {
+  /* color */
   --lotto-primary: #4e5ba6;
   --lotto-greyscale-1: #ffffff;
   --lotto-greyscale-2: #fcfcfd;
   --lotto-greyscale-3: #b4b4b4;
   --lotto-greyscale-4: #8b8b8b;
   --lotto-greyscale-5: #000000;
+
+  /* font */
+  --lotto-title: normal 800 24px/24px Roboto;
+  --lotto-subtitle: normal 600 20px/24px Roboto;
+  --lotto-body: normal 400 15px/24px Roboto;
+  --lotto-button: normal 700 14px/16px Roboto;
 }
 
 .lotto-header {
@@ -72,21 +81,18 @@ button[disabled] {
   display: flex;
   justify-content: center;
   margin-bottom: 28px;
-  font-weight: 700;
-  font-size: 24px;
+  font: var(--lotto-title);
   color: var(--lotto-greyscale-5);
 }
 
 .lotto-body {
-  font-weight: 400;
-  font-size: 15px;
+  font: var(--lotto-body);
   color: var(--lotto-greyscale-5);
 }
 
 .primary-button {
   height: 36px;
-  font-weight: 700;
-  font-size: 14px;
+  font: var(--lotto-button);
   color: var(--lotto-greyscale-1);
   border-radius: 4px;
   background-color: var(--lotto-primary);
@@ -95,15 +101,12 @@ button[disabled] {
 #money-input {
   width: 310px;
   height: 36px;
-  font-weight: 400;
-  font-size: 15px;
+  font: var(--lotto-body);
   color: var(--lotto-greyscale-5);
 }
 
 #info-message {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
+  font: var(--lotto-body);
   color: var(--lotto-greyscale-4);
 }
 
@@ -162,7 +165,6 @@ button[disabled] {
   flex-direction: column;
   position: relative;
   top: 0;
-  height: 500px;
   padding: 52px 16px 32px;
   border: 1px solid var(--lotto-greyscale-3);
   background-color: var(--lotto-greyscale-1);
@@ -178,8 +180,7 @@ button[disabled] {
 }
 
 #profit-message {
-  font-weight: 700;
-  font-size: 15px;
+  font: var(--lotto-subtitle);
   text-align: center;
 }
 
