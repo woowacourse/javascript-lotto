@@ -12,6 +12,7 @@ export default class View {
 
   onClickModalCloseButton() {
     $('.modal-close-button').addEventListener('click', () => {
+      this.initStatistics();
       this.hideElements('.result-modal');
     });
   }
@@ -89,6 +90,17 @@ export default class View {
     elements.forEach((element) => {
       $(element).classList.add('hide');
     });
+  }
+
+  initStatistics() {
+    const $target = $('.modal-statistics-container');
+    const $titleContainer = $target.firstChild;
+
+    while ($target.hasChildNodes()) {
+      $target.removeChild($target.firstChild);
+    }
+
+    $target.appendChild($titleContainer);
   }
 
   showAlert(message) {
