@@ -4,7 +4,7 @@ import { InputView, OutputView } from "../view/ConsoleView.js";
 import Lotto from "../domain/Lotto.js";
 import Lottos from "../domain/Lottos.js";
 import Random from "../utils/Random.js";
-import { MESSAGES, SETTINGS, ERROR_MESSAGE } from "../constants/Config.js";
+import { MESSAGES, SETTINGS } from "../constants/Config.js";
 
 class ConsoleController {
   #winningLotto;
