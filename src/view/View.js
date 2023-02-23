@@ -18,6 +18,12 @@ export default class View {
     });
   }
 
+  onClickRestartButton(callback) {
+    $('.restart-button').addEventListener('click', () => {
+      callback();
+    });
+  }
+
   printLottoQuantity(quantity) {
     $('.lotto-quantity').innerText = `총 ${quantity}개를 구매하였습니다.`;
   }

@@ -16,6 +16,7 @@ export default class LottoGameController {
   play() {
     this.#view.onClickPurchaseAmountSubmitButton((e) => this.#createLotto(e));
     this.#view.onClickWinningLottoSubmitButton((e) => this.#compareLotto(e));
+    this.#view.onClickRestartButton(() => this.#initLottos());
     this.#view.onClickModalCloseButton();
   }
 
@@ -65,6 +66,10 @@ export default class LottoGameController {
       $('.winning-lotto-submit-button')
     );
     this.#view.showElements('.result-modal');
+  }
+
+  #initLottos() {
+    this.#lottoGame.initLottos();
   }
 
   #validatePurchaseAmount() {
