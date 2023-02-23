@@ -1,6 +1,6 @@
 import LottoMachine from '../domain/LottoMachine';
 import LottoStatistics from '../domain/LottoStatistics';
-import { LOTTO_NUMBERS_COUNT } from '../domain/constants';
+import { LOTTO_NUMBERS_COUNT, LOTTO_UNIT_PRICE } from '../domain/constants';
 
 import CheckWinningSection from '../view/CheckWinningSection/index';
 import WinningStatModal from '../view/WinningStatModal/index';
@@ -9,6 +9,8 @@ import { $ } from '../utils/dom';
 
 class LottoGameController {
   #checkWinningSection;
+
+  #winningStatModal;
 
   #lottoMachine;
 
@@ -40,16 +42,24 @@ class LottoGameController {
       numbers.slice(0, LOTTO_NUMBERS_COUNT),
       numbers.slice(-1)
     );
+    const { lottos } = this.#lottoMachine;
+    const allLottosRank = lottoStatistics.determineAllLottosRank(lottos);
 
     this.renderResultModal(
-      lottoStatistics.determineAllLottosRank(this.#lottoMachine.lottos)
+      allLottosRank,
+      lottoStatistics.calculateProfitRate(
+        allLottosRank,
+        lottos.length * LOTTO_UNIT_PRICE
+      )
     );
   }
 
-  renderResultModal(allLottosRank) {
-    console.log(allLottosRank);
+  renderResultModal(allLottosRank, profitRate) {
     $('.modal').classList.toggle('hidden');
-    new WinningStatModal($('.modal')).render();
+    this.#winningStatModal = new WinningStatModal($('.modal'));
+    this.#winningStatModal.render();
+    this.#winningStatModal.renderResult(allLottosRank);
+    this.#winningStatModal.renderProfitRate(profitRate);
   }
 }
 

@@ -1,3 +1,4 @@
+import { LOTTO_PRIZE } from '../../domain/constants';
 import { $, dispatchCustomEvent } from '../../utils/dom';
 
 class WinningStatModal {
@@ -24,7 +25,7 @@ class WinningStatModal {
               </th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody class="result"></tbody>
         </table>
         <strong class="profit-rate">당신의 총 수익률은 %입니다.</strong>
         <button class="restart-button typo-button">다시 시작하기</button>
@@ -45,6 +46,35 @@ class WinningStatModal {
       this.handleModalClose()
     );
     $('.restart-button').addEventListener('click', () => this.handleRestart());
+  }
+
+  renderResult(allLottosRank) {
+    $('.result').replaceChildren();
+    $('.result').insertAdjacentHTML(
+      'afterbegin',
+      this.createResultTemplate(allLottosRank)
+    );
+  }
+
+  createResultTemplate(allLottosRank) {
+    return allLottosRank
+      .slice(0, 5)
+      .map(
+        (rank, idx) => /* html */ `
+        <tr>
+          <td>${LOTTO_PRIZE[idx].CONDITION}</td>
+          <td>${LOTTO_PRIZE[idx].MONEY.toLocaleString('ko-KR')}원</td>
+          <td>${rank}개</td>
+        </tr>
+      `
+      )
+      .join('');
+  }
+
+  renderProfitRate(profitRate) {
+    $('.profit-rate').textContent = `당신의 총 수익률은 ${Number(
+      profitRate
+    ).toLocaleString('ko-KR')}% 입니다.`;
   }
 
   handleModalClose() {
