@@ -30,11 +30,13 @@ export default class StatisticsModal extends Component {
               <span class='lotto-store__prize-label'>당첨금</span>
               <span class='lotto-store__count-label'>당첨 갯수</span>
             </div>
-            <ul class='lotto-store__statistics'>${this.getStatisticsTemplate()}</ul>
+            <ul class='lotto-store__statistics'>
+              ${this.getStatisticsTemplate()}
+            </ul>
           </div>
-          <div class='lotto-store__earning-rate'>당신의 총 수익률은 ${
-            this.earningRate
-          }%입니다.</div>
+          <div class='lotto-store__earning-rate'>당신의 총 수익률은
+            ${this.earningRate}%입니다.
+          </div>
           <form class='lotto-store__statistics-dialog-retry-form' method="dialog">
             <button class='lotto-store__retry-btn'>다시 시작하기</button>
           </form>
