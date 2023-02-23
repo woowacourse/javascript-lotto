@@ -16,6 +16,7 @@ const domList = {
   ropText: $('.rop-text'),
   retryBtn: $('.retry-btn'),
   closeModalBtn: $('.close'),
+  allInputs: $$('input'),
 };
 
 export default domList;
