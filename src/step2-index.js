@@ -1,6 +1,6 @@
 import './style/reset.css';
 import './style/style.css';
-import Component from './Component.js';
+import Component from './view/components/Component.js';
 import { qs, component } from './utils/domHelper';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';

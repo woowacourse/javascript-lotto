@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import Validator from '../../validator/step2/index.js';
 import { getFields } from '../../utils/domHelper.js';
 import { LOTTO } from '../../constants/values.js';

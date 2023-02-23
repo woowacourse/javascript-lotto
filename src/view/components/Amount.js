@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import { LOTTO } from '../../constants/values.js';
 import { LottoStore } from '../../domain/Lotto.js';
 import { getFields } from '../../utils/domHelper.js';

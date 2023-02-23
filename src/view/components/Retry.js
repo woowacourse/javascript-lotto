@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import Inputs from '../../utils/Inputs.js';
 import { GAME } from '../../constants/values.js';
 

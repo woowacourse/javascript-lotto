@@ -1,4 +1,4 @@
-import Component from '../../Component.js';
+import Component from './Component.js';
 import { LottoStore } from '../../domain/Lotto.js';
 import parseStatistics from '../../utils/statistics.js';
 
