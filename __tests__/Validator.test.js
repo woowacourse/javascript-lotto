@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../src/constant/console/message';
+import { ERROR_MESSAGE } from '../src/constants/error';
 import {
   validatePurchaseAmount,
   validateLottoNumber,

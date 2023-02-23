@@ -1,5 +1,5 @@
-import ConsoleIO from '../../util/console/ConsoleIO';
-import { INPUT_MESSAGE } from '../../constant/console/message';
+import ConsoleIO from '../utils/ConsoleIO';
+import { INPUT_MESSAGE } from '../constants/message';
 
 const InputView = {
   readPurchaseAmount() {

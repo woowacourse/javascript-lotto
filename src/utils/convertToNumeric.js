@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constant/console/message';
+import { ERROR_MESSAGE } from '../constants/error';
 
 const isEmptyString = (targetString) => targetString === '';
 const isSpace = (character) => character === ' ';

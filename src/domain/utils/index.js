@@ -1,4 +1,4 @@
-import convertToNumeric from '../../util/convertToNumeric';
+import convertToNumeric from '../../utils/convertToNumeric';
 import { validateLottoNumber } from '../validator';
 
 export const convertToWinningNumber = (winningNumberInput) =>

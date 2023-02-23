@@ -1,16 +1,16 @@
-import LottoComparer from './domain/LottoComparer';
-import LottoMachine from './domain/LottoMachine';
-import WinningLotto from './domain/WinningLotto';
-import calculateProfitRate from './domain/calculateProfitRate';
-import * as LottoGameValidator from './domain/validator';
+import LottoComparer from '../../domain/LottoComparer';
+import LottoMachine from '../../domain/LottoMachine';
+import WinningLotto from '../../domain/WinningLotto';
+import calculateProfitRate from '../../domain/calculateProfitRate';
+import * as LottoGameValidator from '../../domain/validator';
 
-import InputView from './view/console/InputView';
-import OutputView from './view/console/OutputView';
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
+import ConsoleIO from '../utils/ConsoleIO';
 
-import { COMMAND } from './constant/setting';
-import ConsoleIO from './util/console/ConsoleIO';
-import convertToNumeric from './util/convertToNumeric';
-import { convertToWinningNumber } from './domain/util';
+import { convertToWinningNumber } from '../../domain/utils';
+import { COMMAND } from '../../constants/setting';
+import convertToNumeric from '../../utils/convertToNumeric';
 
 class LottoController {
   #lottoMachine;

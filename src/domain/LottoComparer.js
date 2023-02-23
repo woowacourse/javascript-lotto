@@ -1,4 +1,4 @@
-import { RANK, INIT_RANKING, RANK_MATCH } from '../constant/setting';
+import { RANK, INIT_RANKING, RANK_MATCH } from '../constants/setting';
 
 class LottoComparer {
   #winningLotto;

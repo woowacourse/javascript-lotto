@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../../constant/console/message';
-import { LOTTO } from '../../constant/setting';
+import { ERROR_MESSAGE } from '../../constants/error';
+import { LOTTO } from '../../constants/setting';
 
 const isLessThanMinimum = (purchaseAmount) => purchaseAmount < LOTTO.UNIT;
 const hasChange = (purchaseAmount) => purchaseAmount % LOTTO.UNIT !== 0;

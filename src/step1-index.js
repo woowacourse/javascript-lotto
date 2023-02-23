@@ -1,4 +1,4 @@
-import LottoController from './LottoController';
+import LottoController from './console/controller/LottoController';
 
 /**
  * step 1의 시작점이 되는 파일입니다.

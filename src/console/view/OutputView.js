@@ -1,9 +1,6 @@
-import {
-  OUTPUT_MESSAGE,
-  OUTPUT_MESSAGE_METHOD,
-  ERROR_MESSAGE,
-} from '../../constant/console/message';
-import ConsoleIO from '../../util/console/ConsoleIO';
+import { ERROR_MESSAGE } from '../../constants/error';
+import { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } from '../constants/message';
+import ConsoleIO from '../utils/ConsoleIO';
 
 const OutputView = {
   printEmptyLine() {

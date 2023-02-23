@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom';
-import { RANK } from '../../constant/setting';
+import { RANK } from '../../constants/setting';
 
 const closeButton = '<button type="button" id="modal-close-button" class="subtitle">X</button>';
 const resultTitle = '<h1 class="subtitle result-title">🏆 당첨 통계 🏆</h1>';

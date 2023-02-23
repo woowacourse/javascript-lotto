@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../../constant/console/message';
-import { LOTTO } from '../../constant/setting';
+import { ERROR_MESSAGE } from '../../constants/error';
+import { LOTTO } from '../../constants/setting';
 
 const isValidLength = (lottoNumbers) => lottoNumbers.length === LOTTO.SIZE;
 const hasDuplicatedNumber = (lottoNumbers) => lottoNumbers.length !== new Set(lottoNumbers).size;

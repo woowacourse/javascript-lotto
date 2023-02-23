@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../../constant/console/message';
-import { LOTTO } from '../../constant/setting';
+import { ERROR_MESSAGE } from '../../constants/error';
+import { LOTTO } from '../../constants/setting';
 
 const isOutOfRange = (lottoNumber) =>
   lottoNumber < LOTTO.MIN_NUMBER_RANGE || lottoNumber > LOTTO.MAX_NUMBER_RANGE;

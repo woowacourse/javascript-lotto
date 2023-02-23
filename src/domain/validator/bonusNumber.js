@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../../constant/console/message';
+import { ERROR_MESSAGE } from '../../constants/error';
 import validateLottoNumber from './lottoNumber';
 
 const isIncludeWinningNumber = (bonusNumber, winningNumber) => winningNumber.includes(bonusNumber);

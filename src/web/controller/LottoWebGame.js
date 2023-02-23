@@ -1,10 +1,10 @@
 import { $, $$ } from '../utils/dom';
 import * as LottoGameValidator from '../../domain/validator';
-import convertToNumeric from '../../util/convertToNumeric';
+import convertToNumeric from '../../utils/convertToNumeric';
 import LottoMachine from '../../domain/LottoMachine';
 import WinningLotto from '../../domain/WinningLotto';
 import LottoComparer from '../../domain/LottoComparer';
-import { convertToWinningNumber } from '../../domain/util';
+import { convertToWinningNumber } from '../../domain/utils';
 import ModalController from './ModalController';
 import calculateProfitRate from '../../domain/calculateProfitRate';
 import renderLottoListSection from '../view/LottoListView';

@@ -1,4 +1,4 @@
-import { RANK, LOTTO } from '../constant/setting';
+import { RANK, LOTTO } from '../constants/setting';
 
 const calculateTotalRewards = (ranking) =>
   Object.entries(ranking).reduce((acc, [rank, count]) => acc + RANK[rank].REWARDS * count, 0);

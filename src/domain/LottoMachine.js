@@ -1,5 +1,5 @@
-import { LOTTO } from '../constant/setting';
-import pickNumberInRange from '../util/pickNumberInRange';
+import { LOTTO } from '../constants/setting';
+import pickNumberInRange from '../utils/pickNumberInRange';
 
 class LottoMachine {
   #purchaseAmount;
