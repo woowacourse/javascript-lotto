@@ -5,22 +5,25 @@ export default class View {
   onClickPurchaseAmountSubmitButton(callback) {
     $('.purchase-amount-submit-button').addEventListener('click', (e) => {
       e.preventDefault();
-      callback();
+
+      const purchaseAmount = $('.purchase-amount-input').value;
+      callback(purchaseAmount);
     });
   }
 
   onClickWinningLottoSubmitButton(callback) {
     $('.winning-lotto-submit-button').addEventListener('click', (e) => {
       e.preventDefault();
-      callback();
-    });
-  }
 
-  onClickModalCloseButton() {
-    $('.modal-close-button').addEventListener('click', () => {
-      this.initStatistics();
-      this.enableElements($('.winning-lotto-submit-button'));
-      this.hideElements('.result-modal');
+      const $$winningNumberInputNodeList = $$('.winning-number-input');
+      const winningNumbers = Array.from($$winningNumberInputNodeList, (node) => {
+        return Number(node.value.trim());
+      });
+
+      const bonusNumberInput = $('.bonus-number-input').value;
+      const bonusNumber = Number(bonusNumberInput);
+
+      callback({ winningNumbers, bonusNumber });
     });
   }
 
@@ -44,6 +47,14 @@ export default class View {
       );
 
       this.hideElements('.result-modal', '.winning-lotto-form');
+    });
+  }
+
+  onClickModalCloseButton() {
+    $('.modal-close-button').addEventListener('click', () => {
+      this.initStatistics();
+      this.enableElements($('.winning-lotto-submit-button'));
+      this.hideElements('.result-modal');
     });
   }
 
