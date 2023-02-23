@@ -1,32 +1,37 @@
 /* eslint-disable */
 
-import ScoreBoard from '../src/domain/ScoreBoard.js';
+import ScoreBoard from '../src/js/domain/ScoreBoard.js';
 
-describe('로또 당첨 내역을 반환하는 기능 테스트', () => {
-  test('로또 당첨 순위가 주어지면 올바른 당첨 내역을 반환한다.', () => {
-    const scoreBoard = new ScoreBoard();
-    const ranks = [1, 3, 4, 5, 5, 5, 3, 5, 0, 2];
-
+describe('로또 당첨 내역 반환 테스트', () => {
+  test.each([
+    [[1, 3, 4, 5, 5, 5, 3, 5, 0, 2], { first: 1, second: 1, third: 2, fourth: 1, fifth: 4 }],
+    [
+      [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 0, 0, 0],
+      { first: 3, second: 3, third: 3, fourth: 3, fifth: 3 },
+    ],
+    [[0], { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 }],
+  ])(`로또 당첨 순위가 주어졌을 때, 올바른 당첨 내역을 반환해야 한다.`, (ranks, expectedBoard) => {
+    const scoreBoard = new ScoreBoard(ranks.length);
     ranks.forEach((rank) => scoreBoard.writeBoard(rank));
-    const testResult = scoreBoard.getBoard();
+    const resultBoard = scoreBoard.getBoard();
 
-    expect(testResult).toEqual({ first: 1, second: 1, third: 2, fourth: 1, fifth: 4 });
+    expect(resultBoard).toEqual(expectedBoard);
   });
+});
 
-  test('로또 당첨 순위가 주어지면 올바른 수익률을 반환한다.', () => {
-    const expectedPrice = 2_033_070_000;
-    const LOTTO_PRICE = 1_000;
-    const PERCENT = 100;
-
-    const lottoCount = 10;
-    const scoreBoard = new ScoreBoard(lottoCount);
-    const ranks = [1, 3, 4, 5, 5, 5, 3, 5, 0, 2];
-
-    const expectedRate = (expectedPrice / (lottoCount * LOTTO_PRICE)) * PERCENT;
-
+describe('순위 반환 테스트', () => {
+  test.each([
+    [[1, 3, 4, 5, 5, 5, 3, 5, 0, 2], 20_330_700],
+    [[1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 0, 0, 0], 33_859_250],
+    [[5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 45.45454545454545],
+    ,
+    [[0], 0],
+  ])('로또 당첨 순위가 주어지면 올바른 수익률을 반환해야 한다.', (ranks, expectedProfitRate) => {
+    const scoreBoard = new ScoreBoard(ranks.length);
     ranks.forEach((rank) => scoreBoard.writeBoard(rank));
-    const rate = scoreBoard.getProfitRate();
+    const resultRate = scoreBoard.getProfitRate();
+    console.log(resultRate);
 
-    expect(rate).toBe(expectedRate);
+    expect(resultRate).toBe(expectedProfitRate);
   });
 });

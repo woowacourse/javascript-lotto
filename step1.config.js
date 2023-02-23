@@ -1,15 +1,19 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import path from 'path';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
-module.exports = {
-  mode: "development",
-  entry: "./src/step1-index.js",
+const __dirname = path.resolve();
+
+export default {
+  mode: 'development',
+  entry: './src/step1-index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "step1-bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'step1-bundle.js',
+    libraryTarget: 'module',
+    chunkFormat: 'array-push',
   },
   resolve: {
-    extensions: [".js", ".mjs"],
+    extensions: ['.js', '.mjs'],
   },
   module: {
     rules: [
@@ -17,15 +21,18 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       },
     ],
   },
   plugins: [new CleanWebpackPlugin()],
-  devtool: "inline-source-map",
-  target: "node",
+  devtool: 'inline-source-map',
+  target: 'node',
+  experiments: {
+    outputModule: true,
+  },
 };

@@ -1,11 +1,11 @@
-import LottoGame from './domain/LottoGame.js';
-import validator from './domain/validator.js';
-import view from './view/index.js';
-import { FORMATTING_TYPE, MESSAGE } from './constants/index.js';
+import LottoGame from '../domain/LottoGame.js';
+import Validator from '../domain/Validator.js';
+import view from '../view/console/index.js';
+import { FORMATTING_TYPE, QUESTION, PROJECT_MODE } from '../constants/index.js';
 
-class LottoController {
+class ConsoleLottoController {
   #lottoGame;
-
+  #validator = new Validator(PROJECT_MODE.CONSOLE);
   #commandHandler = Object.freeze({
     y: this.startGame.bind(this),
     n: this.#exitGame.bind(this),
@@ -17,8 +17,8 @@ class LottoController {
 
   async #inputBudget() {
     try {
-      const budget = await view.input(MESSAGE.ASK_BUDGET);
-      validator.throwErrorIfInvalidBudget(budget);
+      const budget = await view.input(QUESTION.BUDGET);
+      this.#validator.throwErrorIfInvalidBudget(budget);
       this.#lottoGame = new LottoGame(budget);
     } catch ({ message }) {
       view.output(message);
@@ -36,7 +36,7 @@ class LottoController {
 
   async #inputLottoValues() {
     const winningLotto = await this.#inputWinningLotto();
-    const bonusNumber = await this.#inputBonusNumber();
+    const bonusNumber = await this.#inputBonusNumber(winningLotto);
 
     const formattedWinningLotto = winningLotto.split(',').map(Number);
     const formattedBonusNumber = Number(bonusNumber);
@@ -46,8 +46,8 @@ class LottoController {
 
   async #inputWinningLotto() {
     try {
-      const winningLotto = await view.input(MESSAGE.ASK_WINNING_LOTTO);
-      validator.throwErrorIfInvalidWinningNumbers(winningLotto);
+      const winningLotto = await view.input(QUESTION.WINNING_LOTTO);
+      this.#validator.throwErrorIfInvalidWinningLotto(winningLotto);
       return winningLotto;
     } catch ({ message }) {
       view.output(message);
@@ -55,14 +55,14 @@ class LottoController {
     }
   }
 
-  async #inputBonusNumber() {
+  async #inputBonusNumber(winningLotto) {
     try {
-      const bonusNumber = await view.input(MESSAGE.ASK_BONUS_NUMBER);
-      validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      const bonusNumber = await view.input(QUESTION.BONUS_NUMBER);
+      this.#validator.throwErrorIfInvalidBonusNumber(winningLotto, Number(bonusNumber));
       return bonusNumber;
     } catch ({ message }) {
       view.output(message);
-      return this.#inputBonusNumber();
+      return this.#inputBonusNumber(winningLotto);
     }
   }
 
@@ -81,7 +81,7 @@ class LottoController {
   }
 
   async #askRestart() {
-    const userCommand = await view.input(MESSAGE.ASK_RESTART);
+    const userCommand = await view.input(QUESTION.RESTART);
     this.#commandHandler[userCommand]();
   }
 
@@ -90,4 +90,4 @@ class LottoController {
   }
 }
 
-export default LottoController;
+export default ConsoleLottoController;

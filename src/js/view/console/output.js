@@ -1,5 +1,4 @@
-import Trimmer from '../util/Trimmer.js';
-import { FORMATTING_TYPE, GAME_VALUE, MESSAGE } from '../constants/index.js';
+import { FORMATTING_TYPE, MESSAGE } from '../../constants/index.js';
 
 const output = (data, formattingType = '') => {
   if (formattingType === '') {

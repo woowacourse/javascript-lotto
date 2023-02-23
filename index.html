@@ -9,8 +9,153 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="app-header">
+        <h1 class="app-title">🎱 행운의 로또</h1>
+      </header>
+
+      <div class="app-body">
+        <div class="app-screen">
+          <h2 class="app-screen-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+          <div class="budget-input-menu">
+            <label for="budgetInput">
+              <span class="app-information-text">구입할 금액을 입력해주세요.</span>
+            </label>
+            <form class="budget-input-form" id="budgetInputForm">
+              <input
+                type="number"
+                class="app-input budget-input"
+                id="budgetInput"
+                name="budget"
+                placeholder="금액"
+                required
+              />
+              <button class="app-button buy-button" id="buyButton">구입</button>
+            </form>
+            <div class="error-message-area" id="buyErrorArea"></div>
+          </div>
+
+          <div class="purchased-lotto-menu">
+            <span class="app-information-text" id="purchasedLottoCount"></span>
+            <div class="purchased-lotto-list" id="purchasedLottoList"></div>
+          </div>
+
+          <div class="winning-lotto-input-menu hidden" id="winningLottoInputMenu">
+            <span class="app-information-text">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </span>
+            <form class="winning-lotto-input-form" id="winningLottoInputForm">
+              <div class="winning-lotto-bonus-number-text">
+                <label for="firstNumberInput">
+                  <span class="app-information-text">당첨 번호</span>
+                </label>
+                <label for="bonusNumberInput">
+                  <span class="app-information-text">보너스 번호</span>
+                </label>
+              </div>
+
+              <div class="winning-numbers-input">
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-1"
+                  id="firstNumberInput"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-2"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-3"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-4"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-5"
+                  required
+                />
+                <input
+                  class="winning-number-input app-input"
+                  type="number"
+                  name="number-6"
+                  required
+                />
+                <input
+                  class="bonus-number-input app-input"
+                  id="bonusNumberInput"
+                  type="number"
+                  name="bonus-number"
+                  required
+                />
+              </div>
+
+              <div class="error-message-area" id="winningNumbersErrorArea"></div>
+              <button class="app-button result-button" id="resultButton">결과 확인하기</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-modal hidden" id="resultModal">
+        <div class="modal-background" id="modalBackground"></div>
+        <div class="modal-menu">
+          <span class="modal-title"> 🏆 당첨 통계 🏆 </span>
+          <div class="modal-close" id="modalCloseButton">
+            <span class="modal-close-frag"></span>
+            <span class="modal-close-frag"></span>
+          </div>
+          <table class="modal-table">
+            <th width="93px">일치 갯수</th>
+            <th width="157px">당첨금</th>
+            <th width="61px">당첨 횟수</th>
+            <tr>
+              <td>3개</td>
+              <td id="fifthPrizeMoney">?</td>
+              <td id="fifthPrizeCount">?개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td id="fourthPrizeMoney">?</td>
+              <td id="fourthPrizeCount">?개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td id="thirdPrizeMoney">?</td>
+              <td id="thirdPrizeCount">?개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td id="secondPrizeMoney">?</td>
+              <td id="secondPrizeCount">?개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td id="firstPrizeMoney">?</td>
+              <td id="firstPrizeCount">?개</td>
+            </tr>
+          </table>
+          <span class="app-information-text modal-rate" id="rateResult">
+            당신의 총 수익률은 ? %입니다.
+          </span>
+          <button class="app-button restart-button" id="restartButton">다시 시작하기</button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+
+    <footer class="app-footer">
+      <div class="copyright">Copyright 2023. woowacourse</div>
+    </footer>
   </body>
 </html>

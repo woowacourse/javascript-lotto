@@ -1,4 +1,4 @@
-import readlineInterface from '../util/readlineInterface.js';
+import readlineInterface from '../../util/console/readlineInterface.js';
 
 const input = (message) => {
   return new Promise((resolve) => {

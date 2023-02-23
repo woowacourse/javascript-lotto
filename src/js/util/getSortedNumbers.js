@@ -1,4 +1,7 @@
-import { SORT_TYPE } from './constants.js';
+const SORT_TYPE = Object.freeze({
+  INCREASING: 'ASC',
+  DECREASING: 'DESC',
+});
 
 const getSortedNumbers = (numbers, orderType) => {
   const copiedNumbers = numbers.slice();
