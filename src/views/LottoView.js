@@ -11,6 +11,7 @@ const lottoView = {
       const buyMoney = Number(buyMoneyInput.value);
 
       onClickBuyButton(buyMoney);
+      buyMoneyInput.value = null;
     });
   },
 
