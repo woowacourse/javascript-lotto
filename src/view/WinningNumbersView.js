@@ -1,9 +1,19 @@
 import { PROFIT_PER_RANK } from '../js/constants/constants';
-import { exceptionHandler, showStatistics } from '../js/utils/index';
 import validator from '../domain/validation/validator';
 import WINNING_NUMBERS_FORM from './components/WinningNumbersForm';
 
 export default class WinningNumbersView {
+  constructor() {
+    this.form = undefined;
+    this.number1 = undefined;
+    this.number2 = undefined;
+    this.number3 = undefined;
+    this.number4 = undefined;
+    this.number5 = undefined;
+    this.number6 = undefined;
+    this.bonusNumber = undefined;
+  }
+
   render() {
     const winningLottoSection = document.getElementById('winning-lotto');
     winningLottoSection.innerHTML = WINNING_NUMBERS_FORM;
@@ -36,9 +46,10 @@ export default class WinningNumbersView {
       const winningNumbers = this.winnningNumbers.map(Number);
       const bonusNumber = Number(this.bonusNumber.value);
       try {
-        // validator.winningNumbers(winningNumbers);
-        // validator.bonusNumber(winningNumbers, bonusNumber);
+        validator.winningNumbers(winningNumbers);
+        validator.bonusNumber(winningNumbers, bonusNumber);
         submitHandler(winningNumbers, bonusNumber);
+        this.resetInputValue();
       } catch (error) {
         this.resetInputValue();
         alert(error);

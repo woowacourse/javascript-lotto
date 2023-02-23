@@ -1,11 +1,11 @@
 import Lottos from '../../domain/model/Lottos';
 import WinningNumbers from '../../domain/model/WinningNumbers';
-import { bonusNumber, winningNumbers } from '../../domain/validation/validator';
 // const validator = require('../../domain/validation/validator');
 // const inputView = require('../../view/inputView');
 // const outputView = require('../../view/outputView');
 import PurchasePriceView from '../../view/PurchasePriceView';
 import WinningNumbersView from '../../view/WinningNumbersView';
+import GameResultView from '../../view/GameResultView';
 
 const {
   PRICE_UNIT,
@@ -23,6 +23,7 @@ export default class LottoGameController {
     this.view = {
       purchasePriceView: new PurchasePriceView(),
       winningNumbersView: new WinningNumbersView(),
+      gameResultView: new GameResultView(),
     };
     this.setEventHandler();
   }
@@ -59,12 +60,40 @@ export default class LottoGameController {
   }
 
   onWinningNumbersSubmitHandler(winningNumbersInput, bonusNumberInput) {
-    // console.log(winningNumbersInput, bonusNumberInput);
     this.model.winningNumbers = new WinningNumbers(
       winningNumbersInput,
       bonusNumberInput
     );
-    console.log(this.model.winningNumbers);
+    this.showGameResult();
+  }
+
+  showGameResult() {
+    this.calculateRanks();
+    const ranks = this.model.lottos.getAllRanks();
+    const profitRate = this.model.lottos.getProfitRate();
+    this.view.gameResultView.render(ranks, profitRate);
+    this.setEvent3Handler();
+  }
+
+  calculateRanks() {
+    this.model.lottos.calculateAllRanks(
+      this.model.winningNumbers.getWinningNumbers(),
+      this.model.winningNumbers.getBonusNumber()
+    );
+  }
+
+  setEvent3Handler() {
+    this.view.gameResultView.addClickEvent(
+      this.onRestartCommandClickHandler.bind(this)
+    );
+  }
+
+  onRestartCommandClickHandler() {
+    this.model.lottos = null;
+    this.model.winningNumbers = null;
+    // console.log('clicked');
+    window.location.reload();
+    this.setEventHandler();
   }
 
   /*
