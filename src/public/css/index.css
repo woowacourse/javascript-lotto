@@ -4,6 +4,7 @@
 }
 #app {
   height: 100vh;
+  z-index: 0;
 }
 
 header h1 {
@@ -31,7 +32,22 @@ main {
   padding: 2%;
 }
 
+.disabled {
+  position: absolute;
+  background-color: #989898de;
+  width: 100%;
+  height: 100%;
+}
+
+.disabled-false {
+  position: absolute;
+  background-color: #989898de;
+  width: 100%;
+  height: 100%;
+}
+
 .section-split-main h2 {
+  margin-top: 40px;
   text-align: center;
   width: 382px;
   height: 36px;
@@ -121,6 +137,10 @@ section {
   border: 1px solid #b4b4b4;
 }
 
+.purchase-button:disabled {
+  background-color: #989898de;
+}
+
 .purchased-lotto-amount {
   font-family: 'Roboto';
   font-style: normal;
@@ -141,10 +161,11 @@ section {
 }
 
 .get-result {
-  margin-top: 2vh;
+  margin-top: 27px;
 }
 
 .get-all-lotto-numbers {
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
 }
@@ -164,6 +185,10 @@ input::-webkit-inner-spin-button {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+}
+
+.buy-lotto-list {
+  margin-bottom: 24px;
 }
 
 .get-all-lotto-numbers input {
@@ -191,16 +216,17 @@ header h1 {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
-  z-index: 1;
+  position: absolute;
   width: 350px;
   height: 500px;
   background-color: #ffffff;
-  top: 19%;
-  left: 37.5%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   border: 1px solid #000000;
-  z-index: 1;
+  z-index: 300;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
 }
 
 .modal-view h2 {

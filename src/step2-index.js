@@ -6,7 +6,6 @@ import Header from './view/Header';
 import Footer from './view/Footer';
 import Section from './view/Section';
 
-const app = document.querySelector('#app');
 const header = document.querySelector('header');
 const section = document.querySelector('section');
 const footer = document.querySelector('footer');
@@ -18,10 +17,3 @@ const renderFooter = new Footer();
 renderHeader.render(header);
 renderSection.render(section);
 renderFooter.render(footer);
-
-// if (document.querySelector('.restart-button')) {
-//   document.querySelector('.restart-button').addEventListener('click', (e) => {
-//     e.preventDefault();
-//     console.log('asfsadfadfs');
-//   });
-// }
