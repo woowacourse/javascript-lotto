@@ -19,16 +19,6 @@ class LottoWebController {
     selectDom('.restartButton').addEventListener('click', this.#restart);
   }
 
-  #isError(validator, value) {
-    try {
-      validator(value);
-      return false;
-    } catch (e) {
-      window.alert(e.message);
-      return true;
-    }
-  }
-
   #purchase = (e) => {
     e.preventDefault();
 
@@ -58,9 +48,7 @@ class LottoWebController {
 
     const matchResult = this.#calculateMatching();
     const benefit = this.#calculateBenefit(matchResult);
-    selectAllDom('.winningCount').forEach((count, index) => {
-      count.innerText = `${matchResult[4 - index]}개`;
-    });
+    selectAllDom('.winningCount').forEach((count, index) => (count.innerText = `${matchResult[4 - index]}개`));
     selectDom('.resultExplain').innerText = `당신의 총 수익률은 ${benefit}%입니다.`;
 
     return selectDom('.modal').showModal();
@@ -112,6 +100,16 @@ class LottoWebController {
   #toggleLottoIssue(state) {
     selectDom('.lottoIssueView').style.visibility = state;
     selectDom('.lottoResultView').style.visibility = state;
+  }
+
+  #isError(validator, value) {
+    try {
+      validator(value);
+      return false;
+    } catch (e) {
+      window.alert(e.message);
+      return true;
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import { COMMAND, LOTTO } from '../constants/index.js';
+import { COMMAND } from '../constants/index.js';
 
 const InputValidator = {
   checkNaturalNumber(input) {
