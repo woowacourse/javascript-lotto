@@ -7,11 +7,11 @@ import LottoComparer from './domain/LottoComparer';
 import LottoListView from './view/web/LottoListView';
 import { convertToWinningNumber } from './domain/util';
 import ModalController from './ModalController';
+import calculateProfitRate from './domain/calculateProfitRate';
+import LottoResultModalView from './view/web/LottoResultModalView';
 
 class LottoWebGame {
   #lottos;
-
-  #ranking;
 
   #modal;
 
@@ -54,8 +54,10 @@ class LottoWebGame {
       LottoGameValidator.validateBonusNumber(bonusNumber, winningNumber);
 
       const winningLotto = new WinningLotto(winningNumber, bonusNumber);
-      this.#ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
+      const ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
+      const profitRate = calculateProfitRate(ranking, this.#lottos.length);
 
+      LottoResultModalView.render(ranking, profitRate);
       this.#modal.showModal();
     } catch (error) {
       alert(error.message);
