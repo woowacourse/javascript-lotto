@@ -37,7 +37,7 @@ const ViewUtils = {
 
   resetInnerHTML(element) {
     element.innerHTML = '';
-  }
+  },
 };
 
 export default ViewUtils;
