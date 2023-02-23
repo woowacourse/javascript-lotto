@@ -1,7 +1,7 @@
 import { $ } from '../dom/dom';
 import renderPurchasedLotto from './renderPurcahsedLotto';
 import renderStatistics from './renderStatistics';
-import renderWinningForm from './renderWinningForm';
+import renderWinningLottoForm from './renderWinningLottoForm';
 import renderRestart from './restart';
 
 const render = {
@@ -9,7 +9,7 @@ const render = {
     renderPurchasedLotto(lottos);
   },
 
-  winningForm: () => renderWinningForm(),
+  winningLottoForm: () => renderWinningLottoForm(),
 
   statistics: (rankings, rewardRate) => renderStatistics(rankings, rewardRate),
 

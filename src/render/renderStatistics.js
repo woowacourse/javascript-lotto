@@ -3,13 +3,14 @@ import { $ } from '../dom/dom';
 const renderStatistics = (rankings, rewardRate) => {
   $('.winning-statistics').classList.remove('hidden');
 
-  const array = [
+  const lottoRewards = [
     [5, '3개', '5,000'],
     [4, '4개', '50,000'],
     [3, '5개', '1,500,000'],
     [2, '5개+보너스볼', '30,000,000'],
     [1, '6개', '2,000,000,000'],
   ];
+
   $('.winning-statistics').innerHTML = `
   <div id="winning-statistics-layout">
     <div id="winning-statistics-out-button">ｘ</div>
@@ -18,7 +19,7 @@ const renderStatistics = (rankings, rewardRate) => {
       <th>일치 갯수</th>
 	    <th>당첨금</th>
 	    <th>당첨 갯수</th>
-        ${array
+        ${lottoRewards
           .map(([rank, matchCount, reward]) => {
             const count = rankings.filter((ranking) => ranking === rank).length;
             return `
