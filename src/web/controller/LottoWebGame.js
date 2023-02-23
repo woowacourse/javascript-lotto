@@ -7,8 +7,9 @@ import LottoComparer from '../../domain/LottoComparer';
 import { convertToWinningNumber } from '../../domain/utils';
 import ModalController from './ModalController';
 import calculateProfitRate from '../../domain/calculateProfitRate';
-import renderLottoListSection from '../view/LottoListView';
+
 import renderLottoResultModal from '../view/LottoResultModalView';
+import renderLottoListSection from '../view/LottoListView';
 
 class LottoWebGame {
   #lottos;
@@ -25,6 +26,9 @@ class LottoWebGame {
     this.#modal.reset();
     $('#purchase-amount-input').value = '';
     $('#purchase-lotto-list-section').innerHTML = '';
+    [...$$('.winning-number-input')].forEach((element) => {
+      element.value = '';
+    });
     $('#winning-lotto-form-section').classList.add('hidden');
   }
 
