@@ -1,4 +1,4 @@
-const Lotto = require("../src/domain/Lotto");
+import Lotto from "../src/domain/Lotto";
 
 describe("복권이 당첨번호, 보너스번호와 일치하는지 테스트", () => {
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);

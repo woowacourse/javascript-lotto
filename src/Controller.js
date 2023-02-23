@@ -1,6 +1,6 @@
-// const InputView = require("./view/InputView");
-// const OutputView = require("./view/OutputView");
-// const LottoGame = require("./domain/LottoGame");
+import LottoGame from "./domain/LottoGame";
+import InputView from "./view/console/InputView";
+import OutputView from "./view/console/OutputView";
 import Validation from "./Validation";
 import { COMMAND } from "./constants";
 
