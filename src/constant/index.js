@@ -36,30 +36,35 @@ const RANK_INFORMATIONS = [
     reward: 2_000_000_000,
     matchedCount: 6,
     isBonus: false,
+    matched: '6개',
   },
   {
     rank: 2,
     reward: 30_000_000,
     matchedCount: 5,
     isBonus: true,
+    matched: '5개+보너스볼',
   },
   {
     rank: 3,
     reward: 1_500_000,
     matchedCount: 5,
     isBonus: false,
+    matched: '5개',
   },
   {
     rank: 4,
     reward: 50_000,
     matchedCount: 4,
     isBonus: false,
+    matched: '4개',
   },
   {
     rank: 5,
     reward: 5_000,
     matchedCount: 3,
     isBonus: false,
+    matched: '3개',
   },
 ];
 
