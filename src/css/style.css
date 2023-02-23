@@ -72,3 +72,66 @@ label {
   background: #4e5ba6;
   border-radius: 4px;
 }
+
+#modal-section {
+  /* Rectangle 34 */
+
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  left: 0px;
+  top: 0px;
+
+  /* lotto-greyscale-1 */
+
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+#modal-title {
+  /* text/subtitle */
+
+  position: absolute;
+  width: 318px;
+  height: 24px;
+  left: 16px;
+  top: 41px;
+}
+
+#modal-table {
+  position: absolute;
+  width: 319px;
+  height: 247px;
+  left: 16px;
+  top: 97px;
+}
+
+#modal-profit {
+  position: absolute;
+  width: 318px;
+  height: 24px;
+  left: 16px;
+  top: 376px;
+}
+
+#modal-btn {
+  /* button */
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}

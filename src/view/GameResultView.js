@@ -12,6 +12,7 @@ import {
   MODAL_SPAN_PROFIT,
   MODAL_RESTART_BUTTON,
   MODAL_TITLE,
+  MODAL_CLOSE_BUTTON,
 } from './components/StatisticsModal';
 
 import validator from '../domain/validation/validator';
@@ -23,6 +24,7 @@ export default class GameResultView {
     gameResultSection.setAttribute('id', 'modal-section');
 
     gameResultSection.appendChild(MODAL_TITLE);
+    gameResultSection.appendChild(MODAL_CLOSE_BUTTON);
 
     const statisticsTable = this.renderTable(ranks);
     console.log(statisticsTable);
@@ -40,7 +42,6 @@ export default class GameResultView {
     const modalTable = document.createElement('table');
     modalTable.setAttribute('id', 'modal-table');
     modalTable.innerHTML = MODAL_TABLE_HEADER;
-
     const modalTableBody = document.createElement('tbody');
 
     ranks.forEach((lottoCount, index, origin) => {
@@ -88,8 +89,17 @@ export default class GameResultView {
     });
   }
 
+  addCloseClickEvent(clickHandler) {
+    this.button = document.getElementById('modal-close-btn');
+    this.button.addEventListener('click', (e) => {
+      e.preventDefault();
+      clickHandler();
+    });
+  }
+
   close() {
+    const lottoGameDiv = document.getElementById('lotto-game');
     const gameResultSection = document.getElementById('modal-section');
-    gameResultSection.innerHTML = '';
+    lottoGameDiv.removeChild(gameResultSection);
   }
 }

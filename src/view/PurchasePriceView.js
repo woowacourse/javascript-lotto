@@ -27,8 +27,9 @@ export default class PurchasePriceView {
     const msg = CONSOLE_MESSAGE.showLottoCount(lottoCount);
     const msgDiv = document.getElementById('price-result');
     msgDiv.innerHTML = `<span>${msg}</span>`;
+    const lottosDiv = document.getElementById('lottos');
+
     lottos.forEach((lotto) => {
-      const lottosDiv = document.getElementById('lottos');
       const lottoDiv = document.createElement('div');
       lottoDiv.innerHTML = `<span>[${lotto.getNumbers().join(', ')}]</span>`;
       lottosDiv.appendChild(lottoDiv);
@@ -38,5 +39,12 @@ export default class PurchasePriceView {
 
   resetInputValue() {
     this.input.value = '';
+  }
+
+  resetPurchaseResult() {
+    const msgDiv = document.getElementById('price-result');
+    msgDiv.innerHTML = '';
+    const lottosDiv = document.getElementById('lottos');
+    lottosDiv.innerHTML = '';
   }
 }

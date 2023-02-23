@@ -73,6 +73,7 @@ export default class LottoGameController {
     const profitRate = this.model.lottos.getProfitRate();
     this.view.gameResultView.render(ranks, profitRate);
     this.setEvent3Handler();
+    this.setEvent4Handler();
   }
 
   calculateRanks() {
@@ -92,10 +93,22 @@ export default class LottoGameController {
     this.model.lottos = null;
     this.model.winningNumbers = null;
     // console.log('clicked');
-    window.location.reload();
-    this.setEventHandler();
+    this.view.gameResultView.close();
+    this.view.purchasePriceView.resetPurchaseResult();
+    this.view.winningNumbersView.removeWinningNumbersForm();
   }
 
+  setEvent4Handler() {
+    this.view.gameResultView.addCloseClickEvent(
+      this.onModalCloseClickHandler.bind(this)
+    );
+  }
+
+  onModalCloseClickHandler() {
+    this.view.gameResultView.close();
+    // console.log('clicked');
+    // window.location.reload();
+  }
   /*
   inputPurchasePrice() {
     inputView.readPurchasePrice((purchasePriceInput) => {

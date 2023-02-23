@@ -3,17 +3,6 @@ import validator from '../domain/validation/validator';
 import WINNING_NUMBERS_FORM from './components/WinningNumbersForm';
 
 export default class WinningNumbersView {
-  constructor() {
-    this.form = undefined;
-    this.number1 = undefined;
-    this.number2 = undefined;
-    this.number3 = undefined;
-    this.number4 = undefined;
-    this.number5 = undefined;
-    this.number6 = undefined;
-    this.bonusNumber = undefined;
-  }
-
   render() {
     const winningLottoSection = document.getElementById('winning-lotto');
     winningLottoSection.innerHTML = WINNING_NUMBERS_FORM;
@@ -65,5 +54,10 @@ export default class WinningNumbersView {
     this.number5.value = '';
     this.number6.value = '';
     this.bonusNumber.value = '';
+  }
+
+  removeWinningNumbersForm() {
+    const WinningNumbersSection = document.getElementById('winning-lotto');
+    WinningNumbersSection.innerHTML = '';
   }
 }
