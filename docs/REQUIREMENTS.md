@@ -150,4 +150,20 @@
 
 ## javascript
 
-- 구입금액을 저장한다.
+1. step2-index.js
+
+- event
+
+  1. 구입 버튼 클릭
+  2. 결과 확인 버틑 클릭
+  3. 다시 시작 버튼 클릭
+  4. X 버튼 클릭
+
+- 구입금액 입력값을 lottoMachine에 저장한다. (saveMoney())
+- 당첨 번호와 보너스 번호의 입력값을 lottoMachine에 저장한다. (saveWinning())
+
+- 생성된 로또들과 당첨 번호를 입력받는 부분을 렌더링한다. (renderLottoContent())
+- 당첨번호 input tag들을 렌더링한다. (renderWinningNumebersInput())
+- 당첨결과를 렌더링한다. (renderResult())
+
+- 당첨번호 입력값인 6개의 숫자들을 반환한다. (getWinningNumbersInput())
