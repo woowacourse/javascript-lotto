@@ -19,6 +19,7 @@ export default class LottoController {
 
   purchaseLotto(e) {
     const moneyInput = $('.money-input').value;
+    $('.lottos').innerHTML = ``;
     e.preventDefault();
     try {
       Validator.purchaseAmount(moneyInput);
