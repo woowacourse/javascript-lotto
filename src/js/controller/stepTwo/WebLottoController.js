@@ -38,6 +38,13 @@ class WebLottoController {
       }
     });
   }
+
+  closeModal() {
+    domList.closeModalBtn.addEventListener('click', event => {
+      event.stopImmediatePropagation();
+      ui.closeModal();
+    });
+  }
 }
 
 export default WebLottoController;

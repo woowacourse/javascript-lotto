@@ -32,6 +32,11 @@ const ui = {
       domList.lottoBox.appendChild(lottoElement);
     });
   },
+
+  closeModal() {
+    console.log('restart');
+    domList.resultModal.style.display = 'none';
+  },
 };
 
 export default ui;
