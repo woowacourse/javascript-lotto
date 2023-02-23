@@ -1,4 +1,5 @@
 {
+  "homepage": "https://kyw0716.github.io/javascript-lotto-1/",
   "name": "javascript-lotto",
   "version": "1.0.0",
   "description": "우아한테크코스 웹 프론트엔드 레벨1 로또 미션",
@@ -8,7 +9,9 @@
     "build-step1": "webpack --config step1.config.js",
     "build-step2": "webpack --mode production --config step2.config.js",
     "start-step1": "npm run build-step1 && node dist/step1-bundle.js",
-    "start-step2": "webpack serve --open --config step2.config.js"
+    "start-step2": "webpack serve --open --config step2.config.js",
+    "predeploy": "webpack --mode production --config step2.config.js",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -38,5 +41,8 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "dependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
