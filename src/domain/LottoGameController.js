@@ -1,7 +1,9 @@
-import Validation from './Vaildation.js';
 import LottoGame from './LottoGame.js';
-import { LOTTO_CONDITION } from '../constants/condition.js';
 import PurchaseView from '../view/PurchaseView.js';
+import LottoListView from '../view/LottoListView.js';
+import WinningNumbersView from '../view/WinningNumbersView.js';
+import Validation from './Vaildation.js';
+import { LOTTO_CONDITION } from '../constants/condition.js';
 
 export default class LottoGameController {
   #lottoGame;
@@ -9,11 +11,16 @@ export default class LottoGameController {
   constructor() {
     this.#lottoGame = new LottoGame();
     this.purchaseView = new PurchaseView();
+    this.lottoListView = new LottoListView();
+    this.winningNumbersView = new WinningNumbersView();
   }
 
   listenViewEvents() {
     this.purchaseView.$purchaseAmountForm.addEventListener('purchase', (e) =>
       this.#getPurchaseAmount(e.detail)
+    );
+    this.winningNumbersView.$winningLottoForm.addEventListener('check', (e) =>
+      this.#getWinningLottos(e.detail.winningNumbers, e.detail.bonusNumber)
     );
   }
 
@@ -32,8 +39,9 @@ export default class LottoGameController {
 
         this.#lottoGame.makeLotto(lottoNumbers);
 
-        return;
+        return lottoNumbers;
       });
+
       this.#onValidPurchaseAmount(lottoQuantity, eachLottoNumbers);
 
       return;
@@ -59,5 +67,33 @@ export default class LottoGameController {
     this.purchaseView.printErrorMessage(message);
     this.purchaseView.reloadView();
     this.winningNumbersView.disableResultButton();
+  }
+
+  #getWinningLottos(winningNumbers, bonusNumber) {
+    this.#compareLotto(winningNumbers, bonusNumber);
+  }
+
+  #compareLotto(winningNumbers, bonusNumber) {
+    try {
+      Validation.validateWinningNumbers(winningNumbers);
+      Validation.validateBonusNumber(bonusNumber, winningNumbers);
+
+      const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
+      const statistics = this.#lottoGame.getStatistics(eachCompareResult);
+      const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);
+      const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
+
+      console.log(totalPrizeMoney, yieldRatio);
+
+      return;
+    } catch (error) {
+      if (error instanceof Error) {
+        window.alert(error.message);
+        this.winningNumbersView.reloadView();
+      }
+
+      window.alert(error);
+      return;
+    }
   }
 }
