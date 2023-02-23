@@ -1,0 +1,269 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  color: #ffffff;
+  background-color: #4e5ba6;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 84px auto, 84px, auto;
+}
+
+button {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: #4e5ba6;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  padding: 6px 6px 6px 8px;
+}
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.lotto-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.lotto-body {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.lotto-caption {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.lotto-header {
+  display: inline-block;
+  padding: 14px 0px 14px 130px;
+}
+
+.lotto-card {
+  width: 27rem;
+  height: 40rem;
+  padding: 52px 16px 32px 16px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  background-color: #ffffff;
+}
+
+.lotto-card h2 {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.lotto-detail {
+  margin-bottom: 24px;
+}
+
+.lotto-detail label {
+  margin-bottom: 8px;
+}
+
+.footer {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  color: #4e5ba6;
+  border-top: solid 1px #4e5ba6;
+}
+
+.winning-numbers-form > p {
+  margin-bottom: 12px;
+}
+
+.winning-numbers {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 27px;
+}
+
+.winning-numbers input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.lucky-numbers p {
+  margin-bottom: 8px;
+}
+
+.bonus-number p {
+  margin-bottom: 8px;
+}
+
+.bonus-number input {
+  float: right;
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+#buy-money {
+  width: 310px;
+  height: 36px;
+  margin-bottom: 28px;
+
+  padding: 8px 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#buy-button {
+  width: 56px;
+  height: 36px;
+}
+
+#lotto-list-container {
+  list-style: none;
+  height: 200px;
+  margin: 0;
+}
+
+#lotto-list-container li {
+  line-height: 36px;
+}
+
+#show-result-button {
+  width: 382px;
+  height: 36px;
+}
+
+#lotto-modal {
+  position: absolute;
+  padding: 40px 15px 32px 15px;
+  border-radius: 4px;
+  z-index: 2;
+
+  background-color: #ffffff;
+}
+
+#lotto-modal h2 {
+  text-align: center;
+  margin-bottom: 33px;
+
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+#modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+
+  width: 16px;
+  height: 16px;
+
+  cursor: pointer;
+}
+
+#result-table {
+  margin: 0px 15px 32px 15px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 42.5px;
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#result-table th {
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 3px 0px;
+}
+
+#result-table td {
+  font-weight: 400;
+  padding: 0px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#lotto-modal label {
+  display: block;
+
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  margin-bottom: 32px;
+}
+
+#restart-button {
+  padding: 6px 6px 6px 8px;
+  width: 100%;
+  height: 2.3rem;
+  background: #4e5ba6;
+  border-radius: 4px;
+  margin: 0px auto, 32px, auto;
+}
