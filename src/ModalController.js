@@ -17,10 +17,10 @@ class ModalController {
   }
 
   onCloseModal(event) {
-    if (this.#isCloseEventId(event.target.id)) {
-      this.modal.innerHTML = '';
-      this.background.classList.add('hidden');
-    }
+    if (!this.#isCloseEventId(event.target.id)) return;
+
+    this.modal.innerHTML = '';
+    this.background.classList.add('hidden');
   }
 
   #isCloseEventId(id) {

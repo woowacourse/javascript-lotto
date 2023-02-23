@@ -21,9 +21,17 @@ class LottoWebGame {
     this.bindEventListeners();
   }
 
+  init() {
+    $('#modal-background').classList.add('hidden');
+    $('#purchase-amount-input').value = '';
+    $('#purchase-lotto-list-section').innerHTML = '';
+    $('#winning-lotto-form-section').classList.add('hidden');
+  }
+
   bindEventListeners() {
     $('.purchase-amount-form').addEventListener('submit', this.onSubmitPurchaseButton.bind(this));
     $('#result-button').addEventListener('click', this.onClickResultButton.bind(this));
+    $('#modal').addEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   onSubmitPurchaseButton(e) {
@@ -61,6 +69,12 @@ class LottoWebGame {
       renderLottoResultModal(ranking, profitRate);
     } catch (error) {
       alert(error.message);
+    }
+  }
+
+  onClickRestartButton(e) {
+    if (e.target.id === 'restart-button') {
+      this.init();
     }
   }
 }
