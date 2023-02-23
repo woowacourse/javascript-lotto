@@ -1,6 +1,6 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import Validation from '../domain/Vaildation.js';
+import Validation from '../domain/Validation.js';
 import LottoGame from '../domain/LottoGame.js';
 import Console from '../utils/Console.js';
 import { LOTTO_CONDITION, RESTART_COMMAND } from '../constants/condition.js';
