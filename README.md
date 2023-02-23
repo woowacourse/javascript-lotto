@@ -4,8 +4,6 @@
 
 ## 📌 실행 방법
 
-### step1
-
 1. git clone을 한다.
 
 2. repository 로 폴더 이동
@@ -14,10 +12,10 @@
 cd javascript-lotto
 ```
 
-3. step1의 브런치로 이동
+3. step2의 브런치로 이동
 
 ```
-git checkout step1
+git checkout step2
 ```
 
 4. dependency 다운로드
@@ -26,8 +24,18 @@ git checkout step1
 yarn install
 ```
 
-5. 프로젝트 시작
+### step1
+
+- step1 프로젝트 시작
 
 ```
 yarn start-step1
+```
+
+### step2
+
+- step2 프로젝트 시작
+
+```
+yarn start-step2
 ```
