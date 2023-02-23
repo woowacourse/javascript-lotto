@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { LOTTO_PRIZE_MONEY, PRIZE_MATCH_COUNT } from '../constants/condition.js';
 
 export default class View {
@@ -25,6 +25,9 @@ export default class View {
       this.initEachLottoNumbers();
       this.initStatistics();
       this.initYieldRatio();
+
+      this.initPurchaseAmountInput();
+      this.initWinningLottoInput();
     });
   }
 
@@ -134,6 +137,15 @@ export default class View {
 
   initYieldRatio() {
     $('.modal-yield-ratio').innerText = '';
+  }
+
+  initPurchaseAmountInput() {
+    $('.purchase-amount-input').value = '';
+  }
+
+  initWinningLottoInput() {
+    $$('.winning-number-input').forEach((input) => (input.value = ''));
+    $('.bonus-number-input').value = '';
   }
 
   showAlert(message) {
