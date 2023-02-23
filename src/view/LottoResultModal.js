@@ -1,5 +1,5 @@
 import BonusNumberReward from '../domain/BonusReward';
-import { resetElement } from '../utils/dom';
+import { resetElement, toggleDisableAttribute } from '../utils/dom';
 
 class LottoResultModal {
   constructor(receivedRewards, profitRate) {
@@ -18,6 +18,7 @@ class LottoResultModal {
   }
 
   render() {
+    toggleDisableAttribute(document.getElementById('result-button'));
     this.toggleModal();
     this.modalContainer.style.backgroundColor = `rgba(0, 0, 0, 0.5)`;
     this.renderTable();
@@ -74,6 +75,7 @@ class LottoResultModal {
     this.toggleModal();
     this.resetResultTable();
     this.closeButton.removeEventListener('click', this.closeButtonHandler, true);
+    toggleDisableAttribute(document.getElementById('result-button'));
   };
 
   addRestartButtonHandler(restartButtonHandler) {
