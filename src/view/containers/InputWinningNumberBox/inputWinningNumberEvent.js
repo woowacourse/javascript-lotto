@@ -1,13 +1,16 @@
 /* eslint-disable no-undef */
 
+import { judgeResult } from "../../../domain/judgeResult";
 import LottoValidator from "../../../domain/LottoValidator";
 
 const inputWinningNumberEvent = () => {
+
   const form = document.getElementById("winning-number-submit");
 
   form.onsubmit = function (event) {
     event.preventDefault();
     try {
+      const modal = document.getElementById("game-modal");
       const formData = new FormData(event.target);
       const winningNumber = {
         main: [
@@ -23,6 +26,10 @@ const inputWinningNumberEvent = () => {
       LottoValidator.checkWinningNumber(winningNumber.main.join(','));
       LottoValidator.checkBonusNumber(winningNumber.bonus);
       LottoValidator.checkLottoDuplicate(winningNumber);
+      store['winningNumber'] = winningNumber;
+      modal.style.display = "block";
+      console.log(judgeResult(store.lottos, store.winningNumber));
+
     } catch (error) {
       alert(error.message);
     }

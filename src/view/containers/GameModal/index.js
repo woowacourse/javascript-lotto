@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const GameModal = (num) => {
+const GameModal = () => {
   return `
   <!-- The Modal -->
   <div id="game-modal" class="modal">
@@ -10,7 +10,7 @@ const GameModal = (num) => {
         <span class="game-modal-open-button">&times;</span>
       </div>
       <div>
-        <div>🏆 당첨 통계${num} 🏆</div>
+        <div>🏆 당첨 통계 🏆</div>
         <table>
           <thead>
             <tr>
