@@ -51,3 +51,14 @@ closeButton.addEventListener('click', () => {
 retryButton.addEventListener('click', () => {
   // const lottoMachine =
 });
+
+const saveMoney = () => {
+  try {
+    const money = new Money(Number(moneyInput.value));
+    lottoMachine.setMoney(money);
+  } catch (error) {
+    moneyInput.classList.add('invalid');
+    window.alert(error.message);
+    moneyInput.value = '';
+  }
+};
