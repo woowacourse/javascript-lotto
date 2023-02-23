@@ -4,6 +4,7 @@ import Validation from '../utils/Validation.js';
 import MoneyInput from '../browserView/MoneyInput.js';
 import LottoList from '../browserView/LottoList.js';
 import LottoInput from '../browserView/LottoInput.js';
+import ResultModal from '../browserView/ResultModal.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
@@ -14,9 +15,12 @@ class LottoGameController {
 
   #lottoInput = new LottoInput();
 
+  #resultModal = new ResultModal();
+
   startGame() {
     this.#moneyInput.activate(this.#getPurchaseCount);
     this.#lottoInput.activate(this.#setWinningLotto);
+    this.#resultModal.activate();
   }
 
   #getPurchaseCount = (money) => {
@@ -50,6 +54,7 @@ class LottoGameController {
 
   #showGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
+    this.#resultModal.render(RANKS, PROFIT_RATE);
   }
 }
 
