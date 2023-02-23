@@ -15,9 +15,7 @@ const render = {
 
   restart: () => renderRestart(),
 
-  hideElement: (element) => $(element).classList.add('hidden'),
-
-  showElement: (element) => $(element).classList.remove('hidden'),
+  removeElement: (element) => ($(element).innerHTML = ''),
 };
 
 export default render;

@@ -25,7 +25,6 @@ class LottoWebGame {
     const rankings = this.makeRankings(winningNumbers, bonusNumber);
     const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
 
-    render.showElement('.winning-statistics');
     render.statistics(rankings, rewardRate);
   }
 
@@ -107,14 +106,13 @@ class LottoWebGame {
 
     this.lottos = [];
     $('#purchase-amount-form input[type=text]').value = '';
-    render.hideElement('.winning-statistics');
     render.restart();
   }
 
   exitStatistics({ target }) {
     if (!target.matches('#winning-statistics-out-button')) return;
 
-    render.hideElement('.winning-statistics');
+    render.removeElement('#winning-statistics');
   }
 
   initAddEventListener() {
@@ -123,8 +121,8 @@ class LottoWebGame {
       this.handleSubmitPurchaseAmount.bind(this)
     );
     $('#winning-lotto-from').addEventListener('submit', this.handleSubmitWinningLotto.bind(this));
-    $('.winning-statistics').addEventListener('click', this.restartLottoGame.bind(this));
-    $('.winning-statistics').addEventListener('click', this.exitStatistics.bind(this));
+    $('#winning-statistics').addEventListener('click', this.restartLottoGame.bind(this));
+    $('#winning-statistics').addEventListener('click', this.exitStatistics.bind(this));
   }
 }
 

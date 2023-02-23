@@ -1,4 +1,4 @@
-.winning-statistics {
+#winning-statistics-layout {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -10,7 +10,7 @@
   justify-content: center;
 }
 
-#winning-statistics-layout {
+#winning-statistics-wapper {
   position: relative;
   width: 350px;
   height: 500px;
