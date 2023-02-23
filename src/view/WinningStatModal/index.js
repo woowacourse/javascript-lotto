@@ -40,6 +40,16 @@ class WinningStatModal {
 
   render() {
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
+    $('.modal-close-button').addEventListener('click', () =>
+      this.handleModalClose()
+    );
+    $('.restart-button').addEventListener('click', () =>
+      this.handleModalClose()
+    );
+  }
+
+  handleModalClose() {
+    $('.modal').classList.toggle('hidden');
   }
 }
 
