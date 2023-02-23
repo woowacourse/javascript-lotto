@@ -85,6 +85,11 @@ main {
   margin-bottom: 8px;
 }
 
+.winning-number-input-list {
+  display: flex;
+  gap: 8px;
+}
+
 .winning-number-input {
   width: 34px;
   height: 36px;

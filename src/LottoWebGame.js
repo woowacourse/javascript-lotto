@@ -21,10 +21,12 @@ class LottoWebGame {
     try {
       const purchaseAmount = convertToNumeric($('#purchase-amount-input').value);
       LottoGameValidator.validatePurchaseAmount(purchaseAmount);
+
       const lottoMachine = new LottoMachine(purchaseAmount);
       this.#lottos = lottoMachine.issueLottos();
 
       LottoListView.render($('#purchase-lotto-list-section'), this.#lottos);
+      $('#winning-lotto-form-section').classList.remove('hidden');
     } catch (error) {
       alert(error.message);
       $('#purchase-amount-input').value = '';

@@ -20,29 +20,27 @@
             </form>
           </div>
           <div class="lotto-game-section" id="purchase-lotto-list-section"></div>
-          <div class="lotto-game-section">
+          <div class="lotto-game-section hidden" id="winning-lotto-form-section">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div class="winning-numbers-form">
               <div class="winning-number-input-container">
                 <p>당첨 번호</p>
-                <div>
-                  <input type="text" class="winning-number-input" />
-                  <input type="text" class="winning-number-input" />
-                  <input type="text" class="winning-number-input" />
-                  <input type="text" class="winning-number-input" />
-                  <input type="text" class="winning-number-input" />
-                  <input type="text" class="winning-number-input" />
-                </div>
+                <ul class="winning-number-input-list">
+                  <li><input type="text" class="winning-number-input" /></li>
+                  <li><input type="text" class="winning-number-input" /></li>
+                  <li><input type="text" class="winning-number-input" /></li>
+                  <li><input type="text" class="winning-number-input" /></li>
+                  <li><input type="text" class="winning-number-input" /></li>
+                  <li><input type="text" class="winning-number-input" /></li>
+                </ul>
               </div>
               <div class="winning-number-input-container bonus-number">
                 <p>보너스 번호</p>
-                <div>
-                  <input type="text" class="winning-number-input" />
-                </div>
+                <input type="text" class="winning-number-input" />
               </div>
             </div>
+            <button type="button" class="result-button button caption">결과 확인하기</button>
           </div>
-          <button type="button" class="result-button button caption">결과 확인하기</button>
         </div>
       </main>
       <footer><span class="caption">Copyright 2023. woowacourse</span></footer>
