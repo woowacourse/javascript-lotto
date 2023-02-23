@@ -1,5 +1,3 @@
-const Console = require('./Console');
-
 const inputValidator = {
   isNumber: (number) => Number.isInteger(number),
   isNumberInLottoRange: (number) => number <= 45 && number >= 1,
@@ -9,9 +7,4 @@ const inputValidator = {
 const pickRandomNumberInRange = (start, end) =>
   Math.floor(Math.random() * (end + 1 - Math.ceil(start))) + Math.ceil(start);
 
-const errorHandler = (error, afterError) => {
-  Console.print(error.message);
-  afterError();
-};
-
-module.exports = { pickRandomNumberInRange, inputValidator, errorHandler };
+module.exports = { pickRandomNumberInRange, inputValidator };
