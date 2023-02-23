@@ -30,7 +30,20 @@ class LottoGameController {
   }
 
   handleResultCheck(numbers) {
-    console.log(numbers);
+    const lottoStatistics = new LottoStatistics(
+      numbers.slice(0, LOTTO_NUMBERS_COUNT),
+      numbers.slice(-1)
+    );
+
+    this.renderResultModal(
+      lottoStatistics.determineAllLottosRank(this.#lottoMachine.lottos)
+    );
+  }
+
+  renderResultModal(allLottosRank) {
+    console.log(allLottosRank);
+    $('.modal').classList.toggle('hidden');
+    new WinningStatModal($('.modal')).render();
   }
 }
 
