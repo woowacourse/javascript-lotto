@@ -13,7 +13,7 @@ git clone https://github.com/bassyu/javascript-lotto.git
 cd javascript-lotto
 ```
 
-### step1 실행
+### step1 테스트, 실행
 
 node 18 버전 이상에서 실행됩니다.
 
@@ -21,14 +21,16 @@ node 18 버전 이상에서 실행됩니다.
 git checkout -b step1
 git pull origin step1
 npm install
+npm run test
 npm run start-step1
 ```
 
-### step2 실행
+### step2 테스트, 실행
 
 ```
 git checkout -b step2
 git pull origin step2
 npm install
+npm run test
 npm run start-step2
 ```
