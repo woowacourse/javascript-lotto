@@ -70,6 +70,14 @@ class WebLottoGameController {
       return false;
     }
   }
+
+  printLottoGameResult(winningNumbers, bonusNumber) {
+    const lottoRanksResult = this.lottoGame.getLottoRankResult(winningNumbers, bonusNumber);
+    const profitRate = this.lottoGame.calculateProfitRate(this.lottoGame.calculateTotalPrize());
+
+    WebView.printLottoRanksResult(lottoRanksResult);
+    WebView.printProfitRate(profitRate);
+  }
 }
 
 export default WebLottoGameController;
