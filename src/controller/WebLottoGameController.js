@@ -78,6 +78,17 @@ class WebLottoGameController {
     WebView.printLottoRanksResult(lottoRanksResult);
     WebView.printProfitRate(profitRate);
   }
+
+  handleModalClose() {
+    $('#modal').classList.add('hidden');
+  }
+
+  handleRestart() {
+    $('#modal').classList.add('hidden');
+    WebView.hideShowingSection();
+    [...$$('.lotto-number-input')].map((lottoNumber) => (lottoNumber.value = ''));
+    $('#user-budget-input').value = '';
+  }
 }
 
 export default WebLottoGameController;
