@@ -1,12 +1,16 @@
 import { PRIZE } from "../constants";
 
 class ModalView {
-  constructor() {
+  constructor(handleCloseModal, handleRestartGame) {
     this.modal = document.querySelector(".modal");
     this.modalTable = document.querySelector(".modal-table");
     this.profit = document.querySelector(".profit");
-    this.closeButton = document.querySelector(".modal-close-button");
-    this.restartButton = document.querySelector(".restart-btn");
+    document
+      .querySelector(".modal-close-btn")
+      .addEventListener("click", handleCloseModal);
+    document
+      .querySelector(".restart-btn")
+      .addEventListener("click", handleRestartGame);
   }
 
   showResult(result) {
@@ -16,15 +20,26 @@ class ModalView {
     <th>당첨 갯수</th>`;
     PRIZE.map((amount, idx) => {
       const tr = `<tr>
-        <td>${5 - idx}등</td>
+        <td>${this.showMatchedCount(idx)}</td>
         <td>${amount.toLocaleString()}</td>
         <td>${result[idx]}개</td>
       </tr>`;
       this.modalTable.innerHTML += tr;
     });
-    this.profit.innerText = `당신의 총 수익률은 ${result[
-      result.length - 1
-    ].toLocaleString()}%입니다.`;
+    this.profit.textContent = `당신의 총 수익률은 ${result[result.length - 1]
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}%입니다.`;
+  }
+
+  showMatchedCount(idx) {
+    if (idx < 3) return idx + 3 + "개";
+    if (idx === 3) return idx + 2 + "개+보너스볼";
+    return idx + 2 + "개";
+  }
+
+  hiddenModal() {
+    this.modal.style.display = "none";
+    this.modalTable.innerHTML = "";
   }
 }
 
