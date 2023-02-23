@@ -5,6 +5,8 @@ import Render from "../../../utils/Render";
 import InputWinningNumberBox from "../InputWinningNumberBox";
 import inputWinningNumberEvent from "../InputWinningNumberBox/inputWinningNumberEvent";
 import PurchaseResults from "../PurchaseResults";
+import GameModal from "../GameModal";
+import modalEvent from "../GameModal/modalEvent";
 
 const gameBoxEvent = () => {
   const form = document.getElementById("money-submit");
@@ -18,6 +20,7 @@ const gameBoxEvent = () => {
       event.target.money.value = '';
       Render.container("purchase-result", () => PurchaseResults(), () => { });
       Render.container("input-winning-number", () => InputWinningNumberBox(), () => { inputWinningNumberEvent(); });
+      Render.container("game-result", () => GameModal(), () => modalEvent());
     } catch (error) {
       alert(error.message);
     }

@@ -25,7 +25,7 @@ const InputWinningNumberBox = () => {
         <input class="ball-box" name="bonus" />    
       </div>
     </div>
-    <button class="width-100">결과 확인하기</button>
+    <button class="width-100" id="game-modal-open-button">결과 확인하기</button>
   </form>
   `;
 };
