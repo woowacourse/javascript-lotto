@@ -1,5 +1,7 @@
+import ERROR from '../constants/error.js';
 import View from '../views/View.js';
 import LottoGame from '../domains/LottoGame.js';
+import lottoGameValidatorStep2 from '../domains/lottoGameValidatorStep2.js';
 
 class LottoGameControllerStep2 {
   view = new View();
@@ -34,9 +36,19 @@ class LottoGameControllerStep2 {
 
   onClickBuyButton = event => {
     event.preventDefault();
+
     const buyMoney = Number(this.view.buyMoneyInput.value);
+
+    if (!lottoGameValidatorStep2.isValidBuyMoney(buyMoney)) {
+      alert(ERROR.BUY_MONEY);
+      this.view.buyMoneyInput.focus();
+      return false;
+    }
+
     this.lottoGame = new LottoGame(buyMoney);
+
     const lottoNumbersList = this.lottoGame.getLottoNumbersList();
+
     this.view.printPurchasedLottos(lottoNumbersList);
   };
 
@@ -45,6 +57,18 @@ class LottoGameControllerStep2 {
 
     const luckyNumbers = [...this.view.luckyNumbersInput].map(number => Number(number.value));
     const bonusNumber = Number(this.view.bonusNumberInput.value);
+
+    if (!lottoGameValidatorStep2.isValidLuckyNumbers(luckyNumbers)) {
+      alert(ERROR.LUCKY_NUMBERS);
+      this.view.luckyNumbersInput[0].focus();
+      return false;
+    }
+
+    if (!lottoGameValidatorStep2.isValidBonusNumber(bonusNumber, luckyNumbers)) {
+      alert(ERROR.BONUS_NUMBER);
+      this.view.bonusNumberInput.focus();
+      return false;
+    }
 
     this.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
 

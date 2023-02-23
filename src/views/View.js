@@ -31,7 +31,7 @@ class View {
 
   hideElementsforInitialScreen() {
     const lottoDetail = document.querySelector('.lotto-detail');
-    const winningNumbersForm = document.querySelector('.winning-numbers-form');
+    const winningNumbersForm = document.querySelector('#winning-numbers-form');
 
     this.hide(lottoDetail);
     this.hide(winningNumbersForm);
@@ -57,7 +57,7 @@ class View {
 
   showElementsAfterBuyLottos() {
     const lottoDetail = document.querySelector('.lotto-detail');
-    const winningNumbersForm = document.querySelector('.winning-numbers-form');
+    const winningNumbersForm = document.querySelector('#winning-numbers-form');
 
     this.show(lottoDetail);
     this.show(winningNumbersForm);

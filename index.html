@@ -20,9 +20,9 @@
         <section class="lotto-card lotto-body">
           <h2 class="lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
 
-          <form>
+          <form id="buy-money-form" name="buy-money">
             <p>구입할 금액을 입력해주세요.</p>
-            <input type="number" id="buy-money" placeholder="금액" />
+            <input type="number" id="buy-money" name="buy-money" placeholder="금액" min="1000"/>
             <button type="submit" class="lotto-caption" id="buy-button">구입</button>
           </form>
 
@@ -31,7 +31,7 @@
             <ul id="lotto-list-container"></ul>
           </div>
 
-          <form class="winning-numbers-form">
+          <form id="winning-numbers-form" name="winning-numbers">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div class="winning-numbers">
               <div class="lucky-numbers">

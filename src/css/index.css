@@ -109,10 +109,6 @@ ul {
   border-top: solid 1px #4e5ba6;
 }
 
-.winning-numbers-form > p {
-  margin-bottom: 12px;
-}
-
 .winning-numbers {
   display: flex;
   justify-content: space-between;
@@ -183,6 +179,10 @@ ul {
 
 #lotto-list-container li {
   line-height: 36px;
+}
+
+#winning-numbers-form > p {
+  margin-bottom: 12px;
 }
 
 #lucky-numbers-input input {
