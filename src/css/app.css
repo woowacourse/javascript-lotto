@@ -26,12 +26,16 @@ button {
   cursor: pointer;
 }
 
+#app {
+  height: 1024px;
+}
+
 .check-winning-section {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 85vh;
+  height: 780px;
 }
 
 .container {
