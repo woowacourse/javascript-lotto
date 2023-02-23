@@ -55,25 +55,37 @@ class App {
   submitWinningNumbers = (event) => {
     event.preventDefault();
     const inputLottoNumbers = [...this.lottoInput];
-    const lottoNumbers = inputLottoNumbers.reduce((arr, cur) => {
-      return [...arr, +cur.value];
-    }, []);
+    const lottoNumbers = this.makeLottoNumbers(inputLottoNumbers);
     const bonusNumber = this.winningNumbersView.bonusNumber.value;
     try {
-      Validation.lottoNumbers(lottoNumbers);
-      this.#lottoNumbers = lottoNumbers;
-      Validation.bonusNumber(this.#lottoNumbers, +bonusNumber);
-      this.#bonusNumber = +bonusNumber;
-      const lottoResult = this.#lottoGame.calculateRankResult(
-        this.#lottoNumbers,
-        this.#bonusNumber
-      );
+      this.validateWinningNumbers(lottoNumbers, bonusNumber);
+      const lottoResult = this.makeLottoResult();
       this.modalView.showResult(lottoResult);
       this.#toggleButton(this.winningNumbersView.resultButton);
     } catch (error) {
       alert(error.message);
     }
   };
+
+  makeLottoNumbers(inputLottoNumbers) {
+    return inputLottoNumbers.reduce((arr, cur) => {
+      return [...arr, +cur.value];
+    }, []);
+  }
+
+  makeLottoResult() {
+    return this.#lottoGame.calculateRankResult(
+      this.#lottoNumbers,
+      this.#bonusNumber
+    );
+  }
+
+  validateWinningNumbers(lottoNumbers, bonusNumber) {
+    Validation.lottoNumbers(lottoNumbers);
+    this.#lottoNumbers = lottoNumbers;
+    Validation.bonusNumber(this.#lottoNumbers, +bonusNumber);
+    this.#bonusNumber = +bonusNumber;
+  }
 
   handleCloseModal = (event) => {
     event.preventDefault();
