@@ -2,6 +2,10 @@
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
 
+## 웹 배포 사이트
+
+<a href="https://gilpop8663.github.io/javascript-lotto/" target="_blank">배포 바로가기</a>
+
 ## 📌 실행 방법
 
 1. git clone을 한다.
