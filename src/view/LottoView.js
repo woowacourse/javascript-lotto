@@ -1,44 +1,42 @@
+const { MESSAGES } = require("../constant/Constant");
+const { ID, ELEMENT } = require("../constant/ElementConstant");
+
 const LottoView = {
-  printLottoConunt(lottoCount) {
-    const text = document.getElementById("buy_count_text");
-    text.innerText = `총${lottoCount}개를 구매했습니다.`;
+  printLottoCount(lottoCount) {
+    const buyCountText = document.getElementById(ID.BUY_COUNT_TEXT);
+    buyCountText.innerText =
+      MESSAGES.total + lottoCount + MESSAGES.printLottoCount;
   },
 
-  // printLottos(lottos) {
-  //   const result = lottos
-  //     .map((lotto) => `🎟️ ${lotto.numbers.join(", ")}\n\n`)
-  //     .join("");
-  //   const text = document.getElementById("buy_lottos");
-  //   text.innerText = result;
-  // },
-
   printLottos(lottos) {
-    const inputLocation = document.getElementById("buy_lottos");
-    inputLocation.innerHTML = "";
+    const buyLottos = document.getElementById(ID.BUY_LOTTOS);
+    buyLottos.innerHTML = "";
     lottos.forEach((lotto) => {
-      const lottoDiv = document.createElement("p");
+      const lottoDiv = document.createElement(ELEMENT.P);
       lottoDiv.innerText = `🎟️ ${lotto.numbers.join(", ")}`;
-      lottoDiv.setAttribute("class", "lottoNum");
 
-      inputLocation.appendChild(lottoDiv);
+      buyLottos.appendChild(lottoDiv);
     });
   },
 
-  printRankResult(rankResult, revenue) {
-    const first = document.getElementById("first");
-    const second = document.getElementById("second");
-    const third = document.getElementById("third");
-    const fourth = document.getElementById("fourth");
-    const fifth = document.getElementById("fifth");
+  printRankResult(rankResult) {
+    const first = document.getElementById(ID.FIRST);
+    const second = document.getElementById(ID.SECOND);
+    const third = document.getElementById(ID.THIRD);
+    const fourth = document.getElementById(ID.FOURTH);
+    const fifth = document.getElementById(ID.FIFTH);
 
-    first.innerText = `${rankResult[1]}개`;
-    second.innerText = `${rankResult[2]}개`;
-    third.innerText = `${rankResult[3]}개`;
-    fourth.innerText = `${rankResult[4]}개`;
-    fifth.innerText = `${rankResult[5]}개`;
+    first.innerText = rankResult[1] + MESSAGES.pieces;
+    second.innerText = rankResult[2] + MESSAGES.pieces;
+    third.innerText = rankResult[3] + MESSAGES.pieces;
+    fourth.innerText = rankResult[4] + MESSAGES.pieces;
+    fifth.innerText = rankResult[5] + MESSAGES.pieces;
+  },
 
-    const revenueText = document.getElementById("revenue_text");
-    revenueText.innerText = `당신의 총 수익률은 ${revenue}% 입니다.`;
+  printRevenue(revenue) {
+    const revenueText = document.getElementById(ID.REVENUE_TEXT);
+    revenueText.innerText =
+      MESSAGES.printRevenue + revenue + MESSAGES.printFinal;
   },
 
   alertErrorMessage(message) {

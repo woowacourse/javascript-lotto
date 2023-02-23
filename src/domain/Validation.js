@@ -34,12 +34,6 @@ const Validation = {
       throw new Error(ERROR_MESSAGES.isSameBonusNumber);
     }
   },
-
-  isWrongRestartCommand(command) {
-    if (command !== "y" && command !== "n") {
-      throw new Error(ERROR_MESSAGES.isWrongCommand);
-    }
-  },
 };
 
 module.exports = Validation;
