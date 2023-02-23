@@ -25,6 +25,11 @@ const WebView = {
       )
     );
   },
+
+  showHiddenSection() {
+    $('#winning-number-section').classList.remove('hidden');
+    $('#purchased-lotto-section').classList.remove('hidden');
+  },
 };
 
 export default WebView;
