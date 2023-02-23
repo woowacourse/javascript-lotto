@@ -185,6 +185,14 @@ ul {
   line-height: 36px;
 }
 
+#lucky-numbers-input input {
+  text-align: center;
+}
+
+#bonus-number {
+  text-align: center;
+}
+
 #show-result-button {
   width: 382px;
   height: 36px;
