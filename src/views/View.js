@@ -3,6 +3,9 @@ import RANK from '../constants/rank.js';
 class View {
   buyButton;
   showResultButton;
+  modalCloseButton;
+  restartButton;
+
   buyMoneyInput;
   luckyNumbersInput;
   bonusNumberInput;
@@ -17,6 +20,7 @@ class View {
     this.buyButton = document.querySelector('#buy-button');
     this.showResultButton = document.querySelector('#show-result-button');
     this.modalCloseButton = document.querySelector('#modal-close-button');
+    this.restartButton = document.querySelector('#restart-button');
   }
 
   registerInputs() {
@@ -40,6 +44,8 @@ class View {
     this.buyButton.disabled = true;
 
     const lottoListContainer = document.querySelector('#lotto-list-container');
+
+    lottoListContainer.innerHTML = null;
     lottoNumbersList.forEach(lottoNumbers => {
       lottoListContainer.innerHTML += `
       <li>🎟️ ${lottoNumbers.join(', ')}</li>
@@ -62,6 +68,8 @@ class View {
     const profitContainer = document.querySelector('#profit-container');
     const lottoModal = document.querySelector('#lotto-modal');
 
+    this.showResultButton.disabled = true;
+
     amountOfRanksContainer[RANK.SIZE - RANK.FIFTH - 1].innerHTML = amountOfRanks[RANK.FIFTH];
     amountOfRanksContainer[RANK.SIZE - RANK.FOURTH - 1].innerHTML = amountOfRanks[RANK.FOURTH];
     amountOfRanksContainer[RANK.SIZE - RANK.THIRD - 1].innerHTML = amountOfRanks[RANK.THIRD];
@@ -79,6 +87,25 @@ class View {
 
     this.hide(lottoModal);
     this.hide(modalBackground);
+    this.buyButton.disabled = false;
+    this.showResultButton.disabled = false;
+  }
+
+  resetScreen() {
+    this.hideModal();
+    this.hideElementsforInitialScreen();
+    this.resetInputs();
+    this.buyButton.disabled = false;
+    this.showResultButton.disabled = false;
+  }
+
+  resetInputs() {
+    const lottoListContainer = document.querySelector('#lotto-list-container');
+
+    lottoListContainer.innerHTML = null;
+    this.buyMoneyInput.value = null;
+    this.luckyNumbersInput.forEach(luckyNumber => (luckyNumber.value = null));
+    this.bonusNumberInput.value = null;
   }
 
   show(HTMLelement) {

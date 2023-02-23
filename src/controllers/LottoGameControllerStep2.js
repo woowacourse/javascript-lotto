@@ -13,10 +13,23 @@ class LottoGameControllerStep2 {
     this.bindBuyButtonEvent();
     this.bindShowResultButtonEvent();
     this.bindModalCloseButtonEvent();
+    this.bindRestartButtonEvent();
   }
 
   bindBuyButtonEvent() {
     this.view.buyButton.addEventListener('click', this.onClickBuyButton);
+  }
+
+  bindShowResultButtonEvent() {
+    this.view.showResultButton.addEventListener('click', this.onClickShowResultButton);
+  }
+
+  bindModalCloseButtonEvent() {
+    this.view.modalCloseButton.addEventListener('click', this.onClickModalCloseButton);
+  }
+
+  bindRestartButtonEvent() {
+    this.view.restartButton.addEventListener('click', this.onClickRestartButton);
   }
 
   onClickBuyButton = event => {
@@ -26,10 +39,6 @@ class LottoGameControllerStep2 {
     const lottoNumbersList = this.lottoGame.getLottoNumbersList();
     this.view.printPurchasedLottos(lottoNumbersList);
   };
-
-  bindShowResultButtonEvent() {
-    this.view.showResultButton.addEventListener('click', this.onClickShowResultButton);
-  }
 
   onClickShowResultButton = event => {
     event.preventDefault();
@@ -45,13 +54,14 @@ class LottoGameControllerStep2 {
     this.view.printResult(amountOfRanks, profit);
   };
 
-  bindModalCloseButtonEvent() {
-    this.view.modalCloseButton.addEventListener('click', this.onClickModalCloseButton);
-  }
-
   onClickModalCloseButton = () => {
     this.view.hideModal();
+    this.lottoGame.resetWinningNumbers();
     this.lottoGame.resetAmountOfRanks();
+  };
+
+  onClickRestartButton = () => {
+    this.view.resetScreen();
   };
 }
 
