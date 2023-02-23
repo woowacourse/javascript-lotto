@@ -18,7 +18,9 @@
           <h2 class="app-screen-title">🎱 내 번호 당첨 확인 🎱</h2>
 
           <div class="budget-input-menu">
-            <span class="app-information-text">구입할 금액을 입력해주세요.</span>
+            <label for="budgetInput">
+              <span class="app-information-text">구입할 금액을 입력해주세요.</span>
+            </label>
             <form class="budget-input-form" id="budgetInputForm">
               <input
                 type="number"
@@ -44,8 +46,12 @@
             </span>
             <form class="winning-lotto-input-form" id="winningLottoInputForm">
               <div class="winning-lotto-bonus-number-text">
-                <span class="app-information-text">당첨 번호</span>
-                <span class="app-information-text">보너스 번호</span>
+                <label for="firstNumberInput">
+                  <span class="app-information-text">당첨 번호</span>
+                </label>
+                <label for="bonusNumberInput">
+                  <span class="app-information-text">보너스 번호</span>
+                </label>
               </div>
 
               <div class="winning-numbers-input">
@@ -88,6 +94,7 @@
                 />
                 <input
                   class="bonus-number-input app-input"
+                  id="bonusNumberInput"
                   type="number"
                   name="bonus-number"
                   required
