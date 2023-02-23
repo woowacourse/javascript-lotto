@@ -5,7 +5,7 @@ import parseStatistics from '../../utils/statistics.js';
 export default class StatisticsModal extends Component {
   setUp() {
     this.statistics = LottoStore.calculateStatistics(this.props.lottoList);
-    this.earningRate = LottoStore.calculateEarningRate(this.props.lottoList) || 0;
+    this.earningRate = LottoStore.calculateEarningRate(this.props.lottoList);
   }
 
   setEvent() {
@@ -19,7 +19,7 @@ export default class StatisticsModal extends Component {
   template() {
     return `
       <dialog class='lotto-store__statistics-dialog'>
-      <div class='lotto-store__statistics-dialog-contents'>
+        <div class='lotto-store__statistics-dialog-contents'>
           <form class='lotto-store__statistics-dialog-close-form' method='dialog'>
             <button class='lotto-store__dialog-close-btn'>X</button>
           </form>
@@ -44,7 +44,7 @@ export default class StatisticsModal extends Component {
   }
 
   handleSubmitForm() {
-    this.props.initState();
+    setTimeout(this.props.initState, 0);
   }
 
   getStatisticsTemplate() {
