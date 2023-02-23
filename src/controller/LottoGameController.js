@@ -30,7 +30,7 @@ class LottoGameController {
       Validation.testPurchaseAmount(money);
       this.#purchaseUserLottos(PURCHASE_COUNT);
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -48,7 +48,7 @@ class LottoGameController {
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#showGameResult();
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
