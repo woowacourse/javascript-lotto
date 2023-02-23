@@ -1,6 +1,9 @@
 import LottoMachine from '../domain/LottoMachine';
+import LottoStatistics from '../domain/LottoStatistics';
+import { LOTTO_NUMBERS_COUNT } from '../domain/constants';
 
 import CheckWinningSection from '../view/CheckWinningSection/index';
+import WinningStatModal from '../view/WinningStatModal/index';
 
 import { $ } from '../utils/dom';
 
@@ -10,13 +13,16 @@ class LottoGameController {
   #lottoMachine;
 
   constructor($target) {
+    this.renderCheckWinningSection($target);
     $target.addEventListener('purchaseLotto', (e) =>
       this.handleLottoPurchase(e.detail)
     );
     $target.addEventListener('checkResult', (e) =>
       this.handleResultCheck(e.detail)
     );
+  }
 
+  renderCheckWinningSection() {
     this.#checkWinningSection = new CheckWinningSection(
       $('.check-winning-section')
     );

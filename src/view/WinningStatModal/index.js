@@ -53,6 +53,7 @@ class WinningStatModal {
 
   handleRestart() {
     this.closeModal();
+    dispatchCustomEvent($('#app'), { eventType: 'restart' });
   }
 
   closeModal() {

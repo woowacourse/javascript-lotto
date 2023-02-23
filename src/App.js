@@ -3,16 +3,25 @@ import HomePage from './view/HomePage';
 import LottoGameController from './controller/LottoGameController';
 
 class App {
-  #lottoGameController;
+  $homePage;
 
   $target;
 
+  #lottoGameController;
+
   constructor($target) {
     this.$target = $target;
-
-    new HomePage(this.$target).render();
+    this.$homePage = new HomePage(this.$target);
+    this.$homePage.render();
 
     this.#lottoGameController = new LottoGameController(this.$target);
+
+    this.$target.addEventListener('restart', () => this.handleRestart());
+  }
+
+  handleRestart() {
+    this.$homePage.render();
+    this.#lottoGameController.renderCheckWinningSection();
   }
 }
 
