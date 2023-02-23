@@ -49,7 +49,7 @@ class LottoWebController {
     const matchResult = this.#calculateMatching();
     const benefit = this.#calculateBenefit(matchResult);
     selectAllDom('.winningCount').forEach((count, index) => (count.innerText = `${matchResult[4 - index]}개`));
-    selectDom('.resultExplain').innerText = `당신의 총 수익률은 ${benefit}%입니다.`;
+    selectDom('.resultExplain').innerText = `당신의 총 수익률은 ${benefit.toFixed(3)}%입니다.`;
 
     return selectDom('.modal').showModal();
   };
