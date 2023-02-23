@@ -1,0 +1,100 @@
+h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  margin-top: 8px;
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  height: 40px;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+table {
+  margin-top: 33px;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#modal-container {
+  margin: 200px auto;
+  width: 350px;
+  height: 500px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+#exit-button-wrapper {
+  display: flex;
+  justify-content: end;
+}
+
+#exit-button {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  margin: 16px;
+  background: #ffffff;
+  border: none;
+}
+
+#modal-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+#earning-text {
+  text-align: center;
+  margin-top: 32px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+#modal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#restart-lotto-button {
+  margin-top: 32px;
+}
+
+#restart-lotto-button {
+  background: #4e5ba6;
+  border-radius: 4px;
+  width: 318px;
+  height: 36px;
+  padding: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  border: none;
+}

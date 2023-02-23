@@ -3,6 +3,7 @@
 @import './support_index.css';
 @import './winning_number.css';
 @import './reset.css';
+@import './modal.css';
 
 * {
   box-sizing:border-box;
