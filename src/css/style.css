@@ -1,7 +1,40 @@
+#lotto-game {
+  display: flex;
+}
 header {
+  /* Rectangle 35 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 64px;
+  left: 0px;
+  top: 0px;
+
+  /* lotto-primary */
+
   background: #4e5ba6;
   border-bottom: 1px solid rgba(78, 91, 166, 0.2);
-  color: white;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#header-title {
+  /* 🎱 행운의 로또 */
+  margin-left: 130px;
+  margin-top: 14px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+
+  color: #ffffff;
 }
 
 label {
