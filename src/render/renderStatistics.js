@@ -1,8 +1,6 @@
 import { $ } from '../dom/dom';
 
 const renderStatistics = (rankings, rewardRate) => {
-  $('.winning-statistics').classList.remove('hidden');
-
   const lottoRewards = [
     [5, '3개', '5,000'],
     [4, '4개', '50,000'],

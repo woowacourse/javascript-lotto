@@ -25,6 +25,7 @@ const LottoWebGame = function () {
     const rankings = makeRankings(winningNumbers, bonusNumber);
     const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
 
+    render.showElement('.winning-statistics');
     render.statistics(rankings, rewardRate);
   };
 
@@ -106,13 +107,14 @@ const LottoWebGame = function () {
 
     this.lottos = [];
     $purchaseInput.value = '';
+    render.hideElement('.winning-statistics');
     render.restart();
   };
 
   const exitStatistics = ({ target }) => {
     if (!target.matches('#winning-statistics-out-button')) return;
 
-    render.outStatistics();
+    render.hideElement('.winning-statistics');
   };
 
   const initAddEventListener = () => {

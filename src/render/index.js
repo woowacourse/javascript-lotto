@@ -15,7 +15,9 @@ const render = {
 
   restart: () => renderRestart(),
 
-  outStatistics: () => $('.winning-statistics').classList.add('hidden'),
+  hideElement: (element) => $(element).classList.add('hidden'),
+
+  showElement: (element) => $(element).classList.remove('hidden'),
 };
 
 export default render;
