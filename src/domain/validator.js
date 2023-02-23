@@ -54,13 +54,11 @@ export const validatePurchaseAmount = (purchaseAmountString) => {
 };
 
 export const validateWinningLottoNumbers = (winningLottoNumbers) => {
-  winningLottoNumbers.split(",").forEach((winningLottoNumber) => checkInteger(winningLottoNumber));
+  winningLottoNumbers.forEach((winningLottoNumber) => checkInteger(winningLottoNumber));
 
-  const mappedWinningLottoNumbers = winningLottoNumbers.split(",").map(Number);
-
-  checkDuplicates(mappedWinningLottoNumbers);
-  checkLottoNumbersBetween1And45(mappedWinningLottoNumbers);
-  checkListLengthIsSix(mappedWinningLottoNumbers);
+  checkDuplicates(winningLottoNumbers);
+  checkLottoNumbersBetween1And45(winningLottoNumbers);
+  checkListLengthIsSix(winningLottoNumbers);
 };
 
 export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {

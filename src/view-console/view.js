@@ -59,7 +59,7 @@ export const view = {
   async readWinningLottoNumbers() {
     try {
       const winningLottoNumbers = await this.readline(MESSAGE.INPUT.winningLottoNumbers);
-      validateWinningLottoNumbers(winningLottoNumbers);
+      validateWinningLottoNumbers(winningLottoNumbers.split(",").map(Number));
       return winningLottoNumbers;
     } catch (error) {
       this.print(error.message);
