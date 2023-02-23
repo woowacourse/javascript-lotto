@@ -1,5 +1,5 @@
-import { ClassName, Event, QuerySelector } from '../constants/HTML';
-import { $, $$ } from '../utils/DomUtils';
+import { Event, QuerySelector } from '../constants/HTML';
+import { $ } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 
 class ResultModal {
@@ -26,30 +26,19 @@ class ResultModal {
     $(QuerySelector.RESULT_MODAL).showModal();
   }
 
-  activate() {
+  activate(resetGame) {
     $(QuerySelector.MODAL_CLOSE_BUTTON).addEventListener(Event.CLICK, () => {
       this.#close();
     });
 
     $(QuerySelector.RESTART_BUTTON).addEventListener(Event.CLICK, () => {
-      this.#resetGame();
+      resetGame();
       this.#close();
     });
   }
 
   #close() {
     this.resultModal.close();
-  }
-
-  #resetGame() {
-    $(QuerySelector.MONEY_INPUT).value = '';
-    $(QuerySelector.LOTTO_LIST_FIELD).innerText = '';
-    $(QuerySelector.CONTENT).classList.remove(ClassName.HEIGHT_AUTO);
-    $(QuerySelector.LOTTO_INPUT_FIELD).classList.remove(ClassName.SHOW);
-    $$(QuerySelector.WINNING_NUMBER).forEach((each) => {
-      each.value = '';
-    });
-    $(QuerySelector.BONUS_NUMBER).value = '';
   }
 }
 

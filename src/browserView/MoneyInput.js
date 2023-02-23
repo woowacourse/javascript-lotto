@@ -13,6 +13,10 @@ class MoneyInput {
       purchaseLottos(money);
     });
   };
+
+  reset() {
+    this.moneyInputEl.value = '';
+  }
 }
 
 export default MoneyInput;

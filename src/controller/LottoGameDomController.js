@@ -20,7 +20,7 @@ class LottoGameDomController {
   startGame() {
     this.#moneyInput.activate(this.#getPurchaseCount);
     this.#lottoInput.activate(this.#setWinningLotto);
-    this.#resultModal.activate();
+    this.#resultModal.activate(this.#resetGame);
   }
 
   #getPurchaseCount = (money) => {
@@ -55,6 +55,12 @@ class LottoGameDomController {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
     this.#resultModal.render(RANKS, PROFIT_RATE);
   }
+
+  #resetGame = () => {
+    this.#moneyInput.reset();
+    this.#lottoList.reset();
+    this.#lottoInput.reset();
+  };
 }
 
 export default new LottoGameDomController();

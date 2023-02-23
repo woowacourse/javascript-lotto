@@ -35,6 +35,15 @@ class LottoInput {
 
     return Number(bonusNumber.value);
   };
+
+  reset() {
+    this.lottoInput.classList.remove(ClassName.SHOW);
+
+    $$(QuerySelector.WINNING_NUMBER).forEach((each) => {
+      each.value = '';
+    });
+    $(QuerySelector.BONUS_NUMBER).value = '';
+  }
 }
 
 export default LottoInput;

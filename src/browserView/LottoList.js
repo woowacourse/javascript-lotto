@@ -39,6 +39,11 @@ class LottoList {
 
     $(QuerySelector.CONTENT).classList.add(ClassName.HEIGHT_AUTO);
   };
+
+  reset() {
+    this.lottoListField.innerText = '';
+    $(QuerySelector.CONTENT).classList.remove(ClassName.HEIGHT_AUTO);
+  }
 }
 
 export default LottoList;
