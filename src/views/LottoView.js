@@ -1,18 +1,6 @@
 import RANK from '../constants/rank.js';
 
-class View {
-  constructor() {
-    this.hideElementsforInitialScreen();
-  }
-
-  hideElementsforInitialScreen() {
-    const lottoDetail = document.querySelector('.lotto-detail');
-    const winningNumbersForm = document.querySelector('#winning-numbers-form');
-
-    this.hide(lottoDetail);
-    this.hide(winningNumbersForm);
-  }
-
+class LottoView {
   bindBuyButtonEventHandler(onClickBuyButton) {
     const buyButton = document.querySelector('#buy-button');
     const buyMoneyInput = document.querySelector('#buy-money');
@@ -100,6 +88,18 @@ class View {
     this.show(lottoModal);
   }
 
+  resetScreen() {
+    const buyButton = document.querySelector('#buy-button');
+    const showResultButton = document.querySelector('#show-result-button');
+
+    this.hideModal();
+    this.hideElementsforInitialScreen();
+    this.resetInputs();
+
+    buyButton.disabled = false;
+    showResultButton.disabled = false;
+  }
+
   hideModal() {
     const lottoModal = document.querySelector('#lotto-modal');
     const modalBackground = document.querySelector('.modal-background');
@@ -108,19 +108,17 @@ class View {
 
     this.hide(lottoModal);
     this.hide(modalBackground);
+
     buyButton.disabled = false;
     showResultButton.disabled = false;
   }
 
-  resetScreen() {
-    const buyButton = document.querySelector('#buy-button');
-    const showResultButton = document.querySelector('#show-result-button');
+  hideElementsforInitialScreen() {
+    const lottoDetail = document.querySelector('.lotto-detail');
+    const winningNumbersForm = document.querySelector('#winning-numbers-form');
 
-    this.hideModal();
-    this.hideElementsforInitialScreen();
-    this.resetInputs();
-    buyButton.disabled = false;
-    showResultButton.disabled = false;
+    this.hide(lottoDetail);
+    this.hide(winningNumbersForm);
   }
 
   resetInputs() {
@@ -144,4 +142,4 @@ class View {
   }
 }
 
-export default View;
+export default LottoView;

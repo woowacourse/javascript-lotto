@@ -1,10 +1,10 @@
 import ERROR from '../constants/error.js';
-import View from '../views/View.js';
+import LottoView from '../views/LottoView.js';
 import LottoGame from '../domains/LottoGame.js';
 import lottoGameValidatorStep2 from '../domains/lottoGameValidatorStep2.js';
 
 class LottoGameControllerStep2 {
-  view = new View();
+  view = new LottoView();
   lottoGame;
 
   startGame() {
