@@ -23,8 +23,6 @@ export class Lotto {
 
   setDrawingNumbers(drawingNumbers) {
     this.#drawingNumbers = drawingNumbers;
-
-    return this;
   }
 }
 
@@ -65,7 +63,7 @@ export const LottoStore = {
       (acc, [rank, count]) => (rank in PRIZE ? acc + PRIZE[rank] * count : acc),
       AWARDS.INITIAL_EARNING
     );
-    const earningRate = Number(((earning / (LOTTO.PRICE * TOTAL)) * 100).toFixed(1));
+    const earningRate = Number((earning / (LOTTO.PRICE * TOTAL)) * 100).toFixed(1);
 
     return Number.isNaN(earningRate) ? 0 : earningRate;
   },
