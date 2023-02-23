@@ -1,21 +1,27 @@
-const { profitByRank, PRICE_UNIT } = require('../../constants/constants');
-const { randomNumberGenerator } = require('../../utils/randomNumberGenerator');
-const Lotto = require('./Lotto');
+import {
+  profitByRank,
+  PRICE_UNIT,
+  errorMessage,
+} from '../../constants/constants';
+import utils from '../../utils';
+import randomNumberGenerator from '../../utils/randomNumberGenerator';
+import validator from '../validation/validator';
+import Lotto from './Lotto';
 
-class Lottos {
+export default class Lottos {
   #lottos;
 
   #ranks;
 
-  constructor(lottoCount) {
-    const lottos = [];
+  constructor(priceInput) {
+    if (!validator.purchasePrice(priceInput))
+      throw new Error(errorMessage.PURCHASE_PRICE_ERROR);
 
-    while (lottos.length < lottoCount) {
-      lottos.push(randomNumberGenerator.generateLottoNumbers());
-    }
+    const lottoCount = utils.calculateLottoCount(priceInput);
 
-    this.#lottos = lottos.map((lottoNumber) => new Lotto(lottoNumber));
-    this.#ranks = new Array(profitByRank.length).fill(0);
+    this.#lottos = new Array(lottoCount)
+      .fill()
+      .map(() => new Lotto(randomNumberGenerator.generateLottoNumbers()));
   }
 
   getLottos() {
@@ -26,32 +32,29 @@ class Lottos {
     return this.#ranks;
   }
 
-  calculateAllRanks(winningNumbers, bonusNumber) {
+  getProfitRate() {
+    const profit = this.#calculateProfit();
+    const purchasedPrice = this.#lottos.length * PRICE_UNIT;
+
+    return ((profit / purchasedPrice) * 100).toFixed(1);
+  }
+
+  createRanks(winningNumbers, bonusNumber) {
+    this.#ranks = new Array(profitByRank.length).fill(0);
+
     this.#lottos.forEach((lotto) => {
       lotto.calculateRank(winningNumbers, bonusNumber);
 
-      this.#calculateRank(lotto.getRank());
+      this.#setRanks(lotto.getRank());
     });
   }
 
-  #calculateRank(lottoRank) {
+  #setRanks(lottoRank) {
     if (lottoRank === undefined) return;
 
     const rankIndex = lottoRank - 1;
 
     this.#ranks[rankIndex] += 1;
-  }
-
-  getProfitRate() {
-    const profitRate = this.#calculateProfitRate();
-    return profitRate;
-  }
-
-  #calculateProfitRate() {
-    const profit = this.#calculateProfit();
-    const purchasedPrice = this.#lottos.length * PRICE_UNIT;
-
-    return (profit / purchasedPrice).toFixed(1);
   }
 
   #calculateProfit() {
@@ -62,4 +65,3 @@ class Lottos {
     }, 0);
   }
 }
-module.exports = Lottos;

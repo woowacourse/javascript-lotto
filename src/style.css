@@ -48,6 +48,17 @@ span {
   font-weight: bold;
 }
 
+li {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+li span {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 #app {
   width: 100vw;
   min-height: calc(100vh - 144px);
@@ -61,7 +72,7 @@ span {
 
 #gameContainer {
   width: 414px;
-  height: 727px;
+  height: 654px;
   border: 1px solid #b4b4b4;
   padding-top: 52px;
   padding-bottom: 32px;
@@ -72,7 +83,7 @@ span {
   border-radius: 5px;
 }
 
-#priceInputContainer {
+#priceInputForm {
   margin-top: 28px;
   margin-bottom: 28px;
   width: 382px;
@@ -123,17 +134,6 @@ span {
   display: none;
 }
 
-li {
-  font-size: 25px;
-  display: flex;
-  align-items: center;
-}
-
-li span {
-  font-size: 15px;
-  font-weight: bold;
-}
-
 .winningInput {
   width: 34px;
   height: 36px;
@@ -142,7 +142,7 @@ li span {
   text-align: center;
 }
 
-#winningSubmitButton {
+#showResultButton {
   width: 382px;
   height: 36px;
   display: flex;
@@ -153,6 +153,77 @@ li span {
   background-color: #4e5ba6;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
+}
+
+#resultModalContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#resultModal {
+  width: 350px;
+  height: 439px;
+  background-color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 41px;
+  z-index: 9999;
+}
+
+#modalCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#statisticsContainer {
+  width: 319px;
+  border-top: 2px solid #b4b4b4;
+  margin-bottom: 32px;
+}
+
+.statisticsRow {
+  width: 319px;
+  height: 40px;
+  border-bottom: 2px solid #b4b4b4;
+  display: flex;
+}
+
+.statisticsColumn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+#profitRate {
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+#restartButton {
+  width: 318px;
+  height: 36px;
+  background-color: #4e5ba6;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .hidden {

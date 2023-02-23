@@ -1,11 +1,13 @@
-const { profitByRank } = require('../constants/constants');
+import { PRICE_UNIT, regex } from '../constants/constants';
 
-const calculateProfit = (rank) => {
-  if (rank === undefined) return 0;
+const utils = {
+  getFormattedNumber(number) {
+    return number.toString().replace(regex.PRICE_FORMAT, ',');
+  },
 
-  const rankIndex = rank - 1;
-
-  return profitByRank[rankIndex];
+  calculateLottoCount(priceInput) {
+    return Math.floor(Number(priceInput) / PRICE_UNIT);
+  },
 };
 
-module.exports = { calculateProfit };
+export default utils;
