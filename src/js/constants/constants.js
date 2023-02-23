@@ -66,8 +66,8 @@ const CONSOLE_MESSAGE = Object.freeze({
   showLottoCount: (lottoCount) => `총 ${lottoCount}개를 구매했습니다.`,
   ASK_WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
   ASK_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
-  RESULT_HEADER: '\n당첨 통계\n--------------------',
-  showProfitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.\n`,
+  RESULT_HEADER: '🏆당첨 통계🏆',
+  showProfitRate: (profitRate) => `당신의 총 수익률은 ${profitRate}%입니다.`,
   ASK_RESTART_COMMAND: '> 다시 시작하시겠습니까? (y/n)',
 });
 
