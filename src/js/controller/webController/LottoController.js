@@ -14,6 +14,7 @@ export default class LottoController {
     $('.purchaseLotto').addEventListener('submit', this.purchaseLotto.bind(this));
     $('.inputNumbersForm').addEventListener('submit', this.printResult.bind(this));
     $('.restart-button').addEventListener('click', this.resetGame.bind(this));
+    $('.exit').addEventListener('click', this.exitModal.bind(this));
   }
 
   purchaseLotto(e) {
@@ -89,5 +90,10 @@ export default class LottoController {
     });
     $('.lottos').innerHTML = ``;
     this.#lottos = [];
+  }
+
+  exitModal(e) {
+    e.preventDefault();
+    $('.modal').style.display = 'none';
   }
 }

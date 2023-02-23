@@ -179,6 +179,24 @@ input {
   padding: 16px;
 }
 
+.modal-box h2 {
+  margin-top: 8px;
+  margin-bottom: auto;
+}
+
+.exitDiv {
+  margin-bottom: auto;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.exit {
+  background-color: #ffffff;
+  color: #444444;
+  font-size: 16px;
+}
+
 .restart-button {
   margin-top: 32px;
   width: 100%;
