@@ -119,6 +119,8 @@ body {
 .lottos {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+  height: 300px;
 }
 
 .lotto {
