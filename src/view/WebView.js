@@ -30,6 +30,11 @@ const WebView = {
     $('#winning-number-section').classList.remove('hidden');
     $('#purchased-lotto-section').classList.remove('hidden');
   },
+
+  hideShowingSection() {
+    $('#winning-number-section').classList.add('hidden');
+    $('#purchased-lotto-section').classList.add('hidden');
+  },
 };
 
 export default WebView;
