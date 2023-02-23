@@ -206,6 +206,8 @@ li {
 
   border: 1px solid #b4b4b4;
   border-radius: 4px;
+
+  text-align: center;
 }
 
 /* 모달 창 */
@@ -278,4 +280,10 @@ td {
 
 #profit-message {
   font: 600 15px/24px 'Roboto';
+}
+
+#lotto-template-target {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }

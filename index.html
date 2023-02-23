@@ -24,31 +24,31 @@
               <tr>
                 <td>3개</td>
                 <td>5,000</td>
-                <td id="fifth-rank-count">0개</td>
+                <td><span id="fifth-rank-count">0</span>개</td>
               </tr>
               <tr>
                 <td>4개</td>
                 <td>50,000</td>
-                <td id="fourth-rank-count">0개</td>
+                <td><span id="fourth-rank-count">0</span>개</td>
               </tr>
               <tr>
                 <td>5개</td>
                 <td>1,500,000</td>
-                <td id="third-rank-count">0개</td>
+                <td><span id="third-rank-count">0</span>개</td>
               </tr>
               <tr>
                 <td>5개 + 보너스볼</td>
                 <td>30,000,000</td>
-                <td id="second-rank-count">0개</td>
+                <td><span id="second-rank-count">0</span>개</td>
               </tr>
               <tr>
                 <td>6개</td>
                 <td>2,000,000,000</td>
-                <td id="first-rank-count">0개</td>
+                <td><span id="first-rank-count">0</span>개</td>
               </tr>
             </tbody>
           </table>
-          <div id="profit-message">당신의 총 수익률은 %입니다.</div>
+          <div>당신의 총 수익률은 <span id="profit-rate"></span>%입니다.</div>
           <button id="reset-button" class="my-button">다시 시작하기</button>
         </div>
       </section>
@@ -65,8 +65,58 @@
               <button id="purchase-button" class="my-button">구입</button>
             </div>
           </div>
-          <div id="lotto-list-container"></div>
-          <div id="winning-lotto-container"></div>
+          <!-- <div id="lotto-template-target"></div> -->
+          <template id="lotto-template">
+            <div id="lotto-list-container">
+              <div class="game-message">총 <span id="lotto-count">0</span>개를 구매하셨습니다.</div>
+              <ul id="lotto-list"></ul>
+            </div>
+            <div id="winning-lotto-container">
+              <div class="game-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+              <div id="number-input-container">
+                <div id="lotto-number-container" class="number-container">
+                  <div class="game-message">당첨 번호</div>
+                  <div id="lotto-number-input-list">
+                    <input
+                      id="first-number"
+                      class="lotto-number-input winning-number"
+                      type="text"
+                    />
+                    <input
+                      id="second-number"
+                      class="lotto-number-input winning-number"
+                      type="text"
+                    />
+                    <input
+                      id="third-number"
+                      class="lotto-number-input winning-number"
+                      type="text"
+                    />
+                    <input
+                      id="fourth-number"
+                      class="lotto-number-input winning-number"
+                      type="text"
+                    />
+                    <input
+                      id="fifth-number"
+                      class="lotto-number-input winning-number"
+                      type="text"
+                    />
+                    <input
+                      id="sixth-number"
+                      class="lotto-number-input winning-number"
+                      type="text"
+                    />
+                  </div>
+                </div>
+                <div id="bonus-number-container" class="number-container">
+                  <div class="game-message">보너스 번호</div>
+                  <input id="bonus-number" class="lotto-number-input bonus-number" type="text" />
+                </div>
+              </div>
+            </div>
+            <button id="result-button" class="my-button">결과 확인하기</button>
+          </template>
         </div>
       </main>
       <footer>
