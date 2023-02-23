@@ -16,17 +16,19 @@
           <div class="setup-container">
             <h2>🎱 내 번호 당첨 확인 🎱</h2>
             <form id="purchase-form">
-              <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
               <div>
-                <input
-                  type="text"
-                  name="purchase-amount"
+                <div class="input-section">
+                  <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+                  <input
+                    type="text"
+                    name="purchase-amount"
                     id="purchase-amount"
-                  class="purchase-input"
-                  placeholder="금액은 1000원 단위로 입력해주세요."
-                  autocomplete="off"
-                  required
-                />
+                    class="purchase-input"
+                    placeholder="금액은 1000원 단위로 입력해주세요."
+                    autocomplete="off"
+                    required
+                  />
+                </div>
                 <button type="submit" id="purchase-button">구입</button>
               </div>
               <p class="error-message" id="purchase-input-error"></p>

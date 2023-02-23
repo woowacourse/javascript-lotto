@@ -85,6 +85,7 @@ label {
 
 input[type='text'] {
   padding: var(--spacing-2);
+  line-height: 16px;
   border: 1px solid var(--gray-2);
   border-radius: var(--spacing-1);
   outline: 0;
@@ -104,6 +105,7 @@ input[type='text']:focus {
 button {
   padding: var(--spacing-2);
   background: var(--primary-blue);
+  line-height: 16px;
   color: var(--white);
   border: 1px solid var(--primary-blue);
   border-radius: var(--spacing-1);
@@ -121,18 +123,34 @@ button:active {
   background: var(--dark-blue-1);
 }
 
+button:focus {
+  background: var(--dark-blue-2);
+  border-color: var(--dark-blue-1);
+  box-shadow: 0 0 0 3px rgba(112, 125, 204, 0.5);
+}
+
 #purchase-form {
   margin-bottom: var(--spacing-3);
 }
 
-#purchase-form div {
-  width: 100%;
+#purchase-form > div {
   display: flex;
   gap: var(--spacing-2);
 }
 
+.input-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .purchase-input {
   flex-grow: 1;
+}
+
+#purchase-button {
+  flex-shrink: 0;
+  align-self: flex-end;
 }
 
 .error-message {
