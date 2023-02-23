@@ -1,4 +1,4 @@
-import { QuerySelector, Tag } from '../constants/HTML';
+import { QuerySelector, Tag } from '../constants/Dom';
 import { $, makeNode } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 

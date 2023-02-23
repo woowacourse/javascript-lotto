@@ -1,4 +1,4 @@
-import { ClassName, Event, QuerySelector } from '../constants/HTML';
+import { ClassName, Event, QuerySelector } from '../constants/Dom';
 import { $, $$ } from '../utils/DomUtils';
 
 class LottoInput {

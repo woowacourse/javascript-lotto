@@ -1,4 +1,4 @@
-import { Event, QuerySelector } from '../constants/HTML';
+import { Event, QuerySelector } from '../constants/Dom';
 import { $ } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 
