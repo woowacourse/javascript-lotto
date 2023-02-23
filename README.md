@@ -13,6 +13,9 @@ yarn install
 yarn start-step1
 
 //step2
+//✨ 페이지 링크
+https://kangyeongmin.github.io/javascript-lotto/
+
 cd javascript-lotto
 yarn install
 yarn start-step2
