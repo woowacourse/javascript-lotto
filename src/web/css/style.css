@@ -14,7 +14,11 @@
 body {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  align-content: space-between;
+
+  min-height: 100vh;
 
   padding: 0;
   margin: 0;
@@ -27,6 +31,7 @@ header {
 
   height: 64px;
   width: 100%;
+  margin: 0 auto auto auto;
 
   background-color: rgb(var(--lotto-primary-color));
 }
@@ -45,10 +50,9 @@ main {
 footer {
   display: flex;
 
-  bottom: 0px;
-
   height: 80px;
   width: 100%;
+  margin: auto auto 0 auto;
 
   border-top: 1px solid rgba(var(--lotto-primary-color), 0.2);
 }
@@ -63,9 +67,10 @@ footer p {
 .app {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-content: space-evenly;
 
-  margin: 7% auto 7% auto;
+  margin: auto;
   padding: 5%;
   width: 414px;
   
@@ -195,6 +200,18 @@ button.close {
   background-color: red;
 }
 
+.animation-shake {
+  animation: 0.15s 3 shake;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
 .alert p {
   color: white;
 }
@@ -210,6 +227,10 @@ button.close {
 
 .lotto-list {
   flex-direction: column;
+}
+
+.lotto-count {
+  margin: 1rem 0 0.5rem 0;
 }
 
 table, td, th {
@@ -228,10 +249,10 @@ td, th {
   padding: 1em;
 }
 
-.lotto-list div {
+.lotto-list .list {
   flex-direction: column;
 
-  height: 200px;
+  height: 10rem;
   overflow: auto;
 }
 
