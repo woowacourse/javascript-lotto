@@ -108,10 +108,46 @@ main {
   border-radius: 4px;
 }
 
-#result-button {
+#result-button,
+#restart-button {
   width: 100%;
   height: 36px;
-  margin-top: 27px;
+  margin-top: 32px;
+}
+
+.result-title {
+  text-align: center;
+}
+
+.result-table-container {
+  margin: 32px 0;
+}
+
+#result-table {
+  width: 100%;
+  border-top: 1px solid var(--border-gray);
+  border-bottom: 1px solid var(--border-gray);
+  border-collapse: collapse;
+}
+
+#result-table > thead {
+  font-weight: var(--text-semibold);
+}
+
+#result-table tr {
+  border-top: 1px solid var(--border-gray);
+  border-bottom: 1px solid var(--border-gray);
+}
+
+#result-table td {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.result-profit-rate {
+  text-align: center;
+  font-weight: var(--text-bold);
 }
 
 @media (min-width: 500px) {
