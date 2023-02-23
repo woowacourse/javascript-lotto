@@ -11,7 +11,7 @@ class LottoPurchaseForm {
       min="1000"
       max="10000"
       step="1000"
-      placeholder="금액 (1,000 단위)"
+      placeholder="금액 (1,000 단위, 최대 10,000원)"
       autofocus
       required
       />
