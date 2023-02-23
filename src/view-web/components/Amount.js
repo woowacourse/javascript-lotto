@@ -26,7 +26,7 @@ export default class Amount extends Component {
   submitAmount(event) {
     event.preventDefault();
 
-    const amount = Number([...event.target.children][0].value);
+    const amount = Number(event.target[0].value);
     const lottoList = LottoMachine.purchase(amount / LOTTO.PRICE);
 
     this.setter({ lottoList });
