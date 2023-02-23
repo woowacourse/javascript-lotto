@@ -46,28 +46,47 @@ export const view = {
   },
 
   async readPurchaseAmount() {
-    const purchaseAmount = await this.readline(MESSAGE.INPUT.lottoPurchaseAmount);
-    if (!validatePurchaseAmount(purchaseAmount)) return this.readPurchaseAmount();
-    return purchaseAmount;
+    try {
+      const purchaseAmount = await this.readline(MESSAGE.INPUT.lottoPurchaseAmount);
+      validatePurchaseAmount(purchaseAmount);
+      return purchaseAmount;
+    } catch (error) {
+      this.print(error.message);
+      return this.readPurchaseAmount();
+    }
   },
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbers = await this.readline(MESSAGE.INPUT.winningLottoNumbers);
-    if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
-    return winningLottoNumbers;
+    try {
+      const winningLottoNumbers = await this.readline(MESSAGE.INPUT.winningLottoNumbers);
+      validateWinningLottoNumbers(winningLottoNumbers);
+      return winningLottoNumbers;
+    } catch (error) {
+      this.print(error.message);
+      return this.readWinningLottoNumbers();
+    }
   },
 
   async readBonusNumber(winningLottoNumbers) {
-    const bonusNumber = await this.readline(MESSAGE.INPUT.bonusNumber);
-    if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
+    try {
+      const bonusNumber = await this.readline(MESSAGE.INPUT.bonusNumber);
+      validateBonusNumber(bonusNumber, winningLottoNumbers);
+      return bonusNumber;
+    } catch (error) {
+      this.print(error.message);
       return this.readBonusNumber(winningLottoNumbers);
-    return bonusNumber;
+    }
   },
 
   async readRestartOrQuit() {
-    const restartOrQuitCommend = await this.readline(MESSAGE.INPUT.restartOrQuit);
-    if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
-    return restartOrQuitCommend;
+    try {
+      const restartOrQuitCommend = await this.readline(MESSAGE.INPUT.restartOrQuit);
+      validateRestartOrQuitCommend(restartOrQuitCommend);
+      return restartOrQuitCommend;
+    } catch (error) {
+      this.print(error.message);
+      return this.readRestartOrQuit();
+    }
   },
 
   close() {
