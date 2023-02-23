@@ -39,6 +39,24 @@ class WebLottoController {
     });
   }
 
+  calculateStatistics() {
+    domList.resultBtn.addEventListener('click', event => {
+      const numberInputs = [...domList.targetNumberInputs];
+      const winningNumberInput = [...numberInputs].map(input => input.value);
+      winningNumberInput.pop();
+      const bonusNumberInput = numberInputs[numberInputs.length - 1].value;
+
+      try {
+        event.stopImmediatePropagation();
+        ui.hideTargetNumberValidationText();
+        inputValidator.validateWinningNumberInput(winningNumberInput.join(','));
+        inputValidator.validateBonusNumberInput(bonusNumberInput);
+        ui.showFinalResult(this.#lottoMachine.calculateStatistics(winningNumberInput, bonusNumberInput));
+      } catch (error) {
+        ui.showTargetNumberValidationText(error);
+      }
+    });
+  }
   closeModal() {
     domList.closeModalBtn.addEventListener('click', event => {
       event.stopImmediatePropagation();

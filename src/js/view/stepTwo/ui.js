@@ -37,6 +37,43 @@ const ui = {
     console.log('restart');
     domList.resultModal.style.display = 'none';
   },
+
+  showFinalResult({ ranks, rateOfProfit }) {
+    const reversedRanks = ranks.reverse();
+
+    const resultTemplate = `
+              <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>${reversedRanks[0]}개</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>5,0000</td>
+            <td>${reversedRanks[1]}개</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>150,000,000</td>
+            <td>${reversedRanks[2]}개</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td>${reversedRanks[3]}개</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td>${reversedRanks[4]}개</td>
+          </tr>
+    `;
+
+    domList.resultTableBody.innerHTML = resultTemplate;
+    domList.ropText.innerText = `당신의 총 수익률은 ${rateOfProfit.toFixed(1)}%입니다.`;
+
+    this.showModal();
+  },
 };
 
 export default ui;
