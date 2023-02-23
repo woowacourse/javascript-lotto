@@ -33,8 +33,9 @@ const LottoListView = {
   showResult(result, yieldRate) {
     $modalBackground.style.display = 'flex';
     $resultModalSection.style.display = 'flex';
+
     const ascendingWinningCounts = Object.values(result).reverse();
-    Array.prototype.forEach.call($winningCountCells, (cell) => {
+    Array.from($winningCountCells).forEach((cell) => {
       cell.innerHTML = `${ascendingWinningCounts.shift()}개`;
     });
     $yieldRate.innerHTML = `당신의 총 수익률은 ${yieldRate}%입니다.`;
