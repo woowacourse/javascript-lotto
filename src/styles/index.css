@@ -23,6 +23,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+button {
+  border: none;
+}
+
 button:disabled,
 button[disabled] {
   background-color: var(--lotto-greyscale-3);
@@ -41,8 +45,7 @@ button[disabled] {
   display: flex;
   align-items: center;
   height: 64px;
-  font-weight: 700;
-  font-size: 24px;
+  font: var(--lotto-title);
   color: var(--lotto-greyscale-1);
   background-color: var(--lotto-primary);
 }
@@ -80,6 +83,15 @@ button[disabled] {
   color: var(--lotto-greyscale-5);
 }
 
+.primary-button {
+  height: 36px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+}
+
 #money-input {
   width: 310px;
   height: 36px;
@@ -95,25 +107,21 @@ button[disabled] {
   color: var(--lotto-greyscale-4);
 }
 
-.buy-button {
+#buy-button {
   width: 56px;
   height: 36px;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--lotto-primary);
-  color: var(--lotto-greyscale-1);
 }
 
 #disabled {
   width: 56px;
   height: 36px;
-  border: none;
   border-radius: 4px;
   background-color: var(--lotto-greyscale-3);
 }
 
 #purchased-lotto-section {
   height: 400px;
+  overflow: scroll;
 }
 
 #winning-lotto-form {
@@ -135,15 +143,8 @@ button[disabled] {
   border-radius: 4px;
 }
 
-.primary-button {
-  height: 36px;
+#result-button {
   margin-top: 27px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--lotto-greyscale-1);
-  border: none;
-  border-radius: 4px;
-  background-color: var(--lotto-primary);
 }
 
 .modal-container {

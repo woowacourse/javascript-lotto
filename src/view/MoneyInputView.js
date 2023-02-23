@@ -3,7 +3,7 @@ import { toggleDisableAttribute } from '../utils/dom';
 class MoneyInputView {
   constructor() {
     this.form = document.getElementById('money-input-form');
-    this.button = document.querySelector('.buy-button');
+    this.button = document.querySelector('#buy-button');
     this.input = document.getElementById('money-input');
     this.input.focus();
   }
