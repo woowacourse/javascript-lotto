@@ -1,4 +1,6 @@
-import { $, dispatchCustomEvent } from '../../utils/dom';
+import { MAX_LOTTO_NUMBER } from '../../domain/constants';
+
+import { $, $$, dispatchCustomEvent } from '../../utils/dom';
 
 class WinningNumbersSubmitForm {
   #template = /* html */ `
@@ -17,6 +19,7 @@ class WinningNumbersSubmitForm {
               type="number"
               min="1"
               max="45"
+              tabindex="1"
               required
             />
             <input
@@ -24,6 +27,7 @@ class WinningNumbersSubmitForm {
               type="number"
               min="1"
               max="45"
+              tabindex="2"
               required
             />
             <input
@@ -31,6 +35,7 @@ class WinningNumbersSubmitForm {
               type="number"
               min="1"
               max="45"
+              tabindex="3"
               required
             />
             <input
@@ -38,6 +43,7 @@ class WinningNumbersSubmitForm {
               type="number"
               min="1"
               max="45"
+              tabindex="4"
               required
             />
             <input
@@ -45,6 +51,7 @@ class WinningNumbersSubmitForm {
               type="number"
               min="1"
               max="45"
+              tabindex="5"
               required
             />
             <input
@@ -52,6 +59,7 @@ class WinningNumbersSubmitForm {
               type="number"
               min="1"
               max="45"
+              tabindex="6"
               required
             />
           </div>
@@ -66,6 +74,7 @@ class WinningNumbersSubmitForm {
             type="number"
             min="1"
             max="45"
+            tabindex="7"
             required
           />
         </div>
@@ -86,9 +95,40 @@ class WinningNumbersSubmitForm {
   render() {
     this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
+    this.bindEvent();
+  }
+
+  bindEvent() {
+    this.bindAutoFocusNextEvent();
     $('.winning-numbers-form').addEventListener('submit', (e) =>
       this.handleSubmit(e)
     );
+  }
+
+  bindAutoFocusNextEvent() {
+    const numberInputs = Array.from($$('.number-input'));
+
+    numberInputs.forEach((input) => {
+      input.addEventListener('input', (e) => {
+        this.handleInputAutoFocusNext(numberInputs, e.target);
+      });
+    });
+  }
+
+  handleInputAutoFocusNext(inputs, currentInput) {
+    const number = currentInput.valueAsNumber;
+    const inputValueLength = currentInput.value.length;
+    const nextInput = inputs.find(
+      (input) => input.tabIndex === currentInput.tabIndex + 1
+    );
+
+    if (this.canFocusNextInput({ number, inputValueLength, nextInput })) {
+      nextInput.focus();
+    }
+  }
+
+  canFocusNextInput({ number, inputValueLength, nextInput }) {
+    return nextInput && number <= MAX_LOTTO_NUMBER && inputValueLength === 2;
   }
 
   handleSubmit(e) {
