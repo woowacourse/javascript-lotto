@@ -40,14 +40,15 @@ const addEvents = {
       try {
         const money = new Money(moneyAmount.value);
         const lottos = generateLottos(money.getAmount());
+        const count = money.getAmount() / LOTTO_NUMBER.moneyUnit;
 
         removeLottos();
         moneyError.innerHTML = EMPTY;
         lottoInfoContainer.classList.remove(HIDDEN);
         inputNumberContainer.classList.remove(HIDDEN);
 
-        getLottoCount(money.getAmount() / LOTTO_NUMBER.moneyUnit);
-        lottos.forEach((item) => getLottoNumbers(item.getLottoNumbers()));
+        lottoCount.innerText = `총 ${count}개를 구매하였습니다.`;
+        handleLottoContainer(lottos);
 
         addEvents.inputNumber(money, lottos);
       } catch (error) {
@@ -56,6 +57,7 @@ const addEvents = {
       }
     });
   },
+
   inputNumber: (money, lottos) => {
     inputNumberContainer.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -75,20 +77,23 @@ const addEvents = {
         winningModal.classList.remove(HIDDEN);
 
         const ranks = getCollectedRanks(winning, lottos);
-        getRankResult(ranks);
-        getBenefitRate(money.getAmount(), ranks);
+
+        handleRankCount(ranks);
+        handleBenefitRate(money.getAmount(), ranks);
       } catch (error) {
         const errorDiv = getErrorMessage(error.message);
         lottoNumbersError.appendChild(errorDiv);
       }
     });
   },
+
   closeModal: () => {
     closeButton.addEventListener('click', () => {
       app.classList.remove(STOP_SCROLL);
       winningModal.classList.add(HIDDEN);
     });
   },
+
   retry: () => {
     retryButton.addEventListener('click', () => {
       winningModal.classList.add(HIDDEN);
@@ -103,11 +108,14 @@ const addEvents = {
   },
 };
 
-const getLottoCount = (count) => {
-  lottoCount.innerText = `총 ${count}개를 구매하였습니다.`;
+const getErrorMessage = (errorMessage) => {
+  const errorDiv = document.createElement('div');
+  errorDiv.classList.add('errorMessage');
+  errorDiv.innerText = errorMessage;
+  return errorDiv;
 };
 
-const getLottoNumbers = (lottoNumbers) => {
+const getLottoNumberNode = (lottoNumbers) => {
   const lottoWrap = document.createElement('div');
   const imoticon = document.createElement('span');
   const lotto = document.createElement('span');
@@ -122,28 +130,10 @@ const getLottoNumbers = (lottoNumbers) => {
   lottoWrap.appendChild(imoticon);
   lottoWrap.appendChild(lotto);
 
-  lottoNumberConatiner.appendChild(lottoWrap);
+  return lottoWrap;
 };
 
-const getRankResult = (ranks) => {
-  rankCounts.forEach(
-    (rankCount, index) => (rankCount.innerText = `${ranks[4 - index]}개`)
-  );
-};
-
-const removeLottos = () => {
-  while (lottoNumberConatiner.firstChild) {
-    lottoNumberConatiner.removeChild(lottoNumberConatiner.firstChild);
-  }
-};
-
-const resetLottoInputs = () => {
-  winningNumberInputs.forEach((winningInput) => (winningInput.value = ''));
-  bonus.value = EMPTY;
-  moneyAmount.value = EMPTY;
-};
-
-const getBenefitRate = (money, ranks) => {
+const handleBenefitRate = (money, ranks) => {
   const benefit = new Benefit();
   benefit.calculateRate(money, ranks);
   const rate = benefit.getRate();
@@ -151,15 +141,35 @@ const getBenefitRate = (money, ranks) => {
   benefitRate.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
 };
 
-const getCopyrightCurrentYear = () => {
+const handleCopyrightCurrentYear = () => {
   footer.innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
 };
 
-const getErrorMessage = (errorMessage) => {
-  const errorDiv = document.createElement('div');
-  errorDiv.classList.add('errorMessage');
-  errorDiv.innerText = errorMessage;
-  return errorDiv;
+const handleLottoContainer = (lottos) => {
+  lottos.forEach((item) => {
+    lottoNumberConatiner.appendChild(
+      getLottoNumberNode(item.getLottoNumbers())
+    );
+  });
+};
+
+const handleRankCount = (ranks) => {
+  const totalLength = ranks.length - 1;
+
+  rankCounts.forEach((rankCount, index) => {
+    const curRankCount = ranks[totalLength - index];
+    rankCount.innerText = `${curRankCount}개`;
+  });
+};
+
+const removeLottos = () => {
+  lottoNumberConatiner.innerHTML = EMPTY;
+};
+
+const resetLottoInputs = () => {
+  winningNumberInputs.forEach((winningInput) => (winningInput.value = EMPTY));
+  bonus.value = EMPTY;
+  moneyAmount.value = EMPTY;
 };
 
 winningModal.classList.add(HIDDEN);
@@ -169,4 +179,4 @@ inputNumberContainer.classList.add(HIDDEN);
 addEvents.inputMoney();
 addEvents.closeModal();
 addEvents.retry();
-getCopyrightCurrentYear();
+handleCopyrightCurrentYear();
