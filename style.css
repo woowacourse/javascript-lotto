@@ -213,7 +213,6 @@ footer {
   width: 100%;
   border-top: solid 1px var(--gray);
   text-align: center;
-  position: fixed;
   bottom: 0;
   padding-top: 24px;
 }
