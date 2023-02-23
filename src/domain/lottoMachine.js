@@ -1,4 +1,5 @@
 import { LOTTO_NUMBER_LENGTH } from "../constants";
+import { getAscendingSortedNumbers } from "../util";
 import { generateRandomNumber } from "../util/randomNumberMaker";
 
 export const makeLottoTickets = (numberOfTickets) => {
@@ -12,5 +13,5 @@ export const makeLottoTicket = () => {
     lottoTicket.add(generateRandomNumber());
   }
 
-  return [...lottoTicket];
+  return getAscendingSortedNumbers([...lottoTicket]);
 };
