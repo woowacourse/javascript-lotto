@@ -63,6 +63,11 @@ main {
   margin-top: 28px;
 }
 
+#purchase-guide {
+  font: 700 12px "Roboto";
+  color: var(--lotto-gray-scale-4);
+}
+
 .purchase-form {
   display: flex;
   flex-direction: column;
@@ -226,7 +231,7 @@ input::-webkit-inner-spin-button {
 
 .modal-window {
   width: 350px;
-  height: 500px;
+  height: 480px;
   background-color: var(--lotto-gray-scale-1);
   border-radius: 4px;
   display: flex;
@@ -250,12 +255,14 @@ td {
   padding: 10px;
 }
 
+.profit {
+  font: 600 15px "Roboto";
+}
+
 .restart-btn {
   width: 304px;
   height: 34px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+  font: 700 14px/16px "Roboto";
   letter-spacing: 1.25px;
   border: none;
   border-radius: 4px;

@@ -1,11 +1,11 @@
-import PurchaseView from "../view/PurchaseView";
-import LotteriesView from "../view/LotteriesView";
-import LottoGame from "../domain/LottoGame";
-import Validation from "../Validation";
-import WinningNumbersView from "../view/WinningNumbersView";
-import ModalView from "../view/ModalView";
+import LottoGame from "./domain/LottoGame";
+import Validation from "./Validation";
+import PurchaseView from "./view/web/PurchaseView";
+import LotteriesView from "./view/web/LotteriesView";
+import WinningNumbersView from "./view/web/WinningNumbersView";
+import ModalView from "./view/web/ModalView";
 
-class WebController {
+class App {
   #lottoNumbers = [];
   #bonusNumber;
   #lottoGame;
@@ -58,7 +58,7 @@ class WebController {
     const lottoNumbers = inputLottoNumbers.reduce((arr, cur) => {
       return [...arr, +cur.value];
     }, []);
-    const bonusNumber = this.winningNumbersView.bonusNumber[0].value;
+    const bonusNumber = this.winningNumbersView.bonusNumber.value;
     try {
       Validation.lottoNumbers(lottoNumbers);
       this.#lottoNumbers = lottoNumbers;
@@ -69,29 +69,28 @@ class WebController {
         this.#bonusNumber
       );
       this.modalView.showResult(lottoResult);
-      this.#toggleButton(this.winningNumbersView.resultButton[0]);
+      this.#toggleButton(this.winningNumbersView.resultButton);
     } catch (error) {
       alert(error.message);
-      //reset value
     }
   };
 
   handleCloseModal = (event) => {
     event.preventDefault();
     this.modalView.hiddenModal();
-    this.winningNumbersView.resultButton[0].disabled = false;
+    this.#toggleButton(this.winningNumbersView.resultButton);
   };
 
   handleRestartGame = (event) => {
     event.preventDefault();
-    this.winningNumbersView.bonusNumber[0].value = null;
+    this.winningNumbersView.bonusNumber.value = null;
     this.lotteriesView.hideLotteriesView();
     this.modalView.hiddenModal();
     this.winningNumbersView.hideWinningContainer();
     this.#resetValue(this.purchaseView.purchaseInput);
     this.#toggleButton(this.purchaseView.purchaseButton);
-    this.#toggleButton(this.winningNumbersView.resultButton[0]);
+    this.#toggleButton(this.winningNumbersView.resultButton);
   };
 }
 
-export default WebController;
+export default App;

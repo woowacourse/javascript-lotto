@@ -1,15 +1,15 @@
-import { LOTTO_SIZE } from "../constants";
+import { LOTTO_SIZE } from "../../constants";
 
 class WinningNumbersView {
   constructor(submitWinningNumbers) {
     this.winningContainer = document.querySelector(".winning-container");
     this.winningContainer.style.display = "flex";
-    this.lottoContainer = document.getElementsByClassName("lotto-container");
-    this.resultButton = document.getElementsByClassName("result-btn");
-    this.bonusNumber = document.getElementsByClassName("bonus-input");
+    this.lottoContainer = document.querySelector(".lotto-container");
+    this.resultButton = document.querySelector(".result-btn");
+    this.bonusNumber = document.querySelector(".bonus-input");
     this.lotteryContainer = document.querySelector(".lottery-container");
     document
-      .getElementsByClassName("winning-number-form")[0]
+      .querySelector(".winning-number-form")
       .addEventListener("submit", submitWinningNumbers);
   }
 

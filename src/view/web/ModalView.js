@@ -1,4 +1,4 @@
-import { PRIZE } from "../constants";
+import { PRIZE } from "../../constants";
 
 class ModalView {
   constructor(handleCloseModal, handleRestartGame) {

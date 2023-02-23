@@ -1,4 +1,4 @@
 import "./css/index.css";
-import WebController from "./js/WebController";
+import App from "./App";
 
-new WebController();
+new App();
