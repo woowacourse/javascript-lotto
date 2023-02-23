@@ -15,6 +15,9 @@ class WebLottoController {
 
   addEvents() {
     this.buyLotto();
+    this.calculateStatistics();
+    this.restartGame();
+    this.closeModal();
   }
 
   init() {
