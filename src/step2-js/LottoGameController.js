@@ -13,7 +13,7 @@ export default class LottoGameController {
     this.#view = new View();
   }
 
-  play() {
+  initEvents() {
     this.#view.onClickPurchaseAmountSubmitButton((e) => this.#createLotto(e));
     this.#view.onClickWinningLottoSubmitButton((e) => this.#compareLotto(e));
     this.#view.onClickRestartButton(() => this.#initLottos());

@@ -8,6 +8,6 @@ export default class App {
   }
 
   start() {
-    this.#lottoGameController.play();
+    this.#lottoGameController.initEvents();
   }
 }
