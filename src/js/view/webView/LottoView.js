@@ -1,5 +1,8 @@
+import Comparer from '../../domain/Comparer';
 import LottoMachine from '../../domain/LottoMachine';
+import ProfitCalculator from '../../domain/ProfitCaculator';
 import Validator from '../../domain/Validator';
+import WinningLotto from '../../domain/WinningLotto';
 import { $, $$ } from '../../util/dom';
 
 const purchaseButton = $('.purchase-button');
@@ -17,12 +20,16 @@ const bonusNumber = $('.bonusNumber-input');
 const modal = $('.modal');
 const restartButton = $('.restart-button');
 
+const matchCounts = $$('.matchCount');
+const profitRate = $('.profitRate');
+
 purchaseButton.onclick = async (e) => {
   e.preventDefault();
   lottos.innerHTML = ``;
   try {
     Validator.purchaseAmount(moneyInput.value);
     showLotto(moneyInput.value);
+    window.localStorage.setItem('purchaseAmount', moneyInput.value);
   } catch (error) {
     alert(error.message);
   }
@@ -40,6 +47,8 @@ const showLotto = async (money) => {
   const lottosArray = Array.from({ length: lottoMachine.getQuantity() }, () =>
     lottoMachine.issueLotto(),
   );
+
+  window.localStorage.setItem('lottosArray', JSON.stringify(lottosArray));
   lottosArray.forEach((lotto) => {
     lottos.innerHTML += `<div class="lotto">🎟️ ${lotto.join(', ')}</div>`;
   });
@@ -47,14 +56,27 @@ const showLotto = async (money) => {
 
 printResultButton.onclick = async (e) => {
   e.preventDefault();
+  // const winningNumbers = new Array(6).fill().map((v, i) => Number(winningNumber[i].value));
+  const winningNumbers = Array.from({ length: 6 }, (v, i) => Number(winningNumber[i].value));
 
-  const winningNumbers = new Array(6).fill().map((v, i) => Number(winningNumber[i].value));
-
+  console.log(winningNumber);
   try {
-    console.log(winningNumbers);
-    Validator.winningNumber([...winningNumbers].join(','));
+    Validator.winningNumber(winningNumbers.join(','));
     Validator.bonusNumber(bonusNumber.value, winningNumbers);
+    const winningLotto = new WinningLotto(winningNumbers, Number(bonusNumber.value));
+    const ranking = new Comparer(
+      winningLotto,
+      JSON.parse(localStorage.getItem('lottosArray')),
+    ).getStatistics();
     modal.style.display = 'flex';
+
+    Object.entries(ranking).forEach(([rank, count], i) => {
+      matchCounts[i].innerText = count;
+    });
+
+    profitRate.innerText = new ProfitCalculator(ranking).getProfitRate(
+      localStorage.getItem('purchaseAmount'),
+    );
   } catch (error) {
     alert(error.message);
   }
