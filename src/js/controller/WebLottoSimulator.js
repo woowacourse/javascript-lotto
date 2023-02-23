@@ -10,9 +10,9 @@ class WebLottoSimulator {
   #winningLotto;
 
   constructor() {
-    this.#lottos = [];
     InputView.setBudgetInputHandler(this.purchaseLottos);
     InputView.setWinningNumberInputHandler(this.inputWinningLotto);
+    InputView.setModalCloseButtonHandler(this.closeResult);
   }
 
   purchaseLottos = (budget) => {
@@ -44,8 +44,27 @@ class WebLottoSimulator {
     }
   };
 
+  calculateWinningResult() {
+    const winningResult = {};
+
+    Object.values(LOTTO_RANKING).forEach((rank) => (winningResult[rank] = 0));
+    this.#lottos.forEach((lotto) => {
+      const rank = this.#winningLotto.calculateRanking(lotto);
+      if (rank in winningResult) winningResult[rank] += 1;
+    });
+    return winningResult;
+  }
+
   showResult = () => {
-    OutputView.showResult();
+    const winningResult = this.calculateWinningResult();
+    OutputView.showResult(
+      winningResult,
+      LottoUtils.calculateYieldRate(winningResult, this.#lottos.length)
+    );
+  };
+
+  closeResult = () => {
+    OutputView.closeResult();
   };
 }
 

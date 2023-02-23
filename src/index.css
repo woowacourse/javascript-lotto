@@ -32,8 +32,6 @@ h1 {
   color: var(--color-greyscale1);
 }
 h2 {
-  margin-top: 40px;
-  margin-bottom: 28px;
   text-align: center;
 }
 
@@ -142,6 +140,7 @@ ul {
 }
 
 #result-modal-section {
+  display: flex;
   position: fixed;
   align-self: center;
   width: 350px;
@@ -153,4 +152,49 @@ ul {
   align-items: center;
   background: var(--color-greyscale1);
   border-radius: 4px;
+}
+
+#modal-close-button {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  align-self: flex-end;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+#winning-result-table {
+  width: 319px;
+  height: 247px;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+td {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#yield-rate {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+#retry-button {
+  width: 318px;
+  height: 36px;
+  margin-top: auto;
+  margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
 }
