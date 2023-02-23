@@ -14,51 +14,47 @@ const maximumMoneyValidate = money => {
 
 const moneyValidate = money => {
   if (integerValidate(money)) {
-    console.log(ERROR.INPUT_MONEY_INTEGER);
     return true;
   }
 
   if (maximumMoneyValidate(money)) {
-    console.log(ERROR.INPUT_MONEY_LIMIT);
     return true;
   }
 
   if (thousandValidate(money)) {
-    console.log(ERROR.INPUT_MONEY_THOUSAND);
     return true;
   }
 };
 
 const winningNumberCountValidate = numbers => {
-  return numbers.split(',').length === NUMBER.MAX_LENGHT;
+  return numbers.length === NUMBER.MAX_LENGHT;
 };
 
 const winningNumberRange = numbers => {
-  return numbers.split(',').every(number => number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER);
+  return numbers.every(number => number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER);
 };
 
-const winningNumberValidate = numbers => {
+const winningAndBonusNumberValidate = (numbers, bonus) => {
   if (!winningNumberRange(numbers)) {
-    console.log(ERROR.WINNING_NUMBER_RANGE);
     return true;
   }
   if (!winningNumberCountValidate(numbers)) {
-    console.log(ERROR.WINNING_NUMBER_COUNT);
     return true;
   }
+  if (!(bonus >= NUMBER.MIN_NUMBER && bonus <= NUMBER.MAX_NUMBER)) {
+    return true;
+  }
+  if (numbers.includes(bonus)) return true;
 };
 
 const bonusNumberValidate = number => {
   if (!(number >= NUMBER.MIN_NUMBER && number <= NUMBER.MAX_NUMBER)) {
-    console.log(ERROR.BONUS_NUMBER_RANGE);
     return true;
   }
 };
 
-const winningIncludeBonusNumber = (numbers, bonus) => {
-  const isValidation = numbers.includes(bonus);
-  if (isValidation) console.log(ERROR.BONUS_WINNING_NUMBER_DUPLICATION);
-  return isValidation;
+const winningIncludeBonusNumberValidate = (numbers, bonus) => {
+  return numbers.includes(bonus);
 };
 
 const restartValidate = response => {
@@ -71,8 +67,14 @@ const restartValidate = response => {
 
 module.exports = {
   moneyValidate,
-  winningIncludeBonusNumber,
+  winningIncludeBonusNumberValidate,
   restartValidate,
-  winningNumberValidate,
+  winningAndBonusNumberValidate,
   bonusNumberValidate,
+  thousandValidate,
+  integerValidate,
+  maximumMoneyValidate,
+  winningNumberCountValidate,
+  winningNumberRange,
+  winningIncludeBonusNumberValidate
 };
