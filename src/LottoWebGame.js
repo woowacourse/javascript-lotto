@@ -8,28 +8,30 @@ import lottoGameCalculator from './domain/lottoGameCalculator';
 
 const $purchaseInput = $('#purchase-amount-form input[type=text]');
 
-const LottoWebGame = function () {
-  this.lottos = [];
+class LottoWebGame {
+  constructor() {
+    this.lottos = [];
+  }
 
-  this.init = () => {
-    initAddEventListener();
-  };
+  play() {
+    this.initAddEventListener();
+  }
 
-  const renderPurchasedLotto = () => {
+  renderPurchasedLotto() {
     const lottosNumbers = this.lottos.map((lotto) => lotto.getNumbers());
     render.purchasedLotto(lottosNumbers);
-  };
+  }
 
-  const renderStatistics = (winningNumbers, bonusNumber) => {
+  renderStatistics(winningNumbers, bonusNumber) {
     const purchaseAmount = this.lottos.length * LOTTO.price;
-    const rankings = makeRankings(winningNumbers, bonusNumber);
+    const rankings = this.makeRankings(winningNumbers, bonusNumber);
     const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
 
     render.showElement('.winning-statistics');
     render.statistics(rankings, rewardRate);
-  };
+  }
 
-  const makeRankings = (winningNumbers, bonusNumber) => {
+  makeRankings(winningNumbers, bonusNumber) {
     const rankings = [];
     this.lottos.forEach((lotto) => {
       const matchCount = lotto.calculateMatchCount(winningNumbers);
@@ -39,21 +41,21 @@ const LottoWebGame = function () {
     });
 
     return rankings;
-  };
+  }
 
-  const buyLottos = (purchaseAmount) => {
+  buyLottos(purchaseAmount) {
     this.lottos = [];
 
     new Array(purchaseAmount / LOTTO.price).fill().forEach(() => {
-      this.lottos.push(publishLotto());
+      this.lottos.push(this.publishLotto());
     });
-  };
+  }
 
-  const publishLotto = () => {
-    return new Lotto(generateLottoNumbers());
-  };
+  publishLotto() {
+    return new Lotto(this.generateLottoNumbers());
+  }
 
-  const generateLottoNumbers = () => {
+  generateLottoNumbers() {
     const lottoNumbers = [];
     while (lottoNumbers.length < LOTTO.numbersLength) {
       const number = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
@@ -61,68 +63,71 @@ const LottoWebGame = function () {
     }
 
     return lottoNumbers.sort((a, b) => a - b);
-  };
+  }
 
-  const handleSubmitPurchaseAmount = (event) => {
+  handleSubmitPurchaseAmount(event) {
     event.preventDefault();
 
     const purchaseAmount = $purchaseInput.value;
     try {
       lottoGameValidator.checkPruchaseAmount(purchaseAmount);
-      buyLottos(purchaseAmount);
-      renderPurchasedLotto();
+      this.buyLottos(purchaseAmount);
+      this.renderPurchasedLotto();
       render.winningLottoForm();
     } catch (error) {
       window.alert(error);
       $purchaseInput.value = '';
     }
-  };
+  }
 
-  const getWinningNumbers = () => {
+  getWinningNumbers() {
     return Array.from($$('#winning-lotto-from input[name="winning-number"]')).map((input) =>
       Number(input.value)
     );
-  };
+  }
 
-  const getBonusNumber = () => {
+  getBonusNumber() {
     return Number($('#winning-lotto-from input[name=bonus-number]').value);
-  };
+  }
 
-  const handleSubmitWinningLotto = (event) => {
+  handleSubmitWinningLotto(event) {
     event.preventDefault();
 
-    const winningNumbers = getWinningNumbers();
-    const bonusNumber = getBonusNumber();
+    const winningNumbers = this.getWinningNumbers();
+    const bonusNumber = this.getBonusNumber();
     try {
       lottoGameValidator.checkWinningNumbers(String(winningNumbers));
       lottoGameValidator.checkBonusNumber(Number(bonusNumber), winningNumbers);
-      renderStatistics(winningNumbers, bonusNumber);
+      this.renderStatistics(winningNumbers, bonusNumber);
     } catch (error) {
       window.alert(error);
     }
-  };
+  }
 
-  const restartLottoGame = ({ target }) => {
+  restartLottoGame({ target }) {
     if (!target.matches('button')) return;
 
     this.lottos = [];
     $purchaseInput.value = '';
     render.hideElement('.winning-statistics');
     render.restart();
-  };
+  }
 
-  const exitStatistics = ({ target }) => {
+  exitStatistics({ target }) {
     if (!target.matches('#winning-statistics-out-button')) return;
 
     render.hideElement('.winning-statistics');
-  };
+  }
 
-  const initAddEventListener = () => {
-    $('#purchase-amount-form').addEventListener('submit', handleSubmitPurchaseAmount);
-    $('#winning-lotto-from').addEventListener('submit', handleSubmitWinningLotto);
-    $('.winning-statistics').addEventListener('click', restartLottoGame);
-    $('.winning-statistics').addEventListener('click', exitStatistics);
-  };
-};
+  initAddEventListener() {
+    $('#purchase-amount-form').addEventListener(
+      'submit',
+      this.handleSubmitPurchaseAmount.bind(this)
+    );
+    $('#winning-lotto-from').addEventListener('submit', this.handleSubmitWinningLotto.bind(this));
+    $('.winning-statistics').addEventListener('click', this.restartLottoGame.bind(this));
+    $('.winning-statistics').addEventListener('click', this.exitStatistics.bind(this));
+  }
+}
 
 export default LottoWebGame;

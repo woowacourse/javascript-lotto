@@ -8,4 +8,4 @@ import './style';
 
 const lottoWebGame = new LottoWebGame();
 
-lottoWebGame.init();
+lottoWebGame.play();
