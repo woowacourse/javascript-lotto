@@ -1,5 +1,5 @@
 import './css/index.css';
-import LottoWebGame from './LottoWebGame';
+import LottoWebGame from './web/controller/LottoWebGame';
 
 /**
  * step 2의 시작점이 되는 파일입니다.

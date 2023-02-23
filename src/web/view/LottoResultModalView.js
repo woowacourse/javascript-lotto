@@ -1,4 +1,4 @@
-import { $ } from '../../util/web/dom';
+import { $ } from '../utils/dom';
 import { RANK } from '../../constant/setting';
 
 const closeButton = '<button type="button" id="modal-close-button" class="subtitle">X</button>';

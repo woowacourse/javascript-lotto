@@ -1,4 +1,4 @@
-import { $ } from './util/web/dom';
+import { $ } from '../utils/dom';
 
 class ModalController {
   constructor() {
@@ -9,16 +9,20 @@ class ModalController {
   }
 
   bindEventListeners() {
-    this.background.addEventListener('click', this.onCloseModal.bind(this));
+    this.background.addEventListener('click', this.onClose.bind(this));
   }
 
-  showModal() {
+  show() {
     this.background.classList.remove('hidden');
   }
 
-  onCloseModal(event) {
+  onClose(event) {
     if (!this.#isCloseEventId(event.target.id)) return;
 
+    this.reset();
+  }
+
+  reset() {
     this.modal.innerHTML = '';
     this.background.classList.add('hidden');
   }

@@ -1,14 +1,14 @@
-import { $, $$ } from './util/web/dom';
-import * as LottoGameValidator from './domain/validator';
-import convertToNumeric from './util/convertToNumeric';
-import LottoMachine from './domain/LottoMachine';
-import WinningLotto from './domain/WinningLotto';
-import LottoComparer from './domain/LottoComparer';
-import { convertToWinningNumber } from './domain/util';
+import { $, $$ } from '../utils/dom';
+import * as LottoGameValidator from '../../domain/validator';
+import convertToNumeric from '../../util/convertToNumeric';
+import LottoMachine from '../../domain/LottoMachine';
+import WinningLotto from '../../domain/WinningLotto';
+import LottoComparer from '../../domain/LottoComparer';
+import { convertToWinningNumber } from '../../domain/util';
 import ModalController from './ModalController';
-import calculateProfitRate from './domain/calculateProfitRate';
-import renderLottoListSection from './view/web/LottoListView';
-import renderLottoResultModal from './view/web/LottoResultModalView';
+import calculateProfitRate from '../../domain/calculateProfitRate';
+import renderLottoListSection from '../view/LottoListView';
+import renderLottoResultModal from '../view/LottoResultModalView';
 
 class LottoWebGame {
   #lottos;
@@ -22,7 +22,7 @@ class LottoWebGame {
   }
 
   init() {
-    $('#modal-background').classList.add('hidden');
+    this.#modal.reset();
     $('#purchase-amount-input').value = '';
     $('#purchase-lotto-list-section').innerHTML = '';
     $('#winning-lotto-form-section').classList.add('hidden');
@@ -65,7 +65,7 @@ class LottoWebGame {
       const ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
       const profitRate = calculateProfitRate(ranking, this.#lottos.length);
 
-      this.#modal.showModal();
+      this.#modal.show();
       renderLottoResultModal(ranking, profitRate);
     } catch (error) {
       alert(error.message);

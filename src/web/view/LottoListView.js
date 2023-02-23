@@ -1,4 +1,4 @@
-import { $ } from '../../util/web/dom';
+import { $ } from '../utils/dom';
 
 const createQuantityParagraph = (lottos) => {
   const p = document.createElement('p');
@@ -33,8 +33,12 @@ const createLottoList = (lottos) => {
 const renderLottoListSection = (lottos) => {
   const lottoListSection = $('#purchase-lotto-list-section');
 
-  lottoListSection.innerHTML = '';
+  resetLottoListSection();
   lottoListSection.append(...[createQuantityParagraph(lottos), createLottoList(lottos)]);
+};
+
+const resetLottoListSection = () => {
+  $('#purchase-lotto-list-section').innerHTML = '';
 };
 
 export default renderLottoListSection;
