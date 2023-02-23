@@ -5,14 +5,19 @@ const PRICE = 1000;
 const TOTAL = AMOUNT / PRICE;
 const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
 const DRAWING_NUMBERS = {
-  winningNumbers: [1, 2, 3, 4, 5, 6],
+  winNumbers: [1, 2, 3, 4, 5, 6],
   bonusNumber: 7,
 };
 
 const generateLotto = (count) =>
   Array(count)
     .fill()
-    .map(() => new Lotto(LOTTO_NUMBERS, DRAWING_NUMBERS).setDrawingNumbers(DRAWING_NUMBERS));
+    .map(() => {
+      const lotto = new Lotto(LOTTO_NUMBERS);
+      lotto.setDrawingNumbers(DRAWING_NUMBERS);
+
+      return lotto;
+    });
 
 describe('로또', () => {
   test('구입 금액만큼 로또를 구매한다', () => {
@@ -44,6 +49,6 @@ describe('로또', () => {
 
     const earningRate = LottoStore.calculateEarningRate(lottoList);
 
-    expect(earningRate).toBe((200_000_000).toFixed(1));
+    expect(earningRate).toBe(200_000_000);
   });
 });
