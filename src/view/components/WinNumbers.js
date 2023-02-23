@@ -1,4 +1,5 @@
 import Component from '../../Component.js';
+import { getFields } from '../../utils/domHelper.js';
 
 export default class WinNumbers extends Component {
   setEvent() {
@@ -40,8 +41,7 @@ export default class WinNumbers extends Component {
 
   handleSubmitForm(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const fields = Object.fromEntries(formData);
+    const fields = getFields(e.target);
     const drawingNumbers = { winNumbers: [], bonusNumber: 0 };
 
     Object.entries(fields).forEach(([name, value]) => {

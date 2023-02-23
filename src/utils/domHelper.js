@@ -1,6 +1,7 @@
 const qs = (selector, target = document) => target.querySelector(selector);
 const qsAll = (selector, target = document) => target.querySelectorAll(selector);
 const component = (name) => qs(`[data-component="${name}"]`);
+const getFields = (formEl) => Object.fromEntries(new FormData(formEl));
 const createEl = (tag, options = {}) => {
   const $el = document.createElement(tag);
 
@@ -17,4 +18,4 @@ const createEl = (tag, options = {}) => {
   return $el;
 };
 
-export { qs, qsAll, component, createEl };
+export { qs, qsAll, component, getFields, createEl };

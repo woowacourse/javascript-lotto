@@ -1,6 +1,7 @@
 import Component from '../../Component.js';
 import { LOTTO } from '../../constants/values.js';
 import { LottoStore } from '../../domain/Lotto.js';
+import { getFields } from '../../utils/domHelper.js';
 
 export default class Amount extends Component {
   setEvent() {
@@ -19,8 +20,7 @@ export default class Amount extends Component {
 
   handleSubmitForm(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const { amount } = Object.fromEntries(formData);
+    const { amount } = getFields(e.target);
     const lottoList = LottoStore.purchase(Number(amount) / LOTTO.PRICE);
 
     this.props.setLottoList(lottoList);
