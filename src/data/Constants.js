@@ -65,3 +65,5 @@ export const ERROR_MESSAGE = Object.freeze({
   DUPLICATE_WINNING_NUMBER: '당첨 번호와 중복되는 숫자는 입력할 수 없습니다.',
   NOT_INPUT_YES_OR_NO: `${YES} 또는 ${NO}만 입력하실 수 있습니다.`,
 });
+
+export const LOTTO_EMOJI = '🎟️';

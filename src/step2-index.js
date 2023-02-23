@@ -6,26 +6,44 @@
  */
 import './static/css/style.css';
 import LottoWebController from './controller/LottoWebController';
-import { MINIMUM_LOTTO_UNIT } from './data/Constants';
-import { WINNING_ORDER } from './data/Constants';
+import { MINIMUM_LOTTO_UNIT, WINNING_ORDER } from './data/Constants';
+import { LOTTO_EMOJI } from './data/Constants';
 
 const afterPurchaseShow = document.getElementsByClassName('after-purchase')[0];
 const lottoListWrap = document.getElementsByClassName('lotto-list')[0];
 const purchaseLottoCount = document.getElementById('lotto-purchase-count');
-
 const winNumberElement = document.getElementsByClassName('winNumber');
-
+const bonusNumberElement = document.getElementById('bonusNumber');
 const modal = document.getElementsByClassName('result-modal-background')[0];
-
 const ranks = document.getElementsByClassName('rank');
-
 const earnRateElement = document.getElementById('earnRate');
+
 const controller = new LottoWebController();
 
-const setLottos = () => {
+const resetLottoList = () => {
   while (lottoListWrap.firstChild) {
     lottoListWrap.removeChild(lottoListWrap.firstChild);
   }
+};
+
+const renderLottoList = (lottoList) => {
+  lottoList.map((lottoInfo) => {
+    const lottoElement = document.createElement('li');
+
+    const lottoEmoji = document.createElement('div');
+    lottoEmoji.innerHTML = LOTTO_EMOJI;
+    lottoElement.appendChild(lottoEmoji);
+
+    const lottoText = document.createElement('p');
+    lottoText.innerHTML = lottoInfo;
+    lottoElement.appendChild(lottoText);
+
+    lottoListWrap.append(lottoElement);
+  });
+};
+
+const setLottos = () => {
+  resetLottoList();
 
   const inputAmount = document.getElementById('input-purchase-amount').value;
   afterPurchaseShow.style.display = 'block';
@@ -34,23 +52,14 @@ const setLottos = () => {
 
   const lottoList = controller.printLottoInfo();
 
-  lottoList.map((lottoInfo) => {
-    const lottoElement = document.createElement('li');
-    const lottoEmoji = document.createElement('div');
-    lottoEmoji.innerHTML = '🎟️';
-    const lottoText = document.createElement('p');
-    lottoText.innerHTML = lottoInfo;
-    lottoElement.appendChild(lottoEmoji);
-    lottoElement.appendChild(lottoText);
-    lottoListWrap.append(lottoElement);
-  });
+  renderLottoList(lottoList);
 };
 
 const result = () => {
   const winNumber = Array.from(winNumberElement).map(
     (element) => element.value
   );
-  const bonusNumber = document.getElementById('bonusNumber').value;
+  const bonusNumber = bonusNumberElement.value;
   controller.setWinNumber(winNumber, bonusNumber);
 
   modal.style.display = 'block';
@@ -78,20 +87,10 @@ document
   .getElementById('check-result-btn')
   .addEventListener('click', () => result(), false);
 
-document.getElementById('modal-close-btn').addEventListener(
-  'click',
-  () => {
-    modal.style.display = 'none';
-  },
-  false
-);
+document
+  .getElementById('modal-close-btn')
+  .addEventListener('click', () => (modal.style.display = 'none'), false);
 
-document.getElementById('restart-btn').addEventListener(
-  'click',
-  () => {
-    location.reload();
-  },
-  false
-);
-
-export const inputPurchaseAmount = () => {};
+document
+  .getElementById('restart-btn')
+  .addEventListener('click', () => location.reload(), false);
