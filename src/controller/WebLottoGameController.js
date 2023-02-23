@@ -48,6 +48,28 @@ class WebLottoGameController {
     if (isValidWinningNumber && isValidBonusNumber)
       this.printLottoGameResult(winningNumbers, bonusNumber);
   }
+
+  validateWinningNumbers(winningNumbers) {
+    try {
+      LottoValidator.checkLottoNumbers(winningNumbers);
+      return true;
+    } catch (error) {
+      alert(error.message);
+      [...$$('.lotto-number-input')].slice(0, 6).map((lottoNumber) => (lottoNumber.value = ''));
+      return false;
+    }
+  }
+
+  validateBonusNumber(winningNumbers, bonusNumber) {
+    try {
+      LottoValidator.checkBonusNumber(winningNumbers, bonusNumber);
+      return true;
+    } catch (error) {
+      alert(error.message);
+      $('#bonus-number-input').value = '';
+      return false;
+    }
+  }
 }
 
 export default WebLottoGameController;
