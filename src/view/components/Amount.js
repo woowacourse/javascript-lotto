@@ -22,7 +22,7 @@ export default class Amount extends Component {
   handleSubmitForm(e) {
     e.preventDefault();
     const { amount } = getFields(e.target);
-    const { isValid } = Validator.Inputs.amount(amount, { onError: alert });
+    const { isValid } = Validator.Inputs.amount(Number(amount), { onError: alert });
 
     if (isValid) {
       const lottoList = LottoStore.purchase(Number(amount) / LOTTO.PRICE);
