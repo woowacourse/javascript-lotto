@@ -41,15 +41,11 @@ class View {
     this.lottosQuantity = document.querySelector('#lottos-quantity');
     this.lottosQuantity.innerText = lottoNumbersList.length;
 
-    this.buyButton.disabled = true;
-
     const lottoListContainer = document.querySelector('#lotto-list-container');
 
     lottoListContainer.innerHTML = null;
     lottoNumbersList.forEach(lottoNumbers => {
-      lottoListContainer.innerHTML += `
-      <li>🎟️ ${lottoNumbers.join(', ')}</li>
-      `;
+      lottoListContainer.innerHTML += `<li>🎟️ ${lottoNumbers.join(', ')}</li>`;
     });
 
     this.showElementsAfterBuyLottos();
