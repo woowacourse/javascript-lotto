@@ -2,62 +2,19 @@
  * step 2의 시작점이 되는 파일입니다.
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
-import '../css/style.css';
-import LottoGameValidator from './view/LottoValidator.js';
+import './web/css/style.css';
 import LottoGame from './domain/LottoGame.js';
+import ModalWindow from './web/ModalWindow.js';
+import Alert from './web/Alert.js';
+import HTMLInputView from './web/HTMLInputView.js';
+import Table from './web/Table.js';
 
 const lottoGame = new LottoGame();
-
-const ModalWindow = {
-  show(message = '&nbsp;') {
-    document.querySelector('.modal-background').style.display = 'flex';
-    document.querySelector('.modal-message').innerHTML = message;
-  },
-
-  hide() {
-    document.querySelector('.modal-message').innerHTML = '&nbsp;';
-    document.querySelector('.modal-background').style.display = 'none';
-  },
-
-  addDomTree(tree) {
-    document.querySelector('.modal-background').style.display = 'flex';
-    document.querySelector('.modal-message').appendChild(tree);
-  },
-};
-
-const Alert = {
-  show(message, otherClasses = '') {
-    const [alertDiv] = document.getElementsByClassName(['alert', otherClasses].join(' '));
-    alertDiv.querySelector('p').innerHTML = `${message}`;
-    alertDiv.style.display = 'flex';
-  },
-
-  hide(otherClasses = '') {
-    const [alertDiv] = document.getElementsByClassName(['alert', otherClasses].join(' '));
-    alertDiv.style.display = 'none';
-  },
-};
-
-const HTMLInputView = {
-  readMoney() {
-    const money = document.querySelector('.money-input').value;
-
-    LottoGameValidator.validateMoney(money);
-
-    return Number(money);
-  },
-
-  readWinningNumbersAndBonusNumber() {
-    const winningNumbers = Array.from(document.getElementsByClassName('single-number-input'))
-      .map((element) => element.value);
-    const bonusNumber = winningNumbers.pop();
-
-    LottoGameValidator.validateWinningNumbers(winningNumbers);
-    LottoGameValidator.validateBonusNumber(bonusNumber, winningNumbers.map(Number));
-
-    return { winningNumbers: winningNumbers.map(Number), bonusNumber: Number(bonusNumber) };
-  },
-};
+const moneyBtn = document.querySelector('.buy');
+const showResultBtn = document.querySelector('button.show-results');
+const closeModalBtn = document.querySelector('.modal-box button.close');
+const [closeMoneyAlertBtn, closeWinningLottoAlertBtn] = document.querySelectorAll('.alert button.close');
+const restartBtn = document.querySelector('.restart-game');
 
 const showHiddenFeatures = () => {
   document.querySelectorAll('.hidden-first')
@@ -69,37 +26,6 @@ const showLottoList = (lottoList) => {
   document.querySelector('.lotto-list div').innerHTML = lottoList
     .map((lottoNumbers) => `<p class="lotto">🎟️ ${lottoNumbers.join(', ')}</p>`)
     .join('');
-};
-
-const Table = {
-  create() {
-    return document.createElement('table');
-  },
-
-  addHead(table, headList) {
-    const thead = table.createTHead();
-    const headRow = thead.insertRow();
-
-    headList.forEach((headName) => {
-      const content = document.createTextNode(headName);
-      const th = document.createElement('th');
-      th.appendChild(content);
-      headRow.appendChild(th);
-    });
-
-    return table;
-  },
-
-  addRow(table, rowList) {
-    const row = table.insertRow();
-
-    rowList.forEach((rowContent) => {
-      const content = document.createTextNode(rowContent);
-      row.insertCell().appendChild(content);
-    });
-
-    return table;
-  },
 };
 
 const makeResultTable = () => {
@@ -133,12 +59,7 @@ const showResult = () => {
   ModalWindow.addDomTree(resultFooter);
 };
 
-const moneyBtn = document.querySelector('.buy');
-const showResultBtn = document.querySelector('button.show-results');
-const closeModalBtn = document.querySelector('.modal-box button.close');
-const [closeMoneyAlertBtn, closeWinningLottoAlertBtn] = document.querySelectorAll('.alert button.close');
-const restartBtn = document.querySelector('.restart-game');
-
+// main
 moneyBtn.addEventListener('click', () => {
   try {
     const money = HTMLInputView.readMoney();
