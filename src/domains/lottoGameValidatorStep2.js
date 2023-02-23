@@ -3,6 +3,7 @@ import LOTTO from '../constants/lotto.js';
 
 const lottoGameValidatorStep2 = {
   isValidBuyMoney(buyMoney) {
+    if (buyMoney <= 0) return false;
     return validator.canDivide(buyMoney, LOTTO.PRICE);
   },
 
