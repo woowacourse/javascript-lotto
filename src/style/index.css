@@ -1,4 +1,5 @@
 @import url(./reset.css);
+@import url(./main.css);
 @import url(./header.css);
 @import url(./footer.css);
 @import url(./purchaseAmountForm.css);
@@ -13,25 +14,6 @@
   flex-direction: column;
 }
 
-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#main {
-  width: 414px;
-  height: 727px;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-}
-
-#main-title {
-  padding: 40px 16px 0px;
-  text-align: center;
-  font: 800 24px/36px 'Roboto';
+.hidden {
+  display: none;
 }

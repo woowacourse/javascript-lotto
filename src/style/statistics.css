@@ -31,10 +31,6 @@
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
 #winning-statistics-title {
   margin: 40px 0px 33px;
   font: 600 20px/24px 'Roboto';

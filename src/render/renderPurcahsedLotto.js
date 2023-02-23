@@ -8,8 +8,8 @@ const renderPurchasedLotto = (lottosNumbers) => {
           .map((lottoNumbers) => {
             return `
             <li>
-                <div class="lotto-emoji">🎟️</div>
-                <div class="lotto-numbers">${lottoNumbers.join(', ')}</div>
+                <div id="lotto-emoji">🎟️</div>
+                <div id="lotto-numbers">${lottoNumbers.join(', ')}</div>
             </li>`;
           })
           .join('')}

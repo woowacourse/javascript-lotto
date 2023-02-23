@@ -22,12 +22,12 @@
   align-items: center;
 }
 
-#purchase-lotto .lotto-emoji {
+#lotto-emoji {
   font: 600 36px/36px 'Roboto';
   margin-right: 8px;
 }
 
-#purchase-lotto .lotto-numbers {
+#lotto-numbers {
   font: 400 15px/24px 'Roboto';
   letter-spacing: 0.5px;
 }
