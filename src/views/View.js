@@ -29,6 +29,39 @@ class View {
     this.bonusNumberInput = document.querySelector('#bonus-number');
   }
 
+  bindBuyButtonEventHandler(onClickBuyButton) {
+    this.buyButton.addEventListener('click', event => {
+      event.preventDefault();
+
+      const buyMoney = Number(this.buyMoneyInput.value);
+
+      onClickBuyButton(buyMoney);
+    });
+  }
+
+  bindShowResultButtonEventHandler(onClickShowResultButton) {
+    this.showResultButton.addEventListener('click', event => {
+      event.preventDefault();
+
+      const bonusNumber = Number(this.bonusNumberInput.value);
+      const luckyNumbers = [...this.luckyNumbersInput].map(number => Number(number.value));
+
+      onClickShowResultButton(bonusNumber, luckyNumbers);
+    });
+  }
+
+  bindModalCloseButtonEventHandler(onClickModalCloseButton) {
+    this.modalCloseButton.addEventListener('click', () => {
+      onClickModalCloseButton();
+    });
+  }
+
+  bindRestartButtonEventHandler(onClickRestartButton) {
+    this.restartButton.addEventListener('click', () => {
+      onClickRestartButton();
+    });
+  }
+
   hideElementsforInitialScreen() {
     const lottoDetail = document.querySelector('.lotto-detail');
     const winningNumbersForm = document.querySelector('#winning-numbers-form');
@@ -48,10 +81,10 @@ class View {
       lottoListContainer.innerHTML += `<li>🎟️ ${lottoNumbers.join(', ')}</li>`;
     });
 
-    this.showElementsAfterBuyLottos();
+    this.showWinningNumbersForm();
   }
 
-  showElementsAfterBuyLottos() {
+  showWinningNumbersForm() {
     const lottoDetail = document.querySelector('.lotto-detail');
     const winningNumbersForm = document.querySelector('#winning-numbers-form');
 

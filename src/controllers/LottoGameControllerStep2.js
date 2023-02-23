@@ -8,37 +8,17 @@ class LottoGameControllerStep2 {
   lottoGame;
 
   startGame() {
-    this.bindLottoButtonEvents();
+    this.bindLottoButtonEventHandlers();
   }
 
-  bindLottoButtonEvents() {
-    this.bindBuyButtonEvent();
-    this.bindShowResultButtonEvent();
-    this.bindModalCloseButtonEvent();
-    this.bindRestartButtonEvent();
+  bindLottoButtonEventHandlers() {
+    this.view.bindBuyButtonEventHandler(this.onClickBuyButton);
+    this.view.bindShowResultButtonEventHandler(this.onClickShowResultButton);
+    this.view.bindModalCloseButtonEventHandler(this.onClickModalCloseButton);
+    this.view.bindRestartButtonEventHandler(this.onClickRestartButton);
   }
 
-  bindBuyButtonEvent() {
-    this.view.buyButton.addEventListener('click', this.onClickBuyButton);
-  }
-
-  bindShowResultButtonEvent() {
-    this.view.showResultButton.addEventListener('click', this.onClickShowResultButton);
-  }
-
-  bindModalCloseButtonEvent() {
-    this.view.modalCloseButton.addEventListener('click', this.onClickModalCloseButton);
-  }
-
-  bindRestartButtonEvent() {
-    this.view.restartButton.addEventListener('click', this.onClickRestartButton);
-  }
-
-  onClickBuyButton = event => {
-    event.preventDefault();
-
-    const buyMoney = Number(this.view.buyMoneyInput.value);
-
+  onClickBuyButton = buyMoney => {
     if (!this.validateBuyMoney(buyMoney)) return false;
 
     this.lottoGame = new LottoGame(buyMoney);
@@ -57,12 +37,7 @@ class LottoGameControllerStep2 {
     return true;
   }
 
-  onClickShowResultButton = event => {
-    event.preventDefault();
-
-    const luckyNumbers = [...this.view.luckyNumbersInput].map(number => Number(number.value));
-    const bonusNumber = Number(this.view.bonusNumberInput.value);
-
+  onClickShowResultButton = (bonusNumber, luckyNumbers) => {
     if (!this.validateWinningNumbers(luckyNumbers, bonusNumber)) return false;
 
     this.lottoGame.initWinningNumbers(luckyNumbers, bonusNumber);
