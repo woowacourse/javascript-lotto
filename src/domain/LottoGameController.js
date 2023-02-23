@@ -2,6 +2,7 @@ import LottoGame from './LottoGame.js';
 import PurchaseView from '../view/PurchaseView.js';
 import LottoListView from '../view/LottoListView.js';
 import WinningNumbersView from '../view/WinningNumbersView.js';
+import ModalView from '../view/ModalView.js';
 import Validation from './Vaildation.js';
 import { LOTTO_CONDITION } from '../constants/condition.js';
 
@@ -13,6 +14,7 @@ export default class LottoGameController {
     this.purchaseView = new PurchaseView();
     this.lottoListView = new LottoListView();
     this.winningNumbersView = new WinningNumbersView();
+    this.modalView = new ModalView();
   }
 
   listenViewEvents() {
@@ -83,7 +85,7 @@ export default class LottoGameController {
       const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);
       const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
 
-      console.log(totalPrizeMoney, yieldRatio);
+      this.modalView.renderModal(statistics, yieldRatio);
 
       return;
     } catch (error) {
