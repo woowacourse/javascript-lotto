@@ -67,10 +67,6 @@ export default class LottoGame {
   getLottoQuantity() {
     return this.#lottos.length;
   }
-
-  getEachLottoNumbers() {
-    return this.#lottos.map((lotto) => lotto.getNumbers());
-  }
 }
 
 const statisticsDummy = {

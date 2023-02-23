@@ -1,4 +1,4 @@
-import { LOTTO_CONDITION, RESTART_COMMAND } from '../constants/condition.js';
+import { LOTTO_CONDITION } from '../constants/condition.js';
 import { ERROR_MESSAGE } from '../constants/message.js';
 
 const Validation = {
@@ -17,7 +17,7 @@ const Validation = {
   },
 
   isNumber(purchaseAmount) {
-    return Number.isInteger(Number(purchaseAmount));
+    return Number.isNaN(Number(purchaseAmount));
   },
 
   isHigherThanLottoPrice(purchaseAmount) {
@@ -84,14 +84,6 @@ const Validation = {
     const duplicateCheck = new Set(combine);
 
     return combine.length === duplicateCheck.size;
-  },
-
-  validateRestartCommand(command) {
-    const commands = [RESTART_COMMAND.restart, RESTART_COMMAND.quit];
-
-    if (!commands.includes(command)) {
-      throw new Error(ERROR_MESSAGE.invalidRestartCommand);
-    }
   },
 };
 
