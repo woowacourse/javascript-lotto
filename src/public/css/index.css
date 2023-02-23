@@ -36,13 +36,13 @@ main {
 }
 
 .section-split-main li {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
 }
 
 h2 {
   font-weight: 700;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 h1 {
@@ -65,7 +65,7 @@ button {
   color: #ffffff;
   text-align: center;
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -107,7 +107,7 @@ section .section-split {
 
 .texts {
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -128,10 +128,20 @@ section .section-split {
   border-radius: 4px;
 }
 
+.get-result {
+  margin-top: 2vh;
+}
+
 .get-all-lotto-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.lotto-number-box {
   display: flex;
   justify-content: space-between;
 }
+
 .my-lotto-numbers {
   width: 70%;
   display: flex;
@@ -167,13 +177,22 @@ header h1 {
   align-items: center;
   position: fixed;
   z-index: 1;
-  width: 25%;
-  height: 50%;
+  width: 350px;
+  height: 500px;
   background-color: #ffffff;
-  top: 25%;
-  left: 37%;
+  top: 19%;
+  left: 37.5%;
+  text-align: center;
   border: 1px solid #000000;
   z-index: 1;
+}
+
+.modal-view h2 {
+  margin-top: -10%;
+}
+
+.restart-button {
+  width: 80%;
 }
 
 .rank-result {
