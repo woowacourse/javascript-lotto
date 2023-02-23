@@ -30,12 +30,15 @@ export default class Lotto {
       this.#setRankTwoOrThree(bonusNumber);
       return;
     }
-    if (correctNumberCount === correctCountPerRank.FIRST_RANK)
+    if (correctNumberCount === correctCountPerRank.FIRST_RANK) {
       this.#rank = ranks.FIRST_RANK;
-    if (correctNumberCount === correctCountPerRank.FOURTH_RANK)
+    }
+    if (correctNumberCount === correctCountPerRank.FOURTH_RANK) {
       this.#rank = ranks.FOURTH_RANK;
-    if (correctNumberCount === correctCountPerRank.FIFTH_RANK)
+    }
+    if (correctNumberCount === correctCountPerRank.FIFTH_RANK) {
       this.#rank = ranks.FIFTH_RANK;
+    }
   }
 
   #setRankTwoOrThree(bonusNumber) {
