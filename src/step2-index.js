@@ -72,3 +72,22 @@ const saveWinning = () => {
     window.alert(error.message);
   }
 };
+
+const renderLottoContent = () => {
+  const lottoCount = lottoMachine.getLottoCount();
+  const lottos = lottoMachine.getLottos();
+
+  count.innerHTML = lottoCount;
+  lottoList.innerHTML = lottos
+    .map(
+      (lotto) =>
+        `<div id="lotto" class="lotto-container">
+        <div class="lotto-image">🎟</div>
+        <div id="lottoNumbers" class="lotto-numbers normal-font">${lotto.join(
+          ', '
+        )}</div>
+      </div>`
+    )
+    .join('');
+  lottoContent.classList.remove('hidden');
+};
