@@ -20,6 +20,17 @@ class WebLottoGameController {
     this.#printLottoTickets();
     WebView.showHiddenSection();
   }
+
+  #issueLottoTickets(userBudget) {
+    this.lottoGame = new LottoGame(userBudget);
+  }
+
+  #printLottoTickets() {
+    const lottoTickets = this.lottoGame.getLottoTickets();
+
+    WebView.printLottoTicketCount(lottoTickets.length);
+    WebView.printLottoTickets(lottoTickets);
+  }
 }
 
 export default WebLottoGameController;
