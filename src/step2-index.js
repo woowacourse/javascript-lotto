@@ -5,6 +5,8 @@ import '../modal.css';
 import validator from './domain/validator';
 import LottoGame from './domain/LottoGame';
 
+import view from './view/view';
+
 const $budgetForm = document.querySelector('.budget_form');
 const $budgetInput = document.querySelector('.budget_input');
 const $budgetError = document.querySelector('.budget_error');
@@ -15,7 +17,7 @@ const $lottoCount = document.querySelector('.lotto_count');
 const $lottoList = document.querySelector('.lotto_list_box');
 
 const $lottoNumberForm = document.querySelector('.lotto_number_form');
-const $winningNumberInput = document.querySelectorAll('.winning_number');
+const $winningNumberInputs = document.querySelectorAll('.winning_number');
 const $bonusNumberInput = document.querySelector('.bonus_number');
 const $numberError = document.querySelector('.number_error');
 
@@ -29,88 +31,78 @@ const $retryButton = document.querySelector('.retry_btn');
 
 let lottoGame;
 
-const convertVisibilityToHidden = (...doms) => {
-  return [...doms].forEach((dom) => (dom.style.visibility = 'hidden'));
-};
-const convertVisibilityToVisible = (...doms) => {
-  return [...doms].forEach((dom) => (dom.style.visibility = 'visible'));
-};
-
-const displayModal = (winningNumbers, bonusNumber) => {
-  const winningStatus = [...lottoGame.getWinningStatus(winningNumbers, bonusNumber)].reverse();
-  const profitRate = lottoGame.getProfitRate().toFixed(2);
-  [...$winningCounts].forEach((winningCount, index) => {
-    winningCount.innerText = winningStatus[index];
-  });
-  $profitRate.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
-};
-
-const displayBudgetError = (message) => {
-  $budgetError.innerText = message;
-  convertVisibilityToVisible($budgetError);
-};
-
-const displayLottoNumberError = (message) => {
-  $numberError.innerText = message;
-  convertVisibilityToVisible($numberError);
-};
-
-const displayBoughtLottos = (lottos) => {
-  const lottoDivs = [...lottos].reduce((lottoDivs, lotto) => {
-    return (lottoDivs += `
-    <div class='lotto'>
-      <div>🎟️</div>
-      <span>${lotto.join(', ')}</span>
-    </div>`);
-  }, '');
-  $lottoList.innerHTML = lottoDivs;
-};
-
 const onSubmitBudgetForm = (event) => {
   event.preventDefault();
+
   const budget = event.target[0].value;
+
+  handleBudget(budget);
+};
+
+const handleBudget = (budget) => {
   try {
     validator.validateBudget(budget);
-    $budgetError.innerText = '';
+    view.initInputValue($budgetError);
+    lottoGame = new LottoGame(budget);
   } catch ({ message }) {
-    return displayBudgetError(message);
+    view.insertInnerText($budgetError, message);
+    return view.convertVisibilityToVisible($budgetError);
   }
 
-  $lottoCount.innerText = `총 ${budget / 1000}개를 구매하였습니다.`;
-  convertVisibilityToVisible($step2);
-  lottoGame = new LottoGame(budget);
-  displayBoughtLottos(lottoGame.getBoughtLottos());
+  renderStep2(budget);
+};
+
+const renderStep2 = (budget) => {
+  view.insertLottoCount($lottoCount, budget);
+  view.insertBoughtLottos($lottoList, lottoGame.getBoughtLottos());
+
+  view.convertVisibilityToVisible($step2);
 };
 
 const onSubmitLottoNumberForm = (event) => {
   event.preventDefault();
-  const winningNumbers = [...$winningNumberInput].map((input) => Number(input.value));
+
+  const winningNumbers = [...$winningNumberInputs].map((input) => Number(input.value));
   const bonusNumber = $bonusNumberInput.value;
+
+  handleLottoNumber(winningNumbers, bonusNumber);
+};
+
+const handleLottoNumber = (winningNumbers, bonusNumber) => {
   try {
     validator.validateWinningNumber(winningNumbers.join(','));
     validator.validateBonusNumber(bonusNumber);
-    convertVisibilityToHidden($numberError);
+    view.convertVisibilityToHidden($numberError);
   } catch ({ message }) {
-    return displayLottoNumberError(message);
+    view.insertInnerText(message);
+    return view.convertVisibilityToVisible($numberError);
   }
 
-  displayModal(winningNumbers, bonusNumber);
-  convertVisibilityToVisible($modal);
+  renderModal(winningNumbers, bonusNumber);
+};
+
+const renderModal = (winningNumbers, bonusNumber) => {
+  const winningStatus = [...lottoGame.getWinningStatus(winningNumbers, bonusNumber)].reverse();
+  const profitRate = lottoGame.getProfitRate().toFixed(2);
+
+  view.insertWinningCounts($winningCounts, winningStatus);
+  view.insertProfitRate($profitRate, profitRate);
+
+  view.convertVisibilityToVisible($modal);
 };
 
 const onClickRetryButton = () => {
-  $budgetInput.value = '';
-  convertVisibilityToHidden($modal, $step2);
-  [...$winningNumberInput].forEach((input) => {
-    input.value = '';
+  view.initInputValue($budgetInput, $bonusNumberInput);
+  view.convertVisibilityToHidden($modal, $step2);
+  [...$winningNumberInputs].forEach((winningNumberInput) => {
+    view.initInputValue(winningNumberInput);
   });
-  $bonusNumberInput.value = '';
 };
 
 $budgetForm.addEventListener('submit', onSubmitBudgetForm);
 $lottoNumberForm.addEventListener('submit', onSubmitLottoNumberForm);
 
-$modalCloseButton.addEventListener('click', () => convertVisibilityToHidden($modal));
-$modalBackground.addEventListener('click', () => convertVisibilityToHidden($modal));
+$modalCloseButton.addEventListener('click', () => view.convertVisibilityToHidden($modal));
+$modalBackground.addEventListener('click', () => view.convertVisibilityToHidden($modal));
 
 $retryButton.addEventListener('click', onClickRetryButton);
