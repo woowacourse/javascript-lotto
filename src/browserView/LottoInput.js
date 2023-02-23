@@ -1,4 +1,4 @@
-import { Event, QuerySelector } from '../constants/HTML';
+import { ClassName, Event, QuerySelector } from '../constants/HTML';
 import { $, $$ } from '../utils/DomUtils';
 
 class LottoInput {
@@ -7,7 +7,7 @@ class LottoInput {
   }
 
   render() {
-    this.lottoInput.classList.add('show');
+    this.lottoInput.classList.add(ClassName.SHOW);
   }
 
   activate = (setWinningLotto) => {

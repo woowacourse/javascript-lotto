@@ -3,8 +3,6 @@ const QuerySelector = Object.freeze({
   PURCHASE_BUTTON: '.purchase_button',
   PURCHASE_MESSAGE: 'purchase_message',
   LOTTO_LIST_FIELD: '.user_lotto_field',
-  LOTTO_LIST: 'user_lotto_list',
-  LOTTO: 'user_lotto',
   LOTTO_INPUT_FIELD: '.winning_lotto_input_field',
   WINNING_NUMBER: '.winning_number_input',
   BONUS_NUMBER: '.bonus_number_input',
@@ -13,6 +11,14 @@ const QuerySelector = Object.freeze({
   MODAL_CLOSE_BUTTON: '.modal_close_button',
   PROFIT_MESSAGE: '.result_profit_message',
   RESTART_BUTTON: '.restart_button',
+  CONTENT: '.content',
+});
+
+const ClassName = Object.freeze({
+  LOTTO_LIST: 'user_lotto_list',
+  LOTTO: 'user_lotto',
+  HEIGHT_AUTO: 'height_auto',
+  SHOW: 'show',
 });
 
 const Tag = Object.freeze({
@@ -25,4 +31,8 @@ const Event = Object.freeze({
   CLICK: 'click',
 });
 
-export { QuerySelector, Tag, Event };
+const Attr = Object.freeze({
+  OPEN: 'open',
+});
+
+export { QuerySelector, Tag, Event, Attr, ClassName };

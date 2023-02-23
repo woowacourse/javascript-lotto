@@ -1,4 +1,4 @@
-import { QuerySelector, Tag } from '../constants/HTML';
+import { ClassName, QuerySelector, Tag } from '../constants/HTML';
 import { $, makeNode } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 
@@ -37,7 +37,7 @@ class LottoList {
     this.lottoListField.appendChild(purchaseMessageEl);
     this.lottoListField.appendChild(lottoListEl);
 
-    $('.content').classList.add('height_auto');
+    $(QuerySelector.CONTENT).classList.add(ClassName.HEIGHT_AUTO);
   };
 }
 
