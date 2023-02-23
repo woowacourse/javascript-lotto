@@ -215,11 +215,15 @@ table {
   width: 100%;
   margin-top: 32px;
   margin-bottom: 32px;
-  border-top: 1px solid #444444;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-collapse: collapse;
 }
 th,
 td {
-  border-bottom: 1px solid #444444;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   padding: 10px;
+}
+
+tbody th {
+  font-weight: normal;
 }
