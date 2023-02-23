@@ -33,7 +33,7 @@ class LottoGameView {
   }
 
   showStartContainer() {
-    this.startContainer.style.display = 'block';
+    this.startContainer.classList.add('display');
   }
 
   showUserLottos(purchaseCount, userLottoList) {
@@ -83,7 +83,7 @@ class LottoGameView {
   reset() {
     ViewUtils.resetForm(this.purchaseForm);
     ViewUtils.resetForm(this.gameNumbersForm);
-    this.startContainer.style.display = 'none';
+    this.startContainer.classList.remove('display');
   }
 }
 
