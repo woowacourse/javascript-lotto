@@ -5,6 +5,8 @@ import LINK from './constants/link.js';
 import { $ } from './utils/dom.js';
 
 const App = {
+  state: {},
+
   init: function () {
     this.initEventListeners();
   },
@@ -17,10 +19,6 @@ const App = {
     winningNumbers: () => {
       $('#winning-numbers').innerHTML =
         tagGenerator.generateWinningNumberTags();
-
-      $('#winning-numbers-form').addEventListener('submit', event =>
-        event.preventDefault()
-      );
     },
 
     result: (dialog, resultData) => {
@@ -62,10 +60,6 @@ const App = {
 			<span id="profit-text">당신의 총 수익률은 ${resultData.profit}%입니다.</span>
 			<input id="retry-button" type="button" value="다시 시작하기">
 		</div>`;
-
-      $('#exit-button').addEventListener('click', () => {
-        dialog.close();
-      });
     },
   },
 
@@ -95,6 +89,9 @@ const App = {
 
     this.render.lottos(LottoGame.getLottos());
     this.render.winningNumbers();
+    $('#winning-numbers-form').addEventListener('submit', event =>
+      event.preventDefault()
+    );
     $('#winning-numbers-form').addEventListener('submit', event =>
       this.calculateResult(event)
     );
@@ -135,6 +132,12 @@ const App = {
     };
 
     this.render.result(dialog, resultData);
+
+    $('#exit-button').addEventListener('click', () => dialog.close());
+
+    $('#retry-button').addEventListener('click', () =>
+      window.location.reload()
+    );
   },
 };
 
