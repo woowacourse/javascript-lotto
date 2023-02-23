@@ -64,6 +64,10 @@ class LottoGame {
 
     return Converter.toFixedNumber((totalPrize / userBudget) * 100, 1);
   }
+
+  initializeLottoRankResult() {
+    Object.keys(this.#rankResult).forEach((rankName) => (this.#rankResult[rankName] = 0));
+  }
 }
 
 export default LottoGame;
