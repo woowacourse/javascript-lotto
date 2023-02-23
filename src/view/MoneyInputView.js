@@ -5,6 +5,7 @@ class MoneyInputView {
     this.form = document.getElementById('money-input-form');
     this.button = document.querySelector('.buy-button');
     this.input = document.getElementById('money-input');
+    this.input.focus();
   }
 
   addSubmitHandler(submitHandler) {
