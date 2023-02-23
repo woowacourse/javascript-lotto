@@ -21,6 +21,10 @@ export default class View {
   onClickRestartButton(callback) {
     $('.restart-button').addEventListener('click', () => {
       callback();
+      this.initLottoQuantity();
+      this.initEachLottoNumbers();
+      this.initStatistics();
+      this.initYieldRatio();
     });
   }
 
@@ -105,6 +109,18 @@ export default class View {
     });
   }
 
+  initLottoQuantity() {
+    $('.lotto-quantity').innerText = '';
+  }
+
+  initEachLottoNumbers() {
+    const $target = $('.lotto-numbers-list');
+
+    while ($target.hasChildNodes()) {
+      $target.removeChild($target.firstChild);
+    }
+  }
+
   initStatistics() {
     const $target = $('.modal-statistics-container');
     const $titleContainer = $target.firstChild;
@@ -114,6 +130,10 @@ export default class View {
     }
 
     $target.appendChild($titleContainer);
+  }
+
+  initYieldRatio() {
+    $('.modal-yield-ratio').innerText = '';
   }
 
   showAlert(message) {
