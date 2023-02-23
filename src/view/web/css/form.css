@@ -36,6 +36,10 @@ form > fieldset > lt-lotto {
   width: 100%;
 }
 
+form:invalid > button[type="submit"] {
+  opacity: 0.5;
+}
+
 [data-focus] ~ * {
   display: none;
 }
