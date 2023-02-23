@@ -10,8 +10,6 @@ header {
   left: 0px;
   top: 0px;
 
-  /* lotto-primary */
-
   background: #4e5ba6;
   border-bottom: 1px solid rgba(78, 91, 166, 0.2);
 }
@@ -28,12 +26,9 @@ header h1 {
   font-weight: 700;
   font-size: 24px;
   line-height: 36px;
-  /* identical to box height, or 150% */
 
   display: flex;
   align-items: flex-end;
-
-  /* lotto-greyscale-1 */
 
   color: #ffffff;
 }
@@ -45,7 +40,7 @@ section {
   position: absolute;
 }
 
-#content {
+.content {
   box-sizing: border-box;
 
   position: absolute;
@@ -54,14 +49,13 @@ section {
   left: 50%;
   top: 58%;
   transform: translate(-50%, -50%);
-  /* lotto-greyscale-1 */
 
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 }
 
-section #content h2 {
+section .content h2 {
   position: absolute;
   width: 382px;
   height: 24px;
@@ -73,23 +67,20 @@ section #content h2 {
   font-weight: 700;
   font-size: 24px;
   line-height: 24px;
-  /* identical to box height, or 100% */
 
   text-align: center;
   letter-spacing: 0.15px;
 
-  /* lotto-greyscale-5 */
-
   color: #000000;
 }
 
-#input {
+.inputMoney {
   position: absolute;
   width: 382px;
   height: 64px;
 }
 
-#inputLabel {
+.inputLabel {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -103,18 +94,17 @@ section #content h2 {
   top: 104px;
 }
 
-#label {
+.label {
   width: 310px;
   height: 24px;
-
-  /* Inside auto layout */
 
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
 }
-#readMoney {
+
+.readMoney {
   position: absolute;
 
   font-family: 'Roboto';
@@ -122,19 +112,14 @@ section #content h2 {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
 
 #money {
   box-sizing: border-box;
-
-  /* Auto layout */
 
   display: flex;
   flex-direction: row;
@@ -145,12 +130,8 @@ section #content h2 {
   width: 310px;
   height: 36px;
 
-  /* lotto-greyscale-3 */
-
   border: 1px solid #b4b4b4;
   border-radius: 4px;
-
-  /* Inside auto layout */
 
   flex: none;
   order: 1;
@@ -170,8 +151,6 @@ section #content h2 {
   left: 342px;
   top: 132px;
 
-  /* lotto-primary */
-
   background: #4e5ba6;
   border-radius: 4px;
 }
@@ -185,22 +164,17 @@ section #content h2 {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  /* identical to box height, or 114% */
 
   letter-spacing: 1.25px;
   text-transform: uppercase;
 
-  /* lotto-greyscale-1 */
-
   color: #ffffff;
-
-  /* Inside auto layout */
 
   flex: none;
   order: 0;
   flex-grow: 0;
 }
-#buyText {
+.buyText {
   position: absolute;
   left: 16px;
   right: 46.77%;
@@ -214,44 +188,41 @@ section #content h2 {
 
   letter-spacing: 0.5px;
 
-
   color: #000000;
   visibility: hidden;
 }
 
-#purchase{
-    visibility: hidden
+.purchase {
+  visibility: hidden;
 }
 
-#lottos {
+.lottos {
   position: absolute;
   width: 238px;
   left: 16px;
   top: 228px;
 }
 
-#lottos ul li {
+.lottos ul li {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   letter-spacing: 0.5px;
   margin: 0 0 15px 0;
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
 
-#lottoList {
-    height: 250px;
-    width: 310px;
-    overflow-y:scroll
+.lottoList {
+  height: 250px;
+  width: 310px;
+  overflow-y: scroll;
 }
 
-#winningLotto {
+.winningLotto {
   position: absolute;
   width: 382px;
   height: 104px;
@@ -259,7 +230,7 @@ section #content h2 {
   top: 528px;
 }
 
-#winningLotto p {
+.winningLotto p {
   position: absolute;
   left: 15px;
   font-family: 'Roboto';
@@ -267,23 +238,20 @@ section #content h2 {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
 
-#winningNumber {
+.winningNumber {
   position: absolute;
   width: 244px;
   height: 68px;
   top: 30px;
 }
 
-#winningNumber p {
+.winningNumber p {
   position: absolute;
 
   font-family: 'Roboto';
@@ -291,11 +259,8 @@ section #content h2 {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
@@ -315,7 +280,7 @@ section #content h2 {
   border: 1px solid #b4b4b4;
 }
 
-#bonusNumber {
+.bonusNumber {
   position: absolute;
   width: 100px;
   height: 68px;
@@ -323,7 +288,7 @@ section #content h2 {
   top: 30px;
 }
 
-#bonusNumber p {
+.bonusNumber p {
   position: absolute;
 
   font-family: 'Roboto';
@@ -331,17 +296,14 @@ section #content h2 {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   text-align: right;
   letter-spacing: 0.5px;
 
-  /* lotto-greyscale-5 */
-
   color: #000000;
 }
 
-#bonusNumber input {
+.bonusNumber input {
   position: absolute;
   top: 30px;
   left: 50px;
@@ -363,8 +325,6 @@ section #content h2 {
   height: 36px;
   top: 120px;
 
-  /* lotto-primary */
-
   background: #4e5ba6;
   border-radius: 4px;
 }
@@ -375,16 +335,11 @@ section #content h2 {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  /* identical to box height, or 114% */
 
   letter-spacing: 1.25px;
   text-transform: uppercase;
 
-  /* lotto-greyscale-1 */
-
   color: #ffffff;
-
-  /* Inside auto layout */
 
   flex: none;
   order: 0;
@@ -410,19 +365,15 @@ footer p {
   left: 50%;
   top: 58%;
   transform: translate(-50%, -50%);
-  /* top: calc(50% - 16px / 2 + 472px); */
 
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  /* identical to box height, or 114% */
 
   text-align: center;
   letter-spacing: 1.25px;
-
-  /* lotto-primary */
 
   color: #4e5ba6;
 }
@@ -443,27 +394,24 @@ footer p {
 }
 
 .close {
-    position: absolute;
-left: 90.86%;
-right: 4.57%;
-top: 3.2%;
-bottom: 93.6%;
+  position: absolute;
+  left: 90.86%;
+  right: 4.57%;
+  top: 3.2%;
+  bottom: 93.6%;
 
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 16px;
-/* identical to box height, or 80% */
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
 
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 1.25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 1.25px;
 
-/* 00. On Surface / High Emphasis */
-
-color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .modal_body {
@@ -472,8 +420,6 @@ color: rgba(0, 0, 0, 0.87);
   height: 500px;
   top: 50%;
   left: 50%;
-
-  /* lotto-greyscale-1 */
 
   background: #ffffff;
   border-radius: 4px;
@@ -487,19 +433,14 @@ color: rgba(0, 0, 0, 0.87);
   right: 29.56%;
   top: 40px;
 
-  /* lotto-subtitle */
-
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height, or 120% */
 
   text-align: center;
   letter-spacing: 0.15px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
@@ -518,12 +459,9 @@ color: rgba(0, 0, 0, 0.87);
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   text-align: center;
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
@@ -541,23 +479,20 @@ td {
 }
 
 .result_profit {
+  width: 300px;
   position: absolute;
-  left: 20.75%;
-  right: 20.75%;
+  left: 50%;
   top: 390px;
-  bottom: 0%;
+  transform: translate(-50%, -20%);
 
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   text-align: center;
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
@@ -574,8 +509,6 @@ td {
   left: 16px;
   top: 432px;
 
-  /* lotto-primary */
-
   background: #4e5ba6;
   border-radius: 4px;
 }
@@ -589,16 +522,11 @@ td {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  /* identical to box height, or 114% */
 
   letter-spacing: 1.25px;
   text-transform: uppercase;
 
-  /* lotto-greyscale-1 */
-
   color: #ffffff;
-
-  /* Inside auto layout */
 
   flex: none;
   order: 0;

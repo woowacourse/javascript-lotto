@@ -12,14 +12,14 @@ const view = {
   },
 
   printPurchasedLottoNumber(lottoNumber) {
-    const buyText = document.getElementById('buyText');
+    const buyText = document.querySelector('.buyText');
 
     buyText.textContent = `총 ${lottoNumber}개를 구매했습니다.`;
     buyText.style.visibility = 'visible';
   },
 
   printAllLotto() {
-    const purchase = document.getElementById('purchase');
+    const purchase = document.querySelector('.purchase');
     purchase.style.visibility = 'visible';
   },
 

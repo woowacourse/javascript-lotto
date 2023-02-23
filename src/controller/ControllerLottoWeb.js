@@ -1,9 +1,6 @@
 const LottoMachine = require('../domain/LottoMachine.js');
 const view = require('../view/view.js');
-const {
-  moneyValidate,
-  winningAndBonusNumberValidate,
-} = require('../utils/validation.js');
+const { moneyValidate, winningAndBonusNumberValidate } = require('../utils/validation.js');
 const { moneyValidateError, winningAndBonusNumberValidateError } = require('../utils/validateFunction.js');
 class ControllerLottoWeb {
   listLotto;
@@ -46,7 +43,7 @@ class ControllerLottoWeb {
   };
 
   makeLottoList = () => {
-    const lottoList = document.getElementById('lottoList');
+    const lottoList = document.querySelector('.lottoList');
 
     this.lottoMachine.lottoNumber.forEach((list, index) => {
       const li = document.createElement('li');
