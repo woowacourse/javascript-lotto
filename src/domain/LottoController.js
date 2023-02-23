@@ -4,6 +4,7 @@ import Console from '../utils/Console.js';
 import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
 import { generateLottos } from './generateLottos.js';
+import { judgeResult } from './judgeResult.js';
 
 class LottoController {
 
@@ -48,7 +49,7 @@ class LottoController {
   }
 
   #showResult() {
-    const matchResult = this.#judgeResult();
+    const matchResult = judgeResult(this.lottos, this.winningNumber);
     const benefit = this.calculateBenefit(this.lottos.length * 1000, matchResult);
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
@@ -63,16 +64,6 @@ class LottoController {
     }, 0);
 
     return income / total * 100;
-  }
-
-  #judgeResult() {
-    const rankingCount = Array(LOTTO.prize.length).fill(0);
-
-    return this.lottos.reduce((acc, lotto) => {
-      const ranking = lotto.calculateRanking(this.winningNumber);
-      acc[ranking - 1] += 1;
-      return acc;
-    }, rankingCount);
   }
 }
 
