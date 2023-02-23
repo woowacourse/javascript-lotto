@@ -1,4 +1,29 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import '../main.css';
+import Component from './view-web/components/Component.js';
+import Amount from './view-web/components/Amount.js';
+import { qs } from './utils/domHelper.js';
+
+class App extends Component {
+  state;
+
+  constructor() {
+    super(qs('#app'));
+  }
+
+  setUp() {
+    this.state = { lottoList: [] };
+  }
+
+  mount() {
+    new Amount(this.setState.bind(this));
+  }
+
+  template() {
+    return `
+    <div id="document-title"><h1>🎱 행운의 로또</h1></div>
+    <article id="comfirmation-lotto-number-form"></article>
+    `;
+  }
+}
+
+new App();
