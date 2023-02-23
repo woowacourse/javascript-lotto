@@ -11,13 +11,12 @@ const QuerySelector = Object.freeze({
   MODAL_CLOSE_BUTTON: '.modal_close_button',
   PROFIT_MESSAGE: '.result_profit_message',
   RESTART_BUTTON: '.restart_button',
-  CONTENT: '.content',
+  CONTENT: '.lottoGame',
 });
 
 const ClassName = Object.freeze({
   LOTTO_LIST: 'user_lotto_list',
   LOTTO: 'user_lotto',
-  HEIGHT_AUTO: 'height_auto',
   SHOW: 'show',
 });
 

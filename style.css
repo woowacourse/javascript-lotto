@@ -15,9 +15,9 @@ body {
   margin: 0;
 }
 
-.app {
+#app {
   font-family: 'Roboto';
-  display: flex;
+  height: 100vh;
 }
 
 header {
@@ -35,7 +35,7 @@ header {
 
 .content {
   width: 414px;
-  height: 650px;
+  height: auto;
   border: 1px solid rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
@@ -44,6 +44,7 @@ header {
 
 .lottoGame {
   display: flex;
+  height: 560px;
   flex-direction: column;
 }
 
@@ -87,9 +88,17 @@ button {
   cursor: pointer;
 }
 
+.lottoGame {
+  height: 650px;
+}
+
 ul {
   list-style: none;
   padding: 0;
+  height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 li {
@@ -153,7 +162,8 @@ input::-webkit-inner-spin-button {
 }
 
 .modal_close_button {
-  text-align: right;
+  border: none;
+  padding-left: 340px;
   font-size: 20px;
   color: var(--black);
   background-color: transparent;
@@ -203,14 +213,11 @@ footer {
   width: 100%;
   border-top: solid 1px var(--gray);
   text-align: center;
+  position: fixed;
   bottom: 0;
   padding-top: 24px;
 }
 
 .show {
   display: block;
-}
-
-.height_auto {
-  height: auto;
 }
