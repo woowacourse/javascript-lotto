@@ -57,14 +57,13 @@ export class LottoGame {
   }
 
   getPlacesOfLottoTickets() {
-    const placesOfLottoTickets = [];
-
-    this.#lottoTickets.forEach((lottoTicket) => {
+    const placesOfLottoTickets = this.#lottoTickets.map((lottoTicket) => {
       const matchingLottoNumberCount = this.getMatchingWinningNumberCount(
         lottoTicket,
         this.#winningLotto.winningNumbers
       );
-      placesOfLottoTickets.push(this.getPlace(matchingLottoNumberCount, lottoTicket));
+
+      return this.getPlace(matchingLottoNumberCount, lottoTicket);
     });
 
     return placesOfLottoTickets.filter((place) => place !== undefined);
