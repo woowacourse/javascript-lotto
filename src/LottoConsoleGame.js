@@ -70,10 +70,10 @@ class LottoConsoleGame {
   }
 
   async readPurchaseAmount() {
-    const pruchaseAmount = await this.#io.read('\n> 구입금액을 입력해 주세요.');
+    const purchaseAmount = await this.#io.read('\n> 구입금액을 입력해 주세요.');
     try {
-      lottoGameValidator.checkPurchaseAmount(pruchaseAmount);
-      return Number(pruchaseAmount);
+      lottoGameValidator.checkPurchaseAmount(purchaseAmount);
+      return Number(purchaseAmount);
     } catch (error) {
       outputView.printErrorMessage(error);
       return this.readPurchaseAmount();
