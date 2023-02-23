@@ -47,7 +47,7 @@ main {
   display: flex;
   text-align: center;
   justify-content: center;
-  font-weight: 700 24px "Roboto";
+  font: 700 24px "Roboto";
   line-height: 24px;
   letter-spacing: 0.15px;
 }
@@ -117,7 +117,7 @@ main {
 .lotto-number-list {
   display: none;
   list-style: none;
-  height: 276px;
+  height: 250px;
   padding: 0;
   font: 400 15px "Roboto";
   flex-direction: column;
@@ -182,7 +182,7 @@ input::-webkit-inner-spin-button {
   padding: 6px 6px 6px 8px;
   border: 0;
   color: var(--lotto-gray-scale-1);
-  font: 700 14px/16 "Roboto";
+  font: 700 14px "Roboto";
   border-radius: 4px;
   background-color: var(--lotto-primary);
   letter-spacing: 1.25px;
