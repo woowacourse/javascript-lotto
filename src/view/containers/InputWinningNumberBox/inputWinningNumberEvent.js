@@ -2,6 +2,9 @@
 
 import { judgeResult } from "../../../domain/judgeResult";
 import LottoValidator from "../../../domain/LottoValidator";
+import Render from "../../../utils/Render";
+import GameModal from "../GameModal";
+import modalEvent from "../GameModal/modalEvent";
 
 const inputWinningNumberEvent = () => {
 
@@ -10,7 +13,6 @@ const inputWinningNumberEvent = () => {
   form.onsubmit = function (event) {
     event.preventDefault();
     try {
-      const modal = document.getElementById("game-modal");
       const formData = new FormData(event.target);
       const winningNumber = {
         main: [
@@ -27,9 +29,13 @@ const inputWinningNumberEvent = () => {
       LottoValidator.checkBonusNumber(winningNumber.bonus);
       LottoValidator.checkLottoDuplicate(winningNumber);
       store['winningNumber'] = winningNumber;
+      const result = judgeResult(store.lottos, store.winningNumber);
+      console.log(result);
+      store['result'] = result;
+      Render.container("game-result", () => GameModal(), () => modalEvent());
+      const modal = document.getElementById("game-modal");
+      console.log(modal);
       modal.style.display = "block";
-      console.log(judgeResult(store.lottos, store.winningNumber));
-
     } catch (error) {
       alert(error.message);
     }
