@@ -12,7 +12,10 @@ class WebController {
 
   constructor() {
     this.purchaseView = new PurchaseView(this.submitPurchaseAmount);
-    this.modalView = new ModalView();
+    this.modalView = new ModalView(
+      this.handleCloseModal,
+      this.handleRestartGame
+    );
   }
 
   submitPurchaseAmount = (event) => {
@@ -24,23 +27,23 @@ class WebController {
       this.showLotteries(this.#lottoGame.getLotteries());
     } catch (error) {
       alert(error.message);
-      this.resetValue(this.purchaseView.purchaseInput);
+      this.#resetValue(this.purchaseView.purchaseInput);
     }
   };
 
-  resetValue(input) {
+  #resetValue(input) {
     input.value = null;
   }
 
-  showLotteries(lotteries) {
-    const lotteriesView = new LotteriesView(lotteries);
-    lotteriesView.showLotteries(lotteries);
-    this.disableButton(this.purchaseView.purchaseButton);
-    this.handleWinningNumbers();
+  #toggleButton(button) {
+    button.disabled = !button.disabled;
   }
 
-  disableButton(button) {
-    button.disabled = true;
+  showLotteries(lotteries) {
+    this.lotteriesView = new LotteriesView(lotteries);
+    this.lotteriesView.showLotteries(lotteries);
+    this.#toggleButton(this.purchaseView.purchaseButton);
+    this.handleWinningNumbers();
   }
 
   handleWinningNumbers() {
@@ -66,17 +69,29 @@ class WebController {
         this.#bonusNumber
       );
       this.modalView.showResult(lottoResult);
+      this.#toggleButton(this.winningNumbersView.resultButton[0]);
     } catch (error) {
       alert(error.message);
       //reset value
     }
   };
 
-  handleModal() {}
+  handleCloseModal = (event) => {
+    event.preventDefault();
+    this.modalView.hiddenModal();
+    this.winningNumbersView.resultButton[0].disabled = false;
+  };
 
-  closeModal() {
-    this.modalView.style.display = "none";
-  }
+  handleRestartGame = (event) => {
+    event.preventDefault();
+    this.winningNumbersView.bonusNumber[0].value = null;
+    this.lotteriesView.hideLotteriesView();
+    this.modalView.hiddenModal();
+    this.winningNumbersView.hideWinningContainer();
+    this.#resetValue(this.purchaseView.purchaseInput);
+    this.#toggleButton(this.purchaseView.purchaseButton);
+    this.#toggleButton(this.winningNumbersView.resultButton[0]);
+  };
 }
 
 export default WebController;
