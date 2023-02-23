@@ -59,7 +59,11 @@ export default class LottoGameController {
 
     this.#view.printStatistics(statistics);
     this.#view.printYieldRatio(yieldRatio);
-    this.#view.disableElements(...$$('.winning-number-input'), $('.bonus-number-input'));
+    this.#view.disableElements(
+      ...$$('.winning-number-input'),
+      $('.bonus-number-input'),
+      $('.winning-lotto-submit-button')
+    );
     this.#view.showElements('.result-modal');
   }
 

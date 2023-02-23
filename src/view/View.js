@@ -13,6 +13,7 @@ export default class View {
   onClickModalCloseButton() {
     $('.modal-close-button').addEventListener('click', () => {
       this.initStatistics();
+      this.enableElements($('.winning-lotto-submit-button'));
       this.hideElements('.result-modal');
     });
   }
@@ -72,6 +73,12 @@ export default class View {
       '당신의 총 수익률은 ' + `${yieldRatio.toLocaleString(new Intl.NumberFormat('KRW'))}%입니다.`;
 
     $('.modal-yield-ratio').innerText = yieldRatioText;
+  }
+
+  enableElements(...elements) {
+    elements.forEach((element) => {
+      element.disabled = false;
+    });
   }
 
   disableElements(...elements) {
