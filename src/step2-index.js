@@ -33,6 +33,7 @@ let lottoGame;
 
 const onSubmitBudgetForm = (event) => {
   event.preventDefault();
+  view.insertInnerText($budgetError, '');
 
   const budget = event.target[0].value;
 
@@ -42,7 +43,6 @@ const onSubmitBudgetForm = (event) => {
 const handleBudget = (budget) => {
   try {
     validator.validateBudget(budget);
-    view.initInputValue($budgetError);
     lottoGame = new LottoGame(budget);
   } catch ({ message }) {
     view.insertInnerText($budgetError, message);
@@ -61,6 +61,7 @@ const renderNextStepAfterBuyingLotto = (budget) => {
 
 const onSubmitLottoNumberForm = (event) => {
   event.preventDefault();
+  view.insertInnerText($numberError, '');
 
   const winningNumbers = [...$winningNumberInputs].map((input) => Number(input.value));
   const bonusNumber = $bonusNumberInput.value;
@@ -74,7 +75,7 @@ const handleLottoNumber = (winningNumbers, bonusNumber) => {
     validator.validateBonusNumber(bonusNumber);
     view.convertVisibilityToHidden($numberError);
   } catch ({ message }) {
-    view.insertInnerText(message);
+    view.insertInnerText($numberError, message);
     return view.convertVisibilityToVisible($numberError);
   }
 

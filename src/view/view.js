@@ -15,8 +15,8 @@ const view = {
     dom.innerText = message;
   },
 
-  insertBoughtLottos(dom, lottos) {
-    dom.innerHTML = [...lottos].reduce((HTML, lotto) => {
+  insertBoughtLottos($lottoList, lottos) {
+    $lottoList.innerHTML = [...lottos].reduce((HTML, lotto) => {
       return (HTML += `
           <div class='lotto'>
             <div>🎟️</div>
@@ -25,18 +25,18 @@ const view = {
     }, '');
   },
 
-  insertLottoCount(dom, budget) {
-    dom.innerText = `총 ${budget / 1000}개를 구매하였습니다.`;
+  insertLottoCount($lottoCount, budget) {
+    $lottoCount.innerText = `총 ${budget / 1000}개를 구매하였습니다.`;
   },
 
-  insertWinningCounts(dom, winningStatus) {
-    [...dom].forEach((winningCount, index) => {
+  insertWinningCounts($winningCounts, winningStatus) {
+    [...$winningCounts].forEach((winningCount, index) => {
       winningCount.innerText = `${winningStatus[index]}개`;
     });
   },
 
-  insertProfitRate(dom, profitRate) {
-    dom.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  insertProfitRate($profitRate, profitRate) {
+    $profitRate.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
   },
 };
 
