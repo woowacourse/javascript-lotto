@@ -78,9 +78,12 @@ ul {
 }
 
 .lotto-card {
+  display: flex;
+  flex-direction: column;
+
   width: 27rem;
   height: 40rem;
-  padding: 52px 16px 32px 16px;
+  padding: 52px 30px 32px 29px;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -123,16 +126,28 @@ ul {
   border-radius: 4px;
 }
 
-.lucky-numbers p {
+.lucky-numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lucky-numbers label {
   margin-bottom: 8px;
 }
 
-.bonus-number p {
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bonus-number label {
   margin-bottom: 8px;
 }
 
 .bonus-number input {
-  float: right;
+  margin: 0;
 }
 
 .modal-background {
@@ -195,7 +210,7 @@ ul {
 }
 
 #show-result-button {
-  width: 382px;
+  width: 100%;
   height: 36px;
 }
 
