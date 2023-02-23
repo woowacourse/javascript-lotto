@@ -7,7 +7,7 @@ export default class LottoList extends Component {
         총 ${this.props.lottoList.length}개를 구매하였습니다.
       </div>
       <ul class='lotto-list__lotto-list'>
-        ${this.getLottoList()}
+        ${this.getLottoListTemplate()}
       </ul>
     `;
   }
