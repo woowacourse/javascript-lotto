@@ -20,7 +20,7 @@
 
 ---
 
-# 로또 미션 기능 목록
+# 1단계 - 콘솔기반 로또 게임 기능 목록
 
 ## Domain
 
@@ -233,6 +233,7 @@
    - 매직넘버 (MAGIC_NUMBER)
    - 매직리터럴 (MAGIC_LITERAL)
    - 로또게임정보 (RANK_INFORMATIONS)
+<<<<<<< Updated upstream
 =======
     - 정규식 (REG_EXP)
     - 에러문구 (ERROR_MESSAGE)
@@ -240,3 +241,21 @@
     - 매직리터럴 (MAGIC_LITERAL)
 
 >>>>>>> c34fb6c (📝 docs: 기능 목록 초안)
+=======
+
+# 2단계 - 웹기반 로또 게임 기능 목록
+
+## html
+
+1. index.html
+
+- 로또 게임 웹기반 ui를 작성한다.
+
+## css
+
+- 로또 게임 웹기반 ui의 style을 위한 css를 정의한다.
+
+## javascript
+
+-
+>>>>>>> Stashed changes
