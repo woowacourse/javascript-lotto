@@ -17,12 +17,14 @@
       <section class="purchase-container">
         <form class="purchase-form">
           <label>구입할 금액을 입력해주세요.</label>
+          <p id="purchase-guide">1회당 100000원 이하로 구매할 수 있습니다.</p>
           <div class="purchase-input-wrapper">
             <input
               class="purchase-input"
               type="number"
               name="input-amount"
               placeholder="금액"
+              max="100000"
               required
             />
             <button class="purchase-btn">구입</button>

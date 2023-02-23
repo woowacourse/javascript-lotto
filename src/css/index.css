@@ -11,45 +11,44 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
   display: flex;
-  justify-content: center;
+  padding: 0;
+  margin: 0;
   align-items: center;
+  justify-content: center;
   background-color: var(--lotto-gray-scale-2);
 }
 
 .title-container {
-  background-color: var(--lotto-primary);
-  font-weight: 700;
-  color: white;
-  width: 100vw;
   display: flex;
+  width: 100vw;
+  color: white;
   padding-left: 2rem;
+  font-weight: 700;
+  background-color: var(--lotto-primary);
 }
 
 main {
   display: flex;
-  justify-content: center;
   padding: 3em;
+  justify-content: center;
 }
 
 .main-container {
   width: 414px;
-  min-height: 727px;
+  height: 727px;
+  padding: 52px 16px 32px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-  padding: 52px 16px 32px;
   background-color: var(--lotto-gray-scale-1);
 }
 
 .container-title {
   display: flex;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
   text-align: center;
+  justify-content: center;
+  font-weight: 700 24px "Roboto";
+  line-height: 24px;
   letter-spacing: 0.15px;
 }
 
@@ -57,15 +56,14 @@ main {
 
 .purchase-container {
   display: flex;
-  flex-direction: column;
-  position: relative;
   width: 414px;
+  flex-direction: column;
   margin-top: 28px;
 }
 
 #purchase-guide {
-  font: 700 12px "Roboto";
   color: var(--lotto-gray-scale-4);
+  font: 700 12px "Roboto";
 }
 
 .purchase-form {
@@ -82,17 +80,17 @@ main {
 }
 
 .purchase-btn {
-  padding: 6px 6px 6px 8px;
   width: 56px;
   height: 36px;
-  color: var(--lotto-gray-scale-1);
+  padding: 6px 6px 6px 8px;
+  border: 0;
   background: var(--lotto-primary);
+  color: var(--lotto-gray-scale-1);
+  margin-left: 10px;
   border-radius: 4px;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 1.25px;
-  margin-left: 10px;
-  border: none;
   cursor: pointer;
 }
 
@@ -103,15 +101,14 @@ main {
 
 #input-lotto-numbers-btn {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 4px 6px;
   width: 368px;
   height: 24px;
-  background: var(--lotto-primary);
   padding: 6px 6px 6px 8px;
+  background: var(--lotto-primary);
   color: var(--lotto-gray-scale-1);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border-radius: 4px;
 }
 
@@ -119,16 +116,14 @@ main {
 
 .lotto-number-list {
   display: none;
+  list-style: none;
+  height: 276px;
+  padding: 0;
+  font: 400 15px "Roboto";
   flex-direction: column;
   margin-top: 28px;
   margin-bottom: 24px;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
   letter-spacing: 0.5px;
-  list-style: none;
-  padding: 0;
-  height: 276px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -138,6 +133,7 @@ main {
 }
 
 /* winning-numbers */
+
 .winning-container {
   display: none;
   flex-direction: column;
@@ -151,17 +147,17 @@ main {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
   margin: 0;
+  -webkit-appearance: none;
 }
 
 .lotto-input,
 .bonus-input {
   width: 34px;
   height: 36px;
+  border: 1px solid var(--lotto-gray-scale-3);
   text-align: center;
   border-radius: 4px;
-  border: 1px solid var(--lotto-gray-scale-3);
 }
 
 .lotto-container {
@@ -181,64 +177,61 @@ input::-webkit-inner-spin-button {
 }
 
 .result-btn {
-  padding: 6px 6px 6px 8px;
   width: 382px;
   height: 36px;
-  padding: 4px 6pxs;
+  padding: 6px 6px 6px 8px;
+  border: 0;
   color: var(--lotto-gray-scale-1);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 1.25px;
-  border: none;
+  font: 700 14px/16 "Roboto";
   border-radius: 4px;
   background-color: var(--lotto-primary);
+  letter-spacing: 1.25px;
   cursor: pointer;
 }
 
 /* modal */
 
 .modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 120%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
   background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
   z-index: 100;
 }
 
 .modal-close {
+  display: flex;
   width: 100%;
   height: 24px;
-  display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
 .modal-close-btn {
-  font-size: 24px;
   height: 24px;
-  border: none;
+  border: 0;
+  font-size: 24px;
   background-color: var(--lotto-gray-scale-1);
   cursor: pointer;
 }
 
 .modal-window {
+  display: flex;
   width: 350px;
   height: 480px;
-  background-color: var(--lotto-gray-scale-1);
-  border-radius: 4px;
-  display: flex;
+  padding: 1em;
   text-align: center;
   flex-direction: column;
-  padding: 1em;
   align-items: center;
+  border-radius: 4px;
+  background-color: var(--lotto-gray-scale-1);
 }
 
 .modal-table {
@@ -251,8 +244,8 @@ input::-webkit-inner-spin-button {
 
 th,
 td {
-  border-bottom: 1px solid var(--lotto-gray-scale-3);
   padding: 10px;
+  border-bottom: 1px solid var(--lotto-gray-scale-3);
 }
 
 .profit {
@@ -262,12 +255,12 @@ td {
 .restart-btn {
   width: 304px;
   height: 34px;
+  padding: 6px 6px 6px 8px;
+  border: none;
+  color: var(--lotto-gray-scale-1);
   font: 700 14px/16px "Roboto";
   letter-spacing: 1.25px;
-  border: none;
   border-radius: 4px;
-  padding: 6px 6px 6px 8px;
-  color: var(--lotto-gray-scale-1);
   background-color: var(--lotto-primary);
   cursor: pointer;
 }
@@ -277,11 +270,11 @@ hr {
 }
 
 footer {
+  margin: 32px;
   color: var(--lotto-primary);
+  text-align: center;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  text-align: center;
   letter-spacing: 1.25px;
-  margin: 32px;
 }
