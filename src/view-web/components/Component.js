@@ -4,17 +4,15 @@ export default class Component {
   $target;
   state;
 
-  constructor($target) {
+  constructor($target, state = {}) {
     if (this.constructor === Component) {
       throw new Error(ERROR.CANNOT_CREATE_INSTANCE);
     }
     this.$target = $target;
 
-    this.setUp();
+    this.setState(state);
     this.render();
   }
-
-  setUp() {}
 
   mount() {}
 
