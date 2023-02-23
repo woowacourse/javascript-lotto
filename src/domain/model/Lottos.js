@@ -33,6 +33,13 @@ export default class Lottos {
     return this.#ranks;
   }
 
+  getProfitRate() {
+    const profit = this.#calculateProfit();
+    const purchasedPrice = this.#lottos.length * PRICE_UNIT;
+
+    return ((profit / purchasedPrice) * 100).toFixed(1);
+  }
+
   calculateAllRanks(winningNumbers, bonusNumber) {
     this.#lottos.forEach((lotto) => {
       lotto.calculateRank(winningNumbers, bonusNumber);
@@ -47,18 +54,6 @@ export default class Lottos {
     const rankIndex = lottoRank - 1;
 
     this.#ranks[rankIndex] += 1;
-  }
-
-  getProfitRate() {
-    const profitRate = this.#calculateProfitRate();
-    return profitRate;
-  }
-
-  #calculateProfitRate() {
-    const profit = this.#calculateProfit();
-    const purchasedPrice = this.#lottos.length * PRICE_UNIT;
-
-    return ((profit / purchasedPrice) * 100).toFixed(1);
   }
 
   #calculateProfit() {
