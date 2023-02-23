@@ -20,6 +20,7 @@ class LottoController {
   moneyInputHandler = (money) => {
     try {
       this.buyer = new Buyer(money);
+      this.moneyInputView.togglePurchaseButtonDisable();
       this.buyer.buyLottos();
       this.lottos = this.buyer.getLottos();
       this.purchasedLottoView = new PurchasedLottoView(this.lottos, money);

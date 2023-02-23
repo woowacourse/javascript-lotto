@@ -12,11 +12,10 @@ class MoneyInputView {
       e.preventDefault();
       const money = Number(this.input.value);
       submitHandler(money);
-      this.toggleButton();
     });
   }
 
-  toggleButton() {
+  togglePurchaseButtonDisable() {
     toggleDisableAttribute(this.input);
     toggleDisableAttribute(this.button);
     this.button.id = this.button.id !== 'disabled' && 'disabled';
