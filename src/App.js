@@ -1,4 +1,4 @@
-import HomePage from './view/HomePage';
+import HomePage from './view/HomePage/index';
 
 import LottoGameController from './controller/LottoGameController';
 
