@@ -111,3 +111,16 @@ const renderResult = (ranks) => {
   rate.innerHTML = benefit.getRate();
   result.style.display = 'flex';
 };
+
+const getWinningNumbersInput = () => {
+  const winningNumbersInput = [...Array(MAGIC_NUMBER.winningNumberCount)].map(
+    (__, index) => {
+      const numberInput = document.querySelector(
+        `#winningNumbersGroup > input:nth-child(${index + 1})`
+      );
+      return Number(numberInput.value);
+    }
+  );
+
+  return winningNumbersInput;
+};
