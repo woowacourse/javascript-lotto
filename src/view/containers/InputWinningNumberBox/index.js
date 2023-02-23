@@ -11,25 +11,22 @@ const InputWinningNumberBox = () => {
       보너스 번호
     </div>
   </div>
-  <form>
+  <form id="winning-number-submit">
     <div class="d-flex justify-content-between">
       <div>
-        <input class="ball-box"/>
-        <input class="ball-box"/>
-        <input class="ball-box"/>
-        <input class="ball-box"/>
-        <input class="ball-box"/>
-        <input class="ball-box"/>
+        <input class="ball-box" name="main0" />
+        <input class="ball-box" name="main1" />
+        <input class="ball-box" name="main2" />
+        <input class="ball-box" name="main3" />
+        <input class="ball-box" name="main4" />
+        <input class="ball-box" name="main5" />
       </div>
       <div>
-        <input class="ball-box"/>
+        <input class="ball-box" name="bonus" />    
       </div>
     </div>
-    <div>
-      <button class="width-100">결과 확인하기</button>
-    </div>      
+    <button class="width-100">결과 확인하기</button>
   </form>
-
   `;
 };
 export default InputWinningNumberBox;
