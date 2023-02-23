@@ -1,5 +1,5 @@
 const Messages = {
-  BONUS_NUMBER_REWARD_NAME: '{0}개 일치, 보너스 볼 일치',
+  BONUS_NUMBER_REWARD_NAME: '{0}개 + 보너스 볼 일치',
   REWARD_NAME: '{0}개 일치',
 
   INPUT_MONEY: '구입 금액을 입력해 주세요.',
