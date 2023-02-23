@@ -7,6 +7,7 @@ const VALUES = Object.freeze({
   LOTTO_LENGTH: 6,
   YES: 'y',
   NO: 'n',
+  WINNING_NUMBER_COUNT: 6,
 });
 
 const MATCH_COUNT_TO_RANK = deepFreeze({
