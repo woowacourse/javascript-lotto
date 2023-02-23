@@ -34,7 +34,7 @@
   align-items: flex-end;
 }
 
-.winning-number-bonus-input {
+#winning-number-bonus-input {
   width: 34px;
   height: 36px;
   border: 1px solid #b4b4b4;
