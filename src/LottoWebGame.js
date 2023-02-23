@@ -6,13 +6,18 @@ import WinningLotto from './domain/WinningLotto';
 import LottoComparer from './domain/LottoComparer';
 import LottoListView from './view/web/LottoListView';
 import { convertToWinningNumber } from './domain/util';
+import ModalController from './ModalController';
 
 class LottoWebGame {
   #lottos;
 
   #ranking;
 
+  #modal;
+
   constructor() {
+    this.#modal = new ModalController();
+
     this.bindEventListeners();
   }
 
@@ -50,7 +55,8 @@ class LottoWebGame {
 
       const winningLotto = new WinningLotto(winningNumber, bonusNumber);
       this.#ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
-      $('#modal-background').classList.remove('hidden');
+
+      this.#modal.showModal();
     } catch (error) {
       alert(error.message);
     }
