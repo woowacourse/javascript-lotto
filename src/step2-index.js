@@ -1,6 +1,6 @@
-import '../reset.css';
-import '../style.css';
-import '../modal.css';
+import '../css/reset.css';
+import '../css/style.css';
+import '../css/modal.css';
 
 import validator from './domain/validator';
 import LottoGame from './domain/LottoGame';
