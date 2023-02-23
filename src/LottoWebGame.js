@@ -1,8 +1,8 @@
 import Lotto from './domain/models/Lotto';
 import lottoGameCalculator from './domain/lottoGameCalculator';
+import lottoGameValidator from './domain/lottoGameValidator';
 import { $, $$ } from './utils/dom';
 import { LOTTO, RANKING_THRESHOLD } from './constants';
-import lottoGameValidator from './domain/lottoGameValidator';
 
 class LottoWebGame {
   #lottos;
