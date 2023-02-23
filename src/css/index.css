@@ -108,7 +108,6 @@ input {
 
 .lottos {
   width: 100%;
-  overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: center;
