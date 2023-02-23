@@ -15,6 +15,10 @@ export default class LottoGame {
     this.#lottos.push(lotto);
   }
 
+  resetLottoGame() {
+    this.#lottos = [];
+  }
+
   generateLottoNumbers(lottoDigits) {
     const numbers = new Set();
 
