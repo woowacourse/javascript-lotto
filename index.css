@@ -1,0 +1,282 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 0 0 4rem;
+    background: #4E5BA6;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    padding: 84px 0 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    flex: 0 0 80px;
+    border-top: 1px solid rgba(78, 91, 166, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header > h1 {
+    padding-left: 130px;
+    font-weight: 800;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+#main-content {
+    width: 414px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;   
+}
+
+#lotto-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 16px 32px 16px;
+}
+
+#lotto-game > h2 {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+}
+/*  */
+#lotto-purchase-section {
+    margin-top: 28px;
+}
+
+#user-budget-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-budget-form > div {
+    display: flex;
+    margin-top: 4px;
+}
+
+#user-budget-input {
+    width: 310px;
+    height: 36px;
+    border: 1px solid #B4B4B4;
+    border-radius: 4px;
+    margin-right: 16px;
+    padding-left: 8px;
+}
+
+#user-budget-input::placeholder {
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: #8B8B8B;
+}
+
+#user-budget-submit {
+    width: 56px;
+    height: 36px;
+    background: #4E5BA6;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+#purchased-lotto-section {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 64px;
+    width: 100%;
+}
+
+#purchased-lotto-container {
+    list-style: none;
+    padding-left: 0px;
+}
+
+#winning-number-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+#winning-number {
+    display: flex;
+    flex-direction: column;
+}
+
+#bonus-number {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#lotto-number-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+#lotto-number-container label {
+    margin-bottom: 12px;
+}
+
+.lotto-number-input {
+    width: 34px;
+    height: 36px;
+    border: 1px solid #B4B4B4;
+    border-radius: 4px;
+    padding-left: 3px;
+}
+
+#result-button {
+    margin-top: 27px;
+    width: 382px;
+    height: 36px;
+    background: #4E5BA6;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+#purchased-lotto-section > p {
+    margin-bottom: 8px;
+}
+
+#purchased-lotto-container li {
+    line-height: 36px;
+}
+
+.lotto-emoji {
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 36px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.lotto-numbers {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+footer p {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #4E5BA6;
+}
+/* 모달 */
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+#modal-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 500px;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+#modal-title h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.15px;
+}
+
+#modal-content {
+    padding: 33px 16px;
+}
+
+#modal-close-area {
+    align-self: flex-end;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1.25px;
+    color: rgba(0, 0, 0, 0.87);
+    margin: 16px 16px 8px 0;
+    cursor: pointer;
+}
+
+#modal-content > table { 
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#modal-content th, td {
+    line-height: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+#profit-rate {
+    margin-top: 32px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+#restart-button {
+    margin-top: 32px;
+    width: 318px;
+    height: 36px;   
+    background: #4E5BA6;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.hidden {
+    visibility: hidden;
+}
