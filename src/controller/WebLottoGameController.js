@@ -31,6 +31,23 @@ class WebLottoGameController {
     WebView.printLottoTicketCount(lottoTickets.length);
     WebView.printLottoTickets(lottoTickets);
   }
+
+  handleWinningNumberSubmit(e) {
+    e.preventDefault();
+    this.lottoGame.initializeLottoRankResult();
+
+    const lottoNumbers = [...$$('.lotto-number-input')].map((lottoNumber) =>
+      Number(lottoNumber.value)
+    );
+    const winningNumbers = lottoNumbers.slice(0, 6);
+    const bonusNumber = $('#bonus-number-input').value;
+
+    const isValidWinningNumber = this.validateWinningNumbers(winningNumbers);
+    const isValidBonusNumber = this.validateBonusNumber(winningNumbers, bonusNumber);
+
+    if (isValidWinningNumber && isValidBonusNumber)
+      this.printLottoGameResult(winningNumbers, bonusNumber);
+  }
 }
 
 export default WebLottoGameController;
