@@ -97,3 +97,17 @@ const renderWinningNumebersInput = () => {
     .map(() => '<input class="number-input" />')
     .join('');
 };
+
+const renderResult = (ranks) => {
+  resultListContainer.innerHTML = RANK_INFORMATIONS.reverse()
+    .map((rankInformation, index) => {
+      return `<div class="result-list space-between">
+    <p class="result-item">${rankInformation.matched}</p>
+    <p class="result-item">${rankInformation.reward.toLocaleString()}</p>
+    <p class="result-item">${ranks[4 - index]}개</p>
+    </div>`;
+    })
+    .join('');
+  rate.innerHTML = benefit.getRate();
+  result.style.display = 'flex';
+};
