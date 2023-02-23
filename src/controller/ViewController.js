@@ -42,16 +42,20 @@ const ViewController = {
     btnMoney.disabled = ATTRIBUTE.TRUE;
     event.preventDefault();
 
+    lottoGame.lottos = this.readMoney();
+
+    LottoView.printLottoCount(lottoGame.lottoCount);
+    LottoView.printLottos(lottoGame.lottos);
+
+    winContents.classList.remove(CLASS.HIDDEN);
+  },
+
+  readMoney() {
     try {
       const money = document.getElementById(ID.INPUT_MONEY).value;
       Validation.isWrongMoney(money);
 
-      lottoGame.lottos = money;
-
-      LottoView.printLottoCount(lottoGame.lottoCount);
-      LottoView.printLottos(lottoGame.lottos);
-
-      winContents.classList.remove(CLASS.HIDDEN);
+      return money;
     } catch (e) {
       LottoView.alertErrorMessage(e.message);
       window.location.reload();
@@ -61,32 +65,47 @@ const ViewController = {
   lotteryTicket(event, lottoGame) {
     event.preventDefault();
 
+    const winNumbers = this.readWinNumbers();
+    const bonusNumber = this.readBounsNumber(winNumbers);
+
+    lottoGame.makeWinLotto(winNumbers, bonusNumber);
+    const rankResult = lottoGame.calculateRankResult();
+    const revenue = lottoGame.calculateRevenueRate(rankResult);
+
+    modal.style.display = ATTRIBUTE.BLOCK;
+    LottoView.printRankResult(rankResult);
+    LottoView.printRevenue(revenue);
+  },
+
+  readWinNumbers() {
     const winNum = document.getElementsByName(NAME.WINNUM);
-    const bonusNum = document.getElementsByName(NAME.BONUSNUM)[0];
     const winNumbers = new Array();
 
-    winNum.forEach((winNum) => {
-      const num = parseInt(winNum.value, DECIMAL);
-      winNumbers.push(num);
-    });
-    const bonusNumber = parseInt(bonusNum.value, DECIMAL);
-
     try {
+      winNum.forEach((winNum) => {
+        const num = parseInt(winNum.value, DECIMAL);
+        winNumbers.push(num);
+      });
       Validation.isWrongWinNumber(winNumbers);
-      Validation.isWrongBonusNumber(winNumbers, bonusNumber);
 
-      lottoGame.makeWinLotto(winNumbers, bonusNumber);
-      const rankResult = lottoGame.calculateRankResult();
-      const revenue = lottoGame.calculateRevenueRate(rankResult);
-
-      modal.style.display = ATTRIBUTE.BLOCK;
-      LottoView.printRankResult(rankResult);
-      LottoView.printRevenue(revenue);
+      return winNumbers;
     } catch (e) {
-      bonusNum.value = null;
       winNum.forEach((winNum) => {
         winNum.value = null;
       });
+      LottoView.alertErrorMessage(e.message);
+    }
+  },
+
+  readBounsNumber(winNumbers) {
+    const bonusNum = document.getElementsByName(NAME.BONUSNUM)[0];
+    try {
+      const bonusNumber = parseInt(bonusNum.value, DECIMAL);
+      Validation.isWrongBonusNumber(winNumbers, bonusNumber);
+
+      return bonusNumber;
+    } catch (e) {
+      bonusNum.value = null;
       LottoView.alertErrorMessage(e.message);
     }
   },
