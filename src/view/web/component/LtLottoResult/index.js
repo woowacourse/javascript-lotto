@@ -54,7 +54,7 @@ class LtLottoResult extends LtComponent {
         const count = this.#rewards.filter((_reward) => _reward === reward).length;
 
         [
-          [reward.getMatchCount(), '.match-count'],
+          [reward.getName(), '.match-count'],
           [reward.getMoney().toLocaleString(), '.reward-money'],
           [count, '.count'],
         ].forEach(([content, targetId]) => {
