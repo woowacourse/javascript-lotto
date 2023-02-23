@@ -22,6 +22,7 @@ class WebLottoController {
 
     try {
       this.#validator.throwErrorIfInvalidBudget(budget);
+
       budgetErrorView.hideErrorMessage();
       this.#lottoGame = new LottoGame(budget);
       this.#purchaseView.render(this.#lottoGame.getBoughtLottos());
@@ -44,6 +45,7 @@ class WebLottoController {
     try {
       this.#validator.throwErrorIfInvalidWinningLotto(stringifiedWinningLotto);
       this.#validator.throwErrorIfInvalidBonusNumber(stringifiedWinningLotto, bonusNumber);
+
       winningLottoErrorView.hideErrorMessage();
       this.#showLottoGameResult(winningLotto, bonusNumber);
     } catch ({ message }) {
