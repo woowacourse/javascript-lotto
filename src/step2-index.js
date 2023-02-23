@@ -9,13 +9,19 @@ import LottoGame from './domain/LottoGame.js';
 const lottoGame = new LottoGame();
 
 const ModalWindow = {
-  show(message) {
+  show(message = '&nbsp;') {
     document.querySelector('.modal-background').style.display = 'flex';
     document.querySelector('.modal-message').innerHTML = message;
   },
 
   hide() {
+    document.querySelector('.modal-message').innerHTML = '&nbsp;';
     document.querySelector('.modal-background').style.display = 'none';
+  },
+
+  addDomTree(tree) {
+    document.querySelector('.modal-background').style.display = 'flex';
+    document.querySelector('.modal-message').appendChild(tree);
   },
 };
 
@@ -65,33 +71,73 @@ const showLottoList = (lottoList) => {
     .join('');
 };
 
-const showResult = () => {
-  const rankingBoard = lottoGame.getRankingBoard();
-  const message = [
-    '<h1>🏆 당첨 통계 🏆</h1>',
-    '<table>',
-    '<tr> <th>일치 개수</th> <th>당첨금</th> <th>당첨 개수</th> </tr>',
-    `<tr> <td>3개</td> <td>5,000</td> <td>${rankingBoard.fifth}개</td> </tr>`,
-    `<tr> <td>4개</td> <td>50,000</td> <td>${rankingBoard.fourth}개</td> </tr>`,
-    `<tr> <td>5개</td> <td>1,500,000</td> <td>${rankingBoard.third}개</td> </tr>`,
-    `<tr> <td>5개+보너스볼</td> <td>30,000,000</td> <td>${rankingBoard.second}개</td> </tr>`,
-    `<tr> <td>6개</td> <td>2,000,000,000</td> <td>${rankingBoard.first}개</td> </tr>`,
-    '</table>',
-    `<h3>당신의 총 수익률은 ${lottoGame.getEarningRate().toFixed(2)}% 입니다</h3>`,
-    '<button type="button" class="restart-game">다시 시작하기</button>',
-  ];
-  ModalWindow.show(message.join(''));
+const Table = {
+  create() {
+    return document.createElement('table');
+  },
+
+  addHead(table, headList) {
+    const thead = table.createTHead();
+    const headRow = thead.insertRow();
+
+    headList.forEach((headName) => {
+      const content = document.createTextNode(headName);
+      const th = document.createElement('th');
+      th.appendChild(content);
+      headRow.appendChild(th);
+    });
+
+    return table;
+  },
+
+  addRow(table, rowList) {
+    const row = table.insertRow();
+
+    rowList.forEach((rowContent) => {
+      const content = document.createTextNode(rowContent);
+      row.insertCell().appendChild(content);
+    });
+
+    return table;
+  },
 };
 
-const setRestartButton = () => {
-  const restartBtn = document.querySelector('.restart-game');
-  restartBtn.addEventListener('click', () => { window.location.reload(); });
+const makeResultTable = () => {
+  const rankingBoard = lottoGame.getRankingBoard();
+  const table = Table.create();
+
+  Table.addHead(table, ['일치 개수', '당첨금', '당첨 개수']);
+  Table.addRow(table, ['3개', '5,000', `${rankingBoard.fifth}`]);
+  Table.addRow(table, ['4개', '50,000', `${rankingBoard.fourth}`]);
+  Table.addRow(table, ['5개', '1,500,000', `${rankingBoard.third}`]);
+  Table.addRow(table, ['5개+보너스볼', '30,000,000', `${rankingBoard.second}`]);
+  Table.addRow(table, ['6개', '2,000,000,000', `${rankingBoard.first}`]);
+
+  return table;
+};
+
+const showResult = () => {
+  const resultHeader = document.createElement('h1');
+  const table = makeResultTable();
+  const resultFooter = document.createElement('h3');
+
+  const headerText = document.createTextNode('🏆 당첨 통계 🏆');
+  const footerText = document.createTextNode(`당신의 총 수익률은 ${lottoGame.getEarningRate().toFixed(2)}% 입니다.`);
+
+  resultHeader.appendChild(headerText);
+  resultFooter.appendChild(footerText);
+
+  ModalWindow.show();
+  ModalWindow.addDomTree(resultHeader);
+  ModalWindow.addDomTree(table);
+  ModalWindow.addDomTree(resultFooter);
 };
 
 const moneyBtn = document.querySelector('.buy');
 const showResultBtn = document.querySelector('button.show-results');
 const closeModalBtn = document.querySelector('.modal-box button.close');
 const [closeMoneyAlertBtn, closeWinningLottoAlertBtn] = document.querySelectorAll('.alert button.close');
+const restartBtn = document.querySelector('.restart-game');
 
 moneyBtn.addEventListener('click', () => {
   try {
@@ -112,7 +158,6 @@ showResultBtn.addEventListener('click', () => {
     Alert.hide('winning-numbers');
     lottoGame.updateRankingBoard(winningNumbers, bonusNumber);
     showResult();
-    setRestartButton();
   } catch (error) {
     Alert.show(error.message, 'winning-numbers');
   }
@@ -128,4 +173,8 @@ closeMoneyAlertBtn.addEventListener('click', () => {
 
 closeWinningLottoAlertBtn.addEventListener('click', () => {
   Alert.hide('winning-numbers');
+});
+
+restartBtn.addEventListener('click', () => {
+  window.location.reload();
 });

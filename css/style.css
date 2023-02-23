@@ -125,6 +125,10 @@ input {
   height: 36px;
 }
 
+.restart-game {
+  width: 80%;
+}
+
 button.input,
 button.restart-game {
   border: 1px solid rgb(var(--lotto-primary-color));
@@ -161,6 +165,7 @@ button.restart-game {
   transform: translate(-50%, -50%);
 
   width: 30%;
+  padding: 0 0.5rem 2rem 0.5rem;
 
   background-color: white;
   border-radius: 4px;
@@ -239,8 +244,6 @@ td, th {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  margin: 5%;
 }
 
 .modal-message h1,
