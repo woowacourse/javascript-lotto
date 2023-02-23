@@ -3,8 +3,13 @@ import Validator from '../utils/Validator.js';
 
 const LottoUtils = {
   createLottoNumbers() {
-    const lottoNumbers = new Array(LOTTO_CONSTANT.MAX_NUMBER).fill().map((_, index) => index + 1);
-    lottoNumbers.sort(() => Math.random() - 0.5);
+    const numbers = new Array(LOTTO_CONSTANT.MAX_NUMBER).fill().map((_, index) => index + 1);
+    const lottoNumbers = [];
+    Array.from({ length: LOTTO_CONSTANT.LENGTH }).forEach(() => {
+      const idx = Math.floor(Math.random() * numbers.length);
+      lottoNumbers.push(numbers[idx]);
+      numbers.splice(idx, 1);
+    });
 
     return lottoNumbers.slice(0, LOTTO_CONSTANT.LENGTH);
   },

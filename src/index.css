@@ -23,7 +23,6 @@ header {
   width: 1440px;
   height: 64px;
   padding-left: 130px;
-  padding-top: 14px;
   padding-bottom: 14px;
   background-color: var(--color-primary);
 }
@@ -44,18 +43,17 @@ h2 {
   left: 0px;
   top: 0px;
   border-radius: 4px;
-  margin: 148px 513px 148px 513px;
+  margin: 148px 513px;
   padding-left: 16px;
   padding-right: 16px;
 }
 
 .copyright-section {
-  bottom: 0;
   width: 1440px;
   height: 64px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
   padding: auto;
   text-align: center;
-  border-top: 1px solid rgba(78, 91, 166, 0.2);
   color: var(--color-primary);
 }
 
@@ -67,9 +65,9 @@ h2 {
 }
 
 button {
-  color: var(--color-greyscale1);
   background: var(--color-primary);
   border-radius: 4px;
+  color: var(--color-greyscale1);
 }
 
 #purchase-button {
@@ -104,14 +102,10 @@ ul {
   margin-top: auto;
 }
 
-#bonus-number-input {
-  float: right;
-}
-
+#bonus-number-input,
 #bonus-number-title {
   float: right;
 }
-
 #show-result-button {
   width: 382px;
   height: 36px;
@@ -143,22 +137,22 @@ ul {
   display: flex;
   position: fixed;
   align-self: center;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
   width: 350px;
   height: 500px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  flex-direction: column;
-  align-items: center;
   background: var(--color-greyscale1);
   border-radius: 4px;
 }
 
 #modal-close-button {
+  align-self: flex-end;
   font-weight: 700;
   font-size: 20px;
   line-height: 16px;
-  align-self: flex-end;
   margin-top: 15px;
   margin-right: 15px;
 }
@@ -192,9 +186,9 @@ td {
 #retry-button {
   width: 318px;
   height: 36px;
-  margin-top: auto;
-  margin-bottom: 32px;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
+  margin-top: auto;
+  margin-bottom: 32px;
 }
