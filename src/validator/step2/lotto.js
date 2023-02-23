@@ -33,7 +33,7 @@ export function checkBonusNumberFormat(bonusNumber) {
 }
 
 export function checkDrawingNumbersFormat({ winNumbers, bonusNumber }) {
-  if (winNumbers.includes(bonusNumber)) {
+  if (new Set(winNumbers).size !== winNumbers.length || winNumbers.includes(bonusNumber)) {
     throw new CustomError({ code: ERROR_CODE.DUPLICATED_NUMBER }, { winNumbers, bonusNumber });
   }
 
