@@ -1,10 +1,9 @@
 import ERROR from '../constants/error.js';
-import LottoView from '../views/LottoView.js';
+import lottoView from '../views/lottoView.js';
 import LottoGame from '../domains/LottoGame.js';
 import lottoGameValidatorStep2 from '../domains/lottoGameValidatorStep2.js';
 
 class LottoGameControllerStep2 {
-  view = new LottoView();
   lottoGame;
 
   startGame() {
@@ -12,10 +11,10 @@ class LottoGameControllerStep2 {
   }
 
   bindLottoButtonEventHandlers() {
-    this.view.bindBuyButtonEventHandler(this.onClickBuyButton);
-    this.view.bindShowResultButtonEventHandler(this.onClickShowResultButton);
-    this.view.bindModalCloseButtonEventHandler(this.onClickModalCloseButton);
-    this.view.bindRestartButtonEventHandler(this.onClickRestartButton);
+    lottoView.bindBuyButtonEventHandler(this.onClickBuyButton);
+    lottoView.bindShowResultButtonEventHandler(this.onClickShowResultButton);
+    lottoView.bindModalCloseButtonEventHandler(this.onClickModalCloseButton);
+    lottoView.bindRestartButtonEventHandler(this.onClickRestartButton);
   }
 
   onClickBuyButton = buyMoney => {
@@ -25,13 +24,13 @@ class LottoGameControllerStep2 {
 
     const lottoNumbersList = this.lottoGame.getLottoNumbersList();
 
-    this.view.printPurchasedLottos(lottoNumbersList);
+    lottoView.printPurchasedLottos(lottoNumbersList);
   };
 
   validateBuyMoney(buyMoney) {
     if (!lottoGameValidatorStep2.isValidBuyMoney(buyMoney)) {
       alert(ERROR.BUY_MONEY);
-      this.view.buyMoneyInput.focus();
+      lottoView.buyMoneyInput.focus();
       return false;
     }
     return true;
@@ -45,19 +44,19 @@ class LottoGameControllerStep2 {
     const amountOfRanks = this.lottoGame.getAmountOfRanks();
     const profit = this.lottoGame.calculateProfit();
 
-    this.view.printResult(amountOfRanks, profit);
+    lottoView.printResult(amountOfRanks, profit);
   };
 
   validateWinningNumbers(luckyNumbers, bonusNumber) {
     if (!lottoGameValidatorStep2.isValidLuckyNumbers(luckyNumbers)) {
       alert(ERROR.LUCKY_NUMBERS);
-      this.view.luckyNumbersInput[0].focus();
+      lottoView.luckyNumbersInput[0].focus();
       return false;
     }
 
     if (!lottoGameValidatorStep2.isValidBonusNumber(bonusNumber, luckyNumbers)) {
       alert(ERROR.BONUS_NUMBER);
-      this.view.bonusNumberInput.focus();
+      lottoView.bonusNumberInput.focus();
       return false;
     }
 
@@ -65,13 +64,13 @@ class LottoGameControllerStep2 {
   }
 
   onClickModalCloseButton = () => {
-    this.view.hideModal();
+    lottoView.hideModal();
     this.lottoGame.resetWinningNumbers();
     this.lottoGame.resetAmountOfRanks();
   };
 
   onClickRestartButton = () => {
-    this.view.resetScreen();
+    lottoView.resetScreen();
   };
 }
 

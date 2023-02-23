@@ -1,6 +1,6 @@
 import RANK from '../constants/rank.js';
 
-class LottoView {
+const lottoView = {
   bindBuyButtonEventHandler(onClickBuyButton) {
     const buyButton = document.querySelector('#buy-button');
     const buyMoneyInput = document.querySelector('#buy-money');
@@ -12,7 +12,7 @@ class LottoView {
 
       onClickBuyButton(buyMoney);
     });
-  }
+  },
 
   bindShowResultButtonEventHandler(onClickShowResultButton) {
     const showResultButton = document.querySelector('#show-result-button');
@@ -27,7 +27,7 @@ class LottoView {
 
       onClickShowResultButton(bonusNumber, luckyNumbers);
     });
-  }
+  },
 
   bindModalCloseButtonEventHandler(onClickModalCloseButton) {
     const modalCloseButton = document.querySelector('#modal-close-button');
@@ -35,7 +35,7 @@ class LottoView {
     modalCloseButton.addEventListener('click', () => {
       onClickModalCloseButton();
     });
-  }
+  },
 
   bindRestartButtonEventHandler(onClickRestartButton) {
     const restartButton = document.querySelector('#restart-button');
@@ -43,7 +43,7 @@ class LottoView {
     restartButton.addEventListener('click', () => {
       onClickRestartButton();
     });
-  }
+  },
 
   printPurchasedLottos(lottoNumbersList) {
     this.lottosQuantity = document.querySelector('#lottos-quantity');
@@ -60,12 +60,12 @@ class LottoView {
 
     this.show(lottoDetail);
     this.showWinningNumbersForm();
-  }
+  },
 
   showWinningNumbersForm() {
     const winningNumbersForm = document.querySelector('#winning-numbers-form');
     this.show(winningNumbersForm);
-  }
+  },
 
   printResult(amountOfRanks, profit) {
     const showResultButton = document.querySelector('#show-result-button');
@@ -86,7 +86,7 @@ class LottoView {
     const modalBackground = document.querySelector('.modal-background');
     this.show(modalBackground);
     this.show(lottoModal);
-  }
+  },
 
   resetScreen() {
     const buyButton = document.querySelector('#buy-button');
@@ -98,7 +98,7 @@ class LottoView {
 
     buyButton.disabled = false;
     showResultButton.disabled = false;
-  }
+  },
 
   hideModal() {
     const lottoModal = document.querySelector('#lotto-modal');
@@ -111,7 +111,7 @@ class LottoView {
 
     buyButton.disabled = false;
     showResultButton.disabled = false;
-  }
+  },
 
   hideElementsforInitialScreen() {
     const lottoDetail = document.querySelector('.lotto-detail');
@@ -119,7 +119,7 @@ class LottoView {
 
     this.hide(lottoDetail);
     this.hide(winningNumbersForm);
-  }
+  },
 
   resetInputs() {
     const lottoListContainer = document.querySelector('#lotto-list-container');
@@ -131,15 +131,15 @@ class LottoView {
     buyMoneyInput.value = null;
     luckyNumbersInput.forEach(luckyNumber => (luckyNumber.value = null));
     bonusNumberInput.value = null;
-  }
+  },
 
   show(HTMLelement) {
     HTMLelement.style.display = 'block';
-  }
+  },
 
   hide(HTMLelement) {
     HTMLelement.style.display = 'none';
-  }
-}
+  },
+};
 
-export default LottoView;
+export default lottoView;
