@@ -3,27 +3,35 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 import './css/style.css';
-import LottoController from './domain/LottoController.js';
+import { selectDom, selectAllDom, createDom } from './utils/dom.js';
+import LottoWebController from './domain/LottoWebController.js';
 
-const lottoController = new LottoController();
-const purchaseForm = document.querySelector('.purchaseForm');
+const lottoController = new LottoWebController();
+const purchaseForm = selectDom('.purchaseForm');
 
 purchaseForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const purchaseAmount = document.querySelector('.inputPurchaseAmount').value;
+  const purchaseAmount = selectDom('.inputPurchaseAmount').value;
   const lottos = lottoController.purchase(purchaseAmount);
 
-  const ticketView = document.querySelector('.ticketView');
+  selectDom('.lottoIssueView').style.visibility = 'visible';
+  selectDom('.lottoResultView').style.visibility = 'visible';
+
+  const lottoIssueViewTitle = selectDom('.lottoIssueViewTitle');
+  lottoIssueViewTitle.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
+
+  const ticketView = selectDom('.ticketView');
+  ticketView.innerHTML = '';
   lottos.forEach((lotto) => {
-    const ticket = document.createElement('div');
+    const ticket = createDom('div');
     ticket.className = 'ticket';
 
-    const ticketPicture = document.createElement('div');
+    const ticketPicture = createDom('div');
     ticketPicture.className = 'ticketPicture';
     ticketPicture.innerText = '🎟️';
 
-    const ticketNumber = document.createElement('div');
+    const ticketNumber = createDom('div');
     ticketNumber.innerText = lotto.getNumbers().join(', ');
 
     ticket.appendChild(ticketPicture);
@@ -33,26 +41,32 @@ purchaseForm.addEventListener('submit', (e) => {
   });
 });
 
-const resultButton = document.querySelector('.resultButton');
+const resultButton = selectDom('.resultButton');
 
 resultButton.addEventListener('click', () => {
-  const winningNumber = [...document.querySelectorAll('.number')].map((number) => number.value);
+  const winningNumber = [...selectAllDom('.number')].map((number) => number.value);
   lottoController.setWinningNumber(winningNumber);
+
   const result = lottoController.getResult();
-  console.log(result);
+  selectAllDom('.winningCount').forEach((countBox, index) => {
+    countBox.innerText = `${result.matchResult[4 - index]}개`;
+  });
 
-  document.querySelector('.modal').style.display = 'flex';
-  document.querySelector('.modalBackground').style.display = 'flex';
+  const resultExplain = selectDom('.resultExplain');
+  resultExplain.innerText = `당신의 총 수익률은 ${result.benefit}%입니다.`;
+
+  selectDom('.modal').style.display = 'flex';
+  selectDom('.modalBackground').style.display = 'flex';
 });
 
-const modalButton = document.querySelector('.exitModal');
+const modalButton = selectDom('.exitModal');
 modalButton.addEventListener('click', () => {
-  document.querySelector('.modal').style.display = 'none';
-  document.querySelector('.modalBackground').style.display = 'none';
+  selectDom('.modal').style.display = 'none';
+  selectDom('.modalBackground').style.display = 'none';
 });
 
-const restartButton = document.querySelector('.restartButton');
+const restartButton = selectDom('.restartButton');
 restartButton.addEventListener('click', () => {
-  document.querySelector('.modal').style.display = 'none';
-  document.querySelector('.modalBackground').style.display = 'none';
+  selectDom('.modal').style.display = 'none';
+  selectDom('.modalBackground').style.display = 'none';
 });
