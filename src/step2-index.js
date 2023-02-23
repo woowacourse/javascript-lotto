@@ -1,4 +1,4 @@
-import './css/index.css';
+import './web/css/index.css';
 import LottoWebGame from './web/controller/LottoWebGame';
 
 /**
