@@ -31,6 +31,14 @@ const ui = {
     });
   },
 
+  hideTargetNumberValidationText() {
+    domList.targetNumberInputErrorText.classList.add('hide');
+  },
+
+  showTargetNumberValidationText({ message }) {
+    domList.targetNumberInputErrorText.innerText = message;
+    domList.targetNumberInputErrorText.classList.remove('hide');
+  },
   closeModal() {
     console.log('restart');
     domList.resultModal.style.display = 'none';
