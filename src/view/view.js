@@ -31,7 +31,7 @@ const view = {
 
   insertWinningCounts(dom, winningStatus) {
     [...dom].forEach((winningCount, index) => {
-      winningCount.innerText = winningStatus[index];
+      winningCount.innerText = `${winningStatus[index]}개`;
     });
   },
 

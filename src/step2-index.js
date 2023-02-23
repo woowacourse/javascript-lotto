@@ -11,7 +11,7 @@ const $budgetForm = document.querySelector('.budget_form');
 const $budgetInput = document.querySelector('.budget_input');
 const $budgetError = document.querySelector('.budget_error');
 
-const $step2 = document.querySelector('#step2');
+const $nextStepAfterBuyingLotto = document.querySelector('#next_step_buying_lotto');
 
 const $lottoCount = document.querySelector('.lotto_count');
 const $lottoList = document.querySelector('.lotto_list_box');
@@ -27,7 +27,7 @@ const $profitRate = document.querySelector('.profit_rate');
 const $modalCloseButton = document.querySelector('.modal_close');
 const $modalBackground = document.querySelector('.modal_background');
 
-const $retryButton = document.querySelector('.retry_btn');
+const $retryButton = document.querySelector('.retry_button');
 
 let lottoGame;
 
@@ -49,14 +49,14 @@ const handleBudget = (budget) => {
     return view.convertVisibilityToVisible($budgetError);
   }
 
-  renderStep2(budget);
+  renderNextStepAfterBuyingLotto(budget);
 };
 
-const renderStep2 = (budget) => {
+const renderNextStepAfterBuyingLotto = (budget) => {
   view.insertLottoCount($lottoCount, budget);
   view.insertBoughtLottos($lottoList, lottoGame.getBoughtLottos());
 
-  view.convertVisibilityToVisible($step2);
+  view.convertVisibilityToVisible($nextStepAfterBuyingLotto);
 };
 
 const onSubmitLottoNumberForm = (event) => {
@@ -93,7 +93,7 @@ const renderModal = (winningNumbers, bonusNumber) => {
 
 const onClickRetryButton = () => {
   view.initInputValue($budgetInput, $bonusNumberInput);
-  view.convertVisibilityToHidden($modal, $step2);
+  view.convertVisibilityToHidden($modal, $nextStepAfterBuyingLotto);
   [...$winningNumberInputs].forEach((winningNumberInput) => {
     view.initInputValue(winningNumberInput);
   });
