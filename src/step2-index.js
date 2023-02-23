@@ -62,3 +62,13 @@ const saveMoney = () => {
     moneyInput.value = '';
   }
 };
+
+const saveWinning = () => {
+  try {
+    winning.setWinningNumbers(getWinningNumbersInput());
+    winning.setBonusNumber(Number(bonusNumberInput.value));
+    lottoMachine.setWinning(winning);
+  } catch (error) {
+    window.alert(error.message);
+  }
+};
