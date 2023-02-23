@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+}
+
+/* document title */
+
+#document-title {
+  width: 100%;
+  height: 64px;
+  background-color: #4e5ba6;
+  display: flex;
+  align-items: center;
+}
+
+#document-title > h1 {
+  margin: 0 0 0 130px;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+/* comfirmation-lotto-number-form */
+
+#comfirmation-lotto-number-form {
+  width: 382px;
+  margin: 84px auto 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 52px 16px 32px;
+}
+
+#comfirmation-lotto-number-form > header {
+  text-align: center;
+}
+
+#comfirmation-lotto-number-form > header > h2 {
+  margin: 0;
+}
+
+#input-purchase-form {
+  margin-top: 28px;
+  font-size: 15px;
+}
+
+#input-purchase-container {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#input-purchase-container > input {
+  padding: 0;
+  width: 300px;
+  height: 22px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  font-size: 15px;
+  padding: 8px 0px 4px 8px;
+}
+
+#input-purchase-container > button {
+  width: 56px;
+  height: 36px;
+  background: #4e5ba6;
+  border: 0;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+/* lotto-list-result-form */
+
+#lotto-list-result-form {
+  margin-top: 28px;
+  font-size: 15px;
+}
+
+#lotto-list-container {
+  width: 382px;
+  height: 308px;
+  margin-top: 8px;
+  overflow: scroll;
+}
+
+#lotto-list-container > div {
+  height: 36px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+}
+
+#lotto-list-container > div > span {
+  font-size: 34px;
+  margin-right: 8px;
+}
+
+/* input-winning-number-form */
+
+#input-winning-number-form {
+  font-size: 15px;
+  width: 382px;
+  margin: 24px auto 0 auto;
+}
+
+#input-winning-number-form > div:nth-child(2) {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#input-winning-number-container {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#input-winning-number-items {
+  display: flex;
+  height: 36px;
+}
+
+#input-winning-number-items > input,
+#input-bonus-number-items > input {
+  padding: 0;
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  margin-right: 8px;
+  text-align: center;
+}
+
+#input-bonus-number-items > input {
+  margin-right: 0;
+}
+
+#input-winning-number-form button {
+  margin-top: 27px;
+  width: 382px;
+  height: 36px;
+  background: #4e5ba6;
+  border: 0;
+  border-radius: 4px;
+  color: #ffffff;
+}
