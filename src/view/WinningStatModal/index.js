@@ -1,4 +1,4 @@
-import { $ } from '../../utils/dom';
+import { $, dispatchCustomEvent } from '../../utils/dom';
 
 class WinningStatModal {
   #template = /* html */ `
@@ -43,12 +43,18 @@ class WinningStatModal {
     $('.modal-close-button').addEventListener('click', () =>
       this.handleModalClose()
     );
-    $('.restart-button').addEventListener('click', () =>
-      this.handleModalClose()
-    );
+    $('.restart-button').addEventListener('click', () => this.handleRestart());
   }
 
   handleModalClose() {
+    this.closeModal();
+  }
+
+  handleRestart() {
+    this.closeModal();
+  }
+
+  closeModal() {
     $('.modal').classList.toggle('hidden');
   }
 }
