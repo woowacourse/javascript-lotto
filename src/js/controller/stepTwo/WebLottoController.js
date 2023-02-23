@@ -57,6 +57,14 @@ class WebLottoController {
       }
     });
   }
+
+  restartGame() {
+    domList.retryBtn.addEventListener('click', event => {
+      event.stopImmediatePropagation();
+      window.location.reload();
+    });
+  }
+
   closeModal() {
     domList.closeModalBtn.addEventListener('click', event => {
       event.stopImmediatePropagation();
