@@ -10,6 +10,7 @@ import OutputView from './view/console/OutputView';
 import { COMMAND } from './constant/setting';
 import ConsoleIO from './util/console/ConsoleIO';
 import convertToNumeric from './util/convertToNumeric';
+import { convertToWinningNumber } from './domain/util';
 
 class LottoController {
   #lottoMachine;
@@ -47,21 +48,13 @@ class LottoController {
 
   async #inputWinningNumber() {
     try {
-      const winningNumber = this.#convertToWinningNumber(await InputView.readWinningNumber());
+      const winningNumber = convertToWinningNumber(await InputView.readWinningNumber());
       LottoGameValidator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.#inputWinningNumber();
     }
-  }
-
-  #convertToWinningNumber(winningNumberInput) {
-    return winningNumberInput.split(',').map((lottoNumberInput) => {
-      const lottoNumber = convertToNumeric(lottoNumberInput);
-      LottoGameValidator.validateLottoNumber(lottoNumber);
-      return lottoNumber;
-    });
   }
 
   async #inputBonusNumber(winningNumber) {
