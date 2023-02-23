@@ -43,10 +43,31 @@ const PRIZE_AMOUNT = {
   5: 5000,
 };
 
+const ID = {
+  INPUT_MONEY_FORM: "#input-money-form",
+  INPUT_WINNER_FORM: "#input-winnumber-form",
+  RESTART: "#restart",
+  MODAL_EXIT: "#result-exit",
+  MODAL_PAGE: "#result",
+  WINNUMBERS_ELEMENT: "#input-winnumbers-box",
+  BONUS_ELEMENT: "#input-bonusnumber-box",
+  SHOW_LOTTOS_ELEMENT: "#show-lotto",
+  SHOW_LOTTOS_LABEL: "#show-lotto-label",
+  DEFAULT_LOTTOTICKET: "#lotto-default",
+
+  INPUT_WINLOTTO_ELEMENT: "#input-winlotto",
+  SUBMIT_WINLOTTO_BUTTON: "#submit-winlotto",
+  LOTTO_LIST: "#lottos",
+
+  RESULT_RANK: "#result-rank",
+  RESULT_REVENUE: "#result-revenue",
+};
+
 module.exports = {
   MESSAGES,
   ERRORMESSAGES,
   RANK,
   LOTTO,
   PRIZE_AMOUNT,
+  ID,
 };

@@ -1,34 +1,37 @@
+const { $, $$ } = require("../util/Dom");
+const { RANK, ID } = require("../constant/Constant");
+
 const View = {
   hiddenWinLottoElements() {
-    $("#show-lotto").style.visibility = "hidden";
-    $("#input-winlotto").style.visibility = "hidden";
-    $("#submit-winlotto").style.visibility = "hidden";
+    $(ID.SHOW_LOTTOS_ELEMENT).style.visibility = "hidden";
+    $(ID.INPUT_WINLOTTO_ELEMENT).style.visibility = "hidden";
+    $(ID.SUBMIT_WINLOTTO_BUTTON).style.visibility = "hidden";
   },
 
   showWinLottoElements() {
-    $("#show-lotto").style.visibility = "visible";
-    $("#input-winlotto").style.visibility = "visible";
-    $("#submit-winlotto").style.visibility = "visible";
+    $(ID.SHOW_LOTTOS_ELEMENT).style.visibility = "visible";
+    $(ID.INPUT_WINLOTTO_ELEMENT).style.visibility = "visible";
+    $(ID.SUBMIT_WINLOTTO_BUTTON).style.visibility = "visible";
   },
 
   showLottoTickets(lottos) {
-    $("#show-lotto-label").innerText = `총 ${lottos.length}개를 구매했습니다.`;
+    $(ID.SHOW_LOTTOS_LABEL).innerText = `총 ${lottos.length}개를 구매했습니다.`;
 
-    $("#lottos").replaceChildren();
+    $(ID.LOTTO_LIST).replaceChildren();
     lottos.forEach((lotto) => {
-      const oneLottoFrame = $("#lotto-default").cloneNode(true);
+      const oneLottoFrame = $(ID.DEFAULT_LOTTOTICKET).cloneNode(true);
       oneLottoFrame.style.display = "block";
       oneLottoFrame.querySelector(".lotto-numbers").innerText = `[${lotto.numbers.join(", ")}]`;
-      $("#lottos").appendChild(oneLottoFrame);
+      $(ID.LOTTO_LIST).appendChild(oneLottoFrame);
     });
   },
 
   showGameResult(rankResult, revenue) {
     [RANK.FIRST, RANK.SECOND, RANK.THIRD, RANK.FOURTH, RANK.FIFTH].forEach((rank) => {
-      $(`#result-rank${rank}`).innerText = `${rankResult[rank]}개`;
+      $(`${ID.RESULT_RANK}${rank}`).innerText = `${rankResult[rank]}개`;
     });
-    $("#result-revenue").innerText = `당신의 총 수입률은 ${revenue}%입니다`;
-    $("#result").style.display = "block";
+    $(ID.RESULT_REVENUE).innerText = `당신의 총 수입률은 ${revenue}%입니다`;
+    $(ID.MODAL_PAGE).style.display = "block";
   },
 };
 

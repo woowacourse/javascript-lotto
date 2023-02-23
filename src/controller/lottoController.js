@@ -1,10 +1,8 @@
-const { RANK } = require("../constant/Constant");
 const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
 const View = require("../view/View");
-
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
+const { $, $$ } = require("../util/Dom");
+const { ID } = require("../constant/Constant");
 
 class LottoController {
   #lottoGame;
@@ -20,10 +18,10 @@ class LottoController {
   }
 
   submitMoneyForm() {
-    $("#input-money-form").onsubmit = (event) => {
+    $(ID.INPUT_MONEY_FORM).onsubmit = (event) => {
       event.preventDefault();
 
-      const money = $("#input-money-form input").value;
+      const money = $(`${ID.INPUT_MONEY_FORM} input`).value;
       if (!this.validateMoney(money)) return;
 
       this.#lottoGame.purchaseLottos(money);
@@ -35,16 +33,15 @@ class LottoController {
   }
 
   submitWinLottoForm() {
-    $("#input-winnumber-form").onsubmit = (event) => {
+    $(ID.INPUT_WINNER_FORM).onsubmit = (event) => {
       event.preventDefault();
 
       const inputNums = [...document.getElementsByName("winnumbers")].map((input) => input.value);
       const inputBonus = document.getElementsByName("bonusnumber")[0].value;
-
       if (!this.validateWinNumbers(inputNums)) return;
       if (!this.validateWinBonusNumber(inputNums, inputBonus)) return;
-      const bonusNumber = parseInt(inputBonus);
       const numbers = inputNums.map((num) => parseInt(num));
+      const bonusNumber = parseInt(inputBonus);
 
       const winLotto = this.#lottoGame.makeWinLotto(numbers, bonusNumber);
       const rankResult = this.#lottoGame.calculateRankResult(this.#lottoGame.lottos, winLotto);
@@ -53,16 +50,15 @@ class LottoController {
       View.showGameResult(rankResult, revenue);
     };
   }
-
   restart() {
-    $("#restart").addEventListener("click", () => {
+    $(ID.RESTART).addEventListener("click", () => {
       location.reload();
     });
   }
 
   exitModal() {
-    $("#result-exit").addEventListener("click", () => {
-      $("#result").style.display = "none";
+    $(ID.MODAL_EXIT).addEventListener("click", () => {
+      $(ID.MODAL_PAGE).style.display = "none";
     });
   }
 
@@ -72,8 +68,8 @@ class LottoController {
       return true;
     } catch (e) {
       alert(e.message);
-      $("#input-money-form input").value = null;
-      this.hiddenWinLottoElements();
+      $(`${ID.INPUT_MONEY_FORM} input`).value = null;
+      View.hiddenWinLottoElements();
       return false;
     }
   }
@@ -84,7 +80,7 @@ class LottoController {
       return true;
     } catch (e) {
       alert(e.message);
-      $$("#input-winnumbers-box input").forEach((element) => {
+      $$(`${ID.WINNUMBERS_ELEMENT} input`).forEach((element) => {
         element.value = null;
       });
       return false;
@@ -97,7 +93,7 @@ class LottoController {
       return true;
     } catch (e) {
       alert(e.message);
-      $("#input-bonusnumber-box input").value = null;
+      $(`${ID.BONUS_ELEMENT} input`).value = null;
       return false;
     }
   }
