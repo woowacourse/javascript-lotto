@@ -95,30 +95,23 @@ class WinningNumbersSubmitForm {
   render() {
     this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
-    this.bindEvent();
-  }
 
-  bindEvent() {
     const numberInputs = Array.from($$('.number-input'));
     const [firstInput] = numberInputs;
-    this.focusFirstInput(firstInput);
-
-    this.bindAutoFocusNextEvent(numberInputs);
-    $('.winning-numbers-form').addEventListener('submit', (e) =>
-      this.handleSubmit(e)
-    );
+    firstInput.focus();
+    this.bindEvent(numberInputs);
   }
 
-  focusFirstInput(input) {
-    input.focus();
-  }
-
-  bindAutoFocusNextEvent(numberInputs) {
+  bindEvent(numberInputs) {
     numberInputs.forEach((input) => {
       input.addEventListener('input', (e) => {
         this.handleInputAutoFocusNext(numberInputs, e.target);
       });
     });
+
+    $('.winning-numbers-form').addEventListener('submit', (e) =>
+      this.handleSubmit(e)
+    );
   }
 
   handleInputAutoFocusNext(inputs, currentInput) {
