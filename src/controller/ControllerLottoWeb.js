@@ -83,7 +83,7 @@ class ControllerLottoWeb {
     const result = this.lottoMachine.getWinningStatus(winningNumber, bonusNumber);
 
     view.printResultLotto(result);
-    view.printProfitResult(this.lottoMachine.getProfitRate(this.money, result));
+    view.printProfitResult(this.lottoMachine.getProfitRate(this.money, result).toFixed(2));
     view.showModal();
   }
 
