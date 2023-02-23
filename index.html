@@ -3,80 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/spacing.css" />
-    <link rel="stylesheet" href="css/typograpy.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/flexbox.css" />
-
     <title>🎱 행운의 로또</title>
   </head>
 
   <body>
-    <div id="app">
-      <header class="flex flex--v-Center lotto-header">
-        <h1 class="lotto-subtitle mgLeft_10_rem">🎱 행운의 로또</h1>
-      </header>
-      <section class="flex flex--center w-100 mgBottom_5_rem">
-        <div class="lotto-card mgTop_5_rem mgLeft_1_rem pd_1_rem">
-          <h2
-            class="flex flex--h-center lotto-card__title lotto-subtitle mgTop_3_rem"
-          >
-            🎱 내 번호 당첨 확인 🎱
-          </h2>
-          <form class="mgTop_2_rem">
-            <label for="lottoPrice"
-              ><p class="lotto-body">구입할 금액을 입력해주세요.</p>
-            </label>
-            <div class="flex flex--space-between mgTop_1_rem">
-              <input
-                class="lotto-card__money--input lotto-placeholder"
-                placeholder="금액"
-                value=""
-              />
-              <button class="button">구입</button>
-            </div>
-          </form>
-
-          <ul class="lotto-body mgTop_2_rem">
-            <li class="lotto-count">총 7개를 구입하였습니다.</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-            <li class="lotto-ticket">12, 12, 12, 12, 12, 12</li>
-          </ul>
-
-          <form class="mgTop_2_rem">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="flex flex--space-between mgTop_1_rem">
-              <label for="winningNumbers">당첨 번호</label>
-              <label for="bonusNumber">보너스 번호</label>
-            </div>
-
-            <div class="flex mgTop_1_rem">
-              <input class="lotto-card__lotto--input winningNumbers" value="" />
-              <input class="lotto-card__lotto--input winningNumbers" value="" />
-              <input class="lotto-card__lotto--input winningNumbers" value="" />
-              <input class="lotto-card__lotto--input winningNumbers" value="" />
-              <input class="lotto-card__lotto--input winningNumbers" value="" />
-              <input class="lotto-card__lotto--input winningNumbers" value="" />
-              <input class="lotto-card__lotto--input bonusNumber" value="" />
-            </div>
-
-            <button class="button w-100 mgTop_1_rem" type="button">
-              결과 확인하기
-            </button>
-          </form>
-        </div>
-      </section>
-      <footer class="flex flex--center lotto-caption">
-        <p>Copyright 2023. woowacourse</p>
-      </footer>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <div id="app"></div>
   </body>
 </html>
