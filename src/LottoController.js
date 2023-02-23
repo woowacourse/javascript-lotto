@@ -14,7 +14,6 @@ class LottoController {
 
     this.moneyInputView.addSubmitHandler(this.moneyInputHandler);
     this.winningLottoInputView.addSubmitHandler(this.winningLottoInputHandler);
-    this.lottos = [];
   }
 
   moneyInputHandler = (money) => {
@@ -22,14 +21,18 @@ class LottoController {
       this.buyer = new Buyer(money);
       this.moneyInputView.toggleFormDisable();
       this.buyer.buyLottos();
-      this.lottos = this.buyer.getLottos();
-      this.purchasedLottoView = new PurchasedLottoView(this.lottos, money);
-      this.purchasedLottoView.render();
-      this.winningLottoInputView.render();
+      const lottos = this.buyer.getLottos();
+      this.renderPurchasedLotto(lottos, money);
     } catch (error) {
       alert(error.message);
     }
   };
+
+  renderPurchasedLotto(lottos, money) {
+    this.purchasedLottoView = new PurchasedLottoView(lottos, money);
+    this.purchasedLottoView.render();
+    this.winningLottoInputView.render();
+  }
 
   winningLottoInputHandler = (winningNumbersInput, bonusNumberInput) => {
     try {
@@ -39,13 +42,17 @@ class LottoController {
       const receivedRewards = this.buyer.receiveRewards(lottoResult);
       const profitRate = this.buyer.getProfitRate(lottoResult);
 
-      this.lottoResultModal = new LottoResultModal(receivedRewards, profitRate);
-      this.lottoResultModal.render();
-      this.lottoResultModal.addRestartButtonHandler(this.resetHandler);
+      this.renderResultModal(receivedRewards, profitRate);
     } catch (error) {
       alert(error.message);
     }
   };
+
+  renderResultModal(receivedRewards, profitRate) {
+    this.lottoResultModal = new LottoResultModal(receivedRewards, profitRate);
+    this.lottoResultModal.render();
+    this.lottoResultModal.addRestartButtonHandler(this.resetHandler);
+  }
 
   resetHandler = () => {
     this.moneyInputView.toggleFormDisable();
