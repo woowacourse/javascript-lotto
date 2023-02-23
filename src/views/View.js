@@ -81,14 +81,14 @@ class View {
       lottoListContainer.innerHTML += `<li>🎟️ ${lottoNumbers.join(', ')}</li>`;
     });
 
+    const lottoDetail = document.querySelector('.lotto-detail');
+
+    this.show(lottoDetail);
     this.showWinningNumbersForm();
   }
 
   showWinningNumbersForm() {
-    const lottoDetail = document.querySelector('.lotto-detail');
     const winningNumbersForm = document.querySelector('#winning-numbers-form');
-
-    this.show(lottoDetail);
     this.show(winningNumbersForm);
   }
 
