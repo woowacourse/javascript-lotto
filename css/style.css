@@ -211,13 +211,16 @@ section #content h2 {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   letter-spacing: 0.5px;
 
-  /* lotto-greyscale-5 */
 
   color: #000000;
+  visibility: hidden;
+}
+
+#purchase{
+    visibility: hidden
 }
 
 #lottos {
@@ -240,6 +243,12 @@ section #content h2 {
   /* lotto-greyscale-5 */
 
   color: #000000;
+}
+
+#lottoList {
+    height: 250px;
+    width: 310px;
+    overflow-y:scroll
 }
 
 #winningLotto {
@@ -343,7 +352,7 @@ section #content h2 {
   border: 1px solid #b4b4b4;
 }
 
-#result {
+#result_button {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -360,7 +369,7 @@ section #content h2 {
   border-radius: 4px;
 }
 
-#result span {
+#result_button span {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
@@ -416,4 +425,182 @@ footer p {
   /* lotto-primary */
 
   color: #4e5ba6;
+}
+
+/* modal 부분 */
+.modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.close {
+    position: absolute;
+left: 90.86%;
+right: 4.57%;
+top: 3.2%;
+bottom: 93.6%;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 16px;
+/* identical to box height, or 80% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 1.25px;
+
+/* 00. On Surface / High Emphasis */
+
+color: rgba(0, 0, 0, 0.87);
+}
+
+.modal_body {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+
+  /* lotto-greyscale-1 */
+
+  background: #ffffff;
+  border-radius: 4px;
+
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.model_subject {
+  position: absolute;
+  left: 29.56%;
+  right: 29.56%;
+  top: 40px;
+
+  /* lotto-subtitle */
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height, or 120% */
+
+  text-align: center;
+  letter-spacing: 0.15px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+.lotto_result {
+  position: absolute;
+  width: 319px;
+  height: 247px;
+  left: 16px;
+  top: 97px;
+}
+
+.lotto_result td {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+table {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 10px;
+}
+
+.result_profit {
+  position: absolute;
+  left: 20.75%;
+  right: 20.75%;
+  top: 390px;
+  bottom: 0%;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+}
+
+.restart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  /* lotto-primary */
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+.restart span {
+  width: 89px;
+  height: 16px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  /* lotto-greyscale-1 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }

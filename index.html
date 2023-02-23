@@ -20,34 +20,33 @@
               <div id="label">
                 <p id="readMoney">구입할 금액을 입력해주세요.</p>
               </div>
-              <input id="money" type="text" name="money" placeholder="금액">
+              <input id="money" type="text" name="money" placeholder="금액" />
             </div>
             <button id="buy"><span>구입</span></button>
           </div>
           <p id="buyText">총 7개를 구매했습니다.</p>
           <div id="purchase">
             <div id="lottos">
-              <ul id="lottoList">
-              </ul>
+              <ul id="lottoList"></ul>
             </div>
             <div id="winningLotto">
               <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
               <div id="winningNumber">
                 <p>당첨 번호</p>
                 <div class="inputNumber">
-                  <input type="text">
-                  <input type="text">
-                  <input type="text">
-                  <input type="text">
-                  <input type="text">
-                  <input type="text">
+                  <input type="text" name="win" id="winning" />
+                  <input type="text" name="win" id="winning" />
+                  <input type="text" name="win" id="winning" />
+                  <input type="text" name="win" id="winning" />
+                  <input type="text" name="win" id="winning" />
+                  <input type="text" name="win" id="winning" />
                 </div>
               </div>
               <div id="bonusNumber">
                 <p>보너스 번호</p>
-                <input type="text">
+                <input type="text" id="bonus" />
               </div>
-              <button id="result"><span>결과 확인하기</span></button>
+              <button id="result_button"><span>결과 확인하기</span></button>
             </div>
           </div>
         </div>
@@ -55,6 +54,44 @@
       <footer>
         <p>Copyright 2023. woowacourse</p>
       </footer>
+      <div class="modal">
+        <div class="modal_body">
+          <p class="model_subject">🏆 당첨 통계 🏆</p>
+          <div class="close">X</div>
+          <table class="lotto_result" border="1">
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td id="result"></td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td id="result"></td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td id="result"></td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td id="result"></td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td id="result"></td>
+            </tr>
+          </table>
+          <p class="result_profit"></p>
+          <button class="restart"><span>다시 시작하기</span></button>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>
