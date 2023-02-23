@@ -1,4 +1,53 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import { MAGIC_NUMBER, RANK_INFORMATIONS } from './constant';
+import './css/styles.css';
+
+const LottoMachine = require('./domain/controller/LottoMachine');
+const Winning = require('./domain/model/Winning');
+const Money = require('./domain/model/Money');
+const Benefit = require('./domain/model/Benefit');
+
+const lottoMachine = new LottoMachine();
+const winning = new Winning();
+const benefit = new Benefit();
+
+const {
+  moneyInput,
+  bonusNumberInput,
+  purchaseButton,
+  confirmButton,
+  retryButton,
+  winningNumbersGroup,
+  lottoContent,
+  result,
+  closeButton,
+  count,
+  rate,
+  resultListContainer,
+  lottoList,
+} = require('./document');
+
+purchaseButton.addEventListener('click', () => {
+  saveMoney();
+  purchaseButton.setAttribute('disabled', 'disabled');
+
+  lottoMachine.generateLottos();
+  renderLottoContent();
+  renderWinningNumebersInput();
+});
+
+confirmButton.addEventListener('click', () => {
+  saveWinning();
+  confirmButton.setAttribute('disabled', 'disabled');
+
+  const ranks = lottoMachine.getCollectedRanks();
+  benefit.calculateRate(lottoMachine.getMoney().getAmount(), ranks);
+  renderResult(ranks);
+});
+
+closeButton.addEventListener('click', () => {
+  result.style.display = 'none';
+});
+
+retryButton.addEventListener('click', () => {
+  // const lottoMachine =
+});
