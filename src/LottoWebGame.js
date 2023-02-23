@@ -50,6 +50,7 @@ class LottoWebGame {
 
       const winningLotto = new WinningLotto(winningNumber, bonusNumber);
       this.#ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
+      $('#modal-background').classList.remove('hidden');
     } catch (error) {
       alert(error.message);
     }
