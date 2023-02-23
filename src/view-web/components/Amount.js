@@ -1,5 +1,7 @@
 import Component from './Component.js';
+import LottoMachine from '../../domain/LottoMachine.js';
 import { qs } from '../../utils/domHelper.js';
+import { LOTTO } from '../../constant/constants.js';
 
 export default class Amount extends Component {
   setter;
@@ -29,6 +31,10 @@ export default class Amount extends Component {
 
   submitAmount(event) {
     event.preventDefault();
-    this.setter({ amount: event.target.childNodes[1].value });
+
+    const amount = Number([...event.target.children][0].value);
+    const lottoList = LottoMachine.purchase(amount / LOTTO.PRICE);
+
+    this.setter({ lottoList });
   }
 }
