@@ -1,29 +1,32 @@
-import { StaticValue, ConsoleMessage } from '../constants/Constants.js';
+import { StaticValue } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import LottoGameView from '../view/LottoGameView.js';
+import LottoResultView from '../view/LottoResultView.js';
 import Validation from '../utils/Validation.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
+  #gameView = new LottoGameView();
+  #resultView = new LottoResultView();
 
-  async startGame() {
-    await this.#handlePurchaseAmount();
-    await this.#handleWinningNumbers();
-    this.#handleGameResult();
-    await this.#handleRestart();
+  startGame() {
+    this.#bindEvents();
   }
 
-  async #handlePurchaseAmount() {
+  #bindEvents() {
+    this.#gameView.addPurchaseSubmitEvent(this.#handlePurchase.bind(this));
+    this.#gameView.addGameNumbersSubmitEvent(this.#handleWinningNumbers.bind(this));
+    this.#resultView.addRestartButtonClickEvent(this.#handleRestart.bind(this));
+  }
+
+  #handlePurchase(purchaseAmount) {
     try {
-      const purchaseAmountInput = await InputView.readUserInput(ConsoleMessage.PURCHASE_AMOUNT);
-      const PURCHASE_COUNT = Number(purchaseAmountInput) / StaticValue.PURCHASE_AMOUNT_UNIT;
-      Validation.verifyPurchaseAmount(purchaseAmountInput);
-      OutputView.print(ConsoleMessage.purchaseCount(PURCHASE_COUNT));
+      Validation.verifyPurchaseAmount(purchaseAmount);
+      const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
       this.#handleUserLottos(PURCHASE_COUNT);
-    } catch (error) {
-      OutputView.print(error.message);
-      return this.#handlePurchaseAmount();
+    } catch ({ message }) {
+      this.#gameView.renderPurchaseError(message);
+      this.#gameView.addPurchaseInputEvent();
     }
   }
 
@@ -31,57 +34,41 @@ class LottoGameController {
     this.#lottoGame.generateUserLottos(purchaseCount);
     const USER_LOTTO_LIST = this.#lottoGame.getUserLottoList();
 
-    USER_LOTTO_LIST.forEach(OutputView.printUserLottos);
+    this.#gameView.showStartContainer();
+    this.#gameView.showUserLottos(purchaseCount, USER_LOTTO_LIST);
   }
 
-  async #handleWinningNumbers() {
+  #handleWinningNumbers(winningNumbers, bonusNumber) {
     try {
-      const winningNumbersInput = await InputView.readUserInput(ConsoleMessage.WINNING_NUMBER);
-      const WINNING_NUMBERS = winningNumbersInput.split(StaticValue.INPUT_SEPARATOR).map(Number);
-      Validation.verifyLottoNumbers(WINNING_NUMBERS);
-      await this.#handleBonusNumber(WINNING_NUMBERS);
-    } catch (error) {
-      OutputView.print(error.message);
-      return this.#handleWinningNumbers();
+      Validation.verifyLottoNumbers(winningNumbers);
+      this.#handleBonusNumber(winningNumbers, bonusNumber);
+    } catch ({ message }) {
+      this.#gameView.renderWinningNumbersError(message);
+      this.#gameView.addWinningNumbersInputEvent();
     }
   }
 
-  async #handleBonusNumber(winningNumbers) {
+  #handleBonusNumber(winningNumbers, bonusNumber) {
     try {
-      const bonusNumberInput = await InputView.readUserInput(ConsoleMessage.BONUS_NUMBER);
-      const BONUS_NUMBER = Number(bonusNumberInput);
-      Validation.verifyBonusNumber(winningNumbers, BONUS_NUMBER);
-      this.#lottoGame.setGameLottos(winningNumbers, BONUS_NUMBER);
-    } catch (error) {
-      OutputView.print(error.message);
-      return this.#handleBonusNumber(winningNumbers);
+      Validation.verifyBonusNumber(winningNumbers, bonusNumber);
+      this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
+      this.#handleGameResult();
+    } catch ({ message }) {
+      this.#gameView.renderBonusNumberError(message);
+      this.#gameView.addBonusNumberInputEvent();
     }
   }
 
   #handleGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-    OutputView.printResult(RANKS, PROFIT_RATE);
+    this.#resultView.showResultModal();
+    this.#resultView.showProfitRate(PROFIT_RATE);
+    this.#resultView.showRanks(RANKS);
   }
 
-  async #handleRestart() {
-    try {
-      const restartInput = await InputView.readUserInput(ConsoleMessage.RESTART);
-      const RESPONSE = restartInput.toLowerCase().trim();
-      Validation.verifyRestart(RESPONSE);
-      this.#handleRestartReply(RESPONSE);
-    } catch (error) {
-      OutputView.print(error.message);
-      return this.#handleRestart();
-    }
-  }
-
-  #handleRestartReply(reply) {
-    if (reply === StaticValue.RESTART_CONTROL) {
-      this.startGame();
-      return;
-    }
-
-    OutputView.close();
+  #handleRestart() {
+    this.#gameView.reset();
+    this.#resultView.reset();
   }
 }
 

@@ -7,7 +7,7 @@ describe('Validation 테스트', () => {
       const PURCHASE_AMOUNT = [0, -1000, -1561];
 
       PURCHASE_AMOUNT.forEach((amount) => {
-        expect(() => Validation.verifyPurchaseAmount(amount)).toThrow(ErrorMessage.MINMUM_VALUE);
+        expect(() => Validation.verifyPurchaseAmount(amount)).toThrow(ErrorMessage.MINIMUM_VALUE);
       });
     });
 

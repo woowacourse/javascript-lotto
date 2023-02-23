@@ -1,0 +1,348 @@
+:root {
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+  --subtitle-font-size: 20px;
+  --subtitle-font-weight: 600;
+  --body-font-size: 15px;
+  --caption-font-size: 14px;
+  --caption-font-weight: bold;
+
+  --white: #ffffff;
+  --gray-1: #fcfcfd;
+  --gray-2: #b4b4b4;
+  --gray-3: #8b8b8b;
+  --black: #000000;
+  --divider-border-color: #d4d4d4;
+
+  --primary-blue: #4e5ba6;
+  --dark-blue-1: #313d87;
+  --dark-blue-2: #414d94;
+  --dark-red: #b31919;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 32px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: var(--body-font-size);
+  box-sizing: border-box;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  background: var(--primary-blue);
+}
+
+h2 {
+  padding: var(--spacing-3);
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+}
+
+header h2 {
+  padding: var(--spacing-3);
+  padding-left: 100px;
+  color: var(--white);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  position: relative;
+  width: 420px;
+  height: 781px;
+  padding: var(--spacing-3);
+  border: 1px solid var(--divider-border-color);
+  border-radius: var(--spacing-1);
+}
+
+.game-container h2 {
+  margin-bottom: var(--spacing-4);
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+}
+
+input[type='number'] {
+  padding: var(--spacing-2);
+  line-height: 16px;
+  border: 1px solid var(--gray-2);
+  border-radius: var(--spacing-1);
+  outline: 0;
+  transition: all 0.1s ease-in;
+  -moz-appearance: textfield;
+}
+
+input[type='number']::placeholder {
+  color: var(--gray-3);
+  opacity: 1;
+}
+
+input[type='number']:focus {
+  border: 1px solid #97cee5;
+  box-shadow: 0 0 0 3px rgba(131, 192, 253, 0.5);
+}
+
+button {
+  padding: var(--spacing-2);
+  background: var(--primary-blue);
+  line-height: 16px;
+  color: var(--white);
+  border: 1px solid var(--primary-blue);
+  border-radius: var(--spacing-1);
+  outline: 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+button:hover {
+  background: var(--dark-blue-2);
+  border-color: var(--dark-blue-1);
+}
+
+button:active {
+  background: var(--dark-blue-1);
+}
+
+button:focus {
+  background: var(--dark-blue-2);
+  border-color: var(--dark-blue-1);
+  box-shadow: 0 0 0 3px rgba(112, 125, 204, 0.5);
+}
+
+#purchase-form {
+  margin-bottom: var(--spacing-3);
+}
+
+#purchase-form > div {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.input-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.purchase-input {
+  flex-grow: 1;
+}
+
+#purchase-button {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.error-message {
+  height: 17.5px;
+  margin-top: var(--spacing-2);
+  font-size: var(--caption-font-size);
+  color: var(--dark-red);
+  opacity: 0;
+}
+
+.error-input:focus {
+  border: 1px solid #e59797 !important;
+  box-shadow: 0 0 0 3px rgba(253, 131, 131, 0.5) !important;
+}
+
+.start-container {
+  display: none;
+}
+
+.user-lotto-container {
+  height: 284px;
+  display: flex;
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+  flex-direction: column;
+  overflow-y: scroll;
+  list-style: none;
+}
+
+.user-lotto {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.lotto-icon {
+  font-size: var(--title-font-size);
+}
+
+.game-numbers-container {
+  bottom: var(--spacing-3);
+}
+
+.game-numbers-sub-info {
+  margin-top: var(--spacing-1);
+  font-size: 12px;
+  color: var(--gray-3);
+}
+
+#game-numbers-form div {
+  display: flex;
+  margin-top: var(--spacing-3);
+  justify-content: space-between;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  margin-bottom: var(--spacing-2);
+}
+
+#winning-numbers-field {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+#bonus-number-field {
+  text-align: right;
+}
+
+.game-number {
+  width: 36px;
+  text-align: center;
+}
+
+#game-numbers-form button {
+  width: 100%;
+  margin: var(--spacing-3) 0;
+}
+
+.result-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: calc(420px - var(--spacing-3) * 2);
+  padding: var(--spacing-3);
+  background: var(--white);
+  border: 1px solid var(--gray-2);
+  border-radius: var(--spacing-1);
+  cursor: default;
+  transform: translate(-50%, -50%);
+}
+
+.result-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.result-modal .close-icon {
+  text-align: right;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: var(--spacing-3);
+  border-bottom: 1px solid var(--divider-border-color);
+  text-align: center;
+}
+
+.result-modal h3 {
+  padding: var(--spacing-4) 0;
+  font-size: var(--subtitle-font-size);
+  font-weight: var(--subtitle-font-weight);
+}
+
+.close-icon-container {
+  position: relative;
+}
+
+.close-icon {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  font-size: var(--subtitle-font-size);
+  color: var(--gray-3);
+  transition: all 0.1s ease-in;
+}
+
+.close-icon:hover {
+  color: var(--black);
+}
+
+.result-modal button {
+  width: 100%;
+}
+
+footer {
+  bottom: 0;
+  border-top: 1px solid var(--divider-border-color);
+}
+
+footer p {
+  padding: var(--spacing-4);
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  color: var(--primary-blue);
+  text-align: center;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.display {
+  display: block;
+}
+
+footer {
+  bottom: 0;
+  border-top: 1px solid var(--divider-border-color);
+}
+
+footer p {
+  padding: var(--spacing-4);
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  color: var(--primary-blue);
+  text-align: center;
+}
+
+@media screen and (max-width: 600px), (max-height: 781px) {
+  header,
+  footer {
+    display: none;
+  }
+
+  main {
+    width: 100vw;
+  }
+
+  .game-container {
+    max-width: 420px;
+    border: none;
+    border-radius: 0;
+  }
+}

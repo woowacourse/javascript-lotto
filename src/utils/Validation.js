@@ -2,14 +2,14 @@ import { StaticValue, ErrorMessage } from '../constants/Constants.js';
 
 const Validation = {
   verifyPurchaseAmount(money) {
-    this.checkMoneyMinmumValue(money);
+    this.checkMoneyMinimumValue(money);
     this.checkMoneyUnit(money);
     this.checkMoneyInputType(money);
   },
 
-  checkMoneyMinmumValue(money) {
+  checkMoneyMinimumValue(money) {
     if (money <= 0) {
-      throw new Error(ErrorMessage.MINMUM_VALUE);
+      throw new Error(ErrorMessage.MINIMUM_VALUE);
     }
   },
 
@@ -61,7 +61,7 @@ const Validation = {
   },
 
   verifyBonusNumber(winningNumbers, bonusNumber) {
-    this.checkBounsNumberRange(bonusNumber);
+    this.checkBonusNumberRange(bonusNumber);
     this.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
   },
 
@@ -71,7 +71,7 @@ const Validation = {
     }
   },
 
-  checkBounsNumberRange(bonusNumber) {
+  checkBonusNumberRange(bonusNumber) {
     if (!this.isNumberInRange(bonusNumber)) {
       throw new Error(ErrorMessage.BONUS_NUMBER_VALUE);
     }

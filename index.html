@@ -4,13 +4,158 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h2>🎱 행운의 로또</h2>
+      </header>
+      <main>
+        <div class="game-container">
+          <div class="setup-container">
+            <h2>🎱 내 번호 당첨 확인 🎱</h2>
+            <form id="purchase-form" novalidate>
+              <div>
+                <div class="input-section">
+                  <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+                  <input
+                    type="number"
+                    name="purchase-amount"
+                    id="purchase-amount"
+                    class="purchase-input"
+                    placeholder="금액은 1000원 단위로 입력해주세요."
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <button type="submit" id="purchase-button">구입</button>
+              </div>
+              <p class="error-message" id="purchase-input-error"></p>
+            </form>
+          </div>
+          <div class="start-container">
+            <div class="user-lottos">
+              <p id="user-lotto-purchase"></p>
+              <ul class="user-lotto-container" tabindex="-1"></ul>
+            </div>
+            <div class="game-numbers-container">
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해 주세요.</p>
+              <p class="game-numbers-sub-info">1~45 사이의 중복되지 않는 숫자들을 입력해 주세요.</p>
+              <form id="game-numbers-form" novalidate>
+                <div>
+                  <fieldset id="winning-numbers-field">
+                    <legend>당첨 번호</legend>
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="winning-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                  </fieldset>
+                  <fieldset id="bonus-number-field">
+                    <legend>보너스 번호</legend>
+                    <input
+                      type="number"
+                      name="bonus-number"
+                      class="game-number"
+                      autocomplete="off"
+                      required
+                    />
+                  </fieldset>
+                </div>
+                <p class="error-message" id="game-number-error">
+                  1~45 사이의 숫자를 입력해 주세요.
+                </p>
+                <button type="submit">결과 확인하기</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+      <dialog class="result-modal">
+        <div class="close-icon-container">
+          <div class="close-icon">&#10005;</div>
+        </div>
+        <h2 class="align-center">🏆 당첨 통계 🏆</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000원</td>
+              <td class="match-count" data-index="5"></td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000원</td>
+              <td class="match-count" data-index="4"></td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000원</td>
+              <td class="match-count" data-index="3"></td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000원</td>
+              <td class="match-count" data-index="2"></td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000원</td>
+              <td class="match-count" data-index="1"></td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 class="align-center" id="profit-rate"></h3>
+        <button id="restart-button">다시 시작하기</button>
+      </dialog>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
