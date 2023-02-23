@@ -1,4 +1,4 @@
-import { GAME_COMMAND } from '../constants';
+import { GAME_RESTART_COMMAND } from '../constants';
 import Validation from '../util/Validation';
 
 const InputValidator = {
@@ -19,7 +19,7 @@ const InputValidator = {
   },
 
   checkGameCommand(gameCommand) {
-    if (!Object.values(GAME_COMMAND).includes(gameCommand))
+    if (!Object.values(GAME_RESTART_COMMAND).includes(gameCommand))
       throw new Error('[ERROR] 재시작 커맨드로 y나 n만 입력 가능합니다.');
   },
 };

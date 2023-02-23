@@ -3,7 +3,7 @@ import OutputView from '../view/OutputView';
 import LottoGame from '../domain/LottoGame';
 import Console from '../util/Console';
 import InputValidator from '../validators/InputValidator';
-import { GAME_COMMAND } from '../constants';
+import { GAME_RESTART_COMMAND } from '../constants';
 import LottoValidator from '../validators/LottoValidator';
 
 class LottoGameController {
@@ -99,7 +99,7 @@ class LottoGameController {
   }
 
   #handleRestartProcess(restartCommand) {
-    if (restartCommand === GAME_COMMAND.NO) return Console.close();
+    if (restartCommand === GAME_RESTART_COMMAND.NO) return Console.close();
     this.play();
   }
 }

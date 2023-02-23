@@ -46,6 +46,11 @@ describe('당첨된 등수의 개수만큼 총 상금을 구한다.', () => {
   });
 
   test('아무것도 당첨되지 않으면 0원을 반환한다.', () => {
+    lottoGame.initializeLottoRankResult();
+
+    const rankResults = [];
+    rankResults.forEach((rankResults) => lottoGame.countLottoRank(rankResults));
+
     expect(lottoGame.calculateTotalPrize()).toEqual(0);
   });
 });
