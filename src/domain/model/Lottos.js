@@ -1,5 +1,11 @@
-import { profitByRank, PRICE_UNIT } from '../../constants/constants';
+import {
+  profitByRank,
+  PRICE_UNIT,
+  errorMessage,
+} from '../../constants/constants';
+import utils from '../../utils';
 import randomNumberGenerator from '../../utils/randomNumberGenerator';
+import validator from '../validation/validator';
 import Lotto from './Lotto';
 
 export default class Lottos {
@@ -7,14 +13,15 @@ export default class Lottos {
 
   #ranks;
 
-  constructor(lottoCount) {
-    const lottos = [];
+  constructor(priceInput) {
+    if (!validator.purchasePrice(priceInput))
+      throw new Error(errorMessage.PURCHASE_PRICE_ERROR);
 
-    while (lottos.length < lottoCount) {
-      lottos.push(randomNumberGenerator.generateLottoNumbers());
-    }
+    const lottoCount = utils.calculateLottoCount(priceInput);
 
-    this.#lottos = lottos.map((lottoNumber) => new Lotto(lottoNumber));
+    this.#lottos = new Array(lottoCount)
+      .fill()
+      .map(() => new Lotto(randomNumberGenerator.generateLottoNumbers()));
     this.#ranks = new Array(profitByRank.length).fill(0);
   }
 

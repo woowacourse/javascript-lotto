@@ -1,29 +1,17 @@
 import Lottos from '../domain/model/Lottos';
 import WinningLotto from '../domain/model/WinningLotto';
-import exception from '../utils/exception';
-import inputView from '../view/inputView';
-import outputView from '../view/outputView';
-import { PRICE_UNIT } from '../constants/constants';
+import view from '../view/view';
 
 export default class LottoGameController {
   #lottos;
 
   #winningLotto;
 
-  constructor() {
-    inputView.setPurchasePriceInputHandler(this.handlePurchasePriceInput);
-    inputView.setWinningNumbersInputHandler(this.handleWinningNumbersInput);
-    inputView.setCloseModalHandler(LottoGameController.handleCloseModal);
-    inputView.setRestartHandler(LottoGameController.handleRestart);
-  }
-
   handlePurchasePriceInput = (input) => {
     try {
-      const lottoCount = LottoGameController.calculateLottoCount(input);
+      this.#lottos = new Lottos(input);
 
-      this.#lottos = new Lottos(lottoCount);
-
-      this.showPurchasedLottos();
+      this.#showPurchasedLottos();
     } catch (error) {
       alert(error.message);
     }
@@ -33,42 +21,36 @@ export default class LottoGameController {
     try {
       if (this.#winningLotto === undefined) {
         this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
         this.#lottos.calculateAllRanks(
           this.#winningLotto.getWinningNumbers(),
           this.#winningLotto.getBonusNumber()
         );
       }
-      this.showResult();
+
+      this.#showResult();
     } catch (error) {
       alert(error.message);
     }
   };
 
-  showPurchasedLottos() {
-    outputView.renderPurchasedLottos(this.#lottos.getLottos());
-    outputView.renderWinningNumbersInput();
+  #showPurchasedLottos() {
+    view.renderPurchasedLottos(this.#lottos.getLottos());
+    view.renderWinningNumbersInput();
   }
 
-  showResult() {
-    outputView.renderStatistics(
+  #showResult() {
+    view.renderStatistics(
       [...this.#lottos.getAllRanks()].reverse(),
       this.#lottos.getProfitRate()
     );
   }
 
   static handleCloseModal = () => {
-    outputView.closeModal();
+    view.closeModal();
   };
 
   static handleRestart = () => {
-    outputView.restart();
+    view.restart();
   };
-
-  static calculateLottoCount(priceInput) {
-    exception.checkPurchasePrice(priceInput);
-
-    const price = Number(priceInput);
-
-    return Math.floor(price / PRICE_UNIT);
-  }
 }
