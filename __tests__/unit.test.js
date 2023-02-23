@@ -3,28 +3,28 @@ import LottoResult from '../src/domain/LottoResult';
 
 test('로또는 1000원 단위로 발급이 된다', () => {
   const lottoMoney = '8000';
-  const lottoMachine = new LottoMachine()
-  expect(lottoMachine.countLotto(lottoMoney)).toBe(8)
+  const lottoMachine = new LottoMachine();
+  expect(lottoMachine.countLotto(lottoMoney)).toBe(8);
 });
 
 test('로또 한 장당 6개의 번호가 부여된다.', () => {
   const lottoMoney = '3000';
-  const lottoMachine = new LottoMachine()
+  const lottoMachine = new LottoMachine();
   expect(lottoMachine.randomNumberLotto().length).toBe(6);
 });
 
 test('중복 여부 확인.', () => {
   const lottoNumber = [1, 2, 3, 4, 6, 6];
 
-  const lottoMachine = new LottoMachine()
+  const lottoMachine = new LottoMachine();
 
-  expect(lottoMachine.checkRepeatedNumber(lottoNumber)).toEqual(false);
+  expect(lottoMachine.isRepeatable(lottoNumber)).toEqual(false);
 });
 
 test('구매한 로또를 갯수만큼 발행한다.', () => {
   const lottoMoney = '9000';
 
-  const lottoMachine = new LottoMachine()
+  const lottoMachine = new LottoMachine();
 
   lottoMachine.makeLotto(lottoMoney);
 
@@ -47,7 +47,7 @@ test('등수를 확인한다. ', () => {
   ];
   const lottoMachine = new LottoMachine();
 
-  lottoMachine.setLottoNumber(lottoNumber)
+  lottoMachine.setLottoNumber(lottoNumber);
   const winningNumber = ['1', '2', '3', '4', '5', '6'];
   const bouseNumber = '7';
 
@@ -56,7 +56,7 @@ test('등수를 확인한다. ', () => {
 
 test('당첨 통계', () => {
   const lottoResult = new LottoResult();
-  expect(lottoResult.getResult([6,7,3])).toEqual([1, 1, 0, 0, 1]);
+  expect(lottoResult.getResult([6, 7, 3])).toEqual([1, 1, 0, 0, 1]);
 });
 
 test('수익률 구하기', () => {
@@ -70,7 +70,7 @@ test('수익률 구하기', () => {
   const bonusNumber = 7;
 
   const lottoMachine = new LottoMachine();
-  lottoMachine.setLottoNumber(lottoNumber)
-  const result = lottoMachine.getWinningStatus(winningNumber, bonusNumber)
-  expect(lottoMachine.getProfitRate(lottoMoney, result)).toEqual(62.5);
+  lottoMachine.setLottoNumber(lottoNumber);
+  const result = lottoMachine.getWinningStatus(winningNumber, bonusNumber);
+  expect(lottoMachine.getProfitRate(lottoMoney, result)).toEqual(2500000);
 });
