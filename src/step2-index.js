@@ -16,7 +16,7 @@ class App extends Component {
     new Amount(this.setState.bind(this));
     if (this.state.lottoList.length !== 0) {
       new LottoList(this.state);
-      new WinNumbers(this.setState.bind(this));
+      new WinNumbers(this.setState.bind(this), this.setDrawingNumbers.bind(this));
     }
   }
 
@@ -36,6 +36,14 @@ class App extends Component {
       </section>
     </article>
     `;
+  }
+
+  setDrawingNumbers(drawingNumbers) {
+    const lottoList = this.state.lottoList.map((lotto) => {
+      lotto.setDrawingNumbers(drawingNumbers);
+      return lotto;
+    });
+    return lottoList;
   }
 }
 
