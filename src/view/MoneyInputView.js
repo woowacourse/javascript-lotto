@@ -19,7 +19,6 @@ class MoneyInputView {
   toggleFormDisable() {
     toggleDisableAttribute(this.input);
     toggleDisableAttribute(this.button);
-    this.button.id = this.button.id === 'disabled' ? '' : 'disabled';
   }
 
   clearInput() {

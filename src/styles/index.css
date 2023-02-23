@@ -23,6 +23,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: var(--lotto-greyscale-3);
+}
+
 :root {
   --lotto-primary: #4e5ba6;
   --lotto-greyscale-1: #ffffff;
