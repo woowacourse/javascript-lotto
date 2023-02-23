@@ -1,3 +1,5 @@
 const convertToNum = value => Number(value);
 
-export { convertToNum };
+const convertValueToString = list => list.map(el => el.value).join(',');
+
+export { convertToNum, convertValueToString };
