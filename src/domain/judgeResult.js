@@ -6,7 +6,9 @@ export const judgeResult = (lottos, winningNumber) => {
 
   return lottos.reduce((acc, lotto) => {
     const ranking = lotto.calculateRanking(winningNumber);
-    acc[ranking - 1] += 1;
+    if (ranking) {
+      acc[ranking - 1] += 1;
+    }
     return acc;
   }, rankingCount);
 };
