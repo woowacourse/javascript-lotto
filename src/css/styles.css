@@ -181,10 +181,13 @@ body {
   font-weight: 600;
 }
 
-.close {
+.closeButton {
   position: absolute;
   top: 12px;
   right: 15px;
+
+  background: transparent;
+  border: transparent;
 
   font-size: 20px;
   font-weight: 700;
@@ -238,4 +241,8 @@ body {
   font-size: 14px;
   letter-spacing: 1.25px;
   color: #4e5ba6;
+}
+
+.invalid {
+  border: 2px solid red;
 }
