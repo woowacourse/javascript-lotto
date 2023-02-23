@@ -25,7 +25,7 @@ class WebController {
       const lottoAmount = parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE);
       this.createLotto(lottoAmount);
       this.printLotto(lottoAmount);
-      $(".print-lottos").classList.add("show");
+      $('.hidden-area').classList.add('show');
     } catch (e) {
       alert(e.message);
     } finally {
