@@ -1,114 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 :root {
   --base-color: #4E5BA6;
+  --color-whilt: #FFFFFF;
+  --color-light-gray: #B4B4B4;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 header {
   box-sizing: border-box;
-
   position: absolute;
-  width: 100%;
-  height: 64px;
   left: 0px;
   top: 0px;
-
-  /* lotto-primary */
-
+  width: 100%;
+  height: 64px;
   background: var(--base-color);
-  border-bottom: 1px solid rgba(78, 91, 166, 0.2)
+  border-bottom: 1px solid var(--base-color);
 }
 
-
 #head_title {
+  display: flex;
+  align-items: flex-end;
   position: absolute;
   left: 130px;
   top: 14px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight:900;
-  font-size: 24px;
-  line-height: 36px;
-  /* identical to box height, or 150% */
-
-  display: flex;
-  align-items: flex-end;
-
-  /* lotto-greyscale-1 */
-
-  color: #FFFFFF;
+  font: normal 900 24px/36px 'Roboto';
+  color: var(--color-whilt);
 }
 
 #main_contents {
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 414px;
   height: 727px;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: 1px solid #8B8B8B;
 }
 
 #title {
   position: absolute;
+  left: 50%;
+  top: 7%;
+  transform: translate(-50%, -7%);
   width: 231px;
   height: 24px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight:700;
-  font-size: 20px;
-  
-  top: 7%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  font: normal 700 20px 'Roboto';
 }
 
 #money_form {
   position: absolute;
-  width: 382px;
-  height: 64px;
   left: 16px;
   top: 104px;
+  width: 382px;
+  height: 64px;
   font-size: 15px;
 }
 
 #input_money {
-  height: 30px;
   width: 308px;
-  border: 1px solid #B4B4B4;
+  height: 30px;
+  border: 1px solid var(--color-light-gray);
   border-radius: 4px;
-  color: #B4B4B4;
+  color: var(--color-light-gray);
 }
 
 #btn_money {
-  height: 38px;
   width: 60px;
-  background: var(--base-color);
+  height: 38px;
   border: none;
-  color: #FFFFFF;
   border-radius: 4px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight:700;
-  font-size: 14px;
+  background: var(--base-color);
+  color: var(--color-whilt);
+  font: normal 700 14px 'Roboto';
 }
 
 #buy_contents {
   position: absolute;
   width: 310px;
   height: 320px;
-  top: 180px;
   left: 16px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight:400;
-  font-size: 15px;
+  top: 180px;
+  font: normal 400 15px 'Roboto';
 }
 
 #buy_lottos {
@@ -118,15 +90,11 @@ header {
 
 #win_contents {
   position: relative;
-  width: 390px;
-  height: 150px;
   left: 16px;
   top: 528px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight:400;
-  font-size: 15px;
+  width: 390px;
+  height: 150px;
+  font: normal 400 15px 'Roboto';
 }
 
 .container{
@@ -135,33 +103,27 @@ header {
 }
 
 .input_number {
-  border-radius: 4px;
-  border: 1px solid #B4B4B4;
-  margin-left: 2px;
-  height: 30px;
   width: 30px;
+  height: 30px;
+  margin-left: 2px;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 4px;
 }
 
 #btn_win_lotto {
   flex-direction: row;
-  padding: 6px 6px 6px 8px;
-
   position: relative;
+  top: 30px;
   width: 382px;
   height: 40px;
-  top: 30px;
-  /* lotto-primary */
-
-  background: var(--base-color);
-  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
   border: none;
-  color: #FFFFFF;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight:700;
-  font-size: 14px;
+  border-radius: 4px;
+  background: var(--base-color);
+  color: var(--color-whilt);
+  font: normal 400 14px 'Roboto';
 }
+
 .hidden {
   display: none;
 }
