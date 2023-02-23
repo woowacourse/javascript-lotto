@@ -84,6 +84,7 @@ class WinningNumbersSubmitForm {
   }
 
   render() {
+    this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
     $('.winning-numbers-form').addEventListener('submit', (e) =>
       this.handleSubmit(e)

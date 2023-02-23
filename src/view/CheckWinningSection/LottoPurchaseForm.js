@@ -27,6 +27,7 @@ class LottoPurchaseForm {
   }
 
   render() {
+    this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
     this.$target.addEventListener('submit', (e) => this.handleSubmit(e));
   }

@@ -39,6 +39,7 @@ class WinningStatModal {
   }
 
   render() {
+    this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
     $('.modal-close-button').addEventListener('click', () =>
       this.handleModalClose()

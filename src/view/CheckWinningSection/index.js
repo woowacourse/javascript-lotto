@@ -20,11 +20,13 @@ class CheckWinningSection {
   }
 
   render() {
+    this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
     new LottoPurchaseForm($('.lotto-purchase-form-container')).render();
   }
 
   renderLottos(lottos) {
+    $('.lotto-list').replaceChildren();
     $('.lotto-list').insertAdjacentHTML(
       'afterbegin',
       `<p>총 ${
