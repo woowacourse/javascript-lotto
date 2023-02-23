@@ -50,6 +50,7 @@ class LottoGame {
 
   countLottoRank(rankName) {
     if (!rankName) return;
+
     this.#rankResult[rankName] += 1;
   }
 
