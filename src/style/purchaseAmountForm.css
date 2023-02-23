@@ -14,8 +14,9 @@
 }
 
 #purchase-amount-inputs input[type='text'] {
+  margin-right: 16px;
   padding: 8px 8px;
-  width: 310px;
+  width: 100%;
   height: 36px;
   border: 1px solid #b4b4b4;
   border-radius: 4px;

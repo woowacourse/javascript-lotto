@@ -6,8 +6,6 @@ import { $, $$ } from './dom/dom';
 import render from './render';
 import lottoGameCalculator from './domain/lottoGameCalculator';
 
-const $purchaseInput = $('#purchase-amount-form input[type=text]');
-
 class LottoWebGame {
   constructor() {
     this.lottos = [];
@@ -68,7 +66,7 @@ class LottoWebGame {
   handleSubmitPurchaseAmount(event) {
     event.preventDefault();
 
-    const purchaseAmount = $purchaseInput.value;
+    const purchaseAmount = $('#purchase-amount-form input[type=text]').value;
     try {
       lottoGameValidator.checkPruchaseAmount(purchaseAmount);
       this.buyLottos(purchaseAmount);
@@ -76,7 +74,7 @@ class LottoWebGame {
       render.winningLottoForm();
     } catch (error) {
       window.alert(error);
-      $purchaseInput.value = '';
+      $('#purchase-amount-form input[type=text]').value = '';
     }
   }
 
@@ -108,7 +106,7 @@ class LottoWebGame {
     if (!target.matches('button')) return;
 
     this.lottos = [];
-    $purchaseInput.value = '';
+    $('#purchase-amount-form input[type=text]').value = '';
     render.hideElement('.winning-statistics');
     render.restart();
   }
