@@ -67,6 +67,24 @@ class LottoController {
     this.view.resultModalView.rendering(this.#lottoMachine.calculateStatistics());
     this.handleExitOrRestart();
   }
+
+  handleExitOrRestart() {
+    this.view.resultModalView.exitButton.addEventListener('click', e => {
+      e.preventDefault();
+      this.view.resultModalView.reset();
+    });
+
+    this.view.resultModalView.restartButton.addEventListener('click', e => {
+      e.preventDefault();
+      this.reset();
+    });
+  }
+
+  reset() {
+    this.view.purchaseLottoView.reset();
+    this.view.winningLottoInputView.reset();
+    this.view.resultModalView.reset();
+  }
 }
 
 export default LottoController;
