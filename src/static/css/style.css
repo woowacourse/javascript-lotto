@@ -182,15 +182,14 @@ main {
   margin-bottom: 4px;
 }
 
-.lotto-list li div {
+.lotto-list li p:first-of-type {
   margin-right: 8px;
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
-  color: var(--lotto-greyscale-5);
 }
 
-.lotto-list li p {
+.lotto-list li p:nth-of-type(2) {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;

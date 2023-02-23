@@ -57,16 +57,17 @@ const renderLottoList = (lottoList) => {
   lottoList.map((lottoInfo) => {
     const lottoElement = document.createElement('li');
 
-    const lottoEmoji = document.createElement('div');
-    lottoEmoji.innerHTML = LOTTO_EMOJI;
-    lottoElement.appendChild(lottoEmoji);
-
-    const lottoText = document.createElement('p');
-    lottoText.innerHTML = lottoInfo;
-    lottoElement.appendChild(lottoText);
+    createTextElementAndAppend(LOTTO_EMOJI, lottoElement);
+    createTextElementAndAppend(lottoInfo, lottoElement);
 
     lottoListWrap.append(lottoElement);
   });
+};
+
+const createTextElementAndAppend = (text, parent) => {
+  const textElement = document.createElement('p');
+  textElement.innerHTML = text;
+  parent.appendChild(textElement);
 };
 
 // 결과 버튼 클릭시
@@ -87,9 +88,7 @@ const result = () => {
 
 const matchWinRank = () => {
   const rank = controller.printWinningResult();
-  //   ranks.reverse().forEach((element, index) => {
-  //     element.innerText = rank[CONVERT_RANK_TO_STRING[index + 1]];
-  //   });
+
   WINNING_ORDER.forEach((order, index) => {
     if (order !== 'NONE')
       ranks[MATCH_RANK[order] - 1].innerText =
