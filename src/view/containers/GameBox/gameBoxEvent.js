@@ -6,14 +6,15 @@ import InputWinningNumberBox from "../InputWinningNumberBox";
 import PurchaseResults from "../PurchaseResults";
 
 const gameBoxEvent = () => {
-  const input = document.getElementById("money-input");
-  const btn = document.getElementById("purchase-button");
+  const form = document.getElementById("money-submit");
 
-  btn.onclick = function () {
+  form.onsubmit = function (event) {
+    event.preventDefault();
+    const money = event.target.money.value;
     try {
-      LottoValidator.checkMoney(input.value);
-      store['lottos'] = generateLottos((input.value));
-      input.value = '';
+      LottoValidator.checkMoney(money);
+      store['lottos'] = generateLottos((money));
+      event.target.money.value = '';
       Render.container("purchase-result", () => PurchaseResults(), () => { });
       Render.container("input-winning-number", () => InputWinningNumberBox(), () => { });
     } catch (error) {
