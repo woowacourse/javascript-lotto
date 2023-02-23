@@ -10,3 +10,8 @@
   border-color: gray;
   border-width: 1px;
 }
+
+.ball-box{
+  width:15.5px;
+  height:15.5px;
+}
