@@ -95,6 +95,8 @@ export default class LottoGameController {
       if (error instanceof Error) {
         window.alert(error.message);
         this.winningNumbersView.reloadView();
+
+        return;
       }
 
       window.alert(error);
