@@ -25,6 +25,7 @@ export default class LottoGameController {
       Validation.validatePurchaseAmount(purchaseAmount);
     } catch ({ message }) {
       this.#view.showAlert(message);
+      this.#view.initPurchaseAmountInput();
 
       return;
     }
