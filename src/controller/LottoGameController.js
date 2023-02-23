@@ -6,7 +6,7 @@ import LottoList from '../browserView/LottoList.js';
 import LottoInput from '../browserView/LottoInput.js';
 import ResultModal from '../browserView/ResultModal.js';
 
-class LottoGameController {
+class LottoGameDomController {
   #lottoGame = new LottoGame();
 
   #moneyInput = new MoneyInput();
@@ -57,4 +57,4 @@ class LottoGameController {
   }
 }
 
-export default LottoGameController;
+export default new LottoGameDomController();
