@@ -1,10 +1,19 @@
 import checkUnit from './amount.js';
 import { LOTTO } from '../../constants/values.js';
+import {
+  checkBonusNumberFormat,
+  checkDrawingNumbersFormat,
+  checkWinNumberRange,
+  checkWinNumbersFormat,
+  checkWinNumbersRange,
+} from './lotto.js';
 
 const Inputs = {
   amount(amount, { onError: errorCallback }) {
     try {
-      return this.checkAmount(amount);
+      this._checkAmount(amount);
+
+      return { isValid: true };
     } catch (error) {
       errorCallback(error.message);
 
@@ -12,10 +21,35 @@ const Inputs = {
     }
   },
 
-  checkAmount(amount) {
+  _checkAmount(amount) {
     checkUnit(amount, LOTTO.UNIT);
+  },
 
-    return { isValid: true };
+  drawingNumbers(drawingNumbers, { onError: errorCallback }) {
+    try {
+      this._checkDrawingNumbers(drawingNumbers);
+      return { isValid: true };
+    } catch (error) {
+      errorCallback(error.message);
+
+      return { isValid: false };
+    }
+  },
+
+  _checkWinNumbers(winNumbers) {
+    checkWinNumbersFormat(winNumbers);
+    checkWinNumbersRange(winNumbers);
+  },
+
+  _checkBonusNumber(bonusNumber) {
+    checkBonusNumberFormat(bonusNumber);
+    checkWinNumberRange(bonusNumber);
+  },
+
+  _checkDrawingNumbers({ winNumbers, bonusNumber }) {
+    this._checkWinNumbers(winNumbers);
+    this._checkBonusNumber(bonusNumber);
+    checkDrawingNumbersFormat({ winNumbers, bonusNumber });
   },
 };
 

@@ -3,6 +3,7 @@ export const ERROR_CODE = Object.freeze({
   INVALID_NUMBER_RANGE: 'INVALID_NUMBER_RANGE',
   INVALID_FORMAT: 'INVALID_FORMAT',
   INVALID_ERROR_CODE: 'INVALID_ERROR_CODE',
+  DUPLICATED_NUMBER: 'DUPLICATED_NUMBER',
 });
 
 const ERROR_MESSAGE = Object.freeze({
@@ -10,6 +11,7 @@ const ERROR_MESSAGE = Object.freeze({
   INVALID_NUMBER_RANGE: ({ min, max }) => `[ERROR] ${min}이상 ${max}이하의 숫자만 입력해 주세요.`,
   INVALID_FORMAT: () => `[ERROR] 잘못된 입력 형식입니다.`,
   INVALID_ERROR_CODE: () => '[ERROR] 잘못된 에러코드 입니다.',
+  DUPLICATED_NUMBER: () => '[ERROR] 중복된 당첨 번호 입니다.',
 });
 
 const isValidErrorCode = (code) => code in ERROR_CODE;

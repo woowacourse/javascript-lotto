@@ -1,4 +1,5 @@
 import Component from '../../Component.js';
+import Validator from '../../validator/step2/index.js';
 import { getFields } from '../../utils/domHelper.js';
 
 export default class WinNumbers extends Component {
@@ -49,7 +50,11 @@ export default class WinNumbers extends Component {
       if (name.includes('bonus-number')) drawingNumbers.bonusNumber = Number(value);
     });
 
-    this.props.updateDrawingNumbers(drawingNumbers);
-    this.props.openModal();
+    const { isValid } = Validator.Inputs.drawingNumbers(drawingNumbers, { onError: alert });
+
+    if (isValid) {
+      this.props.updateDrawingNumbers(drawingNumbers);
+      this.props.openModal();
+    }
   }
 }
