@@ -1,7 +1,7 @@
-import Lotto from './Lotto.js';
 import lottoGenerator from './LottoGenerator.js';
-import { LOTTO } from '../constants/index.js';
+import Lotto from './Lotto.js';
 import LottoValidator from './LottoValidator.js';
+import { LOTTO } from '../constants/index.js';
 import { selectDom, selectAllDom, createDom } from '../utils/dom.js';
 
 class LottoController {
@@ -13,17 +13,17 @@ class LottoController {
   #lottos = [];
 
   constructor() {
-    selectDom('.purchaseForm').addEventListener('submit', this.purchaseW);
+    selectDom('.purchaseForm').addEventListener('submit', this.purchase);
     selectDom('.resultButton').addEventListener('click', this.showResult);
-    selectDom('.exitModal').addEventListener('click', this.closeModal);
-    selectDom('.restartButton').addEventListener('click', this.closeModal);
+    selectDom('.exitModal').addEventListener('click', this.toggleModal);
+    selectDom('.restartButton').addEventListener('click', this.toggleModal);
   }
 
-  purchaseW = (e) => {
+  purchase = (e) => {
     e.preventDefault();
 
     const purchaseAmount = selectDom('.inputPurchaseAmount').value;
-    const lottos = this.purchase(purchaseAmount);
+    const lottos = this.issue(purchaseAmount);
 
     selectDom('.lottoIssueView').style.visibility = 'visible';
     selectDom('.lottoResultView').style.visibility = 'visible';
@@ -63,11 +63,10 @@ class LottoController {
     const resultExplain = selectDom('.resultExplain');
     resultExplain.innerText = `당신의 총 수익률은 ${result.benefit}%입니다.`;
 
-    selectDom('.modal').style.display = 'flex';
-    selectDom('.modalBackground').style.display = 'flex';
+    this.toggleModal();
   };
 
-  purchase(money) {
+  issue(money) {
     LottoValidator.checkMoney(money);
     this.#lottos.unshift(...Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator())));
 
@@ -104,9 +103,14 @@ class LottoController {
     }, rankingCount);
   }
 
-  closeModal = () => {
-    selectDom('.modal').style.display = 'none';
-    selectDom('.modalBackground').style.display = 'none';
+  toggleModal = () => {
+    if (selectDom('.modal').style.display === 'none') {
+      selectDom('.modal').style.display = 'flex';
+      selectDom('.modalBackground').style.display = 'flex';
+    } else {
+      selectDom('.modal').style.display = 'none';
+      selectDom('.modalBackground').style.display = 'none';
+    }
   };
 }
 
