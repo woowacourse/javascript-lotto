@@ -50,6 +50,8 @@ button {
   border-radius: 4px;
   color: #ffffff;
   border: 0px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 input {
@@ -111,12 +113,18 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
   margin-top: 12px;
 }
 
 .lotto {
+  display: flex;
   font-size: 15px;
+  align-items: center;
+}
+
+.lotto span {
+  font-size: 34px;
+  margin-right: 8px;
 }
 
 .inputNumbersLayout {
@@ -133,6 +141,7 @@ input {
   margin-top: 8px;
   width: 34px;
   height: 36px;
+  padding-left: 8px;
 }
 .bonusNumber input {
   float: right;

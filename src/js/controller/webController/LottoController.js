@@ -49,7 +49,9 @@ export default class LottoController {
     );
 
     this.#lottos.forEach((lotto) => {
-      $('.lottos').innerHTML += `<div class="lotto">🎟️ ${lotto.join(', ')}</div>`;
+      $('.lottos').innerHTML += `<div class="lotto"><span class="lottoEmoji">🎟️</span> ${lotto.join(
+        ', ',
+      )}</div>`;
     });
   }
 
