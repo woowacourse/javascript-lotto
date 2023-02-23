@@ -56,11 +56,16 @@ class ResultModal {
     div.innerHTML = renderData;
 
     document.querySelector('.close-modal').addEventListener('click', this.closeResultModal);
+    document.querySelector('.restart-button').addEventListener('click', this.restartGame);
   }
 
   closeResultModal(e) {
     const modal = document.querySelector('.modal-view');
     modal.className = 'modal-none';
+  }
+
+  restartGame(e) {
+    location.reload();
   }
 }
 

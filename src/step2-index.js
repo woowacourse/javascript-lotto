@@ -13,7 +13,15 @@ const footer = document.querySelector('footer');
 
 const renderHeader = new Header();
 const renderSection = new Section(new LottoGame(), ResultModal);
+
 const renderFooter = new Footer();
 renderHeader.render(header);
 renderSection.render(section);
 renderFooter.render(footer);
+
+// if (document.querySelector('.restart-button')) {
+//   document.querySelector('.restart-button').addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log('asfsadfadfs');
+//   });
+// }
