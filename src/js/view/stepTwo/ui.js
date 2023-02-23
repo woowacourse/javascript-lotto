@@ -39,6 +39,11 @@ const ui = {
     domList.targetNumberInputErrorText.innerText = message;
     domList.targetNumberInputErrorText.classList.remove('hide');
   },
+
+  showModal() {
+    domList.resultModal.style.display = 'block';
+  },
+
   closeModal() {
     console.log('restart');
     domList.resultModal.style.display = 'none';
