@@ -100,9 +100,14 @@ input {
   width: 56px;
 }
 
-.issueLotto {
+.youBought {
   display: none;
   margin-top: 28px;
+}
+
+.issueLotto {
+  margin-top: 12px;
+  display: none;
   margin-bottom: 24px;
   max-height: 300px;
   overflow: scroll;
@@ -116,7 +121,6 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 12px;
 }
 
 .lotto {

@@ -31,6 +31,7 @@ export default class LottoController {
   }
 
   showLotto = async (money) => {
+    $('.youBought').style.display = 'block';
     $('.issueLotto').style.display = 'block';
     $('.inputNumbersLayout').style.display = 'block';
 
@@ -85,6 +86,7 @@ export default class LottoController {
   resetGame(e) {
     e.preventDefault();
     $('.modal').style.display = 'none';
+    $('.youBought').style.display = 'none';
     $('.issueLotto').style.display = 'none';
     $('.inputNumbersLayout').style.display = 'none';
     $('.moneyInput').value = '';
