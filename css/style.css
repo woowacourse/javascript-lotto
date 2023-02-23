@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "./theme.css";
 
 html {
   font-size: 62.5%;
@@ -14,16 +15,16 @@ header {
 
   height: 6.4rem;
 
-  background-color: #4e5ba6;
+  background-color: var(--main-blue-color);
 }
 
 h1 {
   margin-left: 13rem;
 
-  color: white;
-  font-size: 2.4rem;
-  font-weight: 800;
-  line-height: 3.6rem;
+  color: var(--white-color);
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
 }
 
 main {
@@ -40,10 +41,10 @@ footer {
   height: 8rem;
 
   border-top: 0.1rem solid rgba(78, 91, 166, 0.2);
-  color: #4e5ba6;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.6rem;
+  color: var(--main-blue-color);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
 }
 
 button {
@@ -65,9 +66,9 @@ button {
 }
 
 .lotto__title {
-  font-size: 2.4rem;
-  font-weight: 800;
-  line-height: 3.6rem;
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
 }
 
 .lotto__buy-section {
@@ -77,9 +78,9 @@ button {
 }
 
 .lotto__buy-comment {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .lotto__input-wrapper {
@@ -97,13 +98,13 @@ button {
   border: 0.1rem solid #b4b4b4;
   border-radius: 0.4rem;
 
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .lotto__input-box::placeholder {
-  color: gray;
+  color: var(--gray-color);
 }
 
 .lotto__input-box:focus {
@@ -116,11 +117,11 @@ button {
   height: 3.6rem;
 
   border-radius: 0.4rem;
-  background-color: #4e5ba6;
-  color: white;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.6rem;
+  background-color: var(--main-blue-color);
+  color: var(--white-color);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
 }
 
 .lotto__lotto-numbers {
@@ -129,9 +130,9 @@ button {
 
 .lotto__buy-comment,
 .lotto__buy-amount-comment {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .lotto__numbers-list {
@@ -148,9 +149,9 @@ button {
 
   margin-bottom: 0.4rem;
 
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
   letter-spacing: 0.1rem;
 }
 
@@ -159,9 +160,9 @@ button {
 }
 
 .lotto__winning-lotto {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .lotto__winning-lotto-title-wrapper {
@@ -190,7 +191,7 @@ button {
   border: 0.1rem solid #b4b4b4;
   border-radius: 0.4rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: var(--input-font-size);
 }
 
 .lotto__bonus-lotto-input {
@@ -200,7 +201,7 @@ button {
   border: 0.1rem solid #b4b4b4;
   border-radius: 0.4rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: var(--input-font-size);
 }
 
 .lotto__result-button {
@@ -213,11 +214,11 @@ button {
   margin-top: 2.7rem;
 
   border-radius: 0.4rem;
-  background-color: #4e5ba6;
-  color: white;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.6rem;
+  background-color: var(--main-blue-color);
+  color: var(--white-color);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
 }
 
 .hidden {
@@ -232,7 +233,7 @@ button {
   margin-bottom: 1.6rem;
 
   border: none;
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 .result-background {
@@ -252,7 +253,7 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 .result {
@@ -272,13 +273,13 @@ button {
 
   border-top: 0.1rem solid rgba(0, 0, 0, 0.12);
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .header__button-wrapper {
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 .header__title-text {
@@ -287,8 +288,8 @@ button {
 
   margin: 0;
 
-  background-color: white;
-  color: black;
+  background-color: var(--white-color);
+  color: var(--black-color);
 }
 
 .header__close-button {
@@ -308,9 +309,9 @@ button {
   height: 4rem;
 
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .result__comment {
@@ -320,9 +321,9 @@ button {
 
   margin-top: 3.2rem;
 
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 2.4rem;
+  font-size: var(--input-font-size);
+  font-weight: var(--result-font-weight);
+  line-height: var(--input-line-height);
 }
 
 .result__retry-button {
@@ -334,9 +335,9 @@ button {
   height: 3.6rem;
   margin-top: 3.2rem;
 
-  background-color: #4e5ba6;
-  color: white;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.6rem;
+  background-color: var(--main-blue-color);
+  color: var(--white-color);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
 }
