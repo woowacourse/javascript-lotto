@@ -30,6 +30,7 @@ export default class View {
   onClickRestartButton(callback) {
     $('.restart-button').addEventListener('click', () => {
       callback();
+
       this.initLottoQuantity();
       this.initEachLottoNumbers();
       this.initStatistics();
