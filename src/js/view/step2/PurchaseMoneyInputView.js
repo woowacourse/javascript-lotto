@@ -4,7 +4,7 @@ class PurchaseMoneyInputView {
     this.input = document.getElementById('purchase-money-input');
   }
 
-  reset() {
+  resetValue() {
     this.input.value = '';
   }
 }
