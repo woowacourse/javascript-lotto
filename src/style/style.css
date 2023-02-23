@@ -36,20 +36,21 @@ footer {
 }
 
 header {
-  font-size: 2rem;
+  padding-left: 5rem;
 
-  color: var(--grey-scale-1);
   background-color: var(--primary);
 
-  padding-left: 5rem;
+  font-size: 2rem;
+  color: var(--grey-scale-1);
 }
 
 footer {
-  text-align: center;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+
   font-size: 2rem;
   color: var(--primary);
 
-  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  text-align: center;
 }
 
 main {
@@ -61,10 +62,10 @@ main {
   width: 41.4rem;
   height: 70vh;
 
-  border: 1px solid rgba(0, 0, 0, 0.12);
-
   padding: 1.6rem;
   margin: 3rem auto;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 main > section {
@@ -74,8 +75,9 @@ main > section {
 .lotto-store__title {
   width: 100%;
 
-  text-align: center;
   font-size: 2.4rem;
+
+  text-align: center;
 }
 
 .lotto-store__amount {
@@ -87,18 +89,19 @@ main > section {
 }
 .lotto-store__amount-form {
   display: flex;
+
   margin-top: 0.5rem;
 }
 .lotto-store__amount-input {
-  height: 3rem;
-
   flex-grow: 1;
 
-  outline: none;
-  border: 1px solid var(--grey-scale-3);
-  border-radius: 0.4rem;
+  height: 3rem;
 
   padding: 0 0.5rem;
+
+  border: 1px solid var(--grey-scale-3);
+  border-radius: 0.4rem;
+  outline: none;
 
   box-sizing: border-box;
 }
@@ -108,20 +111,21 @@ main > section {
 
   width: 5rem;
 
+  margin-left: 1.6rem;
+
   border: none;
   border-radius: 0.4rem;
 
-  color: var(--grey-scale-1);
   background-color: var(--primary);
-
-  margin-left: 1.6rem;
+  color: var(--grey-scale-1);
 }
 
 .lotto-store__lotto-list {
+  flex-grow: 1;
+
   margin-top: 2.8rem;
 
   overflow-y: scroll;
-  flex-grow: 1;
 }
 
 .lotto-list__lotto-amount {
@@ -137,15 +141,16 @@ lotto-list__lotto-list {
   display: flex;
   align-items: center;
 
+  margin-top: 1rem;
+
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
-
-  margin-top: 1rem;
 }
 
 .lotto-list__lotto > span {
-  font-size: 3rem;
   margin-right: 1rem;
+
+  font-size: 3rem;
 }
 
 .lotto-store__win-numbers {
@@ -191,12 +196,12 @@ lotto-list__lotto-list {
   width: 2.5rem;
   aspect-ratio: 1 / 1.1;
 
-  text-align: center;
+  margin-top: 0.5rem;
 
   border: 1px solid var(--grey-scale-3);
   border-radius: 4px;
 
-  margin-top: 0.5rem;
+  text-align: center;
 }
 
 .lotto-store__win-numbers-form input:first-child {
@@ -206,24 +211,24 @@ lotto-list__lotto-list {
 .lotto-store__draw-btn {
   width: 100%;
 
+  padding: 1rem 0;
+  margin-top: 2rem;
+
   border: none;
   border-radius: 0.4rem;
 
-  color: var(--grey-scale-1);
   background-color: var(--primary);
-
-  padding: 1rem 0;
-  margin-top: 2rem;
+  color: var(--grey-scale-1);
 }
 
 .lotto-store__statistics-dialog {
   width: 31.4rem;
   height: 60vh;
 
+  padding: 1.6rem;
+
   border: none;
   border-radius: 0.4rem;
-
-  padding: 1.6rem;
 }
 
 .lotto-store__statistics-dialog::backdrop {
@@ -251,20 +256,21 @@ lotto-list__lotto-list {
 .lotto-store__dialog-close-btn {
   width: 3rem;
 
-  font-size: 2rem;
+  padding: 0;
 
   border: none;
 
   background-color: transparent;
 
-  padding: 0;
+  font-size: 2rem;
 }
 
 .lotto-store__statistics-title {
-  text-align: center;
+  margin-top: 1rem;
+
   font-size: 2rem;
 
-  margin-top: 1rem;
+  text-align: center;
 }
 
 .lotto-store__statistics-table {
@@ -279,17 +285,18 @@ lotto-list__lotto-list {
   height: 3rem;
   line-height: 3rem;
 
-  font-size: 1.3rem;
+  padding: 0 1rem;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 
-  padding: 0 1rem;
+  font-size: 1.3rem;
 }
 
 .lotto-store__awards-label,
 .lotto-store__prize-label,
 .lotto-store__count-label {
   min-width: 5rem;
+
   text-align: center;
 }
 
@@ -297,11 +304,13 @@ lotto-list__lotto-list {
 .lotto-store__prize,
 .lotto-store__count {
   min-width: 5rem;
+
   text-align: center;
 }
 
 .lotto-store__prize {
   width: 10rem;
+
   margin-left: auto;
 }
 
@@ -317,7 +326,6 @@ lotto-list__lotto-list {
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-grow: 1;
 
   font-size: 1.5rem;
@@ -328,11 +336,11 @@ lotto-list__lotto-list {
 
   width: 100%;
 
+  padding: 1rem 0;
+
   border: none;
   border-radius: 0.4rem;
 
-  color: var(--grey-scale-1);
   background-color: var(--primary);
-
-  padding: 1rem 0;
+  color: var(--grey-scale-1);
 }
