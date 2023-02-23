@@ -17,10 +17,6 @@ const ui = {
     this.renderLottos(lottos);
   },
 
-  hideRestUI() {
-    domList.mainContainer.classList.add('hide');
-  },
-
   renderLottosLengthText(lottosLength) {
     domList.lottoLengthText.innerText = `총 ${lottosLength}개를 구매하였습니다.`;
   },
