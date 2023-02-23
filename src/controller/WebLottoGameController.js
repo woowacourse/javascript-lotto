@@ -11,6 +11,15 @@ class WebLottoGameController {
     $('#modal-close-area').addEventListener('click', (e) => this.handleModalClose(e));
     $('#restart-button').addEventListener('click', (e) => this.handleRestart(e));
   }
+
+  handleUserBudgetSubmit(e) {
+    e.preventDefault();
+    const userBudget = $('#user-budget-input').value;
+
+    this.#issueLottoTickets(userBudget);
+    this.#printLottoTickets();
+    WebView.showHiddenSection();
+  }
 }
 
 export default WebLottoGameController;
