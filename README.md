@@ -39,3 +39,11 @@ yarn start-step1
 ```
 yarn start-step2
 ```
+
+### step1 구조 도식화
+
+<img src="https://user-images.githubusercontent.com/80146176/220819492-8970772f-086e-4e80-9aec-538378d84e39.png" alt="step1"/>
+
+### step2 구조 도식화
+
+<img src="https://user-images.githubusercontent.com/80146176/220819627-b5b8a6dd-ec1f-4c45-81d1-d81756e142d0.png" alt="step1"/>
