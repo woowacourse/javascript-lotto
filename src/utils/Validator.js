@@ -1,37 +1,43 @@
-import { SETTINGS } from "../constants/Config.js";
+import { ERROR_MESSAGE, SETTINGS } from "../constants/Config.js";
 
 const Validator = {
   isNumber(input) {
-    return isNaN(input) ? false : true;
+    if (isNaN(input)) throw new Error(ERROR_MESSAGE.NUMBER_TYPE);
   },
 
   isDividedByThousand(buyMoney) {
-    return buyMoney % 1000 === 0;
+    if (buyMoney % 1000 !== 0) throw new Error(ERROR_MESSAGE.MONEY_UNIT);
   },
 
   isPositiveInteger(input) {
-    return input > 0 && input % 1 === 0;
+    if (input < 0 || input % 1 !== 0)
+      throw new Error(ERROR_MESSAGE.POSITIVE_INTEGER);
   },
 
   isCorrectRange(input) {
-    return 0 < input && input < 46;
+    const lottoNumberRange = 0 < input && input < 46;
+    if (!lottoNumberRange) throw new Error(ERROR_MESSAGE.CORRECT_NUMBER_RANGE);
   },
 
   isDuplicatedNumber(winningLotto) {
     const duplicatedNumber = [...new Set(winningLotto)];
-    return winningLotto.length === duplicatedNumber.length;
+    if (winningLotto.length !== duplicatedNumber.length)
+      throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
   },
 
   isCorrectLength(winningLotto) {
-    return winningLotto.length !== SETTINGS.MAX_WINNING_NUMBER_LENGTH;
+    if (winningLotto.length !== SETTINGS.MAX_WINNING_NUMBER_LENGTH)
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_LENGTH);
   },
 
   hasBonusNumber(bonusNumber, winningLotto) {
-    return winningLotto.includes(bonusNumber);
+    if (winningLotto.includes(bonusNumber))
+      throw new Error(ERROR_MESSAGE.HAS_BONUS_NUMBER);
   },
 
   isCorrectRetryInput(retryInput) {
-    return retryInput === "y" || retryInput === "n";
+    if (retryInput !== "y" && retryInput !== "n")
+      throw new Error(ERROR_MESSAGE.CORRECT_RETRY_INPUT);
   },
 };
 
