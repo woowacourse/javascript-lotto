@@ -17,6 +17,12 @@ class LotteriesView {
       this.lotteriesList.append(li);
     });
   }
+
+  hideLotteriesView() {
+    this.numberOfLotto.style.display = "none";
+    this.lotteriesList.style.display = "none";
+    this.lotteriesList.innerHTML = "";
+  }
 }
 
 export default LotteriesView;
