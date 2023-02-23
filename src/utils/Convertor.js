@@ -14,7 +14,7 @@ const CovertMessage = {
   },
 
   purchaseCount(num) {
-    return `${num}개를 구매했습니다.`;
+    return `${CovertMessage.numberWithComma(num)}개를 구매했습니다.`;
   },
 
   lottoRank(ranks) {
@@ -28,7 +28,11 @@ const CovertMessage = {
   },
 
   profitRateResult(profitRate) {
-    return `총 수익률은 ${profitRate}%입니다.`;
+    return `총 수익률은 ${CovertMessage.numberWithComma(+profitRate)}%입니다.`;
+  },
+
+  numberWithComma(number) {
+    return number.toLocaleString();
   },
 };
 

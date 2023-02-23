@@ -1,10 +1,10 @@
 import { GameControlStaticValue } from '../constants/Constants.js';
 import LottoGame from '../domain/LottoGame.js';
 import Validation from '../utils/Validation.js';
-import MoneyInput from '../browserView/MoneyInput.js';
-import LottoList from '../browserView/LottoList.js';
-import LottoInput from '../browserView/LottoInput.js';
-import ResultModal from '../browserView/ResultModal.js';
+import MoneyInput from '../dom_component/MoneyInput';
+import LottoList from '../dom_component/LottoList.js';
+import LottoInput from '../dom_component/LottoInput.js';
+import ResultModal from '../dom_component/ResultModal.js';
 
 class LottoGameDomController {
   #lottoGame = new LottoGame();
