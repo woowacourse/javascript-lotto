@@ -36,6 +36,8 @@ export default class View {
         $('.bonus-number-input'),
         $('.winning-lotto-submit-button')
       );
+
+      this.hideElements('.result-modal', '.winning-lotto-form');
     });
   }
 
