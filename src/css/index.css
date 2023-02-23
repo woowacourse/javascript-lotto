@@ -108,8 +108,11 @@ input {
   overflow: scroll;
 }
 
+.issueLotto::-webkit-scrollbar {
+  display: none;
+}
+
 .lottos {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,8 +121,8 @@ input {
 
 .lotto {
   display: flex;
-  font-size: 15px;
   align-items: center;
+  font-size: 15px;
 }
 
 .lotto span {
