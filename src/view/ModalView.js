@@ -13,12 +13,18 @@ export default class ModalView {
 
   connectEvents() {
     this.$modalContainer.addEventListener('click', (e) => this.handleCloseClick(e));
+    this.$retryButton.addEventListener('click', () => this.handleRestartClick());
   }
 
   handleCloseClick(e) {
     if (e.target === this.$modalContainer || e.target === this.$closeIcon) {
       this.closeModal();
     }
+  }
+
+  handleRestartClick() {
+    const event = new CustomEvent('retry');
+    this.$retryButton.dispatchEvent(event);
   }
 
   closeModal() {

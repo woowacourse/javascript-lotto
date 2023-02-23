@@ -24,6 +24,9 @@ export default class LottoGameController {
     this.winningNumbersView.$winningLottoForm.addEventListener('check', (e) =>
       this.#getWinningLottos(e.detail.winningNumbers, e.detail.bonusNumber)
     );
+    this.modalView.$retryButton.addEventListener('retry', () => {
+      this.#processRestart();
+    });
   }
 
   #getPurchaseAmount(purchaseAmount) {
@@ -97,5 +100,14 @@ export default class LottoGameController {
       window.alert(error);
       return;
     }
+  }
+
+  #processRestart() {
+    this.#lottoGame.resetLottoGame();
+    this.purchaseView.reloadView();
+    this.lottoListView.reloadView();
+    this.winningNumbersView.hideWinningNumbers();
+    this.winningNumbersView.reloadView();
+    this.modalView.closeModal();
   }
 }
