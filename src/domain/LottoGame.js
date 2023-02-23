@@ -5,6 +5,12 @@ const { PRIZE_AMOUNT, RANK, LOTTO } = require("../constant/Constant");
 
 const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 class LottoGame {
+  #lottos;
+
+  get lottos() {
+    return this.#lottos;
+  }
+
   #LottoNumberGenerator() {
     const lottoNumbers = new Set();
     while (lottoNumbers.size < LOTTO.SIZE) {
@@ -13,7 +19,7 @@ class LottoGame {
     return Array.from(lottoNumbers);
   }
 
-  makeLottos(money) {
+  purchaseLottos(money) {
     const lottoCount = parseInt(money / 1000);
 
     const lottos = [];
@@ -22,7 +28,7 @@ class LottoGame {
       lottos.push(lottoOne);
     });
 
-    return lottos;
+    this.#lottos = lottos;
   }
 
   makeWinLotto(winNumbers, bonusNumber) {
