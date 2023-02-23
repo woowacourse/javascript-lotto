@@ -244,11 +244,11 @@ footer label {
 }
 
 .number_error {
-  bottom: 40px;
+  bottom: 38px;
   visibility: hidden;
 }
 
 .budget_error {
-  top: 67px;
+  top: 55px;
   visibility: hidden;
 }
