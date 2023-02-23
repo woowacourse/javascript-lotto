@@ -28,6 +28,14 @@ export default class View {
 
       this.initPurchaseAmountInput();
       this.initWinningLottoInput();
+
+      this.enableElements(
+        $('.purchase-amount-input'),
+        $('.purchase-amount-submit-button'),
+        ...$$('.winning-number-input'),
+        $('.bonus-number-input'),
+        $('.winning-lotto-submit-button')
+      );
     });
   }
 
