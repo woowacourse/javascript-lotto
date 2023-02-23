@@ -286,6 +286,13 @@ lotto-list__lotto-list {
   padding: 0 1rem;
 }
 
+.lotto-store__awards-label,
+.lotto-store__prize-label,
+.lotto-store__count-label {
+  min-width: 5rem;
+  text-align: center;
+}
+
 .lotto-store__awards,
 .lotto-store__prize,
 .lotto-store__count {
@@ -295,7 +302,11 @@ lotto-list__lotto-list {
 
 .lotto-store__prize {
   width: 10rem;
-  margin: 0 auto;
+  margin-left: auto;
+}
+
+.lotto-store__count {
+  margin-left: 4.5rem;
 }
 
 .lotto-store__statistics-label {

@@ -56,9 +56,9 @@ export default class StatisticsModal extends Component {
       .map(
         ({ awards, prize, count }) => `
           <li class='lotto-store__statistic'>
-            <span class='lotto-store__awards'>${awards}개</span>
+            <span class='lotto-store__awards'>${awards}</span>
             <span class='lotto-store__prize'>${prize.toLocaleString()}</span>
-            <span class='lotto-store__count'>${count}개</span>
+            <span class='lotto-store__count'>${count}</span>
           </li>`
       )
       .join('');

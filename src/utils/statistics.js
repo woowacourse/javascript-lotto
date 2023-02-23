@@ -1,10 +1,16 @@
 import { AWARDS_ORDER, PRIZE } from '../constants/values';
 
+const parseStatisticsInfo = (info) => {
+  if (typeof info === 'number') return `${info}개`;
+
+  return info;
+};
+
 const parseStatistics = (statistics) => {
   return AWARDS_ORDER.map((awards) => ({
-    awards,
+    awards: parseStatisticsInfo(awards),
     prize: PRIZE[awards],
-    count: statistics[awards] || 0,
+    count: parseStatisticsInfo(statistics[awards] || 0),
   }));
 };
 
