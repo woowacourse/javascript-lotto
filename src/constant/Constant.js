@@ -1,18 +1,6 @@
 const MESSAGES = {
-  readMoney: "> 구입금액을 입력해 주세요. ",
-  readWinNumbers: "> 당첨 번호를 입력해 주세요. ",
-  readBonusNumber: "> 보너스 번호를 입력해 주세요. ",
-  readCommandRestart: "> 다시 시작하시겠습니까? (y/n) ",
-
   printLottoCount: "개를 구매했습니다.",
-  printRankResult: "당첨 통계",
-  printHyphen: "-------------------",
   pieces: "개",
-  printFifth: "3개 일치 (5,000원) - ",
-  printFourth: "4개 일치 (50,000원)) - ",
-  printThrid: "5개 일치 (1,500,000원) - ",
-  printSecond: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-  printFirst: "6개 일치 (2,000,000,000원) - ",
   printRevenue: "총 수익률은 ",
   printFinal: "%입니다.",
 };
@@ -53,10 +41,13 @@ const PRIZE = {
   [RANK.FIFTH]: 5000,
 };
 
+const DECIMAL = 10;
+
 module.exports = {
   MESSAGES,
   ERROR_MESSAGES,
   RANK,
   LOTTO,
   PRIZE,
+  DECIMAL,
 };
