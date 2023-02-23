@@ -14,7 +14,7 @@ const ERROR_MESSAGES = {
   isSameLottoNumber: "[ERROR] 당첨 번호를 중복 없이 입력하세요.",
 
   isOverRangeBouns: "[ERROR] 보너스 번호는 1부터 45까지로 입력하세요.",
-  isSameBonusNumber: "[ERROR] 당첨 번호와 중복 없이 입력하세요.",
+  isSameBonusNumber: "[ERROR] 보너스 번호는 당첨 번호와 중복 없이 입력하세요.",
 
   isWrongCommand: "[ERROR] 재시작 명령어는 y혹은 n으로만 입력하세요.",
 };

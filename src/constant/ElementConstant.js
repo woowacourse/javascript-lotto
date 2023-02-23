@@ -1,28 +1,28 @@
 const ID = {
-  MONEY_FORM: "money_form",
-  BTN_MONEY: "btn_money",
-  INPUT_MONEY: "input_money",
+  MONEY_FORM: document.getElementById("money_form"),
+  BTN_MONEY: document.getElementById("btn_money"),
+  INPUT_MONEY: document.getElementById("input_money"),
 
-  WIN_CONTENTS: "win_contents",
-  WINNUM_FORM: "winNum_form",
+  WIN_CONTENTS: document.getElementById("win_contents"),
+  WINNUM_FORM: document.getElementById("winNum_form"),
 
-  BUY_COUNT_TEXT: "buy_count_text",
-  BUY_LOTTOS: "buy_lottos",
+  BUY_COUNT_TEXT: document.getElementById("buy_count_text"),
+  BUY_LOTTOS: document.getElementById("buy_lottos"),
 
-  MODAL: "modal",
-  FIRST: "first",
-  SECOND: "second",
-  THIRD: "third",
-  FOURTH: "fourth",
-  FIFTH: "fifth",
-  REVENUE_TEXT: "revenue_text",
-  BTN_CLOSE: "btn_close",
-  BTN_RESTART: "btn_restart",
+  MODAL: document.getElementById("modal"),
+  FIRST: document.getElementById("first"),
+  SECOND: document.getElementById("second"),
+  THIRD: document.getElementById("third"),
+  FOURTH: document.getElementById("fourth"),
+  FIFTH: document.getElementById("fifth"),
+  REVENUE_TEXT: document.getElementById("revenue_text"),
+  BTN_CLOSE: document.getElementById("btn_close"),
+  BTN_RESTART: document.getElementById("btn_restart"),
 };
 
 const NAME = {
-  WINNUM: "winNum[]",
-  BONUSNUM: "bonusNum",
+  WINNUM: document.getElementsByName("winNum[]"),
+  BONUSNUM: document.getElementsByName("bonusNum")[0],
 };
 
 const CLASS = {
