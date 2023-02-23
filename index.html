@@ -8,9 +8,9 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="header">
+    <header class="header">
       <div class="title">🎱 행운의 로또</div>
-    </div>
+    </header>
     <div class="main">
       <div class="mainTitle">🎱 내 당첨번호 확인 🎱</div>
       <div class="lottoInput">
@@ -22,11 +22,11 @@
       </div>
 
       <div class="lottoIssueView">
-        <div class="lottoIssueViewTitle">총 7개를 구매하였습니다.</div>
+        <div class="lottoIssueViewTitle"></div>
         <div class="ticketView"></div>
       </div>
 
-      <div>
+      <div class="lottoResultView">
         <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
         <div class="numberTitle">
           <div>당첨 번호</div>
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="modal">
+    <dialog class="modal">
       <div class="exitModal">X</div>
       <div class="resultTitle">🏆 당첨 통계 🏆</div>
       <table class="resultTable">
@@ -59,34 +59,33 @@
         <tr>
           <td>3개</td>
           <td>5,000</td>
-          <td>n개</td>
+          <td class="winningCount">n개</td>
         </tr>
         <tr>
           <td>4개</td>
           <td>50,000</td>
-          <td>n개</td>
+          <td class="winningCount">n개</td>
         </tr>
         <tr>
           <td>5개</td>
           <td>1,500,000</td>
-          <td>n개</td>
+          <td class="winningCount">n개</td>
         </tr>
         <tr>
           <td>5개+보너스볼</td>
           <td>30,000,000</td>
-          <td>n개</td>
+          <td class="winningCount">n개</td>
         </tr>
         <tr>
           <td>6개</td>
           <td>2,000,000,000</td>
-          <td>n개</td>
+          <td class="winningCount">n개</td>
         </tr>
       </table>
       <div class="resultExplain">당신의 총 수익률은 %입니다.</div>
       <button class="restartButton">다시 시작하기</button>
-    </div>
-    <div class="modalBackground"></div>
+    </dialog>
 
-    <div class="footer">Copyright 2023. woowacourse</div>
+    <footer class="footer">Copyright 2023. woowacourse</footer>
   </body>
 </html>
