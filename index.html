@@ -28,36 +28,45 @@
           <form id="purchase-amount" name="purchase-amount">
             <label for="purchase-amount"> 구입할 금액을 입력해주세요. </label>
             <div id="purchase-amount-input">
-              <input type="number" name="purchase-amount" placeholder="금액" min="1000" required />
+              <input
+                type="number"
+                name="purchase-amount"
+                placeholder="금액"
+                min="1000"
+                max="100000"
+                required
+              />
               <button type="submit" class="lotto-button">구입</button>
             </div>
           </form>
 
-          <article id="purchased-lotto-tickets">
-            <h2 id="lotto-ticket-count">총 <span>0</span>개를 구매하였습니다.</h2>
-            <div class="lotto-tickets"></div>
-          </article>
+          <div class="lotto-ticket-section hidden">
+            <article id="purchased-lotto-tickets">
+              <h2 id="lotto-ticket-count">총 <span>0</span>개를 구매하였습니다.</h2>
+              <div class="lotto-tickets"></div>
+            </article>
 
-          <form id="winning-lotto">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div id="number-input-label">
-              <label for="winning-number"> 당첨 번호 </label>
-              <label for="bonus-number"> 보너스 번호 </label>
-            </div>
-            <div class="number-input-box">
-              <div id="winning-numbers">
-                <input name="winning-number" type="number" max="45" required />
-                <input name="winning-number" type="number" max="45" required />
-                <input name="winning-number" type="number" max="45" required />
-                <input name="winning-number" type="number" max="45" required />
-                <input name="winning-number" type="number" max="45" required />
-                <input name="winning-number" type="number" max="45" required />
+            <form id="winning-lotto">
+              <p>지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <div id="number-input-label">
+                <label for="winning-number"> 당첨 번호 </label>
+                <label for="bonus-number"> 보너스 번호 </label>
               </div>
-              <input name="bonus-number" type="number" max="45" required />
-            </div>
+              <div class="number-input-box">
+                <div id="winning-numbers">
+                  <input name="winning-number" type="number" max="45" required />
+                  <input name="winning-number" type="number" max="45" required />
+                  <input name="winning-number" type="number" max="45" required />
+                  <input name="winning-number" type="number" max="45" required />
+                  <input name="winning-number" type="number" max="45" required />
+                  <input name="winning-number" type="number" max="45" required />
+                </div>
+                <input name="bonus-number" type="number" max="45" required />
+              </div>
 
-            <button type="submit" class="lotto-button">결과 확인하기</button>
-          </form>
+              <button type="submit" class="lotto-button">결과 확인하기</button>
+            </form>
+          </div>
         </section>
 
         <div class="modal hidden">
@@ -109,7 +118,5 @@
         <p id="copyright">Copyright 2023. woowacourse</p>
       </footer>
     </div>
-
-    <script src="/src/step2-index.js"></script>
   </body>
 </html>
