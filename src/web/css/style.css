@@ -7,11 +7,11 @@ body {
 #app-root {
 	display: flex;
 	flex-direction: column;
-	justify-content:space-between;
+	justify-content: space-between;
 	width: 100vw;
 	height: 100vh;
 	background-color: #FCFCFD;
-	font-family : 'Roboto', 'sans-serif';
+	font-family : 'normal', 'Roboto', 'sans-serif';
 }
 
 #header {
@@ -21,7 +21,6 @@ body {
 	height: 64px;
 	background-color: #4E5BA6;
 	border-bottom: 1px solid rgba(78, 91, 166, 0.2);
-	text-align: center;
 }
 
 #header-button {
@@ -30,11 +29,10 @@ body {
 	cursor: pointer;
 	width: 147px;
 	height: 36px;
-	font-style: normal;
 	font-size: 24px;
 	line-height: 36px;
 	font-weight: 700;
-	margin-left: 100px;
+	margin: 0 0 0 100px;
 	color: white;
 }
 
@@ -44,44 +42,46 @@ main {
 	align-items: center;
 }
 
-#app-container {
+#app {
 	background-color: white;
 	width: 400px;
-	height: 600px;
+	height: 630px;
 	border: 1px solid #E0E0E0;
 }
 
 #app-contents {
-	height: 100%;
-	margin: 10px;
+	width: 95%;
+	height: 95%;
+	margin: auto;
 }
 
-#app-title-container {
+#app-title {
+	width: 100%;
 	text-align: center;
-	margin: 40px 0 22px 0;
-}
-
-#app-title-container > span {
+	padding: 40px 0 20px 0;
 	font-size: 24px;
 	line-height: 24px;
 	font-weight: 600;
 }
 
-#app-main-container {
+#app-main {
+	width: 100%;
+	height: 100%;
 	font-size: 15px;
 	font-weight: 400;
-	font-style: normal;
 	line-height: 24px;
 	letter-spacing: 0.5px;
 }
 
-#price-container {
+#price {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	padding: 0 0 10px 0;
 }
 
-#price-container > label {
-	margin: 0 0 5px 0;
+#price > label {
+	padding: 0 0 5px 0;
 }
 
 #price-form {
@@ -95,34 +95,34 @@ main {
 	border: 1px solid #B4B4B4;
 	border-radius: 4px;
 	text-indent: 5px;
+	margin: 0 10px 0 0;
 }
 
-#price-button {
+#price-submit {
 	width: 50px;
 	height: 30px;
 	background-color: #4E5BA6;
 	color: white;
 	border: 1px solid;
 	border-radius: 4px;
-	margin: 0 0 0 10px;
 	cursor: pointer
-}
-
-#lottos-container {
-	display: flex;
-	flex-direction: column;
-	height: 280px;
-	margin-bottom: 30px;
-}
-
-#lottos-amount {
-	margin-top: 30px;
 }
 
 #lottos {
 	display: flex;
 	flex-direction: column;
-	margin-top: 10px;
+	width: 100%;
+	height: 280px;
+	padding: 0 0 10px 0;
+}
+
+#lottos-amount-text {
+	margin: 0 0 5px 0;
+}
+
+#lotto-tickets {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
 	overflow-y: auto;
 }
@@ -137,22 +137,42 @@ main {
 	margin-right: 10px;
 }
 
+#winning-numbers {
+	width: 100%;
+}
+
+#winning-numbers-text {
+	padding: 0 0 10px 0;
+}
+
 #winning-numbers-labels {
-	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0 10px 0;
+}
+
+#winning-numbers-container {
 	display: flex;
 	justify-content: space-between;
 }
 
-#winning-numbers-forms {
-	display: flex;
-	justify-content: space-between;
-}
-
-#winning-numbers-forms input {
+#winning-numbers-container input {
 	width: 34px;
 	height: 36px;
 	border: 1px solid #B4B4B4;
 	border-radius: 4px;
+	margin: 0 5px 0 0;
+}
+
+#result-submit {
+	margin: 20px 0 0 0;
+	width: 100%;
+	height: 36px;
+	border-radius: 4px;
+	background: #4E5BA6;
+	color: white;
+	border: none;
+	cursor: pointer;
 }
 
 #footer {
@@ -160,6 +180,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	color: #4E5BA6;
+	width: 100%;
 	height: 80px;
 	border-top: 1px solid rgba(78, 91, 166, 0.2);
 	font-weight: 700;

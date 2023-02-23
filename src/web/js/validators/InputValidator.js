@@ -1,32 +1,29 @@
 import Validator from './Validator.js';
 import LOTTO from '../constants/lotto.js';
-import inputUtils from '../utils/inputUtils.js';
 
 const InputValidator = (function () {
   return {
-    isValidLottoPrice: lottoPrice => {
-      Validator.isNumericString(lottoPrice);
-      Validator.canDivide(Number(lottoPrice), LOTTO.PRICE);
+    isValidLottoPrice: input => {
+      Validator.isNumericString(input);
+      Validator.canDivide(Number(input), LOTTO.PRICE);
 
-      return parseInt(lottoPrice, 10);
+      return parseInt(input, 10);
     },
 
-    isValidLuckyNumbers: luckyNumbersString => {
-      const luckyNumbers = inputUtils.formatLuckyNumbers(luckyNumbersString);
+    isValidLuckyNumbers: inputs => {
+      const luckyNumbers = inputs.map(value => parseInt(value, 10));
 
-      Validator.isValidLuckyNumbersFormat(luckyNumbersString);
       Validator.isValidRangeNumbers(luckyNumbers, {
         min: LOTTO.MIN_RANGE,
         max: LOTTO.MAX_RANGE,
       });
-      Validator.isValidSize(luckyNumbers, LOTTO.NUMBERS_LENGTH);
       Validator.isNonDuplicatedArray(luckyNumbers);
 
       return luckyNumbers;
     },
 
-    isValidBonusNumber: (bonusNumberString, luckyNumbers) => {
-      const bonusNumber = parseInt(bonusNumberString, 10);
+    isValidBonusNumber: (input, luckyNumbers) => {
+      const bonusNumber = parseInt(input, 10);
 
       Validator.isValidRangeNumber(bonusNumber, {
         min: LOTTO.MIN_RANGE,
@@ -35,12 +32,6 @@ const InputValidator = (function () {
       Validator.isNotExistInArray(luckyNumbers, bonusNumber);
 
       return bonusNumber;
-    },
-
-    isValidRetryCommand: retryCommand => {
-      Validator.isValidRetryCommand(retryCommand);
-
-      return retryCommand;
     },
   };
 })();

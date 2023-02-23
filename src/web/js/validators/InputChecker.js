@@ -2,33 +2,25 @@ import InputValidator from './InputValidator.js';
 
 const InputChecker = (function () {
   return {
-    checkLottoPrice: lottoPrice => {
+    checkLottoPrice: input => {
       try {
-        return InputValidator.isValidLottoPrice(lottoPrice);
+        return InputValidator.isValidLottoPrice(input);
       } catch (error) {
         alert(error.message);
       }
     },
 
-    checkLuckyNumbers: luckyNumbersString => {
+    checkLuckyNumbers: inputs => {
       try {
-        return InputValidator.isValidLuckyNumbers(luckyNumbersString);
+        return InputValidator.isValidLuckyNumbers(inputs);
       } catch (error) {
         alert(error.message);
       }
     },
 
-    checkBonusNumber: (bonusNumber, luckyNumbers) => {
+    checkBonusNumber: (input, luckyNumbers) => {
       try {
-        return InputValidator.isValidBonusNumber(bonusNumber, luckyNumbers);
-      } catch (error) {
-        alert(error.message);
-      }
-    },
-
-    checkRetryCommand: retryCommand => {
-      try {
-        return InputValidator.isValidRetryCommand(retryCommand);
+        return InputValidator.isValidBonusNumber(input, luckyNumbers);
       } catch (error) {
         alert(error.message);
       }

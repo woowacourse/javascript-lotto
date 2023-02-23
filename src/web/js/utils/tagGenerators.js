@@ -1,41 +1,39 @@
 import TAGS from '../constants/tags.js';
-import QUERY from '../constants/query.js';
 import MESSAGE from '../constants/message.js';
 
 const tagGenerators = {
   generateLottos: lottos => {
     return `
-		<div id="lottos-amount">
+		<div id="lottos-amount-text">
 			<span>${MESSAGE.BUY_LOTTO(lottos.length)}</span>
 		</div>
-		<div id="lottos">
+		<div id="lotto-tickets">
 			${TAGS.GENERATE_TICKET(lottos)}
 		</div>`;
   },
 
-  generateWinningNumberTags: () => {
+  generateWinningNumberForm: () => {
+    return `<form id="winning-numbers-form">
+		<div id="winning-numbers-container">
+			<div>
+			${TAGS.GENERATE_LUCKY_NUMBER_INPUT()}
+			</div>
+			<div>
+			${TAGS.BONUS_NUMBER_INPUT}
+			</div>
+		</div>
+		${TAGS.RESULT_SUBMIT}
+	</form>`;
+  },
+
+  generateWinningNumberTags: function () {
     return `
-		<span id="winning-numbers-text">${QUERY.WINNING_NUMBERS}</span>
-							<div id="winning-numbers-labels">
-								<span id="lucky-numbers-text">${MESSAGE.LUCKY_NUMBERS}</span>
-								<span id="bonus-number-text">${MESSAGE.BONUS_NUMBER}</span>
-							</div>
-							<div id="winning-numbers-inputs">
-								<div id="winning-numbers-labels">
-									<label id="lucky-numbers-label" for="lucky-numbers-form">
-									</label>
-									<label id="bonus-number-label" for="bonus-number-form">
-									</label>
-								</div>
-								<div id="winning-numbers-forms">
-									<form id="lucky-numbers-form">
-									${TAGS.GENERATE_LUCKY_NUMBER_INPUT()}
-									</form>
-									<form id="bonus-number-form">
-									${TAGS.BONUS_NUMBER_INPUT}
-									</form>
-								</div>
-							</div>`;
+	${TAGS.WINNING_NUMBERS_LABELS}
+	${this.generateWinningNumberForm()}`;
+  },
+
+  generateResultButton: () => {
+    return `<input id="result-button" type="button" name="submit" value="${MESSAGE.RESULT}">`;
   },
 };
 

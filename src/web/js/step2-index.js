@@ -1,8 +1,8 @@
 import InputChecker from './validators/InputChecker.js';
 import LottoGame from './domains/LottoGame.js';
 import tagGenerator from './utils/tagGenerators.js';
-
-const $ = selector => document.querySelector(selector);
+import LINK from './constants/link.js';
+import { $, $$ } from './utils/dom.js';
 
 const App = {
   init: function () {
@@ -11,12 +11,16 @@ const App = {
 
   render: {
     lottos: lottos => {
-      $('#lottos-container').innerHTML = tagGenerator.generateLottos(lottos);
+      $('#lottos').innerHTML = tagGenerator.generateLottos(lottos);
     },
 
     winningNumbers: () => {
       $('#winning-numbers').innerHTML =
         tagGenerator.generateWinningNumberTags();
+
+      $('#winning-numbers-form').addEventListener('submit', event =>
+        event.preventDefault()
+      );
     },
   },
 
@@ -27,14 +31,18 @@ const App = {
 
     $('#header-button').addEventListener(
       'click',
-      () => (window.location = 'http://127.0.0.1:5500/src/web/html/index.html')
+      () => (window.location = LINK.HOME)
     );
 
-    $('#price-button').addEventListener('click', () => this.purchaseLottos());
+    $('#price-form').addEventListener('submit', event =>
+      this.purchaseLottos(event)
+    );
   },
 
-  purchaseLottos: function () {
-    const price = InputChecker.checkLottoPrice($('#price-input').value);
+  purchaseLottos: function (event) {
+    const formData = new FormData(event.target);
+    const fields = Object.fromEntries(formData);
+    const price = InputChecker.checkLottoPrice(fields.price);
     if (!price) {
       return;
     }
@@ -42,6 +50,30 @@ const App = {
 
     this.render.lottos(LottoGame.getLottos());
     this.render.winningNumbers();
+    $('#winning-numbers-form').addEventListener('submit', event =>
+      this.calculateResult(event)
+    );
+  },
+
+  calculateResult: function (event) {
+    const formData = new FormData(event.target);
+    const fields = Object.fromEntries(formData);
+    const luckyNumbersInput = Array.from(
+      { length: 6 },
+      (_, index) => fields[`lucky-number-${index + 1}`]
+    );
+    const bonusNumberInput = fields['bonus-number'];
+    const luckyNumbers = InputChecker.checkLuckyNumbers(luckyNumbersInput);
+    if (!luckyNumbers) {
+      return;
+    }
+    const bonusNumber = InputChecker.checkBonusNumber(
+      bonusNumberInput,
+      luckyNumbers
+    );
+    if (!bonusNumber) {
+      return;
+    }
   },
 };
 
