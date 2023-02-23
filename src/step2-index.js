@@ -4,6 +4,11 @@
  */
 import "../style.css";
 import { LottoGame } from "./domain/LottoGame";
+import {
+  validateBonusNumber,
+  validatePurchaseAmount,
+  validateWinningLottoNumbers,
+} from "./domain/validator";
 import { view } from "./view-web/view";
 
 const lottoGame = new LottoGame(view);
@@ -22,18 +27,32 @@ const $afterPurchaseDiv = document.getElementById("after-purchase");
 
 $purchaseAmountForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  lottoGame.lottoPurchase($purchaseAmountInput.value);
-  lottoGame.showLottos();
-  $afterPurchaseDiv.style.visibility = "visible";
+  try {
+    validatePurchaseAmount($purchaseAmountInput.value);
+
+    lottoGame.lottoPurchase($purchaseAmountInput.value);
+    lottoGame.showLottos();
+    $afterPurchaseDiv.style.visibility = "visible";
+  } catch (error) {
+    return alert(error);
+  }
 });
 
 $winningLottoForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const winningLottoNumbers = [...$winningNumberInputs].map((input) => Number(input.value));
-  const bonusNumber = Number($bonusNumberInput.value);
-  lottoGame.setWinningLotto(winningLottoNumbers, bonusNumber);
-  lottoGame.showStatistics($purchaseAmountInput.value);
-  $statisticsModal.showModal();
+  try {
+    const winningLottoNumbers = [...$winningNumberInputs].map((input) => Number(input.value));
+    const bonusNumber = Number($bonusNumberInput.value);
+
+    validateWinningLottoNumbers(winningLottoNumbers);
+    validateBonusNumber(bonusNumber, winningLottoNumbers);
+
+    lottoGame.setWinningLotto(winningLottoNumbers, bonusNumber);
+    lottoGame.showStatistics($purchaseAmountInput.value);
+    $statisticsModal.showModal();
+  } catch (error) {
+    alert(error);
+  }
 });
 
 $restartButton.addEventListener("click", (e) => {
@@ -46,8 +65,3 @@ $restartButton.addEventListener("click", (e) => {
 });
 
 $closeButton.addEventListener("click", () => $statisticsModal.close());
-
-// 게임(.game) 높이 고정
-// restart를 눌렀을 때 lottoGame에서 저장되어있는 변수를 초기화해주는 메서드를 추가해야할까?
-// 모달 창 css 추가
-// view 메서드를 파라미터로 dom을 넘겨서 렌더링하는것으로 수정
