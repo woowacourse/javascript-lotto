@@ -11,4 +11,9 @@
 cd javascript-lotto
 yarn install
 yarn start-step1
+
+//step2
+cd javascript-lotto
+yarn install
+yarn start-step2
 ```
