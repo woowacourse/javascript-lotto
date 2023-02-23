@@ -9,18 +9,10 @@ import ResultModal from '../browserView/ResultModal.js';
 class LottoGameDomController {
   #lottoGame = new LottoGame();
 
-  #moneyInput = new MoneyInput();
-
-  #lottoList = new LottoList();
-
-  #lottoInput = new LottoInput();
-
-  #resultModal = new ResultModal();
-
   startGame() {
-    this.#moneyInput.activate(this.#getPurchaseCount);
-    this.#lottoInput.activate(this.#setWinningLotto);
-    this.#resultModal.activate(this.#resetGame);
+    MoneyInput.activate(this.#getPurchaseCount);
+    LottoInput.activate(this.#setWinningLotto);
+    ResultModal.activate(this.#resetGame);
   }
 
   #getPurchaseCount = (money) => {
@@ -36,8 +28,8 @@ class LottoGameDomController {
   };
 
   #showLottoList(purchaseCount, userLottos) {
-    this.#lottoList.render(purchaseCount, userLottos);
-    this.#lottoInput.render();
+    LottoList.render(purchaseCount, userLottos);
+    LottoInput.render();
   }
 
   #setWinningLotto = (winningNumbers, bonusNumber) => {
@@ -53,13 +45,13 @@ class LottoGameDomController {
 
   #showGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
-    this.#resultModal.render(RANKS, PROFIT_RATE);
+    ResultModal.render(RANKS, PROFIT_RATE);
   }
 
   #resetGame = () => {
-    this.#moneyInput.reset();
-    this.#lottoList.reset();
-    this.#lottoInput.reset();
+    MoneyInput.reset();
+    LottoList.reset();
+    LottoInput.reset();
   };
 }
 

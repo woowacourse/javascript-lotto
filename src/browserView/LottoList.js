@@ -44,4 +44,4 @@ class LottoList {
   }
 }
 
-export default LottoList;
+export default new LottoList();

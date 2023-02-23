@@ -19,4 +19,4 @@ class MoneyInput {
   }
 }
 
-export default MoneyInput;
+export default new MoneyInput();

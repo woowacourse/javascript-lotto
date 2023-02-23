@@ -44,4 +44,4 @@ class ResultModal {
   }
 }
 
-export default ResultModal;
+export default new ResultModal();

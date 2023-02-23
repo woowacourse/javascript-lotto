@@ -45,4 +45,4 @@ class LottoInput {
   }
 }
 
-export default LottoInput;
+export default new LottoInput();
