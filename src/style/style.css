@@ -224,6 +224,10 @@ lotto-list__lotto-list {
   padding: 1.6rem;
 }
 
+.lotto-store__statistics-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .lotto-store__statistics-dialog-contents {
   display: flex;
   flex-direction: column;
