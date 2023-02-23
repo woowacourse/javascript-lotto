@@ -25,9 +25,10 @@ class LottoResult {
 
   earningsRate(lottoMoney, result) {
     const ConstantMoney = [
-      NUMBER.FIFTH_PRIZE_MONEY, NUMBER.FOUR_PRIZE_MONEY, NUMBER.THIRD_PRIZE_MONEY,
-      NUMBER.SECOND_PRIZE_MONEY, NUMBER.FIRST_PRIZE_MONEY,
+       NUMBER.FIRST_PRIZE_MONEY,NUMBER.SECOND_PRIZE_MONEY, NUMBER.THIRD_PRIZE_MONEY,
+       NUMBER.FOUR_PRIZE_MONEY, NUMBER.FIFTH_PRIZE_MONEY
     ];
+    console.log(result)
     Array.from({ length: result.length }, (v, index) => {
       this.profit += result[index] * ConstantMoney[index];
     });
