@@ -22,8 +22,8 @@ const TAGS = Object.freeze({
       (_, index) => `<input type="number" name="lucky-number-${index + 1}">`
     ).join(''),
   BONUS_NUMBER_INPUT: '<input type="number" name="bonus-number">',
-  RESULT_SUBMIT:
-    '<input id="result-submit" type="submit" value="결과 확인하기">',
+  CALCULATE_LOTTOS_BUTTON:
+    '<input id="calculate-lottos-button" type="submit" value="결과 확인하기">',
 });
 
 export default TAGS;

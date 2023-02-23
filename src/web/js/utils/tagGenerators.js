@@ -22,7 +22,7 @@ const tagGenerators = {
 			${TAGS.BONUS_NUMBER_INPUT}
 			</div>
 		</div>
-		${TAGS.RESULT_SUBMIT}
+		${TAGS.CALCULATE_LOTTOS_BUTTON}
 	</form>`;
   },
 
@@ -30,10 +30,6 @@ const tagGenerators = {
     return `
 	${TAGS.WINNING_NUMBERS_LABELS}
 	${this.generateWinningNumberForm()}`;
-  },
-
-  generateResultButton: () => {
-    return `<input id="result-button" type="button" name="submit" value="${MESSAGE.RESULT}">`;
   },
 };
 
