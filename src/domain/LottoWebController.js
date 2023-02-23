@@ -2,6 +2,7 @@ import Lotto from './Lotto.js';
 import lottoGenerator from './LottoGenerator.js';
 import { LOTTO } from '../constants/index.js';
 import LottoValidator from './LottoValidator.js';
+import { selectDom, selectAllDom, createDom } from '../utils/dom.js';
 
 class LottoController {
   #winningNumber = {
@@ -10,6 +11,61 @@ class LottoController {
   };
 
   #lottos = [];
+
+  constructor() {
+    selectDom('.purchaseForm').addEventListener('submit', this.purchaseW);
+    selectDom('.resultButton').addEventListener('click', this.showResult);
+    selectDom('.exitModal').addEventListener('click', this.closeModal);
+    selectDom('.restartButton').addEventListener('click', this.closeModal);
+  }
+
+  purchaseW = (e) => {
+    e.preventDefault();
+
+    const purchaseAmount = selectDom('.inputPurchaseAmount').value;
+    const lottos = this.purchase(purchaseAmount);
+
+    selectDom('.lottoIssueView').style.visibility = 'visible';
+    selectDom('.lottoResultView').style.visibility = 'visible';
+
+    const lottoIssueViewTitle = selectDom('.lottoIssueViewTitle');
+    lottoIssueViewTitle.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
+
+    const ticketView = selectDom('.ticketView');
+    ticketView.innerHTML = '';
+    lottos.forEach((lotto) => {
+      const ticket = createDom('div');
+      ticket.className = 'ticket';
+
+      const ticketPicture = createDom('div');
+      ticketPicture.className = 'ticketPicture';
+      ticketPicture.innerText = '🎟️';
+
+      const ticketNumber = createDom('div');
+      ticketNumber.innerText = lotto.getNumbers().join(', ');
+
+      ticket.appendChild(ticketPicture);
+      ticket.appendChild(ticketNumber);
+
+      ticketView.appendChild(ticket);
+    });
+  };
+
+  showResult = () => {
+    const winningNumber = [...selectAllDom('.number')].map((number) => number.value);
+    this.setWinningNumber(winningNumber);
+
+    const result = this.getResult();
+    selectAllDom('.winningCount').forEach((countBox, index) => {
+      countBox.innerText = `${result.matchResult[4 - index]}개`;
+    });
+
+    const resultExplain = selectDom('.resultExplain');
+    resultExplain.innerText = `당신의 총 수익률은 ${result.benefit}%입니다.`;
+
+    selectDom('.modal').style.display = 'flex';
+    selectDom('.modalBackground').style.display = 'flex';
+  };
 
   purchase(money) {
     LottoValidator.checkMoney(money);
@@ -47,6 +103,11 @@ class LottoController {
       return acc;
     }, rankingCount);
   }
+
+  closeModal = () => {
+    selectDom('.modal').style.display = 'none';
+    selectDom('.modalBackground').style.display = 'none';
+  };
 }
 
 export default LottoController;
