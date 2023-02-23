@@ -8,10 +8,9 @@ class LottoResultModal {
 
     this.modal = document.getElementsByClassName('modal')[0];
     this.modalContainer = document.getElementsByClassName('modal-container')[0];
+    this.resultWrapper = document.getElementById('result-wrapper');
     this.closeButton = document.getElementById('close-button');
-    this.closeButton.addEventListener('click', this.closeButtonHandler.bind(this), { once: true });
-
-    this.table = document.createElement('table');
+    this.closeButton.addEventListener('click', this.closeButtonHandler, true);
   }
 
   toggleModal() {
@@ -52,14 +51,12 @@ class LottoResultModal {
   }
 
   renderTable() {
-    this.modal.appendChild(this.table);
+    this.table = document.createElement('table');
+    this.resultWrapper.appendChild(this.table);
     this.table.insertAdjacentHTML('beforeend', this.createResultTable(this.receivedRewards));
   }
 
   renderProfit() {
-    this.resultWrapper = document.createElement('div');
-    this.resultWrapper.id = 'result-wrapper';
-    this.modal.appendChild(this.resultWrapper);
     this.resultWrapper.insertAdjacentHTML(
       'beforeend',
       `<p id="profit-message">당신의 총 수익률은 ${this.profitRate}%입니다.</p>
@@ -70,17 +67,18 @@ class LottoResultModal {
   }
 
   resetResultTable() {
-    resetElement(this.table);
     resetElement(this.resultWrapper);
   }
 
-  closeButtonHandler() {
+  closeButtonHandler = () => {
     this.toggleModal();
     this.resetResultTable();
-  }
+    this.closeButton.removeEventListener('click', this.closeButtonHandler, true);
+  };
 
   addRestartButtonHandler(restartButtonHandler) {
     this.restartButton.addEventListener('click', (e) => {
+      this.closeButton.removeEventListener('click', this.closeButtonHandler, true);
       this.toggleModal();
       this.resetResultTable();
       restartButtonHandler();
