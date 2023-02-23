@@ -6,11 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
-    <div id="app">
+    <header>
       <h1>🎱 행운의 로또</h1>
+    </header>
+    <div id="app">
+      <div id="gameContainer">
+        <h2>🎱 내 번호 당첨 확인 🎱</h2>
+        <form id="priceInputContainer">
+          <span style="font-size: 15px">구입할 금액을 입력해주세요.</span>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <input
+              id="priceInput"
+              placeholder="금액"
+              style="font-size: 15px"
+              type="number"
+            />
+            <input id="priceSubmitButton" type="submit" value="구입" />
+          </div>
+        </form>
+        <div id="resultContainer" class="hidden">
+          <span
+            id="resultHeader"
+            style="font-size: 15px; width: 382px; margin-bottom: 8px"
+            >총 7개를 구매하였습니다.</span
+          >
+          <ul id="purchasedLottosContainer">
+            <li>🎟️ <span>1, 2, 3, 4, 5, 7</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 6</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 6</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 7</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 6</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 6</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 7</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 6</span></li>
+            <li>🎟️ <span>1, 2, 3, 4, 5, 6</span></li>
+          </ul>
+        </div>
+
+        <form id="winningInputContainer" class="hidden">
+          <span> 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요. </span>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin: 12px 0px 8px 0px;
+            "
+          >
+            <span>당첨 번호</span>
+            <span>보너스 번호</span>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <div style="display: flex; gap: 8px">
+              <input class="winningInput" type="number" max="45" min="1" />
+              <input class="winningInput" type="number" max="45" min="1" />
+              <input class="winningInput" type="number" max="45" min="1" />
+              <input class="winningInput" type="number" max="45" min="1" />
+              <input class="winningInput" type="number" max="45" min="1" />
+              <input class="winningInput" type="number" max="45" min="1" />
+            </div>
+            <input class="winningInput" type="number" max="45" min="1" />
+          </div>
+          <input type="submit" id="winningSubmitButton" value="제출" />
+        </form>
+      </div>
     </div>
+    <footer>Copyright 2023. woowacourse</footer>
     <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
