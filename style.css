@@ -68,8 +68,8 @@ body {
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
   padding: 16px;
-  /* width: 414px;
-  height: 727px; */
+  /* width: 29%;
+  height: 70%; */
 }
 
 .game-title {
@@ -221,4 +221,63 @@ body {
   font-size: 14;
   font-weight: bold;
   color: var(--color-primary);
+}
+
+/* 모달 창 */
+#modal-statistics {
+  width: 350px;
+  height: 500px;
+}
+
+#close-button {
+  display: block;
+  text-align: end;
+  font-size: 20px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+#statistics-title {
+  text-align: center;
+  margin: 32px 0px;
+}
+
+#statistics-table {
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid var(--color-greyscale-3);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#statistics-table tr {
+  border-bottom: 1px solid var(--color-greyscale-3);
+  margin-top: 5px;
+}
+
+#statistics-table th,
+td {
+  padding: 8px 0px;
+}
+
+#rate-of-return {
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  margin: 32px 0px;
+}
+
+#restart-button {
+  display: block;
+  margin: 0 auto;
+  width: 318px;
+  height: 36px;
+  color: var(--color-greyscale-1);
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
 }

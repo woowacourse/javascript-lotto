@@ -25,66 +25,69 @@
               <input type="submit" value="구입" class="button-purchase" />
             </form>
           </div>
-          <div id="div-lottos">
-            <div>
-              <span class="message-purchaseAmount">총 7개를 구매하였습니다.</span>
+          <div id="after-purchase">
+            <div id="div-lottos">
+              <div>
+                <span class="message-purchaseAmount">총 7개를 구매하였습니다.</span>
+              </div>
+              <div class="lottos"></div>
             </div>
-            <div class="lottos"></div>
-          </div>
-          <div class="winningLotto">
-            <span class="message-winningLotto"
-              >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
-            >
-            <div class="div-inputs-winningLotto">
-              <div class="winningNumber">
-                <label for="winningNumber">당첨 번호</label>
-                <div class="input-winningLottos">
-                  <input
-                    class="input-winningLotto"
-                    type="text"
-                    name="winningNumber"
-                    maxlength="2"
-                  /><input
-                    class="input-winningLotto"
-                    type="text"
-                    name="winningNumber"
-                    maxlength="2"
-                  /><input
-                    class="input-winningLotto"
-                    type="text"
-                    name="winningNumber"
-                    maxlength="2"
-                  /><input
-                    class="input-winningLotto"
-                    type="text"
-                    name="winningNumber"
-                    maxlength="2"
-                  /><input
-                    class="input-winningLotto"
-                    type="text"
-                    name="winningNumber"
-                    maxlength="2"
-                  /><input
-                    class="input-winningLotto"
-                    type="text"
-                    name="winningNumber"
-                    maxlength="2"
-                  />
+            <div class="winningLotto">
+              <span class="message-winningLotto"
+                >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
+              >
+              <div class="div-inputs-winningLotto">
+                <div class="winningNumber">
+                  <label for="winningNumber">당첨 번호</label>
+                  <div class="input-winningLottos">
+                    <input
+                      class="input-winningLotto"
+                      type="text"
+                      name="winningNumber"
+                      maxlength="2"
+                    /><input
+                      class="input-winningLotto"
+                      type="text"
+                      name="winningNumber"
+                      maxlength="2"
+                    /><input
+                      class="input-winningLotto"
+                      type="text"
+                      name="winningNumber"
+                      maxlength="2"
+                    /><input
+                      class="input-winningLotto"
+                      type="text"
+                      name="winningNumber"
+                      maxlength="2"
+                    /><input
+                      class="input-winningLotto"
+                      type="text"
+                      name="winningNumber"
+                      maxlength="2"
+                    /><input
+                      class="input-winningLotto"
+                      type="text"
+                      name="winningNumber"
+                      maxlength="2"
+                    />
+                  </div>
+                </div>
+                <div class="bonusNumber">
+                  <label for="bonusNumber">보너스 번호</label>
+                  <input class="input-bonusNumber" type="text" name="bonusNumber" maxlength="2" />
                 </div>
               </div>
-              <div class="bonusNumber">
-                <label for="bonusNumber">보너스 번호</label>
-                <input class="input-bonusNumber" type="text" name="bonusNumber" maxlength="2" />
-              </div>
             </div>
+            <button id="button-result">결과 학인하기</button>
           </div>
-          <button id="button-result">결과 학인하기</button>
         </div>
       </main>
 
       <dialog id="modal-statistics">
-        <h3 id="result-title">🏆 당첨 통계 🏆</h3>
-        <table>
+        <span id="close-button">𝗫</span>
+        <h3 id="statistics-title">🏆 당첨 통계 🏆</h3>
+        <table id="statistics-table">
           <thead>
             <th>일치 갯수</th>
             <th>당첨금</th>
@@ -119,7 +122,7 @@
           </tbody>
         </table>
         <p id="rate-of-return">당신의 총 수익률은 %입니다.</p>
-        <button id="restart-button">다시 시작하기</button>
+        <button value="cancel" id="restart-button">다시 시작하기</button>
       </dialog>
 
       <footer class="footer"><span class="copyright">Copyright 2023. woowacourse</span></footer>

@@ -15,6 +15,7 @@ const $winningNumberInputs = document.querySelectorAll(".input-winningLotto");
 const $bonusNumberInput = document.querySelector(".input-bonusNumber");
 const $resultButton = document.getElementById("button-result");
 const $statisticsModal = document.getElementById("modal-statistics");
+const $closeButton = document.getElementById("close-button");
 const $restartButton = document.getElementById("restart-button");
 
 const $afterPurchaseDiv = document.getElementById("after-purchase");
@@ -42,3 +43,10 @@ $restartButton.addEventListener("click", (e) => {
   $afterPurchaseDiv.style.visibility = "hidden";
   $statisticsModal.close();
 });
+
+$closeButton.addEventListener("click", () => $statisticsModal.close());
+
+// 게임(.game) 높이 고정
+// restart를 눌렀을 때 lottoGame에서 저장되어있는 변수를 초기화해주는 메서드를 추가해야할까?
+// 모달 창 css 추가
+// view 메서드를 파라미터로 dom을 넘겨서 렌더링하는것으로 수정
