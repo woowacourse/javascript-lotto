@@ -1,6 +1,7 @@
 const LottoView = require("../view/LottoView");
 const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
+const { DECIMAL } = require("../constant/Constant");
 const {
   ID,
   NAME,
@@ -8,7 +9,6 @@ const {
   ACTION,
   ATTRIBUTE,
 } = require("../constant/ElementConstant");
-const { DECIMAL } = require("../constant/Constant");
 
 const ViewController = {
   /** @type {LottoGame} */
@@ -99,7 +99,6 @@ const ViewController = {
 
     return bonusNumber;
   },
-
 };
 
 module.exports = ViewController;

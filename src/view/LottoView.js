@@ -1,5 +1,6 @@
 const { MESSAGES } = require("../constant/Constant");
 const { ID, ELEMENT } = require("../constant/ElementConstant");
+const { CREATE } = require("../util/DOM");
 
 const LottoView = {
   printLottoCount(lottoCount) {
@@ -10,7 +11,7 @@ const LottoView = {
   printLottos(lottos) {
     ID.BUY_LOTTOS.innerHTML = "";
     lottos.forEach((lotto) => {
-      const lottoDiv = document.createElement(ELEMENT.P);
+      const lottoDiv = CREATE(ELEMENT.P);
       lottoDiv.innerText = `🎟️ ${lotto.numbers.join(", ")}`;
 
       ID.BUY_LOTTOS.appendChild(lottoDiv);
