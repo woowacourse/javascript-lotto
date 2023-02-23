@@ -15,6 +15,7 @@ const $purchasedLottosContainer = document.getElementById(
 );
 const $winningInputForm = document.getElementById('winningInputForm');
 const $winningInputFlexBox = document.getElementById('winningInputContainer');
+const $bonusInputFlexBox = document.getElementById('bonusInputContainer');
 const $statisticsContainer = document.getElementById('statisticsContainer');
 const $resultModalContainer = document.getElementById('resultModalContainer');
 const $profitRateViewer = document.getElementById('profitRate');
@@ -30,10 +31,6 @@ const view = {
   },
 
   renderWinningNumbersInput() {
-    const bonusNumberInput = this.createBonusNumberInput();
-    $winningInputForm.classList = '';
-    $winningInputFlexBox.nextSibling.remove();
-
     $winningInputFlexBox.innerHTML = `
       <input
         class="winningInput"
@@ -44,7 +41,16 @@ const view = {
       />
     `.repeat(LOTTO_NUMBER_COUNT);
 
-    $winningInputFlexBox.after(bonusNumberInput);
+    $bonusInputFlexBox.innerHTML = `
+      <input
+        class="winningInput"
+        type="number"
+        max="45"
+        min="1"
+        required
+      />`;
+
+    $winningInputForm.classList = '';
   },
 
   renderStatistics(rankCounts, profitRate) {
@@ -83,17 +89,6 @@ const view = {
     $priceInput.value = '';
 
     this.closeModal();
-  },
-
-  createBonusNumberInput() {
-    const bonusNumberInput = document.createElement('input');
-    bonusNumberInput.required = true;
-    bonusNumberInput.classList = 'winningInput';
-    bonusNumberInput.max = '45';
-    bonusNumberInput.min = '1';
-    bonusNumberInput.type = 'number';
-
-    return bonusNumberInput;
   },
 };
 
