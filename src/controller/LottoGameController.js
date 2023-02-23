@@ -19,14 +19,12 @@ export default class LottoGameController {
 
   handleWinningNumbersInput = (winningNumbers, bonusNumber) => {
     try {
-      if (this.#winningLotto === undefined) {
-        this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+      this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        this.#lottos.calculateAllRanks(
-          this.#winningLotto.getWinningNumbers(),
-          this.#winningLotto.getBonusNumber()
-        );
-      }
+      this.#lottos.createRanks(
+        this.#winningLotto.getWinningNumbers(),
+        this.#winningLotto.getBonusNumber()
+      );
 
       this.#showResult();
     } catch (error) {

@@ -22,7 +22,6 @@ export default class Lottos {
     this.#lottos = new Array(lottoCount)
       .fill()
       .map(() => new Lotto(randomNumberGenerator.generateLottoNumbers()));
-    this.#ranks = new Array(profitByRank.length).fill(0);
   }
 
   getLottos() {
@@ -40,7 +39,9 @@ export default class Lottos {
     return ((profit / purchasedPrice) * 100).toFixed(1);
   }
 
-  calculateAllRanks(winningNumbers, bonusNumber) {
+  createRanks(winningNumbers, bonusNumber) {
+    this.#ranks = new Array(profitByRank.length).fill(0);
+
     this.#lottos.forEach((lotto) => {
       lotto.calculateRank(winningNumbers, bonusNumber);
 
