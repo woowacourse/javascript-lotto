@@ -37,11 +37,11 @@ export default class Lottos {
     this.#lottos.forEach((lotto) => {
       lotto.calculateRank(winningNumbers, bonusNumber);
 
-      this.#calculateRank(lotto.getRank());
+      this.#setRanks(lotto.getRank());
     });
   }
 
-  #calculateRank(lottoRank) {
+  #setRanks(lottoRank) {
     if (lottoRank === undefined) return;
 
     const rankIndex = lottoRank - 1;
