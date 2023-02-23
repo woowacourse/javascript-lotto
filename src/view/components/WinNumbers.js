@@ -1,6 +1,7 @@
 import Component from '../../Component.js';
 import Validator from '../../validator/step2/index.js';
 import { getFields } from '../../utils/domHelper.js';
+import { LOTTO } from '../../constants/values.js';
 
 export default class WinNumbers extends Component {
   setEvent() {
@@ -15,7 +16,7 @@ export default class WinNumbers extends Component {
           <div class='lotto-store__win-numbers-input-box'>
             <label class='lotto-store__win-numbers-label'>당첨 번호</label>
             <ul class='lotto-store__win-numbers-list'>
-              ${this.getWinNumbersInputTemplate(6)}
+              ${this.getWinNumbersInputTemplate()}
             </ul>
           </div>
           <div class='lotto-store__bonus-number-input-box'>
@@ -28,8 +29,8 @@ export default class WinNumbers extends Component {
     `;
   }
 
-  getWinNumbersInputTemplate(number = 1) {
-    return Array(number)
+  getWinNumbersInputTemplate() {
+    return Array(LOTTO.LOTTO_COUNT)
       .fill()
       .map(
         (_, i) => `
