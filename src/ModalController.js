@@ -18,6 +18,7 @@ class ModalController {
 
   onCloseModal(event) {
     if (this.#isCloseEventId(event.target.id)) {
+      this.modal.innerHTML = '';
       this.background.classList.add('hidden');
     }
   }

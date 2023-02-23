@@ -6,7 +6,10 @@ const LottoResultModalView = {
     const modalElement = $('#modal');
 
     modalElement.append(LottoResultModalView.resultTableContainer(ranking));
-    modalElement.insertAdjacentHTML('afterbegin', LottoResultModalView.resultTitle());
+    modalElement.insertAdjacentHTML(
+      'afterbegin',
+      LottoResultModalView.closeButton() + LottoResultModalView.resultTitle(),
+    );
     modalElement.insertAdjacentHTML(
       'beforeend',
       LottoResultModalView.profitRate(profitRate) + LottoResultModalView.restartButton(),
@@ -63,6 +66,10 @@ const LottoResultModalView = {
 
   restartButton() {
     return '<button type="button" class="button caption" id="restart-button">다시 시작하기</button>';
+  },
+
+  closeButton() {
+    return '<button type="button" id="modal-close-button" class="subtitle">X</button>';
   },
 };
 

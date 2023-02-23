@@ -57,8 +57,8 @@ class LottoWebGame {
       const ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
       const profitRate = calculateProfitRate(ranking, this.#lottos.length);
 
-      LottoResultModalView.render(ranking, profitRate);
       this.#modal.showModal();
+      LottoResultModalView.render(ranking, profitRate);
     } catch (error) {
       alert(error.message);
     }
