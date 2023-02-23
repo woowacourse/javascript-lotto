@@ -3,7 +3,6 @@ import LottoGame from '../domain/LottoGame.js';
 import LottoGameView from '../view/LottoGameView.js';
 import LottoResultView from '../view/LottoResultView.js';
 import Validation from '../utils/Validation.js';
-import ViewUtils from '../utils/ViewUtils.js';
 
 class LottoGameController {
   #lottoGame = new LottoGame();
@@ -26,9 +25,7 @@ class LottoGameController {
       const PURCHASE_COUNT = Number(purchaseAmount) / StaticValue.PURCHASE_AMOUNT_UNIT;
       this.#handleUserLottos(PURCHASE_COUNT);
     } catch ({ message }) {
-      ViewUtils.resetInput(this.#gameView.purchaseInput);
-      ViewUtils.focusElement(this.#gameView.purchaseInput);
-      ViewUtils.showError(this.#gameView.purchaseInput, message);
+      this.#gameView.renderPurchaseError(message);
       this.#gameView.addPurchaseInputEvent();
     }
   }
@@ -46,9 +43,7 @@ class LottoGameController {
       Validation.verifyLottoNumbers(winningNumbers);
       this.#handleBonusNumber(winningNumbers, bonusNumber);
     } catch ({ message }) {
-      ViewUtils.resetForm(this.#gameView.gameNumbersForm);
-      ViewUtils.focusElement(this.#gameView.winningNumbersInputs[0]);
-      ViewUtils.showError(this.#gameView.winningNumbersInputs[0], message);
+      this.#gameView.renderWinningNumbersError(message);
       this.#gameView.addWinningNumbersInputEvent();
     }
   }
@@ -59,9 +54,7 @@ class LottoGameController {
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#handleGameResult();
     } catch ({ message }) {
-      ViewUtils.resetInput(this.#gameView.bonusNumberInput);
-      ViewUtils.focusElement(this.#gameView.bonusNumberInput);
-      ViewUtils.showError(this.#gameView.bonusNumberInput, message);
+      this.#gameView.renderBonusNumberError(message);
       this.#gameView.addBonusNumberInputEvent();
     }
   }

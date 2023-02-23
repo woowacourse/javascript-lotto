@@ -80,6 +80,24 @@ class LottoGameView {
     }, { once: true });
   }
 
+  renderPurchaseError(message) {
+    ViewUtils.resetInput(this.purchaseInput);
+    ViewUtils.focusElement(this.purchaseInput);
+    ViewUtils.showError(this.purchaseInput, message);
+  }
+
+  renderWinningNumbersError(message) {
+    ViewUtils.resetForm(this.gameNumbersForm);
+    ViewUtils.focusElement(this.winningNumbersInputs[0]);
+    ViewUtils.showError(this.winningNumbersInputs[0], message);
+  }
+
+  renderBonusNumberError(message) {
+    ViewUtils.resetInput(this.bonusNumberInput);
+    ViewUtils.focusElement(this.bonusNumberInput);
+    ViewUtils.showError(this.bonusNumberInput, message);
+  }
+
   reset() {
     ViewUtils.resetForm(this.purchaseForm);
     ViewUtils.resetForm(this.gameNumbersForm);
