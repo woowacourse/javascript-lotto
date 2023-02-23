@@ -1,11 +1,11 @@
-const Lottos = require('../domain/model/Lottos');
-const WinningLotto = require('../domain/model/WinningLotto');
-const exception = require('../utils/exception');
-const inputView = require('../view/inputView');
-const outputView = require('../view/outputView');
-const { PRICE_UNIT } = require('../constants/constants');
+import Lottos from '../domain/model/Lottos';
+import WinningLotto from '../domain/model/WinningLotto';
+import exception from '../utils/exception';
+import inputView from '../view/inputView';
+import outputView from '../view/outputView';
+import { PRICE_UNIT } from '../constants/constants';
 
-class LottoGameController {
+export default class LottoGameController {
   #lottos;
 
   #winningLotto;
@@ -72,5 +72,3 @@ class LottoGameController {
     return Math.floor(price / PRICE_UNIT);
   }
 }
-
-module.exports = LottoGameController;

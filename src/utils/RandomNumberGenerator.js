@@ -1,7 +1,4 @@
-const {
-  lottoNumberRange,
-  LOTTO_NUMBER_COUNT,
-} = require('../constants/constants');
+import { lottoNumberRange, LOTTO_NUMBER_COUNT } from '../constants/constants';
 
 const randomNumberGenerator = {
   generateMinToMaxNumbers() {
@@ -23,4 +20,4 @@ const randomNumberGenerator = {
   },
 };
 
-module.exports = { randomNumberGenerator };
+export default randomNumberGenerator;

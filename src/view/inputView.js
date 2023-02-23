@@ -1,4 +1,4 @@
-const priceInputForm = document.getElementById('priceInputContainer');
+const priceInputForm = document.getElementById('priceInputForm');
 const priceInput = document.getElementById('priceInput');
 
 const winningInputForm = document.getElementById('winningInputForm');
@@ -49,4 +49,4 @@ const inputView = {
   },
 };
 
-module.exports = inputView;
+export default inputView;

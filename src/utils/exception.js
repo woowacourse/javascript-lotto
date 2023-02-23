@@ -1,5 +1,5 @@
-const { errorMessage } = require('../constants/constants');
-const validator = require('../domain/validation/validator');
+import { errorMessage } from '../constants/constants';
+import validator from '../domain/validation/validator';
 
 const exception = {
   checkPurchasePrice(input) {
@@ -24,4 +24,4 @@ const exception = {
   },
 };
 
-module.exports = exception;
+export default exception;

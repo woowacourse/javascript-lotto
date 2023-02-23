@@ -1,11 +1,11 @@
 /* eslint-disable no-restricted-globals */
-const {
+import {
   EMPTY_STRING,
   PRICE_UNIT,
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
   regex,
-} = require('../../constants/constants');
+} from '../../constants/constants';
 
 const validator = {
   purchasePrice(input) {
@@ -71,4 +71,4 @@ const validator = {
   },
 };
 
-module.exports = validator;
+export default validator;

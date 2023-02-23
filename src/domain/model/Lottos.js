@@ -1,8 +1,8 @@
-const { profitByRank, PRICE_UNIT } = require('../../constants/constants');
-const { randomNumberGenerator } = require('../../utils/randomNumberGenerator');
-const Lotto = require('./Lotto');
+import { profitByRank, PRICE_UNIT } from '../../constants/constants';
+import randomNumberGenerator from '../../utils/randomNumberGenerator';
+import Lotto from './Lotto';
 
-class Lottos {
+export default class Lottos {
   #lottos;
 
   #ranks;
@@ -62,4 +62,3 @@ class Lottos {
     }, 0);
   }
 }
-module.exports = Lottos;

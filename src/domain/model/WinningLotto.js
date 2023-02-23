@@ -1,8 +1,8 @@
-const Lotto = require('./Lotto');
-const validator = require('../validation/validator');
-const { errorMessage } = require('../../constants/constants');
+import Lotto from './Lotto';
+import validator from '../validation/validator';
+import { errorMessage } from '../../constants/constants';
 
-class WinningLotto {
+export default class WinningLotto {
   #winningLotto;
 
   #bonusNumber;
@@ -26,5 +26,3 @@ class WinningLotto {
     return this.#bonusNumber;
   }
 }
-
-module.exports = WinningLotto;

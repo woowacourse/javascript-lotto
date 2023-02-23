@@ -1,6 +1,6 @@
-const { correctCountPerRank, ranks } = require('../../constants/constants');
+import { correctCountPerRank, ranks } from '../../constants/constants';
 
-class Lotto {
+export default class Lotto {
   #numbers;
 
   #rank;
@@ -48,5 +48,3 @@ class Lotto {
     return winningNumbers.includes(lottoNumber);
   }
 }
-
-module.exports = Lotto;

@@ -1,11 +1,11 @@
-const {
+import {
   message,
   LOTTO_NUMBER_COUNT,
   profitByRank,
   correctCountPerRankForRender,
   regex,
   indexToRankKeyConverter,
-} = require('../constants/constants');
+} from '../constants/constants';
 
 const priceInput = document.getElementById('priceInput');
 const purchaseResultContainer = document.getElementById('resultContainer');
@@ -99,4 +99,4 @@ const outputView = {
   },
 };
 
-module.exports = outputView;
+export default outputView;

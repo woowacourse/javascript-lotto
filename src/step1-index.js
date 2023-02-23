@@ -1,4 +1,4 @@
-const LottoGameController = require('./controller/LottoGameController');
+import LottoGameController from './controller/LottoGameController';
 
 /**
  * step 1의 시작점이 되는 파일입니다.
