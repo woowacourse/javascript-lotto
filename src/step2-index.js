@@ -91,3 +91,9 @@ const renderLottoContent = () => {
     .join('');
   lottoContent.classList.remove('hidden');
 };
+
+const renderWinningNumebersInput = () => {
+  winningNumbersGroup.innerHTML = [...Array(MAGIC_NUMBER.winningNumberCount)]
+    .map(() => '<input class="number-input" />')
+    .join('');
+};
