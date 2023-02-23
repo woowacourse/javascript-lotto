@@ -10,6 +10,7 @@ input::-webkit-inner-spin-button {
 /* Firefox  */
 input[type='number'] {
   -moz-appearance: textfield;
+	appearance: textfield;
 }
 
 body {
@@ -204,29 +205,35 @@ dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 
-#result {
+#dialog-container {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	align-items: center;
 }
 
 #exit-button {
 	border: none;
 	background: transparent;
-	margin: 0 0 0 auto;
-	padding: 0 0 0 0;
+	margin: 0 0 30px auto;
 	font-size: 20px;
 	cursor: pointer;
+}
+
+#result {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #result-title {
 	font-size: 20px;
 	font-weight: 600;
 	line-height: 24px;
-	padding: 0 0 20px 0;
+	margin: 0 0 30px 0;
 }
 
 #result-table {
@@ -234,6 +241,7 @@ dialog::backdrop {
 	width: 300px;
 	height: 240px;
 	border-collapse: collapse;
+	margin: 0 0 30px 0;
 }
 
 #result-table th {
@@ -245,6 +253,11 @@ dialog::backdrop {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+#profit-text {
+	font-weight: 600;
+	margin: 0 0 30px 0;
+}
+
 #retry-button {
 	width: 100%;
 	height: 36px;
@@ -253,15 +266,10 @@ dialog::backdrop {
 	border: 1px solid;
 	border-radius: 4px;
 	cursor: pointer;
-	margin: 0 0 20px 0;
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 16px;
 	letter-spacing: 1.25px;
-}
-
-#profit-text {
-	font-weight: 600;
 }
 
 #footer {

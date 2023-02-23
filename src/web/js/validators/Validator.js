@@ -1,6 +1,5 @@
 import REGEXP from '../constants/regexp.js';
 import ERROR from '../constants/error.js';
-import COMMAND from '../constants/command.js';
 
 const Validator = (function () {
   return {
@@ -41,12 +40,6 @@ const Validator = (function () {
         throw new Error(
           `${ERROR.HEAD} 당첨 번호와 중복된 숫자는 입력할 수 없습니다.`
         );
-      }
-    },
-
-    isValidRetryCommand(retryCommand) {
-      if (retryCommand !== COMMAND.RETRY && retryCommand !== COMMAND.STOP) {
-        throw new Error(`${ERROR.HEAD} y 혹은 n을 입력해주세요.`);
       }
     },
   };

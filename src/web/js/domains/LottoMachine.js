@@ -4,8 +4,10 @@ import LOTTO from '../constants/lotto.js';
 import SORT from '../constants/sort.js';
 
 const LottoMachine = (function () {
+  const randomNumbers = Array.from({ length: 45 }, (_, index) => index + 1);
+
   const generateLottoNumbers = () => {
-    return Array.from({ length: 45 }, (_, index) => index + 1)
+    return randomNumbers
       .sort(SORT.disorder)
       .slice(0, LOTTO.NUMBERS_LENGTH)
       .sort(SORT.ascendingOrder);

@@ -1,13 +1,14 @@
 import LottoMachine from './LottoMachine.js';
 import NumberHandler from '../utils/NumberHandler.js';
 import LOTTO from '../constants/lotto.js';
-import { RANK, RANKING_TABLE } from '../constants/rank.js';
+import { RANK, RANKING_TABLE } from '../constants/ranks.js';
 
 const LottoGame = (function () {
   const props = {
     lottos: [],
     amountOfRanks: Array.from({ length: 6 }, () => 0),
     winningNumbers: { luckyNumbers: [], bonusNumber: 0 },
+    profit: 0,
   };
 
   const getRank = (numbers, { luckyNumbers, bonusNumber }) => {
@@ -24,6 +25,34 @@ const LottoGame = (function () {
 
   const hasBonusNumber = (numbers, bonusNumber) => {
     return numbers.includes(bonusNumber);
+  };
+
+  const drawLotto = () => {
+    if (!props.amountOfRanks.every(rank => rank === 0)) {
+      return;
+    }
+
+    props.lottos.forEach(lotto => {
+      props.amountOfRanks[
+        getRank(lotto.getNumbers(), props.winningNumbers)
+      ] += 1;
+    });
+
+    return [...props.amountOfRanks];
+  };
+
+  const calculateProfit = () => {
+    if (props.profit !== 0) {
+      return;
+    }
+
+    const totalPrizeMoney = calculateTotalPrizeMoney();
+    const totalBuyMoney = props.lottos.length * LOTTO.PRICE;
+    props.profit = NumberHandler.roundOff(
+      (totalPrizeMoney / totalBuyMoney) * 100
+    );
+
+    return props.profit;
   };
 
   const calculateTotalPrizeMoney = () => {
@@ -45,21 +74,11 @@ const LottoGame = (function () {
       props.winningNumbers = { luckyNumbers, bonusNumber };
     },
 
-    drawLotto() {
-      props.lottos.forEach(lotto => {
-        props.amountOfRanks[
-          getRank(lotto.getNumbers(), props.winningNumbers)
-        ] += 1;
-      });
-
-      return [...props.amountOfRanks];
-    },
-
-    calculateProfit() {
-      const totalPrizeMoney = calculateTotalPrizeMoney();
-      const totalBuyMoney = props.lottos.length * LOTTO.PRICE;
-
-      return NumberHandler.roundOff((totalPrizeMoney / totalBuyMoney) * 100);
+    getResult() {
+      return {
+        amountOfRanks: drawLotto(),
+        profit: calculateProfit(),
+      };
     },
   };
 })();
