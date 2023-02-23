@@ -53,12 +53,10 @@ class LottoWebController {
 
   printWinningResult() {
     this.#game.setLottoRank();
-    console.log(this.#game.getLottosWinCount());
     return this.#game.getLottosWinCount();
   }
 
   printEarningRate() {
-    console.log(this.#game.calculateEarningRate());
     return this.#game.calculateEarningRate();
   }
 
