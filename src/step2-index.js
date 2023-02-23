@@ -1,10 +1,10 @@
 import './public/css/reset.css';
 import './public/css/index.css';
 import LottoGame from './domain/LottoGame';
-import ResultModal from './view/ResultModal';
-import Header from './view/Header';
-import Footer from './view/Footer';
-import Section from './view/Section';
+import ResultModal from './components/ResultModal';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Section from './components/Section';
 
 const header = document.querySelector('header');
 const section = document.querySelector('section');
