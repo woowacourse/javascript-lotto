@@ -24,7 +24,7 @@ export const MESSAGE = {
 6개 일치 (${PRIZE_MONEY.first.toLocaleString()}원) - ${placesOfLottoTickets[PLACE.first]}개`;
     },
     rateOfReturnMessage(rateOfReturn) {
-      return `총 수익률은 ${rateOfReturn}% 입니다.\n`;
+      return `당신의 총 수익률은 ${rateOfReturn}% 입니다.\n`;
     },
   },
 
