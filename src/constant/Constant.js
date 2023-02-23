@@ -1,7 +1,8 @@
 const MESSAGES = {
   printLottoCount: "개를 구매했습니다.",
+  total: "총 ",
   pieces: "개",
-  printRevenue: "총 수익률은 ",
+  printRevenue: "당신의 총 수익률은 ",
   printFinal: "%입니다.",
 };
 

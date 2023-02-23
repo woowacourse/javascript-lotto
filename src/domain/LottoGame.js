@@ -1,7 +1,7 @@
 const Lotto = require("./Lotto");
 const WinLotto = require("../domain/WinLotto");
 const Random = require("../util/Random");
-const { PRIZE, RANK, LOTTO } = require("../constant/Constant");
+const { PRIZE, RANK, LOTTO, DECIMAL } = require("../constant/Constant");
 
 const RANK_RESULT = {
   [RANK.FIRST]: 0,
@@ -28,7 +28,7 @@ class LottoGame {
   }
 
   set lottos(money) {
-    const lottoCount = parseInt(money / 1000, 10);
+    const lottoCount = parseInt(money / 1000, DECIMAL);
     Array.from({ length: lottoCount }, () => {
       const lottoOne = new Lotto(this.#LottoNumberGenerator());
       this.#lottos.push(lottoOne);
