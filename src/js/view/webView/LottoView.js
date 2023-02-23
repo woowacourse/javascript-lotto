@@ -23,6 +23,8 @@ const restartButton = $('.restart-button');
 const matchCounts = $$('.matchCount');
 const profitRate = $('.profitRate');
 
+const inputNumber = $$('.inputNumber');
+
 purchaseButton.onclick = async (e) => {
   e.preventDefault();
   lottos.innerHTML = ``;
@@ -87,4 +89,8 @@ restartButton.onclick = async (e) => {
   modal.style.display = 'none';
   issueLotto.style.display = 'none';
   inputNumbersLayout.style.display = 'none';
+  moneyInput.value = '';
+  inputNumber.forEach((v, i) => {
+    inputNumber[i].value = '';
+  });
 };
