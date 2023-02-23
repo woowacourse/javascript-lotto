@@ -30,6 +30,10 @@ class LottoGame {
     return [...this.#amountOfRanks];
   }
 
+  resetAmountOfRanks() {
+    this.#amountOfRanks = Array.from({ length: RANK.SIZE }).fill(0);
+  }
+
   calculateTotalPrizeMoney() {
     return LOTTO_GAME.PRIZE_MONEY.reduce(
       (acc, cur, idx) => acc + cur * this.#amountOfRanks[idx],
