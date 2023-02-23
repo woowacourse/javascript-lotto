@@ -27,6 +27,7 @@ button {
   line-height: 16px;
   letter-spacing: 1.25px;
   color: white;
+  cursor: pointer;
 }
 
 input {
@@ -175,15 +176,13 @@ input {
   color: var(--lotto-primary);
 }
 
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
+dialog:not([open]) {
   display: none;
+}
+
+.modal {
+  display: flex;
   flex-direction: column;
-  margin: 0 auto;
   text-align: center;
   border-radius: 4px;
   background-color: white;
@@ -192,7 +191,7 @@ input {
   z-index: 1;
 }
 
-.modalBackground {
+/* .modalBackground {
   display: none;
   position: absolute;
   top: 0;
@@ -200,7 +199,7 @@ input {
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-}
+} */
 
 .exitModal {
   position: absolute;
@@ -209,6 +208,7 @@ input {
   line-height: 16px;
   right: 16px;
   top: 16px;
+  cursor: pointer;
 }
 
 .resultTitle {
