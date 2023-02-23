@@ -38,9 +38,10 @@ class LottoGameController {
   }
 
   handleResultCheck(numbers) {
+    const [bonusNumber] = numbers.slice(-1);
     const lottoStatistics = new LottoStatistics(
       numbers.slice(0, LOTTO_NUMBERS_COUNT),
-      numbers.slice(-1)
+      bonusNumber
     );
     const { lottos } = this.#lottoMachine;
     const allLottosRank = lottoStatistics.determineAllLottosRank(lottos);
