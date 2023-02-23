@@ -21,18 +21,18 @@
           <h2 class="lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
 
           <form id="buy-money-form" name="buy-money">
-            <p>구입할 금액을 입력해주세요.</p>
+            <label for="buy-money">구입할 금액을 입력해주세요.</label>
             <input type="number" id="buy-money" name="buy-money" placeholder="금액" min="1000"/>
             <button type="submit" class="lotto-caption" id="buy-button">구입</button>
           </form>
 
           <div class="lotto-detail">
-            <label>총 <span id="lottos-quantity">0</span>개를 구매하였습니다.</label>
-            <ul id="lotto-list-container"></ul>
+            총 <span id="lottos-quantity">0</span>개를 구매하였습니다.
+            <ul id="lotto-list-container" ></ul>
           </div>
 
           <form id="winning-numbers-form" name="winning-numbers">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <label for="lucky-number0">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
             <div class="winning-numbers">
               <div class="lucky-numbers">
                 <div><p>당첨 번호</p></div>

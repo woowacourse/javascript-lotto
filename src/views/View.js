@@ -71,7 +71,9 @@ class View {
     amountOfRanksContainer[RANK.SIZE - RANK.THIRD - 1].innerHTML = amountOfRanks[RANK.THIRD];
     amountOfRanksContainer[RANK.SIZE - RANK.SECOND - 1].innerHTML = amountOfRanks[RANK.SECOND];
     amountOfRanksContainer[RANK.SIZE - RANK.FIRST - 1].innerHTML = amountOfRanks[RANK.FIRST];
+
     profitContainer.innerHTML = profit;
+
     const modalBackground = document.querySelector('.modal-background');
     this.show(modalBackground);
     this.show(lottoModal);

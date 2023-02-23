@@ -175,6 +175,7 @@ ul {
   list-style: none;
   height: 200px;
   margin: 0;
+  overflow: auto;
 }
 
 #lotto-list-container li {

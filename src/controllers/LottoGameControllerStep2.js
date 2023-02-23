@@ -44,6 +44,7 @@ class LottoGameControllerStep2 {
     this.lottoGame = new LottoGame(buyMoney);
 
     const lottoNumbersList = this.lottoGame.getLottoNumbersList();
+
     this.view.printPurchasedLottos(lottoNumbersList);
   };
 
