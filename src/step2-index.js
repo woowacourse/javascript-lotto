@@ -60,7 +60,8 @@ const showResult = () => {
 };
 
 // main
-moneyBtn.addEventListener('click', () => {
+moneyBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   try {
     const money = HTMLInputView.readMoney();
     Alert.hide('money');
@@ -73,7 +74,8 @@ moneyBtn.addEventListener('click', () => {
   }
 });
 
-showResultBtn.addEventListener('click', () => {
+showResultBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   try {
     const { winningNumbers, bonusNumber } = HTMLInputView.readWinningNumbersAndBonusNumber();
     Alert.hide('winning-numbers');
@@ -84,18 +86,22 @@ showResultBtn.addEventListener('click', () => {
   }
 });
 
-closeModalBtn.addEventListener('click', () => {
+closeModalBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   ModalWindow.hide();
 });
 
-closeMoneyAlertBtn.addEventListener('click', () => {
+closeMoneyAlertBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   Alert.hide('money');
 });
 
-closeWinningLottoAlertBtn.addEventListener('click', () => {
+closeWinningLottoAlertBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   Alert.hide('winning-numbers');
 });
 
-restartBtn.addEventListener('click', () => {
+restartBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   window.location.reload();
 });
