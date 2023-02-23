@@ -23,7 +23,7 @@ class ResultModal {
     this.#paintRankEl(rank);
     this.#paintProfitRate(profitRate);
 
-    this.resultModal.setAttribute(Attr.OPEN, '');
+    $(QuerySelector.RESULT_MODAL).showModal();
   }
 
   activate() {
@@ -38,7 +38,7 @@ class ResultModal {
   }
 
   #close() {
-    this.resultModal.removeAttribute(Attr.OPEN);
+    this.resultModal.close();
   }
 
   #resetGame() {
