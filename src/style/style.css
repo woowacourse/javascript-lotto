@@ -191,6 +191,8 @@ lotto-list__lotto-list {
   width: 2.5rem;
   aspect-ratio: 1 / 1.1;
 
+  text-align: center;
+
   border: 1px solid var(--grey-scale-3);
   border-radius: 4px;
 
