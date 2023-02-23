@@ -69,15 +69,20 @@ class LottoResultModal {
     this.restartButton = document.getElementById('restart');
   }
 
-  closeButtonHandler() {
-    this.toggleModal();
+  resetResultTable() {
     resetElement(this.table);
     resetElement(this.resultWrapper);
+  }
+
+  closeButtonHandler() {
+    this.toggleModal();
+    this.resetResultTable();
   }
 
   addRestartButtonHandler(restartButtonHandler) {
     this.restartButton.addEventListener('click', (e) => {
       this.toggleModal();
+      this.resetResultTable();
       restartButtonHandler();
     });
   }
