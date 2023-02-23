@@ -1,7 +1,13 @@
 // model
 import LottoMachine from './domain/LottoMachine';
+import WinningNumbers from './domain/WinningNumbers';
+import BonusNumber from './domain/BonusNumber';
+import CorrectLotto from './domain/CorrectLotto';
+
 // component
 import LottoMoneyInput from './components/LottoMoneyInput';
+import LottoPurchaseList from './components/LottoPurchaseList';
+
 import '../css/reset.css';
 import '../css/spacing.css';
 import '../css/typograpy.css';
@@ -16,6 +22,7 @@ function App($target) {
   this.$root = $target;
 
   this.lottoMachine = new LottoMachine();
+  this.correctLotto = new CorrectLotto();
 
   this.state = {
     buyLottos: [],
@@ -47,6 +54,12 @@ function App($target) {
       $target: getDom('.lotto-money'),
       inputMoneyEvent: this.inputLottoMoneyEvent,
     });
+
+    new LottoPurchaseList({
+      $target: getDom('.lotto-tickets'),
+      lottos: this.state.buyLottos,
+    });
+
   };
 
   this.render = () => {
