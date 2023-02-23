@@ -1,65 +1,8 @@
 import RANK from '../constants/rank.js';
 
 class View {
-  buyButton;
-  showResultButton;
-  modalCloseButton;
-  restartButton;
-
-  buyMoneyInput;
-  luckyNumbersInput;
-  bonusNumberInput;
-
   constructor() {
-    this.registerButtons();
-    this.registerInputs();
     this.hideElementsforInitialScreen();
-  }
-
-  registerButtons() {
-    this.buyButton = document.querySelector('#buy-button');
-    this.showResultButton = document.querySelector('#show-result-button');
-    this.modalCloseButton = document.querySelector('#modal-close-button');
-    this.restartButton = document.querySelector('#restart-button');
-  }
-
-  registerInputs() {
-    this.buyMoneyInput = document.querySelector('#buy-money');
-    this.luckyNumbersInput = document.querySelectorAll('#lucky-numbers-input > input');
-    this.bonusNumberInput = document.querySelector('#bonus-number');
-  }
-
-  bindBuyButtonEventHandler(onClickBuyButton) {
-    this.buyButton.addEventListener('click', event => {
-      event.preventDefault();
-
-      const buyMoney = Number(this.buyMoneyInput.value);
-
-      onClickBuyButton(buyMoney);
-    });
-  }
-
-  bindShowResultButtonEventHandler(onClickShowResultButton) {
-    this.showResultButton.addEventListener('click', event => {
-      event.preventDefault();
-
-      const bonusNumber = Number(this.bonusNumberInput.value);
-      const luckyNumbers = [...this.luckyNumbersInput].map(number => Number(number.value));
-
-      onClickShowResultButton(bonusNumber, luckyNumbers);
-    });
-  }
-
-  bindModalCloseButtonEventHandler(onClickModalCloseButton) {
-    this.modalCloseButton.addEventListener('click', () => {
-      onClickModalCloseButton();
-    });
-  }
-
-  bindRestartButtonEventHandler(onClickRestartButton) {
-    this.restartButton.addEventListener('click', () => {
-      onClickRestartButton();
-    });
   }
 
   hideElementsforInitialScreen() {
@@ -68,6 +11,50 @@ class View {
 
     this.hide(lottoDetail);
     this.hide(winningNumbersForm);
+  }
+
+  bindBuyButtonEventHandler(onClickBuyButton) {
+    const buyButton = document.querySelector('#buy-button');
+    const buyMoneyInput = document.querySelector('#buy-money');
+
+    buyButton.addEventListener('click', event => {
+      event.preventDefault();
+
+      const buyMoney = Number(buyMoneyInput.value);
+
+      onClickBuyButton(buyMoney);
+    });
+  }
+
+  bindShowResultButtonEventHandler(onClickShowResultButton) {
+    const showResultButton = document.querySelector('#show-result-button');
+
+    showResultButton.addEventListener('click', event => {
+      event.preventDefault();
+
+      const bonusNumberInput = document.querySelector('#bonus-number');
+      const luckyNumbersInput = document.querySelectorAll('#lucky-numbers-input > input');
+      const bonusNumber = Number(bonusNumberInput.value);
+      const luckyNumbers = [...luckyNumbersInput].map(number => Number(number.value));
+
+      onClickShowResultButton(bonusNumber, luckyNumbers);
+    });
+  }
+
+  bindModalCloseButtonEventHandler(onClickModalCloseButton) {
+    const modalCloseButton = document.querySelector('#modal-close-button');
+
+    modalCloseButton.addEventListener('click', () => {
+      onClickModalCloseButton();
+    });
+  }
+
+  bindRestartButtonEventHandler(onClickRestartButton) {
+    const restartButton = document.querySelector('#restart-button');
+
+    restartButton.addEventListener('click', () => {
+      onClickRestartButton();
+    });
   }
 
   printPurchasedLottos(lottoNumbersList) {
@@ -93,11 +80,12 @@ class View {
   }
 
   printResult(amountOfRanks, profit) {
+    const showResultButton = document.querySelector('#show-result-button');
     const amountOfRanksContainer = document.querySelectorAll('.amount-of-ranks-container');
     const profitContainer = document.querySelector('#profit-container');
     const lottoModal = document.querySelector('#lotto-modal');
 
-    this.showResultButton.disabled = true;
+    showResultButton.disabled = true;
 
     amountOfRanksContainer[RANK.SIZE - RANK.FIFTH - 1].innerHTML = amountOfRanks[RANK.FIFTH];
     amountOfRanksContainer[RANK.SIZE - RANK.FOURTH - 1].innerHTML = amountOfRanks[RANK.FOURTH];
@@ -115,28 +103,36 @@ class View {
   hideModal() {
     const lottoModal = document.querySelector('#lotto-modal');
     const modalBackground = document.querySelector('.modal-background');
+    const buyButton = document.querySelector('#buy-button');
+    const showResultButton = document.querySelector('#show-result-button');
 
     this.hide(lottoModal);
     this.hide(modalBackground);
-    this.buyButton.disabled = false;
-    this.showResultButton.disabled = false;
+    buyButton.disabled = false;
+    showResultButton.disabled = false;
   }
 
   resetScreen() {
+    const buyButton = document.querySelector('#buy-button');
+    const showResultButton = document.querySelector('#show-result-button');
+
     this.hideModal();
     this.hideElementsforInitialScreen();
     this.resetInputs();
-    this.buyButton.disabled = false;
-    this.showResultButton.disabled = false;
+    buyButton.disabled = false;
+    showResultButton.disabled = false;
   }
 
   resetInputs() {
     const lottoListContainer = document.querySelector('#lotto-list-container');
+    const buyMoneyInput = document.querySelector('#buy-money');
+    const luckyNumbersInput = document.querySelectorAll('#lucky-numbers-input > input');
+    const bonusNumberInput = document.querySelector('#bonus-number');
 
     lottoListContainer.innerHTML = null;
-    this.buyMoneyInput.value = null;
-    this.luckyNumbersInput.forEach(luckyNumber => (luckyNumber.value = null));
-    this.bonusNumberInput.value = null;
+    buyMoneyInput.value = null;
+    luckyNumbersInput.forEach(luckyNumber => (luckyNumber.value = null));
+    bonusNumberInput.value = null;
   }
 
   show(HTMLelement) {
