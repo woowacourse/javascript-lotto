@@ -2,12 +2,13 @@
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
 
-- ## 페어 프로그래밍 [가람](https://github.com/guridaek) &  [해온](https://github.com/hae-on)
 - ## 실행 방법
-  ``` 
-  git clone -b step1 --single-branch https://github.com/guridaek/javascript-lotto-1.git
-  npm i
+  ``` ㅇ
+  // step1
   npm run start-step1
+
+  // step2
+  npm run start-step2
   ```
 - ## 실행 예시
 - 
