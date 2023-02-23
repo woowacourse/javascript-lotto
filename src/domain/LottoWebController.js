@@ -13,7 +13,7 @@ class LottoController {
 
   purchase(money) {
     LottoValidator.checkMoney(money);
-    this.#lottos = Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator()));
+    this.#lottos.unshift(...Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator())));
 
     return this.#lottos;
   }
