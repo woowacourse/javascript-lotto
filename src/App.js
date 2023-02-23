@@ -60,6 +60,11 @@ function App($target) {
       lottos: this.state.buyLottos,
     });
 
+    new LottoCorrectInput({
+      $target: getDom('.correct-lotto--input'),
+      lottos: this.state.buyLottos,
+      inputCorrectLottoEvent: this.inputCorrectLottoEvent,
+    });
   };
 
   this.render = () => {
@@ -76,6 +81,28 @@ function App($target) {
     this.lottoMachine.purchase(money);
 
     this.setState({ buyLottos: this.lottoMachine.lottos });
+  };
+
+  this.inputCorrectLottoEvent = (winningNumbers, bonusNumber) => {
+    this.correctLotto.setWinningNumbers(new WinningNumbers(winningNumbers));
+    this.correctLotto.setBonusNumber(new BonusNumber(bonusNumber));
+
+    this.setState({
+      winningNumbers: this.correctLotto.winningNumbers,
+      bonusNumber: this.correctLotto.bonusNumber,
+    });
+
+    this.getLottoStatisticsEvent();
+  };
+
+  this.getLottoStatisticsEvent = () => {
+    const { lottos, price } = this.lottoMachine;
+    const statics = new LottoStatistics(this.correctLotto);
+
+    const winningResult = statics.getAllLottosRank(lottos);
+    const profitRate = statics.getProfitRate(winningResult, price);
+
+    console.log(winningResult, profitRate);
   };
 
   // 실행
