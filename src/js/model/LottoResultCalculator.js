@@ -10,7 +10,7 @@ class LottoResultCalculator {
     const { LOTTO_PRICE } = values;
     const spentMoney = lottosLength * LOTTO_PRICE;
 
-    return ((lotteryWinningsSum - spentMoney) / spentMoney) * 100;
+    return (lotteryWinningsSum / spentMoney) * 100;
   }
 
   calculateTotalSum = ranks => ranks.reduce((acc, curr) => acc + prize[curr - 1], 0);
