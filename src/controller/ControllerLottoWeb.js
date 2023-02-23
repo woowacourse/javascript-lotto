@@ -12,22 +12,42 @@ class ControllerLottoWeb {
     }
 
     setButtonClick(){
-        document.getElementById("buy").addEventListener("click", this.playLotto)
+        document.getElementById("buy").addEventListener("click", this.purchaseButton)
 
-        document.getElementById("result_button").addEventListener("click", this.playResult)
+        document.getElementById("result_button").addEventListener("click", this.lookResultButton)
 
-        document.querySelector(".close").addEventListener("click", this.close)
+        document.querySelector(".close").addEventListener("click", this.closeButton)
 
-        document.querySelector(".restart").addEventListener("click", this.restart)
+        document.querySelector(".restart").addEventListener("click", this.restartButton)
     }
 
-    playLotto=()=>{
-        this.money = document.getElementById("money").value;
+    purchaseButton=()=>{
+        this.money = this.readMoney();
+        this.showPurchasedLottoNumber();
+        this.lottoMachine.makeLotto(this.money);
+        this.makeLottoList()
+        this.showAllLotto();
+    }
+
+    readMoney=()=>{
+        return document.getElementById("money").value;
+    }
+
+    showPurchasedLottoNumber=()=>{
         const lottoNumber = this.lottoMachine.countLotto(this.money)
         const buyText = document.getElementById("buyText")
+
         buyText.textContent = `총 ${lottoNumber}개를 구매했습니다.`
         buyText.style.visibility = "visible";
-        this.lottoMachine.makeLotto(this.money);
+    }
+
+
+    showAllLotto=()=>{
+        const purchase = document.getElementById("purchase")
+        purchase.style.visibility = "visible";
+    }
+
+    makeLottoList=()=>{
         const lottoList = document.getElementById('lottoList')
         this.lottoMachine.lottoNumber.forEach((list, index)=>{
             const li = document.createElement('li')
@@ -35,34 +55,60 @@ class ControllerLottoWeb {
             lottoList.append(li)
             this.listLotto[index] = list
         })
-        const purchase = document.getElementById("purchase")
-        purchase.style.visibility = "visible";
-
     }
 
-    playResult=()=>{
+    lookResultButton=()=>{
+        const winningNumber = this.getWinningNumber()
+        const bonusNumber = this.readBonusNumber();
+
+        const result = this.lottoMachine.getWinningStatus(winningNumber, bonusNumber);
+        this.printResultLotto(result);
+        this.printProfitResult(result);
+        this.showModal()
+    }
+
+    getWinningNumber=()=>{
         const winningNumber = []
-        const winningNumbers = document.querySelectorAll('#winning');
-        winningNumbers.forEach((number, index)=>{
+        const winningNumbersTag = this.readWinningNumbersTag();
+
+        winningNumbersTag.forEach((number, index)=>{
             winningNumber[index] = number.value
         })
-        const bonusNumber = document.getElementById("bonus").value
-        const result = this.lottoMachine.getWinningStatus(winningNumber, bonusNumber);
+
+        return winningNumber
+    }
+
+    readWinningNumbersTag=()=>{
+        return document.querySelectorAll('#winning');
+    }
+
+    readBonusNumber=()=>{
+        return document.getElementById("bonus").value
+    }
+
+    printResultLotto=(result)=>{
         const result_lotto = document.querySelectorAll('#result');
+
         result_lotto.forEach((lotto, index)=>{
             lotto.textContent= `${result[4-index]}개`
         })
-        const modal = document.querySelector(".modal");
-        modal.style.visibility = "visible";
+    }
+
+    printProfitResult=(result)=>{
         const profit=document.querySelector('.result_profit');
         profit.textContent = `당신의 총 수익률은 ${this.lottoMachine.getProfitRate(this.money, result)}%입니다.`
     }
 
-    restart=()=>{
+    showModal=()=>{
+        const modal = document.querySelector(".modal");
+        modal.style.visibility = "visible";
+    }
+
+    restartButton=()=>{
         window.location.reload()
     }
 
-    close=()=>{
+    closeButton=()=>{
         const modal = document.querySelector(".modal");
         modal.style.visibility = "hidden";
     }
