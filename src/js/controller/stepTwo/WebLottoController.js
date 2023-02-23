@@ -15,10 +15,10 @@ class WebLottoController {
   }
 
   addEvents() {
-    this.buyLotto();
-    this.calculateStatistics();
-    this.restartGame();
-    this.closeModal();
+    domList.buyBtn.addEventListener('click', this.buyLotto.bind(this));
+    domList.resultBtn.addEventListener('click', this.calculateStatistics.bind(this));
+    domList.retryBtn.addEventListener('click', this.restartGame.bind(this));
+    domList.closeModalBtn.addEventListener('click', this.closeModal.bind(this));
   }
 
   init() {
@@ -26,53 +26,41 @@ class WebLottoController {
   }
 
   buyLotto() {
-    domList.buyBtn.addEventListener('click', event => {
-      try {
-        event.stopImmediatePropagation();
-        ui.hideMoneyValidationText();
-        const moneyInput = domList.moneyInput.value;
-        inputValidator.validateMoneyInput(moneyInput);
-        this.#lottoMachine.buyLotto(+moneyInput);
-        ui.showRestUI(this.#lottoMachine.lottos);
-      } catch (error) {
-        ui.showMoneyValidationText(error);
-      }
-    });
+    try {
+      ui.hideMoneyValidationText();
+      const moneyInput = domList.moneyInput.value;
+      inputValidator.validateMoneyInput(moneyInput);
+      this.#lottoMachine.buyLotto(+moneyInput);
+      ui.showRestUI(this.#lottoMachine.lottos);
+    } catch (error) {
+      ui.showMoneyValidationText(error);
+    }
   }
 
   calculateStatistics() {
-    domList.resultBtn.addEventListener('click', event => {
-      const numberInputs = [...domList.targetNumberInputs];
-      const winningNumberInput = [...numberInputs].map(input => input.value);
-      winningNumberInput.pop();
-      const bonusNumberInput = numberInputs[numberInputs.length - 1].value;
+    const numberInputs = [...domList.targetNumberInputs];
+    const winningNumberInput = [...numberInputs].map(input => input.value);
+    winningNumberInput.pop();
+    const bonusNumberInput = numberInputs[numberInputs.length - 1].value;
 
-      try {
-        event.stopImmediatePropagation();
-        ui.hideTargetNumberValidationText();
-        inputValidator.validateWinningNumberInput(winningNumberInput.join(','));
-        inputValidator.validateBonusNumberInput(bonusNumberInput);
-        ui.showFinalResult(this.#lottoMachine.calculateStatistics(winningNumberInput, bonusNumberInput));
-      } catch (error) {
-        ui.showTargetNumberValidationText(error);
-      }
-    });
+    try {
+      ui.hideTargetNumberValidationText();
+      inputValidator.validateWinningNumberInput(winningNumberInput.join(','));
+      inputValidator.validateBonusNumberInput(bonusNumberInput);
+      ui.showFinalResult(this.#lottoMachine.calculateStatistics(winningNumberInput, bonusNumberInput));
+    } catch (error) {
+      ui.showTargetNumberValidationText(error);
+    }
   }
 
   restartGame() {
-    domList.retryBtn.addEventListener('click', event => {
-      event.stopImmediatePropagation();
-      ui.hideRestUI();
-      resetAllInputValues();
-      ui.closeModal();
-    });
+    ui.hideRestUI();
+    resetAllInputValues();
+    ui.closeModal();
   }
 
   closeModal() {
-    domList.closeModalBtn.addEventListener('click', event => {
-      event.stopImmediatePropagation();
-      ui.closeModal();
-    });
+    ui.closeModal();
   }
 }
 
