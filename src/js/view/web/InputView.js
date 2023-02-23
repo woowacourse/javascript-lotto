@@ -3,6 +3,7 @@ const $budgetInputForm = document.getElementById('budget-input-form');
 const $winningNumberInputs = document.getElementsByClassName('winning-number-input');
 const $winningNumberInputForm = document.getElementById('winning-number-input-form');
 const $modalCloseButton = document.getElementById('modal-close-button');
+const $retryButton = document.getElementById('retry-button');
 
 const PurchaseForm = {
   setBudgetInputHandler(handler) {
@@ -24,7 +25,17 @@ const PurchaseForm = {
   },
 
   setModalCloseButtonHandler(handler) {
-    $modalCloseButton.addEventListener('click', handler);
+    $modalCloseButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      handler();
+    });
+  },
+
+  setRetryButtonHandler(handler) {
+    $retryButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      handler();
+    });
   },
 };
 

@@ -5,9 +5,12 @@ const $resultModalSection = document.getElementById('result-modal-section');
 const $modalBackground = document.getElementsByClassName('modal-background')[0];
 const $winningCountCells = document.getElementsByClassName('winning-count-cell');
 const $yieldRate = document.getElementById('yield-rate');
+const $budgetInputForm = document.getElementById('budget-input-form');
+const $winningNumberInputForm = document.getElementById('winning-number-input-form');
 
 const LottoListView = {
   showLottoList(lottos) {
+    $winningLottoSection.style.display = 'block';
     $lottoCount.innerHTML = `총 ${lottos.length}개를 구매했습니다.`;
     $lottoList.innerHTML = '';
     lottos.forEach((lotto) => {
@@ -17,7 +20,14 @@ const LottoListView = {
         .sort((a, b) => a - b)
         .join(', ')}</li>`;
     });
-    $winningLottoSection.style.display = 'block';
+  },
+
+  hideLottoList() {
+    $budgetInputForm.reset();
+    $winningNumberInputForm.reset();
+    $lottoCount.innerHTML = null;
+    $lottoList.innerHTML = null;
+    $winningLottoSection.style.display = 'none';
   },
 
   showResult(result, yieldRate) {
@@ -30,7 +40,7 @@ const LottoListView = {
     $yieldRate.innerHTML = `당신의 총 수익률은 ${yieldRate}%입니다.`;
   },
 
-  closeResult() {
+  hideResult() {
     $modalBackground.style.display = 'none';
     $resultModalSection.style.display = 'none';
   },

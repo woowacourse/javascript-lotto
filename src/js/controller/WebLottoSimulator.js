@@ -13,6 +13,7 @@ class WebLottoSimulator {
     InputView.setBudgetInputHandler(this.purchaseLottos);
     InputView.setWinningNumberInputHandler(this.inputWinningLotto);
     InputView.setModalCloseButtonHandler(this.closeResult);
+    InputView.setRetryButtonHandler(this.retry);
   }
 
   purchaseLottos = (budget) => {
@@ -64,7 +65,12 @@ class WebLottoSimulator {
   };
 
   closeResult = () => {
-    OutputView.closeResult();
+    OutputView.hideResult();
+  };
+
+  retry = () => {
+    OutputView.hideResult();
+    OutputView.hideLottoList();
   };
 }
 
