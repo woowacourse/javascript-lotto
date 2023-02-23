@@ -12,16 +12,16 @@ class LottoInput {
     this.lottoInputField.classList.add(ClassName.SHOW);
   }
 
-  activate = (setWinningLotto) => {
+  activate(setWinningLotto) {
     $(QuerySelector.RESULT_BUTTON).addEventListener(Event.CLICK, () => {
       const winningNumbers = this.#getWinningNumbers();
       const bonusNumber = this.#getBonusNumber();
 
       setWinningLotto(winningNumbers, bonusNumber);
     });
-  };
+  }
 
-  #getWinningNumbers = () => {
+  #getWinningNumbers() {
     const winningNumbers = [];
 
     this.winningNumberInputs.forEach((input) => {
@@ -29,11 +29,11 @@ class LottoInput {
     });
 
     return winningNumbers;
-  };
+  }
 
-  #getBonusNumber = () => {
+  #getBonusNumber() {
     return Number(this.bonusNumberInput.value);
-  };
+  }
 
   reset() {
     this.lottoInputField.classList.remove(ClassName.SHOW);

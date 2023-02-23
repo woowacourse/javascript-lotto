@@ -7,12 +7,12 @@ class MoneyInput {
     this.purchaseBtn = $(QuerySelector.PURCHASE_BUTTON);
   }
 
-  activate = (purchaseLottos) => {
+  activate(purchaseLottos) {
     this.purchaseBtn.addEventListener(Event.CLICK, () => {
       const money = this.moneyInputEl.value;
       purchaseLottos(money);
     });
-  };
+  }
 
   reset() {
     this.moneyInputEl.value = '';

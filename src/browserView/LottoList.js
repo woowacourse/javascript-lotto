@@ -8,15 +8,15 @@ class LottoList {
     this.contentEl = $(QuerySelector.CONTENT);
   }
 
-  #createPurchaseMessageEl = (purchaseCount) => {
+  #createPurchaseMessageEl(purchaseCount) {
     const purchaseMessageEl = makeNode(Tag.DIV);
     purchaseMessageEl.className = QuerySelector.PURCHASE_MESSAGE;
     purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
 
     return purchaseMessageEl;
-  };
+  }
 
-  #createLottoListEl = (lottos) => {
+  #createLottoListEl(lottos) {
     const lottoListEl = makeNode(Tag.UL);
     lottoListEl.className = QuerySelector.LOTTO_LIST;
     lottos.forEach((lotto) => {
@@ -27,9 +27,9 @@ class LottoList {
     });
 
     return lottoListEl;
-  };
+  }
 
-  render = (purchaseCount, lottos) => {
+  render(purchaseCount, lottos) {
     const purchaseMessageEl = this.#createPurchaseMessageEl(purchaseCount);
     const lottoListEl = this.#createLottoListEl(lottos);
 
@@ -39,7 +39,7 @@ class LottoList {
     this.lottoListField.appendChild(lottoListEl);
 
     this.contentEl.classList.add(ClassName.HEIGHT_AUTO);
-  };
+  }
 
   reset() {
     this.lottoListField.innerText = '';
