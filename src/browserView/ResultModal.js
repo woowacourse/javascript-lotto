@@ -5,6 +5,8 @@ import Convertor from '../utils/Convertor';
 class ResultModal {
   constructor() {
     this.resultModal = $(QuerySelector.RESULT_MODAL);
+    this.closeButton = $(QuerySelector.MODAL_CLOSE_BUTTON);
+    this.restartButton = $(QuerySelector.RESTART_BUTTON);
   }
 
   #paintRankEl(ranks) {
@@ -23,15 +25,15 @@ class ResultModal {
     this.#paintRankEl(rank);
     this.#paintProfitRate(profitRate);
 
-    $(QuerySelector.RESULT_MODAL).showModal();
+    this.resultModal.showModal();
   }
 
   activate(resetGame) {
-    $(QuerySelector.MODAL_CLOSE_BUTTON).addEventListener(Event.CLICK, () => {
+    this.closeButton.addEventListener(Event.CLICK, () => {
       this.#close();
     });
 
-    $(QuerySelector.RESTART_BUTTON).addEventListener(Event.CLICK, () => {
+    this.restartButton.addEventListener(Event.CLICK, () => {
       resetGame();
       this.#close();
     });

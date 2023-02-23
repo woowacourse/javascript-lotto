@@ -3,11 +3,13 @@ import { $, $$ } from '../utils/DomUtils';
 
 class LottoInput {
   constructor() {
-    this.lottoInput = $(QuerySelector.LOTTO_INPUT_FIELD);
+    this.lottoInputField = $(QuerySelector.LOTTO_INPUT_FIELD);
+    this.winningNumberInputs = $$(QuerySelector.WINNING_NUMBER);
+    this.bonusNumberInput = $(QuerySelector.BONUS_NUMBER);
   }
 
   render() {
-    this.lottoInput.classList.add(ClassName.SHOW);
+    this.lottoInputField.classList.add(ClassName.SHOW);
   }
 
   activate = (setWinningLotto) => {
@@ -20,10 +22,9 @@ class LottoInput {
   };
 
   #getWinningNumbers = () => {
-    const winningNumberInputs = $$(QuerySelector.WINNING_NUMBER);
     const winningNumbers = [];
 
-    winningNumberInputs.forEach((input) => {
+    this.winningNumberInputs.forEach((input) => {
       winningNumbers.push(Number(input.value));
     });
 
@@ -31,18 +32,16 @@ class LottoInput {
   };
 
   #getBonusNumber = () => {
-    const bonusNumber = $(QuerySelector.BONUS_NUMBER);
-
-    return Number(bonusNumber.value);
+    return Number(this.bonusNumberInput.value);
   };
 
   reset() {
-    this.lottoInput.classList.remove(ClassName.SHOW);
+    this.lottoInputField.classList.remove(ClassName.SHOW);
 
-    $$(QuerySelector.WINNING_NUMBER).forEach((each) => {
+    this.winningNumberInputs.forEach((each) => {
       each.value = '';
     });
-    $(QuerySelector.BONUS_NUMBER).value = '';
+    this.bonusNumberInput.value = '';
   }
 }
 

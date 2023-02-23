@@ -5,6 +5,7 @@ import Convertor from '../utils/Convertor';
 class LottoList {
   constructor() {
     this.lottoListField = $(QuerySelector.LOTTO_LIST_FIELD);
+    this.contentEl = $(QuerySelector.CONTENT);
   }
 
   #createPurchaseMessageEl = (purchaseCount) => {
@@ -37,12 +38,12 @@ class LottoList {
     this.lottoListField.appendChild(purchaseMessageEl);
     this.lottoListField.appendChild(lottoListEl);
 
-    $(QuerySelector.CONTENT).classList.add(ClassName.HEIGHT_AUTO);
+    this.contentEl.classList.add(ClassName.HEIGHT_AUTO);
   };
 
   reset() {
     this.lottoListField.innerText = '';
-    $(QuerySelector.CONTENT).classList.remove(ClassName.HEIGHT_AUTO);
+    this.contentEl.classList.remove(ClassName.HEIGHT_AUTO);
   }
 }
 
