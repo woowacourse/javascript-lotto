@@ -17,7 +17,7 @@ const Validation = {
   },
 
   isNumber(purchaseAmount) {
-    return Number.isNaN(Number(purchaseAmount));
+    return !isNaN(Number(purchaseAmount));
   },
 
   isHigherThanLottoPrice(purchaseAmount) {
