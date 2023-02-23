@@ -5,3 +5,8 @@
 
 import "./css/reset.css";
 import "./css/index.css";
+
+import { LottoGame } from "./app/WebLottoGame";
+
+const lottoGame = new LottoGame();
+lottoGame.play();

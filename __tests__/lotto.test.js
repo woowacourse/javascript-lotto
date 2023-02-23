@@ -1,5 +1,5 @@
 import { getRateOfReturn } from "../src/domain/calculator";
-import { LottoGame } from "../src/domain/LottoGame";
+import { LottoGame } from "../src/app/ConsoleLottoGame";
 import { makeLottoTicket } from "../src/domain/lottoMachine";
 import { getAscendingSortedNumbers } from "../src/util";
 

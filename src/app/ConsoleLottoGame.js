@@ -7,8 +7,8 @@ import {
 import { outputView } from "../view/outputView";
 import { close } from "../util/console";
 import { LOTTO_PRICE, RESPONSE_AFTER_GAME_ENDS, MATCHING_COUNT_AND_PLACES } from "../constants";
-import { getRateOfReturn, getTotalPrize } from "./calculator";
-import { makeLottoTickets } from "./lottoMachine";
+import { getRateOfReturn, getTotalPrize } from "../domain/calculator";
+import { makeLottoTickets } from "../domain/lottoMachine";
 const { RESTART } = RESPONSE_AFTER_GAME_ENDS;
 
 export class LottoGame {

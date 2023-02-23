@@ -21,26 +21,19 @@ const { MIN, MAX } = LOTTO_NUMBER_RANGE;
 
 export const validatePurchaseAmount = (purchaseAmount) => {
   validator.checkInteger(purchaseAmount);
-  validator.checkPurchaseAmount(Number(purchaseAmount));
+  validator.checkPurchaseAmount(purchaseAmount);
 };
 
-export const validateWinningLottoNumbers = (winningLottoNumberStrings) => {
-  winningLottoNumberStrings.forEach((winningLottoNumber) =>
-    validator.checkInteger(winningLottoNumber)
-  );
+export const validateWinningLottoNumbers = (winningLottoNumber) => {
+  winningLottoNumber.forEach((winningLottoNumber) => validator.checkInteger(winningLottoNumber));
 
-  const winningLottoNumbers = winningLottoNumberStrings.map((number) => Number(number));
-
-  validator.checkDuplicates(winningLottoNumbers);
-  validator.checkLottoNumbersBetween1And45(winningLottoNumbers);
-  validator.checkListLengthIsSix(winningLottoNumbers);
+  validator.checkDuplicates(winningLottoNumber);
+  validator.checkLottoNumbersBetween1And45(winningLottoNumber);
+  validator.checkListLengthIsSix(winningLottoNumber);
 };
 
-export const validateBonusNumber = (bonusNumberString, winningLottoNumbers) => {
-  validator.checkInteger(bonusNumberString);
-
-  const bonusNumber = Number(bonusNumberString);
-
+export const validateBonusNumber = (bonusNumber, winningLottoNumbers) => {
+  validator.checkInteger(bonusNumber);
   validator.checkBonusNumberBetween1And45(bonusNumber);
   validator.checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers);
 };
@@ -81,7 +74,7 @@ export const validator = {
   },
 
   checkBonusNumberDuplicate(bonusNumber, winningLottoNumbers) {
-    if (winningLottoNumbers.includes(bonusNumber)) {
+    if (winningLottoNumbers.includes(Number(bonusNumber))) {
       throw new Error(DUPLICATED_BONUS_NUMBER);
     }
   },
