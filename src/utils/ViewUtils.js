@@ -13,12 +13,18 @@ const ViewUtils = {
 
   showErrorMessage(name, message) {
     const domElement = $(`#${name}-error`);
+
+    if (!domElement) return;
+
     domElement.textContent = message;
     domElement.style.opacity = 1;
   },
 
   hideErrorMessage(name) {
     const domElement = $(`#${name}-error`);
+
+    if (!domElement) return;
+
     domElement.textContent = '';
     domElement.style.opacity = 0;
   },
