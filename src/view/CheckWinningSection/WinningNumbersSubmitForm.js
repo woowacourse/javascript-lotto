@@ -99,15 +99,21 @@ class WinningNumbersSubmitForm {
   }
 
   bindEvent() {
-    this.bindAutoFocusNextEvent();
+    const numberInputs = Array.from($$('.number-input'));
+    const [firstInput] = numberInputs;
+    this.focusFirstInput(firstInput);
+
+    this.bindAutoFocusNextEvent(numberInputs);
     $('.winning-numbers-form').addEventListener('submit', (e) =>
       this.handleSubmit(e)
     );
   }
 
-  bindAutoFocusNextEvent() {
-    const numberInputs = Array.from($$('.number-input'));
+  focusFirstInput(input) {
+    input.focus();
+  }
 
+  bindAutoFocusNextEvent(numberInputs) {
     numberInputs.forEach((input) => {
       input.addEventListener('input', (e) => {
         this.handleInputAutoFocusNext(numberInputs, e.target);
