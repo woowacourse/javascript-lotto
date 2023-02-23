@@ -13,12 +13,12 @@ export default class LottoController {
   constructor() {
     $('.purchaseLotto').addEventListener('submit', this.purchaseLotto.bind(this));
     $('.inputNumbersForm').addEventListener('submit', this.printResult.bind(this));
-    $('.restart-button').addEventListener('click', this.resetGame.bind(this));
+    $('.restartButton').addEventListener('click', this.resetGame.bind(this));
     $('.exit').addEventListener('click', this.exitModal.bind(this));
   }
 
   purchaseLotto(e) {
-    const moneyInput = $('.money-input').value;
+    const moneyInput = $('.moneyInput').value;
     $('.lottos').innerHTML = ``;
     e.preventDefault();
     try {
@@ -65,8 +65,8 @@ export default class LottoController {
 
     try {
       Validator.winningNumber(winningNumbers.join(','));
-      Validator.bonusNumber($('.bonusNumber-input').value, winningNumbers);
-      const winningLotto = new WinningLotto(winningNumbers, Number($('.bonusNumber-input').value));
+      Validator.bonusNumber($('.bonusNumberInput').value, winningNumbers);
+      const winningLotto = new WinningLotto(winningNumbers, Number($('.bonusNumberInput').value));
       const ranking = new Comparer(winningLotto, this.#lottos).getStatistics();
       $('.modal').style.display = 'flex';
 
@@ -87,7 +87,7 @@ export default class LottoController {
     $('.modal').style.display = 'none';
     $('.issueLotto').style.display = 'none';
     $('.inputNumbersLayout').style.display = 'none';
-    $('.money-input').value = '';
+    $('.moneyInput').value = '';
     $$('.inputNumber').forEach((v, i) => {
       $$('.inputNumber')[i].value = '';
     });
