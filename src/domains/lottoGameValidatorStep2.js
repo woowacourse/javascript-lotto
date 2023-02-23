@@ -15,8 +15,6 @@ const lottoGameValidatorStep2 = {
   },
 
   isValidBonusNumber(bonusNumber, luckyNumbers) {
-    console.log(luckyNumbers, bonusNumber);
-
     return (
       validator.isValidRangeNumber(bonusNumber, { min: LOTTO.MIN_RANGE, max: LOTTO.MAX_RANGE }) &&
       !validator.isOverlap(bonusNumber, luckyNumbers)
