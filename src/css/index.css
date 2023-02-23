@@ -12,46 +12,36 @@
   --lotto-grayscale-5: #000000;
 
   --lotto-division-line: 1px solid rgba(0, 0, 0, 0.12);
+
+  --lotto-font-family: "Roboto", sans-serif;
 }
 
 /* lotto text style */
 .lotto-title {
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 36px;
+  font: 800 24px/36px var(--lotto-font-family);
 }
 
 .lotto-subtitle {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-
+  font: 600 20px/24px var(--lotto-font-family);
   letter-spacing: 0.15px;
 }
 
 .lotto-body {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
-
+  font: 400 15px/24px var(--lotto-font-family);
   letter-spacing: 0.5px;
 }
 
 .lotto-caption {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 24px;
+  font: 700 14px/16px var(--lotto-font-family);
 
-  letter-spacing: 0.5px;
+  letter-spacing: 1.25px;
 }
 
 .lotto-button {
   background: var(--lotto-primary);
   border-radius: 4px;
 
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+  font: 700 14px/16px var(--lotto-font-family);
 
   letter-spacing: 1.25px;
   text-transform: uppercase;
@@ -79,7 +69,7 @@ input::-webkit-inner-spin-button {
 body {
   width: 100%;
 
-  font-family: "Roboto", sans-serif;
+  font-family: var(--lotto-font-family);
   /* hidden scroll */
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -120,6 +110,8 @@ h1 {
 main {
   display: flex;
   justify-content: center;
+
+  position: relative;
 }
 
 .main-contents {
@@ -219,6 +211,7 @@ input[name="purchase-amount"] {
 
   margin-bottom: 4px;
 }
+
 .lotto-ticket:last-child {
   margin-bottom: 0;
 }
@@ -226,8 +219,10 @@ input[name="purchase-amount"] {
 .lotto-ticket .ticket-emoji {
   font-size: 34px;
   line-height: 36px;
+
   margin: 0 4px 0 -6px;
 }
+
 .lotto-ticket .ticket-numbers {
   width: 196px;
   height: 24px;
@@ -280,10 +275,6 @@ input[name="purchase-amount"] {
 }
 
 /* modal window */
-.hidden {
-  display: none;
-}
-
 .modal-window {
   width: 350px;
 
@@ -295,9 +286,9 @@ input[name="purchase-amount"] {
   text-align: center;
 
   position: absolute;
-  top: 272px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 2;
 }
 
@@ -353,8 +344,6 @@ input[name="purchase-amount"] {
   width: 100%;
 
   margin: 32px 0;
-
-  overflow: scroll;
 }
 
 .modal-window > button {
@@ -377,12 +366,11 @@ footer {
 footer #copyright {
   height: 16px;
 
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-
   text-align: center;
-  letter-spacing: 1.25px;
 
   color: var(--lotto-primary);
+}
+
+.hidden {
+  display: none;
 }
