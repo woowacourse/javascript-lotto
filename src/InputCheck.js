@@ -60,6 +60,7 @@ const InputCheck = {
         ? this.alertError(ERROR_MESSAGE.INPUT_NOT_DUPLICATED_NUMBER)
         : this.throwError(ERROR_MESSAGE.INPUT_NOT_DUPLICATED_NUMBER);
     }
+    this.checkNumber(bonusNumber, isWeb);
   },
 
   validateRetryInput(retryInput, isWeb) {
@@ -81,6 +82,7 @@ const InputCheck = {
 
   alertError(errorMessage) {
     alert(errorMessage);
+    throw Error(errorMessage);
   },
 };
 
