@@ -22,6 +22,7 @@
     "import/extensions": "off",
     "no-unused-expressions": "off",
     "no-return-await": "off",
-    "no-new": "off"
+    "no-new": "off",
+    "no-underscore-dangle": ["error", { "enforceInMethodNames": false, "allowAfterThis": true }]
   }
 }
