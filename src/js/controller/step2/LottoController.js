@@ -4,6 +4,7 @@ import { convertToNum, convertValueToString } from '../../utils/common';
 import LottoMachine from '../../model/LottoMachine';
 import PurchaseLottoView from '../../view/step2/PurchaseLottoView';
 import WinningLottoInputView from '../../view/step2/WinningLottoInputView';
+import ResultModalView from '../../view/step2/ResultModalView';
 
 class LottoController {
   #lottoMachine;
@@ -13,6 +14,7 @@ class LottoController {
       purchaseMoneyInputView: new PurchaseMoneyInputView(),
       purchaseLottoView: new PurchaseLottoView(),
       winningLottoInputView: new WinningLottoInputView(),
+      resultModalView: new ResultModalView(),
     };
     this.start();
   }
@@ -62,7 +64,8 @@ class LottoController {
   }
 
   showLottoResult() {
-    console.log(this.#lottoMachine.calculateStatistics());
+    this.view.resultModalView.rendering(this.#lottoMachine.calculateStatistics());
+    this.handleExitOrRestart();
   }
 }
 
