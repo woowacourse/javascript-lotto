@@ -33,7 +33,7 @@ class LottoList {
     const purchaseMessageEl = this.#createPurchaseMessageEl(purchaseCount);
     const lottoListEl = this.#createLottoListEl(lottos);
 
-    this.lottoListField.innerText = '';
+    this.reset();
 
     this.lottoListField.appendChild(purchaseMessageEl);
     this.lottoListField.appendChild(lottoListEl);
