@@ -3,11 +3,17 @@ import { LOTTO_PRIZE_MONEY, PRIZE_MATCH_COUNT } from '../constants/condition.js'
 
 export default class View {
   onClickPurchaseAmountSubmitButton(callback) {
-    $('.purchase-amount-submit-button').addEventListener('click', callback);
+    $('.purchase-amount-submit-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      callback();
+    });
   }
 
   onClickWinningLottoSubmitButton(callback) {
-    $('.winning-lotto-submit-button').addEventListener('click', callback);
+    $('.winning-lotto-submit-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      callback();
+    });
   }
 
   onClickModalCloseButton() {

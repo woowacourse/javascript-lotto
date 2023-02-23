@@ -14,15 +14,13 @@ export default class LottoGameController {
   }
 
   initEvents() {
-    this.#view.onClickPurchaseAmountSubmitButton((e) => this.#createLotto(e));
-    this.#view.onClickWinningLottoSubmitButton((e) => this.#compareLotto(e));
+    this.#view.onClickPurchaseAmountSubmitButton(() => this.#createLotto());
+    this.#view.onClickWinningLottoSubmitButton(() => this.#compareLotto());
     this.#view.onClickRestartButton(() => this.#initLottos());
     this.#view.onClickModalCloseButton();
   }
 
-  #createLotto(e) {
-    e.preventDefault();
-
+  #createLotto() {
     const purchaseAmount = this.#validatePurchaseAmount();
     if (!purchaseAmount) {
       return;
@@ -43,9 +41,7 @@ export default class LottoGameController {
     this.#view.showElements('.winning-lotto-form');
   }
 
-  #compareLotto(e) {
-    e.preventDefault();
-
+  #compareLotto() {
     const winningNumbers = this.#validateWinningNumbers();
     const bonusNumber = this.#validateBonusNumbers(winningNumbers);
 
