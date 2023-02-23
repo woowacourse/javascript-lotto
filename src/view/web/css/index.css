@@ -96,8 +96,8 @@ button {
 }
 
 .frame {
-  padding: 2rem 1rem;
-  margin: 2rem;
+  padding: 32px 16px;
+  margin: 32px 16px;
   display: flex;
   align-items: stretch;
   flex-direction: column;
