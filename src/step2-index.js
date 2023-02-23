@@ -13,7 +13,7 @@ const $purchaseAmountInput = document.getElementById("input-purchaseAmount");
 const $lottos = document.querySelector(".lottos");
 const $winningNumberInputs = document.querySelectorAll(".input-winningLotto");
 const $bonusNumberInput = document.querySelector(".input-bonusNumber");
-const $resultButton = document.getElementById("button-result");
+const $winningLottoForm = document.querySelector(".form-inputs-winningLotto");
 const $statisticsModal = document.getElementById("modal-statistics");
 const $closeButton = document.getElementById("close-button");
 const $restartButton = document.getElementById("restart-button");
@@ -27,7 +27,8 @@ $purchaseAmountForm.addEventListener("submit", (e) => {
   $afterPurchaseDiv.style.visibility = "visible";
 });
 
-$resultButton.addEventListener("click", (e) => {
+$winningLottoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
   const winningLottoNumbers = [...$winningNumberInputs].map((input) => Number(input.value));
   const bonusNumber = Number($bonusNumberInput.value);
   lottoGame.setWinningLotto(winningLottoNumbers, bonusNumber);

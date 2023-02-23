@@ -148,7 +148,7 @@ body {
   margin-top: 24px;
 }
 
-.div-inputs-winningLotto {
+.form-inputs-winningLotto {
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
@@ -280,4 +280,11 @@ td {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
+}
+
+/* input spin button 숨기기 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

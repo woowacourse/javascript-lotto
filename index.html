@@ -17,10 +17,11 @@
             <form id="div-purchaseAmount">
               <input
                 id="input-purchaseAmount"
-                type="text"
+                type="number"
                 name="purchaseAmount"
                 placeholder="금액"
                 autofocus
+                required
               />
               <input type="submit" value="구입" class="button-purchase" />
             </form>
@@ -36,50 +37,70 @@
               <span class="message-winningLotto"
                 >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
               >
-              <div class="div-inputs-winningLotto">
+              <form class="form-inputs-winningLotto">
                 <div class="winningNumber">
                   <label for="winningNumber">당첨 번호</label>
                   <div class="input-winningLottos">
                     <input
                       class="input-winningLotto"
-                      type="text"
+                      type="number"
                       name="winningNumber"
-                      maxlength="2"
+                      min="1"
+                      max="45"
+                      required
                     /><input
                       class="input-winningLotto"
-                      type="text"
+                      type="number"
                       name="winningNumber"
-                      maxlength="2"
+                      min="1"
+                      max="45"
+                      required
                     /><input
                       class="input-winningLotto"
-                      type="text"
+                      type="number"
                       name="winningNumber"
-                      maxlength="2"
+                      min="1"
+                      max="45"
+                      required
                     /><input
                       class="input-winningLotto"
-                      type="text"
+                      type="number"
                       name="winningNumber"
-                      maxlength="2"
+                      min="1"
+                      max="45"
+                      required
                     /><input
                       class="input-winningLotto"
-                      type="text"
+                      type="number"
                       name="winningNumber"
-                      maxlength="2"
+                      min="1"
+                      max="45"
+                      required
                     /><input
                       class="input-winningLotto"
-                      type="text"
+                      type="number"
                       name="winningNumber"
-                      maxlength="2"
+                      min="1"
+                      max="45"
+                      required
                     />
                   </div>
                 </div>
                 <div class="bonusNumber">
                   <label for="bonusNumber">보너스 번호</label>
-                  <input class="input-bonusNumber" type="text" name="bonusNumber" maxlength="2" />
+                  <input
+                    class="input-bonusNumber"
+                    type="number"
+                    name="bonusNumber"
+                    min="1"
+                    max="45"
+                    required
+                    type="submit"
+                  />
                 </div>
-              </div>
             </div>
-            <button id="button-result">결과 학인하기</button>
+            <input type="submit" value="결과 학인하기" id="button-result" />
+          </form>
           </div>
         </div>
       </main>
