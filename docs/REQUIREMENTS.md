@@ -1,3 +1,5 @@
+## :link:[링크](https://shackstack.github.io/javascript-lotto/dist/)
+
 ## 기능요구사항
 
 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
