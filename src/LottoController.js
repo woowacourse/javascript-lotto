@@ -20,7 +20,7 @@ class LottoController {
   moneyInputHandler = (money) => {
     try {
       this.buyer = new Buyer(money);
-      this.moneyInputView.togglePurchaseButtonDisable();
+      this.moneyInputView.toggleFormDisable();
       this.buyer.buyLottos();
       this.lottos = this.buyer.getLottos();
       this.purchasedLottoView = new PurchasedLottoView(this.lottos, money);
@@ -48,10 +48,10 @@ class LottoController {
   };
 
   resetHandler = () => {
+    this.moneyInputView.toggleFormDisable();
+    this.moneyInputView.clearInput();
     this.purchasedLottoView.reset();
     this.winningLottoInputView.reset();
-    this.moneyInputView.toggleButton();
-    this.moneyInputView.clearInput();
   };
 }
 

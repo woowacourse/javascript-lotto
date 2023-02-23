@@ -5,9 +5,6 @@ class WinningLottoInputView {
   constructor() {
     this.winningLottoSection = document.getElementById('winning-lotto-section');
     this.form = document.getElementById('winning-lotto-form');
-    this.wrapper = document.createElement('div');
-    this.wrapper.className = 'number-wrapper';
-    this.form.appendChild(this.wrapper);
   }
 
   createNumberInputs(length) {
@@ -32,6 +29,10 @@ class WinningLottoInputView {
   }
 
   render() {
+    this.wrapper = document.createElement('div');
+    this.wrapper.className = 'number-wrapper';
+    this.form.appendChild(this.wrapper);
+
     this.form.insertAdjacentHTML(
       'afterbegin',
       `<p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>`,
@@ -59,7 +60,7 @@ class WinningLottoInputView {
   }
 
   reset() {
-    resetElement(this.winningLottoSection);
+    resetElement(this.form);
   }
 }
 
