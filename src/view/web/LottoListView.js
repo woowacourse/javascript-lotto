@@ -1,25 +1,40 @@
-const LottoListView = {
-  render(container, lottos) {
-    container.innerHTML = LottoListView.template(lottos);
-  },
+import { $ } from '../../util/web/dom';
 
-  template(lottos) {
-    return LottoListView.toQuantityTemplate(lottos) + LottoListView.toLottoListTemplate(lottos);
-  },
+const createQuantityParagraph = (lottos) => {
+  const p = document.createElement('p');
+  p.append(`총 ${lottos.length}개를 구매하였습니다.`);
 
-  toQuantityTemplate(lottos) {
-    return `<p>총 ${lottos.length}개를 구매하였습니다.</p>`;
-  },
-
-  toLottoListTemplate(lottos) {
-    return `<div class="lotto-list-container"><ul class="lotto-list">${lottos
-      .map((lotto) => LottoListView.toLottoItemTemplate(lotto))
-      .join('')}</ul></div>`;
-  },
-
-  toLottoItemTemplate(lotto) {
-    return `<li class="lotto-item">${lotto.join(', ')}</li>`;
-  },
+  return p;
 };
 
-export default LottoListView;
+const createLottoItem = (lotto) => {
+  const li = document.createElement('li');
+  li.setAttribute('class', 'lotto-item');
+  li.append(lotto.join(', '));
+
+  return li;
+};
+
+const createLottoList = (lottos) => {
+  const container = document.createElement('div');
+  container.setAttribute('class', 'lotto-list-container');
+
+  const ul = document.createElement('ul');
+  ul.setAttribute('class', 'lotto-list');
+
+  const lottoItems = lottos.map((lotto) => createLottoItem(lotto));
+  console.log(lottoItems);
+  ul.append(...lottoItems);
+  container.append(ul);
+
+  return container;
+};
+
+const renderLottoListSection = (lottos) => {
+  const lottoListSection = $('#purchase-lotto-list-section');
+
+  lottoListSection.innerHTML = '';
+  lottoListSection.append(...[createQuantityParagraph(lottos), createLottoList(lottos)]);
+};
+
+export default renderLottoListSection;

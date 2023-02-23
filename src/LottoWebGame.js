@@ -4,11 +4,11 @@ import convertToNumeric from './util/convertToNumeric';
 import LottoMachine from './domain/LottoMachine';
 import WinningLotto from './domain/WinningLotto';
 import LottoComparer from './domain/LottoComparer';
-import LottoListView from './view/web/LottoListView';
 import { convertToWinningNumber } from './domain/util';
 import ModalController from './ModalController';
 import calculateProfitRate from './domain/calculateProfitRate';
-import LottoResultModalView from './view/web/LottoResultModalView';
+import renderLottoListSection from './view/web/LottoListView';
+import renderLottoResultModal from './view/web/LottoResultModalView';
 
 class LottoWebGame {
   #lottos;
@@ -36,7 +36,7 @@ class LottoWebGame {
       const lottoMachine = new LottoMachine(purchaseAmount);
       this.#lottos = lottoMachine.issueLottos();
 
-      LottoListView.render($('#purchase-lotto-list-section'), this.#lottos);
+      renderLottoListSection(this.#lottos);
       $('#winning-lotto-form-section').classList.remove('hidden');
     } catch (error) {
       alert(error.message);
@@ -58,7 +58,7 @@ class LottoWebGame {
       const profitRate = calculateProfitRate(ranking, this.#lottos.length);
 
       this.#modal.showModal();
-      LottoResultModalView.render(ranking, profitRate);
+      renderLottoResultModal(ranking, profitRate);
     } catch (error) {
       alert(error.message);
     }
