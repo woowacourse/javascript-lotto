@@ -35,6 +35,18 @@ const WebView = {
     $('#winning-number-section').classList.add('hidden');
     $('#purchased-lotto-section').classList.add('hidden');
   },
+
+  printLottoRanksResult(lottoRanksResult) {
+    $('#modal').classList.remove('hidden');
+
+    Object.entries(lottoRanksResult).forEach(([lottoRank, count]) => {
+      $(`#result-${lottoRank}`).innerHTML = count;
+    });
+  },
+
+  printProfitRate(profitRate) {
+    $('#profit-rate-span').innerHTML = profitRate;
+  },
 };
 
 export default WebView;
