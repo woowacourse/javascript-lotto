@@ -12,9 +12,9 @@ const LottoListView = {
   },
 
   toLottoListTemplate(lottos) {
-    return `<ul class="lotto-list">${lottos
+    return `<div class="lotto-list-container"><ul class="lotto-list">${lottos
       .map((lotto) => LottoListView.toLottoItemTemplate(lotto))
-      .join('')}</ul>`;
+      .join('')}</ul></div>`;
   },
 
   toLottoItemTemplate(lotto) {

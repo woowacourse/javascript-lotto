@@ -5,10 +5,10 @@ main {
 }
 
 .lotto-game {
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 32px 16px;
-  overflow-y: auto;
 }
 
 .game-title {
@@ -25,7 +25,7 @@ main {
 }
 
 .purchase-amount-form,
-.lotto-list,
+.lotto-list-container,
 .winning-numbers-form {
   margin-top: 12px;
 }
@@ -48,6 +48,16 @@ main {
   font-size: var(--text-placeholder);
   font-weight: var(--text-regular);
   letter-spacing: var(--spacing-placeholder);
+}
+
+#purchase-lotto-list-section {
+  position: relative;
+  height: 35%;
+}
+
+.lotto-list-container {
+  height: 90%;
+  overflow-y: auto;
 }
 
 .lotto-item {
@@ -104,7 +114,7 @@ main {
   margin-top: 27px;
 }
 
-@media (min-width: 420px) {
+@media (min-width: 500px) {
   main {
     padding: 40px 0 40px;
   }
@@ -117,5 +127,8 @@ main {
 
   #purchase-amount-input {
     width: 300px;
+  }
+
+  .lotto-list-container {
   }
 }
