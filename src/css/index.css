@@ -17,16 +17,6 @@ header {
   border-bottom: 1px solid var(--base-color);
 }
 
-#head_title {
-  display: flex;
-  align-items: flex-end;
-  position: absolute;
-  left: 130px;
-  top: 14px;
-  font: normal 900 24px/36px 'Roboto';
-  color: var(--color-whilt);
-}
-
 #main_contents {
   position: absolute;
   left: 50%;
@@ -35,6 +25,16 @@ header {
   width: 414px;
   height: 727px;
   border: 1px solid #8B8B8B;
+}
+
+#head_title {
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+  left: 130px;
+  top: 14px;
+  font: normal 900 24px/36px 'Roboto';
+  color: var(--color-whilt);
 }
 
 #title {
@@ -126,4 +126,22 @@ header {
 
 .hidden {
   display: none;
+}
+
+footer {
+  position : absolute;
+  bottom : 0;
+  width: 100%;
+  text-align: center;
+}
+
+hr {
+  color: var(--base-color);
+}
+
+footer p {
+  font: normal 700 14px/16px 'Roboto';
+  color: var(--base-color);
+  text-align: center;
+  letter-spacing: 1.25px;
 }
