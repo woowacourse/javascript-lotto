@@ -28,16 +28,15 @@ class LottoGameController {
 
     try {
       Validation.testPurchaseAmount(money);
-      this.#purchaseUserLottos(PURCHASE_COUNT);
+      const USER_LOTTOS = this.#lottoGame.generateUserLottos(PURCHASE_COUNT);
+      this.#showLottoList(PURCHASE_COUNT, USER_LOTTOS);
     } catch (error) {
       alert(error.message);
     }
   };
 
-  #purchaseUserLottos(purchaseCount) {
-    const USER_LOTTOS = this.#lottoGame.generateUserLottos(purchaseCount);
-
-    this.#lottoList.render(purchaseCount, USER_LOTTOS);
+  #showLottoList(purchaseCount, userLottos) {
+    this.#lottoList.render(purchaseCount, userLottos);
     this.#lottoInput.render();
   }
 
