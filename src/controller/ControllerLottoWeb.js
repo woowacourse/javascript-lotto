@@ -9,40 +9,43 @@ class ControllerLottoWeb {
     this.listLotto = [];
     this.money = 0;
     this.lottoMachine = new LottoMachine();
-    this.setButtonClick();
+    this.initializeButtonEvents();
   }
 
-  setButtonClick() {
-    document.getElementById('buy').addEventListener('click', this.purchaseButton);
+  initializeButtonEvents() {
+    document.getElementById('buy').addEventListener('click', this.handlePurchaseButtonClick);
 
-    document.getElementById('result_button').addEventListener('click', this.resultButton);
+    document.getElementById('result_button').addEventListener('click', this.handleResultButtonClick);
 
-    document.querySelector('.close').addEventListener('click', this.closeModalButton);
+    document.querySelector('.close').addEventListener('click', this.handleCloseModalButtonClick);
 
-    document.querySelector('.restart').addEventListener('click', this.restartButton);
+    document.querySelector('.restart').addEventListener('click', this.handleRestartButtonClick);
   }
 
-  purchaseButton = () => {
+  handlePurchaseButtonClick = () => {
     this.money = view.readMoney();
-    if (!moneyValidate(this.money)) this.playLottos(this.money);
+    if (moneyValidate(this.money)) {
+      alert(moneyValidateError(this.money));
+      return;
+    }
 
-    if (moneyValidate(this.money)) alert(moneyValidateError(this.money));
+    this.buyLottos(this.money);
   };
 
-  playLottos(money) {
-    this.showPurchasedLottoNumber();
+  buyLottos(money) {
+    this.printPurchasedLottoNumberToView();
 
     this.lottoMachine.makeLotto(money);
-    this.makeLottoList();
+    this.createLottoListElements();
     view.printAllLotto();
   }
 
-  showPurchasedLottoNumber = () => {
+  printPurchasedLottoNumberToView = () => {
     const lottoNumber = this.lottoMachine.countLotto(this.money);
     view.printPurchasedLottoNumber(lottoNumber);
   };
 
-  makeLottoList = () => {
+  createLottoListElements = () => {
     const lottoList = document.querySelector('.lottoList');
 
     this.lottoMachine.lottoNumber.forEach((list, index) => {
@@ -53,23 +56,17 @@ class ControllerLottoWeb {
     });
   };
 
-  resultButton = () => {
+  handleResultButtonClick = () => {
     const winningNumber = this.getWinningNumber();
     const bonusNumber = view.readBonusNumber();
 
-    if (winningAndBonusNumberValidate(winningNumber, bonusNumber))
+    if (winningAndBonusNumberValidate(winningNumber, bonusNumber)) {
       alert(winningAndBonusNumberValidateError(winningNumber, bonusNumber));
+      return;
+    }
 
-    if (!winningAndBonusNumberValidate(winningNumber, bonusNumber)) this.resultPlay(winningNumber, bonusNumber);
+    this.displayResult(winningNumber, bonusNumber);
   };
-
-  resultPlay(winningNumber, bonusNumber) {
-    const result = this.lottoMachine.getWinningStatus(winningNumber, bonusNumber);
-
-    view.printResultLotto(result);
-    view.printProfitResult(this.lottoMachine.getProfitRate(this.money, result));
-    view.showModal();
-  }
 
   getWinningNumber = () => {
     const winningNumber = [];
@@ -82,11 +79,19 @@ class ControllerLottoWeb {
     return winningNumber;
   };
 
-  restartButton = () => {
+  displayResult(winningNumber, bonusNumber) {
+    const result = this.lottoMachine.getWinningStatus(winningNumber, bonusNumber);
+
+    view.printResultLotto(result);
+    view.printProfitResult(this.lottoMachine.getProfitRate(this.money, result));
+    view.showModal();
+  }
+
+  handleRestartButtonClick = () => {
     window.location.reload();
   };
 
-  closeModalButton = () => {
+  handleCloseModalButtonClick = () => {
     view.closeModal();
   };
 }
