@@ -8,7 +8,7 @@
     <style type="text/css">
       @import url('css/index.css');
     </style>
-    <script src="./WebApp.js" defer></script>
+    <script type="module" src="./WebApp.js" defer></script>
   </head>
   <body>
     <header>
@@ -20,7 +20,7 @@
         <div class="message">구입할 금액을 입력해주세요.</div>
         <form id="money-form">
           <input id="money" type="text" placeholder="금액" />
-          <button type="submit">구입</button>
+          <button id="purchasing-button" type="submit">구입</button>
         </form>
       </section>
 
@@ -61,6 +61,11 @@
         </form>
       </section> -->
     </div>
+    <footer>
+      <p id="copyright">Copyright 2023. woowacourse</p>
+    </footer>
+
+    <!-- 🏖️ modal -->
     <!-- <div class="modal-background">
       <div id="result-modal">
         <section id="result-title">
@@ -105,8 +110,5 @@
         </section>
       </div>
     </div> -->
-    <footer>
-      <p id="copyright">Copyright 2023. woowacourse</p>
-    </footer>
   </body>
 </html>
