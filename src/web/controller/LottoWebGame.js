@@ -26,7 +26,7 @@ class LottoWebGame {
     this.#modal.reset();
     $('#purchase-amount-input').value = '';
     $('#purchase-lotto-list-section').innerHTML = '';
-    [...$$('.winning-number-input')].forEach((element) => {
+    $$('.winning-number-input').forEach((element) => {
       element.value = '';
     });
     $('#winning-lotto-form-section').classList.add('hidden');
@@ -34,7 +34,10 @@ class LottoWebGame {
 
   bindEventListeners() {
     $('.purchase-amount-form').addEventListener('submit', this.onSubmitPurchaseButton.bind(this));
-    $('#result-button').addEventListener('click', this.onClickResultButton.bind(this));
+    $('#winning-numbers-form').addEventListener(
+      'submit',
+      this.onSubmitWinningNumbersForm.bind(this),
+    );
     $('#modal').addEventListener('click', this.onClickRestartButton.bind(this));
   }
 
@@ -56,7 +59,9 @@ class LottoWebGame {
     }
   }
 
-  onClickResultButton() {
+  onSubmitWinningNumbersForm(e) {
+    e.preventDefault();
+
     try {
       const winningNumber = convertToWinningNumber(
         [...$$('.js-winning-number-input')].map((element) => element.value),

@@ -8,54 +8,103 @@
 
   <body>
     <div id="app">
-      <header><h1 class="title page-title">🎱 행운의 로또</h1></header>
-      <main>
+      <header id="page-header"><h1 class="title page-title">🎱 행운의 로또</h1></header>
+      <main id="page-main">
         <div class="lotto-game">
           <h2 class="title game-title">🎱 내 번호 당첨 확인 🎱</h2>
-          <div class="lotto-game-section purchase-amount-section">
+          <section class="lotto-game-section purchase-amount-section">
             <label for="purchase-amount-input">구입 금액을 입력해주세요.</label>
             <form class="purchase-amount-form">
-              <input type="text" id="purchase-amount-input" placeholder="금액" />
+              <input
+                type="number"
+                id="purchase-amount-input"
+                placeholder="금액"
+                min="1000"
+                max="100000"
+                step="1000"
+              />
               <button type="submit" class="button caption">구입</button>
             </form>
-          </div>
-          <div class="lotto-game-section" id="purchase-lotto-list-section"></div>
-          <div class="lotto-game-section hidden" id="winning-lotto-form-section">
+          </section>
+          <section class="lotto-game-section" id="purchase-lotto-list-section"></section>
+          <section class="lotto-game-section hidden" id="winning-lotto-form-section">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="winning-numbers-form">
+            <form id="winning-numbers-form">
               <div class="winning-number-input-container">
                 <p>당첨 번호</p>
                 <ul class="winning-number-input-list">
                   <li>
-                    <input type="text" class="winning-number-input js-winning-number-input" />
+                    <input
+                      type="number"
+                      class="winning-number-input js-winning-number-input"
+                      min="1"
+                      max="45"
+                    />
                   </li>
                   <li>
-                    <input type="text" class="winning-number-input js-winning-number-input" />
+                    <input
+                      type="number"
+                      class="winning-number-input js-winning-number-input"
+                      min="1"
+                      max="45"
+                    />
                   </li>
                   <li>
-                    <input type="text" class="winning-number-input js-winning-number-input" />
+                    <input
+                      type="number"
+                      class="winning-number-input js-winning-number-input"
+                      min="1"
+                      max="45"
+                    />
                   </li>
                   <li>
-                    <input type="text" class="winning-number-input js-winning-number-input" />
+                    <input
+                      type="number"
+                      class="winning-number-input js-winning-number-input"
+                      min="1"
+                      max="45"
+                    />
                   </li>
                   <li>
-                    <input type="text" class="winning-number-input js-winning-number-input" />
+                    <input
+                      type="number"
+                      class="winning-number-input js-winning-number-input"
+                      min="1"
+                      max="45"
+                    />
                   </li>
                   <li>
-                    <input type="text" class="winning-number-input js-winning-number-input" />
+                    <input
+                      type="number"
+                      class="winning-number-input js-winning-number-input"
+                      min="1"
+                      max="45"
+                    />
                   </li>
                 </ul>
               </div>
               <div class="winning-number-input-container bonus-number">
                 <p>보너스 번호</p>
-                <input type="text" class="winning-number-input js-bonus-number-input" />
+                <input
+                  type="number"
+                  class="winning-number-input js-bonus-number-input"
+                  min="1"
+                  max="45"
+                />
               </div>
-            </div>
-            <button type="button" class="button caption" id="result-button">결과 확인하기</button>
-          </div>
+            </form>
+            <button
+              type="submit"
+              form="winning-numbers-form"
+              class="button caption"
+              id="result-button"
+            >
+              결과 확인하기
+            </button>
+          </section>
         </div>
       </main>
-      <footer><span class="caption">Copyright 2023. woowacourse</span></footer>
+      <footer id="page-footer"><p class="caption">Copyright 2023. woowacourse</p></footer>
     </div>
 
     <div id="modal-background" class="hidden">
