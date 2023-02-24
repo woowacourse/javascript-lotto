@@ -21,6 +21,7 @@
     "eslint-disable-next-line": "off",
     "object-curly-newline": "off",
     "implicit-arrow-linebreak": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "no-alert": "off"
   }
 }
