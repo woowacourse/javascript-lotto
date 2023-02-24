@@ -5,7 +5,7 @@ import {
   INDEX_TO_KEY_CONVERTER,
   PROFIT_PER_RANK,
   REGEX,
-} from '../js/constants/constants';
+} from '../constants/constants';
 
 import {
   MODAL_TABLE_HEADER,

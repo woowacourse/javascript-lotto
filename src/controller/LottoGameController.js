@@ -1,10 +1,11 @@
+import '../../index.css';
 // Domain
-import Lottos from '../../domain/model/Lottos';
-import WinningNumbers from '../../domain/model/WinningNumbers';
+import Lottos from '../domain/model/Lottos';
+import WinningNumbers from '../domain/model/WinningNumbers';
 // View
-import PurchasePriceView from '../../view/PurchasePriceView';
-import WinningNumbersView from '../../view/WinningNumbersView';
-import GameResultView from '../../view/GameResultView';
+import PurchasePriceView from '../view/PurchasePriceView';
+import WinningNumbersView from '../view/WinningNumbersView';
+import GameResultView from '../view/GameResultView';
 
 const { PRICE_UNIT } = require('../constants/constants');
 

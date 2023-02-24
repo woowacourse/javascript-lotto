@@ -5,7 +5,7 @@ const {
   LOTTO_NUMBER_COUNT,
   PRICE_UNIT,
   REGEX,
-} = require('../../js/constants/constants');
+} = require('../../constants/constants');
 
 const validator = {
   purchasePrice(input) {

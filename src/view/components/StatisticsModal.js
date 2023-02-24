@@ -1,4 +1,4 @@
-const { CONSOLE_MESSAGE } = require('../../js/constants/constants');
+const { CONSOLE_MESSAGE } = require('../../constants/constants');
 
 const MODAL_CLOSE_BUTTON = document.createElement('button');
 MODAL_CLOSE_BUTTON.setAttribute('id', 'modal-close-btn');

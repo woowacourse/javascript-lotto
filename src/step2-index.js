@@ -1,5 +1,4 @@
-import './css/style.css';
-import LottoGameController from './js/controller/LottoGameController';
+import LottoGameController from './controller/LottoGameController';
 
 export default class App {
   constructor() {

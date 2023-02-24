@@ -1,4 +1,4 @@
-import { CONSOLE_MESSAGE } from '../js/constants/constants';
+import { CONSOLE_MESSAGE } from '../constants/constants';
 import validator from '../domain/validation/validator';
 
 export default class PurchasePriceView {
