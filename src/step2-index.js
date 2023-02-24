@@ -28,7 +28,6 @@ const benefit = new Benefit();
 
 purchaseButton.addEventListener('click', () => {
   saveMoney();
-  purchaseButton.setAttribute('disabled', 'disabled');
 
   lottoMachine.generateLottos();
   renderLottoContent();
@@ -55,6 +54,8 @@ const saveMoney = () => {
   try {
     const money = new Money(Number(moneyInput.value));
     lottoMachine.setMoney(money);
+    purchaseButton.setAttribute('disabled', 'disabled');
+    moneyInput.classList.remove('invalid');
   } catch (error) {
     moneyInput.classList.add('invalid');
     window.alert(error.message);
