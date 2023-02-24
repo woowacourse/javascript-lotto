@@ -6,10 +6,16 @@ import {
 } from "../view/inputView";
 import { outputView } from "../view/outputView";
 import { close } from "../util/console";
-import { LOTTO_PRICE, RESPONSE_AFTER_GAME_ENDS, MATCHING_COUNT_AND_PLACES } from "../constants";
+import {
+  LOTTO_PRICE_UNIT,
+  RESPONSE_AFTER_GAME_ENDS,
+  MATCHING_COUNT_AND_PLACES,
+  PLACES,
+} from "../constants";
 import { getRateOfReturn, getTotalPrize } from "../domain/calculator";
 import { makeLottoTickets } from "../domain/lottoMachine";
 const { RESTART } = RESPONSE_AFTER_GAME_ENDS;
+const { FIFTH, SECOND } = PLACES;
 
 export class LottoGame {
   #winningLotto = {
@@ -20,26 +26,26 @@ export class LottoGame {
 
   async play() {
     const purchaseAmount = await readPurchaseAmount();
-    this.printLottoTickets(purchaseAmount);
+    this.getLottoTickets(purchaseAmount);
 
     this.#winningLotto.winningNumbers = await readWinningLottoNumbers();
     this.#winningLotto.bonusNumber = await readBonusNumber(this.#winningLotto.winningNumbers);
 
-    this.printGameResult(purchaseAmount);
+    this.getGameResult(purchaseAmount);
 
     const restartOrQuit = await readRestartOrQuitCommend();
-    this.shouldRestart(restartOrQuit) ? this.play() : close();
+    this.restart(restartOrQuit);
   }
 
-  printLottoTickets(purchaseAmount) {
-    const purchasedLottoTicketCount = purchaseAmount / LOTTO_PRICE;
+  getLottoTickets(purchaseAmount) {
+    const purchasedLottoTicketCount = purchaseAmount / LOTTO_PRICE_UNIT;
     this.#lottoTickets = makeLottoTickets(purchasedLottoTicketCount);
 
     outputView.printPurchasedLottoTicketCount(purchasedLottoTicketCount);
     outputView.printLottoTickets(this.#lottoTickets);
   }
 
-  printGameResult(purchaseAmount) {
+  getGameResult(purchaseAmount) {
     const placesOfLottoTickets = this.getPlacesOfLottoTickets();
 
     outputView.printWinningLottoCount(placesOfLottoTickets);
@@ -66,20 +72,20 @@ export class LottoGame {
       return this.getPlace(matchingLottoNumberCount, lottoTicket);
     });
 
-    return placesOfLottoTickets.filter((place) => place !== undefined);
+    return placesOfLottoTickets.filter(Boolean);
   }
 
   getPlace(matchingLottoNumberCount, lottoTicket) {
-    if (matchingLottoNumberCount === 5) {
+    if (matchingLottoNumberCount === FIFTH) {
       return lottoTicket.includes(this.#winningLotto.bonusNumber)
-        ? 2
+        ? SECOND
         : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
     }
 
     return MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
   }
 
-  shouldRestart(restartOrQuitCommend) {
-    return [RESTART].includes(restartOrQuitCommend);
+  restart(restartOrQuitCommend) {
+    RESTART === restartOrQuitCommend ? this.play() : close();
   }
 }

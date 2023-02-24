@@ -26,32 +26,32 @@ export const readPurchaseAmount = async () => {
 };
 
 export const readWinningLottoNumbers = async () => {
-  const winningLottoNumbers = await inputView.readline(LOTTO_NUMBER);
-  const trimmedWinningLottoNumbers = splitAndTrimString(winningLottoNumbers);
+  const inputs = await inputView.readline(LOTTO_NUMBER);
+  const winningNumbers = splitAndTrimString(inputs).map(Number);
 
-  if (!consoleErrorCatcher(() => validateWinningLottoNumbers(trimmedWinningLottoNumbers))) {
+  if (!consoleErrorCatcher(() => validateWinningLottoNumbers(winningNumbers))) {
     return readWinningLottoNumbers();
   }
 
-  return trimmedWinningLottoNumbers.map(Number);
+  return winningNumbers;
 };
 
 export const readBonusNumber = async (winningLottoNumbers) => {
-  const bonusNumber = await inputView.readline(BONUS_NUMBER);
+  const bonusNum = await inputView.readline(BONUS_NUMBER);
 
-  if (!consoleErrorCatcher(() => !validateBonusNumber(bonusNumber, winningLottoNumbers))) {
+  if (!consoleErrorCatcher(() => !validateBonusNumber(bonusNum, winningLottoNumbers))) {
     return readBonusNumber(winningLottoNumbers);
   }
 
-  return Number(bonusNumber);
+  return Number(bonusNum);
 };
 
 export const readRestartOrQuitCommend = async () => {
-  const restartOrQuitCommend = await inputView.readline(RESTART_OR_QUIT);
+  const commend = await inputView.readline(RESTART_OR_QUIT);
 
-  if (!consoleErrorCatcher(() => !validateRestartOrQuitCommend(restartOrQuitCommend))) {
+  if (!consoleErrorCatcher(() => !validateRestartOrQuitCommend(commend))) {
     return readRestartOrQuitCommend();
   }
 
-  return restartOrQuitCommend.toLowerCase();
+  return commend.toLowerCase();
 };

@@ -1,7 +1,8 @@
 export const LOTTO_NUMBER_LENGTH = 6;
 export const DELIMITER = ",";
-export const LOTTO_PRICE = 1000;
+export const LOTTO_PRICE_UNIT = 1000;
 export const REGEX_FINDING_NOT_NUMBER = /[^0-9]/;
+export const DECIMAL_PLACE = 1;
 
 export const ERROR_PREFIX = "[ 에러 ]";
 export const ERROR_MESSAGE = Object.freeze({
@@ -31,6 +32,14 @@ export const MATCHING_COUNT_AND_PLACES = Object.freeze({
   5: 3,
   4: 4,
   3: 5,
+});
+
+export const PLACES = Object.freeze({
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
 });
 
 export const PRIZE = Object.freeze({

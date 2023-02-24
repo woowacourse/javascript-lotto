@@ -2,7 +2,7 @@ import {
   ERROR_MESSAGE,
   RESPONSE_AFTER_GAME_ENDS,
   LOTTO_NUMBER_RANGE,
-  LOTTO_PRICE,
+  LOTTO_PRICE_UNIT,
   LOTTO_NUMBER_LENGTH,
   REGEX_FINDING_NOT_NUMBER,
 } from "../constants";
@@ -44,13 +44,13 @@ export const validateRestartOrQuitCommend = (commend) => {
 
 export const validator = {
   checkPurchaseAmount(purchaseAmount) {
-    if (purchaseAmount < LOTTO_PRICE || purchaseAmount % LOTTO_PRICE !== 0) {
+    if (purchaseAmount < LOTTO_PRICE_UNIT || purchaseAmount % LOTTO_PRICE_UNIT !== 0) {
       throw new Error(NOT_MULTIPLES_OF_THOUSAND);
     }
   },
 
-  checkInteger(purchaseAmount) {
-    if (REGEX_FINDING_NOT_NUMBER.test(purchaseAmount) || purchaseAmount === "") {
+  checkInteger(number) {
+    if (REGEX_FINDING_NOT_NUMBER.test(number) || number === "") {
       throw new Error(NOT_INTEGER);
     }
   },

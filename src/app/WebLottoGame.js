@@ -1,4 +1,4 @@
-import { LOTTO_PRICE, MATCHING_COUNT_AND_PLACES } from "../constants";
+import { LOTTO_PRICE_UNIT, MATCHING_COUNT_AND_PLACES, PLACES } from "../constants";
 import { makeLottoTickets } from "../domain/lottoMachine";
 import {
   validateBonusNumber,
@@ -9,6 +9,7 @@ import { webErrorCatcher } from "../validator/errorCatcher";
 import { closeModalButton, restartLottoGame } from "../ui/modal";
 import { printLottoTicket } from "../ui/lottoTicketPrinter";
 import { printLottoResult } from "../ui/lottoResult";
+const { FIFTH, SECOND } = PLACES;
 
 const lottoTicketCount = document.querySelector("#lotto-ticket-count > span");
 const lottoTicketSection = document.querySelector(".lotto-ticket-section");
@@ -46,7 +47,7 @@ export class LottoGame {
       return lottoTicketSection.classList.add("hidden");
     }
 
-    const purchasedTicketCount = purchaseAmount / LOTTO_PRICE;
+    const purchasedTicketCount = purchaseAmount / LOTTO_PRICE_UNIT;
     this.#lottoTickets = makeLottoTickets(purchasedTicketCount);
 
     lottoTicketCount.innerHTML = `${purchasedTicketCount}`;
@@ -83,7 +84,7 @@ export class LottoGame {
       return this.getPlace(matchingLottoNumberCount, lottoTicket);
     });
 
-    return placesOfLottoTickets.filter((place) => place !== undefined);
+    return placesOfLottoTickets.filter(Boolean);
   }
 
   getMatchingWinningNumberCount(lottoTicket) {
@@ -95,9 +96,9 @@ export class LottoGame {
   }
 
   getPlace(matchingLottoNumberCount, lottoTicket) {
-    if (matchingLottoNumberCount === 5) {
+    if (matchingLottoNumberCount === FIFTH) {
       return lottoTicket.includes(Number(this.#winningNumbers[1]))
-        ? 2
+        ? SECOND
         : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
     }
 

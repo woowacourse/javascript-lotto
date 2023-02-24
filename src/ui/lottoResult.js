@@ -1,3 +1,4 @@
+import { DECIMAL_PLACE } from "../constants";
 import { getRateOfReturn, getTotalPrize } from "../domain/calculator";
 
 const fifthPlace = document.querySelector(".fifth");
@@ -22,7 +23,9 @@ export const printWinningTicketCount = (placesOfLottoTickets) => {
 };
 
 export const printRateOfReturn = (placesOfLottoTickets, purchaseAmount) => {
-  const percent = getRateOfReturn(getTotalPrize(placesOfLottoTickets), purchaseAmount).toFixed(1);
+  const percent = getRateOfReturn(getTotalPrize(placesOfLottoTickets), purchaseAmount).toFixed(
+    DECIMAL_PLACE
+  );
 
   rateOfReturn.innerHTML = `${String(percent).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
