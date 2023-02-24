@@ -2,6 +2,8 @@
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
 
+---
+
 ## 🚀 1단계 - 콘솔 기반 로또 게임
 
 ### 🙏 페어(페어프로그래밍)
@@ -100,7 +102,9 @@ npm run start-step1
 게임을 종료합니다.
 ```
 
-## 🚀 2단계 - 웹 기반 로또 게임
+---
+
+# 🚀 2단계 - 웹 기반 로또 게임
 
 ### 📍 학습 목표
 
@@ -118,7 +122,7 @@ npm run start-step1
 
 ### ⚙️ 실행가이드
 
-다음 명령어를 입력해 게임을 실행한다.
+[🔗 로또게임 실행하기](https://hyeryongchoi.github.io/javascript-lotto-1/dist/index.html) 또는 다음 명령어를 입력해 게임을 실행한다.
 
 ```
 npm run start-step2
