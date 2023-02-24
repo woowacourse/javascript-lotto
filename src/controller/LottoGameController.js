@@ -1,8 +1,12 @@
+const LottoMachine = require('../domain/LottoMachine.js');
+const display = require('../view/display.js');
 const { $, $$ } = require('../utils/DOM.js');
 
 class LottoGameController {
   constructor() {
     this.money = 0;
+    this.buyLottoCount = 0;
+    this.lottoMachine = new LottoMachine();
     this.buttonEvents();
   }
 
@@ -15,7 +19,12 @@ class LottoGameController {
 
   purchaseButton() {
     this.money = $('.purchase-amount-input').value;
-    console.log(this.money);
+    this.lottoCount(this.money);
+  }
+
+  lottoCount(money) {
+    this.buyLottoCount = this.lottoMachine.countLotto(money);
+    display.showBuyLottoCount(this.buyLottoCount);
   }
 }
 
