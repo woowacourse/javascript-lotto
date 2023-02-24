@@ -11,9 +11,10 @@ export default class LottoGameController {
   constructor() {
     this.#lottoGame = new LottoGame();
     this.#view = new View();
+    this.#initEvents();
   }
 
-  initEvents() {
+  #initEvents() {
     this.#view.onClickPurchaseAmountSubmitButton(this.#createLotto.bind(this));
     this.#view.onClickWinningLottoSubmitButton(this.#compareLotto.bind(this));
     this.#view.onClickRestartButton(this.#initLottos.bind(this));
@@ -54,6 +55,7 @@ export default class LottoGameController {
 
       return;
     }
+
     const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
     const statistics = this.#lottoGame.getStatistics(eachCompareResult);
     const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);

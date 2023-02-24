@@ -6,8 +6,4 @@ export default class App {
   constructor() {
     this.#lottoGameController = new LottoGameController();
   }
-
-  start() {
-    this.#lottoGameController.initEvents();
-  }
 }
