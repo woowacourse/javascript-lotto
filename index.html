@@ -7,110 +7,13 @@
   </head>
   <body>
     <div id="app">
-      <header>
-        <h1>🎱 행운의 로또</h1>
-      </header>
+      <header></header>
 
-      <div class="lottoGame">
-        <h1>🎱 내 번호 당첨 확인 🎱</h1>
+      <div class="lottoGame"></div>
 
-        <form class="purchaseLotto">
-          <p>구입할 금액을 입력해 주세요.</p>
-          <div>
-            <input class="moneyInput" placeholder="금액" />
-            <button class="purchaseButton" type="submit">구입</button>
-          </div>
-        </form>
+      <div class="modal"></div>
 
-        <div class="youBought">
-          <p>총 <span class="purchaseQuantity">7</span>개를 구매하였습니다.</p>
-        </div>
-        <div class="issueLotto">
-          <div class="lottos">
-            <div class="lotto">
-              <span class="lottoEmoji">🎟️</span>
-              12, 28, 22, 37, 19, 23
-            </div>
-          </div>
-        </div>
-
-        <div class="inputNumbersLayout">
-          <form class="inputNumbersForm">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="inputNumbers">
-              <div>
-                <p>당첨 번호</p>
-                <div>
-                  <input class="inputNumber winningNumber-input" />
-                  <input class="inputNumber winningNumber-input" />
-                  <input class="inputNumber winningNumber-input" />
-                  <input class="inputNumber winningNumber-input" />
-                  <input class="inputNumber winningNumber-input" />
-                  <input class="inputNumber winningNumber-input" />
-                </div>
-              </div>
-              <div class="bonusNumber">
-                <p>보너스 번호</p>
-                <input class="inputNumber bonusNumberInput" />
-              </div>
-            </div>
-            <div class="checkResult">
-              <button class="printResultButton" type="submit">결과 확인하기</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div class="modal">
-        <div class="modalBackground"></div>
-        <div class="modalBox">
-          <div class="exitDiv">
-            <button class="exit">X</button>
-          </div>
-          <h2>🏆 당첨 통계 🏆</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>일치 갯수</th>
-                <th>당첨금</th>
-                <th>당첨 갯수</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>3개</th>
-                <th>5,000</th>
-                <th><span class="matchCount">n</span>개</th>
-              </tr>
-              <tr>
-                <th>4개</th>
-                <th>50,000</th>
-                <th><span class="matchCount">n</span>개</th>
-              </tr>
-              <tr>
-                <th>5개</th>
-                <th>1,500,000</th>
-                <th><span class="matchCount">n</span>개</th>
-              </tr>
-              <tr>
-                <th>5개+보너스볼</th>
-                <th>30,000,000</th>
-                <th><span class="matchCount">n</span>개</th>
-              </tr>
-              <tr>
-                <th>6개</th>
-                <th>2,000,000,000</th>
-                <th><span class="matchCount">n</span>개</th>
-              </tr>
-            </tbody>
-          </table>
-
-          <h3>당신의 총 수익률은 <span class="profitRate">100</span>%입니다.</h3>
-          <button class="restartButton" type="reset">다시 시작하기</button>
-        </div>
-      </div>
-
-      <footer>Copyright 2023. woowacourse</footer>
+      <footer></footer>
     </div>
   </body>
 </html>

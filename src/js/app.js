@@ -1,5 +1,7 @@
+import '../js/view/webView/View';
+import '../js/view/webView/ModalView';
 import '../css/reset';
 import '../css/index';
-import LottoController from './controller/webController/LottoController';
+import ViewModel from './viewModel/ViewModel';
 
-new LottoController();
+new ViewModel();
