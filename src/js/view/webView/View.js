@@ -1,30 +1,5 @@
 import { $ } from '../../util/dom';
 
-$('header').innerHTML = `
-<h1>🎱 행운의 로또</h1>
-`;
-
-$('.lottoGame').innerHTML = `
-<h1>🎱 내 번호 당첨 확인 🎱</h1>
-
-<form class="purchaseLotto"></form>
-
-<div class="youBought"></div>
-
-<div class="issueLotto"></div>
-
-<div class="inputNumbersLayout">
-  <form class="inputNumbersForm"></form>
-</div>
-`;
-
-$('.purchaseLotto').innerHTML = `
-<p>구입할 금액을 입력해 주세요.</p>
-<div>
-  <input class="moneyInput" placeholder="금액" />
-  <button class="purchaseButton" type="submit">구입</button>
-</div>`;
-
 $('.youBought').innerHTML = `
 <p>총 <span class="purchaseQuantity"></span>개를 구매하였습니다.</p>
 `;
