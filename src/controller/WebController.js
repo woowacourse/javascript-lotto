@@ -1,5 +1,5 @@
 import Validator from "../utils/Validator.js";
-import { SETTINGS, ERROR_MESSAGE } from "../constants/Config.js";
+import { SETTINGS, MATCH } from "../constants/Config.js";
 import { $, $$ } from "../utils/Dom.js";
 import Lotto from "../domain/Lotto.js";
 import Random from "../utils/Random.js";
@@ -25,8 +25,8 @@ class WebController {
   getBuyMoney = (e) => {
     e.preventDefault();
 
-    const buyMoney = $(".input-money").value;
     try {
+      const buyMoney = $(".input-money").value;
       this.validateBuyMoney(buyMoney);
       const lottoAmount = parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE);
       this.createLotto(lottoAmount);
@@ -34,7 +34,6 @@ class WebController {
       $(".hidden-area").classList.add("show");
     } catch (e) {
       alert(e.message);
-    } finally {
       this.#lottoArray = [];
     }
   };
@@ -66,15 +65,15 @@ class WebController {
   };
 
   getWinningNumbers = () => {
-    for (let i = 0; i < SETTINGS.MAX_WINNING_NUMBER_LENGTH; i++) {
-      this.#winningLotto.push(parseInt($$(".winning-number")[i].value, 10));
-    }
-
     try {
+      for (let i = 0; i < SETTINGS.MAX_WINNING_NUMBER_LENGTH; i++) {
+        this.#winningLotto.push(parseInt($$(".winning-number")[i].value, 10));
+      }
       this.validateWinningNumbers(this.#winningLotto);
       return this.#winningLotto;
     } catch (e) {
       alert(e.message);
+      this.#winningLotto = [];
     }
   };
 
@@ -100,14 +99,11 @@ class WebController {
       return this.#bonusNumber;
     } catch (e) {
       alert(e.message);
-    } finally {
-      this.#winningLotto = [];
       this.#bonusNumber = 0;
     }
   };
 
   validateBonusNumber = () => {
-    console.log(this.#bonusNumber, this.#winningLotto);
     Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto);
   };
 
@@ -115,6 +111,26 @@ class WebController {
     e.preventDefault();
     const winning = this.getWinningNumbers();
     const bonus = this.getBonusNumber();
+    console.log(winning, bonus);
+    const lottos = new Lottos(this.#lottoArray);
+
+    lottos.getLottos().forEach((lotto) => {
+      console.log(lotto);
+      lotto.compareNumbers(winning);
+      lotto.checkBonusNumber(bonus);
+    });
+    lottos.compareLottosScore();
+    this.printResult(lottos);
+  };
+
+  printResult = (lottos) => {
+    for (const score in lottos.getLottoRanking()) {
+      console.log(
+        `${score} (${MATCH.MONEY_BOARD[score]}${SETTINGS.MONEY_UNIT}) - ${
+          lottos.getLottoRanking()[score]
+        }개`
+      );
+    }
   };
 }
 

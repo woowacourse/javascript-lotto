@@ -51,7 +51,7 @@ Main
 - [X] 로또 구입 금액 입력받는 기능 -WebController
   - [ ] [예외처리] alert
 - [X] 구입한 갯수만큼 로또 번호를 출력 -WebController
-- [ ] 당첨 번호와 보너스 번호를 입력받는 기능 -WebController
+- [X] 당첨 번호와 보너스 번호를 입력받는 기능 -WebController
 
 Modal
 - [ ] 당첨 내역 출력 -WebController
