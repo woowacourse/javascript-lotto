@@ -34,8 +34,10 @@ class ResultView extends LottoView {
   }
 
   printWinningCount(winningResult) {
+    const rank = this.createRankList(winningResult);
+
     $$winningCounts.forEach((winningCount, index) => {
-      this.print(winningCount, this.createRankList(winningResult)[index]);
+      this.print(winningCount, rank[index]);
     });
   }
 
