@@ -1,6 +1,6 @@
 const LottoPurchasePage = require('../components/LottoPurchasePage.js');
 const resultModalPage = require('../components/resultModalPage.js');
-const { moneyInputButton, resultButton } = require('../utils/DOM.js');
+const { moneyInputButton, resultButton, modalClose, modal, resetButton } = require('../utils/DOM.js');
 
 class LottoGameController {
   constructor() {
@@ -14,10 +14,15 @@ class LottoGameController {
       event.preventDefault();
       this.lottoPurchasePage.purchaseButton();
     });
+
     resultButton.addEventListener('click', () => {
       const lottoList = this.lottoPurchasePage.lottoNumbers();
       const moneyInput = this.lottoPurchasePage.inputMoney();
       this.resultModalPage.openModalButton(lottoList, moneyInput);
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.classList.add('v-hidden');
     });
   }
 }

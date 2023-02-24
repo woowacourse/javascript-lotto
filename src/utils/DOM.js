@@ -19,3 +19,5 @@ export const modal = document.querySelector('.modal');
 export const resultTableBody = document.querySelector('.result-table-body');
 
 export const rateOfReturn = document.querySelector('.rate-of-return');
+
+export const modalClose = document.querySelector('.modal-close');
