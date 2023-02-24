@@ -1,16 +1,17 @@
 const LottoMachine = require('../domain/LottoMachine');
-const { winningNumbersTag } = require('../utils/DOM.js');
+const { winningNumbersTag, bonusNumberTag } = require('../utils/DOM.js');
 
 class resultModalPage {
   openModalButton() {
-    this.getWinningNumber();
+    this.getWinningAndBonusNumber();
   }
-  getWinningNumber() {
+  getWinningAndBonusNumber() {
     const winningNumber = [];
+    const bonusNumber = bonusNumberTag.value;
     winningNumbersTag.forEach((number, index) => {
       winningNumber[index] = number.value;
     });
-    return winningNumber;
+    console.log(bonusNumber);
   }
 }
 
