@@ -1,0 +1,29 @@
+name: NodeJS with Webpack
+
+# on 부분은, 어떤 조건에서 workflow를 실행할 것인지 설정합니다. 
+on:
+  # step2 브랜치가 push 행동을 할 때마다 workflow를 실행합니다.
+  push:
+    branches: [ "step2" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 19
+
+    - run: npm ci # package-lock.json 에 적혀있는 패키지를 그~대로 설치합니다.
+    - run: npm run build-step2  # package.json에 빌드 스크립트를 여기 적으세요
+
+    # publish_dir에 들어있는 파일들을 gh-pages 브랜치에 올려줍니다.
+    - uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
