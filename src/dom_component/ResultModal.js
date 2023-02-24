@@ -34,8 +34,8 @@ class ResultModal {
     });
 
     this.restartButton.addEventListener(Event.CLICK, () => {
-      resetGame();
       this.#close();
+      resetGame();
     });
   }
 
