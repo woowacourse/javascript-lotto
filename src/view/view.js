@@ -69,7 +69,7 @@ const view = {
                 <span class="statisticsColumn">${utils.getFormattedNumber(
                   profitByRank[profitByRank.length - index - 1]
                 )}원</span>
-                <span class="statisticsColumn">${rankCount}</span>
+                <span class="statisticsColumn">${rankCount}개</span>
               </div>
             `
           )
