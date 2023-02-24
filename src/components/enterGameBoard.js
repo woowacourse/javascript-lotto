@@ -71,8 +71,11 @@ function enterGameBoard() {
 }
 
 export function paintEnterWinningNumber($root, eventHandler) {
-  $root.appendChild(enterGameBoard());
+  const $gameBoard = enterGameBoard();
+  $root.appendChild($gameBoard);
+
   addEnterGameBoardEventListener($root, eventHandler);
+  $gameBoard.querySelector('input[name=win-number]').focus();
 }
 
 export function getWinNumberAndBonusNumber() {
