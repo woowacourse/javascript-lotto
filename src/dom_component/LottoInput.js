@@ -46,6 +46,7 @@ class LottoInput {
     this.winningNumberInputs.forEach((each) => {
       each.value = '';
     });
+    this.winningNumberInputs[0].focus();
   }
 
   resetBonusNumberInput() {
