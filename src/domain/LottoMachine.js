@@ -17,7 +17,6 @@ class LottoMachine {
 
   setLottoNumber(figure) {
     this.lottoNumber = figure;
-    console.log(this.lottoNumber);
   }
 
   makeLotto(money) {

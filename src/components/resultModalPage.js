@@ -1,6 +1,7 @@
 const LottoMachine = require('../domain/LottoMachine.js');
 const RankedLotto = require('../domain/RankedLotto.js');
-const { winningNumbersTag, bonusNumberTag, lottoInput } = require('../utils/DOM.js');
+const { winningNumbersTag, bonusNumberTag } = require('../utils/DOM.js');
+const display = require('../view/display.js');
 
 class resultModalPage {
   constructor() {
@@ -20,6 +21,7 @@ class resultModalPage {
     });
     const lottoResult = this.lottoMachine.compareNumber(winningNumber, bonusNumber);
     const lottoResultChart = this.rankedLotto.getResult(lottoResult);
+    display.showModal(lottoResultChart);
   }
 }
 

@@ -19,6 +19,7 @@ const NUMBER = {
   THIRD: 2,
   SECOND: 3,
   FIRST: 4,
+  FIRST_INPUT: 0,
 };
 
 const ERROR = {
