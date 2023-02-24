@@ -1,6 +1,6 @@
 import LottoMachine from './domain/LottoMachine';
 
-class WebController {
+class LottoMeditator {
   #lottoMachine;
 
   receivePaymentsInput(payments) {
@@ -24,4 +24,4 @@ class WebController {
   }
 }
 
-export default WebController;
+export default LottoMeditator;

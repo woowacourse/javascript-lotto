@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 import { renderLottosContainer, renderResultTable } from './view/web/render';
 import '../public/style.css';
-import WebController from './WebController';
+import LottoMeditator from './LottoMeditator';
 
 const resultBtn = document.querySelector('.result-btn');
 const paymentsBtn = document.querySelector('.payments-btn');
 const modal = document.querySelector('.modal');
 
-const webController = new WebController();
+const webController = new LottoMeditator();
 
 const handlePayments = () => {
   const paymentsInput = document.querySelector('.payments-input');
