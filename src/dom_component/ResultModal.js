@@ -1,4 +1,4 @@
-import { Event, QuerySelector } from '../constants/Dom';
+import { Event, QuerySelector, Tag } from '../constants/Dom';
 import { $ } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 
@@ -29,6 +29,12 @@ class ResultModal {
   }
 
   activate(resetGame) {
+    window.addEventListener(Event.CLICK, (e) => {
+      if (e.target.tagName === Tag.DIALOG_CAP) {
+        this.#close();
+      }
+    });
+
     this.closeButton.addEventListener(Event.CLICK, () => {
       this.#close();
     });

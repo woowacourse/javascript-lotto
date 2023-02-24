@@ -24,6 +24,7 @@ const Tag = Object.freeze({
   DIV: 'div',
   UL: 'ul',
   LI: 'li',
+  DIALOG_CAP: 'DIALOG',
 });
 
 const Event = Object.freeze({
