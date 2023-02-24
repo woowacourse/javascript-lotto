@@ -34,23 +34,34 @@ class LottoGameDomController {
   }
 
   #setWinningLotto = (winningNumbers, bonusNumber) => {
-    try {
-      Validation.testLottoNumbers(winningNumbers);
-      this.#handleBonusNumber(winningNumbers, bonusNumber);
-    } catch (error) {
-      alert(error.message);
-      LottoInput.resetWinningNumberInputs();
+    const winningNumbersValidity = this.#varifyWinningNumbers(winningNumbers);
+    const bonusNumberValidity = this.#varifyBonusNumber(winningNumbers, bonusNumber);
+
+    if (winningNumbersValidity && bonusNumberValidity) {
+      this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
+      this.#showGameResult();
     }
   };
 
-  #handleBonusNumber(winningNumbers, bonusNumber) {
+  #varifyWinningNumbers(winningNumbers) {
+    try {
+      Validation.testLottoNumbers(winningNumbers);
+      return true;
+    } catch (error) {
+      alert(error.message);
+      LottoInput.resetWinningNumberInputs();
+      return false;
+    }
+  }
+
+  #varifyBonusNumber(winningNumbers, bonusNumber) {
     try {
       Validation.testBonusNumber(winningNumbers, bonusNumber);
-      this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
-      this.#showGameResult();
+      return true;
     } catch (error) {
       alert(error.message);
       LottoInput.resetBonusNumberInput();
+      return false;
     }
   }
 
