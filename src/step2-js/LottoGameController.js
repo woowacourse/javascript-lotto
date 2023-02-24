@@ -21,9 +21,9 @@ export default class LottoGameController {
     this.#view.onClickModalCloseButton();
   }
 
-  #createLotto(purchaseAmount) {
+  #createLotto(purchaseAmountInput) {
     try {
-      Validation.validatePurchaseAmount(purchaseAmount);
+      Validation.validatePurchaseAmount(purchaseAmountInput);
     } catch ({ message }) {
       this.#view.showAlert(message);
       this.#view.initPurchaseAmountInput();
@@ -31,7 +31,7 @@ export default class LottoGameController {
       return;
     }
 
-    const lottoQuantity = Number(purchaseAmount) / LOTTO_CONDITION.lottoPrice;
+    const lottoQuantity = Number(purchaseAmountInput) / LOTTO_CONDITION.lottoPrice;
     const eachLottoNumbers = Array.from({ length: lottoQuantity }, () => {
       const lottoNumbers = this.#lottoGame.generateLottoNumbers(LOTTO_CONDITION.lottoDigits);
       this.#lottoGame.makeLotto(lottoNumbers);
@@ -46,15 +46,18 @@ export default class LottoGameController {
     this.#view.showElements('.winning-lotto-form');
   }
 
-  #compareLotto({ winningNumbers, bonusNumber }) {
+  #compareLotto({ winningNumbersInput, bonusNumberInput }) {
     try {
-      Validation.validateWinningNumbers(winningNumbers);
-      Validation.validateBonusNumber(bonusNumber, winningNumbers);
+      Validation.validateWinningNumbers(winningNumbersInput);
+      Validation.validateBonusNumber(bonusNumberInput, winningNumbersInput);
     } catch ({ message }) {
       this.#view.showAlert(message);
 
       return;
     }
+
+    const winningNumbers = winningNumbersInput.map(Number);
+    const bonusNumber = Number(bonusNumberInput);
 
     const eachCompareResult = this.#lottoGame.getEachCompareResult(winningNumbers, bonusNumber);
     const statistics = this.#lottoGame.getStatistics(eachCompareResult);

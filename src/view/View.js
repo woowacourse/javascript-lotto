@@ -6,8 +6,8 @@ export default class View {
     $('.purchase-amount-submit-button').addEventListener('click', (e) => {
       e.preventDefault();
 
-      const purchaseAmount = $('.purchase-amount-input').value;
-      callback(purchaseAmount);
+      const purchaseAmountInput = $('.purchase-amount-input').value;
+      callback(purchaseAmountInput);
     });
   }
 
@@ -16,13 +16,13 @@ export default class View {
       e.preventDefault();
 
       const $$winningNumberInputNodeList = $$('.winning-number-input');
-      const winningNumbers = Array.from($$winningNumberInputNodeList, (node) => {
+      const winningNumbersInput = Array.from($$winningNumberInputNodeList, (node) => {
         return node.value.trim();
       });
 
-      const bonusNumber = $('.bonus-number-input').value;
+      const bonusNumberInput = $('.bonus-number-input').value;
 
-      callback({ winningNumbers, bonusNumber });
+      callback({ winningNumbersInput, bonusNumberInput });
     });
   }
 
