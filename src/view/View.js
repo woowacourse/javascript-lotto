@@ -17,11 +17,10 @@ export default class View {
 
       const $$winningNumberInputNodeList = $$('.winning-number-input');
       const winningNumbers = Array.from($$winningNumberInputNodeList, (node) => {
-        return Number(node.value.trim());
+        return node.value.trim();
       });
 
-      const bonusNumberInput = $('.bonus-number-input').value;
-      const bonusNumber = Number(bonusNumberInput);
+      const bonusNumber = $('.bonus-number-input').value;
 
       callback({ winningNumbers, bonusNumber });
     });

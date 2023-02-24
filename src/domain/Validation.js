@@ -3,6 +3,10 @@ import { ERROR_MESSAGE } from '../constants/message.js';
 
 const Validation = {
   validatePurchaseAmount(purchaseAmount) {
+    if (this.isEmpty(purchaseAmount)) {
+      throw new Error(ERROR_MESSAGE.emptyInput);
+    }
+
     if (!this.isNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
@@ -14,6 +18,10 @@ const Validation = {
     if (!this.isDivisibleByLottoPrice(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.indivisibleByLottoPrice);
     }
+  },
+
+  isEmpty(input) {
+    return input.length === 0;
   },
 
   isNumber(purchaseAmount) {
@@ -29,6 +37,10 @@ const Validation = {
   },
 
   validateWinningNumbers(winningNumbers) {
+    if (this.hasEmpty(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.emptyInput);
+    }
+
     if (!this.isValidWinningNumbersLength(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.invalidLottoNumberLength);
     }
@@ -46,12 +58,16 @@ const Validation = {
     }
   },
 
+  hasEmpty(winningNumbers) {
+    return winningNumbers.some(this.isEmpty);
+  },
+
   isValidWinningNumbersLength(winningNumbers) {
     return winningNumbers.length === LOTTO_CONDITION.lottoDigits;
   },
 
   hasOnlyNumber(winningNumbers) {
-    return winningNumbers.every((winningNumber) => Number.isInteger(winningNumber));
+    return winningNumbers.every((winningNumber) => Number.isInteger(Number(winningNumber)));
   },
 
   hasDuplicatedValue(array) {
@@ -59,14 +75,19 @@ const Validation = {
   },
 
   isValidWinningNumberRange(winningNumbers) {
-    return winningNumbers.every(
-      (winningNumber) =>
-        LOTTO_CONDITION.lottoNumberMinRange <= winningNumber &&
-        winningNumber <= LOTTO_CONDITION.lottoNumberMaxRange
-    );
+    return winningNumbers.every((winningNumber) => {
+      return (
+        LOTTO_CONDITION.lottoNumberMinRange <= Number(winningNumber) &&
+        Number(winningNumber) <= LOTTO_CONDITION.lottoNumberMaxRange
+      );
+    });
   },
 
   validateBonusNumber(bonusNumber, winningNumbers) {
+    if (this.isEmpty(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.emptyInput);
+    }
+
     if (!this.isNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
@@ -82,8 +103,8 @@ const Validation = {
 
   isValidBonusNumberRange(bonusNumber) {
     return (
-      LOTTO_CONDITION.lottoNumberMinRange <= bonusNumber &&
-      bonusNumber <= LOTTO_CONDITION.lottoNumberMaxRange
+      LOTTO_CONDITION.lottoNumberMinRange <= Number(bonusNumber) &&
+      Number(bonusNumber) <= LOTTO_CONDITION.lottoNumberMaxRange
     );
   },
 
