@@ -10,8 +10,15 @@ export function closeModal() {
   $modal.classList.remove('is-active');
 }
 
+export function addESCCloseEventListener() {
+  const $modalBackground = document.querySelector('.modal-background');
+
+  $modalBackground.addEventListener('click', closeModal);
+}
+
 export default function paintModal($content) {
   const $modalContent = document.querySelector('.modal-content');
+
   clearConatiner($modalContent);
   $modalContent.appendChild($content);
 

@@ -215,6 +215,10 @@ button:disabled:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal-background:hover {
+  cursor: pointer;
+}
+
 .is-active {
   display: flex;
 }
