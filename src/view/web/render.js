@@ -32,14 +32,13 @@ const renderHitLottoCount = (winCount) => {
   const resultTableBody = document.querySelector('.result-table-body');
   const tableRows = resultTableBody.querySelectorAll('tr');
 
-  for (let i = 0; i < 5; i++) {
+  tableRows.forEach((tr, index) => {
     const td = document.createElement('td');
-    const rank = i + 1;
-    const tableOrder = 5 - (i + 1);
+    const rank = 5 - index;
 
     td.innerText = `${winCount[rank]}개`;
-    tableRows[tableOrder].append(td);
-  }
+    tr.append(td);
+  });
 };
 
 const renderProfitRate = (profitRate) => {
