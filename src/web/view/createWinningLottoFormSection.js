@@ -1,7 +1,7 @@
-const winningNumberInputItem =
-  '<li><input type="number" class="winning-number-input js-winning-number-input" min="1" max="45"/></li>';
-const bonusNumberInput =
-  '<input type="number" class="winning-number-input js-bonus-number-input "min="1 "max="45"/>';
+import { LOTTO } from '../../constants/setting';
+
+const winningNumberInputItem = `<li><input type="number" class="winning-number-input js-winning-number-input" min="${LOTTO.MIN_NUMBER_RANGE}" max="${LOTTO.MAX_NUMBER_RANGE}"/></li>`;
+const bonusNumberInput = `<input type="number" class="winning-number-input js-bonus-number-input "min="${LOTTO.MIN_NUMBER_RANGE}" max="${LOTTO.MAX_NUMBER_RANGE}"/>`;
 
 const createTitle = (size, bonusSize) =>
   `<p>지난 주 당첨번호 ${size}개와 보너스 번호 ${bonusSize}개를 입력해주세요.</p>`;
@@ -22,7 +22,7 @@ const createWinningNumberForm = (size, bonusSize) => `
   <button type="submit" form="winning-numbers-form" class="button caption" id="result-button">결과 확인하기</button>
 `;
 
-const createWinningNumberFormSection = (size, bonusSize) => `
+const createWinningNumberFormSection = (size = LOTTO.SIZE, bonusSize = LOTTO.BONUS_SIZE) => `
   <section class="lotto-game-section" id="winning-lotto-form-section">
     ${createTitle(size, bonusSize) + createWinningNumberForm(size, bonusSize)}
   </section>

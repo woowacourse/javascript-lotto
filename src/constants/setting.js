@@ -21,6 +21,13 @@ const LOTTO = {
   MIN_NUMBER_RANGE: 1,
   MAX_NUMBER_RANGE: 45,
   SIZE: 6,
+  BONUS_SIZE: 1,
+};
+
+const PURCHASE = {
+  MIN: 1_000,
+  MAX: 100_000,
+  STEP: 1_000,
 };
 
 const COMMAND = {
@@ -28,4 +35,4 @@ const COMMAND = {
   NO: 'n',
 };
 
-export { RANK, RANK_MATCH, INIT_RANKING, LOTTO, COMMAND };
+export { RANK, RANK_MATCH, INIT_RANKING, LOTTO, PURCHASE, COMMAND };
