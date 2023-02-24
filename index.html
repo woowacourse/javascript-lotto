@@ -8,11 +8,11 @@
   </head>
   <body>
     <div id="app">
-      <header class="header"><h1 class="title">🎱 행운의 로또</h1></header>
-      <main class="main">
-        <div class="game">
-          <span class="game-title">🎱 내 번호 당첨 확인 🎱</span>
-          <div class="div-purchase">
+      <header id="header"><h1>🎱 행운의 로또</h1></header>
+      <main id="main">
+        <div id="game">
+          <span id="game-title">🎱 내 번호 당첨 확인 🎱</span>
+          <div id="div-purchase">
             <label for="purchaseAmount">구입할 금액을 입력해 주세요.</label>
             <form id="div-purchaseAmount">
               <input
@@ -29,18 +29,18 @@
           <div id="after-purchase">
             <div id="div-lottos">
               <div>
-                <span class="message-purchaseAmount">총 7개를 구매하였습니다.</span>
+                <span id="message-purchaseAmount">총 7개를 구매하였습니다.</span>
               </div>
-              <div class="lottos"></div>
+              <div id="lottos"></div>
             </div>
-            <div class="winningLotto">
+            <div id="winningLotto">
               <span class="message-winningLotto"
                 >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
               >
-              <form class="form-inputs-winningLotto">
-                <div class="winningNumber">
+              <form id="form-inputs-winningLotto">
+                <div id="winningNumber">
                   <label for="winningNumber">당첨 번호</label>
-                  <div class="input-winningLottos">
+                  <div id="input-winningLottos">
                     <input
                       class="input-winningLotto"
                       type="number"
@@ -86,10 +86,10 @@
                     />
                   </div>
                 </div>
-                <div class="bonusNumber">
+                <div id="bonusNumber">
                   <label for="bonusNumber">보너스 번호</label>
                   <input
-                    class="input-bonusNumber"
+                    id="input-bonusNumber"
                     type="number"
                     name="bonusNumber"
                     min="1"
@@ -146,7 +146,7 @@
         <button value="cancel" id="restart-button">다시 시작하기</button>
       </dialog>
 
-      <footer class="footer"><span class="copyright">Copyright 2023. woowacourse</span></footer>
+      <footer id="footer"><span id="copyright">Copyright 2023. woowacourse</span></footer>
     </div>
   </body>
 </html>

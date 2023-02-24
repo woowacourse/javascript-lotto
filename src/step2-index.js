@@ -15,10 +15,10 @@ const lottoGame = new LottoGame(view);
 
 const $purchaseAmountForm = document.getElementById("div-purchaseAmount");
 const $purchaseAmountInput = document.getElementById("input-purchaseAmount");
-const $lottos = document.querySelector(".lottos");
+const $lottos = document.getElementById("lottos");
 const $winningNumberInputs = document.querySelectorAll(".input-winningLotto");
-const $bonusNumberInput = document.querySelector(".input-bonusNumber");
-const $winningLottoForm = document.querySelector(".form-inputs-winningLotto");
+const $bonusNumberInput = document.getElementById("input-bonusNumber");
+const $winningLottoForm = document.getElementById("form-inputs-winningLotto");
 const $statisticsModal = document.getElementById("modal-statistics");
 const $closeButton = document.getElementById("close-button");
 const $restartButton = document.getElementById("restart-button");

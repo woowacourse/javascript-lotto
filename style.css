@@ -38,7 +38,7 @@ body {
 }
 
 /* header */
-.header {
+#header {
   display: flex;
   align-items: center;
   height: 64px;
@@ -46,7 +46,7 @@ body {
   /* box-shadow: 0px 5px var(--color-greyscale-3); */
 }
 
-.header .title {
+#header h1 {
   color: var(--color-greyscale-1);
   margin-left: 130px;
   font-weight: 700;
@@ -55,14 +55,14 @@ body {
 }
 
 /* main */
-.main {
+#main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
 }
 
-.main .game {
+#main #game {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-greyscale-3);
@@ -72,7 +72,7 @@ body {
   height: 70%; */
 }
 
-.game-title {
+#game-title {
   margin-top: 52px;
   text-align: center;
   font-weight: 700;
@@ -80,7 +80,7 @@ body {
   line-height: 24px;
 }
 
-.div-purchase {
+#div-purchase {
   display: flex;
   flex-direction: column;
   margin-top: 28px;
@@ -116,7 +116,7 @@ body {
   margin-top: 27px;
 }
 
-.lottos {
+#lottos {
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -142,25 +142,25 @@ body {
   line-height: 24px;
 }
 
-.winningLotto {
+#winningLotto {
   display: flex;
   flex-direction: column;
   margin-top: 24px;
 }
 
-.form-inputs-winningLotto {
+#form-inputs-winningLotto {
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
 }
 
-.input-winningLottos {
+#input-winningLottos {
   display: flex;
   gap: 8px;
 }
 
 .input-winningLotto,
-.input-bonusNumber {
+#input-bonusNumber {
   width: 34px;
   height: 36px;
   border: 1px solid var(--color-greyscale-3);
@@ -169,21 +169,18 @@ body {
   text-align: center;
 }
 
-.winningNumber label {
+#winningNumber label {
   display: block;
 }
 
-.bonusNumber {
+#bonusNumber {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.bonusNumber label {
+#bonusNumber label {
   display: block;
-}
-
-.main .modal-statistics {
 }
 
 #button-result {
@@ -209,7 +206,7 @@ body {
 }
 
 /* footer */
-.footer {
+#footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -217,7 +214,7 @@ body {
   border: 1px solid var(--color-primary);
 }
 
-.footer .copyright {
+#footer #copyright {
   font-size: 14;
   font-weight: bold;
   color: var(--color-primary);

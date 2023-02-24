@@ -1,15 +1,9 @@
 import { PLACE } from "../domain/constants";
 import { MESSAGE } from "../domain/message";
-import {
-  validateBonusNumber,
-  validatePurchaseAmount,
-  validateRestartOrQuitCommend,
-  validateWinningLottoNumbers,
-} from "../domain/validator";
 import { getAscendingSortedNumbers } from "../utils";
 
-const $purchaseAmountMessageSpan = document.querySelector(".message-purchaseAmount");
-const $lottos = document.querySelector(".lottos");
+const $purchaseAmountMessageSpan = document.getElementById("message-purchaseAmount");
+const $lottos = document.getElementById("lottos");
 const $placeNumbers = document.querySelectorAll(".place-number");
 const $rateOfReturn = document.getElementById("rate-of-return");
 
@@ -36,7 +30,7 @@ export const view = {
 
   printPlacesOfLottos(placesOfLottos) {
     const keys = [PLACE.fifth, PLACE.fourth, PLACE.third, PLACE.second, PLACE.first];
-    [...$placeNumbers].forEach(
+    $placeNumbers.forEach(
       (place, index) => (place.textContent = `${placesOfLottos[keys[index]]}개`)
     );
   },
