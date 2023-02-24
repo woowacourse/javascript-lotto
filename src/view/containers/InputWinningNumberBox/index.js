@@ -1,6 +1,6 @@
 const InputWinningNumberBox = () => {
   return `
-  <div>
+  <div id="input-winning-number-title">
     지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.
   </div>
   <div class="d-flex justify-content-between">
@@ -25,7 +25,7 @@ const InputWinningNumberBox = () => {
         <input class="ball-box" name="bonus" />    
       </div>
     </div>
-    <button class="width-100" id="game-modal-open-button">결과 확인하기</button>
+    <button class="width-100 btn lotto-primary lotto-greyscale-1" id="game-modal-open-button">결과 확인하기</button>
   </form>
   `;
 };

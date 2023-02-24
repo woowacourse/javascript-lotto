@@ -64,10 +64,6 @@
   border-width: 1px;
 }
 
-.ball-box {
-  width: 15.5px;
-  height: 15.5px;
-}
 
 .header {
   padding-left: 130px;
@@ -130,4 +126,27 @@
 
   color: #000000;
 
+}
+
+#input-winning-number-title {
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+#winning-number-submit {
+  margin-top: 8px;
+}
+
+
+.ball-box {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #B4B4B4;
+  border-radius: 4px;
+}
+
+#game-modal-open-button{
+  margin-top: 27px;
+  height: 36px;
+  margin-bottom: 32px;
 }
