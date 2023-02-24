@@ -1,0 +1,33 @@
+.btn-indigo {
+  border-color: #4e5ba6 !important;
+  background-color: #4e5ba6 !important;
+}
+
+.btn-indigo:hover {
+  background-color: #3e498b !important;
+}
+
+.btn-indigo:disabled,
+.btn-indigo:disabled:hover {
+  color: rgba(16, 16, 16, 0.3);
+  background-color: #4e5ba6 !important;
+  cursor: not-allowed;
+}
+
+.btn-indigo:focus {
+  outline-color: black;
+}
+
+/* Regular Button */
+
+.btn {
+  height: 36px;
+  min-width: 64px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border-style: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 4px 1px rgba(16, 16, 16, 0.2);
+  color: white;
+  font-weight: 600;
+}

@@ -1,16 +1,145 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="kr">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <header>
+      <span>🎱 행운의 로또</span>
+    </header>
+    <div id="app" class="p-3">
+      <section role="main" class="d-flex justify-center mt-5">
+        <div class="w-100">
+          <h1 class="text-center">🎱 내 번호 당첨 확인</h1>
+          <form class="purchase-amount-form mt-5 d-flex">
+            <label class="w-100 d-flex flex-col justify-between">
+              <h2 class="mb-2 text-lg font-normal">구입할 금액을 입력해주세요.</h2>
+              <input
+                type="number"
+                step="any"
+                class="purchase-amount-input pl-2 mr-2 input"
+                placeholder="금액"
+                autofocus
+                required
+              />
+            </label>
+            <div class="d-flex items-end">
+              <button type="submit" class="purchase-amount-button btn btn-indigo">구입</button>
+            </div>
+          </form>
+          <section class="purchased-lotto-section mt-9">
+            <div class="d-flex">
+              <h2 class="purchased-lotto-label flex-auto my-0 text-lg font-normal"></h2>
+            </div>
+            <ul class="lotto-ticket-container d-flex flex-wrap pl-0"></ul>
+          </section>
+          <form id="winning-number-form" class="winning-number-form d-none mt-5">
+            <label class="flex-auto d-inline-block mb-3">
+              지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
+            </label>
+            <div class="d-flex mt-2 justify-between">
+              <section>
+                <span class="text-lg">당첨 번호</span>
+                <div class="mt-2">
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber1"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber2"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber3"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber4"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber5"
+                    required
+                  />
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="winning-number mx-1 text-center"
+                    aria-label="winningNumber6"
+                    required
+                  />
+                </div>
+              </section>
+              <section class="bonus-number-container">
+                <span class="mt-0 mb-3 text-lg">보너스 번호</span>
+                <div class="d-flex justify-end mt-2">
+                  <input
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="bonus-number text-center"
+                    aria-label="bonusNumber"
+                    required
+                  />
+                </div>
+              </section>
+            </div>
+            <div class="winning-number-check-message mt-3 text-sm text-red h-2r spacing-sm"></div>
+            <button type="button" class="open-result-modal-button btn btn-indigo w-100">결과 확인하기</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="modal v-hidden">
+        <div class="modal-inner p-10">
+          <div class="modal-close">
+            <svg viewBox="0 0 40 40">
+              <path class="close-x" d="M 10 10 L 30 30 Z M 30 10 L 10 30 Z" />
+            </svg>
+          </div>
+          <h2 class="text-center">🏆 당첨 통계 🏆</h2>
+          <div class="d-flex justify-center">
+            <table class="result-table border-collapse border border-black">
+              <thead>
+                <tr class="text-center">
+                  <th class="p-3">일치 갯수</th>
+                  <th class="p-3">당첨금</th>
+                  <th class="p-3">당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody class="result-table-body"></tbody>
+            </table>
+          </div>
+          <p class="rate-of-return text-center font-bold"></p>
+          <div class="d-flex justify-center mt-5">
+            <button type="reset" class="reset-button btn btn-indigo" form="winning-number-form">다시 시작하기</button>
+          </div>
+        </div>
+      </section>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

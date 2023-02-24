@@ -1,0 +1,16 @@
+/* Sizing - Width */
+.w-100 {
+  width: 100%;
+}
+
+.mw-1r {
+  min-width: 1rem;
+}
+
+.mw-2r {
+  min-width: 2rem;
+}
+
+.h-2r {
+  height: 2rem;
+}
