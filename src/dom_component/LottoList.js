@@ -23,7 +23,7 @@ class LottoList {
       const lottoEl = makeNode(Tag.LI);
       lottoEl.className = QuerySelector.LOTTO;
       lottoEl.innerText = Convertor.lottoWithIcon(lotto);
-      lottoListEl.appendChild(lottoEl);
+      lottoListEl.append(lottoEl);
     });
 
     return lottoListEl;
@@ -35,8 +35,8 @@ class LottoList {
 
     this.reset();
 
-    this.lottoListField.appendChild(purchaseMessageEl);
-    this.lottoListField.appendChild(lottoListEl);
+    this.lottoListField.append(purchaseMessageEl);
+    this.lottoListField.append(lottoListEl);
   }
 
   reset() {
