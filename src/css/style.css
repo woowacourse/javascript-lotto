@@ -8,35 +8,30 @@
   --color-white: #ffffff;
   --color-dark-white: #fcfcfd;
   --color-grey: #b4b4b4;
-  --color-dark-grey: #8b8b8b;
-  --color-black: #000000;
   --color-red: #ff0000;
 
   /* font size */
   --size-emoji: 34px;
-  --size-tile: 24px;
-  --size-subtitle: 20px;
+  --size-title: 24px;
   --size-body: 15px;
-  --size-placeholer: 15px;
   --size-caption: 14px;
 
   /* bold */
-  --bold-extra: 700;
+  --bold-bold: 700;
   --bold-semi: 600;
-  --bold-bold: 500;
-  --bold-regular: 400;
+  --bold-medium: 500;
 
   /* Border-radius */
   --borer-radius-regular: 5px;
 }
 
 /* etc */
-.text__center {
+.text-center {
   text-align: center;
 }
 
 .modal.open,
-.winning__container.open {
+.winning-container.open {
   display: block;
 }
 
@@ -50,8 +45,8 @@
 }
 
 .title {
-  font-size: var(--size-tile);
-  font-weight: var(--bold-extra);
+  font-size: var(--size-title);
+  font-weight: var(--bold-bold);
 }
 
 .navbar__title {
@@ -65,7 +60,7 @@
   margin: 5rem 0;
 }
 
-.lotto__container {
+.lotto-container {
   width: 400px;
   height: 600px;
   margin: 0 auto;
@@ -97,18 +92,18 @@
   margin-left: 0.5rem;
   background-color: var(--color-primary);
   color: var(--color-white);
-  font-weight: var(--bold-bold);
+  font-weight: var(--bold-medium);
   border-radius: var(--borer-radius-regular);
 }
 
-.budget__error,
-.winning__error {
+.budget-error,
+.winning-error {
   margin: 0.5rem 0 2rem 0;
   color: var(--color-red);
 }
 
 /* ticket */
-.tickets__container {
+.tickets-container {
   margin: 1.3rem 0;
   height: 250px;
   overflow-y: auto;
@@ -130,7 +125,7 @@
 }
 
 /* winning */
-.winning__container {
+.winning-container {
   display: none;
 }
 
@@ -138,7 +133,7 @@
   margin-bottom: 1.3rem;
 }
 
-.winning__box {
+.winning-box {
   display: flex;
   justify-content: space-between;
 }
@@ -149,14 +144,14 @@
   margin-bottom: 0.5rem;
 }
 
-#winning__number {
+#winning-number {
   width: 1.5rem;
   height: 1.8rem;
   border: 1px solid var(--color-grey);
   border-radius: var(--borer-radius-regular);
 }
 
-.bonus__number {
+.bonus-number {
   float: right;
 }
 
@@ -169,7 +164,7 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   font-size: var(--size-caption);
-  font-weight: var(--bold-bold);
+  font-weight: var(--bold-medium);
   border: none;
   border-radius: var(--borer-radius-regular);
 }
@@ -186,7 +181,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal__container {
+.modal-container {
   position: absolute;
   top: 30%;
   left: 50%;
@@ -200,13 +195,13 @@
   border-radius: var(--borer-radius-regular);
 }
 
-.close__button {
+.modal__button--close {
   cursor: pointer;
   float: right;
   background-color: transparent;
 }
 
-.close__button:hover {
+.modal__button--close:hover {
   transform: scale(1.2);
   transition: all 200ms ease;
 }

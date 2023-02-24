@@ -13,45 +13,45 @@
         <h1 class="title navbar__title">🎱 행운의 로또</h1>
       </nav>
       <section class="lotto">
-        <div class="lotto__container">
-          <h1 class="title text__center">🎱 내 번호 당첨 확인 🎱</h1>
+        <div class="lotto-container">
+          <h1 class="title text-center">🎱 내 번호 당첨 확인 🎱</h1>
           <form class="budget__form">
             <label class="budget__label" for="budget__input">구입할 금액을 입력해주세요.</label>
             <input type="text" id="budget__input" name="budget" placeholder="금액" />
             <button type="submit" class="budget__button">구입</button>
           </form>
-          <p class="budget__error"></p>
-          <p class="total__budget"></p>
-          <div class="tickets__container">
+          <p class="budget-error"></p>
+          <p class="total-budget"></p>
+          <div class="tickets-container">
             <ul class="tickets__list"></ul>
           </div>
-          <div class="winning__container">
+          <div class="winning-container">
             <p class="sub__title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <form class="winning__form">
-              <div class="winning__box">
+              <div class="winning-box">
                 <div class="winning__input">
-                  <label for="winning__number">당첨 번호</label>
-                  <input type="text" id="winning__number" />
-                  <input type="text" id="winning__number" />
-                  <input type="text" id="winning__number" />
-                  <input type="text" id="winning__number" />
-                  <input type="text" id="winning__number" />
-                  <input type="text" id="winning__number" />
+                  <label for="winning-number">당첨 번호</label>
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
                 </div>
                 <div class="bonus__input">
-                  <label for="bonus__number">보너스 번호</label>
-                  <input type="text" id="winning__number" class="bonus__number" />
+                  <label for="winning-number">보너스 번호</label>
+                  <input type="text" id="winning-number" class="bonus-number" />
                 </div>
               </div>
               <button type="submit" class="result__button">결과 확인하기</button>
             </form>
-            <p class="winning__error"></p>
+            <p class="winning-error"></p>
           </div>
         </div>
       </section>
       <section class="modal">
-        <div class="modal__container">
-          <button class="close__button">
+        <div class="modal-container">
+          <button class="modal__button--close">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -79,27 +79,27 @@
                 <tr>
                   <td>3개</td>
                   <td>5,000</td>
-                  <td><span class="winning__count"></span>개</td>
+                  <td><span class="winning-count"></span>개</td>
                 </tr>
                 <tr>
                   <td>4개</td>
                   <td>50,000</td>
-                  <td><span class="winning__count"></span>개</td>
+                  <td><span class="winning-count"></span>개</td>
                 </tr>
                 <tr>
                   <td>5개</td>
                   <td>1,500,000</td>
-                  <td><span class="winning__count"></span>개</td>
+                  <td><span class="winning-count"></span>개</td>
                 </tr>
                 <tr>
                   <td>5개+보너스볼</td>
                   <td>30,000,000</td>
-                  <td><span class="winning__count"></span>개</td>
+                  <td><span class="winning-count"></span>개</td>
                 </tr>
                 <tr>
                   <td>6개</td>
                   <td>2,000,000,000</td>
-                  <td><span class="winning__count"></span>개</td>
+                  <td><span class="winning-count"></span>개</td>
                 </tr>
               </tbody>
             </table>
