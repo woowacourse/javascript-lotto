@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 
+import { calculateBenefit } from "../../../domain/calculateBenefit";
 import { judgeResult } from "../../../domain/judgeResult";
 import LottoValidator from "../../../domain/LottoValidator";
 import Render from "../../../utils/Render";
@@ -30,8 +31,10 @@ const inputWinningNumberEvent = () => {
       LottoValidator.checkLottoDuplicate(winningNumber);
       store['winningNumber'] = winningNumber;
       const result = judgeResult(store.lottos, store.winningNumber);
-      console.log(result);
+      const benefit = calculateBenefit(store.lottos.length * 1000, result);
+      console.log(result, benefit);
       store['result'] = result;
+      store['benefit'] = benefit;
       Render.container("game-result", () => GameModal(), () => modalEvent());
       const modal = document.getElementById("game-modal");
       console.log(modal);
