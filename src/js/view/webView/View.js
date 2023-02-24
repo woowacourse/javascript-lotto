@@ -6,8 +6,7 @@ $('.youBought').innerHTML = `
 
 $('.issueLotto').innerHTML = `
 <div class="lottos">
-    <div class="lotto">
-    </div>
+    <div class="lotto"></div>
 </div>
 `;
 
@@ -37,8 +36,4 @@ $('.inputNumbersForm').innerHTML = `
             <div class="checkResult">
               <button class="printResultButton" type="submit">결과 확인하기</button>
             </div>
-`;
-
-$('footer').innerHTML = `
-Copyright 2023. woowacourse
 `;

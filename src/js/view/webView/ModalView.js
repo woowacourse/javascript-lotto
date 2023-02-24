@@ -2,18 +2,17 @@ import { $ } from '../../util/dom';
 
 $('.modal').innerHTML = `
 <div class="modalBackground"></div>
-<div class="modalBox"></div>
+<form class="modalBox"></form>
 `;
 
 $('.modalBox').innerHTML = `
 <div class="exitDiv">
-            <button class="exit">X</button>
-          </div>
-          <h2>🏆 당첨 통계 🏆</h2>
-          <table class="winningStatistics"></table>
-
-          <h3>당신의 총 수익률은 <span class="profitRate">100</span>%입니다.</h3>
-          <button class="restartButton" type="reset">다시 시작하기</button>
+  <button class="exit">X</button>
+</div>
+<h2>🏆 당첨 통계 🏆</h2>
+<table class="winningStatistics"></table>
+<h3>당신의 총 수익률은 <span class="profitRate">100</span>%입니다.</h3>
+<button class="restartButton" type="submit">다시 시작하기</button>
 `;
 
 $('.winningStatistics').innerHTML = `

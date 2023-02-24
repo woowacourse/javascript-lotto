@@ -14,8 +14,9 @@ export default class ViewModel {
   constructor() {
     $('.purchaseLotto').addEventListener('submit', this.purchaseLotto.bind(this));
     $('.inputNumbersForm').addEventListener('submit', this.showModal.bind(this));
-    $('.restartButton').addEventListener('click', this.resetGame.bind(this));
+    $('.modalBox').addEventListener('submit', this.resetGame.bind(this));
     $('.exit').addEventListener('click', this.exitModal.bind(this));
+    $('.modalBackground').addEventListener('click', this.exitModal.bind(this));
   }
 
   purchaseLotto(e) {
@@ -97,6 +98,12 @@ export default class ViewModel {
     $('.lottos').innerHTML = ``;
     this.#lottos = [];
   }
+
+  pressEnter = (e) => {
+    console.log(e.keyCode);
+    if (e.keyCode === 13) $('.restartButton').click();
+    if (e.keyCode === 27) $('.exit').click();
+  };
 
   exitModal(e) {
     e.preventDefault();
