@@ -1,8 +1,8 @@
-import InputView from './view/InputView.js';
-import OutputView from './view/OutputView.js';
-import LottoGame from './domain/LottoGame.js';
-import Console from './util/Console.js';
-import COMMAND from './constant/command.js';
+import InputView from './console/view/InputView.js';
+import OutputView from './console/view/OutputView.js';
+import LottoGame from './console/domain/LottoGame.js';
+import Console from './console/util/Console.js';
+import COMMAND from './console/constant/command.js';
 
 const App = (function () {
   const purchaseLottos = async () => {

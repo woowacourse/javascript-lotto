@@ -1,16 +1,16 @@
-import '../css/style.css';
-import InputChecker from './validators/InputChecker.js';
-import LottoGame from './domains/LottoGame.js';
-import LINK from './constants/link.js';
-import { $ } from './utils/dom.js';
-import { getFormData } from './utils/form.js';
-import initWinningNumbers from './inputUtil/inputs.js';
+import './web/css/style.css';
+import InputChecker from './web/js/validators/InputChecker.js';
+import LottoGame from './web/js/domains/LottoGame.js';
+import LINK from './web/js/constants/link.js';
+import { $ } from './web/js/utils/dom.js';
+import { getFormData } from './web/js/utils/form.js';
+import initWinningNumbers from './web/js/inputUtil/inputs.js';
 import {
   renderLottos,
   renderWinningNumbers,
   renderDialog,
   renderResult,
-} from './views/renderer.js';
+} from './web/js/views/renderer.js';
 
 const App = {
   result: null,
