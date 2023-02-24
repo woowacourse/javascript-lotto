@@ -7,19 +7,34 @@
     <title>행운의 로또 게임</title>
   </head>
   <body>
-    <div id="lotto-game">
-      <header id="header"><h2 id="header-title">🎱행운의 로또</h2></header>
-      <section>
-        <h3>🎱내 번호 당첨 확인🎱</h3>
-        <form id="price-form">
-          <label for="price">구입할 금액을 입력해주세요.</label>
-          <input id="price-input" type="text" placeholder="금액" />
-          <button type="submit" id="price-btn">입력</button>
-        </form>
-        <div id="price-result"></div>
-        <div id="lottos"></div>
-      </section>
-      <section id="winning-lotto"></section>
+    <div id="app">
+      <header><h2 id="header-title">🎱행운의 로또</h2></header>
+      <main id="lotto-game">
+        <div id="game-container">
+          <div id="title-wrapper">
+            <h2>🎱 내 번호 당첨 확인 🎱</h2>
+          </div>
+          <form id="purchase-lotto-form">
+            <div id="input-label">
+              <label for="price-label">구입할 금액을 입력해주세요.</label>
+              <input
+                name="price"
+                id="price-input"
+                type="number"
+                placeholder="금액은 1000원 단위로 입력해주세요."
+                autocomplete="off"
+                required
+              />
+            </div>
+            <button type="submit" id="purchase-button">구입</button>
+          </form>
+          <section id="purchase-result"></section>
+          <section id="winning-lotto"></section>
+        </div>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
   </body>
 </html>
