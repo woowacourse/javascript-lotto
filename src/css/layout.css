@@ -6,8 +6,16 @@ body {
   width: 100%;
 }
 
+.height-100{
+  height: 100%;
+}
+
 .d-flex {
   display: flex;
+}
+
+.flex-column{
+  flex-direction: column!important;
 }
 
 .justify-content-between {

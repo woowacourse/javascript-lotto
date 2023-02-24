@@ -145,8 +145,18 @@
   border-radius: 4px;
 }
 
-#game-modal-open-button{
+#game-modal-open-button {
   margin-top: 27px;
   height: 36px;
   margin-bottom: 32px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
 }
