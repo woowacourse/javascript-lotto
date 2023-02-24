@@ -19,7 +19,7 @@ const handlePayments = () => {
   webController.receivePaymentsInput(payments);
 };
 
-const changeCSSByPaymentsBtnClick = () => {
+const changeCSSByPaymentsEvent = () => {
   paymentsBtn.disabled = true;
   resultBtn.disabled = false;
   winningLottoContainer.style.visibility = 'visible';
@@ -41,7 +41,7 @@ const handleWinningLottos = () => {
   webController.receiveBonusNumberInput(bonusNumber);
 };
 
-const changeCSSByResultBtnClick = () => {
+const changeCSSByResultBtnEvent = () => {
   resultBtn.disabled = true;
   modal.style.visibility = 'visible';
 };
@@ -57,7 +57,7 @@ paymentsContainer.addEventListener('submit', (e) => {
   }
 
   renderLottosContainer(webController.sendLottoNumbers());
-  changeCSSByPaymentsBtnClick();
+  changeCSSByPaymentsEvent();
 });
 
 winningLottoContainer.addEventListener('submit', (e) => {
@@ -69,7 +69,7 @@ winningLottoContainer.addEventListener('submit', (e) => {
     return;
   }
   renderResultTable(webController.sendStatstics());
-  changeCSSByResultBtnClick();
+  changeCSSByResultBtnEvent();
 });
 
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
