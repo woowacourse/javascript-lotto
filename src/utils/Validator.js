@@ -10,7 +10,7 @@ const Validator = {
   },
 
   isPositiveInteger(input) {
-    if (input < 0 || input % 1 !== 0)
+    if (input <= 0 || input % 1 !== 0)
       throw new Error(ERROR_MESSAGE.POSITIVE_INTEGER);
   },
 
