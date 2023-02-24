@@ -1,4 +1,3 @@
-import { PROFIT_PER_RANK } from '../js/constants/constants';
 import validator from '../domain/validation/validator';
 import WINNING_NUMBERS_FORM from './components/WinningNumbersForm';
 
@@ -6,7 +5,7 @@ export default class WinningNumbersView {
   render() {
     const winningLottoSection = document.getElementById('winning-lotto');
     winningLottoSection.innerHTML = WINNING_NUMBERS_FORM;
-    this.form = document.getElementById('lotto-form');
+    this.form = document.getElementById('winning-lotto-form');
   }
 
   setWinningNumbersInput() {
@@ -24,7 +23,6 @@ export default class WinningNumbersView {
       this.number5.value,
       this.number6.value,
     ];
-    console.log(this.winnningNumbers);
     this.bonusNumber = document.getElementById('bonus');
   }
 

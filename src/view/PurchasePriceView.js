@@ -1,10 +1,9 @@
 import { CONSOLE_MESSAGE } from '../js/constants/constants';
-// import { exceptionHandler } from '../js/utils/index';
 import validator from '../domain/validation/validator';
 
 export default class PurchasePriceView {
   constructor() {
-    this.form = document.getElementById('price-form');
+    this.form = document.getElementById('purchase-lotto-form');
     this.input = document.getElementById('price-input');
   }
 
@@ -18,6 +17,7 @@ export default class PurchasePriceView {
         submitHandler(purchasePriceInput);
       } catch (error) {
         this.resetInputValue();
+        console.log(error);
         alert(error);
       }
     });
@@ -25,16 +25,23 @@ export default class PurchasePriceView {
 
   renderPurchaseResult(lottoCount, lottos) {
     const msg = CONSOLE_MESSAGE.showLottoCount(lottoCount);
-    const msgDiv = document.getElementById('price-result');
-    msgDiv.innerHTML = `<span>${msg}</span>`;
-    const lottosDiv = document.getElementById('lottos');
+    const purchaseCountSpan = document.createElement('span');
+    purchaseCountSpan.setAttribute('id', 'purchase-count');
+    purchaseCountSpan.innerText = `${msg}`;
+
+    const lottosDiv = document.createElement('div');
+    lottosDiv.setAttribute('id', 'lottos');
 
     lottos.forEach((lotto) => {
-      const lottoDiv = document.createElement('div');
-      lottoDiv.innerHTML = `<span>[${lotto.getNumbers().join(', ')}]</span>`;
-      lottosDiv.appendChild(lottoDiv);
+      const lottoSpan = document.createElement('span');
+      lottoSpan.innerText = `🎟️ ${lotto.getNumbers().join(', ')}`;
+      lottosDiv.appendChild(lottoSpan);
       // console.log(`[${lotto.getNumbers().join(', ')}]`);
     });
+
+    const purchaseResultSEection = document.getElementById('purchase-result');
+    purchaseResultSEection.appendChild(purchaseCountSpan);
+    purchaseResultSEection.appendChild(lottosDiv);
   }
 
   resetInputValue() {
@@ -42,9 +49,10 @@ export default class PurchasePriceView {
   }
 
   resetPurchaseResult() {
-    const msgDiv = document.getElementById('price-result');
+    const msgDiv = document.getElementById('purchase-result');
     msgDiv.innerHTML = '';
-    const lottosDiv = document.getElementById('lottos');
+
+    const lottosDiv = document.getElementById('winning-lotto');
     lottosDiv.innerHTML = '';
   }
 }
