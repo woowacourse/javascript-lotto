@@ -2,6 +2,8 @@ import {
   LOTTO_NUMBER_RANGE_MIN,
   LOTTO_NUMBER_RANGE_MAX,
   LOTTO_NUMBER_SIZE,
+  RESTART_COMMAND,
+  EXIT_COMMAND,
 } from './util/constants';
 
 const isInteger = (value) => Number.isInteger(value);
@@ -12,7 +14,8 @@ const isValidLottoNumberRange = (number) => {
 
 export const isPositiveInteger = (value) => isInteger(value) && isPositiveNumber(value);
 
-export const isValidRestartCommand = (command) => command === 'y' || command === 'n';
+export const isValidRestartCommand = (command) =>
+  command === RESTART_COMMAND || command === EXIT_COMMAND;
 
 export const isValidLottoNumber = (number) => {
   return isPositiveInteger(number) && isValidLottoNumberRange(number);
