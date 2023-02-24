@@ -16,7 +16,8 @@ class LottoGameController {
     });
     resultButton.addEventListener('click', () => {
       const lottoList = this.lottoPurchasePage.lottoNumbers();
-      this.resultModalPage.openModalButton(lottoList);
+      const moneyInput = this.lottoPurchasePage.inputMoney();
+      this.resultModalPage.openModalButton(lottoList, moneyInput);
     });
   }
 }

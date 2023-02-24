@@ -4,6 +4,7 @@ const {
   winningNumberForm,
   modal,
   resultTableBody,
+  rateOfReturn,
 } = require('../utils/DOM.js');
 const { NUMBER } = require('../utils/constant.js');
 
@@ -51,6 +52,10 @@ const display = {
     <td class="p-3">2,000,000,000</td>
     <td class="p-3">${lottoResultChart[NUMBER.FIRST]}</td>
   </tr>`;
+  },
+
+  showProfitRate(profitRate) {
+    rateOfReturn.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
   },
 };
 

@@ -7,9 +7,11 @@ class resultModalPage {
   constructor() {
     this.rankedLotto = new RankedLotto();
     this.lottoMachine = new LottoMachine();
+    this.lottoResultChart = [];
   }
-  openModalButton(lottoList) {
+  openModalButton(lottoList, money) {
     this.getLottoWin(lottoList);
+    this.getProfitRate(money, this.lottoResultChart);
   }
 
   getLottoWin(lottoList) {
@@ -20,8 +22,13 @@ class resultModalPage {
       winningNumber[index] = number.value;
     });
     const lottoResult = this.lottoMachine.compareNumber(winningNumber, bonusNumber);
-    const lottoResultChart = this.rankedLotto.getResult(lottoResult);
-    display.showModal(lottoResultChart);
+    this.lottoResultChart = this.rankedLotto.getResult(lottoResult);
+    display.showModal(this.lottoResultChart);
+  }
+
+  getProfitRate(money, lottoResultChart) {
+    const profitRate = this.rankedLotto.earningsRate(money, lottoResultChart);
+    display.showProfitRate(profitRate);
   }
 }
 

@@ -31,6 +31,10 @@ class LottoPurchasePage {
   lottoNumbers() {
     return this.lottoMachine.lottoNumber;
   }
+
+  inputMoney() {
+    return this.money;
+  }
 }
 
 module.exports = LottoPurchasePage;

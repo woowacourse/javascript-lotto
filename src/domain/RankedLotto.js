@@ -52,7 +52,7 @@ class RankedLotto {
     Array.from({ length: result.length }, (v, index) => {
       this.profit += result[index] * ConstantMoney[index];
     });
-    this.profit = (this.profit / lottoMoney) * 100;
+    return (this.profit = (this.profit / lottoMoney) * 100);
   }
 
   get getProfit() {
