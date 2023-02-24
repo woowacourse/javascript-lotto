@@ -24,13 +24,13 @@
   flex-direction: column;
 }
 
-.purchase-amount-form,
+#purchase-amount-form,
 .lotto-list-container,
 #winning-numbers-form {
   margin-top: 12px;
 }
 
-.purchase-amount-form > button {
+#purchase-amount-form > button {
   margin-left: 16px;
   width: 56px;
   height: 36px;
@@ -119,7 +119,7 @@
   text-align: center;
 }
 
-.result-table-container {
+#result-table-container {
   margin: 32px 0;
 }
 

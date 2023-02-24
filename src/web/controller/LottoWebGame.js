@@ -28,25 +28,32 @@ class LottoWebGame {
     this.#modal = new ModalController();
 
     this.init();
-    this.bindEventListeners();
   }
 
   init() {
     this.#container.innerHTML = lottoGameTitle + purchaseAmountSection;
+    this.bindEventListeners();
   }
 
   reset() {
     this.#modal.reset();
+    this.removeEventListeners();
     this.init();
   }
 
   bindEventListeners() {
-    $('.purchase-amount-form').addEventListener('submit', this.onSubmitPurchaseButton.bind(this));
-    $('#winning-numbers-form').addEventListener(
-      'submit',
-      this.onSubmitWinningNumbersForm.bind(this),
-    );
+    this.#container.addEventListener('submit', this.onSubmitWinningNumbersForm.bind(this));
+    $('#purchase-amount-form').addEventListener('submit', this.onSubmitPurchaseButton.bind(this));
     $('#modal').addEventListener('click', this.onClickRestartButton.bind(this));
+  }
+
+  removeEventListeners() {
+    this.#container.removeEventListener('submit', this.onSubmitWinningNumbersForm.bind(this));
+    $('#purchase-amount-form').removeEventListener(
+      'submit',
+      this.onSubmitPurchaseButton.bind(this),
+    );
+    $('#modal').removeEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   onSubmitPurchaseButton(e) {
@@ -69,6 +76,8 @@ class LottoWebGame {
 
   onSubmitWinningNumbersForm(e) {
     e.preventDefault();
+
+    if (e.target.id !== 'winning-numbers-form') return;
 
     try {
       const winningNumber = convertToWinningNumber(
