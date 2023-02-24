@@ -6,10 +6,6 @@ const Winning = require('./domain/model/Winning');
 const Money = require('./domain/model/Money');
 const Benefit = require('./domain/model/Benefit');
 
-const lottoMachine = new LottoMachine();
-const winning = new Winning();
-const benefit = new Benefit();
-
 const {
   moneyInput,
   bonusNumberInput,
@@ -25,6 +21,10 @@ const {
   resultListContainer,
   lottoList,
 } = require('./document');
+
+const lottoMachine = new LottoMachine();
+const winning = new Winning();
+const benefit = new Benefit();
 
 purchaseButton.addEventListener('click', () => {
   saveMoney();
