@@ -55,5 +55,5 @@ Main
 
 Modal
 - [X] 당첨 내역 출력 -WebController
-- [ ] 수익률 출력 -WebController
-- [ ] 다시하기 클릭시 재시작하는 기능 -WebController
+- [X] 수익률 출력 -WebController
+- [X] 다시하기 클릭시 재시작하는 기능 -WebController

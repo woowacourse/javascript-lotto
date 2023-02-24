@@ -29,6 +29,7 @@ const ERROR_MESSAGE = {
   HAS_BONUS_NUMBER: "보너스 번호는 당첨번호와 중복되지 않아야합니다.",
   DEFAULT_ERROR: "알 수 없는 오류가 발생하였습니다.",
   CORRECT_RETRY_INPUT: "재시작은 y, 종료는 n을 입력해주세요.",
+  EMPTY_INPUT: "숫자를 모두 입력해주세요.",
 };
 
 const SCORE = {

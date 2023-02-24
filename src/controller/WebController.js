@@ -1,5 +1,5 @@
 import Validator from "../utils/Validator.js";
-import { SETTINGS, SCORE } from "../constants/Config.js";
+import { SETTINGS, SCORE, ERROR_MESSAGE } from "../constants/Config.js";
 import { $, $$ } from "../utils/Dom.js";
 import Lotto from "../domain/Lotto.js";
 import Random from "../utils/Random.js";
@@ -68,8 +68,12 @@ class WebController {
   getWinningNumbers = () => {
     try {
       for (let i = 0; i < SETTINGS.MAX_WINNING_NUMBER_LENGTH; i++) {
+        if ($$(".winning-number")[i].value === "") {
+          throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+        }
         this.#winningLotto.push(parseInt($$(".winning-number")[i].value, 10));
       }
+
       this.validateWinningNumbers(this.#winningLotto);
       return this.#winningLotto;
     } catch (e) {
@@ -110,6 +114,7 @@ class WebController {
 
   compareLottos = (e) => {
     e.preventDefault();
+
     this.getWinningNumbers();
     this.getBonusNumber();
     const lottos = new Lottos(this.#lottoArray);
@@ -137,7 +142,6 @@ class WebController {
     $(
       ".result-message"
     ).innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
-    console.log(lottos.getLottoRanking());
     this.resetScore(lottos);
     this.#winningLotto = [];
   };
