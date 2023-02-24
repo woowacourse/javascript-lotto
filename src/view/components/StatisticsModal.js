@@ -1,11 +1,11 @@
 const { CONSOLE_MESSAGE } = require('../../js/constants/constants');
 
-const MODAL_TITLE = document.createElement('h3');
-MODAL_TITLE.innerText = `${CONSOLE_MESSAGE.RESULT_HEADER}`;
-
 const MODAL_CLOSE_BUTTON = document.createElement('button');
 MODAL_CLOSE_BUTTON.setAttribute('id', 'modal-close-btn');
 MODAL_CLOSE_BUTTON.innerText = 'X';
+
+const MODAL_TITLE = document.createElement('h2');
+MODAL_TITLE.innerText = `${CONSOLE_MESSAGE.RESULT_HEADER}`;
 
 const MODAL_TABLE_HEADER = `
     <thead>
@@ -24,7 +24,7 @@ MODAL_SPAN_PROFIT.setAttribute('id', 'modal-profit');
 MODAL_SPAN_PROFIT.innerText = PROFIT_MSG;
 
 const MODAL_RESTART_BUTTON = document.createElement('button');
-MODAL_RESTART_BUTTON.setAttribute('id', 'modal-btn');
+MODAL_RESTART_BUTTON.setAttribute('id', 'modal-restart-btn');
 MODAL_RESTART_BUTTON.innerText = '다시 시작하기';
 
 module.exports = {

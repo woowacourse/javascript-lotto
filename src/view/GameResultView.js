@@ -6,36 +6,32 @@ import {
   PROFIT_PER_RANK,
   REGEX,
 } from '../js/constants/constants';
-import { exceptionHandler, showTableRow } from '../js/utils/index';
+
 import {
   MODAL_TABLE_HEADER,
-  MODAL_SPAN_PROFIT,
   MODAL_RESTART_BUTTON,
   MODAL_TITLE,
   MODAL_CLOSE_BUTTON,
 } from './components/StatisticsModal';
 
-import validator from '../domain/validation/validator';
-
 export default class GameResultView {
   render(ranks, profitRate) {
-    const lottoGameDiv = document.getElementById('lotto-game');
-    const gameResultSection = document.createElement('section');
-    gameResultSection.setAttribute('id', 'modal-section');
+    const lottoGameContainer = document.getElementById('lotto-game');
+    const gameResultDialog = document.createElement('dialog');
+    gameResultDialog.setAttribute('id', 'modal-dialog');
 
-    gameResultSection.appendChild(MODAL_TITLE);
-    gameResultSection.appendChild(MODAL_CLOSE_BUTTON);
+    gameResultDialog.appendChild(MODAL_TITLE);
+    gameResultDialog.appendChild(MODAL_CLOSE_BUTTON);
 
     const statisticsTable = this.renderTable(ranks);
-    console.log(statisticsTable);
-    gameResultSection.appendChild(statisticsTable);
+    gameResultDialog.appendChild(statisticsTable);
 
     const profitRateSpan = this.renderProfitRate(profitRate);
 
-    gameResultSection.appendChild(profitRateSpan);
-    gameResultSection.appendChild(MODAL_RESTART_BUTTON);
+    gameResultDialog.appendChild(profitRateSpan);
+    gameResultDialog.appendChild(MODAL_RESTART_BUTTON);
 
-    lottoGameDiv.appendChild(gameResultSection);
+    lottoGameContainer.appendChild(gameResultDialog);
   }
 
   renderTable(ranks) {
@@ -81,8 +77,8 @@ export default class GameResultView {
     return span;
   }
 
-  addClickEvent(clickHandler) {
-    this.button = document.getElementById('modal-btn');
+  addRestartClickEvent(clickHandler) {
+    this.button = document.getElementById('modal-restart-btn');
     this.button.addEventListener('click', (e) => {
       e.preventDefault();
       clickHandler();
@@ -98,8 +94,8 @@ export default class GameResultView {
   }
 
   close() {
-    const lottoGameDiv = document.getElementById('lotto-game');
-    const gameResultSection = document.getElementById('modal-section');
-    lottoGameDiv.removeChild(gameResultSection);
+    const lottoGameContainer = document.getElementById('lotto-game');
+    const gameResultDialog = document.getElementById('modal-dialog');
+    lottoGameContainer.removeChild(gameResultDialog);
   }
 }
