@@ -32,7 +32,7 @@ export default function LottoUIController($app) {
   };
 
   const init = () => {
-    const $lottoSection = document.createElement('div');
+    const $lottoSection = document.createElement('section');
     $lottoSection.className = 'lotto-section';
 
     $app.appendChild($lottoSection);

@@ -28,7 +28,7 @@ function purchaseAmountContainer() {
 function addPurchaseEnterEventListener($root, eventHandler) {
   const $container = $root.querySelector('.purchase-amount-container');
 
-  const $purchaseButton = $root.querySelector('#purchaseButton');
+  const $purchaseButton = $root.querySelector('#purchase-button');
 
   $container.addEventListener('keyup', (e) =>
     keyUpEventListener(e, $purchaseButton)
@@ -51,7 +51,7 @@ export function paintPurchaseAmountInput($root, eventHandler) {
 }
 
 export function getPurchaseAmount() {
-  const $purchaseInput = document.getElementById('purchaseInput');
+  const $purchaseInput = document.querySelector('.purchase-input');
   const purchaseAmount = Number($purchaseInput.value);
 
   return purchaseAmount;

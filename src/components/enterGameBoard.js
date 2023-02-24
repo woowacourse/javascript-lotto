@@ -20,7 +20,7 @@ function winningNumberContainer() {
   const $winningContainer = document.createElement('div');
 
   const $inputArrays = Array.from({ length: LOTTO_LENGTH })
-    .map(() => numberInput('winNumber'))
+    .map(() => numberInput('win-number'))
     .join('');
 
   $winningContainer.innerHTML = $inputArrays;
@@ -32,7 +32,7 @@ function numberEnterContainer() {
   $container.className = 'flex-justify-between number-container';
 
   const $winNumberContainer = winningNumberContainer();
-  const $bonusNumberInput = numberInput('bonusNumber');
+  const $bonusNumberInput = numberInput('bonus-number');
   $container.appendChild($winNumberContainer);
   $container.innerHTML += $bonusNumberInput;
 
@@ -42,7 +42,7 @@ function numberEnterContainer() {
 function checkResultButton() {
   const $button = document.createElement('button');
 
-  $button.id = 'checkResult';
+  $button.id = 'check-result';
   $button.className = 'caption large-button';
   $button.type = 'button';
   $button.textContent = '결과 확인하기';
@@ -53,7 +53,7 @@ function checkResultButton() {
 
 function addEnterGameBoardEventListener($root, eventHandler) {
   const $container = $root.querySelector('.number-container');
-  const $button = $root.querySelector('#checkResult');
+  const $button = $root.querySelector('#check-result');
 
   $container.addEventListener('keyup', (e) => keyUpEventListener(e, $button));
   $button.addEventListener('click', eventHandler);
@@ -76,8 +76,8 @@ export function paintEnterWinningNumber($root, eventHandler) {
 }
 
 export function getWinNumberAndBonusNumber() {
-  const $winNumbers = document.querySelectorAll('input[name="winNumber"]');
-  const $bonusNumber = document.querySelector('input[name="bonusNumber"]');
+  const $winNumbers = document.querySelectorAll('input[name="win-number"]');
+  const $bonusNumber = document.querySelector('input[name="bonus-number"]');
 
   const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
     Number(value)
