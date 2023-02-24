@@ -1,4 +1,4 @@
-import RandomGenerator from '../RandomGenerator';
+import RandomGenerator from '../util/RandomGenerator';
 import {
   LOTTO_COST,
   WIN_PRIZE_MONEY,
