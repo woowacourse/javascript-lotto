@@ -1,150 +1,151 @@
 .mainPage {
-    width: 40%;
-    height: 727px;
-    margin: 5% auto;
-    border-radius: 4px;
-    background-color: #FFFFFF;
-    border: 1px solid  rgba(0, 0, 0, 0.12);
-    padding: 4%;
-    display: flex;
-    flex-direction: column
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 727px;
+  margin: 5% auto;
+  padding: 4%;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
 }
 
 header {
-    background-color: #4E5BA6;
-    height: 80px;
-    display: flex;
-    padding-left: 10%;
+  display: flex;
+  height: 80px;
+  padding-left: 10%;
+  background-color: #4e5ba6;
 }
 
 header > p {
-    font-size: larger;
-    color: #FFFFFF;
+  color: #ffffff;
+  font-size: larger;
 }
 
 footer {
-    border-top: 0.5px solid  rgba(0, 0, 0, 0.2);
-    height: 80px;
-    display: flex;
+  display: flex;
+  height: 80px;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 
 footer > p {
-    margin: 0px auto;
-    color:#4E5BA6;
-    top: 35%;
+  top: 35%;
+  margin: 0px auto;
+  color: #4e5ba6;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
-p{
-    position: relative;
-    top: 10px; 
- }
+p {
+  position: relative;
+  top: 10px;
+}
 
 input {
-    height: 27px;
-    width: 27px;
-    border: 1px solid rgb(209, 209, 209);
-    border-radius: 4px;
+  width: 27px;
+  height: 27px;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 4px;
 }
 
 .purchaseAmount {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .inputAmount {
-    width: 82%;
-    padding-left: 2%;
-    color: gray;
+  width: 82%;
+  padding-left: 2%;
+  color: gray;
 }
 
 .purchase {
-    width: 13%;
+  width: 13%;
 }
 
 button {
-    background-color: #4E5BA6;
-    border-radius: 4px;
-    border: 0px;
-    color:#FFFFFF;
+  color: #ffffff;
+  background-color: #4e5ba6;
+  border: 0px;
+  border-radius: 4px;
 }
 
 button:hover {
-    cursor:pointer
+  cursor: pointer;
 }
 
 .randomLottoList {
-    height: 300px ;
-    overflow:scroll;
+  height: 300px;
+  overflow: scroll;
 }
 
-.lottoImg{
-    font-size: xx-large;
-    margin-right: 3%;
+.lottoImg {
+  margin-right: 3%;
+  font-size: xx-large;
 }
 
 .randomLottoList > div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-
 .inputLottoBonus {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 30%;
+  display: grid;
+  grid-template-rows: 30%;
+  grid-template-columns: 2fr 1fr;
 }
 
 .inputLottoBonus > p {
-    grid-column: 1/3;
+  grid-column: 1/3;
 }
 
 .bonusNumber {
-    text-align: right;
-    float: right;
+  float: right;
+  text-align: right;
 }
 
-.eachInputLottoNumber, .eachInputBonusNumber {
-    text-align: center;
+.eachInputLottoNumber,
+.eachInputBonusNumber {
+  text-align: center;
 }
 
-.result, .restart {
-    width:100%;
-    height: 50px;
+.result,
+.restart {
+  width: 100%;
+  height: 50px;
 }
 
 .resultPage {
-    position:relative;
-    background-color: #FFFFFF;
-    margin: 0% auto;
-    width: 30%;
-    height: 480px;
-    border-radius: 4px;
-    border: 0;
-    top: 28%;
-    padding: 5%;
-    text-align: center;
+  position: relative;
+  top: 28%;
+  width: 30%;
+  height: 480px;
+  margin: 0% auto;
+  padding: 5%;
+  text-align: center;
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 4px;
 }
 
 table {
-    margin: 0% auto;
-    width: 90%;
-    height: 50%;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    border-collapse: collapse;
-  }
-
-  th, td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    padding: 10px;
-  }
-
-.explainRate {
-    font-size: larger;
-    font-weight: bold;
-    margin: 5% 0 10% 0;
+  width: 90%;
+  height: 50%;
+  margin: 0% auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
 }
 
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.explainRate {
+  margin: 5% 0 10% 0;
+  font-weight: bold;
+  font-size: larger;
+}
