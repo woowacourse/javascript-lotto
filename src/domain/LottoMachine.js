@@ -19,9 +19,8 @@ class LottoMachine {
     this.lottoNumber = figure;
   }
 
-  makeLotto(money) {
-    const number = this.countLotto(money);
-    this.setLottoNumber(Array.from({ length: number }, () => this.randomNumberLotto()));
+  makeLotto(count) {
+    this.setLottoNumber(Array.from({ length: count }, () => this.randomNumberLotto()));
   }
 
   sortedNumber(number) {
