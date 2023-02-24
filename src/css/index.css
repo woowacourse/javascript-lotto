@@ -1,3 +1,12 @@
+:root {
+  --primary: #4e5ba6;
+  --grey-scale-1: #ffffff;
+  --grey-scale-2: #fcfcfd;
+  --grey-scale-3: #b4b4b4;
+  --grey-scale-4: #8b8b8b;
+  --grey-scale-5: #000000;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -7,7 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: var(--grey-scale-2);
   padding-top: 148px;
   padding-bottom: 149px;
   height: 100vh;
@@ -20,8 +29,8 @@ body {
 }
 
 header {
-  background-color: #4e5ba6;
-  color: #ffffff;
+  background-color: var(--primary);
+  color: var(--grey-scale-1);
   position: absolute;
   top: 0;
   width: 100vw;
@@ -60,22 +69,22 @@ footer {
   padding: 32px;
   position: absolute;
   text-align: center;
-  background-color: #f5f5f5;
-  color: #4e5ba6;
+  background-color: var(--grey-scale-2);
+  color: var(--primary);
 }
 
 button {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  background: #4e5ba6;
+  background: var(--primary);
   border-radius: 4px;
-  color: #ffffff;
+  color: var(--grey-scale-1);
   border: 0px;
 }
 
 input {
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--grey-scale-3);
   border-radius: 4px;
 }
 
@@ -83,7 +92,7 @@ input {
   width: 414px;
   height: 727px;
   max-height: 727px;
-  background: #ffffff;
+  background: var(--grey-scale-1);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   padding: 16px;
@@ -205,7 +214,7 @@ input {
   position: absolute;
   width: 350px;
   height: 500px;
-  background: #ffffff;
+  background: var(--grey-scale-1);
   border-radius: 4px;
 
   display: flex;
@@ -228,7 +237,7 @@ input {
 }
 
 .exit {
-  background-color: #ffffff;
+  background-color: var(--grey-scale-1);
   color: #444444;
   font-size: 16px;
 }
