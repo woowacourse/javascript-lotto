@@ -3,7 +3,7 @@ import {
   gameTitle,
   inputContent,
   inputMessage,
-} from '../view/templates/initialInput';
+} from '../view/templates/purchaseInput';
 
 function purchaseEnterContainer() {
   const $container = document.createElement('div');
@@ -51,7 +51,7 @@ export function paintPurchaseAmountInput($root, eventHandler) {
 }
 
 export function getPurchaseAmount() {
-  const $purchaseInput = document.querySelector('.purchase-input');
+  const $purchaseInput = document.querySelector('#purchase-input');
   const purchaseAmount = Number($purchaseInput.value);
 
   return purchaseAmount;

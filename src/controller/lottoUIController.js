@@ -26,7 +26,7 @@ import {
 
 export default function LottoUIController($app) {
   this.state = {
-    lottoGame: new LottoGame(),
+    lottoGame: null,
     $root: null,
     step: STEP.INIT,
   };
@@ -47,6 +47,7 @@ export default function LottoUIController($app) {
 
   const gameSetting = () => {
     this.state.lottoGame = new LottoGame();
+    this.state.step = STEP.INIT;
     clearConatiner(this.state.$root);
   };
 

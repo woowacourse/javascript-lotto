@@ -17,7 +17,7 @@ export const purchaseLottoErrorHandler = () => {
 
 export const printLottoResultErrorHandler = () => {
   const $errorContainer = document.querySelector('.number-container');
-  const $trigger = document.querySelector('#checkResult');
+  const $trigger = document.querySelector('#check-result');
 
   return { $errorContainer, $trigger };
 };
