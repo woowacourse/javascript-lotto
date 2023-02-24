@@ -37,7 +37,6 @@ purchaseButton.addEventListener('click', () => {
 
 confirmButton.addEventListener('click', () => {
   saveWinning();
-  confirmButton.setAttribute('disabled', 'disabled');
 
   const ranks = lottoMachine.getCollectedRanks();
   benefit.calculateRate(lottoMachine.getMoney().getAmount(), ranks);
