@@ -269,3 +269,10 @@ td {
 tbody th {
   font-weight: normal;
 }
+
+@media (max-width: 400px) {
+  header,
+  footer {
+    display: none;
+  }
+}
