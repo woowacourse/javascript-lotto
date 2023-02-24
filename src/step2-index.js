@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import { renderLottosContainer, renderResultTable } from './view/web/render';
-import getNumberValue from './util/getNumberValue';
 import '../public/style.css';
 import WebController from './WebController';
 
@@ -12,7 +11,7 @@ const webController = new WebController();
 
 const handlePayments = () => {
   const paymentsInput = document.querySelector('.payments-input');
-  const payments = getNumberValue(paymentsInput);
+  const payments = Number(paymentsInput.value);
 
   webController.receivePaymentsInput(payments);
 };
@@ -34,10 +33,10 @@ const handleWinningLottos = () => {
   const winningNumberInputs = document.querySelectorAll('.winning-number-input');
   const bonusNumberInput = document.querySelector('.bonus-number-input');
 
-  const winningNumbers = Array.from(winningNumberInputs, getNumberValue);
+  const winningNumbers = Array.from(winningNumberInputs, (input) => Number(input.value));
   webController.receiveWinningLottoNumbersInput(winningNumbers);
 
-  const bonusNumber = getNumberValue(bonusNumberInput);
+  const bonusNumber = Number(bonusNumberInput.value);
   webController.receiveBonusNumberInput(bonusNumber);
 };
 
