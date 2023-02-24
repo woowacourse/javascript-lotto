@@ -1,13 +1,15 @@
 const LottoMachine = require('../domain/LottoMachine');
 const display = require('../view/display.js');
-const { $ } = require('../utils/DOM.js');
+const { lottoInput } = require('../utils/DOM.js');
 
-class LottoPurchase {
+class LottoPurchasePage {
+  money;
   constructor() {
+    this.money = 0;
     this.lottoMachine = new LottoMachine();
   }
   purchaseButton() {
-    money = $('.purchase-amount-input').value;
+    money = lottoInput.value;
     this.handleLottoCount(money);
     display.showWinningNumberForm();
   }
@@ -27,4 +29,4 @@ class LottoPurchase {
   }
 }
 
-module.exports = LottoPurchase;
+module.exports = LottoPurchasePage;

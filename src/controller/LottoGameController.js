@@ -1,16 +1,21 @@
-const LottoPurchase = require('../components/LottoPurchase.js');
-const { $ } = require('../utils/DOM.js');
+const LottoPurchasePage = require('../components/LottoPurchasePage.js');
+const resultModalPage = require('../components/resultModalPage.js');
+const { moneyInputButton, resultButton } = require('../utils/DOM.js');
 
 class LottoGameController {
   constructor() {
-    this.lottoPurchase = new LottoPurchase();
+    this.lottoPurchasePage = new LottoPurchasePage();
+    this.resultModalPage = new resultModalPage();
     this.buttonEvents();
   }
 
   buttonEvents() {
-    $('.purchase-amount-form').addEventListener('submit', event => {
+    moneyInputButton.addEventListener('submit', event => {
       event.preventDefault();
-      this.lottoPurchase.purchaseButton();
+      this.lottoPurchasePage.purchaseButton();
+    });
+    resultButton.addEventListener('click', () => {
+      this.resultModalPage.openModalButton();
     });
   }
 }
