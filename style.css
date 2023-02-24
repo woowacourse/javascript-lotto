@@ -17,7 +17,7 @@ body {
 	margin: 0;
 }
 
-#app-root {
+.app-root {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -27,26 +27,26 @@ body {
 	font-family : 'normal', 'Roboto', 'sans-serif';
 }
 
-#header {
+header {
 	display: flex;
 	align-items: center;
 	width: 100vw;
 	height: 64px;
-	background-color: #4E5BA6;
+	padding: 0 0 0 50px;
 	border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+	background-color: #4E5BA6;
 }
 
-#header-button {
+.header-button {
+	width: 200px;
+	height: 36px;
 	border: none;
 	background: transparent;
-	cursor: pointer;
-	width: 147px;
-	height: 36px;
-	font-size: 24px;
-	line-height: 36px;
-	font-weight: 700;
-	margin: 0 0 0 100px;
 	color: white;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 36px;
+	cursor: pointer;
 }
 
 main {
@@ -55,29 +55,29 @@ main {
 	align-items: center;
 }
 
-#app {
-	background-color: white;
+.app {
 	width: 400px;
 	height: 630px;
 	border: 1px solid #E0E0E0;
+	background-color: white;
 }
 
-#app-contents {
+.app-contents {
 	width: 95%;
 	height: 95%;
 	margin: auto;
 }
 
-#app-title {
+.app-title {
 	width: 100%;
-	text-align: center;
 	padding: 40px 0 20px 0;
 	font-size: 24px;
-	line-height: 24px;
 	font-weight: 600;
+	line-height: 24px;
+	text-align: center;
 }
 
-#app-main {
+.app-main {
 	width: 100%;
 	height: 100%;
 	font-size: 15px;
@@ -86,32 +86,32 @@ main {
 	letter-spacing: 0.5px;
 }
 
-#price {
+.price {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	padding: 0 0 10px 0;
 }
 
-#price > label {
+.price > label {
 	padding: 0 0 5px 0;
 }
 
-#price-form {
+.price-form {
 	display: flex;
 	justify-content: space-between;
 	font-size: 14px;
 }
 
-#price-input {
+.price-input {
 	width: 100%;
+	margin: 0 10px 0 0;
 	border: 1px solid #B4B4B4;
 	border-radius: 4px;
 	text-indent: 5px;
-	margin: 0 10px 0 0;
 }
 
-#price-submit {
+.price-submit {
 	width: 50px;
 	height: 30px;
 	background-color: #4E5BA6;
@@ -121,7 +121,7 @@ main {
 	cursor: pointer
 }
 
-#lottos {
+.lottos {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -140,17 +140,17 @@ main {
 	overflow-y: auto;
 }
 
-#lottos #ticket {
+.lottos #ticket {
 	display: flex;
 	align-items: center;
 }
 
 #lotto-emoji {
-	font-size: 30px;
 	margin-right: 10px;
+	font-size: 30px;
 }
 
-#winning-numbers {
+.winning-numbers {
 	width: 100%;
 }
 
@@ -172,33 +172,33 @@ main {
 #winning-numbers-container input {
 	width: 34px;
 	height: 36px;
+	margin: 0 5px 0 0;
 	border: 1px solid #B4B4B4;
 	border-radius: 4px;
-	margin: 0 5px 0 0;
 	text-align: center;
 }
 
 #calculate-lottos-button {
-	margin: 20px 0 0 0;
 	width: 100%;
 	height: 36px;
+	margin: 20px 0 0 0;
+	border: none;
 	border-radius: 4px;
 	background: #4E5BA6;
 	color: white;
-	border: none;
 	cursor: pointer;
 }
 
 dialog {
-	width: 350px;
-	height: 500px;
-	padding: 10px 10px 10px 10px;
 	position: fixed;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+	width: 350px;
+	height: 500px;
   margin: auto;
+	padding: 10px 10px 10px 10px;
 }
 
 dialog::backdrop {
@@ -206,42 +206,42 @@ dialog::backdrop {
 }
 
 #dialog-container {
-	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 #exit-button {
+	margin: 0 0 30px auto;
 	border: none;
 	background: transparent;
-	margin: 0 0 30px auto;
 	font-size: 20px;
 	cursor: pointer;
 }
 
 #result {
-	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 #result-title {
+	margin: 0 0 30px 0;
 	font-size: 20px;
 	font-weight: 600;
 	line-height: 24px;
-	margin: 0 0 30px 0;
 }
 
 #result-table {
-	text-align: center;
 	width: 300px;
 	height: 240px;
-	border-collapse: collapse;
 	margin: 0 0 30px 0;
+	border-collapse: collapse;
+	text-align: center;
 }
 
 #result-table th {
@@ -254,32 +254,32 @@ dialog::backdrop {
 }
 
 #profit-text {
-	font-weight: 600;
 	margin: 0 0 30px 0;
+	font-weight: 600;
 }
 
 #retry-button {
 	width: 100%;
 	height: 36px;
-	background-color: #4E5BA6;
-	color: white;
 	border: 1px solid;
 	border-radius: 4px;
-	cursor: pointer;
+	color: white;
+	background-color: #4E5BA6;
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 16px;
 	letter-spacing: 1.25px;
+	cursor: pointer;
 }
 
 #footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: #4E5BA6;
 	width: 100%;
 	height: 80px;
 	border-top: 1px solid rgba(78, 91, 166, 0.2);
+	color: #4E5BA6;
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 16px;
