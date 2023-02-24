@@ -7,12 +7,16 @@
   color: #FFFFFF;
 }
 
+#box-padding {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
 #game-box {
   margin-top: 84px;
   max-width: 414px;
+  min-height: 727px;
   width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 #game-title {
@@ -41,6 +45,7 @@
 
 #money-submit {
   margin-top: 4px;
+  margin-bottom: 36px;
 }
 
 #money-input {
@@ -50,6 +55,7 @@
   gap: 10px;
   width: 310px;
   height: 36px;
+  margin-right: 16px;
 }
 
 .border {
@@ -67,4 +73,61 @@
   padding-left: 130px;
   padding-top: 14px;
   padding-bottom: 14px;
+}
+
+.btn {
+  border-radius: 4px;
+}
+
+#money-submit-button {
+  width: 56px;
+  padding: 6px 6px 6px 8px;
+
+  /* ↳ ✏️ Label */
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+}
+
+#purchase-results-title {
+  margin-bottom: 12px;
+}
+
+.lotto-ticket {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.lotto-ticket-icon {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  /* identical to box height, or 106% */
+
+  margin-right: 8px;
+  /* lotto-greyscale-5 */
+
+  color: #000000;
+
 }
