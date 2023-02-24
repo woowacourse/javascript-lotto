@@ -36,13 +36,23 @@ class LottoGameDomController {
   #setWinningLotto = (winningNumbers, bonusNumber) => {
     try {
       Validation.testLottoNumbers(winningNumbers);
+      this.#handleBonusNumber(winningNumbers, bonusNumber);
+    } catch (error) {
+      alert(error.message);
+      LottoInput.resetWinningNumberInputs();
+    }
+  };
+
+  #handleBonusNumber(winningNumbers, bonusNumber) {
+    try {
       Validation.testBonusNumber(winningNumbers, bonusNumber);
       this.#lottoGame.setGameLottos(winningNumbers, bonusNumber);
       this.#showGameResult();
     } catch (error) {
       alert(error.message);
+      LottoInput.resetBonusNumberInput();
     }
-  };
+  }
 
   #showGameResult() {
     const { RANKS, PROFIT_RATE } = this.#lottoGame.getResult();
@@ -50,9 +60,9 @@ class LottoGameDomController {
   }
 
   #resetGame = () => {
-    MoneyInput.reset();
     LottoList.reset();
     LottoInput.reset();
+    MoneyInput.reset();
   };
 }
 

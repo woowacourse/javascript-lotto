@@ -37,10 +37,17 @@ class LottoInput {
 
   reset() {
     this.lottoInputField.classList.remove(ClassName.SHOW);
+    this.resetWinningNumberInputs();
+    this.resetBonusNumberInput();
+  }
 
+  resetWinningNumberInputs() {
     this.winningNumberInputs.forEach((each) => {
       each.value = '';
     });
+  }
+
+  resetBonusNumberInput() {
     this.bonusNumberInput.value = '';
   }
 }
