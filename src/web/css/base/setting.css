@@ -60,3 +60,8 @@
 .hidden {
   display: none;
 }
+
+button:disabled {
+  background-color: var(--grayscale-4);
+  cursor: not-allowed;
+}

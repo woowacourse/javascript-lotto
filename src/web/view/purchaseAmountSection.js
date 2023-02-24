@@ -3,7 +3,7 @@ const purchaseAmountSection = `
     <label for="purchase-amount-input">구입 금액을 입력해주세요.</label>
     <form id="purchase-amount-form">
       <input type="number" id="purchase-amount-input" placeholder="금액" min="1000" max="100000" step="1000"/>
-      <button type="submit" class="button caption">구입</button>
+      <button type="submit" class="button caption" id="purchase-button">구입</button>
     </form>
   </section>
 `;

@@ -68,6 +68,7 @@ class LottoWebGame {
 
       this.#container.innerHTML +=
         createLottoListSection(this.#lottos) + createWinningNumberFormSection(6, 1);
+      $('#purchase-button').setAttribute('disabled', true);
     } catch (error) {
       alert(error.message);
       $('#purchase-amount-input').value = '';
