@@ -53,8 +53,8 @@ class LottoWebGame {
     this.#lottos = [];
     $('.hidden-area').classList.remove('show');
     $('#purchase-amount').value = '';
-    $$('.winning-numbers > input').forEach((input) => {
-      input.value = '';
+    $$('.winning-numbers > input').forEach(($input) => {
+      $input.value = '';
     });
     $('.bonus-number > input').value = '';
     this.toggleResultModal();
