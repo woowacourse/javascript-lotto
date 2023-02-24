@@ -109,3 +109,43 @@ li + li {
 .w-100 {
   width: 100%;
 }
+
+.modal {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal > div {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.statistics-container {
+  width: 350px;
+  background-color: var(--lotto-grayscale-1);
+}
+
+.statistics-list__item {
+  height: 30px;
+}
+
+.statistics-list__item__one {
+  width: 100px;
+  height: 100%;
+}
+
+.statistics-list__item + .statistics-list__item {
+  border-top: 1px solid;
+  border-color: var(--lotto-grayscale-4);
+}
+
+.text--center {
+  text-align: center;
+}

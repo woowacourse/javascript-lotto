@@ -7,6 +7,9 @@ import CorrectLotto from './domain/CorrectLotto';
 // component
 import LottoMoneyInput from './components/LottoMoneyInput';
 import LottoPurchaseList from './components/LottoPurchaseList';
+import LottoCorrectInput from './components/LottoCorrectInput';
+import LottoStatistics from './domain/LottoStatistics';
+import LottoStatisticsModal from './components/LottoStatisticsModal';
 
 import '../css/reset.css';
 import '../css/spacing.css';
@@ -15,8 +18,6 @@ import '../css/styles.css';
 import '../css/flexbox.css';
 
 import { getDom } from './utils/dom';
-import LottoCorrectInput from './components/LottoCorrectInput';
-import LottoStatistics from './domain/LottoStatistics';
 
 function App($target) {
   this.$root = $target;
@@ -26,8 +27,9 @@ function App($target) {
 
   this.state = {
     buyLottos: [],
-    winningNumbers: [],
-    bonusNumbers: 0,
+    winningRanks: [],
+    profitRate: 0,
+    isModal: false,
   };
 
   this.template = () => `
@@ -42,6 +44,7 @@ function App($target) {
         <div class="lotto-money"></div>
         <ul class="lotto-tickets lotto-body mgTop_2_rem"></ul>
         <div class="correct-lotto--input"></div>
+        <div class="lotto-statistics-modal"></div>
       </div>
     </section>
     <footer class="flex flex--center lotto-caption">
@@ -65,6 +68,14 @@ function App($target) {
       lottos: this.state.buyLottos,
       inputCorrectLottoEvent: this.inputCorrectLottoEvent,
     });
+
+    new LottoStatisticsModal({
+      $target: getDom('.lotto-statistics-modal'),
+      winningRanks: this.state.winningRanks,
+      profitRate: this.state.profitRate,
+      isModal: this.state.isModal,
+      restart: this.restart,
+    });
   };
 
   this.render = () => {
@@ -87,11 +98,6 @@ function App($target) {
     this.correctLotto.setWinningNumbers(new WinningNumbers(winningNumbers));
     this.correctLotto.setBonusNumber(new BonusNumber(bonusNumber));
 
-    this.setState({
-      winningNumbers: this.correctLotto.winningNumbers,
-      bonusNumber: this.correctLotto.bonusNumber,
-    });
-
     this.getLottoStatisticsEvent();
   };
 
@@ -99,10 +105,23 @@ function App($target) {
     const { lottos, price } = this.lottoMachine;
     const statics = new LottoStatistics(this.correctLotto);
 
-    const winningResult = statics.getAllLottosRank(lottos);
-    const profitRate = statics.getProfitRate(winningResult, price);
+    const winningRanks = statics.getAllLottosRank(lottos);
+    const profitRate = statics.getProfitRate(winningRanks, price);
 
-    console.log(winningResult, profitRate);
+    this.setState({
+      winningRanks: winningRanks.reverse(),
+      profitRate,
+      isModal: true,
+    });
+  };
+
+  this.restart = () => {
+    this.setState({
+      buyLottos: [],
+      winningRanks: [],
+      profitRate: 0,
+      isModal: false,
+    });
   };
 
   // 실행
