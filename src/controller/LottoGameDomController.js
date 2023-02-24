@@ -22,6 +22,7 @@ class LottoGameDomController {
       Validation.testPurchaseAmount(money);
       const USER_LOTTOS = this.#lottoGame.generateUserLottos(PURCHASE_COUNT);
       this.#showLottoList(PURCHASE_COUNT, USER_LOTTOS);
+      LottoInput.resetWinningNumberInputs();
     } catch (error) {
       alert(error.message);
       MoneyInput.reset();
