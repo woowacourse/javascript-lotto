@@ -1,3 +1,4 @@
+import '../index.css';
 import LottoGameController from './controller/LottoGameController';
 
 export default class App {

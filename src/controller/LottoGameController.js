@@ -1,4 +1,3 @@
-import '../../index.css';
 // Domain
 import Lottos from '../domain/model/Lottos';
 import WinningNumbers from '../domain/model/WinningNumbers';
