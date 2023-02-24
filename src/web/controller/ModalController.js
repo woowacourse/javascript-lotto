@@ -1,20 +1,26 @@
-import { $ } from '../utils/dom';
-
 class ModalController {
-  constructor() {
-    this.background = $('#modal-background');
-    this.modal = $('#modal');
+  #background;
+
+  #container;
+
+  constructor(background, container) {
+    this.#background = background;
+    this.#container = container;
 
     this.bindEventListeners();
   }
 
+  getContainer() {
+    return this.#container;
+  }
+
   bindEventListeners() {
-    this.background.addEventListener('click', this.onClose.bind(this));
+    this.#background.addEventListener('click', this.onClose.bind(this));
   }
 
   show(template) {
-    this.background.classList.remove('hidden');
-    this.modal.innerHTML = template;
+    this.#background.classList.remove('hidden');
+    this.#container.innerHTML = template;
   }
 
   onClose(event) {
@@ -24,8 +30,8 @@ class ModalController {
   }
 
   reset() {
-    this.modal.innerHTML = '';
-    this.background.classList.add('hidden');
+    this.#container.innerHTML = '';
+    this.#background.classList.add('hidden');
   }
 
   #isCloseEventId(id) {

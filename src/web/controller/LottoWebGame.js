@@ -25,7 +25,7 @@ class LottoWebGame {
 
   constructor() {
     this.#container = $('#lotto-game');
-    this.#modal = new ModalController();
+    this.#modal = new ModalController($('#modal-background'), $('#modal'));
 
     this.init();
   }
@@ -44,7 +44,7 @@ class LottoWebGame {
   bindEventListeners() {
     this.#container.addEventListener('submit', this.onSubmitWinningNumbersForm.bind(this));
     $('#purchase-amount-form').addEventListener('submit', this.onSubmitPurchaseButton.bind(this));
-    $('#modal').addEventListener('click', this.onClickRestartButton.bind(this));
+    this.#modal.getContainer().addEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   removeEventListeners() {
@@ -53,7 +53,7 @@ class LottoWebGame {
       'submit',
       this.onSubmitPurchaseButton.bind(this),
     );
-    $('#modal').removeEventListener('click', this.onClickRestartButton.bind(this));
+    this.#modal.getContainer().removeEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   onSubmitPurchaseButton(e) {
