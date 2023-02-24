@@ -30,19 +30,19 @@ export class LottoGame {
     const purchaseAmountForm = document.querySelector("#purchase-amount");
     purchaseAmountForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.purchaseLottoTicket(purchaseAmountInput.value);
+      this.#purchaseLottoTicket(purchaseAmountInput.value);
     });
 
     winningNumberForm.addEventListener("submit", (event) => {
-      if (!this.isValidWinningNumber(event)) return;
-      this.showLottoResult(purchaseAmountInput.value);
+      if (!this.#isValidWinningNumber(event)) return;
+      this.#showLottoResult(purchaseAmountInput.value);
     });
 
     closeModalButton();
     restartLottoGame();
   }
 
-  purchaseLottoTicket(purchaseAmount) {
+  #purchaseLottoTicket(purchaseAmount) {
     if (!webErrorCatcher(() => validatePurchaseAmount(purchaseAmount))) {
       return lottoTicketSection.classList.add("hidden");
     }
@@ -56,7 +56,7 @@ export class LottoGame {
     lottoTicketSection.classList.remove("hidden");
   }
 
-  isValidWinningNumber(event) {
+  #isValidWinningNumber(event) {
     event.preventDefault();
 
     const winningNumber = [...winningNumberInput].map((number) => Number(number.value));
@@ -69,19 +69,19 @@ export class LottoGame {
     return true;
   }
 
-  showLottoResult(purchaseAmount) {
+  #showLottoResult(purchaseAmount) {
     modal.classList.remove("hidden");
     winningNumberFormButton.disabled = true;
 
-    const placesOfLottoTickets = this.getPlacesOfLottoTickets();
+    const placesOfLottoTickets = this.#getPlacesOfLottoTickets();
     printLottoResult(placesOfLottoTickets, purchaseAmount);
   }
 
-  getPlacesOfLottoTickets() {
+  #getPlacesOfLottoTickets() {
     const placesOfLottoTickets = this.#lottoTickets.map((lottoTicket) => {
-      const matchingLottoNumberCount = this.getMatchingWinningNumberCount(lottoTicket);
+      const matchingLottoNumberCount = this.#getMatchingWinningNumberCount(lottoTicket);
 
-      return this.getPlace(matchingLottoNumberCount, lottoTicket);
+      return this.#getPlace(matchingLottoNumberCount, lottoTicket);
     });
 
     return placesOfLottoTickets.filter(Boolean);
@@ -93,7 +93,7 @@ export class LottoGame {
     로또 티켓의 길이(6) + 로또 당첨 번호의 길이(6) - 로또 티켓과 로또 당첨번호의 중복 번호(n)
     = 당첨된 번호의 개수
   */
-  getMatchingWinningNumberCount(lottoTicket) {
+  #getMatchingWinningNumberCount(lottoTicket) {
     return (
       lottoTicket.length +
       this.#winningNumbers[0].length -
@@ -101,7 +101,7 @@ export class LottoGame {
     );
   }
 
-  getPlace(matchingLottoNumberCount, lottoTicket) {
+  #getPlace(matchingLottoNumberCount, lottoTicket) {
     if (matchingLottoNumberCount === FIFTH) {
       return lottoTicket.includes(Number(this.#winningNumbers[1]))
         ? SECOND

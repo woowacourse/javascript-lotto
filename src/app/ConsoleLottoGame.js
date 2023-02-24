@@ -26,18 +26,18 @@ export class LottoGame {
 
   async play() {
     const purchaseAmount = await readPurchaseAmount();
-    this.getLottoTickets(purchaseAmount);
+    this.#getLottoTickets(purchaseAmount);
 
     this.#winningLotto.winningNumbers = await readWinningLottoNumbers();
     this.#winningLotto.bonusNumber = await readBonusNumber(this.#winningLotto.winningNumbers);
 
-    this.getGameResult(purchaseAmount);
+    this.#getGameResult(purchaseAmount);
 
     const restartOrQuit = await readRestartOrQuitCommend();
-    this.restart(restartOrQuit);
+    this.#restart(restartOrQuit);
   }
 
-  getLottoTickets(purchaseAmount) {
+  #getLottoTickets(purchaseAmount) {
     const purchasedLottoTicketCount = purchaseAmount / LOTTO_PRICE_UNIT;
     this.#lottoTickets = makeLottoTickets(purchasedLottoTicketCount);
 
@@ -45,8 +45,8 @@ export class LottoGame {
     outputView.printLottoTickets(this.#lottoTickets);
   }
 
-  getGameResult(purchaseAmount) {
-    const placesOfLottoTickets = this.getPlacesOfLottoTickets();
+  #getGameResult(purchaseAmount) {
+    const placesOfLottoTickets = this.#getPlacesOfLottoTickets();
 
     outputView.printWinningLottoCount(placesOfLottoTickets);
     outputView.printRateOfReturn(
@@ -54,7 +54,7 @@ export class LottoGame {
     );
   }
 
-  getMatchingWinningNumberCount(lottoTicket, winningLottoNumbers) {
+  #getMatchingWinningNumberCount(lottoTicket, winningLottoNumbers) {
     return (
       lottoTicket.length +
       winningLottoNumbers.length -
@@ -62,20 +62,20 @@ export class LottoGame {
     );
   }
 
-  getPlacesOfLottoTickets() {
+  #getPlacesOfLottoTickets() {
     const placesOfLottoTickets = this.#lottoTickets.map((lottoTicket) => {
-      const matchingLottoNumberCount = this.getMatchingWinningNumberCount(
+      const matchingLottoNumberCount = this.#getMatchingWinningNumberCount(
         lottoTicket,
         this.#winningLotto.winningNumbers
       );
 
-      return this.getPlace(matchingLottoNumberCount, lottoTicket);
+      return this.#getPlace(matchingLottoNumberCount, lottoTicket);
     });
 
     return placesOfLottoTickets.filter(Boolean);
   }
 
-  getPlace(matchingLottoNumberCount, lottoTicket) {
+  #getPlace(matchingLottoNumberCount, lottoTicket) {
     if (matchingLottoNumberCount === FIFTH) {
       return lottoTicket.includes(this.#winningLotto.bonusNumber)
         ? SECOND
@@ -85,7 +85,7 @@ export class LottoGame {
     return MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
   }
 
-  restart(restartOrQuitCommend) {
+  #restart(restartOrQuitCommend) {
     RESTART === restartOrQuitCommend ? this.play() : close();
   }
 }
