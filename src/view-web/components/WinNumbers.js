@@ -4,11 +4,13 @@ import { qs } from '../../utils/domHelper.js';
 export default class WinNumbers extends Component {
   setter;
   drawingNumbersSetter;
+  activateModal;
 
-  constructor(setter, drawingNumbersSetter) {
+  constructor(setter, { drawingNumbersSetter, activateModal }) {
     super(qs('#input-winning-number-form'));
     this.setter = setter;
     this.drawingNumbersSetter = drawingNumbersSetter;
+    this.activateModal = activateModal;
 
     this.addEvent('submit', this.submitDrawingNumbers.bind(this));
   }
@@ -48,5 +50,7 @@ export default class WinNumbers extends Component {
     drawingNumbers.bonusNumber = Number([...event.target][6].value);
 
     this.setter({ lottoList: this.drawingNumbersSetter(drawingNumbers) });
+
+    this.activateModal();
   }
 }

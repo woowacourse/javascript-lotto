@@ -4,6 +4,7 @@ import Component from './view-web/components/Component.js';
 import Amount from './view-web/components/Amount.js';
 import LottoList from './view-web/components/LottoList.js';
 import WinNumbers from './view-web/components/WinNumbers.js';
+import StatisticsModal from './view-web/components/StatisticsModal';
 
 class App extends Component {
   state;
@@ -16,7 +17,11 @@ class App extends Component {
     new Amount(this.setState.bind(this));
     if (this.state.lottoList.length !== 0) {
       new LottoList(this.state);
-      new WinNumbers(this.setState.bind(this), this.setDrawingNumbers.bind(this));
+      new WinNumbers(this.setState.bind(this), {
+        drawingNumbersSetter: this.setDrawingNumbers.bind(this),
+        activateModal: this.activateModal.bind(this),
+      });
+      new StatisticsModal(this.state, this.setState.bind(this));
     }
   }
 
@@ -29,12 +34,20 @@ class App extends Component {
       </header>
 
       <section id="input-purchase-form"></section>
+
       <section id="lotto-list-result-form"></section>
+
       <section>
         <form action="submit" id="input-winning-number-form">
         </form>
       </section>
     </article>
+
+    <dialog id="lotto-statistics-modal"></dialog>
+
+    <footer id="footer">
+      <span>Copyright 2023. woowacourse</span>
+    </footer>
     `;
   }
 
@@ -44,6 +57,10 @@ class App extends Component {
       return lotto;
     });
     return lottoList;
+  }
+
+  activateModal() {
+    qs('#lotto-statistics-modal').showModal();
   }
 }
 
