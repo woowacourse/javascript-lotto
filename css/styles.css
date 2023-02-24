@@ -19,7 +19,7 @@ footer {
 }
 
 input {
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 li + li {
@@ -36,6 +36,7 @@ li + li {
 
 .lotto-card {
   width: 25rem;
+  height: 800px;
 
   border: 1px solid;
   border-color: var(--lotto-grayscale-3);
@@ -71,6 +72,11 @@ li + li {
 .lotto-ticket {
   width: 100%;
   vertical-align: middle;
+}
+
+.lotto-tickets {
+  overflow: scroll;
+  height: 50%;
 }
 
 .lotto-ticket::before {
