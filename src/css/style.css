@@ -191,6 +191,20 @@
 }
 
 /*modal*/
+.close-modal {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  left: 85%;
+  right: 5%;
+  top: 3.2%;
+  bottom: 94%;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 900;
+  text-align: center;
+}
+
 .lotto-result-wrap {
   visibility: hidden;
   position: absolute;
@@ -218,6 +232,18 @@
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
 }
+
+.lotto-result p:nth-child(2) {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #000000;
+  margin-bottom: 35px;
+  margin-top: 10px;
+}
+
 #lotto-reward {
   width: 100%;
   border-collapse: collapse;
@@ -235,6 +261,27 @@ td {
 
 #lotto-reward td {
   padding: 10px 5px;
+}
+
+#lotto-reward th {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.result-message {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #000000;
+}
+
+.restart-btn {
+  width: 300px;
+  height: 36px;
+  background: #4e5ba6;
+  border-radius: 4px;
+  color: #ffffff;
 }
 
 /*footer*/

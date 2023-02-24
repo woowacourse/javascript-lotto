@@ -20,11 +20,12 @@ class WebController {
   play() {
     $(".input-money-btn").addEventListener("click", this.getBuyMoney);
     $(".check-winning-lotto-btn").addEventListener("click", this.compareLottos);
+    $(".restart-btn").addEventListener("click", this.retry);
+    $(".close-modal").addEventListener("click", this.closeModal);
   }
 
   getBuyMoney = (e) => {
     e.preventDefault();
-
     try {
       const buyMoney = $(".input-money").value;
       this.validateBuyMoney(buyMoney);
@@ -109,13 +110,13 @@ class WebController {
 
   compareLottos = (e) => {
     e.preventDefault();
-    const winning = this.getWinningNumbers();
-    const bonus = this.getBonusNumber();
+    this.getWinningNumbers();
+    this.getBonusNumber();
     const lottos = new Lottos(this.#lottoArray);
 
     lottos.getLottos().forEach((lotto) => {
-      lotto.compareNumbers(winning);
-      lotto.checkBonusNumber(bonus);
+      lotto.compareNumbers(this.#winningLotto);
+      lotto.checkBonusNumber(this.#bonusNumber);
     });
     lottos.compareLottosScore();
     this.printResult(lottos);
@@ -126,8 +127,43 @@ class WebController {
     $(".three").innerHTML = `${lottos.getLottoRanking()[SCORE.THREE]}개`;
     $(".four").innerHTML = `${lottos.getLottoRanking()[SCORE.FOUR]}개`;
     $(".five").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE]}개`;
-    $(".five-bonus").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE_BONUS]}개`;
+    $(".five-bonus").innerHTML = `${
+      lottos.getLottoRanking()[SCORE.FIVE_BONUS]
+    }개`;
     $(".six").innerHTML = `${lottos.getLottoRanking()[SCORE.SIX]}개`;
+    lottos.calculateBenefit();
+    const totalBenefit = lottos.getBenefitRate($(".input-money").value);
+
+    $(
+      ".result-message"
+    ).innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
+    console.log(lottos.getLottoRanking());
+    this.resetScore(lottos);
+    this.#winningLotto = [];
+  };
+
+  resetScore = (lottos) => {
+    for (const lotto of lottos.getLottos()) {
+      lotto.resetScore();
+    }
+  };
+
+  closeModal = () => {
+    $(".lotto-result-wrap").classList.remove("show");
+  };
+
+  retry = () => {
+    this.#lottoArray = [];
+    this.#winningLotto = [];
+    this.#bonusNumber = 0;
+    $(".hidden-area").classList.remove("show");
+    $(".lotto-result-wrap").classList.remove("show");
+
+    for (var i = 0; i < $$(".winning-number").length; i++) {
+      $$(".winning-number")[i].value = "";
+    }
+    $(".bonus-number").value = "";
+    $(".input-money").value = "";
   };
 }
 
