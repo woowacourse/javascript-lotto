@@ -37,7 +37,7 @@ function App($target) {
         <h1 class="lotto-subtitle mgLeft_10_rem">🎱 행운의 로또</h1>
     </header>
     <section class="flex flex--center w-100 mgBottom_5_rem">
-      <div class="lotto-card mgTop_5_rem mgLeft_1_rem pd_1_rem">
+      <div class="lotto-card mgTop_5_rem pd_1_rem">
         <h2 class="flex flex--h-center lotto-card__title lotto-subtitle mgTop_3_rem">
             🎱 내 번호 당첨 확인 🎱
         </h2>
@@ -89,16 +89,24 @@ function App($target) {
   };
 
   this.inputLottoMoneyEvent = (money) => {
-    this.lottoMachine.purchase(money);
-
-    this.setState({ buyLottos: this.lottoMachine.lottos });
+    try {
+      this.lottoMachine.purchase(money);
+      this.setState({ buyLottos: this.lottoMachine.lottos });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   this.inputCorrectLottoEvent = (winningNumbers, bonusNumber) => {
-    this.correctLotto.setWinningNumbers(new WinningNumbers(winningNumbers));
-    this.correctLotto.setBonusNumber(new BonusNumber(bonusNumber));
+    try {
+      this.correctLotto.setWinningNumbers(new WinningNumbers(winningNumbers));
+      this.correctLotto.setBonusNumber(new BonusNumber(bonusNumber));
+      this.correctLotto.validateLottos();
 
-    this.getLottoStatisticsEvent();
+      this.getLottoStatisticsEvent();
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   this.getLottoStatisticsEvent = () => {
