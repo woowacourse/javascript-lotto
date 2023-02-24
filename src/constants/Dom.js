@@ -32,6 +32,7 @@ const Event = Object.freeze({
 
 const Attr = Object.freeze({
   OPEN: 'open',
+  DISABLED: 'disabled',
 });
 
 export { QuerySelector, Tag, Event, Attr, ClassName };
