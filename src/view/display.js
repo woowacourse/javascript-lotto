@@ -57,6 +57,10 @@ const display = {
   showProfitRate(profitRate) {
     rateOfReturn.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
   },
+
+  validateAlert() {
+    alert('구매 금액을 다시 입력해주세요.');
+  },
 };
 
 module.exports = display;

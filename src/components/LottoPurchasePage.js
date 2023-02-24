@@ -1,6 +1,7 @@
-const LottoMachine = require('../domain/LottoMachine');
+const LottoMachine = require('../domain/LottoMachine.js');
 const display = require('../view/display.js');
 const { lottoInput } = require('../utils/DOM.js');
+const { thousandValidate, maximumMoneyValidate } = require('../utils/validation.js');
 
 class LottoPurchasePage {
   money;
@@ -9,6 +10,10 @@ class LottoPurchasePage {
     this.lottoMachine = new LottoMachine();
   }
   purchaseButton() {
+    if (thousandValidate(lottoInput.value) || maximumMoneyValidate(lottoInput.value)) {
+      display.validateAlert();
+      return (lottoInput.value = '');
+    }
     this.money = lottoInput.value;
     this.handleLottoCount(this.money);
     display.showWinningNumberForm();

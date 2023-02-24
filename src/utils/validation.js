@@ -1,7 +1,7 @@
 const { NUMBER } = require('../utils/constant');
 
 const thousandValidate = money => {
-  const isValidation = Number(money) % NUMBER.PURCHASE_AMOUNT !== 0;
+  const isValidation = money % NUMBER.PURCHASE_AMOUNT !== 0;
   if (isValidation) return true;
   return isValidation;
 };
