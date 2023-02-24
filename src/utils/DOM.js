@@ -1,25 +1,41 @@
-export const moneyInputButton = document.querySelector('.purchase-amount-form');
+const moneyInputButton = document.querySelector('.purchase-amount-form');
 
-export const resultButton = document.querySelector('.open-result-modal-button');
+const resultButton = document.querySelector('.open-result-modal-button');
 
-export const lottoInput = document.querySelector('.purchase-amount-input');
+const lottoInput = document.querySelector('.purchase-amount-input');
 
-export const winningNumbersTag = document.querySelectorAll('.winning-number');
+const winningNumbersTag = document.querySelectorAll('.winning-number');
 
-export const bonusNumberTag = document.querySelector('.bonus-number');
+const bonusNumberTag = document.querySelector('.bonus-number');
 
-export const purchasedLottoLabel = document.querySelector('.purchased-lotto-label');
+const purchasedLottoLabel = document.querySelector('.purchased-lotto-label');
 
-export const lottoTicketContainer = document.querySelector('.lotto-ticket-container');
+const lottoTicketContainer = document.querySelector('.lotto-ticket-container');
 
-export const winningNumberForm = document.querySelector('.winning-number-form');
+const winningNumberForm = document.querySelector('.winning-number-form');
 
-export const modal = document.querySelector('.modal');
+const modal = document.querySelector('.modal');
 
-export const resultTableBody = document.querySelector('.result-table-body');
+const resultTableBody = document.querySelector('.result-table-body');
 
-export const rateOfReturn = document.querySelector('.rate-of-return');
+const rateOfReturn = document.querySelector('.rate-of-return');
 
-export const modalClose = document.querySelector('.modal-close');
+const modalClose = document.querySelector('.modal-close');
 
-export const resetButton = document.querySelector('.reset-button');
+const resetButton = document.querySelector('.reset-button');
+
+module.exports = {
+  moneyInputButton,
+  resultButton,
+  lottoInput,
+  winningNumbersTag,
+  bonusNumberTag,
+  purchasedLottoLabel,
+  lottoTicketContainer,
+  winningNumberForm,
+  modal,
+  resultTableBody,
+  rateOfReturn,
+  modalClose,
+  resetButton,
+};
