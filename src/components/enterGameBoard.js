@@ -5,6 +5,7 @@ import {
   winNumberMessage,
   bonusNumberMessage,
   numberInput,
+  resultButton,
 } from '../view/templates/lottoGame';
 
 function numberTitleContainer() {
@@ -39,18 +40,6 @@ function numberEnterContainer() {
   return $container;
 }
 
-function checkResultButton() {
-  const $button = document.createElement('button');
-
-  $button.id = 'check-result';
-  $button.className = 'caption large-button';
-  $button.type = 'button';
-  $button.textContent = '결과 확인하기';
-  $button.disabled = true;
-
-  return $button;
-}
-
 function addEnterGameBoardEventListener($root, eventHandler) {
   const $container = $root.querySelector('.number-container');
   const $button = $root.querySelector('#check-result');
@@ -65,7 +54,7 @@ function enterGameBoard() {
   $enterBoard.innerHTML = enterWinNumberMessage;
   $enterBoard.appendChild(numberTitleContainer());
   $enterBoard.appendChild(numberEnterContainer());
-  $enterBoard.appendChild(checkResultButton());
+  $enterBoard.innerHTML += resultButton;
 
   return $enterBoard;
 }

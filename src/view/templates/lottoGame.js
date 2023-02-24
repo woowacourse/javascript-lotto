@@ -27,3 +27,7 @@ export const numberInput = (name) => `
     max="45"
     required
   />`;
+
+export const resultButton = `
+  <button id="check-result" class="caption large-button" type="button" disabled>결과 확인하기</button>
+`;
