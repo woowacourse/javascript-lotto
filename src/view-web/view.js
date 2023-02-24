@@ -38,30 +38,4 @@ export const view = {
   printRateOfReturn(rateOfReturn) {
     $rateOfReturn.textContent = MESSAGE.OUTPUT.rateOfReturnMessage(rateOfReturn.toLocaleString());
   },
-
-  // // inputView
-  // async readPurchaseAmount() {
-  //   const purchaseAmount = await this.readline(MESSAGE.INPUT.lottoPurchaseAmount);
-  //   if (!validatePurchaseAmount(purchaseAmount)) return this.readPurchaseAmount();
-  //   return purchaseAmount;
-  // },
-
-  // async readWinningLottoNumbers() {
-  //   const winningLottoNumbers = await this.readline(MESSAGE.INPUT.winningLottoNumbers);
-  //   if (!validateWinningLottoNumbers(winningLottoNumbers)) return this.readWinningLottoNumbers();
-  //   return winningLottoNumbers;
-  // },
-
-  // async readBonusNumber(winningLottoNumbers) {
-  //   const bonusNumber = await this.readline(MESSAGE.INPUT.bonusNumber);
-  //   if (!validateBonusNumber(bonusNumber, winningLottoNumbers))
-  //     return this.readBonusNumber(winningLottoNumbers);
-  //   return bonusNumber;
-  // },
-
-  // async readRestartOrQuit() {
-  //   const restartOrQuitCommend = await this.readline(MESSAGE.INPUT.restartOrQuit);
-  //   if (!validateRestartOrQuitCommend(restartOrQuitCommend)) return this.readRestartOrQuitCommend();
-  //   return restartOrQuitCommend;
-  // },
 };
