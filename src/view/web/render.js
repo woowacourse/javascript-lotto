@@ -7,9 +7,12 @@ const renderLottoListTitle = (amount) => {
 
   paymentsContainer.append(title);
 };
-
+// 로또 리스트 삽입
 const renderLottoList = (lottoNumbers) => {
-  const lottosContainer = document.querySelector('.lottos-container');
+  const paymentsContainer = document.querySelector('.payments-container');
+
+  const lottosContainer = document.createElement('section');
+  lottosContainer.className = 'lottos-container';
 
   lottoNumbers.forEach((lottoNumber) => {
     const lottoElement = document.createElement('div');
@@ -21,6 +24,7 @@ const renderLottoList = (lottoNumbers) => {
     lottoElement.append(lottoNumberElement);
     lottosContainer.append(lottoElement);
   });
+  paymentsContainer.after(lottosContainer);
 };
 
 export const renderLottosContainer = (lottoNumbers) => {
