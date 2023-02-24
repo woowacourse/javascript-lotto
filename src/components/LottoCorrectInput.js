@@ -44,10 +44,7 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
           .map((winningNumber) => winningNumber.value)
           .join(',');
 
-        const bonusNumber = getDom('.bonusNumber').value;
-        console.log(winningNumbers);
-
-        inputCorrectLottoEvent(winningNumbers, bonusNumber);
+        inputCorrectLottoEvent(winningNumbers, getDom('.bonusNumber').value);
       }
     });
   };
