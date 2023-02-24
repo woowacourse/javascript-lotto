@@ -3,7 +3,7 @@ import OutputView from '../view/OutputView.js';
 import Validation from '../domain/Validation.js';
 import LottoGame from '../domain/LottoGame.js';
 import Console from '../utils/Console.js';
-import { LOTTO_CONDITION, RESTART_COMMAND } from '../constants/condition.js';
+import { LOTTO_CONDITION, COMMAND } from '../constants/condition.js';
 
 export default class LottoGameController {
   #lottoGame;
@@ -49,7 +49,7 @@ export default class LottoGameController {
   async #processRestart() {
     const command = await this.#requestRestartCommand();
 
-    if (command === RESTART_COMMAND.quit) {
+    if (command === COMMAND.quit) {
       Console.close();
       return;
     }

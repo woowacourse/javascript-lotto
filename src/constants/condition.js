@@ -21,9 +21,9 @@ const LOTTO_PRIZE_MONEY = Object.freeze({
   fifthPrize: 5000,
 });
 
-const RESTART_COMMAND = Object.freeze({
+const COMMAND = Object.freeze({
   restart: 'y',
   quit: 'n',
 });
 
-export { LOTTO_CONDITION, PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY, RESTART_COMMAND };
+export { LOTTO_CONDITION, PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY, COMMAND };

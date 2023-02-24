@@ -1,4 +1,4 @@
-import { LOTTO_CONDITION, RESTART_COMMAND } from '../constants/condition.js';
+import { LOTTO_CONDITION, COMMAND } from '../constants/condition.js';
 import { ERROR_MESSAGE } from '../constants/message.js';
 
 const Validation = {
@@ -95,7 +95,7 @@ const Validation = {
   },
 
   validateRestartCommand(command) {
-    const commands = [RESTART_COMMAND.restart, RESTART_COMMAND.quit];
+    const commands = [COMMAND.restart, COMMAND.quit];
 
     if (!commands.includes(command)) {
       throw new Error(ERROR_MESSAGE.invalidRestartCommand);
