@@ -24,6 +24,10 @@ class LottoGameController {
     modalClose.addEventListener('click', () => {
       modal.classList.add('v-hidden');
     });
+
+    resetButton.addEventListener('click', () => {
+      window.location.reload();
+    });
   }
 }
 
