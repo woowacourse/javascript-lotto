@@ -24,6 +24,7 @@ class LottoGameDomController {
       this.#showLottoList(PURCHASE_COUNT, USER_LOTTOS);
     } catch (error) {
       alert(error.message);
+      MoneyInput.reset();
     }
   };
 

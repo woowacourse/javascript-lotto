@@ -16,6 +16,7 @@ class MoneyInput {
 
   reset() {
     this.moneyInputEl.value = '';
+    this.moneyInputEl.focus();
   }
 }
 
