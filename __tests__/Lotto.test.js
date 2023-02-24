@@ -18,7 +18,7 @@ describe('Lotto 클래스 테스트', () => {
       { lottoNumbers: [8, 9, 10, 11, 12, 13], expectedRank: undefined },
     ],
   ];
-
+  
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
 
