@@ -7,7 +7,7 @@ const renderLottoListTitle = (amount) => {
 
   paymentsContainer.append(title);
 };
-// 로또 리스트 삽입
+
 const renderLottoList = (lottoNumbers) => {
   const paymentsContainer = document.querySelector('.payments-container');
 
