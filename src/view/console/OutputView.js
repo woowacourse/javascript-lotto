@@ -14,7 +14,7 @@ const OutputView = {
     return `[${lotto.join(', ')}]`;
   },
 
-  generateAmountMessage(amount) {
+  paymentsMessage(amount) {
     return `${amount}개를 구매했습니다.`;
   },
 
@@ -23,7 +23,7 @@ const OutputView = {
   },
 
   printBuyLottos(lottos) {
-    Console.print(this.generateAmountMessage(lottos.length));
+    Console.print(this.paymentsMessage(lottos.length));
     lottos.forEach((lotto) => {
       Console.print(OutputView.generateNumbersMessage(lotto));
     });
