@@ -4,7 +4,7 @@
   margin: 0 auto;
 }
 
-.lotto-game {
+#lotto-game {
   position: relative;
   width: 100%;
   height: 100%;
@@ -155,7 +155,7 @@
     padding: 40px 0 40px;
   }
 
-  .lotto-game {
+  #lotto-game {
     max-height: 727px;
     border: 1px solid var(--border-gray);
     border-radius: 4px;

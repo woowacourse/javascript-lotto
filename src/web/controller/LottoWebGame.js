@@ -9,27 +9,36 @@ import ModalController from './ModalController';
 import calculateProfitRate from '../../domain/calculateProfitRate';
 
 import renderLottoResultModal from '../view/LottoResultModalView';
-import renderLottoListSection from '../view/LottoListView';
+
+import {
+  createLottoListSection,
+  createWinningNumberFormSection,
+  lottoGameTitle,
+  purchaseAmountSection,
+} from '../view';
 
 class LottoWebGame {
-  #lottos;
+  #container;
 
   #modal;
 
+  #lottos;
+
   constructor() {
+    this.#container = $('#lotto-game');
     this.#modal = new ModalController();
 
+    this.init();
     this.bindEventListeners();
   }
 
   init() {
+    this.#container.innerHTML = lottoGameTitle + purchaseAmountSection;
+  }
+
+  reset() {
     this.#modal.reset();
-    $('#purchase-amount-input').value = '';
-    $('#purchase-lotto-list-section').innerHTML = '';
-    $$('.winning-number-input').forEach((element) => {
-      element.value = '';
-    });
-    $('#winning-lotto-form-section').classList.add('hidden');
+    this.init();
   }
 
   bindEventListeners() {
@@ -51,8 +60,8 @@ class LottoWebGame {
       const lottoMachine = new LottoMachine(purchaseAmount);
       this.#lottos = lottoMachine.issueLottos();
 
-      renderLottoListSection(this.#lottos);
-      $('#winning-lotto-form-section').classList.remove('hidden');
+      this.#container.innerHTML +=
+        createLottoListSection(this.#lottos) + createWinningNumberFormSection(6, 1);
     } catch (error) {
       alert(error.message);
       $('#purchase-amount-input').value = '';
@@ -83,7 +92,7 @@ class LottoWebGame {
 
   onClickRestartButton(e) {
     if (e.target.id === 'restart-button') {
-      this.init();
+      this.reset();
     }
   }
 }
