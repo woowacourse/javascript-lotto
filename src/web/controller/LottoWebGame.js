@@ -8,13 +8,12 @@ import { convertToWinningNumber } from '../../domain/utils';
 import ModalController from './ModalController';
 import calculateProfitRate from '../../domain/calculateProfitRate';
 
-import renderLottoResultModal from '../view/LottoResultModalView';
-
 import {
   createLottoListSection,
   createWinningNumberFormSection,
   lottoGameTitle,
   purchaseAmountSection,
+  createResultModal,
 } from '../view';
 
 class LottoWebGame {
@@ -83,8 +82,7 @@ class LottoWebGame {
       const ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
       const profitRate = calculateProfitRate(ranking, this.#lottos.length);
 
-      this.#modal.show();
-      renderLottoResultModal(ranking, profitRate);
+      this.#modal.show(createResultModal(ranking, profitRate));
     } catch (error) {
       alert(error.message);
     }

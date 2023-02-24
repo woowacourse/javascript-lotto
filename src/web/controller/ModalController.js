@@ -12,8 +12,9 @@ class ModalController {
     this.background.addEventListener('click', this.onClose.bind(this));
   }
 
-  show() {
+  show(template) {
     this.background.classList.remove('hidden');
+    this.modal.innerHTML = template;
   }
 
   onClose(event) {
