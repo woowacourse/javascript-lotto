@@ -85,6 +85,7 @@ class WebController {
   validateWinningNumbers = (winningLottoNumbers) => {
     Validator.isDuplicatedNumber(winningLottoNumbers);
     Validator.isCorrectLength(winningLottoNumbers);
+    
     for (let i = 0; i < winningLottoNumbers.length; i++) {
       this.checkEachNumber(winningLottoNumbers[i]);
     }
@@ -123,6 +124,7 @@ class WebController {
       lotto.compareNumbers(this.#winningLotto);
       lotto.checkBonusNumber(this.#bonusNumber);
     });
+
     lottos.compareLottosScore();
     this.printResult(lottos);
   };
@@ -132,16 +134,13 @@ class WebController {
     $(".three").innerHTML = `${lottos.getLottoRanking()[SCORE.THREE]}개`;
     $(".four").innerHTML = `${lottos.getLottoRanking()[SCORE.FOUR]}개`;
     $(".five").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE]}개`;
-    $(".five-bonus").innerHTML = `${
-      lottos.getLottoRanking()[SCORE.FIVE_BONUS]
-    }개`;
+    $(".five-bonus").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE_BONUS]}개`;
     $(".six").innerHTML = `${lottos.getLottoRanking()[SCORE.SIX]}개`;
+
     lottos.calculateBenefit();
     const totalBenefit = lottos.getBenefitRate($(".input-money").value);
-
-    $(
-      ".result-message"
-    ).innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
+    $(".result-message").innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
+    
     this.resetScore(lottos);
     this.#winningLotto = [];
   };
