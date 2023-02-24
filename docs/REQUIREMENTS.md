@@ -146,6 +146,8 @@
 
 ## css
 
+1. styles.css
+
 - 웹 기반 로또 게임 ui에 사용하는 styles들을 정의한다.
 
 ## javascript
