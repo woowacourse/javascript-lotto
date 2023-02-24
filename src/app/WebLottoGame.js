@@ -87,6 +87,12 @@ export class LottoGame {
     return placesOfLottoTickets.filter(Boolean);
   }
 
+  /*  
+    @param {number[]} : 로또 티켓 한장
+    
+    로또 티켓의 길이(6) + 로또 당첨 번호의 길이(6) - 로또 티켓과 로또 당첨번호의 중복 번호(n)
+    = 당첨된 번호의 개수
+  */
   getMatchingWinningNumberCount(lottoTicket) {
     return (
       lottoTicket.length +
