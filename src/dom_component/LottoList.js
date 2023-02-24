@@ -5,7 +5,6 @@ import Convertor from '../utils/Convertor';
 class LottoList {
   constructor() {
     this.lottoListField = $(QuerySelector.LOTTO_LIST_FIELD);
-    this.contentEl = $(QuerySelector.CONTENT);
   }
 
   #createPurchaseMessageEl(purchaseCount) {
@@ -30,10 +29,10 @@ class LottoList {
   }
 
   render(purchaseCount, lottos) {
+    this.reset();
+
     const purchaseMessageEl = this.#createPurchaseMessageEl(purchaseCount);
     const lottoListEl = this.#createLottoListEl(lottos);
-
-    this.reset();
 
     this.lottoListField.append(purchaseMessageEl);
     this.lottoListField.append(lottoListEl);
