@@ -10,12 +10,12 @@ class LottoGameDomController {
   #lottoGame = new LottoGame();
 
   startGame() {
-    MoneyInput.activate(this.#getPurchaseCount);
+    MoneyInput.activate(this.#purchaseLottos);
     LottoInput.activate(this.#setWinningLotto);
     ResultModal.activate(this.#resetGame);
   }
 
-  #getPurchaseCount = (money) => {
+  #purchaseLottos = (money) => {
     const PURCHASE_COUNT = Number(money) / GameControlStaticValue.PURCHASE_AMOUNT_UNIT;
 
     try {
