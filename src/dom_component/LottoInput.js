@@ -13,7 +13,8 @@ class LottoInput {
   }
 
   activate(setWinningLotto) {
-    $(QuerySelector.RESULT_BUTTON).addEventListener(Event.CLICK, () => {
+    $(QuerySelector.RESULT_BUTTON).addEventListener(Event.CLICK, (e) => {
+      e.preventDefault();
       const winningNumbers = this.#getWinningNumbers();
       const bonusNumber = this.#getBonusNumber();
 
