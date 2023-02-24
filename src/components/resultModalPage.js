@@ -1,17 +1,25 @@
-const LottoMachine = require('../domain/LottoMachine');
-const { winningNumbersTag, bonusNumberTag } = require('../utils/DOM.js');
+const LottoMachine = require('../domain/LottoMachine.js');
+const RankedLotto = require('../domain/RankedLotto.js');
+const { winningNumbersTag, bonusNumberTag, lottoInput } = require('../utils/DOM.js');
 
 class resultModalPage {
-  openModalButton() {
-    this.getWinningAndBonusNumber();
+  constructor() {
+    this.rankedLotto = new RankedLotto();
+    this.lottoMachine = new LottoMachine();
   }
-  getWinningAndBonusNumber() {
+  openModalButton(lottoList) {
+    this.getLottoWin(lottoList);
+  }
+
+  getLottoWin(lottoList) {
+    this.lottoMachine.lottoNumber = lottoList;
     const winningNumber = [];
     const bonusNumber = bonusNumberTag.value;
     winningNumbersTag.forEach((number, index) => {
       winningNumber[index] = number.value;
     });
-    console.log(bonusNumber);
+    const lottoResult = this.lottoMachine.compareNumber(winningNumber, bonusNumber);
+    const lottoResultChart = this.rankedLotto.getResult(lottoResult);
   }
 }
 

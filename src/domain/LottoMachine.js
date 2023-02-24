@@ -17,10 +17,12 @@ class LottoMachine {
 
   setLottoNumber(figure) {
     this.lottoNumber = figure;
+    console.log(this.lottoNumber);
   }
 
-  makeLotto(count) {
-    this.setLottoNumber(Array.from({ length: count }, () => this.randomNumberLotto()));
+  makeLotto(money) {
+    const number = this.countLotto(money);
+    this.setLottoNumber(Array.from({ length: number }, () => this.randomNumberLotto()));
   }
 
   sortedNumber(number) {

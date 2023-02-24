@@ -9,23 +9,27 @@ class LottoPurchasePage {
     this.lottoMachine = new LottoMachine();
   }
   purchaseButton() {
-    money = lottoInput.value;
-    this.handleLottoCount(money);
+    this.money = lottoInput.value;
+    this.handleLottoCount(this.money);
     display.showWinningNumberForm();
   }
 
   handleLottoCount(money) {
-    buyLottoCount = this.lottoMachine.countLotto(money);
+    const buyLottoCount = this.lottoMachine.countLotto(money);
     display.showBuyLottoCount(buyLottoCount);
-    this.handleLottoNumbers(buyLottoCount);
+    this.handleLottoNumbers();
   }
 
-  handleLottoNumbers(count) {
-    this.lottoMachine.makeLotto(count);
+  handleLottoNumbers() {
+    this.lottoMachine.makeLotto(this.money);
     const randomLottoNumbers = this.lottoMachine.lottoNumber;
     randomLottoNumbers.forEach(numbers => {
       display.showlottoNumbers(numbers);
     });
+  }
+
+  lottoNumbers() {
+    return this.lottoMachine.lottoNumber;
   }
 }
 
