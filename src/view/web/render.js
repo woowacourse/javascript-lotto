@@ -5,7 +5,7 @@ const renderLottoListTitle = (amount) => {
   const title = document.createElement('p');
   title.innerText = `총 ${amount}개를 구매했습니다.`;
 
-  paymentsContainer.appendChild(title);
+  paymentsContainer.append(title);
 };
 
 const renderLottoList = (lottoNumbers) => {
@@ -18,8 +18,8 @@ const renderLottoList = (lottoNumbers) => {
     lottoElement.className = 'lotto-numbers';
     lottoNumberElement.innerText = `🎟️ ${lottoNumber.join(', ')}`;
 
-    lottoElement.appendChild(lottoNumberElement);
-    lottosContainer.appendChild(lottoElement);
+    lottoElement.append(lottoNumberElement);
+    lottosContainer.append(lottoElement);
   });
 };
 
@@ -38,7 +38,7 @@ const renderHitLottoCount = (winCount) => {
     const tableOrder = 5 - (i + 1);
 
     td.innerText = `${winCount[rank]}개`;
-    tableRows[tableOrder].appendChild(td);
+    tableRows[tableOrder].append(td);
   }
 };
 
