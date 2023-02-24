@@ -25,7 +25,7 @@ class LottoGameWebController {
   renderTemplateAndLottoList = () => {
     if (!View.isRenderedTemplate()) {
       View.renderLottoTemplate();
-      $('#result-button').addEventListener('click', this.handleClickResultButton);
+      this.addEventListenerLottoInput();
     }
     View.renderLottoCount(this.#lottoGame.getLottos().length);
     View.renderLottoList(this.#lottoGame.getLottos());
@@ -58,8 +58,28 @@ class LottoGameWebController {
     View.closeModal();
   };
 
-  bindEventListener = () => {
+  addEventListenerLottoInput = () => {
+    $('#result-button').addEventListener('click', this.handleClickResultButton);
+
+    $$('.lotto-number-input').forEach((numberInput) => {
+      numberInput.addEventListener('keypress', (e) => {
+        if (e.key !== 'Enter') return;
+        this.handleClickResultButton();
+      });
+    });
+  };
+
+  addEventListenerPurchaseInput = () => {
     $('#purchase-button').addEventListener('click', this.handleClickPurchaseButton);
+
+    $('#money-input').addEventListener('keypress', (e) => {
+      if (e.key !== 'Enter') return;
+      this.handleClickPurchaseButton();
+    });
+  };
+
+  bindEventListener = () => {
+    this.addEventListenerPurchaseInput();
 
     $('#modal-close-button').addEventListener('click', View.closeModal);
 
