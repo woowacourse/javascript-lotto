@@ -1,5 +1,5 @@
 const LINK = {
-  HOME: 'http://127.0.0.1:5500/src/web/html/index.html',
+  HOME: 'https://jeonjeunghoon.github.io/javascript-lotto-1/',
 };
 
 export default LINK;
