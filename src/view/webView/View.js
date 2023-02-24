@@ -54,6 +54,10 @@ const View = {
     $('#money-input').value = '';
   },
 
+  isRenderedTemplate: () => {
+    return !!$('#lotto-list');
+  },
+
   resetTemplate: () => {
     $('#lotto-list-container').remove();
     $('#winning-lotto-container').remove();
