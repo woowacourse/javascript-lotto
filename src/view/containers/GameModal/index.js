@@ -48,7 +48,7 @@ const GameModal = () => {
           </tbody>
         </table>
         <div>
-          당신의 총 수익률은 ${store.benefit}%입니다.
+          당신의 총 수익률은 ${store.benefit}입니다.
         </div>
         <button>다시 시작하기</button>
       </div>
