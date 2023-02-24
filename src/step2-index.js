@@ -3,10 +3,13 @@ import { renderLottosContainer, renderResultTable } from './view/web/render';
 import '../public/style.css';
 import LottoMeditator from './LottoMeditator';
 
-const resultBtn = document.querySelector('.result-btn');
-const paymentsBtn = document.querySelector('.payments-btn');
 const modal = document.querySelector('.modal');
+const paymentsContainer = document.querySelector('.payments-container');
+const winningLottoContainer = document.querySelector('.winning-lotto-container');
 
+const paymentsBtn = document.querySelector('.payments-btn');
+const resultBtn = document.querySelector('.result-btn');
+const modalRestartBtn = document.querySelector('.modal-restart-btn');
 const webController = new LottoMeditator();
 
 const handlePayments = () => {
@@ -17,8 +20,6 @@ const handlePayments = () => {
 };
 
 const changeCSSByPaymentsBtnClick = () => {
-  const winningLottoContainer = document.querySelector('.winning-lotto-container');
-
   paymentsBtn.disabled = true;
   resultBtn.disabled = false;
   winningLottoContainer.style.visibility = 'visible';
@@ -45,7 +46,8 @@ const changeCSSByResultBtnClick = () => {
   modal.style.visibility = 'visible';
 };
 
-paymentsBtn.addEventListener('click', () => {
+paymentsContainer.addEventListener('submit', (e) => {
+  e.preventDefault();
   try {
     handlePayments();
   } catch (error) {
@@ -58,15 +60,16 @@ paymentsBtn.addEventListener('click', () => {
   changeCSSByPaymentsBtnClick();
 });
 
-resultBtn.addEventListener('click', () => {
+winningLottoContainer.addEventListener('submit', (e) => {
+  e.preventDefault();
   try {
     handleWinningLottos();
   } catch (error) {
     window.alert(error.message);
     return;
   }
-  changeCSSByResultBtnClick();
   renderResultTable(webController.sendStatstics());
+  changeCSSByResultBtnClick();
 });
 
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
@@ -74,7 +77,6 @@ modalCloseBtn.addEventListener('click', () => {
   modal.style.visibility = 'hidden';
 });
 
-const modalRestartBtn = document.querySelector('.modal-restart-btn');
 modalRestartBtn.addEventListener('click', () => {
   window.location.reload();
 });
