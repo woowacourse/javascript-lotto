@@ -15,7 +15,7 @@ class ResultView extends LottoView {
     super($element);
     this.ranks = [];
     this.bindRetryEvent();
-    this.closeModal();
+    this.bindCloseEvent();
   }
 
   openResultModal(winningResult, budget) {
@@ -55,7 +55,7 @@ class ResultView extends LottoView {
     close($winningContainer);
   }
 
-  closeModal() {
+  bindCloseEvent() {
     $closeButton.addEventListener('click', () => close($modal));
   }
 }
