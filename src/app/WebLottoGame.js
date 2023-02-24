@@ -102,12 +102,11 @@ export class LottoGame {
   }
 
   #getPlace(matchingLottoNumberCount, lottoTicket) {
-    if (matchingLottoNumberCount === FIFTH) {
-      return lottoTicket.includes(Number(this.#winningNumbers[1]))
-        ? SECOND
-        : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
-    }
+    const isFifth = matchingLottoNumberCount === FIFTH;
+    const isMatchingBonusNumber = lottoTicket.includes(this.#winningLotto.bonusNumber);
 
-    return MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
+    return isFifth && isMatchingBonusNumber
+      ? SECOND
+      : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
   }
 }

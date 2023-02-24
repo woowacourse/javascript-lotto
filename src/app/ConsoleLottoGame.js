@@ -55,7 +55,7 @@ export class LottoGame {
   }
 
   /*  
-    @param {number[]} : 로또 티켓 한장
+    @param {number[], number[]} : 로또 티켓 한장, 로또 당첨 번호
     
     로또 티켓의 길이(6) + 로또 당첨 번호의 길이(6) - 로또 티켓과 로또 당첨번호의 중복 번호가 사라진 배열의 길이(n)
     = 당첨된 번호의 개수
@@ -82,13 +82,12 @@ export class LottoGame {
   }
 
   #getPlace(matchingLottoNumberCount, lottoTicket) {
-    if (matchingLottoNumberCount === FIFTH) {
-      return lottoTicket.includes(this.#winningLotto.bonusNumber)
-        ? SECOND
-        : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
-    }
+    const isFifth = matchingLottoNumberCount === FIFTH;
+    const isMatchingBonusNumber = lottoTicket.includes(this.#winningLotto.bonusNumber);
 
-    return MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
+    return isFifth && isMatchingBonusNumber
+      ? SECOND
+      : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
   }
 
   #restart(restartOrQuitCommend) {
