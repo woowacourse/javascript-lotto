@@ -49,7 +49,7 @@ closeButton.addEventListener('click', () => {
 });
 
 retryButton.addEventListener('click', () => {
-  // const lottoMachine =
+  window.location.reload();
 });
 
 const saveMoney = () => {
