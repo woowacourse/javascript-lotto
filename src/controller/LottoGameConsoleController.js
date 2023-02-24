@@ -1,5 +1,5 @@
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import InputView from '../view/consoleView/InputView.js';
+import OutputView from '../view/consoleView/OutputView.js';
 import LottoGame from '../domain/lottoGame/LottoGame.js';
 
 class LottoGameConsoleController {

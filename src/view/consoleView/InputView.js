@@ -1,5 +1,5 @@
-import readLine from '../utils/readLine.js';
-import { MESSAGE } from '../utils/constants.js';
+import readLine from '../../utils/readLine.js';
+import { MESSAGE } from '../../utils/constants.js';
 
 const InputView = {
   readPurchaseMoney() {
