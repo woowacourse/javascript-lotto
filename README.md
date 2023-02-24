@@ -12,8 +12,11 @@
 
 ### 🧍🏻‍♀️콘솔 기반 로또 게임(1단계)을 기반으로 혼자 구현
 
-<br>
-<br>
+#### 🎮 <a href="https://feb-dain.github.io/javascript-lotto-1/dist/index.html">2단계 로또 게임 실행하기</a>
+
+- 콘솔에서도 실행 가능하도록 1단계 코드를 남겨두었습니다.
+  <br>
+  <br>
 
 ### 📍 학습 목표
 
