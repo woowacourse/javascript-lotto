@@ -9,6 +9,7 @@ class LottoPurchase {
   purchaseButton() {
     money = $('.purchase-amount-input').value;
     this.handleLottoCount(money);
+    display.showWinningNumberForm();
   }
 
   handleLottoCount(money) {

@@ -11,6 +11,10 @@ const display = {
     <span class="lotto-numbers text-xl ml-5">${numbers.join(', ')}</span>
   </li>`;
   },
+  showWinningNumberForm() {
+    $('.winning-number-form').classList.remove('d-none');
+    $('.winning-number-form')[0].focus();
+  },
 };
 
 module.exports = display;
