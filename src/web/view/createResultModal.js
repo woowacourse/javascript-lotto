@@ -3,10 +3,10 @@ import { RANK } from '../../constants/setting';
 const resultTableHead =
   '<thead><tr><td>일치 갯수</td><td>당첨금</td><td>당첨 갯수</td></tr></thead>';
 
-const createResultTableRow = (matchCount, reward, winningQuantity) =>
+const createResultTableRow = (matchCount, rewards, winningQuantity) =>
   `<tr>
-    <td>${matchCount}</td>
-    <td>${reward.toLocaleString('ko-KR')}</td>
+    <td>${matchCount}개${rewards === RANK.SECOND.REWARDS ? '+보너스볼' : ''}</td>
+    <td>${rewards.toLocaleString('ko-KR')}</td>
     <td>${winningQuantity}개</td>
   </tr>`;
 
