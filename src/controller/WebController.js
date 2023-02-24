@@ -1,5 +1,5 @@
 import Validator from "../utils/Validator.js";
-import { SETTINGS, MATCH } from "../constants/Config.js";
+import { SETTINGS, SCORE } from "../constants/Config.js";
 import { $, $$ } from "../utils/Dom.js";
 import Lotto from "../domain/Lotto.js";
 import Random from "../utils/Random.js";
@@ -111,11 +111,9 @@ class WebController {
     e.preventDefault();
     const winning = this.getWinningNumbers();
     const bonus = this.getBonusNumber();
-    console.log(winning, bonus);
     const lottos = new Lottos(this.#lottoArray);
 
     lottos.getLottos().forEach((lotto) => {
-      console.log(lotto);
       lotto.compareNumbers(winning);
       lotto.checkBonusNumber(bonus);
     });
@@ -124,13 +122,12 @@ class WebController {
   };
 
   printResult = (lottos) => {
-    for (const score in lottos.getLottoRanking()) {
-      console.log(
-        `${score} (${MATCH.MONEY_BOARD[score]}${SETTINGS.MONEY_UNIT}) - ${
-          lottos.getLottoRanking()[score]
-        }개`
-      );
-    }
+    $(".lotto-result-wrap").classList.add("show");
+    $(".three").innerHTML = `${lottos.getLottoRanking()[SCORE.THREE]}개`;
+    $(".four").innerHTML = `${lottos.getLottoRanking()[SCORE.FOUR]}개`;
+    $(".five").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE]}개`;
+    $(".five-bonus").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE_BONUS]}개`;
+    $(".six").innerHTML = `${lottos.getLottoRanking()[SCORE.SIX]}개`;
   };
 }
 

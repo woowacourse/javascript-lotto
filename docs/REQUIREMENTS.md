@@ -54,6 +54,6 @@ Main
 - [X] 당첨 번호와 보너스 번호를 입력받는 기능 -WebController
 
 Modal
-- [ ] 당첨 내역 출력 -WebController
+- [X] 당첨 내역 출력 -WebController
 - [ ] 수익률 출력 -WebController
 - [ ] 다시하기 클릭시 재시작하는 기능 -WebController
