@@ -8,7 +8,8 @@ class MoneyInput {
   }
 
   activate(purchaseLottos) {
-    this.purchaseBtn.addEventListener(Event.CLICK, () => {
+    this.purchaseBtn.addEventListener(Event.CLICK, (e) => {
+      e.preventDefault();
       const money = this.moneyInputEl.value;
       this.purchaseBtn.setAttribute(Attr.DISABLED, '');
       purchaseLottos(money);
