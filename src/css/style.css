@@ -2,16 +2,69 @@
   background: #4E5BA6;
   border-bottom: 1px solid rgba(78, 91, 166, 0.2);
 }
-.lotto-greyscale-1{
+
+.lotto-greyscale-1 {
   color: #FFFFFF;
 }
-.border{
+
+#game-box {
+  margin-top: 84px;
+  max-width: 414px;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#game-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+#title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+#game-box-title {
+  margin-top: 52px;
+}
+
+#game-box-subtitle {
+  margin-top: 28px;
+}
+
+#money-submit {
+  margin-top: 4px;
+}
+
+#money-input {
+  border: 1px solid #B4B4B4;
+  border-radius: 4px;
+  padding: 8px 8px 0px;
+  gap: 10px;
+  width: 310px;
+  height: 36px;
+}
+
+.border {
   border: solid;
   border-color: gray;
   border-width: 1px;
 }
 
-.ball-box{
-  width:15.5px;
-  height:15.5px;
+.ball-box {
+  width: 15.5px;
+  height: 15.5px;
+}
+
+.header {
+  padding-left: 130px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }

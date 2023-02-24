@@ -14,6 +14,10 @@ body {
   justify-content: space-between !important;
 }
 
+.justify-content-center {
+  justify-content: center !important;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
