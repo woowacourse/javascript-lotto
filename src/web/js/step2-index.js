@@ -1,3 +1,4 @@
+import '../css/style.css';
 import InputChecker from './validators/InputChecker.js';
 import LottoGame from './domains/LottoGame.js';
 import LINK from './constants/link.js';
