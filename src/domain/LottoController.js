@@ -5,6 +5,7 @@ import LottoValidator from './LottoValidator.js';
 import { LOTTO, COMMAND } from '../constants/index.js';
 import { generateLottos } from './generateLottos.js';
 import { judgeResult } from './judgeResult.js';
+import { calculateBenefit } from './calculateBenefit.js';
 
 class LottoController {
 
@@ -50,21 +51,11 @@ class LottoController {
 
   #showResult() {
     const matchResult = judgeResult(this.lottos, this.winningNumber);
-    const benefit = this.calculateBenefit(this.lottos.length * 1000, matchResult);
+    const benefit = calculateBenefit(this.lottos.length * 1000, matchResult);
     OutputView.printResult(matchResult);
     OutputView.printBenefit(benefit);
   }
 
-
-  calculateBenefit(total, rank) {
-    // eslint-disable-next-line max-params
-    const income = rank.reduce((acc, number, index) => {
-      acc += number * LOTTO.prize[index];
-      return acc;
-    }, 0);
-
-    return income / total * 100;
-  }
 }
 
 export default LottoController;
