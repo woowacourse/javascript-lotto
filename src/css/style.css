@@ -160,3 +160,25 @@
   letter-spacing: 1.25px;
   text-transform: uppercase;
 }
+
+footer {
+  margin-top: 69px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  height: 80px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  text-align: center;
+  letter-spacing: 1.25px;
+
+  /* lotto-primary */
+
+  color: #4E5BA6;
+
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
