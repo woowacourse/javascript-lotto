@@ -1,15 +1,3 @@
-.mainPage {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  height: 727px;
-  margin: 5% auto;
-  padding: 4%;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-}
-
 header {
   display: flex;
   height: 80px;
@@ -34,6 +22,19 @@ footer > p {
   color: #4e5ba6;
 }
 
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+  height: auto;
+  margin: 5% auto;
+  padding: 4%;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
 h1 {
   text-align: center;
 }
@@ -50,19 +51,22 @@ input {
   border-radius: 4px;
 }
 
-.purchaseAmount {
-  display: flex;
-  justify-content: space-between;
+.inputAmountArea,
+.inputLottoBonusArea {
+  position: relative;
+  bottom: 10px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 5%;
 }
 
-.inputAmount {
-  width: 82%;
-  padding-left: 2%;
+.inputAmountArea > label {
+  grid-column: 1/3;
+}
+
+#inputAmount {
+  width: 100%;
   color: gray;
-}
-
-.purchase {
-  width: 13%;
 }
 
 button {
@@ -76,7 +80,7 @@ button:hover {
   cursor: pointer;
 }
 
-.randomLottoList {
+#randomLottoList {
   height: 300px;
   overflow: scroll;
 }
@@ -86,22 +90,23 @@ button:hover {
   font-size: xx-large;
 }
 
-.randomLottoList > div {
+#randomLottoList > div {
   display: flex;
   align-items: center;
 }
 
-.inputLottoBonus {
+#inputLottoBonus {
   display: grid;
   grid-template-rows: 30%;
   grid-template-columns: 2fr 1fr;
 }
 
-.inputLottoBonus > p {
+#inputLottoBonus > p,
+.inputLottoBonusArea > p {
   grid-column: 1/3;
 }
 
-.bonusNumber {
+#inputBonusNumber {
   float: right;
   text-align: right;
 }
@@ -111,10 +116,10 @@ button:hover {
   text-align: center;
 }
 
-.result,
-.restart {
+.resultButton {
   width: 100%;
   height: 50px;
+  margin-top: 7%;
 }
 
 .resultPage {
