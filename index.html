@@ -13,11 +13,11 @@
     </header>
     <div class="mainPage">
       <h1>🎱 내 번호 당첨 확인 🎱</h1>
-      <div class="inputAmountArea">
+      <form class="inputAmountArea">
         <label for="inputAmount">구입할 금액을 입력해주세요.</label>
         <input id="inputAmount" value="금액" type="number" />
-        <button class="purchase">구입</button>
-      </div>
+        <button class="purchase" type="submit">구입</button>
+      </form>
       <div id="inputAmountNext" style="display: none">
         <div class="showRandomLottoArea">
           <label for="randomLottoList">
@@ -25,7 +25,7 @@
           </label>
           <div id="randomLottoList"></div>
         </div>
-        <div class="inputLottoBonusArea">
+        <form class="inputLottoBonusArea">
           <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
           <div class="lottoNumber">
             <label for="inputLottoNumber">당첨 번호</label>
@@ -44,8 +44,8 @@
               <input class="eachInputBonusNumber" type="number" />
             </div>
           </div>
-        </div>
-        <button class="resultButton">결과 확인하기</button>
+          <button class="resultButton">결과 확인하기</button>
+        </form>
       </div>
     </div>
 
