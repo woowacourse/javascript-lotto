@@ -17,8 +17,22 @@ import Global from './utils/Global';
 
 const global = new Global();
 
-const form = document.getElementById("money-submit");
+const renderPurchaseResults = () => {
+  Container.render(
+    "purchase-result",
+    () => PurchaseResults(global)
+  );
+};
 
+const renderInputWinningNumber = () => {
+  Container.render(
+    "input-winning-number",
+    () => InputWinningNumberBox(),
+    () => inputWinningNumberEvent(global)
+  );
+};
+
+const form = document.getElementById("money-submit");
 form.onsubmit = function (event) {
   event.preventDefault();
   const money = event.target.money.value;
@@ -26,17 +40,9 @@ form.onsubmit = function (event) {
     LottoValidator.checkMoney(money);
     global.setStore('lottos', generateLottos((money)));
     event.target.money.value = '';
-    Container.render(
-      "purchase-result",
-      () => PurchaseResults(global)
-    );
-    Container.render(
-      "input-winning-number",
-      () => InputWinningNumberBox(),
-      () => inputWinningNumberEvent(global)
-    );
+    renderPurchaseResults();
+    renderInputWinningNumber();
   } catch (error) {
     alert(error.message);
   }
 };
-
