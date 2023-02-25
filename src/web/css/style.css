@@ -64,6 +64,22 @@ footer p {
   color: rgb(var(--lotto-primary-color));
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+.app section,
+.app section > * {
+  margin: 0.3em 0;
+}
+
+.input-winning-numbers-labels label:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -76,17 +92,6 @@ footer p {
   
   border: 1px solid var(--app-border-color);
   border-radius: 4px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-form div {
-  margin-top: 4px;
-  margin-bottom: 4px;
 }
 
 .input-money {
@@ -102,6 +107,7 @@ form div {
 .single-number-input {
   width: 35px;
   height: 35px;
+  text-align: center;
 }
 
 .input-boxes {
@@ -229,10 +235,6 @@ button.close {
   flex-direction: column;
 }
 
-.lotto-count {
-  margin: 1rem 0 0.5rem 0;
-}
-
 table, td, th {
   align-self: center;
 
@@ -250,8 +252,6 @@ td, th {
 }
 
 .lotto-list .list {
-  flex-direction: column;
-
   height: 10rem;
   overflow: auto;
 }
@@ -270,4 +270,14 @@ td, th {
 .modal-message h1,
 .modal-message h3 {
   align-self: center;
+}
+
+.single-number-input::-webkit-outer-spin-button,
+.single-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.single-number-input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

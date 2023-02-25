@@ -15,48 +15,52 @@
       <section class="app">
         <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
 
-        <form>
-          <label for="money">구입할 금액을 입력해주세요.</label>
-          <div>
-            <input type="text" class="money-input" name="money" placeholder="금액">
-            <button type="button" class="input buy">구입</button>
-          </div>
+        <section>
+          <label>
+            구입할 금액을 입력해주세요.
+            <div>
+              <input type="number" inputmode="numeric" class="money-input" step="1000" placeholder="금액" required autofocus>
+              <button type="button" class="input buy">구입</button>
+            </div>
+          </label>
           <div class="alert money animation-shake">
             <p></p>
             <button type="button" class="close">&times</button>
           </div>
-        </form>
+        </section>
 
         <section class="lotto-list hidden-first">
           <div class="lotto-count"></div>
           <div class="list"></div>
         </section>
 
-        <form class="hidden-first">
-          <p>당첨 번호 6개와 보너스 번호 1개를 입력하세요.</p>
+        <section class="hidden-first">
+          당첨 번호 6개와 보너스 번호 1개를 입력하세요.
           <div class="input-winning-numbers-labels">
-            <label for="winning-numbers">당첨 번호</label>
-            <label for="bonus-number">보너스 번호</label>
-          </div>
-          <div class="input-boxes">
-            <div class="winning-number-input-boxes">
-              <input type="text" class="single-number-input" name="winning-numbers" required>
-              <input type="text" class="single-number-input" name="winning-numbers" required>
-              <input type="text" class="single-number-input" name="winning-numbers" required>
-              <input type="text" class="single-number-input" name="winning-numbers" required>
-              <input type="text" class="single-number-input" name="winning-numbers" required>
-              <input type="text" class="single-number-input" name="winning-numbers" required>
-            </div>
-            <div class="bonus-number-input-box">
-              <input type="text" class="single-number-input" name="bonus-number" required>
-            </div>
+            <label>
+              당첨 번호
+              <div class="winning-number-input-boxes">
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+              </div>
+            </label>
+            <label>
+              보너스 번호
+              <div class="bonus-number-input-box">
+                <input type="text" class="single-number-input" required>
+              </div>
+            </label>
           </div>
           <button type="button" class="input show-results">결과 확인하기</button>
           <div class="alert winning-numbers animation-shake">
             <p></p>
             <button type="button" class="close">&times</button>
           </div>
-        </form>
+        </section>
       </section>
 
       <div class="modal-background">

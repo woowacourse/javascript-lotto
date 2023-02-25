@@ -10,6 +10,9 @@ import HTMLInputView from './web/HTMLInputView.js';
 import Table from './web/Table.js';
 
 const lottoGame = new LottoGame();
+const moneyInput = document.querySelector('.money-input');
+const singleNumberInputs = Array.from(document.querySelectorAll('.single-number-input'));
+console.log(singleNumberInputs);
 const moneyBtn = document.querySelector('.buy');
 const showResultBtn = document.querySelector('button.show-results');
 const closeModalBtn = document.querySelector('.modal-box button.close');
@@ -59,8 +62,7 @@ const showResult = () => {
   ModalWindow.addDomTree(resultFooter);
 };
 
-// main
-moneyBtn.addEventListener('click', () => {
+const moneyInputCallback = () => {
   try {
     const money = HTMLInputView.readMoney();
     Alert.hide('money');
@@ -71,9 +73,9 @@ moneyBtn.addEventListener('click', () => {
   } catch (error) {
     Alert.show(error.message, 'money');
   }
-});
+};
 
-showResultBtn.addEventListener('click', () => {
+const winningNumbersInputCallback = () => {
   try {
     const { winningNumbers, bonusNumber } = HTMLInputView.readWinningNumbersAndBonusNumber();
     Alert.hide('winning-numbers');
@@ -82,6 +84,19 @@ showResultBtn.addEventListener('click', () => {
   } catch (error) {
     Alert.show(error.message, 'winning-numbers');
   }
+};
+
+// main
+moneyBtn.addEventListener('click', moneyInputCallback);
+moneyInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') moneyInputCallback();
+});
+
+showResultBtn.addEventListener('click', winningNumbersInputCallback);
+singleNumberInputs.forEach((element) => {
+  element.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') winningNumbersInputCallback();
+  });
 });
 
 closeModalBtn.addEventListener('click', () => {
