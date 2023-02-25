@@ -19,8 +19,8 @@ const setPurchasePriceInputHandler = (handlePurchasePriceInput) => {
 const setWinningNumbersInputHandler = (handleWinningNumbersInput) => {
   $winningInputForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const winningLottoNumbers = Array.from($winningInputs).map((input) =>
-      Number(input.value)
+    const winningLottoNumbers = Array.from($winningInputs).map(
+      (input) => input.valueAsNumber
     );
 
     handleWinningNumbersInput(
