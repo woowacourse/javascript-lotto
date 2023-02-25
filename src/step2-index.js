@@ -7,7 +7,7 @@ import LottoGame from './domain/LottoGame.js';
 import ModalWindow from './web/ModalWindow.js';
 import Alert from './web/Alert.js';
 import HTMLInputView from './web/HTMLInputView.js';
-import Table from './web/Table.js';
+import HTMLOutputView from './web/HTMLOutputView.js';
 
 const lottoGame = new LottoGame();
 
@@ -22,66 +22,14 @@ const restartBtn = document.querySelector('.restart-game');
 
 const modalBackground = document.querySelector('.modal-background');
 
-const showHiddenFeatures = () => {
-  document.querySelectorAll('.hidden-first')
-    .forEach((element) => { element.style.display = 'flex'; });
-};
-
-const showLottoList = (lottoList) => {
-  document.querySelector('.lotto-count').textContent = `총 ${lottoList.length}개를 구매했습니다.`;
-  document.querySelector('.lotto-list .list').innerHTML = lottoList
-    .map((lottoNumbers) => `<p class="lotto">🎟️ ${lottoNumbers.join(', ')}</p>`)
-    .join('');
-};
-
-const makeResultTable = () => {
-  const rankingBoard = lottoGame.getRankingBoard();
-  const table = Table.create();
-
-  Table.addHead(table, ['일치 개수', '당첨금', '당첨 개수']);
-  Table.addRow(table, ['3개', '5,000', `${rankingBoard.fifth}`]);
-  Table.addRow(table, ['4개', '50,000', `${rankingBoard.fourth}`]);
-  Table.addRow(table, ['5개', '1,500,000', `${rankingBoard.third}`]);
-  Table.addRow(table, ['5개+보너스볼', '30,000,000', `${rankingBoard.second}`]);
-  Table.addRow(table, ['6개', '2,000,000,000', `${rankingBoard.first}`]);
-
-  return table;
-};
-
-const closeModalWindowByEscCallback = (event) => {
-  if (event.key === 'Escape' || event.key === 'Esc') {
-    ModalWindow.hide();
-    window.removeEventListener('keydown', closeModalWindowByEscCallback);
-  }
-};
-
-const showResult = () => {
-  const resultHeader = document.createElement('h1');
-  const table = makeResultTable();
-  const resultFooter = document.createElement('h3');
-
-  const headerText = document.createTextNode('🏆 당첨 통계 🏆');
-  const footerText = document.createTextNode(`당신의 총 수익률은 ${lottoGame.getEarningRate().toFixed(2)}% 입니다.`);
-
-  resultHeader.appendChild(headerText);
-  resultFooter.appendChild(footerText);
-
-  ModalWindow.show();
-  ModalWindow.addDomTree(resultHeader);
-  ModalWindow.addDomTree(table);
-  ModalWindow.addDomTree(resultFooter);
-
-  window.addEventListener('keydown', closeModalWindowByEscCallback);
-};
-
 const moneyInputCallback = () => {
   try {
     const money = HTMLInputView.readMoney();
     Alert.hide('money');
     lottoGame.reset();
     lottoGame.buyLottos(money);
-    showLottoList(lottoGame.getLottos());
-    showHiddenFeatures();
+    HTMLOutputView.showLottoList(lottoGame.getLottos());
+    HTMLOutputView.showHiddenFeatures();
   } catch (error) {
     Alert.show(error.message, 'money');
   }
@@ -92,7 +40,7 @@ const winningNumbersInputCallback = () => {
     const { winningNumbers, bonusNumber } = HTMLInputView.readWinningNumbersAndBonusNumber();
     Alert.hide('winning-numbers');
     lottoGame.updateRankingBoard(winningNumbers, bonusNumber);
-    showResult();
+    HTMLOutputView.showResult(lottoGame.getRankingBoard(), lottoGame.getEarningRate());
   } catch (error) {
     Alert.show(error.message, 'winning-numbers');
   }
