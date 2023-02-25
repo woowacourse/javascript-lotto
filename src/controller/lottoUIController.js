@@ -8,7 +8,10 @@ import {
 } from '../view/purchaseAmountInput';
 import showErrorMessage from '../components/errorMessage';
 import paintLottoResultBoard from '../view/lottoResult';
-import paintModal, { closeModal } from '../view/modal';
+import paintModal, {
+  addESCCloseEventListener,
+  closeModal,
+} from '../view/modal';
 import paintLottoStatus from '../view/purchaseLottoStatus';
 import { STEP } from '../data/Constants';
 import LottoGame from '../domain/LottoGame';
@@ -35,6 +38,7 @@ export default function LottoUIController($app) {
   const init = () => {
     const $lottoSection = lottoSection();
     $app.appendChild($lottoSection);
+    addESCCloseEventListener(closeModalHandler);
 
     this.state.$root = $lottoSection;
   };
@@ -61,6 +65,11 @@ export default function LottoUIController($app) {
     this.play();
   };
 
+  const closeModalHandler = () => {
+    closeModal();
+    this.state.step = STEP.ENTER;
+  };
+
   const paintGameBoard = (purchaseAmount) => {
     const { $root, lottoGame } = this.state;
     this.state.step = STEP.ENTER;
@@ -73,7 +82,10 @@ export default function LottoUIController($app) {
   };
 
   const paintResultView = ({ winCount, earningRate }) => {
-    const $content = paintLottoResultBoard({ winCount, earningRate }, restart);
+    const $content = paintLottoResultBoard(
+      { winCount, earningRate },
+      { restart, closeModalHandler }
+    );
 
     paintModal($content);
   };
@@ -89,10 +101,13 @@ export default function LottoUIController($app) {
     paintResultView({ winCount, earningRate });
   };
 
-  const purchaseAmountHandler = () => {
+  const purchaseAmountHandler = (e) => {
+    e.preventDefault();
+    const { currentTarget } = e;
+
     const { $root, step } = this.state;
 
-    const purchaseAmount = getPurchaseAmount();
+    const purchaseAmount = getPurchaseAmount(currentTarget);
 
     const { state, message } = inputErrorChecker(() =>
       validatePurchaseAmount(purchaseAmount)
@@ -109,8 +124,15 @@ export default function LottoUIController($app) {
     paintGameBoard(purchaseAmount);
   };
 
-  const checkResultHandler = () => {
-    const { winningNumbers, bonusNumber } = getWinNumberAndBonusNumber();
+  const checkResultHandler = (e) => {
+    e.preventDefault();
+
+    if (this.state.step !== STEP.ENTER) return;
+
+    const { currentTarget } = e;
+
+    const { winningNumbers, bonusNumber } =
+      getWinNumberAndBonusNumber(currentTarget);
 
     const { state: winState, message: winMessage } = inputErrorChecker(() =>
       validateWinningNumbers(winningNumbers)
@@ -127,6 +149,7 @@ export default function LottoUIController($app) {
       return;
     }
 
+    this.state.step = STEP.RESULT;
     calculateResult(bonusNumber, winningNumbers);
   };
 

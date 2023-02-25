@@ -4,7 +4,15 @@ import {
   purchaseAmountContainer,
 } from '../view/templates/purchaseInput';
 
-function addPurchaseEnterEventListener($root, eventHandler) {
+function purchaseEnterInput() {
+  const $container = document.createElement('form');
+
+  $container.innerHTML = gameTitle + purchaseAmountContainer;
+
+  return $container;
+}
+
+function addPurchaseEnterEventListener($root) {
   const $container = $root.querySelector('.purchase-amount-container');
 
   const $purchaseButton = $root.querySelector('#purchase-button');
@@ -12,24 +20,19 @@ function addPurchaseEnterEventListener($root, eventHandler) {
   $container.addEventListener('keyup', (e) =>
     keyUpEventListener(e, $purchaseButton)
   );
-  $purchaseButton.addEventListener('click', eventHandler);
-}
-
-function purchaseEnterInput() {
-  const $container = document.createElement('div');
-
-  $container.innerHTML = gameTitle + purchaseAmountContainer;
-
-  return $container;
 }
 
 export function paintPurchaseAmountInput($root, eventHandler) {
-  $root.appendChild(purchaseEnterInput());
-  addPurchaseEnterEventListener($root, eventHandler);
+  const $board = purchaseEnterInput();
+  $root.appendChild($board);
+
+  addPurchaseEnterEventListener($root);
+
+  $board.addEventListener('submit', eventHandler);
 }
 
-export function getPurchaseAmount() {
-  const $purchaseInput = document.querySelector('#purchase-input');
+export function getPurchaseAmount($root) {
+  const $purchaseInput = $root.querySelector('#purchase-input');
   const purchaseAmount = Number($purchaseInput.value);
 
   return purchaseAmount;

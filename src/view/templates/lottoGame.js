@@ -29,7 +29,7 @@ export const numberInput = ({ name }) => `
   />`;
 
 export const resultButton = `
-  <button id="check-result" class="caption large-button" type="button" disabled>결과 확인하기</button>
+  <button id="check-result" class="caption large-button" type="submit" disabled>결과 확인하기</button>
 `;
 
 export const numberTitleContainer = `

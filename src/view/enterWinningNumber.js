@@ -24,16 +24,15 @@ function winNumberEnterContainer() {
   return numberEnterContainer($winNumberContainer, $bonusNumberInput);
 }
 
-function addEnterWinningNumberEventListener($root, eventHandler) {
+function addEnterWinningNumberEventListener($root) {
   const $container = $root.querySelector('.number-container');
   const $button = $root.querySelector('#check-result');
 
   $container.addEventListener('keyup', (e) => keyUpEventListener(e, $button));
-  $button.addEventListener('click', eventHandler);
 }
 
 function enterWinningNumber() {
-  const $enterBoard = document.createElement('div');
+  const $enterBoard = document.createElement('form');
 
   $enterBoard.innerHTML = `
     ${enterWinNumberMessage}
@@ -49,13 +48,15 @@ export function paintEnterWinningNumber($root, eventHandler) {
   const $gameBoard = enterWinningNumber();
   $root.appendChild($gameBoard);
 
-  addEnterWinningNumberEventListener($root, eventHandler);
+  addEnterWinningNumberEventListener($root);
+  $gameBoard.addEventListener('submit', eventHandler);
+
   $gameBoard.querySelector('input[name=win-number]').focus();
 }
 
-export function getWinNumberAndBonusNumber() {
-  const $winNumbers = document.querySelectorAll('input[name="win-number"]');
-  const $bonusNumber = document.querySelector('input[name="bonus-number"]');
+export function getWinNumberAndBonusNumber($root) {
+  const $winNumbers = $root.querySelectorAll('input[name="win-number"]');
+  const $bonusNumber = $root.querySelector('input[name="bonus-number"]');
 
   const winningNumbers = [...$winNumbers.values()].map(({ value }) =>
     Number(value)

@@ -3,7 +3,6 @@ import {
   resultTitle,
   tableContent,
 } from '../view/templates/lottoResult';
-import { closeModal } from './modal';
 
 function closeButtonContainer() {
   const $container = document.createElement('div');
@@ -37,16 +36,16 @@ function endContainer(earningRate) {
   return $container;
 }
 
-function addLottoResultEventListener($root, retryHandler) {
-  $root.querySelector('#retry').addEventListener('click', retryHandler);
+function addLottoResultEventListener($root, { retry, closeModalHandler }) {
+  $root.querySelector('#retry').addEventListener('click', retry);
   $root
     .querySelector('.modal-close-button')
-    .addEventListener('click', closeModal);
+    .addEventListener('click', closeModalHandler);
 }
 
 export default function paintLottoResultBoard(
   { winCount, earningRate },
-  retryHandler
+  handlers
 ) {
   const $board = document.createElement('div');
 
@@ -55,7 +54,7 @@ export default function paintLottoResultBoard(
   $board.appendChild(tableContainer(winCount));
   $board.appendChild(endContainer(earningRate));
 
-  addLottoResultEventListener($board, retryHandler);
+  addLottoResultEventListener($board, handlers);
 
   return $board;
 }
