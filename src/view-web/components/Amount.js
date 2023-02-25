@@ -1,13 +1,13 @@
 import Component from './Component.js';
 import LottoMachine from '../../domain/LottoMachine.js';
-import { qs } from '../../utils/domHelper.js';
+import { getId } from '../../utils/domHelper.js';
 import { ERROR, LOTTO } from '../../constant/constants.js';
 
 export default class Amount extends Component {
   setter;
 
   constructor(setter) {
-    super(qs('#input-purchase-form'));
+    super(getId('input-purchase-form'));
     this.setter = setter;
 
     this.addEvent('submit', this.submitAmount.bind(this));

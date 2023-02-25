@@ -1,5 +1,5 @@
 import Component from './Component.js';
-import { qs } from '../../utils/domHelper.js';
+import { getId } from '../../utils/domHelper.js';
 
 export default class WinNumbers extends Component {
   setter;
@@ -7,7 +7,7 @@ export default class WinNumbers extends Component {
   activateModal;
 
   constructor(setter, { drawingNumbersSetter, activateModal }) {
-    super(qs('#input-winning-number-form'));
+    super(getId('input-winning-number-form'));
     this.setter = setter;
     this.drawingNumbersSetter = drawingNumbersSetter;
     this.activateModal = activateModal;

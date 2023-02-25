@@ -1,5 +1,5 @@
 import '../main.css';
-import { qs } from './utils/domHelper.js';
+import { getId } from './utils/domHelper.js';
 import Component from './view-web/components/Component.js';
 import Amount from './view-web/components/Amount.js';
 import LottoList from './view-web/components/LottoList.js';
@@ -10,7 +10,7 @@ class App extends Component {
   state;
 
   constructor() {
-    super(qs('#app'), { lottoList: [] });
+    super(getId('app'), { lottoList: [] });
   }
 
   mount() {
@@ -60,7 +60,7 @@ class App extends Component {
   }
 
   activateModal() {
-    qs('#lotto-statistics-modal').showModal();
+    getId('lotto-statistics-modal').showModal();
   }
 }
 

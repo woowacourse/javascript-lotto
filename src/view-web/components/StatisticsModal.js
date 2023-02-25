@@ -1,6 +1,6 @@
 import Component from './Component.js';
 import LottoMachine from '../../domain/LottoMachine.js';
-import { qs } from '../../utils/domHelper.js';
+import { getId } from '../../utils/domHelper.js';
 import { AWARDS_ORDER, PRIZE } from '../../constant/constants.js';
 
 export default class StatisticsModal extends Component {
@@ -8,7 +8,7 @@ export default class StatisticsModal extends Component {
   earningRate;
 
   constructor(state) {
-    super(qs('#lotto-statistics-modal'), state);
+    super(getId('lotto-statistics-modal'), state);
     this.statistics = LottoMachine.calculateStatistics(this.state.lottoList);
     this.earningRate = LottoMachine.calculateEarningRate(this.state.lottoList);
 
