@@ -273,7 +273,7 @@ button:disabled:hover {
   align-items: center;
 }
 
-.result-end-container > .subtitle {
+.result-end-container > p {
   margin: 32px 0;
 }
 

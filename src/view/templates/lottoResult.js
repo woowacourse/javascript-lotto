@@ -1,9 +1,10 @@
-export const resultEndContent = (earningRate) => `
-  <p class="subtitle">당신의 총 수익률은<br/> ${earningRate}%입니다.</p>
+const resultEndContent = (earningRate) => `
+  <p class="caption">당신의 총 수익률은 ${earningRate}%입니다.</p>
   <button id="retry" type="button" class="caption large-button ">다시 시작하기</button>
 `;
 
 export const tableContent = (winCount) => `
+<table class="result-table>
   <thead class="caption">
     <tr>
       <th><span class="top-bottom-margin-8">일치 갯수</span></th>
@@ -38,8 +39,18 @@ export const tableContent = (winCount) => `
       <td><span class="top-bottom-margin-8">${winCount['FIRST']}개</span></td>
     </tr>
   </tbody>
+</table>
 `;
 
 export const resultTitle = `
   <p class="subtitle">🏆 당첨 통계 🏆</p>
+`;
+
+export const closeButtonContainer = `<div class="close-button-container">
+  <buton class="modal-close-button">❌</buton>
+</div>
+`;
+
+export const endContainer = ({ earningRate }) =>
+  ` <div class="result-end-container">${resultEndContent(earningRate)}</div>
 `;
