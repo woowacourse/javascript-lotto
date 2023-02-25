@@ -60,6 +60,14 @@ header > h1 {
     margin-top: 28px;
 }
 
+#user-budget-description {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: #8B8B8B;
+    margin-top: 2px;
+}
+
 #user-budget-form {
     display: flex;
     flex-direction: column;

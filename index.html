@@ -15,9 +15,10 @@
           <h2>🎱 내 번호 당첨 확인 🎱</h2>
           <section id="lotto-purchase-section">
             <form id="user-budget-form">
-              <label for="user-budget-input">구입할 금액을 입력해주세요.</label>
+              <label for="user-budget-input">구입할 금액을 입력해주세요. (1장 가격: 1000원)</label>
+              <p id="user-budget-description">최대 100,000원 이하(100매)로 구매할 수 있습니다.</p>
               <div>
-                <input id="user-budget-input" type="number" placeholder="금액" step="1000" min="0" required>
+                <input id="user-budget-input" type="number" placeholder="1000 단위로 입력해주세요." step="1000" min="0" max="100000" required>
                 <button id="user-budget-submit" type="submit">구입</button>
               </div>
             </form>
