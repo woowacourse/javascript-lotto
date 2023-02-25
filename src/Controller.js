@@ -33,7 +33,7 @@ class Controller {
     }
   }
 
-  //lottoResult = [0,0,0,0,0,0] = 5등~1등, 수익률
+  //Note: lottoResult = [0,0,0,0,0,0] = 5등~1등, 수익률
   generateLottoGameResult(lotto, bonus) {
     return this.lottoGame.getRankResult(lotto, bonus);
   }
