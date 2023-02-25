@@ -61,6 +61,7 @@ table {
   margin: 16px;
   background: #ffffff;
   border: none;
+  cursor: pointer;
 }
 
 #modal-contents {
