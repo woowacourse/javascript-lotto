@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const GameModal = () => {
+const GameModal = (store) => {
   if (store.result) {
     return `
 <div>

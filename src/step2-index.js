@@ -17,6 +17,8 @@ import inputWinningNumberEvent from './view/containers/InputWinningNumberBox/inp
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 console.log('step2-index.js');
+
+const store = {};
 const form = document.getElementById("money-submit");
 
 form.onsubmit = function (event) {
@@ -26,10 +28,11 @@ form.onsubmit = function (event) {
     LottoValidator.checkMoney(money);
     store['lottos'] = generateLottos((money));
     event.target.money.value = '';
-    Render.container("purchase-result", () => PurchaseResults(), () => { });
-    Render.container("input-winning-number", () => InputWinningNumberBox(), () => { inputWinningNumberEvent(); });
-    Render.container("game-result", () => GameModal(), () => modalEvent());
+    Render.container("purchase-result", () => PurchaseResults(store), () => { });
+    Render.container("input-winning-number", () => InputWinningNumberBox(store), () => { inputWinningNumberEvent(store); });
   } catch (error) {
     alert(error.message);
   }
 };
+
+Render.container("game-result", () => GameModal(store), () => { modalEvent(); });

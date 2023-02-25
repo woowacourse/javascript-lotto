@@ -7,7 +7,7 @@ import Render from "../../../utils/Render";
 import GameModal from "../GameModal";
 import modalEvent from "../GameModal/modalEvent";
 
-const inputWinningNumberEvent = () => {
+const inputWinningNumberEvent = (store) => {
 
   const form = document.getElementById("winning-number-submit");
 
@@ -35,7 +35,7 @@ const inputWinningNumberEvent = () => {
       console.log(result, benefit);
       store['result'] = result;
       store['benefit'] = benefit;
-      Render.container("game-result", () => GameModal(), () => modalEvent());
+      Render.container("game-result", () => GameModal(store), () => modalEvent());
       const modal = document.getElementById("game-modal");
       console.log(modal);
       modal.style.display = "block";

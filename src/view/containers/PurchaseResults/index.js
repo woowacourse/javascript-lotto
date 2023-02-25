@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const PurchaseResults = () => {
+const PurchaseResults = (store) => {
   return `
 <div>
   <div id="purchase-results-title">총 ${store.lottos.length}개를 구매하였습니다.</div>
