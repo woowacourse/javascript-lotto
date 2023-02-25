@@ -35,7 +35,7 @@ header > h1 {
     padding-left: 130px;
     font-weight: 800;
     font-size: 24px;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 #lotto-game {
@@ -44,7 +44,7 @@ header > h1 {
     align-items: center;
     justify-content: space-between;
     padding: 40px 16px 32px 16px;
-    background: #FFFFFF;
+    background: #FFF;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;   
 }
@@ -103,7 +103,7 @@ header > h1 {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
-    color: #FFFFFF;
+    color: #FFF;
     cursor: pointer;
 }
 
@@ -174,7 +174,7 @@ header > h1 {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
-    color: #FFFFFF;
+    color: #FFF;
     cursor: pointer;
 }
 
@@ -229,7 +229,7 @@ footer p {
     align-items: center;
     width: 350px;
     height: 500px;
-    background: #FFFFFF;
+    background: #FFF;
     border-radius: 4px;
 }
 
@@ -252,7 +252,7 @@ footer p {
     letter-spacing: 1.25px;
     color: rgba(0, 0, 0, 0.87);
     border: none;
-    background-color: #FFFFFF;
+    background-color: #FFF;
     margin: 16px 16px 8px 0;
     cursor: pointer;
 }
@@ -288,7 +288,7 @@ footer p {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
-    color: #FFFFFF;
+    color: #FFF;
     cursor: pointer;
 }
 
