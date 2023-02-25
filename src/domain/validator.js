@@ -12,8 +12,8 @@ const isLottoNumber = (number) => {
 const hasDuplicate = (numbers) => new Set(numbers).size !== numbers.length;
 
 export const validatePurchaseAmount = (amount) => {
-  if (!isPositiveInteger(amount)) throw new Error(ERROR_LOTTO.COST);
-  if (amount % LOTTO.COST !== 0) throw new Error(ERROR_LOTTO.COST);
+  if (!isPositiveInteger(amount)) throw new Error(ERROR_LOTTO.UNIT);
+  if (amount % LOTTO.UNIT !== 0) throw new Error(ERROR_LOTTO.UNIT);
 };
 
 export const validateNumbers = (numbers) => {

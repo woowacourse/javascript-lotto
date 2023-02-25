@@ -20,7 +20,7 @@ class ConsoleController {
 
   async purchaseLottos() {
     const money = await InputView.readPurchaseAmount();
-    const lottoAmount = money / LOTTO.COST;
+    const lottoAmount = money / LOTTO.UNIT;
 
     this.#lottoService.purchaseLottos(lottoAmount);
     OutputView.printPurchaseAmount(lottoAmount);

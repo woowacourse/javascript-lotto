@@ -32,7 +32,7 @@ class LottoService {
 
   getProfitRate(statstics) {
     const totalReward = statstics.reduce((sum, { reward, count }) => sum + reward * count, 0);
-    const principal = this.#lottos.length * LOTTO.COST;
+    const principal = this.#lottos.length * LOTTO.UNIT;
     const profit = totalReward - principal;
 
     return (profit / principal) * 100;

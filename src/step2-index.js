@@ -20,7 +20,7 @@ $('.lotto-container').insertAdjacentHTML('beforeend', Payment());
 $('.purchase-button').addEventListener('click', function () {
   const moneyInput = $('#money-input');
 
-  webController.purchaseLotto(Number(moneyInput.value) / LOTTO.COST);
+  webController.purchaseLotto(Number(moneyInput.value) / LOTTO.UNIT);
 
   mountLottoList();
   mountWinningInput();
