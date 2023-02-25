@@ -4,7 +4,7 @@ const GameModal = () => {
     return `
 <div>
   <div id="game-result-title">🏆 당첨 통계 🏆</div>
-    <table>
+    <table id="game-result-content">
       <thead>
         <tr>
           <th>일치 갯수</th>
@@ -12,7 +12,7 @@ const GameModal = () => {
           <th>당첨 갯수</th>
         </tr>
       </thead>
-      <tbody id="tbody">
+      <tbody>
         <tr>
           <td>3개</td>
           <td>5,000</td>
@@ -40,10 +40,12 @@ const GameModal = () => {
         </tr>
       </tbody>
     </table>
-    <div>
-      당신의 총 수익률은 ${store.benefit}%입니다.
+    <div class="d-flex justify-content-center">
+      <div id="game-result-calculate">
+        당신의 총 수익률은 ${store.benefit}%입니다.
+      </div>
     </div>
-    <button>다시 시작하기</button>
+    <button id="game-reload-button" class="width-100 btn lotto-primary lotto-greyscale-1" onclick="window.location.reload()">다시 시작하기</button>
   </div>
 </div>
 `;

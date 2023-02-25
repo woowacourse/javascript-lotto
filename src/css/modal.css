@@ -14,21 +14,21 @@
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
+  padding: 16px;
   border: 1px solid #888;
   width: 350px;
   height: 500px;
 }
 
 .game-modal-close-button {
-  color: #aaa;
+  color: black;
   float: right;
-  font-size: 28px;
   font-weight: bold;
 }
 
 .game-modal-close-button:hover,
 .game-modal-close-button:focus {
-  color: black;
+  color: #aaa;
   text-decoration: none;
   cursor: pointer;
 }
