@@ -21,7 +21,7 @@ class LtTypography extends LtComponent {
       ${template}
 
       <${tag} class="typography">
-        <slot></slot>
+        {decoration} <slot></slot>  {decoration}
       </${tag}>
     `;
   }
