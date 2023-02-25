@@ -14,7 +14,6 @@ class LottoResultModal {
   }
 
   render(receivedRewards, profitRate) {
-    toggleDisableAttribute(document.getElementById('result-button'));
     this.toggleModal();
     this.renderTable(receivedRewards);
     this.renderProfit(profitRate);
@@ -61,6 +60,7 @@ class LottoResultModal {
       `,
     );
     this.restartButton = document.getElementById('restart');
+    this.restartButton.focus();
   }
 
   resetResultTable() {
@@ -70,7 +70,6 @@ class LottoResultModal {
   closeButtonHandler = () => {
     this.toggleModal();
     this.resetResultTable();
-    toggleDisableAttribute(document.getElementById('result-button'));
   };
 
   addRestartButtonHandler(restartButtonHandler) {
