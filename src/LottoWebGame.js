@@ -1,9 +1,10 @@
 import Lotto from './domain/models/Lotto';
-import lottoGameCalculator from './domain/lottoGameCalculator';
 import lottoGameValidator from './domain/lottoGameValidator';
+import lottoGameCalculator from './domain/lottoGameCalculator';
+import randomShuffle from './utils/randomShuffle';
 import { $, $$ } from './utils/dom';
 import { LOTTO, RANKING_THRESHOLD } from './constants';
-import randomShuffle from './utils/randomShuffle';
+import { renderLottos, renderResultModal } from './view/render';
 
 class LottoWebGame {
   #lottos;
@@ -28,7 +29,7 @@ class LottoWebGame {
     try {
       lottoGameValidator.checkPurchaseAmount(input);
       this.initLottos(Number(input));
-      this.renderLottos();
+      renderLottos(this.#lottos.map((lotto) => lotto.getNumber()));
       $('.hidden-area').classList.add('show');
     } catch (e) {
       alert(e.message);
@@ -36,14 +37,14 @@ class LottoWebGame {
   };
 
   handleResultButton = () => {
-    const winningNumbers = Array.from($$('.winning-numbers > input')).map(($input) =>
-      Number($input.value)
-    );
+    const winningNumbers = Array.from($$('.winning-numbers > input')).map(($input) => Number($input.value));
     const bonusNumber = $('.bonus-number > input').value;
     try {
       lottoGameValidator.checkLottoNumbers(winningNumbers);
       lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
-      this.renderResultModal(this.makeRankings(winningNumbers, Number(bonusNumber)));
+      const rankings = this.makeRankings(winningNumbers, Number(bonusNumber));
+      const rewardRate = lottoGameCalculator.calculateRewardRate(this.#lottos.length * LOTTO.price, rankings);
+      renderResultModal(rankings, rewardRate);
       this.toggleResultModal();
     } catch (e) {
       alert(e.message);
@@ -75,30 +76,10 @@ class LottoWebGame {
     return new Lotto(randomNumbers);
   };
 
-  renderLottos = () => {
-    $('#buy-count').innerHTML = `총 ${this.#lottos.length}개를 구매하였습니다.`;
-    $('#lotto-numbers-area').innerHTML = this.#lottos
-      .map((lotto) => `<p>${lotto.getNumbers().join(', ')}</p>`)
-      .join('');
-  };
-
-  renderResultModal = (rankings) => {
-    [1, 2, 3, 4, 5].forEach((ranking) => {
-      const rankingCount = rankings.reduce((acc, cur) => (acc += cur === ranking), 0);
-      $(`#ranking-${ranking}`).innerHTML = `${rankingCount}개`;
-    });
-
-    const purchaseAmount = this.#lottos.length * LOTTO.price;
-    const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
-    $('#reward-rate').innerHTML = `당신의 총 수익률은 ${rewardRate}입니다.`;
-  };
-
   makeRankings = (winningNumbers, bonusNumber) => {
     return this.#lottos
       .filter((lotto) => lotto.calculateMatchCount(winningNumbers) >= RANKING_THRESHOLD)
-      .map((lotto) =>
-        lotto.calculateRanking(lotto.calculateMatchCount(winningNumbers), bonusNumber)
-      );
+      .map((lotto) => lotto.calculateRanking(lotto.calculateMatchCount(winningNumbers), bonusNumber));
   };
 
   toggleResultModal = () => {
