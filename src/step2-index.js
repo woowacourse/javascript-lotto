@@ -10,6 +10,7 @@ import LottoList from './js/components/LottoList';
 import WinningInput from './js/components/WinningInput';
 import LOTTO from './constants/lotto';
 import Modal from './js/components/Modal';
+import { validateBonusNumber, validateNumbers, validatePurchaseAmount } from './domain/validator';
 
 const webController = new WebController();
 
@@ -17,17 +18,28 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
 $('.lotto-container').insertAdjacentHTML('beforeend', Payment());
-$('.purchase-button').addEventListener('click', function () {
-  const moneyInput = $('#money-input');
 
-  webController.purchaseLotto(Number(moneyInput.value) / LOTTO.UNIT);
+const purchaseButton = $('.purchase-button');
+
+purchaseButton.addEventListener('click', () => {
+  const moneyInput = $('#money-input');
+  const money = Number(moneyInput.value);
+
+  try {
+    validatePurchaseAmount(money);
+  } catch (error) {
+    alert(error.message);
+    moneyInput.value = '';
+    return;
+  }
+
+  webController.purchaseLotto(money / LOTTO.UNIT);
 
   mountLottoList();
   mountWinningInput();
 
   moneyInput.value = '';
-
-  this.disabled = true;
+  purchaseButton.disabled = true;
 });
 
 const mountLottoList = () => {
@@ -39,18 +51,30 @@ const mountLottoList = () => {
 
 const mountWinningInput = () => {
   $('.lotto-container').insertAdjacentHTML('beforeend', WinningInput());
-  $('.submit-button').addEventListener('click', function () {
+
+  const submitButton = $('.submit-button');
+
+  submitButton.addEventListener('click', function () {
     const winNumbers = [];
 
     $$('.winning-lotto-number').forEach((node) => winNumbers.push(Number(node.value)));
+    winNumbers.pop();
 
     const bonusNumber = Number($('#bonus-number').value);
+
+    try {
+      validateNumbers(winNumbers);
+      validateBonusNumber(winNumbers, bonusNumber);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
 
     webController.setWinningLotto(winNumbers, bonusNumber);
 
     mountModal();
 
-    this.disabled = true;
+    submitButton.disabled = true;
   });
 };
 
