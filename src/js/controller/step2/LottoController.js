@@ -79,9 +79,14 @@ class LottoController {
       e.preventDefault();
       this.reset();
     });
+
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') this.view.resultModalView.reset();
     });
+
+    document.addEventListener('click', e => {
+      if (e) this.view.resultModalView.reset();
+    })
   }
 
   reset() {
