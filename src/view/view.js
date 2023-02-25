@@ -1,14 +1,14 @@
 const view = {
   convertVisibilityToHidden(...doms) {
-    [...doms].forEach((dom) => (dom.style.visibility = 'hidden'));
+    doms.forEach((dom) => (dom.style.visibility = 'hidden'));
   },
 
   convertVisibilityToVisible(...doms) {
-    [...doms].forEach((dom) => (dom.style.visibility = 'visible'));
+    doms.forEach((dom) => (dom.style.visibility = 'visible'));
   },
 
   initInputValue(...doms) {
-    [...doms].forEach((dom) => (dom.value = ''));
+    doms.forEach((dom) => (dom.value = ''));
   },
 
   insertInnerText(dom, message) {
@@ -16,7 +16,7 @@ const view = {
   },
 
   insertBoughtLottos($lottoList, lottos) {
-    $lottoList.innerHTML = [...lottos].reduce((HTML, lotto) => {
+    $lottoList.innerHTML = lottos.reduce((HTML, lotto) => {
       return (HTML += `
           <div class='lotto'>
             <div>🎟️</div>
