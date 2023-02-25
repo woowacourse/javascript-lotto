@@ -31,6 +31,11 @@ body > main {
   justify-content: center;
 }
 
+body > main > article {
+  width: 420px;
+  margin: 32px 16px;
+}
+
 body > *:last-child {
   margin-top: auto;
 }
@@ -95,13 +100,13 @@ button {
   font-weight: 700;
 }
 
-.frame {
+article {
   padding: 32px 16px;
-  margin: 32px 16px;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+}
+
+dialog {
+  width: 350px;
 }

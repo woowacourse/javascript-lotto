@@ -36,21 +36,21 @@ const InputView = {
    */
   async readRestartCommand() {
     /** @type {HTMLFormElement} */
-    const $lottoForm = document.getElementById('lotto-form');
+    const $lottoForms = document.getElementById('lotto-forms');
 
-    $lottoForm.reset();
+    $lottoForms.querySelectorAll('form').forEach((form) => form.reset());
     InputView.resetAnchor();
     return RestartCommand.YES;
   },
 
   resetAnchor() {
     /** @type {HTMLFormElement} */
-    const $lottoForm = document.getElementById('lotto-form');
+    const $lottoForms = document.getElementById('lotto-forms');
 
     /** @type {HTMLElement} */
-    const $firstAnchor = $lottoForm.querySelector('[data-focus-anchor]');
+    const $firstAnchor = $lottoForms.querySelector('[data-focus-anchor]');
 
-    $lottoForm.querySelector('[data-focus]').removeAttribute('data-focus');
+    $lottoForms.querySelector('[data-focus]').removeAttribute('data-focus');
     $firstAnchor.setAttribute('data-focus', '');
   },
 };

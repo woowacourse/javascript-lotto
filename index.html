@@ -17,28 +17,32 @@
   </header>
 
   <main>
-    <form id="lotto-form" class="frame" onsubmit="lottoController.proceedLottoResult(); return false">
-      <lt-typography variant="title" decoration="🎱">내 번호 당첨 확인</lt-typography>
+    <article id="lotto-forms">
+      <form onsubmit="lottoController.proceedBuyLottos(); return false" data-focus-anchor data-focus>
+        <lt-typography variant="title" decoration="🎱" required>내 번호 당첨 확인</lt-typography>
 
-      <fieldset>
-        <legend>구입할 금액을 입력해주세요.</legend>
+        <fieldset>
+          <legend>구입할 금액을 입력해주세요.</legend>
 
-        <lt-money-input id="money" name="money" placeholder="금액" required></lt-money-input>
-        <button type="button" onclick="lottoController.proceedBuyLottos()">확인</button>
-      </fieldset>
+          <lt-money-input id="money" name="money" placeholder="금액" required></lt-money-input>
+          <button>확인</button>
+        </fieldset>
+      </form>
 
-      <fieldset data-focus-anchor data-focus>
-        <lt-lotto-list id="bought-lottos" placeholder="금액을 입력한 후 로또를 구매해주세요!"></lt-lotto-list>
-      </fieldset>
+      <form onsubmit="lottoController.proceedLottoResult(); return false" data-focus-anchor>
+        <fieldset>
+          <lt-lotto-list id="bought-lottos"></lt-lotto-list>
+        </fieldset>
 
-      <fieldset>
-        <legend>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</legend>
+        <fieldset>
+          <legend>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</legend>
 
-        <lt-winning-lotto-input id="winning-lotto" name="winning-lotto" required></lt-winning-lotto-input>
-      </fieldset>
+          <lt-winning-lotto-input id="winning-lotto" name="winning-lotto" required></lt-winning-lotto-input>
+        </fieldset>
 
-      <button data-focus-anchor>결과 확인하기</button>
-    </form>
+        <button>결과 확인하기</button>
+      </form>
+    </article>
   </main>
 
   <footer>
@@ -46,15 +50,17 @@
   </footer>
 
   <dialog id="lotto-result-dialog">
-    <form method="dialog" id="lotto-result-form" class="frame" onsubmit="lottoController.proceedRestart()">
-      <lt-typography variant="subtitle" decoration="🏆">당첨 통계</lt-typography>
+    <article>
+      <form method="dialog" id="lotto-result-form" class="frame" onsubmit="lottoController.proceedRestart()">
+        <lt-typography variant="subtitle" decoration="🏆">당첨 통계</lt-typography>
 
-      <lt-lotto-result id="lotto-result"></lt-lotto-result>
+        <lt-lotto-result id="lotto-result"></lt-lotto-result>
 
-      <lt-typography id="lotto-result-profit-rate" variant="body">당신의 총 수익률은 %입니다.</lt-typography>
+        <lt-typography id="lotto-result-profit-rate" variant="body">당신의 총 수익률은 %입니다.</lt-typography>
 
-      <button>다시 시작하기</button>
-    </form>
+        <button>다시 시작하기</button>
+      </form>
+    </article>
   </dialog>
 </body>
 

@@ -1,12 +1,11 @@
-form#lotto-form {
-  width: 420px;
+form {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
 }
 
-form#lotto-result-form {
-  width: 350px;
-}
-
-form > *:not(:first-child) {
+form > *:not(:first-child),
+form + form {
   margin-top: 2rem;
 }
 
@@ -36,7 +35,7 @@ form > fieldset > lt-lotto {
   width: 100%;
 }
 
-form:invalid > button {
+form:invalid button {
   opacity: 0.5;
 }
 

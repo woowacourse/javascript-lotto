@@ -51,13 +51,13 @@ const OutputView = {
 
   focusNextAnchor() {
     /** @type {HTMLFormElement} */
-    const $lottoForm = document.getElementById('lotto-form');
+    const $lottoForms = document.getElementById('lotto-forms');
     /** @type {HTMLElement | null} */
-    const $nextAnchor = $lottoForm.querySelector('[data-focus] ~ [data-focus-anchor]');
+    const $nextAnchor = $lottoForms.querySelector('[data-focus] ~ [data-focus-anchor]');
 
     if (!$nextAnchor) return;
 
-    $lottoForm.querySelector('[data-focus]').removeAttribute('data-focus');
+    $lottoForms.querySelector('[data-focus]').removeAttribute('data-focus');
     $nextAnchor.setAttribute('data-focus', '');
   },
 };
