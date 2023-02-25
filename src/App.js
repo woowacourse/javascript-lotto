@@ -12,6 +12,7 @@ class App {
 
   constructor() {
     this.purchaseView = new PurchaseView(this.submitPurchaseAmount);
+    this.purchaseView.purchaseInput.focus();
   }
 
   submitPurchaseAmount = (event) => {
