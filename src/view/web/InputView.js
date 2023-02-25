@@ -40,6 +40,7 @@ const InputView = {
 
     $lottoForms.querySelectorAll('form').forEach((form) => form.reset());
     InputView.resetAnchor();
+    InputView.resetAutofocus();
     return RestartCommand.YES;
   },
 
@@ -52,6 +53,12 @@ const InputView = {
 
     $lottoForms.querySelector('[data-focus]').removeAttribute('data-focus');
     $firstAnchor.setAttribute('data-focus', '');
+  },
+
+  resetAutofocus() {
+    const $firstAutofocus = document.querySelector('[autofocus]');
+
+    setTimeout(() => $firstAutofocus.focus());
   },
 };
 
