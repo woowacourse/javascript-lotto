@@ -140,6 +140,10 @@ input {
   width: 80%;
 }
 
+button {
+  cursor: pointer;
+}
+
 button.input,
 button.restart-game {
   border: 1px solid rgb(var(--lotto-primary-color));
