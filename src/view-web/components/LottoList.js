@@ -2,8 +2,6 @@ import Component from './Component.js';
 import { qs } from '../../utils/domHelper.js';
 
 export default class LottoList extends Component {
-  state;
-
   constructor(state) {
     super(qs('#lotto-list-result-form'), state);
   }
