@@ -13,7 +13,7 @@ class WebLottoSimulator {
   constructor() {
     PurchaseForm.setBudgetInputHandler(this.purchaseLottos);
     PurchaseForm.setWinningNumberInputHandler(this.inputWinningLotto);
-    PurchaseForm.setModalCloseButtonHandler(this.closeResult);
+    PurchaseForm.setModalCloseHandler(this.closeResult);
     PurchaseForm.setRetryButtonHandler(this.retry);
   }
 
