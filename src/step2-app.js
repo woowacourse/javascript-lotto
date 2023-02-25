@@ -1,4 +1,4 @@
-import { addESCCloseEventListener } from './components/modal';
+import { addESCCloseEventListener } from './view/modal';
 import LottoUIController from './controller/lottoUIController';
 
 class App {

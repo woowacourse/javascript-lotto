@@ -44,7 +44,7 @@ function addLottoResultEventListener($root, retryHandler) {
     .addEventListener('click', closeModal);
 }
 
-export default function lottoResultBoard(
+export default function paintLottoResultBoard(
   { winCount, earningRate },
   retryHandler
 ) {

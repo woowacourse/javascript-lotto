@@ -6,7 +6,7 @@ import {
   bonusNumberMessage,
   numberInput,
   resultButton,
-} from '../view/templates/lottoGame';
+} from './templates/lottoGame';
 
 function numberTitleContainer() {
   const $container = document.createElement('div');

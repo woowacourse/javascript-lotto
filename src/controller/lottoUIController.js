@@ -1,15 +1,15 @@
 import {
   paintEnterWinningNumber,
   getWinNumberAndBonusNumber,
-} from '../components/enterGameBoard';
+} from '../view/enterGameBoard';
 import {
   paintPurchaseAmountInput,
   getPurchaseAmount,
-} from '../components/purchaseAmountInput';
+} from '../view/purchaseAmountInput';
 import showErrorMessage from '../components/errorMessage';
-import lottoResultBoard from '../components/lottoResult';
-import paintModal, { closeModal } from '../components/modal';
-import paintLottoStatus from '../components/purchaseLottoStatus';
+import paintLottoResultBoard from '../view/lottoResult';
+import paintModal, { closeModal } from '../view/modal';
+import paintLottoStatus from '../view/purchaseLottoStatus';
 import { STEP } from '../data/Constants';
 import LottoGame from '../domain/LottoGame';
 import {
@@ -63,7 +63,7 @@ export default function LottoUIController($app) {
   };
 
   const paintResultView = ({ winCount, earningRate }) => {
-    const $content = lottoResultBoard({ winCount, earningRate }, restart);
+    const $content = paintLottoResultBoard({ winCount, earningRate }, restart);
 
     paintModal($content);
   };
