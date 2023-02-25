@@ -1,4 +1,4 @@
-import { LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
+import { LOTTO_CONSTANT, LOTTO_RANKING } from '../data/constants.js';
 import LottoUtils from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
@@ -19,7 +19,7 @@ class WebLottoSimulator {
 
   purchaseLottos = (budget) => {
     try {
-      LottoUtils.validateBudget(+budget);
+      LottoUtils.validateBudget(budget);
       this.#lottos = Array.from({ length: budget / LOTTO_CONSTANT.PRICE }).map(
         () => new Lotto(LottoUtils.createLottoNumbers())
       );
