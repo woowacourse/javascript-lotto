@@ -3,7 +3,7 @@ const GameModal = () => {
   if (store.result) {
     return `
 <div>
-  <div>🏆 당첨 통계 🏆</div>
+  <div id="game-result-title">🏆 당첨 통계 🏆</div>
     <table>
       <thead>
         <tr>
