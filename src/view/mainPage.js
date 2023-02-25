@@ -39,24 +39,14 @@ const mainPage = {
   },
 
   makeRandomLottoList(randomLotteries) {
-    const nodeRandomLotto = randomLotteries.map((numbers) =>
-      this.makeEachRandomLotto(numbers)
-    );
-    randomLottoList.append(...nodeRandomLotto);
+    const nodeRandomLotto = randomLotteries.map((numbers) => {
+      return this.makeEachRandomLotto(numbers);
+    });
+    randomLottoList.insertAdjacentHTML("beforeend", nodeRandomLotto.join(" "));
   },
 
   makeEachRandomLotto(numbers) {
-    const rowElem = document.createElement("div");
-    rowElem.appendChild(this.makeSpanElement("lottoImg", "🎟"));
-    rowElem.appendChild(this.makeSpanElement("randomLottoNumbers", numbers));
-    return rowElem;
-  },
-
-  makeSpanElement(className, text) {
-    const elem = document.createElement("span");
-    elem.classList.add(className);
-    elem.textContent = text;
-    return elem;
+    return `<div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">${numbers}</span></div>`;
   },
 };
 
