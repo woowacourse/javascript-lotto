@@ -10,6 +10,10 @@ class LtMoneyInput extends LtFormControl {
   /** @type {number | null} */
   #money = null;
 
+  static get shadowRootOptions() {
+    return { delegatesFocus: true };
+  }
+
   getMoney() {
     return this.#money;
   }
@@ -59,6 +63,7 @@ class LtMoneyInput extends LtFormControl {
   connectedCallback() {
     super.connectedCallback();
 
+    this.setAttribute('autofocus', this.hasAttribute('autofocus'));
     if (this.hasAttribute('required') && this.#money === null) {
       this.setValidation(false);
     }

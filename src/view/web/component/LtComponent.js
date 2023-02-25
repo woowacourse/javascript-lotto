@@ -1,7 +1,16 @@
 class LtComponent extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open', ...this.constructor.shadowRootOptions });
+  }
+
+  /**
+   * `this.attachShadow` 에서 사용될 옵션을 설정합니다.
+   *
+   * @returns {ShadowRootInit}
+   */
+  static get shadowRootOptions() {
+    return {};
   }
 
   /**

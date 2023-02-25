@@ -8,8 +8,12 @@ class LtTextInput extends LtFormControl {
   /** @type {string} */
   #text = '';
 
+  static get shadowRootOptions() {
+    return { delegatesFocus: true };
+  }
+
   static get observedAttributes() {
-    return ['type', 'min', 'max', 'step', 'placeholder'];
+    return ['type', 'min', 'max', 'step', 'placeholder', 'autofocus'];
   }
 
   setErrorMessage(message = null) {
@@ -41,6 +45,12 @@ class LtTextInput extends LtFormControl {
     this.$input.addEventListener('input', (event) => {
       this.#validate(event.target.value);
     });
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.setAttribute('autofocus', this.hasAttribute('autofocus'));
   }
 }
 
