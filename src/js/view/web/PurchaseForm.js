@@ -27,6 +27,9 @@ const PurchaseForm = {
     window.addEventListener('click', (event) =>
       event.target === $modalBackground ? handler() : false
     );
+    window.addEventListener('keydown', (event) =>
+      event.key === 'Escape' || 'Esc' ? handler() : false
+    );
   },
 
   setRetryButtonHandler(handler) {
