@@ -1,6 +1,6 @@
 body {
-  font-family: sans-serif;
   font-style: normal;
+  font-family: sans-serif;
 }
 
 :root {
@@ -20,54 +20,83 @@ body {
 }
 
 header {
+  background-color: var(--color-primary);
+  padding-bottom: 14px;
+  padding-left: 130px;
   width: 1440px;
   height: 64px;
-  padding-left: 130px;
-  padding-bottom: 14px;
-  background-color: var(--color-primary);
 }
 
 h1 {
   color: var(--color-greyscale1);
 }
+
 h2 {
   text-align: center;
 }
 
+button {
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: var(--color-greyscale1);
+}
+
+ul {
+  padding-left: 10px;
+  height: 276px;
+  overflow: auto;
+  list-style: none;
+  text-align: left;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+th {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+td {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
 #number-check-section {
   display: flex;
-  flex-flow: column;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  height: 727px;
-  width: 414px;
-  left: 0px;
   top: 0px;
-  border-radius: 4px;
+  left: 0px;
+  flex-flow: column;
   margin: 148px 513px;
-  padding-left: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
   padding-right: 16px;
+  padding-left: 16px;
+  width: 414px;
+  height: 727px;
 }
 
 .copyright-section {
-  width: 1440px;
-  height: 64px;
   border-top: 1px solid rgba(78, 91, 166, 0.2);
   padding: auto;
-  text-align: center;
+  width: 1440px;
+  height: 64px;
   color: var(--color-primary);
+  text-align: center;
 }
 
 #budget-input {
-  width: 300px;
-  height: 30px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-}
-
-button {
-  background: var(--color-primary);
-  border-radius: 4px;
-  color: var(--color-greyscale1);
+  width: 300px;
+  height: 30px;
 }
 
 #purchase-button {
@@ -75,24 +104,16 @@ button {
   height: 36px;
 }
 
-ul {
-  height: 276px;
-  list-style: none;
-  overflow: auto;
-  text-align: left;
-  padding-left: 10px;
-}
-
 .purchased-lotto-icon {
-  font-size: 34px;
   font-weight: 600;
+  font-size: 34px;
   line-height: 36px;
   letter-spacing: 0px;
 }
 
 .purchased-lotto-numbers {
-  font-size: 15px;
   font-weight: 400;
+  font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
 }
@@ -108,26 +129,20 @@ ul {
 }
 
 #show-result-button {
-  width: 382px;
-  height: 36px;
   margin-top: 16px;
   margin-bottom: 16px;
+  width: 382px;
+  height: 36px;
 }
 
 .winning-number-input {
-  height: 36px;
-  width: 34px;
-  left: 16px;
   top: 596px;
-  border-radius: 4px;
-  border: 1px solid var(--color-greyscale3);
+  left: 16px;
   margin-bottom: 16px;
-}
-
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+  border: 1px solid var(--color-greyscale3);
+  border-radius: 4px;
+  width: 34px;
+  height: 36px;
 }
 
 .modal-background {
@@ -143,45 +158,32 @@ input[type='number']::-webkit-outer-spin-button {
 #result-modal-section {
   display: flex;
   position: absolute;
-  align-self: center;
-  flex-direction: column;
-  align-items: center;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 500px;
   top: 50%;
   left: 50%;
-  background: var(--color-greyscale1);
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  transform: translate(-50%, -50%);
   border-radius: 4px;
+  background: var(--color-greyscale1);
+  width: 350px;
+  height: 500px;
 }
 
 #modal-close-button {
   align-self: flex-end;
+  margin-top: 15px;
+  margin-right: 15px;
   font-weight: 700;
   font-size: 20px;
   line-height: 16px;
-  margin-top: 15px;
-  margin-right: 15px;
 }
 
 #winning-result-table {
+  border-collapse: collapse;
   width: 319px;
   height: 247px;
   text-align: center;
-  border-collapse: collapse;
-}
-
-th {
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 24px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-td {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 #yield-rate {
@@ -191,13 +193,13 @@ td {
 }
 
 #retry-button {
+  margin-top: auto;
+  margin-bottom: 32px;
   width: 318px;
   height: 36px;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  margin-top: auto;
-  margin-bottom: 32px;
 }
 
 .hide {
