@@ -11,7 +11,6 @@ const inputAmountNext = document.querySelector("#inputAmountNext");
 const dialog = document.querySelector("dialog");
 
 class App {
-  constructor() {}
   play() {
     this.controller = new Controller();
     this.addEvent();
@@ -19,7 +18,7 @@ class App {
 
   addEvent() {
     const purchase = document.querySelector(".purchase");
-    const restart = document.querySelector(".restart");
+    const restartButton = document.querySelector(".restartButton");
     const resultButton = document.querySelector(".resultButton");
 
     purchase.addEventListener("click", this.checkAmount.bind(this));
@@ -28,7 +27,7 @@ class App {
     });
     inputAmount.addEventListener("click", this.clickInputAmount.bind(this));
     resultButton.addEventListener("click", this.clickResult.bind(this));
-    restart.addEventListener("click", this.clickRestart.bind(this));
+    restartButton.addEventListener("click", this.clickRestart.bind(this));
   }
 
   clickInputAmount() {
