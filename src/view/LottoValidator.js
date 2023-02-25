@@ -6,7 +6,7 @@ const LottoGameValidator = {
   validateMoney(money) {
     if (!Validator.isPositiveInteger(money)) throw new Error(MESSAGE.errorPositiveInteger);
 
-    if (!Validator.isNumberInRange(1000, Number.MAX_SAFE_INTEGER)(money)) {
+    if (!Validator.isNumberInRange(LOTTO_RULE.price, LOTTO_RULE.maxMoney)(money)) {
       throw new Error(MESSAGE.errorMoneyRange);
     }
   },

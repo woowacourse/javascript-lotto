@@ -4,6 +4,7 @@ const LOTTO_RULE = {
   minNumber: 1,
   maxNumber: 45,
   separator: ',',
+  maxMoney: 100_000_000,
 };
 
 const LOTTO_PRIZE = {
