@@ -3,6 +3,8 @@ import { PRIZE } from "../../constants";
 class ModalView {
   constructor(handleRestartGame) {
     this.modal = document.querySelector(".modal");
+    this.modalOverlay = document.querySelector(".modal-overlay");
+    this.modalWindow = document.querySelector(".modal-window");
     this.modalTable = document.querySelector(".modal-table");
     this.profit = document.querySelector(".profit");
     this.restartBtn = document.querySelector(".restart-btn");
@@ -13,11 +15,17 @@ class ModalView {
     window.addEventListener("keyup", (e) => {
       this.closeModalEscape(e);
     });
-    this.modal.addEventListener("click", () => this.hiddenModal());
+    this.modal.addEventListener("click", (e) => {
+      this.closeModalOverlay(e);
+    });
+  }
+
+  showModal() {
+    this.modal.style.display = "flex";
   }
 
   showResult(result) {
-    this.modal.style.display = "flex";
+    this.showModal();
     this.restartBtn.focus();
     const resultTableHeader = `<th>일치 갯수</th>
     <th>당첨금</th>
@@ -55,8 +63,10 @@ class ModalView {
   }
 
   closeModalOverlay(event) {
-    if (event.classList.contains("modal-window")) return;
-    this.hiddenModal();
+    console.log(event.target.classList);
+    if (event.target.classList.contains("modal-overlay")) {
+      this.hiddenModal();
+    }
   }
 }
 
