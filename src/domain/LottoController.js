@@ -7,6 +7,7 @@ import { generateLottos } from './generateLottos.js';
 import { judgeResult } from './judgeResult.js';
 import { calculateBenefit } from './calculateBenefit.js';
 
+
 class LottoController {
 
   async play() {
