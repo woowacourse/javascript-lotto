@@ -81,6 +81,12 @@ button:hover {
   cursor: pointer;
 }
 
+button:focus,
+button:hover {
+  font-size: large;
+  border: 3px solid black;
+}
+
 #randomLottoList {
   height: 300px;
   overflow: scroll;
@@ -103,7 +109,8 @@ button:hover {
 }
 
 #inputLottoBonus > p,
-.inputLottoBonusArea > p {
+.inputLottoBonusArea > p,
+.resultButton {
   grid-column: 1/3;
 }
 
