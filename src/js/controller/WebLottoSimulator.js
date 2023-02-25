@@ -2,7 +2,7 @@ import { LOTTO_CONSTANT, LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.
 import LottoUtils from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
-import InputView from '../view/web/InputView.js';
+import PurchaseForm from '../view/web/PurchaseForm.js';
 import OutputView from '../view/web/OutputView.js';
 
 class WebLottoSimulator {
@@ -10,10 +10,10 @@ class WebLottoSimulator {
   #winningLotto;
 
   constructor() {
-    InputView.setBudgetInputHandler(this.purchaseLottos);
-    InputView.setWinningNumberInputHandler(this.inputWinningLotto);
-    InputView.setModalCloseButtonHandler(this.closeResult);
-    InputView.setRetryButtonHandler(this.retry);
+    PurchaseForm.setBudgetInputHandler(this.purchaseLottos);
+    PurchaseForm.setWinningNumberInputHandler(this.inputWinningLotto);
+    PurchaseForm.setModalCloseButtonHandler(this.closeResult);
+    PurchaseForm.setRetryButtonHandler(this.retry);
   }
 
   purchaseLottos = (budget) => {

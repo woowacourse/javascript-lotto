@@ -16,10 +16,7 @@ const PurchaseForm = {
   setWinningNumberInputHandler(handler) {
     $winningNumberInputForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      const winningNumbers = [];
-      Array.from($winningNumberInputs).forEach((input) => {
-        winningNumbers.push(+input.value);
-      });
+      const winningNumbers = Array.from($winningNumberInputs).map((input) => +input.value);
       handler(winningNumbers);
     });
   },
