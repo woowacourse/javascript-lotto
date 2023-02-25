@@ -1,11 +1,11 @@
 const ModalWindow = {
-  show(message = '&nbsp;') {
+  show(message = '') {
     document.querySelector('.modal-background').style.display = 'flex';
-    document.querySelector('.modal-message').innerHTML = message;
+    document.querySelector('.modal-message').textContent = message;
   },
 
   hide() {
-    document.querySelector('.modal-message').innerHTML = '&nbsp;';
+    document.querySelector('.modal-message').textContent = '';
     document.querySelector('.modal-background').style.display = 'none';
   },
 

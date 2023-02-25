@@ -28,7 +28,7 @@ const showHiddenFeatures = () => {
 };
 
 const showLottoList = (lottoList) => {
-  document.querySelector('.lotto-count').innerHTML = `총 ${lottoList.length}개를 구매했습니다.`;
+  document.querySelector('.lotto-count').textContent = `총 ${lottoList.length}개를 구매했습니다.`;
   document.querySelector('.lotto-list .list').innerHTML = lottoList
     .map((lottoNumbers) => `<p class="lotto">🎟️ ${lottoNumbers.join(', ')}</p>`)
     .join('');

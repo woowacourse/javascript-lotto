@@ -1,7 +1,7 @@
 const Alert = {
   show(message, otherClasses = '') {
     const [alertDiv] = document.getElementsByClassName(['alert', otherClasses].join(' '));
-    alertDiv.querySelector('p').innerHTML = `${message}`;
+    alertDiv.querySelector('p').textContent = `${message}`;
     alertDiv.style.display = 'flex';
 
     alertDiv.classList.remove('animation-shake');
