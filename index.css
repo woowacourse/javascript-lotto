@@ -122,13 +122,13 @@ header > h1 {
     max-height: 215px;
 }
 
-#winning-number-section {
+#winning-numbers-section {
     display: flex;
     flex-direction: column;
     margin-top: 24px;
 }
 
-#winning-number {
+#winning-numbers {
     display: flex;
     flex-direction: column;
 }

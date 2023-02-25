@@ -27,14 +27,14 @@
             <p>총 <span id="purchased-lotto-count"></span>개를 구입하였습니다.</p>
             <ul id="purchased-lotto-container"></ul>
           </section>
-          <section id="winning-number-section" class="hidden">
+          <section id="winning-numbers-section" class="hidden">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <form id="winning-number-form">
+            <form id="winning-numbers-form">
               <div id="lotto-number-container">
-                <div id="winning-number">
-                  <label for="winning-number-input-1">당첨 번호</label>
+                <div id="winning-numbers">
+                  <label for="winning-numbers-input-1">당첨 번호</label>
                   <div>
-                    <input id="winning-number-input-1" class="lotto-number-input" type="number" min="1" max="45" required>
+                    <input id="winning-numbers-input-1" class="lotto-number-input" type="number" min="1" max="45" required>
                     <input class="lotto-number-input" type="number" min="1" max="45" required>
                     <input class="lotto-number-input" type="number" min="1" max="45" required>
                     <input class="lotto-number-input" type="number" min="1" max="45" required>
@@ -54,7 +54,7 @@
         <article id="lotto-game-result-modal">
           <div id="modal" class="modal-overlay hidden">
             <div id="modal-window">
-              <div id="modal-close-area">X</div>
+              <span id="modal-close-area">X</span>
               <div id="modal-title">
                 <h2>🏆 당첨 통계 🏆</h2>
               </div>

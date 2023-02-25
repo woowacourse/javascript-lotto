@@ -27,12 +27,12 @@ const WebView = {
   },
 
   showHiddenSection() {
-    $('#winning-number-section').classList.remove('hidden');
+    $('#winning-numbers-section').classList.remove('hidden');
     $('#purchased-lotto-section').classList.remove('hidden');
   },
 
   hideShowingSection() {
-    $('#winning-number-section').classList.add('hidden');
+    $('#winning-numbers-section').classList.add('hidden');
     $('#purchased-lotto-section').classList.add('hidden');
   },
 
