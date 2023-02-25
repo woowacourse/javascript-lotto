@@ -1,5 +1,11 @@
 #purchase-lotto-container {
   margin-top: 24px;
+  height: 25%;
+  overflow: scroll;
+}
+
+#purchase-lotto-box {
+  height: 90%;
 }
 
 #purchase-lotto-box > div {

@@ -11,12 +11,11 @@
 #main-contents {
   padding: 0 16px;
   width: 414px;
-  height: 727px;
+  height: 80%;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   margin: 65px auto;
-  overflow: scroll;
 }
 
 #main-contents-header {
@@ -24,6 +23,7 @@
   font-size: 24px;
   line-height: 36px;
   margin: 40px 70px 0 70px;
+  height: 5%;
 }
 
 #footer-label {
