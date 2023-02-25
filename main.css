@@ -42,6 +42,8 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+/* amount */
+
 #input-purchase-form {
   margin-top: 28px;
   font-size: 15px;
@@ -71,6 +73,11 @@ input::-webkit-inner-spin-button {
   border: 0;
   border-radius: 4px;
   color: #ffffff;
+}
+
+#amount-exeception {
+  margin-top: 8px;
+  color: red;
 }
 
 /* lotto-list-result-form */
