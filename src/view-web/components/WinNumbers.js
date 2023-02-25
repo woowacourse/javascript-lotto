@@ -24,15 +24,15 @@ export default class WinNumbers extends Component {
     </div>
       <div id="input-winning-number-container">
         <div id="input-winning-number-items">
-          <input type="number" min="1" max="45" />
-          <input type="number" min="1" max="45" />
-          <input type="number" min="1" max="45" />
-          <input type="number" min="1" max="45" />
-          <input type="number" min="1" max="45" />
-          <input type="number" min="1" max="45" />
+          <input type="number" min="1" max="45" required/>
+          <input type="number" min="1" max="45" required/>
+          <input type="number" min="1" max="45" required/>
+          <input type="number" min="1" max="45" required/>
+          <input type="number" min="1" max="45" required/>
+          <input type="number" min="1" max="45" required/>
         </div>
       <div id="input-bonus-number-items">
-        <input type="number" min="1" max="45" />
+        <input type="number" min="1" max="45" required/>
       </div>
     </div>
     <button>결과 확인하기</button>

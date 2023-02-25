@@ -17,7 +17,7 @@ export default class Amount extends Component {
     return `
       <span>구입할 금액을 입력해주세요.</span>
       <form action="submit" id="input-purchase-container">
-        <input type="number" min="1000" max="10000000" placeholder="금액" autofocus />
+        <input type="number" min="1000" max="10000000" placeholder="금액" autofocus required/>
         <button>구입</button>
       </form>
       <div id="amount-exception"></div>
