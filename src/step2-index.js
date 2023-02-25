@@ -22,6 +22,13 @@ const restartBtn = document.querySelector('.restart-game');
 
 const modalBackground = document.querySelector('.modal-background');
 
+const restrictInputNumberLength = (event) => {
+  const maxLength = Number(event.target.getAttribute('maxlength'));
+  if (event.target.value.length > maxLength) {
+    event.target.value = event.target.value.slice(0, maxLength);
+  }
+};
+
 const moneyInputCallback = () => {
   try {
     const money = HTMLInputView.readMoney();
@@ -53,12 +60,16 @@ moneyInput.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') moneyInputCallback();
 });
 
+moneyInput.addEventListener('input', restrictInputNumberLength);
+
 showResultBtn.addEventListener('click', winningNumbersInputCallback);
 
 singleNumberInputs.forEach((element) => {
   element.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') winningNumbersInputCallback();
   });
+
+  element.addEventListener('input', restrictInputNumberLength);
 });
 
 closeModalBtn.addEventListener('click', () => {
