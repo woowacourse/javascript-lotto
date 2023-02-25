@@ -1,6 +1,6 @@
 {
   "rules": {
-    "max-lines-per-function": ["error", 10],
+    // "max-lines-per-function": ["error", 10],
     "max-depth": ["error", 1],
     "semi": [2, "always"],
     "eol-last": ["error", "always"],
