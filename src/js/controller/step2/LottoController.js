@@ -22,7 +22,7 @@ class LottoController {
   start() {
     this.view.purchaseMoneyInputView.form.addEventListener('submit', e => {
       e.preventDefault();
-      this.view.purchaseMoneyInputView.disableButton();
+      this.view.purchaseMoneyInputView.setDisableButton();
 
       const money = this.view.purchaseMoneyInputView.input.value;
 
@@ -82,6 +82,7 @@ class LottoController {
   }
 
   reset() {
+    this.view.purchaseMoneyInputView.setAbleButton();
     this.view.purchaseLottoView.reset();
     this.view.winningLottoInputView.reset();
     this.view.resultModalView.reset();
