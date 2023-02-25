@@ -46,11 +46,28 @@ class WinningLottoInputView {
   }
 
   resetValue(valueArr) {
+    valueArr[0].focus();
+
     this.bonusNumberInput.value = '';
 
-    return valueArr.forEach(el => {
+    valueArr.forEach(el => {
       el.value = '';
     });
+  }
+
+  setDisableButton(valueArr) {
+    this.resetValue(valueArr);
+
+    valueArr.forEach(el => {
+      el.disabled = true;
+    });
+
+    this.bonusNumberInput.disabled = true;
+
+    const resultButton = document.getElementById('winning-number-button');
+
+    resultButton.disabled = true;
+    resultButton.style.background = '#8b8b8b';
   }
 }
 

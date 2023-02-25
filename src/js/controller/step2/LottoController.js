@@ -22,14 +22,13 @@ class LottoController {
   start() {
     this.view.purchaseMoneyInputView.form.addEventListener('submit', e => {
       e.preventDefault();
-      this.view.purchaseMoneyInputView.setDisableButton();
 
       const money = this.view.purchaseMoneyInputView.input.value;
 
       try {
         LottoValidator.validateMoneyInput(convertToNum(money));
         this.#lottoMachine = new LottoMachine(money);
-        this.view.purchaseMoneyInputView.resetValue();
+        this.view.purchaseMoneyInputView.setDisableButton();
         this.showPurchaseLotto(this.#lottoMachine.lottos);
       } catch (error) {
         this.view.purchaseMoneyInputView.resetValue();
@@ -55,7 +54,7 @@ class LottoController {
         LottoValidator.validateWinningNumberInput(convertValueToString(winningNumberInput));
         LottoValidator.validateBonusNumberInput(convertValueToString(winningNumberInput), bonusNumberInput);
         this.#lottoMachine.initWinningLotto(convertValueToString(winningNumberInput), bonusNumberInput);
-        this.view.winningLottoInputView.resetValue(winningNumberInput);
+        this.view.winningLottoInputView.setDisableButton(winningNumberInput);
         this.showLottoResult();
       } catch (error) {
         this.view.winningLottoInputView.resetValue(winningNumberInput);
@@ -86,7 +85,7 @@ class LottoController {
 
     document.addEventListener('click', e => {
       if (e) this.view.resultModalView.reset();
-    })
+    });
   }
 
   reset() {
