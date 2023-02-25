@@ -4,32 +4,36 @@
     padding: 0;
 }
 
+/* 전체 레이아웃 */
+
 #app {
     display: flex;
     flex-direction: column;
 }
 
 header {
-    flex: 0 0 4rem;
-    background: #4E5BA6;
     display: flex;
     align-items: center;
+    flex: 0 0 4rem;
+    background: #4E5BA6;
 }
 
 main {
-    padding: 84px 0 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 84px 0 80px;
 }
 
 footer {
-    flex: 0 0 80px;
-    border-top: 1px solid rgba(78, 91, 166, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 80px;
+    border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
+
+/* header */
 
 header > h1 {
     padding-left: 130px;
@@ -38,15 +42,26 @@ header > h1 {
     color: #FFF;
 }
 
+/* footer */
+
+footer p {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #4E5BA6;
+}
+
+/* 로또 게임 */
+
 #lotto-game {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 40px 16px 32px 16px;
-    background: #FFF;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;   
+    background: #FFF;
 }
 
 #lotto-game > h2 {
@@ -56,16 +71,18 @@ header > h1 {
     text-align: center;
 }
 
+/* 로또 구매 section */
+
 #lotto-purchase-section {
     margin-top: 28px;
 }
 
 #user-budget-description {
+    margin-top: 2px;
     font-weight: 400;
     font-size: 12px;
     letter-spacing: 0.5px;
     color: #8B8B8B;
-    margin-top: 2px;
 }
 
 #user-budget-form {
@@ -81,10 +98,10 @@ header > h1 {
 #user-budget-input {
     width: 310px;
     height: 36px;
-    border: 1px solid #B4B4B4;
-    border-radius: 4px;
     margin-right: 16px;
     padding-left: 8px;
+    border: 1px solid #B4B4B4;
+    border-radius: 4px;
 }
 
 #user-budget-input::placeholder {
@@ -97,9 +114,9 @@ header > h1 {
 #user-budget-submit {
     width: 56px;
     height: 36px;
-    background: #4E5BA6;
     border-radius: 4px;
     border: none;
+    background: #4E5BA6;
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
@@ -107,20 +124,48 @@ header > h1 {
     cursor: pointer;
 }
 
+/* 구매한 로또 리스트 section */
+
 #purchased-lotto-section {
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     flex: 0 0 64px;
     width: 100%;
+    margin-top: 30px;
+}
+
+#purchased-lotto-section > p {
+    margin-bottom: 8px;
 }
 
 #purchased-lotto-container {
-    list-style: none;
-    padding-left: 0px;
     overflow: auto;
     max-height: 215px;
+    padding-left: 0px;
+    list-style: none;
 }
+
+#purchased-lotto-container li {
+    line-height: 36px;
+}
+
+.lotto-emoji {
+    margin-right: 8px;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 36px;
+    vertical-align: middle;
+}
+
+.lotto-numbers {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+/* 당첨번호 입력 section */
 
 #winning-numbers-section {
     display: flex;
@@ -152,25 +197,24 @@ header > h1 {
 .lotto-number-input {
     width: 34px;
     height: 36px;
+    padding-left: 3px;
     border: 1px solid #B4B4B4;
     border-radius: 4px;
-    padding-left: 3px;
 }
 
 .lotto-number-input::-webkit-outer-spin-button,
 .lotto-number-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    margin: 0;
+    -webkit-appearance: none;
 }
 
-
 #result-button {
-    margin-top: 27px;
     width: 382px;
     height: 36px;
-    background: #4E5BA6;
+    margin-top: 27px;
     border-radius: 4px;
     border: none;
+    background: #4E5BA6;
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
@@ -178,49 +222,20 @@ header > h1 {
     cursor: pointer;
 }
 
-#purchased-lotto-section > p {
-    margin-bottom: 8px;
-}
-
-#purchased-lotto-container li {
-    line-height: 36px;
-}
-
-.lotto-emoji {
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 36px;
-    vertical-align: middle;
-    margin-right: 8px;
-}
-
-.lotto-numbers {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 36px;
-    letter-spacing: 0.5px;
-    vertical-align: middle;
-}
-
-footer p {
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1.25px;
-    color: #4E5BA6;
-}
+/* 당첨 통계 모달 */
 
 #modal.modal-overlay {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #modal-window {
@@ -229,16 +244,16 @@ footer p {
     align-items: center;
     width: 350px;
     height: 500px;
-    background: #FFF;
     border-radius: 4px;
+    background: #FFF;
 }
 
 #modal-title h2 {
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
-    text-align: center;
     letter-spacing: 0.15px;
+    text-align: center;
 }
 
 #modal-content {
@@ -247,19 +262,19 @@ footer p {
 
 #modal-close-button {
     align-self: flex-end;
+    margin: 16px 16px 8px 0;
+    border: none;
+    background-color: #FFF;
     font-weight: 700;
     font-size: 20px;
     letter-spacing: 1.25px;
     color: rgba(0, 0, 0, 0.87);
-    border: none;
-    background-color: #FFF;
-    margin: 16px 16px 8px 0;
     cursor: pointer;
 }
 
 #modal-content > table { 
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
 }
 
 #modal-content th, td {
@@ -274,23 +289,25 @@ footer p {
     font-weight: 700;
     font-size: 15px;
     line-height: 24px;
-    text-align: center;
     letter-spacing: 0.5px;
+    text-align: center;
 }
 
 #restart-button {
-    margin-top: 32px;
     width: 318px;
     height: 36px;   
-    background: #4E5BA6;
+    margin-top: 32px;
     border-radius: 4px;
     border: none;
+    background: #4E5BA6;
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
     color: #FFF;
     cursor: pointer;
 }
+
+/* 숨김 속성 */
 
 .hidden {
     visibility: hidden;
