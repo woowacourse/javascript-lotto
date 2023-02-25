@@ -38,7 +38,7 @@ class LtTextInput extends LtFormControl {
     super.render();
 
     this.$input.value = this.#text;
-    this.$input.addEventListener('change', (event) => {
+    this.$input.addEventListener('input', (event) => {
       this.#validate(event.target.value);
     });
   }
