@@ -36,16 +36,15 @@ class WebLottoGameController {
     e.preventDefault();
     this.lottoGame.initializeLottoRankResult();
 
-    const lottoNumbers = [...$$('.lotto-number-input')].map((lottoNumber) =>
-      Number(lottoNumber.value)
-    );
-    const winningNumbers = lottoNumbers.slice(0, 6);
+    const winningNumbers = [...$$('.lotto-number-input')]
+      .map((lottoNumber) => Number(lottoNumber.value))
+      .slice(0, 6);
     const bonusNumber = $('#bonus-number-input').value;
 
-    const isValidWinningNumber = this.validateWinningNumbers(winningNumbers);
-    const isValidBonusNumber = this.validateBonusNumber(winningNumbers, bonusNumber);
-
-    if (isValidWinningNumber && isValidBonusNumber)
+    if (
+      this.validateWinningNumbers(winningNumbers) &&
+      this.validateBonusNumber(winningNumbers, bonusNumber)
+    )
       this.printLottoGameResult(winningNumbers, bonusNumber);
   }
 
@@ -86,7 +85,7 @@ class WebLottoGameController {
   handleRestart() {
     $('#modal').classList.add('hidden');
     WebView.hideShowingSection();
-    [...$$('.lotto-number-input')].map((lottoNumber) => (lottoNumber.value = ''));
+    $$('.lotto-number-input').forEach((lottoNumber) => (lottoNumber.value = ''));
     $('#user-budget-input').value = '';
   }
 }

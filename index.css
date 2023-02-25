@@ -44,7 +44,7 @@ header > h1 {
 
 /* footer */
 
-footer p {
+footer > p {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1.25px;
@@ -140,12 +140,12 @@ footer p {
 
 #purchased-lotto-container {
     overflow: auto;
-    max-height: 215px;
+    max-height: 216px;
     padding-left: 0px;
     list-style: none;
 }
 
-#purchased-lotto-container li {
+#purchased-lotto-container > li {
     line-height: 36px;
 }
 
@@ -248,7 +248,7 @@ footer p {
     background: #FFF;
 }
 
-#modal-title h2 {
+#modal-title > h2 {
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
