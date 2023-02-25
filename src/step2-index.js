@@ -1,4 +1,4 @@
 import './styles/index.css';
-import App from './App';
+import LottoController from './LottoController';
 
-const app = new App();
+new LottoController();
