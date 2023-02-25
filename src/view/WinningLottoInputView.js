@@ -14,15 +14,15 @@ class WinningLottoInputView {
   }
 
   renderNumberInputElement(type) {
-    const wrapperElement = document.createElement('div');
-    wrapperElement.className = type;
-    this.wrapper.appendChild(wrapperElement);
+    const inputWrapper = document.createElement('div');
+    inputWrapper.className = type;
+    this.wrapper.appendChild(inputWrapper);
 
-    wrapperElement.insertAdjacentHTML(
+    inputWrapper.insertAdjacentHTML(
       'afterbegin',
       type === 'bonus-number' ? `<p>보너스 번호</p>` : `<p>당첨 번호</p>`,
     );
-    wrapperElement.insertAdjacentHTML(
+    inputWrapper.insertAdjacentHTML(
       'beforeend',
       this.createNumberInputs(type === 'bonus-number' ? 1 : LOTTO_DIGITS),
     );
