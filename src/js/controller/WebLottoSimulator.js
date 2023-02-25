@@ -3,7 +3,8 @@ import LottoUtils from '../domain/LottoUtils.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
 import PurchaseForm from '../view/web/PurchaseForm.js';
-import OutputView from '../view/web/OutputView.js';
+import LottoListView from '../view/web/LottoListView.js';
+import ResultView from '../view/web/ResultView.js';
 
 class WebLottoSimulator {
   #lottos;
@@ -30,7 +31,7 @@ class WebLottoSimulator {
   };
 
   showPurchasedLottos = () => {
-    OutputView.showLottoList(this.#lottos);
+    LottoListView.showLottoList(this.#lottos);
   };
 
   inputWinningLotto = (winningNumbers) => {
@@ -58,19 +59,19 @@ class WebLottoSimulator {
 
   showResult = () => {
     const winningResult = this.calculateWinningResult();
-    OutputView.showResult(
+    ResultView.showResult(
       winningResult,
       LottoUtils.calculateYieldRate(winningResult, this.#lottos.length)
     );
   };
 
   closeResult = () => {
-    OutputView.hideResult();
+    ResultView.hideResult();
   };
 
   retry = () => {
-    OutputView.hideResult();
-    OutputView.hideLottoList();
+    ResultView.hideResult();
+    LottoListView.hideLottoList();
   };
 }
 
