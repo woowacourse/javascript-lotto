@@ -23,6 +23,8 @@
 .game-modal-close-button {
   color: black;
   float: right;
+  font-size: 24px;
+  margin-top: -10px;
   font-weight: bold;
 }
 
