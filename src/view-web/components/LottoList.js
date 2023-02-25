@@ -10,7 +10,7 @@ export default class LottoList extends Component {
 
   template() {
     return `
-    <span>총 7개를 구매하였습니다.</span>
+    <span>총 ${this.state.lottoList.length}개를 구매하였습니다.</span>
     <div id="lotto-list-container">${this.spreadLottoList()}</div>
     `;
   }
