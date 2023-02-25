@@ -36,6 +36,7 @@ h2 {
 }
 
 button {
+  cursor: pointer;
   border-radius: 4px;
   background: var(--color-primary);
   color: var(--color-greyscale1);
@@ -172,6 +173,7 @@ td {
 
 #modal-close-button {
   align-self: flex-end;
+  cursor: pointer;
   margin-top: 15px;
   margin-right: 15px;
   font-weight: 700;
@@ -204,4 +206,8 @@ td {
 
 .hide {
   visibility: hidden;
+}
+
+:disabled {
+  background: var(--color-greyscale3);
 }

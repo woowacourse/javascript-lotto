@@ -2,7 +2,9 @@ const $lottoList = document.getElementById('purchased-lotto-list');
 const $lottoCount = document.getElementById('purchased-lotto-count');
 const $winningLottoSection = document.getElementById('winning-lotto-section');
 const $purchasedLottoSection = document.getElementById('purchased-lotto-section');
+const $purchaseButton = document.getElementById('purchase-button');
 const $budgetInputForm = document.getElementById('budget-input-form');
+const $budgetInput = document.getElementById('budget-input');
 const $winningNumberInputForm = document.getElementById('winning-number-input-form');
 
 const LottoListView = {
@@ -27,6 +29,8 @@ const LottoListView = {
   reset() {
     $budgetInputForm.reset();
     $winningNumberInputForm.reset();
+    $budgetInput.disabled = false;
+    $purchaseButton.disabled = false;
   },
 
   hide() {

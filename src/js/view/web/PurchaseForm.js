@@ -1,7 +1,8 @@
-const $budgetInput = document.getElementById('budget-input');
 const $budgetInputForm = document.getElementById('budget-input-form');
-const $winningNumberInputs = document.getElementsByClassName('winning-number-input');
+const $budgetInput = document.getElementById('budget-input');
+const $purchaseButton = document.getElementById('purchase-button');
 const $winningNumberInputForm = document.getElementById('winning-number-input-form');
+const $winningNumberInputs = document.getElementsByClassName('winning-number-input');
 const $modalBackground = document.getElementsByClassName('modal-background')[0];
 const $modalCloseButton = document.getElementById('modal-close-button');
 const $retryButton = document.getElementById('retry-button');
@@ -11,6 +12,8 @@ const PurchaseForm = {
     $budgetInputForm.addEventListener('submit', (event) => {
       event.preventDefault();
       handler(+$budgetInput.value);
+      $budgetInput.disabled = true;
+      $purchaseButton.disabled = true;
     });
   },
 
