@@ -88,7 +88,7 @@ section .content h2 {
   top: 104px;
 }
 
-.label {
+label {
   width: 310px;
   height: 24px;
 
@@ -145,24 +145,10 @@ section .content h2 {
 
   background: #4e5ba6;
   border-radius: 4px;
-}
-
-#buy span {
-  width: 28px;
-  height: 16px;
-
-  font-size: 14px;
-  line-height: 16px;
-
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
 
   color: #ffffff;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
+
 .buyText {
   position: absolute;
   left: 16px;
@@ -306,20 +292,8 @@ section .content h2 {
 
   background: #4e5ba6;
   border-radius: 4px;
-}
-
-#result_button span {
-  font-size: 14px;
-  line-height: 16px;
-
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
 
   color: #ffffff;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 /* footer 부분 */
@@ -474,21 +448,6 @@ td {
 
   background: #4e5ba6;
   border-radius: 4px;
-}
-
-.restart span {
-  width: 89px;
-  height: 16px;
-
-  font-size: 14px;
-  line-height: 16px;
-
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
 
   color: #ffffff;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
