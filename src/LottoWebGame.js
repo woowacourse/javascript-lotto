@@ -24,31 +24,31 @@ class LottoWebGame {
     });
   };
 
-  handleBuyButton = () => {
-    const input = $('#purchase-amount').value;
+  handleValidate = (validator, value) => {
     try {
-      lottoGameValidator.checkPurchaseAmount(input);
-      this.initLottos(Number(input));
-      renderLottos(this.#lottos.map((lotto) => lotto.getNumber()));
-      $('.hidden-area').classList.add('show');
+      validator(value);
     } catch (e) {
       alert(e.message);
     }
   };
 
+  handleBuyButton = () => {
+    const purchaseAmount = $('#purchase-amount').value;
+    this.handleValidate(lottoGameValidator.checkPurchaseAmount, purchaseAmount);
+    this.initLottos(Number(purchaseAmount));
+    renderLottos(this.#lottos.map((lotto) => lotto.getNumber()));
+    $('.hidden-area').classList.add('show');
+  };
+
   handleResultButton = () => {
     const winningNumbers = Array.from($$('.winning-numbers > input')).map(($input) => Number($input.value));
     const bonusNumber = $('.bonus-number > input').value;
-    try {
-      lottoGameValidator.checkLottoNumbers(winningNumbers);
-      lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
-      const rankings = this.makeRankings(winningNumbers, Number(bonusNumber));
-      const rewardRate = lottoGameCalculator.calculateRewardRate(this.#lottos.length * LOTTO.price, rankings);
-      renderResultModal(rankings, rewardRate);
-      this.toggleResultModal();
-    } catch (e) {
-      alert(e.message);
-    }
+    this.handleValidate(lottoGameValidator.checkLottoNumber, winningNumbers);
+    this.handleValidate(lottoGameValidator.checkBonusNumber, bonusNumber);
+    const rankings = this.makeRankings(winningNumbers, Number(bonusNumber));
+    const rewardRate = lottoGameCalculator.calculateRewardRate(this.#lottos.length * LOTTO.price, rankings);
+    renderResultModal(rankings, rewardRate);
+    this.toggleResultModal();
   };
 
   handleReplayButton = () => {
