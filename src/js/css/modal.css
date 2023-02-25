@@ -1,0 +1,71 @@
+#modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-window {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 35rem;
+  height: 50rem;
+  padding: 1.6rem;
+  background-color: var(--lotto-greyscale-1);
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 0.4rem;
+}
+
+.modal-close-button {
+  align-self: flex-end;
+  width: 1.6rem;
+  height: 1.6rem;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.6rem;
+  cursor: pointer;
+}
+
+.win-title {
+  margin-top: 0.8rem;
+  height: 2.4rem;
+}
+
+.win-statstics {
+  margin-top: 3.3rem;
+  height: 24.7rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  font-weight: 600;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.8rem 0;
+}
+
+.win-profit-rate {
+  margin-top: 3.2rem;
+  font-weight: 700;
+}
+
+.restart-button {
+  margin-top: 3.2rem;
+  width: 100%;
+  height: 3.6rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+}

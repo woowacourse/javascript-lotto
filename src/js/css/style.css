@@ -1,0 +1,199 @@
+@import './reset.css';
+@import './constant.css';
+@import './header.css';
+@import './footer.css';
+@import './modal.css';
+@import './payment.css';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  position: relative;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  background-color: var(--lotto-greyscale-1);
+  color: var(--lotto-greyscale-5);
+}
+
+.title {
+  font-weight: 800;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
+}
+
+.placeholder {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  color: var(--lotto-greyscale-4);
+}
+
+.caption {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+}
+
+/* TODO: 파일 나누기 */
+/* TODO: 클래스 네임 변경 */
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 8rem;
+}
+
+span {
+  height: 2.4rem;
+}
+
+input {
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 0.4rem;
+}
+
+.lotto-container {
+  box-sizing: border-box;
+  width: 41.4rem;
+  height: 72.7rem;
+  margin: 8.4rem 0 6.9rem 0;
+  padding: 3.2rem 1.6rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.lotto-title {
+  height: 2.4rem;
+  margin-top: 0.8rem;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  text-align: center;
+  letter-spacing: 0.015rem;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.8rem;
+  width: 100%;
+}
+
+.lotto-money {
+  display: flex;
+  height: 3.6rem;
+  margin-top: 0.4rem;
+}
+
+.lotto-money > * {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.lotto-money > input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+}
+
+.purchase-button {
+  width: 5.6rem;
+  margin-left: 16px;
+}
+
+.lotto-button {
+  border: 2px solid var(--lotto-primary);
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+.lotto-button:hover:enabled {
+  background-color: var(--lotto-greyscale-1);
+  color: var(--lotto-primary);
+  cursor: pointer;
+}
+
+.lotto-button:disabled {
+  background-color: var(--lotto-greyscale-4);
+  border: 2px solid var(--lotto-greyscale-4);
+}
+
+.lotto-list-wrapper {
+  margin-top: 2.8rem;
+}
+
+.lotto-list {
+  margin-top: 0.8rem;
+  height: 27.6rem;
+  overflow: scroll;
+}
+
+.lotto-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lotto-item-icon {
+  font-weight: 600;
+  font-size: 3.4rem;
+  line-height: 3.6rem;
+  margin-right: 0.8rem;
+}
+
+.winning-lotto {
+  margin-top: 2.4rem;
+}
+
+.winning-wrapper {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-lotto-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-lotto-input {
+  height: 3.6rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+}
+
+.winning-lotto-number {
+  margin-top: 0.8rem;
+  width: 3.4rem;
+  height: 3.6rem;
+  text-align: center;
+}
+
+.winning-bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.submit-button {
+  margin-top: 2.7rem;
+  width: 100%;
+  height: 3.6rem;
+}

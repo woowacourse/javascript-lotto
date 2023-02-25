@@ -1,0 +1,24 @@
+.payment-column {
+  display: flex;
+  height: 36px;
+}
+
+.payment-form {
+  width: 100%;
+  display: flex;
+}
+.payment-input {
+  width: 100%;
+}
+
+.payment-button {
+  width: 56px;
+  height: 36px;
+  margin-left: 16px;
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+
+  letter-spacing: 1.25px;
+}
