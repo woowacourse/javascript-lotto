@@ -20,7 +20,7 @@ export default class Amount extends Component {
         <input type="number" min="1000" max="10000000" placeholder="금액" />
         <button>구입</button>
       </form>
-      <div id="amount-exeception"></div>
+      <div id="amount-exception"></div>
     `;
   }
 
