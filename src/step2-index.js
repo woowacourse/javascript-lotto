@@ -10,14 +10,17 @@ import HTMLInputView from './web/HTMLInputView.js';
 import Table from './web/Table.js';
 
 const lottoGame = new LottoGame();
+
 const moneyInput = document.querySelector('.money-input');
 const singleNumberInputs = Array.from(document.querySelectorAll('.single-number-input'));
-console.log(singleNumberInputs);
+
 const moneyBtn = document.querySelector('.buy');
 const showResultBtn = document.querySelector('button.show-results');
 const closeModalBtn = document.querySelector('.modal-box button.close');
 const [closeMoneyAlertBtn, closeWinningLottoAlertBtn] = document.querySelectorAll('.alert button.close');
 const restartBtn = document.querySelector('.restart-game');
+
+const modalBackground = document.querySelector('.modal-background');
 
 const showHiddenFeatures = () => {
   document.querySelectorAll('.hidden-first')
@@ -45,6 +48,13 @@ const makeResultTable = () => {
   return table;
 };
 
+const closeModalWindowByEscCallback = (event) => {
+  if (event.key === 'Escape' || event.key === 'Esc') {
+    ModalWindow.hide();
+    window.removeEventListener('keydown', closeModalWindowByEscCallback);
+  }
+};
+
 const showResult = () => {
   const resultHeader = document.createElement('h1');
   const table = makeResultTable();
@@ -60,6 +70,8 @@ const showResult = () => {
   ModalWindow.addDomTree(resultHeader);
   ModalWindow.addDomTree(table);
   ModalWindow.addDomTree(resultFooter);
+
+  window.addEventListener('keydown', closeModalWindowByEscCallback);
 };
 
 const moneyInputCallback = () => {
@@ -88,19 +100,25 @@ const winningNumbersInputCallback = () => {
 
 // main
 moneyBtn.addEventListener('click', moneyInputCallback);
+
 moneyInput.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') moneyInputCallback();
 });
 
 showResultBtn.addEventListener('click', winningNumbersInputCallback);
+
 singleNumberInputs.forEach((element) => {
-  element.addEventListener('keypress', (event) => {
+  element.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') winningNumbersInputCallback();
   });
 });
 
 closeModalBtn.addEventListener('click', () => {
   ModalWindow.hide();
+});
+
+modalBackground.addEventListener('click', (event) => {
+  if (event.target === modalBackground) ModalWindow.hide();
 });
 
 closeMoneyAlertBtn.addEventListener('click', () => {
