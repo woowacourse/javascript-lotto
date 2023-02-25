@@ -6,7 +6,7 @@ import Container from "../../../utils/Container";
 import GameModal from "../GameModal";
 import modalEvent from "../GameModal/modalEvent";
 
-const inputWinningNumberEvent = (store) => {
+const inputWinningNumberEvent = (global) => {
 
   const form = document.getElementById("winning-number-submit");
 
@@ -28,15 +28,15 @@ const inputWinningNumberEvent = (store) => {
       LottoValidator.checkWinningNumber(winningNumber.main.join(','));
       LottoValidator.checkBonusNumber(winningNumber.bonus);
       LottoValidator.checkLottoDuplicate(winningNumber);
-      store['winningNumber'] = winningNumber;
-      const result = judgeResult(store.lottos, store.winningNumber);
-      const benefit = calculateBenefit(store.lottos.length * 1000, result);
+      global.setStore('winningNumber', winningNumber);
+      const result = judgeResult(global.getStore('lottos'), global.getStore('winningNumber'));
+      const benefit = calculateBenefit(global.getStore('lottos').length * 1000, result);
       console.log(result, benefit);
-      store['result'] = result;
-      store['benefit'] = benefit;
+      global.setStore('result', result);
+      global.setStore('benefit', benefit);
       Container.render(
         "game-result",
-        () => GameModal(store),
+        () => GameModal(global),
         () => modalEvent()
       );
       const modal = document.getElementById("game-modal");
