@@ -28,6 +28,7 @@ footer > p {
   gap: 20px;
   width: 40%;
   height: auto;
+  min-height: 680px;
   margin: 5% auto;
   padding: 4%;
   background-color: #ffffff;
@@ -116,7 +117,8 @@ button:hover {
   text-align: center;
 }
 
-.resultButton {
+.resultButton,
+.restartButton {
   width: 100%;
   height: 50px;
   margin-top: 7%;
