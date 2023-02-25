@@ -9,8 +9,10 @@ export default class WinningLotto {
 
   constructor(winningNumbers, bonusNumber) {
     if (
-      !validator.winningNumbers(winningNumbers) ||
-      !validator.bonusNumber(winningNumbers, bonusNumber)
+      !(
+        validator.winningNumbers(winningNumbers) &&
+        validator.bonusNumber(winningNumbers, bonusNumber)
+      )
     )
       throw new Error(errorMessage.NUMBER_DUPLICATED_ERROR);
 
