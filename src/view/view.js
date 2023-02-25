@@ -4,7 +4,7 @@ const view = {
   },
 
   readWinningNumbersTag() {
-    return document.querySelectorAll('#winning');
+    return document.querySelectorAll('.winning');
   },
 
   readBonusNumber() {
