@@ -1,21 +1,12 @@
 import {
   pusrchaseCountMessage,
-  eachLottoNumbers,
+  ticketContainer,
 } from '../view/templates/lottoGame';
 
 function purchaseLottoStatus(lottos) {
   const $board = document.createElement('div');
   const purchastCount = pusrchaseCountMessage(lottos.length);
-
-  const $ticketContainer = document.createElement('div');
-  $ticketContainer.className = 'lotto-ticket-container ';
-
-  $board.innerHTML = purchastCount;
-  for (const lotto of lottos) {
-    $ticketContainer.innerHTML += eachLottoNumbers(lotto);
-  }
-
-  $board.appendChild($ticketContainer);
+  $board.innerHTML = purchastCount + ticketContainer(lottos);
 
   return $board;
 }

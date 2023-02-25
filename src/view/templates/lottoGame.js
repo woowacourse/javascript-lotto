@@ -2,7 +2,7 @@ export const pusrchaseCountMessage = (count) => `
   <p class="body">총 ${count}개를 구매하였습니다.</p>
 `;
 
-export const eachLottoNumbers = (numbers) => `
+const eachLottoNumbers = (numbers) => `
   <p class="body lotto-ticket"><span>🎟️</span>${numbers.join(', ')}</p>
 `;
 
@@ -54,3 +54,8 @@ export const numberEnterContainer = (
   ${$bonusNumberInput}
   </div>
 `;
+
+export const ticketContainer = (lottos) =>
+  `<div class="lotto-ticket-container">
+    ${lottos.map((lotto) => eachLottoNumbers(lotto)).join('')}
+  </div>`;
