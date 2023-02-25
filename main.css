@@ -2,6 +2,12 @@ body {
   margin: 0;
 }
 
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 /* document title */
 
 #document-title {
