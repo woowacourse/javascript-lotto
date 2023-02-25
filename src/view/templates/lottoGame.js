@@ -10,15 +10,15 @@ export const enterWinNumberMessage = `
 <p class="body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
 `;
 
-export const winNumberMessage = `
+const winNumberMessage = `
 <p class="body">당첨 번호</p>
 `;
 
-export const bonusNumberMessage = `
+const bonusNumberMessage = `
 <p class="body">보너스 번호</p>
 `;
 
-export const numberInput = (name) => `
+export const numberInput = ({ name }) => `
   <input
     class="number-input"
     type="number"
@@ -30,4 +30,27 @@ export const numberInput = (name) => `
 
 export const resultButton = `
   <button id="check-result" class="caption large-button" type="button" disabled>결과 확인하기</button>
+`;
+
+export const numberTitleContainer = `
+  <div class="flex-justify-between">
+    ${winNumberMessage}
+    ${bonusNumberMessage}
+  </div>
+`;
+
+export const winningNumberContainer = ($$input) => `
+  <div> 
+    ${$$input};
+  </div>
+`;
+
+export const numberEnterContainer = (
+  $winNumberContainer,
+  $bonusNumberInput
+) => `
+  <div class = "flex-justify-between number-container">
+  ${$winNumberContainer}
+  ${$bonusNumberInput}
+  </div>
 `;

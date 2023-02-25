@@ -2,42 +2,26 @@ import { LOTTO_LENGTH } from '../data/Constants';
 import { keyUpEventListener } from '../utils/eventListener';
 import {
   enterWinNumberMessage,
-  winNumberMessage,
-  bonusNumberMessage,
+  numberEnterContainer,
   numberInput,
+  numberTitleContainer,
   resultButton,
+  winningNumberContainer,
 } from './templates/lottoGame';
 
-function numberTitleContainer() {
-  const $container = document.createElement('div');
-  $container.className = 'flex-justify-between';
-
-  $container.innerHTML += winNumberMessage + bonusNumberMessage;
-
-  return $container;
-}
-
-function winningNumberContainer() {
-  const $winningContainer = document.createElement('div');
-
-  const $inputArrays = Array.from({ length: LOTTO_LENGTH })
-    .map(() => numberInput('win-number'))
+function winningNumberInputs() {
+  const $$input = Array.from({ length: LOTTO_LENGTH })
+    .map(() => numberInput({ name: 'win-number' }))
     .join('');
 
-  $winningContainer.innerHTML = $inputArrays;
-  return $winningContainer;
+  return $$input;
 }
 
-function numberEnterContainer() {
-  const $container = document.createElement('div');
-  $container.className = 'flex-justify-between number-container';
+function winNumberEnterContainer() {
+  const $winNumberContainer = winningNumberContainer(winningNumberInputs());
+  const $bonusNumberInput = numberInput({ name: 'bonus-number' });
 
-  const $winNumberContainer = winningNumberContainer();
-  const $bonusNumberInput = numberInput('bonus-number');
-  $container.appendChild($winNumberContainer);
-  $container.innerHTML += $bonusNumberInput;
-
-  return $container;
+  return numberEnterContainer($winNumberContainer, $bonusNumberInput);
 }
 
 function addEnterGameBoardEventListener($root, eventHandler) {
@@ -51,10 +35,12 @@ function addEnterGameBoardEventListener($root, eventHandler) {
 function enterGameBoard() {
   const $enterBoard = document.createElement('div');
 
-  $enterBoard.innerHTML = enterWinNumberMessage;
-  $enterBoard.appendChild(numberTitleContainer());
-  $enterBoard.appendChild(numberEnterContainer());
-  $enterBoard.innerHTML += resultButton;
+  $enterBoard.innerHTML = `
+    ${enterWinNumberMessage}
+    ${numberTitleContainer}
+    ${winNumberEnterContainer()}
+    ${resultButton}
+  `;
 
   return $enterBoard;
 }
