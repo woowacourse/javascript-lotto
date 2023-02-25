@@ -35,12 +35,13 @@ class LottoMachine {
     const randomNumber = Array.from({ length: NUMBER.MAX_LENGHT }, () =>
       Math.floor(Math.random() * NUMBER.MAX_NUMBER + NUMBER.MIN_NUMBER)
     );
-    if (this.isRepeatable(randomNumber)) return this.ascendingSortedNumber(randomNumber);
+    if (this.hasDuplicates(randomNumber)) return this.ascendingSortedNumber(randomNumber);
     return this.randomNumberLotto();
   }
 
-  isRepeatable(randomNumber) {
-    return [...new Set(randomNumber)].length === NUMBER.MAX_LENGHT;
+  hasDuplicates(randomNumber) {
+    console.log(new Set(randomNumber).size)
+    return new Set(randomNumber).size === NUMBER.MAX_LENGHT;
   }
 
   getWinningStatus(winningNumber, bonusNumber) {

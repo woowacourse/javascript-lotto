@@ -18,7 +18,7 @@ test('중복 여부 확인.', () => {
 
   const lottoMachine = new LottoMachine();
 
-  expect(lottoMachine.isRepeatable(lottoNumber)).toEqual(false);
+  expect(lottoMachine.hasDuplicates(lottoNumber)).toEqual(false);
 });
 
 test('구매한 로또를 갯수만큼 발행한다.', () => {
