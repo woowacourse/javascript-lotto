@@ -4,13 +4,110 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>행운의 로또</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <nav class="navbar">
+        <h1 class="title navbar__title">🎱 행운의 로또</h1>
+      </nav>
+      <section class="lotto">
+        <div class="lotto-container">
+          <h1 class="title text-center">🎱 내 번호 당첨 확인 🎱</h1>
+          <form class="budget__form">
+            <label class="budget__label" for="budget__input">구입할 금액을 입력해주세요.</label>
+            <input type="text" id="budget__input" name="budget" placeholder="금액" />
+            <button type="submit" class="budget__button">구입</button>
+          </form>
+          <p class="budget-error"></p>
+          <p class="total-budget"></p>
+          <div class="tickets-container">
+            <ul class="tickets__list"></ul>
+          </div>
+          <div class="winning-container">
+            <p class="sub__title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <form class="winning__form">
+              <div class="winning-box">
+                <div class="winning__input">
+                  <label for="winning-number">당첨 번호</label>
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                  <input type="text" id="winning-number" />
+                </div>
+                <div class="bonus__input">
+                  <label for="winning-number">보너스 번호</label>
+                  <input type="text" id="winning-number" class="bonus-number" />
+                </div>
+              </div>
+              <button type="submit" class="result__button">결과 확인하기</button>
+            </form>
+            <p class="winning-error"></p>
+          </div>
+        </div>
+      </section>
+      <section class="modal">
+        <div class="modal-container">
+          <button class="modal__button--close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+              />
+            </svg>
+          </button>
+          <h1 class="title modal__title">🏆 당첨 통계 🏆</h1>
+          <div class="statistics">
+            <table>
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3개</td>
+                  <td>5,000</td>
+                  <td><span class="winning-count"></span>개</td>
+                </tr>
+                <tr>
+                  <td>4개</td>
+                  <td>50,000</td>
+                  <td><span class="winning-count"></span>개</td>
+                </tr>
+                <tr>
+                  <td>5개</td>
+                  <td>1,500,000</td>
+                  <td><span class="winning-count"></span>개</td>
+                </tr>
+                <tr>
+                  <td>5개+보너스볼</td>
+                  <td>30,000,000</td>
+                  <td><span class="winning-count"></span>개</td>
+                </tr>
+                <tr>
+                  <td>6개</td>
+                  <td>2,000,000,000</td>
+                  <td><span class="winning-count"></span>개</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="yield__title">당신의 총 수익률은 <span class="yield"></span>%입니다.</p>
+            <button type="button" class="reset__button">다시 시작하기</button>
+          </div>
+        </div>
+      </section>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
