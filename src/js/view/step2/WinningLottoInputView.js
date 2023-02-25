@@ -28,7 +28,7 @@ class WinningLottoInputView {
     this.container = document.getElementById('winning-number-container');
   }
 
-  rendering() {
+  render() {
     this.reset();
     this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_TEMPLATE);
     this.getFormTag();

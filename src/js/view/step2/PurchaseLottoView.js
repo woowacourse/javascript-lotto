@@ -22,7 +22,7 @@ class PurchaseLottoView {
     this.container = document.getElementById('purchase-lotto-container');
   }
 
-  rendering(lottos) {
+  render(lottos) {
     this.reset();
     this.container.insertAdjacentHTML('beforeend', getTemplate(lottos.length, getLottoListTemplate(lottos)));
   }

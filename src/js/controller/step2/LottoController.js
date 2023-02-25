@@ -38,8 +38,8 @@ class LottoController {
   }
 
   showPurchaseLotto(lottos) {
-    this.view.purchaseLottoView.rendering(lottos);
-    this.view.winningLottoInputView.rendering();
+    this.view.purchaseLottoView.render(lottos);
+    this.view.winningLottoInputView.render();
     this.handleWinningInput();
   }
 
@@ -64,7 +64,7 @@ class LottoController {
   }
 
   showLottoResult() {
-    this.view.resultModalView.rendering(this.#lottoMachine.calculateStatistics());
+    this.view.resultModalView.render(this.#lottoMachine.calculateStatistics());
     this.handleExitOrRestart();
   }
 

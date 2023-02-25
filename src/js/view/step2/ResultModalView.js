@@ -56,7 +56,7 @@ class ResultModalView {
     this.container = document.getElementById('modal');
   }
 
-  rendering(statistics) {
+  render(statistics) {
     this.reset();
     this.container.insertAdjacentHTML('beforeend', TEMPLATE(statistics));
     this.getExitButtonTag();
