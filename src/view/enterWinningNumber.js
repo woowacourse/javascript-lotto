@@ -24,7 +24,7 @@ function winNumberEnterContainer() {
   return numberEnterContainer($winNumberContainer, $bonusNumberInput);
 }
 
-function addEnterGameBoardEventListener($root, eventHandler) {
+function addEnterWinningNumberEventListener($root, eventHandler) {
   const $container = $root.querySelector('.number-container');
   const $button = $root.querySelector('#check-result');
 
@@ -32,7 +32,7 @@ function addEnterGameBoardEventListener($root, eventHandler) {
   $button.addEventListener('click', eventHandler);
 }
 
-function enterGameBoard() {
+function enterWinningNumber() {
   const $enterBoard = document.createElement('div');
 
   $enterBoard.innerHTML = `
@@ -46,10 +46,10 @@ function enterGameBoard() {
 }
 
 export function paintEnterWinningNumber($root, eventHandler) {
-  const $gameBoard = enterGameBoard();
+  const $gameBoard = enterWinningNumber();
   $root.appendChild($gameBoard);
 
-  addEnterGameBoardEventListener($root, eventHandler);
+  addEnterWinningNumberEventListener($root, eventHandler);
   $gameBoard.querySelector('input[name=win-number]').focus();
 }
 

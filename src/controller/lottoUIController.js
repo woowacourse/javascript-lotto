@@ -1,7 +1,7 @@
 import {
   paintEnterWinningNumber,
   getWinNumberAndBonusNumber,
-} from '../view/enterGameBoard';
+} from '../view/enterWinningNumber';
 import {
   paintPurchaseAmountInput,
   getPurchaseAmount,
