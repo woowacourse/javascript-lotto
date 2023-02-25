@@ -13,23 +13,23 @@
     </header>
     <div class="mainPage">
       <h1>🎱 내 번호 당첨 확인 🎱</h1>
-      <p>구입할 금액을 입력해주세요.</p>
-      <div class="purchaseAmount">
-        <input class="inputAmount" value="금액" type="number" />
+      <div class="inputAmountArea">
+        <label for="inputAmount">구입할 금액을 입력해주세요.</label>
+        <input id="inputAmount" value="금액" type="number" />
         <button class="purchase">구입</button>
       </div>
-      <div class="inputAmountNext" style="display: none">
-        <div class="randomLotto">
-          <p class="explain">
+      <div id="inputAmountNext" style="display: none">
+        <div class="showRandomLottoArea">
+          <label for="randomLottoList">
             총 <span class="randomLottoAmount">0</span>개를 구입했습니다.
-          </p>
-          <div class="randomLottoList"></div>
+          </label>
+          <div id="randomLottoList"></div>
         </div>
-        <div class="inputLottoBonus">
+        <div class="inputLottoBonusArea">
           <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
           <div class="lottoNumber">
-            <p>당첨 번호</p>
-            <div class="inputLottoNumber">
+            <label for="inputLottoNumber">당첨 번호</label>
+            <div id="inputLottoNumber">
               <input class="eachInputLottoNumber" type="number"" />
               <input class="eachInputLottoNumber" type="number" />
               <input class="eachInputLottoNumber" type="number" />
@@ -39,18 +39,17 @@
             </div>
           </div>
           <div class="bonusNumber">
-            <p>보너스 번호</p>
-            <div class="inputBonusNumber">
+            <label for="inputBonusNumber">보너스 번호</label>
+            <div id="inputBonusNumber">
               <input class="eachInputBonusNumber" type="number" />
             </div>
           </div>
         </div>
-        <div class="resultRestart">
-          <button class="result">결과 확인하기</button>
-        </div>
+        <button class="resultButton">결과 확인하기</button>
       </div>
     </div>
-    <!-- 팝업창 -->
+
+    <!-- 모달창 -->
     <dialog class="resultPage">
       <h1>🏆 당첨 통계 🏆</h1>
       <table class="resultTable">
