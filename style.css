@@ -1,0 +1,287 @@
+:root {
+  /* color */
+  --color-primary: #4e5ba6;
+  --color-greyscale-1: #ffffff;
+  --color-greyscale-2: #fcfcfd;
+  --color-greyscale-3: #b4b4b4;
+  --color-greyscale-4: #8b8b8b;
+  --color-greyscale-5: #000000;
+
+  /* size */
+  --size-button: 50px;
+  --border-radius: 5px;
+  --base-space: 6px;
+  --size-font: 15px;
+  --size-thumbnail: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Roboto";
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* header */
+#header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  background-color: var(--color-primary);
+  /* box-shadow: 0px 5px var(--color-greyscale-3); */
+}
+
+#header h1 {
+  color: var(--color-greyscale-1);
+  margin-left: 130px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+/* main */
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+#main #game {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  padding: 16px;
+  /* width: 29%;
+  height: 70%; */
+}
+
+#game-title {
+  margin-top: 52px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+#div-purchase {
+  display: flex;
+  flex-direction: column;
+  margin-top: 28px;
+}
+
+#div-purchaseAmount {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+#input-purchaseAmount {
+  width: 310px;
+  height: 36px;
+}
+
+.button-purchase {
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  border-radius: 4px;
+  height: 36px;
+  width: 56px;
+}
+
+#after-purchase {
+  visibility: hidden;
+}
+
+/* div-lottos*/
+#div-lottos {
+  display: flex;
+  flex-direction: column;
+  margin-top: 27px;
+}
+
+#lottos {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 300px;
+}
+
+.lotto {
+  display: flex;
+  align-items: center;
+}
+
+.emoji-lotto {
+  height: 34px;
+  width: 36px;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.lottoNumber {
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+#winningLotto {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+#form-inputs-winningLotto {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+#input-winningLottos {
+  display: flex;
+  gap: 8px;
+}
+
+.input-winningLotto,
+#input-bonusNumber {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+#winningNumber label {
+  display: block;
+}
+
+#bonusNumber {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#bonusNumber label {
+  display: block;
+}
+
+#button-result {
+  width: 382px;
+  height: 36px;
+  left: 16px;
+  top: 659px;
+
+  margin-top: 27px;
+
+  /* lotto-primary */
+
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  border-radius: 4px;
+
+  /* font */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+/* footer */
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border: 1px solid var(--color-primary);
+}
+
+#footer #copyright {
+  font-size: 14;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* 모달 창 */
+#modal-statistics {
+  width: 350px;
+  height: 500px;
+}
+
+#close-button {
+  display: block;
+  text-align: end;
+  font-size: 20px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+#statistics-title {
+  text-align: center;
+  margin: 32px 0px;
+}
+
+#statistics-table {
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid var(--color-greyscale-3);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#statistics-table tr {
+  border-bottom: 1px solid var(--color-greyscale-3);
+  margin-top: 5px;
+}
+
+#statistics-table th,
+td {
+  padding: 8px 0px;
+}
+
+#rate-of-return {
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  margin: 32px 0px;
+}
+
+#restart-button {
+  display: block;
+  margin: 0 auto;
+  width: 318px;
+  height: 36px;
+  color: var(--color-greyscale-1);
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+/* input spin button 숨기기 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
