@@ -7,7 +7,7 @@ export default class LottoGameController {
 
   #winningLotto;
 
-  handlePurchasePriceInput = (input) => {
+  handlePurchasePriceInput(input) {
     try {
       this.#lottos = new Lottos(input);
 
@@ -15,9 +15,9 @@ export default class LottoGameController {
     } catch (error) {
       alert(error.message);
     }
-  };
+  }
 
-  handleWinningNumbersInput = (winningNumbers, bonusNumber) => {
+  handleWinningNumbersInput(winningNumbers, bonusNumber) {
     try {
       this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
@@ -30,7 +30,7 @@ export default class LottoGameController {
     } catch (error) {
       alert(error.message);
     }
-  };
+  }
 
   #showPurchasedLottos() {
     view.renderPurchasedLottos(this.#lottos.getLottos());

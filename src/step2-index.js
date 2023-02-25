@@ -1,14 +1,15 @@
 import LottoGameController from './controller/LottoGameController';
 import eventHandler from './view/eventHandler';
 import './style.css';
+import view from './view/view';
 
 const lottoGameController = new LottoGameController();
 
 eventHandler.setPurchasePriceInputHandler(
-  lottoGameController.handlePurchasePriceInput
+  lottoGameController.handlePurchasePriceInput.bind(lottoGameController)
 );
 eventHandler.setWinningNumbersInputHandler(
-  lottoGameController.handleWinningNumbersInput
+  lottoGameController.handleWinningNumbersInput.bind(lottoGameController)
 );
-eventHandler.setCloseModalHandler(LottoGameController.handleCloseModal);
-eventHandler.setRestartHandler(LottoGameController.handleRestart);
+eventHandler.setCloseModalHandler(view.closeModal);
+eventHandler.setRestartHandler(view.restart);
