@@ -60,6 +60,8 @@ const mountModal = () => {
 
   $('.restart-button').addEventListener('click', () => restart());
   $('.modal-close-button').addEventListener('click', () => restart());
+
+  document.body.style.overflow = 'hidden';
 };
 
 const restart = () => {
@@ -70,4 +72,6 @@ const restart = () => {
   $('.winning-lotto').remove();
   $('.submit-button').remove();
   $('.lotto-list-wrapper').remove();
+
+  document.body.style.overflow = 'unset';
 };
