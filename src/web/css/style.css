@@ -8,7 +8,7 @@
 
 :root {
   --lotto-primary-color: 78, 91, 166;
-  --app-border-color: #B4B4B4;
+  --app-border-color: 180, 180, 180;
 }
 
 body {
@@ -90,7 +90,7 @@ section {
   padding: 5%;
   width: 414px;
   
-  border: 1px solid var(--app-border-color);
+  border: 1px solid rgb(var(--app-border-color));
   border-radius: 4px;
 }
 
@@ -117,7 +117,7 @@ section {
 
 input {
   box-sizing: border-box;
-  border: 1px solid var(--app-border-color);
+  border: 1px solid rgb(var(--app-border-color));
   border-radius: 4px;
 }
 
