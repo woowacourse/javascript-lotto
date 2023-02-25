@@ -1,13 +1,13 @@
-export default function showErrorMessage($root, message, $trigger) {
-  const $errorSpan = document.createElement('span');
-  $errorSpan.className = 'caption warning-span';
-  $errorSpan.innerText = message;
+import { errorMessage } from '../view/templates/errorMessage';
 
-  $root.insertAdjacentElement('afterend', $errorSpan);
+export default function showErrorMessage($root, message, $trigger) {
+  const $errorMessage = errorMessage({ message });
+
+  $root.insertAdjacentElement('afterend', $errorMessage);
   $trigger.disabled = true;
 
   setTimeout(() => {
-    $root.parentElement.removeChild($errorSpan);
+    $root.parentElement.removeChild($errorMessage);
     $trigger.disabled = false;
   }, 3000);
 }
