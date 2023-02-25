@@ -2,6 +2,7 @@ const inputAmount = document.querySelector("#inputAmount");
 const inputAmountNext = document.querySelector("#inputAmountNext");
 const randomLottoList = document.querySelector("#randomLottoList");
 const inputAmountArea = document.querySelector(".inputAmountArea");
+import { ControlElem } from "../utils/ControlElem";
 
 const mainPage = {
   addEvent(callback) {
@@ -16,7 +17,7 @@ const mainPage = {
   },
 
   clickInputAmount(randomLotteries) {
-    inputAmount.value = "";
+    ControlElem.resetElem(inputAmount, "value");
 
     if (!randomLotteries) return;
 
@@ -31,7 +32,7 @@ const mainPage = {
   },
 
   showRandomLottoList(randomLotteries) {
-    randomLottoList.innerHTML = "";
+    ControlElem.resetElem(randomLottoList, "innerHTML");
 
     this.makeRandomLottoList(randomLotteries);
 
@@ -40,13 +41,9 @@ const mainPage = {
 
   makeRandomLottoList(randomLotteries) {
     const nodeRandomLotto = randomLotteries.map((numbers) => {
-      return this.makeEachRandomLotto(numbers);
+      return ControlElem.makeRandomLotto(numbers);
     });
     randomLottoList.insertAdjacentHTML("beforeend", nodeRandomLotto.join(" "));
-  },
-
-  makeEachRandomLotto(numbers) {
-    return `<div><span class="lottoImg">🎟</span><span class="randomLottoNumbers">${numbers}</span></div>`;
   },
 };
 

@@ -1,10 +1,10 @@
 const eachInputLottoNumber = document.querySelectorAll(".eachInputLottoNumber");
 const eachInputBonusNumber = document.querySelector(".eachInputBonusNumber");
 const dialogElem = document.querySelector("dialog");
+import { ControlElem } from "../utils/ControlElem";
 
 const resultPage = {
   addEvent(resultCallback) {
-    // const resultButton = document.querySelector(".resultButton");
     const restartButton = document.querySelector(".restartButton");
     const inputLottoBonusArea = document.querySelector(".inputLottoBonusArea");
 
@@ -12,7 +12,6 @@ const resultPage = {
       event.preventDefault();
       resultCallback();
     });
-    // resultButton.addEventListener("click", resultCallback);
     restartButton.addEventListener("click", this.clickRestart);
   },
 
@@ -27,17 +26,13 @@ const resultPage = {
     const lotto = [];
     eachInputLottoNumber.forEach((eachInputLottoNumberElem) => {
       lotto.push(+eachInputLottoNumberElem.value);
-      this.resetInputElement(eachInputLottoNumberElem);
+      ControlElem.resetElem(eachInputLottoNumberElem, "value");
     });
 
     const bonus = +eachInputBonusNumber.value;
-    this.resetInputElement(eachInputBonusNumber);
+    ControlElem.resetElem(eachInputBonusNumber, "value");
 
     return [lotto, bonus];
-  },
-
-  resetInputElement(element) {
-    element.value = "";
   },
 
   showResult(result) {
