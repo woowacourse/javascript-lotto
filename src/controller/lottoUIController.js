@@ -23,6 +23,7 @@ import {
   validatePurchaseAmount,
   validateWinningNumbers,
 } from '../utils/validator';
+import lottoSection from '../view/lottoSection';
 
 export default function LottoUIController($app) {
   this.state = {
@@ -32,9 +33,7 @@ export default function LottoUIController($app) {
   };
 
   const init = () => {
-    const $lottoSection = document.createElement('section');
-    $lottoSection.className = 'lotto-section';
-
+    const $lottoSection = lottoSection();
     $app.appendChild($lottoSection);
 
     this.state.$root = $lottoSection;
@@ -49,6 +48,17 @@ export default function LottoUIController($app) {
     this.state.lottoGame = new LottoGame();
     this.state.step = STEP.INIT;
     clearConatiner(this.state.$root);
+  };
+
+  const clearGameBoard = ($root) => {
+    $root.removeChild($root.lastChild);
+    $root.removeChild($root.lastChild);
+    this.state.step = STEP.INIT;
+  };
+
+  const restart = () => {
+    closeModal();
+    this.play();
   };
 
   const paintGameBoard = (purchaseAmount) => {
@@ -118,17 +128,6 @@ export default function LottoUIController($app) {
     }
 
     calculateResult(bonusNumber, winningNumbers);
-  };
-
-  const clearGameBoard = ($root) => {
-    $root.removeChild($root.lastChild);
-    $root.removeChild($root.lastChild);
-    this.state.step = STEP.INIT;
-  };
-
-  const restart = () => {
-    closeModal();
-    this.play();
   };
 
   init();
