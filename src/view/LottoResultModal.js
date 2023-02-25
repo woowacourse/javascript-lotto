@@ -7,7 +7,6 @@ class LottoResultModal {
     this.modalContainer = document.getElementsByClassName('modal-container')[0];
     this.resultWrapper = document.getElementById('result-wrapper');
     this.closeButton = document.getElementById('close-button');
-    this.closeButton.addEventListener('click', this.closeButtonHandler, true);
   }
 
   toggleModal() {
@@ -19,6 +18,7 @@ class LottoResultModal {
     this.toggleModal();
     this.renderTable(receivedRewards);
     this.renderProfit(profitRate);
+    this.closeButton.addEventListener('click', this.closeButtonHandler);
   }
 
   createResultTable(receivedRewards) {
@@ -70,13 +70,11 @@ class LottoResultModal {
   closeButtonHandler = () => {
     this.toggleModal();
     this.resetResultTable();
-    this.closeButton.removeEventListener('click', this.closeButtonHandler, true);
     toggleDisableAttribute(document.getElementById('result-button'));
   };
 
   addRestartButtonHandler(restartButtonHandler) {
     this.restartButton.addEventListener('click', (e) => {
-      this.closeButton.removeEventListener('click', this.closeButtonHandler, true);
       this.toggleModal();
       this.resetResultTable();
       restartButtonHandler();

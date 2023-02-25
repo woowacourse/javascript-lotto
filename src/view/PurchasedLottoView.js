@@ -1,20 +1,18 @@
 import { resetElement } from '../utils/dom';
 
 class PurchasedLottoView {
-  constructor(lottos, money) {
-    this.lottos = lottos;
-    this.money = money;
+  constructor() {
     this.purchasedLottoSection = document.getElementById('purchased-lotto-section');
   }
 
-  render() {
+  render(lottos, money) {
     this.purchasedLottoSection.insertAdjacentHTML(
       'afterbegin',
-      `<p class="lotto-body">총 ${this.money / 1000}개를 구매하였습니다.</p>`,
+      `<p class="lotto-body">총 ${money / 1000}개를 구매하였습니다.</p>`,
     );
     this.purchasedLottoSection.insertAdjacentHTML(
       'beforeend',
-      `${this.lottos
+      `${lottos
         .map((lotto) => `<p class="lotto-body">🎟️ ${lotto.getLottoNumbers().join(', ')}</p>`)
         .join('')}`,
     );
