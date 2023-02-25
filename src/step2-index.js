@@ -25,30 +25,20 @@ class App {
     inputAmount.addEventListener("keypress", (event) => {
       if (event.key === "Enter") this.checkAmount();
     });
-    inputAmount.addEventListener("click", this.clickInputAmount.bind(this));
     resultButton.addEventListener("click", this.clickResult.bind(this));
     restartButton.addEventListener("click", this.clickRestart.bind(this));
-  }
-
-  clickInputAmount() {
-    this.resetInputElement(inputAmount);
-    inputAmount.style.color = "black";
   }
 
   checkAmount(amount) {
     const randomLotteries = this.controller.amountTurnLotteries(
       inputAmount.value
     );
-    this.resetInputAmount();
+    inputAmount.value = "";
+
     if (!randomLotteries) return;
 
     this.showRandomLottoAmount(randomLotteries);
     this.showRandomLottoList(randomLotteries);
-  }
-
-  resetInputAmount() {
-    inputAmount.value = "금액";
-    inputAmount.style.color = "gray";
   }
 
   showRandomLottoAmount(randomLotteries) {

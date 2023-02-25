@@ -67,7 +67,7 @@ input {
 
 #inputAmount {
   width: 100%;
-  color: gray;
+  padding-left: 10px;
 }
 
 button {
