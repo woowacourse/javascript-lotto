@@ -36,6 +36,18 @@ const view = {
     profit.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
   },
 
+  hidePuchase(){
+    document.querySelector('.purchase').style.visibility = "hidden";
+  },
+
+  hideBuyText(){
+    document.querySelector('.buyText').style.visibility = "hidden";
+  },
+
+  resetLottoList(){
+    document.querySelector('.lottoList').replaceChildren();
+  },
+
   showModal() {
     const modal = document.querySelector('.modal');
     modal.style.visibility = 'visible';
@@ -44,6 +56,16 @@ const view = {
   closeModal() {
     const modal = document.querySelector('.modal');
     modal.style.visibility = 'hidden';
+  },
+
+  inputReset() {
+    document.getElementById('money').value = null;
+
+    document.querySelectorAll('.winning').forEach(number => {
+      number.value = null;
+    });
+
+    document.getElementById('bonus').value = null;
   },
 };
 

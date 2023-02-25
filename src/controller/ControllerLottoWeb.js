@@ -88,7 +88,12 @@ class ControllerLottoWeb {
   }
 
   handleRestartButtonClick = () => {
-    window.location.reload();
+    view.inputReset();
+    view.closeModal();
+    
+    view.resetLottoList();
+    view.hideBuyText();
+    view.hidePuchase();
   };
 
   handleCloseModalButtonClick = () => {
