@@ -32,6 +32,7 @@ class WinningLottoInputView {
     this.reset();
     this.container.insertAdjacentHTML('beforeend', WINNING_NUMBER_TEMPLATE);
     this.getFormTag();
+    this.winningNumberInput[0].focus();
   }
 
   reset() {
