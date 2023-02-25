@@ -20,7 +20,6 @@ class LottoResultModal {
   render() {
     toggleDisableAttribute(document.getElementById('result-button'));
     this.toggleModal();
-    this.modalContainer.style.backgroundColor = `rgba(0, 0, 0, 0.5)`;
     this.renderTable();
     this.renderProfit();
   }
