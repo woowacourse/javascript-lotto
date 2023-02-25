@@ -130,8 +130,7 @@ td {
 }
 
 #show-result-button {
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 14px;
   width: 382px;
   height: 36px;
 }
@@ -144,6 +143,7 @@ td {
   border-radius: 4px;
   width: 34px;
   height: 36px;
+  text-align: center;
 }
 
 .modal-background {
