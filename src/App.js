@@ -2,6 +2,7 @@ import InputView from './view/InputView.js';
 import LottoGame from './domain/LottoGame.js';
 import Console from './util/Console.js';
 import OutputView from './view/OutputView.js';
+import LottoGameCalculator from './domain/LottoGameCalculator.js';
 
 class App {
   #lottoGame;
@@ -42,7 +43,7 @@ class App {
   }
 
   printBuyResult(money) {
-    OutputView.printTheChange(LottoGame.calculateTheChange(money));
+    OutputView.printTheChange(LottoGameCalculator.getTheChange(money));
     OutputView.printLottos(this.#lottoGame.getLottos());
   }
 
