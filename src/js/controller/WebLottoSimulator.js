@@ -31,7 +31,8 @@ class WebLottoSimulator {
   };
 
   showPurchasedLottos = () => {
-    LottoListView.showLottoList(this.#lottos);
+    LottoListView.render(this.#lottos);
+    LottoListView.show();
   };
 
   inputWinningLotto = (winningNumbers) => {
@@ -46,7 +47,7 @@ class WebLottoSimulator {
     }
   };
 
-  calculateWinningResult() {
+  calculateWinningResult = () => {
     const winningResult = {};
 
     Object.values(LOTTO_RANKING).forEach((rank) => (winningResult[rank] = 0));
@@ -55,23 +56,25 @@ class WebLottoSimulator {
       if (rank in winningResult) winningResult[rank] += 1;
     });
     return winningResult;
-  }
+  };
 
   showResult = () => {
     const winningResult = this.calculateWinningResult();
-    ResultView.showResult(
+    ResultView.render(
       winningResult,
       LottoUtils.calculateYieldRate(winningResult, this.#lottos.length)
     );
+    ResultView.show();
   };
 
   closeResult = () => {
-    ResultView.hideResult();
+    ResultView.hide();
   };
 
   retry = () => {
-    ResultView.hideResult();
-    LottoListView.hideLottoList();
+    ResultView.hide();
+    LottoListView.hide();
+    LottoListView.reset();
   };
 }
 

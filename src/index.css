@@ -98,7 +98,7 @@ ul {
 }
 
 #winning-lotto-section {
-  display: none;
+  display: block;
   margin-top: auto;
 }
 
@@ -124,7 +124,7 @@ ul {
 }
 
 .modal-background {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0;
   right: 0;
@@ -191,4 +191,8 @@ td {
   line-height: 16px;
   margin-top: auto;
   margin-bottom: 32px;
+}
+
+.hide {
+  visibility: hidden;
 }

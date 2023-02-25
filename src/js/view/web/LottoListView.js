@@ -1,13 +1,13 @@
 const $lottoList = document.getElementById('purchased-lotto-list');
 const $lottoCount = document.getElementById('purchased-lotto-count');
 const $winningLottoSection = document.getElementById('winning-lotto-section');
+const $purchasedLottoSection = document.getElementById('purchased-lotto-section');
 const $budgetInputForm = document.getElementById('budget-input-form');
 const $winningNumberInputForm = document.getElementById('winning-number-input-form');
 
 const LottoListView = {
-  showLottoList(lottos) {
-    $winningLottoSection.style.display = 'block';
-    $lottoCount.innerHTML = `총 ${lottos.length}개를 구매했습니다.`;
+  render(lottos) {
+    $lottoCount.textContent = `총 ${lottos.length}개를 구매했습니다.`;
     $lottoList.innerHTML = lottos
       .map((lotto) => {
         return `<li class="purchased-lotto-numbers"><span class="purchased-lotto-icon">🎟️</span> ${[
@@ -19,12 +19,19 @@ const LottoListView = {
       .join('');
   },
 
-  hideLottoList() {
+  show() {
+    $purchasedLottoSection.classList.remove('hide');
+    $winningLottoSection.classList.remove('hide');
+  },
+
+  reset() {
     $budgetInputForm.reset();
     $winningNumberInputForm.reset();
-    $lottoCount.innerHTML = null;
-    $lottoList.innerHTML = null;
-    $winningLottoSection.style.display = 'none';
+  },
+
+  hide() {
+    $purchasedLottoSection.classList.add('hide');
+    $winningLottoSection.classList.add('hide');
   },
 };
 
