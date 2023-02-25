@@ -1,0 +1,40 @@
+.winning-lotto {
+  margin-top: 2.4rem;
+}
+
+.winning-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+}
+
+.win-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-number-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 3.6rem;
+  gap: 0.8rem;
+}
+
+.winning-number-input {
+  width: 3.4rem;
+  height: 3.6rem;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.win-bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.submit-button {
+  margin-top: 2.7rem;
+  width: 100%;
+  height: 3.6rem;
+}

@@ -22,7 +22,7 @@ $('.lotto-container').insertAdjacentHTML('beforeend', Payment());
 const purchaseButton = $('.purchase-button');
 
 purchaseButton.addEventListener('click', () => {
-  const moneyInput = $('#money-input');
+  const moneyInput = $('.money-input');
   const money = Number(moneyInput.value);
 
   try {
@@ -57,10 +57,9 @@ const mountWinningInput = () => {
   submitButton.addEventListener('click', function () {
     const winNumbers = [];
 
-    $$('.winning-lotto-number').forEach((node) => winNumbers.push(Number(node.value)));
-    winNumbers.pop();
+    $$('.js-winning-number').forEach((node) => winNumbers.push(Number(node.value)));
 
-    const bonusNumber = Number($('#bonus-number').value);
+    const bonusNumber = Number($('.js-bonus-number').value);
 
     try {
       validateNumbers(winNumbers);

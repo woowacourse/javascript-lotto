@@ -1,0 +1,22 @@
+.lotto-list-wrapper {
+  margin-top: 2.8rem;
+}
+
+.lotto-list {
+  margin-top: 0.8rem;
+  height: 27.6rem;
+  overflow: scroll;
+}
+
+.lotto-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lotto-item-icon {
+  margin-right: 0.8rem;
+  font-weight: 600;
+  font-size: 3.4rem;
+  line-height: 3.6rem;
+}

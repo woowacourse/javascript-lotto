@@ -19,7 +19,7 @@ const Modal = ({ statstics, profitRate }) => {
                 })
                 .join('')}
           </table>
-          <div class="win-profit-rate">당신의 총 수익률은 ${profitRate}%입니다.</div>
+          <div class="profit-rate">당신의 총 수익률은 ${profitRate}%입니다.</div>
         <button class="lotto-button restart-button">다시 시작하기</button>
       </div>
     `;
