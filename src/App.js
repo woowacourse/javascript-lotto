@@ -12,10 +12,6 @@ class App {
 
   constructor() {
     this.purchaseView = new PurchaseView(this.submitPurchaseAmount);
-    this.modalView = new ModalView(
-      this.handleCloseModal,
-      this.handleRestartGame
-    );
   }
 
   submitPurchaseAmount = (event) => {
@@ -60,8 +56,8 @@ class App {
     try {
       this.validateWinningNumbers(lottoNumbers, bonusNumber);
       const lottoResult = this.makeLottoResult();
+      this.modalView = new ModalView(this.handleRestartGame);
       this.modalView.showResult(lottoResult);
-      this.#toggleButton(this.winningNumbersView.resultButton);
     } catch (error) {
       alert(error.message);
     }
@@ -87,12 +83,6 @@ class App {
     this.#bonusNumber = +bonusNumber;
   }
 
-  handleCloseModal = (event) => {
-    event.preventDefault();
-    this.modalView.hiddenModal();
-    this.#toggleButton(this.winningNumbersView.resultButton);
-  };
-
   handleRestartGame = (event) => {
     event.preventDefault();
     this.winningNumbersView.bonusNumber.value = null;
@@ -101,7 +91,6 @@ class App {
     this.winningNumbersView.hideWinningContainer();
     this.#resetValue(this.purchaseView.purchaseInput);
     this.#toggleButton(this.purchaseView.purchaseButton);
-    this.#toggleButton(this.winningNumbersView.resultButton);
   };
 }
 

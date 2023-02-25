@@ -1,20 +1,24 @@
 import { PRIZE } from "../../constants";
 
 class ModalView {
-  constructor(handleCloseModal, handleRestartGame) {
+  constructor(handleRestartGame) {
     this.modal = document.querySelector(".modal");
     this.modalTable = document.querySelector(".modal-table");
     this.profit = document.querySelector(".profit");
-    document
-      .querySelector(".modal-close-btn")
-      .addEventListener("click", handleCloseModal);
-    document
-      .querySelector(".restart-btn")
-      .addEventListener("click", handleRestartGame);
+    this.restartBtn = document.querySelector(".restart-btn");
+    document.querySelector(".modal-close-btn").addEventListener("click", () => {
+      this.hiddenModal();
+    });
+    this.restartBtn.addEventListener("click", handleRestartGame);
+    window.addEventListener("keyup", (e) => {
+      this.closeModalEscape(e);
+    });
+    this.modal.addEventListener("click", () => this.hiddenModal());
   }
 
   showResult(result) {
     this.modal.style.display = "flex";
+    this.restartBtn.focus();
     const resultTableHeader = `<th>일치 갯수</th>
     <th>당첨금</th>
     <th>당첨 갯수</th>`;
@@ -42,6 +46,17 @@ class ModalView {
   hiddenModal() {
     this.modal.style.display = "none";
     this.modalTable.innerHTML = "";
+  }
+
+  closeModalEscape(event) {
+    if (this.modal.style.display === "flex" && event.key === "Escape") {
+      this.hiddenModal();
+    }
+  }
+
+  closeModalOverlay(event) {
+    if (event.classList.contains("modal-window")) return;
+    this.hiddenModal();
   }
 }
 
