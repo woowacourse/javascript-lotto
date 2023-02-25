@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+import '../../../css/modal.css';
+
 const GameModal = (store) => {
   if (store.result) {
     return `

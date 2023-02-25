@@ -1,15 +1,12 @@
 /* eslint-disable no-undef */
 import './css/style.css';
 import './css/layout.css';
-import './css/modal.css';
 
 import { generateLottos } from './domain/generateLottos';
 import LottoValidator from './domain/LottoValidator';
 import Render from './utils/Render';
 import PurchaseResults from './view/containers/PurchaseResults';
 import InputWinningNumberBox from './view/containers/InputWinningNumberBox';
-import GameModal from './view/containers/GameModal';
-import modalEvent from './view/containers/GameModal/modalEvent';
 import inputWinningNumberEvent from './view/containers/InputWinningNumberBox/inputWinningNumberEvent';
 
 /**
@@ -35,4 +32,3 @@ form.onsubmit = function (event) {
   }
 };
 
-Render.container("game-result", () => GameModal(store), () => { modalEvent(); });
