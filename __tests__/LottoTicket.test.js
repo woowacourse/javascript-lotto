@@ -1,4 +1,4 @@
-const LottoTicket = require('../src/domain/LottoTicket');
+import LottoTicket from '../src/domain/LottoTicket';
 
 describe('LottoTicket 생성 테스트', () => {
   test('로또 번호가 6개가 아닌 경우 에러가 발생한다.', () => {
