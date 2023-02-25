@@ -31,9 +31,7 @@ const setWinningNumbersInputHandler = (handleWinningNumbersInput) => {
 };
 
 const setCloseModalHandler = (handleCloseModal) => {
-  $modalCloseButton.addEventListener('click', () => {
-    handleCloseModal();
-  });
+  $modalCloseButton.addEventListener('click', handleCloseModal);
 
   $resultModalContainer.addEventListener('click', (event) => {
     if (event.target.id === 'resultModalContainer') handleCloseModal();
@@ -41,9 +39,7 @@ const setCloseModalHandler = (handleCloseModal) => {
 };
 
 const setRestartHandler = (handleRestart) => {
-  $restartButton.addEventListener('click', () => {
-    handleRestart();
-  });
+  $restartButton.addEventListener('click', handleRestart);
 };
 
 export default {
