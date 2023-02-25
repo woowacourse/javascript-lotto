@@ -18,9 +18,10 @@ export default class ViewModel {
   init() {
     $('.moneyInput').focus();
     $('.purchaseLotto').addEventListener('submit', this.purchaseLotto.bind(this));
+    $('.inputNumbersForm').addEventListener('keydown', this.moveToNextInput.bind(this));
     $('.inputNumbersForm').addEventListener('submit', this.showModal.bind(this));
     $('.modalBox').addEventListener('submit', this.resetGame.bind(this));
-    $('.restartButton').addEventListener('keydown', this.pressEnter.bind(this));
+    $('.restartButton').addEventListener('keydown', this.pressESC.bind(this));
     $('.exit').addEventListener('click', this.exitModal.bind(this));
     $('.modalBackground').addEventListener('click', this.exitModal.bind(this));
   }
@@ -34,6 +35,7 @@ export default class ViewModel {
       this.#purchaseAmount = moneyInput;
 
       this.showLotto(moneyInput);
+      $('.winningNumber-input').focus();
     } catch (error) {
       alert(error.message);
     }
@@ -107,15 +109,30 @@ export default class ViewModel {
     $('.moneyInput').focus();
   }
 
-  pressEnter = (e) => {
+  pressESC(e) {
     if (e.keyCode === 27) {
       $('.exit').click();
-      $('.printResultButton').focus();
     }
-  };
+  }
+
+  moveToNextInput(e) {
+    if (
+      e.keyCode === 13 &&
+      e.target !== $('.bonusNumberInput') &&
+      e.target !== $('.printResultButton')
+    ) {
+      e.preventDefault();
+      $$('.winningNumber-input').forEach((value, i) => {
+        if (e.target === $$('.winningNumber-input')[i]) {
+          i === 5 ? $('.bonusNumberInput').focus() : $$('.winningNumber-input')[i + 1].focus();
+        }
+      });
+    }
+  }
 
   exitModal(e) {
     e.preventDefault();
     $('.modal').style.display = 'none';
+    $('.printResultButton').focus();
   }
 }
