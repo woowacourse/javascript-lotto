@@ -7,6 +7,12 @@ class PurchaseMoneyInputView {
   resetValue() {
     this.input.value = '';
   }
+
+  disableButton() {
+    const button = document.getElementById('purchase-money-button');
+    button.style.background = '#8b8b8b';
+    button.disabled = true;
+  }
 }
 
 export default PurchaseMoneyInputView;

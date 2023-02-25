@@ -22,6 +22,7 @@ class LottoController {
   start() {
     this.view.purchaseMoneyInputView.form.addEventListener('submit', e => {
       e.preventDefault();
+      this.view.purchaseMoneyInputView.disableButton();
 
       const money = this.view.purchaseMoneyInputView.input.value;
 
