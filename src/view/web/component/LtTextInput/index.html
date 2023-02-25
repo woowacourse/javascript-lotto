@@ -49,5 +49,6 @@
 </style>
 
 <div>
-  <input id="input" type="{type}" min="{min}" max="{max}" step="{step}" placeholder="{placeholder}" autocomplete="off">
+  <input id="input" type="{type}" min="{min}" max="{max}" step="{step}" placeholder="{placeholder}" autocomplete="off"
+    oninput="this.host.onInput(event)">
 </div>

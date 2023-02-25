@@ -34,6 +34,10 @@ class LtTextInput extends LtFormControl {
     this.dispatchEvent(new Event('change'));
   }
 
+  onInput(event) {
+    this.#validate(event.target.value);
+  }
+
   getRenderContent() {
     return template;
   }
@@ -42,9 +46,6 @@ class LtTextInput extends LtFormControl {
     super.render();
 
     this.$input.value = this.#text;
-    this.$input.addEventListener('input', (event) => {
-      this.#validate(event.target.value);
-    });
   }
 
   connectedCallback() {

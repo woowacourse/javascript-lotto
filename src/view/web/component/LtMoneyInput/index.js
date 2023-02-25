@@ -37,6 +37,10 @@ class LtMoneyInput extends LtFormControl {
     this.dispatchEvent(new CustomEvent('change'));
   }
 
+  onChange(event) {
+    this.#validate(event.target.getText());
+  }
+
   setValidation(valid, message) {
     super.setValidation(valid, message);
     this.$input.setErrorMessage(message);
@@ -55,9 +59,6 @@ class LtMoneyInput extends LtFormControl {
     super.render();
 
     this.$input.text = this.#money;
-    this.$input.addEventListener('change', (event) => {
-      this.#validate(event.target.getText());
-    });
   }
 
   connectedCallback() {

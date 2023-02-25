@@ -64,6 +64,10 @@ class LtWinningLottoInput extends LtFormControl {
     $firstInput.setErrorMessage(message);
   }
 
+  onChange(event) {
+    this.#validate();
+  }
+
   formResetCallback() {
     this.setWinningLotto(null);
     this.setValidation(false);
@@ -78,12 +82,6 @@ class LtWinningLottoInput extends LtFormControl {
 
     this.$winningNumberInputs = [...this.$winningNumbers.querySelectorAll('lt-text-input')];
     this.$bonusNumberInput = this.$bonusNumber.querySelector('lt-text-input');
-
-    [...this.shadowRoot.querySelectorAll('lt-text-input')].forEach(($input) => {
-      $input.addEventListener('change', (event) => {
-        this.#validate();
-      });
-    });
   }
 
   connectedCallback() {

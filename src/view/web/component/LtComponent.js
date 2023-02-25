@@ -83,7 +83,16 @@ class LtComponent extends HTMLElement {
    *   }
    *   ```
    *
-   * ### DOM 이벤트 핸들링 등의 조작 시
+   * ### DOM 이벤트 핸들링 (Declarative)
+   * {@link render} 함수는 Shadow DOM에서 host ({@link LtComponent}) 에 접근할 수 있도록
+   * `this.host`에 자신(`this`)을 바인딩한다.
+   *
+   * 따라서 html에서 선언적 방식으로 이벤트 리스너를 추가하려면, `this.host`를 사용하여야 한다.
+   * ```html
+   * <input onchange="this.host.onChange(event)">
+   * ```
+   *
+   * ### DOM 이벤트 핸들링 (Imperative)
    * {@link render} 함수가 호출될 때 마다 DOM은 새로 생성되므로,
    * DOM에 대해 이벤트를 추가하는 등의 조작을 하려면 {@link render} 함수에서 해줘야 한다.
    * ```javascript
