@@ -21,9 +21,6 @@ header h1 {
   left: 130px;
   top: 14px;
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 24px;
   line-height: 36px;
 
@@ -62,9 +59,6 @@ section .content h2 {
   left: 16px;
   top: 52px;
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 24px;
   line-height: 24px;
 
@@ -107,8 +101,6 @@ section .content h2 {
 .readMoney {
   position: absolute;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
@@ -159,9 +151,6 @@ section .content h2 {
   width: 28px;
   height: 16px;
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
 
@@ -180,8 +169,6 @@ section .content h2 {
   right: 46.77%;
   top: 196px;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
@@ -204,8 +191,6 @@ section .content h2 {
 }
 
 .lottos ul li {
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -233,8 +218,6 @@ section .content h2 {
 .winningLotto p {
   position: absolute;
   left: 15px;
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
@@ -254,8 +237,6 @@ section .content h2 {
 .winningNumber p {
   position: absolute;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
@@ -291,8 +272,6 @@ section .content h2 {
 .bonusNumber p {
   position: absolute;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
@@ -330,9 +309,6 @@ section .content h2 {
 }
 
 #result_button span {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
 
@@ -366,9 +342,6 @@ footer p {
   top: 58%;
   transform: translate(-50%, -50%);
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
 
@@ -400,9 +373,6 @@ footer p {
   top: 3.2%;
   bottom: 93.6%;
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 20px;
   line-height: 16px;
 
@@ -433,8 +403,6 @@ footer p {
   right: 29.56%;
   top: 40px;
 
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
@@ -454,8 +422,6 @@ footer p {
 }
 
 .lotto_result td {
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
@@ -485,9 +451,6 @@ td {
   top: 390px;
   transform: translate(-50%, -20%);
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 15px;
   line-height: 24px;
 
@@ -517,9 +480,6 @@ td {
   width: 89px;
   height: 16px;
 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
 
