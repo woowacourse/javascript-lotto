@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
-
 import { calculateBenefit } from "../../../domain/calculateBenefit";
 import { judgeResult } from "../../../domain/judgeResult";
 import LottoValidator from "../../../domain/LottoValidator";
-import Render from "../../../utils/Render";
+import Container from "../../../utils/Container";
 import GameModal from "../GameModal";
 import modalEvent from "../GameModal/modalEvent";
 
@@ -35,7 +34,11 @@ const inputWinningNumberEvent = (store) => {
       console.log(result, benefit);
       store['result'] = result;
       store['benefit'] = benefit;
-      Render.container("game-result", () => GameModal(store), () => modalEvent());
+      Container.render(
+        "game-result",
+        () => GameModal(store),
+        () => modalEvent()
+      );
       const modal = document.getElementById("game-modal");
       console.log(modal);
       modal.style.display = "block";
