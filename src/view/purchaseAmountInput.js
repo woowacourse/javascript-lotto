@@ -1,29 +1,8 @@
 import { keyUpEventListener } from '../utils/eventListener';
 import {
   gameTitle,
-  inputContent,
-  inputMessage,
+  purchaseAmountContainer,
 } from '../view/templates/purchaseInput';
-
-function purchaseEnterContainer() {
-  const $container = document.createElement('div');
-
-  $container.className = 'purchase-enter-container';
-  $container.innerHTML = inputContent;
-
-  return $container;
-}
-
-function purchaseAmountContainer() {
-  const $container = document.createElement('div');
-  $container.className = 'purchase-amount-container';
-
-  $container.innerHTML = inputMessage;
-
-  $container.appendChild(purchaseEnterContainer());
-
-  return $container;
-}
 
 function addPurchaseEnterEventListener($root, eventHandler) {
   const $container = $root.querySelector('.purchase-amount-container');
@@ -39,8 +18,7 @@ function addPurchaseEnterEventListener($root, eventHandler) {
 function purchaseEnterInput() {
   const $container = document.createElement('div');
 
-  $container.innerHTML = gameTitle;
-  $container.appendChild(purchaseAmountContainer());
+  $container.innerHTML = gameTitle + purchaseAmountContainer;
 
   return $container;
 }
