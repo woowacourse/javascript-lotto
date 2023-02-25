@@ -11,6 +11,7 @@ class PurchaseMoneyInputView {
 
   setDisableButton() {
     this.resetValue();
+    this.input.disabled = true;
     this.button.style.background = '#8b8b8b';
     this.button.disabled = true;
   }
