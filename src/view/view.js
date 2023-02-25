@@ -54,29 +54,27 @@ const view = {
   },
 
   renderStatistics(rankCounts, profitRate) {
-    $resultModalContainer.hidden = false;
-
     $statisticsContainer.innerHTML = `
         ${rankCounts
-          .map(
-            (rankCount, index) => `
+          .map((rankCount, index) => {
+            return `
               <div class="statisticsRow">
                 <span class="statisticsColumn">${
-                  correctCountPerRankForRender[
-                    indexToRankKeyConverter[profitByRank.length - index - 1]
-                  ]
+                  correctCountPerRankForRender[indexToRankKeyConverter[index]]
                 }</span>
                 <span class="statisticsColumn">${utils.getFormattedNumber(
-                  profitByRank[profitByRank.length - index - 1]
+                  profitByRank[index]
                 )}원</span>
                 <span class="statisticsColumn">${rankCount}개</span>
               </div>
-            `
-          )
+            `;
+          })
+          .reverse()
           .join('')}
       `;
 
     $profitRateViewer.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
+    $resultModalContainer.hidden = false;
   },
 
   closeModal() {

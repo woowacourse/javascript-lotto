@@ -39,7 +39,7 @@ export default class LottoGameController {
 
   #showResult() {
     view.renderStatistics(
-      [...this.#lottos.getAllRanks()].reverse(),
+      this.#lottos.getAllRanks(),
       this.#lottos.getProfitRate()
     );
   }
