@@ -63,7 +63,6 @@ class ModalView {
   }
 
   closeModalOverlay(event) {
-    console.log(event.target.classList);
     if (event.target.classList.contains("modal-overlay")) {
       this.hiddenModal();
     }
