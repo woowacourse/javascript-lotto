@@ -9,6 +9,7 @@ import Controller from "./Controller.js";
 const inputAmount = document.querySelector("#inputAmount");
 const inputAmountNext = document.querySelector("#inputAmountNext");
 const dialog = document.querySelector("dialog");
+const randomLottoList = document.querySelector("#randomLottoList");
 
 class App {
   play() {
@@ -48,14 +49,18 @@ class App {
   }
 
   showRandomLottoList(randomLotteries) {
-    const randomLottoList = document.querySelector("#randomLottoList");
     randomLottoList.innerHTML = "";
 
-    randomLotteries.forEach((numbers) => {
-      randomLottoList.appendChild(this.makeEachRandomLotto(numbers));
-    });
+    this.makeRandomLottoList(randomLotteries);
 
     inputAmountNext.style.display = "block";
+  }
+
+  makeRandomLottoList(randomLotteries) {
+    const nodeRandomLotto = randomLotteries.map((numbers) =>
+      this.makeEachRandomLotto(numbers)
+    );
+    randomLottoList.append(...nodeRandomLotto);
   }
 
   makeEachRandomLotto(numbers) {
