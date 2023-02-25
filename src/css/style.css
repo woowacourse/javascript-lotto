@@ -163,35 +163,6 @@ footer {
   padding-bottom: 32px;
 }
 
-
-#game-result-title {
-
-  margin-top: 25px;
-  margin-bottom: 32px;
-
-  /* subtitle */
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  /* identical to box height, or 120% */
-
-  text-align: center;
-  letter-spacing: 0.15px;
-
-  /* lotto-greyscale-5 */
-
-  color: #000000;
-}
-
-#game-result-content {
-  width: 100%;
-  text-align: center;
-}
-
-
 #game-result-calculate{
   margin-top: 32px;
   margin-bottom: 32px;
