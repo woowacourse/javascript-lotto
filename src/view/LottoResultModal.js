@@ -6,7 +6,10 @@ class LottoResultModal {
     this.modal = document.getElementsByClassName('modal')[0];
     this.modalContainer = document.getElementsByClassName('modal-container')[0];
     this.resultWrapper = document.getElementById('result-wrapper');
-    this.closeButton = document.getElementById('close-button');
+    this.modalContainer.addEventListener('click', (e) => {
+      if (e.target.className === 'modal-container' || e.target.id === 'close-button')
+        this.closeButtonHandler();
+    });
   }
 
   toggleModal() {
@@ -17,7 +20,6 @@ class LottoResultModal {
     this.toggleModal();
     this.renderTable(receivedRewards);
     this.renderProfit(profitRate);
-    this.closeButton.addEventListener('click', this.closeButtonHandler);
   }
 
   createResultTable(receivedRewards) {
