@@ -26,13 +26,19 @@ class LtFormControl extends LtComponent {
    *
    * 만약 오류를 표시하고 싶다면 아래와 같이 사용
    * @example
-   * this.setValidation('입력값이 숫자가 아닙니다!');
+   * this.setValidation(false, '입력값이 숫자가 아닙니다!');
+   *
+   * 메세지를 표시하지 않고 invalid 상태로 만드려면 message 인자를 생략한다.
+   * (required 같은 경우)
+   * @example
+   * this.setValidation(false);
    *
    * 오류를 제거하고 싶을 시 아래와 같이 null 값을 준다.
    * @example
-   * this.setValidation(null);
+   * this.setValidation(true);
    *
-   * @param {string | null} message
+   * @param {boolean} valid
+   * @param {string} message
    */
   setValidation(valid, message) {
     this.#internals.setValidity({ customError: !valid }, message || ' ');
