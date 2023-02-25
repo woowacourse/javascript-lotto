@@ -8,7 +8,10 @@ class LottoResultModal {
     this.resultWrapper = document.getElementById('result-wrapper');
     this.modalContainer.addEventListener('click', (e) => {
       if (e.target.className === 'modal-container' || e.target.id === 'close-button')
-        this.closeButtonHandler();
+        this.closeModalHandler();
+    });
+    this.modalContainer.addEventListener('keydown', (e) => {
+      if (e.keyCode === 27) this.closeModalHandler();
     });
   }
 
@@ -69,7 +72,7 @@ class LottoResultModal {
     resetElement(this.resultWrapper);
   }
 
-  closeButtonHandler = () => {
+  closeModalHandler = () => {
     this.toggleModal();
     this.resetResultTable();
   };
