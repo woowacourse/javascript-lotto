@@ -93,3 +93,12 @@
   - 앱의 진입점이 되는 파일은 src/step1-index.js
 - 2단계는 npm run start-step2 커맨드로 앱을 실행할 수 있도록 한다.
   - 앱의 진입점이 되는 파일은 src/step2-index.js
+
+---
+
+## 웹 기반 콘솔 피드백
+
+- [ ] 일관성 있는 element 추가
+- [ ] modal에 dialog 태그 사용
+- [ ] 제출에 submit 이벤트 핸들링 사용
+- [ ] view 와 component 역할 분리
