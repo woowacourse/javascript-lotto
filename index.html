@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
-  <body>
-    <header>
+  <body class="flex">
+    <header class="flex">
       <h1>🎱 행운의 로또</h1>
     </header>
 
-    <main>
+    <main class="flex">
       <section class="app">
         <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
 
@@ -36,7 +36,7 @@
 
         <section class="hidden-first">
           당첨 번호 6개와 보너스 번호 1개를 입력하세요.
-          <div class="input-winning-numbers-labels">
+          <div class="input-winning-numbers flex">
             <label>
               당첨 번호
               <div class="winning-number-input-boxes">
@@ -48,10 +48,10 @@
                 <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
               </div>
             </label>
-            <label>
+            <label class="flex">
               보너스 번호
               <div class="bonus-number-input-box">
-                <input type="text" class="single-number-input" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
               </div>
             </label>
           </div>
@@ -66,7 +66,7 @@
       <div class="modal-background">
         <section class="modal-box">
           <button type="button" class="close">&times;</button>
-          <div class="modal-message">
+          <div class="modal-message flex">
   
           </div>
           <button type="button" class="restart-game">다시 시작하기</button>
@@ -74,7 +74,7 @@
       </div>
     </main>
 
-    <footer>
+    <footer class="flex">
       <p>Copyright 2023. woowacourse</p>
     </footer>
   </body>

@@ -11,8 +11,11 @@
   --app-border-color: 180, 180, 180;
 }
 
-body {
+.flex {
   display: flex;
+}
+
+body {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
@@ -25,8 +28,6 @@ body {
 }
 
 header {
-  display: flex;
-
   top: 0;
 
   height: 64px;
@@ -43,13 +44,7 @@ header h1 {
   color: white;
 }
 
-main {
-  display: flex;
-}
-
 footer {
-  display: flex;
-
   height: 80px;
   width: 100%;
   margin: auto auto 0 auto;
@@ -74,14 +69,12 @@ section {
   margin: 0.3em 0;
 }
 
-.input-winning-numbers-labels label:last-child {
-  display: flex;
+.input-winning-numbers label:last-child {
   flex-direction: column;
   align-items: end;
 }
 
 .app {
-  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: space-evenly;
@@ -94,25 +87,18 @@ section {
   border-radius: 4px;
 }
 
-.input-money {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-winning-numbers-labels {
-  display: flex;
+.input-winning-numbers {
   justify-content: space-between;
 }
 
 .single-number-input {
   width: 35px;
-  height: 35px;
   text-align: center;
 }
 
-.input-boxes {
-  display: flex;
-  justify-content: space-between;
+input,
+button:not(close) {
+  height: 36px;
 }
 
 input {
@@ -123,17 +109,10 @@ input {
 
 .money-input {
   width: 310px;
-  height: 36px;
 }
 
 .buy {
   width: 56px;
-  height: 36px;
-}
-
-.show-results,
-.restart-game {
-  height: 36px;
 }
 
 .restart-game {
@@ -169,7 +148,6 @@ button.restart-game {
 }
 
 .modal-box{
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -205,7 +183,6 @@ button.close {
 
 .alert {
   display: none;
-  flex-direction: row;
   justify-content: space-between;
 
   background-color: red;
@@ -218,7 +195,7 @@ button.close {
 @keyframes shake {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(1deg); }
-  50% { transform: rotate(0eg); }
+  50% { transform: rotate(0deg); }
   75% { transform: rotate(-1deg); }
   100% { transform: rotate(0deg); }
 }
@@ -267,7 +244,6 @@ td, th {
 }
 
 .modal-message {
-  display: flex;
   flex-direction: column;
   justify-content: center;
 }
