@@ -163,14 +163,15 @@ li span {
   top: 0;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
 }
 
 #resultModal {
   width: 350px;
   height: 439px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   position: relative;
   display: flex;
@@ -224,8 +225,4 @@ li span {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-}
-
-.hidden {
-  display: none;
 }

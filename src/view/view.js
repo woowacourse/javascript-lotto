@@ -22,7 +22,7 @@ const $profitRateViewer = document.getElementById('profitRate');
 
 const view = {
   renderPurchasedLottos(lottos) {
-    $purchaseResultContainer.classList = '';
+    $purchaseResultContainer.hidden = false;
     $purchaseResultHeader.innerHTML = message.showLottoCount(lottos.length);
 
     $purchasedLottosContainer.innerHTML = `${lottos
@@ -50,11 +50,11 @@ const view = {
           required
         />`;
 
-    $winningInputForm.classList = '';
+    $winningInputForm.hidden = false;
   },
 
   renderStatistics(rankCounts, profitRate) {
-    $resultModalContainer.style.display = 'flex';
+    $resultModalContainer.hidden = false;
 
     $statisticsContainer.innerHTML = `
         ${rankCounts
@@ -80,12 +80,12 @@ const view = {
   },
 
   closeModal() {
-    $resultModalContainer.style.display = 'none';
+    $resultModalContainer.hidden = true;
   },
 
   restart() {
-    $purchaseResultContainer.classList = 'hidden';
-    $winningInputForm.classList = 'hidden';
+    $purchaseResultContainer.hidden = true;
+    $winningInputForm.hidden = true;
     $priceInput.value = '';
 
     this.closeModal();

@@ -10,7 +10,7 @@
     <header>
       <h1>🎱 행운의 로또</h1>
     </header>
-    <div id="resultModalContainer">
+    <div id="resultModalContainer" hidden>
       <div id="resultModal">
         <span id="modalCloseButton">❌</span>
         <h2 style="font-size: 20px; margin-bottom: 32px">🏆 당첨 통계 🏆</h2>
@@ -50,7 +50,7 @@
             <input id="priceSubmitButton" type="submit" value="구입" />
           </div>
         </form>
-        <div id="resultContainer" class="hidden">
+        <div id="resultContainer" hidden>
           <span
             id="purchaseResultHeader"
             style="font-size: 15px; width: 382px; margin-bottom: 8px"
@@ -58,7 +58,7 @@
           <ul id="purchasedLottosContainer"></ul>
         </div>
 
-        <form id="winningInputForm" class="hidden">
+        <form id="winningInputForm" hidden>
           <span> 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요. </span>
           <div
             style="
