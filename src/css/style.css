@@ -51,11 +51,17 @@
 #money-input {
   border: 1px solid #B4B4B4;
   border-radius: 4px;
-  padding: 8px 8px 0px;
+
   gap: 10px;
   width: 310px;
   height: 36px;
   margin-right: 16px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
 }
 
 .border {
@@ -143,6 +149,7 @@
   height: 36px;
   border: 1px solid #B4B4B4;
   border-radius: 4px;
+  text-align: center;
 }
 
 #game-modal-open-button {
