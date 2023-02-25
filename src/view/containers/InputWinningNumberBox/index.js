@@ -1,3 +1,4 @@
+import '../../../css/inputWinningNumber.css';
 const InputWinningNumberBox = () => {
   return `
   <div id="input-winning-number-title">

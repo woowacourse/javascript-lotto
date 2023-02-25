@@ -141,40 +141,6 @@ body{
 
 }
 
-#input-winning-number-title {
-  margin-top: 32px;
-  margin-bottom: 12px;
-}
-
-#winning-number-submit {
-  margin-top: 8px;
-}
-
-
-.ball-box {
-  width: 34px;
-  height: 36px;
-  border: 1px solid #B4B4B4;
-  border-radius: 4px;
-  text-align: center;
-}
-
-#game-modal-open-button {
-  margin-top: 27px;
-  height: 36px;
-  margin-bottom: 32px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  /* identical to box height, or 114% */
-
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
-}
-
 footer {
   margin-top: 69px;
   border-top: 1px solid rgba(78, 91, 166, 0.2);
@@ -225,32 +191,6 @@ footer {
   text-align: center;
 }
 
-table {
-  width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 10px;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
-  /* identical to box height, or 160% */
-
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
-
-  color: #000000;
-}
 
 #game-result-calculate{
   margin-top: 32px;
