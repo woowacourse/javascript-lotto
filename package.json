@@ -4,12 +4,13 @@
   "description": "우아한테크코스 웹 프론트엔드 레벨1 로또 미션",
   "license": "MIT",
   "scripts": {
+    "webpack": "webpack",
     "test": "jest --watch --no-cache",
-		"lint": "eslint .",
+    "lint": "eslint .",
     "build-step1": "webpack --config step1.config.js",
     "start-step1": "npm run build-step1 && node dist/step1-bundle.js",
     "start-step2": "webpack serve --open --config step2.config.js",
-		"build-step2": "webpack --mode production --config step2.config.js"
+    "build-step2": "webpack --mode production --config step2.config.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -29,7 +30,7 @@
     "prettier": "^2.8.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
+    "webpack-cli": "5.0.1",
     "webpack-dev-server": "^4.7.4"
   },
   "jest": {
