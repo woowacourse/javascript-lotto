@@ -3,6 +3,7 @@ import lottoGameCalculator from './domain/lottoGameCalculator';
 import lottoGameValidator from './domain/lottoGameValidator';
 import { $, $$ } from './utils/dom';
 import { LOTTO, RANKING_THRESHOLD } from './constants';
+import randomShuffle from './utils/randomShuffle';
 
 class LottoWebGame {
   #lottos;
@@ -65,11 +66,9 @@ class LottoWebGame {
   };
 
   drawLotto = () => {
-    const randomNumbers = Array.from(
-      { length: LOTTO.maxNumber - LOTTO.minNumber + 1 },
-      (_, i) => i + LOTTO.minNumber
+    const randomNumbers = randomShuffle(
+      Array.from({ length: LOTTO.maxNumber - LOTTO.minNumber + 1 }, (_, i) => i + LOTTO.minNumber)
     )
-      .sort(() => Math.random() - 0.5)
       .slice(0, LOTTO.numbersLength)
       .sort((a, b) => a - b);
 
