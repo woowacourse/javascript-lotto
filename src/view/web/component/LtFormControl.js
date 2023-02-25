@@ -7,6 +7,22 @@ class LtFormControl extends LtComponent {
   /** @type {ElementInternals} */
   #internals = this.attachInternals();
 
+  constructor() {
+    super();
+
+    // Form associated custom element에서 implicit submission 기능은
+    // 아직 구현되지 않았기 때문에, Enter 키 입력을 직접 감지하여
+    // 수동(`form.requestSubmit()`) 으로 폼을 제출해주어야 함
+    // Link: https://github.com/WICG/webcomponents/issues/815
+    this.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        const { form } = this.#internals;
+
+        if (form !== null) form.requestSubmit();
+      }
+    });
+  }
+
   static get formAssociated() {
     return true;
   }
