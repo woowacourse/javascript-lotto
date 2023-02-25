@@ -245,12 +245,14 @@ footer p {
     padding: 33px 16px;
 }
 
-#modal-close-area {
+#modal-close-button {
     align-self: flex-end;
     font-weight: 700;
     font-size: 20px;
     letter-spacing: 1.25px;
     color: rgba(0, 0, 0, 0.87);
+    border: none;
+    background-color: #FFFFFF;
     margin: 16px 16px 8px 0;
     cursor: pointer;
 }
