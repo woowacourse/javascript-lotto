@@ -2,10 +2,7 @@ import BonusNumberReward from '../domain/BonusReward';
 import { resetElement, toggleDisableAttribute } from '../utils/dom';
 
 class LottoResultModal {
-  constructor(receivedRewards, profitRate) {
-    this.receivedRewards = receivedRewards;
-    this.profitRate = profitRate;
-
+  constructor() {
     this.modal = document.getElementsByClassName('modal')[0];
     this.modalContainer = document.getElementsByClassName('modal-container')[0];
     this.resultWrapper = document.getElementById('result-wrapper');
@@ -17,14 +14,14 @@ class LottoResultModal {
     this.modalContainer.classList.toggle('hidden');
   }
 
-  render() {
+  render(receivedRewards, profitRate) {
     toggleDisableAttribute(document.getElementById('result-button'));
     this.toggleModal();
-    this.renderTable();
-    this.renderProfit();
+    this.renderTable(receivedRewards);
+    this.renderProfit(profitRate);
   }
 
-  createResultTable() {
+  createResultTable(receivedRewards) {
     const tableHeader = `<thead>
     <tr>
       <th>일치 개수</th>
@@ -33,7 +30,7 @@ class LottoResultModal {
     </tr>
   </thead>`;
     const tableBody = `<tbody>
-  ${this.receivedRewards
+  ${receivedRewards
     .reverse()
     .map(
       ({ reward, count }) => `
@@ -50,16 +47,16 @@ class LottoResultModal {
     return tableHeader + tableBody;
   }
 
-  renderTable() {
+  renderTable(receivedRewards) {
     this.table = document.createElement('table');
     this.resultWrapper.appendChild(this.table);
-    this.table.insertAdjacentHTML('beforeend', this.createResultTable(this.receivedRewards));
+    this.table.insertAdjacentHTML('beforeend', this.createResultTable(receivedRewards));
   }
 
-  renderProfit() {
+  renderProfit(profitRate) {
     this.resultWrapper.insertAdjacentHTML(
       'beforeend',
-      `<p id="profit-message">당신의 총 수익률은 ${this.profitRate}%입니다.</p>
+      `<p id="profit-message">당신의 총 수익률은 ${profitRate}%입니다.</p>
       <button class="primary-button" id="restart">다시 시작하기</button>
       `,
     );

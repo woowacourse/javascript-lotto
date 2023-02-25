@@ -49,8 +49,8 @@ class LottoController {
   };
 
   renderResultModal(receivedRewards, profitRate) {
-    this.lottoResultModal = new LottoResultModal(receivedRewards, profitRate);
-    this.lottoResultModal.render();
+    this.lottoResultModal = new LottoResultModal();
+    this.lottoResultModal.render(receivedRewards, profitRate);
     this.lottoResultModal.addRestartButtonHandler(this.resetHandler);
   }
 
