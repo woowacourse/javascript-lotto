@@ -36,7 +36,7 @@ class ConsoleController {
 
   printStatstics() {
     const statstics = this.#lottoService.getStatstics();
-    statstics.forEach((stat) => OutputView.printStatstics(stat));
+    statstics.forEach(OutputView.printStatstics);
     OutputView.printProfitRate(this.#lottoService.getProfitRate(statstics));
   }
 
