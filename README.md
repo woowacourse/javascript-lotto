@@ -7,7 +7,7 @@
 ### 실행방법
 
 ```
-git clone https://github.com/bassyu/javascript-lotto.git
+git clone https://github.com/gyeongza/javascript-lotto.git
 cd javascript-lotto
 ```
 
