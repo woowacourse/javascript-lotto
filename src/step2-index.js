@@ -6,8 +6,8 @@
 import "../index.css";
 import Controller from "./Controller.js";
 
-const inputAmount = document.querySelector(".inputAmount");
-const inputAmountNext = document.querySelector(".inputAmountNext");
+const inputAmount = document.querySelector("#inputAmount");
+const inputAmountNext = document.querySelector("#inputAmountNext");
 const dialog = document.querySelector("dialog");
 
 class App {
@@ -20,14 +20,14 @@ class App {
   addEvent() {
     const purchase = document.querySelector(".purchase");
     const restart = document.querySelector(".restart");
-    const result = document.querySelector(".result");
+    const resultButton = document.querySelector(".resultButton");
 
     purchase.addEventListener("click", this.checkAmount.bind(this));
     inputAmount.addEventListener("keypress", (event) => {
       if (event.key === "Enter") this.checkAmount();
     });
     inputAmount.addEventListener("click", this.clickInputAmount.bind(this));
-    result.addEventListener("click", this.clickResult.bind(this));
+    resultButton.addEventListener("click", this.clickResult.bind(this));
     restart.addEventListener("click", this.clickRestart.bind(this));
   }
 
@@ -59,7 +59,7 @@ class App {
   }
 
   showRandomLottoList(randomLotteries) {
-    const randomLottoList = document.querySelector(".randomLottoList");
+    const randomLottoList = document.querySelector("#randomLottoList");
     randomLottoList.innerHTML = "";
 
     randomLotteries.forEach((numbers) => {
