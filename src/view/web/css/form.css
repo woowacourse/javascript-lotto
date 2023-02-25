@@ -37,6 +37,7 @@ form > fieldset > lt-lotto {
 
 form:invalid button {
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
 [data-focus] ~ * {
