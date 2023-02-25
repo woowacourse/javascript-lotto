@@ -1,18 +1,34 @@
-// const InputView = require("./view/InputView");
-// const OutputView = require("./view/OutputView");
-
+import mainPage from "./view/mainPage.js";
+import resultPage from "./view/resultPage.js";
 import LottoGame from "./domain/LottoGame.js";
 import Validation from "./Validation.js";
 
 class Controller {
   lottoGame;
 
-  constructor() {}
+  constructor() {
+    this.mainPageAddEvent();
+    this.resultAddEvent();
+  }
 
-  amountTurnLotteries(amount) {
+  mainPageAddEvent() {
+    mainPage.addEvent(() => {
+      mainPage.clickInputAmount(this.amountTurnLotteries());
+    });
+  }
+
+  resultAddEvent() {
+    resultPage.addEvent(() => {
+      const result = this.inputLottoBonus(resultPage.getLottoBonus());
+      resultPage.clickResult(result);
+    });
+  }
+
+  amountTurnLotteries() {
+    const amount = +mainPage.getInputAmount();
     try {
-      Validation.purchaseAmount(+amount);
-      return this.makeLottoGame(+amount);
+      Validation.purchaseAmount(amount);
+      return this.makeLottoGame(amount);
     } catch (error) {
       alert(error.message);
     }
@@ -23,7 +39,7 @@ class Controller {
     return this.lottoGame.getLotteries();
   }
 
-  inputLottoBonus(lotto, bonus) {
+  inputLottoBonus([lotto, bonus]) {
     try {
       Validation.lottoNumbers(lotto);
       Validation.bonusNumber(lotto, bonus);
