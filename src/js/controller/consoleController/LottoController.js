@@ -6,7 +6,7 @@ import WinningLotto from '../../domain/WinningLotto';
 import Console from '../../util/Console';
 import InputView from '../../view/consoleView/InputView';
 import OutputView from '../../view/consoleView/OutputView';
-import Validator from '../../domain/Validator';
+import Validate from '../../domain/Validate';
 
 class LottoController {
   #lottos;
@@ -29,7 +29,7 @@ class LottoController {
   async inputPurchaseAmount() {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
-      Validator.purchaseAmount(purchaseAmount);
+      Validate.purchaseAmount(purchaseAmount);
       this.issueLottos(Number(purchaseAmount));
       return Number(purchaseAmount);
     } catch (error) {
@@ -50,7 +50,7 @@ class LottoController {
   async inputWinningNumber() {
     try {
       const winningNumber = await InputView.readWinningNumber();
-      Validator.winningNumber(winningNumber);
+      Validate.winningNumber(winningNumber);
       return winningNumber.split(',').map(Number);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -61,7 +61,7 @@ class LottoController {
   async inputBonusNumber(winningNumber) {
     try {
       const bonusNumber = await InputView.readBonusNumber();
-      Validator.bonusNumber(bonusNumber, winningNumber);
+      Validate.bonusNumber(bonusNumber, winningNumber);
       return +bonusNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -81,7 +81,7 @@ class LottoController {
   async inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
-      Validator.restartCommand(restartCommand);
+      Validate.restartCommand(restartCommand);
       this.processRestartCommand(restartCommand);
     } catch (error) {
       OutputView.printErrorMessage(error.message);

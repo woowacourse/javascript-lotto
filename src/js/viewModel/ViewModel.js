@@ -2,7 +2,7 @@ import { lottoTemplate } from '../view/webView/View';
 import Comparer from './../domain/Comparer';
 import LottoMachine from './../domain/LottoMachine';
 import ProfitCalculator from './../domain/ProfitCaculator';
-import Validator from './../domain/Validator';
+import Validate from './../domain/Validate';
 import WinningLotto from './../domain/WinningLotto';
 import { $, $$ } from './../util/dom';
 
@@ -31,7 +31,7 @@ export default class ViewModel {
     $('.lottos').innerHTML = ``;
     e.preventDefault();
     try {
-      Validator.purchaseAmount(moneyInput);
+      Validate.purchaseAmount(moneyInput);
       this.#purchaseAmount = moneyInput;
 
       this.showLotto(moneyInput);
@@ -68,13 +68,11 @@ export default class ViewModel {
 
   showModal(e) {
     e.preventDefault();
-    const winningNumbers = Array.from({ length: 6 }, (v, i) =>
-      Number($$('.winningNumber-input')[i].value),
-    );
+    const winningNumbers = this.getWinningNumbers();
 
     try {
-      Validator.winningNumber(winningNumbers.join(','));
-      Validator.bonusNumber($('.bonusNumberInput').value, winningNumbers);
+      Validate.winningNumber(winningNumbers.join(','));
+      Validate.bonusNumber($('.bonusNumberInput').value, winningNumbers);
       const winningLotto = new WinningLotto(winningNumbers, Number($('.bonusNumberInput').value));
       const ranking = new Comparer(winningLotto, this.#lottos).getStatistics();
       $('.modal').style.display = 'flex';
@@ -84,6 +82,10 @@ export default class ViewModel {
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  getWinningNumbers() {
+    return Array.from({ length: 6 }, (v, i) => Number($$('.winningNumber-input')[i].value));
   }
 
   makeWinningStatistics(ranking) {

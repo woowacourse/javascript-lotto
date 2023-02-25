@@ -5,7 +5,7 @@ import {
   winningNumber as _winningNumber,
   bonusNumber as _bonusNumber,
   restartCommand,
-} from '../src/js/domain/Validator';
+} from '../src/js/domain/Validate';
 
 describe('숫자 입력 유효성 검사 테스트', () => {
   test('빈 값인 경우 예외가 발생한다.', () => {

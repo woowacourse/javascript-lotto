@@ -1,14 +1,14 @@
 import { ERROR_MESSAGE } from '../constant/message';
 import { COMMAND, LOTTO } from '../constant/setting';
 
-const Validator = {
+const Validate = {
   purchaseAmount(money) {
-    Validator.number(money);
+    Validate.number(money);
 
-    if (Validator.isLessThanMinimum(+money)) {
+    if (Validate.isLessThanMinimum(+money)) {
       throw new Error(ERROR_MESSAGE.LESS_THAN_MINIMUM);
     }
-    if (Validator.hasChange(+money)) {
+    if (Validate.hasChange(+money)) {
       throw new Error(ERROR_MESSAGE.HAS_CHANGE);
     }
   },
@@ -23,31 +23,31 @@ const Validator = {
 
   winningNumber(numbers) {
     const winningNumbers = numbers.split(',');
-    winningNumbers.forEach((number) => Validator.winningNumberElement(number));
+    winningNumbers.forEach((number) => Validate.winningNumberElement(number));
 
-    if (!Validator.isValidLength(winningNumbers)) {
+    if (!Validate.isValidLength(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER_LENGTH);
     }
-    if (Validator.hasDuplicatedNumber(winningNumbers)) {
+    if (Validate.hasDuplicatedNumber(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
     }
   },
 
   winningNumberElement(number) {
-    Validator.number(number);
+    Validate.number(number);
 
-    if (Validator.isOutOfRange(number)) {
+    if (Validate.isOutOfRange(number)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
     }
   },
 
   bonusNumber(bonusNumber, winningNumber) {
-    Validator.number(bonusNumber);
+    Validate.number(bonusNumber);
 
-    if (Validator.isOutOfRange(+bonusNumber)) {
+    if (Validate.isOutOfRange(+bonusNumber)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
     }
-    if (Validator.isDuplicatedNumber(+bonusNumber, winningNumber)) {
+    if (Validate.isDuplicatedNumber(+bonusNumber, winningNumber)) {
       throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
     }
   },
@@ -57,7 +57,7 @@ const Validator = {
   },
 
   restartCommand(command) {
-    if (!Validator.isValidRestartCommand(command)) {
+    if (!Validate.isValidRestartCommand(command)) {
       throw new Error(ERROR_MESSAGE.INVALID_RESTART_COMMAND);
     }
   },
@@ -79,10 +79,10 @@ const Validator = {
   },
 
   number(number) {
-    if (Validator.isNull(number)) {
+    if (Validate.isNull(number)) {
       throw new Error(ERROR_MESSAGE.NULL);
     }
-    if (Validator.hasBlank(number)) {
+    if (Validate.hasBlank(number)) {
       throw new Error(ERROR_MESSAGE.HAS_BLANK);
     }
     if (isNaN(number)) {
@@ -99,4 +99,4 @@ const Validator = {
   },
 };
 
-export default Validator;
+export default Validate;
