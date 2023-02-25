@@ -103,7 +103,7 @@ export class LottoGame {
 
   #getPlace(matchingLottoNumberCount, lottoTicket) {
     const isFifth = matchingLottoNumberCount === FIFTH;
-    const isMatchingBonusNumber = lottoTicket.includes(this.#winningLotto.bonusNumber);
+    const isMatchingBonusNumber = lottoTicket.includes(this.#winningNumbers[1]);
 
     return isFifth && isMatchingBonusNumber
       ? SECOND
