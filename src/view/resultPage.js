@@ -4,10 +4,15 @@ const dialogElem = document.querySelector("dialog");
 
 const resultPage = {
   addEvent(resultCallback) {
-    const resultButton = document.querySelector(".resultButton");
+    // const resultButton = document.querySelector(".resultButton");
     const restartButton = document.querySelector(".restartButton");
+    const inputLottoBonusArea = document.querySelector(".inputLottoBonusArea");
 
-    resultButton.addEventListener("click", resultCallback);
+    inputLottoBonusArea.addEventListener("submit", (event) => {
+      event.preventDefault();
+      resultCallback();
+    });
+    // resultButton.addEventListener("click", resultCallback);
     restartButton.addEventListener("click", this.clickRestart);
   },
 
@@ -28,7 +33,6 @@ const resultPage = {
     const bonus = +eachInputBonusNumber.value;
     this.resetInputElement(eachInputBonusNumber);
 
-    console.log(lotto, bonus);
     return [lotto, bonus];
   },
 

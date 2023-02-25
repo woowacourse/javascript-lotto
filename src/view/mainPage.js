@@ -1,14 +1,13 @@
 const inputAmount = document.querySelector("#inputAmount");
 const inputAmountNext = document.querySelector("#inputAmountNext");
 const randomLottoList = document.querySelector("#randomLottoList");
+const inputAmountArea = document.querySelector(".inputAmountArea");
 
 const mainPage = {
   addEvent(callback) {
-    const purchase = document.querySelector(".purchase");
-
-    purchase.addEventListener("click", callback);
-    inputAmount.addEventListener("keypress", (event) => {
-      if (event.key === "Enter") callback();
+    inputAmountArea.addEventListener("submit", (event) => {
+      callback();
+      event.preventDefault();
     });
   },
 
