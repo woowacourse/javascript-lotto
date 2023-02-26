@@ -14,14 +14,14 @@ const {
 class LottoMachine {
   async play() {
     const money = await this.readMoney();
-    const lottos = await this.quickPicksLottos(money);
+    const lottos = await this.generateAndShowLottos(money);
     const winning = new Winning();
     const winningNumbers = await this.readWinningNumbers();
     winning.setWinningNumbers(winningNumbers);
     const bonusNumber = await this.readBonusNumber(winning);
     winning.setBonusNumber(bonusNumber);
     const ranks = await this.getLottoRanks(winning, lottos);
-    await this.calculateBenefit(money, ranks);
+    await this.calculateAndShowBenefit(money, ranks);
     await this.readRetryOption();
   }
 
@@ -89,14 +89,7 @@ class LottoMachine {
     }
   }
 
-  async quickPicksLottos(money) {
-    const lottos = lottoUtils.generateLottos(money.getAmount());
-    this.#showLottos(lottos);
-
-    return lottos;
-  }
-
-  async calculateBenefit(money, ranks) {
+  async calculateAndShowBenefit(money, ranks) {
     const benefit = new Benefit();
     benefit.calculateRate(money.getAmount(), ranks);
     this.#showResult(benefit, ranks);
@@ -105,6 +98,13 @@ class LottoMachine {
   async getLottoRanks(winning, lottos) {
     const ranks = lottoUtils.getCollectedRanks(winning, lottos);
     return ranks;
+  }
+
+  async generateAndShowLottos(money) {
+    const lottos = lottoUtils.generateLottos(money.getAmount());
+    this.#showLottos(lottos);
+
+    return lottos;
   }
 
   #checkRetryOption(input) {
