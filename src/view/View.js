@@ -63,8 +63,9 @@ export default class View {
   }
 
   printEachLottoNumbers(eachLottoNumbers) {
-    const $target = $('.lotto-numbers-list');
-    const $fragment = document.createDocumentFragment();
+    const $target = $('.lotto-numbers-list-wrap');
+    const $ul = document.createElement('ul');
+    $ul.className = 'lotto-numbers-list';
 
     eachLottoNumbers.forEach((lottoNumbers) => {
       const $li = document.createElement('li');
@@ -73,10 +74,10 @@ export default class View {
       $li.textContent = listContent;
       $li.className = 'lotto-numbers-list-item';
 
-      $fragment.appendChild($li);
+      $ul.appendChild($li);
     });
 
-    $target.appendChild($fragment);
+    $target.appendChild($ul);
   }
 
   printStatistics(statistics) {
@@ -144,11 +145,9 @@ export default class View {
   }
 
   initEachLottoNumbers() {
-    const $target = $('.lotto-numbers-list');
+    const $target = $('.lotto-numbers-list-wrap');
 
-    while ($target.hasChildNodes()) {
-      $target.removeChild($target.firstChild);
-    }
+    $target.removeChild($target.firstChild);
   }
 
   initStatistics() {
