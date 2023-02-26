@@ -108,7 +108,7 @@ button:disabled:hover {
   align-items: center;
 }
 
-.lotto-section > div {
+.lotto-section > * {
   width: calc(100% - 32px);
 }
 

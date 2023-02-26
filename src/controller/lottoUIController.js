@@ -9,7 +9,7 @@ import {
 import showErrorMessage from '../components/errorMessage';
 import paintLottoResultBoard from '../view/lottoResult';
 import paintModal, {
-  addESCCloseEventListener,
+  addCloseModalBackgroundEventListener,
   closeModal,
 } from '../view/modal';
 import paintLottoStatus from '../view/purchaseLottoStatus';
@@ -38,7 +38,7 @@ export default function LottoUIController($app) {
   const init = () => {
     const $lottoSection = lottoSection();
     $app.appendChild($lottoSection);
-    addESCCloseEventListener(closeModalHandler);
+    addCloseModalBackgroundEventListener(closeHandler);
 
     this.state.$root = $lottoSection;
   };
@@ -61,11 +61,14 @@ export default function LottoUIController($app) {
   };
 
   const restart = () => {
+    console.log('restart');
     closeModal();
     this.play();
   };
 
-  const closeModalHandler = () => {
+  const closeHandler = () => {
+    console.log('close');
+
     closeModal();
     this.state.step = STEP.ENTER;
   };
@@ -84,7 +87,7 @@ export default function LottoUIController($app) {
   const paintResultView = ({ winCount, earningRate }) => {
     const $content = paintLottoResultBoard(
       { winCount, earningRate },
-      { restart, closeModalHandler }
+      { restart, closeHandler }
     );
 
     paintModal($content);

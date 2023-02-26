@@ -5,11 +5,11 @@ import {
   tableContent,
 } from '../view/templates/lottoResult';
 
-function addLottoResultEventListener($root, { retry, closeModalHandler }) {
-  $root.querySelector('#retry').addEventListener('click', retry);
+function addLottoResultEventListener($root, { restart, closeHandler }) {
+  $root.querySelector('#retry').addEventListener('click', restart);
   $root
     .querySelector('.modal-close-button')
-    .addEventListener('click', closeModalHandler);
+    .addEventListener('click', closeHandler);
 }
 
 export default function paintLottoResultBoard(

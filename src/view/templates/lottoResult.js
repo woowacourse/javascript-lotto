@@ -4,7 +4,7 @@ const resultEndContent = (earningRate) => `
 `;
 
 export const tableContent = (winCount) => `
-<table class="result-table>
+<table class="result-table">
   <thead class="caption">
     <tr>
       <th><span class="top-bottom-margin-8">일치 갯수</span></th>
@@ -46,9 +46,10 @@ export const resultTitle = `
   <p class="subtitle">🏆 당첨 통계 🏆</p>
 `;
 
-export const closeButtonContainer = `<div class="close-button-container">
-  <buton class="modal-close-button">❌</buton>
-</div>
+export const closeButtonContainer = `
+  <div class="close-button-container">
+    <button class="modal-close-button">❌</button>
+  </div>
 `;
 
 export const endContainer = ({ earningRate }) =>

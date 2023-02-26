@@ -10,7 +10,7 @@ export function closeModal() {
   $modal.classList.remove('is-active');
 }
 
-export function addESCCloseEventListener(handler) {
+export function addCloseModalBackgroundEventListener(handler) {
   const $modalBackground = document.querySelector('.modal-background');
 
   $modalBackground.addEventListener('click', handler);
