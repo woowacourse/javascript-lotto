@@ -2,6 +2,24 @@ import domList from '@lotto/view/stepTwo/domList';
 import createElement from '@lotto/utils/createElement';
 
 const ui = {
+  domList: {
+    buyBtn: $('.buy-btn'),
+    moneyInput: $('.money-input'),
+    moneyInputErrorText: $('.money-input-error-text'),
+    mainContainer: $('.main-container'),
+    lottoBox: $('.lotto-box'),
+    lottoLengthText: $('.lotto-length-text'),
+    targetNumberInputs: $$('.square-input'),
+    resultBtn: $('.result-btn'),
+    targetNumberInputErrorText: $('.target-number-input-error-text'),
+    resultModal: $('#myModal'),
+    resultTable: $('table'),
+    resultTableBody: $('#myTableBody'),
+    ropText: $('.rop-text'),
+    retryBtn: $('.retry-btn'),
+    closeModalBtn: $('.close'),
+    allInputs: $$('input'),
+  },
   showMoneyValidationText({ message }) {
     domList.moneyInputErrorText.innerText = message;
     domList.moneyInputErrorText.classList.remove('hide');
