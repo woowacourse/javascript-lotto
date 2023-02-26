@@ -1,41 +1,25 @@
-const moneyInputButton = document.querySelector('.purchase-amount-form');
+export const moneyInputButton = document.querySelector('.purchase-amount-form');
 
-const resultButton = document.querySelector('.open-result-modal-button');
+export const resultButton = document.querySelector('.open-result-modal-button');
 
-const lottoInput = document.querySelector('.purchase-amount-input');
+export const lottoInput = document.querySelector('.purchase-amount-input');
 
-const winningNumbersTag = document.querySelectorAll('.winning-number');
+export const winningNumbersTag = document.querySelectorAll('.winning-number');
 
-const bonusNumberTag = document.querySelector('.bonus-number');
+export const bonusNumberTag = document.querySelector('.bonus-number');
 
-const purchasedLottoLabel = document.querySelector('.purchased-lotto-label');
+export const purchasedLottoLabel = document.querySelector('.purchased-lotto-label');
 
-const lottoTicketContainer = document.querySelector('.lotto-ticket-container');
+export const lottoTicketContainer = document.querySelector('.lotto-ticket-container');
 
-const winningNumberForm = document.querySelector('.winning-number-form');
+export const winningNumberForm = document.querySelector('.winning-number-form');
 
-const modal = document.querySelector('.modal');
+export const modal = document.querySelector('.modal');
 
-const resultTableBody = document.querySelector('.result-table-body');
+export const resultTableBody = document.querySelector('.result-table-body');
 
-const rateOfReturn = document.querySelector('.rate-of-return');
+export const rateOfReturn = document.querySelector('.rate-of-return');
 
-const modalClose = document.querySelector('.modal-close');
+export const modalClose = document.querySelector('.modal-close');
 
-const resetButton = document.querySelector('.reset-button');
-
-module.exports = {
-  moneyInputButton,
-  resultButton,
-  lottoInput,
-  winningNumbersTag,
-  bonusNumberTag,
-  purchasedLottoLabel,
-  lottoTicketContainer,
-  winningNumberForm,
-  modal,
-  resultTableBody,
-  rateOfReturn,
-  modalClose,
-  resetButton,
-};
+export const resetButton = document.querySelector('.reset-button');

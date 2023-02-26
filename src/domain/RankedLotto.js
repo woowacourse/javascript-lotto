@@ -1,7 +1,7 @@
-const Lotto = require('./LottoMachine');
-const { NUMBER } = require('../utils/constant');
+import Lotto from './LottoMachine.js';
+import { NUMBER } from '../utils/constant.js';
 
-class RankedLotto {
+export default class RankedLotto {
   constructor() {
     this.profit = 0;
     this.lotto = new Lotto();
@@ -59,4 +59,3 @@ class RankedLotto {
     return this.profit;
   }
 }
-module.exports = RankedLotto;

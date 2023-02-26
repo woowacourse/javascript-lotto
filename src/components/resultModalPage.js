@@ -1,9 +1,9 @@
-const LottoMachine = require('../domain/LottoMachine.js');
-const RankedLotto = require('../domain/RankedLotto.js');
-const { winningNumbersTag, bonusNumberTag } = require('../utils/DOM.js');
-const display = require('../view/display.js');
+import LottoMachine from '../domain/LottoMachine.js';
+import RankedLotto from '../domain/RankedLotto.js';
+import { winningNumbersTag, bonusNumberTag } from '../utils/DOM.js';
+import { display } from '../view/display.js';
 
-class resultModalPage {
+export default class resultModalPage {
   constructor() {
     this.rankedLotto = new RankedLotto();
     this.lottoMachine = new LottoMachine();
@@ -31,5 +31,3 @@ class resultModalPage {
     display.showProfitRate(profitRate);
   }
 }
-
-module.exports = resultModalPage;

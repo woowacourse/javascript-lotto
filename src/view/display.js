@@ -1,14 +1,14 @@
-const {
+import {
   purchasedLottoLabel,
   lottoTicketContainer,
   winningNumberForm,
   modal,
   resultTableBody,
   rateOfReturn,
-} = require('../utils/DOM.js');
-const { NUMBER } = require('../utils/constant.js');
+} from '../utils/DOM.js';
+import { NUMBER } from '../utils/constant.js';
 
-const display = {
+export const display = {
   showBuyLottoCount(lottoCount) {
     purchasedLottoLabel.innerHTML = `총 ${lottoCount}개를 구매하였습니다.`;
   },
@@ -62,5 +62,3 @@ const display = {
     alert('구매 금액을 다시 입력해주세요.');
   },
 };
-
-module.exports = display;

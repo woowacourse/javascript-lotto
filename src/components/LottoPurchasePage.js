@@ -1,9 +1,9 @@
-const LottoMachine = require('../domain/LottoMachine.js');
-const display = require('../view/display.js');
-const { lottoInput } = require('../utils/DOM.js');
-const { thousandValidate, maximumMoneyValidate } = require('../utils/validation.js');
+import LottoMachine from '../domain/LottoMachine.js';
+import { display } from '../view/display.js';
+import { lottoInput } from '../utils/DOM.js';
+import { thousandValidate, maximumMoneyValidate } from '../utils/validation.js';
 
-class LottoPurchasePage {
+export default class LottoPurchasePage {
   money;
   constructor() {
     this.money = 0;
@@ -41,5 +41,3 @@ class LottoPurchasePage {
     return this.money;
   }
 }
-
-module.exports = LottoPurchasePage;

@@ -1,8 +1,8 @@
-const LottoPurchasePage = require('../components/LottoPurchasePage.js');
-const resultModalPage = require('../components/resultModalPage.js');
-const { moneyInputButton, resultButton, modalClose, modal, resetButton } = require('../utils/DOM.js');
+import LottoPurchasePage from '../components/LottoPurchasePage.js';
+import resultModalPage from '../components/resultModalPage.js';
+import { moneyInputButton, resultButton, modalClose, modal, resetButton } from '../utils/DOM.js';
 
-class LottoGameController {
+export default class LottoGameController {
   constructor() {
     this.lottoPurchasePage = new LottoPurchasePage();
     this.resultModalPage = new resultModalPage();
@@ -30,5 +30,3 @@ class LottoGameController {
     });
   }
 }
-
-module.exports = LottoGameController;
