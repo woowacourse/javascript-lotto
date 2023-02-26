@@ -39,20 +39,20 @@ class WebController {
     }
   };
 
-  validateBuyMoney = (buyMoney) => {
+  validateBuyMoney(buyMoney){
     Validator.isNumber(buyMoney);
     Validator.isDividedByThousand(buyMoney);
     Validator.isPositiveInteger(buyMoney);
   };
 
-  createLotto = (lottoAmount) => {
+  createLotto(lottoAmount) {
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto(Random.getnerateRandomNumbers());
       this.#lottoArray.push(lotto);
     }
   };
 
-  printLotto = (lottoAmount) => {
+  printLotto(lottoAmount){
     $(".purchase-amount").innerHTML = `총 ${lottoAmount}개를 구매하였습니다.`;
 
     const lottoList = this.#lottoArray
@@ -65,7 +65,7 @@ class WebController {
     $(".print-lottos-list").innerHTML = lottoList;
   };
 
-  getWinningNumbers = () => {
+  getWinningNumbers(){
     try {
       for (let i = 0; i < SETTINGS.MAX_WINNING_NUMBER_LENGTH; i++) {
         if ($$(".winning-number")[i].value === "") {
@@ -82,7 +82,7 @@ class WebController {
     }
   };
 
-  validateWinningNumbers = (winningLottoNumbers) => {
+  validateWinningNumbers(winningLottoNumbers) {
     Validator.isDuplicatedNumber(winningLottoNumbers);
     Validator.isCorrectLength(winningLottoNumbers);
     
@@ -91,13 +91,13 @@ class WebController {
     }
   };
 
-  checkEachNumber = (eachNumber) => {
+  checkEachNumber(eachNumber) {
     Validator.isNumber(eachNumber);
     Validator.isCorrectRange(eachNumber);
     Validator.isPositiveInteger(eachNumber);
   };
 
-  getBonusNumber = () => {
+  getBonusNumber(){
     try {
       this.#bonusNumber = parseInt($(".bonus-number").value, 10);
       this.validateBonusNumber();
@@ -109,7 +109,7 @@ class WebController {
     }
   };
 
-  validateBonusNumber = () => {
+  validateBonusNumber(){
     Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto);
   };
 
@@ -129,7 +129,7 @@ class WebController {
     this.printResult(lottos);
   };
 
-  printResult = (lottos) => {
+  printResult(lottos){
     $(".lotto-result-wrap").classList.add("show");
     $(".three").innerHTML = `${lottos.getLottoRanking()[SCORE.THREE]}개`;
     $(".four").innerHTML = `${lottos.getLottoRanking()[SCORE.FOUR]}개`;
@@ -145,7 +145,7 @@ class WebController {
     this.#winningLotto = [];
   };
 
-  resetScore = (lottos) => {
+  resetScore(lottos){
     for (const lotto of lottos.getLottos()) {
       lotto.resetScore();
     }
