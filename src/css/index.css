@@ -34,3 +34,9 @@ header {
 .lotto-ticket-container {
   list-style: none;
 }
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}

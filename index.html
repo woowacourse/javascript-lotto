@@ -36,79 +36,81 @@
             <ul class="lotto-ticket-container d-flex flex-wrap pl-0"></ul>
           </section>
           <form id="winning-number-form" class="winning-number-form d-none mt-5">
-            <label class="flex-auto d-inline-block mb-3">
-              지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
-            </label>
-            <div class="d-flex mt-2 justify-between">
-              <section>
-                <span class="text-lg">당첨 번호</span>
-                <div class="mt-2">
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="winning-number mx-1 text-center"
-                    aria-label="winningNumber1"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="winning-number mx-1 text-center"
-                    aria-label="winningNumber2"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="winning-number mx-1 text-center"
-                    aria-label="winningNumber3"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="winning-number mx-1 text-center"
-                    aria-label="winningNumber4"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="winning-number mx-1 text-center"
-                    aria-label="winningNumber5"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="winning-number mx-1 text-center"
-                    aria-label="winningNumber6"
-                    required
-                  />
-                </div>
-              </section>
-              <section class="bonus-number-container">
-                <span class="mt-0 mb-3 text-lg">보너스 번호</span>
-                <div class="d-flex justify-end mt-2">
-                  <input
-                    type="number"
-                    min="1"
-                    max="45"
-                    class="bonus-number text-center"
-                    aria-label="bonusNumber"
-                    required
-                  />
-                </div>
-              </section>
-            </div>
-            <div class="winning-number-check-message mt-3 text-sm text-red h-2r spacing-sm"></div>
-            <button type="button" class="open-result-modal-button btn btn-indigo w-100">결과 확인하기</button>
+            <fieldset>
+              <legend class="flex-auto d-inline-block mb-3">
+                지난 주 당첨번호 6개와 보너스 넘버 1개를 입력해주세요.
+              </legend>
+              <div class="d-flex mt-2 justify-between">
+                <section>
+                  <label class="text-lg">당첨 번호</label>
+                  <div class="mt-2">
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="winning-number winning-number-one mx-1 text-center"
+                      aria-label="winningNumber1"
+                      required
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="winning-number mx-1 text-center"
+                      aria-label="winningNumber2"
+                      required
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="winning-number mx-1 text-center"
+                      aria-label="winningNumber3"
+                      required
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="winning-number mx-1 text-center"
+                      aria-label="winningNumber4"
+                      required
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="winning-number mx-1 text-center"
+                      aria-label="winningNumber5"
+                      required
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="winning-number mx-1 text-center"
+                      aria-label="winningNumber6"
+                      required
+                    />
+                  </div>
+                </section>
+                <section class="bonus-number-container">
+                  <label class="mt-0 mb-3 text-lg">보너스 번호</label>
+                  <div class="d-flex justify-end mt-2">
+                    <input
+                      type="number"
+                      min="1"
+                      max="45"
+                      class="bonus-number text-center"
+                      aria-label="bonusNumber"
+                      required
+                    />
+                  </div>
+                </section>
+              </div>
+              <div class="winning-number-check-message mt-3 text-sm text-red h-2r spacing-sm"></div>
+              <button type="button" class="open-result-modal-button btn btn-indigo w-100">결과 확인하기</button>
+            </fieldset>
           </form>
         </div>
       </section>

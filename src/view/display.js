@@ -2,6 +2,7 @@ import {
   purchasedLottoLabel,
   lottoTicketContainer,
   winningNumberForm,
+  winningNumberOne,
   modal,
   rateOfReturn,
   fifthWin,
@@ -26,7 +27,7 @@ export const display = {
 
   showWinningNumberForm() {
     winningNumberForm.classList.remove('d-none');
-    winningNumberForm[NUMBER.FIRST_INPUT].focus();
+    winningNumberOne.focus();
   },
 
   showModal(lottoResultChart) {

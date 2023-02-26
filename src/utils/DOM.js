@@ -14,6 +14,8 @@ export const lottoTicketContainer = document.querySelector('.lotto-ticket-contai
 
 export const winningNumberForm = document.querySelector('.winning-number-form');
 
+export const winningNumberOne = document.querySelector('.winning-number-one');
+
 export const modal = document.querySelector('.modal');
 
 export const rateOfReturn = document.querySelector('.rate-of-return');
