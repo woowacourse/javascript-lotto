@@ -82,6 +82,14 @@ const Element = {
     );
   },
 
+  blockModalScroll() {
+    document.body.style.overflow = "hidden";
+  },
+
+  allowModalScorll() {
+    document.body.style.overflow = "unset";
+  },
+
   createInnerText(element, text) {
     element.innerText = text;
   },

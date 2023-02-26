@@ -73,6 +73,7 @@ class App2 {
     this.isInitShow = false;
     this.inputWinningLottos();
     this.checkWinningLottoInputs();
+    Element.blockModalScroll();
   }
 
   inputWinningLottos() {
@@ -138,12 +139,15 @@ class App2 {
 
     EventHandler.handleEvent(closeButton, "click", () => {
       HandleView.addClassList(result, "hidden");
+      Element.allowModalScorll();
     });
     EventHandler.handleEvent(result, "click", () => {
       HandleView.addClassList(result, "hidden");
+      Element.allowModalScorll();
     });
     EventHandler.handleESCKeyEvent(document, () => {
       HandleView.addClassList(result, "hidden");
+      Element.allowModalScorll();
     });
   }
 
@@ -180,6 +184,7 @@ class App2 {
     const result = HandleView.$(CLASS_NAME.RESULT_BG);
 
     HandleView.removeClassList(result, "hidden");
+    Element.blockModalScroll();
   }
 }
 
