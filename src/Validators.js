@@ -38,6 +38,10 @@ const Validators = {
   isDuplicatedNumbers(lottoNumbers) {
     return new Set(lottoNumbers).size !== lottoNumbers.length;
   },
+
+  isMaxBuyMoney(input) {
+    return input > 100_000
+  }
 };
 
 export default Validators;
