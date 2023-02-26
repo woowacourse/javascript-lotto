@@ -1,4 +1,19 @@
 :root {
+  /* font */
+  --title-font: 24px Roboto 800;
+  --subtitle-font: 20px Roboto 600;
+  --body-font: 15px Roboto 400;
+  --placeholder-font: 15px Roboto 400;
+  --caption-font: 14px Roboto 700;
+  --button-font: 14px Roboto 700;
+
+  /* color */
+  --primary-color: #4e5ba6;
+  --white: #ffffff;
+  --light-gray: #fcfcfd;
+  --gray: #b4b4b4;
+  --dark-gray: #8b8b8b;
+  --black: #000000;
 }
 
 header {
