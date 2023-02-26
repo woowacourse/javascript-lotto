@@ -24,8 +24,7 @@ export default class PurchaseView {
   }
 
   printErrorMessage(message) {
-    this.$purchaseAmountForm.querySelector('div').innerHTML = '';
-    this.$purchaseAmountForm.querySelector('div').innerHTML = message;
+    this.$purchaseAmountForm.querySelector('.error').innerHTML = message;
   }
 
   hideErrorMessage() {
