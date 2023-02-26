@@ -3,7 +3,7 @@ import { LOTTO_PRIZE_MONEY, PRIZE_MATCH_COUNT } from '../constants/condition.js'
 
 export default class View {
   onClickPurchaseAmountSubmitButton(callback) {
-    $('.purchase-amount-submit-button').addEventListener('click', (e) => {
+    $('.purchase-amount-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
       const purchaseAmountInput = $('.purchase-amount-input').value;
@@ -12,7 +12,7 @@ export default class View {
   }
 
   onClickWinningLottoSubmitButton(callback) {
-    $('.winning-lotto-submit-button').addEventListener('click', (e) => {
+    $('.winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
       const $$winningNumberInputNodeList = $$('.winning-number-input');
