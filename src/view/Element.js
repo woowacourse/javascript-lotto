@@ -1,6 +1,7 @@
 import Utils from "../util/Utils";
 import LOTTO_SCORE from "../constants/LottoBoard";
 import VIEW from "../constants/View";
+import HandleView from "../util/HandleView";
 
 const Element = {
   createBuyLottos(lotto, buyAmount, lottoAmount) {
@@ -36,8 +37,8 @@ const Element = {
     const resultBg = document.createElement("section");
     const resultContainer = document.createElement("div");
 
-    this.addClassList(resultBg, "result-background");
-    this.addClassList(resultContainer, "result-container");
+    HandleView.addClassList(resultBg, "result-background");
+    HandleView.addClassList(resultContainer, "result-container");
     Utils.$("#app").appendChild(resultBg);
     resultBg.appendChild(resultContainer);
   },
@@ -81,14 +82,6 @@ const Element = {
 
   createInnerText(element, text) {
     element.innerText = text;
-  },
-
-  removeClassList(element, className) {
-    element.classList.remove(className);
-  },
-
-  addClassList(element, className) {
-    element.classList.add(className);
   },
 };
 

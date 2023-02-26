@@ -8,6 +8,7 @@ import LottoMachine from "./domain/LottoMachine";
 import InputCheck from "./InputCheck";
 import LOTTO_GAME from "./constants/LottoGame";
 import CLASS_NAME from "./constants/ClassName";
+import HandleView from "./util/HandleView";
 
 class App2 {
   #lottos;
@@ -24,8 +25,8 @@ class App2 {
   }
 
   startLottoGame() {
-    const buyButton = Utils.$(CLASS_NAME.LOTTO_BUY_BUTTON);
-    const buyMoneyInput = Utils.$(CLASS_NAME.LOTTO_INPUT_BOX);
+    const buyButton = HandleView.$(CLASS_NAME.LOTTO_BUY_BUTTON);
+    const buyMoneyInput = HandleView.$(CLASS_NAME.LOTTO_INPUT_BOX);
 
     EventHandler.handleEvent(buyButton, "click", () => {
       try {
@@ -51,17 +52,17 @@ class App2 {
   }
 
   showLottos() {
-    const buyAmount = Utils.$(CLASS_NAME.LOTTO_BUY_AMOUNT_COMMENT);
-    const buyResultSection = Utils.$(CLASS_NAME.LOTTO_BUY_RESULT);
+    const buyAmount = HandleView.$(CLASS_NAME.LOTTO_BUY_AMOUNT_COMMENT);
+    const buyResultSection = HandleView.$(CLASS_NAME.LOTTO_BUY_RESULT);
 
-    Element.removeClassList(buyResultSection, "hidden");
+    HandleView.removeClassList(buyResultSection, "hidden");
     this.#lottos.forEach((lotto) => {
       Element.createBuyLottos(lotto, buyAmount, this.#lottos.length);
     });
   }
 
   progressLottoGame() {
-    const resultButton = Utils.$(CLASS_NAME.LOTTO_RESULT_BUTTON);
+    const resultButton = HandleView.$(CLASS_NAME.LOTTO_RESULT_BUTTON);
 
     EventHandler.handleEvent(resultButton, "click", () => {
       this.isInitShow ? this.showInitResult() : this.showResultAgain();
@@ -75,13 +76,13 @@ class App2 {
   }
 
   showResultAgain() {
-    const result = Utils.$(CLASS_NAME.RESULT_BG);
+    const result = HandleView.$(CLASS_NAME.RESULT_BG);
 
-    Element.removeClassList(result, "hidden");
+    HandleView.removeClassList(result, "hidden");
   }
 
   getWinningLotto() {
-    const winningLottosInputs = Utils.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
+    const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
 
     winningLottosInputs.forEach((winningNumber) => {
       this.winningLotto.push(Number(winningNumber.value));
@@ -109,7 +110,7 @@ class App2 {
   }
 
   resetWinningLottoInputs() {
-    const winningLottosInputs = Utils.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
+    const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
     winningLottosInputs.forEach((winningNumber) => {
       winningNumber.value = "";
     });
@@ -117,13 +118,13 @@ class App2 {
   }
 
   getBonusNumber() {
-    const bonusInput = Utils.$(CLASS_NAME.BONUSLOTTO_INPUT);
+    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
 
     this.bonusNumber = Number(bonusInput.value);
   }
 
   resetBonusLottoInput() {
-    const bonusInput = Utils.$(CLASS_NAME.BONUSLOTTO_INPUT);
+    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
 
     bonusInput.value = "";
     this.bonusNumber = 0;
@@ -154,7 +155,7 @@ class App2 {
   }
 
   retryLottoGame(lottoScore) {
-    const retryButton = Utils.$(CLASS_NAME.RETYR_BUTTON);
+    const retryButton = HandleView.$(CLASS_NAME.RETYR_BUTTON);
 
     EventHandler.handleEvent(retryButton, "click", () => {
       this.resetGame(lottoScore);
@@ -167,11 +168,11 @@ class App2 {
   }
 
   closeModal() {
-    const closeButton = Utils.$(CLASS_NAME.MODAL_CLOSE_BUTTON);
-    const result = Utils.$(CLASS_NAME.RESULT_BG);
+    const closeButton = HandleView.$(CLASS_NAME.MODAL_CLOSE_BUTTON);
+    const result = HandleView.$(CLASS_NAME.RESULT_BG);
 
     EventHandler.handleEvent(closeButton, "click", () => {
-      Element.addClassList(result, "hidden");
+      HandleView.addClassList(result, "hidden");
     });
   }
 }
