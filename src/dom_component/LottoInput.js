@@ -23,13 +23,7 @@ class LottoInput {
   }
 
   #getWinningNumbers() {
-    const winningNumbers = [];
-
-    this.winningNumberInputs.forEach((input) => {
-      winningNumbers.push(Number(input.value));
-    });
-
-    return winningNumbers;
+    return [...this.winningNumberInputs].map((input) => Number(input.value));
   }
 
   #getBonusNumber() {
@@ -43,8 +37,8 @@ class LottoInput {
   }
 
   resetWinningNumberInputs() {
-    this.winningNumberInputs.forEach((each) => {
-      each.value = '';
+    this.winningNumberInputs.forEach((input) => {
+      input.value = '';
     });
     this.winningNumberInputs[0].focus();
   }
