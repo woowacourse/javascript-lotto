@@ -142,6 +142,9 @@ class App2 {
     EventHandler.handleEvent(result, "click", () => {
       HandleView.addClassList(result, "hidden");
     });
+    EventHandler.handleESCKeyEvent(document, () => {
+      HandleView.addClassList(result, "hidden");
+    });
   }
 
   retryLottoGame(lottoScore) {

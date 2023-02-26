@@ -4,6 +4,18 @@ const EventHandler = {
       callback();
     });
   },
+
+  handleClickEvent(element,callback) {
+    element.addEventListener("click", () => {
+      callback();
+    });
+  },
+
+  handleESCKeyEvent(element,callback) {
+    element.addEventListener("keyup", (e) => {
+      e.code === "Escape" && callback();
+    });
+  },
 };
 
 export default EventHandler;
