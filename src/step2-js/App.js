@@ -1,9 +1,7 @@
 import LottoGameController from './LottoGameController.js';
 
-export default class App {
-  #lottoGameController;
+const app = () => {
+  new LottoGameController();
+};
 
-  constructor() {
-    this.#lottoGameController = new LottoGameController();
-  }
-}
+export default app;

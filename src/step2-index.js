@@ -1,4 +1,4 @@
-import App from './step2-js/App.js';
+import app from './step2-js/app.js';
 import './css/index.css';
 
-new App();
+app();
