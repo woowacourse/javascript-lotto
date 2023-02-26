@@ -3,8 +3,12 @@ import {
   lottoTicketContainer,
   winningNumberForm,
   modal,
-  resultTableBody,
   rateOfReturn,
+  fifthWin,
+  fourthWin,
+  thirdWin,
+  secondhWin,
+  firstWin,
 } from '../utils/DOM.js';
 import { NUMBER } from '../utils/constant.js';
 
@@ -27,31 +31,11 @@ export const display = {
 
   showModal(lottoResultChart) {
     modal.classList.remove('v-hidden');
-    resultTableBody.innerHTML = `<tr class="text-center">
-    <td class="p-3">3개</td>
-    <td class="p-3">5,000</td>
-    <td class="p-3">${lottoResultChart[NUMBER.FIFTH]}</td>
-  </tr>
-  <tr class="text-center">
-    <td class="p-3">4개</td>
-    <td class="p-3">50,000</td>
-    <td class="p-3">${lottoResultChart[NUMBER.FOURTH]}</td>
-  </tr>
-  <tr class="text-center">
-    <td class="p-3">5개</td>
-    <td class="p-3">1,500,000</td>
-    <td class="p-3">${lottoResultChart[NUMBER.THIRD]}</td>
-  </tr>
-  <tr class="text-center">
-    <td class="p-3">5개 + 보너스볼</td>
-    <td class="p-3">30,000,000</td>
-    <td class="p-3">${lottoResultChart[NUMBER.SECOND]}</td>
-  </tr>
-  <tr class="text-center">
-    <td class="p-3">6개</td>
-    <td class="p-3">2,000,000,000</td>
-    <td class="p-3">${lottoResultChart[NUMBER.FIRST]}</td>
-  </tr>`;
+    fifthWin.innerHTML = lottoResultChart[NUMBER.FIFTH];
+    fourthWin.innerHTML = lottoResultChart[NUMBER.FOURTH];
+    thirdWin.innerHTML = lottoResultChart[NUMBER.THIRD];
+    secondhWin.innerHTML = lottoResultChart[NUMBER.SECOND];
+    firstWin.innerHTML = lottoResultChart[NUMBER.FIRST];
   },
 
   showProfitRate(profitRate) {

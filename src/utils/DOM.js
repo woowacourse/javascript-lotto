@@ -16,10 +16,18 @@ export const winningNumberForm = document.querySelector('.winning-number-form');
 
 export const modal = document.querySelector('.modal');
 
-export const resultTableBody = document.querySelector('.result-table-body');
-
 export const rateOfReturn = document.querySelector('.rate-of-return');
 
 export const modalClose = document.querySelector('.modal-close');
 
 export const resetButton = document.querySelector('.reset-button');
+
+export const fifthWin = document.querySelector('.fifth-win');
+
+export const fourthWin = document.querySelector('.fourth-win');
+
+export const thirdWin = document.querySelector('.third-win');
+
+export const secondhWin = document.querySelector('.second-win');
+
+export const firstWin = document.querySelector('.first-win');
