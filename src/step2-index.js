@@ -81,8 +81,8 @@ const mountModal = () => {
   $('#modal').insertAdjacentHTML('beforeend', Modal(webController.getStatstics()));
   $('#modal').style.display = 'flex';
 
-  $('.restart-button').addEventListener('click', () => restart());
-  $('.modal-close-button').addEventListener('click', () => restart());
+  $('.restart-button').addEventListener('click', restart);
+  $('.modal-close-button').addEventListener('click', restart);
 
   document.body.style.overflow = 'hidden';
 };
