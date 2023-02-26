@@ -98,11 +98,11 @@ class WinningStatModal {
   }
 
   openModal() {
-    this.$target.classList.remove('hidden');
+    this.$target.classList.remove('invisible');
   }
 
   closeModal() {
-    this.$target.classList.add('hidden');
+    this.$target.classList.add('invisible');
   }
 }
 

@@ -7,7 +7,7 @@ class HomePage {
   <footer>
     <p class="copyright">Copyright 2023. woowacourse</p>
   </footer>
-  <div class="modal hidden"></div>
+  <div class="modal invisible"></div>
   `;
 
   $target;
