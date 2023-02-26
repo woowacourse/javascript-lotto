@@ -26,16 +26,6 @@ const WebView = {
     );
   },
 
-  showHiddenSection() {
-    $('#winning-numbers-section').classList.remove('hidden');
-    $('#purchased-lotto-section').classList.remove('hidden');
-  },
-
-  hideShowingSection() {
-    $('#winning-numbers-section').classList.add('hidden');
-    $('#purchased-lotto-section').classList.add('hidden');
-  },
-
   printLottoRanksResult(lottoRanksResult) {
     $('#modal').classList.remove('hidden');
 
@@ -46,6 +36,14 @@ const WebView = {
 
   printProfitRate(profitRate) {
     $('#profit-rate-span').innerHTML = profitRate;
+  },
+
+  show(...elements) {
+    elements.forEach((element) => $(element).classList.remove('hidden'));
+  },
+
+  hide(...elements) {
+    elements.forEach((element) => $(element).classList.add('hidden'));
   },
 };
 

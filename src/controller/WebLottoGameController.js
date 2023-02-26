@@ -18,7 +18,7 @@ class WebLottoGameController {
 
     this.#issueLottoTickets(userBudget);
     this.#printLottoTickets();
-    WebView.showHiddenSection();
+    WebView.show('#winning-numbers-section', '#purchased-lotto-section');
   }
 
   #issueLottoTickets(userBudget) {
@@ -79,12 +79,11 @@ class WebLottoGameController {
   }
 
   handleModalClose() {
-    $('#modal').classList.add('hidden');
+    WebView.hide('#modal');
   }
 
   handleRestart() {
-    $('#modal').classList.add('hidden');
-    WebView.hideShowingSection();
+    WebView.hide('#winning-numbers-section', '#purchased-lotto-section', '#modal');
     $$('.lotto-number-input').forEach((lottoNumber) => (lottoNumber.value = ''));
     $('#user-budget-input').value = '';
   }
