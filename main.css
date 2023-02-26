@@ -174,18 +174,21 @@ input::-webkit-inner-spin-button {
 }
 
 /* modal */
-#lotto-statistics-modal-flex-option {
+#lotto-statistics-modal {
   width: 318px;
   height: 500px;
   border-radius: 4px;
   border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 #lotto-statistics-modal::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+#lotto-statistics-modal-flex-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #lotto-statistics-modal-header-container {
