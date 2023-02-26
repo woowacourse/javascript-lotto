@@ -1,3 +1,6 @@
+:root {
+}
+
 header {
   background-color: #4e5ba6;
   color: white;
@@ -14,7 +17,6 @@ body {
   left: 0;
   right: 0;
   margin: 0;
-  /* position: relative; */
 }
 
 h1 {
@@ -45,9 +47,6 @@ h2 {
 .app-box {
   width: 414px;
   height: 727px;
-
-  /* top: 200px; */
-  /* left: 236px; */
   margin: 84px auto 84px auto;
   border: solid 1px #0000001f;
   background: #ffffff;
@@ -133,6 +132,7 @@ dialog {
   justify-content: space-between;
 }
 
+/* TODO: cursor: pointer */
 #result-button {
   margin: 2rem auto 1rem auto;
   text-align: center;
@@ -147,12 +147,6 @@ dialog {
   font-size: 1.5rem;
   margin-right: 0.4rem;
 }
-
-/* modal */
-
-/* body {
-  overflow: hidden;
-} */
 
 #result-modal {
   width: 500px;

@@ -7,9 +7,9 @@ const lottoGame = new LottoGame();
 
 const WebApp = function () {
   const purchasingHandler = (event) => {
-    event.preventDefault();
-    try {
-      const money = Number($('#money').value);
+  event.preventDefault();
+  try {
+    const money = Number($('#money').value);
       const lottoList = lottoGame.setLottos(money).getLottos();
       renderLottoList(lottoList);
       renderWinningForm(lottoGame);
