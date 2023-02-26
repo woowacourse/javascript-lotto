@@ -10,17 +10,17 @@ const renderWinningForm = () => {
             <div id="winning-numbers-inputs">${new Array(LOTTO.numbersLength)
               .fill()
               .map(() => {
-                return `<input type="text" name="winning-number" autocomplete="off" />`;
+                return `<input type="number" name="winning-number" autocomplete="off" />`;
               })
               .join('')}
             </div>
         </div>
         <div id="bonusNumber-input">
             <div class="winning-form-input-title">보너스 번호</div>
-            <input type="text" name="bonus-number" autocomplete="off" />
+            <input type="number" name="bonus-number" autocomplete="off" />
         </div>
     </div>
-    <input type="submit" value="결과 확인하기" />
+    <button>결과 확인하기</button>
   `;
 };
 

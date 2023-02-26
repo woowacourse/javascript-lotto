@@ -28,10 +28,6 @@
   margin-bottom: 8px;
 }
 
-.bonusNumber-input div {
-  text-align: right;
-}
-
 #winning-numbers-inputs input {
   margin-right: 8px;
   border: 1px solid #b4b4b4;
@@ -51,7 +47,8 @@
   text-align: center;
 }
 
-#winning-lotto-from input[type='submit'] {
+#winning-lotto-from button {
+  height: 36px;
   width: 100%;
   background: #4e5ba6;
   border-radius: 4px;

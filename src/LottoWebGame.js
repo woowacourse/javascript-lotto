@@ -64,8 +64,9 @@ class LottoWebGame {
 
   handleSubmitPurchaseAmount(event) {
     event.preventDefault();
+    const $purchaseAmount = $('#purchase-amount');
 
-    const purchaseAmount = $('#purchase-amount-form input[type=text]').value;
+    const purchaseAmount = $purchaseAmount.value;
     try {
       lottoGameValidator.checkPruchaseAmount(purchaseAmount);
       this.buyLottos(purchaseAmount);
@@ -73,7 +74,7 @@ class LottoWebGame {
       render.winningLottoForm();
     } catch (error) {
       window.alert(error);
-      $('#purchase-amount-form input[type=text]').value = '';
+      $purchaseAmount.value = '';
     }
   }
 
@@ -105,7 +106,7 @@ class LottoWebGame {
     if (!target.matches('button')) return;
 
     this.lottos = [];
-    $('#purchase-amount-form input[type=text]').value = '';
+    $('#purchase-amount').value = '';
     render.restart();
   }
 

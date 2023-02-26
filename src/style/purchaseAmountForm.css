@@ -13,7 +13,7 @@
   justify-content: space-between;
 }
 
-#purchase-amount-inputs input[type='text'] {
+#purchase-amount {
   margin-right: 16px;
   padding: 8px 8px;
   width: 100%;
@@ -22,14 +22,14 @@
   border-radius: 4px;
 }
 
-#purchase-amount-inputs input[type='text']::placeholder {
+#purchase-amount::placeholder {
   font: 400 15px/24px 'Roboto';
   line-height: 24px;
   letter-spacing: 0.5px;
   color: #8b8b8b;
 }
 
-#purchase-amount-inputs input[type='submit'] {
+#purchase-amount-inputs button {
   padding: 6px 6px 6px 8px;
   width: 56px;
   height: 36px;
