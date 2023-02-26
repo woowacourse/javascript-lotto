@@ -9,7 +9,8 @@ class LottoGameWebController {
     this.bindEventListener();
   };
 
-  handleClickPurchaseButton = () => {
+  handleClickPurchaseButton = (event) => {
+    event.preventDefault();
     const money = View.getMoneyInput();
 
     try {
@@ -32,7 +33,8 @@ class LottoGameWebController {
     View.resetMoneyInput();
   };
 
-  handleClickResultButton = () => {
+  handleClickResultButton = (event) => {
+    event.preventDefault();
     const lottoNumber = View.getLottoNumberInput();
     const bonusNumber = View.getBonusNumberInput();
 
@@ -62,9 +64,9 @@ class LottoGameWebController {
     $('#result-button').addEventListener('click', this.handleClickResultButton);
 
     $$('.lotto-number-input').forEach((numberInput) => {
-      numberInput.addEventListener('keypress', (e) => {
-        if (e.key !== 'Enter') return;
-        this.handleClickResultButton();
+      numberInput.addEventListener('keypress', (event) => {
+        if (event.key !== 'Enter') return;
+        this.handleClickResultButton(event);
       });
     });
   };
@@ -72,9 +74,9 @@ class LottoGameWebController {
   addEventListenerPurchaseInput = () => {
     $('#purchase-button').addEventListener('click', this.handleClickPurchaseButton);
 
-    $('#money-input').addEventListener('keypress', (e) => {
-      if (e.key !== 'Enter') return;
-      this.handleClickPurchaseButton();
+    $('#money-input').addEventListener('keypress', (event) => {
+      if (event.key !== 'Enter') return;
+      this.handleClickPurchaseButton(event);
     });
   };
 

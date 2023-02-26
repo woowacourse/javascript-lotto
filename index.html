@@ -12,23 +12,23 @@
         <h1>🎱 행운의 로또</h1>
       </header>
       <main>
-        <div id="game-container">
+        <section id="game-container">
           <h1>🎱 내 번호 당첨 확인 🎱</h1>
           <div id="money-input-container">
-            <div class="game-message">구입할 금액을 입력해주세요.</div>
-            <div id="purchase-form">
+            <h3 class="game-message">구입할 금액을 입력해주세요.</h3>
+            <form id="purchase-form">
               <input id="money-input" type="text" placeholder="금액" />
               <button id="purchase-button" class="my-button">구입</button>
-            </div>
+            </form>
           </div>
-        </div>
+        </section>
       </main>
       <footer>
         <p>Copyright 2023. woowacourse</p>
       </footer>
     </div>
-    <section id="modal-background">
-      <div id="modal-container">
+    <div id="modal-background">
+      <section id="modal-container">
         <button id="modal-close-button">✕</button>
         <h1>🏆 당첨 통계 🏆</h1>
         <table>
@@ -67,22 +67,22 @@
             </tr>
           </tbody>
         </table>
-        <div>당신의 총 수익률은 <span id="profit-rate"></span>%입니다.</div>
+        <h3>당신의 총 수익률은 <span id="profit-rate"></span>%입니다.</h3>
         <button id="reset-button" class="my-button">다시 시작하기</button>
-      </div>
-    </section>
+      </section>
+    </div>
     <template id="lotto-list-template">
-      <div id="lotto-list-container">
-        <div class="game-message">총 <span id="lotto-count">0</span>개를 구매하셨습니다.</div>
+      <section id="lotto-list-container">
+        <h3 class="game-message">총 <span id="lotto-count">0</span>개를 구매하셨습니다.</h3>
         <ul id="lotto-list"></ul>
-      </div>
+      </section>
     </template>
     <template id="winning-lotto-template">
-      <div id="winning-lotto-container">
-        <div class="game-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-        <div id="number-input-container">
-          <div id="lotto-number-container" class="number-container">
-            <div class="game-message">당첨 번호</div>
+      <form id="winning-lotto-container">
+        <h3 class="game-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h3>
+        <section id="number-input-container">
+          <article id="lotto-number-container" class="number-container">
+            <h3 class="game-message">당첨 번호</h3>
             <div id="lotto-number-input-list">
               <input id="first-number" class="lotto-number-input winning-number" type="text" />
               <input id="second-number" class="lotto-number-input winning-number" type="text" />
@@ -91,13 +91,13 @@
               <input id="fifth-number" class="lotto-number-input winning-number" type="text" />
               <input id="sixth-number" class="lotto-number-input winning-number" type="text" />
             </div>
-          </div>
-          <div id="bonus-number-container" class="number-container">
-            <div class="game-message">보너스 번호</div>
+          </article>
+          <article id="bonus-number-container" class="number-container">
+            <h3 class="game-message">보너스 번호</h3>
             <input id="bonus-number" class="lotto-number-input bonus-number" type="text" />
-          </div>
-        </div>
-      </div>
+          </article>
+        </section>
+      </form>
       <button id="result-button" class="my-button">결과 확인하기</button>
     </template>
   </body>
