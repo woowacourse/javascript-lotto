@@ -14,7 +14,7 @@ import {
   MODAL_CLOSE_BUTTON,
 } from './components/StatisticsModal';
 
-export default class GameResultView {
+const GameResultView = {
   render(ranks, profitRate) {
     const lottoGameContainer = document.getElementById('lotto-game');
     const gameResultDialog = document.createElement('dialog');
@@ -32,7 +32,7 @@ export default class GameResultView {
     gameResultDialog.appendChild(MODAL_RESTART_BUTTON);
 
     lottoGameContainer.appendChild(gameResultDialog);
-  }
+  },
 
   renderTable(ranks) {
     const modalTable = document.createElement('table');
@@ -66,7 +66,7 @@ export default class GameResultView {
     modalTable.appendChild(modalTableBody);
 
     return modalTable;
-  }
+  },
 
   renderProfitRate(profitRate) {
     const span = document.createElement('span');
@@ -75,7 +75,7 @@ export default class GameResultView {
     console.log(profitRate);
 
     return span;
-  }
+  },
 
   addRestartClickEvent(clickHandler) {
     this.button = document.getElementById('modal-restart-btn');
@@ -83,7 +83,7 @@ export default class GameResultView {
       e.preventDefault();
       clickHandler();
     });
-  }
+  },
 
   addCloseClickEvent(clickHandler) {
     this.button = document.getElementById('modal-close-btn');
@@ -91,11 +91,13 @@ export default class GameResultView {
       e.preventDefault();
       clickHandler();
     });
-  }
+  },
 
   close() {
     const lottoGameContainer = document.getElementById('lotto-game');
     const gameResultDialog = document.getElementById('modal-dialog');
     lottoGameContainer.removeChild(gameResultDialog);
-  }
-}
+  },
+};
+
+export default GameResultView;
