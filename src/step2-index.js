@@ -1,9 +1,9 @@
 import './web/css/index.css';
-import LottoWebGame from './web/controller/LottoWebGame';
+import LottoGame from './web/controller/LottoGame';
 
 /**
  * step 2의 시작점이 되는 파일입니다.
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-new LottoWebGame();
+new LottoGame();

@@ -16,7 +16,7 @@ import {
   createResultModal,
 } from '../view';
 
-class LottoWebGame {
+class LottoGame {
   #container;
 
   #modal;
@@ -102,4 +102,4 @@ class LottoWebGame {
   }
 }
 
-export default LottoWebGame;
+export default LottoGame;
