@@ -1,14 +1,14 @@
-import Lotto from './domain/models/Lotto';
 import lottoGameValidator from './domain/lottoGameValidator';
-import generateRandomNumber from './utils/generateRandomNumber';
-import { LOTTO, RANKING_THRESHOLD } from './constants';
-import { $, $$ } from './dom/dom';
 import render from './render';
 import lottoGameCalculator from './domain/lottoGameCalculator';
+import LottoMachine from './domain/models/LottoMachine';
+import { $, $$ } from './dom/dom';
+import { LOTTO } from './constants';
 
 class LottoWebGame {
   constructor() {
     this.lottos = [];
+    this.lottoMachine = new LottoMachine();
   }
 
   play() {
@@ -16,50 +16,15 @@ class LottoWebGame {
   }
 
   renderPurchasedLotto() {
-    const lottosNumbers = this.lottos.map((lotto) => lotto.getNumbers());
-    render.purchasedLotto(lottosNumbers);
+    render.purchasedLotto(this.lottoMachine.getLottosNumbers());
   }
 
   renderStatistics(winningNumbers, bonusNumber) {
-    const purchaseAmount = this.lottos.length * LOTTO.price;
-    const rankings = this.makeRankings(winningNumbers, bonusNumber);
+    const purchaseAmount = this.lottoMachine.getLottosCount() * LOTTO.price;
+    const rankings = this.lottoMachine.getRankings(winningNumbers, bonusNumber);
     const rewardRate = lottoGameCalculator.calculateRewardRate(purchaseAmount, rankings);
 
     render.statistics(rankings, rewardRate);
-  }
-
-  makeRankings(winningNumbers, bonusNumber) {
-    const rankings = [];
-    this.lottos.forEach((lotto) => {
-      const matchCount = lotto.calculateMatchCount(winningNumbers);
-      if (matchCount < RANKING_THRESHOLD) return;
-      const ranking = lotto.calculateRanking(matchCount, bonusNumber);
-      rankings.push(ranking);
-    });
-
-    return rankings;
-  }
-
-  buyLottos(purchaseAmount) {
-    this.lottos = [];
-
-    new Array(purchaseAmount / LOTTO.price).fill().forEach(() => {
-      this.lottos.push(this.publishLotto());
-    });
-  }
-
-  publishLotto() {
-    return new Lotto(this.generateLottoNumbers());
-  }
-
-  generateLottoNumbers() {
-    const lottoNumbers = [];
-    while (lottoNumbers.length < LOTTO.numbersLength) {
-      const number = generateRandomNumber(LOTTO.minNumber, LOTTO.maxNumber);
-      if (!lottoNumbers.includes(number)) lottoNumbers.push(number);
-    }
-
-    return lottoNumbers.sort((a, b) => a - b);
   }
 
   handleSubmitPurchaseAmount(event) {
@@ -69,7 +34,7 @@ class LottoWebGame {
     const purchaseAmount = $purchaseAmount.value;
     try {
       lottoGameValidator.checkPruchaseAmount(purchaseAmount);
-      this.buyLottos(purchaseAmount);
+      this.lottoMachine.buyLottos(purchaseAmount);
       this.renderPurchasedLotto();
       render.winningLottoForm();
     } catch (error) {
@@ -105,7 +70,7 @@ class LottoWebGame {
   restartLottoGame({ target }) {
     if (!target.matches('button')) return;
 
-    this.lottos = [];
+    this.lottoMachine.restartLottoGame();
     $('#purchase-amount').value = '';
     render.restart();
   }
