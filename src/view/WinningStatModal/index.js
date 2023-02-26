@@ -1,4 +1,5 @@
 import { LOTTO_PRIZE } from '../../domain/constants';
+
 import { $, dispatchCustomEvent } from '../../utils/dom';
 
 class WinningStatModal {
@@ -40,12 +41,20 @@ class WinningStatModal {
   }
 
   render() {
+    this.openModal();
     this.$target.replaceChildren();
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
-    $('.modal-close-button').addEventListener('click', () =>
-      this.handleModalClose()
+    this.bindEvent();
+  }
+
+  bindEvent() {
+    $('.dimmed').addEventListener('click', (e) =>
+      this.handleModalClickOutside(e)
     );
-    $('.restart-button').addEventListener('click', () => this.handleRestart());
+    $('.restart-button').addEventListener('click', () =>
+      this.handleRestartButtonClick()
+    );
+    $('.modal-close-button').addEventListener('click', () => this.closeModal());
   }
 
   renderResult(allLottosRank) {
@@ -77,17 +86,23 @@ class WinningStatModal {
     ).toLocaleString('ko-KR')}% 입니다.`;
   }
 
-  handleModalClose() {
+  handleModalClickOutside(e) {
+    if (e.target !== e.currentTarget) return;
+
     this.closeModal();
   }
 
-  handleRestart() {
+  handleRestartButtonClick() {
     this.closeModal();
     dispatchCustomEvent($('#app'), { eventType: 'restart' });
   }
 
+  openModal() {
+    this.$target.classList.remove('hidden');
+  }
+
   closeModal() {
-    $('.modal').classList.toggle('hidden');
+    this.$target.classList.add('hidden');
   }
 }
 
