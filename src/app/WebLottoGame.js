@@ -44,7 +44,7 @@ export class LottoGame {
 
   #purchaseLottoTicket(purchaseAmount) {
     if (!webErrorCatcher(() => validatePurchaseAmount(purchaseAmount))) {
-      return lottoTicketSection.classList.add("hidden");
+      return lottoTicketSection.classList.add("none-display");
     }
 
     const purchasedTicketCount = purchaseAmount / LOTTO_PRICE_UNIT;
@@ -53,7 +53,7 @@ export class LottoGame {
     lottoTicketCount.innerHTML = `${purchasedTicketCount}`;
 
     printLottoTicket(this.#lottoTickets);
-    lottoTicketSection.classList.remove("hidden");
+    lottoTicketSection.classList.remove("none-display");
   }
 
   #isValidWinningNumber(event) {
@@ -70,7 +70,7 @@ export class LottoGame {
   }
 
   #showLottoResult(purchaseAmount) {
-    modal.classList.remove("hidden");
+    modal.classList.remove("none-display");
     winningNumberFormButton.disabled = true;
 
     const placesOfLottoTickets = this.#getPlacesOfLottoTickets();

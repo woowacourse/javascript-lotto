@@ -371,6 +371,6 @@ footer #copyright {
   color: var(--lotto-primary);
 }
 
-.hidden {
+.none-display {
   display: none;
 }

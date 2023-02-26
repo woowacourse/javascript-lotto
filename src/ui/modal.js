@@ -10,13 +10,13 @@ const purchaseAmountInput = document.querySelector("#purchase-amount");
 export const activateClick = () => (winningNumberFormButton.disabled = false);
 
 export const handleModalCloseButtonClick = () => {
-  modal.classList.add("hidden");
+  modal.classList.add("none-display");
   activateClick();
 };
 
 export const handleRestartButtonClick = () => {
-  modal.classList.add("hidden");
-  lottoTicketSection.classList.add("hidden");
+  modal.classList.add("none-display");
+  lottoTicketSection.classList.add("none-display");
 
   [...winningNumberInput].forEach((number) => {
     number.value = null;
