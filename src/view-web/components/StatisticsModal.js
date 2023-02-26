@@ -60,9 +60,9 @@ export default class StatisticsModal extends Component {
       .map(
         ({ award, prize, count }) => `
       <tr>
-        <td>${award}</td>
-        <td>${prize}</td>
-        <td>${count}</td>
+        <td>${award === 'BONUS' ? '5개+보너스볼' : `${award}개`}</td>
+        <td>${prize.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+        <td>${count}개</td>
       </tr>`
       )
       .join('');
