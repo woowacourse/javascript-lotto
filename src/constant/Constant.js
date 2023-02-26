@@ -1,4 +1,4 @@
-const MESSAGES = {
+const messages = {
   readMoneyText: "> 구입금액을 입력해 주세요. ",
   readWinNumbersText: "\n> 당첨 번호를 입력해 주세요. ",
   readBonusNumberText: "\n> 보너스 번호를 입력해 주세요. ",
@@ -7,7 +7,7 @@ const MESSAGES = {
   printLottoCountText: "개를 구매했습니다.",
 };
 
-const ERRORMESSAGES = {
+const errorMessages = {
   isWrongMoneyText: "[ERROR] 구입 금액은 1000원 단위로 입력하세요.\n",
 
   isOverRangeNumberText: "[ERROR] 당첨 번호는 1부터 45까지로 입력하세요.\n",
@@ -20,7 +20,7 @@ const ERRORMESSAGES = {
   isWrongCommandText: "[ERROR] 재시작 명령어는 y혹은 n으로만 입력하세요.\n",
 };
 
-const RANK = {
+const rankLotto = {
   FIRST: 1,
   SECOND: 2,
   THIRD: 3,
@@ -29,13 +29,13 @@ const RANK = {
   LOSER: 0,
 };
 
-const LOTTO = {
+const lottoProperty = {
   MAX: 45,
   MIN: 1,
   SIZE: 6,
 };
 
-const PRIZE_AMOUNT = {
+const prizeAmount = {
   1: 2000000000,
   2: 30000000,
   3: 1500000,
@@ -43,7 +43,7 @@ const PRIZE_AMOUNT = {
   5: 5000,
 };
 
-const ID = {
+const selectorId = {
   INPUT_MONEY_FORM: "#input-money-form",
   INPUT_WINNER_FORM: "#input-winnumber-form",
   WINNUMBERS_ELEMENT: "#input-winnumbers-box",
@@ -65,10 +65,10 @@ const ID = {
 };
 
 module.exports = {
-  MESSAGES,
-  ERRORMESSAGES,
-  RANK,
-  LOTTO,
-  PRIZE_AMOUNT,
-  ID,
+  messages,
+  errorMessages,
+  rankLotto,
+  lottoProperty,
+  prizeAmount,
+  selectorId,
 };

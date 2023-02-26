@@ -1,37 +1,29 @@
-const { ERRORMESSAGES, LOTTO } = require("../constant/Constant");
+const { errorMessages, lottoProperty } = require("../constant/Constant");
 
 const Validation = {
   validateMoney(money) {
-    if (money <= 0 || money % 1000 != 0)
-      throw Error(ERRORMESSAGES.isWrongMoneyText);
+    if (money <= 0 || money % 1000 != 0) throw Error(errorMessages.isWrongMoneyText);
   },
 
   validateWinNumber(winNumbers) {
-    if (
-      winNumbers.some((num) => LOTTO.MIN > num || num > LOTTO.MAX || isNaN(num))
-    )
-      throw new Error(ERRORMESSAGES.isOverRangeNumberText);
-    if (winNumbers.length != 6)
-      throw new Error(ERRORMESSAGES.isWrongLottoNumberText);
+    if (winNumbers.some((num) => lottoProperty.MIN > num || num > lottoProperty.MAX || isNaN(num)))
+      throw new Error(errorMessages.isOverRangeNumberText);
+    if (winNumbers.length != 6) throw new Error(errorMessages.isWrongLottoNumberText);
 
     const winSet = new Set(winNumbers);
-    if (winSet.size != LOTTO.SIZE)
-      throw new Error(ERRORMESSAGES.isSameLottoNumberText);
+    if (winSet.size != lottoProperty.SIZE) throw new Error(errorMessages.isSameLottoNumberText);
   },
 
   validateBonusNumber(numbers, bonusNumber) {
     const number = parseInt(bonusNumber);
-    if (LOTTO.MIN > number || number > LOTTO.MAX || isNaN(number))
-      throw new Error(ERRORMESSAGES.isOverRangeBounsText);
+    if (lottoProperty.MIN > number || number > lottoProperty.MAX || isNaN(number)) throw new Error(errorMessages.isOverRangeBounsText);
 
     const numbersInt = numbers.map((num) => parseInt(num));
-    if (numbersInt.includes(number))
-      throw new Error(ERRORMESSAGES.isSameBonusNumberText);
+    if (numbersInt.includes(number)) throw new Error(errorMessages.isSameBonusNumberText);
   },
 
   validateRestartCommand(command) {
-    if (command != "y" && command != "n")
-      throw new Error(ERRORMESSAGES.isWrongCommandText);
+    if (command != "y" && command != "n") throw new Error(errorMessages.isWrongCommandText);
   },
 };
 

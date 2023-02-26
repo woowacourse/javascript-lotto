@@ -1,37 +1,37 @@
 const { $, $$ } = require("../util/Dom");
-const { RANK, ID } = require("../constant/Constant");
+const { rankLotto, selectorId } = require("../constant/Constant");
 
 const View = {
   hiddenWinLottoElements() {
-    $(ID.SHOW_LOTTOS_ELEMENT).style.visibility = "hidden";
-    $(ID.INPUT_WINLOTTO_ELEMENT).style.visibility = "hidden";
-    $(ID.SUBMIT_WINLOTTO_BUTTON).style.visibility = "hidden";
+    $(selectorId.SHOW_LOTTOS_ELEMENT).style.visibility = "hidden";
+    $(selectorId.INPUT_WINLOTTO_ELEMENT).style.visibility = "hidden";
+    $(selectorId.SUBMIT_WINLOTTO_BUTTON).style.visibility = "hidden";
   },
 
   showWinLottoElements() {
-    $(ID.SHOW_LOTTOS_ELEMENT).style.visibility = "visible";
-    $(ID.INPUT_WINLOTTO_ELEMENT).style.visibility = "visible";
-    $(ID.SUBMIT_WINLOTTO_BUTTON).style.visibility = "visible";
+    $(selectorId.SHOW_LOTTOS_ELEMENT).style.visibility = "visible";
+    $(selectorId.INPUT_WINLOTTO_ELEMENT).style.visibility = "visible";
+    $(selectorId.SUBMIT_WINLOTTO_BUTTON).style.visibility = "visible";
   },
 
   showLottoTickets(lottos) {
-    $(ID.SHOW_LOTTOS_LABEL).innerText = `총 ${lottos.length}개를 구매했습니다.`;
+    $(selectorId.SHOW_LOTTOS_LABEL).innerText = `총 ${lottos.length}개를 구매했습니다.`;
 
-    $(ID.LOTTO_LIST).replaceChildren();
+    $(selectorId.LOTTO_LIST).replaceChildren();
     lottos.forEach((lotto) => {
-      const oneLottoFrame = $(ID.DEFAULT_LOTTOTICKET).cloneNode(true);
+      const oneLottoFrame = $(selectorId.DEFAULT_LOTTOTICKET).cloneNode(true);
       oneLottoFrame.style.display = "block";
       oneLottoFrame.querySelector(".lotto-numbers").innerText = `[${lotto.numbers.join(", ")}]`;
-      $(ID.LOTTO_LIST).appendChild(oneLottoFrame);
+      $(selectorId.LOTTO_LIST).appendChild(oneLottoFrame);
     });
   },
 
   showGameResult(rankResult, revenue) {
-    [RANK.FIRST, RANK.SECOND, RANK.THIRD, RANK.FOURTH, RANK.FIFTH].forEach((rank) => {
-      $(`${ID.RESULT_RANK}${rank}`).innerText = `${rankResult[rank]}개`;
+    [rankLotto.FIRST, rankLotto.SECOND, rankLotto.THIRD, rankLotto.FOURTH, rankLotto.FIFTH].forEach((rank) => {
+      $(`${selectorId.RESULT_RANK}${rank}`).innerText = `${rankResult[rank]}개`;
     });
-    $(ID.RESULT_REVENUE).innerText = `당신의 총 수입률은 ${revenue}%입니다`;
-    $(ID.MODAL_PAGE).style.display = "block";
+    $(selectorId.RESULT_REVENUE).innerText = `당신의 총 수입률은 ${revenue}%입니다`;
+    $(selectorId.MODAL_PAGE).style.display = "block";
   },
 };
 

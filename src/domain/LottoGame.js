@@ -1,7 +1,7 @@
 const Lotto = require("./Lotto");
 const WinLotto = require("../domain/WinLotto");
 const Random = require("../util/Random");
-const { PRIZE_AMOUNT, RANK, LOTTO } = require("../constant/Constant");
+const { prizeAmount, rankLotto, lottoProperty } = require("../constant/Constant");
 
 const RANK_RESULT = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 class LottoGame {
@@ -13,8 +13,8 @@ class LottoGame {
 
   #LottoNumberGenerator() {
     const lottoNumbers = new Set();
-    while (lottoNumbers.size < LOTTO.SIZE) {
-      lottoNumbers.add(Random.RandomMinMax(LOTTO.MIN, LOTTO.MAX));
+    while (lottoNumbers.size < lottoProperty.SIZE) {
+      lottoNumbers.add(Random.RandomMinMax(lottoProperty.MIN, lottoProperty.MAX));
     }
     return Array.from(lottoNumbers);
   }
@@ -36,12 +36,12 @@ class LottoGame {
   }
 
   #rankbyCorrectCount(correctCount, isBonusNumberMatch) {
-    if (correctCount === 6) return RANK.FIRST;
-    if (correctCount === 5 && isBonusNumberMatch) return RANK.SECOND;
-    if (correctCount === 5) return RANK.THIRD;
-    if (correctCount === 4) return RANK.FOURTH;
-    if (correctCount === 3) return RANK.FIFTH;
-    if (correctCount < 3) return RANK.LOSER;
+    if (correctCount === 6) return rankLotto.FIRST;
+    if (correctCount === 5 && isBonusNumberMatch) return rankLotto.SECOND;
+    if (correctCount === 5) return rankLotto.THIRD;
+    if (correctCount === 4) return rankLotto.FOURTH;
+    if (correctCount === 3) return rankLotto.FIFTH;
+    if (correctCount < 3) return rankLotto.LOSER;
   }
 
   calculateRank(lotto, winLotto) {
@@ -70,10 +70,7 @@ class LottoGame {
   }
 
   calculateRevenueRate(rankResult, lottoCount) {
-    const revenue = Object.keys(PRIZE_AMOUNT).reduce(
-      (result, index) => result + PRIZE_AMOUNT[index] * rankResult[index],
-      0
-    );
+    const revenue = Object.keys(prizeAmount).reduce((result, index) => result + prizeAmount[index] * rankResult[index], 0);
 
     return (revenue / (lottoCount * 10)).toFixed(1);
   }

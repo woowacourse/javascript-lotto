@@ -2,7 +2,7 @@ const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
 const View = require("../view/View");
 const { $, $$ } = require("../util/Dom");
-const { ID } = require("../constant/Constant");
+const { selectorId } = require("../constant/Constant");
 
 class LottoController {
   #lottoGame;
@@ -18,10 +18,10 @@ class LottoController {
   }
 
   submitMoneyForm() {
-    $(ID.INPUT_MONEY_FORM).onsubmit = (event) => {
+    $(selectorId.INPUT_MONEY_FORM).onsubmit = (event) => {
       event.preventDefault();
 
-      const money = $(`${ID.INPUT_MONEY_FORM} input`).value;
+      const money = $(`${selectorId.INPUT_MONEY_FORM} input`).value;
       if (!this.validateMoney(money)) return;
 
       this.#lottoGame.purchaseLottos(money);
@@ -33,7 +33,7 @@ class LottoController {
   }
 
   submitWinLottoForm() {
-    $(ID.INPUT_WINNER_FORM).onsubmit = (event) => {
+    $(selectorId.INPUT_WINNER_FORM).onsubmit = (event) => {
       event.preventDefault();
 
       const inputNums = [...document.getElementsByName("winnumbers")].map((input) => input.value);
@@ -51,14 +51,14 @@ class LottoController {
     };
   }
   restart() {
-    $(ID.RESTART).addEventListener("click", () => {
+    $(selectorId.RESTART).addEventListener("click", () => {
       location.reload();
     });
   }
 
   exitModal() {
-    $(ID.MODAL_EXIT).addEventListener("click", () => {
-      $(ID.MODAL_PAGE).style.display = "none";
+    $(selectorId.MODAL_EXIT).addEventListener("click", () => {
+      $(selectorId.MODAL_PAGE).style.display = "none";
     });
   }
 
@@ -68,7 +68,7 @@ class LottoController {
       return true;
     } catch (e) {
       alert(e.message);
-      $(`${ID.INPUT_MONEY_FORM} input`).value = null;
+      $(`${selectorId.INPUT_MONEY_FORM} input`).value = null;
       View.hiddenWinLottoElements();
       return false;
     }
@@ -80,7 +80,7 @@ class LottoController {
       return true;
     } catch (e) {
       alert(e.message);
-      $$(`${ID.WINNUMBERS_ELEMENT} input`).forEach((element) => {
+      $$(`${selectorId.WINNUMBERS_ELEMENT} input`).forEach((element) => {
         element.value = null;
       });
       return false;
@@ -93,7 +93,7 @@ class LottoController {
       return true;
     } catch (e) {
       alert(e.message);
-      $(`${ID.BONUS_ELEMENT} input`).value = null;
+      $(`${selectorId.BONUS_ELEMENT} input`).value = null;
       return false;
     }
   }
