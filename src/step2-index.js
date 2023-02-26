@@ -8,3 +8,4 @@ require("../css/index.css");
 const LottoController = require("./controller/LottoController");
 
 const lottoController = new LottoController();
+lottoController.playLotto();

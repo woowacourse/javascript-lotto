@@ -6,49 +6,44 @@ const { selectorId } = require("../constant/Constant");
 
 class LottoController {
   #lottoGame;
+  #view;
 
   constructor() {
-    View.hiddenWinLottoElements();
+    this.#view = new View(this);
+  }
 
+  playLotto() {
+    this.#view.hiddenWinLottoElements();
     this.#lottoGame = new LottoGame();
-    this.submitMoneyForm();
-    this.submitWinLottoForm();
+
+    this.#view.onMoneySubmit(this.submitMoneyForm);
+    this.#view.onWinLottoSubmit(this.submitWinLottoForm);
     this.restart();
     this.exitModal();
   }
 
-  submitMoneyForm() {
-    $(selectorId.INPUT_MONEY_FORM).onsubmit = (event) => {
-      event.preventDefault();
+  submitMoneyForm(money) {
+    if (!this.validateMoney(money)) return;
 
-      const money = $(`${selectorId.INPUT_MONEY_FORM} input`).value;
-      if (!this.validateMoney(money)) return;
+    this.#lottoGame.purchaseLottos(money);
+    const lottos = this.#lottoGame.lottos;
 
-      this.#lottoGame.purchaseLottos(money);
-      const lottos = this.#lottoGame.lottos;
-
-      View.showWinLottoElements();
-      View.showLottoTickets(lottos);
-    };
+    this.#view.showWinLottoElements();
+    this.#view.showLottoTickets(lottos);
   }
 
-  submitWinLottoForm() {
-    $(selectorId.INPUT_WINNER_FORM).onsubmit = (event) => {
-      event.preventDefault();
+  submitWinLottoForm(inputNums, inputBonus) {
+    if (!this.validateWinNumbers(inputNums)) return;
+    if (!this.validateWinBonusNumber(inputNums, inputBonus)) return;
 
-      const inputNums = [...document.getElementsByName("winnumbers")].map((input) => input.value);
-      const inputBonus = document.getElementsByName("bonusnumber")[0].value;
-      if (!this.validateWinNumbers(inputNums)) return;
-      if (!this.validateWinBonusNumber(inputNums, inputBonus)) return;
-      const numbers = inputNums.map((num) => parseInt(num));
-      const bonusNumber = parseInt(inputBonus);
+    const numbers = inputNums.map((num) => parseInt(num));
+    const bonusNumber = parseInt(inputBonus);
 
-      const winLotto = this.#lottoGame.makeWinLotto(numbers, bonusNumber);
-      const rankResult = this.#lottoGame.calculateRankResult(this.#lottoGame.lottos, winLotto);
-      const revenue = this.#lottoGame.calculateRevenueRate(rankResult, this.#lottoGame.lottos.length);
+    const winLotto = this.#lottoGame.makeWinLotto(numbers, bonusNumber);
+    const rankResult = this.#lottoGame.calculateRankResult(this.#lottoGame.lottos, winLotto);
+    const revenue = this.#lottoGame.calculateRevenueRate(rankResult, this.#lottoGame.lottos.length);
 
-      View.showGameResult(rankResult, revenue);
-    };
+    this.#view.showGameResult(rankResult, revenue);
   }
   restart() {
     $(selectorId.RESTART).addEventListener("click", () => {
@@ -69,7 +64,7 @@ class LottoController {
     } catch (e) {
       alert(e.message);
       $(`${selectorId.INPUT_MONEY_FORM} input`).value = null;
-      View.hiddenWinLottoElements();
+      this.#view.hiddenWinLottoElements();
       return false;
     }
   }
