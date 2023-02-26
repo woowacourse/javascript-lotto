@@ -1,9 +1,7 @@
 const LottoMachine = require('../domain/LottoMachine.js');
 const view = require('../view/view.js');
 const { moneyValidate, winningAndBonusNumberValidate } = require('../utils/validation.js');
-const { moneyValidateError, winningAndBonusNumberValidateError } = require('../utils/validateFunction.js');
 class ControllerLottoWeb {
-
   money;
 
   constructor() {
@@ -23,13 +21,14 @@ class ControllerLottoWeb {
   }
 
   handlePurchaseButtonClick = () => {
-    this.money = view.readMoney();
-    if (moneyValidate(this.money)) {
-      alert(moneyValidateError(this.money));
-      return;
+    try {
+      this.money = view.readMoney();
+      
+      moneyValidate(this.money);
+      this.buyLottos(this.money);
+    } catch (error) {
+      alert(error.message);
     }
-
-    this.buyLottos(this.money);
   };
 
   buyLottos(money) {
@@ -46,15 +45,15 @@ class ControllerLottoWeb {
   };
 
   handleResultButtonClick = () => {
-    const winningNumber = view.readWinningNumber();
-    const bonusNumber = view.readBonusNumber();
+    try {
+      const winningNumber = view.readWinningNumber();
+      const bonusNumber = view.readBonusNumber();
 
-    if (winningAndBonusNumberValidate(winningNumber, bonusNumber)) {
-      alert(winningAndBonusNumberValidateError(winningNumber, bonusNumber));
-      return;
+      winningAndBonusNumberValidate(winningNumber, bonusNumber)
+      this.displayResult(winningNumber, bonusNumber);
+    } catch (error) {
+      alert(error.message);
     }
-
-    this.displayResult(winningNumber, bonusNumber);
   };
 
   displayResult(winningNumber, bonusNumber) {
@@ -68,7 +67,7 @@ class ControllerLottoWeb {
   handleRestartButtonClick = () => {
     view.inputReset();
     view.closeModal();
-    
+
     view.resetLottoList();
     view.hideBuyText();
     view.hidePuchase();

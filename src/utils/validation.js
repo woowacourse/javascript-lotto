@@ -13,17 +13,11 @@ const maximumMoneyValidate = money => {
 };
 
 const moneyValidate = money => {
-  if (integerValidate(money)) {
-    return true;
-  }
+  if (integerValidate(money)) throw new Error(ERROR.INPUT_MONEY_INTEGER);
 
-  if (maximumMoneyValidate(money)) {
-    return true;
-  }
+  if (maximumMoneyValidate(money)) throw new Error(ERROR.INPUT_MONEY_LIMIT);
 
-  if (thousandValidate(money)) {
-    return true;
-  }
+  if (thousandValidate(money)) throw new Error(ERROR.INPUT_MONEY_THOUSAND);
 };
 
 const winningNumberCountValidate = numbers => {
@@ -35,16 +29,13 @@ const winningNumberRange = numbers => {
 };
 
 const winningAndBonusNumberValidate = (numbers, bonus) => {
-  if (!winningNumberRange(numbers)) {
-    return true;
-  }
-  if (!winningNumberCountValidate(numbers)) {
-    return true;
-  }
-  if (!(bonus >= NUMBER.MIN_NUMBER && bonus <= NUMBER.MAX_NUMBER)) {
-    return true;
-  }
-  if (numbers.includes(bonus)) return true;
+  if (!winningNumberRange(numbers)) throw new Error(ERROR.WINNING_NUMBER_RANGE);
+
+  if (!winningNumberCountValidate(numbers)) throw new Error(ERROR.WINNING_NUMBER_COUNT);
+
+  if (bonusNumberValidate(bonus)) throw new Error(ERROR.BONUS_NUMBER_RANGE);
+
+  if (winningIncludeBonusNumberValidate(numbers, bonus)) throw new Error(ERROR.BONUS_WINNING_NUMBER_DUPLICATION);
 };
 
 const bonusNumberValidate = number => {
