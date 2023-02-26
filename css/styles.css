@@ -17,6 +17,13 @@ footer {
   border-color: var(--lotto-grayscale-2);
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input {
   padding: 1rem;
 }
