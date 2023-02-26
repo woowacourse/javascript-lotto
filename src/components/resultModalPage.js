@@ -27,7 +27,7 @@ export default class resultModalPage {
   }
 
   getProfitRate(money, lottoResultChart) {
-    const profitRate = this.rankedLotto.earningsRate(money, lottoResultChart);
-    display.showProfitRate(profitRate);
+    this.rankedLotto.earningsRate(money, lottoResultChart);
+    display.showProfitRate(this.rankedLotto.getProfit);
   }
 }
