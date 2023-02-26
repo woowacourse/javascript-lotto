@@ -96,5 +96,5 @@ const restart = () => {
   $('.submit-button').remove();
   $('.lotto-list-wrapper').remove();
 
-  document.body.style.overflow = 'unset';
+  document.body.style.overflow = 'visible';
 };
