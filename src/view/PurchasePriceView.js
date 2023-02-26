@@ -5,6 +5,7 @@ export default class PurchasePriceView {
   constructor() {
     this.form = document.getElementById('purchase-lotto-form');
     this.input = document.getElementById('price-input');
+    this.purchaseResultSection = document.getElementById('purchase-result');
   }
 
   addSubmitEvent(submitHandler) {
@@ -39,9 +40,8 @@ export default class PurchasePriceView {
       // console.log(`[${lotto.getNumbers().join(', ')}]`);
     });
 
-    const purchaseResultSEection = document.getElementById('purchase-result');
-    purchaseResultSEection.appendChild(purchaseCountSpan);
-    purchaseResultSEection.appendChild(lottosDiv);
+    this.purchaseResultSection.appendChild(purchaseCountSpan);
+    this.purchaseResultSection.appendChild(lottosDiv);
   }
 
   resetInputValue() {
