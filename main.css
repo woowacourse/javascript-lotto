@@ -92,7 +92,8 @@ input::-webkit-inner-spin-button {
   width: 382px;
   height: 308px;
   margin-top: 8px;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #lotto-list-container > div {
