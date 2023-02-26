@@ -1,11 +1,11 @@
 /* eslint-disable no-restricted-globals */
-const {
+import {
   EMPTY_STRING,
   PRICE_UNIT,
   lottoNumberRange,
   LOTTO_NUMBER_COUNT,
   regex,
-} = require('../../constants/constants');
+} from '../../constants/constants';
 
 const validator = {
   purchasePrice(input) {
@@ -17,26 +17,14 @@ const validator = {
     );
   },
 
-  winningNumbers(input) {
-    const winningNumbers = input.split(',').map(Number);
-    return (
-      !this.isEmptyOrBlankIncluded(input) &&
-      winningNumbers.every(this.isNumber) &&
-      this.checkWinningNumberCount(input) &&
-      !this.isNumberDuplicated(winningNumbers) &&
-      winningNumbers.every(this.checkNumberRange)
-    );
+  winningNumbers(winningNumbers) {
+    return !this.hasDuplicate(winningNumbers);
   },
 
   bonusNumber(winningNumbers, input) {
     const bonusNumber = Number(input);
 
-    return (
-      !this.isEmptyOrBlankIncluded(bonusNumber) &&
-      this.isNumber(bonusNumber) &&
-      this.checkNumberRange(bonusNumber) &&
-      !this.isNumberDuplicated([...winningNumbers, bonusNumber])
-    );
+    return !this.hasDuplicate([...winningNumbers, bonusNumber]);
   },
 
   isEmptyOrBlankIncluded(input) {
@@ -74,7 +62,7 @@ const validator = {
     );
   },
 
-  isNumberDuplicated(numbers) {
+  hasDuplicate(numbers) {
     return new Set(numbers).size !== numbers.length;
   },
 
@@ -83,4 +71,4 @@ const validator = {
   },
 };
 
-module.exports = validator;
+export default validator;

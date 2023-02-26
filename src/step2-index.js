@@ -1,4 +1,15 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import LottoGameController from './controller/LottoGameController';
+import eventHandler from './view/eventHandler';
+import './style.css';
+import view from './view/view';
+
+const lottoGameController = new LottoGameController();
+
+eventHandler.setPurchasePriceInputHandler(
+  lottoGameController.handlePurchasePriceInput.bind(lottoGameController)
+);
+eventHandler.setWinningNumbersInputHandler(
+  lottoGameController.handleWinningNumbersInput.bind(lottoGameController)
+);
+eventHandler.setCloseModalHandler(view.closeModal);
+eventHandler.setRestartHandler(view.restart);

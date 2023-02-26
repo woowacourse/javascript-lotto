@@ -1,0 +1,228 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #fcfcfd;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+header {
+  padding-left: 130px;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 64px;
+  background-color: #4e5ba6;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  border-top: 1px solid #b4b4b4;
+  color: #4e5ba6;
+  background-color: white;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+li {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+li span {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#app {
+  width: 100vw;
+  min-height: calc(100vh - 144px);
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#gameContainer {
+  width: 414px;
+  height: 654px;
+  border: 1px solid #b4b4b4;
+  padding-top: 52px;
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+}
+
+#priceInputForm {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  width: 382px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#priceInput {
+  width: 310px;
+  height: 36px;
+  border-radius: 4px;
+  padding: 0;
+  padding-left: 8px;
+  color: rgba(180, 180, 180, 1);
+  border: 1px solid rgba(180, 180, 180, 1);
+}
+
+#priceSubmitButton {
+  width: 56px;
+  height: 36px;
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#purchasedLottosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 382px;
+  height: 276px;
+  overflow: scroll;
+  overflow-x: hidden;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+#gameContainer ::-webkit-scrollbar {
+  display: none;
+}
+
+.winningInput {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#showResultButton {
+  width: 382px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 27px;
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+#resultModalContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#resultModal {
+  width: 350px;
+  height: 439px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 41px;
+  z-index: 9999;
+}
+
+#modalCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#statisticsContainer {
+  width: 319px;
+  border-top: 2px solid #b4b4b4;
+  margin-bottom: 32px;
+}
+
+.statisticsRow {
+  width: 319px;
+  height: 40px;
+  border-bottom: 2px solid #b4b4b4;
+  display: flex;
+}
+
+.statisticsColumn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+#profitRate {
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+#restartButton {
+  width: 318px;
+  height: 36px;
+  background-color: #4e5ba6;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
