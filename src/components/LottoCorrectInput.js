@@ -14,12 +14,12 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
       </div>
 
       <div class="flex mgTop_1_rem">
-        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
         <input type="number" class="lotto-card__lotto--input bonusNumber" id="bonusNumber" value="" />
       </div>
 

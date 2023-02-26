@@ -21,10 +21,6 @@ input {
   padding: 10px;
 }
 
-li + li {
-  margin-top: 12px;
-}
-
 .lotto-header {
   height: 4rem;
 
@@ -99,10 +95,6 @@ li + li {
   border: 1px solid;
   border-color: var(--lotto-grayscale-3);
   border-radius: 4px;
-}
-
-.winningNumbers + .winningNumbers {
-  margin-left: 4px;
 }
 
 .bonusNumber {

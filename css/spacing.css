@@ -59,3 +59,12 @@
 .pd_1_rem {
   padding: 1rem;
 }
+
+/* 간격 */
+.space-x-1 {
+  margin-left: 4px;
+}
+
+.space-y-3 {
+  margin-top: 12px;
+}

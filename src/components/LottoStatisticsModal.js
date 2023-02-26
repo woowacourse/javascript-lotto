@@ -16,7 +16,7 @@ function LottoStatisticsModal({
     count,
     money,
     winningRank
-  ) => `<li class="flex flex--space-between statistics-list__item">
+  ) => `<li class="flex flex--space-between statistics-list__item space-y-3">
       <p class="statistics-list__item__one flex flex--center">${count}개</p>
       <p class="statistics-list__item__one flex flex--center">${money}</p>
       <p class="statistics-list__item__one flex flex--center">${winningRank}</p>
@@ -42,7 +42,7 @@ function LottoStatisticsModal({
       <div class="statistics-container pd_1_rem">
         <h3 class="lotto-subtitle w-100 flex flex--h-center mgTop_3_rem">🏆 당첨 통계 🏆</h3>
         <ul class="statistics-list mgTop_3_rem lotto-body">
-          <li class="flex flex--space-between statistics-list__item lotto-caption">
+          <li class="flex flex--space-between statistics-list__item lotto-caption space-y-3">
             <h4 class="statistics-list__item__one flex flex--center">일치 갯수</h4>
             <h4 class="statistics-list__item__one flex flex--center">당첨금</h4>
             <h4 class="statistics-list__item__one flex flex--center">당첨 갯수</h4>

@@ -3,10 +3,11 @@ function LottoPurchaseList({ $target, lottos }) {
   this.lottos = lottos;
 
   this.template = () => {
-    const lottoCountHtml = `<li class="lotto-count">총 ${this.lottos.length}개를 구입하였습니다.</li>`;
+    const lottoCountHtml = `<li class="lotto-count space-y-3">총 ${this.lottos.length}개를 구입하였습니다.</li>`;
     const lottoPurchaseHtml = this.lottos
       .map(
-        (lotto) => `<li class="lotto-ticket">${lotto.numbers.join(',')}</li>`
+        (lotto) =>
+          `<li class="lotto-ticket space-y-3">${lotto.numbers.join(',')}</li>`
       )
       .join('');
 
