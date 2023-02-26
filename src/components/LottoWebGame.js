@@ -6,7 +6,7 @@ import {
   paintPurchaseAmountInput,
   getPurchaseAmount,
 } from '../view/purchaseAmountInput';
-import showErrorMessage from '../components/errorMessage';
+import showErrorMessage from './errorMessage';
 import paintLottoResultBoard from '../view/lottoResult';
 import paintModal, {
   addCloseModalBackgroundEventListener,
@@ -28,7 +28,7 @@ import {
 } from '../utils/validator';
 import lottoSection from '../view/lottoSection';
 
-export default function LottoUIController($app) {
+export default function LottoWebGame($app) {
   this.state = {
     lottoGame: null,
     $root: null,

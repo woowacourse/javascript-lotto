@@ -1,8 +1,8 @@
-import LottoUIController from './controller/lottoUIController';
+import LottoWebGame from './components/LottoWebGame';
 
 class App {
   constructor($app) {
-    new LottoUIController($app).play();
+    new LottoWebGame($app).play();
   }
 }
 
