@@ -2,15 +2,100 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
+    <title class="lotto-title">🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="lotto-header"><h1 class="lotto-title">🎱 행운의 로또</h1></header>
+
+      <main>
+        <section class="lotto-card lotto-body">
+          <h2 class="lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+          <form id="buy-money-form" name="buy-money">
+            <label for="buy-money-input">구입할 금액을 입력해주세요.</label>
+            <input type="number" id="buy-money-input" name="buy-money" placeholder="금액" min="1000"/>
+            <button type="submit" class="lotto-caption" id="buy-button">구입</button>
+          </form>
+
+          <div class="lotto-detail hidden">
+            <h3>총 <span id="lottos-quantity">0</span>개를 구매하였습니다.</h3>
+            <ul id="lotto-list-container" ></ul>
+          </div>
+
+          <form id="winning-numbers-form" class="hidden" name="winning-numbers">
+            <h3>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h3>
+            <div class="control-winning-numbers">
+              <div class="control-lucky-numbers">
+                <label for="lucky-number0">당첨 번호</label>
+                <div>
+                  <input type="number" class="lucky-numbers-input" id="lucky-number0" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number1" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number2" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number3" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number4" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number5" min="1" max="45" />
+                </div>
+              </div>
+              <div class="control-bonus-number">
+                <label for="bonus-number-input">보너스 번호</label>
+                <div><input type="number" id="bonus-number-input" min="1" max="45" /></div>
+              </div>
+            </div>
+            <button type="submit" id="show-result-button">결과 확인하기</button>
+          </form>
+        </section>
+
+        <section id="lotto-modal" class="hidden">
+          <h2>🏆 당첨 통계 🏆</h2>
+          <button type="button" id="modal-close-button">X</button>
+          <table id="result-table">
+            <tr>
+              <th scope="col">일치 갯수</td>
+              <th scope="col">당첨금</td>
+              <th scope="col">당첨 갯수</td>
+            </tr>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td><span class="amount-of-ranks-container"></span>개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td><span class="amount-of-ranks-container"></span>개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td><span class="amount-of-ranks-container"></span>개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td><span class="amount-of-ranks-container"></span>개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td><span class="amount-of-ranks-container"></span>개</td>
+            </tr>
+          </table>
+          <label>당신의 총 수익률은 <span id="profit-container"></span>%입니다.</label>
+          <button type="button" id="restart-button">다시 시작하기</button>
+        </section>
+        <div class="modal-background hidden"></div>
+      </main>
+
+      <footer><p>Copyright 2023. woowacourse</p></footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>

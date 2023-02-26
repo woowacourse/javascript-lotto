@@ -13,6 +13,10 @@ class LottoGame {
     this.#lottos = lottoMachine.generateLottos(buyMoney);
   }
 
+  buyLottos(buyMoney) {
+    this.#lottos = lottoMachine.generateLottos(buyMoney);
+  }
+
   getLottoNumbersList() {
     return this.#lottos.map(lotto => lotto.getNumbers());
   }
@@ -28,6 +32,14 @@ class LottoGame {
     });
 
     return [...this.#amountOfRanks];
+  }
+
+  resetAmountOfRanks() {
+    this.#amountOfRanks = Array.from({ length: RANK.SIZE }).fill(0);
+  }
+
+  resetWinningNumbers() {
+    this.#winningNumbers = { luckyNumbers: [], bonusNumber: 0 };
   }
 
   calculateTotalPrizeMoney() {
