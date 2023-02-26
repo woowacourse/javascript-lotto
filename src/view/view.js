@@ -18,6 +18,16 @@ const view = {
     buyText.style.visibility = 'visible';
   },
 
+  printLottoListElements(lottos) {
+    const lottoList = document.querySelector('.lottoList');
+
+    lottos.forEach(lotto => {
+      const li = document.createElement('li');
+      li.textContent = '🎟️' + lotto.toString();
+      lottoList.append(li);
+    });
+  },
+
   printAllLotto() {
     const purchase = document.querySelector('.purchase');
     purchase.style.visibility = 'visible';

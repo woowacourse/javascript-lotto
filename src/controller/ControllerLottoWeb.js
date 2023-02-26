@@ -3,10 +3,10 @@ const view = require('../view/view.js');
 const { moneyValidate, winningAndBonusNumberValidate } = require('../utils/validation.js');
 const { moneyValidateError, winningAndBonusNumberValidateError } = require('../utils/validateFunction.js');
 class ControllerLottoWeb {
-  listLotto;
+
   money;
+
   constructor() {
-    this.listLotto = [];
     this.money = 0;
     this.lottoMachine = new LottoMachine();
     this.initializeButtonEvents();
@@ -36,24 +36,13 @@ class ControllerLottoWeb {
     this.printPurchasedLottoNumberToView();
 
     this.lottoMachine.makeLotto(money);
-    this.createLottoListElements();
+    view.printLottoListElements(this.lottoMachine.lottoNumber);
     view.printAllLotto();
   }
 
   printPurchasedLottoNumberToView = () => {
     const lottoNumber = this.lottoMachine.countLotto(this.money);
     view.printPurchasedLottoNumber(lottoNumber);
-  };
-
-  createLottoListElements = () => {
-    const lottoList = document.querySelector('.lottoList');
-
-    this.lottoMachine.lottoNumber.forEach((list, index) => {
-      const li = document.createElement('li');
-      li.textContent = '🎟️' + list.toString();
-      lottoList.append(li);
-      this.listLotto[index] = list;
-    });
   };
 
   handleResultButtonClick = () => {
