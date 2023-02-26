@@ -38,7 +38,7 @@ purchaseButton.addEventListener('click', () => {
   mountLottoList();
   mountWinningInput();
 
-  moneyInput.value = '';
+  moneyInput.disabled = true;
   purchaseButton.disabled = true;
 });
 
@@ -90,6 +90,10 @@ const mountModal = () => {
 const restart = () => {
   $('#modal').style.display = 'none';
   $('.purchase-button').disabled = false;
+
+  const moneyInput = $('.money-input');
+  moneyInput.value = '';
+  moneyInput.disabled = false;
 
   $('.modal-window').remove();
   $('.winning-lotto').remove();
