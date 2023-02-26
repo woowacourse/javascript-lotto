@@ -37,7 +37,7 @@ class App2 {
         this.showLottos();
         this.progressLottoGame();
       } catch (e) {
-        this.buyMoneyInput.value = "";
+        buyMoneyInput.value = "";
       }
     });
   }
