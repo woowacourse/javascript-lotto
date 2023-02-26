@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.stopScroll {
+.stop-scroll {
   overflow: hidden;
   position: fixed;
   width: 100%;
@@ -35,25 +35,25 @@ header h1 {
   margin-bottom: 4px;
 }
 
-.buyContainer {
+.buy-container {
   display: flex;
   justify-content: space-between;
   height: 36px;
   margin-bottom: 28px;
 }
 
-.buyContainer input {
+.buy-container input {
   width: 310px;
   padding: 8px;
   border-radius: 4px;
 }
 
-.buyContainer button {
+.buy-container button {
   width: 56px;
   border-radius: 4px;
 }
 
-.lottoNumberConatiner {
+.lotto-number-container {
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -62,13 +62,13 @@ header h1 {
   margin-top: 12px;
 }
 
-.lottoNumber {
+.lotto-number {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
 }
 
-.lottoNumber span:last-child {
+.lotto-number span:last-child {
   position: relative;
   bottom: 3px;
 }
@@ -92,21 +92,21 @@ header h1 {
   margin-right: 0px;
 }
 
-.winningNumbers {
+.winning-numbers {
   display: flex;
   flex-direction: column;
 }
 
-.winningNumbers span {
+.winning-numbers span {
   margin: 12px 0px 8px 0px;
 }
 
-.winningNumbers div {
+.winning-numbers div {
   display: flex;
   justify-content: space-between;
 }
 
-.checkResult {
+.check-result {
   width: 100%;
   margin-top: 27px;
   padding: 10px 0;
@@ -143,7 +143,7 @@ footer {
   font-size: 34px;
 }
 
-.winningModal {
+.winning-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,14 +157,14 @@ footer {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.closeButton {
+.close-button {
   align-self: end;
   position: absolute;
   top: 16px;
   cursor: pointer;
 }
 
-.winningScreen {
+.winning-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -175,7 +175,7 @@ footer {
   background: white;
 }
 
-.lottoTable {
+.lotto-result-table {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -193,7 +193,7 @@ footer {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.benefitRate {
+.benefit-rate {
   margin: 32px 0px;
 }
 
@@ -203,19 +203,19 @@ footer {
   align-items: center;
 }
 
-.retryButton {
+.retry-button {
   width: 100%;
   padding: 10px 0;
   border-radius: 4px;
 }
 
-.inputNumberContainer input {
+.input-number-container input {
   text-align: center;
   -moz-appearance: textfield;
 }
 
-.inputNumberContainer input::-webkit-outer-spin-button,
-.inputNumberContainer input::-webkit-inner-spin-button {
+.input-number-container input::-webkit-outer-spin-button,
+.input-number-container input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
@@ -284,12 +284,12 @@ footer {
   background: #4e5ba6;
 }
 
-.hiddenElement {
+.hidden {
   display: none;
   visibility: hidden;
 }
 
-.errorMessage {
+.error-message {
   margin: 8px 0;
   color: red;
   text-align: center;

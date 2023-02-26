@@ -29,8 +29,8 @@ const moneyError = document.querySelector('.moneyError');
 const lottoNumbersError = document.querySelector('.lottoNumbersError');
 
 const EMPTY = '';
-const HIDDEN = 'hiddenElement';
-const STOP_SCROLL = 'stopScroll';
+const HIDDEN = 'hidden';
+const STOP_SCROLL = 'stop-scroll';
 
 const addEvents = {
   inputMoney: () => {
@@ -110,7 +110,7 @@ const addEvents = {
 
 const getErrorMessage = (errorMessage) => {
   const errorDiv = document.createElement('div');
-  errorDiv.classList.add('errorMessage');
+  errorDiv.classList.add('error-message');
   errorDiv.innerText = errorMessage;
   return errorDiv;
 };
@@ -120,7 +120,7 @@ const getLottoNumberNode = (lottoNumbers) => {
   const imoticon = document.createElement('span');
   const lotto = document.createElement('span');
 
-  lottoWrap.className = 'lottoNumber';
+  lottoWrap.className = 'lotto-number';
   imoticon.className = 'imoticion';
   lotto.className = 'text-body';
 
