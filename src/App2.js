@@ -146,7 +146,8 @@ class App2 {
     this.lottoMachine.compareLottos(
       this.#lottos,
       this.winningLotto,
-      this.bonusNumber
+      this.bonusNumber,
+      lottoScore
     );
     lottoScore.compareLottosScore();
   }

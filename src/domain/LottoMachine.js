@@ -1,8 +1,8 @@
 class LottoMachine {
-  compareLottos(lottos, winningLotto, bonusNumber) {
-    lottos.forEach((lotto) => {
+  compareLottos(lottos, winningLotto, bonusNumber, lottoScore) {
+    lottos.forEach((lotto, index) => {
       this.compareLottoNumbers(winningLotto, lotto);
-      this.compareBonusNumber(bonusNumber, lotto);
+      this.compareBonusNumber(bonusNumber, lotto, index, lottoScore);
     });
   }
 
@@ -12,9 +12,9 @@ class LottoMachine {
     });
   }
 
-  compareBonusNumber(bonusNumber, lotto) {
+  compareBonusNumber(bonusNumber, lotto, index, lottoscore) {
     lotto.lottoNumbers.includes(bonusNumber) &&
-      lotto.setIsContainBonusNumber(true);
+      lottoscore.setIsContainBonusNumber(index, true);
   }
 }
 

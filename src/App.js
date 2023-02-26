@@ -78,7 +78,12 @@ class App {
   }
 
   compareLottos(winningLotto, bonusNumber, lottoScore) {
-    this.lottoMachine.compareLottos(this.#lottos, winningLotto, bonusNumber);
+    this.lottoMachine.compareLottos(
+      this.#lottos,
+      winningLotto,
+      bonusNumber,
+      lottoScore
+    );
     lottoScore.compareLottosScore();
     OutputView.printResult(this.#lottos.length, lottoScore);
   }

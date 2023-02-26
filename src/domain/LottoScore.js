@@ -6,11 +6,13 @@ import Utils from "../util/Utils";
 class LottoScore {
   #lottoRanking;
   #totalBenefit;
+  #isContainBonusNumber;
 
   constructor(lottos) {
     this.lottos = lottos;
     this.#lottoRanking = { ...LOTTO_SCORE.rankingBoard };
     this.#totalBenefit = 0;
+    this.#isContainBonusNumber = new Array(lottos.length).fill(false);
   }
 
   get lottoRanking() {
@@ -22,20 +24,24 @@ class LottoScore {
     return tempTotalBenefit;
   }
 
+  setIsContainBonusNumber(index, isContain) {
+    this.#isContainBonusNumber[index] = isContain;
+  }
+
   compareLottosScore() {
-    this.lottos.forEach((lotto) => {
-      this.determineAddScore(lotto);
+    this.lottos.forEach((lotto, index) => {
+      this.determineAddScore(lotto, index);
     });
   }
 
-  determineAddScore(lotto) {
+  determineAddScore(lotto, index) {
     !this.checkIsFailScore(lotto) && lotto.score === 5
-      ? this.determineBonusOrNot(lotto)
+      ? this.determineBonusOrNot(index)
       : this.addScoreBoard(lotto.score);
   }
 
-  determineBonusOrNot(lotto) {
-    lotto.isContainBonusNumber
+  determineBonusOrNot(index) {
+    this.#isContainBonusNumber[index]
       ? this.addScoreBoard(MATCHING.SECOND)
       : this.addScoreBoard(MATCHING.THIRD);
   }
