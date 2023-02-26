@@ -12,6 +12,7 @@
   background-color: #fcfcfd;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .hidden {

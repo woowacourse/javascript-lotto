@@ -158,4 +158,4 @@
 - [ ] refactor: classname으로 요소 가져오기
 - [ ] refactor: 객체로 데이터 관리
 - [ ] refactor: 로또를 관리하는 객체 만들기
-- [ ] refactor: 모달창 배경과 분리하는 현상 제거
+- [x] refactor: 모달창 배경과 분리되는 현상 제거
