@@ -10,7 +10,7 @@ class LottoScore {
 
   constructor(lottos) {
     this.lottos = lottos;
-    this.#lottoRanking = { ...LOTTO_SCORE.rankingBoard };
+    this.#lottoRanking = { ...LOTTO_SCORE.RANKING };
     this.#totalBenefit = 0;
     this.#isContainBonusNumber = new Array(lottos.length).fill(false);
   }
@@ -20,8 +20,11 @@ class LottoScore {
   }
 
   get totalBenefit() {
-    const tempTotalBenefit = this.#totalBenefit;
-    return tempTotalBenefit;
+    return this.#totalBenefit;
+  }
+
+  get isContainBonusNumber() {
+    return [...this.#isContainBonusNumber];
   }
 
   setIsContainBonusNumber(index, isContain) {
@@ -74,10 +77,10 @@ class LottoScore {
   }
 
   calculateTotalBenefit() {
-    for (const score in this.#lottoRanking) {
+    Object.keys(this.#lottoRanking).forEach((score) => {
       this.#totalBenefit +=
-        this.#lottoRanking[score] * LOTTO_SCORE.benefitBoard[score];
-    }
+        this.#lottoRanking[score] * LOTTO_SCORE.BENEFIT[score];
+    });
   }
 
   getLottoBenefitRate(lottoAmount) {
@@ -89,7 +92,7 @@ class LottoScore {
   }
 
   resetLottoScore() {
-    this.#lottoRanking = { ...LOTTO_SCORE.rankingBoard };
+    this.#lottoRanking = { ...LOTTO_SCORE.RANKING };
     this.#totalBenefit = 0;
   }
 }
