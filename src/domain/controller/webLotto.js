@@ -3,30 +3,7 @@ const Money = require('../model/Money');
 const Winning = require('../model/Winning');
 const { getCollectedRanks, generateLottos } = require('../../utils/lotto');
 const { LOTTO_NUMBER, LOTTO_LITERAL } = require('../../constant');
-
-const app = document.querySelector('#app');
-
-const moneyForm = document.querySelector('#moneyForm');
-const moneyAmount = document.querySelector('#moneyAmount');
-
-const lottoInfoContainer = document.querySelector('#lottoInfoContainer');
-const lottoNumberConatiner = document.querySelector('#lottoNumberConatiner');
-const lottoCount = document.querySelector('#lottoCount');
-const inputNumberContainer = document.querySelector('#inputNumberContainer');
-
-const winningNumberInputs = document.querySelectorAll('.winning-number');
-const bonus = document.querySelector('#bonus');
-
-const winningModal = document.querySelector('#winningModal');
-const closeButton = document.querySelector('#closeButton');
-const rankCounts = document.querySelectorAll('.rank-count');
-const benefitRate = document.querySelector('#benefitRate');
-const retryButton = document.querySelector('#retryButton');
-
-const copyright = document.querySelector('#copyright');
-
-const moneyError = document.querySelector('#moneyError');
-const lottoNumbersError = document.querySelector('#lottoNumbersError');
+const { $, $$ } = require('../../utils');
 
 const EMPTY = '';
 const HIDDEN = 'hidden';
@@ -34,7 +11,7 @@ const STOP_SCROLL = 'stop-scroll';
 
 const addEvents = {
   inputMoney: () => {
-    moneyForm.addEventListener('submit', (event) => {
+    $('#moneyForm').addEventListener('submit', (event) => {
       event.preventDefault();
 
       try {
@@ -43,67 +20,69 @@ const addEvents = {
         const count = money.getAmount() / LOTTO_NUMBER.moneyUnit;
 
         removeLottos();
-        moneyError.innerHTML = EMPTY;
-        lottoInfoContainer.classList.remove(HIDDEN);
-        inputNumberContainer.classList.remove(HIDDEN);
+        $('#moneyError').innerHTML = EMPTY;
+        $('#lottoInfoContainer').classList.remove(HIDDEN);
+        $('#inputNumberContainer').classList.remove(HIDDEN);
 
-        lottoCount.innerText = `총 ${count}개를 구매하였습니다.`;
+        $('#lottoCount').innerText = `총 ${count}개를 구매하였습니다.`;
         handleLottoContainer(lottos);
 
         addEvents.inputNumber(money, lottos);
       } catch (error) {
+        console.log(error);
         const errorDiv = getErrorMessage(error.message);
-        moneyError.appendChild(errorDiv);
+        $('#moneyError').appendChild(errorDiv);
       }
     });
   },
 
   inputNumber: (money, lottos) => {
-    inputNumberContainer.addEventListener('submit', (event) => {
+    $('#inputNumberContainer').addEventListener('submit', (event) => {
       event.preventDefault();
 
       try {
-        const winningNumbers = [...winningNumberInputs].map((item) =>
+        const winningNumbers = [...$$('.winning-number')].map((item) =>
           Number(item.value)
         );
-        const bonusNumber = Number(bonus.value);
+        const bonusNumber = Number($('#bonus').value);
         const winning = new Winning();
 
-        lottoNumbersError.innerHTML = EMPTY;
+        $('#lottoNumbersError').innerHTML = EMPTY;
         winning.setWinningNumbers(winningNumbers);
         winning.setBonusNumber(bonusNumber);
 
-        app.classList.add(STOP_SCROLL);
-        winningModal.classList.remove(HIDDEN);
+        $('#app').classList.add(STOP_SCROLL);
+        $('#winningModal').classList.remove(HIDDEN);
 
         const ranks = getCollectedRanks(winning, lottos);
 
         handleRankCount(ranks);
         handleBenefitRate(money.getAmount(), ranks);
       } catch (error) {
+        console.log(error);
         const errorDiv = getErrorMessage(error.message);
-        lottoNumbersError.appendChild(errorDiv);
+        $('#lottoNumbersError').appendChild(errorDiv);
       }
     });
   },
 
   closeModal: () => {
-    closeButton.addEventListener('click', () => {
-      app.classList.remove(STOP_SCROLL);
-      winningModal.classList.add(HIDDEN);
+    $('#closeButton').addEventListener('click', () => {
+      $('#app').classList.remove(STOP_SCROLL);
+      $('#winningModal').classList.add(HIDDEN);
     });
   },
 
   retry: () => {
-    retryButton.addEventListener('click', () => {
-      winningModal.classList.add(HIDDEN);
-      lottoInfoContainer.classList.add(HIDDEN);
-      inputNumberContainer.classList.add(HIDDEN);
+    $('#retryButton').addEventListener('click', () => {
+      $('#winningModal').classList.add(HIDDEN);
+      $('#lottoInfoContainer').classList.add(HIDDEN);
+      $('#inputNumberContainer').classList.add(HIDDEN);
 
-      app.classList.remove(STOP_SCROLL);
+      $('#app').classList.remove(STOP_SCROLL);
       removeLottos();
       resetLottoInputs();
-      moneyAmount.focus();
+      $('#moneyAmount').focus();
     });
   },
 };
@@ -138,16 +117,18 @@ const handleBenefitRate = (money, ranks) => {
   benefit.calculateRate(money, ranks);
   const rate = benefit.getRate();
 
-  benefitRate.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
+  $('#benefitRate').innerText = `당신의 총 수익률은 ${rate}%입니다.`;
 };
 
 const handleCopyrightCurrentYear = () => {
-  copyright.innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
+  $(
+    '#copyright'
+  ).innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
 };
 
 const handleLottoContainer = (lottos) => {
   lottos.forEach((item) => {
-    lottoNumberConatiner.appendChild(
+    $('#lottoNumberConatiner').appendChild(
       getLottoNumberNode(item.getLottoNumbers())
     );
   });
@@ -156,25 +137,21 @@ const handleLottoContainer = (lottos) => {
 const handleRankCount = (ranks) => {
   const totalLength = ranks.length - 1;
 
-  rankCounts.forEach((rankCount, index) => {
+  $$('.rank-count').forEach((rankCount, index) => {
     const curRankCount = ranks[totalLength - index];
     rankCount.innerText = `${curRankCount}개`;
   });
 };
 
 const removeLottos = () => {
-  lottoNumberConatiner.innerHTML = EMPTY;
+  $('#lottoNumberConatiner').innerHTML = EMPTY;
 };
 
 const resetLottoInputs = () => {
-  winningNumberInputs.forEach((winningInput) => (winningInput.value = EMPTY));
-  bonus.value = EMPTY;
-  moneyAmount.value = EMPTY;
+  $$('.winning-number').forEach((winningInput) => (winningInput.value = EMPTY));
+  $('#bonus').value = EMPTY;
+  $('#moneyAmount').value = EMPTY;
 };
-
-winningModal.classList.add(HIDDEN);
-lottoInfoContainer.classList.add(HIDDEN);
-inputNumberContainer.classList.add(HIDDEN);
 
 addEvents.inputMoney();
 addEvents.closeModal();

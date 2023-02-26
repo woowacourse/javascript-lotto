@@ -1,3 +1,7 @@
+const $ = (selector) => document.querySelector(selector);
+
+const $$ = (selector) => document.querySelectorAll(selector);
+
 const inputValidator = {
   isNumber: (number) => Number.isInteger(number),
   isNumberInLottoRange: (number) => {
@@ -26,6 +30,8 @@ const addCommaToNumber = (number) => {
 };
 
 module.exports = {
+  $,
+  $$,
   addCommaToNumber,
   pickRandomNumberInRange,
   inputValidator,
