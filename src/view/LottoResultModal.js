@@ -19,10 +19,11 @@ class LottoResultModal {
     this.modalContainer.classList.toggle('hidden');
   }
 
-  render(receivedRewards, profitRate) {
+  render(props) {
+    const { receivedRewards, profitRate, onReset } = props;
     this.toggleModal();
     this.renderTable(receivedRewards);
-    this.renderProfit(profitRate);
+    this.renderProfit(profitRate, onReset);
   }
 
   createResultTable(receivedRewards) {
@@ -57,7 +58,7 @@ class LottoResultModal {
     this.table.insertAdjacentHTML('beforeend', this.createResultTable(receivedRewards));
   }
 
-  renderProfit(profitRate) {
+  renderProfit(profitRate, onReset) {
     this.resultWrapper.insertAdjacentHTML(
       'beforeend',
       `<p id="profit-message">당신의 총 수익률은 ${profitRate}%입니다.</p>
@@ -65,6 +66,7 @@ class LottoResultModal {
       `,
     );
     this.restartButton = document.getElementById('restart');
+    this.addRestartButtonHandler(onReset);
     this.restartButton.focus();
   }
 

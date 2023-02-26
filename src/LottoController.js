@@ -43,8 +43,7 @@ class LottoController {
       const receivedRewards = this.buyer.receiveRewards(lottoResult);
       const profitRate = this.buyer.getProfitRate(lottoResult);
 
-      this.lottoResultModal.render(receivedRewards, profitRate);
-      this.lottoResultModal.addRestartButtonHandler(this.resetHandler);
+      this.lottoResultModal.render({ receivedRewards, profitRate, onReset: this.resetHandler });
     } catch (error) {
       alert(error.message);
     }
