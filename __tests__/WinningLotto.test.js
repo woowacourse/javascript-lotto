@@ -1,4 +1,4 @@
-const WinningLotto = require('../src/domain/WinningLotto');
+import WinningLotto from '../src/domain/WinningLotto';
 
 const winningNumber = [1, 2, 3, 4, 5, 6];
 const bonusNumber = 7;

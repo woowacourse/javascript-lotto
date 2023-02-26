@@ -1,0 +1,67 @@
+:root {
+  --lotto-primary: #4e5ba6;
+  --grayscale-1: #ffffff;
+  --grayscale-2: #fcfcfd;
+  --grayscale-3: #b4b4b4;
+  --grayscale-4: #8b8b8b;
+  --grayscale-5: #000000;
+
+  --border-primary: rgba(78, 91, 166, 0.2);
+  --border-gray: rgba(0, 0, 0, 0.12);
+
+  --text-title: 24px;
+  --text-subtitle: 20px;
+  --text-body: 15px;
+  --text-placeholder: 15px;
+  --text-caption: 14px;
+
+  --text-regular: 400;
+  --text-semibold: 600;
+  --text-bold: 700;
+  --text-extrabold: 800;
+
+  --spacing-subtitle: 0.15px;
+  --spacing-body: 0.5px;
+  --spacing-placeholder: 0.5px;
+  --spacing-caption: 1.25px;
+}
+
+.title {
+  font-size: var(--text-title);
+  font-weight: var(--text-extrabold);
+  letter-spacing: var(--spacing-title);
+}
+
+.subtitle {
+  font-size: var(--text-subtitle);
+  font-weight: var(--text-semibold);
+  letter-spacing: var(--spacing-subtitle);
+}
+
+.placeholder {
+  font-size: var(--text-placeholder);
+  font-weight: var(--text-regular);
+  letter-spacing: var(--spacing-placeholder);
+}
+
+.caption {
+  font-size: var(--text-caption);
+  font-weight: var(--text-bold);
+  letter-spacing: var(--spacing-caption);
+}
+
+.button {
+  color: var(--grayscale-1);
+  background-color: var(--lotto-primary);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+button:disabled {
+  background-color: var(--grayscale-4);
+  cursor: not-allowed;
+}

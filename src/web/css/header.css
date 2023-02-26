@@ -1,0 +1,13 @@
+#page-header {
+  height: 64px;
+  background-color: var(--lotto-primary);
+}
+
+.page-title {
+  max-width: 1200px;
+  height: 64px;
+  padding: 0 0 0 20px;
+  margin: 0 auto;
+  line-height: 64px;
+  color: var(--grayscale-1);
+}

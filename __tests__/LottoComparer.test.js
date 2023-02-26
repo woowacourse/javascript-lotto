@@ -1,5 +1,5 @@
-const LottoComparer = require('../src/domain/LottoComparer');
-const WinningLotto = require('../src/domain/WinningLotto');
+import LottoComparer from '../src/domain/LottoComparer';
+import WinningLotto from '../src/domain/WinningLotto';
 
 test('각 등수에 맞게 당첨된 로또의 수를 구한다.', () => {
   // given

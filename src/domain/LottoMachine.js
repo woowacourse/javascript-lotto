@@ -1,5 +1,5 @@
-const { LOTTO } = require('../constant/setting');
-const pickNumberInRange = require('../util/pickNumberInRange');
+import { LOTTO } from '../constants/setting';
+import pickNumberInRange from '../utils/pickNumberInRange';
 
 class LottoMachine {
   #purchaseAmount;
@@ -27,4 +27,4 @@ class LottoMachine {
   }
 }
 
-module.exports = LottoMachine;
+export default LottoMachine;

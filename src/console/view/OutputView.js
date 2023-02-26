@@ -1,18 +1,19 @@
-const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD, ERROR_MESSAGE } = require('../constant/message');
-const Console = require('../util/Console');
+import { ERROR_MESSAGE } from '../../constants/error';
+import { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } from '../constants/message';
+import ConsoleIO from '../utils/ConsoleIO';
 
 const OutputView = {
   printEmptyLine() {
-    Console.print('');
+    ConsoleIO.print('');
   },
 
   printPurchaseQuantity(quantity) {
-    Console.print(OUTPUT_MESSAGE_METHOD.PURCHASE_QUANTITY(quantity));
+    ConsoleIO.print(OUTPUT_MESSAGE_METHOD.PURCHASE_QUANTITY(quantity));
   },
 
   printPurchaserLottos(lottos) {
     lottos.forEach((lotto) => {
-      Console.print(lotto);
+      ConsoleIO.print(lotto);
     });
   },
 
@@ -23,14 +24,14 @@ const OutputView = {
   },
 
   printRanking(ranking) {
-    Console.print(OUTPUT_MESSAGE.WINNING_STATISTICS_HEADER);
+    ConsoleIO.print(OUTPUT_MESSAGE.WINNING_STATISTICS_HEADER);
     Object.entries(ranking).forEach(([rank, count]) => {
-      Console.print(OUTPUT_MESSAGE_METHOD.RANK(rank, count));
+      ConsoleIO.print(OUTPUT_MESSAGE_METHOD.RANK(rank, count));
     });
   },
 
   printProfitRate(profitRate) {
-    Console.print(OUTPUT_MESSAGE_METHOD.PROFIT_RATE(profitRate));
+    ConsoleIO.print(OUTPUT_MESSAGE_METHOD.PROFIT_RATE(profitRate));
   },
 
   printStatistics(ranking, profitRate) {
@@ -41,9 +42,9 @@ const OutputView = {
 
   printErrorMessage(errorMessage) {
     OutputView.printEmptyLine();
-    Console.print(ERROR_MESSAGE.PREFIX + errorMessage);
+    ConsoleIO.print(ERROR_MESSAGE.PREFIX + errorMessage);
     OutputView.printEmptyLine();
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

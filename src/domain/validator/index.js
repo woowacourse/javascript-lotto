@@ -1,10 +1,10 @@
-const validatePurchaseAmount = require('./purchaseAmount');
-const validateLottoNumber = require('./lottoNumber');
-const validateWinningNumber = require('./winningNumber');
-const validateBonusNumber = require('./bonusNumber');
-const validateRestartCommand = require('./restartCommand');
+import validatePurchaseAmount from './purchaseAmount';
+import validateLottoNumber from './lottoNumber';
+import validateWinningNumber from './winningNumber';
+import validateBonusNumber from './bonusNumber';
+import validateRestartCommand from './restartCommand';
 
-module.exports = {
+export {
   validatePurchaseAmount,
   validateLottoNumber,
   validateWinningNumber,

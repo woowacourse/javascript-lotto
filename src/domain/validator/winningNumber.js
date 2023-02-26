@@ -1,5 +1,5 @@
-const { ERROR_MESSAGE } = require('../../constant/message');
-const { LOTTO } = require('../../constant/setting');
+import { ERROR_MESSAGE } from '../../constants/error';
+import { LOTTO } from '../../constants/setting';
 
 const isValidLength = (lottoNumbers) => lottoNumbers.length === LOTTO.SIZE;
 const hasDuplicatedNumber = (lottoNumbers) => lottoNumbers.length !== new Set(lottoNumbers).size;
@@ -13,4 +13,4 @@ const validateWinningNumber = (winningNumber) => {
   }
 };
 
-module.exports = validateWinningNumber;
+export default validateWinningNumber;

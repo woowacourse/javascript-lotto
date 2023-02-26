@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--text-body);
+  font-weight: var(--text-regular);
+  letter-spacing: var(--spacing-body);
+  line-height: 1;
+}
+
+input,
+button {
+  background-color: transparent;
+  border: 0;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,5 +1,5 @@
-const { ERROR_MESSAGE } = require('../../constant/message');
-const validateLottoNumber = require('./lottoNumber');
+import { ERROR_MESSAGE } from '../../constants/error';
+import validateLottoNumber from './lottoNumber';
 
 const isIncludeWinningNumber = (bonusNumber, winningNumber) => winningNumber.includes(bonusNumber);
 
@@ -11,4 +11,4 @@ const validateBonusNumber = (bonusNumber, winningNumber) => {
   }
 };
 
-module.exports = validateBonusNumber;
+export default validateBonusNumber;

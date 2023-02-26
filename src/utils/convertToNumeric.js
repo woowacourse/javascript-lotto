@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require('../constant/message');
+import { ERROR_MESSAGE } from '../constants/error';
 
 const isEmptyString = (targetString) => targetString === '';
 const isSpace = (character) => character === ' ';
@@ -25,4 +25,4 @@ const convertToNumeric = (numericString) => {
   return Number(numericString);
 };
 
-module.exports = convertToNumeric;
+export default convertToNumeric;
