@@ -7,6 +7,6 @@ export default class App {
   }
 }
 
-(() => {
-  return new App();
-})();
+const app = new App();
+
+App();
