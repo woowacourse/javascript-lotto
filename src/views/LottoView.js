@@ -66,24 +66,19 @@ const lottoView = {
   },
 
   printPurchasedLottos(lottoNumbersList) {
+    const lottoListContainer = document.querySelector('#lotto-list-container');
+    const lottoDetail = document.querySelector('.lotto-detail');
+    const winningNumbersForm = document.querySelector('#winning-numbers-form');
+
     this.lottosQuantity = document.querySelector('#lottos-quantity');
     this.lottosQuantity.innerText = lottoNumbersList.length;
-
-    const lottoListContainer = document.querySelector('#lotto-list-container');
 
     lottoListContainer.innerHTML = null;
     lottoNumbersList.forEach(lottoNumbers => {
       lottoListContainer.innerHTML += `<li>🎟️ ${lottoNumbers.join(', ')}</li>`;
     });
 
-    const lottoDetail = document.querySelector('.lotto-detail');
-
     this.show(lottoDetail);
-    this.showWinningNumbersForm();
-  },
-
-  showWinningNumbersForm() {
-    const winningNumbersForm = document.querySelector('#winning-numbers-form');
     this.show(winningNumbersForm);
   },
 
@@ -92,6 +87,7 @@ const lottoView = {
     const amountOfRanksContainer = document.querySelectorAll('.amount-of-ranks-container');
     const profitContainer = document.querySelector('#profit-container');
     const lottoModal = document.querySelector('#lotto-modal');
+    const modalBackground = document.querySelector('.modal-background');
 
     showResultButton.disabled = true;
 
@@ -103,33 +99,28 @@ const lottoView = {
 
     profitContainer.innerHTML = profit;
 
-    const modalBackground = document.querySelector('.modal-background');
     this.show(modalBackground);
     this.show(lottoModal);
   },
 
   resetScreen() {
-    const buyButton = document.querySelector('#buy-button');
     const showResultButton = document.querySelector('#show-result-button');
 
     this.hideModal();
     this.hideElementsforInitialScreen();
     this.resetInputs();
 
-    buyButton.disabled = false;
     showResultButton.disabled = false;
   },
 
   hideModal() {
     const lottoModal = document.querySelector('#lotto-modal');
     const modalBackground = document.querySelector('.modal-background');
-    const buyButton = document.querySelector('#buy-button');
     const showResultButton = document.querySelector('#show-result-button');
 
     this.hide(lottoModal);
     this.hide(modalBackground);
 
-    buyButton.disabled = false;
     showResultButton.disabled = false;
   },
 
