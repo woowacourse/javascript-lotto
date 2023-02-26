@@ -1,4 +1,5 @@
 import '../../index.css';
+import { LOTTO } from '../constants';
 import LottoGame from '../domain/LottoGame';
 import { $, $$ } from '../util/querySelector';
 import LottoValidator from '../validators/LottoValidator';
@@ -60,7 +61,9 @@ class WebLottoGameController {
       return true;
     } catch (error) {
       alert(error.message);
-      [...$$('.lotto-number-input')].slice(0, 6).map((lottoNumber) => (lottoNumber.value = ''));
+      [...$$('.lotto-number-input')]
+        .slice(0, LOTTO.NUMBER_COUNT)
+        .map((lottoNumber) => (lottoNumber.value = ''));
       return false;
     }
   }
