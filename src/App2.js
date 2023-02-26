@@ -139,6 +139,9 @@ class App2 {
     EventHandler.handleEvent(closeButton, "click", () => {
       HandleView.addClassList(result, "hidden");
     });
+    EventHandler.handleEvent(result, "click", () => {
+      HandleView.addClassList(result, "hidden");
+    });
   }
 
   retryLottoGame(lottoScore) {
