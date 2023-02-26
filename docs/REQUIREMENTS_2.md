@@ -15,7 +15,7 @@
 ### 로또 미션 2 리팩터링 목록
 
 - [x] gitignore 의 End of Files 에러 문구 해결
-- [ ] HTML 사용하지 않는 코드 삭제(버튼의 value, input의 maxlength,minlength)
+- [x] HTML 사용하지 않는 코드 삭제(버튼의 value, input의 maxlength,minlength)
 - [ ] HTML class 와 id 의 구분된 사용과 구분된 표기법
   - [ ] 스타일을 바꾸기 위해서 인식자가 필요하다면 class 를 사용하며 kebab-case를 사용한다.
   - [ ] 자바스크립트에서 기능을 위해 인식자가 필요하다면 id 를 사용하며 camelCase를 사용한다.
