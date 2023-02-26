@@ -1,38 +1,22 @@
-const lottoTicketSection = document.querySelector("#lotto-ticket-section");
-const modal = document.querySelector(".modal");
-const winningNumberFormButton = document.querySelector("#result-button");
-
-const winningNumberInput = document.querySelectorAll("input[name=lotto-winning-number]");
-const bonusNumber = document.querySelector("#bonus-number");
-
-const purchaseAmountInput = document.querySelector("#purchase-amount");
-
-export const activateClick = () => (winningNumberFormButton.disabled = false);
+import { removeLottoTicketSection, removeModal, resetInputs } from "../DOM/controller";
+import { querySelector } from "../util/DOMSelector";
 
 export const handleModalCloseButtonClick = () => {
-  modal.classList.add("none-display");
-  activateClick();
+  removeModal();
 };
 
 export const handleRestartButtonClick = () => {
-  modal.classList.add("none-display");
-  lottoTicketSection.classList.add("none-display");
-
-  [...winningNumberInput].forEach((number) => {
-    number.value = null;
-  });
-
-  bonusNumber.value = null;
-  purchaseAmountInput.value = null;
-  activateClick();
+  removeModal();
+  removeLottoTicketSection();
+  resetInputs();
 };
 
 export const closeModal = () => {
-  const modalCloseButton = document.querySelector(".close-button");
+  const modalCloseButton = querySelector(".close-button");
   modalCloseButton.addEventListener("click", handleModalCloseButtonClick);
 };
 
 export const restartLottoGame = () => {
-  const modalRestartButton = document.querySelector("#restart-button");
+  const modalRestartButton = querySelector("#restart-button");
   modalRestartButton.addEventListener("click", handleRestartButtonClick);
 };

@@ -8,66 +8,64 @@ import {
 import { webErrorCatcher } from "../validator/errorCatcher";
 import { printLottoTicket } from "../ui/lottoTicketPrinter";
 import { printLottoResult } from "../ui/lottoResult";
+import {
+  convertInputsToNumber,
+  getBonusNumber,
+  getPurchaseAmount,
+  removeLottoTicketSection,
+  showLottoTicketSection,
+  showModal,
+} from "../DOM/controller";
+import { querySelector } from "../util/DOMSelector";
 const { SECOND } = PLACES;
-
-const lottoTicketCount = document.querySelector("#lotto-ticket-count > span");
-const lottoTicketSection = document.querySelector("#lotto-ticket-section");
-const modal = document.querySelector(".modal");
-
-const winningNumberForm = document.querySelector("#winning-lotto");
-const winningNumberFormButton = document.querySelector("#result-button");
-const winningNumberInputs = document.querySelectorAll("input[name=lotto-winning-number]");
-const bonusNumber = document.querySelector("#bonus-number");
-const purchaseAmountForm = document.querySelector("#purchase-amount-form");
 
 export class LottoGame {
   #winningNumbers = [];
   #lottoTickets = [];
 
   play() {
-    const purchaseAmountInput = document.querySelector("#purchase-amount");
-
+    const purchaseAmountForm = querySelector("#purchase-amount-form");
     purchaseAmountForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.#purchaseLottoTicket(purchaseAmountInput.value);
+      this.#purchaseLottoTicket(getPurchaseAmount());
     });
 
+    const winningNumberForm = querySelector("#winning-lotto");
     winningNumberForm.addEventListener("submit", (event) => {
       if (!this.#isValidWinningNumber(event)) return;
-      this.#showLottoResult(purchaseAmountInput.value);
+      this.#showLottoResult(getPurchaseAmount());
     });
   }
 
   #purchaseLottoTicket(purchaseAmount) {
     if (!webErrorCatcher(() => validatePurchaseAmount(purchaseAmount))) {
-      return lottoTicketSection.classList.add("none-display");
+      return removeLottoTicketSection();
     }
 
     const purchasedTicketCount = purchaseAmount / LOTTO_PRICE_UNIT;
     this.#lottoTickets = makeLottoTickets(purchasedTicketCount);
 
-    lottoTicketCount.innerHTML = `${purchasedTicketCount}`;
+    querySelector("#lotto-ticket-count > span").innerHTML = `${purchasedTicketCount}`;
 
     printLottoTicket(this.#lottoTickets);
-    lottoTicketSection.classList.remove("none-display");
+    showLottoTicketSection();
   }
 
   #isValidWinningNumber(event) {
     event.preventDefault();
 
-    const winningNumbers = [...winningNumberInputs].map((number) => Number(number.value));
+    const winningNumbers = convertInputsToNumber();
 
     if (!webErrorCatcher(() => validateWinningLottoNumbers(winningNumbers))) return;
-    if (!webErrorCatcher(() => validateBonusNumber(bonusNumber.value, winningNumbers))) return;
+    if (!webErrorCatcher(() => validateBonusNumber(getBonusNumber(), winningNumbers))) return;
 
-    this.#winningNumbers = [winningNumbers, bonusNumber.value];
+    this.#winningNumbers = [winningNumbers, getBonusNumber()];
 
     return true;
   }
 
   #showLottoResult(purchaseAmount) {
-    modal.classList.remove("none-display");
-    winningNumberFormButton.disabled = true;
+    showModal();
 
     const placesOfLottoTickets = this.#getPlacesOfLottoTickets();
     printLottoResult(placesOfLottoTickets, purchaseAmount);
