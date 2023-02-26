@@ -149,10 +149,24 @@ footer > p {
 }
 
 #purchased-lotto-container {
-    overflow: scroll;
+    overflow: auto;
     max-height: 216px;
     padding-left: 0px;
     list-style: none;
+}
+
+#purchased-lotto-container::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+#purchased-lotto-container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.3);
+}
+
+#purchased-lotto-container::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,.1);
 }
 
 #purchased-lotto-container > li {
