@@ -42,7 +42,7 @@ describe("LottoMachine 객체 단위테스트", () => {
     );
     lottoScore2.compareLottosScore();
     lottoScore2.calculateTotalBenefit();
-    expect(lottoScore2.totalBenefit).toBe(2001550000);
+    expect(lottoScore2.totalBenefit).toBe(2_001_550_000);
   });
 
   test("총 수익률을 계산하는 함수 테스트", () => {
