@@ -7,18 +7,18 @@ import WinNumbers from './view-web/components/WinNumbers.js';
 import StatisticsModal from './view-web/components/StatisticsModal';
 
 class App extends Component {
-  state;
-
   constructor() {
-    super(getId('app'), { lottoList: [] });
+    super(getId('app'));
   }
 
   mount() {
-    new Amount(this.setState.bind(this));
-    if (this.state.lottoList.length !== 0) {
-      new LottoList(this.state);
-      new WinNumbers(this.setState.bind(this), this.setDrawingNumbers.bind(this));
-      new StatisticsModal(this.state, this.setState.bind(this));
+    new Amount(this.lottoStore.setState, this);
+
+    console.log(this.lottoStore.getLottoList());
+    if (this.lottoStore.getLottoList().length !== 0) {
+      new LottoList();
+      new WinNumbers(this.setDrawingNumbers.bind(this));
+      new StatisticsModal();
     }
   }
 

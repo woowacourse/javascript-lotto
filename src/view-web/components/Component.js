@@ -1,16 +1,17 @@
 import { ERROR } from '../../constant/constants.js';
+import lottoStore from '../../store/lottoStore.js';
 
 export default class Component {
   $target;
-  state;
 
-  constructor($target, state = {}) {
+  constructor($target) {
     if (new.target === Component) {
       throw new Error(ERROR.CANNOT_CREATE_INSTANCE);
     }
     this.$target = $target;
+    this.lottoStore = lottoStore;
 
-    this.setState(state);
+    this.render();
   }
 
   mount() {}
@@ -26,10 +27,5 @@ export default class Component {
 
   template() {
     return '';
-  }
-
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
   }
 }
