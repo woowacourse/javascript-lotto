@@ -5,7 +5,6 @@ const rl = readlinePromises.createInterface({
   output: process.stdout,
 });
 
-/** @deprecated */
 const Console = {
   close() {
     rl.close();
