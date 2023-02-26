@@ -14,12 +14,15 @@ class WinningNumbersView {
   }
 
   makeLottoInput() {
-    this.lotteryContainer.innerHTML += Array.from({ length: LOTTO_SIZE })
-      .map(
-        () =>
-          `<input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>`
-      )
-      .join("");
+    this.lotteryContainer.insertAdjacentHTML(
+      "beforeend",
+      Array.from({ length: LOTTO_SIZE })
+        .map(
+          () =>
+            `<input type="number" name="lotto-number" class="lotto-input" min="1" max="45" required>`
+        )
+        .join("")
+    );
   }
 
   hideWinningContainer() {

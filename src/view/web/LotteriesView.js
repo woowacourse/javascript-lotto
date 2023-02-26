@@ -11,11 +11,10 @@ class LotteriesView {
   }
 
   showLotteries(lotteries) {
-    lotteries.forEach((lottery) => {
-      const li = document.createElement("li");
-      li.innerText = `🎟️ ${lottery}`;
-      this.lotteriesList.append(li);
-    });
+    this.lotteriesList.insertAdjacentHTML(
+      "beforeend",
+      lotteries.map((lottery) => `<li>🎟️ ${lottery}</li>`).join("")
+    );
   }
 
   hideLotteriesView() {

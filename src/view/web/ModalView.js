@@ -39,7 +39,10 @@ class ModalView {
       </tr>`
     );
     const resultTableBody = resultTable.join("");
-    this.modalTable.innerHTML += resultTableHeader + resultTableBody;
+    this.modalTable.insertAdjacentHTML(
+      "beforeend",
+      resultTableHeader + resultTableBody
+    );
     this.profit.textContent = `당신의 총 수익률은 ${result[result.length - 1]
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}%입니다.`;
