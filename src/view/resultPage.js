@@ -8,7 +8,7 @@ const dialogElem = document.querySelector("dialog");
 import { ControlElem } from "../utils/ControlElem";
 
 const resultPage = {
-  addEvent(resultCallback) {
+  addEvent(clickResultFunction) {
     const inputLottoBonusAreaElem = document.querySelector(
       ".inputLottoBonusArea"
     );
@@ -16,7 +16,7 @@ const resultPage = {
 
     inputLottoBonusAreaElem.addEventListener("submit", (event) => {
       event.preventDefault();
-      resultCallback();
+      clickResultFunction();
     });
     restartButtonElem.addEventListener("click", this.clickRestart);
   },

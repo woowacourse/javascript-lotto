@@ -5,9 +5,9 @@ const inputAmountAreaElem = document.querySelector(".inputAmountArea");
 import { ControlElem } from "../utils/ControlElem";
 
 const mainPage = {
-  addEvent(callback) {
+  addEvent(submitAmountFunction) {
     inputAmountAreaElem.addEventListener("submit", (event) => {
-      callback();
+      submitAmountFunction();
       event.preventDefault();
     });
   },
