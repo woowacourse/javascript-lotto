@@ -1,4 +1,4 @@
-import { MAX_LOTTO_NUMBER } from '../../domain/constants';
+import { LOTTO_NUMBERS_COUNT } from '../../domain/constants';
 
 import { $, $$, dispatchCustomEvent } from '../../utils/dom';
 
@@ -13,55 +13,22 @@ class WinningNumbersSubmitForm {
         <div class="flex-col input-wrapper">
           <label for="winning-numbers-input">당첨 번호</label>
           <div>
-            <input
-              id="winning-numbers-input"
-              class="number-input"
-              type="number"
-              min="1"
-              max="45"
-              tabindex="1"
-              required
-            />
-            <input
-              class="number-input"
-              type="number"
-              min="1"
-              max="45"
-              tabindex="2"
-              required
-            />
-            <input
-              class="number-input"
-              type="number"
-              min="1"
-              max="45"
-              tabindex="3"
-              required
-            />
-            <input
-              class="number-input"
-              type="number"
-              min="1"
-              max="45"
-              tabindex="4"
-              required
-            />
-            <input
-              class="number-input"
-              type="number"
-              min="1"
-              max="45"
-              tabindex="5"
-              required
-            />
-            <input
-              class="number-input"
-              type="number"
-              min="1"
-              max="45"
-              tabindex="6"
-              required
-            />
+            ${Array(LOTTO_NUMBERS_COUNT)
+              .fill()
+              .map(
+                (_, index) => /* html */ `
+                <input
+                  id="winning-numbers-input"
+                  class="number-input"
+                  type="number"
+                  min="1"
+                  max="45"
+                  tabindex="${index + 1}"
+                  required
+                />
+            `
+              )
+              .join('')}
           </div>
         </div>
         <div class="flex-col input-wrapper">
