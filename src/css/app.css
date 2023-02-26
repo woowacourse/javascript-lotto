@@ -46,8 +46,8 @@ button {
 .lotto-purchase-form {
   display: flex;
   flex-direction: column;
-  margin-top: 28px;
   gap: 5px;
+  margin-top: 28px;
 }
 
 .purchase-input-container {
@@ -58,9 +58,9 @@ button {
 .lotto-list {
   display: flex;
   flex-direction: column;
+  gap: 4px;
   margin-top: 28px;
   margin-bottom: 24px;
-  gap: 4px;
   font-family: var(--fontFamilyPrimary);
   font-size: 15px;
 }
@@ -76,10 +76,10 @@ button {
 .lotto-purchase-button {
   width: 56px;
   height: 36px;
-  background-color: var(--colorPrimary);
-  color: var(--grayScale100);
   border: 0;
   border-radius: 4px;
+  background-color: var(--colorPrimary);
+  color: var(--grayScale100);
 }
 
 .lotto-purchase-button:disabled {
@@ -122,10 +122,10 @@ button {
   width: 100%;
   height: 36px;
   margin-top: 27px;
-  background-color: var(--colorPrimary);
-  color: var(--grayScale100);
   border: 0;
   border-radius: 4px;
+  background-color: var(--colorPrimary);
+  color: var(--grayScale100);
 }
 
 .copyright {
