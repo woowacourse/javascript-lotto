@@ -139,7 +139,7 @@
 **콘솔 기반으로 진행할 수 있다.**
 
 - 터미널에서 npm 설치(`npm install`) 후 `npm run start-step1` 커맨드로 앱을 실행할 수 있다.
-  - ❗**node: redline/promises**를 사용해 node 18 버전 이상에서만 실행이 가능하다.
+  - ❗**node: redline/promises**를 사용해 node 17 버전 이상에서만 실행이 가능하다.
   - `node -v`를 통해 현재 버전을 확인할 수 있다.
   - 앱의 진입점이 되는 파일은 `src/step1-index.js`
 
