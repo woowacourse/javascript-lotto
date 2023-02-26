@@ -3,6 +3,9 @@ import validators from "./Validators";
 
 const InputCheck = {
   validateBuyMoney(buyMoney, isWeb) {
+    if (validators.isMaxBuyMoney(buyMoney, isWeb)) {
+      this.throwError(ERROR_MESSAGE.MAX_MONEY,isWeb)
+    }
     if (!validators.isNumber(buyMoney)) {
       this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
