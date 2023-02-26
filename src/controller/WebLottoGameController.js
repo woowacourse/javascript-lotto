@@ -17,9 +17,11 @@ class WebLottoGameController {
     e.preventDefault();
     const userBudget = $('#user-budget-input').value;
 
+    WebView.show('#winning-numbers-section', '#purchased-lotto-section');
+    $('#winning-numbers-input-1').focus();
+
     this.#issueLottoTickets(userBudget);
     this.#printLottoTickets();
-    WebView.show('#winning-numbers-section', '#purchased-lotto-section');
   }
 
   #issueLottoTickets(userBudget) {
