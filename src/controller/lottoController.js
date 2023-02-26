@@ -1,90 +1,84 @@
 const LottoGame = require("../domain/LottoGame");
-const Validation = require("../domain/Validation");
+const validation = require("../domain/Validation");
+const View = require("../view/View");
+const { $, $$ } = require("../util/Dom");
+const { selectorId } = require("../constant/Constant");
 
 class LottoController {
   #lottoGame;
   #view;
 
-  constructor(inputView, outputView) {
-    this.#view = { ...inputView, ...outputView };
+  constructor() {
+    this.#view = new View(this);
   }
 
-  async playLotto() {
+  playLotto() {
+    this.#view.hiddenWinLottoElements();
     this.#lottoGame = new LottoGame();
 
-    const money = await this.readMoney();
-    const lottos = await this.purchaseLotto(money);
-
-    const winNumbers = await this.readWinNumbers();
-    const bonusNumber = await this.readBonusNumber(winNumbers);
-    const winLotto = this.#lottoGame.makeWinLotto(winNumbers, bonusNumber);
-    await this.drawLotto(lottos, winLotto);
-
+    this.#view.onMoneySubmit(this.submitMoneyForm);
+    this.#view.onWinLottoSubmit(this.submitWinLottoForm);
     this.restart();
+    this.exitModal();
   }
 
-  async purchaseLotto(money) {
-    const lottos = this.#lottoGame.makeLottos(money);
-    const lottoCount = lottos.length;
+  submitMoneyForm(money) {
+    if (!this.validateMoney(money)) return;
 
-    this.#view.printLottoCount(lottoCount);
-    this.#view.printPurchaseLottos(lottos);
+    this.#lottoGame.purchaseLottos(money);
+    const lottos = this.#lottoGame.lottos;
 
-    return lottos;
+    this.#view.showWinLottoElements();
+    this.#view.showLottoTickets(lottos);
   }
 
-  async drawLotto(lottos, winLotto) {
-    const lottoCnt = lottos.length;
-    const rankResult = this.#lottoGame.calculateRankResult(lottos, winLotto);
-    const revenue = this.#lottoGame.calculateRevenueRate(rankResult, lottoCnt);
+  submitWinLottoForm(inputNums, inputBonus) {
+    if (!this.validateWinNumbers(inputNums)) return;
+    if (!this.validateWinBonusNumber(inputNums, inputBonus)) return;
 
-    this.#view.printRankResult(rankResult);
-    this.#view.printRevenue(revenue, lottoCnt);
+    const numbers = inputNums.map((num) => parseInt(num, 10));
+    const bonusNumber = parseInt(inputBonus);
+
+    const winLotto = this.#lottoGame.makeWinLotto(numbers, bonusNumber);
+    const rankResult = this.#lottoGame.calculateRankResult(this.#lottoGame.lottos, winLotto);
+    const revenue = this.#lottoGame.calculateRevenueRate(rankResult, this.#lottoGame.lottos.length);
+
+    this.#view.showGameResult(rankResult, revenue);
   }
 
-  async restart() {
+  validateMoney(money) {
     try {
-      const command = await this.#view.readCommandRestart();
-      Validation.validateRestartCommand(command);
-      return command === "y" ? this.playLotto() : this.#view.close();
+      validation.validateMoney(money);
+      return true;
     } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      this.restart();
+      alert(e.message);
+      $(`${selectorId.INPUT_MONEY_FORM} input`).value = null;
+      this.#view.hiddenWinLottoElements();
+      return false;
     }
   }
 
-  async readMoney() {
+  validateWinNumbers(numbers) {
     try {
-      const money = await this.#view.readMoney();
-      Validation.validateMoney(money);
-      return parseInt(money);
+      validation.validateWinNumber(numbers);
+      return true;
     } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      return this.readMoney();
+      alert(e.message);
+      $$(`${selectorId.WINNUMBERS_ELEMENT} input`).forEach((element) => {
+        element.value = null;
+      });
+      return false;
     }
   }
 
-  async readWinNumbers() {
+  validateWinBonusNumber(numbers, bonusNumber) {
     try {
-      const input = await this.#view.readWinNumbers();
-      Validation.validateWinNumber(input.split(","));
-      const winNumbers = input.split(",").map((num) => parseInt(num));
-      return winNumbers;
+      validation.validateBonusNumber(numbers, bonusNumber);
+      return true;
     } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      return this.readWinNumbers();
-    }
-  }
-
-  async readBonusNumber(numbers) {
-    try {
-      const input = await this.#view.readBonusNumber();
-      Validation.validateBonusNumber(numbers, input);
-      const bonusNumber = parseInt(input);
-      return bonusNumber;
-    } catch (e) {
-      this.#view.printErrorMessage(e.message);
-      await this.readBonusNumber(numbers);
+      alert(e.message);
+      $(`${selectorId.BONUS_ELEMENT} input`).value = null;
+      return false;
     }
   }
 }

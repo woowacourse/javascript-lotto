@@ -1,0 +1,475 @@
+@import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
+
+.text-body {
+  font-family: "Roboto";
+  font-size: 15px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+p {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+header {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 64px;
+  left: 0px;
+  top: 0px;
+
+  background: #4e5ba6;
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+header h1 {
+  position: absolute;
+  width: 160px;
+  height: 36px;
+  left: 130px;
+  top: 14px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 36px;
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #ffffff;
+}
+
+.contents {
+  position: absolute;
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  left: 50%;
+  top: 150px;
+  transform: translate(-50%, 0);
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.subtitle {
+  position: absolute;
+  width: 382px;
+  height: 24px;
+  left: 16px;
+  top: 52px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.15px;
+
+  color: #000000;
+}
+
+#input-money {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  position: absolute;
+  width: 382px;
+  height: 64px;
+  left: 16px;
+  top: 104px;
+}
+
+#input-money p {
+  position: absolute;
+  left: 0%;
+  right: 40.65%;
+  top: 0%;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+#input-money input {
+  box-sizing: border-box;
+
+  position: absolute;
+  left: 0%;
+  right: 40.65%;
+  bottom: 0;
+
+  width: 320px;
+  height: 32px;
+
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#input-winlotto {
+  position: absolute;
+  width: 382px;
+  height: 150px;
+  right: 14px;
+  top: 500px;
+}
+
+#input-money button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 52px;
+  height: 32px;
+  left: 332px;
+  bottom: 0;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#show-lotto-label {
+  position: absolute;
+  width: 310px;
+  height: 24px;
+  left: 16px;
+  top: 196px;
+}
+
+#show-lotto-contents {
+  position: absolute;
+  height: 290px;
+  width: 382px;
+  top: 220px;
+  left: 16px;
+  overflow: auto;
+}
+
+#show-lotto-contents div {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 8px 0;
+}
+
+#show-lotto-contents .icon-lotto {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 32px;
+
+  margin-right: 10px;
+
+  color: #000000;
+}
+
+#show-lotto-contents .lotto-numbers {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #000000;
+}
+
+#input-money button div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+
+  color: #ffffff;
+  width: 30px;
+  height: 16px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+#input-winlotto-label {
+  position: absolute;
+  left: 0;
+  right: 3.86%;
+  top: 15.07%;
+
+  height: 27px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+.input-number {
+  width: 27px;
+  height: 29px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#input-winnumbers-box {
+  position: absolute;
+  width: 244px;
+  height: 75px;
+  left: 0;
+  top: 50px;
+}
+
+#input-winnumbers-box p {
+  position: absolute;
+  left: 0;
+  top: 22%;
+  bottom: 70%;
+  height: 20px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+#input-winnumbers-box div {
+  position: absolute;
+  width: 244px;
+  height: 36px;
+  bottom: 0;
+}
+
+#input-bonusnumber-box {
+  position: absolute;
+  width: 90px;
+  height: 75px;
+  right: 0px;
+  top: 50px;
+}
+
+#input-bonusnumber-box p {
+  position: absolute;
+  right: 0;
+  top: 22%;
+  bottom: 70%;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+#input-bonusnumber-box div {
+  position: absolute;
+  height: 36px;
+  bottom: 0;
+  right: 0;
+}
+
+#submit-winlotto-button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  position: absolute;
+  width: 382px;
+  height: 36px;
+  left: 16px;
+  top: 659px;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#submit-winlotto-button p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 4px;
+
+  width: 368px;
+  height: 24px;
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+}
+
+#result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0%, 0%);
+
+  width: 100%;
+  height: 100%;
+
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#result-body {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  left: 50%;
+  top: 250px;
+  transform: translate(-50%, 0%);
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+#result .subtitle {
+  width: 318px;
+  top: 41px;
+}
+
+#result-exit {
+  position: absolute;
+  left: 89.43%;
+  top: 0.8%;
+
+  font-size: 20px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+#result table {
+  position: absolute;
+  width: 318px;
+  left: 16px;
+  top: 100px;
+
+  text-align: center;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+#result thead {
+  font-weight: 600;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  height: 30px;
+}
+
+#result tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#result-revenue {
+  position: relative;
+  top: 380px;
+
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+#restart {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#restart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+#restart p {
+  width: 106px;
+  height: 16px;
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+footer div {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 944px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+footer div p {
+  position: absolute;
+  height: 16px;
+
+  text-align: center;
+  letter-spacing: 1.25px;
+
+  color: #4e5ba6;
+}
