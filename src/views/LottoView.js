@@ -71,11 +71,12 @@ const lottoView = {
     const winningNumbersForm = document.querySelector('#winning-numbers-form');
 
     this.lottosQuantity = document.querySelector('#lottos-quantity');
-    this.lottosQuantity.innerText = lottoNumbersList.length;
+    this.lottosQuantity.textContent = lottoNumbersList.length;
 
-    lottoListContainer.innerHTML = null;
+    lottoListContainer.textContent = null;
+
     lottoNumbersList.forEach(lottoNumbers => {
-      lottoListContainer.innerHTML += `<li>🎟️ ${lottoNumbers.join(', ')}</li>`;
+      lottoListContainer.insertAdjacentHTML('afterbegin', `<li>🎟️ ${lottoNumbers.join(', ')}</li>`);
     });
 
     this.show(lottoDetail);
@@ -91,13 +92,13 @@ const lottoView = {
 
     showResultButton.disabled = true;
 
-    amountOfRanksContainer[RANK.SIZE - RANK.FIFTH - 1].innerHTML = amountOfRanks[RANK.FIFTH];
-    amountOfRanksContainer[RANK.SIZE - RANK.FOURTH - 1].innerHTML = amountOfRanks[RANK.FOURTH];
-    amountOfRanksContainer[RANK.SIZE - RANK.THIRD - 1].innerHTML = amountOfRanks[RANK.THIRD];
-    amountOfRanksContainer[RANK.SIZE - RANK.SECOND - 1].innerHTML = amountOfRanks[RANK.SECOND];
-    amountOfRanksContainer[RANK.SIZE - RANK.FIRST - 1].innerHTML = amountOfRanks[RANK.FIRST];
+    amountOfRanksContainer[RANK.SIZE - RANK.FIFTH - 1].textContent = amountOfRanks[RANK.FIFTH];
+    amountOfRanksContainer[RANK.SIZE - RANK.FOURTH - 1].textContent = amountOfRanks[RANK.FOURTH];
+    amountOfRanksContainer[RANK.SIZE - RANK.THIRD - 1].textContent = amountOfRanks[RANK.THIRD];
+    amountOfRanksContainer[RANK.SIZE - RANK.SECOND - 1].textContent = amountOfRanks[RANK.SECOND];
+    amountOfRanksContainer[RANK.SIZE - RANK.FIRST - 1].textContent = amountOfRanks[RANK.FIRST];
 
-    profitContainer.innerHTML = profit;
+    profitContainer.textContent = profit;
 
     this.show(modalBackground);
     this.show(lottoModal);
@@ -138,7 +139,7 @@ const lottoView = {
     const luckyNumbersInput = document.querySelectorAll('#lucky-numbers-input > input');
     const bonusNumberInput = document.querySelector('#bonus-number');
 
-    lottoListContainer.innerHTML = null;
+    lottoListContainer.textContent = null;
     buyMoneyInput.value = null;
     luckyNumbersInput.forEach(luckyNumber => (luckyNumber.value = null));
     bonusNumberInput.value = null;
