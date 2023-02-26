@@ -1,9 +1,9 @@
 class PurchaseView {
   constructor(submitPurchaseAmount) {
-    this.purchaseInput = document.getElementsByClassName("purchase-input")[0];
-    this.purchaseButton = document.getElementsByClassName("purchase-btn")[0];
-    this.purchaseForm = document.getElementsByClassName("purchase-form");
-    this.purchaseForm[0].addEventListener("submit", submitPurchaseAmount);
+    this.purchaseInput = document.querySelector(".purchase-input");
+    this.purchaseButton = document.querySelector(".purchase-btn");
+    this.purchaseForm = document.querySelector(".purchase-form");
+    this.purchaseForm.addEventListener("submit", submitPurchaseAmount);
   }
 }
 
