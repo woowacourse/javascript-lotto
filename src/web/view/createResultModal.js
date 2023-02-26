@@ -1,14 +1,22 @@
 import { RANK } from '../../constants/setting';
 
-const resultTableHead =
-  '<thead><tr><td>일치 갯수</td><td>당첨금</td><td>당첨 갯수</td></tr></thead>';
+const resultTableHead = `
+  <thead>
+    <tr>
+      <td>일치 갯수</td>
+      <td>당첨금</td>
+      <td>당첨 갯수</td>
+    </tr>
+  </thead>
+`;
 
-const createResultTableRow = (matchCount, rewards, winningQuantity) =>
-  `<tr>
+const createResultTableRow = (matchCount, rewards, winningQuantity) => `
+  <tr>
     <td>${matchCount}개${rewards === RANK.SECOND.REWARDS ? '+보너스볼' : ''}</td>
     <td>${rewards.toLocaleString('ko-KR')}</td>
     <td>${winningQuantity}개</td>
-  </tr>`;
+  </tr>
+`;
 
 const createTableBody = (ranking) => `
   <tbody>
