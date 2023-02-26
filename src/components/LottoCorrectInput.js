@@ -14,13 +14,13 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
       </div>
 
       <div class="flex mgTop_1_rem">
-        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input bonusNumber ml-auto" id="bonusNumber" value="" />
+        <input type="number" class="lotto-card__lotto--input space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input space-x-1" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input ml-auto" id="bonusNumber" value="" />
       </div>
 
       <button class="button w-100 mgTop_1_rem">결과 확인하기</button>
@@ -36,11 +36,11 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
   this.setEvent = () => {
     this.$target.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
-        const winningNumbers = [...getDomAll('.winningNumbers')]
+        const winningNumbers = [...getDomAll('#winningNumbers')]
           .map((winningNumber) => winningNumber.value)
           .join(',');
 
-        inputCorrectLottoEvent(winningNumbers, getDom('.bonusNumber').value);
+        inputCorrectLottoEvent(winningNumbers, getDom('#bonusNumber').value);
       }
     });
   };
