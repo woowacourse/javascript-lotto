@@ -12,7 +12,6 @@
 }
 
 .lotto-money > * {
-  box-sizing: border-box;
   height: 100%;
 }
 
@@ -23,5 +22,5 @@
 
 .purchase-button {
   width: 5.6rem;
-  margin-left: 16px;
+  margin-left: 1.6rem;
 }
