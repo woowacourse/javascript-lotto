@@ -166,12 +166,11 @@ export default class View {
   }
 
   initPurchaseAmountInput() {
-    $('.purchase-amount-input').value = '';
+    $('.purchase-amount-form').reset();
   }
 
   initWinningLottoInput() {
-    $$('.winning-number-input').forEach((input) => (input.value = ''));
-    $('.bonus-number-input').value = '';
+    $('.winning-lotto-form').reset();
   }
 
   showAlert(message) {
