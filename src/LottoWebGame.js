@@ -4,7 +4,12 @@ import lottoGameCalculator from './domain/lottoGameCalculator';
 import randomShuffle from './utils/randomShuffle';
 import { $, $$ } from './utils/dom';
 import { LOTTO, RANKING_THRESHOLD } from './constants';
-import { renderLottos, renderResultModal } from './view/render';
+import {
+  renderBuyMessage,
+  renderLottoInputErrorMessage,
+  renderLottos,
+  renderResultModal,
+} from './view/render';
 
 class LottoWebGame {
   #lottos;
@@ -24,31 +29,43 @@ class LottoWebGame {
     });
   };
 
-  handleValidate = (validator, value) => {
+  handleBuyButton = () => {
     try {
-      validator(value);
+      const purchaseAmount = this.getPurchaseAmount();
+      this.initLottos(purchaseAmount);
+      renderLottos(this.#lottos.map((lotto) => lotto.getNumbers()));
+      renderBuyMessage('성공적으로 구매되었습니다!', 'black');
+      $('.hidden-area').classList.add('show');
     } catch (e) {
-      alert(e.message);
+      renderBuyMessage(e.message, 'red');
     }
   };
 
-  handleBuyButton = () => {
+  getPurchaseAmount = () => {
     const purchaseAmount = $('#purchase-amount').value;
-    this.handleValidate(lottoGameValidator.checkPurchaseAmount, purchaseAmount);
-    this.initLottos(Number(purchaseAmount));
-    renderLottos(this.#lottos.map((lotto) => lotto.getNumber()));
-    $('.hidden-area').classList.add('show');
+    lottoGameValidator.checkPurchaseAmount(purchaseAmount);
+    return Number(purchaseAmount);
   };
 
   handleResultButton = () => {
+    try {
+      const { winningNumbers, bonusNumber } = this.getLottoInputs();
+      const rankings = this.makeRankings(winningNumbers, Number(bonusNumber));
+      const rewardRate = lottoGameCalculator.calculateRewardRate(this.#lottos.length * LOTTO.price, rankings);
+      renderResultModal(rankings, rewardRate);
+      renderLottoInputErrorMessage('올바른 당첨 번호입니다!', 'black');
+      this.toggleResultModal();
+    } catch (e) {
+      renderLottoInputErrorMessage(e.message, 'red');
+    }
+  };
+
+  getLottoInputs = () => {
     const winningNumbers = Array.from($$('.winning-numbers > input')).map(($input) => Number($input.value));
     const bonusNumber = $('.bonus-number > input').value;
-    this.handleValidate(lottoGameValidator.checkLottoNumber, winningNumbers);
-    this.handleValidate(lottoGameValidator.checkBonusNumber, bonusNumber);
-    const rankings = this.makeRankings(winningNumbers, Number(bonusNumber));
-    const rewardRate = lottoGameCalculator.calculateRewardRate(this.#lottos.length * LOTTO.price, rankings);
-    renderResultModal(rankings, rewardRate);
-    this.toggleResultModal();
+    lottoGameValidator.checkLottoNumbers(winningNumbers);
+    lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
+    return { winningNumbers, bonusNumber };
   };
 
   handleReplayButton = () => {
