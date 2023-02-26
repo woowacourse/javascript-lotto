@@ -15,7 +15,7 @@ const Validator = {
   },
 
   isCorrectRange(input) {
-    const lottoNumberRange = 0 < input && input < 46;
+    const lottoNumberRange = 0 < input && input < SETTINGS.LOTTO_RANDOM_NUMBER_RANGE + 1;
     if (!lottoNumberRange) throw new Error(ERROR_MESSAGE.CORRECT_NUMBER_RANGE);
   },
 
@@ -36,7 +36,7 @@ const Validator = {
   },
 
   isCorrectRetryInput(retryInput) {
-    if (retryInput !== "y" && retryInput !== "n")
+    if (retryInput !== SETTINGS.RETRY_INPUT && retryInput !== SETTINGS.CLOSE_INPUT)
       throw new Error(ERROR_MESSAGE.CORRECT_RETRY_INPUT);
   },
 };
