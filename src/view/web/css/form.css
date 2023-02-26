@@ -1,0 +1,46 @@
+form {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+form > *:not(:first-child),
+form + form {
+  margin-top: 2rem;
+}
+
+form > lt-typography {
+  text-align: center;
+}
+
+form > fieldset {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  border: none;
+}
+
+form > fieldset > legend {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+form > fieldset > lt-money-input,
+form > fieldset > lt-winning-lotto-input {
+  flex: 1;
+}
+
+form > fieldset > lt-lotto {
+  width: 100%;
+}
+
+form:invalid button {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+[data-focus] ~ * {
+  display: none;
+}
+

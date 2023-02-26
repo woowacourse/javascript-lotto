@@ -16,6 +16,7 @@ class WinningLotto {
     this.#lotto = new Lotto(lottoNumbers);
     this.#bonusNumber = bonusNumber;
 
+    Validation.validateLottoNumber(bonusNumber);
     Validation.validateBonusNumberUnique(lottoNumbers, bonusNumber);
   }
 

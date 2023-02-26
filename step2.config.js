@@ -1,19 +1,19 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   devServer: {
     port: 9000,
   },
-  entry: "./src/step2-index.js",
+  entry: './src/step2-index.js',
   output: {
-    filename: "step2-bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: 'step2-bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: [".js", ".mjs", ".css"],
+    extensions: ['.js', '.mjs', '.css'],
   },
   module: {
     rules: [
@@ -22,24 +22,37 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ['@babel/preset-env'],
             },
           },
         ],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            minimize: true,
+          },
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: './index.html',
     }),
   ],
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
 };

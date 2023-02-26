@@ -1,8 +1,8 @@
-import Messages from '../constant/Messages';
-import Lotto from '../domain/lotto/Lotto';
-import WinningLotto from '../domain/WinningLotto';
-import Console from '../utils/Console';
-import Validation from '../Validation';
+import Messages from '../../constant/Messages';
+import Lotto from '../../domain/lotto/Lotto';
+import WinningLotto from '../../domain/WinningLotto';
+import Console from '../../utils/Console';
+import Validation from '../../Validation';
 
 const InputView = {
   /**

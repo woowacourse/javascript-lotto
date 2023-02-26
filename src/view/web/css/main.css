@@ -1,0 +1,113 @@
+:root {
+  --main-color: #4E5BA6;
+  --main-text-color: rgba(0, 0, 0, 0.87);
+  --main-secondary-text-color: #8B8B8B;
+
+  --typography-title-font-size: 1.5rem;
+  --typography-title-font-weight: 800;
+  --typography-subtitle-font-size: 1.25rem;
+  --typography-subtitle-font-weight: 600;
+  --typography-body-font-size: 0.9375rem;
+  --typography-body-font-weight: 400;
+  --typography-caption-font-size: 0.875rem;
+  --typography-caption-font-weight: 700;
+
+  --container-max-width: 960px;
+}
+
+body {
+  font-family: 'Roboto';
+  color: var(--main-text-color);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body > main > article {
+  width: 420px;
+  margin: 32px 16px;
+}
+
+body > *:last-child {
+  margin-top: auto;
+}
+
+header {
+  padding: 0.875rem;
+  background: var(--main-color);
+  color: white;
+}
+
+header > nav {
+  margin: 0 auto;
+  max-width: var(--container-max-width);
+}
+
+header > nav > a.home {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+header > nav > a.home::before {
+  content: '🎱';
+  font-size: 1.5rem;
+}
+
+footer {
+  padding: 2rem;
+  color: var(--main-color);
+  letter-spacing: 0.078125rem;
+  text-align: center;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+h1 {
+  font-size: var(--typography-title-font-size);
+  font-weight: var(--typography-title-font-weight);
+}
+
+h2 {
+  font-size: var(--typography-subtitle-font-size);
+  font-weight: var(--typography-subtitle-font-weight);
+}
+
+body, p {
+  font-size: var(--typography-body-font-size);
+  font-weight: var(--typography-body-font-weight);
+}
+
+caption {
+  font-size: var(--typography-caption-font-size);
+  font-weight: var(--typography-caption-font-weight);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--main-color);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+article {
+  padding: 32px 16px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+dialog {
+  width: 350px;
+}

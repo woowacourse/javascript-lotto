@@ -1,8 +1,8 @@
-import Messages from '../constant/Messages';
-import Lotto from '../domain/lotto/Lotto';
-import LottoResult from '../domain/LottoResult';
-import Reward from '../domain/reward/Reward';
-import Console from '../utils/Console';
+import Messages from '../../constant/Messages';
+import Lotto from '../../domain/lotto/Lotto';
+import LottoResult from '../../domain/LottoResult';
+import Reward from '../../domain/reward/Reward';
+import Console from '../../utils/Console';
 
 const OutputView = {
   /**
@@ -42,7 +42,6 @@ const OutputView = {
 
   printExit() {
     Console.print(Messages.PRINT_EXIT);
-    Console.close();
   },
 };
 
