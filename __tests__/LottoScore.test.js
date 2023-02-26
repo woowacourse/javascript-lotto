@@ -16,7 +16,8 @@ describe("LottoMachine 객체 단위테스트", () => {
     lottoMachine.compareLottos(
       [lotto1, lotto2, lotto3],
       winningNumbers,
-      bonusNumber
+      bonusNumber,
+      lottoScore
     );
     lottoScore.compareLottosScore();
 
@@ -38,7 +39,8 @@ describe("LottoMachine 객체 단위테스트", () => {
     lottoMachine.compareLottos(
       [lotto1, lotto2, lotto3],
       winningNumbers,
-      bonusNumber
+      bonusNumber,
+      lottoScore2
     );
     lottoScore2.compareLottosScore();
     lottoScore2.calculateTotalBenefit();
@@ -54,7 +56,8 @@ describe("LottoMachine 객체 단위테스트", () => {
     lottoMachine.compareLottos(
       [lotto1, lotto2, lotto3],
       winningNumbers,
-      bonusNumber
+      bonusNumber,
+      lottoScore3
     );
     lottoScore3.compareLottosScore();
 

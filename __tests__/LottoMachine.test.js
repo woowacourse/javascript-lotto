@@ -1,5 +1,6 @@
 import Lotto from "../src/domain/Lotto";
 import LottoMachine from "../src/domain/LottoMachine";
+import LottoScore from "../src/domain/LottoScore";
 
 describe("LottoMachine 객체 단위테스트", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
@@ -16,9 +17,10 @@ describe("LottoMachine 객체 단위테스트", () => {
 
   test("보너스 점수유무를 판단하는 함수 테스트", () => {
     const lotto2 = new Lotto([1, 2, 3, 4, 5, 10]);
+    const lottoScore = new LottoScore([lotto2]);
 
-    lottoMachine.compareBonusNumber(bonusNumber, lotto2);
+    lottoMachine.compareBonusNumber(bonusNumber, lotto2,0,lottoScore);
 
-    expect(lotto2.isContainBonusNumber).toBeTruthy();
+    expect(lottoScore.isContainBonusNumber[0]).toBeTruthy();
   });
 });
