@@ -71,7 +71,7 @@ class App2 {
 
   showInitResult() {
     this.isInitShow = false;
-    this.getWinningLotto();
+    this.inputWinningLottos();
     this.checkWinningLottoInputs();
   }
 
@@ -81,7 +81,7 @@ class App2 {
     HandleView.removeClassList(result, "hidden");
   }
 
-  getWinningLotto() {
+  inputWinningLottos() {
     const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
 
     winningLottosInputs.forEach((winningNumber) => {
@@ -92,7 +92,7 @@ class App2 {
   checkWinningLottoInputs() {
     try {
       InputCheck.validateWinningNumbers(this.winningLotto, true);
-      this.getBonusNumber();
+      this.inputBonusNumber();
       this.checkBonusNumberInput();
     } catch (e) {
       this.resetWinningLottoInputs();
@@ -117,7 +117,7 @@ class App2 {
     this.winningLotto = [];
   }
 
-  getBonusNumber() {
+  inputBonusNumber() {
     const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
 
     this.bonusNumber = Number(bonusInput.value);
