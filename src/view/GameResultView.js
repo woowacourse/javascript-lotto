@@ -78,16 +78,16 @@ const GameResultView = {
   },
 
   addRestartClickEvent(clickHandler) {
-    this.button = document.getElementById('modal-restart-btn');
-    this.button.addEventListener('click', (e) => {
+    const button = document.getElementById('modal-restart-btn');
+    button.addEventListener('click', (e) => {
       e.preventDefault();
       clickHandler();
     });
   },
 
   addCloseClickEvent(clickHandler) {
-    this.button = document.getElementById('modal-close-btn');
-    this.button.addEventListener('click', (e) => {
+    const button = document.getElementById('modal-close-btn');
+    button.addEventListener('click', (e) => {
       e.preventDefault();
       clickHandler();
     });
