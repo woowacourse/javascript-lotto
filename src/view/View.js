@@ -1,4 +1,4 @@
-import { $, $$ } from '../utils/dom.js';
+import { $, $$, disableElements, enableElements } from '../utils/dom.js';
 import { LOTTO_PRIZE_MONEY, PRIZE_MATCH_COUNT } from '../constants/condition.js';
 
 export default class View {
@@ -39,7 +39,7 @@ export default class View {
       this.initPurchaseAmountInput();
       this.initWinningLottoInput();
 
-      this.enableElements(
+      enableElements(
         $('.purchase-amount-input'),
         $('.purchase-amount-submit-button'),
         ...$$('.winning-number-input'),
@@ -54,7 +54,7 @@ export default class View {
   onClickModalCloseButton() {
     $('.modal-close-button').addEventListener('click', () => {
       this.initStatistics();
-      this.enableElements($('.winning-lotto-submit-button'));
+      enableElements($('.winning-lotto-submit-button'));
       this.hideElements('.result-modal');
     });
   }
@@ -63,7 +63,7 @@ export default class View {
     this.printLottoQuantity(lottoQuantity);
     this.printEachLottoNumbers(eachLottoNumbers);
 
-    this.disableElements($('.purchase-amount-input'), $('.purchase-amount-submit-button'));
+    disableElements($('.purchase-amount-input'), $('.purchase-amount-submit-button'));
     this.showElements('.winning-lotto-form');
   }
 
@@ -71,7 +71,7 @@ export default class View {
     this.printStatistics(statistics);
     this.printYieldRatio(yieldRatio);
 
-    this.disableElements(
+    disableElements(
       ...$$('.winning-number-input'),
       $('.bonus-number-input'),
       $('.winning-lotto-submit-button')
@@ -135,18 +135,6 @@ export default class View {
       '당신의 총 수익률은 ' + `${yieldRatio.toLocaleString(new Intl.NumberFormat('KRW'))}%입니다.`;
 
     $('.modal-yield-ratio').innerText = yieldRatioText;
-  }
-
-  enableElements(...elements) {
-    elements.forEach((element) => {
-      element.disabled = false;
-    });
-  }
-
-  disableElements(...elements) {
-    elements.forEach((element) => {
-      element.disabled = true;
-    });
   }
 
   showElements(...elements) {
