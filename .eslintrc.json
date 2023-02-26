@@ -8,7 +8,8 @@
     "no-console": "off",
     "no-undef": "off",
     "object-curly-newline": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "linebreak-style": "off"
   },
   "env": {
     "browser": true,

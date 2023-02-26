@@ -1,6 +1,7 @@
 const GameControlStaticValue = Object.freeze({
   PURCHASE_AMOUNT_UNIT: 1_000,
   PERCENTAGE_DIVIDER: 100,
+  PURCHASE_AMOUNT_LIMIT: 100_000,
   RESTART_BUTTON: 'y',
   QUIT_BUTTON: 'n',
   INPUT_SEPARATOR: ',',
@@ -67,6 +68,7 @@ const ResultMessage = Object.freeze({
 
 const ErrorMessage = Object.freeze({
   MONEY_VALUE: `[ERROR] 로또 구입 금액은 ${GameControlStaticValue.PURCHASE_AMOUNT_UNIT}원 단위로 입력해 주세요.`,
+  MONEY_LIMIT: `[ERROR] 로또 구입 금액은 ${GameControlStaticValue.PURCHASE_AMOUNT_LIMIT}원 이상은 구매할 수 없습니다.`,
   MINMUM_VALUE: `[ERROR] 로또 구입 금액은 ${GameControlStaticValue.PURCHASE_AMOUNT_UNIT}원 이상이여야 합니다.`,
   MONEY_INPUT_TYPE: '[ERROR] 로또 구입 금액은 숫자만 입력해 주세요.',
   LOTTO_VALUE: `[ERROR] 로또 번호는 ${RandomNumberStaticValue.LOWER_INCLUSIVE}~${RandomNumberStaticValue.UPPER_INCLUSIVE} 사이의 숫자를 입력해주세요.`,

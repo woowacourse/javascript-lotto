@@ -30,6 +30,14 @@ describe('Validation 테스트', () => {
         expect(() => Validation.checkMoneyInputType(amount)).toThrow(ErrorMessage.MONEY_INPUT_TYPE);
       });
     });
+
+    test('값이 최대값 이상일 때 예외 발생', () => {
+      const PURCHASE_AMOUNT = 110000;
+
+      expect(() => Validation.testPurchaseAmount(PURCHASE_AMOUNT)).toThrow(
+        ErrorMessage.MONEY_LIMIT,
+      );
+    });
   });
 
   describe('당첨 번호 입력값 예외 테스트', () => {

@@ -10,6 +10,7 @@ const Validation = {
     this.checkMoneyMinmumValue(money);
     this.checkMoneyUnit(money);
     this.checkMoneyInputType(money);
+    this.checkMoneyLimit(money);
   },
 
   checkMoneyMinmumValue(money) {
@@ -27,6 +28,12 @@ const Validation = {
   checkMoneyInputType(money) {
     if (Regex.NON_DIGIT.test(money)) {
       throw new Error(ErrorMessage.MONEY_INPUT_TYPE);
+    }
+  },
+
+  checkMoneyLimit(money) {
+    if (money > GameControlStaticValue.PURCHASE_AMOUNT_LIMIT) {
+      throw new Error(ErrorMessage.MONEY_LIMIT);
     }
   },
 
