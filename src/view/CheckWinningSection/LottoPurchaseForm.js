@@ -37,12 +37,18 @@ class LottoPurchaseForm {
   handleSubmit(e) {
     e.preventDefault();
 
-    const [inputEl, buttonEl] = e.target;
+    const [inputEl] = e.target;
 
     dispatchCustomEvent($('#app'), {
       eventType: 'purchaseLotto',
       data: inputEl.valueAsNumber,
     });
+    this.disableForm(e.target);
+  }
+
+  disableForm($form) {
+    const [inputEl, buttonEl] = $form;
+
     inputEl.disabled = true;
     buttonEl.disabled = true;
   }
