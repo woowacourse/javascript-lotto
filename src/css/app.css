@@ -116,6 +116,15 @@ button {
 .number-input {
   width: 34px;
   height: 36px;
+  border-radius: 4px;
+}
+
+.number-input.valid {
+  border: 2px solid var(--colorGreen);
+}
+
+.number-input.invalid {
+  border: 2px solid var(--colorRed);
 }
 
 .number-input::-webkit-outer-spin-button,

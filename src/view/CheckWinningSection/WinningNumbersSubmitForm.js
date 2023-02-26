@@ -79,17 +79,26 @@ class WinningNumbersSubmitForm {
   bindEvent(numberInputs) {
     numberInputs.forEach((input) => {
       input.addEventListener('input', (e) => {
+        this.checkInputValidity(e.target);
         this.handleInputAutoFocusNext(numberInputs, e.target);
       });
     });
 
-    $('.winning-numbers-form').addEventListener('submit', (e) =>
-      this.handleSubmit(e)
-    );
+    this.$target.addEventListener('submit', (e) => this.handleSubmit(e));
+  }
+
+  checkInputValidity(input) {
+    if (input.checkValidity()) {
+      input.classList.add('valid');
+      input.classList.remove('invalid');
+      return;
+    }
+
+    input.classList.remove('valid');
+    input.classList.add('invalid');
   }
 
   handleInputAutoFocusNext(inputs, currentInput) {
-    const number = currentInput.valueAsNumber;
     const inputValueLength = currentInput.value.length;
     const nextInput = inputs.find(
       (input) => input.tabIndex === currentInput.tabIndex + 1

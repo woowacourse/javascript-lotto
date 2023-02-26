@@ -1,8 +1,10 @@
 :root {
   --colorPrimary: #4e5ba6;
-  --grayScale100: #ffffff;
+  --colorGreen: #00b300;
+  --colorRed: #f33;
+  --grayScale100: #fff;
   --grayScale200: #fcfcfd;
   --grayScale300: #b4b4b4;
   --grayScale400: #8b8b8b;
-  --grayScale500: #000000;
+  --grayScale500: #000;
 }
