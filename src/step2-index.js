@@ -1,7 +1,6 @@
 import './public/css/reset.css';
 import './public/css/index.css';
 import LottoGame from './domain/LottoGame';
-import ResultModal from './components/ResultModal';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Section from './components/Section';
@@ -11,7 +10,7 @@ const section = document.querySelector('section');
 const footer = document.querySelector('footer');
 
 const renderHeader = new Header();
-const renderSection = new Section(new LottoGame(), ResultModal);
+const renderSection = new Section(new LottoGame());
 
 const renderFooter = new Footer();
 renderHeader.render(header);
