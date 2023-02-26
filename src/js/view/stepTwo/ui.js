@@ -1,5 +1,5 @@
 import domList from '@lotto/view/stepTwo/domList';
-import createElem from '@lotto/utils/createElem';
+import createElement from '@lotto/utils/createElement';
 
 const ui = {
   showMoneyValidationText({ message }) {
@@ -29,7 +29,7 @@ const ui = {
     domList.lottoBox.innerHTML = '';
 
     lottos.forEach(lotto => {
-      const lottoElement = createElem('li', 'class', 'lotto-container');
+      const lottoElement = createElement({ tagName: 'li', type: 'class', name: 'lotto-container' });
       lottoElement.innerText = `🎟 ${lotto.lottoNum.join(', ')}`;
       domList.lottoBox.appendChild(lottoElement);
     });
