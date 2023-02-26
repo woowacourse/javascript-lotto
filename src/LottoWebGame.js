@@ -50,7 +50,7 @@ class LottoWebGame {
   handleResultButton = () => {
     try {
       const { winningNumbers, bonusNumber } = this.getLottoInputs();
-      const rankings = this.makeRankings(winningNumbers, Number(bonusNumber));
+      const rankings = this.makeRankings(winningNumbers, bonusNumber);
       const rewardRate = lottoGameCalculator.calculateRewardRate(this.#lottos.length * LOTTO.price, rankings);
       renderResultModal(rankings, rewardRate);
       renderLottoInputErrorMessage('올바른 당첨 번호입니다!', 'black');
@@ -65,7 +65,7 @@ class LottoWebGame {
     const bonusNumber = $('.bonus-number > input').value;
     lottoGameValidator.checkLottoNumbers(winningNumbers);
     lottoGameValidator.checkBonusNumber(bonusNumber, winningNumbers);
-    return { winningNumbers, bonusNumber };
+    return { winningNumbers, bonusNumber: Number(bonusNumber) };
   };
 
   handleReplayButton = () => {
@@ -76,6 +76,8 @@ class LottoWebGame {
       $input.value = '';
     });
     $('.bonus-number > input').value = '';
+    renderBuyMessage();
+    renderLottoInputErrorMessage();
     this.toggleResultModal();
   };
 
