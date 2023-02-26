@@ -1,10 +1,10 @@
-import MESSAGE from '../constants/messages';
-import LottoValidator from '../model/LottoValidator';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
-import LottoMachine from '../model/LottoMachine';
-import { VALUES } from '../constants/values';
-import Console from '../utils/console';
+import MESSAGE from '../../constants/messages';
+import LottoValidator from '../../model/LottoValidator';
+import InputView from '../../view/step1/InputView';
+import OutputView from '../../view/step1/OutputView';
+import LottoMachine from '../../model/LottoMachine';
+import { VALUES } from '../../constants/values';
+import Console from '../../utils/console';
 
 class LottoController {
   #LottoMachine;
