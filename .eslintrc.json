@@ -16,6 +16,7 @@
     "no-promise-executor-return": "off"
   },
   "env": {
+    "browser": true,
     "es6": true,
     "node": true,
     "jest": true
