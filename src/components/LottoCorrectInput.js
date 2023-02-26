@@ -6,7 +6,7 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
   this.$target = $target;
 
   this.makeCorrectInputHTML = () => `
-    <form class="mgTop_2_rem">
+    <form class="mgTop_2_rem lotto-body">
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <div class="flex flex--space-between mgTop_1_rem">
         <label for="winningNumbers">당첨 번호</label>
