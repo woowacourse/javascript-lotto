@@ -41,19 +41,14 @@
   margin-top: 25px;
   margin-bottom: 32px;
 
-  /* subtitle */
-
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height, or 120% */
 
   text-align: center;
   letter-spacing: 0.15px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }
@@ -79,13 +74,10 @@ td {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   align-items: center;
   text-align: center;
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
 }

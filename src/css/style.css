@@ -1,4 +1,4 @@
-body{
+body {
   background: #F5F5F5;
 }
 
@@ -92,14 +92,11 @@ body{
   width: 56px;
   padding: 6px 6px 6px 8px;
 
-  /* ↳ ✏️ Label */
-
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  /* identical to box height, or 114% */
 
   letter-spacing: 1.25px;
   text-transform: uppercase;
@@ -116,11 +113,8 @@ body{
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  /* identical to box height, or 160% */
 
   letter-spacing: 0.5px;
-
-  /* lotto-greyscale-5 */
 
   color: #000000;
   margin-bottom: 4px;
@@ -132,10 +126,8 @@ body{
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
-  /* identical to box height, or 106% */
 
   margin-right: 8px;
-  /* lotto-greyscale-5 */
 
   color: #000000;
 
@@ -150,12 +142,9 @@ footer {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  /* identical to box height, or 114% */
-
+  
   text-align: center;
   letter-spacing: 1.25px;
-
-  /* lotto-primary */
 
   color: #4E5BA6;
 
@@ -163,11 +152,11 @@ footer {
   padding-bottom: 32px;
 }
 
-#game-result-calculate{
+#game-result-calculate {
   margin-top: 32px;
   margin-bottom: 32px;
 }
 
-#game-reload-button{
+#game-reload-button {
   height: 36px;
 }
