@@ -63,6 +63,17 @@ class App2 {
     this.#lottos.forEach((lotto) => {
       Element.createBuyLottos(lotto, buyAmount, this.#lottos.length);
     });
+    this.moveInputFocus();
+  }
+
+  moveInputFocus() {
+    const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
+    winningLottosInputs.forEach((winningNumber) => {
+      EventHandler.hadleKeyupEvent(winningNumber, (e) => {
+        winningNumber.value.length === 2 &&
+          e.target.nextSibling.nextSibling.focus();
+      });
+    });
   }
 
   progressLottoGame() {
@@ -70,8 +81,6 @@ class App2 {
 
     EventHandler.handleClickEvent(resultButton, () => {
       this.isInitShow ? this.showInitResult() : this.showResultAgain();
-      console.log(this);
-      console.log(this.isInitShow);
     });
   }
 
@@ -112,7 +121,6 @@ class App2 {
       const lottoScore = this.getLottoGameResult();
       this.retryLottoGame(lottoScore);
     } catch (e) {
-      console.log(e);
       this.resetBonusLottoInput();
     }
   }

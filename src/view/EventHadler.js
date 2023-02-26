@@ -5,6 +5,12 @@ const EventHandler = {
     });
   },
 
+  hadleKeyupEvent(element, callback) {
+    element.addEventListener("keyup", (e) => {
+      callback(e);
+    });
+  },
+
   handleESCKeyEvent(element, callback) {
     element.addEventListener("keyup", (e) => {
       e.code === "Escape" && callback();
