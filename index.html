@@ -9,15 +9,16 @@
   <body>
     <div id="app">
       <header>
-        <h1 id="title">🎱 행운의 로또</h1>
+        <h1 class="title">🎱 행운의 로또</h1>
       </header>
       <main>
         <div id="main">
-          <h2 id="main-title">🎱 내 번호 당첨 확인 🎱</h2>
+          <h2 id="main-title" class="title">🎱 내 번호 당첨 확인 🎱</h2>
           <form id="purchase-amount-form">
-            <div>구입할 금액을 입력해주세요.</div>
+            <div class="text">구입할 금액을 입력해주세요.</div>
             <div id="purchase-amount-inputs">
               <input
+                class="text input-basic"
                 id="purchase-amount"
                 type="number"
                 min="1000"
@@ -25,7 +26,7 @@
                 placeholder="금액"
                 autocomplete="off"
               />
-              <button>구입</button>
+              <button class="button-basic">구입</button>
             </div>
           </form>
           <div id="purchase-lotto"></div>

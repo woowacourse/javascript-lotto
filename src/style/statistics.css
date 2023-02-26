@@ -25,7 +25,9 @@
   position: absolute;
   right: 16px;
   top: 16px;
-  font: 700 20px/16px 'Roboto';
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
   letter-spacing: 1.25px;
   color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
@@ -33,13 +35,17 @@
 
 #winning-statistics-title {
   margin: 40px 0px 33px;
-  font: 600 20px/24px 'Roboto';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
   text-align: center;
   letter-spacing: 0.15px;
 }
 
 #winning-statistics-layout th {
-  font: 600 15px/24px 'Roboto';
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
   letter-spacing: 0.5px;
   text-align: center;
   padding: 8px 0px;
@@ -54,8 +60,6 @@
 }
 
 #winning-statistics-layout td {
-  font: 400 15px/24px 'Roboto';
-  letter-spacing: 0.5px;
   text-align: center;
   padding: 8px 0px;
 }
@@ -63,16 +67,13 @@
 #winning-statistics-reward-rate {
   margin-top: 32px;
   text-align: center;
-  font: 700 15px/24px 'Roboto';
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 #winning-statistics-layout button {
   margin: 32px 16px;
-  background: #4e5ba6;
-  border-radius: 4px;
-  border: none;
   padding: 10px 0px;
   text-align: center;
-  color: #ffffff;
-  cursor: pointer;
 }

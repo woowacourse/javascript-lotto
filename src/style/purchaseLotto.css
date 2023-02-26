@@ -6,8 +6,6 @@
 
 #lottos-count {
   margin-bottom: 4px;
-  font: 400 15px/24px 'Roboto';
-  letter-spacing: 0.5px;
 }
 
 #purchase-lotto ul {
@@ -23,11 +21,8 @@
 }
 
 #lotto-emoji {
-  font: 600 36px/36px 'Roboto';
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 36px;
   margin-right: 8px;
-}
-
-#lotto-numbers {
-  font: 400 15px/24px 'Roboto';
-  letter-spacing: 0.5px;
 }

@@ -3,8 +3,6 @@
 }
 
 #winning-lotto-from-title {
-  font: 400 15px/24px 'Roboto';
-  letter-spacing: 0.5px;
   margin-bottom: 12px;
 }
 
@@ -24,14 +22,11 @@
 }
 
 .winning-form-input-title {
-  font: 400 15px/24px 'Roboto';
   margin-bottom: 8px;
 }
 
 #winning-numbers-inputs input {
   margin-right: 8px;
-  border: 1px solid #b4b4b4;
-  border-radius: 4px;
   text-align: center;
 }
 
@@ -42,18 +37,14 @@
 }
 
 #bonusNumber-input input {
-  border: 1px solid #b4b4b4;
-  border-radius: 4px;
   text-align: center;
 }
 
 #winning-lotto-from button {
   height: 36px;
   width: 100%;
-  background: #4e5ba6;
-  border-radius: 4px;
-  color: #ffffff;
-  font: 700 14px/16px 'Roboto';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
   letter-spacing: 1.25px;
-  cursor: pointer;
 }

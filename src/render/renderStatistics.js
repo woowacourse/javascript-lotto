@@ -23,16 +23,16 @@ const renderStatistics = (rankings, rewardRate) => {
               const count = rankings.filter((ranking) => ranking === rank).length;
               return `
                 <tr>
-                    <td>${matchCount}</td>
-                    <td>${reward}</td>
-                    <td>${count}개</td>
+                    <td class="text">${matchCount}</td>
+                    <td class="text">${reward}</td>
+                    <td class="text">${count}개</td>
                 </tr>
             `;
             })
             .join('')}
       </table>
       <div id="winning-statistics-reward-rate">당신의 총 수익률은 ${rewardRate}입니다.</div>
-      <button>다시 시작하기</button>
+      <button class="button-basic">다시 시작하기</button>
     </div>
   </div>
   `;
