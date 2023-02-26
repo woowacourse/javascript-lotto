@@ -7,6 +7,7 @@ import Element from "./view/Element";
 import LottoMachine from "./domain/LottoMachine";
 import InputCheck from "./InputCheck";
 import LOTTO_GAME from "./constants/LottoGame";
+import CLASS_NAME from "./constants/ClassName";
 
 class App2 {
   #lottos;
@@ -23,8 +24,8 @@ class App2 {
   }
 
   startLottoGame() {
-    const buyButton = Utils.$(".lotto__buy-button");
-    const buyMoneyInput = Utils.$(".lotto__input-box");
+    const buyButton = Utils.$(CLASS_NAME.LOTTO_BUY_BUTTON);
+    const buyMoneyInput = Utils.$(CLASS_NAME.LOTTO_INPUT_BOX);
 
     EventHandler.handleEvent(buyButton, "click", () => {
       try {
@@ -50,8 +51,8 @@ class App2 {
   }
 
   showLottos() {
-    const buyAmount = Utils.$(".lotto__buy-amount-comment");
-    const buyResultSection = Utils.$(".lotto__buy-result");
+    const buyAmount = Utils.$(CLASS_NAME.LOTTO_BUY_AMOUNT_COMMENT);
+    const buyResultSection = Utils.$(CLASS_NAME.LOTTO_BUY_RESULT);
 
     Element.removeClassList(buyResultSection, "hidden");
     this.#lottos.forEach((lotto) => {
@@ -60,7 +61,7 @@ class App2 {
   }
 
   progressLottoGame() {
-    const resultButton = Utils.$(".lotto__result-button");
+    const resultButton = Utils.$(CLASS_NAME.LOTTO_RESULT_BUTTON);
 
     EventHandler.handleEvent(resultButton, "click", () => {
       this.isInitShow ? this.showInitResult() : this.showResultAgain();
@@ -74,13 +75,13 @@ class App2 {
   }
 
   showResultAgain() {
-    const result = Utils.$(".result-background");
+    const result = Utils.$(CLASS_NAME.RESULT_BG);
 
     Element.removeClassList(result, "hidden");
   }
 
   getWinningLotto() {
-    const winningLottosInputs = Utils.$$(".lotto__winning-lotto-input");
+    const winningLottosInputs = Utils.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
 
     winningLottosInputs.forEach((winningNumber) => {
       this.winningLotto.push(Number(winningNumber.value));
@@ -108,7 +109,7 @@ class App2 {
   }
 
   resetWinningLottoInputs() {
-    const winningLottosInputs = Utils.$$(".lotto__winning-lotto-input");
+    const winningLottosInputs = Utils.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
     winningLottosInputs.forEach((winningNumber) => {
       winningNumber.value = "";
     });
@@ -116,13 +117,13 @@ class App2 {
   }
 
   getBonusNumber() {
-    const bonusInput = Utils.$(".lotto__bonus-lotto-input");
+    const bonusInput = Utils.$(CLASS_NAME.BONUSLOTTO_INPUT);
 
     this.bonusNumber = Number(bonusInput.value);
   }
 
   resetBonusLottoInput() {
-    const bonusInput = Utils.$(".lotto__bonus-lotto-input");
+    const bonusInput = Utils.$(CLASS_NAME.BONUSLOTTO_INPUT);
 
     bonusInput.value = "";
     this.bonusNumber = 0;
@@ -153,7 +154,7 @@ class App2 {
   }
 
   retryLottoGame(lottoScore) {
-    const retryButton = Utils.$(".result__retry-button");
+    const retryButton = Utils.$(CLASS_NAME.RETYR_BUTTON);
 
     EventHandler.handleEvent(retryButton, "click", () => {
       this.resetGame(lottoScore);
@@ -166,8 +167,8 @@ class App2 {
   }
 
   closeModal() {
-    const closeButton = Utils.$(".header__close-button");
-    const result = Utils.$(".result-background");
+    const closeButton = Utils.$(CLASS_NAME.MODAL_CLOSE_BUTTON);
+    const result = Utils.$(CLASS_NAME.RESULT_BG);
 
     EventHandler.handleEvent(closeButton, "click", () => {
       Element.addClassList(result, "hidden");
