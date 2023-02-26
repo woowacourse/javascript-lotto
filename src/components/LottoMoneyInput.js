@@ -13,6 +13,7 @@ function LottoMoneyInput({ $target, inputMoneyEvent }) {
           class="lotto-card__money--input lotto-placeholder"
           placeholder="금액"
           value=""
+          id="lottoPrice"
         />
         <button class="button">구입</button>
       </div>

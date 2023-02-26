@@ -14,13 +14,13 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
       </div>
 
       <div class="flex mgTop_1_rem">
-        <input class="lotto-card__lotto--input winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" value="" />
-        <input class="lotto-card__lotto--input bonusNumber" value="" />
+        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input class="lotto-card__lotto--input bonusNumber" id="bonusNumber" value="" />
       </div>
 
       <button class="button w-100 mgTop_1_rem" type="button">
