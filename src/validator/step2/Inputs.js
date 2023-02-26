@@ -1,6 +1,10 @@
 import checkUnit from './amount.js';
 import { LOTTO } from '../../constants/values.js';
-import { checkDrawingNumbersFormat, checkWinNumberRange, checkWinNumbersRange } from './lotto.js';
+import {
+  checkDrawingNumbersFormat,
+  checkDrawingNumberRange,
+  checkDrawingNumbersRange,
+} from './lotto.js';
 
 const Inputs = {
   amount(amount, { onError: errorCallback }) {
@@ -31,11 +35,11 @@ const Inputs = {
   },
 
   _checkWinNumbers(winNumbers) {
-    checkWinNumbersRange(winNumbers);
+    checkDrawingNumbersRange(winNumbers);
   },
 
   _checkBonusNumber(bonusNumber) {
-    checkWinNumberRange(bonusNumber);
+    checkDrawingNumberRange(bonusNumber);
   },
 
   _checkDrawingNumbers({ winNumbers, bonusNumber }) {
