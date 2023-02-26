@@ -1,4 +1,4 @@
-import { ClassName, Event, QuerySelector } from '../constants/Dom';
+import { ClassName, QuerySelector } from '../constants/Dom';
 import { $, $$ } from '../utils/DomUtils';
 
 class LottoInput {
@@ -13,7 +13,7 @@ class LottoInput {
   }
 
   activate(setWinningLotto) {
-    $(QuerySelector.RESULT_BUTTON).addEventListener(Event.CLICK, (e) => {
+    $(QuerySelector.RESULT_BUTTON).addEventListener('click', (e) => {
       e.preventDefault();
       const winningNumbers = this.#getWinningNumbers();
       const bonusNumber = this.#getBonusNumber();

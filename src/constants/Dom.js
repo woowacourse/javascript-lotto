@@ -20,20 +20,4 @@ const ClassName = Object.freeze({
   SHOW: 'show',
 });
 
-const Tag = Object.freeze({
-  DIV: 'div',
-  UL: 'ul',
-  LI: 'li',
-  DIALOG_CAP: 'DIALOG',
-});
-
-const Event = Object.freeze({
-  CLICK: 'click',
-});
-
-const Attr = Object.freeze({
-  OPEN: 'open',
-  DISABLED: 'disabled',
-});
-
-export { QuerySelector, Tag, Event, Attr, ClassName };
+export { QuerySelector, ClassName };

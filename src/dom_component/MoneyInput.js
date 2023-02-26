@@ -1,4 +1,4 @@
-import { Attr, Event, QuerySelector } from '../constants/Dom';
+import { QuerySelector } from '../constants/Dom';
 import { $ } from '../utils/DomUtils';
 
 class MoneyInput {
@@ -8,17 +8,17 @@ class MoneyInput {
   }
 
   activate(purchaseLottos) {
-    this.purchaseBtn.addEventListener(Event.CLICK, (e) => {
+    this.purchaseBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const money = this.moneyInputEl.value;
-      this.purchaseBtn.setAttribute(Attr.DISABLED, '');
+      this.purchaseBtn.setAttribute('disabled', '');
       purchaseLottos(money);
     });
   }
 
   reset() {
     this.moneyInputEl.value = '';
-    this.purchaseBtn.removeAttribute(Attr.DISABLED);
+    this.purchaseBtn.removeAttribute('disabled');
     this.moneyInputEl.focus();
   }
 }

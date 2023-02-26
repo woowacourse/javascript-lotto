@@ -1,4 +1,4 @@
-import { Event, QuerySelector, Tag } from '../constants/Dom';
+import { QuerySelector } from '../constants/Dom';
 import { $ } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 
@@ -29,17 +29,17 @@ class ResultModal {
   }
 
   activate(resetGame) {
-    window.addEventListener(Event.CLICK, (e) => {
-      if (e.target.tagName === Tag.DIALOG_CAP) {
+    window.addEventListener('click', (e) => {
+      if (e.target.tagName === 'DIALOG') {
         this.#close();
       }
     });
 
-    this.closeButton.addEventListener(Event.CLICK, () => {
+    this.closeButton.addEventListener('click', () => {
       this.#close();
     });
 
-    this.restartButton.addEventListener(Event.CLICK, () => {
+    this.restartButton.addEventListener('click', () => {
       this.#close();
       resetGame();
     });

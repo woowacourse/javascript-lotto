@@ -1,4 +1,4 @@
-import { QuerySelector, Tag } from '../constants/Dom';
+import { QuerySelector } from '../constants/Dom';
 import { $, makeNode } from '../utils/DomUtils';
 import Convertor from '../utils/Convertor';
 
@@ -8,7 +8,7 @@ class LottoList {
   }
 
   #createPurchaseMessageEl(purchaseCount) {
-    const purchaseMessageEl = makeNode(Tag.DIV);
+    const purchaseMessageEl = makeNode('div');
     purchaseMessageEl.className = QuerySelector.PURCHASE_MESSAGE;
     purchaseMessageEl.innerText = Convertor.purchaseCount(purchaseCount);
 
@@ -16,10 +16,10 @@ class LottoList {
   }
 
   #createLottoListEl(lottos) {
-    const lottoListEl = makeNode(Tag.UL);
+    const lottoListEl = makeNode('ul');
     lottoListEl.className = QuerySelector.LOTTO_LIST;
     lottos.forEach((lotto) => {
-      const lottoEl = makeNode(Tag.LI);
+      const lottoEl = makeNode('li');
       lottoEl.className = QuerySelector.LOTTO;
       lottoEl.innerText = Convertor.lottoWithIcon(lotto);
       lottoListEl.append(lottoEl);
