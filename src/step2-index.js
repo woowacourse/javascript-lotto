@@ -17,10 +17,7 @@ class App extends Component {
     new Amount(this.setState.bind(this));
     if (this.state.lottoList.length !== 0) {
       new LottoList(this.state);
-      new WinNumbers(this.setState.bind(this), {
-        drawingNumbersSetter: this.setDrawingNumbers.bind(this),
-        activateModal: this.activateModal.bind(this),
-      });
+      new WinNumbers(this.setState.bind(this), this.setDrawingNumbers.bind(this));
       new StatisticsModal(this.state, this.setState.bind(this));
     }
   }
@@ -57,10 +54,6 @@ class App extends Component {
       return lotto;
     });
     return lottoList;
-  }
-
-  activateModal() {
-    getId('lotto-statistics-modal').showModal();
   }
 }
 

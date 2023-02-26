@@ -4,13 +4,11 @@ import { getId } from '../../utils/domHelper.js';
 export default class WinNumbers extends Component {
   setter;
   drawingNumbersSetter;
-  activateModal;
 
-  constructor(setter, { drawingNumbersSetter, activateModal }) {
+  constructor(setter, drawingNumbersSetter) {
     super(getId('input-winning-number-form'));
     this.setter = setter;
     this.drawingNumbersSetter = drawingNumbersSetter;
-    this.activateModal = activateModal;
 
     this.addEvent('submit', this.submitDrawingNumbers.bind(this));
   }
@@ -52,5 +50,9 @@ export default class WinNumbers extends Component {
     this.setter({ lottoList: this.drawingNumbersSetter(drawingNumbers) });
 
     this.activateModal();
+  }
+
+  activateModal() {
+    getId('lotto-statistics-modal').showModal();
   }
 }
