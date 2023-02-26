@@ -29,7 +29,7 @@ class WebController {
     try {
       const buyMoney = $(".input-money").value;
       this.validateBuyMoney(buyMoney);
-      const lottoAmount = parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE);
+      const lottoAmount = parseInt((buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10));
       this.createLotto(lottoAmount);
       this.printLotto(lottoAmount);
       $(".hidden-area").classList.add("show");

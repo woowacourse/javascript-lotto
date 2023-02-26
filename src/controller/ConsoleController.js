@@ -28,7 +28,7 @@ class ConsoleController {
     const buyMoney = await InputView.inputMoney(MESSAGES.INPUT_MONEY);
     try {
       this.validateBuyMoney(buyMoney);
-      this.createLotto(parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE));
+      this.createLotto(parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10));
       this.printLottos(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE);
     } catch (e) {
       Console.print(e);
