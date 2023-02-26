@@ -1,18 +1,24 @@
-const eachInputLottoNumber = document.querySelectorAll(".eachInputLottoNumber");
-const eachInputBonusNumber = document.querySelector(".eachInputBonusNumber");
+const eachInputLottoNumberElem = document.querySelectorAll(
+  ".eachInputLottoNumber"
+);
+const eachInputBonusNumberElem = document.querySelector(
+  ".eachInputBonusNumber"
+);
 const dialogElem = document.querySelector("dialog");
 import { ControlElem } from "../utils/ControlElem";
 
 const resultPage = {
   addEvent(resultCallback) {
-    const restartButton = document.querySelector(".restartButton");
-    const inputLottoBonusArea = document.querySelector(".inputLottoBonusArea");
+    const inputLottoBonusAreaElem = document.querySelector(
+      ".inputLottoBonusArea"
+    );
+    const restartButtonElem = document.querySelector(".restartButton");
 
-    inputLottoBonusArea.addEventListener("submit", (event) => {
+    inputLottoBonusAreaElem.addEventListener("submit", (event) => {
       event.preventDefault();
       resultCallback();
     });
-    restartButton.addEventListener("click", this.clickRestart);
+    restartButtonElem.addEventListener("click", this.clickRestart);
   },
 
   clickResult(result) {
@@ -24,21 +30,23 @@ const resultPage = {
 
   getLottoBonus() {
     const lotto = [];
-    eachInputLottoNumber.forEach((eachInputLottoNumberElem) => {
+    eachInputLottoNumberElem.forEach((eachInputLottoNumberElem) => {
       lotto.push(+eachInputLottoNumberElem.value);
       ControlElem.resetElem(eachInputLottoNumberElem, "value");
     });
 
-    const bonus = +eachInputBonusNumber.value;
-    ControlElem.resetElem(eachInputBonusNumber, "value");
+    const bonus = +eachInputBonusNumberElem.value;
+    ControlElem.resetElem(eachInputBonusNumberElem, "value");
 
     return [lotto, bonus];
   },
 
   showResult(result) {
-    const winnerCount = document.querySelectorAll(".winnerCount");
+    const winnerCountElem = document.querySelectorAll(".winnerCount");
 
-    winnerCount.forEach((rank, index) => (rank.textContent = result[index]));
+    winnerCountElem.forEach(
+      (rank, index) => (rank.textContent = result[index])
+    );
     document.querySelector(".rate").textContent = `${
       result[result.length - 1]
     }`;
