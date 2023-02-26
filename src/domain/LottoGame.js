@@ -60,8 +60,9 @@ export default class LottoGame {
 
   getYieldRatio(totalPrizeMoney) {
     const purchaseAmount = this.#lottos.length * LOTTO_CONDITION.lottoPrice;
+    const winRatio = (totalPrizeMoney / purchaseAmount) * 100;
 
-    return (totalPrizeMoney / purchaseAmount) * 100;
+    return winRatio.toFixed(1);
   }
 
   getLottoQuantity() {
