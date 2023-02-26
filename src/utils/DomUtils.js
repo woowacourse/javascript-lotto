@@ -1,6 +1,20 @@
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
+export const $ = (selector, target = document) => {
+  const element = target.querySelector(selector);
 
-const makeNode = (tag) => document.createElement(tag);
+  if (!element) {
+    throw new Error('Element is not found');
+  }
 
-export { $, $$, makeNode };
+  return element;
+};
+export const $$ = (selector, target = document) => {
+  const elements = target.querySelectorAll(selector);
+
+  if (elements.length === 0) {
+    throw new Error('Elements are not found');
+  }
+
+  return elements;
+};
+
+export const makeNode = (tag) => document.createElement(tag);
