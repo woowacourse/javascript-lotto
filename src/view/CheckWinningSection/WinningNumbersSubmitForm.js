@@ -51,6 +51,8 @@ class WinningNumbersSubmitForm {
   </form>
   `;
 
+  $target;
+
   FIRST_INPUT_INDEX = 1;
 
   LAST_INPUT_INDEX = 8;
@@ -64,9 +66,14 @@ class WinningNumbersSubmitForm {
     this.$target.insertAdjacentHTML('afterbegin', this.#template);
 
     const numberInputs = Array.from($$('.number-input'));
-    const [firstInput] = numberInputs;
-    firstInput.focus();
+    this.focusFirstInput(numberInputs);
     this.bindEvent(numberInputs);
+  }
+
+  focusFirstInput(inputs) {
+    const [firstInput] = inputs;
+
+    firstInput.focus();
   }
 
   bindEvent(numberInputs) {
