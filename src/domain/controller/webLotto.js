@@ -85,6 +85,40 @@ const addEvents = {
       $('#moneyAmount').focus();
     });
   },
+
+  inputChange: () => {
+    $('#moneyAmount').addEventListener('input', () => {
+      const userValue = $('#moneyAmount').value;
+      if (Number(userValue) > 100000) {
+        $('#moneyAmount').value = '100000';
+      }
+      if (Number(userValue) < 0) {
+        $('#moneyAmount').value = '1000';
+      }
+    });
+
+    $$('.winning-number').forEach((item) =>
+      item.addEventListener('input', () => {
+        const userValue = item.value;
+        if (Number(userValue) > 45) {
+          item.value = '45';
+        }
+        if (Number(userValue) < 1) {
+          item.value = '1';
+        }
+      })
+    );
+
+    $('#bonus').addEventListener('input', () => {
+      const userValue = $('#bonus').value;
+      if (Number(userValue) > 45) {
+        $('#bonus').value = '45';
+      }
+      if (Number(userValue) < 1) {
+        $('#bonus').value = '1';
+      }
+    });
+  },
 };
 
 const getErrorMessage = (errorMessage) => {
@@ -156,4 +190,5 @@ const resetLottoInputs = () => {
 addEvents.inputMoney();
 addEvents.closeModal();
 addEvents.retry();
+addEvents.inputChange();
 handleCopyrightCurrentYear();
