@@ -9,6 +9,16 @@ const CLASS_NAME = {
   BONUSLOTTO_INPUT: ".lotto__bonus-lotto-input",
   RETYR_BUTTON: ".result__retry-button",
   MODAL_CLOSE_BUTTON: ".header__close-button",
+  LOTTO_NUMBER_LIST: ".lotto__numbers-list",
+  LOTTO_ICON: ".lotto__lotto-icon",
+  LOTTO_NUMBERS: ".lotto__numbers",
+  RESULT_TITLE_ID: "#result-title",
+  RESULT_ID: "#result",
+  RESULT_MATCHING_COUNT: ".result__matching-count",
+  RESULT_PRICE: ".result__price",
+  MATCHING_LOTTO_COUNT: ".result__matching-lotto-count",
+  RESULT_FOOTER_ID: "#result-footer",
+  RESULT_COMMENT: ".result__comment",
 };
 
-export default CLASS_NAME
+export default CLASS_NAME;

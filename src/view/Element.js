@@ -2,19 +2,20 @@ import Utils from "../util/Utils";
 import LOTTO_SCORE from "../constants/LottoBoard";
 import VIEW from "../constants/View";
 import HandleView from "../util/HandleView";
+import CLASS_NAME from "../constants/ClassName";
 
 const Element = {
   createBuyLottos(lotto, buyAmount, lottoAmount) {
-    const lottoList = Utils.$(".lotto__numbers-list");
-    const buyLottoTemplate = Utils.$("#lotto-tem");
+    const lottoList = HandleView.$(CLASS_NAME.LOTTO_NUMBER_LIST);
+    const buyLottoTemplate = HandleView.$("#lotto-tem");
     const buyLottoClone = document.importNode(buyLottoTemplate.content, true);
 
     this.createInnerText(
-      buyLottoClone.querySelector(".lotto__lotto-icon"),
+      buyLottoClone.querySelector(CLASS_NAME.LOTTO_ICON),
       "🎟"
     );
     this.createInnerText(
-      buyLottoClone.querySelector(".lotto__numbers"),
+      buyLottoClone.querySelector(CLASS_NAME.LOTTO_NUMBERS),
       lotto.lottoNumbers
     );
     this.createInnerText(
@@ -39,43 +40,44 @@ const Element = {
 
     HandleView.addClassList(resultBg, "result-background");
     HandleView.addClassList(resultContainer, "result-container");
-    Utils.$("#app").appendChild(resultBg);
+    HandleView.$("#app").appendChild(resultBg);
     resultBg.appendChild(resultContainer);
   },
 
   createResultTitle() {
-    const titleTemplate = Utils.$("#result-title");
+    const titleTemplate = HandleView.$(CLASS_NAME.RESULT_TITLE_ID);
     const titleClone = document.importNode(titleTemplate.content, true);
 
-    document.querySelector(".result-container").appendChild(titleClone);
+    HandleView.$(".result-container").appendChild(titleClone);
   },
 
   createResultContents(lottoRanking, matchingCount) {
-    const contentsTemplate = Utils.$("#result");
+    const contentsTemplate = HandleView.$(CLASS_NAME.RESULT_ID);
     const contentsClone = document.importNode(contentsTemplate.content, true);
 
     this.createInnerText(
-      contentsClone.querySelector(".result__matching-count"),
+      contentsClone.querySelector(CLASS_NAME.RESULT_MATCHING_COUNT),
       LOTTO_SCORE.UI_TEXT[matchingCount]
     );
     this.createInnerText(
-      contentsClone.querySelector(".result__price"),
+      contentsClone.querySelector(CLASS_NAME.RESULT_PRICE),
       LOTTO_SCORE.BENEFIT_TEXT[matchingCount]
     );
     this.createInnerText(
-      contentsClone.querySelector(".result__matching-lotto-count"),
+      contentsClone.querySelector(CLASS_NAME.MATCHING_LOTTO_COUNT),
       `${lottoRanking[matchingCount]}개`
     );
-    document.querySelector(".result-container").appendChild(contentsClone);
+    HandleView.$(".result-container").appendChild(contentsClone);
   },
 
   createRetryButton(benefitRate) {
-    const retryTemplate = document.querySelector("#result-footer");
+    const retryTemplate = HandleView.$(CLASS_NAME.RESULT_FOOTER_ID);
     const retryClone = document.importNode(retryTemplate.content, true);
 
-    document.querySelector(".result-container").appendChild(retryClone);
+    HandleView.$(".result-container").appendChild(retryClone);
+
     this.createInnerText(
-      Utils.$(".result__comment"),
+      HandleView.$(CLASS_NAME.RESULT_COMMENT),
       `${VIEW.PRINT_BENEFIT_RATE_START} ${benefitRate}${VIEW.PRINT_BENEFIT_RATE_END}`
     );
   },
