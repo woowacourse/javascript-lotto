@@ -1,9 +1,16 @@
 :root {
-    /*color*/
+    /*style-guide-color*/
     --lotto-primary: #4E5BA6;
     --lotto-grey-scale-1: #FFFFFF;
     --lotto-grey-scale-2: #FCFCFD;
     --lotto-grey-scale-3: #B4B4B4;
     --lotto-grey-scale-4: #8B8B8B;
     --lotto-grey-scale-5: #000000;
+
+    /*detail-color*/
+    --main-white: #F5F5F5;
+    --input-grey-white: #cbcbcb;
+    --modal-background-grey: rgba(0, 0, 0, 0.4);
+    --modal-content-black: rgba(0, 0, 0, .12);
+    --table-border-black: rgba(0, 0, 0, 0.12);
 }
