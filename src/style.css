@@ -179,12 +179,14 @@ label {
   height: 36px;
   border: 1px solid #b4b4b4;
   border-radius: 4px;
+  text-align: center;
 }
 
 #bonus-number-input {
   width: 34px;
   height: 36px;
   float: right;
+  text-align: center;
 }
 
 #check-result-button {
