@@ -1,7 +1,6 @@
 import Lotto from "./domain/Lotto";
 import Random from "./util/Random";
 import LottoScore from "./domain/LottoScore";
-import Utils from "./util/Utils";
 import EventHandler from "./view/EventHadler";
 import Element from "./view/Element";
 import LottoMachine from "./domain/LottoMachine";
@@ -28,18 +27,23 @@ class App2 {
     const buyButton = HandleView.$(CLASS_NAME.LOTTO_BUY_BUTTON);
     const buyMoneyInput = HandleView.$(CLASS_NAME.LOTTO_INPUT_BOX);
 
-    EventHandler.handleEvent(buyButton, "click", () => {
-      try {
-        InputCheck.validateBuyMoney(buyMoneyInput.value, true);
-        this.createLotto(
-          parseInt(buyMoneyInput.value / LOTTO_GAME.LOTTO_PRICE)
-        );
-        this.showLottos();
-        this.progressLottoGame();
-      } catch (e) {
-        buyMoneyInput.value = "";
-      }
+    EventHandler.handleClickEvent(buyButton, () => {
+      this.checkBuyMoney(buyMoneyInput);
     });
+    EventHandler.handleEnterKeyEvent(buyMoneyInput, () => {
+      this.checkBuyMoney(buyMoneyInput);
+    });
+  }
+
+  checkBuyMoney(buyMoneyInput) {
+    try {
+      InputCheck.validateBuyMoney(buyMoneyInput.value, true);
+      this.createLotto(parseInt(buyMoneyInput.value / LOTTO_GAME.LOTTO_PRICE));
+      this.showLottos();
+      this.progressLottoGame();
+    } catch (e) {
+      buyMoneyInput.value = "";
+    }
   }
 
   createLotto(lottoAmount) {
@@ -64,13 +68,14 @@ class App2 {
   progressLottoGame() {
     const resultButton = HandleView.$(CLASS_NAME.LOTTO_RESULT_BUTTON);
 
-    EventHandler.handleEvent(resultButton, "click", () => {
+    EventHandler.handleClickEvent(resultButton, () => {
       this.isInitShow ? this.showInitResult() : this.showResultAgain();
+      console.log(this);
+      console.log(this.isInitShow);
     });
   }
 
   showInitResult() {
-    this.isInitShow = false;
     this.inputWinningLottos();
     this.checkWinningLottoInputs();
     Element.blockModalScroll();
@@ -103,9 +108,11 @@ class App2 {
   checkBonusNumberInput() {
     try {
       InputCheck.validateBonusNumber(this.bonusNumber, this.winningLotto, true);
+      this.isInitShow = false;
       const lottoScore = this.getLottoGameResult();
       this.retryLottoGame(lottoScore);
     } catch (e) {
+      console.log(e);
       this.resetBonusLottoInput();
     }
   }
@@ -137,11 +144,11 @@ class App2 {
     const closeButton = HandleView.$(CLASS_NAME.MODAL_CLOSE_BUTTON);
     const result = HandleView.$(CLASS_NAME.RESULT_BG);
 
-    EventHandler.handleEvent(closeButton, "click", () => {
+    EventHandler.handleClickEvent(closeButton, () => {
       HandleView.addClassList(result, "hidden");
       Element.allowModalScorll();
     });
-    EventHandler.handleEvent(result, "click", () => {
+    EventHandler.handleClickEvent(result, () => {
       HandleView.addClassList(result, "hidden");
       Element.allowModalScorll();
     });
@@ -154,7 +161,7 @@ class App2 {
   retryLottoGame(lottoScore) {
     const retryButton = HandleView.$(CLASS_NAME.RETYR_BUTTON);
 
-    EventHandler.handleEvent(retryButton, "click", () => {
+    EventHandler.handleClickEvent(retryButton, () => {
       this.resetGame(lottoScore);
     });
   }
@@ -174,9 +181,12 @@ class App2 {
 
   resetWinningLottoInputs() {
     const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
+    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
+
     winningLottosInputs.forEach((winningNumber) => {
       winningNumber.value = "";
     });
+    bonusInput.value = "";
     this.winningLotto = [];
   }
 
