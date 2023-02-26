@@ -1,13 +1,9 @@
 header {
   display: flex;
   align-items: center;
-
   height: 64px;
-
   padding-left: 130px;
-
   background-color: var(--colorPrimary);
-
   color: var(--grayScale100);
   font-family: var(--fontFamilyPrimary);
 }
@@ -16,9 +12,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 80px;
-
   border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
 
@@ -34,16 +28,13 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 780px;
 }
 
 .container {
   width: 414px;
   height: 727px;
-
   padding: 52px 16px 32px;
-
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 }
@@ -55,27 +46,21 @@ button {
 .lotto-purchase-form {
   display: flex;
   flex-direction: column;
-
   margin-top: 28px;
-
   gap: 5px;
 }
 
 .purchase-input-container {
   display: flex;
-
   gap: 16px;
 }
 
 .lotto-list {
   display: flex;
   flex-direction: column;
-
   margin-top: 28px;
   margin-bottom: 24px;
-
   gap: 4px;
-
   font-family: var(--fontFamilyPrimary);
   font-size: 15px;
 }
@@ -83,9 +68,7 @@ button {
 #lotto-purchase-input {
   width: 310px;
   height: 36px;
-
   padding-left: 8px;
-
   border: 1px solid var(--grayScale300);
   border-radius: 4px;
 }
@@ -93,10 +76,8 @@ button {
 .lotto-purchase-button {
   width: 56px;
   height: 36px;
-
   background-color: var(--colorPrimary);
   color: var(--grayScale100);
-
   border: 0;
   border-radius: 4px;
 }
@@ -140,12 +121,9 @@ button {
 .check-result-button {
   width: 100%;
   height: 36px;
-
   margin-top: 27px;
-
   background-color: var(--colorPrimary);
   color: var(--grayScale100);
-
   border: 0;
   border-radius: 4px;
 }
@@ -154,6 +132,5 @@ button {
   color: var(--colorPrimary);
   font-size: var(--fontSizeCaption);
   font-weight: var(--fontWeightCaption);
-
   letter-spacing: 1px;
 }
