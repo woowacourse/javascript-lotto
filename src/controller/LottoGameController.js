@@ -56,11 +56,14 @@ class LottoGameController {
   }
 
   renderResultModal(allLottosRank, profitRate) {
-    $('.modal').classList.toggle('hidden');
     this.#winningStatModal = new WinningStatModal($('.modal'));
     this.#winningStatModal.render();
     this.#winningStatModal.renderResult(allLottosRank);
     this.#winningStatModal.renderProfitRate(profitRate);
+  }
+
+  closeResultModal() {
+    this.#winningStatModal.closeModal();
   }
 }
 

@@ -17,11 +17,20 @@ class App {
     this.#lottoGameController = new LottoGameController(this.$target);
 
     this.$target.addEventListener('restart', () => this.handleRestart());
+    this.$target.addEventListener('keydown', (e) =>
+      this.handleEscapeKeydown(e)
+    );
   }
 
   handleRestart() {
     this.$homePage.render();
     this.#lottoGameController.renderCheckWinningSection();
+  }
+
+  handleEscapeKeydown(e) {
+    if (e.key !== 'Escape') return;
+
+    this.#lottoGameController.closeResultModal();
   }
 }
 
