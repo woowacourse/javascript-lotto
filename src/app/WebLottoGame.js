@@ -6,28 +6,28 @@ import {
   validateWinningLottoNumbers,
 } from "../validator";
 import { webErrorCatcher } from "../validator/errorCatcher";
-import { closeModalButton, restartLottoGame } from "../ui/modal";
+import { closeModal, restartLottoGame } from "../ui/modal";
 import { printLottoTicket } from "../ui/lottoTicketPrinter";
 import { printLottoResult } from "../ui/lottoResult";
-const { FIFTH, SECOND } = PLACES;
+const { SECOND } = PLACES;
 
 const lottoTicketCount = document.querySelector("#lotto-ticket-count > span");
-const lottoTicketSection = document.querySelector(".lotto-ticket-section");
+const lottoTicketSection = document.querySelector("#lotto-ticket-section");
 const modal = document.querySelector(".modal");
 
 const winningNumberForm = document.querySelector("#winning-lotto");
-const winningNumberFormButton = document.querySelector("#winning-lotto > button");
-const winningNumberInput = document.querySelectorAll("input[name=winning-number]");
-const bonusNumber = document.querySelector("input[name=bonus-number]");
+const winningNumberFormButton = document.querySelector("#result-button");
+const winningNumberInputs = document.querySelectorAll("input[name=lotto-winning-number]");
+const bonusNumber = document.querySelector("#bonus-number");
+const purchaseAmountForm = document.querySelector("#purchase-amount-form");
 
 export class LottoGame {
   #winningNumbers = [];
   #lottoTickets = [];
 
   play() {
-    const purchaseAmountInput = document.querySelector("#purchase-amount input");
+    const purchaseAmountInput = document.querySelector("#purchase-amount");
 
-    const purchaseAmountForm = document.querySelector("#purchase-amount");
     purchaseAmountForm.addEventListener("submit", (event) => {
       event.preventDefault();
       this.#purchaseLottoTicket(purchaseAmountInput.value);
@@ -38,7 +38,7 @@ export class LottoGame {
       this.#showLottoResult(purchaseAmountInput.value);
     });
 
-    closeModalButton();
+    closeModal();
     restartLottoGame();
   }
 
@@ -59,12 +59,12 @@ export class LottoGame {
   #isValidWinningNumber(event) {
     event.preventDefault();
 
-    const winningNumber = [...winningNumberInput].map((number) => Number(number.value));
+    const winningNumbers = [...winningNumberInputs].map((number) => Number(number.value));
 
-    if (!webErrorCatcher(() => validateWinningLottoNumbers(winningNumber))) return;
-    if (!webErrorCatcher(() => validateBonusNumber(bonusNumber.value, winningNumber))) return;
+    if (!webErrorCatcher(() => validateWinningLottoNumbers(winningNumbers))) return;
+    if (!webErrorCatcher(() => validateBonusNumber(bonusNumber.value, winningNumbers))) return;
 
-    this.#winningNumbers = [winningNumber, bonusNumber.value];
+    this.#winningNumbers = [winningNumbers, bonusNumber.value];
 
     return true;
   }
@@ -102,10 +102,10 @@ export class LottoGame {
   }
 
   #getPlace(matchingLottoNumberCount, lottoTicket) {
-    const isFifth = matchingLottoNumberCount === FIFTH;
+    const isSecondOrThird = matchingLottoNumberCount === 5;
     const isMatchingBonusNumber = lottoTicket.includes(Number(this.#winningNumbers[1]));
 
-    return isFifth && isMatchingBonusNumber
+    return isSecondOrThird && isMatchingBonusNumber
       ? SECOND
       : MATCHING_COUNT_AND_PLACES[matchingLottoNumberCount];
   }

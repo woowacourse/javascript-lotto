@@ -1,13 +1,13 @@
 import { DECIMAL_PLACE } from "../constants";
 import { getRateOfReturn, getTotalPrize } from "../domain/calculator";
 
-const fifthPlace = document.querySelector(".fifth");
-const fourthPlace = document.querySelector(".fourth");
-const thirdPlace = document.querySelector(".third");
-const secondPlace = document.querySelector(".second");
-const firstPlace = document.querySelector(".first");
+const fifthPlace = document.querySelector("#fifth");
+const fourthPlace = document.querySelector("#fourth");
+const thirdPlace = document.querySelector("#third");
+const secondPlace = document.querySelector("#second");
+const firstPlace = document.querySelector("#first");
 
-const rateOfReturn = document.querySelector(".rate-of-return > span");
+const rateOfReturn = document.querySelector("#rate-of-return > span");
 
 export const printLottoResult = (placesOfLottoTickets, purchaseAmount) => {
   printWinningTicketCount(placesOfLottoTickets);

@@ -22,59 +22,71 @@
       </header>
 
       <main>
-        <section class="main-contents lotto-body">
+        <section id="main-content" class="lotto-body">
           <h2 class="content-title">🎱 내 번호 당첨 확인 🎱</h2>
 
-          <form id="purchase-amount" name="purchase-amount">
+          <form id="purchase-amount-form" name="lotto-purchase-amount-form">
             <label for="purchase-amount"> 구입할 금액을 입력해주세요. </label>
             <div id="purchase-amount-input">
               <input
+                id="purchase-amount"
                 type="number"
-                name="purchase-amount"
                 placeholder="금액"
                 min="1000"
                 max="100000"
                 step="1000"
                 required
               />
-              <button type="submit" class="lotto-button">구입</button>
+              <button id="purchase-button" class="lotto-button">구입</button>
             </div>
           </form>
 
-          <div class="lotto-ticket-section hidden">
+          <div id="lotto-ticket-section" class="hidden">
             <article id="purchased-lotto-tickets">
               <h2 id="lotto-ticket-count">총 <span>0</span>개를 구매하였습니다.</h2>
-              <div class="lotto-tickets"></div>
+              <ul id="lotto-tickets"></ul>
             </article>
 
             <form id="winning-lotto">
-              <p>지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <p id="winning-lotto-instruction">
+                지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.
+              </p>
               <div id="number-input-label">
                 <label for="winning-number"> 당첨 번호 </label>
                 <label for="bonus-number"> 보너스 번호 </label>
               </div>
               <div class="number-input-box">
-                <div id="winning-numbers">
-                  <input name="winning-number" type="number" max="45" required />
-                  <input name="winning-number" type="number" max="45" required />
-                  <input name="winning-number" type="number" max="45" required />
-                  <input name="winning-number" type="number" max="45" required />
-                  <input name="winning-number" type="number" max="45" required />
-                  <input name="winning-number" type="number" max="45" required />
-                </div>
-                <input name="bonus-number" type="number" max="45" required />
+                <input
+                  id="winning-number"
+                  name="lotto-winning-number"
+                  type="number"
+                  max="45"
+                  required
+                />
+                <input name="lotto-winning-number" type="number" max="45" required />
+                <input name="lotto-winning-number" type="number" max="45" required />
+                <input name="lotto-winning-number" type="number" max="45" required />
+                <input name="lotto-winning-number" type="number" max="45" required />
+                <input name="lotto-winning-number" type="number" max="45" required />
+                <input
+                  id="bonus-number"
+                  name="lotto-bonus-number"
+                  type="number"
+                  max="45"
+                  required
+                />
               </div>
 
-              <button type="submit" class="lotto-button">결과 확인하기</button>
+              <button id="result-button" class="lotto-button">결과 확인하기</button>
             </form>
           </div>
         </section>
 
         <div class="modal hidden">
-          <div class="modal-window">
+          <section class="modal-window">
             <i class="bi bi-x close-button"></i>
-            <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
-            <div class="lotto-result lotto-body">
+            <h2 id="winning-stats" class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
+            <div id="lotto-result" class="lotto-body">
               <table>
                 <tr>
                   <th>일치 개수</th>
@@ -84,33 +96,33 @@
                 <tr>
                   <td>3개</td>
                   <td>5,000</td>
-                  <td><span class="fifth">n</span>개</td>
+                  <td><span id="fifth">n</span>개</td>
                 </tr>
                 <tr>
                   <td>4개</td>
                   <td>50,000</td>
-                  <td><span class="fourth">n</span>개</td>
+                  <td><span id="fourth">n</span>개</td>
                 </tr>
                 <tr>
                   <td>5개</td>
                   <td>1,500,000</td>
-                  <td><span class="third">n</span>개</td>
+                  <td><span id="third">n</span>개</td>
                 </tr>
                 <tr>
                   <td>5개+보너스볼</td>
                   <td>30,000,000</td>
-                  <td><span class="second">n</span>개</td>
+                  <td><span id="second">n</span>개</td>
                 </tr>
                 <tr>
                   <td>6개</td>
                   <td>2,000,000,000</td>
-                  <td><span class="first">n</span>개</td>
+                  <td><span id="first">n</span>개</td>
                 </tr>
               </table>
-              <p class="rate-of-return">당신의 총 수익률은 <span></span>%입니다.</p>
+              <p id="rate-of-return">당신의 총 수익률은 <span></span>%입니다.</p>
             </div>
-            <button type="button" class="lotto-button">다시 시작하기</button>
-          </div>
+            <button id="restart-button" class="lotto-button" type="button">다시 시작하기</button>
+          </section>
           <div class="modal-background"></div>
         </div>
       </main>
