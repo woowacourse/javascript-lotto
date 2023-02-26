@@ -5,12 +5,12 @@ import { ERROR, LOTTO } from '../../constant/constants.js';
 
 export default class Amount extends Component {
   setter;
-  appthis;
+  reRender;
 
-  constructor(setter, appthis) {
+  constructor(setter, reRender) {
     super(getId('input-purchase-form'));
     this.setter = setter;
-    this.appthis = appthis;
+    this.reRender = reRender;
 
     this.addEvent('submit', this.submitAmount.bind(this));
   }
@@ -37,7 +37,8 @@ export default class Amount extends Component {
 
     const lottoList = LottoMachine.purchase(amount / LOTTO.PRICE);
     this.setter({ lottoList });
-    this.appthis.render();
+
+    this.reRender();
   }
 
   renderAmountException(event) {

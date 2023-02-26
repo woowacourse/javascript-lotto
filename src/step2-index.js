@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   mount() {
-    new Amount(this.lottoStore.setState, this);
+    new Amount(this.lottoStore.setState, this.render.bind(this));
 
     console.log(this.lottoStore.getLottoList());
     if (this.lottoStore.getLottoList().length !== 0) {
