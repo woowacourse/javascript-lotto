@@ -16,11 +16,11 @@ class LottoGameController {
 
   constructor($target) {
     this.renderCheckWinningSection($target);
-    $target.addEventListener('purchaseLotto', (e) =>
-      this.handleLottoPurchase(e.detail)
+    $target.addEventListener('purchaseLotto', ({ detail: purchasePrice }) =>
+      this.handleLottoPurchase(purchasePrice)
     );
-    $target.addEventListener('checkResult', (e) =>
-      this.handleResultCheck(e.detail)
+    $target.addEventListener('checkResult', ({ detail: numbers }) =>
+      this.handleResultCheck(numbers)
     );
   }
 
