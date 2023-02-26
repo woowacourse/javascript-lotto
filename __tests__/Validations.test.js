@@ -1,6 +1,6 @@
 import Validator from "../src/utils/Validator";
 
-describe("공통 () => Validator 단위 테스트", () => {
+describe("공통 Validator 단위 테스트", () => {
   test("입력값이 숫자인지 판별하는 함수 테스트", () => {
     const input = "aiden";
 
@@ -20,7 +20,7 @@ describe("공통 () => Validator 단위 테스트", () => {
   });
 });
 
-describe("구매금액 () => Validator 단위 테스트", () => {
+describe("구매금액 Validator 단위 테스트", () => {
   test("구입금액이 1000으로 나누어 떨어지는지 판별하는 함수 테스트", () => {
     const buyMoney = 200;
 
@@ -28,7 +28,7 @@ describe("구매금액 () => Validator 단위 테스트", () => {
   });
 });
 
-describe("당첨번호와 보너스번호 () => Validator 단위 테스트", () => {
+describe("당첨번호와 보너스번호 Validator 단위 테스트", () => {
   test("당첨번호와 보너스번호가 1~45의 범위인지 판별하는 함수 테스트", () => {
     const input = 0;
 
@@ -42,7 +42,7 @@ describe("당첨번호와 보너스번호 () => Validator 단위 테스트", () 
   });
 });
 
-describe("보너스 번호 () => Validator 단위 테스트", () => {
+describe("보너스 번호 Validator 단위 테스트", () => {
   test("보너스 번호가 중복된 숫자인지 판별하는 함수 테스트", () => {
     const winningLotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 3;
