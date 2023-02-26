@@ -109,7 +109,7 @@ describe('Validation.hasOnlyNumber', () => {
   test(`당첨 번호 배열의 각 요소가 숫자가 아닌 경우, false를 반환한다.`, () => {
     const winningNumbers = Array.from(
       { length: LOTTO_CONDITION.lottoDigits },
-      (_, idx) => 'string'
+      () => 'string'
     );
 
     const result = Validation.hasOnlyNumber(winningNumbers);
@@ -159,7 +159,7 @@ describe('Validation.validateWinningNumbers', () => {
   test(`당첨 번호 배열의 각 요소가 숫자가 아닌 경우, 에러가 발생한다.`, () => {
     const winningNumbers = Array.from(
       { length: LOTTO_CONDITION.lottoDigits },
-      (_, idx) => 'string'
+      () => 'string'
     );
 
     expect(() => {
