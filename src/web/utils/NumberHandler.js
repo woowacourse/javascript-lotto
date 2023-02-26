@@ -1,7 +1,9 @@
-export const getQuotient = (target, divider) => {
+const getQuotient = (target, divider) => {
   return parseInt(target / divider, 10);
 };
 
-export const roundOff = value => {
+const roundOff = value => {
   return Math.round(value * 10) / 10;
 };
+
+export { getQuotient, roundOff };
