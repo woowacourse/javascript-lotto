@@ -3,7 +3,7 @@ import Validator from '../../validator/step2/index.js';
 import { getFields } from '../../utils/domHelper.js';
 import { LOTTO } from '../../constants/values.js';
 
-export default class WinNumbers extends Component {
+export default class WinningNumbers extends Component {
   setEvent() {
     this.addEvent('submit', '.lotto-store__win-numbers-form', this.handleSubmitForm.bind(this));
   }
@@ -16,7 +16,7 @@ export default class WinNumbers extends Component {
           <div class='lotto-store__win-numbers-input-box'>
             <label class='lotto-store__win-numbers-label'>당첨 번호</label>
             <ul class='lotto-store__win-numbers-list'>
-              ${this.getWinNumbersInputTemplate()}
+              ${this.getWinningNumbersInputTemplate()}
             </ul>
           </div>
           <div class='lotto-store__bonus-number-input-box'>
@@ -29,7 +29,7 @@ export default class WinNumbers extends Component {
     `;
   }
 
-  getWinNumbersInputTemplate() {
+  getWinningNumbersInputTemplate() {
     return Array(LOTTO.LOTTO_COUNT)
       .fill()
       .map(
@@ -44,10 +44,10 @@ export default class WinNumbers extends Component {
   handleSubmitForm(e) {
     e.preventDefault();
     const fields = getFields(e.target);
-    const drawingNumbers = { winNumbers: [], bonusNumber: 0 };
+    const drawingNumbers = { winningNumbers: [], bonusNumber: 0 };
 
     Object.entries(fields).forEach(([name, value]) => {
-      if (name.includes('win-number')) drawingNumbers.winNumbers.push(Number(value));
+      if (name.includes('win-number')) drawingNumbers.winningNumbers.push(Number(value));
       if (name.includes('bonus-number')) drawingNumbers.bonusNumber = Number(value);
     });
 

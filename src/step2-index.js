@@ -4,7 +4,7 @@ import Component from './view/components/Component.js';
 import { qs, component } from './utils/domHelper';
 import Amount from './view/components/Amount.js';
 import LottoList from './view/components/LottoList.js';
-import WinNumbers from './view/components/WinNumbers.js';
+import WinningNumbers from './view/components/WinningNumbers.js';
 import StatisticsModal from './view/components/StatisticsModal.js';
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
 
     if (lottoList.length !== 0) {
       new LottoList(component('lottoList'), { lottoList });
-      new WinNumbers(component('winNumbers'), {
+      new WinningNumbers(component('winningNumbers'), {
         updateDrawingNumbers: updateDrawingNumbers.bind(this),
         openModal: openModal.bind(this),
       });
@@ -79,7 +79,7 @@ class App extends Component {
     if (this.state.lottoList.length !== 0) {
       return `
         <section class='lotto-store__lotto-list' data-component='lottoList'></section>
-        <section class='lotto-store__win-numbers' data-component='winNumbers'></section>
+        <section class='lotto-store__win-numbers' data-component='winningNumbers'></section>
         <div class='lotto-store__statistics-modal' data-component='statisticsModal'></div>
       `;
     }

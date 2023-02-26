@@ -14,9 +14,9 @@ export function checkDrawingNumberRange(number) {
   return true;
 }
 
-export function checkWinNumbersFormat(winNumbers) {
-  if (!ONLY_NUMBERS_WITH_COMMA.test(winNumbers)) {
-    throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, winNumbers);
+export function checkWinningNumbersFormat(winningNumbers) {
+  if (!ONLY_NUMBERS_WITH_COMMA.test(winningNumbers)) {
+    throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, winningNumbers);
   }
 
   return true;
@@ -32,9 +32,12 @@ export function checkBonusNumberFormat(bonusNumber) {
   }
 }
 
-export function checkDrawingNumbersFormat({ winNumbers, bonusNumber }) {
-  if (new Set(winNumbers).size !== winNumbers.length || winNumbers.includes(bonusNumber)) {
-    throw new CustomError({ code: ERROR_CODE.DUPLICATED_NUMBER }, { winNumbers, bonusNumber });
+export function checkDrawingNumbersFormat({ winningNumbers, bonusNumber }) {
+  if (
+    new Set(winningNumbers).size !== winningNumbers.length ||
+    winningNumbers.includes(bonusNumber)
+  ) {
+    throw new CustomError({ code: ERROR_CODE.DUPLICATED_NUMBER }, { winningNumbers, bonusNumber });
   }
 
   return true;

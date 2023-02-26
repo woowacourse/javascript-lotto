@@ -34,18 +34,18 @@ const Inputs = {
     }
   },
 
-  _checkWinNumbers(winNumbers) {
-    checkDrawingNumbersRange(winNumbers);
+  _checkWinningNumbers(winningNumbers) {
+    checkDrawingNumbersRange(winningNumbers);
   },
 
   _checkBonusNumber(bonusNumber) {
     checkDrawingNumberRange(bonusNumber);
   },
 
-  _checkDrawingNumbers({ winNumbers, bonusNumber }) {
-    this._checkWinNumbers(winNumbers);
+  _checkDrawingNumbers({ winningNumbers, bonusNumber }) {
+    this._checkWinningNumbers(winningNumbers);
     this._checkBonusNumber(bonusNumber);
-    checkDrawingNumbersFormat({ winNumbers, bonusNumber });
+    checkDrawingNumbersFormat({ winningNumbers, bonusNumber });
   },
 };
 

@@ -5,7 +5,7 @@ const PRICE = 1000;
 const TOTAL = AMOUNT / PRICE;
 const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
 const DRAWING_NUMBERS = {
-  winNumbers: [1, 2, 3, 4, 5, 6],
+  winningNumbers: [1, 2, 3, 4, 5, 6],
   bonusNumber: 7,
 };
 

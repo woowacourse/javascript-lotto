@@ -5,7 +5,7 @@ export class Lotto {
   #numbers = [];
 
   #drawingNumbers = {
-    winNumbers: [],
+    winningNumbers: [],
     bonusNumber: 0,
   };
 
@@ -35,9 +35,9 @@ export const LottoStore = {
 
   draw(lotto) {
     const numbers = lotto.getNumbers();
-    const { winNumbers, bonusNumber } = lotto.getDrawingNumbers();
+    const { winningNumbers, bonusNumber } = lotto.getDrawingNumbers();
 
-    const awards = [...winNumbers, bonusNumber].filter((number) => numbers.includes(number));
+    const awards = [...winningNumbers, bonusNumber].filter((number) => numbers.includes(number));
     return awards.length === AWARDS.THIRD_PLACE && awards.includes(bonusNumber)
       ? AWARDS.SECOND_PLACE
       : awards.length;
