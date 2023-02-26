@@ -7,6 +7,10 @@ import "./css/reset.css";
 import "./css/index.css";
 
 import { LottoGame } from "./app/WebLottoGame";
+import { closeModal, restartLottoGame } from "./ui/modal";
 
 const lottoGame = new LottoGame();
 lottoGame.play();
+
+closeModal();
+restartLottoGame();

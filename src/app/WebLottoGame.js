@@ -6,7 +6,6 @@ import {
   validateWinningLottoNumbers,
 } from "../validator";
 import { webErrorCatcher } from "../validator/errorCatcher";
-import { closeModal, restartLottoGame } from "../ui/modal";
 import { printLottoTicket } from "../ui/lottoTicketPrinter";
 import { printLottoResult } from "../ui/lottoResult";
 const { SECOND } = PLACES;
@@ -37,9 +36,6 @@ export class LottoGame {
       if (!this.#isValidWinningNumber(event)) return;
       this.#showLottoResult(purchaseAmountInput.value);
     });
-
-    closeModal();
-    restartLottoGame();
   }
 
   #purchaseLottoTicket(purchaseAmount) {
