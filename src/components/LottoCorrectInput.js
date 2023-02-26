@@ -23,7 +23,7 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
         <input class="lotto-card__lotto--input bonusNumber" id="bonusNumber" value="" />
       </div>
 
-      <button class="button w-100 mgTop_1_rem" type="button">
+      <button class="button w-100 mgTop_1_rem"
         결과 확인하기
       </button>
     </form>
@@ -37,8 +37,6 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
 
   this.setEvent = () => {
     this.$target.addEventListener('click', (e) => {
-      e.preventDefault();
-
       if (e.target.tagName === 'BUTTON') {
         const winningNumbers = [...getDomAll('.winningNumbers')]
           .map((winningNumber) => winningNumber.value)
