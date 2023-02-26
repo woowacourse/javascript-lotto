@@ -46,7 +46,7 @@ export default class StatisticsModal extends Component {
   }
 
   handleSubmitForm() {
-    setTimeout(this.props.initState, 0);
+    setTimeout(this.props.reset, 0);
   }
 
   getStatisticsTemplate() {

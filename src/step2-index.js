@@ -12,22 +12,19 @@ class App extends Component {
     super(qs('#app'));
   }
 
-  getInitialState() {
-    return { lottoList: [] };
-  }
-
   setUp() {
-    this.state = this.getInitialState();
+    this.initialState = { lottoList: [] };
+    this.state = this.initialState;
   }
 
-  initState() {
-    this.setState(this.getInitialState());
+  reset() {
+    this.setState(this.initialState);
   }
 
   mounted() {
     const {
       state: { lottoList },
-      initState,
+      reset,
       openModal,
       setLottoList,
       updateDrawingNumbers,
@@ -43,7 +40,7 @@ class App extends Component {
       });
       new StatisticsModal(component('statisticsModal'), {
         lottoList,
-        initState: initState.bind(this),
+        reset: reset.bind(this),
       });
     }
   }
