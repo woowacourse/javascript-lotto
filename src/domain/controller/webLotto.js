@@ -6,27 +6,27 @@ const { LOTTO_NUMBER, LOTTO_LITERAL } = require('../../constant');
 
 const app = document.querySelector('#app');
 
-const moneyForm = document.querySelector('.moneyForm');
-const moneyAmount = document.querySelector('.moneyAmount');
+const moneyForm = document.querySelector('#moneyForm');
+const moneyAmount = document.querySelector('#moneyAmount');
 
-const lottoInfoContainer = document.querySelector('.lottoInfoContainer');
-const lottoNumberConatiner = document.querySelector('.lottoNumberConatiner');
-const lottoCount = document.querySelector('.lottoCount');
-const inputNumberContainer = document.querySelector('.inputNumberContainer');
+const lottoInfoContainer = document.querySelector('#lottoInfoContainer');
+const lottoNumberConatiner = document.querySelector('#lottoNumberConatiner');
+const lottoCount = document.querySelector('#lottoCount');
+const inputNumberContainer = document.querySelector('#inputNumberContainer');
 
-const winningNumberInputs = document.querySelectorAll('.winningNumber');
-const bonus = document.querySelector('.bonus');
+const winningNumberInputs = document.querySelectorAll('.winning-number');
+const bonus = document.querySelector('#bonus');
 
-const winningModal = document.querySelector('.winningModal');
-const closeButton = document.querySelector('.closeButton');
-const rankCounts = document.querySelectorAll('.rankCount');
-const benefitRate = document.querySelector('.benefitRate');
-const retryButton = document.querySelector('.retryButton');
+const winningModal = document.querySelector('#winningModal');
+const closeButton = document.querySelector('#closeButton');
+const rankCounts = document.querySelectorAll('.rank-count');
+const benefitRate = document.querySelector('#benefitRate');
+const retryButton = document.querySelector('#retryButton');
 
-const footer = document.querySelector('footer');
+const copyright = document.querySelector('#copyright');
 
-const moneyError = document.querySelector('.moneyError');
-const lottoNumbersError = document.querySelector('.lottoNumbersError');
+const moneyError = document.querySelector('#moneyError');
+const lottoNumbersError = document.querySelector('#lottoNumbersError');
 
 const EMPTY = '';
 const HIDDEN = 'hidden';
@@ -142,7 +142,7 @@ const handleBenefitRate = (money, ranks) => {
 };
 
 const handleCopyrightCurrentYear = () => {
-  footer.innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
+  copyright.innerText = `Copyright ${new Date().getFullYear()}. woowacourse`;
 };
 
 const handleLottoContainer = (lottos) => {

@@ -17,7 +17,7 @@
 - [x] gitignore 의 End of Files 에러 문구 해결
 - [x] HTML 사용하지 않는 코드 삭제(버튼의 value, input의 maxlength,minlength)
 - [ ] HTML class 와 id 의 구분된 사용과 구분된 표기법
-  - [ ] 스타일을 바꾸기 위해서 인식자가 필요하다면 class 를 사용하며 kebab-case를 사용한다.
+  - [x] 스타일을 바꾸기 위해서 인식자가 필요하다면 class 를 사용하며 kebab-case를 사용한다.
   - [ ] 자바스크립트에서 기능을 위해 인식자가 필요하다면 id 를 사용하며 camelCase를 사용한다.
 - [ ] 함수명이 어울리지 않는 코드 수정
 - [ ] 자바스크립트를 이용한 입력값 최대 입력 길이 설정하기
