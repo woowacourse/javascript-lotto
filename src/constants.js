@@ -41,6 +41,16 @@ export const RESULT = (prize, lottoResult) => {
 총 수익률은 ${Number(lottoResult[5]).toLocaleString()}%입니다.`;
 };
 
+export const UNDER_SECOND = (idx) => {
+  return `${idx + 3}개`;
+};
+export const SECOND = (idx) => {
+  return `${idx + 2}개+보너스볼`;
+};
+export const FIRST = (idx) => {
+  return `${idx + 2}개`;
+};
+
 export const COMMAND = {
   RESTART: "y",
   QUIT: "n",
@@ -56,16 +66,4 @@ export const MATCH = {
 
 export const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
 
-// export default {
-//   RANK: NUM_OF_RANK,
-//   LOTTO_RANGE,
-//   LOTTO_SIZE,
-//   UNIT,
-//   MESSAGE,
-//   ERROR,
-//   AMOUNT_OF_PURCHASE,
-//   COMMAND,
-//   PRIZE,
-//   RESULT,
-//   MATCH,
-// };
+export const LOCALE_STRING = /\B(?=(\d{3})+(?!\d))/g;

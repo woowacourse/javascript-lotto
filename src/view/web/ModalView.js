@@ -1,4 +1,11 @@
-import { PRIZE } from "../../constants";
+import {
+  LOCALE_STRING,
+  PRIZE,
+  UNDER_SECOND,
+  SECOND,
+  FIRST,
+  MATCH,
+} from "../../constants";
 
 class ModalView {
   constructor(handleRestartGame) {
@@ -30,7 +37,7 @@ class ModalView {
     this.modalTable.insertAdjacentHTML("beforeend", resultTable);
     this.profit.textContent = `당신의 총 수익률은 ${result[result.length - 1]
       .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}%입니다.`;
+      .replace(LOCALE_STRING, ",")}%입니다.`;
   }
 
   makeResultTable(result) {
@@ -45,9 +52,9 @@ class ModalView {
   }
 
   showMatchedCount(idx) {
-    if (idx < 3) return idx + 3 + "개";
-    if (idx === 3) return idx + 2 + "개+보너스볼";
-    return idx + 2 + "개";
+    if (idx < 3) return UNDER_SECOND(idx);
+    if (idx === 3) return SECOND(idx);
+    return FIRST(idx);
   }
 
   hiddenModal() {
