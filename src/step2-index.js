@@ -1,20 +1,12 @@
 import '../style.css';
 import InputChecker from './web/validators/InputChecker.js';
 import LottoGame from './web/domains/LottoGame.js';
-import LINK from './web/constants/link.js';
 import { $ } from './web/utils/dom.js';
 import { getFormData } from './web/utils/form.js';
-import initWinningNumbers from './web/inputUtil/inputs.js';
-import {
-  renderLottos,
-  renderWinningNumbers,
-  renderDialog,
-  renderResult,
-} from './web/views/renderer.js';
+import LottoRenderer from './web/views/LottoRenderer.js';
+import URL from './web/constants/url.js';
 
 const App = {
-  result: null,
-
   init() {
     this.initHeaderEventListener();
     this.initPriceFormEventListeners();
@@ -23,56 +15,85 @@ const App = {
   initHeaderEventListener() {
     $('#header-button').addEventListener(
       'click',
-      () => (window.location = LINK.HOME)
+      () => (window.location = `${URL.DOMAIN}${URL.HOME}`)
     );
   },
 
   initPriceFormEventListeners() {
-    $('#price-form').addEventListener('submit', event =>
-      event.preventDefault()
-    );
-
     $('#price-form').addEventListener('submit', event => {
-      if (!this.purchaseLottos(event)) {
+      event.preventDefault();
+      LottoGame.initProps();
+
+      if (!this.purchaseLottos(event.target)) {
         return;
       }
 
-      renderLottos(LottoGame.getLottos());
-      renderWinningNumbers();
+      LottoRenderer.renderLottos(LottoGame.getLottos());
+      LottoRenderer.renderWinningNumbers();
       this.initWinningNumbersEventListener();
     });
   },
 
-  purchaseLottos(event) {
-    const fields = getFormData(event.target);
+  purchaseLottos(target) {
+    const fields = getFormData(target);
+    if (!fields) {
+      return;
+    }
+
     const price = InputChecker.checkLottoPrice(fields.price);
     if (!price) {
       return;
     }
 
-    LottoGame.init(price);
+    LottoGame.initLotto(price);
     return true;
   },
 
   initWinningNumbersEventListener() {
     $('#winning-numbers-form').addEventListener('submit', event => {
       event.preventDefault();
-    });
 
-    $('#winning-numbers-form').addEventListener('submit', event => {
-      if (!initWinningNumbers(event)) {
+      if (!this.registerWinningNumbers(event.target)) {
         return;
       }
 
-      renderDialog();
+      LottoRenderer.renderDialog();
       this.initDialogEventListener();
 
-      if (!this.result) {
-        this.result = LottoGame.getResult();
-      }
-      renderResult(this.result);
+      LottoRenderer.renderResult(LottoGame.getResult());
       this.initResultEventListener();
     });
+  },
+
+  registerWinningNumbers(target) {
+    const fields = getFormData(target);
+    if (!fields) {
+      return;
+    }
+
+    const luckyNumbers = InputChecker.checkLuckyNumbers(
+      Array.from(
+        { length: 6 },
+        (_, index) => fields[`lucky-number-0${index + 1}`]
+      )
+    );
+
+    if (!luckyNumbers) {
+      return;
+    }
+
+    const bonusNumber = InputChecker.checkBonusNumber(
+      fields['bonus-number'],
+      luckyNumbers
+    );
+
+    if (!bonusNumber) {
+      return;
+    }
+
+    LottoGame.initWinningNumbers({ luckyNumbers, bonusNumber });
+
+    return true;
   },
 
   initDialogEventListener() {

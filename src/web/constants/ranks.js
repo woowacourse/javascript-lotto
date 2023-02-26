@@ -1,4 +1,4 @@
-const RANK = Object.freeze({
+export const RANK = Object.freeze({
   FIRST: 1,
   SECOND: 2,
   THIRD: 3,
@@ -7,7 +7,7 @@ const RANK = Object.freeze({
   INVALID_RANK: 0,
 });
 
-const RANKING_TABLE = Object.freeze([
+export const RANKING_TABLE = Object.freeze([
   RANK.INVALID_RANK,
   RANK.INVALID_RANK,
   RANK.INVALID_RANK,
@@ -17,32 +17,4 @@ const RANKING_TABLE = Object.freeze([
   RANK.FIRST,
 ]);
 
-const TABLE = Object.freeze([
-  {
-    matchCountTag: '<td>3개</td>',
-    prizeTag: '<td>5,000</td>',
-    amountOfRank: '',
-  },
-  {
-    matchCountTag: '<td>4개</td>',
-    prizeTag: '<td>50,000</td>',
-    amountOfRank: '',
-  },
-  {
-    matchCountTag: '<td>5개</td>',
-    prizeTag: '<td>1,500,000</td>',
-    amountOfRank: '',
-  },
-  {
-    matchCountTag: '<td>5개</td>',
-    prizeTag: '<td>30,000,000</td>',
-    amountOfRank: '',
-  },
-  {
-    matchCountTag: '<td>6개</td>',
-    prizeTag: '<td>2,000,000,000</td>',
-    amountOfRank: '',
-  },
-]);
-
-export { RANK, RANKING_TABLE, TABLE };
+export const MATCH_COUNT = [3, 4, 5, 5, 6];

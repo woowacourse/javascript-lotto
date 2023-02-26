@@ -10,7 +10,7 @@
 	<body>
 		<div class="app-root">
 			<header>
-				<button class="header-button" id="header-button">🎱 행운의 로또</button>
+				<button class="header-button" id="header-button" type="button">🎱 행운의 로또</button>
 			</header>
 			<main>
 				<div class="app">
@@ -19,15 +19,15 @@
 							🎱 내 번호 당첨 확인 🎱
 						</div>
 						<div class="app-main">
-							<div class="price">
-								<label for="price-form">
+							<form class="price-form" id="price-form">
+								<label class="price-label" for="price-input">
 									구입할 금액을 입력해주세요.
 								</label>
-								<form class="price-form" id="price-form">
-									<input class="price-input" type="number" name="price" placeholder="금액">
-									<input class="price-submit" type="submit" value="구입">
-								</form>
-							</div>
+								<div class="price-container">
+									<input class="price-input" id="price-input" type="text" name="price" placeholder="금액">
+									<button class="price-submit">구입</button>
+								</div>
+							</form>
 							<div class="lottos" id="lottos">
 							</div>
 							<div class="winning-numbers" id="winning-numbers">
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 			</main>
-			<footer id="footer">
+			<footer class="footer">
 				<span>Copyright 2023. woowacourse</span>
 			</footer>
 		</div>

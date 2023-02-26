@@ -1,12 +1,12 @@
 import LottoMachine from './LottoMachine.js';
-import NumberHandler from '../utils/NumberHandler.js';
+import { roundOff } from '../utils/numberHandler.js';
 import LOTTO from '../constants/lotto.js';
 import { RANK, RANKING_TABLE } from '../constants/ranks.js';
 
 const LottoGame = (function () {
   const props = {
     lottos: [],
-    amountOfRanks: Array.from({ length: 6 }, () => 0),
+    amountOfRanks: [],
     winningNumbers: { luckyNumbers: [], bonusNumber: 0 },
     profit: 0,
   };
@@ -28,31 +28,19 @@ const LottoGame = (function () {
   };
 
   const drawLotto = () => {
-    if (!props.amountOfRanks.every(rank => rank === 0)) {
-      return;
-    }
+    const amountOfRanks = Array.from({ length: 6 }, () => 0);
 
     props.lottos.forEach(lotto => {
-      props.amountOfRanks[
-        getRank(lotto.getNumbers(), props.winningNumbers)
-      ] += 1;
+      amountOfRanks[getRank(lotto.getNumbers(), props.winningNumbers)] += 1;
     });
 
-    return [...props.amountOfRanks];
+    props.amountOfRanks = [...amountOfRanks];
   };
 
   const calculateProfit = () => {
-    if (props.profit !== 0) {
-      return;
-    }
-
     const totalPrizeMoney = calculateTotalPrizeMoney();
     const totalBuyMoney = props.lottos.length * LOTTO.PRICE;
-    props.profit = NumberHandler.roundOff(
-      (totalPrizeMoney / totalBuyMoney) * 100
-    );
-
-    return props.profit;
+    props.profit = roundOff((totalPrizeMoney / totalBuyMoney) * 100);
   };
 
   const calculateTotalPrizeMoney = () => {
@@ -62,7 +50,14 @@ const LottoGame = (function () {
   };
 
   return {
-    init(price) {
+    initProps() {
+      props.lottos = [];
+      props.amountOfRanks = Array.from({ length: 6 }, () => 0);
+      props.winningNumbers = { luckyNumbers: [], bonusNumber: 0 };
+      props.profit = 0;
+    },
+
+    initLotto(price) {
       props.lottos = LottoMachine.generateLottos(price);
     },
 
@@ -75,9 +70,12 @@ const LottoGame = (function () {
     },
 
     getResult() {
+      drawLotto();
+      calculateProfit();
+
       return {
-        amountOfRanks: drawLotto(),
-        profit: calculateProfit(),
+        amountOfRanks: props.amountOfRanks,
+        profit: props.profit,
       };
     },
   };
