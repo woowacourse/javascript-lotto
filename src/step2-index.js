@@ -14,9 +14,8 @@ class App extends Component {
   mount() {
     new Amount(this.lottoStore.setState, this.render.bind(this));
 
-    console.log(this.lottoStore.getLottoList());
     if (this.lottoStore.getLottoList().length !== 0) {
-      new LottoList();
+      new LottoList(this.lottoStore.getLottoList());
       new WinNumbers(this.setDrawingNumbers.bind(this));
       new StatisticsModal();
     }

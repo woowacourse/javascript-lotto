@@ -3,13 +3,13 @@ import lottoStore from '../../store/lottoStore.js';
 
 export default class Component {
   $target;
+  lottoStore = lottoStore;
 
   constructor($target) {
     if (new.target === Component) {
       throw new Error(ERROR.CANNOT_CREATE_INSTANCE);
     }
     this.$target = $target;
-    this.lottoStore = lottoStore;
 
     this.render();
   }
