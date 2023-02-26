@@ -10,25 +10,20 @@ const { PRICE_UNIT } = require('../constants/constants');
 
 export default class LottoGameController {
   constructor() {
-    this.model = {
-      lottos: undefined,
-      winningNumbers: undefined,
-    };
+    this.model = {};
     this.view = {
       purchasePriceView: new PurchasePriceView(),
       winningNumbersView: new WinningNumbersView(),
-      gameResultView: new GameResultView(),
+      gameResultView: GameResultView,
     };
     this.setEventHandler();
   }
 
   setEventHandler() {
-    this.view.purchasePriceView.addSubmitEvent(
-      this.onPriceSubmitHandler.bind(this)
-    );
+    this.view.purchasePriceView.addSubmitEvent(this.onSubmitPrice.bind(this));
   }
 
-  onPriceSubmitHandler(purchasePriceInput) {
+  onSubmitPrice(purchasePriceInput) {
     const lottoCount = this.calculateLottoCount(purchasePriceInput);
 
     this.model.lottos = new Lottos(lottoCount);
@@ -38,20 +33,17 @@ export default class LottoGameController {
     this.view.purchasePriceView.resetInputValue();
 
     this.view.winningNumbersView.render();
-    this.setEvent2Handler();
+
+    this.view.winningNumbersView.addSubmitEvent(
+      this.onSubmitWinningNumbers.bind(this)
+    );
   }
 
   calculateLottoCount(priceInput) {
     return Math.floor(Number(priceInput) / PRICE_UNIT);
   }
 
-  setEvent2Handler() {
-    this.view.winningNumbersView.addSubmitEvent(
-      this.onWinningNumbersSubmitHandler.bind(this)
-    );
-  }
-
-  onWinningNumbersSubmitHandler(winningNumbersInput, bonusNumberInput) {
+  onSubmitWinningNumbers(winningNumbersInput, bonusNumberInput) {
     this.model.winningNumbers = new WinningNumbers(
       winningNumbersInput,
       bonusNumberInput
@@ -64,8 +56,12 @@ export default class LottoGameController {
     const ranks = this.model.lottos.getAllRanks();
     const profitRate = this.model.lottos.getProfitRate();
     this.view.gameResultView.render(ranks, profitRate);
-    this.setEvent3Handler();
-    this.setEvent4Handler();
+    this.view.gameResultView.addRestartClickEvent(
+      this.onClickRestartCommand.bind(this)
+    );
+    this.view.gameResultView.addCloseClickEvent(
+      this.onClickModalClose.bind(this)
+    );
   }
 
   calculateRanks() {
@@ -75,13 +71,7 @@ export default class LottoGameController {
     );
   }
 
-  setEvent3Handler() {
-    this.view.gameResultView.addRestartClickEvent(
-      this.onRestartCommandClickHandler.bind(this)
-    );
-  }
-
-  onRestartCommandClickHandler() {
+  onClickRestartCommand() {
     this.model.lottos = null;
     this.model.winningNumbers = null;
     this.view.gameResultView.close();
@@ -89,13 +79,7 @@ export default class LottoGameController {
     this.view.winningNumbersView.removeWinningNumbersForm();
   }
 
-  setEvent4Handler() {
-    this.view.gameResultView.addCloseClickEvent(
-      this.onModalCloseClickHandler.bind(this)
-    );
-  }
-
-  onModalCloseClickHandler() {
+  onClickModalClose() {
     this.view.gameResultView.close();
   }
 }
