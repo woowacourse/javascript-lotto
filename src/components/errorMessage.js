@@ -1,7 +1,7 @@
-import { errorMessage } from '../view/templates/errorMessage';
-
 export default function showErrorMessage($root, message, $trigger) {
-  const $errorMessage = errorMessage({ message });
+  const $errorMessage = document.createElement('span');
+  $errorMessage.className = 'caption warning-span';
+  $errorMessage.innerText = message;
 
   $root.insertAdjacentElement('afterend', $errorMessage);
   $trigger.disabled = true;
