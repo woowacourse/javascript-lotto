@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { renderLottosContainer, renderResultTable } from './view/web/render';
+import { renderLottosContainer, renderResultTable } from './view/render';
 import '../public/style.css';
 import LottoMeditator from './LottoMeditator';
 
