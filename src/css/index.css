@@ -5,15 +5,15 @@
 :root {
   --lotto-primary: #4e5ba6;
   --background-color: #f5f5f5;
-  --lotto-grayscale-1: #ffffff;
+  --lotto-grayscale-1: #fff;
   --lotto-grayscale-2: #fcfcfd;
   --lotto-grayscale-3: #b4b4b4;
   --lotto-grayscale-4: ##8b8b8b;
-  --lotto-grayscale-5: #000000;
-
-  --lotto-division-line: 1px solid rgba(0, 0, 0, 0.12);
+  --lotto-grayscale-5: #000;
 
   --lotto-font-family: "Roboto", sans-serif;
+
+  --lotto-division-line: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 /* lotto text style */
@@ -33,7 +33,6 @@
 
 .lotto-caption {
   font: 700 14px/16px var(--lotto-font-family);
-
   letter-spacing: 1.25px;
 }
 
@@ -42,10 +41,8 @@
   border-radius: 4px;
 
   font: 700 14px/16px var(--lotto-font-family);
-
   letter-spacing: 1.25px;
   text-transform: uppercase;
-
   color: var(--lotto-grayscale-1);
 
   cursor: pointer;
@@ -70,6 +67,7 @@ body {
   width: 100%;
 
   font-family: var(--lotto-font-family);
+
   /* hidden scroll */
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -100,11 +98,10 @@ header {
 h1 {
   /* 🎱 행운의 로또 */
   height: 36px;
-
-  color: var(--lotto-grayscale-1);
-  letter-spacing: -1.703px;
-
   margin-left: 130px;
+
+  letter-spacing: -1.703px;
+  color: var(--lotto-grayscale-1);
 }
 
 main {
@@ -114,10 +111,9 @@ main {
   position: relative;
 }
 
-.main-contents {
+#main-content {
   width: 414px;
   height: 727px;
-
   margin: 84px 0 69px;
   padding: 52px 16px 32px;
 
@@ -130,15 +126,12 @@ main {
   /* 🎱 내 번호 당첨 확인 🎱 */
   width: 382px;
   height: 24px;
-
   margin-bottom: 28px;
 
   font-weight: 700;
   font-size: 24px;
-
   text-align: center;
   letter-spacing: 0.15px;
-
   color: var(--lotto-grayscale-5);
 }
 
@@ -154,22 +147,20 @@ label[for="purchase-amount"] {
   justify-content: space-between;
 
   height: 36px;
-
   margin-top: 3px;
 }
 
-input[name="purchase-amount"] {
+#purchase-amount {
   width: 310px;
-
-  padding: 2px 8px 0px;
+  padding: 2px 8px 0;
 
   border: 1px solid var(--lotto-grayscale-3);
   border-radius: 4px;
 }
 
-#purchase-amount-input > button {
-  padding: 10px 0;
+#purchase-button {
   width: 56px;
+  padding: 10px 0;
 }
 
 /* lotto tickets */
@@ -177,23 +168,23 @@ input[name="purchase-amount"] {
   margin-top: 28px;
 }
 
-.lotto-tickets {
+#lotto-tickets {
   height: 276px;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.lotto-tickets::-webkit-scrollbar {
+#lotto-tickets::-webkit-scrollbar {
   width: 5px;
 }
-.lotto-tickets::-webkit-scrollbar-thumb {
+#lotto-tickets::-webkit-scrollbar-thumb {
   background-color: var(--lotto-primary);
 }
-.lotto-tickets::-webkit-scrollbar-track {
+#lotto-tickets::-webkit-scrollbar-track {
   background-color: var(--lotto-grayscale-3);
 }
-.lotto-tickets::-webkit-scrollbar-button:start:decrement,
-.lotto-tickets::-webkit-scrollbar-button:end:increment {
+#lotto-tickets::-webkit-scrollbar-button:start:decrement,
+#lotto-tickets::-webkit-scrollbar-button:end:increment {
   display: block;
 
   height: 6px;
@@ -205,33 +196,29 @@ input[name="purchase-amount"] {
   margin-bottom: 8px;
 }
 
-.lotto-ticket {
+.ticket-numbers {
   display: flex;
   align-items: center;
 
+  width: 196px;
+  height: 36px;
   margin-bottom: 4px;
 }
 
-.lotto-ticket:last-child {
+.ticket-numbers:last-child {
   margin-bottom: 0;
 }
 
-.lotto-ticket .ticket-emoji {
+.ticket-emoji {
+  margin: 0 4px 0 -6px;
+
   font-size: 34px;
   line-height: 36px;
-
-  margin: 0 4px 0 -6px;
-}
-
-.lotto-ticket .ticket-numbers {
-  width: 196px;
-  height: 24px;
 }
 
 /* winning-numbers */
-#winning-lotto > p {
+#winning-lotto-instruction {
   width: 382px;
-
   margin-top: 24px;
 
   letter-spacing: 0;
@@ -246,56 +233,57 @@ input[name="purchase-amount"] {
 
 .number-input-box {
   display: flex;
-  justify-content: space-between;
 }
 
-.number-input-box input {
+input[name="lotto-winning-number"],
+#bonus-number {
   width: 34px;
   height: 36px;
 
+  text-align: center;
+
   border: 1px solid #b4b4b4;
   border-radius: 4px;
-
-  text-align: center;
 }
 
-#winning-numbers > input {
+input[name="lotto-winning-number"] {
   margin-right: 6px;
 }
 
-#winning-numbers > input:last-child {
+input[name="lotto-winning-number"]:last-child {
   margin-right: 0;
 }
 
-#winning-lotto > button {
+#bonus-number {
+  margin-left: auto;
+}
+
+#result-button {
   width: 100%;
   height: 36px;
-
   margin-top: 27px;
 }
 
 /* modal window */
 .modal-window {
-  width: 350px;
-
-  padding: 16px 16px 32px;
-
-  background: #ffffff;
-  border-radius: 4px;
-
-  text-align: center;
-
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+
+  width: 350px;
+  padding: 16px 16px 32px;
+
+  text-align: center;
+
+  background: #ffffff;
+  border-radius: 4px;
 }
 
-.modal-window > h2 {
+#winning-stats {
   /* 🏆 당첨 통계 🏆 */
-  margin-top: calc(41px - 16px);
-  margin-bottom: 32px;
+  margin: calc(41px - 16px) 0 32px;
 }
 
 .modal-window .close-button {
@@ -321,34 +309,32 @@ input[name="purchase-amount"] {
 }
 
 /* table */
-.lotto-result table {
+#lotto-result table {
   width: 100%;
 }
 
-.lotto-result table tr {
+#lotto-result table tr {
   border-top: var(--lotto-division-line);
   border-bottom: var(--lotto-division-line);
 }
 
-.lotto-result table th,
-.rate-of-return {
+#lotto-result table th,
+#rate-of-return {
   font-weight: 600;
 }
 
-.lotto-result table th,
-.lotto-result table td {
+#lotto-result table th,
+#lotto-result table td {
   padding: 8px 0;
 }
 
-.rate-of-return {
+#rate-of-return {
   width: 100%;
-
   margin: 32px 0;
 }
 
-.modal-window > button {
+#restart-button {
   width: 100%;
-
   padding: 11px 0;
 }
 
@@ -367,7 +353,6 @@ footer #copyright {
   height: 16px;
 
   text-align: center;
-
   color: var(--lotto-primary);
 }
 
