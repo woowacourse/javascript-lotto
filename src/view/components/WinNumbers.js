@@ -21,7 +21,7 @@ export default class WinNumbers extends Component {
           </div>
           <div class='lotto-store__bonus-number-input-box'>
             <label class='lotto-store__bonus-number-label'>보너스 번호</label>
-            <input name='bonus-number-input' type='number' min='1' max='45'/>
+            <input name='bonus-number-input' type='number' min='1' max='45' required/>
           </div>
         </div>
         <button class='lotto-store__draw-btn' type='submit'>결과 확인하기</button>
@@ -35,7 +35,7 @@ export default class WinNumbers extends Component {
       .map(
         (_, i) => `
           <li class='lotto-store__win-number-list'>
-            <input name='win-number-input-${i}' type='number' min='1' max='45'/>
+            <input name='win-number-input-${i}' type='number' min='1' max='45' required/>
           </li>`
       )
       .join('');

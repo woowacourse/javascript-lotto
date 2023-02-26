@@ -13,7 +13,7 @@ export default class Amount extends Component {
     return `
       <label class='lotto-store__amount-label'>구입할 금액을 입력해 주세요.</label>
       <form class='lotto-store__amount-form'>
-        <input class='lotto-store__amount-input' type='number' name='amount' placeholder='금액' min='1000'/>
+        <input class='lotto-store__amount-input' type='number' name='amount' placeholder='금액' min='1000' required/>
         <button class='lotto-store__purchase-btn' type='submit'>구입</button>
       </form>
     `;
