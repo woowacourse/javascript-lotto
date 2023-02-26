@@ -21,33 +21,33 @@
           <h2 class="lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
 
           <form id="buy-money-form" name="buy-money">
-            <label for="buy-money">구입할 금액을 입력해주세요.</label>
-            <input type="number" id="buy-money" name="buy-money" placeholder="금액" min="1000"/>
+            <label for="buy-money-input">구입할 금액을 입력해주세요.</label>
+            <input type="number" id="buy-money-input" name="buy-money" placeholder="금액" min="1000"/>
             <button type="submit" class="lotto-caption" id="buy-button">구입</button>
           </form>
 
           <div class="lotto-detail hidden">
-            총 <span id="lottos-quantity">0</span>개를 구매하였습니다.
+            <h3>총 <span id="lottos-quantity">0</span>개를 구매하였습니다.</h3>
             <ul id="lotto-list-container" ></ul>
           </div>
 
           <form id="winning-numbers-form" class="hidden" name="winning-numbers">
-            <label for="lucky-number0">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
-            <div class="winning-numbers">
-              <div class="lucky-numbers">
+            <h3>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h3>
+            <div class="control-winning-numbers">
+              <div class="control-lucky-numbers">
                 <label for="lucky-number0">당첨 번호</label>
-                <div id="lucky-numbers-input">
-                  <input type="number" id="lucky-number0" min="1" max="45" />
-                  <input type="number" id="lucky-number1" min="1" max="45" />
-                  <input type="number" id="lucky-number2" min="1" max="45" />
-                  <input type="number" id="lucky-number3" min="1" max="45" />
-                  <input type="number" id="lucky-number4" min="1" max="45" />
-                  <input type="number" id="lucky-number5" min="1" max="45" />
+                <div>
+                  <input type="number" class="lucky-numbers-input" id="lucky-number0" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number1" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number2" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number3" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number4" min="1" max="45" />
+                  <input type="number" class="lucky-numbers-input" id="lucky-number5" min="1" max="45" />
                 </div>
               </div>
-              <div class="bonus-number">
-                <label for="bonus-number">보너스 번호</label>
-                <div><input type="number" id="bonus-number" min="1" max="45" /></div>
+              <div class="control-bonus-number">
+                <label for="bonus-number-input">보너스 번호</label>
+                <div><input type="number" id="bonus-number-input" min="1" max="45" /></div>
               </div>
             </div>
             <button type="submit" id="show-result-button">결과 확인하기</button>
@@ -56,7 +56,7 @@
 
         <section id="lotto-modal" class="hidden">
           <h2>🏆 당첨 통계 🏆</h2>
-          <div id="modal-close-button">X</div>
+          <button type="button" id="modal-close-button">X</button>
           <table id="result-table">
             <tr>
               <th scope="col">일치 갯수</td>
@@ -95,7 +95,7 @@
         <div class="modal-background hidden"></div>
       </main>
 
-      <footer class="footer"><p>Copyright 2023. woowacourse</p></footer>
+      <footer><p>Copyright 2023. woowacourse</p></footer>
     </div>
   </body>
 </html>

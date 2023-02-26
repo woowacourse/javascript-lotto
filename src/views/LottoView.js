@@ -9,7 +9,7 @@ const lottoView = {
     buyButton.addEventListener('click', event => {
       event.preventDefault();
 
-      const buyMoneyInput = document.querySelector('#buy-money');
+      const buyMoneyInput = document.querySelector('#buy-money-input');
       const buyMoney = Number(buyMoneyInput.value);
 
       try {
@@ -29,8 +29,8 @@ const lottoView = {
     showResultButton.addEventListener('click', event => {
       event.preventDefault();
 
-      const bonusNumberInput = document.querySelector('#bonus-number');
-      const luckyNumbersInput = document.querySelectorAll('#lucky-numbers-input > input');
+      const bonusNumberInput = document.querySelector('#bonus-number-input');
+      const luckyNumbersInput = document.querySelectorAll('.lucky-numbers-input');
       const bonusNumber = Number(bonusNumberInput.value);
       const luckyNumbers = [...luckyNumbersInput].map(number => Number(number.value));
 
@@ -135,9 +135,9 @@ const lottoView = {
 
   resetInputs() {
     const lottoListContainer = document.querySelector('#lotto-list-container');
-    const buyMoneyInput = document.querySelector('#buy-money');
-    const luckyNumbersInput = document.querySelectorAll('#lucky-numbers-input > input');
-    const bonusNumberInput = document.querySelector('#bonus-number');
+    const buyMoneyInput = document.querySelector('#buy-money-input');
+    const luckyNumbersInput = document.querySelectorAll('.lucky-numbers-input');
+    const bonusNumberInput = document.querySelector('#bonus-number-input');
 
     lottoListContainer.textContent = null;
     buyMoneyInput.value = null;

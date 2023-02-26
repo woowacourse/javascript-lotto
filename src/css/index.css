@@ -19,7 +19,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 84px auto, 84px, auto;
+  padding: 84px auto 84px auto;
+}
+
+footer {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  color: #4e5ba6;
+  border-top: solid 1px #4e5ba6;
 }
 
 button {
@@ -29,7 +37,6 @@ button {
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 1.25px;
-  text-transform: uppercase;
 
   color: #ffffff;
   background: #4e5ba6;
@@ -49,8 +56,8 @@ input::-webkit-inner-spin-button {
 ol,
 ul {
   list-style: none;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 .lotto-title {
@@ -74,7 +81,7 @@ ul {
 
 .lotto-header {
   display: inline-block;
-  padding: 14px 0px 14px 130px;
+  padding: 14px 0 14px 130px;
 }
 
 .lotto-card {
@@ -104,49 +111,41 @@ ul {
   margin-bottom: 8px;
 }
 
-.footer {
-  height: 64px;
-  line-height: 64px;
-  text-align: center;
-  color: #4e5ba6;
-  border-top: solid 1px #4e5ba6;
-}
-
-.winning-numbers {
+.control-winning-numbers {
   display: flex;
   justify-content: space-between;
 
   margin-bottom: 27px;
 }
 
-.winning-numbers input {
+.control-winning-numbers input {
   width: 34px;
   height: 36px;
   border: 1px solid #b4b4b4;
   border-radius: 4px;
 }
 
-.lucky-numbers {
+.control-lucky-numbers {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.lucky-numbers label {
+.control-lucky-numbers label {
   margin-bottom: 8px;
 }
 
-.bonus-number {
+.control-bonus-number {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.bonus-number label {
+.control-bonus-number label {
   margin-bottom: 8px;
 }
 
-.bonus-number input {
+.control-bonus-number input {
   margin: 0;
 }
 
@@ -171,7 +170,7 @@ ul {
   justify-content: space-between;
 }
 
-#buy-money {
+#buy-money-input {
   width: 310px;
   height: 36px;
   margin-bottom: 28px;
@@ -201,11 +200,11 @@ ul {
   margin-bottom: 12px;
 }
 
-#lucky-numbers-input input {
+.lucky-numbers-input {
   text-align: center;
 }
 
-#bonus-number {
+#bonus-number-input {
   text-align: center;
 }
 
@@ -248,6 +247,12 @@ ul {
   height: 16px;
 
   cursor: pointer;
+  border: 0;
+  outline: 0;
+  padding: 0;
+
+  color: black;
+  background: none;
 }
 
 #result-table {
