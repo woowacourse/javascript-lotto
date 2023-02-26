@@ -48,7 +48,9 @@ class LottoController {
 
   async #inputWinningNumber() {
     try {
-      const winningNumber = convertToWinningNumber(await InputView.readWinningNumber());
+      const winningNumber = convertToWinningNumber(
+        (await InputView.readWinningNumber()).split(','),
+      );
       LottoGameValidator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
