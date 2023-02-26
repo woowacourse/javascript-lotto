@@ -37,23 +37,11 @@ class LottoWebGame {
 
   reset() {
     this.#modal.reset();
-    this.removeEventListeners();
     this.init();
   }
 
   bindEventListeners() {
-    this.#container.addEventListener('submit', this.onSubmitWinningNumbersForm.bind(this));
     $('#purchase-amount-form').addEventListener('submit', this.onSubmitPurchaseButton.bind(this));
-    this.#modal.getContainer().addEventListener('click', this.onClickRestartButton.bind(this));
-  }
-
-  removeEventListeners() {
-    this.#container.removeEventListener('submit', this.onSubmitWinningNumbersForm.bind(this));
-    $('#purchase-amount-form').removeEventListener(
-      'submit',
-      this.onSubmitPurchaseButton.bind(this),
-    );
-    this.#modal.getContainer().removeEventListener('click', this.onClickRestartButton.bind(this));
   }
 
   onSubmitPurchaseButton(e) {
@@ -63,11 +51,7 @@ class LottoWebGame {
       const purchaseAmount = convertToNumeric($('#purchase-amount-input').value);
       LottoGameValidator.validatePurchaseAmount(purchaseAmount);
 
-      const lottoMachine = new LottoMachine(purchaseAmount);
-      this.#lottos = lottoMachine.issueLottos();
-
-      this.#container.innerHTML +=
-        createLottoListSection(this.#lottos) + createWinningNumberFormSection();
+      this.processPurchaseLottos(purchaseAmount);
       $('#purchase-button').setAttribute('disabled', true);
     } catch (error) {
       alert(error.message);
@@ -75,10 +59,20 @@ class LottoWebGame {
     }
   }
 
+  processPurchaseLottos(purchaseAmount) {
+    const lottoMachine = new LottoMachine(purchaseAmount);
+    this.#lottos = lottoMachine.issueLottos();
+
+    this.#container.innerHTML +=
+      createLottoListSection(this.#lottos) + createWinningNumberFormSection();
+    $('#winning-numbers-form').addEventListener(
+      'submit',
+      this.onSubmitWinningNumbersForm.bind(this),
+    );
+  }
+
   onSubmitWinningNumbersForm(e) {
     e.preventDefault();
-
-    if (e.target.id !== 'winning-numbers-form') return;
 
     try {
       const winningNumber = convertToWinningNumber(
@@ -88,20 +82,23 @@ class LottoWebGame {
       const bonusNumber = convertToNumeric($('.js-bonus-number-input').value);
       LottoGameValidator.validateBonusNumber(bonusNumber, winningNumber);
 
-      const winningLotto = new WinningLotto(winningNumber, bonusNumber);
-      const ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
-      const profitRate = calculateProfitRate(ranking, this.#lottos.length);
-
-      this.#modal.show(createResultModal(ranking, profitRate));
+      this.processLottoComparison(winningNumber, bonusNumber);
     } catch (error) {
       alert(error.message);
     }
   }
 
-  onClickRestartButton(e) {
-    if (e.target.id === 'restart-button') {
-      this.reset();
-    }
+  processLottoComparison(winningNumber, bonusNumber) {
+    const winningLotto = new WinningLotto(winningNumber, bonusNumber);
+    const ranking = new LottoComparer(winningLotto, this.#lottos).getRanking();
+    const profitRate = calculateProfitRate(ranking, this.#lottos.length);
+
+    this.#modal.show(createResultModal(ranking, profitRate));
+    $('#restart-button').addEventListener('click', this.onClickRestartButton.bind(this));
+  }
+
+  onClickRestartButton() {
+    this.reset();
   }
 }
 

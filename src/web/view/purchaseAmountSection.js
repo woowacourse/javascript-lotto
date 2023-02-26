@@ -1,7 +1,7 @@
 import { PURCHASE_AMOUNT } from '../../constants/setting';
 
 const purchaseAmountSection = `
-  <section class="lotto-game-section purchase-amount-section">
+  <section class="lotto-game-section" id="purchase-amount-section">
     <form id="purchase-amount-form">
       <label for="purchase-amount-input">구입 금액을 입력해주세요.</label>
       <div class="input-container">
