@@ -10,6 +10,7 @@ function LottoMoneyInput({ $target, inputMoneyEvent }) {
       </label>
       <div class="flex flex--space-between mgTop_1_rem">
         <input
+          type="number" 
           class="lotto-card__money--input w-100 lotto-placeholder"
           placeholder="금액"
           value=""

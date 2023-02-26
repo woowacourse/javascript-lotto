@@ -14,18 +14,16 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
       </div>
 
       <div class="flex mgTop_1_rem">
-        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
-        <input class="lotto-card__lotto--input bonusNumber" id="bonusNumber" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input winningNumbers" id="winningNumbers" value="" />
+        <input type="number" class="lotto-card__lotto--input bonusNumber" id="bonusNumber" value="" />
       </div>
 
-      <button class="button w-100 mgTop_1_rem"
-        결과 확인하기
-      </button>
+      <button class="button w-100 mgTop_1_rem">결과 확인하기</button>
     </form>
   `;
 
