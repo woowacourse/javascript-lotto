@@ -105,7 +105,7 @@ class App2 {
       const lottoScore = this.getLottoGameResult();
       this.retryLottoGame(lottoScore);
     } catch (e) {
-      this, this.resetBonusLottoInput();
+      this.resetBonusLottoInput();
     }
   }
 
