@@ -11,7 +11,6 @@ export default class Component {
     this.$target = $target;
 
     this.setState(state);
-    this.render();
   }
 
   mount() {}
