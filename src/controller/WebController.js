@@ -29,7 +29,7 @@ class WebController {
     try {
       const buyMoney = $(".input-money").value;
       this.validateBuyMoney(buyMoney);
-      const lottoAmount = parseInt((buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10));
+      const lottoAmount = parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10);
       this.createLotto(lottoAmount);
       this.printLotto(lottoAmount);
       $(".hidden-area").classList.add("show");
@@ -39,20 +39,20 @@ class WebController {
     }
   };
 
-  validateBuyMoney(buyMoney){
+  validateBuyMoney(buyMoney) {
     Validator.isNumber(buyMoney);
     Validator.isDividedByThousand(buyMoney);
     Validator.isPositiveInteger(buyMoney);
-  };
+  }
 
   createLotto(lottoAmount) {
     for (let i = 0; i < lottoAmount; i++) {
       const lotto = new Lotto(Random.getnerateRandomNumbers());
       this.#lottoArray.push(lotto);
     }
-  };
+  }
 
-  printLotto(lottoAmount){
+  printLotto(lottoAmount) {
     $(".purchase-amount").innerHTML = `총 ${lottoAmount}개를 구매하였습니다.`;
 
     const lottoList = this.#lottoArray
@@ -63,9 +63,9 @@ class WebController {
       .join("");
 
     $(".print-lottos-list").innerHTML = lottoList;
-  };
+  }
 
-  getWinningNumbers(){
+  getWinningNumbers() {
     try {
       for (let i = 0; i < SETTINGS.MAX_WINNING_NUMBER_LENGTH; i++) {
         if ($$(".winning-number")[i].value === "") {
@@ -80,24 +80,24 @@ class WebController {
       alert(e.message);
       this.#winningLotto = [];
     }
-  };
+  }
 
   validateWinningNumbers(winningLottoNumbers) {
     Validator.isDuplicatedNumber(winningLottoNumbers);
     Validator.isCorrectLength(winningLottoNumbers);
-    
+
     for (let i = 0; i < winningLottoNumbers.length; i++) {
       this.checkEachNumber(winningLottoNumbers[i]);
     }
-  };
+  }
 
   checkEachNumber(eachNumber) {
     Validator.isNumber(eachNumber);
     Validator.isCorrectRange(eachNumber);
     Validator.isPositiveInteger(eachNumber);
-  };
+  }
 
-  getBonusNumber(){
+  getBonusNumber() {
     try {
       this.#bonusNumber = parseInt($(".bonus-number").value, 10);
       this.validateBonusNumber();
@@ -107,11 +107,11 @@ class WebController {
       alert(e.message);
       this.#bonusNumber = 0;
     }
-  };
+  }
 
-  validateBonusNumber(){
+  validateBonusNumber() {
     Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto);
-  };
+  }
 
   compareLottos = (e) => {
     e.preventDefault();
@@ -129,27 +129,34 @@ class WebController {
     this.printResult(lottos);
   };
 
-  printResult(lottos){
+  printResult(lottos) {
+    const scoreBoard = {
+      ".three": SCORE.THREE,
+      ".four": SCORE.FOUR,
+      ".five": SCORE.FIVE,
+      ".five-bonus": SCORE.FIVE_BONUS,
+      ".six": SCORE.SIX,
+    };
+
     $(".lotto-result-wrap").classList.add("show");
-    $(".three").innerHTML = `${lottos.getLottoRanking()[SCORE.THREE]}개`;
-    $(".four").innerHTML = `${lottos.getLottoRanking()[SCORE.FOUR]}개`;
-    $(".five").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE]}개`;
-    $(".five-bonus").innerHTML = `${lottos.getLottoRanking()[SCORE.FIVE_BONUS]}개`;
-    $(".six").innerHTML = `${lottos.getLottoRanking()[SCORE.SIX]}개`;
+
+    for (const [scoreName, score] of Object.entries(scoreBoard)) {
+      $(scoreName).innerHTML = `${lottos.getLottoRanking()[score]}개`;
+    }
 
     lottos.calculateBenefit();
     const totalBenefit = lottos.getBenefitRate($(".input-money").value);
     $(".result-message").innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
-    
+
     this.resetScore(lottos);
     this.#winningLotto = [];
-  };
+  }
 
-  resetScore(lottos){
+  resetScore(lottos) {
     for (const lotto of lottos.getLottos()) {
       lotto.resetScore();
     }
-  };
+  }
 
   closeModal = () => {
     $(".lotto-result-wrap").classList.remove("show");
