@@ -25,6 +25,7 @@ class View {
       event.preventDefault();
 
       const money = $(`${selectorId.INPUT_MONEY_FORM} input`).value;
+
       submitMoneyForm.call(this.#controller, money);
     };
   }
@@ -36,10 +37,21 @@ class View {
       const inputNums = [...document.getElementsByName("winnumbers")].map((input) => input.value);
       const inputBonus = document.getElementsByName("bonusnumber")[0].value;
       const winLotto = [inputNums, inputBonus];
-      console.log(winLotto);
 
       submitWinLottoForm.apply(this.#controller, winLotto);
     };
+  }
+
+  restart() {
+    $(selectorId.RESTART).addEventListener("click", () => {
+      location.reload();
+    });
+  }
+
+  exitModal() {
+    $(selectorId.MODAL_EXIT).addEventListener("click", () => {
+      $(selectorId.MODAL_PAGE).style.display = "none";
+    });
   }
 
   showLottoTickets(lottos) {

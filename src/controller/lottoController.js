@@ -1,5 +1,5 @@
 const LottoGame = require("../domain/LottoGame");
-const Validation = require("../domain/Validation");
+const validation = require("../domain/Validation");
 const View = require("../view/View");
 const { $, $$ } = require("../util/Dom");
 const { selectorId } = require("../constant/Constant");
@@ -36,7 +36,7 @@ class LottoController {
     if (!this.validateWinNumbers(inputNums)) return;
     if (!this.validateWinBonusNumber(inputNums, inputBonus)) return;
 
-    const numbers = inputNums.map((num) => parseInt(num));
+    const numbers = inputNums.map((num) => parseInt(num, 10));
     const bonusNumber = parseInt(inputBonus);
 
     const winLotto = this.#lottoGame.makeWinLotto(numbers, bonusNumber);
@@ -45,21 +45,10 @@ class LottoController {
 
     this.#view.showGameResult(rankResult, revenue);
   }
-  restart() {
-    $(selectorId.RESTART).addEventListener("click", () => {
-      location.reload();
-    });
-  }
-
-  exitModal() {
-    $(selectorId.MODAL_EXIT).addEventListener("click", () => {
-      $(selectorId.MODAL_PAGE).style.display = "none";
-    });
-  }
 
   validateMoney(money) {
     try {
-      Validation.validateMoney(money);
+      validation.validateMoney(money);
       return true;
     } catch (e) {
       alert(e.message);
@@ -71,7 +60,7 @@ class LottoController {
 
   validateWinNumbers(numbers) {
     try {
-      Validation.validateWinNumber(numbers);
+      validation.validateWinNumber(numbers);
       return true;
     } catch (e) {
       alert(e.message);
@@ -84,7 +73,7 @@ class LottoController {
 
   validateWinBonusNumber(numbers, bonusNumber) {
     try {
-      Validation.validateBonusNumber(numbers, bonusNumber);
+      validation.validateBonusNumber(numbers, bonusNumber);
       return true;
     } catch (e) {
       alert(e.message);

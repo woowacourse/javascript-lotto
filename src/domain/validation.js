@@ -1,6 +1,6 @@
 const { errorMessages, lottoProperty } = require("../constant/Constant");
 
-const Validation = {
+const validation = {
   validateMoney(money) {
     if (money <= 0 || money % 1000 != 0) throw Error(errorMessages.isWrongMoneyText);
   },
@@ -8,7 +8,7 @@ const Validation = {
   validateWinNumber(winNumbers) {
     if (winNumbers.some((num) => lottoProperty.MIN > num || num > lottoProperty.MAX || isNaN(num)))
       throw new Error(errorMessages.isOverRangeNumberText);
-    if (winNumbers.length != 6) throw new Error(errorMessages.isWrongLottoNumberText);
+    if (winNumbers.length != lottoProperty.SIZE) throw new Error(errorMessages.isWrongLottoNumberText);
 
     const winSet = new Set(winNumbers);
     if (winSet.size != lottoProperty.SIZE) throw new Error(errorMessages.isSameLottoNumberText);
@@ -18,7 +18,7 @@ const Validation = {
     const number = parseInt(bonusNumber);
     if (lottoProperty.MIN > number || number > lottoProperty.MAX || isNaN(number)) throw new Error(errorMessages.isOverRangeBounsText);
 
-    const numbersInt = numbers.map((num) => parseInt(num));
+    const numbersInt = numbers.map((num) => parseInt(num, 10));
     if (numbersInt.includes(number)) throw new Error(errorMessages.isSameBonusNumberText);
   },
 
@@ -27,4 +27,4 @@ const Validation = {
   },
 };
 
-module.exports = Validation;
+module.exports = validation;
