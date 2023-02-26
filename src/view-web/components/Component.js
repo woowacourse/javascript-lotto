@@ -5,7 +5,7 @@ export default class Component {
   state;
 
   constructor($target, state = {}) {
-    if (this.constructor === Component) {
+    if (new.target === Component) {
       throw new Error(ERROR.CANNOT_CREATE_INSTANCE);
     }
     this.$target = $target;
