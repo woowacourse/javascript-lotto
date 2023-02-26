@@ -24,6 +24,7 @@ class LottoResultModal {
     this.toggleModal();
     this.renderTable(receivedRewards);
     this.renderProfit(profitRate, onReset);
+    this.modal.focus();
   }
 
   createResultTable(receivedRewards) {
@@ -67,7 +68,6 @@ class LottoResultModal {
     );
     this.restartButton = document.getElementById('restart');
     this.addRestartButtonHandler(onReset);
-    this.restartButton.focus();
   }
 
   resetResultTable() {
