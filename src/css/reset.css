@@ -48,8 +48,8 @@ button:hover {
 }
 
 input[type="number"] {
-    -moz-appearance: textfield !important; /* Firefox */
-    appearance: textfield !important; /* Other browsers */
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
