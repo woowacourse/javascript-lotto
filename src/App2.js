@@ -75,12 +75,6 @@ class App2 {
     this.checkWinningLottoInputs();
   }
 
-  showResultAgain() {
-    const result = HandleView.$(CLASS_NAME.RESULT_BG);
-
-    HandleView.removeClassList(result, "hidden");
-  }
-
   inputWinningLottos() {
     const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
 
@@ -99,6 +93,12 @@ class App2 {
     }
   }
 
+  inputBonusNumber() {
+    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
+
+    this.bonusNumber = Number(bonusInput.value);
+  }
+
   checkBonusNumberInput() {
     try {
       InputCheck.validateBonusNumber(this.bonusNumber, this.winningLotto, true);
@@ -107,28 +107,6 @@ class App2 {
     } catch (e) {
       this.resetBonusLottoInput();
     }
-  }
-
-  resetWinningLottoInputs() {
-    const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
-    winningLottosInputs.forEach((winningNumber) => {
-      winningNumber.value = "";
-    });
-    this.winningLotto = [];
-  }
-
-  inputBonusNumber() {
-    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
-
-    this.bonusNumber = Number(bonusInput.value);
-  }
-
-  resetBonusLottoInput() {
-    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
-
-    bonusInput.value = "";
-    this.bonusNumber = 0;
-    this.winningLotto = [];
   }
 
   getLottoGameResult() {
@@ -154,6 +132,15 @@ class App2 {
     lottoScore.compareLottosScore();
   }
 
+  closeModal() {
+    const closeButton = HandleView.$(CLASS_NAME.MODAL_CLOSE_BUTTON);
+    const result = HandleView.$(CLASS_NAME.RESULT_BG);
+
+    EventHandler.handleEvent(closeButton, "click", () => {
+      HandleView.addClassList(result, "hidden");
+    });
+  }
+
   retryLottoGame(lottoScore) {
     const retryButton = HandleView.$(CLASS_NAME.RETYR_BUTTON);
 
@@ -167,13 +154,26 @@ class App2 {
     location.reload();
   }
 
-  closeModal() {
-    const closeButton = HandleView.$(CLASS_NAME.MODAL_CLOSE_BUTTON);
+  resetBonusLottoInput() {
+    const bonusInput = HandleView.$(CLASS_NAME.BONUSLOTTO_INPUT);
+
+    bonusInput.value = "";
+    this.bonusNumber = 0;
+    this.winningLotto = [];
+  }
+
+  resetWinningLottoInputs() {
+    const winningLottosInputs = HandleView.$$(CLASS_NAME.WINNINGLOTTO_INPUT);
+    winningLottosInputs.forEach((winningNumber) => {
+      winningNumber.value = "";
+    });
+    this.winningLotto = [];
+  }
+
+  showResultAgain() {
     const result = HandleView.$(CLASS_NAME.RESULT_BG);
 
-    EventHandler.handleEvent(closeButton, "click", () => {
-      HandleView.addClassList(result, "hidden");
-    });
+    HandleView.removeClassList(result, "hidden");
   }
 }
 
