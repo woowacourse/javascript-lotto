@@ -36,16 +36,22 @@ class WebLottoGameController {
     e.preventDefault();
     this.lottoGame.initializeLottoRankResult();
 
-    const winningNumbers = [...$$('.lotto-number-input')]
-      .map((lottoNumber) => Number(lottoNumber.value))
-      .slice(0, 6);
-    const bonusNumber = $('#bonus-number-input').value;
+    const { winningNumbers, bonusNumber } = this.getWinningNumbers();
 
     if (
       this.validateWinningNumbers(winningNumbers) &&
       this.validateBonusNumber(winningNumbers, bonusNumber)
     )
       this.printLottoGameResult(winningNumbers, bonusNumber);
+  }
+
+  getWinningNumbers() {
+    return {
+      winningNumbers: [...$$('.lotto-number-input')]
+        .map((lottoNumber) => Number(lottoNumber.value))
+        .slice(0, 6),
+      bonusNumber: Number($('#bonus-number-input').value),
+    };
   }
 
   validateWinningNumbers(winningNumbers) {
