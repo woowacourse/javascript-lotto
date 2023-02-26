@@ -158,6 +158,6 @@
   - 타입이 submit인 input를 button태그로 변경
 - [x] refactor: font css 가독성
 - [x] refactor: 중복되는 스타일 같은 class으로 묶기
-- [ ] refactor: 객체로 데이터 관리
+- [x] refactor: 객체로 데이터 관리
 - [ ] refactor: 로또를 관리하는 객체 만들기
 - [x] refactor: 모달창 배경과 분리되는 현상 제거

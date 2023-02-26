@@ -1,12 +1,13 @@
 import { $ } from '../dom/dom';
+import toNumberFormatOfKor from '../utils/toNumberFormatOfKor';
 
 const renderStatistics = (rankings, rewardRate) => {
   const lottoRewards = [
-    [5, '3개', '5,000'],
-    [4, '4개', '50,000'],
-    [3, '5개', '1,500,000'],
-    [2, '5개+보너스볼', '30,000,000'],
-    [1, '6개', '2,000,000,000'],
+    { rank: 5, matchCount: '3개', reward: toNumberFormatOfKor(5000) },
+    { rank: 4, matchCount: '4개', reward: toNumberFormatOfKor(50000) },
+    { rank: 3, matchCount: '5개', reward: toNumberFormatOfKor(1500000) },
+    { rank: 2, matchCount: '5개+보너스볼', reward: toNumberFormatOfKor(30000000) },
+    { rank: 1, matchCount: '6개', reward: toNumberFormatOfKor(2000000000) },
   ];
 
   $('#winning-statistics').innerHTML = `
@@ -19,7 +20,7 @@ const renderStatistics = (rankings, rewardRate) => {
 	      <th>당첨금</th>
 	      <th>당첨 갯수</th>
           ${lottoRewards
-            .map(([rank, matchCount, reward]) => {
+            .map(({ rank, matchCount, reward }) => {
               const count = rankings.filter((ranking) => ranking === rank).length;
               return `
                 <tr>
