@@ -1,6 +1,20 @@
 import Component from './Component.js';
 import { LottoStore } from '../../domain/Lotto.js';
-import parseStatistics from '../../utils/statistics.js';
+import { AWARDS_ORDER, PRIZE } from '../../constants/values.js';
+
+const parseStatisticsInfo = (info) => {
+  if (typeof info === 'number') return `${info}개`;
+
+  return info;
+};
+
+const parseStatistics = (statistics) => {
+  return AWARDS_ORDER.map((awards) => ({
+    awards: parseStatisticsInfo(awards),
+    prize: PRIZE[awards],
+    count: parseStatisticsInfo(statistics[awards] || 0),
+  }));
+};
 
 export default class StatisticsModal extends Component {
   setUp() {
