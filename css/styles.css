@@ -1,14 +1,14 @@
 #app {
   position: relative;
   min-height: 100%;
-  padding-bottom: 80px;
+  padding-bottom: 8rem;
 }
 
 footer {
   position: absolute;
   bottom: 0;
 
-  height: 80px;
+  height: 8rem;
 
   background-color: var(--lotto-grayscale-1);
   color: var(--lotto-primary);
@@ -18,32 +18,32 @@ footer {
 }
 
 input {
-  padding: 10px;
+  padding: 1rem;
 }
 
 .lotto-header {
-  height: 4rem;
+  height: 6rem;
 
   background-color: var(--lotto-primary);
   color: var(--lotto-grayscale-1);
 }
 
 .lotto-card {
-  width: 25rem;
-  height: 800px;
+  width: 40rem;
+  height: 80rem;
 
   border: 1px solid;
   border-color: var(--lotto-grayscale-3);
 }
 
 .lotto-card__title {
-  height: 24px;
+  height: 2.4rem;
 }
 
 .lotto-card__money--input {
   display: block;
 
-  height: 28px;
+  height: 2.8rem;
   border: 1px solid;
   border-color: var(--lotto-grayscale-2);
 
@@ -55,8 +55,8 @@ input {
   display: block;
   background-color: var(--lotto-primary);
 
-  width: 56px;
-  height: 28px;
+  width: 6rem;
+  height: 3rem;
 
   color: var(--lotto-grayscale-1);
   border-radius: 4px;
@@ -75,7 +75,7 @@ input {
 .lotto-ticket::before {
   content: '🎟️';
 
-  font-size: 28px;
+  font-size: 2.8rem;
   line-height: 24px;
   vertical-align: middle;
 
@@ -89,8 +89,8 @@ input {
 .lotto-card__lotto--input {
   display: block;
 
-  width: 34px;
-  height: 36px;
+  width: 3.5rem;
+  height: 3.5rem;
 
   border: 1px solid;
   border-color: var(--lotto-grayscale-3);
@@ -119,16 +119,16 @@ input {
 }
 
 .statistics-container {
-  width: 350px;
+  width: 35rem;
   background-color: var(--lotto-grayscale-1);
 }
 
 .statistics-list__item {
-  height: 30px;
+  height: 3rem;
 }
 
 .statistics-list__item__one {
-  width: 100px;
+  width: 10rem;
   height: 100%;
 }
 
