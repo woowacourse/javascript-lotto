@@ -16,17 +16,19 @@ const createTitle = (size, bonusSize) =>
 const createWinningNumberForm = (size, bonusSize) => `
   <form id="winning-numbers-form">
     <div class="winning-number-input-container">
-      <p>당첨 번호</p>
-      <ul class="winning-number-input-list">
-        ${winningNumberInputItem.repeat(size)}
-      </ul>
+      <div>
+        <p>당첨 번호</p>
+        <ul class="winning-number-input-list">
+          ${winningNumberInputItem.repeat(size)}
+        </ul>
+      </div>
+      <div class="bonus-number-input-container">
+        <p>보너스 번호</p>
+        ${bonusNumberInput.repeat(bonusSize)}
+      </div>
     </div>
-    <div class="winning-number-input-container bonus-number">
-      <p>보너스 번호</p>
-      ${bonusNumberInput.repeat(bonusSize)}
-    </div>
+    <button type="submit" class="button caption" id="result-button">결과 확인하기</button>
   </form>
-  <button type="submit" form="winning-numbers-form" class="button caption" id="result-button">결과 확인하기</button>
 `;
 
 const createWinningNumberFormSection = (size = LOTTO.SIZE, bonusSize = LOTTO.BONUS_SIZE) => `

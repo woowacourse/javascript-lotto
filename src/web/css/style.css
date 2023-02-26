@@ -24,13 +24,13 @@
   flex-direction: column;
 }
 
-#purchase-amount-form,
+.input-container,
 .lotto-list-container,
 #winning-numbers-form {
   margin-top: 12px;
 }
 
-#purchase-amount-form > button {
+#purchase-amount-form button {
   margin-left: 16px;
   width: 56px;
   height: 36px;
@@ -77,21 +77,21 @@
   font-size: 34px;
 }
 
-#winning-numbers-form {
+.winning-number-input-container {
   display: flex;
   justify-content: space-between;
 }
 
-.winning-number-input-container {
+.winning-number-input-container > div {
   display: flex;
   flex-direction: column;
 }
 
-.winning-number-input-container.bonus-number {
+.bonus-number-input-container {
   align-items: flex-end;
 }
 
-.winning-number-input-container > p {
+.winning-number-input-container p {
   margin-bottom: 8px;
 }
 
