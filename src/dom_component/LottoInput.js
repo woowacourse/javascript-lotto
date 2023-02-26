@@ -4,7 +4,7 @@ import { $, $$ } from '../utils/DomUtils';
 class LottoInput {
   constructor() {
     this.lottoInputField = $(QuerySelector.LOTTO_INPUT_FIELD);
-    this.winningNumberInputs = $$(QuerySelector.WINNING_NUMBER);
+    this.winningNumberInputs = [...$$(QuerySelector.WINNING_NUMBER)];
     this.bonusNumberInput = $(QuerySelector.BONUS_NUMBER);
   }
 
@@ -23,7 +23,7 @@ class LottoInput {
   }
 
   #getWinningNumbers() {
-    return [...this.winningNumberInputs].map((input) => Number(input.value));
+    return this.winningNumberInputs.map((input) => Number(input.value));
   }
 
   #getBonusNumber() {
