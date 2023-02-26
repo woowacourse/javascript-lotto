@@ -1,5 +1,5 @@
-import domList from '@lotto/view/stepTwo/domList';
 import createElement from '@lotto/utils/createElement';
+import { $, $$ } from '@lotto/utils/selector';
 
 const ui = {
   domList: {
@@ -20,59 +20,63 @@ const ui = {
     closeModalBtn: $('.close'),
     allInputs: $$('input'),
   },
+
+  getDomWithName(name) {
+    return this.domList[name];
+  },
+
   showMoneyValidationText({ message }) {
-    domList.moneyInputErrorText.innerText = message;
-    domList.moneyInputErrorText.classList.remove('hide');
+    this.domList.moneyInputErrorText.innerText = message;
+    this.domList.moneyInputErrorText.classList.remove('hide');
   },
 
   hideMoneyValidationText() {
-    domList.moneyInputErrorText.classList.add('hide');
+    this.domList.moneyInputErrorText.classList.add('hide');
   },
 
   showRestUI(lottos) {
-    domList.mainContainer.classList.remove('hide');
+    this.domList.mainContainer.classList.remove('hide');
     this.renderLottosLengthText(lottos.length);
     this.renderLottos(lottos);
   },
 
   hideRestUI() {
-    domList.mainContainer.classList.add('hide');
+    this.domList.mainContainer.classList.add('hide');
   },
 
   renderLottosLengthText(lottosLength) {
-    domList.lottoLengthText.innerText = `총 ${lottosLength}개를 구매하였습니다.`;
+    this.domList.lottoLengthText.innerText = `총 ${lottosLength}개를 구매하였습니다.`;
   },
 
   renderLottos(lottos) {
-    domList.lottoBox.innerHTML = '';
+    this.domList.lottoBox.innerHTML = '';
 
     lottos.forEach(lotto => {
       const lottoElement = createElement({ tagName: 'li', type: 'class', name: 'lotto-container' });
       lottoElement.innerText = `🎟 ${lotto.lottoNum.join(', ')}`;
-      domList.lottoBox.appendChild(lottoElement);
+      this.domList.lottoBox.appendChild(lottoElement);
     });
   },
 
   hideTargetNumberValidationText() {
-    domList.targetNumberInputErrorText.classList.add('hide');
+    this.domList.targetNumberInputErrorText.classList.add('hide');
   },
 
   showTargetNumberValidationText({ message }) {
-    domList.targetNumberInputErrorText.innerText = message;
-    domList.targetNumberInputErrorText.classList.remove('hide');
+    this.domList.targetNumberInputErrorText.innerText = message;
+    this.domList.targetNumberInputErrorText.classList.remove('hide');
   },
 
   showModal() {
-    domList.resultModal.style.display = 'block';
+    this.domList.resultModal.style.display = 'block';
   },
 
   closeModal() {
-    console.log('restart');
-    domList.resultModal.style.display = 'none';
+    this.domList.resultModal.style.display = 'none';
   },
 
   resetAllInputValues() {
-    [...domList.allInputs].forEach(input => {
+    [...this.domList.allInputs].forEach(input => {
       input.value = null;
     });
   },
@@ -108,8 +112,8 @@ const ui = {
           </tr>
     `;
 
-    domList.resultTableBody.innerHTML = resultTemplate;
-    domList.ropText.innerText = `당신의 총 수익률은 ${rateOfProfit.toFixed(1)}%입니다.`;
+    this.domList.resultTableBody.innerHTML = resultTemplate;
+    this.domList.ropText.innerText = `당신의 총 수익률은 ${rateOfProfit.toFixed(1)}%입니다.`;
 
     this.showModal();
   },

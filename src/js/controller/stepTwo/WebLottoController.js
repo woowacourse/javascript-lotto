@@ -2,7 +2,6 @@ import LottoMachine from '@lotto/model/LottoMachine';
 import inputValidator from '@lotto/validator/InputValidator';
 import preventFormFromSubmitting from '@lotto/utils/preventFormFromSubmitting';
 import ui from '@lotto/view/stepTwo/ui';
-import domList from '@lotto/view/stepTwo/domList';
 
 class WebLottoController {
   #lottoMachine;
@@ -13,21 +12,33 @@ class WebLottoController {
     this.init();
   }
 
-  addEvents() {
-    domList.buyBtn.addEventListener('click', this.buyLotto.bind(this));
-    domList.resultBtn.addEventListener('click', this.calculateStatistics.bind(this));
-    domList.retryBtn.addEventListener('click', this.restartGame.bind(this));
-    domList.closeModalBtn.addEventListener('click', this.closeModal.bind(this));
+  addEvent({ element, event, type }) {
+    element.addEventListener(type, event);
+  }
+
+  bindAllEvents() {
+    this.addEvent({ element: ui.getDomWithName('buyBtn'), event: () => this.buyLotto(), type: 'click' });
+    this.addEvent({
+      element: ui.getDomWithName('resultBtn'),
+      event: () => this.calculateStatistics(),
+      type: 'click',
+    });
+    this.addEvent({ element: ui.getDomWithName('retryBtn'), event: () => this.restartGame(), type: 'click' });
+    this.addEvent({
+      element: ui.getDomWithName('closeModalBtn'),
+      event: () => this.closeModal(),
+      type: 'click',
+    });
   }
 
   init() {
-    this.addEvents();
+    this.bindAllEvents();
   }
 
   buyLotto() {
     try {
       ui.hideMoneyValidationText();
-      const moneyInput = domList.moneyInput.value;
+      const moneyInput = ui.domList.moneyInput.value;
       inputValidator.validateMoneyInput(moneyInput);
       this.#lottoMachine.buyLotto(+moneyInput);
       ui.showRestUI(this.#lottoMachine.lottos);
@@ -37,7 +48,7 @@ class WebLottoController {
   }
 
   calculateStatistics() {
-    const numberInputs = [...domList.targetNumberInputs];
+    const numberInputs = [...ui.domList.targetNumberInputs];
     const winningNumberInput = [...numberInputs].map(input => input.value);
     winningNumberInput.pop();
     const bonusNumberInput = numberInputs[numberInputs.length - 1].value;
