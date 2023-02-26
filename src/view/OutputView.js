@@ -19,11 +19,11 @@ const OutputView = {
   },
 
   printLottoResults(lottoRanking) {
-    for (const score in lottoRanking) {
+    Object.keys(lottoRanking).forEach((score) => {
       Console.print(
         `${score} (${LOTTO_SCORE.BENEFIT_TEXT[score]}원) - ${lottoRanking[score]}개`
       );
-    }
+    });
   },
 
   printTotalBenefit(lottos) {
