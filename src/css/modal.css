@@ -13,18 +13,14 @@
 
 .dimmed {
   background-color: rgba(0, 0, 0, 0.5);
-
   height: 100%;
 }
 
 .modal-content {
   width: 350px;
   height: 500px;
-
   padding: 16px 16px 32px;
-
   background-color: var(--grayScale100);
-
   text-align: center;
 }
 
@@ -35,22 +31,16 @@
 .modal-close-button {
   width: 30px;
   height: 30px;
-
   margin-left: auto;
   margin-bottom: 10px;
-
   border: 0;
-
   background-color: var(--grayScale100);
 }
 
 .stat {
   width: 320px;
   height: 250px;
-
-  margin-top: 32px;
-  margin-bottom: 32px;
-
+  margin: 32px 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-left: 0;
   border-right: 0;
@@ -63,12 +53,9 @@
 .restart-button {
   width: 100%;
   height: 36px;
-
   margin-top: 32px;
-
   background-color: var(--colorPrimary);
   color: var(--grayScale100);
-
   border: 0;
   border-radius: 4px;
 }
