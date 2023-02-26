@@ -29,12 +29,15 @@ const INPUT_MONEY_VIEW = `
 </div>
 `;
 
+const LOTTO_RESULT_VIEW = (lotto) => `<li class="lotto-list">🎟️ ${lotto.getLottoNumber().join(', ')}</li>`;
+
 class Section {
   #lottoGame;
   #Modal;
 
   constructor(lottoGame) {
     this.#lottoGame = lottoGame;
+    this.#Modal = new ResultModal();
     this.purchaseLotto = this.purchaseLotto.bind(this);
     this.gameResult = this.gameResult.bind(this);
   }
@@ -43,53 +46,55 @@ class Section {
     this.element = element;
 
     element.innerHTML = INPUT_MONEY_VIEW;
-    const purchaseButton = document.querySelector('.purchase-button');
-    purchaseButton.addEventListener('click', this.purchaseLotto);
+    const purchaseForm = document.querySelector('.divide-two-element');
+    purchaseForm.addEventListener('submit', this.purchaseLotto);
   }
 
   purchaseLotto(e) {
     try {
       e.preventDefault();
-      const inputMoney = Number(document.querySelector('.input-money').value);
+      // input value 가져오기
+      const inputMoney = Number(e.target.children[0].value);
+      const purchaseButton = document.querySelector('.purchase-button');
+
+      // validation
       this.checkZeroInput(inputMoney);
+
+      // model 업데이트
       this.#lottoGame.purchaseLottos(inputMoney);
 
-      const purchaseButton = document.querySelector('.purchase-button');
+      // view 업데이트
       purchaseButton.disabled = true;
       this.renderInputLottos();
-
-      const resultList = this.getLottoResult();
-      const purchaseLottoAmount = document.querySelector('.purchased-lotto-amount');
-      purchaseLottoAmount.innerText = `총 ${resultList.length}개를 구매했습니다.`;
-      document.querySelector('.buy-lotto-list').innerHTML = resultList.join(' ');
-      const getResultButton = document.querySelector('.get-result');
-      getResultButton.addEventListener('click', this.gameResult);
+      this.renderPurchasedLottos();
     } catch (error) {
       alert(error.message);
     }
   }
 
   getLottoResult() {
-    return this.#lottoGame.getLottos().map((lotto) => {
-      return `<li class="lotto-list">🎟️ ${lotto.getLottoNumber().join(', ')}</li>`;
-    });
+    return this.#lottoGame.getLottos().map((lotto) => LOTTO_RESULT_VIEW(lotto));
+  }
+
+  renderPurchasedLottos() {
+    const resultList = this.getLottoResult();
+    const purchaseLottoAmount = document.querySelector('.purchased-lotto-amount');
+    purchaseLottoAmount.innerText = `총 ${resultList.length}개를 구매했습니다.`;
+    document.querySelector('.buy-lotto-list').innerHTML = resultList.join(' ');
   }
 
   renderInputLottos() {
-    !document.querySelector('.game-result')
-      ? (() => {
-          const newResult = document.createElement('div');
-          newResult.className = 'game-result';
-          newResult.innerHTML = SECTION_PURCHASED_VIEW;
-          document.querySelector('.section-split-main').appendChild(newResult);
-        })()
-      : (() => {
-          const newResult = document.createElement('div');
-          newResult.className = 'game-result';
-          newResult.innerHTML = SECTION_PURCHASED_VIEW;
+    const newResult = document.createElement('div');
+    newResult.className = 'game-result';
+    newResult.innerHTML = SECTION_PURCHASED_VIEW;
+    if (!document.querySelector('.game-result')) {
+      document.querySelector('.section-split-main').appendChild(newResult);
+    } else {
+      document.querySelector('.game-result').replaceWith(newResult);
+    }
 
-          document.querySelector('.game-result').replaceWith(newResult);
-        })();
+    const getResultForm = document.querySelector('.get-all-lotto-numbers');
+    getResultForm.addEventListener('submit', this.gameResult);
   }
 
   gameResult(e) {
@@ -100,11 +105,10 @@ class Section {
       const bonusNumbers = Number(document.querySelector('.my-bonus-number').value);
       this.#lottoGame.generateWinningLotto(winningLottoNumber, bonusNumbers);
 
-      this.#Modal
+      this.#Modal.isRendered()
         ? (document.querySelector('.modal-none').className = 'modal-view')
         : (() => {
-            this.#Modal = new ResultModal(this.#lottoGame.getWinningRankResult(), this.#lottoGame.getProfitRateOfPrize());
-            this.#Modal.render(app);
+            this.#Modal.render(this.#lottoGame.getWinningRankResult(), this.#lottoGame.getProfitRateOfPrize());
           })();
       document.querySelector('.my-bonus-number').blur();
     } catch (error) {
@@ -114,13 +118,6 @@ class Section {
 
   checkZeroInput(data) {
     if (data === 0) throw new Error('입력값을 입력해주세요.');
-  }
-
-  gameRestart() {
-    document.querySelector('.input-money').value = '';
-    const winningLottoNumberElement = document.querySelector('.my-lotto-numbers').children;
-    [...winningLottoNumberElement].forEach((v) => (v.value = ''));
-    document.querySelector('.my-bonus-number').value = '';
   }
 }
 
