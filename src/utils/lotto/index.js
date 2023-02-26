@@ -71,8 +71,9 @@ const lottoUtils = {
         rankInformation.isBonus === isBonus &&
         rankInformation.matchedCount === matchedCount
     );
-    if (rankIndex === CALCULATION_NUMBER.failFindIndex)
+    if (rankIndex === CALCULATION_NUMBER.failFindIndex) {
       return CALCULATION_NUMBER.losing;
+    }
 
     return rankIndex;
   },

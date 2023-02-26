@@ -30,10 +30,13 @@ class LottoMachine {
       const userMoney = await Console.readLine('> 구입금액을 입력해 주세요.');
       const money = new Money(userMoney);
       outputView.printLottoCount(money.getAmount() / LOTTO_NUMBER.moneyUnit);
+
       return money;
     } catch (error) {
       Console.print(error.message);
-      return await this.readMoney();
+      const money = await this.readMoney();
+
+      return money;
     }
   }
 
@@ -47,10 +50,13 @@ class LottoMachine {
         .map((winningNumber) => Number(winningNumber));
       const winning = new Winning();
       winning.setWinningNumbers(winningNumbers);
+
       return winningNumbers;
     } catch (error) {
       Console.print(error.message);
-      return await this.readWinningNumbers();
+      const winningNumbers = await this.readWinningNumbers();
+
+      return winningNumbers;
     }
   }
 
@@ -61,10 +67,13 @@ class LottoMachine {
       );
       const bonusNumber = Number(userBonusNumber);
       winning.setBonusNumber(bonusNumber);
+
       return bonusNumber;
     } catch (error) {
       Console.print(error.message);
-      return await this.readBonusNumber(winning);
+      const bonusNumber = await this.readBonusNumber(winning);
+
+      return bonusNumber;
     }
   }
 
@@ -76,7 +85,7 @@ class LottoMachine {
       this.#checkRetryOption(userCommand);
     } catch (error) {
       Console.print(error.message);
-      return await this.readRetryOption();
+      await this.readRetryOption();
     }
   }
 
