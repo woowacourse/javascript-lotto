@@ -1,0 +1,9 @@
+const LOTTO = Object.freeze({
+  PRICE: 1000,
+  NUMBERS_LENGTH: 6,
+  MIN_RANGE: 1,
+  MAX_RANGE: 45,
+  PRIZE_MONEY: [0, 2000000000, 30000000, 1500000, 50000, 5000],
+});
+
+export default LOTTO;
