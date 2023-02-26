@@ -6,7 +6,7 @@ import {
   paintPurchaseAmountInput,
   getPurchaseAmount,
 } from '../view/purchaseAmountInput';
-import showErrorMessage from './errorMessage';
+import showErrorMessage from '../view/errorMessage';
 import paintLottoResultBoard from '../view/lottoResult';
 import paintModal, {
   addCloseModalBackgroundEventListener,
