@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Documentㄴ</title>
   </head>
 
   <body>
@@ -65,11 +64,11 @@
             </form>
           </section>
 
-          <div id="modal-container" class="hidden">
+          <dialog id="modal-container" class="hidden">
             <section id="modal-section" class="hidden">
               <span id="close-icon">✖️</span>
               <h2 id="modal-title">🏆 당첨 통계 🏆</h2>
-              <div class="modal-close"></div>
+              <!-- <div class="modal-close"></div> -->
               <table>
                 <thead>
                   <tr>
@@ -81,11 +80,11 @@
                 <tbody></tbody>
               </table>
               <p class="lotto-yield-text">
-                당신의 총 수익률은<span id="lotto-yield"></span> %입니다.
+                당신의 총 수익률은 <span id="lotto-yield"></span>%입니다.
               </p>
               <button id="retry-button">다시 시작하기</button>
             </section>
-          </div>
+          </dialog>
         </div>
       </main>
 

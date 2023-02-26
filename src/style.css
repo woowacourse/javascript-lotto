@@ -14,7 +14,6 @@ body {
   line-height: 24px;
   letter-spacing: 0.5px;
   background-color: rgba(0, 0, 0, 0.87);
-  background: #fcfcfd;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -194,6 +193,10 @@ label {
   margin-top: 12px;
 }
 
+dialog {
+  padding: 0;
+}
+
 #modal-container {
   position: fixed;
   z-index: 1;
@@ -203,14 +206,11 @@ label {
   height: 100%;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #modal-section {
+  position: relative;
   box-sizing: border-box;
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,6 +218,8 @@ label {
   background-color: white;
   width: 350px;
   height: auto;
+  margin: auto;
+  margin-top: 10%;
   border-radius: 4px;
 }
 
@@ -246,6 +248,10 @@ td {
 
 #retry-button {
   width: 100%;
+}
+
+dialog::-webkit-scrollbar {
+  display: none;
 }
 
 footer {
