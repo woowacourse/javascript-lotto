@@ -1,17 +1,25 @@
 import RANK from '../constants/rank.js';
+import ERROR from '../constants/error.js';
+import lottoGameValidatorStep2 from '../domains/lottoGameValidatorStep2.js';
 
 const lottoView = {
   bindBuyButtonEventHandler(onClickBuyButton) {
     const buyButton = document.querySelector('#buy-button');
-    const buyMoneyInput = document.querySelector('#buy-money');
 
     buyButton.addEventListener('click', event => {
       event.preventDefault();
 
+      const buyMoneyInput = document.querySelector('#buy-money');
       const buyMoney = Number(buyMoneyInput.value);
 
-      onClickBuyButton(buyMoney);
-      buyMoneyInput.value = null;
+      try {
+        lottoGameValidatorStep2.throwErrorIfInvalidBuyMoney(buyMoney);
+        onClickBuyButton(buyMoney);
+        buyMoneyInput.value = null;
+      } catch (error) {
+        alert(error.message);
+        buyMoneyInput.focus();
+      }
     });
   },
 
@@ -26,7 +34,16 @@ const lottoView = {
       const bonusNumber = Number(bonusNumberInput.value);
       const luckyNumbers = [...luckyNumbersInput].map(number => Number(number.value));
 
-      onClickShowResultButton(bonusNumber, luckyNumbers);
+      try {
+        lottoGameValidatorStep2.throwErrorIfInvalidLuckyNumbers(luckyNumbers);
+        lottoGameValidatorStep2.throwErrorIfInvalidBonusNumber(bonusNumber, luckyNumbers);
+        onClickShowResultButton(bonusNumber, luckyNumbers);
+      } catch (error) {
+        alert(error.message);
+        error.message === ERROR.BONUS_NUMBER
+          ? bonusNumberInput.focus()
+          : luckyNumbersInput[0].focus();
+      }
     });
   },
 
