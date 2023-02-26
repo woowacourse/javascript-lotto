@@ -1,3 +1,5 @@
+import { INVALID_FORMAT, INVALID_ERROR_CODE, DUPLICATED_NUMBER } from '../constants/errorMessages';
+
 export const ERROR_CODE = Object.freeze({
   INVALID_AMOUNT_UNIT: 'INVALID_AMOUNT_UNIT',
   INVALID_NUMBER_RANGE: 'INVALID_NUMBER_RANGE',
@@ -9,15 +11,19 @@ export const ERROR_CODE = Object.freeze({
 const ERROR_MESSAGE = Object.freeze({
   INVALID_AMOUNT_UNIT: ({ unit }) => `[ERROR] ${unit}원 단위의 금액만 입력해 주세요.`,
   INVALID_NUMBER_RANGE: ({ min, max }) => `[ERROR] ${min}이상 ${max}이하의 숫자를 입력해 주세요.`,
-  INVALID_FORMAT: () => `[ERROR] 잘못된 입력 형식입니다.`,
-  INVALID_ERROR_CODE: () => '[ERROR] 잘못된 에러코드 입니다.',
-  DUPLICATED_NUMBER: () => '[ERROR] 중복된 당첨 번호 입니다.',
+  INVALID_FORMAT,
+  INVALID_ERROR_CODE,
+  DUPLICATED_NUMBER,
 });
 
 const isValidErrorCode = (code) => code in ERROR_CODE;
+const getValueByMessageType = (target, payload) =>
+  typeof target === 'function' ? target(payload) : target;
 
 const errorMessageGenerator = (code, payload) =>
-  isValidErrorCode(code) ? ERROR_MESSAGE[code](payload) : ERROR_MESSAGE.INVALID_ERROR_CODE();
+  isValidErrorCode(code)
+    ? getValueByMessageType(ERROR_MESSAGE[code], payload)
+    : ERROR_MESSAGE.INVALID_ERROR_CODE();
 
 const errorOptionsGenerator = (code, value) =>
   isValidErrorCode(code)
