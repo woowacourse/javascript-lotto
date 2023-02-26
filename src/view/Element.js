@@ -55,11 +55,11 @@ const Element = {
 
     this.createInnerText(
       contentsClone.querySelector(".result__matching-count"),
-      LOTTO_SCORE.uiBoard[matchingCount]
+      LOTTO_SCORE.UI_TEXT[matchingCount]
     );
     this.createInnerText(
       contentsClone.querySelector(".result__price"),
-      LOTTO_SCORE.moneyBoard[matchingCount]
+      LOTTO_SCORE.BENEFIT_TEXT[matchingCount]
     );
     this.createInnerText(
       contentsClone.querySelector(".result__matching-lotto-count"),

@@ -1,5 +1,5 @@
 const LOTTO_SCORE = {
-  moneyBoard: {
+  BENEFIT_TEXT: {
     "3개 일치": "5,000",
     "4개 일치": "50,000",
     "5개 일치": "1,500,000",
@@ -7,7 +7,7 @@ const LOTTO_SCORE = {
     "6개 일치": "2,000,000,000",
   },
 
-  rankingBoard: {
+  RANKING: {
     "3개 일치": 0,
     "4개 일치": 0,
     "5개 일치": 0,
@@ -15,7 +15,7 @@ const LOTTO_SCORE = {
     "6개 일치": 0,
   },
 
-  benefitBoard: {
+  BENEFIT: {
     "3개 일치": 5000,
     "4개 일치": 50000,
     "5개 일치": 1500000,
@@ -23,7 +23,7 @@ const LOTTO_SCORE = {
     "6개 일치": 2000000000,
   },
 
-  uiBoard: {
+  UI_TEXT: {
     "3개 일치": "3개",
     "4개 일치": "4개",
     "5개 일치": "5개",

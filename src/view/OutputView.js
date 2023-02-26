@@ -21,7 +21,7 @@ const OutputView = {
   printLottoResults(lottoRanking) {
     for (const score in lottoRanking) {
       Console.print(
-        `${score} (${LOTTO_SCORE.moneyBoard[score]}원) - ${lottoRanking[score]}개`
+        `${score} (${LOTTO_SCORE.BENEFIT_TEXT[score]}원) - ${lottoRanking[score]}개`
       );
     }
   },
