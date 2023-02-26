@@ -46,7 +46,7 @@ class ControllerLottoWeb {
   };
 
   handleResultButtonClick = () => {
-    const winningNumber = this.getWinningNumber();
+    const winningNumber = view.readWinningNumber();
     const bonusNumber = view.readBonusNumber();
 
     if (winningAndBonusNumberValidate(winningNumber, bonusNumber)) {
@@ -55,17 +55,6 @@ class ControllerLottoWeb {
     }
 
     this.displayResult(winningNumber, bonusNumber);
-  };
-
-  getWinningNumber = () => {
-    const winningNumber = [];
-    const winningNumbersTag = view.readWinningNumbersTag();
-
-    winningNumbersTag.forEach((number, index) => {
-      winningNumber[index] = number.value;
-    });
-
-    return winningNumber;
   };
 
   displayResult(winningNumber, bonusNumber) {

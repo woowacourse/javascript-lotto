@@ -3,8 +3,15 @@ const view = {
     return document.getElementById('money').value;
   },
 
-  readWinningNumbersTag() {
-    return document.querySelectorAll('.winning');
+  readWinningNumber() {
+    const winningNumber = [];
+    const winningNumbersTag = document.querySelectorAll('.winning');
+
+    winningNumbersTag.forEach((number, index) => {
+      winningNumber[index] = number.value;
+    });
+
+    return winningNumber;
   },
 
   readBonusNumber() {
