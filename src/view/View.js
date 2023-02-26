@@ -7,6 +7,7 @@ export default class View {
       e.preventDefault();
 
       const purchaseAmountInput = $('.purchase-amount-input').value;
+
       callback(purchaseAmountInput);
     });
   }
@@ -56,6 +57,26 @@ export default class View {
       this.enableElements($('.winning-lotto-submit-button'));
       this.hideElements('.result-modal');
     });
+  }
+
+  showPurchasedLottoResult(lottoQuantity, eachLottoNumbers) {
+    this.printLottoQuantity(lottoQuantity);
+    this.printEachLottoNumbers(eachLottoNumbers);
+
+    this.disableElements($('.purchase-amount-input'), $('.purchase-amount-submit-button'));
+    this.showElements('.winning-lotto-form');
+  }
+
+  showComparedLottoResult(statistics, yieldRatio) {
+    this.printStatistics(statistics);
+    this.printYieldRatio(yieldRatio);
+
+    this.disableElements(
+      ...$$('.winning-number-input'),
+      $('.bonus-number-input'),
+      $('.winning-lotto-submit-button')
+    );
+    this.showElements('.result-modal');
   }
 
   printLottoQuantity(quantity) {

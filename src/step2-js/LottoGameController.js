@@ -2,7 +2,6 @@ import LottoGame from '../domain/LottoGame.js';
 import View from '../view/view.js';
 import Validation from '../domain/Validation.js';
 import { LOTTO_CONDITION } from '../constants/condition.js';
-import { $, $$ } from '../utils/dom.js';
 
 export default class LottoGameController {
   #lottoGame;
@@ -39,11 +38,7 @@ export default class LottoGameController {
       return lottoNumbers;
     });
 
-    this.#view.printLottoQuantity(lottoQuantity);
-    this.#view.printEachLottoNumbers(eachLottoNumbers);
-
-    this.#view.disableElements($('.purchase-amount-input'), $('.purchase-amount-submit-button'));
-    this.#view.showElements('.winning-lotto-form');
+    this.#view.showPurchasedLottoResult(lottoQuantity, eachLottoNumbers);
   }
 
   #compareLotto({ winningNumbersInput, bonusNumberInput }) {
@@ -64,15 +59,7 @@ export default class LottoGameController {
     const totalPrizeMoney = this.#lottoGame.getTotalPrizeMoney(statistics);
     const yieldRatio = this.#lottoGame.getYieldRatio(totalPrizeMoney);
 
-    this.#view.printStatistics(statistics);
-    this.#view.printYieldRatio(yieldRatio);
-
-    this.#view.disableElements(
-      ...$$('.winning-number-input'),
-      $('.bonus-number-input'),
-      $('.winning-lotto-submit-button')
-    );
-    this.#view.showElements('.result-modal');
+    this.#view.showComparedLottoResult(statistics, yieldRatio);
   }
 
   #initLottos() {
