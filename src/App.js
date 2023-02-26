@@ -3,12 +3,12 @@ import LottoMachine from './domain/LottoMachine';
 import WinningNumbers from './domain/WinningNumbers';
 import BonusNumber from './domain/BonusNumber';
 import CorrectLotto from './domain/CorrectLotto';
+import LottoStatistics from './domain/LottoStatistics';
 
 // component
 import LottoMoneyInput from './components/LottoMoneyInput';
 import LottoPurchaseList from './components/LottoPurchaseList';
 import LottoCorrectInput from './components/LottoCorrectInput';
-import LottoStatistics from './domain/LottoStatistics';
 import LottoStatisticsModal from './components/LottoStatisticsModal';
 
 import '../css/reset.css';
@@ -33,12 +33,12 @@ function App($target) {
   };
 
   this.template = () => `
-    <header class="flex flex--v-Center lotto-header">
+    <header class="flex flex--v-Center lotto-header w-100">
         <h1 class="lotto-subtitle mgLeft_10_rem">🎱 행운의 로또</h1>
     </header>
     <section class="flex flex--center w-100 mgBottom_5_rem">
       <div class="lotto-card mgTop_5_rem pd_1_rem">
-        <h2 class="flex flex--h-center lotto-card__title lotto-subtitle mgTop_3_rem">
+        <h2 class="flex flex--h-center lotto-card__title lotto-subtitle mgTop_3_rem w-100">
             🎱 내 번호 당첨 확인 🎱
         </h2>
         <div class="lotto-money"></div>
@@ -47,7 +47,7 @@ function App($target) {
         <div class="lotto-statistics-modal"></div>
       </div>
     </section>
-    <footer class="flex flex--center lotto-caption">
+    <footer class="flex flex--center lotto-caption w-100">
       <p>Copyright 2023. woowacourse</p>
     </footer>
   `;
