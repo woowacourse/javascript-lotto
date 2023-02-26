@@ -33,13 +33,16 @@ const lottoView = {
   bindModalCloseButtonEventHandler(onClickModalCloseButton) {
     const modalCloseButton = document.querySelector('#modal-close-button');
 
-    modalCloseButton.addEventListener('click', onClickModalCloseButton);
+    modalCloseButton.addEventListener('click', () => {
+      this.hideModal();
+      onClickModalCloseButton();
+    });
   },
 
-  bindRestartButtonEventHandler(onClickRestartButton) {
+  bindRestartButtonEventHandler() {
     const restartButton = document.querySelector('#restart-button');
 
-    restartButton.addEventListener('click', onClickRestartButton);
+    restartButton.addEventListener('click', this.resetScreen.bind(this));
   },
 
   printPurchasedLottos(lottoNumbersList) {

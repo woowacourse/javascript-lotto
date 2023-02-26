@@ -14,7 +14,7 @@ class LottoGameControllerStep2 {
     lottoView.bindBuyButtonEventHandler(this.onClickBuyButton);
     lottoView.bindShowResultButtonEventHandler(this.onClickShowResultButton);
     lottoView.bindModalCloseButtonEventHandler(this.onClickModalCloseButton);
-    lottoView.bindRestartButtonEventHandler(this.onClickRestartButton);
+    lottoView.bindRestartButtonEventHandler();
   }
 
   onClickBuyButton = buyMoney => {
@@ -64,13 +64,8 @@ class LottoGameControllerStep2 {
   }
 
   onClickModalCloseButton = () => {
-    lottoView.hideModal();
     this.lottoGame.resetWinningNumbers();
     this.lottoGame.resetAmountOfRanks();
-  };
-
-  onClickRestartButton = () => {
-    lottoView.resetScreen();
   };
 }
 
