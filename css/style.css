@@ -5,9 +5,6 @@ html {
   font-size: 62.5%;
 }
 
-body {
-}
-
 header {
   display: flex;
   flex-direction: column;
@@ -141,6 +138,10 @@ button {
   justify-content: center;
 
   margin-top: 1.2rem;
+  padding-top: 1.2rem;
+
+  max-height: 15rem;
+  overflow: scroll;
 }
 
 .lotto__each-lotto {
@@ -237,7 +238,7 @@ button {
 }
 
 .result-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -340,4 +341,8 @@ button {
   font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);
   line-height: var(--button-line-height);
+}
+
+.no-scroll {
+  overflow: hidden;
 }
