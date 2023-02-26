@@ -1,10 +1,9 @@
 :root {
     /*color*/
     --lotto-primary: #4E5BA6;
-    --lotto-greyScale-1: #FFFFFF;
-    --lotto-greyScale-2: #FCFCFD;
-    --lotto-greyScale-3: #B4B4B4;
-    --lotto-greyScale-4: #8B8B8B;
-    --lotto-greyScale-5: #000000;
-
+    --lotto-grey-scale-1: #FFFFFF;
+    --lotto-grey-scale-2: #FCFCFD;
+    --lotto-grey-scale-3: #B4B4B4;
+    --lotto-grey-scale-4: #8B8B8B;
+    --lotto-grey-scale-5: #000000;
 }

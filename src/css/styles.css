@@ -14,7 +14,7 @@ html {
     font-weight: 700;
     font-size: 1.7rem;
     line-height: 2.4rem;
-    color: var(--lotto-greyScale-1);
+    color: var(--lotto-grey-scale-1);
 }
 
 main {
@@ -33,7 +33,7 @@ main {
     padding: 0 1.06rem;
     border: 1px solid rgba(0, 0, 0, .12);
     border-radius: 4px;
-    background: var(--lotto-greyScale-1);
+    background: var(--lotto-grey-scale-1);
 }
 
 .box-title {
@@ -51,7 +51,7 @@ main {
 .money-input {
     width: 19rem;
     height: 2.1rem;
-    border: 0.06rem solid var(--lotto-greyScale-3) ;
+    border: 0.06rem solid var(--lotto-grey-scale-3) ;
     border-radius: 0.2rem;
 }
 
@@ -62,7 +62,7 @@ main {
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.06rem;
-    color: var(--lotto-greyScale-1);
+    color: var(--lotto-grey-scale-1);
     border: var(--lotto-primary);
     border-radius: 0.2rem;
     background: var(--lotto-primary);
@@ -117,7 +117,7 @@ main {
     width: 24.4rem;
     height: 2.2rem;
     margin-top: 1.1rem;
-    color: var(--lotto-greyScale-1);
+    color: var(--lotto-grey-scale-1);
     background: var(--lotto-primary);
     border: inherit;
     border-radius: 0.26rem;
@@ -135,7 +135,7 @@ main {
 }
 .modal-content {
     position: relative;
-    background-color: var(--lotto-greyScale-1);
+    background-color: var(--lotto-grey-scale-1);
     margin: 9% auto;
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, .12);
@@ -200,7 +200,7 @@ td {
     width: 21.2rem;
     height: 2.4rem;
     margin-top: .3rem;
-    color: var(--lotto-greyScale-1);
+    color: var(--lotto-grey-scale-1);
     background: var(--lotto-primary);
     border: var(--lotto-primary);
 }
