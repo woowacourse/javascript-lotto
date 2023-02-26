@@ -53,6 +53,12 @@ const ui = {
     domList.resultModal.style.display = 'none';
   },
 
+  resetAllInputValues() {
+    [...domList.allInputs].forEach(input => {
+      input.value = null;
+    });
+  },
+
   showFinalResult({ ranks, rateOfProfit }) {
     const reversedRanks = ranks.reverse();
 

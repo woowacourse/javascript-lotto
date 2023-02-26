@@ -3,7 +3,6 @@ import inputValidator from '@lotto/validator/InputValidator';
 import preventFormFromSubmitting from '@lotto/utils/preventFormFromSubmitting';
 import ui from '@lotto/view/stepTwo/ui';
 import domList from '@lotto/view/stepTwo/domList';
-import resetAllInputValues from '@lotto/utils/resetAllInputValues';
 
 class WebLottoController {
   #lottoMachine;
@@ -55,7 +54,7 @@ class WebLottoController {
 
   restartGame() {
     ui.hideRestUI();
-    resetAllInputValues();
+    ui.resetAllInputValues();
     ui.closeModal();
   }
 
