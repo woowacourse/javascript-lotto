@@ -9,8 +9,8 @@ class WebLottoGameController {
   play() {
     $('#user-budget-form').addEventListener('submit', (e) => this.handleUserBudgetSubmit(e));
     $('#winning-numbers-form').addEventListener('submit', (e) => this.handleWinningNumberSubmit(e));
-    $('#modal-close-button').addEventListener('click', (e) => this.handleModalClose(e));
     $('#restart-button').addEventListener('click', (e) => this.handleRestart(e));
+    WebView.addEventListenerModalClose();
   }
 
   handleUserBudgetSubmit(e) {
@@ -85,10 +85,6 @@ class WebLottoGameController {
 
     WebView.printLottoRanksResult(lottoRanksResult);
     WebView.printProfitRate(profitRate);
-  }
-
-  handleModalClose() {
-    WebView.hide('#modal');
   }
 
   handleRestart() {

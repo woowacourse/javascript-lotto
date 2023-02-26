@@ -9,6 +9,17 @@ const purchasedLottoTemplate = (lotto) => {
 };
 
 const WebView = {
+  addEventListenerModalClose() {
+    $('#modal-close-button').addEventListener('click', () => WebView.hide('#modal'));
+    $('.modal-overlay').addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-overlay')) WebView.hide('.modal-overlay');
+    });
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'Escape' && !$('.modal-overlay').classList.contains('hidden'))
+        WebView.hide('.modal-overlay');
+    });
+  },
+
   printLottoTicketCount(ticketCount) {
     $('#purchased-lotto-count').innerHTML = ticketCount;
   },
