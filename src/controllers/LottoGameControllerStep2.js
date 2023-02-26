@@ -6,6 +6,7 @@ class LottoGameControllerStep2 {
 
   constructor() {
     this.bindLottoButtonEventHandlers();
+    lottoView.bindModalCloseEventHandler(this.onClickModalCloseButton);
   }
 
   startGame() {

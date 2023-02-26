@@ -65,6 +65,25 @@ const lottoView = {
     });
   },
 
+  bindModalCloseEventHandler(onClickModalCloseButton) {
+    const modal = document.querySelector('#lotto-modal');
+    const modalBackground = document.querySelector('.modal-background');
+
+    window.addEventListener('keyup', event => {
+      if (modal.style.display === 'block' && event.key === 'Escape') {
+        this.hideModal();
+        onClickModalCloseButton();
+      }
+    });
+
+    modalBackground.addEventListener('click', event => {
+      if (event.target === modalBackground) {
+        this.hideModal();
+        onClickModalCloseButton();
+      }
+    });
+  },
+
   printPurchasedLottos(lottoNumbersList) {
     const lottoListContainer = document.querySelector('#lotto-list-container');
     const lottoDetail = document.querySelector('.lotto-detail');
