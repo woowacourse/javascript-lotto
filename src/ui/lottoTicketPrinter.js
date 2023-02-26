@@ -1,10 +1,7 @@
-const lottoTicketList = document.querySelector(".lotto-tickets");
+const lottoTicketList = document.querySelector("#lotto-tickets");
 
 export const lottoTicket = (number) => {
-  return `<ul class="lotto-ticket">
-<li class="ticket-emoji">🎟️</li>
-<li class="ticket-numbers">${number}</li>
-</ul>`;
+  return `<li class="ticket-numbers"><span class="ticket-emoji">🎟️</span>${number}</li>`;
 };
 
 export const printLottoTicket = (lottoTickets) => {
