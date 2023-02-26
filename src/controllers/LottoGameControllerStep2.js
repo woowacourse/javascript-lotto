@@ -4,19 +4,23 @@ import LottoGame from '../domains/LottoGame.js';
 class LottoGameControllerStep2 {
   lottoGame;
 
-  startGame() {
+  constructor() {
     this.bindLottoButtonEventHandlers();
+  }
+
+  startGame() {
+    this.lottoGame = new LottoGame();
   }
 
   bindLottoButtonEventHandlers() {
     lottoView.bindBuyButtonEventHandler(this.onClickBuyButton);
     lottoView.bindShowResultButtonEventHandler(this.onClickShowResultButton);
     lottoView.bindModalCloseButtonEventHandler(this.onClickModalCloseButton);
-    lottoView.bindRestartButtonEventHandler();
+    lottoView.bindRestartButtonEventHandler(this.onClickRestartButton);
   }
 
   onClickBuyButton = buyMoney => {
-    this.lottoGame = new LottoGame(buyMoney);
+    this.lottoGame.buyLottos(buyMoney);
 
     const lottoNumbersList = this.lottoGame.getLottoNumbersList();
 
@@ -35,6 +39,10 @@ class LottoGameControllerStep2 {
   onClickModalCloseButton = () => {
     this.lottoGame.resetWinningNumbers();
     this.lottoGame.resetAmountOfRanks();
+  };
+
+  onClickRestartButton = () => {
+    this.startGame();
   };
 }
 

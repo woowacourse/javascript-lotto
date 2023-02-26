@@ -56,10 +56,13 @@ const lottoView = {
     });
   },
 
-  bindRestartButtonEventHandler() {
+  bindRestartButtonEventHandler(onClickRestartButton) {
     const restartButton = document.querySelector('#restart-button');
 
-    restartButton.addEventListener('click', this.resetScreen.bind(this));
+    restartButton.addEventListener('click', () => {
+      this.resetScreen();
+      onClickRestartButton();
+    });
   },
 
   printPurchasedLottos(lottoNumbersList) {

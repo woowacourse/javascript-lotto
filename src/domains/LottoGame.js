@@ -13,6 +13,10 @@ class LottoGame {
     this.#lottos = lottoMachine.generateLottos(buyMoney);
   }
 
+  buyLottos(buyMoney) {
+    this.#lottos = lottoMachine.generateLottos(buyMoney);
+  }
+
   getLottoNumbersList() {
     return this.#lottos.map(lotto => lotto.getNumbers());
   }
