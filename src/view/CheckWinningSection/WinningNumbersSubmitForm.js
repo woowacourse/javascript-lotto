@@ -95,13 +95,13 @@ class WinningNumbersSubmitForm {
       (input) => input.tabIndex === currentInput.tabIndex + 1
     );
 
-    if (this.canFocusNextInput({ number, inputValueLength, nextInput })) {
+    if (this.canFocusNextInput(inputValueLength, nextInput)) {
       nextInput.focus();
     }
   }
 
-  canFocusNextInput({ number, inputValueLength, nextInput }) {
-    return nextInput && number <= MAX_LOTTO_NUMBER && inputValueLength === 2;
+  canFocusNextInput(inputValueLength, nextInput) {
+    return inputValueLength === 2 && nextInput;
   }
 
   handleSubmit(e) {
