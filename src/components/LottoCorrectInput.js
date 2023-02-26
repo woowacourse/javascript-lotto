@@ -20,7 +20,7 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
         <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
         <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
         <input type="number" class="lotto-card__lotto--input winningNumbers space-x-1" id="winningNumbers" value="" />
-        <input type="number" class="lotto-card__lotto--input bonusNumber" id="bonusNumber" value="" />
+        <input type="number" class="lotto-card__lotto--input bonusNumber ml-auto" id="bonusNumber" value="" />
       </div>
 
       <button class="button w-100 mgTop_1_rem">결과 확인하기</button>

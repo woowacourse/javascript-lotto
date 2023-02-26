@@ -39,6 +39,10 @@
   margin: 1rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 /* padding 너비 설정 */
 .pdTop_1_rem {
   padding-top: 1rem;
@@ -60,7 +64,7 @@
   padding: 1rem;
 }
 
-/* 간격 */
+/* 형제 결합 연산자 */
 .space-x-1 {
   margin-left: 4px;
 }
