@@ -39,12 +39,15 @@ const setLottos = () => {
   resetLottoList();
 
   const inputAmount = inputAmountElement.value;
-  afterPurchaseShowElement.style.display = 'block';
-  controller.setLottos(inputAmount);
-  purchaseLottoCount.innerText = inputAmount / MINIMUM_LOTTO_UNIT;
+  const isLottoNotThrow = controller.setLottos(inputAmount);
 
-  const lottoList = controller.printLottoInfo();
-  renderLottoList(lottoList);
+  if (isLottoNotThrow) {
+    afterPurchaseShowElement.style.display = 'block';
+    purchaseLottoCount.innerText = inputAmount / MINIMUM_LOTTO_UNIT;
+
+    const lottoList = controller.printLottoInfo();
+    renderLottoList(lottoList);
+  }
 };
 
 const resetLottoList = () => {
@@ -70,12 +73,14 @@ checkResultButton.addEventListener('click', () => result());
 const result = () => {
   const winNumber = winNumberElement.map((element) => element.value);
   const bonusNumber = bonusNumberElement.value;
-  controller.setWinNumber(winNumber, bonusNumber);
+  const isWinningNotThrow = controller.setWinNumber(winNumber, bonusNumber);
 
-  modal.style.display = 'block';
+  if (isWinningNotThrow) {
+    modal.style.display = 'block';
 
-  matchWinRank();
-  earnRateElement.innerText = controller.printEarningRate();
+    matchWinRank();
+    earnRateElement.innerText = controller.printEarningRate();
+  }
 };
 
 const matchWinRank = () => {

@@ -18,9 +18,10 @@ class LottoWebController {
     const hasError = this.errorChecker(() =>
       validatePurchaseAmount(purchaseAmount)
     );
-    if (hasError) return;
+    if (hasError) return false;
 
     this.#game.initializeLottos(purchaseAmount);
+    return true;
   }
 
   printLottoInfo() {
@@ -33,11 +34,14 @@ class LottoWebController {
     const hasError = this.errorChecker(() =>
       validateWinningNumbers(winningNumber)
     );
-    if (hasError) return;
+    if (hasError) return false;
 
     this.#game.initializeWin(winningNumber);
 
-    this.setBonusNumber(winNumber, bonusNumber);
+    const isBonusNumberThrow = this.setBonusNumber(winningNumber, bonusNumber);
+    if (!isBonusNumberThrow) return false;
+
+    return true;
   }
 
   setBonusNumber(winNumber, inputBonusNumber) {
@@ -46,9 +50,10 @@ class LottoWebController {
     const hasError = this.errorChecker(() =>
       validateBonusNumber(bonusNumber, winNumber)
     );
-    if (hasError) return;
+    if (hasError) return false;
 
     this.#game.setBonusNumber(bonusNumber);
+    return true;
   }
 
   printWinningResult() {
