@@ -7,3 +7,21 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.winning-number {
+  width: 30px;
+  height: 36px;
+  border: solid gainsboro 1.5px;
+  border-radius: 3px;
+}
+
+.bonus-number {
+  width: 30px;
+  height: 36px;
+  border: solid gainsboro 1.5px;
+  border-radius: 3px;
+}
+
+.lotto-ticket-container {
+  list-style: none;
+}
