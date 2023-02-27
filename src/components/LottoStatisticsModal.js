@@ -1,42 +1,15 @@
-function LottoStatisticsModal({
-  $target,
-  winningRanks,
-  profitRate,
-  isModal,
-  restart,
-}) {
+import MyReact from './core/MyReact';
+import store from './core/Store';
+
+function LottoStatisticsModal({ $target, restart }) {
   this.$target = $target;
 
-  this.state = {
-    money: [5000, 50000, 1500000, 30000000, 2000000000],
-    modal: isModal,
-  };
-
-  this.makeWinningRankHtml = (
-    count,
-    money,
-    winningRank
-  ) => `<li class="flex flex--space-between statistics-list__item space-y-3">
-      <p class="statistics-list__item__one flex flex--center">${count}개</p>
-      <p class="statistics-list__item__one flex flex--center">${money}</p>
-      <p class="statistics-list__item__one flex flex--center">${winningRank}</p>
-    </li>`;
-
-  this.makeWinningAllRankHtml = () => {
-    const result = winningRanks
-      .slice(1)
-      .map((winningRank, idx) =>
-        this.makeWinningRankHtml(idx + 3, this.state.money[idx], winningRank)
-      )
-      .join('');
-
-    return result;
-  };
+  MyReact.call(this);
 
   this.template = () => {
-    const { modal } = this.state;
+    const { profitRate, isModal } = store.state;
 
-    return modal
+    return isModal
       ? `
     <div class="modal">
       <div class="statistics-container pd_1_rem">
@@ -47,7 +20,30 @@ function LottoStatisticsModal({
             <h4 class="statistics-list__item__one flex flex--center">당첨금</h4>
             <h4 class="statistics-list__item__one flex flex--center">당첨 갯수</h4>
           </li>
-          ${this.makeWinningAllRankHtml()}
+          <li class="flex flex--space-between statistics-list__item space-y-3">
+            <h4 class="statistics-list__item__one flex flex--center">3개</h4>
+            <h4 class="statistics-list__item__one flex flex--center">5,000원</h4>
+            <h4 class="statistics-list__item__one flex flex--center">${store.state.winningRanks[1]}</h4>
+          </li>
+          <li class="flex flex--space-between statistics-list__item space-y-3">
+            <h4 class="statistics-list__item__one flex flex--center">4개</h4>
+            <h4 class="statistics-list__item__one flex flex--center">50,000원</h4>
+            <h4 class="statistics-list__item__one flex flex--center">${store.state.winningRanks[2]}</h4>
+          <li class="flex flex--space-between statistics-list__item space-y-3">
+            <h4 class="statistics-list__item__one flex flex--center">5개</h4>
+            <h4 class="statistics-list__item__one flex flex--center">1,500,000</h4>
+            <h4 class="statistics-list__item__one flex flex--center">${store.state.winningRanks[3]}</h4>
+          </li>
+          <li class="flex flex--space-between statistics-list__item space-y-3">
+            <h4 class="statistics-list__item__one flex flex--center">5개 + 보너스볼</h4>
+            <h4 class="statistics-list__item__one flex flex--center">30,000,000</h4>
+            <h4 class="statistics-list__item__one flex flex--center">${store.state.winningRanks[4]}</h4>
+          </li>
+          <li class="flex flex--space-between statistics-list__item space-y-3">
+            <h4 class="statistics-list__item__one flex flex--center">6개</h4>
+            <h4 class="statistics-list__item__one flex flex--center">2,000,000,000</h4>
+            <h4 class="statistics-list__item__one flex flex--center">${store.state.winningRanks[5]}</h4>
+          </li>
         </ul>
 
         <div class="lotto-income mgTop_2_rem text--center">당신의 수익률은 ${profitRate}</div>
@@ -63,36 +59,28 @@ function LottoStatisticsModal({
     this.$target.innerHTML = this.template();
   };
 
-  this.setState = (newData) => {
-    this.state = { ...this.state, ...newData };
-    this.render();
-  };
-
   this.setEvent = () => {
     $target.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
-        this.setState({ modal: false });
+        store.setState({ isModal: false });
         restart();
       }
     });
 
     $target.addEventListener('click', (e) => {
       if (!e.target.closest('.statistics-container')) {
-        this.setState({ modal: false });
+        store.setState({ isModal: false });
       }
     });
 
     window.addEventListener('keydown', (e) => {
-      const { modal } = this.state;
-
-      if (e.key === 'Escape' && modal) {
-        this.setState({ modal: false });
+      if (e.key === 'Escape' && store.state.isModal) {
+        store.setState({ isModal: false });
       }
     });
   };
 
-  this.render();
-  this.setEvent();
+  this.setup();
 }
 
 export default LottoStatisticsModal;

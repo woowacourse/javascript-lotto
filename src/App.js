@@ -11,12 +11,20 @@ import LottoPurchaseList from './components/LottoPurchaseList';
 import LottoCorrectInput from './components/LottoCorrectInput';
 import LottoStatisticsModal from './components/LottoStatisticsModal';
 
+// store
+import store from './components/core/Store';
+
+// core
+import MyReact from './components/core/MyReact';
+
+// css
 import '../css/reset.css';
 import '../css/spacing.css';
 import '../css/typograpy.css';
 import '../css/styles.css';
 import '../css/flexbox.css';
 
+// utils
 import { getDom } from './utils/dom';
 
 function App($target) {
@@ -25,12 +33,7 @@ function App($target) {
   this.lottoMachine = new LottoMachine();
   this.correctLotto = new CorrectLotto();
 
-  this.state = {
-    buyLottos: [],
-    winningRanks: [],
-    profitRate: 0,
-    isModal: false,
-  };
+  MyReact.call(this);
 
   this.template = () => `
     <header class="flex flex--v-Center lotto-header w-100">
@@ -60,20 +63,15 @@ function App($target) {
 
     new LottoPurchaseList({
       $target: getDom('.lotto-tickets'),
-      lottos: this.state.buyLottos,
     });
 
     new LottoCorrectInput({
       $target: getDom('.correct-lotto--input'),
-      lottos: this.state.buyLottos,
       inputCorrectLottoEvent: this.inputCorrectLottoEvent,
     });
 
     new LottoStatisticsModal({
       $target: getDom('.lotto-statistics-modal'),
-      winningRanks: this.state.winningRanks,
-      profitRate: this.state.profitRate,
-      isModal: this.state.isModal,
       restart: this.restart,
     });
   };
@@ -91,7 +89,7 @@ function App($target) {
   this.inputLottoMoneyEvent = (money) => {
     try {
       this.lottoMachine.purchase(money);
-      this.setState({ buyLottos: this.lottoMachine.lottos });
+      store.setState({ buyLottos: this.lottoMachine.lottos });
     } catch (error) {
       alert(error.message);
     }
@@ -116,7 +114,7 @@ function App($target) {
     const winningRanks = statics.getAllLottosRank(lottos);
     const profitRate = statics.getProfitRate(winningRanks, price);
 
-    this.setState({
+    store.setState({
       winningRanks: winningRanks.reverse(),
       profitRate,
       isModal: true,
@@ -124,7 +122,7 @@ function App($target) {
   };
 
   this.restart = () => {
-    this.setState({
+    store.setState({
       buyLottos: [],
       winningRanks: [],
       profitRate: 0,
@@ -133,7 +131,7 @@ function App($target) {
   };
 
   // 실행
-  this.render();
+  this.setup();
 }
 
 export default App;

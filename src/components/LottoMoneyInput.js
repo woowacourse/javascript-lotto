@@ -1,7 +1,10 @@
 import { getDom } from '../utils/dom';
+import MyReact from './core/MyReact';
 
 function LottoMoneyInput({ $target, inputMoneyEvent }) {
   this.$target = $target;
+
+  MyReact.call(this);
 
   this.template = () => `
     <form class="mgTop_2_rem">
@@ -35,8 +38,7 @@ function LottoMoneyInput({ $target, inputMoneyEvent }) {
     });
   };
 
-  this.render();
-  this.setEvent();
+  this.setup();
 }
 
 export default LottoMoneyInput;

@@ -1,9 +1,13 @@
 import { getDom, getDomAll } from '../utils/dom';
+import MyReact from './core/MyReact';
+import store from './core/Store';
 
-const isLoading = (lottos) => lottos.length === 0;
+const isLoading = () => store.state.buyLottos.length === 0;
 
-function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
+function LottoCorrectInput({ $target, inputCorrectLottoEvent }) {
   this.$target = $target;
+
+  MyReact.call(this);
 
   this.makeCorrectInputHTML = () => `
     <form class="mgTop_2_rem lotto-body">
@@ -27,7 +31,7 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
     </form>
   `;
 
-  this.template = () => (isLoading(lottos) ? '' : this.makeCorrectInputHTML());
+  this.template = () => (isLoading() ? '' : this.makeCorrectInputHTML());
 
   this.render = () => {
     this.$target.innerHTML = this.template();
@@ -35,6 +39,8 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
 
   this.setEvent = () => {
     this.$target.addEventListener('click', (e) => {
+      e.preventDefault();
+
       if (e.target.tagName === 'BUTTON') {
         const winningNumbers = [...getDomAll('#winningNumbers')]
           .map((winningNumber) => winningNumber.value)
@@ -45,8 +51,7 @@ function LottoCorrectInput({ $target, lottos, inputCorrectLottoEvent }) {
     });
   };
 
-  this.render();
-  this.setEvent();
+  this.setup();
 }
 
 export default LottoCorrectInput;
