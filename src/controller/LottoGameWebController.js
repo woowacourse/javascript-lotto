@@ -1,7 +1,7 @@
 import LottoGame from '../domain/lottoGame/LottoGame';
-import { $, $$ } from '../js/dom';
-import { LOTTO_PRICE } from '../utils/constants';
 import View from '../view/webView/View';
+import { $ } from '../js/dom';
+
 class LottoGameWebController {
   #lottoGame = new LottoGame();
 
@@ -10,9 +10,9 @@ class LottoGameWebController {
   }
 
   handleClickPurchaseButton = (event) => {
-    console.log(event);
     event.preventDefault();
-    const money = View.getMoneyInput();
+    const $moneyInput = event.target.querySelector('#money-input');
+    const money = $moneyInput.value;
 
     try {
       this.#lottoGame.purchaseLottos(money);
@@ -22,22 +22,25 @@ class LottoGameWebController {
     }
 
     this.renderTemplateAndLottoList();
+    $moneyInput.value = '';
   };
 
   renderTemplateAndLottoList = () => {
     if (!View.isRenderedTemplate()) {
       View.renderLottoTemplate();
-      this.addEventListenerLottoInput();
+      $('#winning-lotto-form').addEventListener('submit', this.handleClickResultButton);
     }
     View.renderLottoCount(this.#lottoGame.getLottos().length);
     View.renderLottoList(this.#lottoGame.getLottos());
-    View.resetMoneyInput();
   };
 
   handleClickResultButton = (event) => {
     event.preventDefault();
-    const lottoNumber = View.getLottoNumberInput();
-    const bonusNumber = View.getBonusNumberInput();
+
+    const lottoNumber = [...event.target.querySelectorAll('.winning-number')]
+      .filter((input) => input.value !== '')
+      .map((input) => Number(input.value));
+    const bonusNumber = event.target.querySelector('.bonus-number').value;
 
     try {
       this.#lottoGame.generateWinningLotto(lottoNumber, bonusNumber);
@@ -56,39 +59,25 @@ class LottoGameWebController {
     View.showModal();
   };
 
-  handleClickResetButton = () => {
+  handleClickResetButton = (event) => {
     View.resetTemplate();
-    View.closeModal();
-  };
 
-  addEventListenerLottoInput = () => {
-    $('#result-button').addEventListener('click', this.handleClickResultButton);
-
-    $('#number-input-container').addEventListener('keypress', (event) => {
-      if (event.key !== 'Enter') return;
-
-      const numberInput = event.target.closest('.lotto-number-input');
-
-      if (!numberInput) return;
-
-      this.handleClickResultButton(event);
-    });
-  };
-
-  addEventListenerPurchaseInput = () => {
-    $('#purchase-button').addEventListener('click', this.handleClickPurchaseButton);
-
-    $('#money-input').addEventListener('keypress', (event) => {
-      if (event.key !== 'Enter') return;
-      this.handleClickPurchaseButton(event);
-    });
+    const $modalBackground = event.target.closest('#modal-background');
+    $modalBackground.style.display = 'none';
   };
 
   bindEventListener = () => {
-    this.addEventListenerPurchaseInput();
+    $('#purchase-form').addEventListener('submit', this.handleClickPurchaseButton);
 
-    $('#modal-background').addEventListener('click', View.closeModal);
-    $('#modal-close-button').addEventListener('click', View.closeModal);
+    $('#modal-background').addEventListener('click', (event) => {
+      if (event.target.id !== 'modal-background') return;
+      event.target.style.display = 'none';
+    });
+
+    $('#modal-close-button').addEventListener('click', (event) => {
+      const $modalBackground = event.target.closest('#modal-background');
+      $modalBackground.style.display = 'none';
+    });
 
     $('#reset-button').addEventListener('click', this.handleClickResetButton);
   };

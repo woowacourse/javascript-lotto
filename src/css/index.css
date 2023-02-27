@@ -179,7 +179,7 @@ li {
 }
 
 /* 로또 번호 입력 */
-#winning-lotto-container {
+#winning-lotto-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
