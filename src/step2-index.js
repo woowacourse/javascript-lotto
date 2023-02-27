@@ -1,4 +1,28 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import '../css/reset.css';
+import '../css/style.css';
+import '../css/modal.css';
+
+import {
+  modalToHidden,
+  onClickModalBackground,
+  onClickModalCloseButton,
+  onClickRetryButton,
+  onSubmitBudgetForm,
+  onSubmitLottoNumberForm,
+} from './eventHandler';
+
+const $budgetForm = document.querySelector('.budget_form');
+const $lottoNumberForm = document.querySelector('.lotto_number_form');
+
+const $modalCloseButton = document.querySelector('.modal_close');
+const $modalBackground = document.querySelector('.modal_background');
+
+const $retryButton = document.querySelector('.retry_button');
+
+$budgetForm.addEventListener('submit', onSubmitBudgetForm);
+$lottoNumberForm.addEventListener('submit', onSubmitLottoNumberForm);
+
+$modalCloseButton.addEventListener('click', onClickModalCloseButton);
+$modalBackground.addEventListener('click', onClickModalBackground);
+
+$retryButton.addEventListener('click', onClickRetryButton);
