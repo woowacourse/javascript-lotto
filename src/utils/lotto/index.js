@@ -5,6 +5,7 @@ const {
   CALCULATION_NUMBER,
   RANK_INFORMATIONS,
 } = require('../../constant');
+const Benefit = require('../../domain/model/Benefit');
 
 const lottoUtils = {
   generateLottos(amount) {
@@ -13,6 +14,13 @@ const lottoUtils = {
     return Array.from({ length: lottoCount }).map(
       () => new Lotto(lottoUtils.getComposedLottoNumbers())
     );
+  },
+
+  getBenefitRate: (money, ranks) => {
+    const benefit = new Benefit();
+    benefit.calculateRate(money, ranks);
+
+    return benefit.getRate();
   },
 
   getComposedLottoNumbers() {

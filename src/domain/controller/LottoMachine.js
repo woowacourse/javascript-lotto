@@ -1,7 +1,6 @@
-const Benefit = require('../model/Benefit');
 const Money = require('../model/Money');
 const Winning = require('../model/Winning');
-const outputView = require('../../view/outputView');
+const consoleView = require('../../view/consoleView');
 const Console = require('../../utils/Console');
 const lottoUtils = require('../../utils/lotto');
 const {
@@ -10,18 +9,21 @@ const {
   LOTTO_NUMBER,
   LOTTO_LITERAL,
 } = require('../../constant');
+const { getBenefitRate } = require('../../utils/lotto');
 
 class LottoMachine {
   async play() {
     const money = await this.readMoney();
-    const lottos = await this.generateAndShowLottos(money);
+    const lottos = lottoUtils.generateLottos(money.getAmount());
+    this.#showLottos(lottos);
     const winning = new Winning();
     const winningNumbers = await this.readWinningNumbers();
     winning.setWinningNumbers(winningNumbers);
     const bonusNumber = await this.readBonusNumber(winning);
     winning.setBonusNumber(bonusNumber);
-    const ranks = await this.getLottoRanks(winning, lottos);
-    await this.calculateAndShowBenefit(money, ranks);
+    const ranks = lottoUtils.getCollectedRanks(winning, lottos);
+    const benefitRate = getBenefitRate(money.getAmount(), ranks);
+    this.#showResult(benefitRate, ranks);
     await this.readRetryOption();
   }
 
@@ -29,7 +31,7 @@ class LottoMachine {
     try {
       const userMoney = await Console.readLine('> 구입금액을 입력해 주세요.');
       const money = new Money(userMoney);
-      outputView.printLottoCount(money.getAmount() / LOTTO_NUMBER.moneyUnit);
+      consoleView.printLottoCount(money.getAmount() / LOTTO_NUMBER.moneyUnit);
 
       return money;
     } catch (error) {
@@ -89,24 +91,6 @@ class LottoMachine {
     }
   }
 
-  async calculateAndShowBenefit(money, ranks) {
-    const benefit = new Benefit();
-    benefit.calculateRate(money.getAmount(), ranks);
-    this.#showResult(benefit, ranks);
-  }
-
-  async getLottoRanks(winning, lottos) {
-    const ranks = lottoUtils.getCollectedRanks(winning, lottos);
-    return ranks;
-  }
-
-  async generateAndShowLottos(money) {
-    const lottos = lottoUtils.generateLottos(money.getAmount());
-    this.#showLottos(lottos);
-
-    return lottos;
-  }
-
   #checkRetryOption(input) {
     if (input === COMMAND_LITERAL.retry) return this.#retry();
     if (input === COMMAND_LITERAL.quit) return this.#quit();
@@ -115,14 +99,14 @@ class LottoMachine {
 
   #showLottos(lottos) {
     lottos.forEach((lotto) => {
-      outputView.printLotto(lotto.getLottoNumbers());
+      consoleView.printLotto(lotto.getLottoNumbers());
     });
   }
 
-  #showResult(benefit, ranks) {
-    outputView.printResultTitle();
-    outputView.printResult(ranks);
-    outputView.printBenefit(benefit.getRate());
+  #showResult(benefitRate, ranks) {
+    consoleView.printResultTitle();
+    consoleView.printResult(ranks);
+    consoleView.printBenefit(benefitRate);
   }
 
   #retry() {

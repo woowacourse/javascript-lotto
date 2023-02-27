@@ -6,7 +6,7 @@ const {
 } = require('../constant');
 const { addCommaToNumber } = require('../utils');
 
-const outputView = {
+const consoleView = {
   printLottoCount(count) {
     Console.print(`${count}개를 구매했습니다.`);
   },
@@ -44,4 +44,4 @@ const outputView = {
   },
 };
 
-module.exports = outputView;
+module.exports = consoleView;
