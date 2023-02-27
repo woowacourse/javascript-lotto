@@ -1,14 +1,14 @@
+const Benefit = require('../../domain/model/Benefit');
 const Lotto = require('../../domain/model/Lotto');
 const { pickRandomNumberInRange } = require('..');
 const {
-  LOTTO_NUMBER,
   CALCULATION_NUMBER,
+  LOTTO_NUMBER,
   RANK_INFORMATIONS,
 } = require('../../constant');
-const Benefit = require('../../domain/model/Benefit');
 
 const lottoUtils = {
-  generateLottos(amount) {
+  generateLottos: (amount) => {
     const lottoCount = amount / LOTTO_NUMBER.moneyUnit;
     new Lotto();
     return Array.from({ length: lottoCount }).map(
@@ -23,7 +23,7 @@ const lottoUtils = {
     return benefit.getRate();
   },
 
-  getComposedLottoNumbers() {
+  getComposedLottoNumbers: () => {
     const lottoNumbers = new Set();
 
     while (lottoNumbers.size < LOTTO_NUMBER.lottoNumberCount) {
@@ -37,7 +37,7 @@ const lottoUtils = {
     return [...lottoNumbers].sort((first, second) => first - second);
   },
 
-  getCollectedRanks(winning, lottos) {
+  getCollectedRanks: (winning, lottos) => {
     const RANK_TEMPLATE = [0, 0, 0, 0, 0];
 
     const ranks = lottos.reduce((accumulator, lotto) => {
@@ -57,7 +57,7 @@ const lottoUtils = {
     return ranks;
   },
 
-  getUpdatedRanks(ranks, rankIndex) {
+  getUpdatedRanks: (ranks, rankIndex) => {
     const updatedRanks = ranks;
 
     if (rankIndex !== CALCULATION_NUMBER.losing) {
@@ -67,13 +67,13 @@ const lottoUtils = {
     return updatedRanks;
   },
 
-  getMatchedCount(winning, lotto) {
+  getMatchedCount: (winning, lotto) => {
     const winningNumbers = winning.getWinningNumbers();
 
     return lotto.filter((number) => winningNumbers.includes(number)).length;
   },
 
-  getRankIndex(matchedCount, isBonus) {
+  getRankIndex: (matchedCount, isBonus) => {
     const rankIndex = RANK_INFORMATIONS.findIndex(
       (rankInformation) =>
         rankInformation.isBonus === isBonus &&
@@ -86,7 +86,7 @@ const lottoUtils = {
     return rankIndex;
   },
 
-  isBonus(winning, lotto) {
+  isBonus: (winning, lotto) => {
     return lotto.includes(winning.getBonusNumber());
   },
 };

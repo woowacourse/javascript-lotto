@@ -40,6 +40,32 @@ class WebLottoMachine {
     return winning;
   }
 
+  moneySubmitEvent() {
+    $('#moneyForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      try {
+        const money = new Money($('#moneyAmount').value);
+        const lottos = generateLottos(money.getAmount());
+        const count = money.getAmount() / LOTTO_NUMBER.moneyUnit;
+
+        this.prepareWinningInputs();
+        this.showCountAndLottos(count, lottos);
+
+        this.winningNumbersSubmitEvent(money, lottos);
+      } catch (error) {
+        webView.printError(error, '#moneyError');
+      }
+    });
+  }
+
+  prepareWinningInputs() {
+    webView.removeLottos();
+    webView.removeError('#moneyError');
+    webView.showLottoAndWinningInput();
+    webView.focusFirstWinningNumber();
+  }
+
   play() {
     this.moneySubmitEvent();
     this.closeModalClickEvent();
@@ -66,23 +92,16 @@ class WebLottoMachine {
     webView.printBenefitRate(benefitRate);
   }
 
-  moneySubmitEvent() {
-    $('#moneyForm').addEventListener('submit', (event) => {
-      event.preventDefault();
+  watchInputEvent() {
+    $('#moneyAmount').addEventListener('input', webView.controllMoneyInput);
 
-      try {
-        const money = new Money($('#moneyAmount').value);
-        const lottos = generateLottos(money.getAmount());
-        const count = money.getAmount() / LOTTO_NUMBER.moneyUnit;
+    $$('.winning-number').forEach((item) =>
+      item.addEventListener('input', () => webView.controllWinningNumber(item))
+    );
 
-        this.prepareWinningInputs();
-        this.showCountAndLottos(count, lottos);
-
-        this.winningNumbersSubmitEvent(money, lottos);
-      } catch (error) {
-        webView.printError(error, '#moneyError');
-      }
-    });
+    $('#bonus').addEventListener('input', () =>
+      webView.controllWinningNumber($('#bonus'))
+    );
   }
 
   winningNumbersSubmitEvent(money, lottos) {
@@ -104,25 +123,6 @@ class WebLottoMachine {
         webView.printError(error, '#lottoNumbersError');
       }
     });
-  }
-
-  prepareWinningInputs() {
-    webView.removeLottos();
-    webView.removeError('#moneyError');
-    webView.showLottoAndWinningInput();
-    webView.focusFirstWinningNumber();
-  }
-
-  watchInputEvent() {
-    $('#moneyAmount').addEventListener('input', webView.controllMoneyInput);
-
-    $$('.winning-number').forEach((item) =>
-      item.addEventListener('input', () => webView.controllWinningNumber(item))
-    );
-
-    $('#bonus').addEventListener('input', () =>
-      webView.controllWinningNumber($('#bonus'))
-    );
   }
 }
 
