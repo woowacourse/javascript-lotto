@@ -38,9 +38,9 @@ export const renderWinningForm = ($app, lottoGame) => {
   </div>
   <button id="result-button" type="submit">결과 확인하기</button>
   </form>`;
+  $('#purchasing-button').disabled = 'disabled';
 
   $app.appendChild($winningSection);
-
-  $('#purchasing-button').disabled = 'disabled';
+  $('#winning-numbers>input').focus();
   $('#result-button').addEventListener('click', submitHandler($app, lottoGame));
 };
