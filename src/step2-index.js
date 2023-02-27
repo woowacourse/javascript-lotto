@@ -19,13 +19,12 @@ const checkResultButton = document.getElementById('check-result-btn');
 const modalCloseButton = document.getElementById('modal-close-btn');
 const restartButton = document.getElementById('restart-btn');
 
-const afterPurchaseShowElement =
-  document.getElementsByClassName('after-purchase')[0];
-const lottoListWrap = document.getElementsByClassName('lotto-list')[0];
+const afterPurchaseShowElement = document.querySelector('.after-purchase');
+const lottoListWrap = document.querySelector('.lotto-list');
 const purchaseLottoCount = document.getElementById('lotto-purchase-count');
 const winNumberElement = [...document.getElementsByClassName('winNumber')];
 const bonusNumberElement = document.getElementById('bonusNumber');
-const modal = document.getElementsByClassName('result-modal-background')[0];
+const modal = document.querySelector('.result-modal-background');
 const ranks = document.getElementsByClassName('rank');
 const earnRateElement = document.getElementById('earnRate');
 const inputAmountElement = document.getElementById('input-purchase-amount');
