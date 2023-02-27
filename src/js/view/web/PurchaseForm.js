@@ -27,11 +27,13 @@ const PurchaseForm = {
 
   setModalCloseHandler(handler) {
     $modalCloseButton.addEventListener('click', () => handler());
-    window.addEventListener('click', (event) =>
-      event.target === $modalBackground ? handler() : false
+    $modalBackground.addEventListener(
+      'click',
+      (event) => event.target === $modalBackground && handler()
     );
-    window.addEventListener('keydown', (event) =>
-      event.key === 'Escape' || 'Esc' ? handler() : false
+    document.addEventListener(
+      'keydown',
+      (event) => (event.key === 'Escape' || event.key === 'Esc') && handler()
     );
   },
 
