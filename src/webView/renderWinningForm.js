@@ -51,7 +51,7 @@ export const renderWinningForm = (lottoGame) => {
   $lottoContainer.append($lottoWinningContainer, $lottoBonusContainer);
   $form.append($spanContainer, $lottoContainer, $submitButton);
   $winningSection.append($message, $form);
-  $('.app-box').append($winningSection);
+  $('.app').append($winningSection);
 
   $('#purchasing-button').disabled = 'disabled';
 

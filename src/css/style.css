@@ -59,12 +59,12 @@ h2 {
   margin-bottom: 5px;
 }
 
-.app-box {
+.app {
   width: 414px;
   height: 727px;
   margin: 84px auto 84px auto;
   border: solid 1px var(--gray);
-  background: #ffffff;
+  background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 }
@@ -84,7 +84,7 @@ section {
 
 #copyright {
   font: var(--caption-font);
-  color: #4e5ba6;
+  color: var(--primary-color);
 
   line-height: 1rem;
   text-align: center;
@@ -144,7 +144,6 @@ dialog {
   justify-content: space-between;
 }
 
-/* TODO: cursor: pointer */
 #result-button {
   cursor: pointer;
   margin: 2rem auto 1rem auto;
@@ -157,8 +156,7 @@ dialog {
 }
 
 .ticket > span {
-  font-size: 1.5rem;
-  margin-right: 0.4rem;
+  font: var(--body-font);
 }
 
 #result-modal {

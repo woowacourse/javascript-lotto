@@ -60,7 +60,7 @@ export const renderResult = ({ first, second, third, fourth, fifth, lottoYield }
     </section>
   </div>`;
 
-  $('.app-box').appendChild($modalBackground);
+  $('.app').appendChild($modalBackground);
   $('.close-button').onclick = () => {
     $('.modal-background').remove();
   };

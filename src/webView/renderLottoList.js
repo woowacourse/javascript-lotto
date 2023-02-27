@@ -29,5 +29,5 @@ export const renderLottoList = (lottoList) => {
   appendDomByList($ticketContainer)(lottoList)(makeTicketDom);
   $ticketSection.append($ticketMessage, $ticketContainer);
 
-  $('.app-box').appendChild($ticketSection);
+  $('.app').appendChild($ticketSection);
 };
