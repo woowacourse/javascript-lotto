@@ -83,6 +83,7 @@ class LottoGameWebController {
   bindEventListener = () => {
     this.addEventListenerPurchaseInput();
 
+    $('#modal-background').addEventListener('click', View.closeModal);
     $('#modal-close-button').addEventListener('click', View.closeModal);
 
     $('#reset-button').addEventListener('click', this.handleClickResetButton);
