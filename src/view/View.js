@@ -19,25 +19,15 @@ const View = {
     const ticketView = selectDom('.ticketView');
     ticketView.innerHTML = '';
     selectDom('.lottoIssueViewTitle').innerText = `총 ${lottos.length}개를 구매하였습니다.`;
-    lottos.forEach((lotto) => ticketView.appendChild(View.createTicket(lotto)));
+    lottos.forEach((lotto) => {
+      const ticket = createDom('div');
+      ticket.className = 'ticket';
+      ticket.innerHTML = `<div class="ticketPicture">🎟️</div>
+      <div>${lotto.getNumbers().join(', ')}</div>`;
+      ticketView.appendChild(ticket);
+    });
     selectDom('.lottoIssueView').style.visibility = 'visible';
     selectDom('.lottoResultView').style.visibility = 'visible';
-  },
-  createTicket(lotto) {
-    const ticket = createDom('div');
-    ticket.className = 'ticket';
-
-    const ticketPicture = createDom('div');
-    ticketPicture.className = 'ticketPicture';
-    ticketPicture.innerText = '🎟️';
-
-    const ticketNumber = createDom('div');
-    ticketNumber.innerText = lotto.getNumbers().join(', ');
-
-    ticket.appendChild(ticketPicture);
-    ticket.appendChild(ticketNumber);
-
-    return ticket;
   },
   resultView(matchResult, benefit) {
     selectAllDom('.winningCount').forEach((count, index) => (count.innerText = `${matchResult[4 - index]}개`));
