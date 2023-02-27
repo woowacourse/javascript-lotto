@@ -40,7 +40,7 @@ const ViewController = {
       HTML_ELEMENTS.WIN_CONTENTS.hidden = false;
     } catch (e) {
       LottoView.alertErrorMessage(e.message);
-      HTML_ELEMENTS.INPUT_MONEY.value = null;
+      this.deleteValue(HTML_ELEMENTS.INPUT_MONEY);
     }
   },
 
@@ -62,9 +62,9 @@ const ViewController = {
       this.winningTicket();
     } catch (e) {
       HTML_ELEMENTS.WINNUM.forEach((winNum) => {
-        winNum.value = null;
+        this.deleteValue(winNum);
       });
-      HTML_ELEMENTS.BONUSNUM.value = null;
+      this.deleteValue(HTML_ELEMENTS.BONUSNUM);
       LottoView.alertErrorMessage(e.message);
     }
   },
@@ -92,6 +92,10 @@ const ViewController = {
     Validation.isWrongBonusNumber(winNumbers, bonusNumber);
 
     return bonusNumber;
+  },
+
+  deleteValue(element) {
+    element.value = null;
   },
 };
 
