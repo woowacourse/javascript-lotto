@@ -29,7 +29,7 @@ const Validator = {
   },
 
   validateIsEmpty(input) {
-    if (input === '') throw new Error(ERROR.IS_EMPTY);
+    if (input === '' || input === 0) throw new Error(ERROR.IS_EMPTY);
   },
 
   validateNumberType(input) {
