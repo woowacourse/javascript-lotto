@@ -69,6 +69,7 @@ const validator = {
   isNumberDuplicated(numbers) {
     if (new Set(numbers).size !== numbers.length)
       throw new Error(ERROR_MESSAGE.DUPLICATE);
+
   },
 
   isRestartCommandValid(input) {
