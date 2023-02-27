@@ -1,3 +1,5 @@
+export const $ = selector => document.querySelector(selector);
+
 export const moneyInputButton = document.querySelector('.purchase-amount-form');
 
 export const resultButton = document.querySelector('.open-result-modal-button');
@@ -14,7 +16,7 @@ export const lottoTicketContainer = document.querySelector('.lotto-ticket-contai
 
 export const winningNumberForm = document.querySelector('.winning-number-form');
 
-export const winningNumberOne = document.querySelector('.winning-number-one');
+export const winningNumberInputs = document.querySelector('.winning-number-inputs');
 
 export const modal = document.querySelector('.modal');
 

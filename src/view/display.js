@@ -1,8 +1,9 @@
 import {
+  $,
   purchasedLottoLabel,
   lottoTicketContainer,
   winningNumberForm,
-  winningNumberOne,
+  winningNumberInputs,
   modal,
   rateOfReturn,
   fifthWin,
@@ -27,7 +28,8 @@ export const display = {
 
   showWinningNumberForm() {
     winningNumberForm.classList.remove('d-none');
-    winningNumberOne.focus();
+    winningNumberInputs.innerHTML = display.winningNumberInput();
+    $('.order-0').focus();
   },
 
   showModal(lottoResultChart) {
@@ -37,6 +39,21 @@ export const display = {
     thirdWin.innerHTML = lottoResultChart[NUMBER.THIRD];
     secondhWin.innerHTML = lottoResultChart[NUMBER.SECOND];
     firstWin.innerHTML = lottoResultChart[NUMBER.FIRST];
+  },
+
+  winningNumberInput() {
+    let winningNumberInputDisplay = '';
+
+    for (let index = 0; index < NUMBER.LOTTO_NUMBER_LENGTH; index++) {
+      winningNumberInputDisplay += `
+      <input type="number"
+      min=${NUMBER.LOTTO_NUMBER_START_ONE}
+      max=${NUMBER.LOTTO_NUMBER_RANGE}
+      class="winning-number mx-1 text-center order-${index}"
+      required/>
+      `;
+    }
+    return winningNumberInputDisplay;
   },
 
   showProfitRate(profitRate) {
