@@ -2,7 +2,8 @@ import lottoGenerator from './LottoGenerator.js';
 import Lotto from './Lotto.js';
 import LottoValidator from './LottoValidator.js';
 import { LOTTO } from '../constants/index.js';
-import { selectDom, selectAllDom, createDom } from '../utils/dom.js';
+import { selectDom } from '../utils/dom.js';
+import View from '../view/View.js';
 
 class LottoWebController {
   #winningNumber = {
@@ -15,70 +16,39 @@ class LottoWebController {
   constructor() {
     selectDom('.purchaseForm').addEventListener('submit', this.#purchase);
     selectDom('.resultButton').addEventListener('click', this.#showResult);
-    selectDom('.exitModal').addEventListener('click', () => selectDom('.modal').close());
+    selectDom('.exitModal').addEventListener('click', this.#exit);
     selectDom('.restartButton').addEventListener('click', this.#restart);
   }
 
   #purchase = (e) => {
     e.preventDefault();
 
-    const money = selectDom('.inputPurchaseAmount').value;
+    const money = View.inputMoney();
     if (this.#isError(LottoValidator.checkMoney, money)) return;
 
     this.#lottos.unshift(...Array.from({ length: money / LOTTO.price }, () => new Lotto(lottoGenerator())));
-    const ticketView = selectDom('.ticketView');
-    ticketView.innerHTML = '';
-    selectDom('.lottoIssueViewTitle').innerText = `총 ${this.#lottos.length}개를 구매하였습니다.`;
-    this.#lottos.forEach((lotto) => ticketView.appendChild(this.#createTicket(lotto)));
 
-    return this.#toggleLottoIssue('visible');
+    View.ticketView(this.#lottos);
   };
 
   #showResult = () => {
-    this.#winningNumber = [...selectAllDom('.number')].reduce(
-      (acc, number, index) => {
-        const lottoNumber = number.value;
-        if (index !== 6) acc.main.push(lottoNumber);
-        else acc.bonus = lottoNumber;
-        return acc;
-      },
-      { main: [], bonus: 0 }
-    );
+    this.#winningNumber = View.inputWinningNumber();
     if (this.#isError(LottoValidator.checkWinningNumberWithBonus, this.#winningNumber)) return;
 
     const matchResult = this.#calculateMatching();
     const benefit = this.#calculateBenefit(matchResult);
-    selectAllDom('.winningCount').forEach((count, index) => (count.innerText = `${matchResult[4 - index]}개`));
-    selectDom('.resultExplain').innerText = `당신의 총 수익률은 ${benefit.toFixed(3)}%입니다.`;
-
-    return selectDom('.modal').showModal();
+    return View.resultView(matchResult, benefit);
   };
 
   #restart = () => {
     this.#winningNumber = { main: [], bonus: 0 };
     this.#lottos = [];
-    selectDom('.modal').close();
-    selectDom('.lottoIssueViewTitle').innerText = '';
-    selectAllDom('input').forEach((input) => (input.value = ''));
-    this.#toggleLottoIssue('hidden');
+    return View.clearView();
   };
 
-  #createTicket(lotto) {
-    const ticket = createDom('div');
-    ticket.className = 'ticket';
-
-    const ticketPicture = createDom('div');
-    ticketPicture.className = 'ticketPicture';
-    ticketPicture.innerText = '🎟️';
-
-    const ticketNumber = createDom('div');
-    ticketNumber.innerText = lotto.getNumbers().join(', ');
-
-    ticket.appendChild(ticketPicture);
-    ticket.appendChild(ticketNumber);
-
-    return ticket;
-  }
+  #exit = () => {
+    return View.closeModal();
+  };
 
   #calculateMatching() {
     const rankingCount = Array(LOTTO.prize.length).fill(0);
@@ -97,17 +67,12 @@ class LottoWebController {
     return (totalPrice / (this.#lottos.length * LOTTO.price)) * 100;
   }
 
-  #toggleLottoIssue(state) {
-    selectDom('.lottoIssueView').style.visibility = state;
-    selectDom('.lottoResultView').style.visibility = state;
-  }
-
   #isError(validator, value) {
     try {
       validator(value);
       return false;
     } catch (e) {
-      window.alert(e.message);
+      View.showAlert(e.message);
       return true;
     }
   }
