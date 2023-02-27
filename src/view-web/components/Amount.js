@@ -4,13 +4,13 @@ import { getId } from '../../utils/domHelper.js';
 import { ERROR, LOTTO } from '../../constant/index.js';
 
 export default class Amount extends Component {
-  setter;
-  render;
+  #setter;
+  #render;
 
   constructor({ setState }, render) {
     super(getId('input-purchase-form'));
-    this.setter = setState;
-    this.render = render;
+    this.#setter = setState;
+    this.#render = render;
 
     this.addEvent('submit', this.submitAmount.bind(this));
   }
@@ -36,9 +36,9 @@ export default class Amount extends Component {
     }
 
     const lottoList = LottoMachine.purchase(amount / LOTTO.PRICE);
-    this.setter({ lottoList });
+    this.#setter({ lottoList });
 
-    this.render();
+    this.#render();
   }
 
   renderAmountException(event) {
