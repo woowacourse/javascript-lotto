@@ -17,14 +17,14 @@
 }
 
 header {
-  background-color: #4e5ba6;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white);
   display: flex;
   align-items: center;
 }
 
 .title {
-  font-size: 1.5rem;
+  font: var(--title-font);
 }
 
 body {
@@ -41,7 +41,7 @@ h1 {
 footer {
   display: flex;
   height: 80px;
-  border-top: 1px solid #4e5ba633;
+  border-top: 1px solid var(--gray);
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -63,7 +63,7 @@ h2 {
   width: 414px;
   height: 727px;
   margin: 84px auto 84px auto;
-  border: solid 1px #0000001f;
+  border: solid 1px var(--gray);
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -83,10 +83,7 @@ section {
 }
 
 #copyright {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 0.8rem;
+  font: var(--caption-font);
   color: #4e5ba6;
 
   line-height: 1rem;
@@ -107,9 +104,9 @@ section {
   width: 34px;
   height: 36px;
   border-radius: 4px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--gray);
   margin: 0px 1px 1px 1px;
-  font-size: 1.5rem;
+  font: var(--placeholder-font);
   text-align: center;
 }
 
@@ -119,17 +116,17 @@ dialog {
   box-sizing: border-box;
 
   padding: 3px;
-  font: 700 Roboto 1.5rem;
+  font: var(--button-font);
   height: 2rem;
-  background-color: #4e5ba6;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white);
   letter-spacing: 0.1px;
   border-radius: 4px;
   padding: 0.5rem;
 }
 
 #money::placeholder {
-  font: 700 Roboto 2rem;
+  font: var(--placeholder-font);
 }
 
 #money {
@@ -149,6 +146,7 @@ dialog {
 
 /* TODO: cursor: pointer */
 #result-button {
+  cursor: pointer;
   margin: 2rem auto 1rem auto;
   text-align: center;
   width: 382px;
@@ -241,17 +239,18 @@ dialog {
 }
 
 #retry-button {
+  font: var(--button-font);
+  cursor: pointer;
   margin: 30px;
   text-align: center;
   width: 100%;
   height: 50px;
-  font-size: 1.2rem;
-  font-weight: bold;
   letter-spacing: 1.25px;
   z-index: 3;
 }
 
 .close-button {
+  cursor: pointer;
   font-size: 1.5rem;
   position: absolute;
   bottom: 30px;
