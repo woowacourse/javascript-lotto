@@ -1,11 +1,11 @@
-import { LOTTO_MAX_NUMBER, LOTTO_MIN_NUMBER } from '../constants/values';
+import { LOTTO } from '../constant/index.js';
 
 function randomGenerator(count) {
   const numbers = [];
 
   while (numbers.length !== count) {
     const randomNumber = Math.floor(
-      LOTTO_MIN_NUMBER + Math.random() * (LOTTO_MAX_NUMBER + 1 - LOTTO_MIN_NUMBER)
+      LOTTO.MIN_NUMBER + Math.random() * (LOTTO.MAX_NUMBER + 1 - LOTTO.MIN_NUMBER)
     );
 
     !numbers.includes(randomNumber) && numbers.push(randomNumber);

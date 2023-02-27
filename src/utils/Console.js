@@ -1,4 +1,5 @@
 import * as readlinePromises from 'node:readline/promises';
+import { ERROR } from '../constant/index.js';
 
 const rl = readlinePromises.createInterface({
   input: process.stdin,
@@ -11,6 +12,7 @@ const Console = {
   },
 
   readLine(query) {
+    if (!query) throw new Error(ERROR.NEED_QUERY);
     return rl.question(query);
   },
 

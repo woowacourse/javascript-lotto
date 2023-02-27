@@ -1,29 +1,20 @@
-import {
-  NUMBER_MERGER,
-  LOTTO_MERGER,
-  AWARDS_ORDER,
-  FIFTH_PLACE,
-  FIRST_PLACE,
-  FOURTH_PLACE,
-  SECOND_PLACE,
-  THIRD_PLACE,
-} from '../constants/values';
+import { LOTTO, AWARDS_ORDER, FORMAT } from '../constant/index.js';
 
 function getMessagesByStatistics(awards, count) {
   switch (awards) {
-    case FIFTH_PLACE:
+    case LOTTO.FIFTH_PLACE:
       return `3개 일치 (5,000원) - ${count}개`;
 
-    case FOURTH_PLACE:
+    case LOTTO.FOURTH_PLACE:
       return `4개 일치 (50,000원) - ${count}개`;
 
-    case THIRD_PLACE:
+    case LOTTO.THIRD_PLACE:
       return `5개 일치 (1,500,000원) - ${count}개`;
 
-    case SECOND_PLACE:
+    case LOTTO.SECOND_PLACE:
       return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`;
 
-    case FIRST_PLACE:
+    case LOTTO.FIRST_PLACE:
       return `6개 일치 (2,000,000,000원) - ${count}개`;
 
     default:
@@ -38,13 +29,13 @@ const generationMessages = Object.freeze({
 
   lottoList(lottoList) {
     return lottoList
-      .map((lotto) => `[${lotto.getNumbers().join(NUMBER_MERGER)}]`)
-      .join(LOTTO_MERGER);
+      .map((lotto) => `[${lotto.getNumbers().join(FORMAT.NUMBER_MERGER)}]`)
+      .join(FORMAT.LOTTO_MERGER);
   },
 
   statisticsMessage(statistics) {
     return AWARDS_ORDER.map((award) => getMessagesByStatistics(award, statistics[award] || 0)).join(
-      LOTTO_MERGER
+      FORMAT.LOTTO_MERGER
     );
   },
 
@@ -56,7 +47,7 @@ const generationMessages = Object.freeze({
     return [
       generationMessages.statisticsMessage(statistics),
       generationMessages.earningRateMessage(earningRate),
-    ].join(LOTTO_MERGER);
+    ].join(FORMAT.LOTTO_MERGER);
   },
 });
 

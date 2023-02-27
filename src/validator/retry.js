@@ -1,8 +1,7 @@
-import { EXIT, RETRY } from '../constants/values.js';
-import { CustomError, ERROR_CODE } from '../utils/Error.js';
+import { GAME, ERROR } from '../constant/index.js';
 
 export default function checkRetryFormat(command) {
-  if (command !== RETRY && command !== EXIT) {
-    throw new CustomError({ code: ERROR_CODE.INVALID_FORMAT }, command);
+  if (command !== GAME.RETRY && command !== GAME.EXIT) {
+    throw new Error(ERROR.INVALID_FORMAT);
   }
 }
