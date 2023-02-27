@@ -15,7 +15,8 @@ export default class LottoGameController {
       this.lottoPurchasePage.purchaseButton();
     });
 
-    resultButton.addEventListener('click', () => {
+    resultButton.addEventListener('click', event => {
+      event.preventDefault();
       const lottoList = this.lottoPurchasePage.lottoNumbers();
       const moneyInput = this.lottoPurchasePage.inputMoney();
       this.resultModalPage.openModalButton(lottoList, moneyInput);

@@ -13,10 +13,6 @@ export const lottoTicketContainer = document.querySelector('.lotto-ticket-contai
 
 export const winningNumberForm = document.querySelector('.winning-number-form');
 
-export const winningNumberInputs = document.querySelector('.winning-number-inputs');
-
-export const bonusInput = document.querySelector('.bonus-input');
-
 export const modal = document.querySelector('.modal');
 
 export const rateOfReturn = document.querySelector('.rate-of-return');

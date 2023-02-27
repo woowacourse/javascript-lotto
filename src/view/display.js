@@ -3,7 +3,6 @@ import {
   purchasedLottoLabel,
   lottoTicketContainer,
   winningNumberForm,
-  winningNumberInputs,
   modal,
   rateOfReturn,
   fifthWin,
@@ -11,7 +10,6 @@ import {
   thirdWin,
   secondhWin,
   firstWin,
-  bonusInput,
 } from '../utils/DOM.js';
 import { NUMBER } from '../utils/constant.js';
 
