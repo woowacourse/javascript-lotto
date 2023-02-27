@@ -32,6 +32,7 @@ class WebController {
       const lottoAmount = parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10);
       this.createLotto(lottoAmount);
       this.printLotto(lottoAmount);
+      $(".input-money-btn").disabled = true;
       $(".hidden-area").classList.add("show");
     } catch (e) {
       alert(e.message);
@@ -168,7 +169,8 @@ class WebController {
     this.#bonusNumber = 0;
     $(".hidden-area").classList.remove("show");
     $(".lotto-result-wrap").classList.remove("show");
-
+    $(".input-money-btn").disabled = false;
+    
     for (var i = 0; i < $$(".winning-number").length; i++) {
       $$(".winning-number")[i].value = "";
     }

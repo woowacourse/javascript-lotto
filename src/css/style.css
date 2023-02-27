@@ -122,6 +122,17 @@
   letter-spacing: 1.25px;
   color: #ffffff;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button:disabled {
+  background-color: #a4a4a4 !important;
+}
+
 /*print lottos*/
 
 .hidden-area.show {
