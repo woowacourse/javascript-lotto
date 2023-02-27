@@ -1,0 +1,265 @@
+/*
+순서
+1. display
+2. position
+3. size/margin/padding/...
+4. 꾸미기
+*/
+
+:root {
+  --lotto-primary-color: 78, 91, 166;
+  --app-border-color: 180, 180, 180;
+}
+
+.flex {
+  display: flex;
+}
+
+body {
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-between;
+
+  min-height: 100vh;
+
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  top: 0;
+
+  height: 64px;
+  width: 100%;
+  margin: 0 auto auto auto;
+
+  background-color: rgb(var(--lotto-primary-color));
+}
+
+header h1 {
+  margin: auto auto auto 9%;
+
+  text-align: center;
+  color: white;
+}
+
+footer {
+  height: 80px;
+  width: 100%;
+  margin: auto auto 0 auto;
+
+  border-top: 1px solid rgba(var(--lotto-primary-color), 0.2);
+}
+
+footer p {
+  margin: auto;
+
+  text-align: center;
+  color: rgb(var(--lotto-primary-color));
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+.app section,
+.app section > * {
+  margin: 0.3em 0;
+}
+
+.input-winning-numbers label:last-child {
+  flex-direction: column;
+  align-items: end;
+}
+
+.app {
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+
+  margin: auto;
+  padding: 5%;
+  width: 414px;
+  
+  border: 1px solid rgb(var(--app-border-color));
+  border-radius: 4px;
+}
+
+.input-winning-numbers {
+  justify-content: space-between;
+}
+
+.single-number-input {
+  width: 35px;
+  text-align: center;
+}
+
+input,
+button:not(close) {
+  height: 36px;
+}
+
+input {
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--app-border-color));
+  border-radius: 4px;
+}
+
+.money-input {
+  width: 310px;
+}
+
+.buy {
+  width: 56px;
+}
+
+.restart-game {
+  width: 80%;
+}
+
+button {
+  cursor: pointer;
+}
+
+button.input,
+button.restart-game {
+  border: 1px solid rgb(var(--lotto-primary-color));
+  border-radius: 4px;
+  background-color: rgb(var(--lotto-primary-color));
+  color: white;
+}
+
+.title {
+  text-align: center;
+}
+
+.modal-background{
+  display: none;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 400px;
+  width: 30%;
+  padding: 0 0.5rem 2rem 0.5rem;
+
+  background-color: white;
+  border-radius: 4px;
+}
+
+button.close {
+  font-size: xx-large;
+  border: none;
+}
+
+.modal-background button.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 4px;
+
+  color: black;
+  background-color: white;
+}
+
+.alert {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: red;
+}
+
+.animation-shake {
+  animation: 0.15s 3 shake;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.alert p {
+  color: white;
+}
+
+.alert button.close {
+  color: white;
+  background-color: red;
+}
+
+.hidden-first {
+  display: none;
+}
+
+.lotto-list {
+  flex-direction: column;
+}
+
+table, td, th {
+  align-self: center;
+
+  border-collapse: collapse;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+td {
+  text-align: center;
+}
+
+td, th {
+  padding: 1em;
+}
+
+.lotto-list .list {
+  height: 10rem;
+  overflow: auto;
+}
+
+.lotto {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.modal-message {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-message h1,
+.modal-message h3 {
+  align-self: center;
+}
+
+.single-number-input::-webkit-outer-spin-button,
+.single-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.single-number-input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

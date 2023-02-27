@@ -4,13 +4,78 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
-  <body>
-    <div id="app">
+  <body class="flex">
+    <header class="flex">
       <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
+    </header>
+
+    <main class="flex">
+      <section class="app">
+        <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
+
+        <section>
+          <label>
+            구입할 금액을 입력해주세요.
+            <div>
+              <input type="number" inputmode="numeric" class="money-input" step="1000" placeholder="금액" maxLength="8" required autofocus>
+              <button type="button" class="input buy">구입</button>
+            </div>
+          </label>
+          <div class="alert money animation-shake">
+            <p></p>
+            <button type="button" class="close">&times</button>
+          </div>
+        </section>
+
+        <section class="lotto-list hidden-first">
+          <div class="lotto-count"></div>
+          <div class="list"></div>
+        </section>
+
+        <section class="hidden-first">
+          당첨 번호 6개와 보너스 번호 1개를 입력하세요.
+          <div class="input-winning-numbers flex">
+            <label>
+              당첨 번호
+              <div class="winning-number-input-boxes">
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+              </div>
+            </label>
+            <label class="flex">
+              보너스 번호
+              <div class="bonus-number-input-box">
+                <input type="number" inputmode="numeric" class="single-number-input" maxlength="2" required>
+              </div>
+            </label>
+          </div>
+          <button type="button" class="input show-results">결과 확인하기</button>
+          <div class="alert winning-numbers animation-shake">
+            <p></p>
+            <button type="button" class="close">&times</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="modal-background">
+        <section class="modal-box">
+          <button type="button" class="close">&times;</button>
+          <div class="modal-message flex">
+  
+          </div>
+          <button type="button" class="restart-game">다시 시작하기</button>
+        </section>
+      </div>
+    </main>
+
+    <footer class="flex">
+      <p>Copyright 2023. woowacourse</p>
+    </footer>
   </body>
 </html>
