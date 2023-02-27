@@ -1,5 +1,5 @@
 import VIEW from "../constants/View";
-import LOTTO_BOARD from "../constants/LottoBoard";
+import LOTTO_SCORE from "../constants/LottoBoard";
 import Console from "../util/Console";
 
 const OutputView = {
@@ -8,8 +8,7 @@ const OutputView = {
   },
 
   printLottos(lottos) {
-    lottos.lottos.forEach((lotto) => {
-      lotto.sortLottoNumbers();
+    lottos.forEach((lotto) => {
       Console.print(lotto.lottoNumbers);
     });
   },
@@ -20,11 +19,11 @@ const OutputView = {
   },
 
   printLottoResults(lottoRanking) {
-    for (const score in lottoRanking) {
+    Object.keys(lottoRanking).forEach((score) => {
       Console.print(
-        `${score} (${LOTTO_BOARD.moneyBoard[score]}원) - ${lottoRanking[score]}개`
+        `${score} (${LOTTO_SCORE.BENEFIT_TEXT[score]}원) - ${lottoRanking[score]}개`
       );
-    }
+    });
   },
 
   printTotalBenefit(lottos) {
@@ -34,7 +33,7 @@ const OutputView = {
   },
 
   printBuyLottos(lottos) {
-    this.printLottoAmount(lottos.lottos.length);
+    this.printLottoAmount(lottos.length);
     this.printLottos(lottos);
   },
 

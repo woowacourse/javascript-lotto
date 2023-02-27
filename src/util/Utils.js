@@ -1,8 +1,6 @@
 const Utils = {
   convertStringToNumber(strings) {
-    const numbers = strings.map((string) => {
-      return Number(string);
-    });
+    const numbers = strings.map(Number);
     return numbers;
   },
 

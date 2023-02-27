@@ -1,4 +1,4 @@
-import LOTTO_BOARD from "../constants/LottoBoard";
+import LOTTO_SCORE from "../constants/LottoBoard";
 import MATCHING from "../constants/Matching";
 import LOTTO_GAME from "../constants/LottoGame";
 import Utils from "../util/Utils";
@@ -6,11 +6,13 @@ import Utils from "../util/Utils";
 class LottoScore {
   #lottoRanking;
   #totalBenefit;
+  #isContainBonusNumber;
 
   constructor(lottos) {
     this.lottos = lottos;
-    this.#lottoRanking = { ...LOTTO_BOARD.rankingBoard };
+    this.#lottoRanking = { ...LOTTO_SCORE.RANKING };
     this.#totalBenefit = 0;
+    this.#isContainBonusNumber = new Array(lottos.length).fill(false);
   }
 
   get lottoRanking() {
@@ -18,24 +20,31 @@ class LottoScore {
   }
 
   get totalBenefit() {
-    const tempTotalBenefit = this.#totalBenefit;
-    return tempTotalBenefit;
+    return this.#totalBenefit;
+  }
+
+  get isContainBonusNumber() {
+    return [...this.#isContainBonusNumber];
+  }
+
+  setIsContainBonusNumber(index, isContain) {
+    this.#isContainBonusNumber[index] = isContain;
   }
 
   compareLottosScore() {
-    this.lottos.forEach((lotto) => {
-      this.determineAddScore(lotto);
+    this.lottos.forEach((lotto, index) => {
+      this.determineAddScore(lotto, index);
     });
   }
 
-  determineAddScore(lotto) {
+  determineAddScore(lotto, index) {
     !this.checkIsFailScore(lotto) && lotto.score === 5
-      ? this.determineBonusOrNot(lotto)
+      ? this.determineBonusOrNot(index)
       : this.addScoreBoard(lotto.score);
   }
 
-  determineBonusOrNot(lotto) {
-    lotto.isContainBonusNumber
+  determineBonusOrNot(index) {
+    this.#isContainBonusNumber[index]
       ? this.addScoreBoard(MATCHING.SECOND)
       : this.addScoreBoard(MATCHING.THIRD);
   }
@@ -68,10 +77,10 @@ class LottoScore {
   }
 
   calculateTotalBenefit() {
-    for (const score in this.#lottoRanking) {
+    Object.keys(this.#lottoRanking).forEach((score) => {
       this.#totalBenefit +=
-        this.#lottoRanking[score] * LOTTO_BOARD.benefitBoard[score];
-    }
+        this.#lottoRanking[score] * LOTTO_SCORE.BENEFIT[score];
+    });
   }
 
   getLottoBenefitRate(lottoAmount) {
@@ -83,7 +92,7 @@ class LottoScore {
   }
 
   resetLottoScore() {
-    this.#lottoRanking = { ...LOTTO_BOARD.rankingBoard };
+    this.#lottoRanking = { ...LOTTO_SCORE.RANKING };
     this.#totalBenefit = 0;
   }
 }

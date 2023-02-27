@@ -2,23 +2,19 @@ import Console from "../util/Console";
 
 const InputView = {
   async inputMoney(query) {
-    const buyMoney = await Console.read(query);
-    return buyMoney;
+    return Console.read(query);
   },
 
   async inputWinningNumbers(query) {
-    const winningNumbers = await Console.read(query);
-    return winningNumbers;
+    return await Console.read(query);
   },
 
   async inputBonusNumber(query) {
-    const bonusNumber = await Console.read(query);
-    return bonusNumber;
+    return Console.read(query);
   },
 
   async inputRetry(query) {
-    const retryInput = await Console.read(query);
-    return retryInput;
+    return Console.read(query);
   },
 };
 

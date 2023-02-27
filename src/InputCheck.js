@@ -1,53 +1,67 @@
 import ERROR_MESSAGE from "./constants/ErrorMessage";
-import Validators from "./Validators";
+import validators from "./Validators";
 
 const InputCheck = {
-  validateBuyMoney(buyMoney) {
-    if (!Validators.isNumber(buyMoney)) {
-      throw new Error(ERROR_MESSAGE.INPUT_NUMBER);
+  validateBuyMoney(buyMoney, isWeb) {
+    if (validators.isMaxBuyMoney(buyMoney, isWeb)) {
+      this.throwError(ERROR_MESSAGE.MAX_MONEY,isWeb)
     }
-    if (!Validators.isDevidedByThousand(buyMoney)) {
-      throw new Error(ERROR_MESSAGE.INPUT_NUMBER_DEVIDED_BY_THOUSAND);
+    if (!validators.isNumber(buyMoney)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
-    if (!Validators.isPositiveInteger(buyMoney)) {
-      throw new Error(ERROR_MESSAGE.INPUT_POSITIVE_INTEGER_MONEY);
+    if (!validators.isDevidedByThousand(buyMoney, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
+    }
+    if (!validators.isPositiveInteger(buyMoney, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
   },
 
-  validateWinningNumbers(winningLotto) {
-    if (!Validators.isCorrectLength(winningLotto)) {
-      throw new Error(ERROR_MESSAGE.INPUT_SIX_NUMBERS);
+  validateWinningNumbers(winningLotto, isWeb) {
+    if (validators.isDuplicatedNumbers(winningLotto, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
+    }
+    if (!validators.isCorrectLength(winningLotto, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
     for (let i = 0; i < winningLotto.length; i++) {
-      this.checkNumber(winningLotto[i]);
+      this.checkNumber(winningLotto[i], isWeb);
     }
   },
 
-  checkNumber(eachNumber) {
-    if (!Validators.isNumber(eachNumber)) {
-      throw new Error(ERROR_MESSAGE.INPUT_NUMBER);
+  checkNumber(eachNumber, isWeb) {
+    if (!validators.isNumber(eachNumber, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
-    if (!Validators.isCorrectRange(eachNumber)) {
-      throw new Error(ERROR_MESSAGE.INPUT_CORRECT_RANGE_NUMBER);
+    if (!validators.isCorrectRange(eachNumber, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
-    if (!Validators.isPositiveInteger(eachNumber)) {
-      throw new Error(ERROR_MESSAGE.INPUT_POSITIVE_INTEGER_LOTTO);
-    }
-  },
-
-  validateBonusNumber(bonusNumber, winningLotto) {
-    if (Validators.hasBonusNumber(bonusNumber, winningLotto)) {
-      throw new Error(ERROR_MESSAGE.INPUT_NOT_DUPLICATED_NUMBER);
+    if (!validators.isPositiveInteger(eachNumber, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
   },
 
-  validateRetryInput(retryInput) {
-    if (!Validators.isString(retryInput)) {
-      throw new Error(ERROR_MESSAGE.INPUT_STRING);
+  validateBonusNumber(bonusNumber, winningLotto, isWeb) {
+    if (validators.hasBonusNumber(bonusNumber, winningLotto, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
-    if (!Validators.isCorrectRetryInput(retryInput)) {
-      throw new Error(ERROR_MESSAGE.INPUT_CORRECT_RETRY);
+    this.checkNumber(bonusNumber, isWeb);
+  },
+
+  validateRetryInput(retryInput, isWeb) {
+    if (!validators.isString(retryInput, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
     }
+    if (!validators.isCorrectRetryInput(retryInput, isWeb)) {
+      this.throwError(ERROR_MESSAGE.INPUT_NUMBER, isWeb);
+    }
+  },
+
+  throwError(errorMessage, isWeb) {
+    if (isWeb) {
+      alert(errorMessage);
+    }
+    throw new Error(errorMessage);
   },
 };
 
