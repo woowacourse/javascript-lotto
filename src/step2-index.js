@@ -48,9 +48,7 @@ const setLottos = () => {
 };
 
 const resetLottoList = () => {
-  while (lottoListWrap.firstChild) {
-    lottoListWrap.removeChild(lottoListWrap.firstChild);
-  }
+  lottoListWrap.innerHTML = '';
 };
 
 const renderLottoList = (lottoList) => {
