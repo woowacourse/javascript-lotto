@@ -79,12 +79,9 @@ const ViewController = {
   },
 
   readWinNumbers() {
-    const winNumbers = new Array();
-
-    NAME.WINNUM.forEach((winNum) => {
-      const num = parseInt(winNum.value, DECIMAL);
-      winNumbers.push(num);
-    });
+    const winNumbers = Array.from(HTML_ELEMENTS.WINNUM, (winNum) =>
+      parseInt(winNum.value, DECIMAL)
+    );
 
     Validation.isWrongWinNumber(winNumbers);
     return winNumbers;
