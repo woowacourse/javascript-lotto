@@ -21,7 +21,10 @@ const consoleView = {
 
   printResult: (ranks) => {
     const result = ranks.reduce((accumulator, rankCount, rankIndex) => {
-      return `${this.getResultLine(rankIndex, rankCount)}\n${accumulator}`;
+      return `${consoleView.getResultLine(
+        rankIndex,
+        rankCount
+      )}\n${accumulator}`;
     }, '');
     Console.print(result);
   },
