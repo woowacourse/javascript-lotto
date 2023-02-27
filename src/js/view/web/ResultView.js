@@ -5,9 +5,9 @@ const $yieldRate = document.getElementById('yield-rate');
 
 const ResultView = {
   render(result, yieldRate) {
-    const ascendingWinningCounts = Object.values(result).reverse();
+    const ascendingWinningCounts = Object.values(result);
     Array.from($winningCountCells).forEach((cell) => {
-      cell.textContent = `${ascendingWinningCounts.shift()}개`;
+      cell.textContent = `${ascendingWinningCounts.pop()}개`;
     });
     $yieldRate.textContent = `당신의 총 수익률은 ${yieldRate}%입니다.`;
   },
