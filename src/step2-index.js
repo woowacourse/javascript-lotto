@@ -1,2 +1,6 @@
 require('./style/index.css');
-require('./domain/controller/webLotto');
+const WebLottoMachine = require('./domain/controller/WebLottoMachine');
+
+const webLottoMachine = new WebLottoMachine();
+
+webLottoMachine.play();
