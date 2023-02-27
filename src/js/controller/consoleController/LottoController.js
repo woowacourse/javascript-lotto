@@ -1,14 +1,12 @@
-const { COMMAND } = require('./constant/setting');
-
-const Comparer = require('./domain/Comparer');
-const LottoMachine = require('./domain/LottoMachine');
-const ProfitCalculator = require('./domain/ProfitCaculator');
-const WinningLotto = require('./domain/WinningLotto');
-
-const Console = require('./util/Console');
-const InputView = require('./view/InputView');
-const OutputView = require('./view/OutputView');
-const Validator = require('./domain/Validator');
+import { COMMAND } from '../../constant/setting';
+import Comparer from '../../domain/Comparer';
+import LottoMachine from '../../domain/LottoMachine';
+import ProfitCalculator from '../../domain/ProfitCaculator';
+import WinningLotto from '../../domain/WinningLotto';
+import Console from '../../util/Console';
+import InputView from '../../view/consoleView/InputView';
+import OutputView from '../../view/consoleView/OutputView';
+import Validate from '../../domain/Validate';
 
 class LottoController {
   #lottos;
@@ -31,7 +29,7 @@ class LottoController {
   async inputPurchaseAmount() {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
-      Validator.purchaseAmount(purchaseAmount);
+      Validate.purchaseAmount(purchaseAmount);
       this.issueLottos(Number(purchaseAmount));
       return Number(purchaseAmount);
     } catch (error) {
@@ -52,7 +50,7 @@ class LottoController {
   async inputWinningNumber() {
     try {
       const winningNumber = await InputView.readWinningNumber();
-      Validator.winningNumber(winningNumber);
+      Validate.winningNumber(winningNumber);
       return winningNumber.split(',').map(Number);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -63,7 +61,7 @@ class LottoController {
   async inputBonusNumber(winningNumber) {
     try {
       const bonusNumber = await InputView.readBonusNumber();
-      Validator.bonusNumber(bonusNumber, winningNumber);
+      Validate.bonusNumber(bonusNumber, winningNumber);
       return +bonusNumber;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -83,7 +81,7 @@ class LottoController {
   async inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
-      Validator.restartCommand(restartCommand);
+      Validate.restartCommand(restartCommand);
       this.processRestartCommand(restartCommand);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -101,4 +99,4 @@ class LottoController {
   }
 }
 
-module.exports = LottoController;
+export default LottoController;

@@ -22,4 +22,9 @@ const COMMAND = {
   NO: 'n',
 };
 
-module.exports = { RANK, LOTTO, COMMAND, AVAILABLE_NUMBERS };
+const KEY_CODE = {
+  ENTER: 13,
+  ESC: 27,
+};
+
+export { RANK, LOTTO, COMMAND, AVAILABLE_NUMBERS, KEY_CODE };

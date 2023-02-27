@@ -1,4 +1,4 @@
-const { RANK } = require('../constant/setting');
+import { RANK } from '../constant/setting';
 
 class ProfitCalculator {
   #ranking;
@@ -19,4 +19,4 @@ class ProfitCalculator {
   }
 }
 
-module.exports = ProfitCalculator;
+export default ProfitCalculator;

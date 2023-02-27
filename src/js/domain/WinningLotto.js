@@ -22,4 +22,4 @@ class WinningLotto {
   }
 }
 
-module.exports = WinningLotto;
+export default WinningLotto;

@@ -1,3 +1,7 @@
+## :link:[링크](https://shackstack.github.io/javascript-lotto/dist/)
+
+# 1단계 구현
+
 ## 기능요구사항
 
 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
@@ -52,6 +56,18 @@
   - [x] `y`또는 `n`이 아닌 경우
 - [x] 잘못된 값을 입력할 시 예외를 발생시키고, 에러 메시지를 출력 후 그 부분부터 다시 입력받는다.
 
+# 2단계 구현
+
+## 구현기능 목록
+
+- [x] feat: 로또 구매 기능
+- [x] feat: 로또 번호 출력
+- [x] feat: 당첨번호 및 보너스 번호 입력
+- [x] feat: 로또 발행 overflow시 스크롤
+- [x] feat: 결과 출력 기능
+- [x] feat: 다시시작시 초기화
+- [x] feat: 나가기 기능 구현
+
 ## UI
 
 - [x] 헤더
@@ -60,3 +76,20 @@
 - [x] 구입 금액 만큼 로또 번호 발행
 - [x] 당첨번호 및 보너스 번호 입력 창
 - [x] 결과확인 버튼
+- [x] 모달
+
+## UX
+
+- [x] feat: 모달 마운트 시 배경화면 클릭하면 모달 사라지기
+- [x] feat: 모달 마운트시 esc 활성화
+- [x] feat: 모달 마운트시 enter 활성화
+- [x] feat: 당첨번호 입력시 엔터누르면 다음 입력창으로 넘어가기
+- [x] feat: 구입금액 입력시 당첨번호 입력창 포커싱
+
+## 리팩터링
+
+- [x] refactor: MVVM 패턴 적용
+- [x] refactor: 초기화면만 html파일에 담기
+- [x] refactor: keyCode 상수화
+- [x] refactor: innerHTML 반복문 수정
+- [x] refactor: getWinningNumbers메서드 수정

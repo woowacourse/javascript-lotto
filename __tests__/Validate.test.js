@@ -1,5 +1,11 @@
-const { ERROR_MESSAGE } = require('../src/constant/message');
-const Validator = require('../src/domain/Validator');
+import { ERROR_MESSAGE } from '../src/constant/message';
+import {
+  number,
+  purchaseAmount,
+  winningNumber as _winningNumber,
+  bonusNumber as _bonusNumber,
+  restartCommand,
+} from '../src/js/domain/Validate';
 
 describe('숫자 입력 유효성 검사 테스트', () => {
   test('빈 값인 경우 예외가 발생한다.', () => {
@@ -8,21 +14,21 @@ describe('숫자 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.number(input);
+      number(input);
     }).toThrow(ERROR_MESSAGE.NULL);
   });
 
   test.each([' ', '1 3', '13 '])('공백이 포함되어 있는 경우 예외가 발생한다.', (input) => {
     //then
     expect(() => {
-      Validator.number(input);
+      number(input);
     }).toThrow(ERROR_MESSAGE.HAS_BLANK);
   });
 
   test.each(['bbbb', 'a', '^^4', '10a'])('숫자가 아닌 경우 예외가 발생한다.', (input) => {
     //then
     expect(() => {
-      Validator.number(input);
+      number(input);
     }).toThrow(ERROR_MESSAGE.NOT_A_NUMBER);
   });
 });
@@ -34,7 +40,7 @@ describe('구입 금액 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.purchaseAmount(money);
+      purchaseAmount(money);
     }).toThrow(ERROR_MESSAGE.LESS_THAN_MINIMUM);
   });
 
@@ -44,7 +50,7 @@ describe('구입 금액 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.purchaseAmount(money);
+      purchaseAmount(money);
     }).toThrow(ERROR_MESSAGE.HAS_CHANGE);
   });
 });
@@ -55,7 +61,7 @@ describe('당첨 번호 입력 유효성 검사 테스트', () => {
     const numbers = '1,3,4,5,46,10';
     //then
     expect(() => {
-      Validator.winningNumber(numbers);
+      _winningNumber(numbers);
     }).toThrow(ERROR_MESSAGE.OUT_OF_RANGE);
   });
 
@@ -65,7 +71,7 @@ describe('당첨 번호 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.winningNumber(numbers);
+      _winningNumber(numbers);
     }).toThrow(ERROR_MESSAGE.INVALID_WINNING_NUMBER_LENGTH);
   });
 
@@ -75,7 +81,7 @@ describe('당첨 번호 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.winningNumber(numbers);
+      _winningNumber(numbers);
     }).toThrow(ERROR_MESSAGE.DUPLICATED_NUMBER);
   });
 });
@@ -88,7 +94,7 @@ describe('보너스 번호 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.bonusNumber(bonusNumber, winningNumber);
+      _bonusNumber(bonusNumber, winningNumber);
     }).toThrow(ERROR_MESSAGE.OUT_OF_RANGE);
   });
 
@@ -99,7 +105,7 @@ describe('보너스 번호 입력 유효성 검사 테스트', () => {
 
     //then
     expect(() => {
-      Validator.bonusNumber(bonusNumber, winningNumber);
+      _bonusNumber(bonusNumber, winningNumber);
     }).toThrow(ERROR_MESSAGE.DUPLICATED_NUMBER);
   });
 });
@@ -108,7 +114,7 @@ describe('재시작 커맨드 입력 유효성 검사 테스트', () => {
   test.each(['k', '1', 'yn', '!!'])('y 혹은 n이 아닌 경우 예외가 발생한다', (command) => {
     //then
     expect(() => {
-      Validator.restartCommand(command);
+      restartCommand(command);
     }).toThrow(ERROR_MESSAGE.INVALID_RESTART_COMMAND);
   });
 });

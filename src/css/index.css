@@ -1,0 +1,278 @@
+:root {
+  --primary: #4e5ba6;
+  --grey-scale-1: #ffffff;
+  --grey-scale-2: #fcfcfd;
+  --grey-scale-3: #b4b4b4;
+  --grey-scale-4: #8b8b8b;
+  --grey-scale-5: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  font-family: 'Roboto';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--grey-scale-2);
+  padding-top: 148px;
+  padding-bottom: 149px;
+  height: 100vh;
+}
+
+body {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--grey-scale-1);
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+header h1 {
+  margin-left: 130px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+footer {
+  font-weight: 700;
+  font-size: 14px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  width: 100vw;
+  bottom: 0;
+  padding: 32px;
+  position: absolute;
+  text-align: center;
+  background-color: var(--grey-scale-2);
+  color: var(--primary);
+}
+
+button {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  background: var(--primary);
+  border-radius: 4px;
+  color: var(--grey-scale-1);
+  border: 0px;
+}
+
+input {
+  border: 1px solid var(--grey-scale-3);
+  border-radius: 4px;
+}
+
+.lottoGame {
+  width: 414px;
+  height: 727px;
+  max-height: 727px;
+  background: var(--grey-scale-1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lottoGame h1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.purchaseLotto {
+  margin-top: 28px;
+}
+
+.purchaseLotto div {
+  margin-top: 4px;
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.purchaseLotto div input {
+  width: 310px;
+  padding-left: 8px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.purchaseLotto div button {
+  width: 56px;
+}
+
+.youBought {
+  display: none;
+  margin-top: 28px;
+}
+
+.issueLotto {
+  margin-top: 12px;
+  display: none;
+  margin-bottom: 24px;
+  max-height: 300px;
+  overflow: scroll;
+}
+
+.issueLotto::-webkit-scrollbar {
+  display: none;
+}
+
+.lottos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.lotto {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.lotto span {
+  font-size: 34px;
+  margin-right: 8px;
+}
+
+.inputNumbersLayout {
+  display: none;
+  margin-bottom: 16px;
+  margin-top: auto;
+}
+.inputNumbers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.inputNumber {
+  margin-top: 8px;
+  width: 34px;
+  height: 36px;
+  padding-left: 8px;
+}
+.bonusNumber input {
+  float: right;
+}
+.checkResult {
+  align-self: flex-end;
+  width: 100%;
+  margin-top: 27px;
+  bottom: 16px;
+}
+.checkResult button {
+  width: 100%;
+  height: 36px;
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalBox {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  background: var(--grey-scale-1);
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.modalBox h2 {
+  margin-top: 8px;
+  margin-bottom: auto;
+}
+
+.exitDiv {
+  margin-bottom: auto;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.exit {
+  background-color: var(--grey-scale-1);
+  color: #444444;
+  font-size: 16px;
+}
+
+.restartButton {
+  margin-top: 32px;
+  width: 100%;
+  height: 36px;
+}
+
+table {
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+}
+thead th {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+}
+th,
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 10px;
+}
+
+tbody th {
+  font-weight: normal;
+}
+
+@media (max-width: 400px) {
+  header,
+  footer {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
-const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } = require('../constant/message');
-const Console = require('../util/Console');
+import { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } from '../../constant/message';
+import Console from '../../util/Console';
 
 const OutputView = {
   printEmptyLine() {
@@ -32,4 +32,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

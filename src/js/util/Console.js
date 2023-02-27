@@ -1,7 +1,7 @@
-const readline = require('readline');
-const { stdin: input, stdout: output } = require('process');
+import { createInterface } from 'readline';
+import { stdin as input, stdout as output } from 'process';
 
-const rl = readline.createInterface({ input, output });
+const rl = createInterface({ input, output });
 
 const Console = {
   readLine(string) {
@@ -17,4 +17,4 @@ const Console = {
   },
 };
 
-module.exports = Console;
+export default Console;
