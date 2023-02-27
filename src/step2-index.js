@@ -33,7 +33,7 @@ const inputAmountElement = document.getElementById('input-purchase-amount');
 const controller = new LottoWebController();
 
 // 구매 버튼 클릭시
-inputPurchaseButton.addEventListener('click', () => setLottos(), false);
+inputPurchaseButton.addEventListener('click', () => setLottos());
 
 const setLottos = () => {
   resetLottoList();
@@ -71,7 +71,7 @@ const createTextElementAndAppend = (text, parent) => {
 };
 
 // 결과 버튼 클릭시
-checkResultButton.addEventListener('click', () => result(), false);
+checkResultButton.addEventListener('click', () => result());
 
 const result = () => {
   const winNumber = Array.from(winNumberElement).map(
@@ -104,4 +104,4 @@ modalCloseButton.addEventListener(
 );
 
 // 재시작 버튼 클릭시
-restartButton.addEventListener('click', () => location.reload(), false);
+restartButton.addEventListener('click', () => location.reload());
