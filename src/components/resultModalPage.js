@@ -1,6 +1,6 @@
 import LottoMachine from '../domain/LottoMachine.js';
 import RankedLotto from '../domain/RankedLotto.js';
-import { winningNumbersTag, bonusNumberTag } from '../utils/DOM.js';
+import { $, $$ } from '../utils/DOM.js';
 import { display } from '../view/display.js';
 
 export default class resultModalPage {
@@ -17,8 +17,8 @@ export default class resultModalPage {
   getLottoWin(lottoList) {
     this.lottoMachine.lottoNumber = lottoList;
     const winningNumber = [];
-    const bonusNumber = bonusNumberTag.value;
-    winningNumbersTag.forEach((number, index) => {
+    const bonusNumber = $('.bonus-number').value;
+    $$('.winning-number').forEach((number, index) => {
       winningNumber[index] = number.value;
     });
     const lottoResult = this.lottoMachine.compareNumber(winningNumber, bonusNumber);

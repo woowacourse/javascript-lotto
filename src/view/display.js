@@ -11,6 +11,7 @@ import {
   thirdWin,
   secondhWin,
   firstWin,
+  bonusInput,
 } from '../utils/DOM.js';
 import { NUMBER } from '../utils/constant.js';
 
@@ -28,7 +29,8 @@ export const display = {
 
   showWinningNumberForm() {
     winningNumberForm.classList.remove('d-none');
-    winningNumberInputs.innerHTML = display.winningNumberInput();
+    $('.winning-number-inputs').innerHTML = display.winningNumberInput();
+    $('.bonus-input').innerHTML = display.bonusNumberInput();
     $('.order-0').focus();
   },
 
@@ -46,14 +48,28 @@ export const display = {
 
     for (let index = 0; index < NUMBER.LOTTO_NUMBER_LENGTH; index++) {
       winningNumberInputDisplay += `
-      <input type="number"
-      min=${NUMBER.LOTTO_NUMBER_START_ONE}
-      max=${NUMBER.LOTTO_NUMBER_RANGE}
-      class="winning-number mx-1 text-center order-${index}"
+      <input type = "number"
+      min = "${NUMBER.LOTTO_NUMBER_START_ONE}"
+      max = "${NUMBER.LOTTO_NUMBER_RANGE}"
+      class = "winning-number mx-1 text-center order-${index}"
       required/>
       `;
     }
     return winningNumberInputDisplay;
+  },
+
+  bonusNumberInput() {
+    let bonusNumberInputDisplay = '';
+
+    bonusNumberInputDisplay += `
+    <input type="number"
+    min=${NUMBER.LOTTO_NUMBER_START_ONE}
+    max=${NUMBER.LOTTO_NUMBER_RANGE}
+    class="bonus-number text-center"
+    required/>
+    `;
+
+    return bonusNumberInputDisplay;
   },
 
   showProfitRate(profitRate) {
