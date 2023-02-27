@@ -1,0 +1,196 @@
+:root {
+    --color-primary: #4E5BA6;
+    --color-gray-scale-1: #FFFFFF;
+    --color-gray-scale-2: #FCFDFD;
+    --color-gray-scale-3: #B4B4B4;
+    --color-gray-scale-4: #8B8B8B;
+    --color-gray-scale-5: #000000;
+    --color-border: rgba(0, 0, 0, 0.12);
+    --button-height: 36px;
+    --extra-bold: 800;
+    --bold: 700;
+    --semi-bold: 600;
+    --medium: 500;
+}
+
+body, h3, p {
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    background: var(--color-primary);
+    color: var(--color-gray-scale-1);
+    font: var(--extra-bold) 24px system-ui;
+    padding: 14px 30px;
+}
+
+th, td {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+button {
+    border: 0;
+    color: var(--color-gray-scale-1);
+    background: var(--color-primary);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: 414px;
+    height: 727px;
+    padding: 0 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.lotto-subtitle {
+    margin: 36px 0;
+    font: var(--bold) 24px system-ui;
+    text-align: center;
+}
+
+.payments-input {
+    width: 310px;
+    height: 30px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.payments-btn {
+    height: var(--button-height);
+    width: 56px;
+    margin: 0 0 0 16px;
+}
+
+.payments-btn:disabled {
+    background-color: var(--color-gray-scale-4);
+    cursor:not-allowed;
+}
+
+.lottos-container {
+    margin: 10px 0;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.lotto-numbers{
+    margin: 7px 0;
+}
+
+.winning-lotto-container {
+    visibility: hidden;
+}
+
+.winning-lotto-notice {
+    margin: 10px 0;
+}
+
+.winning-lotto-title-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.winning-numbers-input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.winning-number-input, .bonus-number-input {
+    height: var(--button-height);
+    width: 34px;
+    font: var(--medium) 15px system-ui;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+}
+
+.modal {
+    display: flex;
+    visibility: hidden;
+    position: absolute;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+    background: var(--color-border);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-table {
+    width: 319px;
+    text-align: center;
+    border-collapse: collapse;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.profit-rate {
+    margin: 37px 0;
+    font: var(--semi-bold) 16px system-ui;
+}
+
+.modal-close-btn {
+    margin: 12px 0 0 360px;
+    background: var(--color-gray-scale-1);
+    color: var(--color-gray-scale-5);
+    font: var(--medium) 24px system-ui;
+    cursor: pointer;
+}
+
+.win-result-container {
+    background: var(--color-gray-scale-1);
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;
+}
+
+.modal-restart-btn {
+    width: 318px;
+    height: var(--button-height);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-primary);
+    font: bold 14px system-ui;
+    padding: 14px 0;
+}
+
+.result-btn {
+    width: 414px;
+    height: var(--button-height);
+    margin: 50px 0 0 0;
+}
+.result-btn:disabled {
+    background-color: var(--color-gray-scale-4);
+    cursor:not-allowed;
+}

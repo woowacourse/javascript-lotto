@@ -10,7 +10,7 @@ describe('Lotto 클래스 입니다.', () => {
       [7, 6, 5, 3, 2, 1],
       [1, 2, 3, 5, 6, 7],
     ],
-  ])('로또 배열을 정렬한다.', (numbers, expected) => {
+  ])('생성할 때 인자로 받은 로또 배열을 정렬한다.', (numbers, expected) => {
     const lotto = new Lotto(numbers);
     expect(lotto.getNumbers()).toEqual(expected);
   });

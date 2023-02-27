@@ -1,4 +1,79 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+/* eslint-disable no-undef */
+import { renderLottosContainer, renderResultTable } from './view/render';
+import '../public/style.css';
+import LottoMeditator from './LottoMeditator';
+
+const modal = document.querySelector('.modal');
+const paymentsContainer = document.querySelector('.payments-container');
+const winningLottoContainer = document.querySelector('.winning-lotto-container');
+
+const paymentsBtn = document.querySelector('.payments-btn');
+const resultBtn = document.querySelector('.result-btn');
+const modalRestartBtn = document.querySelector('.modal-restart-btn');
+const webController = new LottoMeditator();
+
+const handlePayments = () => {
+  const paymentsInput = document.querySelector('.payments-input');
+  const payments = Number(paymentsInput.value);
+
+  webController.receivePaymentsInput(payments);
+};
+
+const changeCSSByPaymentsEvent = () => {
+  paymentsBtn.disabled = true;
+  resultBtn.disabled = false;
+  winningLottoContainer.style.visibility = 'visible';
+};
+
+const resetPaymentsInput = () => {
+  const paymentsInput = document.querySelector('.payments-input');
+  paymentsInput.value = '';
+};
+
+const handleWinningLottos = () => {
+  const winningNumberInputs = document.querySelectorAll('.winning-number-input');
+  const bonusNumberInput = document.querySelector('.bonus-number-input');
+
+  const winningNumbers = Array.from(winningNumberInputs, (input) => Number(input.value));
+  webController.receiveWinningLottoNumbersInput(winningNumbers);
+
+  const bonusNumber = Number(bonusNumberInput.value);
+  webController.receiveBonusNumberInput(bonusNumber);
+};
+
+const changeCSSByResultBtnEvent = () => {
+  resultBtn.disabled = true;
+  modal.style.visibility = 'visible';
+};
+
+paymentsContainer.addEventListener('submit', (e) => {
+  e.preventDefault();
+  try {
+    handlePayments();
+    renderLottosContainer(webController.sendLottoNumbers());
+    changeCSSByPaymentsEvent();
+  } catch (error) {
+    window.alert(error.message);
+    resetPaymentsInput();
+  }
+});
+
+winningLottoContainer.addEventListener('submit', (e) => {
+  e.preventDefault();
+  try {
+    handleWinningLottos();
+    renderResultTable(webController.sendStatstics());
+    changeCSSByResultBtnEvent();
+  } catch (error) {
+    window.alert(error.message);
+  }
+});
+
+const modalCloseBtn = modal.querySelector('.modal-close-btn');
+modalCloseBtn.addEventListener('click', () => {
+  modal.style.visibility = 'hidden';
+});
+
+modalRestartBtn.addEventListener('click', () => {
+  window.location.reload();
+});
