@@ -11,8 +11,9 @@ import {
   WINNING_ORDER,
   CONVERT_RANK_TO_STRING,
   MATCH_RANK,
+  LOTTO_EMOJI,
 } from './data/Constants';
-import { LOTTO_EMOJI } from './data/Constants';
+import { createTextElementAndAppend } from './utils/Utils';
 
 const inputPurchaseButton = document.getElementById('input-purchase-btn');
 const checkResultButton = document.getElementById('check-result-btn');
@@ -59,12 +60,6 @@ const renderLottoList = (lottoList) => {
 
     lottoListWrap.append(lottoElement);
   });
-};
-
-const createTextElementAndAppend = (text, parent) => {
-  const textElement = document.createElement('p');
-  textElement.innerHTML = text;
-  parent.appendChild(textElement);
 };
 
 // 결과 버튼 클릭시
