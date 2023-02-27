@@ -18,7 +18,13 @@
           <div class="column">
             <p class="sub-title">구입할 금액을 입력해주세요.</p>
             <div class="money-input-container space-between">
-              <input id="moneyInput" class="money-input" autofocus />
+              <input
+                id="moneyInput"
+                class="money-input"
+                type="number"
+                autofocus
+                required
+              />
               <button id="purchaseButton" class="button">구입</button>
             </div>
           </div>
@@ -38,7 +44,12 @@
               </div>
               <div class="number-input-container space-between">
                 <div id="winningNumbersGroup"></div>
-                <input id="bonusNumberInput" class="number-input" />
+                <input
+                  id="bonusNumberInput"
+                  class="number-input"
+                  type="number"
+                  required
+                />
               </div>
               <button id="confirmButton" class="button">결과 확인하기</button>
             </div>

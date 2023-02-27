@@ -94,7 +94,7 @@ const renderLottoContent = () => {
 
 const renderWinningNumebersInput = () => {
   winningNumbersGroup.innerHTML = [...Array(MAGIC_NUMBER.winningNumberCount)]
-    .map(() => '<input type="number" class="number-input" />')
+    .map(() => '<input class="number-input" type="number" required/>')
     .join('');
 };
 
