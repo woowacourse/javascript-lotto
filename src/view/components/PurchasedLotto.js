@@ -1,6 +1,6 @@
 const PurchasedLottoTemplate = (lotto) => {
   return `
-        <p>🎟️ ${lotto.getNumbers().join(', ')}<p>
+        <p>🎟️ ${lotto.getNumbers().join(', ')}</p>
     `;
 };
 
