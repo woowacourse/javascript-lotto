@@ -9,6 +9,7 @@ class LottoWebGame {
   constructor() {
     this.lottos = [];
     this.lottoMachine = new LottoMachine();
+    this.keydown = false;
   }
 
   play() {
@@ -62,6 +63,7 @@ class LottoWebGame {
       lottoGameValidator.checkWinningNumbers(String(winningNumbers));
       lottoGameValidator.checkBonusNumber(Number(bonusNumber), winningNumbers);
       this.renderStatistics(winningNumbers, bonusNumber);
+      this.keydown = true;
     } catch (error) {
       window.alert(error);
     }
@@ -81,6 +83,14 @@ class LottoWebGame {
     render.removeElement('#winning-statistics');
   }
 
+  handleKeydownEscape({ code }) {
+    if (!this.keydown) return;
+    if (code !== 'Escape') return;
+
+    render.removeElement('#winning-statistics');
+    this.keydown = false;
+  }
+
   initAddEventListener() {
     $('#purchase-amount-form').addEventListener(
       'submit',
@@ -89,6 +99,7 @@ class LottoWebGame {
     $('#winning-lotto-from').addEventListener('submit', this.handleSubmitWinningLotto.bind(this));
     $('#winning-statistics').addEventListener('click', this.restartLottoGame.bind(this));
     $('#winning-statistics').addEventListener('click', this.exitStatistics.bind(this));
+    document.addEventListener('keydown', this.handleKeydownEscape.bind(this));
   }
 }
 
