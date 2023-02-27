@@ -248,7 +248,7 @@ main {
   margin-right: 8px;
 }
 
-.input-bonusNumber {
+.input-bonus-number {
   align-items: flex-end;
 }
 
@@ -344,14 +344,14 @@ td {
   text-align: center;
 }
 
-.result-earnRate {
+.result-earn-rate {
   width: 100%;
   display: flex;
   justify-content: center;
   margin: 32px 0 32px 0;
 }
 
-.result-earnRate > p {
+.result-earn-rate > p {
   font-weight: 700;
   font-size: 15px;
   line-height: 24px;
