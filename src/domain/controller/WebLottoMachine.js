@@ -1,16 +1,16 @@
 const Money = require('../model/Money');
 const Winning = require('../model/Winning');
+const webView = require('../../view/webView');
 const {
   generateLottos,
   getBenefitRate,
   getCollectedRanks,
 } = require('../../utils/lotto');
-const { LOTTO_NUMBER } = require('../../constant');
 const { $, $$ } = require('../../utils');
-const webView = require('../../view/webView');
+const { LOTTO_NUMBER } = require('../../constant');
 
 class WebLottoMachine {
-  closeModalClick() {
+  closeModalClickEvent() {
     $('#closeButton').addEventListener('click', () => {
       webView.hideResultModal();
     });
@@ -24,7 +24,7 @@ class WebLottoMachine {
     });
   }
 
-  closeModalKeydown() {
+  closeModalKeydownEvent() {
     document.addEventListener('keydown', (event) => {
       if (event.code === 'Escape') {
         webView.hideResultModal();
@@ -41,15 +41,15 @@ class WebLottoMachine {
   }
 
   play() {
-    this.submitMoney();
-    this.closeModalClick();
-    this.closeModalKeydown();
-    this.retry();
-    this.watchInputChange();
+    this.moneySubmitEvent();
+    this.closeModalClickEvent();
+    this.closeModalKeydownEvent();
+    this.retryClickEvent();
+    this.watchInputEvent();
     webView.printCopyright();
   }
 
-  retry() {
+  retryClickEvent() {
     $('#retryButton').addEventListener('click', () => {
       webView.showBeginning();
     });
@@ -57,7 +57,7 @@ class WebLottoMachine {
 
   showCountAndLottos(count, lottos) {
     webView.printLottoCount(count);
-    webView.printLotto(lottos);
+    webView.printLottos(lottos);
   }
 
   showResult(ranks, benefitRate) {
@@ -66,7 +66,7 @@ class WebLottoMachine {
     webView.printBenefitRate(benefitRate);
   }
 
-  submitMoney() {
+  moneySubmitEvent() {
     $('#moneyForm').addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -78,14 +78,14 @@ class WebLottoMachine {
         this.prepareWinningInputs();
         this.showCountAndLottos(count, lottos);
 
-        this.submitWinningNumbers(money, lottos);
+        this.winningNumbersSubmitEvent(money, lottos);
       } catch (error) {
         webView.printError(error, '#moneyError');
       }
     });
   }
 
-  submitWinningNumbers(money, lottos) {
+  winningNumbersSubmitEvent(money, lottos) {
     $('#inputNumberContainer').addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -113,7 +113,7 @@ class WebLottoMachine {
     webView.focusFirstWinningNumber();
   }
 
-  watchInputChange() {
+  watchInputEvent() {
     $('#moneyAmount').addEventListener('input', webView.controllMoneyInput);
 
     $$('.winning-number').forEach((item) =>

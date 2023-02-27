@@ -1,5 +1,5 @@
-const { LOTTO_LITERAL, LOTTO_NUMBER } = require('../constant');
 const { $, $$ } = require('../utils');
+const { LOTTO_LITERAL, LOTTO_NUMBER } = require('../constant');
 
 const EMPTY = '';
 const HIDDEN = 'hidden';
@@ -37,7 +37,7 @@ const webView = {
     $('#moneyAmount').focus();
   },
 
-  getErrorMessage: (errorMessage) => {
+  getErrorMessageNode: (errorMessage) => {
     const errorDiv = document.createElement('div');
     errorDiv.classList.add('error-message');
     errorDiv.innerText = errorMessage;
@@ -99,7 +99,7 @@ const webView = {
     $('#lottoCount').innerText = `총 ${count}개를 구매하였습니다.`;
   },
 
-  printLotto: (lottos) => {
+  printLottos: (lottos) => {
     lottos.forEach((item) => {
       $('#lottoNumberConatiner').appendChild(
         webView.getLottoNumberNode(item.getLottoNumbers())
@@ -108,7 +108,7 @@ const webView = {
   },
 
   printError: (error, parent) => {
-    const errorDiv = webView.getErrorMessage(error.message);
+    const errorDiv = webView.getErrorMessageNode(error.message);
     $(parent).appendChild(errorDiv);
   },
 
