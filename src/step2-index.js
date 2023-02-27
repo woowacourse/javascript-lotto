@@ -46,14 +46,6 @@ class App extends Component {
     </footer>
     `;
   }
-
-  setDrawingNumbers(drawingNumbers) {
-    const lottoList = this.state.lottoList.map((lotto) => {
-      lotto.setDrawingNumbers(drawingNumbers);
-      return lotto;
-    });
-    return lottoList;
-  }
 }
 
 new App();
