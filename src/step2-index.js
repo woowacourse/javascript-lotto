@@ -94,7 +94,7 @@ const renderLottoContent = () => {
 
 const renderWinningNumebersInput = () => {
   winningNumbersGroup.innerHTML = [...Array(MAGIC_NUMBER.winningNumberCount)]
-    .map(() => '<input class="number-input" />')
+    .map(() => '<input type="number" class="number-input" />')
     .join('');
 };
 
@@ -118,7 +118,7 @@ const getWinningNumbersInput = () => {
       const numberInput = document.querySelector(
         `#winningNumbersGroup > input:nth-child(${index + 1})`
       );
-      return Number(numberInput.value);
+      return numberInput.valueAsNumber;
     }
   );
 

@@ -150,6 +150,11 @@ body {
   text-align: center;
 }
 
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .dark-home {
   display: none;
   align-items: center;
