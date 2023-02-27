@@ -1,0 +1,453 @@
+@import 'reset.css';
+
+/* header 부분 */
+header {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 64px;
+  left: 0px;
+  top: 0px;
+
+  background: #4e5ba6;
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+header h1 {
+  position: absolute;
+  width: 147px;
+  height: 36px;
+  left: 130px;
+  top: 14px;
+
+  font-size: 24px;
+  line-height: 36px;
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #ffffff;
+}
+
+/* content 부분 */
+section {
+  height: 880px;
+  width: 100%;
+  position: absolute;
+}
+
+.content {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+section .content h2 {
+  position: absolute;
+  width: 382px;
+  height: 24px;
+  left: 16px;
+  top: 52px;
+
+  font-size: 24px;
+  line-height: 24px;
+
+  text-align: center;
+  letter-spacing: 0.15px;
+
+  color: #000000;
+}
+
+.inputMoney {
+  position: absolute;
+  width: 382px;
+  height: 64px;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  position: absolute;
+  width: 310px;
+  height: 64px;
+  left: 16px;
+  top: 104px;
+}
+
+label {
+  width: 310px;
+  height: 24px;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.readMoney {
+  position: absolute;
+
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+#money {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 8px 0px;
+  gap: 10px;
+
+  width: 310px;
+  height: 36px;
+
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#buy {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 56px;
+  height: 36px;
+  left: 342px;
+  top: 132px;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+
+  color: #ffffff;
+}
+
+.buyText {
+  position: absolute;
+  left: 16px;
+  right: 46.77%;
+  top: 196px;
+
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+  visibility: hidden;
+}
+
+.purchase {
+  visibility: hidden;
+}
+
+.lottos {
+  position: absolute;
+  width: 238px;
+  left: 16px;
+  top: 228px;
+}
+
+.lottos ul li {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+  margin: 0 0 15px 0;
+
+  color: #000000;
+}
+
+.lottoList {
+  height: 250px;
+  width: 310px;
+  overflow-y: scroll;
+}
+
+.winningLotto {
+  position: absolute;
+  width: 382px;
+  height: 104px;
+  left: 16px;
+  top: 528px;
+}
+
+.winningLotto p {
+  position: absolute;
+  left: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+.winningNumber {
+  position: absolute;
+  width: 244px;
+  height: 68px;
+  top: 30px;
+}
+
+.winningNumber p {
+  position: absolute;
+
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+.inputNumber {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 15px;
+}
+
+.inputNumber input {
+  width: 30px;
+  height: 31px;
+  border-radius: 4px;
+  margin-right: 5px;
+  border: 1px solid #b4b4b4;
+}
+
+.bonusNumber {
+  position: absolute;
+  width: 100px;
+  height: 68px;
+  left: 290px;
+  top: 30px;
+}
+
+.bonusNumber p {
+  position: absolute;
+
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  text-align: right;
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+.bonusNumber input {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  width: 30px;
+  height: 31px;
+  border-radius: 4px;
+  margin-right: 5px;
+  border: 1px solid #b4b4b4;
+}
+
+#result_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 382px;
+  height: 36px;
+  top: 120px;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+
+  color: #ffffff;
+}
+
+/* footer 부분 */
+footer {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 944px;
+
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+footer p {
+  position: absolute;
+  height: 16px;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+
+  font-size: 14px;
+  line-height: 16px;
+
+  text-align: center;
+  letter-spacing: 1.25px;
+
+  color: #4e5ba6;
+}
+
+/* modal 부분 */
+.modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.close {
+  position: absolute;
+  left: 90.86%;
+  right: 4.57%;
+  top: 3.2%;
+  bottom: 93.6%;
+
+  font-size: 20px;
+  line-height: 16px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 1.25px;
+
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.modal_body {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+
+  background: #ffffff;
+  border-radius: 4px;
+
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.model_subject {
+  position: absolute;
+  left: 29.56%;
+  right: 29.56%;
+  top: 40px;
+
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  text-align: center;
+  letter-spacing: 0.15px;
+
+  color: #000000;
+}
+
+.lotto_result {
+  position: absolute;
+  width: 319px;
+  height: 247px;
+  left: 16px;
+  top: 97px;
+}
+
+.lotto_result td {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+table {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 10px;
+}
+
+.result_profit {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 390px;
+  transform: translate(-50%, -20%);
+
+  font-size: 15px;
+  line-height: 24px;
+
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  color: #000000;
+}
+
+.restart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px 6px 6px 8px;
+
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  left: 16px;
+  top: 432px;
+
+  background: #4e5ba6;
+  border-radius: 4px;
+
+  color: #ffffff;
+}
